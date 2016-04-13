@@ -1507,139 +1507,137 @@ def InitNimManager(nimmgr, update_slots = []):
 			if isinstance(section.unicable, ConfigNothing):
 				if lnb == 1 or lnb > maxFixedLnbPositions:
 					section.unicable = ConfigSelection(unicable_choices, unicable_choices_default)
-#				elif lnb == 2:
 				else:
 					section.unicable = ConfigSelection(choices = {"unicable_matrix": _("Unicable Matrix"),"unicable_user": "Unicable "+_("User defined")}, default = "unicable_matrix")
-#					section.unicable = ConfigSelection(choices = {"unicable_user": _("User defined")}, default = "unicable_user")
-			if 1==1:
-				def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
-					for manufacturer in unicableproducts:
-						products = unicableproducts[manufacturer].keys()
-						products.sort()
-						products_valide = []
-						products_valide_append = products_valide.append
-						tmp = ConfigSubsection()
-						tmp.scr = ConfigSubDict()
-						tmp.vco = ConfigSubDict()
-						tmp.lofl = ConfigSubDict()
-						tmp.lofh = ConfigSubDict()
-						tmp.loft = ConfigSubDict()
-						tmp.positionsoffset = ConfigSubDict()
-						tmp.positions = ConfigSubDict()
-						tmp.diction = ConfigSubDict()
-						for article in products:
-							positionslist = unicableproducts[manufacturer][article].get("positions")
-							positionsoffsetlist = unicableproducts[manufacturer][article].get("positionsoffset")
-							positionsoffset = int(positionsoffsetlist[0])
-							positions = int(positionslist[0])
-							dictionlist = [unicableproducts[manufacturer][article].get("diction")]
-							if dictionlist[0][0] !="EN50607" or ((lnb > positionsoffset) and (lnb <= (positions + positionsoffset))):
-								tmp.positionsoffset[article] = ConfigSubList()
-								tmp.positionsoffset[article].append(ConfigInteger(default=positionsoffset, limits = (positionsoffset, positionsoffset)))
-								tmp.positions[article] = ConfigSubList()
-								tmp.positions[article].append(ConfigInteger(default=positions, limits = (positions, positions)))
-								tmp.diction[article] = ConfigSelection(choices = dictionlist, default = dictionlist[0][0])
 
-								scrlist = []
-								scrlist_append = scrlist.append
-								vcolist=unicableproducts[manufacturer][article].get("frequencies")
-								tmp.vco[article] = ConfigSubList()
-								for cnt in range(1,len(vcolist)+1):
-									vcofreq = int(vcolist[cnt-1])
-									if vcofreq == 0 and vco_null_check:
-										scrlist_append(("%d" %cnt,"SCR %d " %cnt +_("not used")))
-									else:
-										scrlist_append(("%d" %cnt,"SCR %d" %cnt))
-									tmp.vco[article].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
+			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
+				for manufacturer in unicableproducts:
+					products = unicableproducts[manufacturer].keys()
+					products.sort()
+					products_valide = []
+					products_valide_append = products_valide.append
+					tmp = ConfigSubsection()
+					tmp.scr = ConfigSubDict()
+					tmp.vco = ConfigSubDict()
+					tmp.lofl = ConfigSubDict()
+					tmp.lofh = ConfigSubDict()
+					tmp.loft = ConfigSubDict()
+					tmp.positionsoffset = ConfigSubDict()
+					tmp.positions = ConfigSubDict()
+					tmp.diction = ConfigSubDict()
+					for article in products:
+						positionslist = unicableproducts[manufacturer][article].get("positions")
+						positionsoffsetlist = unicableproducts[manufacturer][article].get("positionsoffset")
+						positionsoffset = int(positionsoffsetlist[0])
+						positions = int(positionslist[0])
+						dictionlist = [unicableproducts[manufacturer][article].get("diction")]
+						if dictionlist[0][0] !="EN50607" or ((lnb > positionsoffset) and (lnb <= (positions + positionsoffset))):
+							tmp.positionsoffset[article] = ConfigSubList()
+							tmp.positionsoffset[article].append(ConfigInteger(default=positionsoffset, limits = (positionsoffset, positionsoffset)))
+							tmp.positions[article] = ConfigSubList()
+							tmp.positions[article].append(ConfigInteger(default=positions, limits = (positions, positions)))
+							tmp.diction[article] = ConfigSelection(choices = dictionlist, default = dictionlist[0][0])
 
-								tmp.scr[article] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
+							scrlist = []
+							scrlist_append = scrlist.append
+							vcolist=unicableproducts[manufacturer][article].get("frequencies")
+							tmp.vco[article] = ConfigSubList()
+							for cnt in range(1,len(vcolist)+1):
+								vcofreq = int(vcolist[cnt-1])
+								if vcofreq == 0 and vco_null_check:
+									scrlist_append(("%d" %cnt,"SCR %d " %cnt +_("not used")))
+								else:
+									scrlist_append(("%d" %cnt,"SCR %d" %cnt))
+								tmp.vco[article].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
 
-								tmp.lofl[article] = ConfigSubList()
-								tmp.lofh[article] = ConfigSubList()
-								tmp.loft[article] = ConfigSubList()
+							tmp.scr[article] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
 
-								tmp_lofl_article_append = tmp.lofl[article].append
-								tmp_lofh_article_append = tmp.lofh[article].append
-								tmp_loft_article_append = tmp.loft[article].append
+							tmp.lofl[article] = ConfigSubList()
+							tmp.lofh[article] = ConfigSubList()
+							tmp.loft[article] = ConfigSubList()
 
-								for cnt in range(1,positions+1):
-									lofl = int(positionslist[cnt][0])
-									lofh = int(positionslist[cnt][1])
-									loft = int(positionslist[cnt][2])
-									tmp_lofl_article_append(ConfigInteger(default=lofl, limits = (lofl, lofl)))
-									tmp_lofh_article_append(ConfigInteger(default=lofh, limits = (lofh, lofh)))
-									tmp_loft_article_append(ConfigInteger(default=loft, limits = (loft, loft)))
-								products_valide_append(article)
+							tmp_lofl_article_append = tmp.lofl[article].append
+							tmp_lofh_article_append = tmp.lofh[article].append
+							tmp_loft_article_append = tmp.loft[article].append
 
-						if len(products_valide)==0:
-							products_valide_append("None")
-						tmp.product = ConfigSelection(choices = products_valide, default = products_valide[0])
-						sectionDict[manufacturer] = tmp
+							for cnt in range(1,positions+1):
+								lofl = int(positionslist[cnt][0])
+								lofh = int(positionslist[cnt][1])
+								loft = int(positionslist[cnt][2])
+								tmp_lofl_article_append(ConfigInteger(default=lofl, limits = (lofl, lofl)))
+								tmp_lofh_article_append(ConfigInteger(default=lofh, limits = (lofh, lofh)))
+								tmp_loft_article_append(ConfigInteger(default=loft, limits = (loft, loft)))
+							products_valide_append(article)
 
-				print "[InitNimManager] MATRIX"
-				section.unicableMatrix = ConfigSubDict()
-				section.unicableMatrixManufacturer = ConfigSelection(UnicableMatrixManufacturers, UnicableMatrixManufacturers[0])
-				fillUnicableConf(section.unicableMatrix, unicablematrixproducts, True)
+					if len(products_valide)==0:
+						products_valide_append("None")
+					tmp.product = ConfigSelection(choices = products_valide, default = products_valide[0])
+					sectionDict[manufacturer] = tmp
 
-				print "[InitNimManager] LNB"
-				section.unicableLnb = ConfigSubDict()
-				section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, UnicableLnbManufacturers[0])
-				fillUnicableConf(section.unicableLnb, unicablelnbproducts, False)
+			print "[InitNimManager] MATRIX"
+			section.unicableMatrix = ConfigSubDict()
+			section.unicableMatrixManufacturer = ConfigSelection(UnicableMatrixManufacturers, UnicableMatrixManufacturers[0])
+			fillUnicableConf(section.unicableMatrix, unicablematrixproducts, True)
 
-#TODO satpositions for satcruser
+			print "[InitNimManager] LNB"
+			section.unicableLnb = ConfigSubDict()
+			section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, UnicableLnbManufacturers[0])
+			fillUnicableConf(section.unicableLnb, unicablelnbproducts, False)
 
-				section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default="EN50494")
-				section.satcruserEN50494 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50494, default="1")
-				section.satcruserEN50607 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50607, default="1")
+			#TODO satpositions for satcruser
 
-				tmp = ConfigSubList()
-				tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
-				section.satcrvcouserEN50494 = tmp
+			section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default="EN50494")
+			section.satcruserEN50494 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50494, default="1")
+			section.satcruserEN50607 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50607, default="1")
 
-				tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
-				tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
-				section.satcrvcouserEN50607 = tmp
+			tmp = ConfigSubList()
+			tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
+			section.satcrvcouserEN50494 = tmp
 
-				nim.advanced.unicableconnected = ConfigYesNo(default=False)
-				nim.advanced.unicableconnectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
-				if nim.advanced.unicableconnected.value == True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
-					from Tools.Notifications import AddPopup
-					from Screens.MessageBox import MessageBox
-					nim.advanced.unicableconnected.value = False
-					nim.advanced.unicableconnected.save()
-					txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
-					AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
+			tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1284, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1400, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1516, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1632, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1748, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1864, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=1980, limits = (950, 2150)))
+			tmp.append(ConfigInteger(default=2096, limits = (950, 2150)))
+			section.satcrvcouserEN50607 = tmp
 
-				section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")),("traditional", _("traditional (fast)"))], default="reliable")
+			nim.advanced.unicableconnected = ConfigYesNo(default=False)
+			nim.advanced.unicableconnectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
+			if nim.advanced.unicableconnected.value == True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
+				from Tools.Notifications import AddPopup
+				from Screens.MessageBox import MessageBox
+				nim.advanced.unicableconnected.value = False
+				nim.advanced.unicableconnected.save()
+				txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
+				AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
+
+			section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")),("traditional", _("traditional (fast)"))], default="reliable")
 
 	def configDiSEqCModeChanged(configElement):
 		section = configElement.section
