@@ -402,42 +402,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					self.log(11, "zapping")
 					NavigationInstance.instance.isMovieplayerActive()
-					from Screens.ChannelSelection import ChannelSelection
-					ChannelSelectionInstance = ChannelSelection.instance
-					self.service_types = service_types_tv
-					self.service_types_ref = service_types_tv_ref
-					if ChannelSelectionInstance:
-						if config.usage.multibouquet.value:
-							bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
-							bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-						else:
-							bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
-
-						serviceHandler = eServiceCenter.getInstance()
-						rootbouquet = bqroot
-						bouquet = eServiceReference(bqroot)
-						bouquetlist = serviceHandler.list(bouquet)
-						if bouquetlist is not None:
-							while True:
-								bouquet = bouquetlist.getNext()
-								if bouquet.flags & eServiceReference.isDirectory:
-									ChannelSelectionInstance.clearPath()
-									ChannelSelectionInstance.setRoot(bouquet)
-									servicelist = serviceHandler.list(bouquet)
-									if servicelist is not None:
-										serviceIterator = servicelist.getNext()
-										while serviceIterator.valid():
-											if self.service_ref.ref == serviceIterator:
-												break
-											serviceIterator = servicelist.getNext()
-										if self.service_ref.ref == serviceIterator:
-											break
-							ChannelSelectionInstance.enterPath(rootbouquet)
-							ChannelSelectionInstance.enterPath(bouquet)
-							ChannelSelectionInstance.saveRoot()
-							ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-						ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-					NavigationInstance.instance.playService(self.service_ref.ref)
+					self._zapToTimerService()
 				return True
 			else:
 				self.log(11, "start recording")
@@ -478,6 +443,44 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			return True
+
+	def _zapToTimerService(self):
+		from Screens.ChannelSelection import ChannelSelection
+		ChannelSelectionInstance = ChannelSelection.instance
+		self.service_types = service_types_tv
+		self.service_types_ref = service_types_tv_ref
+		if ChannelSelectionInstance:
+			if config.usage.multibouquet.value:
+				bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
+				bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+			else:
+				bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+
+			serviceHandler = eServiceCenter.getInstance()
+			rootbouquet = bqroot
+			bouquet = eServiceReference(bqroot)
+			bouquetlist = serviceHandler.list(bouquet)
+			if bouquetlist is not None:
+				while True:
+					bouquet = bouquetlist.getNext()
+					if bouquet.flags & eServiceReference.isDirectory:
+						ChannelSelectionInstance.clearPath()
+						ChannelSelectionInstance.setRoot(bouquet)
+						servicelist = serviceHandler.list(bouquet)
+						if servicelist is not None:
+							serviceIterator = servicelist.getNext()
+							while serviceIterator.valid():
+								if self.service_ref.ref == serviceIterator:
+									break
+								serviceIterator = servicelist.getNext()
+							if self.service_ref.ref == serviceIterator:
+								break
+				ChannelSelectionInstance.enterPath(rootbouquet)
+				ChannelSelectionInstance.enterPath(bouquet)
+				ChannelSelectionInstance.saveRoot()
+				ChannelSelectionInstance.saveChannel(self.service_ref.ref)
+			ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+		NavigationInstance.instance.playService(self.service_ref.ref)
 
 	def keypress(self, key=None, flag=1):
 		if flag and self.wasInStandby:
@@ -550,41 +553,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if answer:
 			self.log(13, "ok, zapped away")
 			# NavigationInstance.instance.stopUserServices()
-			from Screens.ChannelSelection import ChannelSelection
-			ChannelSelectionInstance = ChannelSelection.instance
-			self.service_types = service_types_tv
-			self.service_types_ref = service_types_tv_ref
-			if ChannelSelectionInstance:
-				if config.usage.multibouquet.value:
-					bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
-					bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-				else:
-					bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
-				serviceHandler = eServiceCenter.getInstance()
-				rootbouquet = bqroot
-				bouquet = eServiceReference(bqroot)
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist is not None:
-					while True:
-						bouquet = bouquetlist.getNext()
-						if bouquet.flags & eServiceReference.isDirectory:
-							ChannelSelectionInstance.clearPath()
-							ChannelSelectionInstance.setRoot(bouquet)
-							servicelist = serviceHandler.list(bouquet)
-							if servicelist is not None:
-								serviceIterator = servicelist.getNext()
-								while serviceIterator.valid():
-									if self.service_ref.ref == serviceIterator:
-										break
-									serviceIterator = servicelist.getNext()
-								if self.service_ref.ref == serviceIterator:
-									break
-					ChannelSelectionInstance.enterPath(rootbouquet)
-					ChannelSelectionInstance.enterPath(bouquet)
-					ChannelSelectionInstance.saveRoot()
-					ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-				ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-			NavigationInstance.instance.playService(self.service_ref.ref)
+			self._zapToTimerService()
 		else:
 			self.log(14, "user didn't want to zap away, record will probably fail")
 
