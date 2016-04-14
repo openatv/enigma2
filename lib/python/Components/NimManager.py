@@ -335,6 +335,7 @@ class SecConfigure:
 
 		for x in range(1, 71):
 			if len(lnbSat[x]) > 0:
+				print "[NimManager] slotid", slotid, "lnb[x]", x
 				currLnb = config.Nims[slotid].advanced.lnb[x]
 				if sec.addLNB():
 					print "No space left on m_lnbs (max No. 144 LNBs exceeded)"
@@ -385,10 +386,12 @@ class SecConfigure:
 								sec.setLNBLOFL(manufacturer.lofl[product_name][position_idx].value * 1000)
 								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
 								sec.setLNBThreshold(manufacturer.loft[product_name][position_idx].value * 1000)
-								if currLnb.unicableTuningAlgo.value == "reliable":
+								try:
+									print "[NimManager] currLnb.unicableTuningAlgo.value", currLnb.unicableTuningAlgo.value
+									sec.setLNBSatCRTuningAlgo(currLnb.unicableTuningAlgo.value == "reliable" and 1 or 0)
+								except:
+									print "[NimManager] currLnb.unicableTuningAlgo.value not set"
 									sec.setLNBSatCRTuningAlgo(1)
-								else:
-									sec.setLNBSatCRTuningAlgo(0)
 								configManufacturer.save_forced = True
 								manufacturer.product.save_forced = True
 								manufacturer.vco[product_name][manufacturer_scr[product_name].index].save_forced = True
