@@ -1843,7 +1843,7 @@ def InitNimManager(nimmgr, update_slots = []):
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
 		try:
 			frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
-			if frontend.setDeliverySystem(nimmgr.nim_slots[fe_id].getType()):
+			if not os.path.exists("/proc/stb/frontend/%d/mode" % fe_id) and frontend.setDeliverySystem(nimmgr.nim_slots[fe_id].getType()):
 				print "[InitNimManager] tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
 				return
 
