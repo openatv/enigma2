@@ -445,42 +445,54 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return True
 
 	def _zapToTimerService(self):
+		def serviceInBouquet(bouquet, serviceHandler, ref):
+			servicelist = serviceHandler.list(bouquet)
+			if servicelist is not None:
+				serviceIterator = servicelist.getNext()
+				while serviceIterator.valid():
+					if ref == serviceIterator:
+						return True
+					serviceIterator = servicelist.getNext()
+			return False
+
 		from Screens.ChannelSelection import ChannelSelection
 		ChannelSelectionInstance = ChannelSelection.instance
-		self.service_types = service_types_tv
-		self.service_types_ref = service_types_tv_ref
 		if ChannelSelectionInstance:
+			self.service_types = service_types_tv
+			self.service_types_ref = service_types_tv_ref
+			foundService = False
+			serviceHandler = eServiceCenter.getInstance()
 			if config.usage.multibouquet.value:
 				bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
 				bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 			else:
 				bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
 
-			serviceHandler = eServiceCenter.getInstance()
 			rootbouquet = bqroot
 			bouquet = eServiceReference(bqroot)
 			bouquetlist = serviceHandler.list(bouquet)
 			if bouquetlist is not None:
-				while True:
-					bouquet = bouquetlist.getNext()
+				bouquet = bouquetlist.getNext()
+				while bouquet.valid():
 					if bouquet.flags & eServiceReference.isDirectory:
-						ChannelSelectionInstance.clearPath()
-						ChannelSelectionInstance.setRoot(bouquet)
-						servicelist = serviceHandler.list(bouquet)
-						if servicelist is not None:
-							serviceIterator = servicelist.getNext()
-							while serviceIterator.valid():
-								if self.service_ref.ref == serviceIterator:
-									break
-								serviceIterator = servicelist.getNext()
-							if self.service_ref.ref == serviceIterator:
-								break
+						foundService = serviceInBouquet(bouquet, serviceHandler, self.service_ref.ref)
+						if foundService:
+							break
+					bouquet = bouquetlist.getNext()
+
+			if foundService:
+				ChannelSelectionInstance.clearPath()
+				ChannelSelectionInstance.setRoot(bouquet)
 				ChannelSelectionInstance.enterPath(rootbouquet)
 				ChannelSelectionInstance.enterPath(bouquet)
 				ChannelSelectionInstance.saveRoot()
 				ChannelSelectionInstance.saveChannel(self.service_ref.ref)
-			ChannelSelectionInstance.addToHistory(self.service_ref.ref)
-		NavigationInstance.instance.playService(self.service_ref.ref)
+				ChannelSelectionInstance.addToHistory(self.service_ref.ref)
+				NavigationInstance.instance.playService(self.service_ref.ref)
+			else:
+				self.log(1, "zap failed: bouquet not found for zap service")
+		else:
+			self.log(1, "zap failed: channel selection service not available")
 
 	def keypress(self, key=None, flag=1):
 		if flag and self.wasInStandby:
