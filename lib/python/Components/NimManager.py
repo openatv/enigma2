@@ -376,10 +376,7 @@ class SecConfigure:
 							diction = manufacturer.diction[product_name].value
 							positionsoffset = manufacturer.positionsoffset[product_name][0].value
 							if diction !="EN50607" or ((posnum <= (positionsoffset + manufacturer_positions_value) and (posnum > positionsoffset) and x <= maxFixedLnbPositions)): #for every allowed position
-								if diction =="EN50607":
-									sec.setLNBSatCRformat(1)	#JESS
-								else:
-									sec.setLNBSatCRformat(0)	#DiSEqC
+								sec.setLNBSatCRformat(diction =="EN50607" and 1 or 0)
 								sec.setLNBSatCR(manufacturer_scr[product_name].index)
 								sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer_scr[product_name].index].value*1000)
 								sec.setLNBSatCRpositions(manufacturer_positions_value)
