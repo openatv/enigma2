@@ -466,16 +466,20 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				bqroot = eServiceReference(self.service_types_ref)
 				bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
 				rootbouquet = bqroot
-				bouquet = eServiceReference(bqroot)
-				bouquetlist = serviceHandler.list(bouquet)
-				if bouquetlist is not None:
-					bouquet = bouquetlist.getNext()
-					while bouquet.valid():
-						if bouquet.flags & eServiceReference.isDirectory:
-							foundService = serviceInBouquet(bouquet, serviceHandler, self.service_ref.ref)
-							if foundService:
-								break
+				currentBouquet = ChannelSelectionInstance.getRoot()
+				for searchCurrent in (True, False):
+					bouquet = eServiceReference(bqroot)
+					bouquetlist = serviceHandler.list(bouquet)
+					if bouquetlist is not None:
 						bouquet = bouquetlist.getNext()
+						while bouquet.valid():
+							if bouquet.flags & eServiceReference.isDirectory and (currentBouquet is None or (currentBouquet == bouquet) == searchCurrent):
+								foundService = serviceInBouquet(bouquet, serviceHandler, self.service_ref.ref)
+								if foundService:
+									break
+							bouquet = bouquetlist.getNext()
+						if foundService:
+							break
 			else:
 				bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
 				rootbouquet = bqroot
