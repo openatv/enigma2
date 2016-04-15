@@ -463,28 +463,32 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			foundService = False
 			serviceHandler = eServiceCenter.getInstance()
 			if config.usage.multibouquet.value:
-				bqroot = eServiceReference(eServiceReference.idDVB, eServiceReference.flagDirectory, eServiceReferenceDVB.dTv)
+				bqroot = eServiceReference(self.service_types_ref)
 				bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+				rootbouquet = bqroot
+				bouquet = eServiceReference(bqroot)
+				bouquetlist = serviceHandler.list(bouquet)
+				if bouquetlist is not None:
+					bouquet = bouquetlist.getNext()
+					while bouquet.valid():
+						if bouquet.flags & eServiceReference.isDirectory:
+							foundService = serviceInBouquet(bouquet, serviceHandler, self.service_ref.ref)
+							if foundService:
+								break
+						bouquet = bouquetlist.getNext()
 			else:
 				bqroot = serviceRefAppendPath(self.service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
-
-			rootbouquet = bqroot
-			bouquet = eServiceReference(bqroot)
-			bouquetlist = serviceHandler.list(bouquet)
-			if bouquetlist is not None:
-				bouquet = bouquetlist.getNext()
-				while bouquet.valid():
-					if bouquet.flags & eServiceReference.isDirectory:
-						foundService = serviceInBouquet(bouquet, serviceHandler, self.service_ref.ref)
-						if foundService:
-							break
-					bouquet = bouquetlist.getNext()
+				rootbouquet = bqroot
+				bouquet = eServiceReference(bqroot)
+				if bouquet.valid() and bouquet.flags & eServiceReference.isDirectory:
+					foundService = serviceInBouquet(bouquet, serviceHandler, self.service_ref.ref)
 
 			if foundService:
-				ChannelSelectionInstance.clearPath()
 				ChannelSelectionInstance.setRoot(bouquet)
+				ChannelSelectionInstance.clearPath()
 				ChannelSelectionInstance.enterPath(rootbouquet)
-				ChannelSelectionInstance.enterPath(bouquet)
+				if config.usage.multibouquet.value:
+					ChannelSelectionInstance.enterPath(bouquet)
 				ChannelSelectionInstance.saveRoot()
 				ChannelSelectionInstance.saveChannel(self.service_ref.ref)
 				ChannelSelectionInstance.addToHistory(self.service_ref.ref)
