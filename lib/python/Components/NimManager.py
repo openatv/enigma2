@@ -1735,7 +1735,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				tmp.append(ConfigInteger(default=i, limits = (950, 2150)))
 			section.satcrvcouserEN50494 = tmp
 
-			for i in (1284, 1400, 1516, 1632, 1748, 1864, 1980, 2096) * 3:
+			for i in (1210, 1420, 1680, 2040, 984, 1020, 1056, 1092, 1128, 1164, 1256, 1292, 1328, 1364, 1458, 1494, 1530, 1566, 1602, 1638, 1716, 1752, 1788, 1824, 1860, 1896, 1932, 1968, 2004, 2076, 2112, 2148):
 				tmp.append(ConfigInteger(default=i, limits = (950, 2150)))
 			section.satcrvcouserEN50607 = tmp
 
