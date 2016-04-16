@@ -1447,10 +1447,7 @@ def InitSecParams():
 
 jess_alias = ("JESS","UNICABLE2","SCD2","EN50607","EN 50607")
 
-lscr = ("scr1","scr2","scr3","scr4","scr5","scr6","scr7","scr8","scr9","scr10",
-		"scr11","scr12","scr13","scr14","scr15","scr16","scr17","scr18","scr19","scr20",
-		"scr21","scr22","scr23","scr24","scr25","scr26","scr27","scr28","scr29","scr30",
-		"scr31","scr32")
+lscr = [("scr%d" % i) for i in range(1,33)]
 
 def InitNimManager(nimmgr, update_slots = []):
 	hw = HardwareInfo()
