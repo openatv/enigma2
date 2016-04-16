@@ -338,7 +338,7 @@ class SecConfigure:
 				print "[NimManager] slotid", slotid, "lnb[x]", x
 				currLnb = config.Nims[slotid].advanced.lnb[x]
 				if sec.addLNB():
-					print "No space left on m_lnbs (max No. 144 LNBs exceeded)"
+					print "[NimManager] No space left on m_lnbs (max No. 144 LNBs exceeded)"
 					return
 
 				posnum = 1;	#default if LNB movable
