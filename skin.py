@@ -185,23 +185,23 @@ def getParentSize(object, desktop):
 			size = desktop.size()
 	return size
 
-def parsePosition(s, scale, object = None, desktop = None, size = None):
+def parseValuePair(s, scale, object = None, desktop = None, size = None):
 	x, y = s.split(',')
 	parentsize = eSize()
-	if object and (x[0] in ('c', 'e') or y[0] in ('c', 'e')):
+	if object and ('c' in x or 'c' in y or 'e' in x or 'e' in y or
+	               '%' in x or '%' in y):          # need parent size for ce%
 		parentsize = getParentSize(object, desktop)
-	xval = parseCoordinate(x, parentsize.width(), size and size.width())
-	yval = parseCoordinate(y, parentsize.height(), size and size.height())
-	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	xval = parseCoordinate(x, parentsize.width(), size and size.width() or 0)
+	yval = parseCoordinate(y, parentsize.height(), size and size.height() or 0)
+	return (xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+
+def parsePosition(s, scale, object = None, desktop = None, size = None):
+	(x, y) = parseValuePair(s, scale, object, desktop, size)
+	return ePoint(x, y)
 
 def parseSize(s, scale, object = None, desktop = None):
-	x, y = s.split(',')
-	parentsize = eSize()
-	if object and (x[0] in ('c', 'e') or y[0] in ('c', 'e')):
-		parentsize = getParentSize(object, desktop)
-	xval = parseCoordinate(x, parentsize.width())
-	yval = parseCoordinate(y, parentsize.height())
-	return eSize(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	(x, y) = parseValuePair(s, scale, object, desktop)
+	return eSize(x, y)
 
 def parseFont(s, scale):
 	try:

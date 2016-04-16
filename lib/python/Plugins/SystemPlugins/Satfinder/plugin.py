@@ -219,10 +219,14 @@ class Satfinder(ScanSetup, ServiceScan):
 				continue
 			if n.isCompatible("DVB-S") and len(nimmanager.getSatListForNim(n.slot)) < 1:
 				continue
+			if n.isCompatible("DVB-S") and n.isFBCTuner() and not n.isFBCRoot():
+				continue
 			satfinder_nim_list.append((str(n.slot), n.friendly_full_description))
 		self.satfinder_scan_nims = ConfigSelection(choices = satfinder_nim_list)
 		if self.frontendData is not None and len(satfinder_nim_list) > 0: # open the plugin with the currently active NIM as default
-			self.satfinder_scan_nims.setValue(str(self.frontendData.get("tuner_number", satfinder_nim_list[0][0])))
+			active_nim = self.frontendData.get("tuner_number", satfinder_nim_list[0][0])
+			if not nimmanager.nim_slots[active_nim].isFBCLink():
+				self.satfinder_scan_nims.setValue(str(active_nim))
 
 		self.feid = int(self.satfinder_scan_nims.value)
 
@@ -313,7 +317,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				tps = nimmanager.getTranspondersTerrestrial(region)
 				if len(tps) > self.TerrestrialTransponders.index :
 					transponder = tps[self.TerrestrialTransponders.index]
-					# frequency 1, inversion 9, bandwidth 2, fechigh 4, feclow 5, modulation 3, transmission 7, guard 6, hierarchy 8, system 10, plpid 11
+					# frequency 1, inversion 9, bandwidth 2, fechigh 4, feclow 5, modulation 3, transmission 7, guard 6, hierarchy 8, system 10, plp_id 11
 					if self.initcomplete:
 						self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])
 					self.transponder = transponder
@@ -383,7 +387,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.transponder[6],  # guard
 				self.transponder[8],  # hierarchy
 				self.transponder[10], # system
-				self.transponder[11]  # plpid
+				self.transponder[11]  # plp_id
 			)
 			tlist.append(parm)
 		else: # DVB-C

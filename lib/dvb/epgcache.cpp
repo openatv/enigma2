@@ -395,6 +395,31 @@ eEPGCache::eEPGCache()
 	         onid_blacklist.insert(onid_blacklist.end(),1,tmp_onid);
 	onid_file.close();
 
+	std::ifstream pid_file ("/etc/enigma2/epgpids.custom");
+	if (pid_file.is_open())
+	{
+		eDebug("[eEPGCache] Custom pidfile found, parsing...");
+		std::string line;
+		char optsidonid[12];
+		int op, tsid, onid, eitpid;
+		while (!pid_file.eof())
+		{
+			getline(pid_file, line);
+			if (line[0] == '#' || sscanf(line.c_str(), "%i %i %i %i", &op, &tsid, &onid, &eitpid) != 4)
+				continue;
+			if (op < 0)
+				op += 3600;
+			if (eitpid != 0)
+			{
+				sprintf (optsidonid, "%x%04x%04x", op, tsid, onid);
+				customeitpids[std::string(optsidonid)] = eitpid;
+				eDebug("[eEPGCache] %s --> %#x", optsidonid, eitpid);
+			}
+		}
+		pid_file.close();
+		eDebug("[eEPGCache] Done");
+	}
+
 	ePtr<eDVBResourceManager> res_mgr;
 	eDVBResourceManager::getInstance(res_mgr);
 	if (!res_mgr)
@@ -1574,6 +1599,18 @@ void eEPGCache::channel_data::startEPG()
 	mask.pid = 0x12;
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
+	eDVBChannelID chid = channel->getChannelID();
+	char optsidonid[12];
+	sprintf (optsidonid, "%x", chid.dvbnamespace.get());
+	optsidonid [strlen(optsidonid) - 4] = '\0';
+	sprintf (optsidonid, "%s%04x%04x", optsidonid, chid.transport_stream_id.get(), chid.original_network_id.get());
+	std::map<std::string,int>::iterator it = cache->customeitpids.find(std::string(optsidonid));
+	if (it != cache->customeitpids.end())
+	{
+		mask.pid = it->second;
+		eDebug("[eEPGCache] Using non standart pid %#x", mask.pid);
+	}
+	
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NOWNEXT)
 	{
 		mask.data[0] = 0x4E;

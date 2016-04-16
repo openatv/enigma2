@@ -61,6 +61,7 @@ class SecConfigure:
 			for slot in self.linked[slotid]:
 				tunermask |= (1 << slot)
 		sec.setLNBSatCR(-1)
+		sec.setLNBSatCRTuningAlgo(0)
 		sec.setLNBSatCRpositionnumber(1)
 		sec.setLNBLOFL(CircularLNB and 10750000 or 9750000)
 		sec.setLNBLOFH(CircularLNB and 10750000 or 10600000)
@@ -334,6 +335,7 @@ class SecConfigure:
 
 		for x in range(1, 71):
 			if len(lnbSat[x]) > 0:
+				print "[NimManager] slotid", slotid, "lnb[x]", x
 				currLnb = config.Nims[slotid].advanced.lnb[x]
 				if sec.addLNB():
 					print "No space left on m_lnbs (max No. 144 LNBs exceeded)"
@@ -355,7 +357,7 @@ class SecConfigure:
 						tunermask |= (1 << slot)
 				if currLnb.lof.value != "unicable":
 					sec.setLNBSatCR(-1)
-
+					sec.setLNBSatCRTuningAlgo(0)
 				if currLnb.lof.value == "universal_lnb":
 					sec.setLNBLOFL(9750000)
 					sec.setLNBLOFH(10600000)
@@ -384,6 +386,12 @@ class SecConfigure:
 								sec.setLNBLOFL(manufacturer.lofl[product_name][position_idx].value * 1000)
 								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
 								sec.setLNBThreshold(manufacturer.loft[product_name][position_idx].value * 1000)
+								try:
+									print "[NimManager] currLnb.unicableTuningAlgo.value", currLnb.unicableTuningAlgo.value
+									sec.setLNBSatCRTuningAlgo(currLnb.unicableTuningAlgo.value == "reliable" and 1 or 0)
+								except:
+									print "[NimManager] currLnb.unicableTuningAlgo.value not set"
+									sec.setLNBSatCRTuningAlgo(1)
 								configManufacturer.save_forced = True
 								manufacturer.product.save_forced = True
 								manufacturer.vco[product_name][manufacturer_scr[product_name].index].save_forced = True
@@ -570,11 +578,11 @@ class SecConfigure:
 			SDict = val.get('unicableMatrix', None)
 		else:
 			return
-		print "[NimManager] SDict %s" % SDict
+		print "[NimManager] [reconstructUnicableDate] SDict %s" % SDict
 		if SDict is None:
 			return
 
-		print "[NimManager] Manufacturer name = %s" % ManufacturerName
+		print "[NimManager] ManufacturerName %s" % ManufacturerName
 		PDict = SDict.get(ManufacturerName, None)			#dict contained last stored device data
 		if PDict is None:
 			return
@@ -588,7 +596,7 @@ class SecConfigure:
 			if PN in tmp.product.choices.choices:
 				return
 		else:								#if manufacture not in list, then generate new ConfigSubsection
-			print "[NimManager] Manufacturer %s is not in your unicable.xml" % ManufacturerName
+			print "[NimManager] [reconstructUnicableDate] Manufacturer %s not in unicable.xml" % ManufacturerName
 			tmp = ConfigSubsection()
 			tmp.scr = ConfigSubDict()
 			tmp.vco = ConfigSubDict()
@@ -599,7 +607,7 @@ class SecConfigure:
 			tmp.product = ConfigSelection(choices = [], default = None)
 
 		if PN not in tmp.product.choices.choices:
-			print "[NimManager] Product %s is not in your unicable.xml" % PN
+			print "[NimManager] [reconstructUnicableDate] Product %s not in unicable.xml" % PN
 			scrlist = []
 			SatCR = int(PDict.get('scr', {PN,1}).get(PN,1)) - 1
 			vco = int(PDict.get('vco', {PN,0}).get(PN,0).get(str(SatCR),1))
@@ -1639,6 +1647,8 @@ def InitNimManager(nimmgr, update_slots = []):
 					txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
 					AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
 
+				section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")),("traditional", _("traditional (fast)"))], default="reliable")
+
 	def configDiSEqCModeChanged(configElement):
 		section = configElement.section
 		if configElement.value == "1_2" and isinstance(section.longitude, ConfigNothing):
@@ -1873,7 +1883,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 	nimmgr.sec = SecConfigure(nimmgr)
 
-	def tunerTypeChanged(nimmgr, configElement):
+	def tunerTypeChanged(nimmgr, configElement, initial=False):
 		fe_id = configElement.fe_id
 		eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
 		if os.path.exists("/proc/stb/frontend/%d/mode" % fe_id):
@@ -1902,6 +1912,9 @@ def InitNimManager(nimmgr, update_slots = []):
 				except:
 					print "[InitNimManager] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 				nimmgr.enumerateNIMs()
+				if initial:
+					print "tunerTypeChanged force update setting"
+					nimmgr.sec.update()
 			else:
 				print "[InitNimManager] tuner type is already already %d" %cur_type
 
@@ -1922,7 +1935,8 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.multiType = ConfigSelection(typeList, "0")
 
 			nim.multiType.fe_id = x - empty_slots
-			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
+			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr), initial_call=False)
+			tunerTypeChanged(nimmgr, nim.multiType, initial=True)
 
 		print"[NimManager] slotname = %s, slotdescription = %s, multitype = %s" % (slot.slot_name, slot.description,(slot.isMultiType() and addMultiType))
 
