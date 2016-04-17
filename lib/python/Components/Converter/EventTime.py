@@ -55,13 +55,13 @@ class EventTime(Poll, Converter, object):
 			self.type = self.NEXT_START_TIME
 		elif type == "NextEndTime":
 			self.type = self.NEXT_END_TIME
-		elif type == "NextDurartion":
+		elif type == "NextDuration":
 			self.type = self.NEXT_DURATION
 		elif type == "ThirdStartTime":
 			self.type = self.THIRD_START_TIME
 		elif type == "ThirdEndTime":
 			self.type = self.THIRD_END_TIME
-		elif type == "ThirdDurartion":
+		elif type == "ThirdDuration":
 			self.type = self.THIRD_DURATION
 		else:
 			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Elapsed|Duration|Progress> for EventTime converter" % type)
