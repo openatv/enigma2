@@ -1722,6 +1722,36 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if len(last_selected_dest) > 5:
 			del last_selected_dest[-1]
 
+	def playBlurayFile(self):
+		if self.playfile:
+			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.autoBlurayCheckTimeshiftCallback)
+
+	def autoBlurayCheckTimeshiftCallback(self, answer):
+		if answer:
+			playRef = eServiceReference(3, 0, self.playfile)
+			self.playfile = ""
+			self.close(playRef)
+
+	def isBlurayFolderAndFile(self, service):
+		self.playfile = ""
+		folder = os.path.join(service.getPath(), "STREAM/")
+		if "BDMV/STREAM/" not in folder:
+			folder = folder[:-7] + "BDMV/STREAM/"
+		if os.path.isdir(folder):
+			fileSize = 0
+			for name in os.listdir(folder):
+				try:
+					if name.endswith(".m2ts"):
+						size = os.stat(folder + name).st_size
+						if size > fileSize:
+							fileSize = size
+							self.playfile = folder + name
+				except:
+					print "[ML] Error calculate size for %s" % (folder + name)
+			if self.playfile:
+				return True
+		return False
+
 	def can_bookmarks(self, item):
 		return True
 	def do_bookmarks(self):
