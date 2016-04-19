@@ -297,6 +297,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("hd2400",19),
 			("formuler1",18),
 			("formuler3",18),
+			("formuler4",18),
 			("triplex",18),
 			("xp1000", 14),
 			("xp3000", 17)
