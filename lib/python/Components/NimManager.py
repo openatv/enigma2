@@ -782,8 +782,7 @@ class NIM(object):
 	slot_id = property(getSlotID)
 
 	def getFriendlyType(self):
-		ftype = self.getType()
-		return ftype if ftype else _("empty")
+		return self.getType() or _("empty")
 
 	friendly_type = property(getFriendlyType)
 
