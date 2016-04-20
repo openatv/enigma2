@@ -9,11 +9,9 @@ SUBDIRS = TuxboxPlugins \
 	DVDBurn \
 	IniMyTube \
 	IniSHOUTcast \
-	IniLastFM \
 	IniZapHistoryBrowser \
 	IniGmailReader \
 	FileCommander \
-	IniEcasa \
 	IniWebcamViewer \
 	RemoteIPTVClient
 

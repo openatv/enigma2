@@ -298,6 +298,10 @@ int eServiceHDMIRecord::doRecord()
 		{
 			m_thread->startSaveMetaInformation(m_filename);
 			m_thread->start(m_encoder_fd);
+			if (eEncoder::getInstance()) {
+				int timing_pid = eEncoder::getInstance()->getVideoPid();
+				m_thread->setTimingPID(timing_pid, iDVBTSRecorder::video_pid, eDVBPMTParser::videoStream::vtMPEG4_H264);
+			}
 		}
 		m_state = stateRecording;
 	}

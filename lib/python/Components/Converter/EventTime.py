@@ -55,16 +55,16 @@ class EventTime(Poll, Converter, object):
 			self.type = self.NEXT_START_TIME
 		elif type == "NextEndTime":
 			self.type = self.NEXT_END_TIME
-		elif type == "NextDurartion":
+		elif type == "NextDuration":
 			self.type = self.NEXT_DURATION
 		elif type == "ThirdStartTime":
 			self.type = self.THIRD_START_TIME
 		elif type == "ThirdEndTime":
 			self.type = self.THIRD_END_TIME
-		elif type == "ThirdDurartion":
+		elif type == "ThirdDuration":
 			self.type = self.THIRD_DURATION
 		else:
-			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Elapsed|Duration|Progress> for EventTime converter" % type)
+			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Elapsed|Duration|Progress|VFDRemaining|VFDElapsed|NextStartTime|NextEndTime|NextDuration|ThirdStartTime|ThirdEndTime|ThirdDuration> for EventTime converter" % type)
 
 	@cached
 	def getTime(self):
@@ -86,7 +86,7 @@ class EventTime(Poll, Converter, object):
 		if self.type == self.ENDTIME:
 			return st
 
-		if self.type == self.REMAINING or self.type == self.REMAINING_VFD or self.type == self.ELAPSED or self.type == self.ELAPSED_VFD:
+		if self.type in (self.REMAINING, self.REMAINING_VFD, self.ELAPSED, self.ELAPSED_VFD):
 			now = int(time())
 			remaining = st - now
 			if remaining < 0:
@@ -129,8 +129,7 @@ class EventTime(Poll, Converter, object):
 					return duration, remaining, elapsed
 			else:
 				return duration, None
-
-		elif self.type == self.NEXT_START_TIME or self.type == self.NEXT_END_TIME or self.type == self.NEXT_DURATION or self.type == self.THIRD_START_TIME or self.type == self.THIRD_END_TIME or self.type == self.THIRD_DURATION:
+		elif self.type in (self.NEXT_START_TIME, self.NEXT_END_TIME, self.NEXT_DURATION, self.THIRD_START_TIME, self.THIRD_END_TIME, self.THIRD_DURATION):
 			reference = self.source.service
 			info = reference and self.source.info
 			if info is None:
@@ -141,10 +140,14 @@ class EventTime(Poll, Converter, object):
 				try:
 					if self.type == self.NEXT_START_TIME and self.list[1][1]:
 						return self.list[1][1]
+					elif self.type == self.NEXT_DURATION and self.list[1][2]:
+						return self.list[1][2]
 					elif self.type == self.NEXT_END_TIME and self.list[1][1] and self.list[1][2]:
 						return int(self.list[1][1]) + int(self.list[1][2])
 					elif self.type == self.THIRD_START_TIME and self.list[2][1]:
 						return self.list[2][1]
+					elif self.type == self.THIRD_DURATION and self.list[2][2]:
+						return self.list[2][2]
 					elif self.type == self.THIRD_END_TIME and self.list[2][1] and self.list[2][2]:
 						return int(self.list[2][1]) + int(self.list[2][2])
 					else:

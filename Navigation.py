@@ -172,11 +172,12 @@ class Navigation:
 
 	def isMovieplayerActive(self):
 		MoviePlayerInstance = MoviePlayer.instance
-		if MoviePlayerInstance is not None and '0:0:0:0:0:0:0:0:0' in self.currentlyPlayingServiceReference.toString():
-			from Screens.InfoBarGenerics import setResumePoint
-			setResumePoint(MoviePlayer.instance.session)
+		if MoviePlayerInstance is not None:
+			if self.currentlyPlayingServiceReference is not None and '0:0:0:0:0:0:0:0:0' in self.currentlyPlayingServiceReference.toString():
+				from Screens.InfoBarGenerics import setResumePoint
+				setResumePoint(MoviePlayer.instance.session)
 			MoviePlayerInstance.close()
-			
+
 	def recordService(self, ref, simulate=False):
 		service = None
 		if not simulate: print "recording service: %s" % (str(ref))
