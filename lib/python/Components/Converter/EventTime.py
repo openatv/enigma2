@@ -64,7 +64,7 @@ class EventTime(Poll, Converter, object):
 		elif type == "ThirdDuration":
 			self.type = self.THIRD_DURATION
 		else:
-			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Elapsed|Duration|Progress> for EventTime converter" % type)
+			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Elapsed|Duration|Progress|VFDRemaining|VFDElapsed|NextStartTime|NextEndTime|NextDuration|ThirdStartTime|ThirdEndTime|ThirdDuration> for EventTime converter" % type)
 
 	@cached
 	def getTime(self):
