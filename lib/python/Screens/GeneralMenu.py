@@ -309,7 +309,6 @@ class GeneralMenu(Screen):
 			]),
 
 			'id_mainmenu_internet': self.getSubEntry('id_mainmenu_music', self.getSubEntry('id_mainmenu_photos', self.getSubEntry('id_mainmenu_movies', [
-				(_('Flickr'), 'mainmenu_photos_playlists', boundFunction(self.openFlickr), 60),
 			]))),
 
 			'id_mainmenu_tasks': self.getSubEntry('id_mainmenu_tasks', [
@@ -455,10 +454,6 @@ class GeneralMenu(Screen):
 	def openPicturePlayerSetup(self):
 		from Plugins.Extensions.PicturePlayer.ui import Pic_Setup
 		self.session.open(Pic_Setup)
-
-	def openFlickr(self):
-		from Plugins.Extensions.IniEcasa.EcasaGui import EcasaOverview
-		self.session.open(EcasaOverview)
 
 	# Music
 	def openMediaPlayer(self):
