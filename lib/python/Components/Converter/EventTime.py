@@ -86,7 +86,7 @@ class EventTime(Poll, Converter, object):
 		if self.type == self.ENDTIME:
 			return st
 
-		if self.type == self.REMAINING or self.type == self.REMAINING_VFD or self.type == self.ELAPSED or self.type == self.ELAPSED_VFD:
+		if self.type in (self.REMAINING, self.REMAINING_VFD, self.ELAPSED, self.ELAPSED_VFD):
 			now = int(time())
 			remaining = st - now
 			if remaining < 0:
@@ -129,8 +129,7 @@ class EventTime(Poll, Converter, object):
 					return duration, remaining, elapsed
 			else:
 				return duration, None
-
-		elif self.type == self.NEXT_START_TIME or self.type == self.NEXT_END_TIME or self.type == self.NEXT_DURATION or self.type == self.THIRD_START_TIME or self.type == self.THIRD_END_TIME or self.type == self.THIRD_DURATION:
+		elif self.type in (self.NEXT_START_TIME, self.NEXT_END_TIME, self.NEXT_DURATION, self.THIRD_START_TIME, self.THIRD_END_TIME, self.THIRD_DURATION):
 			reference = self.source.service
 			info = reference and self.source.info
 			if info is None:
