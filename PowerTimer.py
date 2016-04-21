@@ -1011,6 +1011,23 @@ class PowerTimer(timer.Timer):
 		file.close()
 		os.rename(self.Filename + ".writing", self.Filename)
 
+	def isAutoDeepstandbyEnabled(self):
+		ret = True
+		now = time()
+		for timer in self.timer_list:
+			if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
+				if timer.autosleepwindow == 'yes':
+					if (timer.autosleepbegin <= now + 900 or timer.autosleepbegin <= now) and timer.autosleepend >= now:
+						ret = not ((timer.nettraffic == 'yes' and timer.getNetworkTraffic()) or (timer.netip == 'yes' and timer.getNetworkAdress()))
+						break
+					else:
+						ret = False
+						break
+				else:
+					ret = not ((timer.nettraffic == 'yes' and timer.getNetworkTraffic()) or (timer.netip == 'yes' and timer.getNetworkAdress()))
+					break
+		return ret
+
 	def isProcessing(self, exceptTimer = None, endedTimer = None):
 		isRunning = False
 		for timer in self.timer_list:
