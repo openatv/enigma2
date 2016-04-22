@@ -409,7 +409,10 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		strcpy(type,"DVB-C");
 		break;
 	case FE_OFDM:
-		strcpy(type,"DVB-T");
+		if (fe_info.caps & FE_CAN_2G_MODULATION)
+			strcpy(type,"DVB-T2");
+		else
+			strcpy(type,"DVB-T");
 		break;
 	case FE_ATSC:
 		strcpy(type,"ATSC");
