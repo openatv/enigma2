@@ -1016,16 +1016,12 @@ class PowerTimer(timer.Timer):
 		now = time()
 		for timer in self.timer_list:
 			if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if timer.autosleepwindow == 'yes':
-					if (timer.autosleepbegin <= now + 900 or timer.autosleepbegin <= now) and timer.autosleepend >= now:
-						ret = not ((timer.nettraffic == 'yes' and timer.getNetworkTraffic()) or (timer.netip == 'yes' and timer.getNetworkAdress()))
-						break
-					else:
-						ret = False
-						break
-				else:
-					ret = not ((timer.nettraffic == 'yes' and timer.getNetworkTraffic()) or (timer.netip == 'yes' and timer.getNetworkAdress()))
-					break
+				if timer.begin <= now + 900:
+					ret = not (timer.getNetworkTraffic() or timer.getNetworkAdress())
+				elif timer.autosleepwindow == 'yes':
+					ret = timer.autosleepbegin <= now + 900
+			if not ret:
+				break
 		return ret
 
 	def isProcessing(self, exceptTimer = None, endedTimer = None):
