@@ -1,4 +1,4 @@
-from enigma import eComponentScan, iDVBFrontend
+from enigma import eComponentScan, iDVBFrontend, eTimer
 from Components.NimManager import nimmanager as nimmgr
 from Components.Converter.ChannelNumbers import channelnumbers
 
@@ -8,6 +8,7 @@ class ServiceScan:
 	Running = 2
 	Done = 3
 	Error = 4
+	DonePartially = 5
 
 	Errors = {
 		0: _("error starting scanning"),
@@ -24,7 +25,7 @@ class ServiceScan:
 				errcode = self.scan.getError()
 
 				if errcode == 0:
-					self.state = self.Done
+					self.state = self.DonePartially
 					self.servicelist.listAll()
 				else:
 					self.state = self.Error
@@ -119,19 +120,15 @@ class ServiceScan:
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
 
-		if self.state == self.Done:
-			result = self.foundServices + self.scan.getNumServices()
-			self.text.setText(ngettext("Scanning completed, %d channel found", "Scanning completed, %d channels found", result) % result)
+		if self.state == self.DonePartially:
+			self.foundServices += self.scan.getNumServices()
+			self.text.setText(ngettext("Scanning completed, %d channel found", "Scanning completed, %d channels found", self.foundServices) % self.foundServices)
 
 		if self.state == self.Error:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
 
-		if self.state == self.Done or self.state == self.Error:
-			if self.run != len(self.scanList) - 1:
-				self.foundServices += self.scan.getNumServices()
-				self.execEnd()
-				self.run += 1
-				self.execBegin()
+		if self.state == self.DonePartially or self.state == self.Error:
+			self.adenintimer.start(100, True)
 
 	def __init__(self, progressbar, text, servicelist, passNumber, scanList, network, transponder, frontendInfo, lcd_summary):
 		self.foundServices = 0
@@ -145,6 +142,9 @@ class ServiceScan:
 		self.network = network
 		self.run = 0
 		self.lcd_summary = lcd_summary
+		self.scan = None
+		self.delaytimer = eTimer()
+		self.delaytimer.callback.append(self.execEnd)
 
 	def doRun(self):
 		self.scan = eComponentScan()
@@ -163,7 +163,7 @@ class ServiceScan:
 	def updatePass(self):
 		size = len(self.scanList)
 		if size > 1:
-			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("Tuner") + " " + str(self.scanList[self.run]["feid"]) + ")")
+			self.passNumber.setText(_("pass") + " " + str(self.run + 1) + "/" + str(size) + " (" + _("Tuner") + " " + str(chr(ord("A") + self.scanList[self.run]["feid"])) + ")")
 
 	def execBegin(self):
 		self.doRun()
@@ -180,12 +180,18 @@ class ServiceScan:
 		self.scanStatusChanged()
 
 	def execEnd(self):
+		if self.scan is None:
+			if not self.isDone():
+				print "*** warning *** scan was not finished!"
+			return
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)
-		if not self.isDone():
-			print "*** warning *** scan was not finished!"
-
-		del self.scan
+		self.scan = None
+		if self.run != len(self.scanList) - 1:
+			self.run += 1
+			self.execBegin()
+		else:
+			self.state = self.Done
 
 	def isDone(self):
 		return self.state == self.Done or self.state == self.Error
