@@ -3486,6 +3486,7 @@ void eDVBServicePlay::setAC3Delay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setAC3Delay(delay + eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
+		eDebug("Setting audio delay: setAC3Delay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
 	}
 }
 
@@ -3496,6 +3497,7 @@ void eDVBServicePlay::setPCMDelay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setPCMDelay(delay + eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
+		eDebug("Setting audio delay: setPCMDelay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
 	}
 }
 
