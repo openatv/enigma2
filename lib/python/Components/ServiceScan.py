@@ -128,7 +128,7 @@ class ServiceScan:
 			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
 
 		if self.state == self.DonePartially or self.state == self.Error:
-			self.adenintimer.start(100, True)
+			self.delaytimer.start(100, True)
 
 	def __init__(self, progressbar, text, servicelist, passNumber, scanList, network, transponder, frontendInfo, lcd_summary):
 		self.foundServices = 0
