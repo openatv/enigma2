@@ -2335,6 +2335,7 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
+	m_data[FREQ_OFFSET] = 0;
 	eDebugNoSimulate("frontend %d tuning dvb-c to %d khz, sr %d, fec %d, modulation %d, inversion %d",
 		m_dvbid,
 		feparm.frequency,
@@ -2353,6 +2354,7 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
+	m_data[FREQ_OFFSET] = 0;
 	eDebugNoSimulate("frontend %d tuning dvb-t to %d khz, bandwidth %d, modulation %d, inversion %d",
 	m_dvbid,
 	feparm.frequency,
@@ -2378,6 +2380,7 @@ RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)
 		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
+	m_data[FREQ_OFFSET] = 0;
 	eDebugNoSimulate("frontend %d tuning atsc to %d khz, modulation %d, inversion %d",
 	m_dvbid,
 	feparm.frequency,
