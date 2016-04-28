@@ -55,10 +55,10 @@ class About(Screen):
 		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
-		if getImageType() == 'developer':
-			AboutText += _("Build:\t%s.%s\n") % (getImageBuild(), getImageDevBuild())
-		else:
+		if getImageType() == 'release':
 			AboutText += _("Build:\t%s\n") % getImageBuild()
+		else:
+			AboutText += _("Build:\t%s.%s\n") % (getImageBuild(), getImageDevBuild())
 		AboutText += _("Image type:\t%s\n") % getImageType().title()
 		AboutText += _("Skin name:\t%s\n") % config.skin.primary_skin.value[0:-9]
 
