@@ -9,7 +9,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.config import config
 from enigma import eTimer, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate, getImageDevBuild
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -55,7 +55,10 @@ class About(Screen):
 		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
 
 		AboutText += _("Version:\t%s\n") % getImageVersion()
-		AboutText += _("Build:\t%s\n") % getImageBuild()
+		if getImageType() == 'developer':
+			AboutText += _("Build:\t%s.%s\n") % (getImageBuild(), getImageDevBuild())
+		else:
+			AboutText += _("Build:\t%s\n") % getImageBuild()
 		AboutText += _("Image type:\t%s\n") % getImageType().title()
 		AboutText += _("Skin name:\t%s\n") % config.skin.primary_skin.value[0:-9]
 

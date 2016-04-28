@@ -76,7 +76,7 @@ l_moviesort = [
 try:
 	from Plugins.Extensions import BlurayPlayer
 except Exception as e:
-	print "[ML] BlurayPlayer not installed:", e
+	print "[MovieSelection] Bluray Player is not installed:", e
 	BlurayPlayer = None
 	
 
@@ -1110,7 +1110,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		try:
 			os.rmdir(extra_args)
 		except Exception as e:
-			print "[ML] Cannot remove", extra_args, e
+			print "[MovieSelection] Cannot remove", extra_args, e
 		self.itemSelectedCheckTimeshiftCallback('.img', extra_args, True)
 
 	def playAsBLURAY(self, path):
@@ -1119,7 +1119,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.session.open(BlurayUi.BlurayMain, path)
 			return True
 		except Exception as e:
-			print "[ML] Cannot open BlurayPlayer:", e
+			print "[MovieSelection] Cannot open BlurayPlayer:", e
 
 	def playAsDVD(self, path):
 		try:
@@ -1337,7 +1337,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					try:
 						os.mkdir(mount_path)
 					except Exception as e:
-						print '[BlurayPlayer] Cannot create', mount_path, e
+						print '[MovieSelection] [BlurayPlayer] Cannot create', mount_path, e
 				Console().ePopen('mount -r %s %s' % (iso_path, mount_path), self.mountIsoCallback, (mount_path, 0))
 				return
 			elif ext == 'bluray':

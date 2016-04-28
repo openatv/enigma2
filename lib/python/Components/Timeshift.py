@@ -321,6 +321,10 @@ class InfoBarTimeshift:
 		return ts and ts.isTimeshiftEnabled()
 
 	def startTimeshift(self):
+		if self.session.nav.getCurrentlyPlayingServiceReference() and 'http' in self.session.nav.getCurrentlyPlayingServiceReference().toString():
+			self.session.open(MessageBox, _("Timeshift on a stream is not supported!"), MessageBox.TYPE_ERROR, timeout=5)
+			print '[Timeshift] unable to activate, due being on a stream.'
+			return
 		ts = self.getTimeshift()
 		if ts is None:
 			# self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
@@ -470,8 +474,11 @@ class InfoBarTimeshift:
 				self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value,filename))
 
 	def autostartPermanentTimeshift(self):
-		# print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!autostartPermanentTimeshift'
 		self["TimeshiftActions"].setEnabled(True)
+		if self.session.nav.getCurrentlyPlayingServiceReference() and 'http' in self.session.nav.getCurrentlyPlayingServiceReference().toString() and int(config.timeshift.startdelay.value):
+			self.session.open(MessageBox, _("Timeshift on a stream is not supported!"), MessageBox.TYPE_ERROR, timeout=5)
+			print '[Timeshift] unable to activate, due being on a stream.'
+			return
 		ts = self.getTimeshift()
 		if ts is None:
 			# print '[TimeShift] tune lock failed, so could not start.'
