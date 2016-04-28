@@ -220,8 +220,7 @@
 	</screen>
 <!-- NumberZapExt -->    
 	<screen name="NumberZapExt_summary" position="0,0" size="400,240">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
-		<widget source="parent.service_summary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
+		<widget source="parent.channel" render="Label" position="0,0" size="400,240" font="MyLcD;80" halign="center" valign="center" transparent="1" />
 	</screen>
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
