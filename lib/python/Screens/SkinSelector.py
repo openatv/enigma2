@@ -138,7 +138,7 @@ class SkinSelectorBase:
 				try:
 					if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml":
 						from Plugins.Extensions.MyMetrixLite.MainSettingsView import MainSettingsView
-						MainSettingsView(None).getFHDiconRefresh(restore=True)
+						MainSettingsView(None).getEHDiconRefresh(restore=True)
 				except:
 					pass
 				config.skin.primary_skin.value = self.skinfile

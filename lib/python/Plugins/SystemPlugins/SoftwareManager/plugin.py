@@ -1708,9 +1708,9 @@ class UpdatePlugin(Screen):
 		try:
 			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and not os.path.exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
 				self.session.openWithCallback(self.restoreMetrixHDCallback, RestoreMyMetrixHD)
-			elif config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and config.plugins.MyMetrixLiteOther.FHDenabled.value:
+			elif config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and config.plugins.MyMetrixLiteOther.EHDenabled.value != '0':
 				from Plugins.Extensions.MyMetrixLite.MainSettingsView import MainSettingsView
-				MainSettingsView(None).getFHDiconRefresh()
+				MainSettingsView(None).getEHDiconRefresh()
 				self.restoreMetrixHDCallback()
 			else:
 				self.restoreMetrixHDCallback()
