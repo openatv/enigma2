@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-29 00:17+0200\n"
-"PO-Revision-Date: 2016-04-29 18:51+0200\n"
+"POT-Creation-Date: 2016-04-30 17:02+0200\n"
+"PO-Revision-Date: 2016-04-30 18:22+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, neoatomic,\n"
 "Language: nl\n"
@@ -14,6 +14,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Generator: Poedit 1.8.7\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
 
 msgid ""
 "\n"
@@ -3872,7 +3874,7 @@ msgid "Frame size in full view"
 msgstr "Framegrootte in vol beeld"
 
 msgid "Free Memory:"
-msgstr "Vrij:"
+msgstr "Vrij Geheugen:"
 
 msgid "Free Swap:"
 msgstr "Vrije swap:"
@@ -5853,7 +5855,7 @@ msgid "Open Timerlist..."
 msgstr "Open Timerlijst..."
 
 msgid "Open bouquetlist..."
-msgstr "Open bouquetlijst..."
+msgstr "Open kanalenlijst..."
 
 msgid "Open favourites list"
 msgstr "Open favorieten lijst"
@@ -8402,7 +8404,7 @@ msgid "Skin Selector"
 msgstr "Skin Selecteren"
 
 msgid "Skin Setting"
-msgstr "Skin instellen"
+msgstr "Skin Instelling"
 
 msgid "Skin Setup"
 msgstr "Skin Kiezen"
@@ -9918,7 +9920,7 @@ msgid "Total"
 msgstr "Totaal"
 
 msgid "Total Memory:"
-msgstr "Totaal geheugen:"
+msgstr "Totaal Geheugen:"
 
 msgid "Total Swap:"
 msgstr "Totale swap:"
@@ -11661,7 +11663,7 @@ msgid "discussion/interview/debate"
 msgstr "Discussie/Interview/Debat"
 
 msgid "display"
-msgstr "scherm"
+msgstr "display"
 
 msgid "do nothing"
 msgstr "Geen actie"
@@ -12417,7 +12419,7 @@ msgid "seconds"
 msgstr "Seconden"
 
 msgid "security"
-msgstr "beveiliging"
+msgstr "security"
 
 msgid "select"
 msgstr "Selecteer"
@@ -13372,7 +13374,8 @@ msgstr ""
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr ""
-"Stel in na hoeveel tijd ongebruikt te zijn de harde schijf mag inslapen."
+"Configureer de harde schijf om in standby te gaan, na de verstreken inactieve "
+"tijd."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Configureer de horizontale uitlijning van de ondertitels"
@@ -13793,7 +13796,7 @@ msgid "Hard disk standby after"
 msgstr "Harde schijf standby na"
 
 msgid "Hard disk standby in box standby after"
-msgstr "Uitschakelen HDD nadat box in standby is"
+msgstr "HDD uitschakelen in standby modus na"
 
 msgid "Hide any zap error messages."
 msgstr "Verberg alle zap-fouten."
@@ -13968,7 +13971,7 @@ msgid "InfoBar EPG mode"
 msgstr "EPG informatiebalk modus"
 
 msgid "Infobar fade-out speed"
-msgstr "Infobalk vervagings snelheid"
+msgstr "Infobalk vervagen snelheid"
 
 msgid "Infobar frontend data source"
 msgstr "Infobalk frontend gegevensbron"
@@ -14897,7 +14900,7 @@ msgid "Use FreeSat EPG information when it is available."
 msgstr "Gebruik FreeSat EPG informatie indien beschikbaar."
 
 msgid "Use Harddisk Hardware Standby Timer"
-msgstr "Gebruik Hardeschijf Hardware Standby Timer"
+msgstr "Gebruik Harde schijf Hardware Standby Timer"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "Gebruik MHW EPG informatie indien beschikbaar."
@@ -15772,6 +15775,238 @@ msgid ""
 msgstr ""
 "De back-up is geslaagd. U krijgt nu een korte uitleg over het vervolg van het "
 "update proces."
+
+#: ../lib/python/Components/Converter/MovieInfo.py:59
+#, python-format
+msgid "%.2f GB"
+msgstr "%.2f GB"
+
+#: ../lib/python/Components/Converter/ServiceName2.py:139
+msgid "All Services"
+msgstr "Alle Kanalen"
+
+#: ../lib/python/Components/NimManager.py:1750
+msgid "reliable"
+msgstr "betrouwbaar"
+
+#: ../lib/python/Components/NimManager.py:1750
+msgid "traditional (fast)"
+msgstr "traditioneel (snel)"
+
+#: ../lib/python/Components/RecordingConfig.py:16
+msgid "Short filenames with time"
+msgstr "Korte bestandsnamen met de tijd"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/history.py:39
+msgid "Programmlisten-Updater History"
+msgstr "Kanalenlijst-Updater Geschiedenis"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:59
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:177
+msgid "Programmlisten-Updater from DXAndy"
+msgstr "Kanalenlijst-Updater van DXAndy"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:61
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:138
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:140
+msgid "Current installed"
+msgstr "Momenteel geïnstalleerd"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:66
+msgid "AutoUpdate"
+msgstr "AutoUpdate"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:106
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:132
+msgid "update"
+msgstr "update"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:109
+msgid ""
+"No Settings loaded !!\n"
+"\n"
+"Please install first a settinglist"
+msgstr ""
+"Geen Kanalenlijst geladen !!\n"
+"\n"
+"Installeer eerst een kanalenlijst"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:119
+#, python-format
+msgid ""
+"Selected settingslist:\n"
+"\n"
+"Setting: %s\n"
+"Date: %s\n"
+"\n"
+"Do you want to install this settinglist?"
+msgstr ""
+"Geselecteerde kanalenlijst:\n"
+"\n"
+"Setting: %s\n"
+"Datum: %s\n"
+"\n"
+"Wilt u deze kanalenlijst installeren?"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/plugin.py:156
+msgid "Server down"
+msgstr "Server niet beschikbaar"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/restore.py:33
+msgid "Programmlisten-Updater Restore"
+msgstr "Kanalenlijst-Updater Herstellen"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/restore.py:61
+#, python-format
+msgid ""
+"Selected settingslist: %s\n"
+"\n"
+"Do you want to restore this settinglist?"
+msgstr ""
+"Geselecteerde kanalenlijst: %s\n"
+"\n"
+"Wilt u deze kanalenlijst herstellen?"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/restore.py:69
+#, python-format
+msgid ""
+"Selected settingslist: %s\n"
+"\n"
+"Do you want to delete this settinglist?"
+msgstr ""
+"Geselecteerde kanalenlijst: %s\n"
+"\n"
+"Wilt u deze kanalenlijst verwijderen?"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/restore.py:102
+msgid "Setting Restored "
+msgstr "Kanalenlijst Hersteld"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/restore.py:102
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/settinglist.py:119
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/settinglist.py:182
+msgid " of "
+msgstr " of "
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/settinglist.py:119
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/settinglist.py:182
+msgid "New Setting DXAndy "
+msgstr "Nieuwe Kanalenlijst DXAndy "
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/settinglist.py:119
+msgid " updated"
+msgstr "bijgewerkt"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/settinglist.py:121
+msgid "Error Download Setting"
+msgstr "Foute Download Instelling"
+
+#: ../lib/python/Plugins/Extensions/ProgrammlistenUpdater/settinglist.py:182
+msgid ""
+" available !!\n"
+"\n"
+"Do you want to install the new settingslist?"
+msgstr ""
+" beschikbaar!!\n"
+"\n"
+"Wil je de nieuwe kanalenlijst installeren?"
+
+#: ../lib/python/Plugins/SystemPlugins/SoftwareManager/Flash_online.py:624
+#, python-format
+msgid "%d of %d kBytes"
+msgstr "%d of %d kBytes"
+
+#: ../lib/python/Screens/ButtonSetup.py:40
+msgid "Rec long"
+msgstr "Rec lang"
+
+#: ../lib/python/Screens/ChannelSelection.py:2682
+msgid "Radio Channel Selection"
+msgstr "Radio Kanaal Kiezen"
+
+#: ../lib/python/Screens/Ci.py:49
+msgid "16"
+msgstr "16"
+
+#: ../lib/python/Screens/Ci.py:49
+msgid "32"
+msgstr "32"
+
+#: ../lib/python/Screens/Ci.py:49
+msgid "64"
+msgstr "64"
+
+#: ../lib/python/Screens/Ci.py:49
+msgid "128"
+msgstr "128"
+
+#: ../lib/python/Screens/Ci.py:49
+msgid "256"
+msgstr "256"
+
+#: ../lib/python/Screens/Ci.py:432
+msgid "DVB CI Delay"
+msgstr "DVB-CI-vertraging"
+
+#: ../lib/python/Screens/DVD.py:232
+msgid "jump to chapter by number"
+msgstr "spring naar hoofdstuk nummers"
+
+#: ../lib/python/Screens/DVD.py:337
+msgid "DVD Menu"
+msgstr "DVD Menu"
+
+#: ../lib/python/Screens/EventView.py:296
+#, python-format
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+
+#: ../lib/python/Screens/InfoBarGenerics.py:4105
+msgid "Service cant been added to the favourites."
+msgstr "Kanaal kan niet worden toegevoegd aan favorieten."
+
+#: ../lib/python/Screens/InputDeviceSetup.py:274
+msgid "HD1100/HD1200/HD1265/HD1500/HD500C/et7x00/et8500"
+msgstr "HD1100/HD1200/HD1265/HD1500/HD500C/et7x00/et8500"
+
+#: ../lib/python/Screens/Satconfig.py:211
+msgid "Force LNB Power"
+msgstr "Forceer LNB Power"
+
+#: ../lib/python/Screens/Satconfig.py:213
+msgid "Force ToneBurst"
+msgstr "Forceer ToneBurst"
+
+#: ../lib/python/Screens/Satconfig.py:394
+msgid "Tuning algorithm"
+msgstr "Tuning algoritme"
+
+#: ../lib/python/Screens/VideoMode.py:92
+msgid "Video output mode"
+msgstr "Video uitgang modus"
+
+#: ../lib/python/Screens/VideoMode.py:92
+msgid "Mode"
+msgstr "Modus"
+
+#: ../lib/python/Tools/FuzzyDate.py:22
+#, python-format
+msgid "%s %02d.%02d."
+msgstr "%s %02d.%02d."
+
+#: ../lib/python/Tools/FuzzyDate.py:24
+#, python-format
+msgid "%02d.%02d."
+msgstr "%02d.%02d."
+
+#: ../lib/python/Tools/FuzzyDate.py:26
+#, python-format
+msgid "%02d.%02d.%d"
+msgstr "%02d.%02d.%d"
 
 #~ msgid "%02d:%02d"
 #~ msgstr "%02d:%02d"
