@@ -32,6 +32,8 @@ DATE = "21.11.2014"
 
 #############################################################
 
+screenwidth = getDesktop(0).size().width()
+
 def confPath():
 	search_dirs = [ "/usr", "/var", "/etc" ]
 	sdirs = " ".join(search_dirs)
@@ -229,33 +231,44 @@ def getConfigNameAndContent(fileName):
 class CCcamList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(25)
+		if screenwidth and screenwidth == 1920:
+			self.l.setItemHeight(45)
+		else:
+			self.l.setItemHeight(30)
 		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 32))
+		self.l.setFont(1, gFont("Regular", 30))
 
 class CCcamShareList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(60)
+		if screenwidth and screenwidth == 1920:
+			self.l.setItemHeight(90)
+		else:
+			self.l.setItemHeight(60)
 		self.l.setFont(0, gFont("Regular", 18))
-		self.l.setFont(1, gFont("Regular", 32))
+		self.l.setFont(1, gFont("Regular", 27))
 
 class CCcamConfigList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(30)
+		if screenwidth and screenwidth == 1920:
+			self.l.setItemHeight(45)
+		else:
+			self.l.setItemHeight(30)
 		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 32))
+		self.l.setFont(1, gFont("Regular", 30))
 
 class CCcamShareViewList(MenuList):
 	def __init__(self, list):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
-		self.l.setItemHeight(20)
+		if screenwidth and screenwidth == 1920:
+			self.l.setItemHeight(45)
+		else:
+			self.l.setItemHeight(30)
 		self.l.setFont(0, gFont("Regular", 18))
-		self.l.setFont(1, gFont("Regular", 32))
+		self.l.setFont(1, gFont("Regular", 27))
 
 def CCcamListEntry(name, idx):
-	screenwidth = getDesktop(0).size().width()
 	res = [name]
 	if idx == 10:
 		idx = "red"
@@ -275,16 +288,15 @@ def CCcamListEntry(name, idx):
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if screenwidth and screenwidth == 1920:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(67, 48), png=loadPNG(png)))
-		res.append(MultiContentEntryText(pos=(90, 7), size=(900, 50), font=1, text=name))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(8, 3), size=(45, 45), png=loadPNG(png)))
+		res.append(MultiContentEntryText(pos=(68, 5), size=(900, 45), font=1, text=name))
 	else:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 2), size=(30, 30), png=loadPNG(png)))
+		res.append(MultiContentEntryText(pos=(45, 3), size=(500, 30), font=0, text=name))
 	return res
 
 def CCcamServerListEntry(name, color):
-	screenwidth = getDesktop(0).size().width()
 	res = [name]
 	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" %  color)):
 		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" %  color)
@@ -292,52 +304,49 @@ def CCcamServerListEntry(name, color):
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if screenwidth and screenwidth == 1920:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(67, 48), png=loadPNG(png)))
-		res.append(MultiContentEntryText(pos=(90, 7), size=(900, 50), font=1, text=name))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(8, 3), size=(45, 45), png=loadPNG(png)))
+		res.append(MultiContentEntryText(pos=(68, 5), size=(900, 45), font=1, text=name))
 	else:
 		if fileExists(png):
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 2), size=(30, 30), png=loadPNG(png)))
+		res.append(MultiContentEntryText(pos=(45, 3), size=(500, 30), font=0, text=name))
 	return res
 
 def CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown):
-	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
 		res = [(hostname, type, caid, system, uphops, maxdown),
-				MultiContentEntryText(pos=(10, 0), size=(550, 35), font=1, text=hostname),
-				MultiContentEntryText(pos=(650, 0), size=(500, 35), font=1, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
-				MultiContentEntryText(pos=(10, 40), size=(250, 35), font=1, text=_("CaID: ") + caid),
-				MultiContentEntryText(pos=(230, 40), size=(250, 35), font=1, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
-				MultiContentEntryText(pos=(520, 40), size=(250, 35), font=1, text=_("Uphops: ") + uphops, flags=RT_HALIGN_RIGHT),
-				MultiContentEntryText(pos=(900, 40), size=(250, 35), font=1, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
+				MultiContentEntryText(pos=(0, 0), size=(450, 38), font=1, text=hostname),
+				MultiContentEntryText(pos=(450, 0), size=(450, 38), font=1, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(0, 30), size=(450, 38), font=1, text=_("CaID: ") + caid),
+				MultiContentEntryText(pos=(450, 30), size=(450, 38), font=1, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(0, 60), size=(450, 38), font=1, text=_("Uphops: ") + uphops, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(450, 60), size=(450, 38), font=1, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
 		return res
 	else:
 		res = [(hostname, type, caid, system, uphops, maxdown),
-				MultiContentEntryText(pos=(0, 0), size=(250, 20), font=0, text=hostname),
-				MultiContentEntryText(pos=(250, 0), size=(250, 20), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
-				MultiContentEntryText(pos=(0, 20), size=(250, 20), font=0, text=_("CaID: ") + caid),
-				MultiContentEntryText(pos=(250, 20), size=(250, 20), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
-				MultiContentEntryText(pos=(0, 40), size=(250, 20), font=0, text=_("Uphops: ") + uphops),
-				MultiContentEntryText(pos=(250, 40), size=(250, 20), font=0, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
+				MultiContentEntryText(pos=(0, 0), size=(300, 25), font=0, text=hostname),
+				MultiContentEntryText(pos=(300, 0), size=(300, 25), font=0, text=_("Type: ") + type, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(0, 20), size=(300, 25), font=0, text=_("CaID: ") + caid),
+				MultiContentEntryText(pos=(300, 20), size=(300, 25), font=0, text=_("System: ") + system, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(0, 40), size=(300, 25), font=0, text=_("Uphops: ") + uphops),
+				MultiContentEntryText(pos=(300, 40), size=(300, 25), font=0, text=_("Maxdown: ") + maxdown, flags=RT_HALIGN_RIGHT)]
 		return res
 
 def CCcamShareViewListEntry(caidprovider, providername, numberofcards, numberofreshare):
-	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
 		res = [(caidprovider, providername, numberofcards),
-				MultiContentEntryText(pos=(10, 5), size=(800, 35), font=1, text=providername),
-				MultiContentEntryText(pos=(1050, 5), size=(50, 35), font=1, text=numberofcards, flags=RT_HALIGN_RIGHT),
-				MultiContentEntryText(pos=(1100, 5), size=(50, 35), font=1, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
+				MultiContentEntryText(pos=(10, 0), size=(750, 38), font=1, text=providername),
+				MultiContentEntryText(pos=(750, 0), size=(75, 38), font=1, text=numberofcards, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(825, 0), size=(75, 38), font=1, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
 		return res
 	else:
 		res = [(caidprovider, providername, numberofcards),
-				MultiContentEntryText(pos=(0, 0), size=(430, 20), font=0, text=providername),
-				MultiContentEntryText(pos=(430, 0), size=(50, 20), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT),
-				MultiContentEntryText(pos=(480, 0), size=(50, 20), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
+				MultiContentEntryText(pos=(0, 0), size=(500, 25), font=0, text=providername),
+				MultiContentEntryText(pos=(500, 0), size=(50, 25), font=0, text=numberofcards, flags=RT_HALIGN_RIGHT),
+				MultiContentEntryText(pos=(550, 0), size=(50, 25), font=0, text=numberofreshare, flags=RT_HALIGN_RIGHT)]
 		return res
 
 def CCcamConfigListEntry(file):
-	screenwidth = getDesktop(0).size().width()
 	res = [file]
 
 	try:
@@ -354,16 +363,15 @@ def CCcamConfigListEntry(file):
 	else:
 		png = lock_off
 	if screenwidth and screenwidth == 1920:
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(50, 50), png=png))
-		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(8, 3), size=(38, 38), png=png))
+		res.append(MultiContentEntryText(pos=(53, 5), size=(800, 38), font=1, text=name))
 	else:
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 2), size=(25, 25), png=png))
-		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryText(pos=(35, 3), size=(550, 25), font=0, text=name))
 
 	return res
 
 def CCcamMenuConfigListEntry(name, blacklisted):
-	screenwidth = getDesktop(0).size().width()
 	res = [name]
 
 	if blacklisted:
@@ -371,11 +379,11 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 	else:
 		png = lock_on
 	if screenwidth and screenwidth == 1920:
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(50, 50), png=png))
-		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(8, 3), size=(38, 38), png=png))
+		res.append(MultiContentEntryText(pos=(53, 5), size=(800, 38), font=1, text=name))
 	else:
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 2), size=(25, 25), png=png))
-		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryText(pos=(35, 3), size=(550, 25), font=0, text=name))
 
 	return res
 
