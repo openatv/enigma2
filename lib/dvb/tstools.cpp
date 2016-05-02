@@ -786,22 +786,6 @@ int eDVBTSTools::findPMT(eDVBPMTParser::program &program)
 	return -1;
 }
 
-/* Changed so that findFrame *always* gets to the previous/next
-   GOP before returning a result. 
-   So:
-     forwards: find the next entry, then go on until an I-frame.
-     backwards  find the next entry, then go back to second I-frame:
-     BUT - we always ignore the first frame we reach as:
-       Going backwards can get stuck if there is a GOP with just an I-frame
-       Going forwards we can be asked to start on a start code (non I-frame)
-       which means we keep going back to the same I-frame (with nr_frames==1
-       we do exit the findNextPicture loop eventually, but try to avoid this).
-       These cases have only been seen in mpegs (the forward one can
-       only happen there) but using the same test in h.264 does no harm.
-
-   Return the number of video-frames passed over in the process.
-*/
-
 int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int frame_types)
 {
 //	eDebug("[eDVBTSTools] findFrame trying to find iFrame at %llu", offset);
@@ -814,83 +798,54 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 	off_t offset = _offset;
 	int nr_frames = 0;
 	bool is_mpeg2 = false;
-	unsigned long long longdata;
 
-// Prime the getStructureEntryXXX cache setting
+		/* let's find the iframe before the given offset */
+	if (direction < 0)
+		offset--;
+
+	unsigned long long longdata;
 	if (m_streaminfo.getStructureEntryFirst(offset, longdata) != 0)
 	{
-		eDebug("[eDVBTSTools] findFrame getStructureEntryFirst failed");
+		eDebug("[eDVBTSTools] findFramee getStructureEntryFirst failed");
 		return -1;
 	}
-// Make sure that we are actually positioned not-before where we were
-// asked to start
-	do {
+	if (direction == 0)
+	{
+		// Special case, move an extra frame ahead
 		if (m_streaminfo.getStructureEntryNext(offset, longdata, 1) != 0)
 			return -1;
-		unsigned int data = (unsigned int)longdata; // only the lower bits are interesting
-		if (((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00) || ((data & 0x7E) == 0x0046)) /* H.264 UAD or H.265 UAD or MPEG2 start code */
-			nr_frames++;
-	} while(offset <= _offset);
-
-	int frame_step, Iframes_to_find;
-        bool frame1_skipped = false;
-        if (direction < 0)      // Going backwards
-	{
-		frame_step = -1;
-		Iframes_to_find = 2;
-	}
-	else
-	{
-		frame_step = 1;
-		Iframes_to_find = 1;
+		direction = 1;
 	}
 	while (1)
 	{
-		int res;
-		res = m_streaminfo.getStructureEntryNext(offset, longdata, frame_step);
-		if (res != 0) return -1;
-
 		unsigned int data = (unsigned int)longdata; // only the lower bits are interesting
-		data = (unsigned int)longdata; // only the lower bits are interesting
-/* data is usually the start code in the lower 8 bit, and the next byte <<8. we extract the picture type from there */
-/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
-/* TODO: check frame_types */
-// H.264 and H.265 data is stored similarly in the ts.sc file - MPEG2 differs
-		if ((data & 0xFF) == 0x09 or (data & 0x7E) == 0x46) /* H.264/H.265 UAD */
+			/* data is usually the start code in the lower 8 bit, and the next byte <<8. we extract the picture type from there */
+			/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
+			/* TODO: check frame_types */
+		// is_frame
+		if (((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00) || ((data & 0x7E) == 0x0046)) /* H.264 UAD or H.265 UAD or MPEG2 start code */
 		{
-			nr_frames += frame_step;
-			if ((data & 0xE000) == 0x0000)              /* H.264/5 I-frame */
+			++nr_frames;
+			if ((data & 0xE0FF) == 0x0009)		/* H.264 NAL unit access delimiter with I-frame*/
 			{
-				--Iframes_to_find;
-				if ((Iframes_to_find <= 0) and frame1_skipped) break;
-				frame1_skipped = true;              /* Now seen */
+				break;
 			}
-			else if ((data & 0xE000) == 0x0200          /* H.264/5 P-frame */
-			      or (data & 0xE000) == 0x0400)         /* H.264/5 B-frame */
+			if ((data & 0xE07E) == 0x0046) 		/* H.265 NAL unit access delimiter with I-frame*/
 			{
-				frame1_skipped = true;              /* Now seen */
+				break;
 			}
-		}
-		else if ((data & 0xFF) == 0x00)                     /* MPEG2 start code */
-		{
-			nr_frames += frame_step;
-			if ((data & 0x380000) == 0x080000)          /* MPEG2 I-frame */
+			if ((data & 0x3800FF) == 0x080000)	/* MPEG2 picture start code with I-frame */
 			{
 				is_mpeg2 = true;
-				--Iframes_to_find;
-				if ((Iframes_to_find <= 0) and frame1_skipped) break;
-				frame1_skipped = true;              /* Now seen */
-			}
-			else if ((data & 0x380000) == 0x100000      /* MPEG2 P-frame */
-			      or (data & 0x380000) == 0x180000)     /* MPEG2 B-frame */
-			{
-				frame1_skipped = true;              /* Now seen */
+				break;
 			}
 		}
+		if (m_streaminfo.getStructureEntryNext(offset, longdata, direction) != 0)
+			return -1;
 	}
 	off_t start = offset;
 
-/* Let's find the next frame after the given offset */
+	/* let's find the next frame after the given offset */
 	unsigned int data;
 	do
 	{
@@ -901,19 +856,11 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		}
 		data = ((unsigned int)longdata);
 	}
-	while (((data & 0xFF) != 0x09) && ((data & 0xFF) != 0x00) && ((data & 0x7E) != 0x46)); /* next frame */
+	while (((data & 0xff) != 0x09) && ((data & 0xff) != 0x00) && ((data & 0x7E) != 0x46)); /* next frame */
 
 	if (is_mpeg2)
 	{
-// First we have to get back to where we were when we set start,
-// getStructureEntryNext has a private variable to remember where it was at end
-// of the last call, and getStructureEntryFirst will reset it
-		if (m_streaminfo.getStructureEntryFirst(start, longdata) != 0)
-		{
-			eDebug("[eDVBTSTools] findFrame getStructureEntryFirst for is_mpeg2 failed");
-			return -1;
-                }
-// NOW seek back to sequence start (appears to be needed for e.g. a few TCM streams)
+		// Seek back to sequence start (appears to be needed for e.g. a few TCM streams)
 		while (nr_frames)
 		{
 			if (m_streaminfo.getStructureEntryNext(start, longdata, -1))
@@ -923,72 +870,75 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 			}
 			if ((((unsigned int)longdata) & 0xFF) == 0xB3) /* sequence start or previous frame */
 				break;
-			if ((((unsigned int)longdata) & 0xFF) == 0x00) /* We've stepped over a frame... */
-				nr_frames -= frame_step;
+			--nr_frames;
 		}
 	}
 
-/* make sure we've ended up in the right direction, ignore the result if we didn't */
+	/* make sure we've ended up in the right direction, ignore the result if we didn't */
 	if ((direction >= 0 && start < _offset) || (direction < 0 && start > _offset)) return -1;
 
-/* Set the data for parameters passed by reference */
-	_offset = start;            // Start of I-frame header (*not* packet-aligned)
-	len = offset - start;       // length of file read to ensure we get to end-of-frame
-	direction = nr_frames;      // Frames skipped (-ve if backwards).
-
+	len = offset - start;
+	_offset = start;
+	if (direction < 0)
+		direction = -nr_frames;
+	else
+		direction = nr_frames;
 //	eDebug("[eDVBTSTools] findFrame result: offset=%llu, len: %ld", offset, (int)len);
 	return 0;
 }
 
 int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int frame_types)
 {
-//    eDebug("[eDVBTSTools] findNextPicture trying to move %d frames at %llu", distance, offset);
+	int nr_frames, direction;
+//	eDebug("[eDVBTSTools] findNextPicture trying to move %d frames at %llu", distance, offset);
 
-/* This code (and findFrame) only looks for an I-Frame
-   TODO: intelligent "allow IP frames when not crossing an I-Frame"
- */
-    frame_types = frametypeI; 
+	frame_types = frametypeI; /* TODO: intelligent "allow IP frames when not crossing an I-Frame */
 
-    off_t new_offset = offset;
-    size_t new_len = len;
+	off_t new_offset = offset;
+	size_t new_len = len;
+	int first = 1;
 
-    int direction;
-    if (distance > 0) {
-        direction = 1;
-    } else {
-        direction = -1;
-        distance = -distance;
-    }
-    int nr_frames = 0;
-    do  // Must pass through once...we might get called with distance==0, but mustn't return with nr_frames==0
-    {
-        int dir = direction;    // Gets updated with actual move length
-        if (findFrame(new_offset, new_len, dir, frame_types))
-        {
-//            eDebug("[eDVBTSTools] findNextPicture findFrame failed!\n");
-            return -1;
+	if (distance > 0) {
+		direction = 0;
+                nr_frames = 0;
+        } else {
+		direction = -1;
+                nr_frames = -1;
+		distance = -distance+1;
         }
+	while (distance > 0)
+	{
+		int dir = direction;
+		if (findFrame(new_offset, new_len, dir, frame_types))
+		{
+//			eDebug("[eDVBTSTools] findNextPicture findFrame failed!\n");
+			return -1;
+		}
 
-        distance -= abs(dir);   // How much still to go
+		distance -= abs(dir);
 
-//        eDebug("[eDVBTSTools] findNextPicture we moved %d, %d to go frames (now at %llu)", dir, distance, new_offset);
+//		eDebug("[eDVBTSTools] findNextPicture we moved %d, %d to go frames (now at %llu)", dir, distance, new_offset);
 
-// If we return nr_frames as 0 then the process stops oddly, which we *don't* want,
-// so *always* count the first step. Apart from that we take the result which 
-// doesn't take us too far.
+		if (distance >= 0 || direction == 0)
+		{
+			first = 0;
+			offset = new_offset;
+			len = new_len;
+			nr_frames += abs(dir);
+		}
+		else if (first)
+		{
+			first = 0;
+			offset = new_offset;
+			len = new_len;
+			nr_frames += abs(dir) + distance; // never jump forward during rewind
+		}
+	}
 
-        if ((distance >= 0) or (nr_frames == 0)) 
-        {
-            offset = new_offset;
-            len = new_len;
-            nr_frames += dir;   // +ve (forward) or -ve (backward)
-        }
-    } while (distance > 0);
+	distance = (direction < 0) ? -nr_frames : nr_frames;
+//	eDebug("[eDVBTSTools] findNextPicture in total, we moved %d frames", nr_frames);
 
-    distance = nr_frames;
-//    eDebug("[eDVBTSTools] findNextPicture in total, we moved %d frames", nr_frames);
-
-    return 0;
+	return 0;
 }
 
 void eDVBTSTools::PMTready(int error)
