@@ -15,10 +15,10 @@ def fetchlog(logtype):
 		fd = open(sourcefile, 'r')
 		for line in fd.readlines():
 			if getImageType() == 'release' and line.startswith('openvix: developer'):
-				print 'skipping dev line'
+				print '[GitLog] Skipping dev line'
 				continue
 			elif getImageType() == 'developer' and line.startswith('openvix: release'):
-				print 'skipping release line'
+				print '[GitLog] Skipping release line'
 				continue
 			releasenotes += line
 		fd.close()
