@@ -413,8 +413,7 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 		while (count > (structure_cache_size/4))
 		{
 			int step = count >> 1;
-// Read entry at top end of current range (== i+step-1)
-			::lseek(m_structure_read_fd, (i + step - 1) * entry_size, SEEK_SET);
+			::lseek(m_structure_read_fd, (i + step) * entry_size, SEEK_SET);
 			unsigned long long d;
 			if (::read(m_structure_read_fd, &d, sizeof(d)) < (ssize_t)sizeof(d))
 			{
@@ -424,12 +423,9 @@ int eMPEGStreamInformation::getStructureEntryFirst(off_t &offset, unsigned long 
 			d = be64toh(d);
 			if (d < (unsigned long long)offset)
 			{
-// Move start of range to *be* the last test (+1 more may be too high!!)
-// and remove tested count
-				i += step;
-				count -= step;
+				i += step + 1;
+				count -= step + 1;
 			} else
-// Keep start of range but change range to that below test
 				count = step;
 		}
 		//eDebug("[eMPEGStreamInformation] getStructureEntryFirst i=%d size=%d count=%d", i, l, count);
