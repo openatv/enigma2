@@ -69,6 +69,7 @@ class SoftwareUpdateChanges(Screen):
 
 	def getlog(self):
 		global ocram
+		ocramprocessed = False
 		releasenotes = gitlog.fetchlog(self.logtype)
 		if '404 Not Found' not in releasenotes:
 			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
@@ -107,9 +108,9 @@ class SoftwareUpdateChanges(Screen):
 				imagever = int(ImageVer)
 
 			while int(releasever) > int(imagever):
-				if ocram:
+				if ocram and not ocramprocessed and self.logtype == 'oe':
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
-					ocram = ""
+					ocramprocessed = True
 				else:
 					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
@@ -126,9 +127,9 @@ class SoftwareUpdateChanges(Screen):
 					releasever = tmp[3]
 					print 'RELEASEVER 3:',releasever
 
-			if not viewrelease and ocram:
+			if not viewrelease and ocram and not ocramprocessed and self.logtype == 'oe':
 				viewrelease = ocram
-				ocram = ""
+				ocramprocessed = True
 			self["text"].setText(viewrelease)
 			summarytext = viewrelease.split(':\n')
 			try:
@@ -299,10 +300,10 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				if self.total_packages:
 					global ocram
 					for package_tmp in self.ipkg.getFetchedList():
-						if package_tmp[0].startswith('enigma2-plugin-picons-tv-ocram'):
-							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-tv-ocram.')[1] + 'updated ' + package_tmp[2] + '\n'
-						elif package_tmp[0].startswith('enigma2-plugin-settings-ocram'):
-							ocram = ocram + '[ocram-settings] ' + package_tmp[0].split('enigma2-plugin-picons-tv-ocram.')[1] + 'updated ' + package_tmp[2] + '\n'
+						if package_tmp[0].startswith('enigma2-plugin-picons-snp'):
+							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-snp-')[1].replace('.',' ') + ' updated ' + package_tmp[2].replace('--',' ') + '\n'
+						elif package_tmp[0].startswith('enigma2-plugin-picons-srp'):
+							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-srp-')[1].replace('.',' ') + ' updated ' + package_tmp[2].replace('--',' ') + '\n'
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [(_("View the changes"), "changes"),
 						(_("Upgrade and reboot system"), "cold")]
