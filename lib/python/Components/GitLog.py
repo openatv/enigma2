@@ -10,7 +10,7 @@ def fetchlog(logtype):
 			sourceurl = 'http://www.openvix.co.uk/feeds/%s/%s/%s/%s-git.log' % (getImageDistro(), getImageType(), getImageVersion(), logtype)
 		else:
 			sourceurl = 'http://openvixdev.dyndns.tv/feeds/%s/%s/%s/%s-git.log' % (getImageDistro(), getImageType(), getImageVersion(), logtype)
-		print sourceurl
+		print "[GitLog]",sourceurl
 		sourcefile,headers = urllib.urlretrieve(sourceurl)
 		fd = open(sourcefile, 'r')
 		for line in fd.readlines():
@@ -22,6 +22,8 @@ def fetchlog(logtype):
 				continue
 			releasenotes += line
 		fd.close()
+		releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
+		releasenotes = releasenotes.replace('\nopenvix: %s' % getImageType(),"\n\nopenvix: %s" % getImageType())
 	except:
 		releasenotes = '404 Not Found'
 	return releasenotes

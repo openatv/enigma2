@@ -72,10 +72,7 @@ class SoftwareUpdateChanges(Screen):
 		ocramprocessed = False
 		releasenotes = gitlog.fetchlog(self.logtype)
 		if '404 Not Found' not in releasenotes:
-			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
-			releasenotes = releasenotes.replace('\nopenvix: %s' % getImageType(),"\n\nopenvix: %s" % getImageType())
 			releasenotes = releasenotes.split('\n\n')
-			print 'releasenotes:\n',releasenotes
 			ver = -1
 			releasever = ""
 			viewrelease = ""
