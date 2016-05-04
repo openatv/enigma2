@@ -1,8 +1,6 @@
-from boxbranding import getImageVersion, getImageBuild, getImageDistro, getImageType, getMachineBrand, getMachineName, getMachineBuild
-from os import rename, path, remove
+from boxbranding import getImageVersion, getImageBuild, getImageDevBuild, getImageType, getImageDistro, getMachineBrand, getMachineName, getMachineBuild
+from os import path
 from gettext import dgettext
-import urllib
-import socket
 
 from enigma import eTimer, eDVBDB
 
@@ -17,6 +15,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
+from Components.GitLog import gitlog
 from Components.Ipkg import IpkgComponent
 from Components.Pixmap import Pixmap
 from Components.Label import Label
@@ -26,14 +25,11 @@ from Components.Slider import Slider
 
 ocram = ''
 
+
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		self.setTitle(_("OE Changes"))
-		if path.exists('/tmp/oe-git.log'):
-			remove('/tmp/oe-git.log')
-		if path.exists('/tmp/e2-git.log'):
-			remove('/tmp/e2-git.log')
 		self.logtype = 'oe'
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
@@ -73,18 +69,13 @@ class SoftwareUpdateChanges(Screen):
 
 	def getlog(self):
 		global ocram
-		try:
-			sourcefile = 'http://www.openvix.co.uk/feeds/%s/%s/%s/%s-git.log' % (getImageDistro(), getImageType(), getImageVersion(), self.logtype)
-			sourcefile,headers = urllib.urlretrieve(sourcefile)
-			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
-			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
-			releasenotes = fd.read()
-			fd.close()
-		except:
-			releasenotes = '404 Not Found'
+		ocramprocessed = False
+		releasenotes = gitlog.fetchlog(self.logtype)
 		if '404 Not Found' not in releasenotes:
 			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
+			releasenotes = releasenotes.replace('\nopenvix: %s' % getImageType(),"\n\nopenvix: %s" % getImageType())
 			releasenotes = releasenotes.split('\n\n')
+			print 'releasenotes:\n',releasenotes
 			ver = -1
 			releasever = ""
 			viewrelease = ""
@@ -92,30 +83,53 @@ class SoftwareUpdateChanges(Screen):
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
+				print 'RELEASEVER:',releasever
 				if len(releasever) > 2:
-					releasever = releasever[2].replace(':',"")
+					print 'TMP 2:',releasever[2]
+					tmp = releasever[2].split('.')
+					if getImageType() == 'release':
+						releasever = tmp[2]
+						print 'RELEASEVER 2:',releasever
+					else:
+						releasever = tmp[3]
+						print 'RELEASEVER 3:',releasever
 				else:
-					releasever = releasever[0].replace(':',"")
-			if self.logtype == 'oe':
-				if int(getImageBuild()) == 1:
-					imagever = int(getImageBuild())-1
-				else:
-					imagever = int(getImageBuild())
+					print 'RELEASEVER 0:',releasever[0]
+					releasever = releasever[0]
+
+			if getImageType() == 'release':
+				ImageVer = getImageBuild()
 			else:
-				imagever = int(getImageBuild())
+				ImageVer = getImageDevBuild()
+
+			if int(ImageVer) == 1:
+				imagever = int(ImageVer)-1
+			else:
+				imagever = int(ImageVer)
+
 			while int(releasever) > int(imagever):
-				if ocram:
+				if ocram and not ocramprocessed and self.logtype == 'oe':
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
-					ocram = ""
+					ocramprocessed = True
 				else:
 					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
-				releasever = releasever[2].replace(':',"")
-			if not viewrelease and ocram:
+				print 'releasever3:',releasever
+				print 'TMP 3:',releasever[2]
+				tmp = releasever[2].split('.')
+				print 'TMP 4:',tmp
+				if getImageType() == 'release':
+					releasever = tmp[2]
+					print 'RELEASEVER 2:',releasever
+				else:
+					releasever = tmp[3]
+					print 'RELEASEVER 3:',releasever
+
+			if not viewrelease and ocram and not ocramprocessed and self.logtype == 'oe':
 				viewrelease = ocram
-				ocram = ""
+				ocramprocessed = True
 			self["text"].setText(viewrelease)
 			summarytext = viewrelease.split(':\n')
 			try:
@@ -286,10 +300,10 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				if self.total_packages:
 					global ocram
 					for package_tmp in self.ipkg.getFetchedList():
-						if package_tmp[0].startswith('enigma2-plugin-picons-tv-ocram'):
-							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-tv-ocram.')[1] + 'updated ' + package_tmp[2] + '\n'
-						elif package_tmp[0].startswith('enigma2-plugin-settings-ocram'):
-							ocram = ocram + '[ocram-settings] ' + package_tmp[0].split('enigma2-plugin-picons-tv-ocram.')[1] + 'updated ' + package_tmp[2] + '\n'
+						if package_tmp[0].startswith('enigma2-plugin-picons-snp'):
+							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-snp-')[1].replace('.',' ') + ' updated ' + package_tmp[2].replace('--',' ') + '\n'
+						elif package_tmp[0].startswith('enigma2-plugin-picons-srp'):
+							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-srp-')[1].replace('.',' ') + ' updated ' + package_tmp[2].replace('--',' ') + '\n'
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [(_("View the changes"), "changes"),
 						(_("Upgrade and reboot system"), "cold")]
