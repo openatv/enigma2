@@ -572,6 +572,7 @@ class ViewGitLog(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
+		releasenotes = ""
 		fd = open('/etc/' + self.logtype + '-git.log', 'r')
 		for line in fd.readlines():
 			if getImageType() == 'release' and line.startswith('openvix: developer'):
