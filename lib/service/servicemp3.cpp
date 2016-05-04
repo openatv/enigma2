@@ -415,7 +415,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_is_live = false;
 	m_use_prefillbuffer = false;
 	m_paused = false;
-	m_seek_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
@@ -917,8 +916,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 
 	if (m_paused)
 	{
-		m_seek_paused = true;
-		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+		m_event((iPlayableService*)this, evUpdatedInfo);
 	}
 
 	return 0;
@@ -1071,7 +1069,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
-	if (audioSink || videoSink)
+	if ((audioSink || videoSink) && !m_paused)
 	{
 		g_signal_emit_by_name(audioSink ? audioSink : videoSink, "get-decoder-time", &pos);
 		if (!GST_CLOCK_TIME_IS_VALID(pos)) return -1;
@@ -2008,13 +2006,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				g_free(g_codec);
 				m_subtitleStreams.push_back(subs);
 			}
-			m_event((iPlayableService*)this, evUpdatedInfo);
 
-			if (m_seek_paused)
-			{
-				m_seek_paused = false;
-				gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
-			}
+			m_event((iPlayableService*)this, evUpdatedInfo);
 
 			if ( m_errorInfo.missing_codec != "" )
 			{

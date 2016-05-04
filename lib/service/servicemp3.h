@@ -301,7 +301,6 @@ private:
 	bool m_subtitles_paused;
 	bool m_use_prefillbuffer;
 	bool m_paused;
-	bool m_seek_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	/* servicemMP3 chapter TOC support CVR */
