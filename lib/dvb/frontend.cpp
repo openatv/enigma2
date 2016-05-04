@@ -1078,7 +1078,17 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			default: break;
 		}
 	}
-	else if(!strcmp(m_description, "TBS-5925"))
+	else if (strstr(m_description, "Sundtek DVB-T (III)")) // Sundtek MediaTV Digital Home III...dvb-t/t2 mode
+	{
+		ret = (int)(snr / 75);
+		ter_max = 1700;
+	}
+	else if (strstr(m_description, "Sundtek DVB-S/S2 (IV)"))
+	{
+		ret = (int)(snr / 52);
+		sat_max = 1690;
+	}
+	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
 	{
 		ret = (snr * 2000) / 0xFFFF;
 		sat_max = 2000;
@@ -1171,7 +1181,11 @@ int eDVBFrontend::readFrontendData(int type)
 				}
 #endif
 				// fallback to old DVB API
+<<<<<<< HEAD
 				if(!signalquality && !signalqualitydb)
+=======
+				if(!signalquality && !signalqualitydb || strstr(m_description, "Sundtek"))
+>>>>>>> fccc8f5... frontend: SNR approximation in dB for Sundtek SkyTV Ultimate 5 (DVB-S/S2) tuner
 				{
 					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
 					calculateSignalQuality(snr, signalquality, signalqualitydb);
