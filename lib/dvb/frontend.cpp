@@ -1181,11 +1181,7 @@ int eDVBFrontend::readFrontendData(int type)
 				}
 #endif
 				// fallback to old DVB API
-<<<<<<< HEAD
-				if(!signalquality && !signalqualitydb)
-=======
 				if(!signalquality && !signalqualitydb || strstr(m_description, "Sundtek"))
->>>>>>> fccc8f5... frontend: SNR approximation in dB for Sundtek SkyTV Ultimate 5 (DVB-S/S2) tuner
 				{
 					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
 					calculateSignalQuality(snr, signalquality, signalqualitydb);
