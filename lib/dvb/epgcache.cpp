@@ -1639,7 +1639,7 @@ void eEPGCache::channel_data::startEPG()
 	if (it != cache->customeitpids.end())
 	{
 		mask.pid = it->second;
-		eDebug("[eEPGCache] Using non standart pid %#x", mask.pid);
+		eDebug("[eEPGCache] Using non-standard pid %#x", mask.pid);
 	}
 
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NOWNEXT)
