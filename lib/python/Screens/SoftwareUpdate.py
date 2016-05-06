@@ -85,39 +85,26 @@ class SoftwareUpdateChanges(Screen):
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
-				print 'RELEASEVER:',releasever
-				print 'TMP A1:',releasever[2]
 				tmp = releasever[2].split('.')
 				if getImageType() == 'release':
 					releasever = tmp[2]
-					print 'RELEASEVER A2:',releasever
 				else:
 					releasever = tmp[3]
-					print 'RELEASEVER A3:',releasever
 
 			while int(releasever) > int(ImageVer):
-				print 'ImageVer:', int(ImageVer)
-				print 'ReleaseVer:', int(releasever)
 				if ocram and not ocramprocessed and self.logtype == 'oe':
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
 					ocramprocessed = True
 				else:
 					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
-				print 'VER2:',ver
-				print 'releasenotes:', releasenotes
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
-				print 'releasever3:',releasever
-				print 'TMP B1:',releasever[2]
 				tmp = releasever[2].split('.')
-				print 'TMP B2:',tmp
 				if getImageType() == 'release':
 					releasever = tmp[2]
-					print 'RELEASEVER B2:',releasever
 				else:
 					releasever = tmp[3]
-					print 'RELEASEVER B3:',releasever
 
 			if not viewrelease and ocram and not ocramprocessed and self.logtype == 'oe':
 				viewrelease = ocram
