@@ -572,10 +572,15 @@ class ViewGitLog(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
+		releasenotes = ""
 		fd = open('/etc/' + self.logtype + '-git.log', 'r')
-		releasenotes = fd.read()
+		for line in fd.readlines():
+			if getImageType() == 'release' and line.startswith('openvix: developer'):
+				continue
+			elif getImageType() == 'developer' and line.startswith('openvix: release'):
+				continue
+			releasenotes += line
 		fd.close()
-		releasenotes = releasenotes.replace('\nopenvix: build', "\n\nopenvix: build")
 		self["text"].setText(releasenotes)
 		summarytext = releasenotes
 		try:

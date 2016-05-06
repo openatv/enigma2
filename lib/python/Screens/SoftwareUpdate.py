@@ -72,10 +72,12 @@ class SoftwareUpdateChanges(Screen):
 		ocramprocessed = False
 		releasenotes = gitlog.fetchlog(self.logtype)
 		if '404 Not Found' not in releasenotes:
-			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
-			releasenotes = releasenotes.replace('\nopenvix: %s' % getImageType(),"\n\nopenvix: %s" % getImageType())
+			if getImageType() == 'release':
+				ImageVer = getImageBuild()
+			else:
+				ImageVer = getImageDevBuild()
+
 			releasenotes = releasenotes.split('\n\n')
-			print 'releasenotes:\n',releasenotes
 			ver = -1
 			releasever = ""
 			viewrelease = ""
@@ -84,48 +86,38 @@ class SoftwareUpdateChanges(Screen):
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
 				print 'RELEASEVER:',releasever
-				if len(releasever) > 2:
-					print 'TMP 2:',releasever[2]
-					tmp = releasever[2].split('.')
-					if getImageType() == 'release':
-						releasever = tmp[2]
-						print 'RELEASEVER 2:',releasever
-					else:
-						releasever = tmp[3]
-						print 'RELEASEVER 3:',releasever
+				print 'TMP A1:',releasever[2]
+				tmp = releasever[2].split('.')
+				if getImageType() == 'release':
+					releasever = tmp[2]
+					print 'RELEASEVER A2:',releasever
 				else:
-					print 'RELEASEVER 0:',releasever[0]
-					releasever = releasever[0]
+					releasever = tmp[3]
+					print 'RELEASEVER A3:',releasever
 
-			if getImageType() == 'release':
-				ImageVer = getImageBuild()
-			else:
-				ImageVer = getImageDevBuild()
-
-			if int(ImageVer) == 1:
-				imagever = int(ImageVer)-1
-			else:
-				imagever = int(ImageVer)
-
-			while int(releasever) > int(imagever):
+			while int(releasever) > int(ImageVer):
+				print 'ImageVer:', int(ImageVer)
+				print 'ReleaseVer:', int(releasever)
 				if ocram and not ocramprocessed and self.logtype == 'oe':
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
 					ocramprocessed = True
 				else:
 					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
+				print 'VER2:',ver
+				print 'releasenotes:', releasenotes
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
 				print 'releasever3:',releasever
-				print 'TMP 3:',releasever[2]
+				print 'TMP B1:',releasever[2]
 				tmp = releasever[2].split('.')
-				print 'TMP 4:',tmp
+				print 'TMP B2:',tmp
 				if getImageType() == 'release':
 					releasever = tmp[2]
-					print 'RELEASEVER 2:',releasever
+					print 'RELEASEVER B2:',releasever
 				else:
 					releasever = tmp[3]
-					print 'RELEASEVER 3:',releasever
+					print 'RELEASEVER B3:',releasever
 
 			if not viewrelease and ocram and not ocramprocessed and self.logtype == 'oe':
 				viewrelease = ocram
