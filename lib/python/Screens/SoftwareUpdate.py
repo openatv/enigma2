@@ -73,7 +73,7 @@ class SoftwareUpdateChanges(Screen):
 		releasenotes = gitlog.fetchlog(self.logtype)
 		if '404 Not Found' not in releasenotes:
 			if getImageType() == 'release':
-				ImageVer = float(getImageBuild())
+				ImageVer = getImageBuild()
 			else:
 				ImageVer = "%s.%s" % (getImageBuild(),getImageDevBuild())
 				ImageVer = float(ImageVer)
