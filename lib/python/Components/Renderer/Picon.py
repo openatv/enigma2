@@ -91,7 +91,10 @@ def getPiconName(serviceName):
 			pngname = findPicon(name)
 			if not pngname and len(name) > 2 and name.endswith('hd'):
 				pngname = findPicon(name[:-2])
-	return pngname
+	if pathExists(pngname):
+		return pngname
+	else:
+		return resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 
 class Picon(Renderer):
 	def __init__(self):
