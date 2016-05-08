@@ -85,12 +85,17 @@ class SoftwareUpdateChanges(Screen):
 			while not releasever.replace('.','').isdigit():
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
-				releasever = releasever[0].split(' ')
-				tmp = releasever[2].split('.')
-				if getImageType() == 'release':
-					releasever = tmp[2]
+				releasever = releasever[0].split('openvix: ')
+				if len(releasever) > 1:
+					releasever = releasever[1].split(' ')
+					tmp = releasever[1].split('.')
+					if len(tmp) > 2:
+						if getImageType() == 'release':
+							releasever = tmp[2]
+						else:
+							releasever = '%s.%s' % (tmp[2], tmp[3])
 				else:
-					releasever = '%s.%s' % (tmp[2], tmp[3])
+					releasever = releasever[0]
 
 			while releasever > ImageVer:
 				if ocram and not ocramprocessed and self.logtype == 'oe':
@@ -100,13 +105,18 @@ class SoftwareUpdateChanges(Screen):
 					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
-				releasever = releasever[0].split(' ')
-				tmp = releasever[2].split('.')
-				if getImageType() == 'release':
-					releasever = tmp[2]
+				releasever = releasever[0].split('openvix:')
+				if len(releasever) > 1:
+					releasever = releasever[1].split(' ')
+					tmp = releasever[1].split('.')
+					if len(tmp) > 2:
+						if getImageType() == 'release':
+							releasever = tmp[2]
+						else:
+							releasever = '%s.%s' % (tmp[2], tmp[3])
+							releasever = float(devbuildnum)
 				else:
-					devbuildnum = '%s.%s' % (tmp[2], tmp[3])
-					releasever = float(devbuildnum)
+					releasever = releasever[0]
 
 			if not viewrelease and ocram and not ocramprocessed and self.logtype == 'oe':
 				viewrelease = ocram
