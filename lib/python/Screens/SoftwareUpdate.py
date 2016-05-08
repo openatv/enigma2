@@ -290,6 +290,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 					message += " " + _("Reflash recommended!")
 				if self.total_packages:
 					global ocram
+					ocram = ''
 					for package_tmp in self.ipkg.getFetchedList():
 						if package_tmp[0].startswith('enigma2-plugin-picons-snp'):
 							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-snp-')[1].replace('.',' ') + ' updated ' + package_tmp[2].replace('--',' ') + '\n'
