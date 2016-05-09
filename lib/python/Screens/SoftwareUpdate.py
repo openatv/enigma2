@@ -114,7 +114,7 @@ class SoftwareUpdateChanges(Screen):
 							releasever = tmp[2]
 						else:
 							releasever = '%s.%s' % (tmp[2], tmp[3])
-							releasever = float(devbuildnum)
+							releasever = float(releasever)
 				else:
 					releasever = releasever[0]
 
