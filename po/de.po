@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-23 20:28+0100\n"
-"PO-Revision-Date: 2016-04-25 19:40+0200\n"
+"POT-Creation-Date: 2016-05-07 20:10+0100\n"
+"PO-Revision-Date: 2016-05-08 10:46+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1434,7 +1434,7 @@ msgid "Buffers:"
 msgstr "Puffer:"
 
 #, python-format
-msgid "Build:\t%s\n"
+msgid "Build:\t%s.%s%s (%s)\n"
 msgstr ""
 
 #, python-format
@@ -1791,8 +1791,8 @@ msgstr "Wähle einen TAG um Aufnahmen einfacher finden zu können."
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr "Wähle zwischen täglich, wöchentlich, wochentags oder benutzerdefiniert."
 
-msgid "Choose the location for crash and debug logs."
-msgstr "Wähle den Speicherort für Crash- und Debug-Logs"
+msgid "Choose the location for crash and debug logs folder."
+msgstr "Wähle den Speicherort für Crash- und Debug-Logs."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
@@ -4031,10 +4031,6 @@ msgstr "Image Informationen"
 msgid "Image Manager"
 msgstr "Image Verwaltung"
 
-#, python-format
-msgid "Image type:\t%s\n"
-msgstr ""
-
 msgid "Immediate shutdown"
 msgstr "Direkt ausschalten"
 
@@ -4540,7 +4536,7 @@ msgstr "Log Verwaltung"
 msgid "Logs"
 msgstr "Logs"
 
-msgid "Logs location"
+msgid "Logs folder location"
 msgstr "Speicherort für Logs"
 
 msgid "Logs manager"
@@ -7622,6 +7618,9 @@ msgstr "Transponder-Info anzeigen"
 msgid "Show transponder remaining/elapsed as"
 msgstr "Zeige Transponder verbleibend/verstrichen"
 
+msgid "Show warning when in a stream"
+msgstr "Zeige Warnung wenn IP-Stream aktiv"
+
 msgid "Show warning when timeshift is stopped"
 msgstr "Zeige Warnung wenn TimeShift beendet wird"
 
@@ -8933,6 +8932,9 @@ msgstr "TimeShift Verzeichnis"
 msgid "Timeshift not possible!"
 msgstr "TimeShift nicht möglich!"
 
+msgid "Timeshift on a stream is not supported!"
+msgstr "TimeShift wird bei diesem Stream nicht unterstützt."
+
 msgid "Timeshift save failed!"
 msgstr "Sichern TimeShift fehlgeschlagen!"
 
@@ -9448,10 +9450,6 @@ msgstr "VMGM (Intro-Trailer)"
 msgid "VU+"
 msgstr ""
 
-#, python-format
-msgid "Version:\t%s\n"
-msgstr "Version:\t%s\n"
-
 msgid "Version: "
 msgstr "Version: "
 
@@ -9779,6 +9777,9 @@ msgstr "Wenn aktiviert ist es einer Aufnahme gestattet das Live-Programm zu unte
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Wenn aktiviert wird eine Warnung angezeigt und der Benutzer hat die Möglichkeit TimeShift zu stoppen oder fortzuführen."
+
+msgid "When enabled, a warning will be displayed that timeshift is not supported in an IP stream.."
+msgstr "Wenn aktiviert wird eine Warnung angezeigt das TimeShift bei IP-Streams nicht unterstützt wird."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off."
 msgstr "Wenn aktiviert werden empfangene Streams entschlüsselt. Diese Option verlang nach mehr Resourcen (entschlüsseln demuxer). Nur aktivieren wenn nötig. Einzelne Streams werden immer entschlüsselt wenn 0x100 als Service Typ benutzt wird. Standard ist aus."
@@ -11685,6 +11686,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "USB stick wizard"
 #~ msgstr "USB-Stick-Assistent"
+
+#~ msgid "Version:\t%s\n"
+#~ msgstr "Version:\t%s\n"
 
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "Du kannst Telnet deaktivieren und SSH benutzen."

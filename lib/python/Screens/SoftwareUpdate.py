@@ -75,49 +75,48 @@ class SoftwareUpdateChanges(Screen):
 			if getImageType() == 'release':
 				ImageVer = getImageBuild()
 			else:
-				ImageVer = getImageDevBuild()
+				ImageVer = "%s.%s" % (getImageBuild(),getImageDevBuild())
+				ImageVer = float(ImageVer)
 
 			releasenotes = releasenotes.split('\n\n')
 			ver = -1
 			releasever = ""
 			viewrelease = ""
-			while not releasever.isdigit():
+			while not releasever.replace('.','').isdigit():
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
-				releasever = releasever[0].split(' ')
-				print 'RELEASEVER:',releasever
-				print 'TMP A1:',releasever[2]
-				tmp = releasever[2].split('.')
-				if getImageType() == 'release':
-					releasever = tmp[2]
-					print 'RELEASEVER A2:',releasever
+				releasever = releasever[0].split('openvix: ')
+				if len(releasever) > 1:
+					releasever = releasever[1].split(' ')
+					tmp = releasever[1].split('.')
+					if len(tmp) > 2:
+						if getImageType() == 'release':
+							releasever = tmp[2]
+						else:
+							releasever = '%s.%s' % (tmp[2], tmp[3])
 				else:
-					releasever = tmp[3]
-					print 'RELEASEVER A3:',releasever
+					releasever = releasever[0]
 
-			while int(releasever) > int(ImageVer):
-				print 'ImageVer:', int(ImageVer)
-				print 'ReleaseVer:', int(releasever)
+			while releasever > ImageVer:
 				if ocram and not ocramprocessed and self.logtype == 'oe':
 					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
 					ocramprocessed = True
 				else:
 					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
-				print 'VER2:',ver
-				print 'releasenotes:', releasenotes
 				releasever = releasenotes[int(ver)].split('\n')
-				releasever = releasever[0].split(' ')
-				print 'releasever3:',releasever
-				print 'TMP B1:',releasever[2]
-				tmp = releasever[2].split('.')
-				print 'TMP B2:',tmp
-				if getImageType() == 'release':
-					releasever = tmp[2]
-					print 'RELEASEVER B2:',releasever
+				releasever = releasever[0].split('openvix: ')
+				if len(releasever) > 1:
+					releasever = releasever[1].split(' ')
+					tmp = releasever[1].split('.')
+					if len(tmp) > 2:
+						if getImageType() == 'release':
+							releasever = tmp[2]
+						else:
+							releasever = '%s.%s' % (tmp[2], tmp[3])
+							releasever = float(releasever)
 				else:
-					releasever = tmp[3]
-					print 'RELEASEVER B3:',releasever
+					releasever = releasever[0]
 
 			if not viewrelease and ocram and not ocramprocessed and self.logtype == 'oe':
 				viewrelease = ocram
@@ -291,6 +290,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 					message += " " + _("Reflash recommended!")
 				if self.total_packages:
 					global ocram
+					ocram = ''
 					for package_tmp in self.ipkg.getFetchedList():
 						if package_tmp[0].startswith('enigma2-plugin-picons-snp'):
 							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-snp-')[1].replace('.',' ') + ' updated ' + package_tmp[2].replace('--',' ') + '\n'

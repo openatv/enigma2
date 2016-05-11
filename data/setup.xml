@@ -251,7 +251,7 @@
 		<item level="2" text="Show OScam Info in extensions?" description="Allows you to show/hide OScam Info in extensions (blue button).">config.oscaminfo.showInExtensions</item>
 	</setup>
 	<setup key="logs" title="Logs settings">
-		<item level="2" text="Logs location" description="Choose the location for crash and debug logs.">config.crash.debug_path</item>
+		<item level="2" text="Logs folder location" description="Choose the location for crash and debug logs folder.">config.crash.debug_path</item>
 		<item level="2" text="Enable debug logs *" description="Allows you to enable the debug logs. They contain very detailed information about everything the system does. Reboot required to enable this!">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
@@ -267,6 +267,7 @@
 		<item level="2" text="Timeshift-save action on zap" description="Select if timeshift should continue when set to record.">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop timeshift while recording?" description="Stops timeshift being used if a recording is in progress. (Advisable for USB sticks)">config.timeshift.stopwhilerecording</item>
 		<item level="2" text="Use timeshift seekbar while timeshifting?" description="If set to 'yes', allows you to use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>
+		<item level="2" text="Show warning when in a stream" description="When enabled, a warning will be displayed that timeshift is not supported in an IP stream..">config.timeshift.stream_warning</item>
 	</setup>
 	<setup key="epgsingle" title="ChannelEPG settings">
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>

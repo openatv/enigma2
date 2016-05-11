@@ -10,6 +10,10 @@
 
 #include <deque>
 #include <fstream>
+#include <ios>
+#include <sstream>
+#include <iomanip>
+#include <string>
 #include <time.h>
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
@@ -1600,15 +1604,17 @@ void eEPGCache::channel_data::startEPG()
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
 	eDVBChannelID chid = channel->getChannelID();
-	char optsidonid[12];
-	sprintf (optsidonid, "%x", chid.dvbnamespace.get());
-	optsidonid [strlen(optsidonid) - 4] = '\0';
-	sprintf (optsidonid, "%s%04x%04x", optsidonid, chid.transport_stream_id.get(), chid.original_network_id.get());
-	std::map<std::string,int>::iterator it = cache->customeitpids.find(std::string(optsidonid));
+	std::ostringstream epg_id;
+	epg_id << std::hex << std::setfill('0') <<
+		std::setw(0) << ((chid.dvbnamespace.get() & 0xffff0000) >> 16) <<
+		std::setw(4) << chid.transport_stream_id.get() <<
+		std::setw(4) << chid.original_network_id.get();
+
+	std::map<std::string,int>::iterator it = cache->customeitpids.find(epg_id.str());
 	if (it != cache->customeitpids.end())
 	{
 		mask.pid = it->second;
-		eDebug("[eEPGCache] Using non standart pid %#x", mask.pid);
+		eDebug("[eEPGCache] Using non-standard pid %#x", mask.pid);
 	}
 	
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NOWNEXT)
