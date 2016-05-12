@@ -246,6 +246,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					self.do_backoff()
 					# retry
+# If this is the first backoff of a repeating timer remember the original
+# begin/end times, so that we can use *these* when setting up the repeat.
+#
+					if self.repeated and not hasattr(self, "real_begin"):
+						self.real_begin = self.begin
+						self.real_end = self.end
 					self.begin = time() + self.backoff
 					if self.end <= self.begin:
 						self.end = self.begin
@@ -406,6 +412,11 @@ class PowerTimer(timer.Timer):
 		else:
 			# yes. Process repeated, and re-add.
 			if w.repeated:
+# If we have saved original begin/end times for a backed off timer
+# restore those values now
+				if hasattr(w, "real_begin"):
+					w.begin = w.real_begin
+					w.end = w.real_end
 				w.processRepeated()
 				w.state = PowerTimerEntry.StateWaiting
 				self.addTimerEntry(w)
