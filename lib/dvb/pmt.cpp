@@ -358,6 +358,10 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	int cached_apid_ac3 = -1;
 	int cached_apid_ddp = -1;
 	int cached_apid_mpeg = -1;
+	int cached_apid_aac = -1;
+	int cached_apid_dts = -1;
+	int cached_apid_lpcm = -1;
+	int cached_apid_dtshd = -1;
 	int cached_apid_aache = -1;
 	int cached_vpid = -1;
 	int cached_tpid = -1;
@@ -378,6 +382,10 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		cached_apid_mpeg = m_service->getCacheEntry(eDVBService::cMPEGAPID);
 		cached_apid_ac3 = m_service->getCacheEntry(eDVBService::cAC3PID);
 		cached_apid_ddp = m_service->getCacheEntry(eDVBService::cDDPPID);
+		cached_apid_aac = m_service->getCacheEntry(eDVBService::cAACPID);
+		cached_apid_dts = m_service->getCacheEntry(eDVBService::cDTSPID);
+		cached_apid_lpcm = m_service->getCacheEntry(eDVBService::cLPCMPID);
+		cached_apid_dtshd = m_service->getCacheEntry(eDVBService::cDTSHDPID);
 		cached_apid_aache = m_service->getCacheEntry(eDVBService::cAACHEAPID);
 		cached_tpid = m_service->getCacheEntry(eDVBService::cTPID);
 	}
@@ -390,6 +398,10 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		int autoaudio_mpeg = -1;
 		int autoaudio_ac3 = -1;
 		int autoaudio_ddp = -1;
+		int autoaudio_aac = -1;
+		int autoaudio_dts = -1;
+		int autoaudio_lpcm = -1;
+		int autoaudio_dtshd = -1;
 		int autoaudio_aache = -1;
 		int autoaudio_level = 4;
 
@@ -453,6 +465,10 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			if (program.audioStreams[i].pid == cached_apid_ac3
 			 || program.audioStreams[i].pid == cached_apid_ddp
 			 || program.audioStreams[i].pid == cached_apid_mpeg
+			 || program.audioStreams[i].pid == cached_apid_aac
+			 || program.audioStreams[i].pid == cached_apid_dts
+			 || program.audioStreams[i].pid == cached_apid_lpcm
+			 || program.audioStreams[i].pid == cached_apid_dtshd
 			 || program.audioStreams[i].pid == cached_apid_aache)
 			{
 				/* if we find the cached pids, this will be our default stream */
@@ -462,7 +478,11 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			if ((program.audioStreams[i].type != audioStream::atMPEG) && ((first_non_mpeg == -1)
 				|| (program.audioStreams[i].pid == cached_apid_ac3)
 				|| (program.audioStreams[i].pid == cached_apid_ddp)
-				|| (program.audioStreams[i].pid == cached_apid_aache)))
+				|| (program.audioStreams[i].pid == cached_apid_aache)
+				|| (program.audioStreams[i].pid == cached_apid_aac)
+				|| (program.audioStreams[i].pid == cached_apid_dts)
+				|| (program.audioStreams[i].pid == cached_apid_lpcm)
+				|| (program.audioStreams[i].pid == cached_apid_dtshd)))
 			{
 				first_non_mpeg = i;
 			}
@@ -481,6 +501,14 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 							autoaudio_ddp = i;
 						else if (program.audioStreams[i].type == audioStream::atAACHE && (autoaudio_level > x || autoaudio_aache == -1))
 							autoaudio_aache = i;
+						else if (program.audioStreams[i].type == audioStream::atAAC && (autoaudio_level > x || autoaudio_aac == -1))
+							autoaudio_aac = i;
+						else if (program.audioStreams[i].type == audioStream::atDTS && (autoaudio_level > x || autoaudio_dts == -1))
+							autoaudio_dts = i;
+						else if (program.audioStreams[i].type == audioStream::atLPCM && (autoaudio_level > x || autoaudio_lpcm == -1))
+							autoaudio_lpcm = i;
+						else if (program.audioStreams[i].type == audioStream::atDTSHD && (autoaudio_level > x || autoaudio_dtshd == -1))
+							autoaudio_dtshd = i;
 						autoaudio_level = x;
 						break;
 					}
@@ -539,6 +567,14 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				program.defaultAudioStream = autoaudio_ddp;
 			else if (autoaudio_aache != -1)
 				program.defaultAudioStream = autoaudio_aache;
+			else if (autoaudio_aac != -1)
+				program.defaultAudioStream = autoaudio_aac;
+			else if (autoaudio_dts != -1)
+				program.defaultAudioStream = autoaudio_dts;
+			else if (autoaudio_lpcm != -1)
+				program.defaultAudioStream = autoaudio_lpcm;
+			else if (autoaudio_dtshd != -1)
+				program.defaultAudioStream = autoaudio_dtshd;
 			else if (first_non_mpeg != -1)
 				program.defaultAudioStream = first_non_mpeg;
 		}
@@ -612,6 +648,42 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			audioStream s;
 			s.type = audioStream::atDDP;
 			s.pid = cached_apid_ddp;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_aac != -1 )
+		{
+			audioStream s;
+			s.type = audioStream::atAAC;
+			s.pid = cached_apid_aac;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_dts != -1 )
+		{
+			audioStream s;
+			s.type = audioStream::atDTS;
+			s.pid = cached_apid_dts;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_lpcm != -1 )
+		{
+			audioStream s;
+			s.type = audioStream::atLPCM;
+			s.pid = cached_apid_lpcm;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_dtshd != -1 )
+		{
+			audioStream s;
+			s.type = audioStream::atDTSHD;
+			s.pid = cached_apid_dtshd;
 			s.rdsPid = -1;
 			program.audioStreams.push_back(s);
 			++cnt;
