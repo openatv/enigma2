@@ -5116,7 +5116,7 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 //			eDebugNoNewLine("    [%02x] %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x [%02x %02x %02x %02x %02x %02x %02x] LL - DESCR - ",
 //				data[pos], data[pos+1], data[pos+2], data[pos+3], data[pos+4], data[pos+5], data[pos+6], data[pos+7],
 //				data[pos+8], data[pos+9], data[pos+10], data[pos+11], data[pos+12], data[pos+13], data[pos+14], data[pos+15], data[pos+16], data[pos+17]);
-			title.channel_id = data[7]+1;
+			title.channel_id = data[pos]+1;
 			title.mhw2_mjd_hi = data[pos+11];
 			title.mhw2_mjd_lo = data[pos+12];
 			title.mhw2_hours = data[pos+13];
