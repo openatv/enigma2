@@ -330,10 +330,14 @@ public:
 		cacheMax
 	};
 
+	static const cacheID audioCacheTags[];
+	static const int nAudioCacheTags;
+
 	int getCacheEntry(cacheID);
 	void setCacheEntry(cacheID, int);
 
 	bool cacheEmpty();
+	bool cacheAudioEmpty();
 
 	eDVBService();
 		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
