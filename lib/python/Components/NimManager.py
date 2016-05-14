@@ -954,13 +954,7 @@ class NimManager:
 			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"]))
 
 	def hasNimType(self, chktype):
-		for slot in self.nim_slots:
-			if slot.isCompatible(chktype):
-				return True
-			for type in slot.getMultiTypeList().values():
-				if chktype == type:
-					return True
-		return False
+		return any(slot.canBeCompatible(chktype) for slot in self.nim_slots)
 
 	def getNimType(self, slotid):
 		return self.nim_slots[slotid].type
