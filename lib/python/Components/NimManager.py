@@ -813,7 +813,7 @@ class NIM(object):
 	friendly_full_description = property(getFriendlyFullDescription)
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
-	empty = property(lambda self: self.getType is None)
+	empty = property(lambda self: self.getType() is None)
 
 class NimManager:
 	def getConfiguredSats(self):
