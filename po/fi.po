@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-24 00:36+0000\n"
-"PO-Revision-Date: 2016-03-27 22:17+0200\n"
+"POT-Creation-Date: 2016-05-06 16:12+0100\n"
+"PO-Revision-Date: 2016-05-11 14:53+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/Timo/Samzan\n"
 "Language: fi\n"
@@ -450,6 +450,10 @@ msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
 #
+msgid "128"
+msgstr "128"
+
+#
 msgid "12V output"
 msgstr "12V-ulostulo"
 
@@ -460,6 +464,10 @@ msgstr "12V-ulostulo"
 #
 msgid "13 V"
 msgstr "13 V"
+
+#
+msgid "16"
+msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -518,6 +526,9 @@ msgstr "24"
 msgid "25"
 msgstr "25"
 
+msgid "256"
+msgstr "256"
+
 msgid "29.97"
 msgstr "29.97"
 
@@ -526,6 +537,9 @@ msgstr "2X"
 
 msgid "30"
 msgstr "30"
+
+msgid "32"
+msgstr "32"
 
 msgid "3D Mode"
 msgstr "3D-tila"
@@ -559,6 +573,9 @@ msgstr "4:3 Pan&Scan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "64"
+msgstr "64"
 
 msgid "720p"
 msgstr "720p"
@@ -1404,6 +1421,9 @@ msgstr "Automaattinen hienosäätö käynnistyy..."
 msgid "Auto language selection"
 msgstr "Automaattinen kielivalinta"
 
+msgid "Auto play blu-ray file"
+msgstr "Automaattinen blu-ray tidoston toisto"
+
 #
 msgid "Auto scart switching"
 msgstr "Autom. SCARTin kytkentä"
@@ -1608,8 +1628,8 @@ msgid "Buffers:"
 msgstr "Puskurit:"
 
 #, python-format
-msgid "Build:\t%s\n"
-msgstr "Versio:\t%s\n"
+msgid "Build:\t%s.%s%s (%s)\n"
+msgstr "Versio:\t%s.%s%s (%s)\n"
 
 #, python-format
 msgid "Build: %s"
@@ -1966,11 +1986,11 @@ msgstr "Tarkistetaan Internet-yhteyttä"
 
 #, python-format
 msgid ""
-"Checking tuner %d\n"
+"Checking tuner %s\n"
 "DiSEqC port %s for %s"
 msgstr ""
-"Tarkistetaan virittimen %d\n"
-"DiSEqC-porttia %s %s:lle"
+"Tarkistetaan virittimen %s\n"
+"DiSEqC porttia %s %s:lle"
 
 msgid "Children/Youth"
 msgstr "Lapset/nuoret"
@@ -2840,6 +2860,9 @@ msgstr "DTS"
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
+msgid "DVB CI Delay"
+msgstr "DVB CI viive"
+
 msgid "DVB subtitle black transparency"
 msgstr "DVB-tekstin mustan reunan läpinäkyvyys"
 
@@ -3435,6 +3458,9 @@ msgstr "Ladataan"
 #
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ladataan tietoja lisäosista. Odota..."
+
+msgid "Driver is not supported."
+msgstr "Ajuri ei ole tuettu"
 
 #, python-format
 msgid "Drivers:\t%s\n"
@@ -4146,6 +4172,13 @@ msgstr "Seuraavat tehtävät suoritetaan kun painat OK!"
 msgid "Font size"
 msgstr "Tekstikoko"
 
+msgid "Force LNB Power"
+msgstr "Pakota LNB jännite"
+
+#
+msgid "Force ToneBurst"
+msgstr "Pakota äänipurske"
+
 #
 msgid "Force de-interlace"
 msgstr "Pakota lomituksen poisto"
@@ -4677,10 +4710,6 @@ msgstr "Tietoja ohjelmistosta"
 
 msgid "Image Manager"
 msgstr "Image-varmuuskopiot"
-
-#, python-format
-msgid "Image type:\t%s\n"
-msgstr "Ohjelmistotila:\t%s\n"
 
 #
 msgid "Immediate shutdown"
@@ -5873,9 +5902,6 @@ msgstr "Kaapeliverkon viritintä ei löytynyt!"
 msgid "No card inserted!"
 msgstr "Ei korttia!"
 
-msgid "No clients streaming"
-msgstr "Ei etäasiakkaita"
-
 msgid "No connection"
 msgstr "Ei yhteyttä"
 
@@ -5972,6 +5998,9 @@ msgstr "palveluja/palveluntarjoajia ei valittu"
 #
 msgid "No standby"
 msgstr "Ei valmiustilaa"
+
+msgid "No stream clients"
+msgstr "Ei etäasiakkaita"
 
 msgid "No suitable sat tuner found!"
 msgstr "Sopivaa sat. viritintä ei löytynyt!"
@@ -7798,6 +7827,9 @@ msgstr "SABnzbd-asetukset"
 msgid "SABnzbd setup"
 msgstr "SABnzbd-asetukset"
 
+msgid "SET FAILED!\n"
+msgstr "ASETUS EPÄONNISTUI!\n"
+
 msgid "SID"
 msgstr "SID"
 
@@ -9138,6 +9170,9 @@ msgstr "Ohjelmistopäivityksen asetukset"
 
 msgid "Softwaremanager information"
 msgstr "Ohjelmiston hallinnan tiedot"
+
+msgid "Solo4K Misc. Control"
+msgstr "Solo4K muut säädöt"
 
 #
 msgid "Some plugins are not available:\n"
@@ -10520,6 +10555,9 @@ msgstr "Ajansiirron tallennushakemisto"
 msgid "Timeshift not possible!"
 msgstr "Ajansiirtotallennusta ei voida käyttää."
 
+msgid "Timeshift on a stream is not supported!"
+msgstr "Streamin ajansiirtoa ei ole tuettu!"
+
 msgid "Timeshift save failed!"
 msgstr "Ajansiirron tallennus epäonnistui!"
 
@@ -10741,6 +10779,9 @@ msgstr "Virittimen tila:"
 
 msgid "Tuner type"
 msgstr "Virittimen tyyppi"
+
+msgid "Tuning algorithm"
+msgstr "Viritys algoritmi"
 
 #
 msgid "Turkish"
@@ -11115,11 +11156,6 @@ msgstr "VMGM (intro trailer)"
 
 msgid "VU+"
 msgstr "VU+"
-
-#
-#, python-format
-msgid "Version:\t%s\n"
-msgstr "OpenVIX:\t%s\n"
 
 msgid "Version: "
 msgstr "Versio: "
@@ -13154,6 +13190,10 @@ msgstr "Tallennetaan..."
 msgid "red"
 msgstr "punainen"
 
+#
+msgid "reliable"
+msgstr "luetettu"
+
 msgid "religion"
 msgstr "uskonto"
 
@@ -13457,6 +13497,9 @@ msgstr "suositut"
 msgid "tourism/travel"
 msgstr "turismi/matkailu"
 
+msgid "traditional (fast)"
+msgstr "kansanmusiikki (nopea)"
+
 msgid "true"
 msgstr "tosi"
 
@@ -13660,3 +13703,9 @@ msgstr "Vaihdettu"
 #~ "virittimiä on vapaana. 'Ei käytössä' valitsee virittimen asetusruudun "
 #~ "mukaan. 'Auto' valitsee E2:n oletussääntöjen mukaan, ohittaen "
 #~ "asetusruudun määrityksen."
+
+#~ msgid "Image type:\t%s\n"
+#~ msgstr "Ohjelmistotila:\t%s\n"
+
+#~ msgid "No clients streaming"
+#~ msgstr "Ei etäasiakkaita"
