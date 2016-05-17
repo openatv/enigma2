@@ -531,6 +531,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 
 	if ( m_sourceinfo.is_streaming )
 	{
+		if (eConfigManager::getConfigBoolValue("config.mediaplayer.useAlternateUserAgent"))
+			m_useragent = eConfigManager::getConfigValue("config.mediaplayer.alternateUserAgent");
+
 		uri = g_strdup_printf ("%s", filename);
 		m_streamingsrc_timeout = eTimer::create(eApp);;
 		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
