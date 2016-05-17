@@ -17,7 +17,6 @@ import timer
 import NavigationInstance
 
 
-
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
 def parseEvent(ev):
@@ -494,10 +493,21 @@ class PowerTimer(timer.Timer):
 			list.append(' autosleeprepeat="' + str(timer.autosleeprepeat) + '"')
 			list.append('>\n')
 
-			for time, code, msg in timer.log_entries:
+#		Handle repeat entries, which never end and so never get pruned by cleanupDaily
+#       Repeating timers get autosleeprepeat="repeated" or repeated="127" (daily) or
+#       "31" (weekdays) [dow bitmap] etc.
+#
+			ignore_before = 0
+			if config.recording.keep_timers.value > 0:
+				if str(timer.autosleeprepeat) == "repeated" or int(timer.repeated) > 0:
+					ignore_before = time() - config.recording.keep_timers.value*86400
+
+			for log_time, code, msg in timer.log_entries:
+				if log_time < ignore_before:
+					continue
 				list.append('<log')
 				list.append(' code="' + str(code) + '"')
-				list.append(' time="' + str(time) + '"')
+				list.append(' time="' + str(log_time) + '"')
 				list.append('>')
 				list.append(str(stringToXML(msg)))
 				list.append('</log>\n')
