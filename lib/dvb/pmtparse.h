@@ -23,7 +23,7 @@ public:
 	{
 		int pid;
 		int component_tag;
-		enum { vtMPEG2, vtMPEG4_H264, vtMPEG1, vtMPEG4_Part2, vtVC1, vtVC1_SM, vtH265_HEVC };
+		enum { vtMPEG2, vtMPEG4_H264, vtMPEG1, vtMPEG4_Part2, vtVC1, vtVC1_SM, vtH265_HEVC, vtCAVS };
 		int type;
 	};
 
