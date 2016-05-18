@@ -508,7 +508,7 @@ class InfoBarTimeshift:
 						(_("Save timeshift and stop recording"), "savetimeshift"),
 						(_("Save timeshift and continue recording"), "savetimeshiftandrecord"),
 						(_("Cancel save timeshift"), "noSave"),
-						(_("Continue timeshifting"), "no")
+						(_("Continue save timeshift"), "no")
 					]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice)
 				else:
@@ -551,7 +551,7 @@ class InfoBarTimeshift:
 				answer = "noSave"
 			if answer in ("savetimeshift", "savetimeshiftandrecord"):
 				self.save_current_timeshift = True
-			elif answer in ("noSave", "no"):
+			elif answer == "noSave":
 				self.save_current_timeshift = False
 			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
@@ -675,7 +675,7 @@ class InfoBarTimeshift:
 				self.ptsRecordCurrentEvent()
 			else:
 				self.SaveTimeshift()
-		elif action == "noSave" or action == "no":
+		elif action == "noSave":
 			config.timeshift.isRecording.value = False
 			self.save_current_timeshift = False
 
