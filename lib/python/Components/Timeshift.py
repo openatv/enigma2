@@ -86,6 +86,9 @@ def isNormalTimeshiftFilename(fn):
 def isTimeshiftFileBasename(fn):
 	return len(fn) == 16 and isTimeshiftFilename(fn)
 
+# The basename timeshift.XXXXXX file is the TS file for the timeshift buffer.
+isTimeshiftFileTS = isTimeshiftFileBasename
+
 def notifyActivateActionsUpDown(setting):
 	from Screens.InfoBar import InfoBar
 	if InfoBar.instance is not None:
@@ -744,7 +747,7 @@ class InfoBarTimeshift:
 			for filename in os.listdir(config.usage.timeshift_path.value):
 				# print 'filename', filename
 				filepath = config.usage.timeshift_path.value + filename
-				if isNormalTimeshiftFilename(filename) and os.path.isfile(filepath):
+				if isTimeshiftFileTS(filename) and os.path.isfile(filepath):
 					statinfo = os.stat(filepath)
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
