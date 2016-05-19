@@ -28,7 +28,7 @@ SUBDIRS += CableScan
 endif
 
 if VUSOLO4K
-SUBDIRS += CableScan Solo4kMiscControl
+SUBDIRS += CableScan
 endif
 
 if HAVE_LIBVUGLES2
