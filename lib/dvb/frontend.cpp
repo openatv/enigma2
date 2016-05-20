@@ -1054,8 +1054,8 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (strstr(m_description, "Sundtek DVB-S/S2 (IV)"))
 	{
-		ret = (int)(snr / 52);
-		sat_max = 1690;
+		ret = (int)(snr / 40.5);
+		sat_max = 1900;
 	}
 	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
 	{
