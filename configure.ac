@@ -421,7 +421,7 @@ if test "$BOXTYPE" == "9900lx"; then
 	AC_DEFINE(FORCE_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
 fi
 
-if test "$BOXTYPE" == "g300"; then
+if test "$BOXTYPE" == "g300" -o "$BOXTYPE" == "g100"; then
 	AC_DEFINE(FORCE_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
 fi
 
