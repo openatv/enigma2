@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<unicable version="20160508">
+<unicable version="20160522">
 <!--
 structur of tree
 unicable (version)
@@ -66,6 +66,14 @@ unicable (version)
 					scr1= "1210" scr2= "1420" scr3= "1680" scr4= "2040" scr5= "1005" scr6= "1050" scr7= "1095" scr8= "1140"
 					scr9= "1260" scr10="1305" scr11="1350" scr12="1475" scr13="1520" scr14="1565" scr15="1610" scr16="1725"
 					scr17="1770" scr18="1815" scr19="1860" scr20="1905" scr21="1950" scr22="1995" scr23="2085" scr24="2130"/>
+		</manufacturer>
+		<manufacturer name="DStv">
+			<product name="LMX500" format="EN50607"
+				scr1= "1210" scr2= "1420" scr3= "1680" scr4= "2040" scr5= "1006"
+				scr6= "1057" scr7= "1108" scr8= "1159" scr9= "1261" scr10="1312"
+				scr11="1363" scr12="1471" scr13="1522" scr14="1573" scr15="1624"
+				scr16="1731" scr17="1782" scr18="1833" scr19="1884" scr20="1935"
+				scr21="1986" scr22="2091" scr23="2142" scr24="2193"/>
 		</manufacturer>
 		<manufacturer name="EDISON">
 			<product name="SCR-1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
@@ -158,6 +166,11 @@ unicable (version)
 			<product name="UCS 92420" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
 			<product name="UCS 92440" positions="2" scr1="1400" scr2="1632" scr3="1284" scr4="1516"/>
 		</manufacturer>
+		<manufacturer name="Arsman">
+			<product name="UMS22" format="EN50494" positions="1" scr1="1284" scr2="1400" permpin1="0x6F" permpin2="0xDE"/>
+			<product name="UMS54" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040" permpin1="0x6F" permpin2="0xDE" permpin3="0x7F" permpin4="0xEE"/>
+			<product name="UMC54" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040" permpin1="0x6F" permpin2="0xDE" permpin3="0x7F" permpin4="0xEE"/>
+		</manufacturer>
 		<manufacturer name="Astra Strobel">
 			<product name="SEV 103" format="EN50494" positions="1" scr1="1284" scr2="1400" scr3="1514"/>
 			<product name="SEV 108" format="EN50494" positions="1" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
@@ -179,6 +192,11 @@ unicable (version)
 		<manufacturer name="Dura-Sat(Dur-Line)">
 			<product name="Dur-DCR5-1-8(L4/K)" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790" scr7="1892" scr8="1994"/>
 			<product name="DCR 5-2-4" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
+			<product name="DPC-32 K" format="EN50607" positions="1"
+					scr1 ="1210" scr2 ="1420" scr3 ="1680" scr4 ="2040" scr5 ="984"  scr6 ="1020" scr7 ="1056" scr8 ="1092"
+					scr9 ="1128" scr10="1164" scr11="1256" scr12="1292" scr13="1328" scr14="1364" scr15="1458" scr16="1494"
+					scr17="1530" scr18="1566" scr19="1602" scr20="1638" scr21="1716" scr22="1752" scr23="1788" scr24="1824"
+					scr25="1860" scr26="1896" scr27="1932" scr28="1968" scr29="2004" scr30="2076" scr31="2112" scr32="2148"/>
 			<product name="UCP2" scr1="1400" scr2="1516"/>
 			<product name="UCP3" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="UCP18" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
@@ -189,6 +207,16 @@ unicable (version)
 			<product name="VDU583NT" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="VDU586NT" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
 			<product name="VDU983NT" positions="2" scr1="1280" scr2="1382" scr3="1484"/>
+		</manufacturer>
+		<manufacturer name="DStv">
+			<product name="DStv Switch (5-1)" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="DStv Switch (5-2)" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="DStv Switch (24-1Z)" format="EN50607"
+				scr1= "1210" scr2= "1420" scr3= "1680" scr4= "2040" scr5= "1006"
+				scr6= "1057" scr7= "1108" scr8= "1159" scr9= "1261" scr10="1312"
+				scr11="1363" scr12="1471" scr13="1522" scr14="1573" scr15="1624"
+				scr16="1731" scr17="1782" scr18="1833" scr19="1884" scr20="1935"
+				scr21="1986" scr22="2091" scr23="2142" scr24="2193"/>
 		</manufacturer>
 		<manufacturer name="EMP-Centauri">
 			<product name="MS4/1(6)EUN-3" positions="1" scr1="1400" scr2="1632" scr3="1284" scr4="1516" scr5="1864" scr6="2096"/>
@@ -306,6 +334,19 @@ unicable (version)
 			<product name="KR 5-2+4" format="DiSEqC" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
 			<product name="KR 5-5-1-8" format="DiSEqC" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790" scr7="1892" scr8="1994"/>
 			<product name="KR 5-5-2-4" format="DiSEqC" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
+		</manufacturer>
+		<manufacturer name="LEM ELETTRONICA">
+			<product name="SC444" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCK54 (1/2/T)" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCK56 (1/2/T)" format="DiSEqC" positions="1" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484"/>
+			<product name="SCK58 (1/2/T)" format="DiSEqC" positions="1" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688"/>
+			<product name="SCK94 (1/2/T)" format="DiSEqC" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCK98 (1/T)" format="DiSEqC" positions="2" scr1="0974" scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688"/>
+			<product name="SCQ44 (4/8/T)" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCX44 (4/6/8)" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCX53 (4/6/8/T)" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680"/>
+			<product name="SCX54 (4/6/8/T)" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCX94 (4/6/8/T)" format="DiSEqC" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 		</manufacturer>
 		<manufacturer name="Rogetech">
 			<product name="CMS-518C" format="EN50494" positions="1" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
