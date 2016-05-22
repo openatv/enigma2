@@ -133,6 +133,15 @@ RESULT eBouquet::setListName(const std::string &name)
 	return 0;
 }
 
+const eDVBService::cacheID eDVBService::audioCacheTags[] = {
+	eDVBService::cMPEGAPID, eDVBService::cAC3PID,
+	eDVBService::cAACHEAPID, eDVBService::cDDPPID,
+	eDVBService::cDTSPID, eDVBService::cAACPID,
+	eDVBService::cLPCMPID, eDVBService::cDTSHDPID,
+};
+
+const int eDVBService::nAudioCacheTags = sizeof(eDVBService::audioCacheTags) / sizeof(eDVBService::audioCacheTags[0]);
+
 eDVBService::eDVBService()
 	:m_cache(0), m_flags(0)
 {
@@ -306,6 +315,15 @@ bool eDVBService::cacheEmpty()
 	if (m_cache)
 		for (int i=0; i < cacheMax; ++i)
 			if (m_cache[i] != -1)
+				return false;
+	return true;
+}
+
+bool eDVBService::cacheAudioEmpty()
+{
+	if (m_cache)
+		for (int i=0; i < nAudioCacheTags; ++i)
+			if (m_cache[audioCacheTags[i]] != -1)
 				return false;
 	return true;
 }
