@@ -902,7 +902,7 @@ class InfoBarTimeshift:
 
 	def ptsCleanTimeshiftFolder(self):
 		dprint("ptsCleanTimeshiftFolder")
-		if not self.ptsCheckTimeshiftPath() or self.session.screen["Standby"].boolean:
+		if not self.ptsCheckTimeshiftPath():
 			return
 
 		for filename in os.listdir(config.usage.timeshift_path.value):
