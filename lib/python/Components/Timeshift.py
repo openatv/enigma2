@@ -86,6 +86,9 @@ def isNormalTimeshiftFilename(fn):
 def isTimeshiftFileBasename(fn):
 	return len(fn) == 16 and isTimeshiftFilename(fn)
 
+# The basename timeshift.XXXXXX file is the TS file for the timeshift buffer.
+isTimeshiftFileTS = isTimeshiftFileBasename
+
 def notifyActivateActionsUpDown(setting):
 	from Screens.InfoBar import InfoBar
 	if InfoBar.instance is not None:
@@ -508,7 +511,7 @@ class InfoBarTimeshift:
 						(_("Save timeshift and stop recording"), "savetimeshift"),
 						(_("Save timeshift and continue recording"), "savetimeshiftandrecord"),
 						(_("Cancel save timeshift"), "noSave"),
-						(_("Continue timeshifting"), "no")
+						(_("Continue save timeshift"), "no")
 					]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice)
 				else:
@@ -551,7 +554,7 @@ class InfoBarTimeshift:
 				answer = "noSave"
 			if answer in ("savetimeshift", "savetimeshiftandrecord"):
 				self.save_current_timeshift = True
-			elif answer in ("noSave", "no"):
+			elif answer == "noSave":
 				self.save_current_timeshift = False
 			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
@@ -675,7 +678,7 @@ class InfoBarTimeshift:
 				self.ptsRecordCurrentEvent()
 			else:
 				self.SaveTimeshift()
-		elif action == "noSave" or action == "no":
+		elif action == "noSave":
 			config.timeshift.isRecording.value = False
 			self.save_current_timeshift = False
 
@@ -744,7 +747,7 @@ class InfoBarTimeshift:
 			for filename in os.listdir(config.usage.timeshift_path.value):
 				# print 'filename', filename
 				filepath = config.usage.timeshift_path.value + filename
-				if isNormalTimeshiftFilename(filename) and os.path.isfile(filepath):
+				if isTimeshiftFileTS(filename) and os.path.isfile(filepath):
 					statinfo = os.stat(filepath)
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
@@ -899,7 +902,7 @@ class InfoBarTimeshift:
 
 	def ptsCleanTimeshiftFolder(self):
 		dprint("ptsCleanTimeshiftFolder")
-		if not self.ptsCheckTimeshiftPath() or self.session.screen["Standby"].boolean:
+		if not self.ptsCheckTimeshiftPath():
 			return
 
 		for filename in os.listdir(config.usage.timeshift_path.value):
