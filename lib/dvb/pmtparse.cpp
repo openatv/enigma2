@@ -103,6 +103,12 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						video.type = videoStream::vtH265_HEVC;
 						isvideo = 1;
 					}
+				case 0x42: // CAVS
+					if (!isvideo)
+					{
+						video.type = videoStream::vtCAVS;
+						isvideo = 1;
+					}
 				case 0x10: // MPEG 4 Part 2
 					if (!isvideo)
 					{

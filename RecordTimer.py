@@ -888,10 +888,20 @@ class RecordTimer(timer.Timer):
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
 			list.append('>\n')
 
-			for time, code, msg in timer.log_entries:
+#		Handle repeat entries, which never end and so never get pruned by cleanupDaily
+#       Repeating timers get, e.g., repeated="127" (dow bitmap)
+
+			ignore_before = 0
+			if config.recording.keep_timers.value > 0:
+				if int(timer.repeated) > 0:
+					ignore_before = time() - config.recording.keep_timers.value*86400
+
+			for log_time, code, msg in timer.log_entries:
+				if log_time < ignore_before:
+					continue
 				list.append('<log')
 				list.append(' code="' + str(code) + '"')
-				list.append(' time="' + str(time) + '"')
+				list.append(' time="' + str(log_time) + '"')
 				list.append('>')
 				list.append(str(stringToXML(msg)))
 				list.append('</log>\n')

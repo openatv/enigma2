@@ -17,7 +17,6 @@ import timer
 import NavigationInstance
 
 
-
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
 def parseEvent(ev):
@@ -246,6 +245,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 					self.do_backoff()
 					# retry
+# If this is the first backoff of a repeating timer remember the original
+# begin/end times, so that we can use *these* when setting up the repeat.
+#
+					if self.repeated and not hasattr(self, "real_begin"):
+						self.real_begin = self.begin
+						self.real_end = self.end
 					self.begin = time() + self.backoff
 					if self.end <= self.begin:
 						self.end = self.begin
@@ -406,6 +411,11 @@ class PowerTimer(timer.Timer):
 		else:
 			# yes. Process repeated, and re-add.
 			if w.repeated:
+# If we have saved original begin/end times for a backed off timer
+# restore those values now
+				if hasattr(w, "real_begin"):
+					w.begin = w.real_begin
+					w.end = w.real_end
 				w.processRepeated()
 				w.state = PowerTimerEntry.StateWaiting
 				self.addTimerEntry(w)
@@ -483,10 +493,21 @@ class PowerTimer(timer.Timer):
 			list.append(' autosleeprepeat="' + str(timer.autosleeprepeat) + '"')
 			list.append('>\n')
 
-			for time, code, msg in timer.log_entries:
+#		Handle repeat entries, which never end and so never get pruned by cleanupDaily
+#       Repeating timers get autosleeprepeat="repeated" or repeated="127" (daily) or
+#       "31" (weekdays) [dow bitmap] etc.
+#
+			ignore_before = 0
+			if config.recording.keep_timers.value > 0:
+				if str(timer.autosleeprepeat) == "repeated" or int(timer.repeated) > 0:
+					ignore_before = time() - config.recording.keep_timers.value*86400
+
+			for log_time, code, msg in timer.log_entries:
+				if log_time < ignore_before:
+					continue
 				list.append('<log')
 				list.append(' code="' + str(code) + '"')
-				list.append(' time="' + str(time) + '"')
+				list.append(' time="' + str(log_time) + '"')
 				list.append('>')
 				list.append(str(stringToXML(msg)))
 				list.append('</log>\n')

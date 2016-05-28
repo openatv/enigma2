@@ -1338,7 +1338,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						os.mkdir(mount_path)
 					except Exception as e:
 						print '[MovieSelection] [BlurayPlayer] Cannot create', mount_path, e
-				Console().ePopen('mount -r %s %s' % (iso_path, mount_path), self.mountIsoCallback, (mount_path, 0))
+				Console().ePopen('mount -r %s -t udf %s' % (iso_path, mount_path), self.mountIsoCallback, (mount_path, 0, path))
 				return
 			elif ext == 'bluray':
 				if self.playAsBLURAY(path):
