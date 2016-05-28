@@ -217,7 +217,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		if (selected && local_style && local_style->m_selection)
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
-		if (item == Py_None)
+		if (!item || item == Py_None)
 		{
 				/* seperator */
 			int half_height = m_itemsize.height() / 2;
@@ -699,6 +699,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 
 static ePyObject lookupColor(ePyObject color, ePyObject data)
 {
+//TODO check the logic, something is wrong in this function
 	if (color == Py_None)
 		return ePyObject();
 
@@ -868,7 +869,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 12)
 				{
 					pborderWidth = PyTuple_GET_ITEM(item, 12);
-					if (pborderWidth == Py_None)
+					if (!pborderWidth || pborderWidth == Py_None)
 						pborderWidth=ePyObject();
 				}
 				if (size > 13)
@@ -878,7 +879,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					pstring = PyTuple_GetItem(data, PyInt_AsLong(pstring));
 
 							/* don't do anything if we have 'None' as string */
-				if (pstring == Py_None)
+				if (!pstring || pstring == Py_None)
 					continue;
 
 				const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
@@ -964,7 +965,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				else
 				{
 					ppixmap = PyTuple_GET_ITEM(item, idx++);
-					if (ppixmap == Py_None)
+					if (!ppixmap || ppixmap == Py_None)
 						continue;
 					if (!(px && py && pwidth && pheight && pfilled_perc, ppixmap))
 					{
@@ -976,31 +977,31 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > idx)
 				{
 					pborderWidth = PyTuple_GET_ITEM(item, idx++);
-					if (pborderWidth == Py_None)
+					if (!pborderWidth || pborderWidth == Py_None)
 						pborderWidth = ePyObject();
 				}
 				if (size > idx)
 				{
 					pforeColor = PyTuple_GET_ITEM(item, idx++);
-					if (pforeColor == Py_None)
+					if (!pforeColor || pforeColor == Py_None)
 						pforeColor = ePyObject();
 				}
 				if (size > idx)
 				{
 					pforeColorSelected = PyTuple_GET_ITEM(item, idx++);
-					if (pforeColorSelected == Py_None)
+					if (!pforeColorSelected || pforeColorSelected == Py_None)
 						pforeColorSelected=ePyObject();
 				}
 				if (size > idx)
 				{
 					pbackColor = PyTuple_GET_ITEM(item, idx++);
-					if (pbackColor == Py_None)
+					if (!pbackColor || pbackColor == Py_None)
 						pbackColor=ePyObject();
 				}
 				if (size > idx)
 				{
 					pbackColorSelected = PyTuple_GET_ITEM(item, idx++);
-					if (pbackColorSelected == Py_None)
+					if (!pbackColorSelected || pbackColorSelected == Py_None)
 						pbackColorSelected=ePyObject();
 				}
 
@@ -1091,7 +1092,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
 
 							/* don't do anything if we have 'None' as pixmap */
-				if (ppixmap == Py_None)
+				if (!ppixmap || ppixmap == Py_None)
 					continue;
 
 				int x = PyInt_AsLong(px) + offset.x();
