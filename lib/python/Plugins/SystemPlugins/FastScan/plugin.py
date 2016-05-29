@@ -18,7 +18,7 @@ import os
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default="()")
-config.misc.fastscan.auto = ConfigSelection(default=True, choices=[("yes", _("yes")), ("", _("no")), ("multi", _("multi"))])
+config.misc.fastscan.auto = ConfigSelection(default="true", choices=[("true", _("yes")), ("false", _("no")), ("multi", _("multi"))])
 config.misc.fastscan.autoproviders = ConfigText(default="()")
 
 class FastScanStatus(Screen):
@@ -356,7 +356,7 @@ def leaveStandby():
 	FastScanAutoStartTimer.stop()
 
 def standbyCountChanged(value):
-	if config.misc.fastscan.auto.value and config.misc.fastscan.last_configuration.value:
+	if config.misc.fastscan.auto.value != "false" and config.misc.fastscan.last_configuration.value:
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(leaveStandby)
 		FastScanAutoStartTimer.startLongTimer(90)
