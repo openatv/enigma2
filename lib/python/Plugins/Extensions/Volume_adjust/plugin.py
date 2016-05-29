@@ -21,7 +21,6 @@ from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import *
 from os import system, path as os_path
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from __init__ import _
 global ListChange
 ListChange = None
 config.Volume  = ConfigSubsection()
@@ -315,6 +314,7 @@ class mySmallChannelSelection(ChannelSelectionBase):
 		self.skin = mySmallChannelSelection.skin
 		ChannelSelectionBase.__init__(self, session)
 		self.onShown.append(self.__onExecCallback)
+		self.bouquet_mark_edit = OFF
 		service = self.session.nav.getCurrentService()
 		if service:
 			info = service.info()

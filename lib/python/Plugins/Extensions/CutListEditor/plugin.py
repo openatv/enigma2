@@ -7,13 +7,21 @@ from Components.ActionMap import HelpableActionMap
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.VideoWindow import VideoWindow
 from Components.Label import Label
+from Components.config import config, ConfigSubsection, ConfigYesNo
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from enigma import getDesktop, iPlayableService
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
+try:
+	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
+except:
+	print "[CutListEditor] import MovieCut failed"
 
 import bisect
+
+config.plugins.CutListEditor = ConfigSubsection()
+config.plugins.CutListEditor.showIntro = ConfigYesNo(default=True)
 
 def CutListEntry(where, what):
 	w = where / 90
@@ -44,6 +52,8 @@ class CutListContextMenu(FixedMenu):
 	RET_REMOVEBEFORE = 5
 	RET_REMOVEAFTER = 6
 	RET_GRABFRAME = 7
+	RET_TOGGLEINTRO = 8
+	RET_MOVIECUT = 9
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
@@ -79,6 +89,13 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("grab this frame as bitmap"), self.grabFrame))
 
+		if config.plugins.CutListEditor.showIntro.value:
+			menu.append((_("Disable intro screen"), self.toggleIntro))
+		else:
+			menu.append((_("Enable intro screen"), self.toggleIntro))
+
+		menu.append((_("execute cuts (requires MovieCut plugin)"), self.callMovieCut))
+
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = ["CutListContextMenu", "Menu" ]
 
@@ -105,6 +122,12 @@ class CutListContextMenu(FixedMenu):
 
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
+		
+	def toggleIntro(self):
+		self.close(self.RET_TOGGLEINTRO)
+		
+	def callMovieCut(self):
+		self.close(self.RET_MOVIECUT)
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
@@ -200,7 +223,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self["SeekState"].setText(state[3].strip())
 
 	def showTutorial(self):
-		if not self.tutorial_seen:
+		if config.plugins.CutListEditor.showIntro.value and not self.tutorial_seen:
 			self.tutorial_seen = True
 			self.session.open(MessageBox,_("Welcome to the Cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
 
@@ -383,6 +406,18 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
+		elif result == CutListContextMenu.RET_TOGGLEINTRO:
+			self.toggleIntro()
+		elif result == CutListContextMenu.RET_MOVIECUT:
+			self.inhibit_seek = True
+			self.uploadCuesheet()
+			self.inhibit_seek = False
+			self.session.nav.playService(self.old_service, forceRestart=True) #required for actually writing the .cuts file
+			self.pauseService()
+			try:
+				MovieCut(session=self.session, service=self.session.nav.getCurrentlyPlayingServiceReference())
+			except:
+				print "[CutListEditor] calling MovieCut failed"
 
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
@@ -399,6 +434,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		cmd = 'grab -vblpr%d "%s"' % (180, path.rsplit('.',1)[0] + ".png")
 		grabConsole.ePopen(cmd)
 		self.playpauseService()
+
+	def toggleIntro(self):
+		config.plugins.CutListEditor.showIntro.value = not config.plugins.CutListEditor.showIntro.value
 
 def main(session, service, **kwargs):
 	session.open(CutListEditor, service)

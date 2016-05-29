@@ -114,7 +114,7 @@ public:
 	eDVBCAService(const eServiceReferenceDVB &service);
 	~eDVBCAService();
 
-	const char *toString();
+	std::string toString();
 	int getCAPMTVersion();
 	int getNumberOfDemuxes();
 	uint8_t getUsedDemux(int index);
@@ -136,8 +136,10 @@ SWIG_IGNORE(iCryptoInfo);
 class iCryptoInfo : public iObject
 {
 #ifdef SWIG
+public:
 	iCryptoInfo();
 	~iCryptoInfo();
+private:
 #endif
 public:
 	PSignal1<void, const char*> clientname;

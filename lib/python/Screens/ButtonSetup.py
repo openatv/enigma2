@@ -35,14 +35,19 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("Channel down"), "channeldown", ""),
 	(_("TV"), "showTv", ""),
 	(_("Radio"), "radio", ""),
+	(_("Radio long"), "radio_long", ""),
 	(_("Rec"), "rec", ""),
+	(_("Rec long"), "rec_long", ""),
 	(_("Teletext"), "text", ""),
 	(_("Help"), "displayHelp", ""),
 	(_("Help long"), "displayHelp_long", ""),
 	(_("Subtitle"), "subtitle", ""),
+	(_("Subtitle long"), "subtitle_long", ""),
 	(_("Menu"), "mainMenu", ""),
-	(_("List/Fav/PVR"), "list", ""),
-	(_("List/Fav/PVR long"), "list_long", ""),
+	(_("List/Fav"), "list", ""),
+	(_("List/Fav long"), "list_long", ""),
+	(_("PVR"), "pvr", ""),
+	(_("PVR long"), "pvr_long", ""),
 	(_("Favorites"), "favorites", ""),
 	(_("Favorites long"), "favorites_long", ""),
 	(_("File"), "file", ""),
@@ -88,6 +93,7 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
 	(_("HDMIin") + " " + _("long"), "HDMIin_long", (SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
+	(_("Context long"), "context_long", ""),
 	(_("SAT"), "sat", "Infobar/openSatellites"),
 	(_("SAT long"), "sat_long", ""),
 	(_("Prov"), "prov", ""),
@@ -97,7 +103,9 @@ ButtonSetupKeys = [	(_("Red"), "red", ""),
 	(_("F2"), "f2", ""),
 	(_("F2 long"), "f2_long", ""),
 	(_("F3"), "f3", ""),
-	(_("F3 long"), "f3_long", ""),]
+	(_("F3 long"), "f3_long", ""),
+	(_("F4"), "f4", ""),
+	(_("F4 long"), "f4_long", ""),]
 
 config.misc.ButtonSetup = ConfigSubsection()
 config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)
@@ -183,6 +191,8 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMounts", "Setup"))
 	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
+	ButtonSetupFunctions.append((_("SkinSelector"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
+	ButtonSetupFunctions.append((_("LCD SkinSelector"), "Module/Screens.SkinSelector/LcdSkinSelector", "Setup"))
 	ButtonSetupFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
 	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
@@ -192,12 +202,16 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
 	ButtonSetupFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
+	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit", "Power"))
+	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.PowerTimerEdit/PowerTimerEditList", "Power"))
 	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
 	ButtonSetupFunctions.append((_("User interface settings"), "Setup/userinterface", "Setup"))
 	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
 	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LanguageSelection/LanguageSelection", "Setup"))
+	ButtonSetupFunctions.append((_("OscamInfo Mainmenu"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
+	ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))
 	if os.path.isdir("/etc/ppanels"):
 		for x in [x for x in os.listdir("/etc/ppanels") if x.endswith(".xml")]:
 			x = x[:-4]
@@ -206,8 +220,6 @@ def getButtonSetupFunctions():
 		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
 			x = x[:-3]
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
-	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
-		ButtonSetupFunctions.append((_("EnhancedMovieCenter"), "EMC/", "Plugins"))
 	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/ScriptRunner.pyo"):
 		ButtonSetupFunctions.append((_("ScriptRunner"), "ScriptRunner/", "Plugins"))
 	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/QuickMenu.pyo"):
@@ -500,7 +512,7 @@ class InfoBarButtonSetup():
 				return self.execButtonSetup(selected[0])
 			else:
 				key = tuple(x[0] for x in ButtonSetupKeys if x[1] == key)[0]
-				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, _("ButtonSetup") + " " + key, selected)
+				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, (_("Hotkey")) + "  " + key, selected)
 
 	def execButtonSetup(self, selected):
 		if selected:

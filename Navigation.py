@@ -346,6 +346,27 @@ class Navigation:
 	def getRecordingsServicesAndTypes(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsServicesAndTypes(type)
 
+	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer = True):
+		# only for 'real' recordings
+		rec = False
+		next_rec_time = self.RecordTimer.getNextRecordingTime()
+		if self.RecordTimer.isRecording() or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			if not self.RecordTimer.isRecTimerWakeup():# if not timer wake up - enable trigger file for automatical shutdown after recording
+				f = open("/tmp/was_rectimer_wakeup", "w")
+				f.write('1')
+				f.close()
+			if modifyTimer:
+				lastrecordEnd = 0
+				for timer in self.RecordTimer.timer_list:
+					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
+						if timer.afterEvent < 2:
+							timer.afterEvent = 2
+							print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
+						if timer.end > lastrecordEnd:
+							lastrecordEnd = timer.end + 900
+			rec = True
+		return rec
+
 	def getCurrentService(self):
 		if not self.currentlyPlayingService:
 			self.currentlyPlayingService = self.pnav and self.pnav.getCurrentService()

@@ -21,7 +21,6 @@ if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.S
 fi
 
 if [ -x @bindir@/showiframe ]; then
-	killall -9 showiframe; sleep 1
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
 	elif [ -f @datadir@/backdrop.mvi ]; then
@@ -76,7 +75,7 @@ stbcheck=00
 if [ -e /proc/stb/info/subtype ]; then
    stbcheck=`cat /proc/stb/info/subtype`
 fi
-if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ]; then
+if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ] && [ ! $stbcheck == "1" ]; then
 	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
 fi
 
@@ -100,7 +99,12 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	fi
 else
-	LD_PRELOAD=$LIBS @bindir@/enigma2
+	# in case $TERM is "linux" the serial output is activated - discard debug output
+	if [ "$TERM" = linux ]; then
+		LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
+	else
+		LD_PRELOAD=$LIBS @bindir@/enigma2
+	fi
 fi
 
 # enigma2 exit codes:

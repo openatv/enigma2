@@ -5,9 +5,6 @@
 #include <lib/base/cfile.h>
 #include <lib/gdi/picload.h>
 #include <lib/gdi/picexif.h>
-#if defined(__sh__)
-#include <mmeimage/libmmeimage.h>
-#endif
 
 extern "C" {
 #include <jpeglib.h>
@@ -743,54 +740,7 @@ void ePicLoad::thread()
 
 void ePicLoad::decodePic()
 {
-
-#if defined(__sh__)
-
-	if (m_filepara->id == F_JPEG)
-	{
-		eDebug("[Picload] hardware decode picture... %s",m_filepara->file);
-		m_filepara->pic_buffer = NULL;
-		FILE *fp;
-
-		if (!(fp = fopen(m_filepara->file, "rb")))
-			return; // software decode won't find the file either...
-		
-		if (get_jpeg_img_size(fp, (unsigned int *)&m_filepara->ox, (unsigned int *)&m_filepara->oy) == LIBMMEIMG_SUCCESS)
-		{
-			int imx, imy;
-
-			if ((m_conf.aspect_ratio * m_filepara->oy * m_filepara->max_x / m_filepara->ox) <= m_filepara->max_y)
-			{
-				imx = m_filepara->max_x;
-				imy = (int)(m_conf.aspect_ratio * m_filepara->oy * m_filepara->max_x / m_filepara->ox);
-			}
-			else
-			{
-				imx = (int)((1.0/m_conf.aspect_ratio) * m_filepara->ox * m_filepara->max_y / m_filepara->oy);
-				imy = m_filepara->max_y;
-			}
-			
-			if (decode_jpeg(fp, m_filepara->ox, m_filepara->oy, imx, imy, (char **)&m_filepara->pic_buffer) == LIBMMEIMG_SUCCESS)
-			{
-				m_filepara->ox = imx;
-				m_filepara->oy = imy;
-				fclose(fp);
-				return;
-			}
-		}
-		
-		eDebug("hardware decode error");
-		
-		fclose(fp);
-	}
-
-	eDebug("[Picload] software decode picture... %s",m_filepara->file);
-
-#else
-
 	eDebug("[Picload] decode picture... %s",m_filepara->file);
-
-#endif
 
 	switch(m_filepara->id)
 	{
@@ -875,62 +825,6 @@ void ePicLoad::decodeThumb()
 		}
 	}
 
-#if defined(__sh__)
-
-	int hw_decoded = 0;
-	if (m_filepara->id == F_JPEG)
- 	{
-		eDebug("[Picload] hardware decode picture... %s",m_filepara->file);
-		m_filepara->pic_buffer = NULL;
-		FILE *fp;
-
-		if (!(fp = fopen(m_filepara->file, "rb")))
-			return; // software decode won't find the file either...
-		
-		if (get_jpeg_img_size(fp, (unsigned int *)&m_filepara->ox, (unsigned int *)&m_filepara->oy) == LIBMMEIMG_SUCCESS)
-		{
-			int imx, imy;
-			if (m_filepara->ox <= m_filepara->oy)
-			{
-				imy = m_conf.thumbnailsize;
-				imx = (int)( (m_conf.thumbnailsize * ((double)m_filepara->ox)) / ((double)m_filepara->oy) );
-			}
-			else
-			{
-				imx = m_conf.thumbnailsize;
-				imy = (int)( (m_conf.thumbnailsize * ((double)m_filepara->oy)) / ((double)m_filepara->ox) );
-			}
-			
-			if (decode_jpeg(fp, m_filepara->ox, m_filepara->oy, imx, imy, (char **)&m_filepara->pic_buffer) == LIBMMEIMG_SUCCESS)
-			{
-				m_filepara->ox = imx;
-				m_filepara->oy = imy;
-				fclose(fp);
-				hw_decoded = 1;
-			}
-		}
-
-		if (!hw_decoded)
-		{
-			eDebug("hardware decode error");
-		
-			fclose(fp);
-		}
-	}
-
-	if (!hw_decoded)
-	{
-		switch(m_filepara->id)
-		{
-			case F_PNG: png_load(m_filepara, m_conf.background); break;
-			case F_JPEG: m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y); break;
-			case F_BMP: m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy); break;
-			case F_GIF: gif_load(m_filepara); break;
-		}
- 	}
- 
-#else
-
 	switch(m_filepara->id)
 	{
 		case F_PNG:	png_load(m_filepara, m_conf.background); break;
@@ -938,8 +832,6 @@ void ePicLoad::decodeThumb()
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_GIF:	gif_load(m_filepara); break;
 	}
-
-#endif
 
 	if(exif_thumbnail)
 		::unlink(THUMBNAILTMPFILE);
@@ -953,31 +845,6 @@ void ePicLoad::decodeThumb()
 				::mkdir(cachedir.c_str(), 0755);
 
 			//resize for Thumbnail
-
-#if defined(__sh__)
-
-			if(!hw_decoded)
- 			{
-			
-				int imx, imy;
-				if (m_filepara->ox <= m_filepara->oy)
-				{
-					imy = m_conf.thumbnailsize;
-					imx = (int)( (m_conf.thumbnailsize * ((double)m_filepara->ox)) / ((double)m_filepara->oy) );
-				}
-				else
-				{
-					imx = m_conf.thumbnailsize;
-					imy = (int)( (m_conf.thumbnailsize * ((double)m_filepara->oy)) / ((double)m_filepara->ox) );
-				}
- 
-				m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
-				m_filepara->ox = imx;
-				m_filepara->oy = imy;
-			}
- 
-#else
-
 			int imx, imy;
 			if (m_filepara->ox <= m_filepara->oy)
 			{
@@ -997,7 +864,7 @@ void ePicLoad::decodeThumb()
 
 			m_filepara->ox = imx;
 			m_filepara->oy = imy;
-#endif
+
 			if (m_filepara->bits == 8)
 			{
 				unsigned char * tmp = new unsigned char [m_filepara->ox * m_filepara->oy * 3];
@@ -1487,66 +1354,4 @@ SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y
 
 	return 0;
 }
-
-#if defined(__sh__)
-//---------------------------------------------------------------------------------------------
-
-PyObject *getExif(const char *filename)
-{
-	ePyObject list;
-	Cexif exif;
-	if(exif.DecodeExif(filename))
-	{
-		if(exif.m_exifinfo->IsExif)
-		{
-			int pos=0;
-			char tmp[256];
-			list = PyList_New(22);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->Version));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->CameraMake));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->CameraModel));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->DateTime));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->Comments));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d x %d", exif.m_exifinfo->Width, exif.m_exifinfo->Height));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->Orientation));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->MeteringMode));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->ExposureProgram));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->LightSource));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->FlashUsed));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif.m_exifinfo->CompressionLevel));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif.m_exifinfo->ISOequivalent));
-			sprintf(tmp, "%.2f", exif.m_exifinfo->Xresolution);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.2f", exif.m_exifinfo->Yresolution);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(exif.m_exifinfo->ResolutionUnit));
-			sprintf(tmp, "%.2f", exif.m_exifinfo->Brightness);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f sec.", exif.m_exifinfo->ExposureTime);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", exif.m_exifinfo->ExposureBias);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", exif.m_exifinfo->Distance);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.5f", exif.m_exifinfo->CCDWidth);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-			sprintf(tmp, "%.2f", exif.m_exifinfo->ApertureFNumber);
-			PyList_SET_ITEM(list, pos++,  PyString_FromString(tmp));
-		}
-		else
-		{
-			list = PyList_New(1);
-			PyList_SET_ITEM(list, 0, PyString_FromString(exif.m_szLastError));
-		}
-		exif.ClearExif();
-	}
-	else
-	{
-		list = PyList_New(1);
-		PyList_SET_ITEM(list, 0, PyString_FromString(exif.m_szLastError));
-	}
-
-	return list ? (PyObject*)list : (PyObject*)PyList_New(0);
-}
-#endif
 

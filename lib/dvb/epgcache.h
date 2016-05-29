@@ -28,6 +28,58 @@
 #include <lib/service/event.h>
 #include <lib/python/python.h>
 
+#define MjdToEpochTime(x) (((x##_hi << 8 | x##_lo)-40587)*86400)
+#define BcdTimeToSeconds(x) ((3600 * ((10*((x##_h & 0xF0)>>4)) + (x##_h & 0xF))) + (60 * ((10*((x##_m & 0xF0)>>4)) + (x##_m & 0xF))) + ((10*((x##_s & 0xF0)>>4)) + (x##_s & 0xF)))
+
+#ifdef ENABLE_MHW_EPG
+
+#define FILE_EQUIV "/etc/mhw_Equiv.epg"
+#define FILE_CHANNELS "/etc/mhw_Chann.epg"
+#define FILE_LOG "/tmp/mhw_Log.epg"
+
+#define EPG_REPLAY_LEN 8
+
+typedef struct epg_replay {
+	u_char channel_id							:8;
+	u_char replay_mjd_hi						:8;
+	u_char replay_mjd_lo						:8;
+	u_char replay_time_h						:8;
+	u_char replay_time_m						:8;
+	u_char replay_time_s						:8;
+	u_char reserv1								:8;
+#if BYTE_ORDER == BIG_ENDIAN
+	u_char last									:1;
+	u_char										:1;
+	u_char vo									:1;
+	u_char vm									:1;
+	u_char										:3;
+	u_char subtitles							:1;
+#else
+	u_char subtitles							:1;
+	u_char										:3;
+	u_char vm									:1;
+	u_char vo									:1;
+	u_char										:1;
+	u_char last									:1;
+#endif
+} epg_replay_t;
+
+typedef struct {
+	u_char original_nid_hi;
+	u_char original_nid_lo;
+	u_char original_tid_hi;
+	u_char original_tid_lo;
+	u_char original_sid_hi;
+	u_char original_sid_lo;
+	u_char equiv_nid_hi;
+	u_char equiv_nid_lo;
+	u_char equiv_tid_hi;
+	u_char equiv_tid_lo;
+	u_char equiv_sid_hi;
+	u_char equiv_sid_lo;
+} mhw_channel_equiv_t;
+#endif
+
 class eventData;
 class eServiceReferenceDVB;
 class eDVBServicePMTHandler;
@@ -174,6 +226,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 #endif
 #ifdef ENABLE_MHW_EPG
 		std::vector<mhw_channel_name_t> m_channels;
+		std::vector<mhw_channel_equiv_t> m_equiv;
 		std::map<uint8_t, mhw_theme_name_t> m_themes;
 		std::map<uint32_t, mhw_title_t> m_titles;
 		std::multimap<uint32_t, uint32_t> m_program_ids;
@@ -186,6 +239,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void MHWTimeout() { m_MHWTimeoutet=true; }
 		void readMHWData(const uint8_t *data);
 		void readMHWData2(const uint8_t *data);
+		void readMHWData2_old(const uint8_t *data);
 		void startMHWReader(uint16_t pid, uint8_t tid);
 		void startMHWReader2(uint16_t pid, uint8_t tid, int ext=-1);
 		void startMHWTimeout(int msek);
@@ -196,6 +250,11 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void timeMHW2DVB( int minutes, u_char *return_time);
 		void timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time);
 		void storeMHWTitle(std::map<uint32_t, mhw_title_t>::iterator itTitle, std::string sumText, const uint8_t *data);
+		void GetEquiv(void);
+		int nb_equiv;
+		bool log_open ();
+		void log_close();
+		void log_add (char *message, ...);
 #endif
 		void readData(const uint8_t *data, int source);
 		void startChannel();
@@ -256,8 +315,10 @@ private:
 
 	unsigned int enabledSources;
 	unsigned int historySeconds;
+	unsigned int maxdays;
 
 	std::vector<int> onid_blacklist;
+	std::map<std::string,int> customeitpids;
 	eventCache eventDB;
 	updateMap channelLastUpdated;
 	std::string m_filename;
@@ -367,9 +428,11 @@ public:
 #endif
 	,EPG_IMPORT=0x80000000
 	};
+	void setEpgmaxdays(unsigned int epgmaxdays);
 	void setEpgHistorySeconds(time_t seconds);
 	void setEpgSources(unsigned int mask);
 	unsigned int getEpgSources();
+	unsigned int getEpgmaxdays();
 
 	void submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type);
 

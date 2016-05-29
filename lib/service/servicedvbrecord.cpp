@@ -313,7 +313,7 @@ int eDVBServiceRecord::doRecord()
 		eDebug("start streaming...");
 	} else
 	{
-		eDebug("start recording...");
+		eDebugNoNewLineStart("start recording...");
 
 		eDVBServicePMTHandler::program program;
 		if (m_service_handler.getProgramInfo(program))
@@ -394,7 +394,7 @@ int eDVBServiceRecord::doRecord()
 			eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 			if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
 				pids_to_record.insert(program.pcrPid);
-			eDebug(", and the text pid is %04x", program.textPid);
+			eDebugNoNewLineEnd(", and the text pid is %04x", program.textPid);
 			if (program.textPid != -1)
 				pids_to_record.insert(program.textPid); // Videotext
 

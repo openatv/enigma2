@@ -25,30 +25,45 @@ def InitOsd():
 		SystemInfo["CanChangeOsdPosition"] = False
 		SystemInfo["CanChange3DOsd"] = False
 
+	if getBrandOEM() in ('dreambox'):
+		SystemInfo["CanChangeOsdPosition"] = True
+
 	def setOSDLeft(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_left", "w")
+			if getBrandOEM() in ('dreambox'):
+				f = open("/proc/stb/vmpeg/0/dst_left", "w")
+			else:
+				f = open("/proc/stb/fb/dst_left", "w")
 			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_width", "w")
+			if getBrandOEM() in ('dreambox'):
+				f = open("/proc/stb/vmpeg/0/dst_width", "w")
+			else:
+				f = open("/proc/stb/fb/dst_width", "w")
 			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_top", "w")
+			if getBrandOEM() in ('dreambox'):
+				f = open("/proc/stb/vmpeg/0/dst_top", "w")
+			else:
+				f = open("/proc/stb/fb/dst_top", "w")
 			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_height", "w")
+			if getBrandOEM() in ('dreambox'):
+				f = open("/proc/stb/vmpeg/0/dst_height", "w")
+			else:
+				f = open("/proc/stb/fb/dst_height", "w")
 			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_height.addNotifier(setOSDHeight)
@@ -65,10 +80,22 @@ def InitOsd():
 
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D mode:',configElement.value
+			value = configElement.value
+			print 'Setting 3D mode:',value
 			try:
+				if SystemInfo["CanUse3DModeChoices"]:
+					f = open("/proc/stb/fb/3dmode_choices", "r")
+					choices = f.readlines()[0].split()
+					f.close()
+					if value not in choices:
+						if value == "sidebyside":
+							value = "sbs"
+						elif value == "topandbottom":
+							value = "tab"
+						elif value == "auto":
+							value = "off"
 				f = open("/proc/stb/fb/3dmode", "w")
-				f.write(configElement.value)
+				f.write(value)
 				f.close()
 			except:
 				pass
@@ -507,7 +534,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD 3D Setup")
 		self.skinName = "Setup"
-		self["status"] = StaticText()		
+		self["status"] = StaticText()
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))

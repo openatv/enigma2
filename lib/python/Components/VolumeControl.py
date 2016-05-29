@@ -31,6 +31,10 @@ class VolumeControl:
 		self.hideVolTimer = eTimer()
 		self.hideVolTimer.callback.append(self.volHide)
 
+		self.stepVolTimer = eTimer()
+		self.repeat = 500
+		self.delay = 3000
+
 		vol = config.audio.volume.value
 		self.volumeDialog.setValue(vol)
 		self.volctrl = eDVBVolumecontrol.getInstance()
@@ -45,31 +49,65 @@ class VolumeControl:
 
 	def volUp(self):
 		vol = self.volctrl.getVolume()
+		step = self.stepVolume()
 		if vol < 3:
-			vol += 1
+			step = 1
 		elif vol < 9:
-			vol += 2
+			if step > 2: step = 2
 		elif vol < 18:
-			vol += 3
+			if step > 3: step = 3
 		elif vol < 30:
-			vol += 4
-		else:
-			vol += 5
-		self.setVolume(vol)
+			if step > 4: step = 4
+		self.setVolume(vol+step)
 
 	def volDown(self):
 		vol = self.volctrl.getVolume()
+		step = self.stepVolume()
 		if vol <= 3:
-			vol -= 1
+			step = 1
 		elif vol <= 9:
-			vol -= 2
+			if step > 2: step = 2
 		elif vol <= 18:
-			vol -= 3
+			if step > 3: step = 3
 		elif vol <= 30:
-			vol -= 4
+			if step > 4: step = 4
+		self.setVolume(vol-step)
+
+	def stepVolume(self):
+		if self.stepVolTimer.isActive():
+			step = config.usage.volume_step_fast.value
 		else:
-			vol -= 5
-		self.setVolume(vol)
+			self.getInputConfig()
+			step = config.usage.volume_step_slow.value
+		self.stepVolTimer.start(self.repeat,True)
+		return step
+
+	def getInputConfig(self):
+		if self.hideVolTimer.isActive():
+			return
+		try:
+			inputconfig = config.inputDevices.getSavedValue()
+		except KeyError:
+			return
+
+		delay = 0
+		repeat = 0
+
+		for device in inputconfig.itervalues():
+			if "enabled" in device and bool(device["enabled"]):
+				if "delay" in device:
+					val = int(device["delay"])
+					if val > delay:
+						delay = val
+				if "repeat" in device:
+					val = int(device["repeat"])
+					if val > repeat:
+						repeat = val
+
+		if repeat + 100 > self.repeat:
+			self.repeat = repeat + 100
+		if delay + 100 > self.delay:
+			self.delay = delay + 100
 
 	def setVolume(self, newvol):
 		self.volctrl.setVolume(newvol, newvol)
@@ -85,7 +123,7 @@ class VolumeControl:
 		else:
 			self.volumeDialog.setValue(self.volctrl.getVolume())
 		self.volSave()
-		self.hideVolTimer.start(3000, True)
+		self.hideVolTimer.start(self.delay, True)
 
 	def volHide(self):
 		self.volumeDialog.hide()

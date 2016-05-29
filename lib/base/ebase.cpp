@@ -132,8 +132,8 @@ bool eMainloop::isValid(eMainloop *ml)
 eMainloop::~eMainloop()
 {
 	existing_loops.remove(this);
-	for (std::map<int, eSocketNotifier*>::iterator it(notifiers.begin());it != notifiers.end();++it)
-		it->second->stop();
+	for (std::map<int, eSocketNotifier*>::iterator it(notifiers.begin());it != notifiers.end();)
+		(it++)->second->stop();
 	while(m_timer_list.begin() != m_timer_list.end())
 		m_timer_list.begin()->stop();
 }

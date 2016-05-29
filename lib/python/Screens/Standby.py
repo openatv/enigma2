@@ -86,16 +86,16 @@ class Standby2(Screen):
 			if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
-			else:
-				self.timeHandler =  eDVBLocalTimeHandler.getInstance()
-				if self.timeHandler.ready():
-					if self.session.nav.getCurrentlyPlayingServiceOrGroup():
-						self.stopService()
-					else:
-						self.standbyStopServiceTimer.startLongTimer(5)
-					self.timeHandler = None
+		if not self.paused_service:
+			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+			if self.timeHandler.ready():
+				if self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.stopService()
 				else:
-					self.timeHandler.m_timeUpdated.get().append(self.stopService)
+					self.standbyStopServiceTimer.startLongTimer(5)
+				self.timeHandler = None
+			else:
+				self.timeHandler.m_timeUpdated.get().append(self.stopService)
 
 		if self.session.pipshown:
 			from Screens.InfoBar import InfoBar
@@ -146,6 +146,7 @@ class Standby2(Screen):
 		return StandbySummary
 
 	def stopService(self):
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 class Standby(Standby2):
@@ -224,7 +225,7 @@ class TryQuitMainloop(MessageBox):
 #			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
 #			if jobs == 1:
 #				job = job_manager.getPendingJobs()[0]
-#				if job.name == "VFD Checker":		
+#				if job.name == "VFD Checker":
 #					reason = ""
 #				else:
 #					reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
@@ -247,7 +248,7 @@ class TryQuitMainloop(MessageBox):
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),				
+				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				44: _("Really upgrade the front panel and reboot now?"),
 				45: _("Really WOL now?")}.get(retvalue)
 			if text:
@@ -281,7 +282,7 @@ class TryQuitMainloop(MessageBox):
 	def close(self, value):
 		global quitMainloopCode
 		if self.connected:
-			self.conntected=False
+			self.connected=False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
 			self.hide()
@@ -292,6 +293,8 @@ class TryQuitMainloop(MessageBox):
 			self.quitScreen.show()
 			print "[Standby] quitMainloop #1"
 			quitMainloopCode = self.retval
+			if getBoxType() == "vusolo4k":  #workaround for white display flash
+				open("/proc/stb/fp/oled_brightness", "w").write("0")
 			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)

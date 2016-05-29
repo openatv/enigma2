@@ -38,7 +38,11 @@ struct queueData
 
 enum data_source
 {
+#ifdef TUNER_VUSOLO4K
+	TUNER_A=0, TUNER_B, TUNER_C, TUNER_D, TUNER_E, TUNER_F, TUNER_G, TUNER_H, TUNER_I, TUNER_J, CI_A, CI_B, CI_C, CI_D
+#else
 	TUNER_A, TUNER_B, TUNER_C, TUNER_D, CI_A, CI_B, CI_C, CI_D
+#endif
 };
 
 typedef std::pair<std::string, uint32_t> providerPair;

@@ -264,9 +264,12 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 
 	while (len > 2)
 	{
-		p++; /* data_unit_id */
+		unsigned char data_unit_id = *p++; // data_unit_id
 		unsigned char data_unit_length = *p++;
 		len -= 2;
+
+		if(data_unit_id == 0xFF) //data_unit for stuffing
+			break;
 
 		if (len < data_unit_length)
 		{

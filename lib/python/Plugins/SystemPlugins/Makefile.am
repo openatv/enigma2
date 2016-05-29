@@ -10,7 +10,7 @@ if HAVE_LIBVUGLES2
 SUBDIRS += AnimationSetup
 endif
 
-if HAVE_LIBVUGLES2
+if HAVE_OSDANIMATION
 SUBDIRS += AnimationSetup
 endif
 

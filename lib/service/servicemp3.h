@@ -118,7 +118,7 @@ typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA } audiotype_t;
 typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS } subtype_t;
-typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF, ctOGG } containertype_t;
+typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF, ctOGG, ctWEBM } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection,
@@ -301,14 +301,13 @@ private:
 	bool m_subtitles_paused;
 	bool m_use_prefillbuffer;
 	bool m_paused;
-	bool m_seek_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	/* servicemMP3 chapter TOC support CVR */
 #if GST_VERSION_MAJOR >= 1
 	bool m_use_chapter_entries;
-	/* CVR needed for user requested media pause */
-	bool m_user_paused;
+	/* last used seek position gst-1 only */
+	gint64 m_last_seek_pos;
 #endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
@@ -361,7 +360,6 @@ private:
 	subtitle_pages_map_t m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 
-	ePtr<eTimer> m_streamingsrc_timeout;
 	pts_t m_prev_decoder_time;
 	int m_decoder_time_valid_state;
 

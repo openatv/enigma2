@@ -4,6 +4,7 @@ from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
 from Tools.HardwareInfo import HardwareInfo
+from boxbranding import getBoxType
 import Task
 
 def readFile(filename):
@@ -103,7 +104,10 @@ class Harddisk:
 
 	def partitionPath(self, n):
 		if self.type == DEVTYPE_UDEV:
-			return self.dev_path + n
+			if self.dev_path.startswith('/dev/mmcblk'):
+				return self.dev_path + "p" + n
+			else:
+				return self.dev_path + n
 		elif self.type == DEVTYPE_DEVFS:
 			return self.dev_path + '/part' + n
 
@@ -169,12 +173,12 @@ class Harddisk:
 				vendor = readFile(self.phys_path + '/vendor')
 				model = readFile(self.phys_path + '/model')
 				return vendor + '(' + model + ')'
-			elif self.device.startswith('mmcblk0'):
+			elif self.device.startswith('mmcblk'):
 				return readFile(self.sysfsPath('device/name'))
 			else:
 				raise Exception, "no hdX or sdX or mmcX"
 		except Exception, e:
-			print "[Harddisk] Failed to get model:", e
+			#print "[Harddisk] Failed to get model:", e
 			return "-?-"
 
 	def free(self):
@@ -491,9 +495,12 @@ class Harddisk:
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
 		self.hdd_timer = False
-		configsettings = readFile('/etc/enigma2/settings')
-		if "config.usage.hdd_timer" in configsettings:
-			self.hdd_timer = True
+		try:
+			configsettings = readFile('/etc/enigma2/settings')
+			if "config.usage.hdd_timer" in configsettings:
+				self.hdd_timer = True
+		except:
+			self.hdd_timer = False
 		self.setIdleTime(self.max_idle_time) # kick the idle polling loop
 
 	def runIdle(self):
@@ -726,7 +733,11 @@ class HarddiskManager:
 				dev = int(readFile(devpath + "/dev").split(':')[0])
 			else:
 				dev = None
-			if dev in (1, 7, 31, 253, 254, 179): # ram, loop, mtdblock, romblock, ramzswap, mmcblk
+			if getBoxType() in ('vusolo4k'):
+				devlist = [1, 7, 31, 253, 254, 179] # ram, loop, mtdblock, romblock, ramzswap, mmc
+			else:
+				devlist = [1, 7, 31, 253, 254] # ram, loop, mtdblock, romblock, ramzswap
+			if dev in devlist:
 				blacklisted = True
 			if blockdev[0:2] == 'sr':
 				is_cdrom = True
@@ -820,10 +831,29 @@ class HarddiskManager:
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
-			if l and (not device[l-1].isdigit() or device == 'mmcblk0'):
+			if l and (not device[l-1].isdigit() or device.startswith('mmcblk')):
 				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = True
+		return error, blacklisted, removable, is_cdrom, partitions, medium_found
+
+	def addHotplugAudiocd(self, device, physdev = None):
+		# device is the device name, without /dev
+		# physdev is the physical device path, which we (might) use to determine the userfriendly name
+		if not physdev:
+			dev, part = self.splitDeviceName(device)
+			try:
+				physdev = os.path.realpath('/sys/block/' + dev + '/device')[4:]
+			except OSError:
+				physdev = dev
+				print "couldn't determine blockdev physdev for device", device
+		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
+		if not blacklisted and medium_found:
+			description = self.getUserfriendlyDeviceName(device, physdev)
+			p = Partition(mountpoint = "/media/audiocd", description = description, force_mounted = True, device = device)
+			self.partitions.append(p)
+			self.on_partition_list_change("add", p)
+			SystemInfo["Harddisk"] = False
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):

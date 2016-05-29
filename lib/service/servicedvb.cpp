@@ -1560,7 +1560,17 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 	{
 		eDebug("setting cue skipmode to %d", skipmode);
 		if (m_cue)
-			m_cue->setSkipmode(skipmode * 90000); /* convert to 90000 per second */
+		{
+			long long _skipmode = skipmode;
+			if (!m_timeshift_active && (m_current_video_pid_type == eDVBServicePMTHandler::videoStream::vtH265_HEVC))
+			{
+				if (ratio < 0)
+					_skipmode = skipmode * 3;
+				else
+					_skipmode = skipmode * 4;
+			}
+			m_cue->setSkipmode(_skipmode * 90000); /* convert to 90000 per second */
+		}
 	}
 
 	m_skipmode = skipmode;
@@ -1957,6 +1967,7 @@ int eDVBServicePlay::getInfo(int w)
 		break;
 	}
 	case sIsCrypted: if (no_program_info) return false; return program.isCrypted();
+	case sIsDedicated3D: if (m_dvb_service) return m_dvb_service->isDedicated3D(); return false;
 	case sVideoPID:
 		if (m_dvb_service)
 		{
@@ -2113,6 +2124,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "DTS";
 	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTSHD)
 		info.m_description = "DTS-HD";
+	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atLPCM)
+		info.m_description = "LPCM";
 	else
 		info.m_description = "???";
 
@@ -2867,6 +2880,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
 
 		m_decoder->setVideoPID(vpid, vpidtype);
+		m_current_video_pid_type = vpidtype;
 		m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 
 		selectAudioStream();
@@ -3453,6 +3467,7 @@ void eDVBServicePlay::setAC3Delay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setAC3Delay(delay + eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
+		eDebug("Setting audio delay: setAC3Delay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
 	}
 }
 
@@ -3463,6 +3478,7 @@ void eDVBServicePlay::setPCMDelay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setPCMDelay(delay + eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
+		eDebug("Setting audio delay: setPCMDelay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
 	}
 }
 

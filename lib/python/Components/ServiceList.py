@@ -211,6 +211,16 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.getCurrent(r)
 		return r
 
+	def getPrev(self):
+		r = eServiceReference()
+		self.l.getPrev(r)
+		return r
+
+	def getNext(self):
+		r = eServiceReference()
+		self.l.getNext(r)
+		return r
+
 	def atBegin(self):
 		return self.instance.atBegin()
 
@@ -360,6 +370,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.setItemsPerPage()
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
+		self.l.setServicePiconDownsize(int(config.usage.servicelist_picon_downsize.value))
 
 		if config.usage.service_icon_enable.value:
 			self.l.setGetPiconNameFunc(getPiconName)

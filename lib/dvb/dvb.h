@@ -12,6 +12,7 @@
 #include <lib/dvb/tstools.h>
 #include <lib/dvb/esection.h>
 #include <connection.h>
+#include <lib/dvb/fbc.h>
 
 #include <dvbsi++/service_description_section.h>
 
@@ -186,6 +187,7 @@ class eDVBResourceManager: public iObject, public Object
 	static eDVBResourceManager *instance;
 
 	friend class eDVBChannel;
+	friend class eFBCTunerManager;
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
 
@@ -245,6 +247,8 @@ public:
 	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int slot_index);
 	PyObject *setFrontendSlotInformations(SWIG_PYOBJECT(ePyObject) list);
 	bool frontendIsCompatible(int index, const char *type);
+	bool frontendIsMultistream(int index);
+	std::string getFrontendCapabilities(int index);
 	void setFrontendType(int index, const char *type);
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eDVBResourceManager>, eDVBResourceManager);

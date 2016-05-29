@@ -96,7 +96,6 @@ self.session.open(RemoteControlCode)
 				<item weight="50" level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 			</menu>
 			<item weight="70" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
-			<item weight="80" level="0" entryID="dvdplayer_setup"><setup id="dvdplayer" /></item>
 		</menu>
 
 		<!-- Menu / Settings / EPG -->
@@ -148,7 +147,6 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 		<menu weight="30" level="1" text="Common interface" entryID="cam_setup" requires="CommonInterface">
 			<id val="cam" />
 			<item weight="0" level="1" text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
-			<item weight="5" level="1" text="Common interface PIN Setup" entryID="ci_setup"><screen module="Ci" screen="CiDefaultPinSetup" /></item>
 			<item weight="5" level="1" text="CIHelper Setup" entryID="ci_setup" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
 		</menu>
 
@@ -225,42 +223,29 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<code>
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
-recordings = self.session.nav.getRecordings()
+recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 if recordings:
-	lastrecordEnd = 0
-	for timer in self.session.nav.RecordTimer.timer_list:
-		if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
-			print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
-			timer.afterEvent = 2
-			if timer.end > lastrecordEnd:
-				lastrecordEnd = timer.end + 900
-	self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
+	self.session.openWithCallback(self.gotoStandby,MessageBox,_("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
 else:
 	self.session.open(TryQuitMainloop, 1)
 </code>
 		</item>
-		<item weight="5" level="0" text="WOL Standby" requires="GBWOL" entryID="deep_standby">
+		<item weight="5" level="0" text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+		<item weight="10" level="0" text="WOL Standby" requires="GBWOL" entryID="deep_standby">
 			<code>
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
-recordings = self.session.nav.getRecordings()
+recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 if recordings:
-	lastrecordEnd = 0
-	for timer in self.session.nav.RecordTimer.timer_list:
-		if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
-			print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
-			timer.afterEvent = 2
-			if timer.end > lastrecordEnd:
-				lastrecordEnd = timer.end + 900
-	self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
+	self.session.openWithCallback(self.gotoStandby,MessageBox,_("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
 else:
 	self.session.open(TryQuitMainloop, 45)
 </code>
 		</item>
-		<item weight="10" level="0" text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
-		<item weight="15" level="0" text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
-		<item weight="20" level="0" text="Restart Gui" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
-		<item weight="25" level="0" text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+		<item weight="15" level="0" text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
+		<item weight="20" level="0" text="Sleep Timer" requires="DeepstandbySupport" entryID="sleep"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
+		<item weight="25" level="0" text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
+		<item weight="30" level="0" text="Restart Gui" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 	</menu>
 
 </menu>

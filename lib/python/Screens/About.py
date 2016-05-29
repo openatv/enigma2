@@ -26,19 +26,22 @@ def getAboutText():
 		AboutText += _("Chipset:\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
-	if path.exists('/proc/cpuinfo'):
-		f = open('/proc/cpuinfo', 'r')
-		temp = f.readlines()
-		f.close()
-		try:
-			for lines in temp:
-				lisp = lines.split(': ')
-				if lisp[0].startswith('cpu MHz'):
-					#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
-					cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
-					break
-		except:
-			pass
+	if getBoxType() in ('vusolo4k'):
+		cpuMHz = "   (1,5 GHz)"
+	else:
+		if path.exists('/proc/cpuinfo'):
+			f = open('/proc/cpuinfo', 'r')
+			temp = f.readlines()
+			f.close()
+			try:
+				for lines in temp:
+					lisp = lines.split(': ')
+					if lisp[0].startswith('cpu MHz'):
+						#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
+						cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
+						break
+			except:
+				pass
 
 	AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 	AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
@@ -259,8 +262,6 @@ class SystemMemoryInfo(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
 		self.skinName = ["SystemMemoryInfo", "About"]
-		self["lab1"] = StaticText(_("openATV"))
-		self["lab2"] = StaticText(_("By openATV Image Team"))
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -427,18 +428,18 @@ class SystemNetworkInfo(Screen):
 						if status[self.iface]["essid"] == "off":
 							essid = _("No Connection")
 						else:
-							essid = status[self.iface]["essid"]
+							essid = str(status[self.iface]["essid"])
 						if status[self.iface]["accesspoint"] == "Not-Associated":
 							accesspoint = _("Not-Associated")
 							essid = _("No Connection")
 						else:
-							accesspoint = status[self.iface]["accesspoint"]
+							accesspoint = str(status[self.iface]["accesspoint"])
 						if self.has_key("BSSID"):
 							self.AboutText += _('Accesspoint:') + '\t' + accesspoint + '\n'
 						if self.has_key("ESSID"):
 							self.AboutText += _('SSID:') + '\t' + essid + '\n'
 
-						quality = status[self.iface]["quality"]
+						quality = str(status[self.iface]["quality"])
 						if self.has_key("quality"):
 							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
 
@@ -449,7 +450,7 @@ class SystemNetworkInfo(Screen):
 						if self.has_key("bitrate"):
 							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
 
-						signal = status[self.iface]["signal"]
+						signal = str(status[self.iface]["signal"])
 						if self.has_key("signal"):
 							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
 

@@ -309,6 +309,8 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 #define VIDEO_STREAMTYPE_MPEG4_Part2 4
 #define VIDEO_STREAMTYPE_VC1_SM 5
 #define VIDEO_STREAMTYPE_MPEG1 6
+#define VIDEO_STREAMTYPE_H265_HEVC 7
+#define VIDEO_STREAMTYPE_AVS 16
 
 int eDVBVideo::startPid(int pid, int type)
 {
@@ -334,6 +336,12 @@ int eDVBVideo::startPid(int pid, int type)
 			break;
 		case VC1_SM:
 			streamtype = VIDEO_STREAMTYPE_VC1_SM;
+			break;
+		case H265_HEVC:
+			streamtype = VIDEO_STREAMTYPE_H265_HEVC;
+			break;
+		case AVS:
+			streamtype = VIDEO_STREAMTYPE_AVS;
 			break;
 		}
 

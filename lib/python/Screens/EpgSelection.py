@@ -64,6 +64,8 @@ class EPGSelection(Screen, HelpableScreen):
 				graphic = True
 		elif EPGtype == 'multi':
 			self.type = EPG_TYPE_MULTI
+		elif EPGtype is None and eventid == None and isinstance(service, eServiceReference):
+			self.type = EPG_TYPE_SINGLE
 		else:
 			self.type = EPG_TYPE_SIMILAR
 		if not self.type == EPG_TYPE_SINGLE:
@@ -992,10 +994,15 @@ class EPGSelection(Screen, HelpableScreen):
 		title = None
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-				cb_func1 = lambda ret: self.removeTimer(timer)
-				cb_func2 = lambda ret: self.editTimer(timer)
-				cb_func3 = lambda ret: self.disableTimer(timer)
-				menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2), (_("Disable timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func3)]
+				if timer.isRunning():
+					cb_func1 = lambda ret: self.removeTimer(timer)
+					cb_func2 = lambda ret: self.editTimer(timer)
+					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2)]
+				else:
+					cb_func1 = lambda ret: self.removeTimer(timer)
+					cb_func2 = lambda ret: self.editTimer(timer)
+					cb_func3 = lambda ret: self.disableTimer(timer)
+					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2), (_("Disable timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func3)]
 				title = _("Select action for timer %s:") % event.getEventName()
 				break
 		else:
@@ -1008,8 +1015,12 @@ class EPGSelection(Screen, HelpableScreen):
 		if title:
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
-			posy = self['list'].getSelectionPosition(serviceref)
-			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
+			pos = self['list'].getSelectionPosition(serviceref)
+			posx = pos[0]
+			dialogwidth = self.ChoiceBoxDialog.instance.size().width()
+			if posx - dialogwidth < 0:
+				posx = dialogwidth
+			self.ChoiceBoxDialog.instance.move(ePoint(posx-dialogwidth,self.instance.position().y()+pos[1]))
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):

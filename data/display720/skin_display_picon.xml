@@ -20,13 +20,14 @@
 	</windowstyle>
 	<fonts>
 <!-- pick a funky name for the font, so we don't conflict  -->     
-		<font filename="nmsbd.ttf" name="FdLcD" scale="90"/>
+		<font filename="time.ttf" name="FdLcD" scale="90"/>
+		<font filename="nmsbd.ttf" name="Clockfont" scale="90"/>
 		<font filename="verdana.ttf" name="FdLcDLight" scale="90"/>
 	</fonts>
 	
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="500,490" size="210,100" halign="right" valign="bottom" font="FdLcD;90" foregroundColor="#e5b243" >
+		<widget source="global.CurrentTime" render="Label" position="500,490" size="210,100" halign="right" valign="bottom" font="Clockfont;90" foregroundColor="#e5b243" >
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>
@@ -175,7 +176,7 @@
 		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="20,420" foregroundColor="#ff0000" size="140,70" font="FdLcD;65" halign="center" valign="center" zPosition="22">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget noWrap="1" font="FdLcD;55" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="center" >
+		<widget noWrap="1" font="FdLcD;45" render="Label" position="480,355" size="100,120" source="session.MSNWeather" transparent="1" zPosition="8" valign="center" halign="center" >
 			<convert type="MSNWeather">temperature_current</convert>
 		</widget>
 		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="session.MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
@@ -280,6 +281,24 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
+<!-- VMC -->
+	<screen name="VMCBaseSummary" position="0,0" size="720,576">
+		<eLabel text="VMC" render="Label" position="10,70" foregroundColor="#e5b243" size="670,120" font="FdLcD;100" halign="center" valign="center" /> 
+		<eLabel text="by hmmmdada" render="Label" position="10,220" foregroundColor="#e5b243" size="670,70" font="FdLcD;60" halign="center" valign="center" />
+		<panel name="SummaryClockPanel" />
+	</screen>
+	<screen name="VMCPlayerSummary" position="0,0" size="720,576">
+		<widget source="session.CurrentService" render="Label" position="15,21" size="675,320" foregroundColor="#e5b243" font="FdLcD;70" halign="center" valign="center" zPosition="14" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="27,320" size="660,35" foregroundColor="#02c6ff" borderWidth="2" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="220,400" size="266,70" font="FdLcD;70" halign="center" foregroundColor="#02c6ff" >
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+		<panel name="SummaryClockPanel" />
+	</screen>	
         
 <!-- DVD -->	
 	<screen name="DVDSummary" position="0,0" size="720,576"> 

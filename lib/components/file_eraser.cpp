@@ -80,7 +80,10 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 	}
 	else
 	{
-		const char* c_filename = msg.filename.c_str();
+		std::vector<char> v_filename(msg.filename.begin(), msg.filename.end());
+		v_filename.push_back('\0');
+		const char* c_filename = &v_filename[0];
+
 		bool unlinked = false;
 		eDebug("[eBackgroundFileEraser] deleting '%s'", c_filename);
 		if ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||

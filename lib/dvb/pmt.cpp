@@ -192,7 +192,10 @@ void eDVBServicePMTHandler::PATready(int)
 		int pmtpid_single = -1;
 		int pmtpid = -1;
 		int cnt=0;
-		std::vector<ProgramAssociationSection*>::const_iterator i;
+		int tsid=-1;
+		std::vector<ProgramAssociationSection*>::const_iterator i = ptr->getSections().begin();
+		tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
+		eDebug("PAT TSID: 0x%04x (%d)", tsid, tsid);
 		for (i = ptr->getSections().begin(); pmtpid == -1 && i != ptr->getSections().end(); ++i)
 		{
 			const ProgramAssociationSection &pat = **i;

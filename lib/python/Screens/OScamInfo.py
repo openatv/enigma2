@@ -20,8 +20,9 @@ import os, time
 import urllib2
 
 fb = getDesktop(0).size()
-if fb.width() > 1024:
-	sizeH = fb.width() - 100
+screenwidth = fb.width()
+if screenwidth > 1024:
+	sizeH = screenwidth - 100
 	HDSKIN = True
 else:
 	# sizeH = fb.width() - 50
@@ -367,7 +368,6 @@ class oscMenuList(MenuList):
 	def __init__(self, list, itemH = 35):
 		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
 		self.l.setItemHeight(itemH)
-		screenwidth = getDesktop(0).size().width()
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 18))
 		self.clientFont = gFont("Regular", 16)
@@ -513,7 +513,6 @@ class OscamInfoMenu(Screen):
 		self.session.open(OscamInfoConfigScreen)
 
 	def buildMenu(self, mlist):
-		screenwidth = getDesktop(0).size().width()
 		keys = ["red", "green", "yellow", "blue", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ""]
 		menuentries = []
 		y = 0
@@ -537,23 +536,23 @@ class OscamInfoMenu(Screen):
 						png2 = LoadPixmap(png2)
 					if png2 is not None:
 						if screenwidth and screenwidth == 1920:
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 2, 45, 45, png2))
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 3, 45, 45, png2))
 						else:
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 30, 30, png2))
+							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 2, 30, 30, png2))
 			else:
 				if screenwidth and screenwidth == 1920:
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, 68, 2, 1600, 45, 4, RT_HALIGN_LEFT, x))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, 68, 5, 1600, 45, 4, RT_HALIGN_LEFT, x))
 				else:
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 0, 800, 30, 0, RT_HALIGN_LEFT, x))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, 45, 3, 800, 30, 0, RT_HALIGN_LEFT, x))
 				#png2 = LoadPixmap("/usr/share/enigma2/skin_default/buttons/key_" + keys[y] + ".png")
 				png2 = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_" + keys[y] + ".png")
 				if fileExists(png2):
 					png2 = LoadPixmap(png2)
 				if png2 is not None:
 					if screenwidth and screenwidth == 1920:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 2, 45, 45, png2))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 8, 3, 45, 45, png2))
 					else:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 30, 30, png2))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 2, 30, 30, png2))
 			menuentries.append(res)
 			if y < len(keys) - 1:
 				y += 1
@@ -586,7 +585,6 @@ class oscECMInfo(Screen, OscamInfo):
 			self.loop.stop()
 		self.close()
 	def buildListEntry(self, listentry):
-		screenwidth = getDesktop(0).size().width()
 		if screenwidth and screenwidth == 1920:
 			return [
 				None,
@@ -601,7 +599,6 @@ class oscECMInfo(Screen, OscamInfo):
 				]
 
 	def showData(self):
-		screenwidth = getDesktop(0).size().width()
 		data = self.getECMInfo(self.ecminfo)
 		#print data
 		out = []
@@ -702,7 +699,6 @@ class oscInfo(Screen, OscamInfo):
 		self.close()
 
 	def buildListEntry(self, listentry, heading = False):
-		screenwidth = getDesktop(0).size().width()
 		res = [ None ]
 		x = 0
 		if not HDSKIN:
@@ -757,7 +753,6 @@ class oscInfo(Screen, OscamInfo):
 		return res
 
 	def buildLogListEntry(self, listentry):
-		screenwidth = getDesktop(0).size().width()
 		res = [ None ]
 		for i in listentry:
 			if i.strip() != "" or i is not None:
@@ -783,7 +778,6 @@ class oscInfo(Screen, OscamInfo):
 		return sizes
 
 	def changeScreensize(self, new_height, new_width = None):
-		screenwidth = getDesktop(0).size().width()
 		if new_width is None:
 			new_width = sizeH
 		if self.instance.size().height() < new_height:

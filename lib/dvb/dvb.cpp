@@ -12,6 +12,8 @@
 #include <lib/dvb/sec.h>
 #include <lib/dvb/specs.h>
 
+#include <lib/dvb/fbc.h>
+
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -30,6 +32,14 @@ DEFINE_REF(eDVBAllocatedFrontend);
 eDVBAllocatedFrontend::eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe): m_fe(fe)
 {
 	m_fe->inc_use();
+	if (m_fe->m_frontend->is_FBCTuner())
+	{
+		eFBCTunerManager* fbcmng = eFBCTunerManager::getInstance();
+		if (fbcmng)
+		{
+			fbcmng->unset(m_fe);
+		}
+	}
 }
 
 eDVBAllocatedFrontend::~eDVBAllocatedFrontend()
@@ -448,6 +458,16 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		goto error;
 	}
 
+#ifdef TUNER_VUSOLO4K
+#define VTUNER_GET_MESSAGE  11
+#define VTUNER_SET_RESPONSE 12
+#define VTUNER_SET_NAME     13
+#define VTUNER_SET_TYPE     14
+#define VTUNER_SET_HAS_OUTPUTS 15
+#define VTUNER_SET_FE_INFO  16
+#define VTUNER_SET_NUM_MODES 17
+#define VTUNER_SET_MODES 18
+#else
 #define VTUNER_GET_MESSAGE  1
 #define VTUNER_SET_RESPONSE 2
 #define VTUNER_SET_NAME     3
@@ -456,6 +476,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 #define VTUNER_SET_FE_INFO  6
 #define VTUNER_SET_NUM_MODES 7
 #define VTUNER_SET_MODES 8
+#endif
 #define VTUNER_SET_DELSYS 32
 #define VTUNER_SET_ADAPTER 33
 	ioctl(vtunerFd, VTUNER_SET_NAME, name);
@@ -806,6 +827,30 @@ bool eDVBResourceManager::frontendIsCompatible(int index, const char *type)
 	return false;
 }
 
+bool eDVBResourceManager::frontendIsMultistream(int index)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		if (i->m_frontend->getSlotID() == index)
+		{
+			return i->m_frontend->is_multistream();
+		}
+	}
+	return false;
+}
+
+std::string eDVBResourceManager::getFrontendCapabilities(int index)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		if (i->m_frontend->getSlotID() == index)
+		{
+			return i->m_frontend->getCapabilities();
+		}
+	}
+	return "";
+}
+
 void eDVBResourceManager::setFrontendType(int index, const char *type)
 {
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
@@ -846,13 +891,31 @@ void eDVBResourceManager::setFrontendType(int index, const char *type)
 RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm, bool simulate)
 {
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
-	ePtr<eDVBRegisteredFrontend> best;
+//	ePtr<eDVBRegisteredFrontend> best;
+	eDVBRegisteredFrontend *best = NULL;
 	int bestval = 0;
 	int foundone = 0;
 
+	int check_fbc_linked = 0;
+	eDVBRegisteredFrontend *fbc_fe = NULL;
+	eDVBRegisteredFrontend *best_fbc_fe = NULL;
+	eFBCTunerManager* fbcmng = eFBCTunerManager::getInstance();
+
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
-		int c = i->m_frontend->isCompatibleWith(feparm);
+		int c = 0;
+		fbc_fe = NULL;
+		if (!check_fbc_linked && i->m_frontend->is_FBCTuner() && fbcmng && fbcmng->canLink(*i))
+		{
+			check_fbc_linked = 1;
+			c = fbcmng->isCompatibleWith(feparm, *i, fbc_fe, simulate);
+
+//			eDebug("[eDVBResourceManager::allocateFrontend] fbcmng->isCompatibleWith slotid : %p (%d), fbc_fe : %p (%d), score : %d", (eDVBRegisteredFrontend *)*i,  i->m_frontend->getSlotID(), fbc_fe, fbc_fe?fbc_fe->m_frontend->getSlotID():-1, c);			
+		}
+		else
+		{
+			c = i->m_frontend->isCompatibleWith(feparm);
+		}
 
 		if (c)	/* if we have at least one frontend which is compatible with the source, flag this. */
 			foundone = 1;
@@ -863,15 +926,26 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 			if (c > bestval)
 			{
 				bestval = c;
-				best = i;
+//				best = i;
+				best = *i;
+				best_fbc_fe = fbc_fe;
 			}
 		}
-//		else
+		else
+		{
 //			eDebug("Slot %d, score %d... but BUSY!!!!!!!!!!!", i->m_frontend->getSlotID(), c);
+		}
+
+		eDVBRegisteredFrontend *tmp = *i;
 	}
 
 	if (best)
 	{
+		if (fbcmng && best_fbc_fe)
+		{
+			fbcmng->addLink(best, best_fbc_fe, simulate);
+		}
+
 		fe = new eDVBAllocatedFrontend(best);
 		return 0;
 	}
@@ -1317,14 +1391,27 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
+	int check_fbc_link = 0;
+	eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
+	{
 		if (!i->m_inuse)
 		{
-			int c = i->m_frontend->isCompatibleWith(feparm);
+			int c = 0;
+			if(fbcmng && i->m_frontend->is_FBCTuner() && fbcmng->canLink(*i) && !check_fbc_link)
+			{
+				check_fbc_link = 1;
+				c = fbcmng->isCompatibleWith(feparm, *i, simulate);
+			}
+			else
+			{
+				c = i->m_frontend->isCompatibleWith(feparm);
+			}
 			if (c > bestval)
 				bestval = c;
 		}
+	}
 	return bestval;
 }
 
@@ -1564,42 +1651,45 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 	if (fe->getState(state))
 		return;
 
+	int tuner_id = fe->getDVBID();
 	if (state == iDVBFrontend::stateLock)
 	{
-		eDebug("OURSTATE: ok");
+		eDebug("OURSTATE: tuner %d ok", tuner_id);
 		ourstate = state_ok;
 	} else if (state == iDVBFrontend::stateTuning)
 	{
-		eDebug("OURSTATE: tuning");
+		eDebug("OURSTATE: tuner %d tuning", tuner_id);
 		ourstate = state_tuning;
 	} else if (state == iDVBFrontend::stateLostLock)
 	{
 			/* on managed channels, we try to retune in order to re-acquire lock. */
+		fe->setData(eDVBFrontend::CUR_FREQ,0);
 		if (m_current_frontend_parameters)
 		{
-			eDebug("OURSTATE: lost lock, trying to retune");
+			eDebug("OURSTATE: tuner %d lost lock, trying to retune", tuner_id);
 			ourstate = state_tuning;
 			m_frontend->get().tune(*m_current_frontend_parameters);
 		} else
 			/* on unmanaged channels, we don't do this. the client will do this. */
 		{
-			eDebug("OURSTATE: lost lock, unavailable now.");
+			eDebug("OURSTATE: tuner %d lost lock, unavailable now.", tuner_id);
 			ourstate = state_unavailable;
 		}
 	} else if (state == iDVBFrontend::stateFailed)
 	{
 		ourstate = state_failed;
+		fe->setData(eDVBFrontend::CUR_FREQ,0);
 			/* on managed channels, we do a retry */
 		if (m_current_frontend_parameters)
 		{
-			eDebug("OURSTATE: failed, retune");
+			eDebug("OURSTATE: tuner %d failed, retune", tuner_id);
 			m_frontend->get().tune(*m_current_frontend_parameters);
 		} else
 		{ /* nothing we can do */
-			eDebug("OURSTATE: failed, fatal");
+			eDebug("OURSTATE: tuner %d failed, fatal", tuner_id);
 		}
 	} else
-		eFatal("state unknown");
+		eFatal("tuner %d state unknown", tuner_id);
 
 	if (ourstate != m_state)
 	{

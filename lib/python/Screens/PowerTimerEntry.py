@@ -173,7 +173,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
 			if self.timerentry_timertype.value == "autodeepstandby":
-				self.list.append(getConfigListEntry(_("Execution condition"), self.timerrntry_autosleepinstandbyonly, _("The setting 'without query' is the same as 'standard' without additional confirmation query. So can the receiver shutdown also if you not watch tv (e.g. video, hbbtv) -  only recommended for sleep timer. All other dependencies (e.g. recordings, time range) stay persist.")))
+				self.list.append(getConfigListEntry(_("Execution condition"), self.timerrntry_autosleepinstandbyonly, _("The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist.")))
 			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay))
 			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat))
 

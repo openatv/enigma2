@@ -56,7 +56,6 @@
 		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_osd</item>
 		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
-		<item level="2" text="Hide CI messages" description="Hide error messages from the Common Interface module.">config.usage.hide_ci_messages</item>
 		<item level="2" text="Show crypto info in infobar" description="Show encryption info in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
 		<item level="2" text="Infobar frontend data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
@@ -67,10 +66,12 @@
 		<item level="1" text="Sort Extensions list alphabetically" description="This option allows you to disable sorting of the Extensions list.">config.usage.sort_extensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions list *" description="This option allows you to disable show Restart Network in Extensions list.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the seprate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
-		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button.">config.usage.pip_hideOnExit</item>
+		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
+		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
+		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Always show bouquets" description="With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened.">config.usage.show_bouquetalways</item>
 		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels.">config.usage.quickzap_bouquet_change</item>
@@ -89,12 +90,17 @@
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
 		<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
 		<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the servicelist.">config.usage.service_icon_enable</item>
+		<item level="1" text="Service picons downsize" description="Reduce the size of the service picons for more line spacing between them." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_downsize</item>
 		<item level="1" text="Show columns" description="Configure if and how wide the service name column will be shown in the channel selection list.">config.usage.servicelist_column</item>
 		<item level="1" text="Number of rows" description="This allows you change the number of rows shown.">config.usage.serviceitems_per_page</item>
 		<item level="1" text="Service number font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicenum_fontsize</item>
 		<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicename_fontsize</item>
 		<item level="1" text="Service info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.serviceinfo_fontsize</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Setup how to control the channel changing.">config.misc.zapmode</item>
+		<item level="2" text="Channel zap delay mode" description="Setup delay mode to zap to channels.">config.usage.numzaptimeoutmode</item>
+		<item level="2" text="Channel zap delay first button" description="User defined delay when you press the first button to zap to the channel.">config.usage.numzaptimeout1</item>
+		<item level="2" text="Channel zap delay another button" description="User defined delay when you press another button to zap to the channel.">config.usage.numzaptimeout2</item>
+		<item level="2" text="Number of digits in channel number" description="This allows you to set the number of digits to 5, if you have more than 9999 channels.">config.usage.maxchannelnumlen</item>
 	</setup>
 	<setup level="2" key="epgsettings" title="EPG settings">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
@@ -111,6 +117,7 @@
 		<item level="2" text="Enable ViaSat EPG" description="Use ViaSat EPG information when it is available.">config.epg.viasat</item>
 		<item level="2" text="Enable Netmed EPG" description="Use Netmed EPG information when it is available.">config.epg.netmed</item>
 		<item level="2" text="Enable Virgin EPG" description="Use Virgin EPG information when it is available.">config.epg.virgin</item>
+		<item level="2" text="Maximum number of days in EPG" description="Use for load only x days in EPG">config.epg.maxdays</item>
 		<item level="2" text="Maintain old EPG data for" description="Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed.">config.epg.histminutes</item>
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
@@ -244,6 +251,7 @@
 		<item level="1" requires="LCDMiniTV" text="Show PIP in the Front Display" description="You can Display PIP with or without OSD Menu">config.lcd.modepip</item>
 		<item level="1" requires="LCDMiniTV" text="Set Framerate for MiniTV" description="Lower Framerate save CPU Time">config.lcd.fpsminitv</item>
 		<item level="1" requires="LCDMiniTV" text="Show blinking rec symbol on Display during recording" description="Enable blinking rec symbol on the LCD Display">config.usage.blinking_rec_symbol_during_recording</item>
+		<item level="2" requires="LCDMiniTV" text="Screenshot of LCD in /tmp" description="Enable screenshot of LCD in /tmp">config.lcd.screenshot</item>
 		<item level="1" requires="OledDisplay" text="Show blinking rec symbol on Display during recording" description="Enable blinking rec symbol on the LCD Display">config.usage.blinking_rec_symbol_during_recording</item>
 		<item level="1" requires="OledDisplay" text="Show blinking Clock on Display during recording" description="Enable blinking Clock on the LCD Display">config.usage.blinking_display_clock_during_recording</item>
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the frontpanel.">config.lcd.mode</item>
@@ -267,6 +275,8 @@
 		<item level="0" text="Time jump multiplier for fast backward" description="Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files.">config.seek.withjumps_backwards_ms</item>
 		<item level="0" text="Time jump repeat interval for fast forward/backward" description="Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS.">config.seek.withjumps_repeat_ms</item>
 		<item level="0" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames.">config.seek.withjumps_avoid_zero</item>
+		<item level="0" text="Volume adjust slow" description="Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_slow</item>
+		<item level="0" text="Volume adjust fast" description="Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_fast</item>
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
@@ -411,9 +421,6 @@
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>	
-	<setup key="dvdplayer" title="DVD-Player Setup">
-		<item level="0" text="Show DVD-Player in Mainmenu when BMC is installed ?" description="Show DVD-Player in Mainmenu">config.usage.show_dvdplayer</item>
-	</setup>
 	<setup level="2" key="pluginbrowsersetup" title="Pluginbrowser Settings">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>

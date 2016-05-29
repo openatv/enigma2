@@ -47,6 +47,10 @@ if HAVE_COLORLCD400
 SUBDIRS += display400
 endif
 
+if HAVE_COLORLCD480
+SUBDIRS += display480
+endif
+
 if HAVE_COLORLCD720
 SUBDIRS += display720
 endif
@@ -61,4 +65,12 @@ endif
 
 if HAVE_BWLCD128
 SUBDIRS += vfd128
+endif
+
+if HAVE_GRAUTEC8000
+SUBDIRS += grautec8000
+endif
+
+if HAVE_GRAUTEC70X0
+SUBDIRS += grautec70x0
 endif

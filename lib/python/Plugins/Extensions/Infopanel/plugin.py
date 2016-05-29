@@ -88,13 +88,6 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/p
 		from Plugins.Extensions.MultiQuickButton.plugin import *
 	except:
 		pass
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/SundtekControlCenter/plugin.pyo") is True:
-	try:
-		from Plugins.Extensions.SundtekControlCenter.SundtekControlCenter import *
-	except:
-		pass
-else:
-	from Plugins.Extensions.Infopanel.sundtek import *
 
 from Plugins.Extensions.Infopanel.CronManager import *
 from Plugins.Extensions.Infopanel.ScriptRunner import *
@@ -102,10 +95,10 @@ from Plugins.Extensions.Infopanel.MountManager import *
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.Extensions.Infopanel.CamStart import *
 from Plugins.Extensions.Infopanel.CamCheck import *
-#from Plugins.Extensions.Infopanel.sundtek import *
 from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
+from Plugins.SystemPlugins.SoftwareManager.BackupRestore import InitConfig as BackupRestore_InitConfig
 
 SystemInfo["SoftCam"] = Check_Softcam()
 
@@ -184,7 +177,7 @@ def main(session, **kwargs):
 
 def Apanel(menuid, **kwargs):
 	if menuid == "mainmenu":
-		return [("Info Panel", main, "Infopanel", 3)]
+		return [(_("Info Panel"), main, "Infopanel", 3)]
 	else:
 		return []
 
@@ -211,13 +204,13 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Infopanel in Main Menu
-	PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// autostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 	#// SwapAutostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
-	PluginDescriptor(name="Info Panel", description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
 
 
@@ -293,6 +286,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 	servicelist = None
 	def __init__(self, session, services = None):
 		Screen.__init__(self, session)
+		config.plugins.configurationbackup=BackupRestore_InitConfig()
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		self.session = session
@@ -491,13 +485,15 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 		elif menu == "backup-files":
-			self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
+			self.session.open(BackupSelection,title=_("Default files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_default,readOnly=True)
+		elif menu == "backup-files-additional":
+			self.session.open(BackupSelection,title=_("Additional files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs,readOnly=False)
+		elif menu == "backup-files-excluded":
+			self.session.open(BackupSelection,title=_("Files/folders to exclude from backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude,readOnly=False)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
 		elif menu == "MountManager":
 			self.session.open(HddMount)
-		elif menu == "SundtekControlCenter":
-			self.session.open(SundtekControlCenter)
 		elif menu == "SwapManager":
 			self.session.open(Swap)
 		elif menu == "Softcam-Panel Setup":
@@ -519,7 +515,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('SundtekControlCenter'), _("SundtekControlCenter"), 'SundtekControlCenter')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
@@ -585,15 +580,11 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupSettings" ), _("Backup Settings"), ("backup-settings"))))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent ("RestoreSettings" ), _("Restore Settings"), ("restore-settings"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFiles" ), _("Choose backup files"), ("backup-files"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFiles" ), _("Show default backup files"), ("backup-files"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFilesAdditional" ), _("Select additional backup files"), ("backup-files-additional"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFilesExcluded" ), _("Select excluded backup files"), ("backup-files-excluded"))))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
-
-	def backupfiles_choosen(self, ret):
-		#self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
-		config.plugins.configurationbackup.backupdirs.save()
-		config.plugins.configurationbackup.save()
-		config.save()
 
 	def backupDone(self,retval = None):
 		if retval is True:

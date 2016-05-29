@@ -231,7 +231,7 @@
 	</map>
 
 	<map context="InfobarSubtitleSelectionActions">
-		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="m" />
+		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="b" />
 	</map>
 
 	<map context="InfobarSubserviceSelectionActions">
@@ -487,6 +487,7 @@
 		<key id="KEY_DOWN" mapto="prevPage" flags="m" />
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_FILE" mapto="transparent" flags="m" />
+		<key id="KEY_VIDEO" mapto="transparent" flags="m" />		
 		<key id="KEY_MEDIA" mapto="transparent" flags="m" />
 		<key id="KEY_GREEN" mapto="green" flags="m" />
 		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
@@ -761,31 +762,41 @@
 		<key id="KEY_RED" mapto="softcamPanel" flags="l" />
 	</map>
 
-		<map context="DVDPlayerActions">
-			<key id="KEY_MENU" mapto="dvdMenu" flags="m" />
-			<key id="KEY_INFO" mapto="toggleInfo" flags="m" />
-			<key id="KEY_CHANNELUP" mapto="nextTitle" flags="m" />
-			<key id="KEY_CHANNELDOWN" mapto="prevTitle" flags="m" />
-
-			<key id="KEY_PREVIOUS" mapto="prevChapter" flags="m" />
-			<key id="KEY_NEXT" mapto="nextChapter" flags="m" />
-			<key id="KEY_TV" mapto="tv" flags="m" />
-			<key id="KEY_AUDIO" mapto="AudioSelection" flags="m" />
-			<key id="KEY_AUDIO" mapto="dvdAudioMenu" flags="l" />
-			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="m" />
-			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />
-			<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
-
-			<!--device name="dreambox ir keyboard">
-				<key id="KEY_PAUSE" mapto="pause" flags="m" />
-				<key id="KEY_PLAY" mapto="play" flags="m" />
-				<key id="KEY_STOP" mapto="stop" flags="b" />
-				<key id="KEY_STOP" mapto="shift_stop" flags="l" />
-				<key id="KEY_RECORD" mapto="shift_record" flags="l" />
-				<key id="KEY_PREVIOUSSONG" mapto="previous" flags="m" />
-				<key id="KEY_NEXTSONG" mapto="next" flags="m" />
-			</device-->
-		</map>
+	<map context="DVDPlayerActions">
+		<key id="KEY_MENU" mapto="dvdMenu" flags="m"/>
+		<key id="KEY_INFO" mapto="toggleInfo" flags="m"/>
+		<key id="KEY_CHANNELUP" mapto="nextTitle" flags="m"/>
+		<key id="KEY_CHANNELDOWN" mapto="prevTitle" flags="m"/>
+		<device name="dreambox remote control (native)">
+			<key id="KEY_PREVIOUS" mapto="prevChapter" flags="m"/>
+			<key id="KEY_NEXT" mapto="nextChapter" flags="m"/>
+			<key id="KEY_TV" mapto="tv" flags="m"/>
+			<key id="KEY_AUDIO" mapto="AudioSelection" flags="m"/>
+			<key id="KEY_AUDIO" mapto="dvdAudioMenu" flags="l"/>
+			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="m"/>
+			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m"/>
+			<key id="KEY_VIDEO" mapto="nextAngle" flags="m"/>
+		</device>
+		<device name="dreambox advanced remote control (native)">
+			<key id="KEY_PREVIOUS" mapto="prevChapter" flags="m"/>
+			<key id="KEY_NEXT" mapto="nextChapter" flags="m"/>
+			<key id="KEY_TV" mapto="tv" flags="m"/>
+			<key id="KEY_STOP" mapto="tv" flags="m"/>
+			<key id="KEY_RADIO" mapto="dvdAudioMenu" flags="l"/>
+			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b"/>
+			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m"/>
+			<key id="KEY_VIDEO" mapto="nextAngle" flags="m"/>
+		</device>
+		<!--device name="dreambox ir keyboard">
+			<key id="KEY_PAUSE" mapto="pause" flags="m"/>
+			<key id="KEY_PLAY" mapto="play" flags="m"/>
+			<key id="KEY_STOP" mapto="stop" flags="b"/>
+			<key id="KEY_STOP" mapto="shift_stop" flags="l"/>
+			<key id="KEY_RECORD" mapto="shift_record" flags="l"/>
+			<key id="KEY_PREVIOUSSONG" mapto="previous" flags="m"/>
+			<key id="KEY_NEXTSONG" mapto="next" flags="m"/>
+		</device-->
+	</map>
 
 	<map context="ButtonSetupActions">
 		<key id="KEY_RED" mapto="red" flags="b"/>
@@ -804,6 +815,7 @@
 		<key id="KEY_HELP" mapto="displayHelp" flags="b"/>
 		<key id="KEY_HELP" mapto="displayHelp_long" flags="l"/>
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b"/>
+		<key id="KEY_SUBTITLE" mapto="subtitle_long" flags="l"/>
 		<key id="KEY_MENU" mapto="mainMenu" flags="b"/>
 		<key id="KEY_INFO" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="info_long" flags="l"/>
@@ -867,6 +879,8 @@
 		<key id="KEY_F2" mapto="f2_long" flags="l"/>
 		<key id="KEY_F3" mapto="f3" flags="b"/>
 		<key id="KEY_F3" mapto="f3_long" flags="l"/>
+		<key id="KEY_F4" mapto="f4" flags="b"/>
+		<key id="KEY_F4" mapto="f4_long" flags="l"/>
 	</map>
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />

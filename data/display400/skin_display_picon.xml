@@ -20,7 +20,7 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- template V1.6.6c 31.08.2015-->
+<!-- template V1.6.8b 13.03.2016-->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,170" size="195,75" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText"></convert>
@@ -82,7 +82,7 @@
 	</screen>	
 <!-- EPG Panel -->	
 	<screen name="MyEPGPanel" position="0,0" size="400,240">
-		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="1" alphatest="on">
+		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" zPosition="1" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget> 
 		<eLabel position="0,92" size="400,1" backgroundColor="#BDBDBD" />
@@ -104,7 +104,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="LcdPicon" position="100,0" zPosition="2" size="200,120" halign="center" alphatest="on">
+		<widget source="session.CurrentService" render="LcdPicon" position="100,0" zPosition="2" size="200,120" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,83" size="98,38" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
@@ -182,7 +182,7 @@
 	</screen>		
 <!-- channelselection -->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
-		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" halign="center" zPosition="2" alphatest="on">
+		<widget source="parent.Service" render="LcdPicon" position="125,0" size="150,90" zPosition="2" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<eLabel position="0,92" size="400,1" backgroundColor="#BDBDBD" />
@@ -208,7 +208,7 @@
 		<widget source="session.CurrentService" render="Label" position="0,0" size="400,40" foregroundColor="#87CEFA" font="FdLcD;38" halign="center">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.RdsDecoder" render="Label" position="0,45"  size="400,125" font="FdLcD;37" halign="center" valign="center">
+		<widget source="parent.RdsDecoder" render="RunningText" position="0,60"  size="400,100" options="movetype=running,direction=top,startpoint=0,startdelay=2000,wrap=1,always=0,repeat=2,oneshot=1" font="FdLcD;45" halign="center" valign="center" >
 			<convert type="RdsInfo">RadioText</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
@@ -220,14 +220,13 @@
 	</screen>
 <!-- NumberZapExt -->    
 	<screen name="NumberZapExt_summary" position="0,0" size="400,240">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="400,99" font="FdLcD;105" halign="center" valign="center" transparent="1" />
-		<widget source="parent.service_summary" render="Label" position="0,101" size="400,139" font="FdLcD;55" halign="center" valign="center" transparent="1" />
+		<widget source="parent.channel" render="Label" position="0,0" size="400,240" font="FdLcD;80" halign="center" valign="center" transparent="1" />
 	</screen>
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
-		<widget source="parent.title" render="Label" position="top" size="*,105" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<widget source="parent.title" render="Label" position="top" size="*,119" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<eLabel position="top" size="*,1" backgroundColor="white" />
-		<widget source="parent.menu" render="Label" position="top" size="*,115" font="FdLcD;38" halign="center" valign="center">
+		<widget source="parent.menu" render="Label" position="top" size="*,119" font="FdLcD;38" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -315,12 +314,12 @@
 	</screen>
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="0,0" size="400,240">
-		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="400,38" font="FdLcD;38" zposition="0" halign="center" valign="center" transparent="1" >
+		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="400,70" font="FdLcD;70" zposition="0" halign="center" valign="center" transparent="1" >
 			<convert type="ProgressToText">InPercent</convert>
 		</widget>
-		<widget source="parent.summary_job_progress" render="Progress" position="0,45" size="400,30" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_name" render="Label" position="0,80" size="400,60" font="FdLcD;26" halign="left" />
-		<widget source="parent.summary_job_task" render="Label" position="0,145" size="400,95" font="FdLcD;26" halign="left" />
+		<widget source="parent.summary_job_progress" render="Progress" position="0,90" size="400,40" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_name" render="Label" position="0,140" size="400,100" font="FdLcD;28" halign="left" valign="center" />
+<!-- 		<widget source="parent.summary_job_task" render="Label" position="0,145" size="400,95" font="FdLcD;26" halign="left" /> -->
 	</screen>
 
 	<screen name="EventView_summary" position="0,0" size="400,240">
@@ -537,5 +536,26 @@
 		<panel name="MeinRecordingPanel" />
 		<panel name="SummaryClockPanel" />
 		<panel name="MeinTunerInfoPanel" />
-	</screen>	
+	</screen>
+<!-- VMC Screen -->
+	<screen name="VMCBaseSummary" position="0,0" size="400,240"> 
+		<widget source="parent.Title" render="Label" position="0,0" size="400,178" font="FdLcD;35" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<panel name="SummaryClockPanel" />
+	</screen>
+	<screen name="VMCPlayerSummary" position="0,0" size="400,240">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="400,133" font="FdLcD;38" halign="center" valign="center" transparent="1" zPosition="2">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<eLabel position="0,131" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
+		<widget source="session.CurrentService" render="Progress" position="0,138" size="400,25" transparent="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<eLabel position="0,168" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
+		<widget source="session.CurrentService" render="Label" position="300,173" size="100,40" font="FdLcD;40" foregroundColor="#A9E2F3" zPosition="0" halign="right" transparent="1">
+			<convert type="ServicePosition">Remaining,ShowNoSeconds,OnlyMinute</convert>
+		</widget>
+		<panel name="MeinRecordingPanel" />
+		<panel name="SummaryClockPanel" />
+		<panel name="MeinTunerInfoPanel" />
+	</screen>
 </skin>

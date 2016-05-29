@@ -251,7 +251,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
 		if SystemInfo["LCDSKINSetup"]:
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
-		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Skin Setup"),_("Setup your Skin")))	
+		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Skin Setup"),_("Setup your Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection",_("Channel selection configuration"),_("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording settings",_("Recording Setup"),_("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Setup your EPG config")))
@@ -333,10 +333,13 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update",_("Online software update"),_("Check/Install online updates (you must have a working internet connection)")))
 		if not getBoxType().startswith('az') and not getBoxType().startswith('dm') and not getBrandOEM().startswith('cube'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online",_("Flash Online a new image"),_("Flash on the fly your your Receiver software.")))
-		self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
+		if not getBoxType().startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek'):
+			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("Select Backup files",_("Choose the files to backup"),_("Here you can select which files should be added to backupfile. (default: E2-setup, channels, network")))
+		self.sublist.append(QuickSubMenuEntryComponent("Show default backup files",_("Show files backed up by default"),_("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network).")))
+		self.sublist.append(QuickSubMenuEntryComponent("Select additional backup files",_("Select additional files to backup"),_("Here you can specify additional files that should be added to the backup file.")))
+		self.sublist.append(QuickSubMenuEntryComponent("Select excluded backup files",_("Select files to exclude from backup"),_("Here you can select which files should be excluded from the backup.")))
 		self.sublist.append(QuickSubMenuEntryComponent("Software Manager Setup",_("Manage your online update files"),_("Here you can select which files should be updated with a online update")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -525,8 +528,12 @@ class QuickMenu(Screen, ProtectedScreen):
 				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()),default = False)
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
-		elif item[0] == _("Select Backup files"):
-			self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
+		elif item[0] == _("Show default backup files"):
+			self.session.open(BackupSelection,title=_("Default files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_default,readOnly=True)
+		elif item[0] == _("Select additional backup files"):
+			self.session.open(BackupSelection,title=_("Additional files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs,readOnly=False)
+		elif item[0] == _("Select excluded backup files"):
+			self.session.open(BackupSelection,title=_("Files/folders to exclude from backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude,readOnly=False)
 		elif item[0] == _("Software Manager Setup"):
 			self.session.open(SoftwareManagerSetup)
 ######## Select PluginDownloadBrowser Menu ##############################
@@ -616,11 +623,6 @@ class QuickMenu(Screen, ProtectedScreen):
 				self.session.open(Satfinder)
 		
 ######## SOFTWARE MANAGER TOOLS #######################
-	def backupfiles_choosen(self, ret):
-		config.plugins.configurationbackup.backupdirs.save()
-		config.plugins.configurationbackup.save()
-		config.save()
-
 	def backupDone(self,retval = None):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
@@ -764,26 +766,7 @@ class QuickMenuDevices(Screen):
 			self['lab1'].hide()
 
 	def buildMy_rec(self, device):
-		try:
-			if device.find('1') > 0:
-				device2 = device.replace('1', '')
-		except:
-			device2 = ''
-		try:
-			if device.find('2') > 0:
-				device2 = device.replace('2', '')
-		except:
-			device2 = ''
-		try:
-			if device.find('3') > 0:
-				device2 = device.replace('3', '')
-		except:
-			device2 = ''
-		try:
-			if device.find('4') > 0:
-				device2 = device.replace('4', '')
-		except:
-			device2 = ''
+		device2 = device[:-1]	#strip device number
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '

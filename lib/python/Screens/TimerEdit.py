@@ -28,6 +28,7 @@ class TimerEditList(Screen):
 	DISABLE = 2
 	CLEANUP = 3
 	DELETE = 4
+	STOP = 5
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -63,7 +64,9 @@ class TimerEditList(Screen):
 				"down": self.down
 			}, -1)
 		self.setTitle(_("Timer overview"))
-		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		# Disabled because it crashes on some boxes with SSD ######################
+		#self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		# #########################################################################
 		self.onShown.append(self.updateState)
 
 	def createSummary(self):
@@ -148,10 +151,10 @@ class TimerEditList(Screen):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
 				self.key_yellow_choice = self.ENABLE
-			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
-				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
-				self.key_yellow_choice = self.EMPTY
+			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.STOP):
+				self["actions"].actions.update({"yellow":self.removeTimerQuestion})
+				self["key_yellow"].setText(_("Stop"))
+				self.key_yellow_choice = self.STOP
 			elif ((not cur.isRunning())or cur.repeated ) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
@@ -387,10 +390,7 @@ class TimerEditList(Screen):
 
 
 	def finishedEdit(self, answer):
-# 		print "finished edit"
-
 		if answer[0]:
-# 			print "Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
@@ -414,11 +414,8 @@ class TimerEditList(Screen):
 
 			self.fillTimerList()
 			self.updateState()
-# 		else:
-# 			print "Timeredit aborted"
 
 	def finishedAdd(self, answer):
-# 		print "finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -431,14 +428,14 @@ class TimerEditList(Screen):
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.fillTimerList()
 			self.updateState()
-# 		else:
-# 			print "Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
 	def leave(self):
-		self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
+		# Disabled because it crashes on some boxes with SSD ######################
+		#self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		# #########################################################################
 		self.close()
 
 	def onStateChange(self, entry):

@@ -211,8 +211,41 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
 
 		if (res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate))
+		{
+			std::string python_config_str;
+			bool use_ci_assignment = eConfigManager::getConfigBoolValue("config.misc.use_ci_assignment", false);
+			if (use_ci_assignment)
+			{
+				int is_ci_playable = 1;
+				PyObject *pName, *pModule, *pFunc;
+				PyObject *pArgs, *pArg, *pResult;
+				Py_Initialize();
+				pName = PyString_FromString("Tools.CIHelper");
+				pModule = PyImport_Import(pName);
+				Py_DECREF(pName);
+				if (pModule != NULL)
+				{
+					pFunc = PyObject_GetAttrString(pModule, "isPlayable");
+					if (pFunc) 
+					{
+						pArgs = PyTuple_New(1);
+						pArg = PyString_FromString(ref.toString().c_str());
+						PyTuple_SetItem(pArgs, 0, pArg);
+						pResult = PyObject_CallObject(pFunc, pArgs);
+						Py_DECREF(pArgs);
+						if (pResult != NULL)
+						{
+							is_ci_playable = PyInt_AsLong(pResult);
+							Py_DECREF(pResult);
+							return is_ci_playable;
+						}
+					}
+				}
+				eDebug("isPlayble... error in python code");
+				PyErr_Print();
+			}
 			return 1;
-
+		}
 		if (remote_fallback_enabled)
 			return 2;
 	}
@@ -822,7 +855,10 @@ void eDVBDB::loadBouquet(const char *path)
 				bouquet.flushChanges();
 			}
 			else
-				file_path = "";
+			{
+				eDebug("can't load bouquet %s",path);
+				return;
+			}
 		}
 	}
 
@@ -1065,10 +1101,10 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 		return Py_False;
 	}
 	XMLTree tree;
-	std::string satellitesFilename = eEnv::resolve("${sysconfdir}/enigma2/satellites.xml").c_str();
+	std::string satellitesFilename = eEnv::resolve("${sysconfdir}/enigma2/satellites.xml");
 	if (::access(satellitesFilename.c_str(), R_OK) < 0)
 	{
-		satellitesFilename = eEnv::resolve("${sysconfdir}/tuxbox/satellites.xml").c_str();
+		satellitesFilename = eEnv::resolve("${sysconfdir}/tuxbox/satellites.xml");
 		if (::access(satellitesFilename.c_str(), R_OK) < 0)
 		{
 			eDebug("satellites.xml not found");
@@ -1311,7 +1347,8 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 				}
 				if (freq && sr)
 				{
-					freq /= 1000;
+					while (freq > 999999)
+						freq /= 10;
 					tuple = PyTuple_New(7);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
@@ -1609,6 +1646,18 @@ RESULT eDVBDB::removeServices(iDVBFrontendParameters *feparm)
 		ret = 0;
 	}
 	return ret;
+}
+
+PyObject *eDVBDB::getFlag(const eServiceReference &ref)
+{
+	if (ref.type == eServiceReference::idDVB)
+	{
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+			return PyInt_FromLong(it->second->m_flags);
+	}
+	return PyInt_FromLong(0);
 }
 
 RESULT eDVBDB::addFlag(const eServiceReference &ref, unsigned int flagmask)
