@@ -65,8 +65,8 @@ ButtonSetupKeys = [	(_("Red"), "red", "Infobar/openSingleServiceEPG/1"),
 	(_("Slow"), "slow", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
-	(_("Power"), "power", ""),
-	(_("Power long"), "power_long", ""),
+	(_("Power"), "power", "Module/Screens.Standby/Standby"),
+	(_("Power long"), "power_long", "Menu/shutdown"),
 	(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
 	(_("HDMIin") + " " + _("long"), "HDMIin_long", (SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
@@ -162,6 +162,7 @@ def getButtonSetupFunctions():
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
 			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
+	ButtonSetupFunctions.append((_("PowerMenu"), "Menu/shutdown", "Power"))
 	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
 	ButtonSetupFunctions.append((_("Restart GUI"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
@@ -523,6 +524,16 @@ class InfoBarButtonSetup():
 				moviepath = defaultMoviePath()
 				if moviepath:
 					config.movielist.last_videodir.value = moviepath
+			elif selected[0] == "Menu":
+				from Screens.Menu import MainMenu, mdom
+				root = mdom.getroot()
+				for x in root.findall("menu"):
+					y = x.find("id")
+					if y is not None:
+						id = y.get("val")
+						if id and id == selected[1]:
+							menu_screen = self.session.open(MainMenu, x)
+							break
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
