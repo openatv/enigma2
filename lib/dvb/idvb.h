@@ -322,15 +322,22 @@ class eDVBService: public iStaticServiceInformation
 public:
 	enum cacheID
 	{
-		cVPID, cMPEGAPID, cTPID, cPCRPID, cAC3PID,
-		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
-		cSUBTITLE, cAACHEAPID=12, cDDPPID, cacheMax
+		cVPID, cMPEGAPID, cTPID, cPCRPID,		// 0-3
+		cAC3PID, cVTYPE, cACHANNEL, cAC3DELAY,		// 4-7
+		cPCMDELAY, cSUBTITLE,				// 8-9
+		cAACHEAPID=12, cDDPPID, cDTSPID, cAACPID,	// 12-15
+		cLPCMPID, cDTSHDPID,				// 16-17
+		cacheMax
 	};
+
+	static const cacheID audioCacheTags[];
+	static const int nAudioCacheTags;
 
 	int getCacheEntry(cacheID);
 	void setCacheEntry(cacheID, int);
 
 	bool cacheEmpty();
+	bool cacheAudioEmpty();
 
 	eDVBService();
 		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */

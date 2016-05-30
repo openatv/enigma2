@@ -1980,18 +1980,12 @@ int eDVBServicePlay::getInfo(int w)
 	case sAudioPID:
 		if (m_dvb_service)
 		{
-			int apid = m_dvb_service->getCacheEntry(eDVBService::cMPEGAPID);
-			if (apid != -1)
-				return apid;
-			apid = m_dvb_service->getCacheEntry(eDVBService::cAC3PID);
-			if (apid != -1)
-				return apid;
-			apid = m_dvb_service->getCacheEntry(eDVBService::cDDPPID);
-			if (apid != -1)
-				return apid;
-			apid = m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID);
-			if (apid != -1)
-				return apid;
+			for(int m = 0; m < eDVBService::nAudioCacheTags; m++)
+			{
+				int apid = m_dvb_service->getCacheEntry(eDVBService::audioCacheTags[m]);
+				if (apid != -1)
+					return apid;
+			}
 		}
 		if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
 	case sPCRPID:
@@ -2110,22 +2104,29 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 
 	info.m_pid = program.audioStreams[i].pid;
 
-	if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atMPEG)
-		info.m_description = "MPEG";
-	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAC3)
-		info.m_description = "AC3";
-	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDDP)
-		info.m_description = "AC3+";
-	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAAC)
-		info.m_description = "AAC";
-	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAACHE)
-		info.m_description = "AAC-HE";
-	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
-		info.m_description = "DTS";
-	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTSHD)
-		info.m_description = "DTS-HD";
-	else
-		info.m_description = "???";
+	const static struct {
+		int streamType;
+		char const* typeName;
+	} audioMap [] = {
+		{ eDVBServicePMTHandler::audioStream::atMPEG,  "MPEG",   },
+		{ eDVBServicePMTHandler::audioStream::atAC3,   "AC3",    },
+		{ eDVBServicePMTHandler::audioStream::atDDP,   "AC3+",   },
+		{ eDVBServicePMTHandler::audioStream::atAAC,   "AAC",    },
+		{ eDVBServicePMTHandler::audioStream::atAACHE, "AAC-HE", },
+		{ eDVBServicePMTHandler::audioStream::atDTS,   "DTS",    },
+		{ eDVBServicePMTHandler::audioStream::atDTSHD, "DTS-HD", },
+		{ eDVBServicePMTHandler::audioStream::atLPCM,  "LPCM",   },
+	};
+	static const int nAudioMap = sizeof audioMap / sizeof audioMap[0];
+	info.m_description = "???";
+	for(int m = 0; m < nAudioMap; m++)
+	{
+		if (program.audioStreams[m].type == audioMap[m].streamType)
+		{
+			info.m_description = audioMap[i].typeName;
+			break;
+		}
+	}
 
 	if (program.audioStreams[i].component_tag != -1)
 	{
@@ -2221,16 +2222,27 @@ int eDVBServicePlay::selectAudioStream(int i)
 				d.) we have only one audiostream (overwrite the cache to make sure
 				    the cache contains the correct audio pid and type)
 			*/
-	if (m_dvb_service && ((i != -1) || (program.audioStreams.size() == 1)
-		|| ((m_dvb_service->getCacheEntry(eDVBService::cMPEGAPID) == -1)
-		&& (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)== -1)
-		&& (m_dvb_service->getCacheEntry(eDVBService::cDDPPID)== -1)
-		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1))))
+	if (m_dvb_service && (i != -1 || program.audioStreams.size() == 1
+		|| m_dvb_service->cacheAudioEmpty()))
 	{
-		m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apidtype == eDVBAudio::aMPEG ? apid : -1);
-		m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apidtype == eDVBAudio::aAC3 ? apid : -1);
-		m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apidtype == eDVBAudio::aDDP ? apid : -1);
-		m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apidtype == eDVBAudio::aAACHE ? apid : -1);
+		const static struct {
+			int streamType;
+			eDVBService::cacheID cacheTag;
+		} audioMap [] = {
+			{ eDVBAudio::aMPEG,  eDVBService::cMPEGAPID,  },
+			{ eDVBAudio::aAC3,   eDVBService::cAC3PID,    },
+			{ eDVBAudio::aDDP,   eDVBService::cDDPPID,    },
+			{ eDVBAudio::aAAC,   eDVBService::cAACPID,    },
+			{ eDVBAudio::aDTS,   eDVBService::cDTSPID,    },
+			{ eDVBAudio::aLPCM,  eDVBService::cLPCMPID,   },
+			{ eDVBAudio::aDTSHD, eDVBService::cDTSHDPID,  },
+			{ eDVBAudio::aAACHE, eDVBService::cAACHEAPID, },
+		};
+		static const int nAudioMap = sizeof audioMap / sizeof audioMap[0];
+		for(int m = 0; m < nAudioMap; m++)
+		{
+			m_dvb_service->setCacheEntry(audioMap[m].cacheTag, apidtype == audioMap[m].streamType ? apid : -1);
+		}
 	}
 
 	h.resetCachedProgram();
