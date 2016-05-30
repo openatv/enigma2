@@ -79,6 +79,10 @@ def getAboutText():
 		f = open('/proc/stb/fp/temp_sensor', 'r')
 		tempinfo = f.read()
 		f.close()
+	elif path.exists('/proc/stb/sensors/temp/value'):
+		f = open('/proc/stb/sensors/temp/value', 'r')
+		tempinfo = f.read()
+		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
 		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
