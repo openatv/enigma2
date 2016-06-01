@@ -2741,11 +2741,20 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 		case voltageOff:
 			m_data[CSW]=m_data[UCSW]=m_data[TONEBURST]=-1; // reset diseqc
 			vlt = SEC_VOLTAGE_OFF;
+			char filename[256];
+			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/active_antenna_power", m_slotid);
+			CFile::writeStr(filename, "off");
 			break;
 		case voltage13_5:
 			increased = true;
 		case voltage13:
 			vlt = SEC_VOLTAGE_13;
+			if(m_type == feTerrestrial)
+			{
+				char filename[256];
+				snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/active_antenna_power", m_slotid);
+				CFile::writeStr(filename, "on");
+			}
 			break;
 		case voltage18_5:
 			increased = true;
