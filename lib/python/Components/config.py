@@ -1860,8 +1860,6 @@ class Config(ConfigSubsection):
 					tmp[3] = "dvbc"
 				elif tmp[3].startswith ("cable"):
 					tmp[3] = "dvbc." + tmp[3]
-				elif tmp[3] == "terrestrial":
-					tmp[3] = "dvbt"
 				elif tmp[3].startswith("terrestrial"):
 					tmp[3] = "dvbt." + tmp[3]
 				else:
