@@ -140,12 +140,12 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	mixer.volume_right = right;
 
 	eDebug("Setvolume: %d %d (raw)", leftVol, rightVol);
-	eDebug("Setvolume: %d %d (-1db)", left, right);
 
 	int fd = openMixer();
 	if (fd >= 0)
 	{
 #ifdef HAVE_DVB_API_VERSION
+		eDebug("[AUDIO_SET_MIXER] Setvolume left: %d right: %d (-1db)", left, right);
 		ioctl(fd, AUDIO_SET_MIXER, &mixer);
 #endif
 		closeMixer(fd);
@@ -153,6 +153,7 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	}
 
 	//HACK?
+	eDebug("[procfs] Setvolume: %d (-1db)", left);
 	CFile::writeInt("/proc/stb/avs/0/volume", left); /* in -1dB */
 #endif
 }
