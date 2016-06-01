@@ -1149,7 +1149,7 @@ class NimManager:
 			else:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
-				if entry["name"] == "DVB-T2/C USB-Stick": # workaround dvbsky hybrit usb stick
+				if entry["name"] == "DVB-T2/C USB-Stick": # workaround dvbsky hybrid usb stick
 					entry["multi_type"] = {'0': 'DVB-T'}
 					entry["multi_type"] = {'1': 'DVB-C'}
 				else:
