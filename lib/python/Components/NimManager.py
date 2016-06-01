@@ -1313,15 +1313,15 @@ class NimManager:
 			return connected
 		else:
 			res = False
-			if self.nim_slots[slotid].isCompatible("DVB-S"):
+			if self.nim_slots[slotid].canBeCompatible("DVB-S"):
 				nim = config.Nims[slotid].dvbs
 				configMode = nim.configMode.value
 				res = res or not (configMode == "nothing")
-			if self.nim_slots[slotid].isCompatible("DVB-T"):
+			if self.nim_slots[slotid].canBeCompatible("DVB-T"):
 				nim = config.Nims[slotid].dvbt
 				configMode = nim.configMode.value
 				res = res or not (configMode == "nothing")
-			if self.nim_slots[slotid].isCompatible("DVB-C"):
+			if self.nim_slots[slotid].canBeCompatible("DVB-C"):
 				nim = config.Nims[slotid].dvbc
 				configMode = nim.configMode.value
 				res = res or not (configMode == "nothing")
@@ -1336,7 +1336,7 @@ class NimManager:
 			if configMode == "nothing":
 				return list
 
-			if configMode == "equal":
+			elif configMode == "equal":
 				slotid = int(nim.connectedTo.value)
 				nim = config.Nims[slotid].dvbs
 				configMode = nim.configMode.value
@@ -1344,8 +1344,7 @@ class NimManager:
 				slotid = self.sec.getRoot(slotid, int(nim.connectedTo.value))
 				nim = config.Nims[slotid].dvbs
 				configMode = nim.configMode.value
-
-			if configMode == "simple":
+			elif configMode == "simple":
 				dm = nim.diseqcMode.value
 				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcA.orbital_position < 3600:
