@@ -70,9 +70,9 @@ class PositionerSetup(Screen):
 		self.feid = feid
 		self.oldref = None
 		log.open(self.LOG_SIZE)
-		if config.Nims[self.feid].configMode.value == 'advanced':
+		if config.Nims[self.feid].dvbs.configMode.value == 'advanced':
 			self.advanced = True
-			self.advancedconfig = config.Nims[self.feid].advanced
+			self.advancedconfig = config.Nims[self.feid].dvbs.advanced
 			self.advancedsats = self.advancedconfig.sat
 			self.availablesats = map(lambda x: x[0], nimmanager.getRotorSatListForNim(self.feid))
 		else:
@@ -270,7 +270,7 @@ class PositionerSetup(Screen):
 		self.printMsg(_("Using tuner %s") % chr(0x41 + self.feid))
 		if not self.advanced:
 			self.printMsg(_("Configuration mode: %s") % _("simple"))
-			nim = config.Nims[self.feid]
+			nim = config.Nims[self.feid].dvbs
 			self.sitelon = nim.longitude.float
 			self.longitudeOrientation = nim.longitudeOrientation.value
 			self.sitelat = nim.latitude.float
@@ -1063,7 +1063,7 @@ class TunerScreen(ConfigListScreen, Screen):
 		self.fe_data = fe_data
 		Screen.__init__(self, session)
 		ConfigListScreen.__init__(self, None)
-		self.createConfig(fe_data)
+		self.createConfig()
 		self.initialSetup()
 		self.createSetup()
 		self.tuning.sat.addNotifier(self.tuningSatChanged)
@@ -1076,7 +1076,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"cancel": self.keyCancel,
 		}, -2)
 
-	def createConfig(self, frontendData):
+	def createConfig(self):
 		satlist = nimmanager.getRotorSatListForNim(self.feid)
 		orb_pos = self.fe_data.get("orbital_position", None)
 		orb_pos_str = str(orb_pos)

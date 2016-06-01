@@ -593,6 +593,7 @@ void *eDVBUsbAdapter::vtunerPump()
 
 						if (pidcount > 1)
 						{
+							eDebug("[adenin]rmove PID %d(0x%04x)", pidList[i], pidList[i]);
 							::ioctl(demuxFd, DMX_REMOVE_PID, &pidList[i]);
 							pidcount--;
 						}
@@ -613,6 +614,7 @@ void *eDVBUsbAdapter::vtunerPump()
 
 						if (pidcount)
 						{
+							eDebug("[adenin]add PID %d(0x%04x)", message.pidlist[i], message.pidlist[i]);
 							::ioctl(demuxFd, DMX_ADD_PID, &message.pidlist[i]);
 							pidcount++;
 						}
@@ -825,6 +827,16 @@ bool eDVBResourceManager::frontendIsCompatible(int index, const char *type)
 		}
 	}
 	return false;
+}
+
+int eDVBResourceManager::getFrontendType(int index)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		if (i->m_frontend->getSlotID() == index)
+			return i->m_frontend->getCurrentType();
+	}
+	return -1;
 }
 
 bool eDVBResourceManager::frontendIsMultistream(int index)

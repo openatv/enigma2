@@ -36,11 +36,15 @@ class ServiceScan(Screen):
 
 	def up(self):
 		self["servicelist"].up()
-		self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
+		selectedService = self["servicelist"].getCurrentSelection()
+		if selectedService:
+			self.session.summary.updateService(selectedService[0])
 
 	def down(self):
 		self["servicelist"].down()
-		self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
+		selectedService = self["servicelist"].getCurrentSelection()
+		if selectedService:
+			self.session.summary.updateService(selectedService[0])
 
 	def ok(self):
 		if self["scan"].isDone():
@@ -130,8 +134,9 @@ class ServiceScan(Screen):
 		if self["scan"].isDone():
 			self.scanTimer.stop()
 			self["servicelist"].moveToIndex(0)
-			if self["servicelist"].getCurrentSelection() is not None:
-				self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
+			selectedService = self["servicelist"].getCurrentSelection()
+			if selectedService:
+				self.session.summary.updateService(selectedService[0])
 
 	def doServiceScan(self):
 		self["servicelist"].len = self["servicelist"].instance.size().height() / self["servicelist"].l.getItemSize().height()

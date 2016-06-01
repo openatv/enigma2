@@ -189,10 +189,10 @@ class Dish(Screen):
 	def getTurningSpeed(self, pol=0):
 		tuner = self.getCurrentTuner()
 		if tuner is not None:
-			nimConfig = nimmanager.getNimConfig(tuner)
+			nimConfig = nimmanager.getNimConfig(tuner).dvbs
 			if nimConfig.configMode.value == "simple":
 				if "positioner" in nimConfig.diseqcMode.value:
-					nim = config.Nims[tuner]
+					nim = config.Nims[tuner].dvbs
 					if pol in (1, 3): # vertical
 						return nim.turningspeedV.float
 					return nim.turningspeedH.float

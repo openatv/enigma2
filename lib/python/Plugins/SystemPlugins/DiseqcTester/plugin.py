@@ -661,7 +661,7 @@ class DiseqcTesterNimSelection(NimSelection):
 		self.resultclass = DiseqcTesterTestTypeSelection
 
 	def showNim(self, nim):
-		nimConfig = nimmanager.getNimConfig(nim.slot)
+		nimConfig = nimmanager.getNimConfig(nim.slot).dvbs
 		if nim.isCompatible("DVB-S"):
 			if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends", "nothing"):
 				return False

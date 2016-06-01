@@ -47,6 +47,8 @@ void eComponentScan::scanEvent(int evt)
 			break;
 	}
 	statusChanged();
+	if (m_failed > 0)
+		m_done = 1;
 }
 
 eComponentScan::eComponentScan(): m_done(-1), m_failed(0)
