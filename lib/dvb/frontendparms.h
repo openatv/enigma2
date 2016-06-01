@@ -49,10 +49,13 @@ struct eDVBFrontendParametersSatellite
 	enum {
 		Pilot_Off, Pilot_On, Pilot_Unknown
 	};
+	enum {
+		Band_Unknown, Band_C, Band_Ka, Band_Ku
+	};
 
 	bool no_rotor_command_on_tune;
 	unsigned int frequency, symbol_rate;
-	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot;
+	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot, band_id;
 	int plpid;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersSatellite);
