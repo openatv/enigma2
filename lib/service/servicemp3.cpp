@@ -2026,18 +2026,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				if (m_errorInfo.missing_codec.find("video/") == 0 || (m_errorInfo.missing_codec.find("audio/") == 0 && m_audioStreams.empty()))
 					m_event((iPlayableService*)this, evUser+12);
 			}
-			/*try to fix mp3 playback problem on some boxes - e.g. et9200 (when switch to next track has the new track the state 'play', but nothing is playing)*/
-			GstState state;
-			gst_element_get_state(m_gst_playbin, &state, NULL, 0LL);
-			if(!m_paused && state == GST_STATE_PLAYING)
-			{
-				gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
-				gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
-				/*altenative method*/
-				//trickSeek(0.0);
-				//trickSeek(1.0);
-			}
-			/*try to fix mp3 playback problem - end*/
 			break;
 		}
 		case GST_MESSAGE_ELEMENT:
