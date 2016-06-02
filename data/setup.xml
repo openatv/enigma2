@@ -86,10 +86,10 @@
 	<setup key="epgsettings" title="EPG settings">
 		<item level="2" text="EPG cache location" description="Choose the storage location for EPG data when the %s %s is shut down. The chosen location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG cache filename" description="Enter the name of the file that stores EPG data when the %s %s is shut down.">config.misc.epgcachefilename</item>
-		<item level="2" text="Automatic refresh" description="Enable to allow the %s %s to read stored EPG data regularly.">config.epg.cacheloadsched</item>
-		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched" description="Set the number of hours between EPG data refreshes by the %s %s.">config.epg.cacheloadtimer</item>
-		<item level="2" text="Automatic save" description="Enable to allow the %s %s to store EPG data regularly.">config.epg.cachesavesched</item>
-		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" description="Set the number of hours between EPG data saves by the %s %s.">config.epg.cachesavetimer</item>
+		<item level="2" text="Automatic refresh" description="Enable to regularly replace EPG data with the contents of the EPG cache file. Used to import EPG from external sources.">config.epg.cacheloadsched</item>
+		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched" description="Number of hours between EPG data reloads from the cache file.">config.epg.cacheloadtimer</item>
+		<item level="2" text="Automatic save" description="Enable to regularly save EPG data to the cache file.">config.epg.cachesavesched</item>
+		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" description="Number of hours between EPG data saves to the cache file.">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT now/next in infobar" description="Enable to display EIT now/next event data in the infobar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when available.">config.epg.eit</item>
 		<item level="3" text="Enable MHW EPG" description="Use MHW EPG information when available.">config.epg.mhw</item>
