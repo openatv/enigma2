@@ -1905,7 +1905,6 @@ class Config(ConfigSubsection):
 
 	def loadFromFile(self, filename, base_file=True):
 		self.unpickle(open(filename, "r"), base_file)
-		print"[adenin]loadFromFile",filename
 
 config = Config()
 config.misc = ConfigSubsection()
