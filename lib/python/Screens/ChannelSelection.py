@@ -2083,13 +2083,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if time:
 			self.pipzaptimer.callback.append(self.hidePipzapMessage)
 			self.pipzaptimer.startLongTimer(time)
-		self.session.pip.active()
+		if hasattr(self.session, 'pip') and self.session.pip:
+			self.session.pip.active()
 
 	def hidePipzapMessage(self):
 		if self.pipzaptimer.isActive():
 			self.pipzaptimer.callback.remove(self.hidePipzapMessage)
 			self.pipzaptimer.stop()
-		self.session.pip.inactive()
+		if hasattr(self.session, 'pip') and self.session.pip:
+			self.session.pip.inactive()
 
 	# called from infoBar and channelSelected
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, checkTimeshift=True):
