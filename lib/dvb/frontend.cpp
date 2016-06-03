@@ -2884,39 +2884,83 @@ std::string eDVBFrontend::getCapabilities()
 {
 	std::stringstream ss;
 
-	if (fe_info.caps == FE_IS_STUPID)			ss << "stupid FE" << std::endl;
-	if (fe_info.caps &  FE_CAN_INVERSION_AUTO)		ss << "auto inversion" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_1_2)			ss << "FEC 1/2" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_2_3)			ss << "FEC 2/3" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_3_4)			ss << "FEC 3/4" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_4_5)			ss << "FEC 4/5" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_5_6)			ss << "FEC 5/6" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_6_7)			ss << "FEC 6/7" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_7_8)			ss << "FEC 7/8" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_8_9)			ss << "FEC 8/9" << std::endl;
-	if (fe_info.caps &  FE_CAN_FEC_AUTO)			ss << "FEC AUTO" << std::endl;
-	if (fe_info.caps &  FE_CAN_QPSK)			ss << "QPSK" << std::endl;
-	if (fe_info.caps &  FE_CAN_QAM_16)			ss << "QAM 16" << std::endl;
-	if (fe_info.caps &  FE_CAN_QAM_32)			ss << "QAM 32" << std::endl;
-	if (fe_info.caps &  FE_CAN_QAM_64)			ss << "QAM 64" << std::endl;
-	if (fe_info.caps &  FE_CAN_QAM_128)			ss << "QAM 128" << std::endl;
-	if (fe_info.caps &  FE_CAN_QAM_256)			ss << "QAM 256" << std::endl;
-	if (fe_info.caps &  FE_CAN_QAM_AUTO)			ss << "QAM AUTO" << std::endl;
-	if (fe_info.caps &  FE_CAN_TRANSMISSION_MODE_AUTO)	ss << "auto transmission mode" << std::endl;
-	if (fe_info.caps &  FE_CAN_BANDWIDTH_AUTO)             	ss << "auto bandwidth" << std::endl;
-	if (fe_info.caps &  FE_CAN_GUARD_INTERVAL_AUTO)		ss << "auto guard interval" << std::endl;
-	if (fe_info.caps &  FE_CAN_HIERARCHY_AUTO)		ss << "auto hierarchy" << std::endl;
-	if (fe_info.caps &  FE_CAN_8VSB)			ss << "FE_CAN_8VSB" << std::endl;
-	if (fe_info.caps &  FE_CAN_16VSB)			ss << "FE_CAN_16VSB" << std::endl;
-	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << "FE_HAS_EXTENDED_CAPS" << std::endl;
-#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
-	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << "FE_CAN_MULTISTREAM" << std::endl;
-#endif
-	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << "FE_CAN_TURBO_FEC" << std::endl;
-	if (fe_info.caps &  FE_CAN_2G_MODULATION)		ss << "FE_CAN_2G_MODULATION" << std::endl;
-	if (fe_info.caps &  FE_NEEDS_BENDING)			ss << "FE_NEEDS_BENDING" << std::endl;
-	if (fe_info.caps &  FE_CAN_RECOVER)			ss << "FE_CAN_RECOVER" << std::endl;
-	if (fe_info.caps &  FE_CAN_MUTE_TS)			ss << "FE_CAN_MUTE_TS" << std::endl;
+	ss << "DVB API version: " << m_dvbversion / 256 << "." << m_dvbversion % 256 << std::endl;
+	ss << "Frontend: " << fe_info.name << std::endl;
+
+	ss << "Frequency:";
+	ss << " min " << fe_info.frequency_min;
+	ss << " max " << fe_info.frequency_max;
+	ss << " stepsize " << fe_info.frequency_stepsize;
+	ss << " tolerance " << fe_info.frequency_tolerance << std::endl;
+
+	ss << "Symbolrate:";
+	ss << " min " << fe_info.symbol_rate_min;
+	ss << " max " << fe_info.symbol_rate_max;
+	ss << " tolerance " << fe_info.symbol_rate_tolerance << std::endl;
+
+	ss << "Capabilities:";
+	if (fe_info.caps == FE_IS_STUPID)			ss << " stupid FE";
+	if (fe_info.caps &  FE_CAN_INVERSION_AUTO)		ss << " auto inversion";
+	if (fe_info.caps &  FE_CAN_FEC_1_2)			ss << " FEC 1/2";
+	if (fe_info.caps &  FE_CAN_FEC_2_3)			ss << " FEC 2/3";
+	if (fe_info.caps &  FE_CAN_FEC_3_4)			ss << " FEC 3/4";
+	if (fe_info.caps &  FE_CAN_FEC_4_5)			ss << " FEC 4/5";
+	if (fe_info.caps &  FE_CAN_FEC_5_6)			ss << " FEC 5/6";
+	if (fe_info.caps &  FE_CAN_FEC_6_7)			ss << " FEC 6/7";
+	if (fe_info.caps &  FE_CAN_FEC_7_8)			ss << " FEC 7/8";
+	if (fe_info.caps &  FE_CAN_FEC_8_9)			ss << " FEC 8/9";
+	if (fe_info.caps &  FE_CAN_FEC_AUTO)			ss << " FEC AUTO";
+	if (fe_info.caps &  FE_CAN_QPSK)			ss << " QPSK";
+	if (fe_info.caps &  FE_CAN_QAM_16)			ss << " QAM 16";
+	if (fe_info.caps &  FE_CAN_QAM_32)			ss << " QAM 32";
+	if (fe_info.caps &  FE_CAN_QAM_64)			ss << " QAM 64";
+	if (fe_info.caps &  FE_CAN_QAM_128)			ss << " QAM 128";
+	if (fe_info.caps &  FE_CAN_QAM_256)			ss << " QAM 256";
+	if (fe_info.caps &  FE_CAN_QAM_AUTO)			ss << " QAM AUTO";
+	if (fe_info.caps &  FE_CAN_TRANSMISSION_MODE_AUTO)	ss << " auto transmission mode";
+	if (fe_info.caps &  FE_CAN_BANDWIDTH_AUTO)             	ss << " auto bandwidth";
+	if (fe_info.caps &  FE_CAN_GUARD_INTERVAL_AUTO)		ss << " auto guard interval";
+	if (fe_info.caps &  FE_CAN_HIERARCHY_AUTO)		ss << " auto hierarchy";
+	if (fe_info.caps &  FE_CAN_8VSB)			ss << " FE_CAN_8VSB";
+	if (fe_info.caps &  FE_CAN_16VSB)			ss << " FE_CAN_16VSB";
+	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << " FE_HAS_EXTENDED_CAPS";
+	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << " FE_CAN_MULTISTREAM";
+	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << " FE_CAN_TURBO_FEC";
+	if (fe_info.caps &  FE_CAN_2G_MODULATION)		ss << " FE_CAN_2G_MODULATION";
+	if (fe_info.caps &  FE_NEEDS_BENDING)			ss << " FE_NEEDS_BENDING";
+	if (fe_info.caps &  FE_CAN_RECOVER)			ss << " FE_CAN_RECOVER";
+	if (fe_info.caps &  FE_CAN_MUTE_TS)			ss << " FE_CAN_MUTE_TS";
+	ss << std::endl;
+
+	ss << "Delivery Systems:";
+	std::map<fe_delivery_system_t, bool>::iterator it;
+	for (it = m_delsys.begin(); it != m_delsys.end(); it++)
+	{
+		if (!it->second) continue;
+
+		switch (it->first)
+		{
+		case SYS_ATSC:		ss << " ATSC"; break;
+		case SYS_ATSCMH:	ss << " ATSCMH"; break;
+		case SYS_CMMB:		ss << " CMBB"; break;
+		case SYS_DAB:		ss << " DAB"; break;
+		case SYS_DSS:		ss << " DSS"; break;
+		case SYS_DVBC_ANNEX_B:	ss << " DVBC_ANNEX_B"; break;
+		case SYS_DVBH:		ss << " DVBH"; break;
+		case SYS_DVBS:		ss << " DVBS"; break;
+		case SYS_DVBS2:		ss << " DVBS2"; break;
+		case SYS_DVBT:		ss << " DVBT"; break;
+		case SYS_ISDBC:		ss << " ISDBC"; break;
+		case SYS_ISDBS:		ss << " ISDBS"; break;
+		case SYS_ISDBT:		ss << " ISDBT"; break;
+		case SYS_UNDEFINED:	ss << " UNDEFINED"; break;
+		case SYS_DVBC_ANNEX_A:	ss << " DVBC_ANNEX_A"; break;
+		case SYS_DVBC_ANNEX_C:	ss << " DVBC_ANNEX_C"; break;
+		case SYS_DVBT2:		ss << " DVBT2"; break;
+		case SYS_TURBO:		ss << " TURBO"; break;
+		case SYS_DTMB:		ss << " DTMB"; break;
+		}
+	}
 
 	return ss.str();
 }
