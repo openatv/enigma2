@@ -1934,6 +1934,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100, True)
 		self.pipzaptimer = eTimer()
+		self.pipzaptimer.callback.append(self.hidePipzapMessage)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -2081,14 +2082,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def showPipzapMessage(self):
 		time = config.usage.infobar_timeout.index
 		if time:
-			self.pipzaptimer.callback.append(self.hidePipzapMessage)
 			self.pipzaptimer.startLongTimer(time)
 		if hasattr(self.session, 'pip') and self.session.pip:
 			self.session.pip.active()
 
 	def hidePipzapMessage(self):
 		if self.pipzaptimer.isActive():
-			self.pipzaptimer.callback.remove(self.hidePipzapMessage)
 			self.pipzaptimer.stop()
 		if hasattr(self.session, 'pip') and self.session.pip:
 			self.session.pip.inactive()
