@@ -193,6 +193,7 @@ void TDT::start()
 	if ( chan )
 	{
 		eDVBTableSpec spec;
+		memset(&spec, 0, sizeof(spec));
 		spec.pid = TimeAndDateSection::PID;
 		spec.tid = TimeAndDateSection::TID;
 		spec.tid_mask = 0xFC;

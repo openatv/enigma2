@@ -760,7 +760,7 @@ RESULT eServiceMP3::start()
 	{
 		// eDebug("[eServiceMP3] starting pipeline");
 		GstStateChangeReturn ret;
-		ret = gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+		ret = gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 
 		switch(ret)
 		{
@@ -2025,10 +2025,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			{
 				if (m_errorInfo.missing_codec.find("video/") == 0 || (m_errorInfo.missing_codec.find("audio/") == 0 && m_audioStreams.empty()))
 					m_event((iPlayableService*)this, evUser+12);
-			}
-			if(!m_paused)
-			{
-				gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 			}
 			break;
 		}
