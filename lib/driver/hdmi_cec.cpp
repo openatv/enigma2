@@ -85,7 +85,7 @@ eHdmiCEC *eHdmiCEC::getInstance()
 void eHdmiCEC::reportPhysicalAddress()
 {
 	struct cec_message txmessage;
-	memset(&txmessage, 0, txmessage);
+	memset(&txmessage, 0, sizeof(txmessage));
 
 	txmessage.address = 0x0f; /* broadcast */
 	txmessage.data[0] = 0x84; /* report address */
