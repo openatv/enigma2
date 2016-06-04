@@ -1482,7 +1482,10 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			self.saveRoot()
 
 	def pathUp(self, justSet=False):
-		prev = self.servicePath.pop()
+		if len(self.servicePath) > 1:
+			prev = self.servicePath.pop()
+		elif self.servicePath:
+			prev = self.servicePath[-1]
 		if self.servicePath:
 			current = self.servicePath[-1]
 			self.setRoot(current, justSet)
