@@ -268,11 +268,11 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 		{
 			snprintf(header, sizeof(header),
 						"%s"		/*newline*/
-						"%s "	/*color of timestamp*/\
+						"%s%s "	/*color of timestamp*/\
 				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/
 				ANSI_BGREEN	"%s "		/*color of functionname*/
 				ANSI_BWHITE			/*color of debugmessage*/
-				, inNoNewLine?"\n":"", timebuffer, file, line, function);
+				, inNoNewLine?"\n":"", is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function);
 		}
 
 		snprintf(obuf, sizeof(obuf), "%s%s%s\n", logOutputColors?ANSI_RESET:"", header, logOutputColors?buf:ncbuf);
@@ -327,11 +327,11 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 		{
 			snprintf(header, sizeof(header),
 						"%s"		/*newline*/
-						"%s "	/*color of timestamp*/\
+						"%s%s "	/*color of timestamp*/\
 				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/
 				ANSI_BGREEN	"%s "		/*color of functionname*/
 				ANSI_BWHITE			/*color of debugmessage*/
-				, inNoNewLine?"\n":"", timebuffer, file, line, function);
+				, inNoNewLine?"\n":"", is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function);
 		}
 
 		snprintf(obuf, sizeof(obuf), "%s%s%s", logOutputColors?ANSI_RESET:"", header, logOutputColors?buf:ncbuf);
