@@ -1934,6 +1934,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100, True)
 		self.pipzaptimer = eTimer()
+		self.pipzaptimer.callback.append(self.hidePipzapMessage)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -2045,7 +2046,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.gotoCurrentServiceOrProvider(ref)
 
 	def togglePipzap(self):
-		assert self.session.pip
+		if not (hasattr(self.session, 'pip') and self.session.pip):
+			raise AssertionError, "Invalid self.session.pip"
 		title = self.instance.getTitle()
 		pos = title.find(' (')
 		if pos != -1:
@@ -2081,15 +2083,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def showPipzapMessage(self):
 		time = config.usage.infobar_timeout.index
 		if time:
-			self.pipzaptimer.callback.append(self.hidePipzapMessage)
 			self.pipzaptimer.startLongTimer(time)
-		self.session.pip.active()
+		if hasattr(self.session, 'pip') and self.session.pip:
+			self.session.pip.active()
 
 	def hidePipzapMessage(self):
 		if self.pipzaptimer.isActive():
-			self.pipzaptimer.callback.remove(self.hidePipzapMessage)
 			self.pipzaptimer.stop()
-		self.session.pip.inactive()
+		if hasattr(self.session, 'pip') and self.session.pip:
+			self.session.pip.inactive()
 
 	# called from infoBar and channelSelected
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, checkTimeshift=True):
