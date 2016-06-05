@@ -138,6 +138,11 @@ class VideoFinetune(Screen):
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
+		if xres > 1280:
+			MyFontSize = 28
+		else:
+			MyFontSize = 20
+		
 		bbw, bbh = xres / 192, yres / 192
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
 
@@ -155,9 +160,9 @@ class VideoFinetune(Screen):
 			if i < 2:
 				c.writeText(x + width, offset, width, eh, RGB(255, 255, 255), RGB(0,0,0), gFont("Regular", 20), "%d." % (i+1))
 
-		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", 40),
+		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", MyFontSize+20),
 			_("Brightness"))
-		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(255,255,255), RGB(0,0,0), gFont("Regular", 20),
+		c.writeText(xres / 10, yres / 5, xres / 2, yres * 4 / 6, RGB(255,255,255), RGB(0,0,0), gFont("Regular", MyFontSize),
 			_("If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", "
 				"set it to standard. Adjust the backlight level to a value suiting your taste. "
 				"Turn down contrast on your TV as much as possible.\nThen turn the brightness setting as "
@@ -175,6 +180,11 @@ class VideoFinetune(Screen):
 		c = self["Canvas"]
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
+
+		if xres > 1280:
+			MyFontSize = 28
+		else:
+			MyFontSize = 20
 
 		bbw, bbh = xres / 192, yres / 192
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
@@ -197,9 +207,9 @@ class VideoFinetune(Screen):
 			if i >= 13:
 				c.writeText(x + width, offset, width, eh, RGB(0, 0, 0), RGB(255, 255, 255), gFont("Regular", 20), "%d." % (i-13+1))
 
-		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40),
+		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", MyFontSize+20),
 			_("Contrast"))
-		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", 20),
+		c.writeText(xres / 10, yres / 5, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", MyFontSize),
 			_("Now, use the contrast setting to turn up the brightness of the background as much as possible, "
 				"but make sure that you can still see the difference between the two brightest levels of shades."
 				"If you have done that, press OK."),
@@ -214,6 +224,11 @@ class VideoFinetune(Screen):
 		c = self["Canvas"]
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
+
+		if xres > 1280:
+			MyFontSize = 28
+		else:
+			MyFontSize = 20
 
 		bbw = xres / 192
 		bbh = yres / 192
@@ -256,9 +271,9 @@ class VideoFinetune(Screen):
 				if i == 0:
 					self.bbox(x, offset, width, eh, RGB(0,0,0), bbw, bbh)
 
-		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40),
+		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", MyFontSize+20),
 			"Color")
-		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", 20),
+		c.writeText(xres / 10, yres / 5, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", MyFontSize),
 			_("Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. "
 				"If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."),
 				RT_WRAP)
