@@ -158,7 +158,7 @@ class VideoFinetune(Screen):
 			if col == 0 or col == 16 or col == 116:
 				c.fill(x, offset, width, 2, RGB(255, 255, 255))
 			if i < 2:
-				c.writeText(x + width, offset, width, eh, RGB(255, 255, 255), RGB(0,0,0), gFont("Regular", 20), "%d." % (i+1))
+				c.writeText(x + width, offset, width, eh, RGB(255, 255, 255), RGB(0,0,0), gFont("Regular", MyFontSize), "%d." % (i+1))
 
 		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", MyFontSize+20),
 			_("Brightness"))
@@ -205,7 +205,7 @@ class VideoFinetune(Screen):
 			if col == 185 or col == 235 or col == 255:
 				c.fill(x, offset, width, 2, RGB(0,0,0))
 			if i >= 13:
-				c.writeText(x + width, offset, width, eh, RGB(0, 0, 0), RGB(255, 255, 255), gFont("Regular", 20), "%d." % (i-13+1))
+				c.writeText(x + width, offset, width, eh, RGB(0, 0, 0), RGB(255, 255, 255), gFont("Regular", MyFontSize), "%d." % (i-13+1))
 
 		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", MyFontSize+20),
 			_("Contrast"))
