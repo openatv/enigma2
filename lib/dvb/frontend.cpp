@@ -17,6 +17,8 @@
 #define I2C_SLAVE_FORCE	0x0706
 #endif
 
+#define abs(x) (std::abs((int)(x)))
+
 #define eDebugNoSimulateNoNewLineEnd(x...) \
 	do { \
 		if (!m_simulate) \
@@ -288,7 +290,6 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			eDVBFrontendParametersSatellite osat;
 			if (parm->getDVBS(osat))
 				return -2;
-
 			if (sat.orbital_position != osat.orbital_position)
 				diff = 1<<29;
 			else if (sat.polarisation != osat.polarisation)
