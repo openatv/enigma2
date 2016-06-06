@@ -17,8 +17,6 @@
 #define I2C_SLAVE_FORCE	0x0706
 #endif
 
-#define abs(x) (std::abs((int)(x)))
-
 #define eDebugNoSimulateNoNewLineEnd(x...) \
 	do { \
 		if (!m_simulate) \
