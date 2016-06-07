@@ -586,7 +586,8 @@ static void gif_load(Cfilepara* filepara, bool forceRGB = false)
 #endif
 	return;
 ERROR_R:
-	eDebug("[Picload] <Error gif>");
+	eDebug("[ePicload] <Error gif>");
+#if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
 	DGifCloseFile(gft);
 #else
 	{
