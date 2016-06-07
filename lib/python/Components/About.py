@@ -39,6 +39,8 @@ def getModelString():
 def getChipSetString():
 	if getBoxType() in ('dm7080','dm820'):
 		return "7435"
+	elif getBoxType() in ('hd51'):
+		return "7251S"
 	else:
 		try:
 			f = open('/proc/stb/info/chipset', 'r')
