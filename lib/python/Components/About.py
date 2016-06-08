@@ -1,4 +1,4 @@
-from boxbranding import getBoxType, getImageVersion
+from boxbranding import getBoxType, getMachineBuild, getImageVersion
 from sys import modules
 import socket, fcntl, struct, time, os
 
@@ -37,9 +37,9 @@ def getModelString():
 		return "unknown"
 
 def getChipSetString():
-	if getBoxType() in ('dm7080','dm820'):
+	if getMachineBuild() in ('dm7080','dm820'):
 		return "7435"
-	elif getBoxType() in ('hd51'):
+	elif getMachineBuild() in ('hd51'):
 		return "7251S"
 	else:
 		try:
@@ -51,9 +51,9 @@ def getChipSetString():
 			return "unavailable"
 
 def getCPUSpeedString():
-	if getBoxType() in ('vusolo4k', 'hd51'):
+	if getMachineBuild() in ('vusolo4k', 'hd51'):
 		return "1,5 GHz"
-	elif getBoxType() in ('hd52'):
+	elif getMachineBuild() in ('hd52'):
 		return "1,7 GHz"
 	else:
 		try:
@@ -75,7 +75,7 @@ def getCPUSpeedString():
 			return "unavailable"
 
 def getCPUString():
-	if getBoxType() in ('xc7362', 'vusolo4k', 'hd51', 'hd52'):
+	if getMachineBuild() in ('xc7362', 'vusolo4k', 'hd51', 'hd52'):
 		return "Broadcom"
 	else:
 		try:
