@@ -4770,6 +4770,16 @@ class InfoBarSubtitleSupport(object):
 		else:
 			return 0
 
+	def subtitleQuickMenu(self):
+		service = self.session.nav.getCurrentService()
+		subtitle = service and service.subtitle()
+		subtitlelist = subtitle and subtitle.getSubtitleList()
+		if self.selected_subtitle and self.selected_subtitle != (0,0,0,0):
+			from Screens.AudioSelection import QuickSubtitlesConfigMenu
+			self.session.open(QuickSubtitlesConfigMenu, self)
+		else:
+			self.subtitleSelection()
+
 	def __serviceChanged(self):
 		if self.selected_subtitle:
 			self.selected_subtitle = None
