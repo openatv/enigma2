@@ -27,9 +27,9 @@ def getAboutText():
 
 	cpuMHz = ""
 	if getMachineBuild() in ('vusolo4k', 'hd51'):
-		return "1,5 GHz"
+		cpuMHz = "   (1,5 GHz)"
 	elif getMachineBuild() in ('hd52'):
-		return "1,7 GHz"
+		cpuMHz = "   (1,7 GHz)"
 	else:
 		if path.exists('/proc/cpuinfo'):
 			f = open('/proc/cpuinfo', 'r')
