@@ -497,6 +497,9 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		self.wait = eTimer()
 		self.wait.timeout.get().append(self.resyncSubtitles)
 
+		self.resume = eTimer()
+		self.resume.timeout.get().append(self.resyncSubtitlesResume)
+
 		self["videofps"] = Label("")
 
 		sub = self.infobar.selected_subtitle
@@ -595,6 +598,9 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 
 	def resyncSubtitles(self):
 		self.infobar.setSeekState(self.infobar.SEEK_STATE_PAUSE)
+		self.resume.start(100, True)
+
+	def resyncSubtitlesResume(self):
 		self.infobar.setSeekState(self.infobar.SEEK_STATE_PLAY)
 
 	def getFps(self):
