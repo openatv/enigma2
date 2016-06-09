@@ -1598,7 +1598,7 @@ def InitNimManager(nimmgr):
 					print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 				nimmgr.enumerateNIMs()
 			else:
-				print "tuner type is already already %d" %cur_type
+				print "tuner type is already %d" %cur_type
 
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
