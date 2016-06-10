@@ -35,7 +35,7 @@ class ServiceReference(eServiceReference):
 
 	def isRecordable(self):
 		ref = self.ref
-		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB or ref.type == eServiceReference.idDVB + 0x100 or ref.type == 0x2000)
+		return ref.flags & eServiceReference.isGroup or (ref.type in (eServiceReference.idDVB, eServiceReference.idDVB + eServiceReference.idServiceIsScrambled, eServiceReference.idServiceHDMIIn, eServiceReference.idServiceMP3))
 
 def getPlayingref(ref):
 	playingref = None
@@ -54,6 +54,5 @@ def resolveAlternate(ref):
 	if ref.flags & eServiceReference.isGroup:
 		nref = getBestPlayableServiceReference(ref, getPlayingref(ref))
 		if not nref:
-			nref = getBestPlayableServiceReference(ref,
-			 eServiceReference(), True)
+			nref = getBestPlayableServiceReference(ref, eServiceReference(), True)
 	return nref
