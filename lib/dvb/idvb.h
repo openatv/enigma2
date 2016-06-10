@@ -476,8 +476,8 @@ class iDVBTransponderData: public iObject
 public:
 	virtual std::string getTunerType() const = 0;
 	virtual int getInversion() const = 0;
-	virtual unsigned int getFrequency() const = 0;
-	virtual unsigned int getSymbolRate() const = 0;
+	virtual int getFrequency() const = 0;
+	virtual int getSymbolRate() const = 0;
 	virtual int getOrbitalPosition() const = 0;
 	virtual int getFecInner() const = 0;
 	virtual int getModulation() const = 0;
