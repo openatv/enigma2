@@ -214,7 +214,7 @@ def InitUsageConfig():
 	config.usage.next_movie_msg = ConfigYesNo(default = True)
 	config.usage.last_movie_played = ConfigText()
 	config.usage.leave_movieplayer_onExit = ConfigSelection(default = "no", choices = [
-		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
+		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")), ("stop", _("Behave like stop-button")) ])
 
 	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
 		("simple", _("Simple")),
@@ -670,7 +670,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["%d" % x for x in range(16,101) if not x % 2], default = "40")
 
 	subtitle_delay_choicelist = []
-	for i in range(-900000, 1845000, 45000):
+	for i in range(-54000000, 54045000, 45000):
 		if i == 0:
 			subtitle_delay_choicelist.append(("0", _("No delay")))
 		else:
