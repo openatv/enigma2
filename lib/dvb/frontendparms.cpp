@@ -114,12 +114,12 @@ int eDVBTransponderData::getInversion() const
 	return -1;
 }
 
-unsigned int eDVBTransponderData::getFrequency() const
+int eDVBTransponderData::getFrequency() const
 {
 	return 0;
 }
 
-unsigned int eDVBTransponderData::getSymbolRate() const
+int eDVBTransponderData::getSymbolRate() const
 {
 	return 0;
 }
@@ -230,14 +230,14 @@ int eDVBSatelliteTransponderData::getInversion() const
 }
 
 
-unsigned int eDVBSatelliteTransponderData::getFrequency() const
+int eDVBSatelliteTransponderData::getFrequency() const
 {
 	if (originalValues) return transponderParameters.frequency;
 
 	return roundMulti((spectinvCnt&1) ? frequencyOffset - getProperty(DTV_FREQUENCY) : frequencyOffset + getProperty(DTV_FREQUENCY), 1000);
 }
 
-unsigned int eDVBSatelliteTransponderData::getSymbolRate() const
+int eDVBSatelliteTransponderData::getSymbolRate() const
 {
 	if (originalValues) return transponderParameters.symbol_rate;
 
@@ -359,14 +359,14 @@ int eDVBCableTransponderData::getInversion() const
 	}
 }
 
-unsigned int eDVBCableTransponderData::getFrequency() const
+int eDVBCableTransponderData::getFrequency() const
 {
 	if (originalValues) return transponderParameters.frequency;
 
 	return getProperty(DTV_FREQUENCY) / 1000;
 }
 
-unsigned int eDVBCableTransponderData::getSymbolRate() const
+int eDVBCableTransponderData::getSymbolRate() const
 {
 	if (originalValues) return transponderParameters.symbol_rate;
 
@@ -456,7 +456,7 @@ int eDVBTerrestrialTransponderData::getInversion() const
 	}
 }
 
-unsigned int eDVBTerrestrialTransponderData::getFrequency() const
+int eDVBTerrestrialTransponderData::getFrequency() const
 {
 	if (originalValues)
 	{
@@ -627,7 +627,7 @@ int eDVBATSCTransponderData::getInversion() const
 	}
 }
 
-unsigned int eDVBATSCTransponderData::getFrequency() const
+int eDVBATSCTransponderData::getFrequency() const
 {
 	if (originalValues) return transponderParameters.frequency;
 
