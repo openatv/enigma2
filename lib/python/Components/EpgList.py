@@ -1081,19 +1081,19 @@ class EPGList(HTMLComponent, GUIComponent):
 				if clock_types is not None and ewidth > 23:
 					if clock_types in (1,6,11):
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos+ewidth-15, top+(height/2)-13)
+							pos = (left+xpos+ewidth-15, top+height-26)
 						else:
-							pos = (left+xpos+ewidth-13, top+(height/2)-11)
+							pos = (left+xpos+ewidth-13, top+height-22)
 					elif clock_types in (5,10,15):
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos-26, top+(height/2)-13)
+							pos = (left+xpos-26, top+height-26)
 						else:
-							pos = (left+xpos-22, top+(height/2)-11)
+							pos = (left+xpos-22, top+height-22)
 					else:
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos+ewidth-26, top+(height/2)-13)
+							pos = (left+xpos+ewidth-26, top+height-26)
 						else:
-							pos = (left+xpos+ewidth-22, top+(height/2)-11)
+							pos = (left+xpos+ewidth-22, top+height-22)
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = pos, size = (25, 25),
