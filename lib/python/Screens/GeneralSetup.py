@@ -338,13 +338,14 @@ class GeneralSetup(Screen):
 	def Qtuner(self):
 		self.sublist = []
 		if not SystemInfo["IPTVSTB"]:
-			self.sublist.append(QuickSubMenuEntryComponent(_("Tuner setup"), _("Configure tuners"), _("Customize how tuners are used")))
+			self.sublist.append(QuickSubMenuEntryComponent(_("Tuner allocation"), _("Configure tuner use"), _("Customize how tuners are allocated and used")))
 			dvbs_nimList = nimmanager.getNimListOfType("DVB-S")
 			dvbt_nimList = nimmanager.getNimListOfType("DVB-T")
 			if len(dvbs_nimList) != 0:
 				self.sublist.append(QuickSubMenuEntryComponent(_("Tuner configuration"), _("Setup tuner(s)"), _("Setup each tuner for your satellite system")))
 				self.sublist.append(QuickSubMenuEntryComponent(_("Automatic scan"), _("Service search"), _("Automatic scan for services")))
 			if len(dvbt_nimList) != 0:
+				self.sublist.append(QuickSubMenuEntryComponent(_("Tuner configuration"), _("Configure tuner(s)"), _("Select the tuner operating mode and delivery system")))
 				self.sublist.append(QuickSubMenuEntryComponent(_("Location scan"), _("Automatic location scan"), _("Automatic scan for services based on your location")))
 			self.sublist.append(QuickSubMenuEntryComponent(_("Manual scan"), _("Service search"), _("Manual scan for services")))
 			if BLINDSCAN and len(dvbs_nimList) != 0:
@@ -571,7 +572,7 @@ class GeneralSetup(Screen):
 			from Screens.UserInterfacePositioner import OSD3DSetupScreen
 			self.session.open(OSD3DSetupScreen)
 # ####### Select TUNER Setup Menu ##############################
-		elif selected == _("Tuner setup"):
+		elif selected == _("Tuner allocation"):
 			self.openSetup("tunersetup")
 		elif selected == _("Location scan"):
 			from Screens.IniTerrestrialLocation import IniTerrestrialLocation
