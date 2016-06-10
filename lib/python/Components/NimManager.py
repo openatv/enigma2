@@ -153,20 +153,6 @@ class SecConfigure:
 		eDVBResourceManager.getInstance().setFrontendSlotInformations(used_nim_slots)
 
 		for slot in nim_slots:
-			if slot.frontend_id is not None:
-				types = [type for type in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
-				if "DVB-T2" in types and "DVB-T" in types:
-					# DVB-T2 implies DVB-T support
-					types.remove("DVB-T")
-				if "DVB-S2" in types and "DVB-S" in types:
-					# DVB-S2 implies DVB-S support
-					types.remove("DVB-S")
-				if len(types) > 1:
-					slot.multi_type = {}
-					for type in types:
-						slot.multi_type[str(types.index(type))] = type
-
-		for slot in nim_slots:
 			x = slot.slot
 			nim = slot.config
 			if slot.isCompatible("DVB-S"):
@@ -655,7 +641,7 @@ class NIM(object):
 	friendly_full_description = property(getFriendlyFullDescription)
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
-	empty = property(lambda self: self.getType is None)
+	empty = property(lambda self: self.getType() is None)
 
 class NimManager:
 	def getConfiguredSats(self):
@@ -1598,7 +1584,7 @@ def InitNimManager(nimmgr):
 					print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 				nimmgr.enumerateNIMs()
 			else:
-				print "tuner type is already already %d" %cur_type
+				print "tuner type is already %d" %cur_type
 
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
