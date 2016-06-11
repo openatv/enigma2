@@ -1079,38 +1079,48 @@ class EPGList(HTMLComponent, GUIComponent):
 
 				# recording icons
 				if clock_types is not None and ewidth > 23:
-					if clock_types in (1,6,11):
-						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos+ewidth-15, top+height-26)
+					if config.epgselection.graph_rec_icon_height.value != "hide":
+						if config.epgselection.graph_rec_icon_height.value == "middle":
+							RecIconHDheight = top+(height/2)-11
+							RecIconFHDheight = top+(height/2)-13
+						elif config.epgselection.graph_rec_icon_height.value == "top":
+							RecIconHDheight = top+3
+							RecIconFHDheight = top+3
 						else:
-							pos = (left+xpos+ewidth-13, top+height-22)
-					elif clock_types in (5,10,15):
-						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos-26, top+height-26)
+							RecIconHDheight = top+height-22
+							RecIconFHDheight = top+height-26
+						if clock_types in (1,6,11):
+							if self.screenwidth and self.screenwidth == 1920:
+								pos = (left+xpos+ewidth-15, RecIconFHDheight)
+							else:
+								pos = (left+xpos+ewidth-13, RecIconHDheight)
+						elif clock_types in (5,10,15):
+							if self.screenwidth and self.screenwidth == 1920:
+								pos = (left+xpos-26, RecIconFHDheight)
+							else:
+								pos = (left+xpos-22, RecIconHDheight)
 						else:
-							pos = (left+xpos-22, top+height-22)
-					else:
-						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left+xpos+ewidth-26, top+height-26)
-						else:
-							pos = (left+xpos+ewidth-22, top+height-22)
-					if self.screenwidth and self.screenwidth == 1920:
-						res.append(MultiContentEntryPixmapAlphaBlend(
-							pos = pos, size = (25, 25),
-							png = clocks))
-					else:
-						res.append(MultiContentEntryPixmapAlphaBlend(
-							pos = pos, size = (21, 21),
-							png = clocks))
-					if self.wasEntryAutoTimer and clock_types in (2,7,12):
+							if self.screenwidth and self.screenwidth == 1920:
+								pos = (left+xpos+ewidth-26, RecIconFHDheight)
+							else:
+								pos = (left+xpos+ewidth-22, RecIconHDheight)
 						if self.screenwidth and self.screenwidth == 1920:
 							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-25,pos[1]), size = (25, 25),
-								png = self.autotimericon))
+								pos = pos, size = (25, 25),
+								png = clocks))
 						else:
 							res.append(MultiContentEntryPixmapAlphaBlend(
-								pos = (pos[0]-21,pos[1]), size = (21, 21),
-								png = self.autotimericon))
+								pos = pos, size = (21, 21),
+								png = clocks))
+						if self.wasEntryAutoTimer and clock_types in (2,7,12):
+							if self.screenwidth and self.screenwidth == 1920:
+								res.append(MultiContentEntryPixmapAlphaBlend(
+									pos = (pos[0]-25,pos[1]), size = (25, 25),
+									png = self.autotimericon))
+							else:
+								res.append(MultiContentEntryPixmapAlphaBlend(
+									pos = (pos[0]-21,pos[1]), size = (21, 21),
+									png = self.autotimericon))
 		return res
 
 	def getSelectionPosition(self,serviceref):
