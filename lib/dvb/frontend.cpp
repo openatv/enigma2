@@ -2520,6 +2520,9 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 	m_sec_sequence.clear();
 
+	if((m_type == feSatellite) && (type != feSatellite))
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
+
 	if((m_type == feSatellite) && (type != feSatellite) && (m_data[SATCR] != -1))
 	{
 		eDebug("unicable shutdown");
@@ -2527,7 +2530,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 		// check if voltage is disabled
 		eSecCommand::pair compare;
-		compare.steps = +9;	//only close frontend
+		compare.steps = +6;	//only close frontend
 		compare.voltage = iDVBFrontend::voltageOff;
 
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
@@ -2535,7 +2538,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 100 ));
 
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage18_5) );
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 100 ));
 
 		eDVBDiseqcCommand diseqc;
@@ -2584,7 +2586,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 100 ));
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 
 		if(has_prev())
 		{
