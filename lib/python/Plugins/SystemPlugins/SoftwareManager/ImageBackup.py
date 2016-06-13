@@ -171,14 +171,15 @@ class ImageBackup(Screen):
 		return data
 
 	def list_files(self, PATH):
-		self.path = PATH
 		files = []
-		for name in listdir(self.path):
-			if path.isfile(path.join(self.path, name)):
-				cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-				if cmdline in (ext4devices):
-					files.append(name)
-		files.append("Recovery")
+		if HaveMultiBoot:
+			self.path = PATH
+			for name in listdir(self.path):
+				if path.isfile(path.join(self.path, name)):
+					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+					if cmdline in (ext4devices):
+						files.append(name)
+			files.append("Recovery")
 		return files
 
 	def SearchUSBcanidate(self):
@@ -205,6 +206,7 @@ class ImageBackup(Screen):
 			self.BZIP2 = "/usr/bin/bzip2"
 		else:
 			self.MKFS = "/usr/sbin/mkfs.jffs2"
+
 		self.UBINIZE = "/usr/sbin/ubinize"
 		self.NANDDUMP = "/usr/sbin/nanddump"
 		self.WORKDIR= "%s/bi" %self.DIRECTORY
