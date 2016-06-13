@@ -19,7 +19,7 @@ int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *d
 	eDebugNoNewLineStart("SESSION(%d)/CA %02x %02x %02x: ", session_nb, tag[0], tag[1],tag[2]);
 	for (int i=0; i<len; i++)
 		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-	eDebugNoNewLineEnd("");
+	eDebugEOL();
 
 	if ((tag[0]==0x9f) && (tag[1]==0x80))
 	{
@@ -33,7 +33,7 @@ int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *d
 				caids.push_back((((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 			}
 			std::sort(caids.begin(), caids.end());
-			eDebugNoNewLineEnd("");
+			eDebugEOL();
 			eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 			break;
 		default:

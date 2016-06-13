@@ -251,9 +251,9 @@ public:
 
 	int m_slot_mask; // useable by slot ( 1 | 2 | 4...)
 
-	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
-				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
-				m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
+	int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
+		m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
+		m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
 
 	bool m_increased_voltage; // use increased voltage ( 14/18V )
 

@@ -9,7 +9,7 @@ class eRawFile: public iTsSource
 	DECLARE_REF(eRawFile);
 	eSingleLock m_lock;
 public:
-	eRawFile(int packetsize = 188);
+	eRawFile(unsigned int packetsize = 188);
 	~eRawFile();
 	int open(const char *filename);
 

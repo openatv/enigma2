@@ -24,6 +24,7 @@ void eDVBPMTParser::clearProgramInfo(program &program)
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.subtitleStreams.clear();
+	program.caids.clear();
 	program.pcrPid = -1;
 	program.pmtPid = -1;
 	program.textPid = -1;

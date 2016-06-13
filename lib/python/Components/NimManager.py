@@ -1797,6 +1797,10 @@ def InitNimManager(nimmgr, update_slots = []):
 				from Screens.MessageBox import MessageBox
 				nim.advanced.unicableconnected.value = False
 				nim.advanced.unicableconnected.save()
+#TODO the following three lines correct the error: 'msgid' format string with unnamed arguments cannot be properly localized
+#				tuner1 = chr(int(x) + ord('A'))
+#				tuner2 =  chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A'))
+#				txt = _("Misconfigured unicable connection from tuner %(tuner1)s to tuner %(tuner2)s!\nTuner %(tuner1)s option \"connected to\" are disabled now") % locals()
 				txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
 				AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
 

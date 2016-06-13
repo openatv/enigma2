@@ -26,6 +26,11 @@ DEFINE_REF(eComponentData);
 DEFINE_REF(eGenreData);
 DEFINE_REF(eParentalData);
 
+eServiceEvent::eServiceEvent():
+	m_begin(0), m_duration(0), m_event_id(0)
+{
+}
+
 /* search for the presence of language from given EIT event descriptors*/
 bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidonid)
 {

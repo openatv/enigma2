@@ -128,7 +128,7 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 		invalidate(redraw);
 	} else if (m_comp_mode == cmBuffered)
 	{
-		if (!root->m_vis & eWidget::wVisShow)
+		if (!(root->m_vis & eWidget::wVisShow))
 		{
 			clearVisibility(root);
 			for (int i = 0; i < MAX_LAYER; ++i)

@@ -243,7 +243,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			{
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
-			eDebugNoNewLineEnd(" ");
+			eDebugEOL();
 			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
 			if (hdmicec_report_active_menu)
 			{
@@ -396,7 +396,7 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 		{
 			eDebugNoNewLine(" %02X", message.data[i]);
 		}
-		eDebugNoNewLineEnd(" ");
+		eDebugEOL();
 #ifdef DREAMBOX
 		message.flag = 1;
 		::ioctl(hdmiFd, 3, &message);

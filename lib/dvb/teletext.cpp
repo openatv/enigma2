@@ -376,7 +376,7 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 							if (mode > 15) //char from G0 set w/ diacr.
 							{
 								unsigned int ch=data;
-								if (!mode&0xF)
+								if (!(mode & 0xF))
 								{
 									if (data == 0x2A)
 										ch = '@';

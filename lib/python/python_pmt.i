@@ -4,7 +4,7 @@ PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
 	ePyObject ret;
 	std::vector<int> caids, ecmpids;
 	self->getCaIds(caids, ecmpids);
-	int cnt = caids.size();
+	unsigned cnt = caids.size();
 
 	ret = PyList_New(cnt);
 
