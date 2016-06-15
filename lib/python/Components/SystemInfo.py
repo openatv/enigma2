@@ -67,3 +67,4 @@ SystemInfo["grautec"] = fileExists("/tmp/usbtft")
 SystemInfo["3DMode"] = fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/fb/primary/3d")
 SystemInfo["3DZNorm"] = fileCheck("/proc/stb/fb/znorm") or fileCheck("/proc/stb/fb/primary/zoffset")
 SystemInfo["CanUse3DModeChoices"] = fileExists('/proc/stb/fb/3dmode_choices') and True or False
+SystemInfo["HaveMultiBoot"] = fileCheck("/boot/STARTUP") or fileCheck("/boot/STARTUP_1")

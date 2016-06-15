@@ -1,5 +1,5 @@
 #################################################################################
-# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 3.2     			#
+# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 3.4     			#
 #	                         						                            #
 #					MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
@@ -7,32 +7,20 @@
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.About import about
+from Components import Harddisk
 from Screens.Console import Console
-from Components.Console import Console as Console2
 from Screens.MessageBox import MessageBox
-from time import time, strftime, localtime, sleep
+from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs, remove
 import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
 VERSION = "Version 5.3 openATV"
-
-HaveMultiBoot = False
-if path.isfile("/boot/STARTUP") and path.isfile("/boot/STARTUP_1"):
-	HaveMultiBoot = True
-	Console2().ePopen("blkid -t TYPE=ext4 -o device >/tmp/ext4.tmp")
-	sleep(0.5)
-	with open("/tmp/ext4.tmp", 'r') as myfile:
-		ext4devices=myfile.read().replace('\n', ',')
-		ext4devices=ext4devices.rstrip(",")
-		ext4devices = [x.strip() for x in ext4devices.split(",")]
-	myfile.close()
-	if path.exists('/tmp/ext4.tmp'):
-		remove('/tmp/ext4.tmp')
 
 HaveGZkernel = True
 if getMachineBuild() in ("vusolo4k", "spark", "spark7162", "hd51", "hd52"):
@@ -93,7 +81,7 @@ class ImageBackup(Screen):
 		self["key_green"] = StaticText("USB")
 		self["key_red"] = StaticText("HDD")
 		self["key_blue"] = StaticText(_("Exit"))
-		if HaveMultiBoot:
+		if SystemInfo["HaveMultiBoot"]:
 			self["key_yellow"] = StaticText(_("STARTUP"))
 			self["info-multi"] = Label(_("You can select with yellow the OnlineFlash Image\n or select Recovery to create a USB Disk Image for clean Install."))
 		else:
@@ -145,21 +133,18 @@ class ImageBackup(Screen):
 				self.doFullBackup(USB_DEVICE)
 
 	def yellow(self):
-		if HaveMultiBoot:
+		if SystemInfo["HaveMultiBoot"]:
 			self.selection = self.selection + 1
 			if self.selection == len(self.list):
 				self.selection = 0
 			self["key_yellow"].setText(_(self.list[self.selection]))
 			if self.list[self.selection] == "Recovery":
 				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-				cmdline = cmdline.lstrip("/dev/")
-				self.MTDROOTFS = cmdline
-				self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-				cmdline = cmdline.lstrip("/dev/")
-				self.MTDROOTFS = cmdline
-				self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
+			cmdline = cmdline.lstrip("/dev/")
+			self.MTDROOTFS = cmdline
+			self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
 			print "[FULL BACKUP] Multiboot rootfs ", self.MTDROOTFS
 			print "[FULL BACKUP] Multiboot kernel ", self.MTDKERNEL
 
@@ -172,12 +157,12 @@ class ImageBackup(Screen):
 
 	def list_files(self, PATH):
 		files = []
-		if HaveMultiBoot:
+		if SystemInfo["HaveMultiBoot"]:
 			self.path = PATH
 			for name in listdir(self.path):
 				if path.isfile(path.join(self.path, name)):
 					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-					if cmdline in (ext4devices):
+					if cmdline in Harddisk.getextdevices("ext4"):
 						files.append(name)
 			files.append("Recovery")
 		return files
@@ -201,7 +186,7 @@ class ImageBackup(Screen):
 		self.IMAGEVERSION = self.imageInfo() #strftime("%Y%m%d", localtime(self.START))
 		if "ubi" in self.ROOTFSTYPE.split():
 			self.MKFS = "/usr/sbin/mkfs.ubifs"
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or HaveMultiBoot:
+		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"]:
 			self.MKFS = "/bin/tar"
 			self.BZIP2 = "/usr/bin/bzip2"
 		else:
@@ -237,10 +222,10 @@ class ImageBackup(Screen):
 		if self.ROOTFSTYPE == "ubi":
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 3-12 minutes for this system\n")
-		elif HaveMultiBoot and self.list[self.selection] == "Recovery":
+		elif SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 30 minutes for this system\n")
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or HaveMultiBoot:
+		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"]:
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 1-4 minutes for this system\n")
 		else:
@@ -255,7 +240,7 @@ class ImageBackup(Screen):
 		if not path.exists("/tmp/bi/root"):
 			makedirs("/tmp/bi/root")
 		system("sync")
-		if HaveMultiBoot:
+		if SystemInfo["HaveMultiBoot"]:
 			system("mount /dev/%s /tmp/bi/root" %self.MTDROOTFS)
 		else:
 			system("mount --bind / /tmp/bi/root")
@@ -264,7 +249,7 @@ class ImageBackup(Screen):
 			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 			cmd3 = None
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or HaveMultiBoot:
+		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"]:
 			cmd1 = "%s -cf %s/rootfs.tar -C /tmp/bi/root --exclude=/var/nmbd/* ." % (self.MKFS, self.WORKDIR)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
@@ -296,7 +281,7 @@ class ImageBackup(Screen):
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "Create: kerneldump"')
 		cmdlist.append('echo " "')
-		if HaveMultiBoot:
+		if SystemInfo["HaveMultiBoot"]:
 			cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
 		elif self.MTDKERNEL == "mmcblk0p1":
 			cmdlist.append("dd if=/dev/%s of=%s/kernel_auto.bin" % (self.MTDKERNEL ,self.WORKDIR))
@@ -308,7 +293,7 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "Check: kerneldump"')
 		cmdlist.append("sync")
 
-		if HaveMultiBoot and self.list[self.selection] == "Recovery":
+		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			GPT_OFFSET=0
 			GPT_SIZE=1024
 			BOOT_PARTITION_OFFSET = int(GPT_OFFSET) + int(GPT_SIZE)
@@ -394,14 +379,14 @@ class ImageBackup(Screen):
 			system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
 		else:
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-		if HaveMultiBoot:
+		if SystemInfo["HaveMultiBoot"]:
 			system('mv %s/kernel.bin %s/kernel.bin' %(self.WORKDIR, self.MAINDEST))
 		elif self.KERNELBIN == "kernel_auto.bin":
 			system('mv %s/kernel_auto.bin %s/kernel_auto.bin' %(self.WORKDIR, self.MAINDEST))
 		else:
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 
-		if HaveMultiBoot and self.list[self.selection] == "Recovery":
+		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			system('mv %s/disk.img %s/disk.img' %(self.WORKDIR, self.MAINDEST))
 		elif self.MODEL in ("vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno"):
 			cmdlist.append('echo "This file forces a reboot after the update." > %s/reboot.update' %self.MAINDEST)
@@ -446,7 +431,7 @@ class ImageBackup(Screen):
 			print 'NOFORCE bin file not found'
 			file_found = False
 
-		if HaveMultiBoot and not self.list[self.selection] == "Recovery":
+		if SystemInfo["HaveMultiBoot"] and not self.list[self.selection] == "Recovery":
 			cmdlist.append('echo "_________________________________________________\n"')
 			cmdlist.append('echo "Multiboot Image created on:" %s' %self.MAINDEST)
 			cmdlist.append('echo "and there is made an extra copy on:"')
