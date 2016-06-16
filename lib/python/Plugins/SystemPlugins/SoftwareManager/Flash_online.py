@@ -172,6 +172,8 @@ class FlashOnline(Screen):
 				if os.path.isfile(os.path.join(path, name)):
 					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
 					files.append(name)
+		else:
+			files = "None"
 		return files
 
 class doFlashImage(Screen):
