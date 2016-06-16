@@ -128,6 +128,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		if self.instance is not None:
 			self.instance.moveSelection(self.instance.moveDown)
 
+	def refresh(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.refresh)
+
 class ConfigListScreen:
 	def __init__(self, list, session = None, on_change = None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"],
@@ -232,10 +236,12 @@ class ConfigListScreen:
 	def keyLeft(self):
 		self["config"].handleKey(KEY_LEFT)
 		self.__changed()
+		self["config"].refresh()
 
 	def keyRight(self):
 		self["config"].handleKey(KEY_RIGHT)
 		self.__changed()
+		self["config"].refresh()
 
 	def keyHome(self):
 		self["config"].handleKey(KEY_HOME)
