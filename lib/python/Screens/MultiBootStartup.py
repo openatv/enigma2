@@ -55,8 +55,9 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self["config"].setText(_("Select Image: %s" %self.list[self.selection]))
 
 	def save(self):
-		print "[MultiBootStartuo] select new startup: ", self.list[self.selection]
-		system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
+		if not self.list[self.selection] == "STARTUP"
+			print "[MultiBootStartuo] select new startup: ", self.list[self.selection]
+			system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
 		self.close()
 
 	def cancel(self):
