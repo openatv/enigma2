@@ -340,8 +340,8 @@ class EPGList(HTMLComponent, GUIComponent):
 					if CompareWithAlternatives(self.list[x][1], serviceref.toString()):
 						return x
 				else:
-					return None
-		return None
+					return 0
+		return 0
 
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
@@ -350,8 +350,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		if not serviceref:
 			return
 		newIdx = self.getIndexFromService(serviceref)
-		if newIdx is None:
-			newIdx = 0
 		self.setCurrentIndex(newIdx)
 
 	def setCurrentIndex(self, index):
@@ -1682,12 +1680,10 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			for x in range(len(self.bouquetslist)):
 				if CompareWithAlternatives(self.bouquetslist[x][1].toString(), serviceref.toString()):
 					return x
-		return None
+		return 0
 
 	def moveToService(self, serviceref):
 		newIdx = self.getIndexFromService(serviceref)
-		if newIdx is None:
-			newIdx = 0
 		self.setCurrentIndex(newIdx)
 
 	def setCurrentIndex(self, index):
