@@ -33,7 +33,7 @@ elif distro.lower() == "openatv":
 feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
 
 if ImageVersion == '5.3':
-	ImageVersion2= '5.2'
+	ImageVersion2= '5.4'
 else:
 	ImageVersion2= '5.3'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
