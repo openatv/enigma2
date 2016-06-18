@@ -129,8 +129,9 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 			self.instance.moveSelection(self.instance.moveDown)
 
 	def refresh(self):
-		if self.instance is not None:
-			self.instance.moveSelection(self.instance.refresh)
+		for x in self.onSelectionChanged:
+			if x.__func__.__name__ == "selectionChanged":
+				x()
 
 class ConfigListScreen:
 	def __init__(self, list, session = None, on_change = None):
