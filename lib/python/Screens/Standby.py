@@ -168,7 +168,7 @@ class Standby(Standby2):
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)
 			self.onFirstExecBegin.append(self.showMessageBox)
-			self.onHide.append(self.close)
+			self.onShow.append(self.close)
 		else:
 			Standby2.__init__(self, session)
 
