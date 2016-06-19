@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-06-19 16:38+0100\n"
+"PO-Revision-Date: 2016-06-19 22:33+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV <madie1@gmx.de>\n"
 "Language: de\n"
@@ -2693,14 +2693,6 @@ msgstr "Einstellung der Helligkeit für das Gerätedisplay im Normalbetrieb."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Einstellung der Helligkeit für das Gerätedisplay im Standby."
-
-# SoftwareManager/plugin.py
-msgid "Display and user interface"
-msgstr "Anzeige und Oberfläche"
-
-# SoftwareManager/plugin.py
-msgid "View list of available display and userinterface extensions."
-msgstr "Zeigt die Liste der verfügbaren Anzeige/Oberflächen-Erweiterungen."
 
 msgid "Setup Userinterface"
 msgstr "Einstellungen Benutzeroberfläche"
@@ -9505,9 +9497,13 @@ msgstr "Eine Liste der verfügbaren "
 msgid "View list of available CommonInterface extensions"
 msgstr "Verfügbare Common Interface-Erweiterungen anzeigen."
 
-#
-msgid "View list of available Display and Userinterface extensions."
-msgstr "Verfügbare Display- und Userinterface-Erweiterungen anzeigen."
+# SoftwareManager/plugin.py
+msgid "Display and user interface"
+msgstr "Anzeige und Oberfläche"
+
+# SoftwareManager/plugin.py
+msgid "View list of available display and userinterface extensions."
+msgstr "Verfügbare Anzeige/Oberflächen-Erweiterungen anzeigen."
 
 #
 msgid "View list of available EPG extensions."
@@ -9521,7 +9517,7 @@ msgstr "Verfügbare Satellitenausrüstungs-Plugins anzeigen."
 msgid "View list of available communication extensions."
 msgstr "Verfügbare Kommunikations-Erweiterungen anzeigen."
 
-#
+# SoftwareManager/plugin.py
 msgid "View list of available default settings"
 msgstr "Verfügbare Standard-Bouquets anzeigen."
 
