@@ -1254,10 +1254,7 @@ class InfoBarTimeshift:
 
 	def ptsGetTimeshiftStatus(self):
 		dprint("ptsGetTimeshiftStatus")
-		if (self.isSeekable() and self.timeshiftEnabled() or self.save_current_timeshift) and config.usage.check_timeshift.value:
-			return True
-		else:
-			return False
+		return bool(self.isSeekable() and self.timeshiftEnabled() and config.usage.check_timeshift.value or self.save_current_timeshift)
 
 	def ptsSeekPointerOK(self):
 		dprint("ptsSeekPointerOK")
