@@ -112,6 +112,8 @@ class Devices(Screen):
 		self["HDDHeader"] = StaticText(_("Detected devices:"))
 		self["MountsHeader"] = StaticText(_("Network servers:"))
 		self["nims"] = StaticText()
+		for count in (0, 1, 2, 3):
+			self["Tuner" + str(count)] = StaticText("")
 		self["hdd"] = StaticText()
 		self["mounts"] = StaticText()
 		self.list = []
@@ -129,6 +131,8 @@ class Devices(Screen):
 		self["actions"].setEnabled(False)
 		scanning = _("Please wait while scanning for devices...")
 		self["nims"].setText(scanning)
+		for count in (0, 1, 2, 3):
+			self["Tuner" + str(count)].setText(scanning)
 		self["hdd"].setText(scanning)
 		self['mounts'].setText(scanning)
 		self.activityTimer.start(1)
@@ -143,6 +147,39 @@ class Devices(Screen):
 				niminfo += "\n"
 			niminfo += nims[count]
 		self["nims"].setText(niminfo)
+
+		nims = nimmanager.nimList()
+		if len(nims) <= 4 :
+			for count in (0, 1, 2, 3):
+				if count < len(nims):
+					self["Tuner" + str(count)].setText(nims[count])
+				else:
+					self["Tuner" + str(count)].setText("")
+		else:
+			desc_list = []
+			count = 0
+			cur_idx = -1
+			while count < len(nims):
+				data = nims[count].split(":")
+				idx = data[0].strip('Tuner').strip()
+				desc = data[1].strip()
+				if desc_list and desc_list[cur_idx]['desc'] == desc:
+					desc_list[cur_idx]['end'] = idx
+				else:
+					desc_list.append({'desc' : desc, 'start' : idx, 'end' : idx})
+					cur_idx += 1
+				count += 1
+
+			for count in (0, 1, 2, 3):
+				if count < len(desc_list):
+					if desc_list[count]['start'] == desc_list[count]['end']:
+						text = "Tuner %s: %s" % (desc_list[count]['start'], desc_list[count]['desc'])
+					else:
+						text = "Tuner %s-%s: %s" % (desc_list[count]['start'], desc_list[count]['end'], desc_list[count]['desc'])
+				else:
+					text = ""
+
+				self["Tuner" + str(count)].setText(text)
 
 		self.list = []
 		list2 = []
