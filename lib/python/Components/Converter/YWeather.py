@@ -7,6 +7,8 @@ from Tools.Directories import fileExists
 from Poll import Poll
 import time
 import os
+from urllib2 import Request, urlopen
+import socket
 
 class YWeather(Poll, Converter, object):
 	weather_city = '711665'
@@ -123,36 +125,61 @@ class YWeather(Poll, Converter, object):
 			self.type = self.picon5
 		self.poll_interval = self.time_update_ms
 		self.poll_enabled = True
-		
+
+	def fetchXML(self, URL, save_to):
+		socket_timeout = 10
+		socket.setdefaulttimeout(socket_timeout)
+		req = Request(URL)
+		try:
+			response = urlopen(req)
+		except Exception, e:
+			if hasattr(e, 'code') and hasattr(e, 'reason'):
+				print "[YWeather][fetchXML] Failed to retrieve XML file. Error: %s %s" % (str(e.code), str(e.reason))
+			else:
+				if hasattr(e, 'reason'):
+					print '[YWeather][fetchXML] Failed to retrieve XML file. Error: ', str(e.reason)
+				else:
+					print '[YWeather][fetchXML] Failed to retrieve XML file.'
+			return
+
+		try:
+			with open(save_to, "w") as f:
+				f.write(response.read().replace("><", ">\n<"))
+				f.close
+			print '[YWeather][fetchXML] XML file retrieved and saved.'
+			return True
+		except:
+			print '[YWeather][fetchXML] XML file retrieved and but could not be saved.'
+			return
+
 	@cached
 	def getText(self):
-		xweather = {'ycity':"N/A", 'ycountry':"N/A", 'ydirection':"N/A", 'yspeed':"N/A", 'yhumidity':"N/A", 'yvisibility':"N/A", 'ypressure':"N/A", 'ytext':"N/A", 'ytemp':"N/A", 'ypicon':"3200",
-			    'yday2':"N/A", 'yday3':"N/A", 'yday4':"N/A", 'yday5':"N/A",
-			    'ypiconday2':"3200", 'ypiconday3':"3200", 'ypiconday4':"3200", 'ypiconday5':"3200",
-			    'ydate2':"N/A", 'ydate3':"N/A", 'ydate4':"N/A", 'ydate5':"N/A",
-			    'ytextday2':"N/A", 'ytextday3':"N/A", 'ytextday4':"N/A", 'ytextday5':"N/A",
-			    'ytemphighday2':"N/A", 'ytemphighday3':"N/A", 'ytemphighday4':"N/A", 'ytemphighday5':"N/A",
-			    'ytemplowday2':"N/A", 'ytemplowday3':"N/A", 'ytemplowday4':"N/A", 'ytemplowday5':"N/A"}
+		xweather = {'ycity':"N/A", 'ycountry':"N/A", 'ydirection':"N/A", 'yspeed':"N/A", 'yhumidity':"N/A",
+				'yvisibility':"N/A", 'ypressure':"N/A", 'ytext':"N/A", 'ytemp':"N/A", 'ypicon':"3200",
+				'yday2':"N/A", 'yday3':"N/A", 'yday4':"N/A", 'yday5':"N/A",
+				'ypiconday2':"3200", 'ypiconday3':"3200", 'ypiconday4':"3200", 'ypiconday5':"3200",
+				'ydate2':"N/A", 'ydate3':"N/A", 'ydate4':"N/A", 'ydate5':"N/A",
+				'ytextday2':"N/A", 'ytextday3':"N/A", 'ytextday4':"N/A", 'ytextday5':"N/A",
+				'ytemphighday2':"N/A", 'ytemphighday3':"N/A", 'ytemphighday4':"N/A", 'ytemphighday5':"N/A",
+				'ytemplowday2':"N/A", 'ytemplowday3':"N/A", 'ytemplowday4':"N/A", 'ytemplowday5':"N/A"}
 		direct = 0
 		info = ""
+		XML_location = "/tmp/yweather.xml"
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/iSkin/Weather/Config/Location_id"):
 			self.weather_city = open("/usr/lib/enigma2/python/Plugins/Extensions/iSkin/Weather/Config/Location_id").read()
 		elif fileExists("/usr/lib/enigma2/python/Plugins/Extensions/YahooWeather/Config/Location_id"):
 			self.weather_city = open("/usr/lib/enigma2/python/Plugins/Extensions/YahooWeather/Config/Location_id").read()
-		if fileExists("/tmp/yweather.xml"):
-			if int((time.time() - os.stat("/tmp/yweather.xml").st_mtime)/60) >= self.time_update:
-				os.system("rm /tmp/yweather.xml")
-				os.system("wget -P /tmp -T2 'http://weather.yahooapis.com/forecastrss?w=%s&u=c' -O /tmp/yweather.xml" % self.weather_city)
-		else:
-			os.system("wget -P /tmp -T2 'http://weather.yahooapis.com/forecastrss?w=%s&u=c' -O /tmp/yweather.xml" % self.weather_city)
-			if not fileExists("/tmp/yweather.xml"):
-				os.system("echo -e 'None' >> /tmp/yweather.xml")
-				return 'N/A'
-		if not fileExists("/tmp/yweather.xml"):
-			os.system("echo -e 'None' >> /tmp/yweather.xml")
+		if fileExists(XML_location) and (int((time.time() - os.stat(XML_location).st_mtime)/60) >= self.time_update):
+				os.remove(XML_location)
+		XML_URL = "https://query.yahooapis.com/v1/public/yql?q=select%%20*%%20from%%20weather.forecast%%20where%%20woeid=%ss%%20AND%%20u=%%22c%%22" % self.weather_city
+		if not fileExists(XML_location) and self.fetchXML(XML_URL, XML_location) != True:
+			with open(XML_location, "w") as f:
+				f.write("None")
+				f.close
 			return 'N/A'
 		wday = 1
-		for line in open("/tmp/yweather.xml"):
+		for line in open(XML_location):
+			#print "[YWeather][gText] line:", line
 			if line.find("<yweather:location") > -1:
 				xweather['ycity'] = line.split('city')[1].split('"')[1]
 				xweather['ycountry'] = line.split('country')[1].split('"')[1]
@@ -196,8 +223,10 @@ class YWeather(Poll, Converter, object):
 					xweather['ypiconday5'] =  line.split('code')[1].split('"')[1]
 					xweather['ytemphighday5'] = line.split('high')[1].split('"')[1]
 					xweather['ytemplowday5'] = line.split('low')[1].split('"')[1]
-				wday = wday + 1		  
-				
+				wday = wday + 1
+
+		#print "[YWeather][gText] xweather:", xweather
+
 		if self.type == self.city:
 			info = xweather['ycity']
 		elif self.type == self.country:
@@ -258,7 +287,7 @@ class YWeather(Poll, Converter, object):
 			info = xweather['ytext']
 		elif self.type == self.temp:
 			if info != "N/A":
-				info = xweather['ytemp'] + '%s' % unichr(176).encode("latin-1") 
+				info = xweather['ytemp'] + '%s' % unichr(176).encode("latin-1")
 			else:
 				info = xweather['ytemp']
 		elif self.type == self.picon:
@@ -403,6 +432,7 @@ class YWeather(Poll, Converter, object):
 				info = "N/A"
 		elif self.type == self.date5:
 			info = xweather['ydate5']
+		#print "[YWeather][gText] info:", info
 		return info
 
 	text = property(getText)
