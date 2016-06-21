@@ -837,7 +837,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
 				namefont = 0
-				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+				namefontflag = int(config.epgselection.graph_servicename_alignment.value)
 				namewidth = piconWidth
 				piconWidth = 0
 			else:
@@ -847,7 +847,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showServiceTitle: # we have more space so reset parms
 			namefont = 0
-			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			namefontflag = int(config.epgselection.graph_servicename_alignment.value)
 			namewidth = r1.w - piconWidth
 
 		if self.showServiceTitle or displayPicon is None:
