@@ -2041,7 +2041,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					fclose(f);
 					if (!memcmp(boxtype, "et9000", 6) || !memcmp(boxtype, "et9100", 6) || !memcmp(boxtype, "et9200", 6))
 					{
-						//eDebug("[eServiceMP3] mp3 playback fix - set paused and then playing state");
+						eDebug("[eServiceMP3] mp3,aac playback fix for xtrend et9000,9100,9200 - set paused and then playing state");
 						GstStateChangeReturn ret;
 						ret = gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
 						if (ret != GST_STATE_CHANGE_SUCCESS)
