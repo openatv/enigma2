@@ -1924,6 +1924,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				break;
 
 			gint i, n_video = 0, n_audio = 0, n_text = 0;
+			bool codec_tofix = false;
 
 			g_object_get (m_gst_playbin, "n-video", &n_video, NULL);
 			g_object_get (m_gst_playbin, "n-audio", &n_audio, NULL);
@@ -1980,6 +1981,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					gst_tag_list_free(tags);
 				}
 				//eDebug("[eServiceMP3] audio stream=%i codec=%s language=%s", i, audio.codec.c_str(), audio.language_code.c_str());
+				codec_tofix = (audio.codec.find("MPEG-1 Layer 3 (MP3)") == 0 || audio.codec.find("MPEG-2 AAC") == 0) && n_audio - n_video == 1;
 				m_audioStreams.push_back(audio);
 				gst_caps_unref(caps);
 			}
@@ -2028,17 +2030,28 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			}
 			/*+++*workaround for mp3 playback problem on some boxes - e.g. xtrend et9200 (if press stop and play or switch to the next track is the state 'playing', but plays not.
 			Restart the player-application or paused and then play the track fix this for once.)*/
-			if (!m_paused && m_sourceinfo.audiotype == atMP3)
+			if (!m_paused && codec_tofix)
 			{
-				//eDebug("[eServiceMP3] mp3 playback fix - set paused and then playing state");
-				GstStateChangeReturn ret;
-				ret = gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
-				if (ret != GST_STATE_CHANGE_SUCCESS)
+				std::string filename = "/proc/stb/info/boxtype";
+				FILE *f = fopen(filename.c_str(), "rb");
+				if (f)
 				{
-					eDebug("[eServiceMP3] mp3 playback fix - failure set paused state - sleep one second before set playing state");
-					sleep(1);
+					char boxtype[6];
+					fread(boxtype, 6, 1, f);
+					fclose(f);
+					if (!memcmp(boxtype, "et9000", 6) || !memcmp(boxtype, "et9100", 6) || !memcmp(boxtype, "et9200", 6))
+					{
+						//eDebug("[eServiceMP3] mp3 playback fix - set paused and then playing state");
+						GstStateChangeReturn ret;
+						ret = gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+						if (ret != GST_STATE_CHANGE_SUCCESS)
+						{
+							eDebug("[eServiceMP3] mp3 playback fix - failure set paused state - sleep one second before set playing state");
+							sleep(1);
+						}
+						gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+					}
 				}
-				gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 			}
 			/*+++*/
 			break;
