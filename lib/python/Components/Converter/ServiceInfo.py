@@ -131,12 +131,12 @@ class ServiceInfo(Converter, object):
 			return video_aspect not in WIDESCREEN
 		elif self.type == self.SUBSERVICES_AVAILABLE:
 			subservices = service.subServices()
-			return subservices and subservices.getNumberOfSubservices() > 0
+			return bool(subservices) and subservices.getNumberOfSubservices() > 0
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl) != ""
 		elif self.type == self.AUDIOTRACKS_AVAILABLE:
 			audio = service.audioTracks()
-			return audio and audio.getNumberOfTracks() > 1
+			return bool(audio) and audio.getNumberOfTracks() > 1
 		elif self.type == self.SUBTITLES_AVAILABLE:
 			subtitle = service and service.subtitle()
 			subtitlelist = subtitle and subtitle.getSubtitleList()
