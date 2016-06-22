@@ -2629,12 +2629,6 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				stime = ::time(0);
 
 			eServiceReference ref(handleGroup(eServiceReference(PyString_AS_STRING(service))));
-			if (ref.type != eServiceReference::idDVB && ref.type != eServiceReference::idServiceMP3)
-			{
-				eDebug("[eEPGCache] service reference for epg query is not valid");
-				continue;
-			}
-
 			// redirect subservice querys to parent service
 			eServiceReferenceDVB &dvb_ref = (eServiceReferenceDVB&)ref;
 			if (dvb_ref.getParentTransportStreamID().get()) // linkage subservice
