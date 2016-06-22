@@ -88,7 +88,7 @@ class FlashOnline(Screen):
 			self["key_yellow"] = StaticText("")
 		self["key_green"] = StaticText("Online")
 		self["key_red"] = StaticText(_("Exit"))
-		self["key_blue"] = StaticText("Local")
+		self["key_blue"] = StaticText(_("Local"))
 		self["info-local"] = Label(_("Local = Flash a image from local path /hdd/images"))
 		self["info-online"] = Label(_("Online = Download a image and flash it"))
 		
