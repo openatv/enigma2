@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-12 14:43+0200\n"
-"PO-Revision-Date: 2016-04-16 01:35+0300\n"
+"POT-Creation-Date: 2016-06-18 00:53+0300\n"
+"PO-Revision-Date: 2016-06-18 00:59+0300\n"
 "Last-Translator: Audronis Grincevicius <adga@zebra.lt>\n"
 "Language-Team: adga (c) <adga@zebra.lt>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 
 msgid ""
 "\n"
@@ -8541,10 +8541,10 @@ msgstr ""
 
 msgid ""
 "Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check openvix.co.uk or world-of-satellite.com."
+"persists please check www.opena.tv"
 msgstr ""
 "Atsiprašome šaltiniai neveikia dėl priežiūros darbų, bandykite vėliau. Jei "
-"problema išlieka, patikrinkite openvix.co.uk arba world-of-satellite.com."
+"problema išlieka, apsilankykite www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "Gaila, jokios atsarginės kopijos nerastos!"
@@ -15707,6 +15707,19 @@ msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr "Atsarginė kopija sukurta. Dabar mes tęsime atnaujinimą. "
+
+#: MultiBootStartup.py:29
+msgid "MultiBoot Selector"
+msgstr "Daugiafunkcinis paleidimo pasirinkimas"
+
+#: MultiBootStartup.py:33
+msgid "Select Image: STARTUP_1"
+msgstr "Pasirinkite atvaizdą: STARTUP_1"
+
+#: MultiBootStartup.py:55
+#, python-format
+msgid "Select Image: %s"
+msgstr "Pasirinkite atvaizdą: %s"
 
 #, fuzzy
 #~ msgid ""

@@ -30,7 +30,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-		self["config"] = StaticText(_("Select Image: STARTUP"))
+		self["config"] = StaticText(_("Select Image: STARTUP_1"))
 		self.selection = 0
 		self.list = self.list_files("/boot")
 
@@ -55,9 +55,8 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self["config"].setText(_("Select Image: %s" %self.list[self.selection]))
 
 	def save(self):
-		if not self.list[self.selection] == "STARTUP":
-			print "[MultiBootStartuo] select new startup: ", self.list[self.selection]
-			system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
+		print "[MultiBootStartuo] select new startup: ", self.list[self.selection]
+		system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
 		self.close()
 
 	def cancel(self):
@@ -88,6 +87,6 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		for name in listdir(self.path):
 			if path.isfile(path.join(self.path, name)):
 				cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-				if cmdline in Harddisk.getextdevices("ext4"):
+				if cmdline in Harddisk.getextdevices("ext4") and not name == "STARTUP":
 					files.append(name)
 		return files

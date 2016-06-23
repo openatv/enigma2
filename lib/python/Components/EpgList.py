@@ -192,8 +192,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.serviceNamePadding = 3
 		self.eventBorderWidth = 1
 		self.eventNamePadding = 3
-		self.eventNameAlign = 'left'
-		self.eventNameWrap = 'yes'
+		#self.eventNameAlign = 'left'
+		#self.eventNameWrap = 'yes'
 		self.NumberOfRows = None
 
 	def applySkin(self, desktop, screen):
@@ -224,10 +224,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.eventFontNameMulti = font.family
 					self.eventFontSizeMulti = font.pointSize
-				elif attrib == "EntryFontAlignment":
-					self.eventNameAlign = value
-				elif attrib == "EntryFontWrap":
-					self.eventNameWrap = value
+				#elif attrib == "EntryFontAlignment":
+					#self.eventNameAlign = value
+				#elif attrib == "EntryFontWrap":
+					#self.eventNameWrap = value
 
 				elif attrib == "ServiceForegroundColor":
 					self.foreColorService = parseColor(value).argb()
@@ -837,7 +837,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
 				namefont = 0
-				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+				namefontflag = int(config.epgselection.graph_servicename_alignment.value)
 				namewidth = piconWidth
 				piconWidth = 0
 			else:
@@ -847,7 +847,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showServiceTitle: # we have more space so reset parms
 			namefont = 0
-			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			namefontflag = int(config.epgselection.graph_servicename_alignment.value)
 			namewidth = r1.w - piconWidth
 
 		if self.showServiceTitle or displayPicon is None:
@@ -939,16 +939,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
-				if self.eventNameAlign.lower() == 'left':
-					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
-					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
-				else:
-					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
-					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 				if stime <= now < (stime + duration):
 					if clock_types is not None and clock_types == 2:
@@ -1044,7 +1034,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					res.append(MultiContentEntryText(
 						pos = (evX, evY), size = (evW, evH),
-						font = 1, flags = alignnment,
+						font = 1, flags = int(config.epgselection.graph_event_alignment.value),
 						text = ev[1],
 						color = foreColor, color_sel = foreColorSel,
 						backcolor = backColor, backcolor_sel = backColorSel))

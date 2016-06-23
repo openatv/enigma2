@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-04-14 23:39+0100\n"
+"PO-Revision-Date: 2016-06-19 22:33+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV <madie1@gmx.de>\n"
 "Language: de\n"
@@ -2455,8 +2455,9 @@ msgstr "< Standard >"
 msgid "Defaults"
 msgstr "Standards"
 
-msgid "Default Settings"
-msgstr "Voreinstellungen"
+# SoftwareManager/plugin.py
+msgid "Default settings"
+msgstr "Standard-Einstellungen"
 
 msgid "Default movie location"
 msgstr "Standard-Filmverzeichnis"
@@ -2692,10 +2693,6 @@ msgstr "Einstellung der Helligkeit für das Gerätedisplay im Normalbetrieb."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Einstellung der Helligkeit für das Gerätedisplay im Standby."
-
-#
-msgid "Display and Userinterface"
-msgstr "Anzeige und Oberfläche"
 
 msgid "Setup Userinterface"
 msgstr "Einstellungen Benutzeroberfläche"
@@ -7781,9 +7778,9 @@ msgstr ""
 "Entschuldigung, Ihr Sicherungsverzeichnis ist nicht beschreibbar.\n"
 "Bitte wählen Sie ein anderes Verzeichnis."
 
-#
-msgid "Sorry, no Details available!"
-msgstr "Entschuldigung, keine Details verfügbar"
+#: SoftwareManager/plugin.py:877
+msgid "Sorry, no details available!"
+msgstr "Entschuldigung, keine Details verfügbar!"
 
 #: BackupRestore.py:124 BackupRestore.py:126
 msgid ""
@@ -9500,9 +9497,13 @@ msgstr "Eine Liste der verfügbaren "
 msgid "View list of available CommonInterface extensions"
 msgstr "Verfügbare Common Interface-Erweiterungen anzeigen."
 
-#
-msgid "View list of available Display and Userinterface extensions."
-msgstr "Verfügbare Display- und Userinterface-Erweiterungen anzeigen."
+# SoftwareManager/plugin.py
+msgid "Display and user interface"
+msgstr "Anzeige und Oberfläche"
+
+# SoftwareManager/plugin.py
+msgid "View list of available display and userinterface extensions."
+msgstr "Verfügbare Anzeige/Oberflächen-Erweiterungen anzeigen."
 
 #
 msgid "View list of available EPG extensions."
@@ -9516,7 +9517,7 @@ msgstr "Verfügbare Satellitenausrüstungs-Plugins anzeigen."
 msgid "View list of available communication extensions."
 msgstr "Verfügbare Kommunikations-Erweiterungen anzeigen."
 
-#
+# SoftwareManager/plugin.py
 msgid "View list of available default settings"
 msgstr "Verfügbare Standard-Bouquets anzeigen."
 
@@ -13878,7 +13879,7 @@ msgstr "Einstellung, um die Kanalnamen, Picons oder beides im EPG anzuzeigen."
 
 #
 msgid "Configure the width allocated to the service name."
-msgstr "Legen Sie die Breite des Sendernamen fest."
+msgstr "Legen Sie die Breite der Sendernamen fest."
 
 #
 msgid "Configure the amount of time that will be presented."
@@ -13908,23 +13909,23 @@ msgstr "Sendernamen Breite"
 msgid "Timeline font size"
 msgstr "Schriftgröße für die Zeitskala"
 
-#:EpgList.py
+#: EpgList.py
 msgid "Position of recording icons"
 msgstr "Ausrichtung der Aufnahme-Symbole"
 
-#:EpgList.py
+#: EpgList.py
 msgid "Set the position of the recording icons"
 msgstr "Legen Sie die Positionen der Aufnahme-Symbole fest."
 
-#:EpgList.py
+#: EpgList.py
 msgid "bottom"
 msgstr "Unten"
 
-#:EpgList.py
+#: EpgList.py
 msgid "middle"
 msgstr "Mitte"
 
-#:EpgList.py
+#: EpgList.py
 msgid "hide"
 msgstr "Verstecken"
 
@@ -13992,8 +13993,40 @@ msgid "Service font size"
 msgstr "Schriftgröße für Sendernamen"
 
 #: gEPG
+msgid "Alignment of service names"
+msgstr "Ausrichtung der Sendernamen"
+
+#: gEPG
 msgid "Event font size"
-msgstr "Schriftgröße für Ereignis"
+msgstr "Schriftgröße für Sendungsnamen"
+
+#: gEPG
+msgid "Alignment of events"
+msgstr "Ausrichtung der Sendungsnamen"
+
+#: gEPG
+msgid "Configure the alignment of events."
+msgstr "Konfigurieren Sie die Ausrichtung der Sendungsnamen."
+
+#: gEPG
+msgid "Configure the alignment of service names."
+msgstr "Konfigurieren Sie die Ausrichtung der Sendernamen."
+
+#: gEPG
+msgid "centered"
+msgstr "Zentriert"
+
+#: gEPG
+msgid "centered, wrapped"
+msgstr "Zentriert, umgebrochen"
+
+#: gEPG
+msgid "left, wrapped"
+msgstr "Links, umgebrochen"
+
+#: gEPG
+msgid "right, wrapped"
+msgstr "Rechts, umgebrochen"
 
 #
 msgid "When nonzero, a recording will start earlier than the starting time as indicated by the EPG."
@@ -14258,7 +14291,7 @@ msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Justieren Sie die Position der Benutzeroberfläche. Die  Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
+"Justieren Sie die Position der Benutzeroberfläche. Die Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
 "\n"
 "Danach OK drücken."
 
@@ -14267,7 +14300,7 @@ msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
 msgstr ""
-"Justieren Sie die Position der Benutzeroberfläche. Die  Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
+"Justieren Sie die Position der Benutzeroberfläche. Die Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
 "\n"
 "Danach grün drücken."
 
@@ -14428,7 +14461,7 @@ msgstr "Konfigurieren Sie Ihre EPG-Einstellungen."
 
 # Subtitle QuickMenu
 msgid "Subtitle Quickmenu"
-msgstr "Untertitel Schnellmenü"
+msgstr "Untertitel-Schnellmenü"
 
 # SoftwareManager
 msgid ""
@@ -15571,12 +15604,32 @@ msgid "Channel down"
 msgstr "Sender zurück"
 
 #: ButtonSetup.py
+msgid "PageUp"
+msgstr "Seite vor"
+
+#: ButtonSetup.py
+msgid "PageUp long"
+msgstr "Seite vor lang"
+
+#: ButtonSetup.py
+msgid "PageDown"
+msgstr "Seite zurück"
+
+#: ButtonSetup.py
+msgid "PageDown long"
+msgstr "Seite zurück lang"
+
+#: ButtonSetup.py
 msgid "TV"
 msgstr ""
 
 #: ButtonSetup.py
 msgid "Rec"
 msgstr "Aufnahme"
+
+#: ButtonSetup.py
+msgid "Rec long"
+msgstr "Aufnahme lang"
 
 #: ButtonSetup.py
 msgid "Teletext"
@@ -15669,6 +15722,10 @@ msgstr ""
 #: ButtonSetup.py
 msgid "Sleep"
 msgstr "Sleeptimer"
+
+#: ButtonSetup.py
+msgid "SleepTimer"
+msgstr "Ausschalt-Timer"
 
 #: ButtonSetup.py
 msgid "Power"
@@ -16192,11 +16249,23 @@ msgstr "Erweiterungsmenü"
 
 #: ButtonSetup.py
 msgid "Open AutoTimer"
-msgstr "Autotimer"
+msgstr "AutoTimer"
 
 #: ButtonSetup.py
 msgid "Restart enigma"
 msgstr "Enigma2 neu starten"
+
+#: ButtonSetup.py
+msgid "SkinSelector"
+msgstr "Skinauswahl"
+
+#: ButtonSetup.py
+msgid "LCD SkinSelector"
+msgstr "LCD-Skinauswahl"
+
+#: ButtonSetup.py
+msgid "Show subtitle quick menu"
+msgstr "Untertitel-Schnellmenü"
 
 #: ButtonSetup.py
 msgid "Usage Setup"
@@ -16221,6 +16290,10 @@ msgstr ""
 #: ButtonSetup.py
 msgid "EnhancedMovieCenter"
 msgstr ""
+
+#: ButtonSetup.py
+msgid "QuickMenu"
+msgstr "Schnellstart-Menü"
 
 #: ButtonSetup.py
 msgid "Hotkey Setup for"
@@ -17291,3 +17364,16 @@ msgstr "Dies erlaubt Ihnen die Anzeige von Kernel Erweiterungen im Downloadberei
 
 msgid "Please enter the your personal feed URL"
 msgstr "Hier kann man die persönliche FEED URL eintragen"
+
+#: MultiBootStartup.py:29
+msgid "MultiBoot Selector"
+msgstr "MultiBoot-Auswahl"
+
+#: MultiBootStartup.py:33
+msgid "Select Image: STARTUP_1"
+msgstr "Wähle Image: STARTUP_1"
+
+#: MultiBootStartup.py:55
+#, python-format
+msgid "Select Image: %s"
+msgstr "Wähle Image: %s"
