@@ -72,6 +72,8 @@ class SkinSelectorBase:
 		self.loadPreview()
 
 	def ok(self):
+		if not self["SkinList"].getCurrent() or not self.SKINXML:
+			return
 		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
 			self.skinfile = ""
 			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
