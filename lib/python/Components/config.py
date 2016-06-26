@@ -99,9 +99,9 @@ class ConfigElement(object):
 
 	def isChanged(self):
 		sv = self.saved_value
-		if sv is None and self.value == self.default:
+		if sv is None and str(self.value) == str(self.default):
 			return False
-		return self.tostring(self.value) != sv
+		return self.tostring(self.value) != self.tostring(sv)
 
 	def changed(self):
 		if self.__notifiers:
@@ -330,7 +330,7 @@ class ConfigSelection(ConfigElement):
 		self.changed()
 
 	def tostring(self, val):
-		return val
+		return str(val)
 
 	def getValue(self):
 		return self._value
@@ -435,7 +435,7 @@ class ConfigBoolean(ConfigElement):
 		return "text", descr
 
 	def tostring(self, value):
-		if not value:
+		if not value or value == 'false':
 			return "false"
 		else:
 			return "true"
@@ -1251,9 +1251,9 @@ class ConfigNumber(ConfigText):
 	def isChanged(self):
 		sv = self.saved_value
 		strv = self.tostring(self.value)
-		if sv is None and strv == self.default:
+		if sv is None and strv == str(self.default):
 			return False
-		return strv != sv
+		return strv != self.tostring(sv)
 
 	def conform(self):
 		pos = len(self.text) - self.marked_pos

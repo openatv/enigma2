@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-25 17:15+0100\n"
-"PO-Revision-Date: 2016-05-29 16:33+0200\n"
+"POT-Creation-Date: 2016-06-21 21:02+0100\n"
+"PO-Revision-Date: 2016-06-22 07:42+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -2082,8 +2082,12 @@ msgstr "Configureer uw nameserver (DNS)."
 msgid "Configure the netmask."
 msgstr "Configureer de netmask."
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr "Configureer het aantal dagen waarna opnames uit de prullenbak worden verwijderd."
+msgid ""
+"Configure the number of days after which items are automatically removed from the trash can.\n"
+"A setting of 0 disables this."
+msgstr ""
+"Configureer het aantal dagen waarna opnames uit de prullenbak worden verwijderd.\n"
+"De instelling 0 schakelt dit uit."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Confugureer het aantal dagen dat verlopen timers worden bewaard."
@@ -2959,6 +2963,9 @@ msgstr "ECM Tijd"
 
 msgid "ECM avg"
 msgstr "ECM gem."
+
+msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
 
 msgid "ECM last"
 msgstr "ECM laatste"
@@ -4032,6 +4039,9 @@ msgstr "Inadyn instellingen"
 
 msgid "Include AIT in http streams"
 msgstr "Voeg AIT toe aan http streams"
+
+msgid "Include ECM in http streams"
+msgstr "Voeg ECM toe aan http streams"
 
 msgid "Include EIT in http streams"
 msgstr "Voeg EIT toe aan http streams"
@@ -5951,6 +5961,9 @@ msgstr "Powermanager entry"
 msgid "PowerManager log"
 msgstr "Powermanager log"
 
+msgid "PowerMenu"
+msgstr "Power menu"
+
 msgid "PowerTimer List"
 msgstr "Powertimer Lijst"
 
@@ -7862,6 +7875,9 @@ msgstr "Sorteer"
 msgid "Sort EPG List"
 msgstr "Sorteer EPG-lijst"
 
+msgid "Sort Trash by deletion time"
+msgstr "Sorteer prullenbak op verwijder-tijd"
+
 msgid "Sort by"
 msgstr "Sorteer lijst op"
 
@@ -9355,6 +9371,13 @@ msgstr "Gebruik de alternatieve of de conventionele radiomodus."
 msgid "Use the alternative screen"
 msgstr "Gebruik het alternatieve scherm"
 
+msgid ""
+"Use the deletion time to sort Trash folders.\n"
+"Most recently deleted at the top."
+msgstr ""
+"Gebruik de verwijdertijd om de prullenbakken te sorteren.\n"
+"De meest recent verwijderde boven"
+
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Gebruik de netwerk-wizard om de geselecteerde netwerkadapter te configureren"
 
@@ -10055,6 +10078,12 @@ msgstr "Ja, ik wil nogmaals handmatig zoeken"
 msgid "Yes, restore the settings now"
 msgstr "Ja, de gegevens nu terugplaatsen"
 
+msgid "Yes, show delete time"
+msgstr "Ja, toon verwijdertijd"
+
+msgid "Yes, show record time"
+msgstr "Ja, toon opnametijd"
+
 msgid "Yes, shut down now."
 msgstr "Ja, ik wil nu afsluiten."
 
@@ -10584,6 +10613,12 @@ msgstr "verwijderen"
 
 msgid "delete cut"
 msgstr "wis snijpunt"
+
+msgid "delete time - show delete time (Trash ONLY)"
+msgstr "verwijdertijd - toon verwijdertijd (alleen prullenbak)"
+
+msgid "delete time - show record time (Trash ONLY)"
+msgstr "verwijdertijd - toon opnametijd (alleen prullenbak)"
 
 msgid "descramble and record ecm"
 msgstr "decodeer en neem ecm op"
@@ -11686,9 +11721,6 @@ msgstr "zapte"
 #~ msgid "Driver is not supported."
 #~ msgstr "Driver wordt niet ondersteund"
 
-#~ msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
-#~ msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
-
 #~ msgid "Edit bouquets list"
 #~ msgstr "favorietenlijst aanpassen"
 
@@ -11748,9 +11780,6 @@ msgstr "zapte"
 
 #~ msgid "Image type:\t%s\n"
 #~ msgstr "Imagetype:\t%s\n"
-
-#~ msgid "Include ECM in http streams"
-#~ msgstr "Voeg ECM toe aan http streams"
 
 #~ msgid "Lamedb"
 #~ msgstr "Lamedb"

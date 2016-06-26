@@ -1004,6 +1004,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1850) - 0.3500) * 100);
 	}
+	else if (!strcmp(m_description, "BCM7362 (internal) DVB-S2")) // Xsarius
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.28) - 10.0) * 100);
+	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
 		ret = (int)((snr << 1) / 5);
