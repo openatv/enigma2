@@ -83,6 +83,14 @@ class ServiceInfo(Converter, object):
 			return info.getInfoString(what)
 		return convert(v)
 
+	def getServiceInfoHexString(self, info, what, convert = lambda x: "%04x" % x):
+		v = info.getInfo(what)
+		if v == -1:
+			return "N/A"
+		if v == -2:
+			return info.getInfoString(what)
+		return convert(v)    
+
 	@cached
 	def getBoolean(self):
 		service = self.source.service
@@ -124,7 +132,7 @@ class ServiceInfo(Converter, object):
 				while idx < n:
 					i = audio.getTrackInfo(idx)
 					description = i.getDescription()
-					if description in ("AC3", "AC-3", "AC3+", "DTS"):
+					if description in ("AC3", "AC-3", "DTS"):
 						if self.type == self.IS_MULTICHANNEL:
 							return True
 						elif self.type == self.AUDIO_STEREO:
@@ -229,7 +237,7 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.ONID:
 			return self.getServiceInfoString(info, iServiceInformation.sONID)
 		elif self.type == self.SID:
-			return self.getServiceInfoString(info, iServiceInformation.sSID)
+			return self.getServiceInfoHexString(info, iServiceInformation.sSID)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
 			if path.exists("/proc/stb/vmpeg/0/framerate"):
@@ -300,4 +308,4 @@ class ServiceInfo(Converter, object):
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:
-			Converter.changed(self, what)
+			Converter.changed(self, what) 
