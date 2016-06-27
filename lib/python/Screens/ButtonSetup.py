@@ -15,101 +15,106 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-ButtonSetupKeys = [	(_("Red"), "red", ""),
-	(_("Red long"), "red_long", ""),
-	(_("Green"), "green", ""),
-	(_("Green long"), "green_long", ""),
-	(_("Yellow"), "yellow", ""),
-	(_("Yellow long"), "yellow_long", ""),
-	(_("Blue"), "blue", ""),
-	(_("Blue long"), "blue_long", ""),
-	(_("Info (EPG)"), "info", "Infobar/InfoPressed/1"),
-	(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
-	(_("Epg/Guide"), "epg", "Infobar/EPGPressed/1"),
-	(_("Epg/Guide long"), "epg_long", "Infobar/showEventGuidePlugins/1"),
-	(_("Left"), "cross_left", ""),
-	(_("Right"), "cross_right", ""),
-	(_("Up"), "cross_up", ""),
-	(_("Down"), "cross_down", ""),
-	(_("Channel up"), "channelup", ""),
-	(_("Channel down"), "channeldown", ""),
-	(_("TV"), "showTv", ""),
-	(_("Radio"), "radio", ""),
-	(_("Radio long"), "radio_long", ""),
-	(_("Rec"), "rec", ""),
-	(_("Rec long"), "rec_long", ""),
-	(_("Teletext"), "text", ""),
-	(_("Help"), "displayHelp", ""),
-	(_("Help long"), "displayHelp_long", ""),
-	(_("Subtitle"), "subtitle", ""),
-	(_("Subtitle long"), "subtitle_long", ""),
-	(_("Menu"), "mainMenu", ""),
-	(_("List/Fav"), "list", ""),
-	(_("List/Fav long"), "list_long", ""),
-	(_("PVR"), "pvr", ""),
-	(_("PVR long"), "pvr_long", ""),
-	(_("Favorites"), "favorites", ""),
-	(_("Favorites long"), "favorites_long", ""),
-	(_("File"), "file", ""),
-	(_("File long"), "file_long", ""),
-	(_("OK long"), "ok_long", ""),
-	(_("Media"), "media", ""),
-	(_("Media long"), "media_long", ""),
-	(_("Open"), "open", ""),
-	(_("Open long"), "open_long", ""),
-	(_("Www"), "www", ""),
-	(_("Www long"), "www_long", ""),
-	(_("Directory"), "directory", ""),
-	(_("Directory long"), "directory_long", ""),
-	(_("Back/Recall"), "back", ""),
-	(_("Back/Recall") + " " + _("long"), "back_long", ""),
-	(_("Home"), "home", ""),
-	(_("End"), "end", ""),
-	(_("Next"), "next", ""),
-	(_("Previous"), "previous", ""),
-	(_("Audio"), "audio", ""),
-	(_("Play"), "play", ""),
-	(_("Playpause"), "playpause", ""),
-	(_("Stop"), "stop", ""),
-	(_("Pause"), "pause", ""),
-	(_("Rewind"), "rewind", ""),
-	(_("Fastforward"), "fastforward", ""),
-	(_("Skip back"), "skip_back", ""),
-	(_("Skip forward"), "skip_forward", ""),
-	(_("activatePiP"), "activatePiP", ""),
-	(_("Timer"), "timer", ""),
-	(_("Playlist"), "playlist", ""),
-	(_("Playlist long"), "playlist_long", ""),
-	(_("Timeshift"), "timeshift", ""),
-	(_("Homepage"), "homep", ""),
-	(_("Homepage long"), "homep_long", ""),
-	(_("Search/WEB"), "search", ""),
-	(_("Search/WEB long"), "search_long", ""),
-	(_("Slow"), "slow", ""),
-	(_("Mark/Portal/Playlist"), "mark", ""),
-	(_("Sleep"), "sleep", ""),
-	(_("Power"), "power", ""),
-	(_("Power long"), "power_long", ""),
-	(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
-	(_("HDMIin") + " " + _("long"), "HDMIin_long", (SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""),
-	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
-	(_("Context long"), "context_long", ""),
-	(_("SAT"), "sat", "Infobar/openSatellites"),
-	(_("SAT long"), "sat_long", ""),
-	(_("Prov"), "prov", ""),
-	(_("Prov long"), "prov_long", ""),
-	(_("F1/LAN"), "f1", ""),
-	(_("F1/LAN long"), "f1_long", ""),
-	(_("F2"), "f2", ""),
-	(_("F2 long"), "f2_long", ""),
-	(_("F3"), "f3", ""),
-	(_("F3 long"), "f3_long", ""),
-	(_("F4"), "f4", ""),
-	(_("F4 long"), "f4_long", ""),]
+def getButtonSetupKeys():
+	return [(_("Red"), "red", ""),
+		(_("Red long"), "red_long", ""),
+		(_("Green"), "green", ""),
+		(_("Green long"), "green_long", ""),
+		(_("Yellow"), "yellow", ""),
+		(_("Yellow long"), "yellow_long", ""),
+		(_("Blue"), "blue", ""),
+		(_("Blue long"), "blue_long", ""),
+		(_("Info (EPG)"), "info", "Infobar/InfoPressed/1"),
+		(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
+		(_("Epg/Guide"), "epg", "Infobar/EPGPressed/1"),
+		(_("Epg/Guide long"), "epg_long", "Infobar/showEventGuidePlugins/1"),
+		(_("Left"), "cross_left", ""),
+		(_("Right"), "cross_right", ""),
+		(_("Up"), "cross_up", ""),
+		(_("Down"), "cross_down", ""),
+		(_("PageUp"), "pageup", ""),
+		(_("PageUp long"), "pageup_long", ""),
+		(_("PageDown"), "pagedown", ""),
+		(_("PageDown long"), "pagedown_long", ""),
+		(_("Channel up"), "channelup", ""),
+		(_("Channel down"), "channeldown", ""),
+		(_("TV"), "showTv", ""),
+		(_("Radio"), "radio", ""),
+		(_("Radio long"), "radio_long", ""),
+		(_("Rec"), "rec", ""),
+		(_("Rec long"), "rec_long", ""),
+		(_("Teletext"), "text", ""),
+		(_("Help"), "displayHelp", ""),
+		(_("Help long"), "displayHelp_long", ""),
+		(_("Subtitle"), "subtitle", ""),
+		(_("Subtitle long"), "subtitle_long", ""),
+		(_("Menu"), "mainMenu", ""),
+		(_("List/Fav"), "list", ""),
+		(_("List/Fav long"), "list_long", ""),
+		(_("PVR"), "pvr", ""),
+		(_("PVR long"), "pvr_long", ""),
+		(_("Favorites"), "favorites", ""),
+		(_("Favorites long"), "favorites_long", ""),
+		(_("File"), "file", ""),
+		(_("File long"), "file_long", ""),
+		(_("OK long"), "ok_long", ""),
+		(_("Media"), "media", ""),
+		(_("Media long"), "media_long", ""),
+		(_("Open"), "open", ""),
+		(_("Open long"), "open_long", ""),
+		(_("Www"), "www", ""),
+		(_("Www long"), "www_long", ""),
+		(_("Directory"), "directory", ""),
+		(_("Directory long"), "directory_long", ""),
+		(_("Back/Recall"), "back", ""),
+		(_("Back/Recall") + " " + _("long"), "back_long", ""),
+		(_("Home"), "home", ""),
+		(_("End"), "end", ""),
+		(_("Next"), "next", ""),
+		(_("Previous"), "previous", ""),
+		(_("Audio"), "audio", ""),
+		(_("Play"), "play", ""),
+		(_("Playpause"), "playpause", ""),
+		(_("Stop"), "stop", ""),
+		(_("Pause"), "pause", ""),
+		(_("Rewind"), "rewind", ""),
+		(_("Fastforward"), "fastforward", ""),
+		(_("Skip back"), "skip_back", ""),
+		(_("Skip forward"), "skip_forward", ""),
+		(_("activatePiP"), "activatePiP", ""),
+		(_("Timer"), "timer", ""),
+		(_("Playlist"), "playlist", ""),
+		(_("Playlist long"), "playlist_long", ""),
+		(_("Timeshift"), "timeshift", ""),
+		(_("Homepage"), "homep", ""),
+		(_("Homepage long"), "homep_long", ""),
+		(_("Search/WEB"), "search", ""),
+		(_("Search/WEB long"), "search_long", ""),
+		(_("Slow"), "slow", ""),
+		(_("Mark/Portal/Playlist"), "mark", ""),
+		(_("Sleep"), "sleep", ""),
+		(_("Power"), "power", ""),
+		(_("Power long"), "power_long", ""),
+		(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
+		(_("HDMIin") + " " + _("long"), "HDMIin_long", (SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""),
+		(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
+		(_("Context long"), "context_long", ""),
+		(_("SAT"), "sat", "Infobar/openSatellites"),
+		(_("SAT long"), "sat_long", ""),
+		(_("Prov"), "prov", ""),
+		(_("Prov long"), "prov_long", ""),
+		(_("F1/LAN"), "f1", ""),
+		(_("F1/LAN long"), "f1_long", ""),
+		(_("F2"), "f2", ""),
+		(_("F2 long"), "f2_long", ""),
+		(_("F3"), "f3", ""),
+		(_("F3 long"), "f3_long", ""),
+		(_("F4"), "f4", ""),
+		(_("F4 long"), "f4_long", ""),]
 
 config.misc.ButtonSetup = ConfigSubsection()
 config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)
-for x in ButtonSetupKeys:
+for x in getButtonSetupKeys():
 	exec "config.misc.ButtonSetup." + x[1] + " = ConfigText(default='" + x[2] + "')"
 
 def getButtonSetupFunctions():
@@ -168,6 +173,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
+	ButtonSetupFunctions.append((_("Show subtitle quick menu"), "Infobar/subtitleQuickMenu", "InfoBar"))
 	ButtonSetupFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
 		ButtonSetupFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
@@ -236,17 +242,18 @@ class ButtonSetup(Screen):
 		self.setTitle(_("Hotkey Setup"))
 		self["key_red"] = Button(_("Exit"))
 		self.list = []
+		self.ButtonSetupKeys = getButtonSetupKeys()
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
-		for x in ButtonSetupKeys:
+		for x in self.ButtonSetupKeys:
 			self.list.append(ChoiceEntryComponent('',(_(x[0]), x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(ButtonSetupKeys) or 10], selection = 0)
+		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 10], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"cancel": self.close,
 		}, -1)
-		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in ButtonSetupKeys))
+		self["ButtonSetupButtonActions"] = ButtonSetupActionMap(["ButtonSetupActions"], dict((x[1], self.ButtonSetupGlobal) for x in self.ButtonSetupKeys))
 		self.longkeyPressed = False
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.getFunctions)
@@ -275,7 +282,7 @@ class ButtonSetup(Screen):
 			self.longkeyPressed = False
 		else:
 			index = 0
-			for x in self.list[:config.misc.ButtonSetup.additional_keys.value and len(ButtonSetupKeys) or 10]:
+			for x in self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 10]:
 				if key == x[0][1]:
 					self["list"].moveToIndex(index)
 					if key.endswith("_long"):
@@ -446,7 +453,7 @@ class ButtonSetupSelect(Screen):
 
 class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in ButtonSetupKeys) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getButtonSetupKeys()) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -456,7 +463,7 @@ class ButtonSetupActionMap(ActionMap):
 
 class helpableButtonSetupActionMap(HelpableActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in ButtonSetupKeys) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getButtonSetupKeys()) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -466,8 +473,9 @@ class helpableButtonSetupActionMap(HelpableActionMap):
 
 class InfoBarButtonSetup():
 	def __init__(self):
+		self.ButtonSetupKeys = getButtonSetupKeys()
 		self["ButtonSetupButtonActions"] = helpableButtonSetupActionMap(self, "ButtonSetupActions",
-			dict((x[1],(self.ButtonSetupGlobal, boundFunction(self.getHelpText, x[1]))) for x in ButtonSetupKeys), -10)
+			dict((x[1],(self.ButtonSetupGlobal, boundFunction(self.getHelpText, x[1]))) for x in self.ButtonSetupKeys), -10)
 		self.longkeyPressed = False
 		self.onExecEnd.append(self.clearLongkeyPressed)
 
@@ -497,7 +505,7 @@ class InfoBarButtonSetup():
 		if len(selected) == 1:
 			return selected[0][0]
 		else:
-			return _("ButtonSetup") + " " + tuple(x[0] for x in ButtonSetupKeys if x[1] == key)[0]
+			return _("ButtonSetup") + " " + tuple(x[0] for x in self.ButtonSetupKeys if x[1] == key)[0]
 
 	def ButtonSetupGlobal(self, key):
 		if self.longkeyPressed:
@@ -511,7 +519,7 @@ class InfoBarButtonSetup():
 					self.longkeyPressed = True
 				return self.execButtonSetup(selected[0])
 			else:
-				key = tuple(x[0] for x in ButtonSetupKeys if x[1] == key)[0]
+				key = tuple(x[0] for x in self.ButtonSetupKeys if x[1] == key)[0]
 				self.session.openWithCallback(self.execButtonSetup, ChoiceBox, (_("Hotkey")) + "  " + key, selected)
 
 	def execButtonSetup(self, selected):

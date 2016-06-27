@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from enigma import eTimer
-from boxbranding import getMachineBrand, getMachineName, getBoxType
+from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
@@ -101,7 +101,7 @@ class HddMount(Screen):
 			device = parts[3]
 			if not search('sd[a-z][1-9]',device) and not search('mmcblk[0-9]p[1-9]',device):
 				continue
-			if getBoxType() in ('vusolo4k') and search('mmcblk0p[1-9]',device):
+			if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52') and search('mmcblk0p[1-9]',device):
 				continue
 			if device in list2:
 				continue
@@ -409,7 +409,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			device = parts[3]
 			if not search('sd[a-z][1-9]',device) and not search('mmcblk[0-9]p[1-9]',device):
 				continue
-			if getBoxType() in ('vusolo4k') and search('mmcblk0p[1-9]',device):
+			if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52') and search('mmcblk0p[1-9]',device):
 				continue
 			if device in list2:
 				continue

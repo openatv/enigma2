@@ -182,7 +182,6 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 				<item weight="50" level="2" text="SABnzbd Setup" entryID="netsabnzbd_setup"><screen module="NetworkSetup" screen="NetworkSABnzbd"/></item>
 				<item weight="55" level="2" text="Telnet Setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 				<item weight="60" level="2" text="uShare Setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
-				<item weight="99" level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
 			</menu>
 			<item weight="55" level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
 				<code>
@@ -231,6 +230,7 @@ else:
 </code>
 		</item>
 		<item weight="5" level="0" text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+		<item weight="6" level="0" text="MultiBoot" requires="HaveMultiBoot" entryID="deep_standby"><screen module="MultiBootStartup" screen="MultiBootStartup" /></item>
 		<item weight="10" level="0" text="WOL Standby" requires="GBWOL" entryID="deep_standby">
 			<code>
 from Screens.Standby import TryQuitMainloop

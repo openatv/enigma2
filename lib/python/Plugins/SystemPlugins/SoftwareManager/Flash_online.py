@@ -1,11 +1,11 @@
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-from Components.Button import Button
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Components.FileList import FileList
 from Components.Task import Task, Job, job_manager, Condition
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -33,7 +33,7 @@ elif distro.lower() == "openatv":
 feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
 
 if ImageVersion == '5.3':
-	ImageVersion2= '5.2'
+	ImageVersion2= '5.4'
 else:
 	ImageVersion2= '5.3'
 feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
@@ -43,6 +43,8 @@ flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'
 ofgwritePath = '/usr/bin/ofgwrite'
 #############################################################################################################
+
+
 
 def Freespace(dev):
 	statdev = os.statvfs(dev)
@@ -63,10 +65,10 @@ class FlashOnline(Screen):
 		<ePixmap position="140,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 		<ePixmap position="280,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
 		<ePixmap position="420,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="key_green" position="140,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="key_yellow" position="280,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="key_blue" position="420,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_red" render="Label" position="0,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_green" render="Label" position="140,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_yellow" render="Label" position="280,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_blue" render="Label" position="420,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="info-online" position="10,30" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
 		<widget name="info-local" position="10,150" zPosition="1" size="450,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 	</screen>"""
@@ -74,12 +76,19 @@ class FlashOnline(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
+		self.selection = 0
+		self.devrootfs = "/dev/mmcblk0p3"
+		self.multi = 1
+		self.list = self.list_files("/boot")
 
 		Screen.setTitle(self, _("Flash On the Fly"))
-		self["key_yellow"] = Button("Local")
-		self["key_green"] = Button("Online")
-		self["key_red"] = Button(_("Exit"))
-		self["key_blue"] = Button("")
+		if SystemInfo["HaveMultiBoot"]:
+			self["key_yellow"] = StaticText(_("STARTUP"))
+		else:
+			self["key_yellow"] = StaticText("")
+		self["key_green"] = StaticText("Online")
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_blue"] = StaticText(_("Local"))
 		self["info-local"] = Label(_("Local = Flash a image from local path /hdd/images"))
 		self["info-online"] = Label(_("Online = Download a image and flash it"))
 		
@@ -124,19 +133,48 @@ class FlashOnline(Screen):
 		self.close()
 		
 	def blue(self):
-		pass
+		if self.check_hdd():
+			self.session.open(doFlashImage, online = False, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs)
+		else:
+			self.close()
 
 	def green(self):
 		if self.check_hdd():
-			self.session.open(doFlashImage, online = True)
+			self.session.open(doFlashImage, online = True, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs)
 		else:
 			self.close()
 
 	def yellow(self):
-		if self.check_hdd():
-			self.session.open(doFlashImage, online = False)
+		if SystemInfo["HaveMultiBoot"]:
+			self.selection = self.selection + 1
+			if self.selection == len(self.list):
+				self.selection = 0
+			self["key_yellow"].setText(_(self.list[self.selection]))
+			self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
+			self.multi = self.multi[-1:]
+			print "[Flash Online] MULTI:",self.multi
+			cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+			self.devrootfs = cmdline
+			print "[Flash Online] MULTI rootfs ", self.devrootfs
+
+	def read_startup(self, FILE):
+		file = FILE
+		with open(file, 'r') as myfile:
+			data=myfile.read().replace('\n', '')
+		myfile.close()
+		return data
+
+	def list_files(self, PATH):
+		files = []
+		if SystemInfo["HaveMultiBoot"]:
+			path = PATH
+			for name in os.listdir(path):
+				if os.path.isfile(os.path.join(path, name)):
+					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+					files.append(name)
 		else:
-			self.close()
+			files = "None"
+		return files
 
 class doFlashImage(Screen):
 	skin = """
@@ -145,26 +183,29 @@ class doFlashImage(Screen):
 		<ePixmap position="140,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 		<ePixmap position="280,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
 		<ePixmap position="420,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="key_green" position="140,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="key_yellow" position="280,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="key_blue" position="420,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_red" render="Label" position="0,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_green" render="Label" position="140,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_yellow" render="Label" position="280,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget source="key_blue" render="Label" position="420,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="imageList" position="10,10" zPosition="1" size="450,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>"""
 		
-	def __init__(self, session, online ):
+	def __init__(self, session, online, list=None, multi=None, devrootfs=None ):
 		Screen.__init__(self, session)
 		self.session = session
 
 		Screen.setTitle(self, _("Flash On the fly (select a image)"))
-		self["key_green"] = Button(_("Flash"))
-		self["key_red"] = Button(_("Exit"))
-		self["key_blue"] = Button("")
-		self["key_yellow"] = Button("")
+		self["key_green"] = StaticText(_("Flash"))
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_blue"] = StaticText("")
+		self["key_yellow"] = StaticText("")
 		self.filename = None
 		self.imagelist = []
 		self.simulate = False
 		self.Online = online
+		self.List = list
+		self.multi=multi
+		self.devrootfs=devrootfs
 		self.imagePath = imagePath
 		self.feedurl = feedurl_atv
 		if image == 0:
@@ -185,7 +226,6 @@ class doFlashImage(Screen):
 		if os.path.exists('/etc/enigma2/newfeed'):
 			self.newfeed = ReadNewfeed()
 
-		
 	def quit(self):
 		self.close()
 		
@@ -291,7 +331,6 @@ class doFlashImage(Screen):
 					self.close()
 		else:
 			self.session.openWithCallback(self.startInstallLocal, MessageBox, _("Do you want to backup your settings now?"), default=False)
-			
 
 	def ImageDownloadCB(self, ret):
 		if ret:
@@ -408,14 +447,22 @@ class doFlashImage(Screen):
 			text = _("Flashing: ")
 			if self.simulate:
 				text += _("Simulate (no write)")
-				cmd = "%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
+				if SystemInfo["HaveMultiBoot"]:
+					cmd = "%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp)
+				else:
+					cmd = "%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
 				self.close()
 				message = "echo -e '\n"
 				message += _('Show only found image and mtd partitions.\n')
 				message += "'"
 			else:
 				text += _("root and kernel")
-				cmd = "%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
+				if SystemInfo["HaveMultiBoot"]:
+					if not self.List == "STARTUP":
+						os.system('mkfs.ext4 -F ' + self.devrootfs)
+					cmd = "%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp)
+				else:
+					cmd = "%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
 				message = "echo -e '\n"
 				message += _('ofgwrite will stop enigma2 now to run the flash.\n')
 				message += _('Your STB will freeze during the flashing process.\n')

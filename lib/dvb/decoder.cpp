@@ -55,6 +55,7 @@ int eDVBAudio::startPid(int pid, int type)
 	if (m_fd_demux >= 0)
 	{
 		dmx_pes_filter_params pes;
+		memset(&pes, 0, sizeof(pes));
 
 		pes.pid      = pid;
 		pes.input    = DMX_IN_FRONTEND;
@@ -355,6 +356,8 @@ int eDVBVideo::startPid(int pid, int type)
 	if (m_fd_demux >= 0)
 	{
 		dmx_pes_filter_params pes;
+		memset(&pes, 0, sizeof(pes));
+
 		pes.pid      = pid;
 		pes.input    = DMX_IN_FRONTEND;
 		pes.output   = DMX_OUT_DECODER;
@@ -666,6 +669,7 @@ int eDVBPCR::startPid(int pid)
 	if (m_fd_demux < 0)
 		return -1;
 	dmx_pes_filter_params pes;
+	memset(&pes, 0, sizeof(pes));
 
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
@@ -741,6 +745,7 @@ int eDVBTText::startPid(int pid)
 	if (m_fd_demux < 0)
 		return -1;
 	dmx_pes_filter_params pes;
+	memset(&pes, 0, sizeof(pes));
 
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;

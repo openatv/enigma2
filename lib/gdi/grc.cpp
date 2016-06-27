@@ -22,6 +22,7 @@ gRC::gRC(): rp(0), wp(0)
 #else
 ,m_notify_pump(eApp, 1)
 #endif
+,m_spinner_enabled(0), m_spinneronoff(1), m_prev_idle_count(0)
 {
 	ASSERT(!instance);
 	instance=this;
@@ -40,8 +41,6 @@ gRC::gRC(): rp(0), wp(0)
 	else
 		eDebug("RC thread created successfully");
 #endif
-	m_spinner_enabled = 0;
-	m_spinneronoff = 1;
 }
 
 DEFINE_REF(gRC);

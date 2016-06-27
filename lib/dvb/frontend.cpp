@@ -288,7 +288,6 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			eDVBFrontendParametersSatellite osat;
 			if (parm->getDVBS(osat))
 				return -2;
-
 			if (sat.orbital_position != osat.orbital_position)
 				diff = 1<<29;
 			else if (sat.polarisation != osat.polarisation)
@@ -484,6 +483,8 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
 	for (int i=0; i<eDVBFrontend::NUM_DATA_ENTRIES; ++i)
 		m_data[i] = -1;
 
+	m_delsys.clear();
+
 	m_idleInputpower[0]=m_idleInputpower[1]=0;
 
 	char fileName[32] = {0};
@@ -529,6 +530,7 @@ int eDVBFrontend::openFrontend()
 			m_dvbversion = DVB_VERSION(3, 0);
 #if defined DTV_API_VERSION
 			struct dtv_property p;
+			memset(&p, 0, sizeof(p));
 			struct dtv_properties cmdseq;
 			cmdseq.props = &p;
 			cmdseq.num = 1;
@@ -551,6 +553,7 @@ int eDVBFrontend::openFrontend()
 			strncpy(m_description, fe_info.name, sizeof(m_description));
 #if defined DTV_ENUM_DELSYS
 			struct dtv_property p[1];
+			memset(p, 0, sizeof(p));
 			p[0].cmd = DTV_ENUM_DELSYS;
 			struct dtv_properties cmdseq;
 			cmdseq.num = 1;
@@ -813,9 +816,12 @@ static inline uint32_t fe_udiv(uint32_t a, uint32_t b)
 
 void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb)
 {
-	int sat_max = 1600; // for stv0288 / bsbe2
 	int ret = 0x12345678;
-	int ter_max = 2900;
+	int sat_max = 1600; // we assume a max of 16db here
+	int ter_max = 2900; // we assume a max of 29db here
+	int cab_max = 4200; // we assume a max of 42db here
+	int atsc_max = 4200; // we assume a max of 42db here
+
 	if (!strcmp(m_description, "AVL2108")) // ET9000
 	{
 		ret = (int)(snr / 40.5);
@@ -1013,17 +1019,26 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
 	}
-	/*
 	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")
 		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")
 		|| strstr(m_description, "GIGA DVB-C/T NIM (SI41652)")
 		|| strstr(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
-		) // Gigablue
+		)
 	{
-		ret = (int)(snr / 75);
-		ter_max = 1700;
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 15);
+				cab_max = 4200;
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 75);
+				ter_max = 1700;
+				break;
+		}
 	}
-	*/
 	else if (!strcmp(m_description, "Genpix"))
 	{
 		ret = (int)((snr << 1) / 5);
@@ -1108,14 +1123,14 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		case feSatellite:
 			signalquality = (ret >= sat_max ? 65536 : ret * 65536 / sat_max);
 			break;
-		case feCable: // we assume a max of 42db here
-			signalquality = (ret >= 4200 ? 65536 : ret * 65536 / 4200);
+		case feCable:
+			signalquality = (ret >= cab_max ? 65536 : ret * 65536 / cab_max);
 			break;
-		case feTerrestrial: // we assume a max of 29db here
+		case feTerrestrial:
 			signalquality = (ret >= ter_max ? 65536 : ret * 65536 / ter_max);
 			break;
-		case feATSC: // we assume a max of 42db here
-			signalquality = (ret >= 4200 ? 65536 : ret * 65536 / 4200);
+		case feATSC:
+			signalquality = (ret >= atsc_max ? 65536 : ret * 65536 / atsc_max);
 			break;
 		}
 	}
@@ -1159,6 +1174,7 @@ int eDVBFrontend::readFrontendData(int type)
 				if (m_dvbversion >= DVB_VERSION(5, 10))
 				{
 					dtv_property prop[1];
+					memset(prop, 0, sizeof(prop));
 					prop[0].cmd = DTV_STAT_CNR;
 					dtv_properties props;
 					props.props = prop;
@@ -1207,6 +1223,7 @@ int eDVBFrontend::readFrontendData(int type)
 					if (m_dvbversion >= DVB_VERSION(5, 10))
 					{
 						dtv_property prop[1];
+						memset(prop, 0, sizeof(prop));
 						prop[0].cmd = DTV_STAT_SIGNAL_STRENGTH;
 						dtv_properties props;
 						props.props = prop;
@@ -1253,6 +1270,7 @@ int eDVBFrontend::readFrontendData(int type)
 		case iFrontendInformation_ENUMS::frequency:
 		{
 			struct dtv_property p;
+			memset(&p, 0, sizeof(p));
 			struct dtv_properties cmdseq;
 			oparm.getSystem(type);
 			cmdseq.props = &p;
@@ -1278,6 +1296,7 @@ void eDVBFrontend::getTransponderData(ePtr<iDVBTransponderData> &dest, bool orig
 {
 	int type = -1;
 	struct dtv_property p[16];
+	memset(p, 0, sizeof(p));
 	struct dtv_properties cmdseq;
 	oparm.getSystem(type);
 	cmdseq.props = p;
@@ -1978,6 +1997,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			m_sn->start();
 		feEvent(-1); // flush events
 		struct dtv_property p[16];
+		memset(p, 0, sizeof(p));
 		struct dtv_properties cmdseq;
 		cmdseq.props = p;
 		cmdseq.num = 0;
@@ -2818,6 +2838,7 @@ bool eDVBFrontend::changeType(int type)
 {
 #if DVB_API_VERSION >= 5
 	struct dtv_property p[2];
+	memset(p, 0, sizeof(p));
 	struct dtv_properties cmdseq;
 	cmdseq.props = p;
 	cmdseq.num = 2;

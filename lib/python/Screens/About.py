@@ -8,7 +8,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from enigma import eTimer, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -26,8 +26,10 @@ def getAboutText():
 		AboutText += _("Chipset:\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
-	if getBoxType() in ('vusolo4k'):
+	if getMachineBuild() in ('vusolo4k', 'hd51'):
 		cpuMHz = "   (1,5 GHz)"
+	elif getMachineBuild() in ('hd52'):
+		cpuMHz = "   (1,7 GHz)"
 	else:
 		if path.exists('/proc/cpuinfo'):
 			f = open('/proc/cpuinfo', 'r')
@@ -77,6 +79,10 @@ def getAboutText():
 		f.close()
 	elif path.exists('/proc/stb/fp/temp_sensor'):
 		f = open('/proc/stb/fp/temp_sensor', 'r')
+		tempinfo = f.read()
+		f.close()
+	elif path.exists('/proc/stb/sensors/temp/value'):
+		f = open('/proc/stb/sensors/temp/value', 'r')
 		tempinfo = f.read()
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:

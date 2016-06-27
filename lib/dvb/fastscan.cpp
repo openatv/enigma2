@@ -204,7 +204,7 @@ uint16_t FastScanTransportStream::getOrbitalPosition(void) const
 	return 0;
 }
 
-uint32_t FastScanTransportStream::getFrequency(void) const
+int32_t FastScanTransportStream::getFrequency(void) const
 {
 	if (deliverySystem) return deliverySystem->getFrequency();
 	return 0;
@@ -234,7 +234,7 @@ uint8_t FastScanTransportStream::getModulation(void) const
 	return 0;
 }
 
-uint32_t FastScanTransportStream::getSymbolRate(void) const
+int32_t FastScanTransportStream::getSymbolRate(void) const
 {
 	if (deliverySystem) return deliverySystem->getSymbolRate();
 	return 0;

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-04-14 23:39+0100\n"
+"PO-Revision-Date: 2016-06-19 22:33+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV <madie1@gmx.de>\n"
 "Language: de\n"
@@ -751,7 +751,7 @@ msgid "Activate Picture in Picture"
 msgstr "Bild-in-Bild aktivieren"
 
 #
-msgid "Setup Picture in Picture"
+msgid "Picture in Picture Setup"
 msgstr "Bild-in-Bild-Einstellungen"
 
 #
@@ -2134,6 +2134,9 @@ msgstr "Endlos (Schleife)"
 msgid "Contrast"
 msgstr "Kontrast"
 
+msgid "Color"
+msgstr "Farben"
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Wie sollen abgeschlossene Timer in der Liste angezeigt werden."
 
@@ -2452,8 +2455,9 @@ msgstr "< Standard >"
 msgid "Defaults"
 msgstr "Standards"
 
-msgid "Default Settings"
-msgstr "Voreinstellungen"
+# SoftwareManager/plugin.py
+msgid "Default settings"
+msgstr "Standard-Einstellungen"
 
 msgid "Default movie location"
 msgstr "Standard-Filmverzeichnis"
@@ -2689,10 +2693,6 @@ msgstr "Einstellung der Helligkeit für das Gerätedisplay im Normalbetrieb."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Einstellung der Helligkeit für das Gerätedisplay im Standby."
-
-#
-msgid "Display and Userinterface"
-msgstr "Anzeige und Oberfläche"
 
 msgid "Setup Userinterface"
 msgstr "Einstellungen Benutzeroberfläche"
@@ -5547,7 +5547,7 @@ msgstr "Telefonnummer"
 
 #
 msgid "PiPSetup"
-msgstr "Bild-in-Bild Einstellungen"
+msgstr "Bild-in-Bild-Einstellungen"
 
 msgid "Picture in graphics"
 msgstr "Mini-TV Bild im grafischen EPG anzeigen"
@@ -7778,9 +7778,9 @@ msgstr ""
 "Entschuldigung, Ihr Sicherungsverzeichnis ist nicht beschreibbar.\n"
 "Bitte wählen Sie ein anderes Verzeichnis."
 
-#
-msgid "Sorry, no Details available!"
-msgstr "Entschuldigung, keine Details verfügbar"
+#: SoftwareManager/plugin.py:877
+msgid "Sorry, no details available!"
+msgstr "Entschuldigung, keine Details verfügbar!"
 
 #: BackupRestore.py:124 BackupRestore.py:126
 msgid ""
@@ -9497,9 +9497,13 @@ msgstr "Eine Liste der verfügbaren "
 msgid "View list of available CommonInterface extensions"
 msgstr "Verfügbare Common Interface-Erweiterungen anzeigen."
 
-#
-msgid "View list of available Display and Userinterface extensions."
-msgstr "Verfügbare Display- und Userinterface-Erweiterungen anzeigen."
+# SoftwareManager/plugin.py
+msgid "Display and user interface"
+msgstr "Anzeige und Oberfläche"
+
+# SoftwareManager/plugin.py
+msgid "View list of available display and userinterface extensions."
+msgstr "Verfügbare Anzeige/Oberflächen-Erweiterungen anzeigen."
 
 #
 msgid "View list of available EPG extensions."
@@ -9513,7 +9517,7 @@ msgstr "Verfügbare Satellitenausrüstungs-Plugins anzeigen."
 msgid "View list of available communication extensions."
 msgstr "Verfügbare Kommunikations-Erweiterungen anzeigen."
 
-#
+# SoftwareManager/plugin.py
 msgid "View list of available default settings"
 msgstr "Verfügbare Standard-Bouquets anzeigen."
 
@@ -10118,7 +10122,7 @@ msgid ""
 "\n"
 "Do you want to install now ?"
 msgstr ""
-"Deine %s %s wird nach installieren des Services neu gestartet\n"
+"Ihre %s %s wird nach installieren des Services neu gestartet\n"
 "\n"
 "Service jetzt installieren?"
 
@@ -10192,7 +10196,7 @@ msgstr ""
 
 #, python-format
 msgid "Your internet connection is working (ip: %s)"
-msgstr "Deine Internetverbindung besteht (IP:%s)"
+msgstr "Ihre Internetverbindung besteht (IP:%s)"
 
 #
 msgid "Your name (optional):"
@@ -10203,10 +10207,10 @@ msgid "Your network configuration has been activated."
 msgstr "Ihre Netzwerk-Konfiguration wurde aktiviert."
 
 msgid "Your %s %s does not have an internet connection"
-msgstr "Deine %s %s hat keine Internetverbindung"
+msgstr "Ihre %s %s hat keine Internetverbindung"
 
 msgid "Your %s %s is not connected to the internet"
-msgstr "Deine %s %s ist nicht mit dem Internet verbunden"
+msgstr "Ihre %s %s ist nicht mit dem Internet verbunden"
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -10738,6 +10742,10 @@ msgstr "Nicht aufnehmen"
 #
 msgid "done!"
 msgstr "Erledigt!"
+
+#: PowerTimerEdit.py:183
+msgid "running..."
+msgstr "laufend..."
 
 msgid "e-Mail address"
 msgstr "E-Mail-Adresse"
@@ -11954,7 +11962,7 @@ msgstr "Überschreiben der Softcam Dateien beim Update?"
 
 #
 msgid "Overwrite picon files during software upgrade?"
-msgstr "Überschreiben der picon Datein beim Update?"
+msgstr "Überschreiben der Picon-Dateien beim Update?"
 
 #
 msgid "Choose backup files"
@@ -13332,7 +13340,7 @@ msgid "Automatic scan for services"
 msgstr "Automatischer Suchlauf"
 
 msgid "Manual scan for services"
-msgstr "Manueller Scan der Dienste"
+msgstr "Manueller Suchlauf"
 
 msgid "Search Sats"
 msgstr "Suche Satelliten und Pegelanzeige"
@@ -13871,7 +13879,7 @@ msgstr "Einstellung, um die Kanalnamen, Picons oder beides im EPG anzuzeigen."
 
 #
 msgid "Configure the width allocated to the service name."
-msgstr "Legen Sie die Breite des Sendernamen fest."
+msgstr "Legen Sie die Breite der Sendernamen fest."
 
 #
 msgid "Configure the amount of time that will be presented."
@@ -13900,6 +13908,26 @@ msgstr "Sendernamen Breite"
 #
 msgid "Timeline font size"
 msgstr "Schriftgröße für die Zeitskala"
+
+#: EpgList.py
+msgid "Position of recording icons"
+msgstr "Ausrichtung der Aufnahme-Symbole"
+
+#: EpgList.py
+msgid "Set the position of the recording icons"
+msgstr "Legen Sie die Positionen der Aufnahme-Symbole fest."
+
+#: EpgList.py
+msgid "bottom"
+msgstr "Unten"
+
+#: EpgList.py
+msgid "middle"
+msgstr "Mitte"
+
+#: EpgList.py
+msgid "hide"
+msgstr "Verstecken"
 
 #
 msgid "Service Title mode"
@@ -13965,8 +13993,40 @@ msgid "Service font size"
 msgstr "Schriftgröße für Sendernamen"
 
 #: gEPG
+msgid "Alignment of service names"
+msgstr "Ausrichtung der Sendernamen"
+
+#: gEPG
 msgid "Event font size"
-msgstr "Schriftgröße für Ereignis"
+msgstr "Schriftgröße für Sendungsnamen"
+
+#: gEPG
+msgid "Alignment of events"
+msgstr "Ausrichtung der Sendungsnamen"
+
+#: gEPG
+msgid "Configure the alignment of events."
+msgstr "Konfigurieren Sie die Ausrichtung der Sendungsnamen."
+
+#: gEPG
+msgid "Configure the alignment of service names."
+msgstr "Konfigurieren Sie die Ausrichtung der Sendernamen."
+
+#: gEPG
+msgid "centered"
+msgstr "Zentriert"
+
+#: gEPG
+msgid "centered, wrapped"
+msgstr "Zentriert, umgebrochen"
+
+#: gEPG
+msgid "left, wrapped"
+msgstr "Links, umgebrochen"
+
+#: gEPG
+msgid "right, wrapped"
+msgstr "Rechts, umgebrochen"
 
 #
 msgid "When nonzero, a recording will start earlier than the starting time as indicated by the EPG."
@@ -14231,7 +14291,7 @@ msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Justieren Sie die Position der Benutzeroberfläche. Die  Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
+"Justieren Sie die Position der Benutzeroberfläche. Die Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
 "\n"
 "Danach OK drücken."
 
@@ -14240,7 +14300,7 @@ msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
 "When you are ready press green to continue."
 msgstr ""
-"Justieren Sie die Position der Benutzeroberfläche. Die  Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
+"Justieren Sie die Position der Benutzeroberfläche. Die Ränder des roten Bereichs sollten die Ränder des TV-Bildschirms berühren.\n"
 "\n"
 "Danach grün drücken."
 
@@ -14401,7 +14461,7 @@ msgstr "Konfigurieren Sie Ihre EPG-Einstellungen."
 
 # Subtitle QuickMenu
 msgid "Subtitle Quickmenu"
-msgstr "Untertitel Schnellmenü"
+msgstr "Untertitel-Schnellmenü"
 
 # SoftwareManager
 msgid ""
@@ -15143,7 +15203,7 @@ msgstr "langsam"
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
-msgstr "Wollen Sie alle anderen Sprachen löschen,"
+msgstr "Wollen Sie alle anderen Sprachen löschen?"
 
 # python\Screens\LanguageSelection.py
 msgid " Except %s"
@@ -15544,12 +15604,32 @@ msgid "Channel down"
 msgstr "Sender zurück"
 
 #: ButtonSetup.py
+msgid "PageUp"
+msgstr "Seite vor"
+
+#: ButtonSetup.py
+msgid "PageUp long"
+msgstr "Seite vor lang"
+
+#: ButtonSetup.py
+msgid "PageDown"
+msgstr "Seite zurück"
+
+#: ButtonSetup.py
+msgid "PageDown long"
+msgstr "Seite zurück lang"
+
+#: ButtonSetup.py
 msgid "TV"
 msgstr ""
 
 #: ButtonSetup.py
 msgid "Rec"
 msgstr "Aufnahme"
+
+#: ButtonSetup.py
+msgid "Rec long"
+msgstr "Aufnahme lang"
 
 #: ButtonSetup.py
 msgid "Teletext"
@@ -15642,6 +15722,10 @@ msgstr ""
 #: ButtonSetup.py
 msgid "Sleep"
 msgstr "Sleeptimer"
+
+#: ButtonSetup.py
+msgid "SleepTimer"
+msgstr "Ausschalt-Timer"
 
 #: ButtonSetup.py
 msgid "Power"
@@ -16165,11 +16249,23 @@ msgstr "Erweiterungsmenü"
 
 #: ButtonSetup.py
 msgid "Open AutoTimer"
-msgstr "Autotimer"
+msgstr "AutoTimer"
 
 #: ButtonSetup.py
 msgid "Restart enigma"
 msgstr "Enigma2 neu starten"
+
+#: ButtonSetup.py
+msgid "SkinSelector"
+msgstr "Skinauswahl"
+
+#: ButtonSetup.py
+msgid "LCD SkinSelector"
+msgstr "LCD-Skinauswahl"
+
+#: ButtonSetup.py
+msgid "Show subtitle quick menu"
+msgstr "Untertitel-Schnellmenü"
 
 #: ButtonSetup.py
 msgid "Usage Setup"
@@ -16194,6 +16290,10 @@ msgstr ""
 #: ButtonSetup.py
 msgid "EnhancedMovieCenter"
 msgstr ""
+
+#: ButtonSetup.py
+msgid "QuickMenu"
+msgstr "Schnellstart-Menü"
 
 #: ButtonSetup.py
 msgid "Hotkey Setup for"
@@ -16978,7 +17078,7 @@ msgid "Popup"
 msgstr "Aufblenden"
 
 msgid "Slide from left"
-msgstr "Von links Gleiten"
+msgstr "Von links gleiten"
 
 msgid "Slide right to left"
 msgstr "Von rechts nach links"
@@ -17139,7 +17239,7 @@ msgstr ""
 "Liste: %s\n"
 "Datum: %s\n"
 "\n"
-"Möchtest du die Programmliste installieren?"
+"Möchten Sie die Programmliste installieren?"
 
 msgid "Server down"
 msgstr "Server ist Offline"
@@ -17166,7 +17266,7 @@ msgid ""
 msgstr ""
 " verfügbar !!\n"
 "\n"
-"Möchtest du die Programmliste installieren?"
+"Möchten Sie die Programmliste installieren?"
 
 msgid "Programmlisten-Updater Restore"
 msgstr "Programmlisten-Updater wiederherstellen"
@@ -17178,7 +17278,7 @@ msgid ""
 msgstr ""
 "Ausgewählte Programmliste: %s\n"
 "\n"
-"Möchtest du die Programmliste wiederherstellen?"
+"Möchten Sie die Programmliste wiederherstellen?"
 
 msgid ""
 "Selected settingslist: %s\n"
@@ -17187,7 +17287,7 @@ msgid ""
 msgstr ""
 "Ausgewählte Programmliste: %s\n"
 "\n"
-"Möchtest du die Programmliste löschen?"
+"Möchten Sie die Programmliste löschen?"
 
 msgid "Maximum number of days in EPG"
 msgstr "Maximale Anzahl von Tagen vom EPG"
@@ -17221,46 +17321,59 @@ msgstr ""
 "(ab 30 auf 4, ab 18 auf 3, ab 9 auf 2, ab 3 auf 1)"
 
 msgid "This allows you to show drivers modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Treibern im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Treibern im Downloadbereich"
 
 msgid "This allows you to show extensions modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Extensions im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Extensions im Downloadbereich"
 
 msgid "This allows you to show systemplugins modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Systemplugins im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Systemplugins im Downloadbereich"
 
 msgid "This allows you to show softcams modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Softcams im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Softcams im Downloadbereich"
 
 msgid "This allows you to show skins modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Skins im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Skins im Downloadbereich"
 
 msgid "This allows you to show lcd skins in downloads"
-msgstr "Dies erlaubt dir die Anzeige von LCD Skins im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von LCD Skins im Downloadbereich"
 
 msgid "This allows you to show picons modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Picons im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Picons im Downloadbereich"
 
 msgid "This allows you to show settings modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Settings im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Settings im Downloadbereich"
 
 msgid "This allows you to show m2k modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von M2K im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von M2K im Downloadbereich"
 
 msgid "This allows you to show weblinks modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Weblinks im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Weblinks im Downloadbereich"
 
 msgid "This allows you to show pli modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von PLI Erweiterungen im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von PLI Erweiterungen im Downloadbereich"
 
 msgid "This allows you to show vix modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von VIX Erweiterungen im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von VIX Erweiterungen im Downloadbereich"
 
 msgid "This allows you to show security modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Security Erweiterungen im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Security Erweiterungen im Downloadbereich"
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr "Dies erlaubt dir die Anzeige von Kernel Erweiterungen im Download"
+msgstr "Dies erlaubt Ihnen die Anzeige von Kernel Erweiterungen im Downloadbereich"
 
 msgid "Please enter the your personal feed URL"
-msgstr "Hier kann man den Persönlichen FEED URL Eintragen"
+msgstr "Hier kann man die persönliche FEED URL eintragen"
+
+#: MultiBootStartup.py:29
+msgid "MultiBoot Selector"
+msgstr "MultiBoot-Auswahl"
+
+#: MultiBootStartup.py:33
+msgid "Select Image: STARTUP_1"
+msgstr "Wähle Image: STARTUP_1"
+
+#: MultiBootStartup.py:55
+#, python-format
+msgid "Select Image: %s"
+msgstr "Wähle Image: %s"

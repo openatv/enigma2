@@ -137,6 +137,9 @@ void eListbox::moveSelection(long dir)
 		}
 		while (newsel != oldsel && !m_content->currentCursorSelectable());
 		break;
+	case refresh:
+		oldsel = ~m_selected;
+		break;
 	case moveTop:
 		m_content->cursorHome();
 		// falltrough

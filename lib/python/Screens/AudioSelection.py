@@ -497,6 +497,9 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		self.wait = eTimer()
 		self.wait.timeout.get().append(self.resyncSubtitles)
 
+		self.resume = eTimer()
+		self.resume.timeout.get().append(self.resyncSubtitlesResume)
+
 		self["videofps"] = Label("")
 
 		sub = self.infobar.selected_subtitle
@@ -544,6 +547,13 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		{
 			"cancel": self.cancel,
 			"ok": self.ok,
+			"1": self.keyNumber,
+			"3": self.keyNumber,
+			"4": self.keyNumber,
+			"6": self.keyNumber,
+			"7": self.keyNumber,
+			"9": self.keyNumber,
+			"0": self.keyNumber,
 		},-2)
 
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -552,12 +562,45 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		if not self["videofps"].text:
 			self.instance.resize(eSize(self.instance.size().width(), self["config"].l.getItemSize().height()*len(self["config"].getList()) + 10))
 
+	def keyNumber(self, number):
+		menuEntry = getConfigMenuItem("config.subtitles.pango_subtitles_delay")
+		if self["config"].getCurrent() != menuEntry:
+			return
+		configItem = menuEntry[1]
+		delay = int(configItem.getValue())
+		minDelay = int(configItem.choices[0])
+		maxDelay = int(configItem.choices[len(configItem.choices) - 1])
+
+		if number == 1:
+			delay -= 45000 # -0.5sec
+		elif number == 3:
+			delay += 45000 # +0.5sec
+		elif number == 4:
+			delay -= 90000 * 5 # -5sec
+		elif number == 6:
+			delay += 90000 * 5 # +5sec
+		elif number == 7:
+			delay -= 90000 * 30 # -30sec
+		elif number == 9:
+			delay += 90000 * 30 # +30sec
+		elif number == 0:
+			delay = 0 # reset to "No delay"
+			
+		delay = min(max(delay, minDelay), maxDelay)
+
+		configItem.setValue(str(delay))
+		self["config"].invalidate(menuEntry)
+		self.wait.start(500, True)
+
 	def changedEntry(self):
 		if self["config"].getCurrent() in [getConfigMenuItem("config.subtitles.pango_subtitles_delay"),getConfigMenuItem("config.subtitles.pango_subtitles_fps")]:
 			self.wait.start(500, True)
 
 	def resyncSubtitles(self):
 		self.infobar.setSeekState(self.infobar.SEEK_STATE_PAUSE)
+		self.resume.start(100, True)
+
+	def resyncSubtitlesResume(self):
 		self.infobar.setSeekState(self.infobar.SEEK_STATE_PLAY)
 
 	def getFps(self):
