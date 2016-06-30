@@ -9,6 +9,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
+from Tools.UnitConversions import UnitScaler
 from Screens.LocationBox import defaultInhibitDirs
 #GML:1
 from Tools.Trashcan import getTrashFolder
@@ -41,6 +42,12 @@ class StubInfo:
 
 	def getLength(self, serviceref):
 		return -1
+
+	def getFileSize(self, serviceref):
+		try:
+			return os.stat(serviceref.getPath()).st_size
+		except:
+			return -1
 
 	def getEvent(self, serviceref, *args):
 		return None
@@ -187,9 +194,9 @@ class MovieList(GUIComponent):
 		self.fontSize = 20
 		self.listHeight = None
 		self.listWidth = None
-		# pbarShift, trashShift, dirShift, dateWidth and lenWidth
-		# are properties that return their calculated size
-		# if set to None
+		# pbarShift, trashShift, dirShift, dateWidth, lenWidth
+		# and sizeWidth are properties that return their
+		# calculated size if set to None
 		self.pbarShift = None  # Defaults to being calculated from bar height
 		self.pbarHeight = 16
 		self.pbarLargeWidth = 48
@@ -213,6 +220,8 @@ class MovieList(GUIComponent):
 		self.dateWidthScale = 9.0  # Over-ridden by self.dateWidth if set
 		self.lenWidth = None  # Defaults to being calculated from font size
 		self.lenWidthScale = 4.0  # Over-ridden by self.lenWidth if set
+		self.sizeWidth = None  # Defaults to being calculated from font size
+		self.sizeWidthScale = 5.0  # Over-ridden by self.sizeWidth if set
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -261,6 +270,17 @@ class MovieList(GUIComponent):
 	@lenWidth.setter
 	def lenWidth(self, val):
 		self._lenWidth = val
+
+	@property
+	def sizeWidth(self):
+		if self._sizeWidth is None:
+			return int(((self.fontSize - 3) + config.movielist.fontsize.value) * self.sizeWidthScale)
+		else:
+			return self._sizeWidth
+
+	@sizeWidth.setter
+	def sizeWidth(self, val):
+		self._sizeWidth = val
 
 	@property
 	def trashShift(self):
@@ -405,6 +425,10 @@ class MovieList(GUIComponent):
 			self.lenWidth = int(value)
 		def lenWidthScale(value):
 			self.lenWidthScale = float(value)
+		def sizeWidth(value):
+			self.sizeWidth = int(value)
+		def sizeWidthScale(value):
+			self.sizeWidthScale = float(value)
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
@@ -447,6 +471,8 @@ class MovieList(GUIComponent):
 		dateWidth = self.dateWidth
 		showLen = config.movielist.showlengths.value == "yes"
 		lenWidth = self.lenWidth if showLen else 0
+		showSize = config.movielist.showsizes.value == "yes"
+		sizeWidth = self.sizeWidth if showSize else 0
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
@@ -477,6 +503,8 @@ class MovieList(GUIComponent):
 			x = self.list[cur_idx]  # x = ref,info,begin,...
 			if showLen:
 				data.len = info.getLength(serviceref)
+			if showSize:
+				data.size = info.getFileSize(serviceref)
 			self.list[cur_idx] = (x[0], x[1], x[2], data)  # update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref)
 			if config.movielist.hide_extensions.value:
@@ -521,6 +549,8 @@ class MovieList(GUIComponent):
 		if showLen:
 			len = data.len
 			len = "%d:%02d" % (len / 60, len % 60) if len > 0 else ""
+		if showSize:
+			size = _("%s %sB") % UnitScaler()(data.size) if data.size > 0 else ""
 
 		if data:
 			if switch == 'i' and hasattr(data, 'icon') and data.icon is not None:
@@ -545,6 +575,9 @@ class MovieList(GUIComponent):
 		textItems = []
 		xPos = width
 
+		if showSize:
+			xPos -= sizeWidth + r
+			textItems.insert(0, MultiContentEntryText(pos=(xPos, 0), size=(sizeWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=size))
 		if showLen:
 			xPos -= lenWidth + r
 			textItems.insert(0, MultiContentEntryText(pos=(xPos, 0), size=(lenWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=len))

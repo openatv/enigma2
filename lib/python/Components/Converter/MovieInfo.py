@@ -2,6 +2,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached, ElementError
 from enigma import iServiceInformation, eServiceReference
 from ServiceReference import ServiceReference
+from Tools.UnitConversions import UnitScaler
 
 class MovieInfo(Converter, object):
 	MOVIE_SHORT_DESCRIPTION = 0 # meta description when available.. when not .eit short description
@@ -53,7 +54,7 @@ class MovieInfo(Converter, object):
 					return _("Directory")
 				filesize = info.getFileSize(service)
 				if filesize:
-					return _("%d MB") % (filesize / (1024 * 1024))
+					return _("%s %sB") % UnitScaler()(filesize)
 		return ""
 
 	text = property(getText)
