@@ -91,7 +91,7 @@ l_moviesort = [
 	(str(MovieList.SHUFFLE), _("Shuffle"), 'Shuffle'),
 ]
 
-#GML:1
+# GML:1
 # 4th item is the textual value set in UsageConfig.py
 l_trashsort = [
 	(str(MovieList.TRASHSORT_SHOWRECORD), _("delete time - show record time (Trash ONLY)"), '03/02/01', "show record time"),
@@ -219,22 +219,22 @@ def buildMovieLocationList(bookmarks):
 	inlist = []
 	for d in config.movielist.videodirs.value:
 		d = os.path.normpath(d)
-		bookmarks.append((d,d))
+		bookmarks.append((d, d))
 		inlist.append(d)
 	for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if d in inlist:
 			# improve shortcuts to mountpoints
 			try:
-				bookmarks[bookmarks.index((d,d))] = (p.tabbedDescription().replace("\t", " - "), d)
+				bookmarks[bookmarks.index((d, d))] = (p.tabbedDescription().replace("\t", " - "), d)
 			except:
-				pass # When already listed as some "friendly" name
+				pass  # When already listed as some "friendly" name
 		else:
 			bookmarks.append((p.tabbedDescription().replace("\t", " - "), d))
 		inlist.append(d)
 	for d in last_selected_dest:
 		if d not in inlist:
-			bookmarks.append((d,d))
+			bookmarks.append((d, d))
 
 class MovieBrowserConfiguration(ConfigListScreen, Screen):
 	def __init__(self, session, args=0):
@@ -254,8 +254,8 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		self.cfg = cfg
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices=l_moviesort)
 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
-#GML:2 - movielist_trashcan_days
-#GML:1 - trashsort_deltime
+# GML:2 - movielist_trashcan_days
+# GML:1 - trashsort_deltime
 		ConfigListScreen.__init__(self, [], session=self.session, on_change=self.changedEntry)
 		self.createConfig()
 		self.notify = (
@@ -435,10 +435,10 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		ProtectedScreen.__init__(self)
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], {
-				"red": self.cancelClick,
-				"green": self.okbuttonClick,
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
+			"red": self.cancelClick,
+			"green": self.okbuttonClick,
+			"ok": self.okbuttonClick,
+			"cancel": self.cancelClick
 		})
 
 		self["key_red"] = StaticText(_("Cancel"))
@@ -711,15 +711,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		}, description=_("Settings, information and more functions"))
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
-				"red": (self.btn_red, boundFunction(self.getinitUserDefinedActionsDescription, "btn_red")),
-				"green": (self.btn_green, boundFunction(self.getinitUserDefinedActionsDescription, "btn_green")),
-				"yellow": (self.btn_yellow, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellow")),
-				"blue": (self.btn_blue, boundFunction(self.getinitUserDefinedActionsDescription, "btn_blue")),
-				"redlong": (self.btn_redlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_redlong")),
-				"greenlong": (self.btn_greenlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_greenlong")),
-				"yellowlong": (self.btn_yellowlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellowlong")),
-				"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
-			}, description=_("User-selectable functions"))
+			"red": (self.btn_red, boundFunction(self.getinitUserDefinedActionsDescription, "btn_red")),
+			"green": (self.btn_green, boundFunction(self.getinitUserDefinedActionsDescription, "btn_green")),
+			"yellow": (self.btn_yellow, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellow")),
+			"blue": (self.btn_blue, boundFunction(self.getinitUserDefinedActionsDescription, "btn_blue")),
+			"redlong": (self.btn_redlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_redlong")),
+			"greenlong": (self.btn_greenlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_greenlong")),
+			"yellowlong": (self.btn_yellowlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellowlong")),
+			"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
+		}, description=_("User-selectable functions"))
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
 			"cancel": (self.abort, _("Exit movie list")),
 			"ok": (self.itemSelected, _("Select movie")),
@@ -733,7 +733,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		}, prio=-2, description=_("Navigation"))
 
 		tFwd = _("Skip forward (Preview)")
-		tBack =_("Skip backward (Preview)")
+		tBack = _("Skip backward (Preview)")
 		sfwd = lambda: self.seekRelative(1, config.seek.selfdefined_46.value * 90000)
 		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value * 90000)
 		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value * 90000)
@@ -791,7 +791,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			parentalControl.hideBlacklist()
 			self.reloadList()
 		elif answer is not None:
-			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)	
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -832,7 +832,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			locations = []
 			buildMovieLocationList(locations)
 			prefix = _("Goto") + ": "
-			for d,p in locations:
+			for d, p in locations:
 				if p and p.startswith('/'):
 					userDefinedActions[p] = prefix + d
 			userDefinedChoices = sorted(userDefinedActions.iteritems(), key=lambda x: x[1].lower())
@@ -1402,7 +1402,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
 				if BlurayPlayer is not None and os.path.isdir(os.path.join(path, 'BDMV/STREAM/')):
-					#force a BLU-RAY extention
+					# force a BLU-RAY extention
 					Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.itemSelectedCheckTimeshiftCallback, 'bluray', path))
 					return
 				if os.path.isdir(os.path.join(path, 'VIDEO_TS/')) or os.path.exists(os.path.join(path, 'VIDEO_TS.IFO')):
@@ -1531,8 +1531,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		return needUpdate
 
 	def sortBy(self, newType):
-#GML:1
-		print '[MovieSelection] SORTBY:',newType
+		# GML:1
+		print '[MovieSelection] SORTBY:', newType
 		if newType < MovieList.TRASHSORT_SHOWRECORD:
 			self.settings["moviesort"] = newType
 			self.saveLocalSettings()
@@ -1610,7 +1610,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				used = index
 			menu.append((_(x[1]), x[0], "%d" % index))
 			index += 1
-#GML:1
+# GML:1
 		if MovieList.InTrashFolder:
 			for x in l_trashsort:
 				if x[3] == config.usage.trashsort_deltime.value:
@@ -1621,7 +1621,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def getPixmapSortIndex(self, which):
 		index = int(which)
-#GML:1
+# GML:1
 		if (index == MovieList.TRASHSORT_SHOWRECORD) or (index == MovieList.TRASHSORT_SHOWDELETE):
 			index = MovieList.SORT_RECORDED
 		return index - 1
@@ -1741,7 +1741,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				parentalControl.setSessionPinCached()
 				parentalControl.hideBlacklist()
 				self.gotFilename(res, selItem)
-			elif result == False:
+			elif result is False:
 				self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
 		if not res:
 			return
@@ -1998,7 +1998,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		filepath = item[0].getPath()
 		if not filepath.endswith('.ts'):
 			return
-		serviceref = ServiceReference(None, reftype = eServiceReference.idDVB, path = filepath)
+		serviceref = ServiceReference(None, reftype=eServiceReference.idDVB, path=filepath)
 		name = info.getName(item[0]) + _(" - decoded")
 		description = info.getInfoString(item[0], iServiceInformation.sDescription)
 		recording = RecordTimer.RecordTimerEntry(serviceref, int(time.time()), int(time.time()) + 3600, name, description, 0, dirname=preferredTimerPath())
@@ -2417,9 +2417,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.gotFilename(defaultMoviePath())
 
 	def do_sortdefault(self):
-		print '[MovieSelection] SORT:',config.movielist.moviesort.value
+		print '[MovieSelection] SORT:', config.movielist.moviesort.value
 		config.movielist.moviesort.load()
-		print '[MovieSelection] SORT:',config.movielist.moviesort.value
+		print '[MovieSelection] SORT:', config.movielist.moviesort.value
 		self.sortBy(int(config.movielist.moviesort.value))
 
 	def do_sort(self):
