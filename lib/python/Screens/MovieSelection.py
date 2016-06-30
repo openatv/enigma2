@@ -43,8 +43,8 @@ config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 config.movielist.itemsperpage = ConfigSelectionNumber(default=20, stepwidth=1, min=3, max=30, wraparound=True)
 config.movielist.useslim = ConfigYesNo(default=False)
-config.movielist.showlengths = ConfigSelection(default="no", choices=["no", "yes"])
-config.movielist.showsizes = ConfigSelection(default="no", choices=["no", "yes"])
+config.movielist.showlengths = ConfigSelection(default="auto", choices=["no", "yes", "auto"])
+config.movielist.showsizes = ConfigSelection(default="auto", choices=["no", "yes", "auto"])
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
@@ -84,6 +84,10 @@ l_moviesort = [
 	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("By reverse name, then by date"), 'Z->A, New->Old'),
 	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST), _("By reverse name, then by reverse date"), 'Z->A, Old->New'),
 	(str(MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST_FLAT), _("Flat by reverse name, then by reverse date"), 'Flat Z->A, Old->New'),
+	(str(MovieList.SORT_DURATION_ALPHA), _("By duration, then by name"), 'Short->Long A->Z'),
+	(str(MovieList.SORT_DURATIONREV_ALPHA), _("By reverse duration, then by name"), 'Long->Short A->Z'),
+	(str(MovieList.SORT_SIZE_ALPHA), _("By file size, then by name"), 'Small->Large A->Z'),
+	(str(MovieList.SORT_SIZEREV_ALPHA), _("By reverse file size, then by name"), 'Large->Small A->Z'),
 	(str(MovieList.SHUFFLE), _("Shuffle"), 'Shuffle'),
 ]
 
@@ -304,8 +308,8 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Font size"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.")),
 			getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows on each page.")),
 			getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative slim screen.")),
-			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list.")),
-			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list.")),
+			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
+			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
 			getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
 			getConfigListEntry(_("Sort trash by deletion time"), config.usage.trashsort_deltime, _("Use the deletion time to sort trash folders.\nMost recently deleted at the top.")),
 			getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),

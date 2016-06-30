@@ -160,9 +160,26 @@ class MovieList(GUIComponent):
 	SORT_GROUPWISE = 8
 	SORT_ALPHA_DATE_OLDEST_FIRST = 9
 	SORT_ALPHAREV_DATE_NEWEST_FIRST = 10
+	SORT_DURATION_ALPHA = 11
+	SORT_DURATIONREV_ALPHA = 12
+	SORT_SIZE_ALPHA = 13
+	SORT_SIZEREV_ALPHA = 14
 
 	HIDE_DESCRIPTION = 1
 	SHOW_DESCRIPTION = 2
+
+	COL_NAME = 1
+	COL_BEGIN = 2
+	COL_LENGTH = 3
+	COL_SIZE = 4
+
+	staticCols = frozenset([COL_NAME, COL_BEGIN])
+	sortCols = {
+		SORT_DURATION_ALPHA: staticCols | frozenset([COL_LENGTH]),
+		SORT_DURATIONREV_ALPHA: staticCols | frozenset([COL_LENGTH]),
+		SORT_SIZE_ALPHA: staticCols | frozenset([COL_SIZE]),
+		SORT_SIZEREV_ALPHA: staticCols | frozenset([COL_SIZE]),
+	}
 
 	dirNameExclusions = [
 		'.AppleDouble', '.AppleDesktop', '.AppleDB',
@@ -176,8 +193,8 @@ class MovieList(GUIComponent):
 # The numbering starts after SORT_* values above.
 # in MovieSelection.py (that has no SORT_GROUPWISE)
 #
-	TRASHSORT_SHOWRECORD = 11
-	TRASHSORT_SHOWDELETE = 12
+	TRASHSORT_SHOWRECORD = 15
+	TRASHSORT_SHOWDELETE = 16
 	UsingTrashSort = False
 	InTrashFolder = False
 
@@ -465,13 +482,16 @@ class MovieList(GUIComponent):
 	def userItemCount(self):
 		return (self.numUserDirs, self.numUserFiles)
 
+	def showCol(self, conf, col):
+		return conf.value == "yes" or conf.value == "auto" and col in self.sortCols.get(self.sort_type, self.staticCols)
+
 	def buildMovieListEntry(self, serviceref, info, begin, data):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		dateWidth = self.dateWidth
-		showLen = config.movielist.showlengths.value == "yes"
+		showLen = self.showCol(config.movielist.showlengths, self.COL_LENGTH)
 		lenWidth = self.lenWidth if showLen else 0
-		showSize = config.movielist.showsizes.value == "yes"
+		showSize = self.showCol(config.movielist.showsizes, self.COL_SIZE)
 		sizeWidth = self.sizeWidth if showSize else 0
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
@@ -831,6 +851,18 @@ class MovieList(GUIComponent):
 		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey, reverse=True) \
 				+ sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey, reverse=True)
+		elif self.sort_type == MovieList.SORT_SIZE_ALPHA:
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildSizeAlphaSortKey)
+		elif self.sort_type == MovieList.SORT_SIZEREV_ALPHA:
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildSizeRevAlphaSortKey)
+		elif self.sort_type == MovieList.SORT_DURATION_ALPHA:
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildLengthAlphaSortKey)
+		elif self.sort_type == MovieList.SORT_DURATIONREV_ALPHA:
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildLengthRevAlphaSortKey)
 		else:
 			self.list.sort(key=self.buildGroupwiseSortkey)
 
@@ -961,6 +993,28 @@ class MovieList(GUIComponent):
 			return self.buildAlphaNumericSortKey(x)
 		else:
 			return self.buildBeginTimeSortKey(x)
+
+	def buildSizeAlphaSortKey(self, x):
+		ref = x[0]
+		info = x[1]
+		name = info and info.getName(ref)
+		size = info and info.getFileSize(ref)
+		return 1, size, name and name.lower() or "", -x[2]
+
+	def buildSizeRevAlphaSortKey(self, x):
+		x = self.buildSizeAlphaSortKey(x)
+		return (x[0], -x[1], x[2], x[3])
+
+	def buildLengthAlphaSortKey(self, x):
+		ref = x[0]
+		info = x[1]
+		name = info and info.getName(ref)
+		len = info and info.getLength(ref)
+		return 1, len, name and name.lower() or "", -x[2]
+
+	def buildLengthRevAlphaSortKey(self, x):
+		x = self.buildLengthAlphaSortKey(x)
+		return (x[0], -x[1], x[2], x[3])
 
 	def moveTo(self, serviceref):
 		index = self.findService(serviceref)
