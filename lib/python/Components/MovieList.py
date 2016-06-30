@@ -187,7 +187,7 @@ class MovieList(GUIComponent):
 		self.fontSize = 20
 		self.listHeight = None
 		self.listWidth = None
-		# pbarShift, trashShift, dirShift and dateWidth
+		# pbarShift, trashShift, dirShift, dateWidth and lenWidth
 		# are properties that return their calculated size
 		# if set to None
 		self.pbarShift = None  # Defaults to being calculated from bar height
@@ -211,6 +211,8 @@ class MovieList(GUIComponent):
 		self.dirShift = None  # Defaults to being calculated from directory icon height
 		self.dateWidth = None  # Defaults to being calculated from font size
 		self.dateWidthScale = 9.0  # Over-ridden by self.dateWidth if set
+		self.lenWidth = None  # Defaults to being calculated from font size
+		self.lenWidthScale = 4.0  # Over-ridden by self.lenWidth if set
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -248,6 +250,17 @@ class MovieList(GUIComponent):
 	@dateWidth.setter
 	def dateWidth(self, val):
 		self._dateWidth = val
+
+	@property
+	def lenWidth(self):
+		if self._lenWidth is None:
+			return int(((self.fontSize - 3) + config.movielist.fontsize.value) * self.lenWidthScale)
+		else:
+			return self._lenWidth
+
+	@lenWidth.setter
+	def lenWidth(self, val):
+		self._lenWidth = val
 
 	@property
 	def trashShift(self):
@@ -388,6 +401,10 @@ class MovieList(GUIComponent):
 			self.dateWidth = int(value)
 		def dateWidthScale(value):
 			self.dateWidthScale = float(value)
+		def lenWidth(value):
+			self.lenWidth = int(value)
+		def lenWidthScale(value):
+			self.lenWidthScale = float(value)
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
@@ -428,6 +445,8 @@ class MovieList(GUIComponent):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		dateWidth = self.dateWidth
+		showLen = config.movielist.showlengths.value == "yes"
+		lenWidth = self.lenWidth if showLen else 0
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
@@ -456,7 +475,8 @@ class MovieList(GUIComponent):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
 			x = self.list[cur_idx]  # x = ref,info,begin,...
-			data.len = 0  # dont recalc movielist to speedup loading the list
+			if showLen:
+				data.len = info.getLength(serviceref)
 			self.list[cur_idx] = (x[0], x[1], x[2], data)  # update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref)
 			if config.movielist.hide_extensions.value:
@@ -482,7 +502,7 @@ class MovieList(GUIComponent):
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
-				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
+				data.part = moviePlayState(pathName + '.cuts', serviceref, 0)
 				if switch == 'i':
 					if data.part is not None and data.part >= 0:
 						data.icon = self.iconPart[data.part // 25]
@@ -498,11 +518,9 @@ class MovieList(GUIComponent):
 							data.part = 100
 							data.partcol = self.pbarColour
 							data.partcolsel = self.pbarColourSel
-		len = data.len
-		if len > 0:
-			len = "%d:%02d" % (len / 60, len % 60)
-		else:
-			len = ""
+		if showLen:
+			len = data.len
+			len = "%d:%02d" % (len / 60, len % 60) if len > 0 else ""
 
 		if data:
 			if switch == 'i' and hasattr(data, 'icon') and data.icon is not None:
@@ -524,8 +542,17 @@ class MovieList(GUIComponent):
 		if begin > 0:
 			begin_string = ' '.join(FuzzyTime(begin, inPast=True))
 
-		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
-		res.append(MultiContentEntryText(pos=(width-dateWidth-r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+		textItems = []
+		xPos = width
+
+		if showLen:
+			xPos -= lenWidth + r
+			textItems.insert(0, MultiContentEntryText(pos=(xPos, 0), size=(lenWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=len))
+		xPos -= dateWidth + r
+		textItems.insert(0, MultiContentEntryText(pos=(xPos, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
+		textItems.insert(0, MultiContentEntryText(pos=(iconSize + space, 0), size=(xPos - (iconSize + space), ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
+
+		res += textItems
 		return res
 
 	def moveToFirstMovie(self):
