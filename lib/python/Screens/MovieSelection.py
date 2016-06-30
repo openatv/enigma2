@@ -252,50 +252,15 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
 #GML:2 - movielist_trashcan_days
 #GML:1 - trashsort_deltime
-		configList = [
-			getConfigListEntry(_("Use trash in movie list"), config.usage.movielist_trashcan, _("When enabled, deleted recordings are moved to trash, instead of being deleted immediately.")),
-			getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days, _("Configure the number of days after which items are automatically deleted from trash.")),
-			getConfigListEntry(_("Clean network trash"), config.usage.movielist_trashcan_network_clean, _("When enabled, trash processing is also applied to network trash.")),
-			getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Minimum amount of disk space to be kept available for recordings. When the free disk space drops below this value, items will be deleted from trash.")),
-			getConfigListEntry(_("Background delete option"), config.misc.erase_flags, _("Configure on which devices the background delete option should be used.")),
-			getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.")),
-			getConfigListEntry(_("Font size"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.")),
-			getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows on each page.")),
-			getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative slim screen.")),
-			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list.")),
-			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list.")),
-			getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
-			getConfigListEntry(_("Sort trash by deletion time"), config.usage.trashsort_deltime, _("Use the deletion time to sort trash folders.\nMost recently deleted at the top.")),
-			getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
-			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set, each folder will show the previous state used. When off, the default values will be shown.")),
-			getConfigListEntry(_("When a movie reaches the end"), config.usage.on_movie_eof, _("What to do at the end of file playback.")),
-			getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist, _("Shows the 'watched' status of the movie."))
-		]
-		if config.usage.show_icons_in_movielist.value:
-			configList.append(getConfigListEntry(_("Show icon for new/unwatched items"), config.usage.movielist_unseen, _("Shows an icon when new/unwatched, otherwise don't show an icon.")))
-		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps movie list open whilst playing audio files.")))
-		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to prevent the '..' from being shown in that folder.")))
-		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")))
-		configList.append(getConfigListEntry(_("Return to last selected entry"), config.movielist.use_last_videodirpos, _("Return to the last selection in the movie list on re-entering Movie Player. Otherwise return to the first movie entry in the movie list.")))
-		configList.append(getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set, return to showing live TV in the background after a movie has stopped playing.")))
-		for btn in (
-			('red', _('Button Red')),
-			('green', _('Button Green')),
-			('yellow', _('Button Yellow')),
-			('blue', _('Button Blue')),
-			('redlong', _('Button Red long')),
-			('greenlong', _('Button Green long')),
-			('yellowlong', _('Button Yellow long')),
-			('bluelong', _('Button Blue long')),
-			('TV', _('Button TV')),
-			('Radio', _('Button Radio')),
-			('Text', _('Button Text'))
-		):
-			configList.append(getConfigListEntry(btn[1], userDefinedButtons[btn[0]], _("Allows you to set the button to do what you choose.")))
-		ConfigListScreen.__init__(self, configList, session=self.session, on_change=self.changedEntry)
-		self["config"].setList(configList)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
+		ConfigListScreen.__init__(self, [], session=self.session, on_change=self.changedEntry)
+		self.createConfig()
+		self.notify = (
+			config.usage.movielist_trashcan,
+			config.misc.erase_flags,
+			config.usage.show_icons_in_movielist,
+		)
+		self.addNotifiers()
+		self.onClose.append(self.clearNotifiers)
 
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'], {
 			"red": self.cancel,
@@ -312,6 +277,74 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
+
+	def addNotifiers(self):
+		for n in self.notify:
+			n.addNotifier(self.updateConfig, initial_call=False)
+
+	def clearNotifiers(self):
+		for n in self.notify:
+			n.removeNotifier(self.updateConfig)
+
+	def createConfig(self):
+		cfg = self.cfg
+		configList = [
+			getConfigListEntry(_("Use trash in movie list"), config.usage.movielist_trashcan, _("When enabled, deleted recordings are moved to trash, instead of being deleted immediately.")),
+		]
+		if config.usage.movielist_trashcan.value:
+			configList += [
+				getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days, _("Configure the number of days after which items are automatically deleted from trash.")),
+				getConfigListEntry(_("Clean network trash"), config.usage.movielist_trashcan_network_clean, _("When enabled, trash processing is also applied to network trash.")),
+				getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Minimum amount of disk space to be kept available for recordings. When the free disk space drops below this value, items will be deleted from trash.")),
+				getConfigListEntry(_("Background delete option"), config.misc.erase_flags, _("Configure on which devices the background delete option should be used.")),
+			]
+			if int(config.misc.erase_flags.value):
+				configList.append(getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.")))
+		configList += [
+			getConfigListEntry(_("Font size"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.")),
+			getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows on each page.")),
+			getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative slim screen.")),
+			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list.")),
+			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list.")),
+			getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
+			getConfigListEntry(_("Sort trash by deletion time"), config.usage.trashsort_deltime, _("Use the deletion time to sort trash folders.\nMost recently deleted at the top.")),
+			getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
+			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set, each folder will show the previous state used. When off, the default values will be shown.")),
+			getConfigListEntry(_("When a movie reaches the end"), config.usage.on_movie_eof, _("What to do at the end of file playback.")),
+			getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist, _("Shows the 'watched' status of the movie."))
+		]
+
+		if config.usage.show_icons_in_movielist.value != 'o':
+			configList.append(getConfigListEntry(_("Show icon for new/unwatched items"), config.usage.movielist_unseen, _("Shows an icon when new/unwatched, otherwise don't show an icon.")))
+
+		configList += [
+			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps movie list open whilst playing audio files.")),
+			getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to prevent the '..' from being shown in that folder.")),
+			getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")),
+			getConfigListEntry(_("Return to last selected entry"), config.movielist.use_last_videodirpos, _("Return to the last selection in the movie list on re-entering Movie Player. Otherwise return to the first movie entry in the movie list.")),
+			getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set, return to showing live TV in the background after a movie has stopped playing."))
+		]
+
+		for btn in (
+			('red', _('Button Red')),
+			('green', _('Button Green')),
+			('yellow', _('Button Yellow')),
+			('blue', _('Button Blue')),
+			('redlong', _('Button Red long')),
+			('greenlong', _('Button Green long')),
+			('yellowlong', _('Button Yellow long')),
+			('bluelong', _('Button Blue long')),
+			('TV', _('Button TV')),
+			('Radio', _('Button Radio')),
+			('Text', _('Button Text'))
+		):
+			configList.append(getConfigListEntry(btn[1], userDefinedButtons[btn[0]], _("Allows you to set the button to do what you choose.")))
+		self["config"].setList(configList)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def updateConfig(self, configElement):
+		self.createConfig()
 
 	def selectionChanged(self):
 		self["description"].setText(self["config"].getCurrent()[2])
