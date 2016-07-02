@@ -593,8 +593,17 @@ def InitLcd():
 		config.lcd.fblcddisplay = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.hdd = ConfigNothing()
-		config.lcd.scroll_speed = ConfigSelection(choices = [("300", _("normal"))])
-		config.lcd.scroll_delay = ConfigSelection(choices = [("noscrolling", _("off"))])
+		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
+		("500", _("slow")),
+		("300", _("normal")),
+		("100", _("fast"))])
+		config.lcd.scroll_delay = ConfigSelection(default = "10000", choices = [
+		("10000", "10 " + _("seconds")),
+		("20000", "20 " + _("seconds")),
+		("30000", "30 " + _("seconds")),
+		("60000", "1 " + _("minute")),
+		("300000", "5 " + _("minutes")),
+		("noscrolling", _("off"))])
 		config.lcd.showoutputresolution = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
 		config.lcd.ledbrightness.apply = lambda : doNothing()

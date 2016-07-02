@@ -11,6 +11,7 @@ from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType
+from keyids import KEYIDS
 
 def InitUsageConfig():
 	config.misc.SettingsVersion = ConfigFloat(default = [1,1], limits = [(1,10),(0,99)])
@@ -233,6 +234,20 @@ def InitUsageConfig():
 	choicelist = [("show_menu", _("Show shutdown menu")), ("shutdown", _("Immediate shutdown")), ("standby", _("Standby")), ("sleeptimer", _("SleepTimer")), ("powertimerStandby", _("PowerTimer Standby")), ("powertimerDeepStandby", _("PowerTimer DeepStandby"))]
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = choicelist)
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = choicelist)
+
+	config.usage.long_press_emulation_key = ConfigSelection(default = "0", choices = [
+		("0", _("None")),
+		(str(KEYIDS["KEY_TV"]), _("TV")),
+		(str(KEYIDS["KEY_RADIO"]), _("Radio")),
+		(str(KEYIDS["KEY_AUDIO"]), _("Audio")),
+		(str(KEYIDS["KEY_VIDEO"]), _("List/Fav")),
+		(str(KEYIDS["KEY_HOME"]), _("Home")),
+		(str(KEYIDS["KEY_END"]), _("End")),
+		(str(KEYIDS["KEY_HELP"]), _("Help")),
+		(str(KEYIDS["KEY_INFO"]), _("Info (EPG)")),
+		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
+		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
+		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites")) ])
 
 	choicelist = [("0", "Disabled")]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):

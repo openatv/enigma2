@@ -36,7 +36,19 @@ class TemplatedMultiContent(StringList):
 		if what[0] == self.CHANGED_SPECIFIC and what[1] == "style":
 			pass
 		elif self.source:
-			self.content.setList(self.source.list)
+			try:
+				# make a simple list compatible for this converter
+				tmp = []
+				src = self.source.list
+				for x in range(len(src)):
+					if type(src[x]) != tuple and type(src[x]) != list:
+						tmp.append((src[x],))
+					else:
+						tmp.append(src[x])
+			except Exception as error:
+				print '[TemplatedMultiContent] - %s' %error
+				tmp = self.source.list
+			self.content.setList(tmp)
 
 		self.setTemplate()
 		self.downstream_elements.changed(what)
