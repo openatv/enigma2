@@ -6286,6 +6286,10 @@ msgstr "Keine Aufnahme wegen Timerkonflikt mit Timer '%s'"
 msgid "Could not record due to invalid service %s"
 msgstr "Could not record due to invalid service '%s'"
 
+#: InfoBarGenerics.py
+msgid "Dolby Digital downmix is now"
+msgstr "DD/DTS Downmix ist jetzt"
+
 #
 msgid "Recorded files..."
 msgstr "Aufgenommene Dateien..."
@@ -10293,6 +10297,22 @@ msgstr "Anzahl der Stellen in der Kanalnummer "
 #: data/setup.xml
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Hier können Sie die Anzahl der Stellen auf 5 setzen, wenn Sie mehr als 9999 Kanäle haben."
+
+#: data/setup.xml
+msgid "Default timer type"
+msgstr "Standard Timer-Einstellung"
+
+#: data/setup.xml
+msgid "Configure default type for new timers."
+msgstr "Legt die Standard-Einstellung für neu angelegte Timer fest."
+
+#: data/setup.xml
+msgid "Long press emulation with button"
+msgstr "Emulation 'Langer-Druck' mit Taste"
+
+#: data/setup.xml
+msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
+msgstr "Diese hier eingestellte Taste emuliert einen langen Tastendruck, gefolgt von der Taste ihrer Wahl (diese Funktion hat Vorrang vor anderen Tastenzuweisungen)."
 
 msgid "[TimeShift] - Merging records failed!"
 msgstr "TimeShift - Zusammenführen der Aufnahmen fehlgeschlagen!"
