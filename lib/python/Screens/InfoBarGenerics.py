@@ -3948,13 +3948,13 @@ class InfoBarAudioSelection:
 	def audioSelectionLong(self):
 		if SystemInfo["CanDownmixAC3"] and self.LongButtonPressed:
 			if config.av.downmix_ac3.value:
-				message = _("Dobly Digital downmix is now") + " " + _("disabled")
-				print '[Audio] Dobly Digital downmix is now disabled'
+				message = _("Dolby Digital downmix is now") + " " + _("disabled")
+				print '[Audio] Dolby Digital downmix is now disabled'
 				config.av.downmix_ac3.setValue(False)
 			else:
 				config.av.downmix_ac3.setValue(True)
-				message = _("Dobly Digital downmix is now") + " " + _("enabled")
-				print '[Audio] Dobly Digital downmix is now enabled'
+				message = _("Dolby Digital downmix is now") + " " + _("enabled")
+				print '[Audio] Dolby Digital downmix is now enabled'
 			Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
 
 class InfoBarSubserviceSelection:
