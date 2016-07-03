@@ -14,16 +14,13 @@ def readFile(filename):
 	return data
 
 def getextdevices(ext):
-	Console().ePopen("blkid -t TYPE=%s -o device >/tmp/ext.tmp"%ext)
-	time.sleep(0.5)
-	with open("/tmp/ext.tmp", 'r') as myfile:
-		extdevices=myfile.read().replace('\n', ',')
-		extdevices=extdevices.rstrip(",")
+	cmd ='blkid -t TYPE=%s -o device'%ext
+	extdevices = os.popen(cmd).read().replace('\n', ',').rstrip(",")
+	if extdevices == "":
+		return None
+	else:
 		extdevices = [x.strip() for x in extdevices.split(",")]
-	myfile.close()
-	if os.path.exists('/tmp/ext.tmp'):
-		os.remove('/tmp/ext.tmp')
-	return extdevices
+		return extdevices
 
 def getProcMounts():
 	try:
