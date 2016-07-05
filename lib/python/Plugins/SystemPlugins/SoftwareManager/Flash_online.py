@@ -100,6 +100,10 @@ class FlashOnline(Screen):
 			"red": self.quit,
 			"cancel": self.quit,
 		}, -2)
+		if SystemInfo["HaveMultiBoot"]:
+			self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
+			self.multi = self.multi[-1:]
+			print "[Flash Online] MULTI:",self.multi
 
 	def check_hdd(self):
 		if not os.path.exists("/media/hdd"):
@@ -171,7 +175,10 @@ class FlashOnline(Screen):
 			for name in os.listdir(path):
 				if os.path.isfile(os.path.join(path, name)):
 					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-					files.append(name)
+					cmdline_startup = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+					if (cmdline != cmdline_startup) and (name != "STARTUP"):
+						files.append(name)
+			files.insert(0,"STARTUP")
 		else:
 			files = "None"
 		return files
@@ -443,14 +450,15 @@ class doFlashImage(Screen):
 
 	def Start_Flashing(self):
 		print "Start Flashing"
+		cmdlist = []
 		if os.path.exists(ofgwritePath):
 			text = _("Flashing: ")
 			if self.simulate:
 				text += _("Simulate (no write)")
 				if SystemInfo["HaveMultiBoot"]:
-					cmd = "%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp)
+					cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
 				else:
-					cmd = "%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
+					cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				self.close()
 				message = "echo -e '\n"
 				message += _('Show only found image and mtd partitions.\n')
@@ -460,18 +468,28 @@ class doFlashImage(Screen):
 				if SystemInfo["HaveMultiBoot"]:
 					if not self.List == "STARTUP":
 						os.system('mkfs.ext4 -F ' + self.devrootfs)
-					cmd = "%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp)
+					cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+					if not self.List == "STARTUP":
+						cmdlist.append("umount -fl /oldroot_bind")
+						cmdlist.append("umount -fl /newroot")
 				else:
-					cmd = "%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
+					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				message = "echo -e '\n"
-				message += _('ofgwrite will stop enigma2 now to run the flash.\n')
-				message += _('Your STB will freeze during the flashing process.\n')
-				message += _('Please: DO NOT reboot your STB and turn off the power.\n')
-				message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
-				if self.box() == 'gb800solo':
-					message += _('GB800SOLO takes about 20 mins !!\n')
+				if not self.List == "STARTUP" and SystemInfo["HaveMultiBoot"]:
+					message += _('ofgwrite flashing ready.\n')
+					message += _('please press exit to go back to the menu.\n')
+				else:
+					message += _('ofgwrite will stop enigma2 now to run the flash.\n')
+					message += _('Your STB will freeze during the flashing process.\n')
+					message += _('Please: DO NOT reboot your STB and turn off the power.\n')
+					message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
+					if self.box() == 'gb800solo':
+						message += _('GB800SOLO takes about 20 mins !!\n')
 				message += "'"
-			self.session.open(Console, text,[message, cmd])
+				cmdlist.append(message)
+				self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
+				if not self.List == "STARTUP":
+					self.close()
 
 	def prepair_flashtmp(self, tmpPath):
 		if os.path.exists(flashTmp):
