@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-02 21:36+0100\n"
-"PO-Revision-Date: 2016-06-04 11:03+0200\n"
+"POT-Creation-Date: 2016-07-05 15:30+0200\n"
+"PO-Revision-Date: 2016-07-05 17:27+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2081,8 +2081,12 @@ msgstr "Konfiguriere den Name-Server (DNS)."
 msgid "Configure the netmask."
 msgstr "Konfiguriere die Netzwerkmaske."
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr "Konfiguriere wie viele Tage der Inhalt vom Mülleimer erhalten bleiben soll."
+msgid ""
+"Configure the number of days after which items are automatically removed from the trash can.\n"
+"A setting of 0 disables this."
+msgstr ""
+"Konfiguriere wie viele Tage der Inhalt vom Mülleimer erhalten bleiben soll.\n"
+"Eine 0 deaktiviert diese Option."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Konfiguriere wie viele Tage Timer erhalten bleiben sollen bevor sie gelöscht werden."
@@ -2957,6 +2961,9 @@ msgstr "ECM Zeit"
 
 msgid "ECM avg"
 msgstr "ECM Durchschnitt"
+
+msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+msgstr "Wenn aktiviert werden ECM Daten in HTTP Streams eingebettet. Dies erlaubt es Klienten zu entschlüsseln."
 
 msgid "ECM last"
 msgstr "Letztes ECM"
@@ -4030,6 +4037,9 @@ msgstr "Inadyn Einstellungen"
 
 msgid "Include AIT in http streams"
 msgstr "AIT in HTTP-Streams integrieren"
+
+msgid "Include ECM in http streams"
+msgstr "ECM in HTTP-Streams integrieren"
 
 msgid "Include EIT in http streams"
 msgstr "EIT in HTTP-Streams integrieren"
@@ -5628,6 +5638,15 @@ msgstr "Spiele Vorheriges"
 
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
+
+msgid ""
+"Playback information missing\n"
+"Playback aborted to avoid crash\n"
+"Please retry"
+msgstr ""
+"Wiedergabeinformationen fehlen.\n"
+"Wiedergabe gestoppt um Fehler zu vermeiden.\n"
+"Bitte erneut versuchen."
 
 msgid "Playlist"
 msgstr "Playliste"
@@ -7453,6 +7472,9 @@ msgstr "Zeige Erweiterungen..."
 msgid "Show favourites list"
 msgstr "Zeige Favoritenliste"
 
+msgid "Show full menu path"
+msgstr "Zeige vollen Menüpfad"
+
 msgid "Show graphical multi EPG"
 msgstr "Zeige grafischen Multi-EPG"
 
@@ -7852,6 +7874,9 @@ msgstr "Sortieren"
 
 msgid "Sort EPG List"
 msgstr "Sortiere das EPG"
+
+msgid "Sort Trash by deletion time"
+msgstr "Sortiere Mülleimer nach Löschzeit"
 
 msgid "Sort by"
 msgstr "Sortiere Liste nach"
@@ -8662,6 +8687,9 @@ msgstr "Diese Option erlaubt dir die Sortierungen in den Erweiterungen auszuscha
 msgid "This option allows you to enable 3D Surround Sound for an output."
 msgstr "Diese Option erlaubt es 3D Surround Ton für einen Ausgang zu aktivieren."
 
+msgid "This option allows you to hide the full menu path"
+msgstr "Diese Option erlaubt dir den vollen Menüpfad zu verstecken"
+
 msgid "This option allows you to power on or off the display."
 msgstr "Diese Option erlaubt dir das Display ein- und auszuschalten."
 
@@ -9339,6 +9367,13 @@ msgstr "Alternativen oder konventionellen Radio-Modus benutzen."
 
 msgid "Use the alternative screen"
 msgstr "Eine kleine, einfachere Darstellung benutzen"
+
+msgid ""
+"Use the deletion time to sort Trash folders.\n"
+"Most recently deleted at the top."
+msgstr ""
+"Benutze die Löschzeit um den Mülleimer zu sortieren.\n"
+"Zuletzt gelöschte Filme oben."
 
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Benutze den Netzwerkassistenten um den gewählten Adapter zu konfigurieren"
@@ -10040,6 +10075,12 @@ msgstr "Ja, eine weitere manuelle Suche durchführen"
 msgid "Yes, restore the settings now"
 msgstr "Ja, die Einstellungen jetzt wiederherstellen"
 
+msgid "Yes, show delete time"
+msgstr "Ja zeige Löschzeit"
+
+msgid "Yes, show record time"
+msgstr "Ja zeige Aufnahmezeit"
+
 msgid "Yes, shut down now."
 msgstr "Ja, jetzt herunterfahren."
 
@@ -10569,6 +10610,12 @@ msgstr "löschen"
 
 msgid "delete cut"
 msgstr "Schnitt löschen"
+
+msgid "delete time - show delete time (Trash ONLY)"
+msgstr "Löschzeit - zeige Löschzeit (nur Mülleimer)"
+
+msgid "delete time - show record time (Trash ONLY)"
+msgstr "Löschzeit - zeige Aufnahmezeit (nur Mülleimer)"
 
 msgid "descramble and record ecm"
 msgstr "Entschlüsseln und Aufnahme ECM"
