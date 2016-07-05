@@ -56,10 +56,11 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self.setup_title = x.get("title", "").encode("UTF-8")
 			self.seperation = int(x.get('separation', '0'))
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		from Components.Sources.StaticText import StaticText
 		Screen.__init__(self, session)
 		self.skinName = "Setup"
+		self.menu_path = menu_path
 		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -147,7 +148,13 @@ class RecordingSettings(Screen,ConfigListScreen):
 			self["config"].list.sort()
 
 	def layoutFinished(self):
-		self.setTitle(_(self.setup_title))
+		self.menu_path += _(self.setup_title) or _(self.setup_title) 
+		if config.usage.show_menupath.value:
+			title = self.menu_path
+		else:
+			title = _(self.setup_title)
+		self.setup_title = title
+		self.setTitle(self.setup_title)
 
 	# for summary:
 	def changedEntry(self):

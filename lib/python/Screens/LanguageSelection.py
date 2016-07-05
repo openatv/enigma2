@@ -22,8 +22,14 @@ def LanguageEntryComponent(file, name, index):
 	return res
 
 class LanguageSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Language selection")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			self.title = menu_path
+		else:
+			self.title = _(screentitle)
 
 		self.oldActiveLanguage = language.getActiveLanguage()
 
@@ -46,7 +52,7 @@ class LanguageSelection(Screen):
 		}, -1)
 
 	def selectActiveLanguage(self):
-		self.setTitle(_("Language selection"))
+		self.setTitle(self.title)
 		pos = 0
 		for pos, x in enumerate(self.list):
 			if x[0] == self.oldActiveLanguage:

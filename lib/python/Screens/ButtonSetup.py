@@ -176,11 +176,17 @@ def getButtonSetupFunctions():
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
-	def __init__(self, session, args=None):
+	def __init__(self, session, menu_path="", args=None):
 		Screen.__init__(self, session)
+		screentitle = _("Button setup")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self['description'] = Label(_('On your remote, click on the button you want to change'))
 		self.session = session
-		self.setTitle(_("Button setup"))
 		self.list = []
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
 		for x in ButtonSetupKeys:

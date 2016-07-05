@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Converter.ClientsStreaming import ClientsStreaming
+from Components.config import config
 import skin
 
 

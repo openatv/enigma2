@@ -95,9 +95,14 @@ def InitOsd():
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 
 class UserInterfacePositioner(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		self.setup_title = _("Position Setup")
+		screentitle = _("Position Setup")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			self.setup_title = menu_path
+		else:
+			self.setup_title = _(screentitle)
 		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -224,9 +229,14 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.close()
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		self.setup_title = _("OSD 3D Setup")
+		screentitle = _("OSD 3D Setup")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			self.setup_title = menu_path
+		else:
+			self.setup_title = _(screentitle)
 		self.skinName = "Setup"
 		self["status"] = StaticText()
 		self["HelpWindow"] = Pixmap()

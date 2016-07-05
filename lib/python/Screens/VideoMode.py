@@ -20,10 +20,16 @@ from Components.AVSwitch import iAVSwitch
 resolutionlabel = None
 
 class VideoSetup(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("A/V settings")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
 		self.skinName = ["Setup" ]
-		self.setup_title = _("A/V settings")
+		self.setup_title = title
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)

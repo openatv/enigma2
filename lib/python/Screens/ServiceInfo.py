@@ -4,6 +4,7 @@ from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from Components.config import config
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber, supportedChannels
@@ -91,7 +92,7 @@ TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
 
 class ServiceInfo(Screen):
-	def __init__(self, session, serviceref=None):
+	def __init__(self, session, menu_path="", serviceref=None):
 		Screen.__init__(self, session)
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
@@ -105,7 +106,7 @@ class ServiceInfo(Screen):
 		}, -1)
 
 		if serviceref:
-			Screen.setTitle(self, _("Transponder Information"))
+			screentitle = _("Transponder Information")
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
@@ -114,7 +115,7 @@ class ServiceInfo(Screen):
 			self.info = None
 			self.feinfo = None
 		else:
-			Screen.setTitle(self, _("Service Information"))
+			screentitle = _("Service Information")
 			self.type = TYPE_SERVICE_INFO
 			self["key_red"] = self["red"] = Label(_("Service"))
 			self["key_green"] = self["green"] = Label(_("PIDs"))
@@ -128,6 +129,12 @@ class ServiceInfo(Screen):
 				self.info = None
 				self.feinfo = None
 
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		tlist = [ ]
 
 		self["infolist"] = ServiceInfoList(tlist)

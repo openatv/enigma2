@@ -5,6 +5,7 @@ from Components.MenuList import MenuList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Task import job_manager
+from Components.config import config
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
 import Screens.InfoBar
@@ -74,9 +75,15 @@ class HarddiskSetup(Screen):
 
 
 class HarddiskSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Initialization"))
+		screentitle = _("Initialization")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self.skinName = "HarddiskSelection" # For derived classes
 		if harddiskmanager.HDDCount() == 0:
 			tlist = [(_("no storage devices found"), 0)]
@@ -104,9 +111,15 @@ class HarddiskSelection(Screen):
 
 # This is actually just HarddiskSelection but with correct type
 class HarddiskFsckSelection(HarddiskSelection):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Filesystem Check"))
+		screentitle = _("Filesystem Check")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
@@ -116,9 +129,15 @@ class HarddiskFsckSelection(HarddiskSelection):
 			 question=_("Do you really want to check the filesystem?\nThis could take a long time!"))
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Convert filesystem ext3 to ext4"))
+		screentitle = _("Convert filesystem ext3 to ext4")
+		menu_path += _(screentitle) or _(screentitle) 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):
