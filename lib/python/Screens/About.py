@@ -21,9 +21,15 @@ from re import search
 
 
 class About(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Image Information"))
+		screentitle = _("Image Information")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "AboutOE"
 		self.populate()
 		
