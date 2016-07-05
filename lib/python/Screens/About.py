@@ -513,13 +513,10 @@ class SystemNetworkInfo(Screen):
 		self["IFtext"].setText(_("Network:"))
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
-		print "DEBUG:",self.iface
 		if 'eth' in self.iface:
-			print 'TEST1'
 			self["devicepic"].setPixmapNum(1)
 			self["devicepic"].show()
 		else:
-			print 'TEST2'
 			self["devicepic"].setPixmapNum(2)
 			self["devicepic"].show()
 		if iNetwork.isWirelessInterface(self.iface):
