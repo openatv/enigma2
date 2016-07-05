@@ -21,14 +21,14 @@ from re import search
 
 
 class About(Screen):
-	def __init__(self, session, menu_path = None):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		screentitle = _("Image Information")
-		menu_path += screentitle or screentitle 
+		menu_path += _(screentitle) or screentitle 
 		if config.usage.show_menupath.value:
 			title = menu_path
 		else:
-			title = screentitle
+			title = _(screentitle)
 		Screen.setTitle(self, title)
 		self.skinName = "AboutOE"
 		self.populate()
@@ -111,9 +111,15 @@ class About(Screen):
 		return AboutSummary
 
 class Devices(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Device Information"))
+		screentitle = _("Device Information")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self["TunerHeader"] = StaticText(_("Detected tuners:"))
 		self["HDDHeader"] = StaticText(_("Detected devices:"))
 		self["MountsHeader"] = StaticText(_("Network servers:"))
@@ -265,9 +271,15 @@ class Devices(Screen):
 
 
 class SystemMemoryInfo(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Memory Information"))
+		screentitle = _("Memory Information")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self.skinName = ["SystemMemoryInfo", "About"]
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
 		self["lab2"] = StaticText(_("By Team ViX"))
@@ -327,9 +339,15 @@ class SystemMemoryInfo(Screen):
 
 
 class SystemNetworkInfo(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Network Information"))
+		screentitle = _("Network Information")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self.skinName = ["SystemNetworkInfo", "WlanStatus"]
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
@@ -350,6 +368,9 @@ class SystemNetworkInfo(Screen):
 		self["statuspic"] = MultiPixmap()
 		self["statuspic"].setPixmapNum(1)
 		self["statuspic"].show()
+		self["devicepic"] = MultiPixmap()
+		self["devicepic"].setPixmapNum(1)
+		self["devicepic"].show()
 
 		self.iface = None
 		self.createscreen()
@@ -492,6 +513,15 @@ class SystemNetworkInfo(Screen):
 		self["IFtext"].setText(_("Network:"))
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
+		print "DEBUG:",self.iface
+		if 'eth' in self.iface:
+			print 'TEST1'
+			self["devicepic"].setPixmapNum(1)
+			self["devicepic"].show()
+		else:
+			print 'TEST2'
+			self["devicepic"].setPixmapNum(2)
+			self["devicepic"].show()
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
@@ -574,10 +604,16 @@ class AboutSummary(Screen):
 
 
 class ViewGitLog(Screen):
-	def __init__(self, session, args=None):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
+		screentitle = _("OE Changes")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self.skinName = "SoftwareUpdateChanges"
-		self.setTitle(_("OE Changes"))
 		self.logtype = 'oe'
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
@@ -642,9 +678,15 @@ class ViewGitLog(Screen):
 
 
 class TranslationInfo(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Translation Information"))
+		screentitle = _("Translation Information")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)

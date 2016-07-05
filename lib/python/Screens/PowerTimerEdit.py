@@ -21,10 +21,16 @@ class PowerTimerEditList(Screen):
 	CLEANUP = 3
 	DELETE = 4
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		self.skinName = "TimerEditList"
-		Screen.setTitle(self, _("PowerTimer List"))
+		screentitle = _("PowerTimer List")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 
 		self.onChangedEntry = [ ]
 		list = [ ]
@@ -55,7 +61,6 @@ class PowerTimerEditList(Screen):
 				"up": self.up,
 				"down": self.down
 			}, -1)
-		self.setTitle(_("PowerTimer Overview"))
 		self.session.nav.PowerTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 

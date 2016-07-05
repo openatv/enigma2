@@ -366,9 +366,16 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 #############################################################
 
 class CCcamInfoMain(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CCcam Info"))
+		screentitle = _("CCcam Info")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
+
 		self.session = session
 
 		self["menu"] = CCcamList([])

@@ -14,11 +14,17 @@ from time import sleep
 from boxbranding import getMachineBrand, getMachineName
 
 class CronTimers(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		if not path.exists('/usr/scripts'):
 			mkdir('/usr/scripts', 0755)
-		Screen.setTitle(self, _("Cron Manager"))
+		screentitle = _("Cron Manager")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))

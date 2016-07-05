@@ -67,7 +67,6 @@ class Menu(Screen, ProtectedScreen):
 		# FIXME. somehow
 		if arg[0] != "":
 			exec "from " + arg[0] + " import *"
-
 		self.openDialog(*eval(arg[1]))
 
 	def nothing(self): #dummy
@@ -122,9 +121,10 @@ class Menu(Screen, ProtectedScreen):
 		weight = node.get("weight", 50)
 		for x in node:
 			if x.tag == 'screen':
+				args = 'full_menu_path'
 				module = x.get("module")
 				screen = x.get("screen")
-
+				
 				if screen is None:
 					screen = module
 
@@ -133,13 +133,11 @@ class Menu(Screen, ProtectedScreen):
 					module = "Screens." + module
 				else:
 					module = ""
-
 				# check for arguments. they will be appended to the
 				# openDialog call
-				args = 'full_menu_path'
-				args += x.text or ""
+				if x.text:
+					args = x.text or ""
 				screen += ", " + args
-
 				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight))
 				return
 			elif x.tag == 'plugin':

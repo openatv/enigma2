@@ -53,9 +53,15 @@ class PluginBrowserSummary(Screen):
 
 
 class PluginBrowser(Screen, ProtectedScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Plugin Browser"))
+		screentitle = _("Plugin Browser")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
 		ProtectedScreen.__init__(self)
 
 		self.firsttime = True

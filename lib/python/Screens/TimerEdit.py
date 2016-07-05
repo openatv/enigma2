@@ -26,10 +26,16 @@ class TimerEditList(Screen):
 	CLEANUP = 3
 	DELETE = 4
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Timer List"))
-
+		screentitle = _("Timer List")
+		menu_path += _(screentitle) or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = _(screentitle)
+		Screen.setTitle(self, title)
+		
 		self.onChangedEntry = [ ]
 		list = [ ]
 		self.list = list
@@ -59,7 +65,6 @@ class TimerEditList(Screen):
 				"up": self.up,
 				"down": self.down
 			}, -1)
-		self.setTitle(_("Timer overview"))
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 		if self.isProtected() and config.ParentalControl.servicepin[0].value:
