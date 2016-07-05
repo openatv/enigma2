@@ -87,7 +87,7 @@ class Setup(ConfigListScreen, Screen):
 			self.setup_title = x.get("title", "").encode("UTF-8")
 			self.seperation = int(x.get('separation', '0'))
 
-	def __init__(self, session, setup, plugin=None):
+	def __init__(self, session, setup, plugin=None, menu_path=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
@@ -101,6 +101,7 @@ class Setup(ConfigListScreen, Screen):
 		self.item = None
 		self.setup = setup
 		self.plugin = plugin
+		self.menu_path = menu_path
 		list = []
 
 		self.refill(list)
@@ -199,7 +200,11 @@ class Setup(ConfigListScreen, Screen):
 			self["config"].invalidate(self["config"].getCurrent())
 
 	def layoutFinished(self):
-		self.setTitle(_(self.setup_title))
+		if config.usage.show_menupath.value and self.menu_path:
+			title = self.menu_path + _(self.setup_title)
+		else:
+			title = _(self.setup_title)
+		self.setTitle(title)
 
 	# for summary:
 	def changedEntry(self):
