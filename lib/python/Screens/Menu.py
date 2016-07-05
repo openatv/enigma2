@@ -268,11 +268,11 @@ class Menu(Screen, ProtectedScreen):
 		if config.usage.show_menupath.value:
 			self["title"] = StaticText(menu_path)
 			Screen.setTitle(self, menu_path)
-			self["menu_path_compressed"] = StaticText(self.menu_path_compressed and self.menu_path_compressed + " >" or "")
+			self["menu_path_compressed"] = StaticText("")
 		else:
 			self["title"] = StaticText(a)
 			Screen.setTitle(self, a)
-			self["menu_path_compressed"] = StaticText("")
+			self["menu_path_compressed"] = StaticText(self.menu_path_compressed and self.menu_path_compressed + " >" or "")
 
 	def keyNumberGlobal(self, number):
 		# print "menu keyNumber:", number
