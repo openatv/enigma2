@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-21 21:02+0100\n"
-"PO-Revision-Date: 2016-06-22 07:42+0200\n"
+"POT-Creation-Date: 2016-07-05 23:40+0200\n"
+"PO-Revision-Date: 2016-07-06 07:51+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -2135,7 +2135,7 @@ msgid "Configure the source of the frontend data as shown on the infobars. 'Sett
 msgstr "Kies de bron voor de tunerdata die in de Infobar getoond wordt. \"Settings\" is opgeslagen als bestand, \"Tuner\" is actuele data zoals de tuner die rapporteert."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
-msgstr "Bepaal de snelheid waarmee bestanden op de achtergrond worden verwijderd. Een lage snelheid vergt minder prestaies van de schijf."
+msgstr "Bepaal de snelheid waarmee bestanden op de achtergrond worden verwijderd. Een lage snelheid vergt minder prestaties van de schijf."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Stel de vertraging van de ondertitels in voor het geval tijdsinformatie niet beschikbaar is."
@@ -2600,7 +2600,7 @@ msgid "Delete timer"
 msgstr "Verwijder timer"
 
 msgid "Deleted"
-msgstr "Verwijderd"
+msgstr "Verwijdert"
 
 #, python-format
 msgid "Deleted %s!"
@@ -5645,6 +5645,15 @@ msgstr "Speel vorige"
 msgid "Play recorded movies..."
 msgstr "Opname afspelen..."
 
+msgid ""
+"Playback information missing\n"
+"Playback aborted to avoid crash\n"
+"Please retry"
+msgstr ""
+"Afspeelinformatie ontbreekt\n"
+"Afspelen afgebroken om een crash te voorkomen\n"
+"Probeer het nogmaals."
+
 msgid "Playlist"
 msgstr "Playlist"
 
@@ -5966,9 +5975,6 @@ msgstr "Power menu"
 
 msgid "PowerTimer List"
 msgstr "Powertimer Lijst"
-
-msgid "PowerTimer Overview"
-msgstr "Powetimer overzicht"
 
 msgid "PowerTimers"
 msgstr "Powertimers"
@@ -7474,6 +7480,9 @@ msgstr "Toon extensies..."
 msgid "Show favourites list"
 msgstr "Toon favorietenlijst"
 
+msgid "Show full menu path"
+msgstr "Toon het volledige menupad"
+
 msgid "Show graphical multi EPG"
 msgstr "Toon graphische multi EPG"
 
@@ -8686,6 +8695,9 @@ msgstr "Hiermee kunt u de sortering van de pluginbrowser uitschakelen. "
 msgid "This option allows you to enable 3D Surround Sound for an output."
 msgstr "Met deze optie stelt u 3D surround-geluid in."
 
+msgid "This option allows you to hide the full menu path"
+msgstr "Hier kunt u het volledige menupad verbergen."
+
 msgid "This option allows you to power on or off the display."
 msgstr "Hiermee kunt u het display uit en inschakelen."
 
@@ -8895,9 +8907,6 @@ msgid ""
 msgstr ""
 "Timer overlap in timers.xml gedetecteerd!\n"
 "Controleer deze!"
-
-msgid "Timer overview"
-msgstr "Timer overzicht"
 
 msgid "Timer record location"
 msgstr "Timer opnamelokatie"
@@ -11856,6 +11865,9 @@ msgstr "zapte"
 #~ msgid "Please wait whilst feeds state is checked."
 #~ msgstr "Even wachten: de feeds worden gecontroleerd."
 
+#~ msgid "PowerTimer Overview"
+#~ msgstr "Powetimer overzicht"
+
 #~ msgid ""
 #~ "Predefined transponder scans are only possible when \n"
 #~ "\"Service scan type\" is set to \"Provider\" in \"Tuner settings\"."
@@ -11999,6 +12011,9 @@ msgstr "zapte"
 #~ "Eerst moet de stick bootaable gemaakt worden.\n"
 #~ "In de volgende stap kan een BFI-bestand worden gedownload van de update server en op de stick worden opgeslagen.\n"
 #~ "Als u al een geschikte stick heeft, kunt u die nu inpluggen. Anders een stick met minimaal 64MB gebruiken!"
+
+#~ msgid "Timer overview"
+#~ msgstr "Timer overzicht"
 
 #~ msgid ""
 #~ "To update your %s %s firmware, please follow these steps:\n"
