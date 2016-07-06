@@ -162,7 +162,7 @@ self.session.open(SABnzbdSetupScreen)
 					<item level="0" text="Skin setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 				</menu>
 			</menu>
-			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
+			<menu weight="10" text="SoftCam and CI" entryID="cam_setup">
 				<id val="cam"/>
 				<item weight="1" level="2" entryID="softcam_setup"><setup id="softcamsetup"/></item>
 				<item weight="10" level="1" text="Common interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection"/></item>
@@ -186,7 +186,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			</item>
 			<item weight="99" level="0" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin"/></item>
 		</menu>
-		<menu text="Standby / Restart" entryID="standby_restart_list">
+		<menu text="Standby and Restart" entryID="standby_restart_list">
 			<id val="shutdown"/>
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
