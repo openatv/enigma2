@@ -33,10 +33,17 @@ from subprocess import call
 import commands
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Network Setup"))
+		screentitle = _("Network Setup")
+		self.menu_path = menu_path
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 
 		self.wlan_errortext = _("No working wireless network adapter found.\nPlease verify that you have attached a compatible WLAN device and your network is configured correctly.")
 		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
@@ -198,7 +205,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 	def okbuttonClick(self):
 		selection = self["list"].getCurrent()
 		if selection is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, self.menu_path, selection[0])
 
 	def AdapterSetupClosed(self, *ret):
 		if len(self.adapters) == 1:
@@ -241,10 +248,16 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 
 
 class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Nameserver settings"))
+		screentitle = _("Nameserver settings")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.backupNameserverList = iNetwork.getNameserverList()[:]
 		print "[NameserverSetup] backup-list:", self.backupNameserverList
 
@@ -325,10 +338,16 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 
 class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("MAC address settings"))
+		screentitle = _("MAC address settings")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.curMac = self.getmac('eth0')
 		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
 
@@ -398,10 +417,16 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session, networkinfo, essid=None):
+	def __init__(self, session, menu_path="", networkinfo=None, essid=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Adapter settings"))
+		screentitle = _("Adapter settings")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.session = session
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
@@ -761,10 +786,18 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
-	def __init__(self, session,iface):
+	def __init__(self, session, menu_path="", iface=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Network Setup"))
+		screentitle = _("Network Setup")
+		self.menu_path = menu_path
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
+
 		self.session = session
 		self.iface = iface
 		self.restartLanRef = None
@@ -851,13 +884,13 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.session.open(MessageBox, self.missingwlanplugintxt, type = MessageBox.TYPE_INFO,timeout = 10 )
 				else:
 					if self.queryWirelessDevice(self.iface):
-						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
+						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.menu_path, self.iface)
 					else:
 						self.showErrorMessage()	# Display Wlan not available Message
 			else:
-				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
+				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.menu_path, self.iface)
 		if self["menulist"].getCurrent()[1] == 'test':
-			self.session.open(NetworkAdapterTest,self.iface)
+			self.session.open(NetworkAdapterTest,self.menu_path,self.iface)
 		if self["menulist"].getCurrent()[1] == 'dns':
 			self.session.open(NameserverSetup)
 		if self["menulist"].getCurrent()[1] == 'mac':
@@ -1015,7 +1048,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def WlanScanClosed(self,*ret):
 		if ret[0] is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface,ret[0])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.menu_path, self.iface,ret[0])
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
@@ -1099,9 +1132,16 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 
 class NetworkAdapterTest(Screen):
-	def __init__(self, session,iface):
+	def __init__(self, session, menu_path="", iface=None):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Network Test"))
+		screentitle = _("Network Test")
+		self.menu_path = menu_path
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.iface = iface
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
 		self.setLabels()
@@ -1356,7 +1396,7 @@ class NetworkAdapterTest(Screen):
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 6: # Edit Settings
-			self.session.open(AdapterSetup,self.iface)
+			self.session.open(AdapterSetup, self.menu_path, self.iface)
 
 	def KeyYellow(self):
 		self.nextstep = 0
@@ -1520,10 +1560,16 @@ class NetworkAdapterTest(Screen):
 			iStatus.stopWlanConsole()
 
 class NetworkMountsMenu(Screen,HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Mounts Setup"))
+		screentitle = _("Mounts Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.session = session
 		self.onChangedEntry = [ ]
 		self.mainmenu = self.genMainMenu()
@@ -1620,9 +1666,15 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 		return menu
 
 class NetworkAfp(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("AFP Setup"))
+		screentitle = _("AFP Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
@@ -1749,9 +1801,15 @@ class NetworkAfp(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkFtp(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("FTP Setup"))
+		screentitle = _("FTP Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
@@ -1828,9 +1886,15 @@ class NetworkFtp(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkNfs(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("NFS Setup"))
+		screentitle = _("NFS Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
@@ -1954,9 +2018,15 @@ class NetworkNfs(Screen):
 
 
 class NetworkOpenvpn(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("OpenVpn Setup"))
+		screentitle = _("OpenVpn Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
@@ -2083,9 +2153,15 @@ class NetworkOpenvpn(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkVpnLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("OpenVpn Log"))
+		screentitle = _("Log")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
@@ -2102,9 +2178,15 @@ class NetworkVpnLog(Screen):
 		self['infotext'].setText(strview)
 
 class NetworkSamba(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Samba Setup"))
+		screentitle = _("Samba Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
@@ -2244,9 +2326,15 @@ class NetworkSamba(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkSambaLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Samba Log"))
+		screentitle = _("Log")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
@@ -2263,9 +2351,15 @@ class NetworkSambaLog(Screen):
 		self['infotext'].setText(strview)
 
 class NetworkTelnet(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Telnet Setup"))
+		screentitle = _("Telnet Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
@@ -2342,9 +2436,15 @@ class NetworkTelnet(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkInadyn(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Inadyn Setup"))
+		screentitle = _("Inadyn Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -2519,12 +2619,18 @@ class NetworkInadyn(Screen):
 		self.session.open(NetworkInadynLog)
 
 class NetworkInadynSetup(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Settings")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
-		Screen.setTitle(self, _("Inadyn Setup"))
 		self['key_red'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
@@ -2649,9 +2755,15 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.close()
 
 class NetworkInadynLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Inadyn Log"))
+		screentitle = _("Log")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self['infotext'] = ScrollLabel('')
 		self['actions'] = ActionMap(['WizardActions', 'DirectionActions', 'ColorActions'], {'ok': self.close,
 		 'back': self.close,
@@ -2668,9 +2780,15 @@ class NetworkInadynLog(Screen):
 config.networkushare = ConfigSubsection()
 config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkuShare(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("uShare Setup"))
+		screentitle = _("uShare Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -2881,9 +2999,15 @@ class NetworkuShare(Screen):
 		self.session.open(NetworkuShareLog)
 
 class NetworkuShareSetup(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("uShare Setup"))
+		screentitle = _("Settings")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
@@ -3050,9 +3174,15 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.updateList,uShareSelection)
 
 class uShareSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Select folders"))
+		screentitle = _("Select folders")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
@@ -3126,10 +3256,16 @@ class uShareSelection(Screen):
 			self.filelist.descent()
 
 class NetworkuShareLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Log")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
-		Screen.setTitle(self, _("uShare Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})
@@ -3147,9 +3283,15 @@ class NetworkuShareLog(Screen):
 config.networkminidlna = ConfigSubsection()
 config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkMiniDLNA(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("MiniDLNA Setup"))
+		screentitle = _("MiniDLNA Setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -3345,9 +3487,15 @@ class NetworkMiniDLNA(Screen):
 		self.session.open(NetworkMiniDLNALog)
 
 class NetworkMiniDLNASetup(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("MiniDLNA Setup"))
+		screentitle = _("Settings")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.selectionChanged)
@@ -3501,9 +3649,15 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.updateList,MiniDLNASelection)
 
 class MiniDLNASelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Select folders"))
+		screentitle = _("Select folders")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "uShareSelection"
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -3578,10 +3732,16 @@ class MiniDLNASelection(Screen):
 			self.filelist.descent()
 
 class NetworkMiniDLNALog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Log")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
-		Screen.setTitle(self, _("MiniDLNA Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'up': self['infotext'].pageUp, 'down': self['infotext'].pageDown})

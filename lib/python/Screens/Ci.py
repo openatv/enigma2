@@ -280,9 +280,16 @@ class CiMessageHandler:
 CiHandler = CiMessageHandler()
 
 class CiSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		self.setTitle(_("Common Interface"))
+		screentitle = _("Common Interface")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
+
 		self["actions"] = ActionMap(["OkCancelActions", "CiSelectionActions"],
 			{
 				"left": self.keyLeft,

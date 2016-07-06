@@ -56,11 +56,11 @@ class PluginBrowser(Screen, ProtectedScreen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		screentitle = _("Plugin Browser")
-		menu_path += _(screentitle) or screentitle 
+		menu_path += screentitle or screentitle 
 		if config.usage.show_menupath.value:
 			title = menu_path
 		else:
-			title = _(screentitle)
+			title = screentitle
 		Screen.setTitle(self, title)
 		ProtectedScreen.__init__(self)
 
@@ -232,7 +232,7 @@ class PluginDownloadBrowser(Screen):
 	PLUGIN_PREFIX = 'enigma2-plugin-'
 	lastDownloadDate = None
 
-	def __init__(self, session, type = 0, needupdate = True):
+	def __init__(self, session, menu_path = "", type = 0, needupdate = True):
 		Screen.__init__(self, session)
 
 		self.type = type

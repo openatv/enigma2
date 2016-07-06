@@ -12,11 +12,17 @@ from Tools.LoadPixmap import LoadPixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 class InputDeviceSelection(Screen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		screentitle = _("Select input device")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 
-		self.setTitle(_("Select input device"))
 		self.edittext = _("Press OK to edit the settings.")
 
 		self["key_red"] = StaticText(_("Close"))
@@ -111,12 +117,19 @@ class InputDeviceSelection(Screen, HelpableScreen):
 
 
 class InputDeviceSetup(Screen, ConfigListScreen):
-	def __init__(self, session, device):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Input device setup")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
+
 		self.inputDevice = device
 		iInputDevices.currentDevice = self.inputDevice
 		self.onChangedEntry = [ ]
-		self.setup_title = _("Input device setup")
 		self.isStepSlider = None
 		self.enableEntry = None
 		self.repeatEntry = None
@@ -148,7 +161,6 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.onClose.append(self.cleanup)
 
 	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 		listWidth = self["config"].l.getItemSize().width()
 		# use 20% of list width for sliders
 		self["config"].l.setSeperation(int(listWidth*.8))
@@ -298,7 +310,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et8500", 16)
 		]
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		self.skinName = ["RemoteControlType", "Setup" ]
 

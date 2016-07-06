@@ -369,7 +369,6 @@ class CableTransponderSearchSupport:
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
 class TerrestrialTransponderSearchSupport:
-
 	def terrestrialTransponderSearchSessionClosed(self, *val):
 		print "[ScanSetup] TerrestrialTransponderSearchSessionClosed, val", val
 		self.terrestrial_search_container.appClosed.remove(self.terrestrialTransponderSearchClosed)
@@ -583,9 +582,15 @@ class TerrestrialTransponderSearchSupport:
 		self.terrestrial_search_container.execute(cmd)
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Manual Scan"))
+		screentitle = _("Manual Scan")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 
 		self.finished_cb = None
 		self.updateSatList()
@@ -1493,9 +1498,15 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			networks = [ ]
 		return networks
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Automatic Scan"))
+		screentitle = _("Automatic Scan")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Scan"))

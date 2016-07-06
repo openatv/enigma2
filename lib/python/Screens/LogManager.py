@@ -161,7 +161,7 @@ class LogManagerPoller:
 		self.TrashTimer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		self.logtype = 'crashlogs'
 
@@ -458,9 +458,10 @@ class LogManager(Screen):
 
 class LogManagerViewLog(Screen):
 	def __init__(self, session, selected):
-		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(selected)
+		self.session = session
+		Screen.setTitle(self, session)
+
 		if path.exists(config.crash.debug_path.value + selected):
 			log = file(config.crash.debug_path.value + selected).read()
 		else:

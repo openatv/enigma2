@@ -713,9 +713,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.createSetup()
 
 class NimSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Tuner configuration"))
+		screentitle = _("Tuner configuration")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
 
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)
@@ -857,8 +863,16 @@ class SelectSatsEntryScreen(Screen):
 			<ePixmap pixmap="skin_default/div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphatest="on" />
 			<widget name="hint" position="10,380" size="540,25" font="Regular;19" halign="center" transparent="1" />
 		</screen>"""
-	def __init__(self, session, userSatlist=""):
+	def __init__(self, session, menu_path="", userSatlist=""):
 		Screen.__init__(self, session)
+		screentitle = _("Select satellites")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
+		Screen.setTitle(self, title)
+
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Button(_("Sort by"))
@@ -887,7 +901,6 @@ class SelectSatsEntryScreen(Screen):
 			"cancel": self.cancel,
 			"ok": self["list"].toggleSelection,
 		}, -2)
-		self.setTitle(_("Select satellites"))
 
 	def save(self):
 		val = [x[0][1] for x in self["list"].list if x[0][3]]
