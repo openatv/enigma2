@@ -348,9 +348,11 @@ class Navigation:
 
 	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer = True):
 		# only for 'real' recordings
-		rec = False
+		now = time()
+		rec = self.RecordTimer.isRecording()
 		next_rec_time = self.RecordTimer.getNextRecordingTime()
-		if self.RecordTimer.isRecording() or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+		if rec or (next_rec_time > 0 and (next_rec_time - now) < 360):
+			print '[NAVIGATION] - recording = %s, recording in next minutes = %s, save timeshift = %s' %(rec, next_rec_time - now < 360 and not (config.timeshift.isRecording.value and next_rec_time - now >= 298), config.timeshift.isRecording.value)
 			if not self.RecordTimer.isRecTimerWakeup():# if not timer wake up - enable trigger file for automatical shutdown after recording
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
