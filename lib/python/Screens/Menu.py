@@ -261,6 +261,10 @@ class Menu(Screen, ProtectedScreen):
 		global menu_path
 		self.menu_path_compressed = menu_path
 		menu_path = menu_path and menu_path + " / " + a or a
+		if menu_path == "":
+			menu_path += a
+		elif not menu_path.endswith(a):
+			menu_path += " / " + a
 		global full_menu_path
 		full_menu_path = menu_path + ' / '
 		if config.usage.show_menupath.value:
@@ -284,11 +288,15 @@ class Menu(Screen, ProtectedScreen):
 	def closeNonRecursive(self):
 		global menu_path
 		menu_path = self.menu_path_compressed
+		global full_menu_path
+		full_menu_path = menu_path + ' / '
 		self.close(False)
 
 	def closeRecursive(self):
 		global menu_path
 		menu_path = ""
+		global full_menu_path
+		full_menu_path = ""
 		self.close(True)
 
 	def createSummary(self):
