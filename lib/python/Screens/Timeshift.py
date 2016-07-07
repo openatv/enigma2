@@ -59,6 +59,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		Screen.__init__(self, session)
 		self.menu_path = menu_path
 		self.skinName = "Setup"
+		self["menu_path_compressed"] = StaticText()
 		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -170,13 +171,14 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			self["config"].list.sort()
 
 	def layoutFinished(self):
-		self.menu_path += _(self.setup_title) or _(self.setup_title) 
-		if config.usage.show_menupath.value:
-			title = self.menu_path
+		if config.usage.show_menupath.value and self.menu_path:
+			title = self.menu_path + _(self.setup_title)
+			self["menu_path_compressed"].setText("")
 		else:
 			title = _(self.setup_title)
+			self["menu_path_compressed"].setText(self.menu_path[:-2] + " >" or "")
 		self.setup_title = title
-		self.setTitle(self.setup_title)
+		self.setTitle(title)
 
 	def ok(self):
 		currentry = self["config"].getCurrent()

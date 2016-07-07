@@ -92,6 +92,7 @@ class Setup(ConfigListScreen, Screen):
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
+		self["menu_path_compressed"] = StaticText()
 		self['footnote'] = Label(_("* = Restart Required"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -202,8 +203,10 @@ class Setup(ConfigListScreen, Screen):
 	def layoutFinished(self):
 		if config.usage.show_menupath.value and self.menu_path:
 			title = self.menu_path + _(self.setup_title)
+			self["menu_path_compressed"].setText("")
 		else:
 			title = _(self.setup_title)
+			self["menu_path_compressed"].setText(self.menu_path[:-2] + " >" or "")
 		self.setTitle(title)
 
 	# for summary:

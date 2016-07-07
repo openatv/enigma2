@@ -22,6 +22,7 @@ resolutionlabel = None
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		self["menu_path_compressed"] = StaticText(menu_path[:-2] + " >" or "")
 		screentitle = _("AV settings")
 		menu_path += _(screentitle) or _(screentitle) 
 		if config.usage.show_menupath.value:

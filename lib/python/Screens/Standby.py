@@ -121,7 +121,13 @@ class Standby2(Screen):
 		self.session.nav.stopService()
 
 class Standby(Standby2):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
+		screentitle = _("Standby")
+		menu_path += screentitle or screentitle 
+		if config.usage.show_menupath.value:
+			title = menu_path
+		else:
+			title = screentitle
 		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)
@@ -129,6 +135,7 @@ class Standby(Standby2):
 			self.onHide.append(self.close)
 		else:
 			Standby2.__init__(self, session)
+		Screen.setTitle(self, title)
 
 	def showMessageBox(self):
 		Screens.InfoBar.InfoBar.checkTimeshiftRunning(Screens.InfoBar.InfoBar.instance, self.showMessageBoxcallback)
