@@ -45,14 +45,14 @@
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system"/>
-				<item weight="10" text="A/V settings" entryID="av_setup"><screen module="VideoMode" screen="VideoSetup"/></item>
+				<item weight="10" text="AV settings" entryID="av_setup"><screen module="VideoMode" screen="VideoSetup"/></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage"/></item>
 				<item level="0" entryID="channelselection_setup"><setup id="channelselection"/></item>
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg"/>
 					<item level="0" entryID="epg_setup"><setup id="epgsettings"/></item>
-					<menu level="2" text="Load/Save/Delete" entryID="epgloadsave_menu">
+					<menu level="2" text="Load-Save-Delete" entryID="epgloadsave_menu">
 						<id val="epgloadsave_menu"/>
 						<item level="0" entryID="saveepgcache" text="Save EPG">
 <code>
