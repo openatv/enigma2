@@ -15,8 +15,10 @@ class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		menu_path += _("Input devices") + " / "
 		screentitle = _("Select input device")
 		menu_path += screentitle or screentitle 
+		self.menu_path = menu_path + " / "
 		if config.usage.show_menupath.value:
 			title = menu_path
 		else:
@@ -50,11 +52,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		self.list = []
 		self["list"] = List(self.list)
 		self.updateList()
-		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
-
-	def layoutFinished(self):
-		self.setTitle(_("Select input device"))
 
 	def cleanup(self):
 		self.currentIndex = 0
@@ -110,14 +108,14 @@ class InputDeviceSelection(Screen, HelpableScreen):
 			if selection[0] == 'rctype':
 				self.session.open(RemoteControlType)
 			else:
-				self.session.openWithCallback(self.DeviceSetupClosed, InputDeviceSetup, selection[0])
+				self.session.openWithCallback(self.DeviceSetupClosed, InputDeviceSetup, self.menu_path, selection[0])
 
 	def DeviceSetupClosed(self, *ret):
 		self.updateList()
 
 
 class InputDeviceSetup(Screen, ConfigListScreen):
-	def __init__(self, session, menu_path=""):
+	def __init__(self, session, menu_path="", device=None):
 		Screen.__init__(self, session)
 		screentitle = _("Input device setup")
 		menu_path += screentitle or screentitle 
@@ -126,6 +124,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		else:
 			title = screentitle
 		Screen.setTitle(self, title)
+		self.setup_title = title
 
 		self.inputDevice = device
 		iInputDevices.currentDevice = self.inputDevice

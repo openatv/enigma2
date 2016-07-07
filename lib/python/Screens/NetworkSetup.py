@@ -342,6 +342,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		screentitle = _("MAC address settings")
+		self.menu_path = menu_path
 		menu_path += screentitle or screentitle 
 		if config.usage.show_menupath.value:
 			title = menu_path
@@ -420,7 +421,11 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, menu_path="", networkinfo=None, essid=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		if menu_path and not 'Main menu' in menu_path:
+			networkinfo = menu_path
+			menu_path = ""
 		screentitle = _("Adapter settings")
+		self.menu_path = menu_path
 		menu_path += screentitle or screentitle 
 		if config.usage.show_menupath.value:
 			title = menu_path
@@ -620,7 +625,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["config"].l.setList(self.list)
 
 	def KeyBlue(self):
-		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup)
+		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup, self.menu_path)
 
 	def newConfig(self):
 		if self["config"].getCurrent() == self.InterfaceEntry:
@@ -892,9 +897,9 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1] == 'test':
 			self.session.open(NetworkAdapterTest,self.menu_path,self.iface)
 		if self["menulist"].getCurrent()[1] == 'dns':
-			self.session.open(NameserverSetup)
+			self.session.open(NameserverSetup,self.menu_path)
 		if self["menulist"].getCurrent()[1] == 'mac':
-			self.session.open(NetworkMacSetup)
+			self.session.open(NetworkMacSetup,self.menu_path)
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
