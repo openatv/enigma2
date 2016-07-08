@@ -585,11 +585,16 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Manual Scan")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 
 		self.finished_cb = None
@@ -1501,11 +1506,16 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Automatic Scan")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 
 		self["key_red"] = StaticText(_("Close"))

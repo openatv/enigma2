@@ -6,6 +6,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Task import job_manager
 from Components.config import config
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
 import Screens.InfoBar
@@ -78,11 +79,16 @@ class HarddiskSelection(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Initialization")
-		menu_path += _(screentitle) or _(screentitle) 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			title = _(screentitle)
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = "HarddiskSelection" # For derived classes
 		if harddiskmanager.HDDCount() == 0:
@@ -114,11 +120,16 @@ class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session, menu_path=""):
 		HarddiskSelection.__init__(self, session)
 		screentitle = _("Filesystem Check")
-		menu_path += _(screentitle) or _(screentitle) 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			title = _(screentitle)
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = "HarddiskSelection"
 
@@ -132,11 +143,16 @@ class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session, menu_path=""):
 		HarddiskSelection.__init__(self, session)
 		screentitle = _("Convert filesystem ext3 to ext4")
-		menu_path += _(screentitle) or _(screentitle) 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			title = _(screentitle)
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = "HarddiskSelection"
 

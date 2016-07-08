@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
+from Components.Sources.StaticText import StaticText
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
 from boxbranding import getMachineBrand, getMachineName, getBoxType
@@ -123,11 +124,16 @@ class Standby2(Screen):
 class Standby(Standby2):
 	def __init__(self, session, menu_path=""):
 		screentitle = _("Standby")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)

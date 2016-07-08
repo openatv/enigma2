@@ -6,12 +6,13 @@ from Components.Label import Label
 from Components.Sources.List import List
 from Components.Pixmap import Pixmap
 from Components.OnlineUpdateCheck import feedsstatuscheck
+from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Tools.Directories import fileExists
 from os import system, listdir, rename, path, mkdir
 from time import sleep
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getImageType
 
 class CronTimers(Screen):
 	def __init__(self, session, menu_path=""):
@@ -19,11 +20,17 @@ class CronTimers(Screen):
 		if not path.exists('/usr/scripts'):
 			mkdir('/usr/scripts', 0755)
 		screentitle = _("Cron Manager")
-		menu_path += _(screentitle) or screentitle 
-		if config.usage.show_menupath.value:
+		menu_path += screentitle
+		if config.usage.show_menupath.value == 'large':
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			print 'menu_path:',menu_path
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			title = _(screentitle)
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
@@ -59,7 +66,7 @@ class CronTimers(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			if feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable'):
+			if (getImageType() != 'release' and feedsstatuscheck.getFeedsBool() != 'unknown') or (getImageType() == 'release' and feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable')):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
 				self.session.openWithCallback(self.InstallPackage, MessageBox, _('Ready to install "%s" ?') % self.service_name, MessageBox.TYPE_YESNO)

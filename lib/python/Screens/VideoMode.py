@@ -22,13 +22,17 @@ resolutionlabel = None
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		self["menu_path_compressed"] = StaticText(menu_path[:-2] + " >" or "")
 		screentitle = _("AV settings")
-		menu_path += _(screentitle) or _(screentitle) 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			title = _(screentitle)
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		self.skinName = ["Setup" ]
 		self.setup_title = title
 		self["HelpWindow"] = Pixmap()

@@ -55,12 +55,25 @@ class PluginBrowserSummary(Screen):
 class PluginBrowser(Screen, ProtectedScreen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
+		self.menu_path = menu_path
 		screentitle = _("Plugin Browser")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
-			title = menu_path
+		if config.usage.show_menupath.value == 'large':
+			self.menu_path += screentitle
+			title = self.menu_path
+			self["menu_path_compressed"] = StaticText("")
+			self.menu_path += ' / '
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			condtext = ""
+			if self.menu_path and not self.menu_path.endswith(' / '):
+				condtext = self.menu_path + " >"
+			elif self.menu_path:
+				condtext = self.menu_path[:-3] + " >"
+			self["menu_path_compressed"] = StaticText(condtext)
+			self.menu_path += screentitle + ' / '
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		ProtectedScreen.__init__(self)
 
@@ -112,7 +125,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 
 	def openSetup(self):
 		from Screens.Setup import Setup
-		self.session.open(Setup, "pluginbrowsersetup")
+		self.session.open(Setup, "pluginbrowsersetup", None, self.menu_path)
 		
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and (not config.ParentalControl.config_sections.main_menu.value or hasattr(self.session, 'infobar') and self.session.infobar is None) and config.ParentalControl.config_sections.plugin_browser.value
@@ -207,10 +220,10 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self["list"].l.setList(self.list)
 
 	def delete(self):
-		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, self.menu_path, PluginDownloadBrowser.REMOVE)
 
 	def download(self):
-		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, self.menu_path, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
 		self.firsttime = False
 
 	def PluginDownloadBrowserClosed(self):
@@ -232,8 +245,10 @@ class PluginDownloadBrowser(Screen):
 	PLUGIN_PREFIX = 'enigma2-plugin-'
 	lastDownloadDate = None
 
-	def __init__(self, session, menu_path = "", type = 0, needupdate = True):
+	def __init__(self, session, menu_path="", type = 0, needupdate = True):
 		Screen.__init__(self, session)
+		self.menu_path = menu_path
+		self["menu_path_compressed"] = StaticText("")
 
 		self.type = type
 		self.needupdate = needupdate
@@ -391,9 +406,31 @@ class PluginDownloadBrowser(Screen):
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
-			self.setTitle(_("Install plugins"))
+			screentitle = _("Install plugins")
+			if config.usage.show_menupath.value == 'large':
+				self.menu_path += screentitle
+				title = self.menu_path
+				self["menu_path_compressed"].setText("")
+			elif config.usage.show_menupath.value == 'small':
+				title = screentitle
+				self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+			else:
+				title = screentitle
+				self["menu_path_compressed"].setText("")
+
 		elif self.type == self.REMOVE:
-			self.setTitle(_("Remove plugins"))
+			screentitle = _("Remove plugins")
+			if config.usage.show_menupath.value == 'large':
+				self.menu_path += screentitle
+				title = self.menu_path
+				self["menu_path_compressed"].setText("")
+			elif config.usage.show_menupath.value == 'small':
+				title = screentitle
+				self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+			else:
+				title = screentitle
+				self["menu_path_compressed"].setText("")
+		self.setTitle(title)
 
 	def startIpkgListInstalled(self, pkgname = PLUGIN_PREFIX + '*'):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed '%s'" % pkgname)

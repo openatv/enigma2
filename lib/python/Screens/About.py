@@ -24,11 +24,16 @@ class About(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Image Information")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = "AboutOE"
 		self.populate()
@@ -114,11 +119,16 @@ class Devices(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		screentitle = _("Device Information")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self["TunerHeader"] = StaticText(_("Detected tuners:"))
 		self["HDDHeader"] = StaticText(_("Detected devices:"))
@@ -274,11 +284,16 @@ class SystemMemoryInfo(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		screentitle = _("Memory Information")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = ["SystemMemoryInfo", "About"]
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
@@ -342,11 +357,16 @@ class SystemNetworkInfo(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		screentitle = _("Network Information")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = ["SystemNetworkInfo", "WlanStatus"]
 		self["LabelBSSID"] = StaticText()
@@ -604,11 +624,16 @@ class ViewGitLog(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		screentitle = _("OE Changes")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = "SoftwareUpdateChanges"
 		self.logtype = 'oe'
@@ -678,11 +703,16 @@ class TranslationInfo(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		screentitle = _("Translation Information")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 

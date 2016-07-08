@@ -98,11 +98,19 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Position Setup")
-		menu_path += _(screentitle) or _(screentitle) 
-		if config.usage.show_menupath.value:
-			self.setup_title = menu_path
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self.setup_title = title
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self.setup_title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			self.setup_title = _(screentitle)
+			title = screentitle
+			self.setup_title = title
+			self["menu_path_compressed"] = StaticText("")
 		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -232,11 +240,19 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("OSD 3D Setup")
-		menu_path += _(screentitle) or _(screentitle) 
-		if config.usage.show_menupath.value:
-			self.setup_title = menu_path
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self.setup_title = title
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self.setup_title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			self.setup_title = _(screentitle)
+			title = screentitle
+			self.setup_title = title
+			self["menu_path_compressed"] = StaticText("")
 		self.skinName = "Setup"
 		self["status"] = StaticText()
 		self["HelpWindow"] = Pixmap()

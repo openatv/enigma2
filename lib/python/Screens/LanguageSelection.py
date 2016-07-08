@@ -25,11 +25,16 @@ class LanguageSelection(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Language selection")
-		menu_path += _(screentitle) or _(screentitle) 
-		if config.usage.show_menupath.value:
-			self.title = menu_path
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
-			self.title = _(screentitle)
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 
 		self.oldActiveLanguage = language.getActiveLanguage()
 

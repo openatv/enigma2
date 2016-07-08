@@ -17,12 +17,17 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		menu_path += _("Input devices") + " / "
 		screentitle = _("Select input device")
-		menu_path += screentitle or screentitle 
+		menu_path += screentitle
 		self.menu_path = menu_path + " / "
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 
 		self.edittext = _("Press OK to edit the settings.")
@@ -118,11 +123,16 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path="", device=None):
 		Screen.__init__(self, session)
 		screentitle = _("Input device setup")
-		menu_path += screentitle or screentitle 
-		if config.usage.show_menupath.value:
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
 			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
 		else:
 			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.setup_title = title
 

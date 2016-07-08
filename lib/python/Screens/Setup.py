@@ -201,12 +201,15 @@ class Setup(ConfigListScreen, Screen):
 			self["config"].invalidate(self["config"].getCurrent())
 
 	def layoutFinished(self):
-		if config.usage.show_menupath.value and self.menu_path:
+		if config.usage.show_menupath.value == 'large' and self.menu_path:
 			title = self.menu_path + _(self.setup_title)
 			self["menu_path_compressed"].setText("")
+		elif config.usage.show_menupath.value == 'small' and self.menu_path:
+			title = _(self.setup_title)
+			self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
 		else:
 			title = _(self.setup_title)
-			self["menu_path_compressed"].setText(self.menu_path[:-2] + " >" or "")
+			self["menu_path_compressed"].setText("")
 		self.setTitle(title)
 
 	# for summary:
