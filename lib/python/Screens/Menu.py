@@ -266,6 +266,7 @@ class Menu(Screen, ProtectedScreen):
 			menu_path += " / " + a
 		global full_menu_path
 		full_menu_path = menu_path + ' / '
+		if config.usage.show_menupath.value == 'large':
 			Screen.setTitle(self, menu_path)
 			self["title"] = StaticText(menu_path)
 			self["menu_path_compressed"] = StaticText("")
