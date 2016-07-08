@@ -65,12 +65,12 @@ class Navigation:
 		timediff_timer = self.timertime - now
 		self.syncCount = 0
 
-		wasTimerWakeup = getFPWasTimerWakeup()
+		wasTimerWakeup, wasTimerWakeup_failure = getFPWasTimerWakeup(True)
 		#TODO: verify wakeup-state for boxes where only after shutdown removed the wakeup-state (for boxes where "/proc/stb/fp/was_timer_wakeup" is not writable (clearFPWasTimerWakeup() in StbHardware.py has no effect -> after x hours and restart/reboot is wasTimerWakeup = True)
 
 		print "="*100
 		thisBox = getBoxType()
-		if not config.workaround.deeprecord.value and (thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan', 'entwopia')):
+		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan', 'entwopia')):
 			print"[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND FOR THIS BOXTYPE (%s)" %thisBox
 			config.workaround.deeprecord.setValue(True)
 			config.workaround.deeprecord.save()
@@ -348,9 +348,11 @@ class Navigation:
 
 	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer = True):
 		# only for 'real' recordings
-		rec = False
+		now = time()
+		rec = self.RecordTimer.isRecording()
 		next_rec_time = self.RecordTimer.getNextRecordingTime()
-		if self.RecordTimer.isRecording() or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+		if rec or (next_rec_time > 0 and (next_rec_time - now) < 360):
+			print '[NAVIGATION] - recording = %s, recording in next minutes = %s, save timeshift = %s' %(rec, next_rec_time - now < 360 and not (config.timeshift.isRecording.value and next_rec_time - now >= 298), config.timeshift.isRecording.value)
 			if not self.RecordTimer.isRecTimerWakeup():# if not timer wake up - enable trigger file for automatical shutdown after recording
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
