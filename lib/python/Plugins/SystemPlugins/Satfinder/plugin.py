@@ -177,9 +177,8 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.scan_sat.polarization, self.scan_sat.fec, self.scan_sat.pilot,
 			self.scan_sat.fec_s2, self.scan_sat.fec, self.scan_sat.modulation,
 			self.scan_sat.rolloff, self.scan_sat.system,
-			self.scan_ter.channel,
-			self.scan_ter.frequency,
-			self.scan_ter.inversion,
+			self.scan_sat.is_id, self.scan_sat.pls_mode, self.scan_sat.pls_code,
+			self.scan_ter.channel, self.scan_ter.frequency, self.scan_ter.inversion,
 			self.scan_ter.bandwidth, self.scan_ter.fechigh, self.scan_ter.feclow,
 			self.scan_ter.modulation, self.scan_ter.transmission,
 			self.scan_ter.guard, self.scan_ter.hierarchy,
@@ -287,7 +286,10 @@ class Satfinder(ScanSetup, ServiceScan):
 						self.scan_sat.system.value,
 						self.scan_sat.modulation.value,
 						self.scan_sat.rolloff.value,
-						self.scan_sat.pilot.value)
+						self.scan_sat.pilot.value,
+						self.scan_sat.is_id.value,
+						self.scan_sat.pls_mode.value,
+						self.scan_sat.pls_code.value)
 					self.tuner.tune(transponder)
 					self.transponder = transponder
 				elif self.scan_type.value == "predefined_transponder":
@@ -295,7 +297,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					if len(tps) > self.preDefTransponders.index:
 						tp = tps[self.preDefTransponders.index]
 						transponder = (tp[1] / 1000, tp[2] / 1000,
-							tp[3], tp[4], 2, orbpos, tp[5], tp[6], tp[8], tp[9])
+							tp[3], tp[4], 2, orbpos, tp[5], tp[6], tp[8], tp[9], tp[10], tp[11], tp[12])
 						self.tuner.tune(transponder)
 						self.transponder = transponder
 
@@ -320,7 +322,10 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.transponder[6], # system
 					self.transponder[7], # modulation
 					self.transponder[8], # rolloff
-					self.transponder[9]  # pilot
+					self.transponder[9], # pilot
+					self.transponder[10],# input stream id
+					self.transponder[11],# pls mode
+					self.transponder[12] # pls code
 				)
 		elif nimmanager.nim_slots[int(self.scan_nims.value)].isCompatible("DVB-T"):
 			parm = buildTerTransponder(
