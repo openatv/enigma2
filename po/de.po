@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-05 15:30+0200\n"
-"PO-Revision-Date: 2016-07-05 17:27+0200\n"
+"POT-Creation-Date: 2016-07-09 20:24+0200\n"
+"PO-Revision-Date: 2016-07-09 23:41+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -690,9 +690,6 @@ msgstr ""
 "Timeraufnahme fehlgeschlagen.\n"
 "Programm beenden und erneut versuchen?\n"
 
-msgid "A/V settings"
-msgstr "A/V Einstellungen"
-
 msgid "AAC downmix"
 msgstr "AAC Downmix"
 
@@ -714,6 +711,9 @@ msgstr "AFP Einstellungen"
 #, python-format
 msgid "AV aspect is %s."
 msgstr "AV Aspect ist %s."
+
+msgid "AV settings"
+msgstr "A/V Einstellungen"
 
 msgid "Abort"
 msgstr "Abbrechen"
@@ -4026,9 +4026,6 @@ msgstr "Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmend
 msgid "In progress"
 msgstr "In Bearbeitung"
 
-msgid "Inadyn Log"
-msgstr "Inadyn Log"
-
 msgid "Inadyn Setup"
 msgstr "Inadyn Einstellungen"
 
@@ -4364,6 +4361,9 @@ msgstr "Sprache"
 msgid "Language selection"
 msgstr "Sprachauswahl"
 
+msgid "Large"
+msgstr ""
+
 msgid "Last Req."
 msgstr ""
 
@@ -4498,7 +4498,7 @@ msgstr "Wiedergabeliste laden"
 msgid "Load unlinked userbouquets"
 msgstr "Lade nicht verbundene Favoritenlisten"
 
-msgid "Load/Save/Delete"
+msgid "Load-Save-Delete"
 msgstr "Laden/Speichern/Löschen"
 
 msgid "Local box"
@@ -4512,6 +4512,9 @@ msgstr "Zielverzeichnis"
 
 msgid "Lock ratio"
 msgstr ""
+
+msgid "Log"
+msgstr "Logs"
 
 msgid "Log Manager"
 msgstr "Log Verwaltung"
@@ -4684,9 +4687,6 @@ msgstr "Menükonfiguration"
 
 msgid "Merging Timeshift files"
 msgstr "TimeShift-Dateien werden zusammengefügt"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
 msgstr "MiniDLNA Einstellungen"
@@ -5400,9 +5400,6 @@ msgstr "Öffne Senderliste"
 msgid "OpenVPN setup"
 msgstr "OpenVPN Einstellungen"
 
-msgid "OpenVpn Log"
-msgstr "OpenVpn Log"
-
 msgid "OpenVpn Setup"
 msgstr "OpenVPN Einstellungen"
 
@@ -5960,17 +5957,11 @@ msgstr "Strom Schwellwert in mA"
 msgid "PowerManager entry"
 msgstr "PowerManager Eintrag"
 
-msgid "PowerManager log"
-msgstr "PowerManager Log"
-
 msgid "PowerMenu"
 msgstr "Ausschalt-Menü"
 
 msgid "PowerTimer List"
 msgstr "Powertimer Liste"
-
-msgid "PowerTimer Overview"
-msgstr "PowerTimer Überblick"
 
 msgid "PowerTimers"
 msgstr "PowerTimer"
@@ -6692,9 +6683,6 @@ msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "Samba Log"
-msgstr "Samba/CIFS Log"
 
 msgid "Samba Setup"
 msgstr "Samba Einstellungen"
@@ -7780,6 +7768,9 @@ msgstr "Langsam"
 msgid "Slow motion speeds"
 msgstr "Zeitlupengeschwindigkeiten"
 
+msgid "Small"
+msgstr ""
+
 msgid "Small progress"
 msgstr "Kleiner Fortschrittsbalken"
 
@@ -7789,7 +7780,7 @@ msgstr ""
 msgid "Social/Political/Economics"
 msgstr "Sozial/Politik/Wirtschaft"
 
-msgid "SoftCam / CI"
+msgid "SoftCam and CI"
 msgstr "CI / Softcam Einstellungen"
 
 msgid "Softcam setings"
@@ -7941,10 +7932,10 @@ msgstr "Standard Liste:"
 msgid "Standby"
 msgstr "Bereitschaft"
 
-msgid "Standby / Restart"
+msgid "Standby / restart"
 msgstr "Bereitschaft / Neustart"
 
-msgid "Standby / restart"
+msgid "Standby and Restart"
 msgstr "Bereitschaft / Neustart"
 
 msgid "StandbyLED"
@@ -8687,9 +8678,6 @@ msgstr "Diese Option erlaubt dir die Sortierungen in den Erweiterungen auszuscha
 msgid "This option allows you to enable 3D Surround Sound for an output."
 msgstr "Diese Option erlaubt es 3D Surround Ton für einen Ausgang zu aktivieren."
 
-msgid "This option allows you to hide the full menu path"
-msgstr "Diese Option erlaubt dir den vollen Menüpfad zu verstecken"
-
 msgid "This option allows you to power on or off the display."
 msgstr "Diese Option erlaubt dir das Display ein- und auszuschalten."
 
@@ -8698,6 +8686,9 @@ msgstr "Diese Option erlaubt es das Aussehen vom EPG einzustellen (Text oder Gra
 
 msgid "This option allows you to show the SNR as a percentage (not all receivers support this)."
 msgstr "Diese Option erlaubt dir SNR in % anzeigen zu lassen (nicht alle Receiver unterstützen es)."
+
+msgid "This option allows you to show the full menu path"
+msgstr "Diese Option erlaubt dir den vollen Menüpfad zu zeigen"
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Diese Option erlaubt es das Bild mit den alten und neuen Werten nebeneinander anzeigen zu lassen."
@@ -8883,9 +8874,6 @@ msgstr "Timerliste"
 msgid "Timer entry"
 msgstr "Timer-Eintrag"
 
-msgid "Timer log"
-msgstr "Timer-Logbuch"
-
 msgid ""
 "Timer overlap in pm_timers.xml detected!\n"
 "Please recheck it!"
@@ -8899,9 +8887,6 @@ msgid ""
 msgstr ""
 "Timerüberlappung in der timers.xml entdeckt!\n"
 "Bitte überprüfen!"
-
-msgid "Timer overview"
-msgstr "Timer Überblick"
 
 msgid "Timer record location"
 msgstr "Timeraufnahme Verzeichnis"
@@ -11393,9 +11378,6 @@ msgstr "traditionell (schnell)"
 msgid "true"
 msgstr "ja"
 
-msgid "uShare Log"
-msgstr "uShare Log"
-
 msgid "uShare Name"
 msgstr "uShare Name"
 
@@ -11634,6 +11616,12 @@ msgstr "umgeschaltet"
 #~ msgid "Get latest release image"
 #~ msgstr "Neuestes Release-Image"
 
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Log"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Log"
+
 #~ msgid "NFI image flashing"
 #~ msgstr "NFI Image Flashing"
 
@@ -11648,6 +11636,9 @@ msgstr "umgeschaltet"
 #~ msgid "No details for this image file"
 #~ msgstr "Keine Details zum Image verfügbar"
 
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Log"
+
 #~ msgid "Please check your network settings!"
 #~ msgstr "Bitte überprüfe die Netzwerkeinstellungen"
 
@@ -11657,6 +11648,12 @@ msgstr "umgeschaltet"
 #~ msgid "Please wait for activation of your network configuration..."
 #~ msgstr "Bitte warte, die Netzwerk-Konfiguration wird aktiviert."
 
+#~ msgid "PowerManager log"
+#~ msgstr "PowerManager Log"
+
+#~ msgid "PowerTimer Overview"
+#~ msgstr "PowerTimer Überblick"
+
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
 
@@ -11665,6 +11662,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "SET FAILED!\n"
 #~ msgstr "SETZEN FEHLGESCHLAGEN!\n"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba/CIFS Log"
 
 #~ msgid "Samba Network File System"
 #~ msgstr "Samba Dateisystem"
@@ -11717,6 +11717,12 @@ msgstr "umgeschaltet"
 #~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 #~ msgstr "Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware der %s %s aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-Verbindung notwendig ist. Zuerst muss ein USB-Stick vorbereitet und bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn bereits ein bootfähiger USB-Stick vorbereitet wurde bitte jetzt in den USB-Port stecken. Anderenfalls bitte USB-Stick mit einer Mindestgröße von 64 MB einstecken."
 
+#~ msgid "Timer log"
+#~ msgstr "Timer-Logbuch"
+
+#~ msgid "Timer overview"
+#~ msgstr "Timer Überblick"
+
 #~ msgid ""
 #~ "To update your %s %s firmware, please follow these steps:\n"
 #~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
@@ -11754,3 +11760,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "leave movie player..."
 #~ msgstr "Abspielmodus verlassen..."
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Log"
