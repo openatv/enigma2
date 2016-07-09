@@ -28,9 +28,23 @@ from RecordTimer import AFTEREVENT
 
 
 class TimerEntry(Screen, ConfigListScreen):
-	def __init__(self, session, timer):
+	def __init__(self, session, timer, menu_path=""):
 		Screen.__init__(self, session)
-		self.setup_title = _("Timer entry")
+		screentitle = _("Timer entry")
+		menu_path += screentitle
+		if config.usage.show_menupath.value == 'large':
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			print 'menu_path:',menu_path
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		self.setup_title = title
+		Screen.setTitle(self, title)
+
 		self.timer = timer
 
 		self.entryDate = None
@@ -69,7 +83,6 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
 		self.createSetup("config")
-		self.onLayoutFinish.append(self.layoutFinished)
 
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
@@ -269,9 +282,6 @@ class TimerEntry(Screen, ConfigListScreen):
 			if self.has_key("VKeyIcon"):
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
-
-	def layoutFinished(self):
-		self.setTitle(_(self.setup_title))
 
 	def createSummary(self):
 		return SetupSummary
@@ -553,7 +563,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self["config"].invalidate(self.tagsSet)
 
 class TimerLog(Screen):
-	def __init__(self, session, timer, menu_path=""):
+	def __init__(self, session, timer, menu_path="",tmp=""):
 		Screen.__init__(self, session)
 		screentitle = _("Log")
 		if config.usage.show_menupath.value == 'large':

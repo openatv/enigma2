@@ -7,13 +7,30 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
+from Components.Sources.StaticText import StaticText
+from Components.config import config
 from PowerTimer import AFTEREVENT, TIMERTYPE
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 
 class TimerEntry(Screen, ConfigListScreen):
-	def __init__(self, session, timer):
+	def __init__(self, session, timer, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("PowerManager entry")
+		menu_path += screentitle
+		if config.usage.show_menupath.value == 'large':
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			print 'menu_path:',menu_path
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		self.setup_title = title
+		Screen.setTitle(self, title)
+
 		self.timer = timer
 
 		self.entryDate = None
@@ -42,7 +59,6 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
-		self.setTitle(_("PowerManager entry"))
 		self.createSetup("config")
 
 	def createConfig(self):
@@ -317,8 +333,21 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.close((False,))
 
 class TimerLog(Screen):
-	def __init__(self, session, timer):
+	def __init__(self, session, timer, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Log")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+
 		self.skinName = "TimerLog"
 		self.timer = timer
 		self.log_entries = self.timer.log_entries[:]
@@ -346,7 +375,6 @@ class TimerLog(Screen):
 			"red": self.deleteEntry,
 			"blue": self.clearLog
 		}, -1)
-		self.setTitle(_("PowerManager log"))
 
 	def deleteEntry(self):
 		cur = self["loglist"].getCurrent()

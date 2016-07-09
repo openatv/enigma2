@@ -248,16 +248,40 @@ class PluginDownloadBrowser(Screen):
 	def __init__(self, session, menu_path="", type = 0, needupdate = True):
 		Screen.__init__(self, session)
 		self.menu_path = menu_path
-		self["menu_path_compressed"] = StaticText("")
-
 		self.type = type
 		self.needupdate = needupdate
+
+		self["menu_path_compressed"] = StaticText("")
+		if self.type == self.DOWNLOAD:
+			screentitle = _("Install plugins")
+			if config.usage.show_menupath.value == 'large':
+				self.menu_path += screentitle
+				title = self.menu_path
+				self["menu_path_compressed"].setText("")
+			elif config.usage.show_menupath.value == 'small':
+				title = screentitle
+				self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+			else:
+				title = screentitle
+				self["menu_path_compressed"].setText("")
+		elif self.type == self.REMOVE:
+			screentitle = _("Remove plugins")
+			if config.usage.show_menupath.value == 'large':
+				self.menu_path += screentitle
+				title = self.menu_path
+				self["menu_path_compressed"].setText("")
+			elif config.usage.show_menupath.value == 'small':
+				title = screentitle
+				self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+			else:
+				title = screentitle
+				self["menu_path_compressed"].setText("")
+		self.setTitle(title)
 
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun)
-		self.onShown.append(self.setWindowTitle)
 
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -403,34 +427,6 @@ class PluginDownloadBrowser(Screen):
 
 	def runSettingsInstall(self):
 		self.doInstall(self.installFinished, self.install_settings_name)
-
-	def setWindowTitle(self):
-		if self.type == self.DOWNLOAD:
-			screentitle = _("Install plugins")
-			if config.usage.show_menupath.value == 'large':
-				self.menu_path += screentitle
-				title = self.menu_path
-				self["menu_path_compressed"].setText("")
-			elif config.usage.show_menupath.value == 'small':
-				title = screentitle
-				self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
-			else:
-				title = screentitle
-				self["menu_path_compressed"].setText("")
-
-		elif self.type == self.REMOVE:
-			screentitle = _("Remove plugins")
-			if config.usage.show_menupath.value == 'large':
-				self.menu_path += screentitle
-				title = self.menu_path
-				self["menu_path_compressed"].setText("")
-			elif config.usage.show_menupath.value == 'small':
-				title = screentitle
-				self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
-			else:
-				title = screentitle
-				self["menu_path_compressed"].setText("")
-		self.setTitle(title)
 
 	def startIpkgListInstalled(self, pkgname = PLUGIN_PREFIX + '*'):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed '%s'" % pkgname)
