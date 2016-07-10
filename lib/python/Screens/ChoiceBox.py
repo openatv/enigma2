@@ -13,7 +13,7 @@ config.misc.pluginlist.eventinfo_order = ConfigText(default="")
 config.misc.pluginlist.extension_order = ConfigText(default="")
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var=""):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var="", menu_path=""):
 		if not list: list = []
 		if not skin_name: skin_name = []
 		Screen.__init__(self, session)
@@ -32,6 +32,8 @@ class ChoiceBox(Screen):
 			self['tl_red'] = Pixmap()
 			self['tl_yellow'] = Pixmap()
 			self['tl_green'] = Pixmap()
+		if skin_name and 'SoftwareUpdateChoices' in skin_name:
+			self["menu_path_compressed"] = StaticText(menu_path)
 
 		if title:
 			title = _(title)

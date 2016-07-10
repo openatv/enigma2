@@ -118,7 +118,7 @@ class About(Screen):
 		self.session.open(TranslationInfo, self.menu_path)
 
 	def showAboutReleaseNotes(self):
-		self.session.open(ViewGitLog)
+		self.session.open(ViewGitLog, self.menu_path)
 
 	def createSummary(self):
 		return AboutSummary
@@ -631,20 +631,11 @@ class AboutSummary(Screen):
 class ViewGitLog(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		screentitle = _("OE Changes")
-		if config.usage.show_menupath.value == 'large':
-			menu_path += screentitle
-			title = menu_path
-			self["menu_path_compressed"] = StaticText("")
-		elif config.usage.show_menupath.value == 'small':
-			title = screentitle
-			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
-		else:
-			title = screentitle
-			self["menu_path_compressed"] = StaticText("")
-		Screen.setTitle(self, title)
+		self.menu_path = menu_path
+		self.screentitle = _("OE Changes")
 		self.skinName = "SoftwareUpdateChanges"
 		self.logtype = 'oe'
+		self["menu_path_compressed"] = StaticText("")
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
@@ -667,11 +658,11 @@ class ViewGitLog(Screen):
 	def changelogtype(self):
 		if self.logtype == 'oe':
 			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enigma2 Changes"))
+			self.screentitle = _("Enigma2 Changes")
 			self.logtype = 'e2'
 		else:
 			self["key_yellow"].setText(_("Show E2 Log"))
-			self.setTitle(_("OE Changes"))
+			self.screentitle = _("OE Changes")
 			self.logtype = 'oe'
 		self.getlog()
 
@@ -682,6 +673,19 @@ class ViewGitLog(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
+		if config.usage.show_menupath.value == 'large':
+			if not self.menu_path.endswith(self.screentitle):
+				self.menu_path += self.screentitle
+			title = self.menu_path
+			self["menu_path_compressed"].setText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = self.screentitle
+			self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+		else:
+			title = self.screentitle
+			self["menu_path_compressed"].setText("")
+		self.setTitle(title)
+
 		releasenotes = ""
 		fd = open('/etc/' + self.logtype + '-git.log', 'r')
 		for line in fd.readlines():
