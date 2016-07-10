@@ -767,7 +767,6 @@ class NimSelection(Screen):
 			"green": self.okbuttonClick,
 			"menu": self.exit,
 		}, -2)
-		self.setTitle(_("Choose Tuner"))
 
 	def exit(self):
 		self.close(True)
