@@ -601,9 +601,21 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		else:
 			self.restoreService(_("Zap back to service before tuner setup?"))
 
-	def __init__(self, session, slotid):
+	def __init__(self, session, slotid, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Tuner settings"))
+		screentitle = _("Tuner settings")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+
 		self.list = [ ]
 		ServiceStopScreen.__init__(self)
 		self.stopService()
@@ -716,13 +728,21 @@ class NimSelection(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Tuner configuration")
+		self.menu_path = menu_path
 		if config.usage.show_menupath.value == 'large':
-			menu_path += screentitle
-			title = menu_path
+			self.menu_path += screentitle
+			title = self.menu_path
 			self["menu_path_compressed"] = StaticText("")
+			self.menu_path += ' / '
 		elif config.usage.show_menupath.value == 'small':
 			title = screentitle
-			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+			condtext = ""
+			if self.menu_path and not self.menu_path.endswith(' / '):
+				condtext = self.menu_path + " >"
+			elif self.menu_path:
+				condtext = self.menu_path[:-3] + " >"
+			self["menu_path_compressed"] = StaticText(condtext)
+			self.menu_path += screentitle + ' / '
 		else:
 			title = screentitle
 			self["menu_path_compressed"] = StaticText("")
@@ -771,7 +791,7 @@ class NimSelection(Screen):
 			return
 
 		if nim is not None and not nim.empty and nim.isSupported():
-			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
+			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot, self.menu_path)
 
 	def NimSetupCB(self, index=None):
 		self.updateList(index)
