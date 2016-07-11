@@ -157,7 +157,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option allows you to enable 3D Surround Sound for an output.")))
 
 			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
-				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker,_("This option allows you to change the virtuell loadspeaker position.")))
+				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker,_("This option allows you to change the virtual loudspeaker position.")))
 
 			if SystemInfo["CanAutoVolume"]:
 				self.list.append(getConfigListEntry(_("Auto Volume Level"), config.av.autovolume,_("This option configures output for Auto Volume Level.")))
