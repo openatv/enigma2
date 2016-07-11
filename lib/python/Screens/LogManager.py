@@ -460,7 +460,7 @@ class LogManagerViewLog(Screen):
 	def __init__(self, session, selected):
 		Screen.__init__(self, session)
 		self.session = session
-		Screen.setTitle(self, session)
+		Screen.setTitle(self, selected)
 
 		if path.exists(config.crash.debug_path.value + selected):
 			log = file(config.crash.debug_path.value + selected).read()

@@ -35,6 +35,7 @@ class LanguageSelection(Screen):
 		else:
 			title = screentitle
 			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 
 		self.oldActiveLanguage = language.getActiveLanguage()
 
