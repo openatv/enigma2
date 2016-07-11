@@ -108,8 +108,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def isChanged(self):
 		is_changed = False
 		for x in self.list:
+			print 'X:',x
 			is_changed |= x[1].isChanged()
-
+			print 'is_changed1:',is_changed
+		print 'is_changed2:',is_changed
 		return is_changed
 
 	def pageUp(self):

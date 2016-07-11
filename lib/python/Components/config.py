@@ -98,9 +98,22 @@ class ConfigElement(object):
 			self.changed()
 
 	def isChanged(self):
+		print '\nisChanged'
 		sv = self.saved_value
+		print 'SV1:',str(sv)
+		print 'SV2:',self.tostring(sv)
+		print 'self.value1:',str(self.value)
+		print 'self.value2:',self.tostring(self.value)
+		print 'self.default1:',str(self.default)
+		print 'self.default2:',self.tostring(self.default)
+
 		if sv is None and str(self.value) == str(self.default):
+			print 'FALSE'
 			return False
+		elif sv is None and self.tostring(self.value) != self.tostring(self.default):
+			print 'A1:',self.tostring(self.value) != self.tostring(self.default)
+			return self.tostring(self.value) != self.tostring(self.default)
+		print 'A2:',self.tostring(self.value) != self.tostring(sv)
 		return self.tostring(self.value) != self.tostring(sv)
 
 	def changed(self):
@@ -435,10 +448,12 @@ class ConfigBoolean(ConfigElement):
 		return "text", descr
 
 	def tostring(self, value):
-		if not value or value == 'false':
-			return "false"
+		# print '\nVALUE1:',value
+		# print '\nVALUE2:',str(value)
+		if not value or str(value).lower() == 'false':
+			return "False"
 		else:
-			return "true"
+			return "True"
 
 	def fromstring(self, val):
 		if val == "true":
