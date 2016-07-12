@@ -98,22 +98,22 @@ class ConfigElement(object):
 			self.changed()
 
 	def isChanged(self):
-		print '\nisChanged'
+		print '\n Config: isChanged'
 		sv = self.saved_value
-		print 'SV1:',str(sv)
-		print 'SV2:',self.tostring(sv)
-		print 'self.value1:',str(self.value)
-		print 'self.value2:',self.tostring(self.value)
-		print 'self.default1:',str(self.default)
-		print 'self.default2:',self.tostring(self.default)
+		print 'Config: SV1:',str(sv)
+		print 'Config: SV2:',self.tostring(sv)
+		print 'Config: self.value1:',str(self.value)
+		print 'Config: self.value2:',self.tostring(self.value)
+		print 'Config: self.default1:',str(self.default)
+		print 'Config: self.default2:',self.tostring(self.default)
 
 		if sv is None and str(self.value) == str(self.default):
-			print 'FALSE'
+			print 'Config A1: FALSE'
 			return False
 		elif sv is None and self.tostring(self.value) != self.tostring(self.default):
-			print 'A1:',self.tostring(self.value) != self.tostring(self.default)
+			print 'Config: A2:',self.tostring(self.value) != self.tostring(self.default)
 			return self.tostring(self.value) != self.tostring(self.default)
-		print 'A2:',self.tostring(self.value) != self.tostring(sv)
+		print 'Config: A3:',self.tostring(self.value) != self.tostring(sv)
 		return self.tostring(self.value) != self.tostring(sv)
 
 	def changed(self):
