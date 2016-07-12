@@ -842,6 +842,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["Statustext"] = StaticText()
 		self["statuspic"] = MultiPixmap()
 		self["statuspic"].hide()
+		self["devicepic"] = MultiPixmap()
 
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.reboottext = _("Your STB will restart after pressing OK on your remote control.")
@@ -883,7 +884,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if not self.selectionChanged in self["menulist"].onSelectionChanged:
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
-
+		self.onLayoutFinish.append(self.updateStatusbar)
 
 	def queryWirelessDevice(self,iface):
 		try:
@@ -1007,6 +1008,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["Statustext"].setText(_("Link:"))
 
 		if iNetwork.isWirelessInterface(self.iface):
+			self["devicepic"].setPixmapNum(1)
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except:
@@ -1016,6 +1018,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 		else:
 			iNetwork.getLinkState(self.iface,self.dataAvail)
+			self["devicepic"].setPixmapNum(0)
+		self["devicepic"].show()
 
 	def doNothing(self):
 		pass
