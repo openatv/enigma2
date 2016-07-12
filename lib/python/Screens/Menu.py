@@ -98,6 +98,10 @@ class Menu(Screen, ProtectedScreen):
 		destList.append((MenuTitle, a, entryID, weight))
 
 	def menuClosedWithConfigFlush(self, *res):
+		global menu_path
+		menu_path = ""
+		global full_menu_path
+		full_menu_path = ""
 		configfile.save()
 		self.menuClosed(*res)
 
