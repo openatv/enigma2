@@ -23,7 +23,7 @@ from re import search
 class About(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Image Information")
+		screentitle = _("About")
 		self.menu_path = menu_path
 		if config.usage.show_menupath.value == 'large':
 			self.menu_path += screentitle
@@ -126,7 +126,7 @@ class About(Screen):
 class Devices(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		screentitle = _("Device Information")
+		screentitle = _("Devices")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -291,7 +291,7 @@ class Devices(Screen):
 class SystemMemoryInfo(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		screentitle = _("Memory Information")
+		screentitle = _("Memory")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -364,7 +364,7 @@ class SystemMemoryInfo(Screen):
 class SystemNetworkInfo(Screen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		screentitle = _("Network Information")
+		screentitle = _("Network")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -709,7 +709,7 @@ class ViewGitLog(Screen):
 class TranslationInfo(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Translation Information")
+		screentitle = _("Translations")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
