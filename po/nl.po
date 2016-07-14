@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-13 10:47+0200\n"
-"PO-Revision-Date: 2016-07-14 06:08+0200\n"
+"PO-Revision-Date: 2016-07-14 06:34+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -714,7 +714,7 @@ msgid "AV aspect is %s."
 msgstr "AV aspect is %s."
 
 msgid "AV settings"
-msgstr "A/V instellingen"
+msgstr "AV instellingen"
 
 msgid "Abort"
 msgstr "Afbreken"
@@ -2613,13 +2613,13 @@ msgid "Depth"
 msgstr "Diepte"
 
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Descramble & record ECM' geeft de optie om achteraf te decoderen indien het decoderen tijdens de opname faalde. 'Don't descramble, record ECM' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normal' betekent decoderen en geen ECM opnemen."
+msgstr "'Decodeer en neem ECM op' geeft de optie om achteraf te decoderen indien het decoderen tijdens de opname faalde. 'Niet decoderen, neem ECM op' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normaal' betekent decoderen en geen ECM opnemen."
 
 msgid "Descramble receiving http streams"
-msgstr "Descramble ontvangen http streams"
+msgstr "Decodeer ontvangen http streams"
 
 msgid "Descramble sending http streams"
-msgstr "Descramble verzonden http streams"
+msgstr "Decodeer verzonden http streams"
 
 msgid "Description"
 msgstr "Beschrijving"
@@ -2959,7 +2959,7 @@ msgid "ECM avg"
 msgstr "ECM gem."
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
-msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de client-box de mogelijkheid die te decoderen."
+msgstr "ECM data zullen worden opgenomen in de stream. Dit geeft de klant-box de mogelijkheid die te decoderen."
 
 msgid "ECM last"
 msgstr "ECM laatste"
@@ -4353,7 +4353,7 @@ msgid "Language selection"
 msgstr "Taalkeuze"
 
 msgid "Large"
-msgstr "Groot"
+msgstr "groot"
 
 msgid "Last Req."
 msgstr "Laatste verzoek"
@@ -5101,7 +5101,7 @@ msgid "No standby"
 msgstr "Geen stand-by"
 
 msgid "No stream clients"
-msgstr "Geen stream clients"
+msgstr "Geen stream-klanten"
 
 msgid "No suitable sat tuner found!"
 msgstr "Geen geschikte satelliettuner gevonden!"
@@ -6518,7 +6518,7 @@ msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subt
 msgstr "Vervang `- ` in dialogen met gekleurde tekst per spreker (zoals teletekst ondertitels voor slecht horenden)."
 
 msgid "Require authentication for http streams"
-msgstr "Vereist autenticatie voor http streams"
+msgstr "Vereist authenticatie voor http streams"
 
 #
 msgid "Required medium type:"
@@ -7058,7 +7058,7 @@ msgid "Servers:"
 msgstr "Servers:"
 
 msgid "Service"
-msgstr "Stream"
+msgstr "Kanaal"
 
 msgid "Service Information"
 msgstr "Service-informatie"
@@ -7762,7 +7762,7 @@ msgid "Slow motion speeds"
 msgstr "Stap snelheid"
 
 msgid "Small"
-msgstr "Klein"
+msgstr "klein"
 
 msgid "Small progress"
 msgstr "Kleine voortgang"
@@ -9003,7 +9003,7 @@ msgstr "Aantal kaarten:"
 
 #, python-format
 msgid "Total clients streaming: %d (%s)"
-msgstr "Totaal aantal streaming klanten: %d (%s)"
+msgstr "Totaal aantal stream-klanten: %d (%s)"
 
 msgid "Total handled client ecm's"
 msgstr "Total afgehandelde klant ecm's"
@@ -9757,10 +9757,10 @@ msgid "When enabled the online checker will also check for experimental versions
 msgstr "Indien geactiveerd zal ook worden gecontroleerd op experimentele versies."
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
-msgstr "Indien geactiveerd, zal AIT-data in HTTP-stream worden meegestuurd. Dit maakt het gebruik van HbbTV door een client-box mogelijk."
+msgstr "Indien geactiveerd, zal AIT-data in HTTP-stream worden meegestuurd. Dit maakt het gebruik van HbbTV door een klant-box mogelijk."
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
-msgstr "Indien geactiveerd, zal EIT-data in HTTP-stream worden meegestuurd. Dit maakt het vertonen van EPG door een client-box mogelijk."
+msgstr "Indien geactiveerd, zal EIT-data in HTTP-stream worden meegestuurd. Dit maakt het vertonen van EPG door een klant-box mogelijk."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Toon een pop-up als een film is afgelopen en een volgende gaat beginnen."
@@ -9811,7 +9811,7 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr "Indien ingeschakeld worden grafische DVB-ondertitels vertoond in geel in plaats van in de originele kleur."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
-msgstr "Indie ingeschakeld worden streams altijd door de server gedecodeerd. De client-box hoeft niet te decoderen. De standaardwaarde is 'Aan'."
+msgstr "Indien ingeschakeld worden streams altijd door de server gedecodeerd. De klnat-box hoeft niet te decoderen. De standaardwaarde is 'Aan'."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
 msgstr "Indien ingeschakeld kan de speler (ook) verlaten worden door op de exit-toets te drukken."
