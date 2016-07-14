@@ -52,7 +52,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self.setTitle(self.title)
 
 	def startup(self):
-		self["config"].setText(_("Select Image: %s" %self.list[self.selection]))
+		self["config"].setText(_("Select Image: %s") %self.list[self.selection])
 
 	def save(self):
 		print "[MultiBootStartuo] select new startup: ", self.list[self.selection]
