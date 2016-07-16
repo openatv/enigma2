@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 20:24+0200\n"
-"PO-Revision-Date: 2016-07-09 23:41+0200\n"
+"POT-Creation-Date: 2016-07-15 11:08+0200\n"
+"PO-Revision-Date: 2016-07-16 11:28+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1767,9 +1767,6 @@ msgstr "Chipsatz: BCM%s"
 msgid "Choose Bouquet"
 msgstr "Wähle Favoritenliste"
 
-msgid "Choose Tuner"
-msgstr "Wähle Tuner"
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Wähle einen TAG um Aufnahmen einfacher finden zu können."
 
@@ -2638,9 +2635,6 @@ msgstr "Erkannte Geräte:"
 msgid "Detected tuners:"
 msgstr "Erkannte Tuner:"
 
-msgid "Device Information"
-msgstr "Geräteinformation"
-
 msgid "Device mounts"
 msgstr "Geräte-Mountpunkte"
 
@@ -3135,9 +3129,6 @@ msgstr "Aktiviere die Benutzung eines anderen Enigma2 Receivers im Netzwerk wenn
 
 msgid "Enable timer conflict detection"
 msgstr "Aktiviere Konfliktprüfung bei Timern"
-
-msgid "Enable unlinked bouquets"
-msgstr "Aktiviere nicht verbundene Favoritenlisten"
 
 msgid "Enabled"
 msgstr "Eingeschaltet"
@@ -4011,9 +4002,6 @@ msgstr ""
 "Verringere anschließend die Helligkeit soweit wie möglich. Stelle dabei sicher, dass die beiden untersten Grauschattierungen erkennbar bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücke OK, wenn Du mit dem Ergebnis zufrieden bist."
 
-msgid "Image Information"
-msgstr "Image Informationen"
-
 msgid "Image Manager"
 msgstr "Image Verwaltung"
 
@@ -4673,9 +4661,6 @@ msgstr "Das Medium ist nicht leer!"
 msgid "Memory"
 msgstr "Speicher"
 
-msgid "Memory Information"
-msgstr "Speicherinformationen"
-
 msgid "Memory index"
 msgstr "Index Speicher"
 
@@ -4947,9 +4932,6 @@ msgstr "Netzwerk"
 
 msgid "Network ID"
 msgstr "Netzwerk ID"
-
-msgid "Network Information"
-msgstr "Netzwerkinformationen"
 
 msgid "Network MAC settings"
 msgstr "Netzwerk MAC Einstellungen"
@@ -8618,7 +8600,7 @@ msgstr "Diese Option erlaubt es den HDMI EDID zu deaktivieren"
 msgid "This option allows you to change the Colorspace from Auto to RGB"
 msgstr "Dies Option erlaubt es den Farbraum von Auto auf RGB zu stellen."
 
-msgid "This option allows you to change the virtuell loadspeaker position."
+msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Dies Option erlaubt es virtuelle Lautsprecherpositionen anzugeben."
 
 msgid "This option allows you to choose from the two channel lists that are available."
@@ -9033,9 +9015,6 @@ msgstr "Spur"
 msgid "Transcoding: "
 msgstr "Transkodierung:"
 
-msgid "Translation Information"
-msgstr "Übersetzung Information"
-
 msgid "Translations"
 msgstr "Übersetzungen"
 
@@ -9341,11 +9320,11 @@ msgstr "Benutze minimale Darstellung"
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr "Benutze die Tasten Links/Rechts der Fernbedienungen um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
 
+msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgstr "Benutze die Tasten Links/Rechts um das OSD nach links/rechts zu verschieben"
+
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
 msgstr "Benutze die Tasten Links/Rechts um das OSD nach oben/unten zu verschieben"
-
-msgid "Use the Left/Right buttons on your remote to move the user inyterface left/right"
-msgstr "Benutze die Tasten Links/Rechts um das OSD nach links/rechts zu verschieben"
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Alternativen oder konventionellen Radio-Modus benutzen."
@@ -9764,9 +9743,6 @@ msgstr "Wenn aktiviert werden AIT Daten in HTTP Stream eingebettet. Dies erlaubt
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Wenn aktiviert werden EIT Daten in HTTP Streams eingebettet. Dies erlaubt es Klienten ein EPG anzuzeigen."
-
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Wenn aktiviert lädt Enigma2 nicht verbundene Favoritenlisten. Das heißt Favoritenlisten die vorhanden sind aber nicht in bouquets.tv oder bouquets.radio aufgeführt sind werden trotzdem geladen. Dies erlaubt es z.B. automatisch generierte oder installierte Favoritenlisten mit eigenen Erweiterungen zu versehen."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Zeige Nachricht wenn ein Film endet und ein neuer Film beginnt"
@@ -11547,6 +11523,9 @@ msgstr "umgeschaltet"
 #~ msgid "Changelog"
 #~ msgstr "Changelog"
 
+#~ msgid "Choose Tuner"
+#~ msgstr "Wähle Tuner"
+
 #~ msgid "Configure the refresh rate of the screen."
 #~ msgstr "Konfiguriere die Wiederholrate für den Bildschirm."
 
@@ -11561,6 +11540,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "DVB CI Delay"
 #~ msgstr "DVB CI Verzögerung"
+
+#~ msgid "Device Information"
+#~ msgstr "Geräteinformation"
 
 #~ msgid "Disable FastZapping"
 #~ msgstr "Deaktiviere schnelles Umschalten"
@@ -11592,6 +11574,9 @@ msgstr "umgeschaltet"
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."
 
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Aktiviere nicht verbundene Favoritenlisten"
+
 #~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 #~ msgstr "Aktiviert ein Merkmal so das ein anderer Empfänger einen Stream entschlüsseln kann (wenn ECM Daten im Stream enthalten sind und eine Karte vorhanden ist)."
 
@@ -11616,8 +11601,14 @@ msgstr "umgeschaltet"
 #~ msgid "Get latest release image"
 #~ msgstr "Neuestes Release-Image"
 
+#~ msgid "Image Information"
+#~ msgstr "Image Informationen"
+
 #~ msgid "Inadyn Log"
 #~ msgstr "Inadyn Log"
+
+#~ msgid "Memory Information"
+#~ msgstr "Speicherinformationen"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA Log"
@@ -11629,6 +11620,9 @@ msgstr "umgeschaltet"
 #~ msgstr ""
 #~ "NFI Image Flashen beendet.\n"
 #~ "Drücke Gelb um neu zu starten!"
+
+#~ msgid "Network Information"
+#~ msgstr "Netzwerkinformationen"
 
 #~ msgid "No clients streaming"
 #~ msgstr "Keine streamenden Klienten"
@@ -11734,6 +11728,9 @@ msgstr "umgeschaltet"
 #~ "2) Box einschalten und die '-' Taste am Gerät drücken.\n"
 #~ "3) Auf Neustart warten und den Anweisungen des Assistenten folgen."
 
+#~ msgid "Translation Information"
+#~ msgstr "Übersetzung Information"
+
 #~ msgid "URL of fallback remote receiver"
 #~ msgstr "URL vom Reserve Receiver"
 
@@ -11742,6 +11739,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Version:\t%s\n"
 #~ msgstr "Version:\t%s\n"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Wenn aktiviert lädt Enigma2 nicht verbundene Favoritenlisten. Das heißt Favoritenlisten die vorhanden sind aber nicht in bouquets.tv oder bouquets.radio aufgeführt sind werden trotzdem geladen. Dies erlaubt es z.B. automatisch generierte oder installierte Favoritenlisten mit eigenen Erweiterungen zu versehen."
 
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "Du kannst Telnet deaktivieren und SSH benutzen."
