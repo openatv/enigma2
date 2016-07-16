@@ -448,15 +448,13 @@ class ConfigBoolean(ConfigElement):
 		return "text", descr
 
 	def tostring(self, value):
-		# print '\nVALUE1:',value
-		# print '\nVALUE2:',str(value)
 		if not value or str(value).lower() == 'false':
 			return "False"
 		else:
 			return "True"
 
 	def fromstring(self, val):
-		if val == "true":
+		if str(val).lower() == "true":
 			return True
 		else:
 			return False
