@@ -54,7 +54,7 @@ def getAboutText():
 		f.seek(22)
 		image = f.read(1) 
 		f.close()
-		AboutText += _("Image started:\t%s") % "STARTUP_" + image + "\n"
+		AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + "\n"
 
 	AboutText += _("Version:\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t%s") % getImageBuild() + "\n"
