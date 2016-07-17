@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-07-04 00:21+0100\n"
+"PO-Revision-Date: 2016-07-15 21:08+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Stop recording now"
@@ -4466,9 +4466,9 @@ msgstr "Lokales Netzwerk"
 msgid "Local box"
 msgstr "Lokale Box"
 
-#
+#: MovieSelection.py
 msgid "Location"
-msgstr "Zielverzeichnis"
+msgstr "Verzeichnis"
 
 #
 msgid "Lock:"
@@ -5880,7 +5880,7 @@ msgstr "Bitte Tuner-Konfiguration festlegen."
 
 #
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "Für Sprachauswahl Hoch/Runter-Tasten nutzen. Danach OK drücken."
+msgstr "Für Sprachauswahl Hzoch/Runter-Tasten nutzen. Danach OK drücken."
 
 #
 msgid "Please wait for activation of your network configuration..."
@@ -9067,7 +9067,7 @@ msgstr "Tuner-Slot"
 
 #: ButtonSetup.py
 msgid "Tuner Configuration"
-msgstr "Tuner-Konfiguration"
+msgstr "Tuner-Einstellungen"
 
 #
 msgid "Reception settings"
@@ -9314,7 +9314,9 @@ msgstr ""
 
 #
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Mit den Hoch-/Runter-Tasten können Sie eine Option auswählen. Danach OK drücken."
+msgstr ""
+"Mit den Hoch-/Runter-Tasten können Sie eine Option auswählen.\n"
+"Danach OK drücken."
 
 msgid "Use these input device settings?"
 msgstr "Diese Eingabegeräte Einstellungen verwenden?"
@@ -9418,11 +9420,11 @@ msgstr "Video PID"
 
 #
 msgid "Video Settings"
-msgstr "Bild Einstellungen"
+msgstr "Bild-Einstellungen"
 
 #
 msgid "Audio Settings"
-msgstr "Ton Einstellungen"
+msgstr "Ton-Einstellungen"
 
 msgid "Setup Audiomode"
 msgstr "Konfiguration Ton"
@@ -9711,7 +9713,8 @@ msgid ""
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer %s %s führen.\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen\n"
+"Ihrer %s %s führen.\n"
 "Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
 
 #
@@ -13138,19 +13141,19 @@ msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick
 msgstr "Konfiguration des Netzwerks. Für WLAN muss ein USB WLAN Stick installiert sein."
 
 msgid "Mount Setup"
-msgstr "Mount Einstellungen"
+msgstr "Mount-Einstellungen"
 
 msgid "Setup your mounts for network"
 msgstr "Konfiguration der Netzwerklaufwerke."
 
 msgid "Setup Videomode"
-msgstr "Konfiguration Video"
+msgstr "Konfiguration Bild"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Einstellungen Video Mode, Video Ausgang und andere Video-Einstellungen."
 
 msgid "Setup your Audio Mode"
-msgstr "Ton Einstellungen"
+msgstr "Ton-Einstellungen"
 
 msgid "Setup Tuner"
 msgstr "Konfiguration Tuner"
@@ -13374,6 +13377,11 @@ msgstr "Automatischer Suchlauf"
 msgid "Manual scan for services"
 msgstr "Manueller Suchlauf"
 
+#: /QuickMenu.py
+msgid "Sat Finder"
+msgstr "Sat-Finder"
+
+#: /QuickMenu.py
 msgid "Search Sats"
 msgstr "Suche Satelliten und Pegelanzeige"
 
@@ -14821,20 +14829,26 @@ msgstr "Schnellstartmenü/Erweiterungen"
 msgid "Extensions/QuickMenu"
 msgstr "Erweiterungen/Schnellstartmenü"
 
-msgid "Use individual offset from waking up to starting a timer [min]"
-msgstr "Eigenen Offset vom Aufwachen bis zum Timerstart benutzen (min)"
+msgid "Wakeup time before a timer begins [mins]"
+msgstr "Aufwachzeit bevor ein Timer beginnt [min]"
 
-msgid "Use work-around for recordings from deep-standby"
-msgstr "Workaround für Aufnahmen aus dem Deep-Standby benutzen?"
+msgid "Time window for detection of the wakeup by a timer [mins]"
+msgstr "Zeitfenster für die Erkennung des aufwachens durch einen Timer [min]"
+
+msgid "Use workaround for wakeup from deep-standby?"
+msgstr "Workaround für das aufwachen aus dem Deep-Standby benutzen?"
 
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
 msgstr "Blau-Kurz (Schnellstart Menü) tauschen mit Blau-Lang (Erweiterungen)"
 
-msgid "The standard wakeup time is 5 minutes (or box specific) before a timer starts. Is the real wake up time outside 10 mins (some boxes starts not punctually) to the next timer will not switched to standby. (minus value = wake up to timer is shorter)"
-msgstr "Standard ist 5 min (oder Box spezifisch) vor einem Timer aufzuwachen. Ist die echte Aufwachzeit ausserhalb 10 min (einige Boxen starten nicht pünktlich) bis zum nächsten Timerstart wird nicht in den Standby geschaltet (Minus = Aufwachzeit bis zum Timer wird kürzer)"
+msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
+msgstr "Die Standardeinstellungen sind 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein dies zu ändern. (z.B.: die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk, usw.)"
 
-msgid "Check with an alternative method (some boxes gives no signal when starts from a timer) if there is a timer started in the next 10 mins (at bootup), then will put your box in standby."
-msgstr "Überprüfe mit einer alternativen Methode (einige Boxen geben kein Signal wenn durch einen Timer gestartet wurde) ob in den nächsten 10 min nach dem Booten ein Timer startet, und schaltet Ihre Box dann in den Standby."
+msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
+msgstr "Die Standardeinstellungen sind Aufwachzeit - 5 Minuten und Timerbeginn + 5 Minuten. Diese Einstellung verändert das Zeitfenster vor der Aufwachzeit. So kann das aufwachen durch einen Timer auch bei sehr früh startenden Receivern erkannt werden."
+
+msgid "If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)"
+msgstr "Wenn aktiviert, wird überprüft ob die Zeit nach dem Start des Receivers innerhalb des Zeitfensters ist und schaltet gegebenenfalls in den Standby-Modus. Wenn deaktiviert, muss zusätzlich noch ein Signal für die erfolgreiche Erkennung zur Verfügung stehen. (manche Receiver senden ein falsches oder kein Signal)"
 
 #
 msgid "Reload Services"
@@ -15944,6 +15958,9 @@ msgstr "Prozessor:\t\t%s"
 msgid "Cores:\t%s"
 msgstr "Prozessor-Kerne:     \t%s"
 
+msgid "Image started:\t%s"
+msgstr "Gestartetes Image:     \t%s"
+
 msgid "Version:\t%s"
 msgstr "Version:\t\t%s"
 
@@ -16695,8 +16712,7 @@ msgstr "Wollen Sie wirklich in den Papierkorb verschieben?"
 #, python-format
 msgid "Do you really want to delete %s ?"
 msgstr ""
-"Wollen Sie \n"
-" %s\n"
+"Wollen Sie \"%s\"\n"
 " wirklich löschen?"
 
 #: MovieSelection.py:1854
@@ -17417,3 +17433,11 @@ msgstr "Wähle Image: %s"
 #: Flash_online.py
 msgid "STARTUP"
 msgstr "Image"
+
+#: data/startwizard.xml - test
+msgid ""
+"Please set up tuner A\n"
+"For Hybrid Tuner Models switch Tuner Type with left and right keys"
+msgstr ""
+"Bitte stellen Sie für Tuner A\n"
+"das Hybrid-Tuner-Modell ein, ändern mit Steuerkreuz links/rechts"

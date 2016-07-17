@@ -45,6 +45,9 @@ class AVSwitch:
 	rates["2160p"] =	{ 	"50Hz":		{ 50: "2160p50" },
 							"60Hz":		{ 60: "2160p" },
 							"multi":	{ 50: "2160p50", 60: "2160p" } }
+							
+	rates["2160p30"] =	{ 	"25Hz":		{ 50: "2160p25" },
+							"30Hz":		{ 60: "2160p30"} }
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -67,9 +70,12 @@ class AVSwitch:
 	
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
 	
-	if (about.getChipSetString() in ('7366', '7376', '5272s', '7252', '7251', '7251S')):
+	if (about.getChipSetString() in ('7366', '7376', '5272s')):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i", "2160p"}
+	elif (about.getChipSetString() in ('7252', '7251', '7251S')):
+		modes["HDMI"] = ["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "576i", "480p", "480i"]
+		widescreen_modes = {"720p", "1080p", "1080i", "2160p", "2160p30"}
 	elif (about.getChipSetString() in ('7241', '7358', '7362', '73625', '7346', '7356', '73565', '7424', '7425', '7435', '7552', 'pnx8493', '7162', '7111')) or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
@@ -154,6 +160,7 @@ class AVSwitch:
 		self.current_mode = mode
 		self.current_port = port
 		modes = self.rates[mode][rate]
+
 
 		mode_50 = modes.get(50)
 		mode_60 = modes.get(60)
@@ -521,10 +528,19 @@ def InitAVSwitch():
 				f.close()
 			except:
 				pass
-		config.av.hdmicolorspace = ConfigSelection(choices={
-				"Edid(Auto)": _("Auto"),
-				"Hdmi_Rgb": _("RGB")},
-				default = "Edid(Auto)")
+		if getBoxType() in ('vusolo4k'):
+			config.av.hdmicolorspace = ConfigSelection(choices={
+					"Edid(Auto)": _("Auto"),
+					"Hdmi_Rgb": _("RGB")},
+					default = "Edid(Auto)")
+		else:
+			config.av.hdmicolorspace = ConfigSelection(choices={
+					"auto": _("auto"),
+					"rgb": _("rgb"),
+					"420": _("420"),
+					"422": _("422"),
+					"444": _("444")},
+					default = "auto")
 		config.av.hdmicolorspace.addNotifier(setHDMIColorspace)
 	else:
 		config.av.hdmicolorspace = ConfigNothing()

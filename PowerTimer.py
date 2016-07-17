@@ -1018,15 +1018,16 @@ class PowerTimer(timer.Timer):
 
 	def isAutoDeepstandbyEnabled(self):
 		ret = True
-		now = time()
-		for timer in self.timer_list:
-			if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if timer.begin <= now + 900:
-					ret = not (timer.getNetworkTraffic() or timer.getNetworkAdress())
-				elif timer.autosleepwindow == 'yes':
-					ret = timer.autosleepbegin <= now + 900
-			if not ret:
-				break
+		if Screens.Standby.inStandby:
+			now = time()
+			for timer in self.timer_list:
+				if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
+					if timer.begin <= now + 900:
+						ret = not (timer.getNetworkTraffic() or timer.getNetworkAdress())
+					elif timer.autosleepwindow == 'yes':
+						ret = timer.autosleepbegin <= now + 900
+				if not ret:
+					break
 		return ret
 
 	def isProcessing(self, exceptTimer = None, endedTimer = None):

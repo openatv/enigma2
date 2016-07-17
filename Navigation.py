@@ -61,14 +61,18 @@ class Navigation:
 			self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = -1,-1,0,0,-1,0
 		#print ctime(self.wakeuptime), ctime(self.timertime), self.wakeuptyp, self.getstandby, ctime(self.recordtime), self.forcerecord
 		now = time()
-		timediff_wakeup = self.wakeuptime - now
-		timediff_timer = self.timertime - now
+		self.wakeupwindow_plus = self.timertime + 300
+		self.wakeupwindow_minus = self.wakeuptime - (config.workaround.wakeupwindow.value * 60)
 		self.syncCount = 0
 
 		wasTimerWakeup, wasTimerWakeup_failure = getFPWasTimerWakeup(True)
 		#TODO: verify wakeup-state for boxes where only after shutdown removed the wakeup-state (for boxes where "/proc/stb/fp/was_timer_wakeup" is not writable (clearFPWasTimerWakeup() in StbHardware.py has no effect -> after x hours and restart/reboot is wasTimerWakeup = True)
 
 		print "="*100
+		if self.wakeuptime > 0: 
+			print "[NAVIGATION] wakeup time from deep-standby expected: *** %s ***" %(ctime(self.wakeuptime))
+			print "[NAVIGATION] timer wakeup detection window: %s - %s" %(ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
+			print "-"*100
 		thisBox = getBoxType()
 		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan', 'entwopia')):
 			print"[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND FOR THIS BOXTYPE (%s)" %thisBox
@@ -85,7 +89,7 @@ class Navigation:
 				self.timesynctimer.start(5000, True)
 				print"[NAVIGATION] wait for time sync"
 				print "~"*100
-			elif abs(timediff_wakeup) <= 600 or abs(timediff_timer) <= 600: # if there is a recording sheduled in the next 10 mins or starting before 10 mins, set the wasTimerWakeup flag (wakeup time is 5 min before timer starts, some boxes starts but earlier than is set)
+			elif now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus: # if there is a recording sheduled, set the wasTimerWakeup flag
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
 				file = f.write(str(wasTimerWakeup))
@@ -119,11 +123,9 @@ class Navigation:
 
 	def wakeupCheck(self):
 		now = time()
-		timediff_wakeup = self.wakeuptime - now
-		timediff_timer = self.timertime - now
 		stbytimer = 5 # original was 15
 
-		if abs(timediff_wakeup) <= 600 or abs(timediff_timer) <= 600:
+		if now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus:
 			if self.syncCount > 0:
 				stbytimer = 0
 				if not self.__wasTimerWakeup:
@@ -156,7 +158,7 @@ class Navigation:
 				if not self.forcerecord:
 					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
 			#check for standby
-			if not self.getstandby and self.wakeuptyp < 3 and timediff_timer > 60 + stbytimer:
+			if not self.getstandby and self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer:
 				self.getstandby = 1
 				print "[NAVIGATION] more than 60 seconds to wakeup - go in standby"
 			print "="*100
