@@ -674,7 +674,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				'reset': _("Reset"),
 				'tags': _("Tags"),
 				'addbookmark': _("Add bookmark"),
-				'bookmarks': _("Location"),
+				'bookmarks': _("Bookmarks"),
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
