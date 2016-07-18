@@ -13,7 +13,7 @@ class VariableText(object):
 				self.instance.setText(self.message or "")
 		except:
 			self.message = ""
-			self.instance.setText(self.message or "")		
+			self.instance.setText(self.message or "")
 
 	def setMarkedPos(self, pos):
 		if self.instance:

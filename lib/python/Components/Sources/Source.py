@@ -16,6 +16,8 @@ class Source(Element):
 	def destroy(self):
 		self.__dict__.clear()
 
+	boolean = True
+
 class ObsoleteSource(Source):
 	def __init__(self, new_source, description = None, removal_date = "as soon as possible"):
 		self.new_source = new_source

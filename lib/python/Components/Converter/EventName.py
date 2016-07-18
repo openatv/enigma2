@@ -4,7 +4,6 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
 
-
 class EventName(Converter, object):
 	NAME = 0
 	SHORT_DESCRIPTION = 1
@@ -19,10 +18,13 @@ class EventName(Converter, object):
 	SRATING = 10
 	RAWRATING = 11
 	RATINGCOUNTRY = 12
+	EVENT_EXTRADATA = 13
+	EPG_SOURCE = 14
 
 	NEXT_DESCRIPTION = 21
 	THIRD_NAME = 22
 	THIRD_DESCRIPTION = 23
+
 
 	AUSSHORT = 0
 	AUSLONG  = 1
@@ -98,7 +100,10 @@ class EventName(Converter, object):
 			self.type = self.RAWRATING
 		elif type == "RatingCountry":
 			self.type = self.RATINGCOUNTRY
-
+		elif type == "EventExtraData":
+			self.type = self.EVENT_EXTRADATA
+		elif type == "EPGSource":
+			self.type = self.EPG_SOURCE
 		elif type == "NextDescription":
 			self.type = self.NEXT_DESCRIPTION
 		elif type == "ThirdName":
@@ -192,6 +197,14 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
+		elif self.type == self.EVENT_EXTRADATA:
+			pass
+			#not include yet
+			#ret = event.getExtraEventData()
+		elif self.type == self.EPG_SOURCE:
+			pass
+			#not include yet
+			#ret = event.getEPGSource()
 		elif int(self.type) in (6, 7) or int(self.type) >= 21:
 			try:
 				reference = self.source.service

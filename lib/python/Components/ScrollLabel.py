@@ -18,15 +18,36 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.column = 0
 
 	def applySkin(self, desktop, parent):
+		scrollbarWidth = 10
+		scrollbarBorderWidth = 1
 		ret = False
 		if self.skinAttributes is not None:
 			widget_attribs = [ ]
 			scrollbar_attribs = [ ]
+			remove_attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
 				if "borderColor" in attrib or "borderWidth" in attrib:
 					scrollbar_attribs.append((attrib,value))
 				if "transparent" in attrib or "backgroundColor" in attrib:
 					widget_attribs.append((attrib,value))
+				if "scrollbarSliderForegroundColor" in attrib:
+					scrollbar_attribs.append((attrib,value))
+					remove_attribs.append((attrib, value))
+				if "scrollbarSliderBorderColor" in attrib:
+					scrollbar_attribs.append((attrib,value))
+					remove_attribs.append((attrib, value))
+				if "scrollbarSliderPicture" in attrib:
+					scrollbar_attribs.append((attrib,value))
+					remove_attribs.append((attrib, value))
+				if "scrollbarBackgroundPicture" in attrib:
+					scrollbar_attribs.append((attrib,value))
+					remove_attribs.append((attrib, value))
+				if "scrollbarWidth" in attrib:
+					scrollbarWidth = int(value)
+					remove_attribs.append((attrib, value))
+				if "scrollbarSliderBorderWidth" in attrib:
+					scrollbarBorderWidth = int(value)
+					remove_attribs.append((attrib, value))
 				if "split" in attrib:
 					self.split = int(value)
 					if self.split:
@@ -35,6 +56,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 					self.column = int(value)
 				if "dividechar" in attrib:
 					self.splitchar = value
+			for (attrib, value) in remove_attribs:
+				self.skinAttributes.remove((attrib, value))
 			if self.split:
 				skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes + [("halign", "left")], parent.scale)
 				skin.applyAllAttributes(self.right_text, desktop, self.skinAttributes + [("transparent", "1"), ("halign", "left" and self.column or "right")], parent.scale)
@@ -51,11 +74,11 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		lines = int(s.height() / lineheight)
 		self.pageHeight = int(lines * lineheight)
 		self.instance.resize(eSize(s.width(), self.pageHeight+ int(lineheight/6)))
-		self.scrollbar.move(ePoint(s.width()-10,0))
-		self.scrollbar.resize(eSize(10,self.pageHeight+ int(lineheight/6)))
+		self.scrollbar.move(ePoint(s.width()-scrollbarWidth,0))
+		self.scrollbar.resize(eSize(scrollbarWidth,self.pageHeight+ int(lineheight/6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0,100)
-		self.scrollbar.setBorderWidth(1)
+		self.scrollbar.setBorderWidth(scrollbarBorderWidth)
 		self.long_text.move(ePoint(0,0))
 		self.long_text.resize(eSize(s.width()-30, self.pageHeight*40))
 		if self.split:
@@ -162,6 +185,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			while i < self.pages:
 				self.pageDown()
 				i += 1
+				self.updateScrollbar()
 
 	def isAtLastPage(self):
 		if self.total is not None:

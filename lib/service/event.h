@@ -81,7 +81,7 @@ class eServiceEvent: public iObject
 	time_t m_begin;
 	int m_duration;
 	int m_event_id;
-	std::string m_event_name, m_short_description, m_extended_description;
+	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source;
 	static std::string m_language, m_language_alternative;
 	// .. additional info
 public:
@@ -98,6 +98,8 @@ public:
 	std::string getEventName() const { return m_event_name; }
 	std::string getShortDescription() const { return m_short_description; }
 	std::string getExtendedDescription() const { return m_extended_description; }
+	std::string getExtraEventData() const { return m_extra_event_data; }
+	std::string getEPGSource() const { return m_epg_source; }
 	std::string getBeginTimeString() const;
 	SWIG_VOID(RESULT) getComponentData(ePtr<eComponentData> &SWIG_OUTPUT, int tagnum) const;
 	PyObject *getComponentData() const;

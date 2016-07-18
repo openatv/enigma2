@@ -380,3 +380,45 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		else:
 			self["key_blue"] = Button("")
 			self["blue"].hide()
+
+class EventViewMovieEvent(Screen):
+	def __init__(self, session, name = None, ext_desc = None, dur = None):
+		Screen.__init__(self, session)
+		self.screentitle = _("Eventview")
+		self.skinName = "EventView"
+		self.duration = ""
+		if dur:
+			self.duration = dur
+		self.ext_desc = ""
+		if name:
+			self.ext_desc = name + "\n\n"
+		if ext_desc:
+			self.ext_desc += ext_desc
+		self["epg_description"] = ScrollLabel()
+		self["datetime"] = Label()
+		self["channel"] = Label()
+		self["duration"] = Label()
+		
+		self["key_red"] = Button("")
+		self["key_green"] = Button("")
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button("")
+		self["actions"] = ActionMap(["OkCancelActions", "EventViewActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"pageUp": self.pageUp,
+				"pageDown": self.pageDown,
+			})
+		self.onShown.append(self.onCreate)
+
+	def onCreate(self):
+		self.setTitle(self.screentitle)
+		self["epg_description"].setText(self.ext_desc)
+		self["duration"].setText(self.duration)
+
+	def pageUp(self):
+		self["epg_description"].pageUp()
+
+	def pageDown(self):
+		self["epg_description"].pageDown()

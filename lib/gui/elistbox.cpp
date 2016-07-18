@@ -6,7 +6,7 @@
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
 	m_content_changed(false), m_enabled_wrap_around(false), m_top(0), m_selected(0), m_itemheight(25),
-	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
+	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL), m_scrollbar_width(10)
 {
 	memset(&m_style, 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
@@ -47,6 +47,7 @@ void eListbox::setScrollbarMode(int mode)
 		m_scrollbar->setRange(0,100);
 		if (m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(m_scrollbarbackgroundpixmap);
 		if (m_scrollbarpixmap) m_scrollbar->setPixmap(m_scrollbarpixmap);
+		if(m_style.m_sliderborder_color_set) m_scrollbar->setSliderBorderColor(m_style.m_sliderborder_color);
 	}
 }
 
@@ -297,7 +298,7 @@ void eListbox::updateScrollBar()
 		m_content_changed = false;
 		if (m_scrollbar_mode == showLeft)
 		{
-			int sbarwidth = 10;
+			int sbarwidth = m_scrollbar_width;
 			m_content->setSize(eSize(width-sbarwidth-5, m_itemheight));
 			m_scrollbar->move(ePoint(0, 0));
 			m_scrollbar->resize(eSize(sbarwidth, height));
@@ -312,7 +313,7 @@ void eListbox::updateScrollBar()
 		}
 		else if (entries > m_items_per_page || m_scrollbar_mode == showAlways)
 		{
-			int sbarwidth = 10;
+			int sbarwidth = m_scrollbar_width;
 			m_scrollbar->move(ePoint(width-sbarwidth, 0));
 			m_scrollbar->resize(eSize(sbarwidth, height));
 			m_content->setSize(eSize(width-sbarwidth-5, m_itemheight));
@@ -566,6 +567,11 @@ void eListbox::setFont(gFont *font)
 	m_style.m_font = font;
 }
 
+void eListbox::setSecondFont(gFont *font)
+{
+	m_style.m_secondfont = font;
+}
+
 void eListbox::setVAlign(int align)
 {
 	m_style.m_valign = align;
@@ -613,6 +619,20 @@ void eListbox::setBorderColor(const gRGB &col)
 void eListbox::setBorderWidth(int size)
 {
 	m_style.m_border_size = size;
+	if (m_scrollbar) m_scrollbar->setBorderWidth(size);
+}
+
+void eListbox::setScrollbarSliderBorderWidth(int size)
+{
+	m_style.m_scrollbarsliderborder_size = size;
+	m_style.m_scrollbarsliderborder_size_set = 1;
+	if (m_scrollbar) m_scrollbar->setSliderBorderWidth(size);
+}
+
+void eListbox::setScrollbarWidth(int size)
+{
+	m_scrollbar_width = size;
+
 }
 
 void eListbox::setBackgroundPicture(ePtr<gPixmap> &pm)
@@ -631,10 +651,36 @@ void eListbox::setSliderPicture(ePtr<gPixmap> &pm)
 	if (m_scrollbar && m_scrollbarpixmap) m_scrollbar->setPixmap(pm);
 }
 
+void eListbox::setSliderForegroundColor(gRGB &col)
+{
+	m_style.m_sliderforeground_color = col;
+	m_style.m_sliderforeground_color_set = 1;
+	if (m_scrollbar) m_scrollbar->setSliderForegroundColor(col);
+}
+
+void eListbox::setSliderBorderColor(const gRGB &col)
+{
+	m_style.m_sliderborder_color = col;
+	m_style.m_sliderborder_color_set = 1;
+	if (m_scrollbar) m_scrollbar->setSliderBorderColor(col);
+}
+
+void eListbox::setSliderBorderWidth(int size)
+{
+	m_style.m_sliderborder_size = size;
+	if (m_scrollbar) m_scrollbar->setSliderBorderWidth(size);
+}
+
 void eListbox::setScrollbarBackgroundPicture(ePtr<gPixmap> &pm)
 {
 	m_scrollbarbackgroundpixmap = pm;
 	if (m_scrollbar && m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(pm);
+}
+
+void eListbox::setScrollbarSliderPicture(ePtr<gPixmap> &pm)
+{
+	m_scrollbarsliderpixmap = pm;
+	if (m_scrollbar && m_scrollbarsliderpixmap) m_scrollbar->setBackgroundPixmap(pm);
 }
 
 void eListbox::invalidate(const gRegion &region)
