@@ -220,6 +220,20 @@
 			<convert type="ClockToText">Default</convert>
 		</widget>	
 	</screen>
+
+<!-- Mediaplayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="720,576">
+		<widget source="session.CurrentService" render="Label" position="15,21" size="675,320" foregroundColor="#e5b243" font="FdLcD;70" halign="center" valign="center" zPosition="14" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="27,320" size="660,35" foregroundColor="#02c6ff" borderWidth="2" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="220,400" size="266,70" font="FdLcD;70" halign="center" foregroundColor="#02c6ff" >
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+		<panel name="SummaryClockPanel" />
+	</screen>
         
 <!-- DVD -->	
 	<screen name="DVDSummary" position="0,0" size="720,576"> 

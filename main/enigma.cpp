@@ -16,6 +16,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/grc.h>
@@ -64,12 +65,34 @@ void keyEvent(const eRCKey &key)
 {
 	static eRCKey last(0, 0, 0);
 	static int num_repeat;
+	static int long_press_emulation_pushed = false;
+	static time_t long_press_emulation_start = 0;
 
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
 	/*eDebug("key.code : %02x \n", key.code);*/
 
-	if ((key.code == last.code) && (key.producer == last.producer) && key.flags & eRCKey::flagRepeat)
+	int flags = key.flags;
+	int long_press_emulation_key = eConfigManager::getConfigIntValue("config.usage.long_press_emulation_key");
+	if ((long_press_emulation_key > 0) && (key.code == long_press_emulation_key))
+	{
+		long_press_emulation_pushed = true;
+		long_press_emulation_start = time(NULL);
+		last = key;
+		return;
+	}
+
+	if (long_press_emulation_pushed && (time(NULL) - long_press_emulation_start < 10) && (key.producer == last.producer))
+	{
+		// emit make-event first
+		ptr->keyPressed(key.producer->getIdentifier(), key.code, key.flags);
+		// then setup condition for long-event
+		num_repeat = 3;
+		last = key;
+		flags = eRCKey::flagRepeat;
+	}
+
+	if ((key.code == last.code) && (key.producer == last.producer) && flags & eRCKey::flagRepeat)
 		num_repeat++;
 	else
 	{
@@ -89,7 +112,9 @@ void keyEvent(const eRCKey &key)
 		ptr->keyPressed(key.producer->getIdentifier(), 510 /* faked KEY_ASCII */, 0);
 	}
 	else
-		ptr->keyPressed(key.producer->getIdentifier(), key.code, key.flags);
+		ptr->keyPressed(key.producer->getIdentifier(), key.code, flags);
+
+	long_press_emulation_pushed = false;
 }
 
 /************************************************/

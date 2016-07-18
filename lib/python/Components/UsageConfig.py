@@ -11,6 +11,7 @@ from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType
+from keyids import KEYIDS
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
@@ -19,7 +20,8 @@ def InitUsageConfig():
 	config.workaround = ConfigSubsection()
 	config.workaround.blueswitch = ConfigSelection(default = "0", choices = [("0", _("QuickMenu/Extensions")), ("1", _("Extensions/QuickMenu"))])
 	config.workaround.deeprecord = ConfigYesNo(default = False)
-	config.workaround.wakeuptimeoffset = ConfigSelection(default = "standard", choices = [("-300", _("-5")), ("-240", _("-4")), ("-180", _("-3")), ("-120", _("-2")), ("-60", _("-1")), ("standard", _("Standard")), ("0", _("0")), ("60", _("1")), ("120", _("2")), ("180", _("3")), ("240", _("4")), ("300", _("5"))])
+	config.workaround.wakeuptime = ConfigSelectionNumber(default = 5, stepwidth = 1, min = 0, max = 30, wraparound = True)
+	config.workaround.wakeupwindow = ConfigSelectionNumber(default = 5, stepwidth = 5, min = 5, max = 60, wraparound = True)
 
 	config.usage = ConfigSubsection()
 	config.usage.shutdownOK = ConfigBoolean(default = True)
@@ -230,6 +232,20 @@ def InitUsageConfig():
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = choicelist)
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = choicelist)
 
+	config.usage.long_press_emulation_key = ConfigSelection(default = "0", choices = [
+		("0", _("None")),
+		(str(KEYIDS["KEY_TV"]), _("TV")),
+		(str(KEYIDS["KEY_RADIO"]), _("Radio")),
+		(str(KEYIDS["KEY_AUDIO"]), _("Audio")),
+		(str(KEYIDS["KEY_VIDEO"]), _("List/Fav")),
+		(str(KEYIDS["KEY_HOME"]), _("Home")),
+		(str(KEYIDS["KEY_END"]), _("End")),
+		(str(KEYIDS["KEY_HELP"]), _("Help")),
+		(str(KEYIDS["KEY_INFO"]), _("Info (EPG)")),
+		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
+		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
+		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites")) ])
+
 	choicelist = [("0", "Disabled")]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
 		if i < 60:
@@ -317,7 +333,7 @@ def InitUsageConfig():
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 	
-	if getBoxType() in ('et7000', 'et7500', 'et8000', 'triplex', 'formuler1', 'mutant1200', 'solo2', 'mutant1265', 'mutant1100', 'mutant500c', 'mutant1500'):
+	if getBoxType() in ('et7000', 'et7500', 'et8000', 'triplex', 'formuler1', 'mutant1200', 'solo2', 'mutant1265', 'mutant1100', 'mutant500c', 'mutant1500', 'osminiplus', 'ax51', 'mutant51'):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default = "Channel", choices = [
 						("Rec", _("REC Symbol")), 
 						("RecBlink", _("Blinking REC Symbol")), 
@@ -492,7 +508,7 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
-			if getBoxType() in ('et7000', 'et7500', 'gbx1', 'gbx3', 'et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbultraue', 'gbultrase', 'gbipbox', 'quadbox2400', 'mutant2400', 'et7x00', 'et8500', 'et8500s'):
+			if getBoxType() in ('et7000', 'et7100', 'et7500', 'gbx1', 'gbx3', 'et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbultraue', 'gbultrase', 'gbipbox', 'quadbox2400', 'mutant2400', 'et7x00', 'et8500', 'et8500s'):
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 			else:
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")

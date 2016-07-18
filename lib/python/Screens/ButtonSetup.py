@@ -93,6 +93,7 @@ def getButtonSetupKeys():
 		(_("Slow"), "slow", ""),
 		(_("Mark/Portal/Playlist"), "mark", ""),
 		(_("Sleep"), "sleep", ""),
+		(_("Sleep long"), "sleep_long", ""),
 		(_("Power"), "power", ""),
 		(_("Power long"), "power_long", ""),
 		(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
@@ -160,6 +161,8 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
 	ButtonSetupFunctions.append((_("Show multi channel EPG"), "Infobar/openMultiServiceEPG", "EPG"))
 	ButtonSetupFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
+	ButtonSetupFunctions.append((_("Enable digital downmix"), "Infobar/audioDownmixOn", "InfoBar"))
+	ButtonSetupFunctions.append((_("Disable digital downmix"), "Infobar/audioDownmixOff", "InfoBar"))
 	ButtonSetupFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	ButtonSetupFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show servicelist or movies"), "Infobar/showServiceListOrMovies", "InfoBar"))
@@ -444,7 +447,7 @@ class ButtonSetupSelect(Screen):
 
 	def cancel(self):
 		if self.selected != self.prevselected:
-			self.session.openWithCallback(self.cancelCallback, MessageBox, _("are you sure to cancel all changes"), default=False)
+			self.session.openWithCallback(self.cancelCallback, MessageBox, _("Are you sure to cancel all changes"), default=False)
 		else:
 			self.close()
 

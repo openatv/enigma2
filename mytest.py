@@ -672,20 +672,11 @@ def runScreenTest():
 	]
 	wakeupList.sort()
 
-	# individual wakeup time offset
-	if config.workaround.wakeuptimeoffset.value == "standard":
-		if boxtype.startswith("gb"):
-			wpoffset = -120 # Gigaboxes already starts 2 min. before wakeup time
-		else:
-			wpoffset = 0
-	else:
-		wpoffset = int(config.workaround.wakeuptimeoffset.value)
-
 	print "="*100
 	if wakeupList and wakeupList[0][0] > 0:
 		startTime = wakeupList[0]
-		# wakeup time is 5 min before timer starts + offset
-		wptime = startTime[0] - 300 - wpoffset
+		# wakeup time before timer begins
+		wptime = startTime[0] - (config.workaround.wakeuptime.value * 60)
 		if (wptime - nowTime) < 120: # no time to switch box back on
 			wptime = int(nowTime) + 120  # so switch back on in 120 seconds
 

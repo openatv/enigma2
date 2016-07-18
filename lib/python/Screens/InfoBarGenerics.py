@@ -2381,13 +2381,15 @@ class InfoBarSeek:
 			self.seekAction = 0
 
 		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-			file = open("/proc/stb/lcd/symbol_hdd", "w")
-			file.write('%d' % int(hdd))
-			file.close()
+			if config.lcd.hdd.value == "1":
+				file = open("/proc/stb/lcd/symbol_hdd", "w")
+				file.write('%d' % int(hdd))
+				file.close()
 		if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-			file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-			file.write('%d' % int(self.activity))
-			file.close()
+			if config.lcd.hdd.value == "1":
+				file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+				file.write('%d' % int(self.activity))
+				file.close()
 		if self.LastseekAction:
 			self.DoSeekAction()
 
@@ -3900,11 +3902,11 @@ class InfoBarAudioSelection:
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
-				"audio_key": (self.audio_key, _("Audio options...")),
-				"audioSelectionLong": (self.audioSelectionLong, _("Toggle Digital downmix...")),
+				"yellow_key": (self.yellow_key, _("Audio options...")),
+				"audioSelectionLong": (self.audioDownmixToggle, _("Toggle Digital downmix...")),
 			})
 
-	def audioSelection(self):
+	def yellow_key(self):
 		if not hasattr(self, "LongButtonPressed"):
 			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
@@ -3938,24 +3940,33 @@ class InfoBarAudioSelection:
 				except:
 					pass
 				
-	def audio_key(self):
+	def audioSelection(self):
 		from Screens.AudioSelection import AudioSelection
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
-	def audioSelectionLong(self):
-		if SystemInfo["CanDownmixAC3"] and self.LongButtonPressed:
+	def audioDownmixToggle(self, popup = True):
+		if SystemInfo["CanDownmixAC3"]:
 			if config.av.downmix_ac3.value:
-				message = _("Dobly Digital downmix is now") + " " + _("disabled")
-				print '[Audio] Dobly Digital downmix is now disabled'
+				message = _("Dolby Digital downmix is now") + " " + _("disabled")
+				print '[Audio] Dolby Digital downmix is now disabled'
 				config.av.downmix_ac3.setValue(False)
 			else:
 				config.av.downmix_ac3.setValue(True)
-				message = _("Dobly Digital downmix is now") + " " + _("enabled")
-				print '[Audio] Dobly Digital downmix is now enabled'
-			Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
+				message = _("Dolby Digital downmix is now") + " " + _("enabled")
+				print '[Audio] Dolby Digital downmix is now enabled'
+			if popup:
+				Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
+
+	def audioDownmixOn(self):
+		if not config.av.downmix_ac3.value:
+			self.audioDownmixToggle(False)
+
+	def audioDownmixOff(self):
+		if config.av.downmix_ac3.value:
+			self.audioDownmixToggle(False)
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
@@ -4917,10 +4928,12 @@ class InfoBarHdmi:
 				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
 				self.session.pip.show()
 				self.session.pipshown = True
+				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
 				curref = self.session.pip.getCurrentService()
 				if curref and curref.type != 8192:
 					self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
 					self.session.pipshown = False
 					del self.session.pip

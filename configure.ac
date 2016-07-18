@@ -238,6 +238,16 @@ if test x"$withtextlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
+AC_ARG_WITH(bwlcd96,
+	AC_HELP_STRING([--with-bwlcd96], [use 96x64 1bpp black and white display, yes or no]),
+	[[withbwlcd96=$withval]],
+	[[withbwlcd96=no]]
+)
+if test x"$withbwlcd96" != xno ; then
+	AC_DEFINE(HAVE_BWLCD96, 1,[Define when using a 96x64 black and white display device])
+fi
+AM_CONDITIONAL(HAVE_BWLCD96, test x"$withbwlcd96" != xno)
+
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
@@ -453,7 +463,7 @@ if test "$BOXTYPE" == "sh1" -o "$BOXTYPE" == "lc"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test "$BOXTYPE" == "7000s" -0 "$BOXTYPE" == "7100s" -0 "$BOXTYPE" == "7210s" -0 "$BOXTYPE" == "7300s" -0 "$BOXTYPE" == "7400s"; then
+if test "$BOXTYPE" == "7000s" -0 "$BOXTYPE" == "7100s" -0 "$BOXTYPE" == "7200s" -0 "$BOXTYPE" == "7210s" -0 "$BOXTYPE" == "7300s" -0 "$BOXTYPE" == "7400s"; then
 #	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi

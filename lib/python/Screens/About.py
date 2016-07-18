@@ -48,6 +48,14 @@ def getAboutText():
 	AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 	AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
+	imagestarted = ""
+	if path.exists('/boot/STARTUP'):
+		f = open('/boot/STARTUP', 'r')
+		f.seek(22)
+		image = f.read(1) 
+		f.close()
+		AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + "\n"
+
 	AboutText += _("Version:\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t%s") % getImageBuild() + "\n"
 	AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"

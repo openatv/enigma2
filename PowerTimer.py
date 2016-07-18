@@ -228,15 +228,20 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.WAKEUP:
+				if debug: print "self.timerType == TIMERTYPE.WAKEUP:"
 				if Screens.Standby.inStandby:
 					Screens.Standby.inStandby.Power()
 				return True
 
-			elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
-				return True
+			#elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
+			#	return True
 
-			elif self.timerType == TIMERTYPE.STANDBY:
-				if debug: print "self.timerType == TIMERTYPE.STANDBY:"
+			elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY or self.timerType == TIMERTYPE.STANDBY:
+				if debug: 
+					if self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
+						print "self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:"
+					else:
+						print "self.timerType == TIMERTYPE.STANDBY:"
 				prioPT = [TIMERTYPE.WAKEUP,TIMERTYPE.RESTART,TIMERTYPE.REBOOT,TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.DEEPSTANDBY]
 				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
@@ -1013,15 +1018,16 @@ class PowerTimer(timer.Timer):
 
 	def isAutoDeepstandbyEnabled(self):
 		ret = True
-		now = time()
-		for timer in self.timer_list:
-			if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if timer.begin <= now + 900:
-					ret = not (timer.getNetworkTraffic() or timer.getNetworkAdress())
-				elif timer.autosleepwindow == 'yes':
-					ret = timer.autosleepbegin <= now + 900
-			if not ret:
-				break
+		if Screens.Standby.inStandby:
+			now = time()
+			for timer in self.timer_list:
+				if timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
+					if timer.begin <= now + 900:
+						ret = not (timer.getNetworkTraffic() or timer.getNetworkAdress())
+					elif timer.autosleepwindow == 'yes':
+						ret = timer.autosleepbegin <= now + 900
+				if not ret:
+					break
 		return ret
 
 	def isProcessing(self, exceptTimer = None, endedTimer = None):
