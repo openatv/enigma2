@@ -41,6 +41,7 @@ def InitConfig():
 																							'/etc/dropbear/', '/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
 																							'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
 																							'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
+																							'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
