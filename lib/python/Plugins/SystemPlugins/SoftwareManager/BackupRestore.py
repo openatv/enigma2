@@ -44,6 +44,7 @@ def InitConfig():
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
+																							'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf'
 																							'/usr/share/enigma2/MetrixHD/skinparts/',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
