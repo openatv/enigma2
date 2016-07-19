@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-07-15 21:08+0200\n"
+"PO-Revision-Date: 2016-07-18 18:07+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -889,7 +889,7 @@ msgstr "Erweiterte Video-Einstellungen"
 
 # PowerTimer
 msgid "After event"
-msgstr "Nach der Aufnahme"
+msgstr "Nach dem Ereignis"
 
 #
 msgid "After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that."
@@ -1115,6 +1115,10 @@ msgstr "Datei anhängen"
 #
 msgid "Audio options..."
 msgstr "Ton-Einstellungen"
+
+#: InfoBarGenerics.py
+msgid "Toggle Digital downmix..."
+msgstr "DD/DTS Downmix An/Aus"
 
 #
 msgid "Red button..."
@@ -2601,6 +2605,10 @@ msgstr "Favoriten"
 #: ButtonSetup.py
 msgid "Favorites long"
 msgstr "Favoriten lang"
+
+#: ButtonSetup.py
+msgid "Sleep long"
+msgstr "Sleep lang"
 
 #: ButtonSetup.py
 msgid "Toggle LCD LiveTV"
@@ -4466,9 +4474,9 @@ msgstr "Lokales Netzwerk"
 msgid "Local box"
 msgstr "Lokale Box"
 
-#: MovieSelection.py
+#
 msgid "Location"
-msgstr "Verzeichnis"
+msgstr "Zielverzeichnis"
 
 #
 msgid "Lock:"
@@ -5880,7 +5888,7 @@ msgstr "Bitte Tuner-Konfiguration festlegen."
 
 #
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "Für Sprachauswahl Hzoch/Runter-Tasten nutzen. Danach OK drücken."
+msgstr "Für Sprachauswahl Hoch/Runter-Tasten nutzen. Danach OK drücken."
 
 #
 msgid "Please wait for activation of your network configuration..."
@@ -10308,14 +10316,6 @@ msgstr "Anzahl der Stellen in der Kanalnummer "
 #: data/setup.xml
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Hier können Sie die Anzahl der Stellen auf 5 setzen, wenn Sie mehr als 9999 Kanäle haben."
-
-#: data/setup.xml
-msgid "Default timer type"
-msgstr "Standard Timer-Einstellung"
-
-#: data/setup.xml
-msgid "Configure default type for new timers."
-msgstr "Legt die Standard-Einstellung für neu angelegte Timer fest."
 
 #: data/setup.xml
 msgid "Long press emulation with button"
@@ -14833,10 +14833,10 @@ msgid "Wakeup time before a timer begins [mins]"
 msgstr "Aufwachzeit bevor ein Timer beginnt [min]"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
-msgstr "Zeitfenster für die Erkennung des aufwachens durch einen Timer [min]"
+msgstr "Zeitfenster für die Erkennung des Aufwachens durch einen Timer [min]"
 
 msgid "Use workaround for wakeup from deep-standby?"
-msgstr "Workaround für das aufwachen aus dem Deep-Standby benutzen?"
+msgstr "Workaround für das Aufwachen aus dem Deep-Standby benutzen?"
 
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
 msgstr "Blau-Kurz (Schnellstart Menü) tauschen mit Blau-Lang (Erweiterungen)"
@@ -15958,8 +15958,8 @@ msgstr "Prozessor:\t\t%s"
 msgid "Cores:\t%s"
 msgstr "Prozessor-Kerne:     \t%s"
 
-msgid "Image started:\t%s"
-msgstr "Gestartetes Image:     \t%s"
+msgid "Selected Image:\t%s"
+msgstr "Ausgewähltes Image:     \t%s"
 
 msgid "Version:\t%s"
 msgstr "Version:\t\t%s"
@@ -16887,6 +16887,10 @@ msgstr "Hier können Sie die Endzeit der Aufnahme ändern."
 #: TimerEntry.py
 msgid "Set the channel for this timer."
 msgstr "Hier können Sie den Kanal von dem aufgenommen werden soll ändern."
+
+#: TimerEntry.py
+msgid "After Recording"
+msgstr "Nach der Aufnahme"
 
 #: TimerEntry.py:241 TimerEntry.py
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
