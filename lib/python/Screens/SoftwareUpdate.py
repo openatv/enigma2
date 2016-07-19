@@ -167,7 +167,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.menu_path_compressed = ""
 			self.menu_path += ' / '
 		elif config.usage.show_menupath.value == 'small':
-			title = screentitle
+			self.title = screentitle
 			condtext = ""
 			if self.menu_path and not self.menu_path.endswith(' / '):
 				condtext = self.menu_path + " >"
