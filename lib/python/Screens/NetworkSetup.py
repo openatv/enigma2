@@ -210,7 +210,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 	def okbuttonClick(self):
 		selection = self["list"].getCurrent()
 		if selection is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, self.menu_path, selection[0])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0], self.menu_path)
 
 	def AdapterSetupClosed(self, *ret):
 		if len(self.adapters) == 1:
@@ -433,32 +433,32 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session, menu_path="", networkinfo=None, essid=None):
+	def __init__(self, session, networkinfo=None, essid=None, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		if menu_path and not 'Main menu' in menu_path:
-			networkinfo = menu_path
-			menu_path = ""
-		screentitle = _("Adapter settings")
-		self.menu_path = menu_path
-		if config.usage.show_menupath.value == 'large':
-			menu_path += screentitle
-			title = menu_path
-			self["menu_path_compressed"] = StaticText("")
-		elif config.usage.show_menupath.value == 'small':
-			title = screentitle
-			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
-		else:
-			title = screentitle
-			self["menu_path_compressed"] = StaticText("")
-		Screen.setTitle(self, title)
+
 		self.session = session
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
 			self.essid = networkinfo[1]
+			self.menu_path = [2]
 		else:
 			self.iface = networkinfo
 			self.essid = essid
+			self.menu_path = menu_path
+
+		screentitle = _("Adapter settings")
+		if config.usage.show_menupath.value == 'large':
+			self.menu_path += screentitle
+			title = self.menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 
 		self.extended = None
 		self.applyConfigRef = None
@@ -488,6 +488,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list,session = self.session)
+
+		Screen.setTitle(self, title)
+
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
@@ -811,7 +814,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
-	def __init__(self, session, menu_path="", iface=None):
+	def __init__(self, session, iface=None, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		screentitle = _("Network Setup")
@@ -915,13 +918,13 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.session.open(MessageBox, self.missingwlanplugintxt, type = MessageBox.TYPE_INFO,timeout = 10 )
 				else:
 					if self.queryWirelessDevice(self.iface):
-						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.menu_path, self.iface)
+						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, None, self.menu_path)
 					else:
 						self.showErrorMessage()	# Display Wlan not available Message
 			else:
-				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.menu_path, self.iface)
+				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, None, self.menu_path)
 		if self["menulist"].getCurrent()[1] == 'test':
-			self.session.open(NetworkAdapterTest,self.menu_path,self.iface)
+			self.session.open(NetworkAdapterTest,self.iface,self.menu_path)
 		if self["menulist"].getCurrent()[1] == 'dns':
 			self.session.open(NameserverSetup,self.menu_path)
 		if self["menulist"].getCurrent()[1] == 'mac':
@@ -1082,7 +1085,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def WlanScanClosed(self,*ret):
 		if ret[0] is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.menu_path, self.iface,ret[0])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, ret[0], self.menu_path)
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
@@ -1166,7 +1169,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 
 class NetworkAdapterTest(Screen):
-	def __init__(self, session, menu_path="", iface=None):
+	def __init__(self, session, iface=None, menu_path=""):
 		Screen.__init__(self, session)
 		screentitle = _("Network Test")
 		self.menu_path = menu_path
@@ -1435,7 +1438,7 @@ class NetworkAdapterTest(Screen):
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 6: # Edit Settings
-			self.session.open(AdapterSetup, self.menu_path, self.iface)
+			self.session.open(AdapterSetup, self.iface, None, self.menu_path)
 
 	def KeyYellow(self):
 		self.nextstep = 0
