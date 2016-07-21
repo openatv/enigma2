@@ -186,7 +186,8 @@ class CableTransponderSearchSupport:
 						"QAM32" : parm.Modulation_QAM32,
 						"QAM64" : parm.Modulation_QAM64,
 						"QAM128" : parm.Modulation_QAM128,
-						"QAM256" : parm.Modulation_QAM256 }
+						"QAM256" : parm.Modulation_QAM256,
+						"QAM_AUTO" : parm.Modulation_Auto }
 					inv = { "INVERSION_OFF" : parm.Inversion_Off,
 						"INVERSION_ON" : parm.Inversion_On,
 						"INVERSION_AUTO" : parm.Inversion_Unknown }
@@ -272,6 +273,9 @@ class CableTransponderSearchSupport:
 		if tunername == "CXD1981":
 			bin_name = "CXD1981"
 			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
+		elif tunername == "ATBM781x":
+			bin_name = "ATBM781x"
+			cmd = "atbm781x --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
 		elif tunername.startswith("Sundtek"):
 			bin_name = "mediaclient"
 			cmd = "/opt/bin/mediaclient --blindscan %d" % nim_idx
@@ -310,28 +314,31 @@ class CableTransponderSearchSupport:
 		else:
 			cmd += " --scan-stepsize "
 			cmd += str(cableConfig.scan_frequency_steps.value)
-		if cableConfig.scan_mod_qam16.value:
-			cmd += " --mod 16"
-		if cableConfig.scan_mod_qam32.value:
-			cmd += " --mod 32"
-		if cableConfig.scan_mod_qam64.value:
-			cmd += " --mod 64"
-		if cableConfig.scan_mod_qam128.value:
-			cmd += " --mod 128"
-		if cableConfig.scan_mod_qam256.value:
-			cmd += " --mod 256"
-		if cableConfig.scan_sr_6900.value:
-			cmd += " --sr 6900000"
-		if cableConfig.scan_sr_6875.value:
-			cmd += " --sr 6875000"
-		if cableConfig.scan_sr_ext1.value > 450:
-			cmd += " --sr "
-			cmd += str(cableConfig.scan_sr_ext1.value)
-			cmd += "000"
-		if cableConfig.scan_sr_ext2.value > 450:
-			cmd += " --sr "
-			cmd += str(cableConfig.scan_sr_ext2.value)
-			cmd += "000"
+		if cmd.startswith("atbm781x"):
+			cmd += " --timeout 800"
+		else:
+			if cableConfig.scan_mod_qam16.value:
+				cmd += " --mod 16"
+			if cableConfig.scan_mod_qam32.value:
+				cmd += " --mod 32"
+			if cableConfig.scan_mod_qam64.value:
+				cmd += " --mod 64"
+			if cableConfig.scan_mod_qam128.value:
+				cmd += " --mod 128"
+			if cableConfig.scan_mod_qam256.value:
+				cmd += " --mod 256"
+			if cableConfig.scan_sr_6900.value:
+				cmd += " --sr 6900000"
+			if cableConfig.scan_sr_6875.value:
+				cmd += " --sr 6875000"
+			if cableConfig.scan_sr_ext1.value > 450:
+				cmd += " --sr "
+				cmd += str(cableConfig.scan_sr_ext1.value)
+				cmd += "000"
+			if cableConfig.scan_sr_ext2.value > 450:
+				cmd += " --sr "
+				cmd += str(cableConfig.scan_sr_ext2.value)
+				cmd += "000"
 		print bin_name, " CMD is", cmd
 
 		self.cable_search_container.execute(cmd)
