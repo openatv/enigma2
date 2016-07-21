@@ -30,12 +30,25 @@ class ProtectedScreen:
 		self.close(None)
 
 class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
+		screentitle = _("Parental control")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+		self.setup_title = title
+
 		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
 		self.skinName = ["ParentalControlSetup", "Setup" ]
-		self.setup_title = _("Parental control setup")
 		self.onChangedEntry = [ ]
 
 		self.list = []
