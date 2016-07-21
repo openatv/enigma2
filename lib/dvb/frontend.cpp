@@ -1070,6 +1070,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			break;
 		}
 	}
+	else if (!strcmp(m_description, "BCM73625 (G3)")) // DM520
+	{
+		ret = snr * 100 / 256;
+	}
 	else if (!strcmp(m_description, "Broadcom BCM73XX")
 		|| !strcmp(m_description, "FTS-260 (Montage RS6000)")
 		|| !strcmp(m_description, "Panasonic MN88472")
