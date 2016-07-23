@@ -7,6 +7,8 @@ from Screens.Rc import Rc
 class HelpMenu(Screen, Rc):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
+		self.setup_title = _("Help")
+		Screen.setTitle(self, self.setup_title)
 		self.onSelChanged = [ ]
 		self["list"] = HelpMenuList(list, self.close)
 		self["list"].onSelChanged.append(self.SelectionChanged)
