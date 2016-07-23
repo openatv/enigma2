@@ -34,7 +34,6 @@ constant_widgets = {}
 variables = {}
 DEFAULT_SKIN = "MetrixHD/skin.xml"
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
-skinerrorfile = '/tmp/.skinerror'
 
 def dump(x, i=0):
 	print " " * i + str(x)
@@ -46,10 +45,6 @@ def dump(x, i=0):
 
 class SkinError(Exception):
 	def __init__(self, message):
-		if config.skin.primary_fallback_skin.value == True:
-			ERRORFILE = open(skinerrorfile,'w')
-			ERRORFILE.write('There was an skin error\n')
-			ERRORFILE.close()
 		self.msg = message
 	def __str__(self):
 		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.value, self.msg)
@@ -114,7 +109,6 @@ def skin_user_skinname():
 config.skin = ConfigSubsection()
 config.skin.primary_skin = ConfigText(default = DEFAULT_SKIN)
 config.skin.display_skin = ConfigText(default = DEFAULT_DISPLAY_SKIN)
-config.skin.primary_fallback_skin = ConfigYesNo(default = True)
 
 def skinExists(skin = False):
 	if not skin or not isinstance(skin, skin):
@@ -202,14 +196,6 @@ def load_modular_files():
 load_modular_files()
 
 try:
-	if fileExists(skinerrorfile):
-		os.remove(skinerrorfile)
-		if config.skin.primary_fallback_skin.value == True:
-			if config.skin.primary_skin.value == DEFAULT_SKIN:
-				config.skin.primary_skin.value = 'skin.xml'
-			else:
-				config.skin.primary_skin.value = DEFAULT_SKIN
-			config.skin.primary_skin.save()
 	if not addSkin(config.skin.primary_skin.value):
 		raise SkinError, "primary skin not found"
 except Exception, err:
