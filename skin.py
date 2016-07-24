@@ -1284,7 +1284,7 @@ def readSkin(screen, skin, names, desktop):
 			for w in myscreen.findall("widget"):
 				process(w)
 		for w in widget.getchildren():
-			if if cw and w.tag in ("constant-widget","widget"):	#for non-openatv skins
+			if cw and w.tag in ("constant-widget","widget"):	#for non-openatv skins
 				continue
 			process(w)
 #		else:
