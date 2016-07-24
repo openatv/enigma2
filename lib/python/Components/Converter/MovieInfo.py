@@ -19,7 +19,7 @@ class MovieInfo(Converter, object):
 			self.type = self.MOVIE_REC_SERVICE_NAME
 		elif type == "FileSize":
 			self.type = self.MOVIE_REC_FILESIZE
-		elif type == "RecordServiceRef":
+		elif type in ("RecordServiceRef", "Reference"):
 			self.type = self.MOVIE_REC_SERVICE_REF
 		else:
 			raise ElementError("'%s' is not <ShortDescription|MetaDescription|RecordServiceName|FileSize> for MovieInfo converter" % type)

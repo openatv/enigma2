@@ -128,10 +128,14 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("openATV"))
-		self["lab2"] = StaticText(_("By openATV Image Team"))
+		if self.has_key("lab2"):	#openatv skin
+			self["lab1"] = StaticText(_("openATV"))
+			self["lab2"] = StaticText(_("By openATV Image Team"))
+			self["lab3"] = StaticText(_("Support at") + " www.opena.tv")
+		else:				#other skin
+			pass	#TODO
+
 		model = None
-		self["lab3"] = StaticText(_("Support at") + " www.opena.tv")
 
 		AboutText = getAboutText()[0]
 
