@@ -36,6 +36,7 @@ fec_label = _('FEC:')
 snr_label = _('SNR:')
 ber_label = _('BER:')
 lock_label = _('Lock:')
+agc_label = _("AGC:")
 
 class PositionerSetup(Screen):
 
