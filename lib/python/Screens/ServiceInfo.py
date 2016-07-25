@@ -194,7 +194,7 @@ class ServiceInfo(Screen):
 						 "constellation"	: _("Constellation"),
 						 "transmission_mode"	: _("Transmission mode"),
 						 "guard_interval" 	: _("Guard interval"),
-+						 "hierarchy_information": _("Hierarchy information")}
+						 "hierarchy_information": _("Hierarchy information")}
 				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys() if i in conv]
 				self.fillList(Labels)
 
