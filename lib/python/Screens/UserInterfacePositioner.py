@@ -7,9 +7,25 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
 from Components.Label import Label
+from Tools.Directories import fileExists
 from enigma import getDesktop
 from os import access, R_OK
 from boxbranding import getBoxType, getBrandOEM
+
+def getFilePath(setting):
+	if getBrandOEM() in ('dreambox'):
+		return "/proc/stb/vmpeg/0/dst_%s" % (setting)
+	else:
+		return "/proc/stb/fb/dst_%s" % (setting)
+
+def setPositionParameter(parameter, configElement):
+	f = open(getFilePath(parameter), "w")
+	f.write('%X' % configElement.value)
+	f.close()
+	if fileExists(getFilePath("apply")):
+		f = open(getFilePath("apply"), "w")
+		f.write('1')
+		f.close()
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = access('/proc/stb/fb/3dmode', R_OK) and True or False
@@ -30,42 +46,22 @@ def InitOsd():
 
 	def setOSDLeft(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			if getBrandOEM() in ('dreambox'):
-				f = open("/proc/stb/vmpeg/0/dst_left", "w")
-			else:
-				f = open("/proc/stb/fb/dst_left", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("left", configElement)
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			if getBrandOEM() in ('dreambox'):
-				f = open("/proc/stb/vmpeg/0/dst_width", "w")
-			else:
-				f = open("/proc/stb/fb/dst_width", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("width", configElement)
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			if getBrandOEM() in ('dreambox'):
-				f = open("/proc/stb/vmpeg/0/dst_top", "w")
-			else:
-				f = open("/proc/stb/fb/dst_top", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("top", configElement)
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			if getBrandOEM() in ('dreambox'):
-				f = open("/proc/stb/vmpeg/0/dst_height", "w")
-			else:
-				f = open("/proc/stb/fb/dst_height", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("height", configElement)
 	config.osd.dst_height.addNotifier(setOSDHeight)
 	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
