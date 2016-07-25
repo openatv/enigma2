@@ -732,7 +732,8 @@ void gDC::exec(const gOpcode *o)
 			int vcentered_top = o->parm.renderText->area.top() + ((o->parm.renderText->area.height() - bbox.height()) / 2);
 			int correction = vcentered_top - bbox.top();
 			// Only center if it fits, don't push text out the top
-			if (correction > 0)
+			eDebug("[adenin] vertical correction: %d",correction);
+//			if (correction > 0)
 			{
 				offset += ePoint(0, correction);
 			}
