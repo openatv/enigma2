@@ -16,9 +16,12 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.split = False
 		self.splitchar = "|"
 		self.column = 0
+		self.lineheight = None
+		self.scrollbarmode = "showOnDemand"
 
 	def applySkin(self, desktop, parent):
 		scrollbarWidth = 10
+		itemHeight = 30
 		scrollbarBorderWidth = 1
 		ret = False
 		if self.skinAttributes is not None:
@@ -26,6 +29,12 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			scrollbar_attribs = [ ]
 			remove_attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
+				if "itemHeight" in attrib:
+					itemHeight = int(value)
+					remove_attribs.append((attrib, value))
+				if "scrollbarMode" in attrib:
+					self.scrollbarmode = value
+					remove_attribs.append((attrib, value))
 				if "borderColor" in attrib or "borderWidth" in attrib:
 					scrollbar_attribs.append((attrib,value))
 				if "transparent" in attrib or "backgroundColor" in attrib:
@@ -68,14 +77,15 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			ret = True
 		s = self.long_text.size()
 		self.instance.move(self.long_text.position())
-		lineheight=fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
-		if not lineheight:
-			lineheight = 30 # assume a random lineheight if nothing is visible
-		lines = int(s.height() / lineheight)
-		self.pageHeight = int(lines * lineheight)
-		self.instance.resize(eSize(s.width(), self.pageHeight+ int(lineheight/6)))
+		self.lineheight = fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
+		if not self.lineheight:
+			self.lineheight = itemHeight # assume a random lineheight if nothing is visible
+		lines = int(s.height() / self.lineheight)
+		self.pageHeight = int(lines * self.lineheight)
+		self.instance.resize(eSize(s.width(), self.pageHeight+ int(self.lineheight/6)))
+#TODO scrollbarmode
 		self.scrollbar.move(ePoint(s.width()-scrollbarWidth,0))
-		self.scrollbar.resize(eSize(scrollbarWidth,self.pageHeight+ int(lineheight/6)))
+		self.scrollbar.resize(eSize(scrollbarWidth,self.pageHeight+ int(self.lineheight/6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0,100)
 		self.scrollbar.setBorderWidth(scrollbarBorderWidth)
@@ -110,7 +120,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			while total < text_height:
 				total += self.pageHeight
 				pages += 1
-			if pages > 1:
+			if (self. scrollbarmode == "showAlways") or ((self.scrollbarmode == "showOnDemand") and (pages > 1)):
 				self.scrollbar.show()
 				self.total = total
 				self.pages = pages
@@ -134,7 +144,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			while total < text_height:
 				total += self.pageHeight
 				pages += 1
-			if pages > 1:
+			if (self. scrollbarmode == "showAlways") or ((self.scrollbarmode == "showOnDemand") and (pages > 1)):
 				self.scrollbar.show()
 				self.total = total
 				self.pages = pages
