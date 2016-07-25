@@ -234,5 +234,11 @@
 		<widget source="session.CurrentService" render="Label" position="48,48" size="48,16" font="Regular;16" foregroundColor="#FFFF00" halign="right">
 			  <convert type="ServicePosition">Remaining,Negate,ShowHours,ShowNoSeconds</convert>
 		</widget>
-	</screen>	
+	</screen>
+<!-- MediaPlayer Summary -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="96,64" >
+		<widget name="text1" position="0,0" size="96,35" font="Regular;14"/>
+		<widget name="text3" position="0,36" size="96,14" font="Regular;10"/>
+		<widget name="text4" position="0,49" size="96,14" font="Regular;10"/>
+	</screen>
 </skin>

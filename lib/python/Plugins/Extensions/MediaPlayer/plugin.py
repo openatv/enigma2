@@ -1119,18 +1119,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				self.clear_playlist()
 
 class MediaPlayerLCDScreen(Screen):
-	skin = (
-	"""<screen name="MediaPlayerLCDScreen" position="0,0" size="132,64" id="1">
-		<widget name="text1" position="4,0" size="132,35" font="Regular;16"/>
-		<widget name="text3" position="4,36" size="132,14" font="Regular;10"/>
-		<widget name="text4" position="4,49" size="132,14" font="Regular;10"/>
-	</screen>""",
-	"""<screen name="MediaPlayerLCDScreen" position="0,0" size="96,64" id="2">
-		<widget name="text1" position="0,0" size="96,35" font="Regular;14"/>
-		<widget name="text3" position="0,36" size="96,14" font="Regular;10"/>
-		<widget name="text4" position="0,49" size="96,14" font="Regular;10"/>
-	</screen>""")
-
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		self["text1"] = Label("Media player")
