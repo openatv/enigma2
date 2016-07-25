@@ -6,6 +6,7 @@ from Screens.Screen import Screen
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.PluginComponent import plugins
+from Components.Pixmap import Pixmap
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
@@ -112,6 +113,8 @@ class ImageWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
 		#Screen.setTitle(self, _("Welcome..."))
 		Screen.setTitle(self, _("ImageWizard"))
 		self.selectedDevice = None

@@ -9,6 +9,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
+from Components.Pixmap import Pixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 boxtype = getBoxType()
@@ -321,8 +322,13 @@ class RemoteControlType(Screen, ConfigListScreen):
 			"save": self.keySave,
 		}, -1)
 
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+
 		self["key_green"] = StaticText(_("Save"))
 		self["key_red"] = StaticText(_("Cancel"))
+		self["footnote"] = StaticText()
+		self["description"] = StaticText()
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
