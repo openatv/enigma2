@@ -607,7 +607,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
-		self["footnote"] = StaticText()
+		self["footnote"] = Label()
 		self["description"] = Label("")
 
 		usrkey = eEnv.resolve("${datadir}/enigma2/keymap.usr")
@@ -728,7 +728,7 @@ class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
-		self["footnote"] = StaticText()
+		self["footnote"] = Label()
 		self["description"] = Label("")
 		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 		CamCheckStop()
