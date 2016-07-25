@@ -9,6 +9,7 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
+from Components.Sources.Boolean import Boolean
 from PowerTimer import AFTEREVENT, TIMERTYPE
 from time import localtime, mktime, time, strftime
 from datetime import datetime
@@ -23,7 +24,11 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
+		self["locationdescription"] = Label("")
+		self["locationfreespace"] = Label("")
+		self["description"] = Label("")
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
