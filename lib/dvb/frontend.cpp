@@ -234,14 +234,14 @@ void eDVBFrontendParametersTerrestrial::set(const T2DeliverySystemDescriptor &de
 		case 6: guard_interval = GuardInterval_19_256; break;
 		case 7: guard_interval = GuardInterval_Auto; break;
 	}
-	plp_id = descriptor.getPlpId();
+	plpid = descriptor.getPlpId();
 	code_rate_HP = code_rate_LP = FEC_Auto;
 	hierarchy = Hierarchy_Auto;
 	modulation = Modulation_Auto;
 	inversion = Inversion_Unknown;
 	system = System_DVB_T2;
 	eDebug("[eDVBFrontendParametersTerrestrial] T2 bw %d, tm_mode %d, guard %d, plp_id %d",
-		bandwidth, transmission_mode, guard_interval, plp_id);
+		bandwidth, transmission_mode, guard_interval, plpid);
 }
 
 eDVBFrontendParameters::eDVBFrontendParameters()
