@@ -199,8 +199,6 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 		return 0;
 	if (m_language_alternative != "---" && loadLanguage(evt, m_language_alternative, tsidonid))
 		return 0;
-	if (loadLanguage(evt, "eng", tsidonid))
-		return 0;
 	if (loadLanguage(evt, "---", tsidonid))
 		return 0;
 	return 0;
