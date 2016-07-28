@@ -4,7 +4,7 @@ from Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.Label import Label
@@ -19,7 +19,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, fileExists, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
@@ -61,12 +61,6 @@ def CreateFeedConfig():
 	f.close()
 	os.system("ipkg update")
 
-config.misc.pluginbrowser = ConfigSubsection()
-config.misc.pluginbrowser.plugin_order = ConfigText(default="")
-
-config.misc.pluginbrowser = ConfigSubsection()
-config.misc.pluginbrowser.plugin_order = ConfigText(default="")
-
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
@@ -93,35 +87,56 @@ class PluginBrowser(Screen, ProtectedScreen):
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Plugin Browser"))
-		ProtectedScreen.__init__(self)
 
 		self.firsttime = True
 
+		self.sort_mode = False
+		self.selected_plugin = None
+
 		self["key_red"] = self["red"] = Label(_("Remove plugins"))
 		self["key_green"] = self["green"] = Label(_("Download plugins"))
+		self["key_yellow"] = self["yellow"] = Label("")
+		self["key_blue"] = self["blue"] = Label("")
 
 		self.list = []
 		self["list"] = PluginList(self.list)
-		if config.usage.sort_pluginlist.value:
-			self["list"].list.sort()
 
-		self["actions"] = ActionMap(["SetupActions","WizardActions"],
+		self["actions"] = ActionMap(["SetupActions", "WizardActions"],
 		{
-			"ok": self.save,
-			"back": self.close,
+			"ok": self.keyOk,
+			"back": self.keyCancel,
 			"menu": self.menu,
 		})
 		self["PluginDownloadActions"] = ActionMap(["ColorActions"],
 		{
 			"red": self.delete,
-			"green": self.download
+			"green": self.download,
+			"blue": self.keyBlue,
 		})
-		self["DirectionActions"] = ActionMap(["DirectionActions"],
+		self["SoftwareActions"] = ActionMap(["ColorActions"],
 		{
-			"moveUp": self.moveUp,
-			"moveDown": self.moveDown
+			"red": self.keyRed,
+			"green": self.keyGreen,
+			"yellow": self.keyYellow,
+			"blue": self.keyBlue,
 		})
+		self["MoveActions"] = ActionMap(["WizardActions"],
+			{
+				"left": self.keyLeft,
+				"right": self.keyRight,
+				"up": self.keyUp,
+				"down": self.keyDown,
+			}, -1
+		)
 
+		self["NumberAction"] = NumberActionMap(["NumberActions"],
+			{
+				"0": self.resetSortOrder,
+			}, -1
+		)
+
+		self["PluginDownloadActions"].setEnabled(True)
+		self["SoftwareActions"].setEnabled(False)
 		self.onFirstExecBegin.append(self.checkWarnings)
 		self.onShown.append(self.updateList)
 		self.onChangedEntry = []
@@ -137,6 +152,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
+
 	def menu(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)
 
@@ -154,9 +170,19 @@ class PluginBrowser(Screen, ProtectedScreen):
 			p = item[0]
 			name = p.name
 			desc = p.description
+			if self.sort_mode:
+				if config.usage.plugin_sort_weight.getConfigValue(name.lower(), "hidden"):
+					self["key_yellow"].setText(_("show"))
+					self["yellow"].setText(_("show"))
+				else:
+					self["key_yellow"].setText(_("hide"))
+					self["yellow"].setText(_("hide"))
 		else:
 			name = "-"
 			desc = ""
+			if self.sort_mode:
+				self["key_yellow"].setText("")
+				self["yellow"].setText("")
 		for cb in self.onChangedEntry:
 			cb(name, desc)
 
@@ -175,47 +201,171 @@ class PluginBrowser(Screen, ProtectedScreen):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
 
-	def moveUp(self):
-		self.move(-1)
+	def keyLeft(self):
+		self.cur_idx = self["list"].getSelectedIndex()
+		self["list"].pageUp()
+		if self.sort_mode and self.selected_plugin is not None:
+			self.moveAction()
 
-	def moveDown(self):
-		self.move(1)
+	def keyRight(self):
+		self.cur_idx = self["list"].getSelectedIndex()
+		self["list"].pageDown()
+		if self.sort_mode and self.selected_plugin is not None:
+			self.moveAction()
 
-	def move(self, direction):
-		if len(self.list) > 1:
-			currentIndex = self["list"].getSelectionIndex()
-			swapIndex = (currentIndex + direction) % len(self.list)
-			if currentIndex == 0 and swapIndex != 1:
-				self.list = self.list[1:] + [self.list[0]]
-			elif swapIndex == 0 and currentIndex != 1:
-				self.list = [self.list[-1]] + self.list[:-1]
+	def keyDown(self):
+		self.cur_idx = self["list"].getSelectedIndex()
+		self["list"].down()
+		if self.sort_mode and self.selected_plugin is not None:
+			self.moveAction()
+
+	def keyUp(self):
+		self.cur_idx = self["list"].getSelectedIndex()
+		self["list"].up()
+		if self.sort_mode and self.selected_plugin is not None:
+			self.moveAction()
+
+	def moveAction(self):
+		entry = self.list.pop(self.cur_idx)
+		newpos = self["list"].getSelectedIndex()
+		self.list.insert(newpos, entry)
+		self["list"].l.setList(self.list)
+
+	def keyYellow(self):
+		if self.sort_mode:
+			plugin = self["list"].l.getCurrentSelection()[0]
+			hidden = config.usage.plugin_sort_weight.getConfigValue(plugin.name.lower(), "hidden") or 0
+			if hidden:
+				config.usage.plugin_sort_weight.removeConfigValue(plugin.name.lower(), "hidden")
+				self["key_yellow"].setText(_("hide"))
+				self["yellow"].setText(_("hide"))
 			else:
-				self.list[currentIndex], self.list[swapIndex] = self.list[swapIndex], self.list[currentIndex]
-			self["list"].l.setList(self.list)
-			if direction == 1:
-				self["list"].down()
-			else:
-				self["list"].up()
-			plugin_order = []
+				config.usage.plugin_sort_weight.changeConfigValue(plugin.name.lower(), "hidden", 1)
+				self["key_yellow"].setText(_("show"))
+				self["yellow"].setText(_("show"))
+
+	def keyBlue(self):
+		if config.usage.plugins_sort_mode.value == "user":
+			self.toggleSortMode()
+
+	def keyRed(self):
+		pass
+
+	def keyCancel(self):
+		if self.sort_mode:
+			self.toggleSortMode()
+		self.close()
+
+	def keyGreen(self):
+		if config.usage.plugins_sort_mode.value == "user" and self.sort_mode:
+			self.keyOk()
+
+	def keyOk(self):
+		if self.sort_mode and len(self.list):
+			plugin = self["list"].l.getCurrentSelection()[0]
+			select = False
+			if self.selected_plugin is None:
+				select = True
+			elif  self.selected_plugin != plugin:
+				select = True
+			if not select:
+				self.selected_plugin = None
+			idx = 0
 			for x in self.list:
-				plugin_order.append(x[0].path[24:])
-			config.misc.pluginbrowser.plugin_order.value = ",".join(plugin_order)
-			config.misc.pluginbrowser.plugin_order.save()
+				if plugin == x[0] and select == True:
+					self.list.pop(idx)
+					self.list.insert(idx, PluginEntryComponentSelected(x[0], self.listWidth))
+					self.selected_plugin = plugin
+					break
+				elif plugin == x[0] and select == False:
+					self.list.pop(idx)
+					self.list.insert(idx, PluginEntryComponent(x[0], self.listWidth))
+					self.selected_plugin = None
+					break
+				idx += 1
+			if self.selected_plugin is not None:
+				self["key_green"].setText(_("Move mode off"))
+				self["green"].setText(_("Move mode off"))
+			else:
+				self["key_green"].setText(_("Move mode on"))
+				self["green"].setText(_("Move mode on"))
+			self["list"].l.setList(self.list)
+		elif len(self.list):
+			self.save()
+
+	def resetSortOrder(self, key = None):
+		config.usage.plugin_sort_weight.value = {}
+		config.usage.plugin_sort_weight.save()
+		self.updateList()
+
+	def toggleSortMode(self):
+		if self.sort_mode:
+			self.sort_mode = False
+			i = 10
+			idx = 0
+			for x in self.list:
+				config.usage.plugin_sort_weight.changeConfigValue(x[0].name.lower(), "sort", i)
+				if self.selected_plugin is not None:
+					if x[0] == self.selected_plugin:
+						self.list.pop(idx)
+						self.list.insert(idx, PluginEntryComponent(x[0], self.listWidth))
+						self.selected_plugin = None
+				i += 10
+				idx += 1
+			config.usage.plugin_sort_weight.save()
+			self.updateList()
+		else:
+			self.sort_mode = True
+			self.updateList()
 
 	def updateList(self):
+		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+		empty_sort_order = len(config.usage.plugin_sort_weight.value) or False
 		self.list = []
-		pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)[:]
-		for x in config.misc.pluginbrowser.plugin_order.value.split(","):
-			plugin = list(plugin for plugin in pluginlist if plugin.path[24:] == x)
-			if plugin:
-				self.list.append(PluginEntryComponent(plugin[0], self.listWidth))
-				pluginlist.remove(plugin[0])
-		self.list = self.list + [PluginEntryComponent(plugin, self.listWidth) for plugin in pluginlist]
+		i = 10
+		for plugin in self.pluginlist:
+			plugin.listweight = config.usage.plugin_sort_weight.getConfigValue(plugin.name.lower(), "sort") or i
+			if self.sort_mode or not config.usage.plugin_sort_weight.getConfigValue(plugin.name.lower(), "hidden"):
+				self.list.append(PluginEntryComponent(plugin, self.listWidth))
+			i += 10
+		if config.usage.plugins_sort_mode.value == "a_z" or (not empty_sort_order and config.usage.plugins_sort_mode.value == "user"):
+			self.list.sort(key=lambda p_name : p_name[0].name.lower())
+		elif config.usage.plugins_sort_mode.value == "user":
+			self.list.sort(key=lambda listweight : listweight[0].listweight)
 		self["list"].l.setList(self.list)
+		if self.sort_mode:
+			self["key_blue"].setText(_("Edit mode off"))
+			self["blue"].setText(_("Edit mode off"))
+			self["key_green"].setText(_("Move mode off"))
+			self["green"].setText(_("Move mode off"))
+			self["key_red"].setText("")
+			self["red"].setText("")
+			self["SoftwareActions"].setEnabled(True)
+			self["PluginDownloadActions"].setEnabled(False)
+			if self.selected_plugin:
+				self["key_green"].setText(_("Move mode off"))
+				self["green"].setText(_("Move mode off"))
+			else:
+				self["key_green"].setText(_("Move mode on"))
+				self["green"].setText(_("Move mode on"))
+		else:
+			if config.usage.plugins_sort_mode.value == "user":
+				self["key_blue"].setText(_("Edit mode on"))
+				self["blue"].setText(_("Edit mode on"))
+			else:
+				self["key_blue"].setText("")
+				self["blue"].setText("")
+			self["SoftwareActions"].setEnabled(False)
+			self["PluginDownloadActions"].setEnabled(True)
+			self["key_yellow"].setText("")
+			self["yellow"].setText("")
+			self["key_red"].setText(_("Remove plugins"))
+			self["red"].setText(_("Remove plugins"))
+			self["key_green"].setText(_("Download plugins"))
+			self["green"].setText(_("Download plugins"))
 
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
-	
 
 	def download(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
@@ -226,7 +376,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.checkWarnings()
 
 	def openExtensionmanager(self):
-		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.pyo")):
 			try:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:
@@ -652,8 +802,6 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
 		temp = self.plugins.keys()
-		if config.usage.sort_pluginlist.value:
-			temp.sort()
 		for x in temp:
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
@@ -672,6 +820,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
+		self["footnote"] = Label()
 		self["description"] = Label("")
 		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
