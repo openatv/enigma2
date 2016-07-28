@@ -632,10 +632,16 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	if (!current_font)
 		return -1;
 
-	if (!current_face)
-		eFatal("eTextPara::renderString: no current_face");
-	if (!current_face->size)
-		eFatal("eTextPara::renderString: no current_face->size");
+	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+				current_font->scaler.face_id,
+				&current_face) < 0) ||
+	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+				&current_font->scaler,
+				&current_font->size) < 0))
+	{
+		eDebug("FTC_Manager_Lookup_Size failed!");
+		return -1;
+	}
 
 	if (cursor.y()==-1)
 	{
@@ -659,17 +665,6 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 		totalheight = height >> 6;
 		cursor=ePoint(area.x(), area.y()+(ascender>>6));
 		left=cursor.x();
-	}
-
-	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
- 				    current_font->scaler.face_id,
- 				    &current_face) < 0) ||
-	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
-				    &current_font->scaler,
-				    &current_font->size) < 0))
-	{
-		eDebug("FTC_Manager_Lookup_Size failed!");
-		return -1;
 	}
 
 	std::vector<unsigned long> uc_string, uc_visual;
