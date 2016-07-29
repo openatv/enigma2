@@ -13,10 +13,12 @@ from Components.Sources.Boolean import Boolean
 from PowerTimer import AFTEREVENT, TIMERTYPE
 from time import localtime, mktime, time, strftime
 from datetime import datetime
+from Screens.Setup import SetupSummary
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
+		self.setup_title = _("Timer entry")
 		self.timer = timer
 
 		self.entryDate = None
@@ -33,7 +35,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-		#self["summary_description"] = StaticText("")
+		self["summary_description"] = StaticText("")
 		self["description"] = Label("")
 
 		self.createConfig()
@@ -235,17 +237,23 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
-		self.checkSummary()
+
+	def layoutFinished(self):
+		self.setTitle(_(self.setup_title))
 
 	def createSummary(self):
-		pass
+		return SetupSummary
 
-	def checkSummary(self):
-		#self["summary_description"].text = self["config"].getCurrent()[0]
-		if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
-			self["description"].setText(self["config"].getCurrent()[2])
-		else:
-			self["description"].setText("")
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
+
+	def getCurrentValue(self):
+		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
 
 	def newConfig(self):
 		if self["config"].getCurrent() in (self.timerType, self.timerTypeEntry, self.frequencyEntry, self.entryShowEndTime, self.autosleepwindowEntry, self.netExtendedEntry, self.nettrafficEntry, self.netipEntry, self.ipcountEntry):
@@ -265,11 +273,9 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def keyUp(self):
 		self["config"].moveUp()
-		self.checkSummary()
 
 	def keyDown(self):
 		self["config"].moveDown()
-		self.checkSummary()
 
 	def getTimestamp(self, date, mytime):
 		d = localtime(date)
