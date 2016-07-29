@@ -162,6 +162,8 @@ class Pic_Setup(Screen, ConfigListScreen):
 			}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
+		self["footnote"] = StaticText("")
+		self["description"] = StaticText("")
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 
