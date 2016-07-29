@@ -58,7 +58,8 @@ class PU_Restore(Screen,ConfigListScreen):
 
     def keyGreen(self):
         self.filename = self['ListSetting'].getCurrent()
-        self.session.openWithCallback(self.CBselect, MessageBox, _('Selected settingslist: %s\n\nDo you want to restore this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
+        if self.filename is not None:
+            self.session.openWithCallback(self.CBselect, MessageBox, _('Selected settingslist: %s\n\nDo you want to restore this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
 
     def CBselect(self, req):
         if req:
@@ -66,7 +67,8 @@ class PU_Restore(Screen,ConfigListScreen):
 
     def keyYellow(self):
         self.filename = self['ListSetting'].getCurrent()
-        self.session.openWithCallback(self.CBremove, MessageBox, _('Selected settingslist: %s\n\nDo you want to delete this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
+        if self.filename is not None:
+            self.session.openWithCallback(self.CBremove, MessageBox, _('Selected settingslist: %s\n\nDo you want to delete this settinglist?') % (self.filename), MessageBox.TYPE_YESNO)
 
     def CBremove(self, req):
         if req:
