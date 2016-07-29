@@ -72,9 +72,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width-150, self.itemHeight - self.rowSplit, 2, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, autosleepwindow + _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 2, x-2-24, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
-			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 			begin = FuzzyTime(timer.begin)
 			if timer.repeated:
+				days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 				repeatedtext = []
 				flags = timer.repeated
 				for x in (0, 1, 2, 3, 4, 5, 6):
@@ -90,7 +90,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				else:
 					repeatedtext = ", ".join(repeatedtext)
 				if self.iconRepeat:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, self.rowSplit, 20, 20, self.iconRepeat))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
 			else:
 				repeatedtext = begin[0] # date
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
@@ -123,9 +123,8 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		if timer.failed:
 			state = _("failed")
 			icon = self.iconFailed
-
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconMargin + self.iconWidth, self.rowSplit, 150, height - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
 		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, self.satPosLeft - self.iconWidth - self.iconMargin, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
 
