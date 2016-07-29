@@ -314,14 +314,15 @@ class LogManager(Screen):
 		self.selectedFiles = self["list"].getSelectedList()
 		self.selectedFiles = ",".join(self.selectedFiles).replace(",", " ")
 		self.sel = self["list"].getCurrent()[0]
-		if answer is True:
-			message = _("Are you sure you want to delete all selected logs:\n") + self.selectedFiles
-			ybox = self.session.openWithCallback(self.doDelete2, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
-		else:
-			message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
-			ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+		if self.sel is not None:
+			if answer is True:
+				message = _("Are you sure you want to delete all selected logs:\n") + self.selectedFiles
+				ybox = self.session.openWithCallback(self.doDelete2, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Delete Confirmation"))
+			else:
+				message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
+				ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
+				ybox.setTitle(_("Delete Confirmation"))
 
 	def doDelete2(self, answer):
 		if answer is True:
