@@ -124,9 +124,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 			state = _("failed")
 			icon = self.iconFailed
 
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconMargin + self.iconWidth, self.rowSplit, 150, height - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
-
-
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconMargin + self.iconWidth, self.rowSplit, 150, height - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
 		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
