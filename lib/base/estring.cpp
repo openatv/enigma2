@@ -15,11 +15,11 @@ std::string buildShortName( const std::string &str )
 	static char stropen[3] = { char(0xc2), char(0x86), 0x00 };
 	static char strclose[3] = { char(0xc2), char(0x87), 0x00 };
 	size_t open=std::string::npos-1;
-	while ( (open = str.find(stropen, open+2)) != std::string::npos )
+	while ((open = str.find(stropen, open+2)) != std::string::npos)
 	{
 		size_t close = str.find(strclose, open);
-		if ( close != std::string::npos )
-			tmp+=str.substr( open+2, close-(open+2) );
+		if (close != std::string::npos)
+			tmp += str.substr(open+2, close-(open+2));
 	}
 	return tmp.length() ? tmp : str;
 }
@@ -330,42 +330,24 @@ static inline unsigned int recode(unsigned char d, int cp)
 		return d;
 	switch (cp)
 	{
-	case 0:		// ISO6937
-		return iso6937[d-0xA0];
-	case 1:		// 8859-1 <-> unicode mapping
-		return d;
-	case 2:		// 8859-2 -> unicode mapping
-		return c88592[d-0xA0];
-	case 3:		// 8859-3 -> unicode mapping
-		return c88593[d-0xA0];
-	case 4:		// 8859-2 -> unicode mapping
-		return c88594[d-0xA0];
-	case 5:		// 8859-5 -> unicode mapping
-		return c88595[d-0xA0];
-	case 6:		// 8859-6 -> unicode mapping
-		return c88596[d-0xA0];
-	case 7:		// 8859-7 -> unicode mapping
-		return c88597[d-0xA0];
-	case 8:		// 8859-8 -> unicode mapping
-		return c88598[d-0xA0];
-	case 9:		// 8859-9 -> unicode mapping
-		return c88599[d-0xA0];
-	case 10:// 8859-10 -> unicode mapping
-		return c885910[d-0xA0];
-	case 11:// 8859-11 -> unicode mapping
-		return c885911[d-0xA0];
-/*	case 12:// 8859-12 -> unicode mapping  // reserved for indian use..
-		return c885912[d-0xA0];*/
-	case 13:// 8859-13 -> unicode mapping
-		return c885913[d-0xA0];
-	case 14:// 8859-14 -> unicode mapping
-		return c885914[d-0xA0];
-	case 15:// 8859-15 -> unicode mapping
-		return c885915[d-0xA0];
-	case 16:// 8859-16 -> unicode mapping
-		return c885916[d-0xA0];
-	default:
-		return d;
+	case 0:  return iso6937[d-0xA0]; // ISO6937
+	case 1:  return d;		 // 8859-1 <-> unicode mapping
+	case 2:  return c88592[d-0xA0];  // 8859-2 -> unicode mapping
+	case 3:  return c88593[d-0xA0];  // 8859-3 -> unicode mapping
+	case 4:  return c88594[d-0xA0];  // 8859-2 -> unicode mapping
+	case 5:  return c88595[d-0xA0];  // 8859-5 -> unicode mapping
+	case 6:  return c88596[d-0xA0];  // 8859-6 -> unicode mapping
+	case 7:  return c88597[d-0xA0];  // 8859-7 -> unicode mapping
+	case 8:  return c88598[d-0xA0];  // 8859-8 -> unicode mapping
+	case 9:  return c88599[d-0xA0];  // 8859-9 -> unicode mapping
+	case 10: return c885910[d-0xA0]; // 8859-10 -> unicode mapping
+	case 11: return c885911[d-0xA0]; // 8859-11 -> unicode mapping
+//	case 12: return c885912[d-0xA0]; // 8859-12 -> unicode mapping  reserved for indian use..
+	case 13: return c885913[d-0xA0]; // 8859-13 -> unicode mapping
+	case 14: return c885914[d-0xA0]; // 8859-14 -> unicode mapping
+	case 15: return c885915[d-0xA0]; // 8859-15 -> unicode mapping
+	case 16: return c885916[d-0xA0]; // 8859-16 -> unicode mapping
+	default: return d;
 	}
 }
 
@@ -455,12 +437,13 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		return "";
 	}
 
-	int i=0, t=0;
+	int i = 0;
+	std::string ustr = "", utfid = "\x15";
 	std::string output = "";
 	bool no_table_id = false;
 	bool ignore_table_id = false;
 
-	if ( tsidonid )
+	if (tsidonid)
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
 
 	if (table & NO_TABLEID){
@@ -587,6 +570,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 		default:
 			char res[2048];
+			int t = 0;
 			while (i < len && t < sizeof(res))
 			{
 				unsigned long code = 0;
@@ -637,6 +621,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 				if (!code)
 					continue;
+				// Unicode->UTF8 encoding
 				t += UnicodeToUTF8(code, res + t, sizeof(res) - t);
 			}
 			if (pconvertedLen)
@@ -722,6 +707,7 @@ std::string convertLatin1UTF8(const std::string &string)
 	while (i < len)
 	{
 		unsigned long code = (unsigned char)string[i++];
+				// Unicode->UTF8 encoding
 		t += UnicodeToUTF8(code, res + t, sizeof(res) - t);
 	}
 	return std::string((char*)res, t);
@@ -748,19 +734,24 @@ int isUTF8(const std::string &string)
 	{
 		if (!(string[i] & 0x80)) // normal ASCII
 			continue;
-		int l = 0;
-		if ((string[i] & 0xE0) == 0xC0) // 2-byte
-			l = 1;
-		else if ((string[i] & 0xF0) == 0xE0)  // 3-byte
-			l = 2;
-		else if ((string[i] & 0xF8) == 0xF0) // 4-byte
-			l = 3;
-		if (l == 0 || i + l >= len) // no UTF leader or not enough bytes
-			return 0;
-
-		while (l-- > 0) {
-			if ((string[++i] & 0xC0) != 0x80)
-				return 0;
+		if ((string[i] & 0xE0) == 0xC0) // one char following.
+		{
+			if (i + 1 >= len || (string[i+1] & 0xC0) != 0x80)
+				return 0; // certainly NOT utf-8
+			++i;
+		}
+		else if ((string[i] & 0xF0) == 0xE0)
+		{
+			if (i + 2 >= len || (string[i+1] & 0xC0) != 0x80 || (string[i+2] & 0xC0) != 0x80)
+				return 0; // certainly NOT utf-8
+			i += 2;
+		}
+		else if ((string[i] & 0xF8) == 0xF0)
+		{
+			if (i + 3 >= len || (string[i+1] & 0xC0) != 0x80 ||
+				(string[i+2] & 0xC0) != 0x80 || string[i+3] & 0xC0) != 0x80)
+				return 0; // certainly NOT utf-8
+			i += 3;
 		}
 	}
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
