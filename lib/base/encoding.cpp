@@ -15,17 +15,17 @@ inline char toupper(char c)
 
 int mapEncoding(char *s_table)
 {
-	int encoding=0;
+	int encoding = 0;
 
 	// table name will be in uppercase!
-	if (sscanf(s_table, "ISO8859-%d" &encoding) != 1)
+	if (sscanf(s_table, "ISO8859-%d", &encoding) != 1)
 		return encoding;
-	if (sscanf(s_table, "ISO%d" &encoding) == 1 and encoding == 6937)
+	if (sscanf(s_table, "ISO%d", &encoding) == 1 and encoding == 6937)
 		return 0;
-	if (strcmp(s_table,"GB2312") == 0 || strcmp(s_table,"GBK") == 0
-		|| strcmp(s_table,"GB18030") == 0 || strcmp(s_table,"CP936") == 0)
+	if (strcmp(s_table, "GB2312") == 0 || strcmp(s_table, "GBK") == 0
+		|| strcmp(s_table, "GB18030") == 0 || strcmp(s_table, "CP936") == 0)
 		return GB18030_ENCODING;
-	if (strcmp(s_table,"BIG5") == 0 || strcmp(s_table,"CP950") == 0)
+	if (strcmp(s_table, "BIG5") == 0 || strcmp(s_table, "CP950") == 0)
 		return BIG5_ENCODING;
 	if (strcmp(s_table, "UTF8") == 0 || strcmp(s_table, "UTF-8") == 0)
 		return UTF8_ENCODING;
@@ -36,7 +36,7 @@ int mapEncoding(char *s_table)
 	if (strcmp(s_table, "UTF16LE") == 0)
 		return UTF16LE_ENCODING;
 	else
-		eDebug("[eDVBTextEncodingHandler] unsupported table in encoding.conf: %s. ", line);
+		eDebug("[eDVBTextEncodingHandler] unsupported table in encoding.conf: %s. ", s_table);
 	return -1;
 }
 
