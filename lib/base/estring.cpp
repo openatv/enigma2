@@ -375,7 +375,7 @@ int UnicodeToUTF8(long c, char *out, int max)
 		*out     = 0x80 | (c & 0x3f);
 		return 4;
 	}
-	eDebug("[UnicodeToUTF8] invalid unicode character or not enough space to convert: code=0x08x, max=%d", c, max);
+	eDebug("[UnicodeToUTF8] invalid unicode character or not enough space to convert: code=0x%08x, max=%d", c, max);
 	return 0; // not enough space to convert or not a valid unicode
 }
 
@@ -546,7 +546,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 				*pconvertedLen += i;
 			break;
 		default:
-			unsigned char res[2048];
+			char res[2048];
 			int t = 0;
 			res[t++] = UTF8_ENCODING;
 			while (i < len && t < sizeof(res))
@@ -680,7 +680,7 @@ std::string convertLatin1UTF8(const std::string &string)
 {
 	unsigned int t = 0, i = 0, len = string.size();
 
-	unsigned char res[2048];
+	char res[2048];
 
 	while (i < len)
 	{
@@ -699,23 +699,23 @@ int isUTF8(const std::string &string)
 	{
 		if (!(string[i] & 0x80)) // normal ASCII
 			continue;
-		if ((string[i] & 0xE0) == 0xC0) // one char following.
+		if ((string[i] & 0xE0) == 0xC0) // 2-byte
 		{
 			if (i + 1 >= len || (string[i+1] & 0xC0) != 0x80)
-				return 0; // certainly NOT utf-8
+				return 0;
 			++i;
 		}
-		else if ((string[i] & 0xF0) == 0xE0)
+		else if ((string[i] & 0xF0) == 0xE0)  // 3-byte
 		{
 			if (i + 2 >= len || (string[i+1] & 0xC0) != 0x80 || (string[i+2] & 0xC0) != 0x80)
-				return 0; // certainly NOT utf-8
+				return 0;
 			i += 2;
 		}
-		else if ((string[i] & 0xF8) == 0xF0)
+		else if ((string[i] & 0xF8) == 0xF0) // 4-byte
 		{
 			if (i + 3 >= len || (string[i+1] & 0xC0) != 0x80 ||
-				(string[i+2] & 0xC0) != 0x80 || string[i+3] & 0xC0) != 0x80)
-				return 0; // certainly NOT utf-8
+				(string[i+2] & 0xC0) != 0x80 || (string[i+3] & 0xC0) != 0x80)
+				return 0;
 			i += 3;
 		}
 	}
