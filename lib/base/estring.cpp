@@ -734,23 +734,23 @@ int isUTF8(const std::string &string)
 	{
 		if (!(string[i] & 0x80)) // normal ASCII
 			continue;
-		if ((string[i] & 0xE0) == 0xC0) // one char following.
+		if ((string[i] & 0xE0) == 0xC0) // 2-byte
 		{
 			if (i + 1 >= len || (string[i+1] & 0xC0) != 0x80)
-				return 0; // certainly NOT utf-8
+				return 0;
 			++i;
 		}
-		else if ((string[i] & 0xF0) == 0xE0)
+		else if ((string[i] & 0xF0) == 0xE0)  // 3-byte
 		{
 			if (i + 2 >= len || (string[i+1] & 0xC0) != 0x80 || (string[i+2] & 0xC0) != 0x80)
-				return 0; // certainly NOT utf-8
+				return 0;
 			i += 2;
 		}
-		else if ((string[i] & 0xF8) == 0xF0)
+		else if ((string[i] & 0xF8) == 0xF0) // 4-byte
 		{
 			if (i + 3 >= len || (string[i+1] & 0xC0) != 0x80 ||
-				(string[i+2] & 0xC0) != 0x80 || string[i+3] & 0xC0) != 0x80)
-				return 0; // certainly NOT utf-8
+				(string[i+2] & 0xC0) != 0x80 || (string[i+3] & 0xC0) != 0x80)
+				return 0;
 			i += 3;
 		}
 	}
