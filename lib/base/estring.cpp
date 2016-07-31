@@ -449,14 +449,14 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	if (table != UNICODE_ENCODING && table != UTF16BE_ENCODING && table != UTF16LE_ENCODING)
 	    switch(data[0])
 	    {
-		case 1 ... 11:
+		case ISO8855_5 ... ISO8855_15:
 			// For Thai providers, encoding char is present but faulty.
 			if (table != 11)
 				table = data[i] + 4;
 			++i;
 //			eDebug("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
 			break;
-		case 0x10:
+		case ISO8859_xx:
 		{
 			int n = data[++i] << 8;
 			n |= (data[++i]);
@@ -464,7 +464,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			++i;
 			switch(n)
 			{
-				case 12:
+				case ISO8859_12:
 					eDebug("[convertDVBUTF8] unsup. ISO8859-12 enc.");
 					break;
 				default:
@@ -473,34 +473,34 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			}
 			break;
 		}
-		case 0x11: //  Basic Multilingual Plane of ISO/IEC 10646-1 enc  (UTF-16... Unicode)
+		case UNICODE_ENCODING: //  Basic Multilingual Plane of ISO/IEC 10646-1 enc  (UTF-16... Unicode)
 			table = UNICODE_ENCODING;
 			tsidonid = 0;
 			++i;
 			break;
-		case 0x12:
+		case KSX1001_ENCODING:
 			++i;
 			eDebug("[convertDVBUTF8] unsup. KSC 5601 enc.");
 			break;
-		case 0x13: // GB-2312-1980 enc.
+		case GB18030_ENCODING: // GB-2312-1980 enc.
 			++i;
 			ustr = GB18030ToUTF8((const char *)(data + i), len - i);
 			return utfid + ustr;
 			break;
-		case 0x14: // Big5 subset of ISO/IEC 10646-1 enc.
+		case BIG5_ENCODING: // Big5 subset of ISO/IEC 10646-1 enc.
 			++i;
 			table = BIG5_ENCODING;
 			ustr = Big5ToUTF8((const char *)(data + i), len - i);
 			return utfid+ustr;
 			break;
-		case 0x15: // UTF-8 encoding of ISO/IEC 10646-1
+		case UTF8_ENCODING: // UTF-8 encoding of ISO/IEC 10646-1
 			++i;
 			return std::string((char*)data+1, len-1);
-		case 0x16:
+		case UTF16BE_ENCODING:
 			++i;
 			table = UTF16BE_ENCODING;
 			break;
-		case 0x17:
+		case UTF16LE_ENCODING:
 			++i;
 			table = UTF16LE_ENCODING;
 			break;
