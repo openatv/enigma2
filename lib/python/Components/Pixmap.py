@@ -99,6 +99,7 @@ class MultiPixmap(Pixmap):
 				if attrib == "pixmaps":
 					pixmaps = value.split(',')
 					for p in pixmaps:
+						pngfile = ""
 						if fileExists(resolveFilename(SCOPE_ACTIVE_SKIN, p, path_prefix=skin_path_prefix)):
 							pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, p, path_prefix=skin_path_prefix)
 						elif fileExists(resolveFilename(SCOPE_SKIN_IMAGE, p, path_prefix=skin_path_prefix)):
