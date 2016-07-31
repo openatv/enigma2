@@ -133,9 +133,13 @@ class ChoiceBox(Screen):
 		self.onShown.append(self.onshow)
 
 	def onshow(self):
-		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var and self.var in ('unstable', 'updating', 'stable', 'unknown'):
-			status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'inprogress': _('ERROR:   Check is already running in background, please wait a few minutes and try again'), 'unknown': _('No connection')}
-			self['feedStatusMSG'].setText(status_msgs[self.var])
+		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var:
+			status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'inprogress': _('ERROR:   Check is already running in background, please wait a few minutes and try again'), 'unknown': _('Feeds status:   Unknown')}
+			if self.var in status_msgs:
+				status_text = status_msgs[self.var]
+			else:
+				status_text = 'Unexpected'
+			self['feedStatusMSG'].setText(status_text)
 			self['tl_off'].hide()
 			self['tl_red'].hide()
 			self['tl_yellow'].hide()
