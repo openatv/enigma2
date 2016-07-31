@@ -25,6 +25,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
+import Screens.InfoBar
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
@@ -1070,16 +1071,18 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeChoiceBoxDialog()
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
-		self['key_green'].setText(_('Add Timer'))
-		self.key_green_choice = self.ADD_TIMER
+		if self.type != EPG_TYPE_GRAPH:
+			self['key_green'].setText(_('Add Timer'))
+			self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
 	def disableTimer(self, timer):
 		self.closeChoiceBoxDialog()
 		timer.disable()
 		self.session.nav.RecordTimer.timeChanged(timer)
-		self['key_green'].setText(_('Add Timer'))
-		self.key_green_choice = self.ADD_TIMER
+		if self.type != EPG_TYPE_GRAPH:
+			self['key_green'].setText(_('Add Timer'))
+			self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
 	def RecordTimerQuestion(self, manual=False):
@@ -1217,11 +1220,13 @@ class EPGSelection(Screen, HelpableScreen):
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
-			self["key_green"].setText(_("Change timer"))
-			self.key_green_choice = self.REMOVE_TIMER
+			if self.type != EPG_TYPE_GRAPH:
+				self["key_green"].setText(_("Change timer"))
+				self.key_green_choice = self.REMOVE_TIMER
 		else:
-			self['key_green'].setText(_('Add Timer'))
-			self.key_green_choice = self.ADD_TIMER
+			if self.type != EPG_TYPE_GRAPH:
+				self['key_green'].setText(_('Add Timer'))
+				self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
 	def finishSanityCorrection(self, answer):
@@ -1337,16 +1342,27 @@ class EPGSelection(Screen, HelpableScreen):
 				else:
 					datestr = '%s' % _('Today')
 			self['date'].setText(datestr)
-		if cur[1] is None or cur[1].getServiceName() == '':
-			if self.key_green_choice != self.EMPTY:
-				self['key_green'].setText('')
-				self.key_green_choice = self.EMPTY
-			return
-		if event is None:
-			if self.key_green_choice != self.EMPTY:
-				self['key_green'].setText('')
-				self.key_green_choice = self.EMPTY
-			return
+
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			if cur[1] is None or cur[1].getServiceName() == '':
+				self.changeText = self.EMPTY
+				return
+			if event is None:
+				self.changeText = self.EMPTY
+				return
+		else:
+			self['key_red'].setText('IMDb Search')
+			if cur[1] is None or cur[1].getServiceName() == '':
+				if self.key_green_choice != self.EMPTY:
+					self['key_green'].setText('')
+					self.key_green_choice = self.EMPTY
+				return
+			if event is None:
+				if self.key_green_choice != self.EMPTY:
+					self['key_green'].setText('')
+					self.key_green_choice = self.EMPTY
+				return	
+
 		serviceref = cur[1]
 		eventid = event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
@@ -1355,12 +1371,13 @@ class EPGSelection(Screen, HelpableScreen):
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				isRecordEvent = True
 				break
-		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
-			self["key_green"].setText(_("Change timer"))
-			self.key_green_choice = self.REMOVE_TIMER
-		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
-			self['key_green'].setText(_('Add Timer'))
-			self.key_green_choice = self.ADD_TIMER
+
+		if self.type == EPG_TYPE_GRAPH:
+			if isRecordEvent:
+				self.changeText = "Change timer"
+			elif not isRecordEvent:
+				self.changeText = "Add Timer"
+
 		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
 
