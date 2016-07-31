@@ -546,7 +546,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		default:
 			char res[2048];
 			int t = 0;
-			res[t++] = UTF8_ENCODING;
 			while (i < len && t < sizeof(res))
 			{
 				unsigned long code = 0;
