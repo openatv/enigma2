@@ -449,7 +449,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	// first byte in strings may override general encoding table.
 	switch(data[0])
 	{
-		case ISO8855_5 ... ISO8855_15:
+		case ISO8859_5 ... ISO8859_15:
 			// For Thai providers, encoding char is present but faulty.
 			if (table != 11)
 				table = data[i] + 4;
@@ -492,7 +492,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 		case UTF8_ENCODING: // UTF-8 encoding of ISO/IEC 10646-1
 			++i;
-			table = UTF8_ENCODING:;
+			table = UTF8_ENCODING;
 			break;
 		case UTF16BE_ENCODING:
 			++i;
