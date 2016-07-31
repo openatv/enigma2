@@ -331,7 +331,7 @@ static inline unsigned int recode(unsigned char d, int cp)
 	switch (cp)
 	{
 	case 0:  return iso6937[d-0xA0]; // ISO6937
-	case 1:  return d;		 // 8859-1 <-> unicode mapping
+	case 1:  return d;		 // 8859-1 -> unicode mapping
 	case 2:  return c88592[d-0xA0];  // 8859-2 -> unicode mapping
 	case 3:  return c88593[d-0xA0];  // 8859-3 -> unicode mapping
 	case 4:  return c88594[d-0xA0];  // 8859-2 -> unicode mapping
@@ -621,7 +621,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 				if (!code)
 					continue;
-				// Unicode->UTF8 encoding
 				t += UnicodeToUTF8(code, res + t, sizeof(res) - t);
 			}
 			if (pconvertedLen)
@@ -707,7 +706,6 @@ std::string convertLatin1UTF8(const std::string &string)
 	while (i < len)
 	{
 		unsigned long code = (unsigned char)string[i++];
-				// Unicode->UTF8 encoding
 		t += UnicodeToUTF8(code, res + t, sizeof(res) - t);
 	}
 	return std::string((char*)res, t);
@@ -734,24 +732,19 @@ int isUTF8(const std::string &string)
 	{
 		if (!(string[i] & 0x80)) // normal ASCII
 			continue;
+		int l = 0;
 		if ((string[i] & 0xE0) == 0xC0) // 2-byte
-		{
-			if (i + 1 >= len || (string[i+1] & 0xC0) != 0x80)
-				return 0;
-			++i;
-		}
+			l = 1;
 		else if ((string[i] & 0xF0) == 0xE0)  // 3-byte
-		{
-			if (i + 2 >= len || (string[i+1] & 0xC0) != 0x80 || (string[i+2] & 0xC0) != 0x80)
-				return 0;
-			i += 2;
-		}
+			l = 2;
 		else if ((string[i] & 0xF8) == 0xF0) // 4-byte
-		{
-			if (i + 3 >= len || (string[i+1] & 0xC0) != 0x80 ||
-				(string[i+2] & 0xC0) != 0x80 || (string[i+3] & 0xC0) != 0x80)
+			l = 3;
+		if (l == 0 || i + l >= len) // no UTF leader or not enough bytes
+			return 0;
+
+		while (l-- > 0) {
+			if ((string[++i] & 0xC0) != 0x80)
 				return 0;
-			i += 3;
 		}
 	}
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
@@ -761,10 +754,11 @@ int isUTF8(const std::string &string)
 unsigned int truncateUTF8(std::string &s, unsigned int newsize)
 {
         unsigned int len = s.size();
+        unsigned char* const data = (unsigned char*)s.data();
 
         // Assume s is a real UTF8 string!!!
         while (len > newsize) {
-                while (len-- > 0  && (s[len] & 0xC0) == 0x80)
+                while (len-- > 0  && (data[len] & 0xC0) == 0x80)
                         ; // remove UTF data bytes,  e.g. range 0x80 - 0xBF
                 if (len > 0)   // remove the UTF startbyte, or normal ascii character
                          --len;
