@@ -14,7 +14,7 @@ std::string buildShortName( const std::string &str )
 	std::string tmp;
 	static char stropen[] = "\xc2\x86";
 	static char strclose[] = "\xc2\x87";
-	size_t open=std::string::npos-1;
+	size_t open = std::string::npos-1;
 	while ((open = str.find(stropen, open+2)) != std::string::npos)
 	{
 		size_t close = str.find(strclose, open);
@@ -446,26 +446,26 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	if (tsidonid)
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
 
-	if (table != UNICODE_ENCODING && table != UTF16BE_ENCODING && table != UTF16LE_ENCODING)
-	    switch(data[0])
-	    {
+	// first byte in strings may override general encoding table.
+	switch(data[0])
+	{
 		case ISO8855_5 ... ISO8855_15:
 			// For Thai providers, encoding char is present but faulty.
 			if (table != 11)
 				table = data[i] + 4;
 			++i;
-//			eDebug("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
+			// eDebug("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
 			break;
 		case ISO8859_xx:
 		{
 			int n = data[++i] << 8;
 			n |= (data[++i]);
-//			eDebug("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d", n);
+			// eDebug("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d", n);
 			++i;
 			switch(n)
 			{
 				case ISO8859_12:
-					eDebug("[convertDVBUTF8] unsup. ISO8859-12 enc.");
+					eDebug("[convertDVBUTF8] ISO8859-12 encoding unsupported");
 					break;
 				default:
 					table = n;
@@ -480,22 +480,20 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 		case KSX1001_ENCODING:
 			++i;
-			eDebug("[convertDVBUTF8] unsup. KSC 5601 enc.");
+			eDebug("[convertDVBUTF8] KSC 5601 encing unsupported.");
 			break;
 		case GB18030_ENCODING: // GB-2312-1980 enc.
 			++i;
-			ustr = GB18030ToUTF8((const char *)(data + i), len - i);
-			return utfid + ustr;
+			table = GB18030_ENCODING;
 			break;
 		case BIG5_ENCODING: // Big5 subset of ISO/IEC 10646-1 enc.
 			++i;
 			table = BIG5_ENCODING;
-			ustr = Big5ToUTF8((const char *)(data + i), len - i);
-			return utfid+ustr;
 			break;
 		case UTF8_ENCODING: // UTF-8 encoding of ISO/IEC 10646-1
 			++i;
-			return std::string((char*)data+1, len-1);
+			table = UTF8_ENCODING:;
+			break;
 		case UTF16BE_ENCODING:
 			++i;
 			table = UTF16BE_ENCODING;
@@ -520,7 +518,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			eDebug("[convertDVBUTF8] reserved %d", data[0]);
 			++i;
 			break;
-	    }
+	}
 
 	bool useTwoCharMapping = !table || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
 
@@ -533,15 +531,20 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	switch(table)
 	{
+		case UTF8_ENCODING:
+			output = std::string((char*)data + i, len - i);
+			if (pconvertedLen)
+				*pconvertedLen += len;
+			break;
 		case GB18030_ENCODING:
 			output = GB18030ToUTF8((const char *)(data + i), len - i, pconvertedLen);
 			if (pconvertedLen)
-				*pconvertedLen += i;
+				*pconvertedLen += len;
 			break;
 		case BIG5_ENCODING:
 			output = Big5ToUTF8((const char *)(data + i), len - i, pconvertedLen);
 			if (pconvertedLen)
-				*pconvertedLen += i;
+				*pconvertedLen += len;
 			break;
 		default:
 			char res[2048];
@@ -729,11 +732,10 @@ int isUTF8(const std::string &string)
 unsigned int truncateUTF8(std::string &s, unsigned int newsize)
 {
         unsigned int len = s.size();
-        unsigned char* const data = s.data();
 
         // Assume s is a real UTF8 string!!!
         while (len > newsize) {
-                while (len-- > 0  && (data[len] & 0xC0) == 0x80)
+                while (len-- > 0  && (s[len] & 0xC0) == 0x80)
                         ; // remove UTF data bytes,  e.g. range 0x80 - 0xBF
                 if (len > 0)   // remove the UTF startbyte, or normal ascii character
                          --len;
