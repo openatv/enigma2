@@ -70,7 +70,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				continue;       // skip 'empty' lines
 			line[j] = 0;
 
-			int tsid, onid, encoding;
+			int tsid, onid, encoding = -1;
 			if (sscanf(line, "0x%x 0x%x %s", &tsid, &onid, s_table) == 3
 				  || sscanf(line, "%d %d %s", &tsid, &onid, s_table) == 3 ) {
 				encoding = mapEncoding(s_table);
@@ -91,7 +91,8 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				else
 					m_CountryCodeDefaultMapping[countrycode] = encoding;
 			}
-			else
+
+			if (encoding == -1)
 				eDebug("[eDVBTextEncodingHandler] encoding.conf: couldn't parse %s", line);
 		}
 		free(line);
