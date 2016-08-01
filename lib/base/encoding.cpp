@@ -18,7 +18,7 @@ int mapEncoding(char *s_table)
 	int encoding = 0;
 
 	// table name will be in uppercase!
-	if (sscanf(s_table, "ISO8859-%d", &encoding) != 1)
+	if (sscanf(s_table, "ISO8859-%d", &encoding) == 1)
 		return encoding;
 	if (sscanf(s_table, "ISO%d", &encoding) == 1 and encoding == 6937)
 		return 0;
