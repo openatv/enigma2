@@ -48,6 +48,9 @@ class HardwareInfo:
 	def get_device_version(self):
 		return HardwareInfo.device_version
 
+	def get_device_model(self):
+		return getBoxType()
+
 	def has_hdmi(self):
 		return not (HardwareInfo.device_name == 'dm800' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version == None))
 

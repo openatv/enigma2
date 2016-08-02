@@ -107,7 +107,7 @@ class SymbolsCheckPoller:
 					open("/proc/stb/fp/led_set", "w").write("0xffffffff")
 					self.led = "0"
 			else:
-				open("/proc/stb/fp/led_set", "w").write("0x00000000")
+				open("/proc/stb/fp/led_set", "w").write("0xffffffff")
 		elif getMachineBuild() in ('dags7362' , 'dags5'):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
