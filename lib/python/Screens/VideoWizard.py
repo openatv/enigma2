@@ -24,19 +24,12 @@ if boxtype == 'dm8000' or boxtype == 'dm800':
 
 class VideoWizardSummary(WizardSummary):
 	skin = (
-	"""<screen name="VideoWizardSummary" position="0,0" size="132,64" id="1">
+	"""<screen name="VideoWizardSummary" position="0,0" size="132,64">
 		<widget name="text" position="6,4" size="120,40" font="Regular;12" transparent="1" />
 		<widget source="parent.list" render="Label" position="6,40" size="120,21" font="Regular;14">
 			<convert type="StringListSelection" />
 		</widget>
 		<!--widget name="pic" pixmap="%s" position="6,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->
-	</screen>""",
-	"""<screen name="VideoWizardSummary" position="0,0" size="96,64" id="2">
-		<widget name="text" position="0,4" size="96,40" font="Regular;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="0,40" size="96,21" font="Regular;14">
-			<convert type="StringListSelection" />
-		</widget>
-		<!--widget name="pic" pixmap="%s" position="0,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->
 	</screen>""")
 	#% (resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/lcd_Scart.png"))
 

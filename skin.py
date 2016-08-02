@@ -149,20 +149,19 @@ addSkin('skin_second_infobar.xml')
 display_skin_id = 1
 if getBoxType().startswith('dm'):
 	display_skin_id = 2
-if(1==1):
-#try:
+try:
 	if not addSkin(os.path.join('display', config.skin.display_skin.value)):
 		raise DisplaySkinError, "display skin not found"
-#except Exception, err:
-#	print "SKIN ERROR:", err
-#	skin = DEFAULT_DISPLAY_SKIN
-#	if config.skin.display_skin.value == skin:
-#		skin = 'skin_display.xml'
-#	print "defaulting to standard display skin...", skin
-#	config.skin.display_skin.value = skin
-#	skin = os.path.join('display', skin)
-#	addSkin(skin)
-#	del skin
+except Exception, err:
+	print "SKIN ERROR:", err
+	skin = DEFAULT_DISPLAY_SKIN
+	if config.skin.display_skin.value == skin:
+		skin = 'skin_display.xml'
+	print "defaulting to standard display skin...", skin
+	config.skin.display_skin.value = skin
+	skin = os.path.join('display', skin)
+	addSkin(skin)
+	del skin
 
 # Add Skin for Display
 try:
