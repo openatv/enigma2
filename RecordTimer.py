@@ -412,7 +412,25 @@ class RecordTimerEntry(timer.TimerEntry, object):
 							self.openChoiceActionBeforeZap()
 					else:
 						self.log(11, "zapping")
-						NavigationInstance.instance.isMovieplayerActive()
+
+# If there is a MoviePlayer active it will set things back to the
+# original channel after it finishes (which will be after we run).
+# So for that case, stop the player and defer our zap...which
+# lets the player shutdown and do all of its fiddling before we start.
+# Repeated every 1s until done.
+# IPTV bouquet playing manages on its own - it's just a service.
+# Plugins (e.g. Kodi) are another matter...currently ignored.
+# Also, could just call failureCB(True) after closing MoviePlayer...
+#
+						from Screens.InfoBar import MoviePlayer
+						if MoviePlayer.instance is not None:
+# This is one of the more wierdly named functions, it actually
+# functions as setMoviePlayerInactive
+							NavigationInstance.instance.isMovieplayerActive()
+# Since next_state is StateRunning we set self.begin
+							self.begin = time() + 1
+							return False
+
 						from Screens.ChannelSelection import ChannelSelection
 						ChannelSelectionInstance = ChannelSelection.instance
 						self.service_types = service_types_tv
