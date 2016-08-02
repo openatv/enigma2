@@ -70,7 +70,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				continue;       // skip 'empty' lines
 			line[j] = 0;
 
-			int tsid, onid, encoding;
+			int tsid, onid, encoding = 0;
 			if (sscanf(line, "0X%x 0X%x %s", &tsid, &onid, s_table) == 3
 				  || sscanf(line, "%d %d %s", &tsid, &onid, s_table) == 3 ) {
 				encoding = mapEncoding(s_table);
