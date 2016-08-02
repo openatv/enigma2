@@ -91,11 +91,11 @@
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="parent.RecordState" render="FixedLabel" text="&#174;" position="334,140" foregroundColor="#ff0000" size="50,46" font="FdLcD;50" halign="left" valign="center" zPosition="22">
+		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="334,140" foregroundColor="#ff0000" size="50,46" font="FdLcD;50" halign="left" valign="center" zPosition="22">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="parent.RecordState" render="FixedLabel" text="&#174;" position="334,140" foregroundColor="#ff0000" size="50,46" font="FdLcD;50" halign="left" valign="center" zPosition="22">
+		<widget source="session.RecordState" render="FixedLabel" text="&#174;" position="334,140" foregroundColor="#ff0000" size="50,46" font="FdLcD;50" halign="left" valign="center" zPosition="22">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
