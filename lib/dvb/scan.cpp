@@ -788,9 +788,6 @@ void eDVBScan::channelDone()
 							T2DeliverySystemDescriptor &d = (T2DeliverySystemDescriptor&)**desc;
 							t2transponder.set(d);
 
-							if(!d.getOtherFrequencyFlag())
-								break;
-
 							for (T2CellConstIterator cell = d.getCells()->begin();
 								cell != d.getCells()->end(); ++cell)
 							{
