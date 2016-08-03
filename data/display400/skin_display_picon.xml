@@ -257,8 +257,8 @@
 	</screen>		
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="400,240">
-		<widget source="parent.Title" render="Label" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<widget name="scan_progress" render="Progress" position="0,100" size="400,35"  borderWidth="2" />
+		<widget name="Title" position="0,0" size="400,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<widget name="scan_progress" position="0,100" size="400,35"  borderWidth="2" />
 		<widget name="Service" position="0,150" size="400,85" font="FdLcD;38" halign="center" valign="center" />
 	</screen> 		
 <!-- Network -->	
