@@ -59,7 +59,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 		while (getline(&line, &bufsize, f) != -1)
 		{
 			int i, j = 0;	   // remove leading whitespace and control chars, and comments
-			for(i = 0; line[i]; i++){
+			for (i = 0; line[i]; i++) {
 				if (line[i] == '#')
 					break; // skip rest of line
 				if (j == 0 && line[i] > 0 && line[i] <= ' ')
@@ -70,29 +70,27 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				continue;       // skip 'empty' lines
 			line[j] = 0;
 
-			int tsid, onid, encoding = 0;
+			int tsid, onid, encoding = -1;
 			if (sscanf(line, "0X%x 0X%x %s", &tsid, &onid, s_table) == 3
 				  || sscanf(line, "%d %d %s", &tsid, &onid, s_table) == 3 ) {
 				encoding = mapEncoding(s_table);
-				if (encoding >= 0)
+				if (encoding != -1)
 					m_TransponderDefaultMapping[(tsid<<16)|onid] = encoding;
 			}
 			else if (sscanf(line, "0X%x 0X%x", &tsid, &onid) == 2
 					|| sscanf(line, "%d %d", &tsid, &onid) == 2 ) {
 				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
+				encoding = 0; // avoid spurious error message
 			}
 			else if (sscanf(line, "%s %s", countrycode, s_table) == 2 ) {
 				encoding = mapEncoding(s_table);
-				if (encoding >= 0)
-					m_TransponderDefaultMapping[(tsid<<16)|onid] = encoding;
-
-				if (countrycode[0] == '*')
-					defaultEncodingTable = encoding;
-				else
-					m_CountryCodeDefaultMapping[countrycode] = encoding;
+				if (encoding != -1) {
+					if (countrycode[0] == '*')
+						defaultEncodingTable = encoding;
+					else
+						m_CountryCodeDefaultMapping[countrycode] = encoding;
+				}
 			}
-			else
-				encoding = -1;
 
 			if (encoding == -1)
 				eDebug("[eDVBTextEncodingHandler] encoding.conf: couldn't parse %s", line);
