@@ -1982,8 +1982,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
 
-		assert ChannelSelection.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
-		ChannelSelection.instance = self
+		if type(self) is ChannelSelection:
+			assert ChannelSelection.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
+			ChannelSelection.instance = self
 		self.startServiceRef = None
 		self.history = []
 		self.history_pos = 0
