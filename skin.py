@@ -498,7 +498,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					parameters["ServiceInfoRight"] = (450,0,1000,45)
 					parameters["SelectionListDescr"] = (45,3,1000,32)
 					parameters["SelectionListLock"] = (0,2,36,36)
-					parameters["ConfigListSeperator"] = (300)
+					parameters["ConfigListSeperator"] = 300
 					parameters["VirtualKeyboard"] = (68,68)
 					parameters["PartnerBoxEntryListName"] = (8,2,225,38)
 					parameters["PartnerBoxEntryListIP"] = (180,2,225,38)
@@ -519,7 +519,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					parameters["HelpMenuListHlp"] = (0,0,900,42)
 					parameters["HelpMenuListExtHlp0"] = (0,0,900,39)
 					parameters["HelpMenuListExtHlp1"] = (0,42,900,30)
-					parameters["AboutHddSplit"] = (1)
 					parameters["DreamexplorerName"] = (62,0,1200,38)
 					parameters["DreamexplorerIcon"] = (15,4,30,30)
 					parameters["PicturePlayerThumb"] = (30,285,45,300,30,25)
@@ -592,7 +591,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			try:
 				name = get("name")
 				value = get("value")
-				parameters[name] = map(int, value.split(","))
+				parameters[name] = "," in value and map(int, value.split(",")) or int(value)
 			except Exception, ex:
 				print "[Skin] bad parameter", ex
 
