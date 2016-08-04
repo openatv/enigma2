@@ -495,6 +495,19 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
+
+# From here on we are checking whether to put the box into Standby or
+# Deep Standby.
+# Don't even *bother* checking this if a playback is in progress
+# (unless we are in Standby - in which case it isn't really in playback)
+# ....just say the timer has been handled.
+# Trying to back off isn't worth it as backing off in Record timers
+# currently only refers to *starting* a recording.
+#
+			from Screens.InfoBar import MoviePlayer
+			if (not Screens.Standby.inStandby) and (MoviePlayer.instance is not None):
+				return True
+
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
 				self.keypress() #this unbinds the keypress detection
 				if not Screens.Standby.inStandby: # not already in standby
@@ -503,6 +516,17 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[RecordTimer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
+
+# Also check for someone streaming remotely - in which case we don't
+# want DEEPSTANDBY.
+# Might consider going to standby instead, but probably not worth it...
+# Also might want to back off - but that is set-up for trying to start
+# recordings, so has a low maximum delay.
+#
+				from Components.Converter.ClientsStreaming import ClientsStreaming;
+				if int(ClientsStreaming("NUMBER").getText()) > 0:
+					return True
+#
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						quitMainloop(1)
