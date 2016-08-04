@@ -172,7 +172,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 			if (!m_PMT.getCurrent(ptr))
 				eDVBCAHandler::getInstance()->handlePMT(m_reference, ptr);
 			else
-				eDebug("[eDVBServicePMTHandler] eDVBServicePMTHandler cannot call buildCAPMT");
+				eDebug("[eDVBServicePMTHandler] cannot call buildCAPMT");
 		}
 	}
 }
@@ -255,6 +255,7 @@ void eDVBServicePMTHandler::AITready(int error)
 						for (ApplicationNameConstIterator appnamesit = appname->getApplicationNames()->begin(); appnamesit != appname->getApplicationNames()->end(); ++appnamesit)
 						{
 							aitinfo.name = (*appnamesit)->getApplicationName();
+							eDebug("[eDVBServicePMTHandler] AIT: %s", aitinfo.name.c_str());
 						}
 						break;
 					}

@@ -1,7 +1,7 @@
 from os import path, listdir, stat
 from re import match
 
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getImageDevBuild, getDriverDate
 from enigma import eTimer, getEnigmaVersionString, gFont, eActionMap, eListbox
 from Components.About import about
 from Components.ActionMap import ActionMap

@@ -9,6 +9,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.Label import Label
+from Components.config import config
 from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.PluginComponent import plugins
@@ -25,7 +26,7 @@ from Tools.BoundFunction import boundFunction
 class EventViewContextMenu(Screen):
 	def __init__(self, session, menu):
 		Screen.__init__(self, session)
-		self.setTitle(_('Event view'))
+		self.setTitle(_('Event view menu'))
 
 		self["actions"] = ActionMap(["OkCancelActions"], {
 			"ok": self.okbuttonClick,
@@ -168,7 +169,7 @@ class EventViewBase:
 		self['actions'].setEnabled(True)
 
 	def finishedAdd(self, answer):
-		print "finished add"
+		print "[EventView] finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -197,7 +198,7 @@ class EventViewBase:
 		else:
 			self["key_green"].setText(_("Add Timer"))
 			self.key_green_choice = self.ADD_TIMER
-			print "Timeredit aborted"
+			print "[EventView] Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -324,6 +325,7 @@ class EventViewBase:
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
+		self.setTitle(_('Event view'))
 		self.skinName = [skin, "EventView"]
 		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = None

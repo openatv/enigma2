@@ -11,15 +11,26 @@
 	</setup>
 	<setup key="tunersetup" title="Tuner setup">
 		<item level="2" text="Preferred tuner" description="Choose the preferred tuner when more than one tuner is available. Set to 'auto' to prioritise the tuner with the lowest number of active channels.">config.usage.frontend_priority</item>
+		<item level="2" text="Preferred tuner DVB-S" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-S_priority_tuner_available">config.usage.frontend_priority_dvbs</item>
+		<item level="2" text="Preferred tuner DVB-T" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-T_priority_tuner_available">config.usage.frontend_priority_dvbt</item>
+		<item level="2" text="Preferred tuner DVB-C" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-C_priority_tuner_available">config.usage.frontend_priority_dvbc</item>
 		<item level="2" text="Preferred tuner for recordings" description="Choose the preferred tuner for recordings when more than one tuner is available. 'Disabled' selects a tuner based on the 'Preferred tuner' setting. 'Auto' uses default rules, ignoring the 'Preferred tuner' setting.">config.usage.recording_frontend_priority</item>
+		<item level="2" text="Preferred tuner DVB-S for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-S_priority_tuner_available">config.usage.recording_frontend_priority_dvbs</item>
+		<item level="2" text="Preferred tuner DVB-T for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-T_priority_tuner_available">config.usage.recording_frontend_priority_dvbt</item>
+		<item level="2" text="Preferred tuner DVB-C for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-C_priority_tuner_available">config.usage.recording_frontend_priority_dvbc</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Choose the preferred tuner type when the same service is available to different types of tuners.">config.usage.alternatives_priority</item>
 		<item level="2" text="Enable fallback remote receiver" description="Enable to use a remote receiver for services that cannot be tuned locally (tuner is in use or the service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
-		<item level="2" text="Fallback remote receiver URL" description="Enter the URL of the fallback remote receiver. Specify the complete URL including http:// and port number (normally 8001), e.g. http://second_box:8001.">config.usage.remote_fallback</item>
+		<item level="2" text="Fallback remote receiver URL" description="This can be either the IP or name of the fallback receiver, not including the scheme or port number (e.g. either 'xxx.xxx.xxx.xxx' or 'name_second_box').">config.usage.remote_fallback</item>
+		<item level="2" text="Fallback remote receiver streaming port" description="Streaming port of the fallback remote receiver. By default this is '8001'">config.usage.remote_fallback_port</item>
 		<item level="2" text="Disable background scanning" description="When tuned to a service, the system scans the transponder for changes and saves them. Only enable this option if you're absolutely sure of what you're doing.">config.misc.disable_background_scan</item>
-		<item level="2" text="Descramble http streams" description="Enable to decrypt http streams (if ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
-		<item level="2" text="Require authentication for http streams" description="Enable if you want to use authentication to watch http streams.">config.streaming.authentication</item>
-		<item level="1" text="Enable teletext caching" description="Enable to cache teletext pages. This allows faster access to cached data.">config.usage.enable_tt_caching</item>
+		<item level="2" text="Enable timer conflict detection" description="When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
+		<item level="2" text="Force LNB Power" description="When enabled the LNB power will not be switched off in standby" requires="HasForceLNBOn">config.misc.forceLnbPower</item>
+		<item level="2" text="Force ToneBurst" description="When enabled the LNB toneburst will be forced" requires="HasForceToneburst">config.misc.forceToneBurst</item>
+		<item level="2" text="Descramble sending http streams" description="When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on.">config.streaming.descramble</item>
+		<item level="2" text="Descramble receiving http streams" description="When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off.">config.streaming.descramble_client</item>
+		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
+		<item level="2" text="Load unlinked userbouquets" description="When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 	</setup>
 	<setup key="userinterface" title="GUI settings">
 		<item level="0" text="Setup mode" description="Choose the display level for menus/settings. 'Expert' level shows all items. 'Intermediate' level shows many advanced items. 'Simple' level shows minimal items.">config.usage.setup_level</item>
@@ -31,7 +42,7 @@
 		<item level="0" text="Infobar fade-out speed" description="Set the infobar fade-out speed.">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="InfoBar EPG mode" description="Choose the method used to activate Quick EPG mode." requires="InfoBarEpg">config.vixsettings.InfoBarEpg_mode</item>
 		<item level="0" text="Show animation while busy" description="Display a spinning icon when the system is busy.">config.usage.show_spinner</item>
-<!-- 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item> -->
+<!--		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaskextensions</item> -->
 <!-- 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorised dish is moving.">config.usage.showdish</item> -->
 <!-- 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item> -->
 		<item level="1" text="Position of finished timers in the timer list" description="Choose the display position of completed timers in the timer list.">config.usage.timerlist_finished_timer_position</item>
@@ -68,6 +79,7 @@
 		<item level="1" text="Channel list on mode change" description="Enable to display the channel list when switching between radio and TV modes.">config.usage.show_servicelist</item>
 		<item level="1" text="Channel list cursor behaviour" description="Configure cursor behaviour in the channel list. You can remain on the current service or can immediately select channels as you move the cursor up/down the list. Press the B+/B- buttons to revert to the previous channel.">config.usage.servicelist_cursor_behavior</item>
 		<item level="1" text="Enable multiple bouquets" description="Services can be grouped in bouquets (favourite channel lists). Enable this option to use more than one bouquet.">config.usage.multibouquet</item>
+		<item level="2" text="Enable unlinked bouquets" description="When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Enable panic button" description="When enabled, press the '0' button to zap to the first channel in your first bouquet and to delete your zap history.">config.usage.panicbutton</item>
 		<item level="1" text="Number press action" description="Choose 'Alpha search' or 'Number search' to use the number pad for SMS style searches (ABC2 for 'Alpha' and 2ABC for 'Number') for the next service. Choose 'Quick actions' to perform actions in the channel list (see HELP screen for details).">config.usage.show_channel_jump_in_servicelist</item>
 		<item level="0" text="Show event-progress in channel list" description="Set the type of progress indicator shown in the channel list.">config.usage.show_event_progress_in_servicelist</item>
@@ -110,6 +122,7 @@
 		<item level="1" text="Subtitle alignment" description="Set the horizontal alignment of subtitles.">config.subtitles.subtitle_alignment</item>
 		<item level="1" text="Subtitle border width" description="Set the border width of subtitles. A dark border makes subtitles easier to read on a light background.">config.subtitles.subtitle_borderwidth</item>
 		<item level="1" text="Subtitle font size" description="Set the subtitle font size.">config.subtitles.subtitle_fontsize</item>
+		<item level="2" text="Show background behind subtitles" description="Configure if behind the subtitles a background is shown.">config.subtitles.showbackground</item>
 		<item level="1" text="Subtitle delay for no timing info" description="Set the subtitle delay when timing information is not available.">config.subtitles.subtitle_noPTSrecordingdelay</item>
 		<item level="1" text="Yellow DVB subtitles" description="Enable to display graphical DVB subtitles in yellow, instead of the original colour.">config.subtitles.dvb_subtitles_yellow</item>
 		<item level="1" text="Use original DVB subtitle position" description="Enable to display graphical DVB subtitles at their original position.">config.subtitles.dvb_subtitles_original_position</item>
@@ -120,6 +133,8 @@
 		<item level="1" text="Delay for external subtitles" description="Set an additional delay to improve external subtitle synchronisation.">config.subtitles.pango_subtitles_delay</item>
 		<item level="1" text="Set fps for external subtitles" description="Can be used for different fps (frames per second) between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
 		<item level="1" text="Automatically turn on external subtitles" description="Enable to automatically turn on external subtitles for movie playback.">config.subtitles.pango_autoturnon</item>
+		<item level="2" text="External subtitle switch fonts" description="Configure if the subtitle should switch between normal, italic, bold and bolditalic">config.subtitles.pango_subtitle_fontswitch</item>
+		<item level="2" text="External subtitle dialog colorisation" description="Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)">config.subtitles.colourise_dialogs</item>
 	</setup>
 	<setup key="autolanguagesetup" title="Auto language selection">
 		<item level="1" text="Audio language selection 1" description="Set the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
@@ -141,7 +156,6 @@
 		<item level="1" text="EPG language selection 2" description="Set the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
 	<setup key="recording" title="Recording and playback settings">
-<!-- 		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen.">config.usage.recording_frontend_priority</item> -->
 		<item level="1" text="Recordings always have priority" description="Enable to allow a recording to interrupt live TV when there are no free tuners.">config.recording.asktozap</item>
 		<item level="0" text="Margin before recording (minutes)" description="Set to a non-zero value to begin a recording earlier than the start time shown in the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording (minutes)" description="Set to a non-zero value to stop a recording later than the end time shown in the EPG.">config.recording.margin_after</item>
@@ -192,9 +206,10 @@
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="display" title="Front Panel Settings" requires="FrontpanelDisplay">
-		<item level="0" requires="FBLCDDisplay" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD.">config.lcd.fblcddisplay</item>
 		<item level="0" text="Show MiniTV in the front display" description="Enable to display MiniTV with or without OSD menu." requires="LCDMiniTV">config.lcd.minitvmode</item>
 		<item level="0" text="Show PiP in the front display" description="Enable to display PiP with or without OSD menu." requires="LCDMiniTVPiP">config.lcd.minitvpipmode</item>
+		<item level="0" text="Power LCD Display" description="This option allows you to power on or off the display.">config.lcd.power</item>
+		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="LcdLiveTV">config.lcd.showTv</item>
 		<item level="0" text="Set frame rate for MiniTV" description="A lower frame rate reduces CPU load." requires="LCDMiniTV">config.lcd.minitvfps</item>
 		<item level="0" text="Brightness (Normal)" description="Set the brightness level of the front panel display during normal operation.">config.lcd.bright</item>
 		<item level="0" text="Brightness (Standby)" description="Set the brightness level of the front panel display in standby mode.">config.lcd.standby</item>
@@ -207,6 +222,10 @@
 		<item level="1" requires="LcdDisplay" text="Scrolling speed" description="Set the scrolling speed of text on the front panel display.">config.lcd.scrollspeed</item>
 		<item level="1" requires="LcdDisplay" text="Show display icons" description="Enable/disable the display of icons on the front panel.">config.lcd.mode</item>
 		<item level="1" requires="LcdDisplay" text="Show time remaining/elapsed" description="Choose how remaining time, elapsed time, or both, are displayed on the front panel.">config.usage.swap_time_remaining_on_vfd</item>
+		<item level="2" text="Initial scroll delay" description="Delay in miliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
+		<item level="2" text="Final scroll delay" description="Delay in miliseconds after finish scrolling text on display." requires="VFD_final_scroll_delay">config.usage.vfd_final_scroll_delay</item>
+		<item level="1" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):" requires="VFD_scroll_repeats">config.usage.vfd_scroll_repeats</item>
+		<item level="1" text="Scrolling Speed" description="Set the scrolling speed of text on the front display." requires="VFD_scroll_delay">config.usage.vfd_scroll_delay</item>
 		<item level="1" requires="LcdDisplay" text="Show transponder remaining/elapsed as" description="Choose how remaining/elapsed time for live TV is displayed on the front panel.">config.usage.swap_time_display_on_vfd</item>
 		<item level="1" requires="LcdDisplay" text="Show media playback remaining/elapsed as" description="Choose how remaining/elapsed time for media playback is displayed on the front panel.">config.usage.swap_media_time_display_on_vfd</item>
 		<item level="0" requires="LcdDisplay" text="Show time elapsed as positive" description="Choose how elapsed time is displayed on the front panel. You can specify a + (positive) or - (negative) value.">config.usage.elapsed_time_positive_vfd</item>
@@ -256,22 +275,21 @@
 	</setup>
 	<setup key="logs" title="Log settings">
 		<item level="2" text="Log location" description="Choose the location for crash and debug logs.">config.crash.debug_path</item>
-		<item level="2" text="Create more detailed crash log" description="Allows more detailed information to be shown in the crash log.">config.crash.details</item>
-		<item level="2" text="Enable debug logs" description="Allows you to enable the debug logs. They contain very detailed information about everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
-		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
-		<item level="2" text="Vix forum user name" description="Enter your forum user name, to make it easier to trace logs.">config.logmanager.user</item>
+		<item level="2" text="Show Log Manager in extensions list" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
+		<item level="2" text="Maximum number of days" description="Logs older than the specified number of days will be deleted.">config.crash.daysloglimit</item>
+		<item level="2" text="Maximum total space used (MB)" description="When maximum space for all logs is reached, the oldest logs will be deleted.">config.crash.sizeloglimit</item>
+		<item level="2" text="Forum user name" description="Enter your forum user name, to make it easier to trace logs.">config.logmanager.user</item>
 		<item level="2" text="e-mail address" description="Enter your e-mail address to send a copy of the log to.">config.logmanager.useremail</item>
 		<item level="2" text="Send yourself a copy" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item>
-		<item level="2" text="Maximum no of days" description="Logs older than the specified no of days will be deleted.">config.crash.daysloglimit</item>
-		<item level="2" text="Maximum total space used (MB)" description="When maximum space for all logs is reached, the oldest logs will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
 		<item level="1" text="Automatically start timeshift after" description="Enable to automatically start timeshifting in the background after the specified time.">config.timeshift.startdelay</item>
 		<item level="1" text="Show warning when timeshift is stopped" description="Enable to display a warning dialog with user options to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="2" text="Timeshift save action on zap" description="Select if timeshift should continue when set to record.">config.timeshift.favoriteSaveAction</item>
-		<item level="2" text="Stop timeshift while recording?" description="Stops timeshift being used if a recording is in progress. This is advisable for USB sticks.">config.timeshift.stopwhilerecording</item>
-		<!--<item level="2" text="Use timeshift seekbar while timeshifting?" description="If set to 'yes', allows you to use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>-->
+		<item level="2" text="Stop timeshift while recording" description="Stops timeshift being used if a recording is in progress. This is advisable for USB sticks.">config.timeshift.stopwhilerecording</item>
+		<!--<item level="2" text="Use timeshift seekbar while timeshifting" description="If set to 'yes', allows you to use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>-->
+		<item level="2" text="Show warning when in a stream" description="When enabled, a warning will be displayed that timeshift is not supported in an IP stream..">config.timeshift.stream_warning</item>
 	</setup>
 	<setup key="epgsingle" title="ChannelEPG settings">
 		<item level="1" text="Sort list by" description="Choose to sort the list by time or alphanumerically.">config.epgselection.sort</item>

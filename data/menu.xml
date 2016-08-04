@@ -1,6 +1,19 @@
 <!--suppress XmlUnboundNsPrefix -->
 <menu text="Mainmenu" title="Main menu">
 	<id val="mainmenu"/>
+<!-- the following types are allowed:
+	<screen [module="mod"] [screen="classname"]>[arguments]</screen>
+		executes Screen called "classname" from module "Screen.mod"
+		if no module is given, Screen must be globally available.
+		if no screen is given, module is used as screen class name.
+		arguments must be comma seperated (will be fed to eval), and can
+			use stuff from module
+		(of course you must specify at least one of module, screen.)
+	<setup id="id"/>
+		opens a setup with specified id
+	<code> .. code .. </code>
+		"exec"s code
+-->
 	<menu weight="1"  level="0" text="TV" entryID="mainmenu_tv" >
 		<id val="id_mainmenu_tv" default="&gt;&lt;"/>
 		<item level="0" text="Recorded TV" entryID="mainmenu_tv_recorded" weight="10" endtext="•••>">
@@ -87,7 +100,7 @@ InfoBar.instance.showMovies()
 				<screen module="Recordings" screen="RecordingSettings" />
 			</item>
 			<item weight="30" level="0" text="Timeshift settings" entryID="record_paths">
-				<screen module="Timershift" screen="TimeshiftSettings" />
+				<screen module="Timeshift" screen="TimeshiftSettings" />
 			</item>
 			<menu weight="40" level="0" text="EPG Settings" entryID="epg_settings">   
 				<id val="epg" />
@@ -147,6 +160,9 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					</menu>
 				</menu>      
 			</menu>
+				<menu level="0" text="LED Display Panel" entryID="leddisplay_selection" requires="DisplayLED">
+					<id val="leddisplay"/>
+				</menu>
 			<item weight="50" level="2" entryID="subtitle_setup">
 				<setup id="subtitlesetup" />
 			</item>

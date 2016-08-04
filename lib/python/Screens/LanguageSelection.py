@@ -87,7 +87,7 @@ class LanguageSelection(Screen):
 		self.close()
 
 	def run(self, justlocal = False):
-		print "updating language..."
+		print "[LanguageSelection] updating language..."
 		lang = self["languages"].getCurrent()[0]
 		
 		if lang == 'update cache':

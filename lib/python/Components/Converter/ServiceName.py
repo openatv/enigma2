@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceReference, eEPGCache
-from Components.Element import cached
+from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceReference, eEPGCache, eServiceCenter
 from ServiceReference import resolveAlternate
+from Components.Element import cached
 from Tools.Directories import fileExists
 
 class ServiceName(Converter, object):
@@ -18,6 +18,9 @@ class ServiceName(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.epgQuery = eEPGCache.getInstance().lookupEventTime
+		self.mode = ""
+		if ';' in type:
+			type, self.mode = type.split(';')
 		if type == "Provider":
 			self.type = self.PROVIDER
 		elif type == "Reference":

@@ -21,8 +21,8 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubserviceSelection, InfoBarShowMovies,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarBuffer, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi, \
-	setResumePoint, delResumePoint
+	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, \
+	InfoBarHdmi, setResumePoint, delResumePoint
 from Screens.ButtonSetup import InfoBarButtonSetup
 
 profile("LOAD:InitBar_Components")
@@ -41,9 +41,8 @@ class InfoBar(
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey, InfoBarLongKeyDetection,
 	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarBuffer,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
-	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi,
-	InfoBarButtonSetup, Screen,
-):
+	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarZoom,
+	InfoBarHdmi, InfoBarButtonSetup, Screen):
 
 	ALLOW_SUSPEND = True
 	instance = None
@@ -75,8 +74,8 @@ class InfoBar(
 			InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarTimerButton, InfoBarUnhandledKey, InfoBarLongKeyDetection, InfoBarVmodeButton,
 			InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, InfoBarBuffer,
 			InfoBarTimeshift, InfoBarSeek, InfoBarCueSheetSupport, InfoBarSummarySupport, InfoBarTimeshiftState,
-			InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarZoom, InfoBarHdmi,
-			InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarButtonSetup
+			InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarZoom,
+			InfoBarHdmi, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarButtonSetup,
 		):
 			x.__init__(self)
 
@@ -95,7 +94,6 @@ class InfoBar(
 
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.showMenu)
-
 		self.onShown.append(self._onShown)
 
 	def _onShown(self):
@@ -234,7 +232,14 @@ class InfoBar(
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
 		else:
-			self.session.open(MoviePlayer, service, slist=self.servicelist, lastservice=ref)
+			from Components.ParentalControl import parentalControl
+			if parentalControl.isServicePlayable(service, self.openMoviePlayer):
+				self.openMoviePlayer(service, ref)
+
+	def openMoviePlayer(self, ref, LastService=None):
+		if not LastService:
+			LastService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.session.open(MoviePlayer, ref, slist=self.servicelist, lastservice=LastService)
 
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
@@ -287,7 +292,7 @@ class MoviePlayer(
 	InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 	InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarButtonSetup
+	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarHdmi, InfoBarButtonSetup
 ):
 
 	ENABLE_RESUME_SUPPORT = True
@@ -333,6 +338,7 @@ class MoviePlayer(
 		self.returning = False
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.doButtonsCheck)
+		config.misc.standbyCounter.addNotifier(self.standbyCountChanged, initial_call=False)
 
 		assert MoviePlayer.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		MoviePlayer.instance = self
@@ -344,6 +350,7 @@ class MoviePlayer(
 		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
+		config.misc.standbyCounter.removeNotifier(self.standbyCountChanged)
 		MoviePlayer.instance = None
 		from Screens.MovieSelection import playlist
 		del playlist[:]
@@ -352,6 +359,12 @@ class MoviePlayer(
 		self.session.nav.playService(self.lastservice)
 		config.usage.last_movie_played.value = self.cur_service.toString()
 		config.usage.last_movie_played.save()
+
+	def standbyCountChanged(self, value):
+		if config.ParentalControl.servicepinactive.value:
+			from Components.ParentalControl import parentalControl
+			if parentalControl.isProtected(self.cur_service):
+				self.close()
 
 	def handleLeave(self, how):
 		self.is_closing = True
@@ -364,11 +377,11 @@ class MoviePlayer(
 			else:
 				list = (
 					(_("Yes"), "quit"),
-					(_("Yes, returning to movie list"), "movielist"),
+					(_("Yes, and return to the movie list"), "movielist"),
 					(_("Yes, and delete this movie"), "quitanddelete"),
-					(_("Yes, delete this movie and return to movie list"), "deleteandmovielist"),
+					(_("Yes, delete this movie and return to the movie list"), "deleteandmovielist"),
 					(_("No"), "continue"),
-					(_("No, but restart from begin"), "restart")
+					(_("No, but restart from the beginning"), "restart")
 				)
 
 			from Screens.ChoiceBox import ChoiceBox
@@ -461,7 +474,7 @@ class MoviePlayer(
 						return
 					except Exception, e:
 						print "[InfoBar] Failed to move to .Trash folder:", e
-						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+						msg = _("Cannot move to the trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
 				msg += _("Do you really want to delete %s?") % name

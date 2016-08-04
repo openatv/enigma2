@@ -8,12 +8,17 @@ sysconfdir=@sysconfdir@
 bindir=@bindir@
 libdir=@libdir@
 
+# perform a NTP update sync, before starting Enigma2, as it is broke in OE.
+if [ -x /usr/sbin/ntpdate ]; then
+	/usr/sbin/ntpdate -b -s -u au.pool.ntp.org && sleep 2
+fi
+
 # set the debug log file path if debug logging is enabled
 # Test for debug logging being enabled using [ -n "${debug_path}" ]
 if grep -q 'config.crash.enabledebug=true' ${sysconfdir}/enigma2/settings; then
 	debug_dir=$(sed -n 's/config.crash.debug_path=//p' ${sysconfdir}/enigma2/settings)
 	[ -n "${debug_dir}" -a -d "${debug_dir}" ] || debug_dir=/home/root/logs/
-	debug_path="${debug_dir}Enigma2-$(date +%d-%m-%Y_%H-%M-%S).log"
+	debug_path="${debug_dir}Enigma2-$(date +%Y-%m-%d_%H-%M-%S).log"
 fi
 
 # The enigma2 config directory will not exist on first boot
@@ -45,7 +50,8 @@ if [ -x ${bindir}/enigma2_pre_start.sh ]; then
 fi
 
 if [ -d /home/root ]; then
-	cd /home/root
+	export HOME=/home/root
+	cd
 fi
 
 #check for sundtek tuner helper lib
@@ -94,7 +100,6 @@ case $ret in
 		/sbin/reboot
 		;;
 	3)
-		rm -fR /.gstreamer-0.10 /.cache
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)

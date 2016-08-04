@@ -8,7 +8,7 @@ void eNavigation::serviceEvent(iPlayableService* service, int event)
 {
 	if (m_runningService && service != m_runningService)
 	{
-		eDebug("nav: event %d for other service", event);
+		eDebug("[eNavigation] event %d for other service", event);
 		return;
 	}
 	m_event(event);
@@ -18,7 +18,7 @@ void eNavigation::recordEvent(iRecordableService* service, int event)
 {
 	if (m_recordings.find(service) == m_recordings.end())
 	{
-		eDebug("nav: event for non registered recording service");
+		eDebug("[eNavigation] event for non registered recording service");
 		return;
 	}
 	m_record_event(service, event);
@@ -81,7 +81,7 @@ RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 	RESULT res = m_servicehandler->record(ref, service);
 	if (res)
 	{
-		eDebug("record: %d", res);
+		eDebug("[eNavigation] record: %d", res);
 		service = 0;
 	}
 	else
@@ -128,7 +128,7 @@ RESULT eNavigation::stopRecordService(ePtr<iRecordableService> &service)
 		}
 	}
 
-	eDebug("try to stop non running recording!!");  // this should not happen
+	eDebug("[eNavigation] try to stop non running recording!!");  // this should not happen
 	return -1;
 }
 

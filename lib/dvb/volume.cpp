@@ -19,6 +19,15 @@
 #include <linux/dvb/video.h>
 #endif
 
+#ifdef HAVE_ALSA
+# ifndef ALSA_VOLUME_MIXER
+#  define ALSA_VOLUME_MIXER "Master"
+# endif
+# ifndef ALSA_CARD
+#  define ALSA_CARD "default"
+# endif
+#endif
+
 eDVBVolumecontrol* eDVBVolumecontrol::instance = NULL;
 
 eDVBVolumecontrol* eDVBVolumecontrol::getInstance()
@@ -44,19 +53,20 @@ int eDVBVolumecontrol::openMixer()
 	if (!mainVolume)
 	{
 		int err;
-		char *card = "default";
+		char *card = ALSA_CARD;
 
+		eDebug("[eDVBVolumecontrol] Setup ALSA Mixer %s - %s", ALSA_CARD, ALSA_VOLUME_MIXER);
 		/* Perform the necessary pre-amble to start up ALSA Mixer */
 		err = snd_mixer_open(&alsaMixerHandle, 0);
 		if (err < 0)
 		{
-			eDebug("Mixer %s open error: %s", card, snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer %s open error: %s", card, snd_strerror(err));
 			return err;
 		}
 		err = snd_mixer_attach(alsaMixerHandle, card);
 		if (err < 0)
 		{
-			eDebug("Mixer attach %s error: %s", card, snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer attach %s error: %s", card, snd_strerror(err));
 			snd_mixer_close(alsaMixerHandle);
 			alsaMixerHandle = NULL;
 			return err;
@@ -64,7 +74,7 @@ int eDVBVolumecontrol::openMixer()
 		err = snd_mixer_selem_register(alsaMixerHandle, NULL, NULL);
 		if (err < 0)
 		{
-			eDebug("Mixer register error: %s", snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer register error: %s", snd_strerror(err));
 			snd_mixer_close(alsaMixerHandle);
 			alsaMixerHandle = NULL;
 			return err;
@@ -72,7 +82,7 @@ int eDVBVolumecontrol::openMixer()
 		err = snd_mixer_load(alsaMixerHandle);
 		if (err < 0)
 		{
-			eDebug("Mixer %s load error: %s", card, snd_strerror(err));
+			eDebug("[eDVBVolumecontrol] Mixer %s load error: %s", card, snd_strerror(err));
 			snd_mixer_close(alsaMixerHandle);
 			alsaMixerHandle = NULL;
 			return err;
@@ -126,7 +136,9 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	rightVol = checkVolume(right);
 
 #ifdef HAVE_ALSA
-	if (mainVolume) snd_mixer_selem_set_playback_volume_all(mainVolume, muted ? 0 : leftVol);
+	eDebug("[eDVBVolumecontrol] Setvolume: ALSA leftVol=%d", leftVol);
+	if (mainVolume)
+		snd_mixer_selem_set_playback_volume_all(mainVolume, muted ? 0 : leftVol);
 #else
 		/* convert to -1dB steps */
 	left = 63 - leftVol * 63 / 100;
@@ -138,17 +150,21 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 	mixer.volume_left = left;
 	mixer.volume_right = right;
 
-	eDebug("Setvolume: %d %d (raw)", leftVol, rightVol);
-	eDebug("Setvolume: %d %d (-1db)", left, right);
+	eDebug("[eDVBVolumecontrol] Setvolume: raw: %d %d, -1db: %d %d", leftVol, rightVol, left, right);
 
 	int fd = openMixer();
 	if (fd >= 0)
 	{
 #ifdef DVB_API_VERSION
-		ioctl(fd, AUDIO_SET_MIXER, &mixer);
+		if (ioctl(fd, AUDIO_SET_MIXER, &mixer) < 0) {
+			eDebug("[eDVBVolumecontrol] Setvolume failed: %m");
+		}
 #endif
 		closeMixer(fd);
 		return;
+	}
+	else {
+		eDebug("[eDVBVolumecontrol] SetVolume failed to open mixer: %m");
 	}
 
 	//HACK?
@@ -170,7 +186,9 @@ bool eDVBVolumecontrol::isMuted()
 void eDVBVolumecontrol::volumeMute()
 {
 #ifdef HAVE_ALSA
-	if (mainVolume) snd_mixer_selem_set_playback_volume_all(mainVolume, 0);
+	eDebug("[eDVBVolumecontrol] Setvolume: ALSA Mute");
+	if (mainVolume)
+		snd_mixer_selem_set_playback_volume_all(mainVolume, 0);
 	muted = true;
 #else
 	int fd = openMixer();
@@ -191,7 +209,9 @@ void eDVBVolumecontrol::volumeMute()
 void eDVBVolumecontrol::volumeUnMute()
 {
 #ifdef HAVE_ALSA
-	if (mainVolume) snd_mixer_selem_set_playback_volume_all(mainVolume, leftVol);
+	eDebug("[eDVBVolumecontrol] Setvolume: ALSA unMute to %d", leftVol);
+	if (mainVolume)
+		snd_mixer_selem_set_playback_volume_all(mainVolume, leftVol);
 	muted = false;
 #else
 	int fd = openMixer();

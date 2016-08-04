@@ -3,7 +3,6 @@ import struct
 import random
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop
-
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
@@ -15,10 +14,10 @@ import NavigationInstance
 import skin
 
 
-AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".asf", ".wma"))
+AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".wma"))
 DVD_EXTENSIONS = ('.iso', '.img')
 IMAGE_EXTENSIONS = frozenset((".jpg", ".jpeg", ".png", ".gif", ".bmp"))
-MOVIE_EXTENSIONS = frozenset((".mpg", ".mpeg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".m2ts"))
+MOVIE_EXTENSIONS = frozenset((".mpg", ".mpeg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".m2ts", ".asf"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
 
 cutsParser = struct.Struct('>QI')  # big-endian, 64-bit PTS and 32-bit type
@@ -165,7 +164,6 @@ class MovieList(GUIComponent):
 	def __init__(self, root, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
 		self.list = []
-		self.screenwidth = getDesktop(0).size().width()
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
 		self.sort_type = sort_type or self.SORT_GROUPWISE
 		self.firstFileEntry = 0
@@ -173,12 +171,22 @@ class MovieList(GUIComponent):
 		self.numUserDirs = 0  # does not include parent or Trashcan
 		self.numUserFiles = 0
 		self.fontName = "Regular"
-		if self.screenwidth and self.screenwidth == 1920:
-			self.fontSize = 28
-		else:
-			self.fontSize = 20
+		self.fontSize = 20
 		self.listHeight = None
 		self.listWidth = None
+		self.pbarShift = 5
+		self.pbarHeight = 16
+		self.pbarLargeWidth = 48
+		self.pbarColour = 0x206333
+		self.pbarColourSeen = 0xffc71d
+		self.pbarColourRec = 0xff001d
+		self.partIconeShift = 5
+		self.spaceRight = 2
+		self.spaceIconeText = 2
+		self.iconsWidth = 22
+		self.trashShift = 1
+		self.dirShift = 1
+		self.dateWidth = 150
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -205,24 +213,6 @@ class MovieList(GUIComponent):
 		self.runningTimers = {}
 		self.updateRecordings()
 		self.updatePlayPosCache()
-
-	def applySkin(self, desktop, parent):
-		if self.skinAttributes is not None:
-			attribs = []
-			for (attrib, value) in self.skinAttributes:
-				if attrib == "font":
-					font = skin.parseFont(value, ((1, 1), (1, 1)))
-					self.fontName = font.family
-					self.fontSize = font.pointSize
-				else:
-					attribs.append((attrib, value))
-			self.skinAttributes = attribs
-			self.setFontsize()
-		rc = GUIComponent.applySkin(self, desktop, parent)
-		self.listHeight = self.instance.size().height()
-		self.listWidth = self.instance.size().width()
-		self.setItemsPerPage()
-		return rc
 
 	def get_playInBackground(self):
 		return self._playInBackground
@@ -289,6 +279,52 @@ class MovieList(GUIComponent):
 	def setSortType(self, type):
 		self.sort_type = type
 
+	def applySkin(self, desktop, parent):
+		def warningWrongSkinParameter(string):
+			print "[MovieList] wrong '%s' skin parameters" % string
+		def font(value):
+			font = skin.parseFont(value, ((1,1),(1,1)))
+			self.fontName = font.family
+			self.fontSize = font.pointSize
+		def pbarShift(value):
+			self.pbarShift = int(value)
+		def pbarHeight(value):
+			self.pbarHeight = int(value)
+		def pbarLargeWidth(value):
+			self.pbarLargeWidth = int(value)
+		def pbarColour(value):
+			self.pbarColour = skin.parseColor(value).argb()
+		def pbarColourSeen(value):
+			self.pbarColourSeen = skin.parseColor(value).argb()
+		def pbarColourRec(value):
+			self.pbarColourRec = skin.parseColor(value).argb()
+		def partIconeShift(value):
+			self.partIconeShift = int(value)
+		def spaceIconeText(value):
+			self.spaceIconeText = int(value)
+		def iconsWidth(value):
+			self.iconsWidth = int(value)
+		def trashShift(value):
+			self.trashShift = int(value)
+		def dirShift(value):
+			self.dirShift = int(value)
+		def spaceRight(value):
+			self.spaceRight = int(value)
+		def dateWidth(value):
+			self.dateWidth = int(value)
+		for (attrib, value) in self.skinAttributes[:]:
+			try:
+				locals().get(attrib)(value)
+				self.skinAttributes.remove((attrib, value))
+			except:
+				pass
+		rc = GUIComponent.applySkin(self, desktop, parent)
+		self.listHeight = self.instance.size().height()
+		self.listWidth = self.instance.size().width()
+		self.setFontsize()
+		self.setItemsPerPage()
+		return rc
+
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
 			itemHeight = self.listHeight / config.movielist.itemsperpage.value
@@ -315,43 +351,31 @@ class MovieList(GUIComponent):
 	def buildMovieListEntry(self, serviceref, info, begin, data):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
+		dateWidth = self.dateWidth
+		iconSize = self.iconsWidth
+		space = self.spaceIconeText
+		r = self.spaceRight
 		pathName = serviceref.getPath()
 		res = [None]
 
 		if serviceref.flags & eServiceReference.mustDescent:
-			if self.screenwidth and self.screenwidth == 1920:
-				# Directory
-				iconSize = 37
-			else:
-				iconSize = 22
+			# Directory
 			# Name is full path name
 			if info is None:
 				# Special case: "parent"
 				txt = ".."
 			else:
 				txt = os.path.basename(os.path.normpath(pathName))
-				if txt == ".Trash":
-					if self.screenwidth and self.screenwidth == 1920:
-						res.append(MultiContentEntryPixmapAlphaBlend(pos=(3, 5), size=(iconSize, 37), png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(40 + 20, 5), size=(width - 166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT, text = _("Trash")))
-						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trash")))
-						return res
-					else:
-						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, (self.itemHeight - 24) / 2), size=(iconSize, 24), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Trash")))
-						res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trash")))
-						return res
-			if self.screenwidth and self.screenwidth == 1920:
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(3, 5), size=(iconSize, iconSize), png=self.iconFolder))
-				res.append(MultiContentEntryText(pos=(40 + 20, 5), size=(width - 166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-				res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
+			if txt == ".Trash":
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.trashShift), size=(iconSize,self.iconTrash.size().height()), png=self.iconTrash))
+				res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = _("Trash")))
+				res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trash")))
 				return res
-			else:
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, (self.itemHeight - 24) / 2), size=(iconSize, iconSize), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=self.iconFolder))
-				res.append(MultiContentEntryText(pos=(iconSize + 2, 0), size=(width - 166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
-				res.append(MultiContentEntryText(pos=(width - 145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
-				return res
-		if (data == -1) or (data is None):
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.dirShift), size=(iconSize,iconSize), png=self.iconFolder))
+			res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = txt))
+			res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
+			return res
+		if data == -1 or data is None:
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
 			x = self.list[cur_idx]  # x = ref,info,begin,...
@@ -370,14 +394,12 @@ class MovieList(GUIComponent):
 						data.icon = self.iconMoviePlayRec
 					else:
 						data.icon = self.iconMovieRec
-				elif switch == 'p' or switch == 's':
+				elif switch in ('p', 's'):
 					data.part = 100
 					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
-						data.partcol = 0xffc71d
-						data.partcolsel = 0xffc71d
+						data.partcol = self.pbarColourSeen
 					else:
-						data.partcol = 0xff001d
-						data.partcolsel = 0xff001d
+						data.partcol = self.pbarColourRec
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
@@ -388,74 +410,39 @@ class MovieList(GUIComponent):
 					else:
 						if config.usage.movielist_unseen.value:
 							data.icon = self.iconUnwatched
-				elif switch == 'p' or switch == 's':
+				elif switch in ('p', 's'):
 					if data.part is not None and data.part > 0:
-						data.partcol = 0xffc71d
-						data.partcolsel = 0xffc71d
+						data.partcol = self.pbarColourSeen
 					else:
 						if config.usage.movielist_unseen.value:
 							data.part = 100
-							data.partcol = 0x206333
-							data.partcolsel = 0x20A333
+							data.partcol = self.pbarColour
 		len = data.len
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
 			len = ""
 
-		iconSize = 0
-		if switch == 'i':
-			if self.screenwidth and self.screenwidth == 1920:
-				iconSize = 42
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 3), size=(iconSize, iconSize), png=data.icon))
-			else:
-				iconSize = 22
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, (self.itemHeight - 20) / 2), size=(iconSize, 20), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, png=data.icon))
-		elif switch == 'p':
-			if self.screenwidth and self.screenwidth == 1920:
-				iconSize = 42
-			else:
-				iconSize = 48
-			if data.part is not None and data.part > 0:
-				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize + 5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
-				else:
-					res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
-			else:
-				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, iconSize), png=data.icon))
-				else:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, (self.itemHeight - 20) / 2), size=(iconSize, 20), png=data.icon))
-		elif switch == 's':
-			if self.screenwidth and self.screenwidth == 1920:
-				iconSize = 42
-			else:
-				iconSize = 22
-			if data.part is not None and data.part > 0:
-				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize + 5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
-				else:
-					res.append(MultiContentEntryProgress(pos=(0, (self.itemHeight - 16) / 2), size=(iconSize - 2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
-			else:
-				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, iconSize), png=data.icon))
-				else:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, (self.itemHeight - 20) / 2), size=(iconSize, 20), png=data.icon))
+		if data:
+			pos = (0,self.partIconeShift)
+			if switch == 'i' and hasattr(data, 'icon') and data.icon is not None:
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=pos, size=(iconSize,data.icon.size().height()), png=data.icon))
+			elif switch in ('p', 's'):
+				if switch == 'p':
+					iconSize = self.pbarLargeWidth
+				if hasattr(data, 'part') and data.part > 0:
+					res.append(MultiContentEntryProgress(pos=(0,self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				elif hasattr(data, 'icon') and data.icon is not None:
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.pbarShift), size=(iconSize, self.pbarHeight), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
 			begin_string = ' '.join(FuzzyTime(begin, inPast=True))
 
 		ih = self.itemHeight
-		dateSize = ((self.fontSize - 3) + config.movielist.fontsize.value) * 10
-		if self.screenwidth and self.screenwidth == 1920:
-			res.append(MultiContentEntryText(pos=(iconSize + 20, 5), size=(width - iconSize - dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-			res.append(MultiContentEntryText(pos=(width - dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
-			return res
-		else:
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width - iconSize - dateSize, ih), flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, font=0, text=data.txt))
-			res.append(MultiContentEntryText(pos=(width - dateSize, 0), size=(dateSize, ih), flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, font=1, text=begin_string))
-			return res
+		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
+		res.append(MultiContentEntryText(pos=(width-dateWidth-r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+		return res
 
 	def moveToFirstMovie(self):
 		if self.firstFileEntry < len(self.list):
@@ -566,11 +553,11 @@ class MovieList(GUIComponent):
 			print "[MovieList] listing of movies failed"
 			return
 		realtags = set()
-		tags = {}
+		autotags = {}
 		rootPath = os.path.normpath(root.getPath())
 		parent = None
 		# Don't navigate above the "root"
-		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
+		if len(rootPath) > 1 and (os.path.realpath(rootPath) != os.path.realpath(config.movielist.root.value)):
 			parent = os.path.dirname(rootPath)
 			# enigma wants an extra '/' appended
 			if not parent.endswith('/'):
@@ -583,6 +570,10 @@ class MovieList(GUIComponent):
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
 				break
+			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never":
+				from Components.ParentalControl import parentalControl
+				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
+					continue
 			info = serviceHandler.info(serviceref)
 			if info is None:
 				info = justStubInfo
@@ -597,7 +588,7 @@ class MovieList(GUIComponent):
 					if normname != ".Trash":
 						self.numUserDirs += 1
 				continue
-			# convert space-seperated list of tags into a set
+			# convert space-separated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 			name = info.getName(serviceref)
 
@@ -608,14 +599,15 @@ class MovieList(GUIComponent):
 			if this_tags == ['']:
 				# No tags? Auto tag!
 				this_tags = name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
+				# For auto tags, we are keeping a (tag, movies) dictionary.
+				#It will be used later to check if movies have a complete sentence in common.
+				for tag in this_tags:
+					if autotags.has_key(tag):
+						autotags[tag].append(name)
+					else:
+						autotags[tag] = [name]
 			else:
 				realtags.update(this_tags)
-			for tag in this_tags:
-				if len(tag) >= 4:
-					if tag in tags:
-						tags[tag].append(name)
-					else:
-						tags[tag] = [name]
 			# filter_tags is either None (which means no filter at all), or
 			# a set. In this case, all elements of filter_tags must be present,
 			# otherwise the entry will be dropped.
@@ -696,16 +688,15 @@ class MovieList(GUIComponent):
 		# really in the tag set of some file.
 
 		# reverse the dictionary to see which unique movie each tag now references
-		rtags = {}
-		for tag, movies in tags.items():
-			if (len(movies) > 1) or (tag in realtags):
+		rautotags = {}
+		for tag, movies in autotags.items():
+			if (len(movies) > 1):
 				movies = tuple(movies)  # a tuple can be hashed, but a list not
-				item = rtags.get(movies, [])
-				if not item:
-					rtags[movies] = item
+				item = rautotags.get(movies, [])
+				if not item: rautotags[movies] = item
 				item.append(tag)
 		self.tags = {}
-		for movies, tags in rtags.items():
+		for movies, tags in rautotags.items():
 			movie = movies[0]
 			# format the tag lists so that they are in 'original' order
 			tags.sort(key=movie.find)
@@ -725,13 +716,16 @@ class MovieList(GUIComponent):
 					if m[start:end] != match:
 						match = ''
 						break
+			# Adding the longest common sentence to the tag list
 			if match:
 				self.tags[match] = set(tags)
-				continue
 			else:
 				match = ' '.join(tags)
-				if len(match) > 2:  # Omit small words
+				if (len(match) > 2) or (match in realtags): #Omit small words, only for auto tags
 					self.tags[match] = set(tags)
+		# Adding the realtags to the tag list
+		for tag in realtags:
+			self.tags[tag] = set([tag])
 
 	def buildAlphaNumericSortKey(self, x):
 		# x = ref,info,begin,...
@@ -769,7 +763,7 @@ class MovieList(GUIComponent):
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		name = x[1] and x[1].getName(ref)
-		if ref.flags & eServiceReference.mustDescent:
+		if ref.flags & eServiceReference.mustDescent and os.path.exists(ref.getPath()):
 			try:
 				mtime = -os.stat(ref.getPath()).st_mtime
 			except:

@@ -5,26 +5,27 @@
 
 int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
-	eDebugNoNewLine("SESSION(%d) %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
+	eDebugNoNewLineStart("[CI RM] SESSION(%d) %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-	eDebug("");
+	eDebugNoNewLine("\n");
 	if ((tag[0]==0x9f) && (tag[1]==0x80))
 	{
 		switch (tag[2])
 		{
 		case 0x10:  // profile enquiry
-			eDebug("cam fragt was ich kann.");
+			eDebug("[CI RM] cam profile inquiry");
 			state=stateProfileEnquiry;
 			return 1;
 			break;
 		case 0x11: // Tprofile
-			eDebugNoNewLine("mein cam kann: ");
+			eDebugNoNewLineStart("[CI RM] can do: ");
 			if (!len)
-				eDebug("nichts");
+				eDebugNoNewLine("nothing");
 			else
 				for (int i=0; i<len; i++)
 					eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
+			eDebugNoNewLine("\n");
 
 			if (state == stateFirstProfileEnquiry)
 			{
@@ -34,7 +35,7 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			state=stateFinal;
 			break;
 		default:
-			eDebug("unknown APDU tag 9F 80 %02x", tag[2]);
+			eDebug("[CI RM] unknown APDU tag 9F 80 %02x", tag[2]);
 		}
 	}
 
@@ -61,13 +62,16 @@ int eDVBCIResourceManagerSession::doAction()
 	}
 	case stateProfileChange:
 	{
-		eDebug("bla kaputt");
+		eDebug("[CI RM] cannot deal with statProfileChange");
 		break;
 	}
 	case stateProfileEnquiry:
 	{
 		const unsigned char tag[3]={0x9F, 0x80, 0x11};
-		const unsigned char data[][4]=
+
+		if (!eDVBCIInterfaces::getInstance()->isClientConnected())
+		{
+			const unsigned char data[][4]=
 			{
 				{0x00, 0x01, 0x00, 0x41},
 				{0x00, 0x02, 0x00, 0x41},
@@ -77,12 +81,34 @@ int eDVBCIResourceManagerSession::doAction()
 				{0x00, 0x40, 0x00, 0x41},
 //				{0x00, 0x10, 0x00, 0x41}, // auth.
 			};
-		sendAPDU(tag, data, sizeof(data));
+			sendAPDU(tag, data, sizeof(data));
+		}
+		else
+		{
+			const unsigned char data[][4]=
+			{
+				{0x00, 0x01, 0x00, 0x41},
+				{0x00, 0x02, 0x00, 0x41},
+				{0x00, 0x02, 0x00, 0x42},
+				{0x00, 0x03, 0x00, 0x41},
+				{0x00, 0x20, 0x00, 0x41},
+				{0x00, 0x24, 0x00, 0x41},
+				{0x00, 0x40, 0x00, 0x41},
+				{0x00, 0x02, 0x00, 0x43},
+				{0x00, 0x8C, 0x10, 0x01},
+				{0x00, 0x8D, 0x10, 0x01},
+				{0x00, 0x8E, 0x10, 0x01},
+				{0x00, 0x96, 0x10, 0x01},
+				{0x00, 0x97, 0x10, 0x01},
+				{0x00, 0x41, 0x00, 0x41},
+			};
+			sendAPDU(tag, data, sizeof(data));
+		}
 		state=stateFinal;
 		return 0;
 	}
 	case stateFinal:
-		eDebug("stateFinal und action! kann doch garnicht sein ;)");
+		eDebug("[CI RM] Should not happen: action on stateFinal");
 	default:
 		break;
 	}

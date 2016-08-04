@@ -37,7 +37,7 @@ defaultInhibitDirs = [
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
-	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle=_("Select location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
+	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle = None, minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
 		# Init parents
 		if not inhibitDirs: inhibitDirs = []
 		if not inhibitMounts: inhibitMounts = []
@@ -160,6 +160,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		})
 
 		# Run some functions when shown
+		if windowTitle is None:
+			windowTitle = _("Select location")
 		self.onShown.extend((
 			boundFunction(self.setTitle, _("Select Location")),
 			self.updateTarget,
@@ -238,7 +240,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.session.openWithCallback(
 				self.createDirCallback,
 				InputBox,
-				title = _("Please enter name of the new directory"),
+				title = _("Please enter the name of the new directory"),
 				text = ""
 			)
 

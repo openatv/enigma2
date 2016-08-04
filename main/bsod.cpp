@@ -15,59 +15,12 @@
 #define NO_OOPS_SUPPORT
 #endif
 
-#include "xmlgenerator.h"
 #include "version_info.h"
 
 /************************************************/
 
-#define CRASH_EMAILADDR "t3.crash@beyonwiz.com.au"
-#define INFOFILE "/maintainer.info"
-
-#define RINGBUFFER_SIZE 16384
-static char ringbuffer[RINGBUFFER_SIZE];
-static unsigned int ringbuffer_head;
-
-static void addToLogbuffer(const char *data, unsigned int len)
-{
-	while (len)
-	{
-		unsigned int remaining = RINGBUFFER_SIZE - ringbuffer_head;
-
-		if (remaining > len)
-			remaining = len;
-
-		memcpy(ringbuffer + ringbuffer_head, data, remaining);
-		len -= remaining;
-		data += remaining;
-		ringbuffer_head += remaining;
-		ASSERT(ringbuffer_head <= RINGBUFFER_SIZE);
-		if (ringbuffer_head == RINGBUFFER_SIZE)
-			ringbuffer_head = 0;
-	}
-}
-
-static const std::string getLogBuffer()
-{
-	unsigned int begin = ringbuffer_head;
-	while (ringbuffer[begin] == 0)
-	{
-		++begin;
-		if (begin == RINGBUFFER_SIZE)
-			begin = 0;
-		if (begin == ringbuffer_head)
-			return "";
-	}
-
-	if (begin < ringbuffer_head)
-		return std::string(ringbuffer + begin, ringbuffer_head - begin);
-	else
-		return std::string(ringbuffer + begin, RINGBUFFER_SIZE - begin) + std::string(ringbuffer, ringbuffer_head);
-}
-
-static void addToLogbuffer(int level, const std::string &log)
-{
-	addToLogbuffer(log.c_str(), log.size());
-}
+/* Defined in bsod.cpp */
+void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2);
 
 static const std::string getConfigString(const std::string &key, const std::string &defaultValue)
 {
@@ -86,7 +39,7 @@ static const std::string getConfigString(const std::string &key, const std::stri
 			std::string line;
 			std::getline(in, line);
 			size_t size = key.size();
-			if (!key.compare(0, size, line) && line[size] == '=') {
+			if (!line.compare(0, size, key) && line[size] == '=') {
 				value = line.substr(size + 1);
 				break;
 			}
@@ -97,17 +50,25 @@ static const std::string getConfigString(const std::string &key, const std::stri
 	return value;
 }
 
-static bool getConfigBool(const std::string &key, bool defaultValue)
+static const std::string stringFromFile(const char* filename)
 {
-	std::string value = getConfigString(key, defaultValue ? "true" : "false");
-	const char *cvalue = value.c_str();
+	std::string retval = "";
+	std::string newline = "";
+	std::ifstream in(filename);
 
-	if (!strcasecmp(cvalue, "true"))
-		return true;
-	if (!strcasecmp(cvalue, "false"))
-		return false;
-
-	return defaultValue;
+	if (in.good()) {
+		do {
+			std::string line;
+			std::getline(in, line);
+			if(line.length() > 0) {
+				retval += newline;
+				newline = '\n';
+				retval += line.c_str();
+			}
+		} while (in.good());
+		in.close();
+	}
+	return retval;
 }
 
 static bool bsodhandled = false;
@@ -115,65 +76,34 @@ static bool bsodhandled = false;
 void bsodFatal(const char *component)
 {
 	/* show no more than one bsod while shutting down/crashing */
-	if (bsodhandled) return;
+	if (bsodhandled)
+		return;
 	bsodhandled = true;
 
-	std::string lines = getLogBuffer();
+	if (!component)
+		component = "Enigma2";
 
-		/* find python-tracebacks, and extract "  File "-strings */
-	size_t start = 0;
-
-	std::string crash_emailaddr = CRASH_EMAILADDR;
-	std::string crash_component = "enigma2";
-	std::string boxtype = "";
-
-	if(access("/proc/stb/info/boxtype", F_OK) != -1)
-	{
-		std::ifstream in("/proc/stb/info/boxtype");
-		if (in.good())
-		{
-			std::getline(in, boxtype);
-			in.close();
-		}
-	}
-
-	if (component)
-		crash_component = component;
-	else
-	{
-		while ((start = lines.find("\n  File \"", start)) != std::string::npos)
-		{
-			start += 9;
-			size_t end = lines.find("\"", start);
-			if (end == std::string::npos)
-				break;
-			end = lines.rfind("/", end);
-				/* skip a potential prefix to the path */
-			unsigned int path_prefix = lines.find("/usr/", start);
-			if (path_prefix != std::string::npos && path_prefix < end)
-				start = path_prefix;
-
-			if (end == std::string::npos)
-				break;
-
-			std::string filename(lines.substr(start, end - start) + INFOFILE);
-			std::ifstream in(filename.c_str());
-			if (in.good()) {
-				std::getline(in, crash_emailaddr) && std::getline(in, crash_component);
-				in.close();
-			}
-		}
-	}
+	/* Retrieve current ringbuffer state */
+	const char* logp1;
+	unsigned int logs1;
+	const char* logp2;
+	unsigned int logs2;
+	retrieveLogBuffer(&logp1, &logs1, &logp2, &logs2);
 
 	FILE *f;
-	const char* crashlog_name;
+	std::string crashlog_name;
 	std::ostringstream os;
+	time_t t = time(0);
+	struct tm tm;
+	char tm_str[32];
+	localtime_r(&t, &tm);
+	strftime(tm_str, sizeof(tm_str), "%Y-%m-%d_%H-%M-%S", &tm);
 	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
 	os << "enigma2_crash_";
-	os << time(0);
+	os << tm_str;
 	os << ".log";
-	crashlog_name = os.str().c_str();
-	f = fopen(crashlog_name, "wb");
+	crashlog_name = os.str();
+	f = fopen(crashlog_name.c_str(), "wb");
 
 	if (f == NULL)
 	{
@@ -182,14 +112,14 @@ void bsodFatal(const char *component)
 		 * all night long may damage the flash. Also, usually the first
 		 * crash log is the most interesting one. */
 		crashlog_name = "/home/root/logs/enigma2_crash.log";
-		if ((access(crashlog_name, F_OK) == 0) ||
-		    ((f = fopen(crashlog_name, "wb")) == NULL))
+		if ((access(crashlog_name.c_str(), F_OK) == 0) ||
+		    ((f = fopen(crashlog_name.c_str(), "wb")) == NULL))
 		{
 			/* Re-write the same file in /tmp/ because it's expected to
 			 * be in RAM. So the first crash log will end up in /home
 			 * and the last in /tmp */
 			crashlog_name = "/tmp/enigma2_crash.log";
-			f = fopen(crashlog_name, "wb");
+			f = fopen(crashlog_name.c_str(), "wb");
 		}
 	}
 
@@ -199,90 +129,33 @@ void bsodFatal(const char *component)
 		struct tm tm;
 		char tm_str[32];
 
-		bool detailedCrash = getConfigBool("config.crash.details", true);
-
 		localtime_r(&t, &tm);
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
-		XmlGenerator xml(f);
+		fprintf(f,
+					"Enigma2 Crashlog\n\n"
+					"Crashdate = %s\n\n"
+					"%s\n"
+					"Compiled = %s\n"
+					"Skin = %s\n"
+					"Component = %s\n\n"
+					"Kernel CMDline = %s\n"
+					"Nim Sockets = %s\n",
+					tm_str,
+					stringFromFile("/etc/image-version").c_str(),
+					__DATE__,
+					getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
+					component,
+					stringFromFile("/proc/cmdline").c_str(),
+					stringFromFile("/proc/bus/nim_sockets").c_str()
+				);
 
-		xml.open("easygui");
-
-		xml.open("enigma2");
-		xml.string("crashdate", tm_str);
-		xml.string("compiledate", __DATE__);
-		xml.string("component", crash_component);
-		xml.string("contactemail", crash_emailaddr);
-		xml.comment("Please email this crashlog to above address");
-
-		xml.string("skin", getConfigString("config.skin.primary_skin", "Default Skin"));
-		xml.string("sourcedate", enigma2_date);
-		xml.string("version", PACKAGE_VERSION);
-		xml.close();
-
-		xml.open("image");
-		if(access("/proc/stb/info/boxtype", F_OK) != -1) {
-			xml.stringFromFile("stbmodel", "/proc/stb/info/boxtype");
-		}
-		else if (access("/proc/stb/info/vumodel", F_OK) != -1) {
-			xml.stringFromFile("stbmodel", "/proc/stb/info/vumodel");
-		}
-		else if (access("/proc/stb/info/model", F_OK) != -1) {
-			xml.stringFromFile("stbmodel", "/proc/stb/info/model");
-		}
-		xml.cDataFromCmd("kernelversion", "uname -a");
-		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
-		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
-		xml.cDataFromFile("imageversion", "/etc/image-version");
-		xml.cDataFromFile("imageissue", "/etc/issue.net");
-		xml.close();
-
-		if (detailedCrash)
-		{
-			xml.open("software");
-			xml.cDataFromCmd("enigma2software", "opkg list-installed 'enigma2*'");
-			if (access("/proc/stb/info/vumodel", F_OK) != -1) {
-				xml.cDataFromCmd("vuplussoftware", "opkg list-installed 'vuplus*'");
-			}
-			if (access("/proc/stb/info/model", F_OK) != -1) {
-				xml.cDataFromCmd("dreamboxsoftware", "opkg list-installed 'dream*'");
-			}
-			if (access("/proc/stb/info/azmodel", F_OK) != -1) {
-				xml.cDataFromCmd("azboxboxsoftware", "opkg list-installed 'az*'");
-			}
-			if (access("/proc/stb/info/gbmodel", F_OK) != -1) {
-				xml.cDataFromCmd("gigabluesoftware", "opkg list-installed 'gb*'");
-			}
-			if (access("/proc/stb/info/hwmodel", F_OK) != -1) {
-				xml.cDataFromCmd("technomatesoftware", "opkg list-installed 'tm*'");
-			}
-			if (boxtype.substr(0,2) == "et") {
-				xml.cDataFromCmd("xtrendsoftware", "opkg list-installed 'et*'");
-			}
-			if (boxtype.substr(0,3) == "ini") {
-				xml.cDataFromCmd("inisoftware", "opkg list-installed 'ini*'");
-			}
-			if (boxtype.substr(0,2) == "xp") {
-				xml.cDataFromCmd("maxdigitalsoftware", "opkg list-installed 'xp*'");
-			}
-			if (boxtype.substr(0,4) == "odin") {
-				xml.cDataFromCmd("odinsoftware", "opkg list-installed 'odin*'");
-			}
-			if (boxtype.substr(0,4) == "ebox") {
-				xml.cDataFromCmd("eboxsoftware", "opkg list-installed 'ebox*'");
-			}
-			if (boxtype.substr(0,4) == "ixus") {
-				xml.cDataFromCmd("medialinksoftware", "opkg list-installed 'ixuss*'");
-			}
-			xml.cDataFromCmd("gstreamersoftware", "opkg list-installed 'gst*'");
-			xml.close();
-		}
-
-		xml.open("crashlogs");
-		xml.cDataFromString("enigma2crashlog", getLogBuffer());
-		xml.close();
-
-		xml.close();
+		/* dump the log ringbuffer */
+		fprintf(f, "\n\n");
+		if (logp1)
+			fwrite(logp1, 1, logs1, f);
+		if (logp2)
+			fwrite(logp2, 1, logs2, f);
 
 		fclose(f);
 	}
@@ -296,42 +169,73 @@ void bsodFatal(const char *component)
 		p.setBackgroundColor(gRGB(0x010000));
 		p.setForegroundColor(gRGB(0xFFFFFF));
 
-		ePtr<gFont> font = new gFont("Regular", 20);
+		int hd =  my_dc->size().width() == 1920;
+		ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
 		p.setFont(font);
 		p.clear();
 
-		eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
+		eRect usable_area = eRect(hd ? 30 : 100, hd ? 30 : 70, my_dc->size().width() - (hd ? 60 : 150), hd ? 150 : 100);
 
 		os.str("");
 		os.clear();
 		os << "We are really sorry. Your receiver encountered "
 			"a software problem, and needs to be restarted.\n"
-			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
+			"Please upload the crash log " << crashlog_name << " to the Beyonwiz forum.\n"
 			"Your receiver will restart in 10 seconds!\n"
-			"Component: " << crash_component;
+			"Component: " << component;
 
 		p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
-		usable_area = eRect(100, 170, my_dc->size().width() - 180, my_dc->size().height() - 20);
+		std::string logtail;
+		int lines = 20;
 
-		int i;
-
-		start = std::string::npos + 1;
-		for (i=0; i<20; ++i)
+		if (logp2)
 		{
-			start = lines.rfind('\n', start - 1);
-			if (start == std::string::npos)
-			{
-				start = 0;
-				break;
+			unsigned int size = logs2;
+			while (size) {
+				const char* r = (const char*)memrchr(logp2, '\n', size);
+				if (r) {
+					size = r - logp2;
+					--lines;
+					if (!lines) {
+						logtail = std::string(r, logs2 - size);
+						break;
+					} 
+				}
+				else {
+					logtail = std::string(logp2, logs2);
+					break;
+				}
 			}
 		}
 
-		font = new gFont("Regular", 14);
-		p.setFont(font);
+		if (lines && logp1)
+		{
+			unsigned int size = logs1;
+			while (size) {
+				const char* r = (const char*)memrchr(logp1, '\n', size);
+				if (r) {
+					--lines;
+					size = r - logp1;
+					if (!lines) {
+						logtail += std::string(r, logs1 - size);
+						break;
+					} 
+				}
+				else {
+					logtail += std::string(logp1, logs1);
+					break;
+				}
+			}
+		}
 
-		p.renderText(usable_area,
-			lines.substr(start), gPainter::RT_HALIGN_LEFT);
+		if (!logtail.empty())
+		{
+			font = new gFont("Regular", hd ? 21 : 14);
+			p.setFont(font);
+			usable_area = eRect(hd ? 30 : 100, hd ? 180 : 170, my_dc->size().width() - (hd ? 60 : 180), my_dc->size().height() - (hd ? 30 : 20));
+			p.renderText(usable_area, logtail, gPainter::RT_HALIGN_LEFT);
+		}
 		sleep(10);
 	}
 
@@ -355,7 +259,7 @@ void oops(const mcontext_t &context)
 	int i;
 	for (i=0; i<32; i += 4)
 	{
-		eDebug("%08x %08x %08x %08x",
+		eDebug("    %08x %08x %08x %08x",
 			(int)context.gregs[i+0], (int)context.gregs[i+1],
 			(int)context.gregs[i+2], (int)context.gregs[i+3]);
 	}
@@ -396,7 +300,7 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 	oops(uc->uc_mcontext);
 #endif
 	print_backtrace();
-	eDebug("-------");
+	eDebug("-------FATAL SIGNAL (%d)", signum);
 	bsodFatal("enigma2, signal");
 }
 
@@ -413,9 +317,4 @@ void bsodCatchSignals()
 	sigaction(SIGILL, &act, 0);
 	sigaction(SIGBUS, &act, 0);
 	sigaction(SIGABRT, &act, 0);
-}
-
-void bsodLogInit()
-{
-	logOutput.connect(addToLogbuffer);
 }

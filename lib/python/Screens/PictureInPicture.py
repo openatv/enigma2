@@ -1,4 +1,5 @@
 from Screens.Screen import Screen
+from Screens.Dish import Dishpip
 from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer
 from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
@@ -52,6 +53,7 @@ class PictureInPicture(Screen):
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
+		self.dishpipActive = session.instantiateDialog(Dishpip)
 		self.currentService = None
 		self.currentServiceReference = None
 
@@ -74,7 +76,9 @@ class PictureInPicture(Screen):
 	def __del__(self):
 		del self.pipservice
 		self.setExternalPiP(False)
-		self.setSizePosMainWindow(0,0,0,0)
+		self.setSizePosMainWindow()
+		if hasattr(self, "dishpipActive") and self.dishpipActive is not None:
+			self.dishpipActive.setHide()
 
 	def relocate(self):
 		x = config.av.pip.value[0]
@@ -175,13 +179,15 @@ class PictureInPicture(Screen):
 		ref = self.resolveAlternatePipService(service)
 		if ref:
 			if self.isPlayableForPipService(ref):
-				print "playing pip service", ref and ref.toString()
+				print "[PictureInPicture] playing pip service", ref and ref.toString()
 			else:
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text = _("No free tuner!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+					Notifications.AddPopup(text = _("No free tuner available!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
 				return False
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(1):
+				if hasattr(self, "dishpipActive") and self.dishpipActive is not None:
+					self.dishpipActive.startPiPService(ref)
 				self.pipservice.start()
 				self.currentService = service
 				self.currentServiceReference = ref
@@ -191,7 +197,7 @@ class PictureInPicture(Screen):
 				self.currentService = None
 				self.currentServiceReference = None
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text = _("Incorrect type service for PiP!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+					Notifications.AddPopup(text = _("Incorrect service type for PiP!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
 		return False
 
 	def getCurrentService(self):

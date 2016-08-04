@@ -10,5 +10,5 @@ class Volume(Screen):
 		self["Volume"] = self.volumeBar
 
 	def setValue(self, vol):
-		print "setValue", vol
+		print "[Volume] setValue", vol
 		self.volumeBar.setValue(vol)
