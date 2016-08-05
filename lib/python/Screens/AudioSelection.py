@@ -180,12 +180,6 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.autovolume.addNotifier(self.changeAutoVolume, initial_call = False)
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
-			if SystemInfo["Canedidchecking"]:
-				choice_list = [("00000001", _("on")), ("00000000", _("off"))]
-				self.settings.bypass_edid_checking = ConfigSelection(choices = choice_list, default = config.av.bypass_edid_checking.value)
-				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
-				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
-
 			from Components.PluginComponent import plugins
 			from Plugins.Plugin import PluginDescriptor
 
@@ -307,11 +301,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		if autovolume.value:
 			config.av.autovolume.value = autovolume.value
 		config.av.autovolume.save()
-
-	def changeEDIDChecking(self, edidchecking):
-		if edidchecking.value:
-			config.av.bypass_edid_checking.value = edidchecking.value
-		config.av.bypass_edid_checking.save()
 
 	def changeAC3Downmix(self, downmix):
 		if downmix.value:
