@@ -37,10 +37,13 @@ class RotorPosition(Converter, object):
 	text = property(getText)
 
 	def isMotorizedTuner(self):
-		for x in nimmanager.nim_slots:
-			for sat in nimmanager.getRotorSatListForNim(x.slot):
-				if sat[0]:
-					return (True, x.slot)
+		try:
+			for x in nimmanager.nim_slots:
+				for sat in nimmanager.getRotorSatListForNim(x.slot):
+					if sat[0]:
+						return (True, x.slot)
+		except:
+			pass
 		return (False, None)
 
 	def actualizeCfgLastRotorPosition(self):
