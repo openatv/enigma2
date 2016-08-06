@@ -307,16 +307,16 @@ int heterodyne(iDVBFrontend &frontend, int rf, int lof)
 	return ifreq;
 }
 
-RESULT eDVBSatelliteEquipmentControl::prepareRFmagicCSS(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offest)
+RESULT eDVBSatelliteEquipmentControl::prepareRFmagicCSS(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offset)
 {
 	bool simulate = ((eDVBFrontend*)&frontend)-> is_simulate();
-	int vco = roundMulti(lnb_param.SatCRvco + guard_offest + ifreq, 1000);
+	int vco = roundMulti(lnb_param.SatCRvco + guard_offset + ifreq, 1000);
 	tunerfreq = heterodyne(frontend, ifreq, vco);
 	unsigned int positions = lnb_param.SatCR_positions ? lnb_param.SatCR_positions : 1;
 	unsigned int posnum = (lnb_param.SatCR_positionnumber > 0)										// position == 0 -> use first position
 				&& (lnb_param.SatCR_positionnumber <= MAX_EN50607_POSITIONS) ?  lnb_param.SatCR_positionnumber - 1 : 0;
 
-	tuningword = (((roundMulti(vco - lnb_param.SatCRvco - 2*guard_offest - 100000, 1000)/1000)&0x07FF)<<8)
+	tuningword = (((roundMulti(vco - lnb_param.SatCRvco - 2*guard_offset - 100000, 1000)/1000)&0x07FF)<<8)
 			| (band & 0x3)						//Bit0:HighLow  Bit1:VertHor
 			| ((posnum & 0x3F) << 2)				//position number (0..63)
 			| ((lnb_param.SatCR_idx & 0x1F) << 19);			//addresse of SatCR (0..31)
@@ -326,10 +326,10 @@ RESULT eDVBSatelliteEquipmentControl::prepareRFmagicCSS(iDVBFrontend &frontend, 
 	return vco;
 }
 
-RESULT eDVBSatelliteEquipmentControl::prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offest)
+RESULT eDVBSatelliteEquipmentControl::prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offset)
 {
 	bool simulate = ((eDVBFrontend*)&frontend)->is_simulate();
-	int vco = roundMulti(lnb_param.SatCRvco + ifreq + guard_offest, 4000);
+	int vco = roundMulti(lnb_param.SatCRvco + ifreq + guard_offset, 4000);
 	tunerfreq = heterodyne(frontend, ifreq, vco);
 	unsigned int positions = lnb_param.SatCR_positions ? lnb_param.SatCR_positions : 1;
 	unsigned int posnum = (lnb_param.SatCR_positionnumber > 0)							// position == 0 -> use position A
