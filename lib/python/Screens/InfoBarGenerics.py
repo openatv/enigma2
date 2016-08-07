@@ -4164,7 +4164,7 @@ class InfoBarTimerButton:
 class InfoBarAspectSelection: 
 	STATE_HIDDEN = 0 
 	STATE_ASPECT = 1 
-	STATE_RESOLUTION = 2 
+	STATE_RESOLUTION = 2
 	def __init__(self): 
 		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", 
 			{ 
@@ -4201,28 +4201,10 @@ class InfoBarAspectSelection:
 
 	def aspectSelection(self):
 		selection = 0
-		tlist = []
-		tlist.append((_("Resolution"), "resolution"))
-		tlist.append(("--", ""))
-		try:
-			policy = open("/proc/stb/video/policy_choices").read()[:-1].rstrip()
-		except IOError:
-			print "couldn't read available policymodes."
-			policy_available = [ ]
-			return
-		policy_available = policy.split(' ')
-		for x in policy_available:
-			tlist.append((x[0].upper() + x[1:], _(x)))
-
-		mode = open("/proc/stb/video/policy").read()[:-1]
-		print mode
+		tlist= [(_("Resolution"), "resolution"),("--", ""),(_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
 		for x in range(len(tlist)):
-			if tlist[x][1] == mode:
-				selection = x
-
+			selection = x
 		keys = ["green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
-
-
 		self.session.openWithCallback(self.aspectSelected, ChoiceBox, title=_("Please select an aspect ratio..."), list = tlist, selection = selection, keys = keys)
 
 	def aspectSelected(self, aspect):
@@ -4233,18 +4215,9 @@ class InfoBarAspectSelection:
 				elif aspect[1] == "resolution":
 					self.ExGreen_toggleGreen()
 				else:
-					if aspect[1] == "letterbox":
-						f = open("/proc/stb/video/policy", "w")
-						f.write("panscan")
-						f.close()
-					elif aspect[1] == "panscan":
-						f = open("/proc/stb/video/policy", "w")
-						f.write("letterbox")
-						f.close()
-					else:
-						f = open("/proc/stb/video/policy", "w")
-						f.write(aspect[1])
-						f.close()
+					from Components.AVSwitch import AVSwitch
+					iAVSwitch = AVSwitch()
+					iAVSwitch.setAspectRatio(int(aspect[1]))
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()

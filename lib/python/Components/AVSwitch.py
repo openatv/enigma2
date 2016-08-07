@@ -354,7 +354,7 @@ class AVSwitch:
 		return aspect[0] * fb_size.height(), aspect[1] * fb_size.width()
 
 	def setAspectRatio(self, value):
-		pass
+		eAVSwitch.getInstance().setAspectRatio(value)
 
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.value
@@ -477,13 +477,13 @@ def InitAVSwitch():
 	def setAspectRatio(configElement):
 		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox" : 6}
 		iAVSwitch.setAspectRatio(map[configElement.value])
-	
+
 	iAVSwitch.setInput("ENCODER") # init on startup
 	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue' , 'twinboxlcd' )) or about.getModelString() == 'et6000':
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
-	
+
 	SystemInfo["ScartSwitch"] = detected
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
