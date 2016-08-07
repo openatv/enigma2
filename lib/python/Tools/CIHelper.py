@@ -1,6 +1,6 @@
 from xml.etree.cElementTree import parse
 from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
-from enigma import eDVBCIInterfaces, eEnv, eServiceCenter, eServiceReference
+from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference
 from timer import TimerEntry
 import NavigationInstance 
 
@@ -10,6 +10,8 @@ class CIHelper:
 
 	CI_ASSIGNMENT_LIST = None
 	CI_ASSIGNMENT_SERVICES_LIST = None
+	CI_MULTIDESCRAMBLE = None
+	CI_MULTIDESCRAMBLE_MODULES = ("AlphaCrypt", )
 
 	def parse_ci_assignment(self):
 		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
@@ -102,6 +104,37 @@ class CIHelper:
 					return True
 		return False
 
+	def canMultiDescramble(self, ref):
+		if self.CI_MULTIDESCRAMBLE is None:
+			no_ci = eDVBCIInterfaces.getInstance().getNumOfSlots()
+			if no_ci > 0:
+				self.CI_MULTIDESCRAMBLE = False
+				for ci in range(no_ci):
+					appname = eDVBCI_UI.getInstance().getAppName(ci)
+					if appname in self.CI_MULTIDESCRAMBLE_MODULES:
+						self.CI_MULTIDESCRAMBLE = True
+		elif self.CI_MULTIDESCRAMBLE == False:
+			return False
+			
+		if self.CI_ASSIGNMENT_LIST is not None and len(self.CI_ASSIGNMENT_LIST):
+			for x in self.CI_ASSIGNMENT_LIST:
+				if ref.toString() in x[1][0]:
+					appname = eDVBCI_UI.getInstance().getAppName(x[0])
+					if appname in self.CI_MULTIDESCRAMBLE_MODULES:
+						return True
+			for x in self.CI_ASSIGNMENT_LIST:
+				f_providers = x[1][1]
+				if len(f_providers):
+					providers = []
+					for prov in f_providers:
+						providers.append(prov[0])
+					provider_services_refs = self.getProivderServices(providers)
+					if ref in provider_services_refs:
+						appname = eDVBCI_UI.getInstance().getAppName(x[0])
+						if appname in self.CI_MULTIDESCRAMBLE_MODULES:
+							return True
+		return False
+
 	def isPlayable(self, service):
 		service = eServiceReference(service)
 		if NavigationInstance.instance.getRecordings():
@@ -114,7 +147,12 @@ class CIHelper:
 							timerservice = timer.service_ref.ref
 							if timerservice != service:
 								if self.ServiceIsAssigned(timerservice):
-									return 0
+									if self.canMultiDescramble(service):
+										for x in (4, 2, 3):
+											if  timerservice.getUnsignedData(x) !=  service.getUnsignedData(x):
+												return 0
+									else:
+										return 0
 		return 1
 
 cihelper = CIHelper()

@@ -420,7 +420,7 @@ void eDBoxLCD::update()
 					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 					fclose(boxtype_file);
 				}
-				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0))
+				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0))
 				{
 					//gggrrrrrbbbbbggg bit order from memory
 					//gggbbbbbrrrrrggg bit order to LCD
