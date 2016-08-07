@@ -2130,7 +2130,7 @@ msgid "Open the movie list"
 msgstr "Filmliste öffnen"
 
 msgid "Continues"
-msgstr "Dauert"
+msgstr "Endlos"
 
 msgid "Continues play (loop)"
 msgstr "Endlos (Schleife)"
@@ -14099,6 +14099,22 @@ msgstr "Links, umgebrochen"
 msgid "right, wrapped"
 msgstr "Rechts, umgebrochen"
 
+#: setup.xml
+msgid "Red button"
+msgstr "Rote-Taste"
+
+#: setup.xml
+msgid "Green button"
+msgstr "Grüne-Taste"
+
+#: setup.xml
+msgid "Yellow button"
+msgstr "Gelbe-Taste"
+
+#: setup.xml
+msgid "Blue button"
+msgstr "Blaue-Taste"
+
 #
 msgid "When nonzero, a recording will start earlier than the starting time as indicated by the EPG."
 msgstr "Die Angabe im EPG für eine Aufnahme wird entsprechend früher gestartet in Minuten."
@@ -16950,6 +16966,42 @@ msgstr "Ausführen in "
 #: UsageConfig.py
 msgid "Execute after current event"
 msgstr "Ausführen nach der Sendung"
+
+#: UsageConfig.py
+msgid "Add/Remove Timer"
+msgstr "Timer hinzufügen/entfernen"
+
+#: UsageConfig.py
+msgid "24+ Hours"
+msgstr "+24 Stunden"
+
+#: UsageConfig.py
+msgid "24- Hours"
+msgstr "-24 Stunden"
+
+#: UsageConfig.py
+msgid "IMDB search"
+msgstr "IMDB Suche"
+
+#: UsageConfig.py
+msgid "Show Movies List"
+msgstr "Filmliste"
+
+#: UsageConfig.py
+msgid "Record - same as record button"
+msgstr "Aufnahme - wie Aufnahme-Taste"
+
+#: UsageConfig.py
+msgid "Goto Date/Timer"
+msgstr "Gehe zu Datum/Zeit"
+
+#: gEPG/ButtonText
+msgid "Goto Date/Time"
+msgstr "Datum/Zeit"
+
+#: UsageConfig.py
+msgid "EPG search"
+msgstr "EPG Suche"
 
 #: SleepTimerEdit.py
 msgid "Timer is activated: +%d min"

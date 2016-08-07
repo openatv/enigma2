@@ -110,10 +110,10 @@
 		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
 	</screen>
 	<screen name="JobView_summary" position="0,0" size="132,64">
-		<widget source="parent.summary_job_name" render="Label" position="0,4" size="120,42" font="Regular;16" />
+<!-- 		<widget source="parent.summary_job_name" render="Label" position="0,4" size="120,42" font="Regular;16" />
 		<widget source="parent.summary_job_task" render="Label" position="0,22" size="120,26" font="Regular;12" />
-		<widget source="parent.summary_job_progress" render="Progress" position="0,50" size="60,12" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="Regular;12" zPosition="2" transparent="1">
+		<widget source="parent.summary_job_progress" render="Progress" position="0,50" size="60,12" borderWidth="1" zPosition="1" /> -->
+		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="132,64" font="Regular;12" zPosition="2" transparent="1">
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
@@ -152,11 +152,18 @@
 	
 <!-- EMC  -->
 	<screen name="EMCSelection_summary" position="0,0" size="132,64">
-		<widget source="parent.Service" render="RollerCharLCD" position="0,0" size="124,32" font="Regular;18" />
+		<widget source="parent.Service" render="Label" position="0,0" size="132,64" font="Regular;18" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="132,1">
 			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+	</screen>
+	<screen name="MovieMenu_summary" position="0,0" size="132,64">
+		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
+			<convert type="StringListSelection" />
 		</widget>
 	</screen>
 
@@ -166,7 +173,6 @@
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 	</screen>
-
 <!-- ATV -->
 <!-- Quickmenü -->
 	<screen name="QuickMenu_summary" position="0,0" size="132,64">
@@ -176,9 +182,20 @@
 	<screen name="Infopanel_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
-<!-- Powertimer -->
+<!-- Timer -->
 	<screen name="TimerEntry_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />       
+	</screen>
+	<screen name="TimerEditListSummary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />       
+	</screen>
+<!-- AutoTimer -->
+	<screen name="AutoTimerOverviewSummary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />       
+	</screen>
+<!-- PowerTimerEditListSummary -->
+	<screen name="PowerTimerEditListSummary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="fill" size="120,20" font="Regular;18" />       
 	</screen>
 <!-- LanguageSelection -->
 	<screen name="LanguageSelection_summary" position="0,0" size="132,64">
