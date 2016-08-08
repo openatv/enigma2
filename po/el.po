@@ -1066,7 +1066,7 @@ msgid "Toggle Digital downmix..."
 msgstr "Εναλλαγή Ψηφιακής Μίξης Ήχου"
 
 msgid "Red button..."
-msgstr "Κόκκινο κουμπί..."
+msgstr "Κόκκινο πλήκτρο..."
 
 msgid "Softcam-Panel..."
 msgstr "Πίνακας-Softcam..."
@@ -13679,6 +13679,22 @@ msgstr "αριστερά, σε αναδίπλωση"
 msgid "right, wrapped"
 msgstr "δεξιά, σε αναδίπλωση"
 
+#: setup.xml
+msgid "Red button"
+msgstr "Κόκκινο πλήκτρο"
+
+#: setup.xml
+msgid "Green button"
+msgstr "Πράσινο πλήκτρο"
+
+#: setup.xml
+msgid "Yellow button"
+msgstr "Κίτρινο πλήκτρο"
+
+#: setup.xml
+msgid "Blue button"
+msgstr "Μπλε πλήκτρο"
+
 #
 msgid ""
 "When nonzero, a recording will start earlier than the starting time as "
@@ -15278,7 +15294,7 @@ msgstr ""
 
 #: ButtonSetup.py
 msgid "Click on your remote on the button you want to change"
-msgstr "Πιέστε το κουμπί που θέλετε να αλλάξετε στο τηλεχειριστήριό σας"
+msgstr "Πιέστε το πλήκτρο που θέλετε να αλλάξετε στο τηλεχειριστήριό σας"
 
 #: ButtonSetup.py
 msgid "Info (EPG)"
@@ -16622,6 +16638,42 @@ msgstr "Εκτέλεση σε "
 #: UsageConfig.py
 msgid "Execute after current event"
 msgstr "Εκτέλεση μετά το τρέχον πρόγραμμα"
+
+#: UsageConfig.py
+msgid "Add/Remove Timer"
+msgstr "Προσθήκη/Αφαίρεση Χρονοδιακόπτη"
+
+#: UsageConfig.py
+msgid "24+ Hours"
+msgstr "24+ Ώρες"
+
+#: UsageConfig.py
+msgid "24- Hours"
+msgstr "24- Ώρες"
+
+#: UsageConfig.py
+msgid "IMDB search"
+msgstr "Αναζήτηση IMDb"
+
+#: UsageConfig.py
+msgid "Show Movies List"
+msgstr "Εμφάνιση Λίστας Ταινιών"
+
+#: UsageConfig.py
+msgid "Record - same as record button"
+msgstr "Εγγραφή - όπως στο πλήκτρο εγγραφής"
+
+#: UsageConfig.py
+msgid "Goto Date/Timer"
+msgstr "Μετάβαση σε Ημερομηνία/Χρονοδιακόπτη"
+
+#: gEPG/ButtonText
+msgid "Goto Date/Time"
+msgstr "Μετάβαση σε Ημερομηνία/Ώρα"
+
+#: UsageConfig.py
+msgid "EPG search"
+msgstr "Αναζήτηση στο EPG"
 
 #: SleepTimerEdit.py
 msgid "Timer is activated: +%d min"
