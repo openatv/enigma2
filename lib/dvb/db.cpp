@@ -669,28 +669,26 @@ void eDVBDB::saveServicelist(const char *file)
 		ch.m_frontendParameters->getFlags(flags);
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
+			fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d",
+				sat.frequency, sat.symbol_rate,
+				sat.polarisation, sat.fec,
+				sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
+				sat.inversion, flags);
+
 			if (sat.system == eDVBFrontendParametersSatellite::System_DVB_S2)
 			{
-				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
-					sat.frequency, sat.symbol_rate,
-					sat.polarisation, sat.fec,
-					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
-					sat.inversion,
-					flags,
-					sat.system,
-					sat.modulation,
-					sat.rolloff,
-					sat.pilot,
-					sat.is_id, sat.pls_code & 0x3FFFF, sat.pls_mode & 3);
+				fprintf(f, ":%d:%d:%d:%d",
+					sat.system, sat.modulation, sat.rolloff, sat.pilot);
+
+				if (sat.is_id != NO_STREAM_ID_FILTER ||
+					(sat.pls_code & 0x3FFFF) != eDVBFrontendParametersSatellite::PLS_Root ||
+					(sat.pls_mode & 3) != 0)
+				{
+					fprintf(f, ":%d:%d:%d",
+						sat.is_id, sat.pls_code & 0x3FFFF, sat.pls_mode & 3);
+				}
 			}
-			else
-			{
-				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d\n",
-					sat.frequency, sat.symbol_rate,
-					sat.polarisation, sat.fec,
-					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
-					sat.inversion, flags);
-			}
+			fprintf(f, "\n");
 		}
 		else if (!ch.m_frontendParameters->getDVBT(ter))
 		{
