@@ -498,14 +498,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 # From here on we are checking whether to put the box into Standby or
 # Deep Standby.
-# Don't even *bother* checking this if a playback is in progress
-# (unless we are in Standby - in which case it isn't really in playback)
+# Don't even *bother* checking this if a playback is in progress or an
+# IPTV channel is active (unless we are in Standby - in which case it
+# isn't really in playback or active)
 # ....just say the timer has been handled.
 # Trying to back off isn't worth it as backing off in Record timers
 # currently only refers to *starting* a recording.
 #
-			from Screens.InfoBar import MoviePlayer
-			if (not Screens.Standby.inStandby) and (MoviePlayer.instance is not None):
+			from Components.Converter.ClientsStreaming import ClientsStreaming;
+			if (not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and
+				('0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or
+				 '4097:' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString())
+			    ):
 				return True
 
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
@@ -525,6 +529,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 #
 				from Components.Converter.ClientsStreaming import ClientsStreaming;
 				if int(ClientsStreaming("NUMBER").getText()) > 0:
+					if not Screens.Standby.inStandby: # not already in standby
+						Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox,
+							 _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
+							 + _("\n(DeepStandby request changed to Standby owing to there being streaming clients.)"), timeout = 180)
 					return True
 #
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
