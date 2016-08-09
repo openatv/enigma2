@@ -440,7 +440,11 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	int i = 0;
 	std::string output = "";
 
-	//eDebug("[convertDVBUTF8] table=0x%02X tsidonid=0x%08X data[0]=0x%02X len=%d data=%s", table, tsidonid, data[0], len, std::string((char*)data, len).c_str());
+	//eDebug("[convertDVBUTF8] table=0x%02X tsidonid=0x%08X len=%d data[0..14]]=%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X data=%s",
+	//	table, tsidonid, len,
+	//	data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7],
+	//	data[8], data[9], data[10], data[11], data[12], data[13], data[14],
+	//	std::string((char*)data, len).c_str());
 
 	if (tsidonid)
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
@@ -608,7 +612,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	if (pconvertedLen && *pconvertedLen < len)
 		eDebug("[convertDVBUTF8] %d chars converted, and %d chars left..", *pconvertedLen, len-*pconvertedLen);
-	//eDebug("[convertDVBUTF8] output:%s\n",output.c_str());
+	//eDebug("[convertDVBUTF8] table=0x%02X twochar=%d output:%s\n", table, useTwoCharMapping, output.c_str());
 	return output;
 }
 
