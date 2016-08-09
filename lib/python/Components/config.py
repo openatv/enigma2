@@ -1365,25 +1365,30 @@ class ConfigSlider(ConfigElement):
 		self.max = limits[1]
 		self.increment = increment
 
-	def checkValues(self):
-		if self.value < self.min:
-			self.value = self.min
-
-		if self.value > self.max:
-			self.value = self.max
+	def checkValues(self, value = None):
+		if value is None:
+			value = self.value
+		if value < self.min:
+			value = self.min
+		elif value > self.max:
+			value = self.max
+		if self.value != value:		#avoid call of setter if value not changed
+			self.value = value
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:
-			self.value -= self.increment
+			tmp = self.value - self.increment
 		elif key == KEY_RIGHT:
-			self.value += self.increment
+			tmp = self.value + self.increment
 		elif key == KEY_HOME:
 			self.value = self.min
+			return
 		elif key == KEY_END:
 			self.value = self.max
+			return
 		else:
 			return
-		self.checkValues()
+		self.checkValues(tmp)
 
 	def getText(self):
 		return "%d / %d" % (self.value, self.max)
