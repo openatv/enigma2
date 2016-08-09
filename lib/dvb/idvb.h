@@ -299,11 +299,13 @@ public:
 		dxHoldName=8,
 		dxNewFound=64,
 		dxIsDedicated3D=128,
+		dxHideVBI=512,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
 	bool isHidden() const { return m_flags & dxDontshow; }
 	bool isDedicated3D() const { return m_flags & dxIsDedicated3D; }
+	bool doHideVBI() const { return m_flags & dxHideVBI; }
 
 	CAID_LIST m_ca;
 

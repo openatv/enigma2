@@ -59,7 +59,8 @@ except:
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64
-FLAG_IS_DEDICATED_3D = 128 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
+FLAG_IS_DEDICATED_3D = 128
+FLAG_HIDE_VBI = 512 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
 
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
@@ -200,6 +201,10 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("Unmark service as a dedicated 3D service"), self.removeDedicated3DFlag), level=0)
 						else:
 							append_when_current_valid(current, menu, (_("Mark service as a dedicated 3D service"), self.addDedicated3DFlag), level=0)
+					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
+						append_when_current_valid(current, menu, (_("Remove hide VBI line for this service"), self.removeHideVBIFlag), level=0)
+					else:
+						append_when_current_valid(current, menu, (_("Hide VBI line for this service"), self.addHideVBIFlag), level=0)
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
 						if bouquets is None:
@@ -310,6 +315,18 @@ class ChannelContextMenu(Screen):
 		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_IS_DEDICATED_3D)
 		eDVBDB.getInstance().reloadBouquets()
 		self.set3DMode(False)
+		self.close()
+
+	def addHideVBIFlag(self):
+		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)
+		eDVBDB.getInstance().reloadBouquets()
+		Screens.InfoBar.InfoBar.instance.showHideVBI()
+		self.close()
+
+	def removeHideVBIFlag(self):
+		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)
+		eDVBDB.getInstance().reloadBouquets()
+		Screens.InfoBar.InfoBar.instance.showHideVBI()
 		self.close()
 
 	def isProtected(self):
