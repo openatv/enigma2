@@ -4541,10 +4541,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 	if ( m_MHWReader )
 		m_MHWReader->stop();
 	if (haveData)
-	{
 		finishEPG();
-		cache->save();
-	}
 }
 
 void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
@@ -4971,10 +4968,7 @@ abort:
 	if ( m_MHWReader2 )
 		m_MHWReader2->stop();
 	if (haveData)
-	{
 		finishEPG();
-		cache->save();
-	}
 }
 
 void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
