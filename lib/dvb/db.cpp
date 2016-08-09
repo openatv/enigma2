@@ -513,7 +513,7 @@ static eServiceReferenceDVB parseServiceRefData(const char *line)
 				service_type);
 }
 
-static void loadServiceListV5(FILE * f)
+void eDVBDB::loadServiceListV5(FILE * f)
 {
 	char line[1024];
 	int tcount = 0;
