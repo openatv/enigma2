@@ -1,5 +1,6 @@
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
+#include <lib/gdi/epoint.h>
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
 #include <sstream>
@@ -233,6 +234,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 			if (local_style)
 			{
 				text_offset += local_style->m_text_offset;
+//HACK VTI hat hier scheinbar einen Fehler und addiert den Textoffset zweimal auf, also machen wir das hier auch so
+				if (local_style->m_use_vti_workaround)
+					text_offset += local_style->m_text_offset;
 
 				if (local_style->m_valign == eListboxStyle::alignTop)
 					flags |= gPainter::RT_VALIGN_TOP;
@@ -250,7 +254,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				else if (local_style->m_halign == eListboxStyle::alignBlock)
 					flags |= gPainter::RT_HALIGN_BLOCK;
 			}
-
+			eDebug("[adenin]paint %s",string);
 			painter.renderText(eRect(text_offset, m_itemsize),
 			 string, flags, border_color, border_size);
 		}
@@ -397,8 +401,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *configitemstring = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
 			Py_XDECREF(text);
-			eSize itemsize = eSize(m_itemsize.width()-10, m_itemsize.height());
-			ePoint textoffset = ePoint(offset.x()+5, offset.y());
+			eSize itemsize = eSize(m_itemsize.width(), m_itemsize.height());
+			ePoint textoffset = ePoint(offset.x(), offset.y());
 
 				/* when we have no label, align value to the left. (FIXME:
 				   don't we want to specifiy this individually?) */
@@ -429,7 +433,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					/* convert type to string */
 				ePyObject type = PyTuple_GET_ITEM(value, 0);
 				const char *atype = (type && PyString_Check(type)) ? PyString_AsString(type) : 0;
-
+				eDebug("[adenin] check text");
 				if (atype)
 				{
 					if (!strcmp(atype, "text"))
@@ -439,13 +443,21 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						eRect tmp = eRect(textoffset, itemsize);
 						eTextPara *para = new eTextPara(tmp);
 						para->setFont(fnt2);
+						eDebug("[adenin] text %s", value);
 						para->renderString(value);
 						valueWidth = para->getBoundBox().width();
-
 						painter.setFont(fnt2);
-						painter.renderText(eRect(textoffset, itemsize), value, (value_alignment_left ?
-							gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT) |
-							gPainter::RT_VALIGN_CENTER, border_color, border_size);
+						ePoint text_offset = textoffset;
+
+						int flags = (value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
+
+						if (local_style)
+							if (flags & gPainter::RT_HALIGN_LEFT)
+								text_offset += local_style->m_text_offset;
+							if (flags & gPainter::RT_HALIGN_RIGHT)
+								text_offset = ePoint(textoffset.x() - local_style->m_text_offset.x(), text_offset.y() + local_style->m_text_offset.y());
+
+						painter.renderText(eRect(text_offset, itemsize), value, flags, border_color, border_size);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
@@ -479,9 +491,11 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
-						ePtr<eTextPara> para = new eTextPara(eRect(textoffset, itemsize));
+						ePoint text_offset = textoffset;
+						ePtr<eTextPara> para = new eTextPara(eRect(text_offset, itemsize));
 						para->setFont(fnt2);
-						para->renderString(text, gPainter::RT_VALIGN_CENTER);
+						eDebug("[adenin] mtext %s", text);
+						para->renderString(text);
 						para->realign(value_alignment_left ? eTextPara::dirLeft : eTextPara::dirRight);
 						int glyphs = para->size();
 
@@ -507,8 +521,11 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							else
 							{
 								if (last+1 != num && last != -1) {
-									bbox = eRect(left, textoffset.y(), right-left,
-										itemsize.height());
+									bbox = eRect(
+									left - (local_style ? local_style->m_text_offset.x() : 0)
+									, textoffset.y()
+									, right-left
+									, itemsize.height());
 									painter.fill(bbox);
 								}
 								para->setGlyphFlag(num, GS_INVERT);
@@ -518,13 +535,25 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 								right = bbox.left() + bbox.width();
 								last = num;
 							}
-							/* entry is borrowed */
+							// entry is borrowed
 						}
 						if (last != -1) {
-							bbox = eRect(left, textoffset.y(), right-left, itemsize.height());
+							bbox = eRect(
+								left - (local_style ? local_style->m_text_offset.x() : 0)
+								, textoffset.y()
+								, right-left, itemsize
+								.height());
 							painter.fill(bbox);
 						}
-						painter.renderPara(para, ePoint(0, 0));
+						if(local_style)
+						{
+							if(value_alignment_left)				//dirLeft
+								painter.renderPara(para, ePoint(local_style->m_text_offset.x(), local_style->m_text_offset.y()));
+							else							//dirRight
+								painter.renderPara(para, ePoint(- (local_style->m_text_offset.x()), local_style->m_text_offset.y()));
+						}
+						else
+							painter.renderPara(para, ePoint(0, 0));
 						/* pvalue is borrowed */
 						/* plist is 0 or borrowed */
 					}
@@ -535,11 +564,20 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			if (value)
 				Py_DECREF(value);
 
-			valueWidth = valueWidth + 10;
 			if (valueWidth > itemsize.width()) { valueWidth = itemsize.width(); }
 			painter.setFont(fnt);
-			painter.renderText(eRect(textoffset, eSize (itemsize.width()-valueWidth,itemsize.height())),
-				configitemstring, gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
+			ePoint text_offset = textoffset;
+
+			int flags = gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER;
+
+			if (local_style)
+				if (flags & gPainter::RT_HALIGN_LEFT)
+					text_offset = ePoint(textoffset.x() + local_style->m_text_offset.x(), text_offset.y());
+				if (flags & gPainter::RT_HALIGN_RIGHT)
+					text_offset = ePoint(textoffset.x() - local_style->m_text_offset.x(), text_offset.y() + local_style->m_text_offset.y());
+			eDebug("[adenin] configitemstring %s",configitemstring);
+			painter.renderText(eRect(text_offset, eSize (itemsize.width()-valueWidth,itemsize.height())),
+				configitemstring, flags, border_color, border_size);
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))
@@ -904,6 +942,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				painter.setFont(m_font[fnt]);
+				eDebug("[adenin]paint %s",string);
 				painter.renderText(rect, string, flags,
 				 border_color, border_size);
 				painter.clippop();

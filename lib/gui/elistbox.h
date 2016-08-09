@@ -84,6 +84,7 @@ struct eListboxStyle
 	int m_valign, m_halign, m_border_size, m_sliderborder_size, m_scrollbarsliderborder_size;
 	ePtr<gFont> m_font, m_secondfont;
 	ePoint m_text_offset;
+	bool m_use_vti_workaround;
 };
 #endif
 
@@ -156,6 +157,7 @@ public:
 	void setVAlign(int align);
 	void setHAlign(int align);
 	void setTextOffset(const ePoint &textoffset);
+	void setUseVTIWorkaround(void);
 
 	void setSliderBorderColor(const gRGB &col);
 	void setSliderBorderWidth(int size);

@@ -34,6 +34,7 @@ constant_widgets = {}
 variables = {}
 DEFAULT_SKIN = "MetrixHD/skin.xml"
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+isVTISkin = False
 
 def dump(x, i=0):
 	print " " * i + str(x)
@@ -452,6 +453,9 @@ class AttributeParser:
 				"disable_onhide": 0x01,
 			}[value])
 	def title(self, value):
+		global isVTISkin
+		if value[:3].lower() == "vti":
+			isVTISkin = True
 		self.guiObject.setTitle(_(value))
 	def text(self, value):
 		self.guiObject.setText(_(value))
@@ -587,10 +591,16 @@ class AttributeParser:
 		except KeyError:
 			print "halign must be either left, center, right or block!, not %s. Please contact the skin's author!" % value
 	def textOffset(self, value):
+		global isVTISkin
 		if value in variables:
 			value = variables[value]
 		x, y = value.split(',')
+		print"[adenin]isVTI", isVTISkin
+		print"[adenin]setTextOffset",value
+		print"[adenin]scaleTuple",self.scaleTuple
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scaleTuple[0][0] / self.scaleTuple[0][1], int(y) * self.scaleTuple[1][0] / self.scaleTuple[1][1]))
+		if isVTISkin:
+			self.guiObject.setUseVTIWorkaround()
 	def flags(self, value):
 		if value in variables:
 			value = variables[value]
@@ -909,10 +919,9 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		getDesktop(style_id).setMargins(r)
 
 dom_screens = {}
-
 def loadSkin(name, scope = SCOPE_SKIN):
 	# Now a utility for plugins to add skin data to the screens
-	global dom_screens, display_skin_id
+	global dom_screens, display_skin_id, isVTISkin
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		path = os.path.dirname(filename) + "/"
@@ -920,6 +929,8 @@ def loadSkin(name, scope = SCOPE_SKIN):
 		for elem in xml.etree.cElementTree.parse(file).getroot():
 			if elem.tag == 'screen':
 				name = elem.attrib.get('name', None)
+				if name[:3].lower() == "vti":
+					isVTISkin = True
 				if name:
 					sid = elem.attrib.get('id', None)
 					if sid and (sid != display_skin_id):
@@ -938,6 +949,7 @@ def loadSkin(name, scope = SCOPE_SKIN):
 
 def loadSkinData(desktop):
 	# Kinda hackish, but this is called once by mytest.py
+	global isVTISkin
 	global dom_skins
 	skins = dom_skins[:]
 	skins.reverse()
@@ -946,6 +958,8 @@ def loadSkinData(desktop):
 		for elem in dom_skin:
 			if elem.tag == 'screen':
 				name = elem.attrib.get('name', None)
+				if name[:3].lower() == "vti":
+					isVTISkin = True
 				if name:
 					sid = elem.attrib.get('id', None)
 					if sid and (sid != display_skin_id):
