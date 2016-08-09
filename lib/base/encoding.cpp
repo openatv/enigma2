@@ -8,32 +8,32 @@
 eDVBTextEncodingHandler encodingHandler;  // the one and only instance
 int defaultEncodingTable = 1;   // the one and only instance
 
-inline char toupper(char c)
+inline char tolower(char c)
 {
-	return (c >= 'a' && c <= 'z') ? c - ('a' - 'A') : c;
+	return (c >= 'A' && c <= 'Z') ? c + ('a' - 'A') : c;
 }
 
 int mapEncoding(char *s_table)
 {
 	int encoding = 0;
 
-	// table name will be in uppercase!
-	if (sscanf(s_table, "ISO8859-%d", &encoding) == 1)
+	// table name will be in lowercase!
+	if (sscanf(s_table, "iso8859-%d", &encoding) == 1)
 		return encoding;
-	if (sscanf(s_table, "ISO%d", &encoding) == 1 and encoding == 6937)
+	if (sscanf(s_table, "iso%d", &encoding) == 1 and encoding == 6937)
 		return 0;
-	if (strcmp(s_table, "GB2312") == 0 || strcmp(s_table, "GBK") == 0
-		|| strcmp(s_table, "GB18030") == 0 || strcmp(s_table, "CP936") == 0)
+	if (strcmp(s_table, "gb2312") == 0 || strcmp(s_table, "gbk") == 0
+		|| strcmp(s_table, "gb18030") == 0 || strcmp(s_table, "cp936") == 0)
 		return GB18030_ENCODING;
-	if (strcmp(s_table, "BIG5") == 0 || strcmp(s_table, "CP950") == 0)
+	if (strcmp(s_table, "big5") == 0 || strcmp(s_table, "cp950") == 0)
 		return BIG5_ENCODING;
-	if (strcmp(s_table, "UTF8") == 0 || strcmp(s_table, "UTF-8") == 0)
+	if (strcmp(s_table, "utf8") == 0 || strcmp(s_table, "utf-8") == 0)
 		return UTF8_ENCODING;
-	if (strcmp(s_table, "UNICODE") == 0)
+	if (strcmp(s_table, "unicode") == 0)
 		return UNICODE_ENCODING;
-	if (strcmp(s_table, "UTF16BE") == 0)
+	if (strcmp(s_table, "utf16be") == 0)
 		return UTF16BE_ENCODING;
-	if (strcmp(s_table, "UTF16LE") == 0)
+	if (strcmp(s_table, "utf16le") == 0)
 		return UTF16LE_ENCODING;
 	else
 		eDebug("[eDVBTextEncodingHandler] unsupported table in encoding.conf: %s. ", s_table);
@@ -64,20 +64,20 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 					break; // skip rest of line
 				if (j == 0 && line[i] > 0 && line[i] <= ' ')
 					continue;       //skip non-printable char and whitespace in head
-				line[j++] = toupper(line[i]); // so countrycodes are always uppercase
+				line[j++] = tolower(line[i]); // countrycodes are always lowercase, same as are used in event and epgcache !
 			}
 			if (j == 0)
 				continue;       // skip 'empty' lines
 			line[j] = 0;
 
 			int tsid, onid, encoding = -1;
-			if (sscanf(line, "0X%x 0X%x %s", &tsid, &onid, s_table) == 3
+			if (sscanf(line, "0x%x 0x%x %s", &tsid, &onid, s_table) == 3
 				  || sscanf(line, "%d %d %s", &tsid, &onid, s_table) == 3 ) {
 				encoding = mapEncoding(s_table);
 				if (encoding != -1)
 					m_TransponderDefaultMapping[(tsid<<16)|onid] = encoding;
 			}
-			else if (sscanf(line, "0X%x 0X%x", &tsid, &onid) == 2
+			else if (sscanf(line, "0x%x 0x%x", &tsid, &onid) == 2
 					|| sscanf(line, "%d %d", &tsid, &onid) == 2 ) {
 				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
 				encoding = 0; // avoid spurious error message
