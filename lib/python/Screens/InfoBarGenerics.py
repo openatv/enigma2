@@ -253,12 +253,15 @@ class InfoBarScreenSaver:
 			self.ScreenSaverTimerStart()
 			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
+class HideVBILine(Screen):
+	skin = """<screen position="0,0" size="%s,%s" backgroundColor="0" flags="wfNoBorder"/>""" % (getDesktop(0).size().width() * 2/3, getDesktop(0).size().height() / 360 + 1)
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
 class SecondInfoBar(Screen):
 	ADD_TIMER = 0
 	REMOVE_TIMER = 1
 
-class HideVBILine(Screen):
-	skin = """<screen position="0,0" size="%s,%s" backgroundColor="0" flags="wfNoBorder"/>""" % (getDesktop(0).size().width() * 2/3, getDesktop(0).size().height() / 360 + 1)
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["epg_description"] = ScrollLabel()
@@ -530,7 +533,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.onExecBegin.append(self.__onExecBegin)
 
 	def __onExecBegin(self):
-		self.clearScreenPath()
 		self.showHideVBI()
 
 	def __layoutFinished(self):
