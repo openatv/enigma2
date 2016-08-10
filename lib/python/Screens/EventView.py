@@ -3,7 +3,6 @@ from time import localtime, mktime, time, strftime
 from enigma import eEPGCache, eTimer, eServiceReference, ePoint
 
 from Screens.Screen import Screen
-from Screens.TimerEdit import TimerSanityConflict
 from Screens.ChoiceBox import ChoiceBox
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -21,6 +20,10 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
+try:
+	from Screens.TimerEdit import TimerSanityConflict
+except: # maybe already been imported from another module
+	pass
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, menu):

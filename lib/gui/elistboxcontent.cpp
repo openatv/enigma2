@@ -473,17 +473,39 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						valueWidth = (itemsize.width() - m_seperation -40) * value / size;
 						int height = itemsize.height();
 
-							/* draw slider */
+
+						/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
-						painter.fill(eRect(textoffset.x() + m_seperation, offset.y() + height/6, valueWidth, height*2/3));
+
+						ePoint slider_offset = textoffset;
+						ePoint text_offset = textoffset;
+						int flags = (value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT) | gPainter::RT_VALIGN_CENTER;
+
+						if (local_style)
+							if (flags & gPainter::RT_HALIGN_LEFT)
+								text_offset += local_style->m_text_offset;
+							if (flags & gPainter::RT_HALIGN_RIGHT)
+							{
+								text_offset = ePoint(text_offset.x() - local_style->m_text_offset.x(), text_offset.y() + local_style->m_text_offset.y());
+								slider_offset = ePoint(slider_offset.x() - local_style->m_text_offset.x(), slider_offset.y());
+								valueWidth -= local_style->m_text_offset.x();
+							}
+							if (flags & gPainter::RT_VALIGN_CENTER)
+							{
+								slider_offset = ePoint(slider_offset.x(), slider_offset.y() + height/6);
+							}
+
+						painter.fill(eRect(slider_offset.x() + m_seperation, slider_offset.y(), valueWidth, height*2/3));
 						
 							/* draw text value at the end of the slider*/
 						std::ostringstream sin;
 						sin << value;
 						std::string cvalue = sin.str();
 						painter.setFont(fnt2);
-						painter.renderText(eRect(offset, m_itemsize), cvalue, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT | gPainter::RT_VALIGN_CENTER);
+
+
+						painter.renderText(eRect(text_offset, m_itemsize), cvalue, flags);
  
 
 							/* pvalue is borrowed */
@@ -572,9 +594,9 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 			if (local_style)
 				if (flags & gPainter::RT_HALIGN_LEFT)
-					text_offset = ePoint(textoffset.x() + local_style->m_text_offset.x(), text_offset.y());
+					text_offset = ePoint(text_offset.x() + local_style->m_text_offset.x(), text_offset.y());
 				if (flags & gPainter::RT_HALIGN_RIGHT)
-					text_offset = ePoint(textoffset.x() - local_style->m_text_offset.x(), text_offset.y() + local_style->m_text_offset.y());
+					text_offset = ePoint(text_offset.x() - local_style->m_text_offset.x(), text_offset.y() + local_style->m_text_offset.y());
 			eDebug("[adenin] configitemstring %s",configitemstring);
 			painter.renderText(eRect(text_offset, eSize (itemsize.width()-valueWidth,itemsize.height())),
 				configitemstring, flags, border_color, border_size);

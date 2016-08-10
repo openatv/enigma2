@@ -4,6 +4,7 @@ from Components.Label import Label
 from Components.config import config
 from Components.PowerTimerList import PowerTimerList, gettimerType, getafterEvent
 from Components.Sources.StaticText import StaticText
+from Components.Sources.ServiceEvent import ServiceEvent
 from PowerTimer import PowerTimerEntry, AFTEREVENT
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
@@ -43,6 +44,7 @@ class PowerTimerEditList(Screen):
 		self["key_blue"] = Button(" ")
 
 		self["description"] = Label()
+		self["ServiceEvent"] = ServiceEvent()
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{

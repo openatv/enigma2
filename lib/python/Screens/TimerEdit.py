@@ -7,11 +7,14 @@ from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.StaticText import StaticText
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
+from Screens.EventView import EventViewSimple
 from Screens.TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from Tools.FuzzyDate import FuzzyTime
@@ -51,6 +54,8 @@ class TimerEditList(Screen):
 		self["key_blue"] = Button(" ")
 
 		self["description"] = Label()
+		self["ServiceEvent"] = ServiceEvent()
+		self["Event"] = Event()
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{
@@ -221,6 +226,12 @@ class TimerEditList(Screen):
 		for cb in self.onChangedEntry:
 			cb(name, time, duration, service, state)
 
+		if config.usage.timerlist_show_epg.value:
+			event = self.getEPGEvent(cur)
+			if event:
+				self["Event"].newEvent(event)
+				self["ServiceEvent"].newService(cur.service_ref.ref)
+
 	def fillTimerList(self):
 		#helper function to move finished timers to end of list
 		def eol_compare(x, y):
@@ -236,6 +247,45 @@ class TimerEditList(Screen):
 			list.sort(cmp = eol_compare)
 		else:
 			list.sort(key = lambda x: x[0].begin)
+
+	def getEPGEvent(self, timer):
+		event = None
+		if timer:
+			event_id = None
+			epgcache = eEPGCache.getInstance()
+			if hasattr(timer, "eit") and timer.eit:
+				event = epgcache.lookupEventId(timer.service_ref.ref, timer.eit)
+			if not event:
+				if isinstance(timer.service_ref, str):
+					ref = timer.service_ref
+				else:
+					ref = timer.service_ref.ref.toString()
+				begin = timer.begin + config.recording.margin_before.value*60
+				duration = (timer.end - begin - config.recording.margin_after.value*60) / 60
+				if duration <= 0:
+					duration = 30 # it seems to be a reminder or a justplay timer without end time, so search epg events for the next 30 min
+				list = epgcache.lookupEvent([ 'IBDT', (ref, 0, begin, duration) ])
+				if len(list):
+					for epgevent in list:
+						if timer.name.startswith(epgevent[3]):
+							event_id = epgevent[0]
+							break
+					if not event_id and timer.begin != timer.end: # no match at title search --> search in time span
+						for epgevent in list:
+							if  timer.end >= (begin + epgevent[2]) and timer.begin <= epgevent[1]:
+								event_id = epgevent[0]
+								break
+					if event_id:
+						event = epgcache.lookupEventId(timer.service_ref.ref, event_id)
+		return event
+
+	def openEventView(self):
+		event = None
+		timer = self["timerlist"].getCurrent()
+		if timer:
+			event = self.getEPGEvent(timer)
+		if event:
+			self.session.openWithCallback(self.refill, EventViewSimple, event, timer.service_ref)
 
 	def showLog(self):
 		cur=self["timerlist"].getCurrent()
