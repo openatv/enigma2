@@ -591,9 +591,10 @@ class EPGList(HTMLComponent, GUIComponent):
 				piconWidth = w - 2 * self.serviceBorderWidth
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
-			self.weekday_rect = Rect(0, 0, float(width * 10) / 100, height)
-			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width * 25) / 100, height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width * 62) / 100, height)
+			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
+			self.weekday_rect = Rect(0, 0, int(fontSize * 2.3), height)
+			self.datetime_rect = Rect(self.weekday_rect.width(), 0, int(fontSize * 5.8), height)
+			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, width - self.datetime_rect.left() - self.datetime_rect.width(), height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -1205,6 +1206,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		test = [ 'RIBDT', (service.ref.toString(), 0, epg_time, -1) ]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
+		self.recalcEntrySize()
 		if t != epg_time:
 			idx = 0
 			for x in self.list:

@@ -87,11 +87,12 @@ class Setup(ConfigListScreen, Screen):
 			self.setup_title = x.get("title", "").encode("UTF-8")
 			self.seperation = int(x.get('separation', '0'))
 
-	def __init__(self, session, setup, plugin=None):
+	def __init__(self, session, setup, plugin=None, menu_path=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
+		self["menu_path_compressed"] = StaticText()
 		self['footnote'] = Label(_("* = Restart Required"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -101,6 +102,7 @@ class Setup(ConfigListScreen, Screen):
 		self.item = None
 		self.setup = setup
 		self.plugin = plugin
+		self.menu_path = menu_path
 		list = []
 
 		self.refill(list)
@@ -199,7 +201,16 @@ class Setup(ConfigListScreen, Screen):
 			self["config"].invalidate(self["config"].getCurrent())
 
 	def layoutFinished(self):
-		self.setTitle(_(self.setup_title))
+		if config.usage.show_menupath.value == 'large' and self.menu_path:
+			title = self.menu_path + _(self.setup_title)
+			self["menu_path_compressed"].setText("")
+		elif config.usage.show_menupath.value == 'small' and self.menu_path:
+			title = _(self.setup_title)
+			self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+		else:
+			title = _(self.setup_title)
+			self["menu_path_compressed"].setText("")
+		self.setTitle(title)
 
 	# for summary:
 	def changedEntry(self):

@@ -13,7 +13,7 @@ config.misc.pluginlist.eventinfo_order = ConfigText(default="")
 config.misc.pluginlist.extension_order = ConfigText(default="")
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var=""):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var="", menu_path=""):
 		if not list: list = []
 		if not skin_name: skin_name = []
 		Screen.__init__(self, session)
@@ -32,6 +32,8 @@ class ChoiceBox(Screen):
 			self['tl_red'] = Pixmap()
 			self['tl_yellow'] = Pixmap()
 			self['tl_green'] = Pixmap()
+		if skin_name and 'SoftwareUpdateChoices' in skin_name:
+			self["menu_path_compressed"] = StaticText(menu_path)
 
 		if title:
 			title = _(title)
@@ -131,9 +133,13 @@ class ChoiceBox(Screen):
 		self.onShown.append(self.onshow)
 
 	def onshow(self):
-		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var and self.var in ('unstable', 'updating', 'stable', 'unknown'):
-			status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'inprogress': _('ERROR:   Check is already running in background, please wait a few minutes and try again'), 'unknown': _('No connection')}
-			self['feedStatusMSG'].setText(status_msgs[self.var])
+		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var:
+			from Components.OnlineUpdateCheck import feedsstatuscheck
+			if self.var in feedsstatuscheck.feed_status_msgs:
+				status_text = feedsstatuscheck.feed_status_msgs[self.var]
+			else:
+				status_text = _('Feeds status: Unexpected')
+			self['feedStatusMSG'].setText(status_text)
 			self['tl_off'].hide()
 			self['tl_red'].hide()
 			self['tl_yellow'].hide()

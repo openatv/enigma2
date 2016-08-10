@@ -5,6 +5,7 @@ from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
 from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 from Components.PluginComponent import plugins
+from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -176,11 +177,22 @@ def getButtonSetupFunctions():
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
-	def __init__(self, session, args=None):
+	def __init__(self, session, menu_path="", args=None):
 		Screen.__init__(self, session)
+		screentitle = _("Button setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self['description'] = Label(_('On your remote, click on the button you want to change'))
 		self.session = session
-		self.setTitle(_("Button setup"))
 		self.list = []
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
 		for x in ButtonSetupKeys:

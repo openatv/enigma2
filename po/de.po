@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-02 21:36+0100\n"
-"PO-Revision-Date: 2016-06-04 11:03+0200\n"
+"POT-Creation-Date: 2016-07-27 16:09+0200\n"
+"PO-Revision-Date: 2016-07-27 20:46+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -690,9 +690,6 @@ msgstr ""
 "Timeraufnahme fehlgeschlagen.\n"
 "Programm beenden und erneut versuchen?\n"
 
-msgid "A/V settings"
-msgstr "A/V Einstellungen"
-
 msgid "AAC downmix"
 msgstr "AAC Downmix"
 
@@ -711,9 +708,15 @@ msgstr "AFP Einstellungen"
 msgid "AFP setup"
 msgstr "AFP Einstellungen"
 
+msgid "AGC:"
+msgstr ""
+
 #, python-format
 msgid "AV aspect is %s."
 msgstr "AV Aspect ist %s."
+
+msgid "AV settings"
+msgstr "A/V Einstellungen"
 
 msgid "Abort"
 msgstr "Abbrechen"
@@ -1300,6 +1303,9 @@ msgstr "Vorhandene Freigaben:"
 msgid "B"
 msgstr "B"
 
+msgid "BER:"
+msgstr ""
+
 msgid "Back"
 msgstr "Zurück"
 
@@ -1367,7 +1373,7 @@ msgid "Behavior when a movie reaches the end"
 msgstr "Verhalten beim Filmende"
 
 msgid "Big PiP"
-msgstr ""
+msgstr "Großes PiP"
 
 msgid "Bitrate:"
 msgstr "Bitrate:"
@@ -1404,6 +1410,9 @@ msgstr "Favoritenliste"
 
 msgid "Brightness"
 msgstr "Helligkeit"
+
+msgid "Brightness (Dimmed)"
+msgstr "Helligkeit (gedimmt)"
 
 msgid "Brightness (Normal)"
 msgstr "Helligkeit (Normal)"
@@ -1767,9 +1776,6 @@ msgstr "Chipsatz: BCM%s"
 msgid "Choose Bouquet"
 msgstr "Wähle Favoritenliste"
 
-msgid "Choose Tuner"
-msgstr "Wähle Tuner"
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Wähle einen TAG um Aufnahmen einfacher finden zu können."
 
@@ -2006,6 +2012,9 @@ msgstr "Konfiguriere das Verhalten beim Erreichen des Endes eines Films bei der 
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Konfiguriere die Rahmenbreite für die Untertitel. Der dunkle Rand verbessert die Lesbarkeit bei hellerem Hintergrund."
 
+msgid "Configure the brightness level of the front panel display for dimmed operation."
+msgstr "Konfiguriere die Helligkeit des Frontpanels bei gedimmten Betrieb."
+
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Konfiguriere die Helligkeit des Frontpanels bei normalem Betrieb."
 
@@ -2081,8 +2090,12 @@ msgstr "Konfiguriere den Name-Server (DNS)."
 msgid "Configure the netmask."
 msgstr "Konfiguriere die Netzwerkmaske."
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr "Konfiguriere wie viele Tage der Inhalt vom Mülleimer erhalten bleiben soll."
+msgid ""
+"Configure the number of days after which items are automatically removed from the trash can.\n"
+"A setting of 0 disables this."
+msgstr ""
+"Konfiguriere wie viele Tage der Inhalt vom Mülleimer erhalten bleiben soll.\n"
+"Eine 0 deaktiviert diese Option."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Konfiguriere wie viele Tage Timer erhalten bleiben sollen bevor sie gelöscht werden."
@@ -2634,9 +2647,6 @@ msgstr "Erkannte Geräte:"
 msgid "Detected tuners:"
 msgstr "Erkannte Tuner:"
 
-msgid "Device Information"
-msgstr "Geräteinformation"
-
 msgid "Device mounts"
 msgstr "Geräte-Mountpunkte"
 
@@ -2685,6 +2695,12 @@ msgstr "Entfernen digitaler Konturen"
 
 msgid "Digital downmix"
 msgstr "Digital Downmix"
+
+msgid "Dim delay"
+msgstr "Dimmen Verzögerung"
+
+msgid "Dim the LCD after specified time."
+msgstr "LCD nach einer bestimmten Zeit dimmen."
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
@@ -2958,6 +2974,9 @@ msgstr "ECM Zeit"
 msgid "ECM avg"
 msgstr "ECM Durchschnitt"
 
+msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
+msgstr "Wenn aktiviert werden ECM Daten in HTTP Streams eingebettet. Dies erlaubt es Klienten zu entschlüsseln."
+
 msgid "ECM last"
 msgstr "Letztes ECM"
 
@@ -3128,9 +3147,6 @@ msgstr "Aktiviere die Benutzung eines anderen Enigma2 Receivers im Netzwerk wenn
 
 msgid "Enable timer conflict detection"
 msgstr "Aktiviere Konfliktprüfung bei Timern"
-
-msgid "Enable unlinked bouquets"
-msgstr "Aktiviere nicht verbundene Favoritenlisten"
 
 msgid "Enabled"
 msgstr "Eingeschaltet"
@@ -3437,6 +3453,9 @@ msgstr ""
 msgid "FEC"
 msgstr "FEC"
 
+msgid "FEC:"
+msgstr ""
+
 msgid "FLASH"
 msgstr "FLASH"
 
@@ -3606,6 +3625,9 @@ msgstr "Frequenz Schrittweite (kHz)"
 
 msgid "Frequency steps"
 msgstr "Frequenz Schritte"
+
+msgid "Frequency:"
+msgstr "Frequenz:"
 
 msgid "Fri"
 msgstr "Fr"
@@ -4004,9 +4026,6 @@ msgstr ""
 "Verringere anschließend die Helligkeit soweit wie möglich. Stelle dabei sicher, dass die beiden untersten Grauschattierungen erkennbar bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücke OK, wenn Du mit dem Ergebnis zufrieden bist."
 
-msgid "Image Information"
-msgstr "Image Informationen"
-
 msgid "Image Manager"
 msgstr "Image Verwaltung"
 
@@ -4019,9 +4038,6 @@ msgstr "Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmend
 msgid "In progress"
 msgstr "In Bearbeitung"
 
-msgid "Inadyn Log"
-msgstr "Inadyn Log"
-
 msgid "Inadyn Setup"
 msgstr "Inadyn Einstellungen"
 
@@ -4030,6 +4046,9 @@ msgstr "Inadyn Einstellungen"
 
 msgid "Include AIT in http streams"
 msgstr "AIT in HTTP-Streams integrieren"
+
+msgid "Include ECM in http streams"
+msgstr "ECM in HTTP-Streams integrieren"
 
 msgid "Include EIT in http streams"
 msgstr "EIT in HTTP-Streams integrieren"
@@ -4354,6 +4373,9 @@ msgstr "Sprache"
 msgid "Language selection"
 msgstr "Sprachauswahl"
 
+msgid "Large"
+msgstr "Lang"
+
 msgid "Last Req."
 msgstr ""
 
@@ -4488,7 +4510,7 @@ msgstr "Wiedergabeliste laden"
 msgid "Load unlinked userbouquets"
 msgstr "Lade nicht verbundene Favoritenlisten"
 
-msgid "Load/Save/Delete"
+msgid "Load-Save-Delete"
 msgstr "Laden/Speichern/Löschen"
 
 msgid "Local box"
@@ -4502,6 +4524,12 @@ msgstr "Zielverzeichnis"
 
 msgid "Lock ratio"
 msgstr ""
+
+msgid "Lock:"
+msgstr ""
+
+msgid "Log"
+msgstr "Logs"
 
 msgid "Log Manager"
 msgstr "Log Verwaltung"
@@ -4660,9 +4688,6 @@ msgstr "Das Medium ist nicht leer!"
 msgid "Memory"
 msgstr "Speicher"
 
-msgid "Memory Information"
-msgstr "Speicherinformationen"
-
 msgid "Memory index"
 msgstr "Index Speicher"
 
@@ -4674,9 +4699,6 @@ msgstr "Menükonfiguration"
 
 msgid "Merging Timeshift files"
 msgstr "TimeShift-Dateien werden zusammengefügt"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
 msgstr "MiniDLNA Einstellungen"
@@ -4937,9 +4959,6 @@ msgstr "Netzwerk"
 
 msgid "Network ID"
 msgstr "Netzwerk ID"
-
-msgid "Network Information"
-msgstr "Netzwerkinformationen"
 
 msgid "Network MAC settings"
 msgstr "Netzwerk MAC Einstellungen"
@@ -5390,9 +5409,6 @@ msgstr "Öffne Senderliste"
 msgid "OpenVPN setup"
 msgstr "OpenVPN Einstellungen"
 
-msgid "OpenVpn Log"
-msgstr "OpenVpn Log"
-
 msgid "OpenVpn Setup"
 msgstr "OpenVPN Einstellungen"
 
@@ -5486,9 +5502,6 @@ msgstr "übergeordnetes Verzeichnis"
 
 msgid "Parental control"
 msgstr "Jugendschutz"
-
-msgid "Parental control setup"
-msgstr "Jugendschutz Einstellungen"
 
 msgid "Password"
 msgstr "Passwort"
@@ -5628,6 +5641,15 @@ msgstr "Spiele Vorheriges"
 
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
+
+msgid ""
+"Playback information missing\n"
+"Playback aborted to avoid crash\n"
+"Please retry"
+msgstr ""
+"Wiedergabeinformationen fehlen.\n"
+"Wiedergabe gestoppt um Fehler zu vermeiden.\n"
+"Bitte erneut versuchen."
 
 msgid "Playlist"
 msgstr "Playliste"
@@ -5872,6 +5894,9 @@ msgstr "Erweiterungen"
 msgid "Polarisation"
 msgstr "Polarisation"
 
+msgid "Polarisation:"
+msgstr "Polarisation:"
+
 msgid "Polarization"
 msgstr "Polarisation"
 
@@ -5941,17 +5966,11 @@ msgstr "Strom Schwellwert in mA"
 msgid "PowerManager entry"
 msgstr "PowerManager Eintrag"
 
-msgid "PowerManager log"
-msgstr "PowerManager Log"
-
 msgid "PowerMenu"
 msgstr "Ausschalt-Menü"
 
 msgid "PowerTimer List"
 msgstr "Powertimer Liste"
-
-msgid "PowerTimer Overview"
-msgstr "PowerTimer Überblick"
 
 msgid "PowerTimers"
 msgstr "PowerTimer"
@@ -6668,14 +6687,14 @@ msgstr "SID"
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
+msgid "SNR:"
+msgstr ""
+
 msgid "SPDIF"
 msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "Samba Log"
-msgstr "Samba/CIFS Log"
 
 msgid "Samba Setup"
 msgstr "Samba Einstellungen"
@@ -7453,6 +7472,9 @@ msgstr "Zeige Erweiterungen..."
 msgid "Show favourites list"
 msgstr "Zeige Favoritenliste"
 
+msgid "Show full menu path"
+msgstr "Zeige vollen Menüpfad"
+
 msgid "Show graphical multi EPG"
 msgstr "Zeige grafischen Multi-EPG"
 
@@ -7758,6 +7780,9 @@ msgstr "Langsam"
 msgid "Slow motion speeds"
 msgstr "Zeitlupengeschwindigkeiten"
 
+msgid "Small"
+msgstr "Kurz"
+
 msgid "Small progress"
 msgstr "Kleiner Fortschrittsbalken"
 
@@ -7767,7 +7792,7 @@ msgstr ""
 msgid "Social/Political/Economics"
 msgstr "Sozial/Politik/Wirtschaft"
 
-msgid "SoftCam / CI"
+msgid "SoftCam and CI"
 msgstr "CI / Softcam Einstellungen"
 
 msgid "Softcam setings"
@@ -7853,6 +7878,9 @@ msgstr "Sortieren"
 msgid "Sort EPG List"
 msgstr "Sortiere das EPG"
 
+msgid "Sort Trash by deletion time"
+msgstr "Sortiere Mülleimer nach Löschzeit"
+
 msgid "Sort by"
 msgstr "Sortiere Liste nach"
 
@@ -7916,10 +7944,10 @@ msgstr "Standard Liste:"
 msgid "Standby"
 msgstr "Bereitschaft"
 
-msgid "Standby / Restart"
+msgid "Standby / restart"
 msgstr "Bereitschaft / Neustart"
 
-msgid "Standby / restart"
+msgid "Standby and Restart"
 msgstr "Bereitschaft / Neustart"
 
 msgid "StandbyLED"
@@ -8218,6 +8246,9 @@ msgstr "Umschaltbare Tuner-Typen:"
 
 msgid "Symbol rate"
 msgstr "Symbolrate"
+
+msgid "Symbolrate:"
+msgstr "Symbolrate:"
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronisiere Zeit alle XX Minuten"
@@ -8602,7 +8633,7 @@ msgstr "Diese Option erlaubt es den HDMI EDID zu deaktivieren"
 msgid "This option allows you to change the Colorspace from Auto to RGB"
 msgstr "Dies Option erlaubt es den Farbraum von Auto auf RGB zu stellen."
 
-msgid "This option allows you to change the virtuell loadspeaker position."
+msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Dies Option erlaubt es virtuelle Lautsprecherpositionen anzugeben."
 
 msgid "This option allows you to choose from the two channel lists that are available."
@@ -8670,6 +8701,9 @@ msgstr "Diese Option erlaubt es das Aussehen vom EPG einzustellen (Text oder Gra
 
 msgid "This option allows you to show the SNR as a percentage (not all receivers support this)."
 msgstr "Diese Option erlaubt dir SNR in % anzeigen zu lassen (nicht alle Receiver unterstützen es)."
+
+msgid "This option allows you to show the full menu path"
+msgstr "Diese Option erlaubt dir den vollen Menüpfad zu zeigen"
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Diese Option erlaubt es das Bild mit den alten und neuen Werten nebeneinander anzeigen zu lassen."
@@ -8855,9 +8889,6 @@ msgstr "Timerliste"
 msgid "Timer entry"
 msgstr "Timer-Eintrag"
 
-msgid "Timer log"
-msgstr "Timer-Logbuch"
-
 msgid ""
 "Timer overlap in pm_timers.xml detected!\n"
 "Please recheck it!"
@@ -8871,9 +8902,6 @@ msgid ""
 msgstr ""
 "Timerüberlappung in der timers.xml entdeckt!\n"
 "Bitte überprüfen!"
-
-msgid "Timer overview"
-msgstr "Timer Überblick"
 
 msgid "Timer record location"
 msgstr "Timeraufnahme Verzeichnis"
@@ -9019,9 +9047,6 @@ msgstr "Spur"
 
 msgid "Transcoding: "
 msgstr "Transkodierung:"
-
-msgid "Translation Information"
-msgstr "Übersetzung Information"
 
 msgid "Translations"
 msgstr "Übersetzungen"
@@ -9328,17 +9353,24 @@ msgstr "Benutze minimale Darstellung"
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr "Benutze die Tasten Links/Rechts der Fernbedienungen um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
 
+msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgstr "Benutze die Tasten Links/Rechts um das OSD nach links/rechts zu verschieben"
+
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
 msgstr "Benutze die Tasten Links/Rechts um das OSD nach oben/unten zu verschieben"
-
-msgid "Use the Left/Right buttons on your remote to move the user inyterface left/right"
-msgstr "Benutze die Tasten Links/Rechts um das OSD nach links/rechts zu verschieben"
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Alternativen oder konventionellen Radio-Modus benutzen."
 
 msgid "Use the alternative screen"
 msgstr "Eine kleine, einfachere Darstellung benutzen"
+
+msgid ""
+"Use the deletion time to sort Trash folders.\n"
+"Most recently deleted at the top."
+msgstr ""
+"Benutze die Löschzeit um den Mülleimer zu sortieren.\n"
+"Zuletzt gelöschte Filme oben."
 
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Benutze den Netzwerkassistenten um den gewählten Adapter zu konfigurieren"
@@ -9745,9 +9777,6 @@ msgstr "Wenn aktiviert werden AIT Daten in HTTP Stream eingebettet. Dies erlaubt
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Wenn aktiviert werden EIT Daten in HTTP Streams eingebettet. Dies erlaubt es Klienten ein EPG anzuzeigen."
 
-msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Wenn aktiviert lädt Enigma2 nicht verbundene Favoritenlisten. Das heißt Favoritenlisten die vorhanden sind aber nicht in bouquets.tv oder bouquets.radio aufgeführt sind werden trotzdem geladen. Dies erlaubt es z.B. automatisch generierte oder installierte Favoritenlisten mit eigenen Erweiterungen zu versehen."
-
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Zeige Nachricht wenn ein Film endet und ein neuer Film beginnt"
 
@@ -10039,6 +10068,12 @@ msgstr "Ja, eine weitere manuelle Suche durchführen"
 
 msgid "Yes, restore the settings now"
 msgstr "Ja, die Einstellungen jetzt wiederherstellen"
+
+msgid "Yes, show delete time"
+msgstr "Ja zeige Löschzeit"
+
+msgid "Yes, show record time"
+msgstr "Ja zeige Aufnahmezeit"
 
 msgid "Yes, shut down now."
 msgstr "Ja, jetzt herunterfahren."
@@ -10569,6 +10604,12 @@ msgstr "löschen"
 
 msgid "delete cut"
 msgstr "Schnitt löschen"
+
+msgid "delete time - show delete time (Trash ONLY)"
+msgstr "Löschzeit - zeige Löschzeit (nur Mülleimer)"
+
+msgid "delete time - show record time (Trash ONLY)"
+msgstr "Löschzeit - zeige Aufnahmezeit (nur Mülleimer)"
 
 msgid "descramble and record ecm"
 msgstr "Entschlüsseln und Aufnahme ECM"
@@ -11346,9 +11387,6 @@ msgstr "traditionell (schnell)"
 msgid "true"
 msgstr "ja"
 
-msgid "uShare Log"
-msgstr "uShare Log"
-
 msgid "uShare Name"
 msgstr "uShare Name"
 
@@ -11518,6 +11556,9 @@ msgstr "umgeschaltet"
 #~ msgid "Changelog"
 #~ msgstr "Changelog"
 
+#~ msgid "Choose Tuner"
+#~ msgstr "Wähle Tuner"
+
 #~ msgid "Configure the refresh rate of the screen."
 #~ msgstr "Konfiguriere die Wiederholrate für den Bildschirm."
 
@@ -11532,6 +11573,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "DVB CI Delay"
 #~ msgstr "DVB CI Verzögerung"
+
+#~ msgid "Device Information"
+#~ msgstr "Geräteinformation"
 
 #~ msgid "Disable FastZapping"
 #~ msgstr "Deaktiviere schnelles Umschalten"
@@ -11563,6 +11607,9 @@ msgstr "umgeschaltet"
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."
 
+#~ msgid "Enable unlinked bouquets"
+#~ msgstr "Aktiviere nicht verbundene Favoritenlisten"
+
 #~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 #~ msgstr "Aktiviert ein Merkmal so das ein anderer Empfänger einen Stream entschlüsseln kann (wenn ECM Daten im Stream enthalten sind und eine Karte vorhanden ist)."
 
@@ -11587,6 +11634,18 @@ msgstr "umgeschaltet"
 #~ msgid "Get latest release image"
 #~ msgstr "Neuestes Release-Image"
 
+#~ msgid "Image Information"
+#~ msgstr "Image Informationen"
+
+#~ msgid "Inadyn Log"
+#~ msgstr "Inadyn Log"
+
+#~ msgid "Memory Information"
+#~ msgstr "Speicherinformationen"
+
+#~ msgid "MiniDLNA Log"
+#~ msgstr "MiniDLNA Log"
+
 #~ msgid "NFI image flashing"
 #~ msgstr "NFI Image Flashing"
 
@@ -11595,11 +11654,20 @@ msgstr "umgeschaltet"
 #~ "NFI Image Flashen beendet.\n"
 #~ "Drücke Gelb um neu zu starten!"
 
+#~ msgid "Network Information"
+#~ msgstr "Netzwerkinformationen"
+
 #~ msgid "No clients streaming"
 #~ msgstr "Keine streamenden Klienten"
 
 #~ msgid "No details for this image file"
 #~ msgstr "Keine Details zum Image verfügbar"
+
+#~ msgid "OpenVpn Log"
+#~ msgstr "OpenVpn Log"
+
+#~ msgid "Parental control setup"
+#~ msgstr "Jugendschutz Einstellungen"
 
 #~ msgid "Please check your network settings!"
 #~ msgstr "Bitte überprüfe die Netzwerkeinstellungen"
@@ -11610,6 +11678,12 @@ msgstr "umgeschaltet"
 #~ msgid "Please wait for activation of your network configuration..."
 #~ msgstr "Bitte warte, die Netzwerk-Konfiguration wird aktiviert."
 
+#~ msgid "PowerManager log"
+#~ msgstr "PowerManager Log"
+
+#~ msgid "PowerTimer Overview"
+#~ msgstr "PowerTimer Überblick"
+
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
 
@@ -11618,6 +11692,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "SET FAILED!\n"
 #~ msgstr "SETZEN FEHLGESCHLAGEN!\n"
+
+#~ msgid "Samba Log"
+#~ msgstr "Samba/CIFS Log"
 
 #~ msgid "Samba Network File System"
 #~ msgstr "Samba Dateisystem"
@@ -11670,6 +11747,12 @@ msgstr "umgeschaltet"
 #~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 #~ msgstr "Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware der %s %s aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-Verbindung notwendig ist. Zuerst muss ein USB-Stick vorbereitet und bootfähig gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom Update-Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn bereits ein bootfähiger USB-Stick vorbereitet wurde bitte jetzt in den USB-Port stecken. Anderenfalls bitte USB-Stick mit einer Mindestgröße von 64 MB einstecken."
 
+#~ msgid "Timer log"
+#~ msgstr "Timer-Logbuch"
+
+#~ msgid "Timer overview"
+#~ msgstr "Timer Überblick"
+
 #~ msgid ""
 #~ "To update your %s %s firmware, please follow these steps:\n"
 #~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
@@ -11681,6 +11764,9 @@ msgstr "umgeschaltet"
 #~ "2) Box einschalten und die '-' Taste am Gerät drücken.\n"
 #~ "3) Auf Neustart warten und den Anweisungen des Assistenten folgen."
 
+#~ msgid "Translation Information"
+#~ msgstr "Übersetzung Information"
+
 #~ msgid "URL of fallback remote receiver"
 #~ msgstr "URL vom Reserve Receiver"
 
@@ -11689,6 +11775,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Version:\t%s\n"
 #~ msgstr "Version:\t%s\n"
+
+#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
+#~ msgstr "Wenn aktiviert lädt Enigma2 nicht verbundene Favoritenlisten. Das heißt Favoritenlisten die vorhanden sind aber nicht in bouquets.tv oder bouquets.radio aufgeführt sind werden trotzdem geladen. Dies erlaubt es z.B. automatisch generierte oder installierte Favoritenlisten mit eigenen Erweiterungen zu versehen."
 
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "Du kannst Telnet deaktivieren und SSH benutzen."
@@ -11707,3 +11796,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "leave movie player..."
 #~ msgstr "Abspielmodus verlassen..."
+
+#~ msgid "uShare Log"
+#~ msgstr "uShare Log"

@@ -745,15 +745,24 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 				eDebug("[eDVBServicePMTHandler] no channel list");
 			else
 			{
-				eDVBChannelID chid;
+				eDVBChannelID chid, curr_chid;
 				m_reference.getChannelID(chid);
-				if (chid == m_dvb_scan->getCurrentChannelID())
+				curr_chid = m_dvb_scan->getCurrentChannelID();
+				if (chid == curr_chid)
 				{
 					m_dvb_scan->insertInto(db, true);
 					eDebug("[eDVBServicePMTHandler] sdt update done!");
 				}
 				else
+				{
 					eDebug("[eDVBServicePMTHandler] ignore sdt update data.... incorrect transponder tuned!!!");
+					if (chid.dvbnamespace != curr_chid.dvbnamespace)
+						eDebug("[eDVBServicePMTHandler] incorrect namespace. expected: %x current: %x",chid.dvbnamespace.get(), curr_chid.dvbnamespace.get());
+					if (chid.transport_stream_id != curr_chid.transport_stream_id)
+						eDebug("[eDVBServicePMTHandler] incorrect transport_stream_id. expected: %x current: %x",chid.transport_stream_id.get(), curr_chid.transport_stream_id.get());
+					if (chid.original_network_id != curr_chid.original_network_id)
+						eDebug("[eDVBServicePMTHandler] incorrect namespace. expected: %x current: %x",chid.original_network_id.get(), curr_chid.original_network_id.get());
+				}
 			}
 			break;
 		}

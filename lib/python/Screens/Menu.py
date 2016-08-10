@@ -15,12 +15,13 @@ import xml.etree.cElementTree
 
 from Screens.Setup import Setup, getSetupTitle
 
-mainmenu = _("Main menu")
-
 # read the menu
 file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
 mdom = xml.etree.cElementTree.parse(file)
 file.close()
+
+menu_path = ""
+full_menu_path = ""
 
 class MenuUpdater:
 	def __init__(self):
@@ -66,7 +67,6 @@ class Menu(Screen, ProtectedScreen):
 		# FIXME. somehow
 		if arg[0] != "":
 			exec "from " + arg[0] + " import *"
-
 		self.openDialog(*eval(arg[1]))
 
 	def nothing(self): #dummy
@@ -76,7 +76,7 @@ class Menu(Screen, ProtectedScreen):
 		self.session.openWithCallback(self.menuClosed, *dialog)
 
 	def openSetup(self, dialog):
-		self.session.openWithCallback(self.menuClosed, Setup, dialog)
+		self.session.openWithCallback(self.menuClosed, Setup, dialog, None, full_menu_path)
 
 	def addMenu(self, destList, node):
 		requires = node.get("requires")
@@ -98,6 +98,10 @@ class Menu(Screen, ProtectedScreen):
 		destList.append((MenuTitle, a, entryID, weight))
 
 	def menuClosedWithConfigFlush(self, *res):
+		global menu_path
+		menu_path = ""
+		global full_menu_path
+		full_menu_path = ""
 		configfile.save()
 		self.menuClosed(*res)
 
@@ -121,9 +125,10 @@ class Menu(Screen, ProtectedScreen):
 		weight = node.get("weight", 50)
 		for x in node:
 			if x.tag == 'screen':
+				args = 'full_menu_path'
 				module = x.get("module")
 				screen = x.get("screen")
-
+				
 				if screen is None:
 					screen = module
 
@@ -132,12 +137,11 @@ class Menu(Screen, ProtectedScreen):
 					module = "Screens." + module
 				else:
 					module = ""
-
 				# check for arguments. they will be appended to the
 				# openDialog call
-				args = x.text or ""
+				if x.text:
+					args = x.text or ""
 				screen += ", " + args
-
 				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight))
 				return
 			elif x.tag == 'plugin':
@@ -256,12 +260,28 @@ class Menu(Screen, ProtectedScreen):
 			})
 
 		a = parent.get("title", "").encode("UTF-8") or None
-		a = a and _(a)
-		if a is None:
-			a = _(parent.get("text", "").encode("UTF-8"))
-		self["title"] = StaticText(a)
-		Screen.setTitle(self, a)
+		a = a and _(a) or _(parent.get("text", "").encode("UTF-8"))
 		self.menu_title = a
+		global menu_path
+		self.menu_path_compressed = menu_path
+		if menu_path == "":
+			menu_path += a
+		elif not menu_path.endswith(a):
+			menu_path += " / " + a
+		global full_menu_path
+		full_menu_path = menu_path + ' / '
+		if config.usage.show_menupath.value == 'large':
+			Screen.setTitle(self, menu_path)
+			self["title"] = StaticText(menu_path)
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			Screen.setTitle(self, a)
+			self["title"] = StaticText(a)
+			self["menu_path_compressed"] = StaticText(self.menu_path_compressed and self.menu_path_compressed + " >" or "")
+		else:
+			Screen.setTitle(self, a)
+			self["title"] = StaticText(a)
+			self["menu_path_compressed"] = StaticText("")
 
 	def keyNumberGlobal(self, number):
 		# print "menu keyNumber:", number
@@ -273,9 +293,17 @@ class Menu(Screen, ProtectedScreen):
 			self.okbuttonClick()
 
 	def closeNonRecursive(self):
+		global menu_path
+		menu_path = self.menu_path_compressed
+		global full_menu_path
+		full_menu_path = menu_path + ' / '
 		self.close(False)
 
 	def closeRecursive(self):
+		global menu_path
+		menu_path = ""
+		global full_menu_path
+		full_menu_path = ""
 		self.close(True)
 
 	def createSummary(self):

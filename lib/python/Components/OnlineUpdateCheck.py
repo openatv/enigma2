@@ -31,7 +31,7 @@ class FeedsStatusCheck:
 		except ValueError:
 			return False
 
-	def getFeedSatus(self):
+	def getFeedStatus(self):
 		status = '1'
 		trafficLight = 'unknown'
 		if about.getIfConfig('eth0').has_key('addr') or about.getIfConfig('eth1').has_key('addr') or about.getIfConfig('wlan0').has_key('addr') or about.getIfConfig('ra0').has_key('addr'):
@@ -63,12 +63,26 @@ class FeedsStatusCheck:
 			print '[OnlineVersionCheck] ERROR: -2'
 			return -2
 
+# We need a textual mapping for all possible return states for use by 
+# SoftwareUpdate::checkNetworkState() and ChoiceBox::onshow()
+# Declared here for consistency and co-location with choices.
+#
+	feed_status_msgs = {
+		'stable':     _('Feeds status: Stable'),
+		'unstable':   _('Feeds status: Unstable'),
+		'updating':   _('Feeds status: Updating'),
+		'-2':	      _('ERROR: No network found'),
+		'403':	      _('ERROR: Forbidden'),
+		'404':	      _('ERROR: No internet found'),
+		'inprogress': _('ERROR: Check is already running in background, please wait a few minutes and try again'),
+		'unknown':    _('Feeds status: Unknown'),
+	}
 	def getFeedsBool(self):
 		global error
-		feedstatus = feedsstatuscheck.getFeedSatus()
+		feedstatus = feedsstatuscheck.getFeedStatus()
 		if feedstatus in (-2, 403, 404):
 			print '[OnlineVersionCheck] Error %s' % feedstatus
-			return feedstatus
+			return str(feedstatus)
 		elif error:
 			print '[OnlineVersionCheck] Check already in progress'
 			return 'inprogress'

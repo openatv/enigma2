@@ -4,6 +4,8 @@ from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from Components.config import config
+from Components.Sources.StaticText import StaticText
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber, supportedChannels
@@ -91,7 +93,7 @@ TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
 
 class ServiceInfo(Screen):
-	def __init__(self, session, serviceref=None):
+	def __init__(self, session, menu_path="", serviceref=None):
 		Screen.__init__(self, session)
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
@@ -105,7 +107,7 @@ class ServiceInfo(Screen):
 		}, -1)
 
 		if serviceref:
-			Screen.setTitle(self, _("Transponder Information"))
+			screentitle = _("Transponder Information")
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
@@ -114,7 +116,7 @@ class ServiceInfo(Screen):
 			self.info = None
 			self.feinfo = None
 		else:
-			Screen.setTitle(self, _("Service Information"))
+			screentitle = _("Service Information")
 			self.type = TYPE_SERVICE_INFO
 			self["key_red"] = self["red"] = Label(_("Service"))
 			self["key_green"] = self["green"] = Label(_("PIDs"))
@@ -128,6 +130,17 @@ class ServiceInfo(Screen):
 				self.info = None
 				self.feinfo = None
 
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		tlist = [ ]
 
 		self["infolist"] = ServiceInfoList(tlist)

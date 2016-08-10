@@ -21,9 +21,28 @@ from re import search
 
 
 class About(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Image Information"))
+		screentitle = _("About")
+		self.menu_path = menu_path
+		if config.usage.show_menupath.value == 'large':
+			self.menu_path += screentitle
+			title = self.menu_path
+			self["menu_path_compressed"] = StaticText("")
+			self.menu_path += ' / '
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			condtext = ""
+			if self.menu_path and not self.menu_path.endswith(' / '):
+				condtext = self.menu_path + " >"
+			elif self.menu_path:
+				condtext = self.menu_path[:-3] + " >"
+			self["menu_path_compressed"] = StaticText(condtext)
+			self.menu_path += screentitle + ' / '
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "AboutOE"
 		self.populate()
 		
@@ -96,18 +115,29 @@ class About(Screen):
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def showTranslationInfo(self):
-		self.session.open(TranslationInfo)
+		self.session.open(TranslationInfo, self.menu_path)
 
 	def showAboutReleaseNotes(self):
-		self.session.open(ViewGitLog)
+		self.session.open(ViewGitLog, self.menu_path)
 
 	def createSummary(self):
 		return AboutSummary
 
 class Devices(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Device Information"))
+		screentitle = _("Devices")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self["TunerHeader"] = StaticText(_("Detected tuners:"))
 		self["HDDHeader"] = StaticText(_("Detected devices:"))
 		self["MountsHeader"] = StaticText(_("Network servers:"))
@@ -259,9 +289,20 @@ class Devices(Screen):
 
 
 class SystemMemoryInfo(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Memory Information"))
+		screentitle = _("Memory")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = ["SystemMemoryInfo", "About"]
 		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
 		self["lab2"] = StaticText(_("By Team ViX"))
@@ -321,9 +362,20 @@ class SystemMemoryInfo(Screen):
 
 
 class SystemNetworkInfo(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Network Information"))
+		screentitle = _("Network")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = ["SystemNetworkInfo", "WlanStatus"]
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
@@ -344,6 +396,7 @@ class SystemNetworkInfo(Screen):
 		self["statuspic"] = MultiPixmap()
 		self["statuspic"].setPixmapNum(1)
 		self["statuspic"].show()
+		self["devicepic"] = MultiPixmap()
 
 		self.iface = None
 		self.createscreen()
@@ -358,7 +411,6 @@ class SystemNetworkInfo(Screen):
 				pass
 			self.resetList()
 			self.onClose.append(self.cleanup)
-		self.updateStatusbar()
 
 		self["key_red"] = StaticText(_("Close"))
 
@@ -369,6 +421,7 @@ class SystemNetworkInfo(Screen):
 										"up": self["AboutScrollLabel"].pageUp,
 										"down": self["AboutScrollLabel"].pageDown
 									})
+		self.onLayoutFinish.append(self.updateStatusbar)
 
 	def createscreen(self):
 		self.AboutText = ""
@@ -487,6 +540,7 @@ class SystemNetworkInfo(Screen):
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 		if iNetwork.isWirelessInterface(self.iface):
+			self["devicepic"].setPixmapNum(1)
 			try:
 				self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 			except:
@@ -494,6 +548,8 @@ class SystemNetworkInfo(Screen):
 				self["statuspic"].show()
 		else:
 			iNetwork.getLinkState(self.iface, self.dataAvail)
+			self["devicepic"].setPixmapNum(0)
+		self["devicepic"].show()
 
 	def dataAvail(self, data):
 		self.LinkState = None
@@ -568,11 +624,13 @@ class AboutSummary(Screen):
 
 
 class ViewGitLog(Screen):
-	def __init__(self, session, args=None):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
+		self.menu_path = menu_path
+		self.screentitle = _("OE Changes")
 		self.skinName = "SoftwareUpdateChanges"
-		self.setTitle(_("OE Changes"))
 		self.logtype = 'oe'
+		self["menu_path_compressed"] = StaticText("")
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
@@ -595,11 +653,11 @@ class ViewGitLog(Screen):
 	def changelogtype(self):
 		if self.logtype == 'oe':
 			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enigma2 Changes"))
+			self.screentitle = _("Enigma2 Changes")
 			self.logtype = 'e2'
 		else:
 			self["key_yellow"].setText(_("Show E2 Log"))
-			self.setTitle(_("OE Changes"))
+			self.screentitle = _("OE Changes")
 			self.logtype = 'oe'
 		self.getlog()
 
@@ -610,6 +668,19 @@ class ViewGitLog(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
+		if config.usage.show_menupath.value == 'large':
+			if not self.menu_path.endswith(self.screentitle):
+				self.menu_path += self.screentitle
+			title = self.menu_path
+			self["menu_path_compressed"].setText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = self.screentitle
+			self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+		else:
+			title = self.screentitle
+			self["menu_path_compressed"].setText("")
+		self.setTitle(title)
+
 		releasenotes = ""
 		fd = open('/etc/' + self.logtype + '-git.log', 'r')
 		for line in fd.readlines():
@@ -636,9 +707,20 @@ class ViewGitLog(Screen):
 
 
 class TranslationInfo(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Translation Information"))
+		screentitle = _("Translations")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)

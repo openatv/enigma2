@@ -27,10 +27,12 @@ ocram = ''
 
 
 class SoftwareUpdateChanges(Screen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		self.setTitle(_("OE Changes"))
+		self.menu_path = menu_path
+		self.screentitle = _("OE Changes")
 		self.logtype = 'oe'
+		self["menu_path_compressed"] = StaticText("")
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
@@ -68,6 +70,19 @@ class SoftwareUpdateChanges(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
+		if config.usage.show_menupath.value == 'large':
+			if not self.menu_path.endswith(self.screentitle):
+				self.menu_path += self.screentitle
+			title = self.menu_path
+			self["menu_path_compressed"].setText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = self.screentitle
+			self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+		else:
+			title = self.screentitle
+			self["menu_path_compressed"].setText("")
+		self.setTitle(title)
+
 		global ocram
 		ocramprocessed = False
 		releasenotes = gitlog.fetchlog(self.logtype)
@@ -144,7 +159,27 @@ class UpdatePlugin(Screen, ProtectedScreen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
-		Screen.setTitle(self, _("Software Update"))
+		screentitle = _("Software Update")
+		self.menu_path = args[0]
+		if config.usage.show_menupath.value == 'large':
+			self.menu_path += screentitle
+			self.title = self.menu_path
+			self.menu_path_compressed = ""
+			self.menu_path += ' / '
+		elif config.usage.show_menupath.value == 'small':
+			self.title = screentitle
+			condtext = ""
+			if self.menu_path and not self.menu_path.endswith(' / '):
+				condtext = self.menu_path + " >"
+			elif self.menu_path:
+				condtext = self.menu_path[:-3] + " >"
+			self.menu_path_compressed = condtext
+			self.menu_path += screentitle + ' / '
+		else:
+			self.title = screentitle
+			self.menu_path_compressed = ""
+		self["menu_path_compressed"] = StaticText(self.menu_path_compressed)
+		Screen.setTitle(self, self.title)
 
 		self["actions"] = ActionMap(["WizardActions"],
 		{
@@ -185,14 +220,17 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.onFirstExecBegin.append(self.checkNetworkState)
 
 	def checkNetworkState(self):
-		self.trafficLight = feedsstatuscheck.getFeedsBool()
-		status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), '-2': _('ERROR:   No network found'), '404': _('ERROR:   No internet found'), 'inprogress': _('ERROR: Check is already running in background'), 'unknown': _('Feeds status:   Unknown')}
 		self['tl_red'].hide()
 		self['tl_yellow'].hide()
 		self['tl_green'].hide()
 		self['tl_off'].hide()
+		self.trafficLight = feedsstatuscheck.getFeedsBool() 
+		if self.trafficLight in feedsstatuscheck.feed_status_msgs:
+			status_text = feedsstatuscheck.feed_status_msgs[self.trafficLight]
+		else:
+			status_text = _('Feeds status: Unexpected')
 		if self.trafficLight:
-			self['feedStatusMSG'].setText(status_msgs[str(self.trafficLight)])
+			self['feedStatusMSG'].setText(status_text)
 		if self.trafficLight == 'stable':
 			self['tl_green'].show()
 		elif self.trafficLight == 'unstable':
@@ -307,8 +345,8 @@ class UpdatePlugin(Screen, ProtectedScreen):
 					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
 					self["actions"].setEnabled(True)
-					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices", var=self.trafficLight)
-					upgrademessage.setTitle(_('Software update'))
+					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices", var=self.trafficLight, menu_path=self.menu_path_compressed)
+					upgrademessage.setTitle(self.title)
 				else:
 					self["actions"].setEnabled(True)
 					upgrademessage = self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -339,6 +377,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				if self.updating:
 					error = _("Update failed. Your %s %s does not have a working internet connection.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") +  " - " + error)
+				self["actions"].setEnabled(True)
 		elif event == IpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
 				self.channellist_name = param[0]
@@ -372,10 +411,10 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
 			self["actions"].setEnabled(True)
-			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name = "SoftwareUpdateChoices", var=self.trafficLight)
-			upgrademessage.setTitle(_('Software update'))
+			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices", var=self.trafficLight, menu_path=self.menu_path_compressed)
+			upgrademessage.setTitle(self.title)
 		elif answer[1] == "changes":
-			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)
+			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges, self.menu_path)
 		elif answer[1] == "backup":
 			self.doSettingsBackup()
 		elif answer[1] == "imagebackup":

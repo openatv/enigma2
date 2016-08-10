@@ -412,7 +412,25 @@ class RecordTimerEntry(timer.TimerEntry, object):
 							self.openChoiceActionBeforeZap()
 					else:
 						self.log(11, "zapping")
-						NavigationInstance.instance.isMovieplayerActive()
+
+# If there is a MoviePlayer active it will set things back to the
+# original channel after it finishes (which will be after we run).
+# So for that case, stop the player and defer our zap...which
+# lets the player shutdown and do all of its fiddling before we start.
+# Repeated every 1s until done.
+# IPTV bouquet playing manages on its own - it's just a service.
+# Plugins (e.g. Kodi) are another matter...currently ignored.
+# Also, could just call failureCB(True) after closing MoviePlayer...
+#
+						from Screens.InfoBar import MoviePlayer
+						if MoviePlayer.instance is not None:
+# This is one of the more wierdly named functions, it actually
+# functions as setMoviePlayerInactive
+							NavigationInstance.instance.isMovieplayerActive()
+# Since next_state is StateRunning we set self.begin
+							self.begin = time() + 1
+							return False
+
 						from Screens.ChannelSelection import ChannelSelection
 						ChannelSelectionInstance = ChannelSelection.instance
 						self.service_types = service_types_tv
@@ -477,6 +495,23 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
+
+# From here on we are checking whether to put the box into Standby or
+# Deep Standby.
+# Don't even *bother* checking this if a playback is in progress or an
+# IPTV channel is active (unless we are in Standby - in which case it
+# isn't really in playback or active)
+# ....just say the timer has been handled.
+# Trying to back off isn't worth it as backing off in Record timers
+# currently only refers to *starting* a recording.
+#
+			from Components.Converter.ClientsStreaming import ClientsStreaming;
+			if (not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and
+				('0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or
+				 '4097:' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString())
+			    ):
+				return True
+
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
 				self.keypress() #this unbinds the keypress detection
 				if not Screens.Standby.inStandby: # not already in standby
@@ -485,6 +520,21 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[RecordTimer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
+
+# Also check for someone streaming remotely - in which case we don't
+# want DEEPSTANDBY.
+# Might consider going to standby instead, but probably not worth it...
+# Also might want to back off - but that is set-up for trying to start
+# recordings, so has a low maximum delay.
+#
+				from Components.Converter.ClientsStreaming import ClientsStreaming;
+				if int(ClientsStreaming("NUMBER").getText()) > 0:
+					if not Screens.Standby.inStandby: # not already in standby
+						Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox,
+							 _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
+							 + _("\n(DeepStandby request changed to Standby owing to there being streaming clients.)"), timeout = 180)
+					return True
+#
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						quitMainloop(1)
