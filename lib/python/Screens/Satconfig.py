@@ -537,6 +537,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		return checkRecursiveConnect(self.slotid)
 
 	def keyOk(self):
+		self.stopService()
 		if self["config"].getCurrent() == self.advancedSelectSatsEntry:
 			conf = self.nimConfig.advanced.sat[int(self.nimConfig.advanced.sats.value)].userSatellitesList
 			self.session.openWithCallback(boundFunction(self.updateConfUserSatellitesList, conf), SelectSatsEntryScreen, userSatlist=conf.value)
@@ -599,7 +600,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.deleteConfirmed(confirmed)
 			break
 		else:
-			self.restoreService(_("Zap back to service before tuner setup?"))
+			self.restartPrevService()
 
 	def __init__(self, session, slotid, menu_path=""):
 		Screen.__init__(self, session)
@@ -618,7 +619,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		self.list = [ ]
 		ServiceStopScreen.__init__(self)
-		self.stopService()
 		ConfigListScreen.__init__(self, self.list)
 
 		self["key_red"] = Label(_("Close"))
@@ -684,7 +684,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if self["config"].isChanged():
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
-			self.restoreService(_("Zap back to service before tuner setup?"))
+			self.restartPrevService()
 
 	def saveAll(self):
 		if self.nim.isCompatible("DVB-S"):
@@ -708,7 +708,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			x[1].cancel()
 		# we need to call saveAll to reset the connectedTo choices
 		self.saveAll()
-		self.restoreService(_("Zap back to service before tuner setup?"))
+		self.restartPrevService()
 
 	def changeConfigurationMode(self):
 		if self.configMode:
