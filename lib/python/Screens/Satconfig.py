@@ -16,7 +16,7 @@ from Screens.ServiceStopScreen import ServiceStopScreen
 from Screens.AutoDiseqc import AutoDiseqc
 from Tools.BoundFunction import boundFunction
 
-from time import mktime, localtime
+from time import mktime, localtime, time
 from datetime import datetime
 from os import path
 
@@ -553,13 +553,13 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			conf.save()
 
 	def keySave(self):
+		self.stopService()
 		if not self.unicableconnection():
 			self.session.open(MessageBox, _("The unicable connection setting is wrong.\n Maybe recursive connection of tuners."),MessageBox.TYPE_ERROR,timeout=10)
 			return
 		if not self.checkLoopthrough():
 			self.session.open(MessageBox, _("The loopthrough setting is wrong."),MessageBox.TYPE_ERROR,timeout=10)
 			return
-
 		old_configured_sats = nimmanager.getConfiguredSats()
 		if not self.run():
 			return
@@ -782,15 +782,20 @@ class NimSelection(Screen):
 			self.session.open(MessageBox, text, MessageBox.TYPE_INFO, simple=True)
 
 	def okbuttonClick(self):
-		nim = self["nimlist"].getCurrent()
-		nim = nim and nim[3]
+		recordings = self.session.nav.getRecordings()
+		next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
+		if recordings or (next_rec_time and next_rec_time > 0 and (next_rec_time - time()) < 360):
+			self.session.open(MessageBox, _("Recording(s) are in progress or coming up in few seconds!"), MessageBox.TYPE_INFO, timeout=5, enable_input=False)
+		else:
+			nim = self["nimlist"].getCurrent()
+			nim = nim and nim[3]
 
-		nimConfig = nimmanager.getNimConfig(nim.slot)
-		if nim.isFBCLink() and nimConfig.configMode.value == "nothing" and not getLinkedSlotID(nim.slot) == -1:
-			return
+			nimConfig = nimmanager.getNimConfig(nim.slot)
+			if nim.isFBCLink() and nimConfig.configMode.value == "nothing" and not getLinkedSlotID(nim.slot) == -1:
+				return
 
-		if nim is not None and not nim.empty and nim.isSupported():
-			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot, self.menu_path)
+			if nim is not None and not nim.empty and nim.isSupported():
+				self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 
 	def NimSetupCB(self, index=None):
 		self.updateList(index)
