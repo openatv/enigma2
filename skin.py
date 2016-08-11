@@ -396,24 +396,27 @@ class AttributeParser:
 		self.desktop = desktop
 		self.scaleTuple = scale
 	def applyOne(self, attrib, value):
-		if(1==1):
-#		try:
+		try:
 			getattr(self, attrib)(value)
-#		except AttributeError:
-#			print "[SKIN] Attribute not implemented:", attrib, "value:", value
-#		except SkinError, ex:
-#			print "[SKIN] Error:", ex
+		except AttributeError:
+			print "\033[91m[SKIN] Attribute not implemented:", attrib, "value:", value,
+			print "\033[0m"
+		except SkinError, ex:
+			print "\033[91m[SKIN] Error:", ex,
+			print "\033[0m"
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
-			if(1==1):
-#			try:
+			try:
 				getattr(self, attrib)(value)
-#			except AttributeError:
-#				print "[Skin] Attribute not implemented:", attrib, "value:", value
-#			except SkinError, ex:
-#				print "[Skin] Error:", ex
-#			except:
-#				print "[Skin] Error:", attrib
+			except AttributeError:
+				print "\033[91m[Skin] Attribute not implemented:", attrib, "value:", value,
+				print "\033[0m"
+			except SkinError, ex:
+				print "\033[91m[Skin] Error:", ex,
+				print "\033[0m"
+			except:
+				print "\033[91m[Skin] Error:", attrib,
+				print "\033[0m"
 	def conditional(self, value):
 		pass
 	def position(self, value):
