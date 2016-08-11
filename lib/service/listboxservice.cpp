@@ -741,7 +741,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		}
 		if (m_record_indicator_mode == 3 && isRecorded)
 		{
-			if (m_color_set[serviceRecorded])
+			if (m_color_set[serviceRecordingColor])
+				painter.setForegroundColor(m_color[serviceRecordingColor]);
+			else if (m_color_set[serviceRecorded])
 				painter.setForegroundColor(m_color[serviceRecorded]);
 			else
 				painter.setForegroundColor(gRGB(0xb40431));
@@ -805,18 +807,30 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						text = evt->getEventName();
 						if (serviceAvail)
 						{
-							if (!selected && m_color_set[eventForeground])
-								painter.setForegroundColor(m_color[eventForeground]);
-							else if (selected && m_color_set[eventForegroundSelected])
-								painter.setForegroundColor(m_color[eventForegroundSelected]);
+							if (!selected)
+							{
+								if (serviceFallback && m_color_set[eventForegroundFallback]) // fallback receiver
+									painter.setForegroundColor(m_color[eventForegroundFallback]);
+								else if(m_color_set[serviceDescriptionColor])
+									painter.setForegroundColor(m_color[serviceDescriptionColor]);
+								else if(m_color_set[eventForeground]) //serviceDescriptionColor
+									painter.setForegroundColor(m_color[eventForeground]);
+								else	//default color (Tulip Tree)
+									painter.setForegroundColor(gRGB(0xe7b53f));
+
+							}
 							else
-								painter.setForegroundColor(gRGB(0xe7b53f));
+							{
+								if (serviceFallback && m_color_set[eventForegroundSelectedFallback])
+									painter.setForegroundColor(m_color[eventForegroundSelectedFallback]);
+								else if(m_color_set[serviceDescriptionColorSelected])
+									painter.setForegroundColor(m_color[serviceDescriptionColorSelected]);
+								else if(m_color_set[eventForeground]) //serviceDescriptionColor
+									painter.setForegroundColor(m_color[eventForegroundSelected]);
+								else	//default color (Tulip Tree)
+									painter.setForegroundColor(gRGB(0xe7b53f));
 
-							if (serviceFallback && !selected && m_color_set[eventForegroundFallback]) // fallback receiver
-								painter.setForegroundColor(m_color[eventForegroundFallback]);
-							else if (serviceFallback && selected && m_color_set[eventForegroundSelectedFallback])
-								painter.setForegroundColor(m_color[eventForegroundSelectedFallback]);
-
+							}
 						}
 						break;
 					}
