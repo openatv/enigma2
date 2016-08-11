@@ -391,8 +391,12 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 	}
 }
 
-static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int version)
+static ePtr<eDVBFrontendParameters> parseFrontendData(char* line, int version)
 {
+	char * options = strchr(line, ',');
+	if (options)
+		*options++ = '\0'; // options points to comma separated option blocks or to a '\0'
+
 	ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 	switch(line[0])
 	{
@@ -418,6 +422,20 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int vers
 			sat.modulation = modulation;
 			sat.rolloff = rolloff;
 			sat.pilot = pilot;
+			// Process optional features
+			while (options) {
+				char * next = strchr(options, ',');
+				if (next)
+					*next++ = '\0';
+				//if (strncmp(options, "FEATURE:") == 0) {
+				//	sscanf(options + strlen("FEATURE:"), "%d:%d:%d", &parm1, &parm2, &parm3);
+				//	sat.parm1 = parm1;
+				//	sat.parm2 = parm2;
+				//	sat.parm3 = parm3;
+				//}
+				//else ...
+				options = next;
+			}
 			feparm->setDVBS(sat);
 			feparm->setFlags(flags);
 			break;
@@ -554,7 +572,7 @@ void eDVBDB::loadServiceListV5(FILE * f)
 			s->m_service_name = sname;
 			s->genSortName();
 
-			if (*sdata++ == ',') // skip ','
+			if (*sdata++ == ',') // expect a ',' or '\0'.
 				parseServiceData(s, sdata);
 			addService(ref, s);
 			scount++;
