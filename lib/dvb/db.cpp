@@ -513,6 +513,58 @@ static eServiceReferenceDVB parseServiceRefData(const char *line)
 				service_type);
 }
 
+static void loadServiceListV5(FILE * f)
+{
+	char line[1024];
+	int tcount = 0;
+	int scount = 0;
+	while (fgets(line, 1024, f)) {
+		int len = strlen(line);
+		if (line[len - 1] == '\n')
+			line[len - 1] = '\0';
+		if (!strncmp(line, "t:", 2)) {		// Transponder/Channel data
+			// t:channel,frontend
+			char *fe = strchr(line, ',');
+			if (!fe)
+				continue;
+			*fe++ = '\0';
+			eDVBChannelID channelid = parseChannelData(line + 2);
+			if (!channelid)
+				continue;
+			ePtr<eDVBFrontendParameters> feparm = parseFrontendData(fe, 5);
+			if (!feparm)
+				continue;
+			addChannelToList(channelid, feparm);
+			tcount++;
+		}
+		if (!strncmp(line, "s:", 2)) {		// Service data
+			// s:serviceref,"servicename"[,servicedata]
+			char * sname = strchr(line, ',');
+			if (!sname)
+				continue;
+			*sname = '\0';
+			sname += 2;	// skip '"'
+			char * sdata = strchr(sname, '"');
+			if (!sdata)
+				continue;
+			*sdata++ = '\0';  // end string on '"'
+
+			eServiceReferenceDVB ref = parseServiceRefData(line + 2);
+			if (!ref)
+				continue;
+			ePtr<eDVBService> s = new eDVBService;
+			s->m_service_name = sname;
+			s->genSortName();
+
+			if (*sdata++ == ',') // skip ','
+				parseServiceData(s, sdata);
+			addService(ref, s);
+			scount++;
+		}
+	}
+	eDebug("loaded %d channels/transponders and %d services", tcount, scount);
+}
+
 void eDVBDB::loadServicelist(const char *file)
 {
 	eDebug("[eDVBDB] ---- opening lame channel db");
@@ -530,6 +582,11 @@ void eDVBDB::loadServicelist(const char *file)
 		return;
 	}
 	eDebug("[eDVBDB] reading services (version %d)", version);
+
+	if (version == 5) {
+		loadServiceListV5(f);
+		return;
+	}
 
 	if ((!fgets(line, sizeof(line), f)) || strcmp(line, "transponders\n"))
 	{
@@ -608,8 +665,21 @@ void eDVBDB::saveServicelist(const char *file)
 	int channels=0, services=0;
 	if (!f)
 		eFatal("[eDVBDB] couldn't save lame channel db!");
+	CFile g((filename + "5.writing").c_str(), "w");
+
 	fprintf(f, "eDVB services /4/\n");
 	fprintf(f, "transponders\n");
+
+	if (g) {
+		fprintf(g, "eDVB services /5/\n");
+		fprintf(g, "# Transponders: t:dvb_namespace:transport_stream_id:original_network_id,FEPARMS\n");
+		fprintf(g, "#     DVBS  FEPARMS:   s:frequency:symbol_rate:polarisation:fec:orbital_position:inversion:flags\n");
+		fprintf(g, "#     DVBS2 FEPARMS:   s:frequency:symbol_rate:polarisation:fec:orbital_position:inversion:flags:system:modulation:rolloff:pilot\n");
+		fprintf(g, "#     DVBT  FEPARMS:   t:frequency:bandwidth:code_rate_HP:code_rate_LP:modulation:transmission_mode:guard_interval:hierarchy:inversion:flags:system:plp_id\n");
+		fprintf(g, "#     DVBC  FEPARMS:   c:frequency:symbol_rate:inversion:modulation:fec_inner:flags:system\n");
+		fprintf(g, "# Services    : s:service_id:dvb_namespace:transport_stream_id:original_network_id:service_type:0,\"service_name\"[,p:provider_name][,c:cached_pid]*[,C:cached_capid]*[,f:flags]\n");
+	}
+
 	for (std::map<eDVBChannelID, channel>::const_iterator i(m_channels.begin());
 			i != m_channels.end(); ++i)
 	{
@@ -617,6 +687,9 @@ void eDVBDB::saveServicelist(const char *file)
 		const channel &ch = i->second;
 
 		fprintf(f, "%08x:%04x:%04x\n", chid.dvbnamespace.get(),
+				chid.transport_stream_id.get(), chid.original_network_id.get());
+		if (g)
+			fprintf(g, "t:%08x:%04x:%04x,", chid.dvbnamespace.get(),
 				chid.transport_stream_id.get(), chid.original_network_id.get());
 		eDVBFrontendParametersSatellite sat;
 		eDVBFrontendParametersTerrestrial ter;
@@ -629,11 +702,21 @@ void eDVBDB::saveServicelist(const char *file)
 				sat.frequency, sat.symbol_rate, sat.polarisation, sat.fec,
 				sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
 				sat.inversion, flags);
+			if (g)
+				fprintf(g, "s:%d:%d:%d:%d:%d:%d:%d",
+					sat.frequency, sat.symbol_rate, sat.polarisation, sat.fec,
+					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
+					sat.inversion, flags);
+
 			if (sat.system == eDVBFrontendParametersSatellite::System_DVB_S2)
 			{
 				fprintf(f, ":%d:%d:%d:%d", sat.system, sat.modulation, sat.rolloff, sat.pilot);
+				if (g)
+					fprintf(g, ":%d:%d:%d:%d", sat.system, sat.modulation, sat.rolloff, sat.pilot);
 			}
 			fprintf(f, "\n");
+			if (g)
+				fprintf(g, "\n");
 		}
 		else if (!ch.m_frontendParameters->getDVBT(ter))
 		{
@@ -666,11 +749,21 @@ void eDVBDB::saveServicelist(const char *file)
 				ter.frequency, bandwidth, ter.code_rate_HP,
 				ter.code_rate_LP, ter.modulation, ter.transmission_mode,
 				ter.guard_interval, ter.hierarchy, ter.inversion, flags, ter.system, ter.plp_id);
+			if (g)
+				fprintf(g, "t:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
+					ter.frequency, bandwidth, ter.code_rate_HP,
+					ter.code_rate_LP, ter.modulation, ter.transmission_mode,
+					ter.guard_interval, ter.hierarchy, ter.inversion, flags, ter.system, ter.plp_id);
 		}
 		else if (!ch.m_frontendParameters->getDVBC(cab))
 		{
 			fprintf(f, "\tc %d:%d:%d:%d:%d:%d:%d\n",
-				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation, cab.fec_inner, flags, cab.system);
+				cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation,
+				cab.fec_inner, flags, cab.system);
+			if (g)
+				fprintf(g, "c:%d:%d:%d:%d:%d:%d:%d\n",
+					cab.frequency, cab.symbol_rate, cab.inversion, cab.modulation,
+					cab.fec_inner, flags, cab.system);
 		}
 		fprintf(f, "/\n");
 		channels++;
@@ -686,35 +779,62 @@ void eDVBDB::saveServicelist(const char *file)
 				s.getTransportStreamID().get(),s.getOriginalNetworkID().get(),
 				s.getServiceType(),
 				0);
+		if (g)
+			fprintf(g, "s:%04x:%08x:%04x:%04x:%d:%d,",
+				s.getServiceID().get(), s.getDVBNamespace().get(),
+				s.getTransportStreamID().get(),s.getOriginalNetworkID().get(),
+				s.getServiceType(),
+				0);
 
 		fprintf(f, "%s\n", i->second->m_service_name.c_str());
+		if (g)
+			fprintf(g, "\"%s\"", i->second->m_service_name.c_str());
 
 		fprintf(f, "p:%s", i->second->m_provider_name.c_str());
+		if (g && !i->second->m_provider_name.empty())
+			fprintf(g, ",p:%s", i->second->m_provider_name.c_str());
 
 		// write cached pids
 		for (int x=0; x < eDVBService::cacheMax; ++x)
 		{
 			int entry = i->second->getCacheEntry((eDVBService::cacheID)x);
-			if (entry != -1)
+			if (entry != -1) {
 				fprintf(f, ",c:%02d%04x", x, entry);
+				if (g)
+					fprintf(g, ",c:%02d%x", x, entry);
+			}
 		}
 
 		// write cached ca pids
 		for (CAID_LIST::const_iterator ca(i->second->m_ca.begin());
-			ca != i->second->m_ca.end(); ++ca)
+			ca != i->second->m_ca.end(); ++ca) {
 			fprintf(f, ",C:%04x", *ca);
+			if (g)
+				fprintf(g, ",C:%x", *ca);
+		}
 
-		if (i->second->m_flags)
+		if (i->second->m_flags) {
 			fprintf(f, ",f:%x", i->second->m_flags);
+			if (g)
+				fprintf(g, ",f:%x", i->second->m_flags);
+		}
 
 		fprintf(f, "\n");
+		if (g)
+			fprintf(g, "\n");
 		services++;
 	}
 	fprintf(f, "end\nHave a lot of bugs!\n");
+	if (g)
+		fprintf(g, "# done. %d channels and %d services\n", channels, services);
 
 	eDebug("[eDVBDB] saved %d channels and %d services!", channels, services);
 	f.sync();
 	rename((filename + ".writing").c_str(), filename.c_str());
+	if (g) {
+		g.sync();
+		rename((filename + "5.writing").c_str(), (filename + "5").c_str());
+	}
 }
 
 void eDVBDB::saveServicelist()
