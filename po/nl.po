@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-27 17:43+0200\n"
-"PO-Revision-Date: 2016-07-27 18:26+0200\n"
+"POT-Creation-Date: 2016-08-10 15:34+0200\n"
+"PO-Revision-Date: 2016-08-11 07:23+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -14,6 +14,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Generator: Poedit 1.8.6\n"
+
+msgid ""
+"\n"
+"(DeepStandby request changed to Standby owing to there being streaming clients.)"
+msgstr ""
+"\n"
+"(verzoek tot afsluiten veranderd naar stand-by omdat er een stream-klant actief is.)"
 
 msgid ""
 "\n"
@@ -3013,17 +3020,17 @@ msgstr "EPG instellingen"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "Fout - Zoeken mislukt (%s)!"
 
-msgid "ERROR:   Check is already running in background, please wait a few minutes and try again"
+msgid "ERROR: Check is already running in background, please wait a few minutes and try again"
 msgstr "FOUT: Op de achtergrond wordt al een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
 
-msgid "ERROR:   No internet found"
+msgid "ERROR: Forbidden"
+msgstr "FOUT: Verboden!"
+
+msgid "ERROR: No internet found"
 msgstr "FOUT: Geen internet gevonden"
 
-msgid "ERROR:   No network found"
+msgid "ERROR: No network found"
 msgstr "FOUT: Geen netwerk gevonden"
-
-msgid "ERROR: Check is already running in background"
-msgstr "FOUT: Op de achtergrond wordt al een controle uitgevoerd. "
 
 msgid "East"
 msgstr "Oost"
@@ -3509,17 +3516,20 @@ msgstr "Vooruitspoelen"
 msgid "Favourites"
 msgstr "Favorieten"
 
-msgid "Feeds status:   Stable"
-msgstr "Feeds status:   Stabiel"
+msgid "Feeds status: Stable"
+msgstr "Feeds status: Stabiel"
 
-msgid "Feeds status:   Unknown"
-msgstr "Feeds status:   Onbekend"
+msgid "Feeds status: Unexpected"
+msgstr "Feeds status: Onverwacht"
 
-msgid "Feeds status:   Unstable"
-msgstr "Feeds status:   Onstabiel"
+msgid "Feeds status: Unknown"
+msgstr "Feeds status: Onbekend"
 
-msgid "Feeds status:   Updating"
-msgstr "Feeds status:   Bezig met updaten"
+msgid "Feeds status: Unstable"
+msgstr "Feeds status: Onstabiel"
+
+msgid "Feeds status: Updating"
+msgstr "Feeds status: bezig met updaten"
 
 msgid "File appears to be busy.\n"
 msgstr "Bestand lijkt in gebruik te zijn.\n"
@@ -3842,6 +3852,9 @@ msgstr "Verborgen netwerk"
 
 msgid "Hide CI messages"
 msgstr "Verberg CI-meldingen"
+
+msgid "Hide VBI line for this service"
+msgstr "Verberg VBI-lijn voor dit kanaal"
 
 msgid "Hide any zap error messages."
 msgstr "Verberg alle zapfouten."
@@ -5053,9 +5066,6 @@ msgstr "Geen kabeltuner gevonden!"
 
 msgid "No card inserted!"
 msgstr "Geen kaart geplaatst!"
-
-msgid "No connection"
-msgstr "Geen verbinding"
 
 msgid ""
 "No data on transponder!\n"
@@ -6466,6 +6476,9 @@ msgstr "Verwijderen voltooid."
 
 msgid "Remove from parental protection"
 msgstr "Verwijder van kinderslot"
+
+msgid "Remove hide VBI line for this service"
+msgstr "Verwijder 'Verberg VBI-lijn voor dit kanaal'"
 
 msgid "Remove items from trash can after (days)"
 msgstr "Verwijder items uit de prullenbak na x (dagen)"
@@ -11733,6 +11746,9 @@ msgstr "zapte"
 #~ msgid "Driver is not supported."
 #~ msgstr "Driver wordt niet ondersteund"
 
+#~ msgid "ERROR: Check is already running in background"
+#~ msgstr "FOUT: Op de achtergrond wordt al een controle uitgevoerd. "
+
 #~ msgid "Edit bouquets list"
 #~ msgstr "favorietenlijst aanpassen"
 
@@ -11831,6 +11847,9 @@ msgstr "zapte"
 
 #~ msgid "No clients streaming"
 #~ msgstr "Geen streaming klanten"
+
+#~ msgid "No connection"
+#~ msgstr "Geen verbinding"
 
 #~ msgid "No details for this image file"
 #~ msgstr "Geen details voor dit bestand:"
