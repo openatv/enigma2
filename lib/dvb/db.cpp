@@ -405,14 +405,9 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int vers
 				modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
 				rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
 				pilot=eDVBFrontendParametersSatellite::Pilot_Unknown;
-			if (version == 3)
-				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
-					&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
-					&inversion, &system, &modulation, &rolloff, &pilot);
-			else
-				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
-					&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
-					&inversion, &flags, &system, &modulation, &rolloff, &pilot);
+			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+				&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
+				&inversion, &flags, &system, &modulation, &rolloff, &pilot);
 			sat.frequency = frequency;
 			sat.symbol_rate = symbol_rate;
 			sat.polarisation = polarisation;
