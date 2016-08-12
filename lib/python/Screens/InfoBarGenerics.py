@@ -254,8 +254,8 @@ class InfoBarScreenSaver:
 			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 class HideVBILine(Screen):
-	skin = """<screen position="0,0" size="%s,%s" backgroundColor="0" flags="wfNoBorder"/>""" % (getDesktop(0).size().width() * 2/3, getDesktop(0).size().height() / 360 + 1)
 	def __init__(self, session):
+		self.skin = """<screen position="0,0" size="%s,%s" backgroundColor="0" flags="wfNoBorder" zPosition="1"/>""" % (getDesktop(0).size().width() * 2/3, getDesktop(0).size().height() / 360 + 1)
 		Screen.__init__(self, session)
 
 class SecondInfoBar(Screen):
