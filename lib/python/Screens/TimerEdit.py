@@ -21,7 +21,7 @@ from Tools.FuzzyDate import FuzzyTime
 from Tools.Directories import resolveFilename, SCOPE_HDD, fileExists
 from time import time, localtime
 from timer import TimerEntry as RealTimerEntry
-from enigma import eServiceCenter
+from enigma import eServiceCenter, eEPGCache
 import Tools.CopyFiles
 import os
 
