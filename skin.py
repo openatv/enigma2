@@ -399,24 +399,25 @@ class AttributeParser:
 		try:
 			getattr(self, attrib)(value)
 		except AttributeError:
-			print "\033[91m[SKIN] Attribute not implemented:", attrib, "value:", value,
-			print "\033[0m"
+			raise SkinError("[SKIN] Attribute not implemented:\"%s\" value:\"%s\"" % (attrib, value))
 		except SkinError, ex:
 			print "\033[91m[SKIN] Error:", ex,
 			print "\033[0m"
+		except:
+				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\"" % (attrib, value))
+
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
 			try:
 				getattr(self, attrib)(value)
 			except AttributeError:
-				print "\033[91m[Skin] Attribute not implemented:", attrib, "value:", value,
-				print "\033[0m"
+				raise SkinError("[SKIN] Attribute not implemented:\"%s\" value:\"%s\"" % (attrib, value))
 			except SkinError, ex:
 				print "\033[91m[Skin] Error:", ex,
 				print "\033[0m"
 			except:
-				print "\033[91m[Skin] Error:", attrib,
-				print "\033[0m"
+				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\"" % (attrib, value))
+
 	def conditional(self, value):
 		pass
 	def position(self, value):
