@@ -437,7 +437,7 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int vers
 				pilot=eDVBFrontendParametersSatellite::Pilot_Unknown,
 				is_id = NO_STREAM_ID_FILTER,
 				pls_mode = eDVBFrontendParametersSatellite::PLS_Root,
-				pls_code = 1;
+				pls_code = 0;
 
 			if (version == 3)
 				sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
