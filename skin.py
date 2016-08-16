@@ -1155,8 +1155,11 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				cwvalue = constant_widgets[wname]
 			except KeyError:
-				print '[SKIN] ERROR - given constant-widget: %s not found in skin' % wname
-				return
+				if config.crash.skin_error_crash.value:
+					raise SkinError("[SKIN] ERROR - given constant-widget: '%s' not found in skin" % wname)
+				else:
+					print "\033[91m[SKIN] ERROR - given constant-widget: '%s' not found in skin\033[0m" % wname
+					return
 		if cwvalue:
 			for x in cwvalue:
 				myscreen.append((x))
@@ -1219,7 +1222,10 @@ def readSkin(screen, skin, names, desktop):
 					break
 
 			if source is None:
-				print("source '" + wsource + "' was not found in screen '" + name + "'!")
+				if config.crash.skin_error_crash.value:
+					raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
+				else:
+					print("\033[91m[Skin] Error: Source '" + wsource + "' was not found in screen '" + name + "'!")
 
 			wrender = get_attr('render')
 			if not wrender:
@@ -1233,7 +1239,13 @@ def readSkin(screen, skin, names, desktop):
 				except:
 					parms = ""
 				#print "Params:", parms
-				converter_class = my_import('.'.join(("Components", "Converter", ctype))).__dict__.get(ctype)
+				try:
+					converter_class = my_import('.'.join(("Components", "Converter", ctype))).__dict__.get(ctype)
+				except ImportError:
+					if config.crash.skin_error_crash.value:
+						raise SkinError("[Skin] Error: Converter '%s' not found" % ctype)
+					else:
+						print("\033[91m[Skin] Error: Converter '%s' not found\033[0m" % ctype)
 				c = None
 				for i in source.downstream_elements:
 					if isinstance(i, converter_class) and i.converter_arguments == parms:
@@ -1243,7 +1255,14 @@ def readSkin(screen, skin, names, desktop):
 					c.connect(source)
 				source = c
 
-			renderer_class = my_import('.'.join(("Components", "Renderer", wrender))).__dict__.get(wrender)
+			try:
+				renderer_class = my_import('.'.join(("Components", "Renderer", wrender))).__dict__.get(wrender)
+			except ImportError:
+				if config.crash.skin_error_crash.value:
+					raise SkinError("[Skin] Error: Renderer '%s' not found" % wrender)
+				else:
+					print("\033[91m[Skin] Error: Renderer '%s' not found\033[0m" % wrender)
+					return
 			renderer = renderer_class() # instantiate renderer
 			renderer.connect(source) # connect to source
 			attributes = renderer.skinAttributes = [ ]
