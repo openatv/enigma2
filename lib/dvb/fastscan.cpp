@@ -468,7 +468,6 @@ void eFastScan::parseResult()
 	std::vector<FastScanNetworkSection*> networksections = m_NetworkTable->getSections();
 	std::vector<FastScanServicesSection*> servicessections = m_ServicesTable->getSections();
 
-	std::map<int, int> service_orbital_position;
 	std::map<int, eServiceReferenceDVB> numbered_channels;
 	std::map<int, eServiceReferenceDVB> radio_channels;
 
@@ -508,10 +507,7 @@ void eFastScan::parseResult()
 			if (services)
 			{
 				for (ServiceListItemConstIterator service = services->begin(); service != services->end(); service++)
-				{
-					service_orbital_position[(*service)->getServiceId()] = orbitalpos;
 					servicetypemap[(*service)->getServiceId()] = (*service)->getServiceType();
-				}
 			}
 			const FastScanLogicalChannelList *channels = (*it)->getLogicalChannelList();
 			if (channels)
@@ -557,7 +553,23 @@ void eFastScan::parseResult()
 		const FastScanServiceList *services = servicessections[i]->getServices();
 		for (FastScanServiceListConstIterator it = services->begin(); it != services->end(); it++)
 		{
-			eServiceReferenceDVB ref(service_orbital_position[(*it)->getServiceId()] << 16, (*it)->getTransportStreamId(), (*it)->getOriginalNetworkId(), (*it)->getServiceId(), (*it)->getServiceType());
+			int orbitalpos = 0xffff;
+			for (unsigned int j = 0; j < networksections.size(); j++)
+			{
+				const FastScanTransportStreamList *transportstreams = networksections[j]->getTransportStreams();
+				for (FastScanTransportStreamListConstIterator it2 = transportstreams->begin(); it2 != transportstreams->end(); it2++)
+				{
+					if ((*it)->getOriginalNetworkId() == (*it2)->getOriginalNetworkId())
+					{
+						int orbitalposbcd = (*it2)->getOrbitalPosition();
+						orbitalpos = (orbitalposbcd & 0x0f) + ((orbitalposbcd >> 4) & 0x0f) * 10 + ((orbitalposbcd >> 8) & 0x0f) * 100;
+						break;
+					}
+				}
+				if (orbitalpos != 0xffff)
+					break;
+			}
+			eServiceReferenceDVB ref(orbitalpos << 16, (*it)->getTransportStreamId(), (*it)->getOriginalNetworkId(), (*it)->getServiceId(), (*it)->getServiceType());
 			eDVBService *service = new eDVBService;
 			service->m_service_name = convertDVBUTF8((*it)->getServiceName());
 			service->genSortName();
