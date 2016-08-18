@@ -441,7 +441,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
 			self.essid = networkinfo[1]
-			self.menu_path = [2]
+			if len(networkinfo) > 2:
+				self.menu_path = networkinfo[2]
+			else:
+				self.menu_path = ""
 		else:
 			self.iface = networkinfo
 			self.essid = essid

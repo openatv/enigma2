@@ -578,7 +578,7 @@ void eDVBDB::loadServiceListV5(FILE * f)
 			scount++;
 		}
 	}
-	eDebug("loaded %d channels/transponders and %d services", tcount, scount);
+	eDebug("[eDVBDB] loaded %d channels/transponders and %d services", tcount, scount);
 }
 
 void eDVBDB::loadServicelist(const char *file)
