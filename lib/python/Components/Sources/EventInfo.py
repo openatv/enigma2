@@ -23,9 +23,10 @@ class EventInfo(PerServiceBase, Source, object):
 		service = self.navcore.getCurrentService()
 		info = service and service.info()
 		ret = info and info.getEvent(self.now_or_next)
-		if not ret and info:
-			refstr = info.getInfoString(iServiceInformation.sServiceref)
-			ret = self.epgQuery(eServiceReference(refstr), -1, self.now_or_next and 1 or 0)
+		if info:
+			if not ret or ret.getEventName() == "":
+				refstr = info.getInfoString(iServiceInformation.sServiceref)
+				ret = self.epgQuery(eServiceReference(refstr), -1, self.now_or_next and 1 or 0)
 		return ret
 
 	event = property(getEvent)
