@@ -2295,20 +2295,15 @@ class NetworkSamba(Screen):
 			if (getImageType() != 'release' and feedsstatuscheck.getFeedsBool() != 'unknown') or (getImageType() == 'release' and feedsstatuscheck.getFeedsBool() not in ('stable', 'unstable')):
 				self.session.openWithCallback(self.InstallPackageFailed, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			else:
-				self.session.openWithCallback(self.QuestionCallback, MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.InstallPackage, MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
-	def QuestionCallback(self, val):
-		if val:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Do you want to install the samba client aswell?\nThis will allow you to mount your windows shares on this device.'), MessageBox.TYPE_YESNO)
-		else:
-			self.close()
-
 	def InstallPackage(self, val):
 		if val:
-			self.service_name += ' packagegroup-base-smbfs-client'
-		self.doInstall(self.installComplete, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def InstallPackageFailed(self, val):
 		self.close()
