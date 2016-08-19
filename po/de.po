@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-08-15 18:35+0200\n"
+"PO-Revision-Date: 2016-08-19 18:34+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -16644,6 +16644,26 @@ msgstr "Beim Versuch, PIP zu deaktivieren, wurde keine InfoBar.instance gefunden
 # RecordTimer.py
 msgid "Aborted a pseudo recording.\n"
 msgstr "Eine Pseudo-Aufnahme wurde deaktiviert.\n"
+
+#: RecordTimer.py
+msgid "start recording"
+msgstr "Aufnahme starten"
+
+#: RecordTimer.py
+msgid "record time changed, start prepare is now: %s"
+msgstr "Aufnahmezeit geändert, startet: %s"
+
+#: RecordTimer.py
+msgid "Not enough free space to record"
+msgstr "Nicht genügend freier Speicher"
+
+#: RecordTimer.py
+msgid "zapping"
+msgstr "Umschalten"
+
+#: RecordTimer.py
+msgid "end zapping"
+msgstr "Umschalten beenden"
 
 # /data/setup.xml
 msgid "Include AIT in recordings"
