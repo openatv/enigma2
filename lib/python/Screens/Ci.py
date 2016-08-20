@@ -6,13 +6,11 @@ from Components.ActionMap import ActionMap
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigText, ConfigYesNo, NoSave
 from Components.ConfigList import ConfigList, ConfigListScreen
-
 from Components.SystemInfo import SystemInfo
-
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
+import Screens.Standby
 
 from boxbranding import getBoxType
 
@@ -343,7 +341,7 @@ class CiMessageHandler:
 							elif ci_tag == 'CLOSE' and self.auto_close:
 								show_ui = False
 								self.auto_close = False
-					if show_ui and not forceNotShowCiMessages:
+					if show_ui and not forceNotShowCiMessages and not Screens.Standby.inStandby:
 						self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3, screen_data = screen_data)
 
 	def dlgClosed(self, slot):
