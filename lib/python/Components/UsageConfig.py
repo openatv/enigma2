@@ -927,49 +927,20 @@ def InitUsageConfig():
 	config.epgselection.graph_infowidth = ConfigSelectionNumber(default = 25, stepwidth = 25, min = 0, max = 150, wraparound = True)
 	config.epgselection.graph_rec_icon_height = ConfigSelection(choices = [("bottom",_("bottom")),("top", _("top")), ("middle", _("middle")),  ("hide", _("hide"))], default = "bottom")
 
-	config.epgselection.graph_red = ConfigSelection(default='imdb', choices=[('autotimer', _('Auto Timer')),
-	 ('timer', _('Add/Remove Timer')),
-	 ('24plus', _('24+ Hours')),
-	 ('24minus', _('24- Hours')),
-	 ('imdb', _('IMDB search')),
-	 ('bouquetlist', _('Bouquet List')),
-	 ('showmovies', _('Show Movies List')),
-	 ('record', _('Record - same as record button')),
-	 ('gotodatetime', _('Goto Date/Timer')),
-	 ('epgsearch', _('EPG search'))])
-
-	config.epgselection.graph_green = ConfigSelection(default='timer', choices=[('autotimer', _('Auto Timer')),
-	 ('timer', _('Add/Remove Timer')),
-	 ('24plus', _('24+ Hours')),
-	 ('24minus', _('24- Hours')),
-	 ('imdb', _('IMDB search')),
-	 ('bouquetlist', _('Bouquet List')),
-	 ('showmovies', _('Show Movies List')),
-	 ('record', _('Record - same as record button')),
-	 ('gotodatetime', _('Goto Date/Timer')),
-	 ('epgsearch', _('EPG search'))])
-
-	config.epgselection.graph_yellow = ConfigSelection(default='epgsearch', choices=[('autotimer', _('Auto Timer')),
-	 ('timer', _('Add/Remove Timer')),
-	 ('24plus', _('24+ Hours')),
-	 ('24minus', _('24- Hours')),
-	 ('imdb', _('IMDB search')),
-	 ('bouquetlist', _('Bouquet List')),
-	 ('showmovies', _('Show Movies List')),
-	 ('record', _('Record - same as record button')),
-	 ('gotodatetime', _('Goto Date/Timer')),
-	 ('epgsearch', _('EPG search'))])
-
-	config.epgselection.graph_blue = ConfigSelection(default='autotimer', choices=[('autotimer', _('Auto Timer')),
-	 ('timer', _('Add/Remove Timer')),
-	 ('24plus', _('24+ Hours')),
-	 ('24minus', _('24- Hours')),
-	 ('imdb', _('IMDB search')),
-	 ('bouquetlist', _('Bouquet List')),
-	 ('showmovies', _('Show Movies List')),
-	 ('record', _('Record - same as record button')),
-	 ('gotodatetime', _('Goto Date/Timer')),
-	 ('epgsearch', _('EPG search'))])
+	epg_colorkeys = [('autotimer', _('Auto Timer')),
+					('timer', _('Add/Remove Timer')),
+					('24plus', _('24+ Hours')),
+					('24minus', _('24- Hours')),
+					('imdb', _('IMDB search')),
+					('bouquetlist', _('Bouquet List')),
+					('showmovies', _('Show Movies List')),
+					('record', _('Record - same as record button')),
+					('gotodatetime', _('Goto Date/Timer')),
+					('epgsearch', _('EPG search'))]
+	config.epgselection.graph_red = ConfigSelection(default='imdb', choices=epg_colorkeys)
+	config.epgselection.graph_green = ConfigSelection(default='timer', choices=epg_colorkeys)
+	config.epgselection.graph_yellow = ConfigSelection(default='epgsearch',choices=epg_colorkeys)
+	config.epgselection.graph_blue = ConfigSelection(default='autotimer', choices=epg_colorkeys)
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
