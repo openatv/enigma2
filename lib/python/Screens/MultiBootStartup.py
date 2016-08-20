@@ -94,4 +94,6 @@ class MultiBootStartup(ConfigListScreen, Screen):
 
 	def restartBOX(self, answer):
 		if answer is True:
-			self.session.open(TryQuitMainloop, 2) 
+			self.session.open(TryQuitMainloop, 2)
+		else:
+			self.close()
