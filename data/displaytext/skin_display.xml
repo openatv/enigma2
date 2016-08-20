@@ -232,5 +232,8 @@
 	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="132,64">
 		<widget source="SetupEntry" render="Label" position="0,0" size="120,20" font="Regular;18" halign="left" noWrap="1"  />
 	</screen>
-
+<!-- Shoutcast -->
+	<screen name="SHOUTcastLCDScreen" size="132,64">
+		<widget name="text2" position="0,0" size="120,20" font="Regular;18" halign="left" noWrap="1"  />
+	</screen>
 </skin>
