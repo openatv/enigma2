@@ -1216,7 +1216,7 @@ class RecordTimer(timer.Timer):
 			save_act = -1, 0
 			for timer in self.timer_list:
 				next_act = timer.getNextActivation(getNextStbPowerOn)
-				if timer.justplay or next_act < now:
+				if timer.justplay or next_act + 3 < now:
 					continue
 				if debug: print "[recordtimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act))
 				if save_act[0] == -1:
@@ -1228,7 +1228,7 @@ class RecordTimer(timer.Timer):
 		else:
 			for timer in self.timer_list:
 				next_act = timer.getNextActivation()
-				if timer.justplay or next_act < now:
+				if timer.justplay or next_act + 3 < now:
 					continue
 				return next_act
 		return -1
