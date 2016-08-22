@@ -46,6 +46,7 @@ def InitConfig():
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
 																							'/usr/share/enigma2/MetrixHD/skinparts/',
+																							'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
 																							'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
