@@ -1016,7 +1016,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.session.open(TimerEditList)
 
 	def showMovieSelection(self):
-		Screens.InfoBar.InfoBar.instance.showMovies()
+		from InfoBar import InfoBar
+		InfoBar.instance.showMovies()
 
 	def showAutoTimerList(self):
 		global autopoller
