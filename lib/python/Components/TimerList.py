@@ -14,8 +14,8 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 class TimerList(HTMLComponent, GUIComponent, object):
 #
-#  | <Name of the Timer>     <Service>  <orb.pos>|
-#  | <state>  <start, end>  |
+#  | <Name of the Timer>    <Service> |
+#  | <state>  <orb.pos>  <start, end> |
 #
 	def buildTimerEntry(self, timer, processed):
 		height = self.l.getItemSize().height()
