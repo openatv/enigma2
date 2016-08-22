@@ -165,6 +165,7 @@ class TimerEditList(Screen):
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
 		else:
+			self["description"].setText(" ")
 			if self.key_red_choice != self.EMPTY:
 				self.removeAction("red")
 				self["key_red"].setText(" ")
