@@ -525,9 +525,12 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					parameters["ServiceInfoRight"] = (450,0,1000,45)
 					parameters["SelectionListDescr"] = (45,3,1000,32)
 					parameters["SelectionListLock"] = (0,2,36,36)
+					parameters["SelectionListLockOff"] = (0,2,36,36)
 					parameters["VirtualKeyboard"] = (68,68)
 					parameters["SHOUTcastListItem"] = (30,27,35,96,35,33,60,32)
-
+					parameters["EPGImportFilterListDescr"] = (30,3,500,30)
+					parameters["EPGImportFilterListLockOff"] = (0,0,30,30)
+					parameters["EPGImportFilterListLockOn"] = (0,0,30,30)
 	for skininclude in skin.findall("include"):
 		filename = skininclude.attrib.get("filename")
 		if filename:
