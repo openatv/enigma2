@@ -64,9 +64,9 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self.close()
 
 	def left(self):
-		self.selection = self.selection + 1
-		if self.selection == len(self.list):
-			self.selection = 0
+		self.selection = self.selection - 1
+		if self.selection == -1:
+			self.selection = len(self.list) - 1
 		self.startup()
 
 	def right(self):
