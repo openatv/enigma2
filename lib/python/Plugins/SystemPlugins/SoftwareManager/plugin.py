@@ -636,14 +636,23 @@ class PluginManager(Screen, PackageInfoHandler):
 			self["key_yellow"].setText("")
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
+				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png"))
+				else:
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Updating software catalog"), '', _("Searching for available updates. Please wait..." ),'', '', statuspng, divpng, None, '' ))
 			elif status == 'sync':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
+				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png"))
+				else:
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Searching for new installed or removed packages. Please wait..." ),'', '', statuspng, divpng, None, '' ))
 			elif status == 'error':
 				self["key_green"].setText(_("Continue"))
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png"))
+				else:
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the packetlist. Please try again." ),'', '', statuspng, divpng, None, '' ))
 			self["list"].style = "default"
 			self['list'].setList(self.statuslist)
@@ -803,10 +812,22 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def buildEntryComponent(self, name, details, description, packagename, state, selected = False):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
-		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-		installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installed.png")):
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installed.png"))
+		else:
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png")):
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png"))
+		else:
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png")):
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png"))
+		else:
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/install.png")):
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/install.png"))
+		else:
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
 		if state == 'installed':
 			return name, details, description, packagename, state, installedpng, divpng, selected
 		elif state == 'installable':
@@ -1053,9 +1074,18 @@ class PluginManagerInfo(Screen):
 
 	def buildEntryComponent(self, action,info):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
-		upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
-		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png")):
+			upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png"))
+		else:
+			upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/install.png")):
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/install.png"))
+		else:
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png")):
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png"))
+		else:
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 		if action == 'install':
 			return _('Installing'), info, installpng, divpng
 		elif action == 'remove':
@@ -1135,10 +1165,22 @@ class PluginManagerHelp(Screen):
 
 	def buildEntryComponent(self, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
-		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-		installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installed.png")):
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installed.png"))
+		else:
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png")):
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png"))
+		else:
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png")):
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png"))
+		else:
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+		if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/install.png")):
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/install.png"))
+		else:
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
 
 		if state == 'installed':
 			return _('This plugin is installed.'), _('You can remove this plugin.'), installedpng, divpng
@@ -1657,11 +1699,17 @@ class PacketManager(Screen, NumericalTextInput):
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
+				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgrade.png"))
+				else:
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 			elif status == 'error':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+				if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png"))
+				else:
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("An error occurred while downloading the packetlist. Please try again." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)
 
@@ -1808,13 +1856,22 @@ class PacketManager(Screen, NumericalTextInput):
 		if not description:
 			description = "No description available."
 		if state == 'installed':
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
+			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installed.png")):
+				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installed.png"))
+			else:
+				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
 			return name, version, _(description), state, installedpng, divpng
 		elif state == 'upgradeable':
-			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
+			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgradeable.png")):
+				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/upgradeable.png"))
+			else:
+				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
 			return name, version, _(description), state, upgradeablepng, divpng
 		else:
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
+			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png")):
+				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png"))
+			else:
+				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return name, version, _(description), state, installablepng, divpng
 
 	def buildPacketList(self):
