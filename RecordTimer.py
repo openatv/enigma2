@@ -13,6 +13,7 @@ from Components import Harddisk
 from Components.UsageConfig import defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
+Components.RecordingConfig.InitRecordingConfig()
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 from Tools import Directories, Notifications, ASCIItranslit, Trashcan
@@ -74,6 +75,15 @@ class AFTEREVENT:
 	DEEPSTANDBY = 2
 	AUTO = 3
 
+	DEFAULT = int(config.recording.default_afterevent.value)
+
+class TIMERTYPE:
+	def __init__(self):
+		pass
+
+	JUSTPLAY = config.recording.default_timertype.value == "zap"
+	ALWAYS_ZAP = config.recording.default_timertype.value == "zap+record"
+
 def findSafeRecordPath(dirname):
 	if not dirname:
 		return None
@@ -122,7 +132,7 @@ def getBqRootStr(ref):
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', rename_repeat = True, isAutoTimer = False, always_zap = False, MountPath = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = TIMERTYPE.JUSTPLAY, afterEvent = AFTEREVENT.DEFAULT, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', rename_repeat = True, isAutoTimer = False, always_zap = TIMERTYPE.ALWAYS_ZAP, MountPath = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
 			if self.begin < time() - 1209600:
@@ -146,7 +156,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.__record_service = None
 		self.start_prepare = 0
 		self.justplay = justplay
-		self.always_zap = always_zap
+		if self.justplay:
+			self.always_zap = False
+		else:
+			self.always_zap = always_zap
 		self.afterEvent = afterEvent
 		self.dirname = dirname
 		self.dirnameHadToFallback = False

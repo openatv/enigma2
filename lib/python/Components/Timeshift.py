@@ -39,7 +39,7 @@ from Screens.MessageBox import MessageBox
 import Screens.Standby
 from ServiceReference import ServiceReference
 
-from RecordTimer import RecordTimerEntry, parseEvent
+from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from timer import TimerEntry
 
 from Tools import ASCIItranslit, Notifications
@@ -387,7 +387,7 @@ class InfoBarTimeshift:
 			if self.save_current_timeshift and self.timeshiftEnabled():
 				if config.recording.margin_after.value > 0 and len(self.recording) == 0:
 					self.SaveTimeshift(mergelater=True)
-					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time()+(config.recording.margin_after.value * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.autorecord_path.value)
+					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time()+(config.recording.margin_after.value * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent = AFTEREVENT.AUTO, justplay = False, always_zap = False, dirname = config.usage.autorecord_path.value)
 					recording.dontSave = True
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
@@ -1215,7 +1215,7 @@ class InfoBarTimeshift:
 						print "[Timeshift] %s" % errormsg
 
 	def ptsRecordCurrentEvent(self):
-		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, dirname = config.usage.autorecord_path.value)
+		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent = AFTEREVENT.AUTO, justplay = False, always_zap = False, dirname = config.usage.autorecord_path.value)
 		recording.dontSave = True
 		self.session.nav.RecordTimer.record(recording)
 		self.recording.append(recording)

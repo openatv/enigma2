@@ -25,6 +25,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
+from RecordTimer import TIMERTYPE
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
@@ -1174,7 +1175,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['input_actions'].setEnabled(True)
 
 	def doRecordTimer(self):
-		self.doInstantTimer(0)
+		self.doInstantTimer(TIMERTYPE.JUSTPLAY)
 
 	def doZapTimer(self):
 		self.doInstantTimer(1)

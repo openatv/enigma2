@@ -1,5 +1,6 @@
 from config import ConfigSelectionNumber, ConfigYesNo, ConfigSubsection, ConfigSelection, config
 from enigma import pNavigation
+from Components.SystemInfo import SystemInfo
 
 def InitRecordingConfig():
 	config.recording = ConfigSubsection()
@@ -18,6 +19,12 @@ def InitRecordingConfig():
 		("long", _("Long filenames")) ] )
 	config.recording.offline_decode_delay = ConfigSelectionNumber(min = 1, max = 10000, stepwidth = 10, default = 1000, wraparound = True)
 	config.recording.ecm_data = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = "normal")
+	config.recording.default_timertype = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],default = "record")
+	if SystemInfo["DeepstandbySupport"]:
+		shutdownString = _("go to deep standby")
+	else:
+		shutdownString = _("shut down")
+	config.recording.default_afterevent = ConfigSelection(choices = [("0", _("do nothing")), ("1", _("go to standby")), ("2", shutdownString), ("3", _("auto"))], default = "3")
 	config.recording.include_ait = ConfigYesNo(default = False)
 	config.recording.show_rec_symbol_for_rec_types = ConfigSelection(choices = [("any", _("any recordings")), ("real", _("real recordings")), ("real_streaming", _("real recordings or streaming")), ("real_pseudo", _("real or pseudo recordings"))], default = "any")
 	config.recording.warn_box_restart_rec_types    = ConfigSelection(choices = [("any", _("any recordings")), ("real", _("real recordings")), ("real_streaming", _("real recordings or streaming")), ("real_pseudo", _("real or pseudo recordings"))], default = "any")

@@ -429,7 +429,7 @@ class SecondInfoBar(Screen):
 				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
 				break
 		else:
-			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
+			newEntry = RecordTimerEntry(self.currentService, afterEvent = AFTEREVENT.AUTO, justplay = False, always_zap = False, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def finishedAdd(self, answer):
@@ -3708,7 +3708,7 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
-		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], dirname = preferredInstantRecordPath())
+		recording = RecordTimerEntry(serviceref, begin, end, info["name"], info["description"], info["eventid"], afterEvent = AFTEREVENT.AUTO, justplay = False, always_zap = False, dirname = preferredInstantRecordPath())
 		recording.dontSave = True
 
 		if event is None or limitEvent == False:
