@@ -56,7 +56,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self["config"].setText(_("Select Image: %s") %self.list[self.selection])
 
 	def save(self):
-		print "[MultiBootStartuo] select new startup: ", self.list[self.selection]
+		print "[MultiBootStartup] select new startup: ", self.list[self.selection]
 		system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
 		restartbox = self.session.openWithCallback(self.restartBOX,MessageBox,_("Do you want to reboot now with selected image?"), MessageBox.TYPE_YESNO)
 
@@ -64,9 +64,9 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self.close()
 
 	def left(self):
-		self.selection = self.selection + 1
-		if self.selection == len(self.list):
-			self.selection = 0
+		self.selection = self.selection - 1
+		if self.selection == -1:
+			self.selection = len(self.list) - 1
 		self.startup()
 
 	def right(self):

@@ -1228,7 +1228,7 @@ class RecordTimer(timer.Timer):
 		else:
 			for timer in self.timer_list:
 				next_act = timer.getNextActivation()
-				if timer.justplay or next_act + 3 < now:
+				if timer.justplay or next_act + 3 < now or timer.end == next_act:
 					continue
 				return next_act
 		return -1
