@@ -156,10 +156,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.__record_service = None
 		self.start_prepare = 0
 		self.justplay = justplay
-		if self.justplay:
-			self.always_zap = False
-		else:
-			self.always_zap = always_zap
+		self.always_zap = always_zap
 		self.afterEvent = afterEvent
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
@@ -193,6 +190,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.wasInStandby = False
 
 		self.log_entries = []
+		self.check_justplay()
 		self.resetState()
 
 	def __repr__(self):
@@ -955,6 +953,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
 			self.log(15, _("record time changed, start prepare is now: %s") % ctime(self.start_prepare))
 
+	def check_justplay(self):
+		if self.justplay:
+			self.always_zap = False
+
 	def gotRecordEvent(self, record, event):
 		# TODO: this is not working (never true), please fix. (comparing two swig wrapped ePtrs)
 		if self.__record_service.__deref__() != record.__deref__():
@@ -1279,6 +1281,7 @@ class RecordTimer(timer.Timer):
 		return False
 
 	def record(self, entry, ignoreTSC=False, dosave=True): # is called by loadTimer with argument dosave=False
+		entry.check_justplay()
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
 		if not timersanitycheck.check():
 			if not ignoreTSC:
