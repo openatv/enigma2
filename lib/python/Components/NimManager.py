@@ -1803,9 +1803,9 @@ def InitNimManager(nimmgr, update_slots = []):
 				else:
 					ret = False
 				if not ret:
-					print "[InitNimManager] %d: tunerTypeChange to '%s' failed" %(slot_id, system)
+					print "[InitNimManager] %d: tunerTypeChange to '%s' failed" %(fe_id, system)
 			else:
-				print "[InitNimManager] %d: tunerTypeChange to '%s' failed (BUSY)" %(slot_id, configElement.getText())
+				print "[InitNimManager] %d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, configElement.getText())
 		else:
 			print "[InitNimManager] api <5"
 			frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
