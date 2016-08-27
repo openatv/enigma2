@@ -675,8 +675,6 @@ int eDVBFrontend::openFrontend()
 		fe_info.frequency_max = 2200000;
 	}
 
-	m_multitype = m_delsys[SYS_DVBS] && (m_delsys[SYS_DVBT] || m_delsys[SYS_DVBC_ANNEX_A]);
-
 	setTone(iDVBFrontend::toneOff);
 	setVoltage(iDVBFrontend::voltageOff);
 
@@ -2402,11 +2400,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		goto tune_error;
 	}
 
-	if (m_type == feSatellite && type != feSatellite)
-		setTone(iDVBFrontend::toneOff);
-	else if (type == feSatellite && m_type != feSatellite)
-		setDeliverySystem("DVB-S");
-
 	if (!m_simulate)
 		m_sn->stop();
 
@@ -2511,11 +2504,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 	if (!m_simulate)
 	{
-		if(m_type != type)
-		{
-			eDebug("[eDVBFrontend] tune setting type to %d from %d", type, m_type);
-			m_type = type;
-		}
 		m_tuneTimer->start(0,true);
 		m_tuning = 1;
 		if (m_state != stateTuning)
@@ -2581,11 +2569,6 @@ RESULT eDVBFrontend::setTone(int t)
 	fe_sec_tone_mode_t tone;
 	if (m_simulate)
 		return 0;
-	if (m_type != feSatellite)
-	{
-		eDebug("[eDVBFrontend] sendTone allowed only in feSatellite (%d)", m_type);
-		return 0;
-	}
 	m_data[CUR_TONE]=t;
 	switch (t)
 	{
@@ -2606,11 +2589,6 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 	struct dvb_diseqc_master_cmd cmd;
 	if (m_simulate)
 		return 0;
-	if (m_type != feSatellite)
-	{
-		eDebug("[eDVBFrontend] sendDiseqc allowed only in feSatellite (%d)", m_type);
-		return 0;
-	}
 	memcpy(cmd.msg, diseqc.data, diseqc.len);
 	cmd.msg_len = diseqc.len;
 	if (::ioctl(m_fd, FE_DISEQC_SEND_MASTER_CMD, &cmd))
@@ -2623,11 +2601,6 @@ RESULT eDVBFrontend::sendToneburst(int burst)
 	fe_sec_mini_cmd_t cmd;
 	if (m_simulate)
 		return 0;
-	if (m_type != feSatellite)
-	{
-		eDebug("[eDVBFrontend] sendToneburst allowed only in feSatellite (%d)", m_type);
-		return 0;
-	}
 	if (burst == eDVBSatelliteDiseqcParameters::B)
 		cmd = SEC_MINI_B;
 	else
@@ -2705,8 +2678,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		{
 			return 0;
 		}
-		can_handle_dvbs = supportsDeliverySystem(SYS_DVBS, !m_multitype);
-		can_handle_dvbs2 = supportsDeliverySystem(SYS_DVBS2, !m_multitype);
+		can_handle_dvbs = supportsDeliverySystem(SYS_DVBS, true);
+		can_handle_dvbs2 = supportsDeliverySystem(SYS_DVBS2, true);
 		if (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && !can_handle_dvbs2)
 		{
 			return 0;
@@ -2733,15 +2706,15 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
 		if (m_dvbversion >= DVB_VERSION(5, 6))
 		{
-			can_handle_dvbc_annex_a = supportsDeliverySystem(SYS_DVBC_ANNEX_A, !m_multitype);
-			can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_C, !m_multitype);
+			can_handle_dvbc_annex_a = supportsDeliverySystem(SYS_DVBC_ANNEX_A, true);
+			can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_C, true);
 		}
 		else
 		{
-			can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_A, !m_multitype); /* new value for SYS_DVB_ANNEX_AC */
+			can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_A, true); /* new value for SYS_DVB_ANNEX_AC */
 		}
 #else
-		can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_AC, !m_multitype);
+		can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_AC, true);
 #endif
 		if (parm.system == eDVBFrontendParametersCable::System_DVB_C_ANNEX_A && !can_handle_dvbc_annex_a)
 		{
@@ -2757,8 +2730,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	{
 		eDVBFrontendParametersTerrestrial parm;
 		bool can_handle_dvbt, can_handle_dvbt2;
-		can_handle_dvbt = supportsDeliverySystem(SYS_DVBT, !m_multitype);
-		can_handle_dvbt2 = supportsDeliverySystem(SYS_DVBT2, !m_multitype);
+		can_handle_dvbt = supportsDeliverySystem(SYS_DVBT, true);
+		can_handle_dvbt2 = supportsDeliverySystem(SYS_DVBT2, true);
 		if (feparm->getDVBT(parm) < 0)
 		{
 			return 0;
@@ -2786,8 +2759,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	{
 		eDVBFrontendParametersATSC parm;
 		bool can_handle_atsc, can_handle_dvbc_annex_b;
-		can_handle_dvbc_annex_b = supportsDeliverySystem(SYS_DVBC_ANNEX_B, !m_multitype);
-		can_handle_atsc = supportsDeliverySystem(SYS_ATSC, !m_multitype);
+		can_handle_dvbc_annex_b = supportsDeliverySystem(SYS_DVBC_ANNEX_B, true);
+		can_handle_atsc = supportsDeliverySystem(SYS_ATSC, true);
 		if (feparm->getATSC(parm) < 0)
 		{
 			return 0;
@@ -2917,16 +2890,10 @@ bool eDVBFrontend::setDeliverySystem(const char *type)
 {
 	struct dtv_property p[1];
 	struct dtv_properties cmdseq;
-	int fetype;
 
 	if (m_fd < 0)
 	{
 		eDebug("[eDVBFrontend] setDeliverySystem cannot change delivery system with closed frontend");
-		return false;
-	}
-
-	if (m_simulate)
-	{
 		return false;
 	}
 
@@ -2938,32 +2905,26 @@ bool eDVBFrontend::setDeliverySystem(const char *type)
 	if (!strcmp(type, "DVB-S2"))
 	{
 		p[0].u.data = SYS_DVBS2;
-		fetype = feSatellite;
 	}
 	else if (!strcmp(type, "DVB-S"))
 	{
 		p[0].u.data = SYS_DVBS;
-		fetype = feSatellite;
 	}
 	else if (!strcmp(type, "DVB-T2"))
 	{
 		p[0].u.data = SYS_DVBT2;
-		fetype = feTerrestrial;
 	}
 	else if (!strcmp(type, "DVB-T"))
 	{
 		p[0].u.data = SYS_DVBT;
-		fetype = feTerrestrial;
 	}
 	else if (!strcmp(type, "DVB-C"))
 	{
 		p[0].u.data = SYS_DVBC_ANNEX_A;
-		fetype = feCable;
 	}
 	else if (!strcmp(type, "ATSC"))
 	{
 		p[0].u.data = SYS_ATSC;
-		fetype = feATSC;
 	}
 	else
 	{
@@ -2977,8 +2938,6 @@ bool eDVBFrontend::setDeliverySystem(const char *type)
 		return false;
 	}
 
-	eDebug("[eDVBFrontend] setDeliverySystem setting type to %d from %d", fetype, m_type);
-	m_type = fetype;
 	eDebug("[eDVBFrontend] setDeliverySystem succefully changed delivery system to %s", type);
 	return true;
 }
