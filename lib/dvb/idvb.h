@@ -4,7 +4,6 @@
 #ifndef SWIG
 
 #include <linux/dvb/frontend.h>
-#include <linux/dvb/version.h>
 #include <linux/dvb/video.h>
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
@@ -452,7 +451,6 @@ class iDVBFrontend_ENUMS
 	~iDVBFrontend_ENUMS();
 #endif
 public:
-	enum { dvb_api_version = DVB_API_VERSION };
 	enum { feSatellite, feCable, feTerrestrial, feATSC };
 	enum { stateIdle, stateTuning, stateFailed, stateLock, stateLostLock, stateClosed };
 	enum { toneOff, toneOn };
@@ -533,8 +531,6 @@ public:
 		/* 0 means: not compatible. other values are a priority. */
 	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
 #endif
-	virtual bool changeType(int type)=0;
-
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontend>, iDVBFrontendPtr);
 
