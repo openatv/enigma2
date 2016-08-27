@@ -2886,62 +2886,6 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 	}
 }
 
-bool eDVBFrontend::setDeliverySystem(const char *type)
-{
-	struct dtv_property p[1];
-	struct dtv_properties cmdseq;
-
-	if (m_fd < 0)
-	{
-		eDebug("[eDVBFrontend] setDeliverySystem cannot change delivery system with closed frontend");
-		return false;
-	}
-
-	cmdseq.props = p;
-	cmdseq.num = 1;
-	p[0].cmd = DTV_DELIVERY_SYSTEM;
-	p[0].u.data = SYS_UNDEFINED;
-
-	if (!strcmp(type, "DVB-S2"))
-	{
-		p[0].u.data = SYS_DVBS2;
-	}
-	else if (!strcmp(type, "DVB-S"))
-	{
-		p[0].u.data = SYS_DVBS;
-	}
-	else if (!strcmp(type, "DVB-T2"))
-	{
-		p[0].u.data = SYS_DVBT2;
-	}
-	else if (!strcmp(type, "DVB-T"))
-	{
-		p[0].u.data = SYS_DVBT;
-	}
-	else if (!strcmp(type, "DVB-C"))
-	{
-		p[0].u.data = SYS_DVBC_ANNEX_A;
-	}
-	else if (!strcmp(type, "ATSC"))
-	{
-		p[0].u.data = SYS_ATSC;
-	}
-	else
-	{
-		eDebug("[eDVBFrontend] setDeliverySystem not supported delivery system type: %s", type);
-		return false;
-	}
-
-	if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) < 0)
-	{
-		eDebug("[eDVBFrontend] setDeliverySystem FE_SET_PROPERTY failed: %m type: %s data: %d", type, p[0].u.data);
-		return false;
-	}
-
-	eDebug("[eDVBFrontend] setDeliverySystem succefully changed delivery system to %s", type);
-	return true;
-}
-
 bool eDVBFrontend::setSlotInfo(int id, const char *descr, bool enabled, bool isDVBS2, int frontendid)
 {
 	if (frontendid < 0 || frontendid != m_dvbid)
