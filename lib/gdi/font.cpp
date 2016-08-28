@@ -726,9 +726,15 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
 	uc_visual.resize(size);
 		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-	FriBidiChar array[size], target[size];
+	FriBidiChar *array = new FriBidiChar[size];
+	FriBidiChar *target = new FriBidiChar[size];
 	std::copy(uc_shape.begin(), uc_shape.end(), array);
-	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
+	if(!fribidi_log2vis(array, size, &dir, target, 0, 0, 0))
+	{
+		delete [] target;
+		delete [] array;
+		return -1;
+	}
 	uc_visual.assign(target, target+size);
 
 	glyphs.reserve(size);
@@ -869,6 +875,8 @@ nprint:				isprintable=0;
 		lineChars.push_back(charCount);
 		charCount=0;
 	}
+	delete [] target;
+	delete [] array;
 	return 0;
 }
 

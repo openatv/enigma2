@@ -57,10 +57,10 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.scrollbar.setRange(0,100)
 		self.scrollbar.setBorderWidth(1)
 		self.long_text.move(ePoint(0,0))
-		self.long_text.resize(eSize(s.width()-30, self.pageHeight*40))
+		self.long_text.resize(eSize(s.width()-30, self.pageHeight))
 		if self.split:
 			self.right_text.move(ePoint(self.column,0))
-			self.right_text.resize(eSize(s.width()-self.column-30, self.pageHeight*40))
+			self.right_text.resize(eSize(s.width()-self.column-30, self.pageHeight))
 		self.setText(self.message)
 		return ret
 
@@ -87,6 +87,10 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			while total < text_height:
 				total += self.pageHeight
 				pages += 1
+			s = self.long_text.size()
+			self.long_text.resize(eSize(s.width()-30, total))
+			if self.split:
+				self.right_text.resize(eSize(s.width()-self.column-30, total))
 			if pages > 1:
 				self.scrollbar.show()
 				self.total = total
@@ -111,6 +115,10 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			while total < text_height:
 				total += self.pageHeight
 				pages += 1
+			s = self.long_text.size()
+			self.long_text.resize(eSize(s.width()-30, total))
+			if self.split:
+				self.right_text.resize(eSize(s.width()-self.column-30, total))
 			if pages > 1:
 				self.scrollbar.show()
 				self.total = total
