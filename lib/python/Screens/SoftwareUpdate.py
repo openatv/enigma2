@@ -156,11 +156,11 @@ class SoftwareUpdateChanges(Screen):
 		self.close(("menu", "menu"))
 
 class UpdatePlugin(Screen, ProtectedScreen):
-	def __init__(self, session, menu_path = ""):
+	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 		screentitle = _("Software Update")
-		self.menu_path = menu_path
+		self.menu_path = args[0]
 		if config.usage.show_menupath.value == 'large':
 			self.menu_path += screentitle
 			self.title = self.menu_path
