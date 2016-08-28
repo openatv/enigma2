@@ -597,6 +597,13 @@ void eDVBRecordFileThread::flush()
 	}
 }
 
+eDVBRecordStreamThread::eDVBRecordStreamThread(int packetsize) :
+	eDVBRecordFileThread(packetsize, recordingBufferCount)
+{
+	eDebug("[eDVBRecordStreamThread] allocated %d buffers of %d kB", m_aio.size(), m_buffersize>>10);
+}
+
+
 int eDVBRecordStreamThread::writeData(int len)
 {
 	len = asyncWrite(len);
