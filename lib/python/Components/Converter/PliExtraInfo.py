@@ -291,6 +291,18 @@ class PliExtraInfo(Poll, Converter, object):
 			pass
 		return ""
 
+	def createCryptoNameCaid(self, info):
+		caid_name = "FTA"
+		try:
+			for caid_entry in self.caid_data:
+				if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
+					caid_name = caid_entry[2]
+					break
+			return caid_name + ":%04x" % (int(self.current_caid,16))
+		except:
+			pass
+		return ""
+
 	def createResolution(self, info):
 		video_height = 0
 		video_width = 0
@@ -634,6 +646,13 @@ class PliExtraInfo(Poll, Converter, object):
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoSpecial(info)
+			else:
+				return ""
+
+		if self.type == "CryptoNameCaid":
+			if int(config.usage.show_cryptoinfo.value) > 0:
+				self.getCryptoInfo(info)
+				return self.createCryptoNameCaid(info)
 			else:
 				return ""
 
