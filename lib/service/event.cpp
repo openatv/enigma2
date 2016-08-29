@@ -77,7 +77,11 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 						m_extended_description = m_short_description;
 						m_short_description = "";
 					}
-					m_extended_description += convertDVBUTF8(eed->getText(), table, tsidonid);
+					m_tmp_extended_description += eed->getText();
+					if (eed->getDescriptorNumber() == eed->getLastDescriptorNumber())
+					{
+						m_extended_description += convertDVBUTF8(m_tmp_extended_description, table, tsidonid);
+					}
 					retval=1;
 				}
 #if 0
