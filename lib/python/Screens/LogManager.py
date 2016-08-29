@@ -484,28 +484,6 @@ class LogManagerViewLog(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(selected)
 		self.logfile = config.crash.debug_path.value + selected
-		sl = False
-		if sl:
-			###ScrollLabel
-			if path.exists(self.logfile):
-				if stat(self.logfile).st_size < 260100: #same or greater = crash
-					log = file(self.logfile).read()
-				else:
-					log = _("file can not displayed - filesize is to large")
-			else:
-				log = _("file can not displayed - file not found")
-			self["list"] = ScrollLabel(str(log))
-			self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
-			{
-				"cancel": self.cancel,
-				"ok": self.cancel,
-				"up": self["list"].pageUp,
-				"down": self["list"].pageDown,
-				"right": self["list"].lastPage,
-				"left": self["list"].pageUp
-			}, -2)
-			return
-		###MenuList
 		self.log=[]
 		self["list"] = MenuList(self.log)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
