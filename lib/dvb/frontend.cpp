@@ -628,13 +628,15 @@ int eDVBFrontend::openFrontend()
 			{
 				m_dvbversion = p.u.data;
 			}
+			else
+				eWarning("ioctl FE_GET_PROPERTY/DTV_API_VERSION failed: %m");
 #endif
 		}
 		if (m_delsys.empty())
 		{
 			if (::ioctl(m_fd, FE_GET_INFO, &fe_info) < 0)
 			{
-				eWarning("ioctl FE_GET_INFO failed");
+				eWarning("ioctl FE_GET_INFO failed: %m");
 				::close(m_fd);
 				m_fd = -1;
 				return -1;
@@ -657,6 +659,7 @@ int eDVBFrontend::openFrontend()
 				}
 			}
 			else
+				eWarning("ioctl FE_GET_PROPERTY/DTV_ENUM_DELSYS failed: %m");
 #else
 			/* no DTV_ENUM_DELSYS support */
 			if (1)
@@ -2448,7 +2451,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		p[cmdseq.num].cmd = DTV_TUNE, cmdseq.num++;
 		if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) == -1)
 		{
-			perror("FE_SET_PROPERTY failed");
+			eDebug("FE_SET_PROPERTY failed: %m");
 			return;
 		}
 	}
@@ -3117,15 +3120,33 @@ bool eDVBFrontend::changeType(int type)
 			break;
 #endif
 		case feTerrestrial:
+		{
+#ifdef TUNER_VUSOLO4K
+			closeFrontend();
+			char filename[256];
+			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
+			CFile::writeStr(filename, "1");
+			reopenFrontend();
+#endif
 			p[1].u.data = SYS_DVBT;
 			break;
+		}
 		case feCable:
+		{
+#ifdef TUNER_VUSOLO4K
+			closeFrontend();
+			char filename[256];
+			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
+			CFile::writeStr(filename, "0");
+			reopenFrontend();
+#endif
 #ifdef SYS_DVBC_ANNEX_A
 			p[1].u.data = SYS_DVBC_ANNEX_A;
 #else
 			p[1].u.data = SYS_DVBC_ANNEX_AC;
 #endif
 			break;
+		}
 #ifdef feATSC
 		case feATSC:
 			p[1].u.data = SYS_ATSC;
@@ -3139,8 +3160,7 @@ bool eDVBFrontend::changeType(int type)
 	eDebug("data %d",p[1].u.data );
 	if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) == -1)
 	{
-		eDebug("data %d",p[1].u.data );
-		perror("FE_SET_PROPERTY failed ");
+		eDebug("FE_SET_PROPERTY failed %m");
 		return false;
 	}
 
