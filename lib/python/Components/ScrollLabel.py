@@ -88,7 +88,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 				total += self.pageHeight
 				pages += 1
 			s = self.long_text.size()
-			self.long_text.resize(eSize(s.width()-30, total))
+			self.long_text.resize(eSize(s.width(), total))
 			if self.split:
 				self.right_text.resize(eSize(s.width()-self.column-30, total))
 			if pages > 1:
@@ -116,7 +116,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 				total += self.pageHeight
 				pages += 1
 			s = self.long_text.size()
-			self.long_text.resize(eSize(s.width()-30, total))
+			self.long_text.resize(eSize(s.width(), total))
 			if self.split:
 				self.right_text.resize(eSize(s.width()-self.column-30, total))
 			if pages > 1:
