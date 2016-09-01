@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-08-19 18:34+0200\n"
+"PO-Revision-Date: 2016-08-30 13:50+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -4457,12 +4457,21 @@ msgstr "Laden"
 msgid "Load EPG"
 msgstr "EPG laden"
 
+#: /data/menu.xml
+msgid "Delete EPG"
+msgstr "EPG löschen"
+
+#: /Components/EpgLoadSave.py
+msgid "Are you sure you want to delete the EPG data from:\n"
+msgstr "Sicher das Sie die EPG-Daten löschen wollen:\n"
+
 #
 msgid "Load Length of Movies in Movielist"
 msgstr "Anzeigen der Spielzeit in der Filmliste"
 
-msgid "Load/Save"
-msgstr "Laden/Speichern"
+#: /data/menu.xml
+msgid "Load/Save/Delete"
+msgstr "Laden/Speichern/Löschen"
 
 #
 msgid "Local Network"
@@ -17564,3 +17573,31 @@ msgid ""
 msgstr ""
 "Bitte stellen Sie für Tuner A\n"
 "das Hybrid-Tuner-Modell ein, ändern mit Steuerkreuz links/rechts"
+
+#: InfoBarGenerics.py:4204
+msgid "4_3_letterbox"
+msgstr "4:3 Letterbox"
+
+#: InfoBarGenerics.py:4204
+msgid "4_3_panscan"
+msgstr "4:3 PanScan"
+
+#: InfoBarGenerics.py:4204
+msgid "16_9"
+msgstr "16:9"
+
+#: InfoBarGenerics.py:4204
+msgid "16_9_always"
+msgstr "immer 16:9"
+
+#: InfoBarGenerics.py:4204
+msgid "16_10_letterbox"
+msgstr "16:10 Letterbox"
+
+#: InfoBarGenerics.py:4204
+msgid "16_10_panscan"
+msgstr "16:10 PanScan"
+
+#: InfoBarGenerics.py:4204
+msgid "16_9_letterbox"
+msgstr "16:9 Letterbox"
