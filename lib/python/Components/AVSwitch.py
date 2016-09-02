@@ -405,6 +405,7 @@ def InitAVSwitch():
 
 	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "simple": _("Simple"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
 	config.av.autores_preview = NoSave(ConfigYesNo(default=False))
+	config.av.autores_1080i_deinterlace = ConfigYesNo(default=False)
 	choicelist = []
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
