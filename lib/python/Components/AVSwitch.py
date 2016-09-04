@@ -403,9 +403,11 @@ def InitAVSwitch():
 	if config.av.yuvenabled.value:
 		colorformat_choices["yuv"] = _("YPbPr")
 
-	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "simple": _("Simple"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
+	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "simple": _("Simple"), "native": _("Native"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
 	config.av.autores_preview = NoSave(ConfigYesNo(default=False))
 	config.av.autores_1080i_deinterlace = ConfigYesNo(default=False)
+	config.av.autores_24p =  ConfigSelection(choices={"24": _("24p"), "50": _("50p"), "60": _("60p")}, default="24")
+	config.av.autores_unknownres =  ConfigSelection(choices={"next": _("next higher Resolution"), "highest": _("highest Resolution")}, default="next")
 	choicelist = []
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
