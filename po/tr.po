@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 22:11+0100\n"
-"PO-Revision-Date: 2015-10-18 19:12+0300\n"
+"PO-Revision-Date: 2016-09-04 10:08+0300\n"
 "Last-Translator: Hasan Kiran <Sunder67@hotmail.com>\n"
 "Language-Team: girginoz <girginoz@gmail.com>\n"
 "Language: tr\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -146,7 +146,7 @@ msgstr "%-S:%dk"
 
 #, python-format
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr "%02d.%02d - %02d.%02d (%s%d dak)"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -351,7 +351,7 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Yalnızca birden fazla arayüz olduğunda kullanılabilir."
 
 msgid "/s"
-msgstr ""
+msgstr "/s"
 
 #
 msgid "1.0"
@@ -690,7 +690,7 @@ msgid "AFP Setup"
 msgstr "AFP Kurulumu"
 
 msgid "AFP setup"
-msgstr ""
+msgstr "AFP Kurulumu"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -775,7 +775,7 @@ msgstr "İşaret ekle"
 
 #
 msgid "Add a nameserver entry"
-msgstr "ad sunucu ekle"
+msgstr "Sunucu ekle"
 
 #
 msgid "Add a new title"
@@ -795,7 +795,7 @@ msgstr "Sonraki etkinliğe zap zamanlayıcı ekle"
 
 #
 msgid "Add bookmark"
-msgstr "yer imi ekle"
+msgstr "Yer imi ekle"
 
 #
 msgid "Add directory to playlist"
@@ -803,11 +803,11 @@ msgstr "klasörü oynatma listesine ekle"
 
 #
 msgid "Add file to playlist"
-msgstr "dosyayı oynatma listesine ekle"
+msgstr "Dosyayı oynatma listesine ekle"
 
 #
 msgid "Add files to playlist"
-msgstr "dosyaları oynatma listesine ekle"
+msgstr "Dosyaları oynatma listesine ekle"
 
 #
 msgid "Add provider"
@@ -858,7 +858,7 @@ msgid "Address"
 msgstr "Adres"
 
 msgid "Adjust 3D settings"
-msgstr "3D Ayarlarını düzenle"
+msgstr "3B Ayarlarını düzenle"
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2428,10 +2428,10 @@ msgid "DLNA support"
 msgstr "DLNA desteği"
 
 msgid "DMM advanced"
-msgstr ""
+msgstr "DMM gelişmiş"
 
 msgid "DMM normal"
-msgstr ""
+msgstr "DMM normal"
 
 msgid "DUAL LAYER DVD"
 msgstr "ÇİFT KATMAN DVD"
@@ -2440,7 +2440,7 @@ msgid "DVB subtitle black transparency"
 msgstr "DVB altyazı siyah saydamlığı"
 
 msgid "DVB-C"
-msgstr ""
+msgstr "DVB-C"
 
 msgid "DVB-C ANNEX C"
 msgstr ""
@@ -2454,10 +2454,10 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVB-T"
-msgstr ""
+msgstr "DVB-T"
 
 msgid "DVB-T2"
-msgstr ""
+msgstr "DVB-T2"
 
 msgid "DVD data format"
 msgstr "DVD bilgi biçimi"
@@ -2735,7 +2735,7 @@ msgstr "Bilgi çubuğunda EIT şimdiki/sonraki olay bilgisi görüntüle."
 
 #
 msgid "Do not change"
-msgstr "değiştirme"
+msgstr "Değiştirme"
 
 msgid "Do not record"
 msgstr "Kaydetme"
@@ -3352,7 +3352,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "FLASH"
-msgstr ""
+msgstr "Flaş"
 
 msgid "FTP Setup"
 msgstr "FTP Kurulum"
@@ -3569,10 +3569,10 @@ msgid "General"
 msgstr "Genel"
 
 msgid "General AC3 delay"
-msgstr ""
+msgstr "Genel AC3 gecikmesi"
 
 msgid "General PCM delay"
-msgstr ""
+msgstr "Genel PCM gecikmesi"
 
 #
 msgid "Genre"
@@ -3667,7 +3667,7 @@ msgid "GraphicalEPG settings"
 msgstr "GrafikEPG ayarları"
 
 msgid "Graphics"
-msgstr ""
+msgstr "Grafikler"
 
 #
 msgid "Greek"
@@ -3777,7 +3777,7 @@ msgid "Horizontal turning speed"
 msgstr "Yatay dönüş hızı"
 
 msgid "Hostname:"
-msgstr ""
+msgstr "Makinaadı:"
 
 msgid "Hostname: "
 msgstr "Host adı:"
@@ -3935,7 +3935,7 @@ msgid "Inadyn Setup"
 msgstr "Inadyn Kurulumu"
 
 msgid "Inadyn setup"
-msgstr ""
+msgstr "Inadyn Kurulumu"
 
 msgid "Include AIT in http streams"
 msgstr "AIT http akımına dahil edilsin"
@@ -4804,7 +4804,7 @@ msgid "Multisat"
 msgstr "Çoklu uydu"
 
 msgid "Music/Ballet/Dance"
-msgstr ""
+msgstr "Müzik/Bale/Dans"
 
 #
 msgid "N/A"
@@ -4821,7 +4821,7 @@ msgid "NFS Setup"
 msgstr "NFS Yapılandırma"
 
 msgid "NFS setup"
-msgstr ""
+msgstr "NFS kurulumu"
 
 msgid "NIM"
 msgstr "Tuner"
@@ -5332,7 +5332,7 @@ msgid "Open the movie list"
 msgstr "Film listesini aç"
 
 msgid "OpenVPN setup"
-msgstr ""
+msgstr "OpenVPN Kurulumu"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN Günlüğü"
@@ -6064,7 +6064,7 @@ msgid "Protocol"
 msgstr "Protokol"
 
 msgid "Protocol:"
-msgstr ""
+msgstr "Protokol:"
 
 #
 msgid "Provider"
@@ -6561,7 +6561,7 @@ msgid "SINGLE LAYER DVD"
 msgstr "TEK KATMAN DVD"
 
 msgid "SPDIF"
-msgstr ""
+msgstr "SPDIF"
 
 #
 msgid "SSID:"
@@ -6879,7 +6879,7 @@ msgstr "Arayüz seçin"
 
 #
 msgid "Select location"
-msgstr "Konum Seç"
+msgstr "Konum seçin"
 
 #
 msgid "Select movie"
@@ -7762,7 +7762,7 @@ msgid "Split preview mode"
 msgstr "Bölünmüş önizleme kipi"
 
 msgid "Sports"
-msgstr ""
+msgstr "Spor"
 
 msgid "Standard"
 msgstr "Standard"
@@ -8086,7 +8086,7 @@ msgid "TV button mode"
 msgstr "TV tuş kipi"
 
 msgid "TV physical address report"
-msgstr ""
+msgstr "TV fiziksel adres raporu"
 
 msgid "TXT PID"
 msgstr "TXT PID"
@@ -8147,7 +8147,7 @@ msgid "Text color"
 msgstr "metin rengi"
 
 msgid "Thai"
-msgstr ""
+msgstr "Tay Dili"
 
 #
 msgid ""
@@ -8940,7 +8940,7 @@ msgid "Tuner settings"
 msgstr "Tuner ayarları"
 
 msgid "Tuner slot"
-msgstr ""
+msgstr "Tuner yuvası"
 
 #
 msgid "Tuner status"
@@ -9359,7 +9359,7 @@ msgstr "Video sihirbazı"
 
 #, python-format
 msgid "Video: %s fps"
-msgstr ""
+msgstr "Video: %s fps"
 
 msgid "Videocodec"
 msgstr "Görüntü kodeği"
@@ -9827,7 +9827,7 @@ msgid "Wireless network state"
 msgstr "Kablosuz ağ durumu"
 
 msgid "With popup"
-msgstr ""
+msgstr "Açılır pencere ile"
 
 #, fuzzy
 msgid "With this option set to 'yes' the channel list will always show you the list of bouquets. If set to 'no' the current bouquet will be opened."
@@ -10318,7 +10318,7 @@ msgid "advertisement/shopping"
 msgstr "reklam/alışveriş"
 
 msgid "alphabetic"
-msgstr ""
+msgstr "alfabetik"
 
 msgid "alphabetic reverse"
 msgstr "ters alfabetik"
@@ -10343,7 +10343,7 @@ msgid "at end"
 msgstr "sonunda"
 
 msgid "athletics"
-msgstr ""
+msgstr "atletizm"
 
 #
 msgid "audio tracks"
@@ -10362,7 +10362,7 @@ msgid "auto standby"
 msgstr "Oto bekleme"
 
 msgid "automatic"
-msgstr ""
+msgstr "otomatik"
 
 #
 msgid "back"
@@ -10373,7 +10373,7 @@ msgid "background image"
 msgstr "arkaplan resmi"
 
 msgid "ballet"
-msgstr ""
+msgstr "balet"
 
 #, python-format
 msgid "bc%s"
@@ -10642,7 +10642,7 @@ msgid "fashion"
 msgstr "moda"
 
 msgid "fast"
-msgstr ""
+msgstr "hızlı"
 
 msgid "file oscam.conf could not be found"
 msgstr "oscam.conf dosyası bulunamadı"
@@ -10656,7 +10656,7 @@ msgid "filename"
 msgstr "dosyaadı"
 
 msgid "film/cinema"
-msgstr ""
+msgstr "film/sinema"
 
 msgid "fine arts"
 msgstr "güzel sanatlar"
@@ -10666,7 +10666,7 @@ msgid "fine-tune your display"
 msgstr "ekran ince ayarı"
 
 msgid "fitness & health"
-msgstr ""
+msgstr "spor ve sağlık"
 
 msgid "flat alphabetic"
 msgstr ""
@@ -10678,7 +10678,7 @@ msgid "folk/traditional music"
 msgstr "halk müziği/geleneksel müzik"
 
 msgid "football/soccer"
-msgstr ""
+msgstr "futbol / maç"
 
 msgid "foreign countries/expeditions"
 msgstr "yabancı ülkeler/seferler"
@@ -10696,7 +10696,7 @@ msgid "free diskspace"
 msgstr "boş disk alanı"
 
 msgid "full"
-msgstr ""
+msgstr "tam"
 
 msgid "further education"
 msgstr "ileri eğitim"
@@ -10774,7 +10774,7 @@ msgid "is strongly advised."
 msgstr "kuvvetle önerilir."
 
 msgid "jazz"
-msgstr ""
+msgstr "Caz"
 
 #
 msgid "jump back to the previous title"
@@ -10856,10 +10856,10 @@ msgid "month"
 msgstr "ay"
 
 msgid "motor sport"
-msgstr ""
+msgstr "motor sporları"
 
 msgid "motoring"
-msgstr ""
+msgstr "otomobil"
 
 msgid "move"
 msgstr "taşı"
@@ -10894,7 +10894,7 @@ msgid "music/ballet/dance (general)"
 msgstr ""
 
 msgid "musical/opera"
-msgstr ""
+msgstr "müzikal/opera"
 
 msgid "nature/animals/environment"
 msgstr "doğa/hayvanlar/çevre"
@@ -10990,7 +10990,7 @@ msgid "once"
 msgstr "birkez"
 
 msgid "only HD"
-msgstr ""
+msgstr "HD listesi"
 
 msgid "open bouquetlist"
 msgstr "buket listesini aç"
@@ -11147,7 +11147,7 @@ msgid "right"
 msgstr "sağ"
 
 msgid "rock/pop"
-msgstr ""
+msgstr "rok/pop"
 
 msgid "romance"
 msgstr "aşk"
@@ -11191,7 +11191,7 @@ msgid "select menu entry"
 msgstr "menü girişini seçin"
 
 msgid "serious music/classic music"
-msgstr ""
+msgstr "önemli/klasik müzik"
 
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "ciddi/klasik/dini/tarihi film/dram"
@@ -11311,7 +11311,7 @@ msgid "skip forward (enter time)"
 msgstr "ileri atla (zaman gir)"
 
 msgid "slow"
-msgstr ""
+msgstr "yavaş"
 
 msgid "soap/melodram/folkloric"
 msgstr ""
@@ -11383,7 +11383,7 @@ msgid "system:"
 msgstr "sistem:"
 
 msgid "talk show"
-msgstr ""
+msgstr "sohbet programı"
 
 msgid "team sports"
 msgstr "takım sporları"
