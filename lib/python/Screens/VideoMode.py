@@ -120,37 +120,37 @@ class VideoSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(_("Enable preview"), config.av.autores_preview, _("Show preview of current mode (*)."), "check"))
 				else:
 					config.av.autores_preview.value = False
+				self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 				self.list.append(getConfigListEntry(pgettext(_("Video output mode for SD"), _("%sMode for SD (up to 576p)") %prev_sd), config.av.autores_mode_sd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check"))
 				self.list.append(getConfigListEntry(_("%sRefresh rate for SD") %prev_sd, config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check"))
-				self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 				modelist = iAVSwitch.getModeList(config.av.videoport.value)
 				if '720p' in iAVSwitch.modes_available:
+					self.getVerify_videomode(config.av.autores_mode_hd, config.av.autores_rate_hd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for HD"), _("%sMode for HD (up to 720p)") %prev_hd), config.av.autores_mode_hd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check"))
 					self.list.append(getConfigListEntry(_("%sRefresh rate for HD") %prev_hd, config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check"))
-					self.getVerify_videomode(config.av.autores_mode_hd, config.av.autores_rate_hd)
 				if '1080i' in iAVSwitch.modes_available or '1080p' in iAVSwitch.modes_available:
+					self.getVerify_videomode(config.av.autores_mode_fhd, config.av.autores_rate_fhd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for FHD"), _("%sMode for FHD (up to 1080p)") %prev_fhd), config.av.autores_mode_fhd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check"))
 					self.list.append(getConfigListEntry(_("%sRefresh rate for FHD") %prev_fhd, config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check"))
 					if config.av.autores_mode_fhd[config.av.videoport.value].value == '1080p' and ('1080p' in iAVSwitch.modes_available or '1080p50' in iAVSwitch.modes_available):
 						self.list.append(getConfigListEntry(_("%sShow 1080i as 1080p") %prev_fhd, config.av.autores_1080i_deinterlace, _("Use Deinterlacing for 1080i Videosignal?"), "check"))
 					elif not '1080p' in iAVSwitch.modes_available and not '1080p50' in iAVSwitch.modes_available:
 						config.av.autores_1080i_deinterlace.setValue(False)
-					self.getVerify_videomode(config.av.autores_mode_fhd, config.av.autores_rate_fhd)
 				if '2160p' in iAVSwitch.modes_available or '2160p30' in iAVSwitch.modes_available:
+					self.getVerify_videomode(config.av.autores_mode_uhd, config.av.autores_rate_uhd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for UHD"), _("%sMode for UHD (up to 2160p)") %prev_uhd), config.av.autores_mode_uhd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check"))
 					self.list.append(getConfigListEntry(_("%sRefresh rate for UHD") %prev_uhd, config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check"))
-					self.getVerify_videomode(config.av.autores_mode_uhd, config.av.autores_rate_uhd)
-				self.list.append(getConfigListEntry(_("Show 24p as 24p/50p/60p"), config.av.autores_24p,_("Show 24p as a different Framerate.")))
+				self.list.append(getConfigListEntry(_("Show 24p as"), config.av.autores_24p,_("Show 24p as a different Framerate.")))
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution infomation.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
 			elif config.av.autores.value == 'native':
+				self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 				self.list.append(getConfigListEntry(pgettext(_("Lowest Video output mode"), _("Lowest Mode")), config.av.autores_mode_sd[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
 				self.list.append(getConfigListEntry(_("Refresh rate for 'Lowest Mode'"), config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value], _("Configure the refresh rate of the screen.")))
 				self.list.append(getConfigListEntry(_("Show 24p as"), config.av.autores_24p,_("Show 24p as a different Framerate.")))
 				self.list.append(getConfigListEntry(_("Show unknown video format as"), config.av.autores_unknownres, _("Show unknown Videoresolution as next higher or as highest screen resolution.")))
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution infomation.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
-				self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 
 		# if we have modes for this port:
 		if (config.av.videoport.value in config.av.videomode and config.av.autores.value == 'disabled') or config.av.videoport.value == 'Scart':
@@ -211,13 +211,10 @@ class VideoSetup(Screen, ConfigListScreen):
 		pol = mode.replace('p30','p')[-1:]
 		rate = setrate[mode].value.replace('Hz','')
 
-		change = False
 		if int(res) > int(config_res) or (int(res) == int(config_res) and ((pol == 'p' and config_pol == 'i') or (config_mode == '2160p30' and mode == '2160p'))):
 			setmode[config_port].setValue(config_mode)
-			change = True
 		if config_rate != 'multi' and (rate == 'multi' or int(config_rate) < int(rate)):
 			setrate[config_mode].setValue(config_rate)
-		if change: self.createSetup()
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
