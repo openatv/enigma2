@@ -67,7 +67,7 @@ class AVSwitch:
 	if about.getChipSetString() in ('5272s', '7251s', '7252', '7366', '7376'):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "2160p", "1080i"}
-	elif about.getChipSetString() in ('7241', '7356', '7358', '7362', '7424', '7425', '7552'):
+	elif about.getChipSetString() in ('7241', '7356', '7358', '7362', '73625', '7424', '7425', '7552'):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
@@ -83,11 +83,11 @@ class AVSwitch:
 	# 	del modes["DVI-PC"]
 	
 	# Machines that do not have component video (red, green and blue RCA sockets).
-	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','odimm7','optimussos1','osmini','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','xp1000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','odimm7','optimussos1','osmini','osminiplus','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','xp1000'):
 		del modes["YPbPr"]
 		
 	# Machines that have composite video (yellow RCA socket) but do not have Scart.
-	if modes.has_key("Scart") and getBoxType() in ('gb800ueplus','mbmicro','mbtwinplus','osmini','tmnano','tmnano2super','tmnano3t','tmnanosecombo','xpeedlx3'):
+	if modes.has_key("Scart") and getBoxType() in ('gb800ueplus','mbmicro','mbtwinplus','osmini','osminiplus','tmnano','tmnano2super','tmnano3t','tmnanosecombo','xpeedlx3'):
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
 		
