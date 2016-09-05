@@ -9,8 +9,14 @@ from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
 
 import Tools.RedirectOutput
+from boxbranding import getBrandOEM, getImageVersion, getImageBuild, getImageDevBuild, getImageType
+print "[Image Type] %s" % getImageType()
+print "[Image Version] %s" % getImageVersion()
+print "[Image Build] %s" % getImageBuild()
+if getImageType() != 'release':
+	print "[Image DevBuild] %s" % getImageDevBuild()
+
 import enigma
-from boxbranding import getBrandOEM
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer

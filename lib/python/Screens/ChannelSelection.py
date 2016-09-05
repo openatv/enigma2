@@ -203,9 +203,9 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("Mark service as a dedicated 3D service"), self.addDedicated3DFlag), level=0)
 					if not (current_sel_path):
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
-							append_when_current_valid(current, menu, (_("Remove hide VBI line for this service"), self.removeHideVBIFlag), level=0)
+							append_when_current_valid(current, menu, (_("Remove 'Hide dotted line on the top for this service'"), self.removeHideVBIFlag), level=0)
 						else:
-							append_when_current_valid(current, menu, (_("Hide VBI line for this service"), self.addHideVBIFlag), level=0)
+							append_when_current_valid(current, menu, (_("Hide dotted line on the top for this service"), self.addHideVBIFlag), level=0)
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
 						if bouquets is None:
@@ -726,7 +726,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 				"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),
 				'LongRecord': (self.doZapTimer, _('Add a zap timer for next event'))
 			},-1)
-		self['dialogactions'] = ActionMap(['SetupActions'],
+		self['dialogactions'] = ActionMap(['OkCancelActions'],
 			{
 				'cancel': self.closeChoiceBoxDialog,
 			})
@@ -792,6 +792,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self['actions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
 		self['ChannelSelectEPGActions'].setEnabled(False)
+		self["ChannelSelectBaseActions"].setEnabled(False)
 		self['dialogactions'].execBegin()
 		self.ChoiceBoxDialog['actions'].execBegin()
 		self.ChoiceBoxDialog.show()
@@ -804,6 +805,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self['actions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['ChannelSelectEPGActions'].setEnabled(True)
+		self["ChannelSelectBaseActions"].setEnabled(True)
 
 	def doRecordCurrentTimer(self):
 		self.doInstantTimer(0, parseCurentEvent)

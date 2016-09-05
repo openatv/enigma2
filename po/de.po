@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-27 16:09+0200\n"
-"PO-Revision-Date: 2016-07-27 20:46+0200\n"
+"POT-Creation-Date: 2016-08-24 10:39+0200\n"
+"PO-Revision-Date: 2016-08-24 21:54+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13,6 +13,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"(DeepStandby request changed to Standby owing to there being streaming clients.)"
+msgstr ""
+"\n"
+"(DeepStandby Anforderung in Standby geändert weil es noch Streaming Klienten gibt.)"
 
 msgid ""
 "\n"
@@ -2866,13 +2873,6 @@ msgstr "Eine weitere manuelle Suche durchführen?"
 msgid "Do you want to install the package:\n"
 msgstr "Das Paket installieren:\n"
 
-msgid ""
-"Do you want to install the samba client aswell?\n"
-"This will allow you to mount your windows shares on this device."
-msgstr ""
-"Soll der Samba-Klient ebenfalls installiert werden?\n"
-"Der Klient erlaubt es sich mit Windows-Freigaben zu verbinden."
-
 msgid "Do you want to play DVD in drive?"
 msgstr "Die DVD im Laufwerk abspielen?"
 
@@ -3011,17 +3011,17 @@ msgstr "EPG Einstellungen"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 
-msgid "ERROR:   Check is already running in background, please wait a few minutes and try again"
+msgid "ERROR: Check is already running in background, please wait a few minutes and try again"
 msgstr "Fehler: Prüfung läuft schon im Hintergrund. Bitte ein paar Minuten warten und erneut versuchen."
 
-msgid "ERROR:   No internet found"
-msgstr "Fehler: Kein Netzwerk gefunden"
+msgid "ERROR: Forbidden"
+msgstr "Fehler: verboten"
 
-msgid "ERROR:   No network found"
-msgstr "Fehler: Keine Netzwerke gefunden"
+msgid "ERROR: No internet found"
+msgstr "Fehler: Kein Internet gefunden"
 
-msgid "ERROR: Check is already running in background"
-msgstr "Fehler: Prüfung läuft schon im Hintergrund"
+msgid "ERROR: No network found"
+msgstr "Fehler: Keine Netzwerk gefunden"
 
 msgid "East"
 msgstr "Ost"
@@ -3508,16 +3508,19 @@ msgstr "Vorlauf"
 msgid "Favourites"
 msgstr "Favoriten"
 
-msgid "Feeds status:   Stable"
+msgid "Feeds status: Stable"
 msgstr "Feed Status: stabil"
 
-msgid "Feeds status:   Unknown"
+msgid "Feeds status: Unexpected"
+msgstr "Feed Status: unerwartet"
+
+msgid "Feeds status: Unknown"
 msgstr "Feed Status: unbekannt"
 
-msgid "Feeds status:   Unstable"
+msgid "Feeds status: Unstable"
 msgstr "Feed Status: instabil"
 
-msgid "Feeds status:   Updating"
+msgid "Feeds status: Updating"
 msgstr "Feed Status: aktualisieren"
 
 msgid "File appears to be busy.\n"
@@ -3845,6 +3848,9 @@ msgstr "Verberge CI Nachrichten"
 
 msgid "Hide any zap error messages."
 msgstr "Fehlermeldungen beim Umschalten unterdrücken."
+
+msgid "Hide dotted line on the top for this service"
+msgstr "Verstecke blöde weiße Linie am oberen Bildrand für diesen Sender"
 
 msgid "Hide error messages from the Common Interface module."
 msgstr "Unterdrücke Fehlermeldung von einem Common Interface Modul."
@@ -5052,9 +5058,6 @@ msgstr "Kein Kabelempfänger gefunden!"
 
 msgid "No card inserted!"
 msgstr "Keine Karte eingeschoben!"
-
-msgid "No connection"
-msgstr "Keine Verbindung"
 
 msgid ""
 "No data on transponder!\n"
@@ -6299,9 +6302,6 @@ msgstr "Neustart"
 msgid "Rec"
 msgstr "Aufnahme"
 
-msgid "Reception Settings"
-msgstr "Empfangseinstellungen"
-
 msgid "Record"
 msgstr "Aufnahme"
 
@@ -6417,6 +6417,9 @@ msgstr "Fernbedienungstyp"
 
 msgid "Remove"
 msgstr "Entfernen"
+
+msgid "Remove 'Hide dotted line on the top for this service'"
+msgstr "Entferne 'Verstecke blöde weiße Linie am oberen Bildrand für diesen Sender'"
 
 msgid "Remove Confirmation"
 msgstr "Bestätige Löschvorgang"
@@ -8119,7 +8122,7 @@ msgid "Strongest position"
 msgstr "Stärkste Position"
 
 msgid "Subnet"
-msgstr ""
+msgstr "Subnetz"
 
 msgid "Subservices"
 msgstr "Unterkanäle"
@@ -10364,9 +10367,6 @@ msgstr ""
 "Zurückschalten zum Sender der vor dem\n"
 "Öffnen der Rotor Einstellungen lief?"
 
-msgid "Zap back to service before tuner setup?"
-msgstr "Zurückschalten zum vorher laufenden Sender?"
-
 msgid "Zap down"
 msgstr "Vorheriger Sender"
 
@@ -11586,6 +11586,13 @@ msgstr "umgeschaltet"
 #~ msgid "Do you want to download the image to %s ?"
 #~ msgstr "Das Image nach %s herunterladen?"
 
+#~ msgid ""
+#~ "Do you want to install the samba client aswell?\n"
+#~ "This will allow you to mount your windows shares on this device."
+#~ msgstr ""
+#~ "Soll der Samba-Klient ebenfalls installiert werden?\n"
+#~ "Der Klient erlaubt es sich mit Windows-Freigaben zu verbinden."
+
 #~ msgid "Download"
 #~ msgstr "Herunterladen"
 
@@ -11597,6 +11604,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Driver is not supported."
 #~ msgstr "Treiber nicht unterstützt."
+
+#~ msgid "ERROR: Check is already running in background"
+#~ msgstr "Fehler: Prüfung läuft schon im Hintergrund"
 
 #~ msgid "Enable FastZapping"
 #~ msgstr "Aktiviere schnelles Umschalten"
@@ -11660,6 +11670,9 @@ msgstr "umgeschaltet"
 #~ msgid "No clients streaming"
 #~ msgstr "Keine streamenden Klienten"
 
+#~ msgid "No connection"
+#~ msgstr "Keine Verbindung"
+
 #~ msgid "No details for this image file"
 #~ msgstr "Keine Details zum Image verfügbar"
 
@@ -11686,6 +11699,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
+
+#~ msgid "Reception Settings"
+#~ msgstr "Empfangseinstellungen"
 
 #~ msgid "Restore is running..."
 #~ msgstr "Wiederherstellung wird ausgeführt..."
@@ -11784,6 +11800,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 #~ msgstr "Du möchtest einen bootfähigen USB-Stick zum Flashen von NFI-Images erstellen. Dabei wird der USB-Stick repartitioniert, wodurch alle darauf enthaltenen Daten verloren gehen."
+
+#~ msgid "Zap back to service before tuner setup?"
+#~ msgstr "Zurückschalten zum vorher laufenden Sender?"
 
 #~ msgid "continue"
 #~ msgstr "Weiter"

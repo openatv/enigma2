@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 
-SUBDIRS = SoftwareManager PositionerSetup Satfinder \
+SUBDIRS = PositionerSetup Satfinder \
 	VideoTune Hotplug \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	HdmiCEC VideoClippingSetup \
@@ -29,14 +29,6 @@ endif
 
 if VUSOLO4K
 SUBDIRS += CableScan
-endif
-
-if HAVE_LIBVUGLES2
-SUBDIRS += AnimationSetup
-endif
-
-if HAVE_OSDANIMATION
-SUBDIRS += AnimationSetup
 endif
 
 install_PYTHON = __init__.py

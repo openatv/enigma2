@@ -263,7 +263,8 @@ public:
 		BT_ALPHATEST = 1,
 		BT_ALPHABLEND = 2,
 		BT_SCALE = 4, /* will be automatically set by blitScale */
-		BT_KEEP_ASPECT_RATIO = 8
+		BT_KEEP_ASPECT_RATIO = 8,
+		BT_FIXRATIO = 8
 	};
 
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);

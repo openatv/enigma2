@@ -27,7 +27,7 @@ class FrontendInfo(Converter, object):
 			self.type = self.SLOT_NUMBER
 		elif type == "TYPE":
 			self.type = self.TUNER_TYPE
-		elif type == "STRING":
+		elif type.startswith("STRING"):
 			self.type = self.STRING
 			type = type.split(",")
 			self.space_for_tuners = len(type) > 1 and int(type[1]) or 10
