@@ -749,7 +749,7 @@ class AutoVideoMode(Screen):
 					new_mode = config_mode
 
 				if (video_rate + 500) / 1000 == 24:
-					if video_height <= 720:
+					if new_mode[-1:] == 'p' and int(new_mode[:-1]) <= 720:
 						new_rate = config.av.autores_24p.value.split(',')[0]
 					else:
 						new_rate = config.av.autores_24p.value.split(',')[1]
@@ -788,7 +788,7 @@ class AutoVideoMode(Screen):
 					if config_rate != 'multi' and int(config_rate) < new_rate: new_rate = config_rate
 
 				if (video_rate + 500) / 1000 == 24:
-					if video_height <= 720:
+					if int(new_res) <= 720:
 						new_rate = config.av.autores_24p.value.split(',')[0]
 					else:
 						new_rate = config.av.autores_24p.value.split(',')[1]
