@@ -117,6 +117,31 @@ class ServiceScan:
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
 								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
 							}.get(tp.bandwidth, ""))
+					elif tp_type == iDVBFrontend.feATSC:
+						network = _("ATSC")
+						tp = transponder.getATSC()
+						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
+						tp_text = ("%s %s %s %s") % (
+							{
+								tp.System_ATSC : _("ATSC"),
+								tp.System_DVB_C_ANNEX_B : _("DVB-C ANNEX B")
+							}.get(tp.system, ""),
+							{
+								tp.Modulation_Auto : _("Auto"),
+								tp.Modulation_QAM16 : "QAM16",
+								tp.Modulation_QAM32 : "QAM32",
+								tp.Modulation_QAM64 : "QAM64",
+								tp.Modulation_QAM128 : "QAM128",
+								tp.Modulation_QAM256 : "QAM256",
+								tp.Modulation_VSB_8 : "8VSB",
+								tp.Modulation_VSB_16 : "16VSB"
+							}.get(tp.modulation, ""),
+							freqMHz.replace(".0",""),
+							{
+								tp.Inversion_Off : _("Off"),
+								tp.Inversion_On :_("On"),
+								tp.Inversion_Unknown : _("Auto")
+							}.get(tp.inversion, ""))
 					else:
 						print "unknown transponder type in scanStatusChanged"
 				self.network.setText(network)

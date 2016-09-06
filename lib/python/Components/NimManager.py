@@ -888,6 +888,12 @@ class NimManager:
 	def getTranspondersTerrestrial(self, region):
 		return self.transpondersterrestrial[region]
 
+	def getTranspondersATSC(self, nim):
+		nimConfig = config.Nims[nim]
+		if nimConfig.configMode.value != "nothing":
+			return self.transpondersatsc[self.atscList[nimConfig.atsc.index][0]]
+		return []
+
 	def getCableDescription(self, nim):
 		return self.cablesList[config.Nims[nim].dvbc.scan_provider.index][0]
 
@@ -1075,6 +1081,10 @@ class NimManager:
 			db.readCables(self.cablesList, self.transponderscable)
 			print "Reading terrestrial.xml"
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
+
+		if self.hasNimType("ATSC"):
+			print "[NimManager] Reading atsc.xml"
+			db.readATSC(self.atscList, self.transpondersatsc)
 
 	def enumerateNIMs(self):
 		# enum available NIMs. This is currently very dreambox-centric and uses the /proc/bus/nim_sockets interface.
@@ -1341,6 +1351,10 @@ class NimManager:
 				res = res or not (configMode == "nothing")
 			if self.nim_slots[slotid].canBeCompatible("DVB-C"):
 				nim = config.Nims[slotid].dvbc
+				configMode = nim.configMode.value
+				res = res or not (configMode == "nothing")
+			if self.nim_slots[slotid].canBeCompatible("ATSC"):
+				nim = config.Nims[slotid].atsc
 				configMode = nim.configMode.value
 				res = res or not (configMode == "nothing")
 			return res
@@ -2052,6 +2066,13 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.terrestrial = ConfigSelection(choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 
+	def createATSCConfig(nim, x):
+		try:
+			nim.atsc
+		except:
+			list = [(str(n), x[0]) for n, x in enumerate(nimmgr.atscList)]
+			nim.atsc = ConfigSelection(choices = list)
+
 	try:
 		for slot in nimmgr.nim_slots:
 			if slot.frontend_id is not None:
@@ -2111,7 +2132,15 @@ def InitNimManager(nimmgr, update_slots = []):
 					},
 				default = "enabled")
 			createTerrestrialConfig(nim, x)
-		if not(slot.canBeCompatible("DVB-S") or slot.canBeCompatible("DVB-T") or slot.canBeCompatible("DVB-C")):
+		if slot.canBeCompatible("ATSC"):
+			nim.configMode = ConfigSelection(
+				choices = {
+					"enabled": _("enabled"),
+					"nothing": _("nothing connected"),
+					},
+				default = "enabled")
+			createATSCConfig(nim, x)
+		if not(slot.canBeCompatible("DVB-S") or slot.canBeCompatible("DVB-T") or slot.canBeCompatible("DVB-C") or slot.canBeCompatible("ATSC")):
 			empty_slots += 1
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing")
 			if slot.type is not None:
@@ -2228,6 +2257,9 @@ def InitNimManager(nimmgr, update_slots = []):
 		if slot.canBeCompatible("DVB-T"):
 			nim = config.Nims[x].dvbt
 			createTerrestrialConfig(nim, x)
+			empty = False
+		if slot.canBeCompatible("ATSC"):
+			createATSCConfig(nim, x)
 			empty = False
 		if empty:
 			empty_slots += 1

@@ -504,8 +504,8 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 		}
 		case iDVBFrontend::feATSC:
 		{
-			hash = 0xDDDD0000;
-			hash |= (atsc.frequency/1000)&0xFFFF;
+			hash = atsc.system == eDVBFrontendParametersATSC::System_ATSC ? 0xEEEE0000 : 0xFFFF0000;
+			hash |= (atsc.frequency/1000000)&0xFFFF;
 			return 0;
 		}
 		default:
@@ -784,8 +784,9 @@ int eDVBFrontend::openFrontend()
 #endif
 						break;
 					}
-					case FE_ATSC:	// placeholder to prevent warning
+					case FE_ATSC:
 					{
+						m_delsys[SYS_ATSC] = true;
 						break;
 					}
 				}
@@ -3232,6 +3233,10 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		can_handle_dvbc_annex_b = supportsDeliverySystem(SYS_DVBC_ANNEX_B, true);
 		can_handle_atsc = supportsDeliverySystem(SYS_ATSC, true);
 		if (feparm->getATSC(parm) < 0)
+		{
+			return 0;
+		}
+		if (!can_handle_atsc && !can_handle_dvbc_annex_b)
 		{
 			return 0;
 		}

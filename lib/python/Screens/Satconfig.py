@@ -270,6 +270,12 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.dvbt.terrestrial))
 				if not getBoxType() in ('spycat'):
 					self.list.append(getConfigListEntry(_("Enable 5V for active antenna"), self.nimConfig.dvbt.terrestrial_5V))
+		elif self.nim.isCompatible("ATSC"):
+			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.atsc.configMode)
+			self.list.append(self.configMode)
+			if self.nimConfig.atsc.configMode.value == "enabled":
+				self.list.append(getConfigListEntry(_("ATSC provider"), self.nimConfig.atsc.atsc))
+			self.have_advanced = False
 		else:
 			self.have_advanced = False
 		self["config"].list = self.list
@@ -939,6 +945,12 @@ class NimSelection(Screen):
 						text = _("Enabled")
 				elif x.isCompatible("DVB-C"):
 					nimConfig = nimmanager.getNimConfig(x.slot).dvbc
+					if nimConfig.configMode.value == "nothing":
+						text = _("nothing connected")
+					elif nimConfig.configMode.value == "enabled":
+						text = _("Enabled")
+				elif x.isCompatible("ATSC"):
+					nimConfig = nimmanager.getNimConfig(x.slot).atsc
 					if nimConfig.configMode.value == "nothing":
 						text = _("nothing connected")
 					elif nimConfig.configMode.value == "enabled":

@@ -1,4 +1,4 @@
-from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
+from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
 from Components.NimManager import nimmanager
 
 def orbpos(pos):
@@ -236,8 +236,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersATSC.Modulation_QAM64 : "QAM64",
 			eDVBFrontendParametersATSC.Modulation_QAM128 : "QAM128",
 			eDVBFrontendParametersATSC.Modulation_QAM256 : "QAM256",
-			eDVBFrontendParametersATSC.Modulation_VSB_8 : "VSB_8",
-			eDVBFrontendParametersATSC.Modulation_VSB_16 : "VSB_16"}.get(tp.get("modulation"))
+			eDVBFrontendParametersATSC.Modulation_VSB_8 : "8VSB",
+			eDVBFrontendParametersATSC.Modulation_VSB_16 : "16VSB"}.get(tp.get("modulation"))
 		ret["inversion"] = {
 			eDVBFrontendParametersATSC.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersATSC.Inversion_On : _("On"),
