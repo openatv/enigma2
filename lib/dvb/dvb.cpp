@@ -1371,6 +1371,8 @@ int tuner_type_channel_default(ePtr<iDVBChannelList> &channellist, const eDVBCha
 						return 40000;
 					case iDVBFrontend::feTerrestrial:
 						return 30000;
+					case iDVBFrontend::feATSC:
+						return 20000;
 					default:
 						break;
 				}

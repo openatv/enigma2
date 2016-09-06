@@ -219,6 +219,8 @@ def InitUsageConfig():
 	dvbs_nims = [("-2", _("Disabled"))]
 	dvbt_nims = [("-2", _("Disabled"))]
 	dvbc_nims = [("-2", _("Disabled"))]
+	atsc_nims = [("-2", _("Disabled"))]
+
 	nims = [("-1", _("auto"))]
 	rec_nims = [("-2", _("Disabled")), ("-1", _("auto"))]
 	for x in nimmanager.nim_slots:
@@ -228,6 +230,8 @@ def InitUsageConfig():
 			dvbt_nims.append((str(x.slot), x.getSlotName()))
 		elif x.isCompatible("DVB-C"):
 			dvbc_nims.append((str(x.slot), x.getSlotName()))
+		elif x.isCompatible("ATSC"):
+			atsc_nims.append((str(x.slot), x.getSlotName()))
 		nims.append((str(x.slot), x.getSlotName()))
 		rec_nims.append((str(x.slot), x.getSlotName()))
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
@@ -243,9 +247,14 @@ def InitUsageConfig():
 	config.usage.frontend_priority_dvbc = ConfigSelection(default = "-2", choices = list(dvbc_nims))
 	dvbc_nims.insert(1,("-1", _("auto")))
 	config.usage.recording_frontend_priority_dvbc = ConfigSelection(default = "-2", choices = dvbc_nims)
-	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and (len(dvbt_nims) > 2 or len(dvbc_nims) > 2)
-	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbc_nims) > 2)
-	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbt_nims) > 2)
+	config.usage.frontend_priority_atsc = ConfigSelection(default = "-2", choices = list(atsc_nims))
+	atsc_nims.insert(1,("-1", _("auto")))
+	config.usage.recording_frontend_priority_atsc = ConfigSelection(default = "-2", choices = atsc_nims)
+
+	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and any(len(i) > 2 for i in (dvbt_nims, dvbc_nims, atsc_nims))
+	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, atsc_nims))
+	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims))
+	SystemInfo["ATSC_priority_tuner_available"] = len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims))
 
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)

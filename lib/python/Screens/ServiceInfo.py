@@ -303,6 +303,13 @@ class ServiceInfo(Screen):
 						(_("Transmission mode"), frontendData["transmission_mode"], TYPE_TEXT),
 						(_("Guard interval"), frontendData["guard_interval"], TYPE_TEXT),
 						(_("Hierarchy info"), frontendData["hierarchy_information"], TYPE_TEXT))
+			elif frontendDataOrg["tuner_type"] == "ATSC":
+				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
+						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
+						(_("System"), frontendData["system"], TYPE_TEXT),
+						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
+						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
+						(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
 		return [ ]
 
 	def fillList(self, Labels):
