@@ -712,7 +712,7 @@ class AutoVideoMode(Screen):
 
 			write_mode = None
 			new_mode = None
-			problem_mode = ('720p24','720p25') #black screen possible
+			problem_mode = ('720p24','720p25','720p30') #black screen possible
 			if config_mode in ('PAL', 'NTSC'):
 				write_mode = config_mode
 
@@ -751,7 +751,10 @@ class AutoVideoMode(Screen):
 				if (video_rate + 500) / 1000 == 24: new_rate = config.av.autores_24p.value
 				new_rate = str(new_rate)
 				if new_mode+new_rate in problem_mode:
-					new_rate = '50'
+					if new_rate == '30':
+						new_rate = '60'
+					else:
+						new_rate = '50'
 				if new_mode+new_rate in iAVSwitch.modes_available:
 					write_mode = new_mode+new_rate
 				elif new_mode in iAVSwitch.modes_available:
@@ -783,7 +786,10 @@ class AutoVideoMode(Screen):
 				if (video_rate + 500) / 1000 == 24: new_rate = config.av.autores_24p.value
 				new_rate = str(new_rate)
 				if new_res+new_pol+new_rate in problem_mode:
-					new_rate = '50'
+					if new_rate == '30':
+						new_rate = '60'
+					else:
+						new_rate = '50'
 				if new_res+new_pol+new_rate in iAVSwitch.modes_available:
 					write_mode = new_res+new_pol+new_rate
 				elif new_res+new_pol in iAVSwitch.modes_available:
