@@ -406,7 +406,18 @@ def InitAVSwitch():
 	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "simple": _("Simple"), "native": _("Native"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
 	config.av.autores_preview = NoSave(ConfigYesNo(default=False))
 	config.av.autores_1080i_deinterlace = ConfigYesNo(default=False)
-	config.av.autores_24p =  ConfigSelection(choices={"24": _("24p"), "50": _("50p"), "60": _("60p")}, default="24")
+	config.av.autores_24p =  ConfigSelection(choices=
+		{
+		"24,24": _("24p/24p"),
+		"24,50": _("24p/50p"),
+		"24,60": _("24p/60p"),
+		"50,24": _("50p/24p"),
+		"60,24": _("60p/24p"),
+		"50,50": _("50p/50p"),
+		"50,60": _("50p/60p"),
+		"60,50": _("60p/50p"),
+		"60,60": _("60p/60p")
+		}, default="50,24") # first value <=720p , second value > 720p
 	config.av.autores_unknownres =  ConfigSelection(choices={"next": _("next higher Resolution"), "highest": _("highest Resolution")}, default="next")
 	choicelist = []
 	for i in range(5, 16):

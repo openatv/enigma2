@@ -140,14 +140,14 @@ class VideoSetup(Screen, ConfigListScreen):
 					self.getVerify_videomode(config.av.autores_mode_uhd, config.av.autores_rate_uhd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for UHD"), _("%sMode for UHD (up to 2160p)") %self.prev_uhd), config.av.autores_mode_uhd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check_uhd"))
 					self.list.append(getConfigListEntry(_("%sRefresh rate for UHD") %self.prev_uhd, config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check_uhd"))
-				self.list.append(getConfigListEntry(_("Show 24p as"), config.av.autores_24p,_("Show 24p as a different Framerate.")))
+				self.list.append(getConfigListEntry(_("Show 24p up to 720p / higher than 720p as"), config.av.autores_24p,_("Show 24p up to resolution 720p or higher than 720p as a different Framerate.")))
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution infomation.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
 			elif config.av.autores.value == 'native':
 				self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 				self.list.append(getConfigListEntry(pgettext(_("Lowest Video output mode"), _("Lowest Mode")), config.av.autores_mode_sd[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
 				self.list.append(getConfigListEntry(_("Refresh rate for 'Lowest Mode'"), config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value], _("Configure the refresh rate of the screen.")))
-				self.list.append(getConfigListEntry(_("Show 24p as"), config.av.autores_24p,_("Show 24p as a different Framerate.")))
+				self.list.append(getConfigListEntry(_("Show 24p up to 720p / higher than 720p as"), config.av.autores_24p,_("Show 24p up to resolution 720p or higher than 720p as a different Framerate.")))
 				self.list.append(getConfigListEntry(_("Show unknown video format as"), config.av.autores_unknownres, _("Show unknown Videoresolution as next higher or as highest screen resolution.")))
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution infomation.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout,_("Allows you to adjust the amount of time the resolution infomation display on screen.")))
@@ -712,7 +712,7 @@ class AutoVideoMode(Screen):
 
 			write_mode = None
 			new_mode = None
-			problem_mode = ('720p24','720p25','720p30') #black screen possible
+			problem_mode = ('720p25','720p30') #black screen possible
 			if config_mode in ('PAL', 'NTSC'):
 				write_mode = config_mode
 
@@ -748,7 +748,11 @@ class AutoVideoMode(Screen):
 					if config_rate != 'multi': new_rate = config_rate
 					new_mode = config_mode
 
-				if (video_rate + 500) / 1000 == 24: new_rate = config.av.autores_24p.value
+				if (video_rate + 500) / 1000 == 24:
+					if video_height <= 720:
+						new_rate = config.av.autores_24p.value.split(',')[0]
+					else:
+						new_rate = config.av.autores_24p.value.split(',')[1]
 				new_rate = str(new_rate)
 				if new_mode+new_rate in problem_mode:
 					if new_rate == '30':
@@ -774,16 +778,20 @@ class AutoVideoMode(Screen):
 
 				min_port, min_mode, min_res, min_pol, min_rate = getConfig_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 
-				if int(video_height) <= int(min_res):
+				if video_height <= int(min_res):
 					if new_pol == 'i' and min_pol == 'p': new_pol = min_pol
 					if min_rate != 'multi' and new_rate < int(min_rate): new_rate = min_rate
 					new_res = min_res
-				elif int(video_height) >= int(config_res):
+				elif video_height >= int(config_res):
 					new_res = config_res
 					if video_pol == 'p' and config_pol == 'i': new_pol = config_pol
 					if config_rate != 'multi' and int(config_rate) < new_rate: new_rate = config_rate
 
-				if (video_rate + 500) / 1000 == 24: new_rate = config.av.autores_24p.value
+				if (video_rate + 500) / 1000 == 24:
+					if video_height <= 720:
+						new_rate = config.av.autores_24p.value.split(',')[0]
+					else:
+						new_rate = config.av.autores_24p.value.split(',')[1]
 				new_rate = str(new_rate)
 				if new_res+new_pol+new_rate in problem_mode:
 					if new_rate == '30':
