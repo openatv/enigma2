@@ -285,7 +285,7 @@ class InfoBar(
 
 class MoviePlayer(
 	InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarEPG,
-	InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+	InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, InfoBarTimerButton, HelpableScreen, InfoBarNotifications,
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 	InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
 	InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarHdmi, InfoBarButtonSetup
@@ -318,7 +318,7 @@ class MoviePlayer(
 		for x in (
 			HelpableScreen, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarEPG,
 			InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord,
-			InfoBarAudioSelection, InfoBarNotifications,
+			InfoBarAudioSelection, InfoBarTimerButton, InfoBarNotifications,
 			InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport,
 			InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport,
 			InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions,
