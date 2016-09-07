@@ -351,46 +351,40 @@ static inline unsigned int recode(unsigned char d, int cp)
 	}
 }
 
-int UnicodeToUTF8(long c, char *out, int max)
+std::string UnicodeToUTF8(long c)
 {
-	if (max > 0 && c < 0x80 ) {
-		*out = c;
-		return 1;
+	if ( c < 0x80 ) {
+		char utf[2] = {c, 0};
+		return std::string((char*)utf, 1);
 	}
-	else if (max > 1 && c < 0x800) {
-		*(out++) = 0xc0 | (c >> 6);
-		*out     = 0x80 | (c & 0x3f);
-		return 2;
+	else if ( c < 0x800) {
+                char utf[3] = { 0xc0 | (c >> 6), 0x80 | (c & 0x3f), 0};
+		return std::string((char*)utf, 2);
 	}
-	else if (max > 2 && c < 0x10000) {
-		*(out++) = 0xe0 | (c >> 12);
-		*(out++) = 0x80 | ((c >> 6) & 0x3f);
-		*out     = 0x80 | (c & 0x3f);
-		return 3;
+	else if ( c < 0x10000) {
+                char utf[4] = { 0xe0 | (c >> 12), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f), 0};
+		return std::string((char*)utf, 3);
 	}
-	else if (max > 3 && c < 0x200000) {
-		*(out++) = 0xf0 | (c >> 18);
-		*(out++) = 0x80 | ((c >> 12) & 0x3f);
-		*(out++) = 0x80 | ((c >> 6) & 0x3f);
-		*out     = 0x80 | (c & 0x3f);
-		return 4;
+	else if ( c < 0x200000) {
+                char utf[5] = { 0xf0 | (c >> 18), 0x80 | ((c >> 12) & 0x3f), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f), 0};
+		return std::string((char*)utf, 4);
 	}
-	eDebug("[UnicodeToUTF8] invalid unicode character or not enough space to convert: code=0x%08x, max=%d", c, max);
-	return 0; // not enough space to convert or not a valid unicode
+	eDebug("[UnicodeToUTF8] invalid unicode character: code=0x%08x", c); // not a valid unicode
+	return "";
 }
 
 std::string GB18030ToUTF8(const char *szIn, int len, int *pconvertedLen)
 {
-	char szOut[len * 2];
+	std::string szOut = "";
 	unsigned long code = 0;
-	int t = 0, i;
+	int i;
 
 	for (i = 0; i < len;) {
 		int cl = 0;
 
 		cl = gb18030_mbtowc((ucs4_t*)(&code), (const unsigned char *)szIn + i, len - i);
 		if (cl > 0) {
-			t += UnicodeToUTF8(code, szOut + t, len*2 - t);
+			szOut += UnicodeToUTF8(code);
 			i += cl;
 		}
 		else
@@ -399,14 +393,14 @@ std::string GB18030ToUTF8(const char *szIn, int len, int *pconvertedLen)
 
 	if (pconvertedLen)
 		*pconvertedLen = i;
-	return std::string(szOut, t);
+	return szOut;
 }
 
 std::string Big5ToUTF8(const char *szIn, int len, int *pconvertedLen)
 {
-	char szOut[len * 2];
+	std::string szOut = "";
 	unsigned long code = 0;
-	int t = 0, i = 0;
+	int i = 0;
 
 	for (;i < len; i++) {
 		if (((unsigned char)szIn[i] > 0xA0) && (unsigned char)szIn[i] <= 0xF9 &&
@@ -414,19 +408,19 @@ std::string Big5ToUTF8(const char *szIn, int len, int *pconvertedLen)
 			  (((unsigned char)szIn[i+1] >  0xA0) && ((unsigned char)szIn[i+1] < 0xFF))
 			) ) {
 			big5_mbtowc((ucs4_t*)(&code), (const unsigned char *)szIn + i, 2);
-			t += UnicodeToUTF8(code, szOut + t, len*2 - t);
+			szOut += UnicodeToUTF8(code);
 			i++;
 		}
 		else
-			szOut[t++] = szIn[i];
+			szOut += szIn[i];
 	}
 
         if (i < len && szIn[i] && ((unsigned char)szIn[i] < 0xA0 || (unsigned char)szIn[i] > 0xF9))
-		szOut[t++] = szIn[i++];
+		szOut += szIn[i++];
 
 	if (pconvertedLen)
 		*pconvertedLen = i;
-	return std::string(szOut, t);
+	return szOut;
 }
 
 std::string convertDVBUTF8(const unsigned char *data, int len, int table, int tsidonid,int *pconvertedLen)
@@ -550,9 +544,8 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 				*pconvertedLen += len;
 			break;
 		default:
-			char res[4096];
-			int t = 0;
-			while (i < len && t < sizeof(res))
+			std::string res = "";
+			while (i < len)
 			{
 				unsigned long code = 0;
 				if (useTwoCharMapping && i+1 < len && (code = doVideoTexSuppl(data[i], data[i+1])))
@@ -602,11 +595,11 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 				if (!code)
 					continue;
-				t += UnicodeToUTF8(code, res + t, sizeof(res) - t);
+				res += UnicodeToUTF8(code);
 			}
 			if (pconvertedLen)
 				*pconvertedLen = i;
-			output = std::string((char*)res, t);
+			output = res;
 			break;
 	}
 
@@ -680,16 +673,16 @@ std::string convertUTF8DVB(const std::string &string, int table)
 
 std::string convertLatin1UTF8(const std::string &string)
 {
-	unsigned int t = 0, i = 0, len = string.size();
+	unsigned int i = 0, len = string.size();
 
-	char res[4096];
+	std::string res = "";
 
 	while (i < len)
 	{
 		unsigned long code = (unsigned char)string[i++];
-		t += UnicodeToUTF8(code, res + t, sizeof(res) - t);
+		res += UnicodeToUTF8(code);
 	}
-	return std::string((char*)res, t);
+	return res;
 }
 
 int isUTF8(const std::string &string)
