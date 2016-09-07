@@ -431,7 +431,7 @@ class ChannelContextMenu(Screen):
 		self.close(False)
 
 	def showServiceInformations(self):
-		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
+		self.session.open(ServiceInfo, serviceref=self.csel.getCurrentSelection())
 
 	def setStartupService(self):
 		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list = [(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
