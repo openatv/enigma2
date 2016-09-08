@@ -445,7 +445,7 @@ class ChannelContextMenu(Screen):
 			config.servicelist.startupservice_onstandby.value = answer == "standby"
 			config.servicelist.save()
 			configfile.save()
-			self.close()
+		self.close()
 
 	def unsetStartupService(self):
 		config.servicelist.startupservice.value = ''
