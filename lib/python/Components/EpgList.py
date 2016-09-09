@@ -801,7 +801,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				font = namefont, flags = namefontflag,
 				text = str(channel),
 				color = serviceForeColor, color_sel = serviceForeColor,
-				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))			
+				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
 
 		displayPicon = None
 		if self.showPicon:
