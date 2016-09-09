@@ -202,8 +202,7 @@ class MessageBox(Screen):
 					else:
 						self.close(False)
 					break
-		else:
-			self.close(False)
+		self.close(False)
 
 	def ok(self):
 		if self["list"].getCurrent():
