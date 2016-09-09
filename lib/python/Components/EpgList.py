@@ -792,7 +792,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		channelWidth = 0
 		if channel is not None and self.showServiceNumber:
 			namefont = 0
-			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			namefontflag = RT_HALIGN_RIGHT | RT_VALIGN_CENTER
 			font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
 			channelWidth = getTextBoundarySize(self.instance, font, self.instance.size(), (channel < 10000)  and "0000" or str(channel) ).width()
 			res.append(MultiContentEntryText(
