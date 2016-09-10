@@ -583,7 +583,7 @@ def InitAVSwitch():
 	else:
 		have_colorimetry = False
 
-	SystemInfo["havecolorimetry"] = have_colorspace
+	SystemInfo["havecolorimetry"] = have_colorimetry
 
 	if have_colorimetry:
 		def setHDMIColorimetry(configElement):
