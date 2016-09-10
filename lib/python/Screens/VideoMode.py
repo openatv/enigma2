@@ -139,6 +139,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		if SystemInfo["havecolorspace"]:
 			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace,_("This option allows you to change the Colorspace from Auto to RGB")))
 
+		if SystemInfo["havecolorimetry"]:
+			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry,_("This option allows you can config the Colorimetry for HDR")))
+
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
 				self.list.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), config.av.downmix_ac3, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))

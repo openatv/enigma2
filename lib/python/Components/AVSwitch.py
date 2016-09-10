@@ -495,6 +495,58 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolorspace = ConfigNothing()
 
+	if os.path.exists("/proc/stb/video/hdmi_colorimetry"):
+		f = open("/proc/stb/video/hdmi_colorimetry", "r")
+		have_colorimetry = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_colorimetry = False
+
+	SystemInfo["havecolorimetry"] = have_colorspace
+
+	if have_colorimetry:
+		def setHDMIColorimetry(configElement):
+			try:
+				f = open("/proc/stb/video/hdmi_colorimetry", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.hdmicolorimetry = ConfigSelection(choices={
+				"auto": _("auto"),
+				"bt2020ncl": _("BT 2020 NCL"),
+				"bt2020cl": _("BT 2020 CL"),
+				"bt709": _("BT 709")},
+				default = "auto")
+		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
+	else:
+		config.av.hdmicolorimetry = ConfigNothing()
+
+	if os.path.exists("/proc/stb/hdmi/audio_source"):
+		f = open("/proc/stb/hdmi/audio_source", "r")
+		can_audiosource = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_audiosource = False
+
+	SystemInfo["Canaudiosource"] = can_audiosource
+
+	if can_audiosource:
+		def setAudioSource(configElement):
+			try:
+				f = open("/proc/stb/hdmi/audio_source", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.audio_source = ConfigSelection(choices={
+				"pcm": _("PCM"),
+				"spdif": _("SPDIF")},
+				default="pcm")
+		config.av.audio_source.addNotifier(setAudioSource)
+	else:
+		config.av.audio_source = ConfigNothing()
+
 	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
 		can_3dsurround = f.read().strip().split(" ")
