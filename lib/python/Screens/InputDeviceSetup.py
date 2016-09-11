@@ -273,7 +273,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("14", _("XP1000")),
 			("16", _("HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/et7000mini")),
 			("17", _("XP3000")),
-			("18", _("F1/F3/F4/TRIPLEX")),
+			("18", _("F1/F3/F4/F4-TURBO/TRIPLEX")),
 			("19", _("HD2400")),
 			("20", _("Zgemma Star S/2S/H1/H2")),
 			("21", _("Zgemma H.S/H.2S/H.2H/H5"))
@@ -296,6 +296,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("formuler1",18),
 			("formuler3",18),
 			("formuler4",18),
+			("formuler4-turbo",18),
 			("hd11",16),
 			("hd51",16),
 			("hd1100",16),
