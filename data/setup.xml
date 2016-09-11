@@ -14,6 +14,8 @@
 	</setup>
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
+		<item level="0" text="Volume adjust slow" description="Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_slow</item>
+		<item level="0" text="Volume adjust fast" description="Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_fast</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners.">config.usage.alternatives_priority</item>
@@ -24,11 +26,14 @@
 		<item level="2" text="Disable background scanning" description="When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing.">config.misc.disable_background_scan</item>
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
+		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
+		<item level="2" text="Load unlinked userbouquets" description="When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
-		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
-		<item level="2" text="Load unlinked userbouquets" description="When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
+		<item level="1" text="Use workaround for wakeup from deep-standby?" description="If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)">config.workaround.deeprecord</item>
+		<item level="2" text="Wakeup time before a timer begins [mins]" description="The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)">config.workaround.wakeuptime</item>
+		<item level="2" text="Time window for detection of the wakeup by a timer [mins]" description="The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers.">config.workaround.wakeupwindow</item>
 	</setup>
 	<setup key="userinterface" title="OSD settings">
 		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
@@ -191,6 +196,12 @@
 		<item level="2" text="Slow motion speeds" description="Configure the slow motion speeds.">config.seek.speeds_slowmotion</item>
 		<item level="2" text="Initial fast forward speed" description="Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed.">config.seek.enter_forward</item>
 		<item level="2" text="Initial rewind speed" description="Configure the initial rewind speed. When you press the rewind button, winding will start at this speed.">config.seek.enter_backward</item>
+		<item level="2" text="Use time jumps for fast forward/backward" description="This will go fast forward/backward with time frames of x secs">config.seek.withjumps</item>
+		<item level="2" text="Time jump: Use normal fast forward for speeds" description="Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps.">config.seek.withjumps_after_ff_speed</item>
+		<item level="2" text="Time jump multiplier for fast forward" description="Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files.">config.seek.withjumps_forwards_ms</item>
+		<item level="2" text="Time jump multiplier for fast backward" description="Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files.">config.seek.withjumps_backwards_ms</item>
+		<item level="2" text="Time jump repeat interval for fast forward/backward" description="Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS.">config.seek.withjumps_repeat_ms</item>
+		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames.">config.seek.withjumps_avoid_zero</item>
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed.">config.recording.filename_composition</item>
 		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
@@ -267,17 +278,7 @@
 		<item level="1" text="Scrolling delay (software renderer)" description="Set the delay time between repeated loops, this is used by software renderer in some skins.">config.lcd.scroll_delay</item>
 	</setup>
 	<setup key="specialfeatures" title="Special Features">
-		<item level="0" text="Wakeup time before a timer begins [mins]" description="The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)">config.workaround.wakeuptime</item>
-		<item level="0" text="Time window for detection of the wakeup by a timer [mins]" description="The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers.">config.workaround.wakeupwindow</item>
-		<item level="0" text="Use workaround for wakeup from deep-standby?" description="If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)">config.workaround.deeprecord</item>
-		<item level="0" text="Use time jumps for fast forward/backward" description="This will go fast forward/backward with time frames of x secs">config.seek.withjumps</item>
-		<item level="0" text="Time jump: Use normal fast forward for speeds" description="Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps.">config.seek.withjumps_after_ff_speed</item>
-		<item level="0" text="Time jump multiplier for fast forward" description="Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files.">config.seek.withjumps_forwards_ms</item>
-		<item level="0" text="Time jump multiplier for fast backward" description="Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files.">config.seek.withjumps_backwards_ms</item>
-		<item level="0" text="Time jump repeat interval for fast forward/backward" description="Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS.">config.seek.withjumps_repeat_ms</item>
-		<item level="0" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames.">config.seek.withjumps_avoid_zero</item>
-		<item level="0" text="Volume adjust slow" description="Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_slow</item>
-		<item level="0" text="Volume adjust fast" description="Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_fast</item>
+		<!-- this is just a placeholder, the 'specialfeatures' menu is currently disabled -->
 	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
