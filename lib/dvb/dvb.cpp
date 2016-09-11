@@ -551,7 +551,7 @@ void *eDVBUsbAdapter::vtunerPump()
 		unsigned char pad[64]; /* nobody knows the much data the driver will try to copy into our struct, add some padding to be sure */
 	};
 
-#define DEMUX_BUFFER_SIZE (8 * ((188 / 4) * 4096)) /* 1.5MB */
+#define DEMUX_BUFFER_SIZE (16 * 1024 * 188 ) /* 3 MB */
 	ioctl(demuxFd, DMX_SET_BUFFER_SIZE, DEMUX_BUFFER_SIZE);
 
 	while (running)
