@@ -192,8 +192,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.serviceNumberPadding = 9
 		self.eventBorderWidth = 1
 		self.eventNamePadding = 3
-		self.eventNameAlign = 'left'
-		self.eventNameWrap = 'yes'
 		self.NumberOfRows = None
 
 	def applySkin(self, desktop, screen):
@@ -220,10 +218,6 @@ class EPGList(HTMLComponent, GUIComponent):
 					font = parseFont(value, ((1,1),(1,1)) )
 					self.eventFontNameSingle = font.family
 					self.eventFontSizeSingle = font.pointSize
-				elif attrib == "EntryFontAlignment":
-					self.eventNameAlign = value
-				elif attrib == "EntryFontWrap":
-					self.eventNameWrap = value
 
 				elif attrib == "ServiceForegroundColor":
 					self.foreColorService = parseColor(value).argb()
@@ -938,16 +932,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
-				if self.eventNameAlign.lower() == 'left':
-					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
-					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
-				else:
-					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
-					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 				if stime <= now < (stime + duration):
 					foreColor = self.foreColorNow
@@ -1032,7 +1016,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					res.append(MultiContentEntryText(
 						pos = (evX, evY), size = (evW, evH),
-						font = 1, flags = alignnment,
+						font = 1, flags = int(config.epgselection.graph_event_alignment.value),
 						text = ev[1],
 						color = foreColor, color_sel = foreColorSel,
 						backcolor = backColor, backcolor_sel = backColorSel))
