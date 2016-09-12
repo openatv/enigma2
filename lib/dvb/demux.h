@@ -132,10 +132,8 @@ protected:
 class eDVBRecordStreamThread: public eDVBRecordFileThread
 {
 public:
-	eDVBRecordStreamThread(int packetsize):
-		eDVBRecordFileThread(packetsize, /*bufferCount*/ 4)
-	{
-	}
+	eDVBRecordStreamThread(int packetsize);
+
 protected:
 	int writeData(int len);
 	void flush();
