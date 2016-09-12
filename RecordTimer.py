@@ -189,6 +189,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.isAutoTimer = isAutoTimer
 		self.wasInStandby = False
 
+		#workaround for vmc crash - only a dummy entry!!!
+		self.justremind = False
+		'''
+		File "/usr/lib/enigma2/python/Plugins/Extensions/VMC/VMC_Classes.py", line 3704, in TimerChange
+		"Filename") and not timer.justplay and not timer.justremind and timer.state == TimerEntry.StateEnded:
+		AttributeError: 'RecordTimerEntry' object has no attribute 'justremind'
+		'''
+		###
+
 		self.log_entries = []
 		self.check_justplay()
 		self.resetState()
