@@ -827,7 +827,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			
 			if channel:
 				namefont = 0
-				namefontflag = RT_HALIGN_RIGHT | RT_VALIGN_CENTER
+				namefontflag = int(config.epgselection.graph_servicenumber_alignment.value)
 				font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
 				channelWidth = getTextBoundarySize(self.instance, font, self.instance.size(), (channel < 10000)  and "0000" or str(channel) ).width()
 				res.append(MultiContentEntryText(
