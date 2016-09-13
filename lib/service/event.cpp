@@ -77,10 +77,17 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 						m_extended_description = m_short_description;
 						m_short_description = "";
 					}
-					m_tmp_extended_description += eed->getText();
-					if (eed->getDescriptorNumber() == eed->getLastDescriptorNumber())
+					if (table == 0) // Two Char Mapping EED must be processed in one pass
 					{
-						m_extended_description += convertDVBUTF8(m_tmp_extended_description, table, tsidonid);
+						m_tmp_extended_description += eed->getText();
+						if (eed->getDescriptorNumber() == eed->getLastDescriptorNumber())
+						{
+							m_extended_description += convertDVBUTF8(m_tmp_extended_description, table, tsidonid);
+						}
+					}
+					else
+					{
+						m_extended_description += convertDVBUTF8(eed->getText(), table, tsidonid);
 					}
 					retval=1;
 				}
