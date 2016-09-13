@@ -513,11 +513,11 @@ def InitAVSwitch():
 			except:
 				pass
 		config.av.hdmicolorimetry = ConfigSelection(choices={
-				"auto": _("auto"),
+				"Auto": _("Auto"),
 				"bt2020ncl": _("BT 2020 NCL"),
 				"bt2020cl": _("BT 2020 CL"),
 				"bt709": _("BT 709")},
-				default = "auto")
+				default = "Auto")
 		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
