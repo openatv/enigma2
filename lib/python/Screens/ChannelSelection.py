@@ -907,6 +907,8 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+						return
+			self.updateCurrent()
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -915,6 +917,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self.closeChoiceBoxDialog()
+		self.updateCurrent()
 
 	def showEPGList(self):
 		ref = self.getCurrentSelection()
@@ -1606,6 +1609,9 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 
 	def moveDown(self):
 		self.servicelist.moveDown()
+
+	def updateCurrent(self):
+		self.servicelist.updateCurrent()
 
 	def clearPath(self):
 		del self.servicePath[:]
