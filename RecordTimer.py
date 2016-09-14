@@ -1087,12 +1087,14 @@ class RecordTimer(timer.Timer):
 		print "[RecordTimer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
-		if dosave:
-			self.saveTimer()
 
 		# Trigger onTimerAdded callbacks
 		for f in self.onTimerAdded:
 			f(entry)
+
+		if dosave:
+			self.saveTimer()
+
 		return None
 
 	def isInTimer(self, eventid, begin, duration, service):
@@ -1287,11 +1289,12 @@ class RecordTimer(timer.Timer):
 		# Remove it from there.
 		if entry in self.processed_timers:
 			self.processed_timers.remove(entry)
-		self.saveTimer()
 
 		# Trigger onTimerRemoved callbacks
 		for f in self.onTimerRemoved:
 			f(entry)
+
+		self.saveTimer()
 
 	def shutdown(self):
 		self.saveTimer()
