@@ -1,4 +1,5 @@
 from Screen import Screen
+from Screens.SoftwareUpdate import UpdatePlugin
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
@@ -47,6 +48,7 @@ class About(Screen):
 		self.populate()
 		
 		self["key_green"] = Button(_("Translations"))
+		self["key_yellow"] = Button(_("Software update"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions", "DirectionActions"],
 									{
 										"cancel": self.close,
@@ -55,6 +57,7 @@ class About(Screen):
 										"up": self["AboutScrollLabel"].pageUp,
 										"down": self["AboutScrollLabel"].pageDown,
 										"green": self.showTranslationInfo,
+										"yellow": self.showUpdatePlugin,
 									})
 
 	def populate(self):
@@ -116,6 +119,9 @@ class About(Screen):
 
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo, self.menu_path)
+
+	def showUpdatePlugin(self):
+		self.session.open(UpdatePlugin, self.menu_path)
 
 	def showAboutReleaseNotes(self):
 		self.session.open(ViewGitLog, self.menu_path)
