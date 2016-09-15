@@ -257,8 +257,9 @@ class EPGFetcher(object):
                                 if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, self.channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
                                         iceTimer["state"] = "failed"
-                                        iceTimer["message"] = "Failed to update the timer"
+                                        iceTimer["message"] = "Failed to update timer '%s'" % name
                                         update_queue.append(iceTimer)
+                                        self.addLog("Failed to update timer '%s" % name)
                                 else:
                                     self.onTimerChanged(timer)
                                 updated = True
@@ -267,6 +268,9 @@ class EPGFetcher(object):
                         channels = self.channel_service_map[channel_id]
                         # print "[IceTV] channel_id %s maps to" % channel_id, channels
                         db = eDVBDB.getInstance()
+                        # Sentinel values used if there are no channel matches
+                        iceTimer["state"] = "failed"
+                        iceTimer["message"] = "No matching service"
                         for channel in channels:
                             serviceref = db.searchReference(channel[1], channel[0], channel[2])
                             if serviceref.valid():
@@ -282,14 +286,9 @@ class EPGFetcher(object):
                                 else:
                                     names = [r.name for r in conflicts]
                                     iceTimer["state"] = "failed"
-                                    iceTimer["message"] = "Timer conflict: " + ", ".join(names)
-                                    update_queue.append(iceTimer)
+                                    iceTimer["message"] = "Timer conflict: '%s'" % "', '".join(names)
                                     # print "[IceTV] Timer conflict:", conflicts
-                                    self.addLog("Timer %s conflicts with %s" % (name, ", ".join(names)))
-                            else:
-                                iceTimer["state"] = "failed"
-                                iceTimer["message"] = "No matching service"
-                                update_queue.append(iceTimer)
+                                    self.addLog("Timer '%s' conflicts with %s" % (name, "', '".join([n for n in names if n != name])))
                     if not completed and not updated and not created:
                         iceTimer["state"] = "failed"
                         update_queue.append(iceTimer)
