@@ -81,7 +81,11 @@ class EPGFetcher(object):
 
     def onTimerChanged(self, entry):
         # print "[IceTV] timer changed: ", entry
-        if not self.shouldProcessTimer(entry):
+
+        # If entry.cancelled is True, the timer is being deleted
+        # and will be processed by a subsequent onTimerRemoved() call
+
+        if not self.shouldProcessTimer(entry) or entry.cancelled:
             return
         if entry.end <= entry.begin:
             self.onTimerRemoved(entry)
