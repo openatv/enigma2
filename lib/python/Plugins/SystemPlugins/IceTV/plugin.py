@@ -30,6 +30,7 @@ import API as ice
 from collections import deque, defaultdict
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
+import NavigationInstance
 from twisted.internet import reactor
 
 _session = None
@@ -448,9 +449,13 @@ class EPGFetcher(object):
                 req.data["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
                 req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
                 res = req.post()
-                if "location" in res.headers:
-                    local_timer.ice_timer_id = res.headers["location"].split("/")[-1]
-                self.addLog("Timer '%s' created OK" % local_timer.name)
+                try:
+                    local_timer.ice_timer_id = res.json()["timers"][0]["id"].encode("utf8")
+                    self.addLog("Timer '%s' created OK" % local_timer.name)
+                    if local_timer.ice_timer_id is not None:
+                        NavigationInstance.instance.RecordTimer.saveTimer()
+                except:
+                    self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
             except (IOError, RuntimeError, KeyError) as ex:
                 msg = "Can not upload timer: " + str(ex)
                 if hasattr(ex, "response") and hasattr(ex.response, "text"):
