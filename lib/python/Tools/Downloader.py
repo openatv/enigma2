@@ -48,7 +48,6 @@ class downloadWithProgress:
  			except ImportError:
  				from twisted.web.client import URI
  			uri = URI.fromBytes(url)
- 			uri = _URI.fromBytes(url)
 			scheme = uri.scheme
 			host = uri.host
 			port = uri.port
