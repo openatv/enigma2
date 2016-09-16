@@ -158,10 +158,12 @@ class Devices(Screen):
 		self.list = []
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
+		self["key_red"] = Button(_("Close"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
+										"red": self.close,
 									})
 		self.onLayoutFinish.append(self.populate)
 
@@ -318,10 +320,12 @@ class SystemMemoryInfo(Screen):
 		self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.com")
 		self["AboutScrollLabel"] = ScrollLabel()
 
+		self["key_red"] = Button(_("Close"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
+										"red": self.close,
 									})
 
 		out_lines = file("/proc/meminfo").readlines()
@@ -748,7 +752,7 @@ class TranslationInfo(Screen):
 			infomap[type] = value
 		print infomap
 
-		self["key_red"] = Button(_("Cancel"))
+		self["key_red"] = Button(_("Close"))
 		self["TranslationInfo"] = StaticText(info)
 
 		translator_name = infomap.get("Language-Team", "none")
