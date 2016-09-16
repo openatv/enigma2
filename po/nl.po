@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-08 23:45+0200\n"
-"PO-Revision-Date: 2016-09-11 08:13+0200\n"
+"POT-Creation-Date: 2016-09-15 19:57+0200\n"
+"PO-Revision-Date: 2016-09-16 07:25+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -719,6 +719,12 @@ msgstr "AFP instellingen"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "ATSC"
+msgstr "ATSC"
+
+msgid "ATSC provider"
+msgstr "ATSC provider"
+
 #, python-format
 msgid "AV aspect is %s."
 msgstr "AV aspect is %s."
@@ -923,6 +929,18 @@ msgstr "Album"
 
 msgid "Alias"
 msgstr "Alias"
+
+msgid "Alignment of events"
+msgstr "Uitlijnen van programma's"
+
+msgid "Alignment of service names"
+msgstr "Uitlijning van kanaalnaam"
+
+msgid "Alignment of service numbers"
+msgstr "Uitlijning van kanaalnummers"
+
+msgid "Alignment of timeline date"
+msgstr "Uitlijnen van tijdlijn-datum"
 
 msgid "All"
 msgstr "Alles"
@@ -1313,6 +1331,15 @@ msgstr "B"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "BT 2020 CL"
+msgstr "BT 2020 CL"
+
+msgid "BT 2020 NCL"
+msgstr "BT 2020 NCL"
+
+msgid "BT 709"
+msgstr "BT 709"
 
 msgid "Back"
 msgstr "Terug"
@@ -1948,6 +1975,18 @@ msgstr "Configuratie modus"
 msgid "Configuration mode: %s"
 msgstr "Configuratie modus: %s"
 
+msgid "Configure alignment of service events."
+msgstr "Configureer uitlijning van programma's."
+
+msgid "Configure alignment of the service names."
+msgstr "Configureer de uitlijning van de kanaalnamen."
+
+msgid "Configure alignment of the service numbers."
+msgstr "Configureer de uitlijning van de kanaalnummers."
+
+msgid "Configure alignment of the timeline date."
+msgstr "Configureer de uitlijning van de tijdlijn-datum."
+
 msgid "Configure an additional delay to improve external subtitle synchronisation."
 msgstr "Stel een extra vertraging in om de synchronisatie van externe ondertitels te verbeteren."
 
@@ -2451,6 +2490,9 @@ msgstr "DVB ondertitels zwart transparantie"
 
 msgid "DVB-C"
 msgstr "DVB-C"
+
+msgid "DVB-C ANNEX B"
+msgstr "DVB-C ANNEX C"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
@@ -3803,6 +3845,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC instellingen"
+
+msgid "HDMI Colorimetry"
+msgstr "HDMI kleurruimte"
 
 msgid "HDMI Colorspace"
 msgstr "HDMI kleurruimte"
@@ -5450,6 +5495,9 @@ msgstr "PAGINA OP/NEER"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCM"
+msgstr "PCM"
+
 msgid "PCM Multichannel"
 msgstr "PCM multikanaal"
 
@@ -5943,6 +5991,9 @@ msgstr "Motorinstellingen"
 msgid "Position of finished Timers in the Timer list"
 msgstr "Plaats van de afgewerkte timers in de lijst"
 
+msgid "Position of recording icons"
+msgstr "Positie van de opname-ikonen"
+
 msgid "Position setup"
 msgstr "Positie-instellingen"
 
@@ -6011,6 +6062,12 @@ msgstr "Voorkeur voor ondertitels die eerder zijn gekozen"
 
 msgid "Preferred tuner"
 msgstr "Voorkeurstuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Voorkeurstuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Voorkeurstuner ATSC voor opnames"
 
 msgid "Preferred tuner DVB-C"
 msgstr "Voorkeurs DVB-C tuner"
@@ -7232,6 +7289,9 @@ msgstr "Stel hier de grootte van de tijdsprong van de zoekbalk in."
 
 msgid "Set the name the recording will get."
 msgstr "Geef de naam die de opname krijgt."
+
+msgid "Set the position of the recording icons"
+msgstr "Kies de positie van de opname-ikonen."
 
 msgid "Set the scrolling speed of text on the front display, this uses a software render in some skins."
 msgstr "Stel de scroll-snelheid voor het schermpje in; sommige skins gebruiken een softwarerenderer."
@@ -8619,6 +8679,9 @@ msgstr "Met deze optie bepaalt u de mate van onderdrukking van 'blokruis' ('blok
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Hiermee bepaalt u de mate van dynamich contrast in het beeld."
+
+msgid "This option allows you can config the Colorimetry for HDR"
+msgstr "Met deze optie verandert u de kleurruimte van Auto naar HDR."
 
 msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "Hier kunt u aangeven of de verstreken tijd met een min- of een plusteken wordt vertoond."
@@ -10560,6 +10623,9 @@ msgstr "zwarte lijst"
 msgid "blue"
 msgstr "blauw"
 
+msgid "bottom"
+msgstr "onderin"
+
 msgid "broadcasting/press"
 msgstr "omroep/pers"
 
@@ -10580,6 +10646,12 @@ msgstr "tekenfilm/poppen"
 
 msgid "center"
 msgstr "midden"
+
+msgid "centered"
+msgstr "midden"
+
+msgid "centered, wrapped"
+msgstr "gecentreerd, terugloop"
 
 msgid "chapters"
 msgstr "hoofdstukken"
@@ -10849,6 +10921,9 @@ msgstr ""
 msgid "height"
 msgstr "hoogte"
 
+msgid "hide"
+msgstr "verberg"
+
 msgid "hops:"
 msgstr "hops:"
 
@@ -10891,6 +10966,9 @@ msgstr "talen"
 msgid "left"
 msgstr "links"
 
+msgid "left, wrapped"
+msgstr "links, terugloop"
+
 msgid "leisure hobbies (general)"
 msgstr "vrijetijd/hobby's (algemeen)"
 
@@ -10932,6 +11010,9 @@ msgstr "medicijnen/psychologie/fysiologie"
 
 msgid "menu"
 msgstr "menu"
+
+msgid "middle"
+msgstr "midden"
 
 msgid "mins"
 msgstr "min"
@@ -11186,6 +11267,9 @@ msgstr "terugspoelen naar vorig hoofdstuk"
 
 msgid "right"
 msgstr "rechts"
+
+msgid "right, wrapped"
+msgstr "rechts, terugloop"
 
 msgid "rock/pop"
 msgstr "rock/pop"
