@@ -47,17 +47,20 @@ class About(Screen):
 		self.skinName = "AboutOE"
 		self.populate()
 		
+		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("Translations"))
 		self["key_yellow"] = Button(_("Software update"))
+		self["key_blue"] = Button(_("Release notes"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions", "DirectionActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
-										"log": self.showAboutReleaseNotes,
 										"up": self["AboutScrollLabel"].pageUp,
 										"down": self["AboutScrollLabel"].pageDown,
+										"red": self.close,
 										"green": self.showTranslationInfo,
 										"yellow": self.showUpdatePlugin,
+										"blue": self.showAboutReleaseNotes,
 									})
 
 	def populate(self):
