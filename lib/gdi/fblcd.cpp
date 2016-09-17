@@ -145,7 +145,7 @@ int eFbLCD::setMode(int nxRes, int nyRes, int nbpp)
 
 	ioctl(lcdfd, FBIOGET_VSCREENINFO, &m_screeninfo);
 
-	if ((m_screeninfo.xres != nxRes) && (m_screeninfo.yres != nyRes) && (m_screeninfo.bits_per_pixel != nbpp))
+	if ((m_screeninfo.xres != nxRes) || (m_screeninfo.yres != nyRes) || (m_screeninfo.bits_per_pixel != nbpp))
 	{
 		eDebug("SetMode failed: wanted: %dx%dx%d, got %dx%dx%d",
 			nxRes, nyRes, nbpp,
