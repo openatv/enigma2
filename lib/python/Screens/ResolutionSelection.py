@@ -20,7 +20,7 @@ class ResolutionSelection(Screen):
 		tlist = [] 
 		tlist.append((_("Exit"), "exit")) 
 		tlist.append((_("Auto(not available)"), "auto")) 
-		tlist.append(("Video: " + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", "")) 
+		tlist.append((_("Video: ") + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", "")) 
 		tlist.append(("--", "")) 
 		tlist.append(("576i", "576i50")) 
 		tlist.append(("576p", "576p50")) 
