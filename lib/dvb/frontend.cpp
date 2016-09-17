@@ -2448,6 +2448,56 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			}
 			cmdseq.num++;
 		}
+//>>> adenin multistream patch for gb
+		if(!strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)"))
+		{
+			if (type == iDVBFrontend::feSatellite)
+			{
+				typedef struct _ioctl_diseqc
+				{
+					uint32_t	tuner;	//[0..1]
+					uint32_t	cnt;	//[1..128]
+					uint8_t 	*data;
+				}ioctl_diseqc;
+				#define SET_MIS_I2C	_IOWR('p', 0x40, ioctl_diseqc *)
+				int plasmid = ::open("/dev/plasmid", O_RDWR);
+				ioctl_diseqc d;
+				eDVBFrontendParametersSatellite parm;
+				oparm.getDVBS(parm);
+				int i2c_channel = m_slotid - 2;
+				if (plasmid > 0)
+				{
+					uint32_t value = parm.pls_code | (parm.pls_mode & 0x3 << 18);
+					uint8_t seq[6];
+					if ((parm.is_id != NO_STREAM_ID_FILTER) && (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2))
+					{
+						seq[0] = (value >> 16) & 0xFF;
+						seq[1] = (value >> 8) & 0xFF;
+						seq[2] = value & 0xFF;
+						seq[3] = parm.is_id & 0xFF;
+						seq[4] = 0xFF;
+						seq[5] = 0x20;
+					}
+					else
+					{
+						seq[0] = 0;
+						seq[1] = 0;
+						seq[2] = 1;
+						seq[3] = 1;
+						seq[4] = 0xff;
+						seq[5] = 0x00;
+					}
+					d.tuner = i2c_channel;
+					d.data = seq;
+					d.cnt = sizeof(seq);
+					if (ioctl(plasmid, SET_MIS_I2C, &d) == -1)
+						eDebug("plasmid ioctl failed: %m");
+				}
+				if (plasmid > 0)
+					::close(plasmid);
+			}
+		}
+//<<< adenin multistream patch for gb
 		p[cmdseq.num].cmd = DTV_TUNE, cmdseq.num++;
 		if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) == -1)
 		{
@@ -3332,6 +3382,8 @@ eDVBRegisteredFrontend *eDVBFrontend::getLast(eDVBRegisteredFrontend *fe)
 bool eDVBFrontend::is_multistream()
 {
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
+	if(!strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)"))
+		return true;
 	return fe_info.caps & FE_CAN_MULTISTREAM;
 #else //if DVB_API_VERSION < 5
 	return 0;
