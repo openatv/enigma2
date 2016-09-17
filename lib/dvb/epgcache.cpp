@@ -3509,7 +3509,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 								break;
 							case 0x90:
 							{
-								UnknownDescriptor *descr = (UnknownDescriptor*)*desc;
+								Descriptor *descr = (Descriptor*)*desc;
 								int descr_len = descr->getLength();
 								if (descr_len == 4)
 								{
