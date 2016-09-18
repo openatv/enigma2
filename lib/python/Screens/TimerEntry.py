@@ -187,12 +187,12 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createSetup(self, widget):
 		self.list = []
+		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
+		self.list.append(self.timerJustplayEntry)
 		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get."))
 		self.list.append(self.entryName)
 		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording."))
 		self.list.append(self.entryDescription)
-		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
-		self.list.append(self.timerJustplayEntry)
 		self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))
 		self.list.append(self.timerTypeEntry)
 

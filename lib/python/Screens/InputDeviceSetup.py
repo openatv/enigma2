@@ -297,7 +297,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("formuler1",18),
 			("formuler3",18),
 			("formuler4",18),
-			("formuler4-turbo",18),
+			("formuler4turbo",18),
 			("hd11",16),
 			("hd51",16),
 			("hd1100",16),
