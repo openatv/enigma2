@@ -24,6 +24,9 @@ def setCIBitrate(configElement):
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
 
+def setdvbCiDelay(configElement):
+	open(SystemInfo["CommonInterfaceCIDelay"], "w").write("configElement.value")
+
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	for slot in range(MAX_NUM_CI):
@@ -36,6 +39,9 @@ def InitCiConfig():
 			config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "yes")
 			config.ci[slot].canHandleHighBitrates.slotid = slot
 			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
+		if SystemInfo["CommonInterfaceCIDelay"]:
+			config.ci.dvbCiDelay = ConfigSelection(default = "256", choices = [ ("16", _("16")), ("32", _("32")), ("64", _("64")), ("128", _("128")), ("256", _("256"))] )
+			config.ci.dvbCiDelay.addNotifier(setdvbCiDelay)
 
 class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="", screen_data=None):
@@ -403,10 +409,11 @@ class CiSelection(Screen):
 	def layoutFinished(self):
 		global forceNotShowCiMessages
 		forceNotShowCiMessages = False
+		self.setTitle(_("Common Interface"))
 
 	def selectionChanged(self):
 		cur_idx = self["entries"].getCurrentIndex()
-		self["text"].setText(_("Slot %d")%((cur_idx / 9)+1))
+		self["text"].setText(_("Slot %d")%((cur_idx / len(self.list))+1))
 
 	def keyConfigEntry(self, key):
 		try:
@@ -440,6 +447,8 @@ class CiSelection(Screen):
 		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
 		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
 			self.list.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].canHandleHighBitrates))
+		if SystemInfo["CommonInterfaceCIDelay"]:
+			self.list.append(getConfigListEntry(_("DVB CI Delay"), config.ci.dvbCiDelay))
 
 	def updateState(self, slot):
 		state = eDVBCI_UI.getInstance().getState(slot)
