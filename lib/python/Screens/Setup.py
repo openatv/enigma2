@@ -65,6 +65,11 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent,"getCurrentDescription") and self.parent.has_key("description"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
+		if self.parent.has_key('footnote'):
+			if self.parent.getCurrentEntry().endswith('*'):
+				self.parent['footnote'].text = (_("* = Restart Required"))
+			else:
+				self.parent['footnote'].text = (_(" "))
 
 class Setup(ConfigListScreen, Screen):
 
@@ -92,7 +97,7 @@ class Setup(ConfigListScreen, Screen):
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
-		self['footnote'] = Label(_("* = Restart Required"))
+		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
