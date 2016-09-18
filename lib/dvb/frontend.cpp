@@ -2453,20 +2453,19 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		{
 			if (type == iDVBFrontend::feSatellite)
 			{
-				typedef struct _ioctl_diseqc
-				{
-					uint32_t	tuner;	//[0..1]
-					uint32_t	cnt;	//[1..128]
-					uint8_t 	*data;
-				}ioctl_diseqc;
-				#define SET_MIS_I2C	_IOWR('p', 0x40, ioctl_diseqc *)
 				int plasmid = ::open("/dev/plasmid", O_RDWR);
-				ioctl_diseqc d;
-				eDVBFrontendParametersSatellite parm;
-				oparm.getDVBS(parm);
-				int i2c_channel = m_slotid - 2;
 				if (plasmid > 0)
 				{
+					typedef struct _ioctl_stream
+					{
+						uint32_t	tuner;	//[0..1]
+						uint32_t	cnt;	//[1..128]
+						uint8_t 	*data;
+					}_ioctl_stream;
+					#define SET_MIS_I2C	_IOWR('p', 0x40, _ioctl_stream *)
+					_ioctl_stream d;
+					eDVBFrontendParametersSatellite parm;
+					oparm.getDVBS(parm);
 					uint32_t value = parm.pls_code | (parm.pls_mode & 0x3 << 18);
 					uint8_t seq[6];
 					if ((parm.is_id != NO_STREAM_ID_FILTER) && (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2))
@@ -2487,6 +2486,30 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 						seq[4] = 0xff;
 						seq[5] = 0x00;
 					}
+					int pnp_offset = 0;
+					int fd = open("/proc/stb/info/model", O_RDONLY);
+					char tmp[16];
+					int rd = fd >= 0 ? read(fd, tmp, sizeof(tmp)) : 0;
+					if (fd >= 0)
+						close(fd);
+					if (rd)
+					{
+						if (!strncmp(tmp, "gb800seplus\n",rd))
+							pnp_offset = 1;
+						else if (!strncmp(tmp, "gb800se\n",rd))
+							pnp_offset = 1;
+						else if (!strncmp(tmp, "gbultraue\n",rd))
+							pnp_offset = 1;
+						else if (!strncmp(tmp, "gbx3\n",rd))
+							pnp_offset = 1;
+						else if (!strncmp(tmp, "gbquadplus\n",rd))
+							pnp_offset = 2;
+						else if (!strncmp(tmp, "gbquad\n",rd))
+							pnp_offset = 2;
+						else
+							eDebug("[determine i2c-channel]Box not listed: %s", tmp);
+					}
+					int i2c_channel = m_slotid - pnp_offset;
 					d.tuner = i2c_channel;
 					d.data = seq;
 					d.cnt = sizeof(seq);
