@@ -25,7 +25,7 @@ def setCIBitrate(configElement):
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
 
 def setdvbCiDelay(configElement):
-	open(SystemInfo["CommonInterfaceCIDelay"], "w").write("configElement.value")
+	open(SystemInfo["CommonInterfaceCIDelay"], "w").write(configElement.value)
 
 def InitCiConfig():
 	config.ci = ConfigSubList()
