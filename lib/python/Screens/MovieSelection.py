@@ -3,7 +3,6 @@ from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Console import Console
-from Components.MenuList import MenuList
 from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, moviePlayState
 from Components.DiskInfo import DiskInfo
 from Tools.Trashcan import TrashInfo
@@ -82,7 +81,7 @@ try:
 except Exception as e:
 	print "[MovieSelection] Bluray Player is not installed:", e
 	BlurayPlayer = None
-	
+
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
@@ -356,7 +355,8 @@ class MovieContextMenuSummary(Screen):
 		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		self["selected"].text = self.parent["config"].getCurrent()[0][0]
+		item = self.parent["config"].getCurrent()
+		self["selected"].text = item[1]
 
 from Screens.ParentalControlSetup import ProtectedScreen
 
@@ -376,69 +376,60 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		self.csel = csel
 		ProtectedScreen.__init__(self)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
-			{
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], {
 				"red": self.cancelClick,
 				"green": self.okbuttonClick,
 				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick,
-				"green": self.do_showDeviceMounts,
-				"yellow": self.do_showNetworkMounts,
-				"menu": self.do_configure,
-				"2": self.do_rename,
-				"5": self.do_copy,
-				"6": self.do_move,
-				"7": self.do_createdir,
-				"8": self.do_delete
-
-			})
+				"cancel": self.cancelClick
+		})
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 
+		menu = [(csel.configure, _("Settings") + "...")]
 
-		def append_to_menu(menu, args, key=""):
-			menu.append(ChoiceEntryComponent(key, args))
-
-		menu = []
-		append_to_menu(menu, (_("Settings..."), csel.configure), key="menu")
-		append_to_menu(menu, (_("Device mounts..."), csel.showDeviceMounts), key="green")
-		append_to_menu(menu, (_("Network mounts..."), csel.showNetworkMounts), key="yellow")
-		append_to_menu(menu, (_("Sort..."), csel.selectSortby))
 		if csel.exist_bookmark():
-			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark))
+			menu += [(csel.do_addbookmark, _("Remove bookmark"))]
 		else:
-			append_to_menu(menu, (_("Add bookmark"), csel.do_addbookmark))
-		append_to_menu(menu, (_("Create directory"), csel.do_createdir), key="7")
+			menu += [(csel.do_addbookmark, _("Add bookmark"))]
+
+		menu += [
+			(csel.do_createdir, _("Create directory")),
+			(csel.selectSortby, _("Sort") + "..."),
+			(csel.do_movieoff_menu, _("On end of movie") + "..."),
+		]
 
 		if service:
 			if (service.flags & eServiceReference.mustDescent) and isTrashFolder(service):
-				append_to_menu(menu, (_("Permanently remove all deleted items"), csel.purgeAll), key="8")
+				menu += [
+					(csel.purgeAll, _("Permanently remove all deleted items"))
+				]
 			else:
-				append_to_menu(menu, (_("Delete"), csel.do_delete), key="8")
-				append_to_menu(menu, (_("Move"), csel.do_move), key="6")
-				append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
-				append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
+				menu += [
+					(csel.do_delete, _("Delete")),
+					(csel.do_move, _("Move")),
+					(csel.do_copy, _("Copy")),
+					(csel.do_rename, _("Rename"))
+				]
 				if not (service.flags & eServiceReference.mustDescent):
 					if self.isResetable():
-						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
+						menu += [(csel.do_reset, _("Reset playback position"))]
 					if service.getPath().endswith('.ts'):
-						append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
+						menu += [(csel.do_decode, _("Start offline decode"))]
 				elif BlurayPlayer is None and csel.isBlurayFolderAndFile(service):
-					append_to_menu(menu, (_("Auto play blu-ray file"), csel.playBlurayFile))
+					menu += [(csel.playBlurayFile, _("Auto play blu-ray file"))]
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
-						append_to_menu(menu, (_("Unhide parental control services"), csel.unhideParentalServices))
+						menu += [(csel.unhideParentalServices, _("Unhide parental control services"))]
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
 				if not(service.flags & eServiceReference.mustDescent):
 					for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-						append_to_menu( menu, (p.description, boundFunction(p, session, service)), key="bullet")
+						menu += [(boundFunction(p, session, service), p.description)]
 
-		self["config"] = ChoiceList(menu)
-
+		self["config"] = List(menu)
 
 	def isProtected(self):
 		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
@@ -456,24 +447,26 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		return MovieContextMenuSummary
 
 	def okbuttonClick(self):
-		self.close(self["config"].getCurrent()[0][1])
+		item = self["config"].getCurrent()
+		self.close(item[0])
 
 	def do_rename(self):
 		self.close(self.csel.do_rename())
+
 	def do_copy(self):
 		self.close(self.csel.do_copy())
+
 	def do_move(self):
 		self.close(self.csel.do_move())
+
 	def do_createdir(self):
 		self.close(self.csel.do_createdir())
+
 	def do_delete(self):
 		self.close(self.csel.do_delete())
+
 	def do_configure(self):
 		self.close(self.csel.configure())
-	def do_showDeviceMounts(self):
-		self.close(self.csel.showDeviceMounts())
-	def do_showNetworkMounts(self):
-		self.close(self.csel.showNetworkMounts())
 
 	def cancelClick(self):
 		self.close(None)
