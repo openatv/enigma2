@@ -47,7 +47,7 @@ def getPlayingref(ref):
 
 def isPlayableForCur(ref):
 	info = eServiceCenter.getInstance().info(ref)
-	return not not (info and info.isPlayable(ref, getPlayingref(ref)))
+	return info and info.isPlayable(ref, getPlayingref(ref))
 
 def resolveAlternate(ref):
 	nref = None

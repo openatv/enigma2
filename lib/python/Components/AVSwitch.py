@@ -62,6 +62,10 @@ class AVSwitch:
 					"60Hz": {60: "1080p"},
 					"multi": {50: "1080p50", 60: "1080p"}
 	}
+							
+	rates["2160p"] =	{	"50Hz":		{ 50: "2160p50" },
+							"60Hz":		{ 60: "2160p" },
+							"multi":	{ 50: "2160p50", 60: "2160p" } }
 
 	rates["PC"] = {
 					"1024x768": {60: "1024x768"},  # not possible on DM7025
@@ -82,10 +86,10 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime"):
-		config.av.edid_override = True
-
-	if (about.getChipSetString() in ('7241', '7362', '7358', '7356', '7424', '7425', 'pnx8493')) or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
+	if about.getChipSetString() in ('7366', '7376', '5272s'):
+		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
+		widescreen_modes = {"720p", "1080p", "2160p", "1080i"}
+	elif about.getChipSetString() in ('7358', '7356', '7362', '7424', '7425', '7241', '7552'):
 		supports1080p = True
 		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"1080p", "1080i", "720p"}
@@ -94,19 +98,25 @@ class AVSwitch:
 		widescreen_modes = {"1080i", "720p"}
 
 	modes["YPbPr"] = modes["HDMI"]
-	if getBoxType().startswith('vu') or (getBoxType() in ('dm500hd', 'dm800')):
+	if getBrandOEM() == 'vuplus' and getBoxType() != 'vusolo4k':
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
-	# 	print "[AVSwitch] remove DVI-PC because of not existing modes"
+	# 	print "[VideoHardware] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if "YPbPr" in modes and getBoxType() in (
-		'et4x00', 'xp1000mk', 'xp1000max', 'xp1000plus', 'sf8',
-		'tm2t', 'tmsingle', 'vusolo2', 'tmnano', 'iqonios300hd', 'classm', 'axodin', 'axodinc', 'genius',
-		'evo', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'dm500hdv2', 'dm500hd', 'dm800',
-		'mixosf7', 'mixoslumi', 'mixosf5mini', 'gi9196lite', 'ixusszero', 'optimussos1', 'enfinity',
-		'sezam1000hd', 'mbmini', 'atemio5x00', 'xpeedlx1', 'xpeedlx2') or (about.getModelString() == 'ini-3000'):
+	
+	# Machines that do not have component video (red, green and blue RCA sockets).
+	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','iqonios300hd','ixusszero','mbtwinplus','odimm7','optimussos1','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','xp1000'):
 		del modes["YPbPr"]
+		
+	# Machines that have composite video (yellow RCA socket) but do not have Scart.
+	if modes.has_key("Scart") and getBoxType() in ('gb800ueplus','mbtwinplus','tmnano','tmnano2super','tmnano3t','tmnanosecombo','xpeedlx3'):
+		modes["RCA"] = modes["Scart"]
+		del modes["Scart"]
+		
+	# Machines that have neither RCA nor Scart sockets 
+	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','ixussone','tmnano2t','tmnanose','vusolo4k'):
+		del modes["Scart"]
 
 	def __init__(self):
 		self.last_modes_preferred = []
@@ -125,7 +135,7 @@ class AVSwitch:
 			modes = f.read().strip()
 			f.close()
 		except IOError:
-			print "[AVSwitch] could not read available videomodes"
+			print "[VideoHardware] could not read available videomodes"
 			self.modes_available = []
 			return
 		self.modes_available = modes.split(' ')
@@ -137,7 +147,7 @@ class AVSwitch:
 			f.close()
 			self.modes_preferred = modes.split(' ')
 		except IOError:
-			print "[AVSwitch] reading preferred modes failed, using all modes"
+			print "[VideoHardware] reading preferred modes failed, using all modes"
 			self.modes_preferred = self.modes_available
 
 		if self.modes_preferred != self.last_modes_preferred:
@@ -148,11 +158,6 @@ class AVSwitch:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
-			if port == "DVI":
-				if self.hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime"):
-					if mode not in self.modes_preferred and not config.av.edid_override.value:
-						print "[AVSwitch] no, not preferred"
-						return False
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -278,26 +283,28 @@ class AVSwitch:
 			self.current_port = config.av.videoport.value
 		if self.current_port in ("YPbPr", "Scart-YPbPr"):
 			eAVSwitch.getInstance().setColorFormat(3)
+		elif self.current_port in ("RCA"):
+			eAVSwitch.getInstance().setColorFormat(0)
 		else:
 			eAVSwitch.getInstance().setColorFormat(value)
 
 	def setConfiguredMode(self):
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
-			print "current port not available, not setting videomode"
+			print "[VideoHardware] current port not available, not setting videomode"
 			return
 
 		mode = config.av.videomode[port].value
 
 		if mode not in config.av.videorate:
-			print "current mode not available, not setting videomode"
+			print "[VideoHardware] current mode not available, not setting videomode"
 			return
 
 		rate = config.av.videorate[mode].value
 		self.setMode(port, mode, rate)
 
 	def setAspect(self, cfgelement):
-		print "[VideoMode] setting aspect: %s" % cfgelement.value
+		print "[VideoHardware] setting aspect: %s" % cfgelement.value
 		f = open("/proc/stb/video/aspect", "w")
 		f.write(cfgelement.value)
 		f.close()
@@ -307,20 +314,20 @@ class AVSwitch:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-		print "[VideoMode] setting wss: %s" % wss
+		print "[VideoHardware] setting wss: %s" % wss
 		f = open("/proc/stb/denc/0/wss", "w")
 		f.write(wss)
 		f.close()
 
 	def setPolicy43(self, cfgelement):
-		print "[VideoMode] setting policy: %s" % cfgelement.value
+		print "[VideoHardware] setting policy: %s" % cfgelement.value
 		f = open("/proc/stb/video/policy", "w")
 		f.write(cfgelement.value)
 		f.close()
 
 	def setPolicy169(self, cfgelement):
 		if os.path.exists("/proc/stb/video/policy2"):
-			print "[VideoMode] setting policy2: %s" % cfgelement.value
+			print "[VideoHardware] setting policy2: %s" % cfgelement.value
 			f = open("/proc/stb/video/policy2", "w")
 			f.write(cfgelement.value)
 			f.close()
@@ -329,7 +336,7 @@ class AVSwitch:
 		ret = (16, 9)
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
-			print "current port not available in getOutputAspect!!! force 16:9"
+			print "[VideoHardware] current port not available in getOutputAspect!!! force 16:9"
 		else:
 			mode = config.av.videomode[port].value
 			force_widescreen = self.isWidescreenMode(port, mode)
@@ -513,8 +520,8 @@ def InitAVSwitch():
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
 			iAVSwitch.setColorFormat(3)
-		elif config.av.videoport and config.av.videoport.value == "YPbPr" or getMachineBuild() == 'inihdx':
-			iAVSwitch.setColorFormat(3)
+		elif config.av.videoport and config.av.videoport.value in ("RCA"):
+			iAVSwitch.setColorFormat(0)			
 		else:
 			if getBoxType() == 'et6x00':
 				colmap = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
@@ -571,6 +578,31 @@ def InitAVSwitch():
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
+		
+	if os.path.exists("/proc/stb/video/hdmi_colorspace"):
+		f = open("/proc/stb/video/hdmi_colorspace", "r")
+		have_colorspace = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_colorspace = False
+
+	SystemInfo["havecolorspace"] = have_colorspace
+
+	if have_colorspace:
+		def setHDMIColorspace(configElement):
+			try:
+				f = open("/proc/stb/video/hdmi_colorspace", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.hdmicolorspace = ConfigSelection(choices={
+				"Edid(Auto)": _("Auto"),
+				"Hdmi_Rgb": _("RGB")},
+				default = "Edid(Auto)")
+		config.av.hdmicolorspace.addNotifier(setHDMIColorspace)
+	else:
+		config.av.hdmicolorspace = ConfigNothing()
 
 	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
@@ -710,7 +742,7 @@ def InitAVSwitch():
 		def setScaler_sharpness(config):
 			myval = int(config.value)
 			try:
-				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
+				print "[VideoHardware] setting scaler_sharpness to: %0.8X" % myval
 				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
 				f.write("%0.8X" % myval)
 				f.close()
@@ -718,7 +750,7 @@ def InitAVSwitch():
 				f.write("1")
 				f.close()
 			except IOError:
-				print "couldn't write pep_scaler_sharpness"
+				print "[VideoHardware] couldn't write pep_scaler_sharpness"
 
 		if getBoxType() in ('gbquad', 'gbquadplus'):
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0, 26))
@@ -743,20 +775,20 @@ class VideomodeHotplug:
 		iAVSwitch.on_hotplug.remove(self.hotplug)
 
 	def hotplug(self, what):
-		print "hotplug detected on port '%s'" % what
+		print "[VideoHardware] hotplug detected on port '%s'" % what
 		port = config.av.videoport.value
 		mode = config.av.videomode[port].value
 		rate = config.av.videorate[mode].value
 
 		if not iAVSwitch.isModeAvailable(port, mode, rate):
-			print "mode %s/%s/%s went away!" % (port, mode, rate)
+			print "[VideoHardware] mode %s/%s/%s went away!" % (port, mode, rate)
 			modelist = iAVSwitch.getModeList(port)
 			if not len(modelist):
-				print "sorry, no other mode is available (unplug?). Doing nothing."
+				print "[VideoHardware] sorry, no other mode is available (unplug?). Doing nothing."
 				return
 			mode = modelist[0][0]
 			rate = modelist[0][1]
-			print "setting %s/%s/%s" % (port, mode, rate)
+			print "[VideoHardware] setting %s/%s/%s" % (port, mode, rate)
 			iAVSwitch.setMode(port, mode, rate)
 
 hotplug = None

@@ -1,5 +1,6 @@
 import xml.etree.cElementTree
 from boxbranding import getImageDistro
+from Tools.Directories import SCOPE_SKIN, resolveFilename
 from os import environ, unlink, symlink
 import time
 

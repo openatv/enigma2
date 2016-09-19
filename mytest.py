@@ -27,6 +27,11 @@ from Screens.SimpleSummary import SimpleSummary
 from sys import stdout, exc_info
 
 profile("Bouquets")
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
+config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
+def setLoadUnlinkedUserbouquets(configElement):
+	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
+config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 
 profile("ParentalControl")
@@ -125,6 +130,9 @@ from Screens.StartWizard import *
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
+
+from Tools.FlashInstall import FlashInstallTime
+FlashInstallTime()
 
 profile("misc")
 had = dict()
@@ -247,7 +255,7 @@ class Session:
 		self.current_dialog.restoreKeyboardMode()
 		self.current_dialog.hide()
 
-		if last:
+		if last and self.summary is not None:
 			self.current_dialog.removeSummary(self.summary)
 			self.popSummary()
 
@@ -265,12 +273,13 @@ class Session:
 			callback(*retval)
 
 	def instantiateSummaryDialog(self, screen, **kwargs):
-		self.pushSummary()
-		summary = screen.createSummary() or SimpleSummary
-		arguments = (screen,)
-		self.summary = self.doInstantiateDialog(summary, arguments, kwargs, self.summary_desktop)
-		self.summary.show()
-		screen.addSummary(self.summary)
+		if self.summary_desktop is not None:
+			self.pushSummary()
+			summary = screen.createSummary() or SimpleSummary
+			arguments = (screen,)
+			self.summary = self.doInstantiateDialog(summary, arguments, kwargs, self.summary_desktop)
+			self.summary.show()
+			screen.addSummary(self.summary)
 
 	def doInstantiateDialog(self, screen, arguments, kwargs, desktop):
 		# create dialog
@@ -341,13 +350,16 @@ class Session:
 	def pushSummary(self):
 		if self.summary is not None:
 			self.summary.hide()
-		self.summary_stack.append(self.summary)
-		self.summary = None
+			self.summary_stack.append(self.summary)
+			self.summary = None
 
 	def popSummary(self):
 		if self.summary is not None:
 			self.summary.doClose()
-		self.summary = self.summary_stack.pop()
+		if not self.summary_stack:
+			self.summary = None
+		else:
+			self.summary = self.summary_stack.pop()
 		if self.summary is not None:
 			self.summary.show()
 
@@ -507,6 +519,7 @@ from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
 def runScreenTest():
 	config.misc.startCounter.value += 1
+	config.misc.startCounter.save()
 
 	profile("readPluginList")
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -565,8 +578,6 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	runReactor()
-
-	config.misc.startCounter.save()
 
 	profile("wakeup")
 
@@ -653,6 +664,10 @@ profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
+profile("UserInterface")
+import Screens.UserInterfacePositioner
+Screens.UserInterfacePositioner.InitOsd()
+
 profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
@@ -705,10 +720,6 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
-
-profile("UserInterface")
-import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd()
 
 profile("EpgCacheSched")
 import Components.EpgLoadSave

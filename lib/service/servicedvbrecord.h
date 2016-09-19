@@ -27,6 +27,7 @@ public:
 	RESULT getError(int &error) { error = m_error; return 0; }
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
+	RESULT getFilenameExtension(std::string &ext) { ext = ".ts"; return 0; };
 
 		// iStreamableService
 	ePtr<iStreamData> getStreamingData();
@@ -41,6 +42,7 @@ private:
 	bool m_record_ecm;
 	bool m_descramble;
 	bool m_is_stream_client;
+	bool m_is_pvr;
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient = false);
 

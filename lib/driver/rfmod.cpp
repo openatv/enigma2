@@ -8,12 +8,12 @@
 #include <lib/base/init_num.h>
 #include <lib/base/eerror.h>
 
-#define IOCTL_SET_CHANNEL						0
-#define IOCTL_SET_TESTMODE					1
-#define IOCTL_SET_SOUNDENABLE				2
-#define IOCTL_SET_SOUNDSUBCARRIER		3
-#define IOCTL_SET_FINETUNE					4
-#define IOCTL_SET_STANDBY						5
+#define IOCTL_SET_CHANNEL		0
+#define IOCTL_SET_TESTMODE		1
+#define IOCTL_SET_SOUNDENABLE		2
+#define IOCTL_SET_SOUNDSUBCARRIER	3
+#define IOCTL_SET_FINETUNE		4
+#define IOCTL_SET_STANDBY		5
 
 eRFmod *eRFmod::instance = 0;
 
@@ -24,7 +24,7 @@ eRFmod::eRFmod()
 
 	fd = open("/dev/rfmod0", O_RDWR);
 	if (fd < 0)
-		eDebug("couldnt open /dev/rfmod0!!!!");
+		eDebug("[eRFmod] couldnt open /dev/rfmod0: %m");
 }
 
 eRFmod::~eRFmod()

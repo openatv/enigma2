@@ -17,7 +17,6 @@ class TimerSelection(Screen):
 				"cancel": self.leave,
 			}, -1)
 
-
 	def leave(self):
 		self.close(None)
 

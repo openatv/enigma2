@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <libsig_comp.h>
+#include <linux/dvb/version.h>
 
 #include <lib/actions/action.h>
 #include <lib/driver/rc.h>
@@ -183,11 +184,11 @@ void quitMainloop(int exitCode)
 		if (fd >= 0)
 		{
 			if (ioctl(fd, 10 /*FP_CLEAR_WAKEUP_TIMER*/) < 0)
-				eDebug("FP_CLEAR_WAKEUP_TIMER failed (%m)");
+				eDebug("[quitMainloop] FP_CLEAR_WAKEUP_TIMER failed: %m");
 			close(fd);
 		}
 		else
-			eDebug("open /dev/dbox/fp0 for wakeup timer clear failed!(%m)");
+			eDebug("[quitMainloop] open /dev/dbox/fp0 for wakeup timer clear failed: %m");
 	}
 	exit_code = exitCode;
 	eApp->quit(0);
@@ -226,9 +227,14 @@ int main(int argc, char **argv)
 
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
-	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
+	printf("[Enigma2] PYTHONPATH: %s\n", getenv("PYTHONPATH"));
+	printf("[Enigma2] DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
-	bsodLogInit();
+	// get enigma2 debug level
+	debugLvl = getenv("ENIGMA_DEBUG_LVL") ? atoi(getenv("ENIGMA_DEBUG_LVL")) : 4;
+	if (debugLvl < 0)
+		debugLvl = 0;
+	printf("[Enigma2] ENIGMA2_DEBUG settings: Level=%d\n", debugLvl);
 
 	ePython python;
 	eMain main;
@@ -260,7 +266,7 @@ int main(int argc, char **argv)
 
 /*	if (double_buffer)
 	{
-		eDebug(" - double buffering found, enable buffered graphics mode.");
+		eDebug("[MAIN] - double buffering found, enable buffered graphics mode.");
 		dsk.setCompositionMode(eWidgetDesktop::cmBuffered);
 	} */
 
@@ -279,7 +285,7 @@ int main(int argc, char **argv)
 
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
 
-	eDebug("Loading spinners...");
+	eDebug("[MAIN] Loading spinners...");
 
 	{
 		int i;
@@ -296,9 +302,9 @@ int main(int argc, char **argv)
 			if (!wait[i])
 			{
 				if (!i)
-					eDebug("failed to load %s! (%m)", rfilename.c_str());
+					eDebug("[MAIN] failed to load %s: %m", rfilename.c_str());
 				else
-					eDebug("found %d spinner!", i);
+					eDebug("[MAIN] found %d spinner!", i);
 				break;
 			}
 		}
@@ -316,7 +322,7 @@ int main(int argc, char **argv)
 
 	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
 
-	printf("executing main\n");
+	printf("[MAIN] executing main\n");
 
 	bsodCatchSignals();
 	catchTermSignal();
@@ -334,7 +340,7 @@ int main(int argc, char **argv)
 
 	if (exit_code == 5) /* python crash */
 	{
-		eDebug("(exit code 5)");
+		eDebug("[MAIN] (exit code 5)");
 		bsodFatal(0);
 	}
 
@@ -398,6 +404,8 @@ void setAnimation_speed(int speed)
 	gles_set_animation_speed(speed);
 }
 #else
+#ifndef HAVE_OSDANIMATION
 void setAnimation_current(int a) {}
 void setAnimation_speed(int speed) {}
+#endif
 #endif

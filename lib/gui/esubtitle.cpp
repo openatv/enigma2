@@ -1,7 +1,9 @@
 #include <lib/gui/esubtitle.h>
 #include <lib/gdi/grc.h>
+#include <lib/gdi/font.h>
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
+#include <lib/gui/ewidgetdesktop.h>
 
 std::map<eSubtitleWidget::subfont_t, eSubtitleWidget::eSubtitleStyle> eSubtitleWidget::subtitleStyles;
 
@@ -29,7 +31,6 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	if (elements)
 	{
 		int width = size().width() - startX * 2;
-		std::string configvalue;
 		bool original_position = eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position");
 		bool rewrap = eConfigManager::getConfigBoolValue("config.subtitles.subtitle_rewrap");
 		gRGB color;
@@ -118,7 +119,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 
 void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 {
-	eDebug("setPage");
+	eDebug("[eSubtitleWidget] setPage");
 	m_dvb_page = p;
 	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
@@ -139,8 +140,8 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 			}
 			line++;
 		}
-		eDebug("add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
-		eDebug("disp width %d, disp height %d", p.m_display_size.width(), p.m_display_size.height());
+		eDebug("[eSubtitleWidget] add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
+		eDebug("[eSubtitleWidget] disp width %d, disp height %d", p.m_display_size.width(), p.m_display_size.height());
 		eRect r = eRect(it->m_position, it->m_pixmap->size());
 		r.scale(size().width(), p.m_display_size.width(), size().height(), p.m_display_size.height());
 		m_visible_region |= r;
@@ -154,29 +155,58 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 {
 	int elements, element, startY, width, height, size_per_element;
 	int lowerborder;
-	bool rewrap;
+	bool rewrap_enabled;
+	bool colourise_dialogs_enabled;
 
 	m_pango_page = p;
 	m_pango_page_ok = 1;
 	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
 
-	rewrap = eConfigManager::getConfigBoolValue("config.subtitles.subtitle_rewrap");
+	rewrap_enabled = eConfigManager::getConfigBoolValue("config.subtitles.subtitle_rewrap");
+	colourise_dialogs_enabled = eConfigManager::getConfigBoolValue("config.subtitles.colourise_dialogs");
 	lowerborder = eConfigManager::getConfigIntValue("config.subtitles.subtitle_position", 50);
 
 	elements = m_pango_page.m_elements.size();
 
-	if(rewrap)
+	if(rewrap_enabled | colourise_dialogs_enabled)
 	{
-		std::string::iterator it;
+		size_t ix, colourise_dialogs_current = 0;
+		std::vector<std::string> colourise_dialogs_colours;
+		std::string replacement;
+		bool alignment_center = eConfigManager::getConfigValue("config.subtitles.subtitle_alignment") == "center";
+
+		if(colourise_dialogs_enabled)
+		{
+			colourise_dialogs_colours.push_back((std::string)gRGB(0xff, 0xff, 0x00));	// yellow
+			colourise_dialogs_colours.push_back((std::string)gRGB(0x00, 0xff, 0xff));	// cyan
+			colourise_dialogs_colours.push_back((std::string)gRGB(0xff, 0x00, 0xff));	// magenta
+			colourise_dialogs_colours.push_back((std::string)gRGB(0x00, 0xff, 0x00));	// green
+			colourise_dialogs_colours.push_back((std::string)gRGB(0xff, 0xaa, 0xaa));	// light red
+			colourise_dialogs_colours.push_back((std::string)gRGB(0xaa, 0xaa, 0xff));	// light blue
+		}
 
 		for (element = 0; element < elements; element++)
 		{
 			std::string& line = m_pango_page.m_elements[element].m_pango_line;
 
-			for (it = line.begin(); it != line.end(); it++)
-				if((*it) == '\n')
-					*it = ' ';
+			for (ix = 0; ix < line.length(); ix++)
+			{
+				if(rewrap_enabled && !line.compare(ix, 1, "\n"))
+					line.replace(ix, 1, " ");
+
+				if(colourise_dialogs_enabled && !line.compare(ix, 2, "- "))
+				{
+					/* workaround for rendering fault when colouring is enabled, rewrap is off and alignment is center */
+					replacement = std::string((!rewrap_enabled && alignment_center) ? "  " : "") + colourise_dialogs_colours.at(colourise_dialogs_current);
+
+					line.replace(ix, 2, replacement);
+					colourise_dialogs_current++;
+
+					if(colourise_dialogs_current >= colourise_dialogs_colours.size())
+						colourise_dialogs_current = 0;
+				}
+			}
 		}
 	}
 
@@ -243,19 +273,19 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		getStyle(style);
 		eWidget::event(event, data, data2);
 
-		std::string configvalue;
+		std::string alignmentValue;
 
 		int rt_halignment_flag;
-		configvalue = eConfigManager::getConfigValue("config.subtitles.subtitle_alignment");
-		if (configvalue == "right")
+		alignmentValue = eConfigManager::getConfigValue("config.subtitles.subtitle_alignment");
+		if (alignmentValue == "right")
 			rt_halignment_flag = gPainter::RT_HALIGN_RIGHT;
-		else if (configvalue == "left")
+		else if (alignmentValue == "left")
 			rt_halignment_flag = gPainter::RT_HALIGN_LEFT;
 		else
 			rt_halignment_flag = gPainter::RT_HALIGN_CENTER;
 
-		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2);
-		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34);
+		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2) * getDesktop(0)->size().width()/1280;
+		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34) * getDesktop(0)->size().width()/1280;
 
 		if (m_pixmap)
 		{
@@ -276,6 +306,34 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				if (!element.m_text.empty())
 				{
 					eRect &area = element.m_area;
+					if (eConfigManager::getConfigBoolValue("config.subtitles.showbackground"))
+					{
+						eTextPara *para = new eTextPara(area);
+						para->setFont(subtitleStyles[Subtitle_TTX].font);
+						para->renderString(element.m_text.c_str(), RS_WRAP);
+						eRect bbox = para->getBoundBox();
+						int bboxWidth = bbox.width();
+						if (alignmentValue == "right")
+							bbox.setLeft(area.left() + area.width() - bboxWidth - borderwidth);
+						else if (alignmentValue == "left")
+							bbox.setLeft(area.left() - borderwidth);
+						else
+							bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
+						bbox.setWidth(bboxWidth + borderwidth * 2);
+						if (eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position"))
+							bbox.setHeight(area.height());
+						else
+						{
+							int bboxTop = area.top() + area.height() - bbox.height() - 2 * borderwidth;
+							int bboxHeight = bbox.height() + borderwidth * 2;
+							bbox.setTop(bboxTop);
+							bbox.setHeight(bboxHeight);
+							area.setTop(area.top() - borderwidth);
+						}
+						painter.setForegroundColor(gRGB(0,0,0,64));
+						painter.fill(bbox);
+						borderwidth = 0;
+					}
 					if (!subtitleStyles[Subtitle_TTX].have_foreground_color)
 						painter.setForegroundColor(element.m_color);
 					else
@@ -300,32 +358,63 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&lt", "<");
 				text = replace_all(text, "&gt", ">");
 
-				if (eConfigManager::getConfigIntValue("config.subtitles.pango_subtitle_colors", 1) == 2)
+				if (eConfigManager::getConfigBoolValue("config.subtitles.pango_subtitle_fontswitch"))
 				{
-					text = (std::string) gRGB(255, 255, 0) + text;
-					text = replace_all(text, "</u>", (std::string) gRGB(255,255,0));
+					if (text.find("<i>") != std::string::npos || text.find("</i>") != std::string::npos)
+						if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
+							face = Subtitle_MAX;
+						else
+							face = Subtitle_Italic;
+					else if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
+						face = Subtitle_Bold;
 				}
+				int subtitleColors = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitle_colors", 1);
+				if (!subtitleColors)
+					{
+						text = replace_all(text, "<i>", gRGB(255,255,0));
+						text = replace_all(text, "<b>", gRGB(0,255,255));
+						text = replace_all(text, "<u>", (std::string) gRGB(0,255,0));
+						text = replace_all(text, "</i>", (std::string) gRGB(255,255,255));
+						text = replace_all(text, "</b>", (std::string) gRGB(255,255,255));
+						text = replace_all(text, "</u>", (std::string) gRGB(255,255,255));
+					}
 				else
-					text = replace_all(text, "</u>", (std::string) gRGB(255,255,255));
-
-				if (text.find("<i>") != std::string::npos || text.find("</i>") != std::string::npos)
-					if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
-						face = Subtitle_MAX;
-					else
-						face = Subtitle_Italic;
-				else if (text.find("<b>") != std::string::npos || text.find("</b>") != std::string::npos)
-					face = Subtitle_Bold;
-
-				text = replace_all(text, "<u>", (std::string) gRGB(255,255,0));
-				text = replace_all(text, "<i>", "");
-				text = replace_all(text, "<b>", "");
-				text = replace_all(text, "</i>", "");
-				text = replace_all(text, "</b>", "");
-
+				{
+					if (subtitleColors == 2)
+						text = (std::string) gRGB(255, 255, 0) + text;
+					text = replace_all(text, "</u>", "");
+					text = replace_all(text, "</i>", "");
+					text = replace_all(text, "</b>", "");
+					text = replace_all(text, "<u>", "");
+					text = replace_all(text, "<i>", "");
+					text = replace_all(text, "<b>", "");
+				}
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
-
 				eRect &area = element.m_area;
+				if (eConfigManager::getConfigBoolValue("config.subtitles.showbackground"))
+				{
+					eTextPara *para = new eTextPara(area);
+					para->setFont(subtitleStyles[face].font);
+					para->renderString(text.c_str(), RS_WRAP);
+					eRect bbox = para->getBoundBox();
+					int bboxWidth = bbox.width();
+					if (alignmentValue == "right")
+						bbox.setLeft(area.left() + area.width() - bboxWidth - borderwidth);
+					else if (alignmentValue == "left")
+						bbox.setLeft(area.left() - borderwidth);
+					else
+						bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
+					bbox.setWidth(bboxWidth + borderwidth * 2);
+					int bboxTop = area.top() + area.height() - bbox.height() - 2 * borderwidth;
+					int bboxHeight = bbox.height() + borderwidth * 2;
+					bbox.setTop(bboxTop);
+					bbox.setHeight(bboxHeight);
+					area.setTop(area.top() - borderwidth);
+					painter.setForegroundColor(gRGB(0,0,0,64));
+					painter.fill(bbox);
+					borderwidth = 0;
+				}
 				if ( !subtitleStyles[face].have_foreground_color && element.m_have_color )
 					painter.setForegroundColor(element.m_color);
 				else

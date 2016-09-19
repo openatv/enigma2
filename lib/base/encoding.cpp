@@ -62,12 +62,12 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 					||(sscanf( line, "%d %d", &tsid, &onid ) == 2 ) )
 				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
 			else
-				eDebug("encoding.conf: couldn't parse %s", line);
+				eDebug("[eDVBTextEncodingHandler] encoding.conf: couldn't parse %s", line);
 		}
 		free(line);
 	}
 	else
-		eDebug("[eDVBTextEncodingHandler] couldn't open %s !", file.c_str());
+		eDebug("[eDVBTextEncodingHandler] couldn't open %s: %m", file.c_str());
 }
 
 void eDVBTextEncodingHandler::getTransponderDefaultMapping(int tsidonid, int &table)

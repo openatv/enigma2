@@ -83,7 +83,7 @@ class PowerTimerEditList(Screen):
 		if cur:
 			t = cur
 			if t.disabled:
-				print "try to ENABLE timer"
+				print "[PowerTimerEdit] try to ENABLE timer"
 				t.enable()
 			else:
 				if t.isRunning():
@@ -93,7 +93,7 @@ class PowerTimerEditList(Screen):
 							(_("Stop current event and disable future events"), "stopall"),
 							(_("Don't stop current event but disable future events"), "stoponlyfuture")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating the event currently recording... What do you want to do?"), list = list)
 				else:
 					t.disable()
 			self.session.nav.PowerTimer.timeChanged(t)
@@ -214,7 +214,7 @@ class PowerTimerEditList(Screen):
 			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 
 	def cleanupQuestion(self):
-		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
+		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete completed timers?"))
 
 	def cleanupTimer(self, delete):
 		if delete:
@@ -266,7 +266,7 @@ class PowerTimerEditList(Screen):
 			self.fillTimerList()
 			self.updateState()
 		else:
-			print "PowerTimeredit aborted"
+			print "[PowerTimerEdit] PowerTimeredit aborted"
 
 	def finishedAdd(self, answer):
 		if answer[0]:
@@ -275,7 +275,7 @@ class PowerTimerEditList(Screen):
 			self.fillTimerList()
 			self.updateState()
 		else:
-			print "Timeredit aborted"
+			print "[PowerTimerEdit] Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)

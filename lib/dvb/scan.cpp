@@ -24,6 +24,7 @@
 #include <errno.h>
 
 #define SCAN_eDebug(x...) do { if (m_scan_debug) eDebug(x); } while(0)
+#define SCAN_eDebugNoNewLineStart(x...) do { if (m_scan_debug) eDebugNoNewLineStart(x); } while(0)
 #define SCAN_eDebugNoNewLine(x...) do { if (m_scan_debug) eDebugNoNewLine(x); } while(0)
 
 DEFINE_REF(eDVBScan);
@@ -40,7 +41,7 @@ eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
 	,m_scan_debug(debug)
 {
 	if (m_channel->getDemux(m_demux))
-		SCAN_eDebug("[eDVBScan] scan: failed to allocate demux!");
+		SCAN_eDebug("[eDVBScan] failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
 	
 	m_lcn_file = NULL;
@@ -198,10 +199,8 @@ RESULT eDVBScan::nextChannel()
 
 	if (m_ch_toScan.empty())
 	{
-		SCAN_eDebug("[eDVBScan] no channels left to scan.");
-		SCAN_eDebug("[eDVBScan] %zd channels scanned, %zd were unavailable.",
-				m_ch_scanned.size(), m_ch_unavailable.size());
-		SCAN_eDebug("[eDVBScan] %zd new channels to add to the database.", m_new_channels.size());
+		SCAN_eDebug("[eDVBScan] no channels left: %zd scanned, %zd unavailable, %zd database.",
+			m_ch_scanned.size(), m_ch_unavailable.size(), m_new_channels.size());
 		m_event(evtFinish);
 		return -ENOENT;
 	}
@@ -346,7 +345,7 @@ void eDVBScan::NITready(int err)
 
 void eDVBScan::BATready(int err)
 {
-	SCAN_eDebug("[eDVBScan] got bat");
+	SCAN_eDebug("[eDVBScan] got bat, err %d", err);
 	m_ready |= readyBAT;
 	if (!err)
 		m_ready |= validBAT;
@@ -355,7 +354,7 @@ void eDVBScan::BATready(int err)
 
 void eDVBScan::PATready(int err)
 {
-	SCAN_eDebug("[eDVBScan] got pat");
+	SCAN_eDebug("[eDVBScan] got pat, err %d", err);
 	m_ready |= readyPAT;
 	if (!err)
 		m_ready |= validPAT;
@@ -387,6 +386,7 @@ void eDVBScan::PMTready(int err)
 				switch ((*es)->getType())
 				{
 				case 0x1b: // AVC Video Stream (MPEG4 H264)
+				case 0x24: // H265 HEVC
 				case 0x10: // MPEG 4 Part 2
 				case 0x01: // MPEG 1 video
 				case 0x02: // MPEG 2 video
@@ -588,7 +588,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersSatellite parm;
 		feparm->getDVBS(parm);
-		SCAN_eDebug("[eDVBScan] try to add %d %d %d %d %d %d",
+		SCAN_eDebug("[eDVBScan] try to add sat %d %d %d %d %d %d",
 			parm.orbital_position, parm.frequency, parm.symbol_rate, parm.polarisation, parm.fec, parm.modulation);
 		break;
 	}
@@ -596,7 +596,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersCable parm;
 		feparm->getDVBC(parm);
-		SCAN_eDebug("[eDVBScan] try to add %d %d %d %d",
+		SCAN_eDebug("[eDVBScan] try to add cable %d %d %d %d",
 			parm.frequency, parm.symbol_rate, parm.modulation, parm.fec_inner);
 		break;
 	}
@@ -604,7 +604,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersTerrestrial parm;
 		feparm->getDVBT(parm);
-		SCAN_eDebug("[eDVBScan] try to add %d %d %d %d %d %d %d %d",
+		SCAN_eDebug("[eDVBScan] try to add terres %d %d %d %d %d %d %d %d",
 			parm.frequency, parm.modulation, parm.transmission_mode, parm.hierarchy,
 			parm.guard_interval, parm.code_rate_LP, parm.code_rate_HP, parm.bandwidth);
 		break;
@@ -842,7 +842,7 @@ void eDVBScan::channelDone()
 							{
 								T2 = true;
 								t2transponder.system = eDVBFrontendParametersTerrestrial::System_DVB_T2;
-								t2transponder.plpid = (int)d.getSelectorBytes()->at(0);
+								t2transponder.plp_id = (int)d.getSelectorBytes()->at(0);
 								t2transponder.code_rate_HP = t2transponder.code_rate_LP = eDVBFrontendParametersTerrestrial::FEC_Auto;
 								t2transponder.hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
 								t2transponder.modulation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
@@ -1085,7 +1085,11 @@ void eDVBScan::channelDone()
 							m_pmt_in_progress->first);
 					snprintf(pname, 255, "%s %s %d%c %d.%d°%c",
 						parm.system ? "DVB-S2" : "DVB-S",
-						parm.modulation == 1 ? "QPSK" : "8PSK",
+						parm.modulation == eDVBFrontendParametersSatellite::Modulation_Auto ? "AUTO" :
+							eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
+							eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
+							eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
+							eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
 						parm.frequency/1000,
 						parm.polarisation ? 'V' : 'H',
 						parm.orbital_position/10,
@@ -1446,7 +1450,7 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 	for (ServiceDescriptionConstIterator s(services.begin()); s != services.end(); ++s)
 	{
 		unsigned short service_id = (*s)->getServiceId();
-		SCAN_eDebugNoNewLine("[eDVBScan] SID %04x: ", service_id);
+		SCAN_eDebugNoNewLineStart("[eDVBScan] SID %04x: ", service_id);
 		bool is_crypted = false;
 		
 		std::map<unsigned short, service>::iterator it = m_pmts_to_read.find(service_id);
@@ -1454,12 +1458,13 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 		{
 			if (it->second.scrambled)
 			{
-				SCAN_eDebug("is scrambled!");
+				SCAN_eDebugNoNewLine("is scrambled!");
 				is_crypted = true;
 			}
 			else
-				SCAN_eDebug("is free");
+				SCAN_eDebugNoNewLine("is free");
 		}
+		SCAN_eDebugNoNewLine("\n");
 
 		if (!(m_flags & scanOnlyFree) || !is_crypted)
 		{
@@ -1512,17 +1517,17 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				{
 					CaIdentifierDescriptor &d = (CaIdentifierDescriptor&)**desc;
 					const CaSystemIdList &caids = *d.getCaSystemIds();
-					SCAN_eDebugNoNewLine("[eDVBScan] CA");
+					SCAN_eDebugNoNewLineStart("[eDVBScan]   CA");
 					for (CaSystemIdList::const_iterator i(caids.begin()); i != caids.end(); ++i)
 					{
 						SCAN_eDebugNoNewLine(" %04x", *i);
 						service->m_ca.push_front(*i);
 					}
-					SCAN_eDebug(".");
+					SCAN_eDebugNoNewLine("\n");
 					break;
 				}
 				default:
-					SCAN_eDebug("[eDVBScan] descr<%x>", (*desc)->getTag());
+					SCAN_eDebug("[eDVBScan]   descr<%x>", (*desc)->getTag());
 					break;
 				}
 			}

@@ -10,6 +10,15 @@ import socket, fcntl, struct
 def getVersionString():
 	return getImageVersion()
 
+def getFlashDateString():
+	try:
+		f = open("/etc/install","r")
+		flashdate = f.read()
+		f.close()
+		return flashdate
+	except:
+		return _("unknown")
+
 def getImageVersionString():
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
@@ -238,30 +247,44 @@ def getChipSetString():
 		f = open('/proc/stb/info/chipset', 'r')
 		chipset = f.read()
 		f.close()
-		return str(chipset.lower().replace('\n','').replace('bcm',''))
+		return str(chipset.lower().replace('\n','').replace('bcm','').replace('brcm',''))
 	except IOError:
-		return "unavailable"
+		return _("unavailable")
 
 def getCPUSpeedString():
+	cpu_speed = 0
 	try:
 		file = open('/proc/cpuinfo', 'r')
 		lines = file.readlines()
+		file.close()
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("cpu MHz"):
-					mhz = float(splitted[1].split(' ')[0])
-					if mhz and mhz >= 1000:
-						mhz = "%s GHz" % str(round(mhz/1000,1))
-					else:
-						mhz = "%s MHz" % str(round(mhz,1))
-		file.close()
-		return mhz
+					cpu_speed = float(splitted[1].split(' ')[0])
+					break
 	except IOError:
-		return "unavailable"
+		print "[About] getCPUSpeedString, /proc/cpuinfo not available"
+
+	if cpu_speed == 0:
+		try: # Solo4K
+			file = open('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq', 'r')
+			cpu_speed = float(file.read()) / 1000
+			file.close()
+		except IOError:
+			print "[About] getCPUSpeedString, /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq not available"
+
+	if cpu_speed > 0:
+		if cpu_speed >= 1000:
+			cpu_speed = "%s GHz" % str(round(cpu_speed/1000,1))
+		else:
+			cpu_speed = "%s MHz" % str(round(cpu_speed,1))
+		return cpu_speed
+	return _("unavailable")
 
 def getCPUString():
+	system = _("unavailable")
 	try:
 		file = open('/proc/cpuinfo', 'r')
 		lines = file.readlines()
@@ -273,10 +296,12 @@ def getCPUString():
 					system = splitted[1].split(' ')[0]
 				elif splitted[0].startswith("Processor"):
 					system = splitted[1].split(' ')[0]
+				elif splitted[0].startswith("model name"):
+					system = splitted[1].split(' ')[0]
 		file.close()
 		return system 
 	except IOError:
-		return "unavailable"
+		return _("unavailable")
 
 def getCpuCoresString():
 	try:
@@ -294,7 +319,7 @@ def getCpuCoresString():
 		file.close()
 		return cores
 	except IOError:
-		return "unavailable"
+		return _("unavailable")
 
 def getPythonVersionString():
 	v = sys.version_info
