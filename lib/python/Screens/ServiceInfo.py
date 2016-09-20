@@ -1,11 +1,11 @@
+from os import path
 from Screens.About import AboutBase
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Sources.List import List
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop, RT_HALIGN_LEFT, RT_VALIGN_CENTER
-from Tools.Transponder import ConvertToHumanReadable
-from Components.Converter.ChannelNumbers import channelnumbers
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber, supportedChannels
 import skin
 
 RT_HALIGN_LEFT = 0
@@ -79,6 +79,7 @@ class ServiceInfo(AboutBase):
 		}, -1)
 
 		if serviceref:
+			self.setTitle(_("Transponder Information"))
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName = "ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
@@ -87,6 +88,7 @@ class ServiceInfo(AboutBase):
 			self.info = None
 			self.feinfo = None
 		else:
+			self.setTitle(_("Service Information"))
 			self.type = TYPE_SERVICE_INFO
 			self["key_red"] = self["red"] = Label(_("Service"))
 			self["key_green"] = self["green"] = Label(_("PIDs"))
@@ -116,18 +118,48 @@ class ServiceInfo(AboutBase):
 			videomode = "-"
 			resolution = "-"
 			if self.info:
-				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
-				width = self.info.getInfo(iServiceInformation.sVideoWidth)
-				height = self.info.getInfo(iServiceInformation.sVideoHeight)
-				if width > 0 and height > 0:
-					resolution = "%dx%d" % (width, height)
-					resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
-					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
-					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
-					if aspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE):
-						aspect = "4:3"
-					else:
-						aspect = "16:9"
+				videocodec =  ("MPEG2", "AVC", "MPEG1", "MPEG4-VC", "VC1", "VC1-SM", "HEVC", "-")[self.info.getInfo(iServiceInformation.sVideoType)]
+				video_height = 0
+				video_width = 0
+				video_pol = " "
+				video_rate = 0
+				if path.exists("/proc/stb/vmpeg/0/yres"):
+					f = open("/proc/stb/vmpeg/0/yres", "r")
+					try:
+						video_height = int(f.read(),16)
+					except:
+						pass
+					f.close()
+				if path.exists("/proc/stb/vmpeg/0/xres"):
+					f = open("/proc/stb/vmpeg/0/xres", "r")
+					try:
+						video_width = int(f.read(),16)
+					except:
+						pass
+					f.close()
+				if path.exists("/proc/stb/vmpeg/0/progressive"):
+					f = open("/proc/stb/vmpeg/0/progressive", "r")
+					try:
+						video_pol = "p" if int(f.read(),16) else "i"
+					except:
+						pass
+					f.close()
+				if path.exists("/proc/stb/vmpeg/0/framerate"):
+					f = open("/proc/stb/vmpeg/0/framerate", "r")
+					try:
+						video_rate = int(f.read())
+					except:
+						pass
+					f.close()
+
+				fps  = str((video_rate + 500) / 1000)
+				resolution = str(video_width) + "x" + str(video_height) + video_pol + fps
+
+				aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
+				if aspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE):
+					aspect = "4:3"
+				else:
+					aspect = "16:9"
 				f = open("/proc/stb/video/videomode")
 				videomode = f.read()[:-1].replace('\n','')
 				f.close()

@@ -79,7 +79,7 @@ class inputDevices:
 		return sorted(self.Devices.iterkeys())
 
 	def setDeviceAttribute(self, device, attribute, value):
-		# print "[InputDevice] Setting for device", device, "attribute", attribute, " to value", value
+		#print "[InputDevice] setting for device", device, "attribute", attribute, " to value", value
 		if self.Devices.has_key(device):
 			self.Devices[device][attribute] = value
 

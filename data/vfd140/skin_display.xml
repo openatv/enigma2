@@ -421,4 +421,10 @@
 		<widget source="parent.summary_action" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="left" noWrap="1" />
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="140,18" font="FdLcD;16" halign="left" noWrap="1" />-->
 	</screen>
+	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="140,32">
+		<widget source="SetupTitle" render="Label" position="0,0" size="160,16" font="FdLcD;16" halign="left" noWrap="1"  />
+		<widget source="SetupEntry" render="Label" position="0,16" size="140,16" font="FdLcD;14" halign="left" noWrap="1" />
+		<!--<widget source="SetupValue" render="Label" position="0,50" size="140,14" font="FdLcD;12" halign="left" transparent="1" />-->
+		<!-- <panel name="SummaryTunerStatusPanel" /> -->
+	</screen>
 </skin>

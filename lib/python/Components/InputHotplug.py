@@ -17,10 +17,10 @@ class NetlinkReader():
 					devname = event['DEVNAME']
 					action = event['ACTION']
 					if action == 'add':
-						print "New input device detected:", devname
+						print "[InputHotplug] New input device detected:", devname
 						enigma.addInputDevice(os.path.join('/dev', devname))
 					elif action == 'remove':
-						print "Removed input device:", devname
+						print "[InputHotplug] Removed input device:", devname
 						enigma.removeInputDevice(os.path.join('/dev', devname))
 				elif subsystem == 'net':
 					from Network import iNetwork
@@ -30,7 +30,7 @@ class NetlinkReader():
 				pass
 	def connectionLost(self, failure):
 		# Ignore...
-		print "connectionLost?", failure
+		print "[InputHotplug] connectionLost?", failure
 		self.nls.close()
 	def logPrefix(self):
 		return 'NetlinkReader'

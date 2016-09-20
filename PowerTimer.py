@@ -155,6 +155,13 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
+				if NavigationInstance.instance.getCurrentlyPlayingServiceReference() and ('0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or '4097:' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString()):
+					self.do_backoff()
+					# retry
+					self.begin = time() + self.backoff
+					if self.end <= self.begin:
+						self.end = self.begin
+					return False
 				if not Screens.Standby.inStandby:  # Not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
 					if self.autosleeprepeat == "once":
@@ -170,7 +177,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if recordingsActive(900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or (self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and internalHDDNotSleeping()):
+				if (NavigationInstance.instance.getCurrentlyPlayingServiceReference() and ('0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or '4097:' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString())) or recordingsActive(900) or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or (self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and internalHDDNotSleeping()):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -248,6 +255,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if recordingsActive(900):
 					self.do_backoff()
 					# Retry
+# If this is the first backoff of a repeating timer remember the original
+# begin/end times, so that we can use *these* when setting up the repeat.
+#
+					if self.repeated and not hasattr(self, "real_begin"):
+						self.real_begin = self.begin
+						self.real_end = self.end
 					self.begin = time() + self.backoff
 					if self.end <= self.begin:
 						self.end = self.begin
@@ -429,6 +442,11 @@ class PowerTimer(timer.Timer):
 		else:
 			# Yes. Process repeat if necessary, and re-add.
 			if w.repeated:
+# If we have saved original begin/end times for a backed off timer
+# restore those values now
+				if hasattr(w, "real_begin"):
+					w.begin = w.real_begin
+					w.end = w.real_end
 				w.processRepeated()
 				w.state = PowerTimerEntry.StateWaiting
 				self.addTimerEntry(w)
@@ -509,10 +527,21 @@ class PowerTimer(timer.Timer):
 			list.append(' autosleeprepeat="' + str(timer.autosleeprepeat) + '"')
 			list.append('>\n')
 
-			for time, code, msg in timer.log_entries:
+#		Handle repeat entries, which never end and so never get pruned by cleanupDaily
+#       Repeating timers get autosleeprepeat="repeated" or repeated="127" (daily) or
+#       "31" (weekdays) [dow bitmap] etc.
+#
+			ignore_before = 0
+			if config.recording.keep_timers.value > 0:
+				if str(timer.autosleeprepeat) == "repeated" or int(timer.repeated) > 0:
+					ignore_before = time() - config.recording.keep_timers.value*86400
+
+			for log_time, code, msg in timer.log_entries:
+				if log_time < ignore_before:
+					continue
 				list.append('<log')
 				list.append(' code="' + str(code) + '"')
-				list.append(' time="' + str(time) + '"')
+				list.append(' time="' + str(log_time) + '"')
 				list.append('>')
 				list.append(str(stringToXML(msg)))
 				list.append('</log>\n')

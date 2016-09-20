@@ -2,6 +2,7 @@
 #define __picload_h__
 
 #include <lib/gdi/gpixmap.h>
+#include <lib/gdi/picexif.h>
 #include <lib/base/thread.h>
 #include <lib/python/python.h>
 #include <lib/base/message.h>
@@ -55,9 +56,9 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 
 	void decodePic();
 	void decodeThumb();
-	void resizePic();
 
 	Cfilepara *m_filepara;
+	Cexif *m_exif;
 	bool threadrunning;
 
 	struct PConf
@@ -68,6 +69,7 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 		int background;
 		bool resizetype;
 		bool usecache;
+		bool auto_orientation;
 		int thumbnailsize;
 		int test;
 		PConf();
@@ -92,6 +94,8 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 	void thread();
 	int startThread(int what, const char *file, int x, int y, bool async=true);
 	void thread_finished();
+	bool getExif(const char *filename, int Thumb=0);
+	int getFileType(const char * file);
 public:
 	void waitFinished();
 	PSignal1<void, const char*> PictureData;
@@ -102,7 +106,7 @@ public:
 	RESULT startDecode(const char *filename, int x=0, int y=0, bool async=true);
 	RESULT getThumbnail(const char *filename, int x=0, int y=0, bool async=true);
 	RESULT setPara(PyObject *val);
-	RESULT setPara(int width, int height, double aspectRatio, int as, bool useCache, int resizeType, const char *bg_str);
+	RESULT setPara(int width, int height, double aspectRatio, int as, bool useCache, int resizeType, const char *bg_str, bool auto_orientation);
 	PyObject *getInfo(const char *filename);
 	SWIG_VOID(int) getData(ePtr<gPixmap> &SWIG_OUTPUT);
 };

@@ -4,6 +4,7 @@ except:
     pass
 
 from Screens.Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Setup import Setup, getSetupTitle
 from Components.Sources.List import List
 from Components.ActionMap import NumberActionMap, ActionMap
@@ -71,8 +72,7 @@ class CharList(MenuList):
 class MenuSummary(Screen):
     pass
 
-
-class Menu(Screen):
+class Menu(Screen, ProtectedScreen):
     ALLOW_SUSPEND = True
     MENU_LIST = 0
     CHAR_LIST = 1
@@ -273,7 +273,6 @@ class Menu(Screen):
             if self.menuID == 'id_mainmenu':
                 self.id_mainmenu = True
                 self.setTitle("Main Menu")
-
         self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "NumberActions"], {
             "ok": self.okbuttonClick,
             "cancel": self.closeNonRecursive,
@@ -296,6 +295,7 @@ class Menu(Screen):
                 a = _(self.parent.get('text', '').encode('UTF-8'))
             self.menu_title = a
             self.setTitle(a)
+        ProtectedScreen.__init__(self)
         self.onFirstExecBegin.append(self.setDefault)
 
     def reloadMenu(self):
@@ -462,13 +462,21 @@ class Menu(Screen):
     def createSummary(self):
         return MenuSummary
 
+    def isProtected(self):
+        if config.ParentalControl.setuppinactive.value:
+            if config.ParentalControl.config_sections.main_menu.value and not(hasattr(self.session, 'infobar') and self.session.infobar is None):
+                return self.menuID == "mainmenu"
+            elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
+                return True
+            elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
+                return True
+
 class MainMenu(Menu):
 
     def __init__(self, *x):
         self.skinName = 'Menu'
         Menu.__init__(self, *x)
         self.setTitle("Main Menu")
-
 
 class MainMenuID(Menu):
 

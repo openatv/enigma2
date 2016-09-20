@@ -13,18 +13,9 @@ enigma2_SOURCES = \
 	bsod.cpp \
 	bsod.h \
 	enigma.cpp \
-	xmlgenerator.cpp \
-	xmlgenerator.h \
 	version_info.cpp \
 	version_info.h \
 	version.h
-
-EXTRA_DIST = \
-	enigma-dvbtest.cpp \
-	enigma-gdi.cpp \
-	enigma-gui.cpp \
-	enigma-playlist.cpp \
-	enigma-scan.cpp
 
 enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/actions/libenigma_actions.a \
@@ -48,7 +39,6 @@ enigma2_LDADD = \
 	@LIBVUGLES2_LIBS@ \
 	@LIBSDL_LIBS@ \
 	@LIBXINE_LIBS@ \
-	@LIBXMLCCWRAP_LIBS@ \
 	@PTHREAD_LIBS@ \
 	@PYTHON_LDFLAGS@ \
 	@LIBDDVD_LIBS@ \

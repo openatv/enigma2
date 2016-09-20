@@ -32,14 +32,14 @@ int eRawFile::open(const char *filename)
 	scan();
 	m_current_offset = 0;
 	m_last_offset = 0;
-	m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
+	m_fd = ::open(filename, O_RDONLY | O_LARGEFILE | O_CLOEXEC);
 	posix_fadvise(m_fd, 0, 0, POSIX_FADV_SEQUENTIAL);
 	return m_fd;
 }
 
 off_t eRawFile::lseek_internal(off_t offset)
 {
-//	eDebug("lseek: %lld, %d", offset, whence);
+//	eDebug("[eRawFile] lseek: %lld, %d", offset, whence);
 		/* if there is only one file, use the native lseek - the file could be growing! */
 	if (m_nrfiles < 2)
 	{
@@ -113,7 +113,7 @@ void eRawFile::scan()
 		::close(f);
 		++m_nrfiles;
 	}
-//	eDebug("found %d files, splitsize: %llx, totallength: %llx", m_nrfiles, m_splitsize, m_totallength);
+//	eDebug("[eRawFile] found %d files, splitsize: %llx, totallength: %llx", m_nrfiles, m_splitsize, m_totallength);
 }
 
 int eRawFile::switchOffset(off_t off)
@@ -125,7 +125,7 @@ int eRawFile::switchOffset(off_t off)
 			filenr = m_nrfiles - 1;
 		if (filenr != m_current_file)
 		{
-//			eDebug("-> %d", filenr);
+//			eDebug("[eRawFile] -> %d", filenr);
 			close();
 			m_fd = openFileUncached(filenr);
 			m_last_offset = m_base_offset = m_splitsize * filenr;
@@ -153,7 +153,7 @@ int eRawFile::openFileUncached(int nr)
 		snprintf(suffix, 5, ".%03d", nr);
 		filename += suffix;
 	}
-	return ::open(filename.c_str(), O_RDONLY | O_LARGEFILE);
+	return ::open(filename.c_str(), O_RDONLY | O_LARGEFILE | O_CLOEXEC);
 }
 
 off_t eRawFile::length()

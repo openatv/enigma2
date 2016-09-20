@@ -9,6 +9,7 @@ from enigma import eServiceReference, eServiceReferenceDVB
 # type 27 = advanced codec HD NVOD reference service (NYI)
 # type 2 = digital radio sound service
 # type 10 = advanced codec digital radio sound service
+# type 31 = High Efficiency Video Coding digital television
 
 # Generate an eServiceRef query path containing
 # '(type == serviceTypes[0]) || (type == serviceTypes[1]) || ...'
@@ -28,6 +29,7 @@ service_types_tv_ref.setPath(makeServiceQueryStr((
 	eServiceReferenceDVB.mpeg2HdTv,
 	eServiceReferenceDVB.avcSdTv,
 	eServiceReferenceDVB.avcHdTv,
+	eServiceReferenceDVB.nvecTv,
 	eServiceReferenceDVB.user134,
 	eServiceReferenceDVB.user195,
 )))

@@ -49,7 +49,7 @@ class HardwareInfo:
 		return HardwareInfo.device_version
 
 	def has_hdmi(self):
-		return not (HardwareInfo.device_name == 'dm800' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version is None))
+		return getBrandOEM() in ('xtrend', 'gigablue', 'dags', 'ixuss', 'odin', 'vuplus', 'ini', 'ebox', 'ceryon') or (getBoxType() in ('dm7020hd', 'dm800se', 'dm500hd', 'dm8000') and HardwareInfo.device_version is not None)
 
 	def linux_kernel(self):
 		try:

@@ -6,6 +6,7 @@
 #include "gmaindc.h"
 
 // #define DEBUG_FBDC
+#ifndef SWIG
 
 class gFBDC: public gMainDC
 {
@@ -61,5 +62,10 @@ public:
 		return fb->islocked();
 	}
 };
+#endif
+#ifdef HAVE_OSDANIMATION
+void setAnimation_current(int a);
+void setAnimation_speed(int speed);
+#endif
 
 #endif
