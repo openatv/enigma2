@@ -202,6 +202,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.activityslider.setValue(0)
 		self.package.setText(txt)
 		self.status.setText(self.oktext)
+		self["actions"].setEnabled(True)
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
