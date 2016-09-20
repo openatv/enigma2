@@ -159,7 +159,7 @@ def parseCoordinate(s, e, size=0, font=None):
 			elif s[-1] is 'h':
 				val += fonts[font][2] * int(s[:-1])
 			try:
-				val = int(s) # for speed
+				val += int(s) # for speed
 			except:
 				val = eval(s)
 	if val < 0:
