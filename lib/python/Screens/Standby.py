@@ -168,7 +168,7 @@ class Standby(Standby2):
 			self.skin = """<screen position="0,0" size="0,0"/>"""
 			Screen.__init__(self, session)
 			self.onFirstExecBegin.append(self.showMessageBox)
-			self.onHide.append(self.close)
+			self.onShow.append(self.close)
 		else:
 			Standby2.__init__(self, session)
 
@@ -270,10 +270,10 @@ class TryQuitMainloop(MessageBox):
 			else:
 				reason += (_("%d jobs are running in the background!") % len(jobs)) + '\n'
 		if inTimeshift:
-			reason = _("You seem to be in timeshift!") + '\n'
+			reason = _("You seem to be in timeshift or saving timeshift!") + '\n'
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			default_yes = False
-			reason = _("Recording(s) are in progress or coming up soon!") + '\n'
+			reason = _("Recording(s) are in progress or coming up soon, or you are saving timeshift!") + '\n'
 
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)

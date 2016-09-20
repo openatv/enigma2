@@ -82,7 +82,6 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self["key_green"] = Button(_("OK"))
 		self["key_yellow"] = Button(_("Rename"))
 		self["key_blue"] = Button()
-		self.onExecBegin.append(self._initialButtonTexts)
 		self["key_red"] = Button(_("Cancel"))
 
 		# Background for Buttons
@@ -173,9 +172,6 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Make sure we remove our callback
 		self.onClose.append(self.disableTimer)
 
-	def _initialButtonTexts(self):
-		self["key_blue"].text = _("Add bookmark")
-
 	def switchToFileListOnStart(self):
 		if self.realBookmarks and self.realBookmarks.value:
 			self.currList = "booklist"
@@ -185,6 +181,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		else:
 			self.switchToFileList()
 		self.currList = "filelist"
+		self["key_blue"].text = _("Add bookmark")
 		self.up()
 
 	def disableTimer(self):

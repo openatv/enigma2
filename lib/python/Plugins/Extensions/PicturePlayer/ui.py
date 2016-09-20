@@ -201,7 +201,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 			getConfigListEntry(_("Background color"), config.pic.bgcolor, _("Colour of the frame surrounding a full-screen image display.")),
 			getConfigListEntry(_("Text color"), config.pic.textcolor, _("Colour of the information text in a full-screen image display.")),
 			getConfigListEntry(_("Full-screen view resolution"), config.usage.pic_resolution, _("Resolution of the full-screen image. The skin resolution is %dx%d." % (size_w, size_h))),
-			getConfigListEntry(_("Auto EXIF Orientation rotation/flipping"), config.pic.autoOrientation),
+			getConfigListEntry(_("Auto EXIF orientation"), config.pic.autoOrientation, _("Automatically rotate the picture based on embedded EXIF information.")),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
