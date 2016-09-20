@@ -25,7 +25,9 @@ inline int toBCD(int dec)
 	return int(dec/10)*0x10 + dec%10;
 }
 
-time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5, __u16 *hash=0);
+time_t parseDVBtime(uint16_t mjd, uint32_t stime_bcd);
+time_t parseDVBtime(const uint8_t* data);
+time_t parseDVBtime(const uint8_t* data, uint16_t *hash);
 
 class TDT: public eGTable
 {
@@ -81,6 +83,7 @@ public:
 #endif
 	bool getUseDVBTime() { return m_use_dvb_time; }
 	void setUseDVBTime(bool b);
+	void syncDVBTime();
 	PSignal0<void> m_timeUpdated;
 	time_t nowTime() const { return m_time_ready ? ::time(0)+m_time_difference : -1; }
 	bool ready() const { return m_time_ready; }

@@ -11,6 +11,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.InputBox import PinInput
 from ServiceReference import ServiceReference
 from Screens.TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
@@ -120,6 +121,20 @@ class TimerEditList(Screen, TimerListButtons):
 		self.setTitle(_("Timer overview"))
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
+		if self.isProtected() and config.ParentalControl.servicepin[0].value:
+			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and (not config.ParentalControl.config_sections.main_menu.value or hasattr(self.session, 'infobar') and self.session.infobar is None) and config.ParentalControl.config_sections.timer_menu.value
+
+	def pinEntered(self, result):
+		if result is None:
+			self.closeProtectedScreen()
+		elif not result:
+			self.session.openWithCallback(self.close(), MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR, timeout=3)
+
+	def closeProtectedScreen(self, result=None):
+		self.close(None)
 
 	def createSummary(self):
 		return TimerEditListSummary
@@ -150,17 +165,17 @@ class TimerEditList(Screen, TimerListButtons):
 		if cur:
 			t = cur
 			if t.disabled:
-				# print "try to ENABLE timer"
+# 				print "[TimerEdit] try to ENABLE timer"
 				t.enable()
 				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
 				if not timersanitycheck.check():
 					t.disable()
-					print "Sanity check failed"
+					print "[TimerEdit] Sanity check failed"
 					simulTimerList = timersanitycheck.getSimulTimerList()
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
 				else:
-					print "Sanity check passed"
+					print "[TimerEdit] Sanity check passed"
 					if timersanitycheck.doubleCheck():
 						t.disable()
 			else:
@@ -311,7 +326,7 @@ class TimerEditList(Screen, TimerListButtons):
 			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 
 	def cleanupQuestion(self):
-		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
+		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete completed timers?"))
 
 	def cleanupTimer(self, delete):
 		if delete:
@@ -371,10 +386,10 @@ class TimerEditList(Screen, TimerListButtons):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
 
 	def finishedEdit(self, answer):
-		# print "finished edit"
+# 		print "[TimerEdit] finished edit"
 
 		if answer[0]:
-			# print "Edited timer"
+# 			print "[TimerEdit] Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
 			success = False
@@ -393,16 +408,16 @@ class TimerEditList(Screen, TimerListButtons):
 			else:
 				success = True
 			if success:
-				print "Sanity check passed"
+				print "[TimerEdit] Sanity check passed"
 				self.session.nav.RecordTimer.timeChanged(entry)
 
 			self.fillTimerList()
 			self.updateState()
 		# else:
-		# 	print "Timeredit aborted"
+# 			print "[TimerEdit] Timeredit aborted"
 
 	def finishedAdd(self, answer):
-		# print "finished add"
+# 		print "[TimerEdit] finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -416,7 +431,7 @@ class TimerEditList(Screen, TimerListButtons):
 			self.fillTimerList()
 			self.updateState()
 		# else:
-		# 	print "Timeredit aborted"
+# 			print "[TimerEdit] Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -516,7 +531,7 @@ class TimerSanityConflict(Screen, TimerListButtons):
 		TimerListButtons.__init__(self)
 
 		self.timer = timer
-		print "TimerSanityConflict"
+		print "[TimerEdit] TimerSanityConflict"
 
 		self["lab1"] = StaticText(_("New timer"))
 		self["lab2"] = StaticText(_("Conflicting timers"))

@@ -1,8 +1,9 @@
 from os import path
 
-from enigma import iPlayableService, iServiceInformation, eTimer
+from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
 from Screens.Screen import Screen
+from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry
@@ -141,7 +142,9 @@ class VideoSetup(Screen, ConfigListScreen):
 			if config.av.videomode[config.av.videoport.value].value == 'PC':
 				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen resolution in PC output mode.")))
 			elif config.av.videoport.value != 'Scart':
-				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure the refresh rate of the screen.")))
+				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure the refresh rate of the screen. Multi means refresh rate depends on the source 24/50/60Hz")))
+		if config.av.autores.value in ('all', 'hd') or config.av.videorate[config.av.videomode[config.av.videoport.value].value].value == 'multi':
+			self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution/refresh rate infomation.")))
 
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
@@ -169,6 +172,9 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen.")))
 				if SystemInfo["ScartSwitch"]:
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
+
+		if SystemInfo["havecolorspace"]:
+			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace,_("This option allows you to change the Colorspace from Auto to RGB")))
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
@@ -284,10 +290,28 @@ class AutoVideoModeLabel(Screen):
 			idx += 4
 			self.hideTimer.start(idx * 1000, True)
 
+previous = None
+isDedicated3D = False
+
+def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
+	global previous, isDedicated3D
+	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
+	mode == "3dmode" in SystemInfo["3DMode"] and mode or mode == 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
+	if previous != (mode, znorm):
+		try:
+			open(SystemInfo["3DMode"], "w").write(mode)
+			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
+			previous = (mode, znorm)
+		except:
+			return
+
 class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+		self.current3dmode = config.osd.threeDmode.value
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__evStart,
 				iPlayableService.evVideoSizeChanged: self.VideoChanged,
 				iPlayableService.evVideoProgressiveChanged: self.VideoChanged,
 				iPlayableService.evVideoFramerateChanged: self.VideoChanged,
@@ -298,6 +322,29 @@ class AutoVideoMode(Screen):
 		self.bufferfull = True
 		self.detecttimer = eTimer()
 		self.detecttimer.callback.append(self.VideoChangeDetect)
+
+	def checkIfDedicated3D(self):
+			service = self.session.nav.getCurrentlyPlayingServiceReference()
+			servicepath = service and service.getPath()
+			if servicepath and servicepath.startswith("/"):
+					if service.toString().startswith("1:"):
+						info = eServiceCenter.getInstance().info(service)
+						service = info and info.getInfoString(service, iServiceInformation.sServiceref)
+						return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_IS_DEDICATED_3D == FLAG_IS_DEDICATED_3D and "sidebyside"
+					else:
+						return ".3d." in servicepath.lower() and "sidebyside" or ".tab." in servicepath.lower() and "topandbottom"
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1 and "sidebyside"
+
+	def __evStart(self):
+		if config.osd.threeDmode.value == "auto":
+			global isDedicated3D
+			isDedicated3D = self.checkIfDedicated3D()
+			if isDedicated3D:
+				applySettings(isDedicated3D)
+			else:
+				applySettings()
 
 	def BufferInfo(self):
 		bufferInfo = self.session.nav.getCurrentService().streamed().getBufferCharge()

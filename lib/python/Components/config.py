@@ -156,12 +156,9 @@ class ConfigElement(object):
 			else:
 				notifier(self)
 
-	def removeNotifier(self, notifier, initial_call=True, immediate_feedback=True):
-		assert callable(notifier), "notifiers must be callable"
-		if immediate_feedback:
-			self.notifiers.remove(notifier)
-		else:
-			self.notifiers_final.remove(notifier)
+	def removeNotifier(self, notifier):
+		notifier in self.notifiers and self.notifiers.remove(notifier)
+		notifier in self.notifiers_final and self.notifiers_final.remove(notifier)
 
 	def disableSave(self):
 		self.save_disabled = True
@@ -1032,7 +1029,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		try:
 			return self.text.encode("utf-8")
 		except UnicodeDecodeError:
-			print "Broken UTF8!"
+			print "[Config] Broken UTF8!"
 			return self.text
 
 	def setValue(self, val):
@@ -1040,7 +1037,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 			self.text = val.decode("utf-8")
 		except UnicodeDecodeError:
 			self.text = val.decode("utf-8", "ignore")
-			print "Broken UTF8!"
+			print "[Config] Broken UTF8!"
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1067,6 +1064,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		if session is not None:
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
+			self.help_window.setAnimationMode(0)
 			if self.show_help:
 				self.help_window.show()
 
@@ -1150,8 +1148,6 @@ class ConfigInteger(ConfigSequence):
 class ConfigPIN(ConfigInteger):
 	def __init__(self, default, len=4, censor=""):
 		assert isinstance(default, int), "ConfigPIN default must be an integer"
-		if default == -1:
-			default = "aaaa"
 		ConfigSequence.__init__(self, seperator=":", limits=[(0, (10 ** len) - 1)], censor_char=censor, default=default)
 		self.len = len
 
@@ -1394,7 +1390,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		try:
 			return self.text.encode("utf-8")
 		except UnicodeDecodeError:
-			print "Broken UTF8!"
+			print "[Config] Broken UTF8!"
 			return self.text
 
 	def setValue(self, val):
@@ -1402,7 +1398,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.text = val.decode("utf-8")
 		except UnicodeDecodeError:
 			self.text = val.decode("utf-8", "ignore")
-			print "Broken UTF8!"
+			print "[Config] Broken UTF8!"
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1429,7 +1425,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		if session is not None:
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
-			self.help_window.setSubScreen()
+			self.help_window.setAnimationMode(0)
 			if self.show_help:
 				self.help_window.show()
 
@@ -2144,7 +2140,7 @@ class Config(ConfigSubsection):
 			f.close()
 			os.rename(filename + ".writing", filename)
 		except IOError:
-			print "Config: Couldn't write %s" % filename
+			print "[Config] Couldn't write %s" % filename
 
 	def loadFromFile(self, filename, base_file=True):
 		self.unpickle(open(filename, "r"), base_file)
@@ -2161,8 +2157,9 @@ class ConfigFile:
 	def load(self):
 		try:
 			config.loadFromFile(self.CONFIG_FILE, True)
+			print "[Config] Config file loaded ok..."
 		except IOError, e:
-			print "unable to load config (%s), assuming defaults..." % str(e)
+			print "[Config] unable to load config (%s), assuming defaults..." % str(e)
 
 	def save(self):
 		# config.save()
@@ -2184,7 +2181,7 @@ class ConfigFile:
 				ret = self.__resolveValue(names[1:], config.content.items)
 				if ret and len(ret):
 					return ret
-		print "getResolvedKey", key, "failed !! (Typo??)"
+		print "[Config] getResolvedKey", key, "empty variable."
 		return ""
 
 def NoSave(element):

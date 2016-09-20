@@ -91,6 +91,18 @@ class TimeDateInput(TimeDateInputBase):
 		configlist.list = self.list
 		configlist.l.setList(self.list)
 
+	def keyPageDown(self):
+		sel = self["config"].getCurrent()
+		if sel and sel[1] == self.timeinput_time:
+			self.timeinput_time.decrement()
+			self["config"].invalidateCurrent()
+
+	def keyPageUp(self):
+		sel = self["config"].getCurrent()
+		if sel and sel[1] == self.timeinput_time:
+			self.timeinput_time.increment()
+			self["config"].invalidateCurrent()
+
 	def getTimestamp(self, date, mytime):
 		d = time.localtime(date)
 		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])

@@ -13,6 +13,7 @@ class MessageBox(Screen):
 	TYPE_INFO = 1
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
+	TYPE_MESSAGE = 4
 
 	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None):
 		if not list: list = []
@@ -62,7 +63,7 @@ class MessageBox(Screen):
 			elif picon == self.TYPE_INFO:
 				self["InfoPixmap"].show()
 
-		self.messtype = type
+		self.setTitle(self.type < self.TYPE_MESSAGE and [_("Question"), _("Information"), _("Warning"), _("Error")][self.type] or "Message")
 		if type == self.TYPE_YESNO:
 			if list:
 				self.list = list
@@ -186,7 +187,7 @@ class MessageBox(Screen):
 				self.timeoutCallback()
 
 	def timeoutCallback(self):
-		print "Timeout!"
+		print "[MessageBox] Timeout!"
 		if self.timeout_default is not None:
 			self.close(self.timeout_default)
 		else:

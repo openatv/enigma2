@@ -1,9 +1,11 @@
-from time import localtime, mktime, gmtime
-
-from enigma import iServiceInformation, eServiceCenter, eServiceReference
-
 import NavigationInstance
+from config import config
+from time import localtime, mktime, gmtime
+from ServiceReference import ServiceReference
+from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
 from timer import TimerEntry
+from time import time
+
 
 
 class TimerSanityCheck:
@@ -18,6 +20,8 @@ class TimerSanityCheck:
 		self.eflag = 1
 
 	def check(self, ext_timer=1):
+		if not config.usage.timer_sanity_check_enabled.value:
+			return True
 		if ext_timer != 1:
 			self.newtimer = ext_timer
 		if self.newtimer is None:
@@ -36,7 +40,7 @@ class TimerSanityCheck:
 				if timer == self.newtimer:
 					return True
 				else:
-					if timer.begin == self.newtimer.begin:
+					if self.newtimer.begin >= timer.begin and self.newtimer.end <= timer.end:
 						fl1 = timer.service_ref.ref.flags & eServiceReference.isGroup
 						fl2 = self.newtimer.service_ref.ref.flags & eServiceReference.isGroup
 						if fl1 != fl2:
@@ -70,6 +74,19 @@ class TimerSanityCheck:
 		self.nrep_eventlist = []
 		if ext_timer != 1:
 			self.newtimer = ext_timer
+
+#GML:1 - A timer which has already ended (happens during start-up check) can't clash!!
+#
+#      NOTE: that when adding a timer it also cannot clash with:
+#       o any timers which run before the latest period of no timers running
+#         before the timer to be added starts
+#       o any timers which run after the first period of no timers running
+#         after the timer to be added ends
+#      Code to handle this needs to be added (it is *NOT* here yet!)
+#
+		if (self.newtimer is not None) and (self.newtimer.end < time()): # does not conflict
+			return True
+
 		if (self.newtimer is not None) and (not self.newtimer.disabled):
 			if not self.newtimer.service_ref.ref.valid():
 				return False
@@ -174,14 +191,22 @@ class TimerSanityCheck:
 				timer = self.timerlist[event[2]]
 			if event[1] == self.bflag:
 				tunerType = []
-				fakeRecService = NavigationInstance.instance.recordService(timer.service_ref, True)
+				if timer.service_ref.ref and timer.service_ref.ref.flags & eServiceReference.isGroup:
+					fakeRecService = NavigationInstance.instance.recordService(getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference(), True), True)
+				else:
+					fakeRecService = NavigationInstance.instance.recordService(timer.service_ref, True)
 				if fakeRecService:
 					fakeRecResult = fakeRecService.start(True)
 				else:
 					fakeRecResult = -1
 				if not fakeRecResult:  # tune okay
-					feinfo = fakeRecService.frontendInfo().getFrontendData()
-					tunerType.append(feinfo.get("tuner_type"))
+					feinfo = fakeRecService.frontendInfo()
+					if feinfo:
+						tunerType.append(feinfo.getFrontendData().get("tuner_type"))
+#GML:2 - Ensure that this is removed, otherwise we hang on to reference
+#        counts for tuners
+					feinfo = None
+
 				else:  # tune failed.. so we must go another way to get service type (DVB-S, DVB-T, DVB-C)
 
 					def getServiceType(ref):  # helper function to get a service type of a service reference
@@ -208,6 +233,11 @@ class TimerSanityCheck:
 					if ConflictTimer is None:  # just take care of the first conflict
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
+#GML:2 - These also need to be freed, to prevent them hanging on to
+#        reference counts .
+				fakeRecService = None
+				fakeRecResult = None
+
 			elif event[1] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0] and fakeRec[1]:
@@ -218,7 +248,7 @@ class TimerSanityCheck:
 					if entry[1] == timer:
 						overlaplist.remove(entry)
 			else:
-				print "Bug: unknown flag!"
+				print "[TimerSanityCheck] Bug: unknown flag!"
 			self.nrep_eventlist[idx] = (event[0], event[1], event[2], cnt, overlaplist[:])  # insert a duplicate into current overlaplist
 			idx += 1
 
@@ -260,7 +290,7 @@ class TimerSanityCheck:
 								break
 
 		if len(self.simultimer) < 2:
-			print "Possible Bug: unknown Conflict!"
+			print "[TimerSanityCheck] Possible Bug: unknown Conflict!"
 			return True
 
 		return False  # conflict detected!

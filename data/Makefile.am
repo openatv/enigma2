@@ -13,6 +13,7 @@ dist_pkgdata_DATA = \
 	videowizard.xml \
 	freesat.t1 \
 	freesat.t2 \
+	timezone.xml \
 	unicable.xml \
 	hd-testcard.mvi \
 	lcd_picon_default.png \
@@ -36,6 +37,14 @@ endif
 
 if HAVE_COLORLCD400
 SUBDIRS += display400
+endif
+
+if HAVE_COLORLCD480
+SUBDIRS += display480
+endif
+
+if HAVE_COLORLCD720
+SUBDIRS += display720
 endif
 
 if HAVE_BWLCD255

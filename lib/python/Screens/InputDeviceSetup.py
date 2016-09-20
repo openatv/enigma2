@@ -26,7 +26,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		self["introduction"] = StaticText(self.edittext)
 
 		self.devices = [(iInputDevices.getDeviceName(x),x) for x in iInputDevices.getDeviceList()]
-		print "[InputDeviceSelection] found devices :->", len(self.devices),self.devices
+		print "[InputDeviceSetup] found devices :->", len(self.devices),self.devices
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
@@ -215,7 +215,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print "[InputDeviceSetup] not confirmed"
 			return
 		else:
 			self.nameEntry[1].setValue(iInputDevices.getDeviceAttribute(self.inputDevice, 'name'))
@@ -264,15 +264,17 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("0", _("Default")),
 			("3", _(odinRemote)),
 			("4", _("DMM normal")),
+			("5", _("et9000/et9100")),
 			("6", _("DMM advanced")),
 			("7", _("et5000/6000")),
 			("8", _("VU+")),
 			("9", _("et8000/et10000")),
-			("11", _("et9x00/6500")),
+			("11", _("et9200/9500/6500")),
 			("13", _("et4000")),
 			("14", _("XP1000")),
 			("18", _("F1/F3")),
-			("16", _("et7x00"))
+			("16", _("HD1100/et7x00/et8500")),
+			("19", _("HD2400"))
 			]
 
 	defaultRcList = [
@@ -281,15 +283,20 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et6000", 7),
 			("et6500", 11),
 			("et8000", 9),
-			("et9000", 11),
+			("et9000", 5),
+			("et9100", 5),
 			("et9200", 11),
 			("et9500", 11),
 			("et10000", 9),
 			("formuler1", 18),
 			("formuler3", 18),
 			("xp1000", 14),
-			("et7x00", 16)
-			]
+			("hd1100", 16),
+			("hd2400", 19),
+			("et7000", 16),
+			("et7500", 16),
+			("et8500", 16)
+		]
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -312,7 +319,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Remote control type"), self.rctype))
 		self["config"].list = self.list
 
-		self.defaultRcType = None
+		self.defaultRcType = 0
 		self.getDefaultRcType()
 
 	def getDefaultRcType(self):

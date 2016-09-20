@@ -103,7 +103,7 @@ int eComponentScan::start(int feid, int flags, int networkid)
 
 	if (mgr->allocateRawChannel(channel, feid))
 	{
-		eDebug("[eComponentScan] scan: allocating raw channel (on frontend %d) failed!", feid);
+		eDebug("[eComponentScan] allocating raw channel (on frontend %d) failed!", feid);
 		return -1;
 	}
 

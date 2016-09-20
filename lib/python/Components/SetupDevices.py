@@ -1,6 +1,5 @@
 from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
 from Components.Timezones import timezones
-from Components.Language import language
 from Components.Keyboard import keyboard
 
 def InitSetupDevices():
@@ -18,13 +17,6 @@ def InitSetupDevices():
 	config.keyboard = ConfigSubsection()
 	config.keyboard.keymap = ConfigSelection(default = keyboard.getDefaultKeyboardMap(), choices = keyboard.getKeyboardMaplist())
 	config.keyboard.keymap.addNotifier(keyboardNotifier)
-
-	def languageNotifier(configElement):
-		language.activateLanguage(configElement.value)
-
-	config.osd = ConfigSubsection()
-	config.osd.language = ConfigText(default = "en_GB")
-	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection()
 	config.parental.lock = ConfigOnOff(default = False)

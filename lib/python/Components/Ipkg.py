@@ -76,7 +76,7 @@ class IpkgComponent:
 		self.runCmd(opkgExtraDestinations() + ' ' + cmd)
 
 	def runCmd(self, cmd):
-		print "executing", self.ipkg, cmd
+		print "[IPKG] executing", self.ipkg, cmd
 		self.cmd.appClosed.append(self.cmdFinished)
 		self.cmd.dataAvail.append(self.cmdData)
 		if self.cmd.execute(self.ipkg + " " + cmd):
@@ -146,6 +146,7 @@ class IpkgComponent:
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
 			if data.count(' - ') > 1:
 				item = data.split(' - ', 2)
+			if item[0] not in ('Collected errors:', ' * opkg_conf_load: Could not lock /var/lib/opkg/lock: Resource temporarily unavailable.'):
 				self.fetchedList.append(item)
 				self.callCallbacks(self.EVENT_LISTITEM, item)
 			return
@@ -162,6 +163,8 @@ class IpkgComponent:
 			elif data.startswith('Configuring'):
 				self.callCallbacks(self.EVENT_CONFIGURING, data.split(' ', 2)[1])
 			elif data.startswith('An error occurred'):
+				self.callCallbacks(self.EVENT_ERROR, None)
+			elif data.startswith('Collected errors'):
 				self.callCallbacks(self.EVENT_ERROR, None)
 			elif data.startswith('Failed to download'):
 				self.callCallbacks(self.EVENT_ERROR, None)

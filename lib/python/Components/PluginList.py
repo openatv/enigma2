@@ -3,48 +3,35 @@ from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 
-from enigma import eListboxPythonMultiContent, gFont, getDesktop
+from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO
 from Tools.LoadPixmap import LoadPixmap
+import skin
 
 def PluginEntryComponent(plugin, width=440):
-	screenwidth = getDesktop(0).size().width()
 	if plugin.icon is None:
 		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
-	
-	if screenwidth and screenwidth == 1920:
-		return [
+	nx, ny, nh = skin.parameters.get("PluginBrowserName",(120, 5, 25))
+	dx, dy, dh = skin.parameters.get("PluginBrowserDescr",(120, 26, 17))
+	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon",(10, 5, 100, 40))
+	return [
 		plugin,
-		MultiContentEntryText(pos=(180, 0), size=(width-120, 35), font=2, text=plugin.name),
-		MultiContentEntryText(pos=(180, 38), size=(width-120, 30), font=3, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(10, 8), size=(150, 60), png = png)
-		]
-	else:
-		return [
-		plugin,
-		MultiContentEntryText(pos=(120, 5), size=(width-120, 25), font=0, text=plugin.name),
-		MultiContentEntryText(pos=(120, 26), size=(width-120, 17), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(100, 40), png = png)
-		]
-	
+		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), font=0, text=plugin.name),
+		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), font=1, text=plugin.description),
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO)
+	]
+
 def PluginCategoryComponent(name, png, width=440):
-	screenwidth = getDesktop(0).size().width()
-	if screenwidth and screenwidth == 1920:
-		return [
+	x, y, h = skin.parameters.get("PluginBrowserDownloadName",(80, 5, 25))
+	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon",(10, 0, 60, 50))
+	return [
 		name,
-		MultiContentEntryText(pos=(110, 15), size=(width-80, 40), font=2, text=name),
-		MultiContentEntryPixmapAlphaBlend(pos=(10, 0), size=(90, 75), png = png)
-		]
-	else:
-		return [
-		name,
-		MultiContentEntryText(pos=(80, 5), size=(width-80, 25), font=0, text=name),
-		MultiContentEntryPixmapAlphaBlend(pos=(10, 0), size=(60, 50), png = png)
-		]
+		MultiContentEntryText(pos=(x, y), size=(width-x, h), font=0, text=name),
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png)
+	]
 
 def PluginDownloadComponent(plugin, name, version=None, width=440):
-	screenwidth = getDesktop(0).size().width()
 	if plugin.icon is None:
 		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
 	else:
@@ -56,27 +43,22 @@ def PluginDownloadComponent(plugin, name, version=None, width=440):
 		elif version.startswith('experimental-'):
 			version = version[13:]
 		name += "  (" + version + ")"
-	if screenwidth and screenwidth == 1920:
-		return [
+	x, y, h = skin.parameters.get("PluginBrowserDownloadName",(80, 5, 25))
+	dx, dy, dh = skin.parameters.get("PluginBrowserDownloadDescr",(80, 26, 17))
+	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon",(10, 0, 60, 50))
+	return [
 		plugin,
-		MultiContentEntryText(pos=(110, 0), size=(width-80, 35), font=2, text=name),
-		MultiContentEntryText(pos=(110, 38), size=(width-80, 30), font=3, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(10, 0), size=(90, 75), png = png)
-		]
-	else:
-		return [
-		plugin,
-		MultiContentEntryText(pos=(80, 5), size=(width-80, 25), font=0, text=name),
-		MultiContentEntryText(pos=(80, 26), size=(width-80, 17), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(10, 0), size=(60, 50), png = png)
-		]
+		MultiContentEntryText(pos=(x, y), size=(width-x, h), font=0, text=name),
+		MultiContentEntryText(pos=(dx, dy), size=(width-dx, dh), font=1, text=plugin.description),
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png)
+	]
 
 
 class PluginList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setFont(2, gFont("Regular", 32))
-		self.l.setFont(3, gFont("Regular", 24))
-		self.l.setItemHeight(50)
+		font = skin.fonts.get("PluginBrowser0", ("Regular", 20, 50))
+		self.l.setFont(0, gFont(font[0], font[1]))
+		self.l.setItemHeight(font[2])
+		font = skin.fonts.get("PluginBrowser1", ("Regular", 14))
+		self.l.setFont(1, gFont(font[0], font[1]))

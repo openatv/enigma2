@@ -10,6 +10,8 @@ from Components.SystemInfo import SystemInfo
 
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
+from boxbranding import getBoxType
+
 MAX_NUM_CI = 4
 
 def setCIBitrate(configElement):
@@ -32,7 +34,7 @@ class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler = eDVBCI_UI.getInstance(), wait_text = _("wait for ci...") ):
 		Screen.__init__(self, session)
 
-		print "MMIDialog with action" + str(action)
+		print "[CI] with action" + str(action)
 
 		self.mmiclosed = False
 		self.tag = None
@@ -102,9 +104,9 @@ class MMIDialog(Screen):
 		if not self.tag:
 			return
 		if self.tag == "WAIT":
-			print "do nothing - wait"
+			print "[CI] do nothing - wait"
 		elif self.tag == "MENU":
-			print "answer MENU"
+			print "[CI] answer MENU"
 			cur = self["entries"].getCurrent()
 			if cur:
 				self.handler.answerMenu(self.slotid, cur[2])
@@ -112,7 +114,7 @@ class MMIDialog(Screen):
 				self.handler.answerMenu(self.slotid, 0)
 			self.showWait()
 		elif self.tag == "LIST":
-			print "answer LIST"
+			print "[CI] answer LIST"
 			self.handler.answerMenu(self.slotid, 0)
 			self.showWait()
 		elif self.tag == "ENQ":
@@ -137,15 +139,15 @@ class MMIDialog(Screen):
 			self.handler.stopMMI(self.slotid)
 			self.closeMmi()
 		elif self.tag in ( "MENU", "LIST" ):
-			print "cancel list"
+			print "[CI] cancel list"
 			self.handler.answerMenu(self.slotid, 0)
 			self.showWait()
 		elif self.tag == "ENQ":
-			print "cancel enq"
+			print "[CI] cancel enq"
 			self.handler.cancelEnq(self.slotid)
 			self.showWait()
 		else:
-			print "give cancel action to ci"
+			print "[CI] give cancel action to ci"
 
 	def keyConfigEntry(self, key):
 		self.timer.stop()
@@ -240,7 +242,10 @@ class CiMessageHandler:
 		self.ci = { }
 		self.dlgs = { }
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
-		SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
+		if getBoxType() in ('vuzero'):
+			SystemInfo["CommonInterface"] = False
+		else:
+			SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
 		try:
 			file = open("/proc/stb/tsmux/ci0_tsclk", "r")
 			file.close()

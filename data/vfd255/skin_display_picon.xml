@@ -483,4 +483,12 @@
 		<widget source="parent.summary_action" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
 		<widget source="parent.summary_status" render="Label" position="0,41" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
 	</screen>
+	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="255,64">
+		<widget source="SetupTitle" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1"  />
+		<widget source="SetupEntry" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
+		<widget source="SetupValue" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>
 </skin>
