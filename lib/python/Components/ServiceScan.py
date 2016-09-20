@@ -1,6 +1,6 @@
 from enigma import eComponentScan, iDVBFrontend
 from Components.NimManager import nimmanager as nimmgr
-from Components.Converter.ChannelNumbers import channelnumbers
+from Tools.Transponder import getChannelNumber
 
 class ServiceScan:
 
@@ -10,16 +10,16 @@ class ServiceScan:
 	Error = 4
 
 	Errors = {
-		0: "error starting scanning",
-		1: "error while scanning",
-		2: "no resource manager",
-		3: "no channel list"
+		0: _("error starting scanning"),
+		1: _("error while scanning"),
+		2: _("no resource manager"),
+		3: _("no channel list")
 		}
 
 	def scanStatusChanged(self):
 		if self.state == self.Running:
 			self.progressbar.setValue(self.scan.getProgress())
-			self.lcd_summary.updateProgress(self.scan.getProgress())
+			self.lcd_summary and self.lcd_summary.updateProgress(self.scan.getProgress())
 			if self.scan.isDone():
 				errcode = self.scan.getError()
 
@@ -68,7 +68,8 @@ class ServiceScan:
 						if tp_text == "DVB-S2":
 							tp_text = "%s %s" % ( tp_text,
 								{ tp.Modulation_Auto : "Auto", tp.Modulation_QPSK : "QPSK",
-									tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16" }.get(tp.modulation, ""))
+									tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16",
++									tp.Modulation_16APSK : "16APSK", tp.Modulation_32APSK : "32APSK" }.get(tp.modulation, ""))
 						tp_text = "%s %d%c / %d / %s" % ( tp_text, tp.frequency/1000,
 							{ tp.Polarisation_Horizontal : 'H', tp.Polarisation_Vertical : 'V', tp.Polarisation_CircularLeft : 'L',
 								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, ' '),
@@ -92,7 +93,7 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						channel = channelnumbers.getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
+						channel = getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
 						if channel:
 							channel = _("CH") + "%s " % channel
 						freqMHz = "%1.3f MHz" % (tp.frequency/1000000.)
@@ -114,7 +115,7 @@ class ServiceScan:
 								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
 							}.get(tp.bandwidth, ""))
 					else:
-						print "unknown transponder type in scanStatusChanged"
+						print "[ServiceScan] unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
 
@@ -188,7 +189,7 @@ class ServiceScan:
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)
 		if not self.isDone():
-			print "*** warning *** scan was not finished!"
+			print "[ServiceScan] *** warning *** scan was not finished!"
 
 		del self.scan
 
@@ -199,7 +200,7 @@ class ServiceScan:
 		newServiceName = self.scan.getLastServiceName()
 		newServiceRef = self.scan.getLastServiceRef()
 		self.servicelist.addItem((newServiceName, newServiceRef))
-		self.lcd_summary.updateService(newServiceName)
+		self.lcd_summary and self.lcd_summary.updateService(newServiceName)
 
 	def destroy(self):
 		pass

@@ -47,7 +47,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, resolveFilename, SCOPE_TIMESHIFT
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
-from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService, eEPGCache
 from boxbranding import getBoxType, getBrandOEM
 
 from time import time, localtime, strftime
@@ -379,6 +379,11 @@ class InfoBarTimeshift:
 
 	def startTimeshift(self):
 		dprint("startTimeshift")
+		if self.session.nav.getCurrentlyPlayingServiceReference() and 'http' in self.session.nav.getCurrentlyPlayingServiceReference().toString():
+			if config.timeshift.stream_warning.value:
+				self.session.open(MessageBox, _("Timeshift on a stream is not supported!"), MessageBox.TYPE_ERROR, timeout=5)
+			print '[Timeshift] unable to activate, due being on a stream.'
+			return
 		ts = self.getTimeshift()
 		if ts is None:
 			# self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
@@ -568,6 +573,11 @@ class InfoBarTimeshift:
 	def autostartPermanentTimeshift(self):
 		dprint("autostartPermanentTimeshift")
 		self["TimeshiftActions"].setEnabled(True)
+		if self.session.nav.getCurrentlyPlayingServiceReference() and 'http' in self.session.nav.getCurrentlyPlayingServiceReference().toString() and int(config.timeshift.startdelay.value):
+			if config.timeshift.stream_warning.value:
+				self.session.open(MessageBox, _("Timeshift on a stream is not supported!"), MessageBox.TYPE_ERROR, timeout=5)
+			print '[Timeshift] unable to activate, due being on a stream.'
+			return
 		ts = self.getTimeshift()
 		if ts is None:
 			# print '[TimeShift] tune lock failed, so could not start.'
@@ -777,7 +787,9 @@ class InfoBarTimeshift:
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name.replace("\n", ""))
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "long" and self.pts_curevent_name.replace("\n", "") != self.pts_curevent_description.replace("\n", ""):
+							if config.recording.filename_composition.value == "event":
+								ptsfilename = "%s - %s_%s" % (self.pts_curevent_name.replace("\n", ""),strftime("%Y%m%d %H%M",localtime(self.pts_starttime)),self.pts_curevent_station)
+							elif config.recording.filename_composition.value == "long" and self.pts_curevent_name.replace("\n", "") != self.pts_curevent_description.replace("\n", ""):
 								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""))
 							elif config.recording.filename_composition.value == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d", localtime(self.pts_starttime)), self.pts_curevent_name.replace("\n", ""))
@@ -802,7 +814,9 @@ class InfoBarTimeshift:
 					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(int(begintime))), self.pts_curevent_station, eventname)
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "long" and eventname != description:
+							if config.recording.filename_composition.value == "event":
+								ptsfilename = "%s - %s_%s" % (eventname,strftime("%Y%m%d %H%M",localtime(int(begintime))),self.pts_curevent_station)
+							elif config.recording.filename_composition.value == "long" and eventname != description:
 								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(int(begintime))), self.pts_curevent_station, eventname, description)
 							elif config.recording.filename_composition.value == "short":
 								ptsfilename = "%s - %s" % (strftime("%Y%m%d", localtime(int(begintime))), eventname)
@@ -1125,9 +1139,8 @@ class InfoBarTimeshift:
 		dprint("ptsCreateEITFile")
 		if self.pts_curevent_eventid is not None:
 			try:
-				import Components.eitsave
 				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref.toString()
-				Components.eitsave.SaveEIT(serviceref, filename + ".eit", self.pts_curevent_eventid, -1, -1)
+				eEPGCache.getInstance().saveEventToFile(filename+".eit", serviceref, self.pts_curevent_eventid, -1, -1)
 			except Exception, errormsg:
 				print "[Timeshift] ptsCreateEITFile: %s" % errormsg
 

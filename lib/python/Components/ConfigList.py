@@ -6,12 +6,14 @@ from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Components.Pixmap import Pixmap
+import skin
 
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		self.l.setSeperation(350)
+		seperation, = skin.parameters.get("ConfigListSeperator", (350, ))
+		self.l.setSeperation(seperation)
 		self.timer = eTimer()
 		self.list = list
 		self.onSelectionChanged = []

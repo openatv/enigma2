@@ -28,7 +28,15 @@ if VUULTIMO
 SUBDIRS += CableScan
 endif
 
+if VUSOLO4K
+SUBDIRS += CableScan
+endif
+
 if HAVE_LIBVUGLES2
+SUBDIRS += AnimationSetup
+endif
+
+if HAVE_OSDANIMATION
 SUBDIRS += AnimationSetup
 endif
 

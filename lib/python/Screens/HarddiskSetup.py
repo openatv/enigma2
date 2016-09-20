@@ -36,7 +36,7 @@ class HarddiskSetup(Screen):
 		})
 
 	def hddQuestion(self, answer=False):
-		print 'answer:',answer
+		print '[HarddiskSetup] answer:',answer
 		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
 			message = self.question + "\n" + _("You seem to be in time shift. In order to proceed, time shift needs to stop.")
 			message += '\n' + _("Do you want to continue?")
@@ -120,7 +120,7 @@ class HarddiskSelection(Screen):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
 			 action=selection.createInitializeJob,
 			 text=_("Initialize"),
-			 question=_("Do you really want to initialize the device?\nAll data on the disk will be lost!"))
+			 question=_("Do you really want to initialize this device?\nAll the data on the device will be lost!"))
 
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()[0]

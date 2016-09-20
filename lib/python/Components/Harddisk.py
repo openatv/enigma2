@@ -3,6 +3,7 @@ import time
 from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
+from boxbranding import getBoxType
 import Task
 from About import getModelString
 from boxbranding import getMachineName
@@ -705,6 +706,7 @@ class VolumeLabels:
 	def fetchVolumeLabels(self):
 		import subprocess
 		self.volume_labels = {}
+		lines = []
 		try:
 			lines = subprocess.check_output(["blkid", "-s", "LABEL"]).split("\n")
 		except Exception, e:
@@ -766,7 +768,11 @@ class HarddiskManager:
 				dev = int(readFile(devpath + "/dev").split(':')[0])
 			else:
 				dev = None
-			if dev in (1, 7, 31, 253):  # ram, loop, mtdblock, romblock
+			if getBoxType() == 'vusolo4k':
+				devlist = [1, 7, 31, 253, 179] # ram, loop, mtdblock, romblock, mmc
+			else:
+				devlist = [1, 7, 31, 253] # ram, loop, mtdblock, romblock
+			if dev in devlist:
 				blacklisted = True
 			if blockdev[0:2] == 'sr':
 				is_cdrom = True
@@ -848,7 +854,7 @@ class HarddiskManager:
 				physdev = os.path.realpath('/sys/block/' + dev + '/device')[4:]
 			except OSError:
 				physdev = dev
-				print "[Harddisk] couldn't determine physdev for device", device
+				print "[Harddisk] couldn't determine blockdev physdev for device", device
 		else:
 			physdev = os.path.realpath('/sys' + physdev)[4:]
 
@@ -998,7 +1004,7 @@ class HarddiskManager:
 		self.partitions.append(Partition(mountpoint=device, description=desc, shortdescription=desc))
 
 	def removeMountedPartition(self, mountpoint):
-		if mountpoint and dmountpoint[-1] != "/":
+		if mountpoint and mountpoint[-1] != "/":
 			mountpoint += "/"
 		for x in self.partitions[:]:
 			if x.mountpoint == mountpoint:

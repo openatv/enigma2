@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <openssl/evp.h>
 
 #include <lib/base/httpstream.h>
 #include <lib/base/eerror.h>
@@ -20,8 +19,9 @@ eHttpStream::eHttpStream()
 
 eHttpStream::~eHttpStream()
 {
+	abort_badly();
+	kill();
 	free(tmpBuf);
-	kill(true);
 	close();
 }
 
@@ -42,6 +42,26 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 
 	close();
 
+	std::string user_agent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;Beyonwiz;;;)";
+	std::string extra_headers = "";
+	size_t pos = uri.find('#');
+	if (pos != std::string::npos)
+	{
+		extra_headers = uri.substr(pos + 1);
+		uri = uri.substr(0, pos);
+
+		pos = extra_headers.find("User-Agent=");
+		if (pos != std::string::npos)
+		{
+			size_t hpos_start = pos + 11;
+			size_t hpos_end = extra_headers.find('&', hpos_start);
+			if (hpos_end != std::string::npos)
+				user_agent = extra_headers.substr(hpos_start, hpos_end - hpos_start);
+			else
+				user_agent = extra_headers.substr(hpos_start);
+		}
+	}
+
 	int pathindex = uri.find("/", 7);
 	if (pathindex > 0)
 	{
@@ -56,24 +76,8 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	int authenticationindex = hostname.find("@");
 	if (authenticationindex > 0)
 	{
-		BIO *mbio, *b64bio, *bio;
-		char *p = (char*)NULL;
-		int length = 0;
-		authorizationData = hostname.substr(0, authenticationindex);
+		authorizationData =  base64encode(hostname.substr(0, authenticationindex));
 		hostname = hostname.substr(authenticationindex + 1);
-		mbio = BIO_new(BIO_s_mem());
-		b64bio = BIO_new(BIO_f_base64());
-		bio = BIO_push(b64bio, mbio);
-		BIO_write(bio, authorizationData.c_str(), authorizationData.length());
-		BIO_flush(bio);
-		length = BIO_ctrl(mbio, BIO_CTRL_INFO, 0, (char*)&p);
-		authorizationData = "";
-		if (p && length > 0)
-		{
-			/* base64 output contains a linefeed, which we ignore */
-			authorizationData.append(p, length - 1);
-		}
-		BIO_free_all(bio);
 	}
 	int customportindex = hostname.find(":");
 	if (customportindex > 0)
@@ -90,6 +94,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	{
 		port = 80;
 	}
+
 	streamSocket = Connect(hostname.c_str(), port, 10);
 	if (streamSocket < 0)
 		goto error;
@@ -97,11 +102,48 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	request = "GET ";
 	request.append(uri).append(" HTTP/1.1\r\n");
 	request.append("Host: ").append(hostname).append("\r\n");
-	request.append("User-Agent: ").append("Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;Beyonwiz;;;)").append("\r\n");
+	request.append("User-Agent: ").append(user_agent).append("\r\n");
 	if (authorizationData != "")
 	{
 		request.append("Authorization: Basic ").append(authorizationData).append("\r\n");
 	}
+
+	pos = 0;
+	while (pos != std::string::npos && !extra_headers.empty())
+	{
+		std::string name, value;
+		size_t start = pos;
+		size_t len = std::string::npos;
+		pos = extra_headers.find('=', pos);
+		if (pos != std::string::npos)
+		{
+			len = pos - start;
+			pos++;
+			name = extra_headers.substr(start, len);
+			start = pos;
+			len = std::string::npos;
+			pos = extra_headers.find('&', pos);
+			if (pos != std::string::npos)
+			{
+				len = pos - start;
+				pos++;
+			}
+			value = extra_headers.substr(start, len);
+		}
+		if (!name.empty() && !value.empty())
+		{
+			if (name.compare("User-Agent") == 0)
+				continue;
+			eDebug("[eHttpStream] setting extra-header '%s:%s'", name.c_str(), value.c_str());
+			request.append(name).append(": ").append(value).append("\r\n");
+		}
+		else
+		{
+			eDebug("[eHttpStream] Invalid header format %s", extra_headers.c_str());
+			break;
+		}
+	}
+
 	request.append("Accept: */*\r\n");
 	request.append("Connection: close\r\n");
 	request.append("\r\n");
@@ -117,7 +159,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	result = sscanf(linebuf, "%99s %d %99s", proto, &statuscode, statusmsg);
 	if (result != 3 || (statuscode != 200 && statuscode != 206 && statuscode != 302))
 	{
-		eDebug("%s: wrong http response code: %d", __FUNCTION__, statuscode);
+		eDebug("[eHttpStream] %s: wrong http response code: %d", __func__, statuscode);
 		goto error;
 	}
 
@@ -144,14 +186,16 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 		if (playlist && !strncasecmp(linebuf, "http://", 7))
 		{
 			newurl = linebuf;
-			eDebug("%s: playlist entry: %s", __FUNCTION__, newurl.c_str());
+			eDebug("[eHttpStream] %s: playlist entry: %s", __func__, newurl.c_str());
 			break;
 		}
 		if (((statuscode == 301) || (statuscode == 302) || (statuscode == 303) || (statuscode == 307) || (statuscode == 308)) &&
 				strncasecmp(linebuf, "location: ", 10) == 0)
 		{
 			newurl = &linebuf[10];
-			eDebug("%s: redirecting to: %s", __FUNCTION__, newurl.c_str());
+			if (!extra_headers.empty())
+				newurl.append("#").append(extra_headers);
+			eDebug("[eHttpStream] %s: redirecting to: %s", __func__, newurl.c_str());
 			break;
 		}
 
@@ -168,7 +212,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	free(linebuf);
 	return 0;
 error:
-	eDebug("%s failed", __FUNCTION__);
+	eDebug("[eHttpStream] %s failed", __func__);
 	free(linebuf);
 	close();
 	return -1;
@@ -183,7 +227,7 @@ int eHttpStream::open(const char *url)
 	 * Spawn a new thread to establish the connection.
 	 */
 	connectionStatus = BUSY;
-	eDebug("eHttpStream::Start thread");
+	eDebug("[eHttpStream] Start thread");
 	run();
 	return 0;
 }
@@ -198,14 +242,14 @@ void eHttpStream::thread()
 		if (openUrl(currenturl, newurl) < 0)
 		{
 			/* connection failed */
-			eDebug("eHttpStream::Thread end NO connection");
+			eDebug("[eHttpStream] Thread end NO connection");
 			connectionStatus = FAILED;
 			return;
 		}
 		if (newurl == "")
 		{
 			/* we have a valid stream connection */
-			eDebug("eHttpStream::Thread end connection");
+			eDebug("[eHttpStream] Thread end connection");
 			connectionStatus = CONNECTED;
 			return;
 		}
@@ -215,7 +259,7 @@ void eHttpStream::thread()
 		newurl = "";
 	}
 	/* too many redirect / playlist levels */
-	eDebug("eHttpStream::Thread end NO connection");
+	eDebug("[eHttpStream] hread end NO connection");
 	connectionStatus = FAILED;
 	return;
 }

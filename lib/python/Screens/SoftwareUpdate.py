@@ -4,6 +4,7 @@ from enigma import eTimer, eDVBDB
 
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.TextBox import TextBox
@@ -20,12 +21,20 @@ class SoftwareUpdateChangeView(TextBox):
 			<widget font="Console;18" name="text" position="8,4" size="1184,540"/>
 		</screen>"""
 
-class UpdatePlugin(Screen):
+class UpdatePlugin(Screen, ProtectedScreen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Software update"))
 
-		self.setTitle(_("Software update"))
+		self["actions"] = ActionMap(["WizardActions"],
+		{
+			"ok": self.exit,
+			"back": self.exit
+		}, -1)
+		self['actions'].csel = self
+		self["actions"].setEnabled(False)
+
 		self.slider = Slider(0, 100)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -41,12 +50,13 @@ class UpdatePlugin(Screen):
 		self.SettingsBackupDone = False
 		self.ImageBackupDone = False
 		self.autobackuprunning = False
+		self.updating = False
 
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
 		self.total_packages = None
-		self.checkNetworkState()
+		self.onFirstExecBegin.append(self.checkNetworkState)
 
 	def checkNetworkState(self):
 		cmd1 = "opkg update"
@@ -64,6 +74,7 @@ class UpdatePlugin(Screen):
 			self.startCheck()
 
 	def startCheck(self):
+		self.updating = True
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
@@ -72,16 +83,13 @@ class UpdatePlugin(Screen):
 		self.ipkg.addCallback(self.ipkgCallback)
 		self.onClose.append(self.__close)
 
-		self.updating = False
-
-		self["actions"] = ActionMap(["WizardActions"], {
-			"ok": self.exit,
-			"back": self.exit
-		}, -1)
-
-		self.updating = True
 		self.activityTimer.start(100, False)
 		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+
+	def isProtected(self):
+		return config.ParentalControl.setuppinactive.value and\
+			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value  or hasattr(self.session, 'infobar') and self.session.infobar is None) and\
+			config.ParentalControl.config_sections.software_update.value
 
 	def doActivityTimer(self):
 		self.activity += 1
@@ -122,6 +130,7 @@ class UpdatePlugin(Screen):
 			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
 				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
+				self["actions"].setEnabled(True)
 				self.session.openWithCallback(
 					self.modificationCallback,
 					MessageBox,
@@ -129,6 +138,7 @@ class UpdatePlugin(Screen):
 				)
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
+			self.updating = False
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
@@ -145,11 +155,12 @@ class UpdatePlugin(Screen):
 						# (_("Upgrade and reboot system"), "cold")
 					]
 					choices.append((_("Cancel"), ""))
-					if self.total_packages > 200:
+					if self.total_packages > 150:
 						message += "\n" + _("You should consider a full USB update instead.")
 					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, text=message, list=choices, skin_name="SoftwareUpdateChoices")
 					upgrademessage.setTitle(_('Software update'))
 				else:
+					self["actions"].setEnabled(True)
 					upgrademessage = self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 					upgrademessage.setTitle(_('Software update'))
 			elif self.channellist_only > 0:
@@ -174,7 +185,7 @@ class UpdatePlugin(Screen):
 				self.activityslider.setValue(0)
 				error = _("Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName())
 				if self.packages == 0:
-					error = _("No updates available. Please try again later.")
+					error = _("A background update check is in progress,\nplease wait a few minutes and try again.")
 				if self.updating:
 					error = _("Update failed. Your %s %s does not have a working Internet connection.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") + " - " + error)
@@ -205,6 +216,7 @@ class UpdatePlugin(Screen):
 				# (_("Upgrade and reboot system"), "cold")
 			]
 			choices.append((_("Cancel"), ""))
+			self["actions"].setEnabled(True)
 			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, text=message, list=choices, skin_name="SoftwareUpdateChoices")
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "showlist":
