@@ -158,11 +158,13 @@ def parseCoordinate(s, e, size=0, font=None):
 				val += fonts[font][3] * int(s[:-1])
 			elif s[-1] is 'h':
 				val += fonts[font][2] * int(s[:-1])
-			else:
-				val += int(s)
+			try:
+				val = int(s) # for speed
+			except:
+				val = eval(s)
 	if val < 0:
 		val = 0
-	return val
+	return int(val)  # make sure an integer value is returned
 
 
 def getParentSize(object, desktop):
