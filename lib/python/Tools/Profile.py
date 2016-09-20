@@ -24,15 +24,35 @@ try:
 		total_time = t
 		profile_data[id] = t
 except:
-	print "no profile data available"
+	print "[Profile] no profile data available"
 
 try:
 	profile_file = open(resolveFilename(SCOPE_CONFIG, "profile"), "w")
 except IOError:
-	print "WARNING: couldn't open profile file!"
+	print "[Profile] WARNING: couldn't open profile file!"
 
 def profile(id):
 	now = time.time() - profile_start
+
+	# GML: Set the device and format here...probably more could be added?
+	#
+	box_type = getBoxType()
+	if box_type in ("odinm7", "odinm6", "xp1000s"):
+		dev_fmt = ("/dev/dbox/oled0", "%d")
+	elif box_type in ("gb800se", "gb800solo"):
+		dev_fmt = ("/dev/dbox/oled0", "%d  \n")
+	elif box_type == "mbtwin":
+		dev_fmt = ("/dev/dbox/oled0", "%d%%")
+	elif box_type == "gb800seplus":
+		dev_fmt = ("/dev/mcu", "%d  \n")
+	elif box_type == "ebox5000":
+		dev_fmt = ("/proc/progress", "%d")
+	elif getMachineBuild() in ("inihdp", "inihdx"):
+		dev_fmt = ("/proc/vfd", "Loading %d%%")
+	else:
+		dev_fmt = ("/proc/progress", "%d \n")
+	(dev, fmt) = dev_fmt
+
 	if profile_file:
 		profile_file.write("%7.3f\t%s\n" % (now, id))
 
@@ -43,21 +63,8 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if getBoxType() in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6" ):
-					f = open("/dev/dbox/oled0", "w")
-					f.write("%d" % perc)
-				elif getBoxType() in ('gb800solo', 'gb800se', 'gb800seplus'):
-					f = open("/dev/mcu", "w")
-					f.write("%d  \n" % perc)
-				elif getBoxType() in ("mixosf5", "gi9196m"):
-					f = open("/proc/progress", "w")
-					f.write("%d" % perc)
-				elif getMachineBuild() in ("inihdp", "inihdx"):
-					f = open("/proc/vfd", "w")
-					f.write("Loading %d%%" % perc)
-				else:
-					f = open("/proc/progress", "w")
-					f.write("%d \n" % perc)
+				f = open(dev, "w")
+				f.write(fmt % perc)
 				f.close()
 			except IOError:
 				pass

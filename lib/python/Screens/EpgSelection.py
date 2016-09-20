@@ -417,6 +417,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self['list'].recalcEntrySize()
 		self.BouquetRoot = False
 		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+			self.getCurrentCursorLocation = None
 			if self.StartBouquet.toString().startswith('1:7:0'):
 				self.BouquetRoot = True
 			self.services = self.getBouquetServices(self.StartBouquet)
@@ -468,6 +469,9 @@ class EPGSelection(Screen, HelpableScreen):
 	def refreshlist(self):
 		self.refreshTimer.stop()
 		if self.type in(EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
+			if self.getCurrentCursorLocation:
+				self.ask_time = self.getCurrentCursorLocation
+				self.getCurrentCursorLocation = None
 			self['list'].fillGraphEPG(None)
 			self.moveTimeLines()
 		elif self.type == EPG_TYPE_MULTI:
@@ -884,7 +888,7 @@ class EPGSelection(Screen, HelpableScreen):
 			try:
 				autotimer.readXml()
 			except SyntaxError as se:
-				self.session.open(MessageBox, _('Your config file is not well-formed:\n%s') % str(se), type=MessageBox.TYPE_ERROR, timeout=10)
+				self.session.open(MessageBox, _('Your config file is not well formed:\n%s') % str(se), type=MessageBox.TYPE_ERROR, timeout=10)
 				return
 
 			if autopoller is not None:
@@ -945,6 +949,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self['key_green'].setText(_('Add Timer'))
 		self.key_green_choice = self.ADD_TIMER
+		self.getCurrentCursorLocation = self['list'].getCurrentCursorLocation()
 		self.refreshlist()
 
 	def disableTimer(self, timer):
@@ -953,6 +958,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.session.nav.RecordTimer.timeChanged(timer)
 		self['key_green'].setText(_('Add Timer'))
 		self.key_green_choice = self.ADD_TIMER
+		self.getCurrentCursorLocation = self['list'].getCurrentCursorLocation()
 		self.refreshlist()
 
 	def recordTimerQuestionPos(self):
@@ -1108,6 +1114,7 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
+		self.getCurrentCursorLocation = self['list'].getCurrentCursorLocation()
 		self.refreshlist()
 
 	def finishSanityCorrection(self, answer):

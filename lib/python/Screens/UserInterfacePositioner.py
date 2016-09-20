@@ -1,19 +1,40 @@
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.config import config, configfile, getConfigListEntry
+from Components.config import config, configfile, ConfigSubsection, getConfigListEntry, ConfigSelectionNumber, ConfigSelection, ConfigSlider, ConfigYesNo, NoSave, ConfigNumber, ConfigText
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
+from Components.Language import language
+from Tools.Directories import fileCheck
 from enigma import getDesktop
 from os import access, R_OK
+
+from boxbranding import getBoxType
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
 	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
+
+	def languageNotifier(configElement):
+		language.activateLanguage(configElement.value)
+
+	config.osd = ConfigSubsection()
+	config.osd.language = ConfigText(default = "en_GB")
+	config.osd.language.addNotifier(languageNotifier)
+	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
+	config.av.osd_alpha = NoSave(ConfigNumber(default = 255))
+	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
+	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
+	config.osd.show3dextensions = ConfigYesNo(default = False)
+
 	if SystemInfo["CanChangeOsdAlpha"] is True or SystemInfo["CanChangeOsdPosition"] is True:
 		SystemInfo["OsdMenu"] = True
 	else:
@@ -46,10 +67,10 @@ def InitOsd():
 			f.write('%X' % configElement.value)
 			f.close()
 	config.osd.dst_height.addNotifier(setOSDHeight)
-	print 'Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+	print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def setOSDAlpha(configElement):
-		print 'Setting OSD alpha:', str(configElement.value)
+		print '[UserInterfacePositioner] Setting OSD alpha:', str(configElement.value)
 		config.av.osd_alpha.setValue(configElement.value)
 		f = open("/proc/stb/video/alpha", "w")
 		f.write(str(configElement.value))
@@ -57,16 +78,17 @@ def InitOsd():
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def set3DMode(configElement):
-		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D mode:', configElement.value
-			f = open("/proc/stb/fb/3dmode", "w")
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
+			print '[UserInterfacePositioner] Setting 3D mode:',configElement.value
+			file3d = fileCheck('/proc/stb/fb/3dmode') or fileCheck('/proc/stb/fb/primary/3d')
+			f = open(file3d, "w")
 			f.write(configElement.value)
 			f.close()
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
-		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D depth:', configElement.value
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
+			print '[UserInterfacePositioner] Setting 3D depth:',configElement.value
 			f = open("/proc/stb/fb/znorm", "w")
 			f.write('%d' % int(configElement.value))
 			f.close()
@@ -168,7 +190,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-		print 'Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+		print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -235,7 +257,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode, _("This option lets you choose the 3D mode")))
 		self.list.append(getConfigListEntry(_("Depth"), config.osd.threeDznorm, _("This option lets you adjust the 3D depth")))
-		self.list.append(getConfigListEntry(_("Show in extensions list ?"), config.osd.show3dextensions, _("This option lets you show the option in the extension screen")))
+		self.list.append(getConfigListEntry(_("Show in extensions list"), config.osd.show3dextensions, _("This option lets you show the option in the extension screen")))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 

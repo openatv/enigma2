@@ -5,8 +5,8 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer
-from boxbranding import getBoxType, getMachineBrand, getMachineName
+from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 from Tools import Notifications
 from time import localtime, time
 import Screens.InfoBar
@@ -18,7 +18,7 @@ powerKey = None
 
 class Standby2(Screen):
 	def Power(self):
-		print "leave standby"
+		print "[Standby] leave standby"
 		self.videoOn()
 		# restart last played service
 		# unmute adc
@@ -35,7 +35,7 @@ class Standby2(Screen):
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():
 			self.wasMuted = 1
-			print "mute already active"
+			print "[Standby] mute already active"
 		else:
 			self.wasMuted = 0
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
@@ -60,7 +60,7 @@ class Standby2(Screen):
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
 
-		print "enter standby"
+		print "[Standby] enter standby"
 		if getBoxType() in ('ini-7012', 'ini-7012au'):
 			if path.exists("/proc/stb/lcd/symbol_scrambled"):
 				open("/proc/stb/lcd/symbol_scrambled", "w").write("0")
@@ -97,28 +97,36 @@ class Standby2(Screen):
 
 		globalActionMap.setEnabled(False)
 
-		self.standbyTimeUnknownTimer = eTimer()
+		from Screens.InfoBar import InfoBar
+		self.infoBarInstance = InfoBar.instance
+		self.standbyStopServiceTimer = eTimer()
+		self.standbyStopServiceTimer.callback.append(self.stopService)
+		self.timeHandler = None
 
 		# mute adc
 		self.setMute()
 
 		self.paused_service = None
-		self.prev_running_service = None
 
-		if self.session.current_dialog:
-			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
-				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-					self.session.nav.stopService()
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		service = self.prev_running_service and self.prev_running_service.toString()
+		if service:
+			if service.rsplit(":", 1)[1].startswith("/"):
+				self.paused_service = True
+				self.infoBarInstance.pauseService()
+		if not self.paused_service:
+			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+			if self.timeHandler.ready():
+				if self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.stopService()
 				else:
-					self.standbyTimeUnknownTimer.callback.append(self.stopService)
-					self.standbyTimeUnknownTimer.startLongTimer(60)
-			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
-				self.paused_service = self.session.current_dialog
-				self.paused_service.pauseService()
+					self.standbyStopServiceTimer.startLongTimer(5)
+				self.timeHandler = None
+			else:
+				self.timeHandler.m_timeUpdated.get().append(self.stopService)
+
 		if self.session.pipshown:
-			from Screens.InfoBar import InfoBar
-			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
+			self.infoBarInstance and hasattr(self.infoBarInstance, "showPiP") and self.infoBarInstance.showPiP()
 
 		self.videoOff()
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
@@ -127,11 +135,18 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
-		self.standbyTimeUnknownTimer.stop()
-		if self.prev_running_service:
-			self.session.nav.playService(self.prev_running_service)
-		elif self.paused_service:
-			self.paused_service.unPauseService()
+		self.standbyStopServiceTimer.stop()
+		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
+		if self.paused_service:
+			self.infoBarInstance.unPauseService()
+		elif self.prev_running_service:
+			service = self.prev_running_service.toString()
+			if config.servicelist.startupservice_onstandby.value:
+				self.session.nav.playService(eServiceReference(config.servicelist.startupservice.value))
+				from Screens.InfoBar import InfoBar
+				InfoBar.instance and InfoBar.instance.servicelist.correctChannelNumber()
+			else:
+				self.session.nav.playService(self.prev_running_service)
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
 
@@ -145,7 +160,6 @@ class Standby2(Screen):
 		return StandbySummary
 
 	def stopService(self):
-		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 class Standby(Standby2):
@@ -316,6 +330,10 @@ class TryQuitMainloop(MessageBox):
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen, retvalue=self.retval)
 			self.quitScreen.show()
 			quitMainloop(self.retval)
+			if getBoxType() == "vusolo4k":  #workaround for white display flash
+				f = open("/proc/stb/fp/oled_brightness", "w")
+				f.write("0")
+				f.close()
 		else:
 			MessageBox.close(self, True)
 

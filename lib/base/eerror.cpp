@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <unistd.h>
+#include <time.h>
 
 #include <string>
 
@@ -78,96 +79,122 @@ void DumpUnfreed()
 };
 #endif
 
-Signal2<void, int, const std::string&> logOutput;
-int logOutputConsole=1;
+int debugLvl = lvlDebug;
 
-static pthread_mutex_t DebugLock =
-	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
+static pthread_mutex_t DebugLock = PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
+#define RINGBUFFER_SIZE 16384
+static char ringbuffer[RINGBUFFER_SIZE];
+static unsigned int ringbuffer_head;
+static void logOutput(const char *data, unsigned int len)
+{
+	singleLock s(DebugLock);
+	while (len)
+	{
+		unsigned int remaining = RINGBUFFER_SIZE - ringbuffer_head;
+
+		if (remaining > len)
+			remaining = len;
+
+		memcpy(ringbuffer + ringbuffer_head, data, remaining);
+		len -= remaining;
+		data += remaining;
+		ringbuffer_head += remaining;
+		ASSERT(ringbuffer_head <= RINGBUFFER_SIZE);
+		if (ringbuffer_head == RINGBUFFER_SIZE)
+			ringbuffer_head = 0;
+	}
+}
+
+void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2)
+{
+	unsigned int begin = ringbuffer_head;
+	while (ringbuffer[begin] == 0)
+	{
+		++begin;
+		if (begin == RINGBUFFER_SIZE)
+			begin = 0;
+		if (begin == ringbuffer_head)
+			return;
+	}
+
+	if (begin < ringbuffer_head)
+	{
+		*p1 = ringbuffer + begin;
+		*s1 = ringbuffer_head - begin;
+		*p2 = NULL;
+		*s2 = NULL;
+	}
+	else
+	{
+		*p1 = ringbuffer + begin;
+		*s1 = RINGBUFFER_SIZE - begin;
+		*p2 = ringbuffer;
+		*s2 = ringbuffer_head;
+	}
+}
+
 
 extern void bsodFatal(const char *component);
 
-void eFatal(const char* fmt, ...)
+#define eDEBUG_BUFLEN    1024
+
+void eDebugImpl(int flags, const char* fmt, ...)
 {
-	char buf[1024];
-	va_list ap;
-	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
-	va_end(ap);
-	{
-		singleLock s(DebugLock);
-		logOutput(lvlFatal, "FATAL: " + std::string(buf) + "\n");
-		fprintf(stderr, "FATAL: %s\n",buf );
+	char * buf = new char[eDEBUG_BUFLEN];
+	int pos = 0;
+	struct timespec tp;
+	pid_t tid = syscall(SYS_gettid);
+
+	if (! (flags & _DBGFLG_NOTIME)) {
+		clock_gettime(CLOCK_MONOTONIC, &tp);
+		pos = snprintf(buf, eDEBUG_BUFLEN, "{%d}<%6lu.%03lu> ", tid, tp.tv_sec, tp.tv_nsec/1000000);
 	}
-	bsodFatal("enigma2");
-}
 
-#ifdef DEBUG
-static bool midline = false;
-
-void eDebug(const char* fmt, ...)
-{
-	char buf[1024];
-	pid_t tid = syscall(SYS_gettid);
-	char tag[16];
-	sprintf(tag, "{%d}", tid);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
+	int vsize = vsnprintf(buf + pos, eDEBUG_BUFLEN - pos, fmt, ap);
 	va_end(ap);
-	singleLock s(DebugLock);
-	if (midline) tag[0] = '\0';
-	logOutput(lvlDebug, std::string(tag) + std::string(buf) + "\n");
-	if (logOutputConsole)
-		fprintf(stderr, "%s%s\n", tag, buf);
-	midline = false;
-}
+	if (vsize < 0) {
+		vsize = 0;
+		pos += snprintf(buf + pos, eDEBUG_BUFLEN - pos, " Error formatting: %s", fmt);
+		if (pos > eDEBUG_BUFLEN - 1)
+			pos = eDEBUG_BUFLEN - 1;
+	}
+	else if (pos + vsize > eDEBUG_BUFLEN - 1) {
+		delete[] buf;
+		// pos still contains size of timestring
+		// +2 for \0 and optional newline
+		buf = new char[pos + vsize + 2];
+		if (! (flags & _DBGFLG_NOTIME))
+			pos = snprintf(buf, pos + vsize, "{%d}<%6lu.%03lu> ", tid, tp.tv_sec, tp.tv_nsec/1000000);
+		va_start(ap, fmt);
+		vsize = vsnprintf(buf + pos, vsize + 1, fmt, ap);
+		va_end(ap);
+	}
 
-void eDebugNoNewLine(const char* fmt, ...)
-{
-	char buf[1024];
-	pid_t tid = syscall(SYS_gettid);
-	char tag[16];
-	sprintf(tag, "{%d}", tid);
-	va_list ap;
-	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
-	va_end(ap);
-	singleLock s(DebugLock);
-	if (midline) tag[0] = '\0';
-	logOutput(lvlDebug, std::string(tag) + std::string(buf));
-	if (logOutputConsole)
-		fprintf(stderr, "%s%s", tag, buf);
-	midline = true;
-}
+	pos += vsize;
 
-void eWarning(const char* fmt, ...)
-{
-	char buf[1024];
-	pid_t tid = syscall(SYS_gettid);
-	char tag[16];
-	sprintf(tag, "{%d}", tid);
-	va_list ap;
-	va_start(ap, fmt);
-	vsnprintf(buf, 1024, fmt, ap);
-	va_end(ap);
-	singleLock s(DebugLock);
-	logOutput(lvlWarning, std::string(tag) + std::string(buf) + "\n");
-	if (logOutputConsole)
-		fprintf(stderr, "%s%s\n", tag, buf);
+	if (!(flags & _DBGFLG_NONEWLINE)) {
+		/* buf will still be null-terminated here, so it is always safe
+		 * to do this. The remainder of this function does not rely
+		 * on buf being null terminated. */
+		buf[pos++] = '\n';
+	}
+
+	logOutput(buf, pos);
+
+	::write(2, buf, pos);
+
+	delete[] buf;
+	if (flags & _DBGFLG_FATAL)
+		bsodFatal("enigma2");
 }
-#endif // DEBUG
 
 void ePythonOutput(const char *string)
 {
 #ifdef DEBUG
-	singleLock s(DebugLock);
-	logOutput(lvlWarning, string);
-	if (logOutputConsole)
-		fwrite(string, 1, strlen(string), stderr);
+	// Only show message when the debug level is at least "warning"
+	if (debugLvl >= lvlWarning)
+		eDebugImpl(_DBGFLG_NONEWLINE, "%s", string);
 #endif
-}
-
-void eWriteCrashdump()
-{
-		/* implement me */
 }

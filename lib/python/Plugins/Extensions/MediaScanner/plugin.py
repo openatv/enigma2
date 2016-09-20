@@ -26,7 +26,7 @@ def mountpoint_choosen(option):
 	if not list:
 		from Screens.MessageBox import MessageBox
 		if os.access(mountpoint, os.F_OK|os.R_OK):
-			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR, simple = True, timeout = 5)
+			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple = True, timeout = 5)
 		else:
 			print "ignore", mountpoint, "because its not accessible"
 		return
@@ -146,7 +146,7 @@ def filescan(**kwargs):
 
 def Plugins(**kwargs):
 	return [
-#		PluginDescriptor(name="Media scanner", description=_("Scan files..."), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
+#		PluginDescriptor(name=_("Media scanner"), description=_("Scan files..."), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = True, fnc=main),
 #		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
 		PluginDescriptor(name=_("Media scanner"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
 		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = True, fnc = sessionstart),

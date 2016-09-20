@@ -9,7 +9,8 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
-#include <xmlccwrap/xmlccwrap.h>
+#include <libxml/parser.h>
+#include <libxml/tree.h>
 #include <dvbsi++/service_description_section.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
@@ -35,13 +36,13 @@ RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference befo
 	return 0;
 }
 
-RESULT eBouquet::removeService(const eServiceReference &ref)
+RESULT eBouquet::removeService(const eServiceReference &ref, bool renameBouquet)
 {
 	list::iterator it =
 		std::find(m_services.begin(), m_services.end(), ref);
 	if ( it == m_services.end() )
 		return -1;
-	if (ref.flags & eServiceReference::canDescent)
+	if (renameBouquet && (ref.flags & eServiceReference::canDescent))
 	{
 		std::string filename = ref.toString();
 		size_t pos = filename.find("FROM BOUQUET ");
@@ -56,7 +57,7 @@ RESULT eBouquet::removeService(const eServiceReference &ref)
 				filename = eEnv::resolve("${sysconfdir}/enigma2/" + filename);
 				std::string newfilename(filename);
 				newfilename.append(".del");
-				eDebug("Rename bouquet file %s to %s", filename.c_str(), newfilename.c_str());
+				eDebug("[eBouquet] Rename bouquet file %s to %s", filename.c_str(), newfilename.c_str());
 				rename(filename.c_str(), newfilename.c_str());
 			}
 		}
@@ -393,6 +394,7 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 		else if (p == 'f')
 		{
 			sscanf(v.c_str(), "%x", &s->m_flags);
+			s->m_flags &= ~eDVBService::dxDontshow;
 		} else if (p == 'c')
 		{
 			int cid, val;
@@ -447,11 +449,11 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int vers
 		{
 			eDVBFrontendParametersTerrestrial ter;
 			int frequency, bandwidth, code_rate_HP, code_rate_LP, modulation, transmission_mode,
-				guard_interval, hierarchy, inversion, flags = 0, plpid = 0;
+				guard_interval, hierarchy, inversion, flags = 0, plp_id = 0;
 			int system = eDVBFrontendParametersTerrestrial::System_DVB_T;
 			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
 				&frequency, &bandwidth, &code_rate_HP, &code_rate_LP, &modulation,
-				&transmission_mode, &guard_interval, &hierarchy, &inversion, &flags, &system, &plpid);
+				&transmission_mode, &guard_interval, &hierarchy, &inversion, &flags, &system, &plp_id);
 			ter.frequency = frequency;
 			switch (bandwidth)
 			{
@@ -472,7 +474,7 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(const char* line, int vers
 			ter.hierarchy = hierarchy;
 			ter.inversion = inversion;
 			ter.system = system;
-			ter.plpid = plpid;
+			ter.plp_id = plp_id;
 			ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
 			feparm->setDVBT(ter);
 			feparm->setFlags(flags);
@@ -627,7 +629,7 @@ void eDVBDB::saveServicelist(const char *file)
 	CFile f((filename + ".writing").c_str(), "w");
 	int channels=0, services=0;
 	if (!f)
-		eFatal("couldn't save lame channel db!");
+		eFatal("[eDVBDB] couldn't save lame channel db!");
 	fprintf(f, "eDVB services /4/\n");
 	fprintf(f, "transponders\n");
 	for (std::map<eDVBChannelID, channel>::const_iterator i(m_channels.begin());
@@ -697,7 +699,7 @@ void eDVBDB::saveServicelist(const char *file)
 			fprintf(f, "\tt %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
 				ter.frequency, bandwidth, ter.code_rate_HP,
 				ter.code_rate_LP, ter.modulation, ter.transmission_mode,
-				ter.guard_interval, ter.hierarchy, ter.inversion, flags, ter.system, ter.plpid);
+				ter.guard_interval, ter.hierarchy, ter.inversion, flags, ter.system, ter.plp_id);
 		}
 		else if (!ch.m_frontendParameters->getDVBC(cab))
 		{
@@ -768,7 +770,7 @@ void eDVBDB::loadBouquet(const char *path)
 		DIR *dir = opendir(p.c_str());
 		if (!dir)
 		{
-			eDebug("Cannot open directory where the userbouquets should be expected..");
+			eDebug("[eDVBDB] Cannot open directory where the userbouquets should be expected..");
 			return;
 		}
 		dirent *entry;
@@ -840,11 +842,14 @@ void eDVBDB::loadBouquet(const char *path)
 				bouquet.flushChanges();
 			}
 			else
-				file_path = "";
+			{
+				eDebug("[eDVBDB] can't load bouquet %s",path);
+				return;
+			}
 		}
 	}
 
-	eDebug("loading bouquet... %s", file_path.c_str());
+	eDebug("[eDVBDB] loading bouquet... %s", file_path.c_str());
 	CFile fp(file_path, "rt");
 
 	if (fp)
@@ -927,19 +932,30 @@ void eDVBDB::loadBouquet(const char *path)
 	{
 		for(unsigned int i=0; i<userbouquetsfiles.size(); ++i)
 		{
-			eDebug("Adding additional userbouquet %s", userbouquetsfiles[i].c_str());
-			char buf[256];
-			if (!strcmp(path, "bouquets.tv"))
-				snprintf(buf, sizeof(buf), "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
+			if (m_load_unlinked_userbouquets)
+			{
+				eDebug("[eDVBDB] Adding additional userbouquet %s", userbouquetsfiles[i].c_str());
+				char buf[256];
+				if (!strcmp(path, "bouquets.tv"))
+					snprintf(buf, sizeof(buf), "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
+				else
+					snprintf(buf, sizeof(buf), "1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
+				eServiceReference tmp(buf);
+				loadBouquet(userbouquetsfiles[i].c_str());
+				if (!strcmp(userbouquetsfiles[i].c_str(), "userbouquet.LastScanned.tv"))
+					list.push_back(tmp);
+				else
+					list.push_front(tmp);
+				++entries;
+			}
 			else
-				snprintf(buf, sizeof(buf), "1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
-			eServiceReference tmp(buf);
-			loadBouquet(userbouquetsfiles[i].c_str());
-			if (!strcmp(userbouquetsfiles[i].c_str(), "userbouquet.LastScanned.tv"))
-				list.push_back(tmp);
-			else
-				list.push_front(tmp);
-			++entries;
+			{
+				std::string filename = eEnv::resolve("${sysconfdir}/enigma2/" + userbouquetsfiles[i]);
+				std::string newfilename(filename);
+				newfilename.append(".del");
+				eDebug("[eDVBDB] Rename unlinked bouquet file %s to %s", filename.c_str(), newfilename.c_str());
+				rename(filename.c_str(), newfilename.c_str());
+			}
 		}
 		bouquet.flushChanges();
 	}
@@ -1038,10 +1054,8 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 
 eDVBDB *eDVBDB::instance;
 
-using namespace xmlcc;
-
 eDVBDB::eDVBDB()
-	: m_numbering_mode(false)
+	: m_numbering_mode(false), m_load_unlinked_userbouquets(true)
 {
 	instance = this;
 	reloadServicelist();
@@ -1069,60 +1083,59 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 			eDebug("[eDVBDB] readSatellites arg 0 is not a python list");
 		return NULL;
 	}
-	XMLTree tree;
+
 	const char* satellitesFilename = "/etc/enigma2/satellites.xml";
 	if (::access(satellitesFilename, R_OK) < 0)
 	{
 		satellitesFilename = "/etc/tuxbox/satellites.xml";
 	}
-	tree.setFilename(satellitesFilename);
-	tree.read();
-	Element *root = tree.getRoot();
-	if (!root)
+
+	xmlDoc *doc = xmlReadFile(satellitesFilename, NULL, 0);
+	if (!doc)
 	{
-		eDebug("[eDVBDB] couldn't open /etc/tuxbox/satellites.xml!!");
+		eDebug("[eDVBDB] couldn't open %s!!", satellitesFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
+
 	int tmp, *dest = NULL,
 		modulation, system, freq, sr, pol, fec, inv, pilot, rolloff, tsid, onid;
 	char *end_ptr;
-	const Attribute *at;
-	std::string name;
-	const ElementList &root_elements = root->getElementList();
-	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+
+	xmlNode *root_element = xmlDocGetRootElement(doc);
+	xmlNode *satellite = root_element ? root_element->children : NULL;
+
+	while(satellite)
 	{
-//		eDebug("[eDVBDB] element: %s", (*it)->name().c_str());
-		const Element *el = *it;
-		const ElementList &sat_elements = el->getElementList();
-		const AttributeList &sat_attributes = el->getAttributeList();
 		ePyObject sat_name;
 		ePyObject sat_pos;
 		ePyObject sat_flags;
-		for (AttributeConstIterator it(sat_attributes.begin()); it != sat_attributes.end(); ++it)
+
+		for(xmlAttrPtr attr = satellite->properties; attr; attr = attr->next)
 		{
-//			eDebug("[eDVBDB] \tattr: %s", at->name().c_str());
-			at = *it;
-			name = at->name();
+			std::string name((const char*)attr->name);
 			if (name == "name")
-				sat_name = PyString_FromString(at->value().c_str());
+			{
+				sat_name = PyString_FromString((const char*)attr->children->content);
+			}
 			else if (name == "flags")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
+				{
 					sat_flags = PyInt_FromLong(tmp);
+				}
 			}
 			else if (name == "position")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
 				{
-					if (tmp < 0)
-						tmp = 3600 + tmp;
-					sat_pos = PyInt_FromLong(tmp);
+					sat_pos = PyInt_FromLong(tmp < 0 ? 3600 + tmp : tmp);
 				}
 			}
 		}
+
 		if (sat_pos && sat_name)
 		{
 			ePyObject tplist = PyList_New(0);
@@ -1136,11 +1149,11 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 			Py_DECREF(tuple);
 			PyDict_SetItem(sat_dict, sat_pos, sat_name);
 			PyDict_SetItem(tp_dict, sat_pos, tplist);
-			for (ElementConstIterator it(sat_elements.begin()); it != sat_elements.end(); ++it)
+
+			xmlNode *transponder = satellite->children;
+
+			while(transponder)
 			{
-				//eDebug("[eDVBDB] \telement: %s", (*it)->name().c_str());
-				const AttributeList &tp_attributes = (*it)->getAttributeList();
-				AttributeConstIterator end = tp_attributes.end();
 				modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
 				system = eDVBFrontendParametersSatellite::System_DVB_S;
 				freq = 0;
@@ -1153,11 +1166,9 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				tsid = -1;
 				onid = -1;
 
-				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+				for(xmlAttrPtr attr = transponder->properties; attr; attr = attr->next)
 				{
-					at = *it;
-					//eDebug("[eDVBDB] \t\tattr: %s", at->name().c_str());
-					name = at->name();
+					std::string name((const char*)attr->name);
 					if (name == "modulation") dest = &modulation;
 					else if (name == "system") dest = &system;
 					else if (name == "frequency") dest = &freq;
@@ -1170,14 +1181,17 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					else if (name == "tsid") dest = &tsid;
 					else if (name == "onid") dest = &onid;
 					else continue;
+
 					if (dest)
 					{
-						//eDebug("[eDVBDB] \t\t\tvalue: %s", at->value().c_str());
-						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 						if (!*end_ptr)
+						{
 							*dest = tmp;
+						}
 					}
 				}
+
 				if (freq && sr && pol != -1)
 				{
 					tuple = PyTuple_New(12);
@@ -1196,7 +1210,11 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
+
+				// next transponder
+				transponder = transponder->next;
 			}
+
 			Py_DECREF(tplist);
 		}
 		else
@@ -1208,7 +1226,13 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 			if (sat_flags)
 				Py_DECREF(sat_flags);
 		}
+
+		// next satellite
+		satellite = satellite->next;
 	}
+
+	xmlFreeDoc(doc);
+
 	Py_INCREF(Py_True);
 	return Py_True;
 }
@@ -1228,44 +1252,46 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 			eDebug("[eDVBDB] readCables arg 0 is not a python list");
 		return NULL;
 	}
-	XMLTree tree;
-	tree.setFilename("/etc/tuxbox/cables.xml");
-	tree.read();
-	Element *root = tree.getRoot();
-	if (!root)
+
+	const char* cablesFilename = "/etc/enigma2/cables.xml";
+	if (::access(cablesFilename, R_OK) < 0)
 	{
-		eDebug("[eDVBDB] couldn't open /etc/tuxbox/cables.xml!!");
+		cablesFilename = "/etc/tuxbox/cables.xml";
+	}
+
+	xmlDoc *doc = xmlReadFile(cablesFilename, NULL, 0);
+	if (!doc)
+	{
+		eDebug("[eDVBDB] couldn't open %s!!", cablesFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
-	const Attribute *at;
+
 	int tmp, *dest,
 		modulation, fec, freq, sr, inversion, system;
-	std::string name;
 	char *end_ptr;
-	const ElementList &root_elements = root->getElementList();
-	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+
+	xmlNode *root_element = xmlDocGetRootElement(doc);
+	xmlNode *cable = root_element ? root_element->children : NULL;
+
+	while(cable)
 	{
-//		eDebug("[eDVBDB] element: %s", el->name().c_str());
-		const Element *el = *it;
-		const ElementList &cab_elements = el->getElementList();
-		const AttributeList &cab_attributes = el->getAttributeList();
 		ePyObject cab_name;
 		ePyObject cab_flags;
-		for (AttributeConstIterator it(cab_attributes.begin()); it != cab_attributes.end(); ++it)
+
+		for(xmlAttrPtr attr = cable->properties; attr; attr = attr->next)
 		{
-//			eDebug("[eDVBDB] \tattr: %s", at->name().c_str());
-			at = *it;
-			name = at->name();
+			std::string name((const char*)attr->name);
 			if (name == "name")
-				cab_name = PyString_FromString(at->value().c_str());
+				cab_name = PyString_FromString((const char*)attr->children->content);
 			else if (name == "flags")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
 					cab_flags = PyInt_FromLong(tmp);
 			}
 		}
+
 		if (cab_name)
 		{
 			ePyObject tplist = PyList_New(0);
@@ -1277,23 +1303,22 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 			PyList_Append(cab_list, tuple);
 			Py_DECREF(tuple);
 			PyDict_SetItem(tp_dict, cab_name, tplist);
-			for (ElementConstIterator it(cab_elements.begin()); it != cab_elements.end(); ++it)
+
+			xmlNode *transponder = cable->children;
+
+			while(transponder)
 			{
-//				eDebug("[eDVBDB] \telement: %s", (*it)->name().c_str());
-				const AttributeList &tp_attributes = (*it)->getAttributeList();
-				AttributeConstIterator end = tp_attributes.end();
 				modulation = eDVBFrontendParametersCable::Modulation_QAM64;
 				fec = eDVBFrontendParametersCable::FEC_Auto;
 				system = eDVBFrontendParametersCable::System_DVB_C_ANNEX_A;
 				inversion = eDVBFrontendParametersCable::Inversion_Unknown;
 				freq = 0;
 				sr = 0;
-				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+
+				for(xmlAttrPtr attr = transponder->properties; attr; attr = attr->next)
 				{
-//					eDebug("[eDVBDB] \t\tattr: %s", at->name().c_str());
-					at = *it;
 					dest = 0;
-					name = at->name();
+					std::string name((const char*)attr->name);
 					if (name == "modulation") dest = &modulation;
 					else if (name == "frequency") dest = &freq;
 					else if (name == "symbol_rate") dest = &sr;
@@ -1301,13 +1326,17 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 					else if (name == "inversion") dest = &inversion;
 					else if (name == "system") dest = &system;
 					else continue;
+
 					if (dest)
 					{
-						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 						if (!*end_ptr)
+						{
 							*dest = tmp;
+						}
 					}
 				}
+
 				if (freq && sr)
 				{
 					while (freq > 999999)
@@ -1323,12 +1352,24 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
+
+				// next transponder
+				transponder = transponder->next;
 			}
+
 			Py_DECREF(tplist);
 		}
 		else if (cab_flags)
+		{
 			Py_DECREF(cab_flags);
+		}
+
+		// next cable
+		cable = cable->next;
 	}
+
+	xmlFreeDoc(doc);
+
 	Py_INCREF(Py_True);
 	return Py_True;
 }
@@ -1348,44 +1389,50 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 			eDebug("[eDVBDB] readTerrestrials arg 0 is not a python list");
 		return NULL;
 	}
-	XMLTree tree;
-	tree.setFilename("/etc/tuxbox/terrestrial.xml");
-	tree.read();
-	Element *root = tree.getRoot();
-	if (!root)
+
+	const char* terrestrialFilename = "/etc/enigma2/terrestrial.xml";
+	if (::access(terrestrialFilename, R_OK) < 0)
 	{
-		eDebug("[eDVBDB] couldn't open /etc/tuxbox/terrestrial.xml!!");
+		terrestrialFilename = "/etc/tuxbox/terrestrial.xml";
+	}
+
+	xmlDoc *doc = xmlReadFile(terrestrialFilename, NULL, 0);
+	if (!doc)
+	{
+		eDebug("[eDVBDB] couldn't open %s!!", terrestrialFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
-	const Attribute *at;
-	std::string name;
+
 	int tmp, *dest,
-		freq, bw, constellation, crh, crl, guard, transm, hierarchy, inv, system, plpid;
+		freq, bw, constellation, crh, crl, guard, transm, hierarchy, inv, system, plp_id;
 	char *end_ptr;
-	const ElementList &root_elements = root->getElementList();
-	for (ElementConstIterator it(root_elements.begin()); it != root_elements.end(); ++it)
+
+	xmlNode *root_element = xmlDocGetRootElement(doc);
+	xmlNode *terrestrial = root_element ? root_element->children : NULL;
+
+	while(terrestrial)
 	{
-//		eDebug("[eDVBDB] element: %s", el->name().c_str());
-		const Element *el = *it;
-		const ElementList &ter_elements = el->getElementList();
-		const AttributeList &ter_attributes = el->getAttributeList();
 		ePyObject ter_name;
 		ePyObject ter_flags;
-		for (AttributeConstIterator it(ter_attributes.begin()); it != ter_attributes.end(); ++it)
+
+		for(xmlAttrPtr attr = terrestrial->properties; attr; attr = attr->next)
 		{
-//			eDebug("[eDVBDB] \tattr: %s", at->name().c_str());
-			at = *it;
-			name = at->name();
+			std::string name((const char*)attr->name);
 			if (name == "name")
-				ter_name = PyString_FromString(at->value().c_str());
+			{
+				ter_name = PyString_FromString((const char*)attr->children->content);
+			}
 			else if (name == "flags")
 			{
-				tmp = strtol(at->value().c_str(), &end_ptr, 10);
+				tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 				if (!*end_ptr)
+				{
 					ter_flags = PyInt_FromLong(tmp);
+				}
 			}
 		}
+
 		if (ter_name)
 		{
 			ePyObject tplist = PyList_New(0);
@@ -1397,11 +1444,11 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 			PyList_Append(ter_list, tuple);
 			Py_DECREF(tuple);
 			PyDict_SetItem(tp_dict, ter_name, tplist);
-			for (ElementConstIterator it(ter_elements.begin()); it != ter_elements.end(); ++it)
+
+			xmlNode *transponder = terrestrial->children;
+
+			while(transponder)
 			{
-//				eDebug("[eDVBDB] \telement: %s", (*it)->name().c_str());
-				const AttributeList &tp_attributes = (*it)->getAttributeList();
-				AttributeConstIterator end = tp_attributes.end();
 				freq = 0;
 				bw = eDVBFrontendParametersTerrestrial::Bandwidth_Auto;
 				constellation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
@@ -1412,13 +1459,12 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 				hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
 				inv = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
 				system = eDVBFrontendParametersTerrestrial::System_DVB_T_T2;
-				plpid = 0;
-				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
+				plp_id = 0;
+
+				for(xmlAttrPtr attr = transponder->properties; attr; attr = attr->next)
 				{
-//					eDebug("[eDVBDB] \t\tattr: %s", at->name().c_str());
-					at = *it;
 					dest = 0;
-					name = at->name();
+					std::string name((const char*)attr->name);
 					if (name == "centre_frequency") dest = &freq;
 					else if (name == "bandwidth") dest = &bw;
 					else if (name == "constellation") dest = &constellation;
@@ -1429,15 +1475,19 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					else if (name == "hierarchy_information") dest = &hierarchy;
 					else if (name == "inversion") dest = &inv;
 					else if (name == "system") dest = &system;
-					else if (name == "plp_id") dest = &plpid;
+					else if (name == "plp_id") dest = &plp_id;
 					else continue;
+
 					if (dest)
 					{
-						tmp = strtol(at->value().c_str(), &end_ptr, 10);
+						tmp = strtol((const char*)attr->children->content, &end_ptr, 10);
 						if (!*end_ptr)
+						{
 							*dest = tmp;
+						}
 					}
 				}
+
 				if (freq)
 				{
 					switch (bw)
@@ -1467,16 +1517,28 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					PyTuple_SET_ITEM(tuple, 8, PyInt_FromLong(hierarchy));
 					PyTuple_SET_ITEM(tuple, 9, PyInt_FromLong(inv));
 					PyTuple_SET_ITEM(tuple, 10, PyInt_FromLong(system));
-					PyTuple_SET_ITEM(tuple, 11, PyInt_FromLong(plpid));
+					PyTuple_SET_ITEM(tuple, 11, PyInt_FromLong(plp_id));
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
+
+				// next transponder
+				transponder = transponder->next;
 			}
+
 			Py_DECREF(tplist);
 		}
 		else if (ter_flags)
+		{
 			Py_DECREF(ter_flags);
+		}
+
+		// next terrestrial
+		terrestrial = terrestrial->next;
 	}
+
+	xmlFreeDoc(doc);
+
 	Py_INCREF(Py_True);
 	return Py_True;
 }
@@ -1609,6 +1671,18 @@ RESULT eDVBDB::removeServices(iDVBFrontendParameters *feparm)
 		ret = 0;
 	}
 	return ret;
+}
+
+PyObject *eDVBDB::getFlag(const eServiceReference &ref)
+{
+	if (ref.type == eServiceReference::idDVB)
+	{
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+			return PyInt_FromLong(it->second->m_flags);
+	}
+	return PyInt_FromLong(0);
 }
 
 RESULT eDVBDB::addFlag(const eServiceReference &ref, unsigned int flagmask)
@@ -1798,7 +1872,7 @@ RESULT eDVBDB::startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q
 		else if ( source.path.find("PROVIDERS") != std::string::npos )
 			query = new eDVBDBProvidersQuery(this, source, q);
 		else
-			eFatal("invalid query %s", source.toString().c_str());
+			eFatal("[eDVBDB] invalid query %s", source.toString().c_str());
 	}
 	else
 		query = new eDVBDBQuery(this, source, q);
@@ -2031,14 +2105,14 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 				unsigned int pos=ref.path.find("FROM");
 				ref.path.erase(pos);
 				ref.path+="ORDER BY name";
-//				eDebug("[eDVBDBSatellitesQuery] ref.path now %s", ref.path.c_str());
+//				eDebug("[eDVBDB] ref.path now %s", ref.path.c_str());
 				m_list.push_back(ref);
 
 				ref.path=buf+source.path;
 				pos=ref.path.find("FROM");
 				ref.path.erase(pos+5);
 				ref.path+="PROVIDERS ORDER BY name";
-//				eDebug("[eDVBDBSatellitesQuery] ref.path now %s", ref.path.c_str());
+//				eDebug("[eDVBDB] ref.path now %s", ref.path.c_str());
 				m_list.push_back(ref);
 
 				snprintf(buf, sizeof(buf), "(satellitePosition == %d) && (flags == %d) && ", dvbnamespace>>16, eDVBService::dxNewFound);
@@ -2046,7 +2120,7 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 				pos=ref.path.find("FROM");
 				ref.path.erase(pos);
 				ref.path+="ORDER BY name";
-//				eDebug("[eDVBDBSatellitesQuery] ref.path now %s", ref.path.c_str());
+//				eDebug("[eDVBDB] ref.path now %s", ref.path.c_str());
 				m_list.push_back(ref);
 			}
 		}
@@ -2079,7 +2153,7 @@ eDVBDBProvidersQuery::eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &
 				ref.flags=eServiceReference::flagDirectory;
 				ref.path.erase(pos);
 				ref.path+="ORDER BY name";
-//				eDebug("[eDVBDBProvidersQuery] ref.path now %s", ref.path.c_str());
+//				eDebug("[eDVBDB] ref.path now %s", ref.path.c_str());
 				m_list.push_back(ref);
 			}
 		}
@@ -2128,7 +2202,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 
 		if (end_of_exp == end)
 		{
-			eDebug("[eDVBDB] expression parse: end of expression while searching for closing brace");
+			eDebug("[parseExpression] end of expression while searching for closing brace");
 			return -1;
 		}
 
@@ -2142,7 +2216,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 			/* we had only one sub expression */
 		if (end_of_exp == end)
 		{
-//			eDebug("[eDVBDB] only one sub expression");
+//			eDebug("[parseExpression] only one sub expression");
 			return 0;
 		}
 
@@ -2161,7 +2235,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 			res->m_type = eDVBChannelQuery::tAND;
 		else
 		{
-			eDebug("[eDVBDB] found operator %s, but only && and || are allowed!", end_of_exp->c_str());
+			eDebug("[parseExpression] found operator %s, but only && and || are allowed!", end_of_exp->c_str());
 			res = 0;
 			return 1;
 		}
@@ -2192,7 +2266,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 			val = *begin;
 			break;
 		case 3:
-			eDebug("[eDVBDB] malformed query: got '%s', but expected only <type> <op> <val>", begin->c_str());
+			eDebug("[parseExpression] malformed query: got '%s', but expected only <type> <op> <val>", begin->c_str());
 			return 1;
 		}
 		++begin;
@@ -2201,7 +2275,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 
 	if (cnt != 3)
 	{
-		eDebug("[eDVBDB] malformed query: missing stuff");
+		eDebug("[parseExpression] malformed query: missing stuff");
 		res = 0;
 		return 1;
 	}
@@ -2210,7 +2284,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 
 	if (res->m_type == -1)
 	{
-		eDebug("[eDVBDB] malformed query: invalid type %s", type.c_str());
+		eDebug("[parseExpression] malformed query: invalid type %s", type.c_str());
 		res = 0;
 		return 1;
 	}
@@ -2221,7 +2295,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 		res->m_inverse = 1;
 	else
 	{
-		eDebug("[eDVBDB] invalid operator %s", op.c_str());
+		eDebug("[parseExpression] invalid operator %s", op.c_str());
 		res = 0;
 		return 1;
 	}
@@ -2234,7 +2308,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 		if (sscanf(val.c_str(), "%08x%04x%04x", &ns, &tsid, &onid) == 3)
 			res->m_channelid = eDVBChannelID(eDVBNamespace(ns), eTransportStreamID(tsid), eOriginalNetworkID(onid));
 		else
-			eDebug("[eDVBDB] couldn't parse channelid !! format should be hex NNNNNNNNTTTTOOOO (namespace, tsid, onid)");
+			eDebug("[parseExpression] couldn't parse channelid !! format should be hex NNNNNNNNTTTTOOOO (namespace, tsid, onid)");
 	}
 	else
 		res->m_int = atoi(val.c_str());
@@ -2249,7 +2323,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	std::string current_token;
 	std::string bouquet_name;
 
-//	eDebug("[eDVBDB] splitting %s....", query.c_str());
+//	eDebug("[eDVBChannelQuery] splitting %s....", query.c_str());
 	unsigned int i = 0;
 	const char *splitchars="()";
 	int quotemode = 0, lastsplit = 0, lastalnum = 0;
@@ -2322,7 +2396,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 				tokens.erase(it++);
 			else
 			{
-				eDebug("[eDVBDB] FROM unknown %s", (*it).c_str());
+				eDebug("[eDVBChannelQuery] FROM unknown %s", (*it).c_str());
 				tokens.erase(it++);
 			}
 		}
@@ -2332,12 +2406,12 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 
 	if (sort == -1)
 	{
-		eWarning("ORDER BY .. string invalid.");
+		eWarning("[eDVBChannelQuery] ORDER BY .. string invalid.");
 		res = 0;
 		return -1;
 	}
 
-//	eDebug("[eDVBDB] sort by %d", sort);
+//	eDebug("[eDVBChannelQuery] sort by %d", sort);
 
 		/* now we recursivly parse that. */
 	int r = parseExpression(res, tokens.begin(), tokens.end());
@@ -2356,7 +2430,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 		res->m_bouquet_name = bouquet_name;
 	}
 
-//	eDebug("[eDVBDB] return: %d", r);
+//	eDebug("[eDVBChannelQuery] return: %d", r);
 	return r;
 }
 

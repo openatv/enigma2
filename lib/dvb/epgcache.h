@@ -13,19 +13,11 @@
 
 #include <vector>
 #include <list>
-// unordered_map unordered_set aren't there yet?
-#if 0
-#include <unordered_map>
-#include <unordered_set>
-#else
-#include <ext/hash_map>
-#include <ext/hash_set>
-#endif
+#include <tr1/unordered_map>
 
 #include <errno.h>
 
 #include <lib/dvb/eit.h>
-#include <lib/dvb/lowlevel/eit.h>
 #ifdef ENABLE_MHW_EPG
 #include <lib/dvb/lowlevel/mhw.h>
 #endif
@@ -37,12 +29,6 @@
 #include <lib/base/message.h>
 #include <lib/service/event.h>
 #include <lib/python/python.h>
-
-#define CLEAN_INTERVAL (60*1000)    // 1 minute
-#define UPDATE_INTERVAL (5*60*1000) // Australian EIT EPG is very dynamic, updates can come less than a minute apart
-#define ZAP_DELAY (2*1000)          // 2 seconds
-
-#define HILO(x) (x##_hi << 8 | x##_lo)
 
 class eventData;
 class eServiceReferenceDVB;
@@ -95,13 +81,10 @@ struct uniqueEPGKey
 };
 
 //eventMap is sorted by event_id
-typedef std::map<const uint16_t, eventData*> eventMap;
+typedef std::map<uint16_t, eventData*> eventMap;
 //timeMap is sorted by beginTime
-typedef std::map<const time_t, eventData *> timeMap;
-typedef std::pair<eventMap, timeMap> serviceMap;
-typedef std::map<const eDVBChannelID, time_t> updateMap;
-typedef std::pair<int, uint8_t *> descriptorPair;
-typedef std::map<const uint32_t, descriptorPair > descriptorMap;
+typedef std::map<time_t, eventData*> timeMap;
+typedef std::map<eDVBChannelID, time_t> updateMap;
 typedef std::set<uint32_t> tidMap;
 
 
@@ -113,71 +96,19 @@ struct hash_uniqueEPGKey
 	}
 };
 
-
-#if 0
-	typedef std::unordered_map<uniqueEPGKey, serviceMap, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
-	#ifdef ENABLE_PRIVATE_EPG
-		typedef std::unordered_map<time_t, std::pair<time_t, uint16_t> > contentTimeMap;
-		typedef std::unordered_map<int, contentTimeMap > contentMap;
-		typedef std::unordered_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal > contentMaps;
-	#endif
-#else
-	typedef __gnu_cxx::hash_map<uniqueEPGKey, serviceMap, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
-	#ifdef ENABLE_PRIVATE_EPG
-		typedef __gnu_cxx::hash_map<time_t, std::pair<time_t, uint16_t> > contentTimeMap;
-		typedef __gnu_cxx::hash_map<int, contentTimeMap > contentMap;
-		typedef __gnu_cxx::hash_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal > contentMaps;
-	#endif
-#endif
-
-class eventData
-{
-	friend class eEPGCache;
-private:
-	uint8_t* EITdata;
-	uint8_t ByteSize;
-	uint8_t type;
-	static descriptorMap descriptors;
-	static uint8_t data[];
-	static int CacheSize;
-	static bool isCacheCorrupt;
-	static void load(FILE *);
-	static void save(FILE *);
-	static void cacheCorrupt(const char* context);
-	const eit_event_struct* get() const;
-	operator const eit_event_struct*() const
-	{
-		return get();
-	}
-public:
-	eventData(const eit_event_struct* e = NULL, int size = 0, int type = 0, int tsidonid = 0);
-	~eventData();
-	int getEventID()
-	{
-		return (EITdata[0] << 8) | EITdata[1];
-	}
-	time_t getStartTime()
-	{
-		return parseDVBtime(EITdata[2], EITdata[3], EITdata[4], EITdata[5], EITdata[6]);
-	}
-	int getDuration()
-	{
-		return fromBCD(EITdata[7])*3600+fromBCD(EITdata[8])*60+fromBCD(EITdata[9]);
-	}
+struct EventCacheItem {
+	eventMap byEvent;
+	timeMap byTime;
 };
+
+typedef std::tr1::unordered_map<uniqueEPGKey, EventCacheItem, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
+#ifdef ENABLE_PRIVATE_EPG
+	typedef std::tr1::unordered_map<time_t, std::pair<time_t, uint16_t> > contentTimeMap;
+	typedef std::tr1::unordered_map<int, contentTimeMap > contentMap;
+	typedef std::tr1::unordered_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal > contentMaps;
 #endif
 
-// Syntactic sugar
-#define EVENT_DATA(iterator) iterator->second
-static inline eventData * getEventData(const timeMap::iterator &iterator) { return iterator->second; };
-static inline int getEventID(const timeMap::iterator &iterator) { return iterator->second->getEventID(); };
-static inline time_t getStartTime(const timeMap::iterator &iterator) { return iterator->second->getStartTime(); };
-static inline int getDuration(const timeMap::iterator &iterator) { return iterator->second->getDuration(); };
-static inline eventData * getEventData(const eventMap::iterator &iterator) { return iterator->second; };
-static inline int getEventID(const eventMap::iterator &iterator) { return iterator->second->getEventID(); };
-static inline time_t getStartTime(const eventMap::iterator &iterator) { return iterator->second->getStartTime(); };
-static inline int getDuration(const eventMap::iterator &iterator) { return iterator->second->getDuration(); };
-
+#endif
 
 #ifdef ENABLE_FREESAT
 #include <bitset>
@@ -293,7 +224,7 @@ private:
 		void readData(const uint8_t *data, eEPGCache::eit_type_t source);
 		void startChannel();
 		void startEPG();
-		bool finishEPG();
+		void finishEPG();
 		void abortEPG();
 		void abortNonAvail();
 	};
@@ -343,17 +274,19 @@ private:
 	friend class eventData;
 	static eEPGCache *instance;
 
+	typedef std::map<iDVBChannel*, channel_data*> ChannelMap;
+
 	ePtr<eTimer> cleanTimer;
-	std::map<iDVBChannel*, channel_data*> m_knownChannels;
+	ChannelMap m_knownChannels;
 	ePtr<eConnection> m_chanAddedConn;
 
 	unsigned int enabledSources;
 	unsigned int historySeconds;
 
 	std::vector<int> onid_blacklist;
+	std::map<std::string,int> customeitpids;
 	eventCache eventDB;
 	updateMap channelLastUpdated;
-	static pthread_mutex_t cache_lock, channel_map_lock;
 	std::string m_filename;
 	bool m_running;
 
@@ -404,10 +337,6 @@ public:
 	// must be called once!
 	void setCacheFile(const char *filename);
 
-	// called from main thread
-	inline void Lock();
-	inline void Unlock();
-
 	// at moment just for one service..
 	RESULT startTimeQuery(const eServiceReference &service, time_t begin=-1, int minutes=-1);
 
@@ -416,18 +345,13 @@ private:
 	// For internal use only. Acquire the cache lock before calling.
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eventData *&);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
-	RESULT getNextTimeEntry(const eventData *&);
 
 public:
-	// eit_event_struct's are plain dvb eit_events .. it's not safe to use them after cache unlock
-	// its not allowed to delete this pointers via delete or free..
-	RESULT lookupEventId(const eServiceReference &service, int event_id, const eit_event_struct *&);
-	RESULT lookupEventTime(const eServiceReference &service, time_t , const eit_event_struct *&, int direction=0);
-	RESULT getNextTimeEntry(const eit_event_struct *&);
+	/* Only used by servicedvbrecord.cpp to write the EIT file */
+	RESULT saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime);
 
-public:
-	// Event's are parsed epg events.. it's safe to use them after cache unlock
-	// after use this Events must be deleted (memleaks)
+	// Events are parsed epg events.. it's safe to use them after cache unlock
+	// after use the Event pointer must be released using "delete".
 	RESULT lookupEventId(const eServiceReference &service, int event_id, Event* &);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, Event* &, int direction=0);
 	RESULT getNextTimeEntry(Event *&);
@@ -461,17 +385,5 @@ public:
 	void importEvent(SWIG_PYOBJECT(ePyObject) serviceReferences, SWIG_PYOBJECT(ePyObject) list);
 };
 
-#ifndef SWIG
-inline void eEPGCache::Lock()
-{
-	pthread_mutex_lock(&cache_lock);
-}
-
-inline void eEPGCache::Unlock()
-{
-	pthread_mutex_unlock(&cache_lock);
-}
-
-#endif
 
 #endif

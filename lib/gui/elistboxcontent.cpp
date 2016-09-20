@@ -506,7 +506,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
 
 							if ((num < 0) || (num >= glyphs))
-								eWarning("glyph index %d in PythonConfigList out of bounds!", num);
+								eWarning("[eListboxPythonMultiContent] glyph index %d in PythonConfigList out of bounds!", num);
 							else
 							{
 								if (last+1 != num && last != -1) {
@@ -560,7 +560,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				}
 					/* type is borrowed */
 			} else if (value)
-				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
+				eWarning("[eListboxPythonConfigContent] second value of tuple is not a tuple.");
 			if (value)
 				Py_DECREF(value);
 		}
@@ -792,7 +792,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 		if (!items)
 		{
-			eDebug("eListboxPythonMultiContent: error getting item %d", m_cursor);
+			eDebug("[eListboxPythonMultiContent] error getting item %d", m_cursor);
 			goto error_out;
 		}
 
@@ -800,14 +800,14 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		{
 			if (!PyList_Check(items))
 			{
-				eDebug("eListboxPythonMultiContent: list entry %d is not a list (non-templated)", m_cursor);
+				eDebug("[eListboxPythonMultiContent] list entry %d is not a list (non-templated)", m_cursor);
 				goto error_out;
 			}
 		} else
 		{
 			if (!PyTuple_Check(items))
 			{
-				eDebug("eListboxPythonMultiContent: list entry %d is not a tuple (templated)", m_cursor);
+				eDebug("[eListboxPythonMultiContent] list entry %d is not a tuple (templated)", m_cursor);
 				goto error_out;
 			}
 		}
@@ -913,7 +913,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (m_font.find(fnt) == m_font.end())
 				{
-					eDebug("eListboxPythonMultiContent: specified font %d was not found!", fnt);
+					eDebug("[eListboxPythonMultiContent] specified font %d was not found!", fnt);
 					goto error_out;
 				}
 
@@ -1199,10 +1199,10 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 					Py_DECREF(ret);
 					return retval;
 				}
-				eDebug("call m_selectableFunc failed!!! assume not callable");
+				eDebug("[eListboxPythonMultiContent] call m_selectableFunc failed!!! assume not callable");
 			}
 			else
-				eDebug("m_list[m_cursor] is not a tuple!!! assume not callable");
+				eDebug("[eListboxPythonMultiContent] m_list[m_cursor] is not a tuple!!! assume not callable");
 		}
 		else
 		{

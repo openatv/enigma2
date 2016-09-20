@@ -73,19 +73,16 @@ class SkinSelectorBase:
 
 	def ok(self):
 		if self["SkinList"].getCurrent() == self.DEFAULTSKIN:
-			skinfile = ""
-			skinfile = os.path.join(skinfile, self.SKINXML)
+			self.skinfile = ""
+			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
 		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
-			skinfile = ""
-			skinfile = os.path.join(skinfile, self.PICONSKINXML)
+			self.skinfile = ""
+			self.skinfile = os.path.join(self.skinfile, self.PICONSKINXML)
 		else:
-			skinfile = self["SkinList"].getCurrent()
-			skinfile = os.path.join(skinfile, self.SKINXML)
+			self.skinfile = self["SkinList"].getCurrent()
+			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
 
-		print "Skinselector: Selected Skin: "+self.root+skinfile
-		self.config.value = skinfile
-		self.config.save()
-		configfile.save()
+		print "[SkinSelector] Selected Skin: "+self.root+self.skinfile
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
@@ -130,11 +127,17 @@ class SkinSelectorBase:
 
 	def restartGUI(self, answer):
 		if answer is True:
+			if isinstance(self, LcdSkinSelector):
+				config.skin.display_skin.value = self.skinfile
+				config.skin.display_skin.save()
+			else:
+				config.skin.primary_skin.value = self.skinfile
+				config.skin.primary_skin.save()
 			self.session.open(TryQuitMainloop, 3)
 
 class SkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin.xml"
-	DEFAULTSKIN = "< Default >"
+	DEFAULTSKIN = _("< Default >")
 	PICONSKINXML = None
 	PICONDEFAULTSKIN = None
 
@@ -150,9 +153,9 @@ class SkinSelector(Screen, SkinSelectorBase):
 
 class LcdSkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin_display.xml"
-	DEFAULTSKIN = "< Default >"
+	DEFAULTSKIN = _("< Default >")
 	PICONSKINXML = "skin_display_picon.xml"
-	PICONDEFAULTSKIN = "< Default with Picon >"
+	PICONDEFAULTSKIN = _("< Default with Picon >")
 
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2/display/")

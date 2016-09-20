@@ -530,7 +530,7 @@ class GeneralSetup(Screen):
 			from Screens.Recordings import RecordingSettings
 			self.session.open(RecordingSettings)
 		elif selected == _("Timeshift settings"):
-			from Screens.Timershift import TimeshiftSettings
+			from Screens.Timeshift import TimeshiftSettings
 			self.session.open(TimeshiftSettings)
 		elif selected == _("Auto language"):
 			self.openSetup("autolanguagesetup")

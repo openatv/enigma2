@@ -470,13 +470,15 @@ class EPGList(HTMLComponent, GUIComponent):
 							itemHeight = ((self.origListHeight / config.epgselection.graph_itemsperpage.value) * 2)
 						else:
 							itemHeight = 45
+				if self.numberOfRows:
+					config.epgselection.graph_itemsperpage.default = self.numberOfRows
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
+				if self.numberOfRows:
+					config.epgselection.infobar_itemsperpage.default = self.numberOfRows
 				if self.origListHeight > 0:
 					itemHeight = self.origListHeight / config.epgselection.infobar_itemsperpage.value
 				else:
 					itemHeight = 54  # some default (270/5)
-			if self.numberOfRows:
-				itemHeight = self.origListHeight / self.numberOfRows
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.origListHeight / itemHeight * itemHeight))
 			self.listHeight = self.instance.size().height()
@@ -484,6 +486,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.itemHeight = itemHeight
 
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR):
+			if self.numberOfRows:
+				config.epgselection.enhanced_itemsperpage.default = self.numberOfRows
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselection.enhanced_itemsperpage.value
 			else:
@@ -496,6 +500,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_MULTI:
+			if self.numberOfRows:
+				config.epgselection.multi_itemsperpage.default = self.numberOfRows
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselection.multi_itemsperpage.value
 			else:
@@ -508,6 +514,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
 		elif self.type == EPG_TYPE_INFOBAR:
+			if self.numberOfRows:
+				config.epgselection.infobar_itemsperpage.default = self.numberOfRows
 			if self.listHeight > 0:
 				itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.value
 			else:
@@ -1199,6 +1207,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			cnt += 1
 		self.l.setList(self.list)
 		self.selectionChanged()
+
+	def getCurrentCursorLocation(self):
+		return self.time_base
 
 	def fillGraphEPG(self, services, stime=None):
 		if (self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH)) and not self.graphicsloaded:

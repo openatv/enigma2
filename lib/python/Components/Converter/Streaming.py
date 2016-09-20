@@ -19,7 +19,7 @@ class Streaming(Converter):
 		s = streaming and streaming.getStreamingData()
 
 		if s is None or not any(s):
-			err = service.getError()
+			err = hasattr(service, 'getError') and service.getError()
 			if err:
 				return "-SERVICE ERROR:%d\n" % err
 			else:
