@@ -202,7 +202,8 @@ class MovieList(GUIComponent):
 		self.iconsWidth = 22
 		self.trashShift = 1
 		self.dirShift = 1
-		self.dateWidth = 150
+		self.dateWidth = None  # Defaults to being calculated from font size
+		self.dateWidthScale = 9.0  # Over-ridden by self.dateWidth if set
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -229,6 +230,17 @@ class MovieList(GUIComponent):
 		self.runningTimers = {}
 		self.updateRecordings()
 		self.updatePlayPosCache()
+
+	@property
+	def dateWidth(self):
+		if self._dateWidth is None:
+			return int(((self.fontSize - 3) + config.movielist.fontsize.value) * self.dateWidthScale)
+		else:
+			return self._dateWidth
+
+	@dateWidth.setter
+	def dateWidth(self, val):
+		self._dateWidth = val
 
 	def get_playInBackground(self):
 		return self._playInBackground
@@ -334,6 +346,8 @@ class MovieList(GUIComponent):
 			self.spaceRight = int(value)
 		def dateWidth(value):
 			self.dateWidth = int(value)
+		def dateWidthScale(value):
+			self.dateWidthScale = float(value)
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
@@ -377,6 +391,7 @@ class MovieList(GUIComponent):
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
+		ih = self.itemHeight
 		pathName = serviceref.getPath()
 		res = [None]
 
@@ -390,12 +405,12 @@ class MovieList(GUIComponent):
 				txt = os.path.basename(os.path.normpath(pathName))
 			if txt == ".Trash":
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.trashShift), size=(iconSize,self.iconTrash.size().height()), png=self.iconTrash))
-				res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = _("Trash")))
-				res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trash")))
+				res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = _("Trash")))
+				res.append(MultiContentEntryText(pos=(width-dateWidth-r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trash")))
 				return res
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.dirShift), size=(iconSize,iconSize), png=self.iconFolder))
-			res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-166, self.itemHeight), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = txt))
-			res.append(MultiContentEntryText(pos=(width-145-r, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
+			res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = txt))
+			res.append(MultiContentEntryText(pos=(width-dateWidth-r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 			return res
 		if data == -1 or data is None:
 			data = MovieListData()
@@ -465,7 +480,6 @@ class MovieList(GUIComponent):
 		if begin > 0:
 			begin_string = ' '.join(FuzzyTime(begin, inPast=True))
 
-		ih = self.itemHeight
 		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
 		res.append(MultiContentEntryText(pos=(width-dateWidth-r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
 		return res
