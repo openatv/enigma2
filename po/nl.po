@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-15 19:57+0200\n"
-"PO-Revision-Date: 2016-09-16 07:25+0200\n"
+"POT-Creation-Date: 2016-09-20 08:46+0200\n"
+"PO-Revision-Date: 2016-09-21 08:00+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -422,6 +422,9 @@ msgstr "1080p 50Hz"
 msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
+msgid "128"
+msgstr "128"
+
 msgid "12V output"
 msgstr "12V uitgang"
 
@@ -430,6 +433,9 @@ msgstr "12V uitgang"
 
 msgid "13 V"
 msgstr "13 V"
+
+msgid "16"
+msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -482,6 +488,9 @@ msgstr "24"
 msgid "25"
 msgstr "25"
 
+msgid "256"
+msgstr "256"
+
 msgid "29.97"
 msgstr "29.97"
 
@@ -490,6 +499,9 @@ msgstr "2X"
 
 msgid "30"
 msgstr "30"
+
+msgid "32"
+msgstr "32"
 
 msgid "3D Mode"
 msgstr "3D modus"
@@ -520,6 +532,9 @@ msgstr "4:3 pan & scan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "64"
+msgstr "64"
 
 msgid "720p"
 msgstr "720p"
@@ -2485,6 +2500,9 @@ msgstr "DTS"
 msgid "DUAL LAYER DVD"
 msgstr "Dubbellaags DVD"
 
+msgid "DVB CI Delay"
+msgstr "DVB CI vertraging"
+
 msgid "DVB subtitle black transparency"
 msgstr "DVB ondertitels zwart transparantie"
 
@@ -3234,14 +3252,20 @@ msgstr "Enimga2 veranderingen"
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 skinselectie"
 
+msgid "Enter PIN"
+msgstr "Voer PIN in."
+
 msgid "Enter main menu..."
 msgstr "Ga naar hoofdmenu..."
+
+msgid "Enter persistent PIN code"
+msgstr "Voer blijvende PIN in"
 
 msgid "Enter pin code"
 msgstr "Voer pincode in"
 
 msgid "Enter the service pin"
-msgstr "Voer de zender pincode in"
+msgstr "Voer de zender-PIN in"
 
 msgid "Enter your e-mail address to send a copy of the log to."
 msgstr "Voer uw e-mailadres in om een kopie van de logs te kunnen ontvangen."
@@ -6418,6 +6442,9 @@ msgstr "Lang-rood"
 msgid "Reduce time scale"
 msgstr "Verklein tijdschaal"
 
+msgid "Reenter PIN"
+msgstr "Voer PIN nogmaals in."
+
 #, python-format
 msgid ""
 "Reflash in progress\n"
@@ -6448,6 +6475,9 @@ msgstr "Regio"
 
 msgid "Relative"
 msgstr "Relatief"
+
+msgid "Release notes"
+msgstr "Release notes"
 
 msgid "Reload"
 msgstr "Herlaad"
@@ -6622,6 +6652,9 @@ msgstr "Herstel"
 
 msgid "Reset and renumerate title names"
 msgstr "Reset en hernummertitels"
+
+msgid "Reset persistent PIN code"
+msgstr "Voer een nieuwe PIN in."
 
 msgid "Reset playback position"
 msgstr "Zet afspeelpunt terug naar begin"
@@ -7241,6 +7274,9 @@ msgstr "Stel deze interface in als standaard"
 msgid "Set limits"
 msgstr "Limieten instellen"
 
+msgid "Set pin code persistent"
+msgstr "Make the PIN blijvend."
+
 msgid "Set startup service"
 msgstr "kanaal kiezen bij opstarten"
 
@@ -7409,6 +7445,9 @@ msgstr "Toon AutoTimers"
 
 msgid "Show CCcam Info in extensions?"
 msgstr "Toon CCcam in extensiemenu?"
+
+msgid "Show CI messages"
+msgstr "Toon CI-meldingen"
 
 msgid "Show Clients"
 msgstr "Toon klanten"
@@ -7865,6 +7904,9 @@ msgstr "klein"
 
 msgid "Small progress"
 msgstr "Kleine voortgang"
+
+msgid "Smartcard PIN"
+msgstr "Smartcard PIN"
 
 msgid "Smooth"
 msgstr "Glad"
@@ -8520,6 +8562,9 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "De pincode is succesvol gewijzigd."
 
+msgid "The PIN code has been saved successfully."
+msgstr "De PIN is succesvol opgeslagen."
+
 msgid "The PIN codes you entered are different."
 msgstr "De ingevoerde pincodes komen niet overeen."
 
@@ -8569,6 +8614,9 @@ msgstr "De ingevoerde pincode is onjuist."
 #, python-format
 msgid "The results have been written to %s."
 msgstr "De resultaten zijn bewaard op %s."
+
+msgid "The saved PIN was cleared."
+msgstr "De opgeslagen PIN is verwijderd."
 
 msgid "The service has been added to the favourites."
 msgstr "De zender is toegevoegd aan de favorieten."
@@ -10072,6 +10120,10 @@ msgstr "Met deze optie kunt u systeemtaken in de extensielijst (onder de bauwe k
 
 msgid "Without popup"
 msgstr "Zonder pop-up"
+
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr "Wilt u de ingegeven PIN %s blijvend maken?"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
@@ -11664,23 +11716,8 @@ msgstr "zapte"
 #~ msgid "%Y-%m-%d"
 #~ msgstr "%Y-%m-%d"
 
-#~ msgid "128"
-#~ msgstr "128"
-
-#~ msgid "16"
-#~ msgstr "16"
-
-#~ msgid "256"
-#~ msgstr "256"
-
-#~ msgid "32"
-#~ msgstr "32"
-
 #~ msgid "3d mode"
 #~ msgstr "3d mode"
-
-#~ msgid "64"
-#~ msgstr "64"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 #~ msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
@@ -11777,9 +11814,6 @@ msgstr "zapte"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Huidig geïnstalleerd image"
-
-#~ msgid "DVB CI Delay"
-#~ msgstr "DVB CI vertraging"
 
 #~ msgid "DVB_C"
 #~ msgstr "DVB_C"
@@ -12010,9 +12044,6 @@ msgstr "zapte"
 
 #~ msgid "Prepare another USB stick for image flashing"
 #~ msgstr "Maak een andere USB-stick klaar voor het flashen"
-
-#~ msgid "Re-enter new PIN"
-#~ msgstr "Voer nieuwe pincode nogmaals in."
 
 #~ msgid "Reception Settings"
 #~ msgstr "Ontvangstinstellingen"
