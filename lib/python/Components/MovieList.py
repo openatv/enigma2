@@ -180,6 +180,9 @@ class MovieList(GUIComponent):
 		self.pbarColour = 0x206333
 		self.pbarColourSeen = 0xffc71d
 		self.pbarColourRec = 0xff001d
+		self.pbarColourSel = 0x20a333
+		self.pbarColourSeenSel = 0xffc71d
+		self.pbarColourRecSel = 0xff001d
 		self.partIconeShift = 5
 		self.spaceRight = 2
 		self.spaceIconeText = 2
@@ -298,6 +301,12 @@ class MovieList(GUIComponent):
 			self.pbarColourSeen = skin.parseColor(value).argb()
 		def pbarColourRec(value):
 			self.pbarColourRec = skin.parseColor(value).argb()
+		def pbarColourSel(value):
+			self.pbarColourSel = skin.parseColor(value).argb()
+		def pbarColourSeenSel(value):
+			self.pbarColourSeenSel = skin.parseColor(value).argb()
+		def pbarColourRecSel(value):
+			self.pbarColourRecSel = skin.parseColor(value).argb()
 		def partIconeShift(value):
 			self.partIconeShift = int(value)
 		def spaceIconeText(value):
@@ -398,8 +407,10 @@ class MovieList(GUIComponent):
 					data.part = 100
 					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 						data.partcol = self.pbarColourSeen
+						data.partcolsel = self.pbarColourSeenSel
 					else:
 						data.partcol = self.pbarColourRec
+						data.partcolsel = self.pbarColourRecSel
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
@@ -413,10 +424,12 @@ class MovieList(GUIComponent):
 				elif switch in ('p', 's'):
 					if data.part is not None and data.part > 0:
 						data.partcol = self.pbarColourSeen
+						data.partcolsel = self.pbarColourSeenSel
 					else:
 						if config.usage.movielist_unseen.value:
 							data.part = 100
 							data.partcol = self.pbarColour
+							data.partcolsel = self.pbarColourSel
 		len = data.len
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
@@ -431,7 +444,7 @@ class MovieList(GUIComponent):
 				if switch == 'p':
 					iconSize = self.pbarLargeWidth
 				if hasattr(data, 'part') and data.part > 0:
-					res.append(MultiContentEntryProgress(pos=(0,self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0,self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 				elif hasattr(data, 'icon') and data.icon is not None:
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,self.pbarShift), size=(iconSize, self.pbarHeight), png=data.icon))
 
