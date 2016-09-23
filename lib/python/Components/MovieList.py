@@ -187,7 +187,10 @@ class MovieList(GUIComponent):
 		self.fontSize = 20
 		self.listHeight = None
 		self.listWidth = None
-		self.pbarShift = 5
+		# pbarShift, trashShift, dirShift and dateWidth
+		# are properties that return their calculated size
+		# if set to None
+		self.pbarShift = None  # Defaults to being calculated from bar height
 		self.pbarHeight = 16
 		self.pbarLargeWidth = 48
 		self.pbarColour = 0x206333
@@ -196,12 +199,16 @@ class MovieList(GUIComponent):
 		self.pbarColourSel = 0x20a333
 		self.pbarColourSeenSel = 0xffc71d
 		self.pbarColourRecSel = 0xff001d
-		self.partIconeShift = 5
+		# Unlike pbarShift and trashShift, etc below,
+		# partIconeShift is an ordinary attribute, because
+		# its "None" value is calculated per row in the list
+		self.partIconeShift = None  # Defaults to being calculated from icon height
 		self.spaceRight = 2
 		self.spaceIconeText = 2
 		self.iconsWidth = 22
-		self.trashShift = 1
-		self.dirShift = 1
+
+		self.trashShift = None  # Defaults to being calculated from trash icon height
+		self.dirShift = None  # Defaults to being calculated from directory icon height
 		self.dateWidth = None  # Defaults to being calculated from font size
 		self.dateWidthScale = 9.0  # Over-ridden by self.dateWidth if set
 		self.reloadDelayTimer = None
@@ -241,6 +248,39 @@ class MovieList(GUIComponent):
 	@dateWidth.setter
 	def dateWidth(self, val):
 		self._dateWidth = val
+
+	@property
+	def trashShift(self):
+		if self._trashShift is None:
+			return max(0, int((self.itemHeight - self.iconTrash.size().height() + 1.0) / 2))
+		else:
+			return self._trashShift
+
+	@trashShift.setter
+	def trashShift(self, val):
+		self._trashShift = val
+
+	@property
+	def dirShift(self):
+		if self._dirShift is None:
+			return max(0, int((self.itemHeight - self.iconFolder.size().height() + 1.0) / 2))
+		else:
+			return self._dirShift
+
+	@dirShift.setter
+	def dirShift(self, val):
+		self._dirShift = val
+
+	@property
+	def pbarShift(self):
+		if self._pbarShift is None:
+			return max(0, int((self.itemHeight - self.pbarHeight) / 2))
+		else:
+			return self._pbarShift
+
+	@pbarShift.setter
+	def pbarShift(self, val):
+		self._pbarShift = val
 
 	def get_playInBackground(self):
 		return self._playInBackground
@@ -465,8 +505,12 @@ class MovieList(GUIComponent):
 			len = ""
 
 		if data:
-			pos = (0,self.partIconeShift)
 			if switch == 'i' and hasattr(data, 'icon') and data.icon is not None:
+				if self.partIconeShift is None:
+					partIconeShift = max(0, int((ih - data.icon.size().height()) / 2))
+				else:
+					partIconeShift = self.partIconeShift
+				pos = (0,partIconeShift)
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=pos, size=(iconSize,data.icon.size().height()), png=data.icon))
 			elif switch in ('p', 's'):
 				if switch == 'p':
