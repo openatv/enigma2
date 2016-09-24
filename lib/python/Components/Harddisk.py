@@ -3,7 +3,7 @@ import time
 from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
-from boxbranding import getBoxType
+from boxbranding import getMachineBuild
 import Task
 from About import getModelString
 from boxbranding import getMachineName
@@ -768,10 +768,7 @@ class HarddiskManager:
 				dev = int(readFile(devpath + "/dev").split(':')[0])
 			else:
 				dev = None
-			if getBoxType() == 'vusolo4k':
-				devlist = [1, 7, 31, 253, 179] # ram, loop, mtdblock, romblock, mmc
-			else:
-				devlist = [1, 7, 31, 253] # ram, loop, mtdblock, romblock
+			devlist = [1, 7, 31, 253, 179] # ram, loop, mtdblock, romblock, mmc
 			if dev in devlist:
 				blacklisted = True
 			if blockdev[0:2] == 'sr':

@@ -224,7 +224,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			satfinder_nim_list.append((str(n.slot), n.friendly_full_description))
 		self.satfinder_scan_nims = ConfigSelection(choices = satfinder_nim_list)
 		if self.frontendData is not None and len(satfinder_nim_list) > 0: # open the plugin with the currently active NIM as default
-			active_nim = self.frontendData.get("tuner_number", satfinder_nim_list[0][0])
+			active_nim = self.frontendData.get("tuner_number", int(satfinder_nim_list[0][0]))
 			if not nimmanager.nim_slots[active_nim].isFBCLink():
 				self.satfinder_scan_nims.setValue(str(active_nim))
 

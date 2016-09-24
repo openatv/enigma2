@@ -60,10 +60,22 @@ class NetworkSummary(Screen):
 		self["desc"].text = desc
 
 class NetworkAdapterSelection(Screen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Network Setup"))
+		screentitle = _("Network Setup")
+		self.menu_path = menu_path
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 
 		self.wlan_errortext = _("No working wireless network adapter found.\nPlease verify that you have attached a compatible WLAN device and your network is configured correctly.")
 		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
@@ -225,7 +237,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 	def okbuttonClick(self):
 		selection = self["list"].getCurrent()
 		if selection is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0], self.menu_path)
 
 	def AdapterSetupClosed(self, *ret):
 		self.adapters = self.getAdapters()
@@ -269,10 +281,21 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 
 
 class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Nameserver settings"))
+		screentitle = _("Nameserver settings")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.backupNameserverList = iNetwork.getNameserverList()[:]
 		print "[NameserverSetup] backup-list:", self.backupNameserverList
 
@@ -343,10 +366,22 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 
 class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("MAC address settings"))
+		screentitle = _("MAC address settings")
+		self.menu_path = menu_path
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.curMac = self.getmac('eth0')
 		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
 
@@ -406,17 +441,35 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session, networkinfo, essid=None):
+	def __init__(self, session, networkinfo=None, essid=None, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Adapter settings"))
+
 		self.session = session
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
 			self.essid = networkinfo[1]
+			if len(networkinfo) > 2:
+				self.menu_path = networkinfo[2]
+			else:
+				self.menu_path = ""
 		else:
 			self.iface = networkinfo
 			self.essid = essid
+			self.menu_path = menu_path
+
+		screentitle = _("Adapter settings")
+		if config.usage.show_menupath.value == 'large':
+			self.menu_path += screentitle
+			title = self.menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 
 		self.extended = None
 		self.applyConfigRef = None
@@ -436,6 +489,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session)
+
+		Screen.setTitle(self, title)
+
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
@@ -603,7 +659,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["config"].l.setList(self.list)
 
 	def KeyBlue(self):
-		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup)
+		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup, self.menu_path)
 
 	def newConfig(self):
 		if self["config"].getCurrent() == self.InterfaceEntry:
@@ -777,10 +833,23 @@ def SubNetworkMenuEntryComponent(name, item):
 
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
-	def __init__(self, session, iface):
+	def __init__(self, session, iface=None, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Network Setup"))
+		screentitle = _("Network Setup")
+		self.menu_path = menu_path
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+
 		self.session = session
 		self.iface = iface
 		self.restartLanRef = None
@@ -795,6 +864,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["Statustext"] = StaticText()
 		self["statuspic"] = MultiPixmap()
 		self["statuspic"].hide()
+		self["devicepic"] = MultiPixmap()
 
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.reboottext = _("Your %s %s will restart after pressing OK on your remote control." % (getMachineBrand(), getMachineName()))
@@ -816,7 +886,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self.selectionChanged not in self["menulist"].onSelectionChanged:
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
-
+		self.onLayoutFinish.append(self.updateStatusbar)
 	def queryWirelessDevice(self, iface):
 		try:
 			from pythonwifi.iwlibs import Wireless
@@ -846,17 +916,17 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.session.open(MessageBox, self.missingwlanplugintxt, type=MessageBox.TYPE_INFO, timeout=10)
 				else:
 					if self.queryWirelessDevice(self.iface):
-						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface)
+						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, None, self.menu_path)
 					else:
 						self.showErrorMessage()  # Display Wlan not available Message
 			else:
-				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface)
+				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, None, self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'test':
-			self.session.open(NetworkAdapterTest, self.iface)
+			self.session.open(NetworkAdapterTest,self.iface,self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'dns':
-			self.session.open(NameserverSetup)
+			self.session.open(NameserverSetup,self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'mac':
-			self.session.open(NetworkMacSetup)
+			self.session.open(NetworkMacSetup,self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
@@ -940,6 +1010,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["Statustext"].setText(_("Link:"))
 
 		if iNetwork.isWirelessInterface(self.iface):
+			self["devicepic"].setPixmapNum(1)
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except:
@@ -949,6 +1020,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				iStatus.getDataForInterface(self.iface, self.getInfoCB)
 		else:
 			iNetwork.getLinkState(self.iface, self.dataAvail)
+			self["devicepic"].setPixmapNum(0)
+		self["devicepic"].show()
 
 	def doNothing(self):
 		pass
@@ -1015,7 +1088,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def WlanScanClosed(self, *ret):
 		if ret[0] is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, ret[0])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, ret[0], self.menu_path)
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
@@ -1099,9 +1172,21 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 
 class NetworkAdapterTest(Screen):
-	def __init__(self, session, iface):
+	def __init__(self, session, iface=None, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Network Test"))
+		screentitle = _("Network Test")
+		self.menu_path = menu_path
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.iface = iface
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
 		self.setLabels()
@@ -1350,7 +1435,7 @@ class NetworkAdapterTest(Screen):
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 6:  # Edit Settings
-			self.session.open(AdapterSetup, self.iface)
+			self.session.open(AdapterSetup, self.iface, None, self.menu_path)
 
 	def KeyYellow(self):
 		self.nextstep = 0
@@ -1515,11 +1600,22 @@ class NetworkAdapterTest(Screen):
 
 
 class NetworkMountsMenu(Screen, HelpableScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Mounts Setup"))
+		screentitle = _("Mounts Setup")
 		self.skinName = ["NetworkMountsMenu", "AdapterSetupConfiguration"]
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.session = session
 		self.onChangedEntry = []
 		self.mainmenu = self.genMainMenu()
@@ -1596,9 +1692,20 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 		return menu
 
 class NetworkAfp(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("AFP Setup"))
+		screentitle = _("AFP Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -1728,9 +1835,20 @@ class NetworkAfp(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkFtp(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("FTP Setup"))
+		screentitle = _("FTP Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -1807,9 +1925,20 @@ class NetworkFtp(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkNfs(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("NFS Setup"))
+		screentitle = _("NFS Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -1936,9 +2065,20 @@ class NetworkNfs(Screen):
 
 
 class NetworkOpenvpn(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("OpenVpn Setup"))
+		screentitle = _("OpenVpn Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -2069,9 +2209,20 @@ class NetworkOpenvpn(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkVpnLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("OpenVpn Log"))
+		screentitle = _("Log")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
@@ -2093,10 +2244,21 @@ class NetworkVpnLog(Screen):
 		self['infotext'].setText(strview)
 
 class NetworkSamba(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Samba Setup"))
+		screentitle = _("Samba Setup")
 		self.skinName = ["NetworkSamba", "NetworkServiceSetup"]
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2129,20 +2291,15 @@ class NetworkSamba(Screen):
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			self.session.openWithCallback(self.QuestionCallback, MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.InstallPackage, MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
-	def QuestionCallback(self, val):
-		if val:
-			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Do you want to install the samba client aswell?\nThis will allow you to mount your windows shares on this device.'), MessageBox.TYPE_YESNO)
-		else:
-			self.close()
-
 	def InstallPackage(self, val):
 		if val:
-			self.service_name += ' packagegroup-base-smbfs-client'
-		self.doInstall(self.installComplete, self.service_name)
+			self.doInstall(self.installComplete, self.service_name)
+		else:
+			self.close()
 
 	def InstallPackageFailed(self, val):
 		self.close()
@@ -2243,9 +2400,20 @@ class NetworkSamba(Screen):
 		self.session.openWithCallback(self.updateService, NetworkSambaSetup)
 
 class NetworkSambaLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Samba Log"))
+		screentitle = _("Log")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
@@ -2352,9 +2520,20 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 		self.close()
 
 class NetworkTelnet(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Telnet Setup"))
+		screentitle = _("Telnet Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -2431,9 +2610,20 @@ class NetworkTelnet(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 class NetworkInadyn(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Inadyn Setup"))
+		screentitle = _("Inadyn Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.onChangedEntry = []
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -2612,12 +2802,23 @@ class NetworkInadyn(Screen):
 		self.session.open(NetworkInadynLog)
 
 class NetworkInadynSetup(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Settings")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
-		Screen.setTitle(self, _("Inadyn Setup"))
 		self['key_red'] = Label(_("Exit"))
 		self['key_green'] = Label(_("Save"))
 		self['actions'] = ActionMap(['SetupActions'], {
@@ -2736,9 +2937,20 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.close()
 
 class NetworkInadynLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Inadyn Log"))
+		screentitle = _("Log")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self['infotext'] = ScrollLabel('')
 		self['actions'] = ActionMap(['WizardActions'], {
 			'ok': self.close,
@@ -2757,9 +2969,20 @@ class NetworkInadynLog(Screen):
 config.networkushare = ConfigSubsection()
 config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkuShare(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("uShare Setup"))
+		screentitle = _("uShare Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.onChangedEntry = []
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -2974,9 +3197,20 @@ class NetworkuShare(Screen):
 		self.session.open(NetworkuShareLog)
 
 class NetworkuShareSetup(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("uShare Setup"))
+		screentitle = _("Settings")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
@@ -3137,9 +3371,20 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.updateList, uShareSelection)
 
 class uShareSelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Select folders"))
+		screentitle = _("Select folders")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
@@ -3212,10 +3457,21 @@ class uShareSelection(Screen):
 			self.filelist.descent()
 
 class NetworkuShareLog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Log")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
-		Screen.setTitle(self, _("uShare Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions'], {
@@ -3241,9 +3497,20 @@ config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=[]))
 MINIDLNA_CONF = '/etc/minidlna.conf'
 
 class NetworkMiniDLNA(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("MiniDLNA Setup"))
+		screentitle = _("MiniDLNA Setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.onChangedEntry = []
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -3447,9 +3714,20 @@ class NetworkMiniDLNA(Screen):
 		self.session.open(NetworkMiniDLNALog)
 
 class NetworkMiniDLNASetup(Screen, ConfigListScreen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("MiniDLNA Setup"))
+		screentitle = _("Settings")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
@@ -3606,9 +3884,20 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.updateList, MiniDLNASelection)
 
 class MiniDLNASelection(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Select folders"))
+		screentitle = _("Select folders")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "uShareSelection"
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -3685,10 +3974,21 @@ class MiniDLNASelection(Screen):
 			self.filelist.descent()
 
 class NetworkMiniDLNALog(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
+		screentitle = _("Log")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 		self.skinName = "NetworkInadynLog"
-		Screen.setTitle(self, _("MiniDLNA Log"))
 		self['infotext'] = ScrollLabel('')
 		self.Console = Console()
 		self['actions'] = ActionMap(['WizardActions'], {

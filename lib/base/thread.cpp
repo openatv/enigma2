@@ -62,7 +62,8 @@ int eThread::runAsync(int prio, int policy)
 	}
 
 	if (the_thread) {
-		eDebug("[eThread] old thread joined %d", pthread_join(the_thread, 0));
+		int ret = pthread_join(the_thread, 0);
+		eDebug("[eThread] old thread joined %d", ret);
 		the_thread = 0;
 	}
 

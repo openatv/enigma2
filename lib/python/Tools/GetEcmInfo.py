@@ -136,6 +136,8 @@ class GetEcmInfo:
 					protocol = _('Protocol:') + ' '
 					if info.get('protocol', None):
 						protocol += info.get('protocol', '')
+					elif info.get('using', None):
+						protocol += info.get('using', '')
 
 					hops = _('Hops:') + ' '
 					if info.get('hops', None):

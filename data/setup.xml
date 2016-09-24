@@ -27,10 +27,10 @@
 		<item level="2" text="Enable timer conflict detection" description="When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 		<item level="2" text="Force LNB Power" description="When enabled the LNB power will not be switched off in standby" requires="HasForceLNBOn">config.misc.forceLnbPower</item>
 		<item level="2" text="Force ToneBurst" description="When enabled the LNB toneburst will be forced" requires="HasForceToneburst">config.misc.forceToneBurst</item>
+		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
 		<item level="2" text="Descramble sending http streams" description="When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on.">config.streaming.descramble</item>
 		<item level="2" text="Descramble receiving http streams" description="When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off.">config.streaming.descramble_client</item>
 		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
-		<item level="2" text="Load unlinked userbouquets" description="When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 	</setup>
 	<setup key="userinterface" title="GUI settings">
 		<item level="0" text="Setup mode" description="Choose the display level for menus/settings. 'Expert' level shows all items. 'Intermediate' level shows many advanced items. 'Simple' level shows minimal items.">config.usage.setup_level</item>
@@ -62,6 +62,7 @@
 <!-- 		<item level="2" text="Show crypto info in infobar" description="Show encryption info in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item> -->
 		<item level="2" text="Infobar frontend data source" description="Choose the data source for info shown on infobars. 'Settings' shows stored settings. 'Tuner' shows info reported by the tuner.">config.usage.infobar_frontend_source</item>
 <!-- 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to show the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item> -->
+		<item level="1" text="Show full menu path" description="This option allows you to show the full menu path">config.usage.show_menupath</item>
 <!-- 		<item level="1" text="Sort setting screens alphabetically" description="This option allows you to disable sorting of the option in setting screens">config.usage.sort_settings</item> -->
 <!-- 		<item level="1" text="Sort menu screens alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item> -->
 <!-- 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item> -->
@@ -79,7 +80,6 @@
 		<item level="1" text="Channel list on mode change" description="Enable to display the channel list when switching between radio and TV modes.">config.usage.show_servicelist</item>
 		<item level="1" text="Channel list cursor behaviour" description="Configure cursor behaviour in the channel list. You can remain on the current service or can immediately select channels as you move the cursor up/down the list. Press the B+/B- buttons to revert to the previous channel.">config.usage.servicelist_cursor_behavior</item>
 		<item level="1" text="Enable multiple bouquets" description="Services can be grouped in bouquets (favourite channel lists). Enable this option to use more than one bouquet.">config.usage.multibouquet</item>
-		<item level="2" text="Enable unlinked bouquets" description="When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Enable panic button" description="When enabled, press the '0' button to zap to the first channel in your first bouquet and to delete your zap history.">config.usage.panicbutton</item>
 		<item level="1" text="Number press action" description="Choose 'Alpha search' or 'Number search' to use the number pad for SMS style searches (ABC2 for 'Alpha' and 2ABC for 'Number') for the next service. Choose 'Quick actions' to perform actions in the channel list (see HELP screen for details).">config.usage.show_channel_jump_in_servicelist</item>
 		<item level="0" text="Show event-progress in channel list" description="Set the type of progress indicator shown in the channel list.">config.usage.show_event_progress_in_servicelist</item>
@@ -93,6 +93,7 @@
 		<item level="1" text="Service number font size" description="Set the font size relative to the skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.usage.servicenum_fontsize</item>
 		<item level="1" text="Service name font size" description="Set the font size relative to the skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.usage.servicename_fontsize</item>
 		<item level="1" text="Service info font size" description="Set the font size relative to the skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.usage.serviceinfo_fontsize</item>
+		<item level="2" text="Load unlinked userbouquets" description="When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Determine channel changing behaviour.">config.misc.zapmode</item>
 	</setup>
 	<setup key="epgsettings" title="EPG settings">
@@ -212,6 +213,8 @@
 		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="LcdLiveTV">config.lcd.showTv</item>
 		<item level="0" text="Set frame rate for MiniTV" description="A lower frame rate reduces CPU load." requires="LCDMiniTV">config.lcd.minitvfps</item>
 		<item level="0" text="Brightness (Normal)" description="Set the brightness level of the front panel display during normal operation.">config.lcd.bright</item>
+		<item level="0" text="Brightness (Dimmed)" description="Configure the brightness level of the front panel display for dimmed operation.">config.lcd.dimbright</item>
+		<item level="0" text="Dim delay" description="Dim the LCD after specified time.">config.lcd.dimdelay</item>
 		<item level="0" text="Brightness (Standby)" description="Set the brightness level of the front panel display in standby mode.">config.lcd.standby</item>
 		<item level="0" requires="LcdDisplay" text="Contrast" description="Set the contrast level of the front panel display.">config.lcd.contrast</item>
 		<item level="0" requires="LEDButtons" text="LED (Normal)" description="Set LED brightness level during normal operation.">config.lcd.ledbrightness</item>

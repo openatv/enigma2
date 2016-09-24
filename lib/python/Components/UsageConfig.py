@@ -93,6 +93,7 @@ def InitUsageConfig():
 
 	config.usage.show_picon_bkgrn = ConfigSelection(default="transparent", choices=[("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 
+	config.usage.show_menupath = ConfigSelection(default = "small", choices = [("off", _("None")), ("small", _("Small")), ("large", _("Large"))])
 	config.usage.show_spinner = ConfigYesNo(default=True)
 	config.usage.enable_tt_caching = ConfigYesNo(default=True)
 	config.usage.sort_settings = ConfigYesNo(default=False)
@@ -166,9 +167,16 @@ def InitUsageConfig():
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
 
+#GML:1
+	config.usage.trashsort_deltime = ConfigSelection(default = "no", choices = [
+		("no", _("no")),
+		("show record time", _("Yes, show record time")),
+		("show delete time", _("Yes, show delete time"))])
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
-	config.usage.movielist_trashcan_days = ConfigSelectionNumber(default=8, min=1, max=31, stepwidth=1, wraparound=True)
+
+#GML:2
+	config.usage.movielist_trashcan_days = ConfigSelectionNumber(default=8, min=0, max=31, stepwidth=1, wraparound=True)
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
 	config.usage.on_movie_start = ConfigSelection(default="ask yes", choices=[
 		("ask yes", _("Ask user (with default as 'yes')")),
@@ -289,7 +297,7 @@ def InitUsageConfig():
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
-	config.usage.serviceitems_per_page = ConfigSelectionNumber(default=10, stepwidth=1, min=3, max=40, wraparound=True)
+	config.usage.serviceitems_per_page = ConfigSelectionNumber(default=10, stepwidth=1, min=1, max=40, wraparound=True)
 	config.usage.show_servicelist = ConfigYesNo(default=True)
 	config.usage.servicelist_mode = ConfigSelection(default="standard", choices=[
 		("standard", _("Standard")),
@@ -623,13 +631,13 @@ def InitUsageConfig():
 	if SystemInfo["HasForceLNBOn"]:
 		def forceLNBPowerChanged(configElement):
 			open(SystemInfo["HasForceLNBOn"], "w").write(configElement.value)
-		config.misc.forceLnbPower = ConfigSelection(default = "off", choices = [ ("on", _("Yes")), ("off", _("No"))] )
+		config.misc.forceLnbPower = ConfigSelection(default = "on", choices = [ ("on", _("Yes")), ("off", _("No"))] )
 		config.misc.forceLnbPower.addNotifier(forceLNBPowerChanged)
 
 	if SystemInfo["HasForceToneburst"]:
 		def forceToneBurstChanged(configElement):
 			open(SystemInfo["HasForceToneburst"], "w").write(configElement.value)
-		config.misc.forceToneBurst = ConfigSelection(default = "disable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
+		config.misc.forceToneBurst = ConfigSelection(default = "enable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
 		config.misc.forceToneBurst.addNotifier(forceToneBurstChanged)
 
 	config.subtitles = ConfigSubsection()
@@ -803,13 +811,13 @@ def InitUsageConfig():
 	config.epgselection.infobar_timelinefs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.infobar_timeline24h = ConfigYesNo(default=True)
 	config.epgselection.infobar_servicewidth = ConfigSelectionNumber(default=200, stepwidth=1, min=70, max=500, wraparound=True)
-	config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=70, max=500, wraparound=True)
+	config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
 	config.epgselection.infobar_infowidth = ConfigSelectionNumber(default=50, stepwidth=25, min=0, max=150, wraparound=True)
 	config.epgselection.enhanced_preview_mode = ConfigYesNo(default=True)
 	config.epgselection.enhanced_ok = ConfigSelection(default="Zap", choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))])
 	config.epgselection.enhanced_oklong = ConfigSelection(default="Zap + Exit", choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))])
 	config.epgselection.enhanced_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
-	config.epgselection.enhanced_itemsperpage = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 3, max = 40, wraparound = True)
+	config.epgselection.enhanced_itemsperpage = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 1, max = 40, wraparound = True)
 	config.epgselection.multi_showbouquet = ConfigYesNo(default=False)
 	config.epgselection.multi_preview_mode = ConfigYesNo(default=True)
 	config.epgselection.multi_ok = ConfigSelection(default="Zap", choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))])
@@ -828,7 +836,7 @@ def InitUsageConfig():
 	config.epgselection.graph_prevtimeperiod = ConfigSelection(default="180", choices=[("60", _("%d minutes") % 60), ("90", _("%d minutes") % 90), ("120", _("%d minutes") % 120), ("150", _("%d minutes") % 150), ("180", _("%d minutes") % 180), ("210", _("%d minutes") % 210), ("240", _("%d minutes") % 240), ("270", _("%d minutes") % 270), ("300", _("%d minutes") % 300)])
 	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default=00, stepwidth=1, min=00, max=59, wraparound=True)
-	config.epgselection.graph_servicetitle_mode = ConfigSelection(default="picon+servicename", choices=[("servicename", _("Service Name")), ("picon", _("Picon")), ("picon+servicename", _("Picon and Service Name"))])
+	config.epgselection.graph_servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [("servicename", _("Service Name")), ("picon", _("Picon")), ("picon+servicename", _("Picon and Service Name")), ("servicenumber+servicename", _("Service Number and Service Name")), ("servicenumber+picon+servicename", _("Service Number, Picon and Service Name"))])
 	config.epgselection.graph_channel1 = ConfigYesNo(default=False)
 	config.epgselection.graph_servfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.graph_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
@@ -838,7 +846,7 @@ def InitUsageConfig():
 	config.epgselection.graph_pig = ConfigYesNo(default=True)
 	config.epgselection.graph_heightswitch = NoSave(ConfigYesNo(default=False))
 	config.epgselection.graph_servicewidth = ConfigSelectionNumber(default=250, stepwidth=1, min=70, max=500, wraparound=True)
-	config.epgselection.graph_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=70, max=500, wraparound=True)
+	config.epgselection.graph_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
 	config.epgselection.graph_infowidth = ConfigSelectionNumber(default=50, stepwidth=25, min=0, max=150, wraparound=True)
 
 	if not os.path.exists('/usr/emu_scripts/'):
