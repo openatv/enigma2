@@ -4,10 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-06 16:12+0100\n"
-"PO-Revision-Date: 2016-05-11 14:53+0200\n"
+"POT-Creation-Date: 2016-09-05 14:45+0100\n"
+"PO-Revision-Date: 2016-09-07 13:23+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
-"Language-Team: AndyBlac/Timo/Samzan\n"
+"Language-Team: AndyBlac/timoj/Kojo/Samzam\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,13 +15,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.7\n"
 
+msgid ""
+"\n"
+"(DeepStandby request changed to Standby owing to there being streaming "
+"clients.)"
+msgstr ""
+"\n"
+"(Pyyntö virransäästötilasta vaihdettu valmiustilaksi suoratoistoyhteyksien "
+"takia)"
+
 #
 msgid ""
 "\n"
 "Advanced options and settings."
 msgstr ""
 "\n"
-"Laajennetut valinnat ja asetukset."
+"Laajat valinnat ja asetukset."
 
 #
 msgid ""
@@ -46,7 +55,7 @@ msgid ""
 "Edit the upgrade source address."
 msgstr ""
 "\n"
-"Muokkaa päivityksen osoitetta."
+"Muokkaa päivityksen lähdeosoitetta."
 
 #
 #, python-format
@@ -450,10 +459,6 @@ msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
 #
-msgid "128"
-msgstr "128"
-
-#
 msgid "12V output"
 msgstr "12V-ulostulo"
 
@@ -464,10 +469,6 @@ msgstr "12V-ulostulo"
 #
 msgid "13 V"
 msgstr "13 V"
-
-#
-msgid "16"
-msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -526,9 +527,6 @@ msgstr "24"
 msgid "25"
 msgstr "25"
 
-msgid "256"
-msgstr "256"
-
 msgid "29.97"
 msgstr "29.97"
 
@@ -537,9 +535,6 @@ msgstr "2X"
 
 msgid "30"
 msgstr "30"
-
-msgid "32"
-msgstr "32"
 
 msgid "3D Mode"
 msgstr "3D-tila"
@@ -573,9 +568,6 @@ msgstr "4:3 Pan&Scan"
 
 msgid "4X"
 msgstr "4X"
-
-msgid "64"
-msgstr "64"
 
 msgid "720p"
 msgstr "720p"
@@ -782,9 +774,6 @@ msgstr ""
 "Sallitko kanavanvaihdon, jotta tallennusta\n"
 "voidaan yrittää uudelleen?\n"
 
-msgid "A/V settings"
-msgstr "A/V-asetukset"
-
 msgid "AAC downmix"
 msgstr "AAC:n muunto stereoksi"
 
@@ -803,9 +792,15 @@ msgstr "AFP-asetukset"
 msgid "AFP setup"
 msgstr "AFP-asetukset"
 
+msgid "AGC:"
+msgstr "AGC:"
+
 #, python-format
 msgid "AV aspect is %s."
 msgstr "AV-kuvasuhde on %s."
+
+msgid "AV settings"
+msgstr "A/V-asetukset"
 
 #
 msgid "Abort"
@@ -1030,7 +1025,7 @@ msgstr "Laaja"
 
 #
 msgid "Advanced options"
-msgstr "Laajennetut valinnat"
+msgstr "Laajat valinnat"
 
 #
 msgid "Advanced restore"
@@ -1490,6 +1485,9 @@ msgstr "Käytettävissä olevat jaot:"
 msgid "B"
 msgstr "B"
 
+msgid "BER:"
+msgstr "BER:"
+
 #
 msgid "Back"
 msgstr "Takaisin"
@@ -1613,6 +1611,9 @@ msgstr "Suosikkilista"
 #
 msgid "Brightness"
 msgstr "Valoisuus"
+
+msgid "Brightness (Dimmed)"
+msgstr "Kirkkaus (himmennetty)"
 
 msgid "Brightness (Normal)"
 msgstr "Kirkkaus (normaali)"
@@ -2006,17 +2007,14 @@ msgstr "Piirisarja: BCM%s"
 msgid "Choose Bouquet"
 msgstr "Valitse suosikkilista"
 
-msgid "Choose Tuner"
-msgstr "Valitse viritin"
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Valitse avainsana tallenteiden helppoa löytämistä varten."
 
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr "Valitse joka viikko, joka päivä, ma-pe tai käyttäjän määrittämä."
 
-msgid "Choose the location for crash and debug logs."
-msgstr "Valitse kaatumis- ja debug-lokien hakemisto."
+msgid "Choose the location for crash and debug logs folder."
+msgstr "Valitse kaatumis- ja debug-lokien hakemiston sijainti."
 
 msgid ""
 "Choose the location where the EPG data will be stored when the %s %s is shut "
@@ -2322,6 +2320,11 @@ msgstr ""
 "helpommin luettavia vaaleaa taustaa vasten."
 
 msgid ""
+"Configure the brightness level of the front panel display for dimmed "
+"operation."
+msgstr "Määritä etupaneelin näytön kirkkaus himmennetyssä tilassa."
+
+msgid ""
 "Configure the brightness level of the front panel display for normal "
 "operation."
 msgstr "Määritä etupaneelin näytön kirkkaus normaalissa tilassa."
@@ -2433,10 +2436,11 @@ msgstr "Määritä verkkomaski."
 
 msgid ""
 "Configure the number of days after which items are automatically removed "
-"from the trash can."
+"from the trash can.\n"
+"A setting of 0 disables this."
 msgstr ""
-"Määrittää kuinka monen päivän jälkeen tiedostot poistetaan automaattisesti "
-"roskakorista."
+"Määrittää kuinka monen päivän päästä tallenteet poistetaan roskakorista.\n"
+"0 = Ei poisteta ollenkaan."
 
 msgid ""
 "Configure the number of days old timers are kept before they are "
@@ -2782,7 +2786,7 @@ msgstr "Nykyinen tila: %s \n"
 
 #
 msgid "Current rotor position: "
-msgstr "Moottorin positio:"
+msgstr "Moottorin suuntaus:"
 
 #
 msgid "Current settings:"
@@ -2859,9 +2863,6 @@ msgstr "DTS"
 
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
-
-msgid "DVB CI Delay"
-msgstr "DVB CI viive"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB-tekstin mustan reunan läpinäkyvyys"
@@ -3106,9 +3107,6 @@ msgstr "Tunnistetut laitteet:"
 msgid "Detected tuners:"
 msgstr "Tunnistetut virittimet:"
 
-msgid "Device Information"
-msgstr "Laitetietoja"
-
 msgid "Device mounts"
 msgstr "Laitteiden liitokset"
 
@@ -3167,6 +3165,12 @@ msgstr "Ääriviivakorostumien poisto"
 
 msgid "Digital downmix"
 msgstr "Monikanavan muunto stereoksi"
+
+msgid "Dim delay"
+msgstr "Himmennyksen viive"
+
+msgid "Dim the LCD after specified time."
+msgstr "Himmennä LCD asetetun ajan jälkeen."
 
 #
 msgid "Direct playback of linked titles without menu"
@@ -3361,13 +3365,6 @@ msgstr "Haluatko tehdä uuden manuaalihaun?"
 msgid "Do you want to install the package:\n"
 msgstr "Haluatko asentaa IPKG-paketin:\n"
 
-msgid ""
-"Do you want to install the samba client aswell?\n"
-"This will allow you to mount your windows shares on this device."
-msgstr ""
-"Haluatko asentaa myös Samba-asiakkaan?\n"
-"Tämä mahdollistaa Windows-jakojen liittämisen tälle laitteelle."
-
 #
 msgid "Do you want to play DVD in drive?"
 msgstr "Haluatko toistaa asemassa olevan DVD:n?"
@@ -3459,9 +3456,6 @@ msgstr "Ladataan"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ladataan tietoja lisäosista. Odota..."
 
-msgid "Driver is not supported."
-msgstr "Ajuri ei ole tuettu"
-
 #, python-format
 msgid "Drivers:\t%s\n"
 msgstr "Ajurit:\t%s\n"
@@ -3490,6 +3484,13 @@ msgstr "ECM aika"
 
 msgid "ECM avg"
 msgstr "ECM keskim."
+
+msgid ""
+"ECM data will be included in the stream. This enables a client receiver to "
+"decode it."
+msgstr ""
+"ECM data lisätään streamiin. Tämä mahdollistaa salauksen purkamisen "
+"asiakasvastaanottimessa."
 
 msgid "ECM last"
 msgstr "EMC viim."
@@ -3527,22 +3528,21 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "VIRHE - haku epäonnistui (%s)!"
 
 msgid ""
-"ERROR:   Check is already running in background, please wait a few minutes "
-"and try again"
+"ERROR: Check is already running in background, please wait a few minutes and "
+"try again"
 msgstr ""
-"VIRHE:  tarkistus on jo taustalla käynnissä, odota muutama minuutti ja yritä "
+"VIRHE: Tarkistus on jo taustalla käynnissä, odota muutama minuutti ja yritä "
 "uudelleen"
 
-msgid "ERROR:   No internet found"
-msgstr "Virhe: Ei internetyhteyttä"
+msgid "ERROR: Forbidden"
+msgstr "VIRHE: Kielletty"
+
+msgid "ERROR: No internet found"
+msgstr "VIRHE: Ei internetyhteyttä"
 
 #
-msgid "ERROR:   No network found"
-msgstr "Verkkoa ei löytynyt"
-
-#
-msgid "ERROR: Check is already running in background"
-msgstr "VIRHE: tarkistus on jo taustalla käynnissä"
+msgid "ERROR: No network found"
+msgstr "VIRHE: Verkkoa ei löytynyt"
 
 #
 msgid "East"
@@ -3693,10 +3693,6 @@ msgstr "Käytä etävastaanottimen virittimiä kun paikallisia ei ole vapaana"
 #
 msgid "Enable timer conflict detection"
 msgstr "Salli ajastusristiriitojen haku"
-
-#
-msgid "Enable unlinked bouquets"
-msgstr "Salli piilotetut suosikkilistat"
 
 #
 msgid "Enabled"
@@ -3931,18 +3927,18 @@ msgid "Expert"
 msgstr "Laaja"
 
 msgid "Extended"
-msgstr "Laajennetut"
+msgstr "Laaja"
 
 #
 msgid "Extended Networksetup Plugin..."
-msgstr "Laajennetut verkkoasetukset"
+msgstr "Laajat verkkoasetukset"
 
 #
 msgid "Extended Setup..."
 msgstr "Laajat asetukset..."
 
 msgid "Extended Shares"
-msgstr "Laajennetut jaot"
+msgstr "Laajat jaot"
 
 msgid "Extended Software"
 msgstr "Laajat ohjelmavalinnat"
@@ -3985,34 +3981,34 @@ msgid "External subtitle switch fonts"
 msgstr "Ulkoisen tekstityksen fonttivalinta"
 
 msgid "Extra motor options"
-msgstr "Mootorin lisäasetukset"
+msgstr "Moottorin lisäasetukset"
 
 msgid "Extrude from left"
 msgstr "Kasvata vasemmalta"
 
 msgid "F1"
-msgstr "Punainen"
+msgstr "F1"
 
 msgid "F1/F3"
-msgstr "Punainen/Keltainen"
+msgstr "F1/F3"
 
 msgid "F1/LAN"
-msgstr "Punainen/Kielipainike"
+msgstr "F1/Kielipainike"
 
 msgid "F1/LAN long"
-msgstr "Punainen/Kielipainike pitkä"
+msgstr "F1/Kielipainike pitkä"
 
 msgid "F2"
-msgstr "Vihreä"
+msgstr "F2"
 
 msgid "F2 long"
-msgstr "Pitkä vihreä"
+msgstr "F2"
 
 msgid "F3"
-msgstr "Keltainen"
+msgstr "F3"
 
 msgid "F3 long"
-msgstr "Pitkä keltainen"
+msgstr "F3"
 
 msgid "FAILED"
 msgstr "EPÄONNISTUI"
@@ -4041,6 +4037,9 @@ msgstr ""
 #
 msgid "FEC"
 msgstr "FEC"
+
+msgid "FEC:"
+msgstr "FEC:"
 
 msgid "FLASH"
 msgstr "FLASH"
@@ -4100,16 +4099,19 @@ msgstr "Eteenpäin kelausnopeudet"
 msgid "Favourites"
 msgstr "Suosikit"
 
-msgid "Feeds status:   Stable"
+msgid "Feeds status: Stable"
 msgstr "Syötteiden tila: Stabiili"
 
-msgid "Feeds status:   Unknown"
-msgstr "Syötteiden tila: Tuntematon"
-
-msgid "Feeds status:   Unstable"
+msgid "Feeds status: Unexpected"
 msgstr "Syötteiden tila: Epästabiili"
 
-msgid "Feeds status:   Updating"
+msgid "Feeds status: Unknown"
+msgstr "Syötteiden tila: Tuntematon"
+
+msgid "Feeds status: Unstable"
+msgstr "Syötteiden tila: Epästabiili"
+
+msgid "Feeds status: Updating"
 msgstr "Syötteiden tila: Päivityksessä"
 
 msgid "File appears to be busy.\n"
@@ -4233,8 +4235,12 @@ msgid "Frequency steps"
 msgstr "Taajuusaskel"
 
 #
+msgid "Frequency:"
+msgstr "Taajuus:"
+
+#
 msgid "Fri"
-msgstr "pe"
+msgstr "Pe"
 
 #
 msgid "Friday"
@@ -4468,6 +4474,9 @@ msgstr "Piilota CI:n ilmoitukset"
 
 msgid "Hide any zap error messages."
 msgstr "Piilota kanavanvaihdon virheilmoitukset."
+
+msgid "Hide dotted line on the top for this service"
+msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 
 msgid "Hide error messages from the Common Interface module."
 msgstr "Piilota virheilmoitukset Common Interface -moduulilta."
@@ -4705,9 +4714,6 @@ msgstr ""
 "\n"
 "Kun olet tyytyväinen tulokseen, paina OK."
 
-msgid "Image Information"
-msgstr "Tietoja ohjelmistosta"
-
 msgid "Image Manager"
 msgstr "Image-varmuuskopiot"
 
@@ -4726,9 +4732,6 @@ msgstr ""
 msgid "In progress"
 msgstr "Käynnissä"
 
-msgid "Inadyn Log"
-msgstr "Inadyn-loki"
-
 msgid "Inadyn Setup"
 msgstr "Inadyn-asetukset"
 
@@ -4737,6 +4740,9 @@ msgstr "Inadyn-asetukset"
 
 msgid "Include AIT in http streams"
 msgstr "Sisällytä AIT http-streameihin"
+
+msgid "Include ECM in http streams"
+msgstr "Liitä ECM http-streameihin"
 
 msgid "Include EIT in http streams"
 msgstr "Sisällytä EIT http-streameihin"
@@ -5102,6 +5108,9 @@ msgstr "Kielivalinta"
 msgid "Language selection"
 msgstr "Kielivalinta"
 
+msgid "Large"
+msgstr "Suuri"
+
 msgid "Last Req."
 msgstr "Viim. pyyntö"
 
@@ -5244,7 +5253,7 @@ msgstr "Kanavalista/Suosikit/Tallennukset"
 
 #
 msgid "Listen to the radio..."
-msgstr "kuuntele radiota..."
+msgstr "Kuuntele radiota..."
 
 msgid "Lists reloaded!"
 msgstr "Listat ladattu!"
@@ -5268,8 +5277,8 @@ msgstr "Lataa soittolista"
 msgid "Load unlinked userbouquets"
 msgstr "Näytä piilotetut suosikkilistat"
 
-msgid "Load/Save/Delete"
-msgstr "Lataa/tallenna/poista"
+msgid "Load-Save-Delete"
+msgstr "Lataa-Tallenna-Poista"
 
 msgid "Local box"
 msgstr "Paikallinen laite"
@@ -5286,6 +5295,12 @@ msgstr "Hakemisto"
 msgid "Lock ratio"
 msgstr "Lukitse kuvasuhde"
 
+msgid "Lock:"
+msgstr "Lukittu:"
+
+msgid "Log"
+msgstr "Lokit"
+
 msgid "Log Manager"
 msgstr "Lokien hallinta"
 
@@ -5299,8 +5314,8 @@ msgstr "Lokien hallinta"
 msgid "Logs"
 msgstr "Lokit"
 
-msgid "Logs location"
-msgstr "Lokien sijainti"
+msgid "Logs folder location"
+msgstr "Lokien hakemisto"
 
 msgid "Logs manager"
 msgstr "Lokien hallinta"
@@ -5468,9 +5483,6 @@ msgstr "Levy ei ole tyhjä!"
 msgid "Memory"
 msgstr "Muisti"
 
-msgid "Memory Information"
-msgstr "Muistin tiedot"
-
 msgid "Memory index"
 msgstr "Muistipaikka"
 
@@ -5483,9 +5495,6 @@ msgstr "Valikon määritys"
 
 msgid "Merging Timeshift files"
 msgstr "Yhdistetään ajansiirron tiedostot"
-
-msgid "MiniDLNA Log"
-msgstr "MiniDLNA-loki"
 
 msgid "MiniDLNA Setup"
 msgstr "MiniDLNA-asetukset"
@@ -5555,11 +5564,11 @@ msgstr "Modulaattori"
 
 #
 msgid "Mon"
-msgstr "ma"
+msgstr "Ma"
 
 #
 msgid "Mon-Fri"
-msgstr "ma-pe"
+msgstr "Ma-Pe"
 
 #
 msgid "Monday"
@@ -5790,9 +5799,6 @@ msgstr "Verkko"
 msgid "Network ID"
 msgstr "Verkon ID"
 
-msgid "Network Information"
-msgstr "Lähiverkon tiedot"
-
 #
 msgid "Network MAC settings"
 msgstr "Verkon MAC-asetukset"
@@ -5901,9 +5907,6 @@ msgstr "Kaapeliverkon viritintä ei löytynyt!"
 
 msgid "No card inserted!"
 msgstr "Ei korttia!"
-
-msgid "No connection"
-msgstr "Ei yhteyttä"
 
 #
 msgid ""
@@ -6333,9 +6336,6 @@ msgstr "Avaa kanavalista"
 msgid "OpenVPN setup"
 msgstr "OpenVPN-asetukset"
 
-msgid "OpenVpn Log"
-msgstr "OpenVpn-loki"
-
 msgid "OpenVpn Setup"
 msgstr "OpenVpn-asetukset"
 
@@ -6437,10 +6437,6 @@ msgstr "Päähakemisto"
 #
 msgid "Parental control"
 msgstr "Lapsilukko"
-
-#
-msgid "Parental control setup"
-msgstr "Lapsilukon asetukset"
 
 #
 msgid "Password"
@@ -6600,6 +6596,15 @@ msgstr "Toista edellinen"
 #
 msgid "Play recorded movies..."
 msgstr "Toista tallenteet..."
+
+msgid ""
+"Playback information missing\n"
+"Playback aborted to avoid crash\n"
+"Please retry"
+msgstr ""
+"Toiston tiedot puuttuu\n"
+"Toisto peruttu kaatumisen välttämiseksi\n"
+"Yritä uudelleen"
 
 #
 msgid "Playlist"
@@ -6904,6 +6909,10 @@ msgid "Polarisation"
 msgstr "Polarisaatio"
 
 #
+msgid "Polarisation:"
+msgstr "Polarisaatio:"
+
+#
 msgid "Polarization"
 msgstr "Polarisaatio"
 
@@ -6987,14 +6996,11 @@ msgstr "Tunnistusvirta mA"
 msgid "PowerManager entry"
 msgstr "Virta-ajastus"
 
-msgid "PowerManager log"
-msgstr "PowerManager-loki"
+msgid "PowerMenu"
+msgstr "Virranhallintavalikko"
 
 #
 msgid "PowerTimer List"
-msgstr "Virta-ajastukset"
-
-msgid "PowerTimer Overview"
 msgstr "Virta-ajastukset"
 
 msgid "PowerTimers"
@@ -7357,7 +7363,7 @@ msgstr "Haluatko silti sammuttaa?"
 
 #, python-format
 msgid "Really store at index %2d for current position?"
-msgstr "Haluatko tallentaa muistipaikkaan %2d nykyisen position?"
+msgstr "Haluatko tallentaa muistipaikkaan %2d nykyisen suuntauksen?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Päivitetäänkö etuprosessori nyt ja käynnistetään uudelleen?"
@@ -7373,10 +7379,6 @@ msgstr "Käynnistä laite uudelleen"
 
 msgid "Rec"
 msgstr "Tallennus"
-
-#
-msgid "Reception Settings"
-msgstr "Vastaanoton asetukset"
 
 #
 msgid "Record"
@@ -7506,6 +7508,9 @@ msgstr "Kaukosäätimen tyyppi"
 msgid "Remove"
 msgstr "Poista"
 
+msgid "Remove 'Hide dotted line on the top for this service'"
+msgstr "Poista yläreunan pistejuovan piilotus tältä kanavalta"
+
 #
 msgid "Remove Confirmation"
 msgstr "Poista vahvistuskysely"
@@ -7531,7 +7536,7 @@ msgstr "Poista kaikki uusi kanava merkinnät"
 
 #
 msgid "Remove bookmark"
-msgstr "poista kirjanmerkki"
+msgstr "Poista kirjanmerkki"
 
 #
 msgid "Remove bouquet from parental protection"
@@ -7827,23 +7832,20 @@ msgstr "SABnzbd-asetukset"
 msgid "SABnzbd setup"
 msgstr "SABnzbd-asetukset"
 
-msgid "SET FAILED!\n"
-msgstr "ASETUS EPÄONNISTUI!\n"
-
 msgid "SID"
 msgstr "SID"
 
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
+msgid "SNR:"
+msgstr "SNR:"
+
 msgid "SPDIF"
 msgstr "SPDIF"
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "Samba Log"
-msgstr "Samban loki"
 
 msgid "Samba Setup"
 msgstr "Samba-asetukset"
@@ -7856,7 +7858,7 @@ msgstr "Sama resoluutio kuin teemassa"
 
 #
 msgid "Sat"
-msgstr "la"
+msgstr "La"
 
 #
 msgid "Satellite"
@@ -8759,6 +8761,10 @@ msgstr "Näytä laajennukset..."
 msgid "Show favourites list"
 msgstr "Näytä suosikkilista"
 
+#
+msgid "Show full menu path"
+msgstr "Näytä koko valikkopolku"
+
 msgid "Show graphical multi EPG"
 msgstr "Graafinen EPG"
 
@@ -8924,6 +8930,10 @@ msgstr "Näytä lähettimen tietoja"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Näytä lähettimen jäljellä oleva/kulunut aika:"
+
+#
+msgid "Show warning when in a stream"
+msgstr "Näytä varoitus kun streamataan"
 
 #
 msgid "Show warning when timeshift is stopped"
@@ -9120,6 +9130,9 @@ msgstr "Hidas"
 msgid "Slow motion speeds"
 msgstr "Hidastusnopeudet"
 
+msgid "Small"
+msgstr "Pieni"
+
 #
 msgid "Small progress"
 msgstr "Pieni etenemispalkki"
@@ -9130,8 +9143,8 @@ msgstr "Pehmennnys"
 msgid "Social/Political/Economics"
 msgstr "Sosiaali/Politiikka/Talous"
 
-msgid "SoftCam / CI"
-msgstr "SoftCam / CI"
+msgid "SoftCam and CI"
+msgstr "SoftCam ja CI"
 
 msgid "Softcam setings"
 msgstr "Softcam-asetukset"
@@ -9170,9 +9183,6 @@ msgstr "Ohjelmistopäivityksen asetukset"
 
 msgid "Softwaremanager information"
 msgstr "Ohjelmiston hallinnan tiedot"
-
-msgid "Solo4K Misc. Control"
-msgstr "Solo4K muut säädöt"
 
 #
 msgid "Some plugins are not available:\n"
@@ -9239,6 +9249,9 @@ msgstr "Järjestys"
 
 msgid "Sort EPG List"
 msgstr "Järjestä EPG-lista"
+
+msgid "Sort Trash by deletion time"
+msgstr "Lajittele roskakori poistoajan mukaan"
 
 msgid "Sort by"
 msgstr "Listan järjestystapa:"
@@ -9310,11 +9323,11 @@ msgid "Standby"
 msgstr "Valmiustila"
 
 #
-msgid "Standby / Restart"
+msgid "Standby / restart"
 msgstr "Sammutusvalikko"
 
 #
-msgid "Standby / restart"
+msgid "Standby and Restart"
 msgstr "Sammutusvalikko"
 
 #
@@ -9586,7 +9599,7 @@ msgstr "Tekstitys"
 
 #
 msgid "Sun"
-msgstr "su"
+msgstr "Su"
 
 #
 msgid "Sunday"
@@ -9668,6 +9681,9 @@ msgstr "Vaihdettavat viritintyypit:"
 msgid "Symbol rate"
 msgstr "Symbol rate"
 
+msgid "Symbolrate:"
+msgstr "Symbolinopeus:"
+
 msgid "Sync NTP every (minutes)"
 msgstr "Tahdista NTP:hen joka (minuutti)"
 
@@ -9705,8 +9721,7 @@ msgstr "TB"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: Timo Järvenpää\n"
-"timojarvenpaa@hotmail.com\n"
+"Suomenkielinen käännös: timoj, Kojo, Samzam\n"
 "http://www.huoltovalikko.com"
 
 #
@@ -9763,7 +9778,7 @@ msgstr "Telnet-asetukset"
 
 #
 msgid "Terrestrial"
-msgstr "Antennivastaanotto (DVB-T)"
+msgstr "Antennivastaanotto"
 
 #
 msgid "Terrestrial provider"
@@ -10128,8 +10143,8 @@ msgstr "Tällä asetuksella voit ohittaa HDMI-liitännän EDID-tarkistuksen"
 msgid "This option allows you to change the Colorspace from Auto to RGB"
 msgstr "Tämä asetus sallii sinun muuttaa väriavaruutta automaatilta RGB:ksi."
 
-msgid "This option allows you to change the virtuell loadspeaker position."
-msgstr "Tämä asetus sallii sinun muuttaa virtuaalikaiuttimen sijaintia"
+msgid "This option allows you to change the virtual loudspeaker position."
+msgstr "Tämä asetus sallii sinun muuttaa virtuaalikaiuttimen sijaintia."
 
 msgid ""
 "This option allows you to choose from the two channel lists that are "
@@ -10257,6 +10272,9 @@ msgid ""
 msgstr ""
 "Tämä asetus määrittää näytetäänkö SNR prosentteina (kaikki vastaanottimet "
 "eivät tue tätä)."
+
+msgid "This option allows you to show the full menu path"
+msgstr "Tämä asetus näyttää koko valikkopolun"
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
@@ -10440,7 +10458,7 @@ msgstr "Kynnys"
 
 #
 msgid "Thu"
-msgstr "to"
+msgstr "To"
 
 #
 msgid "Thumbnails"
@@ -10491,10 +10509,6 @@ msgid "Timer entry"
 msgstr "Ajastettava ohjelma"
 
 #
-msgid "Timer log"
-msgstr "Ajastinloki"
-
-#
 msgid ""
 "Timer overlap in pm_timers.xml detected!\n"
 "Please recheck it!"
@@ -10509,11 +10523,6 @@ msgid ""
 msgstr ""
 "Ajastusten päällekkäisyys havaittu!\n"
 "Tarkista ajastusasetukset!"
-
-#
-#  Ajastusikkunan otsikkopalkin teksti
-msgid "Timer overview"
-msgstr "Ajastetut ohjelmat"
 
 msgid "Timer record location"
 msgstr "Ajastuksien tallennushakemisto"
@@ -10677,10 +10686,6 @@ msgid "Transcoding: "
 msgstr "Transkoodaus:"
 
 #
-msgid "Translation Information"
-msgstr "Käännöstietoja"
-
-#
 msgid "Translations"
 msgstr "Käännös"
 
@@ -10727,7 +10732,7 @@ msgstr "Ladataan uusinta IPKG-ohjelmapakettiluetteloa. Odota..."
 
 #
 msgid "Tue"
-msgstr "ti"
+msgstr "Ti"
 
 #
 msgid "Tuesday"
@@ -11030,21 +11035,28 @@ msgstr ""
 "pienentää, oikea suurentaa kokoa. "
 
 msgid ""
-"Use the Left/Right buttons on your remote to move the user interface up/down"
-msgstr ""
-"Säädä käyttöliiittymän pystysijaintia kaukosäätimen vasen/oikea -näppäimillä."
-
-msgid ""
-"Use the Left/Right buttons on your remote to move the user inyterface left/"
+"Use the Left/Right buttons on your remote to move the user interface left/"
 "right"
 msgstr ""
 "Säädä käyttöliiittymän vaakasijaintia kaukosäätimen vasen/oikea -näppäimillä."
+
+msgid ""
+"Use the Left/Right buttons on your remote to move the user interface up/down"
+msgstr ""
+"Säädä käyttöliiittymän pystysijaintia kaukosäätimen vasen/oikea -näppäimillä."
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Käytä vaihtoehtoista tai tavallista radio-tilaa."
 
 msgid "Use the alternative screen"
 msgstr "Käytä vaihtoehtoista näyttöä"
+
+msgid ""
+"Use the deletion time to sort Trash folders.\n"
+"Most recently deleted at the top."
+msgstr ""
+"Käytä poistoaikaa lajitteluperusteena roskakorissa\n"
+"Viimeksi poistetut ylimmäisenä."
 
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "Muokkaa valitun verkkosovittimen asetuksia verkkoavustajan opastamana"
@@ -11420,7 +11432,7 @@ msgstr "Web-liittymä"
 
 #
 msgid "Wed"
-msgstr "ke"
+msgstr "Ke"
 
 #
 msgid "Wednesday"
@@ -11508,12 +11520,12 @@ msgid "What Day of week ?"
 msgstr "Mikä viikonpäivä?"
 
 msgid ""
-"What action is required on complettion of the timer? 'Auto' lets the box "
+"What action is required on completion of the timer? 'Auto' lets the box "
 "return to the state it had when the timer started. 'Do nothing', 'Go to "
-"standby' and 'Go to deep standby' do ecaxtly that."
+"standby' and 'Go to deep standby' do exactly that."
 msgstr ""
-"Mitä tehdään ajastuksen jälkeen? Autom. -asetuksella laite palaa ennen "
-"ajastusta käytettyyn tilaan."
+"Mitä tehdään ajastuksen jälkeen? (auto-asetuksella laite palaa ennen "
+"ajastusta käytettyyn tilaan)"
 
 msgid "What date of month ?"
 msgstr "Mikä kuukauden päivä?"
@@ -11535,6 +11547,12 @@ msgstr ""
 "ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun "
 "asennettuja päivitetään."
 
+msgid "When enabled the LNB power will not be switched off in standby"
+msgstr "Kun päällä, LNB:n virtaa ei katkaista valmiustilassa"
+
+msgid "When enabled the LNB toneburst will be forced"
+msgstr "Kun päällä, LNB:n ääniohjaus pakotetaan päälle"
+
 msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr "Kun päällä, päivitys etsii myös kokeiluversioita"
@@ -11552,17 +11570,6 @@ msgid ""
 msgstr ""
 "Kun päällä, EIT-tiedot lähetetään http-streameissä. Tämä mahdollistaa EPG:n "
 "näkymisen asiakasvastaanottimessa."
-
-msgid ""
-"When enabled, Enigma2 will load unlinked bouquets. This means that bouquets "
-"that are available, but not included in the bouquets.tv or bouquets.radio "
-"files, will still be loaded. This allows you for example to keep your own "
-"user bouquet while installed settings are upgraded"
-msgstr ""
-"Kun päällä, Enigma2 lataa piilotetut suosikkilistat. Suosikkilistat jotka "
-"ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, "
-"ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun "
-"asennettuja päivitetään."
 
 msgid ""
 "When enabled, a popup message will be shown when a movie has finished and "
@@ -11586,6 +11593,12 @@ msgid ""
 msgstr ""
 "Kun päällä, näytetään varoitus ja käyttäjällä on mahdollisuus pysäyttää tai "
 "jatkaa ajansiirtoa."
+
+msgid ""
+"When enabled, a warning will be displayed that timeshift is not supported in "
+"an IP stream.."
+msgstr ""
+"Kun päällä, näytetään varoitus että ajansiirtoa ei tueta IP-streamissa."
 
 msgid ""
 "When enabled, always descramble receiving http streams. This takes up more "
@@ -11951,7 +11964,7 @@ msgid "Yes"
 msgstr "Kyllä"
 
 msgid "Yes (save index in setup tuner)"
-msgstr "Kyllä (tallenna muistipaikka viritinasetuksiin)"
+msgstr "Kyllä (tallenna muistipaikka myös viritinasetuksiin)"
 
 msgid "Yes to all"
 msgstr "Kyllä kaikkiin"
@@ -12000,6 +12013,14 @@ msgstr "Kyllä, tee toinen manuaalihaku nyt"
 #
 msgid "Yes, restore the settings now"
 msgstr "Kyllä, palauta asetukset nyt"
+
+#
+msgid "Yes, show delete time"
+msgstr "Kyllä, näytä poistoaika"
+
+#
+msgid "Yes, show record time"
+msgstr "Kyllä, näytä tallennusaika"
 
 #
 msgid "Yes, shut down now."
@@ -12344,11 +12365,6 @@ msgstr ""
 "Vaihdetaanko takaisin kanavalle, jota katsottiin\n"
 "ennen moottoriasetuksien muutosta?"
 
-msgid "Zap back to service before tuner setup?"
-msgstr ""
-"Vaihdetaanko takaisin kanavalle, jota katsottiin\n"
-"ennen viritinasetuksien muutosta?"
-
 msgid "Zap down"
 msgstr "Kanava alas"
 
@@ -12464,7 +12480,7 @@ msgid "am"
 msgstr "aamu"
 
 msgid "and never ask again this session"
-msgstr "Älä kysy uudelleen tällä kerralla"
+msgstr "älä kysy vahvistusta uudelleen"
 
 msgid "are you sure you want to cancel all the changes"
 msgstr "Haluatko varmasti peruuttaa kaikki muutokset"
@@ -12604,7 +12620,7 @@ msgstr "Luo hakemisto"
 
 #
 msgid "daily"
-msgstr "joka päivä"
+msgstr "päivittäin"
 
 #
 msgid "day"
@@ -12619,6 +12635,12 @@ msgstr "Poista"
 #
 msgid "delete cut"
 msgstr "Poista leikkausmääritys"
+
+msgid "delete time - show delete time (Trash ONLY)"
+msgstr "Poistoaika - Näytä poistoaika (vain roskakorissa)"
+
+msgid "delete time - show record time (Trash ONLY)"
+msgstr "Poistoaika - Näytä tallennusaika (vain roskakorissa)"
 
 msgid "descramble and record ecm"
 msgstr "Pura ja tallenna ECM"
@@ -13503,9 +13525,6 @@ msgstr "kansanmusiikki (nopea)"
 msgid "true"
 msgstr "tosi"
 
-msgid "uShare Log"
-msgstr "uShare-loki"
-
 msgid "uShare Name"
 msgstr "uShare-nimi"
 
@@ -13580,14 +13599,14 @@ msgstr "käynnistys"
 
 #
 msgid "wakeup to standby"
-msgstr "Käynnisty valmiustilaan"
+msgstr "Käynnistä valmiustilaan"
 
 msgid "water sport"
 msgstr "vesiurheilu"
 
 #
 msgid "weekly"
-msgstr "joka viikko"
+msgstr "viikoittain"
 
 #
 msgid "west"
@@ -13678,34 +13697,15 @@ msgstr "Vaihdettu"
 #~ msgid "%Y-%m-%d"
 #~ msgstr "%Y-%m-%d"
 
-#~ msgid "3d mode"
-#~ msgstr "3D-tila"
+#~ msgid "Choose Tuner"
+#~ msgstr "Valitse viritin"
 
-#~ msgid "Allows more detailed information to be in the crash log"
-#~ msgstr "Mahdollistaa tarkemmat tiedot kaatumislokissa"
-
-#~ msgid "ButtonSetup Setup"
-#~ msgstr "Näppäinmääritykset"
-
-#~ msgid "Changelog"
-#~ msgstr "Muutosloki"
-
-#~ msgid "Configure the refresh rate of the screen."
-#~ msgstr "Määrittää näytön virkistystaajuuden."
+#~ msgid "Device Information"
+#~ msgstr "Laitetietoja"
 
 #~ msgid ""
-#~ "Configure which tuner will be preferred for recordings, when more than "
-#~ "one tuner is available. 'Disabled' would select a tuner based on "
-#~ "preferred tuner in customise screen. 'Auto' would choose based on E2's "
-#~ "default rules, ignoring preferred tuner in customise screen."
+#~ "Do you want to install the samba client aswell?\n"
+#~ "This will allow you to mount your windows shares on this device."
 #~ msgstr ""
-#~ "Määritä mikä viritin on ensisijainen tallennuksille, kun useita "
-#~ "virittimiä on vapaana. 'Ei käytössä' valitsee virittimen asetusruudun "
-#~ "mukaan. 'Auto' valitsee E2:n oletussääntöjen mukaan, ohittaen "
-#~ "asetusruudun määrityksen."
-
-#~ msgid "Image type:\t%s\n"
-#~ msgstr "Ohjelmistotila:\t%s\n"
-
-#~ msgid "No clients streaming"
-#~ msgstr "Ei etäasiakkaita"
+#~ "Haluatko asentaa myös Samba-asiakkaan?\n"
+#~ "Tämä mahdollistaa Windows-jakojen liittämisen tälle laitteelle."

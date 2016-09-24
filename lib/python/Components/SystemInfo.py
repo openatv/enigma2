@@ -34,7 +34,7 @@ SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/
 SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0")
 SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0") or getMachineBuild() in ('inihde', 'inihdx')
 SystemInfo["FBLCDDisplay"] = fileCheck("/proc/stb/fb/sd_detach")
-SystemInfo["DisplayLED"] = getBoxType() in ('gb800se', 'gb800solo')
+SystemInfo["DisplayLED"] = getBoxType() in ('gb800se', 'gb800solo', 'gbx1', 'gbx3')
 SystemInfo["LEDButtons"] = getBoxType() == 'vuultimo'
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
 SystemInfo["Fan"] = fileCheck("/proc/stb/fp/fan")

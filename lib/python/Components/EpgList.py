@@ -13,7 +13,7 @@ from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.ExtraAttributes import applyExtraSkinAttributes
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-
+from Tools.TextBoundary import getTextBoundarySize
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -106,6 +106,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		"EventNamePadding": ("int", "eventNamePadding"),
 		"ServiceBorderWidth": ("int", "serviceBorderWidth"),
 		"ServiceNamePadding": ("int", "serviceNamePadding"),
+		"ServiceNumberPadding": ("int", "serviceNumberPadding"),
 		# Fonts
 		"ServiceFontGraphical": ("font", "serviceFontNameGraph", "serviceFontSizeGraph"),
 		"EntryFontGraphical": ("font", "eventFontNameGraph", "eventFontSizeGraph"),
@@ -146,6 +147,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.currentlyPlaying = None
 		self.showPicon = False
 		self.showServiceTitle = True
+		self.showServiceNumber = False
 		self.screenwidth = getDesktop(0).size().width()
 
 		self.overjump_empty = overjump_empty
@@ -270,6 +272,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.origListWidth = self.listWidth = None
 		self.serviceBorderWidth = 1
 		self.serviceNamePadding = 3
+		self.serviceNumberPadding = 9
 		self.eventBorderWidth = 1
 		self.eventNamePadding = 3
 		self.eventNameAlign = 'left'
@@ -300,10 +303,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			return self.l.getCurrentSelection()[0]
 		return 0
 
-	def isSelectable(self, service, service_name, events, picon):
+	def isSelectable(self, service, service_name, events, picon, channel):
 		return (events and len(events) and True) or False
 
 	def setShowServiceMode(self, value):
+		self.showServiceNumber = "servicenumber" in value
 		self.showServiceTitle = "servicename" in value
 		self.showPicon = "picon" in value
 		self.recalcEntrySize()
@@ -367,7 +371,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.cur_service is None:
 				return None, None
-			(refstr, service_name, events, picon) = self.cur_service
+			(refstr, service_name, events, picon, channel) = self.cur_service
 			if self.cur_event is None or not events or (self.cur_event and events and self.cur_event > len(events) - 1):
 				return None, ServiceReference(refstr)
 			event = events[self.cur_event]  # (event_id, event_title, begin_time, duration)
@@ -402,14 +406,14 @@ class EPGList(HTMLComponent, GUIComponent):
 	def findBestEvent(self):
 		if not self.service_set:
 			return
-		old_service = self.cur_service  # (service, service_name, events, picon)
+		old_service = self.cur_service  # (service, service_name, events, picon, channel)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
 		time_base = self.getTimeBase()
 		last_time = time()
 		if old_service and self.cur_event is not None:
 			try:
 				events = old_service[2]
-				cur_event = events[self.cur_event]  # (event_id, event_title, begin_time, duration)
+				cur_event = events[self.cur_event] if len(events) >= self.cur_event else 0 #(event_id, event_title, begin_time, duration)
 				last_time = cur_event[2]
 			except:
 				pass
@@ -572,30 +576,39 @@ class EPGList(HTMLComponent, GUIComponent):
 		width = esize.width()
 		height = esize.height()
 		if self.type == EPG_TYPE_MULTI:
+			fontSize = self.eventFontSizeMulti + config.epgselection.multi_eventfs.value
 			xpos = 0
-			w = width / 10 * 3
+			w = int((fontSize + 4) * 7.0)  # Service font is 4 px larger
 			self.service_rect = Rect(xpos, 0, w - 10, height)
 			xpos += w
-			w = width / 10 * 2
+			w = int(fontSize * 5.4)
 			self.start_end_rect = Rect(xpos, 0, w - 10, height)
 			self.progress_rect = Rect(xpos, 4, w - 10, height - 8)
 			xpos += w
-			w = width / 10 * 4.6
+			w = width - xpos
 			self.descr_rect = Rect(xpos, 0, w, height)
 		elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			servicew = 0
 			piconw = 0
+			channelw = 0
 			if self.type == EPG_TYPE_GRAPH:
 				if self.showServiceTitle:
 					servicew = config.epgselection.graph_servicewidth.value
 				if self.showPicon:
 					piconw = config.epgselection.graph_piconwidth.value
+				if self.showServiceNumber:
+					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
+					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000" ).width()
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				if self.showServiceTitle:
 					servicew = config.epgselection.infobar_servicewidth.value
 				if self.showPicon:
 					piconw = config.epgselection.infobar_piconwidth.value
-			w = (piconw + servicew)
+				if self.showServiceNumber:
+					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.infobar_servfs.value)
+					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000" ).width()
+			
+			w = (channelw + piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
 			piconHeight = height - 2 * self.serviceBorderWidth
@@ -604,9 +617,10 @@ class EPGList(HTMLComponent, GUIComponent):
 				piconWidth = w - 2 * self.serviceBorderWidth
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
-			self.weekday_rect = Rect(0, 0, float(width * 15) / 100, height)
-			self.datetime_rect = Rect(self.weekday_rect.w, 0, float(width * 15) / 100, height)
-			self.descr_rect = Rect(self.datetime_rect.x + self.datetime_rect.w, 0, float(width * 70) / 100, height)
+			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
+			self.weekday_rect = Rect(0, 0, int(fontSize * 2.3), height)
+			self.datetime_rect = Rect(self.weekday_rect.width(), 0, int(fontSize * 6.5), height)
+			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, width - self.datetime_rect.left() - self.datetime_rect.width(), height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -740,13 +754,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		r4 = self.start_end_rect
 		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)]  # no private data needed
 		if beginTime is not None:
+			fontSize = self.eventFontSizeMulti + config.epgselection.multi_eventfs.value
+			duration_wid = int(fontSize * 4.1)
 			clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime + duration)
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER | RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d" % (begin[3], begin[4], end[3], end[4])),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%d min") % (duration / 60))
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, duration_wid - 10, r3.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%d min") % (duration / 60))
 				))
 			else:
 				percent = (nowTime - beginTime) * 100 / duration
@@ -756,54 +772,27 @@ class EPGList(HTMLComponent, GUIComponent):
 					prefix = ""
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, 80, r3.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining))
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, duration_wid - 10, r3.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining))
 				))
+			pos = r3.w
 			if clock_types:
-				if clock_types in (1, 6, 11):
-					pos = r3. x + r3.w
-				else:
-					pos = r3.x + r3.w - 10
+				clk_sz = 25 if self.screenwidth and self.screenwidth == 1920 else 21
+				pos -= clk_sz / 2 if clock_types in (1,6,11) else clk_sz
+
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + pos, (r3.h - clk_sz) / 2, clk_sz, clk_sz, self.clocks[clock_types]))
 				if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
-					if self.screenwidth and self.screenwidth == 1920:
-						res.extend((
-							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w - 131, r3.h, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h / 2 - 13), 25, 25, self.clocks[clock_types])
-						))
-						iconOffset = 0
-						if self.wasEntryAutoTimer:
-							iconOffset += 26
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos - iconOffset, (r3.h / 2 - 13), 25, 25, self.autotimericon))
-						if self.wasEntryIceTV:
-							iconOffset += 26
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos - iconOffset, (r3.h / 2 - 13), 25, 25, self.icetvicon))
+					pos -= clk_sz + 1
+					if self.wasEntryAutoTimer:
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + pos, (r3.h - clk_sz) / 2, clk_sz, clk_sz, self.autotimericon))
 					else:
-						res.extend((
-							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w - 131, r3.h, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h / 2 - 11), 21, 21, self.clocks[clock_types])
-						))
-						iconOffset = 0
-						if self.wasEntryAutoTimer:
-							iconOffset += 22
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos - iconOffset, (r3.h / 2 - 11), 21, 21, self.autotimericon))
-						if self.wasEntryIceTV:
-							iconOffset += 22
-							res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos - iconOffset, (r3.h / 2 - 11), 21, 21, self.icetvicon))
-				else:
-					if self.screenwidth and self.screenwidth == 1920:
-						res.extend((
-							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w - 110, r3.h, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h / 2 - 13), 25, 25, self.clocks[clock_types])
-						))
-					else:
-						res.extend((
-							(eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w - 110, r3.h, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName),
-							(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos, (r3.h / 2 - 11), 21, 21, self.clocks[clock_types])
-						))
-			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + 90, r3.y, r3.w - 100, r3.h, 1, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName))
+						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + pos, (r3.h - clk_sz) / 2, clk_sz, clk_sz, self.icetvicon))
+				pos -= 5
+
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + duration_wid, r3.y, pos - duration_wid, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+
 		return res
 
-	def buildGraphEntry(self, service, service_name, events, picon):
+	def buildGraphEntry(self, service, service_name, events, picon, channel):
 		r1 = self.service_rect
 		r2 = self.event_rect
 		left = r2.x
@@ -845,7 +834,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			if picon is None:  # go find picon and cache its location
 				picon = getPiconName(service)
 				curIdx = self.l.getCurrentSelectionIndex()
-				self.list[curIdx] = (service, service_name, events, picon)
+				self.list[curIdx] = (service, service_name, events, picon, channel)
 			piconWidth = self.picon_size.width()
 			piconHeight = self.picon_size.height()
 			if picon != "":
@@ -860,25 +849,45 @@ class EPGList(HTMLComponent, GUIComponent):
 				# no picon so show servicename anyway in picon space
 				namefont = 1
 				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
-				namewidth = piconWidth
-				piconWidth = 0
+				namewidth = piconWidth + channelWidth
 			else:
 				piconWidth = 0
 		else:
 			piconWidth = 0
 
+		channelWidth = 0
+		if self.showServiceNumber:
+			if not isinstance(channel, int):
+				channel = self.getChannelNumber(channel)
+			
+			if channel:
+				namefont = 0
+				namefontflag = RT_HALIGN_RIGHT | RT_VALIGN_CENTER
+				font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
+				channelWidth = getTextBoundarySize(self.instance, font, self.instance.size(), (channel < 10000)  and "0000" or str(channel) ).width()
+				res.append(MultiContentEntryText(
+					pos = (r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding, r1.y + self.serviceBorderWidth),
+					size = (channelWidth, r1.h - 2 * self.serviceBorderWidth),
+					font = namefont, flags = namefontflag,
+					text = str(channel),
+					color = serviceForeColor, color_sel = serviceForeColor,
+					backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+
 		if self.showServiceTitle:  # we have more space so reset parms
 			namefont = 0
 			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
-			namewidth = r1.w - piconWidth
+			namewidth = r1.w - channelWidth - piconWidth
 
 		if self.showServiceTitle or displayPicon is None:
 			res.append(MultiContentEntryText(
-				font=namefont, flags=namefontflag,
-				text=service_name,
-				color=serviceForeColor, color_sel=serviceForeColor,
-				backcolor=serviceBackColor, backcolor_sel=serviceBackColor,
-				**_rectToPosSize(Rect(r1.x + piconWidth, r1.y, namewidth, r1.h), self.serviceBorderWidth, self.serviceBorderWidth + self.serviceNamePadding)))
+				pos = (r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding + channelWidth + self.serviceNumberPadding,
+					r1.y + self.serviceBorderWidth),
+				size = (namewidth - 3 * (self.serviceBorderWidth + self.serviceNamePadding),
+					r1.h - 2 * self.serviceBorderWidth),
+				font = namefont, flags = namefontflag,
+				text = service_name,
+				color = serviceForeColor, color_sel = serviceForeColor,
+				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
 
 		# Service Borders
 		if self.graphic:
@@ -1095,7 +1104,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if not self.service_set:
 			return
-		cur_service = self.cur_service  # (service, service_name, events, picon)
+		cur_service = self.cur_service  # (service, service_name, events, picon, channel)
 		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
 		if cur_service:
@@ -1170,6 +1179,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if self.list and len(self.list):
 			self.list.sort(key=lambda x: x[2])
 		self.l.setList(self.list)
+		self.recalcEntrySize()
 		self.selectionChanged()
 
 	def fillSingleEPG(self, service):
@@ -1178,6 +1188,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		test = ['RIBDT', (service.ref.toString(), 0, epg_time, -1)]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
+		self.recalcEntrySize()
 		if t != epg_time:
 			idx = 0
 			for x in self.list:
@@ -1192,6 +1203,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		test.insert(0, 'X0RIBDTCn')
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
+		self.recalcEntrySize()
 		self.selectionChanged()
 
 	def updateMultiEPG(self, direction):
@@ -1206,6 +1218,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.list[cnt] = (changecount, x[0], x[1], x[2], x[3], x[4], x[5], x[6])
 			cnt += 1
 		self.l.setList(self.list)
+		self.recalcEntrySize()
 		self.selectionChanged()
 
 	def getCurrentCursorLocation(self):
@@ -1251,12 +1264,14 @@ class EPGList(HTMLComponent, GUIComponent):
 			test = [(service[0], 0, time_base, self.time_epoch) for service in self.list]
 			serviceList = self.list
 			piconIdx = 3
+			channelIdx = 4
 		else:
 			self.cur_event = None
 			self.cur_service = None
 			test = [(service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services]
 			serviceList = services
 			piconIdx = 0
+			channelIdx = None
 
 		test.insert(0, 'XRnITBD')  # return record, service ref, service name, event id, event title, begin time, duration
 		epg_data = self.queryEPG(test)
@@ -1270,7 +1285,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			if service != x[0]:
 				if tmp_list is not None:
 					picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
-					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
+					# We pass the serviceref if we don't have the channel number yet, so it can be grabbed
+					channel = serviceList[serviceIdx] if (channelIdx == None) else serviceList[serviceIdx][channelIdx] 
+					self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 					serviceIdx += 1
 				service = x[0]
 				sname = x[1]
@@ -1278,10 +1295,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			tmp_list.append((x[2], x[3], x[4], x[5]))  # (event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
 			picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
-			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon))
+			channel = serviceList[serviceIdx] if (channelIdx == None) else serviceList[serviceIdx][channelIdx]
+			self.list.append((service, sname, tmp_list[0][0] is not None and tmp_list or None, picon, channel))
 			serviceIdx += 1
 
 		self.l.setList(self.list)
+		self.recalcEntrySize()
 		self.findBestEvent()
 
 	def sortSingleEPG(self, type):
@@ -1295,6 +1314,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				list.sort(key=lambda x: x[2])
 			self.l.invalidate()
 			self.moveToEventId(event_id)
+
+	def getChannelNumber(self,service):
+		if hasattr(service, "ref") and service.ref and '0:0:0:0:0:0:0:0:0' not in service.ref.toString(): 
+			numservice = service.ref
+			num = numservice and numservice.getChannelNum() or None
+			if num is not None:
+				return num
+		return None
 
 	def getEventRect(self):
 		rc = self.event_rect
@@ -1760,5 +1787,6 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			self.graphicsloaded = True
 		self.bouquetslist = bouquets
 		self.l.setList(self.bouquetslist)
+		self.recalcEntrySize()
 		self.selectionChanged()
 		self.currentBouquetService = self.getCurrentBouquetService()

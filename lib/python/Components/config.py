@@ -103,10 +103,23 @@ class ConfigElement(object):
 			self.changed()
 
 	def isChanged(self):
+		print '\n Config: isChanged'
 		sv = self.saved_value
-		if sv is None and self.value == self.default:
+		print 'Config: SV1:',str(sv)
+		print 'Config: SV2:',self.tostring(sv)
+		print 'Config: self.value1:',str(self.value)
+		print 'Config: self.value2:',self.tostring(self.value)
+		print 'Config: self.default1:',str(self.default)
+		print 'Config: self.default2:',self.tostring(self.default)
+
+		if sv is None and str(self.value) == str(self.default):
+			print 'Config A1: FALSE'
 			return False
-		return self.tostring(self.value) != sv
+		elif sv is None and self.tostring(self.value) != self.tostring(self.default):
+			print 'Config: A2:',self.tostring(self.value) != self.tostring(self.default)
+			return self.tostring(self.value) != self.tostring(self.default)
+		print 'Config: A3:',self.tostring(self.value) != self.tostring(sv)
+		return self.tostring(self.value) != self.tostring(sv)
 
 	def changed(self):
 		if self.__notifiers:
@@ -462,13 +475,13 @@ class ConfigBoolean(ConfigElement):
 			return "text", self.getText()
 
 	def tostring(self, value):
-		if not value:
-			return "false"
+		if not value or str(value).lower() == 'false':
+			return "False"
 		else:
-			return "true"
+			return "True"
 
 	def fromstring(self, val):
-		if val == "true":
+		if str(val).lower() == "true":
 			return True
 		else:
 			return False
@@ -849,7 +862,9 @@ class ConfigSequence(ConfigElement):
 			return "text", value
 
 	def tostring(self, val):
-		return self.seperator.join([self.saveSingle(x) for x in val])
+		if val:
+			return self.seperator.join([self.saveSingle(x) for x in val])
+		return None
 
 	def saveSingle(self, v):
 		return str(v)
@@ -922,11 +937,12 @@ class ConfigIP(ConfigSequence):
 	def genText(self):
 		value = ""
 		block_strlen = []
-		for i in self._value:
-			block_strlen.append(len(str(i)))
-			if value:
-				value += self.seperator
-			value += str(i)
+		if self._value:
+			for i in self._value:
+				block_strlen.append(len(str(i)))
+				if value:
+					value += self.seperator
+				value += str(i)
 		leftPos = sum(block_strlen[:self.marked_block]) + self.marked_block
 		rightPos = sum(block_strlen[:(self.marked_block + 1)]) + self.marked_block
 		mBlock = range(leftPos, rightPos)
@@ -1531,9 +1547,9 @@ class ConfigNumber(ConfigText):
 	def isChanged(self):
 		sv = self.saved_value
 		strv = self.tostring(self.value)
-		if sv is None and strv == self.default:
+		if sv is None and strv == str(self.default):
 			return False
-		return strv != sv
+		return strv != self.tostring(sv)
 
 	def conform(self):
 		pos = len(self.text) - self.marked_pos

@@ -84,11 +84,30 @@ class TimerEditList(Screen, TimerListButtons):
 	STOP = 6
 	CLEANUP = 7
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Timer List"))
+		screentitle = _("Timer List")
 		TimerListButtons.__init__(self)
-
+		self.menu_path = menu_path
+		if config.usage.show_menupath.value == 'large':
+			self.menu_path += screentitle
+			title = self.menu_path
+			self["menu_path_compressed"] = StaticText("")
+			self.menu_path += ' / '
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			condtext = ""
+			if self.menu_path and not self.menu_path.endswith(' / '):
+				condtext = self.menu_path + " >"
+			elif self.menu_path:
+				condtext = self.menu_path[:-3] + " >"
+			self["menu_path_compressed"] = StaticText(condtext)
+			self.menu_path += screentitle + ' / '
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+		
 		self.onChangedEntry = []
 		list = []
 		self.list = list
@@ -118,7 +137,6 @@ class TimerEditList(Screen, TimerListButtons):
 			"up": self.up,
 			"down": self.down
 		}, -1)
-		self.setTitle(_("Timer overview"))
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 		if self.isProtected() and config.ParentalControl.servicepin[0].value:
@@ -173,7 +191,7 @@ class TimerEditList(Screen, TimerListButtons):
 					print "[TimerEdit] Sanity check failed"
 					simulTimerList = timersanitycheck.getSimulTimerList()
 					if simulTimerList is not None:
-						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
+						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList, self.menu_path)
 				else:
 					print "[TimerEdit] Sanity check passed"
 					if timersanitycheck.doubleCheck():
@@ -318,12 +336,12 @@ class TimerEditList(Screen, TimerListButtons):
 	def showLog(self):
 		cur = self["timerlist"].getCurrent()
 		if cur:
-			self.session.openWithCallback(self.finishedEdit, TimerLog, cur)
+			self.session.openWithCallback(self.finishedEdit, TimerLog, cur, self.menu_path)
 
 	def openEdit(self):
 		cur = self["timerlist"].getCurrent()
 		if cur:
-			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
+			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur, self.menu_path)
 
 	def cleanupQuestion(self):
 		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete completed timers?"))
@@ -383,7 +401,7 @@ class TimerEditList(Screen, TimerListButtons):
 		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *data))
 
 	def addTimer(self, timer):
-		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
+		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer, self.menu_path)
 
 	def finishedEdit(self, answer):
 # 		print "[TimerEdit] finished edit"
@@ -402,7 +420,7 @@ class TimerEditList(Screen, TimerListButtons):
 					if not timersanitycheck.check():
 						simulTimerList = timersanitycheck.getSimulTimerList()
 						if simulTimerList is not None:
-							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList(), self.menu_path)
 					else:
 						success = True
 			else:
@@ -427,7 +445,7 @@ class TimerEditList(Screen, TimerListButtons):
 						self.session.nav.RecordTimer.timeChanged(x)
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList is not None:
-					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList, self.menu_path)
 			self.fillTimerList()
 			self.updateState()
 		# else:
@@ -526,9 +544,22 @@ class TimerSanityConflict(Screen, TimerListButtons):
 	DISABLE = 4
 	STOPDISABLE = 5
 
-	def __init__(self, session, timer):
+	def __init__(self, session, timer, menu_path=""):
 		Screen.__init__(self, session)
 		TimerListButtons.__init__(self)
+
+		screentitle = _("Timer sanity error")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 
 		self.timer = timer
 		print "[TimerEdit] TimerSanityConflict"
@@ -564,17 +595,16 @@ class TimerSanityConflict(Screen, TimerListButtons):
 			"up": self.up,
 			"down": self.down
 		}, -1)
-		self.setTitle(_("Timer sanity error"))
 		self.onShown.append(self.updateState)
 
 	def getTimerList(self, timer):
 		return [(timer, False)]
 
 	def editTimer1(self):
-		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer1"].getCurrent())
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer1"].getCurrent(), self.menu_path)
 
 	def editTimer2(self):
-		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer2"].getCurrent())
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, self["timer2"].getCurrent(), self.menu_path)
 
 	def toggleTimer(self):
 		x = self["timer2"].getCurrentIndex() + 1  # the first is the new timer so we do +1 here

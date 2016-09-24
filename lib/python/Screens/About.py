@@ -21,7 +21,7 @@ from keyids import KEYIDS
 
 
 class AboutBase(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 
 		self.list = []
@@ -106,8 +106,8 @@ class AboutBase(Screen):
 
 
 class About(AboutBase):
-	def __init__(self, session):
-		AboutBase.__init__(self, session)
+	def __init__(self, session, menu_path=""):
+		AboutBase.__init__(self, session, menu_path)
 
 		scanning = _("Wait please while loading information...")
 		self.list.append(self.makeHeadingEntry(scanning))
@@ -125,7 +125,7 @@ class About(AboutBase):
 		if path.exists('/proc/stb/info/chipset'):
 			self.list.append(self.makeInfoEntry(_("Chipset:"), "BCM%s" % about.getChipSetString()))
 
-		self.list.append(self.makeInfoEntry(_("CPU:"), about.getCPUString()))
+		self.list.append(self.makeInfoEntry(_("CPU:"), about.getCPUString().replace('bcm', 'BCM')))
 		self.list.append(self.makeInfoEntry(_("CPU Speed:"), about.getCPUSpeedString()))
 		self.list.append(self.makeInfoEntry(_("Cores:"), str(about.getCpuCoresString())))
 
@@ -237,8 +237,8 @@ class Devices(AboutBase):
 		"ubifs": "UBIFS", "udf": "UDF", "vfat": "FAT",
 	}
 
-	def __init__(self, session):
-		AboutBase.__init__(self, session)
+	def __init__(self, session, menu_path=""):
+		AboutBase.__init__(self, session, menu_path)
 
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
@@ -367,8 +367,8 @@ class Devices(AboutBase):
 		self["list"].updateList(self.list)
 
 class SystemMemoryInfo(AboutBase):
-	def __init__(self, session):
-		AboutBase.__init__(self, session)
+	def __init__(self, session, menu_path=""):
+		AboutBase.__init__(self, session, menu_path)
 
 		out_lines = file("/proc/meminfo").readlines()
 		self.list.append(self.makeHeadingEntry(_("RAM")))
@@ -476,8 +476,8 @@ class SystemNetworkInfo(AboutBase):
 		def nextPos(self):
 			return self.pos
 
-	def __init__(self, session):
-		AboutBase.__init__(self, session)
+	def __init__(self, session, menu_path=""):
+		AboutBase.__init__(self, session, menu_path)
 
 		self["hostname"] = Label()
 		self["inetstatus"] = MultiPixmap()

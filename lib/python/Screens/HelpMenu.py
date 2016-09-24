@@ -25,6 +25,8 @@ The order and grouping of the help information list can be controlled using MENU
 
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
+		self.setup_title = _("Help")
+		Screen.setTitle(self, self.setup_title)
 		Rc.__init__(self)
 		self.onSelChanged = []
 		self["list"] = HelpMenuList(list, self.close, rcPos=self.getRcPositions())
