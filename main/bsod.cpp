@@ -99,7 +99,7 @@ void bsodFatal(const char *component)
 	localtime_r(&t, &tm);
 	strftime(tm_str, sizeof(tm_str), "%Y-%m-%d_%H-%M-%S", &tm);
 	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
-	os << "enigma2_crash_";
+	os << "Enigma2_crash_";
 	os << tm_str;
 	os << ".log";
 	crashlog_name = os.str();
@@ -111,14 +111,14 @@ void bsodFatal(const char *component)
 		 * alone because we may be in a crash loop and writing this file
 		 * all night long may damage the flash. Also, usually the first
 		 * crash log is the most interesting one. */
-		crashlog_name = "/home/root/logs/enigma2_crash.log";
+		crashlog_name = "/home/root/logs/Enigma2_crash.log";
 		if ((access(crashlog_name.c_str(), F_OK) == 0) ||
 		    ((f = fopen(crashlog_name.c_str(), "wb")) == NULL))
 		{
 			/* Re-write the same file in /tmp/ because it's expected to
 			 * be in RAM. So the first crash log will end up in /home
 			 * and the last in /tmp */
-			crashlog_name = "/tmp/enigma2_crash.log";
+			crashlog_name = "/tmp/Enigma2_crash.log";
 			f = fopen(crashlog_name.c_str(), "wb");
 		}
 	}

@@ -161,7 +161,7 @@ class LogManagerPoller:
 		self.TrashTimer.startLongTimer(43200) #twice a day
 
 class LogManager(Screen):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		self.logtype = 'crashlogs'
 
@@ -189,7 +189,7 @@ class LogManager(Screen):
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
 		self.defaultDir = config.crash.debug_path.value
-		self.matchingPattern = 'enigma2_crash_'
+		self.matchingPattern = 'Enigma2_crash_'
 		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = self.matchingPattern )
 		self["list"] = self.filelist
 		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
@@ -257,7 +257,7 @@ class LogManager(Screen):
 		if self.logtype == 'crashlogs':
 			self["key_red"].setText(_("Crash Logs"))
 			self.logtype = 'debuglogs'
-			self.matchingPattern = 'Enigma2'
+			self.matchingPattern = 'Enigma2_debug_'
 		else:
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
@@ -458,9 +458,10 @@ class LogManager(Screen):
 
 class LogManagerViewLog(Screen):
 	def __init__(self, session, selected):
-		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(selected)
+		self.session = session
+		Screen.setTitle(self, selected)
+
 		if path.exists(config.crash.debug_path.value + selected):
 			log = file(config.crash.debug_path.value + selected).read()
 		else:

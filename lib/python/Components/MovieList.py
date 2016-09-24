@@ -10,6 +10,8 @@ from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
+#GML:1
+from Tools.Trashcan import getTrashFolder
 import NavigationInstance
 import skin
 
@@ -160,6 +162,17 @@ class MovieList(GUIComponent):
 		'Network Trash Folder', 'Temporary Items',
 		'.TemporaryItems'
 	]
+
+#GML:1
+# So MovieSelection.selectSortby() can find out whether we are 
+# in a Trash folder and, if so, what the last sort was
+# The numbering starts after SORT_* values above.
+# in MovieSelection.py (that has no SORT_GROUPWISE)
+#
+	TRASHSORT_SHOWRECORD = 11
+	TRASHSORT_SHOWDELETE = 12
+	UsingTrashSort = False
+	InTrashFolder = False
 
 	def __init__(self, root, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
@@ -579,6 +592,20 @@ class MovieList(GUIComponent):
 			ref.setPath(parent)
 			self.list.append((ref, None, 0, -1))
 			numberOfDirs += 1
+
+#GML:1
+		if config.usage.movielist_trashcan.value:
+			here = os.path.realpath(rootPath)
+			MovieList.InTrashFolder = here.startswith(getTrashFolder(here))
+		else:
+	 		MovieList.InTrashFolder = False
+ 		MovieList.UsingTrashSort = False
+		if MovieList.InTrashFolder:
+			if (config.usage.trashsort_deltime.value == "show record time"):
+		 		MovieList.UsingTrashSort = MovieList.TRASHSORT_SHOWRECORD
+			elif (config.usage.trashsort_deltime.value == "show delete time"):
+		 		MovieList.UsingTrashSort = MovieList.TRASHSORT_SHOWDELETE
+
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
@@ -591,6 +618,16 @@ class MovieList(GUIComponent):
 			if info is None:
 				info = justStubInfo
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
+
+#GML:1
+			begin2 = 0
+			if MovieList.UsingTrashSort:
+				f_path = serviceref.getPath()
+				if os.path.exists(f_path):  # Override with deltime for sorting
+					if MovieList.UsingTrashSort == MovieList.TRASHSORT_SHOWRECORD:
+						begin2 = begin      # Save for later re-instatement
+					begin = os.stat(f_path).st_ctime
+
 			if serviceref.flags & eServiceReference.mustDescent:
 				dirname = info.getName(serviceref)
 				normdirname = os.path.normpath(dirname)
@@ -632,12 +669,27 @@ class MovieList(GUIComponent):
 					# print "[MovieList] Skipping", name, "tags=", this_tags, " filter=", filter_tags
 					continue
 
-			self.list.append((serviceref, info, begin, -1))
+#GML:1
+			if begin2 != 0:
+				self.list.append((serviceref, info, begin, -1, begin2))
+			else:
+				self.list.append((serviceref, info, begin, -1))
 			self.numUserFiles += 1
 
 		self.parentDirectory = 0
 
-		if self.sort_type == MovieList.SORT_ALPHA_DATE_NEWEST_FIRST:
+#GML:1
+		if MovieList.UsingTrashSort:      # Same as SORT_RECORDED (SORT_DATE_NEWEST_FIRST_ALPHA), but must come first...
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey)
+# Having sorted on deletion times, re-instate any record times for display.
+# self.list is a list of tuples, so we can't just assign to elements...
+#
+			if config.usage.trashsort_deltime.value == "show record time":
+				for i in range(len(self.list)):
+					if len(self.list[i]) == 5:
+						x = self.list[i]
+						self.list[i] = (x[0], x[1], x[4], x[3])
+		elif self.sort_type == MovieList.SORT_ALPHA_DATE_NEWEST_FIRST:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_OLDEST_FIRST:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey, reverse=True) \
