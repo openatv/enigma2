@@ -35,6 +35,8 @@ class eDVBDB: public iDVBChannelList
 	eDVBDB();
 	~eDVBDB();
 #endif
+private:
+	void loadServiceListV5(FILE * f);
 public:
 // iDVBChannelList
 	RESULT removeFlags(unsigned int flagmask, int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);

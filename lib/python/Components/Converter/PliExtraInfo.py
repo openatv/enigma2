@@ -34,7 +34,8 @@ class PliExtraInfo(Poll, Converter, object):
 			("0x2600", "0x2600", "Biss",     "Bi", False ),
 			("0x4ae0", "0x4ae1", "Dre",      "D",  False ),
 			("0x4aee", "0x4aee", "BulCrypt", "B1", False ),
-			("0x5581", "0x5581", "BulCrypt", "B2", False )
+			("0x5581", "0x5581", "BulCrypt", "B2", False ),
+			("0x1010", "0x1010", "Tandberg", "T", True  )
 		)
 		self.ca_table = (
 			("CryptoCaidSecaAvailable",	"S",	False),
@@ -50,6 +51,7 @@ class PliExtraInfo(Poll, Converter, object):
 			("CryptoCaidDreAvailable",	"D",	False),
 			("CryptoCaidBulCrypt1Available","B1",	False),
 			("CryptoCaidBulCrypt2Available","B2",	False),
+			("CryptoCaidTandbergAvailable",	"T",	False),
 			("CryptoCaidSecaSelected",	"S",	True),
 			("CryptoCaidViaSelected",	"V",	True),
 			("CryptoCaidIrdetoSelected",	"I",	True),
@@ -63,6 +65,7 @@ class PliExtraInfo(Poll, Converter, object):
 			("CryptoCaidDreSelected",	"D",	True),
 			("CryptoCaidBulCrypt1Selected",	"B1",	True),
 			("CryptoCaidBulCrypt2Selected",	"B2",	True),
+			("CryptoCaidTandbergSelected",	"T",	True)
 		)
 		self.ecmdata = GetEcmInfo()
 		self.feraw = self.fedata = self.updateFEdata = None
@@ -214,6 +217,22 @@ class PliExtraInfo(Poll, Converter, object):
 		res = color + 'P'
 		res += "\c00??????"
 		return res
+		
+	def createCryptoTandberg(self, info):
+		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
+		if int('0x1010', 16) <= int(self.current_caid, 16) <= int('0x1010', 16):
+			color="\c004c7d3f"
+		else:
+			color = "\c009?9?9?"
+			try:
+				for caid in available_caids:
+					if int('0x1010', 16) <= caid <= int('0x1010', 16):
+						color="\c00eeee00"
+			except:
+				pass
+		res = color + 'T'
+		res += "\c00??????"
+		return res		
 
 	def createCryptoBeta(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
@@ -287,6 +306,20 @@ class PliExtraInfo(Poll, Converter, object):
 					caid_name = caid_entry[2]
 					break
 			return caid_name + ":%04x:%04x:%04x" % (int(self.current_caid,16), int(self.current_provid,16), info.getInfo(iServiceInformation.sSID))
+		except:
+			pass
+		return ""
+
+	def createCryptoNameCaid(self, info):
+		caid_name = "FTA"
+		if int(self.current_caid,16) == 0:
+			return caid_name
+		try:
+			for caid_entry in self.caid_data:
+				if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
+					caid_name = caid_entry[2]
+					break
+			return caid_name + ":%04x" % (int(self.current_caid,16))
 		except:
 			pass
 		return ""
@@ -629,11 +662,25 @@ class PliExtraInfo(Poll, Converter, object):
 				return self.createCryptoDre(info)
 			else:
 				return ""
+				
+		if self.type == "CryptoTandberg":
+			if int(config.usage.show_cryptoinfo.value) > 0:
+				self.getCryptoInfo(info)
+				return self.createCryptoTandberg(info)
+			else:
+				return ""				
 
 		if self.type == "CryptoSpecial":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoSpecial(info)
+			else:
+				return ""
+
+		if self.type == "CryptoNameCaid":
+			if int(config.usage.show_cryptoinfo.value) > 0:
+				self.getCryptoInfo(info)
+				return self.createCryptoNameCaid(info)
 			else:
 				return ""
 
