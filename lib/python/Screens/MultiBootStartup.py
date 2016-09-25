@@ -17,11 +17,11 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		<eLabel name="a" position="1,1" size="498,198" backgroundColor="#00000000" zPosition="-1" />
 		<widget source="Title" render="Label" position="10,10" foregroundColor="#00ffffff" size="480,50" halign="center" font="Regular; 35" backgroundColor="#00000000" />
 		<eLabel name="line" position="1,69" size="498,1" backgroundColor="#00ffffff" zPosition="1" />
-		<widget source="config" render="Label" position="10,90" size="480,60" halign="center" itemHeight="30" font="Regular; 30" enableWrapAround="1" backgroundColor="#00000000" foregroundColor="#00ffffff" />
-		<widget source="key_red" render="Label" position="35,150" size="170,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
-		<widget source="key_green" render="Label" position="228,150" size="170,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
-		<eLabel position="25,147" size="6,40" backgroundColor="#00e61700" />
-		<eLabel position="216,147" size="6,40" backgroundColor="#0061e500" />
+		<widget source="config" render="Label" position="10,90" size="480,60" halign="center" font="Regular; 30" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="key_red" render="Label" position="35,162" size="170,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<widget source="key_green" render="Label" position="228,162" size="170,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<eLabel position="25,159" size="6,40" backgroundColor="#00e61700" />
+		<eLabel position="216,159" size="6,40" backgroundColor="#0061e500" />
 	</screen>
 	"""
 
