@@ -25,25 +25,17 @@ def getAboutText():
 	bootloader = ""
 	if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
 		f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
-		#bootloader = f.read(3)
 		bootloader = f.readline().replace('\x00', '').replace('\n', '')
 		f.close()
-
-	blv = 0
-	try:
-		if bootloader:
-			AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
-			blv = int(bootloader[1:])
-	except:
-		blv = 0
+		AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
 
 	if path.exists('/proc/stb/info/chipset'):
 		AboutText += _("Chipset:\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
-	if getMachineBuild() in ('vusolo4k') or (getMachineBuild() in ('hd51') and blv < 31):
+	if getMachineBuild() in ('vusolo4k') or bootloader in ('v29'):
 		cpuMHz = "   (1,5 GHz)"
-	elif getMachineBuild() in ('hd52') or (getMachineBuild() in ('hd51') and blv >= 31):
+	elif getMachineBuild() in ('hd52','hd51'):
 		cpuMHz = "   (1,7 GHz)"
 	else:
 		if path.exists('/proc/cpuinfo'):
