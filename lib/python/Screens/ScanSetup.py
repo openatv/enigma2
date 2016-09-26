@@ -375,7 +375,6 @@ class CableTransponderSearchSupport:
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
 class TerrestrialTransponderSearchSupport:
-
 	def terrestrialTransponderSearchSessionClosed(self, *val):
 		print "[ScanSetup] TerrestrialTransponderSearchSessionClosed, val", val
 		self.terrestrial_search_container.appClosed.remove(self.terrestrialTransponderSearchClosed)
@@ -589,9 +588,20 @@ class TerrestrialTransponderSearchSupport:
 		self.terrestrial_search_container.execute(cmd)
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Manual Scan"))
+		screentitle = _("Manual Scan")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 
 		self["description"] = Label("")
 
@@ -1110,7 +1120,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 		self.terrestrial_nims_regions = []
 		for slot in nimmanager.nim_slots:
-			if slot.isCompatible("DVB-T"):
+			if slot.canBeCompatible("DVB-T"):
 				self.terrestrial_nims_regions.append(self.getTerrestrialRegionsList(slot.slot))
 			else:
 				self.terrestrial_nims_regions.append(None)
@@ -1528,9 +1538,20 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			networks = []
 		return networks
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Automatic Scan"))
+		screentitle = _("Automatic Scan")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Scan"))

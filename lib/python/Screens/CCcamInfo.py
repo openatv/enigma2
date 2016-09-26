@@ -598,9 +598,21 @@ class CCcamInfoMain(Screen):
 		<widget name="menu" position="0,0" size="500,450" scrollbarMode="showOnDemand" />
 	</screen>"""
 
-	def __init__(self, session):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CCcam Info"))
+		screentitle = _("CCcam Info")
+		menu_path += screentitle
+		if config.usage.show_menupath.value == 'large':
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+
 		self.session = session
 
 		self["menu"] = CCcamList([])

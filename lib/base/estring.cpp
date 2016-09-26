@@ -10,8 +10,8 @@
 std::string buildShortName( const std::string &str )
 {
 	std::string tmp;
-	static char stropen[3] = { 0xc2, 0x86, 0x00 };
-	static char strclose[3] = { 0xc2, 0x87, 0x00 };
+	static char stropen[] = "\xc2\x86";
+	static char strclose[] = "\xc2\x87";
 	size_t open=std::string::npos-1;
 	while ( (open = str.find(stropen, open+2)) != std::string::npos )
 	{

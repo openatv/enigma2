@@ -49,11 +49,11 @@ class TransponderInfo(Converter, object):
 			return "%s %s %s %s %s %s %s" % (transponderdata["system"], transponderdata["frequency"], transponderdata["polarization_abbreviation"], transponderdata["symbol_rate"], \
 				transponderdata["fec_inner"], transponderdata["modulation"], transponderdata["detailed_satpos" in self.type and "orbital_position" or "orb_pos"])
 		if ref:
-			result = ref.toString()
+			result = ref.toString().replace("%3a",":")
 		else:
 			result = info.getInfoString(iServiceInformation.sServiceref)
-		if "%3a//" in result:
-			return _("Stream") + " " + result.rsplit("%3a//", 1)[1].split("/")[0]
+		if "://" in result:
+			return _("Stream") + " " + result.rsplit("://", 1)[1].split("/")[0]
 		return ""
 
 	text = property(getText)

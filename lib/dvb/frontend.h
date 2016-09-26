@@ -91,6 +91,7 @@ private:
 	bool m_enabled;
 	bool m_fbc;
 	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
+	int m_type;
 	int m_dvbid;
 	int m_slotid;
 	int m_fd;
@@ -102,6 +103,7 @@ private:
 	int m_dvbversion;
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
+	bool m_multitype;
 	std::map<fe_delivery_system_t, bool> m_delsys, m_delsys_whitelist;
 	std::string m_filename;
 	char m_description[128];
@@ -174,11 +176,13 @@ public:
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
 	bool supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist);
 	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist);
+	bool setDeliverySystem(const char *type);
 
 	void reopenFrontend();
 	int openFrontend();
 	int closeFrontend(bool force=false, bool no_delayed=false);
 	const char *getDescription() const { return m_description; }
+	const dvb_frontend_info getFrontendInfo() const { return fe_info; }
 	bool is_simulate() const { return m_simulate; }
 
 	bool has_prev() { return (m_data[LINKED_PREV_PTR] != -1); }

@@ -19,19 +19,21 @@ class ServiceStopScreen:
 		return pipavailable
 
 	def stopService(self):
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.session.nav.stopService()
-		if self.pipAvailable():
-			if self.session.pipshown: # try to disable pip
-				if hasattr(self.session, 'infobar'):
-					if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
-						self.session.infobar.servicelist.togglePipzap()
-				if hasattr(self.session, 'pip'):
-					del self.session.pip
-				self.session.pipshown = False
+		if not self.oldref:
+			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.session.nav.stopService()
+			if self.pipAvailable():
+				if self.session.pipshown: # try to disable pip
+					if hasattr(self.session, 'infobar'):
+						if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
+							self.session.infobar.servicelist.togglePipzap()
+					if hasattr(self.session, 'pip'):
+						del self.session.pip
+					self.session.pipshown = False
 
 	def __onClose(self):
-		self.session.nav.playService(self.oldref)
+		if self.oldref:
+			self.session.nav.playService(self.oldref)
 
 	def restoreService(self, msg = _("Zap back to previously tuned service?")):
 		if self.oldref:
@@ -39,7 +41,7 @@ class ServiceStopScreen:
 		else:
 			self.restartPrevService(False)
 
-	def restartPrevService(self, yesno):
+	def restartPrevService(self, yesno=True):
 		if not yesno:
-			self.oldref=None
+			self.oldref = None
 		self.close()
