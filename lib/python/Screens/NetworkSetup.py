@@ -517,8 +517,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_blue"] = StaticText(_("Edit DNS"))
 
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 
@@ -2447,8 +2446,7 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 			'save': self.saveSmb,
 			'cancel': self.close,
 		})
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -2825,8 +2823,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 			'cancel': self.close,
 			'save': self.saveIna,
 		})
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -3222,8 +3219,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			'green': self.selectfolders,
 			'back': self.close,
 		})
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
@@ -3742,8 +3738,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 			'yellow': self.selectfolders,
 			'back': self.close,
 		})
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self.updateList()
