@@ -9,6 +9,7 @@ from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_AC
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Label import Label
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
+from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
@@ -171,8 +172,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		self["description"] = Label()
 
 		self["key_red"] = StaticText(_("Cancel"))
