@@ -20,6 +20,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import defaultMoviePath
+from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
@@ -56,7 +57,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"] = Boolean(False)
 
 		self["description"] = Label("")
 		self["key_red"] = Label(_("Cancel"))
