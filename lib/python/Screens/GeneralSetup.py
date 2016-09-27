@@ -20,6 +20,7 @@ from Screens.Setup import Setup
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import SkinSelector, LcdSkinSelector
 from Screens.Standby import TryQuitMainloop
+from Screens.ButtonSetup import ButtonSetup
 
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
@@ -266,6 +267,7 @@ class GeneralSetup(Screen):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent(_("GUI settings"), _("GUI and on screen display"), _("Configure your user interface and OSD (on screen display)")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Button settings"), _("Button assignment"), _("Set up your buttons")))
+#		self.sublist.append(QuickSubMenuEntryComponent(_("More button settings"), _("Button assignment"), _("Set up more of your buttons")))
 		if not getMachineBrand() == "Beyonwiz":
 			self.sublist.append(QuickSubMenuEntryComponent(_("Language settings"), _("Setup your language"), _("Set up menu language")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Time settings"), _("Time settings"), _("Set up date and time")))
@@ -491,6 +493,8 @@ class GeneralSetup(Screen):
 			self.openSetup("userinterface")
 		elif selected == _("Button settings"):
 			self.openSetup("buttonsetup")
+		elif selected == _("More button settings"):
+			self.session.open(ButtonSetup)
 		elif selected == _("HDMI-CEC"):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 			self.session.open(HdmiCECSetupScreen)
