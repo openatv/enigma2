@@ -10,6 +10,7 @@ from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
 from Components.ActionMap import ActionMap
 from Components.Scanner import openFile
+from Components.Sources.Boolean import Boolean
 from Components.MenuList import MenuList
 # Screens
 from Screens.Screen import Screen
@@ -212,8 +213,7 @@ class FileCommanderScreen(Screen, key_actions):
 		self["key_green"] = Label(_("Move"))
 		self["key_yellow"] = Label(_("Copy"))
 		self["key_blue"] = Label(_("Rename"))
-		self["VKeyIcon"] = Pixmap()
-		self["VKeyIcon"].hide()
+		self["VKeyIcon"] = Boolean(False)
 
 		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
 			"ok": self.ok,
@@ -594,7 +594,7 @@ class FileCommanderScreen(Screen, key_actions):
 				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
 			if targetDir is not None:
 				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
-		self["VKeyIcon"].setVisible(self.viewable_file() is not None)
+		self["VKeyIcon"].boolean = self.viewable_file() is not None
 
 	def doRefreshDir(self):
 		self["list_left"].changeDir(config.plugins.filecommander.path_left_tmp.value)
