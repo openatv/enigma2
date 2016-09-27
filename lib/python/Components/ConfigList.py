@@ -224,10 +224,7 @@ class ConfigListScreen:
 	def showVKeyboard(self, state):
 		if "VKeyIcon" in self:
 			self["VirtualKB"].setEnabled(state)
-			if isinstance(self["VKeyIcon"], Pixmap):
-				self["VKeyIcon"].setVisible(state)
-			else:
-				self["VKeyIcon"].boolean = state
+			self["VKeyIcon"].boolean = state
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
