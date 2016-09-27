@@ -945,6 +945,10 @@ class NimManager:
 		nimfile.close()
 
 		for id, entry in entries.items():
+			print "[NimManager][enumerateNIMs] slot:", id, "- entry:", entry
+			if entry.has_key("name") and "SI4768" in entry["name"] and entry.has_key("type") and "C2" in entry["type"]: # temporary workaround for GIGA DVB-C/T2 NIM (SI4768) tuner
+				entry["type"] = "DVB-C"
+				print "[NimManager][enumerateNIMs] Apply DVB-C workaround for GIGA DVB-C/T2 NIM (SI4768) tuner"
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
