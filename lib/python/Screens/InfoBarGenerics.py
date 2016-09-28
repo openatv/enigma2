@@ -4266,7 +4266,7 @@ class InfoBarResolutionSelection:
 		tlist = []
 		tlist.append((_("Exit"), "exit")) 
 		tlist.append((_("Auto(not available)"), "auto"))
-		tlist.append(("Video: " + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", ""))
+		tlist.append((_("Video: ") + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", ""))
 		tlist.append(("--", ""))
 		if choices != []:
 			for x in choices:
