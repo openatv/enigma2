@@ -286,7 +286,7 @@ class VirtualKeyBoard(Screen):
 				['\xe0\xb8\xa4', '\xe0\xb8\x86', '\xe0\xb8\x8f', '\xe0\xb9\x82', '\xe0\xb8\x8c', '\xe0\xb9\x87', '\xe0\xb9\x8b', '\xe0\xb8\xa9', '\xe0\xb8\xa8', '\xe0\xb8\x8b'],
 				['', '', '\xe0\xb8\x89', '\xe0\xb8\xae', '\xe0\xb8\xba', '\xe0\xb9\x8c', '', '\xe0\xb8\x92', '\xe0\xb8\xac', '\xe0\xb8\xa6', u'CLEAR'],
 				[u'SHIFT', u'SPACE', u'OK']]
-			self.nextLang = 'en_EN'
+			self.nextLang = 'en_US'
 		else:
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
@@ -300,7 +300,7 @@ class VirtualKeyBoard(Screen):
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"?", u'"', u"|"],
 				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT", u"~"]]
-			self.lang = 'en_EN'
+			self.lang = 'en_US'
 			self.nextLang = 'de_DE'
 		self["country"].setText(self.lang)
 		self.max_key=47+len(self.keys_list[4])
