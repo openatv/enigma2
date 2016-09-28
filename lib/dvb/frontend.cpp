@@ -595,7 +595,7 @@ int eDVBFrontend::openFrontend()
 			fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 			fclose(boxtype_file);
 
-			if(!strcmp(boxtype_name, "osminiplus\n"))
+			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega"))
 			{
 				m_need_delivery_system_workaround = false;
 			}
