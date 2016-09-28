@@ -573,6 +573,8 @@ class OscamInfoMenu(Screen):
 class oscECMInfo(Screen, OscamInfo):
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.setup_title = _("Oscam ECM-info")
+		Screen.setTitle(self, _(self.setup_title))
 		self.ecminfo = "/tmp/ecm.info"
 		self["output"] = oscMenuList([])
 		if config.oscaminfo.autoupdate.value:
