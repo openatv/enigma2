@@ -251,7 +251,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 						break
 					idx += 1
 		#verify bootname
-		if path.exists('/boot/%s' %bootname):
+		if bootname in self.list and path.exists('/boot/%s' %bootname):
 			f = open('/boot/%s' %bootname, 'r')
 			line = f.readline()
 			f.close()
