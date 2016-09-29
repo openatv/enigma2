@@ -145,7 +145,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			self.session.openWithCallback(self.renameCB, VirtualKeyBoard, title=_("Please enter new name:"), text=self.oldname)
 
 	def renameCB(self, name):
-		if name:
+		if name and name != 'bootname':
 			if not path.exists('/boot/%s' %name) and path.exists('/boot/%s' %self.list[self.selection]):
 				ret = system("mv -fn /boot/%s /boot/%s" %(self.list[self.selection],name))
 				if ret:
