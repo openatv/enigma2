@@ -162,6 +162,9 @@ class MultiBootStartup(ConfigListScreen, Screen):
 						f.close()
 						self.getCurrent()
 						return
+					elif self.bootname == self.oldname:
+						self.getCurrent()
+						return
 					self.list[self.selection] = name
 					self["config"].setText(_("Select Image: %s") %name)
 			else:
@@ -186,9 +189,13 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		
 		'''
 
+		self.enable_bootnamefile = False #for compatibility set to False
 		self.list = self.list_files("/boot")
 		self.optionsList = (('boxmode=1', _('2160p60 without PiP (Standard)')), ('boxmode=12', _('2160p50 with PiP (Experimental)')))
 		self.bootloaderList = ('v1.07-r19',)
+
+		if not self.enable_bootnamefile and path.exists('/boot/bootname'):
+			system("rm -f /boot/bootname")
 
 		boot = ""
 		if path.exists('/boot/STARTUP'):
@@ -277,6 +284,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			bootname = _('unknown')
 			self.selection = 0
 
+		self.bootname = bootname
 		self.startup()
 		self.startup_option()
 		self["description"].setText(_("Current Bootsettings: %s (Image %s)%s%s") %(bootname,image,sep,self.optionsList[self.currentOption][0]))
@@ -322,13 +330,14 @@ class MultiBootStartup(ConfigListScreen, Screen):
 					boot = boot.replace("rootwait", "rootwait hd51_4.%s" %(self.optionsList[self.option][0]))
 					writeoption = True
 
-		originalname = 'STARTUP_%s' %boot[22:23]
-		f = open('/boot/bootname', 'w')
-		if failboot:
-			f.write('STARTUP_1=STARTUP_1')
-		else:
-			f.write('%s=%s' %(originalname,self.list[self.selection]))
-		f.close()
+		if self.enable_bootnamefile:
+			originalname = 'STARTUP_%s' %boot[22:23]
+			f = open('/boot/bootname', 'w')
+			if failboot:
+				f.write('STARTUP_1=STARTUP_1')
+			else:
+				f.write('%s=%s' %(originalname,self.list[self.selection]))
+			f.close()
 
 		if failboot:
 			print "[MultiBootStartup] wrong bootsettings: " + boot
