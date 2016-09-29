@@ -6,7 +6,6 @@ from Components.FileList import FileList
 from Components.Task import Task, Job, job_manager, Condition
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-from Components import Harddisk
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -175,10 +174,10 @@ class FlashOnline(Screen):
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
 			for name in os.listdir(path):
-				if os.path.isfile(os.path.join(path, name)):
+				if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
 					cmdline_startup = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-					if (cmdline != cmdline_startup) and (name != "STARTUP") and cmdline in Harddisk.getextdevices("ext4"):
+					if (cmdline != cmdline_startup) and (name != "STARTUP"):
 						files.append(name)
 			files.insert(0,"STARTUP")
 		else:
