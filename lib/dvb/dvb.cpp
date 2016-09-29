@@ -840,6 +840,18 @@ std::string eDVBResourceManager::getFrontendCapabilities(int index)
 	return "";
 }
 
+std::string eDVBResourceManager::getFrontendDeliverySystem(int index)
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		if (i->m_frontend->getSlotID() == index)
+			{
+				return i->m_frontend->getDeliverySystem();
+			}
+	}
+	return "";
+}
+
 void eDVBResourceManager::setFrontendType(int index, const char *type)
 {
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
