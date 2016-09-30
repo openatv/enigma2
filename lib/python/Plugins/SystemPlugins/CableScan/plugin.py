@@ -171,7 +171,10 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, scanModulation = int(config.plugins.CableScan.modulation.value), keepNumbers = config.plugins.CableScan.keepnumbering.value, hdList = config.plugins.CableScan.hdlist.value)
+		if int(self.scan_nims.value) in [recording.frontendInfo().getAll(True)["tuner_number"] for recording in self.session.nav.getRecordings()]:
+			self.session.open(MessageBox, _("A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."), type=MessageBox.TYPE_ERROR)
+		else:
+			self.session.open(CableScanStatus, scanTuner=int(self.scan_nims.value), scanNetwork=config.plugins.CableScan.networkid.value, scanFrequency=config.plugins.CableScan.frequency.value * 1000, scanSymbolRate=config.plugins.CableScan.symbolrate.value * 1000, scanModulation=int(config.plugins.CableScan.modulation.value), keepNumbers=config.plugins.CableScan.keepnumbering.value, hdList=config.plugins.CableScan.hdlist.value)
 
 	def keyCancel(self):
 		self.close()
@@ -219,14 +222,7 @@ Session = None
 CableScanAutoStartTimer = eTimer()
 
 def CableScanMain(session, **kwargs):
-	if session.nav.RecordTimer.isRecording():
-		session.openWithCallback(CableScanMainCallback, MessageBox, _("A recording is currently running. When you scan you can corrupt the recording. Do you still want to scan?"), type=MessageBox.TYPE_YESNO, default=False)
-	else:
-		CableScanMainCallback(True)
-
-def CableScanMainCallback(answer):
-	if answer:
-		Session.open(CableScanScreen)
+	Session.open(CableScanScreen)
 
 def restartScanAutoStartTimer(reply=False):
 	if not reply:
