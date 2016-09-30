@@ -189,13 +189,14 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		
 		'''
 
-		self.enable_bootnamefile = False #for compatibility set to False
-		self.list = self.list_files("/boot")
 		self.optionsList = (('boxmode=1', _('2160p60 without PiP (Standard)')), ('boxmode=12', _('2160p50 with PiP (Experimental)')))
 		self.bootloaderList = ('v1.07-r19',)
 
+		self.enable_bootnamefile = False #for compatibility set to False
 		if not self.enable_bootnamefile and path.exists('/boot/bootname'):
 			system("rm -f /boot/bootname")
+
+		self.list = self.list_files("/boot")
 
 		boot = ""
 		if path.exists('/boot/STARTUP'):
