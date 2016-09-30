@@ -640,8 +640,8 @@ class NIM(object):
 		nim_types = ["DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2", "ATSC"]
 
 		# get current type using DVB API
-		if self.frontend_id is not None:
-			dvb_type = eDVBResourceManager.getInstance().getFrontendDeliverySystem(self.frontend_id)
+		if frontend_id is not None:
+			dvb_type = eDVBResourceManager.getInstance().getFrontendDeliverySystem(frontend_id)
 			print "[NIM] dvb type from DVB API ", dvb_type
 			if dvb_type and dvb_type != type:
 				print "[NIM] getFrontendDeliverySystem %s DVB %s" % (type, dvb_type)
