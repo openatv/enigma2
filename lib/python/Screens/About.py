@@ -1,4 +1,5 @@
 from Screen import Screen
+from Screens.SoftwareUpdate import UpdatePlugin
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
@@ -46,15 +47,20 @@ class About(Screen):
 		self.skinName = "AboutOE"
 		self.populate()
 		
+		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("Translations"))
+		self["key_yellow"] = Button(_("Software update"))
+		self["key_blue"] = Button(_("Release notes"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions", "DirectionActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
-										"log": self.showAboutReleaseNotes,
 										"up": self["AboutScrollLabel"].pageUp,
 										"down": self["AboutScrollLabel"].pageDown,
+										"red": self.close,
 										"green": self.showTranslationInfo,
+										"yellow": self.showUpdatePlugin,
+										"blue": self.showAboutReleaseNotes,
 									})
 
 	def populate(self):
@@ -117,6 +123,9 @@ class About(Screen):
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo, self.menu_path)
 
+	def showUpdatePlugin(self):
+		self.session.open(UpdatePlugin, self.menu_path)
+
 	def showAboutReleaseNotes(self):
 		self.session.open(ViewGitLog, self.menu_path)
 
@@ -149,10 +158,12 @@ class Devices(Screen):
 		self.list = []
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
+		self["key_red"] = Button(_("Close"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
+										"red": self.close,
 									})
 		self.onLayoutFinish.append(self.populate)
 
@@ -309,10 +320,12 @@ class SystemMemoryInfo(Screen):
 		self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.com")
 		self["AboutScrollLabel"] = ScrollLabel()
 
+		self["key_red"] = Button(_("Close"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 									{
 										"cancel": self.close,
 										"ok": self.close,
+										"red": self.close,
 									})
 
 		out_lines = file("/proc/meminfo").readlines()
@@ -739,7 +752,7 @@ class TranslationInfo(Screen):
 			infomap[type] = value
 		print infomap
 
-		self["key_red"] = Button(_("Cancel"))
+		self["key_red"] = Button(_("Close"))
 		self["TranslationInfo"] = StaticText(info)
 
 		translator_name = infomap.get("Language-Team", "none")

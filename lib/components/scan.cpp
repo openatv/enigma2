@@ -83,6 +83,12 @@ void eComponentScan::addInitial(const eDVBFrontendParametersTerrestrial &p)
 	m_initial.push_back(parm);
 }
 
+void eComponentScan::addInitial(const eDVBFrontendParametersATSC &p)
+{
+	ePtr<eDVBFrontendParameters> parm = new eDVBFrontendParameters();
+	parm->setATSC(p);
+	m_initial.push_back(parm);
+}
 
 int eComponentScan::start(int feid, int flags, int networkid)
 {
@@ -140,6 +146,12 @@ int eComponentScan::start(int feid, int flags, int networkid)
 							break;
 						case iDVBFrontend::feTerrestrial:
 							db->removeFlags(eDVBService::dxNewFound, 0xEEEE0000, -1, -1, -1);
+							break;
+						case iDVBFrontend::feATSC:
+							eDVBFrontendParametersATSC parm;
+							tp->getATSC(parm);
+							int ns = parm.system == eDVBFrontendParametersATSC::System_ATSC ? 0xEEEE0000 : 0xFFFF0000;
+							db->removeFlags(eDVBService::dxNewFound, ns, -1, -1, -1);
 							break;
 					}
 				}

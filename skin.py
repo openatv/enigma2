@@ -159,7 +159,11 @@ def parseCoordinate(s, e, size=0, font=None):
 			elif s[-1] is 'h':
 				val += fonts[font][2] * int(s[:-1])
 			else:
-				val += int(s)
+				try:
+					val += int(s)
+				except:
+					print "[skin][parseCoordinate] Unexpected input value: ", s
+					val = int(eval(s))
 	if val < 0:
 		val = 0
 	return val

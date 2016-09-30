@@ -1,5 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
+from Components.Button import Button
 from Components.ScrollLabel import ScrollLabel
 from Components.Converter.ClientsStreaming import ClientsStreaming
 from Components.config import config
@@ -27,10 +28,12 @@ class StreamingClientsInfo(Screen):
 
 		self["ScrollLabel"] = ScrollLabel(text or _("No stream clients"))
 
+		self["key_red"] = Button(_("Close"))
 		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
-		{
-			"cancel": self.close,
-			"ok": self.close,
-			"up": self["ScrollLabel"].pageUp,
-			"down": self["ScrollLabel"].pageDown
-		})
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"red": self.close,
+				"up": self["ScrollLabel"].pageUp,
+				"down": self["ScrollLabel"].pageDown
+			})

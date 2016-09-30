@@ -43,6 +43,7 @@ public:
 	void addInitial(const eDVBFrontendParametersSatellite &p);
 	void addInitial(const eDVBFrontendParametersCable &p);
 	void addInitial(const eDVBFrontendParametersTerrestrial &p);
+	void addInitial(const eDVBFrontendParametersATSC &p);
 
 		/* please keep the flags in sync with lib/dvb/scan.h ! */
 	enum { scanNetworkSearch=1, scanRemoveServices=4, scanDontRemoveFeeds=8, scanDontRemoveUnscanned=16, clearToScanOnFirstNIT = 32, scanOnlyFree = 64 };
