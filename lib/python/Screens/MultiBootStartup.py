@@ -299,7 +299,15 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			self["options"].setText(_("Select Bootoption: not supported - see info"))
 
 	def startup(self):
-		self["config"].setText(_("Select Image: %s") %self.list[self.selection])
+		if len(self.list):
+			self["config"].setText(_("Select Image: %s") %self.list[self.selection])
+		else:
+			self["config"].setText(_("Select Image: %s") %_("no image found"))
+			del self["actions"].actions['left']
+			del self["actions"].actions['right']
+			del self["actions"].actions['green']
+			del self["actions"].actions['yellow']
+			del self["actions"].actions['ok']
 
 	def save(self):
 		print "[MultiBootStartup] select new startup: ", self.list[self.selection]
