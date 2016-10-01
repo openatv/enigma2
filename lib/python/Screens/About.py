@@ -84,7 +84,9 @@ def getAboutText():
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
 
-	AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
+	if getMachineBuild() not in ('hd51','hd52'):
+		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
+
 	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 
 	fp_version = getFPVersion()
