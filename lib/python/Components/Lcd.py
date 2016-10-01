@@ -519,7 +519,7 @@ def InitLcd():
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
 			("0", _("no delay"))]
-			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
+			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "10000", choices = choicelist)
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
 
 		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
@@ -530,7 +530,7 @@ def InitLcd():
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
 			("0", _("no delay"))]
-			config.usage.vfd_final_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
+			config.usage.vfd_final_scroll_delay = ConfigSelection(default = "10000", choices = choicelist)
 			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
 
 		if fileExists("/proc/stb/lcd/show_symbols"):
