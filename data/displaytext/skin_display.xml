@@ -70,7 +70,7 @@
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">VFDPosition</convert>
+			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
 	</screen>
 
@@ -81,7 +81,7 @@
 <!-- DVD -->
 	<screen name="DVDSummary" position="0,0" size="132,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="60,1" font="Regular;16">
-			<convert type="ServicePosition">VFDPosition</convert>
+			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
 	</screen>
 
@@ -110,9 +110,6 @@
 		<widget source="parent.selectedChoice" render="Label" position="0,50" size="120,14" halign="left" noWrap="1"  />
 	</screen>
 	<screen name="JobView_summary" position="0,0" size="132,64">
-<!-- 		<widget source="parent.summary_job_name" render="Label" position="0,4" size="120,42" font="Regular;16" />
-		<widget source="parent.summary_job_task" render="Label" position="0,22" size="120,26" font="Regular;12" />
-		<widget source="parent.summary_job_progress" render="Progress" position="0,50" size="60,12" borderWidth="1" zPosition="1" /> -->
 		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="132,64" font="Regular;12" zPosition="2" transparent="1">
 			<convert type="ProgressToText" />
 		</widget>
@@ -170,7 +167,7 @@
 <!-- mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">VFDPosition</convert>
+			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
 	</screen>
 <!-- ATV -->
