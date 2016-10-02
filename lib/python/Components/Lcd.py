@@ -515,6 +515,7 @@ def InitLcd():
 			def initial_scroll_delay(el):
 				open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
 			choicelist = [
+			("5000", "5 " + _("seconds")),
 			("10000", "10 " + _("seconds")),
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
@@ -526,6 +527,7 @@ def InitLcd():
 			def final_scroll_delay(el):
 				open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
 			choicelist = [
+			("5000", "5 " + _("seconds")),
 			("10000", "10 " + _("seconds")),
 			("20000", "20 " + _("seconds")),
 			("30000", "30 " + _("seconds")),
