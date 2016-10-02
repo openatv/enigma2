@@ -224,6 +224,13 @@ class ServiceInfo(AboutBase):
 			return [(label, frontendData[data], format_type)
 					for (label, data, format_type) in ServiceInfo.infoLabels
 						if data in frontendData]
+			elif frontendDataOrg["tuner_type"] == "ATSC":
+				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
+						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
+						(_("System"), frontendData["system"], TYPE_TEXT),
+						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
+						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
+						(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
 		return []
 
 	def fillList(self, Labels):

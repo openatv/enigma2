@@ -14,10 +14,12 @@
 		<item level="2" text="Preferred tuner DVB-S" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-S_priority_tuner_available">config.usage.frontend_priority_dvbs</item>
 		<item level="2" text="Preferred tuner DVB-T" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-T_priority_tuner_available">config.usage.frontend_priority_dvbt</item>
 		<item level="2" text="Preferred tuner DVB-C" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-C_priority_tuner_available">config.usage.frontend_priority_dvbc</item>
+		<item level="2" text="Preferred tuner ATSC" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="ATSC_priority_tuner_available">config.usage.frontend_priority_atsc</item>
 		<item level="2" text="Preferred tuner for recordings" description="Choose the preferred tuner for recordings when more than one tuner is available. 'Disabled' selects a tuner based on the 'Preferred tuner' setting. 'Auto' uses default rules, ignoring the 'Preferred tuner' setting.">config.usage.recording_frontend_priority</item>
 		<item level="2" text="Preferred tuner DVB-S for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-S_priority_tuner_available">config.usage.recording_frontend_priority_dvbs</item>
 		<item level="2" text="Preferred tuner DVB-T for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-T_priority_tuner_available">config.usage.recording_frontend_priority_dvbt</item>
 		<item level="2" text="Preferred tuner DVB-C for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="DVB-C_priority_tuner_available">config.usage.recording_frontend_priority_dvbc</item>
+		<item level="2" text="Preferred tuner ATSC for recordings" description="When enabled, this setting has more weight than 'Preferred tuner for recordings'." requires="ATSC_priority_tuner_available">config.usage.recording_frontend_priority_atsc</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Choose the preferred tuner type when the same service is available to different types of tuners.">config.usage.alternatives_priority</item>
 		<item level="2" text="Enable fallback remote receiver" description="Enable to use a remote receiver for services that cannot be tuned locally (tuner is in use or the service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
@@ -364,9 +366,14 @@
 		<item level="1" text="Number of rows" description="Specify the number of rows shown.">config.epgselection.graph_itemsperpage</item>
 		<item level="2" text="Event font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.graph_eventfs</item>
 		<item level="2" text="Service font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.graph_servfs</item>
+		<item level="2" text="Alignment of service names" description="Configure alignment of the service names.">config.epgselection.graph_servicename_alignment</item>
+		<item level="2" text="Alignment of service numbers" description="Configure alignment of the service numbers.">config.epgselection.graph_servicenumber_alignment</item>
+		<item level="2" text="Alignment of events" description="Configure alignment of service events.">config.epgselection.graph_event_alignment</item>
+		<item level="2" text="Alignment of timeline date" description="Configure alignment of the timeline date.">config.epgselection.graph_timelinedate_alignment</item>
 		<item level="2" text="Service width" description="Set the width allocated to the service name column.">config.epgselection.graph_servicewidth</item>
 		<item level="2" text="Picon width" description="Set the width allocated to the picon column.">config.epgselection.graph_piconwidth</item>
 		<item level="2" text="Info icon width" description="Specify the minimum width used to display the 'i' (info) icon in the EPG. A value of '0' hides the icon.">config.epgselection.graph_infowidth</item>
+		<item level="2" text="Position of recording icons" description="Set the position of the recording icons">config.epgselection.graph_rec_icon_height</item>
 		<item level="2" text="Timeline font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Enable to show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.graph_prevtimeperiod</item>

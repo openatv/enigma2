@@ -275,8 +275,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.serviceNumberPadding = 9
 		self.eventBorderWidth = 1
 		self.eventNamePadding = 3
-		self.eventNameAlign = 'left'
-		self.eventNameWrap = 'yes'
 		self.numberOfRows = None
 
 	# Keep old selfs.offs attribute as a do-nothing property.
@@ -848,7 +846,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
 				namefont = 1
-				namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				namefontflag = int(config.epgselection.graph_servicename_alignment.value)
 				namewidth = piconWidth + channelWidth
 			else:
 				piconWidth = 0
@@ -862,7 +860,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			
 			if channel:
 				namefont = 0
-				namefontflag = RT_HALIGN_RIGHT | RT_VALIGN_CENTER
+				namefontflag = int(config.epgselection.graph_servicenumber_alignment.value)
 				font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
 				channelWidth = getTextBoundarySize(self.instance, font, self.instance.size(), (channel < 10000)  and "0000" or str(channel) ).width()
 				res.append(MultiContentEntryText(
@@ -875,7 +873,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showServiceTitle:  # we have more space so reset parms
 			namefont = 0
-			namefontflag = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			namefontflag = int(config.epgselection.graph_servicename_alignment.value)
 			namewidth = r1.w - channelWidth - piconWidth
 
 		if self.showServiceTitle or displayPicon is None:
@@ -925,16 +923,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
 				evRect = Rect(left + xpos, top, ewidth, height)
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
-				if self.eventNameAlign.lower() == 'left':
-					if self.eventNameWrap.lower() == 'yes':
-						alignment = RT_HALIGN_LEFT | RT_VALIGN_TOP | RT_WRAP
-					else:
-						alignment = RT_HALIGN_LEFT | RT_VALIGN_TOP
-				else:
-					if self.eventNameWrap.lower() == 'yes':
-						alignment = RT_HALIGN_CENTER | RT_VALIGN_TOP | RT_WRAP
-					else:
-						alignment = RT_HALIGN_CENTER | RT_VALIGN_TOP
 
 				foreColor = self.foreColor
 				backColor = self.backColor
@@ -1001,7 +989,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						**evSizePos))
 				else:
 					res.append(MultiContentEntryText(
-						font=1, flags=alignment,
+						font=1, flags=int(config.epgselection.graph_event_alignment.value),
 						text=ev[1],
 						color=foreColor, color_sel=foreColorSel,
 						backcolor=backColor, backcolor_sel=backColorSel,
@@ -1011,22 +999,31 @@ class EPGList(HTMLComponent, GUIComponent):
 				res += _makeBorder(evRect, self.eventBorderWidth, borderPixmaps)
 
 				# recording icons
-				if clock_types is not None and ewidth > 23:
+				if clock_types is not None and ewidth > 23 and config.epgselection.graph_rec_icon_height.value != "hide":
+					if config.epgselection.graph_rec_icon_height.value == "middle":
+						RecIconHDheight = top+(height/2)-11
+						RecIconFHDheight = top+(height/2)-13
+					elif config.epgselection.graph_rec_icon_height.value == "top":
+						RecIconHDheight = top+3
+						RecIconFHDheight = top+3
+					else:
+						RecIconHDheight = top+height-22
+						RecIconFHDheight = top+height-26
 					if clock_types in (1, 6, 11):
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left + xpos + ewidth - 17, top + height - 28)
+							pos = (left+xpos+ewidth-15, RecIconFHDheight)
 						else:
-							pos = (left + xpos + ewidth - 13, top + height - 22)
+							pos = (left+xpos+ewidth-13, RecIconHDheight)
 					elif clock_types in (5, 10, 15):
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left + xpos - 2, top + height - 28)
+							pos = (left+xpos-26, RecIconFHDheight)
 						else:
-							pos = (left + xpos - 8, top + height - 23)
+							pos = (left+xpos-22, RecIconHDheight)
 					else:
 						if self.screenwidth and self.screenwidth == 1920:
-							pos = (left + xpos + ewidth - 29, top + height - 28)
+							pos = (left+xpos+ewidth-26, RecIconFHDheight)
 						else:
-							pos = (left + xpos + ewidth - 23, top + height - 22)
+							pos = (left+xpos+ewidth-22, RecIconHDheight)
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos=pos, size=(25, 25),
@@ -1391,7 +1388,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.time_epoch = 0
 		self.timelineFontName = "Regular"
 		self.timelineFontSize = 20
-		self.timelineAlign = 'left'
 		self.borderWidth = 1
 		self.ticksOn = "yes"
 		self.tickAlignment = "right"
@@ -1437,11 +1433,6 @@ class TimelineText(HTMLComponent, GUIComponent):
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
 		time_base = l.getTimeBase()
-
-		if self.timelineAlign.lower() == 'right':
-			alignment = RT_HALIGN_RIGHT | RT_VALIGN_TOP
-		else:
-			alignment = RT_HALIGN_LEFT | RT_VALIGN_TOP
 
 		if event_rect is None or time_epoch is None or time_base is None:
 			return
@@ -1500,7 +1491,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			res.append(MultiContentEntryText(
 				pos=(5, 0),
 				size=(service_rect.w - 15, self.listHeight),
-				font=0, flags=alignment,
+				font=0, flags=int(config.epgselection.graph_timelinedate_alignment.value),
 				text=datestr,
 				color=foreColor,
 				backcolor=backColor))
@@ -1554,7 +1545,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				res.append(MultiContentEntryText(
 					pos=(service_rect.width() + xpos + textOffset, 0),
 					size=(incWidth, self.listHeight),
-					font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_TOP,
+					font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 					text=timetext,
 					color=foreColor,
 					backcolor=backColor))
