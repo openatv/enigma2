@@ -174,8 +174,11 @@ class FlashOnline(Screen):
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
 			for name in os.listdir(path):
-				if os.path.isfile(os.path.join(path, name)):
-					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+				if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
+					try:
+						cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+					except IndexError:
+						continue
 					cmdline_startup = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 					if (cmdline != cmdline_startup) and (name != "STARTUP"):
 						files.append(name)

@@ -89,12 +89,19 @@ def getAboutText():
 	AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
 	imagestarted = ""
+	bootname = ''
+	if path.exists('/boot/bootname'):
+		f = open('/boot/bootname', 'r')
+		bootname = f.readline().split('=')[1]
+		f.close()
+
 	if path.exists('/boot/STARTUP'):
 		f = open('/boot/STARTUP', 'r')
 		f.seek(22)
 		image = f.read(1) 
 		f.close()
-		AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + "\n"
+		if bootname: bootname = "   (%s)" %bootname 
+		AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + bootname + "\n"
 
 	AboutText += _("Version:\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t%s") % getImageBuild() + "\n"
