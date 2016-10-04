@@ -90,6 +90,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.NumberZapField = None
 		self.CurrBouquet = None
 		self.CurrService = None
+		self["guidebouquetlist"] = Label()
 		self["number"] = Label()
 		self["number"].hide()
 		self['Service'] = ServiceEvent()
@@ -472,6 +473,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['bouquetlist'].setCurrentBouquet(self.StartBouquet	)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 			if self.type == EPG_TYPE_GRAPH:
+				self.makebouqlistlabel()
 				self['list'].setShowServiceMode(config.epgselection.graph_servicetitle_mode.value)
 				self.moveTimeLines()
 				if config.epgselection.graph_channel1.value:
@@ -639,10 +641,31 @@ class EPGSelection(Screen, HelpableScreen):
 		self['bouquetlist'].moveTo(self['bouquetlist'].instance.pageDown)
 		self['bouquetlist'].fillBouquetList(self.bouquets)
 
+	def makebouqlistlabel(self):
+		boqlist = ""
+		index = 0
+		listlength = len(self.bouquets)
+		for boqs in self.bouquets:
+			if boqs[0] != self['bouquetlist'].getCurrentBouquet():
+				index = index + 1
+			else:	
+				break;
+	
+		newendbouqlist = self.bouquets[0:index-1]
+		newstartbouqlist = self.bouquets[index+1:listlength]
+		finalbouqlist = newstartbouqlist + newendbouqlist
+			
+		for boqs in finalbouqlist:
+			boqlist = boqlist + "   |   " + boqs[0]
+			
+		self['guidebouquetlist'].setText(boqlist)
+		
 	def nextBouquet(self):
 		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveBouquetDown()
 			self.BouquetOK()
+			self.makebouqlistlabel()
+			
 		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
@@ -653,6 +676,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveBouquetUp()
 			self.BouquetOK()
+			self.makebouqlistlabel()
 		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
@@ -1750,4 +1774,4 @@ class EPGSelection(Screen, HelpableScreen):
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, EPGtype="single"):
 		EPGSelection.__init__(self, session, service=service, EPGtype=EPGtype)
-		self.skinName = 'EPGSelection'
+                self.skinName = 'EPGSelection'
