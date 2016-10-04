@@ -618,7 +618,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
 			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
-			self.weekday_rect = Rect(0, 0, int(fontSize * 2.3), height)
+			self.weekday_rect = Rect(0, 0, int(fontSize * 5.8), height)
 			self.datetime_rect = Rect(self.weekday_rect.width(), 0, int(fontSize * 6.5), height)
 			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, width - self.datetime_rect.left() - self.datetime_rect.width(), height)
 
