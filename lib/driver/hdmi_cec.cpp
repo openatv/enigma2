@@ -380,8 +380,26 @@ long eHdmiCEC::translateKey(unsigned char code)
 		case 0x74:
 			key = 0x190;
 			break;
-		case 0x40:
+		case 0x40:		/* KEY_POWER */
 			key = 0x74;
+			break;
+		case 0x11:		/* KEY_DVD_MENU */
+			key = 0x8b;
+			break;
+		case 0x10:		/* KEY_TOP_MENU */
+			key = 0x16d;
+			break;
+		case 0x0a:		/* KEY_SETUP */
+			key = 0x8d;
+			break;
+		case 0x33:		/* KEY_SOUND */
+			key = 0xd5;
+			break;
+		case 0x35:		/* KEY_INFO */
+			key = 0x166;
+			break;
+		case 0x4a:		/* KEY_EJECTCD */
+			key = 0x172;
 			break;
 		default:
 			key = 0x8b;
