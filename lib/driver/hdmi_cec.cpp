@@ -238,7 +238,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			bool keypressed = false;
 			static unsigned char pressedkey = 0;
 
-			eDebugNoNewLineStart("eHdmiCEC: received message");
+			eDebugNoNewLineStart("eHdmiCEC_: received message");
 			for (int i = 0; i < rxmessage.length; i++)
 			{
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
@@ -379,6 +379,9 @@ long eHdmiCEC::translateKey(unsigned char code)
 			break;
 		case 0x74:
 			key = 0x190;
+			break;
+		case 0x40:
+			key = 0x74;
 			break;
 		default:
 			key = 0x8b;
