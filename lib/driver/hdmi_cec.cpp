@@ -237,21 +237,31 @@ void eHdmiCEC::hdmiEvent(int what)
 		{
 			bool keypressed = false;
 			static unsigned char pressedkey = 0;
+			static unsigned int data_idx = 0;
 
 			eDebugNoNewLineStart("eHdmiCEC_: received message");
 			for (int i = 0; i < rxmessage.length; i++)
 			{
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
+				switch (rxmessage.data[i])
+				{
+					case 0x44: /* key pressed */
+						data_idx = i;
+						break;
+					case 0x45: /* key released */
+						data_idx = i;
+						break;	
+				}
 			}
 			eDebugNoNewLineEnd(" ");
 			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
 			if (hdmicec_report_active_menu)
 			{
-				switch (rxmessage.data[0])
+				switch (rxmessage.data[data_idx])
 				{
 					case 0x44: /* key pressed */
 						keypressed = true;
-						pressedkey = rxmessage.data[1];
+						pressedkey = rxmessage.data[data_idx+1];
 					case 0x45: /* key released */
 					{
 						long code = translateKey(pressedkey);
@@ -264,7 +274,7 @@ void eHdmiCEC::hdmiEvent(int what)
 					}
 				}
 			}
-			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
+			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[data_idx], (char*)&rxmessage.data[data_idx+1], rxmessage.length);
 			messageReceived(msg);
 		}
 	}
