@@ -33,7 +33,7 @@ def getAboutText():
 		AboutText += _("Chipset:\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
-	if getMachineBuild() in ('vusolo4k') or bootloader == 'v29':
+	if getMachineBuild() in ('vusolo4k'):
 		cpuMHz = "   (1,5 GHz)"
 	elif getMachineBuild() in ('hd52','hd51'):
 		try:
