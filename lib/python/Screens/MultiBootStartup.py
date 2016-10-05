@@ -64,67 +64,25 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		message = (
 			#message 0
 			_("*** boxmode=1 (Standard) ***\n\n" +
-
 			"+++ Features +++\n" +
-			"Single decode: " +
-			"3840x2160p60 10-bit HEVC, " +
-			"3840x2160p60 8-bit VP9, " +
-			"1920x1080p60 8-bit AVC, " +
-			"MAIN only (no PIP), " +
-			"Limited display usages, " +
-			"UHD only (no SD), " +
-			"No multi-PIP, " +
-			"No transcoding\n\n" +
-
+			"3840x2160p60 10-bit HEVC, 3840x2160p60 8-bit VP9, 1920x1080p60 8-bit AVC,\nMAIN only (no PIP), Limited display usages, UHD only (no SD),\nNo multi-PIP, No transcoding\n\n" +
 			"--- Restrictions ---\n" +
-			"Decoder 0: " +
-			"3840x2160p60 10-bit HEVC, " +
-			"3840x2160p60 8-bit VP9, " +
-			"1920x1080p60 8-bit AVC\n" +
-			"OSD Grafic 0: " +
-			"1080p60 32 bit ARGB\n" +
-			"Display 0 Encode Restrictions: " +
-			"3840x2160p60 12-bit 4:2:0 (HDMI), " +
-			"3840x2160p60 12-bit 4:2:2 (HDMI), " +
-			"3840x2160p60 8-bit 4:4:4 (HDMI), " +
-			"1920x1080p60 (component)\n" +
-			"Only one display format at a time\n\n" +
-
+			"Decoder 0: 3840x2160p60 10-bit HEVC, 3840x2160p60 8-bit VP9, 1920x1080p60 8-bit AVC\n" +
+			"OSD Grafic 0: 1080p60 32 bit ARGB\n" +
+			"Display 0 Encode Restrictions: 3840x2160p60 12-bit 4:2:0 (HDMI),\n3840x2160p60 12-bit 4:2:2 (HDMI), 3840x2160p60 8-bit 4:4:4 (HDMI),\n1920x1080p60 (component), Only one display format at a time\n\n" +
 			"If you want 1080p60 component, HDMI also needs to be 1080p60."),
 			#message 1
 			_("*** boxmode=12 (Experimental) ***\n\n" +
-
 			"+++ Features +++\n" +
- 			"3840x2160p50 10-bit decode for MAIN, " +
-			"1080p25/50i PIP support, " +
- 			"HDMI input supported (hd51 not available), " +
-			"UHD display only, " +
- 			"No SD display, " +
- 			"No transcoding\n\n" +
-
+ 			"3840x2160p50 10-bit decode for MAIN, 1080p25/50i PIP support, HDMI input (if available),\n UHD display only, No SD display, No transcoding\n\n" +
 			"--- Restrictions ---\n" +
-			"Decoder 0: " +
-			"3840x2160p50 10-bit HEVC, " +
-			"3840x2160p50 8-bit VP9, " +
-			"1920x1080p50 8-bit AVC/MPEG\n" +
- 			"Decoder 1: " +
-			"1920x1080p25/50i 10-bit HEVC, " +
-			"1920x1080p25/50i 8-bit VP9/AVC/MPEG2, " +
-			"HDMI In (hd51 not available), " +
-			"3840x2160p50\n" +
-			"OSD Graphic 0 (UHD): " +
-			"1080p50 32-bit ARGB\n" +
-			"Window 0 (MAIN/UHD): " +
-			"Limited display capabilities, " +
-			"1080i50 10-bit de-interlacing\n" +
-			"Multi-PIP mode (3x): (Enigma2 supported no multi-PIP currently, whether something built into the future is not known), " +
-			"Up to three windows where each window can cover 25% of the display canvas., " +
-			"576i50 8-bit de-interlacing\n" +
-			"Window 1 (PIP/UHD) (Enigma2 PIP Mode): " +
-			"Up to 1/2 x 1/2 screen display, " +
-			"576i50 de-interlacing\n" +
-			"Display 0 (UHD) Encode Restrictions: " +
-			"3840x2160p50"),
+			"Decoder 0: 3840x2160p50 10-bit HEVC, 3840x2160p50 8-bit VP9,\n1920x1080p50 8-bit AVC/MPEG\n" +
+ 			"Decoder 1: 1920x1080p25/50i 10-bit HEVC, 1920x1080p25/50i 8-bit VP9/AVC/MPEG2,\nHDMI In (if available), 3840x2160p50\n" +
+			"OSD Graphic 0 (UHD): 1080p50 32-bit ARGB\n" +
+			"Window 0 (MAIN/UHD): Limited display capabilities, 1080i50 10-bit de-interlacing\n" +
+			"Multi-PIP mode (3x): Enigma2 supported no multi-PIP\n" +
+			"Window 1 (PIP/UHD) (Enigma2 PIP Mode): Up to 1/2 x 1/2 screen display, 576i50 de-interlacing\n" +
+			"Display 0 (UHD) Encode Restrictions: 3840x2160p50"),
 			#message 2
 			_("placeholder message 2"),
 			)
@@ -136,7 +94,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 				if idx: blv += ', '
 				blv += x
 				idx += 1
-			message = (_("Your box needs Bootloaderversion(s)\n%s\n to make compatible with Bootoptions!")%blv,) 
+			message = (_("Your box needs Bootloaderversion(s)\n\n%s\n\nto make compatible with Bootoptions!")%blv,) 
 		self.session.open(MessageBox, message[self.option], MessageBox.TYPE_INFO)
 
 	def rename(self):
@@ -144,35 +102,48 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		if self.oldname:
 			self.session.openWithCallback(self.renameCB, VirtualKeyBoard, title=_("Please enter new name:"), text=self.oldname)
 
-	def renameCB(self, name):
-		if name and name != 'bootname':
-			if not path.exists('/boot/%s' %name) and path.exists('/boot/%s' %self.list[self.selection]):
-				ret = system("mv -fn /boot/%s /boot/%s" %(self.list[self.selection],name))
+	def renameCB(self, newname):
+		if newname and newname != 'bootname' and newname != self.oldname:
+			if not path.exists('/boot/%s' %newname) and path.isfile('/boot/%s' %self.oldname):
+				ret = system("mv -fn '/boot/%s' '/boot/%s'" %(self.oldname,newname))
 				if ret:
 					self.session.open(MessageBox, _('Rename failed!'), MessageBox.TYPE_ERROR)
 				else:
-					bootname = ''
-					if path.exists('/boot/bootname'):
-						f = open('/boot/bootname', 'r')
-						bootname = f.readline().split('=')
-						f.close()
-					if bootname and bootname[1] == self.oldname:
-						f = open('/boot/bootname', 'w')
-						f.write('%s=%s' %(bootname[0],name))
-						f.close()
+					bootname = self.readlineFile('/boot/bootname').split('=')
+					if len(bootname) == 2 and bootname[1] == self.oldname:
+						self.writeFile('/boot/bootname', '%s=%s' %(bootname[0],newname))
 						self.getCurrent()
 						return
 					elif self.bootname == self.oldname:
 						self.getCurrent()
 						return
-					self.list[self.selection] = name
-					self["config"].setText(_("Select Image: %s") %name)
+					self.list[self.selection] = newname
+					self["config"].setText(_("Select Image: %s") %newname)
 			else:
-				if not path.exists('/boot/%s' %self.list[self.selection]):
+				if not path.exists('/boot/%s' %self.oldname):
+					self.getCurrent()
 					txt = _("File not found - rename failed!")
 				else:
 					txt = _("Name already exists - rename failed!")
 				self.session.open(MessageBox, txt, MessageBox.TYPE_ERROR)
+
+	def writeFile(self, FILE, DATA):
+		try:
+			f = open(FILE, 'w')
+			f.write(DATA)
+			f.close()
+			return True
+		except IOError:
+			print "[MultiBootStartup] write error file: %s" %FILE 
+			return False
+
+	def readlineFile(self, FILE):
+		data = ''
+		if path.isfile(FILE):
+			f = open(FILE, 'r')
+			data = f.readline().replace('\n', '')
+			f.close()
+		return data
 
 	def getCurrent(self):
 		'''
@@ -192,57 +163,23 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self.optionsList = (('boxmode=1', _('2160p60 without PiP (Standard)')), ('boxmode=12', _('2160p50 with PiP (Experimental)')))
 		self.bootloaderList = ('v1.07-r19',)
 
-		self.enable_bootnamefile = False #for compatibility set to False
-		if not self.enable_bootnamefile and path.exists('/boot/bootname'):
+		#for compatibility to old or other images set 'self.enable_bootnamefile = False'
+		#if 'False' and more as on file with same kernel exist is possible no exact matching found (only to display)
+		self.enable_bootnamefile = False
+		if not self.enable_bootnamefile and path.isfile('/boot/bootname'):
 			system("rm -f /boot/bootname")
 
 		self.list = self.list_files("/boot")
+		self.option_enabled = self.readlineFile('/sys/firmware/devicetree/base/bolt/tag').replace('\x00', '') in self.bootloaderList
 
-		boot = ""
-		if path.exists('/boot/STARTUP'):
-			f = open('/boot/STARTUP', 'r')
-			boot = f.readline()
-			f.close()
-
-		try:
-			image = int(boot[22:23])
-		except:
-			image = _("File error - can not read")
-
-		blv = ""
-		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
-			f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
-			blv = f.readline().replace('\x00', '').replace('\n', '')
-			f.close()
+		boot = self.readlineFile('/boot/STARTUP')
+		bootname = self.readlineFile('/boot/bootname').split('=')
 
 		self.selection = None
-		self.currentOption = 0
-		self.option_enabled = blv in self.bootloaderList
-
-		if self.option_enabled:
-			idx = 0
-			for x in self.optionsList:
-				if x[0] + "'" in boot or x[0] + " " in boot:
-					self.currentOption = idx
-					break
-				idx += 1
-			sep = ', '
-		else:
-			self.optionsList = (('',''),)
-			sep = ''
-			del self["actions"].actions['up']
-			del self["actions"].actions['down']
-
-		self.option = self.currentOption
-
-		bootname = ''
-		if path.exists('/boot/bootname'):
-			f = open('/boot/bootname', 'r')
-			bootname = f.readline().split('=')
-			f.close()
+		self.option = 0
 
 		#read name from bootname file
-		if bootname:
+		if len(bootname) == 2:
 			idx = 0
 			for x in self.list:
 				if x == bootname[1]:
@@ -259,10 +196,8 @@ class MultiBootStartup(ConfigListScreen, Screen):
 						break
 					idx += 1
 		#verify bootname
-		if bootname in self.list and path.exists('/boot/%s' %bootname):
-			f = open('/boot/%s' %bootname, 'r')
-			line = f.readline()
-			f.close()
+		if bootname in self.list:
+			line = self.readlineFile('/boot/%s' %bootname)
 			if line[22:23] != boot[22:23]:
 				self.selection = None
 		else:
@@ -271,24 +206,49 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		if self.selection is None:
 			idx = 0
 			for x in self.list:
-				if path.exists('/boot/%s' %x):
-					f = open('/boot/%s' %x, 'r')
-					line = f.readline()
-					f.close()
-					if line[22:23] == boot[22:23]:
-						bootname = x
-						self.selection = idx
-						break
-					idx += 1
+				line = self.readlineFile('/boot/%s' %x)
+				if line[22:23] == boot[22:23]:
+					bootname = x
+					self.selection = idx
+					break
+				idx += 1
 		#bootname not found
 		if self.selection is None:
 			bootname = _('unknown')
 			self.selection = 0
-
 		self.bootname = bootname
+
+		#read current boxmode
+		try:
+			bootmode = boot.split('rootwait',1)[1].split('boxmode',1)[1].split("'",1)[0].split('=',1)[1].replace(' ','')
+		except IndexError:
+			bootmode = ""
+		#find and verify current boxmode
+		if self.option_enabled:
+			idx = 0
+			for x in self.optionsList:
+				if bootmode and bootmode == x[0].split('=')[1]:
+					self.option = idx
+					break
+				elif x[0] + "'" in boot or x[0] + " " in boot:
+					self.option = idx
+					break
+				idx += 1
+
+		if bootmode and bootmode != self.optionsList[self.option][0].split('=')[1]:
+			bootoption = ', boxmode=' + bootmode + _(" (unknown mode)")
+		elif self.option_enabled:
+			bootoption = ', ' + self.optionsList[self.option][0]
+		else:
+			bootoption = ''
+		try:
+			image = 'Image %s' %(int(boot[22:23]))
+		except:
+			image = _("Unable to read image number")
+
 		self.startup()
 		self.startup_option()
-		self["description"].setText(_("Current Bootsettings: %s (Image %s)%s%s") %(bootname,image,sep,self.optionsList[self.currentOption][0]))
+		self["description"].setText(_("Current Bootsettings: %s (%s)%s") %(bootname,image,bootoption))
 
 	def layoutFinished(self):
 		self.setTitle(self.title)
@@ -296,13 +256,15 @@ class MultiBootStartup(ConfigListScreen, Screen):
 	def startup_option(self):
 		if self.option_enabled:
 			self["options"].setText(_("Select Bootoption: %s") %self.optionsList[self.option][1])
-		else:
+		elif 'up' in self["actions"].actions:
 			self["options"].setText(_("Select Bootoption: not supported - see info"))
+			del self["actions"].actions['up']
+			del self["actions"].actions['down']
 
 	def startup(self):
 		if len(self.list):
 			self["config"].setText(_("Select Image: %s") %self.list[self.selection])
-		else:
+		elif 'left' in self["actions"].actions:
 			self["config"].setText(_("Select Image: %s") %_("no image found"))
 			del self["actions"].actions['left']
 			del self["actions"].actions['right']
@@ -312,21 +274,44 @@ class MultiBootStartup(ConfigListScreen, Screen):
 
 	def save(self):
 		print "[MultiBootStartup] select new startup: ", self.list[self.selection]
-		system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
+		ret = system("cp -f '/boot/%s' /boot/STARTUP" %self.list[self.selection])
+		if ret:
+			self.session.open(MessageBox, _("File '/boot/%s' not found - copy to /boot/STARTUP failed!") %self.list[self.selection], MessageBox.TYPE_ERROR)
+			self.getCurrent()
+			return
 
-		f = open('/boot/STARTUP', 'r')
-		boot = f.readline()
-		f.close()
+		newboot = boot = self.readlineFile('/boot/STARTUP')
+		newmode = self.optionsList[self.option][0].split('=')[1]
 
-		checkboot = True #check command line on/off
+		#check for wrong changes
+		try:
+			cmdfail = False
+			bootcmd = boot.split("=",1)[1].split(" ",1)[0]
+			bootmode = '1'
+			temp = boot.split(' ')
+			#read kernel and root
+			kernel = int(temp[1].split("emmcflash0.kernel")[1])
+			root = int(temp[2].split("'root=/dev/mmcblk0p")[1])
+			#read boxmode
+			cmd4 = "rootwait'"
+			if 'boxmode' in boot:
+				cmd4 = "rootwait"
+				bootmode = temp[5].split("hd51_4.boxmode=")[1].replace("'",'')
+			#verify settings
+			if not ('boot' == temp[0] and 'rw' == temp[3] and cmd4 == temp[4] and kernel == root-kernel-1 and "'" == boot[-1:] and bootcmd in Harddisk.getextdevices("ext4")):
+				cmdfail = True
+		except:
+			cmdfail = True
+
+		checkboot = True or cmdfail #check command line on/off (forcing to True if fail in boot)
 		writeoption = already = failboot = False
-		bootline = boot.split("=",1)[1].split(" ",1)[0]
-		if checkboot and (not bootline in Harddisk.getextdevices("ext4") or ('boxmode' in boot and len(boot) > 76) or ('boxmode' not in boot and len(boot) > 58)):
+
+		if checkboot and (cmdfail or (bootmode != newmode and not self.option_enabled) or (len(boot.split('boxmode')) > 2) or ('boxmode' in boot and len(boot) > 76) or ('boxmode' not in boot and len(boot) > 58)):
 			failboot = True
 		elif self.option_enabled:
 			for x in self.optionsList:
 				if (x[0] + "'" in boot or x[0] + " " in boot) and x[0] != self.optionsList[self.option][0]:
-					boot = boot.replace(x[0],self.optionsList[self.option][0])
+					newboot = boot.replace(x[0],self.optionsList[self.option][0])
 					writeoption = True
 					break
 				elif (x[0] + "'" in boot or x[0] + " " in boot) and x[0] == self.optionsList[self.option][0]:
@@ -335,36 +320,32 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			if not (writeoption or already):
 				if "boxmode" in boot:
 					failboot = checkboot
-				elif self.option: #write boxmode=1 is not needed ???
-					boot = boot.replace("rootwait", "rootwait hd51_4.%s" %(self.optionsList[self.option][0]))
+				elif self.option:
+					newboot = boot.replace("rootwait", "rootwait hd51_4.%s" %(self.optionsList[self.option][0]))
 					writeoption = True
 
 		if self.enable_bootnamefile:
-			originalname = 'STARTUP_%s' %boot[22:23]
-			f = open('/boot/bootname', 'w')
 			if failboot:
-				f.write('STARTUP_1=STARTUP_1')
+				self.writeFile('/boot/bootname', 'STARTUP_1=STARTUP_1')
 			else:
-				f.write('%s=%s' %(originalname,self.list[self.selection]))
-			f.close()
+				self.writeFile('/boot/bootname', '%s=%s' %('STARTUP_%s' %boot[22:23], self.list[self.selection]))
 
+		message = _("Do you want to reboot now with selected image?")
 		if failboot:
 			print "[MultiBootStartup] wrong bootsettings: " + boot
-			sboot = "boot emmcflash0.kernel1 'root=/dev/mmcblk0p3 rw rootwait'"
 			if '/dev/mmcblk0p3' in Harddisk.getextdevices("ext4"):
-				f = open('/boot/STARTUP', 'w')
-				f.write(sboot)
-				f.close()
-				txt = "Next boot will start from Image 1."
+				if self.writeFile('/boot/STARTUP', "boot emmcflash0.kernel1 'root=/dev/mmcblk0p3 rw rootwait'"):
+					txt = _("Next boot will start from Image 1.")
+				else:
+					txt =_("Can not repair file %s") %("'/boot/STARTUP'") + "\n" + _("Caution, next boot is starts with these settings!") + "\n"
 			else:
-				txt = "Alternative Image 1 partition for repair not found.\nCaution, next boot is starts with your settings!\n"
-			restartbox = self.session.openWithCallback(self.restartBOX,MessageBox,_("Wrong Bootsettings detected!\n\n%s\n%s\nDo you want to reboot now?") %(boot,txt), MessageBox.TYPE_YESNO)
-			return
+				txt = _("Alternative Image 1 partition for boot repair not found.") + "\n" + _("Caution, next boot is starts with these settings!") + "\n"
+			message = _("Wrong Bootsettings detected!") + "\n\n%s\n\n%s\n" %(boot, txt) + _("Do you want to reboot now?")
 		elif writeoption:
-			f = open('/boot/STARTUP', 'w')
-			f.write(boot)
-			f.close()
-		restartbox = self.session.openWithCallback(self.restartBOX,MessageBox,_("Do you want to reboot now with selected image?"), MessageBox.TYPE_YESNO)
+			if not self.writeFile('/boot/STARTUP', newboot):
+				txt = _("Can not write file %s") %("'/boot/STARTUP'") + "\n" + _("Caution, next boot is starts with these settings!") + "\n"
+				message = _("Write error!") + "\n\n%s\n\n%s\n" %(boot, txt) + _("Do you want to reboot now?")
+		self.session.openWithCallback(self.restartBOX,MessageBox, message, MessageBox.TYPE_YESNO)
 
 	def cancel(self):
 		self.close()
@@ -395,16 +376,15 @@ class MultiBootStartup(ConfigListScreen, Screen):
 
 	def read_startup(self, FILE):
 		self.file = FILE
-		with open(self.file, 'r') as myfile:
+		with open(FILE, 'r') as myfile:
 			data=myfile.read().replace('\n', '')
 		myfile.close()
 		return data
 
 	def list_files(self, PATH):
 		files = []
-		self.path = PATH
-		for name in listdir(self.path):
-			if path.isfile(path.join(self.path, name)):
+		for name in listdir(PATH):
+			if path.isfile(path.join(PATH, name)):
 				try:
 					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
 				except IndexError:
