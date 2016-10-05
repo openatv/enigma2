@@ -452,7 +452,7 @@ class GeneralSetup(Screen):
 		elif selected == _("Network adapter selection"):
 			self.session.open(NetworkAdapterSelection)
 		elif selected == _("Network interface"):
-			self.session.open(AdapterSetup, self.activeInterface)
+			self.session.open(AdapterSetup, networkinfo=self.activeInterface)
 		elif selected == _("Network restart"):
 			self.session.open(RestartNetwork)
 		elif selected == _("Samba"):
@@ -625,9 +625,9 @@ class GeneralSetup(Screen):
 		elif selected == _("Plugin browser"):
 			self.session.open(PluginBrowser)
 		elif selected == _("Download plugins"):
-			self.session.open(PluginDownloadBrowser, 0)
+			self.session.open(PluginDownloadBrowser, type=PluginDownloadBrowser.DOWNLOAD)
 		elif selected == _("Remove plugins"):
-			self.session.open(PluginDownloadBrowser, 1)
+			self.session.open(PluginDownloadBrowser, type=PluginDownloadBrowser.REMOVE)
 		elif selected == _("Package installer"):
 			try:
 				from Plugins.Extensions.MediaScanner.plugin import main
