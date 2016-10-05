@@ -350,8 +350,6 @@ class MoviePlayer(
 		MoviePlayer.instance = None
 		from Screens.MovieSelection import playlist
 		del playlist[:]
-		if not config.movielist.stop_service.value:
-			Screens.InfoBar.InfoBar.instance.callServiceStarted()
 		self.session.nav.playService(self.lastservice)
 		config.usage.last_movie_played.value = self.cur_service.toString()
 		config.usage.last_movie_played.save()
@@ -491,15 +489,10 @@ class MoviePlayer(
 		if answer in ("quit", "quitanddeleteconfirmed"):
 			self.close()
 		elif answer in ("movielist", "deleteandmovielistconfirmed"):
-			if config.movielist.stop_service.value:
-				ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			else:
-				ref = self.lastservice
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.returning = True
 			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 			self.session.nav.stopService()
-			if not config.movielist.stop_service.value:
-				self.session.nav.playService(self.lastservice)
 		elif answer == "restart":
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)

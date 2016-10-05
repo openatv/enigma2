@@ -55,7 +55,16 @@ config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
 config.movielist.use_last_videodirpos = ConfigYesNo(default=True)
-config.movielist.stop_service = ConfigYesNo(default=True)
+config.movielist.stop_service = ConfigYesNo(default=True)  # Unused - implementation removed
+
+# Clear config.movielist.stop_service from the settings file.
+# This code can probably be removed after a while.
+
+if config.movielist.stop_service.value != config.movielist.stop_service.default:
+	from Components.config import configfile
+	config.movielist.stop_service.value = config.movielist.stop_service.default
+	config.movielist.stop_service.save()
+	configfile.save()
 
 userDefinedButtons = None
 last_selected_dest = []
@@ -256,7 +265,6 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
 			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set, each folder will show the previous state used. When off, the default values will be shown.")),
 			getConfigListEntry(_("When a movie reaches the end"), config.usage.on_movie_eof, _("What to do at the end of file playback.")),
-			getConfigListEntry(_("Stop service on return to movie list"), config.movielist.stop_service, _("Stop previous broadcast service on return to movie list.")),
 			getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist, _("Shows the 'watched' status of the movie."))
 		]
 		if config.usage.show_icons_in_movielist.value:
@@ -265,7 +273,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to prevent the '..' from being shown in that folder.")))
 		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")))
 		configList.append(getConfigListEntry(_("Return to last selected entry"), config.movielist.use_last_videodirpos, _("Return to the last selection in the movie list on re-entering Movie Player. Otherwise return to the first movie entry in the movie list.")))
-		configList.append(getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set, return to live TV after a movie has stopped playing.")))
+		configList.append(getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set, return to showing live TV in the background after a movie has stopped playing.")))
 		for btn in (
 			('red', _('Button Red')),
 			('green', _('Button Green')),
@@ -1143,6 +1151,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			checkplaying = checkplaying.toString()
 		if checkplaying is None or (config.movielist.curentlyplayingservice.value != checkplaying and ':0:/' not in self.session.nav.getCurrentlyPlayingServiceReference().toString()):
 			self.session.nav.playService(eServiceReference(config.movielist.curentlyplayingservice.value))
+			Screens.InfoBar.InfoBar.instance.callServiceStarted()
 		self.LivePlayTimer.stop()
 
 	def getCurrent(self):
