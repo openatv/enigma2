@@ -267,9 +267,9 @@ class InfoBar(
 
 	def showWWW(self):
 		try:
-			from Plugins.Extensions.HbbTV.plugin import OperaBrowser
+			from Plugins.Extensions.HbbTV.browser import Browser
 
-			self.session.open(OperaBrowser)
+			self.session.open(Browser)
 			no_plugin = False
 		except Exception, e:
 			self.session.open(MessageBox, _("The WebBrowser plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
