@@ -61,9 +61,9 @@ def getCPUSpeedString():
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			return = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			return "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
 		except:
-			return = "1,7 GHz"
+			return "1,7 GHz"
 	else:
 		try:
 			file = open('/proc/cpuinfo', 'r')
