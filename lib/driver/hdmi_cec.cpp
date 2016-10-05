@@ -239,7 +239,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			static unsigned char pressedkey = 0;
 			static unsigned int data_idx = 0;
 
-			eDebugNoNewLineStart("eHdmiCEC_: received message");
+			eDebugNoNewLineStart("eHdmiCEC: received message");
 			for (int i = 0; i < rxmessage.length; i++)
 			{
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
