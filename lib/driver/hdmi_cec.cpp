@@ -411,6 +411,9 @@ long eHdmiCEC::translateKey(unsigned char code)
 		case 0x4a:		/* KEY_EJECTCD */
 			key = 0x172;
 			break;
+		case 0x0b:		/* KEY_CONTEXT_MENU */
+			key = 0x1b6;
+			break;
 		default:
 			key = 0x8b;
 			break;
