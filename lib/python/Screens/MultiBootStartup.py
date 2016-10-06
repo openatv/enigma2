@@ -272,41 +272,56 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			del self["actions"].actions['yellow']
 			del self["actions"].actions['ok']
 
+	def ckeckBootEntry(self, ENTRY):
+		try:
+			ret = False
+			temp = ENTRY.split(' ')
+			#read kernel, root as number and device name
+			kernel = int(temp[1].split("emmcflash0.kernel")[1])
+			root = int(temp[2].split("'root=/dev/mmcblk0p")[1])
+			device = temp[2].split("=")[1]
+			#read boxmode and new boxmode settings
+			cmdx = 5
+			cmd4 = "rootwait'"
+			bootmode = '1'
+			if 'boxmode' in ENTRY:
+				cmdx = 6
+				cmd4 = "rootwait"
+				bootmode = temp[5].split("hd51_4.boxmode=")[1].replace("'",'')
+			setmode = self.optionsList[self.option][0].split('=')[1]
+			#verify entries
+			if cmdx != len(temp) or 'boot' != temp[0] or 'rw' != temp[3] or cmd4 != temp[4] or kernel != root-kernel-1 or "'" != ENTRY[-1:]:
+				print "[MultiBootStartup] Command line in '/boot/STARTUP' - problem with not matching entries!"
+				ret = True
+			#verify length
+			elif ('boxmode' not in ENTRY and len(ENTRY) > 58) or ('boxmode' in ENTRY and len(ENTRY) > 76):
+				print "[MultiBootStartup] Command line in '/boot/STARTUP' - problem with line length!"
+				ret = True
+			#verify boxmode
+			elif bootmode != setmode and not self.option_enabled:
+				print "[MultiBootStartup] Command line in '/boot/STARTUP' - problem with unsupported boxmode!"
+				ret = True
+			#verify device
+			elif not device in Harddisk.getextdevices("ext4"):
+				print "[MultiBootStartup] Command line in '/boot/STARTUP' - boot device not exist!"
+				ret = True
+		except:
+			print "[MultiBootStartup] Command line in '/boot/STARTUP' - unknown problem!"
+			ret = True
+		return ret
+
 	def save(self):
 		print "[MultiBootStartup] select new startup: ", self.list[self.selection]
 		ret = system("cp -f '/boot/%s' /boot/STARTUP" %self.list[self.selection])
 		if ret:
-			self.session.open(MessageBox, _("File '/boot/%s' not found - copy to /boot/STARTUP failed!") %self.list[self.selection], MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("File '/boot/%s' copy to '/boot/STARTUP' failed!") %self.list[self.selection], MessageBox.TYPE_ERROR)
 			self.getCurrent()
 			return
 
-		newboot = boot = self.readlineFile('/boot/STARTUP')
-		newmode = self.optionsList[self.option][0].split('=')[1]
-
-		#check for wrong changes
-		try:
-			cmdfail = False
-			bootcmd = boot.split("=",1)[1].split(" ",1)[0]
-			bootmode = '1'
-			temp = boot.split(' ')
-			#read kernel and root
-			kernel = int(temp[1].split("emmcflash0.kernel")[1])
-			root = int(temp[2].split("'root=/dev/mmcblk0p")[1])
-			#read boxmode
-			cmd4 = "rootwait'"
-			if 'boxmode' in boot:
-				cmd4 = "rootwait"
-				bootmode = temp[5].split("hd51_4.boxmode=")[1].replace("'",'')
-			#verify settings
-			if not ('boot' == temp[0] and 'rw' == temp[3] and cmd4 == temp[4] and kernel == root-kernel-1 and "'" == boot[-1:] and bootcmd in Harddisk.getextdevices("ext4")):
-				cmdfail = True
-		except:
-			cmdfail = True
-
-		checkboot = True or cmdfail #check command line on/off (forcing to True if fail in boot)
 		writeoption = already = failboot = False
+		newboot = boot = self.readlineFile('/boot/STARTUP')
 
-		if checkboot and (cmdfail or (bootmode != newmode and not self.option_enabled) or (len(boot.split('boxmode')) > 2) or ('boxmode' in boot and len(boot) > 76) or ('boxmode' not in boot and len(boot) > 58)):
+		if self.ckeckBootEntry(boot):
 			failboot = True
 		elif self.option_enabled:
 			for x in self.optionsList:
@@ -319,7 +334,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 					break
 			if not (writeoption or already):
 				if "boxmode" in boot:
-					failboot = checkboot
+					failboot = True
 				elif self.option:
 					newboot = boot.replace("rootwait", "rootwait hd51_4.%s" %(self.optionsList[self.option][0]))
 					writeoption = True
@@ -345,6 +360,14 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			if not self.writeFile('/boot/STARTUP', newboot):
 				txt = _("Can not write file %s") %("'/boot/STARTUP'") + "\n" + _("Caution, next boot is starts with these settings!") + "\n"
 				message = _("Write error!") + "\n\n%s\n\n%s\n" %(boot, txt) + _("Do you want to reboot now?")
+
+		#verify boot
+		if failboot or writeoption:
+			boot = self.readlineFile('/boot/STARTUP')
+			if self.ckeckBootEntry(boot):
+				txt = _("Error in file %s") %("'/boot/STARTUP'") + "\n" + _("Caution, next boot is starts with these settings!") + "\n"
+				message = _("Command line error!") + "\n\n%s\n\n%s\n" %(boot, txt) + _("Do you want to reboot now?")
+
 		self.session.openWithCallback(self.restartBOX,MessageBox, message, MessageBox.TYPE_YESNO)
 
 	def cancel(self):
