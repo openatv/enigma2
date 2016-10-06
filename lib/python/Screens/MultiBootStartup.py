@@ -272,7 +272,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			del self["actions"].actions['yellow']
 			del self["actions"].actions['ok']
 
-	def ckeckBootEntry(self, ENTRY):
+	def checkBootEntry(self, ENTRY):
 		try:
 			ret = False
 			temp = ENTRY.split(' ')
@@ -321,7 +321,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		writeoption = already = failboot = False
 		newboot = boot = self.readlineFile('/boot/STARTUP')
 
-		if self.ckeckBootEntry(boot):
+		if self.checkBootEntry(boot):
 			failboot = True
 		elif self.option_enabled:
 			for x in self.optionsList:
@@ -364,7 +364,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		#verify boot
 		if failboot or writeoption:
 			boot = self.readlineFile('/boot/STARTUP')
-			if self.ckeckBootEntry(boot):
+			if self.checkBootEntry(boot):
 				txt = _("Error in file %s") %("'/boot/STARTUP'") + "\n" + _("Caution, next boot is starts with these settings!") + "\n"
 				message = _("Command line error!") + "\n\n%s\n\n%s\n" %(boot, txt) + _("Do you want to reboot now?")
 
