@@ -212,8 +212,14 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.scan_hd = ConfigYesNo(default = lastConfiguration[2])
 		self.scan_keepnumbering = ConfigYesNo(default = lastConfiguration[3])
 		self.scan_keepsettings = ConfigYesNo(default = lastConfiguration[4])
-		self.scan_alternative_number_mode = ConfigYesNo(default = lastConfiguration[5])
-
+		# WORKAROUND FOR OLD CONFIGURATION WHICH MISSES lastConfiguration[5]
+		try:
+			self.scan_alternative_number_mode = ConfigYesNo(default = lastConfiguration[5])
+		except:
+			self.scan_alternative_number_mode =  ConfigYesNo(default = config.usage.alternative_number_mode.value)
+		#	self.scan_alternative_number_mode = ConfigYesNo(default = lastConfiguration[5])
+		# WORKAROUND FOR OLD CONFIGURATION WHICH MISSES lastConfiguration[5]
+		
 		self.list = []
 		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
 		self.list.append(self.tunerEntry)
@@ -225,7 +231,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.list.append(self.scanHD)
 
 		self.list.append(getConfigListEntry(_("Use fastscan channel numbering"), self.scan_keepnumbering))
-                self.list.append(getConfigListEntry(_("Use fastscan channel names"), self.scan_keepsettings))
+		self.list.append(getConfigListEntry(_("Use fastscan channel names"), self.scan_keepsettings))
 		self.list.append(getConfigListEntry(_("Use alternate bouquets numbering"), self.scan_alternative_number_mode))
 
 		ConfigListScreen.__init__(self, self.list)

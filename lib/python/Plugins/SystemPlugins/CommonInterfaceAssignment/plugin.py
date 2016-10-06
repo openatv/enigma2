@@ -176,7 +176,7 @@ class CIconfigMenu(Screen):
 
 	def cancel(self):
 		self.saveXML()
-		activate_all(self)
+		activate_all(self, editcallback=True)
 		self.close()
 
 	def setServiceListInfo(self):
@@ -419,10 +419,10 @@ class myProviderSelection(ChannelSelectionBase):
 
 		self["actions"] = ActionMap(["OkCancelActions", "ChannelSelectBaseActions"],
 			{
-				"showFavourites": self.doNothing,
-				"showAllServices": self.cancel,
-				"showProviders": self.doNothing,
-				"showSatellites": self.doNothing,
+				"showFavourites": self.showFavourites,
+				"showAllServices": self.showAllServices,
+				"showProviders": self.showProviders,
+				"showSatellites": boundFunction(self.showSatellites, changeMode=True),
 				"cancel": self.cancel,
 				"ok": self.channelSelected
 			})
@@ -432,7 +432,13 @@ class myProviderSelection(ChannelSelectionBase):
 		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText(_("Press OK to select a provider."))
 
-	def doNothing(self):
+	def showProviders(self):
+		pass
+
+	def showAllServices(self):
+		self.close(None)
+
+	def showFavourites(self):
 		pass
 
 	def __onExecCallback(self):
@@ -441,14 +447,37 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
-		splited_ref=ref.toString().split(":")
-		if ref.flags == 7 and splited_ref[6] != "0":
-			self.dvbnamespace=splited_ref[6]
-			self.enterPath(ref)
-		else:
-			self.close(ref.getName(), self.dvbnamespace)
+		if ref is None: return
+		if not (ref.flags & 64):
+			splited_ref = ref.toString().split(":")
+			if ref.flags == 7 and splited_ref[6] != "0":
+				self.dvbnamespace = splited_ref[6]
+				self.enterPath(ref)
+			elif (ref.flags & 7) == 7 and 'provider' in ref.toString():
+				menu = [(_("Provider"), "provider"),(_("All services provider"), "providerlist")]
+				def addAction(choice):
+					if choice is not None:
+						if choice[1] == "provider":
+							self.close(ref.getName(), self.dvbnamespace)
+						elif choice[1] == "providerlist":
+							serviceHandler = eServiceCenter.getInstance()
+							servicelist = serviceHandler.list(ref)
+							if not servicelist is None:
+								providerlist = []
+								while True:
+									service = servicelist.getNext()
+									if not service.valid():
+										break
+									providerlist.append((service))
+								if providerlist:
+									self.close(providerlist, self.dvbnamespace, True)
+								else:
+									self.close(None)
+				self.session.openWithCallback(addAction, ChoiceBox, title = _("Select action"), list=menu)
 
-	def showSatellites(self):
+	def showSatellites(self, changeMode=False):
+		if changeMode:
+			return
 		if not self.pathChangeDisabled:
 			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
 			if not self.preEnterPath(refstr):
@@ -526,18 +555,18 @@ class myChannelSelection(ChannelSelectionBase):
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions", "ChannelSelectBaseActions"],
 			{
-				"showProviders": self.doNothing,
-				"showSatellites": self.showAllServices,
-				"showAllServices": self.cancel,
+				"showProviders": self.showProviders,
+				"showSatellites": boundFunction(self.showSatellites, changeMode=True),
+				"showAllServices": self.showAllServices,
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
 				"keyRadio": self.setModeRadio,
 				"keyTV": self.setModeTv
 			})
 
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("All"))
-		self["key_yellow"] = StaticText(_("Add bouquet services"))
+		self["key_red"] = StaticText(_("All"))
+		self["key_green"] = StaticText(_("Close"))
+		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(_("Favourites"))
 		self["introduction"] = StaticText(_("Press OK to select a service."))
 
@@ -545,22 +574,12 @@ class myChannelSelection(ChannelSelectionBase):
 		self.setModeTv()
 		self.setTitle(_("Select service to add..."))
 
-	def doNothing(self):
-		ref = self.getCurrentSelection()
-		if ref is not None and (ref.flags & 7) == 7:
-			refs = []
-			serviceHandler = eServiceCenter.getInstance()
-			servicelist = serviceHandler.list(ref)
-			if not servicelist is None:
-				while True:
-					ref = servicelist.getNext()
-					if not ref.valid(): #check end of list
-						break
-					playable = not (ref.flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
-					if playable:
-						refs.append(ref)
-			self.close(refs)
+	def showProviders(self):
+		pass
 
+	def showSatellites(self, changeMode=False):
+		if changeMode:
+			self.close(None)
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
@@ -568,7 +587,7 @@ class myChannelSelection(ChannelSelectionBase):
 			self.enterPath(ref)
 		elif not (ref.flags & eServiceReference.isMarker):
 			ref = self.getCurrentSelection()
-			self.close([ref])
+			self.close(ref)
 
 	def setModeTv(self):
 		self.setTvMode()
@@ -581,9 +600,8 @@ class myChannelSelection(ChannelSelectionBase):
 	def cancel(self):
 		self.close(None)
 
-def activate_all(session):
+def activate_all(session, editcallback=False):
 	cihelper.load_ci_assignment()
-
 
 def find_in_list(list, search, listpos=0):
 	for item in list:
@@ -594,13 +612,12 @@ def find_in_list(list, search, listpos=0):
 global_session = None
 
 def isModule():
-	if eDVBCIInterfaces.getInstance().getNumOfSlots():
-		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
-		if NUM_CI > 0:
-			for slot in range(NUM_CI):
-				state = eDVBCI_UI.getInstance().getState(slot)
-				if state > 0:
-					return True
+	NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
+	if NUM_CI and NUM_CI > 0:
+		for slot in range(NUM_CI):
+			state = eDVBCI_UI.getInstance().getState(slot)
+			if state > 0:
+				return True
 	return False
 
 def sessionstart(reason, session):
