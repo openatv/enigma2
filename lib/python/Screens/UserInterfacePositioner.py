@@ -20,7 +20,7 @@ def getFilePath(setting):
 
 def setPositionParameter(parameter, configElement):
 	f = open(getFilePath(parameter), "w")
-	f.write('%X' % configElement.value)
+	f.write('%08X' % configElement.value)
 	f.close()
 	if fileExists(getFilePath("apply")):
 		f = open(getFilePath("apply"), "w")
