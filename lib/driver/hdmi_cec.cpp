@@ -243,20 +243,12 @@ void eHdmiCEC::hdmiEvent(int what)
 			for (int i = 0; i < rxmessage.length; i++)
 			{
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
-				switch (rxmessage.data[i])
-				{
-					case 0x44: /* key pressed */
-						data_idx = i;
-						break;
-					case 0x45: /* key released */
-						data_idx = i;
-						break;	
-				}
 			}
 			eDebugNoNewLineEnd(" ");
 			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
 			if (hdmicec_report_active_menu)
 			{
+				data_idx = getPressedIndex(rxmessage);
 				switch (rxmessage.data[data_idx])
 				{
 					case 0x44: /* key pressed */
@@ -420,7 +412,24 @@ long eHdmiCEC::translateKey(unsigned char code)
 	}
 	return key;
 }
-
+int eHdmiCEC::getPressedIndex(struct rxmessage)
+{
+	for (int i = 0; i < rxmessage.length; i++)
+	{
+		if(rxmessage.data[i] == 0x44)
+		{
+			idx = i;
+			break;
+		}
+		
+		if(rxmessage.data[i] == 0x45)
+		{
+			idx = i;
+			break;
+		}
+	}
+	return idx;
+}
 void eHdmiCEC::sendMessage(struct cec_message &message)
 {
 	if (hdmiFd >= 0)
