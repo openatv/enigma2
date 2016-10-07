@@ -1559,7 +1559,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					gettimeofday(&start, NULL);
 					sec_fe->sendDiseqc(m_sec_sequence.current()->diseqc);
 					gettimeofday(&end, NULL);
-					eDebugNoNewLine("[SEC] tuner %d sendDiseqc: ", m_dvbid);
+					eDebugNoNewLine("[eDVBFrontend] tuner %d sendDiseqc: ", m_dvbid);
 					for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 					eDebugNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
 					if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x00", 3))
@@ -1570,7 +1570,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 						eDebugNoNewLine("\n");
 					duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000;
 					duration_est = (m_sec_sequence.current()->diseqc.len * 14) + 10;
-					eDebugNoNewLine("[SEC] diseqc ioctl duration: %d ms", duration);
+					eDebugNoNewLine("[eDVBFrontend] diseqc ioctl duration: %d ms", duration);
 					if (duration < duration_est)
 						delay = duration_est - duration;
 					if (delay > 94) delay = 94;
@@ -1585,11 +1585,11 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				{
 					struct timeval start, end;
 					int duration, duration_est;
-					eDebugNoSimulate("[SEC] tuner %d sendToneburst: %d", m_dvbid, m_sec_sequence.current()->toneburst);
+					eDebugNoSimulate("[eDVBFrontend] tuner %d sendToneburst: %d", m_dvbid, m_sec_sequence.current()->toneburst);
 					gettimeofday(&start, NULL);
 					sec_fe->sendToneburst(m_sec_sequence.current()->toneburst);
 					gettimeofday(&end, NULL);
-					eDebugNoSimulateNoNewLineStart("[SEC] toneburst ioctl duration: %d ms",(end.tv_usec - start.tv_usec)/1000);
+					eDebugNoSimulateNoNewLineStart("[eDVBFrontend] toneburst ioctl duration: %d ms",(end.tv_usec - start.tv_usec)/1000);
 					duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000;
 					duration_est = 24;
 					if (duration < duration_est)
@@ -2015,7 +2015,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		if (recvEvents)
 			m_sn->start();
 		feEvent(-1); // flush events
-		struct dtv_property p[16];
+		struct dtv_property p[17];
 		struct dtv_properties cmdseq;
 		cmdseq.props = p;
 		cmdseq.num = 0;
@@ -2862,6 +2862,38 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 	{
 		m_simulate_fe->setDeliverySystemWhitelist(whitelist);
 	}
+}
+
+std::string eDVBFrontend::getDeliverySystem()
+{
+	struct dtv_property p[1];
+	p[0].cmd = DTV_DELIVERY_SYSTEM;
+	struct dtv_properties cmdseq;
+	cmdseq.num = 1;
+	cmdseq.props = p;
+
+	if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) < 0)
+	{
+		eDebug("[eDVBFrontend] getDeliverySystem FE_GET_PROPERTY failed: %m (%d)", m_type);
+		return "";
+	}
+
+	fe_delivery_system_t delsys = (fe_delivery_system_t)p[0].u.data;
+	std::string ds;
+
+	switch (delsys)
+	{
+		case SYS_ATSC:          ds = "ATSC"; break;
+		case SYS_DVBC_ANNEX_B:  ds = "ATSC"; break;
+		case SYS_DVBS:          ds = "DVB-S"; break;
+		case SYS_DVBS2:         ds = "DVB-S2"; break;
+		case SYS_DVBT:          ds = "DVB-T"; break;
+		case SYS_DVBT2:         ds = "DVB-T2"; break;
+		case SYS_DVBC_ANNEX_A:  ds = "DVB-C"; break;
+		case SYS_DVBC_ANNEX_C:  ds = "DVB-C"; break;
+		default:                ds = ""; break;
+	}
+	return ds;
 }
 
 bool eDVBFrontend::setDeliverySystem(const char *type)

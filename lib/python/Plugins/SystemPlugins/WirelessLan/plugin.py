@@ -144,7 +144,7 @@ class WlanStatus(Screen):
 						if accesspoint == "Not-Associated":
 							encryption = _("Disabled")
 						else:
-							encryption = _("Unsupported")
+							encryption = _("off or wpa2 on")
 					else:
 						encryption = _("Enabled")
 					if self.has_key("enc"):
