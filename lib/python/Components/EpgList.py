@@ -814,7 +814,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				# no picon so show servicename anyway in picon space
 				namefont = 1
 				namefontflag = int(config.epgselection.graph_servicename_alignment.value)
-				namewidth = piconWidth + channelWidth
+				namewidth = piconWidth
 			else:
 				piconWidth = 0
 		else:
