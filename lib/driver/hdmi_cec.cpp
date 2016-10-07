@@ -412,7 +412,7 @@ long eHdmiCEC::translateKey(unsigned char code)
 	}
 	return key;
 }
-int eHdmiCEC::getPressedIndex(struct rxmessage)
+int eHdmiCEC::getPressedIndex(rxmessage)
 {
 	for (int i = 0; i < rxmessage.length; i++)
 	{
