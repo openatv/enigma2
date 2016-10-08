@@ -225,8 +225,8 @@ class AudioSelection(Screen, ConfigListScreen):
 					number = "%x%02x" %(x[3] and x[3] or 8, x[2])
 
 				elif x[0] == 2:
-					types = ("unknown", "embedded", "SSA file", "ASS file",
-							"SRT file", "VOB file", "PGS file")
+					types = (_("unknown"), _("embedded"), _("SSA file"), _("ASS file"),
+							_("SRT file"), _("VOB file"), _("PGS file"))
 					try:
 						description = types[x[2]]
 					except:
