@@ -370,6 +370,11 @@ def InitLcd():
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted)
 
+		def PiconPackChanged(configElement):
+			configElement.save()
+		config.lcd.picon_pack = ConfigYesNo(default=False)
+		config.lcd.picon_pack.addNotifier(PiconPackChanged)
+
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped)
 
@@ -455,6 +460,7 @@ def InitLcd():
 		config.lcd.ledbrightnessdeepstandby = ConfigNothing()
 		config.lcd.ledbrightnessdeepstandby.apply = lambda : doNothing()
 		config.lcd.ledblinkingtime = ConfigNothing()
+		config.lcd.picon_pack = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
 
