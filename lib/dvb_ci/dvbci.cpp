@@ -295,6 +295,8 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		setInputSource(1, TUNER_B);
 		setInputSource(2, TUNER_C);
 		setInputSource(3, TUNER_D);
+		setInputSource(4, TUNER_E);
+		setInputSource(5, TUNER_F);
 	}
 	else
 	{
@@ -736,6 +738,8 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 							case 1: tuner_source = TUNER_B; break;
 							case 2: tuner_source = TUNER_C; break;
 							case 3: tuner_source = TUNER_D; break;
+							case 4: tuner_source = TUNER_E; break;
+							case 5: tuner_source = TUNER_F; break;
 #endif
 							default:
 								eDebug("try to get source for tuner %d!!\n", tunernum);
@@ -948,7 +952,7 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 {
 //	eDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //	eDebug("eDVBCIInterfaces::setInputSource(%d %d)", tuner_no, (int)source);
-	if (getNumOfSlots() > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
+	if (getNumOfSlots() >= 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
 	{
 		char buf[64];
 		snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
@@ -987,6 +991,8 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case TUNER_B:
 			case TUNER_C:
 			case TUNER_D:
+			case TUNER_E:
+			case TUNER_F:
 				srcCI = readInputCI("/proc/bus/nim_sockets", source);
 				if (srcCI)
 				{
@@ -1006,6 +1012,12 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 				break;
 			case TUNER_D:
 				fprintf(input, "D");
+				break;
+			case TUNER_E:
+				fprintf(input, "E");
+				break;
+			case TUNER_F:
+				fprintf(input, "F");
 				break;
 #endif
 #endif
@@ -1790,7 +1802,7 @@ void eDVBCISlot::removeService(uint16_t program_number)
 int eDVBCISlot::setSource(data_source source)
 {
 	current_source = source;
-	if (eDVBCIInterfaces::getInstance()->getNumOfSlots() > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
+	if (eDVBCIInterfaces::getInstance()->getNumOfSlots() >= 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
 	{
 		char buf[64];
 		snprintf(buf, 64, "/proc/stb/tsmux/ci%d_input", slotid);
@@ -1820,6 +1832,8 @@ int eDVBCISlot::setSource(data_source source)
 			case TUNER_B:
 			case TUNER_C:
 			case TUNER_D:
+			case TUNER_E:
+			case TUNER_F:
 				srcCI = readInputCI("/proc/bus/nim_sockets", source);
 				if (srcCI)
 				{
@@ -1839,6 +1853,12 @@ int eDVBCISlot::setSource(data_source source)
 				break;
 			case TUNER_D:
 				fprintf(ci, "D");
+				break;
+			case TUNER_E:
+				fprintf(ci, "E");
+				break;
+			case TUNER_F:
+				fprintf(ci, "F");
 				break;
 #endif
 #endif
