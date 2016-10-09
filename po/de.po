@@ -17643,8 +17643,96 @@ msgid "Select Image: %s"
 msgstr "Wähle Image: %s"
 
 #: MultiBootStartup.py
+msgid "no image found"
+msgstr "Kein Image gefunden"
+
+#: MultiBootStartup.py
 msgid "Do you want to reboot now with selected image?"
 msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
+
+#: MultiBootStartup.py
+msgid "Your box needs Bootloaderversion(s)\n\n%s\n\nto make compatible with Bootoptions!"
+msgstr "Ihre Box braucht Bootloaderversion\n\n%s\n\num Bootoptionen nutzen zu können!"
+
+#: MultiBootStartup.py
+msgid "File not found - rename failed!"
+msgstr "Datei nicht gefunden - umbenennen fehlgeschlagen!"
+
+#: MultiBootStartup.py
+msgid "Name already exists - rename failed!"
+msgstr "Name existiert bereits - umbenennen fehlgeschlagen!"
+
+#: MultiBootStartup.py
+msgid "2160p60 without PiP (Standard)"
+msgstr "2160p60 ohne PiP (Standard)"
+
+#: MultiBootStartup.py
+msgid "2160p50 with PiP (Experimental)"
+msgstr "2160p50 mit PiP (Experimentel)"
+
+#: MultiBootStartup.py
+msgid " (unknown mode)"
+msgstr " (unbekannter Modus)"
+
+#: MultiBootStartup.py
+msgid "Unable to read image number"
+msgstr "Image Nummer nicht lesbar"
+
+#: MultiBootStartup.py
+msgid "Current Bootsettings: %s (%s)%s"
+msgstr "Aktuelle Booteinstellungen: %s (%s)%s"
+
+#: MultiBootStartup.py
+msgid "Select Bootoption: %s"
+msgstr "Bootoption auswählen: %s"
+
+#: MultiBootStartup.py
+msgid "Select Bootoption: not supported - see info"
+msgstr "Bootoption auswählen: nicht unterstützt - siehe Info"
+
+#: MultiBootStartup.py
+msgid "File '/boot/%s' copy to '/boot/STARTUP' failed!"
+msgstr "Datei '/boot/%s' kopieren nach '/boot/STARTUP' fehlgeschlagen!"
+
+#: MultiBootStartup.py
+msgid "Next boot will start from Image 1."
+msgstr "Beim nächsten Start wird von Image 1. gebootet"
+
+#: MultiBootStartup.py
+msgid "Can not repair file %s"
+msgstr "Konnte Datei %s nicht reparieren"
+
+#: MultiBootStartup.py
+msgid "Caution, next boot is starts with these settings!"
+msgstr "Achtung, beim nächsten Start wird mit diesen Einstellungen gebootet!"
+
+#: MultiBootStartup.py
+msgid "Alternative Image 1 partition for boot repair not found."
+msgstr "Alternative Image 1 Partition für Boot-Reparatur nicht gefunden."
+
+#: MultiBootStartup.py
+msgid "Wrong Bootsettings detected!"
+msgstr "Falsche Booteinstellungen erkannt!"
+
+#: MultiBootStartup.py
+msgid "Do you want to reboot now?"
+msgstr "Wollen Sie jetzt neu starten?"
+
+#: MultiBootStartup.py
+msgid "Can not write file %s"
+msgstr "Konnte Datei %s nicht schreiben"
+
+#: MultiBootStartup.py
+msgid "Write error!"
+msgstr "Schreibfehler!"
+
+#: MultiBootStartup.py
+msgid "Error in file %s"
+msgstr "Fehler in Datei %s"
+
+#: MultiBootStartup.py
+msgid "Command line error!"
+msgstr "Kommandozeilen Fehler!"
 
 #: Flash_online.py
 msgid "STARTUP"
