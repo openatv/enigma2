@@ -826,7 +826,7 @@ class InfoBarTimeshift:
 					if config.recording.ascii_filenames.value:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
 
-					fullname = getRecordingFilename(ptsfilename, config.usage.default_path. value)
+					fullname = getRecordingFilename(ptsfilename, config.usage.default_path.value)
 					os.link("%s%s" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts" % fullname)
 					os.link("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts.meta" % fullname)
 					if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile)):
