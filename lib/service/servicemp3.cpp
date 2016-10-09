@@ -2258,8 +2258,6 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 							if (pts > 0)
 							{
 								m_cue_entries.insert(cueEntry(pts, type));
-								m_cuesheet_changed = 1;
-								m_event((iPlayableService*)this, evCuesheetChanged);
 								/* extra debug info for testing purposes CVR should_be_removed later on */
 								eLog(5, "[eServiceMP3] toc_subtype %s,Nr = %d, start= %#"G_GINT64_MODIFIER "x",
 										gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (sub_entry)), y + 1, pts);
@@ -2267,6 +2265,11 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 						}
 						y++;
 					}
+				}
+				if (y > 0)
+				{
+					m_cuesheet_changed = 1;
+					m_event((iPlayableService*)this, evCuesheetChanged);
 				}
 			}
 		}
