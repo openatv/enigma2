@@ -173,6 +173,7 @@ def InitUsageConfig():
 		("show record time", _("Yes, show record time")),
 		("show delete time", _("Yes, show delete time"))])
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
+	config.usage.movielist_asktrash = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 
 #GML:2
