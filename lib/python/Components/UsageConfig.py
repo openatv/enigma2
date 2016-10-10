@@ -801,7 +801,7 @@ def InitUsageConfig():
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices=[("0", _("Time")), ("1", _("Alphanumeric"))])
 	config.epgselection.overjump = ConfigYesNo(default=False)
-	config.epgselection.infobar_type_mode = ConfigSelection(default="graphics", choices=[("graphics", _("Multi EPG")), ("single", _("Single EPG"))])
+	config.epgselection.infobar_type_mode = ConfigSelection(default="graphics", choices=[("text", _("Text Multi EPG")), ("graphics", _("Graphics Multi EPG")), ("single", _("Single EPG"))])
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
 		config.epgselection.infobar_preview_mode = ConfigSelection(default="1", choices=[("0", _("Disabled")), ("1", _("Full screen")), ("2", _("PiP"))])
 	else:
