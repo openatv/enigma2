@@ -1026,6 +1026,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		if (snr != 0)
 			ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
 	}
+	else if (strstr(m_description, "Si2166B")) // DM7080HD/DM7020HD/DM820/DM800se DVB-S2 Dual NIM
+	{
+		ret = (snr * 240) >> 8;
+	}
 	else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4505"))
 	{
 		ret = (snr * 100) >> 8;
