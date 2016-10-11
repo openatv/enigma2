@@ -704,9 +704,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.hideTimer.start(idx*1000, True)
 		elif hasattr(self, "pvrStateDialog"):
 			self.hideTimer.stop()
-			idx = config.usage.infobar_timeout.index
-			if idx:
-				self.hideTimer.start(idx*1000, True)
+			#idx = config.usage.infobar_timeout.index
+			#if idx:
+			#	self.hideTimer.start(idx*1000, True)
 
 	def doShow(self):
 		self.show()
