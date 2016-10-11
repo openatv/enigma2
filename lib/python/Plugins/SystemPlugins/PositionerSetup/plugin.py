@@ -112,7 +112,7 @@ class PositionerSetup(Screen):
 			del feInfo
 			del service
 			if self.oldref and getCurrentTuner is not None:
-				if getCurrentTuner < 4 and self.feid == getCurrentTuner:
+				if self.feid == getCurrentTuner:
 					self.oldref_stop = True
 				if self.oldref_stop:
 					self.session.nav.stopService() # try to disable foreground service
@@ -131,7 +131,7 @@ class PositionerSetup(Screen):
 						frontendData = feInfo.getAll(True)
 						getCurrentTuner = frontendData and frontendData.get("tuner_number", None)
 						getCurrentSat = cur_pip_info.get('orbital_position', None)
-						if getCurrentTuner is not None and getCurrentTuner < 4 and self.feid == getCurrentTuner:
+						if getCurrentTuner is not None and self.feid == getCurrentTuner:
 							if getCurrentSat is not None and getCurrentSat in self.availablesats:
 								cur = cur_pip_info
 							else:

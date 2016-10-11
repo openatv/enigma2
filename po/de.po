@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 10:39+0200\n"
-"PO-Revision-Date: 2016-08-24 21:54+0200\n"
+"POT-Creation-Date: 2016-09-20 08:40+0200\n"
+"PO-Revision-Date: 2016-09-20 20:13+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -421,6 +421,9 @@ msgstr "1080p 50Hz"
 msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
+msgid "128"
+msgstr "128"
+
 msgid "12V output"
 msgstr "12V-Ausgang"
 
@@ -429,6 +432,9 @@ msgstr "12V-Ausgang"
 
 msgid "13 V"
 msgstr "13 V"
+
+msgid "16"
+msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -481,6 +487,9 @@ msgstr "24"
 msgid "25"
 msgstr "25"
 
+msgid "256"
+msgstr "256"
+
 msgid "29.97"
 msgstr "29.97"
 
@@ -489,6 +498,9 @@ msgstr "2X"
 
 msgid "30"
 msgstr "30"
+
+msgid "32"
+msgstr ""
 
 msgid "3D Mode"
 msgstr "3D Betriebsart"
@@ -519,6 +531,9 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "64"
+msgstr ""
 
 msgid "720p"
 msgstr "720p"
@@ -717,6 +732,12 @@ msgstr "AFP Einstellungen"
 
 msgid "AGC:"
 msgstr ""
+
+msgid "ATSC"
+msgstr ""
+
+msgid "ATSC provider"
+msgstr "ATSC Anbieter"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -922,6 +943,18 @@ msgstr "Album"
 
 msgid "Alias"
 msgstr ""
+
+msgid "Alignment of events"
+msgstr "Ausrichtung der Sendungen"
+
+msgid "Alignment of service names"
+msgstr "Ausrichtung Sendernamen"
+
+msgid "Alignment of service numbers"
+msgstr "Ausrichtung Sendernummern"
+
+msgid "Alignment of timeline date"
+msgstr "Ausrichtung der Zeitachse"
 
 msgid "All"
 msgstr "Alle"
@@ -1313,6 +1346,15 @@ msgstr "B"
 msgid "BER:"
 msgstr ""
 
+msgid "BT 2020 CL"
+msgstr ""
+
+msgid "BT 2020 NCL"
+msgstr ""
+
+msgid "BT 709"
+msgstr ""
+
 msgid "Back"
 msgstr "Zurück"
 
@@ -1642,7 +1684,7 @@ msgid "Center DVB subtitles"
 msgstr "DVB Untertitel zentrieren"
 
 msgid "Change PIN"
-msgstr "PIN ändern"
+msgstr "PIN-Code ändern"
 
 msgid "Change bouquets in quickzap"
 msgstr "Favoriten wechseln beim Quickzap"
@@ -1946,6 +1988,18 @@ msgstr "Konfigurationsmodus"
 #, python-format
 msgid "Configuration mode: %s"
 msgstr "Konfigurationsmodus: %s"
+
+msgid "Configure alignment of service events."
+msgstr "Konfiguriere Ausrichtung der Sendungen"
+
+msgid "Configure alignment of the service names."
+msgstr "Konfiguriere Ausrichtung der Sendernamen."
+
+msgid "Configure alignment of the service numbers."
+msgstr "Konfiguriere Ausrichtung der Sendernummern."
+
+msgid "Configure alignment of the timeline date."
+msgstr "Konfiguriere Ausrichtung der Zeitachse."
 
 msgid "Configure an additional delay to improve external subtitle synchronisation."
 msgstr "Konfiguriere eine zusätzliche Verzögerung um die Synchronisation mit externen Untertiteln zu verbessern."
@@ -2444,11 +2498,17 @@ msgstr "DTS"
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
+msgid "DVB CI Delay"
+msgstr "DVB CI Verzögerung"
+
 msgid "DVB subtitle black transparency"
 msgstr "DVB Untertitel Transparenz"
 
 msgid "DVB-C"
 msgstr "DVB-C"
+
+msgid "DVB-C ANNEX B"
+msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
@@ -3190,14 +3250,20 @@ msgstr "Enigma2 Änderungen"
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 Skinauswahl"
 
+msgid "Enter PIN"
+msgstr "PIN-Code ändern"
+
 msgid "Enter main menu..."
 msgstr "Öffne Hauptmenü..."
 
+msgid "Enter persistent PIN code"
+msgstr "Dauerhaften PIN-Code eingeben"
+
 msgid "Enter pin code"
-msgstr "Pincode eingeben"
+msgstr "PIN-Code eingeben"
 
 msgid "Enter the service pin"
-msgstr "Den Sender-PIN Code eingeben"
+msgstr "Den Sender-PIN-Code eingeben"
 
 msgid "Enter your e-mail address to send a copy of the log to."
 msgstr "Gebe deine E-Mail-Adresse an zu der eine Kopie des Logs geschickt werden soll."
@@ -3803,6 +3869,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC Einstellungen"
+
+msgid "HDMI Colorimetry"
+msgstr "HDMI Farbmetrik"
 
 msgid "HDMI Colorspace"
 msgstr "HDMI Farbraum"
@@ -5445,6 +5514,9 @@ msgstr "Seite hoch/runter"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCM"
+msgstr ""
+
 msgid "PCM Multichannel"
 msgstr "PCM Mehrkanal"
 
@@ -5717,16 +5789,16 @@ msgid "Please enter new name:"
 msgstr "Bitte neuen Dateinamen eingeben:"
 
 msgid "Please enter the correct pin code"
-msgstr "Bitte den korrekten PIN Code eingeben"
+msgstr "Bitte den korrekten PIN-Code eingeben"
 
 msgid "Please enter the name of the new directory"
 msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
 
 msgid "Please enter the new PIN code"
-msgstr "Bitte den neuen PIN Code eingeben"
+msgstr "Bitte den neuen PIN-Code eingeben"
 
 msgid "Please enter the old PIN code"
-msgstr "Bitte den alten PIN Code eingeben"
+msgstr "Bitte den alten PIN-Code eingeben"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Bitte folge den Angaben auf dem Fernseher."
@@ -5741,7 +5813,7 @@ msgid "Please press OK to continue."
 msgstr "Zum Fortfahren bitte OK drücken."
 
 msgid "Please re-enter the new PIN code"
-msgstr "Bitte den neuen PIN Code erneut eingeben"
+msgstr "Bitte den neuen PIN-Code erneut eingeben"
 
 msgid "Please select a default EPG type..."
 msgstr "Bitte den Standard-EPG-Typ wählen..."
@@ -5936,6 +6008,9 @@ msgstr "Rotor Einstellungen"
 msgid "Position of finished Timers in the Timer list"
 msgstr "Position beendeter Timer in der Timerliste"
 
+msgid "Position of recording icons"
+msgstr "Position Aufnahme Icon"
+
 msgid "Position setup"
 msgstr "Position Einstellungen"
 
@@ -6004,6 +6079,12 @@ msgstr "Bevorzugte Untertitel für jeden Sender speichern"
 
 msgid "Preferred tuner"
 msgstr "Bevorzugter Tuner"
+
+msgid "Preferred tuner ATSC"
+msgstr "Bevorzugter Tuner ATSC"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Bevorzugter Tuner ATSC für Aufnahmen"
 
 msgid "Preferred tuner DVB-C"
 msgstr "Bevorzugter Tuner für DVB-C"
@@ -6354,6 +6435,9 @@ msgstr "Rot lang"
 msgid "Reduce time scale"
 msgstr "Zeitskala verkleinern"
 
+msgid "Reenter PIN"
+msgstr "Pin-Code erneut eingeben"
+
 #, python-format
 msgid ""
 "Reflash in progress\n"
@@ -6385,6 +6469,9 @@ msgstr "Region"
 msgid "Relative"
 msgstr "relativ"
 
+msgid "Release notes"
+msgstr "Versionsinformationen"
+
 msgid "Reload"
 msgstr "aktualisieren"
 
@@ -6404,7 +6491,7 @@ msgid "Remaining & Elapsed"
 msgstr "verbleibend und verstrichen"
 
 msgid "Remember service PIN"
-msgstr "Sender PIN merken"
+msgstr "Sender PIN-Code merken"
 
 msgid "Reminder, you have chosen to save timeshift file."
 msgstr "Erinnerung! Du hast gewählt das TimeShift in Datei gespeichert wird."
@@ -6559,6 +6646,9 @@ msgstr "Zurücksetzen"
 
 msgid "Reset and renumerate title names"
 msgstr "Titelnamen zurücksetzen und neu nummerieren"
+
+msgid "Reset persistent PIN code"
+msgstr "Dauerhaften PIN-Code zurück setzen"
 
 msgid "Reset playback position"
 msgstr "Wiedergabeposition zurücksetzen"
@@ -7090,6 +7180,12 @@ msgstr "Sender Information"
 msgid "Service Name"
 msgstr "Sendername"
 
+msgid "Service Number and Service Name"
+msgstr "Sendernummer und Sendername"
+
+msgid "Service Number, Picon and Service Name"
+msgstr "Sendernummer, PIcon und Sendername"
+
 msgid "Service Title mode"
 msgstr "Sendertitel Modus"
 
@@ -7168,6 +7264,9 @@ msgstr "Setze Netzwerkadapter als Standardd"
 msgid "Set limits"
 msgstr "Grenzwerte setzen"
 
+msgid "Set pin code persistent"
+msgstr "Setze Pin-Code dauerhaft"
+
 msgid "Set startup service"
 msgstr "Als Startsender benutzen"
 
@@ -7216,6 +7315,9 @@ msgstr "Wähle die Sprungweite für die Seekbar."
 
 msgid "Set the name the recording will get."
 msgstr "Setze den Namen den die Aufnahme bekommen soll."
+
+msgid "Set the position of the recording icons"
+msgstr "Setze die Position des Aufnahme-Icons."
 
 msgid "Set the scrolling speed of text on the front display, this uses a software render in some skins."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display. Dies wird von einigen Renderern von Skins benutzt."
@@ -7333,6 +7435,9 @@ msgstr "Zeige AutoTimer Liste"
 
 msgid "Show CCcam Info in extensions?"
 msgstr "Zeige CCcam in Erweiterungen?"
+
+msgid "Show CI messages"
+msgstr "Zeige CI Nachrichten"
 
 msgid "Show Clients"
 msgstr "Zeige Klienten"
@@ -7788,6 +7893,9 @@ msgstr "Kurz"
 
 msgid "Small progress"
 msgstr "Kleiner Fortschrittsbalken"
+
+msgid "Smartcard PIN"
+msgstr ""
 
 msgid "Smooth"
 msgstr ""
@@ -8439,10 +8547,13 @@ msgstr ""
 "Bitte installieren."
 
 msgid "The PIN code has been changed successfully."
-msgstr "Der PIN Code wurde erfolgreich geändert."
+msgstr "Der PIN-Code wurde erfolgreich geändert."
+
+msgid "The PIN code has been saved successfully."
+msgstr "Der PIN-Code wurde erfolgreich gespeichert."
 
 msgid "The PIN codes you entered are different."
-msgstr "Die eingegebenen PIN Codes sind unterschiedlich."
+msgstr "Die eingegebenen Pincodes sind unterschiedlich."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs Verzeichnis auswählen."
@@ -8484,11 +8595,14 @@ msgid "The path %s already exists."
 msgstr "Der Pfad %s existiert bereits."
 
 msgid "The pin code you entered is wrong."
-msgstr "Der eingegebene PIN Code ist falsch"
+msgstr "Der eingegebene PIN-Code ist falsch"
 
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Die Ergebnisse des Tests wurden in der Datei %s gespeichert."
+
+msgid "The saved PIN was cleared."
+msgstr "Der gespeicherte Pin-Code wurde gelöscht."
 
 msgid "The service has been added to the favourites."
 msgstr "Sender wurde zu Favoriten hinzugefügt."
@@ -8602,6 +8716,9 @@ msgstr "Diese Option erlaubt es Block-Rauschen im Bild zu reduzieren. Diese Opti
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Diese Option erlaubt es den Wert für den dynamischen Kontrast des Bildes zu setzen."
+
+msgid "This option allows you can config the Colorimetry for HDR"
+msgstr "Dies Option erlaubt die Konfiguration der Farbmetrik für HDR "
 
 msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "Diese Option erlaubt dir zu wählen ob die verstrichene Zeit mit + oder - angezeigt wird"
@@ -9986,6 +10103,10 @@ msgstr "Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Dru
 msgid "Without popup"
 msgstr "Ohne Popup"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr "Soll der Pin-Code %s dauerhaft gespeichert werden?"
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
 
@@ -10536,6 +10657,9 @@ msgstr "Negativliste"
 msgid "blue"
 msgstr "blau"
 
+msgid "bottom"
+msgstr "Unten"
+
 msgid "broadcasting/press"
 msgstr "Fernsehen/Presse"
 
@@ -10556,6 +10680,12 @@ msgstr "Cartoons/Puppen"
 
 msgid "center"
 msgstr "zentriert"
+
+msgid "centered"
+msgstr "zentriert"
+
+msgid "centered, wrapped"
+msgstr "Zentriert, umgebrochen"
 
 msgid "chapters"
 msgstr "Kapitel"
@@ -10825,6 +10955,9 @@ msgstr ""
 msgid "height"
 msgstr "Höhe"
 
+msgid "hide"
+msgstr "verstecke"
+
 msgid "hops:"
 msgstr "hops:"
 
@@ -10867,6 +11000,9 @@ msgstr "Sprachen"
 msgid "left"
 msgstr "links"
 
+msgid "left, wrapped"
+msgstr "Links, umgebrochen"
+
 msgid "leisure hobbies (general)"
 msgstr "Freizeit/Hobby (allgemein)"
 
@@ -10908,6 +11044,9 @@ msgstr "Medizin/Physiologie/Psychologie"
 
 msgid "menu"
 msgstr "Menü"
+
+msgid "middle"
+msgstr "Mitte"
 
 msgid "mins"
 msgstr "Minuten"
@@ -11162,6 +11301,9 @@ msgstr "Zum vorherigen Kapitel zurück"
 msgid "right"
 msgstr "rechts"
 
+msgid "right, wrapped"
+msgstr "Rechts, umgebrochen"
+
 msgid "rock/pop"
 msgstr "Rock/Pop"
 
@@ -11364,13 +11506,13 @@ msgid "tennis/squash"
 msgstr "Tennis/Sqash"
 
 msgid "this bouquet is protected by a parental control pin"
-msgstr "Dieser Sender ist durch einen Jugendschutz-PIN Code geschützt."
+msgstr "Dieser Sender ist durch einen Jugendschutz PIN-Code geschützt."
 
 msgid "this recording"
 msgstr "Diese Aufnahme"
 
 msgid "this service is protected by a parental control pin"
-msgstr "Dieser Sender ist durch einen Jugendschutz-PIN Code geschützt."
+msgstr "Dieser Sender ist durch einen Jugendschutz PIN-Code geschützt."
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Schalte zwischen Zeit-, Kapitel-, Audio- und Untertitel-Info um"
@@ -11544,15 +11686,6 @@ msgstr "umgeschaltet"
 #~ "\n"
 #~ "<Dieser Tuner wird automatisch konfiguriert>"
 
-#~ msgid "128"
-#~ msgstr "128"
-
-#~ msgid "16"
-#~ msgstr "16"
-
-#~ msgid "256"
-#~ msgstr "256"
-
 #~ msgid "Changelog"
 #~ msgstr "Changelog"
 
@@ -11570,9 +11703,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "Currently installed image"
 #~ msgstr "Aktuell installiertes Image"
-
-#~ msgid "DVB CI Delay"
-#~ msgstr "DVB CI Verzögerung"
 
 #~ msgid "Device Information"
 #~ msgstr "Geräteinformation"

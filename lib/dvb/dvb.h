@@ -142,7 +142,7 @@ private:
 	std::string virtualFrontendName;
 	bool running;
 	unsigned short int pidList[30];
-	unsigned char buffer[(188 / 4) * 4096];
+	unsigned char buffer[4 * 1024 * 188];
 	pthread_t pumpThread;
 	static void *threadproc(void *arg);
 	void *vtunerPump();

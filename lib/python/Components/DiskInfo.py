@@ -34,7 +34,7 @@ class DiskInfo(VariableText, GUIComponent):
 			self.update()
 
 	def convertSize(self, size):
-		return "%s %sB" % UnitScaler()(size)
+		return _("%s %sB") % UnitScaler()(size)
 
 	def update(self):
 		try:

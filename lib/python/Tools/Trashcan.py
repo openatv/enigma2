@@ -232,7 +232,7 @@ class TrashInfo(VariableText, GUIComponent):
 		if self.type == self.USED:
 			try:
 				total_size = get_size(getTrashFolder(path))
-				total_size = "%s %sB" % UnitScaler()(total_size)
+				total_size = _("%s %sB") % UnitScaler()(total_size)
 			except:
 				# occurs when f_blocks is 0 or a similar error
 				total_size = " -?-"

@@ -142,13 +142,11 @@ class RemoteTunerScanner(Screen):
 
 	def Exit(self):
 		print "[RemoteTunerScanner] Exit from Plugin"
-		self.session.nav.playService(self.oldref)
 		self.close()
 
 	def Red(self, ret=False):
 		if ret:
 			print "[RemoteTunerScanner] Red"
-			self.session.nav.playService(self.oldref)
 			self.close()
 
 	def Green(self):
