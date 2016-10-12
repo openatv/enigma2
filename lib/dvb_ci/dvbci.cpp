@@ -952,7 +952,7 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 {
 //	eDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //	eDebug("eDVBCIInterfaces::setInputSource(%d %d)", tuner_no, (int)source);
-	if (getNumOfSlots() >= 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
+	if (getNumOfSlots() > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
 	{
 		char buf[64];
 		snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
@@ -1802,7 +1802,7 @@ void eDVBCISlot::removeService(uint16_t program_number)
 int eDVBCISlot::setSource(data_source source)
 {
 	current_source = source;
-	if (eDVBCIInterfaces::getInstance()->getNumOfSlots() >= 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
+	if (eDVBCIInterfaces::getInstance()->getNumOfSlots() > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
 	{
 		char buf[64];
 		snprintf(buf, 64, "/proc/stb/tsmux/ci%d_input", slotid);
