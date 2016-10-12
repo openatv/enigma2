@@ -1,12 +1,10 @@
 from Screens.Screen import Screen
+from Screens.PictureInPicture import MAX_X, MAX_Y
 from Components.ActionMap import NumberActionMap
 from Components.SystemInfo import SystemInfo
 from Components.Label import Label
 from Components.config import config
 
-# this is not so great.
-MAX_X = 720
-MAX_Y = 576
 MAX_W = MAX_X * 3 / 4
 MAX_H = MAX_Y * 3 / 4
 MIN_W = MAX_X / 8
