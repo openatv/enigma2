@@ -27,6 +27,7 @@ from time import strptime, sleep, gmtime, strftime
 from datetime import datetime
 from . import config, enableIceTV, disableIceTV
 import API as ice
+import requests
 from collections import deque, defaultdict
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -37,7 +38,10 @@ _session = None
 password_requested = False
 
 def _logResponseException(logger, heading, exception):
-    msg = heading + ": " + str(exception)
+    msg = heading
+    if isinstance(exception, requests.exceptions.ConnectionError):
+        msg += ": " +  _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % (getMachineBrand(), getMachineName())
+    msg += ": " + str(exception)
     if hasattr(exception, "response") and hasattr(exception.response, "text"):
         ex_text = str(exception.response.text).strip()
         if ex_text:
