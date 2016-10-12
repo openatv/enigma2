@@ -208,6 +208,7 @@ class InfoBarTimeshift:
 
 		if not state and self.pts_currplaying == self.pts_eventcount and self.timeshiftEnabled() and not self.event_changed:
 			self.setSeekState(self.SEEK_STATE_PLAY)
+			if hasattr(self, "pvrStateDialog"): self.pvrStateDialog.hide()
 
 		self.restartSubtitle()
 
@@ -508,7 +509,10 @@ class InfoBarTimeshift:
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
 	def callServiceStarted(self):
-		self.__serviceStarted()
+		from Screens.InfoBarGenerics import isStandardInfoBar
+		if isStandardInfoBar(self):
+			ServiceEventTracker.setActiveInfoBar(self,None,None)
+			self.__serviceStarted()
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
