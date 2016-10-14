@@ -1774,4 +1774,4 @@ class EPGSelection(Screen, HelpableScreen):
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, EPGtype="single"):
 		EPGSelection.__init__(self, session, service=service, EPGtype=EPGtype)
-               self.skinName = 'EPGSelection'
+		self.skinName = 'EPGSelection'
