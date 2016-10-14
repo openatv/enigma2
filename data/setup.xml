@@ -212,6 +212,7 @@
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="display" title="Settings" requires="FrontpanelDisplay">
+		<item level="0" text="Use separate Picon pack for Front Display *" description="Use picon_lcd directory for picons on color LCD">config.lcd.picon_pack</item>
 		<item level="0" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu" requires="LCDMiniTV">config.lcd.minitvmode</item>
 		<item level="0" text="Show PIP in the Front Display" description="You can Display PIP with or without OSD Menu" requires="LCDMiniTVPiP">config.lcd.minitvpipmode</item>
 		<item level="0" text="Set Framerate for MiniTV" description="Lower Framerate save CPU Time" requires="LCDMiniTV">config.lcd.minitvfps</item>

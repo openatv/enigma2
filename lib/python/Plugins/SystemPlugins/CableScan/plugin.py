@@ -8,6 +8,7 @@ from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.Sources.StaticText import StaticText
 from Components.ProgressBar import ProgressBar
 from Components.Pixmap import Pixmap
 from Components.ServiceList import refreshServiceList
@@ -76,8 +77,10 @@ class CableScanStatus(Screen):
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
 
-		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.session.nav.stopService()
+		service = self.session.nav.getCurrentService()
+		self.prevservice = service and service.frontendInfo().getAll(True)["tuner_number"] == scanTuner and self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if self.prevservice:
+			self.session.nav.stopService()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
@@ -126,8 +129,12 @@ class CableScanScreen(ConfigListScreen, Screen):
 		<widget name="introduction" position="10,265" size="500,25" font="Regular;20" halign="center" />
 	</screen>"""
 
-	def __init__(self, session):
+	def __init__(self, session, nimlist):
 		Screen.__init__(self, session)
+
+		self.setTitle(_("Cable Scan"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 		{
@@ -137,11 +144,9 @@ class CableScanScreen(ConfigListScreen, Screen):
 			"menu": self.closeRecursive,
 		}, -2)
 
-		nimlist = nimmanager.getNimListOfType("DVB-C")
 		nim_list = []
 		for x in nimlist:
 			nim_list.append((nimmanager.nim_slots[x].slot, nimmanager.nim_slots[x].friendly_full_description))
-
 		self.scan_nims = ConfigSelection(choices = nim_list)
 
 		self.list = []
@@ -158,9 +163,6 @@ class CableScanScreen(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list)
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-
-		self.finished_cb = None
-
 		self["introduction"] = Label(_("Configure your network settings, and press OK to start the scan"))
 
 	def keySave(self):
@@ -172,13 +174,15 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, scanModulation = int(config.plugins.CableScan.modulation.value), keepNumbers = config.plugins.CableScan.keepnumbering.value, hdList = config.plugins.CableScan.hdlist.value)
+		if int(self.scan_nims.value) in [recording.frontendInfo().getAll(True)["tuner_number"] for recording in self.session.nav.getRecordings()]:
+			self.session.open(MessageBox, _("A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."), type=MessageBox.TYPE_ERROR)
+		else:
+			self.session.open(CableScanStatus, scanTuner=int(self.scan_nims.value), scanNetwork=config.plugins.CableScan.networkid.value, scanFrequency=config.plugins.CableScan.frequency.value * 1000, scanSymbolRate=config.plugins.CableScan.symbolrate.value * 1000, scanModulation=int(config.plugins.CableScan.modulation.value), keepNumbers=config.plugins.CableScan.keepnumbering.value, hdList=config.plugins.CableScan.hdlist.value)
 
 	def keyCancel(self):
 		self.close()
 
 class CableScanAutoScreen(CableScanScreen):
-
 	def __init__(self, session, nimlist):
 		print "[AutoCableScan] start"
 		Screen.__init__(self, session)
@@ -216,29 +220,22 @@ class CableScanAutoScreen(CableScanScreen):
 		from Screens.Standby import StandbySummary
 		return StandbySummary
 
-def CableScanMain(session, **kwargs):
-	nims = nimmanager.getNimListOfType("DVB-C")
-
-	nimList = []
-	for x in nims:
-		nimList.append(x)
-
-	if len(nimList) == 0:
-		session.open(MessageBox, _("No cable tuner found!"), MessageBox.TYPE_ERROR)
-	else:
-		if session.nav.RecordTimer.isRecording():
-			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to scan."), MessageBox.TYPE_ERROR)
-		else:
-			session.open(CableScanScreen)
 Session = None
 CableScanAutoStartTimer = eTimer()
 
+def CableScanMain(session, **kwargs):
+	nimlist = nimmanager.getNimListOfType("DVB-C")
+	if nimlist:
+		Session.open(CableScanScreen, nimlist)
+	else:
+		Session.open(MessageBox, _("No cable tuner found!"), type=MessageBox.TYPE_ERROR)
+
 def restartScanAutoStartTimer(reply=False):
-	if not reply:
+	if reply:
+		CableScanAutoStartTimer.startLongTimer(86400)
+	else:
 		print "[AutoCableScan] Scan was not succesfully retry in one hour"
 		CableScanAutoStartTimer.startLongTimer(3600)
-	else:
-		CableScanAutoStartTimer.startLongTimer(86400)
 
 def CableScanAuto():
 	nimlist = nimmanager.getNimListOfType("DVB-C")
