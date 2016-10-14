@@ -164,6 +164,7 @@ class eInputDeviceInit
 
 public:
 	eInputDeviceInit()
+		: 	consoleFd(-1)
 	{
 		addAll();
 	}
