@@ -662,7 +662,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					resolved_font = resolveFilename(SCOPE_CURRENT_SKIN, filename)
 				elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)):
 					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
-			addFont(resolved_font, name, scale, is_replacement, render)
+				else:
+					resolved_font = None
+
+			if resolved_font is not None:
+				addFont(resolved_font, name, scale, is_replacement, render)
 			# print "Font: ", resolved_font, name, scale, is_replacement
 		for alias in c.findall("alias"):
 			get = alias.attrib.get
