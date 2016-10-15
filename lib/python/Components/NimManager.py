@@ -379,9 +379,9 @@ class SecConfigure:
 					sec.setLNBThreshold(11700000)
 				elif currLnb.lof.value == "unicable":
 					def setupUnicable(configManufacturer, ProductDict):
-						manufacturer_name = configManufacturer.value
+						manufacturer_name = configManufacturer.value.decode('utf-8')
 						manufacturer = ProductDict[manufacturer_name]
-						product_name = manufacturer.product.value
+						product_name = manufacturer.product.value.decode('utf-8')
 						if product_name == "None" and manufacturer.product.saved_value != "None":
 							product_name = manufacturer.product.value = manufacturer.product.saved_value
 						manufacturer_scr = manufacturer.scr
@@ -589,7 +589,10 @@ class SecConfigure:
 		if SDict is None:
 			return
 
+		if ManufacturerName is not None:
+			ManufacturerName = ManufacturerName.decode("utf-8")
 		print "ManufacturerName %s" % ManufacturerName
+
 		PDict = SDict.get(ManufacturerName, None)			#dict contained last stored device data
 		if PDict is None:
 			return
