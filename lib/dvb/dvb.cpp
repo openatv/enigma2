@@ -1177,6 +1177,12 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 		return -ENOENT;
 }
 
+RESULT eDVBResourceManager::getActiveChannels(std::list<active_channel> &list)
+{
+	list = m_active_channels;
+	return 0;
+}
+
 #define eDebugNoSimulate(x...) \
 	do { \
 		if (!simulate) \

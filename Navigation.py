@@ -345,8 +345,14 @@ class Navigation:
 	def getRecordingsTypesOnly(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsTypesOnly(type)
 
+	def getRecordingsSlotIDsOnly(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsSlotIDsOnly(type)
+
 	def getRecordingsServicesAndTypes(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsServicesAndTypes(type)
+
+	def getRecordingsServicesAndTypesAndSlotIDs(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServicesAndTypesAndSlotIDs(type)
 
 	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer = True):
 		# only for 'real' recordings
