@@ -769,7 +769,7 @@ def InitAVSwitch():
 			try:
 				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
 				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
-				f.write("%0.8X" % myval)
+				f.write("%0.8X\n" % myval)
 				f.close()
 				f = open("/proc/stb/vmpeg/0/pep_apply", "w")
 				f.write("1")
