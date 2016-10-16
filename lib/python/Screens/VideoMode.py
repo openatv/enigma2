@@ -664,7 +664,7 @@ class AutoVideoMode(Screen):
 			f.close()
 
 		if not video_height or not video_width or not video_pol or not video_rate:
-			service = self.session.nav.getCurrentService()
+			service = self.session and self.session.nav.getCurrentService()
 			if service is not None:
 				info = service.info()
 			else:
@@ -676,8 +676,9 @@ class AutoVideoMode(Screen):
 				video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
 				video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
 
-		if (video_height and video_width and video_pol and video_rate) or (config.av.smart1080p.value != 'false'):
-			contentdata = video_height and video_width and video_pol and video_rate
+		if not (video_height and video_width and video_pol and video_rate): 
+			return
+		elif config.av.autores.value != 'disabled':
 			label_rate = (video_rate + 500) / 1000
 			if video_pol == 'i': label_rate *= 2
 			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, label_rate))
@@ -719,7 +720,7 @@ class AutoVideoMode(Screen):
 			if config_mode in ('PAL', 'NTSC'):
 				write_mode = config_mode
 
-			elif contentdata and config.av.autores.value == 'simple':
+			elif config.av.autores.value == 'simple':
 				new_rate = (video_rate + 500) / 1000
 				if video_height <= 576 and int(config_res) >= 576: #sd
 					if config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value == 'multi':
@@ -773,7 +774,7 @@ class AutoVideoMode(Screen):
 					else:
 						write_mode = config_mode
 
-			elif contentdata and config.av.autores.value == 'native':
+			elif config.av.autores.value == 'native':
 				new_rate = (video_rate + 500) / 1000
 				new_pol = video_pol
 				new_res = str(video_height)
@@ -890,7 +891,7 @@ class AutoVideoMode(Screen):
 			# always use a fixed resolution and frame rate   (e.g. 1080p50 if supported) for TV or .ts files
 			# always use a fixed resolution and correct rate (e.g. 1080p24/p50/p60 for all other videos
 			if config.av.smart1080p.value != 'false' and config.av.autores.value in ('all', 'hd'):
-				ref = self.session.nav.getCurrentlyPlayingServiceReference()
+				ref = self.session and self.session.nav.getCurrentlyPlayingServiceReference()
 				if ref is not None:
 					try:
 						mypath = ref.getPath()
