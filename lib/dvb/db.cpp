@@ -14,6 +14,7 @@
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/s2_satellite_delivery_system_descriptor.h>
 #include <dirent.h>
 
 DEFINE_REF(eDVBService);
@@ -681,8 +682,8 @@ void eDVBDB::saveServicelist(const char *file)
 					sat.system, sat.modulation, sat.rolloff, sat.pilot);
 
 				if (sat.is_id != NO_STREAM_ID_FILTER ||
-					(sat.pls_code & 0x3FFFF) != eDVBFrontendParametersSatellite::PLS_Root ||
-					(sat.pls_mode & 3) != 0)
+					(sat.pls_code & 0x3FFFF) != 0 ||
+					(sat.pls_mode & 3) != eDVBFrontendParametersSatellite::PLS_Root)
 				{
 					fprintf(f, ":%d:%d:%d",
 						sat.is_id, sat.pls_code & 0x3FFFF, sat.pls_mode & 3);
@@ -1196,8 +1197,8 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
 				rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;
 				is_id = NO_STREAM_ID_FILTER;
-				pls_code = eDVBFrontendParametersSatellite::PLS_Root;
-				pls_mode = 0;
+				pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
+				pls_code = 0;
 				tsid = -1;
 				onid = -1;
 

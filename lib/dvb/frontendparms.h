@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/s2_satellite_delivery_system_descriptor.h>
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
 #include <dvbsi++/t2_delivery_system_descriptor.h>
@@ -20,6 +21,7 @@ struct eDVBFrontendParametersSatellite
 {
 #ifndef SWIG
 	void set(const SatelliteDeliverySystemDescriptor  &);
+	void set(const S2SatelliteDeliverySystemDescriptor  &);
 #endif
 	enum {
 		Polarisation_Horizontal, Polarisation_Vertical, Polarisation_CircularLeft, Polarisation_CircularRight

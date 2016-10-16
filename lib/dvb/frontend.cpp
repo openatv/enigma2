@@ -81,6 +81,22 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 	len = slen/2;
 }
 
+void eDVBFrontendParametersSatellite::set(const S2SatelliteDeliverySystemDescriptor &descriptor)
+{
+	if(descriptor.getScramblingSequenceSelector())
+	{
+		is_id = descriptor.getInputStreamIdentifier();
+		pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
+		pls_code = descriptor.getScramblingSequenceIndex();
+	}
+	else
+	{
+		is_id = NO_STREAM_ID_FILTER;
+		pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
+		pls_code = 0;
+	}
+}
+
 void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescriptor &descriptor)
 {
 	frequency    = descriptor.getFrequency() * 10;
@@ -3404,7 +3420,10 @@ eDVBRegisteredFrontend *eDVBFrontend::getLast(eDVBRegisteredFrontend *fe)
 
 bool eDVBFrontend::is_multistream()
 {
-#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
+//#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
+#if DVB_API_VERSION >= 5
+	if(!strcmp(m_description, "TBS-5925"))
+		return true;
 	if(!strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)"))
 		return true;
 	return fe_info.caps & FE_CAN_MULTISTREAM;
@@ -3442,7 +3461,8 @@ std::string eDVBFrontend::getCapabilities()
 	if (fe_info.caps &  FE_CAN_8VSB)			ss << "FE_CAN_8VSB" << std::endl;
 	if (fe_info.caps &  FE_CAN_16VSB)			ss << "FE_CAN_16VSB" << std::endl;
 	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << "FE_HAS_EXTENDED_CAPS" << std::endl;
-#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
+//#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
+#if DVB_API_VERSION >= 5
 	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << "FE_CAN_MULTISTREAM" << std::endl;
 #endif
 	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << "FE_CAN_TURBO_FEC" << std::endl;

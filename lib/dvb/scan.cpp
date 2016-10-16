@@ -3,6 +3,7 @@
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/s2_satellite_delivery_system_descriptor.h>
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
 #include <dvbsi++/t2_delivery_system_descriptor.h>
 #include <dvbsi++/logical_channel_descriptor.h>
@@ -739,6 +740,14 @@ void eDVBScan::channelDone()
 					{
 						// we handle it later
 						break;
+					}
+					case S2_SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
+					{
+						eDebug("[adenin] S2_SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR found");
+						if (system != iDVBFrontend::feSatellite)
+							break; // when current locked transponder is no satellite transponder ignore this descriptor
+
+						S2SatelliteDeliverySystemDescriptor &d = (S2SatelliteDeliverySystemDescriptor&)**desc;
 					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
