@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-22 20:51+0300\n"
-"PO-Revision-Date: 2016-07-22 21:02+0300\n"
+"PO-Revision-Date: 2016-10-17 21:17+0300\n"
 "Last-Translator: Audronis Grincevicius <adga@zebra.lt>\n"
 "Language-Team: adga (c) <adga@zebra.lt>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.10\n"
 
 msgid ""
 "\n"
@@ -317,9 +317,9 @@ msgstr "%d Min."
 #, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d kanalai surasti"
-msgstr[1] "%d kanalai surasti"
-msgstr[2] "%d kanalai surasti"
+msgstr[0] "surastas %d kanalas"
+msgstr[1] "surasti %d kanalai"
+msgstr[2] "surasta %d kanalų"
 
 #, python-format
 msgid "%d hour"
@@ -1216,10 +1216,10 @@ msgstr ""
 "bandomuosius ekranus."
 
 msgid "Advanced"
-msgstr "Pažangus"
+msgstr "Išplėstinis"
 
 msgid "Advanced Options"
-msgstr "Pažangūs nustatymai"
+msgstr "Išplėstiniai nustatymai"
 
 msgid "Advanced options"
 msgstr "Išplėstiniai nustatymai"
@@ -1811,10 +1811,10 @@ msgid "Bypass HDMI EDID Check"
 msgstr "Praleisti HDMI EDID tikrinimą"
 
 msgid "Bytes received:"
-msgstr "Baitų gauta:"
+msgstr "Gauta baitų:"
 
 msgid "Bytes sent:"
-msgstr "Baitų išsiųsta:"
+msgstr "Išsiųsta baitų:"
 
 msgid "C-Band"
 msgstr "C-juosta"
@@ -1823,13 +1823,13 @@ msgid "CAID"
 msgstr "CAID"
 
 msgid "CCcam Client Info"
-msgstr "Cccam kliento informacija"
+msgstr "CCcam kliento informacija"
 
 msgid "CCcam Config Switcher"
 msgstr "CCcam konfigūratorius"
 
 msgid "CCcam ECM Info"
-msgstr "Cccam ECM informacija"
+msgstr "CCcam ECM informacija"
 
 msgid "CCcam Info"
 msgstr "CCcam Informacija"
@@ -1877,11 +1877,11 @@ msgid "CF Drive"
 msgstr "CF Kortelė"
 
 msgid "CH"
-msgstr "CH"
+msgstr "KAN."
 
 #, python-format
 msgid "CH%s"
-msgstr "CH%s"
+msgstr "KAN.%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "KEISTI PAKETĄ"
@@ -2207,10 +2207,10 @@ msgid "Clear before scan"
 msgstr "Išvalyti prieš skenavimą"
 
 msgid "Clear fixed"
-msgstr "Švarus fiksuotas"
+msgstr "Išvalyti nustatytus"
 
 msgid "Clear log"
-msgstr "Švarus log"
+msgstr "Išvalyti žurnalą"
 
 msgid "Clear playlist"
 msgstr "Išvalyti grojaraštį"
@@ -3009,17 +3009,17 @@ msgstr "Ar tikrai norite trinti šį laikmatį ?"
 
 #, python-format
 msgid "Do you really want to download the plugin \"%s\"?"
-msgstr "Jūs iš tikrųjų norite parsisiųsti papildomą programą \"%s \"?"
+msgstr "Ar tikrai norite parsisiųsti priedą \"%s\"?"
 
 msgid "Do you really want to exit?"
-msgstr "Jūs tikrai norite išeiti?"
+msgstr "Ar tikrai norite išeiti?"
 
 msgid ""
 "Do you really want to initialize the device?\n"
 "All data on the disk will be lost!"
 msgstr ""
-"Tikrai norite atlikti įrenginio inicializavimą?\n"
-"Visi duomenys bus prarasti!"
+"Ar tikrai norite inicializuoti šį įrenginį?\n"
+"Visi jame esantys duomenys bus prarasti!"
 
 msgid "Do you really want to move to trashcan ?"
 msgstr "Ar tikrai norite perkelti į šiukšliadėžę?"
@@ -3033,11 +3033,11 @@ msgstr "Ar tikrai norite negrįžtamai pašalinti iš šiukšliadėžės?"
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr "Jūs iš tikrųjų norite pašalinti katalogą %s iš disko?"
+msgstr "Ar tikrai norite pašalinti %s katalogą iš disko?"
 
 #, python-format
 msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr "Jūs iš tikrųjų norite į PAŠALINTI papildomą programą \"%s \"?"
+msgstr "Ar tikrai norite pašalinti priedą \"%s\"?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
@@ -3045,7 +3045,7 @@ msgstr "Ar tikrai norite pašalinti laikmatį %s?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr "Jūs iš tikrųjų norite pašalinti savo %s žymę?"
+msgstr "Ar tikrai norite pašalinti savo %s žymę?"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Ar norite pridėti dar kokią papildomą informaciją?"
@@ -3075,7 +3075,7 @@ msgid "Do you want to backup your settings now?"
 msgstr "Ar norite sukurti nustatymų atsarginę kopiją?"
 
 msgid "Do you want to burn this collection to DVD medium?"
-msgstr "Jūs norite įrašyti šią kolekciją į DVD?"
+msgstr "Ar tikrai norite įrašyti šią kolekciją į DVD?"
 
 msgid "Do you want to continue?"
 msgstr "Ar norite tęsti?"
@@ -4752,10 +4752,10 @@ msgstr "Laisvalaikio pomėgiai"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
-msgstr "Rodymo formatas „pašto dėžutė“"
+msgstr "Rodymo formatas „pašto dėžutė“(juostos viršuje ir apačioje)"
 
 msgid "Letterbox zoom"
-msgstr "'Pašto dėžutės' priartinimas"
+msgstr "Rodymo formato \"Pašto dėžutė\" priartinimas"
 
 msgid "Light Grey"
 msgstr "Šviesiai pilka"
@@ -4802,8 +4802,8 @@ msgstr "Laikmenos įrenginių sąrašas"
 #, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
-msgstr[0] "Sąrašo versija %d, rasta %d kanalų"
-msgstr[1] "Sąrašo versija %d, rasta %d kanalų"
+msgstr[0] "Sąrašo versija %d, rastas %d kanalas"
+msgstr[1] "Sąrašo versija %d, rasti %d kanalai"
 msgstr[2] "Sąrašo versija %d, rasta %d kanalų"
 
 msgid "List/Fav"
@@ -4828,7 +4828,7 @@ msgid "Load playlist"
 msgstr "Įkeliamas grojaraštis"
 
 msgid "Local = Flash a image from local path /hdd/images"
-msgstr "Vietinis = diegti atvaizdą iš vietinio /hdd/images"
+msgstr "Vietinis = diegti atvaizdą iš vietos /hdd/images"
 
 msgid "Local box"
 msgstr "Vietinis imtuvas"
@@ -5088,7 +5088,7 @@ msgid "Monthly"
 msgstr "Mėnuo"
 
 msgid "Mosquito noise reduction"
-msgstr "Cypiančio triukšmo sumažinimas"
+msgstr "\"Moskitų\" triukšmo mažinimas"
 
 msgid "Motor command retries"
 msgstr "Variklio komandos kartojimas"
@@ -5578,10 +5578,10 @@ msgstr ""
 "Prašome nustatyti Jūsų imtuvą, prieš pradedant skenuoti kanalus."
 
 msgid "No updates available. Please try again later."
-msgstr "Jokių atnaujinimų nėra. Bandykite atnaujinti vėliau."
+msgstr "Atnaujinimų nėra. Bandykite patikrinti vėliau."
 
 msgid "No wireless networks found! Searching..."
-msgstr "Belaidžių tinklų nerasta! Vyksta paieška ..."
+msgstr "Belaidžių tinklų nerasta! Ieškoma..."
 
 msgid ""
 "No working local network adapter found.\n"
@@ -6115,7 +6115,7 @@ msgstr "Paveikslėlių grotuvas"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
-msgstr "Pillarbox"
+msgstr "Nekeičiant (pridės juostas iš šonų)"
 
 msgid "Pilot"
 msgstr "Pilot"
@@ -6124,10 +6124,10 @@ msgid "Play"
 msgstr "Leisti"
 
 msgid "Play Audio-CD..."
-msgstr "Paleisti Garso-CD..."
+msgstr "Groti garso CD..."
 
 msgid "Play DVD"
-msgstr "Leisti DVD"
+msgstr "Žiūrėti DVD"
 
 msgid "Play Music..."
 msgstr "Groti Muziką..."
