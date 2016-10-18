@@ -55,7 +55,7 @@ def listsDirPath():
 			if line.startswith('option lists_dir') or line.startswith('lists_dir'):
 				return line.replace('\n','').split(' ')[2]
 	except IOError:
-		print "[Opkg] cannot open %s" % path
+		print "[Opkg] cannot open /etc/opkg/opkg.conf"
 	return '/var/lib/opkg/lists'
 
 if __name__ == '__main__':
