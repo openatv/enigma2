@@ -160,9 +160,9 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Run some functions when shown
 		if windowTitle is None:
-			windowTitle = _("Select location")
+			windowTitle = _("Select Location")
 		self.onShown.extend((
-			boundFunction(self.setTitle, _("Select Location")),
+			boundFunction(self.setTitle, windowTitle),
 			self.updateTarget,
 			self.showHideRename,
 		))
