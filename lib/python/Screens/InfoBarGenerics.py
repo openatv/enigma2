@@ -61,6 +61,8 @@ from keyids import KEYFLAGS, KEYIDS, invertKeyIds
 from time import time, localtime, strftime
 from bisect import insort
 from sys import maxint
+from heapq import nsmallest
+from operator import itemgetter
 
 import os
 import cPickle
@@ -82,6 +84,9 @@ __resumePointsSaveTime = 0
 
 def setResumePoint(session):
 	global resumePointCache
+	if int(config.usage.movielist_resume_cache_max.value) == 0:
+		if len(resumePointCache):
+			resumePointCache = {}
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (service is not None) and (ref is not None):
@@ -99,16 +104,9 @@ def setResumePoint(session):
 					l = None
 				resumePointCache[key] = [lru, pos[1], l]
 
-				# TODO: This ought to be asynchronous, so that clean up of stale resume points
-				#       does not hold up the user interface.
-				# Remove stale cache entries older than a day
-				for k, v in resumePointCache.items():
-					if v[0] < (lru - (24 * 60 * 60)):
-						candidate = k
-						filepath = os.path.realpath(candidate.split(':')[-1])
-						# The following test could be potentially expensive
-						if not os.path.exists(filepath):
-							del resumePointCache[candidate]
+				if len(resumePointCache) > int(config.usage.movielist_resume_cache_max.value):
+					for k, v in nsmallest(2, resumePointCache.items(), key=itemgetter(1)):
+						del resumePointCache[k]
 
 				# Save resume points to non-volatile storage
 				saveResumePoints()
@@ -123,6 +121,8 @@ def delResumePoint(ref):
 
 def getResumePoint(session):
 	global resumePointCache
+	if int(config.usage.movielist_resume_cache_max.value) == 0:
+		return None
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if ref is not None:
 		try:
