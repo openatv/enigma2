@@ -48,7 +48,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecord
 from Screens.TimerEntry import TimerEntry as TimerEntry
 
 from Tools import Notifications
-from Tools.Directories import pathExists, fileExists
+from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_CONFIG
 from Tools.KeyBindings import getKeyDescription, getKeyBindingKeys
 from Tools.ServiceReference import hdmiInServiceRef, service_types_tv_ref
 
@@ -76,8 +76,12 @@ def isStandardInfoBar(self):
 def isMoviePlayerInfoBar(self):
 	return self.__class__.__name__ == "MoviePlayer"
 
+resumePointCacheLast = int(time())
+__resumePointsFile = resolveFilename(SCOPE_CONFIG, "resumepoints.pkl")
+__resumePointsSaveTime = 0
+
 def setResumePoint(session):
-	global resumePointCache, resumePointCacheLast
+	global resumePointCache
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (service is not None) and (ref is not None):
@@ -110,7 +114,7 @@ def setResumePoint(session):
 				saveResumePoints()
 
 def delResumePoint(ref):
-	global resumePointCache, resumePointCacheLast
+	global resumePointCache
 	try:
 		del resumePointCache[ref.toString()]
 	except KeyError:
@@ -120,7 +124,7 @@ def delResumePoint(ref):
 def getResumePoint(session):
 	global resumePointCache
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
-	if (ref is not None) and (ref.type != 1):
+	if ref is not None:
 		try:
 			entry = resumePointCache[ref.toString()]
 			entry[0] = int(time())  # update LRU timestamp
@@ -129,31 +133,42 @@ def getResumePoint(session):
 			return None
 
 def saveResumePoints():
-	global resumePointCache, resumePointCacheLast
+	global resumePointCache, resumePointCacheLast, __resumePointsFile, __resumePointsSaveTime
 	try:
-		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
+		f = open(__resumePointsFile, 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		# Set the load time, because it's the cache that saved the data
+		__resumePointsSaveTime = os.fstat(f.fileno()).st_mtime
 		f.close()
 	except Exception, ex:
+		__resumePointsSaveTime = 0
 		print "[InfoBarGenerics] Failed to write resumepoints:", ex
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
+	print "[InfoBarGenerics] loadResumePoints"  # ZZ
+	global __resumePointsFile, __resumePointsSaveTime
 	try:
-		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
+		file = open(__resumePointsFile, 'rb')
+		__resumePointsSaveTime = os.fstat(file.fileno()).st_mtime
 		PickleFile = cPickle.load(file)
 		file.close()
 		return PickleFile
 	except Exception, ex:
+		__resumePointsSaveTime = 0
 		print "[InfoBarGenerics] Failed to load resumepoints:", ex
 		return {}
 
-def updateresumePointCache():
-	global resumePointCache
-	resumePointCache = loadResumePoints()
-
 resumePointCache = loadResumePoints()
-resumePointCacheLast = int(time())
+
+def updateresumePointCache():
+	global resumePointCache, __resumePointsFile, __resumePointsSaveTime
+	try:
+		if os.stat(__resumePointsFile).st_mtime == __resumePointsSaveTime:
+			return
+	except:
+		pass
+	resumePointCache = loadResumePoints()
 
 def notifyChannelSelectionUpDown(setting):
 	from Screens.InfoBar import InfoBar
