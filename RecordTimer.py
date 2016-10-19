@@ -202,9 +202,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		print "[TIMER]", msg
 
 	def freespace(self):
-		# ToDo: Develop a check that really works
-		self.log(0, "Skipped free space check, assuming enough free space")
-		return True
 		self.MountPath = None
 		if not self.dirname:
 			dirname = findSafeRecordPath(defaultMoviePath())
@@ -221,6 +218,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if not mountwriteable:
 			self.log(0, ("Mount '%s' is not writeable." % dirname))
 			return False
+
+		# ToDo: Develop a check that really works
+		self.log(0, "Skipped free space check, assuming enough free space")
+		return True
 
 		s = os.statvfs(dirname)
 		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
