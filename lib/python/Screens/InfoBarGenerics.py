@@ -113,11 +113,23 @@ def setResumePoint(session):
 
 def delResumePoint(ref):
 	global resumePointCache
-	try:
-		del resumePointCache[ref.toString()]
-	except KeyError:
-		pass
-	saveResumePoints()
+	del_k = ref.toString()
+	needSave = False
+	if ref.flags & eServiceReference.mustDescent:
+		path_k = ':' + del_k.split(":")[10]
+		if not path_k.endswith('/'):
+			path_k += '/'
+		for k in [k for k in resumePointCache.iterkeys() if path_k in k]:
+			del resumePointCache[k]
+			needSave = True
+	else:
+		try:
+			del resumePointCache[del_k]
+			needSave = True
+		except KeyError:
+			pass
+	if needSave:
+		saveResumePoints()
 
 def getResumePoint(session):
 	global resumePointCache

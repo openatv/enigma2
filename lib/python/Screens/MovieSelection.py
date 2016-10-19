@@ -2041,6 +2041,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				ref = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 				ref.setPath(newpath)
 				self.reloadList(sel=ref)
+				from Screens.InfoBarGenerics import delResumePoint
+				delResumePoint(item[0])
 			except OSError, e:
 				print "[MovieSelection] Error %s:" % e.errno, e
 				if e.errno == 17:
@@ -2120,6 +2122,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			moveServiceFiles(current, dest, name)
 			self["list"].removeService(current)
 			self.updateFileFolderCounts()
+			from Screens.InfoBarGenerics import delResumePoint
+			delResumePoint(current)
 		except Exception, e:
 			mbox = self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
@@ -2218,6 +2222,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						self.updateFileFolderCounts()
 						self.showActionFeedback(_("Deleted '%s'") % name)
 						# Files were moved to .Trash, ok.
+						from Screens.InfoBarGenerics import delResumePoint
+						delResumePoint(current)
 						return
 					except Exception, e:
 						print "[MovieSelection] Weird error moving to trash", e
@@ -2373,6 +2379,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self["list"].removeService(current)
 			self.updateFileFolderCounts()
 			self.showActionFeedback(_("Deleted '%s'") % name)
+			from Screens.InfoBarGenerics import delResumePoint
+			delResumePoint(current)
 			return
 		except Exception, e:
 			print "[MovieSelection] Weird error moving to trash", e
