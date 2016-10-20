@@ -248,8 +248,9 @@ class InfoBarTimeshift:
 			else:
 				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
 		self.service_changed = 0
-		if not config.timeshift.isRecording.value:
-			self.__seekableStatusChanged()
+		#if not config.timeshift.isRecording.value:
+		#	self.__seekableStatusChanged()
+		self.__seekableStatusChanged() # fix: enable ready to start for standard timeshift after saving the event
 		self["TimeshiftActions"].setEnabled(False)
 
 	def __evSOFjump(self):
@@ -739,7 +740,6 @@ class InfoBarTimeshift:
 			self.save_current_timeshift = False
 		elif action == "no":
 			pass
-		if hasattr(self, "pvrStateDialog"): self.pvrStateDialog.hide()
 		# Get rid of old timeshift file before E2 truncates its filesize
 		if returnFunction is not None and action != "no":
 			self.eraseTimeshiftFile()
