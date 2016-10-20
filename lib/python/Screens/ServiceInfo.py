@@ -153,6 +153,7 @@ class ServiceInfo(Screen):
 
 	def ShowServiceInformation(self):
 		self.setTitle(_("Service info - service & PIDs"))
+		self["key_blue"].text = self["blue"].text = _("Tuner setting values")
 		if self.type == TYPE_SERVICE_INFO:
 			if self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
@@ -219,14 +220,14 @@ class ServiceInfo(Screen):
 
 
 	def ShowTransponderInformation(self):
-		if self.getTitle() in (_("Service info - service & PIDs"), _("Service info - tuner live values")):
+		if self["key_blue"].text == _("Tuner setting values"):
 			self.setTitle(_("Service info - tuner setting values"))
-			self["key_blue"] = self["blue"] = Label(_("Tuner live values"))
+			self["key_blue"].text = self["blue"].text = _("Tuner live values")
 		else:
 			self.setTitle(_("Service info - tuner live values"))
-			self["key_blue"] = self["blue"] = Label(_("Tuner setting values"))
+			self["key_blue"].text = self["blue"].text = _("Tuner setting values")
 		if self.type == TYPE_SERVICE_INFO:
-			frontendData = self.feinfo and self.feinfo.getAll(self.getTitle() == _("Service info - tuner values"))
+			frontendData = self.feinfo and self.feinfo.getAll(self.getTitle() == _("Service info - tuner setting values"))
 			self.fillList(self.getFEData(frontendData))
 
 	def getFEData(self, frontendDataOrg):
