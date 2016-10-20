@@ -180,6 +180,10 @@ class CleanTrashTask(Components.Task.PythonTask):
 				candidates = []
 				size = 0
 				for root, dirs, files in os.walk(trashfolder, topdown=False):
+					from Screens.InfoBarGenerics import delResumePoint
+					from Screens.MovieSelection import findMatchingServiceRefs
+					serviceRefMap = findMatchingServiceRefs(root, files)
+
 					for name in files:
 #GML:3
 # Don't delete any per-directory config files from .Trash if the option is in use
@@ -190,6 +194,8 @@ class CleanTrashTask(Components.Task.PythonTask):
 							st = os.stat(fn)
 							if st.st_ctime < self.ctimeLimit:
 								enigma.eBackgroundFileEraser.getInstance().erase(fn)
+								if fn in serviceRefMap:
+									delResumePoint(serviceRefMap[fn])
 								bytesToRemove -= st.st_size
 							else:
 								candidates.append((st.st_ctime, fn, st.st_size))
@@ -210,6 +216,8 @@ class CleanTrashTask(Components.Task.PythonTask):
 						try:
 							# somtimes the file does not exist, can happen if trashcan is on a network, the main box could also be emptying trash at same time.
 							enigma.eBackgroundFileEraser.getInstance().erase(fn)
+							if fn in serviceRefMap:
+								delResumePoint(serviceRefMap[fn])
 						except:
 							pass
 						bytesToRemove -= st_size

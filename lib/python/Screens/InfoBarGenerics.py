@@ -131,6 +131,38 @@ def delResumePoint(ref):
 	if needSave:
 		saveResumePoints()
 
+def renameResumePoint(ref, dest, copy=False):
+	global resumePointCache
+	old_k = ref.toString()
+	needSave = False
+	path_k = old_k.split(":")[10]
+	if ref.flags & eServiceReference.mustDescent:
+		dest = os.path.join(dest, "")
+		dest = ':' + dest
+		path_k = os.path.join(path_k, "")
+		path_k = ':' + path_k
+		for k in [k for k in resumePointCache.iterkeys() if path_k in k]:
+			new_k = k.replace(path_k, dest, 1)
+			if copy:
+				resumePointCache[new_k] = resumePointCache[k][:]
+			else:
+				resumePointCache[new_k] = resumePointCache.pop(k)
+			needSave = True
+	else:
+		dest = ':' + dest
+		path_k = ':' + path_k
+		try:
+			new_k = old_k.replace(path_k, dest, 1)
+			if copy:
+				resumePointCache[new_k] = resumePointCache[old_k][:]
+			else:
+				resumePointCache[new_k] = resumePointCache.pop(old_k)
+			needSave = True
+		except KeyError:
+			pass
+	if needSave:
+		saveResumePoints()
+
 def getResumePoint(session):
 	global resumePointCache
 	if int(config.usage.movielist_resume_cache_max.value) == 0:
@@ -158,7 +190,6 @@ def saveResumePoints():
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
-	print "[InfoBarGenerics] loadResumePoints"  # ZZ
 	global __resumePointsFile, __resumePointsSaveTime
 	try:
 		file = open(__resumePointsFile, 'rb')
