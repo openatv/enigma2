@@ -606,7 +606,14 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 				print "type change failed"
 				return
 		frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
-		eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, nim.getType())
+		if nim.isMultiType():
+			types = nim.getMultiTypeList()
+			append = False
+			for FeType in types.itervalues():
+				eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, FeType, append)
+				append = True
+		else:
+			eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, nim.getType())
 		system = multiType.getText()
 #			if not path.exists("/proc/stb/frontend/%d/mode" % fe_id) and iDVBFrontend.dvb_api_version >= 5:
 		print "api >=5 and new style tuner driver"
@@ -685,7 +692,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		elif nim.isCompatible("DVB-T"):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
 			self.list.append(self.typeOfScanEntry)
-			print"[adenin]",self.scan_typeterrestrial.value
 			if self.scan_typeterrestrial.value == "single_transponder":
 				self.typeOfInputEntry = getConfigListEntry(_("Use frequency or channel"), self.scan_input_as)
 				if self.ter_channel_input:

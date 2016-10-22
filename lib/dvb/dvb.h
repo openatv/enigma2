@@ -249,7 +249,7 @@ public:
 	bool frontendIsCompatible(int index, const char *type);
 	bool frontendIsMultistream(int index);
 	std::string getFrontendCapabilities(int index);
-	void setFrontendType(int index, const char *type);
+	void setFrontendType(int index, const char *type, bool append=false);
 	int getFrontendType(int index);
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eDVBResourceManager>, eDVBResourceManager);
@@ -276,6 +276,8 @@ public:
 
 		/* only for managed channels - effectively tunes to the channelid. should not be used... */
 		/* cannot be used for PVR channels. */
+		/* RESULT != 0: succeeded */
+		/* RESULT == 0: failed */
 	RESULT setChannel(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &feparam);
 	eDVBChannelID getChannelID() { return m_channel_id; }
 #if defined(__sh__) //see filepush.h

@@ -2108,6 +2108,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			print "dvb_api_version ",iDVBFrontend.dvb_api_version
 			print "api <5 or old style tuner driver"
 			fe_id = configElement.fe_id
+			slot = nimmgr.nim_slots[fe_id]
 			raw_channel = eDVBResourceManager.getInstance().allocateRawChannel(fe_id)
 			if raw_channel is None:
 				print "[ERROR] no raw channel, type change failed"
@@ -2116,7 +2117,14 @@ def InitNimManager(nimmgr, update_slots = []):
 			if frontend is None:
 				print "[ERROR] no frontend, type change failed"
 				return False
-			eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, nimmgr.nim_slots[fe_id].getType())
+			if slot.isMultiType():
+				types = slot.getMultiTypeList()
+				append = False
+				for FeType in types.itervalues():
+					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, append)
+					append = True
+			else:
+				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
 			system = configElement.getText()
 			if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
 				cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
@@ -2201,5 +2209,14 @@ def InitNimManager(nimmgr, update_slots = []):
 			empty = False
 		if empty:
 			empty_slots += 1
+	for slot in nimmgr.nim_slots:
+		if slot.isMultiType():
+			types = slot.getMultiTypeList()
+			append = False
+			for FeType in types.itervalues():
+				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, append)
+				append = True
+		else:
+			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
 
 nimmanager = NimManager()

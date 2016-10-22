@@ -147,7 +147,14 @@ class Satfinder(ScanSetup, ServiceScan):
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
-		eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, nim.getType())
+		if nim.isMultiType():
+			types = nim.getMultiTypeList()
+			append = False
+			for FeType in types.itervalues():
+				eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, FeType, append)
+				append = True
+		else:
+			eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, nim.getType())
 #			if not path.exists("/proc/stb/frontend/%d/mode" % fe_id) and iDVBFrontend.dvb_api_version >= 5:
 		print "api >=5 and new style tuner driver"
 		if self.frontend:
