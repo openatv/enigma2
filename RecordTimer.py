@@ -230,6 +230,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.log(0, ("Mount '%s' is not writeable." % dirname))
 			return False
 
+		# ToDo: Develop a check that really works
+		self.log(0, "Skipped free space check, assuming enough free space")
+		return True
+
 		s = os.statvfs(dirname)
 		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 			self.log(0, _("Not enough free space to record"))

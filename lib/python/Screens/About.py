@@ -124,7 +124,9 @@ def getAboutText():
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
 
-	AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
+	if getMachineBuild() not in ('hd51','hd52'):
+		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
+
 	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 
 	fp_version = getFPVersion()
@@ -464,7 +466,7 @@ class SystemMemoryInfo(Screen):
 		self["lab1"] = StaticText()
 		self["lab2"] = StaticText()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["", "SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,

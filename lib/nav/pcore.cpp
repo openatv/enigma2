@@ -62,6 +62,11 @@ void pNavigation::getRecordingsTypesOnly(std::vector<RecordType> &returnedTypes,
 	m_core->getRecordingsTypesOnly(returnedTypes, type);
 }
 
+void pNavigation::getRecordingsSlotIDsOnly(std::vector<int> &slotids, RecordType type)
+{
+	m_core->getRecordingsSlotIDsOnly(slotids, type);
+}
+
 std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > pNavigation::getRecordingsServices(RecordType type)
 {
 	return m_core->getRecordingsServices(type);
