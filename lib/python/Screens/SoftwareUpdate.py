@@ -259,6 +259,15 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.activityTimer.start(100, False)
 		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 
+# We've just manually checked for an update, so note this time as the last
+# check time, then update the next autocheck time too.
+#
+		from time import time
+		config.softwareupdate.updatelastcheck.setValue(int(time()))
+		config.softwareupdate.updatelastcheck.save()
+		from Components.OnlineUpdateCheck import onlineupdatecheckpoller
+		onlineupdatecheckpoller.start()
+
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and\
 			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value  or hasattr(self.session, 'infobar') and self.session.infobar is None) and\
