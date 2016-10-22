@@ -1,6 +1,8 @@
 #include <lib/nav/core.h>
 #include <lib/base/eerror.h>
 #include <lib/python/python.h>
+#include <lib/dvb/idvb.h>
+#include <lib/dvb/dvb.h>
 
 eNavigation* eNavigation::instance;
 
@@ -191,6 +193,47 @@ void eNavigation::getRecordingsTypesOnly(std::vector<pNavigation::RecordType> &r
 		}
 		//else
 		//	eDebug("[core.cpp] getRecordingsTypesOnly: not returning type %d (asked for type %d)", m_recordings_types[it->first], type);
+	}
+}
+
+void eNavigation::getRecordingsSlotIDsOnly(std::vector<int> &slotids, pNavigation::RecordType type)
+{
+	for (std::map<ePtr<iRecordableService>, eServiceReference >::iterator it(m_recordings_services.begin()); it != m_recordings_services.end(); ++it)
+	{
+		if (m_recordings_types[it->first] & type)
+		{
+			eServiceReference r = it->second;
+			eDVBChannelID chid;
+			((const eServiceReferenceDVB&)r).getChannelID(chid);
+						
+			ePtr<eDVBResourceManager> resMgr;
+			int err;
+			if ((err = eDVBResourceManager::getInstance(resMgr)) != 0)
+			{
+				eDebug("no resource manager");
+			} else
+			{
+				int result_slotid = -1;
+				std::list<eDVBResourceManager::active_channel> active_channels;
+				resMgr->getActiveChannels(active_channels);
+				for (std::list<eDVBResourceManager::active_channel>::iterator i(active_channels.begin()); i != active_channels.end(); ++i)
+				{
+					ePtr<iDVBFrontend> fe;
+					i->m_channel->getFrontend(fe);
+					int slotid = fe->readFrontendData(iFrontendInformation_ENUMS::frontendNumber);
+					//eDebug("REC checking channel.. i=%d,%04x:%04x frontend SlotID = %d", std::distance(active_channels.begin(), i), i->m_channel_id.transport_stream_id.get(), i->m_channel_id.original_network_id.get(),slotid);
+					if (i->m_channel_id == chid)
+					{
+						//eDebug("MATCH: i->m_channel_id = %x, chid = %x",i->m_channel_id, chid);
+						result_slotid = slotid;
+					}
+				}
+				slotids.push_back(result_slotid);
+			}
+		//	eDebug("[core.cpp] getRecordingsServicesOnly: returning type %d (asked for type %d)", m_recordings_types[it->first], type);
+		}
+		//else
+		//	eDebug("[core.cpp] getRecordingsServicesOnly: not returning type %d (asked for type %d)", m_recordings_types[it->first], type);
 	}
 }
 

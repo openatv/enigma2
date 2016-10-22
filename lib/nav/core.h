@@ -42,6 +42,7 @@ public:
     void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate=false, RecordType type=isAnyRecording);
     void getRecordingsServicesOnly(std::vector<eServiceReference> &services, pNavigation::RecordType type=isAnyRecording);
     void getRecordingsTypesOnly(std::vector<pNavigation::RecordType> &services, pNavigation::RecordType type=isAnyRecording);
+    void getRecordingsSlotIDsOnly(std::vector<int> &slotids, pNavigation::RecordType type=isAnyRecording);
     std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > getRecordingsServices(RecordType type=isAnyRecording);
     void navEvent(int event);
 
@@ -85,6 +86,7 @@ public:
     void getRecordings(std::vector<ePtr<iRecordableService> > &recordings, bool simulate, pNavigation::RecordType type);
     void getRecordingsServicesOnly(std::vector<eServiceReference> &services, pNavigation::RecordType type);
     void getRecordingsTypesOnly(std::vector<pNavigation::RecordType> &services, pNavigation::RecordType type);
+    void getRecordingsSlotIDsOnly(std::vector<int> &slotids, pNavigation::RecordType type);
     std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > getRecordingsServices(pNavigation::RecordType type);
 
     RESULT pause(int p);

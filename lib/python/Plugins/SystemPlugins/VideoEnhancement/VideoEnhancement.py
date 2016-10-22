@@ -22,7 +22,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting contrast to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_contrast", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_contrast."
@@ -41,7 +41,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting saturation to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_saturation", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_saturaion."
@@ -60,7 +60,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting hue to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_hue", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_hue."
@@ -79,7 +79,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting brightness to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_brightness", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_brightness."
@@ -98,7 +98,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting block_noise_reduction to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_block_noise_reduction", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_block_noise_reduction."
@@ -117,7 +117,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting mosquito_noise_reduction to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_mosquito_noise_reduction", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_mosquito_noise_reduction."
@@ -136,7 +136,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting digital_contour_removal to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_digital_contour_removal", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_digital_contour_removal."
@@ -177,7 +177,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting sharpness to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_sharpness", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_sharpness."
@@ -199,7 +199,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting auto_flesh to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_auto_flesh", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_auto_flesh."
@@ -218,7 +218,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting green_boost to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_green_boost", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_green_boost."
@@ -237,7 +237,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting blue_boost to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_blue_boost", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_blue_boost."
@@ -256,7 +256,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting dynamic_contrast to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_dynamic_contrast", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_dynamic_contrast."
@@ -281,7 +281,7 @@ class VideoEnhancement:
 					try:
 						print "--> setting scaler_sharpness to: %0.8X" % myval
 						f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
-						f.write("%0.8X" % myval)
+						f.write("%0.8X\n" % myval)
 						f.close()
 					except IOError:
 						print "couldn't write pep_scaler_sharpness."

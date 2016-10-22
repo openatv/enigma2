@@ -1,6 +1,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
+#include <lib/base/nconfig.h>
 #include <lib/base/wrappers.h>
 #include <lib/dvb/decoder.h>
 #include <lib/components/tuxtxtapp.h>
@@ -871,7 +872,7 @@ int eTSMPEGDecoder::setState()
 	}
 	if (m_changed & changeAudio)
 	{
-		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio)
+		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio && (m_decoder == 0 || eConfigManager::getConfigValue("config.av.pip_mode") == "external"))
 		{
 			m_audio = new eDVBAudio(m_demux, m_decoder);
 			if (m_audio->startPid(m_apid, m_atype))
