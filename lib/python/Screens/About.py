@@ -301,10 +301,12 @@ class SystemMemoryInfo(Screen):
 		self.skinName = ["SystemMemoryInfo", "About"]
 		self["AboutScrollLabel"] = ScrollLabel()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["", "SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown,
 			})
 
 		out_lines = file("/proc/meminfo").readlines()
