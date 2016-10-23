@@ -1,12 +1,10 @@
 from Screens.Screen import Screen
+from Screens.PictureInPicture import MAX_X, MAX_Y
 from Components.ActionMap import NumberActionMap
 from Components.SystemInfo import SystemInfo
 from Components.Label import Label
 from Components.config import config
 
-# this is not so great.
-MAX_X = 720
-MAX_Y = 576
 MAX_W = MAX_X * 3 / 4
 MAX_H = MAX_Y * 3 / 4
 MIN_W = MAX_X / 8
@@ -35,15 +33,19 @@ class PiPSetup(Screen):
 
 		self.resize = 100
 
-		self.helptext = _("Please use direction keys to move the PiP window.\nPress CH +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
+		self.helptext = _(
+			"Please use direction keys to move the PiP window.\n"
+			"Press CH +/- to resize the PiP window.\n"
+			"Press OK to go back to the TV mode or EXIT to cancel moving the PiP window.\n"
+			"Press number buttons 1-9 to move the PiP window to the corresponding position on the screen."
+		)
 		if SystemInfo["VideoDestinationConfigurable"] or SystemInfo["HasExternalPIP"]:
 			self.helptext += "\n" + _("Press '0' to toggle PiP mode")
 		self.modetext = _("Current mode: %s \n")
 
 		self["text"] = Label((self.modetext % self.pip.getModeName()) + self.helptext)
 
-		self["actions"] = NumberActionMap(["PiPSetupActions", "NumberActions"],
-		{
+		self["actions"] = NumberActionMap(["PiPSetupActions", "NumberActions"], {
 			"ok": self.go,
 			"cancel": self.cancel,
 			"up": self.up,
@@ -80,7 +82,7 @@ class PiPSetup(Screen):
 		self.pip.move(self.pos[0], self.pos[1])
 
 	def resizePiP(self, resize):
-		resize += 100 # resize is in percent, so resize=+20 means: 120%
+		resize += 100  # resize is in percent, so resize=+20 means: 120%
 
 		oldsize = self.size
 		if self.mode != "split":
@@ -130,8 +132,8 @@ class PiPSetup(Screen):
 		if number > 0 and self.mode == "standard":
 			colsize = MAX_X / 3
 			rowsize = MAX_Y / 3
-			col = (number-1) % 3
-			row = (number-1) / 3
+			col = (number - 1) % 3
+			row = (number - 1) / 3
 
 			self.size = (180, 135)
 
