@@ -17,6 +17,7 @@ from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.List import List
 from Components.SystemInfo import SystemInfo
+from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
 from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
@@ -831,7 +832,29 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self.doInstantTimer(1, parseNextEvent)
 
 	def editTimer(self, timer):
-		self.session.open(TimerEntry, timer)
+		self.session.openWithCallback(self.finishedEdit, TimerEntry, timer)
+
+	def finishedEdit(self, answer):
+		if answer[0]:
+			entry = answer[1]
+			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
+			success = False
+			if not timersanitycheck.check():
+				simulTimerList = timersanitycheck.getSimulTimerList()
+				if simulTimerList is not None:
+					for x in simulTimerList:
+						if x.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(x)
+					if not timersanitycheck.check():
+						simulTimerList = timersanitycheck.getSimulTimerList()
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+					else:
+						success = True
+			else:
+				success = True
+			if success:
+				self.session.nav.RecordTimer.timeChanged(entry)
 
 	def doInstantTimer(self, zap, parseEvent, next=False):
 		serviceref = ServiceReference(self.getCurrentSelection())
@@ -869,8 +892,8 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 				else:
 					cb_func1 = lambda ret: self.removeTimer(timer)
 					cb_func2 = lambda ret: self.editTimer(timer)
-					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
-					self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % eventname, list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
+					menu = [(_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2), (_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func1)]
+					self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % eventname, list=menu, keys=['green', 'red'], skin_name="RecordTimerQuestion")
 					self.ChoiceBoxDialog.instance.move(ePoint(selx - self.ChoiceBoxDialog.instance.size().width(), self.instance.position().y() + sely))
 				self.showChoiceBoxDialog()
 				break
@@ -907,6 +930,8 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+						return
+			self.updateCurrent()
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -915,6 +940,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self.closeChoiceBoxDialog()
+		self.updateCurrent()
 
 	def showEPGList(self):
 		ref = self.getCurrentSelection()
@@ -1606,6 +1632,9 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 
 	def moveDown(self):
 		self.servicelist.moveDown()
+
+	def updateCurrent(self):
+		self.servicelist.updateCurrent()
 
 	def clearPath(self):
 		del self.servicePath[:]
