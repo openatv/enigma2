@@ -332,6 +332,8 @@ class VirtualKeyBoard(Screen):
 		if self.previousSelectedKey is not None:
 			self.list[self.previousSelectedKey /12] = self.list[self.previousSelectedKey /12][:-1]
 		width = self.key_sel.size().width()
+		if self.selectedKey > self.max_key:
+			self.selectedKey = self.max_key
 		x = self.list[self.selectedKey/12][self.selectedKey % 12 + 1][1]
 		self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_sel))
 		self.previousSelectedKey = self.selectedKey
