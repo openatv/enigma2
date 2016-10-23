@@ -466,7 +466,7 @@ class SystemMemoryInfo(Screen):
 		self["lab1"] = StaticText()
 		self["lab2"] = StaticText()
 
-		self["actions"] = ActionMap(["", "SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
