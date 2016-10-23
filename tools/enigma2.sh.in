@@ -15,7 +15,7 @@ fi
 
 # set the debug log file path if debug logging is enabled
 # Test for debug logging being enabled using [ -n "${debug_path}" ]
-if grep -q 'config.crash.enabledebug=true' ${sysconfdir}/enigma2/settings; then
+if grep -qi 'config.crash.enabledebug=true' ${sysconfdir}/enigma2/settings; then
 	debug_dir=$(sed -n 's/config.crash.debug_path=//p' ${sysconfdir}/enigma2/settings)
 	[ -n "${debug_dir}" -a -d "${debug_dir}" ] || debug_dir=/home/root/logs/
 	debug_path="${debug_dir}Enigma2-$(date +%Y-%m-%d_%H-%M-%S).log"
