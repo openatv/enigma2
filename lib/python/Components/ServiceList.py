@@ -257,6 +257,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
+	def updateCurrent(self):
+		# Update the display state of the current list entry
+		# as a side-effect of disabling then re-enabling
+		# selection on the list instance.
+		self.instance.setSelectionEnable(False)
+		self.instance.setSelectionEnable(True)
+
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
 
