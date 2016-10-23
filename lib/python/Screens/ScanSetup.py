@@ -598,7 +598,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 	def TunerTypeChanged(self):
 		fe_id = int(self.scan_nims.value)
 		multiType = config.Nims[fe_id].multiType
-		nim = nimmanager.nim_slots[fe_id]
+		slot = nimmanager.nim_slots[fe_id]
 		print "dvb_api_version ",iDVBFrontend.dvb_api_version
 		if eDVBResourceManager.getInstance().allocateRawChannel(fe_id) is None:
 			self.session.nav.stopService()
@@ -606,14 +606,21 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 				print "type change failed"
 				return
 		frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
-		if nim.isMultiType():
-			types = nim.getMultiTypeList()
-			append = False
+
+		if slot.isMultiType():
+			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
+			types = slot.getMultiTypeList()
 			for FeType in types.itervalues():
-				eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, FeType, append)
-				append = True
+				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
+					continue
+				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
+					continue
+				elif FeType in ("DVB-C", "DVB-C2") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
+					continue
+				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
 		else:
-			eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, nim.getType())
+			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
+
 		system = multiType.getText()
 #			if not path.exists("/proc/stb/frontend/%d/mode" % fe_id) and iDVBFrontend.dvb_api_version >= 5:
 		print "api >=5 and new style tuner driver"

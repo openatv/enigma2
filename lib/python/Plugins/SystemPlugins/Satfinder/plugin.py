@@ -97,10 +97,10 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.feid = int(self.scan_nims.value)
 			self.createSetup()
 			self.prepareFrontend()
-			if self.frontend == None:
-				msg = _("Tuner not available.")
-				if self.session.nav.RecordTimer.isRecording():
-					msg += _("\nRecording in progress.")
+			if self.frontend == None and self.session.nav.RecordTimer.isRecording():
+				slot = nimmanager.nim_slots[self.feid]
+				msg = _("%s not available.") % slot.getSlotName()
+				msg += _("\nRecording in progress.")
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 		self.retune()
 
@@ -135,7 +135,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			(system in ('DVB-C') and config.Nims[fe_id].dvbc.configMode.value == "nothing"):
 			self.createSetup()
 			return
-		nim = nimmanager.nim_slots[fe_id]
+		slot = nimmanager.nim_slots[fe_id]
 		print "dvb_api_version ",iDVBFrontend.dvb_api_version
 		self.frontend = None
 		if not self.openFrontend():
@@ -147,14 +147,22 @@ class Satfinder(ScanSetup, ServiceScan):
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
-		if nim.isMultiType():
-			types = nim.getMultiTypeList()
-			append = False
+
+		if slot.isMultiType():
+			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
+			types = slot.getMultiTypeList()
 			for FeType in types.itervalues():
-				eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, FeType, append)
-				append = True
+				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
+					continue
+				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
+					continue
+				elif FeType in ("DVB-C", "DVB-C2") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
+					continue
+				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
 		else:
-			eDVBResourceManager.getInstance().setFrontendType(nim.frontend_id, nim.getType())
+			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
+
+
 #			if not path.exists("/proc/stb/frontend/%d/mode" % fe_id) and iDVBFrontend.dvb_api_version >= 5:
 		print "api >=5 and new style tuner driver"
 		if self.frontend:
