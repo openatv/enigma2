@@ -6,7 +6,7 @@ from Plugins.Plugin import PluginDescriptor
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigFloat
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
 from Components.ProgressBar import ProgressBar
@@ -109,16 +109,16 @@ class CableScanStatus(Screen):
 config.plugins.CableScan = ConfigSubsection()
 config.plugins.CableScan.keepnumbering = ConfigYesNo(default = False)
 config.plugins.CableScan.hdlist = ConfigYesNo(default = False)
-config.plugins.CableScan.frequency = ConfigInteger(default = 323, limits = (1, 999))
+config.plugins.CableScan.frequency = ConfigFloat(default = [323, 0], limits = [(50, 999),(0, 999)])
 config.plugins.CableScan.symbolrate = ConfigInteger(default = 6875, limits = (1, 9999))
 config.plugins.CableScan.networkid = ConfigInteger(default = 0, limits = (0, 99999))
 config.plugins.CableScan.modulation = ConfigSelection(
 	choices =
-		[(str(eDVBFrontendParametersCable.Modulation_QAM16), "QAM16"),
-		(str(eDVBFrontendParametersCable.Modulation_QAM32), "QAM32"),
-		(str(eDVBFrontendParametersCable.Modulation_QAM64), "QAM64"),
-		(str(eDVBFrontendParametersCable.Modulation_QAM128), "QAM128"),
-		(str(eDVBFrontendParametersCable.Modulation_QAM256), "QAM256")],
+		[(str(eDVBFrontendParametersCable.Modulation_QAM16), "16-QAM"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM32), "32-QAM"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM64), "64-QAM"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM128), "128-QAM"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM256), "256-QAM")],
 	default = str(eDVBFrontendParametersCable.Modulation_QAM64))
 config.plugins.CableScan.auto = ConfigYesNo(default = True)
 
@@ -151,11 +151,10 @@ class CableScanScreen(ConfigListScreen, Screen):
 
 		self.list = []
 		self.list.append(getConfigListEntry(_("Tuner"), self.scan_nims))
-
 		self.list.append(getConfigListEntry(_('Frequency'), config.plugins.CableScan.frequency))
 		self.list.append(getConfigListEntry(_('Symbol rate'), config.plugins.CableScan.symbolrate))
 		self.list.append(getConfigListEntry(_('Modulation'), config.plugins.CableScan.modulation))
-		self.list.append(getConfigListEntry(_('Network ID'), config.plugins.CableScan.networkid))
+		self.list.append(getConfigListEntry(_('Network ID') + _(' (0 - all networks)'), config.plugins.CableScan.networkid))
 		self.list.append(getConfigListEntry(_("Use official channel numbering"), config.plugins.CableScan.keepnumbering))
 		self.list.append(getConfigListEntry(_("HD list"), config.plugins.CableScan.hdlist))
 		self.list.append(getConfigListEntry(_("Enable auto cable scan"), config.plugins.CableScan.auto))
@@ -177,7 +176,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 		if int(self.scan_nims.value) in [recording.frontendInfo().getAll(True)["tuner_number"] for recording in self.session.nav.getRecordings()]:
 			self.session.open(MessageBox, _("A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."), type=MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(CableScanStatus, scanTuner=int(self.scan_nims.value), scanNetwork=config.plugins.CableScan.networkid.value, scanFrequency=config.plugins.CableScan.frequency.value * 1000, scanSymbolRate=config.plugins.CableScan.symbolrate.value * 1000, scanModulation=int(config.plugins.CableScan.modulation.value), keepNumbers=config.plugins.CableScan.keepnumbering.value, hdList=config.plugins.CableScan.hdlist.value)
+			self.session.open(CableScanStatus, scanTuner=int(self.scan_nims.value), scanNetwork=config.plugins.CableScan.networkid.value, scanFrequency=config.plugins.CableScan.frequency.floatint, scanSymbolRate=config.plugins.CableScan.symbolrate.value * 1000, scanModulation=int(config.plugins.CableScan.modulation.value), keepNumbers=config.plugins.CableScan.keepnumbering.value, hdList=config.plugins.CableScan.hdlist.value)
 
 	def keyCancel(self):
 		self.close()
@@ -196,7 +195,7 @@ class CableScanAutoScreen(CableScanScreen):
 
 		self.onClose.append(self.__onClose)
 
-		self.scan = eCableScan(config.plugins.CableScan.networkid.value, config.plugins.CableScan.frequency.value * 1000, config.plugins.CableScan.symbolrate.value * 1000, int(config.plugins.CableScan.modulation.value), config.plugins.CableScan.keepnumbering.value, config.plugins.CableScan.hdlist.value)
+		self.scan = eCableScan(config.plugins.CableScan.networkid.value, config.plugins.CableScan.frequency.floatint, config.plugins.CableScan.symbolrate.value * 1000, int(config.plugins.CableScan.modulation.value), config.plugins.CableScan.keepnumbering.value, config.plugins.CableScan.hdlist.value)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
 		self.scan.start(int(nimlist[0]))
 

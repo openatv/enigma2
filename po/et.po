@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-30 22:29+0300\n"
-"PO-Revision-Date: 2016-10-03 18:03+0300\n"
+"POT-Creation-Date: 2016-10-16 13:53+0300\n"
+"PO-Revision-Date: 2016-10-18 13:11+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -47,7 +47,7 @@ msgid ""
 "Edit the upgrade source address."
 msgstr ""
 "\n"
-"Muuda uuenduste allika aadressi."
+"Muuda uuenduste lähteaadressi."
 
 #, python-format
 msgid ""
@@ -385,7 +385,7 @@ msgid "* = Restart Required"
 msgstr "* = Vajalik taaskäivitus"
 
 msgid "* Only available if more than one interface is active."
-msgstr "* Võimalik vaid enam kui ühe aktiivse liidese puhul."
+msgstr "* Saadaval vaid mitme aktiivse võrgukaardi puhul."
 
 msgid "* current animation"
 msgstr "* aktiivne animatsioon"
@@ -663,6 +663,9 @@ msgstr ""
 "Toimub salvestamine.\n"
 "Mida soovid teha?"
 
+msgid "A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."
+msgstr "Valitud tuuneril toimub hetkel salvestamine. Vali teine tuuner või peata salvestamine, et uuesti proovida."
+
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 
@@ -732,6 +735,9 @@ msgstr "AFP seaded"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "ASS file"
+msgstr "ASS fail"
+
 msgid "ATSC"
 msgstr "ATSC"
 
@@ -782,10 +788,10 @@ msgid "Activate current configuration"
 msgstr "Jõusta praegused seaded"
 
 msgid "Activate network adapter configuration"
-msgstr "Aktiveeri võrgukaardi seadistused"
+msgstr "Jõusta võrgukaardi seadistused"
 
 msgid "Activate network settings"
-msgstr "Aktiveeri võrguseaded"
+msgstr "Jõusta võrguseaded"
 
 msgid "Activate the configured network settings."
 msgstr "Jõusta määratud võrguseaded."
@@ -914,7 +920,7 @@ msgid "Address"
 msgstr "Aadress"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
-msgstr "Seadista värve nii, et kõik värvivarjundid oleks eristatavad ja paistaks nii küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testpiltide valikuks."
+msgstr "Seadista värve nii, et kõik värvivarjundid oleks eristatavad ja paistaks võimalikult küllastatuna. Kui oled tulemusega rahul, vajuta OK video peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testpiltide valikuks."
 
 msgid "Advanced"
 msgstr "Lisavalikud"
@@ -2176,7 +2182,7 @@ msgid "Configure the primary EPG language."
 msgstr "Määra saatekava keele esimene eelistus."
 
 msgid "Configure the refresh rate of the screen. Multi means refresh rate depends on the source 24/50/60Hz"
-msgstr "Määra ekraani värskendussagedus. Multi puhul sõltub värskendussagedus allikast (24/50/60Hz)"
+msgstr "Määra ekraani värskendussagedus. 'Multi' puhul sõltub värskendussagedus allikast (24/50/60Hz)"
 
 msgid "Configure the second audio language."
 msgstr "Määra heli keele teine eelistus."
@@ -3684,6 +3690,9 @@ msgstr "Prantsuse"
 msgid "Frequency"
 msgstr "Sagedus"
 
+msgid "Frequency (kHz)"
+msgstr "Sagedus (kHz)"
+
 msgid "Frequency bands"
 msgstr "Sagedusalad"
 
@@ -3916,7 +3925,7 @@ msgid "Hide any zap error messages."
 msgstr "Peida kanalivahetuse veateated"
 
 msgid "Hide dotted line on the top for this service"
-msgstr "Peida sellel kanalil ülaservas võbelev punktiirjoon"
+msgstr "Peida sellel kanalil ülaservas valge punktiirjoon"
 
 msgid "Hide error messages from the Common Interface module."
 msgstr "Peida CI mooduli veateated."
@@ -5524,6 +5533,9 @@ msgstr "PCR PID"
 msgid "PDC"
 msgstr "PDC"
 
+msgid "PGS file"
+msgstr "PGS fail"
+
 msgid "PIDs"
 msgstr "PIDid"
 
@@ -6782,6 +6794,12 @@ msgstr "SNR:"
 msgid "SPDIF"
 msgstr "SPDIF"
 
+msgid "SRT file"
+msgstr "SRT fail"
+
+msgid "SSA file"
+msgstr "SSA fail"
+
 msgid "SSID:"
 msgstr "SSID:"
 
@@ -7234,7 +7252,7 @@ msgid "Services"
 msgstr "Kanalid"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
-msgstr "Kanalid saab rühmitada lemmiknimekirjadesse. Määrates 'jah', saad kasutada rohkem kui ühte lemmiknimekirja."
+msgstr "Kanalid võib rühmitada lemmiknimekirjadesse. Määrates 'jah', saab kasutada rohkem kui ühte lemmiknimekirja."
 
 msgid "Set Framerate for MiniTV"
 msgstr "Määra MiniTV kaadrisagedus"
@@ -9197,7 +9215,7 @@ msgid "Try to find used transponders in terrestrial network... please wait..."
 msgstr "Maapealse võrgu sageduste otsing. Oota..."
 
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr "Uue paketinimekirja hankimine. Oota..."
+msgstr "Uue tarkvaraloendi hankimine. Oota..."
 
 msgid "Tue"
 msgstr "T"
@@ -9459,8 +9477,14 @@ msgstr "DVB subtiitrite asukoht"
 msgid "Use original teletext position"
 msgstr "Subtiitrid kasutavad teleteksti asukohta"
 
+msgid "Use picon_lcd directory for picons on color LCD"
+msgstr "Kasuta värvilise LCD jaoks picon_lcd kataloogi"
+
 msgid "Use power measurement"
 msgstr "Kasuta voolutarbe mõõtmist"
+
+msgid "Use separate Picon pack for Front Display *"
+msgstr "Kasuta esipaneeli jaoks eraldi pikoneid *"
 
 msgid "Use slim screen"
 msgstr "Kasuta kitsast vaadet"
@@ -9569,6 +9593,9 @@ msgstr "VCR scart"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "VOB file"
+msgstr "VOB fail"
 
 msgid "VU+"
 msgstr "VU+"
@@ -9875,7 +9902,7 @@ msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
 
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Määrates 'jah', laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii on võimalik oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."
+msgstr "Määrates 'jah', laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii saab oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."
 
 msgid "When enabled the LNB power will not be switched off in standby"
 msgstr "Määrates 'jah', ei lülitata ooteseisundis LNB toidet välja"
@@ -9944,7 +9971,7 @@ msgid "When enabled, http streams are descrambled on the server side. The (remot
 msgstr "Määrates 'jah', dekodeeritakse http vood serveri poolt. Klientvastuvõtja ei pea neid enam dekodeerima. Vaikeväärtus on 'jah'."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
-msgstr "Määrates 'jah', on võimalik peatada filmi esitus EXIT nupuga."
+msgstr "Määrates 'jah', saab lõpetada filmi esituse EXIT nupuga."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Määrates 'jah', kasuta energiakulu mõõtmist, et tuvastada ajami peatumist (kui vastuvõtja seda toetab)."
@@ -9974,7 +10001,7 @@ msgid "When enabled, teletext subtitles will be displayed at their original posi
 msgstr "Määrates 'jah', kuvatakse teleteksti subtiitrid nende algsel asukohal."
 
 msgid "When enabled, the PiP can be closed by the EXIT button."
-msgstr "Määrates 'jah', on võimalik PiP sulgeda EXIT nupuga."
+msgstr "Määrates 'jah', saab PiP sulgeda EXIT nupuga."
 
 msgid "When enabled, the VCR scart option will be shown in the main menu"
 msgstr "Määrates 'jah', kuvatakse VCR-SCART valik peamenüüs"
@@ -10783,6 +10810,9 @@ msgstr "majandus/hoolekanne"
 msgid "education/science/factual topics (general)"
 msgstr "haridus/teadus"
 
+msgid "embedded"
+msgstr "Põimitud"
+
 msgid "empty"
 msgstr "tühi"
 
@@ -11164,6 +11194,9 @@ msgstr "kasutatud ühekihilisest kettast."
 
 msgid "off"
 msgstr "väljas"
+
+msgid "off or wpa2 on"
+msgstr "väljas või wpa2 sees"
 
 msgid "offset is"
 msgstr "nihe on"
