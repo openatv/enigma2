@@ -297,6 +297,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		]
 		if config.usage.movielist_trashcan.value:
 			configList += [
+				getConfigListEntry(_("Ask before moving any item to trash"), config.usage.movielist_asktrash, _("When enabled, confirm before moving any item to trash, not just directories.")),
 				getConfigListEntry(_("Remove items from trash after (days)"), config.usage.movielist_trashcan_days, _("Configure the number of days after which items are automatically deleted from trash.")),
 				getConfigListEntry(_("Clean network trash"), config.usage.movielist_trashcan_network_clean, _("When enabled, trash processing is also applied to network trash.")),
 				getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Minimum amount of disk space to be kept available for recordings. When the free disk space drops below this value, items will be deleted from trash.")),
@@ -2276,6 +2277,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						self.showActionFeedback(_("Deleted '%s'") % name)
 		else:
 			if not args:
+				if config.usage.movielist_asktrash.value:
+					are_you_sure = _("Do you really want to move '%s' to trash?") % name
+					mbox = self.session.openWithCallback(self.delete, MessageBox, are_you_sure, default=False)
+					mbox.setTitle(self.getTitle())
+					return
 				rec_filename = os.path.basename(current.getPath())
 				if rec_filename.endswith(".ts"):
 					rec_filename = rec_filename[:-3]
