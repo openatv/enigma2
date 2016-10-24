@@ -179,6 +179,7 @@ def InitUsageConfig():
 #GML:2
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(default=8, min=0, max=31, stepwidth=1, wraparound=True)
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
+	config.usage.movielist_resume_cache_max = ConfigSelection(default="1000", choices=[("0", _("Disabled")), ("100", "100"), ("200", "200"), ("500", "500"), ("1000", "1000"), ("2000", "2000"), ("5000", "5000")])
 	config.usage.on_movie_start = ConfigSelection(default="ask yes", choices=[
 		("ask yes", _("Ask user (with default as 'yes')")),
 		("ask no", _("Ask user (with default as 'no')")),
