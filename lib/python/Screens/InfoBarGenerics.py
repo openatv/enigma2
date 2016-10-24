@@ -2609,6 +2609,10 @@ class InfoBarExtensions:
 		from Screens.OScamInfo import OscamInfoMenu
 		self.session.open(OscamInfoMenu)
 
+	def openLogManager(self):
+		from Screens.LogManager import LogManager
+		self.session.open(LogManager)
+
 	def open3DSetup(self):
 		from Screens.UserInterfacePositioner import OSD3DSetupScreen
 		self.session.open(OSD3DSetupScreen)
