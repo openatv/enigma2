@@ -182,6 +182,7 @@
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of recording filenames" description="Specify how recording filenames are constructed.">config.recording.filename_composition</item>
 		<item level="2" text="Remove completed timers after (days)" description="Set the number of days old timers are retained before they are automatically removed from the timer list.">config.recording.keep_timers</item>
+		<item level="2" text="Size of resume point cache" description="Set the maximum size of the cache that holds the resume points for recordings and media files. If the cache is disabled, it will be cleared the next time a new resume point is saved.">config.usage.movielist_resume_cache_max</item>
 		<item level="2" text="Offline decode delay (ms)" description="Set the offline decoding delay (in milliseconds). The specified delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
 		<item level="2" text="Default recording type" description="Descramble &amp; record ECM' provides the option to descramble after recording if descrambling on recording fails. 'Don't descramble, record ECM' saves a scrambled recording that can be descrambled on playback. 'Normal' descrambles the recording and does not record ECM.">config.recording.ecm_data</item>
 	</setup>
@@ -209,6 +210,7 @@
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="display" title="Front Panel Settings" requires="FrontpanelDisplay">
+		<item level="0" text="Use separate Picon pack for Front Display *" description="Use picon_lcd directory for picons on color LCD">config.lcd.picon_pack</item>
 		<item level="0" text="Show MiniTV in the front display" description="Enable to display MiniTV with or without OSD menu." requires="LCDMiniTV">config.lcd.minitvmode</item>
 		<item level="0" text="Show PiP in the front display" description="Enable to display PiP with or without OSD menu." requires="LCDMiniTVPiP">config.lcd.minitvpipmode</item>
 		<item level="0" text="Power LCD Display" description="This option allows you to power on or off the display.">config.lcd.power</item>

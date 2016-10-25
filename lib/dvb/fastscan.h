@@ -241,6 +241,7 @@ class eFastScan: public Object, public iObject
 	void networkTableReady(int error);
 
 	void fillBouquet(eBouquet *bouquet, std::map<int, eServiceReferenceDVB> &numbered_channels);
+	int getOrbpos(FastScanServiceListConstIterator);
 	void parseResult();
 #endif /* no SWIG */
 

@@ -103,22 +103,11 @@ class ConfigElement(object):
 			self.changed()
 
 	def isChanged(self):
-#		print '\n Config: isChanged'
 		sv = self.saved_value
-#		print 'Config: SV1:',str(sv)
-#		print 'Config: SV2:',self.tostring(sv)
-#		print 'Config: self.value1:',str(self.value)
-#		print 'Config: self.value2:',self.tostring(self.value)
-#		print 'Config: self.default1:',str(self.default)
-#		print 'Config: self.default2:',self.tostring(self.default)
-
 		if sv is None and str(self.value) == str(self.default):
-#			print 'Config A1: FALSE'
 			return False
 		elif sv is None and self.tostring(self.value) != self.tostring(self.default):
-#			print 'Config: A2:',self.tostring(self.value) != self.tostring(self.default)
 			return self.tostring(self.value) != self.tostring(self.default)
-#		print 'Config: A3:',self.tostring(self.value) != self.tostring(sv)
 		return self.tostring(self.value) != self.tostring(sv)
 
 	def changed(self):
@@ -870,7 +859,8 @@ class ConfigSequence(ConfigElement):
 		return str(v)
 
 	def fromstring(self, value):
-		return [int(x) for x in value.split(self.seperator)]
+		ret = [int(x) for x in value.split(self.seperator)]
+		return ret + [int(x[0]) for x in self.limits[len(ret):]]
 
 	def onDeselect(self, session):
 		if self.last_value != self._value:
@@ -1178,6 +1168,15 @@ class ConfigFloat(ConfigSequence):
 		return float(self.value[1] / float(self.limits[1][1] + 1) + self.value[0])
 
 	float = property(getFloat)
+
+	def getFloatInt(self):
+		return int(self.value[0] * float(self.limits[1][1] + 1) + self.value[1])
+
+	def setFloatInt(self, val):
+		self.value[0] = val / float(self.limits[1][1] + 1)
+		self.value[1] = val % float(self.limits[1][1] + 1)
+
+	floatint = property(getFloatInt, setFloatInt)
 
 # ### EGAMI
 # Normal, LShift(42), RAlt(100), LShift+RAlt(100+42)/LArt(56)

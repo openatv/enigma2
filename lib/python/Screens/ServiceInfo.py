@@ -19,6 +19,9 @@ TYPE_VALUE_DEC = 2
 TYPE_VALUE_HEX_DEC = 3
 TYPE_SLIDER = 4
 TYPE_VALUE_ORBIT_DEC = 5
+TYPE_VALUE_FREQ = 6
+TYPE_VALUE_FREQ_FLOAT = 7
+TYPE_VALUE_BITRATE = 8
 
 def to_unsigned(x):
 	return x & 0xFFFFFFFF
@@ -27,8 +30,12 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 	if not isinstance(b, str):
 		if valueType == TYPE_VALUE_HEX:
 			b = ("0x%0" + str(param) + "x") % to_unsigned(b)
-		elif valueType == TYPE_VALUE_DEC:
-			b = str(b)
+		elif valueType == TYPE_VALUE_FREQ:
+			b = "%s MHz" % (b / 1000)
+		elif valueType == TYPE_VALUE_FREQ_FLOAT:
+			b = "%s.%s MHz" % (b / 1000, b % 1000)
+		elif valueType == TYPE_VALUE_BITRATE:
+			b = "%s" % (b / 1000)
 		elif valueType == TYPE_VALUE_HEX_DEC:
 			b = ("0x%0" + str(param) + "x (%dd)") % (to_unsigned(b), b)
 		elif valueType == TYPE_VALUE_ORBIT_DEC:
@@ -52,9 +59,9 @@ class ServiceInfo(AboutBase):
 		(_("System"), "system", TYPE_TEXT),
 		(_("Modulation"), "modulation", TYPE_TEXT),
 		(_("Orbital position"), "orbital_position", TYPE_VALUE_DEC),
-		(_("Frequency"), "frequency", TYPE_VALUE_DEC),
+		(_("Frequency"), "frequency", TYPE_VALUE_FREQ),
 		(_("Channel"), "channel", TYPE_TEXT),
-		(_("Symbol rate"), "symbol_rate", TYPE_VALUE_DEC),
+		(_("Symbol rate"), "symbol_rate", TYPE_VALUE_BITRATE),
 		(_("Polarization"), "polarization", TYPE_TEXT),
 		(_("Inversion"), "inversion", TYPE_TEXT),
 		(_("FEC"), "fec_inner", TYPE_TEXT),
