@@ -65,10 +65,11 @@ class OscamInfo:
 					data = res.replace("\n", "")
 					data = res.replace("--config-dir ", "-c ")
 					binary = res.split(" ")[0]
-					try:
+					if "-c " in data:
 						data = data.split("-c ")[1]
-						data = data.split("-")[0]
-					except:
+						if " " in data:
+							data = data.split(" ")[0]
+					else:
 						try:
 							print 'OScaminfo - oscam start-command is not as "/oscam-binary -parameter /config-folder" executed, using hard-coded config dir'
 							cmd = binary + ' -V | grep ConfigDir'
@@ -131,7 +132,6 @@ class OscamInfo:
 	def openWebIF(self, part = None, reader = None):
 		self.proto = "http"
 		if config.oscaminfo.userdatafromconf.value:
-			self.ip = "127.0.0.1"
 			udata = self.getUserData()
 			if isinstance(udata, str):
 				if "httpuser" in udata:
@@ -144,6 +144,11 @@ class OscamInfo:
 				self.port = udata[2]
 				self.username = udata[0]
 				self.password = udata[1]
+			self.ip = "127.0.0.1"
+			cmd = 'netstat -tlnp | grep %s | grep oscam | awk \'{ print $4 }\' | sed s#:%s##' % ( self.port.replace("+",""), self.port.replace("+","") )
+			res = os.popen(cmd).read().strip()
+			if "::" in res:
+				self.ip = "::1"
 		else:
 			self.ip = ".".join("%d" % d for d in config.oscaminfo.ip.value)
 			self.port = str(config.oscaminfo.port.value)
