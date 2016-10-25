@@ -121,7 +121,17 @@ int eCableScan::nextChannel()
 
 	m_SDT = new eTable<ServiceDescriptionSection>;
 	CONNECT(m_SDT->tableReady, eCableScan::SDTReady);
-	m_SDT->start(m_demux, eDVBSDTSpec());
+	eDVBTableSpec spec = eDVBSDTSpec();
+	/*
+	 * limit the SDT timeout to 5s (e2 defaults to 60s),
+	 * so we do not have to wait for too long when channels
+	 * from the NIT are not available.
+	 * We should actually implement a channel statechange handler
+	 * (to receive tune failed status) but limiting the SDT reader
+	 * timeout has the same effect, and is a lot simpler
+	 */
+	spec.timeout = 5000;
+	m_SDT->start(m_demux, spec);
 	return 0;
 }
 
