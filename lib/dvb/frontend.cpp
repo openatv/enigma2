@@ -2832,7 +2832,12 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		}
 		score = 2;
 	}
-
+	if (score > 1 && m_multitype)
+	{
+		/* prefer to use a non multitype tuner, try to keep multitype tuners free for other DVB types */
+		score--;
+	}
+	
 	if (score && preferred)
 	{
 		/* make 'sure' we always prefer this frontend */
