@@ -103,7 +103,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 		fe->getData(eDVBFrontend::TONEBURST, linked_toneburst);
 	}
 
-	const dvb_frontend_info fe_info = ((eDVBFrontend*)fe)->getFrontendInfo();
+	const dvb_frontend_info fe_info = ((eDVBFrontend*)fe)->getFrontendInfo(SYS_DVBS);
 	if (highest_score_lnb)
 		*highest_score_lnb = -1;
 
@@ -244,7 +244,10 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							lnb_param.m_lof_hi : lnb_param.m_lof_lo;
 						int tuner_freq = abs(sat.frequency - lof);
 						if (tuner_freq < fe_info.frequency_min || tuner_freq > fe_info.frequency_max)
+						{
+							eSecDebugNoSimulate("can't tune! tuner frequency %d not in range: frequency_min %d frequency_max %d", tuner_freq, fe_info.frequency_min, fe_info.frequency_max);
 							ret = 0;
+						}
 					}
 
 					if (ret && lnb_param.m_prio != -1)
@@ -1964,7 +1967,7 @@ PyObject *eDVBSatelliteEquipmentControl::getFrequencyRangeList(int slot_no, int 
 	{
 		if (it->m_frontend->getSlotID() == slot_no)
 		{
-			fe_info = ((eDVBFrontend*)it->m_frontend)->getFrontendInfo();
+			fe_info = ((eDVBFrontend*)it->m_frontend)->getFrontendInfo(SYS_DVBS);
 		}
 	}
 
