@@ -72,6 +72,9 @@ userDefinedButtons = None
 last_selected_dest = []
 preferredTagEditor = None
 
+# Extra mappings between extensions and service types.
+extraExtensionServTypes = '16384:jpg 16384:png 16384:gif 16384:bmp'
+
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
@@ -159,6 +162,36 @@ canDelete = canMove
 canCopy = canMove
 canRename = canMove
 
+def findMatchingServiceRefs(path, filenames):
+	path = os.path.normpath(path)
+	pathRef = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
+	pathRef.setPath(os.path.join(path, ""))
+	# Magic: this sets extra mappings between extensions and service types.
+	pathRef.setName(extraExtensionServTypes)
+
+	if filenames is None:
+		return os.isdir(path) and {path: pathRef} or {}
+	if not filenames:
+		return {}
+	if isinstance(filenames, str):
+		filenames = (filenames, )
+
+	serviceHandler = eServiceCenter.getInstance()
+	reflist = serviceHandler.list(pathRef)
+	if reflist is None:
+		return {}
+
+	fileset = set((os.path.join(path, fn) for fn in filenames))
+	matches = {}
+	serviceref = reflist.getNext()
+	while fileset and serviceref.valid():
+		matchPath = serviceref.getPath()
+		if matchPath in fileset:
+			matches[matchPath] = serviceref
+			fileset.remove(matchPath)
+		serviceref = reflist.getNext()
+	return matches
+
 def createMoveList(serviceref, dest):
 	# normpath is to remove the trailing '/' from directories
 	src = isinstance(serviceref, str) and serviceref + ".ts" or os.path.normpath(serviceref.getPath())
@@ -182,8 +215,23 @@ def createMoveList(serviceref, dest):
 				moveList.append((candidate, os.path.join(dest, baseName + ext)))
 	return moveList
 
+def __convertFilenameToServiceref(name):  # if possible. Otherwise return name
+	from MovieSelection import findMatchingServiceRefs
+	if os.isdir(serviceref):
+		serviceRefMap = findMatchingServiceRefs(serviceref, None)
+	else:
+		serviceRefMap = findMatchingServiceRefs(*os.path.split(serviceref))
+	if serviceRefMap and serviceref in serviceRefMap:
+		return serviceRefMap[serviceref]
+	else:
+		return name
+
 def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	moveList = createMoveList(serviceref, dest)
+
+	if isinstance(serviceref, str):
+		serviceref = __convertFilenameToServiceref(serviceref)
+
 	# Try to "atomically" move these files
 	try:
 		# print "[MovieSelection] Moving in background..."
@@ -192,6 +240,9 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 		if name is None:
 			name = os.path.split(moveList[-1][0])[1]
 		Tools.CopyFiles.moveFiles(moveList, name)
+		from Screens.InfoBarGenerics import renameResumePoint
+		if not isinstance(serviceref, str):
+			renameResumePoint(serviceref, moveList[-1][1])
 	except Exception, e:
 		print "[MovieSelection] Failed move:", e
 		# rethrow exception
@@ -200,6 +251,10 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 def copyServiceFiles(serviceref, dest, name=None):
 	# current should be 'ref' type, dest a simple path string
 	moveList = createMoveList(serviceref, dest)
+
+	if isinstance(serviceref, str):
+		serviceref = __convertFilenameToServiceref(serviceref)
+
 	# Try to "atomically" move these files
 	try:
 		# print "[MovieSelection] Copying in background..."
@@ -208,6 +263,9 @@ def copyServiceFiles(serviceref, dest, name=None):
 		if name is None:
 			name = os.path.split(moveList[-1][0])[1]
 		Tools.CopyFiles.copyFiles(moveList, name)
+		from Screens.InfoBarGenerics import renameResumePoint
+		if not isinstance(serviceref, str):
+			renameResumePoint(serviceref, moveList[0][1], copy=True)
 	except Exception, e:
 		print "[MovieSelection] Failed copy:", e
 		# rethrow exception
@@ -1650,8 +1708,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def setCurrentRef(self, path):
 		self.current_ref = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 		self.current_ref.setPath(path)
-		# Magic: this sets extra things to show
-		self.current_ref.setName('16384:jpg 16384:png 16384:gif 16384:bmp')
+		# Magic: this sets extra mappings between extensions and service types.
+		self.current_ref.setName(extraExtensionServTypes)
 
 	def updateFileFolderCounts(self):
 		(nDirs, nFiles) = self["list"].userItemCount()
@@ -2041,6 +2099,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				ref = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 				ref.setPath(newpath)
 				self.reloadList(sel=ref)
+				from Screens.InfoBarGenerics import renameResumePoint
+				renameResumePoint(item[0], newpath)
 			except OSError, e:
 				print "[MovieSelection] Error %s:" % e.errno, e
 				if e.errno == 17:
@@ -2307,8 +2367,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						self["list"].removeService(current)
 						self.updateFileFolderCounts()
 						# Files were moved to .Trash, ok.
-						from Screens.InfoBarGenerics import delResumePoint
-						delResumePoint(current)
 						self.showActionFeedback(_("Deleted '%s'") % name)
 						return
 					except:
@@ -2344,10 +2402,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			else:
 				if offline.deleteFromDisk(0):
 					raise Exception("Offline delete failed")
-			self["list"].removeService(current)
-			self.updateFileFolderCounts()
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(current)
+			self["list"].removeService(current)
+			self.updateFileFolderCounts()
 			self.showActionFeedback(_("Deleted '%s'") % name)
 		except Exception, ex:
 			mbox = self.session.open(MessageBox, _("Delete failed.\n'%s'\n%s") % (name, str(ex)), MessageBox.TYPE_ERROR)
@@ -2370,6 +2428,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			# already confirmed...
 			# but not implemented yet...
 			Tools.CopyFiles.deleteFiles(cur_path, name)
+			from Screens.InfoBarGenerics import delResumePoint
+			delResumePoint(current)
 			self["list"].removeService(current)
 			self.updateFileFolderCounts()
 			self.showActionFeedback(_("Deleted '%s'") % name)
@@ -2400,6 +2460,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if item is not None:
 			current = item[0]
 			Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
+			from Screens.InfoBarGenerics import delResumePoint
+			delResumePoint(current)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:

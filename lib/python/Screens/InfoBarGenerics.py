@@ -48,7 +48,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecord
 from Screens.TimerEntry import TimerEntry as TimerEntry
 
 from Tools import Notifications
-from Tools.Directories import pathExists, fileExists
+from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_CONFIG
 from Tools.KeyBindings import getKeyDescription, getKeyBindingKeys
 from Tools.ServiceReference import hdmiInServiceRef, service_types_tv_ref
 
@@ -61,6 +61,8 @@ from keyids import KEYFLAGS, KEYIDS, invertKeyIds
 from time import time, localtime, strftime
 from bisect import insort
 from sys import maxint
+from heapq import nsmallest
+from operator import itemgetter
 
 import os
 import cPickle
@@ -76,8 +78,15 @@ def isStandardInfoBar(self):
 def isMoviePlayerInfoBar(self):
 	return self.__class__.__name__ == "MoviePlayer"
 
+resumePointCacheLast = int(time())
+__resumePointsFile = resolveFilename(SCOPE_CONFIG, "resumepoints.pkl")
+__resumePointsSaveTime = 0
+
 def setResumePoint(session):
-	global resumePointCache, resumePointCacheLast
+	global resumePointCache
+	if int(config.usage.movielist_resume_cache_max.value) == 0:
+		if len(resumePointCache):
+			resumePointCache = {}
 	service = session.nav.getCurrentService()
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
 	if (service is not None) and (ref is not None):
@@ -95,32 +104,71 @@ def setResumePoint(session):
 					l = None
 				resumePointCache[key] = [lru, pos[1], l]
 
-				# TODO: This ought to be asynchronous, so that clean up of stale resume points
-				#       does not hold up the user interface.
-				# Remove stale cache entries older than a day
-				for k, v in resumePointCache.items():
-					if v[0] < (lru - (24 * 60 * 60)):
-						candidate = k
-						filepath = os.path.realpath(candidate.split(':')[-1])
-						# The following test could be potentially expensive
-						if not os.path.exists(filepath):
-							del resumePointCache[candidate]
+				if len(resumePointCache) > int(config.usage.movielist_resume_cache_max.value):
+					for k, v in nsmallest(2, resumePointCache.items(), key=itemgetter(1)):
+						del resumePointCache[k]
 
 				# Save resume points to non-volatile storage
 				saveResumePoints()
 
 def delResumePoint(ref):
-	global resumePointCache, resumePointCacheLast
-	try:
-		del resumePointCache[ref.toString()]
-	except KeyError:
-		pass
-	saveResumePoints()
+	global resumePointCache
+	del_k = ref.toString()
+	needSave = False
+	if ref.flags & eServiceReference.mustDescent:
+		path_k = ':' + del_k.split(":")[10]
+		if not path_k.endswith('/'):
+			path_k += '/'
+		for k in [k for k in resumePointCache.iterkeys() if path_k in k]:
+			del resumePointCache[k]
+			needSave = True
+	else:
+		try:
+			del resumePointCache[del_k]
+			needSave = True
+		except KeyError:
+			pass
+	if needSave:
+		saveResumePoints()
+
+def renameResumePoint(ref, dest, copy=False):
+	global resumePointCache
+	old_k = ref.toString()
+	needSave = False
+	path_k = old_k.split(":")[10]
+	if ref.flags & eServiceReference.mustDescent:
+		dest = os.path.join(dest, "")
+		dest = ':' + dest
+		path_k = os.path.join(path_k, "")
+		path_k = ':' + path_k
+		for k in [k for k in resumePointCache.iterkeys() if path_k in k]:
+			new_k = k.replace(path_k, dest, 1)
+			if copy:
+				resumePointCache[new_k] = resumePointCache[k][:]
+			else:
+				resumePointCache[new_k] = resumePointCache.pop(k)
+			needSave = True
+	else:
+		dest = ':' + dest
+		path_k = ':' + path_k
+		try:
+			new_k = old_k.replace(path_k, dest, 1)
+			if copy:
+				resumePointCache[new_k] = resumePointCache[old_k][:]
+			else:
+				resumePointCache[new_k] = resumePointCache.pop(old_k)
+			needSave = True
+		except KeyError:
+			pass
+	if needSave:
+		saveResumePoints()
 
 def getResumePoint(session):
 	global resumePointCache
+	if int(config.usage.movielist_resume_cache_max.value) == 0:
+		return None
 	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
-	if (ref is not None) and (ref.type != 1):
+	if ref is not None:
 		try:
 			entry = resumePointCache[ref.toString()]
 			entry[0] = int(time())  # update LRU timestamp
@@ -129,31 +177,41 @@ def getResumePoint(session):
 			return None
 
 def saveResumePoints():
-	global resumePointCache, resumePointCacheLast
+	global resumePointCache, resumePointCacheLast, __resumePointsFile, __resumePointsSaveTime
 	try:
-		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
+		f = open(__resumePointsFile, 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		# Set the load time, because it's the cache that saved the data
+		__resumePointsSaveTime = os.fstat(f.fileno()).st_mtime
 		f.close()
 	except Exception, ex:
+		__resumePointsSaveTime = 0
 		print "[InfoBarGenerics] Failed to write resumepoints:", ex
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
+	global __resumePointsFile, __resumePointsSaveTime
 	try:
-		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
+		file = open(__resumePointsFile, 'rb')
+		__resumePointsSaveTime = os.fstat(file.fileno()).st_mtime
 		PickleFile = cPickle.load(file)
 		file.close()
 		return PickleFile
 	except Exception, ex:
+		__resumePointsSaveTime = 0
 		print "[InfoBarGenerics] Failed to load resumepoints:", ex
 		return {}
 
-def updateresumePointCache():
-	global resumePointCache
-	resumePointCache = loadResumePoints()
-
 resumePointCache = loadResumePoints()
-resumePointCacheLast = int(time())
+
+def updateresumePointCache():
+	global resumePointCache, __resumePointsFile, __resumePointsSaveTime
+	try:
+		if os.stat(__resumePointsFile).st_mtime == __resumePointsSaveTime:
+			return
+	except:
+		pass
+	resumePointCache = loadResumePoints()
 
 def notifyChannelSelectionUpDown(setting):
 	from Screens.InfoBar import InfoBar
