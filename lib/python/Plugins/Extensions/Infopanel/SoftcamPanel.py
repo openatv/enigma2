@@ -18,10 +18,13 @@ from Screens.OScamInfo import OscamInfoMenu
 
 def Check_Softcam():
 	found = False
-	for x in os.listdir('/etc'):
-		if x.find('.emu') > -1:
-			found = True
-			break;
+	if fileExists("/etc/enigma2/noemu"):
+		found = False
+	else:
+		for x in os.listdir('/etc'):
+			if x.find('.emu') > -1:
+				found = True
+				break;
 	return found
 
 def command(comandline, strip=1):

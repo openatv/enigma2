@@ -19,7 +19,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, fileExists
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
@@ -47,10 +47,13 @@ def languageChanged():
 
 def Check_Softcam():
 	found = False
-	for x in os.listdir('/etc'):
-		if x.find('.emu') > -1:
-			found = True
-			break;
+	if fileExists("/etc/enigma2/noemu"):
+		found = False
+	else:
+		for x in os.listdir('/etc'):
+			if x.find('.emu') > -1:
+				found = True
+				break;
 	return found
 
 def CreateFeedConfig():

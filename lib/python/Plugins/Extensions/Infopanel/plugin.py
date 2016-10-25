@@ -12,7 +12,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.ChoiceBox import ChoiceBox
 from Tools.BoundFunction import boundFunction
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, fileExists
 from Components.MenuList import MenuList
 from Components.FileList import FileList
 from Components.Label import Label
@@ -46,10 +46,13 @@ config.plugins.infopanel_redpanel = ConfigSubsection()
 
 def Check_Softcam():
 	found = False
-	for x in os.listdir('/etc'):
-		if x.find('.emu') > -1:
-			found = True
-			break;
+	if fileExists("/etc/enigma2/noemu"):
+		found = False
+	else:
+		for x in os.listdir('/etc'):
+			if x.find('.emu') > -1:
+				found = True
+				break;
 	return found
 
 def Check_SysSoftcam():
