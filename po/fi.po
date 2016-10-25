@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-09 09:28+0100\n"
-"PO-Revision-Date: 2016-09-09 20:10+0200\n"
+"POT-Creation-Date: 2016-10-14 08:49+0100\n"
+"PO-Revision-Date: 2016-10-18 17:06+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/timoj/Kojo/Samzam\n"
 "Language: fi\n"
@@ -459,6 +459,10 @@ msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
 #
+msgid "128"
+msgstr "128"
+
+#
 msgid "12V output"
 msgstr "12V-ulostulo"
 
@@ -469,6 +473,10 @@ msgstr "12V-ulostulo"
 #
 msgid "13 V"
 msgstr "13 V"
+
+#
+msgid "16"
+msgstr "16"
 
 msgid "16:10"
 msgstr "16:10"
@@ -527,6 +535,9 @@ msgstr "24"
 msgid "25"
 msgstr "25"
 
+msgid "256"
+msgstr "256"
+
 msgid "29.97"
 msgstr "29.97"
 
@@ -535,6 +546,9 @@ msgstr "2X"
 
 msgid "30"
 msgstr "30"
+
+msgid "32"
+msgstr "32"
 
 msgid "3D Mode"
 msgstr "3D-tila"
@@ -568,6 +582,9 @@ msgstr "4:3 Pan&Scan"
 
 msgid "4X"
 msgstr "4X"
+
+msgid "64"
+msgstr "64"
 
 msgid "720p"
 msgstr "720p"
@@ -719,6 +736,13 @@ msgstr ""
 "Mitä haluat tehdä?"
 
 msgid ""
+"A recording is currently running on the selected tuner. Please select a "
+"different tuner or consider to stop the recording to try again."
+msgstr ""
+"Tallennus on parhaillaan käynnissä valitussa virittimessä. Valitse toinen "
+"viritin tai lopeta tallennus ja yritä uudelleen."
+
+msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "scan."
 msgstr "Tallennus on käynnissä. Sammuta se ennen kanavanhakua."
@@ -794,6 +818,16 @@ msgstr "AFP-asetukset"
 
 msgid "AGC:"
 msgstr "AGC:"
+
+msgid "ASS file"
+msgstr "ASS-tiedosto"
+
+msgid "ATSC"
+msgstr "ATSC"
+
+#
+msgid "ATSC provider"
+msgstr "ATSC palvelun tarjoaja"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -1050,6 +1084,18 @@ msgstr "Albumi"
 
 msgid "Alias"
 msgstr "Alias"
+
+msgid "Alignment of events"
+msgstr "Ohjelmannimien sijainti"
+
+msgid "Alignment of service names"
+msgstr "Kanavanimien sijainti"
+
+msgid "Alignment of service numbers"
+msgstr "Kanavanumeroiden sijainti"
+
+msgid "Alignment of timeline date"
+msgstr "Aikajanan päivämäärään sijainti"
 
 #
 msgid "All"
@@ -1487,6 +1533,15 @@ msgstr "B"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "BT 2020 CL"
+msgstr "BT 2020 CL"
+
+msgid "BT 2020 NCL"
+msgstr "BT 2020 NCL"
+
+msgid "BT 709"
+msgstr "BT 709"
 
 #
 msgid "Back"
@@ -2216,6 +2271,19 @@ msgstr "Asetustila"
 msgid "Configuration mode: %s"
 msgstr "Toimintatila: %s"
 
+#
+msgid "Configure alignment of service events."
+msgstr "Muuta ohjelmannimien sijainnin asetuksia."
+
+msgid "Configure alignment of the service names."
+msgstr "Muuta kanavanimien sijainnin asetuksia."
+
+msgid "Configure alignment of the service numbers."
+msgstr "Muuta kanavanumeroiden sijainnin asetuksia."
+
+msgid "Configure alignment of the timeline date."
+msgstr "Muuta aikajanan päivämäärän sijainnin asetuksia."
+
 msgid ""
 "Configure an additional delay to improve external subtitle synchronisation."
 msgstr ""
@@ -2627,7 +2695,7 @@ msgid "Connected clients"
 msgstr "Kytkeytyneet asiakkaat"
 
 msgid "Connected satellites"
-msgstr "valitut satelliitit"
+msgstr "Valitut satelliitit"
 
 #
 msgid "Connected to"
@@ -2864,11 +2932,17 @@ msgstr "DTS"
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
+msgid "DVB CI Delay"
+msgstr "DVB CI-viive"
+
 msgid "DVB subtitle black transparency"
 msgstr "DVB-tekstin mustan reunan läpinäkyvyys"
 
 msgid "DVB-C"
 msgstr "DVB-C"
+
+msgid "DVB-C ANNEX B"
+msgstr "DVB-C ANNEX B"
 
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
@@ -3746,9 +3820,15 @@ msgstr "Enigma2:n muutokset"
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 teeman valinta"
 
+msgid "Enter PIN"
+msgstr "Syötä PIN-koodi"
+
 #
 msgid "Enter main menu..."
 msgstr "Mene päävalikkoon..."
+
+msgid "Enter persistent PIN code"
+msgstr "Syötä pysyvä PIN-koodi"
 
 msgid "Enter pin code"
 msgstr "Syötä PIN-koodi"
@@ -4223,6 +4303,10 @@ msgid "Frequency"
 msgstr "Taajuus"
 
 #
+msgid "Frequency (kHz)"
+msgstr "Taajuus (kHz)"
+
+#
 msgid "Frequency bands"
 msgstr "Taajuusalueet"
 
@@ -4425,6 +4509,10 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC-asetukset"
+
+#
+msgid "HDMI Colorimetry"
+msgstr "HDMI Väriavaruus"
 
 #
 msgid "HDMI Colorspace"
@@ -5996,7 +6084,7 @@ msgstr "Ei kanavaa"
 
 #
 msgid "No services/providers selected"
-msgstr "palveluja/palveluntarjoajia ei valittu"
+msgstr "Palveluja/palveluntarjoajia ei valittu"
 
 #
 msgid "No standby"
@@ -6345,6 +6433,9 @@ msgstr "Sijainti"
 msgid "Original"
 msgstr "Alkuperäinen"
 
+msgid "Oscam ECM-info"
+msgstr "Oscam ECM-info"
+
 msgid "Oscam Info - Configuration"
 msgstr "Oscam Info - Asetukset"
 
@@ -6370,6 +6461,9 @@ msgstr "SIVU YLÖS/ALAS"
 msgid "PAL"
 msgstr "PAL"
 
+msgid "PCM"
+msgstr "PCM"
+
 #
 msgid "PCM Multichannel"
 msgstr "PCM-monikanava"
@@ -6379,6 +6473,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PGS file"
+msgstr "PGS-tiedosto"
 
 #
 msgid "PIDs"
@@ -6564,7 +6661,7 @@ msgstr "Toista media-tiedostoja"
 
 #
 msgid "Play entry"
-msgstr "toista"
+msgstr "Toista"
 
 #
 msgid "Play from next mark or playlist entry"
@@ -6956,6 +7053,9 @@ msgstr "Sijainti ja läpinäkyvyys"
 msgid "Position of finished Timers in the Timer list"
 msgstr "Tallennettujen ajastuksien paikka ajastusluettelossa"
 
+msgid "Position of recording icons"
+msgstr "Tallennuskuvakkeiden sijoittelu"
+
 msgid "Position setup"
 msgstr "Sijainti ja läpinäkyvyys"
 
@@ -7034,6 +7134,12 @@ msgstr "Ensisijaisena kanavalle tallennettu tekstiasetus"
 
 msgid "Preferred tuner"
 msgstr "Ensisijainen viritin"
+
+msgid "Preferred tuner ATSC"
+msgstr "Ensisijainen ATSC-viritin"
+
+msgid "Preferred tuner ATSC for recordings"
+msgstr "Tallennusten ensisijainen ATSC-viritin"
 
 msgid "Preferred tuner DVB-C"
 msgstr "Ensisijainen DVB-C viritin"
@@ -7441,6 +7547,9 @@ msgstr "Pitkä punainen"
 msgid "Reduce time scale"
 msgstr "Supista aika-asteikkoa"
 
+msgid "Reenter PIN"
+msgstr "Syötä PIN-koodi uudelleen"
+
 #, python-format
 msgid ""
 "Reflash in progress\n"
@@ -7472,6 +7581,9 @@ msgstr "Alue"
 
 msgid "Relative"
 msgstr "Suhteellinen"
+
+msgid "Release notes"
+msgstr "Muutosloki"
 
 #
 msgid "Reload"
@@ -7682,6 +7794,9 @@ msgstr "Käynnistä CA-moduuli uudelleen"
 msgid "Reset and renumerate title names"
 msgstr "Nollaa ja uudelleenjärjestä otsikot"
 
+msgid "Reset persistent PIN code"
+msgstr "Poista pysyvä PIN-koodi"
+
 msgid "Reset playback position"
 msgstr "Nollaa toistokohta"
 
@@ -7843,6 +7958,12 @@ msgstr "SNR:"
 
 msgid "SPDIF"
 msgstr "SPDIF"
+
+msgid "SRT file"
+msgstr "SRT-tiedosto"
+
+msgid "SSA file"
+msgstr "SSA-tiedosto"
 
 msgid "SSID:"
 msgstr "SSID:"
@@ -8411,6 +8532,9 @@ msgstr "Määritä sovitin oletussovittimeksi"
 msgid "Set limits"
 msgstr "Aseta rajat"
 
+msgid "Set pin code persistent"
+msgstr "Aseta PIN-koodi pysyväksi"
+
 msgid "Set startup service"
 msgstr "Valitse käynnistyskanavaksi"
 
@@ -8480,6 +8604,9 @@ msgstr "Aseta hakupalkin hypyn koko."
 
 msgid "Set the name the recording will get."
 msgstr "Kirjoita tallenteen nimi."
+
+msgid "Set the position of the recording icons"
+msgstr "Aseta tallennuskuvakkeiden sijainti"
 
 msgid ""
 "Set the scrolling speed of text on the front display, this uses a software "
@@ -8614,6 +8741,9 @@ msgstr "Näytä automaattiajastusluettelo"
 msgid "Show CCcam Info in extensions?"
 msgstr "Näytä CCcam Info laajennusvalikossa?"
 
+msgid "Show CI messages"
+msgstr "Näytä CI:n ilmoitukset"
+
 msgid "Show Clients"
 msgstr "Näytä asiakkaat"
 
@@ -8744,7 +8874,7 @@ msgstr "Näytä ohjelmaopas"
 
 #
 msgid "Show event details"
-msgstr "näytä ohjelman tarkemmat tiedot"
+msgstr "Näytä ohjelman tarkemmat tiedot"
 
 #
 msgid "Show event info plugins"
@@ -9070,7 +9200,7 @@ msgstr "Teema"
 
 #
 msgid "Skip back"
-msgstr "siirry taaksepäin"
+msgstr "Siirry taaksepäin"
 
 #
 msgid "Skip empty services"
@@ -9142,6 +9272,9 @@ msgstr "Pieni"
 #
 msgid "Small progress"
 msgstr "Pieni etenemispalkki"
+
+msgid "Smartcard PIN"
+msgstr "Älykortin PIN-koodi"
 
 msgid "Smooth"
 msgstr "Pehmennnys"
@@ -9899,6 +10032,9 @@ msgstr ""
 msgid "The PIN code has been changed successfully."
 msgstr "PIN-koodin vaihto onnistui."
 
+msgid "The PIN code has been saved successfully."
+msgstr "PIN-koodin tallennus onnistui."
+
 msgid "The PIN codes you entered are different."
 msgstr "Syöttämäsi PIN-koodit olivat erilaiset."
 
@@ -9952,6 +10088,9 @@ msgstr "Syötit virheellisen tunnusluvun."
 #, python-format
 msgid "The results have been written to %s."
 msgstr "Tulokset kirjoitettiin %s."
+
+msgid "The saved PIN was cleared."
+msgstr "PIN-koodi poistettu"
 
 #
 msgid "The service has been added to the favourites."
@@ -10105,6 +10244,9 @@ msgstr ""
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Tämä asetus määrittää kuven dynaamisen kontrastin määrän."
+
+msgid "This option allows you can config the Colorimetry for HDR"
+msgstr "Tämä asetus sallii sinun muuttaa HDR:n väriavaruutta."
 
 msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "Tämä asetus määrittää kuinka kulunut aika näytetään, joko + tai -"
@@ -10772,7 +10914,7 @@ msgid "Tuner is not supported"
 msgstr "Viritin ei ole tuettu"
 
 msgid "Tuner not available."
-msgstr "ei saatavilla"
+msgstr "Viritin ei saatavilla"
 
 msgid "Tuner settings"
 msgstr "Virittimen asetukset"
@@ -11026,9 +11168,15 @@ msgstr "Käytä alkuperäisen DVB-tekstityksen paikkaa"
 msgid "Use original teletext position"
 msgstr "Käytä alkuperäistä teksti-TV tekstin paikkaa "
 
+msgid "Use picon_lcd directory for picons on color LCD"
+msgstr "Käytä picon_lcd hakemistoa värinäytön kanavalogoille"
+
 #
 msgid "Use power measurement"
 msgstr "Käytä virranmittausta"
+
+msgid "Use separate Picon pack for Front Display *"
+msgstr "Käytä erillistä kanavalogo pakettia etunäytössä *"
 
 msgid "Use slim screen"
 msgstr "Pieni tallennevalikko"
@@ -11171,6 +11319,9 @@ msgstr "SCART-läpivienti"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "VOB file"
+msgstr "VOB-tiedosto"
 
 msgid "VU+"
 msgstr "VU+"
@@ -11919,6 +12070,10 @@ msgstr ""
 msgid "Without popup"
 msgstr "Ilman ilmoitusikkunaa"
 
+#, python-format
+msgid "Would you save the entered PIN %s persistent?"
+msgstr "Haluatko asettaa syötetyn PIN-koodin %s pysyväksi?"
+
 #
 msgid "Write error while recording. Disk full?\n"
 msgstr "Kirjoitusvirhe tallennuksessa. Levy täynnä?\n"
@@ -12498,13 +12653,13 @@ msgid "arts/culture magazine"
 msgstr "taide/kulttuurimakasiini"
 
 msgid "as plugin in extended bar"
-msgstr "lisäosana laajennuspalkissa"
+msgstr "Lisäosana laajennuspalkissa"
 
 msgid "at beginning"
-msgstr "alussa"
+msgstr "Alussa"
 
 msgid "at end"
-msgstr "lopussa"
+msgstr "Lopussa"
 
 msgid "athletics"
 msgstr "yleisurheilu"
@@ -12547,22 +12702,25 @@ msgstr "bc%s"
 
 #
 msgid "better"
-msgstr "parempi"
+msgstr "Parempi"
 
 #
 msgid "black"
-msgstr "musta"
+msgstr "Musta"
 
 msgid "black & white"
-msgstr "mustavalkoinen"
+msgstr "Mustavalkoinen"
 
 #
 msgid "blacklist"
-msgstr "kielletyt"
+msgstr "Kielletyt"
 
 #
 msgid "blue"
-msgstr "sininen"
+msgstr "Sininen"
+
+msgid "bottom"
+msgstr "Alhaalla"
 
 msgid "broadcasting/press"
 msgstr "lähetys/lehdistö"
@@ -12571,23 +12729,29 @@ msgid "by date"
 msgstr "Aikajärjestys"
 
 msgid "caid:"
-msgstr "caid:"
+msgstr "Caid:"
 
 msgid "card"
-msgstr "kortti"
+msgstr "Kortti"
 
 msgid "card reader"
-msgstr "kortinlukija"
+msgstr "Kortinlukija"
 
 msgid "cartoon/puppets"
 msgstr "piirretty/nukke"
 
 msgid "center"
-msgstr "keskellä"
+msgstr "Keskellä"
+
+msgid "centered"
+msgstr "Keskitetty"
+
+msgid "centered, wrapped"
+msgstr "Keskellä, sovitettu"
 
 #
 msgid "chapters"
-msgstr "kappaleet"
+msgstr "Kappaleet"
 
 msgid "childrens's/youth program (general)"
 msgstr "lasten/nuortenohjelma (yleinen)"
@@ -12626,7 +12790,7 @@ msgstr "Luo hakemisto"
 
 #
 msgid "daily"
-msgstr "päivittäin"
+msgstr "Päivittäin"
 
 #
 msgid "day"
@@ -12691,16 +12855,19 @@ msgid "east"
 msgstr "itään"
 
 msgid "ecm time:"
-msgstr "ecm aika:"
+msgstr "Ecm aika:"
 
 msgid "ecm.info"
-msgstr "ecm.info"
+msgstr "Ecm.info"
 
 msgid "economics/social advisory"
 msgstr "talous/sosiaalinen neuvonta"
 
 msgid "education/science/factual topics (general)"
 msgstr "koulutus/tiede/tosiasiat (yleinen)"
+
+msgid "embedded"
+msgstr "Sulautettu"
 
 #
 msgid "empty"
@@ -12732,7 +12899,7 @@ msgid "entertainment (6-14 year old)"
 msgstr "viihde (6-14 vuotiaat)"
 
 msgid "epg cache backup"
-msgstr "epg välimuistin varmuuskopio"
+msgstr "Ohjelmaoppaan välimuistin varmuuskopio"
 
 #
 msgid "equal to"
@@ -12777,7 +12944,7 @@ msgid "extensions."
 msgstr "laajennusta."
 
 msgid "extra wide"
-msgstr "erikoisleveä"
+msgstr "Erikoisleveä"
 
 msgid "failed"
 msgstr "epäonnistui"
@@ -12789,7 +12956,7 @@ msgid "fashion"
 msgstr "muoti"
 
 msgid "fast"
-msgstr "nopea"
+msgstr "Nopea"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -12855,7 +13022,7 @@ msgstr "Hae korttipalvelin"
 
 #
 msgid "go to deep standby"
-msgstr "siirry virransäästötilaan"
+msgstr "Siirry virransäästötilaan"
 
 #
 msgid "go to standby"
@@ -12883,10 +13050,13 @@ msgstr ""
 "lainaa"
 
 msgid "height"
-msgstr "korkeus"
+msgstr "Korkeus"
+
+msgid "hide"
+msgstr "Piilota"
 
 msgid "hops:"
-msgstr "hypyt:"
+msgstr "Hypyt:"
 
 #
 msgid "horizontal"
@@ -12911,7 +13081,7 @@ msgid "insert mark here"
 msgstr "Aseta tähän merkki"
 
 msgid "invalid type"
-msgstr "epäkelpo tyyppi"
+msgstr "Epäkelpo tyyppi"
 
 msgid "is strongly advised."
 msgstr "on suuresti suositeltavaa."
@@ -12932,14 +13102,17 @@ msgstr "kielet"
 
 #
 msgid "left"
-msgstr "vasen"
+msgstr "Vasen"
+
+msgid "left, wrapped"
+msgstr "Vasen, sovitettu"
 
 msgid "leisure hobbies (general)"
 msgstr "vapaa-ajan harrastukset (yleinen)"
 
 #
 msgid "length"
-msgstr "pituus"
+msgstr "Pituus"
 
 msgid "limit ..., aborting !"
 msgstr "raja ..., keskeytetään !"
@@ -12952,7 +13125,7 @@ msgstr "suora lähetys"
 
 #
 msgid "locked"
-msgstr "lukittu"
+msgstr "Lukittu"
 
 msgid "long"
 msgstr "Pitkä"
@@ -12969,7 +13142,7 @@ msgstr "varmuuskopion teko ennen päivitystä"
 
 #
 msgid "manual"
-msgstr "manuaalinen"
+msgstr "Manuaalinen"
 
 msgid "martial sports"
 msgstr "kamppailulajit"
@@ -12980,6 +13153,9 @@ msgstr "lääketiede/fysiologia/psykologia"
 #
 msgid "menu"
 msgstr "Valikko"
+
+msgid "middle"
+msgstr "Keskellä"
 
 #
 msgid "mins"
@@ -13014,7 +13190,7 @@ msgstr "ms"
 
 #
 msgid "multinorm"
-msgstr "moninormi"
+msgstr "Moninormi"
 
 msgid "music/ballet/dance (general)"
 msgstr "musiikki/baletti/tanssi (yleinen)"
@@ -13031,7 +13207,7 @@ msgstr "ne"
 
 #
 msgid "never"
-msgstr "ei koskaan"
+msgstr "Ei koskaan"
 
 msgid "new media"
 msgstr "uusi media"
@@ -13075,7 +13251,7 @@ msgid "no module found"
 msgstr "(ei CA-moduulia)"
 
 msgid "no or unknown card inserted"
-msgstr "ei korttia tai tuntematon kortti"
+msgstr "Ei korttia tai tuntematon kortti"
 
 msgid "no resource manager"
 msgstr "Ei tiedostovalikkoa"
@@ -13088,7 +13264,7 @@ msgid "none"
 msgstr "Ei mitään"
 
 msgid "normal"
-msgstr "normaali"
+msgstr "Normaali"
 
 #
 msgid "not configured"
@@ -13123,6 +13299,9 @@ msgstr "DVD-levystä käytetty."
 #
 msgid "off"
 msgstr "Pois"
+
+msgid "off or wpa2 on"
+msgstr "Pois tai WPA2 päällä"
 
 msgid "offset is"
 msgstr "offsetin määrä"
@@ -13175,7 +13354,7 @@ msgid "performing arts"
 msgstr "esittävä taide"
 
 msgid "pid:"
-msgstr "pid:"
+msgstr "PID:"
 
 #
 msgid "please press OK when ready"
@@ -13189,7 +13368,7 @@ msgid "please wait..."
 msgstr "odota..."
 
 msgid "pm"
-msgstr "ilta"
+msgstr "Ilta"
 
 msgid "popular culture/traditional arts"
 msgstr "populäärikulttuuri/perinteinen taide"
@@ -13216,7 +13395,7 @@ msgstr "Tallennetaan..."
 
 #
 msgid "red"
-msgstr "punainen"
+msgstr "Punainen"
 
 #
 msgid "reliable"
@@ -13257,7 +13436,7 @@ msgstr "Toista soittolista"
 
 #
 msgid "repeated"
-msgstr "useita kertoja"
+msgstr "Useita kertoja"
 
 #
 msgid "restart GUI"
@@ -13273,6 +13452,9 @@ msgstr "Kelaa edelliseen kappaleeseen"
 #
 msgid "right"
 msgstr "Oikea"
+
+msgid "right, wrapped"
+msgstr "Oikea, sovitettu"
 
 msgid "rock/pop"
 msgstr "rock/pop"
@@ -13373,7 +13555,7 @@ msgid "show event details"
 msgstr "Näytä ohjelman tarkemmat tiedot"
 
 msgid "show mediaplayer on mainmenu"
-msgstr "näytä mediatoistin päävalikossa"
+msgstr "Näytä mediatoistin päävalikossa"
 
 msgid "show softwaremanager in plugin menu"
 msgstr "Näytä ohjelmistonhallinta asetusvalikossa"
@@ -13412,7 +13594,7 @@ msgid "skip forward (enter time)"
 msgstr "Siirry eteenpäin (syötä aika)"
 
 msgid "slow"
-msgstr "hidas"
+msgstr "Hidas"
 
 msgid "soap/melodram/folkloric"
 msgstr "saippuasarja/melodraama/folkloristiikka"
@@ -13572,14 +13754,14 @@ msgid "until standby/restart"
 msgstr "valmiustilaan/uudelleenkäynnistykseen asti"
 
 msgid "updates available."
-msgstr "päivityksiä saatavilla."
+msgstr "Päivityksiä saatavilla."
 
 #
 msgid "user defined"
 msgstr "Käyttäjän määrittelemä"
 
 msgid "using:"
-msgstr "käyttää:"
+msgstr "Käyttää:"
 
 msgid "variety show"
 msgstr "varietee"
@@ -13601,7 +13783,7 @@ msgid "waiting"
 msgstr "Odottaa"
 
 msgid "wakeup"
-msgstr "käynnistys"
+msgstr "Käynnistys"
 
 #
 msgid "wakeup to standby"
@@ -13631,13 +13813,13 @@ msgstr ""
 "Kopio lähetetään sinulle."
 
 msgid "white"
-msgstr "valkoinen"
+msgstr "Valkoinen"
 
 msgid "wide"
-msgstr "leveä"
+msgstr "Leveä"
 
 msgid "width"
-msgstr "leveys"
+msgstr "Leveys"
 
 msgid "winter sport"
 msgstr "talviurheilu"
@@ -13678,7 +13860,7 @@ msgstr "wsw"
 
 #
 msgid "yellow"
-msgstr "keltainen"
+msgstr "Keltainen"
 
 #
 msgid "yes"

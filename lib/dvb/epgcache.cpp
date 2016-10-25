@@ -28,8 +28,6 @@
 #include <lib/base/nconfig.h>
 #include <dvbsi++/descriptor_tag.h>
 
-#define HILO(x) (x##_hi << 8 | x##_lo)
-
 /* Interval between "garbage collect" cycles */
 #define CLEAN_INTERVAL (60 * 1000)       //  1 minute
 /* Restart EPG data capture */
@@ -688,7 +686,7 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 {
 	const eit_t *eit = (const eit_t*) data;
 
-	int len = HILO(eit->section_length) - 1;
+	int len = eit->getSectionLength() - 1;
 	int ptr = EIT_SIZE;
 	if ( ptr >= len )
 		return;
@@ -707,8 +705,8 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 		--ptr;
 #endif
 
-	int onid = HILO(eit->original_network_id);
-	int tsid  = HILO(eit->transport_stream_id);
+	int onid = eit->getOriginalNetworkId();
+	int tsid  = eit->getTransportStreamId();
 
 	// Cablecom HACK .. tsid / onid in eit data are incorrect.. so we use
 	// it from running channel (just for current transport stream eit data)
@@ -726,7 +724,7 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 		onid = chid.original_network_id.get();
 		tsid = chid.transport_stream_id.get();
 	}
-	uniqueEPGKey service(HILO(eit->service_id), onid, tsid);
+	uniqueEPGKey service( eit->getServiceID(), onid, tsid);
 
 	eit_event_struct* eit_event = (eit_event_struct*) (data+ptr);
 	int eit_event_size;
@@ -748,7 +746,7 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 	while (ptr<len)
 	{
 		uint16_t event_hash;
-		eit_event_size = HILO(eit_event->descriptors_loop_length)+EIT_LOOP_SIZE;
+		eit_event_size = eit_event->getDescriptorsLoopLength()+EIT_LOOP_SIZE;
 
 		duration = fromBCD(eit_event->duration_1)*3600+fromBCD(eit_event->duration_2)*60+fromBCD(eit_event->duration_3);
 		start_time = parseDVBtime((const uint8_t*)eit_event + 2, &event_hash);
@@ -761,7 +759,7 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 				(start_time < (now+4*7*24*60*60)) &&  // no more than 4 weeks in future
 				((onid != 1714) || (duration != (24*3600-1))))  // PlatformaHD invalid event
 		{
-			uint16_t event_id = HILO(eit_event->event_id);
+			uint16_t event_id = eit_event->getEventId();
 			if (event_id == 0) {
 				// hack for some polsat services on 13.0E..... but this also replaces other valid event_ids with value 0..
 				// but we dont care about it...
@@ -2222,7 +2220,7 @@ RESULT eEPGCache::saveEventToFile(const char* filename, const eServiceReference 
 			return fd;
 		}
 		const eit_event_struct *event = data->get();
-		int evLen = HILO(event->descriptors_loop_length) + 12/*EIT_LOOP_SIZE*/;
+		int evLen = event->getDescriptorsLoopLength() + 12/*EIT_LOOP_SIZE*/;
 		int wr = ::write( fd, event, evLen );
 		::close(fd);
 		if ( wr != evLen )
@@ -2698,7 +2696,7 @@ static void fill_eit_duration(eit_event_struct *evt, int time)
 
 static inline uint8_t HI(int x) { return (uint8_t) ((x >> 8) & 0xFF); }
 static inline uint8_t LO(int x) { return (uint8_t) (x & 0xFF); }
-#define SET_HILO(x, val) {x##_hi = ((val) >> 8); x##_lo = (val) & 0xff; }
+
 // convert from set of strings to DVB format (EIT)
 /**
  * @brief Import EPG events into the EPG database.
@@ -2737,7 +2735,7 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 
 	eit_event_t *evt_struct = (eit_event_t*) (data + EIT_SIZE);
 
-	SET_HILO(evt_struct->event_id, eventId);
+	evt_struct->setEventId(eventId);
 
 	//6 bytes start time, 3 bytes duration
 	fill_eit_start(evt_struct, start);
@@ -2834,10 +2832,10 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 
 	//TODO: add age and more
 	int desc_loop_length = x - ((uint8_t*)evt_struct + EIT_LOOP_SIZE);
-	SET_HILO(evt_struct->descriptors_loop_length, desc_loop_length);
+	evt_struct->setDescriptorsLoopLength(desc_loop_length);
 
 	int packet_length = (x - data) - 3; //should add 1 for crc....
-	SET_HILO(packet->section_length, packet_length);
+	packet->setSectionLength(packet_length);
 	// Add channelrefs and submit data.
 	for (std::vector<eServiceReferenceDVB>::const_iterator serviceRef = serviceRefs.begin();
 		serviceRef != serviceRefs.end();
@@ -2845,14 +2843,12 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	{
 		eDVBChannelID chid;
 		serviceRef->getChannelID(chid);
-		SET_HILO(packet->service_id, serviceRef->getServiceID().get());
-		SET_HILO(packet->transport_stream_id, chid.transport_stream_id.get());
-		SET_HILO(packet->original_network_id, chid.original_network_id.get());
+		packet->setServiceId(serviceRef->getServiceID().get());
+		packet->setTransportStreamId(chid.transport_stream_id.get());
+		packet->setOriginalNetworkId(chid.original_network_id.get());
 		sectionRead(data, EPG_IMPORT, 0);
 	}
 }
-#undef SET_HILO
-
 
 void eEPGCache::setEpgHistorySeconds(time_t seconds)
 {
@@ -3917,13 +3913,13 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 		data[4] = itTitle->second.mhw2_hours;
 		data[5] = itTitle->second.mhw2_minutes;
 		data[6] = itTitle->second.mhw2_seconds;
-		timeMHW2DVB( HILO(itTitle->second.mhw2_duration), data+7 );
+		timeMHW2DVB( itTitle->second.getMhw2Duration(), data+7 );
 	}
 	else
 	{
 		timeMHW2DVB( itTitle->second.dh.day, itTitle->second.dh.hours, itTitle->second.ms.minutes,
 		(u_char *) event_data + 2 );
-		timeMHW2DVB( HILO(itTitle->second.duration), (u_char *) event_data+7 );
+		timeMHW2DVB( itTitle->second.getDuration(), (u_char *) event_data+7 );
 	}
 
 	event_data->running_status = 0;

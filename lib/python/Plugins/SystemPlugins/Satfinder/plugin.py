@@ -137,7 +137,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			else:
 				self.list.append(self.typeOfTuningEntry)
 			if self.tuning_type.value == "single_transponder":
-				self.list.append(getConfigListEntry(_("Frequency"), self.scan_cab.frequency))
+				self.list.append(getConfigListEntry(_("Frequency (kHz)"), self.scan_cab.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_cab.inversion))
 				self.list.append(getConfigListEntry(_("Symbol rate"), self.scan_cab.symbolrate))
 				self.list.append(getConfigListEntry(_("Modulation"), self.scan_cab.modulation))
@@ -174,7 +174,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.scan_ter.frequency.value = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
 					if self.scan_ter.frequency.value == 474000:
 						self.scan_ter.frequency.value = prev_val
-					self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
+					self.list.append(getConfigListEntry(_("Frequency (kHz)"), self.scan_ter.frequency))
 				self.list.append(getConfigListEntry(_("Inversion"), self.scan_ter.inversion))
 				self.list.append(getConfigListEntry(_("Bandwidth"), self.scan_ter.bandwidth))
 				self.list.append(getConfigListEntry(_("Code rate HP"), self.scan_ter.fechigh))
@@ -290,7 +290,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if self.initcomplete:
 			if self.tuning_type.value == "single_transponder":
 				transponder = (
-					self.scan_cab.frequency.value*1000,
+					self.scan_cab.frequency.value,
 					self.scan_cab.symbolrate.value*1000,
 					self.scan_cab.modulation.value,
 					self.scan_cab.fec.value,
