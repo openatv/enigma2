@@ -12,7 +12,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.ChoiceBox import ChoiceBox
 from Tools.BoundFunction import boundFunction
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, fileExists
 from Components.MenuList import MenuList
 from Components.FileList import FileList
 from Components.Label import Label
@@ -46,11 +46,32 @@ config.plugins.infopanel_redpanel = ConfigSubsection()
 
 def Check_Softcam():
 	found = False
-	for x in os.listdir('/etc'):
-		if x.find('.emu') > -1:
-			found = True
-			break;
+	if fileExists("/etc/enigma2/noemu"):
+		found = False
+	else:
+		for x in os.listdir('/etc'):
+			if x.find('.emu') > -1:
+				found = True
+				break;
 	return found
+
+def Check_SysSoftcam():
+	if os.path.isfile('/etc/init.d/softcam'):
+		if (os.path.islink('/etc/init.d/softcam') and not os.readlink('/etc/init.d/softcam').lower().endswith('none')):
+			try:
+				syscam = None
+				syscam = os.readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
+				if syscam.lower().startswith('oscam'):
+					return "oscam"
+			except:
+				pass
+		if pathExists('/usr/bin/'):
+			softcams = os.listdir('/usr/bin/')
+			for softcam in softcams:
+				if softcam.lower().startswith('oscam'):
+					return "oscam"
+	return None
+
 
 if Check_Softcam():
 	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("Softcam Panel"))]
@@ -326,6 +347,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self["summary_description"] = StaticText("")
 
 		self.Mlist = []
+		if Check_SysSoftcam() is "oscam":
+			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanelSetup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
@@ -468,6 +491,9 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(CronManager)	
 		elif menu == "JobManager":
 			self.session.open(ScriptRunner)
+		elif menu == "OScamInfo":
+			from Screens.OScamInfo import OscamInfoMenu
+			self.session.open(OscamInfoMenu)
 		elif menu == "SoftcamPanel":
 			self.session.open(SoftcamPanel)
 		elif menu == "software-manager":
