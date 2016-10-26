@@ -138,6 +138,13 @@ class About(Screen):
 			AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 		AboutLcdText = AboutText.replace('\t', ' ')
 
+		fp_version = getFPVersion()
+		if fp_version is None:
+			fp_version = ""
+		elif fp_version != 0:
+			fp_version = _("Frontprocessor version: %s") % fp_version
+			AboutText += fp_version + "\n"
+
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def showTranslationInfo(self):
