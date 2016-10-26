@@ -49,7 +49,7 @@ class FastScanStatus(Screen):
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
-		self.prevservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.prevservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
 		self["actions"] = ActionMap(["OkCancelActions"],

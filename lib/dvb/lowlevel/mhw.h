@@ -85,6 +85,9 @@ typedef struct {
    u_char mhw2_mjd_lo                            :8;
    u_char mhw2_duration_hi                       :8;
    u_char mhw2_duration_lo                       :8;
+
+   int getDuration() const     { return duration_hi << 8 | duration_lo; };
+   int getMhw2Duration() const { return mhw2_duration_hi << 8 | mhw2_duration_lo; };
 } mhw_title_t;
 
 typedef struct mhw_summary {
