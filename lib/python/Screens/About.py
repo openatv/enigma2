@@ -20,7 +20,6 @@ from Tools.StbHardware import getFPVersion
 from os import path
 from re import search
 
-
 class About(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
@@ -104,6 +103,13 @@ class About(Screen):
 		elif fp_version != 0:
 			fp_version = _("Frontprocessor version: %d") % fp_version
 			AboutText += fp_version + "\n"
+
+		bootloader = ""
+		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
+				bootloader = f.readline().replace('\x00', '').replace('\n', '')
+				f.close()
+				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value') and getBoxType() not in ('gbquad'):
