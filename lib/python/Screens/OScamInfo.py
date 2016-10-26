@@ -372,7 +372,7 @@ class OscamInfo:
 
 class oscMenuList(MenuList):
 	def __init__(self, list, itemH = 30):
-		MenuList.__init__(self, list, True, eListboxPythonMultiContent)
+		MenuList.__init__(self, list, False, eListboxPythonMultiContent)
 		self.l.setItemHeight(int(itemH*f))
 		self.l.setFont(0, gFont("Regular", int(20*f)))
 		self.l.setFont(1, gFont("Regular", int(18*f)))
@@ -772,8 +772,8 @@ class oscInfo(Screen, OscamInfo):
 				for i in data:
 					if i != "":
 						out.append( self.buildLogListEntry( (i,) ))
-			self.itemheight = 25
-			ysize = (len(out) + 2) * self.itemheight
+			itemheight = 25
+			ysize = (len(out) + 2) * itemheight
 			if self.what == "c":
 				self.setTitle("Client Info ( Oscam-Version: %s )" % self.getVersion())
 				self["key_green"].setText("")
@@ -791,7 +791,7 @@ class oscInfo(Screen, OscamInfo):
 				self["key_green"].setText("Clients")
 				self["key_yellow"].setText("Servers")
 				self["key_blue"].setText("")
-				self.itemheight = 20
+				itemheight = 20
 				self.changeScreensize( 500 )
 		else:
 			self.errmsg = (data,)
@@ -801,16 +801,16 @@ class oscInfo(Screen, OscamInfo):
 			self.fieldsize = self.calcSizes( [(data,)] )
 			for i in self.errmsg:
 				out.append( self.buildListEntry( (i,) ))
-			ysize = (len(out) + 2) * self.itemheight
+			ysize = (len(out) + 2) * itemheight
 			self.setTitle(_("Error") + data)
 			self["key_green"].setText("Clients")
 			self["key_yellow"].setText("Servers")
 			self["key_blue"].setText("Log")
 			self.changeScreensize( ysize )
 
-		rows = int(self["output"].instance.size().height() / (self.itemheight*f))
+		rows = int(self["output"].instance.size().height() / (itemheight*f))
 		self["key_red"].setText(_("Close"))
-		self["output"].l.setItemHeight(int(self.itemheight*f))
+		self["output"].l.setItemHeight(int(itemheight*f))
 		self["output"].l.setList(out[-rows:])
 		self["output"].selectionEnabled(False)
 
