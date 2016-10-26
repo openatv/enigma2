@@ -4,7 +4,7 @@ from skin import parseFont
 
 from Tools.FuzzyDate import FuzzyTime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM, eServiceReference, eServiceReferenceDVB
 from Tools.Alternatives import GetWithAlternative
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
@@ -193,9 +193,15 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			refstr = str(ref)
 		refstr = refstr and GetWithAlternative(refstr)
-		if '%3a//' in refstr:
+		refparts = refstr.split(':')
+		if '%3a//' in refparts[10]:
 			return "%s" % _("Stream")
-		op = int(refstr.split(':', 10)[6][:-4] or "0", 16)
+		reftype = int(refparts[0] or "0")
+		flags = int(refparts[1] or "0")
+		stype = int(refparts[2] or "0", 16)
+		if reftype == eServiceReference.idServiceHDMIIn and flags == eServiceReference.noFlags and stype == eServiceReferenceDVB.dTv:
+			return _("HDMI IN")
+		op = int(refparts[6][:-4] or "0", 16)
 		if op == 0xeeee:
 			return "%s" % _("DVB-T")
 		if op == 0xffff:
