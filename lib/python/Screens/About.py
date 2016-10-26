@@ -112,17 +112,31 @@ class About(Screen):
 				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
 
 		tempinfo = ""
-		if path.exists('/proc/stb/sensors/temp0/value') and getBoxType() not in ('gbquad'):
+		if path.exists('/proc/stb/sensors/temp0/value'):
 			f = open('/proc/stb/sensors/temp0/value', 'r')
 			tempinfo = f.read()
 			f.close()
-		elif path.exists('/proc/stb/fp/temp_sensor') and getBoxType() not in ('gbquad'):
+		elif path.exists('/proc/stb/fp/temp_sensor'):
 			f = open('/proc/stb/fp/temp_sensor', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/proc/stb/sensors/temp/value'):
+			f = open('/proc/stb/sensors/temp/value', 'r')
 			tempinfo = f.read()
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s%sC\n\n") % (tempinfo.replace('\n', ''), mark)
+			AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+			tempinfo = f.read()
+			f.close()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutLcdText = AboutText.replace('\t', ' ')
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
