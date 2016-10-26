@@ -97,20 +97,6 @@ class About(Screen):
 		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
 
-		fp_version = getFPVersion()
-		if fp_version is None:
-			fp_version = ""
-		elif fp_version != 0:
-			fp_version = _("Frontprocessor version: %d") % fp_version
-			AboutText += fp_version + "\n"
-
-		bootloader = ""
-		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
-				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
-				bootloader = f.readline().replace('\x00', '').replace('\n', '')
-				f.close()
-				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
-
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			f = open('/proc/stb/sensors/temp0/value', 'r')
@@ -137,6 +123,20 @@ class About(Screen):
 			mark = str('\xc2\xb0')
 			AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 		AboutLcdText = AboutText.replace('\t', ' ')
+
+		fp_version = getFPVersion()
+		if fp_version is None:
+			fp_version = ""
+		elif fp_version != 0:
+			fp_version = _("Frontprocessor version: %d") % fp_version
+			AboutText += fp_version + "\n"
+
+		bootloader = ""
+		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
+				bootloader = f.readline().replace('\x00', '').replace('\n', '')
+				f.close()
+				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
