@@ -1009,9 +1009,11 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	}
 	float xscale = (float)(orientation < 5 ? m_filepara->ox : m_filepara->oy) / (float)scrx; // scale factor as result of screen and image size
 	float yscale = (float)(orientation < 5 ? m_filepara->oy : m_filepara->ox) / (float)scry;
-	int xoff = (m_filepara->max_x - scrx) / 2;  // borders as result of screen and image aspect
-	int yoff = (m_filepara->max_y - scry) / 2;
-	//eDebug("[getData] ox=%d oy=%d max_x=%d max_y=%d scrx=%d scry=%d xoff=%d yoff=%d xscale=%f yscale=%f aspect=%f bits=%d orientation=%d", m_filepara->ox, m_filepara->oy, m_filepara->max_x, m_filepara->max_y, scrx, scry, xoff, yoff, xscale, yscale, m_conf.aspect_ratio, m_filepara->bits, orientation);
+	int xfill = m_filepara->max_x - scrx;
+	int xoff = xfill / 2;  // borders as result of screen and image aspect
+	int yfill = m_filepara->max_y - scry;
+	int yoff = yfill / 2;
+	//eDebug("[getData] ox=%d oy=%d max_x=%d max_y=%d scrx=%d scry=%d xfill=%d yfill=%d xoff=%d yoff=%d xscale=%f yscale=%f aspect=%f bits=%d orientation=%d", m_filepara->ox, m_filepara->oy, m_filepara->max_x, m_filepara->max_y, scrx, scry, xfill, yfill, xoff, yoff, xscale, yscale, m_conf.aspect_ratio, m_filepara->bits, orientation);
 
 	unsigned char *tmp_buffer = ((unsigned char *)(surface->data));
 	unsigned char *origin = m_filepara->pic_buffer;
@@ -1022,7 +1024,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	}
 
 	// fill borders with background color
-	if (xoff != 0 || yoff != 0) {
+	if (xfill != 0 || yfill != 0) {
 		unsigned int background;
 		if (m_filepara->bits == 8) {
 			gRGB bg(m_conf.background);
@@ -1031,39 +1033,52 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		else {
 			background = m_conf.background;
 		}
-		if (yoff != 0) {
+		if (yfill != 0) {
 			if (surface->bypp == 1) {
-				memset(tmp_buffer, background, m_filepara->max_x);
+				if (yfill == 1) { // Just fill last row
+					memset(tmp_buffer + (m_filepara->max_y-1)*surface->stride, background, m_filepara->max_x);
+				} else { // Fill the first row
+					memset(tmp_buffer, background, m_filepara->max_x);
+				}
 			} else {
-				fillrow_uint((unsigned int *) tmp_buffer, background, m_filepara->max_x);
+				if (yfill == 1) { // Just fill last row
+					fillrow_uint((unsigned int *) (tmp_buffer + (m_filepara->max_y-1)*surface->stride), background, m_filepara->max_x);
+				} else { // Fill the first row
+					fillrow_uint((unsigned int *) tmp_buffer, background, m_filepara->max_x);
+				}
 			}
-			int y;
-			#pragma omp parallel for
-			for (y = 1; y < yoff; ++y) // copy from first line
-				memcpy(tmp_buffer + y*surface->stride, tmp_buffer,
-					m_filepara->max_x * surface->bypp);
-			#pragma omp parallel for
-			for (y = yoff + scry; y < m_filepara->max_y; ++y)
-				memcpy(tmp_buffer + y * surface->stride, tmp_buffer,
-					m_filepara->max_x * surface->bypp);
+			if (yfill != 1) { // Fill the rest
+				int y;
+				#pragma omp parallel for
+				for (y = 1; y < yoff; ++y) // copy from first line
+					memcpy(tmp_buffer + y*surface->stride, tmp_buffer,
+						m_filepara->max_x * surface->bypp);
+				#pragma omp parallel for
+				for (y = yoff + scry; y < m_filepara->max_y; ++y)
+					memcpy(tmp_buffer + y * surface->stride, tmp_buffer,
+						m_filepara->max_x * surface->bypp);
+			}
 		}
-		if (xoff != 0) {
+		if (xfill != 0) {
 			if(surface->bypp == 1) {
 				unsigned char *row_buffer = (unsigned char *) (tmp_buffer + yoff * surface->stride);
-				memset(row_buffer, background, xoff);
+				if (xoff != 0) // Only fill the first column if there is one
+					memset(row_buffer, background, xoff);
 				row_buffer += xoff + scrx;
 				memset(row_buffer, background, m_filepara->max_x - (xoff + scrx));
 			} else {
 				unsigned int *row_buffer = (unsigned int *) (tmp_buffer + yoff * surface->stride);
-				fillrow_uint(row_buffer, background, xoff);
+				if (xoff != 0) // Only fill the first column if there is one
+					fillrow_uint(row_buffer, background, xoff);
 				row_buffer += xoff + scrx;
 				fillrow_uint(row_buffer, background, m_filepara->max_x - (xoff + scrx));
 			}
 			#pragma omp parallel for
 			for (int y = yoff + 1; y < scry; ++y) { // copy from first line
-				memcpy(tmp_buffer + y*surface->stride,
-					tmp_buffer + yoff * surface->stride,
-					xoff * surface->bypp);
+				if (xoff != 0) // Only fill the first column if there is one
+					memcpy(tmp_buffer + y*surface->stride,
+						tmp_buffer + yoff * surface->stride,
+						xoff * surface->bypp);
 				memcpy(tmp_buffer + y*surface->stride + (xoff + scrx) * surface->bypp,
 					tmp_buffer + yoff * surface->stride + (xoff + scrx) * surface->bypp,
 					(m_filepara->max_x - scrx - xoff) * surface->bypp);
