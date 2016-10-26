@@ -40,7 +40,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 					repeatedtext.append(days[x])
 				flags >>= 1
 			if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
-				repeatedtext = _('Everyday')
+				repeatedtext = _('Daily')
 			elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
 				repeatedtext = _('Weekday')
 			elif repeatedtext == [_("Sat"), _("Sun")]:
@@ -93,9 +93,12 @@ class TimerList(HTMLComponent, GUIComponent, object):
 
 		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
 
-		orbpos = self.getOrbitalPos(timer.service_ref)
-		orbposWidth = getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width()
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, orbpos))
+		if getImageDistro() not in ("easy-gui-aus", "beyonwiz"):
+			orbpos = self.getOrbitalPos(timer.service_ref)
+			orbposWidth = getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width()
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, orbpos))
+		else:
+			orbposWidth = 0
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, self.satPosLeft - self.iconWidth - self.iconMargin, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft + orbposWidth, self.rowSplit, width - self.satPosLeft - orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 
@@ -115,7 +118,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.itemHeight = 50
 		self.rowSplit = 25
 		self.iconMargin = 4
-		self.satPosLeft = 160
+		self.satPosLeft = 150
 		self.iconWait = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_wait.png"))
 		#currently intended that all icons have the same size
 		self.iconWidth = self.iconWait.size().width()
