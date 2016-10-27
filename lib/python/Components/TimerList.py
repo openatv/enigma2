@@ -4,7 +4,7 @@ from skin import parseFont
 
 from Tools.FuzzyDate import FuzzyTime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM, eServiceReference, eServiceReferenceDVB
 from Tools.Alternatives import GetWithAlternative
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
@@ -40,7 +40,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 					repeatedtext.append(days[x])
 				flags >>= 1
 			if repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")]:
-				repeatedtext = _('Everyday')
+				repeatedtext = _('Daily')
 			elif repeatedtext == [_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri")]:
 				repeatedtext = _('Weekday')
 			elif repeatedtext == [_("Sat"), _("Sun")]:
@@ -93,9 +93,12 @@ class TimerList(HTMLComponent, GUIComponent, object):
 
 		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
 
-		orbpos = self.getOrbitalPos(timer.service_ref)
-		orbposWidth = getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width()
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, orbpos))
+		if getImageDistro() not in ("easy-gui-aus", "beyonwiz"):
+			orbpos = self.getOrbitalPos(timer.service_ref)
+			orbposWidth = getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width()
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, orbpos))
+		else:
+			orbposWidth = 0
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, self.satPosLeft - self.iconWidth - self.iconMargin, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft + orbposWidth, self.rowSplit, width - self.satPosLeft - orbposWidth, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 
@@ -115,7 +118,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.itemHeight = 50
 		self.rowSplit = 25
 		self.iconMargin = 4
-		self.satPosLeft = 160
+		self.satPosLeft = 150
 		self.iconWait = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_wait.png"))
 		#currently intended that all icons have the same size
 		self.iconWidth = self.iconWait.size().width()
@@ -193,9 +196,15 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			refstr = str(ref)
 		refstr = refstr and GetWithAlternative(refstr)
-		if '%3a//' in refstr:
+		refparts = refstr.split(':')
+		if '%3a//' in refparts[10]:
 			return "%s" % _("Stream")
-		op = int(refstr.split(':', 10)[6][:-4] or "0", 16)
+		reftype = int(refparts[0] or "0")
+		flags = int(refparts[1] or "0")
+		stype = int(refparts[2] or "0", 16)
+		if reftype == eServiceReference.idServiceHDMIIn and flags == eServiceReference.noFlags and stype == eServiceReferenceDVB.dTv:
+			return _("HDMI IN")
+		op = int(refparts[6][:-4] or "0", 16)
 		if op == 0xeeee:
 			return "%s" % _("DVB-T")
 		if op == 0xffff:
