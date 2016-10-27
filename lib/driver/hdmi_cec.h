@@ -54,6 +54,12 @@ public:
 		unsigned char data[16];
 		unsigned char length;
 	}__attribute__((packed));
+	struct addressinfo
+	{
+		unsigned char physical[2];
+		unsigned char logical;
+		unsigned char type;
+	};
 #else
 	struct cec_message
 	{
@@ -61,6 +67,13 @@ public:
 		unsigned char length;
 		unsigned char data[256];
 	}__attribute__((packed));
+#define cec_rx_message cec_message
+	struct addressinfo
+	{
+		unsigned char logical;
+		unsigned char physical[2];
+		unsigned char type;
+	};
 #endif
 	class eCECMessage : public iCECMessage
 	{
@@ -79,6 +92,7 @@ public:
 #endif
 protected:
 	static eHdmiCEC *instance;
+	bool linuxCEC;
 	unsigned char physicalAddress[2];
 	bool fixedAddress;
 	unsigned char deviceType, logicalAddress;

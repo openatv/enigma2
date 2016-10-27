@@ -20,6 +20,8 @@ class SkinSelectorBase:
 			self.skinlist.append(self.DEFAULTSKIN)
 		if self.PICONSKINXML and os.path.exists(os.path.join(self.root, self.PICONSKINXML)):
 			self.skinlist.append(self.PICONDEFAULTSKIN)
+		if self.ALTERNATESKINXML and os.path.exists(os.path.join(self.root, self.ALTERNATESKINXML)):
+			self.skinlist.append(self.ALTERNATESKIN)
 		for root, dirs, files in os.walk(self.root, followlinks=True):
 			for subdir in dirs:
 				dir = os.path.join(root,subdir)
@@ -79,6 +81,9 @@ class SkinSelectorBase:
 		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
 			self.skinfile = ""
 			self.skinfile = os.path.join(self.skinfile, self.PICONSKINXML)
+		elif self["SkinList"].getCurrent() == self.ALTERNATESKIN:
+			self.skinfile = ""
+			self.skinfile = os.path.join(self.skinfile, self.ALTERNATESKINXML)
 		else:
 			self.skinfile = self["SkinList"].getCurrent()
 			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
@@ -114,6 +119,9 @@ class SkinSelectorBase:
 		elif self["SkinList"].getCurrent() == self.PICONDEFAULTSKIN:
 			pngpath = "."
 			pngpath = os.path.join(os.path.join(self.root, pngpath), "piconprev.png")
+		elif self["SkinList"].getCurrent() == self.ALTERNATESKIN:
+			pngpath = "."
+			pngpath = os.path.join(os.path.join(self.root, pngpath), "alternate.png")
 		else:
 			pngpath = self["SkinList"].getCurrent()
 			try:
@@ -150,6 +158,8 @@ class SkinSelector(Screen, SkinSelectorBase):
 	DEFAULTSKIN = _("< Default >")
 	PICONSKINXML = None
 	PICONDEFAULTSKIN = None
+	ALTERNATESKINXML = None
+	ALTERNATESKIN = None
 
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2")
@@ -166,6 +176,8 @@ class LcdSkinSelector(Screen, SkinSelectorBase):
 	DEFAULTSKIN = _("< Default >")
 	PICONSKINXML = "skin_display_picon.xml"
 	PICONDEFAULTSKIN = _("< Default with Picon >")
+	ALTERNATESKINXML = "skin_display_alternate.xml"
+	ALTERNATESKIN = _("< Alternate Skin >")
 
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2/display/")
