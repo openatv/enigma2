@@ -189,9 +189,9 @@ class ChannelContextMenu(Screen):
 					for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_CONTEXT_MENU):
 						append_when_current_valid(current, menu, (p.name, boundFunction(self.runPlugin, p)), key="bullet")
 					if config.servicelist.startupservice.value == current.toString():
-						append_when_current_valid(current, menu, (_("stop using as startup service"), self.unsetStartupService), level=0, key="2")
+						append_when_current_valid(current, menu, (_("Stop using as startup service"), self.unsetStartupService), level=0, key="2")
 					else:
-						append_when_current_valid(current, menu, (_("set as startup service"), self.setStartupService), level=0, key="1")
+						append_when_current_valid(current, menu, (_("Set as startup service"), self.setStartupService), level=0, key="1")
 					if self.parentalControlEnabled:
 						if self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							append_when_current_valid(current, menu, (_("Add to parental protection"), boundFunction(self.addParentalProtection, current)), level=0, key="bullet")
