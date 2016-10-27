@@ -90,19 +90,18 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.session.nav.playService(self.session.postScanService)
 
 	def newConfig(self):
+		self.transponder = None
 		ScanSetup.newConfig(self)
 		cur = self["config"].getCurrent()
 		print"cur ", cur
 		if cur == self.tunerEntry:
 			self.feid = int(self.scan_nims.value)
-			self.createSetup()
 			self.prepareFrontend()
 			if self.frontend == None and self.session.nav.RecordTimer.isRecording():
 				slot = nimmanager.nim_slots[self.feid]
 				msg = _("%s not available.") % slot.getSlotName()
 				msg += _("\nRecording in progress.")
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
-		self.retune()
 
 
 	def createSetup(self):
@@ -133,7 +132,6 @@ class Satfinder(ScanSetup, ServiceScan):
 		if (system in ('DVB-S','DVB-S2') and config.Nims[fe_id].dvbs.configMode.value == "nothing") or \
 			(system in ('DVB-T','DVB-T2') and config.Nims[fe_id].dvbt.configMode.value == "nothing") or \
 			(system in ('DVB-C') and config.Nims[fe_id].dvbc.configMode.value == "nothing"):
-			self.createSetup()
 			return
 		slot = nimmanager.nim_slots[fe_id]
 		print "dvb_api_version ",iDVBFrontend.dvb_api_version
@@ -182,7 +180,6 @@ class Satfinder(ScanSetup, ServiceScan):
 				print "new system ",system
 		else:
 			print "%d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, multiType.getText())
-		self.createSetup()
 
 	def createConfig(self):
 		ScanSetup.createConfig(self)
@@ -223,7 +220,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return self.retuneCab()
 		self.frontend = None
 		self.raw_channel = None
-		print "error: tuner not supported ", nim.getType()
+		print "error: tuner not enabled/supported", nim.getType()
 
 	def retuneCab(self):
 		if self.initcomplete:
@@ -317,12 +314,16 @@ class Satfinder(ScanSetup, ServiceScan):
 						self.transponder = transponder
 
 	def keyGoScan(self):
+		if self.transponder is None:
+			print "error: no transponder data"
+			return
 		fe_id = int(self.scan_nims.value)
+		nim = nimmanager.nim_slots[fe_id]
 		self.frontend = None
 		if self.raw_channel:
 			self.raw_channel = None
 		tlist = []
-		if nimmanager.nim_slots[int(self.scan_nims.value)].isCompatible("DVB-S"):
+		if nim.isCompatible("DVB-S"):
 			nimsats = self.satList[fe_id]
 			selsatidx = self.scan_satselection[fe_id].index
 			if len(nimsats):
@@ -342,7 +343,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.transponder[11],# pls mode
 					self.transponder[12] # pls code
 				)
-		elif nimmanager.nim_slots[int(self.scan_nims.value)].isCompatible("DVB-T"):
+		elif nim.isCompatible("DVB-T"):
 			parm = buildTerTransponder(
 				self.transponder[1],  # frequency
 				self.transponder[9],  # inversion
@@ -357,7 +358,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.transponder[11]  # plpid
 			)
 			tlist.append(parm)
-		else: # DVB-C
+		elif nim.isCompatible("DVB-C"):
 			self.addCabTransponder(tlist,
 				self.transponder[0], # frequency
 				self.transponder[1], # sr
@@ -365,7 +366,8 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.transponder[3], # fec_inner
 				self.transponder[4]  # inversion
 			)
-		fe_id = int(self.scan_nims.value)
+		else:
+			print "error: tuner not enabled/supported", nim.getType()
 		self.startScan(tlist, fe_id)
 
 	def startScan(self, tlist, feid):

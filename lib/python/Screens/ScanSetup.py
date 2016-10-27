@@ -1,6 +1,7 @@
 from Screen import Screen
 from ServiceScan import ServiceScan
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable, integer_limits
+
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
@@ -530,6 +531,34 @@ class TerrestrialTransponderSearchSupport:
 		cmd = "%s --freq %d --bw %d --bus %d --ds 2" % (self.terrestrial_search_binName, freq, bandWidth, self.terrestrial_search_bus)	
 		print "SCAN CMD : ",cmd
 		self.terrestrial_search_container.execute(cmd)
+
+class ConfigFrequency(ConfigInteger):
+	def __init__(self, default, limits = integer_limits):
+		self._value = None
+		ConfigInteger.__init__(self, default, limits)
+
+	def setValue(self, value):
+		print "[adenin]freq  _value",self._value
+		print "[adenin]freq  [value]",[value]
+		if self._value != [value]:
+			self._value = [value]
+			self.changed()
+
+	value = property(ConfigInteger.getValue, setValue)
+
+class ConfigChannel(ConfigInteger):
+	def __init__(self, default, limits = integer_limits):
+		self._value = None
+		ConfigInteger.__init__(self, default, limits)
+
+	def setValue(self, value):
+		print "[adenin]channel  _value",self._value
+		print "[adenin]channel  [value]",[value]
+		if self._value != [value]:
+			self._value = [value]
+			self.changed()
+
+	value = property(ConfigInteger.getValue, setValue)
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
 	def __init__(self, session):
@@ -1062,8 +1091,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			(eDVBFrontendParametersCable.System_DVB_C_ANNEX_C, _("DVB-C ANNEX C"))])
 
 		# terrestial
-		self.scan_ter.frequency = ConfigInteger(default = defaultTer["frequency"], limits = (50000, 999000))
-		self.scan_ter.channel = ConfigInteger(default = 21, limits = (1, 99))
+		self.scan_ter.frequency = ConfigFrequency(default = defaultTer["frequency"], limits = (50000, 999000))
+		self.scan_ter.channel = ConfigChannel(default = 21, limits = (1, 99))
 		self.scan_ter.inversion = ConfigSelection(default = defaultTer["inversion"], choices = [
 			(eDVBFrontendParametersTerrestrial.Inversion_Off, _("Off")),
 			(eDVBFrontendParametersTerrestrial.Inversion_On, _("On")),
