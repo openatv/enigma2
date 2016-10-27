@@ -15,6 +15,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.ServiceStopScreen import ServiceStopScreen
 from Screens.AutoDiseqc import AutoDiseqc
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import fileExists
 
 from time import mktime, localtime, time
 from datetime import datetime
@@ -186,8 +187,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							cur_orb_pos = satlist[0]
 						self.fillListWithAdvancedSatEntrys(self.nimConfig.advanced.sat[cur_orb_pos])
 				self.have_advanced = True
-			if path.exists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
-				self.list.append(getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude))
+			if config.usage.setup_level.index >= 2:
+				if fileExists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot):
+					self.list.append(getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude))
+				if fileExists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % self.nim.slot):
+					self.list.append(getConfigListEntry(_("SCPC optimized search range"), self.nimConfig.scpcSearchRange))
+				if SystemInfo["HasForceLNBOn"] and self.nim.isFBCRoot():
+					self.list.append(getConfigListEntry(_("Force LNB Power"), config.misc.forceLnbPower))
+				if SystemInfo["HasForceToneburst"] and self.nim.isFBCRoot():
+					self.list.append(getConfigListEntry(_("Force ToneBurst"), config.misc.forceToneBurst))
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
@@ -702,9 +710,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			# sanity check for empty sat list
 			if self.nimConfig.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
 				self.nimConfig.configMode.value = "nothing"
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
+			if self.nim.isFBCRoot():
+				if SystemInfo["HasForceLNBOn"]:
+					config.misc.forceLnbPower.save()
+				if SystemInfo["HasForceToneburst"]:
+					config.misc.forceToneBurst.save()
+		if self["config"].isChanged():
+			for x in self["config"].list:
+				x[1].save()
+			configfile.save()
 
 	def cancelConfirm(self, result):
 		if not result:
