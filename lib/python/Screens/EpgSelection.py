@@ -385,8 +385,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
 		self.listTimer.callback.append(self.hidewaitingtext)
+		self.createTimer = eTimer()
 		if not HardwareInfo().is_nextgen():
-			self.createTimer = eTimer()
 			self.createTimer.callback.append(self.onCreate)
 			self.onLayoutFinish.append(self.LayoutFinish)
 		else:
