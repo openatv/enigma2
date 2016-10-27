@@ -597,7 +597,12 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	{
 		int cached_pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
 			vpidtype = m_service->getCacheEntry(eDVBService::cVTYPE),
+			pmtpid = m_service->getCacheEntry(eDVBService::cPMTPID),
 			cnt=0;
+		if (pmtpid > 0)
+		{
+			program.pmtPid = pmtpid;
+		}
 		if ( vpidtype == -1 )
 			vpidtype = videoStream::vtMPEG2;
 		if ( cached_vpid != -1 )
@@ -663,15 +668,22 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			++cnt;
 			program.textPid = cached_tpid;
 		}
+		if (cnt)
+		{
+			ret = 0;
+		}
+	}
+
+	if (m_service && program.caids.empty()) // Add CAID from cache
+	{
 		CAID_LIST &caids = m_service->m_ca;
-		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it) {
+		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
+		{
 			program::capid_pair pair;
 			pair.caid = *it;
 			pair.capid = -1; // not known yet
 			program.caids.push_back(pair);
 		}
-		if ( cnt )
-			ret = 0;
 	}
 
 	if (m_demux)
