@@ -1362,7 +1362,8 @@ class NimManager:
 				slotid = self.sec.getRoot(slotid, int(nim.connectedTo.value))
 				nim = config.Nims[slotid].dvbs
 				configMode = nim.configMode.value
-			elif configMode == "simple":
+
+			if configMode == "simple":
 				dm = nim.diseqcMode.value
 				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcA.orbital_position < 3600:
