@@ -1,4 +1,6 @@
 from Converter import Converter
+from Components.Sources.Clock import Clock
+from time import time as getTime, localtime, strftime
 from Poll import Poll
 from enigma import iPlayableService
 from Components.Element import cached, ElementError
@@ -27,6 +29,7 @@ class ServicePosition(Poll, Converter, object):
 		self.detailed = 'Detailed' in args
 		self.showHours = 'ShowHours' in args
 		self.showNoSeconds = 'ShowNoSeconds' in args
+		self.showNoSeconds2 = 'ShowNoSeconds2' in args
 		self.OnlyMinute = 'OnlyMinute' in args
 
 		if type == "Length":
@@ -50,7 +53,7 @@ class ServicePosition(Poll, Converter, object):
 		elif type == "VFDSummary":
 			self.type = self.TYPE_VFD_SUMMARY
 		else:
-			raise ElementError("type must be {Length|Position|Remaining|Gauge|Summary} with optional arguments {Negate|Detailed|ShowHours|ShowNoSeconds} for ServicePosition converter")
+			raise ElementError("type must be {Length|Position|Remaining|Gauge|Summary} with optional arguments {Negate|Detailed|ShowHours|ShowNoSeconds|ShowNoSeconds2} for ServicePosition converter")
 
 		if self.detailed:
 			self.poll_interval = 100
@@ -96,7 +99,6 @@ class ServicePosition(Poll, Converter, object):
 		seek = self.getSeek()
 		if seek is None:
 			return ""
-
 		if self.type == self.TYPE_SUMMARY or self.type == self.TYPE_SUMMARY:
 			s = self.position / 90000
 			e = (self.length / 90000) - s
@@ -264,7 +266,7 @@ class ServicePosition(Poll, Converter, object):
 			else: # Skin Setting
 				if not self.detailed:
 					if self.showHours:
-						if self.showNoSeconds:
+						if self.showNoSeconds and self.showNoSeconds2:
 							if self.type == self.TYPE_LENGTH:
 								return sign_l + "%d:%02d" % (l/3600, l%3600/60)
 							elif self.type == self.TYPE_POSITION:
@@ -286,6 +288,19 @@ class ServicePosition(Poll, Converter, object):
 								return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 							elif self.type == self.TYPE_REMAINING and self.OnlyMinute:
 								return ngettext("%d", "%d", (r/60)) % (r/60)
+							elif self.type == self.TYPE_REMAINING:
+								return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
+						elif self.showNoSeconds2:
+							if self.type == self.TYPE_LENGTH:
+								return ngettext("%d Min", "%d Mins", (l/60)) % (l/60)
+							elif self.type == self.TYPE_POSITION:
+								return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
+							elif self.type == self.TYPE_REMAINING and self.OnlyMinute:
+								myRestMinuten = ngettext("%+6d", "%+6d", (r/60)) % (r/60)
+								time = getTime()
+								t = localtime(time)
+								d = _("%-H:%M")
+								return strftime(d, t) + myRestMinuten
 							elif self.type == self.TYPE_REMAINING:
 								return sign_r + ngettext("%d Min", "%d Mins", (r/60)) % (r/60)
 						else:
