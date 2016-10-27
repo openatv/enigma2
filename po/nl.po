@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-23 17:34+0200\n"
-"PO-Revision-Date: 2016-10-26 18:10+0200\n"
+"POT-Creation-Date: 2016-10-27 01:06+0200\n"
+"PO-Revision-Date: 2016-10-27 05:18+0200\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -126,6 +126,9 @@ msgid ""
 msgstr ""
 "\n"
 "Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
+
+msgid " "
+msgstr " "
 
 msgid " (0 - all networks)"
 msgstr " (0 - alle netwerken)"
@@ -1464,6 +1467,10 @@ msgstr "Versterk blauw"
 msgid "Boost green"
 msgstr "Versterk groen"
 
+#, python-format
+msgid "Bootloader:\t\t%s\n"
+msgstr "Bootloader:\t\t%s\n"
+
 msgid "Bouquet List"
 msgstr "Favorietenlijst"
 
@@ -1998,6 +2005,9 @@ msgstr "Configuratie modus"
 #, python-format
 msgid "Configuration mode: %s"
 msgstr "Configuratie modus: %s"
+
+msgid "Configuration..."
+msgstr "Configuratie..."
 
 msgid "Configure alignment of service events."
 msgstr "Configureer uitlijning van programma's."
@@ -6214,6 +6224,10 @@ msgstr "Prioriteit"
 msgid "Process"
 msgstr "Proces"
 
+#, python-format
+msgid "Processor temperature:\t%s"
+msgstr "Systeemtemperatuur: \t%s"
+
 msgid "Profile"
 msgstr "Profiel"
 
@@ -6341,6 +6355,9 @@ msgstr "RGB"
 
 msgid "Radio"
 msgstr "Radio"
+
+msgid "Radio Channel Selection"
+msgstr "Radio zenderkeuze"
 
 msgid "Random"
 msgstr "Willekeurig"
@@ -7275,9 +7292,6 @@ msgstr "Kanalen kunnen in favorietenlijsten worden samengevoegd. Indien geactive
 
 msgid "Set Framerate for MiniTV"
 msgstr "Stel framerate in voor MiniTV"
-
-msgid "Set as startup service"
-msgstr "Kies kanaal na opstarten"
 
 msgid "Set default"
 msgstr "Standaard waarde"
@@ -8217,9 +8231,6 @@ msgstr "Timeshift annuleren"
 msgid "Stop timeshift while recording?"
 msgstr "Stop timeshift tijdens opname?"
 
-msgid "Stop using as startup service"
-msgstr "Kanaal niet meer kiezen na het opstarten"
-
 msgid "Stopped"
 msgstr "Gestopt"
 
@@ -8414,16 +8425,12 @@ msgid "System"
 msgstr "Systeem"
 
 #, python-format
-msgid "System temperature: %s"
-msgstr "Systeemtemperatuur: %s"
+msgid "System temperature:\t%s"
+msgstr "Systeemtemperatuur:\t%s"
 
 #, python-format
-msgid ""
-"System temperature: %s%sC\n"
-"\n"
-msgstr ""
-"Systeemtemperatuur: %s%sC\n"
-"\n"
+msgid "System temperature: %s"
+msgstr "Systeemtemperatuur: %s"
 
 msgid "System: "
 msgstr "Systeem: "
@@ -11404,6 +11411,9 @@ msgstr "serieuze/klassieke muziek"
 msgid "serious/classical/religious/historical movie/drama"
 msgstr "serieuze/klassieke/religieuze/Historische film/drama "
 
+msgid "set as startup service"
+msgstr "Kies kanaal na opstarten"
+
 msgid "share:"
 msgstr "share:"
 
@@ -11526,6 +11536,9 @@ msgstr "stapgrootte"
 
 msgid "stereo"
 msgstr "stereo"
+
+msgid "stop using as startup service"
+msgstr "Kanaal niet meer kiezen na het opstarten"
 
 msgid "sw"
 msgstr "ZW"
@@ -12198,6 +12211,13 @@ msgstr "zapte"
 
 #~ msgid "Switch channel up"
 #~ msgstr "Ga naar volgende kanaal"
+
+#~ msgid ""
+#~ "System temperature: %s%sC\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Systeemtemperatuur: %s%sC\n"
+#~ "\n"
 
 #~ msgid "TV button mode"
 #~ msgstr "TV toets functie"
