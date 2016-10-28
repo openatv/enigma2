@@ -377,6 +377,10 @@ if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm800s
 	AC_DEFINE(TUNER_DM7080, 1,[define BOXTYPE DM7080])
 fi
 
+if test `echo "$BOXTYPE" | cut -b 1-3` == "ini" -o `echo "$BOXTYPE" | cut -b 1-2` == "vu" ; then
+	AC_DEFINE(TUNER_MODE_DVB_CHANGE, 1,[define TUNER_MODE_DVB_CHANGE to enable workaround for reopenfrontend DVB-C/T])
+fi
+
 if test "$BOXTYPE" == "vusolo4k" ; then
 	AC_DEFINE(TUNER_VUSOLO4K, 1,[define BOXTYPE VUSOLO4K])
 fi

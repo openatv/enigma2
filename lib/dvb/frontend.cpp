@@ -3222,7 +3222,7 @@ bool eDVBFrontend::changeType(int type)
 #endif
 		case feTerrestrial:
 		{
-#ifdef TUNER_VUSOLO4K
+#ifdef TUNER_MODE_DVB_CHANGE
 			closeFrontend();
 			char filename[256];
 			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
@@ -3234,7 +3234,7 @@ bool eDVBFrontend::changeType(int type)
 		}
 		case feCable:
 		{
-#ifdef TUNER_VUSOLO4K
+#ifdef TUNER_MODE_DVB_CHANGE
 			closeFrontend();
 			char filename[256];
 			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
