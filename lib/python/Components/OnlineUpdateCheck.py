@@ -16,10 +16,10 @@ error = 0
 
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
-# The onlineupdatecheckpoller will be created (see below) after
-# OnlineUpdateCheckPoller is set-up, which is will be before we can ever
-# run. 
-#
+
+	# The onlineupdatecheckpoller will be created (see below) after
+	# OnlineUpdateCheckPoller is set-up, which is will be before we can ever
+	# run.
 	onlineupdatecheckpoller.start()
 
 class FeedsStatusCheck:
@@ -28,7 +28,7 @@ class FeedsStatusCheck:
 		self.ipkg.addCallback(self.ipkgCallback)
 
 	def IsInt(self, val):
-		try: 
+		try:
 			int(val)
 			return True
 		except ValueError:
@@ -66,10 +66,10 @@ class FeedsStatusCheck:
 			print '[OnlineVersionCheck] ERROR: -2'
 			return -2
 
-# We need a textual mapping for all possible return states for use by 
-# SoftwareUpdate::checkNetworkState() and ChoiceBox::onshow()
-# Declared here for consistency and co-location with choices.
-#
+	# We need a textual mapping for all possible return states for use by
+	# SoftwareUpdate::checkNetworkState() and ChoiceBox::onshow()
+	# Declared here for consistency and co-location with choices.
+
 	feed_status_msgs = {
 		'stable':     _('Feeds status: Stable'),
 		'unstable':   _('Feeds status: Unstable'),
@@ -129,7 +129,6 @@ class FeedsStatusCheck:
 					print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 					config.softwareupdate.updatefound.setValue(True)
 		pass
-		
 
 feedsstatuscheck = FeedsStatusCheck()
 
@@ -138,37 +137,34 @@ class OnlineUpdateCheckPoller:
 		# Init Timer
 		self.timer = eTimer()
 
-# Class variables
-# 
-	MIN_INITIAL_DELAY = 40 * 60;    # Wait at least 40 mins
+	# Class variables
+	MIN_INITIAL_DELAY = 40 * 60; # Wait at least 40 mins
 	checktimer_Notifier_Added = False
 
-# Add optional args to start(), as it is now a callback from addNotifier
-# so will have one when called from there.
-#
+	# Add optional args to start(), as it is now a callback from addNotifier
+	# so will have one when called from there.
 	def start(self, *args, **kwargs):
 		if self.onlineupdate_check not in self.timer.callback:
 			self.timer.callback.append(self.onlineupdate_check)
 
-# This will get start re-run on any change to the interval setting
-# so the next-timer will be suitably updated...
-# ...but only add one of them!!!
-#
+		# This will get start re-run on any change to the interval setting
+		# so the next-timer will be suitably updated...
+		# ...but only add one of them!!!
 		if not self.checktimer_Notifier_Added:
-	                config.softwareupdate.checktimer.addNotifier(self.start, initial_call = False, immediate_feedback = False)
+			config.softwareupdate.checktimer.addNotifier(self.start, initial_call = False, immediate_feedback = False)
 			self.checktimer_Notifier_Added = True
 			minimum_delay = self.MIN_INITIAL_DELAY
-                else:       # we been here before, so this is *not* start-up
-			minimum_delay = 60      # 1 minute
+		else: # we been here before, so this is *not* start-up
+			minimum_delay = 60 # 1 minute
 
 		last_run = config.softwareupdate.updatelastcheck.getValue()
 		gap = config.softwareupdate.checktimer.value*3600
 		delay = last_run + gap - int(time())
 
-# Set-up the minimum delay, which is greater on the first boot-time pass.
-# Also check that we aren't setting a delay that is more than the
-# configured frequency of checks, which caters for mis-/un-set system
-# clocks.
+		# Set-up the minimum delay, which is greater on the first boot-time pass.
+		# Also check that we aren't setting a delay that is more than the
+		# configured frequency of checks, which caters for mis-/un-set system
+		# clocks.
 		if delay < minimum_delay:
 			delay = minimum_delay
 		if delay > gap:
@@ -185,7 +181,8 @@ class OnlineUpdateCheckPoller:
 		if config.softwareupdate.check.value:
 			Components.Task.job_manager.AddJob(self.createCheckJob())
 		self.timer.startLongTimer(config.softwareupdate.checktimer.value * 3600)
-# Record the time of this latest check
+
+		# Record the time of this latest check
 		config.softwareupdate.updatelastcheck.setValue(int(time()))
 		config.softwareupdate.updatelastcheck.save()
 
@@ -205,7 +202,6 @@ class OnlineUpdateCheckPoller:
 			print '[OnlineVersionCheck] No feeds found, skipping check.'
 
 # Create a callable instance...
-#
 onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 
 class VersionCheck:
