@@ -47,7 +47,7 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection([
 ], "Y")
 config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
 config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
-config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+config.plugins.softwaremanager.epgcache = ConfigYesNo(default=True)
 
 def write_cache(cache_file, cache_data):
 	# Does a cPickle dump
@@ -388,7 +388,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(getConfigListEntry(_("Show software manager in tasks/setup menu"), config.plugins.softwaremanager.onSetupMenu, _("Show an entry for the software manager in the live TV main menu, below 'Setup'.\nRequires reboot or GUI restart to take effect.")))
 		self.list.append(getConfigListEntry(_("Show software manager on blue button"), config.plugins.softwaremanager.onBlueButton, _("Show an entry for the software manager extensions popup menu, BLUE button in live TV.")))
-		self.list.append(getConfigListEntry(_("epg cache backup"), config.plugins.softwaremanager.epgcache))
+		self.list.append(getConfigListEntry(_("Save EPG cache before backup"), config.plugins.softwaremanager.epgcache, _("Save the EPG cache to disk before doing a backup so that the backup saves an up-to-date copy of the cache.")))
 
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
