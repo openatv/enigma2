@@ -105,35 +105,30 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 		if (!ret)
 		{
 			eServiceReferenceDVB ref = m_ref.getParentServiceReference();
-			ePtr<eDVBResourceManager> res_mgr;
+			ePtr<eDVBService> service;
 			eDVBMetaParser meta;
 			std::string service_data;
+
 			if (!ref.valid())
 				ref = m_ref;
-			if (!eDVBResourceManager::getInstance(res_mgr))
+
+			if (!eDVBDB::getInstance()->getService(ref, service))
 			{
-				ePtr<iDVBChannelList> db;
-				if (!res_mgr->getChannelList(db))
+				char tmp[255];
+				sprintf(tmp, "f:%x", service->m_flags);
+				service_data += tmp;
+				// cached pids
+				for (int x=0; x < eDVBService::cacheMax; ++x)
 				{
-					ePtr<eDVBService> service;
-					if (!db->getService(ref, service))
+					int entry = service->getCacheEntry((eDVBService::cacheID)x);
+					if (entry != -1)
 					{
-						char tmp[255];
-						sprintf(tmp, "f:%x", service->m_flags);
+						sprintf(tmp, ",c:%02d%04x", x, entry);
 						service_data += tmp;
-						// cached pids
-						for (int x=0; x < eDVBService::cacheMax; ++x)
-						{
-							int entry = service->getCacheEntry((eDVBService::cacheID)x);
-							if (entry != -1)
-							{
-								sprintf(tmp, ",c:%02d%04x", x, entry);
-								service_data += tmp;
-							}
-						}
 					}
 				}
 			}
+
 			meta.m_time_create = begTime;
 			meta.m_ref = m_ref;
 			meta.m_data_ok = 1;
