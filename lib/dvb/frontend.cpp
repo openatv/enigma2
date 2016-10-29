@@ -608,6 +608,64 @@ int eDVBFrontend::openFrontend()
 	m_state=stateIdle;
 	m_tuning=0;
 
+	{
+		CFile f("/proc/bus/nim_sockets", "r");
+		if (!f)
+			eDebug("Cannot open /proc/bus/nim_sockets");
+		else
+		{
+			int nim_socket = -1;
+			size_t line_size = 0;
+			int mode = -1;
+			char system[256];
+			char *line = NULL;
+			m_modelist.clear();
+			while (getline(&line, &line_size, f) != -1)
+			{
+				if (sscanf(line, "NIM Socket %d", &nim_socket) == 1)
+				{
+				}
+				if (nim_socket == m_slotid)
+				{
+					mode = -1;
+					if (sscanf(line, "%*[ \t]Mode %d:%s", &mode, system) == 2)
+					{
+						for (char *p=system ; *p; ++p) *p = toupper(*p);
+						if (!strcmp(system, "DVB-C") || !strcmp(system, "DVB-C2"))
+						{
+#ifdef SYS_DVBC_ANNEX_A
+							m_modelist[SYS_DVBC_ANNEX_A] = mode;
+							m_modelist[SYS_DVBC_ANNEX_C] = mode;
+#else
+							m_modelist[SYS_DVBC_ANNEX_AC] = mode;
+#endif
+							m_modelist[SYS_DVBC_ANNEX_B] = mode;
+						}
+						else if (!strcmp(system, "DVB-S") || !strcmp(system, "DVB-S2"))
+						{
+							m_modelist[SYS_DVBS] = mode;
+							m_modelist[SYS_DVBS2] = mode;
+						}
+						else if (!strcmp(system, "DVB-T") || !strcmp(system, "DVB-T2"))
+						{
+							m_modelist[SYS_DVBT] = mode;
+							m_modelist[SYS_DVBT2] = mode;
+						}
+						else if (!strcmp(system, "ATSC"))
+						{
+							m_modelist[SYS_ATSC] = mode;
+						}
+						else
+							eDebug("error: frontend %d unsupported delivery system %s", m_slotid, system);
+					}
+				}
+				free(line);
+				line = NULL;
+				line_size = 0;
+			}
+		}
+	}
+
 	if (!m_simulate)
 	{
 		m_need_delivery_system_workaround = eConfigManager::getConfigBoolValue("config.usage.enable_delivery_system_workaround", false);
@@ -3118,7 +3176,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		}
 		else
 		{
-			can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_A, true); /* new value for SYS_DVB_ANNEX_AC */
+			can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_A, true); /* new value for SYS_DVBC_ANNEX_AC */
 		}
 #else
 		can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_AC, true);
@@ -3201,6 +3259,7 @@ bool eDVBFrontend::changeType(int type)
 	if (m_type == type)
 		return true;
 #if DVB_API_VERSION >= 5
+	char mode[4];
 	struct dtv_property p[2];
 	memset(p, 0, sizeof(p));
 	struct dtv_properties cmdseq;
@@ -3213,43 +3272,35 @@ bool eDVBFrontend::changeType(int type)
 	switch (type)
 	{
 		case feSatellite:
+			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBS]);
 			p[1].u.data = SYS_DVBS;
 			break;
 #ifdef feSatellite2
 		case feSatellite2:
+			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBS2]);
 			p[1].u.data = SYS_DVBS2;
 			break;
 #endif
 		case feTerrestrial:
 		{
-#ifdef TUNER_MODE_DVB_CHANGE
-			closeFrontend();
-			char filename[256];
-			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
-			CFile::writeStr(filename, "1");
-			reopenFrontend();
-#endif
+			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBT]);
 			p[1].u.data = SYS_DVBT;
 			break;
 		}
 		case feCable:
 		{
-#ifdef TUNER_MODE_DVB_CHANGE
-			closeFrontend();
-			char filename[256];
-			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
-			CFile::writeStr(filename, "0");
-			reopenFrontend();
-#endif
 #ifdef SYS_DVBC_ANNEX_A
+			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBC_ANNEX_A]);
 			p[1].u.data = SYS_DVBC_ANNEX_A;
 #else
+			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBC_ANNEX_AC]);
 			p[1].u.data = SYS_DVBC_ANNEX_AC;
 #endif
 			break;
 		}
 #ifdef feATSC
 		case feATSC:
+			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_ATSC]);
 			p[1].u.data = SYS_ATSC;
 			break;
 #endif
@@ -3261,33 +3312,40 @@ bool eDVBFrontend::changeType(int type)
 	eDebug("data %d",p[1].u.data );
 	if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) == -1)
 	{
-		eDebug("FE_SET_PROPERTY failed %m");
-		return false;
-	}
-
-	if(m_need_delivery_system_workaround)
-	{
-		eDebug("[adenin] m_need_delivery_system_workaround active");
-		FILE *f = fopen("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "rw");
-		int old;
-		if (f)
-		{
-			if (fscanf(f, "%d", &old) != 1)
-				eDebug("read dvb_shutdown_timeout failed");
-			if (fprintf(f, "%d", 0) == 0)
-				eDebug("write dvb_shutdown_timeout failed");
-		}
+		eDebug("FE_SET_PROPERTY failed %m, -> use procfs to switch delivery system");
 		closeFrontend();
+		char filename[256];
+		snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
+		CFile::writeStr(filename, mode);
 		reopenFrontend();
-		if (f)
-		{
-			if (fprintf(f, "%d", old) == 0)
-				eDebug("rewrite dvb_shutdown_timeout failed");
-			fclose(f);
-		}
+		return true;
 	}
 	else
-		eDebug("[adenin] m_need_delivery_system_workaround NOT active");
+	{
+		if(m_need_delivery_system_workaround)
+		{
+			eDebug("[adenin] m_need_delivery_system_workaround active");
+			FILE *f = fopen("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "rw");
+			int old;
+			if (f)
+			{
+				if (fscanf(f, "%d", &old) != 1)
+					eDebug("read dvb_shutdown_timeout failed");
+				if (fprintf(f, "%d", 0) == 0)
+					eDebug("write dvb_shutdown_timeout failed");
+			}
+			closeFrontend();
+			reopenFrontend();
+			if (f)
+			{
+				if (fprintf(f, "%d", old) == 0)
+					eDebug("rewrite dvb_shutdown_timeout failed");
+				fclose(f);
+			}
+		}
+		else
+			eDebug("[adenin] m_need_delivery_system_workaround NOT active");
+	}
 	m_type = type;
 	return true;
 #else //if DVB_API_VERSION < 5
@@ -3329,6 +3387,7 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 
 bool eDVBFrontend::setDeliverySystem(fe_delivery_system_t delsys)
 {
+	eDebugDeliverySystem("frontend %d setDeliverySystem %d", m_slotid, delsys);
 	struct dtv_property p[2];
 	memset(p, 0, sizeof(p));
 	struct dtv_properties cmdseq;

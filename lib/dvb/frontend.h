@@ -111,6 +111,7 @@ private:
 	bool m_need_rotor_workaround;
 	bool m_need_delivery_system_workaround;
 	bool m_multitype;
+	std::map<fe_delivery_system_t, int> m_modelist;
 	std::map<fe_delivery_system_t, bool> m_delsys, m_delsys_whitelist;
 	std::map<fe_delivery_system_t, dvb_frontend_info> m_fe_info;
 	std::string m_filename;
