@@ -5,7 +5,7 @@ from gettext import dgettext
 from enigma import eTimer, eDVBDB
 
 import Components.Task
-from Components.OnlineUpdateCheck import feedsstatuscheck
+from Components.OnlineUpdateCheck import feedsstatuscheck, kernelMismatch
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -24,7 +24,6 @@ from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 
 ocram = ''
-
 
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, menu_path=""):
@@ -239,6 +238,9 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self['tl_yellow'].show()
 		else:
 			self['tl_off'].show()
+		if kernelMismatch():
+			self.session.openWithCallback(self.close, MessageBox, _("The Linux kernel has changed, an update is not permitted. \nInstall latest image using USB stick or Image Manager."), type=MessageBox.TYPE_INFO, timeout=30, close_on_any_key=True)
+			return
 		if (getImageType() != 'release' and self.trafficLight != 'unknown') or (getImageType() == 'release' and self.trafficLight not in ('stable', 'unstable')):
 			self.session.openWithCallback(self.close, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:

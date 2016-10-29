@@ -231,3 +231,53 @@ class VersionCheck:
 			return False
 
 versioncheck = VersionCheck()
+
+def kernelMismatch():
+	# returns True if a kernal mismatch is found. i.e. STB kernel does not match feeds kernel
+	import zlib
+	import re
+
+	kernelversion = about.getKernelVersionString().strip()
+	if kernelversion == "unknown":
+		print '[OnlineVersionCheck][kernelMismatch] unable to retrieve kernel version from STB'
+		return False
+
+	filename = "/etc/opkg/%s-feed.conf" % getMachineBuild()
+	try:
+		with open(filename, "r") as f:
+			content = f.read()
+			f.close()
+	except:
+		print '[OnlineVersionCheck][kernelMismatch] failed to read %s' % filename
+		return False
+
+	pos = content.find('http')
+	if pos == -1:
+		print '[OnlineVersionCheck][kernelMismatch] no uri found in %s' % filename
+		return False
+
+	uri = content[pos:].split()[0].strip() + "/Packages.gz"
+	try:
+		req = urllib2.Request(uri)
+		d = urllib2.urlopen(req)
+		gz_data = d.read()
+	except:
+		print '[OnlineVersionCheck][kernelMismatch] error fetching %s' % uri
+		return False
+
+	try:
+		packages = zlib.decompress(gz_data, 16+zlib.MAX_WBITS)
+	except:
+		print '[OnlineVersionCheck][kernelMismatch] failed to decompress gz_data'
+		return False
+
+	pattern = "kernel-([0-9]+[.][0-9]+[.][0-9]+)"
+	matches = re.findall(pattern, packages)
+
+	for match in matches:
+		if match != kernelversion:
+			print '[kernelMismatch] kernel mismatch found. STB kernel=%s, feeds kernel=%s' % (kernelversion, match)
+			return True
+
+	print '[OnlineVersionCheck][kernelMismatch] no kernel mismatch found'
+	return False

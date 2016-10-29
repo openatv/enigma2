@@ -7,7 +7,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from enigma import eConsoleAppContainer, eDVBDB
 
 from Screens.Screen import Screen
-from Components.OnlineUpdateCheck import feedsstatuscheck
+from Components.OnlineUpdateCheck import feedsstatuscheck, kernelMismatch
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, ConfigSubsection, ConfigText
 from Components.PluginComponent import plugins
@@ -223,6 +223,9 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, self.menu_path, PluginDownloadBrowser.REMOVE)
 
 	def download(self):
+		if kernelMismatch():
+			self.session.openWithCallback(self.close, MessageBox, _("The Linux kernel has changed, plugins are not compatible. \nInstall latest image using USB stick or Image Manager."), type=MessageBox.TYPE_INFO, timeout=30, close_on_any_key=True)
+			return
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, self.menu_path, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
 		self.firsttime = False
 
