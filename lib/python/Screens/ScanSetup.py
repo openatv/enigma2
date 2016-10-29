@@ -675,7 +675,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
 		self.list.append(self.tunerEntry)
-		
+
 		self.DVB_type = self.nim_type_dict[index_to_scan]["selection"]
 
 		if self.scan_nims == [ ]:
@@ -962,7 +962,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 				if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
 					continue
 			nim_list.append((str(n.slot), n.friendly_full_description))
-			
+
 			choices = []
 			modes = []
 			if n.isCompatible("DVB-S"):
