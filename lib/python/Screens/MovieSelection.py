@@ -375,13 +375,16 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				"cancel": self.cancelClick,
 				"green": self.do_showDeviceMounts,
 				"yellow": self.do_showNetworkMounts,
+				"blue": self.do_selectSortby,
 				"menu": self.do_configure,
-				"2": self.do_rename,
+				"1": self.do_addbookmark,
+				"2": self.do_createdir,
+				"3": self.do_delete,
+				"4": self.do_move,
 				"5": self.do_copy,
-				"6": self.do_move,
-				"7": self.do_createdir,
-				"8": self.do_delete
-
+				"6": self.do_rename,
+				"7": self.do_reset,
+				"8": self.do_decode
 			})
 
 		self["key_red"] = StaticText(_("Cancel"))
@@ -394,26 +397,26 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		append_to_menu(menu, (_("Settings") + "...", csel.configure), key="menu")
 		append_to_menu(menu, (_("Device mounts") + "...", csel.showDeviceMounts), key="green")
 		append_to_menu(menu, (_("Network mounts") + "...", csel.showNetworkMounts), key="yellow")
-		append_to_menu(menu, (_("Sort by") + "...", csel.selectSortby))
+		append_to_menu(menu, (_("Sort by") + "...", csel.selectSortby), key="blue")
 		if csel.exist_bookmark():
-			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark))
+			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark), key="1")
 		else:
 			append_to_menu(menu, (_("Add bookmark"), csel.do_addbookmark))
-		append_to_menu(menu, (_("Create directory"), csel.do_createdir), key="7")
+		append_to_menu(menu, (_("Create directory"), csel.do_createdir), key="2")
 
 		if service:
 			if (service.flags & eServiceReference.mustDescent) and isTrashFolder(service):
-				append_to_menu(menu, (_("Permanently remove all deleted items"), csel.purgeAll), key="8")
+				append_to_menu(menu, (_("Permanently remove all deleted items"), csel.purgeAll), key="3")
 			else:
-				append_to_menu(menu, (_("Delete"), csel.do_delete), key="8")
-				append_to_menu(menu, (_("Move"), csel.do_move), key="6")
+				append_to_menu(menu, (_("Delete"), csel.do_delete), key="3")
+				append_to_menu(menu, (_("Move"), csel.do_move), key="4")
 				append_to_menu(menu, (_("Copy"), csel.do_copy), key="5")
-				append_to_menu(menu, (_("Rename"), csel.do_rename), key="2")
+				append_to_menu(menu, (_("Rename"), csel.do_rename), key="6")
 				if not (service.flags & eServiceReference.mustDescent):
 					if self.isResetable():
-						append_to_menu(menu, (_("Reset playback position"), csel.do_reset))
+						append_to_menu(menu, (_("Reset playback position"), csel.do_reset), key="7")
 					if service.getPath().endswith('.ts'):
-						append_to_menu(menu, (_("Start offline decode"), csel.do_decode))
+						append_to_menu(menu, (_("Start offline decode"), csel.do_decode), key="8")
 				elif BlurayPlayer is None and csel.isBlurayFolderAndFile(service):
 					append_to_menu(menu, (_("Auto play blu-ray file"), csel.playBlurayFile))
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
@@ -462,7 +465,14 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		self.close(self.csel.showDeviceMounts())
 	def do_showNetworkMounts(self):
 		self.close(self.csel.showNetworkMounts())
-
+	def do_addbookmark(self):
+		self.close(self.csel.do_addbookmark())
+	def do_selectSortby(self):
+		self.close(self.csel.selectSortby())
+	def do_decode(self):
+		self.close(self.csel.do_decode())
+	def do_reset(self):
+		self.close(self.csel.do_reset())
 	def cancelClick(self):
 		self.close(None)
 

@@ -20,7 +20,6 @@ from Tools.StbHardware import getFPVersion
 from os import path
 from re import search
 
-
 class About(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
@@ -98,6 +97,33 @@ class About(Screen):
 		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
 
+		tempinfo = ""
+		if path.exists('/proc/stb/sensors/temp0/value'):
+			f = open('/proc/stb/sensors/temp0/value', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/proc/stb/fp/temp_sensor'):
+			f = open('/proc/stb/fp/temp_sensor', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/proc/stb/sensors/temp/value'):
+			f = open('/proc/stb/sensors/temp/value', 'r')
+			tempinfo = f.read()
+			f.close()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+			tempinfo = f.read()
+			f.close()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutLcdText = AboutText.replace('\t', ' ')
+
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
@@ -105,18 +131,12 @@ class About(Screen):
 			fp_version = _("Frontprocessor version: %d") % fp_version
 			AboutText += fp_version + "\n"
 
-		tempinfo = ""
-		if path.exists('/proc/stb/sensors/temp0/value') and getBoxType() not in ('gbquad'):
-			f = open('/proc/stb/sensors/temp0/value', 'r')
-			tempinfo = f.read()
-			f.close()
-		elif path.exists('/proc/stb/fp/temp_sensor') and getBoxType() not in ('gbquad'):
-			f = open('/proc/stb/fp/temp_sensor', 'r')
-			tempinfo = f.read()
-			f.close()
-		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s%sC\n\n") % (tempinfo.replace('\n', ''), mark)
+		bootloader = ""
+		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
+				bootloader = f.readline().replace('\x00', '').replace('\n', '')
+				f.close()
+				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 

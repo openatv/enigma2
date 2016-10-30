@@ -1,6 +1,7 @@
 from Converter import Converter
 from Poll import Poll
 from Components.Element import cached
+from Components.Sources.StreamService import StreamServiceList
 from enigma import eStreamServer
 from ServiceReference import ServiceReference
 import socket
@@ -119,7 +120,7 @@ class ClientsStreaming(Converter, Poll, object):
 	def getBoolean(self):
 		if self.streamServer is None:
 			return False
-		return self.streamServer.getConnectedClients() and True or False
+		return (self.streamServer.getConnectedClients() or StreamServiceList) and True or False
 
 	boolean = property(getBoolean)
 

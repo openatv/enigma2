@@ -1487,7 +1487,7 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBrandOEM() in ('skylake', 'xtrend', 'odin', 'ini', 'dags' ,'gigablue', 'xp'):
+			if getBrandOEM() in ('skylake', 'xtrend', 'odin', 'ini', 'dags' ,'gigablue', 'xp', 'ceryon', 'broadmedia', 'gfutures', 'xcore'):
 				self.openEventView()
 			else:
 				self.showDefaultEPG()
