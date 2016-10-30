@@ -181,6 +181,11 @@ int eDVBServiceStream::doRecord()
 			// cached pids
 			for (int x = 0; x < eDVBService::cacheMax; ++x)
 			{
+				if (x == 5)
+				{
+					x += 3; // ignore cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY
+					continue;
+				}
 				int entry = service->getCacheEntry((eDVBService::cacheID)x);
 				if (entry != -1)
 				{
@@ -311,6 +316,11 @@ bool eDVBServiceStream::recordCachedPids()
 		// cached pids
 		for (int x = 0; x < eDVBService::cacheMax; ++x)
 		{
+			if (x == 5)
+			{
+				x += 3; // ignore cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY
+				continue;
+			}
 			int entry = service->getCacheEntry((eDVBService::cacheID)x);
 			if (entry != -1)
 			{
