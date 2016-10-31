@@ -12,6 +12,7 @@ protected:
 	std::string name;
 	unsigned transportStreamId : 16;
 	unsigned serviceId : 16;
+	unsigned sourceId : 16;
 	unsigned serviceType : 6;
 	unsigned accessControlled : 1;
 	unsigned descriptorsLoopLength : 10;
@@ -23,6 +24,7 @@ public:
 	const std::string &getName(void) const;
 	uint16_t getTransportStreamId(void) const;
 	uint16_t getServiceId(void) const;
+	uint16_t getSourceId(void) const;
 	uint8_t getServiceType(void) const;
 	uint16_t getDescriptorsLoopLength(void) const;
 	bool isAccessControlled(void) const;
