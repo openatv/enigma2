@@ -47,7 +47,7 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection([
 ], "Y")
 config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
 config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
-config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+config.plugins.softwaremanager.epgcache = ConfigYesNo(default=True)
 
 def write_cache(cache_file, cache_data):
 	# Does a cPickle dump
@@ -384,11 +384,11 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = []
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
+		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles, _("Overwrite configuration files during software upgrade?"))
 		self.list.append(self.overwriteConfigfilesEntry)
-		self.list.append(getConfigListEntry(_("Show software manager in plugin menu"), config.plugins.softwaremanager.onSetupMenu))
-		self.list.append(getConfigListEntry(_("Show software manager on blue button"), config.plugins.softwaremanager.onBlueButton))
-		self.list.append(getConfigListEntry(_("epg cache backup"), config.plugins.softwaremanager.epgcache))
+		self.list.append(getConfigListEntry(_("Show software manager in tasks/setup menu"), config.plugins.softwaremanager.onSetupMenu, _("Show an entry for the software manager in the live TV main menu, below 'Setup'.\nRequires reboot or GUI restart to take effect.")))
+		self.list.append(getConfigListEntry(_("Show software manager on blue button"), config.plugins.softwaremanager.onBlueButton, _("Show an entry for the software manager extensions popup menu, BLUE button in live TV.")))
+		self.list.append(getConfigListEntry(_("Save EPG cache before backup"), config.plugins.softwaremanager.epgcache, _("Save the EPG cache to disk before doing a backup so that the backup saves an up-to-date copy of the cache.")))
 
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
@@ -398,8 +398,9 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		if self["config"].getCurrent() == self.overwriteConfigfilesEntry:
-			self["introduction"].setText(_("Overwrite configuration files during software upgrade?"))
+		item = self["config"].getCurrent()
+		if len(item) > 2 and item[2]:
+			self["introduction"].setText(item[2])
 		else:
 			self["introduction"].setText("")
 
@@ -1973,7 +1974,7 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.value:
+	if menuid == "id_mainmenu_tasks" and config.plugins.softwaremanager.onSetupMenu.value:
 		return [(_("Software management"), UpgradeMain, "software_manager", 50)]
 	return []
 
@@ -1984,8 +1985,7 @@ def Plugins(path, **kwargs):
 		PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)
 	]
-	if not config.plugins.softwaremanager.onSetupMenu.value and not config.plugins.softwaremanager.onBlueButton.value:
-		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=UpgradeMain))
+	list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=UpgradeMain))
 	if config.plugins.softwaremanager.onBlueButton.value:
 		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=UpgradeMain))
 	return list
