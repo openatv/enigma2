@@ -159,7 +159,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					continue
 				elif FeType in ("DVB-C", "DVB-C2") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
 					continue
-				elif FeType in ("ATSC") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
+				elif FeType in ("ATSC") and config.Nims[slot.slot].atsc.configMode.value == "nothing":
 					continue
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
 		else:
@@ -225,7 +225,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return self.retuneTerr()
 		if nim.isCompatible("DVB-C") and nim.config.dvbc.configMode.value != "nothing":
 			return self.retuneCab()
-		if nim.isCompatible("ATSC") and nim.config.dvbc.configMode.value != "nothing":
+		if nim.isCompatible("ATSC") and nim.config.atsc.configMode.value != "nothing":
 			return self.retuneATSC()
 		self.frontend = None
 		self.raw_channel = None
@@ -436,7 +436,6 @@ def SatfinderMain(session, close=None, **kwargs):
 	nims = nimmanager.nim_slots
 	nimList = []
 	for n in nims:
-<<<<<<< HEAD
 		if n.isMultiType():
 			if not (n.isCompatible("DVB-S") or n.isCompatible("DVB-T") or n.isCompatible("DVB-C") or n.isCompatible("ATSC")):
 				continue
