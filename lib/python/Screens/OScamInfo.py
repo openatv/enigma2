@@ -578,7 +578,7 @@ class oscECMInfo(Screen, OscamInfo):
 
 	def buildListEntry(self, listentry):
 		return [
-			None,
+			"",
 			(eListboxPythonMultiContent.TYPE_TEXT, 10*f, 2*f, 300*f, 30*f, 0, RT_HALIGN_LEFT, listentry[0]),
 			(eListboxPythonMultiContent.TYPE_TEXT, 300*f, 2*f, 300*f, 30*f, 0, RT_HALIGN_LEFT, listentry[1])
 			]
@@ -591,7 +591,7 @@ class oscECMInfo(Screen, OscamInfo):
 			out.append(self.buildListEntry(i))
 		self["output"].l.setItemHeight(int(30*f))
 		self["output"].l.setList(out)
-		self["output"].selectionEnabled(True)
+		self["output"].selectionEnabled(False)
 
 class oscInfo(Screen, OscamInfo):
 	def __init__(self, session, what):
@@ -599,19 +599,21 @@ class oscInfo(Screen, OscamInfo):
 		self.session = session
 		self.what = what
 		self.firstrun = True
+		self.listchange = True
+		self.scrolling = False
 		self.webif_data = self.readXML(typ = self.what)
-		entry_count = len( self.webif_data )
-		ysize = (entry_count + 2) * 25
 		ypos = 10
+		ysize = 350
+		self.itemheight = 25
 		self.sizeLH = sizeH - 20
-		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize / 2)
+		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize)
 		button_width = int(sizeH / 4)
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
 			xpos = k * button_width
 			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="/usr/share/enigma2/skin_default/buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
 			self.skin += """<widget source="key_%s" render="Label" position="%d,%d" size="%d,%d" font="Regular;18" zPosition="1" valign="center" transparent="1" />""" % (v, xpos + 40, ypos, button_width, 22)
 		self.skin +="""<ePixmap name="divh" position="0,37" size="%d,2" pixmap="/usr/share/enigma2/skin_default/div-h.png" transparent="1" alphatest="on" />""" % sizeH
-		self.skin +="""<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % ( self.sizeLH, ysize / 2)
+		self.skin +="""<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % ( self.sizeLH, ysize - 50)
 		self.skin += """</screen>"""
 		Screen.__init__(self, session)
 		self.mlist = oscMenuList([])
@@ -634,44 +636,89 @@ class oscInfo(Screen, OscamInfo):
 			self["key_green"] = StaticText("Clients")
 			self["key_yellow"] = StaticText("Servers")
 			self["key_blue"] = StaticText("Log")
-		self.fieldSizes = []
-		self.fs2 = {}
 		if config.oscaminfo.autoupdate.value:
 			self.loop = eTimer()
 			self.loop.callback.append(self.showData)
 			timeout = config.oscaminfo.intervall.value * 1000
 			self.loop.start(timeout, False)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 					{
-						"ok": self.showData,
+						"ok": self.key_ok,
 						"cancel": self.exit,
 						"red": self.exit,
 						"green": self.key_green,
 						"yellow": self.key_yellow,
-						"blue": self.key_blue
+						"blue": self.key_blue,
+						"up": self.key_up,
+						"down": self.key_down,
+						"right": self.key_right,
+						"left": self.key_left,
+						"moveUp": self.key_moveUp,
+						"moveDown": self.key_moveDown
 					}, -1)
 		self.onLayoutFinish.append(self.showData)
+
+	def key_ok(self):
+		if self.scrolling:
+			self.scrolling = False
+			self["output"].selectionEnabled(False)
+			self["output"].instance.setScrollbarMode(2) #"showNever"
+		self.showData()
+
+	def key_up(self):
+		self.enableScrolling()
+		self["output"].up()
+		if self.what != "l" and self["output"].getSelectedIndex() < 1:
+			self["output"].moveToIndex(1)
+
+	def key_down(self):
+		self.enableScrolling()
+		self["output"].down()
+
+	def key_right(self):
+		self.enableScrolling()
+		self["output"].pageDown()
+
+	def key_left(self):
+		self.enableScrolling()
+		self["output"].pageUp()
+		if self.what != "l" and self["output"].getSelectedIndex() < 1:
+			self["output"].moveToIndex(1)
+
+	def key_moveUp(self):
+		self.enableScrolling()
+		if self.what != "l":
+			self["output"].moveToIndex(1)
+		else:
+			self["output"].moveToIndex(0)
+
+	def key_moveDown(self):
+		self.enableScrolling()
+		self["output"].moveToIndex(len(self.out)-1)
 
 	def key_green(self):
 		if self.what == "c":
 			pass
 		else:
+			self.listchange = True
 			self.what = "c"
-			self.showData()
+			self.key_ok()
 
 	def key_yellow(self):
 		if self.what == "s":
 			pass
 		else:
+			self.listchange = True
 			self.what = "s"
-			self.showData()
+			self.key_ok()
 
 	def key_blue(self):
 		if self.what == "l":
 			pass
 		else:
+			self.listchange = True
 			self.what = "l"
-			self.showData()
+			self.key_ok()
 
 	def exit(self):
 		if config.oscaminfo.autoupdate.value:
@@ -679,7 +726,7 @@ class oscInfo(Screen, OscamInfo):
 		self.close()
 
 	def buildListEntry(self, listentry, heading = False):
-		res = [ None ]
+		res = [""]
 		x = 0
 		if not HDSKIN:
 			self.fieldsize = [ 100, 130, 100, 150, 80, 130 ]
@@ -690,8 +737,12 @@ class oscInfo(Screen, OscamInfo):
 			self.startPos = [ 50*f, 200*f, 350*f, 500*f, 800*f, 950*f ]
 			useFont = 2
 
+		ypos = 2
 		if isinstance(self.errmsg, tuple):
 			useFont = 0  # overrides previous font-size in case of an error message. (if self.errmsg is a tuple, an error occurred which will be displayed instead of regular results
+		elif heading:
+			useFont = 1
+			ypos = -2
 		if not heading:
 			status = listentry[len(listentry)-1]
 			colour = "0xffffff"
@@ -706,49 +757,22 @@ class oscInfo(Screen, OscamInfo):
 		for i in listentry[:-1]:
 			xsize = self.fieldsize[x]
 			xpos = self.startPos[x]
-			res.append( (eListboxPythonMultiContent.TYPE_TEXT, xpos, 0, xsize, 22*f, useFont, RT_HALIGN_LEFT, i, int(colour, 16)) )
+			res.append( (eListboxPythonMultiContent.TYPE_TEXT, xpos, ypos*f, xsize, (self.itemheight)*f, useFont, RT_HALIGN_LEFT, i, int(colour, 16)) )
 			x += 1
 		if heading:
 			png = resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png")
 			if fileExists(png):
 				png = LoadPixmap(png)
 			if png is not None:
-				res.append( (eListboxPythonMultiContent.TYPE_PIXMAP, 0, 24*f, self.sizeLH, useFont, png))
+				res.append( (eListboxPythonMultiContent.TYPE_PIXMAP, 0, (self.itemheight-2)*f, self.sizeLH, 2*f, png))
 		return res
 
 	def buildLogListEntry(self, listentry):
-		res = [ None ]
+		res = [""]
 		for i in listentry:
 			if i.strip() != "" or i is not None:
-				res.append( (eListboxPythonMultiContent.TYPE_TEXT, 5*f, 0, self.sizeLH,22*f, 2, RT_HALIGN_LEFT, i) )
+				res.append( (eListboxPythonMultiContent.TYPE_TEXT, 5*f, 0, self.sizeLH,self.itemheight*f, 2, RT_HALIGN_LEFT, i) )
 		return res
-
-	def calcSizes(self, entries):
-		self.fs2 = {}
-		colSize = [ 100*f, 200*f, 150*f, 200*f, 150*f, 100*f ]
-		for h in entries:
-			for i, j in enumerate(h[:-1]):
-				try:
-					self.fs2[i].append(colSize[i])
-				except KeyError:
-					self.fs2[i] = []
-					self.fs2[i].append(colSize[i])
-		sizes = []
-		for i in self.fs2.keys():
-			sizes.append(self.fs2[i])
-		return sizes
-
-	def changeScreensize(self, new_height, new_width = None):
-		if new_width is None:
-			new_width = sizeH
-		new_height = int(new_height * f)
-		fb = getDesktop(0).size()
-		if (self.instance.size().height() != new_height and not config.skin.primary_skin.value.startswith('MetrixHD/')) or self.instance.size().height() > fb.height():
-			new_posY = int((fb.height() / 2) - (new_height / 2))
-			new_posX = int((fb.width() - sizeH) / 2)
-			self.instance.move(ePoint(new_posX, new_posY))
-			self.instance.resize(eSize(new_width, new_height))
-			self["output"].resize(eSize(self.sizeLH, new_height - int(30*f)))
 
 	def showData(self):
 		if self.firstrun:
@@ -756,63 +780,69 @@ class oscInfo(Screen, OscamInfo):
 			self.firstrun = False
 		else:
 			data = self.readXML(typ = self.what)
+		self.out = []
+		self.itemheight = 25
 		if not isinstance(data,str):
-			out = []
 			if self.what != "l":
 				heading = ( self.HEAD[self.NAME], self.HEAD[self.PROT], self.HEAD[self.CAID_SRVID],
 						self.HEAD[self.SRVNAME], self.HEAD[self.ECMTIME], self.HEAD[self.IP_PORT], "")
-				outlist = [heading]
+				self.out = [ self.buildListEntry(heading, heading=True)]
 				for i in data:
-					outlist.append( i )
-				self.fieldsize = self.calcSizes(outlist)
-				out = [ self.buildListEntry(heading, heading=True)]
-				for i in data:
-					out.append(self.buildListEntry(i))
+					self.out.append(self.buildListEntry(i))
 			else:
 				for i in data:
 					if i != "":
-						out.append( self.buildLogListEntry( (i,) ))
-			itemheight = 25
-			ysize = (len(out) + 2) * itemheight
+						self.out.append( self.buildLogListEntry( (i,) ))
 			if self.what == "c":
 				self.setTitle("Client Info ( Oscam-Version: %s )" % self.getVersion())
 				self["key_green"].setText("")
 				self["key_yellow"].setText("Servers")
 				self["key_blue"].setText("Log")
-				self.changeScreensize( ysize )
 			elif self.what == "s":
 				self.setTitle("Server Info( Oscam-Version: %s )" % self.getVersion())
 				self["key_green"].setText("Clients")
 				self["key_yellow"].setText("")
 				self["key_blue"].setText("Log")
-				self.changeScreensize( ysize )
 			elif self.what == "l":
 				self.setTitle("Oscam Log ( Oscam-Version: %s )" % self.getVersion())
 				self["key_green"].setText("Clients")
 				self["key_yellow"].setText("Servers")
 				self["key_blue"].setText("")
-				itemheight = 20
-				self.changeScreensize( 500 )
+				self.itemheight = 20
 		else:
 			self.errmsg = (data,)
 			if config.oscaminfo.autoupdate.value:
 				self.loop.stop()
-			out = []
-			self.fieldsize = self.calcSizes( [(data,)] )
 			for i in self.errmsg:
-				out.append( self.buildListEntry( (i,) ))
-			ysize = (len(out) + 2) * itemheight
+				self.out.append( self.buildListEntry( (i,) ))
 			self.setTitle(_("Error") + data)
 			self["key_green"].setText("Clients")
 			self["key_yellow"].setText("Servers")
 			self["key_blue"].setText("Log")
-			self.changeScreensize( ysize )
 
-		rows = int(self["output"].instance.size().height() / (itemheight*f))
-		self["key_red"].setText(_("Close"))
-		self["output"].l.setItemHeight(int(itemheight*f))
-		self["output"].l.setList(out[-rows:])
-		self["output"].selectionEnabled(False)
+		self["output"].l.setItemHeight(int(self.itemheight*f))
+		if self.scrolling:
+			self["output"].l.setList(self.out)
+		else:
+			autoenableScrolling = self.what != "l"
+			rows = int(self["output"].instance.size().height() / (self.itemheight*f))
+			if autoenableScrolling and self.listchange and rows < len(self.out):
+				self.enableScrolling(True)
+			else:
+				self["output"].l.setList(self.out[-rows:])
+				self["output"].selectionEnabled(False)
+		self.listchange = False
+
+	def enableScrolling(self, force=False):
+		if force or (not self.scrolling and int(self["output"].instance.size().height() / (self.itemheight*f)) < len(self.out)):
+			self.scrolling = True
+			self["output"].l.setList(self.out)
+			self["output"].selectionEnabled(True)
+			self["output"].instance.setScrollbarMode(1) #"showAlways"
+			if self.what != "l":
+				self["output"].moveToIndex(1)
+			else:
+				self["output"].moveToIndex(len(self.out)-1)
 
 class oscEntitlements(Screen, OscamInfo):
 	global HDSKIN, sizeH
@@ -953,7 +983,6 @@ class oscEntitlements(Screen, OscamInfo):
 		self["output"].setList(result)
 		title = [ _("Reader"), self.cccamreader, _("Cards:"), cardTotal, "Server:", hostadr ]
 		self.setTitle( " ".join(title))
-
 
 class oscReaderStats(Screen, OscamInfo):
 	global HDSKIN, sizeH
