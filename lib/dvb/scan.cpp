@@ -1430,7 +1430,8 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 	for (VirtualChannelListConstIterator s(services.begin()); s != services.end(); ++s)
 	{
 		unsigned short service_id = (*s)->getServiceId();
-		SCAN_eDebugNoNewLineStart("[eDVBScan] SID %04x: ", service_id);
+		unsigned short source_id = (*s)->getSourceId();
+		SCAN_eDebugNoNewLineStart("[eDVBScan] SID %04x, source_id %04x: ", service_id, source_id);
 		bool is_crypted = (*s)->isAccessControlled();
 
 		if (is_crypted)
@@ -1465,6 +1466,7 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 			ref.set(chid);
 			ref.setServiceID(service_id);
 			ref.setServiceType(servicetype);
+			ref.setSourceID(source_id);
 			service->m_service_name = (*s)->getName();
 			/* strip trailing spaces */
 			service->m_service_name = service->m_service_name.erase(service->m_service_name.find_last_not_of(" ") + 1);
