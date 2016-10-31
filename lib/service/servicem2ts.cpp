@@ -5,6 +5,12 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/service/servicem2ts.h>
 
+#ifdef HAVE_LIBUDFREAD
+extern "C" {
+#include <udfread/udfread.h>
+}
+#endif
+
 DEFINE_REF(eServiceFactoryM2TS)
 
 class eM2TSFile: public iTsSource
@@ -26,6 +32,10 @@ private:
 	off_t m_current_offset;
 	off_t m_length;
 	off_t lseek_internal(off_t offset, int whence);
+	#ifdef HAVE_LIBUDFREAD
+	udfread *m_udf;
+	UDFFILE *m_udf_file;
+	#endif
 };
 
 class eStaticServiceM2TSInformation: public iStaticServiceInformation
@@ -165,16 +175,59 @@ DEFINE_REF(eM2TSFile);
 eM2TSFile::eM2TSFile(const char *filename):
 	m_lock(),
 	m_sync_offset(0),
-	m_fd(::open(filename, O_RDONLY | O_LARGEFILE | O_CLOEXEC)),
+	m_fd(-1),
 	m_current_offset(0),
 	m_length(0)
 {
+#ifdef HAVE_LIBUDFREAD
+	m_udf = NULL;
+	m_udf_file = NULL;
+	std::string iso_file = filename;
+	size_t pos = iso_file.find(".iso/BDMV");
+	if (pos != std::string::npos)
+	{
+		eDebug("[eM2TSFile] try open as iso:%s", filename);
+		std::string file_path = iso_file.substr(pos + 4);
+		iso_file = iso_file.substr(0, pos + 4);
+		m_udf = udfread_init();
+		if (m_udf)
+		{
+			if (udfread_open(m_udf, iso_file.c_str()) < 0)
+				eDebug("[eM2TSFile] udfread_open(%s) failed!", iso_file.c_str());
+			else
+			{
+				m_udf_file = udfread_file_open(m_udf, file_path.c_str());
+				if (!m_udf_file)
+				{
+					eDebug("[eM2TSFile] udfread_file_open(%s) failed!", file_path.c_str());
+					udfread_close(m_udf);
+					m_udf = NULL;
+				}
+				else
+					m_fd = 0;
+			}
+		}
+	}
+#endif
+	if (m_fd == -1)
+		m_fd = ::open(filename, O_RDONLY | O_LARGEFILE | O_CLOEXEC);
+
 	if (m_fd != -1)
 		m_current_offset = m_length = lseek_internal(0, SEEK_END);
 }
 
 eM2TSFile::~eM2TSFile()
 {
+#ifdef HAVE_LIBUDFREAD
+	if (m_udf_file)
+	{
+		udfread_file_close(m_udf_file);
+		udfread_close(m_udf);
+		m_udf_file = NULL;
+		m_udf = NULL;
+		m_fd = -1;
+	}
+#endif
 	if (m_fd != -1)
 		::close(m_fd);
 }
@@ -183,7 +236,12 @@ off_t eM2TSFile::lseek_internal(off_t offset, int whence)
 {
 	off_t ret;
 
-	ret = ::lseek(m_fd, offset, whence);
+#ifdef HAVE_LIBUDFREAD
+	if (m_udf_file)
+		ret = udfread_file_seek(m_udf_file, offset, whence);
+	else
+#endif
+		ret = ::lseek(m_fd, offset, whence);
 	return ret <= 0 ? ret : (ret % 192) + (ret*188) / 192;
 }
 
@@ -207,7 +265,12 @@ sync:
 
 	while (rd < count) {
 		size_t ret;
-		ret = ::read(m_fd, tmp, 192);
+#ifdef HAVE_LIBUDFREAD
+		if (m_udf_file)
+			ret = udfread_file_read(m_udf_file, tmp, 192);
+		else
+#endif
+			ret = ::read(m_fd, tmp, 192);
 		if (ret < 0 || ret < 192)
 			return rd ? rd : ret;
 
@@ -219,7 +282,12 @@ sync:
 			}
 			else {
 				int x=0;
-				ret = ::read(m_fd, tmp+192, 384);
+#ifdef HAVE_LIBUDFREAD
+				if (m_udf_file)
+					ret = udfread_file_read(m_udf_file, tmp+192, 384);
+				else
+#endif
+					ret = ::read(m_fd, tmp+192, 384);
 
 #if 0
 				eDebugNoNewLine("m2ts out of sync at pos %lld, real %lld:", offset + m_sync_offset, m_current_offset);
