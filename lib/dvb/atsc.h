@@ -86,10 +86,10 @@ public:
 	const VirtualChannelList *getChannels(void) const;
 };
 
-class ExtendedChannelNameDescriptor
+class ExtendedChannelNameDescriptor : public Descriptor
 {
 protected:
-	std::string name;
+	MultipleStringStructure *value;
 
 public:
 	ExtendedChannelNameDescriptor(const uint8_t * const buffer);
