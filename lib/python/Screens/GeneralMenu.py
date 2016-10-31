@@ -499,7 +499,6 @@ class GeneralMenu(Screen):
 					_("Front Panel Update"),
 					_("CrossEPG Downloader"),
 					_("OpenWebif"),
-					_("Software management"),
 					_("MediaPortal"),
 					_("Media Player"),
 					_("Picture player"),
