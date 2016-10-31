@@ -155,7 +155,17 @@ VirtualChannel::VirtualChannel(const uint8_t * const buffer, bool terrestrial)
 	descriptorsLoopLength = DVB_LENGTH(&buffer[30]) & 0x3ff;
 
 	for (i = 32; i < descriptorsLoopLength + 32; i += buffer[i + 1] + 2)
-		descriptor(&buffer[i], SCOPE_SI);
+	{
+		switch (buffer[i])
+		{
+		case 0xa0:
+			descriptorList.push_back(new ExtendedChannelNameDescriptor(&buffer[i]));
+			break;
+		default:
+			descriptor(&buffer[i], SCOPE_SI);
+			break;
+		}
+	}
 }
 
 VirtualChannel::~VirtualChannel(void)
@@ -237,13 +247,24 @@ const VirtualChannelList *VirtualChannelTableSection::getChannels(void) const
 }
 
 ExtendedChannelNameDescriptor::ExtendedChannelNameDescriptor(const uint8_t * const buffer)
+ : Descriptor(buffer)
 {
-	/* TODO: parse multiple string object */
+	value = new MultipleStringStructure(buffer + 2);
+}
+
+ExtendedChannelNameDescriptor::~ExtendedChannelNameDescriptor()
+{
+	delete value;
 }
 
 const std::string &ExtendedChannelNameDescriptor::getName(void) const
 {
-	return name;
+	if (value)
+	{
+		const StringValueList *valuelist = value->getStrings();
+		if (valuelist && valuelist->begin() != valuelist->end()) return (*valuelist->begin())->getValue();
+	}
+	return "";
 }
 
 SystemTimeTableSection::SystemTimeTableSection(const uint8_t * const buffer) : LongCrcSection(buffer)
