@@ -6,6 +6,37 @@
 #include <dvbsi++/long_crc_section.h>
 #include <dvbsi++/descriptor_container.h>
 
+class StringValue
+{
+protected:
+	std::string iso639LanguageCode;
+	std::string value;
+	uint32_t size;
+
+public:
+	StringValue(const uint8_t *const buffer);
+
+	const uint32_t getSize(void) const;
+	const std::string &getIso639LanguageCode(void) const;
+	const std::string &getValue(void) const;
+};
+
+typedef std::list<StringValue*> StringValueList;
+typedef StringValueList::iterator StringValueListIterator;
+typedef StringValueList::const_iterator StringValueListConstIterator;
+
+class MultipleStringStructure
+{
+protected:
+	StringValueList strings;
+
+public:
+	MultipleStringStructure(const uint8_t *const buffer);
+	~MultipleStringStructure(void);
+
+	const StringValueList *getStrings(void) const;
+};
+
 class VirtualChannel : public DescriptorContainer
 {
 protected:
