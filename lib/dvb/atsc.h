@@ -114,7 +114,7 @@ public:
 	{
 		m_spec.pid      = SystemTimeTableSection::PID;
 		m_spec.tid      = SystemTimeTableSection::TID;
-		m_spec.timeout  = VirtualChannelTableSection::TIMEOUT;
+		m_spec.timeout  = SystemTimeTableSection::TIMEOUT;
 		m_spec.flags    = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID |
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
