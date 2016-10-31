@@ -38,7 +38,7 @@ VirtualChannel::VirtualChannel(const uint8_t * const buffer, bool terrestrial)
 	serviceId = UINT16(&buffer[24]);
 	accessControlled = (buffer[26] >> 5) & 0x1;
 	serviceType = buffer[27] & 0x3f;
-	descriptorsLoopLength = DVB_LENGTH(&buffer[30]) & 0x3f;
+	descriptorsLoopLength = DVB_LENGTH(&buffer[30]) & 0x3ff;
 
 	for (i = 32; i < descriptorsLoopLength + 32; i += buffer[i + 1] + 2)
 		descriptor(&buffer[i], SCOPE_SI);
