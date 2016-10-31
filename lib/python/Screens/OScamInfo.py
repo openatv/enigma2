@@ -604,6 +604,7 @@ class oscInfo(Screen, OscamInfo):
 		self.webif_data = self.readXML(typ = self.what)
 		ypos = 10
 		ysize = 350
+		self.rows = 12
 		self.itemheight = 25
 		self.sizeLH = sizeH - 20
 		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize)
@@ -659,10 +660,7 @@ class oscInfo(Screen, OscamInfo):
 		self.onLayoutFinish.append(self.showData)
 
 	def key_ok(self):
-		if self.scrolling:
-			self.scrolling = False
-			self["output"].selectionEnabled(False)
-			self["output"].instance.setScrollbarMode(2) #"showNever"
+		self.disableScrolling()
 		self.showData()
 
 	def key_up(self):
@@ -757,7 +755,7 @@ class oscInfo(Screen, OscamInfo):
 		for i in listentry[:-1]:
 			xsize = self.fieldsize[x]
 			xpos = self.startPos[x]
-			res.append( (eListboxPythonMultiContent.TYPE_TEXT, xpos, ypos*f, xsize, (self.itemheight)*f, useFont, RT_HALIGN_LEFT, i, int(colour, 16)) )
+			res.append( (eListboxPythonMultiContent.TYPE_TEXT, xpos, ypos*f, xsize, self.itemheight*f, useFont, RT_HALIGN_LEFT, i, int(colour, 16)) )
 			x += 1
 		if heading:
 			png = resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png")
@@ -820,25 +818,31 @@ class oscInfo(Screen, OscamInfo):
 			self["key_yellow"].setText("Servers")
 			self["key_blue"].setText("Log")
 
-		self["output"].l.setItemHeight(int(self.itemheight*f))
+		if self.listchange:
+			self.listchange = False
+			self["output"].l.setItemHeight(int(self.itemheight*f))
+			self.rows = int(self["output"].instance.size().height() / (self.itemheight*f))
+			if self.what != "l" and self.rows < len(self.out):
+				self.enableScrolling(True)
+				return
+			self.disableScrolling(True)
 		if self.scrolling:
 			self["output"].l.setList(self.out)
 		else:
-			autoenableScrolling = self.what != "l"
-			rows = int(self["output"].instance.size().height() / (self.itemheight*f))
-			if autoenableScrolling and self.listchange and rows < len(self.out):
-				self.enableScrolling(True)
-			else:
-				self["output"].l.setList(self.out[-rows:])
-				self["output"].selectionEnabled(False)
-		self.listchange = False
+			self["output"].l.setList(self.out[-self.rows:])
+
+	def disableScrolling(self, force=False):
+		if force or self.scrolling:
+			self.scrolling = False
+			self["output"].selectionEnabled(False)
+			self["output"].instance.setScrollbarMode(2) #"showNever"
 
 	def enableScrolling(self, force=False):
-		if force or (not self.scrolling and int(self["output"].instance.size().height() / (self.itemheight*f)) < len(self.out)):
+		if force or (not self.scrolling and self.rows < len(self.out)):
 			self.scrolling = True
-			self["output"].l.setList(self.out)
 			self["output"].selectionEnabled(True)
 			self["output"].instance.setScrollbarMode(1) #"showAlways"
+			self["output"].l.setList(self.out)
 			if self.what != "l":
 				self["output"].moveToIndex(1)
 			else:
