@@ -27,6 +27,119 @@ static std::string UTF16ToUTF8(uint16_t c)
 	return "";
 }
 
+StringValue::StringValue(const uint8_t *const buffer)
+{
+	const uint8_t *pos = &buffer[4];
+	uint8_t segments = buffer[3];
+	iso639LanguageCode.assign((char*)buffer, 3);
+	size = 4;
+	for (uint8_t i = 0; i < segments; i++)
+	{
+		uint8_t compression_type = *pos++;
+		uint8_t mode = *pos++;
+		uint8_t number_bytes = *pos++;
+		size += 3 + number_bytes;
+		std::string data;
+		size_t k;
+		switch (compression_type)
+		{
+		case 0: /* no compression */
+			data.assign((char*)pos, number_bytes);
+			break;
+		case 1: /* huffman table C.4 and C.5 */
+			/* TODO: Huffman decode */
+			break;
+		case 2: /* huffman table C.6 and C.7 */
+			/* TODO: Huffman decode */
+			break;
+		}
+		switch (mode)
+		{
+		case 0x00:
+		case 0x01:
+		case 0x02:
+		case 0x03:
+		case 0x04:
+		case 0x05:
+		case 0x06:
+		case 0x09:
+		case 0x0a:
+		case 0x0b:
+		case 0x0c:
+		case 0x0d:
+		case 0x0e:
+		case 0x0f:
+		case 0x10:
+		case 0x20:
+		case 0x21:
+		case 0x22:
+		case 0x23:
+		case 0x24:
+		case 0x25:
+		case 0x26:
+		case 0x27:
+		case 0x30:
+		case 0x31:
+		case 0x32:
+		case 0x33:
+			for (k = 0; k < data.length(); k++)
+			{
+				value += UTF16ToUTF8(mode << 8 | data[k]);
+			}
+			break;
+		case 0x3e:
+			/* TODO: SCSU */
+			break;
+		case 0x3f:
+			/* UTF-16 */
+			for (k = 0; k < data.length(); k += 2)
+			{
+				value += UTF16ToUTF8(data[k] << 8 | data[k + 1]);
+			}
+			break;
+		}
+	}
+}
+
+const std::string &StringValue::getIso639LanguageCode(void) const
+{
+	return iso639LanguageCode;
+}
+
+const std::string &StringValue::getValue(void) const
+{
+	return value;
+}
+
+const uint32_t StringValue::getSize(void) const
+{
+	return size;
+}
+
+MultipleStringStructure::MultipleStringStructure(const uint8_t *const buffer)
+{
+	uint8_t i;
+	uint8_t number_strings = buffer[0];
+	const uint8_t *pos = &buffer[1];
+	for (i = 0; i < number_strings; i++)
+	{
+		StringValue *str = new StringValue(pos);
+		strings.push_back(str);
+		pos += str->getSize();
+	}
+}
+
+MultipleStringStructure::~MultipleStringStructure()
+{
+	for (StringValueListIterator i = strings.begin(); i != strings.end(); ++i)
+		delete *i;
+}
+
+const StringValueList *MultipleStringStructure::getStrings(void) const
+{
+	return &strings;
+}
+
 VirtualChannel::VirtualChannel(const uint8_t * const buffer, bool terrestrial)
 {
 	int i;
