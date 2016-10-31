@@ -36,14 +36,7 @@ void eDVBServiceStream::serviceEvent(int event)
 		if (!m_service_handler.getDataDemux(m_demux))
 		{
 			eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_ref;
-			int sid = ref.getParentServiceID().get();
-			if (!sid)
-				sid = ref.getServiceID().get();
-			if ( ref.getParentTransportStreamID().get() &&
-				ref.getParentTransportStreamID() != ref.getTransportStreamID() )
-				m_event_handler.startOther(m_demux, sid);
-			else
-				m_event_handler.start(m_demux, sid);
+			m_event_handler.start(m_demux, ref);
 		}
 
 		if (m_state > stateIdle && m_want_record)

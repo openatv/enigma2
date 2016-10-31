@@ -19,8 +19,7 @@ public:
 	eDVBServiceEITHandler();
 
 	void inject(ePtr<eServiceEvent> &event, int nownext);
-	void start(iDVBDemux *demux, int sid);
-	void startOther(iDVBDemux *demux, int sid);
+	void start(iDVBDemux *demux, const eServiceReferenceDVB &ref);
 
 	RESULT getEvent(ePtr<eServiceEvent> &event, int nownext);
 
