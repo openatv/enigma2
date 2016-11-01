@@ -46,14 +46,22 @@ eDVBServiceEITHandler::eDVBServiceEITHandler()
 	CONNECT(m_EIT.tableReady, eDVBServiceEITHandler::EITready);
 }
 
-void eDVBServiceEITHandler::start(iDVBDemux *demux, int sid)
+void eDVBServiceEITHandler::start(iDVBDemux *demux, const eServiceReferenceDVB &ref)
 {
-	m_EIT.begin(eApp, eDVBEITSpec(sid), demux);
-}
+	int sid = ref.getParentServiceID().get();
+	if (!sid)
+	{
+		sid = ref.getServiceID().get();
+	}
 
-void eDVBServiceEITHandler::startOther(iDVBDemux *demux, int sid)
-{
-	m_EIT.begin(eApp, eDVBEITSpecOther(sid), demux);
+	if (ref.getParentTransportStreamID().get() && ref.getParentTransportStreamID() != ref.getTransportStreamID())
+	{
+		m_EIT.begin(eApp, eDVBEITSpecOther(sid), demux);
+	}
+	else
+	{
+		m_EIT.begin(eApp, eDVBEITSpec(sid), demux);
+	}
 }
 
 RESULT eDVBServiceEITHandler::getEvent(ePtr<eServiceEvent> &event, int nownext)

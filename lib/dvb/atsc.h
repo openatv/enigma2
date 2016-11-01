@@ -6,12 +6,44 @@
 #include <dvbsi++/long_crc_section.h>
 #include <dvbsi++/descriptor_container.h>
 
+class StringValue
+{
+protected:
+	std::string iso639LanguageCode;
+	std::string value;
+	uint32_t size;
+
+public:
+	StringValue(const uint8_t *const buffer);
+
+	const uint32_t getSize(void) const;
+	const std::string &getIso639LanguageCode(void) const;
+	const std::string &getValue(void) const;
+};
+
+typedef std::list<StringValue*> StringValueList;
+typedef StringValueList::iterator StringValueListIterator;
+typedef StringValueList::const_iterator StringValueListConstIterator;
+
+class MultipleStringStructure
+{
+protected:
+	StringValueList strings;
+
+public:
+	MultipleStringStructure(const uint8_t *const buffer);
+	~MultipleStringStructure(void);
+
+	const StringValueList *getStrings(void) const;
+};
+
 class VirtualChannel : public DescriptorContainer
 {
 protected:
 	std::string name;
 	unsigned transportStreamId : 16;
 	unsigned serviceId : 16;
+	unsigned sourceId : 16;
 	unsigned serviceType : 6;
 	unsigned accessControlled : 1;
 	unsigned descriptorsLoopLength : 10;
@@ -23,6 +55,7 @@ public:
 	const std::string &getName(void) const;
 	uint16_t getTransportStreamId(void) const;
 	uint16_t getServiceId(void) const;
+	uint16_t getSourceId(void) const;
 	uint8_t getServiceType(void) const;
 	uint16_t getDescriptorsLoopLength(void) const;
 	bool isAccessControlled(void) const;
@@ -53,10 +86,10 @@ public:
 	const VirtualChannelList *getChannels(void) const;
 };
 
-class ExtendedChannelNameDescriptor
+class ExtendedChannelNameDescriptor : public Descriptor
 {
 protected:
-	std::string name;
+	MultipleStringStructure *value;
 
 public:
 	ExtendedChannelNameDescriptor(const uint8_t * const buffer);
@@ -114,7 +147,7 @@ public:
 	{
 		m_spec.pid      = SystemTimeTableSection::PID;
 		m_spec.tid      = SystemTimeTableSection::TID;
-		m_spec.timeout  = VirtualChannelTableSection::TIMEOUT;
+		m_spec.timeout  = SystemTimeTableSection::TIMEOUT;
 		m_spec.flags    = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID |
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;

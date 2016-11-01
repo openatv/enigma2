@@ -210,6 +210,9 @@ public:
 	eTransportStreamID getParentTransportStreamID() const { return eTransportStreamID(data[6]); }
 	void setParentTransportStreamID( eTransportStreamID tsid ) { data[6]=tsid.get(); }
 
+	int getSourceID() const { return data[7]; }
+	void setSourceID(int sourceid) { data[7] = sourceid; }
+
 	eServiceReferenceDVB getParentServiceReference() const
 	{
 		eServiceReferenceDVB tmp(*this);
