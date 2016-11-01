@@ -306,7 +306,7 @@ ExtendedChannelNameDescriptor::~ExtendedChannelNameDescriptor()
 	delete value;
 }
 
-const std::string &ExtendedChannelNameDescriptor::getName(void) const
+const std::string ExtendedChannelNameDescriptor::getName(void) const
 {
 	if (value)
 	{
