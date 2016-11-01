@@ -341,3 +341,228 @@ uint8_t SystemTimeTableSection::getGPSOffset(void) const
 {
 	return gpsOffset;
 }
+
+MasterGuideTable::MasterGuideTable(const uint8_t * const buffer)
+{
+	tableType = UINT16(&buffer[0]);
+	PID = UINT16(&buffer[2]) & 0x1fff;
+	numberBytes = UINT32(&buffer[5]);
+	descriptorsLoopLength = UINT16(&buffer[9]) & 0xfff;
+
+	for (uint16_t i = 11; i < descriptorsLoopLength + 11; i += buffer[i + 1] + 2)
+	{
+		descriptor(&buffer[i], SCOPE_SI);
+	}
+}
+
+MasterGuideTable::~MasterGuideTable(void)
+{
+}
+
+uint16_t MasterGuideTable::getPID(void) const
+{
+	return PID;
+}
+
+uint16_t MasterGuideTable::getTableType(void) const
+{
+	return tableType;
+}
+
+uint32_t MasterGuideTable::getNumberBytes(void) const
+{
+	return numberBytes;
+}
+
+uint16_t MasterGuideTable::getDescriptorsLoopLength(void) const
+{
+	return descriptorsLoopLength;
+}
+
+MasterGuideTableSection::MasterGuideTableSection(const uint8_t * const buffer) : LongCrcSection(buffer)
+{
+	uint16_t pos = 11;
+	uint16_t i;
+	uint16_t numtables = UINT16(&buffer[9]);
+
+	versionNumber = (buffer[5] >> 1) & 0x1f;
+
+	for (i = 0; i < numtables; i++)
+	{
+		MasterGuideTable *table = new MasterGuideTable(&buffer[pos]);
+		tables.push_back(table);
+		pos += 11 + table->getDescriptorsLoopLength();
+	}
+}
+
+MasterGuideTableSection::~MasterGuideTableSection(void)
+{
+	for (MasterGuideTableListIterator i = tables.begin(); i != tables.end(); ++i)
+		delete *i;
+}
+
+uint8_t MasterGuideTableSection::getVersion(void) const
+{
+	return versionNumber;
+}
+
+const MasterGuideTableList *MasterGuideTableSection::getTables(void) const
+{
+	return &tables;
+}
+
+ATSCEvent::ATSCEvent(const uint8_t * const buffer)
+{
+	uint16_t i;
+	eventId = UINT16(&buffer[0]) & 0x3fff;
+	startTime = UINT32(&buffer[2]);
+	ETMLocation = (buffer[6] >> 4) & 0x3;
+	lengthInSeconds = UINT32(&buffer[5]) & 0xfffff;
+
+	titleLength = buffer[9];
+	title = new MultipleStringStructure(&buffer[10]);
+
+	descriptorsLoopLength = DVB_LENGTH(&buffer[10 + titleLength]) & 0xfff;
+
+	for (i = 12 + titleLength; i < 12 + titleLength + descriptorsLoopLength; i += buffer[i + 1] + 2)
+		descriptor(&buffer[i], SCOPE_SI);
+}
+
+ATSCEvent::~ATSCEvent(void)
+{
+	delete title;
+}
+
+const std::string ATSCEvent::getTitle(const std::string &language) const
+{
+	if (title)
+	{
+		const StringValueList *valuelist = title->getStrings();
+		if (valuelist)
+		{
+			if (language.empty() || language == "---")
+			{
+				if (valuelist->begin() != valuelist->end()) return (*valuelist->begin())->getValue();
+			}
+			else
+			{
+				for (StringValueListConstIterator i = valuelist->begin(); i != valuelist->end(); i++)
+				{
+					if ((*i)->getIso639LanguageCode() == language)
+					{
+						return (*i)->getValue();
+					}
+				}
+			}
+		}
+	}
+	return "";
+}
+
+uint16_t ATSCEvent::getEventId(void) const
+{
+	return eventId;
+}
+
+uint8_t ATSCEvent::getETMLocation(void) const
+{
+	return ETMLocation;
+}
+
+uint32_t ATSCEvent::getStartTime(void) const
+{
+	return startTime;
+}
+
+uint32_t ATSCEvent::getLengthInSeconds(void) const
+{
+	return lengthInSeconds;
+}
+
+uint16_t ATSCEvent::getTitleLength(void) const
+{
+	return titleLength;
+}
+
+uint16_t ATSCEvent::getDescriptorsLoopLength(void) const
+{
+	return descriptorsLoopLength;
+}
+
+ATSCEventInformationSection::ATSCEventInformationSection(const uint8_t * const buffer) : LongCrcSection(buffer)
+{
+	uint16_t pos = 10;
+	uint8_t i;
+	uint8_t numevents = buffer[9];
+
+	versionNumber = (buffer[5] >> 1) & 0x1f;
+
+	for (i = 0; i < numevents; i++)
+	{
+		ATSCEvent *event = new ATSCEvent(&buffer[pos]);
+		events.push_back(event);
+		pos += 12 + event->getTitleLength() + event->getDescriptorsLoopLength();
+	}
+}
+
+ATSCEventInformationSection::~ATSCEventInformationSection(void)
+{
+	for (ATSCEventListIterator i = events.begin(); i != events.end(); ++i)
+		delete *i;
+}
+
+uint8_t ATSCEventInformationSection::getVersion(void) const
+{
+	return versionNumber;
+}
+
+const ATSCEventList *ATSCEventInformationSection::getEvents(void) const
+{
+	return &events;
+}
+
+ExtendedTextTableSection::ExtendedTextTableSection(const uint8_t * const buffer) : LongCrcSection(buffer)
+{
+	versionNumber = (buffer[5] >> 1) & 0x1f;
+	ETMId = UINT32(&buffer[9]);
+
+	message = new MultipleStringStructure(&buffer[13]);
+}
+
+ExtendedTextTableSection::~ExtendedTextTableSection()
+{
+	delete message;
+}
+
+uint8_t ExtendedTextTableSection::getVersion(void) const
+{
+	return versionNumber;
+}
+
+uint32_t ExtendedTextTableSection::getETMId(void) const
+{
+	return ETMId;
+}
+
+const std::string ExtendedTextTableSection::getMessage(const std::string &language) const
+{
+	if (message)
+	{
+		const StringValueList *valuelist = message->getStrings();
+		if (valuelist)
+		{
+			if (language.empty() || language == "---")
+			{
+				if (valuelist->begin() != valuelist->end()) return (*valuelist->begin())->getValue();
+			}
+			else
+			{
+				for (StringValueListConstIterator i = valuelist->begin(); i != valuelist->end(); i++)
+				{
+					if ((*i)->getIso639LanguageCode() == language) return (*i)->getValue();
+				}
+			}
+		}
+	}
+	return "";
+}
