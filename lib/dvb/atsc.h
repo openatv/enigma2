@@ -6,19 +6,38 @@
 #include <dvbsi++/long_crc_section.h>
 #include <dvbsi++/descriptor_container.h>
 
+class StringSegment
+{
+protected:
+	std::vector<uint8_t> dataBytes;
+	uint8_t mode;
+	uint8_t compression;
+
+public:
+	StringSegment(const uint8_t *const buffer);
+	~StringSegment(void);
+
+	const uint8_t getMode(void) const;
+	const uint8_t getCompression(void) const;
+	const std::vector<uint8_t> &getData(void) const;
+	const std::string getValue(void) const;
+};
+
 class StringValue
 {
 protected:
 	std::string iso639LanguageCode;
-	std::string value;
 	uint32_t size;
+	std::vector<StringSegment *> segments;
 
 public:
 	StringValue(const uint8_t *const buffer);
+	~StringValue(void);
 
 	const uint32_t getSize(void) const;
 	const std::string &getIso639LanguageCode(void) const;
-	const std::string &getValue(void) const;
+	const std::vector<StringSegment *> &getSegments(void) const;
+	const std::string getValue(void) const;
 };
 
 typedef std::list<StringValue*> StringValueList;
