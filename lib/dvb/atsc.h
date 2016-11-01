@@ -114,7 +114,7 @@ public:
 	ExtendedChannelNameDescriptor(const uint8_t * const buffer);
 	~ExtendedChannelNameDescriptor(void);
 
-	const std::string &getName(void) const;
+	const std::string getName(void) const;
 };
 
 class SystemTimeTableSection : public DescriptorContainer, public LongCrcSection
