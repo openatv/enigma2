@@ -324,7 +324,12 @@
 		<widget source="parent.number_summary" render="Label" position="0,75" size="220,45" font="FdLcD;40" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>	
-		
+
+<!-- RDS info -->
+	<screen name="RdsInfoDisplaySummary" position="fill">
+		<widget source="message" render="Label" position="0,0" size="220,176" font="FdLcD;30" halign="center" valign="center" />
+	</screen>
+
 <!-- Infopanel -->
 	<screen name="Infopanel_summary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,0" foregroundColor="#FFFF00" size="220,80" font="FdLcD;35" halign="center" valign="top" />

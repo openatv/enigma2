@@ -51,7 +51,7 @@
 	<widget source="global.CurrentTime" render="Label" position="2,35" size="396,110" font="LCD1;110" valign="top" halign="center" foregroundColor="oled1" zPosition="2" transparent="1" backgroundColor="#000000">
 		<convert type="ClockToText">Default</convert>
 	</widget>
-	<widget source="session.RecordState" render="FixedLabel" text="Aufnahme" position="0,160" size="400,60" font="LCD1;60" halign="center" zPosition="3" transparent="1" foregroundColor="#FF0000" backgroundColor="#000000" >
+	<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,160" size="400,60" font="LCD1;60" halign="center" zPosition="3" transparent="1" foregroundColor="#FF0000" backgroundColor="#000000" >
 		<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
 		<convert type="ConditionalShowHide">Blink</convert>
 	 </widget>
