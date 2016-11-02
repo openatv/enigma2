@@ -797,7 +797,7 @@ class oscInfo(Screen, OscamInfo):
 				self["key_yellow"].setText("Servers")
 				self["key_blue"].setText("Log")
 			elif self.what == "s":
-				self.setTitle("Server Info( Oscam-Version: %s )" % self.getVersion())
+				self.setTitle("Server Info ( Oscam-Version: %s )" % self.getVersion())
 				self["key_green"].setText("Clients")
 				self["key_yellow"].setText("")
 				self["key_blue"].setText("Log")
