@@ -685,6 +685,9 @@ class NIM(object):
 				self.multi_type = {}
 				for type in types:
 					self.multi_type[str(types.index(type))] = type
+			else:
+				print "[NIM] DVB API not reporting tuner %d as multitype" % self.frontend_id
+				self.multi_type = {}
 
 	def isCompatible(self, what):
 		if not self.isSupported():
