@@ -7,25 +7,6 @@
 #include <dvbsi++/byte_stream.h>
 #include <dvbsi++/descriptor_tag.h>
 
-static std::string UTF16ToUTF8(uint16_t c)
-{
-	if (c < 0x80)
-	{
-		char utf[2] = {(char)c, 0};
-		return std::string((char*)utf, 1);
-	}
-	else if (c < 0x800)
-	{
-		char utf[3] = { (char)(0xc0 | (c >> 6)), (char)(0x80 | (c & 0x3f)), 0};
-		return std::string((char*)utf, 2);
-	}
-	else
-	{
-		char utf[4] = { (char)(0xe0 | (c >> 12)), (char)(0x80 | ((c >> 6) & 0x3f)), (char)(0x80 | (c & 0x3f)), 0};
-		return std::string((char*)utf, 3);
-	}
-	return "";
-}
 
 StringSegment::StringSegment(const uint8_t *const buffer)
 {
@@ -57,7 +38,7 @@ const std::vector<uint8_t> &StringSegment::getData(void) const
 const std::string StringSegment::getValue(void) const
 {
 	std::string value;
-	size_t k;
+	iconv_t cd = (iconv_t)-1;
 
 	switch (compression)
 	{
@@ -99,9 +80,24 @@ const std::string StringSegment::getValue(void) const
 	case 0x31:
 	case 0x32:
 	case 0x33:
-		for (k = 0; k < dataBytes.size(); k++)
+		cd = iconv_open("UTF-8", "UCS-2BE");
+		if (cd != (iconv_t)-1)
 		{
-			value += UTF16ToUTF8(mode << 8 | dataBytes[k]);
+			for (size_t k = 0; k < dataBytes.size(); k++)
+			{
+				char outbuf[8];
+				size_t insize = 2;
+				size_t avail = sizeof(outbuf);
+				unsigned char inbuf[2] = {mode, dataBytes[k]};
+				char *inptr = (char*)inbuf;
+				char *wrptr = outbuf;
+				size_t nconv = iconv(cd, &inptr, &insize, &wrptr, &avail);
+				if (nconv != (size_t)-1)
+				{
+					value.append(outbuf, sizeof(outbuf) - avail);
+				}
+			}
+			iconv_close(cd);
 		}
 		break;
 	case 0x3e:
@@ -109,10 +105,27 @@ const std::string StringSegment::getValue(void) const
 		break;
 	case 0x3f:
 		/* UTF-16 */
-		for (k = 0; k < dataBytes.size(); k += 2)
+		cd = iconv_open("UTF-8", "UTF-16BE");
+		if (cd != (iconv_t)-1)
 		{
-			value += UTF16ToUTF8(dataBytes[k] << 8 | dataBytes[k + 1]);
+			for (size_t k = 0; k < dataBytes.size(); k += 2)
+			{
+				char outbuf[8];
+				size_t insize = 2;
+				size_t avail = sizeof(outbuf);
+				unsigned char inbuf[2] = {dataBytes[k], dataBytes[k + 1]};
+				char *inptr = (char*)inbuf;
+				char *wrptr = outbuf;
+				size_t nconv = iconv(cd, &inptr, &insize, &wrptr, &avail);
+				if (nconv != (size_t)-1)
+				{
+					value.append(outbuf, sizeof(outbuf) - avail);
+				}
+			}
+			iconv_close(cd);
 		}
+		break;
+	case 0xff: /* 'not applicable' (used for Huffman encoded data) */
 		break;
 	}
 	return value;
