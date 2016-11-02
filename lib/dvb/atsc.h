@@ -61,6 +61,8 @@ class VirtualChannel : public DescriptorContainer
 {
 protected:
 	std::string name;
+	unsigned majorChannelNumber : 10;
+	unsigned minorChannelNumber : 10;
 	unsigned transportStreamId : 16;
 	unsigned serviceId : 16;
 	unsigned sourceId : 16;
@@ -73,6 +75,8 @@ public:
 	~VirtualChannel(void);
 
 	const std::string &getName(void) const;
+	uint16_t getMajorChannelNumber(void) const;
+	uint16_t getMinorChannelNumber(void) const;
 	uint16_t getTransportStreamId(void) const;
 	uint16_t getServiceId(void) const;
 	uint16_t getSourceId(void) const;

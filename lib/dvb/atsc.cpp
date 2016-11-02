@@ -196,6 +196,8 @@ VirtualChannel::VirtualChannel(const uint8_t * const buffer, bool terrestrial)
 	{
 		name += UTF16ToUTF8(buffer[2 * i] << 8 | buffer[2 * i + 1]);
 	}
+	majorChannelNumber = (UINT16(&buffer[14]) >> 2) & 0x3ff;
+	minorChannelNumber = UINT16(&buffer[15]) & 0x3ff;
 	transportStreamId = UINT16(&buffer[22]);
 	serviceId = UINT16(&buffer[24]);
 	accessControlled = (buffer[26] >> 5) & 0x1;
@@ -224,6 +226,16 @@ VirtualChannel::~VirtualChannel(void)
 const std::string &VirtualChannel::getName(void) const
 {
 	return name;
+}
+
+uint16_t VirtualChannel::getMajorChannelNumber(void) const
+{
+	return majorChannelNumber;
+}
+
+uint16_t VirtualChannel::getMinorChannelNumber(void) const
+{
+	return minorChannelNumber;
 }
 
 uint16_t VirtualChannel::getTransportStreamId(void) const
