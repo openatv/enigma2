@@ -114,15 +114,14 @@ class ServiceInfo(Screen):
 
 		self["infolist"] = ServiceInfoList([])
 		self.setTitle(_("Service info"))
+
+		self.transponder_info = self.info = self.feinfo = None
 		if serviceref and session.nav.getCurrentlyPlayingServiceReference() != serviceref:
 			screentitle = _("Transponder Information")
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
-			info = eServiceCenter.getInstance().info(serviceref)
-			self.transponder_info = info.getInfoObject(serviceref, iServiceInformation.sTransponderData)
+			self.transponder_info = eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
-			self.info = None
-			self.feinfo = None
 		else:
 			screentitle = _("Service Information")
 			self.type = TYPE_SERVICE_INFO
@@ -131,11 +130,12 @@ class ServiceInfo(Screen):
 			self["key_blue"] = self["blue"] = Label(_("Tuner setting values"))
 			service = session.nav.getCurrentService()
 			if service is not None:
+				self.transponder_info = None
 				self.info = service.info()
 				self.feinfo = service.frontendInfo()
-			else:
-				self.info = None
-				self.feinfo = None
+				if not self.feinfo.getAll(True):
+					serviceref = session.nav.getCurrentlyPlayingServiceReference()
+					self.transponder_info = serviceref and eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
 
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
@@ -199,22 +199,27 @@ class ServiceInfo(Screen):
 
 	def ShowTransponderInformation(self):
 		if self.type == TYPE_SERVICE_INFO:
-			if self["key_blue"].text == _("Tuner setting values"):
+			if self.feinfo.getAll(True):
+				if self["key_blue"].text == _("Tuner setting values"):
+					self["Title"].text = _("Service info - tuner setting values")
+					self["key_blue"].text = self["blue"].text = _("Tuner live values")
+				else:
+					self["Title"].text = _("Service info - tuner live values")
+					self["key_blue"].text = self["blue"].text = _("Tuner setting values")		
+				frontendData = self.feinfo and self.feinfo.getAll(self.getTitle() == _("Service info - tuner setting values"))
+				self.fillList(self.getFEData(frontendData))
+			elif self.transponder_info:
 				self["Title"].text = _("Service info - tuner setting values")
-				self["key_blue"].text = self["blue"].text = _("Tuner live values")
-			else:
-				self["Title"].text = _("Service info - tuner live values")
-				self["key_blue"].text = self["blue"].text = _("Tuner setting values")
-			frontendData = self.feinfo and self.feinfo.getAll(self.getTitle() == _("Service info - tuner setting values"))
-			self.fillList(self.getFEData(frontendData))
+				self["key_blue"].text = self["blue"].text = _("Tuner setting values")		
+				self.fillList(self.getFEData(self.transponder_info))
 
 	def getFEData(self, frontendDataOrg):
 		if frontendDataOrg and len(frontendDataOrg):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
-			if self.type == TYPE_SERVICE_INFO:
-				tuner = (_("NIM & Type"), chr(ord('A') + frontendData["tuner_number"]) + " - " + frontendData["tuner_type"], TYPE_TEXT)
-			else:
+			if self.transponder_info:
 				tuner = (_("Type"), frontendData["tuner_type"], TYPE_TEXT)
+			else:
+				tuner = (_("NIM & Type"), chr(ord('A') + frontendData["tuner_number"]) + " - " + frontendData["tuner_type"], TYPE_TEXT)
 			if frontendDataOrg["tuner_type"] == "DVB-S":
 				return (tuner,
 					(_("System & Modulation"), frontendData["system"] + " " + frontendData["modulation"], TYPE_TEXT),
