@@ -114,7 +114,7 @@ class ServiceInfo(Screen):
 
 		self["infolist"] = ServiceInfoList([])
 		self.setTitle(_("Service info"))
-		if serviceref:
+		if serviceref and session.nav.getCurrentlyPlayingServiceReference() != serviceref:
 			screentitle = _("Transponder Information")
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
