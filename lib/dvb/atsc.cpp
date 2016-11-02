@@ -205,9 +205,24 @@ const StringValueList *MultipleStringStructure::getStrings(void) const
 VirtualChannel::VirtualChannel(const uint8_t * const buffer, bool terrestrial)
 {
 	int i;
-	for (i = 0; i < 7; i++)
+	iconv_t cd = iconv_open("UTF-8", "UCS-2BE");
+	if (cd != (iconv_t)-1)
 	{
-		name += UTF16ToUTF8(buffer[2 * i] << 8 | buffer[2 * i + 1]);
+		for (i = 0; i < 7; i++)
+		{
+			char outbuf[8];
+			size_t insize = 2;
+			size_t avail = sizeof(outbuf);
+			unsigned char inbuf[2] = {buffer[2 * i], buffer[2 * i + 1]};
+			char *inptr = (char*)inbuf;
+			char *wrptr = outbuf;
+			size_t nconv = iconv(cd, &inptr, &insize, &wrptr, &avail);
+			if (nconv != (size_t)-1)
+			{
+				name.append(outbuf, sizeof(outbuf) - avail);
+			}
+		}
+		iconv_close(cd);
 	}
 	majorChannelNumber = (UINT16(&buffer[14]) >> 2) & 0x3ff;
 	minorChannelNumber = UINT16(&buffer[15]) & 0x3ff;
