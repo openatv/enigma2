@@ -460,7 +460,7 @@ const std::string ATSCEvent::getTitle(const std::string &language) const
 			{
 				for (StringValueListConstIterator i = valuelist->begin(); i != valuelist->end(); i++)
 				{
-					if ((*i)->getIso639LanguageCode() == language)
+					if (language.find((*i)->getIso639LanguageCode()) != std::string::npos)
 					{
 						return (*i)->getValue();
 					}
@@ -571,7 +571,7 @@ const std::string ExtendedTextTableSection::getMessage(const std::string &langua
 			{
 				for (StringValueListConstIterator i = valuelist->begin(); i != valuelist->end(); i++)
 				{
-					if ((*i)->getIso639LanguageCode() == language) return (*i)->getValue();
+					if (language.find((*i)->getIso639LanguageCode()) != std::string::npos) return (*i)->getValue();
 				}
 			}
 		}
