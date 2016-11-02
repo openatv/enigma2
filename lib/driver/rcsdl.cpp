@@ -19,12 +19,12 @@ eSDLInputDevice::~eSDLInputDevice()
 void eSDLInputDevice::handleCode(long arg)
 {
 	const SDL_KeyboardEvent *event = (const SDL_KeyboardEvent *)arg;
-	const SDL_keysym *key = &event->keysym;
+	const SDL_Keysym *key = &event->keysym;
 	int km = input->getKeyboardMode();
 	int code, flags;
 
 	if (event->type == SDL_KEYDOWN) {
-		m_unicode = key->unicode;
+//		m_unicode = key->unicode;
 		flags = eRCKey::flagMake;
 	} else {
 		flags = eRCKey::flagBreak;
@@ -75,7 +75,7 @@ const char *eSDLInputDevice::getDescription() const
 	return "SDL";
 }
 
-int eSDLInputDevice::translateKey(SDLKey key)
+int eSDLInputDevice::translateKey(SDL_Keycode key)
 {
 	#define P(a)	case SDLK_##a: return KEY_##a
 	#define P2(a,b)	case SDLK_##a: return KEY_##b
@@ -266,16 +266,16 @@ int eSDLInputDevice::translateKey(SDLKey key)
 	P(WORLD_94);
 	P(WORLD_95);
 #endif
-	P(KP0);
-	P(KP1);
-	P(KP2);
-	P(KP3);
-	P(KP4);
-	P(KP5);
-	P(KP6);
-	P(KP7);
-	P(KP8);
-	P(KP9);
+//	P(KP0);
+//	P(KP1);
+//	P(KP2);
+//	P(KP3);
+//	P(KP4);
+//	P(KP5);
+//	P(KP6);
+//	P(KP7);
+//	P(KP8);
+//	P(KP9);
 	P2(KP_PERIOD,KPDOT);
 	P2(KP_DIVIDE,KPSLASH);
 	P2(KP_MULTIPLY,KPASTERISK);
@@ -307,30 +307,30 @@ int eSDLInputDevice::translateKey(SDLKey key)
 	P(F13);
 	P(F14);
 	P(F15);
-	P(NUMLOCK);
+//	P(NUMLOCK);
 	P(CAPSLOCK);
-	P2(SCROLLOCK,SCROLLLOCK);
+//	P2(SCROLLOCK,SCROLLLOCK);
 	P2(RSHIFT,RIGHTSHIFT);
 	P2(LSHIFT,LEFTSHIFT);
 	P2(RCTRL,RIGHTCTRL);
 	P2(LCTRL,LEFTCTRL);
 	P2(RALT,RIGHTALT);
 	P2(LALT,LEFTALT);
-	P2(RMETA,RIGHTMETA);
-	P2(LMETA,LEFTMETA);
+//	P2(RMETA,RIGHTMETA);
+//	P2(LMETA,LEFTMETA);
 #if 0
 	P(LSUPER);
 	P(RSUPER);
 #endif
 	P(MODE);
-	P(COMPOSE);
+//	P(COMPOSE);
 	P(HELP);
-	P(PRINT);
+//	P(PRINT);
 	P2(SYSREQ,SYSRQ);
-	P(BREAK);
+//	P(BREAK);
 	P(MENU);
 	P(POWER);
-	P(EURO);
+//	P(EURO);
 	P(UNDO);
 	default:
 		eDebug("[eSDLInputDevice] unhandled SDL keycode: %d", key);
