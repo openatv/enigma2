@@ -1026,12 +1026,13 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	// fill borders with background color
 	if (xfill != 0 || yfill != 0) {
 		unsigned int background;
+		gRGB bg(m_conf.background);
 		if (m_filepara->bits == 8) {
-			gRGB bg(m_conf.background);
 			background = surface->clut.findColor(bg);
 		}
 		else {
-			background = m_conf.background;
+			bg.a = 255 - bg.a;
+			background = bg.argb();
 		}
 		if (yfill != 0) {
 			if (surface->bypp == 1) {
