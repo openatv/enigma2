@@ -825,8 +825,8 @@ int eDVBFrontend::openFrontend()
 	}
 	else
 	{
-		fe_info.frequency_min = 900000;
-		fe_info.frequency_max = 2200000;
+		m_fe_info[SYS_DVBS].frequency_min = m_fe_info[SYS_DVBS2].frequency_min = 900000;
+		m_fe_info[SYS_DVBS].frequency_max = m_fe_info[SYS_DVBS2].frequency_max = 2200000;
 	}
 	m_multitype = (
 		m_delsys[SYS_DVBS] && m_delsys[SYS_DVBT])
@@ -2670,7 +2670,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 			feparm.pls_code);
 		if ((unsigned int)satfrequency < m_fe_info[SYS_DVBS].frequency_min || (unsigned int)satfrequency > m_fe_info[SYS_DVBS].frequency_max)
 		{
-			eDebugNoSimulate("%d MHz out of tuner range.. dont tune (min: %d MHz max: d% MHz)", satfrequency / 1000, m_fe_info[SYS_DVBS].frequency_min/1000, m_fe_info[SYS_DVBS].frequency_max/1000);
+			eDebugNoSimulate("%d MHz out of tuner range.. dont tune (min: %d MHz max: %d MHz)", satfrequency / 1000, m_fe_info[SYS_DVBS].frequency_min/1000, m_fe_info[SYS_DVBS].frequency_max/1000);
 			return -EINVAL;
 		}
 		eDebugNoSimulate("tuning to %d MHz", satfrequency / 1000);
@@ -2890,8 +2890,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		}
 		m_rotor_mode = feparm.no_rotor_command_on_tune;
 		if (!m_simulate)
+		{
 			m_sec->setRotorMoving(m_slotid, false);
-		changeType(feSatellite);
+			changeType(feSatellite);
+		}
 		res=prepare_sat(feparm, timeout);
 		if (res)
 			goto tune_error;
