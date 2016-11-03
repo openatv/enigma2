@@ -15,10 +15,12 @@ class eDVBServiceEITHandler: public Object
 	eAUTable<eTable<EventInformationSection> > *m_EIT;
 	eAUTable<eTable<MasterGuideTableSection> > *m_ATSC_MGT;
 	eAUTable<eTable<ATSCEventInformationSection> > *m_ATSC_EIT;
-	eAUTable<eTable<ExtendedTextTableSection> > *m_ATSC_ETT;
+	ePtr<iDVBSectionReader> m_now_ETT, m_next_ETT;
+	ePtr<eConnection> m_now_conn, m_next_conn;
 	void MGTready(int error);
 	void EITready(int error);
-	void ETTready(int error);
+	void nowETTsection(const uint8_t *d);
+	void nextETTsection(const uint8_t *d);
 
 	RESULT parseEvent(ePtr<eServiceEvent> &serviceevent, const Event &dvbevent);
 

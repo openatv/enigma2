@@ -32,7 +32,6 @@ void eDVBServiceEITHandler::EITready(int error)
 		}
 		else if (m_ATSC_EIT)
 		{
-			bool hasETM = false;
 			ePtr<eTable<ATSCEventInformationSection> > ptr;
 			if (!m_ATSC_EIT->getCurrent(ptr))
 			{
@@ -45,10 +44,33 @@ void eDVBServiceEITHandler::EITready(int error)
 					{
 						ePtr<eServiceEvent> evt = new eServiceEvent();
 						evt->parseFrom(*ev);
-						if ((*ev)->getETMLocation() == 1)
+						if (ETTpid != -1 && (*ev)->getETMLocation() == 1)
 						{
 							/* ETM on current transponder */
-							hasETM = true;
+							uint32_t etm = ((sourceId & 0xffff) << 16) | ((evt->getEventId() & 0x3fff) << 2) | 0x2;
+							eDVBSectionFilterMask mask;
+							memset(&mask, 0, sizeof(mask));
+							mask.pid   = ETTpid;
+							mask.flags = eDVBSectionFilterMask::rfCRC;
+							mask.data[0] = 0xcc;
+							mask.mask[0] = 0xff;
+							mask.data[7] = (etm >> 24) & 0xff;
+							mask.data[8] = (etm >> 16) & 0xff;
+							mask.data[9] = (etm >> 8) & 0xff;
+							mask.data[10] = etm & 0xff;
+							mask.mask[7] = mask.mask[8] = mask.mask[9] = mask.mask[10] = 0xff;
+							if (!a)
+							{
+								m_demux->createSectionReader(eApp, m_now_ETT);
+								m_now_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nowETTsection), m_now_conn);
+								m_now_ETT->start(mask);
+							}
+							else
+							{
+								m_demux->createSectionReader(eApp, m_next_ETT);
+								m_next_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nextETTsection), m_now_conn);
+								m_next_ETT->start(mask);
+							}
 						}
 						if (!a)
 							m_event_now = evt;
@@ -59,13 +81,6 @@ void eDVBServiceEITHandler::EITready(int error)
 					}
 					if (a > 1) break;
 				}
-			}
-			if (hasETM && ETTpid != -1)
-			{
-				delete m_ATSC_ETT;
-				m_ATSC_ETT = new eAUTable<eTable<ExtendedTextTableSection> >();
-				CONNECT(m_ATSC_ETT->tableReady, eDVBServiceEITHandler::ETTready);
-				m_ATSC_ETT->begin(eApp, eATSCETTSpec(ETTpid), m_demux);
 			}
 		}
 	}
@@ -118,37 +133,24 @@ void eDVBServiceEITHandler::MGTready(int error)
 	}
 }
 
-void eDVBServiceEITHandler::ETTready(int error)
+void eDVBServiceEITHandler::nowETTsection(const uint8_t *d)
 {
-	if (!error)
-	{
-		if (m_ATSC_ETT)
-		{
-			bool update = false;
-			uint32_t nowetm = ((sourceId & 0xffff) << 16) | ((m_event_now->getEventId() & 0x3fff) << 2) | 0x2;
-			uint32_t nextetm = ((sourceId & 0xffff) << 16) | ((m_event_next->getEventId() & 0x3fff) << 2) | 0x2;
-			ePtr<eTable<ExtendedTextTableSection> > ptr;
-			if (!m_ATSC_ETT->getCurrent(ptr))
-			{
-				for (std::vector<ExtendedTextTableSection*>::const_iterator i = ptr->getSections().begin();
-					i != ptr->getSections().end(); ++i)
-				{
-					const ExtendedTextTableSection *ett = *i;
-					if (ett->getETMId() == nowetm)
-					{
-						m_event_now->parseFrom(ett);
-						update = true;
-					}
-					else if (ett->getETMId() == nextetm)
-					{
-						m_event_next->parseFrom(ett);
-						update = true;
-					}
-				}
-			}
-			if (update) m_eit_changed(0);
-		}
-	}
+	ExtendedTextTableSection ett(d);
+	if (m_event_now) m_event_now->parseFrom(&ett);
+	m_now_ETT->stop();
+	m_now_ETT = NULL;
+	m_now_conn = NULL;
+	m_eit_changed(0);
+}
+
+void eDVBServiceEITHandler::nextETTsection(const uint8_t *d)
+{
+	ExtendedTextTableSection ett(d);
+	if (m_event_next) m_event_next->parseFrom(&ett);
+	m_next_ETT->stop();
+	m_next_ETT = NULL;
+	m_next_conn = NULL;
+	m_eit_changed(0);
 }
 
 void eDVBServiceEITHandler::inject(ePtr<eServiceEvent> &event, int nownext)
@@ -165,7 +167,6 @@ eDVBServiceEITHandler::eDVBServiceEITHandler()
 	m_EIT = NULL;
 	m_ATSC_MGT = NULL;
 	m_ATSC_EIT = NULL;
-	m_ATSC_ETT = NULL;
 	ETTpid = -1;
 }
 
@@ -174,7 +175,10 @@ eDVBServiceEITHandler::~eDVBServiceEITHandler()
 	delete m_EIT;
 	delete m_ATSC_MGT;
 	delete m_ATSC_EIT;
-	delete m_ATSC_ETT;
+	m_now_ETT = NULL;
+	m_now_conn = NULL;
+	m_next_ETT = NULL;
+	m_next_conn = NULL;
 }
 
 void eDVBServiceEITHandler::start(iDVBDemux *demux, const eServiceReferenceDVB &ref)
