@@ -62,15 +62,10 @@ void eDVBServiceEITHandler::EITready(int error)
 			}
 			if (hasETM && ETTpid != -1)
 			{
-				if (!m_ATSC_ETT)
-				{
-					m_ATSC_ETT = new eAUTable<eTable<ExtendedTextTableSection> >();
-					CONNECT(m_ATSC_ETT->tableReady, eDVBServiceEITHandler::ETTready);
-				}
-				if (m_ATSC_ETT)
-				{
-					m_ATSC_ETT->begin(eApp, eATSCETTSpec(ETTpid), m_demux);
-				}
+				delete m_ATSC_ETT;
+				m_ATSC_ETT = new eAUTable<eTable<ExtendedTextTableSection> >();
+				CONNECT(m_ATSC_ETT->tableReady, eDVBServiceEITHandler::ETTready);
+				m_ATSC_ETT->begin(eApp, eATSCETTSpec(ETTpid), m_demux);
 			}
 		}
 	}
@@ -80,7 +75,6 @@ void eDVBServiceEITHandler::EITready(int error)
 
 void eDVBServiceEITHandler::MGTready(int error)
 {
-	ETTpid = -1;
 	int eitpid = -1;
 	if (!error)
 	{
@@ -113,15 +107,10 @@ void eDVBServiceEITHandler::MGTready(int error)
 
 	if (eitpid != -1)
 	{
-		if (!m_ATSC_EIT)
-		{
-			m_ATSC_EIT = new eAUTable<eTable<ATSCEventInformationSection> >();
-			CONNECT(m_ATSC_EIT->tableReady, eDVBServiceEITHandler::EITready);
-		}
-		if (m_ATSC_EIT)
-		{
-			m_ATSC_EIT->begin(eApp, eATSCEITSpec(eitpid, sourceId), m_demux);
-		}
+		delete m_ATSC_EIT;
+		m_ATSC_EIT = new eAUTable<eTable<ATSCEventInformationSection> >();
+		CONNECT(m_ATSC_EIT->tableReady, eDVBServiceEITHandler::EITready);
+		m_ATSC_EIT->begin(eApp, eATSCEITSpec(eitpid, sourceId), m_demux);
 	}
 	else
 	{
@@ -177,6 +166,7 @@ eDVBServiceEITHandler::eDVBServiceEITHandler()
 	m_ATSC_MGT = NULL;
 	m_ATSC_EIT = NULL;
 	m_ATSC_ETT = NULL;
+	ETTpid = -1;
 }
 
 eDVBServiceEITHandler::~eDVBServiceEITHandler()
@@ -193,11 +183,9 @@ void eDVBServiceEITHandler::start(iDVBDemux *demux, const eServiceReferenceDVB &
 	m_demux = demux;
 	if (sourceId)
 	{
-		if (!m_ATSC_MGT)
-		{
-			m_ATSC_MGT = new eAUTable<eTable<MasterGuideTableSection> >();
-			CONNECT(m_ATSC_MGT->tableReady, eDVBServiceEITHandler::MGTready);
-		}
+		delete m_ATSC_MGT;
+		m_ATSC_MGT = new eAUTable<eTable<MasterGuideTableSection> >();
+		CONNECT(m_ATSC_MGT->tableReady, eDVBServiceEITHandler::MGTready);
 		m_ATSC_MGT->begin(eApp, eATSCMGTSpec(), m_demux);
 	}
 	else
@@ -208,11 +196,9 @@ void eDVBServiceEITHandler::start(iDVBDemux *demux, const eServiceReferenceDVB &
 			sid = ref.getServiceID().get();
 		}
 
-		if (!m_EIT)
-		{
-			m_EIT = new eAUTable<eTable<EventInformationSection> >();
-			CONNECT(m_EIT->tableReady, eDVBServiceEITHandler::EITready);
-		}
+		delete m_EIT;
+		m_EIT = new eAUTable<eTable<EventInformationSection> >();
+		CONNECT(m_EIT->tableReady, eDVBServiceEITHandler::EITready);
 		if (ref.getParentTransportStreamID().get() && ref.getParentTransportStreamID() != ref.getTransportStreamID())
 		{
 			m_EIT->begin(eApp, eDVBEITSpecOther(sid), m_demux);
