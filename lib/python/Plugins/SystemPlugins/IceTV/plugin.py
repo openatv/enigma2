@@ -47,6 +47,7 @@ def _logResponseException(logger, heading, exception):
         if ex_text:
             msg += "\n" + ex_text
     logger.addLog(msg)
+    return msg
 
 class EPGFetcher(object):
     def __init__(self):
@@ -142,7 +143,7 @@ class EPGFetcher(object):
         try:
             self.channel_service_map = self.makeChanServMap(self.getChannels())
         except (Exception) as ex:
-            _logResponseException(self, "Can not retrieve channel map", ex)
+            _logResponseException(self, _("Can not retrieve channel map"), ex)
             return False
         try:
             shows = self.getShows()
@@ -164,7 +165,7 @@ class EPGFetcher(object):
                 # Ignore 404s when there are no EPG updates - buggy server
                 self.addLog("No EPG updates")
             else:
-                _logResponseException(self, "Can not download EPG", ex)
+                _logResponseException(self, _("Can not download EPG"), ex)
                 res = False
         try:
             ice_timers = self.getTimers()
@@ -172,7 +173,7 @@ class EPGFetcher(object):
                 res = False
             self.addLog("End update")
         except (Exception) as ex:
-            _logResponseException(self, "Can not download timers", ex)
+            _logResponseException(self, _("Can not download timers"), ex)
             res = False
         if not ice.haveCredentials() and not password_requested:
             password_requested = True
@@ -310,7 +311,7 @@ class EPGFetcher(object):
             print "[IceTV] ", str(ex)
             res = False
         except (IOError, RuntimeError) as ex:
-            _logResponseException(self, "Can not update timers", ex)
+            _logResponseException(self, _("Can not update timers"), ex)
             res = False
         return res
 
@@ -420,14 +421,14 @@ class EPGFetcher(object):
             res = req.put().json()
             self.addLog("Timer '%s' updated OK" % local_timer.name)
         except (IOError, RuntimeError, KeyError) as ex:
-            _logResponseException(self, "Can not update timer", ex)
+            _logResponseException(self, _("Can not update timer"), ex)
 
     def postTimer(self, local_timer):
         if self.channel_service_map is None:
             try:
                 self.channel_service_map = self.makeChanServMap(self.getChannels())
             except (IOError, RuntimeError, KeyError) as ex:
-                _logResponseException(self, "Can not retrieve channel map", ex)
+                _logResponseException(self, _("Can not retrieve channel map"), ex)
                 return
         if local_timer.ice_timer_id is None:
             try:
@@ -455,7 +456,7 @@ class EPGFetcher(object):
                     self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
 
             except (IOError, RuntimeError, KeyError) as ex:
-                _logResponseException(self, "Can not upload timer", ex)
+                _logResponseException(self, _("Can not upload timer"), ex)
         else:
             # Looks like a timer just added by IceTV, so this is an update
             self.putTimer(local_timer)
@@ -467,7 +468,7 @@ class EPGFetcher(object):
             req.delete()
             self.addLog("Timer deleted OK")
         except (IOError, RuntimeError, KeyError) as ex:
-            _logResponseException(self, "Can not delete timer", ex)
+            _logResponseException(self, _("Can not delete timer"), ex)
 
 fetcher = None
 
@@ -839,7 +840,7 @@ class IceTVRegionSetup(Screen):
             if rl:
                 self.have_region_list = True
         except (IOError, RuntimeError) as ex:
-            _logResponseException(fetcher, "Can not download list of regions", ex)
+            msg = _logResponseException(fetcher, _("Can not download list of regions"), ex)
             self["description"].setText(_("There was an error downloading the region list"))
             self["error"].setText(msg)
             self["error"].show()
@@ -916,7 +917,7 @@ class IceTVLogin(Screen):
             enableIceTV()
             fetcher.createFetchJob()
         except (IOError, RuntimeError) as ex:
-            _logResponseException(fetcher, "Login failure", ex)
+            msg = _logResponseException(fetcher, _("Login failure"), ex)
             self["instructions"].setText(_("There was an error while trying to login."))
             self["message"].hide()
             self["error"].show()
@@ -1004,8 +1005,8 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             fetcher.addLog("Login OK")
             fetcher.createFetchJob()
         except (IOError, RuntimeError) as ex:
-            _logResponseException(fetcher, "Login failure", ex)
-            self.session.open(MessageBox, _(msg), type=MessageBox.TYPE_ERROR)
+            msg = _logResponseException(fetcher, _("Login failure"), ex)
+            self.session.open(MessageBox, msg, type=MessageBox.TYPE_ERROR)
 
     def loginCmd(self):
         ice.Login(config.plugins.icetv.member.email_address.value,
