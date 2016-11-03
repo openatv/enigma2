@@ -108,14 +108,17 @@ const std::string StringSegment::getValue(void) const
 		cd = iconv_open("UTF-8", "UTF-16BE");
 		if (cd != (iconv_t)-1)
 		{
-			for (size_t k = 0; k < dataBytes.size(); k += 2)
+			size_t parsed = 2;
+			unsigned char inbuf[4];
+			for (size_t k = 0; k < dataBytes.size(); k += parsed)
 			{
 				char outbuf[8];
-				size_t insize = 2;
 				size_t avail = sizeof(outbuf);
-				unsigned char inbuf[2] = {dataBytes[k], dataBytes[k + 1]};
 				char *inptr = (char*)inbuf;
 				char *wrptr = outbuf;
+				size_t insize = parsed = (dataBytes[k] == 0xd8) ? 4 : 2;
+				if (insize > dataBytes.size() - k) insize = dataBytes.size() - k;
+				memcpy(inbuf, &dataBytes[k], insize);
 				size_t nconv = iconv(cd, &inptr, &insize, &wrptr, &avail);
 				if (nconv != (size_t)-1)
 				{
