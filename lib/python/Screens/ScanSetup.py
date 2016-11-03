@@ -787,7 +787,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 					self.list.append(ch_entry)
 
 					def ChannelChanged(configElement):
-						f = channelnumbers.channel2frequency(configElement.value, self.ter_tnumber) / 1000
+						f = channel2frequency(configElement.value, self.ter_tnumber) / 1000
 						if not self.updatingFrequency and f != self.scan_ter.frequency.value:
 							self.scan_ter.frequency.value = f
 							self["config"].invalidate(freq_entry)
@@ -795,7 +795,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 					def FrequencyChanged(configElement):
 						self.updatingFrequency = True
-						channel = channelnumbers.getChannelNumber(configElement.value * 1000, self.ter_tnumber)
+						channel = getChannelNumber(configElement.value * 1000, self.ter_tnumber)
 						if channel != self.scan_ter.channel.value:
 							self.scan_ter.channel.value = channel
 							self["config"].invalidate(ch_entry)
