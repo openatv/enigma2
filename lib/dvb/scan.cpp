@@ -247,6 +247,7 @@ RESULT eDVBScan::nextChannel()
 RESULT eDVBScan::startFilter()
 {
 	bool startSDT=true;
+	int system;
 	ASSERT(m_demux);
 
 			/* only start required filters filter */
@@ -262,6 +263,17 @@ RESULT eDVBScan::startFilter()
 		m_ch_current->getFlags(channelFlags);
 		if (channelFlags & iDVBFrontendParameters::flagOnlyFree)
 			m_flags |= scanOnlyFree;
+	}
+
+	m_VCT = 0;
+	m_ch_current->getSystem(system);
+	if (system == iDVBFrontend::feATSC)
+	{
+		m_VCT = new eTable<VirtualChannelTableSection>;
+		if (m_VCT->start(m_demux, eDVBVCTSpec()))
+			return -1;
+		CONNECT(m_VCT->tableReady, eDVBScan::VCTready);
+		startSDT = false;
 	}
 
 	m_SDT = 0;
@@ -377,6 +389,15 @@ void eDVBScan::PATready(int err)
 	if (!err)
 		m_ready |= validPAT;
 	startFilter(); // for starting the SDT filter
+}
+
+void eDVBScan::VCTready(int err)
+{
+	SCAN_eDebug("[eDVBScan] got vct %d", err);
+	m_ready |= readySDT;
+	if (!err)
+		m_ready |= validVCT;
+	channelDone();
 }
 
 void eDVBScan::PMTready(int err)
@@ -653,6 +674,25 @@ void eDVBScan::channelDone()
 		for (i = m_SDT->getSections().begin(); i != m_SDT->getSections().end(); ++i)
 			processSDT(dvbnamespace, **i);
 		m_ready &= ~validSDT;
+	}
+
+	if (m_ready & validVCT)
+	{
+		unsigned long hash = 0;
+
+		m_ch_current->getHash(hash);
+
+		int onid = 0; /* TODO: ATSC ONID? */
+		eDVBNamespace dvbnamespace = buildNamespace(
+			eOriginalNetworkID(onid),
+			(**m_VCT->getSections().begin()).getTransportStreamId(),
+			hash);
+
+		SCAN_eDebug("[eDVBScan] VCT: ");
+		std::vector<VirtualChannelTableSection*>::const_iterator i;
+		for (i = m_VCT->getSections().begin(); i != m_VCT->getSections().end(); ++i)
+			processVCT(dvbnamespace, **i, onid);
+		m_ready &= ~validVCT;
 	}
 
 	if (m_ready & validNIT)
@@ -1350,6 +1390,99 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 						service->m_ca.push_front(*i);
 					}
 					SCAN_eDebugNoNewLine("\n");
+					break;
+				}
+				default:
+					SCAN_eDebug("[eDVBScan]   descr<%x>", (*desc)->getTag());
+					break;
+				}
+			}
+
+			if (is_crypted and !service->m_ca.size())
+				service->m_ca.push_front(0);
+
+			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i =
+				m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
+
+			if (i.second)
+			{
+				m_last_service = i.first;
+				m_event(evtNewService);
+			}
+		}
+		if (m_pmt_running && m_pmt_in_progress->first == service_id)
+			m_abort_current_pmt = true;
+		else
+			m_pmts_to_read.erase(service_id);
+	}
+
+	return 0;
+}
+
+RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTableSection &vct, int onid)
+{
+	const VirtualChannelList &services = *vct.getChannels();
+	eDVBChannelID chid(dvbnamespace, vct.getTransportStreamId(), eOriginalNetworkID(onid));
+
+	/* save correct CHID for this channel */
+	m_chid_current = chid;
+
+	for (VirtualChannelListConstIterator s(services.begin()); s != services.end(); ++s)
+	{
+		unsigned short service_id = (*s)->getServiceId();
+		unsigned short source_id = (*s)->getSourceId();
+		SCAN_eDebugNoNewLineStart("[eDVBScan] SID %04x, source_id %04x: ", service_id, source_id);
+		bool is_crypted = (*s)->isAccessControlled();
+
+		if (is_crypted)
+		{
+			SCAN_eDebugNoNewLine("is scrambled!");
+		}
+		else
+		{
+			SCAN_eDebugNoNewLine("is free");
+		}
+		SCAN_eDebugNoNewLine("\n");
+
+		if (!(m_flags & scanOnlyFree) || !is_crypted)
+		{
+			eServiceReferenceDVB ref;
+			ePtr<eDVBService> service = new eDVBService;
+			int servicetype = -1;
+
+			switch ((*s)->getServiceType())
+			{
+			default:
+			case 1: /* analog tv */
+				break;
+			case 2: /* ATSC digital tv */
+				servicetype = 1;
+				break;
+			case 3: /* ATSC audio */
+				servicetype = 2;
+				break;
+			}
+
+			ref.set(chid);
+			ref.setServiceID(service_id);
+			ref.setServiceType(servicetype);
+			ref.setSourceID(source_id);
+			service->m_service_name = (*s)->getName();
+			/* strip trailing spaces */
+			service->m_service_name = service->m_service_name.erase(service->m_service_name.find_last_not_of(" ") + 1);
+
+			for (DescriptorConstIterator desc = (*s)->getDescriptors()->begin();
+					desc != (*s)->getDescriptors()->end(); ++desc)
+			{
+				switch ((*desc)->getTag())
+				{
+				case 0xa0: /* extended name descriptor */
+				{
+					ExtendedChannelNameDescriptor &d = (ExtendedChannelNameDescriptor&)**desc;
+					if (d.getName().length())
+					{
+						service->m_service_name = d.getName();
+					}
 					break;
 				}
 				default:
