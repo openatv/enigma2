@@ -143,10 +143,9 @@ StringValue::StringValue(const uint8_t *const buffer)
 	for (uint8_t i = 0; i < numsegments; i++)
 	{
 		segments.push_back(new StringSegment(pos));
-		pos++;
-		pos++;
-		uint8_t number_bytes = *pos++;
+		uint8_t number_bytes = pos[2];
 		size += 3 + number_bytes;
+		pos += 3 + number_bytes;
 	}
 }
 
