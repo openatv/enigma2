@@ -1480,6 +1480,8 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 			service->m_service_name = (*s)->getName();
 			/* strip trailing spaces */
 			service->m_service_name = service->m_service_name.erase(service->m_service_name.find_last_not_of(" ") + 1);
+			/* strip leading spaces */
+			service->m_service_name = service->m_service_name.erase(0, service->m_service_name.find_first_not_of(" "));
 
 			for (DescriptorConstIterator desc = (*s)->getDescriptors()->begin();
 					desc != (*s)->getDescriptors()->end(); ++desc)
