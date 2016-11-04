@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-16 13:53+0300\n"
-"PO-Revision-Date: 2016-10-18 13:11+0300\n"
+"POT-Creation-Date: 2016-10-27 22:05+0300\n"
+"PO-Revision-Date: 2016-10-28 12:18+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -124,6 +124,12 @@ msgid ""
 msgstr ""
 "\n"
 "Tarkvara paigaldamine ja eemaldamine."
+
+msgid " "
+msgstr ""
+
+msgid " (0 - all networks)"
+msgstr " (0 - kõik võrgud)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -1459,6 +1465,10 @@ msgstr "Sinise võimendus"
 msgid "Boost green"
 msgstr "Rohelise võimendus"
 
+#, python-format
+msgid "Bootloader:\t\t%s\n"
+msgstr "Alglaadur:\t\t%s\n"
+
 msgid "Bouquet List"
 msgstr "Lemmiknimekirjad"
 
@@ -1994,6 +2004,9 @@ msgstr "Häälestamine"
 msgid "Configuration mode: %s"
 msgstr "Häälestamine: %s"
 
+msgid "Configuration..."
+msgstr "Seadistused"
+
 msgid "Configure alignment of service events."
 msgstr "Määra saate nime asukoht."
 
@@ -2508,6 +2521,9 @@ msgstr "DVB CI viiteaeg"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB subtiitrite tausta läbipaistvus"
+
+msgid "DVB type"
+msgstr "DVB tüüp"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -3617,9 +3633,6 @@ msgstr "Lõplik asukoht indeksis"
 
 msgid "Final scroll delay"
 msgstr "Viiteaeg kerimise lõpetamisel"
-
-msgid "Find currently played service"
-msgstr "Leia aktiivne kanal"
 
 msgid "Fine movement"
 msgstr "Täppisliigutamine"
@@ -5706,9 +5719,6 @@ msgstr "Esita alates järgmisest märgist või pleilisti kirjest"
 msgid "Play from previous mark or playlist entry"
 msgstr "Esita alates eelmisest märgist või pleilisti kirjest"
 
-msgid "Play in main window"
-msgstr "Näita peaekraaniil"
-
 msgid "Play music..."
 msgstr "Mängi muusikat"
 
@@ -6199,6 +6209,10 @@ msgstr "Prioriteet"
 msgid "Process"
 msgstr "Toiming"
 
+#, python-format
+msgid "Processor temperature:\t%s"
+msgstr "Protsessori temperatuur:\t%s"
+
 msgid "Profile"
 msgstr "Profiil"
 
@@ -6326,6 +6340,9 @@ msgstr "RGB"
 
 msgid "Radio"
 msgstr "Raadio"
+
+msgid "Radio Channel Selection"
+msgstr "Raadiokanalid"
 
 msgid "Random"
 msgstr "Juhuslik"
@@ -8391,16 +8408,12 @@ msgid "System"
 msgstr "Süsteem"
 
 #, python-format
-msgid "System temperature: %s"
-msgstr "Süsteemi temperatuur: %s"
+msgid "System temperature:\t%s"
+msgstr "Süsteemi temperatuur:\t%s"
 
 #, python-format
-msgid ""
-"System temperature: %s%sC\n"
-"\n"
-msgstr ""
-"Süsteemi temperatuur: %s%sC\n"
-"\n"
+msgid "System temperature: %s"
+msgstr "Süsteemi temperatuur: %s"
 
 msgid "System: "
 msgstr "Süsteem: "
@@ -10886,7 +10899,7 @@ msgid "failed"
 msgstr "nurjus"
 
 msgid "false"
-msgstr "väär"
+msgstr "ei"
 
 msgid "fashion"
 msgstr "mood"
@@ -11554,7 +11567,7 @@ msgid "traditional (fast)"
 msgstr "klassikaline (kiire)"
 
 msgid "true"
-msgstr "tõene"
+msgstr "jah"
 
 msgid "uShare Name"
 msgstr "uShare nimi"
@@ -11758,6 +11771,9 @@ msgstr "vahetatud"
 #~ msgid "Feeds status:   Updating"
 #~ msgstr "Hoidlate olek:   Värskendamisel"
 
+#~ msgid "Find currently played service"
+#~ msgstr "Leia aktiivne kanal"
+
 #~ msgid "Image Information"
 #~ msgstr "Andmeid süsteemist"
 
@@ -11794,6 +11810,9 @@ msgstr "vahetatud"
 #~ msgid "Parental control setup"
 #~ msgstr "Lapseluku seaded"
 
+#~ msgid "Play in main window"
+#~ msgstr "Näita peaekraaniil"
+
 #~ msgid "PowerManager log"
 #~ msgstr "Toitetaimeri logi"
 
@@ -11811,6 +11830,13 @@ msgstr "vahetatud"
 
 #~ msgid "Standby / Restart"
 #~ msgstr "Seiskamine"
+
+#~ msgid ""
+#~ "System temperature: %s%sC\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Süsteemi temperatuur: %s%sC\n"
+#~ "\n"
 
 #~ msgid "This option allows you to change the virtuell loadspeaker position."
 #~ msgstr "Siin saab muuta virtuaalse kõlari asukohta."

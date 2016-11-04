@@ -154,9 +154,18 @@ class About(AboutBase):
 			tempinfo = file('/proc/stb/sensors/temp0/value').read()
 		elif path.exists('/proc/stb/fp/temp_sensor'):
 			tempinfo = file('/proc/stb/fp/temp_sensor').read()
+		elif path.exists('/proc/stb/sensors/temp/value'):
+			tempinfo = file('/proc/stb/sensors/temp/value').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			self.list.append(self.makeInfoEntry(_("System temperature:"), tempinfo.replace('\n', '') + mark + "C"))
+
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			tempinfo = file('/proc/stb/fp/temp_sensor_avs').read()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			self.list.append(self.makeInfoEntry(_("Processor temperature:"), tempinfo.replace('\n', '') + mark + "C"))
 
 		self.list.append(self.makeInfoEntry(_("GStreamer:"), about.getGStreamerVersionString().replace("GStreamer", "").strip()))
 		self.list.append(self.makeInfoEntry(_("Python:"), about.getPythonVersionString()))

@@ -66,6 +66,11 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
 			self.parent["description"].text = self.parent.getCurrentDescription()
+		if self.parent.has_key('footnote'):
+			if self.parent.getCurrentEntry().endswith('*'):
+				self.parent['footnote'].text = (_("* = Restart Required"))
+			else:
+				self.parent['footnote'].text = (_(" "))
 
 class Setup(ConfigListScreen, Screen):
 
@@ -94,12 +99,11 @@ class Setup(ConfigListScreen, Screen):
 		self.skinName = ["setup_" + setup, "Setup"]
 
 		self["menu_path_compressed"] = StaticText()
-		self['footnote'] = Label(_("* = Restart Required"))
+		self['footnote'] = Label()
 		self['footnote'].hide()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-
 		self.onChangedEntry = []
 		self.item = None
 		self.setup = setup

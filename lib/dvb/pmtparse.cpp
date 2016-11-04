@@ -167,6 +167,13 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						isaudio = 1;
 						audio.type = audioStream::atDTS;
 					}
+				case 0x84: // DDP (blueray)
+				case 0x87: // DDP (ATSC)
+					if (!isvideo && !isaudio)
+					{
+						isaudio = 1;
+						audio.type = audioStream::atDDP;
+					}
 				case 0x85: // bluray DTS-HD HRA(dvb user private...)
 				case 0x86: // bluray DTS-HD MA(dvb user private...)
 				case 0xA6: // bluray secondary DTS-HD

@@ -203,6 +203,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.list.append(getConfigListEntry(_("Modulation"), self.scan_ats.modulation))
 			elif self.tuning_type.value == "predefined_transponder":
 				#FIXME add region
+				self.scan_nims.value = self.satfinder_scan_nims.value
 				self.predefinedATSCTranspondersList()
 				self.list.append(getConfigListEntry(_('Transponder'), self.ATSCTransponders))
 		self.retune(None)

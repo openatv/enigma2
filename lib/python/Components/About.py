@@ -268,12 +268,19 @@ def getCPUSpeedString():
 		print "[About] getCPUSpeedString, /proc/cpuinfo not available"
 
 	if cpu_speed == 0:
-		try: # Solo4K
-			file = open('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq', 'r')
-			cpu_speed = float(file.read()) / 1000
-			file.close()
-		except IOError:
-			print "[About] getCPUSpeedString, /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq not available"
+		if getMachineBuild() in ('hd51','hd52'):
+			import binascii
+			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
+			clockfrequency = f.read()
+			f.close()
+			cpu_speed = round(int(binascii.hexlify(clockfrequency), 16)/1000000,1)
+		else:
+			try: # Solo4K
+				file = open('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq', 'r')
+				cpu_speed = float(file.read()) / 1000
+				file.close()
+			except IOError:
+				print "[About] getCPUSpeedString, /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq not available"
 
 	if cpu_speed > 0:
 		if cpu_speed >= 1000:
@@ -299,7 +306,7 @@ def getCPUString():
 				elif splitted[0].startswith("model name"):
 					system = splitted[1].split(' ')[0]
 		file.close()
-		return system 
+		return system
 	except IOError:
 		return _("unavailable")
 
