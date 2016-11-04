@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-11 23:13+0200\n"
-"PO-Revision-Date: 2016-10-12 07:16+0200\n"
+"POT-Creation-Date: 2016-10-29 16:01+0200\n"
+"PO-Revision-Date: 2016-10-30 07:02+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 
 msgid ""
 "\n"
@@ -126,6 +126,12 @@ msgid ""
 msgstr ""
 "\n"
 "Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
+
+msgid " "
+msgstr " "
+
+msgid " (0 - all networks)"
+msgstr " (0 - alle netwerken)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -1461,6 +1467,10 @@ msgstr "Versterk blauw"
 msgid "Boost green"
 msgstr "Versterk groen"
 
+#, python-format
+msgid "Bootloader:\t\t%s\n"
+msgstr "Bootloader:\t\t%s\n"
+
 msgid "Bouquet List"
 msgstr "Favorietenlijst"
 
@@ -1742,7 +1752,7 @@ msgid "Channel list context menu"
 msgstr "Kanaallijst contextmenu"
 
 msgid "Channel list cursor behavior"
-msgstr "Gedrag van cursor in kanaallijst."
+msgstr "Gedrag van cursor in kanaallijst"
 
 msgid "Channel list on mode change"
 msgstr "Kanaallijst zichtbaar na zenderwissel"
@@ -1917,7 +1927,7 @@ msgid "Close"
 msgstr "Sluiten"
 
 msgid "Close PiP on exit"
-msgstr "Sluit PiP met de exit-toets."
+msgstr "Sluit PiP met de exit-toets"
 
 msgid "Close bouquet list."
 msgstr "Sluit favorietenlijst"
@@ -1995,6 +2005,9 @@ msgstr "Configuratie modus"
 #, python-format
 msgid "Configuration mode: %s"
 msgstr "Configuratie modus: %s"
+
+msgid "Configuration..."
+msgstr "Configuratie..."
 
 msgid "Configure alignment of service events."
 msgstr "Configureer uitlijning van programma's."
@@ -2511,6 +2524,9 @@ msgstr "DVB CI vertraging"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB ondertitels zwart transparantie"
+
+msgid "DVB type"
+msgstr "Soort DVB"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -3193,7 +3209,7 @@ msgid "Enable favourite edit"
 msgstr "Favorieten bewerken inschakelen"
 
 msgid "Enable infobar fade-out"
-msgstr "Schakel infobar fade-out in."
+msgstr "Schakel infobar fade-out in"
 
 msgid "Enable move mode"
 msgstr "Verplaatsmodus inschakelen"
@@ -3620,9 +3636,6 @@ msgstr "Eindpositie op index"
 
 msgid "Final scroll delay"
 msgstr "Scrollvertraging"
-
-msgid "Find currently played service"
-msgstr "Vind het nu spelende kanaal"
 
 msgid "Fine movement"
 msgstr "Fijn bewegen"
@@ -4179,7 +4192,7 @@ msgid "Infobar EPG"
 msgstr "informatiebalk EPG..."
 
 msgid "Infobar fade-out speed"
-msgstr "Infobar fade-out snelheid."
+msgstr "Infobar fade-out snelheid"
 
 msgid "Infobar frontend data source"
 msgstr "Bron voor tuner info"
@@ -5717,9 +5730,6 @@ msgstr "Afspelen vanaf volgend markeerpunt of afspeellijst"
 msgid "Play from previous mark or playlist entry"
 msgstr "Afspelen vanaf vorig markeerpunt of afspeellijst"
 
-msgid "Play in main window"
-msgstr "Afspelen in hoofdscherm"
-
 msgid "Play music..."
 msgstr "Muziek afspelen..."
 
@@ -6091,10 +6101,10 @@ msgid "Prefer audio track stored by service"
 msgstr "Voorkeur voor audio die eerder is gekozen"
 
 msgid "Prefer graphical DVB subtitles"
-msgstr "Voorkeur voor grafische DVB-ondertitels boven TT-ondertitels."
+msgstr "Voorkeur voor grafische DVB-ondertitels boven TT-ondertitels"
 
 msgid "Prefer subtitles for hearing impaired"
-msgstr "Voorkeur voor TT-ondertitels slechthorenden."
+msgstr "Voorkeur voor TT-ondertitels slechthorenden"
 
 msgid "Prefer subtitles stored by service"
 msgstr "Voorkeur voor ondertitels die eerder zijn gekozen"
@@ -6210,6 +6220,10 @@ msgstr "Prioriteit"
 
 msgid "Process"
 msgstr "Proces"
+
+#, python-format
+msgid "Processor temperature:\t%s"
+msgstr "Processortemperatuur: \t%s"
 
 msgid "Profile"
 msgstr "Profiel"
@@ -6339,6 +6353,9 @@ msgstr "RGB"
 msgid "Radio"
 msgstr "Radio"
 
+msgid "Radio Channel Selection"
+msgstr "Radio zenderkeuze"
+
 msgid "Random"
 msgstr "Willekeurig"
 
@@ -6393,7 +6410,7 @@ msgid "Really store at index %2d for current position?"
 msgstr "Huidige positie echt opslaan in index %2d?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
-msgstr "De frontprocessor nu bijwerken en opneiuw opstarten?"
+msgstr "De frontprocessor nu bijwerken en opnieuw opstarten?"
 
 #, python-format
 msgid "Really upgrade your %s %s and reboot now?"
@@ -7030,7 +7047,7 @@ msgid "Seek forward (enter time)"
 msgstr "Spring vooruit naar (tijd invoeren)"
 
 msgid "Seekbar activation"
-msgstr "Zoekbalk activeren:"
+msgstr "Zoekbalk activeren"
 
 msgid "Seekbar sensibility"
 msgstr "Zoekbalk gevoeligheid"
@@ -8411,16 +8428,12 @@ msgid "System"
 msgstr "Systeem"
 
 #, python-format
-msgid "System temperature: %s"
-msgstr "Systeemtemperatuur: %s"
+msgid "System temperature:\t%s"
+msgstr "Systeemtemperatuur:\t%s"
 
 #, python-format
-msgid ""
-"System temperature: %s%sC\n"
-"\n"
-msgstr ""
-"Systeemtemperatuur: %s%sC\n"
-"\n"
+msgid "System temperature: %s"
+msgstr "Systeemtemperatuur: %s"
 
 msgid "System: "
 msgstr "Systeem: "
@@ -10483,7 +10496,7 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Uw frontprocessor zal worden geupgrade\n"
+"Uw frontprocessor zal worden geüpgraded\n"
 "Wacht tot uw %s %s automatisch herstart is\n"
 "Dit kan een paar minuten duren."
 
@@ -11936,6 +11949,9 @@ msgstr "zapte"
 #~ msgid "External (CF)"
 #~ msgstr "Extern (CF)"
 
+#~ msgid "Find currently played service"
+#~ msgstr "Vind het nu spelende kanaal"
+
 #~ msgid "Finished restarting your network"
 #~ msgstr "Herstarten van uw netwerk is voltooid"
 
@@ -12068,6 +12084,9 @@ msgstr "zapte"
 #~ msgid "Phone number"
 #~ msgstr "Telefoonnummer"
 
+#~ msgid "Play in main window"
+#~ msgstr "Afspelen in hoofdscherm"
+
 #~ msgid "Please check your network settings!"
 #~ msgstr "Controleer uw netwerkinstellingen!"
 
@@ -12195,6 +12214,13 @@ msgstr "zapte"
 
 #~ msgid "Switch channel up"
 #~ msgstr "Ga naar volgende kanaal"
+
+#~ msgid ""
+#~ "System temperature: %s%sC\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Systeemtemperatuur: %s%sC\n"
+#~ "\n"
 
 #~ msgid "TV button mode"
 #~ msgstr "TV toets functie"
