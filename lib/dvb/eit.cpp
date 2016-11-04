@@ -68,7 +68,7 @@ void eDVBServiceEITHandler::EITready(int error)
 							else
 							{
 								m_demux->createSectionReader(eApp, m_next_ETT);
-								m_next_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nextETTsection), m_now_conn);
+								m_next_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nextETTsection), m_next_conn);
 								m_next_ETT->start(mask);
 							}
 						}
