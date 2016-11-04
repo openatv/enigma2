@@ -116,7 +116,10 @@ class ServiceInfo(Screen):
 		self.setTitle(_("Service info"))
 
 		self.transponder_info = self.info = self.feinfo = None
-		if serviceref and session.nav.getCurrentlyPlayingServiceReference() != serviceref:
+		play_service = session.nav.getCurrentlyPlayingServiceReference()
+		if serviceref and play_service and play_service == serviceref:
+			serviceref = None
+		if serviceref:
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
 			self.transponder_info = eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
@@ -132,7 +135,7 @@ class ServiceInfo(Screen):
 				self.info = service.info()
 				self.feinfo = service.frontendInfo()
 				if not self.feinfo.getAll(True):
-					serviceref = session.nav.getCurrentlyPlayingServiceReference()
+					serviceref = play_service
 					self.transponder_info = serviceref and eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
 
 		self.onShown.append(self.ShowServiceInformation)
