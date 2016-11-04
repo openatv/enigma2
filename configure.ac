@@ -450,6 +450,7 @@ fi
 if test "$BOXTYPE" == "formuler1" -o "$BOXTYPE" == "formuler3" -o "$BOXTYPE" == "formuler4" -o "$BOXTYPE" == "formuler4turbo" -o "$BOXTYPE" == "triplex" -o "$BOXTYPE" == "sf108" -o "$BOXTYPE" == "ultrabox"; then
 	AC_DEFINE(KEY_F3_TO_KEY_LIST, 1,[define when rc sends a KEY_F3 event for its KEY_LIST key])
 	AC_DEFINE(KEY_LAST_TO_KEY_BACK, 1,[define when rc sends a KEY_LAST event for its KEY_BACK key])
+	AC_DEFINE(KEY_BOOKMARKS_TO_KEY_MEDIA, 1,[define when rc sends a KEY_BOOKMARKS event for its KEY_MEDIA key])
 fi
 
 if test "$BOXTYPE" == "ew7358" -o "$BOXTYPE" == "ew7362"; then
