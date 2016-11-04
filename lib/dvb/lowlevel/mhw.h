@@ -13,6 +13,10 @@ typedef struct {
    u_char	channel_id_hi;
    u_char	channel_id_lo;
    u_char	name[16];
+
+   int getNetworkId() const         { return network_id_hi << 8 | network_id_lo; };
+   int getTransportStreamId() const { return transport_stream_id_hi << 8 | transport_stream_id_lo; };
+   int getChannelId() const         { return channel_id_hi << 8 | channel_id_lo; };
 } mhw_channel_name_t;
 
 typedef struct {
@@ -56,7 +60,7 @@ typedef struct {
 #endif
    union {
    u_char section_length_lo                      :8;
-   u_char mhw2_theme				 :8;
+   u_char mhw2_theme                             :8;
    };
    u_char channel_id                             :8;
    union {
@@ -88,6 +92,9 @@ typedef struct {
    u_char mhw2_mjd_lo                            :8;
    u_char mhw2_duration_hi                       :8;
    u_char mhw2_duration_lo                       :8;
+
+   int getDuration() const     { return duration_hi << 8 | duration_lo; };
+   int getMhw2Duration() const { return mhw2_duration_hi << 8 | mhw2_duration_lo; };
 } mhw_title_t;
 
 typedef struct mhw_summary {

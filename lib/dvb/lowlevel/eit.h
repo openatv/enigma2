@@ -68,6 +68,16 @@ typedef struct {
 	u_char	original_network_id_lo		: 8;
 	u_char	segment_last_section_number	: 8;
 	u_char	segment_last_table_id		: 8;
+
+	int getSectionLength() const		{ return section_length_hi << 8 | section_length_lo; };
+	int getServiceId() const		{ return service_id_hi << 8 | service_id_lo; };
+	int getTransportStreamId() const	{ return transport_stream_id_hi << 8 | transport_stream_id_lo; };
+	int getOriginalNetworkId() const	{ return original_network_id_hi << 8 | original_network_id_lo; };
+
+	void setSectionLength(int length)	{ section_length_hi = length >> 8; section_length_lo = length & 0xFF; };
+	void setServiceId(int serviceId)	{ service_id_hi = serviceId >> 8; service_id_lo = serviceId & 0xFF; };
+	void setTransportStreamId(int tsi)	{ transport_stream_id_hi = tsi >> 8; transport_stream_id_lo = tsi & 0xFF; };
+	void setOriginalNetworkId(int oni)	{ original_network_id_hi = oni >> 8; original_network_id_lo = oni & 0xFF; };
 } eit_t;
 
 #define EIT_SIZE 14
@@ -139,6 +149,11 @@ typedef struct eit_event_struct {
 
 	u_char	descriptors_loop_length_lo	: 8;
 
+	uint16_t getEventId() const		{ return event_id_hi << 8 | event_id_lo; };
+	int getDescriptorsLoopLength() const	{ return descriptors_loop_length_hi << 8 | descriptors_loop_length_lo; };
+
+	void setEventId(uint16_t eventId)	{ event_id_hi = eventId >> 8; event_id_lo = eventId & 0xFF; };
+	void setDescriptorsLoopLength(int dll)	{ descriptors_loop_length_hi = dll >> 8; descriptors_loop_length_lo = dll & 0xFF; };
 } eit_event_t;
 #define EIT_LOOP_SIZE 12
 

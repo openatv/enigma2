@@ -1,5 +1,6 @@
 #include <lib/dvb/eit.h>
 #include <lib/dvb/specs.h>
+#include <lib/dvb/dvbtime.h>
 #include <lib/base/eerror.h>
 #include <lib/service/event.h>
 
@@ -36,12 +37,17 @@ void eDVBServiceEITHandler::EITready(int error)
 			if (!m_ATSC_EIT->getCurrent(ptr))
 			{
 				int a = 0;
+				time_t now = eDVBLocalTimeHandler::getInstance()->nowTime() - (time_t)315964800; /* ATSC GPS system time epoch is 00:00 Jan 6th 1980 */;
 				for (std::vector<ATSCEventInformationSection*>::const_iterator i = ptr->getSections().begin();
 					i != ptr->getSections().end(); ++i)
 				{
 					const ATSCEventInformationSection *eit = *i;
 					for (ATSCEventListConstIterator ev = eit->getEvents()->begin(); ev != eit->getEvents()->end(); ++ev)
 					{
+						if ((*ev)->getStartTime() + (*ev)->getLengthInSeconds() < now)
+						{
+							continue;
+						}
 						ePtr<eServiceEvent> evt = new eServiceEvent();
 						evt->parseFrom(*ev);
 						if (ETTpid != -1 && (*ev)->getETMLocation() == 1)
@@ -68,7 +74,7 @@ void eDVBServiceEITHandler::EITready(int error)
 							else
 							{
 								m_demux->createSectionReader(eApp, m_next_ETT);
-								m_next_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nextETTsection), m_now_conn);
+								m_next_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nextETTsection), m_next_conn);
 								m_next_ETT->start(mask);
 							}
 						}
