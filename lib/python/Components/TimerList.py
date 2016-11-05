@@ -30,6 +30,14 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, width - serviceNameWidth, 0, serviceNameWidth, self.rowSplit, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, serviceName))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, 0, width - serviceNameWidth - self.iconWidth - self.iconMargin, self.rowSplit, 2, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
 
+		if timer.isAutoTimer:
+			icon = self.iconAutoTimer
+		elif timer.ice_timer_id is not None:
+			icon = self.iconIceTVTimer
+		else:
+			icon = None
+		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
+
 		begin = FuzzyTime(timer.begin)
 		if timer.repeated:
 			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
@@ -48,7 +56,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			else:
 				repeatedtext = ", ".join(repeatedtext)
 			if self.iconRepeat:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
 		else:
 			repeatedtext = begin[0]  # date
 		if timer.justplay:
@@ -59,12 +67,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
 				state = _("waiting")
-				if timer.isAutoTimer:
-					icon = self.iconAutoTimer
-				elif timer.ice_timer_id is not None:
-					icon = self.iconIceTVTimer
-				else:
-					icon = self.iconWait
+				icon = self.iconWait
 			elif timer.state == TimerEntry.StatePrepared:
 				state = _("about to start")
 				icon = self.iconPrepared
@@ -91,7 +94,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			state = _("done!")
 			icon = self.iconDone
 
-		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
+		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
 
 		if getImageDistro() not in ("easy-gui-aus", "beyonwiz"):
 			orbpos = self.getOrbitalPos(timer.service_ref)
