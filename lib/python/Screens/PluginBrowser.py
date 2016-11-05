@@ -90,6 +90,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Plugin Browser"))
+		ProtectedScreen.__init__(self)
 
 		self.firsttime = True
 
