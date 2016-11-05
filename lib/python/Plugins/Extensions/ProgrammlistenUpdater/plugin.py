@@ -56,7 +56,7 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         self["description"] = Label("description")
         self['MenuListSetting'] = MenuListSetting([])
         self.skinName = "Programmlisten_Updater"
-        self.setup_title = _("Programmlisten-Updater from DXAndy")
+        self.setup_title = _("Programmlisten from DXAndy")
         self.setTitle(self.setup_title)
         self["description"] = Label(_("Current installed") + ":\n" + "n/a")
         self["update"] = Label(_("disabled"))
