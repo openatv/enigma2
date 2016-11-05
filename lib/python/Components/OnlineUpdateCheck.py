@@ -12,7 +12,10 @@ from Screens.SoftwareUpdate import UpdatePlugin
 
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
-	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
+
+	# The onlineupdatecheckpoller will be created (see below) after
+	# OnlineUpdateCheckPoller is set-up, which is will be before we can ever
+	# run.
 	onlineupdatecheckpoller.start()
 
 class SuspendableMessageBox(MessageBox):
@@ -25,14 +28,40 @@ class OnlineUpdateCheckPoller:
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
-	def start(self):
+	# Class variables
+	MIN_INITIAL_DELAY = 40 * 60; # Wait at least 40 mins
+	checktimer_Notifier_Added = False
+
+	# Add optional args to start(), as it is now a callback from addNotifier
+	# so will have one when called from there.
+	def start(self, *args, **kwargs):
 		if self.onlineupdate_check not in self.timer.callback:
 			self.timer.callback.append(self.onlineupdate_check)
 
-		if time() > 1262304000:  # Fri, 01 Jan 2010 00:00:00 GMT
-			self.timer.startLongTimer(30)
-		else:
-			self.timer.startLongTimer(10 * 60)
+		# This will get start re-run on any change to the interval setting
+		# so the next-timer will be suitably updated...
+		# ...but only add one of them!!!
+		if not self.checktimer_Notifier_Added:
+			config.softwareupdate.checktimer.addNotifier(self.start, initial_call = False, immediate_feedback = False)
+			self.checktimer_Notifier_Added = True
+			minimum_delay = self.MIN_INITIAL_DELAY
+		else: # we been here before, so this is *not* start-up
+			minimum_delay = 60 # 1 minute
+
+		last_run = config.softwareupdate.updatelastcheck.getValue()
+		gap = config.softwareupdate.checktimer.value*3600
+		delay = last_run + gap - int(time())
+
+		# Set-up the minimum delay, which is greater on the first boot-time pass.
+		# Also check that we aren't setting a delay that is more than the
+		# configured frequency of checks, which caters for mis-/un-set system
+		# clocks.
+		if delay < minimum_delay:
+			delay = minimum_delay
+		if delay > gap:
+			delay = gap
+		self.timer.startLongTimer(delay)
+		when = time() + delay
 
 	def stop(self):
 		if self.version_check in self.timer.callback:
@@ -43,6 +72,10 @@ class OnlineUpdateCheckPoller:
 		if config.softwareupdate.check.value:
 			Components.Task.job_manager.AddJob(self.createCheckJob())
 		self.timer.startLongTimer(int(config.softwareupdate.checktimer.value) * 3600)
+
+		# Record the time of this latest check
+		config.softwareupdate.updatelastcheck.setValue(int(time()))
+		config.softwareupdate.updatelastcheck.save()
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("OnlineVersionCheck"))
@@ -76,6 +109,9 @@ class OnlineUpdateCheckPoller:
 	def updateNotificationAnswer(self, answer):
 		if answer:
 			Notifications.AddNotification(UpdatePlugin)
+
+# Create a callable instance...
+onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 
 class VersionCheck:
 	def __init__(self):

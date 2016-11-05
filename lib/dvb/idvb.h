@@ -327,7 +327,7 @@ public:
 		cPCMDELAY, cSUBTITLE,				// 8-9
 		cAACHEAPID=12, cDDPPID, cDTSPID, cAACPID,	// 12-15
 		cLPCMPID, cDTSHDPID,				// 16-17
-		cDATAPID, cacheMax
+		cDATAPID, cPMTPID, cacheMax
 	};
 
 	static const cacheID audioCacheTags[];
