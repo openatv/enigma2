@@ -30,7 +30,7 @@ class PU_Restore(Screen,ConfigListScreen):
         self.session = session
         self['ListSetting'] = MenuList([])
         self.skinName = "PU_Restore"
-        self.setup_title = _("Programmlisten-Updater Restore")
+        self.setup_title = _("Programmlisten Restore")
         self.setTitle(self.setup_title)
         
         self["key_red"] = StaticText(_("Exit"))

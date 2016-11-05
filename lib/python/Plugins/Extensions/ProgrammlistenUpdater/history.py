@@ -36,7 +36,7 @@ class PU_History(Screen):
         Screen.__init__(self, session)
         self.session = session
         self.skinName = "PU_History"
-        self.setup_title = _("Programmlisten-Updater History")
+        self.setup_title = _("Programmlisten History")
         self.setTitle(self.setup_title)
         
         self["key_red"] = StaticText(_("Exit"))
