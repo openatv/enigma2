@@ -114,6 +114,7 @@ class ServiceInfo(Screen):
 
 		self["infolist"] = ServiceInfoList([])
 		self.setTitle(_("Service info"))
+		self["key_red"] = self["red"] = Label(_("Exit"))
 
 		self.transponder_info = self.info = self.feinfo = None
 		play_service = session.nav.getCurrentlyPlayingServiceReference()
@@ -124,24 +125,28 @@ class ServiceInfo(Screen):
 			# info is a iStaticServiceInformation, not a iServiceInformation
 		else:
 			self.type = TYPE_SERVICE_INFO
-			self["key_red"] = self["red"] = Label(_("Exit"))
-			self["key_yellow"] = self["yellow"] = Label(_("Service & PIDs"))
-			self["key_blue"] = self["blue"] = Label(_("Tuner setting values"))
 			service = session.nav.getCurrentService()
-			if service is not None:
+			if service:
 				self.transponder_info = None
 				self.info = service.info()
 				self.feinfo = service.frontendInfo()
-				if not self.feinfo.getAll(True):
+				if self.feinfo and not self.feinfo.getAll(True):
+					self.feinfo = None
 					serviceref = play_service
 					self.transponder_info = serviceref and eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
+			if self.feinfo or self.transponder_info:
+				self["key_yellow"] = self["yellow"] = Label(_("Service & PIDs"))
+				self["key_blue"] = self["blue"] = Label(_("Tuner setting values"))
+			else:
+				self.skinName="ServiceInfoSimple"
 
 		self.onShown.append(self.ShowServiceInformation)
 
 	def ShowServiceInformation(self):
 		if self.type == TYPE_SERVICE_INFO:
 			self["Title"].text = _("Service info - service & PIDs")
-			self["key_blue"].text = self["blue"].text = _("Tuner setting values")
+			if self.feinfo or self.transponder_info:
+				self["key_blue"].text = self["blue"].text = _("Tuner setting values")
 			if self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
 				refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
@@ -153,7 +158,7 @@ class ServiceInfo(Screen):
 			videomode = "-"
 			resolution = "-"
 			if self.info:
-				videocodec =  ("MPEG2", "AVC", "MPEG1", "MPEG4-VC", "VC1", "VC1-SM", "HEVC", "-")[self.info.getInfo(iServiceInformation.sVideoType)]
+				videocodec =  ("MPEG2", "AVC", "MPEG1", "MPEG4-VC", "VC1", "VC1-SM", "HEVC", "N/A")[self.info.getInfo(iServiceInformation.sVideoType)]
 				width = self.info.getInfo(iServiceInformation.sVideoWidth)
 				height = self.info.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
@@ -164,29 +169,38 @@ class ServiceInfo(Screen):
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 					aspect = aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ) and "4:3" or "16:9"
 					resolution += " - ["+aspect+"]"
-
-			Labels = ( (_("Service name"), name, TYPE_TEXT),
-					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
+			if "%3a//" in refstr:
+				fillList = [(_("Service name"), name, TYPE_TEXT),
 					(_("Videocodec, size & format"), resolution, TYPE_TEXT),
-					(_("Service reference"), refstr, TYPE_TEXT),
-					(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8))
-
-			Labels += ( (_("Service ID"), self.getServiceInfoValue(iServiceInformation.sSID), TYPE_VALUE_HEX_DEC, 4),
-					   (_("Video PID"), self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
-					   (_("Audio PID"), self.getServiceInfoValue(iServiceInformation.sAudioPID), TYPE_VALUE_HEX_DEC, 4),
-					   (_("PCR PID"), self.getServiceInfoValue(iServiceInformation.sPCRPID), TYPE_VALUE_HEX_DEC, 4),
-					   (_("PMT PID"), self.getServiceInfoValue(iServiceInformation.sPMTPID), TYPE_VALUE_HEX_DEC, 4),
-					   (_("TXT PID"), self.getServiceInfoValue(iServiceInformation.sTXTPID), TYPE_VALUE_HEX_DEC, 4),
-					   (_("TSID"), self.getServiceInfoValue(iServiceInformation.sTSID), TYPE_VALUE_HEX_DEC, 4),
-					   (_("ONID"), self.getServiceInfoValue(iServiceInformation.sONID), TYPE_VALUE_HEX_DEC, 4))
-
-			self.fillList(Labels)
+					(_("Service reference"), ":".join(refstr.split(":")[:9]), TYPE_TEXT),
+					(_("URL"), refstr.split(":")[10].replace("%3a", ":"), TYPE_TEXT)]
+			else:
+				if ":/" in refstr:
+					fillList = [(_("Service name"), name, TYPE_TEXT),
+						(_("Videocodec, size & format"), resolution, TYPE_TEXT),
+						(_("Service reference"), ":".join(refstr.split(":")[:9]), TYPE_TEXT),
+						(_("Filename"), refstr.split(":")[10], TYPE_TEXT)]
+				else:
+					fillList = [(_("Service name"), name, TYPE_TEXT),
+						(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
+						(_("Videocodec, size & format"), resolution, TYPE_TEXT),
+						(_("Service reference"), refstr, TYPE_TEXT)]
+				fillList = fillList + [(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
+					(_("Service ID"), self.getServiceInfoValue(iServiceInformation.sSID), TYPE_VALUE_HEX_DEC, 4),
+					(_("Video PID"), self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
+					(_("Audio PID"), self.getServiceInfoValue(iServiceInformation.sAudioPID), TYPE_VALUE_HEX_DEC, 4),
+					(_("PCR PID"), self.getServiceInfoValue(iServiceInformation.sPCRPID), TYPE_VALUE_HEX_DEC, 4),
+					(_("PMT PID"), self.getServiceInfoValue(iServiceInformation.sPMTPID), TYPE_VALUE_HEX_DEC, 4),
+					(_("TXT PID"), self.getServiceInfoValue(iServiceInformation.sTXTPID), TYPE_VALUE_HEX_DEC, 4),
+					(_("TSID"), self.getServiceInfoValue(iServiceInformation.sTSID), TYPE_VALUE_HEX_DEC, 4),
+					(_("ONID"), self.getServiceInfoValue(iServiceInformation.sONID), TYPE_VALUE_HEX_DEC, 4)]
+			self.fillList(fillList)
 		elif self.transponder_info:
 			self.fillList(self.getFEData(self.transponder_info))
 
 	def ShowTransponderInformation(self):
 		if self.type == TYPE_SERVICE_INFO:
-			if self.feinfo.getAll(True):
+			if self.feinfo and self.feinfo.getAll(True):
 				if self["key_blue"].text == _("Tuner setting values"):
 					self["Title"].text = _("Service info - tuner setting values")
 					self["key_blue"].text = self["blue"].text = _("Tuner live values")
