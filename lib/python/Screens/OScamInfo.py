@@ -821,6 +821,7 @@ class oscInfo(Screen, OscamInfo):
 		if self.listchange:
 			self.listchange = False
 			self["output"].l.setItemHeight(int(self.itemheight*f))
+			self["output"].instance.setScrollbarMode(0) #"showOnDemand"
 			self.rows = int(self["output"].instance.size().height() / (self.itemheight*f))
 			if self.what != "l" and self.rows < len(self.out):
 				self.enableScrolling(True)
@@ -835,13 +836,11 @@ class oscInfo(Screen, OscamInfo):
 		if force or self.scrolling:
 			self.scrolling = False
 			self["output"].selectionEnabled(False)
-			self["output"].instance.setScrollbarMode(2) #"showNever"
 
 	def enableScrolling(self, force=False):
 		if force or (not self.scrolling and self.rows < len(self.out)):
 			self.scrolling = True
 			self["output"].selectionEnabled(True)
-			self["output"].instance.setScrollbarMode(1) #"showAlways"
 			self["output"].l.setList(self.out)
 			if self.what != "l":
 				self["output"].moveToIndex(1)
