@@ -675,6 +675,7 @@ class NIM(object):
 		# get multi type using delsys information
 		if self.frontend_id is not None:
 			types = [type for type in nim_types if eDVBResourceManager.getInstance().frontendIsCompatible(self.frontend_id, type)]
+			print "[NIM] get types from delsys", types
 			if "DVB-T2" in types:
 				# DVB-T2 implies DVB-T support
 				types.remove("DVB-T")
@@ -685,9 +686,8 @@ class NIM(object):
 				self.multi_type = {}
 				for type in types:
 					self.multi_type[str(types.index(type))] = type
-			else:
+			elif len(self.multi_type) > 1:
 				print "[NIM] DVB API not reporting tuner %d as multitype" % self.frontend_id
-				self.multi_type = {}
 
 	def isCompatible(self, what):
 		if not self.isSupported():
