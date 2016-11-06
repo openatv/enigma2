@@ -21,9 +21,6 @@ boxtype = getBoxType()
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo") and boxtype in ('dm7080','dm820','dm520','dm525'):
 	import pyo_patcher
 
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
-	import pyo_patcher2
-
 from traceback import print_exc
 profile("SimpleSummary")
 from Screens import InfoBar
