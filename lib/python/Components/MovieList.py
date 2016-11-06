@@ -207,8 +207,7 @@ class MovieList(GUIComponent):
 		self.parentDirectory = 0
 		self.numUserDirs = 0  # does not include parent or Trashcan
 		self.numUserFiles = 0
-		self.fontName = "Regular"
-		self.fontSize = 20
+		self.fontName, self.fontSize, height, width = skin.fonts.get("MovieSelectionFont", ("Regular", 20, 25, 18))
 		self.listHeight = None
 		self.listWidth = None
 		# pbarShift, trashShift, dirShift, dateWidth, lenWidth
