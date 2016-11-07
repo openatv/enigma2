@@ -10,10 +10,10 @@ class ServiceScan:
 	Error = 4
 
 	Errors = {
-		0: _("error starting scanning"),
-		1: _("error while scanning"),
-		2: _("no resource manager"),
-		3: _("no channel list")
+		0: _("Error starting scan"),
+		1: _("Error while scanning"),
+		2: _("No resource manager"),
+		3: _("No channel list")
 	}
 
 	def scanStatusChanged(self):
@@ -37,10 +37,10 @@ class ServiceScan:
 				if percentage > 99:
 					percentage = 99
 				# TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in "%d" (and "%%" will show a single "%" symbol)
-				message = ngettext("Scanning - %d%% completed", "Scanning - %d%% completed", percentage) % percentage
-				message += ".\n"
+				message = ngettext("Scanning - %d%% completed.", "Scanning - %d%% completed.", percentage) % percentage
+				message += "\n"
 				# TRANSLATORS: Intermediate scanning result, "%d" channel(s) have been found so far
-				message += ngettext("%d channel found", "%d channels found", result) % result
+				message += ngettext("%d channel found.", "%d channels found.", result) % result
 				self.text.setText(message)
 				transponder = self.scan.getCurrentTransponder()
 				network = ""
@@ -166,19 +166,19 @@ class ServiceScan:
 							tp.Inversion_Unknown: _("Auto")
 						}.get(tp.inversion, ""))
 					else:
-						print "[ServiceScan] unknown transponder type in scanStatusChanged"
+						print "[ServiceScan] Unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
 
 		if self.state == self.Done:
 			result = self.foundServices + self.scan.getNumServices()
-			self.text.setText(ngettext("Scanning completed.\n%d channel found", "Scanning completed.\n%d channels found", result) % result)
-			self.done_text.setText(_("Your scan is now complete !\n\nPlease press ok to continue"))
+			self.text.setText(ngettext("Scanning completed.\n%d channel found.", "Scanning completed.\n%d channels found.", result) % result)
+			self.done_text.setText(_("Your scan is now complete.\nPlease press OK to continue."))
 			self.done_text.show()
 
 		if self.state == self.Error:
-			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]))
-			self.done_text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]))
+			self.text.setText(_("ERROR: Failed to scan (%s)!") % (self.Errors[self.errorcode]))
+			self.done_text.setText(_("ERROR: Failed to scan (%s)!") % (self.Errors[self.errorcode]))
 			self.done_text.show()
 
 		if self.state == self.Done or self.state == self.Error:
@@ -240,7 +240,7 @@ class ServiceScan:
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)
 		if not self.isDone():
-			print "[ServiceScan] *** warning *** scan was not finished!"
+			print "[ServiceScan] *** Warning *** Scan was not finished!"
 
 		del self.scan
 
