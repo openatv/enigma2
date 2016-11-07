@@ -10,11 +10,11 @@ class ServiceScan:
 	Error = 4
 
 	Errors = {
-		0: _("error starting scanning"),
-		1: _("error while scanning"),
-		2: _("no resource manager"),
-		3: _("no channel list")
-		}
+		0: _("Error starting scan"),
+		1: _("Error while scanning"),
+		2: _("No resource manager"),
+		3: _("No channel list")
+	}
 
 	def scanStatusChanged(self):
 		if self.state == self.Running:
@@ -36,11 +36,11 @@ class ServiceScan:
 				percentage = self.scan.getProgress()
 				if percentage > 99:
 					percentage = 99
-				#TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-				message = ngettext("Scanning - %d%% completed", "Scanning - %d%% completed", percentage) % percentage
-				message += ".\n"
-				#TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-				message += ngettext("%d channel found", "%d channels found", result) % result
+				# TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in "%d" (and "%%" will show a single "%" symbol)
+				message = ngettext("Scanning - %d%% completed.", "Scanning - %d%% completed.", percentage) % percentage
+				message += "\n"
+				# TRANSLATORS: Intermediate scanning result, "%d" channel(s) have been found so far
+				message += ngettext("%d channel found.", "%d channels found.", result) % result
 				self.text.setText(message)
 				transponder = self.scan.getCurrentTransponder()
 				network = ""
@@ -55,106 +55,132 @@ class ServiceScan:
 							sat_name = str(nimmgr.getSatDescription(orb_pos))
 						except KeyError:
 							sat_name = ""
-						if orb_pos > 1800: # west
+						if orb_pos > 1800:  # west
 							orb_pos = 3600 - orb_pos
 							h = _("W")
 						else:
 							h = _("E")
-						if ("%d.%d" % (orb_pos/10, orb_pos%10)) in sat_name:
+						if ("%d.%d" % (orb_pos / 10, orb_pos % 10)) in sat_name:
 							network = sat_name
 						else:
 							network = "%s %d.%d %s" % (sat_name, orb_pos / 10, orb_pos % 10, h)
-						tp_text = { tp.System_DVB_S : "DVB-S", tp.System_DVB_S2 : "DVB-S2" }.get(tp.system, "")
+						tp_text = {
+							tp.System_DVB_S: "DVB-S",
+							tp.System_DVB_S2: "DVB-S2"
+						}.get(tp.system, "")
 						if tp_text == "DVB-S2":
-							tp_text = "%s %s" % ( tp_text,
-								{ tp.Modulation_Auto : "Auto", tp.Modulation_QPSK : "QPSK",
-									tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16",
-									tp.Modulation_16APSK : "16APSK", tp.Modulation_32APSK : "32APSK" }.get(tp.modulation, ""))
-						tp_text = "%s %d%c / %d / %s" % ( tp_text, tp.frequency/1000,
-							{ tp.Polarisation_Horizontal : 'H', tp.Polarisation_Vertical : 'V', tp.Polarisation_CircularLeft : 'L',
-								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, ' '),
-							tp.symbol_rate/1000,
-							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
-								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
-								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
-								tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec, ""))
+							tp_text = "%s %s" % (tp_text, {
+								tp.Modulation_Auto: "Auto",
+								tp.Modulation_QPSK: "QPSK",
+								tp.Modulation_8PSK: "8PSK",
+								tp.Modulation_QAM16: "QAM16",
+								tp.Modulation_16APSK: "16APSK",
+								tp.Modulation_32APSK: "32APSK"
+							}.get(tp.modulation, ""))
+						tp_text = "%s %d%c / %d / %s" % (tp_text, tp.frequency / 1000, {
+							tp.Polarisation_Horizontal: "H",
+							tp.Polarisation_Vertical: "V",
+							tp.Polarisation_CircularLeft: "L",
+							tp.Polarisation_CircularRight: "R"
+						}.get(tp.polarisation, " "), tp.symbol_rate / 1000, {
+							tp.FEC_Auto: "AUTO",
+							tp.FEC_1_2: "1/2",
+							tp.FEC_2_3: "2/3",
+							tp.FEC_3_4: "3/4",
+							tp.FEC_5_6: "5/6",
+							tp.FEC_7_8: "7/8",
+							tp.FEC_8_9: "8/9",
+							tp.FEC_3_5: "3/5",
+							tp.FEC_4_5: "4/5",
+							tp.FEC_9_10: "9/10",
+							tp.FEC_None: "NONE"
+						}.get(tp.fec, ""))
 					elif tp_type == iDVBFrontend.feCable:
 						network = _("Cable")
 						tp = transponder.getDVBC()
-						tp_text = "DVB-C %s %d / %d / %s" %( { tp.Modulation_Auto : "AUTO",
-							tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM32 : "QAM32",
-							tp.Modulation_QAM64 : "QAM64", tp.Modulation_QAM128 : "QAM128",
-							tp.Modulation_QAM256 : "QAM256" }.get(tp.modulation, ""),
-							tp.frequency,
-							tp.symbol_rate/1000,
-							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
-								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
-								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5", tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec_inner, ""))
+						tp_text = "DVB-C %s %d / %d / %s" % ({
+							tp.Modulation_Auto: "AUTO",
+							tp.Modulation_QAM16: "QAM16",
+							tp.Modulation_QAM32: "QAM32",
+							tp.Modulation_QAM64: "QAM64",
+							tp.Modulation_QAM128: "QAM128",
+							tp.Modulation_QAM256: "QAM256"
+						}.get(tp.modulation, ""), tp.frequency, tp.symbol_rate / 1000, {
+							tp.FEC_Auto: "AUTO",
+							tp.FEC_1_2: "1/2",
+							tp.FEC_2_3: "2/3",
+							tp.FEC_3_4: "3/4",
+							tp.FEC_5_6: "5/6",
+							tp.FEC_7_8: "7/8",
+							tp.FEC_8_9: "8/9",
+							tp.FEC_3_5: "3/5",
+							tp.FEC_4_5: "4/5",
+							tp.FEC_9_10: "9/10",
+							tp.FEC_None: "NONE"
+						}.get(tp.fec_inner, ""))
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
 						channel = getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
 						if channel:
 							channel = _("CH") + "%s " % channel
-						freqMHz = "%1.3f MHz" % (tp.frequency/1000000.)
-						tp_text = "%s %s %s %s" %(
-							{
-								tp.System_DVB_T_T2 : "DVB-T/T2",
-								tp.System_DVB_T : "DVB-T",
-								tp.System_DVB_T2 : "DVB-T2"
-							}.get(tp.system, ""),
-							{
-								tp.Modulation_QPSK : "QPSK",
-								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
-								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
-							}.get(tp.modulation, ""),
-							"%s%s" % (channel, freqMHz.replace("0.000","")),
-							{
-								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
-								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
-								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
-							}.get(tp.bandwidth, ""))
+						freqMHz = "%1.3f MHz" % (tp.frequency / 1000000.)
+						tp_text = "%s %s %s %s" % ({
+							tp.System_DVB_T_T2: "DVB-T/T2",
+							tp.System_DVB_T: "DVB-T",
+							tp.System_DVB_T2: "DVB-T2"
+						}.get(tp.system, ""), {
+							tp.Modulation_QPSK: "QPSK",
+							tp.Modulation_QAM16: "QAM16",
+							tp.Modulation_QAM64: "QAM64",
+							tp.Modulation_Auto: "AUTO",
+							tp.Modulation_QAM256: "QAM256"
+						}.get(tp.modulation, ""), "%s%s" % (channel, freqMHz.replace("0.000", "")), {
+							tp.Bandwidth_8MHz: "Bw 8MHz",
+							tp.Bandwidth_7MHz: "Bw 7MHz",
+							tp.Bandwidth_6MHz: "Bw 6MHz",
+							tp.Bandwidth_Auto: "Bw Auto",
+							tp.Bandwidth_5MHz: "Bw 5MHz",
+							tp.Bandwidth_1_712MHz: "Bw 1.712MHz",
+							tp.Bandwidth_10MHz: "Bw 10MHz"
+						}.get(tp.bandwidth, ""))
 					elif tp_type == iDVBFrontend.feATSC:
 						network = _("ATSC")
 						tp = transponder.getATSC()
-						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
-						tp_text = ("%s %s %s %s") % (
-							{
-								tp.System_ATSC : _("ATSC"),
-								tp.System_DVB_C_ANNEX_B : _("DVB-C ANNEX B")
-							}.get(tp.system, ""),
-							{
-								tp.Modulation_Auto : _("Auto"),
-								tp.Modulation_QAM16 : "QAM16",
-								tp.Modulation_QAM32 : "QAM32",
-								tp.Modulation_QAM64 : "QAM64",
-								tp.Modulation_QAM128 : "QAM128",
-								tp.Modulation_QAM256 : "QAM256",
-								tp.Modulation_VSB_8 : "8VSB",
-								tp.Modulation_VSB_16 : "16VSB"
-							}.get(tp.modulation, ""),
-							freqMHz.replace(".0",""),
-							{
-								tp.Inversion_Off : _("Off"),
-								tp.Inversion_On :_("On"),
-								tp.Inversion_Unknown : _("Auto")
-							}.get(tp.inversion, ""))
+						freqMHz = "%0.1f MHz" % (tp.frequency / 1000000.)
+						tp_text = ("%s %s %s %s") % ({
+							tp.System_ATSC: _("ATSC"),
+							tp.System_DVB_C_ANNEX_B: _("DVB-C ANNEX B")
+						}.get(tp.system, ""), {
+							tp.Modulation_Auto: _("Auto"),
+							tp.Modulation_QAM16: "QAM16",
+							tp.Modulation_QAM32: "QAM32",
+							tp.Modulation_QAM64: "QAM64",
+							tp.Modulation_QAM128: "QAM128",
+							tp.Modulation_QAM256: "QAM256",
+							tp.Modulation_VSB_8: "8VSB",
+							tp.Modulation_VSB_16: "16VSB"
+						}.get(tp.modulation, ""), freqMHz.replace(".0", ""), {
+							tp.Inversion_Off: _("Off"),
+							tp.Inversion_On: _("On"),
+							tp.Inversion_Unknown: _("Auto")
+						}.get(tp.inversion, ""))
 					else:
-						print "[ServiceScan] unknown transponder type in scanStatusChanged"
+						print "[ServiceScan] Unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
 
 		if self.state == self.Done:
 			result = self.foundServices + self.scan.getNumServices()
-			self.text.setText(ngettext("Scanning completed.\n%d channel found", "Scanning completed.\n%d channels found", result) % result)
-			self.done_text.setText(_("Your scan is now complete !\n\nPlease press ok to continue"))
+			self.text.setText(ngettext("Scanning completed.\n%d channel found.", "Scanning completed.\n%d channels found.", result) % result)
+			self.done_text.setText(_("Your scan is now complete.\nPlease press OK to continue."))
 			self.done_text.show()
 
 		if self.state == self.Error:
-			self.text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
-			self.done_text.setText(_("ERROR - failed to scan (%s)!") % (self.Errors[self.errorcode]) )
+			self.text.setText(_("ERROR: Failed to scan (%s)!") % (self.Errors[self.errorcode]))
+			self.done_text.setText(_("ERROR: Failed to scan (%s)!") % (self.Errors[self.errorcode]))
 			self.done_text.show()
-			
+
 		if self.state == self.Done or self.state == self.Error:
 			if self.run != len(self.scanList) - 1:
 				self.foundServices += self.scan.getNumServices()
@@ -179,11 +205,11 @@ class ServiceScan:
 
 	def doRun(self):
 		self.scan = eComponentScan()
-		self.frontendInfo.frontend_source = lambda : self.scan.getFrontend()
+		self.frontendInfo.frontend_source = lambda: self.scan.getFrontend()
 		self.feid = self.scanList[self.run]["feid"]
 		self.flags = self.scanList[self.run]["flags"]
 		self.networkid = 0
-		if self.scanList[self.run].has_key("networkid"):
+		if "networkid" in self.scanList[self.run]:
 			self.networkid = self.scanList[self.run]["networkid"]
 		self.state = self.Idle
 		self.scanStatusChanged()
@@ -214,7 +240,7 @@ class ServiceScan:
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)
 		if not self.isDone():
-			print "[ServiceScan] *** warning *** scan was not finished!"
+			print "[ServiceScan] *** Warning *** Scan was not finished!"
 
 		del self.scan
 
