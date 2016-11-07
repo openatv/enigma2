@@ -12,9 +12,9 @@ def PluginEntryComponent(plugin, width=440):
 		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
-	nx, ny, nh = skin.parameters.get("PluginBrowserName",(120, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDescr",(120, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon",(10, 5, 100, 40))
+	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
+	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
+	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
 	return [
 		plugin,
 		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), font=0, text=plugin.name),
@@ -23,12 +23,12 @@ def PluginEntryComponent(plugin, width=440):
 	]
 
 def PluginCategoryComponent(name, png, width=440):
-	x, y, h = skin.parameters.get("PluginBrowserDownloadName",(80, 5, 25))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon",(10, 0, 60, 50))
+	x, y, h = skin.parameters.get("PluginBrowserCategoryName", (80, 10, 50))
+	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
 	return [
 		name,
-		MultiContentEntryText(pos=(x, y), size=(width-x, h), font=0, text=name),
-		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png)
+		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=2, text=name),
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
 	]
 
 def PluginDownloadComponent(plugin, name, version=None, width=440):
@@ -43,14 +43,14 @@ def PluginDownloadComponent(plugin, name, version=None, width=440):
 		elif version.startswith('experimental-'):
 			version = version[13:]
 		name += "  (" + version + ")"
-	x, y, h = skin.parameters.get("PluginBrowserDownloadName",(80, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDownloadDescr",(80, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon",(10, 0, 60, 50))
+	x, y, h = skin.parameters.get("PluginBrowserDownloadName", (80, 5, 25))
+	dx, dy, dh = skin.parameters.get("PluginBrowserDownloadDescr", (80, 26, 17))
+	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
 	return [
 		plugin,
-		MultiContentEntryText(pos=(x, y), size=(width-x, h), font=0, text=name),
-		MultiContentEntryText(pos=(dx, dy), size=(width-dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png)
+		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=0, text=name),
+		MultiContentEntryText(pos=(dx, dy), size=(width - dx, dh), font=1, text=plugin.description),
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
 	]
 
 
@@ -62,3 +62,5 @@ class PluginList(MenuList):
 		self.l.setItemHeight(font[2])
 		font = skin.fonts.get("PluginBrowser1", ("Regular", 14))
 		self.l.setFont(1, gFont(font[0], font[1]))
+		font = skin.fonts.get("PluginBrowser2", ("Regular", 25))
+		self.l.setFont(2, gFont(font[0], font[1]))
