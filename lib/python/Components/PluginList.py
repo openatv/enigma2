@@ -23,11 +23,11 @@ def PluginEntryComponent(plugin, width=1280):
 	]
 
 def PluginCategoryComponent(name, png, width=1280):
-	x, y, h = skin.parameters.get("PluginBrowserDownloadName", (80, 5, 25))
+	x, y, h = skin.parameters.get("PluginBrowserCategoryName", (80, 10, 50))
 	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
 	return [
 		name,
-		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=0, text=name),
+		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=2, text=name),
 		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
 	]
 
@@ -62,3 +62,5 @@ class PluginList(MenuList):
 		self.l.setItemHeight(font[2])
 		font = skin.fonts.get("PluginBrowser1", ("Regular", 14))
 		self.l.setFont(1, gFont(font[0], font[1]))
+		font = skin.fonts.get("PluginBrowser2", ("Regular", 25))
+		self.l.setFont(2, gFont(font[0], font[1]))
