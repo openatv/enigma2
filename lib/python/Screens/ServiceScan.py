@@ -77,7 +77,6 @@ class ServiceScan(Screen):
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
 
-		self["Title"] = Label(_("Scanning..."))
 		self.scanList = scanList
 
 		if hasattr(session, 'infobar'):
@@ -116,10 +115,15 @@ class ServiceScan(Screen):
 			"cancel": self.cancel,
 			"menu": self.doCloseRecursive
 		}, -2)
-		self.setTitle(_("Service scan"))
+		self.title = _("Service scan")
+		if self.layoutFinished not in self.onLayoutFinish:
+			self.onLayoutFinish.append(self.layoutFinished)
 		self.onFirstExecBegin.append(self.doServiceScan)
 		self.onClose.append(self.doPluginCB)
 	
+	def layoutFinished(self):
+		self.setTitle(self.title)
+
 	def doPluginCB(self):
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_SERVICESCAN):
 			p()
