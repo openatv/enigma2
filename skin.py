@@ -585,7 +585,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					parameters["PluginBrowserName"] = (180,8,38)
 					parameters["PluginBrowserDescr"] = (180,42,25)
 					parameters["PluginBrowserIcon"] = (15,8,150,60)
-					parameters["PluginBrowserCategoryName"] = (120,8,38)
+					parameters["PluginBrowserCategoryName"] = (120,23,76)
 					parameters["PluginBrowserDownloadName"] = (120,8,38)
 					parameters["PluginBrowserDownloadDescr"] = (120,42,25)
 					parameters["PluginBrowserDownloadIcon"] = (15,0,90,76)
