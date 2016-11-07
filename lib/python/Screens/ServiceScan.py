@@ -115,7 +115,7 @@ class ServiceScan(Screen):
 			"cancel": self.cancel,
 			"menu": self.doCloseRecursive
 		}, -2)
-		self.title = _("Service scan - scanning")
+		self.title = _("Service scan")
 		if self.layoutFinished not in self.onLayoutFinish:
 			self.onLayoutFinish.append(self.layoutFinished)
 		self.onFirstExecBegin.append(self.doServiceScan)
