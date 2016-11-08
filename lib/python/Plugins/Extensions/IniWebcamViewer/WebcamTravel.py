@@ -175,7 +175,7 @@ class TravelWebcamviewer(Screen):
 		if os_path_exists("/tmp/" + str(webcamid) + "_thumb.jpg"):
 			self.picloads[webcamid] = ePicLoad()
 			self.picloads[webcamid].PictureData.get().append(boundFunction(self.finish_decode, webcamid))
-			self.picloads[webcamid].setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+			self.picloads[webcamid].setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#FF000000"))
 			self.picloads[webcamid].startDecode("/tmp/" + str(webcamid) + "_thumb.jpg")
 		else:
 			print "[decodePic] Thumbnail file NOT FOUND !!!-->:", thumbnailFile

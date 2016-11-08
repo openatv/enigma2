@@ -1026,12 +1026,24 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	// fill borders with background color
 	if (xfill != 0 || yfill != 0) {
 		unsigned int background;
+		gRGB bg(m_conf.background);
 		if (m_filepara->bits == 8) {
-			gRGB bg(m_conf.background);
 			background = surface->clut.findColor(bg);
+			if (bg != surface->clut.data[background] && surface->clut.colors < 256) {
+				gRGB* newClut = new gRGB[surface->clut.colors + 1];
+				for (int c = 0; c < surface->clut.colors; c++) {
+					newClut[c] = surface->clut.data[c];
+				}
+				newClut[surface->clut.colors] = bg;
+				delete [] surface->clut.data;
+				surface->clut.data = newClut;
+				background = surface->clut.colors;
+				surface->clut.colors++;
+			}
 		}
 		else {
-			background = m_conf.background;
+			bg.a = 255 - bg.a;
+			background = bg.argb();
 		}
 		if (yfill != 0) {
 			if (surface->bypp == 1) {
@@ -1273,7 +1285,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 	m_conf.resizetype = resizeType;
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
-		m_conf.background = strtoul(bg_str+1, NULL, 16) | 0xFF000000;
+		m_conf.background = strtoul(bg_str+1, NULL, 16);
 	eDebug("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X auto_orient=%d",
 			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
 			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background, m_conf.auto_orientation);
