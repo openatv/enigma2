@@ -1327,7 +1327,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			filename = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/noprev.png")
 
 		sc = AVSwitch().getFramebufferScale()
-		self.picload.setPara((self["screenshot"].instance.size().width(), self["screenshot"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+		self.picload.setPara((self["screenshot"].instance.size().width(), self["screenshot"].instance.size().height(), sc[0], sc[1], False, 1, "#FF000000"))
 		self.picload.startDecode(filename)
 
 		if self.statuspicinstance is not None:

@@ -134,7 +134,7 @@ class picshow(Screen):
 		self.setTitle(_("Picture player"))
 		sc = getScale()
 		# 0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
-		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), "#00000000", config.pic.autoOrientation.value))
+		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), "#FF000000", config.pic.autoOrientation.value))
 
 	def callbackView(self, val=0):
 		if val > 0:

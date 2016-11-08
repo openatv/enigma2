@@ -1285,7 +1285,7 @@ class MyTubePlayerMainScreen(Screen, ConfigListScreen):
 		if (os_path.exists(thumbnailFile) == True):
 			self.picloads[tubeid] = ePicLoad()
 			self.picloads[tubeid].PictureData.get().append(boundFunction(self.finish_decode, tubeid))
-			self.picloads[tubeid].setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+			self.picloads[tubeid].setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#FF000000"))
 			self.picloads[tubeid].startDecode(thumbnailFile)
 		else:
 			self.pixmaps_to_load.append(tubeid)
@@ -1491,7 +1491,7 @@ class MyTubeVideoInfoScreen(Screen):
 				thumbnailFile = entry[2]
 				if (os_path.exists(thumbnailFile) == True):
 					print "[MyTubeVideoInfoScreen] decodePic decoding thumbnail for index:"+  str(self.index) + "and file: " + thumbnailFile
-					self.picloads[index].setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+					self.picloads[index].setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#FF000000"))
 					self.picloads[index].startDecode(thumbnailFile)
 				else:
 					print "[MyTubeVideoInfoScreen] decodePic Thumbnail file NOT FOUND !!!-->:",thumbnailFile
