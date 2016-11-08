@@ -55,101 +55,86 @@ class OscamInfo:
 	version = ""
 
 	def confPath(self):
-		cmd = 'ps -eo command | sort -u | grep -v "grep" | grep -c "oscam"'
-		res = os.popen(cmd).read()
-		if res:
-			data = res.replace("\n", "")
-			if int(data) == 1:
-				cmd = 'ps -eo command | sort -u | grep -v "grep" | grep "oscam"'
-				res = os.popen(cmd).read()
-				if res:
-					data = res.replace("\n", "")
-					data = res.replace("--config-dir ", "-c ")
-					binary = res.split(" ")[0]
-					if "-c " in data:
-						data = data.split("-c ")[1]
-						if " " in data:
-							data = data.split(" ")[0]
-					else:
-						try:
-							print 'OScaminfo - oscam start-command is not as "/oscam-binary -parameter /config-folder" executed, using hard-coded config dir'
-							cmd = binary + ' -V | grep ConfigDir'
-							res = os.popen(cmd).read()
-							data = res.split(":")[1]
-						except:
-							print 'OScaminfo - oscam binary appears to be broken'
-							return None
-					data = data.strip() + '/oscam.conf'
-					if os.path.exists(data):
-						print 'OScaminfo - config file "%s" ' % data
-						return data
-					print 'OScaminfo - config file "%s" not found' % data
-					return None
-			elif int(data) > 1:
-				print 'OScaminfo - more than one(%s) oscam binarys is active'  % data
-				return None
-		print 'OScaminfo - no active oscam binarys found'
-		return None
+		# Find and parse running oscam
+		opath = None
+		owebif = None
+		oport = None
+		ipcompiled = "no"
+		if fileExists("/tmp/.oscam/oscam.version"):
+			data = open("/tmp/.oscam/oscam.version", "r").readlines()
+			for i in data:
+				if "configdir:" in i.lower():
+					opath = i.split(":")[1].strip() + "/oscam.conf"
+				elif "web interface support:" in i.lower():
+					owebif = i.split(":")[1].strip()
+				elif "webifport:" in i.lower():
+					oport = i.split(":")[1].strip()
+				elif "ipv6 support:" in i.lower():
+					ipcompiled = i.split(":")[1].strip()
+				else:
+					continue
+		if owebif == "yes" and oport is not "0":
+			return opath, ipcompiled
+		else:
+			return None, None
 
 	def getUserData(self):
-		err = ""
-		self.oscamconf = self.confPath()
-		self.username = ""
-		self.password = ""
-		if self.oscamconf is not None:
-			data = open(self.oscamconf, "r").readlines()
-			webif = False
-			httpuser = httppwd = httpport = False
+		blocked = True
+		port = "0"
+		ipconfigured = "no"
+		[oscamconf, ipcompiled] = self.confPath()
+		
+		ret = _("file oscam.conf could not be found")
+		if oscamconf is not None:
+			# Assume both errors at once
+			ret = _("oscam webif disabled")
+			if ipcompiled == "yes":
+				ret = ret + ", " + _("oscam webif blocking localhost (::1 and 127.0.0.1)")
+			else:
+				ret = ret + ", " + _("oscam webif blocking localhost (127.0.0.1)")
+			user = pwd = ""
+			data = open(oscamconf, "r").readlines()
 			for i in data:
-				if "[webif]" in i.lower():
-					webif = True
-				elif "httpuser" in i.lower():
-					httpuser = True
+				if "httpuser" in i.lower():
 					user = i.split("=")[1].strip()
 				elif "httppwd" in i.lower():
-					httppwd = True
 					pwd = i.split("=")[1].strip()
 				elif "httpport" in i.lower():
-					httpport = True
 					port = i.split("=")[1].strip()
-					self.port = port
-
-			if not webif:
-				err = _("There is no [webif] section in oscam.conf")
-			elif not httpuser:
-				err = _("No httpuser defined in oscam.conf")
-			elif not httppwd:
-				err = _("No httppwd defined in oscam.conf")
-			elif not httpport:
-				err = _("No httpport defined in oscam.conf. This value is required!")
-
-			if err != "":
-				return err
-			else:
-				return user, pwd, port
-		else:
-			return _("file oscam.conf could not be found")
+					ret = ret.replace(_("oscam webif disabled"),"").strip()
+					if ret.startswith(", "):
+						ret = ret.replace(", ","")
+				elif "httpallowed" in i.lower():
+					allowed = i.split("=")[1].strip()
+					if "::1" in allowed or "127.0.0.1" in allowed:
+						blocked = False
+						ret = ret.replace(_("oscam webif blocking localhost (::1 and 127.0.0.1)"),"").replace(_("oscam webif blocking localhost (127.0.0.1)"),"")
+						if ret.endswith(", "):
+							ret = ret.replace(", ","")
+					if "::1" in allowed and ipcompiled == "yes":
+						ipconfigured = "yes"
+			
+			if not port == "0" and not blocked:
+				ret = [user, pwd, port, ipconfigured]
+		
+		return ret
 
 	def openWebIF(self, part = None, reader = None):
 		self.proto = "http"
 		if config.oscaminfo.userdatafromconf.value:
 			udata = self.getUserData()
 			if isinstance(udata, str):
-				if "httpuser" in udata:
-					self.username=""
-				elif "httppwd" in udata:
-					self.password = ""
-				else:
-					return False, udata
+				return False, udata
 			else:
 				self.port = udata[2]
 				self.username = udata[0]
 				self.password = udata[1]
-			self.ip = "127.0.0.1"
-			cmd = 'netstat -tlnp | grep %s | grep oscam | awk \'{ print $4 }\' | sed s#:%s##' % ( self.port.replace("+",""), self.port.replace("+","") )
-			res = os.popen(cmd).read().strip()
-			if "::" in res:
+				self.ipaccess = udata[3]
+
+			if self.ipaccess == "yes":
 				self.ip = "::1"
+			else:
+				self.ip = "127.0.0.1"
 		else:
 			self.ip = ".".join("%d" % d for d in config.oscaminfo.ip.value)
 			self.port = str(config.oscaminfo.port.value)
@@ -167,11 +152,13 @@ class OscamInfo:
 		if part is not None and reader is not None:
 			self.url = "%s://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, part, reader )
 
-		pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
-		pwman.add_password( None, self.url, self.username, self.password )
-		handlers = urllib2.HTTPDigestAuthHandler( pwman )
-		opener = urllib2.build_opener( urllib2.HTTPHandler, handlers )
-		urllib2.install_opener( opener )
+		opener = urllib2.build_opener( urllib2.HTTPHandler )
+		if not self.username == "":
+			pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
+			pwman.add_password( None, self.url, self.username, self.password )
+			handlers = urllib2.HTTPDigestAuthHandler( pwman )
+			opener = urllib2.build_opener( urllib2.HTTPHandler, handlers )
+			urllib2.install_opener( opener )
 		request = urllib2.Request( self.url )
 		err = False
 		try:
@@ -443,41 +430,21 @@ class OscamInfoMenu(Screen):
 	def down(self):
 		pass
 	def goEntry(self, entry):
-		if entry == 0:
+		if entry in (1,2,3) and config.oscaminfo.userdatafromconf.value and self.osc.confPath()[0] is None:
+			config.oscaminfo.userdatafromconf.setValue(False)
+			config.oscaminfo.userdatafromconf.save()
+			self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
+		elif entry == 0:
 			if os.path.exists("/tmp/ecm.info"):
 				self.session.open(oscECMInfo)
 			else:
 				pass
 		elif entry == 1:
-			if config.oscaminfo.userdatafromconf.value:
-				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.setValue(False)
-					config.oscaminfo.userdatafromconf.save()
-					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
-				else:
-					self.session.open(oscInfo, "c")
-			else:
-				self.session.open(oscInfo, "c")
+			self.session.open(oscInfo, "c")
 		elif entry == 2:
-			if config.oscaminfo.userdatafromconf.value:
-				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.setValue(False)
-					config.oscaminfo.userdatafromconf.save()
-					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
-				else:
-					self.session.open(oscInfo, "s")
-			else:
-				self.session.open(oscInfo, "s")
+			self.session.open(oscInfo, "s")
 		elif entry == 3:
-			if config.oscaminfo.userdatafromconf.value:
-				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.setValue(False)
-					config.oscaminfo.userdatafromconf.save()
-					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
-				else:
-					self.session.open(oscInfo, "l")
-			else:
-				self.session.open(oscInfo, "l")
+			self.session.open(oscInfo, "l")
 		elif entry == 4:
 			osc = OscamInfo()
 			reader = osc.getReaders("cccam")  # get list of available CCcam-Readers
@@ -813,7 +780,7 @@ class oscInfo(Screen, OscamInfo):
 				self.loop.stop()
 			for i in self.errmsg:
 				self.out.append( self.buildListEntry( (i,) ))
-			self.setTitle(_("Error") + data)
+			self.setTitle(_("Error") + ": " + data)
 			self["key_green"].setText("Clients")
 			self["key_yellow"].setText("Servers")
 			self["key_blue"].setText("Log")
