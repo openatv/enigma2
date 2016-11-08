@@ -721,6 +721,7 @@ class SHOUTcastWidget(Screen):
 		self.currentGoogle = None
 		foundPos = result.find("unescapedUrl\":\"")
 		foundPos2 = result.find("\",\"url\":\"")
+
 		if foundPos != -1 and foundPos2 != -1:
 			url=result[foundPos+15:foundPos2]
 			if len(url)>15:
@@ -756,7 +757,7 @@ class SHOUTcastWidget(Screen):
 			self["cover"].doShow()
 		
 	def __event(self, ev):
-		if ev != 17:
+		if ev != 18:
 			print "[SHOUTcast] EVENT ==>", ev
 		if ev == 1 or ev == 4:
 			print "[SHOUTcast] Tuned in, playing now!"
@@ -869,7 +870,7 @@ class Cover(Pixmap):
 		coverheight=self.instance.size().height()
 		if int(config.plugins.shoutcast.coverheight.value) > coverheight:
 			config.plugins.shoutcast.coverheight.value = str(coverheight)	
-		self.picload.setPara((coverwidth, coverheight, 1, 1, False, 1, "#00000000"))
+		self.picload.setPara((coverwidth, coverheight, 1, 1, False, 1, "#FF000000"))
 		
 	def paintIconPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
