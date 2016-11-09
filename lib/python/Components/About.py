@@ -84,7 +84,7 @@ def getCPUSpeedString():
 			return "unavailable"
 
 def getCPUString():
-	if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
+	if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008'):
 		return "Broadcom"
 	else:
 		try:
