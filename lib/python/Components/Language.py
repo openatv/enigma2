@@ -151,7 +151,7 @@ class Language:
 
 		if delLang:
 			print"DELETE LANG", delLang
-			if delLang == "en_US":
+			if delLang == "en_US" or delLang == "de_DE":
 				print"Default Language can not be deleted !!"
 				return
 			elif delLang == "en_GB" or delLang == "pt_BR":
@@ -165,12 +165,12 @@ class Language:
 			ll = os.listdir(LPATH)
 			for x in ll:
 				if len(x) > 2:
-					if x != lang:
+					if x != lang and x != "de":
 						x = x.lower()
 						x = x.replace('_','-')
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 				else:
-					if x != lang[:2] and x != "en":
+					if x != lang[:2] and x != "en" and x != "de":
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 					elif x == "pt":
 						if x != lang:

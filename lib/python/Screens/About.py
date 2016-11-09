@@ -68,7 +68,7 @@ def getAboutText():
 	cpuMHz = ""
 	if getMachineBuild() in ('vusolo4k'):
 		cpuMHz = "   (1,5 GHz)"
-	elif getMachineBuild() in ('hd52','hd51'):
+	elif getMachineBuild() in ('hd52','hd51','sf4008'):
 		try:
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
@@ -124,7 +124,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('hd51','hd52'):
+	if getMachineBuild() not in ('hd51','hd52','vosolo4k','sf4008','dm820','dm7080'):
 		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
