@@ -10,6 +10,7 @@ class Event;
 
 #include <lib/base/object.h>
 #include <lib/service/iservice.h>
+#include <lib/dvb/atsc.h>
 
 SWIG_IGNORE(eComponentData);
 struct eComponentData
@@ -89,6 +90,8 @@ class eServiceEvent: public iObject
 public:
 #ifndef SWIG
 	RESULT parseFrom(Event *evt, int tsidonid=0);
+	RESULT parseFrom(ATSCEvent *evt);
+	RESULT parseFrom(const ExtendedTextTableSection *sct);
 	RESULT parseFrom(const std::string& filename, int tsidonid=0);
 	static void setEPGLanguage(const std::string& language) { m_language = language; }
 	static void setEPGLanguageAlternative(const std::string& language) { m_language_alternative = language; }
