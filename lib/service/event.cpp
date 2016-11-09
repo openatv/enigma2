@@ -206,6 +206,25 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	return 0;
 }
 
+RESULT eServiceEvent::parseFrom(ATSCEvent *evt)
+{
+	m_begin = evt->getStartTime() + (time_t)315964800; /* ATSC GPS system time epoch is 00:00 Jan 6th 1980 */
+	m_event_id = evt->getEventId();
+	m_duration = evt->getLengthInSeconds();
+	m_event_name = evt->getTitle(m_language);
+	if (m_event_name.empty()) m_event_name = evt->getTitle(m_language_alternative);
+	if (m_event_name.empty()) m_event_name = evt->getTitle("");
+	return 0;
+}
+
+RESULT eServiceEvent::parseFrom(const ExtendedTextTableSection *sct)
+{
+	m_short_description = sct->getMessage(m_language);
+	if (m_short_description.empty()) m_short_description = sct->getMessage(m_language_alternative);
+	if (m_short_description.empty()) m_short_description = sct->getMessage("");
+	return 0;
+}
+
 RESULT eServiceEvent::parseFrom(const std::string& filename, int tsidonid)
 {
 	if (!filename.empty())
