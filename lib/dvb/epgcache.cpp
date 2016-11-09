@@ -606,6 +606,44 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					return;
 				}
 #endif
+#ifdef ENABLE_ATSC
+				{
+					int system = iDVBFrontend::feSatellite;
+					ePtr<iDVBFrontendParameters> parms;
+					chan->getCurrentFrontendParameters(parms);
+					if (parms)
+					{
+						parms->getSystem(system);
+					}
+					if (system == iDVBFrontend::feATSC)
+					{
+						res = demux->createSectionReader( this, data.m_ATSC_VCTReader );
+						if ( res )
+						{
+							eDebug("[eEPGCache] couldnt initialize ATSC VCT reader!!");
+							return;
+						}
+						res = demux->createSectionReader( this, data.m_ATSC_MGTReader );
+						if ( res )
+						{
+							eDebug("[eEPGCache] couldnt initialize ATSC MGT reader!!");
+							return;
+						}
+						res = demux->createSectionReader( this, data.m_ATSC_EITReader );
+						if ( res )
+						{
+							eDebug("[eEPGCache] couldnt initialize ATSC EIT reader!!");
+							return;
+						}
+						res = demux->createSectionReader( this, data.m_ATSC_ETTReader );
+						if ( res )
+						{
+							eDebug("[eEPGCache] couldnt initialize ATSC ETT reader!!");
+							return;
+						}
+					}
+				}
+#endif
 				if (m_running)
 				{
 					data.state = 0;
@@ -1684,6 +1722,25 @@ void eEPGCache::channel_data::startEPG()
 		isRunning |= NETMED_SCHEDULE_OTHER;
 	}
 #endif
+#ifdef ENABLE_ATSC
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::ATSC_EIT && m_ATSC_MGTReader)
+	{
+		m_atsc_eit_index = 0;
+		m_ATSC_MGTReader->connectRead(slot(*this, &eEPGCache::channel_data::ATSC_MGTsection), m_ATSC_MGTConn);
+		m_ATSC_VCTReader->connectRead(slot(*this, &eEPGCache::channel_data::ATSC_VCTsection), m_ATSC_VCTConn);
+		m_ATSC_EITReader->connectRead(slot(*this, &eEPGCache::channel_data::ATSC_EITsection), m_ATSC_EITConn);
+		m_ATSC_ETTReader->connectRead(slot(*this, &eEPGCache::channel_data::ATSC_ETTsection), m_ATSC_ETTConn);
+		mask.pid = 0x1ffb;
+		mask.data[0] = 0xc7;
+		mask.mask[0] = 0xff;
+		m_ATSC_MGTReader->start(mask);
+		mask.pid = 0x1ffb;
+		mask.data[0] = 0xc8;
+		mask.mask[0] = 0xfe;
+		m_ATSC_VCTReader->start(mask);
+		isRunning |= ATSC_EIT;
+	}
+#endif
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::VIASAT)
 	{
 		mask.pid = 0x39;
@@ -1697,6 +1754,160 @@ void eEPGCache::channel_data::startEPG()
 
 	abortTimer->start(7000,true);
 }
+
+#ifdef ENABLE_ATSC
+void eEPGCache::channel_data::ATSC_checkCompletion()
+{
+	if (!m_ATSC_VCTConn && !m_ATSC_MGTConn && !m_ATSC_EITConn && !m_ATSC_ETTConn)
+	{
+		eDebug("[eEPGCache] ATSC EIT index %d completed", m_atsc_eit_index);
+		for (std::map<uint32_t, struct atsc_event>::const_iterator it = m_ATSC_EIT_map.begin(); it != m_ATSC_EIT_map.end(); ++it)
+		{
+			std::vector<int> sids;
+			std::vector<eDVBChannelID> chids;
+			int sourceid = (it->first >> 16) & 0xffff;
+			sids.push_back(m_ATSC_VCT_map[sourceid]);
+			chids.push_back(channel->getChannelID());
+			cache->submitEventData(sids, chids, it->second.startTime, it->second.lengthInSeconds, it->second.title.c_str(), "", m_ATSC_ETT_map[it->first].c_str(), 0, eEPGCache::ATSC_EIT);
+		}
+		m_ATSC_EIT_map.clear();
+		m_ATSC_ETT_map.clear();
+		if (m_atsc_eit_index < 128)
+		{
+			eDVBSectionFilterMask mask = {};
+			m_atsc_eit_index++;
+			m_ATSC_MGTReader->connectRead(slot(*this, &eEPGCache::channel_data::ATSC_MGTsection), m_ATSC_MGTConn);
+			mask.pid = 0x1ffb;
+			mask.data[0] = 0xc7;
+			mask.mask[0] = 0xff;
+			m_ATSC_MGTReader->start(mask);
+		}
+		else
+		{
+			eDebug("[eEPGCache] ATSC EIT parsing completed");
+			m_ATSC_VCT_map.clear();
+			isRunning &= ~ATSC_EIT;
+			if (!isRunning)
+			{
+				finishEPG();
+			}
+		}
+	}
+}
+
+void eEPGCache::channel_data::ATSC_VCTsection(const uint8_t *d)
+{
+	VirtualChannelTableSection vct(d);
+	for (VirtualChannelListConstIterator channel = vct.getChannels()->begin(); channel != vct.getChannels()->end(); ++channel)
+	{
+		if (m_ATSC_VCT_map.find((*channel)->getSourceId()) == m_ATSC_VCT_map.end())
+		{
+			m_ATSC_VCT_map[(*channel)->getSourceId()] = (*channel)->getServiceId();
+		}
+		else
+		{
+			m_ATSC_VCTReader->stop();
+			m_ATSC_VCTConn = NULL;
+			ATSC_checkCompletion();
+			break;
+		}
+	}
+}
+
+void eEPGCache::channel_data::ATSC_MGTsection(const uint8_t *d)
+{
+	MasterGuideTableSection mgt(d);
+	for (MasterGuideTableListConstIterator table = mgt.getTables()->begin(); table != mgt.getTables()->end(); ++table)
+	{
+		eDVBSectionFilterMask mask = {};
+		if ((*table)->getTableType() == 0x0100 + m_atsc_eit_index)
+		{
+			/* EIT */
+			mask.pid = (*table)->getPID();
+			mask.data[0] = 0xcb;
+			mask.mask[0] = 0xff;
+			m_ATSC_EITReader->connectRead(slot(*this, &eEPGCache::channel_data::ATSC_EITsection), m_ATSC_EITConn);
+			m_ATSC_EITReader->start(mask);
+		}
+		else if ((*table)->getTableType() == 0x0200 + m_atsc_eit_index)
+		{
+			/* ETT */
+			mask.pid = (*table)->getPID();
+			mask.data[0] = 0xcc;
+			mask.mask[0] = 0xff;
+			m_ATSC_ETTReader->connectRead(slot(*this, &eEPGCache::channel_data::ATSC_ETTsection), m_ATSC_ETTConn);
+			m_ATSC_ETTReader->start(mask);
+		}
+	}
+	m_ATSC_MGTReader->stop();
+	m_ATSC_MGTConn = NULL;
+	if (!m_ATSC_EITConn)
+	{
+		/* no more EIT */
+		m_ATSC_ETTReader->stop();
+		m_ATSC_ETTConn = NULL;
+		m_atsc_eit_index = 128;
+		ATSC_checkCompletion();
+	}
+}
+
+void eEPGCache::channel_data::ATSC_EITsection(const uint8_t *d)
+{
+	ATSCEventInformationSection eit(d);
+	for (ATSCEventListConstIterator ev = eit.getEvents()->begin(); ev != eit.getEvents()->end(); ++ev)
+	{
+		uint32_t etm = ((eit.getTableIdExtension() & 0xffff) << 16) | (((*ev)->getEventId() & 0x3fff) << 2) | 0x2;
+		if (m_ATSC_EIT_map.find(etm) == m_ATSC_EIT_map.end())
+		{
+			struct atsc_event event;
+			event.title = (*ev)->getTitle("---");
+			event.eventId = (*ev)->getEventId();
+			event.startTime = (*ev)->getStartTime() + (time_t)315964800; /* ATSC GPS system time epoch is 00:00 Jan 6th 1980 */
+			event.lengthInSeconds = (*ev)->getLengthInSeconds();
+			m_ATSC_EIT_map[etm] = event;
+		}
+		else
+		{
+			m_ATSC_EITReader->stop();
+			m_ATSC_EITConn = NULL;
+			ATSC_checkCompletion();
+			break;
+		}
+	}
+	haveData |= ATSC_EIT;
+}
+
+void eEPGCache::channel_data::ATSC_ETTsection(const uint8_t *d)
+{
+	ExtendedTextTableSection ett(d);
+	if (m_ATSC_ETT_map.find(ett.getETMId()) == m_ATSC_ETT_map.end())
+	{
+		m_ATSC_ETT_map[ett.getETMId()] = ett.getMessage("---");
+	}
+	else
+	{
+		m_ATSC_ETTReader->stop();
+		m_ATSC_ETTConn = NULL;
+		ATSC_checkCompletion();
+	}
+}
+
+void eEPGCache::channel_data::cleanupATSC()
+{
+	m_ATSC_VCTReader->stop();
+	m_ATSC_MGTReader->stop();
+	m_ATSC_EITReader->stop();
+	m_ATSC_ETTReader->stop();
+	m_ATSC_VCTConn = NULL;
+	m_ATSC_MGTConn = NULL;
+	m_ATSC_EITConn = NULL;
+	m_ATSC_ETTConn = NULL;
+
+	m_ATSC_EIT_map.clear();
+	m_ATSC_ETT_map.clear();
+	m_ATSC_VCT_map.clear();
+}
+#endif
 
 void eEPGCache::channel_data::abortNonAvail()
 {
@@ -1783,6 +1994,14 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_MHWConn=0;
 			m_MHWReader2->stop();
 			m_MHWConn2=0;
+		}
+#endif
+#ifdef ENABLE_ATSC
+		if (!(haveData & ATSC_EIT) && (isRunning & ATSC_EIT))
+		{
+			eDebug("[eEPGCache] abort non avail ATSC EIT reading");
+			isRunning &= ~ATSC_EIT;
+			cleanupATSC();
 		}
 #endif
 		if ( isRunning & VIASAT )
@@ -1913,6 +2132,13 @@ void eEPGCache::channel_data::abortEPG()
 			m_MHWConn=0;
 			m_MHWReader2->stop();
 			m_MHWConn2=0;
+		}
+#endif
+#ifdef ENABLE_ATSC
+		if (isRunning & ATSC_EIT)
+		{
+			isRunning &= ~ATSC_EIT;
+			cleanupATSC();
 		}
 #endif
 	}
@@ -2770,7 +2996,27 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	long duration, const char* title, const char* short_summary,
 	const char* long_description, char event_type)
 {
+	std::vector<int> sids;
+	std::vector<eDVBChannelID> chids;
+	for (std::vector<eServiceReferenceDVB>::const_iterator serviceRef = serviceRefs.begin();
+		serviceRef != serviceRefs.end();
+		++serviceRef)
+	{
+		eDVBChannelID chid;
+		serviceRef->getChannelID(chid);
+		chids.push_back(chid);
+		sids.push_back(serviceRef->getServiceID().get());
+	}
+	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_type, EPG_IMPORT);
+}
+
+void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start,
+	long duration, const char* title, const char* short_summary,
+	const char* long_description, char event_type, int source)
+{
 	if (!title)
+		return;
+	if (sids.size() != chids.size())
 		return;
 	static const int EIT_LENGTH = 4108;
 	static const uint8_t codePage = 0x15; // UTF-8 encoding
@@ -2893,16 +3139,12 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 	int packet_length = (x - data) - 3; //should add 1 for crc....
 	packet->setSectionLength(packet_length);
 	// Add channelrefs and submit data.
-	for (std::vector<eServiceReferenceDVB>::const_iterator serviceRef = serviceRefs.begin();
-		serviceRef != serviceRefs.end();
-		++serviceRef)
+	for (unsigned int i = 0; i < chids.size(); i++)
 	{
-		eDVBChannelID chid;
-		serviceRef->getChannelID(chid);
-		packet->setServiceId(serviceRef->getServiceID().get());
-		packet->setTransportStreamId(chid.transport_stream_id.get());
-		packet->setOriginalNetworkId(chid.original_network_id.get());
-		sectionRead(data, EPG_IMPORT, 0);
+		packet->setServiceId(sids[i]);
+		packet->setTransportStreamId(chids[i].transport_stream_id.get());
+		packet->setOriginalNetworkId(chids[i].original_network_id.get());
+		sectionRead(data, source, 0);
 	}
 }
 

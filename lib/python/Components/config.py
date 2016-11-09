@@ -154,6 +154,17 @@ class ConfigElement(object):
 	def removeNotifier(self, notifier):
 		notifier in self.notifiers and self.notifiers.remove(notifier)
 		notifier in self.notifiers_final and self.notifiers_final.remove(notifier)
+		try:
+			del self.__notifiers[str(notifier)]
+		except:
+			try:
+				del self.__notifiers_final[str(notifier)]
+			except:
+				pass
+
+	def clearNotifiers(self):
+		self.__notifiers = { }
+		self.__notifiers_final = { }
 
 	def disableSave(self):
 		self.save_disabled = True

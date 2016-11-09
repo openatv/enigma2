@@ -109,9 +109,6 @@ eDVBResourceManager::eDVBResourceManager()
 		addAdapter(adapter, true);
 	}
 	
-	m_fbcmng = new eFBCTunerManager(instance);
-	m_sec = new eDVBSatelliteEquipmentControl(m_frontend, m_simulate_frontend);
-
 	m_boxtype = -1;
 	int fd = open("/proc/stb/info/model", O_RDONLY);
 	if (fd >= 0) {
