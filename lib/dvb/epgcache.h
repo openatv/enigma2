@@ -6,6 +6,7 @@
 #define ENABLE_FREESAT 1
 #define ENABLE_NETMED 1
 #define ENABLE_VIRGIN 1
+#define ENABLE_ATSC 1
 
 #ifndef SWIG
 
@@ -150,6 +151,9 @@ public:
 	,VIRGIN_NOWNEXT=2048
 	,VIRGIN_SCHEDULE=4096
 #endif
+#ifdef ENABLE_ATSC
+	,ATSC_EIT=8192
+#endif
 	,EPG_IMPORT=0x80000000
 	};
 
@@ -220,6 +224,27 @@ private:
 		void timeMHW2DVB( int minutes, u_char *return_time);
 		void timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time);
 		void storeMHWTitle(std::map<uint32_t, mhw_title_t>::iterator itTitle, std::string sumText, const uint8_t *data);
+#endif
+#ifdef ENABLE_ATSC
+		int m_atsc_eit_index;
+		std::map<uint16_t, uint16_t> m_ATSC_VCT_map;
+		std::map<uint32_t, std::string> m_ATSC_ETT_map;
+		struct atsc_event
+		{
+			uint16_t eventId;
+			uint32_t startTime;
+			uint32_t lengthInSeconds;
+			std::string title;
+		};
+		std::map<uint32_t, struct atsc_event> m_ATSC_EIT_map;
+		ePtr<iDVBSectionReader> m_ATSC_VCTReader, m_ATSC_MGTReader, m_ATSC_EITReader, m_ATSC_ETTReader;
+		ePtr<eConnection> m_ATSC_VCTConn, m_ATSC_MGTConn, m_ATSC_EITConn, m_ATSC_ETTConn;
+		void ATSC_checkCompletion();
+		void ATSC_VCTsection(const uint8_t *d);
+		void ATSC_MGTsection(const uint8_t *d);
+		void ATSC_EITsection(const uint8_t *d);
+		void ATSC_ETTsection(const uint8_t *d);
+		void cleanupATSC();
 #endif
 		void readData(const uint8_t *data, eEPGCache::eit_type_t source);
 		void startChannel();
@@ -302,6 +327,7 @@ private:
 	void sectionRead(const uint8_t *data, eit_type_t source, channel_data *channel);
 	void gotMessage(const Message &message);
 	void cleanLoop();
+	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, int source);
 
 // called from main thread
 	void DVBChannelAdded(eDVBChannel*);
