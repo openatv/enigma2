@@ -548,6 +548,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		for x in self.onShowHideNotifiers:
 			x(True)
 		self.startHideTimer()
+		VolumeControl.instance and VolumeControl.instance.showMute()
 		
 	def doDimming(self):
 		if config.usage.show_infobar_do_dimming.value:
