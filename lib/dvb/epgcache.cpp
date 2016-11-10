@@ -1698,7 +1698,7 @@ void eEPGCache::channel_data::ATSC_checkCompletion()
 			int sourceid = (it->first >> 16) & 0xffff;
 			sids.push_back(m_ATSC_VCT_map[sourceid]);
 			chids.push_back(channel->getChannelID());
-			cache->submitEventData(sids, chids, it->second.startTime, it->second.lengthInSeconds, it->second.title.c_str(), "", m_ATSC_ETT_map[it->first].c_str(), 0, eEPGCache::ATSC_EIT);
+			cache->submitEventData(sids, chids, it->second.startTime, it->second.lengthInSeconds, it->second.title.c_str(), "", m_ATSC_ETT_map[it->first].c_str(), 0, eEPGCache::ATSC_EIT, it->second.eventId);
 		}
 		m_ATSC_EIT_map.clear();
 		m_ATSC_ETT_map.clear();
@@ -2952,12 +2952,12 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 		chids.push_back(chid);
 		sids.push_back(serviceRef->getServiceID().get());
 	}
-	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_type, EPG_IMPORT);
+	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_type, EPG_IMPORT, eventId);
 }
 
 void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start,
 	long duration, const char* title, const char* short_summary,
-	const char* long_description, char event_type, int source)
+	const char* long_description, char event_type, eit_type_t source, uint16_t eventId)
 {
 	if (!title)
 		return;
@@ -3088,7 +3088,7 @@ void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<
 		packet->setServiceId(sids[i]);
 		packet->setTransportStreamId(chids[i].transport_stream_id.get());
 		packet->setOriginalNetworkId(chids[i].original_network_id.get());
-		sectionRead(data, source, 0);
+		sectionRead(data, source, NULL);
 	}
 }
 

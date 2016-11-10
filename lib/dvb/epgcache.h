@@ -327,7 +327,7 @@ private:
 	void sectionRead(const uint8_t *data, eit_type_t source, channel_data *channel);
 	void gotMessage(const Message &message);
 	void cleanLoop();
-	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, int source);
+	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, eit_type_t source, uint16_t eventId=0);
 
 // called from main thread
 	void DVBChannelAdded(eDVBChannel*);
