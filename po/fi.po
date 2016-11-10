@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-23 13:06+0100\n"
-"PO-Revision-Date: 2016-10-24 14:51+0200\n"
+"POT-Creation-Date: 2016-11-04 20:50+0000\n"
+"PO-Revision-Date: 2016-11-06 14:28+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/timoj/Kojo/Samzam\n"
 "Language: fi\n"
@@ -142,6 +142,9 @@ msgid ""
 msgstr ""
 "\n"
 "Katsele, asenna ja poista ohjelmapaketteja."
+
+msgid " "
+msgstr " "
 
 #
 msgid " (0 - all networks)"
@@ -1664,6 +1667,10 @@ msgstr "Korosta sinistä"
 msgid "Boost green"
 msgstr "Korosta vihreää"
 
+#, python-format
+msgid "Bootloader:\t\t%s\n"
+msgstr "Bootloader:\t\t%s\n"
+
 msgid "Bouquet List"
 msgstr "Suosikkilista"
 
@@ -2274,6 +2281,9 @@ msgstr "Asetustila"
 #, python-format
 msgid "Configuration mode: %s"
 msgstr "Toimintatila: %s"
+
+msgid "Configuration..."
+msgstr "Asetukset..."
 
 #
 msgid "Configure alignment of service events."
@@ -2941,6 +2951,9 @@ msgstr "DVB CI-viive"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB-tekstin mustan reunan läpinäkyvyys"
+
+msgid "DVB type"
+msgstr "DVB tyyppi"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -4222,9 +4235,6 @@ msgstr "Lopullinen sijainti muistipaikassa"
 
 msgid "Final scroll delay"
 msgstr "Rullausviive lopussa"
-
-msgid "Find currently played service"
-msgstr "Etsi nyt käytössä oleva kanava"
 
 #
 msgid "Fine movement"
@@ -6675,9 +6685,6 @@ msgstr "Toista seuraavasta merkistä tai soittolistan valinnasta"
 msgid "Play from previous mark or playlist entry"
 msgstr "Toista edellisestä merkistä tai soittolistan valinnasta"
 
-msgid "Play in main window"
-msgstr "Toista pääikkunassa"
-
 #
 msgid "Play music..."
 msgstr "Soita musiikkia..."
@@ -7267,6 +7274,10 @@ msgstr "Prioriteetti"
 msgid "Process"
 msgstr "Suorita"
 
+#, python-format
+msgid "Processor temperature:\t%s"
+msgstr "Prosessorin lämpötila:\t%s"
+
 msgid "Profile"
 msgstr "Profiili"
 
@@ -7413,6 +7424,10 @@ msgstr "RGB"
 
 msgid "Radio"
 msgstr "Radio"
+
+#
+msgid "Radio Channel Selection"
+msgstr "Radiokanavan valinta"
 
 #
 msgid "Random"
@@ -7950,6 +7965,9 @@ msgstr "SABnzbd-asetukset"
 
 msgid "SABnzbd setup"
 msgstr "SABnzbd-asetukset"
+
+msgid "SCPC optimized search range"
+msgstr "SCPC optimoitu hakualue"
 
 msgid "SID"
 msgstr "SID"
@@ -9844,16 +9862,12 @@ msgid "System"
 msgstr "Järjestelmä"
 
 #, python-format
-msgid "System temperature: %s"
-msgstr "Laitteen lämpötila: %s"
+msgid "System temperature:\t%s"
+msgstr "Laitteen lämpötila:\t%s"
 
 #, python-format
-msgid ""
-"System temperature: %s%sC\n"
-"\n"
-msgstr ""
-"Sisälämpötila: %s%sC\n"
-"\n"
+msgid "System temperature: %s"
+msgstr "Laitteen lämpötila: %s"
 
 msgid "System: "
 msgstr "Järjestelmä:"
@@ -10032,6 +10046,20 @@ msgid ""
 msgstr ""
 "IMDb-lisäosaa ei ole asennettu!\n"
 "Asenna se."
+
+msgid ""
+"The Linux kernel has changed, an update is not permitted. \n"
+"Install latest image using USB stick or Image Manager."
+msgstr ""
+"Linux kernel on muuttunut. Ohjelmistopäivitys ei ole mahdollista. \n"
+"Asenna uusin image käyttäen USB-tikkua tai Image-varmuuskopiointia."
+
+msgid ""
+"The Linux kernel has changed, plugins are not compatible. \n"
+"Install latest image using USB stick or Image Manager."
+msgstr ""
+"Linux kernel on muuttunut. Pluginit eivät ole yhteensopivia. \n"
+"Asenna uusin image käyttäen USB-tikkua tai Image-varmuuskopiointia."
 
 msgid "The PIN code has been changed successfully."
 msgstr "PIN-koodin vaihto onnistui."
@@ -11707,12 +11735,6 @@ msgstr ""
 "ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, "
 "ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun "
 "asennettuja päivitetään."
-
-msgid "When enabled the LNB power will not be switched off in standby"
-msgstr "Kun päällä, LNB:n virtaa ei katkaista valmiustilassa"
-
-msgid "When enabled the LNB toneburst will be forced"
-msgstr "Kun päällä, LNB:n ääniohjaus pakotetaan päälle"
 
 msgid ""
 "When enabled the online checker will also check for experimental versions"
@@ -13901,3 +13923,22 @@ msgstr "Vaihdettu"
 #~ msgstr ""
 #~ "Haluatko asentaa myös Samba-asiakkaan?\n"
 #~ "Tämä mahdollistaa Windows-jakojen liittämisen tälle laitteelle."
+
+#~ msgid "Find currently played service"
+#~ msgstr "Etsi nyt käytössä oleva kanava"
+
+#~ msgid "Play in main window"
+#~ msgstr "Toista pääikkunassa"
+
+#~ msgid ""
+#~ "System temperature: %s%sC\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Sisälämpötila: %s%sC\n"
+#~ "\n"
+
+#~ msgid "When enabled the LNB power will not be switched off in standby"
+#~ msgstr "Kun päällä, LNB:n virtaa ei katkaista valmiustilassa"
+
+#~ msgid "When enabled the LNB toneburst will be forced"
+#~ msgstr "Kun päällä, LNB:n ääniohjaus pakotetaan päälle"

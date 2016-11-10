@@ -183,7 +183,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName())
+				error = _("Errors were encountered during update.\nUSB update is recommended.")
 				if self.packages == 0:
 					error = _("A background update check is in progress,\nplease wait a few minutes and try again.")
 				if self.updating:

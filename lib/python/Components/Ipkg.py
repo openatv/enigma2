@@ -143,6 +143,7 @@ class IpkgComponent:
 					self.parseLine(mydata)
 
 	def parseLine(self, data):
+		print "[Ipkg] parseLine", data
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
 			if data.count(' - ') > 1:
 				item = data.split(' - ', 2)

@@ -578,7 +578,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			}
 			if (defaultAudio != -1)
 				program.defaultAudioStream = defaultAudio;
-			else if (first_non_mpeg != -1)
+			else if (first_non_mpeg != -1 && (defaultac3 || defaultddp))
 				program.defaultAudioStream = first_non_mpeg;
 		}
 

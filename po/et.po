@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-27 22:05+0300\n"
-"PO-Revision-Date: 2016-10-28 12:18+0300\n"
+"POT-Creation-Date: 2016-11-05 16:07+0200\n"
+"PO-Revision-Date: 2016-11-06 12:31+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 
 msgid ""
 "\n"
@@ -6799,6 +6799,9 @@ msgstr "SABnzbd seaded"
 msgid "SABnzbd setup"
 msgstr "SABnzbd seaded"
 
+msgid "SCPC optimized search range"
+msgstr "SCPC optimeeritud otsingu vahemik"
+
 msgid "SID"
 msgstr "SID"
 
@@ -8573,6 +8576,20 @@ msgstr ""
 "IMDb plugin ei ole paigaldatud!\n"
 "Paigalda see."
 
+msgid ""
+"The Linux kernel has changed, an update is not permitted. \n"
+"Install latest image using USB stick or Image Manager."
+msgstr ""
+"Linuxi kernel on muutunud, uuendamine on keelatud.\n"
+"Paigalda uusim tarkvara USB pulgalt või süsteemitõmmiste menüüst."
+
+msgid ""
+"The Linux kernel has changed, plugins are not compatible. \n"
+"Install latest image using USB stick or Image Manager."
+msgstr ""
+"Linuxi kernel on muutunud, pluginad ei ühildu.\n"
+"Paigalda uusim tarkvara USB pulgalt või süsteemitõmmiste menüüst."
+
 msgid "The PIN code has been changed successfully."
 msgstr "PIN kood on muudetud."
 
@@ -9917,12 +9934,6 @@ msgstr "Mida soovid otsida?"
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Määrates 'jah', laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii saab oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."
 
-msgid "When enabled the LNB power will not be switched off in standby"
-msgstr "Määrates 'jah', ei lülitata ooteseisundis LNB toidet välja"
-
-msgid "When enabled the LNB toneburst will be forced"
-msgstr "Määrates 'jah', toimub LNB toonimpulss sunnitult"
-
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Määrates 'jah', otsitakse ka eksperimentaalseid uuendusi"
 
@@ -10713,7 +10724,7 @@ msgid "cartoon/puppets"
 msgstr "joonis/nukufilm"
 
 msgid "center"
-msgstr "keskel"
+msgstr "Keskel"
 
 msgid "centered"
 msgstr "Keskel"
@@ -11855,6 +11866,12 @@ msgstr "vahetatud"
 
 #~ msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 #~ msgstr "Mida teha taimeri lõppemisel? 'Automaatne' laseb vastuvõtjal minna olekusse, mis oli enne taimeri alustamist. 'Ära tee midagi', 'mine ooteseisundisse' ja 'mine puhkeseisundisse' teevad just seda, mis kirjas."
+
+#~ msgid "When enabled the LNB power will not be switched off in standby"
+#~ msgstr "Määrates 'jah', ei lülitata ooteseisundis LNB toidet välja"
+
+#~ msgid "When enabled the LNB toneburst will be forced"
+#~ msgstr "Määrates 'jah', toimub LNB toonimpulss sunnitult"
 
 #~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 #~ msgstr "Määrates 'jah', laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii on võimalik oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."

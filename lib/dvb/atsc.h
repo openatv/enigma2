@@ -61,6 +61,8 @@ class VirtualChannel : public DescriptorContainer
 {
 protected:
 	std::string name;
+	unsigned majorChannelNumber : 10;
+	unsigned minorChannelNumber : 10;
 	unsigned transportStreamId : 16;
 	unsigned serviceId : 16;
 	unsigned sourceId : 16;
@@ -73,6 +75,8 @@ public:
 	~VirtualChannel(void);
 
 	const std::string &getName(void) const;
+	uint16_t getMajorChannelNumber(void) const;
+	uint16_t getMinorChannelNumber(void) const;
 	uint16_t getTransportStreamId(void) const;
 	uint16_t getServiceId(void) const;
 	uint16_t getSourceId(void) const;
@@ -89,7 +93,6 @@ class VirtualChannelTableSection : public LongCrcSection
 {
 protected:
 	unsigned transportStreamId : 16;
-	unsigned versionNumber : 5;
 	VirtualChannelList channels;
 
 public:
@@ -101,7 +104,6 @@ public:
 	static const int TID = 0xc8;
 	static const uint32_t TIMEOUT = 5000;
 
-	uint8_t getVersion(void) const;
 	uint16_t getTransportStreamId(void) const;
 	const VirtualChannelList *getChannels(void) const;
 };
@@ -121,7 +123,6 @@ public:
 class SystemTimeTableSection : public DescriptorContainer, public LongCrcSection
 {
 protected:
-	unsigned versionNumber : 5;
 	unsigned systemTime : 32;
 	unsigned gpsOffset : 8;
 
@@ -134,7 +135,6 @@ public:
 	static const int TID = 0xcd;
 	static const uint32_t TIMEOUT = 5000;
 
-	uint8_t getVersion(void) const;
 	uint32_t getSystemTime(void) const;
 	uint8_t getGPSOffset(void) const;
 };
@@ -164,7 +164,6 @@ typedef MasterGuideTableList::const_iterator MasterGuideTableListConstIterator;
 class MasterGuideTableSection : public LongCrcSection
 {
 protected:
-	unsigned versionNumber : 5;
 	MasterGuideTableList tables;
 
 public:
@@ -176,7 +175,6 @@ public:
 	static const int TID = 0xc7;
 	static const uint32_t TIMEOUT = 1000;
 
-	uint8_t getVersion(void) const;
 	const MasterGuideTableList *getTables(void) const;
 };
 
@@ -211,7 +209,6 @@ typedef ATSCEventList::const_iterator ATSCEventListConstIterator;
 class ATSCEventInformationSection : public LongCrcSection
 {
 protected:
-	unsigned versionNumber : 5;
 	ATSCEventList events;
 
 public:
@@ -222,14 +219,12 @@ public:
 	static const int TID = 0xcb;
 	static const uint32_t TIMEOUT = 5000;
 
-	uint8_t getVersion(void) const;
 	const ATSCEventList *getEvents(void) const;
 };
 
 class ExtendedTextTableSection : public LongCrcSection
 {
 protected:
-	unsigned versionNumber : 5;
 	unsigned ETMId : 32;
 	MultipleStringStructure *message;
 
@@ -241,7 +236,6 @@ public:
 	static const int TID = 0xcc;
 	static const uint32_t TIMEOUT = 10000;
 
-	uint8_t getVersion(void) const;
 	uint32_t getETMId(void) const;
 	const std::string getMessage(const std::string &language) const;
 };
