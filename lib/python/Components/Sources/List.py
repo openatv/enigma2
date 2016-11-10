@@ -115,3 +115,30 @@ to generate HTML."""
 			self.master.setSelectionEnabled(enabled)
 
 	selectionEnabled = property(lambda self: self.__selectionEnabled, setSelectionEnabled)
+
+	def pageUp(self):
+		if self.getIndex() == 0:
+			self.index = self.count() - 1
+		elif self.getIndex() - 10 < 0:
+			self.index = 0
+		else:
+			self.index -= 10
+		self.setIndex(self.index)
+
+	def pageDown(self):
+		if self.getIndex() == self.count() - 1:
+			self.index = 0
+		elif self.getIndex() + 10 >= self.count():
+			self.index = self.count() - 1
+		else:
+			self.index += 10
+		self.setIndex(self.index)
+
+	def up(self):
+		self.selectPrevious()
+		
+	def down(self):
+		self.selectNext()
+
+	def getSelectedIndex(self):
+		return self.getIndex()
