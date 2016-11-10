@@ -1226,7 +1226,7 @@ int eDVBFrontend::readFrontendData(int type)
 				}
 #endif
 				// fallback to old DVB API
-				if(!signalquality && !signalqualitydb || strstr(m_description, "Sundtek"))
+				if(!signalquality && !signalqualitydb)
 				{
 					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
 					calculateSignalQuality(snr, signalquality, signalqualitydb);
