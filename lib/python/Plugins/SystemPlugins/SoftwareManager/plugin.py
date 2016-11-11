@@ -44,7 +44,7 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection([
 	("Y", _("Yes, always")),
 	("N", _("No, never")),
 	("ask", _("Always ask"))
-], "Y")
+], "ask")
 config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
 config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
 config.plugins.softwaremanager.epgcache = ConfigYesNo(default=True)
