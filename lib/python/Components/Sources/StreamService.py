@@ -1,5 +1,6 @@
 from Source import Source
 from Components.Element import cached
+from Components.SystemInfo import SystemInfo
 from enigma import eServiceReference, pNavigation
 
 class StreamService(Source):
@@ -33,6 +34,14 @@ class StreamService(Source):
 			print "StreamService has no service ref set."
 			return
 		print "StreamService execBegin", self.ref.toString()
+		if SystemInfo["CanDoTranscodeAndPIP"]:
+			from Screens.InfoBar import InfoBar
+			if InfoBar.instance and hasattr(InfoBar.instance.session, 'pipshown') and InfoBar.instance.session.pipshown:
+				hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
+				print "[StreamService] try to disable pip before start stream"
+				if hasattr(InfoBar.instance.session, 'pip'):
+					del InfoBar.instance.session.pip
+					InfoBar.instance.session.pipshown = False
 		try:
 			#not all images support recording type indicators
 			self.__service = self.navcore.recordService(self.ref,False,pNavigation.isStreaming)
@@ -49,3 +58,4 @@ class StreamService(Source):
 		if self.__service is not None:
 			self.navcore.stopRecordService(self.__service)
 			self.__service = None
+			self.ref = None
