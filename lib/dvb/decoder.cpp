@@ -872,7 +872,7 @@ int eTSMPEGDecoder::setState()
 	}
 	if (m_changed & changeAudio)
 	{
-#ifdef TUNER_VUSOLO4K
+#ifdef AUDIO_PIP_WORKAROUND
 		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio && (m_decoder == 0 || eConfigManager::getConfigValue("config.av.pip_mode") == "external"))
 #else
 		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio)
