@@ -67,18 +67,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 
 	def selectionChanged(self):
-#GML
-#		if isinstance(self.current,tuple) and len(self.current) >= 2:
-#			self.current[1].onDeselect(self.session)
-#		self.current = self.getCurrent()
-#		if isinstance(self.current,tuple) and len(self.current) >= 2:
-#			self.current[1].onSelect(self.session)
-#		else:
-#			return
-#		for x in self.onSelectionChanged:
-#			x()
-# Only run onDeselect/onSelect iff self.current != self.getCurrent()
-#
+		# Only run onDeselect/onSelect iff self.current != self.getCurrent()
 		orig_current = self.current;
 		self.current = self.getCurrent()
 		if (orig_current == self.current):
