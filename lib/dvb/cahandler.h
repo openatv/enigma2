@@ -125,6 +125,7 @@ public:
 	void sendCAPMT();
 	int writeCAPMTObject(eSocket *socket, int list_management = -1);
 	int buildCAPMT(eTable<ProgramMapSection> *ptr);
+	int buildCAPMT(ePtr<eDVBService> &dvbservice);
 	void connectionLost();
 };
 
@@ -178,6 +179,7 @@ public:
 	int registerService(const eServiceReferenceDVB &service, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice);
 	int unregisterService(const eServiceReferenceDVB &service , int adapter, int demux_nums[2], eTable<ProgramMapSection> *ptr);
 	void handlePMT(const eServiceReferenceDVB &service, ePtr<eTable<ProgramMapSection> > &ptr);
+	void handlePMT(const eServiceReferenceDVB &service, ePtr<eDVBService> &dvbservice);
 	void connectionLost(ePMTClient *client);
 
 	static eDVBCAHandler *getInstance() { return instance; }

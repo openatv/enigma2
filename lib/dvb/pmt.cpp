@@ -77,6 +77,11 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 					{
 						registerCAService();
 					}
+					if (m_ca_servicePtr && !m_service->usePMT())
+					{
+						eDebug("[eDVBServicePMTHandler] create cached caPMT");
+						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
+					}
 				}
 			}
 

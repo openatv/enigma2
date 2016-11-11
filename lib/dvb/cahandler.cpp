@@ -9,6 +9,8 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
+#include <map>
+
 ePMTClient::ePMTClient(eDVBCAHandler *handler, int socket) : eUnixDomainSocket(socket, 1, eApp), parent(handler)
 {
 	receivedTag[0] = 0;
@@ -461,6 +463,25 @@ void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, ePtr<eTable<Progr
 	pmtCache[ref] = ptr;
 }
 
+void eDVBCAHandler::handlePMT(const eServiceReferenceDVB &ref, ePtr<eDVBService> &dvbservice)
+{
+	CAServiceMap::iterator it = services.find(ref);
+	if (it == services.end())
+	{
+		/* not one of our services */
+		return;
+	}
+
+	eDVBCAService *service = it->second;
+
+	/* prepare the data */
+	if (service->buildCAPMT(dvbservice) < 0) return; /* probably equal version, ignore */
+
+	service->sendCAPMT();
+
+	distributeCAPMT();
+}
+
 eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service)
 	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_crc32(0), m_version(-1), m_retryTimer(eTimer::create(eApp))
 {
@@ -631,6 +652,182 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 		capmt.writeToBuffer(m_capmt);
 	}
+
+	m_prev_build_hash = build_hash;
+	m_version = pmt_version;
+	m_crc32 = crc;
+	return 0;
+}
+
+int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
+{
+	int pmt_version = 0;
+	uint8_t demux_mask = 0;
+	int data_demux = -1;
+	uint32_t crc = 0;
+
+	int iter = 0, max_demux_slots = getNumberOfDemuxes();
+	while ( iter < max_demux_slots )
+	{
+		if (m_used_demux[iter] != 0xFF)
+		{
+			if (m_used_demux[iter] > data_demux)
+			{
+				data_demux = m_used_demux[iter];
+			}
+			demux_mask |= (1 << m_used_demux[iter]);
+		}
+		++iter;
+	}
+
+	if (data_demux == -1)
+	{
+		eDebug("[eDVBCAService] no data demux found for service %s", m_service.toString().c_str());
+		return -1;
+	}
+
+	int pmtpid = dvbservice->getCacheEntry(eDVBService::cPMTPID);
+	if (pmtpid == -1)
+	{
+		pmtpid = 0;
+	}
+
+	uint64_t build_hash = m_adapter;
+	build_hash <<= 8;
+	build_hash |= data_demux;
+	build_hash <<= 16;
+	build_hash |= pmtpid;
+	build_hash <<= 8;
+	build_hash |= demux_mask;
+	build_hash <<= 8;
+	build_hash |= (pmt_version & 0xff);
+	build_hash <<= 16;
+	build_hash |= (m_service_type_mask & 0xffff);
+
+	int pos = 0;
+	int programInfoLength = 0;
+
+	m_capmt[pos++] = 0x9f; // (caPmtTag >> 16) & 0xff;
+	m_capmt[pos++] = 0x80; // (caPmtTag >> 8) & 0xff;
+	m_capmt[pos++] = 0x32; // (caPmtTag >> 0) & 0xff;
+	m_capmt[pos++] = 0x00; // Lenght fill later
+	m_capmt[pos++] = 0x03; // LIST_ONLY
+
+	// add our private descriptors to capmt
+
+	m_capmt[pos++] = m_service.getServiceID().get()>>8;
+	m_capmt[pos++] = m_service.getServiceID().get()&0xFF;
+
+	m_capmt[pos++] = 0x01; // (versionNumber << 1) | currentNextIndicator
+	m_capmt[pos++] = 0x00; // ProgramInfo Length fill later
+	m_capmt[pos++] = 0x00; // ProgramInfo Length fill later
+	m_capmt[pos++] = 0x01; // CMD_OK_DESCRAMBLING
+
+	programInfoLength += 1;
+
+	m_capmt[pos++] = 0x81; // dvbnamespace
+	m_capmt[pos++] = 0x08;
+	m_capmt[pos++] = m_service.getDVBNamespace().get()>>24;
+	m_capmt[pos++] = (m_service.getDVBNamespace().get()>>16)&0xFF;
+	m_capmt[pos++] = (m_service.getDVBNamespace().get()>>8)&0xFF;
+	m_capmt[pos++] = m_service.getDVBNamespace().get()&0xFF;
+	m_capmt[pos++] = m_service.getTransportStreamID().get()>>8;
+	m_capmt[pos++] = m_service.getTransportStreamID().get()&0xFF;
+	m_capmt[pos++] = m_service.getOriginalNetworkID().get()>>8;
+	m_capmt[pos++] = m_service.getOriginalNetworkID().get()&0xFF;
+
+	programInfoLength += 10;
+
+	m_capmt[pos++] = 0x82; // demux
+	m_capmt[pos++] = 0x02;
+	m_capmt[pos++] = demux_mask;	// descramble bitmask
+	m_capmt[pos++] = data_demux&0xFF; // read section data from demux number
+
+	programInfoLength += 4;
+
+	m_capmt[pos++] = 0x84;  // pmt pid
+	m_capmt[pos++] = 0x02;
+	m_capmt[pos++] = pmtpid>>8;
+	m_capmt[pos++] = pmtpid&0xFF;
+
+	programInfoLength += 4;
+
+	if (m_adapter > 0)
+	{
+		m_capmt[pos++] = 0x83; /* adapter */
+		m_capmt[pos++] = 0x01;
+		m_capmt[pos++] = m_adapter;
+
+		programInfoLength += 3;
+	}
+
+	CAID_LIST &caids = dvbservice->m_ca;
+	for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
+	{
+		int caid = *it;
+		m_capmt[pos++] = 0x09;
+		m_capmt[pos++] = 0x04;
+		m_capmt[pos++] = caid>>8;
+		m_capmt[pos++] = caid&0xFF;
+		m_capmt[pos++] = 0x1F;
+		m_capmt[pos++] = 0xFF;
+
+		programInfoLength += 6;
+	}
+
+	m_capmt[pos++] = 0x85;  /* service type mask */
+	m_capmt[pos++] = 0x04;
+	m_capmt[pos++] = (m_service_type_mask >> 24) & 0xff;
+	m_capmt[pos++] = (m_service_type_mask >> 16) & 0xff;
+	m_capmt[pos++] = (m_service_type_mask >> 8) & 0xff;
+	m_capmt[pos++] = m_service_type_mask & 0xff;
+
+	programInfoLength += 6;
+
+	std::map<int,int> pidtype;
+
+	pidtype[eDVBService::cVPID]      = 0x02; // Videostream (MPEG-2)
+	pidtype[eDVBService::cMPEGAPID]  = 0x03; // Audiostream (MPEG-1)
+	pidtype[eDVBService::cTPID]      = 0x06; // Data-/Audiostream (Subtitles/VBI and AC-3)
+	pidtype[eDVBService::cPCRPID]    = 0x06;
+	pidtype[eDVBService::cAC3PID]    = 0x06;
+	pidtype[eDVBService::cSUBTITLE]  = 0x06;
+	pidtype[eDVBService::cAACHEAPID] = 0x06;
+	pidtype[eDVBService::cDDPPID]    = 0x06;
+	pidtype[eDVBService::cAACAPID]   = 0x06;
+	pidtype[eDVBService::cDATAPID]   = 0x90; // Datastream (Blu-ray subtitling)
+	pidtype[eDVBService::cPMTPID]    = 0x0d; // Datastream (DSM CC)
+
+	// cached pids
+	for (int x = 0; x < eDVBService::cacheMax; ++x)
+	{
+		if (x == 5)
+		{
+			x += 3; // ignore cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY
+			continue;
+		}
+		int entry = dvbservice->getCacheEntry((eDVBService::cacheID)x);
+
+		if (entry != -1)
+		{
+			if (eDVBService::cSUBTITLE == (eDVBService::cacheID)x)
+			{
+				entry = (entry&0xFFFF0000)>>16;
+			}
+			m_capmt[pos++] = pidtype[x];
+			m_capmt[pos++] = entry>>8;
+			m_capmt[pos++] = entry&0xFF;
+			m_capmt[pos++] = 0x00;
+			m_capmt[pos++] = 0x00;
+		}
+	}
+
+	// calculate capmt length
+	m_capmt[3] = pos - 4;
+
+	// calculate programinfo leght
+        m_capmt[8] = programInfoLength>>8;
+        m_capmt[9] = programInfoLength&0xFF;
 
 	m_prev_build_hash = build_hash;
 	m_version = pmt_version;
