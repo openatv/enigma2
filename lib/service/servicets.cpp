@@ -275,8 +275,10 @@ RESULT eServiceTS::stop()
 		m_destfd = -1;
 	}
 	printf("TS: %s stop\n", m_filename.c_str());
-	m_streamthread->stop();
-	m_decodedemux->flush();
+	if (m_streamthread != NULL)
+		m_streamthread->stop();
+	if (m_decodedemux != NULL)
+		m_decodedemux->flush();
 	m_audioInfo = 0;
 	return 0;
 }
