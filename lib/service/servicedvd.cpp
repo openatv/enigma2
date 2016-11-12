@@ -466,12 +466,6 @@ RESULT eServiceDVD::stop()
 	return 0;
 }
 
-RESULT eServiceDVD::setTarget(int /*target*/)
-{
-	eDebug("[eServiceDVD] setTarget");
-	return -1;
-}
-
 RESULT eServiceDVD::pause(ePtr<iPauseableService> &ptr)
 {
 	ptr = this;
