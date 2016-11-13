@@ -93,6 +93,12 @@ void eSlider::setSliderForegroundColor(const gRGB &color)
 	invalidate();
 }
 
+void eSlider::setAlphatest(int alphatest)
+{
+	m_alphatest = alphatest;
+	setTransparent(alphatest);
+}
+
 int eSlider::event(int event, void *data, void *data2)
 {
 	switch (event)
