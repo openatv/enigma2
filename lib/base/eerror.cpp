@@ -539,17 +539,16 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 							"%s"		/*newline*/
 							"%s%s "		/*color of timestamp*/
 					ANSI_CYAN	"%s:%d "	/*color of filename and linenumber*/
-					ANSI_BCYAN	"%s "		/*color of functionname*/
-					ANSI_BWHITE			/*color of debugmessage*/
-					, inNoNewLine?"\n":"", is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function);
+					ANSI_BCYAN	"%s %s "		/*color of functionname, functionname, color of debugmessage*/
+					, inNoNewLine?"\n":"", is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function, is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE);
 			}
 			else
 			{
+				is_alert = true;	//force is_alert
 				snprintf(header, sizeof(header),
 							"%s"		/*newline*/
-							"%s%s "		/*color of timestamp*/
-					ANSI_BWHITE			/*color of debugmessage*/
-					, inNoNewLine?"\n":"", ANSI_MAGENTA, timebuffer);
+							"%s%s %s "		/*color of timestamp, timestamp, color of debugmessage*/
+					, inNoNewLine?"\n":"", ANSI_MAGENTA, timebuffer, is_alert?ANSI_BRED:ANSI_BWHITE);
 			}
 		}
 
