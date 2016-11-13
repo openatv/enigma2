@@ -67,13 +67,9 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 
 	def selectionChanged(self):
-		# Only run onDeselect/onSelect iff self.current != self.getCurrent()
-		orig_current = self.current;
+		if isinstance(self.current,tuple) and len(self.current) >= 2:
+			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
-		if (orig_current == self.current):
-			return
-		if isinstance(orig_current,tuple) and len(orig_current) >= 2:
-			orig_current[1].onDeselect(self.session)
 		if isinstance(self.current,tuple) and len(self.current) >= 2:
 			self.current[1].onSelect(self.session)
 		else:
@@ -110,21 +106,12 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.handleKey(KEY_TIMEOUT)
 
 	def isChanged(self):
-# GML
-#		is_changed = False
-#		for x in self.list:
-#			print 'X:',x
-#			is_changed |= x[1].isChanged()
-#			print 'is_changed1:',is_changed
-#		print 'is_changed2:',is_changed
-#		return is_changed
-#
 		is_changed = False
 		for x in self.list:
-			if x[1].isChanged():
-				print 'X', type(x[1]), 'changed (val, str(val), tostring(val)):', x[1], str(x[1]), x[1].tostring(x[1].value)
-				is_changed = True
-		print 'isChanged():', is_changed
+			print 'X:',x
+			is_changed |= x[1].isChanged()
+			print 'is_changed1:',is_changed
+		print 'is_changed2:',is_changed
 		return is_changed
 
 	def pageUp(self):

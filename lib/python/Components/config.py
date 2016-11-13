@@ -98,20 +98,12 @@ class ConfigElement(object):
 			self.changed()
 
 	def isChanged(self):
-		# NOTE - sv should already be stringified!
-		# and self.default should *also* be a string value
 		sv = self.saved_value
 		if sv is None and str(self.value) == str(self.default):
 			return False
-		if sv is None and self.tostring(self.value) != self.default:
-			retval = True
-                else:
-          		retval = self.tostring(self.value) != sv
-                if not retval:
-                        return False
-		print 'orig ConfigElement X (val, tostring(val)):', sv, self.tostring(sv)
-		return True
-
+		elif sv is None and self.tostring(self.value) != self.tostring(self.default):
+			return self.tostring(self.value) != self.tostring(self.default)
+		return self.tostring(self.value) != self.tostring(sv)
 
 	def changed(self):
 		if self.__notifiers:
@@ -1283,16 +1275,11 @@ class ConfigNumber(ConfigText):
 	_value = property(getValue, setValue)
 
 	def isChanged(self):
-		# NOTE - sv should already be stringified
-		# and self.default should *also* be a string value
 		sv = self.saved_value
 		strv = self.tostring(self.value)
-		if sv is None and strv == self.default:
+		if sv is None and strv == str(self.default):
 			return False
-		if strv == sv:
-			return False
-                print 'orig ConfigNumber X (val, tostring(val)):', sv, self.tostring(sv)
-		return True
+		return strv != self.tostring(sv)
 
 	def conform(self):
 		pos = len(self.text) - self.marked_pos
@@ -1564,11 +1551,7 @@ class ConfigLocations(ConfigElement):
 		locations = self.locations
 		if val is None and not locations:
 			return False
-		retval = self.tostring([x[0] for x in locations]) != sv
-		if not retval:
-			return False
-                print 'orig ConfigLocations X (val):', sv
-                return True
+		return self.tostring([x[0] for x in locations]) != sv
 
 	def addedMount(self, mp):
 		for x in self.locations:
