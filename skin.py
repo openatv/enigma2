@@ -392,24 +392,24 @@ class AttributeParser:
 		try:
 			getattr(self, attrib)(value)
 		except AttributeError:
-			raise SkinError("[SKIN] Attribute not implemented:\"%s\" value:\"%s\"" % (attrib, value))
+			raise SkinError("[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__))
 		except SkinError, ex:
 			print "\033[91m[SKIN] Error:", ex,
 			print "\033[0m"
 		except:
-				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\"" % (attrib, value))
+				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\" in object of type \"%s\"" % (attrib, value, self.guiObject.__class__.__name__))
 
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
 			try:
 				getattr(self, attrib)(value)
 			except AttributeError:
-				raise SkinError("[SKIN] Attribute not implemented:\"%s\" value:\"%s\"" % (attrib, value))
+				raise SkinError("[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__))
 			except SkinError, ex:
 				print "\033[91m[Skin] Error:", ex,
 				print "\033[0m"
 			except:
-				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\"" % (attrib, value))
+				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\" in object of type \"%s\"" % (attrib, value, self.guiObject.__class__.__name__))
 
 	def conditional(self, value):
 		pass
