@@ -997,25 +997,12 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 		// if (ref.... == -1) .. return "... bouquets ...";
 		// could be also done in another serviceFactory (with seperate ID) to seperate actual services and lists
 			// TODO: cache
-		ePtr<iDVBChannelList> db;
-		ePtr<eDVBResourceManager> res;
-
-		int err;
-		if ((err = eDVBResourceManager::getInstance(res)) != 0)
-		{
-			eDebug("[eServiceFactoryDVB] no resource manager");
-			return err;
-		}
-		if ((err = res->getChannelList(db)) != 0)
-		{
-			eDebug("[eServiceFactoryDVB] no channel list");
-			return err;
-		}
 
 		/* we are sure to have a ..DVB reference as the info() call was forwarded here according to it's ID. */
-		if ((err = db->getService((eServiceReferenceDVB&)ref, service)) != 0)
+		int err;
+		if ((err = eDVBDB::getInstance()->getService((eServiceReferenceDVB&)ref, service)) != 0)
 		{
-//			eDebug("[eServiceFactoryDVB] getService failed!");
+			eLog(6, "[eServiceFactoryDVB] lookupService getService failed!");
 			return err;
 		}
 	}
@@ -2891,19 +2878,11 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 				parent = ref;
 			if (parent)
 			{
-				ePtr<eDVBResourceManager> res_mgr;
-				if (!eDVBResourceManager::getInstance(res_mgr))
+				ePtr<eDVBService> origService;
+				if (!eDVBDB::getInstance()->getService(parent, origService))
 				{
-					ePtr<iDVBChannelList> db;
-					if (!res_mgr->getChannelList(db))
-					{
-						ePtr<eDVBService> origService;
-						if (!db->getService(parent, origService))
-						{
-		 					ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
-							pcm_delay = origService->getCacheEntry(eDVBService::cPCMDELAY);
-						}
-					}
+					ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
+					pcm_delay = origService->getCacheEntry(eDVBService::cPCMDELAY);
 				}
 			}
 		}

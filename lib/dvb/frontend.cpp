@@ -1200,6 +1200,7 @@ int eDVBFrontend::readFrontendData(int type)
 			{
 				int signalquality = 0;
 				int signalqualitydb = 0;
+				bool valueprovided = false;
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
 				if (m_dvbversion >= DVB_VERSION(5, 10))
 				{
@@ -1218,16 +1219,22 @@ int eDVBFrontend::readFrontendData(int type)
 						for(unsigned int i=0; i<prop[0].u.st.len; i++)
 						{
 							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL)
+							{
+								valueprovided = type == iFrontendInformation_ENUMS::signalQualitydB;
 								signalqualitydb = prop[0].u.st.stat[i].svalue / 10;
+							}
 							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
+							{
+								valueprovided = type == iFrontendInformation_ENUMS::signalQuality;
 								signalquality = prop[0].u.st.stat[i].svalue;
+							}
 						}
 					}
 				}
 #endif
-				// fallback to old DVB API
-				if(!signalquality && !signalqualitydb || strstr(m_description, "Sundtek"))
+				if (!valueprovided)
 				{
+					/* fallback to old DVB API */
 					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
 					calculateSignalQuality(snr, signalquality, signalqualitydb);
 				}
