@@ -446,7 +446,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						painter.setFont(fnt2);
 						ePoint text_offset = textoffset;
 
-						int flags = (value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
+						int flags = (value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT) | gPainter::RT_VALIGN_CENTER;
 
 						if (local_style)
 							if (flags & gPainter::RT_HALIGN_LEFT)
