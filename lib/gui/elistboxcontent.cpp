@@ -467,7 +467,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						valueWidth = (itemsize.width() - m_seperation -40) * value / size;
+						//valueWidth = (itemsize.width() - m_seperation -40) * value / size;
+						valueWidth = (itemsize.width() - m_seperation - (itemsize.width()*0.1)) * value / size;
 						int height = itemsize.height();
 
 
