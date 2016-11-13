@@ -56,7 +56,7 @@ public:
 	RESULT info(ePtr<iServiceInformation>&);
 
 	// not implemented
-	RESULT setTarget(int target) { return -1; };
+	RESULT setTarget(int target, bool noaudio = false) { return -1; };
 	RESULT setSlowMotion(int ratio) { return -1; };
 	RESULT setFastForward(int ratio) { return -1; };
 	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr) { ptr = this; return 0; };

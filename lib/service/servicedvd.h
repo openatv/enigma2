@@ -65,6 +65,7 @@ class eServiceDVD: public iPlayableService, public iPauseableService, public iSe
 public:
 	virtual ~eServiceDVD();
 		// not implemented (yet)
+	RESULT setTarget(int target, bool noaudio = false) { return -1; }
 	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr) { ptr = 0; return -1; }
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
@@ -80,7 +81,6 @@ public:
 	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
-	RESULT setTarget(int target);
 	RESULT info(ePtr<iServiceInformation> &ptr);
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
