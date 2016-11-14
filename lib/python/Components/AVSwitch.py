@@ -407,18 +407,36 @@ def InitAVSwitch():
 	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "simple": _("Simple"), "native": _("Native"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
 	config.av.autores_preview = NoSave(ConfigYesNo(default=False))
 	config.av.autores_1080i_deinterlace = ConfigYesNo(default=False)
-	config.av.autores_24p =  ConfigSelection(choices=
-		{
-		"24,24": _("24p/24p"),
-		"24,50": _("24p/50p"),
-		"24,60": _("24p/60p"),
-		"50,24": _("50p/24p"),
-		"60,24": _("60p/24p"),
-		"50,50": _("50p/50p"),
-		"50,60": _("50p/60p"),
-		"60,50": _("60p/50p"),
-		"60,60": _("60p/60p")
-		}, default="50,24") # first value <=720p , second value > 720p
+	choicelist = {
+			"24,24": _("24p/24p"),
+			"24,25": _("24p/25p"),
+			"24,30": _("24p/30p"),
+			"24,50": _("24p/50p"),
+			"24,60": _("24p/60p"),
+			"25,24": _("25p/24p"),
+			"30,24": _("30p/24p"),
+			"50,24": _("50p/24p"),
+			"60,24": _("60p/24p"),
+			"25,25": _("25p/25p"),
+			"25,30": _("25p/30p"),
+			"25,50": _("25p/50p"),
+			"25,60": _("25p/60p"),
+			"30,25": _("30p/25p"),
+			"50,25": _("50p/25p"),
+			"60,25": _("60p/25p"),
+			"30,30": _("30p/30p"),
+			"30,50": _("30p/50p"),
+			"30,60": _("30p/60p"),
+			"50,30": _("50p/30p"),
+			"60,30": _("60p/30p"),
+			"50,50": _("50p/50p"),
+			"50,60": _("50p/60p"),
+			"60,50": _("60p/50p"),
+			"60,60": _("60p/60p")
+				}  # first value <=720p , second value > 720p
+	config.av.autores_24p =  ConfigSelection(choices=choicelist, default="50,24")
+	config.av.autores_25p =  ConfigSelection(choices=choicelist, default="50,25")
+	config.av.autores_30p =  ConfigSelection(choices=choicelist, default="60,30")
 	config.av.autores_unknownres =  ConfigSelection(choices={"next": _("next higher Resolution"), "highest": _("highest Resolution")}, default="next")
 	choicelist = []
 	for i in range(5, 16):
