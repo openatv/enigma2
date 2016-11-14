@@ -534,9 +534,13 @@ static eDVBChannelID parseChannelData(const char * line)
 static eServiceReferenceDVB parseServiceRefData(const char *line)
 {
 	int service_id = -1, dvb_namespace, transport_stream_id = -1, original_network_id = -1,
-		service_type = -1, source_id = -1;
-	sscanf(line, "%x:%x:%x:%x:%d:%d", &service_id, &dvb_namespace, &transport_stream_id,
-					  &original_network_id, &service_type, &source_id);
+		service_type = -1, service_number = -1, source_id = 0;
+	sscanf(line, "%x:%x:%x:%x:%d:%d:%x", &service_id, &dvb_namespace, &transport_stream_id,
+					  &original_network_id, &service_type, &service_number, &source_id);
+
+	if (service_number == -1)
+		return eServiceReferenceDVB();
+
 	return eServiceReferenceDVB(
 				eDVBNamespace(dvb_namespace),
 				eTransportStreamID(transport_stream_id),
@@ -711,7 +715,7 @@ void eDVBDB::saveServicelist(const char *file)
 		fprintf(g, "#     DVBT  FEPARMS:   t:frequency:bandwidth:code_rate_HP:code_rate_LP:modulation:transmission_mode:guard_interval:hierarchy:inversion:flags:system:plp_id\n");
 		fprintf(g, "#     DVBC  FEPARMS:   c:frequency:symbol_rate:inversion:modulation:fec_inner:flags:system\n");
 		fprintf(g, "#     ATSC  FEPARMS:   a:frequency:inversion:modulation:flags:system\n");
-		fprintf(g, "# Services    : s:service_id:dvb_namespace:transport_stream_id:original_network_id:service_type:source_id,\"service_name\"[,p:provider_name][,c:cached_pid]*[,C:cached_capid]*[,f:flags]\n");
+		fprintf(g, "# Services    : s:service_id:dvb_namespace:transport_stream_id:original_network_id:service_type:service_number:source_id,\"service_name\"[,p:provider_name][,c:cached_pid]*[,C:cached_capid]*[,f:flags]\n");
 	}
 
 	for (std::map<eDVBChannelID, channel>::const_iterator i(m_channels.begin());
@@ -814,16 +818,18 @@ void eDVBDB::saveServicelist(const char *file)
 		i != m_services.end(); ++i)
 	{
 		const eServiceReferenceDVB &s = i->first;
-		fprintf(f, "%04x:%08x:%04x:%04x:%d:%d\n",
+		fprintf(f, "%04x:%08x:%04x:%04x:%d:%d:%x\n",
 				s.getServiceID().get(), s.getDVBNamespace().get(),
 				s.getTransportStreamID().get(),s.getOriginalNetworkID().get(),
 				s.getServiceType(),
+				0,
 				s.getSourceID());
 		if (g)
-			fprintf(g, "s:%04x:%08x:%04x:%04x:%d:%d,",
+			fprintf(g, "s:%04x:%08x:%04x:%04x:%d:%d:%x,",
 				s.getServiceID().get(), s.getDVBNamespace().get(),
 				s.getTransportStreamID().get(),s.getOriginalNetworkID().get(),
 				s.getServiceType(),
+				0,
 				s.getSourceID());
 
 		fprintf(f, "%s\n", i->second->m_service_name.c_str());
