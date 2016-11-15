@@ -223,6 +223,10 @@ class VideoSetup(Screen, ConfigListScreen):
 		if SystemInfo["havecolorimetry"]:
 			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry,_("This option allows you can config the Colorimetry for HDR")))
 
+		if SystemInfo["havehdmicolordepth"]:
+			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth,_("This option allows you can config the Colordepth for UHD")))
+
+
 		if SystemInfo["Canedidchecking"]:
 			self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
 

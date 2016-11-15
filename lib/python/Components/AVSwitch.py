@@ -581,7 +581,10 @@ def InitAVSwitch():
 		if getBoxType() in ('vusolo4k','vuuno4k','vuultimo4k'):
 			config.av.hdmicolorspace = ConfigSelection(choices={
 					"Edid(Auto)": _("Auto"),
-					"Hdmi_Rgb": _("RGB")},
+					"Hdmi_Rgb": _("RGB"),
+					"444": _("YCbCr444"),
+					"422": _("YCbCr422"),
+					"420": _("YCbCr420")},
 					default = "Edid(Auto)")
 		else:
 			config.av.hdmicolorspace = ConfigSelection(choices={
@@ -606,7 +609,7 @@ def InitAVSwitch():
 
 	if have_colorimetry:
 		def setHDMIColorimetry(configElement):
-			sleep(0.1) #workaround for "http://www.opena.tv/image-betabereich/28098-menue-leer-nach-bild-grundeinstellungen-speichern-nein.html#post249179"
+			sleep(0.1)
 			try:
 				f = open("/proc/stb/video/hdmi_colorimetry", "w")
 				f.write(configElement.value)
@@ -622,6 +625,33 @@ def InitAVSwitch():
 		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
+
+	if os.path.exists("/proc/stb/video/hdmi_colordepth"):
+		f = open("/proc/stb/video/hdmi_colordepth", "r")
+		have_HdmiColordepth = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_HdmiColordepth = False
+
+	SystemInfo["havehdmicolordepth"] = have_HdmiColordepth
+
+	if have_HdmiColordepth:
+		def setHdmiColordepth(configElement):
+			try:
+				f = open("/proc/stb/video/hdmi_colordepth", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.hdmicolordepth = ConfigSelection(choices={
+				"auto": _("Auto"),
+				"8bit": _("8bit"),
+				"10bit": _("10bit"),
+				"12bit": _("12bit")},
+				default = "auto")
+		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
+	else:
+		config.av.hdmicolordepth = ConfigNothing()
 
 	if os.path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")
