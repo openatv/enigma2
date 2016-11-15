@@ -9,7 +9,14 @@ from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
+from operator import itemgetter
 import time, os
+
+try:
+    from Components.Converter.EventName import countries as classificationCodes
+    haveClassifications = True
+except:
+    haveClassifications = False
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
@@ -27,7 +34,22 @@ def InitParentalControl():
 	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
 	config.ParentalControl.servicepin = ConfigSubList()
 	config.ParentalControl.servicepin.append(ConfigPIN(default = 0))
-	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
+	if haveClassifications and "AUS" in classificationCodes:
+		# Invert the classification code lookup and use the mapping
+		# that has the highest integer code value
+		inverted = {
+			classif[0]: code for code, classif in sorted(
+				classificationCodes["AUS"][0].items(), key=itemgetter(0), reverse=False)
+			if classif[0]
+		}
+		# Construct the choice list from the inverted classification
+		# list, sort in ascending numerical code and add 3 to match
+		# the values used in the default age-based ratings.
+		choices = [("0", _("No rating block"))] + [(str(code + 3), classif) for classif, code in sorted(inverted.items(), key=itemgetter(1))]
+	else:
+		choices = [("0", _("No age block"))] + [(str(x), "%d+" % x) for x in range(3,19)]
+	# Use the most permissive classification limit as the default
+	config.ParentalControl.age = ConfigSelection(default=choices[-1][0], choices=choices)
 	config.ParentalControl.hideBlacklist = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections = ConfigSubsection()
 	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default = False)
