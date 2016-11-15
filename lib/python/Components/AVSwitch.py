@@ -64,7 +64,7 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if about.getChipSetString() in ('5272s', '7251s', '7252', '7366', '7376'):
+	if about.getChipSetString() in ('5272s', '7251s', '7252', '7366', '7376', '7444', '7445', '7445s'):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "2160p", "1080i"}
 	elif about.getChipSetString() in ('7241', '7356', '7358', '7362', '73625', '7424', '7425', '7552'):
@@ -83,7 +83,7 @@ class AVSwitch:
 	# 	del modes["DVI-PC"]
 	
 	# Machines that do not have component video (red, green and blue RCA sockets).
-	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','gbx1','gbx3','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','mutant500c','mutant1200','mutant1500','odimm7','optimussos1','osmini','osminiplus','sf128','sf138','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','xp1000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','gbx1','gbx3','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','mutant500c','mutant1200','mutant1500','odimm7','optimussos1','osmini','osminiplus','sf128','sf138','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','vuuno4k','vuultimo4k','xp1000'):
 		del modes["YPbPr"]
 		
 	# Machines that have composite video (yellow RCA socket) but do not have Scart.
@@ -92,7 +92,7 @@ class AVSwitch:
 		del modes["Scart"]
 		
 	# Machines that have neither RCA nor Scart sockets 
-	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','gbx1','gbx3','ixussone','tmnano2t','vusolo4k','mutant51','mutant1500'):
+	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','gbx1','gbx3','ixussone','tmnano2t','vusolo4k','vuuno4k','vuultimo4k','mutant51','mutant1500'):
 		del modes["Scart"]
 
 	def __init__(self):
