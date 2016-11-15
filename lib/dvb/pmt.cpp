@@ -603,6 +603,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		int cached_pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
 			vpidtype = m_service->getCacheEntry(eDVBService::cVTYPE),
 			pmtpid = m_service->getCacheEntry(eDVBService::cPMTPID),
+			subpid = m_service->getCacheEntry(eDVBService::cSUBTITLE),
 			cnt=0;
 		if (pmtpid > 0)
 		{
@@ -672,6 +673,19 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		{
 			++cnt;
 			program.textPid = cached_tpid;
+		}
+		if (subpid > 0)
+		{
+			subtitleStream s;
+			s.pid = (subpid & 0xffff0000) >> 16;
+			if (s.pid != program.textPid)
+			{
+				s.subtitling_type = 0x10;
+				s.composition_page_id = (subpid >> 8) & 0xff;
+				s.ancillary_page_id = subpid & 0xff;
+				program.subtitleStreams.push_back(s);
+				++cnt;
+			}
 		}
 		if (cnt)
 		{
