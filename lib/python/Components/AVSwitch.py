@@ -489,7 +489,10 @@ def InitAVSwitch():
 				pass
 		config.av.hdmicolorspace = ConfigSelection(choices={
 				"Edid(auto)": _("Auto"),
-				"Hdmi_Rgb": _("RGB")},
+				"Hdmi_Rgb": _("RGB"),
+				"444": _("YCbCr444"),
+				"422": _("YCbCr422"),
+				"420": _("YCbCr420")},
 				default = "Edid(auto)")
 		config.av.hdmicolorspace.addNotifier(setHDMIColorspace)
 	else:
@@ -521,6 +524,33 @@ def InitAVSwitch():
 		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
+
+	if os.path.exists("/proc/stb/video/hdmi_colordepth"):
+		f = open("/proc/stb/video/hdmi_colordepth", "r")
+		have_HdmiColordepth = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_HdmiColordepth = False
+
+	SystemInfo["havehdmicolordepth"] = have_HdmiColordepth
+
+	if have_HdmiColordepth:
+		def setHdmiColordepth(configElement):
+			try:
+				f = open("/proc/stb/video/hdmi_colordepth", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.hdmicolordepth = ConfigSelection(choices={
+				"auto": _("Auto"),
+				"8bit": _("8bit"),
+				"10bit": _("10bit"),
+				"12bit": _("12bit")},
+				default = "auto")
+		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
+	else:
+		config.av.hdmicolordepth = ConfigNothing()
 
 	if os.path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")

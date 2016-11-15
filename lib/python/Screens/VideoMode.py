@@ -140,7 +140,10 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace,_("This option allows you to change the Colorspace from Auto to RGB")))
 
 		if SystemInfo["havecolorimetry"]:
-			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry,_("This option allows you can config the Colorimetry for HDR")))
+			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry,_("This option allows you to change the Colorimetry for HDR")))
+
+		if SystemInfo["havehdmicolordepth"]:
+			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth,_("This option allows you to change the Colordepth for UHD")))
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
