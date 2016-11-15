@@ -617,7 +617,7 @@ def InitUsageConfig():
 		("hrv", _("Croatian")),
 		("ces cze", _("Czech")),
 		("dan", _("Danish")),
-		("dut ndl Dutch", _("Dutch")),
+		("dut ndl nld Dutch", _("Dutch")),
 		("eng qaa Englisch", _("English")),
 		("est", _("Estonian")),
 		("fin", _("Finnish")),
