@@ -58,6 +58,8 @@ def getChipSetString():
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k'):
 		return "1,5 GHz"
+	elif getMachineBuild() in ('vuuno4k','vuultimo4k'):
+		return "1,7 GHz"
 	elif getMachineBuild() in ('hd51','hd52','sf4008'):
 		try:
 			import binascii
@@ -87,7 +89,7 @@ def getCPUSpeedString():
 			return "unavailable"
 
 def getCPUString():
-	if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008'):
+	if getMachineBuild() in ('vuuno4k', 'vuultimo4k','vusolo4k', 'hd51', 'hd52', 'sf4008'):
 		return "Broadcom"
 	else:
 		try:
