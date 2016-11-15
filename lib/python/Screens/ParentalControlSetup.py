@@ -49,21 +49,20 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.setup_title = title
 
 		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
-		self.skinName = ["ParentalControlSetup", "Setup" ]
-		self.onChangedEntry = [ ]
+		self.skinName = ["ParentalControlSetup", "Setup"]
+		self.onChangedEntry = []
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup(initial=True)
 
 		self["key_red"] = Label(_("Exit"))
-		
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
-		{
-		  "red": self.keyCancel,
-		  "cancel": self.keyCancel,
-		  "save": self.keySave,
-		  "menu": self.closeRecursive,
+
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], {
+			"red": self.keyCancel,
+			"cancel": self.keyCancel,
+			"save": self.keySave,
+			"menu": self.closeRecursive,
 		}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -181,7 +180,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def oldPinEntered(self, answer):
 		if answer:
 			self.session.openWithCallback(self.newPinEntered, PinInput, title=_("Please enter the new PIN code"), windowTitle=_("Enter pin code"))
-		elif answer == False:
+		elif answer is False:
 			self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR, timeout=3)
 
 	def newPinEntered(self, answer):
