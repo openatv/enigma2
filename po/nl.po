@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-03 19:13+0100\n"
-"PO-Revision-Date: 2016-11-05 15:50+0100\n"
+"POT-Creation-Date: 2016-11-16 07:13+0100\n"
+"PO-Revision-Date: 2016-11-16 07:24+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -14,6 +14,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Generator: Poedit 1.8.11\n"
+
+#, python-format
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
 
 msgid ""
 "\n"
@@ -428,6 +436,9 @@ msgstr "1080p 50Hz"
 msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
+msgid "10bit"
+msgstr "10bit"
+
 msgid "128"
 msgstr "128"
 
@@ -436,6 +447,9 @@ msgstr "12V uitgang"
 
 msgid "12V output."
 msgstr "12V uitgang"
+
+msgid "12bit"
+msgstr "12bit"
 
 msgid "13 V"
 msgstr "13 V"
@@ -547,6 +561,9 @@ msgstr "720p"
 
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
+
+msgid "8bit"
+msgstr "8bit"
 
 msgid "< Default >"
 msgstr "< Standaard >"
@@ -3891,6 +3908,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC instellingen"
+
+msgid "HDMI Colordepth"
+msgstr "HDMI-kleurdieote"
 
 msgid "HDMI Colorimetry"
 msgstr "HDMI kleurruimte"
@@ -8779,9 +8799,6 @@ msgstr "Met deze optie bepaalt u de mate van onderdrukking van 'blokruis' ('blok
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Hiermee bepaalt u de mate van dynamich contrast in het beeld."
 
-msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "Met deze optie verandert u de kleurruimte van Auto naar HDR."
-
 msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "Hier kunt u aangeven of de verstreken tijd met een min- of een plusteken wordt vertoond."
 
@@ -8811,6 +8828,12 @@ msgstr "Met deze instelling kunt u de groene kleuren in het beeld versterken."
 
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "U hunt de HDMI EDID controle omzeilen."
+
+msgid "This option allows you to change the Colordepth for UHD"
+msgstr "Met deze optie verandert u de kleurruimte voor UHD"
+
+msgid "This option allows you to change the Colorimetry for HDR"
+msgstr "Met deze optie verandert u de kleurruimte voor HDR"
 
 msgid "This option allows you to change the Colorspace from Auto to RGB"
 msgstr "Met deze optie verandert u de kleurruimte van Auto naar RGB."
@@ -10201,6 +10224,15 @@ msgstr "XBox 360 support"
 
 msgid "XP1000"
 msgstr "XP1000"
+
+msgid "YCbCr420"
+msgstr "YCbCr420"
+
+msgid "YCbCr422"
+msgstr "YCbCr422"
+
+msgid "YCbCr444"
+msgstr "YCbCr444"
 
 msgid "YES"
 msgstr "JA"
