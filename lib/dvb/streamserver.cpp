@@ -156,6 +156,17 @@ void eStreamClient::notifier(int what)
 				set_tcp_buffer_size(streamFd, SO_RCVBUF, 1 * 1024);
 				 /* We like 188k packets, so set the TCP window size to that */
 				set_tcp_buffer_size(streamFd, SO_SNDBUF, 188 * 1024);
+				pos = serviceref.find("sid=");
+				if (pos != std::string::npos) {
+					std::string search ("sid=");
+					// std::string sessionid ("");
+					// sscanf(serviceref.substr(pos).c_str(), "sid=%[a-f0-9]", sessionid);
+					// search += sessionid;
+					std::string::size_type i = serviceref.find(search);
+					if (i != std::string::npos) {
+						serviceref.erase(pos-1, 69); // search.length()+1);
+					}
+				}
 				if (serviceref.substr(0, 10) == "file?file=") /* convert openwebif stream reqeust back to serviceref */
 					serviceref = "1:0:1:0:0:0:0:0:0:0:" + serviceref.substr(10);
 				pos = serviceref.find('?');
