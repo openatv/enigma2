@@ -115,13 +115,17 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.handleKey(KEY_TIMEOUT)
 
 	def isChanged(self):
-		is_changed = False
+#debug		is_changed = False
 		for x in self.list:
-			print 'X:',x
-			is_changed |= x[1].isChanged()
-			print 'is_changed1:',is_changed
-		print 'is_changed2:',is_changed
-		return is_changed
+			if x[1].isChanged():
+#
+#debug				print 'X', type(x[1]), 'changed (val, str(val), tostring(val)):', x[1], str(x[1]), x[1].tostring(x[1].value)
+#debug				is_changed = True
+#debug		print 'isChanged():', is_changed
+#debug		return is_changed
+#
+				return True
+		return False
 
 	def pageUp(self):
 		if self.instance is not None:
