@@ -67,7 +67,12 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 
 	def selectionChanged(self):
-		# Only run onDeselect/onSelect iff self.current != self.getCurrent()
+# Only run onDeselect/onSelect if self.current != self.getCurrent()
+# i.e. if the selection has *actually* changed...
+# This means that Notifiers with immediate_feedback = False actually
+# do only get called once at the end of an item change, not for every
+# step along the way.
+#
 		orig_current = self.current;
 		self.current = self.getCurrent()
 		if (orig_current == self.current):
@@ -110,22 +115,17 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.handleKey(KEY_TIMEOUT)
 
 	def isChanged(self):
-# GML
-#		is_changed = False
-#		for x in self.list:
-#			print 'X:',x
-#			is_changed |= x[1].isChanged()
-#			print 'is_changed1:',is_changed
-#		print 'is_changed2:',is_changed
-#		return is_changed
-#
-		is_changed = False
+#debug		is_changed = False
 		for x in self.list:
 			if x[1].isChanged():
-				print 'X', type(x[1]), 'changed (val, str(val), tostring(val)):', x[1], str(x[1]), x[1].tostring(x[1].value)
-				is_changed = True
-		print 'isChanged():', is_changed
-		return is_changed
+#
+#debug				print 'X', type(x[1]), 'changed (val, str(val), tostring(val)):', x[1], str(x[1]), x[1].tostring(x[1].value)
+#debug				is_changed = True
+#debug		print 'isChanged():', is_changed
+#debug		return is_changed
+#
+				return True
+		return False
 
 	def pageUp(self):
 		if self.instance is not None:
