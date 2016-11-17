@@ -4,6 +4,8 @@
 
 #include <dvbsi++/ca_descriptor.h>
 #include <dvbsi++/ca_program_map_section.h>
+#include <dvbsi++/descriptor_tag.h>
+#include <lib/dvb/db.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
@@ -590,6 +592,18 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	build_hash <<= 16;
 	build_hash |= (m_service_type_mask & 0xffff);
 
+	bool scrambled = false;
+	for (std::vector<ProgramMapSection*>::const_iterator pmt = ptr->getSections().begin();
+		pmt != ptr->getSections().end() && !scrambled; ++pmt)
+	{
+		for (DescriptorConstIterator desc = (*pmt)->getDescriptors()->begin();
+			desc != (*pmt)->getDescriptors()->end() && !scrambled; ++desc)
+		{
+			if ((*desc)->getTag() == CA_DESCRIPTOR)
+				scrambled = true;
+		}
+	}
+
 	std::vector<ProgramMapSection*>::const_iterator i = ptr->getSections().begin();
 	if ( i != ptr->getSections().end() )
 	{
@@ -649,6 +663,23 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		tmp[4] = (m_service_type_mask >> 8) & 0xff;
 		tmp[5] = m_service_type_mask & 0xff;
 		capmt.injectDescriptor(tmp, true);
+
+		ePtr<eDVBService> dvbservice;
+		if (!scrambled && !eDVBDB::getInstance()->getService(m_service, dvbservice))
+		{
+			CAID_LIST &caids = dvbservice->m_ca;
+			for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
+			{
+				int caid = *it;
+				tmp[0] = 0x09;
+				tmp[1] = 0x04;
+				tmp[2] = caid>>8;
+				tmp[3] = caid&0xFF;
+				tmp[4] = 0x1F;
+				tmp[5] = 0xFF;
+				capmt.injectDescriptor(tmp, true);
+			}
+		}
 
 		capmt.writeToBuffer(m_capmt);
 	}
