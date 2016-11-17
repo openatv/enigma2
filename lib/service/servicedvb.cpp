@@ -2865,7 +2865,6 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 	if (m_decoder)
 	{
 		bool wasSeekable = m_decoder->getVideoProgressive() != -1;
-		/* use audio only if not pip */
 		if (!m_noaudio)
 		{
 			if (m_dvb_service)
@@ -2886,7 +2885,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 					ePtr<eDVBService> origService;
 					if (!eDVBDB::getInstance()->getService(parent, origService))
 					{
-			 			ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
+						ac3_delay = origService->getCacheEntry(eDVBService::cAC3DELAY);
 						pcm_delay = origService->getCacheEntry(eDVBService::cPCMDELAY);
 					}
 				}
