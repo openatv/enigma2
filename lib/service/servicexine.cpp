@@ -212,11 +212,6 @@ RESULT eServiceXine::stop()
 	return 0;
 }
 
-RESULT eServiceXine::setTarget(int target)
-{
-	return -1;
-}
-
 RESULT eServiceXine::pause(ePtr<iPauseableService> &ptr)
 {
 	ptr=this;
