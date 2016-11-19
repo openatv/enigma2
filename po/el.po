@@ -1973,23 +1973,18 @@ msgid ""
 msgstr ""
 "Ρύθμιση της κάθετης θέσης των υποτίτλων σε σχέση με το κάτω μέρος της οθόνης."
 
-#
+#: setup.xml / don´t use \n for linefeed in source text, it will not find the
+#: translation
 msgid ""
-"Configure how recording filenames are constructed.\n"
-"Standard: Date Time - Channel - Title\n"
-"Very very short: Title\n"
-"Very short: Title - Date Time\n"
-"Short with time: Date Time - Title\n"
-"Short: Date - Title\n"
-"Long: Date Time - Channel - Title - Info"
+"Configure how recording filenames are constructed. Standard: Date Time - "
+"Channel - Title Very very short: Title Very short: Title - Date Time Short "
+"with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - "
+"Title - Info"
 msgstr ""
-"Ρύθμιση του τρόπου σύνθεσης των ονομάτων αρχείου των εγγραφών.\n"
-"Στάνταρ: Ημερομηνία Ώρα - Κανάλι - Τίτλος\n"
-"Πάρα πολύ σύντομα: Τίτλος\n"
-"Πολύ σύντομα: Τίτλος - Ημερομηνία Ώρα\n"
-"Σύντομα με ώρα: Ημερομηνία Ώρα - Τίτλος\n"
-"Σύντομα: Ημερομηνία - Τίτλος\n"
-"Μακριά: Ημερομηνία Ώρα - Κανάλι - Τίτλος - Πληροφορίες"
+"Ρύθμιση του τρόπου σύνθεσης των ονομάτων αρχείου των εγγραφών. Στάνταρ: "
+"Ημερομηνία Ώρα - Κανάλι - Τίτλος Πάρα πολύ σύντομα: Τίτλος Πολύ σύντομα: "
+"Τίτλος - Ημερομηνία Ώρα Σύντομα με ώρα: Ημερομηνία Ώρα - Τίτλος Σύντομα: "
+"Ημερομηνία - Τίτλος Μακριά: Ημερομηνία Ώρα - Κανάλι - Τίτλος - Πληροφορίες"
 
 msgid ""
 "Configure which tuner type will be preferred, when the same service is "
@@ -2614,10 +2609,32 @@ msgid "Show 24p up to 720p / higher than 720p as"
 msgstr "Εμφάνιση 24p μέχρι 720p / υψηλότερη από 720p ως"
 
 #: VideoMode.py
+msgid "Show 25p up to 720p / higher than 720p as"
+msgstr "Εμφάνιση 25p μέχρι 720p / υψηλότερη από 720p ως"
+
+#: VideoMode.py
+msgid "Show 30p up to 720p / higher than 720p as"
+msgstr "Εμφάνιση 30p μέχρι 720p / υψηλότερη από 720p ως"
+
+#: VideoMode.py
 msgid ""
 "Show 24p up to resolution 720p or higher than 720p as a different Framerate."
 msgstr ""
 "Εμφάνιση 24p μέχρι την ανάλυση 720p ή υψηλότερη από 720p ως διαφορετικό "
+"Ρυθμό Καρέ."
+
+#: VideoMode.py
+msgid ""
+"Show 25p up to resolution 720p or higher than 720p as a different Framerate."
+msgstr ""
+"Εμφάνιση 25p μέχρι την ανάλυση 720p ή υψηλότερη από 720p ως διαφορετικό "
+"Ρυθμό Καρέ."
+
+#: VideoMode.py
+msgid ""
+"Show 30p up to resolution 720p or higher than 720p as a different Framerate."
+msgstr ""
+"Εμφάνιση 30p μέχρι την ανάλυση 720p ή υψηλότερη από 720p ως διαφορετικό "
 "Ρυθμό Καρέ."
 
 #: VideoMode.py
@@ -17178,6 +17195,12 @@ msgstr "Συμπερίληψη ανάθεσης CI"
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "Ενημέρωση λίστας προγραμμάτων από τον DXAndy"
 
+msgid "Programmlisten from DXAndy"
+msgstr "Λίστα Προγραμμάτων από τον DXAndy"
+
+msgid "Programmlisten History"
+msgstr "Ιστορικό λίστας προγραμμάτων"
+
 msgid "Current installed"
 msgstr "Τρέχον εγκατεστημένο"
 
@@ -17232,8 +17255,8 @@ msgstr ""
 "\n"
 "Θέλετε να εγκαταστήσετε τη νέα λίστα ρυθμίσεων;"
 
-msgid "Programmlisten-Updater Restore"
-msgstr "Επαναφορά Ενημέρωσης Λίστας Προγραμμάτων"
+msgid "Programmlisten Restore"
+msgstr "Επαναφορά λίστας προγραμμάτων"
 
 msgid ""
 "Selected settingslist: %s\n"
@@ -17508,6 +17531,12 @@ msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 "Το Υλικό σας μπορεί να ανιχνεύσει τη λειτουργία ci ή να λειτουργήσει μόνο ως "
 "παλαιός τύπος."
+
+msgid "HDMI Colordepth"
+msgstr "Βάθος χρώματος HDMI"
+
+msgid "This option allows you can config the Colordepth for UHD"
+msgstr "Αυτή η επιλογή επιτρέπει τη ρύθμιση του Βάθους Χρώματος για UHD"
 
 msgid "Video:"
 msgstr "Βίντεο:"
@@ -18645,9 +18674,6 @@ msgstr "Διαχείριση λογισμικού του %s %s σας"
 msgid "Manual"
 msgstr "Χειροκίνητη"
 
-msgid "MaraM9"
-msgstr "MaraM9"
-
 msgid "Max. bitrate: "
 msgstr "Μεγ. ρυθμός bit: "
 
@@ -18756,9 +18782,6 @@ msgstr "Μουσική/Μπαλέτο/Χορός"
 msgid "NFI image flashing"
 msgstr "Φλασάριμα image NFI"
 
-msgid "NFS"
-msgstr "NFS"
-
 msgid "Network Test"
 msgstr "Δοκιμή Δικτύου"
 
@@ -18860,9 +18883,6 @@ msgstr ""
 msgid "OE Log"
 msgstr "Καταγραφή ΟΕ"
 
-msgid "OSD"
-msgstr "OSD"
-
 msgid "OSD Settings"
 msgstr "Ρυθμίσεις OSD"
 
@@ -18954,9 +18974,6 @@ msgstr ""
 msgid "Persian"
 msgstr "Περσικά"
 
-msgid "PiP"
-msgstr "PiP"
-
 msgid "Picon"
 msgstr "Λογότυπο (picon)"
 
@@ -19032,12 +19049,6 @@ msgstr "Πρωτόκολλο:"
 msgid "Quick zap"
 msgstr "Γρήγορο ζάπινγκ"
 
-msgid "RAM"
-msgstr "RAM"
-
-msgid "Ram"
-msgstr "Ram"
-
 msgid "Rating defined by broadcaster - %d"
 msgstr "Βαθμολογία καθορισμένη από τον πάροχο - %d"
 
@@ -19111,21 +19122,6 @@ msgstr "Θέση βήματος του μοτέρ:"
 
 msgid "Russian"
 msgstr "Ρωσικά"
-
-msgid "SABnzbd"
-msgstr "SABnzbd"
-
-msgid "SATA"
-msgstr "SATA"
-
-msgid "SD"
-msgstr "SD"
-
-msgid "SPDIF"
-msgstr "SPDIF"
-
-msgid "Samba"
-msgstr "Samba"
 
 msgid "Samba Log"
 msgstr "Καταγραφολόγιο Samba"
