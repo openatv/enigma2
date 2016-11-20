@@ -59,6 +59,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.showPicon = False
 		self.showServiceTitle = True
 		self.screenwidth = getDesktop(0).size().width()
+		self.skinUsingForeColorByTime = False
+		self.skinUsingBackColorByTime = False
 
 		self.overjump_empty = overjump_empty
 		self.timer = timer
@@ -152,6 +154,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.foreColorNowSelected = 0xffffff
 		self.backColorNow = 0x00825F
 		self.backColorNowSelected = 0xd69600
+		self.foreColorPast = 0x808080
+		self.foreColorPastSelected = 0x808080
+		self.backColorPast = 0x2D455E
+		self.backColorPastSelected = 0xd69600
 		self.foreColorServiceNow = 0xffffff
 		self.backColorServiceNow = 0x00825F
 
@@ -199,6 +205,8 @@ class EPGList(HTMLComponent, GUIComponent):
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
 			attribs = [ ]
+			self.skinUsingForeColorByTime = False
+			self.skinUsingBackColorByTime = False
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "ServiceFontGraphical":
 					font = parseFont(value, ((1,1),(1,1)) )
@@ -248,12 +256,28 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.backColorSelected = parseColor(value).argb()
 				elif attrib == "EntryBackgroundColorNow":
 					self.backColorNow = parseColor(value).argb()
+					self.skinUsingBackColorByTime = True
 				elif attrib == "EntryBackgroundColorNowSelected":
 					self.backColorNowSelected = parseColor(value).argb()
+					self.skinUsingBackColorByTime = True
 				elif attrib == "EntryForegroundColorNow":
 					self.foreColorNow = parseColor(value).argb()
+					self.skinUsingForeColorByTime = True
 				elif attrib == "EntryForegroundColorNowSelected":
 					self.foreColorNowSelected = parseColor(value).argb()
+					self.skinUsingForeColorByTime = True
+				elif attrib == "EntryBackgroundColorPast":
+					self.backColorPast = parseColor(value).argb()
+					self.skinUsingBackColorByTime = True
+				elif attrib == "EntryBackgroundColorPastSelected":
+					self.backColorPastSelected = parseColor(value).argb()
+					self.skinUsingBackColorByTime = True
+				elif attrib == "EntryForegroundColorPast":
+					self.foreColorPast = parseColor(value).argb()
+					self.skinUsingForeColorByTime = True
+				elif attrib == "EntryForegroundColorPastSelected":
+					self.foreColorPastSelected = parseColor(value).argb()
+					self.skinUsingForeColorByTime = True
 
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
@@ -627,6 +651,30 @@ class EPGList(HTMLComponent, GUIComponent):
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
 		if self.listSizeWidth != self.l.getItemSize().width(): #recalc size if scrollbar is shown
 			self.recalcEntrySize()
+
+		if (beginTime is not None) and (beginTime+duration < time()):
+			foreColor = self.foreColorPast
+			backColor = self.backColorPast
+			foreColorSel = self.foreColorPastSelected
+			backColorSel = self.backColorPastSelected
+		elif (beginTime is not None) and (beginTime < time()):
+			foreColor = self.foreColorNow
+			backColor = self.backColorNow
+			foreColorSel = self.foreColorNowSelected
+			backColorSel = self.backColorNowSelected
+		else:
+			foreColor = self.foreColor
+			backColor = self.backColor
+			foreColorSel = self.foreColorSelected
+			backColorSel = self.backColorSelected
+		#don't apply new defaults to old skins:
+		if not self.skinUsingForeColorByTime:
+			foreColor = None
+			foreColorSel = None
+		if not self.skinUsingBackColorByTime:
+			backColor = None
+			backColorSel = None
+
 		clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
@@ -634,8 +682,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t)), foreColor, foreColorSel, backColor, backColorSel),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t), foreColor, foreColorSel, backColor, backColorSel)
 		]
 		if clock_types:
 			if self.wasEntryAutoTimer and clock_types in (2,7,12):
@@ -643,27 +691,27 @@ class EPGList(HTMLComponent, GUIComponent):
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-25, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-50, (r3.h/2-13), 25, 25, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-50, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-50, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel)
 						))
 				else:
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-42, (r3.h/2-11), 21, 21, self.autotimericon),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-42, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel)
 						))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-25, (r3.h/2-13), 25, 25, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-25, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-25, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel)
 						))
 				else:
 					res.extend((
 						(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-21, (r3.h/2-11), 21, 21, self.clocks[clock_types]),
-						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-21, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName)
+						(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-21, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel)
 						))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel))
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
