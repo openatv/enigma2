@@ -105,6 +105,12 @@ LANG_TEXT = {
 	 "T3": "בטל",
 	 "T4": "שמור",
 },
+"hk_HK": {
+	 "T1": "按 上/下 鍵選擇語言, 選定後按 OK.",
+	 "T2": "語言選擇",
+	 "T3": "取消",
+	 "T4": "保存",
+},
 "hr_HR": {
 	 "T1": "Please use the UP and DOWN keys to select your language. Afterwards press the OK button.",
 	 "T2": "Odaberite Jezik",
@@ -236,5 +242,11 @@ LANG_TEXT = {
 	 "T2": "Вибір мови",
 	 "T3": "Відмінити",
 	 "T4": "Зберегти",
+},
+"zh_CN": {
+	 "T1": "按 上/下 键选择语言, 选定后按 OK.",
+	 "T2": "语言选择",
+	 "T3": "取消",
+	 "T4": "保存",
 },
 }
