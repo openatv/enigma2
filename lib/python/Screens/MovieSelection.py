@@ -1793,13 +1793,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				config.movielist.last_videodir.value
 			)
 
-	def gotFilename(self, res, selItem=None):
+	def gotFilename(self, res, selItem=None, pinOk=False):
 		def servicePinEntered(res, selItem, result):
 			if result:
 				from Components.ParentalControl import parentalControl
 				parentalControl.setSessionPinCached()
 				parentalControl.hideBlacklist()
-				self.gotFilename(res, selItem)
+				self.gotFilename(res, selItem, pinOk=True)
 			elif result is False:
 				self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
 		if not res:
@@ -1811,7 +1811,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if res != currentDir:
 			if os.path.isdir(res):
 				baseName = os.path.basename(res[:-1])
-				if config.ParentalControl.servicepinactive.value and baseName.startswith(".") and not baseName.startswith(".Trash"):
+				if not pinOk and config.ParentalControl.servicepinactive.value and baseName.startswith(".") and baseName not in (".Trash", ".trash", ".Trashcan"):
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
 						self.session.openWithCallback(boundFunction(servicePinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))

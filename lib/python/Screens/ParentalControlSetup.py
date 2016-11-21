@@ -49,21 +49,20 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.setup_title = title
 
 		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
-		self.skinName = ["ParentalControlSetup", "Setup" ]
-		self.onChangedEntry = [ ]
+		self.skinName = ["ParentalControlSetup", "Setup"]
+		self.onChangedEntry = []
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup(initial=True)
 
 		self["key_red"] = Label(_("Exit"))
-		
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
-		{
-		  "red": self.keyCancel,
-		  "cancel": self.keyCancel,
-		  "save": self.keySave,
-		  "menu": self.closeRecursive,
+
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], {
+			"red": self.keyCancel,
+			"cancel": self.keyCancel,
+			"save": self.keySave,
+			"menu": self.closeRecursive,
 		}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -89,7 +88,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				self.list.append(getConfigListEntry(_("Remember service PIN"), config.ParentalControl.storeservicepin))
 				if config.ParentalControl.storeservicepin.value != "never":
 					self.list.append(getConfigListEntry(_("Hide parental locked services"), config.ParentalControl.hideBlacklist))
-				self.list.append(getConfigListEntry(_("Protect on epg age"), config.ParentalControl.age))
+				self.list.append(getConfigListEntry(_("Protect on parental rating"), config.ParentalControl.age))
 				self.reloadLists = getConfigListEntry(_("Reload blacklists"), NoSave(ConfigNothing()))
 				self.list.append(self.reloadLists)
 			self.list.append(getConfigListEntry(_("Protect screens"), config.ParentalControl.setuppinactive))
@@ -181,7 +180,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def oldPinEntered(self, answer):
 		if answer:
 			self.session.openWithCallback(self.newPinEntered, PinInput, title=_("Please enter the new PIN code"), windowTitle=_("Enter pin code"))
-		elif answer == False:
+		elif answer is False:
 			self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR, timeout=3)
 
 	def newPinEntered(self, answer):
@@ -191,7 +190,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def confirmNewPinEntered(self, answer1, answer2):
 		if answer2 is not None:
 			if answer1 == answer2:
-				self.session.open(MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_ERROR, timeout=3)
+				self.session.open(MessageBox, _("The PIN code has been changed successfully."), MessageBox.TYPE_INFO, timeout=3)
 				config.ParentalControl.servicepin[0].value = answer1
 				config.ParentalControl.servicepin[0].save()
 				self.createSetup()
