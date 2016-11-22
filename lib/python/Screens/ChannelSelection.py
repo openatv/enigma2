@@ -229,7 +229,7 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("Add service to bouquet"), self.addServiceToBouquetSelected), level=0, key="7")
 							self.addFunction = self.addServiceToBouquetSelected
 						if not self.inBouquet:
-							append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level = 0, key="8")
+							append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level = 0, key="9")
 							self.removeFunction = self.removeSatelliteService
 					else:
 						if not self.inBouquet:
@@ -270,8 +270,8 @@ class ChannelContextMenu(Screen):
 						else:
 							append_when_current_valid(current, menu, (_("Remove bouquet from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0, key="bullet")
 					menu.append(ChoiceEntryComponent(text=(_("Add bouquet"), self.showBouquetInputBox), key="bullet"))
-					append_when_current_valid(current, menu, (_("Rename entry"), self.renameEntry), level=0, key="9")
-					append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level=0, key="8")
+					append_when_current_valid(current, menu, (_("Rename entry"), self.renameEntry), level=0, key="8")
+					append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level=0, key="9")
 					self.removeFunction = self.removeBouquet
 					if removed_userbouquets_available():
 						append_when_current_valid(current, menu, (_("Purge deleted user bouquets"), self.purgeDeletedBouquets), level=0, key="bullet")
@@ -305,8 +305,8 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("End favourites edit"), self.bouquetMarkEnd), level=0, key="bullet")
 						append_when_current_valid(current, menu, (_("Abort favourites edit"), self.bouquetMarkAbort), level=0, key="bullet")
 					if current_sel_flags & eServiceReference.isMarker:
-						append_when_current_valid(current, menu, (_("Rename entry"), self.renameEntry), level=0, key="bullet")
-						append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level=0, key="bullet")
+						append_when_current_valid(current, menu, (_("Rename entry"), self.renameEntry), level=0, key="8")
+						append_when_current_valid(current, menu, (_("Remove entry"), self.removeEntry), level=0, key="9")
 						self.removeFunction = self.removeCurrentService
 				else:
 					append_when_current_valid(current, menu, (_("End alternatives edit"), self.bouquetMarkEnd), level=0, key="bullet")
