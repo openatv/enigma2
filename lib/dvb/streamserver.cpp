@@ -158,6 +158,15 @@ void eStreamClient::notifier(int what)
 				set_tcp_buffer_size(streamFd, SO_SNDBUF, 188 * 1024);
 				if (serviceref.substr(0, 10) == "file?file=") /* convert openwebif stream reqeust back to serviceref */
 					serviceref = "1:0:1:0:0:0:0:0:0:0:" + serviceref.substr(10);
+				/* Strip session ID from URL if it exists, PLi streaming can not handle it */
+				pos = serviceref.find("&sessionid=");
+				if (pos != std::string::npos) {
+					serviceref.erase(pos, std::string::npos);
+				}
+				pos = serviceref.find("?sessionid=");
+				if (pos != std::string::npos) {
+					serviceref.erase(pos, std::string::npos);
+				}
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
 				{
