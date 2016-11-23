@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-05 16:07+0200\n"
-"PO-Revision-Date: 2016-11-06 12:31+0200\n"
+"POT-Creation-Date: 2016-11-16 07:19+0200\n"
+"PO-Revision-Date: 2016-11-16 13:31+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -12,6 +12,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.8.11\n"
+
+#, python-format
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
 
 msgid ""
 "\n"
@@ -126,7 +134,7 @@ msgstr ""
 "Tarkvara paigaldamine ja eemaldamine."
 
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid " (0 - all networks)"
 msgstr " (0 - kõik võrgud)"
@@ -426,6 +434,9 @@ msgstr "1080p 50Hz"
 msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
+msgid "10bit"
+msgstr "10bit"
+
 msgid "128"
 msgstr "128"
 
@@ -434,6 +445,9 @@ msgstr "12V väljund"
 
 msgid "12V output."
 msgstr "12V väljund."
+
+msgid "12bit"
+msgstr "12bit"
 
 msgid "13 V"
 msgstr "13 V"
@@ -545,6 +559,9 @@ msgstr "720p"
 
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
+
+msgid "8bit"
+msgstr "8bit"
 
 msgid "< Default >"
 msgstr "< Vaikimisi >"
@@ -3888,6 +3905,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC seaded"
+
+msgid "HDMI Colordepth"
+msgstr "HDMI värvisügavus"
 
 msgid "HDMI Colorimetry"
 msgstr "HDMI kolorimeetria"
@@ -8755,13 +8775,10 @@ msgid "This can be either the IP or name of the fallback receiver, not including
 msgstr "See võib olla kas IP või kaugvastuvõtja nimi ilma pordi numbrita (nt. kas 'xxx.xxx.xxx.xxx' või 'teise_vastuvõtja_nimi)"
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
-msgstr "See valik võimaldab vähendada pildi plokkmüra (block-noise). Seda tehakse pildi teravuse arvelt."
+msgstr "Siin saab vähendada pildi plokkmüra (block-noise). Seda tehakse pildi teravuse arvelt."
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Siin saab muuta pildi dünaamilise kontrasti taset."
-
-msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "See valik võimaldab määrata HDR kolorimeetria"
 
 msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "See valik määrab, kas kulunud aega kuvatakse '+' või '-'"
@@ -8773,7 +8790,7 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr "See valik määrab, kuidas kuvada kulunud ja allesolevat aega telesaadete esitusel."
 
 msgid "This option allows you choose the background color of transparent picons."
-msgstr "See valik määrab läbipaistvate kanalilogode taustavärvi."
+msgstr "Siin saab valida läbipaistvate kanalilogode taustavärvi."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "See valik võtab kasutusse pehmendusfiltri värvitoonide segamisel"
@@ -8791,10 +8808,16 @@ msgid "This option allows you to boost the green tones in the picture."
 msgstr "Siin saab võimendada pildi rohelisi toone."
 
 msgid "This option allows you to bypass HDMI EDID check"
-msgstr "Siin valikus saab keelata HDMI EDID kontrolli"
+msgstr "Siin saab keelata HDMI EDID kontrolli"
+
+msgid "This option allows you to change the Colordepth for UHD"
+msgstr "Siin saab muuta UHD värvisügavust"
+
+msgid "This option allows you to change the Colorimetry for HDR"
+msgstr "Siin saab muuta HDR kolorimeetriat"
 
 msgid "This option allows you to change the Colorspace from Auto to RGB"
-msgstr "See valik võimaldab muuta värviruumi automaatne > RGB"
+msgstr "See saab muuta värviruumi automaatne > RGB"
 
 msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Siin saab muuta virtuaalse kõlari asukohta."
@@ -8857,7 +8880,7 @@ msgid "This option allows you to enable 3D Surround Sound for an output."
 msgstr "Siin saab lubada väljundile 3D ruumheli."
 
 msgid "This option allows you to power on or off the display."
-msgstr "See valik võimaldab esipaneeli välja lülitada."
+msgstr "See saab esipaneeli välja lülitada."
 
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "See valik määrab saatekava kujunduse (tekst või graafiline)."
@@ -10076,10 +10099,10 @@ msgid "When set, each folder will show the previous state used. When off, the de
 msgstr "Määrates 'jah', peetakse iga kausta seadistused meeles, määrates 'ei', kasutatakse vaikeväärtusi."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "Määra, kas 16:9 sisuga pilti tuleb skaleerida/venitada."
+msgstr "Määra, kas 16:9 kuvasuhtega sisu tuleb skaleerida/venitada."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "Määra, kas 4:3 sisuga pilti tuleb skaleerida/venitada."
+msgstr "Määra, kas 4:3 kuvasuhtega sisu tuleb skaleerida/venitada."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
 msgstr "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muudatusi ja salvestab need. Määra 'ei' ainult juhul, kui oled täiesti kindel, et tead, mida teed."
@@ -10144,7 +10167,7 @@ msgid "With this option set to 'yes' the channel list will always show you the l
 msgstr "Määrates 'jah', avatakse alati lemmiknimekirjade valik. Määrates 'ei' avatakse praegune kanalinimekiri."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
-msgstr "Siin saab valida, kas käsiloevaid tööülesandeid näidatakse laienduste menüüs (sinine nupp)."
+msgstr "Siin saab määrata, kas käsiloevaid tööülesandeid näidatakse laienduste menüüs (sinine nupp)."
 
 msgid "Without popup"
 msgstr "Hüpikaknata"
@@ -10175,6 +10198,15 @@ msgstr "XBox 360 tugi"
 
 msgid "XP1000"
 msgstr "XP1000"
+
+msgid "YCbCr420"
+msgstr "YCbCr420"
+
+msgid "YCbCr422"
+msgstr "YCbCr422"
+
+msgid "YCbCr444"
+msgstr "YCbCr444"
 
 msgid "YES"
 msgstr "JAH"
