@@ -157,8 +157,8 @@ class ChannelContextMenu(Screen):
 				"blue": self.showServiceInPiP,
 				"menu": self.openSetup,
 				"0": self.showServiceInformations,
-				"1":self.setStartupService,
-				"2":self.unsetStartupService,
+				"1": self.setStartupService,
+				"2": self.unsetStartupService,
 				"3": self.addDedicated3DFlag,
 				"4": self.removeDedicated3DFlag,
 				"5": self.addHideVBIFlag,
@@ -201,7 +201,7 @@ class ChannelContextMenu(Screen):
 						if self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							append_when_current_valid(current, menu, (_("Add to parental protection"), boundFunction(self.addParentalProtection, current)), level=0, key="bullet")
 						else:
-							append_when_current_valid(current, menu, (_("Remove from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0)
+							append_when_current_valid(current, menu, (_("Remove from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0, key="bullet")
 						if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
 							append_when_current_valid(current, menu, (_("Unhide parental control services"), self.unhideParentalServices), level=0, key="1")
 					if SystemInfo["3DMode"]:
