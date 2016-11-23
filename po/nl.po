@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-15 15:32+0100\n"
-"PO-Revision-Date: 2016-11-15 17:26+0100\n"
+"POT-Creation-Date: 2016-11-23 16:17+0100\n"
+"PO-Revision-Date: 2016-11-23 16:17+0100\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -1031,7 +1031,7 @@ msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Een slaap-timer wil uw\n"
+"Een slaap timer wil uw\n"
 "%s %s in stand-by zetten. Dat nu doen?"
 
 msgid ""
@@ -1045,7 +1045,7 @@ msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Een slaap-timer wil uw\n"
+"Een slaap timer wil uw\n"
 "%s %s uitschakelen. Dat nu doen?"
 
 msgid "A small overview of the available icon states and actions."
@@ -1358,7 +1358,7 @@ msgid "AFP"
 msgstr "AFP"
 
 msgid "AFP Setup"
-msgstr "AFP-instellingen"
+msgstr "AFP instellen"
 
 msgid "After event"
 msgstr "Na opname"
@@ -1839,7 +1839,7 @@ msgid "Auto language selection"
 msgstr "Automatische taalkeuzeselectie"
 
 msgid "Auto Language Selection"
-msgstr "Taal keuze voor Geluid/Ondertitels/EPG"
+msgstr "Taal keuze voor geluid/ondertitels/EPG"
 
 msgid "Auto scart switching"
 msgstr "Automatisch scart schakelen"
@@ -1887,7 +1887,7 @@ msgid "Automatic scan"
 msgstr "Automatisch zoeken"
 
 msgid "Automatic scan for services"
-msgstr "Automatisch zenders zoeken"
+msgstr "Hier kunt u automatisch naar zenders zoeken."
 
 msgid "Automatic setting backup"
 msgstr "Automatische settingsbackup"
@@ -1923,7 +1923,7 @@ msgid "AV aspect is %s."
 msgstr "AV aspect is %s."
 
 msgid "AV Setup"
-msgstr "Video/Geluid"
+msgstr "Video/geluid"
 
 msgid "Available format variables"
 msgstr "Beschikbare formaten"
@@ -2002,7 +2002,7 @@ msgid "Backup failed."
 msgstr "De backup is mislukt."
 
 msgid "Backup Image"
-msgstr "Backup Image"
+msgstr "Backup image"
 
 msgid "Backup is running"
 msgstr "Backup wordt uitgevoerd..."
@@ -2044,7 +2044,7 @@ msgid ""
 msgstr "Maak volledige Backup van de gebruikte Image op HDD of USB."
 
 msgid "Backup your current settings"
-msgstr "Maak een Backup van alle instellingen"
+msgstr "Maak een backup van alle instellingen"
 
 msgid ""
 "Backup your current settings. This includes E2-setup, channels, network and "
@@ -2486,7 +2486,7 @@ msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo Hoofdmenu"
 
 msgid "center"
-msgstr "Centreer"
+msgstr "centreer"
 
 msgid "Center DVB subtitles"
 msgstr "Centreer DVB ondertitels"
@@ -2561,8 +2561,9 @@ msgstr ""
 "Een herstart is noodzakelijk voor de wijzigingen.\n"
 "Nu uw %s %s opnieuw opstarten?"
 
+# Refereerd aan het geluidsformaat. (stereo/mono etc.)
 msgid "Channel"
-msgstr "Zender"
+msgstr "Geluidskanaal"
 
 msgid "Channel +/- button mode"
 msgstr "Zender +/- knop functie"
@@ -2607,13 +2608,13 @@ msgid "Channel preview mode"
 msgstr "Zender voorbeeld modus"
 
 msgid "Channel selection"
-msgstr "Zenderkeuze"
+msgstr "Zenderkeuze instellingen"
 
 msgid "Channel selection configuration"
-msgstr "Zender selectie instellingen"
+msgstr "Zenderkeuze en lijst instellingen"
 
 msgid "Channel selection settings"
-msgstr "Instellingen voor zenderkeuze"
+msgstr "Zenderkeuze instellingen"
 
 msgid "Channel up"
 msgstr "Volgende zender"
@@ -2664,7 +2665,7 @@ msgid "Check every (hours)"
 msgstr "Controleer elke (uur)"
 
 msgid "Check HDD"
-msgstr "Fout Controle van harde schijf"
+msgstr "Harde schijf op fouten controleren"
 
 msgid "Check the internet connection"
 msgstr "Controleer of u een internetverbinding heeft"
@@ -2821,7 +2822,7 @@ msgid "CIconfigMenu"
 msgstr "CI instellingen menu"
 
 msgid "CIFS/Samba Setup"
-msgstr "CIFS/Samba instellingen"
+msgstr "CIFS/Samba instellen"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper voor SLOT CI0"
@@ -3213,8 +3214,8 @@ msgid ""
 "the channel selection list you can remain on the current service or already "
 "select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
-"Configureren het gedrag van de cursor in het zenderlijst. Bij het openen van "
-"het zenderlijst kunt u op het huidige zender blijven, of selecteer omhoog/"
+"Configureren het gedrag van de cursor in de zenderlijst. Bij het openen van "
+"de zenderlijst kunt u op de huidige zender blijven, of selecteer omhoog/"
 "omlaag en je bent in staat om de B+/B- knoppen om te wisselen."
 
 msgid "Configure the DiSEqC mode for this LNB."
@@ -3577,7 +3578,7 @@ msgid "Configure your internal LAN"
 msgstr "Configureer uw interne netwerk"
 
 msgid "Configure your Network"
-msgstr "Configureer het Netwerk"
+msgstr "Netwerk configureren"
 
 msgid "Configure your network again"
 msgstr "Configureer uw netwerk opnieuw"
@@ -3680,7 +3681,7 @@ msgid "Control the Infobar fading speed"
 msgstr "Stel de vervagingens snelheid van de infobalk in"
 
 msgid "Control your Softcams"
-msgstr "Beheer de Softcams"
+msgstr "Softcams beheren"
 
 msgid "Convert ext3 filesystem to ext4"
 msgstr "Converteer van ext3 naar ext4"
@@ -3882,7 +3883,7 @@ msgid "Customise"
 msgstr "Instellingen"
 
 msgid "Customise enigma2 personal settings"
-msgstr "Alle instellingen die met enigma2 te maken hebben"
+msgstr "Alle instellingen die met enigma2 te maken hebben."
 
 msgid "Customize"
 msgstr "Diverse instellingen"
@@ -4094,7 +4095,7 @@ msgstr "Verwijder %s?"
 
 msgid "Delete and unstall Plugins. This will remove the Plugin from your box"
 msgstr ""
-"Hier een lijst met geinstalleerde plugins. \n"
+"Hier een lijst met geïnstalleerde plugins. \n"
 "Via deze weg kun je plugins verwijderen van je box."
 
 msgid "Delete Confirmation"
@@ -4122,7 +4123,7 @@ msgid "Delete playlist entry"
 msgstr "Verwijder een item uit de afspeellijst"
 
 msgid "Delete Plugins"
-msgstr "Plugins verwijderen"
+msgstr "Plugins en applicaties verwijderen"
 
 msgid "Delete saved playlist"
 msgstr "Verwijder een opgeslagen afspeellijst"
@@ -4187,13 +4188,13 @@ msgid "Device Information"
 msgstr "Apparaat informatie"
 
 msgid "Device Manager"
-msgstr "Beheer Opslagmedia"
+msgstr "Beheer opslagmedia"
 
 msgid "Device mounts"
 msgstr "Lokale mounts"
 
 msgid "Device Setup"
-msgstr "Apparaat instellen"
+msgstr "Netwerk instellingen"
 
 msgid "Device: "
 msgstr "Apparaat: "
@@ -4364,7 +4365,7 @@ msgid "Display Settings"
 msgstr "LCD instellingen"
 
 msgid "Display Setup"
-msgstr "OLED/LCD Scherm Instellen"
+msgstr "OLED/LCD scherm Instellen"
 
 msgid "Display the EIT now/next eventdata in infobar."
 msgstr "Toon EIT nu/straks programmagegevens in de Infobalk."
@@ -4624,10 +4625,10 @@ msgid "Download .NFI-files for USB-flasher"
 msgstr "Download .NFI-bestanden voor USB-flasher"
 
 msgid "Download and install cam"
-msgstr "Download en installeer softcams"
+msgstr "Softcams downloaden en installeren"
 
 msgid "Download and install Plugins"
-msgstr "Download en installeer plugins"
+msgstr "Plugins en applicaties downloaden"
 
 msgid "Download Failed !!"
 msgstr "Download Mislukt !!"
@@ -4646,7 +4647,7 @@ msgid "Download plugins"
 msgstr "Downloaden"
 
 msgid "Download Softcams"
-msgstr "Download Softcams"
+msgstr "Download softcams"
 
 msgid "Downloadable plugins"
 msgstr "Beschikbare plugins"
@@ -4900,7 +4901,7 @@ msgid "Enable CIHelper for SLOT CI1"
 msgstr "Activeer CIHelper voor SLOT CI1"
 
 msgid "Enable debug log"
-msgstr "Activeer Debug log"
+msgstr "Activeer debug log"
 
 msgid "Enable digital downmix"
 msgstr "DD/DTS Downmix activeren"
@@ -5380,7 +5381,7 @@ msgid "Extended"
 msgstr "Uitgebreid"
 
 msgid "Extended GUI"
-msgstr "Uitgebreide GUI"
+msgstr "Overige GUI instellingen"
 
 msgid "Extended network setup plugin..."
 msgstr "Uitgebreide netwerkinstellingen plugin..."
@@ -5730,7 +5731,7 @@ msgid "Format"
 msgstr "Formaat"
 
 msgid "Format HDD"
-msgstr "Formateer Harde schijf"
+msgstr "Harde schijf formatteren"
 
 msgid "Format your Harddisk"
 msgstr "Harde schijf of ander medium formatteren"
@@ -5763,7 +5764,7 @@ msgid "Free memory:"
 msgstr "Vrij geheugen:"
 
 msgid "Free Memory:"
-msgstr "Vrij Geheugen:"
+msgstr "Vrij geheugen:"
 
 msgid "Free Swap:"
 msgstr "Vrije swap:"
@@ -5817,13 +5818,13 @@ msgid "Frontprocessor version: %s"
 msgstr "Frontprocessor versie: %s"
 
 msgid "Frozen Cam Check"
-msgstr "Vastgelopen Cam Controle"
+msgstr "Vastgelopen Cam controle"
 
 msgid "FTP"
 msgstr "FTP"
 
 msgid "FTP Setup"
-msgstr "FTP instellingen"
+msgstr "FTP instellen"
 
 msgid "full"
 msgstr "Vol"
@@ -6092,7 +6093,7 @@ msgid "Harddisk"
 msgstr "Harde schijf"
 
 msgid "Harddisk Setup"
-msgstr "Instellen harde schijf"
+msgstr "Harde schijf instellen"
 
 msgid ""
 "has been sent to the SVN team team.\n"
@@ -6166,7 +6167,7 @@ msgid ""
 "backupfile by default (E2-setup, channels, network)."
 msgstr ""
 "Hier kunt u bladeren door de bestanden (niet aanpassen) \n"
-"die worden toegevoegd aan een standaard backup.(E2-instellingen, zenders, "
+"die worden toegevoegd aan een standaard backup. (E2-instellingen, zenders, "
 "netwerk)"
 
 msgid "Here you can select which files should be excluded from the backup."
@@ -6175,7 +6176,7 @@ msgstr ""
 "backup."
 
 msgid "Here you can select which files should be updated with a online update"
-msgstr "Kies welke bestanden mogen worden overschreven door een Online-Update"
+msgstr "Kies welke bestanden mogen worden overschreven door een Online-Update."
 
 msgid ""
 "Here you can specify additional files that should be added to the backup "
@@ -6185,7 +6186,7 @@ msgstr ""
 "toegevoegd."
 
 msgid "HI-cleanup for external subtitles"
-msgstr "Verwijder assistentie uit externe ondertitels"
+msgstr "Verwijder assistentie teksten uit externe ondertitels"
 
 msgid "Hidden network"
 msgstr "Verborgen netwerk"
@@ -6410,14 +6411,14 @@ msgid ""
 "preview the selected channel, press a 2nd 'OK' to exit and zap to that "
 "channel, pressing 'EXIT' to return to the channel you started at."
 msgstr ""
-"Als u hier voor 'ja' kiest, ziet u het zender in een klein schermpje in de "
+"Als u hier voor 'ja' kiest, ziet u de zender in een klein schermpje in de "
 "zenderlijst. Als u op 'OK' drukt, wordt het gekozen zender daar getoond; als "
 "u een tweede maal op 'OK' drukt, gaat u daadwerkelijk naar dat zender. Drukt "
 "u op 'Exit', dan gaat u terug naar het zender waar u vandaan kwam."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr ""
-"Als u hier voor 'ja' kiest, ziet u het zender in een klein schermpje in de "
+"Als u hier voor 'ja' kiest, ziet u de zender in een klein schermpje in de "
 "EPG."
 
 msgid ""
@@ -6509,19 +6510,19 @@ msgid "ImageWizard"
 msgstr "ImageWizard"
 
 msgid "IMDb Details"
-msgstr "IMDb Gegevens"
+msgstr "IMDb details"
 
 msgid "IMDB Search"
-msgstr "IMDb Zoeken"
+msgstr "IMDb Informatie"
 
 msgid "IMDB search"
-msgstr "IMDb Zoeken"
-
-msgid "IMDb Search"
 msgstr "IMDb Informatie "
 
+msgid "IMDb Search"
+msgstr "IMDb Informatie"
+
 msgid "IMDB search for current event"
-msgstr "IMDB zoeken voor huidig programma"
+msgstr "IMDB informatie voor huidig programma"
 
 msgid "Immediate shutdown"
 msgstr "Direct uitschakelen"
@@ -6555,7 +6556,7 @@ msgid "Inadyn Log"
 msgstr "Inadyn log"
 
 msgid "Inadyn Setup"
-msgstr "Inadyn instellingen"
+msgstr "Inadyn instellen"
 
 msgid "Include AIT in http streams"
 msgstr "Neem AIT op in http streams"
@@ -6807,7 +6808,7 @@ msgid "Internal flash"
 msgstr "Intern geheugen"
 
 msgid "Internal hdd only"
-msgstr "Alleen interne harddisk"
+msgstr "alleen interne harddisk"
 
 msgid "Internal USB"
 msgstr "Interne USB"
@@ -6975,7 +6976,7 @@ msgid "Kernel:\t%s"
 msgstr "Kernel:\t%s"
 
 msgid "Keyboard"
-msgstr "Toetsenbord..."
+msgstr "Toetsenbord"
 
 msgid "Keyboard map"
 msgstr "Toetsenbord indeling"
@@ -7041,10 +7042,10 @@ msgid "LCD scroll speed"
 msgstr "LCD scroll snelheid"
 
 msgid "LCD Skin Setup"
-msgstr "LCD skin kiezen"
+msgstr "LCD skin selecteren"
 
 msgid "LCD SkinSelector"
-msgstr "LCD Skin-Kiezer"
+msgstr "LCD Skin-selecteren"
 
 msgid "LCN"
 msgstr "LCN"
@@ -7119,7 +7120,7 @@ msgid "Limit character set for recording filenames"
 msgstr "Beperk de tekenset voor de namen van de opnames"
 
 msgid "Limit debug log size (MB)"
-msgstr "Begrens Debug logs op (MB)"
+msgstr "Begrens debug logs op (MB)"
 
 msgid "Limit east"
 msgstr "Limiet oost"
@@ -7215,7 +7216,7 @@ msgid "Load unlinked userbouquets"
 msgstr "Laadt niet gekoppelde gebruikersbouquetten"
 
 msgid "Load/Save/Delete"
-msgstr "Laden/Opslaan/Verwijderen"
+msgstr "Laden/opslaan/verwijderen"
 
 msgid "Local"
 msgstr "Lokaal"
@@ -7368,7 +7369,7 @@ msgid "Manual Scan"
 msgstr "Handmatig zoeken"
 
 msgid "Manual scan for services"
-msgstr "Hier kunt u handmatig zenders zoeken"
+msgstr "Hier kunt u handmatig naar zenders zoeken."
 
 msgid "Manual transponder"
 msgstr "Transponder handmatig"
@@ -7386,7 +7387,7 @@ msgid "Margin before recording (minutes)"
 msgstr "Marge voor een opname (minuten)"
 
 msgid "Mark service as dedicated 3D service"
-msgstr "Markeer als 3D zender"
+msgstr "Als 3D zender markeren"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Markeer/Portaal/Afspeellijst"
@@ -7506,7 +7507,7 @@ msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
-msgstr "MiniDLNA instellingen"
+msgstr "MiniDLNA instellen"
 
 msgid "Minimum age %d years"
 msgstr "Minimumleeftijd %d jaar"
@@ -7612,10 +7613,10 @@ msgid "Mount failed"
 msgstr "Mount mislukt"
 
 msgid "Mount Manager"
-msgstr "Mount Beheer"
+msgstr "Mount beheer"
 
 msgid "Mount Setup"
-msgstr "Mount Instellingen"
+msgstr "Mount instellingen"
 
 msgid "Mount: "
 msgstr "Mount: "
@@ -7630,7 +7631,7 @@ msgid "Mounts Devices"
 msgstr "Mount opslagmedia"
 
 msgid "Mounts Setup"
-msgstr "Mount instellingen"
+msgstr "Mounts instellen"
 
 msgid "move"
 msgstr "verplaats"
@@ -7831,7 +7832,7 @@ msgid "Network Adapter Selection"
 msgstr "Netwerk Adapter"
 
 msgid "Network Browser"
-msgstr "Netwerk Browser"
+msgstr "Netwerk browser"
 
 msgid "Network configuration..."
 msgstr "Netwerkconfiguratie..."
@@ -7843,7 +7844,7 @@ msgid "Network Information"
 msgstr "Netwerk informatie"
 
 msgid "Network Interface"
-msgstr "Netwerk Interface"
+msgstr "Netwerk interface"
 
 msgid "Network MAC settings"
 msgstr "Netwerk MAC instellingen"
@@ -7861,16 +7862,16 @@ msgid "Network Neighbourhood"
 msgstr "Netwerk omgeving"
 
 msgid "Network Restart"
-msgstr "Netwerk Herstarten"
+msgstr "Netwerk herstarten"
 
 msgid "Network scan"
 msgstr "Netwerk doorzoeken"
 
 msgid "Network Servers:"
-msgstr "Netwerk Servers:"
+msgstr "Netwerk servers:"
 
 msgid "Network Services"
-msgstr "Netwerk Functies"
+msgstr "Netwerk functies"
 
 msgid "Network Setup"
 msgstr "Netwerkinstellingen"
@@ -7894,7 +7895,7 @@ msgid "Network wizard"
 msgstr "Netwerkwizard"
 
 msgid "Network Wizard"
-msgstr "Netwerk Wizard"
+msgstr "Netwerk wizard"
 
 msgid "Network:"
 msgstr "Netwerk:"
@@ -7981,7 +7982,7 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFS Setup"
-msgstr "NFS instellingen"
+msgstr "NFS instellen"
 
 msgid "NIM"
 msgstr "NIM"
@@ -8456,7 +8457,7 @@ msgid "Number of digits in channel number"
 msgstr "Aantal cijfers in zendernummer"
 
 msgid "Number of rows"
-msgstr "Aantal Regels"
+msgstr "Aantal regels/rijen"
 
 msgid "Number of rows to display"
 msgstr "Aantal lijnen om weer te geven"
@@ -8643,7 +8644,7 @@ msgid "Open the movie list"
 msgstr "Open de opnamelijst"
 
 msgid "Open the Plugin Browser"
-msgstr "Open het Applicatie Overzicht"
+msgstr "Open het applicatie overzicht"
 
 msgid "Open Timerlist..."
 msgstr "Open Timerlijst..."
@@ -8658,7 +8659,7 @@ msgid "OpenVpn Log"
 msgstr "Open-VPN log"
 
 msgid "OpenVPN Setup"
-msgstr "OpenVPN instellingen"
+msgstr "OpenVPN instellen"
 
 msgid "OpenVpn Setup"
 msgstr "Open-VPN instellingen"
@@ -8712,7 +8713,7 @@ msgid "OSD name request"
 msgstr "OSD naam aanvragen"
 
 msgid "OSD Position"
-msgstr "OSD Positie"
+msgstr "OSD positie"
 
 msgid "OSD position setup"
 msgstr "OSD setup positie"
@@ -8845,7 +8846,7 @@ msgid "Panic to"
 msgstr "Panic to"
 
 msgid "Parent directory"
-msgstr "Bovengelegen map"
+msgstr "Bovenliggende map"
 
 msgid "Parental control"
 msgstr "Kinderslot"
@@ -9207,7 +9208,7 @@ msgid "Please select medium"
 msgstr "Selecteer een medium"
 
 msgid "Please select medium to be scanned"
-msgstr "Selecteer het te scannen medium..."
+msgstr "Selecteer het te doorzoeken medium..."
 
 msgid "Please select medium to use as backup location"
 msgstr "Selecteer het te gebruiken medium als backuplocatie..."
@@ -9370,7 +9371,7 @@ msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 msgstr "A.u.b: De Box NIET herstarten of van de stroom halen!\n"
 
 msgid "pli"
-msgstr "pli feeds"
+msgstr "openpli feeds"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -9379,7 +9380,7 @@ msgid "Plugin"
 msgstr "Plugin"
 
 msgid "Plugin browser"
-msgstr "Applicatie Overzicht"
+msgstr "Applicatie overzicht"
 
 msgid "Plugin Browser"
 msgstr "Applicatie overzicht"
@@ -9739,7 +9740,7 @@ msgid "Protect Quickmenu"
 msgstr "Beveilig snelmenu"
 
 msgid "Protect Screens"
-msgstr "Menu's beveiligen"
+msgstr "Beveilig menu's"
 
 msgid "Protect services"
 msgstr "Beveilig zenders"
@@ -9949,7 +9950,7 @@ msgid "Reboot"
 msgstr "Herstarten"
 
 msgid "reboot system"
-msgstr "System herstarten"
+msgstr "Systeem herstarten"
 
 msgid "Rebuild"
 msgstr "Opnieuw opbouwen"
@@ -10391,10 +10392,10 @@ msgid "Restart Network Adapter"
 msgstr "Netwerk Adapter herstarten"
 
 msgid "Restart network and remount connections"
-msgstr "Netwerk herstarten en remount verbindingen"
+msgstr "Netwerk herstarten en hermounten van verbindingen."
 
 msgid "Restart network to with current setup"
-msgstr "Netwerk herstarten met je huidige instelling"
+msgstr "Netwerk herstarten met huidige instelling"
 
 msgid "Restart test"
 msgstr "Herstart test"
@@ -10563,7 +10564,7 @@ msgid "SABnzbd"
 msgstr "SABnzbd"
 
 msgid "SABnzbd Setup"
-msgstr "SABnzbd instellingen"
+msgstr "SABnzbd instellen"
 
 msgid "Samba"
 msgstr "Samba"
@@ -10786,7 +10787,7 @@ msgid "search EPG..."
 msgstr "zoek in EPG..."
 
 msgid "Search for network shares"
-msgstr "Zoek naar netwerk shares"
+msgstr "Zoek naar gedeelde netwerk mappen"
 
 msgid "Search for similar events"
 msgstr "Zoek soortgelijke programma's"
@@ -10983,9 +10984,10 @@ msgstr "Kies hiervoor als u het gebruik van sub-zenders wilt activeren."
 
 msgid ""
 "Select if you want to use the image coloured Buttons (set to 'no' if you "
-"want to use (Multi) Quick Button).\">config.plisettings.ColouredButtons</"
-"item-->"
+"want to use (Multi) Quick Button)."
 msgstr ""
+"Kies of u de image-functies aan de kleurtoetsen wilt toekennen. Kies 'nee' \n"
+"als u (Multi) QuickButton wilt gebruiken."
 
 msgid "Select Image: %s"
 msgstr "Selecteer Image: %s"
@@ -11345,7 +11347,7 @@ msgstr ""
 "kunt u meer dan één bouquet lijst gebruiken."
 
 msgid "set as startup service"
-msgstr "Zender gebruiken als startzender"
+msgstr "Als opstartzender gebruiken"
 
 msgid "Set CI assignment for detection of available services."
 msgstr "Stel CI toewijzing in voor de detectie van beschikbare zenders."
@@ -11378,7 +11380,7 @@ msgid "Set startup service"
 msgstr "Kies als opstartzender"
 
 msgid "Set System"
-msgstr "System instellingen"
+msgstr "Systeem instellingen"
 
 msgid "Set the channel for this timer."
 msgstr "Kies het zender voor deze timer."
@@ -11542,7 +11544,7 @@ msgid "Settings"
 msgstr "Settings"
 
 msgid "Settings..."
-msgstr "Instellingen..."
+msgstr "Instellingen"
 
 msgid "Setup"
 msgstr "Instellingen"
@@ -11557,13 +11559,13 @@ msgid "Setup Audio Sync settings"
 msgstr "Geluid Sync configuratie instellen"
 
 msgid "Setup Audiomode"
-msgstr "Geluid modus instellen"
+msgstr "Geluids modus instellen"
 
 msgid "Setup delay mode to zap to channels."
 msgstr "Stel een vertraging in tussen het schakelen van zenders."
 
 msgid "Setup each tuner for your satellite system"
-msgstr "Hier kunt u iedere tuner instellen van uw satelliet installatie"
+msgstr "Hier kunt u de tuners instellen van uw ontvanger."
 
 msgid "Setup Enigma2"
 msgstr "Enigma2 instellingen"
@@ -11620,7 +11622,7 @@ msgid "Setup OpenVPN"
 msgstr "OpenVPN instellen"
 
 msgid "Setup Plugin filter"
-msgstr "Filter plugin feeds"
+msgstr "Plugin download feeds filteren"
 
 msgid ""
 "Setup Plugin filter. Here you can select which Plugins are showed in the "
@@ -11647,7 +11649,7 @@ msgstr ""
 "uren; '0' betekent dat er niet gezocht wordt)."
 
 msgid "Setup Tuner"
-msgstr "Tuner instellen"
+msgstr "Tuners beheren"
 
 msgid "Setup tuner(s)"
 msgstr "Tuner(s) instellen"
@@ -11659,25 +11661,25 @@ msgid "Setup Videomode"
 msgstr "Video instellingen"
 
 msgid "Setup your Audio Mode"
-msgstr "Geluids voorkeur instellen"
+msgstr "Geluids voorkeuren instellen."
 
 msgid "Setup your Channel selection configuration"
-msgstr "Alle instellingen die met de zenderlijst te maken hebben"
+msgstr "Alle instellingen die met de zenderlijst te maken hebben."
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
 msgstr "Mounts van opslagmedia instellen (USB, HDD, andere...)"
 
 msgid "Setup your display"
-msgstr "Stel het OLED/LCD scherm in naar persoonlijks smaak."
+msgstr "Stel het OLED/LCD scherm in naar uw persoonlijke voorkeur."
 
 msgid "Setup your EPG config"
-msgstr "Alle instellingen die met de EPG te maken hebben"
+msgstr "Alle instellingen die met de EPG te maken hebben."
 
 msgid "Setup your Harddisk"
 msgstr "Hier kunt u de harde schijf instellen"
 
 msgid "Setup your LCD"
-msgstr "Alle instellingen die met het LCD-scherm te maken hebben"
+msgstr "Alle instellingen die met het LCD-scherm te maken hebben."
 
 msgid "Setup your local network"
 msgstr "Netwerk instellingen"
@@ -11689,7 +11691,7 @@ msgstr ""
 "Voor WLAN moet er een USB WLAN Stick aanwezig zijn tijdens het opstarten."
 
 msgid "Setup your mounts for network"
-msgstr "Hier kunt u de netwerk verbindingen instellen"
+msgstr "Hier kunt u de mounts en netwerk verbindingen instellen."
 
 msgid ""
 "Setup your network interface. If no Wlan stick is used, you only can select "
@@ -11713,28 +11715,29 @@ msgid "Setup your positioner for your satellite system"
 msgstr "Hier kunt u een DiSeqC motor instellen"
 
 msgid "Setup your recording config"
-msgstr "Alle instellingen die met opname's te maken hebben"
+msgstr "Alle instellingen die met opnames te maken hebben."
 
 msgid "Setup your remote buttons"
-msgstr "Alle instellingen die met de afstandsbediening te maken hebben"
+msgstr "Alle instellingen die met de afstandsbediening te maken hebben."
 
 msgid "Setup your satellite equipment"
 msgstr "Stel uw satellietapparatuur in"
 
 msgid "Setup your Skin"
-msgstr "Skin instellen"
+msgstr "De Enigma2 Skin van uw voorkeur selecteren."
 
 msgid "Setup your System"
-msgstr "Hier kunt u de systeem instellingen beheren"
+msgstr "Hier kunt u de systeem instellingen beheren."
 
 msgid "Setup your timezone."
 msgstr "Tijdzone instellen."
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Hier kunt u de tuners instellen en zenders zoeken"
+msgstr "Hier kunt u de tuners instellen en zenders zoeken."
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
-msgstr "Hier kunt u alles wat met Video en Taal te maken heeft instellen"
+msgstr ""
+"Hier kunt u alles wat met Video/Geluid en Taal te maken heeft instellen."
 
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
@@ -11888,7 +11891,7 @@ msgid "Show CCcam in extensions ?"
 msgstr "Toon CCcam in extensie menu?"
 
 msgid "Show CCcamInfo in Extensions Menu"
-msgstr "Toon CCcamInfo in het Plugin Menu"
+msgstr "Toon CCcamInfo in het extensie menu"
 
 msgid "Show channel number in infobar"
 msgstr "Toon zendernummers in informatiebalk"
@@ -12112,7 +12115,7 @@ msgid "Show OScam in extensions ?"
 msgstr "Toon OScam in extensie menu ?"
 
 msgid "Show OscamInfo in Extensions Menu"
-msgstr "Toon OscamInfo in het Plugin Menu"
+msgstr "Toon OscamInfo in het extensie menu"
 
 msgid "Show picon background colour"
 msgstr "Toon kleur achtergrond voor picons"
@@ -12187,13 +12190,13 @@ msgid "Show Single EPG"
 msgstr "Toon single EPG"
 
 msgid "Show single epg for current channel"
-msgstr "Toon single EPG voor huidige zender"
+msgstr "Toon single EPG van de huidige zender"
 
 msgid "Show single service EPG"
 msgstr "Toon de EPG van een enkel zender"
 
 msgid "Show Softcam-Panel in Extensions Menu"
-msgstr "Toon Softcam Paneel in het plugin Menu"
+msgstr "Toon Softcam Paneel in het extensie menu"
 
 msgid "Show source packages"
 msgstr "Toon source packages"
@@ -12319,7 +12322,9 @@ msgid "Shows live tv or informations on LCD."
 msgstr "Toon Live TV of informatie op het LCD display."
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
-msgstr "Toon alle Plugins. Hier kun je elke plugin instellen en gebruiken"
+msgstr ""
+"Toont u de geïnstalleerde applicaties. Ook kunt u applicaties/plugins "
+"instellen."
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Toon iconen voor onbekeken opnames."
@@ -12436,10 +12441,10 @@ msgid "Skin Setting"
 msgstr "Skin Instelling"
 
 msgid "Skin Setup"
-msgstr "Skin kiezen"
+msgstr "Skin selecteren"
 
 msgid "Skin setup"
-msgstr "Skin kiezen"
+msgstr "Skin selecteren"
 
 msgid "Skins"
 msgstr "Skins"
@@ -12490,7 +12495,7 @@ msgid "Sleep long"
 msgstr "Sleep lang"
 
 msgid "Sleep Timer"
-msgstr "Slaap Timer"
+msgstr "Slaap timer"
 
 msgid "SleepTimer"
 msgstr "Slaap Timer"
@@ -12565,7 +12570,7 @@ msgid "Softcam"
 msgstr "Softcam"
 
 msgid "Softcam Panel"
-msgstr "Softcam Paneel"
+msgstr "Softcam paneel"
 
 msgid "Softcam Panel V2.0"
 msgstr "Softcam Paneel V2.0"
@@ -12580,10 +12585,10 @@ msgid "Softcam Setup"
 msgstr "Softcam configuratie"
 
 msgid "Softcam-Panel"
-msgstr "Softcam Paneel"
+msgstr "Softcam paneel"
 
 msgid "Softcam-Panel Setup"
-msgstr "Softcam Paneel Instellingen"
+msgstr "Softcam paneel instellingen"
 
 msgid "Softcam-Panel..."
 msgstr "Open Softcam Paneel..."
@@ -12619,7 +12624,7 @@ msgid "Software update"
 msgstr "Software update"
 
 msgid "Software Update"
-msgstr "Software Update"
+msgstr "Software update"
 
 msgid "Softwaremanager information"
 msgstr "Softwarebeheerinformatie"
@@ -12834,7 +12839,7 @@ msgid "Start instant recording"
 msgstr "Start een directe opname"
 
 msgid "Start Mode"
-msgstr "Start Methode"
+msgstr "Start methode"
 
 msgid "Start offline decode"
 msgstr "Start achteraf decoderen"
@@ -12858,7 +12863,7 @@ msgid "Start timeshift"
 msgstr "Start de timeshift"
 
 msgid "Start/stop/select cam"
-msgstr "Start/Stop/Selecteer Softcam"
+msgstr "Start/stop/selecteer Softcam"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Hier kunt u de softcams installeren en beheren."
@@ -12992,7 +12997,7 @@ msgid "Stop timeshift while recording?"
 msgstr "Timeshift stoppen tijdens opname?"
 
 msgid "stop using as startup service"
-msgstr "Niet meer gebruiken als startzender"
+msgstr "Niet meer als opstartzender gebruiken"
 
 msgid ""
 "Stop's timeshift being used if a recording is in progress. (adviseable for "
@@ -13251,7 +13256,7 @@ msgid "System"
 msgstr "Systeem"
 
 msgid "System Info"
-msgstr "Systeem Info"
+msgstr "Uw ontvanger"
 
 msgid "System Message"
 msgstr "Systeem Bericht"
@@ -13260,7 +13265,7 @@ msgid "System Message Check"
 msgstr "Systeem Bericht Controle"
 
 msgid "System Setup"
-msgstr "Systeem Instellingen"
+msgstr "Systeem instellingen"
 
 msgid "System temperature:\t%s"
 msgstr "Systeem temperatuur:\t%s"
@@ -13317,7 +13322,7 @@ msgid "Telnet Port"
 msgstr "Telnet poort"
 
 msgid "Telnet Setup"
-msgstr "Telnet instellingen"
+msgstr "Telnet instellen"
 
 msgid "template file"
 msgstr "sjabloonbestand"
@@ -13907,7 +13912,7 @@ msgstr "Met deze optie kunt u de virtuele luidspeaker positie wijzigen."
 msgid ""
 "This option allows you to choose from the two channel lists that are "
 "available."
-msgstr "Hier kunt u kiezen tussen twee zenderlijst die beschikbaar zijn."
+msgstr "Hier kunt u kiezen tussen twee zenderlijsten die beschikbaar zijn."
 
 msgid ""
 "This option allows you to choose how to display 1080p 24Hz on your TV. (as "
@@ -14359,7 +14364,7 @@ msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift zal na afloop van het programma worden opgeslagen!"
 
 msgid "Timeshift-save action on zap"
-msgstr "Timeshift-save actie bij zappen"
+msgstr "Timeshift save actie bij zappen"
 
 msgid "Timezone"
 msgstr "Tijdzone"
@@ -14822,10 +14827,10 @@ msgid "Update is reported as faulty !!"
 msgstr "Update is gerapporteerd als gebrekkig !!"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
-msgstr "Update/Backup de firmware, of uw instellingen."
+msgstr "Update/backup uw firmware en/of instellingen."
 
 msgid "Update/Backup/Restore your box"
-msgstr "Update/Backup/Herstel uw box"
+msgstr "Update/backup/herstel uw box"
 
 msgid "Updatefeed not available."
 msgstr "Updatefeed niet beschikbaar."
@@ -14846,7 +14851,7 @@ msgid "Updating mount locations."
 msgstr "Mount locaties bijwerken."
 
 msgid "Updating software catalog"
-msgstr "Software catalogus wordt geüpdatet"
+msgstr "Software catalogus wordt geupdate"
 
 msgid "Upgrade and reboot system"
 msgstr "Update en herstart system."
@@ -14963,7 +14968,7 @@ msgid "Use frequency or channel"
 msgstr "Gebruik frequentie of zender"
 
 msgid "Use Harddisk Hardware Standby Timer"
-msgstr "Gebruik Harde schijf Hardware Stand-by Timer"
+msgstr "Gebruik harde schijf hardware stand-by timer"
 
 msgid "Use HDMI-preemphasis"
 msgstr "Gebruik HDMI-pre-emphasis"
@@ -15166,7 +15171,7 @@ msgid "uShare Port"
 msgstr "uShare Port"
 
 msgid "uShare Setup"
-msgstr "uShare instellingen"
+msgstr "uShare instellen"
 
 msgid "Using fixed address"
 msgstr "Gebruik vast ingesteld adres"
@@ -15409,7 +15414,7 @@ msgid "Virtual keyboard"
 msgstr "Virtueel toetsenbord"
 
 msgid "vix"
-msgstr "vix (feeds)"
+msgstr "openvix feeds"
 
 msgid "ViX EPG"
 msgstr "ViX EPG"
@@ -19539,14 +19544,6 @@ msgstr ""
 
 #~ msgid "Select files for backup."
 #~ msgstr "Selecteer backup bestanden."
-
-#~ msgid ""
-#~ "Select if you want to use the image coloured Buttons (set to 'no' if you "
-#~ "want to use (Multi) Quick Button)."
-#~ msgstr ""
-#~ "Kies of u de image-functies aan de kleurtoetsen wilt toekennen. Kies "
-#~ "'nee' \n"
-#~ "als u (Multi) QuickButton wilt gebruiken."
 
 #~ msgid "September"
 #~ msgstr "september"
