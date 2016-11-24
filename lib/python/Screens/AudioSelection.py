@@ -133,7 +133,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					choicelist = [("0",_("left")), ("1",_("stereo")), ("2", _("right"))]
 					self.settings.channelmode = ConfigSelection(choices = choicelist, default = str(self.audioChannel.getCurrentChannel()))
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call = False)
-					conflist.append(getConfigListEntry(_("Channel"), self.settings.channelmode, None))
+					conflist.append(getConfigListEntry(_("Audio Channel"), self.settings.channelmode, None))
 				selectedAudio = self.audioTracks.getCurrentTrack()
 				for x in range(n):
 					number = str(x + 1)
