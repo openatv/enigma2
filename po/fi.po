@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-04 20:50+0000\n"
-"PO-Revision-Date: 2016-11-06 14:28+0200\n"
+"POT-Creation-Date: 2016-11-17 10:10+0000\n"
+"PO-Revision-Date: 2016-11-19 19:53+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/timoj/Kojo/Samzam\n"
 "Language: fi\n"
@@ -14,6 +14,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.7\n"
+
+#, python-format
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
 
 msgid ""
 "\n"
@@ -465,6 +473,9 @@ msgstr "1080p 50Hz"
 msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
+msgid "10bit"
+msgstr "10bit"
+
 #
 msgid "128"
 msgstr "128"
@@ -476,6 +487,9 @@ msgstr "12V-ulostulo"
 #
 msgid "12V output."
 msgstr "12V-ulostulo"
+
+msgid "12bit"
+msgstr "12bit"
 
 #
 msgid "13 V"
@@ -598,6 +612,9 @@ msgstr "720p"
 
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
+
+msgid "8bit"
+msgstr "8bit"
 
 #
 msgid "< Default >"
@@ -4525,15 +4542,19 @@ msgid "HDMI CEC Setup"
 msgstr "HDMI CEC-asetukset"
 
 #
+msgid "HDMI Colordepth"
+msgstr "HDMI-värisyvyys"
+
+#
 msgid "HDMI Colorimetry"
-msgstr "HDMI Väriavaruus"
+msgstr "HDMI-väriavaruus"
 
 #
 msgid "HDMI Colorspace"
-msgstr "HDMI Väriavaruus"
+msgstr "HDMI-väriavaruus"
 
 msgid "HDMIin"
-msgstr "HDMI sisääntulo"
+msgstr "HDMI-sisääntulo"
 
 msgid "Handle standby from TV"
 msgstr "Tottele sammutuskäskyä TV:ltä"
@@ -10277,9 +10298,6 @@ msgstr ""
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Tämä asetus määrittää kuven dynaamisen kontrastin määrän."
 
-msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "Tämä asetus sallii sinun muuttaa HDR:n väriavaruutta."
-
 msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "Tämä asetus määrittää kuinka kulunut aika näytetään, joko + tai -"
 
@@ -10319,6 +10337,12 @@ msgstr "Tämä asetus korostaa kuvan vihreitä sävyjä."
 
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Tällä asetuksella voit ohittaa HDMI-liitännän EDID-tarkistuksen"
+
+msgid "This option allows you to change the Colordepth for UHD"
+msgstr "Tämä asetus sallii sinun muuttaa HDR:n värisyvyttä."
+
+msgid "This option allows you to change the Colorimetry for HDR"
+msgstr "Tämä asetus sallii sinun muuttaa HDR:n väriavaruutta."
 
 msgid "This option allows you to change the Colorspace from Auto to RGB"
 msgstr "Tämä asetus sallii sinun muuttaa väriavaruutta automaatilta RGB:ksi."
@@ -12124,6 +12148,15 @@ msgstr "XBox 360 -tuki"
 
 msgid "XP1000"
 msgstr "XP1000"
+
+msgid "YCbCr420"
+msgstr "YCbCr420"
+
+msgid "YCbCr422"
+msgstr "YCbCr422"
+
+msgid "YCbCr444"
+msgstr "YCbCr444"
 
 msgid "YES"
 msgstr "KYLLÄ"
