@@ -14,6 +14,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVer
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 from Tools.StbHardware import getFPVersion
+from Components.InputDevice import iInputDevices, iRcTypeControl
 from os import path
 from re import search
 import skin
@@ -83,6 +84,19 @@ class About(Screen):
 		skinHeight = getDesktop(0).size().height()
 		AboutText += _("Skin:\t%s") % config.skin.primary_skin.value[0:-9] + _("  (%s x %s)") % (skinWidth, skinHeight) + "\n"
 
+		if path.exists('/etc/enigma2/EtRcType'):
+			rfp = open('/etc/enigma2/EtRcType', "r")
+			Remote = rfp.read()
+			rfp.close
+			AboutText += _("Remote control type") + _(": ") + Remote + "\n"
+		else:
+			AboutText += _("Remote control type:\t") + iRcTypeControl.getBoxType() 
+		if path.exists('/proc/stb/ir/rc/type'):
+			fp = open('/proc/stb/ir/rc/type', "r")
+			RcID = fp.read()
+			fp.close
+			AboutText += _("Remote control ID:\t") + RcID + "\n"
+
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
@@ -126,7 +140,7 @@ class About(Screen):
 		if fp_version is None:
 			fp_version = ""
 		elif fp_version != 0:
-			fp_version = _("Frontprocessor version: %d") % fp_version
+			fp_version = _("Frontprocessor version:\t%s") % fp_version
 			AboutText += fp_version + "\n"
 
 		bootloader = ""
