@@ -90,12 +90,12 @@ class About(Screen):
 			rfp.close
 			AboutText += _("Remote control type") + _(": ") + Remote + "\n"
 		else:
-			AboutText += _("Remote control type:\t") + iRcTypeControl.getBoxType() 
+			AboutText += _("R/C type:\t") + iRcTypeControl.getBoxType() 
 		if path.exists('/proc/stb/ir/rc/type'):
 			fp = open('/proc/stb/ir/rc/type', "r")
 			RcID = fp.read()
 			fp.close
-			AboutText += _("Remote control ID:\t") + RcID + "\n"
+			AboutText += _("R/C ID:\t") + RcID + "\n"
 
 		string = getDriverDate()
 		year = string[0:4]
@@ -108,7 +108,7 @@ class About(Screen):
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Last update:\t%s\n") % getEnigmaVersionString()
-		AboutText += _("Enigma (re)starts: %d\n") % config.misc.startCounter.value
+		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
@@ -141,7 +141,7 @@ class About(Screen):
 		if fp_version is None:
 			fp_version = ""
 		elif fp_version != 0:
-			fp_version = _("Frontprocessor version:\t%s") % fp_version
+			fp_version = _("FP version:\t%s") % fp_version
 			AboutText += fp_version + "\n"
 
 		bootloader = ""
