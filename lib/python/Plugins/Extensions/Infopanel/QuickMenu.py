@@ -238,9 +238,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.list.append(QuickMenuEntryComponent("System",_("System Setup"),_("Setup your System")))
 		self.list.append(QuickMenuEntryComponent("Mounts",_("Mount Setup"),_("Setup your mounts for network")))
 		self.list.append(QuickMenuEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
-		self.list.append(QuickMenuEntryComponent("AV Setup",_("Setup Videomode"),_("Setup your Video Mode, Video Output and other Video Settings")))
+		self.list.append(QuickMenuEntryComponent("AV Setup",_("Setup Video/Audio"),_("Setup your Video Mode, Video Output and other Video Settings")))
 		self.list.append(QuickMenuEntryComponent("Tuner Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels")))
-		self.list.append(QuickMenuEntryComponent("Plugins",_("Download plugins"),_("Shows available pluigns. Here you can download and install them")))
+		self.list.append(QuickMenuEntryComponent("Plugins",_("Setup Plugins"),_("Shows available pluigns. Here you can download and install them")))
 		self.list.append(QuickMenuEntryComponent("Harddisk",_("Harddisk Setup"),_("Setup your Harddisk")))
 		self["list"].l.setList(self.list)
 
@@ -248,13 +248,13 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsystem(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Customise",_("Setup Enigma2"),_("Customise enigma2 personal settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("Settings..."),_("Setup your OSD")))
+		self.sublist.append(QuickSubMenuEntryComponent("OSD settings",_("OSD Setup"),_("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button Setup",_("Button Setup"),_("Setup your remote buttons")))
 		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings",_("Display Setup"),_("Setup your display")))
 		if SystemInfo["LCDSKINSetup"]:
-			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Skin Setup"),_("Setup your LCD")))
-		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Skin Setup"),_("Setup your Skin")))
+			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup",_("Select LCD Skin"),_("Setup your LCD")))
+		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup",_("Select Enigma2 Skin"),_("Setup your Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection",_("Channel selection configuration"),_("Setup your Channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent("Recording settings",_("Recording Setup"),_("Setup your recording config")))
 		self.sublist.append(QuickSubMenuEntryComponent("EPG settings",_("EPG Setup"),_("Setup your EPG config")))
@@ -323,8 +323,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration",_("Setup tuner(s)"),_("Setup each tuner for your satellite system")))
 		if POSSETUP == True:
 			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
-		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Service Searching"),_("Automatic scan for services")))
-		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Service Searching"),_("Manual scan for services")))
+		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Automatic Service Searching"),_("Automatic scan for services")))
+		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Manual Service Searching"),_("Manual scan for services")))
 		if SATFINDER == True:		
 			self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
