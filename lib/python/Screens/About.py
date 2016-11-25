@@ -103,7 +103,9 @@ class About(Screen):
 			rfp.close
 			AboutText += _("R/C type:\t%s") + Remote + "\n"
 		else:
-			AboutText += _("R/C type:\t") + iRcTypeControl.getBoxType() + "\n"
+			remote = iRcTypeControl.getBoxType().strip()
+			if remote:
+				AboutText += _("R/C type:\t") + remote + "\n"
 		if path.exists('/proc/stb/ir/rc/type'):
 			fp = open('/proc/stb/ir/rc/type', "r")
 			RcID = fp.read()
