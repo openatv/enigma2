@@ -107,7 +107,8 @@ class About(Screen):
 		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ","")
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
-		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
+		AboutText += _("Last update:\t%s\n") % getEnigmaVersionString()
+		AboutText += _("Enigma (re)starts: %d\n") % config.misc.startCounter.value
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
