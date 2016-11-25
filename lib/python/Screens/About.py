@@ -101,9 +101,9 @@ class About(Screen):
 			rfp = open('/etc/enigma2/EtRcType', "r")
 			Remote = rfp.read()
 			rfp.close
-			AboutText += _("Remote control type") + _(": ") + Remote + "\n"
+			AboutText += _("R/C type:\t%s") + Remote + "\n"
 		else:
-			AboutText += _("R/C type:\t") + iRcTypeControl.getBoxType() 
+			AboutText += _("R/C type:\t") + iRcTypeControl.getBoxType() + "\n"
 		if path.exists('/proc/stb/ir/rc/type'):
 			fp = open('/proc/stb/ir/rc/type', "r")
 			RcID = fp.read()
@@ -125,7 +125,7 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("System temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -134,7 +134,7 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("Processor temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 		AboutLcdText = AboutText.replace('\t', ' ')
 
 		fp_version = getFPVersion()
