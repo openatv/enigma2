@@ -79,9 +79,22 @@ class About(Screen):
 		imageSubBuild = ""
 		if getImageType() != 'release':
 			imageSubBuild = ".%s" % getImageDevBuild()
-		AboutText += _("Build:\t%s.%s%s (%s)\n") % (getImageVersion(), getImageBuild(), imageSubBuild, getImageType().title())
+		AboutText += _("Image:\t%s.%s%s (%s)\n") % (getImageVersion(), getImageBuild(), imageSubBuild, getImageType().title())
 		skinWidth = getDesktop(0).size().width()
 		skinHeight = getDesktop(0).size().height()
+
+		string = getDriverDate()
+		year = string[0:4]
+		month = string[4:6]
+		day = string[6:8]
+		driversdate = '-'.join((year, month, day))
+		AboutText += _("Drivers:\t%s\n") % driversdate
+		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
+		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ","")
+		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
+		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
+		AboutText += _("Last update:\t%s\n") % getEnigmaVersionString()
+		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 		AboutText += _("Skin:\t%s") % config.skin.primary_skin.value[0:-9] + _("  (%s x %s)") % (skinWidth, skinHeight) + "\n"
 
 		if path.exists('/etc/enigma2/EtRcType'):
@@ -96,19 +109,6 @@ class About(Screen):
 			RcID = fp.read()
 			fp.close
 			AboutText += _("R/C ID:\t") + RcID + "\n"
-
-		string = getDriverDate()
-		year = string[0:4]
-		month = string[4:6]
-		day = string[6:8]
-		driversdate = '-'.join((year, month, day))
-		AboutText += _("Drivers:\t%s\n") % driversdate
-		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ","")
-		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
-		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
-		AboutText += _("Last update:\t%s\n") % getEnigmaVersionString()
-		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
