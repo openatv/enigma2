@@ -1016,6 +1016,8 @@ class NumberZap(Screen):
 
 		self.handleServiceName()
 		self["service_summary"].setText(self["servicename"].getText())
+		if config.usage.numzappicon.value:
+			self.showPicon()
 
 		if len(self.numberString) >= int(config.usage.maxchannelnumlen.value):
 			self.keyOK()
