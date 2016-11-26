@@ -76,6 +76,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Abort"))
 
+		self.session.pipshown = False
 		self.index = 0
 		self.port_index = 0
 		self.feid = feid

@@ -18,6 +18,15 @@
 #include <linux/dvb/video.h>
 #endif
 
+#ifdef HAVE_ALSA
+# ifndef ALSA_VOLUME_MIXER
+#  define ALSA_VOLUME_MIXER "Master"
+# endif
+# ifndef ALSA_CARD
+#  define ALSA_CARD "default"
+# endif
+#endif
+
 eDVBVolumecontrol* eDVBVolumecontrol::instance = NULL;
 
 eDVBVolumecontrol* eDVBVolumecontrol::getInstance()
@@ -45,8 +54,9 @@ int eDVBVolumecontrol::openMixer()
 	if (!mainVolume)
 	{
 		int err;
-		char *card = "default";
+		char *card = ALSA_CARD;
 
+		eDebug("[eDVBVolumecontrol] Setup ALSA Mixer %s - %s", ALSA_CARD, ALSA_VOLUME_MIXER);
 		/* Perform the necessary pre-amble to start up ALSA Mixer */
 		err = snd_mixer_open(&alsaMixerHandle, 0);
 		if (err < 0)

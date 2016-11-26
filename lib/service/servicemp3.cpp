@@ -1076,6 +1076,100 @@ gint eServiceMP3::match_sinktype(const GValue *velement, const gchar *type)
 }
 #endif
 
+#if HAVE_AMLOGIC
+GstElement *getVideoDecElement(GstElement *m_gst_playbin, int i)
+{
+	GstPad *pad = NULL;
+	GstPad *dec_pad = NULL;
+	GstElement *e = NULL;
+
+	g_signal_emit_by_name(m_gst_playbin, "get-video-pad", i, &pad);
+	if (pad) {
+		dec_pad = gst_pad_get_peer(pad);
+		while (dec_pad && GST_IS_GHOST_PAD(dec_pad)) {
+			gst_object_unref(dec_pad);
+			dec_pad = gst_ghost_pad_get_target(GST_GHOST_PAD(dec_pad));
+		}
+		if (dec_pad) {
+			e = gst_pad_get_parent_element(dec_pad);
+			gst_object_unref(dec_pad);
+		}
+		gst_object_unref(pad);
+	}
+
+	if (!e)
+		eDebug("no VideoDecElement");
+		
+	return e;
+}
+GstElement * getAudioDecElement(GstElement *m_gst_playbin, int i)
+{
+	GstPad *pad = NULL;
+	GstPad *dec_pad = NULL;
+	GstElement *e = NULL;
+
+	g_signal_emit_by_name(m_gst_playbin, "get-audio-pad", i, &pad);
+	if (pad) {
+		dec_pad = gst_pad_get_peer(pad);
+		while (dec_pad && GST_IS_GHOST_PAD(dec_pad)) {
+			gst_object_unref(dec_pad);
+			dec_pad = gst_ghost_pad_get_target(GST_GHOST_PAD(dec_pad));
+		}
+		if (dec_pad) {
+			e = gst_pad_get_parent_element(dec_pad);
+			gst_object_unref(dec_pad);
+		}
+		gst_object_unref(pad);
+	}
+
+	if (!e)
+		eDebug("no audioDecElement");
+		
+	return e;
+} 
+void eServiceMP3::AmlSwitchAudio(int index)
+{
+	gint i, n_audio = 0;
+	gint32 videonum = 0;
+	GstElement * adec = NULL, *vdec = NULL;
+
+	g_object_get (m_gst_playbin, "n-audio", &n_audio, NULL);
+	for (i = 0; i < n_audio; i++) {
+		adec = getAudioDecElement(m_gst_playbin, i);
+		if (adec) {
+			g_object_set(G_OBJECT(adec), "pass-through", TRUE, NULL);
+			gst_object_unref(adec);
+		}
+	}
+	adec = getAudioDecElement(m_gst_playbin, index);
+	if (adec) {
+		g_object_set(G_OBJECT(adec), "pass-through", FALSE, NULL);
+		gst_object_unref(adec);
+	}
+	g_object_get(G_OBJECT (m_gst_playbin), "current-video", &videonum, NULL);
+	vdec = getVideoDecElement(m_gst_playbin, videonum);
+	if(vdec)
+		g_object_set(G_OBJECT(vdec), "pass-through", TRUE, NULL);
+}
+unsigned int eServiceMP3::get_pts_pcrscr(void)
+{
+	int handle;
+	int size;
+	char s[16];
+	unsigned int value = 0;
+
+	handle = open("/sys/class/tsync/pts_pcrscr", O_RDONLY);
+	if (handle < 0) {      
+         return value;
+	}
+	size = read(handle, s, sizeof(s));
+	if (size > 0) {
+		value = strtoul(s, NULL, 16);
+	}
+	close(handle);
+	return value;
+}
+#endif
 RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 {
 	gint64 pos;
@@ -1084,11 +1178,16 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
+#if HAVE_AMLOGIC
+	if ( (pos = get_pts_pcrscr()) > 0)
+		pos *= 11111LL;
+#else
 	if ((audioSink || videoSink) && !m_paused)
 	{
 		g_signal_emit_by_name(videoSink ? videoSink : audioSink, "get-decoder-time", &pos);
 		if (!GST_CLOCK_TIME_IS_VALID(pos)) return -1;
 	}
+#endif
 	else
 	{
 		GstFormat fmt = GST_FORMAT_TIME;
@@ -1533,6 +1632,10 @@ int eServiceMP3::selectAudioStream(int i)
 {
 	int current_audio;
 	g_object_set (G_OBJECT (m_gst_playbin), "current-audio", i, NULL);
+#if HAVE_AMLOGIC
+	if (m_currentAudioStream != i)
+		AmlSwitchAudio(i);
+#endif
 	g_object_get (G_OBJECT (m_gst_playbin), "current-audio", &current_audio, NULL);
 	if ( current_audio == i )
 	{
@@ -2023,7 +2126,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				g_free(g_codec);
 				m_subtitleStreams.push_back(subs);
 			}
-
 			m_event((iPlayableService*)this, evUpdatedInfo);
 
 			if ( m_errorInfo.missing_codec != "" )

@@ -13,9 +13,24 @@
 #include <lib/base/init_num.h>
 #include <lib/driver/input_fake.h>
 
+static bool bflag;
+
 void eRCDeviceInputDev::handleCode(long rccode)
 {
 	struct input_event *ev = (struct input_event *)rccode;
+
+#if WETEKRC
+/*
+	eDebug("==> BEFORE check for evtype: %x %x %x", ev->value, ev->code, ev->type);
+	eDebug("==> BEFORE check for evtype:-->BackspaceFLAG %d", bflag);
+*/
+	if (ev->code == KEY_BACKSPACE && ev->value == 1 ) {
+		bflag = !bflag;
+	}
+/*
+	eDebug("==> BEFORE check for evtype after check for evvalue:-->BackspaceFLAG %d", bflag);
+*/
+#endif
 
 	if (ev->type != EV_KEY)
 		return;
@@ -59,6 +74,10 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			case KEY_ESC:
 			case KEY_TAB:
 			case KEY_BACKSPACE:
+/*
+				bflag = !bflag;
+				eDebug("--> AFTER flip BackspaceFLAG %d", bflag);
+*/
 			case KEY_ENTER:
 			case KEY_INSERT:
 			case KEY_DELETE:
@@ -89,6 +108,86 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			return;
 		}
 	}
+
+#if WETEKRC
+/*
+	eDebug("-->BackspaceFLAG %d", bflag);
+	eDebug("-->before change %x %x %x", ev->value, ev->code, ev->type);
+*/
+/* default is with NO numerc keys !!!*/
+	if (bflag) {
+		if (ev->code == KEY_1) {
+			ev->code = KEY_RED;
+		}
+		if (ev->code == KEY_2) {
+			ev->code = KEY_GREEN;
+		}
+		if (ev->code == KEY_3) {
+			ev->code = KEY_YELLOW;
+		}
+		if (ev->code == KEY_4) {
+			ev->code = KEY_BLUE;
+		}
+		if (ev->code == KEY_5) {
+			ev->code = KEY_PREVIOUS;
+		}
+		if (ev->code == KEY_6) {
+			ev->code = KEY_NEXT;
+		}
+		if (ev->code == KEY_7) {
+			ev->code = KEY_REWIND;
+		}
+		if (ev->code == KEY_8) {
+			ev->code = KEY_STOP;
+		}
+		if (ev->code == KEY_9) {
+			ev->code = KEY_FASTFORWARD;
+		}
+		if (ev->code == KEY_0) {
+			ev->code = KEY_PLAYPAUSE;
+		}
+	}
+/*
+	eDebug("-->BackspaceFLAG %d", bflag);
+	eDebug("-->after change %x %x %x", ev->value, ev->code, ev->type);
+*/
+#endif
+
+#if KEY_F7_TO_KEY_MENU
+	if (ev->code == KEY_F7) {
+		ev->code = KEY_MENU;
+	}
+#endif
+
+#if KEY_F1_TO_KEY_MEDIA
+	if (ev->code == KEY_F1) {
+		ev->code = KEY_MEDIA;
+	}
+#endif
+
+#if KEY_HOME_TO_KEY_INFO
+	if (ev->code == KEY_HOME) {
+		ev->code = KEY_INFO;
+	}
+#endif
+
+#if KEY_BACK_TO_KEY_EXIT
+	if (ev->code == KEY_BACK) {
+		ev->code = KEY_EXIT;
+	}
+#endif
+
+#if KEY_F2_TO_KEY_EPG
+	if (ev->code == KEY_F2) {
+		ev->code = KEY_EPG;
+	}
+#endif
+
+#if KEY_ENTER_TO_KEY_OK
+	if (ev->code == KEY_ENTER) {
+		ev->code = KEY_OK;
+	}
+#endif
 
 #if KEY_BOOKMARKS_TO_KEY_MEDIA
 	if (ev->code == KEY_BOOKMARKS)
