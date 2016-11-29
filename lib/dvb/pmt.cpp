@@ -405,7 +405,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			{ audioStream::atAC3,   eDVBService::cAC3PID,    },
 			{ audioStream::atDDP,   eDVBService::cDDPPID,    },
 			{ audioStream::atAACHE,	eDVBService::cAACHEAPID, },
-			{ audioStream::atAAC,   eDVBService::cAACPID,    },
+			{ audioStream::atAAC,   eDVBService::cAACAPID,    },
 			{ audioStream::atDTS,   eDVBService::cDTSPID,    },
 			{ audioStream::atLPCM,  eDVBService::cLPCMPID,   },
 			{ audioStream::atDTSHD, eDVBService::cDTSHDPID,  },
@@ -633,7 +633,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		const static audioMap audioMapList[] = {
 			{ audioStream::atAC3,   eDVBService::cAC3PID,    },
 			{ audioStream::atDDP,   eDVBService::cDDPPID,    },
-			{ audioStream::atAAC,   eDVBService::cAACPID,    },
+			{ audioStream::atAAC,   eDVBService::cAACAPID,    },
 			{ audioStream::atDTS,   eDVBService::cDTSPID,    },
 			{ audioStream::atLPCM,  eDVBService::cLPCMPID,   },
 			{ audioStream::atDTSHD, eDVBService::cDTSHDPID,  },
