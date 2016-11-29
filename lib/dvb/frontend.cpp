@@ -2879,38 +2879,6 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 	}
 }
 
-std::string eDVBFrontend::getDeliverySystem()
-{
-	struct dtv_property p[1];
-	p[0].cmd = DTV_DELIVERY_SYSTEM;
-	struct dtv_properties cmdseq;
-	cmdseq.num = 1;
-	cmdseq.props = p;
-
-	if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) < 0)
-	{
-		eDebug("[eDVBFrontend] getDeliverySystem FE_GET_PROPERTY failed: %m (%d)", m_type);
-		return "";
-	}
-
-	fe_delivery_system_t delsys = (fe_delivery_system_t)p[0].u.data;
-	std::string ds;
-
-	switch (delsys)
-	{
-		case SYS_ATSC:          ds = "ATSC"; break;
-		case SYS_DVBC_ANNEX_B:  ds = "ATSC"; break;
-		case SYS_DVBS:          ds = "DVB-S"; break;
-		case SYS_DVBS2:         ds = "DVB-S2"; break;
-		case SYS_DVBT:          ds = "DVB-T"; break;
-		case SYS_DVBT2:         ds = "DVB-T2"; break;
-		case SYS_DVBC_ANNEX_A:  ds = "DVB-C"; break;
-		case SYS_DVBC_ANNEX_C:  ds = "DVB-C"; break;
-		default:                ds = ""; break;
-	}
-	return ds;
-}
-
 bool eDVBFrontend::setDeliverySystem(const char *type)
 {
 	struct dtv_property p[1];

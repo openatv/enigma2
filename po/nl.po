@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 07:13+0100\n"
-"PO-Revision-Date: 2016-11-17 06:26+0100\n"
+"POT-Creation-Date: 2016-11-26 20:06+0100\n"
+"PO-Revision-Date: 2016-11-27 07:21+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -137,6 +137,10 @@ msgstr ""
 
 msgid " "
 msgstr " "
+
+#, python-format
+msgid "  (%s x %s)"
+msgstr "  (%s x %s)"
 
 msgid " (0 - all networks)"
 msgstr " (0 - alle netwerken)"
@@ -1511,10 +1515,6 @@ msgid "Buffers:"
 msgstr "Buffers:"
 
 #, python-format
-msgid "Build:\t%s.%s%s (%s)\n"
-msgstr "Build:\t%s.%s%s (%s)\n"
-
-#, python-format
 msgid "Build: %s"
 msgstr "Build: %s"
 
@@ -2330,6 +2330,9 @@ msgstr "Verbonden satellieten"
 msgid "Connected to"
 msgstr "Verbonden met"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Verbonden transcoding, limiet - geen PiP!"
+
 msgid "Connected: "
 msgstr "Verbonden:"
 
@@ -3066,6 +3069,10 @@ msgstr "Dynamisch contrast"
 msgid "E"
 msgstr "O"
 
+#, python-format
+msgid "E2 (re)starts:\t%s\n"
+msgstr "E2 (her)starts:\t%s\n"
+
 msgid "ECM Statistics"
 msgstr "ECM Statistieken"
 
@@ -3564,6 +3571,10 @@ msgstr "FEC:"
 msgid "FLASH"
 msgstr "FLASH"
 
+#, python-format
+msgid "FP version:\t%s"
+msgstr "FP-versie:\t%s"
+
 msgid "FTP Setup"
 msgstr "FTP Instellingen"
 
@@ -3749,10 +3760,6 @@ msgstr "Van:"
 
 msgid "Front Display Panel"
 msgstr "Paneeldisplay"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Frontprocessor versie: %d"
 
 msgid "Full screen"
 msgstr "Volledig scherm"
@@ -4148,6 +4155,10 @@ msgstr ""
 msgid "Image Manager"
 msgstr "Imagemanager"
 
+#, python-format
+msgid "Image:\t%s.%s%s (%s)\n"
+msgstr "Image:\t%s.%s%s (%s)\n"
+
 msgid "Immediate shutdown"
 msgstr "Onmiddellijk uitschakelen"
 
@@ -4506,12 +4517,8 @@ msgid "Last speed"
 msgstr "Laatste snelheid"
 
 #, python-format
-msgid ""
-"Last update:\t%s\n"
-"\n"
-msgstr ""
-"Laatste update:\t%s\n"
-"\n"
+msgid "Last update:\t%s\n"
+msgstr "Laatste update:\t%s\n"
 
 #, python-format
 msgid "Last update: %s"
@@ -6242,8 +6249,8 @@ msgid "Process"
 msgstr "Proces"
 
 #, python-format
-msgid "Processor temperature:\t%s"
-msgstr "Processortemperatuur: \t%s"
+msgid "Processor temp:\t%s"
+msgstr "Processortemp:\t%s"
 
 msgid "Profile"
 msgstr "Profiel"
@@ -6360,6 +6367,16 @@ msgstr "Snelzap"
 
 msgid "Quit Movie Player with EXIT button"
 msgstr "Speler kan verlaten worden met de Exit-toets"
+
+msgid "R/C ID:\t"
+msgstr "AB-ID:\t"
+
+msgid "R/C type:\t"
+msgstr "AB-type:\t"
+
+#, python-format
+msgid "R/C type:\t%s"
+msgstr "AB-type:\t%s"
 
 msgid "RAM"
 msgstr "RAM"
@@ -7895,12 +7912,12 @@ msgstr "Grootte:"
 msgid "Skin Setting"
 msgstr "Skin instellen"
 
-#, python-format
-msgid "Skin name:\t%s\n"
-msgstr "Skin naam:\t%s\n"
-
 msgid "Skin setup"
 msgstr "Skin kiezen"
+
+#, python-format
+msgid "Skin:\t%s"
+msgstr "Skin:\t%s"
 
 msgid "Skins"
 msgstr "Skins"
@@ -8451,8 +8468,8 @@ msgid "System"
 msgstr "Systeem"
 
 #, python-format
-msgid "System temperature:\t%s"
-msgstr "Systeemtemperatuur:\t%s"
+msgid "System temp:\t%s"
+msgstr "Systeemtemp:\t%s"
 
 #, python-format
 msgid "System temperature: %s"
@@ -12007,6 +12024,9 @@ msgstr "zapte"
 #~ msgid "Free Memory:"
 #~ msgstr "Vrij:"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Frontprocessor versie: %d"
+
 #~ msgid "Ftpd service type: Vsftpd server"
 #~ msgstr "Ftpd service type: Vsftpd server"
 
@@ -12030,9 +12050,6 @@ msgstr "zapte"
 
 #~ msgid "Image Information"
 #~ msgstr "Informatie over de firmware"
-
-#~ msgid "Image type:\t%s\n"
-#~ msgstr "Imagetype:\t%s\n"
 
 #~ msgid "Inadyn Log"
 #~ msgstr "Inadyn log"
@@ -12240,6 +12257,9 @@ msgstr "zapte"
 #~ msgid "Single transponder"
 #~ msgstr "Één transponder"
 
+#~ msgid "Skin name:\t%s\n"
+#~ msgstr "Skin naam:\t%s\n"
+
 #~ msgid "Solo4K Misc. Control"
 #~ msgstr "Solo4K diverse instellingen"
 
@@ -12345,9 +12365,6 @@ msgstr "zapte"
 
 #~ msgid "Use WOL"
 #~ msgstr "Gebruik WoL"
-
-#~ msgid "Version:\t%s\n"
-#~ msgstr "Versie:\t%s\n"
 
 #~ msgid "Video fine tuning"
 #~ msgstr "Video fijninstellingen."

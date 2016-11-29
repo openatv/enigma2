@@ -639,14 +639,6 @@ class NIM(object):
 	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None, is_empty = False):
 		nim_types = ["DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2", "ATSC"]
 
-		# get current type using DVB API
-		if frontend_id is not None:
-			dvb_type = eDVBResourceManager.getInstance().getFrontendDeliverySystem(frontend_id)
-			print "[NIM] dvb type from DVB API ", dvb_type
-			if dvb_type and dvb_type != type:
-				print "[NIM] getFrontendDeliverySystem %s DVB %s" % (type, dvb_type)
-				type = dvb_type
-
 		if type and type not in nim_types:
 			print "[NIM] warning: unknown NIM type %s, not using." % type
 			type = None

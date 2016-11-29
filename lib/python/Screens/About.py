@@ -9,16 +9,15 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.config import config
-from enigma import eTimer, getEnigmaVersionString
+from enigma import eTimer, getEnigmaVersionString, getDesktop
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate, getImageDevBuild
-
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
-
 from Tools.StbHardware import getFPVersion
-
+from Components.InputDevice import iInputDevices, iRcTypeControl
 from os import path
 from re import search
+import skin
 
 class About(Screen):
 	def __init__(self, session, menu_path=""):
@@ -80,8 +79,9 @@ class About(Screen):
 		imageSubBuild = ""
 		if getImageType() != 'release':
 			imageSubBuild = ".%s" % getImageDevBuild()
-		AboutText += _("Build:\t%s.%s%s (%s)\n") % (getImageVersion(), getImageBuild(), imageSubBuild, getImageType().title())
-		AboutText += _("Skin name:\t%s\n") % config.skin.primary_skin.value[0:-9]
+		AboutText += _("Image:\t%s.%s%s (%s)\n") % (getImageVersion(), getImageBuild(), imageSubBuild, getImageType().title())
+		skinWidth = getDesktop(0).size().width()
+		skinHeight = getDesktop(0).size().height()
 
 		string = getDriverDate()
 		year = string[0:4]
@@ -90,12 +90,27 @@ class About(Screen):
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s\n") % driversdate
 		AboutText += _("Kernel:\t%s\n") % about.getKernelVersionString()
-
 		AboutText += _("GStreamer:\t%s\n") % about.getGStreamerVersionString().replace("GStreamer ","")
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
-
 		AboutText += _("Installed:\t%s\n") % about.getFlashDateString()
-		AboutText += _("Last update:\t%s\n\n") % getEnigmaVersionString()
+		AboutText += _("Last update:\t%s\n") % getEnigmaVersionString()
+		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
+		AboutText += _("Skin:\t%s") % config.skin.primary_skin.value[0:-9] + _("  (%s x %s)") % (skinWidth, skinHeight) + "\n"
+
+		if path.exists('/etc/enigma2/EtRcType'):
+			rfp = open('/etc/enigma2/EtRcType', "r")
+			Remote = rfp.read()
+			rfp.close
+			AboutText += _("R/C type:\t%s") + Remote + "\n"
+		else:
+			remote = iRcTypeControl.getBoxType().strip()
+			if remote:
+				AboutText += _("R/C type:\t") + remote + "\n"
+		if path.exists('/proc/stb/ir/rc/type'):
+			fp = open('/proc/stb/ir/rc/type', "r")
+			RcID = fp.read()
+			fp.close
+			AboutText += _("R/C ID:\t") + RcID + "\n"
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
@@ -112,7 +127,7 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("System temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -121,14 +136,14 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("Processor temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 		AboutLcdText = AboutText.replace('\t', ' ')
 
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
 		elif fp_version != 0:
-			fp_version = _("Frontprocessor version: %d") % fp_version
+			fp_version = _("FP version:\t%s") % fp_version
 			AboutText += fp_version + "\n"
 
 		bootloader = ""
