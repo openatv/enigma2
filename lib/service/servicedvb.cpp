@@ -2195,7 +2195,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 			{ eDVBAudio::aMPEG,  eDVBService::cMPEGAPID,  },
 			{ eDVBAudio::aAC3,   eDVBService::cAC3PID,    },
 			{ eDVBAudio::aDDP,   eDVBService::cDDPPID,    },
-			{ eDVBAudio::aAAC,   eDVBService::cAACPID,    },
+			{ eDVBAudio::aAAC,   eDVBService::cAACAPID,    },
 			{ eDVBAudio::aDTS,   eDVBService::cDTSPID,    },
 			{ eDVBAudio::aLPCM,  eDVBService::cLPCMPID,   },
 			{ eDVBAudio::aDTSHD, eDVBService::cDTSHDPID,  },

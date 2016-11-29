@@ -137,7 +137,7 @@ RESULT eBouquet::setListName(const std::string &name)
 const eDVBService::cacheID eDVBService::audioCacheTags[] = {
 	eDVBService::cMPEGAPID, eDVBService::cAC3PID,
 	eDVBService::cAACHEAPID, eDVBService::cDDPPID,
-	eDVBService::cDTSPID, eDVBService::cAACPID,
+	eDVBService::cDTSPID, eDVBService::cAACAPID,
 	eDVBService::cLPCMPID, eDVBService::cDTSHDPID,
 };
 
