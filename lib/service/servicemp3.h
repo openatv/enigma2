@@ -308,6 +308,7 @@ private:
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */
 	gint64 m_last_seek_pos;
+	gint64 m_last_play_pos;
 #endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
