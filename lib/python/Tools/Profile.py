@@ -48,7 +48,7 @@ def profile(id):
 	elif box_type == "ebox5000":
 		dev_fmt = ("/proc/progress", "%d")
 	elif getMachineBuild() in ("inihdp", "inihdx"):
-		dev_fmt = ("/proc/vfd", "Loading %d%%")
+		dev_fmt = ("/proc/vfd", "Loading %d%%\n")
 	else:
 		dev_fmt = ("/proc/progress", "%d \n")
 	(dev, fmt) = dev_fmt
