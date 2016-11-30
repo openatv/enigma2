@@ -61,7 +61,7 @@ class ServiceInfo(AboutBase):
 		(_("Orbital position"), "orbital_position", TYPE_VALUE_DEC),
 		(_("Frequency"), "frequency", TYPE_VALUE_FREQ),
 		(_("Channel"), "channel", TYPE_TEXT),
-		(_("Symbol rate"), "symbol_rate", TYPE_VALUE_BITRATE),
+		(_("Symbol rate"), "symbol_rate", TYPE_VALUE_DEC),
 		(_("Polarization"), "polarization", TYPE_TEXT),
 		(_("Inversion"), "inversion", TYPE_TEXT),
 		(_("FEC"), "fec_inner", TYPE_TEXT),

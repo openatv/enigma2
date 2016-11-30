@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-13 14:17+0200\n"
-"PO-Revision-Date: 2016-10-13 19:07+0200\n"
+"POT-Creation-Date: 2016-11-18 15:09+0100\n"
+"PO-Revision-Date: 2016-11-22 20:10+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13,6 +13,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+#, python-format
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
 
 msgid ""
 "\n"
@@ -125,6 +131,12 @@ msgid ""
 msgstr ""
 "\n"
 "Anzeigen, installieren und entfernen verfügbarer oder installierter Pakete."
+
+msgid " "
+msgstr ""
+
+msgid " (0 - all networks)"
+msgstr "(0 - Alle Netzwerke)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -421,6 +433,9 @@ msgstr "1080p 50Hz"
 msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
+msgid "10bit"
+msgstr ""
+
 msgid "128"
 msgstr "128"
 
@@ -429,6 +444,9 @@ msgstr "12V-Ausgang"
 
 msgid "12V output."
 msgstr "12V-Ausgang"
+
+msgid "12bit"
+msgstr ""
 
 msgid "13 V"
 msgstr "13 V"
@@ -540,6 +558,9 @@ msgstr "720p"
 
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
+
+msgid "8bit"
+msgstr ""
 
 msgid "< Default >"
 msgstr "<Standard>"
@@ -1460,6 +1481,10 @@ msgstr "Verstärke Blau"
 msgid "Boost green"
 msgstr "Verstärke Grün"
 
+#, python-format
+msgid "Bootloader:\t\t%s\n"
+msgstr "Bootloader:\t\t%s\n"
+
 msgid "Bouquet List"
 msgstr "Favoritenliste"
 
@@ -1995,6 +2020,9 @@ msgstr "Konfigurationsmodus"
 msgid "Configuration mode: %s"
 msgstr "Konfigurationsmodus: %s"
 
+msgid "Configuration..."
+msgstr "Konfiguration..."
+
 msgid "Configure alignment of service events."
 msgstr "Konfiguriere Ausrichtung der Sendungen"
 
@@ -2299,6 +2327,9 @@ msgstr "Verbundene Satelliten"
 msgid "Connected to"
 msgstr "Verbunden mit"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Transcoding verbunden. Beschränkung - Kein PiP!"
+
 msgid "Connected: "
 msgstr "Verbunden:"
 
@@ -2509,6 +2540,9 @@ msgstr "DVB CI Verzögerung"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB Untertitel Transparenz"
+
+msgid "DVB type"
+msgstr ""
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -3620,9 +3654,6 @@ msgstr "Endposition bei Index"
 msgid "Final scroll delay"
 msgstr "Endscrollgeschwindigkeit"
 
-msgid "Find currently played service"
-msgstr "suche gerade aktiven Sender"
-
 msgid "Fine movement"
 msgstr "Feinbewegung"
 
@@ -3878,6 +3909,9 @@ msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC Einstellungen"
+
+msgid "HDMI Colordepth"
+msgstr "HDMI Bittiefe"
 
 msgid "HDMI Colorimetry"
 msgstr "HDMI Farbmetrik"
@@ -5711,9 +5745,6 @@ msgstr "Wiedergabe ab der nächsten Markierung/Listeneintrag"
 msgid "Play from previous mark or playlist entry"
 msgstr "Wiedergabe ab der letzten Markierung/Listeneintrag"
 
-msgid "Play in main window"
-msgstr "Als Hauptbild wiedergeben"
-
 msgid "Play music..."
 msgstr "Musik abspielen..."
 
@@ -6204,6 +6235,10 @@ msgstr "Priorität"
 msgid "Process"
 msgstr "Aktivitätsanzeige"
 
+#, python-format
+msgid "Processor temperature:\t%s"
+msgstr "Prozessortemperatur: %s"
+
 msgid "Profile"
 msgstr "Profil"
 
@@ -6331,6 +6366,9 @@ msgstr "RGB"
 
 msgid "Radio"
 msgstr "Radio"
+
+msgid "Radio Channel Selection"
+msgstr "Senderliste Radio"
 
 msgid "Random"
 msgstr "zufällig"
@@ -6788,6 +6826,9 @@ msgstr "SABnzbd Einstellungen"
 
 msgid "SABnzbd setup"
 msgstr "SABnzbd Einstellungen"
+
+msgid "SCPC optimized search range"
+msgstr "SCPC optimierter Suchbereich"
 
 msgid "SID"
 msgstr "SID"
@@ -8398,16 +8439,12 @@ msgid "System"
 msgstr "System"
 
 #, python-format
-msgid "System temperature: %s"
+msgid "System temperature:\t%s"
 msgstr "Systemtemperatur: %s"
 
 #, python-format
-msgid ""
-"System temperature: %s%sC\n"
-"\n"
-msgstr ""
-"Systemtemperatur: %s%sC\n"
-"\n"
+msgid "System temperature: %s"
+msgstr "Systemtemperatur: %s"
 
 msgid "System: "
 msgstr ""
@@ -8566,6 +8603,20 @@ msgid ""
 msgstr ""
 "Das Plugin IMDB ist nicht installiert!\n"
 "Bitte installieren."
+
+msgid ""
+"The Linux kernel has changed, an update is not permitted. \n"
+"Install latest image using USB stick or Image Manager."
+msgstr ""
+"Der Linux-Kernel wurde geändert. Update ist nicht erlaubt.\n"
+"Installiere neuestes Image per USB oder Image Verwaltung."
+
+msgid ""
+"The Linux kernel has changed, plugins are not compatible. \n"
+"Install latest image using USB stick or Image Manager."
+msgstr ""
+"Der Linux-Kernel wurde geändert. Plugins sind nicht kompatibel.\n"
+"Installiere neuestes Image per USB oder Image Verwaltung."
 
 msgid "The PIN code has been changed successfully."
 msgstr "Der PIN-Code wurde erfolgreich geändert."
@@ -8738,9 +8789,6 @@ msgstr "Diese Option erlaubt es Block-Rauschen im Bild zu reduzieren. Diese Opti
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Diese Option erlaubt es den Wert für den dynamischen Kontrast des Bildes zu setzen."
 
-msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "Dies Option erlaubt die Konfiguration der Farbmetrik für HDR "
-
 msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "Diese Option erlaubt dir zu wählen ob die verstrichene Zeit mit + oder - angezeigt wird"
 
@@ -8770,6 +8818,12 @@ msgstr "Diese Option erlaubt es den Grünanteil des Bildes zu verstärken."
 
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Diese Option erlaubt es den HDMI EDID zu deaktivieren"
+
+msgid "This option allows you to change the Colordepth for UHD"
+msgstr "Dies Option erlaubt die Konfiguration der Bittiefe für HDR "
+
+msgid "This option allows you to change the Colorimetry for HDR"
+msgstr "Dies Option erlaubt die Konfiguration der Farbmetrik für HDR "
 
 msgid "This option allows you to change the Colorspace from Auto to RGB"
 msgstr "Dies Option erlaubt es den Farbraum von Auto auf RGB zu stellen."
@@ -9912,12 +9966,6 @@ msgstr "Was durchsuchen?"
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Wenn aktiviert lädt Enigma2 nicht verbundene Favoritenlisten. Das heißt Favoritenlisten die vorhanden sind aber nicht in bouquets.tv oder bouquets.radio aufgeführt sind werden trotzdem geladen. Dies erlaubt es z.B. automatisch generierte oder installierte Favoritenlisten mit eigenen Erweiterungen zu versehen."
 
-msgid "When enabled the LNB power will not be switched off in standby"
-msgstr "Wenn aktiviert wird die LNB-Spannung in Bereitschaft nicht ausgeschaltet."
-
-msgid "When enabled the LNB toneburst will be forced"
-msgstr "Wenn aktiviert wird immer LNB-ToneBurst erzwungen"
-
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Wenn aktiviert werden auch experimentelle Updates gesucht."
 
@@ -10158,6 +10206,15 @@ msgid "XBox 360 support"
 msgstr "XBox 360 Unterstützung"
 
 msgid "XP1000"
+msgstr ""
+
+msgid "YCbCr420"
+msgstr ""
+
+msgid "YCbCr422"
+msgstr ""
+
+msgid "YCbCr444"
 msgstr ""
 
 msgid "YES"
@@ -11789,6 +11846,9 @@ msgstr "umgeschaltet"
 #~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 #~ msgstr "Aktiviert ein Merkmal so das ein anderer Empfänger einen Stream entschlüsseln kann (wenn ECM Daten im Stream enthalten sind und eine Karte vorhanden ist)."
 
+#~ msgid "Find currently played service"
+#~ msgstr "suche gerade aktiven Sender"
+
 #~ msgid "Finished restarting your network"
 #~ msgstr "Netzwerkneustart abgeschlossen"
 
@@ -11848,6 +11908,9 @@ msgstr "umgeschaltet"
 #~ msgid "Parental control setup"
 #~ msgstr "Jugendschutz Einstellungen"
 
+#~ msgid "Play in main window"
+#~ msgstr "Als Hauptbild wiedergeben"
+
 #~ msgid "Please check your network settings!"
 #~ msgstr "Bitte überprüfe die Netzwerkeinstellungen"
 
@@ -11895,6 +11958,13 @@ msgstr "umgeschaltet"
 
 #~ msgid "Show status icons in movielist"
 #~ msgstr "Zeige Status-Icons in der Filmliste"
+
+#~ msgid ""
+#~ "System temperature: %s%sC\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Systemtemperatur: %s%sC\n"
+#~ "\n"
 
 #~ msgid ""
 #~ "The USB stick was prepared to be bootable.\n"
@@ -11957,6 +12027,12 @@ msgstr "umgeschaltet"
 
 #~ msgid "Version:\t%s\n"
 #~ msgstr "Version:\t%s\n"
+
+#~ msgid "When enabled the LNB power will not be switched off in standby"
+#~ msgstr "Wenn aktiviert wird die LNB-Spannung in Bereitschaft nicht ausgeschaltet."
+
+#~ msgid "When enabled the LNB toneburst will be forced"
+#~ msgstr "Wenn aktiviert wird immer LNB-ToneBurst erzwungen"
 
 #~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 #~ msgstr "Wenn aktiviert lädt Enigma2 nicht verbundene Favoritenlisten. Das heißt Favoritenlisten die vorhanden sind aber nicht in bouquets.tv oder bouquets.radio aufgeführt sind werden trotzdem geladen. Dies erlaubt es z.B. automatisch generierte oder installierte Favoritenlisten mit eigenen Erweiterungen zu versehen."
