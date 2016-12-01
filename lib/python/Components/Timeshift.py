@@ -201,6 +201,7 @@ class InfoBarTimeshift:
 			self.pts_delay_timer.stop()
 		if int(config.timeshift.startdelay.value) and not self.pts_delay_timer.isActive():
 			# print 'TS AUTO START TEST2'
+			self.pts_trycount = 1
 			self.pts_delay_timer.start(int(config.timeshift.startdelay.value) * 1000, True)
 
 		self.__seekableStatusChanged()
@@ -527,8 +528,14 @@ class InfoBarTimeshift:
 			self.ptsCreateHardlink()
 			self.__seekableStatusChanged()
 		else:
-			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 			self.pts_eventcount = 0
+			if self.pts_delay_timer.isActive():
+				self.pts_delay_timer.stop()
+			if int(config.timeshift.startdelay.value) and not self.pts_delay_timer.isActive() and self.pts_trycount < 5:
+				self.pts_trycount += 1
+				self.pts_delay_timer.start(int(config.timeshift.startdelay.value) * 1000, True)
+			if self.pts_trycount > 4:
+				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 
 	def createTimeshiftFolder(self):
 		timeshiftdir = resolveFilename(SCOPE_TIMESHIFT)
