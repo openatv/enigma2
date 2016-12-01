@@ -187,6 +187,8 @@ class EventName(Converter, object):
 		elif self.type == self.FULL_DESCRIPTION:
 			description = self.trimText(event.getShortDescription())
 			extended = self.trimText(event.getExtendedDescription())
+			if description and extended and description.replace('\n','') == extended.replace('\n',''):
+				return extended
 			if description and extended:
 				description += self.SEPARATOR
 			return description + extended

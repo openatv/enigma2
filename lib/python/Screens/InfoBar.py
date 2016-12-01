@@ -369,7 +369,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.open(PluginBrowser)
 		
 	def showBoxPortal(self):
-		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
+		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton') or boxtype.startswith('wetek'):
 			from Screens.BoxPortal import BoxPortal
 			self.session.open(BoxPortal)
 		else:

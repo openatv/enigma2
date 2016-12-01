@@ -7672,11 +7672,11 @@ msgid "Show background in Radio Mode"
 msgstr "Hintergrund im Radio-Modus anzeigen"
 
 #
-msgid "Show blinking Clock on Display during recording"
-msgstr "Blinkende Uhr im Display bei Aufnahmen"
+msgid "Show blinking Clock in Standby on Display during recording"
+msgstr "Zeige im Standby blinkende Uhr im Display bei Aufnahmen"
 
-msgid "Enable blinking Clock on the LCD Display"
-msgstr "Hier können Sie die blinkende Uhr in dem Display aktivieren."
+msgid "In the Standby blinking Clock on the LCD Display"
+msgstr "Im Standby blinkende Uhr im LCD-Display "
 
 msgid "Show bouquet on launch"
 msgstr "Zeige Bouquet beim Start"
@@ -13304,6 +13304,9 @@ msgstr "Konfiguration der Netzwerklaufwerke."
 msgid "Setup Videomode"
 msgstr "Konfiguration Bild"
 
+msgid "Setup Video/Audio"
+msgstr "Konfiguration Bild/Ton"
+
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Einstellungen Video Mode, Video Ausgang und andere Video-Einstellungen."
 
@@ -13312,6 +13315,9 @@ msgstr "Ton-Einstellungen"
 
 msgid "Setup Tuner"
 msgstr "Konfiguration Tuner"
+
+msgid "Setup Plugins"
+msgstr "Konfiguration Erweiterungen"
 
 msgid "Setup your Tuner and search for channels"
 msgstr "Einstellungen Tuner und Kanalsuche."
@@ -14643,6 +14649,10 @@ msgid "Customise enigma2 personal settings"
 msgstr "Stellen Sie Enigma2 auf Ihre persönlichen Bedürfnisse ein."
 
 # Quick Menue
+msgid "OSD Setup"
+msgstr "Bedienoberfläche anpassen"
+
+# Quick Menue
 msgid "Setup your OSD"
 msgstr "Stellen Sie die Bedienoberfläche auf Ihre persönlichen Bedürfnisse ein."
 
@@ -14776,6 +14786,14 @@ msgstr "Display-Skinauswahl"
 
 msgid "Skin setup"
 msgstr "LCD-Skinauswahl"
+
+#: QuickMenu.py
+msgid "Select LCD Skin"
+msgstr "LCD Skin auswählen"
+
+#: QuickMenu.py
+msgid "Select Enigma2 Skin"
+msgstr "Enigma2 Skin auswählen"
 
 msgid "LCD scroll speed"
 msgstr "LCD-Scrollgeschwindigkeit"
@@ -16223,6 +16241,10 @@ msgstr "EPG Einstellungen"
 # AudioSelection.py
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Umschalten zwischen Audio-, Untertitelauswahl, am Steuerkreuz"
+
+# AudioSelection.py
+msgid "Audio Channel"
+msgstr "Audio-Kanal"
 
 # InfoBar.py
 msgid "Yes, delete this movie and return to movie list"
