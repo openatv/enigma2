@@ -643,8 +643,13 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				if (flag & blitAlphaTest)
 				{
 					int width=area.width();
+#if defined(__aarch64__)
+					unsigned int *src=(unsigned int*)srcptr;
+					unsigned int *dst=(unsigned int*)dstptr;
+#else
 					unsigned long *src=(unsigned long*)srcptr;
 					unsigned long *dst=(unsigned long*)dstptr;
+#endif
 					while (width--)
 					{
 						if (!((*src)&0xFF000000))

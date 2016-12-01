@@ -231,7 +231,9 @@ class EventViewBase:
 		if short == text:
 			short = ""
 
-		if short and extended:
+		if short and extended and extended.replace('\n','') == short.replace('\n',''):
+			pass #extended = extended
+		elif short and extended:
 			extended = short + '\n' + extended
 		elif short:
 			extended = short
