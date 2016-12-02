@@ -293,9 +293,9 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("11", _("et9200/9500/6500")),
 			("13", _("et4000")),
 			("14", _("XP1000")),
-			("18", _("F1/F3")),
 			("16", _("HD1100/et7x00/et8500")),
-			("19", _("HD2400"))
+			("18", _("F1/F3")),
+			("19", _("HD2400")),
 			]
 
 	defaultRcList = [
@@ -316,7 +316,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("hd2400", 19),
 			("et7000", 16),
 			("et7500", 16),
-			("et8500", 16)
+			("et8500", 16),
+			("hd51", 16),
 		]
 
 	def __init__(self, session, menu_path=""):
@@ -349,6 +350,10 @@ class RemoteControlType(Screen, ConfigListScreen):
 			if x[0] in data:
 				self.defaultRcType = x[1]
 				break
+# If there is none in the list, use the current value...
+#
+		if self.defaultRcType == 0:
+			self.defaultRcType = iRcTypeControl.readRcType()
 
 	def setDefaultRcType(self):
 		iRcTypeControl.writeRcType(self.defaultRcType)
