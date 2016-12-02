@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-16 07:19+0200\n"
-"PO-Revision-Date: 2016-11-16 13:31+0200\n"
+"POT-Creation-Date: 2016-12-02 10:45+0200\n"
+"PO-Revision-Date: 2016-12-02 13:56+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -135,6 +135,10 @@ msgstr ""
 
 msgid " "
 msgstr " "
+
+#, python-format
+msgid "  (%s x %s)"
+msgstr "  (%s x %s)"
 
 msgid " (0 - all networks)"
 msgstr " (0 - kõik võrgud)"
@@ -1509,10 +1513,6 @@ msgid "Buffers:"
 msgstr "Puhvrid:"
 
 #, python-format
-msgid "Build:\t%s.%s%s (%s)\n"
-msgstr "Järk:\t%s.%s%s (%s)\n"
-
-#, python-format
 msgid "Build: %s"
 msgstr "Järk: %s"
 
@@ -2328,6 +2328,9 @@ msgstr "Ühendatud satelliidid"
 msgid "Connected to"
 msgstr "Ühendatud"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Toimub transkodeerimine, PiP pole võimalik!"
+
 msgid "Connected: "
 msgstr "Ühendatud: "
 
@@ -3062,6 +3065,10 @@ msgstr "Dünaamiline kontrast"
 msgid "E"
 msgstr "E"
 
+#, python-format
+msgid "E2 (re)starts:\t%s\n"
+msgstr "E2 käivitusi:\t%s\n"
+
 msgid "ECM Statistics"
 msgstr "ECM statistika"
 
@@ -3562,6 +3569,10 @@ msgstr "FEC:"
 msgid "FLASH"
 msgstr "SISEMÄLU"
 
+#, python-format
+msgid "FP version:\t%s"
+msgstr "FP versioon:\t%s"
+
 msgid "FTP Setup"
 msgstr "FTP seaded"
 
@@ -3746,10 +3757,6 @@ msgstr "Asukohast :"
 
 msgid "Front Display Panel"
 msgstr "Esipaneeli ekraan"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Esiprotsessori versioon: %d"
 
 msgid "Full screen"
 msgstr "Täisekraan"
@@ -4143,6 +4150,10 @@ msgstr ""
 msgid "Image Manager"
 msgstr "Süsteemitõmmised"
 
+#, python-format
+msgid "Image:\t%s.%s%s (%s)\n"
+msgstr "Järk:\t%s.%s%s (%s)\n"
+
 msgid "Immediate shutdown"
 msgstr "Kohene seiskamine"
 
@@ -4500,12 +4511,8 @@ msgid "Last speed"
 msgstr "Eelmine kiirus"
 
 #, python-format
-msgid ""
-"Last update:\t%s\n"
-"\n"
-msgstr ""
-"Uuendatud:\t%s\n"
-"\n"
+msgid "Last update:\t%s\n"
+msgstr "Uuendatud:\t%s\n"
 
 #, python-format
 msgid "Last update: %s"
@@ -5139,7 +5146,7 @@ msgid "No"
 msgstr "Ei"
 
 msgid "No (supported) DVDROM found!"
-msgstr "Toetatud DVD-ROM puudub!"
+msgstr "DVD-ROM puudub!"
 
 msgid "No Connection"
 msgstr "Ühendus puudub"
@@ -6230,8 +6237,8 @@ msgid "Process"
 msgstr "Toiming"
 
 #, python-format
-msgid "Processor temperature:\t%s"
-msgstr "Protsessori temperatuur:\t%s"
+msgid "Processor temp:\t%s"
+msgstr "CPU temp:\t%s"
 
 msgid "Profile"
 msgstr "Profiil"
@@ -7877,12 +7884,12 @@ msgstr "Suurus: "
 msgid "Skin Setting"
 msgstr "Kujunduse seaded"
 
-#, python-format
-msgid "Skin name:\t%s\n"
-msgstr "Kujundus:\t%s\n"
-
 msgid "Skin setup"
 msgstr "Kujunduse valik"
+
+#, python-format
+msgid "Skin:\t%s"
+msgstr "Kujundus:\t%s"
 
 msgid "Skins"
 msgstr "Kujundused"
@@ -8431,8 +8438,8 @@ msgid "System"
 msgstr "Süsteem"
 
 #, python-format
-msgid "System temperature:\t%s"
-msgstr "Süsteemi temperatuur:\t%s"
+msgid "System temp:\t%s"
+msgstr "Süst. temp:\t%s"
 
 #, python-format
 msgid "System temperature: %s"
@@ -9123,7 +9130,7 @@ msgid "Timeshift not possible!"
 msgstr "Ajanihke kasutamine pole võimalik!"
 
 msgid "Timeshift on a stream is not supported!"
-msgstr "Ajanihke kasutamine voogesitusel ei ole toetatud!"
+msgstr "Voogesitusel ei ole ajanihe võimalik!"
 
 msgid "Timeshift save failed!"
 msgstr "Ajanihke talletamine nurjus!"
@@ -11817,6 +11824,9 @@ msgstr "vahetatud"
 #~ msgid "Find currently played service"
 #~ msgstr "Leia aktiivne kanal"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Esiprotsessori versioon: %d"
+
 #~ msgid "Image Information"
 #~ msgstr "Andmeid süsteemist"
 
@@ -11867,6 +11877,9 @@ msgstr "vahetatud"
 
 #~ msgid "Samba Log"
 #~ msgstr "Samba logi"
+
+#~ msgid "Skin name:\t%s\n"
+#~ msgstr "Kujundus:\t%s\n"
 
 #~ msgid "SoftCam / CI"
 #~ msgstr "EMU / CI"
