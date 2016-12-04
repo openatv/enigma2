@@ -394,9 +394,9 @@ class ImageBackup(Screen):
 
 		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			system('mv %s/disk.img %s/disk.img' %(self.WORKDIR, self.MAINDEST))
-		elif self.MODEL in ("vuuno4k","vuultimo4k","vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno"):
+		elif self.MODEL in ("vuultimo4k","vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno"):
 			cmdlist.append('echo "This file forces a reboot after the update." > %s/reboot.update' %self.MAINDEST)
-		elif self.MODEL in ("vuzero" , "vusolose"):
+		elif self.MODEL in ("vuzero" , "vusolose", "vuuno4k"):
 			cmdlist.append('echo "This file forces the update." > %s/force.update' %self.MAINDEST)
 		elif self.MODEL in ("novaip" , "zgemmai55" , "sf98", "xpeedlxpro"):
 			cmdlist.append('echo "This file forces the update." > %s/force' %self.MAINDEST)
