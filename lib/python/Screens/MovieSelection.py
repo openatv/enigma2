@@ -401,7 +401,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		if csel.exist_bookmark():
 			append_to_menu(menu, (_("Remove bookmark"), csel.do_addbookmark), key="1")
 		else:
-			append_to_menu(menu, (_("Add bookmark"), csel.do_addbookmark))
+			append_to_menu(menu, (_("Add bookmark"), csel.do_addbookmark), key="1")
 		append_to_menu(menu, (_("Create directory"), csel.do_createdir), key="2")
 
 		if service:
