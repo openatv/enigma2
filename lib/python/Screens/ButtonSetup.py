@@ -150,6 +150,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Button setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
+	ButtonSetupFunctions.append((_("Show stream clients"), "Module/Screens.StreamingClientsInfo/StreamingClientsInfo", "Setup"))
 	ButtonSetupFunctions.append((_("Manual scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
 	ButtonSetupFunctions.append((_("Automatic scan"), "Module/Screens.ScanSetup/ScanSimple", "Scanning"))
 	for plugin in plugins.getPluginsForMenu("scan"):
