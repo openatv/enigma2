@@ -12,6 +12,12 @@ from boxbranding import getMachineBrand, getMachineName
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
     ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo
 
+def getIceTVDeviceType():
+    return {
+        ("Beyonwiz", "T2"): 31,
+        ("Beyonwiz", "T3"): 22,
+        ("Beyonwiz", "T4"): 30,
+    }.get((getMachineBrand(), getMachineName()), 22)
 
 config.plugins.icetv = ConfigSubsection()
 config.plugins.icetv.member = ConfigSubsection()
@@ -25,7 +31,7 @@ config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", show_
 config.plugins.icetv.device = ConfigSubsection()
 config.plugins.icetv.device.label = ConfigText(default="%s %s" % (getMachineBrand(), getMachineName()), show_help=False)
 config.plugins.icetv.device.id = ConfigNumber()
-config.plugins.icetv.device.type_id = ConfigNumber(default=22)
+config.plugins.icetv.device.type_id = ConfigNumber(default=getIceTVDeviceType())
 
 config.plugins.icetv.last_update_time = ConfigNumber()
 if config.plugins.icetv.last_update_time.value != 0:
