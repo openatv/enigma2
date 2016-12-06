@@ -97,21 +97,6 @@ class About(Screen):
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 		AboutText += _("Skin:\t%s") % config.skin.primary_skin.value[0:-9] + _("  (%s x %s)") % (skinWidth, skinHeight) + "\n"
 
-		if path.exists('/etc/enigma2/EtRcType'):
-			rfp = open('/etc/enigma2/EtRcType', "r")
-			Remote = rfp.read()
-			rfp.close
-			AboutText += _("R/C type:\t%s") + Remote + "\n"
-		else:
-			remote = iRcTypeControl.getBoxType().strip()
-			if remote:
-				AboutText += _("R/C type:\t") + remote + "\n"
-		if path.exists('/proc/stb/ir/rc/type'):
-			fp = open('/proc/stb/ir/rc/type', "r")
-			RcID = fp.read()
-			fp.close
-			AboutText += _("R/C ID:\t") + RcID + "\n"
-
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			f = open('/proc/stb/sensors/temp0/value', 'r')

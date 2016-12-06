@@ -186,11 +186,10 @@ void eDebugImpl(int flags, const char* fmt, ...)
 		bsodFatal("enigma2");
 }
 
-void ePythonOutput(const char *string)
+void ePythonOutput(const char *string, int lvl)
 {
 #ifdef DEBUG
-	// Only show message when the debug level is at least "warning"
-	if (debugLvl >= lvlWarning)
+	if (debugLvl >= lvl)
 		eDebugImpl(_DBGFLG_NONEWLINE, "%s", string);
 #endif
 }
