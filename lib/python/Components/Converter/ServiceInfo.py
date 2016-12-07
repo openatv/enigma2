@@ -222,7 +222,7 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_480:
 			return video_height > 0 and video_height <= 480
 		elif self.type == self.IS_4K:
-			return video_height >= 2160
+			return video_height >= 2100
 		elif self.PROGRESSIVE:
 			return bool(self._getProgressive(info))
 		return False
