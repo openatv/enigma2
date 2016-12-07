@@ -1064,7 +1064,7 @@ def InitUsageConfig():
 			( str(RT_HALIGN_RIGHT  | RT_VALIGN_TOP          ) , _("right")),
 			( str(RT_HALIGN_LEFT   | RT_VALIGN_TOP | RT_WRAP) , _("left, wrapped")),
 			( str(RT_HALIGN_CENTER | RT_VALIGN_TOP | RT_WRAP) , _("centered, wrapped")),
-			( str(RT_HALIGN_RIGHT  | RT_VALIGN_TOP | RT_WRAP) , _("right, wrapped"))]
+			( str(RT_HALIGN_RIGHT  | RT_VALIGN_TOP | RT_WRAP) , _("right, wrapped")),
 	]
 	config.epgselection.graph_servicename_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
 	config.epgselection.graph_servicenumber_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
