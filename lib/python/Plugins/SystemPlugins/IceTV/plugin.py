@@ -514,14 +514,6 @@ def Plugins(**kwargs):
             icon="icon.png",
             fnc=plugin_main
         ))
-    if not config.plugins.icetv.configured.value:
-        res.append(
-            PluginDescriptor(
-                name="IceTV",
-                where=PluginDescriptor.WHERE_WIZARD,
-                description=_("IceTV"),
-                fnc=(95, IceTVSelectProviderScreen)
-            ))
     return res
 
 
@@ -587,58 +579,6 @@ class IceTVLogView(TextBox):
     skin = """<screen name="IceTVLogView" backgroundColor="background" position="90,150" size="1100,450" title="Log">
         <widget font="Console;18" name="text" position="0,4" size="1100,446"/>
 </screen>"""
-
-
-class IceTVSelectProviderScreen(Screen):
-    skin = """
-<screen name="IceTVSelectProviderScreen" flags="wfNoBorder" position="240,100" size="800,520" title="Select TV guide provider" >
- <widget position="0,0" size="800,450" name="instructions" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/wizard_screen.png" zPosition="1" />
- <widget position="10,460" size="780,60" name="menu" />
-</screen>
-"""
-
-    def __init__(self, session):
-        self.session = session
-        self.invisible = False
-        Screen.__init__(self, session)
-        if not ice.isServerReachable():
-            self.invisible = True
-            self.close()
-            return
-        sleep(2)    # Prevent display corruption if the screen is displayed too soon after enigma2 start up
-        self["instructions"] = Pixmap()
-        options = []
-        options.append((_("IceTV (with free trial)\t- Requires Internet connection"), "iceEpg"))
-        options.append((_("Free To Air            \t- No Internet connection required"), "eitEpg"))
-        self["menu"] = MenuList(options)
-        self["aMap"] = ActionMap(contexts=["OkCancelActions", "DirectionActions"],
-                                 actions={
-                                     "cancel": self.cancel,
-                                     "ok": self.ok,
-                                 }, prio=-1)
-
-    def show(self):
-        if not self.invisible:
-            Screen.show(self)
-
-    def cancel(self):
-        self.hide()
-        self.close()
-
-    def ok(self):
-        selection = self["menu"].getCurrent()
-        if selection[1] == "eitEpg":
-            config.plugins.icetv.configured.value = True
-            disableIceTV()
-            self.hide()
-            self.close()
-        elif selection[1] == "iceEpg":
-            self.session.openWithCallback(self.userTypeDone, IceTVUserTypeScreen)
-
-    def userTypeDone(self, success):
-        if success:
-            self.hide()
-            self.close()
 
 
 class IceTVUserTypeScreen(Screen):
