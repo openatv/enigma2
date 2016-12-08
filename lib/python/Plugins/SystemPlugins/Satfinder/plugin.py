@@ -23,27 +23,18 @@ class Satfinder(ScanSetup, ServiceScan):
 		del service
 
 
-		self.preDefTransponders = None
-#		self.TerrestrialTransponders = None
-		self.CableTransponders = None
-		self.ATSCTransponders = None
-		self.typeOfTuningEntry = None
 		self.systemEntry = None
-#		self.tunerEntry = None
 		self.systemEntryATSC = None
 		self.satfinderTunerEntry = None
 		self.satEntry = None
-#		self.typeOfInputEntry = None
 		self.frequencyEntry = None
 		self.polarizationEntry = None
 		self.symbolrateEntry = None
 		self.inversionEntry = None
 		self.rolloffEntry = None
 		self.pilotEntry = None
-#		self.modulationEntry = None
 		self.fecEntry = None
 		self.transponder = None
-#		self.multiType = None
 
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Signal Finder"))
@@ -89,14 +80,15 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.retune()
 		except:
 			pass
+
 	def __onClose(self):
 		self.session.nav.playService(self.session.postScanService)
 
 	def newConfig(self):
 		self.transponder = None
-		ScanSetup.newConfig(self)
 		cur = self["config"].getCurrent()
 		print"cur ", cur
+
 		if cur == self.tunerEntry:
 			self.feid = int(self.scan_nims.value)
 			self.prepareFrontend()
@@ -105,6 +97,10 @@ class Satfinder(ScanSetup, ServiceScan):
 				msg = _("%s not available.") % slot.getSlotName()
 				msg += _("\nRecording in progress.")
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
+		else:
+			ScanSetup.newConfig(self)
+		if cur[1].value == "single_transponder":
+			self.retune()
 
 
 	def createSetup(self):
@@ -186,16 +182,21 @@ class Satfinder(ScanSetup, ServiceScan):
 				print "new system ",system
 		else:
 			print "%d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, multiType.getText())
+		self.retune()
 
 	def createConfig(self):
 		ScanSetup.createConfig(self)
-		for x in (self.scan_sat.frequency,
-			self.scan_sat.inversion, self.scan_sat.symbolrate,
-			self.scan_sat.polarization, self.scan_sat.fec, self.scan_sat.pilot,
-			self.scan_sat.fec_s2, self.scan_sat.fec, self.scan_sat.modulation,
-			self.scan_sat.rolloff, self.scan_sat.system,
-			self.scan_sat.is_id, self.scan_sat.pls_mode, self.scan_sat.pls_code,
-			self.scan_ter.channel, self.scan_ter.frequency, self.scan_ter.inversion,
+		for x in (
+			self.scan_sat.frequency,
+			self.scan_satselection[int(self.scan_nims.value)],
+			self.scan_sat.symbolrate,
+			self.scan_sat.is_id,
+			self.scan_sat.pls_mode,
+			self.scan_sat.pls_code,
+
+			self.scan_ter.channel,
+			self.scan_ter.frequency,
+			self.scan_ter.inversion,
 			self.scan_ter.bandwidth, self.scan_ter.fechigh, self.scan_ter.feclow,
 			self.scan_ter.modulation, self.scan_ter.transmission,
 			self.scan_ter.guard, self.scan_ter.hierarchy,
@@ -205,17 +206,12 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.scan_ats.frequency, self.scan_ats.modulation, self.scan_ats.inversion,
 			self.scan_ats.system,
 
-			self.preDefTransponders, self.CableTransponders, self.TerrestrialTransponders, self.ATSCTransponders):
+			):
 			if x is not None:
 				x.clearNotifiers()
 				x.addNotifier(self.TriggeredByConfigElement, initial_call = False)
 
 	def TriggeredByConfigElement(self, configElement):
-		self.scan_ter.channel.removeNotifier(self.TriggeredByConfigElement)
-		self.scan_ter.frequency.removeNotifier(self.TriggeredByConfigElement)
-		self.createSetup()
-		self.scan_ter.channel.addNotifier(self.TriggeredByConfigElement, initial_call = False)
-		self.scan_ter.frequency.addNotifier(self.TriggeredByConfigElement, initial_call = False)
 		self.retune()
 
 	def retune(self):
