@@ -14,7 +14,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
-from Components.Sources.Boolean import Boolean
 from Components.config import getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
@@ -23,7 +22,7 @@ from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
-from time import strptime, sleep, gmtime, strftime
+from time import strptime, gmtime, strftime
 from datetime import datetime
 from . import config, enableIceTV, disableIceTV
 import API as ice
@@ -40,7 +39,7 @@ password_requested = False
 def _logResponseException(logger, heading, exception):
     msg = heading
     if isinstance(exception, requests.exceptions.ConnectionError):
-        msg += ": " +  _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % (getMachineBrand(), getMachineName())
+        msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % (getMachineBrand(), getMachineName())
     msg += ": " + str(exception)
     if hasattr(exception, "response") and hasattr(exception.response, "text"):
         ex_text = str(exception.response.text).strip()
