@@ -635,7 +635,10 @@ class InfoBarTimeshift:
 				self.pts_trycount += 1
 				self.pts_delay_timer.start(int(config.timeshift.startdelay.value) * 1000, True)
 			if self.pts_trycount > 4:
-				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
+				# This can cause "RuntimeError: modal open are allowed only from a screen which is modal!"
+				# when coming out of standby and the HDD takes too long to spin up.
+				# self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
+				pass
 
 	def createTimeshiftFolder(self):
 		dprint("createTimeshiftFolder")
