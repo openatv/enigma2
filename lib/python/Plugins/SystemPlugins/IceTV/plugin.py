@@ -14,7 +14,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
-from Components.Sources.Boolean import Boolean
 from Components.config import getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
@@ -23,7 +22,7 @@ from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
-from time import strptime, sleep, gmtime, strftime
+from time import strptime, gmtime, strftime
 from datetime import datetime
 from . import config, enableIceTV, disableIceTV
 import API as ice
@@ -40,7 +39,7 @@ password_requested = False
 def _logResponseException(logger, heading, exception):
     msg = heading
     if isinstance(exception, requests.exceptions.ConnectionError):
-        msg += ": " +  _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % (getMachineBrand(), getMachineName())
+        msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % (getMachineBrand(), getMachineName())
     msg += ": " + str(exception)
     if hasattr(exception, "response") and hasattr(exception.response, "text"):
         ex_text = str(exception.response.text).strip()
@@ -514,14 +513,6 @@ def Plugins(**kwargs):
             icon="icon.png",
             fnc=plugin_main
         ))
-    if not config.plugins.icetv.configured.value:
-        res.append(
-            PluginDescriptor(
-                name="IceTV",
-                where=PluginDescriptor.WHERE_WIZARD,
-                description=_("IceTV"),
-                fnc=(95, IceTVSelectProviderScreen)
-            ))
     return res
 
 
@@ -589,58 +580,6 @@ class IceTVLogView(TextBox):
 </screen>"""
 
 
-class IceTVSelectProviderScreen(Screen):
-    skin = """
-<screen name="IceTVSelectProviderScreen" flags="wfNoBorder" position="240,100" size="800,520" title="Select TV guide provider" >
- <widget position="0,0" size="800,450" name="instructions" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/wizard_screen.png" zPosition="1" />
- <widget position="10,460" size="780,60" name="menu" />
-</screen>
-"""
-
-    def __init__(self, session):
-        self.session = session
-        self.invisible = False
-        Screen.__init__(self, session)
-        if not ice.isServerReachable():
-            self.invisible = True
-            self.close()
-            return
-        sleep(2)    # Prevent display corruption if the screen is displayed too soon after enigma2 start up
-        self["instructions"] = Pixmap()
-        options = []
-        options.append((_("IceTV (with free trial)\t- Requires Internet connection"), "iceEpg"))
-        options.append((_("Free To Air            \t- No Internet connection required"), "eitEpg"))
-        self["menu"] = MenuList(options)
-        self["aMap"] = ActionMap(contexts=["OkCancelActions", "DirectionActions"],
-                                 actions={
-                                     "cancel": self.cancel,
-                                     "ok": self.ok,
-                                 }, prio=-1)
-
-    def show(self):
-        if not self.invisible:
-            Screen.show(self)
-
-    def cancel(self):
-        self.hide()
-        self.close()
-
-    def ok(self):
-        selection = self["menu"].getCurrent()
-        if selection[1] == "eitEpg":
-            config.plugins.icetv.configured.value = True
-            disableIceTV()
-            self.hide()
-            self.close()
-        elif selection[1] == "iceEpg":
-            self.session.openWithCallback(self.userTypeDone, IceTVUserTypeScreen)
-
-    def userTypeDone(self, success):
-        if success:
-            self.hide()
-            self.close()
-
-
 class IceTVUserTypeScreen(Screen):
     skin = """
 <screen name="IceTVUserTypeScreen" position="320,130" size="640,400" title="IceTV - Account selection" >
@@ -693,9 +632,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
-    <widget source="VKeyIcon" render="Pixmap" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend">
-        <convert type="ConditionalShowHide" />
-    </widget>
+    <ePixmap name="blue" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -720,7 +657,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
         self["key_blue"] = Label(_("Keyboard"))
-        self["VKeyIcon"] = Boolean(False)
         self.list = [
              getConfigListEntry(self._email, config.plugins.icetv.member.email_address,
                                 _("Your email address is used to login to IceTV services.")),
@@ -945,9 +881,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
-    <widget source="VKeyIcon" render="Pixmap" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend">
-        <convert type="ConditionalShowHide" />
-    </widget>
+    <ePixmap name="blue" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -967,7 +901,6 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
         self["key_green"] = Label(_("Login"))
         self["key_yellow"] = Label()
         self["key_blue"] = Label(_("Keyboard"))
-        self["VKeyIcon"] = Boolean(False)
         self.list = [
              getConfigListEntry(self._password, config.plugins.icetv.member.password,
                                 _("Your existing IceTV password.")),

@@ -47,7 +47,7 @@ minute = 60
 hour = minute * 60
 
 checktimes = [
-    # ("%d" % int(minute * 2), "2 minutes"),
+    ("%d" % int(minute * 2), "2 minutes"),
     ("%d" % int(minute * 5), "5 minutes"),
     ("%d" % int(minute * 10), "10 minutes"),
     ("%d" % int(minute * 15), "15 minutes"),
@@ -94,32 +94,8 @@ def setIceTVDefaults():
     config.epg.save()
     config.usage.show_eit_nownext.value = False
     config.usage.show_eit_nownext.save()
-    if config.recording.margin_before.value == config.recording.margin_before.default:
-        config.recording.margin_before.value = 2
-        config.recording.margin_before.save()
-    if config.recording.margin_after.value == config.recording.margin_after.default:
-        config.recording.margin_after.value = 20
-        config.recording.margin_after.save()
-    if config.movielist.fontsize.value == config.movielist.fontsize.default:
-        config.movielist.fontsize.value = 7
-        config.movielist.fontsize.save()
-    if config.movielist.itemsperpage.value == config.movielist.itemsperpage.default:
-        config.movielist.itemsperpage.value = 15
-        config.movielist.itemsperpage.save()
 
 def restoreDefaults():
-    if config.recording.margin_before.value == 2:
-        config.recording.margin_before.value = config.recording.margin_before.default
-        config.recording.margin_before.save()
-    if config.recording.margin_after.value == 20:
-        config.recording.margin_after.value = config.recording.margin_after.default
-        config.recording.margin_after.save()
-    if config.movielist.fontsize.value == 7:
-        config.movielist.fontsize.value = config.movielist.fontsize.default
-        config.movielist.fontsize.save()
-    if config.movielist.itemsperpage.value == 15:
-        config.movielist.itemsperpage.value = config.movielist.itemsperpage.default
-        config.movielist.itemsperpage.save()
     config.usage.show_eit_nownext.value = True
     config.usage.show_eit_nownext.save()
     config.epg.eit.value = True
