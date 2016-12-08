@@ -158,13 +158,7 @@ class IniTerrestrialLocation(Screen):
 		getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot))
 
 		flags |= eComponentScan.scanNetworkSearch  # FIXMEEE.. use flags from cables / satellites / terrestrial.xml
-		# tmp = self.scan_clearallservices.getValue()
-		tmp = "no"
-		if tmp == "yes":
-			flags |= eComponentScan.scanRemoveServices
-		elif tmp == "yes_hold_feeds":
-			flags |= eComponentScan.scanRemoveServices
-			flags |= eComponentScan.scanDontRemoveFeeds
+		flags |= eComponentScan.scanRemoveServices
 
 		if action == APPEND_NOW:
 			self.scanList.append({"transponders": tlist, "feid": nim.slot, "flags": flags})

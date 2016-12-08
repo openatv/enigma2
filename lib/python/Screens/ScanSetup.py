@@ -1250,7 +1250,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		])
 		self.scan_type_atsc = ConfigSelection(default = defaultATSCSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
 		self.scan_ter_complete_type = ConfigSelection(default = "all", choices = [("all", _("All frequency")), ("extended", _("Extended"))])
-		self.scan_clearallservices = ConfigSelection(default="no", choices=[
+		self.scan_clearallservices = ConfigSelection(default="yes", choices=[
 			("no", _("no")),
 			("yes", _("yes")),
 			("yes_hold_feeds", _("yes (keep feeds)"))
