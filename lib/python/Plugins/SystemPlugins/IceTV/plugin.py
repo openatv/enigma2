@@ -633,9 +633,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
-    <widget source="VKeyIcon" render="Pixmap" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend">
-        <convert type="ConditionalShowHide" />
-    </widget>
+    <ePixmap name="blue" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -660,7 +658,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
         self["key_blue"] = Label(_("Keyboard"))
-        self["VKeyIcon"] = Boolean(False)
         self.list = [
              getConfigListEntry(self._email, config.plugins.icetv.member.email_address,
                                 _("Your email address is used to login to IceTV services.")),
@@ -885,9 +882,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
-    <widget source="VKeyIcon" render="Pixmap" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend">
-        <convert type="ConditionalShowHide" />
-    </widget>
+    <ePixmap name="blue" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
     <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -907,7 +902,6 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
         self["key_green"] = Label(_("Login"))
         self["key_yellow"] = Label()
         self["key_blue"] = Label(_("Keyboard"))
-        self["VKeyIcon"] = Boolean(False)
         self.list = [
              getConfigListEntry(self._password, config.plugins.icetv.member.password,
                                 _("Your existing IceTV password.")),
