@@ -239,11 +239,13 @@ class TimerEditList(Screen):
 				time = ""
 				duration = ""
 				service = ""
+				state = ""
 		else:
 			name = ""
 			time = ""
 			duration = ""
 			service = ""
+			state = ""
 		for cb in self.onChangedEntry:
 			cb(name, time, duration, service, state)
 
