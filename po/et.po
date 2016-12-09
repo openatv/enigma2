@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 10:45+0200\n"
-"PO-Revision-Date: 2016-12-02 13:56+0200\n"
+"POT-Creation-Date: 2016-12-07 14:16+0200\n"
+"PO-Revision-Date: 2016-12-09 15:45+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -3965,7 +3965,7 @@ msgid "Hide any zap error messages."
 msgstr "Peida kanalivahetuse veateated"
 
 msgid "Hide dotted line on the top for this service"
-msgstr "Peida sellel kanalil ülaservas valge punktiirjoon"
+msgstr "Peida sellel kanalil ülaservas paistev punktiirjoon"
 
 msgid "Hide error messages from the Common Interface module."
 msgstr "Peida CI mooduli veateated."
@@ -6926,7 +6926,7 @@ msgid "Saving Timeshift files"
 msgstr "Ajanihke failide talletamine"
 
 msgid "Saving timeshift as movie now. This might take a while!"
-msgstr "Ajanihke salvestuseks muutmine. Võib minna veidi aega!"
+msgstr "Ajanihke salvestuseks muutmine. Selleks kulub natuke aega!"
 
 msgid "Scaler sharpness"
 msgstr "Skaleerimise teravus"
@@ -7513,7 +7513,7 @@ msgid "Show EIT now/next in infobar"
 msgstr "Kuva EIT nüüd/järgmine inforibal"
 
 msgid "Show EPG for current channel..."
-msgstr "Kuva kanali saatekava"
+msgstr "Kanali saatekava"
 
 msgid "Show EPG for current service"
 msgstr "Kanali EPG"
@@ -7588,7 +7588,7 @@ msgid "Show background behind subtitles"
 msgstr "Tausta kasutamine subtiitritel"
 
 msgid "Show background in Radio mode"
-msgstr "Näita raadioolekus taustapilti"
+msgstr "Taustapilt raadiokanalitel"
 
 msgid "Show background when tuned to a radio channel."
 msgstr "Näita raadiokanali taustaks pilti."
@@ -7654,7 +7654,7 @@ msgid "Show icon for new/unseen items"
 msgstr "Uue/vaatamata salvestise tähistamine"
 
 msgid "Show in extensions list ?"
-msgstr "Kas kuvada laienduste menüüs?"
+msgstr "Kuva laienduste menüüs"
 
 msgid "Show info"
 msgstr "Näita andmeid"
@@ -7663,13 +7663,13 @@ msgid "Show info line"
 msgstr "Näita inforida"
 
 msgid "Show infobar on channel change"
-msgstr "Näita kanalivahetusel inforiba"
+msgstr "Inforiba kanalivahetusel"
 
 msgid "Show infobar on event change"
-msgstr "Näita saate vahetumisel inforiba"
+msgstr "Inforiba saate vahetumisel"
 
 msgid "Show infobar on skip forward/backward"
-msgstr "Näita kerimisel inforiba"
+msgstr "Inforiba kerimisel"
 
 msgid "Show job tasks in extensions"
 msgstr "Kuva tööülesanded laienduste menüüs"
@@ -7681,7 +7681,7 @@ msgid "Show menu"
 msgstr "Kuva menüü"
 
 msgid "Show message when recording starts"
-msgstr "Teavita salvestuse algamisest"
+msgstr "Teavitus salvestuse algamisel"
 
 msgid "Show movie lengths in movielist"
 msgstr "Näita filmlistis filmi pikkust"
@@ -7705,10 +7705,10 @@ msgid "Show picons in service list"
 msgstr "Kanalilogod kanalinimekirjas"
 
 msgid "Show positioner movement"
-msgstr "Näita ajami liikumist"
+msgstr "Ajami liikumise tähistus"
 
 msgid "Show positioner position"
-msgstr "Näita ajami asukohta"
+msgstr "Ajami asukoha kuvamine"
 
 msgid "Show program information..."
 msgstr "Saateinfo"
@@ -7735,16 +7735,19 @@ msgid "Show service type icons"
 msgstr "Edastusmooduse tähistamine"
 
 msgid "Show shutdown menu"
-msgstr "Kuva seiskamismenüü"
+msgstr "Seiskamismenüü"
 
 msgid "Show single epg for current channel"
-msgstr "Kuva käesoleva kanali saatekava"
+msgstr "Käesoleva kanali saatekava"
 
 msgid "Show source packages"
 msgstr "Kuva lähtefailid"
 
 msgid "Show status icons in movie list"
 msgstr "Oleku tähistus filmilistis"
+
+msgid "Show stream clients"
+msgstr "IPTV kliendid"
 
 msgid "Show subservice selection"
 msgstr "Alamkanalite valik"
@@ -7753,16 +7756,16 @@ msgid "Show subtitle selection"
 msgstr "Subtiitrite valik"
 
 msgid "Show the DreamPlex player..."
-msgstr "Kuva DreamPlex mängija"
+msgstr "DreamPlex mängija"
 
 msgid "Show the list of autotimers."
-msgstr "Kuva autotaimerid"
+msgstr "Autotaimerid"
 
 msgid "Show the list of timers."
-msgstr "Kuva taimerid"
+msgstr "Taimerid"
 
 msgid "Show the plugin browser.."
-msgstr "Kuva pluginad"
+msgstr "Pluginad"
 
 msgid "Show the radio player..."
 msgstr "Kuula raadiot"
@@ -7771,7 +7774,7 @@ msgid "Show the tv player..."
 msgstr "Vaata telekanalit"
 
 msgid "Show time elapsed as positive"
-msgstr "Kuva kulunud aeg + märgiga"
+msgstr "Kulunud aeg \"+\" märgiga"
 
 msgid "Show time in 24 hour clock format."
 msgstr "Kellaaeg 24 tunni vormingus."
@@ -7783,16 +7786,16 @@ msgid "Show translation packages"
 msgstr "Kuva tõlkefailid"
 
 msgid "Show transponder info"
-msgstr "Kuva transponderi info"
+msgstr "Transponderi info"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Jäänud/kulunud transponderi näit"
 
 msgid "Show warning when in a stream"
-msgstr "Näita hoiatust kui toimub voogesitus"
+msgstr "Hoiatus, kui toimub voogesitus"
 
 msgid "Show warning when timeshift is stopped"
-msgstr "Teavita ajanihke lõppemisest"
+msgstr "Teavitus ajanihke lõppemisel"
 
 msgid "Shows live tv or informations on LCD."
 msgstr "Kuvab telepilti või infot esipaneelil."
@@ -9484,16 +9487,16 @@ msgid "Use DHCP"
 msgstr "Kasuta DHCP-d"
 
 msgid "Use EIT EPG information when it is available."
-msgstr "Kasuta saadavusel EIT EPG infot."
+msgstr "Kasuta saadavusel EIT EPG andmeid."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr "Kasuta saadavusel FreeSat EPG infot."
+msgstr "Kasuta saadavusel FreeSat EPG andmeid."
 
 msgid "Use MHW EPG information when it is available."
-msgstr "Kasuta saadavusel MHW EPG infot."
+msgstr "Kasuta saadavusel MHW EPG andmeid."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr "Kasuta saadavusel Netmed EPG infot."
+msgstr "Kasuta saadavusel Netmed EPG andmeid."
 
 msgid "Use TV remote control"
 msgstr "Kasuta teleri pulti"
@@ -9502,10 +9505,10 @@ msgid "Use USALS for this sat"
 msgstr "USALS kasutamine selle satelliidi jaoks"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr "Kasuta saadavusel Viasat EPG infot."
+msgstr "Kasuta saadavusel Viasat EPG andmeid."
 
 msgid "Use Virgin EPG information when it is available."
-msgstr "Kasuta saadavusel Virgin EPG infot."
+msgstr "Kasuta saadavusel Virgin EPG andmeid."
 
 msgid "Use a gateway"
 msgstr "Kasuta lüüsi"
@@ -9544,7 +9547,7 @@ msgid "Use power measurement"
 msgstr "Kasuta voolutarbe mõõtmist"
 
 msgid "Use separate Picon pack for Front Display *"
-msgstr "Kasuta esipaneeli jaoks eraldi pikoneid *"
+msgstr "Eraldi pikonid esipaneeli jaoks *"
 
 msgid "Use slim screen"
 msgstr "Kasuta kitsast vaadet"
@@ -10398,7 +10401,7 @@ msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Ajanihe on kasutusel. Kas see tuleks peatada?"
 
 msgid "You system does not support ext4"
-msgstr "Vastuvõtja ei toeta ext4"
+msgstr "See süsteem ei toeta ext4"
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -10657,7 +10660,7 @@ msgid "advertisement/shopping"
 msgstr "reklaam/ostukanal"
 
 msgid "alpha then oldest"
-msgstr "Tähestikuline, esmalt vanim"
+msgstr "Tähestikuline, vanemad ees"
 
 msgid "alphabetic"
 msgstr "Tähestikuline"
@@ -10666,7 +10669,7 @@ msgid "alphabetic reverse"
 msgstr "Pööratud tähestikuline"
 
 msgid "alpharev then newest"
-msgstr "Pööratud tähestikuline, esmalt uusim"
+msgstr "Pööratud tähestikuline, uuemad ees"
 
 msgid "alternative"
 msgstr "alternatiivne"
@@ -10748,7 +10751,7 @@ msgid "broadcasting/press"
 msgstr "ringhääling/ajakirjandus"
 
 msgid "by date"
-msgstr "Ajaline"
+msgstr "Uuemad ees"
 
 msgid "caid:"
 msgstr "caid:"
@@ -11383,7 +11386,7 @@ msgid "restart GUI"
 msgstr "taaskäivita kasutajaliides"
 
 msgid "reverse by date"
-msgstr "Pööratud ajaline"
+msgstr "Vanemad ees"
 
 msgid "rewind to the previous chapter"
 msgstr "Tagasi eelmisele peatükile"
@@ -11768,155 +11771,3 @@ msgstr "Kanalivahetus ja salvestamine"
 
 msgid "zapped"
 msgstr "vahetatud"
-
-#~ msgid "%Y-%m-%d"
-#~ msgstr "%Y-%m-%d"
-
-#~ msgid "A/V settings"
-#~ msgstr "Heli ja pildi seaded"
-
-#~ msgid "AA"
-#~ msgstr "AA"
-
-#~ msgid "AB"
-#~ msgstr "AB"
-
-#~ msgid "Choose Tuner"
-#~ msgstr "Vali tuuner"
-
-#~ msgid "Device Information"
-#~ msgstr "Seadmed"
-
-#~ msgid ""
-#~ "Do you want to install the samba client aswell?\n"
-#~ "This will allow you to mount your windows shares on this device."
-#~ msgstr ""
-#~ "Kas paigaldada ka samba klient?\n"
-#~ "Nii saab haakida ka windowsi jaod."
-
-#~ msgid "ERROR:   Check is already running in background, please wait a few minutes and try again"
-#~ msgstr "VIGA: Kontroll juba toimub taustal. Oota mõni minut ja proovi uuesti"
-
-#~ msgid "ERROR:   No internet found"
-#~ msgstr "VIGA: Internet puudub"
-
-#~ msgid "ERROR:   No network found"
-#~ msgstr "VIGA: Võrku ei leitud"
-
-#~ msgid "ERROR: Check is already running in background"
-#~ msgstr "VIGA: Kontroll juba toimub taustal."
-
-#~ msgid "Enable unlinked bouquets"
-#~ msgstr "Luba sidumata lemmiknimekirjad"
-
-#~ msgid "Feeds status:   Stable"
-#~ msgstr "Hoidlate olek:   Stabiilne"
-
-#~ msgid "Feeds status:   Unknown"
-#~ msgstr "Hoidlate olek:   Teadmata"
-
-#~ msgid "Feeds status:   Unstable"
-#~ msgstr "Hoidlate olek:   Ebastabiilne"
-
-#~ msgid "Feeds status:   Updating"
-#~ msgstr "Hoidlate olek:   Värskendamisel"
-
-#~ msgid "Find currently played service"
-#~ msgstr "Leia aktiivne kanal"
-
-#~ msgid "Frontprocessor version: %d"
-#~ msgstr "Esiprotsessori versioon: %d"
-
-#~ msgid "Image Information"
-#~ msgstr "Andmeid süsteemist"
-
-#~ msgid "Image type:\t%s\n"
-#~ msgstr "Imagetype:\t%s\n"
-
-#~ msgid "Inadyn Log"
-#~ msgstr "Inadyn logi"
-
-#~ msgid "Lamedb"
-#~ msgstr "Lamedb"
-
-#~ msgid "Load/Save/Delete"
-#~ msgstr "Laadi/talleta/kustuta"
-
-#~ msgid "Memory Information"
-#~ msgstr "Mälu info"
-
-#~ msgid "MiniDLNA Log"
-#~ msgstr "MiniDLNA logi"
-
-#~ msgid "Network Information"
-#~ msgstr "Võrgumaski teave"
-
-#~ msgid "New PIN"
-#~ msgstr "Nieuwe pincode"
-
-#~ msgid "No connection"
-#~ msgstr "Ühendus puudub"
-
-#~ msgid "OpenVpn Log"
-#~ msgstr "OpenVpn logi"
-
-#~ msgid "Parental control setup"
-#~ msgstr "Lapseluku seaded"
-
-#~ msgid "Play in main window"
-#~ msgstr "Näita peaekraaniil"
-
-#~ msgid "PowerManager log"
-#~ msgstr "Toitetaimeri logi"
-
-#~ msgid "PowerTimer Overview"
-#~ msgstr "Toiteaimeri ülevaade"
-
-#~ msgid "Reception Settings"
-#~ msgstr "Vastuvõtu sätted"
-
-#~ msgid "Samba Log"
-#~ msgstr "Samba logi"
-
-#~ msgid "Skin name:\t%s\n"
-#~ msgstr "Kujundus:\t%s\n"
-
-#~ msgid "SoftCam / CI"
-#~ msgstr "EMU / CI"
-
-#~ msgid "Standby / Restart"
-#~ msgstr "Seiskamine"
-
-#~ msgid ""
-#~ "System temperature: %s%sC\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Süsteemi temperatuur: %s%sC\n"
-#~ "\n"
-
-#~ msgid "This option allows you to change the virtuell loadspeaker position."
-#~ msgstr "Siin saab muuta virtuaalse kõlari asukohta."
-
-#~ msgid "Timer log"
-#~ msgstr "Taimeri logi"
-
-#~ msgid "Timer overview"
-#~ msgstr "Taimeri ülevaade"
-
-#~ msgid "Translation Information"
-#~ msgstr "Tõlke andmed"
-
-#~ msgid "Use the Left/Right buttons on your remote to move the user inyterface left/right"
-#~ msgstr "Kasuta ekraanigraafika vasakule/paremale liigutamiseks VASAK/PAREM nuppe."
-
-#~ msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
-#~ msgstr "Mida teha taimeri lõppemisel? 'Automaatne' laseb vastuvõtjal minna olekusse, mis oli enne taimeri alustamist. 'Ära tee midagi', 'mine ooteseisundisse' ja 'mine puhkeseisundisse' teevad just seda, mis kirjas."
-
-#~ msgid "When enabled the LNB power will not be switched off in standby"
-#~ msgstr "Määrates 'jah', ei lülitata ooteseisundis LNB toidet välja"
-
-#~ msgid "When enabled the LNB toneburst will be forced"
-#~ msgstr "Määrates 'jah', toimub LNB toonimpulss sunnitult"
-
-#~ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-#~ msgstr "Määrates 'jah', laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii on võimalik oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."
