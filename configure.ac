@@ -94,6 +94,7 @@ AM_CONDITIONAL(DAGS2, test "$BOXTYPE" == dags2)
 AM_CONDITIONAL(DAGS3, test "$BOXTYPE" == dags3)
 AM_CONDITIONAL(DAGS4, test "$BOXTYPE" == dags4)
 AM_CONDITIONAL(DAGS5, test "$BOXTYPE" == dags5)
+AM_CONDITIONAL(DM900, test "$BOXTYPE" == dm900)
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(DM7080, test "$BOXTYPE" == dm7080)
 AM_CONDITIONAL(DM820, test "$BOXTYPE" == dm820)
@@ -440,7 +441,7 @@ if test x"$with_amlogic" = xyes ; then
 fi
 
 
-if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm800se" -o "$BOXTYPE" == "dm800sev2" -o "$BOXTYPE" == "dm7020hd" -o "$BOXTYPE" == "dm7020hdv2"; then
+if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820" -o "$BOXTYPE" == "dm800se" -o "$BOXTYPE" == "dm800sev2" -o "$BOXTYPE" == "dm7020hd" -o "$BOXTYPE" == "dm7020hdv2" -o "$BOXTYPE" == "dm900"; then
 	AC_DEFINE(TUNER_DM7080, 1,[define BOXTYPE DM7080])
 fi
 

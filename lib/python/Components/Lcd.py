@@ -452,7 +452,7 @@ def InitLcd():
 		else:
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
-			config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
+			config.lcd.bright = ConfigSlider(default=SystemInfo["DefaultDisplayBrightness"], limits=(0, 10))
 		config.lcd.dimbright.addNotifier(setLCDdimbright);
 		config.lcd.dimbright.apply = lambda : setLCDdimbright(config.lcd.dimbright)
 		config.lcd.dimdelay = ConfigSelection(default = "0", choices = [

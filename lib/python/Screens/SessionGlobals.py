@@ -44,14 +44,15 @@ class SessionGlobals(Screen):
 		PATTERN_BLINK  = (20, 0x55555555, 0xa7fccf7a)
 
 		have_display = SystemInfo.get("FrontpanelDisplay", False)
+		have_touch_sensor = SystemInfo.get("HaveTouchSensor", False)
 		nr_leds = SystemInfo.get("NumFrontpanelLEDs", 0)
 
 		if nr_leds == 1:
 			FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF if have_display else PATTERN_ON, PATTERN_BLINK, PATTERN_OFF, PATTERN_BLINK]).connect(combine)
 		elif nr_leds == 2:
-			if have_display or getBoxType() in ('dm500hd', 'dm500hdv2'):
-				FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]).connect(combine)
-				FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]).connect(combine)
-			else:
+			if have_touch_sensor:
 				FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_ON, PATTERN_BLINK, PATTERN_OFF, PATTERN_BLINK]).connect(combine)
 				FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_OFF, PATTERN_OFF, PATTERN_OFF, PATTERN_OFF]).connect(combine)
+			else:
+				FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]).connect(combine)
+				FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]).connect(combine)
