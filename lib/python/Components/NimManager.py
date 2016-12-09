@@ -306,19 +306,20 @@ class SecConfigure:
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
 
 		for slot in nim_slots:
-			if slot.isMultiType():
-				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
-				types = slot.getMultiTypeList()
-				for FeType in types.itervalues():
-					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
-						continue
-					elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
-						continue
-					elif FeType in ("DVB-C", "DVB-C2") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
-						continue
-					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
-			else:
-				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
+			if slot.frontend_id is not None:
+				if slot.isMultiType():
+					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
+					types = slot.getMultiTypeList()
+					for FeType in types.itervalues():
+						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
+							continue
+						elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
+							continue
+						elif FeType in ("DVB-C", "DVB-C2") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
+							continue
+						eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
+				else:
+					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
 		print "sec config completed"
 
 	def updateAdvanced(self, sec, slotid):
