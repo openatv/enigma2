@@ -70,4 +70,5 @@ SystemInfo["CanUse3DModeChoices"] = fileExists('/proc/stb/fb/3dmode_choices') an
 SystemInfo["HaveMultiBoot"] = fileCheck("/boot/STARTUP") or fileCheck("/boot/STARTUP_1")
 SystemInfo["need_dsw"] = getBoxType() not in ('osminiplus','osmega')
 SystemInfo["HaveCISSL"] = fileCheck("/etc/ssl/certs/customer.pem") and fileCheck("/etc/ssl/certs/device.pem")
-
+SystemInfo["HaveTouchSensor"] = getBoxType() in ('dm520', 'dm525', 'dm900')
+SystemInfo["DefaultDisplayBrightness"] = getBoxType() == 'dm900' and 8 or 5
