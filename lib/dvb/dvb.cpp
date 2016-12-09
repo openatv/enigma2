@@ -130,6 +130,12 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM7080;
 	else if (!strncmp(tmp, "dm820\n", rd))
 		m_boxtype = DM820;
+	else if (!strncmp(tmp, "dm520\n", rd))
+		m_boxtype = DM520;
+	else if (!strncmp(tmp, "dm525\n", rd))
+		m_boxtype = DM525;
+	else if (!strncmp(tmp, "dm900\n", rd))
+		m_boxtype = DM900;
 	else if (!strncmp(tmp, "Gigablue\n", rd))
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gb800solo\n", rd))
@@ -154,9 +160,15 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gbultraue\n", rd))
 		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbultraueh\n", rd))
+		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gbx1\n", rd))
 		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbx2\n", rd))
+		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gbx3\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbx3h\n", rd))
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "ebox5000\n", rd))
 		m_boxtype = DM800;
