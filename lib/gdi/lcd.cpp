@@ -425,7 +425,7 @@ void eDBoxLCD::update()
 					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 					fclose(boxtype_file);
 				}
-				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0) || (strcmp(boxtype_name, "dm900\n") == 0))
+				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0))
 				{
 					//gggrrrrrbbbbbggg bit order from memory
 					//gggbbbbbrrrrrggg bit order to LCD
@@ -445,6 +445,21 @@ void eDBoxLCD::update()
 							gb_buffer[offset] = (_buffer[offset] & 0x07) | ((_buffer[offset + 1] << 3) & 0xE8);
 							gb_buffer[offset + 1] = (_buffer[offset + 1] & 0xE0)| ((_buffer[offset] >> 3) & 0x1F);
 						}
+					}
+					write(lcdfd, gb_buffer, _stride * res.height());
+					if (file != NULL)
+					{
+						fclose(file);
+					}
+				}
+				else if ((strcmp(boxtype_name, "dm900\n") == 0))
+				{
+					unsigned char gb_buffer[_stride * res.height()];
+					for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
+					{
+						unsigned int src = ((unsigned int*)_buffer)[offset];
+						//                                             blue                         red                  green low                     green high
+						((unsigned int*)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
 					}
 					write(lcdfd, gb_buffer, _stride * res.height());
 					if (file != NULL)
