@@ -84,7 +84,7 @@ class Network:
 
 		for line in result.splitlines():
 			split = line.strip().split(' ',2)
-			if split[1][:-1] == iface or split[1][:-1] == (iface + '@sys0'):
+			if (split[1][:-1] == iface) or (split[1][:-1] == (iface + '@sys0')):
 				up = self.regExpMatch(upPattern, split[2])
 				mac = self.regExpMatch(macPattern, self.regExpMatch(macLinePattern, split[2]))
 				if up is not None:
