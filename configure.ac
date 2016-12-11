@@ -264,6 +264,17 @@ fi
 
 AM_CONDITIONAL(HAVE_COLORLCD720, test x"$withcolorlcd720" != xno)
 
+AC_ARG_WITH(colorlcd800,
+	AC_HELP_STRING([--with-colorlcd800], [use 800x480 16bpp color display, yes or no]),
+	[[withcolorlcd800=$withval]],
+	[[withcolorlcd800=no]]
+)
+if test x"$withcolorlcd800" != xno ; then
+	AC_DEFINE(HAVE_COLORLCD800, 1,[Define when using a 800x480 color display device])
+fi
+
+AM_CONDITIONAL(HAVE_COLORLCD800, test x"$withcolorlcd800" != xno)
+
 AC_ARG_WITH(bwlcd255,
 	AC_HELP_STRING([--with-bwlcd255], [use 255x64 1bpp black and white display, yes or no]),
 	[[withbwlcd255=$withval]],
@@ -444,6 +455,7 @@ data/display720/Default_with_Analogue_Clock_Standby/Makefile
 data/display720/Default_with_Picon_and_Analogue_Clock_Standby/Makefile
 data/display720/Default_with_Picon_Fullscreen/Makefile
 data/display720/Default_with_Picon_Fullscreen_and_Analogue_Clock_Standby/Makefile
+data/display800/Makefile
 data/vfd128/Makefile
 data/vfd140/Makefile
 data/vfd255/Makefile
