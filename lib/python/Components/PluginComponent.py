@@ -65,7 +65,12 @@ class PluginComponent:
 								if path.find('WebInterface') == -1:
 									print "[PluginComponent] Plugin probably removed, but not cleanly in", path
 									print "[PluginComponent] trying to remove:", path
-									rmtree(path)
+# rmtree will produce an error if path is a symlink, so...
+									if os.path.islink(path):
+										rmtree(os.path.realpath(path))
+										os.unlink(path)
+									else:
+										rmtree(path)
 							continue
 
 						# allow single entry not to be a list
