@@ -114,6 +114,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		"EventFontInfobar": ("font", "eventFontNameInfobar", "eventFontSizeInfobar"),
 		"ServiceFontInfobar": ("font", "serviceFontNameInfobar", "serviceFontSizeInfobar"),
 		# Colors
+		"EntryForegroundColorNow": ("color", "foreColorNow"),
+		"EntryForegroundColorNowSelected": ("color", "foreColorNowSelected"),
+		"EntryBackgroundColorNow": ("color", "backColorNow"),
+		"EntryBackgroundColorNowSelected": ("color", "backColorNowSelected"),
 		"ServiceForegroundColor": ("color", "foreColorService"),
 		"ServiceForegroundColorNow": ("color", "foreColorServiceNow"),
 		"ServiceBackgroundColor": ("color", "backColorService"),
@@ -211,6 +215,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.icetvicon = _loadPixmap('icons/epgclock_icetv.png')
 
 		self.othEvPix = None
+		self.nowEvPix = None
 		self.selEvPix = None
 		self.othServPix = None
 		self.nowServPix = None
@@ -234,6 +239,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorSelected = 0xd69600
 		self.foreColorService = 0xffffff
 		self.backColorService = 0x2D455E
+		self.foreColorNow = 0xffffff
+		self.foreColorNowSelected = 0xffffff
+		self.backColorNow = 0x00825F
+		self.backColorNowSelected = 0xd69600
 		self.foreColorServiceNow = 0xffffff
 		self.backColorServiceNow = 0x00825F
 
@@ -924,20 +933,26 @@ class EPGList(HTMLComponent, GUIComponent):
 				evRect = Rect(left + xpos, top, ewidth, height)
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
 
-				foreColor = self.foreColor
-				backColor = self.backColor
-				foreColorSel = self.foreColorSelected
-				backColorSel = self.backColorSelected
-				if clock_types is not None and clock_types in (2, 12):
-					foreColor = self.foreColorRecord
-					backColor = self.backColorRecord
-					foreColorSel = self.foreColorRecordSelected
-					backColorSel = self.backColorRecordSelected
-				elif clock_types is not None and clock_types == 7:
-					foreColor = self.foreColorZap
-					backColor = self.backColorZap
-					foreColorSel = self.foreColorZapSelected
-					backColorSel = self.backColorZapSelected
+				if stime <= now < (stime + duration) and config.epgselection.graph_shownow.value:
+					foreColor = self.foreColorNow
+					backColor = self.backColorNow
+					foreColorSel = self.foreColorNowSelected
+					backColorSel = self.backColorNowSelected
+				else:
+					foreColor = self.foreColor
+					backColor = self.backColor
+					foreColorSel = self.foreColorSelected
+					backColorSel = self.backColorSelected
+					if clock_types is not None and clock_types in (2, 12):
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+					elif clock_types is not None and clock_types == 7:
+						foreColor = self.foreColorZap
+						backColor = self.backColorZap
+						foreColorSel = self.foreColorZapSelected
+						backColorSel = self.backColorZapSelected
 
 				if selected and self.select_rect.x == xpos + left:
 					if clock_types is not None:
@@ -954,11 +969,14 @@ class EPGList(HTMLComponent, GUIComponent):
 						clocks = self.clocks[clock_types]
 					borderPixmaps = self.borderPixmaps
 					infoPix = self.infoPix
-					bgpng = self.othEvPix
-					if clock_types is not None and clock_types in (2, 12):
-						bgpng = self.recEvPix
-					elif clock_types is not None and clock_types == 7:
-						bgpng = self.zapEvPix
+					if stime <= now < (stime + duration) and config.epgselection.graph_shownow.value:
+						bgpng = self.nowEvPix
+					else:
+						bgpng = self.othEvPix
+						if clock_types is not None and clock_types in (2, 12):
+							bgpng = self.recEvPix
+						elif clock_types is not None and clock_types == 7:
+							bgpng = self.zapEvPix
 
 				# event box background
 				if bgpng is not None and self.graphic:
@@ -1225,6 +1243,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if (self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH)) and not self.graphicsloaded:
 			if self.graphic:
 				_loadPixmapsToAttrs(self, {
+					"nowEvPix": 'epg/CurrentEvent.png',
 					"othEvPix": 'epg/OtherEvent.png',
 					"selEvPix": 'epg/SelectedEvent.png',
 					"othServPix": 'epg/OtherService.png',
