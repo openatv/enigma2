@@ -148,7 +148,6 @@ class About(AboutBase):
 		self.list.append(self.makeInfoEntry(_("Last Upgrade:"), about.getLastUpdateString()))
 		self.list.append(self.makeEmptyEntry())
 		self.list.append(self.makeInfoEntry(_("WWW:"), about.getImageUrlString()))
-
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			tempinfo = file('/proc/stb/sensors/temp0/value').read()

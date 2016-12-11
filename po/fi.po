@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-24 20:12+0000\n"
-"PO-Revision-Date: 2016-11-25 14:01+0200\n"
+"POT-Creation-Date: 2016-12-06 22:20+0000\n"
+"PO-Revision-Date: 2016-12-07 12:48+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/timoj/Kojo/Samzam\n"
 "Language: fi\n"
@@ -153,6 +153,10 @@ msgstr ""
 
 msgid " "
 msgstr " "
+
+#, python-format
+msgid "  (%s x %s)"
+msgstr "  (%s x %s)"
 
 #
 msgid " (0 - all networks)"
@@ -1710,10 +1714,6 @@ msgstr "Puskuroi %d%%"
 
 msgid "Buffers:"
 msgstr "Puskurit:"
-
-#, python-format
-msgid "Build:\t%s.%s%s (%s)\n"
-msgstr "Versio:\t%s.%s%s (%s)\n"
 
 #, python-format
 msgid "Build: %s"
@@ -3587,6 +3587,10 @@ msgstr "Dynaaminen kontrasti"
 msgid "E"
 msgstr "E"
 
+#, python-format
+msgid "E2 (re)starts:\t%s\n"
+msgstr "Käynnistykset:\t%s\n"
+
 msgid "ECM Statistics"
 msgstr "ECM tietoja"
 
@@ -4161,6 +4165,11 @@ msgstr "FEC:"
 msgid "FLASH"
 msgstr "FLASH"
 
+#
+#, python-format
+msgid "FP version:\t%s"
+msgstr "FP versio:\t%s"
+
 msgid "FTP Setup"
 msgstr "FTP-asetukset"
 
@@ -4369,10 +4378,6 @@ msgstr "Mistä :"
 
 msgid "Front Display Panel"
 msgstr "Näyttöpaneeli"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Edustaprosessorin versio: %d"
 
 msgid "Full screen"
 msgstr "Kokoruutu"
@@ -4843,6 +4848,10 @@ msgstr ""
 msgid "Image Manager"
 msgstr "Image-varmuuskopiot"
 
+#, python-format
+msgid "Image:\t%s.%s%s (%s)\n"
+msgstr "Ohjelmaversio:\t%s.%s%s (%s)\n"
+
 #
 msgid "Immediate shutdown"
 msgstr "Sammuta heti"
@@ -5250,12 +5259,8 @@ msgstr "Aikaisempi nopeus"
 
 #
 #, python-format
-msgid ""
-"Last update:\t%s\n"
-"\n"
-msgstr ""
-"Päivitys:\t%s\n"
-"\n"
+msgid "Last update:\t%s\n"
+msgstr "Päivitys:\t%s\n"
 
 #
 #, python-format
@@ -7299,7 +7304,7 @@ msgid "Process"
 msgstr "Suorita"
 
 #, python-format
-msgid "Processor temperature:\t%s"
+msgid "Processor temp:\t%s"
 msgstr "Prosessorin lämpötila:\t%s"
 
 msgid "Profile"
@@ -9065,6 +9070,9 @@ msgstr "Näytä source-tiedostojen ohjelmapaketit"
 msgid "Show status icons in movie list"
 msgstr "Näytä tilakuvakkeet tallenneluettelossa"
 
+msgid "Show stream clients"
+msgstr "Näytä etäasiakkaat"
+
 #
 msgid "Show subservice selection"
 msgstr "Näytä kanavatyypin kuvakkeet"
@@ -9233,12 +9241,13 @@ msgstr "Koko: "
 msgid "Skin Setting"
 msgstr "Teeman asetus"
 
-#, python-format
-msgid "Skin name:\t%s\n"
-msgstr "Teeman nimi:\t%s\n"
-
 msgid "Skin setup"
 msgstr "Teeman valinta"
+
+#
+#, python-format
+msgid "Skin:\t%s"
+msgstr "Teema:\t%s"
 
 #
 msgid "Skins"
@@ -9886,7 +9895,7 @@ msgid "System"
 msgstr "Järjestelmä"
 
 #, python-format
-msgid "System temperature:\t%s"
+msgid "System temp:\t%s"
 msgstr "Laitteen lämpötila:\t%s"
 
 #, python-format
@@ -13963,8 +13972,23 @@ msgstr "Vaihdettu"
 #~ msgid "Find currently played service"
 #~ msgstr "Etsi nyt käytössä oleva kanava"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Edustaprosessorin versio: %d"
+
 #~ msgid "Play in main window"
 #~ msgstr "Toista pääikkunassa"
+
+#~ msgid "R/C ID:\t"
+#~ msgstr "R/C ID:\t"
+
+#~ msgid "R/C type:\t"
+#~ msgstr "R/C tyyppi:\t"
+
+#~ msgid "R/C type:\t%s"
+#~ msgstr "R/C tyyppi:\t%s"
+
+#~ msgid "Skin name:\t%s\n"
+#~ msgstr "Teeman nimi:\t%s\n"
 
 #~ msgid ""
 #~ "System temperature: %s%sC\n"

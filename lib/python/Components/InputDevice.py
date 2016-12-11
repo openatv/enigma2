@@ -1,5 +1,4 @@
 from config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
-from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from SystemInfo import SystemInfo
 from fcntl import ioctl
 import os
@@ -45,7 +44,7 @@ class inputDevices:
 				self.name = self.name[:self.name.find("\0")]
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
-				os_close(self.fd)
+				os.close(self.fd)
 			except (IOError, OSError), err:
 				print "[InputDevice] Error: evdev='%s' getInputDevices <ERROR: ioctl(EVIOCGNAME): '%s'>" % (evdev, str(err))
 				self.name = None
@@ -243,8 +242,18 @@ class RcTypeControl():
 		return self.boxType
 
 	def writeRcType(self, rctype):
-		fd = open('/proc/stb/ir/rc/type', 'w')
-		fd.write(rctype and '%d' % rctype or '0')
-		fd.close()
+		if self.isSupported:
+			fd = open('/proc/stb/ir/rc/type', 'w')
+			fd.write(rctype and '%d' % rctype or '0')
+			fd.close()
+
+	def readRcType(self):
+		if self.isSupported:
+			fd = open('/proc/stb/ir/rc/type', 'r')
+			rc = fd.read().strip()
+			fd.close()
+		else:
+			rc = 0
+		return int(rc)
 
 iRcTypeControl = RcTypeControl()
