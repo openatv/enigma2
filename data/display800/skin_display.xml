@@ -41,8 +41,6 @@
 		<panel name="LCDChannelSelectionRemainingTime" />
 		<panel name="LCDChannelSelectionStartEndTime" />
 		<panel name="LCDRecordIcon" />
-		<panel name="LCDTunerInfo" />
-		<panel name="LCDTime" />
 	</screen>
 	<screen name="ChannelSelectionRadio_summary" position="0,0" size="800,480">
 		<widget source="parent.RdsDecoder" render="Label" position="40,200" size="720,150" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="center" zPosition="2">
@@ -58,8 +56,6 @@
 		<panel name="LCDEPGRemainingTime" />
 		<panel name="LCDEPGStartEndTime" />
 		<panel name="LCDRecordIcon" />
-		<panel name="LCDTunerInfo" />
-		<panel name="LCDTime" />
 	</screen>
 	<screen name="GraphicalEPG_summary" position="0,0" size="800,480">
 		<panel name="GraphicalEPGPIG_summary" />
@@ -79,8 +75,6 @@
 		<panel name="LCDInfoBarRemainingTime" />
 		<panel name="LCDInfoBarStartEndTime" />
 		<panel name="LCDRecordIcon" />
-		<panel name="LCDTunerInfo" />
-		<panel name="LCDTime" />
 	</screen>
 	
 	<!-- STANDBY -->
