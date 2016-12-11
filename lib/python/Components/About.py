@@ -98,18 +98,16 @@ def getCPUString():
 
 def getCpuCoresString():
 	try:
+		cores = 1
 		file = open('/proc/cpuinfo', 'r')
 		lines = file.readlines()
+		file.close()
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("processor"):
-					if int(splitted[1]) > 0:
-						cores = 2
-					else:
-						cores = 1
-		file.close()
+					cores = int(splitted[1]) + 1
 		return cores
 	except IOError:
 		return _("unavailable")
