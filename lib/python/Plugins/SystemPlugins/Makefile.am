@@ -28,15 +28,15 @@ SUBDIRS += CableScan
 endif
 
 if VUSOLO4K
-SUBDIRS += CableScan
+SUBDIRS += CableScan AnimationSetup
 endif
 
 if VUUNO4K
-SUBDIRS += CableScan
+SUBDIRS += CableScan AnimationSetup
 endif
 
 if VUULTIMO4K
-SUBDIRS += CableScan
+SUBDIRS += CableScan AnimationSetup
 endif
 
 install_PYTHON = __init__.py
