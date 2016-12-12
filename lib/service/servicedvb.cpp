@@ -2315,6 +2315,12 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 	size_t index;
 
 	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
+	if(!remote_fallback_enabled)
+	{
+		// No need to do anything else if the feature is disabled
+		return false;
+	}
+
 	std::string remote_fallback_url = "http://" + eConfigManager::getConfigValue("config.usage.remote_fallback");
 	int port_num = eConfigManager::getConfigIntValue("config.usage.remote_fallback_port", 8001);
 	std::ostringstream remote_fallback_port;
@@ -2322,7 +2328,7 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 	remote_fallback_url +=  ':' + remote_fallback_port.str();
 
 	if(is_stream || is_pvr || simulate ||
-			!remote_fallback_enabled || (remote_fallback_url.length() == 0) ||
+			(remote_fallback_url.length() == 0) ||
 			eDVBResourceManager::getInstance(res_mgr))
 		return(false);
 
