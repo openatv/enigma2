@@ -31,4 +31,12 @@ if VUSOLO4K
 SUBDIRS += CableScan
 endif
 
+if VUUNO4K
+SUBDIRS += CableScan
+endif
+
+if VUULTIMO4K
+SUBDIRS += CableScan
+endif
+
 install_PYTHON = __init__.py
