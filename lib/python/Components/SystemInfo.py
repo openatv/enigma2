@@ -71,3 +71,4 @@ SystemInfo["HaveMultiBoot"] = fileCheck("/boot/STARTUP") or fileCheck("/boot/STA
 SystemInfo["HaveCISSL"] = fileCheck("/etc/ssl/certs/customer.pem") and fileCheck("/etc/ssl/certs/device.pem")
 SystemInfo["HaveTouchSensor"] = getBoxType() in ('dm520', 'dm525', 'dm900')
 SystemInfo["DefaultDisplayBrightness"] = getBoxType() == 'dm900' and 8 or 5
+SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
