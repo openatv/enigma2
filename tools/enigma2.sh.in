@@ -154,6 +154,10 @@ case $ret in
 		/sbin/modprobe fp
 		/sbin/reboot
 		;;
+	16)
+		echo "rescue" > /proc/stb/fp/boot_mode
+		/sbin/reboot
+		;;
 	42)
 		python /usr/lib/enigma2/python/upgrade.pyo
 		;;
