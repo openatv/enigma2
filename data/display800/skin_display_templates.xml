@@ -247,10 +247,10 @@
 			<convert type="ServiceInfo">IsNotWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>	
-<!--		<widget source="session.CurrentService" render="Pixmap" pixmap="2160.png" position="590,110" size="163,70" zPosition="1" alphatest="blend">
-			<convert type="ServiceInfo">Is2160</convert>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="2160.png" position="590,110" size="163,70" zPosition="1" alphatest="blend">
+			<convert type="ServiceInfo">Is4K</convert>
 			<convert type="ConditionalShowHide" />
-		</widget> -->
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="1080.png" position="590,110" size="163,70" zPosition="1" alphatest="blend">
 			<convert type="ServiceInfo">Is1080</convert>
 			<convert type="ConditionalShowHide" />
