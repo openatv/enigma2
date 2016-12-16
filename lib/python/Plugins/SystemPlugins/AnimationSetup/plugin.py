@@ -15,7 +15,7 @@ from boxbranding import getBrandOEM
 g_default = {
 		"current": 0,
 		"speed"  : 20,
-		"listbox": "0",
+		"listbox": "2",
 }
 g_max_speed = 30
 
