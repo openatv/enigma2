@@ -654,7 +654,7 @@ void gPainter::sendShowItem(long dir, ePoint point, eSize size)
 	o.opcode=gOpcode::sendShowItem;
 	o.dc = m_dc.grabRef();
 	o.parm.setShowItemInfo = new gOpcode::para::psetShowItemInfo;
-	o.parm.setShowItemInfo->dir = dir;
+	.parm.setShowItemInfo->dir = dir;
 	o.parm.setShowItemInfo->point = point;
 	o.parm.setShowItemInfo->size = size;
 	m_rc->submit(o);
