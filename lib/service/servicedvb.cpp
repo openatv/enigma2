@@ -2075,6 +2075,11 @@ void eDVBServicePlay::getAITApplications(std::map<int, std::string> &aitlist)
 	return m_service_handler.getAITApplications(aitlist);
 }
 
+PyObject * eDVBServicePlay::getHbbTVApplications()
+{
+	return m_service_handler.getHbbTVApplications();
+}
+
 void eDVBServicePlay::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
 {
 	m_service_handler.getCaIds(caids, ecmpids);

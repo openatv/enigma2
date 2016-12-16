@@ -8,6 +8,10 @@ PyObject *getInfoObject(int w)
 {
 	switch (w)
 	{
+		case iServiceInformation::sHBBTVUrl:
+		{
+			return self->getHbbTVApplications();
+		}
 		case iServiceInformation::sTransponderData:
 		{
 			ePyObject ret = PyDict_New();
@@ -121,6 +125,11 @@ PyObject *getInfoObject(int w)
 	}
 	Py_INCREF(Py_None);
 	return Py_None;
+}
+
+PyObject *getHbbTVApplications()
+{
+	return self->getHbbTVApplications();
 }
 
 PyObject *getAITApplications()
