@@ -787,9 +787,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					}
 					if (!(m_record_indicator_mode == 3 && isRecorded) && isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
 						painter.setForegroundColor(m_color[serviceSelectedFallback]);
-#ifdef USE_LIBVUGLES2
-					painter.setFlush(text == "<n/a>");
-#endif
 					break;
 				}
 				case celServiceInfo:

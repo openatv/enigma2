@@ -67,8 +67,6 @@ struct gOpcode
 		sendShow,
 		sendHide,
 #ifdef USE_LIBVUGLES2
-		sendShowItem,
-		setFlush,
 		setView,
 #endif
 	} opcode;
@@ -158,18 +156,6 @@ struct gOpcode
 			eSize size;
 		} *setShowHideInfo;
 #ifdef USE_LIBVUGLES2
-		struct psetShowItemInfo
-		{
-			long dir;
-			ePoint point;
-			eSize size;
-		} *setShowItemInfo;
-
-		struct psetFlush
-		{
-			bool enable;
-		} *setFlush;
-		
 		struct psetViewInfo
 		{
 			eSize size;
@@ -307,8 +293,6 @@ public:
 	void sendShow(ePoint point, eSize size);
 	void sendHide(ePoint point, eSize size);
 #ifdef USE_LIBVUGLES2
-	void sendShowItem(long dir, ePoint point, eSize size);
-	void setFlush(bool val);
 	void setView(eSize size);
 #endif
 };
