@@ -103,7 +103,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	{
 		bool rotor=false;
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
-		bool is_unicable = lnb_param.SatCR_idx != -1;
+		bool is_unicable = lnb_param.SatCR_format != SatCR_format_none;
 		bool is_unicable_position_switch = lnb_param.SatCR_positions > 1;
 
 		if ( lnb_param.m_slot_mask & slot_id ) // lnb for correct tuner?
@@ -324,7 +324,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 			eDVBSatelliteDiseqcParameters::t_diseqc_mode diseqc_mode = di_param.m_diseqc_mode;
 			eDVBSatelliteSwitchParameters::t_voltage_mode voltage_mode = sw_param.m_voltage_mode;
 			bool diseqc13V = voltage_mode == eDVBSatelliteSwitchParameters::HV_13;
-			bool is_unicable = lnb_param.SatCR_idx != -1;
+			bool is_unicable = lnb_param.SatCR_format != SatCR_format_none;
 
 			bool useGotoXX = false;
 			int RotorCmd=-1;
@@ -722,18 +722,124 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 
 				eDVBDiseqcCommand diseqc;
 				memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
-				diseqc.len = 5;
-				diseqc.data[0] = 0xE0;
-				diseqc.data[1] = 0x10;
-				diseqc.data[2] = 0x5A;
-				diseqc.data[3] = lnb_param.UnicableTuningWord >> 8;
-				diseqc.data[4] = lnb_param.UnicableTuningWord;
+
+				switch(lnb_param.SatCR_format)
+				{
+					case(SatCR_format_unicable):
+					{
+						//	Unicable ODU_channel_change command
+						//
+						//	data[0]		framing: 0xe0
+						//	data[1]		addressing: 0x10
+						//	data[2]		command: ODU_channel_change 0x5a
+						//	data[3]		"data1": data[3][7..5]: user band, data[3][4..2]: bank, data[3][1..0]: T[9..8]
+						//	data[4]		"data2": data[4][7..0]: T[7..0]
+
+						unsigned int ub = lnb_param.SatCR_idx & 0x07;
+						unsigned int ub_mhz = lnb_param.SatCRvco / 1000;
+						unsigned int frequency_mhz = sat.frequency / 1000;
+						unsigned int lof_mhz = lof / 1000;
+						unsigned int mode = band & 0x03;
+						unsigned int position = (lnb_param.SatCR_position - 1) & 0x01;
+						unsigned int bank = (position << 2) | (mode << 0);
+						unsigned int t1, t2, t3, t4, t5, t6;
+						unsigned int encoded_frequency_T;
+
+						/* calculate "T" value */
+
+						t1 = (absdiff(frequency_mhz, lof_mhz) + ub_mhz) * 10; /* multiply "T" base by ten for proper rounding to nearest integer */
+						t2 = t1 / 4;	// divide by 4 MHz (per Unicable specification)
+						t3 = t2 / 10;	// divide by 10 to correct earlier multiplication by 10, now integer*10 truncated
+						t4 = t3 * 10;	// multiply again by 10 to get actual integer result
+						t5 = t2 - t4;	// calculate difference between result and result integer*10 truncated, the fraction
+						t6 = t3 + (t5 >= 5 ? 1 : 0);	// round the result
+						encoded_frequency_T = t6 - 350;
+
+						diseqc.len = 5;
+						diseqc.data[0] = 0xe0;
+						diseqc.data[1] = 0x10;
+						diseqc.data[2] = 0x5a;
+						diseqc.data[3] = (unsigned char)((ub << 5) | (bank << 2) | ((encoded_frequency_T & 0x300) >> 8));
+						diseqc.data[4] = (unsigned char)(encoded_frequency_T & 0xff);
+						//diseqc.data[3] = (lnb_param.UnicableTuningWord >> 8) & 0xff;
+						//diseqc.data[4] = (lnb_param.UnicableTuningWord >> 0) & 0xff;
+
+						frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
+						frontend.setData(eDVBFrontend::DICTION, SatCR_format_unicable);
+
+						eDebug("**** Tuning Unicable");
+						eDebug("**** frequency_mhz: %u", frequency_mhz);
+						eDebug("**** lo_mhz: %u", lof_mhz);
+						eDebug("**** ub_mhz: %u", ub_mhz);
+						eDebug("**** T: %u", encoded_frequency_T);
+						eDebug("**** ub: %u", ub);
+						eDebug("**** position: %u", position);
+						eDebug("**** mode: %u", mode);
+						eDebug("**** bank: %u", bank);
+						eDebug("**** Unicable: %02x %02x %02x %02x %02x", diseqc.data[0], diseqc.data[1],
+								diseqc.data[2], diseqc.data[3], diseqc.data[4]);
+						eDebug("**** Calculated tuningword: %04x", (diseqc.data[3] << 8) | (diseqc.data[4] << 0));
+						eDebug("**** Stored     tuningword: %04x", lnb_param.UnicableTuningWord);
+
+						break;
+					}
+
+					case(SatCR_format_jess):
+					{
+						//	JESS ODU_channel_change command
+						//
+						//	data[0]		framing: 0x70
+						//	data[1]		data[1][7..3]: ub, data[1][2..0:] T [10..8]
+						//	data[2]		data[2][7..0]: T [7..0]
+						//	data[3]		data[3][7..2]: position, data[3][1]: polarity, data[3][0]: band
+
+						unsigned int ub = lnb_param.SatCR_idx & 0x1f;
+						unsigned int frequency_mhz = sat.frequency / 1000;
+						unsigned int lof_mhz = lof / 1000;
+						unsigned int encoded_frequency_T = frequency_mhz - lof_mhz - 100;
+						unsigned int mode = band & 0x03;
+						unsigned int position = (lnb_param.SatCR_position - 1) & 0x3f;
+
+						diseqc.len = 4;
+						diseqc.data[0] = 0x70;
+						diseqc.data[1] = (unsigned char)((ub << 3) | ((encoded_frequency_T & 0x700) >> 8));
+						diseqc.data[2] = (unsigned char)(encoded_frequency_T & 0xff);
+						diseqc.data[3] = (unsigned char)((position << 2) | mode);
+
+						frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
+						frontend.setData(eDVBFrontend::DICTION, SatCR_format_jess);
+
+						eDebug("**** Tuning JESS");
+						eDebug("**** frequency_mhz: %u", frequency_mhz);
+						eDebug("**** lo_mhz: %u", lof_mhz);
+						eDebug("**** T: %u", encoded_frequency_T);
+						eDebug("**** position: %u", position);
+						eDebug("**** ub: %u", ub);
+						eDebug("**** mode: %u", mode);
+						eDebug("**** JESS: %02x %02x %02x %02x", diseqc.data[0], diseqc.data[1], diseqc.data[2], diseqc.data[3]);
+
+						break;
+					}
+
+					default:
+					{
+						frontend.setData(eDVBFrontend::SATCR, -1);
+						frontend.setData(eDVBFrontend::DICTION, SatCR_format_none);
+
+						eDebug("**** SatCR_format neither Unicable nor JESS!");
+					}
+				}
 
 				sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
 				if ( RotorCmd != -1 && RotorCmd != lastRotorCmd && !rotor_param.m_inputpower_parameters.m_use)
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
+			}
+			else
+			{
+				frontend.setData(eDVBFrontend::SATCR, -1);
+				frontend.setData(eDVBFrontend::DICTION, SatCR_format_none);
 			}
 
 			eDebugNoSimulate("[eDVBSatelliteEquipmentControl] RotorCmd %02x, lastRotorCmd %02lx", RotorCmd, lastRotorCmd);
@@ -964,9 +1070,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 	return -1;
 }
 
-void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend, int satcr)
+void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend)
 {
 	eSecCommandList sec_sequence;
+	long userband, diction;
+
+	frontend.getData(eDVBFrontend::SATCR, userband);
+	frontend.getData(eDVBFrontend::DICTION, diction);
 
 	// check if voltage is disabled
 	eSecCommand::pair compare;
@@ -981,16 +1091,77 @@ void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend, 
 	sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS]) );
 
-	eDVBDiseqcCommand diseqc;
-	memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
-	diseqc.len = 5;
-	diseqc.data[0] = 0xE0;
-	diseqc.data[1] = 0x10;
-	diseqc.data[2] = 0x5A;
-	diseqc.data[3] = satcr << 5;
-	diseqc.data[4] = 0x00;
+	switch((SatCR_format_t)diction)
+	{
+		case(SatCR_format_unicable):
+		{
+			//	Unicable ODU_channel_change command, T = 0 means shutdown UB
+			//
+			//	data[0]		framing: 0xe0
+			//	data[1]		addressing: 0x10
+			//	data[2]		command: ODU_channel_change 0x5a
+			//	data[3]		"data1": data[3][7..5]: user band, data[3][4..2]: bank, data[3][1..0]: T[9..8]
+			//	data[4]		"data2": data[4][7..0]: T[7..0]
 
-	sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+			unsigned int ub = userband & 0x01;
+			unsigned int encoded_frequency_T = 0;
+			unsigned int mode = 0;
+			unsigned int position = 0;
+			unsigned int bank = (position << 2) | (mode << 0);
+
+			eDVBDiseqcCommand diseqc;
+			memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
+
+			diseqc.len = 5;
+			diseqc.data[0] = 0xe0;
+			diseqc.data[1] = 0x10;
+			diseqc.data[2] = 0x5a;
+			diseqc.data[3] = (unsigned char)((ub << 5) | (bank << 2) | ((encoded_frequency_T & 0x300) >> 8));
+			diseqc.data[4] = (unsigned char)(encoded_frequency_T & 0xff);
+
+			eDebug("**** shutdown unicable ub %u", ub);
+
+			sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+
+			break;
+		}
+
+		case(SatCR_format_jess):
+		{
+			//	JESS ODU_channel_change command, T = 0 means shutdown UB
+			//
+			//	data[0]		framing: 0x70
+			//	data[1]		data[1][7..3]: ub, data[1][2..0:] T [10..8]
+			//	data[2]		data[2][7..0]: T [7..0]
+			//	data[3]		data[3][7..2]: position, data[3][1]: polarity, data[3][0]: band
+
+			unsigned int ub = userband & 0x1f;
+			unsigned int encoded_frequency_T = 0;
+			unsigned int mode = 0;
+			unsigned int position = 0;
+
+			eDVBDiseqcCommand diseqc;
+			memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
+
+			diseqc.len = 4;
+			diseqc.data[0] = 0x70;
+			diseqc.data[1] = (unsigned char)((ub << 3) | ((encoded_frequency_T & 0x700) >> 8));
+			diseqc.data[2] = (unsigned char)(encoded_frequency_T & 0xff);
+			diseqc.data[3] = (unsigned char)((position << 2) | mode);
+
+			eDebug("**** shutdown JESS ub %d", ub);
+
+			sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+
+			break;
+		}
+
+		default:
+		{
+			eDebug("**** ignore shutdown unknown unicable type %u ub %u", (int)diction, (int)userband);
+		}
+	}
+
 	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_LAST_DISEQC_CMD]) );
 	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 	sec_sequence.push_back( eSecCommand(eSecCommand::DELAYED_CLOSE_FRONTEND) );
@@ -1270,6 +1441,14 @@ RESULT eDVBSatelliteEquipmentControl::setInputpowerDelta(int delta)
 }
 
 /* Unicable Specific Parameters */
+
+RESULT eDVBSatelliteEquipmentControl::getLNBSatCR()
+{
+	if ( currentLNBValid() )
+		return m_lnbs[m_lnbidx].SatCR_idx;
+	return -ENOENT;
+}
+
 RESULT eDVBSatelliteEquipmentControl::setLNBSatCR(int SatCR_idx)
 {
 	eSecDebug("[eDVBSatelliteEquipmentControl::setLNBSatCR] idx=%d", SatCR_idx);
@@ -1280,6 +1459,13 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSatCR(int SatCR_idx)
 	else
 		return -ENOENT;
 	return 0;
+}
+
+RESULT eDVBSatelliteEquipmentControl::getLNBSatCRvco()
+{
+	if ( currentLNBValid() )
+		return m_lnbs[m_lnbidx].SatCRvco;
+	return -ENOENT;
 }
 
 RESULT eDVBSatelliteEquipmentControl::setLNBSatCRvco(int SatCRvco)
@@ -1296,6 +1482,13 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSatCRvco(int SatCRvco)
 	return 0;
 }
 
+RESULT eDVBSatelliteEquipmentControl::getLNBSatCRpositions()
+{
+	if ( currentLNBValid() )
+		return m_lnbs[m_lnbidx].SatCR_positions;
+	return -ENOENT;
+}
+
 RESULT eDVBSatelliteEquipmentControl::setLNBSatCRpositions(int SatCR_positions)
 {
 	eSecDebug("[eDVBSatelliteEquipmentControl::setLNBSatCRpositions] positions=%d", SatCR_positions);
@@ -1308,25 +1501,47 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSatCRpositions(int SatCR_positions)
 	return 0;
 }
 
-RESULT eDVBSatelliteEquipmentControl::getLNBSatCRpositions()
+RESULT eDVBSatelliteEquipmentControl::getLNBSatCRformat()
 {
-	if ( currentLNBValid() )
-		return m_lnbs[m_lnbidx].SatCR_positions;
+	if (currentLNBValid())
+		return m_lnbs[m_lnbidx].SatCR_format;
+
 	return -ENOENT;
 }
 
-RESULT eDVBSatelliteEquipmentControl::getLNBSatCR()
+RESULT eDVBSatelliteEquipmentControl::setLNBSatCRformat(SatCR_format_t SatCR_format)
 {
-	if ( currentLNBValid() )
-		return m_lnbs[m_lnbidx].SatCR_idx;
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSatCRformat(%d)", (int)SatCR_format);
+
+	if(SatCR_format > SatCR_format_jess)
+		return -EPERM;
+
+	if (currentLNBValid())
+		m_lnbs[m_lnbidx].SatCR_format = SatCR_format;
+	else
+		return -ENOENT;
+
+	return 0;
+}
+
+RESULT eDVBSatelliteEquipmentControl::getLNBSatCRPositionNumber()
+{
+	if (currentLNBValid())
+		return m_lnbs[m_lnbidx].SatCR_position;
+
 	return -ENOENT;
 }
 
-RESULT eDVBSatelliteEquipmentControl::getLNBSatCRvco()
+RESULT eDVBSatelliteEquipmentControl::setLNBSatCRPositionNumber(unsigned int position_number)
 {
-	if ( currentLNBValid() )
-		return m_lnbs[m_lnbidx].SatCRvco;
-	return -ENOENT;
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSatPositionNumber(%u)", position_number);
+
+	if (currentLNBValid())
+		m_lnbs[m_lnbidx].SatCR_position = position_number;
+	else
+		return -ENOENT;
+
+	return 0;
 }
 
 /* Satellite Specific Parameters */
