@@ -121,8 +121,12 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		"EntryForegroundColor": ("color", "foreColor"),
 		"EntryForegroundColorSelected": ("color", "foreColorSelected"),
+		"EntryForegroundColorNow": ("color", "foreColorNow"),
+		"EntryForegroundColorNowSelected": ("color", "foreColorNowSelected"),
 		"EntryBackgroundColor": ("color", "backColor"),
 		"EntryBackgroundColorSelected": ("color", "backColorSelected"),
+		"EntryBackgroundColorNow": ("color", "backColorNow"),
+		"EntryBackgroundColorNowSelected": ("color", "backColorNowSelected"),
 		"ServiceBorderColor": ("color", "borderColorService"),
 		"EntryBorderColor": ("color", "borderColor"),
 		"RecordForegroundColor": ("color", "foreColorRecord"),
@@ -210,6 +214,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.autotimericon = _loadPixmap('icons/epgclock_autotimer.png')
 		self.icetvicon = _loadPixmap('icons/epgclock_icetv.png')
 
+		self.nowEvPix = None
+		self.nowSelEvPix = None
 		self.othEvPix = None
 		self.selEvPix = None
 		self.othServPix = None
@@ -234,6 +240,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.backColorSelected = 0xd69600
 		self.foreColorService = 0xffffff
 		self.backColorService = 0x2D455E
+		self.foreColorNow = 0xffffff
+		self.foreColorNowSelected = 0xffffff
+		self.backColorNow = 0x00825F
+		self.backColorNowSelected = 0xd69600
 		self.foreColorServiceNow = 0xffffff
 		self.backColorServiceNow = 0x00825F
 
@@ -938,6 +948,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					backColor = self.backColorZap
 					foreColorSel = self.foreColorZapSelected
 					backColorSel = self.backColorZapSelected
+				elif stime <= now < (stime + duration):
+					foreColor = self.foreColorNow
+					backColor = self.backColorNow
+					foreColorSel = self.foreColorNowSelected
+					backColorSel = self.backColorNowSelected
 
 				if selected and self.select_rect.x == xpos + left:
 					if clock_types is not None:
@@ -949,6 +964,8 @@ class EPGList(HTMLComponent, GUIComponent):
 						bgpng = self.recSelEvPix
 					elif clock_types is not None and clock_types == 7:
 						bgpng = self.zapSelEvPix
+					elif stime <= now < (stime + duration):
+						bgpng = self.nowSelEvPix
 				else:
 					if clock_types is not None:
 						clocks = self.clocks[clock_types]
@@ -959,6 +976,8 @@ class EPGList(HTMLComponent, GUIComponent):
 						bgpng = self.recEvPix
 					elif clock_types is not None and clock_types == 7:
 						bgpng = self.zapEvPix
+					elif stime <= now < (stime + duration):
+						bgpng = self.nowEvPix
 
 				# event box background
 				if bgpng is not None and self.graphic:
@@ -1225,6 +1244,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		if (self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH)) and not self.graphicsloaded:
 			if self.graphic:
 				_loadPixmapsToAttrs(self, {
+					"nowEvPix": 'epg/CurrentEvent.png',
+					"nowSelEvPix": 'epg/SelectedCurrentEvent.png',
 					"othEvPix": 'epg/OtherEvent.png',
 					"selEvPix": 'epg/SelectedEvent.png',
 					"othServPix": 'epg/OtherService.png',
