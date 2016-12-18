@@ -191,6 +191,7 @@ class SecConfigure:
 				used_nim_slots.append((
 					slot.slot,
 					slot.description,
+					(slot.canBeCompatible("ATSC") and (slot.config.atsc.configMode.value != "nothing" and True or False)) or
 					(slot.canBeCompatible("DVB-S") and (slot.config.dvbs.configMode.value != "nothing" and True or False)) or
 					(slot.canBeCompatible("DVB-C") and (slot.config.dvbc.configMode.value != "nothing" and True or False)) or
 					(slot.canBeCompatible("DVB-T") and (slot.config.dvbt.configMode.value != "nothing" and True or False)),
@@ -316,6 +317,8 @@ class SecConfigure:
 						elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
 							continue
 						elif FeType in ("DVB-C", "DVB-C2") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
+							continue
+						elif FeType in ("ATSC") and config.Nims[slot.slot].atsc.configMode.value == "nothing":
 							continue
 						eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
 				else:
@@ -866,6 +869,7 @@ class NIM(object):
 	config_mode_dvbs = property(lambda self: config.Nims[self.slot].dvbs.configMode.value)
 	config_mode_dvbt = property(lambda self: config.Nims[self.slot].dvbt.configMode.value)
 	config_mode_dvbc = property(lambda self: config.Nims[self.slot].dvbc.configMode.value)
+	config_mode_atsc = property(lambda self: config.Nims[self.slot].atsc.configMode.value)
 
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
@@ -890,7 +894,7 @@ class NimManager:
 		return self.transpondersterrestrial[region]
 
 	def getTranspondersATSC(self, nim):
-		nimConfig = config.Nims[nim]
+		nimConfig = config.Nims[nim].atsc
 		if nimConfig.configMode.value != "nothing":
 			return self.transpondersatsc[self.atscList[nimConfig.atsc.index][0]]
 		return []
@@ -1548,6 +1552,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			tmp.dvbs = ConfigSubsection()
 			tmp.dvbc = ConfigSubsection()
 			tmp.dvbt = ConfigSubsection()
+			tmp.atsc = ConfigSubsection()
 			config.Nims.append(tmp)
 
 	lnb_choices = {
@@ -2134,6 +2139,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				default = "enabled")
 			createTerrestrialConfig(nim, x)
 		if slot.canBeCompatible("ATSC"):
+			nim = config.Nims[x].atsc
 			nim.configMode = ConfigSelection(
 				choices = {
 					"enabled": _("enabled"),
@@ -2173,6 +2179,8 @@ def InitNimManager(nimmgr, update_slots = []):
 					elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
 						continue
 					elif FeType in ("DVB-C", "DVB-C2") and config.Nims[slot.slot].dvbc.configMode.value == "nothing":
+						continue
+					elif FeType in ("ATSC") and config.Nims[slot.slot].atsc.configMode.value == "nothing":
 						continue
 					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
 			else:
@@ -2260,6 +2268,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			createTerrestrialConfig(nim, x)
 			empty = False
 		if slot.canBeCompatible("ATSC"):
+			nim = config.Nims[x].atsc
 			createATSCConfig(nim, x)
 			empty = False
 		if empty:
