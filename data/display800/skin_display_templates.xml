@@ -347,16 +347,16 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<panel name="LCDInfoBarProgress" />
-		<widget source="session.CurrentService" render="Label" position="40,400" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+		<widget source="session.CurrentService" render="Label" position="40,385" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="ServicePosition">Position,ShowHours</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="400,400" size="300,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
+		<widget source="session.CurrentService" render="Label" position="400,385" size="300,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
 			<convert type="ServicePosition">Length,ShowHours</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="40,480" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
-		<widget name="statusicon_summary" position="300,400" size="160,160" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="2" />	
+		<widget name="statusicon_summary" position="357,370" size="85,85" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="2" />	
 	</screen>
 
 	<!-- NUMBERZAP -->    
