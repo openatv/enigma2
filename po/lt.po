@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-15 01:01+0200\n"
-"PO-Revision-Date: 2016-12-15 01:09+0200\n"
+"PO-Revision-Date: 2016-12-20 00:16+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -53,6 +53,9 @@ msgstr "(nežinomas režimas)"
 
 msgid " and"
 msgstr "ir"
+
+msgid "Softwaremanager"
+msgstr "Programinės įrangos valdymas"
 
 msgid ""
 " available !!\n"
@@ -1253,16 +1256,16 @@ msgid "Add provider"
 msgstr "Pridėti tiekėją"
 
 msgid "Add recording (enter recording duration)"
-msgstr "Pridėti įrašymą (įrašykite įrašo trukmę)"
+msgstr "Pradėti įrašymą (įrašykite įrašo trukmę)"
 
 msgid "Add recording (enter recording endtime)"
-msgstr "Pridėti įrašymą (įrašykite įrašymo pabaigą),"
+msgstr "Pradėti įrašymą (įrašykite įrašymo pabaigą),"
 
 msgid "Add recording (indefinitely)"
-msgstr "Pridėti įrašymą (neapibrėžtai)"
+msgstr "Pradėti įrašymą (neribotam laikui)"
 
 msgid "Add recording (stop after current event)"
-msgstr "Pridėti įrašymą (stabdyti po šio įvykio)"
+msgstr "Pradėti įrašymą (stabdyti po šio įvykio)"
 
 msgid "add Service"
 msgstr "Pridėti kanalą"
@@ -2801,8 +2804,8 @@ msgid ""
 "Choose which level of menu/setting's to display. 'Expert'-level shows all "
 "items."
 msgstr ""
-"Pasirinkite, kokiu prieigos lygiu bus pateikta meniu ir nuostatos. 'Išsamus' "
-"leidžia prieigą prie visų nuostatų."
+"Pasirinkite, kokiu prieigos lygiu bus pateikta meniu ir nuostatos. 'Eksperto "
+"lygis' leidžia prieigą prie visų nuostatų."
 
 msgid "Choose which tuner to configure."
 msgstr "Pasirinkti kurį imtuvą konfigūruoti."
@@ -4238,7 +4241,7 @@ msgid "Display Setup"
 msgstr "Monitoriaus valdymas"
 
 msgid "Display the EIT now/next eventdata in infobar."
-msgstr "Infojuostoje rodyti EIT dabar/sekantis įvykių duomenis."
+msgstr "Info juostoje rodyti EIT dabar/sekantis įvykių duomenis."
 
 msgid "DLNA support"
 msgstr "DLNA palaikymas"
@@ -4765,7 +4768,7 @@ msgstr ""
 msgid "Enable blinking rec symbol on the LCD Display"
 msgstr ""
 "Čia galite nustatyti, ar įrašymo metu imtuvo LCD ekrane rodyti mirksintį "
-"'REC' simbolį."
+"'rec' simbolį."
 
 msgid "enable bouquet edit"
 msgstr "įjungti paketo redagavimą"
@@ -5244,7 +5247,7 @@ msgid "experimental film/video"
 msgstr "eksperimentinis filmas/vaidzas"
 
 msgid "Expert"
-msgstr "Išplėstinis"
+msgstr "Ekspertinis"
 
 msgid "Ext. NumberZap"
 msgstr "Išor. Numerio jungimas"
@@ -6802,7 +6805,7 @@ msgid "just abort, no message"
 msgstr "nutraukti, be žinutės"
 
 msgid "just abort, show message"
-msgstr "nutraukti, rodyti žinutę"
+msgstr "tiesiog nutraukti, parodyti pranešimą"
 
 msgid "just boot"
 msgstr "tiesiog paleisti"
@@ -8326,7 +8329,7 @@ msgid "Number of rows"
 msgstr "Eilučių skaičius"
 
 msgid "Number of rows to display"
-msgstr "Rodyti eilučių skaičių monitoriuje"
+msgstr "Rodomas eilučių skaičius"
 
 msgid "OE Changes"
 msgstr "OE pasikeitimai"
@@ -8335,10 +8338,10 @@ msgid "OE Log"
 msgstr "OE žurnalas"
 
 msgid "of a DUAL layer medium used."
-msgstr "DVISLUOKSNĖS laikmenos naudojama."
+msgstr "Naudojama DVISLUOKSNĖ laikmena."
 
 msgid "of a SINGLE layer medium used."
-msgstr "VIENSLUOKSNĖS laikmenos naudojama."
+msgstr "Naudojama VIENASLUOKSNĖ laikmena."
 
 msgid "Off"
 msgstr "Išjungta"
@@ -8442,7 +8445,7 @@ msgid "Online software update"
 msgstr "Programinės įrangos atnaujinimas internetu"
 
 msgid "OnlineVersionCheck"
-msgstr "Tiesioginis versijos patikrinimas"
+msgstr "Versijos patikrinimas internetu"
 
 msgid "Only extensions."
 msgstr "Tik išplėtimus."
@@ -8553,19 +8556,19 @@ msgid "OScam Info"
 msgstr "OScam informacija"
 
 msgid "Oscam Info - Configuration"
-msgstr "Oscam Info - Konfigūracija"
+msgstr "Oscam Info - konfigūracija"
 
 msgid "Oscam Info - Main Menu"
-msgstr "Oscam Info - Pagrindinis meniu"
+msgstr "Oscam Info - pagrindinis meniu"
 
 msgid "OscamInfo"
-msgstr "Oscam Info"
+msgstr "Oscam Informacija"
 
 msgid "OScamInfo"
-msgstr "OScam Info"
+msgstr "OScam Informacija"
 
 msgid "OscamInfo Mainmenu"
-msgstr "OscamInfo pagrindinis meniu"
+msgstr "Oscam Informacijos pagrindinis meniu"
 
 msgid "OSD"
 msgstr "OSD"
@@ -9677,7 +9680,7 @@ msgid "PU_Restore"
 msgstr "PU_Atkūrimas"
 
 msgid "PVR"
-msgstr "Rodyti PVR stovį"
+msgstr "ĮRAŠAI"
 
 msgid "PVR long"
 msgstr "PVR (ilgai spausti)"
@@ -9686,7 +9689,7 @@ msgid "Python Camstarter (default)"
 msgstr "Python emu paleidėjas (numatytasis)"
 
 msgid "Python frontend for /tmp/mmi.socket"
-msgstr "Python pradinė fazė dėl /tmp/mmi.socket"
+msgstr "Python išorinės sąsajos dėl /tmp/mmi.socket"
 
 msgid "Python:\t%s"
 msgstr "Python versija:\t%s"
@@ -11725,7 +11728,7 @@ msgid "Show blinking Clock on Display during recording"
 msgstr "Įrašymo metu rodyti mirksintį laikrodį"
 
 msgid "Show blinking rec symbol on Display during recording"
-msgstr "Įrašymo metu rodyti mirksintį 'REC' simbolį"
+msgstr "Įrašymo metu rodyti mirksintį 'rec' simbolį"
 
 msgid "Show bouquet on launch"
 msgstr "Rodyti paketus paleidžiant"
@@ -11782,7 +11785,7 @@ msgid "Show CI messages"
 msgstr "Rodyti CI pranešimus"
 
 msgid "Show Clients"
-msgstr "Rodyti klientus"
+msgstr "Klientai"
 
 msgid "Show columns"
 msgstr "Rodyti stulpelius"
@@ -11794,13 +11797,13 @@ msgid "Show CoolEasyGuide"
 msgstr "Rodyti Cool kanalo vadovą"
 
 msgid "Show CoolInfoGuide"
-msgstr "Rodyti CoolInfoGuide"
+msgstr "Rodyti Cool info vadovą"
 
 msgid "Show CoolSingleGuide"
-msgstr "Rodyti CoolSingleGuide"
+msgstr "Rodyti Cool bendrą vadovą"
 
 msgid "Show CoolTVGuide"
-msgstr "Rodyti CoolTVGuide"
+msgstr "Rodyti Cool TV vadovą"
 
 msgid "Show crypto icons"
 msgstr "Rodyti kodavimo logotipus"
@@ -11824,7 +11827,7 @@ msgid "Show E2 Log"
 msgstr "Rodyti E2 žurnalą"
 
 msgid "Show EIT now/next in infobar"
-msgstr "Infojuostoje rodyti EIT dabar/sekantis"
+msgstr "Info juostoje rodyti EIT dabar/sekantis"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr "Info juostoje rodyti kodavimo informaciją (kai tą palaiko tema)."
@@ -11848,7 +11851,7 @@ msgid "Show event details"
 msgstr "Rodyti įvykio detales"
 
 msgid "Show event-progress in channel selection"
-msgstr "Rodyti atvejo eigą kanalo pasirinkime"
+msgstr "Kanalų pasirinkimo sąrašo lange rodyti įvykių eigą"
 
 msgid "Show eventinfo plugins"
 msgstr "Rodyti įvykio informacijos priedus"
@@ -11881,7 +11884,7 @@ msgid "Show Graphical EPG"
 msgstr "Rodyti grafinį EPG"
 
 msgid "Show graphical multi EPG"
-msgstr "Rodyti grafinę kelių kanalų EPG"
+msgstr "Rodyti grafinį kelių kanalų EPG"
 
 msgid "Show HDD progress"
 msgstr "Rodyti HDD eigą"
@@ -11896,7 +11899,7 @@ msgid "Show help"
 msgstr "Rodyti pagalbą"
 
 msgid "Show icon for new/unseen items"
-msgstr "Rodyti logotipą naujas/nematytas"
+msgstr "Naujus/nežiūrėtus įvykius pažymėti logotipu"
 
 msgid "Show in extensions list ?"
 msgstr "Rodyti išplėtimų sąraše?"
@@ -11908,7 +11911,7 @@ msgid "Show info line"
 msgstr "Rodyti info liniją"
 
 msgid "Show Infobar"
-msgstr "Rodyti infojuostą"
+msgstr "Rodyti info juostą"
 
 msgid "Show infobar lite *"
 msgstr "Rodyti supaprastintą info juostą *"
@@ -11929,10 +11932,10 @@ msgid "Show job tasks in extensions"
 msgstr "Plėtinių lange rodyti darbines užduotis"
 
 msgid "Show live tv when movie stopped"
-msgstr "Kai filmas sustabdytas, rodyti TV transliacijas"
+msgstr "Kai filmas sustabdytas, rodyti TV transliaciją"
 
 msgid "Show Log"
-msgstr "Rodyti žurnalą"
+msgstr "Loginis žurnalas"
 
 msgid "Show Log Manager in extensions list ?"
 msgstr "Rodyti žurnalo tvarkyklę išplėtimų sąraše?"
@@ -11941,7 +11944,7 @@ msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Rodyti medijos atkūrime liko/praėjo kaip"
 
 msgid "show mediaplayer on mainmenu"
-msgstr "Rodyti medija grotuvą pagrindiniame meniu"
+msgstr "Rodyti medijos grotuvą pagrindiniame meniu"
 
 msgid "Show menu"
 msgstr "Rodyti meniu"
@@ -11950,10 +11953,10 @@ msgid "Show Merlin EPG Center"
 msgstr "Rodyti Merlin EPG centrą"
 
 msgid "Show message when recording starts"
-msgstr "Rodyti pranešimą, kai prasideda įrašymas"
+msgstr "Kai prasideda įrašymas, rodyti pranešimą"
 
 msgid "Show MiniTV in the Front Display"
-msgstr "Rodyti MiniTV priekiniame monitoriuje"
+msgstr "Rodyti Mini TV priekiniame monitoriuje"
 
 msgid "Show movie lengths in movielist"
 msgstr "Rodyti filmo ilgį filmų sąraše"
@@ -11995,16 +11998,16 @@ msgid "Show OscamInfo in Extensions Menu"
 msgstr "Rodyti OscamInfo išplėstiniame meniu"
 
 msgid "Show picon background colour"
-msgstr "Rodyti logotipus fono spalva"
+msgstr "Rodyti logotipų fono spalvą"
 
 msgid "show picons in service list"
-msgstr "Rodyti logotipus kanalų sąraše"
+msgstr "Kanalų pasirinkimo sąraše rodyti kanalų logotipus"
 
 msgid "Show PIP"
-msgstr "Rodyti PiP"
+msgstr "Paveikslėlis paveikslėlyje"
 
 msgid "Show PIP in the Front Display"
-msgstr "Rodyti PIP į priekiniame monitoriuje"
+msgstr "Rodyti PIP priekiniame monitoriuje"
 
 msgid "Show positioner movement"
 msgstr "Rodyti pozicionieriaus judėjimą"
@@ -12022,7 +12025,7 @@ msgid "Show quickmenu..."
 msgstr "Rodyti greitą meniu..."
 
 msgid "Show Readers/Proxies"
-msgstr "Rodyti skaitytojai/proxy"
+msgstr "Skaitytuvai / tarpiniai serveriai"
 
 msgid "Show record indicator"
 msgstr "Rodyti įrašymo indikatorių"
@@ -12058,16 +12061,16 @@ msgid "Show servicelist or movies"
 msgstr "Rodyti kanalų sąrašą, arba filmus"
 
 msgid "Show setup..."
-msgstr "Rodyti sąranka..."
+msgstr "Rodyti sąranką..."
 
 msgid "Show shutdown menu"
 msgstr "Rodyti išjungimo meniu"
 
 msgid "Show Single EPG"
-msgstr "Rodyti vieną EPG"
+msgstr "Rodyti vieno kanalo EPG"
 
 msgid "Show single epg for current channel"
-msgstr "Rodyti vieną epg dabartiniam kanalui"
+msgstr "Rodyti atskirą EPG šiam kanalui"
 
 msgid "Show single service EPG"
 msgstr "Rodyti vieno kanalo EPG"
@@ -12109,10 +12112,10 @@ msgid "Show the list of timers."
 msgstr "Rodyti laikmačių sąrašą."
 
 msgid "Show the media center..."
-msgstr "Rodyti medija centrą..."
+msgstr "Rodyti medijos centrą..."
 
 msgid "Show the media player..."
-msgstr "Rodyti medija grotuvą..."
+msgstr "Rodyti medijos grotuvą..."
 
 msgid "Show the plugin browser.."
 msgstr "Rodyti priedų naršyklę..."
@@ -12127,7 +12130,7 @@ msgid "Show the radio player..."
 msgstr "Rodyti radijo grotuvą..."
 
 msgid "Show the Sleep Timer..."
-msgstr "Rodyti išjungimo laikmatį..."
+msgstr "Rodyti miego laikmatį..."
 
 msgid "Show the tv player..."
 msgstr "Rodyti tv grotuvą ..."
@@ -12136,7 +12139,7 @@ msgid "Show time elapsed as positive"
 msgstr "Rodyti praėjusį laiką, kaip teigiamą"
 
 msgid "Show time in 24 hour clock format."
-msgstr "Rodyti laiką 24 valandų laikrodžio formatu."
+msgstr "Laiką rodyti 24 valandų formatu."
 
 msgid "Show Time Remaining/Elapsed"
 msgstr "Rodyti laiką liko/praėjo"
@@ -12154,7 +12157,7 @@ msgid "show transponder info"
 msgstr "rodyti transponderio informaciją"
 
 msgid "Show Transponder Remaining/Elapsed as"
-msgstr "Rodyti transponderio liko/praėjo kaip"
+msgstr "Rodyti transponderio liko/praėjo, kaip"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Rodyti transponderio liko/praėjo kaip"
