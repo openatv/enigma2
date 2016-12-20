@@ -12,6 +12,7 @@ class eDVBCIMMISession: public eDVBCISession
 	int receivedAPDU(const unsigned char *tag, const void *data, int len);
 	int doAction();
 	eDVBCISlot *slot;
+	bool is_mmi_active;
 public:
 	eDVBCIMMISession(eDVBCISlot *tslot);
 	~eDVBCIMMISession();
