@@ -40,7 +40,7 @@ class Network:
 		return self.remoteRootFS
 
 	def isBlacklisted(self, iface):
-		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0')
+		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0', 'sys0')
 
 	def getInterfaces(self, callback = None):
 		self.configuredInterfaces = []
@@ -84,7 +84,7 @@ class Network:
 
 		for line in result.splitlines():
 			split = line.strip().split(' ',2)
-			if split[1][:-1] == iface:
+			if (split[1][:-1] == iface) or (split[1][:-1] == (iface + '@sys0')):
 				up = self.regExpMatch(upPattern, split[2])
 				mac = self.regExpMatch(macPattern, self.regExpMatch(macLinePattern, split[2]))
 				if up is not None:
@@ -674,7 +674,7 @@ class Network:
 		cidr_range = range(0, 32)
 		cidr = long(nmask)
 		if cidr not in cidr_range:
-			print 'cidr invalid: %d' % cidr
+			print '[Network] cidr invalid: %d' % cidr
 			return None
 		else:
 			nm = ((1L<<cidr)-1)<<(32-cidr)

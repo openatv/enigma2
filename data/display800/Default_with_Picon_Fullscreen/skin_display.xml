@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
+	
+	<fonts>   
+		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="verdana.ttf" name="FdLcDLight" scale="100"/>
+	</fonts>
+	
+	<colors>
+		<color name="transparent" value="#ffffffff" />
+		<color name="red" value="#00f50808" />
+		<color name="green" value="#0004c81b" />
+		<color name="yellow" value="#00edf506" />
+		<color name="blue" value="#00077cf5" />
+		<color name="white" value="#00ffffff" />
+		<color name="black" value="#00000000" />
+		<color name="grey" value="#00b3b3b3" />
+	</colors>
+	
+	<!-- MAIN -->
+	
+	<!-- CHANNEL SELECTION-->
+	<screen name="ChannelSelection_summary" position="0,0" size="800,480"> 
+		<panel name="LCDFullChannelSelectionPicon" />
+	</screen>
+	<screen name="ChannelSelectionRadio_summary" position="0,0" size="800,480">
+		<widget source="parent.RdsDecoder" render="Label" position="40,200" size="720,150" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="center" zPosition="2">
+			<convert type="RdsInfo">RtpText</convert>
+		</widget>
+	</screen>
+	
+	<!-- EPG -->
+	<screen name="GraphicalEPGPIG_summary" position="0,0" size="800,480">
+		<panel name="LCDFullEPGPicon" />
+	</screen>
+	<screen name="GraphicalEPG_summary" position="0,0" size="800,480">
+		<panel name="GraphicalEPGPIG_summary" />
+	</screen>
+	<screen name="GraphicalInfoBarEPG_summary" position="0,0" size="800,480">
+		<panel name="GraphicalEPGPIG_summary" />
+	</screen>
+	<screen name="EPGSelectionMulti_summary" position="0,0" size="800,480">
+		<panel name="GraphicalEPGPIG_summary" />
+	</screen>
+	
+	<!-- INFOBAR -->
+	<screen name="InfoBarSummary" position="0,0" size="800,480"> 
+		<panel name="LCDFullPicon" />
+	</screen>
+	
+	<!-- STANDBY -->
+	<screen name="StandbySummary" position="0,0" size="800,480"> 
+		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,180" foregroundColor="yellow" font="FdLcD;100" halign="center" valign="center" zPosition="10">
+			<convert type="ClockToText">Format:%H:%M:%S</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="40,270" size="720,75" font="FdLcD;70" foregroundColor="white" halign="center" valign="center" zPosition="10">
+			<convert type="ClockToText">Format:%a  %d.%m.%Y</convert>
+		</widget>
+	</screen>
+		
+	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
+</skin>

@@ -384,7 +384,10 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				self.activityslider.setValue(0)
 				error = _("Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName())
 				if self.packages == 0:
-					error = _("A background update check is in progress,\nplease wait a few minutes and try again.")
+					if self.error != 0:
+						error = _("Problem retrieving update list.\nIf this issue persists please check/report on forum")
+					else:
+						error = _("A background update check is in progress,\nplease wait a few minutes and try again.")
 				if self.updating:
 					error = _("Update failed. Your %s %s does not have a working internet connection.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") +  " - " + error)
