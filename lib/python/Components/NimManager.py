@@ -908,8 +908,14 @@ class NimManager:
 	def getTerrestrialDescription(self, nim):
 		return self.terrestrialsList[config.Nims[nim].dvbt.terrestrial.index][0]
 
+	def getATSCDescription(self, nim):
+		return self.atscList[config.Nims[nim].atsc.atsc.index][0]
+
 	def getTerrestrialFlags(self, nim):
 		return self.terrestrialsList[config.Nims[nim].dvbt.terrestrial.index][1]
+
+	def getATSCFlags(self, nim):
+		return self.atscList[config.Nims[nim].atsc.atsc.index][1]
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]
