@@ -165,8 +165,7 @@ except Exception, err:
 
 # Add Skin for Display
 try:
-	if not addSkin(config.vfd.show.value):
-		raise DisplaySkinError, "display vfd skin not found"
+	addSkin(config.vfd.show.value)
 except:
 	addSkin('skin_text.xml')
 
@@ -392,24 +391,24 @@ class AttributeParser:
 		try:
 			getattr(self, attrib)(value)
 		except AttributeError:
-			raise SkinError("[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__))
+			print "[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__)
 		except SkinError, ex:
 			print "\033[91m[SKIN] Error:", ex,
 			print "\033[0m"
 		except:
-				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\" in object of type \"%s\"" % (attrib, value, self.guiObject.__class__.__name__))
+			print "[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\" in object of type \"%s\"" % (attrib, value, self.guiObject.__class__.__name__)
 
 	def applyAll(self, attrs):
 		for attrib, value in attrs:
 			try:
 				getattr(self, attrib)(value)
 			except AttributeError:
-				raise SkinError("[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__))
+				print "[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__)
 			except SkinError, ex:
 				print "\033[91m[Skin] Error:", ex,
 				print "\033[0m"
 			except:
-				raise SkinError("[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\" in object of type \"%s\"" % (attrib, value, self.guiObject.__class__.__name__))
+				print "[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\" in object of type \"%s\"" % (attrib, value, self.guiObject.__class__.__name__)
 
 	def conditional(self, value):
 		pass
@@ -1129,7 +1128,7 @@ def readSkin(screen, skin, names, desktop):
 				cwvalue = constant_widgets[wname]
 			except KeyError:
 				if config.crash.skin_error_crash.value:
-					raise SkinError("[SKIN] ERROR - given constant-widget: '%s' not found in skin" % wname)
+					print "[SKIN] ERROR - given constant-widget: '%s' not found in skin" % wname
 				else:
 					print "\033[91m[SKIN] ERROR - given constant-widget: '%s' not found in skin\033[0m" % wname
 					return
@@ -1161,7 +1160,7 @@ def readSkin(screen, skin, names, desktop):
 			try:
 				attributes = screen[wname].skinAttributes = [ ]
 			except:
-				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
+				print "component with name '" + wname + "' was not found in skin of screen '" + name + "'!"
 			# assert screen[wname] is not Source
 			collectAttributes(attributes, widget, context, skin_path_prefix, ignore=('name',))
 		elif wsource:
