@@ -85,7 +85,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.session.nav.playService(self.session.postScanService)
 
 	def newConfig(self):
-		self.transponder = None
+#		self.transponder = None
 		cur = self["config"].getCurrent()
 		print"cur ", cur
 
