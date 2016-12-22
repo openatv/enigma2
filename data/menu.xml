@@ -189,7 +189,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 		<menu text="Standby and Restart" entryID="standby_restart_list">
 			<id val="shutdown"/>
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
-			<item text="Restart Enigma2" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
+			<item text="Restart GUI" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 			<item text="Reboot" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="Shut down" requires="DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 			<item text="Power down" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
