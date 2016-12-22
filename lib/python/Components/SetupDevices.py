@@ -1,4 +1,5 @@
 from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
+from boxbranding import getBrandOEM
 from Components.Timezones import timezones
 from Components.Language import language
 from Components.Keyboard import keyboard
@@ -23,7 +24,10 @@ def InitSetupDevices():
 		language.activateLanguage(configElement.value)
 
 	config.osd = ConfigSubsection()
-	config.osd.language = ConfigText(default = "de_DE")
+	if getBrandOEM() in ('airdigital'):
+		config.osd.language = ConfigText(default = "en_US")
+	else:
+		config.osd.language = ConfigText(default = "de_DE")
 	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection()
