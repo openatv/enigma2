@@ -250,16 +250,16 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 					  getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows to display")),
 					  getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")),
 					  getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
-					  getConfigListEntry(_("Sort Trash by deletion time"), config.usage.trashsort_deltime, _("Use the deletion time to sort Trash folders.\nMost recently deleted at the top.")),
+					  getConfigListEntry(_("Sort Trash by deletion time"), config.usage.trashsort_deltime, _("Use the deletion time to sort Trash directories.\nMost recently deleted at the top.")),
 					  getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependant).")),
-					  getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set, each folder will show the previous state used. When off, the default values will be shown.")),
+					  getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set, each directory will show the previous state used. When off, the default values will be shown.")),
 					  getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behavior.")),
 					  getConfigListEntry(_("Stop service on return to movie list"), config.movielist.stop_service, _("Stop previous broadcasted service on return to movie list.")),
 					  getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie."))]		
 		if config.usage.show_icons_in_movielist.value:
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, otherwise it will not show an icon.")))
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps the movie list open whilst playing audio files.")))
-		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from being shown in that folder.")))
+		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root directory of movie list, to remove the '..' from being shown in that folder.")))
 		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")))
 		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
 		for btn in (('red', _('Red')), ('green', _('Green')), ('yellow', _('Yellow')), ('blue', _('Blue')),('redlong', _('Red long')), ('greenlong', _('Green long')), ('yellowlong', _('Yellow long')), ('bluelong', _('Blue long')), ('TV', _('TV')), ('Radio', _('Radio')), ('Text', _('Text')), ('F1', _('F1')), ('F2', _('F2')), ('F3', _('F3'))):
