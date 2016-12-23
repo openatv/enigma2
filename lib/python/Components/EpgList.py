@@ -948,7 +948,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					backColor = self.backColorZap
 					foreColorSel = self.foreColorZapSelected
 					backColorSel = self.backColorZapSelected
-				elif stime <= now < (stime + duration):
+				elif stime <= now < (stime + duration) and config.epgselection.graph_highlight_current_events.value:
 					foreColor = self.foreColorNow
 					backColor = self.backColorNow
 					foreColorSel = self.foreColorNowSelected
@@ -964,7 +964,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						bgpng = self.recSelEvPix
 					elif clock_types is not None and clock_types == 7:
 						bgpng = self.zapSelEvPix
-					elif stime <= now < (stime + duration):
+					elif stime <= now < (stime + duration) and config.epgselection.graph_highlight_current_events.value:
 						bgpng = self.nowSelEvPix
 				else:
 					if clock_types is not None:
@@ -976,8 +976,8 @@ class EPGList(HTMLComponent, GUIComponent):
 						bgpng = self.recEvPix
 					elif clock_types is not None and clock_types == 7:
 						bgpng = self.zapEvPix
-					elif stime <= now < (stime + duration):
-						bgpng = self.nowEvPix
+					elif stime <= now < (stime + duration) and config.epgselection.graph_highlight_current_events.value:
+							bgpng = self.nowEvPix
 
 				# event box background
 				if bgpng is not None and self.graphic:
