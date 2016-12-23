@@ -9,6 +9,8 @@ from Components.Pixmap import Pixmap
 from Screens.InfoBar import InfoBar
 from Screens.Rc import Rc
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Screens.MessageBox import MessageBox
+from Screens.Standby import TryQuitMainloop
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -68,9 +70,12 @@ class LanguageSelection(Screen):
 	def save(self):
 		self.commit(self.run())
 		if InfoBar.instance and self.oldActiveLanguage != config.osd.language.value:
-			self.close(True)
+			self.session.openWithCallback(self.restartGUI, MessageBox,_("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO, title=_("Restart GUI now?"))
 		else:
 			self.close()
+
+	def restartGUI(self, answer):
+		answer and self.session.open(TryQuitMainloop, 3)
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
