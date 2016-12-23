@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-16 21:44+0100\n"
-"PO-Revision-Date: 2016-12-17 08:53+0100\n"
+"POT-Creation-Date: 2016-12-22 21:21+0100\n"
+"PO-Revision-Date: 2016-12-23 22:32+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -2797,9 +2797,6 @@ msgstr "DiSEqC poort %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-tester instellingen"
 
-msgid "Diction"
-msgstr "Woordkeus"
-
 msgid "Digital contour removal"
 msgstr "Digitale contour verwijderen"
 
@@ -4396,6 +4393,9 @@ msgstr "Is deze videomodus goed?"
 msgid "Italian"
 msgstr "Italiaans"
 
+msgid "JESS"
+msgstr "JESS"
+
 msgid "JUMP 24 HOURS"
 msgstr "SPRING 24 UUR"
 
@@ -4851,14 +4851,6 @@ msgstr "min"
 
 msgid "Mins Secs"
 msgstr "Minuten seconden"
-
-#, python-format
-msgid ""
-"Misconfigured unicable connection from tuner %s to tuner %s!\n"
-"Tuner %s option \"connected to\" are disabled now"
-msgstr ""
-"Verkeerd geconfigureerde Unicable verbinding van tuner %s naar tuner %s!\n"
-"Tuner %s optie \"verbonden met\" is nu uitgeschakeld."
 
 msgid "Missing "
 msgstr "Ontbrekend"
@@ -6067,6 +6059,9 @@ msgstr "Poort:"
 msgid "Portuguese"
 msgstr "Portugees"
 
+msgid "Position"
+msgstr "Positie"
+
 msgid "Position Setup"
 msgstr "Motorinstellingen"
 
@@ -6099,6 +6094,9 @@ msgstr "Power"
 
 msgid "Power LCD Display"
 msgstr "Power LCD Display"
+
+msgid "Power down"
+msgstr "Afsluiten"
 
 msgid "Power long"
 msgstr "Power lang"
@@ -7443,7 +7441,7 @@ msgstr "Kies wat een toets moet doen."
 msgid "Set voltage and 22KHz"
 msgstr "Voltage en 22KHz instellen"
 
-msgid "Sets the root folder of movie list, to remove the '..' from being shown in that folder."
+msgid "Sets the root directory of movie list, to remove the '..' from being shown in that folder."
 msgstr "Stelt de root-map van de opnamelijst in, om '..' niet te tonen. "
 
 msgid "Settings"
@@ -7843,7 +7841,7 @@ msgstr "Toont de 'bekeken-status' van de opnames."
 msgid "Shuffle playlist"
 msgstr "Afspeellijst in willekeur"
 
-msgid "Shutdown"
+msgid "Shut down"
 msgstr "Afsluiten"
 
 msgid "Side by Side"
@@ -8406,6 +8404,9 @@ msgstr "Zenders omwisselen"
 msgid "Swedish"
 msgstr "Zweeds"
 
+msgid "Switch"
+msgstr "Wissel"
+
 msgid "Switch TV to correct input"
 msgstr "Schakel TV naar juiste ingang"
 
@@ -8730,13 +8731,6 @@ msgstr "Het timer-bestand (pm-timer.xml) is beschadigd en kan niet worden gelade
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Het timer-bestand (timer.xml) is beschadigd en kan niet worden geladen."
-
-msgid ""
-"The unicable connection setting is wrong.\n"
-" Maybe recursive connection of tuners."
-msgstr ""
-"De Unicableinstelling is verkeerd.\n"
-"Wellicht een omgekeerde verbinding van de tuners."
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
@@ -9361,9 +9355,6 @@ msgstr "Tunerstatus:"
 msgid "Tuner type"
 msgstr "Tunertype"
 
-msgid "Tuning algorithm"
-msgstr "Afstemalgoritme"
-
 msgid "Turkish"
 msgstr "Turks"
 
@@ -9428,14 +9419,11 @@ msgstr "Niet-encrypted"
 msgid "Unhide parental control services"
 msgstr "Kinderslot uitschakelen"
 
-msgid "Unicable / JESS"
-msgstr "Unicable / JESS"
+msgid "Unicable"
+msgstr "Unicable"
 
-msgid "Unicable LNB"
-msgstr "Unicable LNB"
-
-msgid "Unicable Matrix"
-msgstr "Unicable matrix"
+msgid "Unicable/JESS"
+msgstr "Unicable/JESS"
 
 #
 msgid "Uninstall"
@@ -9607,10 +9595,10 @@ msgid "Use the alternative screen"
 msgstr "Gebruik het alternatieve scherm"
 
 msgid ""
-"Use the deletion time to sort Trash folders.\n"
+"Use the deletion time to sort Trash directories.\n"
 "Most recently deleted at the top."
 msgstr ""
-"Gebruik de verwijdertijd om de prullenbakken te sorteren.\n"
+"Gebruik de verwijdertijd om de prullenbak te sorteren.\n"
 "De meest recent verwijderde boven"
 
 msgid "Use the network wizard to configure selected network adapter"
@@ -10144,8 +10132,8 @@ msgstr "Indien een waarde wordt gebruikt, zal een opname later stoppen dan volge
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Indien 'Ja' wordt gekozen, wordt in de opnamelijst live-TV op de achtergrond of in PiG getoond zolang er geen opname loopt."
 
-msgid "When set, each folder will show the previous state used. When off, the default values will be shown."
-msgstr "Indien ingesteld worden de vorige waarden van elke map getoond. Indien uitgeschakeld worden de defaults getoond. "
+msgid "When set, each directory will show the previous state used. When off, the default values will be shown."
+msgstr "Indien ingeschakeld, worden de vorige waarden van elke map getoond. Indien uitgeschakeld worden de defaults getoond. "
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Als het beeld een verhouding heeft van 16:9 kan het beeld worden uitgerekt of geschaald."
@@ -11284,9 +11272,6 @@ msgstr "niet locked"
 msgid "not supported"
 msgstr "niet ondersteund"
 
-msgid "not used"
-msgstr "niet gebruikt"
-
 msgid "nothing connected"
 msgstr "niets aangesloten"
 
@@ -11389,9 +11374,6 @@ msgstr "opnemen..."
 
 msgid "red"
 msgstr "rood"
-
-msgid "reliable"
-msgstr "betrouwbaar"
 
 msgid "religion"
 msgstr "religie"
@@ -11656,9 +11638,6 @@ msgstr "bovenaan"
 
 msgid "tourism/travel"
 msgstr "Toerisme/Reizen"
-
-msgid "traditional (fast)"
-msgstr "conventioneel (snel)"
 
 msgid "true"
 msgstr "waar"
@@ -11948,6 +11927,9 @@ msgstr "zapte"
 #~ msgid "Dialing:"
 #~ msgstr "Bellen:"
 
+#~ msgid "Diction"
+#~ msgstr "Woordkeus"
+
 #~ msgid "Disable FastZapping"
 #~ msgstr "Snel zappen uitschakelen"
 
@@ -12077,6 +12059,13 @@ msgstr "zapte"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA Log"
+
+#~ msgid ""
+#~ "Misconfigured unicable connection from tuner %s to tuner %s!\n"
+#~ "Tuner %s option \"connected to\" are disabled now"
+#~ msgstr ""
+#~ "Verkeerd geconfigureerde Unicable verbinding van tuner %s naar tuner %s!\n"
+#~ "Tuner %s optie \"verbonden met\" is nu uitgeschakeld."
 
 #~ msgid "Move to other directory"
 #~ msgstr "Verplaats naar andere map"
@@ -12332,6 +12321,13 @@ msgstr "zapte"
 #~ msgid "The md5sum validation failed, the file may be corrupted!"
 #~ msgstr "De md5sum-validatie is mislukt, het bestand is misschien beschadigd!"
 
+#~ msgid ""
+#~ "The unicable connection setting is wrong.\n"
+#~ " Maybe recursive connection of tuners."
+#~ msgstr ""
+#~ "De Unicableinstelling is verkeerd.\n"
+#~ "Wellicht een omgekeerde verbinding van de tuners."
+
 #~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
 #~ msgstr "De wizard vond een configuratiebackup. Wilt u uw oude instellingen van %s herstellen?"
 
@@ -12372,6 +12368,9 @@ msgstr "zapte"
 #~ msgid "Tuner Configuration"
 #~ msgstr "Tunerconfiguratie"
 
+#~ msgid "Tuning algorithm"
+#~ msgstr "Afstemalgoritme"
+
 #~ msgid "URL of fallback remote receiver"
 #~ msgstr "URL van de fallback-ontvanger"
 
@@ -12380,6 +12379,12 @@ msgstr "zapte"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-commando"
+
+#~ msgid "Unicable LNB"
+#~ msgstr "Unicable LNB"
+
+#~ msgid "Unicable Matrix"
+#~ msgstr "Unicable matrix"
 
 #~ msgid "Use ViX colored Buttons*"
 #~ msgstr "Gebruik ViX kleurtoetsen*"
@@ -12438,6 +12443,12 @@ msgstr "zapte"
 #~ msgid "leave movie player..."
 #~ msgstr "opnamemenu afsluiten"
 
+#~ msgid "not used"
+#~ msgstr "niet gebruikt"
+
+#~ msgid "reliable"
+#~ msgstr "betrouwbaar"
+
 #~ msgid "service PIN"
 #~ msgstr "zender pincode"
 
@@ -12446,6 +12457,9 @@ msgstr "zapte"
 
 #~ msgid "special characters"
 #~ msgstr "speciale tekens"
+
+#~ msgid "traditional (fast)"
+#~ msgstr "conventioneel (snel)"
 
 #~ msgid "uShare Log"
 #~ msgstr "uShare Log"
