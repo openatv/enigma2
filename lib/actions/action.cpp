@@ -131,6 +131,48 @@ void eActionMap::unbindNativeKey(const std::string &context, int action)
 	}
 }
 
+void eActionMap::bindTranslation(const std::string &domain, const std::string &device, int keyin, int keyout, int toggle)
+{
+	//eDebug("[eActionMap] bind translation for %s from %d to %d toggle=%d in %s", device.c_str(), keyin, keyout, toggle, domain.c_str());
+	eTranslationBinding trans;
+
+	trans.m_keyin  = keyin;
+	trans.m_keyout = keyout;
+	trans.m_toggle = toggle;
+	trans.m_domain = domain;
+
+	std::map<std::string, eDeviceBinding>::iterator r = m_rcDevices.find(device);
+	if (r == m_rcDevices.end())
+	{
+		eDeviceBinding rc;
+		rc.m_togglekey = KEY_RESERVED;
+		rc.m_toggle = 0;;
+		rc.m_translations.push_back(trans);
+		m_rcDevices.insert(std::pair<std::string, eDeviceBinding>(device, rc));
+	}
+	else
+		r->second.m_translations.push_back(trans);
+}
+
+
+void eActionMap::bindToggle(const std::string &domain, const std::string &device, int togglekey)
+{
+	//eDebug("[eActionMap] bind togglekey for %s togglekey=%d in %s", device.c_str(), togglekey, domain.c_str());
+	std::map<std::string, eDeviceBinding>::iterator r = m_rcDevices.find(device);
+	if (r == m_rcDevices.end())
+	{
+		eDeviceBinding rc;
+		rc.m_togglekey = togglekey;
+		rc.m_toggle = 0;;
+		m_rcDevices.insert(std::pair<std::string, eDeviceBinding>(device, rc));
+	}
+	else
+	{
+		r->second.m_togglekey = togglekey;
+		r->second.m_toggle = 0;
+	}
+}
+
 void eActionMap::unbindKeyDomain(const std::string &domain)
 {
 	for (std::multimap<std::string, eNativeKeyBinding>::iterator i(m_native_keys.begin()); i != m_native_keys.end(); ++i)
@@ -159,8 +201,30 @@ struct call_entry
 
 void eActionMap::keyPressed(const std::string &device, int key, int flags)
 {
-	std::list<call_entry> call_list;
+	// Check for remotes that need key translations
+	std::map<std::string, eDeviceBinding>::iterator r = m_rcDevices.find(device);
+	if (r != m_rcDevices.end())
+	{
 
+		if (key == r->second.m_togglekey && flags == eRCKey::flagMake)
+		{
+			r->second.m_toggle ^= 1;
+			//eDebug("[eActionMap]   toggle key %d: now %d", key, r->second.m_toggle);
+			return;
+		}
+		std::vector<eTranslationBinding> *trans = &r->second.m_translations;
+		for (std::vector<eTranslationBinding>::iterator t(trans->begin()); t != trans->end(); ++t)
+		{
+			if (t->m_keyin == key && (t->m_toggle == 0 || r->second.m_toggle))
+			{
+				//eDebug("[eActionMap]   translate from %d to %d", key, t->m_keyout);
+				key = t->m_keyout;
+				break;
+			}
+		}
+	}
+
+	std::vector<call_entry> call_list;
 		/* iterate active contexts. */
 	for (std::multimap<int,eActionBinding>::iterator c(m_bindings.begin());
 		c != m_bindings.end(); ++c)
@@ -232,7 +296,7 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 
 	int res = 0;
 			/* we need to iterate over all to not loose a reference */
-	for (std::list<call_entry>::iterator i(call_list.begin()); i != call_list.end(); ++i)
+	for (std::vector<call_entry>::iterator i(call_list.begin()); i != call_list.end(); ++i)
 	{
 		if (i->m_fnc)
 		{
