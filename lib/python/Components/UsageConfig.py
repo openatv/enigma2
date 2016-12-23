@@ -735,6 +735,7 @@ def InitUsageConfig():
 	config.epgselection.graph_showbouquet = ConfigYesNo(default = False)
 	config.epgselection.graph_preview_mode = ConfigYesNo(default = True)
 	config.epgselection.graph_type_mode = ConfigSelection(choices = [("graphics",_("Graphics")), ("text", _("Text"))], default = "graphics")
+	config.epgselection.graph_highlight_current_events = ConfigYesNo(default=True)
 	config.epgselection.graph_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.graph_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.graph_info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
