@@ -7,17 +7,74 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
 from Components.Language import language
-from Tools.Directories import fileCheck
+from Tools.Directories import fileCheck, fileExists
 from enigma import getDesktop
 from os import access, R_OK
 
 from boxbranding import getBoxType
 
+def getFilePath(setting):
+	return "/proc/stb/fb/dst_%s" % (setting)
+
+def setPositionParameter(parameter, configElement):
+	f = open(getFilePath(parameter), "w")
+	f.write('%08X\n' % configElement.value)
+	f.close()
+	if fileExists(getFilePath("apply")):
+		f = open(getFilePath("apply"), "w")
+		f.write('1')
+		f.close()
+
+	#	InitOsd is now the 2nd Initialisation routine and is called after LCD iniialisation
+	#	by mytest.py .. this was historically the case before the 3D modification
+	#	It is important that this call remains in mytest.py at this position!
+
 def InitOsd():
-	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
 	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
+
+	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
+		SystemInfo["OsdMenu"] = True
+	else:
+		SystemInfo["OsdMenu"] = False
+
+	def setOSDLeft(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			setPositionParameter("left", configElement)
+	config.osd.dst_left.addNotifier(setOSDLeft)
+
+	def setOSDWidth(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			setPositionParameter("width", configElement)
+	config.osd.dst_width.addNotifier(setOSDWidth)
+
+	def setOSDTop(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			setPositionParameter("top", configElement)
+	config.osd.dst_top.addNotifier(setOSDTop)
+
+	def setOSDHeight(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			setPositionParameter("height", configElement)
+	config.osd.dst_height.addNotifier(setOSDHeight)
+	print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+
+	def setOSDAlpha(configElement):
+		if SystemInfo["CanChangeOsdAlpha"]:
+			print '[UserInterfacePositioner] Setting OSD alpha:', str(configElement.value)
+			config.av.osd_alpha.setValue(configElement.value)
+			f = open("/proc/stb/video/alpha", "w")
+			f.write(str(configElement.value))
+			f.close()
+	config.osd.alpha.addNotifier(setOSDAlpha)
+
+
+	#	InitOsd3D is the 1st Initialisation routine and is called by mytest.py to enable 3D setup by Videomode.py
+	#	It is important that this call remains in mytest.py at this position! 
+
+def InitOsd3D():
+	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
 
 	def languageNotifier(configElement):
 		language.activateLanguage(configElement.value)
@@ -34,48 +91,6 @@ def InitOsd():
 	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
 	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default = False)
-
-	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
-		SystemInfo["OsdMenu"] = True
-	else:
-		SystemInfo["OsdMenu"] = False
-
-	def setOSDLeft(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_left", "w")
-			f.write('%X' % configElement.value)
-			f.close()
-	config.osd.dst_left.addNotifier(setOSDLeft)
-
-	def setOSDWidth(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_width", "w")
-			f.write('%X' % configElement.value)
-			f.close()
-	config.osd.dst_width.addNotifier(setOSDWidth)
-
-	def setOSDTop(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_top", "w")
-			f.write('%X' % configElement.value)
-			f.close()
-	config.osd.dst_top.addNotifier(setOSDTop)
-
-	def setOSDHeight(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_height", "w")
-			f.write('%X' % configElement.value)
-			f.close()
-	config.osd.dst_height.addNotifier(setOSDHeight)
-	print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
-
-	def setOSDAlpha(configElement):
-		print '[UserInterfacePositioner] Setting OSD alpha:', str(configElement.value)
-		config.av.osd_alpha.setValue(configElement.value)
-		f = open("/proc/stb/video/alpha", "w")
-		f.write(str(configElement.value))
-		f.close()
-	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
