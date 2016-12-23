@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-18 15:09+0100\n"
-"PO-Revision-Date: 2016-11-22 20:10+0100\n"
+"POT-Creation-Date: 2016-12-22 20:59+0100\n"
+"PO-Revision-Date: 2016-12-23 17:24+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -134,6 +134,10 @@ msgstr ""
 
 msgid " "
 msgstr ""
+
+#, fuzzy, python-format
+msgid "  (%s x %s)"
+msgstr " (%s x %s)"
 
 msgid " (0 - all networks)"
 msgstr "(0 - Alle Netzwerke)"
@@ -1508,10 +1512,6 @@ msgid "Buffers:"
 msgstr "Puffer:"
 
 #, python-format
-msgid "Build:\t%s.%s%s (%s)\n"
-msgstr ""
-
-#, python-format
 msgid "Build: %s"
 msgstr ""
 
@@ -2794,9 +2794,6 @@ msgstr "DiSEqC Port %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-Tester Einstellungen"
 
-msgid "Diction"
-msgstr "Schreibweise"
-
 msgid "Digital contour removal"
 msgstr "Entfernen digitaler Konturen"
 
@@ -3064,6 +3061,10 @@ msgstr "Dynamischer Kontrast"
 
 msgid "E"
 msgstr "O"
+
+#, python-format
+msgid "E2 (re)starts:\t%s\n"
+msgstr "E2 Starts:\t%s\n"
 
 msgid "ECM Statistics"
 msgstr "ECM Statistik"
@@ -3565,6 +3566,10 @@ msgstr ""
 msgid "FLASH"
 msgstr "FLASH"
 
+#, python-format
+msgid "FP version:\t%s"
+msgstr "Version:\t%s"
+
 msgid "FTP Setup"
 msgstr "FTP Einstellungen"
 
@@ -3749,10 +3754,6 @@ msgstr "Von:"
 
 msgid "Front Display Panel"
 msgstr "VFD/LCD Einstellungen"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Frontprozessor-Version: %d"
 
 msgid "Full screen"
 msgstr "Vollbild"
@@ -4147,6 +4148,10 @@ msgstr ""
 msgid "Image Manager"
 msgstr "Image Verwaltung"
 
+#, python-format
+msgid "Image:\t%s.%s%s (%s)\n"
+msgstr ""
+
 msgid "Immediate shutdown"
 msgstr "Direkt ausschalten"
 
@@ -4383,6 +4388,9 @@ msgstr "Ist dieser Videomodus in Ordnung?"
 msgid "Italian"
 msgstr "Italienisch"
 
+msgid "JESS"
+msgstr ""
+
 msgid "JUMP 24 HOURS"
 msgstr "Springe 24 Stunden"
 
@@ -4504,12 +4512,8 @@ msgid "Last speed"
 msgstr "Letzte Geschwindigkeit"
 
 #, python-format
-msgid ""
-"Last update:\t%s\n"
-"\n"
-msgstr ""
-"Letztes Update:\t%s\n"
-"\n"
+msgid "Last update:\t%s\n"
+msgstr "Letztes Update:\t%s\n"
 
 #, python-format
 msgid "Last update: %s"
@@ -4842,14 +4846,6 @@ msgstr "Minuten"
 
 msgid "Mins Secs"
 msgstr "Minuten Sekunden"
-
-#, python-format
-msgid ""
-"Misconfigured unicable connection from tuner %s to tuner %s!\n"
-"Tuner %s option \"connected to\" are disabled now"
-msgstr ""
-"Falsche Konfiguration Unicable-Verbindung von Tuner %s nach Tuner %s!\n"
-"Tuner %s Einstellung \"verbunden mit\" ist jetzt deaktiviert."
 
 msgid "Missing "
 msgstr "Fehlend"
@@ -5942,6 +5938,12 @@ msgstr "Bitte Tuner J konfigurieren"
 msgid "Please set up tuner K"
 msgstr "Bitte Tuner K konfigurieren"
 
+msgid "Please set up tuner Q"
+msgstr "Bitte Tuner Q konfigurieren"
+
+msgid "Please set up tuner R"
+msgstr "Bitte Tuner R konfigurieren"
+
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
 "When you are ready press OK to continue."
@@ -6048,6 +6050,9 @@ msgstr "Port:"
 msgid "Portuguese"
 msgstr "Portugiesisch"
 
+msgid "Position"
+msgstr "Position"
+
 msgid "Position Setup"
 msgstr "Rotor Einstellungen"
 
@@ -6080,6 +6085,9 @@ msgstr "Aus-Taste"
 
 msgid "Power LCD Display"
 msgstr ""
+
+msgid "Power down"
+msgstr "Ausschalten"
 
 msgid "Power long"
 msgstr "Aus-Taste lang"
@@ -6232,11 +6240,18 @@ msgstr "Primetime Minute"
 msgid "Priority"
 msgstr "Priorität"
 
+msgid ""
+"Problem retrieving update list.\n"
+"If this issue persists please check/report on forum"
+msgstr ""
+"Probleme die Updateliste zu erhalten.\n"
+"Wenn das Problem länger besteht im Forum checken/melden."
+
 msgid "Process"
 msgstr "Aktivitätsanzeige"
 
 #, python-format
-msgid "Processor temperature:\t%s"
+msgid "Processor temp:\t%s"
 msgstr "Prozessortemperatur: %s"
 
 msgid "Profile"
@@ -7414,7 +7429,7 @@ msgstr "Wähle was die Taste machen soll."
 msgid "Set voltage and 22KHz"
 msgstr "Setze Spannung und 22KHz"
 
-msgid "Sets the root folder of movie list, to remove the '..' from being shown in that folder."
+msgid "Sets the root directory of movie list, to remove the '..' from being shown in that folder."
 msgstr "Wähle die Basis der Aufnahmeliste um die \"..\" in der Ansicht zu unterdrücken."
 
 msgid "Settings"
@@ -7747,6 +7762,9 @@ msgstr "Zeige Source-Pakete (SRC)"
 msgid "Show status icons in movie list"
 msgstr "Zeige Status-Icons in der Filmliste"
 
+msgid "Show stream clients"
+msgstr "Zeige Streaming Klienten"
+
 msgid "Show subservice selection"
 msgstr "Zeige Unterkanalauswahl"
 
@@ -7810,7 +7828,7 @@ msgstr "Zeige den Filmstatus in der Liste."
 msgid "Shuffle playlist"
 msgstr "Wiedergabeliste mischen"
 
-msgid "Shutdown"
+msgid "Shut down"
 msgstr "Ausschalten"
 
 msgid "Side by Side"
@@ -7885,12 +7903,12 @@ msgstr "Größe:"
 msgid "Skin Setting"
 msgstr "Skinauswahl"
 
-#, python-format
-msgid "Skin name:\t%s\n"
-msgstr "Skinname:\t%s\n"
-
 msgid "Skin setup"
 msgstr "Skinauswahl"
+
+#, python-format
+msgid "Skin:\t%s"
+msgstr "Skins:\t%s"
 
 msgid "Skins"
 msgstr "Skins"
@@ -8372,6 +8390,9 @@ msgstr "Sender tauschen"
 msgid "Swedish"
 msgstr "Schwedisch"
 
+msgid "Switch"
+msgstr "Wechseln"
+
 msgid "Switch TV to correct input"
 msgstr "Fernseher auf passenden Eingang schalten"
 
@@ -8439,7 +8460,7 @@ msgid "System"
 msgstr "System"
 
 #, python-format
-msgid "System temperature:\t%s"
+msgid "System temp:\t%s"
 msgstr "Systemtemperatur: %s"
 
 #, python-format
@@ -8694,13 +8715,6 @@ msgstr "Die Timer-Datei (pm_timers.xml) ist kaputt und konnte nicht geladen werd
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
-
-msgid ""
-"The unicable connection setting is wrong.\n"
-" Maybe recursive connection of tuners."
-msgstr ""
-"Die Unicable-Einstellungen sind falsch.\n"
-"Vielleicht rekursive Verbindung der Tuner."
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
@@ -9324,9 +9338,6 @@ msgstr "Tuner-Status:"
 msgid "Tuner type"
 msgstr "Tuner Typ"
 
-msgid "Tuning algorithm"
-msgstr "Tuningmethode"
-
 msgid "Turkish"
 msgstr "Türkisch"
 
@@ -9390,14 +9401,11 @@ msgstr "Unverschlüsselt"
 msgid "Unhide parental control services"
 msgstr "Geschützte Sender sichtbar machen"
 
-msgid "Unicable / JESS"
+msgid "Unicable"
+msgstr "Unicable"
+
+msgid "Unicable/JESS"
 msgstr "Unicable / JESS"
-
-msgid "Unicable LNB"
-msgstr "Unicable LNB"
-
-msgid "Unicable Matrix"
-msgstr "Unicable Matrix"
 
 msgid "Uninstall"
 msgstr "Deinstallieren"
@@ -9567,7 +9575,7 @@ msgid "Use the alternative screen"
 msgstr "Eine kleine, einfachere Darstellung benutzen"
 
 msgid ""
-"Use the deletion time to sort Trash folders.\n"
+"Use the deletion time to sort Trash directories.\n"
 "Most recently deleted at the top."
 msgstr ""
 "Benutze die Löschzeit um den Mülleimer zu sortieren.\n"
@@ -10104,7 +10112,7 @@ msgstr "Wenn hier ein Wert ungleich 0 steht stoppt eine Aufnahme um diese Anzahl
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Wenn aktiviert PIG wird Live-TV zeigen wenn der Film beendet wurde."
 
-msgid "When set, each folder will show the previous state used. When off, the default values will be shown."
+msgid "When set, each directory will show the previous state used. When off, the default values will be shown."
 msgstr "Wenn gesetzt merken sich die Verzeichnisse ihren Zustand. Wenn ausgeschaltet wird eine Standardansicht genommen."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -11243,9 +11251,6 @@ msgstr "Kein Signal"
 msgid "not supported"
 msgstr "nicht unterstützt"
 
-msgid "not used"
-msgstr "nicht verwendet"
-
 msgid "nothing connected"
 msgstr "Nichts angeschlossen"
 
@@ -11348,9 +11353,6 @@ msgstr "nimmt auf..."
 
 msgid "red"
 msgstr "rot"
-
-msgid "reliable"
-msgstr "verlässlich"
 
 msgid "religion"
 msgstr "Religion"
@@ -11616,9 +11618,6 @@ msgstr "Oben"
 msgid "tourism/travel"
 msgstr "Tourismus/Reise"
 
-msgid "traditional (fast)"
-msgstr "traditionell (schnell)"
-
 msgid "true"
 msgstr "ja"
 
@@ -11800,6 +11799,9 @@ msgstr "umgeschaltet"
 #~ msgid "Device Information"
 #~ msgstr "Geräteinformation"
 
+#~ msgid "Diction"
+#~ msgstr "Schreibweise"
+
 #~ msgid "Disable FastZapping"
 #~ msgstr "Deaktiviere schnelles Umschalten"
 
@@ -11861,6 +11863,9 @@ msgstr "umgeschaltet"
 #~ msgid "Free Memory:"
 #~ msgstr "Speicher frei:"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Frontprozessor-Version: %d"
+
 #~ msgid "Ftpd service type: Vsftpd server"
 #~ msgstr "FTPD Service: VSFTP Server"
 
@@ -11881,6 +11886,13 @@ msgstr "umgeschaltet"
 
 #~ msgid "MiniDLNA Log"
 #~ msgstr "MiniDLNA Log"
+
+#~ msgid ""
+#~ "Misconfigured unicable connection from tuner %s to tuner %s!\n"
+#~ "Tuner %s option \"connected to\" are disabled now"
+#~ msgstr ""
+#~ "Falsche Konfiguration Unicable-Verbindung von Tuner %s nach Tuner %s!\n"
+#~ "Tuner %s Einstellung \"verbunden mit\" ist jetzt deaktiviert."
 
 #~ msgid "NFI image flashing"
 #~ msgstr "NFI Image Flashing"
@@ -11959,6 +11971,9 @@ msgstr "umgeschaltet"
 #~ msgid "Show status icons in movielist"
 #~ msgstr "Zeige Status-Icons in der Filmliste"
 
+#~ msgid "Skin name:\t%s\n"
+#~ msgstr "Skinname:\t%s\n"
+
 #~ msgid ""
 #~ "System temperature: %s%sC\n"
 #~ "\n"
@@ -11988,6 +12003,13 @@ msgstr "umgeschaltet"
 
 #~ msgid "The md5sum validation failed, the file may be corrupted!"
 #~ msgstr "Die md5sum Überprüfung ist fehlgeschlagen. Die Datei könnte defekt sein!"
+
+#~ msgid ""
+#~ "The unicable connection setting is wrong.\n"
+#~ " Maybe recursive connection of tuners."
+#~ msgstr ""
+#~ "Die Unicable-Einstellungen sind falsch.\n"
+#~ "Vielleicht rekursive Verbindung der Tuner."
 
 #~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
 #~ msgstr "Der Assistent hat eine Konfigurations-Sicherungsdatei entdeckt. Die Einstellungen von %s wiederherstellen?"
@@ -12019,14 +12041,20 @@ msgstr "umgeschaltet"
 #~ msgid "Translation Information"
 #~ msgstr "Übersetzung Information"
 
+#~ msgid "Tuning algorithm"
+#~ msgstr "Tuningmethode"
+
 #~ msgid "URL of fallback remote receiver"
 #~ msgstr "URL vom Reserve Receiver"
 
 #~ msgid "USB stick wizard"
 #~ msgstr "USB-Stick-Assistent"
 
-#~ msgid "Version:\t%s\n"
-#~ msgstr "Version:\t%s\n"
+#~ msgid "Unicable LNB"
+#~ msgstr "Unicable LNB"
+
+#~ msgid "Unicable Matrix"
+#~ msgstr "Unicable Matrix"
 
 #~ msgid "When enabled the LNB power will not be switched off in standby"
 #~ msgstr "Wenn aktiviert wird die LNB-Spannung in Bereitschaft nicht ausgeschaltet."
@@ -12057,6 +12085,15 @@ msgstr "umgeschaltet"
 
 #~ msgid "leave movie player..."
 #~ msgstr "Abspielmodus verlassen..."
+
+#~ msgid "not used"
+#~ msgstr "nicht verwendet"
+
+#~ msgid "reliable"
+#~ msgstr "verlässlich"
+
+#~ msgid "traditional (fast)"
+#~ msgstr "traditionell (schnell)"
 
 #~ msgid "uShare Log"
 #~ msgstr "uShare Log"
