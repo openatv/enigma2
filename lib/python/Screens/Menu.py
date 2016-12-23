@@ -11,6 +11,7 @@ from Components.Label import Label
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_SKIN
+from enigma import eTimer
 
 import xml.etree.cElementTree
 
@@ -70,6 +71,7 @@ class Menu(Screen, ProtectedScreen):
 
 	def okbuttonClick(self):
 		# print "okbuttonClick"
+		self.resetNumberKey()
 		selection = self["menu"].getCurrent()
 		if selection is not None and selection[1] is not None:
 			selection[1]()
@@ -309,6 +311,10 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			# Sort by Weight
 			m_list.sort(key=lambda x: int(x[3]))
+		
+		if config.usage.menu_show_numbers.value:
+			m_list = [(str(x[0] + 1) + " " +x[1][0], x[1][1], x[1][2]) for x in enumerate(m_list)]
+
 		self["menu"] = List(m_list)
 		self["menu"].enableWrapAround = True
 		if config.usage.menu_sort_mode.value == "user":
@@ -319,7 +325,8 @@ class Menu(Screen, ProtectedScreen):
 				"ok": self.okbuttonClick,
 				"cancel": self.closeNonRecursive,
 				"menu": self.closeRecursive,
-				"0": self.resetSortOrder,
+				#"0": self.resetSortOrder,
+				"0": self.keyNumberGlobal,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -378,6 +385,10 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			t_history.thistory = t_history.thistory + str(a) + ' > '
 
+		self.number = 0
+		self.nextNumberTimer = eTimer()
+		self.nextNumberTimer.callback.append(self.okbuttonClick)
+
 	def isProtected(self):
 		if config.ParentalControl.setuppinactive.value:
 			if config.ParentalControl.config_sections.main_menu.value and self.menuID == "mainmenu":
@@ -390,19 +401,27 @@ class Menu(Screen, ProtectedScreen):
 				return True
 
 	def keyNumberGlobal(self, number):
-		# print "menu keyNumber:", number
-		# Calculate index
-		number -= 1
+		self.number = self.number * 10 + number
+		if self.number and self.number <= len(self["menu"].list):
+			self["menu"].setIndex(self.number - 1)
+			if len(self["menu"].list) < 10 or self.number >= 10:
+				self.okbuttonClick()
+			else:
+				self.nextNumberTimer.start(1500, True)
+		else:
+			self.number = 0
 
-		if len(self["menu"].list) > number:
-			self["menu"].setIndex(number)
-			self.okbuttonClick()
+	def resetNumberKey(self):
+		self.nextNumberTimer.stop()
+		self.number = 0
 
 	def closeNonRecursive(self):
+		self.resetNumberKey()
 		t_history.reducehistory()
 		self.close(False)
 
 	def closeRecursive(self):
+		self.resetNumberKey()
 		t_history.reset()
 		self.close(True)
 

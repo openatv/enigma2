@@ -41,6 +41,7 @@ def InitUsageConfig():
 	config.usage.use_pig = ConfigYesNo(default = False)
 	config.usage.update_available = NoSave(ConfigYesNo(default = False))
 	config.misc.ecm_info = ConfigYesNo(default = False)
+	config.usage.menu_show_numbers = ConfigYesNo(default = False)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
