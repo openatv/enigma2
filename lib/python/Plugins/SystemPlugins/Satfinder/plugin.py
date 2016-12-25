@@ -116,7 +116,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		self["config"].l.setList(tlist)
 
 #manipulate choices, we need only "single_transponder","predefined_transponder"
-		for scan_type in (self.scan_type, self.scan_typecable, self.scan_typeterrestrial, self.scan_typeatsc.value):
+		for scan_type in (self.scan_type, self.scan_typecable, self.scan_typeterrestrial, self.scan_typeatsc):
 			slist = scan_type.choices.choices
 			dlist = []
 			for x in slist:
