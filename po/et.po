@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-14 22:23+0200\n"
-"PO-Revision-Date: 2016-12-18 10:44+0200\n"
+"POT-Creation-Date: 2016-12-23 22:03+0200\n"
+"PO-Revision-Date: 2016-12-24 16:22+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -977,13 +977,13 @@ msgid "Alias"
 msgstr "Alias"
 
 msgid "Alignment of events"
-msgstr "Saate nime asukoht"
+msgstr "Saatenime asukoht"
 
 msgid "Alignment of service names"
-msgstr "Kanali nime asukoht"
+msgstr "Kanalinime asukoht"
 
 msgid "Alignment of service numbers"
-msgstr "Kanali numbri asukoht"
+msgstr "Kanalinumbri asukoht"
 
 msgid "Alignment of timeline date"
 msgstr "Ajaskaala kuupäeva asukoht"
@@ -1873,7 +1873,7 @@ msgid "Choose the name of the file that holds the EPG data when the %s %s is shu
 msgstr "Määra, mis nimega EPG fail %s %s välja lülitamisel salvestatakse. Nii on mugav eristada mitme eri vastuvõtja faile."
 
 msgid "Choose time interval to which the graphics will be rounded off."
-msgstr "Vali ajavahemik, mille jaoks graafika ümardatakse"
+msgstr "Vali graafika jaoks ümardatav ajavahemik"
 
 msgid "Choose what you want the '0' button to do when PIP is active."
 msgstr "Vali, mida '0' nupp PIP- režiimis teeb."
@@ -1976,9 +1976,6 @@ msgstr "Värvi vorming"
 
 msgid "Color space"
 msgstr "Värviruum"
-
-msgid "Combo"
-msgstr ""
 
 msgid "Command To Run"
 msgstr "Täidetav käsklus"
@@ -2737,10 +2734,10 @@ msgid "Descramble & record ECM' gives the option to descramble afterwards if des
 msgstr "'Dekodeeri ja salvesta ecm' annab võimaluse salvestuse hilisemaks dekodeerimiseks, juhul kui dekodeerimine salvestamise ajal nurjus. 'Ära dekodeeri, talleta ecm' valimisel salvestatakse saade kodeerituna ja dekodeerimine toimub taasesitusel. Valikul 'tavaline' salvestatakse saade dekodeerituna ja ECM ei salvestata."
 
 msgid "Descramble receiving http streams"
-msgstr "Dekodeeri sisenevad http vood"
+msgstr "Sisenevad http vood dekodeeritakse"
 
 msgid "Descramble sending http streams"
-msgstr "Dekodeeri väljuvad http vood"
+msgstr "Väljuvad http vood dekodeeritakse"
 
 msgid "Description"
 msgstr "Sisututvustus"
@@ -2797,9 +2794,6 @@ msgstr "DiSEqC sisend %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-testeri seadistused"
 
-msgid "Diction"
-msgstr "Õigekiri"
-
 msgid "Digital contour removal"
 msgstr "Digitaalse kontuuri kõrvaldamine"
 
@@ -2835,7 +2829,7 @@ msgid "Disable Picture in Picture"
 msgstr "Sulge pilt-pildis"
 
 msgid "Disable background scanning"
-msgstr "Keela kanaliotsing taustal"
+msgstr "Taustal kanaliotsingu keelamine"
 
 msgid "Disable move mode"
 msgstr "Lõpeta liigutamine"
@@ -3195,9 +3189,6 @@ msgstr "Luba 5 V toide aktiivantennile"
 msgid "Enable EIT EPG"
 msgstr "Luba EIT EPG"
 
-msgid "Enable Focus Animation"
-msgstr "Fookuse animeerimine"
-
 msgid "Enable FreeSat EPG"
 msgstr "Luba FreeSat EPG"
 
@@ -3235,28 +3226,31 @@ msgid "Enable favourite edit"
 msgstr "Luba lemmikute muutmine"
 
 msgid "Enable infobar fade-out"
-msgstr "Luba inforiba hajumine"
+msgstr "Inforiba hajumine lubatud"
 
 msgid "Enable move mode"
 msgstr "Liiguta kanaleid"
 
 msgid "Enable multiple bouquets"
-msgstr "Luba lemmiknimekirjad"
+msgstr "Lemmiknimekirjad lubatud"
 
 msgid "Enable panic button"
-msgstr "Luba paanikanupp"
+msgstr "Paanikanupp lubatud"
 
 msgid "Enable parental protection"
 msgstr "Luba lapselukk"
 
 msgid "Enable teletext caching"
-msgstr "Luba teleteksti puhverdamine"
+msgstr "Teleteksti puhverdamine"
 
 msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
 msgstr "Luba enigma2 kaugvastuvõtja tuunerite kasutamine, kui kohalik tuuner ei ole saadaval (nt. tuuner on hõivatud või kanalitüüp on kohaliku tuuneri jaoks sobimatu)."
 
 msgid "Enable timer conflict detection"
-msgstr "Luba taimerikonflikti tuvastus"
+msgstr "Taimerikonflikti tuvastamine"
+
+msgid "Enable to highlight events that are currently in progress."
+msgstr "Määrates 'jah', tõstetakse hetkel toimuvad saated esile."
 
 msgid "Enabled"
 msgstr "Kasutusel"
@@ -3374,7 +3368,7 @@ msgid "Event Info"
 msgstr "Saateinfo"
 
 msgid "Event font size"
-msgstr "Saate tähesuurus"
+msgstr "Saatenime tähesuurus"
 
 msgid "Event name first"
 msgstr "Esmalt saate nimi"
@@ -3844,9 +3838,6 @@ msgstr "Mine kindlale kellaajale/kuupäevale"
 msgid "Go up the list"
 msgstr "Liigu nimekirjas üles"
 
-msgid "Gold"
-msgstr ""
-
 msgid "Goto"
 msgstr "Mine"
 
@@ -3999,6 +3990,9 @@ msgstr "Hierarhia teave"
 
 msgid "High bitrate support"
 msgstr "Kõrge bitikiiruse tugi"
+
+msgid "Highlight current events"
+msgstr "Eetris olevate saadete esiletõst"
 
 msgid "History back"
 msgstr "Kanaliajaloos tagasi"
@@ -4182,7 +4176,7 @@ msgid "Include AIT in http streams"
 msgstr "Kaasa AIT http voogudesse"
 
 msgid "Include ECM in http streams"
-msgstr "Kaasa ECM http voogudesse"
+msgstr "ECM kaasamine http voogudesse"
 
 msgid "Include EIT in http streams"
 msgstr "Kaasa EIT http voogudesse"
@@ -4209,10 +4203,10 @@ msgid "Info (EPG) Long"
 msgstr "Info (EPG) - pikk"
 
 msgid "Info button (long)"
-msgstr "Info nupp (pikk)"
+msgstr "Info - pikk"
 
 msgid "Info button (short)"
-msgstr "Info nupp (lühike)"
+msgstr "Info - lühike"
 
 msgid "Info icon width"
 msgstr "Infoikooni laius"
@@ -4276,9 +4270,6 @@ msgstr "Inotify jälgimine"
 
 msgid "Input"
 msgstr "Sisend"
-
-msgid "Input Stream ID"
-msgstr "Sisendvoo ID"
 
 msgid "Input device setup"
 msgstr "Sisendseadmete seadistamine"
@@ -4401,6 +4392,9 @@ msgstr "Kas see videorežiim sobib?"
 
 msgid "Italian"
 msgstr "Itaalia"
+
+msgid "JESS"
+msgstr "JESS"
 
 msgid "JUMP 24 HOURS"
 msgstr "HÜPPA 24 TUNDI"
@@ -4641,7 +4635,7 @@ msgid "Load playlist"
 msgstr "Pleilisti laadimine"
 
 msgid "Load unlinked userbouquets"
-msgstr "Laadi sidumata lemmiknimekirjad"
+msgstr "Sidumata lemmiknimekirjad kuvatakse"
 
 msgid "Load-Save-Delete"
 msgstr "Laadi/talleta/kustuta"
@@ -4857,14 +4851,6 @@ msgstr "min"
 
 msgid "Mins Secs"
 msgstr "min sek"
-
-#, python-format
-msgid ""
-"Misconfigured unicable connection from tuner %s to tuner %s!\n"
-"Tuner %s option \"connected to\" are disabled now"
-msgstr ""
-"Valesti seadistatud unicable ühendus tuunerist %s tuunerisse %s!\n"
-"Tuuneri %s valik 'ühendatud' keelati"
 
 msgid "Missing "
 msgstr "Puudub "
@@ -5427,10 +5413,10 @@ msgid "OK"
 msgstr "OK"
 
 msgid "OK button (long)"
-msgstr "OK (pikk)"
+msgstr "OK - pikk"
 
 msgid "OK button (short)"
-msgstr "OK nupp (lühike)"
+msgstr "OK - lühike"
 
 msgid "OK, guide me through the upgrade process"
 msgstr "Jah, õpeta uuendamisel"
@@ -5599,12 +5585,6 @@ msgstr "PIP ja OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
-
-msgid "PLS Code"
-msgstr "PLS kood"
-
-msgid "PLS Mode"
-msgstr "PLS režiim"
 
 msgid "PMT PID"
 msgstr "PMT PID"
@@ -6073,6 +6053,9 @@ msgstr "Port:"
 msgid "Portuguese"
 msgstr "Portugali"
 
+msgid "Position"
+msgstr "Asukoht"
+
 msgid "Position Setup"
 msgstr "Asukoha määramine"
 
@@ -6105,6 +6088,9 @@ msgstr "Toitenupp"
 
 msgid "Power LCD Display"
 msgstr "LCD näidiku toide"
+
+msgid "Power down"
+msgstr "Puhkeseisund"
 
 msgid "Power long"
 msgstr "Toitenupp - pikk"
@@ -6256,6 +6242,13 @@ msgstr "Tippaja minut"
 
 msgid "Priority"
 msgstr "Prioriteet"
+
+msgid ""
+"Problem retrieving update list.\n"
+"If this issue persists please check/report on forum"
+msgstr ""
+"Uuenduste nimekirja ei õnnestu hankida.\n"
+"Probleemi kestmisel teavita sellest foorumis"
 
 msgid "Process"
 msgstr "Toiming"
@@ -6706,7 +6699,7 @@ msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subt
 msgstr "Asenda dialoogides kasutatav `- ` igale kõnelejale oma värvilise tekstiga (sarnaselt teleteksti subtiitritega vaegkuuljatele)"
 
 msgid "Require authentication for http streams"
-msgstr "Nõua http voogude autentimist"
+msgstr "Http voogude autentimine"
 
 msgid "Required medium type:"
 msgstr "Nõutav meedia tüüp:"
@@ -6817,9 +6810,6 @@ msgstr "Roll-off"
 msgid "Romanian"
 msgstr "Rumeenia"
 
-msgid "Root"
-msgstr "Juur"
-
 msgid "Root directory"
 msgstr "Tüvikataloog"
 
@@ -6882,9 +6872,6 @@ msgstr "Samba seaded"
 
 msgid "Samba setup"
 msgstr "Samba seaded"
-
-msgid "Same behavior as current animation"
-msgstr "Sama aktiivse animatsiooniga"
 
 msgid "Same resolution as skin"
 msgstr "Kujundusega sama lahutus"
@@ -7281,7 +7268,7 @@ msgid "Service Title mode"
 msgstr "Kanalinime kuju"
 
 msgid "Service font size"
-msgstr "Kanali tähesuurus"
+msgstr "Kanalinime tähesuurus"
 
 msgid "Service info font size"
 msgstr "Saateinfo tähesuurus"
@@ -7443,7 +7430,7 @@ msgstr "Määra nupu toiming."
 msgid "Set voltage and 22KHz"
 msgstr "Määra pinge ja 22KHz"
 
-msgid "Sets the root folder of movie list, to remove the '..' from being shown in that folder."
+msgid "Sets the root directory of movie list, to remove the '..' from being shown in that folder."
 msgstr "Määrab filmilistile tüvikataloogi, et eemaldada '..' kataloogi nimest."
 
 msgid "Settings"
@@ -7624,7 +7611,7 @@ msgid "Show background when tuned to a radio channel."
 msgstr "Näita raadiokanali taustaks pilti."
 
 msgid "Show bouquet on launch"
-msgstr "Kuva käivitamisel lemmiknimekirjad"
+msgstr "Käivitamisel kuvatakse lemmiknimekirjad"
 
 msgid "Show channel number in infobar"
 msgstr "Kanalinumbrid inforibal"
@@ -7714,7 +7701,7 @@ msgid "Show message when recording starts"
 msgstr "Teavitus salvestuse algamisel"
 
 msgid "Show movie lengths in movielist"
-msgstr "Näita filmlistis filmi pikkust"
+msgstr "Filmlistis kuvatakse filmi kestus"
 
 msgid "Show movies"
 msgstr "Filmilist"
@@ -7841,9 +7828,6 @@ msgstr "Tähista vaadatud salvestised."
 
 msgid "Shuffle playlist"
 msgstr "Segatud pleilist"
-
-msgid "Shutdown"
-msgstr "Lülita välja"
 
 msgid "Side by Side"
 msgstr "Kõrvuti"
@@ -8273,7 +8257,7 @@ msgid "Stop timeshift"
 msgstr "Peata ajanihe"
 
 msgid "Stop timeshift while recording?"
-msgstr "Peata ajanihe salvestamise ajaks"
+msgstr "Ajanihke peatamine salvestamise ajaks"
 
 msgid "Stop using as startup service"
 msgstr "Ära kasuta käivituskanalina"
@@ -8403,6 +8387,9 @@ msgstr "Kanalite vahetus"
 
 msgid "Swedish"
 msgstr "Rootsi"
+
+msgid "Switch"
+msgstr "Lüliti"
 
 msgid "Switch TV to correct input"
 msgstr "Lülita teler õigele sisendile"
@@ -8726,13 +8713,6 @@ msgstr "Taimerite fail (pm_timers.xml) on rikutud ja seda ei saa laadida."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Taimerite fail (timers.xml) on rikutud ja seda ei saa laadida."
-
-msgid ""
-"The unicable connection setting is wrong.\n"
-" Maybe recursive connection of tuners."
-msgstr ""
-"Unicable ühendus on valesti seadistatud.\n"
-" Tuunerid võivad olla ühendatud rekursiivselt."
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
@@ -9130,7 +9110,7 @@ msgstr ""
 "Kontrolli ajad üle!"
 
 msgid "Timer record location"
-msgstr "Taimeri salvestuse asukoht"
+msgstr "Taimeriga salvestuse asukoht"
 
 msgid "Timer recording location"
 msgstr "Taimeri salvestuse asukoht"
@@ -9355,9 +9335,6 @@ msgstr "Tuuneri olek:"
 msgid "Tuner type"
 msgstr "Tuuneri tüüp"
 
-msgid "Tuning algorithm"
-msgstr "Häälestumise algorütm"
-
 msgid "Turkish"
 msgstr "Türgi"
 
@@ -9421,14 +9398,11 @@ msgstr "Koodivaba"
 msgid "Unhide parental control services"
 msgstr "Näita lapselukuga kanaleid"
 
-msgid "Unicable / JESS"
+msgid "Unicable"
+msgstr "Unicable"
+
+msgid "Unicable/JESS"
 msgstr "Unicable / JESS"
-
-msgid "Unicable LNB"
-msgstr "Unicable LNB"
-
-msgid "Unicable Matrix"
-msgstr "Unicable Matrix"
 
 msgid "Uninstall"
 msgstr "Eemalda"
@@ -9514,7 +9488,7 @@ msgid "Use"
 msgstr "Kasuta"
 
 msgid "Use DHCP"
-msgstr "Kasuta DHCP-d"
+msgstr "DHCP lubatud"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Kasuta saadavusel EIT EPG andmeid."
@@ -9541,7 +9515,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Kasuta saadavusel Virgin EPG andmeid."
 
 msgid "Use a gateway"
-msgstr "Kasuta lüüsi"
+msgstr "Lüüs lubatud"
 
 msgid "Use circular LNB"
 msgstr "Ringpolar LNB kasutamine"
@@ -9559,7 +9533,7 @@ msgid "Use individual settings for each directory"
 msgstr "Igal kataloogil võivad olla oma seadistused"
 
 msgid "Use interface"
-msgstr "Kasuta võrguliidest"
+msgstr "Võrguliides lubatud"
 
 msgid "Use official channel numbering"
 msgstr "Kasuta ametlikku kanalinumeratsiooni"
@@ -9598,10 +9572,10 @@ msgid "Use the alternative screen"
 msgstr "Kasuta alternatiivset vaadet"
 
 msgid ""
-"Use the deletion time to sort Trash folders.\n"
+"Use the deletion time to sort Trash directories.\n"
 "Most recently deleted at the top."
 msgstr ""
-"Kasuta kustutamise aega prügikasti sortimiseks.\n"
+"Prügikasti sortimine kustutamise aja järgi.\n"
 "Viimati kustutatud üleval."
 
 msgid "Use the network wizard to configure selected network adapter"
@@ -10135,7 +10109,7 @@ msgstr "Salvestamine lõpetatakse pärast saatekavas näidatud aega."
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Määrates 'jah', aktiveerub PIG taasesituse lõppedes."
 
-msgid "When set, each folder will show the previous state used. When off, the default values will be shown."
+msgid "When set, each directory will show the previous state used. When off, the default values will be shown."
 msgstr "Määrates 'jah', peetakse iga kausta seadistused meeles, määrates 'ei', kasutatakse vaikeväärtusi."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -11273,9 +11247,6 @@ msgstr "pole lukustatud"
 msgid "not supported"
 msgstr "pole toetatud"
 
-msgid "not used"
-msgstr "pole lukustatud"
-
 msgid "nothing connected"
 msgstr "pole ühendatud"
 
@@ -11378,9 +11349,6 @@ msgstr "salvestus"
 
 msgid "red"
 msgstr "Punane"
-
-msgid "reliable"
-msgstr "töökindel"
 
 msgid "religion"
 msgstr "religioon"
@@ -11646,9 +11614,6 @@ msgstr "üles"
 msgid "tourism/travel"
 msgstr "turism/reisimine"
 
-msgid "traditional (fast)"
-msgstr "klassikaline (kiire)"
-
 msgid "true"
 msgstr "jah"
 
@@ -11801,3 +11766,59 @@ msgstr "Kanalivahetus ja salvestamine"
 
 msgid "zapped"
 msgstr "vahetatud"
+
+#~ msgid "Diction"
+#~ msgstr "Õigekiri"
+
+#~ msgid "Enable Focus Animation"
+#~ msgstr "Fookuse animeerimine"
+
+#~ msgid "Input Stream ID"
+#~ msgstr "Sisendvoo ID"
+
+#~ msgid ""
+#~ "Misconfigured unicable connection from tuner %s to tuner %s!\n"
+#~ "Tuner %s option \"connected to\" are disabled now"
+#~ msgstr ""
+#~ "Valesti seadistatud unicable ühendus tuunerist %s tuunerisse %s!\n"
+#~ "Tuuneri %s valik 'ühendatud' keelati"
+
+#~ msgid "PLS Code"
+#~ msgstr "PLS kood"
+
+#~ msgid "PLS Mode"
+#~ msgstr "PLS režiim"
+
+#~ msgid "Root"
+#~ msgstr "Juur"
+
+#~ msgid "Same behavior as current animation"
+#~ msgstr "Sama aktiivse animatsiooniga"
+
+#~ msgid "Shutdown"
+#~ msgstr "Lülita välja"
+
+#~ msgid ""
+#~ "The unicable connection setting is wrong.\n"
+#~ " Maybe recursive connection of tuners."
+#~ msgstr ""
+#~ "Unicable ühendus on valesti seadistatud.\n"
+#~ " Tuunerid võivad olla ühendatud rekursiivselt."
+
+#~ msgid "Tuning algorithm"
+#~ msgstr "Häälestumise algorütm"
+
+#~ msgid "Unicable LNB"
+#~ msgstr "Unicable LNB"
+
+#~ msgid "Unicable Matrix"
+#~ msgstr "Unicable Matrix"
+
+#~ msgid "not used"
+#~ msgstr "pole lukustatud"
+
+#~ msgid "reliable"
+#~ msgstr "töökindel"
+
+#~ msgid "traditional (fast)"
+#~ msgstr "klassikaline (kiire)"
