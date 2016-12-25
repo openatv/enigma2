@@ -172,8 +172,8 @@ LANG_TEXT = {
 	 "T4": "Zapisz",
 },
 "pt_PT": {
-	 "T1": "Por favor use as teclas de Cima e Baixi para selecionar a sua língua. Depois prima OK.",
-	 "T2": "Selecção do Idioma",
+	 "T1": "Por favor use as teclas de Cima e Baixo para selecionar o seu idioma. Depois prima OK.",
+	 "T2": "Seleção do Idioma",
 	 "T3": "Cancelar",
 	 "T4": "Guardar",
 },
