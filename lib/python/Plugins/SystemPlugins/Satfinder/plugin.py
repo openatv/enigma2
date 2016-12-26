@@ -332,7 +332,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.tuner.tuneATSC(transponder)
 				self.transponder = transponder
 			elif self.scan_typeatsc.value == "predefined_transponder":
-				tps = nimmanager.getTranspondersATSC(int(self.satfinder_scan_nims.value))
+				tps = nimmanager.getTranspondersATSC(int(self.scan_nims.value))
 				if tps and len(tps) > self.ATSCTransponders.index:
 					tp = tps[self.ATSCTransponders.index]
 					transponder = (tp[1], tp[2], tp[3], tp[4])
