@@ -194,8 +194,6 @@ class eMainloop
 	bool app_quit_now;
 	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	int retval;
-	int m_is_idle;
-	int m_idle_count;
 	eSocketNotifier *m_inActivate;
 
 	int m_interrupt_requested;
@@ -209,7 +207,7 @@ class eMainloop
 	static bool isValid(eMainloop *);
 public:
 	eMainloop()
-		:app_quit_now(0), retval(0), m_is_idle(0), m_idle_count(0), m_inActivate(0), m_interrupt_requested(0)
+		:app_quit_now(0), retval(0), m_inActivate(0), m_interrupt_requested(0)
 	{
 		existing_loops.push_back(this);
 	}
@@ -235,9 +233,8 @@ public:
 	void interruptPoll();
 	void reset();
 
-		/* m_is_idle needs to be atomic, but it doesn't really matter much, as it's read-only from outside */
-	int isIdle() { return m_is_idle; }
-	int idleCount() { return m_idle_count; }
+protected:
+	virtual int _poll(struct pollfd *fds, nfds_t nfds, int timeout);
 };
 
 /**
@@ -248,8 +245,11 @@ public:
  */
 class eApplication: public eMainloop
 {
+	int m_is_idle;
+	int m_idle_count;
 public:
-	eApplication()
+	eApplication():
+		m_is_idle(0), m_idle_count(0)
 	{
 		if (!eApp)
 			eApp = this;
@@ -258,6 +258,10 @@ public:
 	{
 		eApp = 0;
 	}
+	int isIdle() const { return m_is_idle; }
+	int idleCount() const { return m_idle_count; }
+protected:
+	/* override */ int _poll(struct pollfd *fds, nfds_t nfds, int timeout);
 };
 
 #ifndef SWIG
