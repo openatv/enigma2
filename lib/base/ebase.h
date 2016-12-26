@@ -304,7 +304,6 @@ public:
 	void changeInterval(long msek);
 	void startLongTimer(int seconds);
 	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
-	eSmartPtrList<iObject> m_clients;
 };
 #endif  // SWIG
 
