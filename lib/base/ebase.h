@@ -192,7 +192,6 @@ class eMainloop
 	std::map<int, eSocketNotifier*> notifiers;
 	ePtrList<eTimer> m_timer_list;
 	bool app_quit_now;
-	int loop_level;
 	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	int retval;
 	int m_is_idle;
@@ -210,13 +209,11 @@ class eMainloop
 	static bool isValid(eMainloop *);
 public:
 	eMainloop()
-		:app_quit_now(0),loop_level(0),retval(0), m_is_idle(0), m_idle_count(0), m_inActivate(0), m_interrupt_requested(0)
+		:app_quit_now(0), retval(0), m_is_idle(0), m_idle_count(0), m_inActivate(0), m_interrupt_requested(0)
 	{
 		existing_loops.push_back(this);
 	}
 	virtual ~eMainloop();
-
-	int looplevel() { return loop_level; }
 
 #ifndef SWIG
 	void quit(int ret=0); // leave all pending loops (recursive leave())
