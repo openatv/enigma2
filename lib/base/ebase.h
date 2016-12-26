@@ -16,11 +16,13 @@
 #include <lib/python/connections.h>
 
 class eApplication;
+class eMainloop;
+class eTimer;
 
 extern eApplication* eApp;
 
 #ifndef SWIG
-	/* TODO: remove these inlines. */
+/* TODO: remove these inlines. */
 static inline bool operator<( const timespec &t1, const timespec &t2 )
 {
 	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_nsec < t2.tv_nsec);
@@ -133,9 +135,6 @@ static inline long timeout_usec ( const timespec & orig )
 	return diff.tv_sec * 1000000 + diff.tv_nsec / 1000;
 }
 
-class eMainloop;
-
-					// die beiden signalquellen: SocketNotifier...
 
 /**
  * \brief Gives a callback when data on a file descriptor is ready.
@@ -153,7 +152,8 @@ private:
 	eMainloop &context;
 	int fd;
 	int state;
-	int requested;		// requested events (POLLIN, ...)
+	int requested;
+
 	void activate(int what) { /*emit*/ activated(what); }
 	eSocketNotifier(eMainloop *context, int fd, int req, bool startnow);
 public:
@@ -171,10 +171,10 @@ public:
 
 	void start();
 	void stop();
-	bool isRunning() { return state; }
+	bool isRunning() const { return state; } /* TODO: Implicit cast */
 
-	int getFD() { return fd; }
-	int getRequested() { return requested; }
+	int getFD() const { return fd; }
+	int getRequested() const { return requested; }
 	void setRequested(int req) { requested=req; }
 
 	eSmartPtrList<iObject> m_clients;
@@ -182,23 +182,20 @@ public:
 
 #endif
 
-class eTimer;
-
-			// werden in einer mainloop verarbeitet
 class eMainloop
 {
 	friend class eTimer;
 	friend class eSocketNotifier;
+
 	std::map<int, eSocketNotifier*> notifiers;
 	ePtrList<eTimer> m_timer_list;
 	bool app_quit_now;
-	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	int retval;
 	eSocketNotifier *m_inActivate;
-
 	int m_interrupt_requested;
-	timespec m_twisted_timer; // twisted timer
+	timespec m_twisted_timer;
 
+	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	void addSocketNotifier(eSocketNotifier *sn);
 	void removeSocketNotifier(eSocketNotifier *sn);
 	void addTimer(eTimer* e);
@@ -265,7 +262,7 @@ protected:
 };
 
 #ifndef SWIG
-				// ... und Timer
+
 /**
  * \brief Gives a callback after a specified timeout.
  *
@@ -275,13 +272,14 @@ class eTimer: iObject
 {
 	DECLARE_REF(eTimer);
 	friend class eMainloop;
+
 	eMainloop &context;
 	timespec nextActivation;
 	long interval;
 	bool bSingleShot;
 	bool bActive;
-	void activate();
 
+	void activate();
 	eTimer(eMainloop *context): context(*context), bActive(false) { }
 public:
 	/**
@@ -304,7 +302,7 @@ public:
 	void start(long msec, bool b=false);
 	void stop();
 	void changeInterval(long msek);
-	void startLongTimer( int seconds );
+	void startLongTimer(int seconds);
 	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
 	eSmartPtrList<iObject> m_clients;
 };
