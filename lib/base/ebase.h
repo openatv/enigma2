@@ -171,12 +171,13 @@ public:
 
 	void start();
 	void stop();
-	bool isRunning() const { return state; } /* TODO: Implicit cast */
+	bool isRunning() const { return state != 0; }
 
 	int getFD() const { return fd; }
 	int getRequested() const { return requested; }
 	void setRequested(int req) { requested=req; }
 
+	/* Only eConsoleAppContainer uses this, purpose unkown */
 	eSmartPtrList<iObject> m_clients;
 };
 
