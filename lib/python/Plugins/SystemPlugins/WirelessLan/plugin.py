@@ -384,8 +384,13 @@ def configStrings(iface):
 	ret = ""
 	if driver == 'madwifi' and config.plugins.wlan.hiddenessid.value:
 		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"
-	ret += "\tpre-up wpa_supplicant -i" + iface + " -c" + getWlanConfigName(iface) + " -B -dd -D" + driver + " || true\n"
-	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
+
+	if driver == 'wl':
+		ret += '\tpre-up wl-config.sh -m %s -k %s -s "%s" \n' % ( config.plugins.wlan.encryption.value.lower(), re_escape(config.plugins.wlan.psk.value), config.plugins.wlan.essid.value)
+		ret += '\tpost-down wl-down.sh\n'
+	else:
+		ret += "\tpre-up wpa_supplicant -i" + iface + " -c" + getWlanConfigName(iface) + " -B -dd -D" + driver + " || true\n"
+		ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
 
 def Plugins(**kwargs):
