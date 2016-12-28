@@ -326,7 +326,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			return self.l.getCurrentSelection()[0]
 		return 0
 
-	def isSelectable(self, service, service_name, events, picon):
+	def isSelectable(self, service, service_name, events, picon, channel):
 		return (events and len(events) and True) or False
 
 	def setShowServiceMode(self, value):
