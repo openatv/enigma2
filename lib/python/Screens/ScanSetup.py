@@ -115,13 +115,16 @@ cable_bands = {
 cable_autoscan_nimtype = {
 'SSH108' : 'ssh108',
 'TT3L10' : 'tt3l10',
-'TURBO' : 'vuplus_turbo_c'
+'TURBO' : 'vuplus_turbo_c',
+'TT2L08' : 'tt2l08',
+'BCM3148' : 'bcm3148'
 }
 
 terrestrial_autoscan_nimtype = {
 'SSH108' : 'ssh108_t2_scan',
 'TT3L10' : 'tt3l10_t2_scan',
-'TURBO' : 'vuplus_turbo_t'
+'TURBO' : 'vuplus_turbo_t',
+'TT2L08' : 'tt2l08_t2_scan'
 }
 
 def GetDeviceId(filter, nim_idx):
