@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-15 01:01+0200\n"
-"PO-Revision-Date: 2016-12-20 00:16+0200\n"
+"POT-Creation-Date: 2016-12-25 18:10+0200\n"
+"PO-Revision-Date: 2016-12-25 18:27+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0beta1\n"
 
 msgid "  REC  "
 msgstr "  ĮRAŠ.  "
@@ -53,9 +53,6 @@ msgstr "(nežinomas režimas)"
 
 msgid " and"
 msgstr "ir"
-
-msgid "Softwaremanager"
-msgstr "Programinės įrangos valdymas"
 
 msgid ""
 " available !!\n"
@@ -1094,7 +1091,7 @@ msgstr ""
 "Išjungti TV ir pakartoti iš pradžių?\n"
 
 msgid "AAC downmix"
-msgstr "AC3 kanalų suliejimas"
+msgstr "AAC kanalų suliejimas"
 
 msgid "AAC transcoding"
 msgstr "AAC perkodavimas"
@@ -1134,6 +1131,9 @@ msgstr "AC3"
 
 msgid "AC3/Dolby offset"
 msgstr "AC3/Dolby kompensacija"
+
+msgid "AC3 downmix"
+msgstr "AC3 kanalų suliejimas"
 
 msgid "Accesspoint:"
 msgstr "Prieigos taškas:"
@@ -2781,6 +2781,16 @@ msgstr "Pasirinkite, kur pajungti įrenginius:"
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
+
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgstr ""
+"Ši parinktis leidžia nustatyti, ar AC3 garso takeliai bus sulieti į stereo "
+"garsą."
+
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgstr ""
+"Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti "
+"į stereo garsą."
 
 msgid ""
 "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
@@ -4559,6 +4569,9 @@ msgstr "Tvarkyklės:\t%s"
 msgid "DTS"
 msgstr "DTS perkodavimas"
 
+msgid "DTS downmix"
+msgstr "DTS perkodavimas"
+
 msgid "DUAL LAYER DVD"
 msgstr "DVISLUOKSNIS DVD"
 
@@ -5748,7 +5761,7 @@ msgid "General"
 msgstr "Bendrieji"
 
 msgid "General AC3 delay"
-msgstr "Bendras AC3 vėlavimas"
+msgstr "Bendra AC3 delsa"
 
 msgid "General PCM delay"
 msgstr "Bendras PCM vėlavimas"
@@ -9416,10 +9429,10 @@ msgid "Predefined transponder"
 msgstr "Pageidautinas transponderis"
 
 msgid "Prefer AC3 track"
-msgstr "Pageidautinas AC3 takelis"
+msgstr "Pageidaujamas AC3 takelis"
 
 msgid "Prefer AC3+ track"
-msgstr "Pageidautinas AC3+ takelis"
+msgstr "Pageidaujamas AC3+ takelis"
 
 msgid "Prefer audio track stored by service"
 msgstr "Pageidautinas garso takelis, saugomas pagal kanalus"
@@ -11949,6 +11962,9 @@ msgstr "Rodyti medijos grotuvą pagrindiniame meniu"
 msgid "Show menu"
 msgstr "Rodyti meniu"
 
+msgid "Show menu numbers"
+msgstr "Rodyti meniu numerius"
+
 msgid "Show Merlin EPG Center"
 msgstr "Rodyti Merlin EPG centrą"
 
@@ -13040,10 +13056,10 @@ msgid "Swedish"
 msgstr "Švedų"
 
 msgid "Switch between Audio-, Subtitlepage"
-msgstr "Perjungti garso-, Subtitrų puslapį"
+msgstr "Perjungti iš garso į subtitrų puslapį < >"
 
 msgid "Switch between filelist/playlist"
-msgstr "Perjungti failų sąrašą/grojaraštį"
+msgstr "Perjungti iš failų sąrašo į grojaraštį"
 
 msgid "Switch between normal mode and list mode"
 msgstr "Perjungti tarp įprastinio ir sąrašo režimų"
@@ -13624,11 +13640,11 @@ msgid ""
 "This allows you change the font size relative to skin size, so 1 increases "
 "by 1 point size, and -1 decreases by 1 point size"
 msgstr ""
-"Nustatykite šrifto dydį lyginant su temos dydžiu, todėl 1 padidėja 1 dydžio "
-"tašku ir -1 sumažėja 1 dydžio tašku."
+"Ši parinktis leidžia nustatyti šrifto dydį lyginant su temos dydžiu, todėl 1 "
+"padidina 1 dydžio tašku, ir -1 sumažina 1 dydžio tašku."
 
 msgid "This allows you change the number of rows shown."
-msgstr "Čia galite nustatyti rodomų eilučių skaičių."
+msgstr "Ši parinktis leidžia nustatyti rodomų eilučių skaičių."
 
 msgid ""
 "This allows you to set the number of digits to 5, if you have more than 9999 "
@@ -13638,46 +13654,60 @@ msgstr ""
 "9999 kanalus."
 
 msgid "This allows you to show drivers modules in downloads"
-msgstr "Tai leidžia jums parodyti modulių tvarkykles atsisiuntimuose"
+msgstr ""
+"Ši parinktis leidžia jums parodyti modulių tvarkykles, skirtas atsisiuntimui"
 
 msgid "This allows you to show extensions modules in downloads"
-msgstr "Tai leidžia jums parodyti išplėstinius modulius atsisiuntimuose"
+msgstr ""
+"Ši parinktis leidžia jums parodyti išplėstinius modulius, skirtus "
+"atsisiuntimui"
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr "Tai leidžia jums parodyti branduolio modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti branduolio modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show lcd skins in downloads"
-msgstr "Tai leidžia jums parodyti lcd temas parsisiuntimui"
+msgstr "Ši parinktis leidžia jums parodyti lcd temas, skirtas atsisiuntimui"
 
 msgid "This allows you to show m2k modules in downloads"
-msgstr "Tai leidžia jums parodyti m2k modulius parsisiuntimui"
+msgstr "Ši parinktis leidžia jums parodyti m2k modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show picons modules in downloads"
-msgstr "Tai leidžia jums parodyti logotipų modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti logotipų modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show pli modules in downloads"
-msgstr "Tai leidžia jums parodyti pli modulius parsisiuntimui"
+msgstr "Ši parinktis leidžia jums parodyti pli modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show security modules in downloads"
-msgstr "Tai leidžia jums parodyti saugumo modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti saugumo modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show settings modules in downloads"
-msgstr "Tai leidžia jums parodyti nustatymų modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti nustatymų modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show skins modules in downloads"
-msgstr "Tai leidžia jums parodyti temų modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti temų modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show softcams modules in downloads"
-msgstr "Tai leidžia jums parodyti emuliatorių modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti emuliatorių modulius, skirtus "
+"atsisiuntimui"
 
 msgid "This allows you to show systemplugins modules in downloads"
-msgstr "Tai leidžia jums parodyti sisteminių priedų modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti sisteminių priedų modulius, skirtus "
+"atsisiuntimui"
 
 msgid "This allows you to show vix modules in downloads"
-msgstr "Tai leidžia jums parodyti vix modulius parsisiuntimui"
+msgstr "Ši parinktis leidžia jums parodyti vix modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show weblinks modules in downloads"
-msgstr "Tai leidžia jums parodyti web nuorodų modulius parsisiuntimui"
+msgstr ""
+"Ši parinktis leidžia jums parodyti web nuorodų modulius, skirtus "
+"atsisiuntimui"
 
 msgid "this bouquet is protected by a parental control pin"
 msgstr "šis paketas apsaugotas tėvų kontrolės PIN kodu"
@@ -13712,7 +13742,8 @@ msgid "This option allows you can config the Colorimetry for HDR"
 msgstr "Ši funkcija leidžia galimybę konfigūruoti HDR kolorimetriją"
 
 msgid "This option allows you can config the Colorspace from Auto to RGB"
-msgstr "Čia galite pasirinkti spalvų atvaizdavimo erdvę tarp 'auto' ir 'RGB'."
+msgstr ""
+"Ši parinktis leidžia pasirinkti spalvų atvaizdavimo erdvę iš 'Auto' į 'RGB'"
 
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
@@ -13722,8 +13753,8 @@ msgid ""
 "This option allows you choose how to display remaining time, or elapsed "
 "time, or both."
 msgstr ""
-"Čia galite nustatyti, kaip rodyti atkuriamo įvykio laiką -rodyti likusį "
-"laiką, rodyti praėjusį laiką, ar abu."
+"Ši parinktis leidžia jums pasirinkti, kaip rodyti likusį laiką, ar praėjusį "
+"laiką, arba abu."
 
 msgid ""
 "This option allows you choose how to display the remaining/elapsed time for "
@@ -13866,6 +13897,9 @@ msgstr "Ši parinktis leidžia įjungti 3D erdvinį garsą."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Ši parinktis leidžia jums išjunkite ekraną."
+
+msgid "This option allows you to show menu number quick links."
+msgstr "Ši parinktis leidžia jums parodyti greitų nuorodų meniu numerį."
 
 msgid ""
 "This option allows you to the SNR as a percentage (not all receivers support "
@@ -15778,7 +15812,7 @@ msgstr ""
 "subtitrus."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3 garso takelį."
+msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3 takelį."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3+ garso takelį."
@@ -16766,6 +16800,9 @@ msgstr ""
 "\n"
 "\n"
 "[Mano - paketai (TV)]\n"
+
+#~ msgid "Softwaremanager"
+#~ msgstr "Programinės įrangos valdymas"
 
 #~ msgid "%d"
 #~ msgid_plural "%d"
