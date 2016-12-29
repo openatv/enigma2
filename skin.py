@@ -943,9 +943,9 @@ def loadSkinData(desktop):
 		for elem in dom_skin:
 			if elem.tag == 'screen':
 				name = elem.attrib.get('name', None)
-				if name[:3].lower() == "vti":
-					isVTISkin = True
 				if name:
+					if name[:3].lower() == "vti":
+						isVTISkin = True
 					sid = elem.attrib.get('id', None)
 					if sid and (sid != display_skin_id):
 						# not for this display
