@@ -11,6 +11,7 @@
 #include <lib/actions/action.h>
 #include <lib/driver/rc.h>
 #include <lib/base/ioprio.h>
+#include <lib/base/e2avahi.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
@@ -110,6 +111,7 @@ class eMain: public eApplication, public Object
 public:
 	eMain()
 	{
+		e2avahi_init(this);
 		init.setRunlevel(eAutoInitNumbers::main);
 		/* TODO: put into init */
 		m_dvbdb = new eDVBDB();
@@ -123,6 +125,7 @@ public:
 	{
 		m_dvbdb->saveServicelist();
 		m_mgr->releaseCachedChannel();
+		e2avahi_close();
 	}
 };
 
