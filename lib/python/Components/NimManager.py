@@ -45,7 +45,7 @@ class SecConfigure:
 		if self.linked.has_key(slotid):
 			for slot in self.linked[slotid]:
 				tunermask |= (1 << slot)
-		sec.setLNBSatCR(-1)
+		sec.setLNBSatCRformat(0)
 		sec.setLNBNum(1)
 		sec.setLNBLOFL(CircularLNB and 10750000 or 9750000)
 		sec.setLNBLOFH(CircularLNB and 10750000 or 10600000)
