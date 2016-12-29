@@ -104,6 +104,12 @@ class Wlan:
 				except:
 					channel = "Unkonwn"
 
+				maxrate = None
+				try:
+					maxrate = ifobj._formatBitrate(result.rate[-1][-1])
+				except:
+					maxrate = "Unknown"
+
 				# noinspection PyProtectedMember
 				aps[bssid] = {
 					'active' : True,
@@ -112,7 +118,7 @@ class Wlan:
 					'encrypted': encryption,
 					'essid': strip(self.asciify(result.essid)),
 					'iface': self.iface,
-					'maxrate' : ifobj._formatBitrate(result.rate[-1][-1]),
+					'maxrate' : maxrate,
 					'noise' : '',#result.quality.nlevel-0x100,
 					'quality' : str(quality),
 					'signal' : str(signal),
