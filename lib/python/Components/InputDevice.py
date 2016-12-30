@@ -52,12 +52,8 @@ class inputDevices:
 			if self.name:
 				devtype = self.getInputDeviceType(self.name)
 				print "[InputDevice] Found: evdev='%s', name='%s', type='%s'" % (evdev, self.name, devtype)
-				self.Devices[evdev] = {
-					'name': self.name,
-					'type': devtype,
-					'enabled': False,
-					'configuredName': None
-				}
+				self.Devices[evdev] = {'name': self.name, 'type': devtype, 'enabled': False, 'configuredName': None }
+
 
 	def getInputDeviceType(self, name):
 		if "remote control" in name:
@@ -67,7 +63,7 @@ class inputDevices:
 		elif "mouse" in name:
 			return "mouse"
 		else:
-			# print "[InputDevice] Unknown device type: '%s'" % name
+			# print "[InputDevice] Unknown device type:",name
 			return None
 
 	def getDeviceName(self, x):
