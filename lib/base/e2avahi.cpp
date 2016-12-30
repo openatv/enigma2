@@ -6,6 +6,7 @@
 #include <avahi-client/lookup.h>
 #include <avahi-common/malloc.h>
 #include <avahi-common/timeval.h>
+#include <list>
 
 /* Our link to avahi */
 static AvahiClient *avahi_client = NULL;
@@ -58,14 +59,113 @@ struct AvahiWatch: public Object
 	}
 };
 
-static void avahi_client_callback(AvahiClient *client, AvahiClientState state, void *d)
+struct AvahiServiceEntry
 {
-	eDebug("[Avahi] client state: %d", state);
-}
+	AvahiEntryGroup *group;
+	const char* service_name;
+	const char* service_type;
+	unsigned short port_num;
+	
+	AvahiServiceEntry(const char *n, const char *t, unsigned short p):
+		group(NULL),
+		service_name(n),
+		service_type(t),
+		port_num(p)
+	{}
+	AvahiServiceEntry():
+		group(NULL)
+	{}
+};
+typedef std::list<AvahiServiceEntry> AvahiServiceEntryList;
+static AvahiServiceEntryList avahi_services;
 
 static void avahi_group_callback(AvahiEntryGroup *group,
 		AvahiEntryGroupState state, void *d)
 {
+}
+
+static void avahi_service_try_register(AvahiServiceEntry *entry)
+{
+	if (entry->group)
+		return; /* Already registered */
+
+	if ((!avahi_client) || (avahi_client_get_state(avahi_client) != AVAHI_CLIENT_S_RUNNING))
+	{
+		eDebug("[Avahi] Not running yet, cannot register %s.\n", entry->service_name);
+		return;
+	}
+
+	entry->group = avahi_entry_group_new(avahi_client, avahi_group_callback, NULL);
+	if (!entry->group) {
+		eDebug("[Avahi] avahi_entry_group_new failed, cannot register %s.\n", entry->service_name);
+		return;
+	}
+		
+	if (!avahi_entry_group_add_service(entry->group,
+			AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC,
+			(AvahiPublishFlags)0,
+			entry->service_name, entry->service_type,
+			NULL, NULL, entry->port_num, NULL))
+	{
+		avahi_entry_group_commit(entry->group);
+		eDebug("[Avahi] Registered %s (%s) on %s:%u\n",
+			entry->service_name, entry->service_type, 
+			avahi_client_get_host_name(avahi_client), entry->port_num);
+	}
+	/* NOTE: group is freed by avahi_client_free */
+}
+
+static void avahi_service_try_register_all()
+{
+	for (AvahiServiceEntryList::iterator it = avahi_services.begin();
+		it != avahi_services.end(); ++it)
+	{
+		avahi_service_try_register(&(*it));
+	}
+}
+
+static void avahi_service_reset_all()
+{
+	for (AvahiServiceEntryList::iterator it = avahi_services.begin();
+		it != avahi_services.end(); ++it)
+	{
+		if (it->group)
+		{
+			avahi_entry_group_free(it->group);
+			it->group = NULL;
+		}
+	}
+}
+
+static void avahi_client_callback(AvahiClient *client, AvahiClientState state, void *d)
+{
+	eDebug("[Avahi] client state: %d", state);
+	switch(state)
+	{
+		case AVAHI_CLIENT_S_RUNNING:
+			/* The server has startup successfully and registered its host
+			 * name on the network, register all our services */
+			avahi_service_try_register_all();
+			break;
+        case AVAHI_CLIENT_FAILURE:
+			/* Problem? Maybe we have to re-register everything? */
+            eDebug("[Avahi] Client failure: %s\n", avahi_strerror(avahi_client_errno(client)));
+            break;
+        case AVAHI_CLIENT_S_COLLISION:
+            /* Let's drop our registered services. When the server is back
+             * in AVAHI_SERVER_RUNNING state we will register them
+             * again with the new host name. */
+        case AVAHI_CLIENT_S_REGISTERING:
+            /* The server records are now being established. This
+             * might be caused by a host name change. We need to wait
+             * for our own records to register until the host name is
+             * properly esatblished. */
+            avahi_service_reset_all();
+            break;
+        case AVAHI_CLIENT_CONNECTING:
+			/* No action... */
+            break;
+    }
 }
 
 /** Create a new watch for the specified file descriptor and for
@@ -146,7 +246,7 @@ void avahi_timeout_free(AvahiTimeout *t)
 }
 
 
-/* In future, this will connect the mainloop to avahi... */
+/* Connect the mainloop to avahi... */
 void e2avahi_init(eMainloop* reactor)
 {
 	avahi_poll_api.userdata = reactor;
@@ -168,31 +268,18 @@ void e2avahi_close()
 	{
 		avahi_client_free(avahi_client);
 		avahi_client = NULL;
+		/* Remove all group entries */
+		for (AvahiServiceEntryList::iterator it = avahi_services.begin();
+			it != avahi_services.end(); ++it)
+		{
+			it->group = NULL;
+		}
 	}
 }
 
 void e2avahi_announce(const char* service_name, const char* service_type, unsigned short port_num)
 {
-	AvahiEntryGroup *group;
-
-	if ((!avahi_client) || (avahi_client_get_state(avahi_client) != AVAHI_CLIENT_S_RUNNING))
-	{
-		eDebug("[Avahi] Not running yet, cannot register.\n");
-		return;
-	}
-
-	group = avahi_entry_group_new(avahi_client, avahi_group_callback, NULL);
-	if (group && !avahi_entry_group_add_service(group,
-			AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC,
-			(AvahiPublishFlags)0, service_name, service_type,
-			NULL, NULL, port_num, NULL))
-	{
-		avahi_entry_group_commit(group);
-		eDebug("[Avahi] Registered %s (%s) on %s:%u\n",
-			service_name, service_type, 
-			avahi_client_get_host_name(avahi_client), port_num);
-	}
-	/* NOTE: group is freed by avahi_client_free */
-
-	return;
+	AvahiServiceEntry entry(service_name, service_type, port_num);
+	avahi_service_try_register(&entry);
+	avahi_services.push_back(entry);
 }
