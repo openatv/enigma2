@@ -25,7 +25,7 @@ struct AvahiTimeout: public Object
 		eDebug("[Avahi] timeout elapsed");
 		callback(this, userdata);
 	}
-    
+
     AvahiTimeout(eMainloop *mainloop, AvahiTimeoutCallback _callback, void *_userdata):
 		timer(eTimer::create(mainloop)),
 		callback(_callback),
@@ -41,7 +41,7 @@ struct AvahiWatch: public Object
 	AvahiWatchCallback callback;
 	void *userdata;
 	int lastEvent;
-	
+
 	void activated(int event)
 	{
 		eDebug("[Avahi] watch activated: %#x", event);
@@ -65,7 +65,7 @@ struct AvahiServiceEntry
 	const char* service_name;
 	const char* service_type;
 	unsigned short port_num;
-	
+
 	AvahiServiceEntry(const char *n, const char *t, unsigned short p):
 		group(NULL),
 		service_name(n),
@@ -91,25 +91,31 @@ static void avahi_service_try_register(AvahiServiceEntry *entry)
 
 	if ((!avahi_client) || (avahi_client_get_state(avahi_client) != AVAHI_CLIENT_S_RUNNING))
 	{
-		eDebug("[Avahi] Not running yet, cannot register %s.\n", entry->service_name);
+		eDebug("[Avahi] Not running yet, cannot register type %s.\n", entry->service_type);
 		return;
 	}
 
 	entry->group = avahi_entry_group_new(avahi_client, avahi_group_callback, NULL);
 	if (!entry->group) {
-		eDebug("[Avahi] avahi_entry_group_new failed, cannot register %s.\n", entry->service_name);
+		eDebug("[Avahi] avahi_entry_group_new failed, cannot register %s %s.\n", entry->service_type, entry->service_name);
 		return;
 	}
-		
+
+	const char *service_name = entry->service_name;
+	/* Blank or NULL service name, use our host name as service name,
+	 * this appears to be what other services do. */
+	if ((!service_name) || (!*service_name))
+		service_name = avahi_client_get_host_name(avahi_client);
+
 	if (!avahi_entry_group_add_service(entry->group,
 			AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC,
 			(AvahiPublishFlags)0,
-			entry->service_name, entry->service_type,
+			service_name, entry->service_type,
 			NULL, NULL, entry->port_num, NULL))
 	{
 		avahi_entry_group_commit(entry->group);
 		eDebug("[Avahi] Registered %s (%s) on %s:%u\n",
-			entry->service_name, entry->service_type, 
+			service_name, entry->service_type,
 			avahi_client_get_host_name(avahi_client), entry->port_num);
 	}
 	/* NOTE: group is freed by avahi_client_free */
@@ -174,10 +180,10 @@ static void avahi_client_callback(AvahiClient *client, AvahiClientState state, v
 static AvahiWatch* avahi_watch_new(const AvahiPoll *api, int fd, AvahiWatchEvent event, AvahiWatchCallback callback, void *userdata)
 {
 	eDebug("[Avahi] %s(%d %#x)", __func__, fd, event);
-	
+
 	return new AvahiWatch((eMainloop*)api->userdata, fd, event, callback, userdata);
 }
-    
+
 
 /** Update the events to wait for. It is safe to call this function from an AvahiWatchCallback */
 static void avahi_watch_update(AvahiWatch *w, AvahiWatchEvent event)
@@ -224,7 +230,7 @@ AvahiTimeout* avahi_timeout_new(const AvahiPoll *api, const struct timeval *tv, 
 
 	AvahiTimeout* result = new AvahiTimeout((eMainloop*)api->userdata, callback, userdata);
 	avahi_set_timer(result, tv);
-	
+
 	return result;
 }
 

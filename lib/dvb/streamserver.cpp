@@ -249,7 +249,7 @@ eStreamServer::eStreamServer()
  : eServerSocket(8001, eApp)
 {
 	m_instance = this;
-	e2avahi_announce("Enigma2 Stream", "_e2stream._tcp", 8001);
+	e2avahi_announce(NULL, "_e2stream._tcp", 8001);
 }
 
 eStreamServer::~eStreamServer()
