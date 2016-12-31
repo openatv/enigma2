@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 22:03+0200\n"
-"PO-Revision-Date: 2016-12-24 16:22+0200\n"
+"POT-Creation-Date: 2016-12-31 10:48+0200\n"
+"PO-Revision-Date: 2016-12-31 11:23+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -1025,7 +1025,7 @@ msgid "Allow subtitles for hearing impaired"
 msgstr "Luba vaegkuuljate subtiitrid"
 
 msgid "Allow unstable (experimental) updates"
-msgstr "Luba testimata uuendused"
+msgstr "Testimata uuendused lubatud"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
@@ -1322,7 +1322,7 @@ msgid "Auto scart switching"
 msgstr "Autom. SCART ümberlülitus"
 
 msgid "AutoTimer overview"
-msgstr "Autotaimeri ülevaade"
+msgstr "Autotaimerid"
 
 msgid "Automatic"
 msgstr "Automaatne"
@@ -2829,7 +2829,7 @@ msgid "Disable Picture in Picture"
 msgstr "Sulge pilt-pildis"
 
 msgid "Disable background scanning"
-msgstr "Taustal kanaliotsingu keelamine"
+msgstr "Taustal kanaliotsing keelatud"
 
 msgid "Disable move mode"
 msgstr "Lõpeta liigutamine"
@@ -3187,37 +3187,37 @@ msgid "Enable 5V for active antenna"
 msgstr "Luba 5 V toide aktiivantennile"
 
 msgid "Enable EIT EPG"
-msgstr "Luba EIT EPG"
+msgstr "EIT EPG lubatud"
 
 msgid "Enable FreeSat EPG"
-msgstr "Luba FreeSat EPG"
+msgstr "FreeSat EPG lubatud"
 
 msgid "Enable MHW EPG"
-msgstr "Luba MHW EPG"
+msgstr "MHW EPG lubatud"
 
 msgid "Enable Netmed EPG"
-msgstr "Luba Netmed EPG"
+msgstr "Netmed EPG lubatud"
 
 msgid "Enable ViaSat EPG"
-msgstr "Luba ViaSat EPG"
+msgstr "Viasat EPG lubatud"
 
 msgid "Enable Virgin EPG"
-msgstr "Luba Virgin EPG"
+msgstr "Virgin EPG lubatud"
 
 msgid "Enable Wake On LAN"
-msgstr "Luba WOL"
+msgstr "WOL lubatud"
 
 msgid "Enable auto cable scan"
-msgstr "Luba kaabelvõrgu automaatotsing"
+msgstr "Kaabelvõrgu automaatotsing lubatud"
 
 msgid "Enable auto fast scan"
-msgstr "Luba automaatne kiirotsing"
+msgstr "Automaatne kiirotsing lubatud"
 
 msgid "Enable bouquet edit"
 msgstr "Muuda lemmiknimekirju"
 
 msgid "Enable debug logs *"
-msgstr "Luba silumislogid *"
+msgstr "Silumislogid lubatud *"
 
 msgid "Enable fallback remote receiver"
 msgstr "Kaugvastuvõtja kasutamine asendustuunerina"
@@ -4176,7 +4176,7 @@ msgid "Include AIT in http streams"
 msgstr "Kaasa AIT http voogudesse"
 
 msgid "Include ECM in http streams"
-msgstr "ECM kaasamine http voogudesse"
+msgstr "ECM kaasatakse http voogudesse"
 
 msgid "Include EIT in http streams"
 msgstr "Kaasa EIT http voogudesse"
@@ -6371,7 +6371,7 @@ msgid "Quick zap"
 msgstr "Kiire kanalivalik"
 
 msgid "Quit Movie Player with EXIT button"
-msgstr "Lõpeta taasesitus EXIT nupuga"
+msgstr "'EXIT' nupp lõpetab taasesituse"
 
 msgid "RAM"
 msgstr "RAM"
@@ -6607,7 +6607,7 @@ msgid "Remove cable services"
 msgstr "Eemalda kaabelvõrgu kanalid"
 
 msgid "Remove completed timers after (days)"
-msgstr "Eemalda lõpetatud taimerid pärast (päeva)"
+msgstr "Aegunud taimerite eemaldamine pärast (päeva)"
 
 msgid "Remove currently selected title"
 msgstr "Eemalda valitud nimetus"
@@ -7697,11 +7697,14 @@ msgstr "Filmi lõppedes tagasi telekanalile"
 msgid "Show menu"
 msgstr "Kuva menüü"
 
+msgid "Show menu numbers"
+msgstr "Numbrite kuvamine menüüdes"
+
 msgid "Show message when recording starts"
 msgstr "Teavitus salvestuse algamisel"
 
 msgid "Show movie lengths in movielist"
-msgstr "Filmlistis kuvatakse filmi kestus"
+msgstr "Kestuse kuvamine filmilistis"
 
 msgid "Show movies"
 msgstr "Filmilist"
@@ -8434,7 +8437,7 @@ msgid "Switch to the previous channel in history"
 msgstr "Eelmisele kanalile kanaliajaloos"
 
 msgid "Switchable tuner types:"
-msgstr "Vahetatavad tuuneri tüübid:"
+msgstr "Hübriidtuuneri tüübid:"
 
 msgid "Symbol rate"
 msgstr "Sümbolikiirus"
@@ -8905,6 +8908,9 @@ msgstr "See saab esipaneeli välja lülitada."
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "See valik määrab saatekava kujunduse (tekst või graafiline)."
 
+msgid "This option allows you to show menu number quick links."
+msgstr "See valik võimaldab kuvada numbreid menüüdes kiirvalikuks."
+
 msgid "This option allows you to show the SNR as a percentage (not all receivers support this)."
 msgstr "See valik võimaldab näidata SNR protsentides (kõik vastuvõtjad seda ei toeta)."
 
@@ -9113,7 +9119,7 @@ msgid "Timer record location"
 msgstr "Taimeriga salvestuse asukoht"
 
 msgid "Timer recording location"
-msgstr "Taimeri salvestuse asukoht"
+msgstr "Taimeriga salvestuse asukoht"
 
 msgid "Timer sanity error"
 msgstr "Taimeri viga"
@@ -11277,9 +11283,6 @@ msgstr "kirjutuskaitstud meedial."
 msgid "once"
 msgstr "üks kord"
 
-msgid "only 4K"
-msgstr "ainult 4K"
-
 msgid "only HD"
 msgstr "ainult HD"
 
@@ -11816,6 +11819,9 @@ msgstr "vahetatud"
 
 #~ msgid "not used"
 #~ msgstr "pole lukustatud"
+
+#~ msgid "only 4K"
+#~ msgstr "ainult 4K"
 
 #~ msgid "reliable"
 #~ msgstr "töökindel"
