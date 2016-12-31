@@ -79,6 +79,21 @@ struct AvahiServiceEntry
 typedef std::list<AvahiServiceEntry> AvahiServiceEntryList;
 static AvahiServiceEntryList avahi_services;
 
+struct AvahiBrowserEntry
+{
+	AvahiServiceBrowser *browser;
+	const char* service_type;
+	E2AvahiResolveCallback callback;
+	void *userdata;
+	
+	AvahiBrowserEntry(): browser(NULL) {} /* For std:list */
+	AvahiBrowserEntry(const char* t, E2AvahiResolveCallback cb, void *ud):
+		browser(NULL), service_type(t), callback(cb), userdata(ud)
+	{}
+};
+typedef std::list<AvahiBrowserEntry> AvahiBrowserEntryList;
+static AvahiBrowserEntryList avahi_browsers;
+
 static void avahi_group_callback(AvahiEntryGroup *group,
 		AvahiEntryGroupState state, void *d)
 {
@@ -283,9 +298,100 @@ void e2avahi_close()
 	}
 }
 
+
+/* Browser part */
+
+static void avahi_resolver_callback(AvahiServiceResolver *resolver,
+		AvahiIfIndex iface, AvahiProtocol proto,
+		AvahiResolverEvent event, const char *name,
+		const char *type, const char *domain,
+		const char *host_name, const AvahiAddress *address,
+		uint16_t port, AvahiStringList *txt,
+		AvahiLookupResultFlags flags, void *d)
+{
+	AvahiBrowserEntry *entry = (AvahiBrowserEntry*)d;
+
+    switch (event) {
+        case AVAHI_RESOLVER_FAILURE:
+            eDebug("[Avahi] Failed to resolve service '%s' of type '%s': %s\n",
+				name, type, avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(resolver))));
+            break;
+        case AVAHI_RESOLVER_FOUND:
+			if (!(flags & (AVAHI_LOOKUP_RESULT_LOCAL | AVAHI_LOOKUP_RESULT_OUR_OWN)))
+				break; /* Skip local/own services, we don't want to see them */
+            eDebug("[Avahi] ADD Service '%s' of type '%s' at %s:%u", name, type, host_name, port);
+            entry->callback(entry->userdata, E2AVAHI_EVENT_ADD, name, type, host_name, port);
+            break;
+    }
+
+	avahi_service_resolver_free(resolver);
+}
+
+static void avahi_browser_callback(AvahiServiceBrowser *browser,
+		AvahiIfIndex iface, AvahiProtocol proto,
+		AvahiBrowserEvent event, const char *name,
+		const char *type, const char *domain,
+		AvahiLookupResultFlags flags, void *d)
+{
+	AvahiBrowserEntry *entry = (AvahiBrowserEntry*)d;
+	struct AvahiClient *client = avahi_service_browser_get_client(browser);
+
+	switch (event) {
+	case AVAHI_BROWSER_NEW:
+		eDebug("[Avahi] Resolving service '%s' of type '%s'", name, type);
+		avahi_service_resolver_new(client, iface,
+				proto, name, type, domain,
+				AVAHI_PROTO_UNSPEC, (AvahiLookupFlags)0,
+				avahi_resolver_callback, d);
+		break;
+	case AVAHI_BROWSER_REMOVE:
+		eDebug("[Avahi] REMOVE service '%s' of type '%s' in domain '%s'", name, type, domain);
+		entry->callback(entry->userdata, E2AVAHI_EVENT_REMOVE, name, type, NULL, 0);
+		break;
+    case AVAHI_BROWSER_ALL_FOR_NOW:
+		/* Useless information... */
+		break;
+	case AVAHI_BROWSER_FAILURE:
+		eDebug("[Avahi] AVAHI_BROWSER_FAILURE");
+		/* We'll probably need to restart everything? */
+		entry->browser = NULL;
+		break;
+	case AVAHI_BROWSER_CACHE_EXHAUSTED:
+		/* Useless information... */
+		break;
+	}
+}
+
+static void avahi_browser_try_register(AvahiBrowserEntry *entry)
+{
+	if (entry->browser)
+		return; /* Already registered */
+
+	if ((!avahi_client) || (avahi_client_get_state(avahi_client) != AVAHI_CLIENT_S_RUNNING))
+	{
+		eDebug("[Avahi] Not running yet, cannot browser for type %s.\n", entry->service_type);
+		return;
+	}
+
+	entry->browser = avahi_service_browser_new(avahi_client,
+			AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC,
+			entry->service_type, NULL, (AvahiLookupFlags)0,
+			avahi_browser_callback, entry);
+	if (!entry->browser) {
+		eDebug("avahi_service_browser_new failed: %s\n",
+				avahi_strerror(avahi_client_errno(avahi_client)));
+	}
+}
+
+
 void e2avahi_announce(const char* service_name, const char* service_type, unsigned short port_num)
 {
-	AvahiServiceEntry entry(service_name, service_type, port_num);
-	avahi_service_try_register(&entry);
-	avahi_services.push_back(entry);
+	avahi_services.push_back(AvahiServiceEntry(service_name, service_type, port_num));
+	avahi_service_try_register(&avahi_services.back());
+}
+
+void e2avahi_resolve(const char* service_type, E2AvahiResolveCallback callback, void *userdata)
+{
+	avahi_browsers.push_back(AvahiBrowserEntry(service_type, callback, userdata));
+	avahi_browser_try_register(&avahi_browsers.back());
 }

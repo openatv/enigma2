@@ -13,3 +13,16 @@ void e2avahi_close();
  * name (recommended, since it must be unique on the network) */
 void e2avahi_announce(const char* service_name, const char* service_type, unsigned short port_num);
 
+#define E2AVAHI_EVENT_ADD 1
+#define E2AVAHI_EVENT_REMOVE 2
+
+typedef void (*E2AvahiResolveCallback) (
+    void* userdata,
+	int event, /* One of E2AVAHI_EVENT_... */
+	const char *name, /* name+type combination is unique on the network */
+	const char *type,
+	const char *host_name, /* hostname and port are only valid in ADD */
+	uint16_t port);
+
+/* Search for services on other machines. */
+void e2avahi_resolve(const char* service_type, E2AvahiResolveCallback callback, void *userdata);
