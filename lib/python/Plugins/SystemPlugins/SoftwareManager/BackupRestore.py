@@ -38,13 +38,22 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
-	if backuppath.endswith('/'):
-		return backuppath + 'backup'
-	else:
-		return backuppath + '/backup'
+	return path.join(backuppath, 'backup')
 
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
+
+def getBackupSymlinkPath():
+	return path.join("/tmp", getBackupFilename())
+
+def cleanBackupSymlink():
+	target = getBackupSymlinkPath()
+	if path.lexists(target):
+		remove(target)
+
+def makeBackupSymlink(target):
+	cleanBackupSymlink()
+	symlink(target, getBackupSymlinkPath())
 
 
 class BackupScreen(Screen, ConfigListScreen):
@@ -272,8 +281,12 @@ class RestoreMenu(Screen):
 
 	def startRestore(self, ret=False):
 		if ret:
-			symlink(self.path + "/" + self.sel, "/tmp/enigma2settingsbackup.tar.gz")
-			self.session.open(TryQuitMainloop, retvalue=41)
+			makeBackupSymlink(path.join(self.path, self.sel))
+			self.session.openWithCallback(self.cancelled, TryQuitMainloop, retvalue=41)
+
+	def cancelled(self, ret):
+		cleanBackupSymlink()
+		self.close()
 
 	def deleteFile(self):
 		if self.exe is False and self.entry is True:
@@ -313,7 +326,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list)
 		self.onLayoutFinish.append(self.layoutFinished)
 		if self.runRestore:
-			self.onShown.append(self.startRestore)
+			self.onFirstExecBegin.append(self.startRestore)
 
 	def layoutFinished(self):
 		self.setWindowTitle()
@@ -322,8 +335,12 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.setTitle(_("Restoring..."))
 
 	def startRestore(self):
-		symlink(self.fullbackupfilename, "/tmp/enigma2settingsbackup.tar.gz")
-		self.session.open(TryQuitMainloop, retvalue=41)
+		makeBackupSymlink(self.fullbackupfilename)
+		self.session.openWithCallback(self.cancelled, TryQuitMainloop, retvalue=41)
+
+	def cancelled(self, ret):
+		cleanBackupSymlink()
+		self.close()
 
 	def run(self):
 		self.startRestore()
