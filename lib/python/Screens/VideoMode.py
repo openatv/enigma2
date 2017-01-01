@@ -93,9 +93,10 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24,_("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 25fps as"), config.av.autores_1080p25,_("This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 30fps as"), config.av.autores_1080p30,_("This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 2160p 24fps as"), config.av.autores_2160p24,_("This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 2160p 25fps as"), config.av.autores_2160p25,_("This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)")))
-				self.list.append(getConfigListEntry(_("Show 2160p 30fps as"), config.av.autores_2160p30,_("This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)")))
+				if '2160p24' in iAVSwitch.readAvailableModes():
+					self.list.append(getConfigListEntry(_("Show 2160p 24fps as"), config.av.autores_2160p24,_("This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)")))
+					self.list.append(getConfigListEntry(_("Show 2160p 25fps as"), config.av.autores_2160p25,_("This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)")))
+					self.list.append(getConfigListEntry(_("Show 2160p 30fps as"), config.av.autores_2160p30,_("This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)")))
 
 		# if we have modes for this port:
 		if (config.av.videoport.value in config.av.videomode and config.av.autores.value == 'disabled') or config.av.videoport.value == 'Scart':
@@ -438,7 +439,7 @@ class AutoVideoMode(Screen):
 			elif config.av.autores.value == 'all' or (config.av.autores.value == 'hd' and int(new_res) >= 720):
 				if (config.av.autores_deinterlace.value and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.value and not HardwareInfo().is_nextgen() and int(new_res) <= 720):
 					new_pol = new_pol.replace('i','p')
-				if new_res+new_pol+new_rate in iAVSwitch.modes_available:
+				if new_res+new_pol+new_rate in iAVSwitch.readAvailableModes():
 					new_mode = new_res+new_pol+new_rate
 					if new_mode == '480p24' or new_mode == '576p24':
 						new_mode = config.av.autores_480p24.value
@@ -450,7 +451,7 @@ class AutoVideoMode(Screen):
 						new_mode = config.av.autores_1080p25.value
 					if new_mode == '1080p30':
 						new_mode = config.av.autores_1080p30.value
-				elif new_res+new_pol in iAVSwitch.modes_available:
+				elif new_res+new_pol in iAVSwitch.readAvailableModes():
 					new_mode = new_res+new_pol
 				else:
 					new_mode = config_mode+new_rate
