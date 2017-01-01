@@ -1,6 +1,7 @@
 import os
 import struct
 import random
+from time import localtime, strftime
 
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
@@ -180,7 +181,7 @@ class MovieList(GUIComponent):
 		self.iconsWidth = 22
 		self.trashShift = 1
 		self.dirShift = 1
-		self.dateWidth = 150
+		self.dateWidth = 160
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -343,6 +344,8 @@ class MovieList(GUIComponent):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		dateWidth = self.dateWidth
+		if not config.movielist.use_fuzzy_dates.value:
+			dateWidth += 30
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
@@ -432,7 +435,10 @@ class MovieList(GUIComponent):
 
 		begin_string = ""
 		if begin > 0:
-			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
+			if config.movielist.use_fuzzy_dates.value:
+				begin_string = ', '.join(FuzzyTime(begin, inPast = True))
+			else:
+				begin_string = strftime("%a %-e.%b.%Y, %R", localtime(begin))
 
 		ih = self.itemHeight
 		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
