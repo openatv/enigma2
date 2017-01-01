@@ -2105,7 +2105,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						if os.path.isdir(ffn):
 							subdirs += 1
 						else:
-							files += 1
+							tempfn, tempfext = os.path.splitext(fn)
+							if tempfext not in ('.eit', '.ap', '.cuts', '.meta', '.sc'):
+								files += 1
 				if files or subdirs:
 					folder_filename = os.path.split(os.path.split(name)[0])[1]
 					mbox=self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs-1) + are_you_sure)
@@ -2133,7 +2135,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						if os.path.isdir(ffn):
 							subdirs += 1
 						else:
-							files += 1
+							tempfn, tempfext = os.path.splitext(fn)
+							if tempfext not in ('.eit', '.ap', '.cuts', '.meta', '.sc'):
+								files += 1
 				if files or subdirs:
 					folder_filename = os.path.split(os.path.split(name)[0])[1]
 					mbox=self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs) + are_you_sure)
