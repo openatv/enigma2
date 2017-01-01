@@ -172,7 +172,7 @@ static void avahi_resolver_callback(AvahiServiceResolver *resolver,
 				name, type, avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(resolver))));
             break;
         case AVAHI_RESOLVER_FOUND:
-			if (!(flags & (AVAHI_LOOKUP_RESULT_LOCAL | AVAHI_LOOKUP_RESULT_OUR_OWN)))
+			if (flags & (AVAHI_LOOKUP_RESULT_LOCAL | AVAHI_LOOKUP_RESULT_OUR_OWN))
 				break; /* Skip local/own services, we don't want to see them */
             eDebug("[Avahi] ADD Service '%s' of type '%s' at %s:%u", name, type, host_name, port);
             entry->callback(entry->userdata, E2AVAHI_EVENT_ADD, name, type, host_name, port);
