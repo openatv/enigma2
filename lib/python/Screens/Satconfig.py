@@ -728,7 +728,8 @@ class NimSelection(Screen):
 				message = _("Recording(s) are in progress or coming up in few seconds!")
 				ybox = self.session.openWithCallback(self.processok, MessageBox, message, MessageBox.TYPE_YESNO)
 				ybox.setTitle(_("Are You Sure ?"))
-
+		else:
+			self.processok(True)
 
 	def processok(self, answer=False):
 		if answer is True:
