@@ -17,7 +17,7 @@ void e2avahi_announce(const char* service_name, const char* service_type, unsign
 #define E2AVAHI_EVENT_REMOVE 2
 
 typedef void (*E2AvahiResolveCallback) (
-    void* userdata,
+	void* userdata,
 	int event, /* One of E2AVAHI_EVENT_... */
 	const char *name, /* name+type combination is unique on the network */
 	const char *type,
