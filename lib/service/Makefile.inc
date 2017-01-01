@@ -15,6 +15,7 @@ service_libenigma_service_a_SOURCES = \
 	service/servicem2ts.cpp \
 	service/servicedvbstream.cpp \
 	service/servicehdmi.cpp \
+	service/servicepeer.cpp \
 	service/servicets.cpp \
 	service/servicewebts.cpp
 
@@ -32,6 +33,7 @@ serviceinclude_HEADERS = \
 	service/servicem2ts.h \
 	service/servicedvbstream.h \
 	service/servicehdmi.h \
+	service/servicepeer.h \
 	service/servicets.h \
 	service/servicewebts.h
 
