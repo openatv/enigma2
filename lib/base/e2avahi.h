@@ -24,5 +24,9 @@ typedef void (*E2AvahiResolveCallback) (
 	const char *host_name, /* hostname and port are only valid in ADD */
 	uint16_t port);
 
-/* Search for services on other machines. */
+/* Starts searching for services on other machines. Basically, one expects
+ * to activate this once, and then keep updating a static list of matches. */
 void e2avahi_resolve(const char* service_type, E2AvahiResolveCallback callback, void *userdata);
+/* Stop looking for services. Callback will no longer be triggered after this. Pass the same
+ * data as to the call to e2avahi_resolve. */
+void e2avahi_resolve_cancel(const char* service_type, E2AvahiResolveCallback callback, void *userdata);
