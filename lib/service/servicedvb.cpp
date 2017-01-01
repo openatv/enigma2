@@ -2305,19 +2305,26 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 	int system;
 	size_t index;
 
-	bool remote_fallback_enabled = eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false);
-	std::string remote_fallback_url = "http://" + eConfigManager::getConfigValue("config.usage.remote_fallback");
+	if (is_stream || is_pvr || simulate)
+		return false;
 
-	if(is_stream || is_pvr || simulate ||
-			!remote_fallback_enabled || (remote_fallback_url.length() == 0) ||
-			eDVBResourceManager::getInstance(res_mgr))
-		return(false);
+	if (!eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false))
+		return false;
+
+	std::string remote_fallback_url =
+		eConfigManager::getConfigValue("config.usage.remote_fallback");
+
+	if (remote_fallback_url.empty())
+		return false;
+
+	if (eDVBResourceManager::getInstance(res_mgr))
+		return false;
 
 	service.getChannelID(chid); 						// this sets chid
 	eServiceReferenceDVB().getChannelID(chid_ignore);	// this sets chid_ignore
 
 	if(res_mgr->canAllocateChannel(chid, chid_ignore, system))	// this sets system
-		return(false);
+		return false;
 
 	while((index = remote_fallback_url.find(':')) != std::string::npos)
 	{
@@ -2341,7 +2348,7 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 
 	is_stream = true;
 
-	return(true);
+	return true;
 }
 
 int eDVBServiceBase::getFrontendInfo(int w)
