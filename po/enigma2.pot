@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2016-12-25 02:22+0200\n"
+"POT-Creation-Date: 2017-01-02 23:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -75,6 +75,9 @@ msgstr ""
 msgid "\"\"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.First, a USB stick needs to be prepared so that it becomes bootable.In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!\"\""
 msgstr ""
 
+msgid "!! Bootloader Upgrade !!"
+msgstr ""
+
 msgid "%+6d"
 msgstr ""
 
@@ -103,6 +106,9 @@ msgid "%02d.%02d.%d"
 msgstr ""
 
 msgid "%02d:%02d"
+msgstr ""
+
+msgid "%2.1f sec"
 msgstr ""
 
 msgid "%2d:%02d"
@@ -998,6 +1004,12 @@ msgstr ""
 msgid "AC3 downmix"
 msgstr ""
 
+msgid "AC3plus transcoding"
+msgstr ""
+
+msgid "AC3 plus transcoding"
+msgstr ""
+
 msgid "Accesspoint:"
 msgstr ""
 
@@ -1374,6 +1386,9 @@ msgid "Alternative radio mode"
 msgstr ""
 
 msgid "Alternative services tuner priority"
+msgstr ""
+
+msgid "always"
 msgstr ""
 
 msgid "Always ask"
@@ -2022,6 +2037,9 @@ msgstr ""
 msgid "Bootloader:\t\t%s\n"
 msgstr ""
 
+msgid "Bootloader update required!"
+msgstr ""
+
 msgid "bottom"
 msgstr ""
 
@@ -2554,6 +2572,9 @@ msgid "Choose where to mount your devices to:"
 msgstr ""
 
 msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr ""
+
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr ""
 
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
@@ -3166,6 +3187,9 @@ msgid "Continues play (loop)"
 msgstr ""
 
 msgid "Contrast"
+msgstr ""
+
+msgid "controlled by HDMI"
 msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
@@ -3838,6 +3862,9 @@ msgstr ""
 msgid "Do not flash image"
 msgstr ""
 
+msgid "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\nUpdate now?"
+msgstr ""
+
 msgid "Do not record"
 msgstr ""
 
@@ -4024,6 +4051,9 @@ msgstr ""
 msgid "Don't add this recording"
 msgstr ""
 
+msgid "Don't ask again!"
+msgstr ""
+
 msgid "don't descramble, record ecm"
 msgstr ""
 
@@ -4031,6 +4061,9 @@ msgid "Don't save"
 msgstr ""
 
 msgid "Don't stop current event but disable coming events"
+msgstr ""
+
+msgid "Don't worry your device is still ok! There are several safety mechanisms in place!\nYour device is still as fine as it was before this procedure!"
 msgstr ""
 
 msgid "Done - Installed or upgraded %d packages"
@@ -7473,6 +7506,9 @@ msgstr ""
 msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
+msgstr ""
+
+msgid "No update required!"
 msgstr ""
 
 msgid "No updates available. Please try again later."
@@ -13480,13 +13516,22 @@ msgstr ""
 msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, specialy on big Lists !"
 msgstr ""
 
+msgid "Update failed!"
+msgstr ""
+
 msgid "Update failed. Your %s %s does not have a working internet connection."
+msgstr ""
+
+msgid "Update finished!"
 msgstr ""
 
 msgid "Update interval (in seconds)"
 msgstr ""
 
 msgid "Update is reported as faulty !!"
+msgstr ""
+
+msgid "Update succeeded!\nYour Bootloader is now up-to-date!"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
