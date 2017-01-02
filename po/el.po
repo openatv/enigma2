@@ -953,6 +953,10 @@ msgstr "Προτεραιότητα tuner εναλλακτικών υπηρεσι
 msgid "No priority"
 msgstr "Χωρίς προτεραιότητα"
 
+# UsageConfig.py
+msgid "%2.1f sec"
+msgstr "%2.1f δευτ."
+
 msgid "Always ask"
 msgstr "Πάντα ερώτηση"
 
@@ -1726,6 +1730,9 @@ msgstr "Επιλέξτε εάν οι DTS φέρουσες ήχου θα μιξά
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Επιλέξτε εάν οι φέρουσες ήχου AAC θα διακωδικοποιούνται."
+
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgstr "Επιλέξτε εάν οι AC3 Plus φέρουσες ήχου θα διακωδικοποιούνται σε AC3."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr ""
@@ -14238,6 +14245,14 @@ msgstr "Γραφικά"
 msgid "Picon and Service Name"
 msgstr "Λογότυπο και Όνομα Υπηρεσίας"
 
+# UsageConfig.py
+msgid "Service Number and Service Name"
+msgstr "Αριθμός Υπηρεσίας και Όνομα Υπηρεσίας"
+
+# UsageConfig.py
+msgid "Service Number, Picon and Service Name"
+msgstr "Αριθμός Υπηρεσίας, Λογότυπο και Όνομα Υπηρεσίας"
+
 msgid "Network Browser"
 msgstr "Πλοηγός Δικτύου"
 
@@ -17598,11 +17613,79 @@ msgstr "Γίνεται επανεκκίνηση του %s %s σε Λειτουρ
 msgid "Really reboot into Recovery Mode?"
 msgstr "Να γίνει σίγουρα επανεκκίνηση σε Λειτουργία Αποκατάστασης;"
 
+msgid "controlled by HDMI"
+msgstr "ελέγχεται από το HDMI"
+
+msgid "always"
+msgstr "πάντα"
+
+msgid "Don't ask again!"
+msgstr "Να μη γίνει ερώτηση ξανά!"
+
+msgid ""
+"DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
+"Update now?"
+msgstr ""
+"ΜΗΝ ΑΠΕΝΕΡΓΟΠΟΙΕΙΤΕ ΤΗ ΣΥΣΚΕΥΗ ΣΑΣ ΚΑΤΑ ΤΗΝ ΕΝΗΜΕΡΩΣΗ!\n"
+"Να γίνει ενημέρωση τώρα;"
+
+msgid "Bootloader update required!"
+msgstr "Απαιτείται ενημέρωση του bootloader!"
+
+msgid "!! Bootloader Upgrade !!"
+msgstr "!! Ενημέρωση Bootloader !!"
+
+msgid "No update required!"
+msgstr "Δεν απαιτείται ενημέρωση!"
+
+msgid "Update failed!"
+msgstr "Η ενημέρωση απέτυχε!"
+
+msgid ""
+"Don't worry your device is still ok! There are several safety mechanisms in "
+"place!\n"
+"Your device is still as fine as it was before this procedure!"
+msgstr ""
+"Μην ανησυχείτε, η συσκευή σας είναι ακόμα OK! Υπάρχουν αρκετοί διαθέσιμοι "
+"μηχανισμοί ασφαλείας!\n"
+"Η συσκευή σας είναι ακόμα όσο εντάξει ήταν πριν αυτή τη διαδικασία!"
+
+msgid "Update finished!"
+msgstr "Η ενημέρωση ολοκληρώθηκε!"
+
+msgid ""
+"Update succeeded!\n"
+"Your Bootloader is now up-to-date!"
+msgstr ""
+"Επιτυχής ενημέρωση!\n"
+"Ο Bootloader σας είναι πλέον ενημερωμένος!"
+
 msgid "Service Searching"
 msgstr "Ανίχνευση Υπηρεσιών"
 
 msgid "Enable blinking Clock on the LCD Display"
 msgstr "Ενεργοποίηση αναβοσβηνόμενου Ρολογιού στην Οθόνη LCD."
+
+msgid "Video:"
+msgstr "Βίντεο:"
+
+msgid "Audio:"
+msgstr "Ήχος:"
+
+msgid "Input Stream ID"
+msgstr "ID Ροής Εισόδου"
+
+msgid "PLS Mode"
+msgstr "PLS Λειτουργία"
+
+msgid "PLS Code"
+msgstr "PLS Κωδικός"
+
+msgid "Greek, Modern (1453-)"
+msgstr "Ελληνικά, Νέα (1453-)"
+
+msgid "multi"
+msgstr "πολλαπλό"
 
 msgid "  REC  "
 msgstr " ΕΓΓΡ "
@@ -21151,21 +21234,3 @@ msgstr ""
 "Παρακαλώ ρυθμίστε το tuner Β\n"
 "Για τα Υβριδικά Μοντέλα Tuner αλλάξτε τον Τύπο τους με τα πλήκτρα αριστερά "
 "και δεξιά"
-
-msgid "Video:"
-msgstr "Βίντεο:"
-
-msgid "Audio:"
-msgstr "Ήχος:"
-
-msgid "Input Stream ID"
-msgstr "ID Ροής Εισόδου"
-
-msgid "PLS Mode"
-msgstr "PLS Λειτουργία"
-
-msgid "PLS Code"
-msgstr "PLS Κωδικός"
-
-msgid "Greek, Modern (1453-)"
-msgstr "Ελληνικά, Νέα (1453-)"
