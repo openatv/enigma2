@@ -977,7 +977,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					elif clock_types is not None and clock_types == 7:
 						bgpng = self.zapEvPix
 					elif stime <= now < (stime + duration) and config.epgselection.graph_highlight_current_events.value:
-							bgpng = self.nowEvPix
+						bgpng = self.nowEvPix
 
 				# event box background
 				if bgpng is not None and self.graphic:
