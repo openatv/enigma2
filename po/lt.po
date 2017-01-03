@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-25 18:10+0200\n"
-"PO-Revision-Date: 2016-12-25 18:27+0200\n"
+"POT-Creation-Date: 2017-01-02 23:07+0200\n"
+"PO-Revision-Date: 2017-01-02 23:43+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -98,6 +98,9 @@ msgstr ""
 "išsaugotas USB laikmenoje. Jei jau turite parengtą įkrovos USB laikmeną, "
 "įdėkite ją dabar. Jei ne, įdėkite mažiausiai 64 MB dydžio USB laikmeną!\"\""
 
+msgid "!! Bootloader Upgrade !!"
+msgstr "!! Įkrovos tvarkyklės atnaujinimas !!"
+
 msgid "%+6d"
 msgstr "%+6d"
 
@@ -127,6 +130,9 @@ msgstr "%2d:%02d:%02d"
 
 msgid "%02d:%02d"
 msgstr "%02d:%02d"
+
+msgid "%2.1f sec"
+msgstr "%2.1f sek"
 
 msgid "%2d:%02d"
 msgstr "%2d:%02d"
@@ -1135,6 +1141,12 @@ msgstr "AC3/Dolby kompensacija"
 msgid "AC3 downmix"
 msgstr "AC3 kanalų suliejimas"
 
+msgid "AC3plus transcoding"
+msgstr "AC3plus perkodavimas"
+
+msgid "AC3 plus transcoding"
+msgstr "AC3 plus perkodavimas"
+
 msgid "Accesspoint:"
 msgstr "Prieigos taškas:"
 
@@ -1538,6 +1550,9 @@ msgstr "Alternatyvus radijo režimas"
 
 msgid "Alternative services tuner priority"
 msgstr "Kitų kanalų imtuvo pirmenybė"
+
+msgid "always"
+msgstr "visada"
 
 msgid "Always ask"
 msgstr "Visada klausti"
@@ -2220,6 +2235,9 @@ msgstr "Veiksmas paleidžiant"
 msgid "Bootloader:\t\t%s\n"
 msgstr "Užkrovėjas:\t\t%s\n"
 
+msgid "Bootloader update required!"
+msgstr "Įkrovos tvarkyklę reikia atnaujinti!"
+
 msgid "bottom"
 msgstr "apačia"
 
@@ -2781,6 +2799,11 @@ msgstr "Pasirinkite, kur pajungti įrenginius:"
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
+
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgstr ""
+"Ši parinktis leidžia nustatyti, ar AC3 plus garso takeliai bus perkoduoti į "
+"AC3."
 
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr ""
@@ -3563,6 +3586,9 @@ msgstr "Ištisinis kartojimas ratu (kilpa)"
 msgid "Contrast"
 msgstr "Kontrastas"
 
+msgid "controlled by HDMI"
+msgstr "valdoma HDMI"
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
 "Nustatykite pozicijas, kaip baigti laikmačiai bus rodomi laikmačių sąraše."
@@ -4268,6 +4294,13 @@ msgstr "Nieko nekeisti"
 msgid "Do not flash image"
 msgstr "Nediegtas atvaizdas"
 
+msgid ""
+"DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
+"Update now?"
+msgstr ""
+"NEIŠJUNKITE SAVO ĮRENGINIO IŠ MAITINIMO ĮTAMPOS ATNAUJINIMO METU!\n"
+"Atnaujinti dabar?"
+
 msgid "Do not record"
 msgstr "Neįrašinėti"
 
@@ -4472,6 +4505,9 @@ msgstr "Dolby Digital kanalų suliejimas"
 msgid "Don't add this recording"
 msgstr "Negalima pridėti šio įrašo"
 
+msgid "Don't ask again!"
+msgstr "Daugiau neklausti!"
+
 msgid "don't descramble, record ecm"
 msgstr "nereikia dekoduoti, įrašyti ecm"
 
@@ -4480,6 +4516,15 @@ msgstr "Neišsaugoti"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Nestabdyti dabartinio įvykio, bet išjungti sekančius"
+
+msgid ""
+"Don't worry your device is still ok! There are several safety mechanisms in "
+"place!\n"
+"Your device is still as fine as it was before this procedure!"
+msgstr ""
+"Nereikia nerimauti dėl savo įrenginio, vis yra gerai! Yra keletas mechanizmų "
+"saugumui užtikrinti!\n"
+"Jūsų įrenginys išliks toks pat geras kaip ir prieš šią procedūrą!"
 
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Baigta - įdiegta arba atnaujinta %d paketų"
@@ -7268,7 +7313,7 @@ msgid "Margin before recording (minutes)"
 msgstr "Intarpas prieš įrašymą (min.)"
 
 msgid "Mark service as dedicated 3D service"
-msgstr "Pažymėti, kaip grynai 3D kanalą"
+msgstr "Pažymėti, kaip 'grynai 3D' kanalą"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Žymė/portalas/grojaraštis"
@@ -8123,6 +8168,9 @@ msgid ""
 msgstr ""
 "Joks imtuvas neįjungtas!\n"
 "Prieš pradėdami kanalų paiešką, sukonfigūruokite imtuvą."
+
+msgid "No update required!"
+msgstr "Atnaujinimas nebūtinas!"
 
 msgid "No updates available. Please try again later."
 msgstr "Atnaujinimų nėra. Bandykite patikrinti vėliau."
@@ -14334,7 +14382,7 @@ msgid "Toggle between bouquet/epg lists"
 msgstr "Perjungti tarp paketo/epg sąrašo"
 
 msgid "Toggle Digital downmix..."
-msgstr "Skaitmeninis suliejimas..."
+msgstr "Perjungti skaitmeninį suliejimą..."
 
 msgid "Toggle HDMI-In full screen"
 msgstr "Perjungti HDMI per visą ekraną"
@@ -14343,7 +14391,7 @@ msgid "Toggle HDMI-In PiP"
 msgstr "Perjungti HDMI į PiP"
 
 msgid "Toggle LCD LiveTV"
-msgstr "Perjungti LCD TV rodymą"
+msgstr "Perjungti transliaciją į LCD"
 
 msgid "Toggle Picture In Graphics"
 msgstr "Perjungti paveikslėlį į grafiką"
@@ -14454,9 +14502,7 @@ msgid "Trashcan:"
 msgstr "Šiukšliadėžė:"
 
 msgid "Tried to disable PIP, suddenly found no InfoBar.instance.\n"
-msgstr ""
-"Bandžiau išjungti PIP, netikėtai radau, kad nėra InfoBar.instance.\n"
-"\n"
+msgstr "Bandant išjungti PiP, netikėtai dingo InfoBar.instance.\n"
 
 msgid "Tries left:"
 msgstr "Liko bandymų:"
@@ -14488,7 +14534,7 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
 
 msgid "TSID"
-msgstr "TSID"
+msgstr "TSID eilutė"
 
 msgid "Tue"
 msgstr "Ant"
@@ -14503,7 +14549,7 @@ msgid "Tune and focus"
 msgstr "Suderinti ir fokusuoti"
 
 msgid "Tune failed!"
-msgstr "Suderinimas nepavyko!"
+msgstr "Suderinti nepavyko!"
 
 msgid "Tuner"
 msgstr "Imtuvas"
@@ -14596,7 +14642,7 @@ msgid "Type: "
 msgstr "Tipas: "
 
 msgid "UI 3D setup"
-msgstr "UI 3D valdymas"
+msgstr "3D vaizdo sąranka"
 
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
@@ -14671,7 +14717,7 @@ msgid "unknown service"
 msgstr "nežinomas kanalas"
 
 msgid "Unmark service as dedicated 3D service"
-msgstr "Nežymėti šio kanalo, kaip grynai 3D"
+msgstr "Nuimti kaip 'grynai 3D' kanalo žymę"
 
 msgid "Unmount"
 msgstr "Atjungti"
@@ -14728,14 +14774,27 @@ msgstr ""
 "Atnaujinimas atidėtas įvykių sąraše. Slinkimas į sąrašą yra greitesnis su "
 "aukšta delsa, ypač didelių sąrašų!"
 
+msgid "Update failed!"
+msgstr "Atnaujinti nepavyko!"
+
 msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr "Atnaujinti nepavyko. Jūsų %s %s neturi veikiančio interneto ryšio."
+
+msgid "Update finished!"
+msgstr "Atnaujinimas baigtas!"
 
 msgid "Update interval (in seconds)"
 msgstr "Atnaujinimo intervalas (sekundėmis)"
 
 msgid "Update is reported as faulty !!"
 msgstr "Atnaujinimas pranešė, kad klaidingas!!"
+
+msgid ""
+"Update succeeded!\n"
+"Your Bootloader is now up-to-date!"
+msgstr ""
+"Atnaujinimas pavyko!\n"
+"Jūsų įkrovos tvarkyklė dabar yra naujausia!"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr ""
