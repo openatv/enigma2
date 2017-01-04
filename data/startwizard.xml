@@ -1,5 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <wizard>
+
 		<step id="start" nextstep="introduction">
 			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
 			<displaytext value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
@@ -8,6 +9,7 @@ self.clearSelectedKeys()
 self.selectKey("OK")
 			</code>
 		</step>
+
 		<step id="introduction" >
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<displaytext value="Use the up/down keys on your remote control to select an option. After that, press OK." />
@@ -21,6 +23,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 			</code>
 		</step>
+
 		<step id="network" >
 			<text value="Please connect your %s %s to the internet" />
 			<displaytext value="Please connect your %s %s to the internet" />
@@ -34,6 +37,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 			</code>
 		</step>
+
 		<step id="update">
 			<text value="Checking the internet connection" />
 			<displaytext value="Checking the internet connection" />
@@ -43,6 +47,7 @@ self.clearSelectedKeys()
 self.selectKey("OK")
 			</code>
 		</step>
+
 		<step id="networkfailed" >
 			<condition>
 self.condition = not config.misc.installwizard.ipkgloaded.value
@@ -59,6 +64,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 			</code>
 		</step>
+
 		<step id="nima">
 			<condition>
 from Components.NimManager import nimmanager
@@ -73,6 +79,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimb">
 			<condition>
 from Components.NimManager import nimmanager
@@ -87,6 +94,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimc">
 			<condition>
 from Components.NimManager import nimmanager
@@ -102,6 +110,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimd">
 			<condition>
 from Components.NimManager import nimmanager
@@ -117,6 +126,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nime">
 			<condition>
 from Components.NimManager import nimmanager
@@ -131,6 +141,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimf">
 			<condition>
 from Components.NimManager import nimmanager
@@ -145,6 +156,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimg">
 			<condition>
 from Components.NimManager import nimmanager
@@ -159,6 +171,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimh">
 			<condition>
 from Components.NimManager import nimmanager
@@ -173,6 +186,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimi">
 			<condition>
 from Components.NimManager import nimmanager
@@ -187,6 +201,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 		<step id="nimj">
 			<condition>
 from Components.NimManager import nimmanager
@@ -201,6 +216,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
+
 <!--
 		<step id="channels">
 			<condition>
@@ -217,6 +233,7 @@ self.selectKey("RIGHT")
 			</code>
 		</step>
  -->
+
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<displaytext value="Do you want to do a service scan?" />
@@ -230,6 +247,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
 			</list>
 		</step>
+
 		<step id="scan" nextstep="end">
 			<condition>
 from Components.NimManager import nimmanager
@@ -239,6 +257,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<displaytext value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
 		</step>
+
 		<step id="manualscan">
 			<condition>
 from Components.NimManager import nimmanager
@@ -248,6 +267,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<displaytext value="What do you want to scan?" />
 			<config screen="ScanSetup" module="ScanSetup" type="ConfigList" />
 		</step>
+
 		<step id="nextscan">
 			<condition>
 from Components.NimManager import nimmanager
@@ -260,6 +280,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
 			</list>
 		</step>
+
 <!--
 		<step id="finisheddefaultsatlists">
 			<text value="Do you want to enable the parental control feature on your %s %s?" />
@@ -309,6 +330,7 @@ config.ParentalControl.setuppin.save()
 			<displaytext value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
 		</step>
 -->
+
 		<step id="end" laststep="true">
 			<condition>
 self.condition = self.isLastWizard
@@ -320,4 +342,5 @@ self.clearSelectedKeys()
 self.selectKey("OK")
 			</code>
 		</step>
+
 </wizard>
