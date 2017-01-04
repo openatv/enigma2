@@ -1771,6 +1771,8 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 							else:
 								skip_t2 = False
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot), skip_t2=skip_t2)
+				elif nim.isCompatible("ATSC"):
+					getInitialATSCTransponderList(tlist, nim.slot)
 				else:
 					assert False
 
