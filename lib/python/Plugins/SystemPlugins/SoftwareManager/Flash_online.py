@@ -295,6 +295,14 @@ class doFlashImage(Screen):
 			box = 'maram9'
 		return box
 
+	def getSel(self):
+		self.sel = self["imageList"].l.getCurrentSelection()
+		if self.sel == None:
+			print"Nothing to select !!"
+			return False
+		self.filename = self.imagePath + "/" + self.sel
+		return True
+
 	def greenCB(self, ret = None):
 		if self.Online:
 			if ret:
@@ -306,16 +314,10 @@ class doFlashImage(Screen):
 			self.startInstallLocal(ret)
 
 	def green(self):
-		sel = self["imageList"].l.getCurrentSelection()
-		if sel == None:
-			print"Nothing to select !!"
-			return
-		file_name = self.imagePath + "/" + sel
-		self.filename = file_name
-		self.sel = sel
-		self.hide()
-		self.session.openWithCallback(self.greenCB, MessageBox, _("Do you want to backup your settings now?"), default=False)
-	
+		if self.getSel():
+			self.hide()
+			self.session.openWithCallback(self.greenCB, MessageBox, _("Do you want to backup your settings now?"), default=False)
+
 	def startInstallOnline(self, ret = None):
 		box = self.box()
 		url = self.feedurl + "/" + box + "/" + self.sel
@@ -545,7 +547,7 @@ class doFlashImage(Screen):
 	def yellow(self):
 		if not self.Online:
 			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, matchingPattern="^.*\.(zip|bin|jffs2|img)", showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
-		else:
+		elif self.getSel():
 			self.greenCB(True)
 
 	def startInstallLocal(self, ret = None):

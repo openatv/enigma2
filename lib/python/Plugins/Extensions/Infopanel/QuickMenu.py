@@ -644,6 +644,7 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
+		width *= 1.5
 		return [
 			_(name),
 			MultiContentEntryText(pos=(90, 5), size=(width-90, 38), font=0, text = _(name)),
@@ -663,6 +664,7 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
+		width *= 1.5
 		return [
 			_(name),
 			MultiContentEntryText(pos=(15, 5), size=(width-15, 38), font=0, text = _(name)),
