@@ -13,7 +13,7 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
 from Components.About import about
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 
 config.unicable = ConfigSubsection()
 
@@ -1300,8 +1300,8 @@ def InitNimManager(nimmgr, update_slots = []):
 			section.powerMeasurement = ConfigYesNo(default=True)
 			section.powerThreshold = ConfigInteger(default=15, limits=(0, 100))
 			section.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
-			section.fastTurningBegin = ConfigDateTime(default=advanced_lnb_fast_turning_btime, formatstring=config.usage.time.short.value, increment=600)
-			section.fastTurningEnd = ConfigDateTime(default=advanced_lnb_fast_turning_etime, formatstring=config.usage.time.short.value, increment=600)
+			section.fastTurningBegin = ConfigDateTime(default=advanced_lnb_fast_turning_btime, formatstring = _("%H:%M"), increment = 600)
+			section.fastTurningEnd = ConfigDateTime(default=advanced_lnb_fast_turning_etime, formatstring = _("%H:%M"), increment = 600)
 
 	def configLNBChanged(configElement):
 		x = configElement.slot_id
@@ -1432,9 +1432,9 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
 			btime = datetime(1970, 1, 1, 7, 0)
-			nim.fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring=config.usage.time.short.value, increment=900)
+			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 			etime = datetime(1970, 1, 1, 19, 0)
-			nim.fastTurningEnd = ConfigDateTime(default=mktime(etime.timetuple()), formatstring=config.usage.time.short.value, increment=900)
+			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 
 	def createCableConfig(nim, x):
 		try:
