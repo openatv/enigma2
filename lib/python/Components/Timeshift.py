@@ -1202,8 +1202,11 @@ class InfoBarTimeshift:
 		ts = self.getTimeshift()
 		if ts is None:
 			return
-		# print ("!!! SET NextPlaybackFile%s%s" % (config.usage.timeshift_path.value,nexttsfile))
-		ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.value,nexttsfile))
+# Prepend timeshift dir, *unless* we are setting nothing ("")
+		if nexttsfile != "":
+			nexttsfile = "%s%s" % (config.usage.timeshift_path.value, nexttsfile)
+		# print ("!!! SET NextPlaybackFile: %s" % nexttsfile)
+		ts.setNextPlaybackFile(nexttsfile)
 
 	def ptsSeekBackTimer(self):
 		# print '!!!!! ptsSeekBackTimer RUN'
