@@ -8,9 +8,10 @@ class ValueRange(Converter, object):
 
 	@cached
 	def getBoolean(self):
+		val = int(self.source.value)
 		if self.lower <= self.upper:
-			return self.lower <= self.source.value <= self.upper
+			return self.lower <= val <= self.upper
 		else:
-			return not (self.upper < self.source.value < self.lower)
+			return not (self.upper < val < self.lower)
 
 	boolean = property(getBoolean)

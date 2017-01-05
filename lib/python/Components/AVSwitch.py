@@ -83,7 +83,7 @@ class AVSwitch:
 	# 	del modes["DVI-PC"]
 	
 	# Machines that do not have component video (red, green and blue RCA sockets).
-	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','gbx1','gbx3','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','mutant500c','mutant1200','mutant1500','odimm7','optimussos1','osmega','osmini','osminiplus','sf128','sf138','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','vuuno4k','vuultimo4k','xp1000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','gbx1','gbx3','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','mutant500c','mutant1200','mutant1500','odimm7','optimussos1','osmega','osmini','osminiplus','sf128','sf138','sf4008','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','vuuno4k','vuultimo4k','xp1000'):
 		del modes["YPbPr"]
 		
 	# Machines that have composite video (yellow RCA socket) but do not have Scart.
@@ -92,7 +92,7 @@ class AVSwitch:
 		del modes["Scart"]
 		
 	# Machines that have neither RCA nor Scart sockets 
-	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','gbx1','gbx3','ixussone','tmnano2t','vusolo4k','vuuno4k','vuultimo4k','mutant51','mutant1500'):
+	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','gbx1','gbx3','ixussone','sf4008','tmnano2t','vusolo4k','vuuno4k','vuultimo4k','mutant51','mutant1500'):
 		del modes["Scart"]
 
 	def __init__(self):
@@ -113,9 +113,9 @@ class AVSwitch:
 			f.close()
 		except IOError:
 			print "[VideoHardware] couldn't read available videomodes."
-			self.modes_available = [ ]
-			return
-		self.modes_available = modes.split(' ')
+			modes = [ ]
+			return modes
+		return modes.split(' ')
 
 	def readPreferredModes(self):
 		try:
@@ -125,7 +125,7 @@ class AVSwitch:
 			self.modes_preferred = modes.split(' ')
 		except IOError:
 			print "[VideoHardware] reading preferred modes failed, using all modes"
-			self.modes_preferred = self.modes_available
+			self.modes_preferred = self.readAvailableModes()
 
 		if self.modes_preferred != self.last_modes_preferred:
 			self.last_modes_preferred = self.modes_preferred
@@ -135,7 +135,7 @@ class AVSwitch:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
-			if mode not in self.modes_available:
+			if mode not in self.readAvailableModes():
 				return False
 		return True
 
@@ -354,7 +354,7 @@ def InitAVSwitch():
 	if config.av.yuvenabled.value:
 		colorformat_choices["yuv"] = _("YPbPr")
 
-	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "all": _("All resolutions"), "hd": _("only HD"), "4k": _("only 4K")}, default="disabled")
+	config.av.autores = ConfigSelection(choices={"disabled": _("Disabled"), "all": _("All resolutions"), "hd": _("only HD")}, default="disabled")
 	choicelist = []
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))

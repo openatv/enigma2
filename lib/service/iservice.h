@@ -948,7 +948,7 @@ public:
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
 			/* might have to be changed... */
-	virtual RESULT setTarget(int target)=0;
+	virtual RESULT setTarget(int target, bool noaudio = false)=0;
 	virtual SWIG_VOID(RESULT) seek(ePtr<iSeekableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) pause(ePtr<iPauseableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) info(ePtr<iServiceInformation> &SWIG_OUTPUT)=0;

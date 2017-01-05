@@ -1,12 +1,12 @@
 # Turkish translations for Enigma2.
 #
-# Hasan Kiran <sunder67@hotmail.com>, 2016.
+# Hasan Kiran <sunder67@hotmail.com>, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-23 19:30+0200\n"
-"PO-Revision-Date: 2016-12-30 13:25+0300\n"
+"PO-Revision-Date: 2017-01-05 01:40+0200\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
 "Language: tr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Lokalize 2.0\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -184,9 +184,9 @@ msgstr "%.0f MB"
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr "%02d.%02d - %02d.%02d (%s%d dak)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%02d:%02d"
-msgstr "%2d:%02d"
+msgstr "%02d:%02d"
 
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
@@ -225,10 +225,8 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
-#
-#, fuzzy
 msgid "%d %B %Y"
-msgstr "%d.%B %Y"
+msgstr "%d %B %Y"
 
 #, python-format
 msgid "%d GB"
@@ -308,9 +306,9 @@ msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "%d kablosuz ağ bulundu!"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d.%02d. %02d:%02d"
-msgstr "%2d:%02d:%02d"
+msgstr "%d.%02d. %02d:%02d"
 
 #
 msgid "%d.%B %Y"
@@ -566,10 +564,8 @@ msgstr "720p"
 msgid "720p 24Hz"
 msgstr "720p 24Hz"
 
-#
-#, fuzzy
 msgid "< Default >"
-msgstr "Varsayılan"
+msgstr "< Varsayılan >"
 
 #
 #, fuzzy
@@ -606,12 +602,11 @@ msgid ""
 msgstr ""
 "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
-#, fuzzy
 msgid ""
 "A background update check is in progress, please wait a few minutes and then "
 "try again."
 msgstr ""
-"Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
+"Arkaplanda güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
 msgid ""
 "A background update check is in progress, please wait a few minutes and try "
@@ -799,20 +794,14 @@ msgstr "Ses-Görüntü ayarları"
 msgid "Abort"
 msgstr "Vazgeç"
 
-#
-#, fuzzy
 msgid "Abort alternatives edit"
-msgstr "alternatif düzenlemeden vazgeç"
+msgstr "Alternatif düzenlemekten vazgeç"
 
-#
-#, fuzzy
 msgid "Abort bouquet edit"
-msgstr "buket düzenlemeden vazgeç"
+msgstr "Buket düzenlemekten vazgeç"
 
-#
-#, fuzzy
 msgid "Abort favourites edit"
-msgstr "favori düzenlemeden vazgeç"
+msgstr "Favori düzenlemekten vazgeç"
 
 #
 msgid "About"
@@ -832,10 +821,8 @@ msgstr "Etkinleştir"
 msgid "Activate HbbTV (RedButton)"
 msgstr "HbbTV etkin (Kırmızı tuş)"
 
-#
-#, fuzzy
 msgid "Activate MAC address configuration"
-msgstr "geçerli yapılandırmayı etkinleştir"
+msgstr "MAC-adresi yapılandırma etkin"
 
 #
 msgid "Activate Picture in Picture"
@@ -845,10 +832,8 @@ msgstr "Resim içinde resim (PIP) etkinleştir"
 msgid "Activate current configuration"
 msgstr "geçerli yapılandırmayı etkinleştir"
 
-#
-#, fuzzy
 msgid "Activate network adapter configuration"
-msgstr "ağ adaptör yapılandırmasını etkinleştir"
+msgstr "Ağ adaptör yapılandırmasını etkinleştir"
 
 #
 msgid "Activate network settings"
@@ -911,10 +896,8 @@ msgstr "Geçerli etkinliğe zap zamanlayıcı ekle"
 msgid "Add a zap timer for next event"
 msgstr "Sonraki etkinliğe zap zamanlayıcı ekle"
 
-#
-#, fuzzy
 msgid "Add alternatives"
-msgstr "alternatifler ekle"
+msgstr "Alternatiflere ekle"
 
 #
 msgid "Add bookmark"
@@ -961,10 +944,8 @@ msgstr "Kayıt ekle (şimdiki programdan sonra dursun)"
 msgid "Add service"
 msgstr "Kanal ekle"
 
-#
-#, fuzzy
 msgid "Add service to bouquet"
-msgstr "kanalı bukete ekle"
+msgstr "Kanalı bukete ekle"
 
 msgid "Add service to favourites"
 msgstr "Kanalı favorilere ekle"
@@ -1082,9 +1063,8 @@ msgstr "Altyazı dili ses diline eşit olsun"
 msgid "Allow subtitles for hearing impaired"
 msgstr "İşitme engelliler için altyazı olsun"
 
-#, fuzzy
 msgid "Allow unstable (experimental) updates"
-msgstr "Kararsız (denenmemiş) güncellemelere izin ver"
+msgstr "Kararsız (deneysel) güncellemelere izin ver"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "%s %s düzenli olarak saklanan EPG bilgisini okusun."
@@ -1127,16 +1107,16 @@ msgstr ""
 msgid "Allows you to setup the button to do what you choose."
 msgstr "Tuşun seçtiğiniz eyleme ayarlanması."
 
-#, fuzzy
 msgid "Allows you to show/hide CCcam Info in extensions (blue button)."
-msgstr "CCcam'ın eklentilerde görünmesi/gizlenmesi (mavi tuş)."
+msgstr ""
+"CCcam bilgisini uzantılarda göstermenizi/gizlemenizi sağlar (mavi düğme)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Günlük Yöneticisi'nin genişletmelerde görünmesi/gizlenmesi (mavi tuş)."
 
-#, fuzzy
 msgid "Allows you to show/hide OScam Info in extensions (blue button)."
-msgstr "OScam'ın genişletmelerde görünmesi/gizlenmesi (mavi tuş)."
+msgstr ""
+"OScam bilgisini uzantılarda göstermenizi/gizlemenizi sağlar (mavi düğme)."
 
 #
 msgid "Alpha"
@@ -1198,13 +1178,13 @@ msgstr "Herhangi bir eylem"
 msgid "Arabic"
 msgstr "Arapça"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Are you ready to install \"%s\" ?"
-msgstr "Kurmaya hazır mısınız \"%s\" ?"
+msgstr "\"%s\" Kurmaya hazır mısınız  ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Are you ready to remove \"%s\" ?"
-msgstr "Kaldırmaya hazır mısınız \"%s\" ?"
+msgstr "\"%s\" Kaldırmaya hazır mısınız ?"
 
 #
 msgid "Are you sure to remove this entry?"
@@ -1225,9 +1205,8 @@ msgstr ""
 "Aşağıdaki yedeği\n"
 "silmek istediğinizden emin misiniz:\n"
 
-#, fuzzy
 msgid "Are you sure you want to delete all the selected logs:\n"
-msgstr "Bütün seçilmiş günlükleri silmek isitiyor musunuz:\n"
+msgstr "Seçilen tüm günlükleri silmek istediğinizden emin misiniz:\n"
 
 #, fuzzy
 msgid "Are you sure you want to delete the EPG data from:\n"
@@ -1247,9 +1226,9 @@ msgstr ""
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Sihirbazdan çıkmak istiyor musunuz?"
 
-#, fuzzy
 msgid "Are you sure you want to purge all deleted user bouquets?"
-msgstr "Bütün seçilmiş günlükleri silmek isitiyor musunuz:\n"
+msgstr ""
+"Silinen tüm kullanıcı buketlerini temizlemek istediğinizden emin misiniz?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "EPG bilgisini buradan yeniden yüklemek istediğinizden emin misiniz:\n"
@@ -1258,13 +1237,11 @@ msgstr "EPG bilgisini buradan yeniden yüklemek istediğinizden emin misiniz:\n"
 msgid "Are you sure you want to remove all %d.%d%s%s services?"
 msgstr "Bütün seçilmiş günlükleri silmek isitiyor musunuz:\n"
 
-#, fuzzy
 msgid "Are you sure you want to remove all cable services?"
-msgstr "Bütün seçilmiş günlükleri silmek isitiyor musunuz:\n"
+msgstr "Tüm kablolu kanallarını kaldırmak istediğinizden emin misiniz?"
 
-#, fuzzy
 msgid "Are you sure you want to remove all terrestrial services?"
-msgstr "Bütün seçilmiş günlükleri silmek isitiyor musunuz:\n"
+msgstr "Tüm karasal kanalları kaldırmak istediğinizden emin misiniz?"
 
 #
 #, fuzzy
@@ -1343,7 +1320,7 @@ msgid "Attach a file"
 msgstr "Bir dosya iliştir"
 
 msgid "Attention, this is repeated timer!\n"
-msgstr ""
+msgstr "Dikkat, bu tekrarlanan zamanlayıcı!\n"
 
 msgid "Audio"
 msgstr "Ses"
@@ -1625,9 +1602,9 @@ msgstr "%%%d  Bellekte"
 msgid "Buffers:"
 msgstr "Tamponlar:"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Build:\t%s.%s%s (%s)\n"
-msgstr "Oluşum:\t%s"
+msgstr "Oluşturma:\t%s.%s%s (%s)\n"
 
 #, python-format
 msgid "Build: %s"
@@ -1806,21 +1783,19 @@ msgstr "Zaman-kaydırmayı film olarak saklama"
 msgid "Cannot delete file"
 msgstr "Dosya silinemez"
 
-#, fuzzy
 msgid "Cannot determine"
-msgstr "Dosya silinemez"
+msgstr "Belirlenemiyor"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Hiç sinyol bulunamadı..., durduruluyor!"
 
-#, fuzzy
 msgid "Cannot move to the trash can"
-msgstr "Çöp sepetine taşınamadı"
+msgstr "Çöp kutusuna taşınamıyor"
 
 #
 #, fuzzy
 msgid "Capabilities: "
-msgstr "Kapasite: "
+msgstr "Yetenekler: "
 
 #
 msgid "Capacity: "
@@ -2757,9 +2732,8 @@ msgstr "Bölüntü yarat"
 msgid "Croatian"
 msgstr "Hırvatça"
 
-#, fuzzy
 msgid "Cron Manager"
-msgstr "Günlük Yöneticisi"
+msgstr "Cron Yöneticisi"
 
 msgid "CronTimers"
 msgstr "Cron Zamanlayıcılar"
@@ -3195,10 +3169,8 @@ msgstr "Arkaplan taramasını kapat"
 msgid "Disable move mode"
 msgstr "taşıma kipini kapat"
 
-#
-#, fuzzy
 msgid "Disable timer"
-msgstr "dosya sil"
+msgstr "Zamanlayıcı devre dışı"
 
 #
 msgid "Disabled"
@@ -3329,10 +3301,8 @@ msgstr ""
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Bu derlemeyi DVD ortamına yazmak istiyor musunuz?"
 
-#
-#, fuzzy
 msgid "Do you want to continue?"
-msgstr "Ne taramak istiyorsunuz?"
+msgstr "Devam etmek istiyor musunz?"
 
 #, fuzzy
 msgid ""
@@ -3525,25 +3495,21 @@ msgstr "EPG ayarları"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "HATA - tarama başarısız (%s)!"
 
-#, fuzzy
 msgid ""
 "ERROR:   Check is already running in background, please wait a few minutes "
 "and try again"
 msgstr ""
-"Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
+"HATA:  Kontrol arka planda zaten çalışıyor, birkaç dakika sonra tekrar"
+" deneyin."
 
 msgid "ERROR:   No internet found"
-msgstr ""
+msgstr "HATA:  İnternet yok"
 
-#
-#, fuzzy
 msgid "ERROR:   No network found"
-msgstr "Ağ bulunamadı"
+msgstr "HATA:  Ağ bulunamadı"
 
-#
-#, fuzzy
 msgid "ERROR: Check is already running in background"
-msgstr "%d görev arkaplanda çalışıyor!"
+msgstr "HATA:  Kontrol arka planda zaten çalışıyor"
 
 #
 msgid "East"
@@ -3563,10 +3529,8 @@ msgstr "Düzenle"
 msgid "Edit DNS"
 msgstr "DNS Düzenle"
 
-#
-#, fuzzy
 msgid "Edit alternatives"
-msgstr "alternatifleri düzenle"
+msgstr "Alternatifleri düzenle"
 
 #
 msgid "Edit chapters of current title"
@@ -3756,7 +3720,6 @@ msgstr "PIN girin"
 msgid "Enter the service pin"
 msgstr "Kanal PINi girin"
 
-#, fuzzy
 msgid "Enter your e-mail address to send a copy of the log to."
 msgstr "Günlüğün bir kopyasının gönderilmesi için e-posta adresinizi girin."
 
@@ -3907,15 +3870,11 @@ msgstr "Film oynatıcıdan çık?"
 msgid "Exit nameserver configuration"
 msgstr "ad sunucu yapılandırmasından çık"
 
-#
-#, fuzzy
 msgid "Exit network adapter configuration"
-msgstr "ağ donanımı yapılandırmasından çık"
+msgstr "Ağ donanımı yapılandırmasından çık"
 
-#
-#, fuzzy
 msgid "Exit network adapter setup menu"
-msgstr "ağ donanımı kurulum menüsünden çık"
+msgstr "Ağ donanımı kurulum menüsünden çık"
 
 #
 msgid "Exit network interface list"
@@ -4003,7 +3962,7 @@ msgid "External subtitle switch fonts"
 msgstr "Dış altyazı rengi"
 
 msgid "Extra motor options"
-msgstr ""
+msgstr "Ekstra motor seçenekleri"
 
 msgid "Extrude from left"
 msgstr ""
@@ -4154,7 +4113,7 @@ msgid "Final position at index"
 msgstr "İndeksteki son konum"
 
 msgid "Final scroll delay"
-msgstr ""
+msgstr "Son kaydırma gecikmesi"
 
 msgid "Find currently played service"
 msgstr ""
@@ -4278,10 +4237,8 @@ msgstr "Tam ekran"
 msgid "Full transparency"
 msgstr "tam saydamlık"
 
-#
-#, fuzzy
 msgid "Fulview resulution"
-msgstr "Tam görünüm çözünürlük"
+msgstr "Tam görünüm çözünürlüğü"
 
 msgid "GB"
 msgstr "GB"
@@ -4449,9 +4406,8 @@ msgstr "HDMI CEC Kurulum"
 msgid "HDMI Colorspace"
 msgstr "HDMI Renk alanı"
 
-#, fuzzy
 msgid "HDMIin"
-msgstr "HDMI"
+msgstr "HDMIin"
 
 msgid "Handle standby from TV"
 msgstr "Bekleme TV'den idare edilsin"
@@ -4484,7 +4440,6 @@ msgstr "Yardım"
 msgid "Help long"
 msgstr "Yardım uzun"
 
-#, fuzzy
 msgid "Helps setting up your antenna"
 msgstr "Çanağınızı kurmanıza yardımcı olur"
 
@@ -4818,7 +4773,7 @@ msgid "Infobar fade-out speed"
 msgstr ""
 
 msgid "Infobar frontend data source"
-msgstr ""
+msgstr "Bilgi çubuğu önyüz veri kaynağı"
 
 msgid "InfobarEPG settings"
 msgstr "EPG bilgi çubuğu ayarları"
@@ -5200,10 +5155,8 @@ msgstr "Eğlence hobiler"
 msgid "Letterbox"
 msgstr "Letterbox"
 
-#
-#, fuzzy
 msgid "Letterbox zoom"
-msgstr "Letterbox"
+msgstr "Sinemaskop yakınlaştırma"
 
 msgid "Light Grey"
 msgstr "Açık Gri"
@@ -5391,10 +5344,8 @@ msgstr "Lüksemburgca"
 msgid "MAC address"
 msgstr "MAC adresi"
 
-#
-#, fuzzy
 msgid "MAC address settings"
-msgstr "Ağ adaptör ayarları"
+msgstr "MAC adresi ayarları"
 
 msgid "MAC:"
 msgstr "MAC:"
@@ -5956,8 +5907,6 @@ msgstr "Kablo tuner bulunamadı!"
 msgid "No card inserted!"
 msgstr "Kart takılmadı!"
 
-#
-#, fuzzy
 msgid "No connection"
 msgstr "Bağlantı yok"
 
@@ -6362,9 +6311,8 @@ msgstr "Buket listesini aç"
 #
 #, fuzzy
 msgid "Open nameserver configuration"
-msgstr "ad sunucu yapılandırmasını aç"
+msgstr "isim sunucu yapılandırmasını aç"
 
-#, fuzzy
 msgid "Open service list and select the next channel"
 msgstr "Kanal listesini aç ve sonraki kanalı seç"
 
@@ -6384,18 +6332,15 @@ msgstr "Kanal listesini aç ve önceki kanalı seç"
 msgid "Open setup tuner "
 msgstr "Tuner A yı kurun"
 
-#, fuzzy
 msgid "Open the favourites list"
-msgstr "Film listesini aç"
+msgstr "Favori listesini aç"
 
 msgid "Open the movie list"
 msgstr "Film listesini aç"
 
-#, fuzzy
 msgid "Open the satellites list"
 msgstr "Uydu listesini aç"
 
-#, fuzzy
 msgid "Open the service list"
 msgstr "Kanal listesini aç"
 
@@ -6497,7 +6442,7 @@ msgid "Pan&scan"
 msgstr "Pan&Scan"
 
 msgid "Panic to"
-msgstr ""
+msgstr "Panik"
 
 #
 msgid "Parent directory"
@@ -6645,9 +6590,8 @@ msgstr "sonraki işaretten veya oynatma listesi seçiminden oynat"
 msgid "Play from previous mark or playlist entry"
 msgstr "önceki işaretten veya oynatma listesi seçiminden oynat"
 
-#, fuzzy
 msgid "Play in main window"
-msgstr "ana pencerede oynat"
+msgstr "Ana pencerede oynat"
 
 #
 msgid "Play music..."
@@ -6743,19 +6687,15 @@ msgstr "Lütfen yeni işaretleyici için ad girin"
 msgid "Please enter a new filename"
 msgstr "Lütfen yeni bir dosya adını girin"
 
-#
-#, fuzzy
 msgid "Please enter a new name:"
-msgstr "Lütfen yeni bir dosya adını girin"
+msgstr "Lütfen yeni isim girin:"
 
 #
 msgid "Please enter filename (empty = use current date)"
 msgstr "Lütfen dosya adı girin (boş = geçerli tarih)"
 
-#
-#, fuzzy
 msgid "Please enter new description:"
-msgstr "Lütfen yeni bir dosya adını girin"
+msgstr "Lütfen yeni açıklama girin:"
 
 #
 msgid "Please enter new name:"
@@ -6770,9 +6710,8 @@ msgstr "Lütfen doğru PINi girin"
 msgid "Please enter the name of the new directory"
 msgstr "Lütfen yeni kasör için bir ad girin"
 
-#, fuzzy
 msgid "Please enter the new PIN code"
-msgstr "Lütfen eski PINi girin"
+msgstr "Lütfen yeni şifreyi girin"
 
 msgid "Please enter the old PIN code"
 msgstr "Lütfen eski PINi girin"
@@ -6846,8 +6785,6 @@ msgstr ""
 "\n"
 "Devam etmek için OK'a basın."
 
-#
-#, fuzzy
 msgid "Please select the tag to filter..."
 msgstr "Lütfen filtreleme için etiket seçin ..."
 
@@ -7859,9 +7796,8 @@ msgstr "Sağ"
 msgid "Right from servicename"
 msgstr "Kanal dının sağında"
 
-#, fuzzy
 msgid "Roll-off"
-msgstr "Çık"
+msgstr "Roll-off"
 
 msgid "Romanian"
 msgstr "Rumence"
@@ -8474,7 +8410,6 @@ msgstr "Limitleri ayarla"
 msgid "Set startup service"
 msgstr "Başlangıç kanalını ayarla"
 
-#, fuzzy
 msgid "Set system"
 msgstr "Sistemi ayarla"
 
@@ -8699,9 +8634,8 @@ msgstr "Bilgi-çubuğunda EIT şimdiki/sonraki göster"
 msgid "Show EPG for current channel..."
 msgstr "Mevcut kanalın EĞPG sini göster..."
 
-#, fuzzy
 msgid "Show EPG for current service"
-msgstr "Mevcut kanalın EĞPG sini göster..."
+msgstr "Mevcut kanal için EPG göster"
 
 msgid "Show EPG..."
 msgstr "EPG Göster..."
@@ -8712,7 +8646,6 @@ msgstr "Gösteri Oyunlarını göster"
 msgid "Show Log"
 msgstr "Günlük göster"
 
-#, fuzzy
 msgid "Show Log Manager in extensions list ?"
 msgstr "Günlük Yöneticisi uzantılar listesinde görünsün mü?"
 
@@ -8780,7 +8713,6 @@ msgstr "Meşgulken animasyon göster"
 msgid "Show background behind subtitles"
 msgstr "Altyazı arkasında arka plan göster"
 
-#, fuzzy
 msgid "Show background in Radio mode"
 msgstr "Radyo modunda arka planı göster"
 
@@ -8921,9 +8853,8 @@ msgstr "Konumlayıcı hareketini göster"
 msgid "Show positioner position"
 msgstr "Konumlayıcı hareketini göster"
 
-#, fuzzy
 msgid "Show program information..."
-msgstr "program bigisini göster..."
+msgstr "Program bigisini göster..."
 
 #, fuzzy
 msgid "Show record indicator"
@@ -9433,9 +9364,8 @@ msgstr "Başla"
 msgid "Start from the beginning"
 msgstr "Baştan başla"
 
-#, fuzzy
 msgid "Start instant recording"
-msgstr "Kayda başla?"
+msgstr "Kayıt başlatılsın mı?"
 
 msgid "Start offline decode"
 msgstr "Çevrimdışı çözüme başla"
@@ -9488,25 +9418,20 @@ msgstr "Durdur"
 msgid "Stop PiP"
 msgstr "PiP'i durdur"
 
-#, fuzzy
 msgid "Stop all current recordings"
-msgstr "Kayda başla?"
+msgstr "Mevcut tüm kayıtları durdur"
 
-#, fuzzy
 msgid "Stop and delete all current recordings"
-msgstr "Kaydı durdur"
+msgstr "Dur ve mevcut tüm kayıtları sil"
 
-#, fuzzy
 msgid "Stop and delete recording"
-msgstr "Kaydı durdur"
+msgstr "Dur ve kaydı sil"
 
-#, fuzzy
 msgid "Stop and delete recording:"
-msgstr "Kaydı durdur"
+msgstr "Dur ve kaydı sil:"
 
-#, fuzzy
 msgid "Stop and delete recordings:"
-msgstr "Kaydı durdur"
+msgstr "Dur ve kayıtları sil:"
 
 #
 #, fuzzy
@@ -9758,9 +9683,8 @@ msgstr "oynatma listesine geç"
 msgid "Switch to previous sub service"
 msgstr "Önceki alt servise geç"
 
-#, fuzzy
 msgid "Switch to radio mode"
-msgstr "Önceki kanala geçiş"
+msgstr "Radyo moduna geç"
 
 #, fuzzy
 msgid "Switch to the next channel"
@@ -9841,7 +9765,7 @@ msgid "TV"
 msgstr "TV"
 
 msgid "TV physical address report"
-msgstr ""
+msgstr "TV fiziksel adres raporu"
 
 msgid "TXT PID"
 msgstr "TXT PID"
