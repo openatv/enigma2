@@ -573,7 +573,7 @@ class InfoBarTimeshift:
 
 						# Add Event to list
 						filecount += 1
-						entrylist.append((_("Record") + " #%s (%s): %s" % (filecount,strftime("%H:%M",localtime(int(begintime))),eventname), "%s" % filename))
+						entrylist.append((_("Record") + " #%s (%s): %s" % (filecount, strftime(config.usage.time.short.value, localtime(int(begintime))), eventname), "%s" % filename))
 
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save permanently?"), list=entrylist)
 

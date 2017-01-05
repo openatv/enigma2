@@ -1,6 +1,7 @@
 from fcntl import ioctl
 from struct import pack, unpack
 from boxbranding import getBrandOEM
+from Components.config import config
 
 def getFPVersion():
 	ret = None
@@ -37,7 +38,7 @@ def setRTCoffset():
 
 	t_local = time.localtime(int(time.time()))
 
-	print "set RTC to %s (rtc_offset = %s sec.)" % (time.strftime("%Y/%m/%d %H:%M", t_local), forsleep)
+	print "set RTC to %s (rtc_offset = %s sec.)" % (time.strftime(config.usage.date.daylong.value + "  " + config.usage.time.short.value, t_local), forsleep)
 
 	# Set RTC OFFSET (diff. between UTC and Local Time)
 	try:
