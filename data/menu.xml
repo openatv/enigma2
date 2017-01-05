@@ -139,6 +139,7 @@ self.session.open(SABnzbdSetupScreen)
 					<item level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 					<item level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 					<item level="2" text="uShare setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
+					<item level="2" text="Password setup" entryID="password_setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
 				</menu>
 				<item level="1" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
 				<item level="0" text="Recording and playback settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings"/></item>
