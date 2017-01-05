@@ -1,4 +1,6 @@
+import locale
 import os
+import skin
 from time import time
 from boxbranding import getBrandOEM, getBoxType
 
@@ -335,6 +337,257 @@ def InitUsageConfig():
 	config.usage.show_vcr_scart = ConfigYesNo(default = False)
 	config.usage.pic_resolution = ConfigSelection(default = None, choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")])
 
+	config.usage.date = ConfigSubsection()
+	config.usage.date.enabled = NoSave(ConfigBoolean(default=False))
+	# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+	config.usage.date.dayfull = ConfigSelection(default=_("%A %-e %B %Y"), choices=[
+		(_("%A %d %B %Y"), _("Dayname 99 Month 9999")),
+		(_("%A %-e %B %Y"), _("Dayname 9 Month 9999")),
+		(_("%A %-e-%B-%Y"), _("Dayname 9-Month-9999")),
+		(_("%A %-e/%m/%Y"), _("Dayname 9/99/9999")),
+		(_("%A %B %d %Y"), _("Dayname Month 99 9999")),
+		(_("%A %B %-e %Y"), _("Dayname Month 9 9999")),
+		(_("%A %B-%-e-%Y"), _("Dayname Month-9-9999")),
+		(_("%A %-m/%-e/%Y"), _("Dayname 9/9/9999")),
+		(_("%A %Y %B %d"), _("Dayname 9999 Month 99")),
+		(_("%A %Y %B %-e"), _("Dayname 9999 Month 9")),
+		(_("%A %Y-%B-%d"), _("Dayname 9999-Month-99")),
+		(_("%A %Y-%B-%-e"), _("Dayname 9999-Month-9")),
+		(_("%A %Y/%m/%-e"), _("Dayname 9999/99/9"))
+	])
+	# TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
+	config.usage.date.shortdayfull = ConfigSelection(default=_("%a %-e %B %Y"), choices=[
+		(_("%a %d %B %Y"), _("Day 99 Month 9999")),
+		(_("%a %-e %B %Y"), _("Day 9 Month 9999")),
+		(_("%a %-e-%B-%Y"), _("Day 9-Month-9999")),
+		(_("%a %-e/%m/%Y"), _("Day 9/99/9999")),
+		(_("%a %B %d %Y"), _("Day Month 99 9999")),
+		(_("%a %B %-e %Y"), _("Day Month 9 9999")),
+		(_("%a %B-%-e-%Y"), _("Day Month-9-9999")),
+		(_("%a %-m/%-e/%Y"), _("Day 9/9/9999")),
+		(_("%a %Y %B %d"), _("Day 9999 Month 99")),
+		(_("%a %Y %B %-e"), _("Day 9999 Month 9")),
+		(_("%a %Y-%B-%d"), _("Day 9999-Month-99")),
+		(_("%a %Y-%B-%-e"), _("Day 9999-Month-9")),
+		(_("%a %Y/%m/%-e"), _("Day 9999/99/9"))
+	])
+	# TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
+	config.usage.date.daylong = ConfigSelection(default=_("%a %-e %b %Y"), choices=[
+		(_("%a %d %b %Y"), _("Day 99 Mon 9999")),
+		(_("%a %-e %b %Y"), _("Day 9 Mon 9999")),
+		(_("%a %-e-%b-%Y"), _("Day 9-Mon-9999")),
+		(_("%a %-e/%m/%Y"), _("Day 9/99/9999")),
+		(_("%a %b %d %Y"), _("Day Mon 99 9999")),
+		(_("%a %b %-e %Y"), _("Day Mon 9 9999")),
+		(_("%a %b-%-e-%Y"), _("Day Mon-9-9999")),
+		(_("%a %-m/%-e/%Y"), _("Day 9/9/9999")),
+		(_("%a %Y %b %d"), _("Day 9999 Mon 99")),
+		(_("%a %Y %b %-e"), _("Day 9999 Mon 9")),
+		(_("%a %Y-%b-%d"), _("Day 9999-Mon-99")),
+		(_("%a %Y-%b-%-e"), _("Day 9999-Mon-9")),
+		(_("%a %Y/%m/%-e"), _("Day 9999/99/9"))
+	])
+	# TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
+	config.usage.date.dayshortfull = ConfigSelection(default=_("%A %-e %B"), choices=[
+		(_("%A %d %B"), _("Dayname 99 Month")),
+		(_("%A %-e %B"), _("Dayname 9 Month")),
+		(_("%A %-e-%B"), _("Dayname 9-Month")),
+		(_("%A %-e/%m"), _("Dayname 9/99")),
+		(_("%A %B %d"), _("Dayname Month 99")),
+		(_("%A %B %-e"), _("Dayname Month 9")),
+		(_("%A %B-%-e"), _("Dayname Month-9")),
+		(_("%A %-m/%-e"), _("Dayname 9/9")),
+		(_("%A %B %d"), _("Dayname Month 99")),
+		(_("%A %B %-e"), _("Dayname Month 9")),
+		(_("%A %B-%d"), _("Dayname Month-99")),
+		(_("%A %B-%-e"), _("Dayname Month-9")),
+		(_("%A %m/%-e"), _("Dayname 99/9"))
+	])
+	# TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+	config.usage.date.dayshort = ConfigSelection(default=_("%a %-e %b"), choices=[
+		(_("%a %d %b"), _("Day 99 Mon")),
+		(_("%a %-e %b"), _("Day 9 Mon")),
+		(_("%a %-e-%b"), _("Day 9-Mon")),
+		(_("%a %-e/%m"), _("Day 9/99")),
+		(_("%a %b %d"), _("Day Mon 99")),
+		(_("%a %b %-e"), _("Day Mon 9")),
+		(_("%a %b-%-e"), _("Day Mon-9")),
+		(_("%a %-m/%-e"), _("Day 9/9")),
+		(_("%a %b %d"), _("Day Mon 99")),
+		(_("%a %b %-e"), _("Day Mon 9")),
+		(_("%a %b-%d"), _("Day Mon-99")),
+		(_("%a %b-%-e"), _("Day Mon-9")),
+		(_("%a %m/%-e"), _("Day 99/9"))
+	])
+	# TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
+	config.usage.date.daysmall = ConfigSelection(default=_("%a %-e"), choices=[
+		(_("%a %d"), _("Day 99")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %d"), _("Day 99")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %d"), _("Day 99")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %d"), _("Day 99")),
+		(_("%a %-e"), _("Day 9")),
+		(_("%a %-e"), _("Day 9"))
+	])
+	# TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
+	config.usage.date.full = ConfigSelection(default=_("%-e %B %Y"), choices=[
+		(_("%d %B %Y"), _("99 Month 9999")),
+		(_("%-e %B %Y"), _("9 Month 9999")),
+		(_("%-e-%B-%Y"), _("9-Month-9999")),
+		(_("%-e/%m/%Y"), _("9/99/9999")),
+		(_("%B %d %Y"), _("Month 99 9999")),
+		(_("%B %-e %Y"), _("Month 9 9999")),
+		(_("%B-%-e-%Y"), _("Month-9-9999")),
+		(_("%-m/%-e/%Y"), _("9/9/9999")),
+		(_("%Y %B %d"), _("9999 Month 99")),
+		(_("%Y %B %-e"), _("9999 Month 9")),
+		(_("%Y-%B-%d"), _("9999-Month-99")),
+		(_("%Y-%B-%-e"), _("9999-Month-9")),
+		(_("%Y/%m/%-e"), _("9999/99/9"))
+	])
+	# TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
+	config.usage.date.long = ConfigSelection(default=_("%-e %b %Y"), choices=[
+		(_("%d %b %Y"), _("99 Mon 9999")),
+		(_("%-e %b %Y"), _("9 Mon 9999")),
+		(_("%-e-%b-%Y"), _("9-Mon-9999")),
+		(_("%-e/%m/%Y"), _("9/99/9999")),
+		(_("%b %d %Y"), _("Mon 99 9999")),
+		(_("%b %-e %Y"), _("Mon 9 9999")),
+		(_("%b-%-e-%Y"), _("Mon-9-9999")),
+		(_("%-m/%-e/%Y"), _("9/9/9999")),
+		(_("%Y %b %d"), _("9999 Mon 99")),
+		(_("%Y %b %-e"), _("9999 Mon 9")),
+		(_("%Y-%b-%d"), _("9999-Mon-99")),
+		(_("%Y-%b-%-e"), _("9999-Mon-9")),
+		(_("%Y/%m/%-e"), _("9999/99/9"))
+	])
+	# TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
+	config.usage.date.short = ConfigSelection(default=_("%-e %b"), choices=[
+		(_("%d %b"), _("99 Mon")),
+		(_("%-e %b"), _("9 Mon")),
+		(_("%-e-%b"), _("9-Mon")),
+		(_("%-e/%m"), _("9/99")),
+		(_("%b %d"), _("Mon 99")),
+		(_("%b %-e"), _("Mon 9")),
+		(_("%b-%-e"), _("Mon-9")),
+		(_("%-m/%-e"), _("9/9")),
+		(_("%b %d"), _("Mon 99")),
+		(_("%b %-e"), _("Mon 9")),
+		(_("%b-%d"), _("Mon-99")),
+		(_("%b-%-e"), _("Mon-9")),
+		(_("%m/%-e"), _("99/9"))
+	])
+
+	def setDateStyles(configElement):
+		dateStyles = {
+			# dayfull            shortdayfull      daylong           dayshortfull   dayshort       daysmall    full           long           short
+			_("%A %d %B %Y"): (_("%a %d %B %Y"), _("%a %d %b %Y"), _("%A %d %B"), _("%a %d %b"), _("%a %d"), _("%d %B %Y"), _("%d %b %Y"), _("%d %b")),
+			_("%A %-e %B %Y"): (_("%a %-e %B %Y"), _("%a %-e %b %Y"), _("%A %-e %B"), _("%a %-e %b"), _("%a %-e"), _("%-e %B %Y"), _("%-e %b %Y"), _("%-e %b")),
+			_("%A %-e-%B-%Y"): (_("%a %-e-%B-%Y"), _("%a %-e-%b-%Y"), _("%A %-e-%B"), _("%a %-e-%b"), _("%a %-e"), _("%-e-%B-%Y"), _("%-e-%b-%Y"), _("%-e-%b")),
+			_("%A %-e/%m/%Y"): (_("%a %-e/%m/%Y"), _("%a %-e/%m/%Y"), _("%A %-e/%m"), _("%a %-e/%m"), _("%a %-e"), _("%-e/%m/%Y"), _("%-e/%m/%Y"), _("%-e/%m")),
+			_("%A %B %d %Y"): (_("%a %B %d %Y"), _("%a %b %d %Y"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%B %d %Y"), _("%b %d %Y"), _("%b %d")),
+			_("%A %B %-e %Y"): (_("%a %B %-e %Y"), _("%a %b %-e %Y"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%B %-e %Y"), _("%b %-e %Y"), _("%b %-e")),
+			_("%A %B-%-e-%Y"): (_("%a %B-%-e-%Y"), _("%a %b-%-e-%Y"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%B-%-e-%Y"), _("%b-%-e-%Y"), _("%b-%-e")),
+			_("%A %-m/%-e/%Y"): (_("%a %-m/%-e/%Y"), _("%a %-m/%-e/%Y"), _("%A %-m/%-e"), _("%a %-m/%-e"), _("%a %-e"), _("%-m/%-e/%Y"), _("%-m/%-e/%Y"), _("%-m/%-e")),
+			_("%A %Y %B %d"): (_("%a %Y %B %d"), _("%a %Y %b %d"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%Y %B %d"), _("%Y %b %d"), _("%b %d")),
+			_("%A %Y %B %-e"): (_("%a %Y %B %-e"), _("%a %Y %b %-e"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%Y %B %-e"), _("%Y %b %-e"), _("%b %-e")),
+			_("%A %Y-%B-%d"): (_("%a %Y-%B-%d"), _("%a %Y-%b-%d"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%Y-%B-%d"), _("%Y-%b-%d"), _("%b-%d")),
+			_("%A %Y-%B-%-e"): (_("%a %Y-%B-%-e"), _("%a %Y-%b-%-e"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%Y-%B-%-e"), _("%Y-%b-%-e"), _("%b-%-e")),
+			_("%A %Y/%m/%-e"): (_("%a %Y/%m/%-e"), _("%a %Y/%m/%-e"), _("%A %m/%-e"), _("%a %m/%-e"), _("%a %-e"), _("%Y/%m/%-e"), _("%Y/%m/%-e"), _("%m/%-e"))
+		}
+		style = dateStyles.get(configElement.value, ((_("Invalid")) * 8))
+		config.usage.date.shortdayfull.value = style[0]
+		config.usage.date.shortdayfull.save()
+		config.usage.date.daylong.value = style[1]
+		config.usage.date.daylong.save()
+		config.usage.date.dayshortfull.value = style[2]
+		config.usage.date.dayshortfull.save()
+		config.usage.date.dayshort.value = style[3]
+		config.usage.date.dayshort.save()
+		config.usage.date.daysmall.value = style[4]
+		config.usage.date.daysmall.save()
+		config.usage.date.full.value = style[5]
+		config.usage.date.full.save()
+		config.usage.date.long.value = style[6]
+		config.usage.date.long.save()
+		config.usage.date.short.value = style[7]
+		config.usage.date.short.save()
+
+	config.usage.date.dayfull.addNotifier(setDateStyles)
+
+	config.usage.time = ConfigSubsection()
+	config.usage.time.enabled = NoSave(ConfigBoolean(default=False))
+	# TRANSLATORS: full time representation hour:minute:seconds
+	if locale.nl_langinfo(locale.AM_STR) and locale.nl_langinfo(locale.PM_STR):
+		config.usage.time.long = ConfigSelection(default=_("%T"), choices=[
+			(_("%T"), _("99:99:99")),
+			(_("%-H:%M:%S"), _("9:99:99")),
+			(_("%I:%M:%S%^p"), _("99:99:99AM/PM")),
+			(_("%-I:%M:%S%^p"), _("9:99:99AM/PM")),
+			(_("%I:%M:%S%P"), _("99:99:99am/pm")),
+			(_("%-I:%M:%S%P"), _("9:99:99am/pm"))
+		])
+	else:
+		config.usage.time.long = ConfigSelection(default=_("%T"), choices=[
+			(_("%T"), _("99:99:99")),
+			(_("%-H:%M:%S"), _("9:99:99")),
+		])
+	# TRANSLATORS: time representation hour:minute:seconds for 24 hour clock and hour:minute for 12 hour clocks
+	config.usage.time.mixed = ConfigSelection(default=_("%T"), choices=[
+		(_("%T"), _("99:99:99")),
+		(_("%-H:%M:%S"), _("9:99:99")),
+		(_("%I:%M%^p"), _("99:99AM/PM")),
+		(_("%-I:%M%^p"), _("9:99AM/PM")),
+		(_("%I:%M%P"), _("99:99am/pm")),
+		(_("%-I:%M%P"), _("9:99am/pm"))
+	])
+	# TRANSLATORS: short time representation hour:minute (Same as "Default")
+	config.usage.time.short = ConfigSelection(default=_("%R"), choices=[
+		(_("%R"), _("99:99")),
+		(_("%-H:%M"), _("9:99")),
+		(_("%I:%M%^p"), _("99:99AM/PM")),
+		(_("%-I:%M%^p"), _("9:99AM/PM")),
+		(_("%I:%M%P"), _("99:99am/pm")),
+		(_("%-I:%M%P"), _("9:99am/pm"))
+	])
+	config.usage.time.wide = NoSave(ConfigBoolean(default=False))
+
+	def setTimeStyles(configElement):
+		timeStyles = {
+			# long      mixed    short
+			_("%T"): (_("%T"), _("%R")),
+			_("%-H:%M:%S"): (_("%-H:%M:%S"), _("%-H:%M")),
+			_("%I:%M:%S%^p"): (_("%I:%M%^p"), _("%I:%M%^p")),
+			_("%-I:%M:%S%^p"): (_("%-I:%M%^p"), _("%-I:%M%^p")),
+			_("%I:%M:%S%P"): (_("%I:%M%P"), _("%I:%M%P")),
+			_("%-I:%M:%S%P"): (_("%-I:%M%P"), _("%-I:%M%P"))
+		}
+		style = timeStyles.get(configElement.value, ((_("Invalid")) * 2))
+		config.usage.time.mixed.value = style[0]
+		config.usage.time.mixed.save()
+		config.usage.time.short.value = style[1]
+		config.usage.time.short.save()
+		config.usage.time.wide.value = style[1].endswith(("P", "p"))
+
+	config.usage.time.long.addNotifier(setTimeStyles)
+
+	(dateEnabled, timeEnabled) = skin.parameters.get("AllowUserDatesAndTimes", (0, 0))
+	if dateEnabled:
+		config.usage.date.enabled.value = True
+	else:
+		config.usage.date.enabled.value = False
+		config.usage.date.dayfull.value = config.usage.date.dayfull.default
+	if timeEnabled:
+		config.usage.time.enabled.value = True
+	else:
+		config.usage.time.enabled.value = False
+		config.usage.time.long.value = config.usage.time.long.default
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)

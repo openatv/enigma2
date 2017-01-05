@@ -5,6 +5,8 @@
 		<item level="0" text="Sync time using" description="Synchronize system time using transponder or internet.">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
+		<item level="0" text="Date style" description="Choose the display formatting style for dates. The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
+		<item level="0" text="Time style" description="Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
 	<setup key="avsetup">
 		<!-- This is just a placeholder, the Videomode plugin implements this submenu -->
