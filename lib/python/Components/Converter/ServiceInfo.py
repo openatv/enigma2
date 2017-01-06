@@ -3,8 +3,6 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 from Tools.Transponder import ConvertToHumanReadable
 
-from os import path
-
 WIDESCREEN = [3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 
 class ServiceInfo(Converter, object):
@@ -81,7 +79,6 @@ class ServiceInfo(Converter, object):
 			"Is480": (self.IS_480, (iPlayableService.evVideoSizeChanged,)),
 			"Is4K": (self.IS_4K, (iPlayableService.evVideoSizeChanged,)),
 		}[type]
-		self.interesting_events += (iPlayableService.evStart,)
 
 	def getServiceInfoString(self, info, what, convert=lambda x: "%d" % x):
 		v = info.getInfo(what)
