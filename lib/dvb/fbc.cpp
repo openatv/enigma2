@@ -231,7 +231,7 @@ bool eFBCTunerManager::isUnicable(eDVBRegisteredFrontend *fe)
 
 		if (lnb_param.m_slot_mask & (1 << slot_idx))
 		{
-			is_unicable = lnb_param.SatCR_idx != -1;
+			is_unicable = lnb_param.SatCR_format != 0;
 			break;
 		}
 	}
