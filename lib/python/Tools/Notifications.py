@@ -28,6 +28,15 @@ def AddNotificationWithID(id, screen, *args, **kwargs):
 def AddNotificationWithIDCallback(fnc, id, screen, *args, **kwargs):
 	__AddNotification(fnc, screen, id, *args, **kwargs)
 
+# Entry to only have one pending item with an id.
+# Only use this if you don't mind losing the callback for skipped calls.
+#
+def AddNotificationWithUniqueIDCallback(fnc, id, screen, *args, **kwargs):
+	for x in notifications:
+		if x[4] and x[4] == id:    # Already there...
+			return
+	__AddNotification(fnc, screen, id, *args, **kwargs)
+
 # we don't support notifications with callback and ID as this
 # would require manually calling the callback on cancelled popups.
 
