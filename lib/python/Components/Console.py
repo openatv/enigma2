@@ -1,30 +1,35 @@
 from enigma import eConsoleAppContainer
 from Tools.BoundFunction import boundFunction
 
+# Struct to hold items
+class ConsoleItem:
+	def __init__(self, callback, extra_args):
+		self.appResults = []
+		self.extra_args = extra_args
+		self.callback = callback
+		self.container = eConsoleAppContainer()
+
 class Console(object):
 	def __init__(self):
+		# Still called appContainers because Network.py accesses it to
+		# know if there's still stuff running
 		self.appContainers = {}
-		self.appResults = {}
-		self.callbacks = {}
-		self.extra_args = {}
+		self.counter = 0
 
 	def ePopen(self, cmd, callback=None, extra_args=None):
 		if not extra_args: extra_args = []
 		name = cmd
-		i = 0
-		while self.appContainers.has_key(name):
-			name = cmd +'_'+ str(i)
-			i += 1
-#		print "[ePopen] command:", cmd
-		self.appResults[name] = ""
-		self.extra_args[name] = extra_args
-		self.callbacks[name] = callback
-		self.appContainers[name] = eConsoleAppContainer()
-		self.appContainers[name].dataAvail.append(boundFunction(self.dataAvailCB,name))
-		self.appContainers[name].appClosed.append(boundFunction(self.finishedCB,name))
+		if self.appContainers.has_key(name):
+			self.counter += 1
+			name = cmd + '#' + str(self.counter)
+		print "[Console] command:", cmd
+		item = ConsoleItem(callback, extra_args)
+		item.container.dataAvail.append(boundFunction(self.dataAvailCB, item))
+		item.container.appClosed.append(boundFunction(self.finishedCB, name))
+		self.appContainers[name] = item
 		if isinstance(cmd, str): # until .execute supports a better api
 			cmd = [cmd]
-		retval = self.appContainers[name].execute(*cmd)
+		retval = item.container.execute(*cmd)
 		if retval:
 			self.finishedCB(name, retval)
 
@@ -38,31 +43,34 @@ class Console(object):
 		(cmds, callback, extra_args) = _extra_args
 		if self.debug:
 			print '[eBatch] retval=%s, cmds left=%d, data:\n%s' % (retval, len(cmds), data)
-		if len(cmds):
+		if cmds:
 			cmd = cmds.pop(0)
 			self.ePopen(cmd, self.eBatchCB, [cmds, callback, extra_args])
 		else:
 			callback(extra_args)
 
-	def dataAvailCB(self, name, data):
-		self.appResults[name] += data
+	def dataAvailCB(self, item, data):
+		item.appResults.append(data)
 
 	def finishedCB(self, name, retval):
-		del self.appContainers[name].dataAvail[:]
-		del self.appContainers[name].appClosed[:]
-		data = self.appResults[name]
-		extra_args = self.extra_args[name]
+		item = self.appContainers[name]
 		del self.appContainers[name]
-		del self.extra_args[name]
-		if self.callbacks[name]:
-			self.callbacks[name](data,retval,extra_args)
-		del self.callbacks[name]
+		del item.container.dataAvail[:]
+		del item.container.appClosed[:]
+		del item.container
+		data = ''.join(item.appResults)
+		extra_args = item.extra_args
+		callback = item.callback
+		del item
+		if callback is not None:
+			callback(data, retval, extra_args)
 
-	def kill(self,name):
+	def kill(self, name):
 		if name in self.appContainers:
-			print "[Console] killing: ",self.appContainers[name]
-			self.appContainers[name].kill()
+			print "[Console] killing: ", name
+			self.appContainers[name].container.kill()
 
 	def killAll(self):
-		for name in self.appContainers:
-			self.kill(name)
+		for name, item in self.appContainers.items():
+			print "[Console] killing: ", name
+			item.container.kill()
