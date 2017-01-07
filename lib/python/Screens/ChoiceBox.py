@@ -7,7 +7,7 @@ from Components.Pixmap import Pixmap
 import enigma
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", windowTitle = None, allow_cancel = True, titlebartext = "Choice Box"):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
 		if not windowTitle: #for compatibility
 			windowTitle = titlebartext
 		if not list: list = []
