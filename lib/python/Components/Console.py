@@ -1,37 +1,50 @@
-from enigma import eConsoleAppContainer
-from Tools.BoundFunction import boundFunction
+import enigma
 
-# Struct to hold items
 class ConsoleItem:
-	def __init__(self, callback, extra_args):
-		self.appResults = []
+	def __init__(self, containers, cmd, callback, extra_args):
 		self.extra_args = extra_args
 		self.callback = callback
-		self.container = eConsoleAppContainer()
+		self.container = enigma.eConsoleAppContainer()
+		self.containers = containers
+		# Create a unique name
+		name = cmd
+		if containers.has_key(name):
+			name = str(cmd) + '@' + hex(id(self))
+		self.name = name
+		containers[name] = self
+		# If the caller isn't interested in our results, we don't need
+		# to store the output either.
+		if callback is not None:
+			self.appResults = []
+			self.container.dataAvail.append(self.dataAvailCB)
+		self.container.appClosed.append(self.finishedCB)
+		if isinstance(cmd, str): # until .execute supports a better api
+			cmd = [cmd]
+		retval = self.container.execute(*cmd)
+		if retval:
+			self.finishedCB(retval)
+	def dataAvailCB(self, data):
+		self.appResults.append(data)
+	def finishedCB(self, retval):
+		print "[Console] finished:", self.name
+		del self.containers[self.name]
+		del self.container.dataAvail[:]
+		del self.container.appClosed[:]
+		del self.container
+		callback = self.callback
+		if callback is not None:
+			data = ''.join(self.appResults)
+			callback(data, retval, self.extra_args)
 
 class Console(object):
 	def __init__(self):
 		# Still called appContainers because Network.py accesses it to
 		# know if there's still stuff running
 		self.appContainers = {}
-		self.counter = 0
 
-	def ePopen(self, cmd, callback=None, extra_args=None):
-		if not extra_args: extra_args = []
-		name = cmd
-		if self.appContainers.has_key(name):
-			self.counter += 1
-			name = cmd + '#' + str(self.counter)
+	def ePopen(self, cmd, callback=None, extra_args=[]):
 		print "[Console] command:", cmd
-		item = ConsoleItem(callback, extra_args)
-		item.container.dataAvail.append(boundFunction(self.dataAvailCB, item))
-		item.container.appClosed.append(boundFunction(self.finishedCB, name))
-		self.appContainers[name] = item
-		if isinstance(cmd, str): # until .execute supports a better api
-			cmd = [cmd]
-		retval = item.container.execute(*cmd)
-		if retval:
-			self.finishedCB(name, retval)
+		return ConsoleItem(self.appContainers, cmd, callback, extra_args)
 
 	def eBatch(self, cmds, callback, extra_args=None, debug=False):
 		if not extra_args: extra_args = []
@@ -48,22 +61,6 @@ class Console(object):
 			self.ePopen(cmd, self.eBatchCB, [cmds, callback, extra_args])
 		else:
 			callback(extra_args)
-
-	def dataAvailCB(self, item, data):
-		item.appResults.append(data)
-
-	def finishedCB(self, name, retval):
-		item = self.appContainers[name]
-		del self.appContainers[name]
-		del item.container.dataAvail[:]
-		del item.container.appClosed[:]
-		del item.container
-		data = ''.join(item.appResults)
-		extra_args = item.extra_args
-		callback = item.callback
-		del item
-		if callback is not None:
-			callback(data, retval, extra_args)
 
 	def kill(self, name):
 		if name in self.appContainers:
