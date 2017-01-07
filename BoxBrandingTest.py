@@ -1,5 +1,6 @@
 import boxbranding
 print "getMachineBuild=%s<" %boxbranding.getMachineBuild()
+print "getMachineMake=%s<" %boxbranding.getMachineMake()
 print "getMachineProcModel=%s<" %boxbranding.getMachineProcModel()
 print "getMachineBrand=%s<" %boxbranding.getMachineBrand()
 print "getMachineName=%s<" %boxbranding.getMachineName()
@@ -15,6 +16,10 @@ print "getOEVersion=%s<" %boxbranding.getOEVersion()
 print "getDriverDate=%s<" %boxbranding.getDriverDate()
 print "getImageVersion=%s<" %boxbranding.getImageVersion()
 print "getImageBuild=%s<" %boxbranding.getImageBuild()
+print "getImageDevBuild=%s<" %boxbranding.getImageDevBuild()
+print "getImageType=%s<" %boxbranding.getImageType()
 print "getImageDistro=%s<" %boxbranding.getImageDistro()
 print "getImageFolder=%s<" %boxbranding.getImageFolder()
 print "getImageFileSystem=%s<" %boxbranding.getImageFileSystem()
+print "getImageArch=%s<" %boxbranding.getImageArch()
+
