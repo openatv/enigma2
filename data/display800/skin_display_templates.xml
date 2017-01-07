@@ -317,7 +317,7 @@
 
 	<!-- MOVIE PLAYER-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="800,480"> 
-		<widget source="session.CurrentService" render="Label" position="40,10" size="720,340" font="FdLcD;75" foregroundColor="white" halign="center" valign="center" zPosition="2">
+		<widget source="session.CurrentService" render="Label" position="40,90" size="720,260" font="FdLcD;75" foregroundColor="white" halign="center" valign="center" zPosition="2">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<panel name="LCDInfoBarProgress" />
@@ -330,7 +330,10 @@
 		<widget source="session.CurrentService" render="Label" position="40,480" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
 			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
-		<widget name="statusicon_summary" position="357,370" size="85,85" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="2" />	
+		<widget name="statusicon_summary" position="357,370" size="85,85" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="2" />
+		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
 	</screen>
 
 	<!-- NUMBERZAP -->
@@ -366,7 +369,7 @@
 	<!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="800,480">
 		<widget source="parent.Title" render="Label" position="40,20" size="720,376" font="FdLcD;70" halign="center" valign="center"  />
-		<widget name="scan_progress" render="Progress" position="40,400" size="7200,25" borderWidth="2"  foregroundColor="#e5b243" />
+		<widget name="scan_progress" render="Progress" position="40,400" size="720,25" borderWidth="2"  foregroundColor="white" />
 		<widget source="global.CurrentTime" render="Label" position="500,490" size="182,52" halign="right" font="FdLcD;50">
 			<convert type="ClockToText">Default</convert>
 		</widget>
@@ -379,6 +382,6 @@
 
 	<!-- EPG -->
 	<screen name="EPGExtensionsList_summary" position="0,0" size="800,480">
-		<widget source="parent.Title" render="Label" position="40,20" size="720,250" font="FdLcD;80" halign="center" valign="center" foregroundColor="#e5b243" />
+		<widget source="parent.Title" render="Label" position="40,20" size="720,250" font="FdLcD;80" halign="center" valign="center" foregroundColor="white" />
 	</screen> 
 </skin>
