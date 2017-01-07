@@ -12,7 +12,7 @@ class Network:
 		self.NetworkState = 0
 		self.DnsState = 0
 		self.nameservers = []
-		self.ethtool_bin = "ethtool"
+		self.ethtool_bin = "/sbin/ethtool"
 		self.console = Console()
 		self.linkConsole = Console()
 		self.restartConsole = Console()
@@ -61,8 +61,8 @@ class Network:
 		return [ int(n) for n in ip.split('.') ]
 
 	def getAddrInet(self, iface, callback):
-		cmd = "ip -o addr show dev " + iface
-		self.console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
+		cmd = ("/sbin/ip", "/sbin/ip", "-o", "addr", "show", "dev", iface)
+		self.console.ePopen(cmd, self.IPaddrFinished, [iface, callback])
 
 	def IPaddrFinished(self, result, retval, extra_args):
 		(iface, callback ) = extra_args
@@ -109,7 +109,7 @@ class Network:
 			data['netmask'] = [0, 0, 0, 0]
 			data['gateway'] = [0, 0, 0, 0]
 
-		cmd = "route -n | grep  " + iface
+		cmd = "route -n | grep " + iface
 		self.console.ePopen(cmd,self.routeFinished, [iface, data, callback])
 
 	def routeFinished(self, result, retval, extra_args):
@@ -351,7 +351,7 @@ class Network:
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
 			if iface != 'eth0' or not self.onRemoteRootFS():
-				self.commands.append("ip addr flush dev " + iface)
+				self.commands.append("/sbin/ip addr flush dev " + iface + " scope global")
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -381,17 +381,17 @@ class Network:
 
 		self.commands = []
 		if mode == 'wlan':
-			self.commands.append("ifconfig eth0 down")
-			self.commands.append("ifconfig ath0 down")
-			self.commands.append("ifconfig wlan0 up")
+			self.commands.append("/sbin/ifconfig eth0 down")
+			self.commands.append("/sbin/ifconfig ath0 down")
+			self.commands.append("/sbin/ifconfig wlan0 up")
 		if mode == 'wlan-mpci':
-			self.commands.append("ifconfig eth0 down")
-			self.commands.append("ifconfig wlan0 down")
-			self.commands.append("ifconfig ath0 up")
+			self.commands.append("/sbin/ifconfig eth0 down")
+			self.commands.append("/sbin/ifconfig wlan0 down")
+			self.commands.append("/sbin/ifconfig ath0 up")
 		if mode == 'lan':
-			self.commands.append("ifconfig eth0 up")
-			self.commands.append("ifconfig wlan0 down")
-			self.commands.append("ifconfig ath0 down")
+			self.commands.append("/sbin/ifconfig eth0 up")
+			self.commands.append("/sbin/ifconfig wlan0 down")
+			self.commands.append("/sbin/ifconfig ath0 down")
 		self.commands.append("/etc/init.d/avahi-daemon start")
 		self.resetNetworkConsole.eBatch(self.commands, self.resetNetworkFinished, [mode,callback], debug=True)
 
@@ -403,13 +403,9 @@ class Network:
 
 	def checkNetworkState(self,statecallback):
 		self.NetworkState = 0
-		cmd1 = "ping -c 1 www.openpli.org"
-		cmd2 = "ping -c 1 www.google.nl"
-		cmd3 = "ping -c 1 www.google.com"
 		self.pingConsole = Console()
-		self.pingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
-		self.pingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
-		self.pingConsole.ePopen(cmd3, self.checkNetworkStateFinished,statecallback)
+		for server in ("www.openpli.org", "www.google.nl", "www.google.com"):
+			self.pingConsole.ePopen(("/bin/ping", "/bin/ping", "-c", "1", server), self.checkNetworkStateFinished,statecallback)
 
 	def checkNetworkStateFinished(self, result, retval,extra_args):
 		(statecallback) = extra_args
@@ -429,8 +425,8 @@ class Network:
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
 			if iface != 'eth0' or not self.onRemoteRootFS():
-				self.commands.append("ifdown " + iface)
-				self.commands.append("ip addr flush dev " + iface)
+				self.commands.append(("/sbin/ifdown", "/sbin/ifdown", iface))
+				self.commands.append("/sbin/ip addr flush dev " + iface + " scope global")
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -444,8 +440,7 @@ class Network:
 			callback(True)
 
 	def getLinkState(self,iface,callback):
-		cmd = self.ethtool_bin + " " + iface
-		self.linkConsole.ePopen(cmd, self.getLinkStateFinished,callback)
+		self.linkConsole.ePopen((self.ethtool_bin, self.ethtool_bin, iface), self.getLinkStateFinished,callback)
 
 	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
@@ -487,13 +482,10 @@ class Network:
 				return False
 
 	def checkDNSLookup(self,statecallback):
-		cmd1 = "nslookup www.dream-multimedia-tv.de"
-		cmd2 = "nslookup www.heise.de"
-		cmd3 = "nslookup www.google.de"
+		self.DnsState = 0
 		self.dnsConsole = Console()
-		self.dnsConsole.ePopen(cmd1, self.checkDNSLookupFinished,statecallback)
-		self.dnsConsole.ePopen(cmd2, self.checkDNSLookupFinished,statecallback)
-		self.dnsConsole.ePopen(cmd3, self.checkDNSLookupFinished,statecallback)
+		for server in ("www.openpli.org", "www.google.nl", "www.google.com"):
+			self.dnsConsole.ePopen(("/usr/bin/nslookup", "/usr/bin/nslookup", server), self.checkDNSLookupFinished, statecallback)
 
 	def checkDNSLookupFinished(self, result, retval,extra_args):
 		(statecallback) = extra_args
@@ -511,8 +503,8 @@ class Network:
 		self.msgPlugins()
 		commands = []
 		def buildCommands(iface):
-			commands.append("ifdown " + iface)
-			commands.append("ip addr flush dev " + iface)
+			commands.append(("/sbin/ifdown", "/sbin/ifdown", "-f", iface))
+			commands.append(("/sbin/ip", "/sbin/ip", "addr", "flush", "dev", iface, "scope", "global"))
 			#wpa_supplicant sometimes doesn't quit properly on SIGTERM
 			if os.path.exists('/var/run/wpa_supplicant/'+ iface):
 				commands.append("wpa_cli -i" + iface + " terminate")
@@ -527,26 +519,10 @@ class Network:
 					callback(True)
 				return
 			buildCommands(ifaces)
-		self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, [ifaces,callback], debug=True)
+		self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, (ifaces,callback), debug=True)
 
 	def deactivateInterfaceFinished(self,extra_args):
 		(ifaces, callback) = extra_args
-		def checkCommandResult(iface):
-			if self.deactivateInterfaceConsole.appResults.has_key("ifdown " + iface):
-				result = str(self.deactivateInterfaceConsole.appResults.get("ifdown " + iface)).strip("\n")
-				if result == "ifdown: interface " + iface + " not configured":
-					return False
-				else:
-					return True
-		#ifdown sometimes can't get the interface down.
-		if isinstance(ifaces, (list, tuple)):
-			for iface in ifaces:
-				if checkCommandResult(iface) is False:
-					Console().ePopen(("ifconfig " + iface + " down" ))
-		else:
-			if checkCommandResult(ifaces) is False:
-				Console().ePopen(("ifconfig " + ifaces + " down" ))
-
 		if not self.deactivateInterfaceConsole.appContainers:
 			if callback is not None:
 				callback(True)
@@ -561,7 +537,7 @@ class Network:
 			return
 		if not self.activateInterfaceConsole:
 			self.activateInterfaceConsole = Console()
-		commands = ["ifup " + iface]
+		commands = ["/sbin/ifup " + iface]
 		self.activateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
 
 	def activateInterfaceFinished(self,extra_args):
