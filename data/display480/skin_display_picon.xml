@@ -297,11 +297,11 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="480,320">
 		<widget source="global.CurrentTime" render="Label" position="center,50" size="225,100" font="FdLcD;85" halign="center" transparent="1" noWrap="1" >
-			<convert type="ClockToText">Format:%H:%M</convert>
+			<convert type="ClockToText">Default</convert>
 		</widget>
 		<eLabel position="100,150" size="200,1" backgroundColor="white" />
 		<widget source="global.CurrentTime" render="Label" position="0,165" size="400,34" font="FdLcD;34" halign="center" transparent="1" noWrap="1">
-			<convert type="ClockToText">Format:%d.%m.%Y</convert>
+			<convert type="ClockToText">ShortDate</convert>
 		</widget>
 		<panel name="MeinRecordingPanel" />
 		<panel name="MeinTunerInfoPanel" />
