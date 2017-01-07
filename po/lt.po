@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-25 18:10+0200\n"
-"PO-Revision-Date: 2016-12-25 18:27+0200\n"
+"POT-Creation-Date: 2017-01-07 02:29+0200\n"
+"PO-Revision-Date: 2017-01-07 13:07+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -98,6 +98,9 @@ msgstr ""
 "išsaugotas USB laikmenoje. Jei jau turite parengtą įkrovos USB laikmeną, "
 "įdėkite ją dabar. Jei ne, įdėkite mažiausiai 64 MB dydžio USB laikmeną!\"\""
 
+msgid "!! Bootloader Upgrade !!"
+msgstr "!! Įkrovos tvarkyklės atnaujinimas !!"
+
 msgid "%+6d"
 msgstr "%+6d"
 
@@ -127,6 +130,9 @@ msgstr "%2d:%02d:%02d"
 
 msgid "%02d:%02d"
 msgstr "%02d:%02d"
+
+msgid "%2.1f sec"
+msgstr "%2.1f sek"
 
 msgid "%2d:%02d"
 msgstr "%2d:%02d"
@@ -1135,6 +1141,12 @@ msgstr "AC3/Dolby kompensacija"
 msgid "AC3 downmix"
 msgstr "AC3 kanalų suliejimas"
 
+msgid "AC3plus transcoding"
+msgstr "AC3plus perkodavimas"
+
+msgid "AC3 plus transcoding"
+msgstr "AC3 plus perkodavimas"
+
 msgid "Accesspoint:"
 msgstr "Prieigos taškas:"
 
@@ -1538,6 +1550,9 @@ msgstr "Alternatyvus radijo režimas"
 
 msgid "Alternative services tuner priority"
 msgstr "Kitų kanalų imtuvo pirmenybė"
+
+msgid "always"
+msgstr "visada"
 
 msgid "Always ask"
 msgstr "Visada klausti"
@@ -2220,6 +2235,9 @@ msgstr "Veiksmas paleidžiant"
 msgid "Bootloader:\t\t%s\n"
 msgstr "Užkrovėjas:\t\t%s\n"
 
+msgid "Bootloader update required!"
+msgstr "Įkrovos tvarkyklę reikia atnaujinti!"
+
 msgid "bottom"
 msgstr "apačia"
 
@@ -2551,7 +2569,7 @@ msgid "Change recording (endtime)"
 msgstr "Keisti įrašymą (nurodyti pabaigos laiką)"
 
 msgid "Change repeat and delay settings?"
-msgstr "Keisti pakartojimo ir vėlavimo nustatymus"
+msgstr "Keisti pakartojimo ir delsos nustatymus"
 
 msgid "Change step size"
 msgstr "Keisti žingsnio dydį"
@@ -2654,7 +2672,7 @@ msgid "Channel:"
 msgstr "Kanalas:"
 
 msgid "ChannelEPG settings"
-msgstr "Kanalo EPG parametrai"
+msgstr "Kanalo EPG nustatymai"
 
 msgid "Channellist menu"
 msgstr "Kanalų sąrašo meniu"
@@ -2678,13 +2696,13 @@ msgid "ChapterZap"
 msgstr "Skyriaus jungimas"
 
 msgid "Check"
-msgstr "Tikrinti"
+msgstr "Patikrinti"
 
 msgid "Check every (hours)"
-msgstr "Tikrinti kas (val.)"
+msgstr "Patikrinti kas (val.)"
 
 msgid "Check HDD"
-msgstr "Tikrinti HDD"
+msgstr "Patikrinkite HDD"
 
 msgid "Check the internet connection"
 msgstr "Patikrinkite interneto ryšį"
@@ -2694,7 +2712,8 @@ msgstr "Patikrinkite interneto ryšį dar kartą"
 
 msgid ""
 "Check/Install online updates (you must have a working internet connection)"
-msgstr "Tikrinti/diegti atnaujinimus internetu (reikalingas interneto ryšys)"
+msgstr ""
+"Patikrinkite/įdiekite atnaujinimus internetu (reikalingas interneto ryšys)"
 
 msgid "Checking Feeds"
 msgstr "Tikrinami šaltiniai"
@@ -2745,7 +2764,7 @@ msgid "Choose Bouquet"
 msgstr "Pasirinkite paketą"
 
 msgid "Choose dvb wait delay for ci response."
-msgstr "Pasirinkite DVB laukimo vėlavimą CI atsakymui."
+msgstr "Pasirinkite DVB laukimo delsą CI atsakymui."
 
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Pasirinkite CI protokolo darbo režimą standartiniam CI arba CIplus."
@@ -2781,6 +2800,11 @@ msgstr "Pasirinkite, kur pajungti įrenginius:"
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
+
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgstr ""
+"Ši parinktis leidžia nustatyti, ar AC3 plus garso takeliai bus perkoduoti į "
+"AC3."
 
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr ""
@@ -3033,10 +3057,10 @@ msgstr "Konfigūravimo būdas: %s"
 msgid ""
 "Configure an additional delay to improve external subtitle synchronisation."
 msgstr ""
-"Nustatykite papildomą išorinių subtitrų delsą, kad pagerinti sinchronizaciją."
+"Nustatykite papildomą išorinių subtitrų delsą, kad pagerinti sinchronizavimą."
 
 msgid "Configure an additional delay to improve subtitle synchronisation."
-msgstr "Nustatykite papildomą vėlavimą, kad pagerinti subtitrų sinchronizvimą."
+msgstr "Nustatykite papildomą delsą, kad pagerinti subtitrų sinchronizavimą."
 
 msgid ""
 "Configure for how many minutes finished events should remain visible in the "
@@ -3563,6 +3587,9 @@ msgstr "Ištisinis kartojimas ratu (kilpa)"
 msgid "Contrast"
 msgstr "Kontrastas"
 
+msgid "controlled by HDMI"
+msgstr "valdoma HDMI"
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
 "Nustatykite pozicijas, kaip baigti laikmačiai bus rodomi laikmačių sąraše."
@@ -3904,70 +3931,70 @@ msgstr ""
 "greičiai pirmyn ir atgal, naudoja laiko šuolius."
 
 msgid "Delay after change voltage before switch command"
-msgstr "Vėlavimas tarp įtampos pasikeitimo ir perjungimo komandos"
+msgstr "Delsa tarp įtampos pasikeitimo ir perjungimo komandos"
 
 msgid "Delay after continuous tone disable before diseqc"
-msgstr "Vėlavimas tarp ištisinio signalo atjungimo ir DiSEqC"
+msgstr "Delsa tarp ištisinio signalo atjungimo ir DiSEqC"
 
 msgid "Delay after diseqc peripherial poweron command"
-msgstr "Vėlavimas po DiSEqC periferinio maitinimo įjungimo komandos"
+msgstr "Delsa po DiSEqC periferinio maitinimo įjungimo komandos"
 
 msgid "Delay after diseqc reset command"
-msgstr "Vėlavimas po DiSEqC gamyklinio atkūrimo komandos"
+msgstr "Delsa po DiSEqC gamyklinio atkūrimo komandos"
 
 msgid "Delay after enable voltage before motor command"
-msgstr "Vėlavimas tarp įtampos padavimo ir variklio komandos"
+msgstr "Delsa tarp įtampos padavimo ir variklio komandos"
 
 msgid "Delay after enable voltage before switch command"
-msgstr "Vėlavimas tarp įtampos padavimo ir perjungimo komandos"
+msgstr "Delsa tarp įtampos padavimo ir perjungimo komandos"
 
 msgid "Delay after final continuous tone change"
-msgstr "Vėlavimas po galutinio nepertraukiamo tono pasikeitimo"
+msgstr "Delsa po galutinio nepertraukiamo tono pasikeitimo"
 
 msgid "Delay after last diseqc command"
-msgstr "Vėlavimas po paskutinės DiSEqC komandos"
+msgstr "Delsa po paskutinės DiSEqC komandos"
 
 msgid "Delay after last voltage change"
-msgstr "Vėlavimas po paskutinio įtampos keitimo"
+msgstr "Delsa po paskutinio įtampos keitimo"
 
 msgid "Delay after motor stop command"
-msgstr "Vėlavimas po variklio stabdymo komandos"
+msgstr "Delsa po variklio stabdymo komandos"
 
 msgid "Delay after set voltage before measure motor power"
-msgstr "Vėlavimas tarp įtampos nustatymo ir variklio galios nustatymo"
+msgstr "Delsa tarp įtampos nustatymo ir variklio galios nustatymo"
 
 msgid "Delay after toneburst"
-msgstr "Vėlavimas po toninio impulso šuolio"
+msgstr "Delsa po toninio impulso šuolio"
 
 msgid "Delay after voltage change before motor command"
-msgstr "Vėlavimas tarp įtampos pasikeitimo ir variklio komandos"
+msgstr "Delsa tarp įtampos pasikeitimo ir variklio komandos"
 
 msgid "Delay before key repeat starts:"
-msgstr "Vėlavimas, pakartotiniam mygtuko paspaudimui:"
+msgstr "Delsa iki pakartotino mygtuko paspaudimo:"
 
 msgid "Delay before sequence repeat"
-msgstr "Vėlavimas prieš visų komandų kartojimą"
+msgstr "Delsa prieš komandų sekos kartojimą"
 
 msgid "Delay between diseqc commands"
-msgstr "Vėlavimas tarp DiSEqC komandų"
+msgstr "Delsa tarp DiSEqC komandų"
 
 msgid "Delay between switch and motor command"
-msgstr "Vėlavimas tarp perjungimo ir variklio komandos"
+msgstr "Delsa tarp perjungimo ir variklio komandos"
 
 msgid "Delay for external subtitles"
-msgstr "Išorinių subtitrų vėlavimas"
+msgstr "Išorinių subtitrų delsa"
 
 msgid "Delay in miliseconds after finish scrolling text on display."
-msgstr "Vėlavimas (milisekundėmis) po teksto slinkimo pabaigos."
+msgstr "Delsa (milisekundėmis) po teksto slinkimo pabaigos."
 
 msgid "Delay in miliseconds before start of scrolling text on display."
-msgstr "Vėlavimas (milisekundėmis) prieš teksto slinkimo pradžią."
+msgstr "Delsa (milisekundėmis) prieš teksto slinkimo pradžią."
 
 msgid "Delay time"
-msgstr "Vėlavimo laikas"
+msgstr "Delsimo laikas"
 
 msgid "Delay:"
-msgstr "Vėlavimas:"
+msgstr "Delsimas:"
 
 msgid "delete"
 msgstr "trinti"
@@ -4113,7 +4140,7 @@ msgid "Digital downmix"
 msgstr "Skaitmeninis suliejimas"
 
 msgid "Dim delay"
-msgstr "Pritemdymo vėlavimas"
+msgstr "Pritemdymo delsa"
 
 msgid "Dim the LCD after specified time."
 msgstr "Pritemdyti LCD po tam tikro laiko."
@@ -4267,6 +4294,13 @@ msgstr "Nieko nekeisti"
 
 msgid "Do not flash image"
 msgstr "Nediegtas atvaizdas"
+
+msgid ""
+"DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
+"Update now?"
+msgstr ""
+"NEIŠJUNKITE SAVO ĮRENGINIO IŠ MAITINIMO ĮTAMPOS ATNAUJINIMO METU!\n"
+"Atnaujinti dabar?"
 
 msgid "Do not record"
 msgstr "Neįrašinėti"
@@ -4472,6 +4506,9 @@ msgstr "Dolby Digital kanalų suliejimas"
 msgid "Don't add this recording"
 msgstr "Negalima pridėti šio įrašo"
 
+msgid "Don't ask again!"
+msgstr "Daugiau neklausti!"
+
 msgid "don't descramble, record ecm"
 msgstr "nereikia dekoduoti, įrašyti ecm"
 
@@ -4480,6 +4517,15 @@ msgstr "Neišsaugoti"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Nestabdyti dabartinio įvykio, bet išjungti sekančius"
+
+msgid ""
+"Don't worry your device is still ok! There are several safety mechanisms in "
+"place!\n"
+"Your device is still as fine as it was before this procedure!"
+msgstr ""
+"Nereikia nerimauti dėl savo įrenginio, vis yra gerai! Yra keletas mechanizmų "
+"saugumui užtikrinti!\n"
+"Jūsų įrenginys išliks toks pat geras kaip ir prieš šią procedūrą!"
 
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Baigta - įdiegta arba atnaujinta %d paketų"
@@ -4579,7 +4625,7 @@ msgid "Dutch"
 msgstr "Olandų"
 
 msgid "DVB CI Delay"
-msgstr "DVB CI vėlavimas"
+msgstr "DVB CI delsa"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB subtitrų fono spalvos skaidrumas"
@@ -5507,7 +5553,7 @@ msgid "Final position at index"
 msgstr "Galutinė pozicija ties žyme"
 
 msgid "Final scroll delay"
-msgstr "Galutinis slinkties vėlavimas"
+msgstr "Galutinė slinkties delsa"
 
 msgid "find currently played service"
 msgstr "surasti dabar žiūrėtą kanalą"
@@ -5578,13 +5624,13 @@ msgid "Flash Online a new image"
 msgstr "Įdiegti tiesiai iš interneto naują atvaizdą"
 
 msgid "Flashing"
-msgstr "Diegimas"
+msgstr "Įdiegimas"
 
 msgid "Flashing failed"
-msgstr "Diegimas nepavyko"
+msgstr "Įdiegti nepavyko"
 
 msgid "Flashing: "
-msgstr "Diegiama:"
+msgstr "Įdiegiama: "
 
 msgid "flat alphabetic"
 msgstr "abėcėlės tvarka"
@@ -5641,7 +5687,7 @@ msgid "FP upgrade required"
 msgstr "Priekinį procesorių reikia atnaujinti"
 
 msgid "Frame size in full view"
-msgstr "Pilno vaizdo kadro dydis"
+msgstr "Kadro dydis viso ekrano režimu"
 
 msgid "free"
 msgstr "laisvi"
@@ -5680,7 +5726,7 @@ msgid "Frequency"
 msgstr "Dažnis"
 
 msgid "Frequency bands"
-msgstr "Dažnio diapazonai"
+msgstr "Dažnio juostos"
 
 msgid "Frequency scan step size(khz)"
 msgstr "Skenavimo dažnio žingsnio dydis(khz)"
@@ -5734,7 +5780,7 @@ msgid "Fullscreen"
 msgstr "Visas ekranas"
 
 msgid "Fulview resulution"
-msgstr "Pilno ekrano rezoliucija"
+msgstr "Viso ekrano rezoliucija"
 
 msgid "further education"
 msgstr "aukštasis mokslas"
@@ -5764,7 +5810,7 @@ msgid "General AC3 delay"
 msgstr "Bendra AC3 delsa"
 
 msgid "General PCM delay"
-msgstr "Bendras PCM vėlavimas"
+msgstr "Bendra PCM delsa"
 
 msgid "Genre"
 msgstr "Žanras"
@@ -6090,7 +6136,7 @@ msgstr "Slėpti visus perjungimo klaidų pranešimus."
 msgid "Hide known extensions"
 msgstr "Slėpti žinomus plėtinius"
 
-msgid "Hide parentel locked services"
+msgid "Hide parental locked services"
 msgstr "Slėpti tėvų kontrolei priskirtus kanalus"
 
 msgid "Hide player"
@@ -6557,7 +6603,7 @@ msgid "Initial rewind speed"
 msgstr "Pradinis spartaus atsukimo atgal greitis"
 
 msgid "Initial scroll delay"
-msgstr "Pradinis slinkties vėlavimas"
+msgstr "Pradinė slinkties delsa"
 
 msgid "Initial signal quality"
 msgstr "Pradinė signalo kokybė:"
@@ -7268,7 +7314,7 @@ msgid "Margin before recording (minutes)"
 msgstr "Intarpas prieš įrašymą (min.)"
 
 msgid "Mark service as dedicated 3D service"
-msgstr "Pažymėti, kaip grynai 3D kanalą"
+msgstr "Pažymėti, kaip 'grynai 3D' kanalą"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Žymė/portalas/grojaraštis"
@@ -7959,10 +8005,10 @@ msgstr ""
 "(nėra PAT atsakymo)"
 
 msgid "No delay"
-msgstr "Jokio vėlavimo"
+msgstr "Neuždelsiant"
 
 msgid "no delay"
-msgstr "jokio vėlavimo"
+msgstr "neuždelsiant"
 
 msgid "No description available."
 msgstr "Joks apibūdinimas nepasiekiamas."
@@ -8123,6 +8169,9 @@ msgid ""
 msgstr ""
 "Joks imtuvas neįjungtas!\n"
 "Prieš pradėdami kanalų paiešką, sukonfigūruokite imtuvą."
+
+msgid "No update required!"
+msgstr "Atnaujinimas nebūtinas!"
 
 msgid "No updates available. Please try again later."
 msgstr "Atnaujinimų nėra. Bandykite patikrinti vėliau."
@@ -8366,7 +8415,7 @@ msgid "off or wpa2 on"
 msgstr "išjungti arba wpa2 ant"
 
 msgid "Offline decode delay (ms)"
-msgstr "Neprisijungęs dekodavimo vėlavimas (ms)"
+msgstr "Dekodavimo delsa neprisijungus (ms)"
 
 msgid "offset is"
 msgstr "kompensuoti, yra"
@@ -10661,7 +10710,7 @@ msgid "ScriptRunner"
 msgstr "Scenarijų paleidėjas"
 
 msgid "Scrolling delay (software renderer)"
-msgstr "Teksto slinkties vėlavimas (programinis)"
+msgstr "Teksto slinkties delsa (programinė)"
 
 msgid "Scrolling Speed"
 msgstr "Teksto slinkties greitis:"
@@ -11204,10 +11253,10 @@ msgid "Service reference"
 msgstr "Kanalo nuoroda"
 
 msgid "Service Scan"
-msgstr "Kanalo skenavimas"
+msgstr "Kanalų skenavimas"
 
 msgid "Service scan"
-msgstr "Kanalo skenavimas"
+msgstr "Kanalų skenavimas"
 
 msgid "Service Searching"
 msgstr "Kanalų paieška"
@@ -11216,7 +11265,7 @@ msgid "Service searching"
 msgstr "Kanalų paieška"
 
 msgid "Service Title mode"
-msgstr "Kanalo pavadinimo režimas"
+msgstr "Kanalo pavadinimo atvaizdavimo būdas"
 
 msgid ""
 "Service unavailable!\n"
@@ -12379,7 +12428,7 @@ msgid "Sleep"
 msgstr "Miegoti"
 
 msgid "Sleep delay"
-msgstr "Budėjimo būsenos uždelsimas"
+msgstr "Miego būsenos delsa"
 
 msgid "Sleep long"
 msgstr "Miegoti (ilgai spausti)"
@@ -12963,10 +13012,10 @@ msgid "Subtitle border width"
 msgstr "Subtitrų kraštinės plotis"
 
 msgid "Subtitle delay when timing is bad"
-msgstr "Subtitrų vėlavimas, kai blogai pasirinktas laikas"
+msgstr "Subtitrų delsa, kai blogai pasirinktas laikas"
 
 msgid "Subtitle delay when timing lacks"
-msgstr "Subtitrų vėlavimas kai nėra laiko"
+msgstr "Subtitrų delsa, kai blogai pasirinktas laikas"
 
 msgid "Subtitle font size"
 msgstr "Subtitrų šrifto dydis"
@@ -13915,11 +13964,11 @@ msgstr ""
 msgid ""
 "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr ""
-"Ši parinktis pritaiko bendro garso \"Dolby Digital\" garso takelių vėlavimą."
+"Ši parinktis pritaiko bendro garso \"Dolby Digital\" garso takelių delsą."
 
 msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr ""
-"Ši parinktis leidžia nustatyti bendrą garso vėlavimą stereo garso takeliuose."
+"Ši parinktis leidžia nustatyti bendrą garso delsą 'stereo' garso takeliuose."
 
 msgid "This option configures the picture sharpness."
 msgstr "Ši parinktis nustato vaizdo ryškumą."
@@ -14334,7 +14383,7 @@ msgid "Toggle between bouquet/epg lists"
 msgstr "Perjungti tarp paketo/epg sąrašo"
 
 msgid "Toggle Digital downmix..."
-msgstr "Skaitmeninis suliejimas..."
+msgstr "Perjungti skaitmeninį suliejimą..."
 
 msgid "Toggle HDMI-In full screen"
 msgstr "Perjungti HDMI per visą ekraną"
@@ -14343,7 +14392,7 @@ msgid "Toggle HDMI-In PiP"
 msgstr "Perjungti HDMI į PiP"
 
 msgid "Toggle LCD LiveTV"
-msgstr "Perjungti LCD TV rodymą"
+msgstr "Perjungti transliaciją į LCD"
 
 msgid "Toggle Picture In Graphics"
 msgstr "Perjungti paveikslėlį į grafiką"
@@ -14454,9 +14503,7 @@ msgid "Trashcan:"
 msgstr "Šiukšliadėžė:"
 
 msgid "Tried to disable PIP, suddenly found no InfoBar.instance.\n"
-msgstr ""
-"Bandžiau išjungti PIP, netikėtai radau, kad nėra InfoBar.instance.\n"
-"\n"
+msgstr "Bandant išjungti PiP, netikėtai dingo InfoBar.instance.\n"
 
 msgid "Tries left:"
 msgstr "Liko bandymų:"
@@ -14488,7 +14535,7 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
 
 msgid "TSID"
-msgstr "TSID"
+msgstr "TSID eilutė"
 
 msgid "Tue"
 msgstr "Ant"
@@ -14503,7 +14550,7 @@ msgid "Tune and focus"
 msgstr "Suderinti ir fokusuoti"
 
 msgid "Tune failed!"
-msgstr "Suderinimas nepavyko!"
+msgstr "Suderinti nepavyko!"
 
 msgid "Tuner"
 msgstr "Imtuvas"
@@ -14596,7 +14643,7 @@ msgid "Type: "
 msgstr "Tipas: "
 
 msgid "UI 3D setup"
-msgstr "UI 3D valdymas"
+msgstr "3D vaizdo sąranka"
 
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
@@ -14671,7 +14718,7 @@ msgid "unknown service"
 msgstr "nežinomas kanalas"
 
 msgid "Unmark service as dedicated 3D service"
-msgstr "Nežymėti šio kanalo, kaip grynai 3D"
+msgstr "Nuimti kaip 'grynai 3D' kanalo žymę"
 
 msgid "Unmount"
 msgstr "Atjungti"
@@ -14728,14 +14775,27 @@ msgstr ""
 "Atnaujinimas atidėtas įvykių sąraše. Slinkimas į sąrašą yra greitesnis su "
 "aukšta delsa, ypač didelių sąrašų!"
 
+msgid "Update failed!"
+msgstr "Atnaujinti nepavyko!"
+
 msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr "Atnaujinti nepavyko. Jūsų %s %s neturi veikiančio interneto ryšio."
+
+msgid "Update finished!"
+msgstr "Atnaujinimas baigtas!"
 
 msgid "Update interval (in seconds)"
 msgstr "Atnaujinimo intervalas (sekundėmis)"
 
 msgid "Update is reported as faulty !!"
 msgstr "Atnaujinimas pranešė, kad klaidingas!!"
+
+msgid ""
+"Update succeeded!\n"
+"Your Bootloader is now up-to-date!"
+msgstr ""
+"Atnaujinimas pavyko!\n"
+"Jūsų įkrovos tvarkyklė dabar yra naujausia!"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr ""
