@@ -1678,9 +1678,7 @@ class PacketManager(Screen, NumericalTextInput):
 	def exit(self):
 		self.ipkg.stop()
 		if self.Console is not None:
-			if len(self.Console.appContainers):
-				for name in self.Console.appContainers.keys():
-					self.Console.kill(name)
+			self.Console.killAll()
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()

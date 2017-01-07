@@ -442,7 +442,7 @@ class Status:
 		self.backupwlaniface = self.wlaniface
 
 		if self.WlanConsole is not None:
-			if len(self.WlanConsole.appContainers) == 0:
+			if not self.WlanConsole.appContainers:
 				print "[Wlan.py] self.wlaniface after loading:", self.wlaniface
 				if self.statusCallback is not None:
 						self.statusCallback(True,self.wlaniface)
