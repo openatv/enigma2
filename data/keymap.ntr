@@ -293,15 +293,11 @@
 	</map>
 
 	<map context="InfobarTimerButtonActions">
-			<key id="KEY_PROGRAM" mapto="timerSelection" flags="m" />
+			<key id="KEY_PROGRAM" mapto="timerSelection" flags="b" />
 	</map>
 
 	<map context="InfobarVmodeButtonActions">
 			<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
-	</map>
-
-	<map context="InfobarTimerButtonActions">
-			<key id="KEY_PROGRAM" mapto="timerSelection" flags="m" />
 	</map>
 
 	<map context="InfobarPiPActions">
@@ -965,7 +961,8 @@
 		<key id="KEY_PREVIOUSSONG" mapto="rewind" flags="b"/>
 		<key id="KEY_NEXTSONG" mapto="fastforward" flags="b"/>
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b"/>
-		<key id="KEY_PROGRAM" mapto="timer" flags="b"/>
+		<key id="KEY_PROGRAM" mapto="prog" flags="b"/>
+		<key id="KEY_PROGRAM" mapto="prog_long" flags="l"/>
 		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="m"/>
 		<key id="KEY_LIST" mapto="playlist" flags="b"/>
 		<key id="KEY_LIST" mapto="playlist_long" flags="l"/>
