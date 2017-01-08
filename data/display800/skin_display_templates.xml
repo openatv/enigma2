@@ -332,7 +332,7 @@
 		</widget>
 		<widget name="statusicon_summary" position="357,370" size="85,85" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="2" />
 		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
-			<convert type="ClockToText">Format:%H:%M</convert>
+			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>
 
