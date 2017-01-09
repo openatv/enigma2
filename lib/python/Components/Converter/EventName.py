@@ -193,6 +193,8 @@ class EventName(Converter, object):
 					else:
 						return self.trimText(rating[self.RATSHORT])
 		elif self.type == self.GENRE:
+			if not config.usage.show_genre_info.value:
+				return ""
 			genre = event.getGenreData()
 			if genre:
 				rating = event.getParentalData()
