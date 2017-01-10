@@ -3,34 +3,38 @@ from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
 import time
 
-from enigma import eTimer
-
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.Standby import TryQuitMainloop
-from Screens.HelpMenu import HelpableScreen
 from Components.About import about
+from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
+from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.Console import Console
+from Components.FileList import MultiFileSelectList
+from Components.Label import Label, MultiColorLabel
+from Components.MenuList import MenuList
 from Components.Network import iNetwork
 from Components.OnlineUpdateCheck import feedsstatuscheck
+from Components.Pixmap import Pixmap, MultiPixmap
+from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.SystemInfo import SystemInfo
-from Components.Label import Label, MultiColorLabel
-from Components.ScrollLabel import ScrollLabel
-from Components.Pixmap import Pixmap, MultiPixmap
-from Components.MenuList import MenuList
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
-from Components.ConfigList import ConfigListScreen
-from Components.PluginComponent import plugins
-from Components.FileList import MultiFileSelectList
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
+from enigma import eTimer, eConsoleAppContainer
+from Plugins.Plugin import PluginDescriptor
+from random import Random 
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
+from Screens.Standby import TryQuitMainloop
+from Screens.HelpMenu import HelpableScreen
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
-from Plugins.Plugin import PluginDescriptor
+
 from subprocess import call
 import commands
+import string
+import sys 
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session, menu_path = ""):
@@ -3921,3 +3925,95 @@ class NetworkServicesSummary(Screen):
 		self["title"].text = title
 		self["status_summary"].text = status_summary
 		self["autostartstatus_summary"].text = autostartstatus_summary
+
+
+class NetworkPassword(Screen):
+	def __init__(self, session, menu_path = ""):
+		Screen.__init__(self, session)
+		screentitle = _("Password setup")
+		if config.usage.show_menupath.value == 'large':
+			menu_path += screentitle
+			title = menu_path
+			self["menu_path_compressed"] = StaticText("")
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+		self.skinName = "NetworkSetPassword"
+
+		self.user="root"
+		self.output_line = ""
+		self.list = []
+		
+		self["passwd"] = ConfigList(self.list)
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Set Password"))
+		self["key_yellow"] = StaticText(_("Random Password"))
+		self["key_blue"] = StaticText(_("Keyboard"))
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+				{
+						"red": self.close,
+						"green": self.SetPasswd,
+						"yellow": self.newRandom,
+						"blue": self.bluePressed,
+						"cancel": self.close
+				}, -1)
+	
+		self.buildList(self.GeneratePassword())
+
+	def newRandom(self):
+		self.buildList(self.GeneratePassword())
+	
+	def buildList(self, password):
+		self.password=password
+		self.list = []
+		self.list.append(getConfigListEntry(_('Enter a new password'), ConfigText(default = self.password, fixed_size = False)))
+		self["passwd"].setList(self.list)
+		
+	def GeneratePassword(self): 
+		passwdChars = string.letters + string.digits
+		passwdLength = 10
+		return ''.join(Random().sample(passwdChars, passwdLength)) 
+
+	def SetPasswd(self):
+		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password) 
+		self.container = eConsoleAppContainer()
+		self.container.appClosed.append(self.runFinished)
+		self.container.dataAvail.append(self.dataAvail)
+		retval = self.container.execute("echo -e '%s\n%s' | (passwd %s)" %(self.password,self.password,self.user))
+		if retval==0:
+			message=_("Sucessfully changed the password for the root user to: ") + self.password
+			self.session.open(MessageBox, message , MessageBox.TYPE_INFO)
+		else:
+			message=_("Unable to change the password for the root user")
+			self.session.open(MessageBox, message , MessageBox.TYPE_ERROR)
+
+	def dataAvail(self,data):
+		self.output_line += data
+		while True:
+			i = self.output_line.find('\n')
+			if i == -1:
+				break
+			self.processOutputLine(self.output_line[:i+1])
+			self.output_line = self.output_line[i+1:]
+
+	def processOutputLine(self,line):
+		if line.find('password: '):
+			self.container.write("%s\n"%self.password)
+
+	def runFinished(self,retval):
+		del self.container.dataAvail[:]
+		del self.container.appClosed[:]
+		del self.container
+		self.close()
+		
+	def bluePressed(self):
+		self.session.openWithCallback(self.VirtualKeyBoardTextEntry, VirtualKeyBoard, title = (_("Enter your password here:")), text = self.password)
+	
+	def VirtualKeyBoardTextEntry(self, callback = None):
+		if callback is not None and len(callback):
+			self.buildList(callback)

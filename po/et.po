@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-31 10:48+0200\n"
-"PO-Revision-Date: 2016-12-31 11:23+0200\n"
+"POT-Creation-Date: 2017-01-04 07:11+0200\n"
+"PO-Revision-Date: 2017-01-08 10:38+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -297,6 +297,14 @@ msgid "%d minutes"
 msgstr "%d minutit"
 
 #, python-format
+msgid "%d of %d Bytes"
+msgstr "%d - %d baidist"
+
+#, python-format
+msgid "%d of %d KB"
+msgstr "%d - %d KB"
+
+#, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
 msgstr[0] "laius %d piksel"
@@ -324,6 +332,10 @@ msgstr "%d.%B %Y"
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
 msgstr "%k:%M %e/%m"
+
+#, python-format
+msgid "%s"
+msgstr "%s"
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
@@ -361,6 +373,14 @@ msgstr "%s (%s)\n"
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s ei ole enam kasutuses. Kas see tuleks kustutada?"
+
+#, python-format
+msgid "%s of %s GB"
+msgstr "%s - %s GB"
+
+#, python-format
+msgid "%s of %s MB"
+msgstr "%s - %s MB"
 
 #, python-format
 msgid "%s updated package available"
@@ -838,6 +858,9 @@ msgstr "Aktiivsed kliendid"
 msgid "Adapter settings"
 msgstr "Võrgukaardi seaded"
 
+msgid "Adaptive date display allows recent dates to be displayed as 'Today' or 'Yesterday'.  It hides the year for recordings made this year.  It hides the day of the week for recordings made in previous years."
+msgstr "Kohanduva kuupäeva kasutamisel kuvatakse hiljutised päevad 'Täna' või 'Eile'. Salvestiste loomise aastat ei näidata. Eelmistel aastatel loodud salvestistel ei kuvata nädalapäeva."
+
 msgid "Add"
 msgstr "Lisa"
 
@@ -1117,6 +1140,9 @@ msgstr "Iga tegevus"
 msgid "Arabic"
 msgstr "Araabia"
 
+msgid "Are You Sure ?"
+msgstr "Kas oled kindel?"
+
 #, python-format
 msgid "Are you ready to install \"%s\" ?"
 msgstr "Kas paigaldada \"%s\"?"
@@ -1312,7 +1338,7 @@ msgstr "Autofookus"
 msgid "Auto focus commencing ..."
 msgstr "Autofookus käivitub"
 
-msgid "Auto language selection"
+msgid "Auto language settings"
 msgstr "Automaatsed keelevalikud"
 
 msgid "Auto play blu-ray file"
@@ -2500,8 +2526,8 @@ msgstr "'4'/'6'-nuppude hüppe kohandatud pikkus"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "'7'/'9'-nuppude hüppe kohandatud pikkus"
 
-msgid "Customize"
-msgstr "Kasutaja eelistused"
+msgid "Customize settings"
+msgstr "Kasutaja valikud"
 
 msgid "Cut"
 msgstr "Lõika"
@@ -3594,9 +3620,6 @@ msgstr "/tmp/positionersetup.logi loomine nurjus: "
 msgid "Fallback remote receiver URL"
 msgstr "Kaugvastuvõtja URL"
 
-msgid "Fallback remote receiver streaming port"
-msgstr "Kaugvastuvõtja voogesituse port"
-
 #, python-format
 msgid "Fan %d"
 msgstr "Vent. %d"
@@ -3758,6 +3781,9 @@ msgstr "Asukohast :"
 msgid "Front Display Panel"
 msgstr "Esipaneeli ekraan"
 
+msgid "Front display settings"
+msgstr "Esipaneeli ekraan"
+
 msgid "Full screen"
 msgstr "Täisekraan"
 
@@ -3780,6 +3806,9 @@ msgid ""
 msgstr ""
 "Kujunduse jõustamiseks tuleb kasutajaliides taaskäivitada\n"
 "Kas teha seda kohe?"
+
+msgid "GUI settings"
+msgstr "Ekraanigraafika seaded"
 
 msgid "Gateway"
 msgstr "Lüüs"
@@ -3862,7 +3891,7 @@ msgstr "Mine X kalibreerimine"
 msgid "Graphical EPG"
 msgstr "Graafiline saatekava"
 
-msgid "Graphical Infobar EPG settings"
+msgid "Graphical InfobarEPG settings"
 msgstr "Graafilise inforiba EPG seaded"
 
 msgid "GraphicalEPG settings"
@@ -3931,7 +3960,7 @@ msgstr "Ooteseisundisse teleri kaudu"
 msgid "Handle wakeup from TV"
 msgstr "Käivitamine teleri kaudu"
 
-msgid "Hard disk setup"
+msgid "Hard disk settings"
 msgstr "Kõvaketta seaded"
 
 msgid "Hard disk standby after"
@@ -4091,10 +4120,10 @@ msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Määrates 'jah', ei näidata kanaleid, millel puudub saatekava."
 
 msgid "If set to 'yes' it will show the 'PO' packages in browser."
-msgstr "Määrates 'jah', näidatakse nimekirjas 'PO' pakette."
+msgstr "Määrates 'jah', kuvatakse nimekirjas 'PO' paketid."
 
 msgid "If set to 'yes' it will show the 'SRC' packages in browser."
-msgstr "Määrates 'jah', näidatakse nimekirjas 'SRC' pakette."
+msgstr "Määrates 'jah', kuvatakse nimekirjas 'SRC' paketid."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr "Määrates 'jah', näidatakse saatekavas väikest teleekraani."
@@ -4173,13 +4202,13 @@ msgid "Inadyn setup"
 msgstr "Inadyn seaded"
 
 msgid "Include AIT in http streams"
-msgstr "Kaasa AIT http voogudesse"
+msgstr "AIT kaasatud http voogudesse"
 
 msgid "Include ECM in http streams"
-msgstr "ECM kaasatakse http voogudesse"
+msgstr "ECM kaasatud http voogudesse"
 
 msgid "Include EIT in http streams"
-msgstr "Kaasa EIT http voogudesse"
+msgstr "EIT kaasatud http voogudesse"
 
 msgid "Incorrect service type for PiP!"
 msgstr "PiP ei tööta selle kanalitüübiga!"
@@ -4462,7 +4491,7 @@ msgstr "Klaviatuur"
 msgid "Keyboard map"
 msgstr "Klaviatuur"
 
-msgid "Keyboard setup"
+msgid "Keyboard settings"
 msgstr "Klaviatuuri seaded"
 
 msgid "LAN adapter"
@@ -5103,8 +5132,8 @@ msgstr "Võrguotsing"
 msgid "Network servers:"
 msgstr "Võrguserverid:"
 
-msgid "Network setup"
-msgstr "Võrgu häälestamine"
+msgid "Network settings"
+msgstr "Võrgu seaded"
 
 msgid "Network test"
 msgstr "Võrgu testimine"
@@ -6005,6 +6034,9 @@ msgstr "Pluginad"
 msgid "Plugin browser"
 msgstr "Pluginad"
 
+msgid "Plugin browser settings"
+msgstr "Plugina menüü seaded"
+
 msgid "Plugin details"
 msgstr "Plugina üksikasjad"
 
@@ -6376,8 +6408,8 @@ msgstr "'EXIT' nupp lõpetab taasesituse"
 msgid "RAM"
 msgstr "RAM"
 
-msgid "RF output"
-msgstr "RF-väljund"
+msgid "RF output settings"
+msgstr "RF-väljundi seaded"
 
 msgid "RGB"
 msgstr "RGB"
@@ -6882,7 +6914,7 @@ msgstr "L"
 msgid "Satellite"
 msgstr "Satelliit"
 
-msgid "Satellite dish setup"
+msgid "Satellite dish settings"
 msgstr "Antenni seaded"
 
 msgid "Satellite equipment"
@@ -8118,6 +8150,9 @@ msgstr "Kasutatud ruum:"
 msgid "Spanish"
 msgstr "Hispaania"
 
+msgid "Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'IP_second_box:8001'."
+msgstr "Määra kaugvastuvõtja täielik URL koos pordi numbriga (vaikimisi :8001). Näiteks '192.168.x.x:8001'."
+
 msgid "Split preview mode"
 msgstr "Poolitatud eelvaade"
 
@@ -8297,9 +8332,6 @@ msgstr "Voogesitus"
 
 msgid "Streaming clients info"
 msgstr "IPTV kliendid"
-
-msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
-msgstr "Kaugvastuvõtja voogesituse port. Vaikimisi on see '8001'"
 
 msgid "Strict DLNA"
 msgstr "Puhas DLNA"
@@ -8793,9 +8825,6 @@ msgstr "Siin saab muuta tähesuurust kujunduse suhtes. 1 suurendab ja -1 vähend
 
 msgid "This allows you to change the number of rows shown."
 msgstr "Siin saab muuta kuvatavate ridade arvu."
-
-msgid "This can be either the IP or name of the fallback receiver, not including the scheme or port number (e.g. either 'xxx.xxx.xxx.xxx' or 'name_second_box')."
-msgstr "See võib olla kas IP või kaugvastuvõtja nimi ilma pordi numbrita (nt. kas 'xxx.xxx.xxx.xxx' või 'teise_vastuvõtja_nimi)"
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Siin saab vähendada pildi plokkmüra (block-noise). Seda tehakse pildi teravuse arvelt."
@@ -9522,6 +9551,9 @@ msgstr "Kasuta saadavusel Virgin EPG andmeid."
 
 msgid "Use a gateway"
 msgstr "Lüüs lubatud"
+
+msgid "Use adaptive date display"
+msgstr "Kohanduv kuupäeva kuvamine"
 
 msgid "Use circular LNB"
 msgstr "Ringpolar LNB kasutamine"
@@ -11770,11 +11802,17 @@ msgstr "Kanalivahetus ja salvestamine"
 msgid "zapped"
 msgstr "vahetatud"
 
+#~ msgid "Customize"
+#~ msgstr "Kasutaja eelistused"
+
 #~ msgid "Diction"
 #~ msgstr "Õigekiri"
 
 #~ msgid "Enable Focus Animation"
 #~ msgstr "Fookuse animeerimine"
+
+#~ msgid "Fallback remote receiver streaming port"
+#~ msgstr "Kaugvastuvõtja voogesituse port"
 
 #~ msgid "Input Stream ID"
 #~ msgstr "Sisendvoo ID"
@@ -11786,11 +11824,17 @@ msgstr "vahetatud"
 #~ "Valesti seadistatud unicable ühendus tuunerist %s tuunerisse %s!\n"
 #~ "Tuuneri %s valik 'ühendatud' keelati"
 
+#~ msgid "Network setup"
+#~ msgstr "Võrgu häälestamine"
+
 #~ msgid "PLS Code"
 #~ msgstr "PLS kood"
 
 #~ msgid "PLS Mode"
 #~ msgstr "PLS režiim"
+
+#~ msgid "RF output"
+#~ msgstr "RF-väljund"
 
 #~ msgid "Root"
 #~ msgstr "Juur"
@@ -11801,12 +11845,18 @@ msgstr "vahetatud"
 #~ msgid "Shutdown"
 #~ msgstr "Lülita välja"
 
+#~ msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
+#~ msgstr "Kaugvastuvõtja voogesituse port. Vaikimisi on see '8001'"
+
 #~ msgid ""
 #~ "The unicable connection setting is wrong.\n"
 #~ " Maybe recursive connection of tuners."
 #~ msgstr ""
 #~ "Unicable ühendus on valesti seadistatud.\n"
 #~ " Tuunerid võivad olla ühendatud rekursiivselt."
+
+#~ msgid "This can be either the IP or name of the fallback receiver, not including the scheme or port number (e.g. either 'xxx.xxx.xxx.xxx' or 'name_second_box')."
+#~ msgstr "See võib olla kas IP või kaugvastuvõtja nimi ilma pordi numbrita (nt. kas 'xxx.xxx.xxx.xxx' või 'teise_vastuvõtja_nimi)"
 
 #~ msgid "Tuning algorithm"
 #~ msgstr "Häälestumise algorütm"

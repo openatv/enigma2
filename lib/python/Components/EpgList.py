@@ -1,3 +1,4 @@
+import skin
 from time import localtime, time, strftime
 
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, loadPNG, gFont, getDesktop, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
@@ -559,16 +560,17 @@ class EPGList(HTMLComponent, GUIComponent):
 		height = esize.height()
 		if self.type == EPG_TYPE_MULTI:
 			fontSize = self.eventFontSizeMulti + config.epgselection.multi_eventfs.value
-			xpos = 0
-			w = int((fontSize + 4) * 7.0)  # Service font is 4 px larger
-			self.service_rect = Rect(xpos, 0, w-10, height)
-			xpos += w
-			w = int(fontSize * 5.4)
-			self.start_end_rect = Rect(xpos, 0, w-10, height)
-			self.progress_rect = Rect(xpos, 4, w-10, height-8)
-			xpos += w
-			w = width - xpos
-			self.descr_rect = Rect(xpos, 0, w, height)
+			servW = int((fontSize + 4) * 6.5)  # Service font is 4 px larger
+			if config.usage.time.wide.value:
+				progW = int(fontSize * 6.8)
+			else:
+				progW = int(fontSize * 6.8)
+			servLeft, servWidth, progLeft, progWidth, progHeight, descLeft = skin.parameters.get("MultiEPGColumnFormats", (0, servW - 10, servW, progW, height - 8, servW + progW + 10))
+			progTop = int((height - progHeight) / 2)
+			self.service_rect = Rect(servLeft, 0, servWidth, height)
+			self.progress_rect = Rect(progLeft, progTop, progWidth, progHeight)
+			self.start_end_rect = Rect(progLeft, 0, progWidth, height)
+			self.descr_rect = Rect(descLeft, 0, width - descLeft, height)
 		elif self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			servicew = 0
 			piconw = 0
@@ -589,7 +591,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				if self.showServiceNumber:
 					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.infobar_servfs.value)
 					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000" ).width()
-			
+
 			w = (channelw + piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
@@ -600,9 +602,13 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
 			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
-			self.weekday_rect = Rect(0, 0, int(fontSize * 2.3), height)
-			self.datetime_rect = Rect(self.weekday_rect.width(), 0, int(fontSize * 6.5), height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, width - self.datetime_rect.left() - self.datetime_rect.width(), height)
+			self.weekday_rect = Rect(0, 0, int(fontSize * 1.9), height)
+			if config.usage.time.wide.value:
+				scale = 7.4
+			else:
+				scale = 6.3
+			self.datetime_rect = Rect(self.weekday_rect.width() + 20, 0, int(fontSize * scale), height)
+			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width() + 20, 0, width - self.datetime_rect.left() - self.datetime_rect.width() - 20, height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -638,8 +644,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime("%a", t)),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime("%s, %s" % (config.usage.date.short.value, config.usage.time.short.value), t))
 		]
 		if clock_types:
 			if self.wasEntryAutoTimer and clock_types in (2,7,12):
@@ -678,8 +684,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None,  # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime("%a", t)),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime("%s, %s" % (config.usage.date.short.value, config.usage.time.short.value), t))
 		]
 		if clock_types:
 			if self.wasEntryAutoTimer and clock_types in (2,7,12):
@@ -723,8 +729,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
+				if config.usage.time.wide.value:
+					format = "%s-%s"
+				else:
+					format = "%s - %s"
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
+					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER | RT_VALIGN_CENTER, format % (strftime(config.usage.time.short.value, begin), strftime(config.usage.time.short.value, end))),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, duration_wid - 10, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%d min") % (duration / 60))
 				))
 			else:
@@ -1462,22 +1472,18 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 			nowTime = localtime(time())
 			begTime = localtime(time_base)
-			ServiceWidth = service_rect.width()
-			if nowTime[2] != begTime[2]:
-				if ServiceWidth > 179:
-					datestr = strftime("%A %d %B", localtime(time_base))
-				elif ServiceWidth > 139:
-					datestr = strftime("%a %d %B", localtime(time_base))
-				elif ServiceWidth > 129:
-					datestr = strftime("%a %d %b", localtime(time_base))
-				elif ServiceWidth > 119:
-					datestr = strftime("%a %d", localtime(time_base))
-				elif ServiceWidth > 109:
-					datestr = strftime("%A", localtime(time_base))
-				else:
-					datestr = strftime("%a", localtime(time_base))
+			serviceWidth = service_rect.width()
+			if nowTime.tm_year == begTime.tm_year and nowTime.tm_yday == begTime.tm_yday:
+				datestr = _("Today")
 			else:
-				datestr = '%s'%(_("Today"))
+				if serviceWidth > 179:
+					datestr = strftime(config.usage.date.daylong.value, begTime)
+				elif serviceWidth > 129:
+					datestr = strftime(config.usage.date.dayshort.value, begTime)
+				elif serviceWidth > 79:
+					datestr = strftime(config.usage.date.daysmall.value, begTime)
+				else:
+					datestr = strftime("%a", begTime)
 
 			foreColor = self.foreColor
 			backColor = self.backColor
@@ -1525,14 +1531,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 					border_width = self.borderWidth, border_color = self.borderColor))
 
 			for x in range(0, num_lines):
-				ttime = localtime(time_base + (x*timeStepsCalc))
-				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
-					timetext = strftime("%H:%M", localtime(time_base + x*timeStepsCalc))
-				else:
-					if int(strftime("%H",ttime)) > 12:
-						timetext = strftime("%-I:%M",ttime) + _('pm')
-					else:
-						timetext = strftime("%-I:%M",ttime) + _('am')
+				timetext = strftime(config.usage.time.short.value, localtime(time_base + (x * timeStepsCalc)))
 				res.append(MultiContentEntryText(
 					pos = (service_rect.width() + xpos, 0),
 					size = (incWidth, self.listHeight),

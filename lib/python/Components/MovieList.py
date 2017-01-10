@@ -182,6 +182,8 @@ class MovieList(GUIComponent):
 		self.trashShift = 1
 		self.dirShift = 1
 		self.dateWidth = 160
+		if config.usage.time.wide.value:
+			self.dateWidth = int(self.dateWidth * 1.15)
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -307,6 +309,8 @@ class MovieList(GUIComponent):
 			self.spaceRight = int(value)
 		def dateWidth(value):
 			self.dateWidth = int(value)
+			if config.usage.time.wide.value:
+				self.dateWidth = int(self.dateWidth * 1.15)
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
@@ -438,7 +442,7 @@ class MovieList(GUIComponent):
 			if config.movielist.use_fuzzy_dates.value:
 				begin_string = ', '.join(FuzzyTime(begin, inPast = True))
 			else:
-				begin_string = strftime("%a %-e.%b.%Y, %R", localtime(begin))
+				begin_string = strftime("%s, %s" % (config.usage.date.daylong.value, config.usage.time.short.value), localtime(begin))
 
 		ih = self.itemHeight
 		res.append(MultiContentEntryText(pos=(iconSize+space, 0), size=(width-iconSize-space-dateWidth-r, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))

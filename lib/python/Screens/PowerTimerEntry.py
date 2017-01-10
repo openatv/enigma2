@@ -132,12 +132,12 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_autosleeprepeat = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = autosleeprepeat)
 		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices = [("yes",_("Yes")), ("no", _("No"))],default=autosleepinstandbyonly)
 
-		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
+		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = config.usage.date.full.value, increment = 86400)
 		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default = self.timer.end)
 		self.timerentry_showendtime = ConfigSelection(default = (((self.timer.end - self.timer.begin) /60 ) > 1), choices = [(True, _("yes")), (False, _("no"))])
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = config.usage.date.full.value, increment = 86400)
 
 		self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 

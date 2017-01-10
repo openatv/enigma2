@@ -221,7 +221,7 @@
 			<convert type="ClockToText">FullDate</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="225,100" font="FdLcD;85" halign="left" noWrap="1">
-			<convert type="ClockToText">Format:%H:%M</convert>
+			<convert type="ClockToText">Default</convert>
 		</widget>
 		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update_stable.png" position="135,146" size="30,30" >
 			<convert type="ConditionalShowHide"/>

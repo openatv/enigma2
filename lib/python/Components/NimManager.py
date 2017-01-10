@@ -1052,78 +1052,43 @@ class NimManager:
 
 def InitSecParams():
 	config.sec = ConfigSubsection()
+	config.sec.delay_after_continuous_tone_disable_before_diseqc = ConfigInteger(default=25, limits = (0, 9999))
+	config.sec.delay_after_final_continuous_tone_change = ConfigInteger(default=10, limits = (0, 9999))
+	config.sec.delay_after_final_voltage_change = ConfigInteger(default=10, limits = (0, 9999))
+	config.sec.delay_between_diseqc_repeats = ConfigInteger(default=120, limits = (0, 9999))
+	config.sec.delay_after_last_diseqc_command = ConfigInteger(default=100, limits = (0, 9999))
+	config.sec.delay_after_toneburst = ConfigInteger(default=50, limits = (0, 9999))
+	config.sec.delay_after_change_voltage_before_switch_command = ConfigInteger(default=75, limits = (0, 9999))
+	config.sec.delay_after_enable_voltage_before_switch_command = ConfigInteger(default=200, limits = (0, 9999))
+	config.sec.delay_between_switch_and_motor_command = ConfigInteger(default=700, limits = (0, 9999))
+	config.sec.delay_after_voltage_change_before_measure_idle_inputpower = ConfigInteger(default=500, limits = (0, 9999))
+	config.sec.delay_after_enable_voltage_before_motor_command = ConfigInteger(default=900, limits = (0, 9999))
+	config.sec.delay_after_motor_stop_command = ConfigInteger(default=500, limits = (0, 9999))
+	config.sec.delay_after_voltage_change_before_motor_command = ConfigInteger(default=500, limits = (0, 9999))
+	config.sec.delay_before_sequence_repeat = ConfigInteger(default=70, limits = (0, 9999))
+	config.sec.motor_running_timeout = ConfigInteger(default=360, limits = (0, 9999))
+	config.sec.motor_command_retries = ConfigInteger(default=1, limits = (0, 5))
+	config.sec.delay_after_diseqc_reset_cmd = ConfigInteger(default=50, limits = (0, 9999))
+	config.sec.delay_after_diseqc_peripherial_poweron_cmd = ConfigInteger(default=150, limits = (0, 9999))
 
-	x = ConfigInteger(default=25, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_CONT_TONE_DISABLE_BEFORE_DISEQC, configElement.value))
-	config.sec.delay_after_continuous_tone_disable_before_diseqc = x
-
-	x = ConfigInteger(default=10, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_CONT_TONE_CHANGE, configElement.value))
-	config.sec.delay_after_final_continuous_tone_change = x
-
-	x = ConfigInteger(default=10, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_VOLTAGE_CHANGE, configElement.value))
-	config.sec.delay_after_final_voltage_change = x
-
-	x = ConfigInteger(default=120, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_DISEQC_REPEATS, configElement.value))
-	config.sec.delay_between_diseqc_repeats = x
-
-	x = ConfigInteger(default=50, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_LAST_DISEQC_CMD, configElement.value))
-	config.sec.delay_after_last_diseqc_command = x
-
-	x = ConfigInteger(default=50, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
-	config.sec.delay_after_toneburst = x
-
-	x = ConfigInteger(default=20, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, configElement.value))
-	config.sec.delay_after_change_voltage_before_switch_command = x
-
-	x = ConfigInteger(default=200, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, configElement.value))
-	config.sec.delay_after_enable_voltage_before_switch_command = x
-
-	x = ConfigInteger(default=700, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD, configElement.value))
-	config.sec.delay_between_switch_and_motor_command = x
-
-	x = ConfigInteger(default=500, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, configElement.value))
-	config.sec.delay_after_voltage_change_before_measure_idle_inputpower = x
-
-	x = ConfigInteger(default=900, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, configElement.value))
-	config.sec.delay_after_enable_voltage_before_motor_command = x
-
-	x = ConfigInteger(default=500, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_MOTOR_STOP_CMD, configElement.value))
-	config.sec.delay_after_motor_stop_command = x
-
-	x = ConfigInteger(default=500, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, configElement.value))
-	config.sec.delay_after_voltage_change_before_motor_command = x
-
-	x = ConfigInteger(default=70, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BEFORE_SEQUENCE_REPEAT, configElement.value))
-	config.sec.delay_before_sequence_repeat = x
-
-	x = ConfigInteger(default=360, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_RUNNING_TIMEOUT, configElement.value))
-	config.sec.motor_running_timeout = x
-
-	x = ConfigInteger(default=1, limits = (0, 5))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
-	config.sec.motor_command_retries = x
-
-	x = ConfigInteger(default=50, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_RESET_CMD, configElement.value))
-	config.sec.delay_after_diseqc_reset_cmd = x
-
-	x = ConfigInteger(default=150, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD, configElement.value))
-	config.sec.delay_after_diseqc_peripherial_poweron_cmd = x
+	config.sec.delay_before_sequence_repeat.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BEFORE_SEQUENCE_REPEAT, configElement.value))
+	config.sec.motor_running_timeout.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_RUNNING_TIMEOUT, configElement.value))
+	config.sec.motor_command_retries.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
+	config.sec.delay_after_diseqc_reset_cmd.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_RESET_CMD, configElement.value))
+	config.sec.delay_after_diseqc_peripherial_poweron_cmd.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD, configElement.value))
+	config.sec.delay_after_voltage_change_before_motor_command.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, configElement.value))
+	config.sec.delay_after_motor_stop_command.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_MOTOR_STOP_CMD, configElement.value))
+	config.sec.delay_after_enable_voltage_before_motor_command.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, configElement.value))
+	config.sec.delay_after_voltage_change_before_measure_idle_inputpower.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, configElement.value))
+	config.sec.delay_between_switch_and_motor_command.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD, configElement.value))
+	config.sec.delay_after_enable_voltage_before_switch_command.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, configElement.value))
+	config.sec.delay_after_change_voltage_before_switch_command.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, configElement.value))
+	config.sec.delay_after_toneburst.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
+	config.sec.delay_after_last_diseqc_command.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_LAST_DISEQC_CMD, configElement.value))
+	config.sec.delay_between_diseqc_repeats.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_DISEQC_REPEATS, configElement.value))
+	config.sec.delay_after_final_voltage_change.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_VOLTAGE_CHANGE, configElement.value))
+	config.sec.delay_after_final_continuous_tone_change.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_CONT_TONE_CHANGE, configElement.value))
+	config.sec.delay_after_continuous_tone_disable_before_diseqc.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_CONT_TONE_DISABLE_BEFORE_DISEQC, configElement.value))
 
 # TODO add support for satpos depending nims to advanced nim configuration
 # so a second/third/fourth cable from a motorized lnb can used behind a
@@ -1210,10 +1175,12 @@ def InitNimManager(nimmgr, update_slots = []):
 			lnbs = nim.advanced.lnb
 			section = lnbs[lnb]
 			if isinstance(section.unicable, ConfigNothing):
+				def getformat(value, index):
+					return index >= 4 and "jess" or "unicable" if value == "dSRC" else value
 				def positionsChanged(configEntry):
 					section.positionNumber = ConfigSelection(["%d" % (x+1) for x in range(configEntry.value)], default="%d" % min(lnb, configEntry.value))
 				def scrListChanged(productparameters, srcfrequencylist, configEntry):
-					section.format = ConfigSelection([("unicable", _("Unicable")), ("jess", _("JESS"))], default=productparameters.get("format", "unicable"))
+					section.format = ConfigSelection(["unicable", "jess"], default=getformat(productparameters.get("format", "unicable"), configEntry.index))
 					section.scrfrequency = ConfigInteger(default=int(srcfrequencylist[configEntry.index]))
 					section.positions = ConfigInteger(default=int(productparameters.get("positions", 1)))
 					section.positions.addNotifier(positionsChanged)
