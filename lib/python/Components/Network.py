@@ -12,7 +12,7 @@ class Network:
 		self.NetworkState = 0
 		self.DnsState = 0
 		self.nameservers = []
-		self.ethtool_bin = "/sbin/ethtool"
+		self.ethtool_bin = "/usr/sbin/ethtool"
 		self.console = Console()
 		self.linkConsole = Console()
 		self.restartConsole = Console()
