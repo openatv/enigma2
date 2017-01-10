@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-06 00:34+0100\n"
-"PO-Revision-Date: 2017-01-06 12:35+0100\n"
+"POT-Creation-Date: 2017-01-08 13:20+0100\n"
+"PO-Revision-Date: 2017-01-10 21:56+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -230,10 +230,6 @@ msgstr "%.0f GB"
 #, python-format
 msgid "%.0f MB"
 msgstr "%.0f MB"
-
-#, python-format
-msgid "%02d:%02d"
-msgstr "%02d:%02d"
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
 #, fuzzy
@@ -666,10 +662,6 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "%d draadloos netwerk gevonden!"
 msgstr[1] "%d draadloze netwerken gevonden!"
 
-#, python-format
-msgid "%d.%02d. %02d:%02d"
-msgstr "%d.%02d. %02d:%02d"
-
 msgid "%m/%-e"
 msgstr ""
 
@@ -1091,14 +1083,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A finished power timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Een afgewerkte timer wil uw\n"
-"%s %s uitschakelen. Wilt u dat nu doen?"
-
-#, python-format
-msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
@@ -1420,6 +1404,9 @@ msgstr "Adres"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op \"OK\" om dit menu af te sluiten of u selecteert met de nummertoetsen een ander testscherm."
+
+msgid "Adult Audience, Strong Violence 15+"
+msgstr ""
 
 msgid "Advanced"
 msgstr "Geavanceerd"
@@ -1753,6 +1740,9 @@ msgstr "Audiospoor (%s) formaat"
 msgid "Audio track (%s) language"
 msgstr "Audiospoor (%s) taal"
 
+msgid "Australia"
+msgstr "Australië"
+
 msgid "Author: "
 msgstr "Auteur:"
 
@@ -1765,6 +1755,9 @@ msgstr "Auto"
 
 msgid "Auto Deep Standby"
 msgstr "Uitschakelen"
+
+msgid "Auto Detect"
+msgstr "Automatisch detecteren"
 
 msgid "Auto EXIF Orientation rotation/flipping"
 msgstr "Auto EXIF-orientatie: rotatie/spiegelen"
@@ -1849,6 +1842,10 @@ msgstr "Beschikbare shares:"
 
 msgid "B"
 msgstr "B"
+
+#, python-format
+msgid "BC%d"
+msgstr ""
 
 msgid "BER:"
 msgstr "BER:"
@@ -2318,8 +2315,14 @@ msgstr ""
 "Controleert tuner %s\n"
 "DiSEqC poort %s voor %s"
 
+msgid "Children"
+msgstr "Jeugd"
+
 msgid "Children/Youth"
 msgstr "Kinderen/Jeugd"
+
+msgid "Childrens"
+msgstr "Jeugd"
 
 #, python-format
 msgid "Chipset:\tBCM%s\n"
@@ -2331,6 +2334,12 @@ msgstr "Chipset: BCM%s"
 
 msgid "Choose Bouquet"
 msgstr "Kies favorieten"
+
+msgid "Choose a country scheme for decoding genre information in EPG events."
+msgstr ""
+
+msgid "Choose a country scheme for decoding rating information in EPG events."
+msgstr ""
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Kies een tag om een opname makkelijk te vinden."
@@ -2457,6 +2466,9 @@ msgstr "Kleurformaat"
 
 msgid "Color space"
 msgstr "Kleurruimte"
+
+msgid "Comedy"
+msgstr "Komedie"
 
 msgid "Command To Run"
 msgstr "Uit te voeren opdracht"
@@ -2901,6 +2913,12 @@ msgstr "Opname was niet mogelijk vanwege ongeldige service %s"
 msgid "Could not save configfile %s!"
 msgstr "Kon configuratiebestand %s niet opslaan!"
 
+msgid "Country for EPG event genre information"
+msgstr "Land voor EPG genre informatie"
+
+msgid "Country for EPG event rating information"
+msgstr ""
+
 msgid "Crash Logs"
 msgstr "Crash logs"
 
@@ -2934,6 +2952,9 @@ msgstr "Cronmanager"
 
 msgid "CronTimers"
 msgstr "Crontimers"
+
+msgid "Current Affairs"
+msgstr "Actualiteiten"
 
 msgid "Current CEC address"
 msgstr "Huidig CEC adres"
@@ -3669,6 +3690,9 @@ msgstr "Wilt u een upgrade van het volgende pakket:\n"
 msgid "Dobly Digital downmix is now"
 msgstr "Dolby Digital downmix is nu"
 
+msgid "Documentary"
+msgstr "Dcumentaire"
+
 msgid "Dolby Digital / DTS downmix"
 msgstr "Dolby Digital / DTS downmix"
 
@@ -3704,6 +3728,9 @@ msgstr "Bezig met downloaden"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Haalt plugininformatie op. Even wachten..."
+
+msgid "Drama"
+msgstr "Drama"
 
 #, python-format
 msgid "Drivers:\t%s\n"
@@ -3828,8 +3855,11 @@ msgstr "Wijzig titel"
 msgid "Edit upgrade source url."
 msgstr "Upgrade url bewerken."
 
-msgid "Education/Science/..."
-msgstr "Opleiding/Wetenschap/..."
+msgid "Education/Information"
+msgstr "Onderwijs/Informatie"
+
+msgid "Education/Science/Factual"
+msgstr "Onderwijs/Wetenschap/Feiten"
 
 msgid "Elapsed"
 msgstr "Verstreken"
@@ -3980,6 +4010,9 @@ msgstr "Voer hier uw forum-gebruikersnaam in, om terugkoppeling makkelijker te m
 
 msgid "Enter your password here:"
 msgstr "Geef hier het nieuwe wachtwoord in:"
+
+msgid "Entertainment"
+msgstr "Ontspanning"
 
 msgid "Entitlements"
 msgstr "Rechten"
@@ -4461,6 +4494,9 @@ msgstr "Algemene AC3 vertraging"
 msgid "General PCM delay"
 msgstr "Algemene PCM vertraging"
 
+msgid "Generic"
+msgstr "Algemeen"
+
 msgid "Genre"
 msgstr "Genre"
 
@@ -4901,6 +4937,9 @@ msgstr "Infobalk EPG instellingen"
 
 msgid "Information"
 msgstr "Informatie"
+
+msgid "Infotainment"
+msgstr "infotainment"
 
 msgid "Init"
 msgstr "Initialiseren"
@@ -5447,6 +5486,12 @@ msgstr "Markeer kanaal als 3D"
 msgid "Mark/Portal/Playlist"
 msgstr "Mark/Portal/Playlist"
 
+msgid "Mature Adult Audience 15+"
+msgstr "15+"
+
+msgid "Mature Audience 15+"
+msgstr "15+"
+
 msgid "Max memory positions"
 msgstr "Max aantal geheugenposities"
 
@@ -5671,6 +5716,9 @@ msgstr "Naar indexpositie gedraaid"
 msgid "Movement"
 msgstr "Beweging"
 
+msgid "Movie"
+msgstr "Film"
+
 msgid "Movie List"
 msgstr "Opnamelijst"
 
@@ -5721,6 +5769,9 @@ msgstr "Multisat"
 
 msgid "Multisat all select"
 msgstr "Multisat alle geselecteerd"
+
+msgid "Music"
+msgstr "Muziek"
 
 msgid "Music/Ballet/Dance"
 msgstr "Muziek/Ballet/Dans"
@@ -5834,7 +5885,10 @@ msgstr "Lokatie voor nieuwe timers"
 msgid "New version:"
 msgstr "Nieuwe versie:"
 
-msgid "News Current Affairs"
+msgid "News"
+msgstr "Nieuws"
+
+msgid "News/Current Affairs"
 msgstr "Nieuws/Actualiteiten"
 
 msgid "Next"
@@ -6026,6 +6080,9 @@ msgstr "Noord"
 msgid "Norwegian"
 msgstr "Noors"
 
+msgid "Not Classified"
+msgstr "Niet geclassificeerd"
+
 #
 msgid "Not Defined"
 msgstr "Niet gedefinieerd"
@@ -6063,6 +6120,9 @@ msgstr ""
 
 msgid "Not mounted"
 msgstr "Niet gemount"
+
+msgid "Not running"
+msgstr "Niet actief..."
 
 msgid "Not-Associated"
 msgstr "Niet geassocieerd"
@@ -6332,6 +6392,9 @@ msgstr "Paniek naar"
 msgid "Parent directory"
 msgstr "Bovengelegen map"
 
+msgid "Parental Guidance Recommended"
+msgstr "Ouderlijk toezicht aanbevolen"
+
 msgid "Parental control"
 msgstr "Kinderslot"
 
@@ -6358,6 +6421,9 @@ msgstr "Pauzeer afspelen"
 
 msgid "Pause/Continue playback"
 msgstr "Pauzeer/Vervolg afspelen"
+
+msgid "Pausing"
+msgstr "Gepauzeerd"
 
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Piekbelasting (max rij verzoeken per workerthread)"
@@ -6882,6 +6948,9 @@ msgstr "Voorkeurstuner voor opnames"
 
 msgid "Preparing... Please wait"
 msgstr "Voorbereiden... Even wachten"
+
+msgid "Preschool"
+msgstr "Peuters"
 
 msgid "Press '0' to toggle PiP mode"
 msgstr "Druk op  '0' om te schakelen tussen de PiP-modi"
@@ -7430,6 +7499,9 @@ msgstr "Leest partitietabel opnieuw"
 msgid "Reserved"
 msgstr "Gereserveerd"
 
+msgid "Reserved for future use"
+msgstr "Gereserveerd voor toekomstig gebruik"
+
 msgid "Reset"
 msgstr "Herstel"
 
@@ -7486,6 +7558,9 @@ msgstr "Instellingen terugzetten"
 
 msgid "Restoring..."
 msgstr "Bezig met terugzetten..."
+
+msgid "Restricted 18+"
+msgstr "18+"
 
 msgid "Resume from last position"
 msgstr "Ga door op laatste positie"
@@ -8016,6 +8091,9 @@ msgstr ""
 msgid "Service number font size"
 msgstr "Kanaalnummer lettergrootte"
 
+msgid "Service off-air"
+msgstr "Kanaal uit de lucht"
+
 msgid "Service reference"
 msgstr "Servicereferentie"
 
@@ -8264,9 +8342,6 @@ msgstr "Toon EPG voor huidige kanaal"
 
 msgid "Show EPG..."
 msgstr "Toon EPG..."
-
-msgid "Show Games show"
-msgstr "Toon spelmodus"
 
 msgid "Show Log"
 msgstr "Toon log"
@@ -8544,6 +8619,9 @@ msgstr "Toon waarschuwing wanneer in een stream"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Toon waarschuwing als timeshift gestopt wordt"
+
+msgid "Show/Games show"
+msgstr "Show/Spelshow"
 
 msgid "Shows live tv or informations on LCD."
 msgstr "Toon live TV of informatie op LCD"
@@ -8847,6 +8925,9 @@ msgstr "Gebruikte ruimte:"
 msgid "Spanish"
 msgstr "Spaans"
 
+msgid "Special"
+msgstr "Speciaal"
+
 msgid "Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'IP_second_box:8001'."
 msgstr "Specificeer het complete URL van de fallback remote ontvanger inclusief het poortnummer (:8001 is default), b.v. 'IP_tweede_box:8001'."
 
@@ -8855,6 +8936,9 @@ msgstr "Splits voorvertoningsmodus"
 
 msgid "Splitscreen"
 msgstr "Gesplitst scherm"
+
+msgid "Sport"
+msgstr "Sport"
 
 msgid "Sports"
 msgstr "Sport"
@@ -8906,6 +8990,9 @@ msgstr "Timeshift starten"
 
 msgid "Starting on"
 msgstr "Start op"
+
+msgid "Starts in a few seconds"
+msgstr "Start binnen een paar seconden"
 
 msgid "Status"
 msgstr "Status"
@@ -10127,6 +10214,9 @@ msgstr "Kan het wachtwoord voor de root-gebruiker niet veranderen"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Upgrade uitvoeren en vervolgens systeem herstarten"
+
+msgid "Undefined"
+msgstr "Niet gedefinieerd"
 
 msgid "Undetermined"
 msgstr "Onbepaald"
@@ -11436,6 +11526,9 @@ msgstr "en vraag het deze sessie nooit meer"
 msgid "are you sure you want to cancel all the changes"
 msgstr "weet u zeker dat u alle veranderingen wilt annuleren"
 
+msgid "arts/culture (general)"
+msgstr "Kunst/Cultuur (algemeen)"
+
 msgid "arts/culture (without music, general)"
 msgstr "Kunst/Cultuur (zonder muziek, algemeen)"
 
@@ -11479,8 +11572,8 @@ msgid "ballet"
 msgstr "ballet"
 
 #, python-format
-msgid "bc%s"
-msgstr "bc%s"
+msgid "bc%d"
+msgstr ""
 
 msgid "better"
 msgstr "beter"
@@ -11530,8 +11623,11 @@ msgstr "gecentreerd, terugloop"
 msgid "chapters"
 msgstr "hoofdstukken"
 
-msgid "childrens's/youth program (general)"
-msgstr "Kinderen/Jeugdprogramma (algemeen)"
+msgid "children's/youth program (general)"
+msgstr "Kinderen/Jeugd (algemeen)"
+
+msgid "childrens (general)"
+msgstr "Jeugd (algemeen)"
 
 msgid "circular left"
 msgstr "circular links"
@@ -11544,6 +11640,9 @@ msgstr "sluit shareview"
 
 msgid "comedy"
 msgstr "komedie"
+
+msgid "comedy (general)"
+msgstr "Komedie (algemeen)"
 
 msgid "confirmed"
 msgstr "bevestigd"
@@ -11559,6 +11658,9 @@ msgstr "kopiëer"
 
 msgid "create directory"
 msgstr "pap aanmaken"
+
+msgid "current affairs (general)"
+msgstr "nieuws/actualiteiten (algemeen)"
 
 msgid "daily"
 msgstr "dagelijks"
@@ -11605,11 +11707,17 @@ msgstr "geen actie"
 msgid "documentary"
 msgstr "documentaire"
 
+msgid "documentary (general)"
+msgstr "documentaire (algemeen)"
+
 msgid "don't descramble, record ecm"
 msgstr "niet decoderen, neem ecm op"
 
 msgid "done!"
 msgstr "gereed!"
+
+msgid "drama (general)"
+msgstr "Drama (algemeen)"
 
 msgid "e-mail address"
 msgstr "e-mailadres"
@@ -11625,6 +11733,9 @@ msgstr "ecm-info"
 
 msgid "economics/social advisory"
 msgstr "economie/sociale zaken"
+
+msgid "education/information (general)"
+msgstr "onderwijs/informatie (algemeen)"
 
 msgid "education/science/factual topics (general)"
 msgstr "onderwijs/wetenschap/feitelijkheden (algemeen)"
@@ -11655,6 +11766,9 @@ msgstr "ontspanning (10-16 jaar)"
 
 msgid "entertainment (6-14 year old)"
 msgstr "ontspanning (6-14 jaar)"
+
+msgid "entertainment (general)"
+msgstr "ontspanning (algemeenr)"
 
 msgid "epg cache backup"
 msgstr "epg cache back-up"
@@ -11813,6 +11927,9 @@ msgstr "verhoog uphop met 1"
 msgid "information/education/school program"
 msgstr "Informatie/Onderwijs/Schoolprogramma"
 
+msgid "infotainment (general)"
+msgstr "infotainment (algemeen)"
+
 msgid "init module"
 msgstr "module initialiseren"
 
@@ -11912,6 +12029,9 @@ msgstr "autorijden"
 msgid "move"
 msgstr "verplaats"
 
+msgid "movie (general)"
+msgstr "Film algemeen"
+
 msgid "movie/drama (general)"
 msgstr "film/drama (algemeen)"
 
@@ -11920,6 +12040,9 @@ msgstr "ms"
 
 msgid "multinorm"
 msgstr "multinorm"
+
+msgid "music (general)"
+msgstr "Muziek (algemeen)"
 
 msgid "music/ballet/dance (general)"
 msgstr "muziek/ballet/dans (algemeen)"
@@ -11938,6 +12061,9 @@ msgstr "nooit"
 
 msgid "new media"
 msgstr "nieuwe media"
+
+msgid "news (general)"
+msgstr "Nieuws (algemeen)"
 
 msgid "news magazine"
 msgstr "nieuwsmagazine"
@@ -12262,7 +12388,7 @@ msgstr "spring vooruit (tijd invoeren)"
 msgid "slow"
 msgstr "langzaam"
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr "soap/melodrama/folklore"
 
 msgid "social/political issues/economics (general)"
@@ -12274,8 +12400,14 @@ msgstr "sociale/spirituele wetenschap"
 msgid "sorting of playlists"
 msgstr "sorteren van afspeellijsten"
 
+msgid "special (general)"
+msgstr "Speciaal (algemeen)"
+
 msgid "special events"
 msgstr "Speciale gebeurtenissen"
+
+msgid "sport (general)"
+msgstr "Sport (algemeen)"
 
 msgid "sports (general)"
 msgstr "Sport (algemeen)"
@@ -12533,6 +12665,9 @@ msgstr "zapte"
 #~ "\n"
 #~ "Er loopt een opname."
 
+#~ msgid "%02d:%02d"
+#~ msgstr "%02d:%02d"
+
 #~ msgid "%2d:%02d"
 #~ msgstr "%2d:%02d"
 
@@ -12542,6 +12677,9 @@ msgstr "zapte"
 #~ msgid "%a %e/%m  %-H:%M"
 #~ msgstr "%a %e/%m  %-H:%M"
 
+#~ msgid "%d.%02d. %02d:%02d"
+#~ msgstr "%d.%02d. %02d:%02d"
+
 #~ msgid "%d.%B %Y"
 #~ msgstr "%d-%m-%Y"
 
@@ -12550,6 +12688,13 @@ msgstr "zapte"
 
 #~ msgid "3d mode"
 #~ msgstr "3d mode"
+
+#~ msgid ""
+#~ "A finished power timer wants to shut down\n"
+#~ "your %s %s. Shutdown now?"
+#~ msgstr ""
+#~ "Een afgewerkte timer wil uw\n"
+#~ "%s %s uitschakelen. Wilt u dat nu doen?"
 
 #~ msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 #~ msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
@@ -13128,9 +13273,6 @@ msgstr "zapte"
 #~ msgid "Toggle Extra Keys"
 #~ msgstr "Wissel Extra Keys"
 
-#~ msgid "Translation Information"
-#~ msgstr "Iinformatie over vertaling"
-
 #~ msgid "Tuner Configuration"
 #~ msgstr "Tunerconfiguratie"
 
@@ -13193,6 +13335,9 @@ msgstr "zapte"
 
 #~ msgid "am"
 #~ msgstr "vm"
+
+#~ msgid "bc%s"
+#~ msgstr "bc%s"
 
 #~ msgid "complex"
 #~ msgstr "complex"
