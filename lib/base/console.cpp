@@ -234,8 +234,8 @@ void eConsoleAppContainer::readyRead(int what)
 		while((rd = read(fd[0], buf, 2048)) > 0)
 		{
 			buf[rd]=0;
-			/*emit*/ dataAvail(buf);
-			stdoutAvail(buf);
+			/*emit*/ dataAvail(std::make_pair(buf, rd));
+			stdoutAvail(std::make_pair(buf, rd));
 			if ( filefd[1] >= 0 )
 				::write(filefd[1], buf, rd);
 			if (!hungup)
@@ -275,8 +275,8 @@ void eConsoleAppContainer::readyErrRead(int what)
 /*			for ( int i = 0; i < rd; i++ )
 				eDebug("[eConsoleAppContainer] %d = %c (%02x)", i, buf[i], buf[i] );*/
 			buf[rd]=0;
-			/*emit*/ dataAvail(buf);
-			stderrAvail(buf);
+			/*emit*/ dataAvail(std::make_pair(buf, rd));
+			stderrAvail(std::make_pair(buf, rd));
 		}
 	}
 }
