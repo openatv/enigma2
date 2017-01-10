@@ -1066,7 +1066,7 @@ class TunerScreen(ConfigListScreen, Screen):
 		self.fe_data = fe_data
 		Screen.__init__(self, session)
 		ConfigListScreen.__init__(self, None)
-		self.createConfig()
+		self.createConfig(fe_data)
 		self.initialSetup()
 		self.createSetup()
 		self.tuning.sat.addNotifier(self.tuningSatChanged)
@@ -1079,7 +1079,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"cancel": self.keyCancel,
 		}, -2)
 
-	def createConfig(self):
+	def createConfig(self, frontendData):
 		satlist = nimmanager.getRotorSatListForNim(self.feid)
 		orb_pos = self.fe_data.get("orbital_position", None)
 		orb_pos_str = str(orb_pos)
