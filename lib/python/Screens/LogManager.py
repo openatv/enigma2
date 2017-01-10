@@ -172,7 +172,7 @@ class LogManager(Screen):
 				'red': self.changelogtype,
 				'green': self.showLog,
 				'yellow': self.deletelog,
-				'blue': self.sendlog,
+				#'blue': self.sendlog,
 				"left": self.left,
 				"right": self.right,
 				"down": self.down,
@@ -182,7 +182,7 @@ class LogManager(Screen):
 		self["key_red"] = Button(_("Debug Logs"))
 		self["key_green"] = Button(_("View"))
 		self["key_yellow"] = Button(_("Delete"))
-		self["key_blue"] = Button(_("Send"))
+		#self["key_blue"] = Button(_("Send"))
 
 		self.onChangedEntry = [ ]
 		self.sentsingle = ""
