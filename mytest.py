@@ -707,7 +707,8 @@ def runScreenTest():
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
 	else:
 		config.misc.nextWakeup.value = "-1,-1,0,0,-1,0"
-		setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
+		if not boxtype.startswith('azboxm'): #skip for Azbox (mini)ME - setting wakeup time to past reboots box 
+			setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
 		print "[mytest.py] no set next wakeup time"
 	config.misc.nextWakeup.save()
 	print "="*100
