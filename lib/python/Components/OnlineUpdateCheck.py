@@ -1,7 +1,6 @@
 from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild, getImageType
 
 from time import time
-from boxbranding import getImageVersion
 
 from enigma import eTimer
 
