@@ -10,11 +10,10 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.config import config
 from enigma import eTimer, getEnigmaVersionString, getDesktop
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate, getImageDevBuild
+from boxbranding import getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate, getImageDevBuild
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 from Tools.StbHardware import getFPVersion
-from Components.InputDevice import iInputDevices, iRcTypeControl
 from os import path
 from re import search
 import skin
