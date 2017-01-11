@@ -153,6 +153,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.showServiceTitle = True
 		self.showServiceNumber = False
 		self.screenwidth = getDesktop(0).size().width()
+		self.ref_event = None
 
 		self.overjump_empty = overjump_empty
 		self.timer = timer
@@ -411,20 +412,26 @@ class EPGList(HTMLComponent, GUIComponent):
 		if cur_sel:
 			self.findBestEvent()
 
+	# clip a time to those visible in the EPG, and round to minutes by truncation
+	def clipRoundTimeToVisible(self, time):
+		time_base = self.getTimeBase()
+		ev_min = time_base
+		ev_max = time_base + self.time_epoch * 60
+		return max(ev_min, min(ev_max, time - (time % 60)))
+
 	def findBestEvent(self):
 		if not self.service_set:
 			return
 		old_service = self.cur_service  # (service, service_name, events, picon, channel)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
-		time_base = self.getTimeBase()
-		last_time = time()
-		if old_service and self.cur_event is not None:
-			try:
-				events = old_service[2]
-				cur_event = events[self.cur_event] if len(events) >= self.cur_event else 0 #(event_id, event_title, begin_time, duration)
-				last_time = cur_event[2]
-			except:
-				pass
+		if self.ref_event is not None:
+			# Use the visible portion of the reference event time range, at least a minute and up to 10% of the whole EPG visible time range
+			last_time = self.clipRoundTimeToVisible(self.ref_event[2])
+			last_end_time = self.clipRoundTimeToVisible(self.ref_event[2] + self.ref_event[3])
+			last_end_time = max(last_time + 60, min(last_end_time, self.clipRoundTimeToVisible(last_time + self.time_epoch * 60 / 10)))
+		else:
+			last_time = time()
+			last_time = last_end_time = last_time - (last_time % 60)
 		if cur_service:
 			self.cur_event = 0
 			events = cur_service[2]
@@ -433,24 +440,30 @@ class EPGList(HTMLComponent, GUIComponent):
 				best_diff = 0
 				idx = 0
 				for event in events:  # iterate all events
-					ev_time = event[2]
-					ev_end_time = event[2] + event[3]
-					if ev_time < time_base:
-						ev_time = time_base
+					ev_time = self.clipRoundTimeToVisible(event[2])
+					ev_end_time = self.clipRoundTimeToVisible(event[2] + event[3])
 					if not old_service and ev_time <= last_time < ev_end_time:
 						best = idx
 						break
-					diff = abs(ev_time - last_time)
-					if best is None or (diff < best_diff):
+					# If there's a reference event look for the largest overlap with its range, otherwise look for the event containing current time or is the closest to it
+					if self.ref_event is not None:
+						diff = min(ev_end_time, last_end_time) - max(ev_time, last_time)
+						better = diff > best_diff
+					else:
+						diff = 0 if ev_time <= last_time < ev_end_time else min(abs(ev_time - last_time), abs(ev_end_time - last_time))
+						better = diff < best_diff
+					if best is None or better:
 						best = idx
 						best_diff = diff
-					if ev_end_time < time():
-						best = idx + 1
-					if best is not None and ev_time > last_time and ev_end_time > time():
+					if best is not None and ev_time > last_end_time:
 						break
 					idx += 1
 			self.cur_event = best
 		self.selEntry(0)
+
+	def onHide(self):
+		# clear the event used as a reference for findBestEvent(), as the next EPG invocation will be back to current time
+		self.ref_event = None
 
 	def selectionChanged(self):
 		for x in self.onSelChanged:
@@ -1125,12 +1138,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		valid_event = self.cur_event is not None
 		if cur_service:
 			update = True
+			check_ref_event = False
 			entries = cur_service[2]
 			if dir == 0:  # current
 				update = False
 			elif dir == +1:  # next
 				if valid_event and self.cur_event + 1 < len(entries):
 					self.cur_event += 1
+					check_ref_event = True
 				else:
 					self.time_base += self.time_epoch * 60
 					self.fillGraphEPG(None)  # refill
@@ -1138,6 +1153,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			elif dir == -1:  # prev
 				if valid_event and self.cur_event - 1 >= 0:
 					self.cur_event -= 1
+					check_ref_event = True
 				else:
 					newBase = newBaseTime(self.time_base - self.time_epoch * 60)
 					if newBase != self.time_base:
@@ -1148,7 +1164,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				self.time_base += self.time_epoch * 60
 				self.fillGraphEPG(None)  # refill
 				return True
-			elif dir == -2:  # prev
+			elif dir == -2:  # prev page
 				newBase = newBaseTime(self.time_base - self.time_epoch * 60)
 				if newBase != self.time_base:
 					self.time_base = newBase
@@ -1171,6 +1187,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
 			self.select_rect = Rect(xpos, 0, width, self.event_rect.h)
 			clipUpdate = visible and update
+			# if the current event doesn't contain current time, keep it as a reference for findBestEvent()
+			if check_ref_event:
+				self.ref_event = None if entry[2] <= time() < entry[2] + entry[3] else entry
 		else:
 			self.select_rect = self.event_rect
 			clipUpdate = False
