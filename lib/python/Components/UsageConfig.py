@@ -73,7 +73,14 @@ def InitUsageConfig():
 		("keep reverseB", _("Keep service") + " + " + _("Reverse bouquet buttons"))])
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 	config.usage.showpicon = ConfigYesNo(default = True)
+	
+#########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default = "/usr/share/enigma2/picon")
+	config.usage.movielist_show_picon = ConfigYesNo(default = False)
+	config.usage.use_extended_pig = ConfigYesNo(default = False)
+	config.usage.use_extended_pig_channelselection = ConfigYesNo(default = False)
+	config.usage.servicelist_preview_mode = ConfigYesNo(default = False)
+#####################################################
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.panicchannel = ConfigInteger(default = 1, limits=(1,5000) )
