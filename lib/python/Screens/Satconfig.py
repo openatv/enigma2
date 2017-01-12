@@ -88,7 +88,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canDependOn(self.slotid)) > 0:
 				choices["satposdepends"] = _("Second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
-				choices["loopthrough"] = _("Loop through to")
+				choices["loopthrough"] = _("Loop through from")
 			if self.nim.isFBCLink():
 				choices = { "nothing": _("FBC automatic loop through"), "advanced": _("FBC SCR (Unicable/JESS)")}
 			self.nimConfig.configMode.setChoices(choices, self.nim.isFBCLink() and "nothing" or "simple")
@@ -755,7 +755,7 @@ class NimSelection(Screen):
 						if x.isFBCLink():
 							text = "FBC automatic loop through\nlinked to"
 						else:
-							text = { "loopthrough": _("Loop through to"),
+							text = { "loopthrough": _("Loop through from"),
 									"equal": _("Equal to"),
 									"satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
 						text += " " + nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name
