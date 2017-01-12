@@ -5,7 +5,7 @@ from gettext import dgettext
 from enigma import eTimer, eDVBDB
 
 import Components.Task
-from Components.OnlineUpdateCheck import feedsstatuscheck, kernelMismatch
+from Components.OnlineUpdateCheck import feedsstatuscheck, kernelMismatch, statusMessage
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -245,10 +245,21 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.session.openWithCallback(self.close, MessageBox, feedsstatuscheck.getFeedsErrorMessage(), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
 			if getImageType() != 'release' or (config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value) or config.softwareupdate.updateisunstable.value == '0':
-				self.startCheck()
+				message = statusMessage()
+				if message:
+					message += "\nDo you want to continue?"
+					self.session.openWithCallback(self.statusMessageCallback, MessageBox, message, type=MessageBox.TYPE_YESNO, default=False)
+				else:
+					self.startCheck()
 			else:
 				self.session.openWithCallback(self.close, MessageBox, _("Sorry the feeds seem to be in an unstable state, if you wish to use them please enable 'Allow unstable (experimental) updates' in \"Software update settings\"."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 
+	def statusMessageCallback(self, answer):
+		if answer:
+			self.startCheck()
+		else:
+			self.close()
+	
 	def startCheck(self):
 		self.updating = True
 		self.activity = 0
