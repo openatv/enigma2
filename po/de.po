@@ -356,7 +356,7 @@ msgstr "(ZAP)"
 
 #
 msgid "ZAP"
-msgstr "ZAP"
+msgstr "Umschalten"
 
 #
 msgid "(empty)"
@@ -12056,7 +12056,7 @@ msgstr "Ihre %s %s könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das Ha
 
 #
 msgid "zap"
-msgstr "Zap"
+msgstr "Umschalten"
 
 #
 msgid "zapped"
@@ -12855,6 +12855,10 @@ msgstr "Nummer"
 msgid "Quick Actions"
 msgstr "Nur Nummern"
 
+# UsageConfig.py
+msgid "Behave like stop-button"
+msgstr "Wie Stopp-Taste behandeln"
+
 msgid "Show infobar lite *"
 msgstr "Zeige einfache Infoleiste *"
 
@@ -12988,6 +12992,14 @@ msgstr "Maximale Anzahl von Tagen:"
 msgid "Maximum space used (MB):"
 msgstr "Maximale Speicherplatznutzung (MB):"
 
+# data/setup.xml
+msgid "Crash at skin error for debug reasons ?"
+msgstr "Auch bei Skin-Fehlern abstürzen?"
+
+# data/setup.xml
+msgid "if set to 'no', only an debug message is written to the Debug log "
+msgstr "Wenn die Option auf 'Nein' gesetzt wird, dann gibt es bei Fehlern im Skin nur einen Debug-Log-Eintrag."
+
 msgid "Space used:"
 msgstr "Speicherplatznutzung:"
 
@@ -13104,6 +13116,14 @@ msgstr "Das Display wird nach der angegebenen Zeit gedimmt."
 #: data/setup.xml
 msgid "Brightness (Standby)"
 msgstr "Helligkeit (Standby)"
+
+#: data/setup.xml
+msgid "Show menu numbers"
+msgstr "Zeige Menü Nummern"
+
+#: data/setup.xml
+msgid "This option allows you to show menu number quick links."
+msgstr "Diese Option erlaubt es Ihnen, die Menü Nummern für die Schnellanwahl anzuzeigen."
 
 msgid "Power LED State in Deep-Standby/Standby"
 msgstr "Power-LED im Deep-Standby/Standby"
