@@ -1152,7 +1152,7 @@ class oscReaderStats(Screen, OscamInfo):
 								try:
 									last_req = lastreq.split("T")[1][:-5]
 								except IndexError:
-									last_req = time.strftime("%H:%M:%S",time.localtime(float(lastreq)))
+									last_req = time.strftime(config.usage.time.long.value, time.localtime(float(lastreq)))
 							else:
 								last_req = ""
 						else:

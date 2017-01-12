@@ -5,6 +5,8 @@
 		<item level="0" text="Sync time using" description="Synchronise system time with the TV transponder or an Internet time server (NTP).">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Enter the name of the NTP server you want to use.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Set up the network time synchronisation interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
+		<item level="0" text="Date style" description="Choose the display formatting style for dates. The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
+		<item level="0" text="Time style" description="Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
 	<setup key="avsetup">
 		<!-- This is just a placeholder, the Videomode plugin implements this submenu -->
@@ -23,8 +25,7 @@
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Choose the preferred tuner type when the same service is available to different types of tuners.">config.usage.alternatives_priority</item>
 		<item level="2" text="Enable fallback remote receiver" description="Enable to use a remote receiver for services that cannot be tuned locally (tuner is in use or the service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
-		<item level="2" text="Fallback remote receiver URL" description="This can be either the IP or name of the fallback receiver, not including the scheme or port number (e.g. either 'xxx.xxx.xxx.xxx' or 'name_second_box').">config.usage.remote_fallback</item>
-		<item level="2" text="Fallback remote receiver streaming port" description="Streaming port of the fallback remote receiver. By default this is '8001'">config.usage.remote_fallback_port</item>
+		<item level="2" text="Fallback remote receiver URL" description="Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'IP_second_box:8001'.">config.usage.remote_fallback</item>
 		<item level="2" text="Disable background scanning" description="When tuned to a service, the system scans the transponder for changes and saves them. Only enable this option if you're absolutely sure of what you're doing.">config.misc.disable_background_scan</item>
 		<item level="2" text="Enable timer conflict detection" description="When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 		<item level="2" text="Include ECM in http streams" description="ECM data will be included in the stream. This enables a client receiver to decode it.">config.streaming.stream_ecm</item>
@@ -51,6 +52,7 @@
 		<item level="1" text="Show infobar on event change" description="Enable to display the infobar when a new event is started.">config.usage.show_infobar_on_event_change</item>
 <!-- 		<item level="1" text="Show channel number in infobar" description="If set to 'yes' the channel number will be displayed in the infobar.">config.usage.show_infobar_channel_number</item> -->
 <!-- 		<item level="0" text="Show picon background color" description="This option allows you choose the background colour of transparent picons.">config.usage.show_picon_bkgrn</item> -->
+		<item level="0" text="Show event genre information" description="This option allows you to choose whether or not to display genre information for the event.">config.usage.show_genre_info</item>
 		<item level="2" text="Show background in radio mode" description="Show the default background image when tuned to a radio channel.">config.misc.showradiopic</item>
 <!-- 		<item level="2" text="Show screensaver" description="Configure the duration (in minutes) for the screensaver.">config.usage.screen_saver</item> -->
 		<item level="0" text="Show time remaining/elapsed" description="Choose one of the following display options for media playback and live TV: remaining time, elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
@@ -69,6 +71,7 @@
 		<item level="1" text="Show PVR status in movie player infobar" description="Enable to move PVR status info from a separate window into the movie player infobar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on EXIT" description="When enabled: In live TV mode, EXIT closes the PiP window (and infobar). In movie player mode, EXIT closes the infobar or PiP window if shown. If neither the PiP window or infobar are visible, EXIT behaviour operates in accordance with the 'Quit movie player with EXIT button' setting.">config.usage.pip_hideOnExit</item>
 <!-- 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown in the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item> -->
+		<item level="0" text="Show menu numbers" description="Enable to show number short cuts next to menu entries.">config.usage.menu_show_numbers</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
@@ -113,7 +116,8 @@
 		<item level="2" text="Keep old EPG for minutes" description="Set the number of minutes that finished events remain visible in the EPG. This is useful when you need information about an event which has just ended or has been delayed.">config.epg.histminutes</item>
 		<item level="0" text="Include EIT in http streams" description="Enable to include EIT data in http streams. This allows a client receiver to show EPG info.">config.streaming.stream_eit</item>
 		<item level="0" text="Include AIT in http streams" description="Enable to include AIT data in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
-		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events.">config.misc.genre_country</item>
+		<item level="2" text="Country for EPG event rating information" description="Choose a country scheme for decoding rating information in EPG events.">config.misc.epgratingcountry</item>
+		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events.">config.misc.epggenrecountry</item>
 	</setup>
 	<setup key="subtitlesetup" title="Subtitle settings">
 		<item level="1" text="Teletext subtitle colour" description="Set the colour of teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
@@ -137,7 +141,7 @@
 		<item level="2" text="External subtitle switch fonts" description="Configure if the subtitle should switch between normal, italic, bold and bolditalic">config.subtitles.pango_subtitle_fontswitch</item>
 		<item level="2" text="External subtitle dialog colorisation" description="Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)">config.subtitles.colourise_dialogs</item>
 	</setup>
-	<setup key="autolanguagesetup" title="Auto language selection">
+	<setup key="autolanguagesetup" title="Auto language settings">
 		<item level="1" text="Audio language selection 1" description="Set the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
 		<item level="1" text="Audio language selection 2" description="Set the second audio language.">config.autolanguage.audio_autoselect2</item>
 		<item level="1" text="Audio language selection 3" description="Set the third audio language.">config.autolanguage.audio_autoselect3</item>
@@ -184,11 +188,11 @@
 		<item level="2" text="Offline decode delay (ms)" description="Set the offline decoding delay (in milliseconds). The specified delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
 		<item level="2" text="Default recording type" description="Descramble &amp; record ECM' provides the option to descramble after recording if descrambling on recording fails. 'Don't descramble, record ECM' saves a scrambled recording that can be descrambled on playback. 'Normal' descrambles the recording and does not record ECM.">config.recording.ecm_data</item>
 	</setup>
-	<setup key="harddisk" title="Hard disk setup" >
+	<setup key="harddisk" title="Hard disk settings" >
 		<item level="0" text="Hard disk standby after" description="Specify a period of inactivity before the hard disk drive enters standby mode.">config.usage.hdd_standby</item>
 		<item level="2" text="Disable hard disk format check on startup" description="WARNING: An incorrectly formatted hard disk may prevent your %s %s from operating properly.">config.misc.skip_hdd_startup_format</item>
 	</setup>
-	<setup key="network" title="Network setup">
+	<setup key="network" title="Network settings">
 		<item text="Use DHCP" description="Enable to use DHCP for IP configuration. This automatically sets the IP address, gateway and other network settings received from your router. Disable to manually edit network settings.">config.network.dhcp</item>
 		<item text="IP address" description="Configure the IP address.">config.network.ip</item>
 		<item text="Netmask" description="Configure the netmask.">config.network.netmask</item>
@@ -196,7 +200,7 @@
 		<item text="Nameserver" description="Configure the nameserver (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
-	<setup key="RFmod" title="RF output">
+	<setup key="RFmod" title="RF output settings">
 		<item level="1" text="Modulator">config.rfmod.enable</item>
 		<item level="2" text="Test mode">config.rfmod.test</item>
 		<item level="2" text="Sound">config.rfmod.sound</item>
@@ -204,7 +208,7 @@
 		<item level="1" text="Channel">config.rfmod.channel</item>
 		<item level="1" text="Finetune">config.rfmod.finetune</item>
 	</setup>
-	<setup key="keyboard" title="Keyboard setup">
+	<setup key="keyboard" title="Keyboard settings">
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="display" title="Front Panel Settings" requires="FrontpanelDisplay">
@@ -235,7 +239,7 @@
 		<item level="1" requires="GraphicLCD" text="Scrolling speed (software render)" description="Set the scrolling speed of text on the front display. This uses a software render in some skins.">config.lcd.scroll_speed</item>
 		<item level="1" requires="GraphicLCD" text="Scrolling delay (software render)" description="Set the delay time between text repetitions. This uses a software render in some skins.">config.lcd.scroll_delay</item>		
 	</setup>
-	<setup key="satconfig" title="Satellite dish setup">
+	<setup key="satconfig" title="Satellite dish settings">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
 		<item text="Configuration mode" description="Configure the tuner mode.">config.sat.configmode</item>
 		<item text="DiSEqC" description="Configure the DiSEqC mode for this LNB.">config.sat.diseqc</item>
@@ -328,7 +332,7 @@
 		<item level="1" text="Number of rows" description="Specify the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 	</setup>
-	<setup key="epginfobargraphical" title="Graphical Infobar EPG settings">
+	<setup key="epginfobargraphical" title="Graphical InfobarEPG settings">
 		<item level="0" text="View mode" description="Choose the layout view mode (Text / Graphics Multi channel EPG or Single channel EPG).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Enable to preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="0" text="Service Title mode" description="Configure to show channel names, picons, or both, in the EPG.">config.epgselection.infobar_servicetitle_mode</item>
@@ -379,7 +383,7 @@
 		<item level="2" text="Timeline 24 Hour" description="Enable to show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
-	<setup key="pluginbrowsersetup" title="Plugin Settings">
+	<setup key="pluginbrowsersetup" title="Plugin browser settings">
 		<item level="2" text="Show translation packages" description="Enable to show 'PO' packages in the browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="Enable to show 'SRC' packages in the browser.">config.pluginbrowser.src</item>
 	</setup>

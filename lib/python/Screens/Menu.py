@@ -16,6 +16,7 @@ from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.MultiContent import MultiContentEntryText
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_WRAP
+from enigma import eTimer
 from os import system
 from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 import xml.etree.cElementTree
@@ -81,7 +82,7 @@ class Menu(Screen, ProtectedScreen):
     CHAR_LIST = 1
 
     def okbuttonClick(self):
-        print 'okbuttonClick'
+        self.resetNumberKey()
         if self.currentlist == self.MENU_LIST:
             selection = self['menu'].getCurrent()
             if selection is not None:
@@ -286,6 +287,7 @@ class Menu(Screen, ProtectedScreen):
             "ok": self.okbuttonClick,
             "cancel": self.closeNonRecursive,
             "menu": self.closeRecursive,
+            "0": self.keyNumberGlobal,
             "1": self.keyNumberGlobal,
             "2": self.keyNumberGlobal,
             "3": self.keyNumberGlobal,
@@ -321,6 +323,10 @@ class Menu(Screen, ProtectedScreen):
                 Screen.setTitle(self, a)
                 self["title"] = StaticText(a)
                 self["menu_path_compressed"] = StaticText("")
+
+        self.number = 0
+        self.nextNumberTimer = eTimer()
+        self.nextNumberTimer.callback.append(self.okbuttonClick)
         ProtectedScreen.__init__(self)
         self.onFirstExecBegin.append(self.setDefault)
 
@@ -469,17 +475,26 @@ class Menu(Screen, ProtectedScreen):
                 self['menu'].setIndex(0)
 
     def keyNumberGlobal(self, number):
-        print 'menu keyNumber:', number
-        number -= 1
-        if len(self['menu'].list) > number:
-            self['menu'].setIndex(number)
-            self.okbuttonClick()
+        self.number = self.number * 10 + number
+        if self.number and self.number <= len(self["menu"].list):
+            self["menu"].setIndex(self.number - 1)
+            if len(self["menu"].list) < 10 or self.number >= 10:
+                self.okbuttonClick()
+            else:
+                self.nextNumberTimer.start(1500, True)
+        else:
+            self.number = 0
+
+    def resetNumberKey(self):
+        self.nextNumberTimer.stop()
+        self.number = 0
 
     def closeNonRecursive(self):
         global menu_path
         menu_path = self.menu_path_compressed
         global full_menu_path
         full_menu_path = menu_path + ' / '
+        self.resetNumberKey()
         if self.currentlist == self.MENU_LIST:
             if not self.id_mainmenu:
                 self.close(False)
@@ -491,6 +506,7 @@ class Menu(Screen, ProtectedScreen):
         menu_path = ""
         global full_menu_path
         full_menu_path = ""
+        self.resetNumberKey()
         self.close(True)
 
     def createSummary(self):

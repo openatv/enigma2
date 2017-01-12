@@ -66,7 +66,7 @@ class Trashcan:
 		self.gotRecordEvent(None, None)
 
 	def gotRecordEvent(self, service, event):
-		self.recordings = len(self.session.nav.getRecordings())
+		from RecordTimer import n_recordings
 		if event == enigma.iRecordableService.evEnd:
 			self.cleanIfIdle()
 
@@ -81,13 +81,10 @@ class Trashcan:
 	def cleanIfIdle(self):
 		# RecordTimer calls this when preparing a recording. That is a
 		# nice moment to clean up.
-#GML:5
-# The recording is already marked as started when we get here, so we
-# have to check for > 1
-		if self.recordings > 1:
-			print "[Trashcan] Recording in progress", self.recordings
+		from RecordTimer import n_recordings
+		if n_recordings > 0:
+			print "[Trashcan] Recording(s) in progress:", n_recordings
 			return
-#GML:2
 # If movielist_trashcan_days is 0 it means don't timeout anything - 
 # just use the "leave nGB settting"
 #
@@ -185,7 +182,6 @@ class CleanTrashTask(Components.Task.PythonTask):
 					serviceRefMap = findMatchingServiceRefs(root, files)
 
 					for name in files:
-#GML:3
 # Don't delete any per-directory config files from .Trash if the option is in use
 						if (config.movielist.settings_per_directory.value and name == ".e2settings.pkl"):
 							continue

@@ -79,7 +79,7 @@ class TimeDateInput(TimeDateInputBase):
 		if conf_date:
 			self.save_mask |= self.DATE_MASK
 		else:
-			conf_date = ConfigDateTime(default=time.time(), formatstring=_("%a %d %b %Y"), increment=24 * 60 * 60)
+			conf_date = ConfigDateTime(default=time.time(), formatstring=config.usage.date.full.value, increment=86400)
 		self.timeinput_date = conf_date
 		self.timeinput_time = conf_time
 

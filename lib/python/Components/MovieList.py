@@ -1,6 +1,7 @@
 import os
 import struct
 import random
+from time import localtime, strftime
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop
 from GUIComponent import GUIComponent
