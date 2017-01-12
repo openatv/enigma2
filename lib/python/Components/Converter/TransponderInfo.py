@@ -46,6 +46,8 @@ class TransponderInfo(Converter, object):
 			elif "DVB-C" in transponderdata["system"]:
 				return "%s %s %s %s %s" % (transponderdata["system"], transponderdata["frequency"], transponderdata["symbol_rate"], transponderdata["fec_inner"], \
 					transponderdata["modulation"])
+			elif "ATSC" in transponderdata["system"]:
+				return "%s %d MHz %s" % (transponderdata["system"], transponderdata["frequency"]/1000 + 0.5, transponderdata["modulation"])
 			return "%s %s %s %s %s %s %s" % (transponderdata["system"], transponderdata["frequency"], transponderdata["polarization_abbreviation"], transponderdata["symbol_rate"], \
 				transponderdata["fec_inner"], transponderdata["modulation"], transponderdata["detailed_satpos" in self.type and "orbital_position" or "orb_pos"])
 		if ref:
