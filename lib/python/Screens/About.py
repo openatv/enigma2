@@ -35,7 +35,7 @@ def getAboutText():
 	cpuMHz = ""
 	if getMachineBuild() in ('vusolo4k'):
 		cpuMHz = "   (1,5 GHz)"
-	elif getMachineBuild() in ('vuuno4k','vuultimo4k','dm900'):
+	elif getMachineBuild() in ('vuuno4k','vuultimo4k','dm900', 'gbuhdquad'):
 		cpuMHz = "   (1,7 GHz)"
 	elif getMachineBuild() in ('hd52','hd51','sf4008'):
 		try:
@@ -93,7 +93,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('hd51','hd52','vusolo4k','vuuno4k','vuultimo4k','sf4008','dm820','dm7080','dm900'):
+	if getMachineBuild() not in ('hd51','hd52','vusolo4k','vuuno4k','vuultimo4k','sf4008','dm820','dm7080','dm900', 'gbuhdquad'):
 		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
