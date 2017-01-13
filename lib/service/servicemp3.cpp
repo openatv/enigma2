@@ -108,7 +108,6 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("mp4");
 		extensions.push_back("mov");
 		extensions.push_back("wmv");
-		extensions.push_back("m2ts");
 		extensions.push_back("asf");
 		extensions.push_back("3gp");
 		extensions.push_back("3g2");
