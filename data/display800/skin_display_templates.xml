@@ -46,9 +46,13 @@
 		</widget>
 	</screen>
 	<screen name="LCDInfoBarStartEndTime">
-		<widget source="session.Event_Now" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+		<widget source="session.Event_Now" render="Label" position="360,390" size="180,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="560,390" size="200,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 	</screen>
 	<screen name="LCDRecordIcon">
@@ -80,12 +84,16 @@
 		</widget>
 	</screen>
 	<screen name="LCDChannelSelectionStartEndTime">
-		<widget source="parent.ServiceEvent" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+		<widget source="parent.ServiceEvent" render="Label" position="360,390" size="180,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Label" position="560,390" size="200,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 	</screen>
-
+	
 	<screen name="LCDEPGChannelName">
 		<widget source="parent.Service" render="Label" position="40,40" size="720,90" font="FdLcD;75" foregroundColor="white" halign="center" valign="center" zPosition="2">
 			<convert type="ServiceName">Name</convert>
@@ -108,12 +116,17 @@
 		</widget>
 	</screen>
 	<screen name="LCDEPGStartEndTime">
-		<widget source="parent.Event" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+		<widget source="parent.Event" render="Label" position="360,390" size="180,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="parent.Event" render="Label" position="560,390" size="200,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 	</screen>
-
+	
+	
 	<!-- ## DEFAULT WITH PICON ## -->
 	<screen name="LCDPiconInfoBarProgramName">
 		 <widget source="session.Event_Now" render="Label" position="40,260" size="720,80" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="center" zPosition="2">
@@ -164,21 +177,33 @@
 		</widget>
 	</screen>
 	<screen name="LCDPiconInfoBarStartEndTime">
-		<widget source="session.Event_Now" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+		<widget source="session.Event_Now" render="Label" position="360,390" size="180,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="560,390" size="200,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconChannelSelectionStartEndTime">
-		<widget source="parent.ServiceEvent" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+		<widget source="parent.ServiceEvent" render="Label" position="360,390" size="180,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Label" position="560,390" size="200,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconEPGStartEndTime">
-		<widget source="parent.Event" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+		<widget source="parent.Event" render="Label" position="360,390" size="180,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="parent.Event" render="Label" position="560,390" size="200,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 	</screen>
 	<screen name="LCDPicon">
@@ -186,7 +211,7 @@
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>			
 	</screen>
 	<screen name="LCDChannelSelectionPicon">
@@ -194,7 +219,7 @@
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 	</screen>
 	<screen name="LCDEPGPicon">
@@ -202,7 +227,7 @@
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconStatusIcons">
