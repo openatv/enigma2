@@ -115,9 +115,7 @@ class AVSwitch:
 			print "[VideoHardware] couldn't read available videomodes."
 			modes = [ ]
 			return modes
-#		return modes.split(' ')
-		self.modes_available = modes.split(' ')
-		return self.modes_available
+		return modes.split(' ')
 
 	def readPreferredModes(self):
 		try:
