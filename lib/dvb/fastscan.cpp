@@ -468,7 +468,7 @@ void eFastScan::parseResult()
 	std::vector<FastScanNetworkSection*> networksections = m_NetworkTable->getSections();
 	std::vector<FastScanServicesSection*> servicessections = m_ServicesTable->getSections();
 
-	std::map<uint16_t, std::map<uint16_t, std::map<uint16_t, uint16_t> > > service_orbital_position;
+	std::map<uint16_t, std::map<uint16_t, std::map<uint16_t, int> > > service_orbital_position;
 	std::map<int, eServiceReferenceDVB> numbered_channels;
 	std::map<int, eServiceReferenceDVB> radio_channels;
 
