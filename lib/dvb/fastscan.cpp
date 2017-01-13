@@ -468,7 +468,7 @@ void eFastScan::parseResult()
 	std::vector<FastScanNetworkSection*> networksections = m_NetworkTable->getSections();
 	std::vector<FastScanServicesSection*> servicessections = m_ServicesTable->getSections();
 
-	std::map<int, int> service_orbital_position;
+	std::map<uint16_t, std::map<uint16_t, std::map<uint16_t, uint16_t> > > service_orbital_position;
 	std::map<int, eServiceReferenceDVB> numbered_channels;
 	std::map<int, eServiceReferenceDVB> radio_channels;
 
@@ -515,7 +515,7 @@ void eFastScan::parseResult()
 				{
 					int type = servicetypemap[(*channel)->getServiceId()];
 					eServiceReferenceDVB ref(orbitalpos << 16, (*it)->getTransportStreamId(), (*it)->getOriginalNetworkId(), (*channel)->getServiceId(), type);
-					service_orbital_position[((*channel)->getServiceId() << 16) + (*it)->getTransportStreamId()] = orbitalpos;
+					service_orbital_position[(*it)->getTransportStreamId()][(*it)->getOriginalNetworkId()][(*channel)->getServiceId()] = orbitalpos;
 					if (originalNumbering)
 					{
 						numbered_channels[(*channel)->getLogicalChannelNumber()] = ref;
@@ -553,7 +553,7 @@ void eFastScan::parseResult()
 		const FastScanServiceList *services = servicessections[i]->getServices();
 		for (FastScanServiceListConstIterator it = services->begin(); it != services->end(); it++)
 		{
-			eServiceReferenceDVB ref(service_orbital_position[((*it)->getServiceId() << 16) + (*it)->getTransportStreamId()] << 16, (*it)->getTransportStreamId(), (*it)->getOriginalNetworkId(), (*it)->getServiceId(), (*it)->getServiceType());
+			eServiceReferenceDVB ref(service_orbital_position[(*it)->getTransportStreamId()][(*it)->getOriginalNetworkId()][(*it)->getServiceId()] << 16, (*it)->getTransportStreamId(), (*it)->getOriginalNetworkId(), (*it)->getServiceId(), (*it)->getServiceType());
 			eDVBService *service = new eDVBService;
 			service->m_service_name = convertDVBUTF8((*it)->getServiceName());
 			service->genSortName();
