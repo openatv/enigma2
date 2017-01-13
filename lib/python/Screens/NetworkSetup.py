@@ -577,7 +577,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
-			if not os.path.exists("/tmp/bcm/" + self.iface):
+			if not os_path.exists("/tmp/bcm/" + self.iface):
 				self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
 			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.weplist = []
@@ -638,7 +638,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						if p.__call__.has_key("configStrings"):
 							self.configStrings = p.__call__["configStrings"]
 
-						isExistBcmWifi = os.path.exists("/tmp/bcm/" + self.iface)
+						isExistBcmWifi = os_path.exists("/tmp/bcm/" + self.iface)
 						if not isExistBcmWifi:
 							self.hiddenSSID = getConfigListEntry(_("Hidden network"), config.plugins.wlan.hiddenessid)
 							self.list.append(self.hiddenSSID)

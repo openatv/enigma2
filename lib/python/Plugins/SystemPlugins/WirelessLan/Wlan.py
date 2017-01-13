@@ -1,6 +1,8 @@
 from os import system, path as os_path
 from string import maketrans, strip
 
+from enigma import eConsoleAppContainer
+
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Console import Console
 from Components.Network import iNetwork
@@ -20,7 +22,7 @@ config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCI
 config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
 
 def existBcmWifi(iface):
-	return os.path.exists("/tmp/bcm/" + iface)
+	return os_path.exists("/tmp/bcm/" + iface)
 
 def getWlConfName(iface):
 	return "/etc/wl.conf.%s" % iface
@@ -63,7 +65,7 @@ class Wlan:
 				iNetwork.setAdapterAttribute(self.iface, "up", True)
 				system("ifconfig "+self.iface+" up")
 				if existBcmWifi(self.iface):
-					enigma.eConsoleAppContainer().execute("wl up")
+					eConsoleAppContainer().execute("wl up")
 
 		ifobj = Wireless(self.iface) # a Wireless NIC Object
 
@@ -127,7 +129,7 @@ class Wlan:
 				iNetwork.setAdapterAttribute(self.iface, "up", False)
 				system("ifconfig "+self.iface+" down")
 				if existBcmWifi(self.iface):
-					enigma.eConsoleAppContainer().execute("wl down")
+					eConsoleAppContainer().execute("wl down")
 				self.oldInterfaceState = None
 				self.iface = None
 
