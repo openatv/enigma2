@@ -98,17 +98,11 @@ class Wlan:
 					if 'LinkQuality' in element:
 						quality = element[element.index('LinkQuality')+12:len(element)]
 
-				channel = None
-				try:
-					channel = frequencies.index(ifobj._formatFrequency(result.frequency.getFrequency())) + 1
-				except:
-					channel = "Unkonwn"
-
 				# noinspection PyProtectedMember
 				aps[bssid] = {
 					'active' : True,
 					'bssid': result.bssid,
-					'channel': channel,
+					'channel': frequencies.index(ifobj._formatFrequency(result.frequency.getFrequency())) + 1,
 					'encrypted': encryption,
 					'essid': strip(self.asciify(result.essid)),
 					'iface': self.iface,
