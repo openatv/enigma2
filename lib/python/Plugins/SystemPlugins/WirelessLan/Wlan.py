@@ -19,7 +19,12 @@ config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default = "WPA2"))
 config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
 
+def existBcmWifi(iface):
+	return os.path.exists("/tmp/bcm/" + iface)
 
+def getWlConfName(iface):
+	return "/etc/wl.conf.%s" % iface
+ 
 def getWlanConfigName(iface):
 	return '/etc/wpa_supplicant.' + iface + '.conf'
 
@@ -57,6 +62,8 @@ class Wlan:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", True)
 				system("ifconfig "+self.iface+" up")
+				if existBcmWifi(self.iface):
+					enigma.eConsoleAppContainer().execute("wl up")
 
 		ifobj = Wireless(self.iface) # a Wireless NIC Object
 
@@ -92,11 +99,15 @@ class Wlan:
 					if 'LinkQuality' in element:
 						quality = element[element.index('LinkQuality')+12:len(element)]
 
-				# noinspection PyProtectedMember
+				channel = "Unknown"
+				try:
+					channel = frequencies.index(ifobj._formatFrequency(result.frequency.getFrequency())) + 1
+				except: channel = "Unknown"
+
 				aps[bssid] = {
 					'active' : True,
 					'bssid': result.bssid,
-					'channel': frequencies.index(ifobj._formatFrequency(result.frequency.getFrequency())) + 1,
+					'channel': channel,
 					'encrypted': encryption,
 					'essid': strip(self.asciify(result.essid)),
 					'iface': self.iface,
@@ -115,6 +126,8 @@ class Wlan:
 			if self.oldInterfaceState is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", False)
 				system("ifconfig "+self.iface+" down")
+				if existBcmWifi(self.iface):
+					enigma.eConsoleAppContainer().execute("wl down")
 				self.oldInterfaceState = None
 				self.iface = None
 
@@ -124,12 +137,72 @@ class wpaSupplicant:
 	def __init__(self):
 		pass
 
+	def writeBcmWifiConfig(self, iface, essid, encryption, psk):
+		contents = ""
+		contents += "ssid="+essid+"\n"
+		contents += "method="+encryption+"\n"
+		contents += "key="+psk+"\n"
+		print "content = \n"+contents
+
+		fd = open(getWlConfName(iface), "w")
+		fd.write(contents)
+		fd.close()
+
+	def loadBcmWifiConfig(self, iface):
+		wsconf = {}
+		wsconf["ssid"] = ""
+		wsconf["hiddenessid"] = False # not used
+		wsconf["encryption"] = "WPA2"
+		wsconf["wepkeytype"] = "ASCII" # not used
+		wsconf["key"] = ""
+
+		configfile = getWlConfName(iface)
+
+		try:
+			fd = open(configfile, "r")
+			lines = fd.readlines()
+			fd.close()
+
+			for line in lines:
+				try:
+					(key, value) = line.strip().split('=',1)
+				except:
+					continue
+
+				if key == 'ssid':
+					wsconf["ssid"] = value.strip()
+				if key == 'method':
+					wsconf["encryption"] = value.strip()
+				elif key == 'key':
+					wsconf["key"] = value.strip()
+				else:
+					continue
+		except:
+			print "[Wlan.py] Error parsing ",configfile
+			wsconfig = {
+					'hiddenessid': False,
+					'ssid': "",
+					'encryption': "WPA2",
+					'wepkeytype': "ASCII",
+					'key': "",
+				}
+
+		for (k,v) in wsconf.items():
+			print "[wsconf][%s] %s" % (k , v)
+
+		return wsconf
+
 	def writeConfig(self, iface):
 		essid = config.plugins.wlan.essid.value
 		hiddenessid = config.plugins.wlan.hiddenessid.value
 		encryption = config.plugins.wlan.encryption.value
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
+		
+		if existBcmWifi(iface):
+			self.writeBcmWifiConfig(iface, essid, encryption, psk)
+			return
+
 		fp = file(getWlanConfigName(iface), 'w')
 		fp.write('#WPA Supplicant Configuration by enigma2\n')
 		fp.write('ctrl_interface=/var/run/wpa_supplicant\n')
@@ -171,6 +244,9 @@ class wpaSupplicant:
 		#system('cat ' + getWlanConfigName(iface))
 
 	def loadConfig(self,iface):
+		if existBcmWifi(iface):
+			return self.loadBcmWifiConfig(iface)
+
 		configfile = getWlanConfigName(iface)
 		if not os_path.exists(configfile):
 			configfile = '/etc/wpa_supplicant.conf'
@@ -251,7 +327,6 @@ class wpaSupplicant:
 				}
 		#print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
-
 
 class Status:
 	def __init__(self):
