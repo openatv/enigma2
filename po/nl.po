@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-08 13:20+0100\n"
-"PO-Revision-Date: 2017-01-10 21:56+0100\n"
+"POT-Creation-Date: 2017-01-12 12:20+0100\n"
+"PO-Revision-Date: 2017-01-13 04:45+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -1396,9 +1396,6 @@ msgstr "Timer voor huidige programma toevoegen/verwijderen"
 msgid "Adding schedule..."
 msgstr "Voegt schema toe..."
 
-msgid "Additional Info"
-msgstr "Aanvullende info"
-
 msgid "Address"
 msgstr "Adres"
 
@@ -1406,7 +1403,7 @@ msgid "Adjust the color settings so that all the color shades are distinguishabl
 msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op \"OK\" om dit menu af te sluiten of u selecteert met de nummertoetsen een ander testscherm."
 
 msgid "Adult Audience, Strong Violence 15+"
-msgstr ""
+msgstr "Geweld, 15+"
 
 msgid "Advanced"
 msgstr "Geavanceerd"
@@ -1503,9 +1500,6 @@ msgstr "Geeft u de mogelijkheid on iconen weer te geven op het frontpaneel."
 
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Geeft de mogelijkheid bekende extensies niet te tonen."
-
-msgid "Allows you to send a copy of the log to yourself."
-msgstr "Maakt het mogelijk een kopie van de logs naar uzelf te sturen."
 
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 msgstr "Hier geeft u aan hoeveel ruimte de debug logs mogen gebruiken. Als die hoeveelheid bereikt wordt, worden de oudste logs het eerste verwijderd."
@@ -1671,9 +1665,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Weet u zeker dat u de EPG Cache wilt opslaan in:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Weet u zeker dat u dit log wilt versturen:\n"
-
 #, python-format
 msgid "Are you sure you want to update your %s %s ?"
 msgstr "Weet u zeker dat u uw %s %s wilt updaten?"
@@ -1704,9 +1695,6 @@ msgstr "Toegewezen zenders/providers:"
 
 msgid "At End:"
 msgstr "Aan het einde:"
-
-msgid "Attach a file"
-msgstr "Voeg een bestand toe"
 
 msgid "Attention, this is repeated timer!\n"
 msgstr "Let op: dit is een herhalende timer!\n"
@@ -2336,10 +2324,10 @@ msgid "Choose Bouquet"
 msgstr "Kies favorieten"
 
 msgid "Choose a country scheme for decoding genre information in EPG events."
-msgstr ""
+msgstr "Kies een landenschema voor het decoderen van genre-rinformatie in de EPG."
 
 msgid "Choose a country scheme for decoding rating information in EPG events."
-msgstr ""
+msgstr "Kies een landenschema voor het decoderen van kijkwijzerinformatie in de EPG."
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Kies een tag om een opname makkelijk te vinden."
@@ -2917,7 +2905,7 @@ msgid "Country for EPG event genre information"
 msgstr "Land voor EPG genre informatie"
 
 msgid "Country for EPG event rating information"
-msgstr ""
+msgstr "Landkeuze voor kijkwijzer informatie."
 
 msgid "Crash Logs"
 msgstr "Crash logs"
@@ -3619,16 +3607,6 @@ msgstr "Wilt u echt de timer voor \"%s\" verwijderen?"
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Weet u zeker dat u het markeerpunt van %s wilt wissen?"
 
-msgid "Do you want to add any additional information ?"
-msgstr "Wilt u informatie toevoegen?"
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Wilt u een tekstbestand toevoegen om het log toe te lichten?\n"
-"(kies 'Nee' om een bericht via het virtuele toetsenbord te typen)"
-
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Wilt u deze verzameling op een DVD medium schrijven?"
 
@@ -3672,13 +3650,6 @@ msgstr "Wilt u uw instelingen nu terugzetten?"
 
 msgid "Do you want to resume playback?"
 msgstr "Wilt u het afspelen vervolgen?"
-
-msgid ""
-"Do you want to send all the selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Wilt u alle geselecteerde bestanden versturen:\n"
-"(kies 'Nee' om aleen het nu geselecteerde bestand te versturen.)"
 
 #, python-format
 msgid "Do you want to update your %s %s ?"
@@ -4002,12 +3973,6 @@ msgstr "Voer pincode in"
 msgid "Enter the service pin"
 msgstr "Voer de zender-PIN in"
 
-msgid "Enter your e-mail address to send a copy of the log to."
-msgstr "Voer uw e-mailadres in om een kopie van de logs te kunnen ontvangen."
-
-msgid "Enter your forum user name, to make it easier to trace logs."
-msgstr "Voer hier uw forum-gebruikersnaam in, om terugkoppeling makkelijker te maken."
-
 msgid "Enter your password here:"
 msgstr "Geef hier het nieuwe wachtwoord in:"
 
@@ -4040,14 +4005,6 @@ msgstr "Fout bij uitvoeren applicatie"
 
 msgid "Error reading webpage!"
 msgstr "Fout bij lezen webpagina"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Fout:\n"
-"%s"
 
 #, python-format
 msgid ""
@@ -8005,20 +7962,11 @@ msgstr "Alle satellieten 1 (USALS)"
 msgid "Selecting satellites 2 (USALS)"
 msgstr "Alle satellieten 2 (USALS)"
 
-msgid "Send"
-msgstr "Verstuur"
-
-msgid "Send Confirmation"
-msgstr "Stuur bevestiging"
-
 msgid "Send DiSEqC"
 msgstr "Verstuur DiSEqC"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "Verstuur DiSEqC enkel bij satellietwijziging"
-
-msgid "Send yourself a copy"
-msgstr "Kopie aan uzelf sturen?"
 
 msgid "Seperate titles with a main menu"
 msgstr "Scheidt titels met een hoofdmenu"
@@ -8442,6 +8390,9 @@ msgstr "Toon EPG"
 msgid "Show event details"
 msgstr "EPG-details weergeven"
 
+msgid "Show event genre information"
+msgstr "Toon EPG genre informatie"
+
 msgid "Show event info plugins"
 msgstr "Toon programma info plugins"
 
@@ -8758,6 +8709,9 @@ msgstr "Diavoorstelling interval (sec.)"
 
 msgid "Slide top to bottom"
 msgstr "Schuif boven naar beneden."
+
+msgid "Slim"
+msgstr "Klein"
 
 #, python-format
 msgid "Slot %d"
@@ -9695,7 +9649,7 @@ msgid "This option allows you to choose how to display standard defintion video 
 msgstr "Hier kunt u aangeven SD op uw TV moet worden weergegeven."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for Media playback."
-msgstr "Hier kunt u instellen of u de resterende en/of de vertsreken tijd wilt zien voor het afspelen van opnames."
+msgstr "Hier kunt u instellen of u de resterende en/of de verstreken tijd wilt zien voor het afspelen van opnames."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Hier kunt u instellen of u de resterende en/of de vertsreken tijd wilt zien voor TV-programma's."
@@ -9705,6 +9659,9 @@ msgstr "Hier kunt u instellen of u de resterende en/of de vertsreken tijd wilt z
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are perfomed. "
 msgstr "Hier stelt u in waarheen als eerste gesprongen wordt in de kanaallijst (dus bij drukken op '2' springt u afhankelijk van deze instelling eerst naar 'A' of naar '2')."
+
+msgid "This option allows you to choose whether or not to display genre information for the event."
+msgstr "Hier kunt u instellen of u de genreinformatie wilt zien voor TV-programma's."
 
 msgid "This option allows you to disable sorting of the menus"
 msgstr "Hier kunt u het sorteren van menu's inschakelen."
@@ -10657,9 +10614,6 @@ msgstr "Virtuosso Image Xtreme"
 msgid "Visual impaired commentary"
 msgstr "Audiodescriptie voor slechtzienden"
 
-msgid "Vix forum user name"
-msgstr "ViX forum gebruikersnaam"
-
 msgid "Voltage mode"
 msgstr "Spanningsmodus"
 
@@ -11192,9 +11146,6 @@ msgstr "U kunt dit niet wissen!"
 msgid "You didn't select a channel to record from."
 msgstr "U heeft geen kanaal geselecteerd om op te nemen."
 
-msgid "You have already sent this log, are you sure you want to resend it?\n"
-msgstr "U heeft dit log al verstuurd; wiilt u het nogmaals verzenden?\n"
-
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "U heeft gekozen een backup van uw instellingen te maken. Druk op OK om te beginnen."
 
@@ -11210,16 +11161,6 @@ msgstr ""
 
 msgid "You have not selected any logs to delete."
 msgstr "U heeft geen logs geselecteerd om te verwijderen."
-
-msgid "You have not selected any logs to send"
-msgstr "U heeft geen logs geselecteerd om te verzenden."
-
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, enter your info, and then try again"
-msgstr ""
-"U heeft de gebruikersinfo in het instellingen scherm niet ingevuld\n"
-"Druk op MENU en vul uw gegevens in, probeer het daarna opnieuw"
 
 #, python-format
 msgid "You have to wait %s!"
@@ -11719,9 +11660,6 @@ msgstr "gereed!"
 msgid "drama (general)"
 msgstr "Drama (algemeen)"
 
-msgid "e-mail address"
-msgstr "e-mailadres"
-
 msgid "east"
 msgstr "oost"
 
@@ -11901,13 +11839,6 @@ msgstr "handvaardigheid"
 
 msgid "handled"
 msgstr "behandeld"
-
-msgid ""
-"has been sent to the ViX team.\n"
-"please quote"
-msgstr ""
-"is naar het ViX-team verstuurd.\n"
-"Citeer alstublieft"
 
 msgid "height"
 msgstr "hoogte"
@@ -12568,18 +12499,6 @@ msgstr "wekelijks"
 msgid "west"
 msgstr "west"
 
-msgid "when asking questions about this log"
-msgstr "indien er vragen over dit log gesteld worden"
-
-msgid ""
-"when asking questions about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"indien er vragen over dit log gesteld worden\n"
-"\n"
-"Een kopie is naar uzelf gestuurd."
-
 msgid "white"
 msgstr "wit"
 
@@ -12711,6 +12630,9 @@ msgstr "zapte"
 #~ msgid "Action on short power button press"
 #~ msgstr "Actie bij kort indrukken van de aan-uit toets"
 
+#~ msgid "Additional Info"
+#~ msgstr "Aanvullende info"
+
 #~ msgid "Adjust 3D settings"
 #~ msgstr "Adjust 3D settings"
 
@@ -12731,6 +12653,15 @@ msgstr "zapte"
 
 #~ msgid "Allows more detailed information to be in the crash log"
 #~ msgstr "Geeft de mogelijkheid meer details in een crashlog op te nemen."
+
+#~ msgid "Allows you to send a copy of the log to yourself."
+#~ msgstr "Maakt het mogelijk een kopie van de logs naar uzelf te sturen."
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Weet u zeker dat u dit log wilt versturen:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Voeg een bestand toe"
 
 #~ msgid "BA"
 #~ msgstr "BA"
@@ -12828,6 +12759,16 @@ msgstr "zapte"
 #~ msgid "Display"
 #~ msgstr "Display"
 
+#~ msgid "Do you want to add any additional information ?"
+#~ msgstr "Wilt u informatie toevoegen?"
+
+#~ msgid ""
+#~ "Do you want to attach a text file to explain the log ?\n"
+#~ "(choose 'No' to type message using virtual keyboard.)"
+#~ msgstr ""
+#~ "Wilt u een tekstbestand toevoegen om het log toe te lichten?\n"
+#~ "(kies 'Nee' om een bericht via het virtuele toetsenbord te typen)"
+
 #~ msgid "Do you want to download the image to %s ?"
 #~ msgstr "Wilt u het image downloaden naar %s ?"
 
@@ -12837,6 +12778,13 @@ msgstr "zapte"
 #~ msgstr ""
 #~ "Wilt u ook de Samba-client installeren?\n"
 #~ "Deze maakt het mogelijk Windows-shares aan te maken op dit apparaat."
+
+#~ msgid ""
+#~ "Do you want to send all the selected files:\n"
+#~ "(choose 'No' to only send the currently selected file.)"
+#~ msgstr ""
+#~ "Wilt u alle geselecteerde bestanden versturen:\n"
+#~ "(kies 'Nee' om aleen het nu geselecteerde bestand te versturen.)"
 
 #~ msgid "Download"
 #~ msgstr "Downloaden"
@@ -12879,6 +12827,19 @@ msgstr "zapte"
 
 #~ msgid "Enimga2 Changes"
 #~ msgstr "Enimga2 veranderingen"
+
+#~ msgid "Enter your e-mail address to send a copy of the log to."
+#~ msgstr "Voer uw e-mailadres in om een kopie van de logs te kunnen ontvangen."
+
+#~ msgid "Enter your forum user name, to make it easier to trace logs."
+#~ msgstr "Voer hier uw forum-gebruikersnaam in, om terugkoppeling makkelijker te maken."
+
+#~ msgid ""
+#~ "Error:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Fout:\n"
+#~ "%s"
 
 #~ msgid "Error: No network connection found. Please ensure your receiver is connected to the internet."
 #~ msgstr "Fout: Geen netwerkverbinding gevonden. Controleer of uw ontvanger met het internet verbonden is"
@@ -13138,6 +13099,15 @@ msgstr "zapte"
 #~ msgid "Select what you want the TV button to activate."
 #~ msgstr "Stel in wat de TV-toets moet doen."
 
+#~ msgid "Send"
+#~ msgstr "Verstuur"
+
+#~ msgid "Send Confirmation"
+#~ msgstr "Stuur bevestiging"
+
+#~ msgid "Send yourself a copy"
+#~ msgstr "Kopie aan uzelf sturen?"
+
 #~ msgid "Setting"
 #~ msgstr "Instelling"
 
@@ -13312,6 +13282,9 @@ msgstr "zapte"
 #~ msgid "Video wizard"
 #~ msgstr "Video-wizard"
 
+#~ msgid "Vix forum user name"
+#~ msgstr "ViX forum gebruikersnaam"
+
 #~ msgid "When enabled the LNB power will not be switched off in standby"
 #~ msgstr "Indien ingeschakeld zal de spanning van de LNB in stand-by niet worden uitgeschakeld."
 
@@ -13327,8 +13300,21 @@ msgstr "zapte"
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "U kunt de telnetserver uitschakelen en ssh gebruiken om in te loggen."
 
+#~ msgid "You have already sent this log, are you sure you want to resend it?\n"
+#~ msgstr "U heeft dit log al verstuurd; wiilt u het nogmaals verzenden?\n"
+
 #~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
 #~ msgstr "U heeft gekozen om een nieuwe .NFI flasher opstart USB stick aan te maken. Alle data op de USB stick gaat onherroepelijk verloren."
+
+#~ msgid "You have not selected any logs to send"
+#~ msgstr "U heeft geen logs geselecteerd om te verzenden."
+
+#~ msgid ""
+#~ "You have not setup your user info in the setup screen\n"
+#~ "Press MENU, enter your info, and then try again"
+#~ msgstr ""
+#~ "U heeft de gebruikersinfo in het instellingen scherm niet ingevuld\n"
+#~ "Druk op MENU en vul uw gegevens in, probeer het daarna opnieuw"
 
 #~ msgid "Zap back to service before tuner setup?"
 #~ msgstr "Wilt u terug naar het vorige kanaal"
@@ -13351,8 +13337,18 @@ msgstr "zapte"
 #~ msgid "default"
 #~ msgstr "standaard"
 
+#~ msgid "e-mail address"
+#~ msgstr "e-mailadres"
+
 #~ msgid "fine-tune your display"
 #~ msgstr "uw scherm fijn-afstellen"
+
+#~ msgid ""
+#~ "has been sent to the ViX team.\n"
+#~ "please quote"
+#~ msgstr ""
+#~ "is naar het ViX-team verstuurd.\n"
+#~ "Citeer alstublieft"
 
 #~ msgid "leave movie player..."
 #~ msgstr "opnamemenu afsluiten"
@@ -13383,6 +13379,18 @@ msgstr "zapte"
 
 #~ msgid "uShare Log"
 #~ msgstr "uShare Log"
+
+#~ msgid "when asking questions about this log"
+#~ msgstr "indien er vragen over dit log gesteld worden"
+
+#~ msgid ""
+#~ "when asking questions about this log\n"
+#~ "\n"
+#~ "A copy has been sent to yourself."
+#~ msgstr ""
+#~ "indien er vragen over dit log gesteld worden\n"
+#~ "\n"
+#~ "Een kopie is naar uzelf gestuurd."
 
 #~ msgid "whitelist"
 #~ msgstr "witte lijst"
