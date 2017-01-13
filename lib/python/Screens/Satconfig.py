@@ -90,7 +90,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("Loop through to")
 			if self.nim.isFBCLink():
-				choices = { "nothing": _("FBC automatic loop through"), "advanced": _("FBC Unicable")}
+				choices = { "nothing": _("FBC automatic loop through"), "advanced": _("FBC SCR (Unicable/JESS)")}
 			self.nimConfig.configMode.setChoices(choices, self.nim.isFBCLink() and "nothing" or "simple")
 
 	def createSetup(self):
@@ -324,7 +324,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
 			if currLnb.lof.value == "unicable":
-				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
+				self.advancedUnicable = getConfigListEntry("SCR (Unicable/JESS) "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedFormat = getConfigListEntry(_("Format"), currLnb.format)
