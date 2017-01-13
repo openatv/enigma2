@@ -23,9 +23,6 @@ config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False
 def getWlanConfigName(iface):
 	return '/etc/wpa_supplicant.' + iface + '.conf'
 
-def getWlConfigName(iface):
-	return '/etc/wl.conf.%s' % iface
-
 class Wlan:
 	def __init__(self, iface = None):
 		self.iface = iface
@@ -60,9 +57,6 @@ class Wlan:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", True)
 				system("ifconfig "+self.iface+" up")
-
-				if iNetwork.detectWlanModule(self.iface) == 'wl':
-					system("wl up")
 
 		ifobj = Wireless(self.iface) # a Wireless NIC Object
 
@@ -121,88 +115,10 @@ class Wlan:
 			if self.oldInterfaceState is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", False)
 				system("ifconfig "+self.iface+" down")
-				if iNetwork.detectWlanModule(self.iface) == 'wl':
-					system("wl down")
 				self.oldInterfaceState = None
-
 				self.iface = None
 
-
 iWlan = Wlan()
-
-class wl:
-	def __init__(self):
-		pass
-
-	def writeConfig(self, iface):
-		essid = config.plugins.wlan.essid.value
-		hiddenessid = config.plugins.wlan.hiddenessid.value
-		encryption = config.plugins.wlan.encryption.value
-		wepkeytype = config.plugins.wlan.wepkeytype.value
-		psk = config.plugins.wlan.psk.value
-		fp = file(getWlConfigName(iface), 'w')
-		contents = ""
-		contents += "ssid="+essid+"\n"
-		contents += "method="+encryption.lower()+"\n"
-		contents += "key="+psk+"\n"
-		print "content = \n"+contents
-		fp.write(contents)
-		fp.close()
-
-	def loadConfig(self,iface):
-		configfile = getWlConfigName(iface)
-		try:
-			fd = open(configfile, "r")
-			lines = fd.readlines()
-			fd.close()
- 
-			for line in lines:
-				try:
-					(key, value) = line.strip().split('=',1)
-				except:
-					continue
- 
-				if key == 'ssid':
-					config.plugins.wlan.essid.value = value.strip()
-				if key == 'method':
-					config.plugins.wlan.encryption.value = value.strip().upper()
-				elif key == 'key':
-					config.plugins.wlan.psk.value = value.strip()
-				else:
-					continue
-
-			wsconfig = {
-					'hiddenessid': config.plugins.wlan.hiddenessid.value,
-					'ssid': config.plugins.wlan.essid.value,
-					'encryption': config.plugins.wlan.encryption.value,
-					'wepkeytype': config.plugins.wlan.wepkeytype.value,
-					'key': config.plugins.wlan.psk.value,
-				}
-
-			for (key, item) in wsconfig.items():
-				if item is "None" or item is "":
-					if key == 'hiddenessid':
-						wsconfig['hiddenessid'] = False
-					if key == 'ssid':
-						wsconfig['ssid'] = ""
-					if key == 'encryption':
-						wsconfig['encryption'] = "WPA2"
-					if key == 'wepkeytype':
-						wsconfig['wepkeytype'] = "ASCII"
-					if key == 'key':
-						wsconfig['key'] = ""
-		except:
-			print "[Wlan.py] Error parsing ",configfile
-			wsconfig = {
-					'hiddenessid': False,
-					'ssid': "",
-					'encryption': "WPA2",
-					'wepkeytype': "ASCII",
-					'key': "",
-				}
-		#print "[Wlan.py] WS-CONFIG-->",wsconfig
-		return wsconfig
-
 
 class wpaSupplicant:
 	def __init__(self):
