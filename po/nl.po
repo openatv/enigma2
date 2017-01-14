@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-12 12:20+0100\n"
-"PO-Revision-Date: 2017-01-13 04:45+0100\n"
+"POT-Creation-Date: 2017-01-13 23:53+0100\n"
+"PO-Revision-Date: 2017-01-14 05:02+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -4197,22 +4197,33 @@ msgstr "F3 lang"
 msgid "FAILED"
 msgstr "MISLUKT"
 
-msgid "FBC Unicable"
-msgstr "FBC Unicable"
+msgid "FBC SCR (Unicable or JESS)"
+msgstr "FBC SCR (Unicable of JESS)"
 
-msgid "FBC automatic loop through"
-msgstr "FBC automatische loopthrough"
+msgid "FBC automatic"
+msgstr "FBC automatisch"
 
 msgid ""
-"FBC automatic loop through\n"
-"inactive"
-msgstr "FBC automatische loopthrough inactief"
+"FBC automatic\n"
+"connected to"
+msgstr ""
+"FBC automatisch\n"
+"verbonden met"
 
 #, python-format
 msgid ""
-"FBC automatic loop through\n"
-"linked to %s"
-msgstr "FBC automatische loopthrough verbonden met %s"
+"FBC automatic\n"
+"connected to %s"
+msgstr ""
+"FBC automatisch\n"
+"verbonden met %s"
+
+msgid ""
+"FBC automatic\n"
+"inactive"
+msgstr ""
+"FBC automatisch\n"
+"inactief"
 
 msgid "FEC"
 msgstr "FEC"
@@ -5063,9 +5074,6 @@ msgstr "Is deze videomodus goed?"
 msgid "Italian"
 msgstr "Italiaans"
 
-msgid "JESS"
-msgstr "JESS"
-
 msgid "JUMP 24 HOURS"
 msgstr "SPRING 24 UUR"
 
@@ -5367,8 +5375,8 @@ msgstr "Lange toetsdruk"
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-msgid "Loop through to"
-msgstr "Doorlus naar"
+msgid "Loop through from"
+msgstr "Doorlus van"
 
 msgid "Lower Framerate save CPU Time"
 msgstr "Lagere framerate gebruikt minder processortijd."
@@ -7599,6 +7607,15 @@ msgstr "SABnzbd instellingen"
 msgid "SCPC optimized search range"
 msgstr "Geoptimaliseerd zoekbereik voor SCPC"
 
+msgid "SCR (Unicable/JESS)"
+msgstr "SCR (Unicable/JESS"
+
+msgid "SCR JESS"
+msgstr "SCR JESS"
+
+msgid "SCR Unicable"
+msgstr "SCR Unicable"
+
 msgid "SID"
 msgstr "SID"
 
@@ -8882,8 +8899,8 @@ msgstr "Spaans"
 msgid "Special"
 msgstr "Speciaal"
 
-msgid "Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'IP_second_box:8001'."
-msgstr "Specificeer het complete URL van de fallback remote ontvanger inclusief het poortnummer (:8001 is default), b.v. 'IP_tweede_box:8001'."
+msgid "Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'."
+msgstr "Geef de complete URL van de fallback-ontvanger inclusief het poortnummer (:8001 is default), b.v. 'http://IP_tweede_box:8001'."
 
 msgid "Split preview mode"
 msgstr "Splits voorvertoningsmodus"
@@ -10190,12 +10207,6 @@ msgstr "Niet-encrypted"
 
 msgid "Unhide parental control services"
 msgstr "Kinderslot uitschakelen"
-
-msgid "Unicable"
-msgstr "Unicable"
-
-msgid "Unicable/JESS"
-msgstr "Unicable/JESS"
 
 #
 msgid "Uninstall"
@@ -13257,6 +13268,9 @@ msgstr "zapte"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC-commando"
+
+#~ msgid "Unicable"
+#~ msgstr "Unicable"
 
 #~ msgid "Unicable LNB"
 #~ msgstr "Unicable LNB"
