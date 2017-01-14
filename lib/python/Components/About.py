@@ -57,7 +57,7 @@ def getChipSetString():
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k'):
 		return "1,5 GHz"
-	elif getMachineBuild() in ('vuuno4k','vuultimo4k','dm900', 'gbuhdquad'):
+	elif getMachineBuild() in ('vuuno4k','vuultimo4k','dm900', 'gbuhdquad', 'revo4k', 'force3uhd', 'force3uhdplus'):
 		return "1,7 GHz"
 	elif getMachineBuild() in ('hd51','hd52','sf4008'):
 		try:
@@ -88,7 +88,7 @@ def getCPUSpeedString():
 			return "unavailable"
 
 def getCPUString():
-	if getMachineBuild() in ('vuuno4k', 'vuultimo4k','vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'gbuhdquad'):
+	if getMachineBuild() in ('vuuno4k', 'vuultimo4k','vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'gbuhdquad', 'revo4k', 'force3uhd', 'force3uhdplus'):
 		return "Broadcom"
 	else:
 		try:
