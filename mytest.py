@@ -571,7 +571,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype in ('fusion4k','force3uhd','wetekplay', 'wetekplay2', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
+	if boxtype in ('revo4k','force3uhd','wetekplay', 'wetekplay2', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -712,7 +712,8 @@ def runScreenTest():
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
 	else:
 		config.misc.nextWakeup.value = "-1,-1,0,0,-1,0"
-		setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
+		if not boxtype.startswith('azboxm'): #skip for Azbox (mini)ME - setting wakeup time to past reboots box 
+			setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
 		print "[mytest.py] no set next wakeup time"
 	config.misc.nextWakeup.save()
 	print "="*100

@@ -8,8 +8,8 @@ from Plugins.Plugin import PluginDescriptor
 
 class BoxPortal(Screen):
 	skin = """
-+		<screen name="Extention" position="center,center" size="200,150" title="Extention">
-+		<widget source="menu" render="Listbox" zPosition="1" transparent="1" position="0,0" size="200,150" scrollbarMode="showOnDemand" >
+		<screen name="Extention" position="center,center" size="200,150" title="Extention">
+		<widget source="menu" render="Listbox" zPosition="1" transparent="1" position="0,0" size="200,150" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>
 		</screen>"""
