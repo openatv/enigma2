@@ -38,6 +38,7 @@ public:
 	eConsoleAppContainer();
 	~eConsoleAppContainer();
 	int setCWD( const char *path );
+	void setBufferSize(int size);
 	int execute( const char *str );
 	int execute( const char *cmdline, const char *const argv[] );
 	int getPID() { return pid; }
