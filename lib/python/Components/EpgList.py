@@ -560,12 +560,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		height = esize.height()
 		if self.type == EPG_TYPE_MULTI:
 			fontSize = self.eventFontSizeMulti + config.epgselection.multi_eventfs.value
-			servW = int((fontSize + 4) * 6.5)  # Service font is 4 px larger
+			servW = int((fontSize + 4) * 5.9)  # Service font is 4 px larger
 			if config.usage.time.wide.value:
 				progW = int(fontSize * 6.8)
 			else:
 				progW = int(fontSize * 6.8)
-			servLeft, servWidth, progLeft, progWidth, progHeight, descLeft = skin.parameters.get("MultiEPGColumnFormats", (0, servW - 10, servW, progW, height - 8, servW + progW + 10))
+			servLeft, servWidth, progLeft, progWidth, progHeight, descLeft = skin.parameters.get("EPGMultiEPGColumnFormats", (0, servW, servW + 10, progW, height - 8, servW + progW + 20))
 			progTop = int((height - progHeight) / 2)
 			self.service_rect = Rect(servLeft, 0, servWidth, height)
 			self.progress_rect = Rect(progLeft, progTop, progWidth, progHeight)
@@ -602,13 +602,15 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
 			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
-			self.weekday_rect = Rect(0, 0, int(fontSize * 1.9), height)
+			dayW = int(fontSize * 2.1)
 			if config.usage.time.wide.value:
-				scale = 7.4
+				timeW = int(fontSize * 7.4)
 			else:
-				scale = 6.3
-			self.datetime_rect = Rect(self.weekday_rect.width() + 20, 0, int(fontSize * scale), height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width() + 20, 0, width - self.datetime_rect.left() - self.datetime_rect.width() - 20, height)
+				timeW = int(fontSize * 6.3)
+			dayLeft, dayWidth, timeLeft, timeWidth, descLeft = skin.parameters.get("EPGSingleEPGColumnFormats", (0, dayW, dayW + 10, timeW, dayW + timeW + 30))
+			self.weekday_rect = Rect(dayLeft, 0, dayWidth, height)
+			self.datetime_rect = Rect(timeLeft, 0, timeWidth, height)
+			self.descr_rect = Rect(descLeft, 0, width - descLeft, height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
