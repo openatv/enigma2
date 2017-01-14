@@ -80,6 +80,8 @@ def InitUsageConfig():
 	config.usage.use_extended_pig = ConfigYesNo(default = False)
 	config.usage.use_extended_pig_channelselection = ConfigYesNo(default = False)
 	config.usage.servicelist_preview_mode = ConfigYesNo(default = False)
+	config.usage.numberzap_show_picon = ConfigYesNo(default = False)
+	config.usage.numberzap_show_servicename = ConfigYesNo(default = False)
 #####################################################
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
