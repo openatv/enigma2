@@ -483,25 +483,41 @@ def InitUsageConfig():
 		(_("%b-%-e"), _("Mon-9")),
 		(_("%m/%-e"), _("99/9"))
 	])
+	# TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+	config.usage.date.compact = ConfigSelection(default=_("%-e%b"), choices=[
+		(_("%d%b"), _("99Mon")),
+		(_("%-e%b"), _("9Mon")),
+		(_("%-e%b"), _("9Mon")),
+		(_("%-e/%m "), _("9/99 ")),
+		(_("%d%b"), _("99Mon")),
+		(_("%-e%b"), _("9Mon")),
+		(_("%-e%b"), _("9Mon")),
+		(_("%-m/%-e "), _("9/9 ")),
+		(_("%d%b"), _("99Mon")),
+		(_("%-e%b"), _("9Mon")),
+		(_("%d%b"), _("99Mon")),
+		(_("%-e%b"), _("9Mon")),
+		(_("%m/%-e "), _("99/9 "))
+	])
 
 	def setDateStyles(configElement):
 		dateStyles = {
-			# dayfull            shortdayfull      daylong           dayshortfull   dayshort       daysmall    full           long           short
-			_("%A %d %B %Y"): (_("%a %d %B %Y"), _("%a %d %b %Y"), _("%A %d %B"), _("%a %d %b"), _("%a %d"), _("%d %B %Y"), _("%d %b %Y"), _("%d %b")),
-			_("%A %-e %B %Y"): (_("%a %-e %B %Y"), _("%a %-e %b %Y"), _("%A %-e %B"), _("%a %-e %b"), _("%a %-e"), _("%-e %B %Y"), _("%-e %b %Y"), _("%-e %b")),
-			_("%A %-e-%B-%Y"): (_("%a %-e-%B-%Y"), _("%a %-e-%b-%Y"), _("%A %-e-%B"), _("%a %-e-%b"), _("%a %-e"), _("%-e-%B-%Y"), _("%-e-%b-%Y"), _("%-e-%b")),
-			_("%A %-e/%m/%Y"): (_("%a %-e/%m/%Y"), _("%a %-e/%m/%Y"), _("%A %-e/%m"), _("%a %-e/%m"), _("%a %-e"), _("%-e/%m/%Y"), _("%-e/%m/%Y"), _("%-e/%m")),
-			_("%A %B %d %Y"): (_("%a %B %d %Y"), _("%a %b %d %Y"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%B %d %Y"), _("%b %d %Y"), _("%b %d")),
-			_("%A %B %-e %Y"): (_("%a %B %-e %Y"), _("%a %b %-e %Y"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%B %-e %Y"), _("%b %-e %Y"), _("%b %-e")),
-			_("%A %B-%-e-%Y"): (_("%a %B-%-e-%Y"), _("%a %b-%-e-%Y"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%B-%-e-%Y"), _("%b-%-e-%Y"), _("%b-%-e")),
-			_("%A %-m/%-e/%Y"): (_("%a %-m/%-e/%Y"), _("%a %-m/%-e/%Y"), _("%A %-m/%-e"), _("%a %-m/%-e"), _("%a %-e"), _("%-m/%-e/%Y"), _("%-m/%-e/%Y"), _("%-m/%-e")),
-			_("%A %Y %B %d"): (_("%a %Y %B %d"), _("%a %Y %b %d"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%Y %B %d"), _("%Y %b %d"), _("%b %d")),
-			_("%A %Y %B %-e"): (_("%a %Y %B %-e"), _("%a %Y %b %-e"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%Y %B %-e"), _("%Y %b %-e"), _("%b %-e")),
-			_("%A %Y-%B-%d"): (_("%a %Y-%B-%d"), _("%a %Y-%b-%d"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%Y-%B-%d"), _("%Y-%b-%d"), _("%b-%d")),
-			_("%A %Y-%B-%-e"): (_("%a %Y-%B-%-e"), _("%a %Y-%b-%-e"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%Y-%B-%-e"), _("%Y-%b-%-e"), _("%b-%-e")),
-			_("%A %Y/%m/%-e"): (_("%a %Y/%m/%-e"), _("%a %Y/%m/%-e"), _("%A %m/%-e"), _("%a %m/%-e"), _("%a %-e"), _("%Y/%m/%-e"), _("%Y/%m/%-e"), _("%m/%-e"))
+			# dayfull            shortdayfull      daylong           dayshortfull   dayshort       daysmall    full           long           short       compact
+			_("%A %d %B %Y"): (_("%a %d %B %Y"), _("%a %d %b %Y"), _("%A %d %B"), _("%a %d %b"), _("%a %d"), _("%d %B %Y"), _("%d %b %Y"), _("%d %b"), _("%d%b")),
+			_("%A %-e %B %Y"): (_("%a %-e %B %Y"), _("%a %-e %b %Y"), _("%A %-e %B"), _("%a %-e %b"), _("%a %-e"), _("%-e %B %Y"), _("%-e %b %Y"), _("%-e %b"), _("%-e%b")),
+			_("%A %-e-%B-%Y"): (_("%a %-e-%B-%Y"), _("%a %-e-%b-%Y"), _("%A %-e-%B"), _("%a %-e-%b"), _("%a %-e"), _("%-e-%B-%Y"), _("%-e-%b-%Y"), _("%-e-%b"), _("%-e%b")),
+			_("%A %-e/%m/%Y"): (_("%a %-e/%m/%Y"), _("%a %-e/%m/%Y"), _("%A %-e/%m"), _("%a %-e/%m"), _("%a %-e"), _("%-e/%m/%Y"), _("%-e/%m/%Y"), _("%-e/%m"), _("%-e/%m ")),
+			_("%A %B %d %Y"): (_("%a %B %d %Y"), _("%a %b %d %Y"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%B %d %Y"), _("%b %d %Y"), _("%b %d"), _("%d%b")),
+			_("%A %B %-e %Y"): (_("%a %B %-e %Y"), _("%a %b %-e %Y"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%B %-e %Y"), _("%b %-e %Y"), _("%b %-e"), _("%-e%b")),
+			_("%A %B-%-e-%Y"): (_("%a %B-%-e-%Y"), _("%a %b-%-e-%Y"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%B-%-e-%Y"), _("%b-%-e-%Y"), _("%b-%-e"), _("%-e%b")),
+			_("%A %-m/%-e/%Y"): (_("%a %-m/%-e/%Y"), _("%a %-m/%-e/%Y"), _("%A %-m/%-e"), _("%a %-m/%-e"), _("%a %-e"), _("%-m/%-e/%Y"), _("%-m/%-e/%Y"), _("%-m/%-e"), _("%-m/%-e ")),
+			_("%A %Y %B %d"): (_("%a %Y %B %d"), _("%a %Y %b %d"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%Y %B %d"), _("%Y %b %d"), _("%b %d"), _("%d%b")),
+			_("%A %Y %B %-e"): (_("%a %Y %B %-e"), _("%a %Y %b %-e"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%Y %B %-e"), _("%Y %b %-e"), _("%b %-e"), _("%-e%b")),
+			_("%A %Y-%B-%d"): (_("%a %Y-%B-%d"), _("%a %Y-%b-%d"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%Y-%B-%d"), _("%Y-%b-%d"), _("%b-%d"), _("%d%b")),
+			_("%A %Y-%B-%-e"): (_("%a %Y-%B-%-e"), _("%a %Y-%b-%-e"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%Y-%B-%-e"), _("%Y-%b-%-e"), _("%b-%-e"), _("%-e%b")),
+			_("%A %Y/%m/%-e"): (_("%a %Y/%m/%-e"), _("%a %Y/%m/%-e"), _("%A %m/%-e"), _("%a %m/%-e"), _("%a %-e"), _("%Y/%m/%-e"), _("%Y/%m/%-e"), _("%m/%-e"), _("%m/%-e "))
 		}
-		style = dateStyles.get(configElement.value, ((_("Invalid")) * 8))
+		style = dateStyles.get(configElement.value, ((_("Invalid")) * 9))
 		config.usage.date.shortdayfull.value = style[0]
 		config.usage.date.shortdayfull.save()
 		config.usage.date.daylong.value = style[1]
@@ -518,6 +534,8 @@ def InitUsageConfig():
 		config.usage.date.long.save()
 		config.usage.date.short.value = style[7]
 		config.usage.date.short.save()
+		config.usage.date.compact.value = style[8]
+		config.usage.date.compact.save()
 
 	config.usage.date.dayfull.addNotifier(setDateStyles)
 
