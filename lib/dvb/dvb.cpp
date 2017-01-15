@@ -37,7 +37,7 @@ eDVBAllocatedFrontend::eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe): m_fe(f
 		eFBCTunerManager* fbcmng = eFBCTunerManager::getInstance();
 		if (fbcmng)
 		{
-			fbcmng->unset(m_fe);
+			fbcmng->unLink(m_fe);
 		}
 	}
 }
@@ -1489,7 +1489,9 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
-	int check_fbc_link = 0;
+	int check_fbc_linked = 0;
+	eDVBRegisteredFrontend *fbc_fe = NULL;
+//	eDVBRegisteredFrontend *best_fbc_fe = NULL;
 	eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
@@ -1497,17 +1499,21 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 		if (!i->m_inuse)
 		{
 			int c = 0;
-			if(fbcmng && i->m_frontend->is_FBCTuner() && fbcmng->canLink(*i) && !check_fbc_link)
+			fbc_fe = NULL;
+			if (!check_fbc_linked && i->m_frontend->is_FBCTuner() && fbcmng && fbcmng->canLink(*i))
 			{
-				check_fbc_link = 1;
-				c = fbcmng->isCompatibleWith(feparm, *i, simulate);
+				check_fbc_linked = 1;
+				c = fbcmng->isCompatibleWith(feparm, *i, fbc_fe, simulate);
 			}
 			else
 			{
 				c = i->m_frontend->isCompatibleWith(feparm);
 			}
 			if (c > bestval)
+			{
 				bestval = c;
+//				best_fbc_fe = fbc_fe;
+			}
 		}
 	}
 	return bestval;
