@@ -100,7 +100,7 @@ TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
 
 class ServiceInfo(Screen):
-	def __init__(self, session, menu_path="", serviceref=None):
+	def __init__(self, session, serviceref=None):
 		Screen.__init__(self, session)
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
@@ -117,13 +117,11 @@ class ServiceInfo(Screen):
 
 		self.transponder_info = self.info = self.feinfo = None
 		if serviceref and session.nav.getCurrentlyPlayingServiceReference() != serviceref:
-			screentitle = _("Transponder Information")
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
 			self.transponder_info = eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
 		else:
-			screentitle = _("Service Information")
 			self.type = TYPE_SERVICE_INFO
 			self["key_red"] = self["red"] = Label(_("Exit"))
 			self["key_yellow"] = self["yellow"] = Label(_("Service & PIDs"))
@@ -136,18 +134,6 @@ class ServiceInfo(Screen):
 				if not self.feinfo.getAll(True):
 					serviceref = session.nav.getCurrentlyPlayingServiceReference()
 					self.transponder_info = serviceref and eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
-
-		if config.usage.show_menupath.value == 'large':
-			menu_path += screentitle
-			title = menu_path
-			self["menu_path_compressed"] = StaticText("")
-		elif config.usage.show_menupath.value == 'small':
-			title = screentitle
-			self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
-		else:
-			title = screentitle
-			self["menu_path_compressed"] = StaticText("")
-		Screen.setTitle(self, title)
 
 		self.onShown.append(self.ShowServiceInformation)
 
