@@ -58,7 +58,7 @@ class ClockToText(Converter, object):
 			# processing.
 			#
 			# Otherwise, some builds use ";" as a separator, most use ",".  If "Parse"
-			# is NOT used change ";" to "," and parse on ",".
+			# is NOT used change "," to ";" and parse on ";".
 			#
 			parse = ";"
 			if buffer[0:6] != "Format":
