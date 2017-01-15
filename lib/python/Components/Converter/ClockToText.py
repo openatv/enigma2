@@ -53,8 +53,16 @@ class ClockToText(Converter, object):
 		if buffer[0:5] == "Parse":
 			parse = buffer[5:6]
 		else:
-			buffer.replace(';', ',')  # Some builds use ";" as a separator, most use ",".  If "Parse" is NOT used change ";" to "," and parse on ",".
-			parse = ","
+			# OpenViX used ";" as the only ClockToText token separator.  For legacy
+			# support if the first token is "Format" skip the multiple parse character
+			# processing.
+			#
+			# Otherwise, some builds use ";" as a separator, most use ",".  If "Parse"
+			# is NOT used change ";" to "," and parse on ",".
+			#
+			parse = ";"
+			if buffer[0:6] != "Format":
+				buffer.replace(',', ';')
 
 		args = [arg.lstrip() for arg in type.split(parse)]
 		for arg in args:
