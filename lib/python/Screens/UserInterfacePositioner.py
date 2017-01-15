@@ -157,6 +157,8 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
+		if self.restoreService not in self.onClose:
+			self.onClose.append(self.restoreService)
 		self.selectionChanged()
 
 	def selectionChanged(self):
@@ -165,6 +167,14 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
 		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
+
+	def restoreService(self):
+		try:
+			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.session.nav.stopService()
+			self.session.nav.playService(serviceRef)
+		except:
+			pass
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
