@@ -162,7 +162,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if self.end < self.begin:
 			self.end = self.begin
 
-		assert isinstance(serviceref, ServiceReference)
+		if not isinstance(serviceref, ServiceReference):
+			raise AssertionError("invalid serviceref")
 
 		if serviceref and serviceref.isRecordable():
 			self.service_ref = serviceref
