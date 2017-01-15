@@ -44,10 +44,9 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 			if b > 1800:
 				b = 3600 - b
 				direction = 'W'
-			b = "%d.%d%s" % (b // 10, b % 10, direction)
+			b = ("%d.%d%s") % (b // 10, b % 10, direction)
 		else:
 			b = str(b)
-
 	x, y, w, h = skin.parameters.get("ServiceInfo",(0, 0, 300, 30))
 	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft",(0, 0, 300, 25))
 	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight",(300, 0, 600, 25))
@@ -157,7 +156,6 @@ class ServiceInfo(Screen):
 				reftype = 0
 			aspect = "-"
 			videocodec = "-"
-			videomode = "-"
 			resolution = "-"
 			if self.info:
 				videocodec =  ("MPEG2", "AVC", "MPEG1", "MPEG4-VC", "VC1", "VC1-SM", "HEVC", "N/A")[self.info.getInfo(iServiceInformation.sVideoType)]
