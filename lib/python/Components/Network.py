@@ -294,6 +294,8 @@ class Network:
 				name = 'Zydas'
 			elif name == 'r871x_usb_drv':
 				name = 'Realtek'
+		elif os.path.exists("/tmp/bcm/%s"%iface):
+			name = 'Broadcom'
 		else:
 			name = _('Unknown')
 
