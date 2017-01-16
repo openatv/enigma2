@@ -291,6 +291,7 @@ class GeneralSetup(Screen):
 		self.sublist.append(QuickSubMenuEntryComponent(_("Network adapter selection"), _("Select LAN/WLAN"), _("Set up your network interface. If no USB WLAN stick is present, you can only select LAN")))
 		if self.activeInterface is not None:  # Show only if there is already an adapter up.
 			self.sublist.append(QuickSubMenuEntryComponent(_("Network interface"), _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS")))
+		self.sublist.append(QuickSubMenuEntryComponent(_("Password"), _("Set root password"), _("Set password for network access")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Network restart"), _("Restart network with current setup"), _("Restart network and remount connections")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Samba"), _("Set up Samba"), _("Set up Samba")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("NFS"), _("Set up NFS"), _("Set up NFS")))
@@ -475,6 +476,8 @@ class GeneralSetup(Screen):
 			self.session.open(NetworkuShare)
 		elif selected == _("Telnet"):
 			self.session.open(NetworkTelnet)
+		elif selected == _("Password"):
+			self.session.open(NetworkPassword)
 # ####### Select AV Setup Menu ##############################
 		elif selected == _("AV setup"):
 			self.Qavsetup()
