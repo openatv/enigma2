@@ -174,7 +174,7 @@ class InfoBar(
 		self.showTvChannelList(True)
 
 	def openBouquetList(self):
-		showTv(self)
+		self.showTv(self)
 
 	def _helpTvRadioToggle(self):
 		if getBrandOEM() == 'gigablue':
