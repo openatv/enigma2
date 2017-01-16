@@ -476,7 +476,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		goto error;
 	}
 
-#ifdef TUNER_VUSOLO4K
+#ifdef TUNER_FBC
 #define VTUNER_GET_MESSAGE  11
 #define VTUNER_SET_RESPONSE 12
 #define VTUNER_SET_NAME     13

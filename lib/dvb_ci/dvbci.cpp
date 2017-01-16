@@ -729,8 +729,8 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 						data_source tuner_source = TUNER_A;
 						switch (tunernum)
 						{
-#ifdef TUNER_VUSOLO4K
-							case 0 ... 10:
+#ifdef TUNER_FBC
+							case 0 ... 18:
 								tuner_source = (data_source)tunernum;
 								break;
 #else
@@ -944,8 +944,8 @@ static char* readInputCI(const char *filename, int NimNumber)
 }
 #endif
 
-#ifdef TUNER_VUSOLO4K
-static const char *tuner_source[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "CI0", "CI1", "CI2", "CI3"};
+#ifdef TUNER_FBC
+static const char *tuner_source[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "CI0", "CI1", "CI2", "CI3"};
 #endif
 
 int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
@@ -970,7 +970,7 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 
 		switch(source)
 		{
-#ifdef TUNER_VUSOLO4K
+#ifdef TUNER_FBC
 			case TUNER_A ... CI_D:
 				fprintf(input, tuner_source[(int)source]);
  				break;
@@ -1811,7 +1811,7 @@ int eDVBCISlot::setSource(data_source source)
 		char *srcCI = NULL;
 		switch(source)
 		{
-#ifdef TUNER_VUSOLO4K
+#ifdef TUNER_FBC
 			case TUNER_A ... CI_D:
 				fprintf(ci, tuner_source[(int)source]);
 				break;
