@@ -231,7 +231,8 @@ class Session:
 			callback(*retval)
 
 	def execBegin(self, first=True, do_show=True):
-		assert not self.in_exec
+		if self.in_exec:
+			raise AssertionError("already in exec")
 		self.in_exec = True
 		c = self.current_dialog
 
@@ -248,7 +249,9 @@ class Session:
 			c.show()
 
 	def execEnd(self, last=True):
-		assert self.in_exec
+		if not self.in_exec:
+			raise AssertionError("not in exec")
+
 		self.in_exec = False
 
 		self.current_dialog.execEnd()
@@ -341,7 +344,8 @@ class Session:
 		# after close of the top dialog, the underlying will
 		# gain focus again (for a short time), thus triggering
 		# the onExec, which opens the dialog again, closing the loop.
-		assert screen == self.current_dialog
+		if not screen == self.current_dialog:
+			raise AssertionError("Attempt to close non-current screen")
 
 		self.current_dialog.returnValue = retval
 		self.delay_timer.start(0, 1)
@@ -666,7 +670,7 @@ Components.SetupDevices.InitSetupDevices()
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd()
+Screens.UserInterfacePositioner.InitOsd3D()
 
 profile("AVSwitch")
 import Components.AVSwitch
@@ -736,6 +740,10 @@ Screens.Ci.InitCiConfig()
 
 profile("RcModel")
 import Components.RcModel
+
+profile("UserInterface")
+import Screens.UserInterfacePositioner
+Screens.UserInterfacePositioner.InitOsd()
 
 # from enigma import dump_malloc_stats
 # t = eTimer()

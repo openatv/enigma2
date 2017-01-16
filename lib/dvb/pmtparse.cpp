@@ -167,7 +167,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						isaudio = 1;
 						audio.type = audioStream::atDTS;
 					}
-				case 0x84: // DDP (blueray)
+				case 0x84: // DDP (bluray)
 				case 0x87: // DDP (ATSC)
 					if (!isvideo && !isaudio)
 					{

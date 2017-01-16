@@ -86,10 +86,10 @@
 	<!-- STANDBY -->
 	<screen name="StandbySummary" position="0,0" size="720,576"> 
 		<widget source="global.CurrentTime" render="Label" position="20,107" size="670,180" font="FdLcD;100" foregroundColor="yellow" halign="center" valign="center" zPosition="10">
-			<convert type="ClockToText">Format:%H:%M:%S</convert>
+			<convert type="ClockToText">Mixed</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="20,294" size="670,75" font="FdLcD;70" foregroundColor="white" halign="center" zPosition="10">
-			<convert type="ClockToText">Format:%a  %d.%m.%Y</convert>
+			<convert type="ClockToText">FullDate</convert>
 		</widget>
 	</screen>
 		

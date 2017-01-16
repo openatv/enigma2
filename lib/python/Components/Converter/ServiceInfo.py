@@ -3,8 +3,6 @@ from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Components.Element import cached
 from Tools.Transponder import ConvertToHumanReadable
 
-from os import path
-
 WIDESCREEN = [3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 
 class ServiceInfo(Converter, object):
@@ -156,12 +154,10 @@ class ServiceInfo(Converter, object):
 		info = service and service.info()
 		if not info:
 			return False
-
 		video_height = None
 		video_aspect = None
 		video_height = self._getVideoHeight(info)
 		video_aspect = info.getInfo(iServiceInformation.sAspect)
-
 		if self.type == self.HAS_TELETEXT:
 			tpid = info.getInfo(iServiceInformation.sTXTPID)
 			return tpid != -1
@@ -235,7 +231,6 @@ class ServiceInfo(Converter, object):
 		info = service and service.info()
 		if not info:
 			return ""
-
 		if self.type == self.XRES:
 			return self._getVideoWidthStr(info)
 		elif self.type == self.YRES:
@@ -310,14 +305,12 @@ class ServiceInfo(Converter, object):
 		info = service and service.info()
 		if not info:
 			return -1
-
 		if self.type == self.XRES:
 			return str(self._getVideoWidth(info))
 		elif self.type == self.YRES:
 			return str(self._getVideoHeight(info))
 		elif self.type == self.FRAMERATE:
 			return str(self._getFrameRate(self, info))
-
 		return -1
 
 	value = property(getValue)

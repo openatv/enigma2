@@ -43,6 +43,7 @@ config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 config.movielist.itemsperpage = ConfigSelectionNumber(default=20, stepwidth=1, min=3, max=30, wraparound=True)
 config.movielist.useslim = ConfigYesNo(default=False)
+config.movielist.use_fuzzy_dates = ConfigYesNo(default=True)
 config.movielist.showlengths = ConfigSelection(default="auto", choices=["no", "yes", "auto"])
 config.movielist.showsizes = ConfigSelection(default="auto", choices=["no", "yes", "auto"])
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
@@ -367,12 +368,13 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Font size"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.")),
 			getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows on each page.")),
 			getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative slim screen.")),
+			getConfigListEntry(_("Use adaptive date display"), config.movielist.use_fuzzy_dates, _("Adaptive date display allows recent dates to be displayed as 'Today' or 'Yesterday'.  It hides the year for recordings made this year.  It hides the day of the week for recordings made in previous years.")),
 			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
 			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
 			getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
-			getConfigListEntry(_("Sort trash by deletion time"), config.usage.trashsort_deltime, _("Use the deletion time to sort trash folders.\nMost recently deleted at the top.")),
+			getConfigListEntry(_("Sort trash by deletion time"), config.usage.trashsort_deltime, _("Use the deletion time to sort items in trash.\nMost recently deleted at the top.")),
 			getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
-			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set, each folder will show the previous state used. When off, the default values will be shown.")),
+			getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set, each directory will show the previous state used. When off, the default values will be shown.")),
 			getConfigListEntry(_("When a movie reaches the end"), config.usage.on_movie_eof, _("What to do at the end of file playback.")),
 			getConfigListEntry(_("Show status icons in movie list"), config.usage.show_icons_in_movielist, _("Shows the 'watched' status of the movie."))
 		]
@@ -382,7 +384,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 
 		configList += [
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps movie list open whilst playing audio files.")),
-			getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to prevent the '..' from being shown in that folder.")),
+			getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root directory of movie list, to prevent the '..' from being shown in that directory.")),
 			getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")),
 			getConfigListEntry(_("Return to last selected entry"), config.movielist.use_last_videodirpos, _("Return to the last selection in the movie list on re-entering Movie Player. Otherwise return to the first movie entry in the movie list.")),
 			getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set, return to showing live TV in the background after a movie has stopped playing."))
@@ -872,8 +874,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				'tags': (_("Tags"), _("Show tagged movies")),
 				'addbookmark': _("Add bookmark"),
 				'bookmarks': (_("Location"), _("Select the movie path")),
-				'rename': (_("Rename"), _("Rename recording, video or folder")),
-				'gohome': (_("Home"), _("Go to player home folder")),
+				'rename': (_("Rename"), _("Rename recording, video or directory")),
+				'gohome': (_("Home"), _("Go to player home directory")),
 				'sort': (_("Sort"), _("Cycle through sort orderings")),
 				'sortby': (_("Sort..."), _("Select sort order from menu")),
 				'sortdefault': (_("Default sort order"), _("Use default sort order")),
@@ -2298,9 +2300,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						if os.path.isdir(ffn):
 							subdirs += 1
 						else:
-							files += 1
+							tempfn, tempfext = os.path.splitext(fn)
+							if tempfext not in ('.eit', '.ap', '.cuts', '.meta', '.sc'):
+								files += 1
 				if files or subdirs:
-					mbox = self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename, files, subdirs) + are_you_sure)
+					mbox = self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename,files,subdirs-1) + are_you_sure)
 					mbox.setTitle(self.getTitle())
 					return
 				else:
@@ -2319,7 +2323,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						if os.path.isdir(ffn):
 							subdirs += 1
 						else:
-							files += 1
+							tempfn, tempfext = os.path.splitext(fn)
+							if tempfext not in ('.eit', '.ap', '.cuts', '.meta', '.sc'):
+								files += 1
 				if files or subdirs:
 					folder_filename = os.path.split(os.path.split(name)[0])[1]
 					mbox = self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename, files, subdirs) + are_you_sure)

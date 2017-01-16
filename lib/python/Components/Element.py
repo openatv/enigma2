@@ -46,7 +46,9 @@ class Element(object):
 			self.master = downstream
 
 	def connectUpstream(self, upstream):
-		assert not self.SINGLE_SOURCE or self.source is None
+		if not(not self.SINGLE_SOURCE or self.source is None):
+			raise AssertionError
+
 		self.sources.append(upstream)
 		# self.source always refers to the last recent source added.
 		self.source = upstream
@@ -60,7 +62,8 @@ class Element(object):
 	def disconnectAll(self):
 		# we should not disconnect from upstream if
 		# there are still elements depending on us.
-		assert len(self.downstream_elements) == 0, "there are still downstream elements left"
+		if self.downstream_elements:
+			raise AssertionError("there are still downstream elements left")
 
 		# Sources don't have a source themselves. don't do anything here.
 		for s in self.sources:

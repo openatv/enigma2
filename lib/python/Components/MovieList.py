@@ -1,6 +1,7 @@
 import os
 import struct
 import random
+from time import localtime, strftime
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop
 from GUIComponent import GUIComponent
@@ -366,7 +367,7 @@ class MovieList(GUIComponent):
 				return
 		result = {}
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
-			if timer.isRunning() and not timer.justplay:
+			if timer.isRunning() and not timer.justplay and not timer.failed:
 				result[os.path.basename(timer.Filename) + '.ts'] = timer
 		if self.runningTimers == result:
 			return
