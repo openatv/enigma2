@@ -128,8 +128,6 @@ class FastScanScreen(ConfigListScreen, Screen):
 		('Fast Scan Deutschland', (0, 960, False)),
 		('Skylink Czech Republic', (1, 30, False)),
 		('Skylink Slovak Republic', (1, 31, False)),
-		('AustriaSat Magyarország Eutelsat 9E', (2, 951, False)),
-		('AustriaSat Magyarország Astra 3', (1, 951, False)),
 		('TéléSAT Astra3', (1, 920, True)),
 		('HD Austria Astra3', (1, 950, False)),
 		('Fast Scan Deutschland Astra3', (1, 960, False)),
@@ -143,11 +141,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		(12070000, 27500000, eDVBFrontendParametersSatellite.FEC_3_4, 235,
 		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.Inversion_Unknown,
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_QPSK,
-		eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off),
-		(12074000, 27500000, eDVBFrontendParametersSatellite.FEC_3_4, 90,
-		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.Inversion_Unknown,
-		eDVBFrontendParametersSatellite.System_DVB_S2, eDVBFrontendParametersSatellite.Modulation_8PSK,
-		eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_On))
+		eDVBFrontendParametersSatellite.RollOff_alpha_0_35, eDVBFrontendParametersSatellite.Pilot_Off))
 
 	def __init__(self, session, nimList):
 		Screen.__init__(self, session)
