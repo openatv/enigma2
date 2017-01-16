@@ -59,9 +59,18 @@ def addSkin(name, scope = SCOPE_SKIN):
 			return True
 	return False
 
-# get own skin_user_skinname.xml file, if exist
+# get own skin_user_skinname.xml file, if it exists
+# ...but first check that the relevant base dir exists, otherwise
+# we may well get into a start-up loop with skin failures
+#
 def skin_user_skinname():
-	name = "skin_user_" + config.skin.primary_skin.value[:config.skin.primary_skin.value.rfind('/')] + ".xml"
+	skin_name = config.skin.primary_skin.value
+	skin_base = skin_name[:skin_name.rfind('/')]
+	skin_path = resolveFilename(SCOPE_SKIN, skin_name)
+	if not os.path.isdir(skin_path):
+		print "[skin::skin_user_skinname] ignoring not-found skin:", skin_path
+		return None
+	name = "skin_user_" + skin_base + ".xml"
 	filename = resolveFilename(SCOPE_CONFIG, name)
 	if fileExists(filename):
 		return name
