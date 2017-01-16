@@ -355,6 +355,16 @@
 		<widget source="SetupValue" render="Label" position="40,380" size="720,70" foregroundColor="white" font="FdLcDLight;60" halign="center" valign="top" zPosition="2" />
 	</screen>
 
+	<!-- STANDBY -->
+	<screen name="StandbySummary" position="0,0" size="800,480"> 
+		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,100" font="FdLcD;100" foregroundColor="white" halign="center" valign="center" zPosition="10">
+			<convert type="ClockToText">ShortDate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="40,230" size="720,200" font="FdLcD;175" foregroundColor="white" halign="center" valign="center" zPosition="10">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
+
 	<!-- ET PORTAL -->
 	<screen name="EtPortalScreen_summary" position="0,0" size="800,480">
 		<eLabel text="EtPortal" position="15,20" foregroundColor="white" size="670,120" font="FdLcD;70" halign="center" valign="top" noWrap="1" />
