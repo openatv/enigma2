@@ -1,3 +1,4 @@
+from Components.config import config
 from Components.VariableText import VariableText
 from Renderer import Renderer
 from enigma import eLabel, eEPGCache, eServiceReference
@@ -27,7 +28,7 @@ class NextEpgInfo(Renderer, VariableText):
 						for x in range(self.numberOfItems):
 							event = self.epgcache.getNextTimeEntry()
 							if event:
-								self.text = "%s\n%s %s" % (self.text, strftime("%H:%M", localtime(event.getBeginTime())), event.getEventName())
+								self.text = "%s\n%s %s" % (self.text, strftime(config.usage.time.short.value, localtime(event.getBeginTime())), event.getEventName())
 						self.text = self.text and "%s%s" % (pgettext("now/next: 'next' event label", "Next"), self.text) or ""
 
 	def applySkin(self, desktop, parent):

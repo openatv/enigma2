@@ -1,3 +1,4 @@
+from Components.config import config
 from time import localtime, time, strftime
 
 def FuzzyTime(t, inPast=False):
@@ -16,11 +17,11 @@ def FuzzyTime(t, inPast=False):
 		date = strftime("%a", d)
 	elif d[0] == n[0]:
 		# same year
-		date = strftime("%a %d %b", d)
+		date = strftime(config.usage.date.dayshort.value, d)
 	else:
-		date = strftime("%d %b %Y", d)
+		date = strftime(config.usage.date.long.value, d)
 
-	timeres = strftime("%R", d)
+	timeres = strftime(config.usage.time.short.value, d)
 
 	return date, timeres
 

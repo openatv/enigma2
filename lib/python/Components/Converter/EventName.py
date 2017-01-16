@@ -4,194 +4,33 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
 from Components.config import config
+from time import localtime, mktime, strftime
 
-class EventNameBasic(Converter, object):
-	NAME = 0
-	SHORT_DESCRIPTION = 1
-	EXTENDED_DESCRIPTION = 2
-	FULL_DESCRIPTION = 3
-	ID = 4
-	NAME_NOW = 5
-	NAME_NEXT = 6
-	NAME_NEXT2 = 7
-	GENRE = 8
-	RATING = 9
-	SRATING = 10
 
-	NEXT_DESCRIPTION = 21
-	THIRD_NAME = 22
-	THIRD_DESCRIPTION = 23
+class ETSIClassifications(dict):
+	def shortRating(self, age):
+		if age == 0:
+			return _("All ages")
+		elif age <= 15:
+			age += 3
+			return " %d+" % age
 
-	def __init__(self, type):
-		Converter.__init__(self, type)
-		self.epgcache = eEPGCache.getInstance()
-		if type == "Description":
-			self.type = self.SHORT_DESCRIPTION
-		elif type == "ExtendedDescription":
-			self.type = self.EXTENDED_DESCRIPTION
-		elif type == "FullDescription":
-			self.type = self.FULL_DESCRIPTION
-		elif type == "ID":
-			self.type = self.ID
-		elif type == "NameNow" or type == "NowName":
-			self.type = self.NAME_NOW
-		elif type == "NameNext" or type == "NextName":
-			self.type = self.NAME_NEXT
-		elif type == "NameNextOnly" or type == "NextNameOnly":
-			self.type = self.NAME_NEXT2
-		elif type == "Genre":
-			self.type = self.GENRE
-		elif type == "Rating":
-			self.type = self.RATING
-		elif type == "SmallRating":
-			self.type = self.SRATING
+	def longRating(self, age):
+		if age == 0:
+			return _("Rating undefined")
+		elif age <= 15:
+			age += 3
+			return _("Minimum age %d years") % age
 
-		elif type == "NextDescription":
-			self.type = self.NEXT_DESCRIPTION
-		elif type == "ThirdName":
-			self.type = self.THIRD_NAME
-		elif type == "ThirdDescription":
-			self.type = self.THIRD_DESCRIPTION
-		else:
-			self.type = self.NAME
+	def __init__(self):
+		self.update([(i, (self.shortRating(c), self.longRating(c))) for i, c in enumerate(range(0, 15))])
 
-	def getName(self, event):
-		name = event.getEventName()
-		if name == "Visibile gratis su tv terrestre e TivuSat":
-			return event.getShortDescription().title()
-		else:
-			return name
 
-	def getSRating(self, event):
-		rating = event.getParentalData()
-		if rating is None:
-			return ""
-		else:
-			age = rating.getRating()
-			if age == 0:
-				return _("All ages")
-			elif age > 15:
-				return _("bc%s") % age
-			else:
-				age += 3
-				return " %d+" % age
-
-	def getRating(self, event):
-		rating = event.getParentalData()
-		if rating is None:
-			return ""
-		else:
-			age = rating.getRating()
-			if age == 0:
-				return _("Rating undefined")
-			elif age > 15:
-				return _("Rating defined by broadcaster - %d") % age
-			else:
-				age += 3
-				return _("Minimum age %d years") % age
-
-	def getGenre(self, event):
-		genre = event.getGenreData()
-		if genre is None:
-			return ""
-		else:
-			return getGenreStringSub(genre.getLevel1(), genre.getLevel2())
-
-	def getShortDescription(self, event):
-		return event.getShortDescription()
-
-	def getExtendedDescription(self, event):
-		return event.getExtendedDescription() or event.getShortDescription()
-
-	def getFullDescription(self, event):
-		description = self.getShortDescription(event)
-		extended = self.getExtendedDescription(event)
-		if description[0:20] == extended[0:20]:
-			return extended
-		if description and extended:
-			description += '\n\n'
-		return description + extended
-
-	def getId(self, event):
-		return str(event.getEventId())
-
-	def getNameNext(self, list):
-		return list[1][1]
-
-	def getNextDescription(self, list):
-		description = list[1][2]
-		extended = list[1][3]
-		if description[0:20] == extended[0:20]:
-			return extended
-		if description and extended:
-			description += '\n'
-		return description + extended
-
-	def getThirdDescription(self, list):
-		description = self.list[2][2]
-		extended = self.list[2][3]
-		if description[0:20] == extended[0:20]:
-			return extended
-		if description and extended:
-			description += '\n'
-		return description + extended
-
-	@cached
-	def getText(self):
-		event = self.source.event
-		if event is None:
-			return ""
-
-		if self.type == self.NAME:
-			return self.getName(event)
-		elif self.type == self.SRATING:
-			return self.getSRating(event)
-		elif self.type == self.RATING:
-			return self.getRating(event)
-		elif self.type == self.GENRE:
-			return self.getGenre(event)
-		elif self.type == self.NAME_NOW:
-			return pgettext("now/next: 'now' event label", "Now") + ": " + self.getName(event)
-		elif self.type == self.SHORT_DESCRIPTION:
-			return self.getShortDescription(event)
-		elif self.type == self.EXTENDED_DESCRIPTION:
-			return self.getExtendedDescription(event)
-		elif self.type == self.FULL_DESCRIPTION:
-			return self.getFullDescription(event)
-		elif self.type == self.ID:
-			return self.getId(event)
-		elif self.type in (self.NAME_NEXT, self.NAME_NEXT2) or self.type >= self.NEXT_DESCRIPTION:
-			try:
-				reference = self.source.service
-				info = reference and self.source.info
-				if info is None:
-					return
-				test = ['ITSECX', (reference.toString(), 1, -1, 1440)]  # search next 24 hours
-				self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
-				if self.list:
-					if self.type == self.NAME_NEXT and self.list[1][1]:
-						return pgettext("now/next: 'next' event label", "Next") + ": " + self.getNameNext(self.list)
-					elif self.type == self.NAME_NEXT2 and self.list[1][1]:
-						return self.getNameNext(self.list)
-					elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
-						return self.getNextDescription(self.list)
-					elif self.type == self.THIRD_NAME and self.list[2][1]:
-						return pgettext("third event: 'third' event label", "Later") + ": " + self.list[2][1]
-					elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
-						return self.getThirdDescription(self.list)
-					else:
-						# failed to return any epg data.
-						return ""
-			except:
-				# failed to return any epg data.
-				if self.type == self.NAME_NEXT:
-					return pgettext("now/next: 'next' event label", "Next") + ": " + self.getName(event)
-				return ""
-
-	text = property(getText)
-
-class AusClassification(dict):
-	AUSTEXT = {
+class AusClassifications(dict):
+	# In Australia "Not Classified" (NC) is to be displayed as an empty string.
+	#            0   1   2    3    4    5    6    7    8     9     10   11   12    13    14    15
+	SHORTTEXT = ("", "", "P", "P", "C", "C", "G", "G", "PG", "PG", "M", "M", "MA", "MA", "AV", "R")
+	LONGTEXT = {
 		"": _("Not Classified"),
 		"P": _("Preschool"),
 		"C": _("Children"),
@@ -204,30 +43,80 @@ class AusClassification(dict):
 	}
 
 	def __init__(self):
-		self.update([(i, (c, self.AUSTEXT[c])) for i, c in enumerate((
-			# 0  1   2    3    4    5    6    7
-			# NC NC
-			"", "", "P", "P", "C", "C", "G", "G",
-			# 8     9   10   11    12    13    14   15
-			"PG", "PG", "M", "M", "MA", "MA", "AV", "R"
-		))])
+		self.update([(i, (c, self.LONGTEXT[c])) for i, c in enumerate(self.SHORTTEXT)])
 
-# Each country classification object in the map tuple must be an
-# object that supports obj.get(key[, default]). It need not actually
-# be a dict object.
-# The other element is how the rating number should be formatted if
-# there is no match in the classification object.
 
-# If there is no matching country, code defaults to the classification
-# decoding in superclass (EventNameBasic).
+# Each country classification object in the map tuple must be an object that
+# supports obj.get(key[, default]). It need not actually be a dict object.
+#
+# The other element is how the rating number should be formatted if there
+# is no match in the classification object.
+#
+# If there is no matching country then the default ETSI should be selected.
 
 countries = {
-	"AUS": (AusClassification(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age))
+	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age)),
+	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age))
 }
 
-class EventName(EventNameBasic):
-	RAWRATING = 11
-	RATINGCOUNTRY = 12
+
+class EventName(Converter, object):
+	NAME = 0
+	SHORT_DESCRIPTION = 1
+	EXTENDED_DESCRIPTION = 2
+	FULL_DESCRIPTION = 3
+	ID = 4
+	NAME_NOW = 5
+	NAME_NEXT = 6
+	NAME_NEXT2 = 7
+	GENRE = 8
+	RATING = 9
+	SRATING = 10
+	PDC = 11
+	PDCTIME = 12
+	PDCTIMESHORT = 13
+	ISRUNNINGSTATUS = 14
+
+	NEXT_DESCRIPTION = 21
+	THIRD_NAME = 22
+	THIRD_NAME2 = 23
+	THIRD_DESCRIPTION = 24
+
+	RAWRATING = 31
+	RATINGCOUNTRY = 32
+
+	KEYWORDS = {
+		# Arguments...
+		"Name": ("type", NAME),
+		"Description": ("type", SHORT_DESCRIPTION),
+		"ExtendedDescription": ("type", EXTENDED_DESCRIPTION),
+		"FullDescription": ("type", FULL_DESCRIPTION),
+		"ID": ("type", ID),
+		"NowName": ("type", NAME_NOW),
+		"NameNow": ("type", NAME_NOW),
+		"NextName": ("type", NAME_NEXT),
+		"NameNext": ("type", NAME_NEXT),
+		"NextNameOnly": ("type", NAME_NEXT2),
+		"NameNextOnly": ("type", NAME_NEXT2),
+		"Genre": ("type", GENRE),
+		"Rating": ("type", RATING),
+		"SmallRating": ("type", SRATING),
+		"Pdc": ("type", PDC),
+		"PdcTime": ("type", PDCTIME),
+		"PdcTimeShort": ("type", PDCTIMESHORT),
+		"IsRunningStatus": ("type", ISRUNNINGSTATUS),
+		"NextDescription": ("type", NEXT_DESCRIPTION),
+		"ThirdName": ("type", THIRD_NAME),
+		"ThirdNameOnly": ("type", THIRD_NAME2),
+		"ThirdDescription": ("type", THIRD_DESCRIPTION),
+		"RawRating": ("type", RAWRATING),
+		"RatingCountry": ("type", RATINGCOUNTRY),
+		# Options...
+		"Separated": ("separator", "\n\n"),
+		"NotSeparated": ("separator", "\n"),
+		"Trimmed": ("trim", True),
+		"NotTrimmed": ("trim", False)
+	}
 
 	RATSHORT = 0
 	RATLONG = 1
@@ -235,32 +124,23 @@ class EventName(EventNameBasic):
 	RATNORMAL = 0
 	RATDEFAULT = 1
 
-	DEFAULT_SEPARATOR = "\n\n"
-	DEFAULT_TRIMMED = False
-
 	def __init__(self, type):
-		args = [arg.strip() for arg in type.split(',')]
-		type = args.pop(0)
+		Converter.__init__(self, type)
+		self.epgcache = eEPGCache.getInstance()
 
-		super(EventName, self).__init__(type)
+		self.type = self.NAME
+		self.separator = "\n"
+		self.trim = False
 
-		self.separator = self.DEFAULT_SEPARATOR
-		self.trim = self.DEFAULT_TRIMMED
-
-		for a in args:
-			if a == "Separated":
-				self.separator = "\n\n"
-			elif a == "NotSeparated":
-				self.separator = "\n"
-			elif a == "Trimmed":
-				self.trim = True
-			elif a == "NotTrimmed":
-				self.trim = False
-
-		if type == "RawRating":
-			self.type = self.RAWRATING
-		elif type == "RatingCountry":
-			self.type = self.RATINGCOUNTRY
+		parse = ","
+		type.replace(";", parse)  # Some builds use ";" as a separator, most use ",".
+		args = [arg.strip() for arg in type.split(parse)]
+		for arg in args:
+			name, value = self.KEYWORDS.get(arg, ("Error", None))
+			if name == "Error":
+				print "[EventName] ERROR: Unexpected / Invalid argument token '%s'!" % arg
+			else:
+				setattr(self, name, value)
 
 	def trimText(self, text):
 		if self.trim:
@@ -268,94 +148,132 @@ class EventName(EventNameBasic):
 		else:
 			return str(text)
 
-	def getName(self, event):
-		return self.trimText(super(EventName, self).getName(event))
-
-	def getRatingCountry(self, event):
-		rating = event.getParentalData()
-		if rating is None:
-			return ""
-		else:
-			return rating.getCountryCode()
-
-	def getRawRating(self, event):
-		rating = event.getParentalData()
-		if rating is None:
-			return ""
-		else:
-			return "%d" % rating.getRating()
-
-	def getRatingTuple(self, rating):
-		global countries
-		country = rating.getCountryCode().upper()
-		if country in countries:
-			age = rating.getRating()
-			c = countries[country]
-			return c[self.RATNORMAL].get(age, c[self.RATDEFAULT](age))
-		else:
-			return None
-
-	def getSRating(self, event):
-		rating = event.getParentalData()
-		if rating is None:
-			return ""
-
-		rating = self.getRatingTuple(rating)
-		if rating is not None:
-			return rating[self.RATSHORT]
-		else:
-			return super(EventName, self).getSRating(event)
-
-	def getRating(self, event):
-		rating = event.getParentalData()
-		if rating is None:
-			return ""
-
-		rating = self.getRatingTuple(rating)
-		if rating is not None:
-			return rating[self.RATLONG]
-		else:
-			return super(EventName, self).getRating(event)
-
-	def getGenre(self, event):
-		genre = event.getGenreData()
-		if genre is None:
-			return ""
-		else:
-			return getGenreStringSub(genre.getLevel1(), genre.getLevel2(), country=config.misc.genre_country.value.upper())
-
-	def getShortDescription(self, event):
-		return self.trimText(super(EventName, self).getShortDescription(event))
-
-	def getExtendedDescription(self, event):
-		return self.trimText(super(EventName, self).getExtendedDescription(event))
-
-	def getFullDescription(self, event):
-		description = self.getShortDescription(event)
-		extended = self.getExtendedDescription(event)
+	def formatDescription(self, description, extended):
+		description = self.trimText(description)
+		extended = self.trimText(extended)
 		if description[0:20] == extended[0:20]:
 			return extended
 		if description and extended:
 			description += self.separator
 		return description + extended
 
-	def getNameNext(self, list):
-		return self.trimText(list[1][1])
+	@cached
+	def getBoolean(self):
+		event = self.source.event
+		if event:
+			if self.type == self.PDC and event.getPdcPil():
+				return True
+		return False
 
-	def getNextDescription(self, list):
-		description = self.trimText(list[1][2])
-		extended = self.trimText(list[1][3])
-		if description[0:20] == extended[0:20]:
-			return extended
-		if description and extended:
-			description += self.separator
-		return description + extended
+	boolean = property(getBoolean)
 
-	def getThirdDescription(self, list):
-		description = self.trimText(self.list[2][2])
-		extended = self.trimText(self.list[2][3])
-		if description[0:20] == extended[0:20]:
-			return extended
-		if description and extended:
-			description += self.separator
-		return description + extended
+	@cached
+	def getText(self):
+		event = self.source.event
+		if event is None:
+			return ""
+
+		if self.type == self.NAME:
+			return self.trimText(event.getEventName())
+		elif self.type in (self.RATING, self.SRATING):
+			rating = event.getParentalData()
+			if rating:
+				age = rating.getRating()
+				country = rating.getCountryCode().upper()
+				if country in countries:
+					c = countries[country]
+				else:
+					c = countries["ETSI"]
+				if config.misc.epgratingcountry.value:
+					c = countries[config.misc.epgratingcountry.value]
+				rating = c[self.RATNORMAL].get(age, c[self.RATDEFAULT](age))
+				if rating:
+					if self.type == self.RATING:
+						return self.trimText(rating[self.RATLONG])
+					else:
+						return self.trimText(rating[self.RATSHORT])
+		elif self.type == self.GENRE:
+			if not config.usage.show_genre_info.value:
+				return ""
+			genre = event.getGenreData()
+			if genre:
+				rating = event.getParentalData()
+				if rating:
+					country = rating.getCountryCode().upper()
+				else:
+					country = "ETSI"
+				if config.misc.epggenrecountry.value:
+					country = config.misc.epggenrecountry.value
+				return self.trimText(getGenreStringSub(genre.getLevel1(), genre.getLevel2(), country=country))
+		elif self.type == self.NAME_NOW:
+			return pgettext("now/next: 'now' event label", "Now") + ": " + self.trimText(event.getEventName())
+		elif self.type == self.SHORT_DESCRIPTION:
+			return self.trimText(event.getShortDescription())
+		elif self.type == self.EXTENDED_DESCRIPTION:
+			return self.trimText(event.getExtendedDescription() or event.getShortDescription())
+		elif self.type == self.FULL_DESCRIPTION:
+			return self.formatDescription(event.getShortDescription(), event.getExtendedDescription())
+		elif self.type == self.ID:
+			return self.trimText(event.getEventId())
+		elif self.type == self.PDC:
+			if event.getPdcPil():
+				return _("PDC")
+		elif self.type in (self.PDCTIME, self.PDCTIMESHORT):
+			pil = event.getPdcPil()
+			if pil:
+				begin = localtime(event.getBeginTime())
+				start = localtime(mktime([begin.tm_year, (pil & 0x7800) >> 11, (pil & 0xF8000) >> 15, (pil & 0x7C0) >> 6, (pil & 0x3F), 0, begin.tm_wday, begin.tm_yday, begin.tm_isdst]))
+				if self.type == self.PDCTIMESHORT:
+					return strftime(config.usage.time.short.value, start)
+				return strftime(config.usage.date.short.value + " " + config.usage.time.short.value, start)
+		elif self.type == self.ISRUNNINGSTATUS:
+			if event.getPdcPil():
+				running_status = event.getRunningStatus()
+				if running_status == 1:
+					return _("Not running")
+				if running_status == 2:
+					return _("Starts in a few seconds")
+				if running_status == 3:
+					return _("Pausing")
+				if running_status == 4:
+					return _("Running")
+				if running_status == 5:
+					return _("Service off-air")
+				if running_status in (6, 7):
+					return _("Reserved for future use")
+				return _("Undefined")
+		elif self.type in (self.NAME_NEXT, self.NAME_NEXT2) or self.type >= self.NEXT_DESCRIPTION:
+			try:
+				reference = self.source.service
+				info = reference and self.source.info
+				if info:
+					test = ["ITSECX", (reference.toString(), 1, -1, 1440)]  # Search next 24 hours
+					self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
+					if self.list:
+						if self.type == self.NAME_NEXT and self.list[1][1]:
+							return pgettext("now/next: 'next' event label", "Next") + ": " + self.trimText(self.list[1][1])
+						elif self.type == self.NAME_NEXT2 and self.list[1][1]:
+							return self.trimText(self.list[1][1])
+						elif self.type == self.NEXT_DESCRIPTION and (self.list[1][2] or self.list[1][3]):
+							return self.formatDescription(self.list[1][2], self.list[1][3])
+						if self.type == self.THIRD_NAME and self.list[2][1]:
+							return pgettext("third event: 'third' event label", "Later") + ": " + self.trimText(self.list[2][1])
+						elif self.type == self.THIRD_NAME2 and self.list[2][1]:
+							return self.trimText(self.list[2][1])
+						elif self.type == self.THIRD_DESCRIPTION and (self.list[2][2] or self.list[2][3]):
+							return self.formatDescription(self.list[2][2], self.list[2][3])
+			except:
+				# Failed to return any EPG data.
+				if self.type == self.NAME_NEXT:
+					return pgettext("now/next: 'next' event label", "Next") + ": " + self.trimText(event.getEventName())
+		elif self.type == self.RAWRATING:
+			rating = event.getParentalData()
+			if rating:
+				return "%d" % rating.getRating()
+		elif self.type == self.RATINGCOUNTRY:
+			rating = event.getParentalData()
+			if rating:
+				return rating.getCountryCode().upper()
+		return ""
+
+	text = property(getText)

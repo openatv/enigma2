@@ -163,7 +163,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 			elif self.timerType == TIMERTYPE.STANDBY:
 				if not Screens.Standby.inStandby:  # Not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+					Notifications.AddNotificationWithUniqueIDCallback(self.sendStandbyNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 				return True
 
 			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
@@ -175,7 +175,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 					return False
 				if not Screens.Standby.inStandby:  # Not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+					Notifications.AddNotificationWithUniqueIDCallback(self.sendStandbyNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 					if self.autosleeprepeat == "once":
 						eActionMap.getInstance().unbindAction('', self.keyPressed)
 						return True
@@ -189,15 +189,15 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.end = self.begin
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-# GML:2 - Check for there being any active Movie playback or IPTV channel
-#         or any streaming clients before going to Deep Standby.
-#         However, it is possible to put the box into Standby with the
-#         MoviePlayer still active (it will play if the box is taken out
-#         of Standby) - similarly for the IPTV player. This should not
-#         prevent a DeepStandby
-#         And check for existing or imminent recordings, etc..
-#         I've also added () around the test and split them across lines
-#         to make it clearer what each test is.
+# Check for there being any active Movie playback or IPTV channel
+# or any streaming clients before going to Deep Standby.
+# However, it is possible to put the box into Standby with the
+# MoviePlayer still active (it will play if the box is taken out
+# of Standby) - similarly for the IPTV player. This should not
+# prevent a DeepStandby
+# And check for existing or imminent recordings, etc..
+# Also added () around the test and split them across lines
+# to make it clearer what each test is.
 				from Components.Converter.ClientsStreaming import ClientsStreaming;
 				if ((not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and
 					('0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or
@@ -221,7 +221,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						quitMainloop(1)
 						return True
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryQuitMainloopNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 						if self.autosleeprepeat == "once":
 							eActionMap.getInstance().unbindAction('', self.keyPressed)
 							return True
@@ -245,7 +245,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if Screens.Standby.inStandby:  # In standby
 						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryQuitMainloopNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 				return True
 
 			elif self.timerType == TIMERTYPE.REBOOT:
@@ -260,7 +260,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if Screens.Standby.inStandby:  # In standby
 						quitMainloop(2)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryToRebootNotification, MessageBox, _("A finished powertimer wants to reboot your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryToRebootNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to reboot your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 				return True
 
 			elif self.timerType == TIMERTYPE.RESTART:
@@ -275,14 +275,14 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if Screens.Standby.inStandby:  # In standby
 						quitMainloop(3)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryToRestartNotification, MessageBox, _("A finished powertimer wants to restart the user interface.\nDo that now?"), timeout=180)
+						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryToRestartNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to restart the user interface.\nDo that now?"), timeout = 180)
 				return True
 
 		elif next_state == self.StateEnded:
 			NavigationInstance.instance.PowerTimer.saveTimer()
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby:  # Not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+					Notifications.AddNotificationWithUniqueIDCallback(self.sendStandbyNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if recordingsActive(900):
 					self.do_backoff()
@@ -295,7 +295,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if Screens.Standby.inStandby:  # In standby
 						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished power timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout=180)
+						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryQuitMainloopNotification, "PT_StateChange", MessageBox, _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 			return True
 
 	# What is this doing here!?
