@@ -219,8 +219,8 @@ class Network:
 			self.configuredNetworkAdapters = self.configuredInterfaces
 			# load ns only once
 			self.loadNameserverConfig()
-			print "read configured interface:", ifaces
-			print "self.ifaces after loading:", self.ifaces
+			print "[Network] read configured interface:", ifaces
+			print "[Network] self.ifaces after loading:", self.ifaces
 			self.config_ready = True
 			self.msgPlugins()
 			if callback is not None:
