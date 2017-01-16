@@ -9,6 +9,7 @@ from boxbranding import getBoxType
 class Network:
 	def __init__(self):
 		self.ifaces = {}
+		self.onlyWoWifaces = {}
 		self.configuredNetworkAdapters = []
 		self.NetworkState = 0
 		self.DnsState = 0
@@ -138,9 +139,16 @@ class Network:
 		fp.write("auto lo\n")
 		fp.write("iface lo inet loopback\n\n")
 		for ifacename, iface in self.ifaces.items():
-			if iface['up']:
-				fp.write("auto " + ifacename + "\n")
-				self.configuredInterfaces.append(ifacename)
+			WoW = False
+			if self.onlyWoWifaces.has_key(ifacename):
+				WoW = self.onlyWoWifaces[ifacename]
+			if WoW == False and iface['up'] == True:
+					fp.write("auto " + ifacename + "\n")
+					self.configuredInterfaces.append(ifacename)
+					self.onlyWoWifaces[ifacename] = False
+			elif WoW == True:
+				self.onlyWoWifaces[ifacename] = True
+				fp.write("#only WakeOnWiFi " + ifacename + "\n")
 			if iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
 				fp.write("  hostname $(hostname)\n")
@@ -305,8 +313,8 @@ class Network:
 				name = 'Zydas'
 			elif name == 'r871x_usb_drv':
 				name = 'Realtek'
-		elif os.path.exists("/tmp/bcm/%s"%iface):
-			name = 'Broadcom'
+			elif name  == 'brcm-systemport':
+				name = 'Broadcom'
 		else:
 			name = _('Unknown')
 
@@ -640,24 +648,33 @@ class Network:
 
 		return False
 
+	def canWakeOnWiFi(self, iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s"%iface):
+			return True
+
 	def getWlanModuleDir(self, iface = None):
-		devicedir = self.sysfsPath(iface) + '/device'
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s"%iface):
+			devicedir = self.sysfsPath("sys0") + '/device'
+		else:
+			devicedir = self.sysfsPath(iface) + '/device'
 		moduledir = devicedir + '/driver/module'
 		if os.path.isdir(moduledir):
 			return moduledir
 
 		# identification is not possible over default moduledir
-		for x in os.listdir(devicedir):
-			# rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/'ifacename'/device/1-xxx
-			if x.startswith("1-"):
-				moduledir = devicedir + '/' + x + '/driver/module'
-				if os.path.isdir(moduledir):
-					return moduledir
-		# rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/'ifacename'/device/driver, so look also here
-		moduledir = devicedir + '/driver'
-		if os.path.isdir(moduledir):
-			return moduledir
-
+		try:
+			for x in os.listdir(devicedir):
+				# rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/'ifacename'/device/1-xxx
+				if x.startswith("1-"):
+					moduledir = devicedir + '/' + x + '/driver/module'
+					if os.path.isdir(moduledir):
+						return moduledir
+			# rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/'ifacename'/device/driver, so look also here
+			moduledir = devicedir + '/driver'
+			if os.path.isdir(moduledir):
+				return moduledir
+		except:
+			pass
 		return None
 
 	def detectWlanModule(self, iface = None):
@@ -714,6 +731,20 @@ class Network:
 				del self.ifaces[interface]
 			except KeyError:
 				pass
+
+	def getInterfacesNameserverList(self, iface):
+		result = []
+		nameservers = self.getAdapterAttribute(iface, "dns-nameservers")
+		if nameservers:
+			ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+			ipPattern = re.compile(ipRegexp)
+			for x in nameservers.split()[1:]:
+				ip = self.regExpMatch(ipPattern, x)
+				if ip:
+					result.append( [ int(n) for n in ip.split('.') ] )
+		if len(self.nameservers) and not result: # use also global nameserver if we got no one from interface
+			result.extend(self.nameservers)
+		return result
 
 iNetwork = Network()
 

@@ -21,13 +21,10 @@ config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default = "WPA2"))
 config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
 
-def existBcmWifi(iface):
-	return os_path.exists("/tmp/bcm/" + iface)
-
-def getWlConfName(iface):
-	return "/etc/wl.conf.%s" % iface
- 
 def getWlanConfigName(iface):
+	driver = iNetwork.detectWlanModule(iface)
+	if driver in ('brcm-wl', ):
+		return '/etc/wl.conf.' + iface
 	return '/etc/wpa_supplicant.' + iface + '.conf'
 
 class Wlan:
@@ -64,8 +61,8 @@ class Wlan:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", True)
 				system("ifconfig "+self.iface+" up")
-				if existBcmWifi(self.iface):
-					eConsoleAppContainer().execute("wl up")
+				if driver in ('brcm-wl', ):
+					system("wl up")
 
 		ifobj = Wireless(self.iface) # a Wireless NIC Object
 
@@ -128,12 +125,76 @@ class Wlan:
 			if self.oldInterfaceState is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", False)
 				system("ifconfig "+self.iface+" down")
-				if existBcmWifi(self.iface):
-					eConsoleAppContainer().execute("wl down")
+				driver = iNetwork.detectWlanModule(self.iface)
+				if driver in ('brcm-wl', ):
+					system("wl down")
 				self.oldInterfaceState = None
 				self.iface = None
 
 iWlan = Wlan()
+
+class brcmWLConfig:
+	def __init__(self):
+		pass
+
+	def writeConfig(self, iface):
+		essid = config.plugins.wlan.essid.value
+		hiddenessid = config.plugins.wlan.hiddenessid.value
+		encryption = config.plugins.wlan.encryption.value
+		wepkeytype = config.plugins.wlan.wepkeytype.value
+		psk = config.plugins.wlan.psk.value
+		
+		fp = file(getWlanConfigName(iface), 'wb')
+		
+		fp.write('ssid='+essid+'\n')
+		if encryption in ('WPA', 'WPA2', 'WPA/WPA2', 'WEP'):
+			if encryption == "WPA/WPA2":
+				encryption = "WPA2"
+			fp.write('method=' + encryption.lower() + '\n')
+		if encryption.lower() == "unencrypted":
+			fp.write('method=None\n')
+		fp.write('key=' + psk + '\n')
+		fp.close()
+
+	def loadConfig(self,iface):
+		config.plugins.wlan.hiddenessid.value = False
+		config.plugins.wlan.wepkeytype.value = "ASCII"
+		config.plugins.wlan.essid.value = ""
+		config.plugins.wlan.encryption.value = "WPA2"
+		config.plugins.wlan.psk.value = ""
+		configfile = getWlanConfigName(iface)
+		
+		if os_path.exists(configfile):
+			print "[Wlan.py] parsing configfile: ",configfile
+			fd = open(configfile, "r")
+			lines = fd.readlines()
+			fd.close()
+			for line in lines:
+				try:
+					(key, value) = line.strip().split('=',1)
+				except:
+					continue
+				if key == 'ssid':
+					config.plugins.wlan.essid.value = value.strip()
+				if key == 'method':
+					method = value.strip()
+					if method == "None":
+						method = "Unencrypted"
+					else:
+						method = method.upper()
+					config.plugins.wlan.encryption.value = method
+				elif key == 'key':
+					config.plugins.wlan.psk.value = value.strip()
+				else:
+					continue
+		wsconf = {
+			'hiddenessid': config.plugins.wlan.hiddenessid.value,
+			'ssid': config.plugins.wlan.essid.value,
+			'encryption': config.plugins.wlan.encryption.value,
+			'wepkeytype': config.plugins.wlan.wepkeytype.value,
+			'key': config.plugins.wlan.psk.value,
+		}
+		return wsconf
 
 class wpaSupplicant:
 	def __init__(self):
@@ -246,9 +307,6 @@ class wpaSupplicant:
 		#system('cat ' + getWlanConfigName(iface))
 
 	def loadConfig(self,iface):
-		if existBcmWifi(iface):
-			return self.loadBcmWifiConfig(iface)
-
 		configfile = getWlanConfigName(iface)
 		if not os_path.exists(configfile):
 			configfile = '/etc/wpa_supplicant.conf'
