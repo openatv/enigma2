@@ -99,7 +99,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 2 and not nimmanager.nim_slots[2].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[2].slot)
+self.condition = len(nimmanager.nim_slots) > 2 and not nimmanager.nim_slots[2].empty and not isFBCLink(nimmanager.nim_slots[2].slot)
 			</condition>
 			<text value="Please set up tuner C\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<displaytext value="Please set up tuner C" />
@@ -115,7 +115,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 3 and not nimmanager.nim_slots[3].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[3].slot)
+self.condition = len(nimmanager.nim_slots) > 3 and not nimmanager.nim_slots[3].empty and not isFBCLink(nimmanager.nim_slots[3].slot)
 			</condition>
 			<text value="Please set up tuner D\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<displaytext value="Please set up tuner D" />
@@ -131,7 +131,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 4 and not nimmanager.nim_slots[4].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[4].slot)
+self.condition = len(nimmanager.nim_slots) > 4 and not nimmanager.nim_slots[4].empty and not isFBCLink(nimmanager.nim_slots[4].slot)
 			</condition>
 			<text value="Please set up tuner E\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="4" type="ConfigList" />
@@ -146,7 +146,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 5 and not nimmanager.nim_slots[5].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[5].slot)
+self.condition = len(nimmanager.nim_slots) > 5 and not nimmanager.nim_slots[5].empty and not isFBCLink(nimmanager.nim_slots[5].slot)
 			</condition>
 			<text value="Please set up tuner F\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="5" type="ConfigList" />
@@ -161,7 +161,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 6 and not nimmanager.nim_slots[6].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[6].slot)
+self.condition = len(nimmanager.nim_slots) > 6 and not nimmanager.nim_slots[6].empty and not isFBCLink(nimmanager.nim_slots[6].slot)
 			</condition>
 			<text value="Please set up tuner G\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="6" type="ConfigList" />
@@ -176,7 +176,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 7 and not nimmanager.nim_slots[7].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[7].slot)
+self.condition = len(nimmanager.nim_slots) > 7 and not nimmanager.nim_slots[7].empty and not isFBCLink(nimmanager.nim_slots[7].slot)
 			</condition>
 			<text value="Please set up tuner H\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="7" type="ConfigList" />
@@ -191,7 +191,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[8].slot)
+self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty and not isFBCLink(nimmanager.nim_slots[8].slot)
 			</condition>
 			<text value="Please set up tuner I\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="8" type="ConfigList" />
@@ -206,7 +206,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[9].slot)
+self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].empty and not isFBCLink(nimmanager.nim_slots[9].slot)
 			</condition>
 			<text value="Please set up tuner J\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="9" type="ConfigList" />
@@ -220,7 +220,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 16 and not nimmanager.nim_slots[16].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[16].slot)
+self.condition = len(nimmanager.nim_slots) > 16 and not nimmanager.nim_slots[16].empty and not isFBCLink(nimmanager.nim_slots[16].slot)
 			</condition>
 			<text value="Please set up tuner Q\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="16" type="ConfigList" />
@@ -234,7 +234,7 @@ self.selectKey("RIGHT")
 			<condition>
 from Components.NimManager import nimmanager
 from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 17 and not nimmanager.nim_slots[17].empty and config.misc.startwizard.shownimconfig.value and not isFBCLink(nimmanager.nim_slots[17].slot)
+self.condition = len(nimmanager.nim_slots) > 17 and not nimmanager.nim_slots[17].empty and not isFBCLink(nimmanager.nim_slots[17].slot)
 			</condition>
 			<text value="Please set up tuner R\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="17" type="ConfigList" />
@@ -280,7 +280,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
-			</condition>			
+			</condition>
 			<text value="What do you want to scan?" />
 			<displaytext value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
