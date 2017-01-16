@@ -249,7 +249,6 @@ class InfoBar(
 		try:
 			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 			self.session.open(MediaPlayer)
-			no_plugin = False
 		except Exception, e:
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
@@ -270,7 +269,6 @@ class InfoBar(
 			from Plugins.Extensions.HbbTV.browser import Browser
 
 			self.session.open(Browser)
-			no_plugin = False
 		except Exception, e:
 			self.session.open(MessageBox, _("The WebBrowser plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
@@ -278,7 +276,6 @@ class InfoBar(
 		try:
 			from Plugins.SystemPlugins.Videomode.plugin import videoSetupMain
 			self.session.instantiateDialog(videoSetupMain)
-			no_plugin = False
 		except Exception, e:
 			self.session.open(MessageBox, _("The VideoMode plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
