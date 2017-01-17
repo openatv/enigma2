@@ -108,8 +108,6 @@ class ServiceInfo(Screen):
 			"ok": self.close,
 			"cancel": self.close,
 			"red": self.close,
-			"yellow": self.ShowServiceInformation,
-			"blue": self.ShowTransponderInformation
 		}, -1)
 
 		self["infolist"] = ServiceInfoList([])
@@ -136,6 +134,11 @@ class ServiceInfo(Screen):
 					serviceref = play_service
 					self.transponder_info = serviceref and eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			if self.feinfo or self.transponder_info:
+				self["actions2"] = ActionMap(["ColorActions"],
+				{
+					"yellow": self.ShowServiceInformation,
+					"blue": self.ShowTransponderInformation
+				}, -1)
 				self["key_yellow"] = self["yellow"] = Label(_("Service & PIDs"))
 				self["key_blue"] = self["blue"] = Label(_("Tuner setting values"))
 			else:
