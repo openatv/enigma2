@@ -11,8 +11,6 @@ class ClockToText(Converter, object):
 		"AsLength": lambda t: "" if t < 0 else "%d:%02d" % (t / 60, t % 60),
 		"AsLengthHours": lambda t: "" if t < 0 else "%d:%02d" % (t / 3600, t / 60 % 60),
 		"AsLengthSeconds": lambda t: "" if t < 0 else "%d:%02d:%02d" % (t / 3600, t / 60 % 60, t % 60),
-		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"CompactVFD": lambda t: strftime(config.usage.date.compact.value + config.usage.time.short.value, localtime(t)),  # _("%e%b%R")
 		# 		TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 		"Date": lambda t: strftime(config.usage.date.dayfull.value, localtime(t)),  # _("%A %e %B %Y")
 		# 		TRANSLATORS: short time representation hour:minute
@@ -36,7 +34,15 @@ class ClockToText(Converter, object):
 		#
 		"Timestamp": lambda t: str(t),
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD": lambda t: strftime(config.usage.date.short.value + " " + config.usage.time.short.value, localtime(t)),  # _("%e/%m %R")
+		"VFD": lambda t: strftime(config.usage.date.compact.value + config.usage.time.short.value, localtime(t)),  # _("%e%m%R")
+		# 		TRANSLATORS: VFD08 hour:minute in strftime() format! See 'man strftime'
+		"VFD08": lambda t: strftime(config.usage.time.short.value, localtime(t)),  # _("%R")
+		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
+		"VFD12": lambda t: strftime(config.usage.date.compact.value + config.usage.time.short.value, localtime(t)),  # _("%e%b%R")
+		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
+		"VFD14": lambda t: strftime(config.usage.date.short.value + " " + config.usage.time.short.value, localtime(t)),  # _("%e/%b %R")
+		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
+		"VFD18": lambda t: strftime(config.usage.date.dayshort.value + " " + config.usage.time.short.value, localtime(t)),  # _("%a %e/%b %R")
 		# 		TRANSLATORS: full time representation hour:minute:seconds
 		"WithSeconds": lambda t: strftime(config.usage.time.long.value, localtime(t))  # _("%T")
 	}
