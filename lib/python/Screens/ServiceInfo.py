@@ -99,8 +99,9 @@ TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
 
 class ServiceInfo(Screen):
-	def __init__(self, session, serviceref=None):
+	def __init__(self, session, menu_path="", serviceref=None):
 		Screen.__init__(self, session)
+		self.menu_path = menu_path
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
@@ -112,17 +113,18 @@ class ServiceInfo(Screen):
 		}, -1)
 
 		self["infolist"] = ServiceInfoList([])
-		self.setTitle(_("Service info"))
 		self["key_red"] = self["red"] = Label(_("Exit"))
 
 		self.transponder_info = self.info = self.feinfo = None
 		play_service = session.nav.getCurrentlyPlayingServiceReference()
-		if serviceref and not (play_service and play_service == serviceref):
+		if serviceref and not play_service and play_service != serviceref:
+			screentitle = _("Transponder Information")
 			self.type = TYPE_TRANSPONDER_INFO
 			self.skinName="ServiceInfoSimple"
 			self.transponder_info = eServiceCenter.getInstance().info(serviceref).getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
 		else:
+			screentitle = _("Service")
 			self.type = TYPE_SERVICE_INFO
 			service = session.nav.getCurrentService()
 			if service:
@@ -139,11 +141,44 @@ class ServiceInfo(Screen):
 			else:
 				self.skinName="ServiceInfoSimple"
 
+		if config.usage.show_menupath.value == 'large':
+			self.menu_path += screentitle
+			title = self.menu_path
+			self["menu_path_compressed"] = StaticText("")
+			self.menu_path += ' / '
+		elif config.usage.show_menupath.value == 'small':
+			title = screentitle
+			condtext = ""
+			if self.menu_path and not self.menu_path.endswith(' / '):
+				condtext = self.menu_path + " >"
+			elif self.menu_path:
+				condtext = self.menu_path[:-3] + " >"
+			self["menu_path_compressed"] = StaticText(condtext)
+			self.menu_path += screentitle + ' / '
+		else:
+			title = screentitle
+			self["menu_path_compressed"] = StaticText("")
+		Screen.setTitle(self, title)
+
+		tlist = [ ]
 		self.onShown.append(self.ShowServiceInformation)
 
 	def ShowServiceInformation(self):
+		menu_path = self.menu_path
 		if self.type == TYPE_SERVICE_INFO:
-			self["Title"].text = _("Service info - service & PIDs")
+			screentitle = _("Services & PIDs")
+			if config.usage.show_menupath.value == 'large':
+				menu_path += screentitle
+				title = menu_path
+				self["menu_path_compressed"] = StaticText("")
+			elif config.usage.show_menupath.value == 'small':
+				title = screentitle
+				self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+			else:
+				title = screentitle
+				self["menu_path_compressed"] = StaticText("")
+			Screen.setTitle(self, title)
+
 			if self.feinfo or self.transponder_info:
 				self["key_blue"].text = self["blue"].text = _("Tuner setting values")
 			if self.session.nav.getCurrentlyPlayingServiceOrGroup():
@@ -165,10 +200,10 @@ class ServiceInfo(Screen):
 					resolution = videocodec + " - "
 					resolution += "%dx%d - " % (width,height)
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
-					resolution += (" i", " p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
+					resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 					aspect = aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ) and "4:3" or "16:9"
-					resolution += " - ["+aspect+"]"
+					resolution += " - "+aspect+""
 			if "%3a//" in refstr and reftype not in (1,257,4098,4114):
 				fillList = [(_("Service name"), name, TYPE_TEXT),
 					(_("Videocodec, size & format"), resolution, TYPE_TEXT),
@@ -203,20 +238,33 @@ class ServiceInfo(Screen):
 			self.fillList(self.getFEData(self.transponder_info))
 
 	def ShowTransponderInformation(self):
+		menu_path = self.menu_path
 		if self.type == TYPE_SERVICE_INFO:
 			if self.feinfo and self.feinfo.getAll(True):
 				if self["key_blue"].text == _("Tuner setting values"):
-					self["Title"].text = _("Service info - tuner setting values")
+					screentitle = _("Tuner value settings")
 					self["key_blue"].text = self["blue"].text = _("Tuner live values")
 				else:
-					self["Title"].text = _("Service info - tuner live values")
+					screentitle = _("Tuner live values")
 					self["key_blue"].text = self["blue"].text = _("Tuner setting values")
 				frontendData = self.feinfo and self.feinfo.getAll(self.getTitle() == _("Service info - tuner setting values"))
 				self.fillList(self.getFEData(frontendData))
 			elif self.transponder_info:
-				self["Title"].text = _("Service info - tuner setting values")
+				screentitle = _("Tuner setting values")
 				self["key_blue"].text = self["blue"].text = _("Tuner setting values")
 				self.fillList(self.getFEData(self.transponder_info))
+
+			if config.usage.show_menupath.value == 'large':
+				menu_path += screentitle
+				title = menu_path
+				self["menu_path_compressed"] = StaticText("")
+			elif config.usage.show_menupath.value == 'small':
+				title = screentitle
+				self["menu_path_compressed"] = StaticText(menu_path + " >" if not menu_path.endswith(' / ') else menu_path[:-3] + " >" or "")
+			else:
+				title = screentitle
+				self["menu_path_compressed"] = StaticText("")
+			Screen.setTitle(self, title)
 
 	def getFEData(self, frontendDataOrg):
 		if frontendDataOrg and len(frontendDataOrg):
@@ -227,29 +275,29 @@ class ServiceInfo(Screen):
 				tuner = (_("NIM & Type"), chr(ord('A') + frontendData["tuner_number"]) + " - " + frontendData["tuner_type"], TYPE_TEXT)
 			if frontendDataOrg["tuner_type"] == "DVB-S":
 				return (tuner,
-					(_("System & Modulation"), frontendData["system"] + " " + frontendData["modulation"], TYPE_TEXT),
-					(_("Orbital position"), frontendData["orbital_position"], TYPE_VALUE_DEC),
-					(_("Frequency & Polarization"), "%s MHz" % (frontendData.get("frequency", 0) / 1000) + " - " + frontendData["polarization"], TYPE_TEXT),
-					(_("Symbol rate & FEC"), "%s KSymb/s" % (frontendData.get("symbol_rate", 0) / 1000) + " - " + frontendData["fec_inner"], TYPE_TEXT),
-					(_("Inversion, Pilot & Roll-off"), frontendData["inversion"] + " - " + str(frontendData.get("pilot", None)) + " - " + str(frontendData.get("rolloff", None)), TYPE_TEXT))
+					(_("System & Modulation"), "%s %s" % (frontendData["system"], frontendData["modulation"]), TYPE_TEXT),
+					(_("Orbital position"), "%s" % frontendData["orbital_position"], TYPE_TEXT),
+					(_("Frequency & Polarization"), "%s - %s" % (frontendData.get("frequency", 0), frontendData["polarization"]), TYPE_TEXT),
+					(_("Symbol rate & FEC"), "%s - %s" % (frontendData.get("symbol_rate", 0), frontendData["fec_inner"]), TYPE_TEXT),
+					(_("Inversion, Pilot & Roll-off"), "%s - %s - %s" % (frontendData["inversion"], frontendData.get("pilot", None), str(frontendData.get("rolloff", None))), TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-C":
 				return (tuner,
-					(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
-					(_("Frequency"), frontendData.get("frequency", 0), TYPE_VALUE_FREQ_FLOAT),
-					(_("Symbol rate & FEC"), "%s KSymb/s" % (frontendData.get("symbol_rate", 0) / 1000) + " - " + frontendData["fec_inner"], TYPE_TEXT),
-					(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
+					(_("Modulation"),"%s" % frontendData["modulation"], TYPE_TEXT),
+					(_("Frequency"), "%s" % frontendData.get("frequency", 0), TYPE_TEXT),
+					(_("Symbol rate & FEC"), "%s - %s" % (frontendData.get("symbol_rate", 0), frontendData["fec_inner"]), TYPE_TEXT),
+					(_("Inversion"), "%s" % frontendData["inversion"], TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-T":
 				return (tuner,
-					(_("Frequency & Channel"), "%.3f MHz" % ((frontendData.get("frequency", 0) / 1000) / 1000.0) + " - Ch. " + getChannelNumber(frontendData["frequency"], frontendData["tuner_number"]), TYPE_TEXT),
-					(_("Inversion & Bandwidth"), frontendData["inversion"] + " - " + str(frontendData["bandwidth"]), TYPE_TEXT),
-					(_("Code R. LP-HP & Guard Int."), frontendData["code_rate_lp"] + " - " + frontendData["code_rate_hp"] + " - " + frontendData["guard_interval"], TYPE_TEXT),
-					(_("Constellation & FFT mode"), frontendData["constellation"] + " - " + frontendData["transmission_mode"], TYPE_TEXT),
-					(_("Hierarchy info"), frontendData["hierarchy_information"], TYPE_TEXT))
+					(_("Frequency & Channel"), "%s - Ch. %s" % (frontendData.get("frequency", 0), getChannelNumber(frontendData["frequency"], frontendData["tuner_number"])), TYPE_TEXT),
+					(_("Inversion & Bandwidth"), "%s - %s" % (frontendData["inversion"], frontendData["bandwidth"]), TYPE_TEXT),
+					(_("Code R. LP-HP & Guard Int"), "%s - %s - %s" % (frontendData["code_rate_lp"], frontendData["code_rate_hp"], frontendData["guard_interval"]), TYPE_TEXT),
+					(_("Constellation & FFT mode"), "%s - %s" % (frontendData["constellation"], frontendData["transmission_mode"]), TYPE_TEXT),
+					(_("Hierarchy info"), "%s" % frontendData["hierarchy_information"], TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "ATSC":
 				return (tuner,
-					(_("System & Modulation"), frontendData["system"] + " " + frontendData["modulation"], TYPE_TEXT),
-					(_("Frequency"), frontendData.get("frequency", 0) / 1000, TYPE_VALUE_FREQ_FLOAT),
-					(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
+					(_("System & Modulation"), "%s - %s" % (frontendData["system"], frontendData["modulation"]), TYPE_TEXT),
+					(_("Frequency"), "%s" % frontendData.get("frequency", 0), TYPE_TEXT),
+					(_("Inversion"), "%s" % frontendData["inversion"], TYPE_TEXT))
 		return []
 
 	def fillList(self, Labels):
