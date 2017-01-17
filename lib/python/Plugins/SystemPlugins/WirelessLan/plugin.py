@@ -12,7 +12,7 @@ from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
-from Wlan import iWlan, iStatus, getWlanConfigName, existBcmWifi
+from Wlan import iWlan, iStatus, getWlanConfigName
 
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
