@@ -60,7 +60,7 @@ DEFINE_REF(eConsoleAppContainer);
 eConsoleAppContainer::eConsoleAppContainer():
 	pid(-1),
 	killstate(0),
-	buffer(2049)
+	buffer(2048)
 {
 	for (int i=0; i < 3; ++i)
 	{
@@ -81,6 +81,12 @@ int eConsoleAppContainer::setCWD( const char *path )
 
 	m_cwd = path;
 	return 0;
+}
+
+void eConsoleAppContainer::setBufferSize(int size)
+{
+	if (size > 0)
+		buffer.resize(size);
 }
 
 int eConsoleAppContainer::execute( const char *cmd )
@@ -227,11 +233,11 @@ void eConsoleAppContainer::readyRead(int what)
 //		eDebug("what = %d");
 		char* buf = &buffer[0];
 		int rd;
-		while((rd = read(fd[0], buf, 2048)) > 0)
+		while((rd = read(fd[0], buf, buffer.size())) > 0)
 		{
 			buf[rd]=0;
-			/*emit*/ dataAvail(buf);
-			stdoutAvail(buf);
+			/*emit*/ dataAvail(std::make_pair(buf, rd));
+			stdoutAvail(std::make_pair(buf, rd));
 			if ( filefd[1] >= 0 )
 				::write(filefd[1], buf, rd);
 			if (!hungup)
@@ -266,13 +272,13 @@ void eConsoleAppContainer::readyErrRead(int what)
 //		eDebug("what = %d");
 		char* buf = &buffer[0];
 		int rd;
-		while((rd = read(fd[2], buf, 2048)) > 0)
+		while((rd = read(fd[2], buf, buffer.size())) > 0)
 		{
 /*			for ( int i = 0; i < rd; i++ )
 				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
 			buf[rd]=0;
-			/*emit*/ dataAvail(buf);
-			stderrAvail(buf);
+			/*emit*/ dataAvail(std::make_pair(buf, rd));
+			stderrAvail(std::make_pair(buf, rd));
 		}
 	}
 }
@@ -309,7 +315,7 @@ void eConsoleAppContainer::readyWrite(int what)
 		if ( filefd[0] >= 0 )
 		{
 			char* buf = &buffer[0];
-			int rsize = read(filefd[0], buf, 2048);
+			int rsize = read(filefd[0], buf, buffer.size());
 			if ( rsize > 0 )
 				write(buf, rsize);
 			else
