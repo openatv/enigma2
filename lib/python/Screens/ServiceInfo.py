@@ -239,6 +239,7 @@ class ServiceInfo(Screen):
 
 	def ShowTransponderInformation(self):
 		menu_path = self.menu_path
+		screentitle = ""
 		if self.type == TYPE_SERVICE_INFO:
 			if self.feinfo and self.feinfo.getAll(True):
 				if self["key_blue"].text == _("Tuner setting values"):
@@ -253,6 +254,7 @@ class ServiceInfo(Screen):
 				screentitle = _("Tuner setting values")
 				self["key_blue"].text = self["blue"].text = _("Tuner setting values")
 				self.fillList(self.getFEData(self.transponder_info))
+				
 
 			if config.usage.show_menupath.value == 'large':
 				menu_path += screentitle
