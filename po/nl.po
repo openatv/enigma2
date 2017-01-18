@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-14 22:29+0100\n"
-"PO-Revision-Date: 2017-01-15 04:08+0100\n"
+"POT-Creation-Date: 2017-01-17 20:49+0100\n"
+"PO-Revision-Date: 2017-01-18 06:10+0100\n"
 "Last-Translator: Rob van der Does <RobvanderDoes@Gmail.com>\n"
 "Language-Team: Andy Blackburn, Rob van der Does, Delagroov\n"
 "Language: nl\n"
@@ -592,8 +592,6 @@ msgstr "%d KB"
 msgid "%d MB"
 msgstr "%d MB"
 
-#. TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-#. _("%e%b%R")
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
 #. TRANSLATORS: short time representation hour:minute
@@ -2467,17 +2465,14 @@ msgstr "Sluit dialoog"
 msgid "Close title selection"
 msgstr "Sluit titelselectie"
 
+msgid "Code R. LP-HP & Guard Int"
+msgstr "Code R. LP-HP & Guard Int"
+
 msgid "Code rate HP"
 msgstr "Code rate HP"
 
 msgid "Code rate LP"
 msgstr "Code rate LP"
-
-msgid "Coderate HP"
-msgstr "Coderate HP"
-
-msgid "Coderate LP"
-msgstr "Coderate LP"
 
 msgid "Collection name"
 msgstr "Naam van verzameling"
@@ -2851,7 +2846,8 @@ msgstr "Verbonden transcoding, limiet - geen PiP!"
 msgid "Connected: "
 msgstr "Verbonden:"
 
-msgid "Constellation"
+#, fuzzy
+msgid "Constellation & FFT mode"
 msgstr "Samenstelling"
 
 msgid "Content"
@@ -4353,6 +4349,9 @@ msgstr ""
 "Bestand oscam.conf niet gevonden.\n"
 "Geef uw gebruikersnaam/wachtwoord handmatig in."
 
+msgid "Filename"
+msgstr "Bestandnaam"
+
 msgid "Filesystem Check"
 msgstr "Bestandssysteemcontrole"
 
@@ -4436,6 +4435,12 @@ msgstr "Frans"
 
 msgid "Frequency"
 msgstr "Frequentie"
+
+msgid "Frequency & Channel"
+msgstr "Frequentie & kanaal"
+
+msgid "Frequency & Polarization"
+msgstr "Frequentie & polarisatie"
 
 msgid "Frequency (kHz)"
 msgstr "Frequentie (kHz)"
@@ -4699,9 +4704,6 @@ msgstr "Verberg zapfouten"
 
 msgid "Hierarchy info"
 msgstr "Hiërarchie info"
-
-msgid "Hierarchy information"
-msgstr "Hiërarchie informatie"
 
 msgid "High bitrate support"
 msgstr "Hoge bitrate ondersteuning"
@@ -5101,6 +5103,12 @@ msgstr "Ongeldige transponderdata"
 
 msgid "Inversion"
 msgstr "Inversie"
+
+msgid "Inversion & Bandwidth"
+msgstr "Inversie & bandbreedte"
+
+msgid "Inversion, Pilot & Roll-off"
+msgstr "Inversion, Pilot & Roll-off"
 
 msgid "Invert"
 msgstr "Omgekeerd"
@@ -5769,9 +5777,6 @@ msgstr "Multimedia"
 msgid "Multiple service support"
 msgstr "Geschikt voor meervoudig decoderen"
 
-msgid "Multiplex"
-msgstr "Multiplex"
-
 msgid "Multisat"
 msgstr "Multisat"
 
@@ -5796,8 +5801,8 @@ msgstr "NFS Instellingen"
 msgid "NFS setup"
 msgstr "NFS instellingen"
 
-msgid "NIM"
-msgstr "NIM"
+msgid "NIM & Type"
+msgstr "NIM & Type"
 
 msgid "NO"
 msgstr "NO"
@@ -6349,9 +6354,6 @@ msgstr "PDC"
 
 msgid "PGS file"
 msgstr "PGS-bestand"
-
-msgid "PIDs"
-msgstr "PIDs"
 
 #
 msgid "PIP"
@@ -7659,9 +7661,6 @@ msgstr "SCR JESS"
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
 
-msgid "SID"
-msgstr "SID"
-
 #
 msgid "SINGLE LAYER DVD"
 msgstr "ENKEL LAYER DVD"
@@ -8058,8 +8057,11 @@ msgstr "Servers:"
 msgid "Service"
 msgstr "Kanaal"
 
-msgid "Service Information"
-msgstr "Kanaalinformatie"
+msgid "Service & PIDs"
+msgstr "Kanaal & PID"
+
+msgid "Service ID"
+msgstr "Kanaal-ID"
 
 msgid "Service Name"
 msgstr "Kanaalnaam"
@@ -8076,6 +8078,9 @@ msgstr "Alleen kanaalnaam"
 msgid "Service font size"
 msgstr "Kanaalnaam lettergrootte"
 
+msgid "Service info - tuner setting values"
+msgstr "Kanaalinfo - tunerinstellingen"
+
 msgid "Service info font size"
 msgstr "Kanaalinfo lettergrootte"
 
@@ -8085,6 +8090,9 @@ msgid ""
 msgstr ""
 "Zender ongeldig!\n"
 "(Timeout reading PMT)"
+
+msgid "Service name"
+msgstr "Kanaalnaam"
 
 msgid "Service name font size"
 msgstr "Kanaalnaam lettergrootte"
@@ -8123,6 +8131,9 @@ msgstr "Kanaalnaam breedte"
 
 msgid "Services"
 msgstr "Kanalen"
+
+msgid "Services & PIDs"
+msgstr "Kanalen & PIDs"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr "Kanalen kunnen in favorietenlijsten worden samengevoegd. Indien geactiveerd kunt u meer dan één favorietenlijst gebruiken."
@@ -8610,8 +8621,12 @@ msgstr "TV-weergave modus..."
 msgid "Show time elapsed as positive"
 msgstr "Toon verstreken tijd als positief"
 
-msgid "Show time in 24 hour clock format."
-msgstr "Toon klok in 24-uurs formaat"
+msgid ""
+"Show time in 24 hour clock format.\n"
+"NOTE: This setting is not used if the global time format settings are available."
+msgstr ""
+"Toon tijd in 24-uur formaat.\n"
+"Opm: Deze instelling wordt niet gebruikt als de globale tijdsformaatinstelling beschikbaar is."
 
 msgid "Show time remaining/elapsed"
 msgstr "Toon de resterende/verstreken tijd"
@@ -9276,6 +9291,9 @@ msgstr "Verwisselbare tunertypes:"
 msgid "Symbol rate"
 msgstr "Symbolrate"
 
+msgid "Symbol rate & FEC"
+msgstr "Symbolrate & FEC"
+
 msgid "Symbolrate:"
 msgstr "Symbolrate:"
 
@@ -9293,6 +9311,9 @@ msgstr "Synchroniseer de systeemtijd met transponder- of internettijd."
 
 msgid "System"
 msgstr "Systeem"
+
+msgid "System & Modulation"
+msgstr "Systeem & modulatie"
 
 #, python-format
 msgid "System temp:\t%s"
@@ -10111,9 +10132,6 @@ msgstr "Transponder"
 msgid "Transponder Information"
 msgstr "Transponderinformatie"
 
-msgid "Transponder type"
-msgstr "Transpondertype"
-
 msgid "Trash can"
 msgstr "Prullenbak"
 
@@ -10160,8 +10178,15 @@ msgstr "Tunerconfiguratie"
 msgid "Tuner is not supported"
 msgstr "Tuner wordt niet ondersteund"
 
+#
+msgid "Tuner live values"
+msgstr "Tuner terugmeldingen"
+
 msgid "Tuner not available."
 msgstr "Tuner is niet beschikbaar"
+
+msgid "Tuner setting values"
+msgstr "Tunerinstellingen"
 
 msgid "Tuner settings"
 msgstr "Tunerinstellingen"
@@ -10170,16 +10195,15 @@ msgid "Tuner slot"
 msgstr "Tunerslot"
 
 #
-msgid "Tuner status"
-msgstr "Tuner"
-
-#
 msgid "Tuner status:"
 msgstr "Tunerstatus:"
 
 #
 msgid "Tuner type"
 msgstr "Tunertype"
+
+msgid "Tuner value settings"
+msgstr "Tunerinstellingen"
 
 msgid "Turkish"
 msgstr "Turks"
@@ -10216,6 +10240,9 @@ msgstr "Zoekmodus"
 
 msgid "Type: "
 msgstr "Type: "
+
+msgid "URL"
+msgstr "URL"
 
 msgid "USALS"
 msgstr "USALS"
@@ -10577,17 +10604,8 @@ msgstr "Video-output"
 msgid "Video: %s fps"
 msgstr "Video: %s fps"
 
-msgid "Videocodec"
-msgstr "Videocodec"
-
-msgid "Videoformat"
-msgstr "Videoformaat"
-
-msgid "Videomode"
-msgstr "Videomodus"
-
-msgid "Videosize"
-msgstr "Video-afmetingen"
+msgid "Videocodec, size & format"
+msgstr "Videocodec, grootte & formaat"
 
 msgid "View"
 msgstr "Bekijken"
@@ -11515,6 +11533,9 @@ msgstr "omgekeerd alfa dan nieuwste"
 msgid "alternative"
 msgstr "alternatief"
 
+msgid "am"
+msgstr "vm"
+
 msgid "and never ask again this session"
 msgstr "en vraag het deze sessie nooit meer"
 
@@ -12184,6 +12205,9 @@ msgstr "even wachten, de foto wordt geladen..."
 msgid "please wait..."
 msgstr "even wachten..."
 
+msgid "pm"
+msgstr "am"
+
 msgid "popular culture/traditional arts"
 msgstr "populaire cultuur/traditionele kunst"
 
@@ -12753,6 +12777,12 @@ msgstr "zapte"
 #~ msgid "Choose Tuner"
 #~ msgstr "Kies tuner"
 
+#~ msgid "Coderate HP"
+#~ msgstr "Coderate HP"
+
+#~ msgid "Coderate LP"
+#~ msgstr "Coderate LP"
+
 #~ msgid "Combo"
 #~ msgstr "Combo"
 
@@ -12947,6 +12977,9 @@ msgstr "zapte"
 #~ msgid "Harddisk Setup"
 #~ msgstr "Harde schijf instellingen"
 
+#~ msgid "Hierarchy information"
+#~ msgstr "Hiërarchie informatie"
+
 #~ msgid "HotKey Setup"
 #~ msgstr "HotKey Intellingen"
 
@@ -12984,11 +13017,17 @@ msgstr "zapte"
 #~ msgid "Move to other directory"
 #~ msgstr "Verplaats naar andere map"
 
+#~ msgid "Multiplex"
+#~ msgstr "Multiplex"
+
 #~ msgid "NFI image flashing"
 #~ msgstr "NFI image schrijven"
 
 #~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
 #~ msgstr "NFI image schrijven is gereed. Druk op gele toets om te herstarten!"
+
+#~ msgid "NIM"
+#~ msgstr "NIM"
 
 #~ msgid "Network Information"
 #~ msgstr "Netwerkinformatie"
@@ -13040,6 +13079,9 @@ msgstr "zapte"
 
 #~ msgid "OpenVpn Log"
 #~ msgstr "Open-VPN Log"
+
+#~ msgid "PIDs"
+#~ msgstr "PIDs"
 
 #~ msgid "PLS Code"
 #~ msgstr "PLS-code"
@@ -13126,6 +13168,9 @@ msgstr "zapte"
 #~ msgid "SET FAILED!\n"
 #~ msgstr "INSTELLEN MISLUKT!\n"
 
+#~ msgid "SID"
+#~ msgstr "SID"
+
 #~ msgid "Samba Log"
 #~ msgstr "Sambalog"
 
@@ -13165,6 +13210,9 @@ msgstr "zapte"
 #~ msgid "Send yourself a copy"
 #~ msgstr "Kopie aan uzelf sturen?"
 
+#~ msgid "Service Information"
+#~ msgstr "Kanaalinformatie"
+
 #~ msgid "Setting"
 #~ msgstr "Instelling"
 
@@ -13189,6 +13237,9 @@ msgstr "zapte"
 
 #~ msgid "Show tag menu"
 #~ msgstr "Markeringsmenu weergeven"
+
+#~ msgid "Show time in 24 hour clock format."
+#~ msgstr "Toon klok in 24-uurs formaat"
 
 #~ msgid "Show/hide infoBar"
 #~ msgstr "Toon/Verberg infoBar"
@@ -13300,6 +13351,9 @@ msgstr "zapte"
 #~ msgid "Toggle Extra Keys"
 #~ msgstr "Wissel Extra Keys"
 
+#~ msgid "Transponder type"
+#~ msgstr "Transpondertype"
+
 #~ msgid "Tuner Configuration"
 #~ msgstr "Tunerconfiguratie"
 
@@ -13342,6 +13396,15 @@ msgstr "zapte"
 #~ msgid "Video wizard"
 #~ msgstr "Video-wizard"
 
+#~ msgid "Videocodec"
+#~ msgstr "Videocodec"
+
+#~ msgid "Videomode"
+#~ msgstr "Videomodus"
+
+#~ msgid "Videosize"
+#~ msgstr "Video-afmetingen"
+
 #~ msgid "Vix forum user name"
 #~ msgstr "ViX forum gebruikersnaam"
 
@@ -13379,9 +13442,6 @@ msgstr "zapte"
 #~ msgid "Zap back to service before tuner setup?"
 #~ msgstr "Wilt u terug naar het vorige kanaal"
 
-#~ msgid "am"
-#~ msgstr "vm"
-
 #~ msgid "bc%s"
 #~ msgstr "bc%s"
 
@@ -13418,9 +13478,6 @@ msgstr "zapte"
 
 #~ msgid "only 4K"
 #~ msgstr "alleen 4K"
-
-#~ msgid "pm"
-#~ msgstr "am"
 
 #~ msgid "reliable"
 #~ msgstr "betrouwbaar"
