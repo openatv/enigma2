@@ -688,6 +688,8 @@ class Network:
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
 			module = os.path.basename(os.path.realpath(moduledir))
+			if module in ('brcm-systemport',):
+				return 'brcm-wl'
 			if module in ('ath_pci','ath5k'):
 				return 'madwifi'
 			if module in ('rt73','rt73'):
