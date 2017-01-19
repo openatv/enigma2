@@ -258,10 +258,10 @@ def kernelMismatch():
 
 	pattern = "kernel-([0-9]+[.][0-9]+[.][0-9]+)"
 	matches = re.findall(pattern, packages)
-
-	for match in matches:
+	if matches:
+		match = sorted(matches,key=lambda s: list(map(int, s.split('.'))))[-1]
 		if match != kernelversion:
-			print '[kernelMismatch] kernel mismatch found. STB kernel=%s, feeds kernel=%s' % (kernelversion, match)
+			print '[OnlineVersionCheck][kernelMismatch] kernel mismatch found. STB kernel=%s, feeds kernel=%s' % (kernelversion, match)
 			return True
 
 	print '[OnlineVersionCheck][kernelMismatch] no kernel mismatch found'
