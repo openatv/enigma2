@@ -140,7 +140,7 @@ class ServiceInfo(Screen):
 					"blue": self.ShowTransponderInformation
 				}, -1)
 				self["key_yellow"] = self["yellow"] = Label(_("Service & PIDs"))
-				self["key_blue"] = self["blue"] = Label(_("Tuner setting values"))
+				self["key_blue"] = self["blue"] = Label(_("Tuner settings values"))
 			else:
 				self.skinName="ServiceInfoSimple"
 
@@ -169,7 +169,7 @@ class ServiceInfo(Screen):
 	def ShowServiceInformation(self):
 		menu_path = self.menu_path
 		if self.type == TYPE_SERVICE_INFO:
-			screentitle = _("Services & PIDs")
+			screentitle = _("Service & PIDs")
 			if config.usage.show_menupath.value == 'large':
 				menu_path += screentitle
 				title = menu_path
@@ -183,7 +183,7 @@ class ServiceInfo(Screen):
 			Screen.setTitle(self, title)
 
 			if self.feinfo or self.transponder_info:
-				self["key_blue"].text = self["blue"].text = _("Tuner setting values")
+				self["key_blue"].text = self["blue"].text = _("Tuner settings values")
 			if self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
 				refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
@@ -245,18 +245,18 @@ class ServiceInfo(Screen):
 		screentitle = ""
 		if self.type == TYPE_SERVICE_INFO:
 			if self.feinfo and self.feinfo.getAll(True):
-				if self["key_blue"].text == _("Tuner setting values"):
-					screentitle = _("Tuner value settings")
+				if self["key_blue"].text == _("Tuner settings values"):
+					screentitle = _("Tuning info: settings values")
 					self["key_blue"].text = self["blue"].text = _("Tuner live values")
 					frontendData = self.feinfo and self.feinfo.getAll(True)
 				else:
-					screentitle = _("Tuner live values")
-					self["key_blue"].text = self["blue"].text = _("Tuner setting values")
+					screentitle = _("Tuning info: live values")
+					self["key_blue"].text = self["blue"].text = _("Tuner settings values")
 					frontendData = self.feinfo and self.feinfo.getAll(False)
 				self.fillList(self.getFEData(frontendData))
 			elif self.transponder_info:
-				screentitle = _("Tuner setting values")
-				self["key_blue"].text = self["blue"].text = _("Tuner setting values")
+				screentitle = _("Tuning info: settings values")
+				self["key_blue"].text = self["blue"].text = _("Tuner settings values")
 				self.fillList(self.getFEData(self.transponder_info))
 				
 
