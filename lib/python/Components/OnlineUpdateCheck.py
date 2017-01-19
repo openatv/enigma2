@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild, getImageType, getBoxType
+from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild, getImageType, getBoxType, getFeedsUrl
 
 from time import time
 
@@ -241,21 +241,7 @@ def kernelMismatch():
 		print '[OnlineVersionCheck][kernelMismatch] unable to retrieve kernel version from STB'
 		return False
 
-	filename = "/etc/opkg/%s-feed.conf" % getMachineBuild()
-	try:
-		with open(filename, "r") as f:
-			content = f.read()
-			f.close()
-	except:
-		print '[OnlineVersionCheck][kernelMismatch] failed to read %s' % filename
-		return False
-
-	pos = content.find('http')
-	if pos == -1:
-		print '[OnlineVersionCheck][kernelMismatch] no uri found in %s' % filename
-		return False
-
-	uri = content[pos:].split()[0].strip() + "/Packages.gz"
+	uri = getFeedsUrl() + "/" + getMachineBuild() + "/Packages.gz"
 	try:
 		req = urllib2.Request(uri)
 		d = urllib2.urlopen(req)
@@ -283,25 +269,8 @@ def kernelMismatch():
 
 def statusMessage():
 	# returns message if status message is found, else False.
-	
-	# This gets correct feeds uri. Means Dev and Release can have different messages.
-	# And people building their own images can have their own messages.
-	filename = "/etc/opkg/all-feed.conf"
-	try:
-		with open(filename, "r") as f:
-			content = f.read()
-			f.close()
-	except:
-		print '[OnlineVersionCheck][statusMessage] failed to read %s' % filename
-		return False
-
-	pos = content.find('http')
-	if pos == -1:
-		print '[OnlineVersionCheck][statusMessage] no uri found in %s' % filename
-		return False
-
 	# status-message.php goes in the root folder of the feeds webserver
-	uri = content[pos:pos + 7] + content[pos + 7:].split('/', 1)[0] + ("/status-message.php?machine=%s&version=%s&build=%s" % (getBoxType(), getImageVersion(), getImageBuild()))
+	uri = "http://" + getFeedsUrl().split("/")[2] + ("/status-message.php?machine=%s&version=%s&build=%s" % (getBoxType(), getImageVersion(), getImageBuild()))
 	try:
 		req = urllib2.Request(uri)
 		d = urllib2.urlopen(req)
