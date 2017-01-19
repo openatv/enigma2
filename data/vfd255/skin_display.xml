@@ -232,7 +232,7 @@
 			<convert type="ClockToText">FullDate</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
-			<convert type="ClockToText"></convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="update.png" position="241,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>

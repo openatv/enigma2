@@ -53,9 +53,13 @@
 		<widget source="session.Event_Now" render="Progress" position="20,170" size="440,20" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="20,200" size="260,40" font="FdLcD;40" halign="center" valign="center" >
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText"></convert>
+		<widget source="session.Event_Now" render="Label" position="20,200" size="130,40" font="FdLcD;40" halign="center" valign="center" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="150,200" size="130,40" font="FdLcD;40" halign="center" valign="center" >
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="350,200" size="100,40" font="FdLcD;40" halign="right" valign="center" >
 			<convert type="EventTime">Remaining</convert>
@@ -129,10 +133,9 @@
 		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="20,170" size="440,20" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="20,200" size="260,40" font="FdLcD;40" halign="center" valign="center" >
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText"></convert>
+		<widget source="parent.ServiceEvent" render="Label" position="20,200" size="130,40" font="FdLcD;40" halign="center" valign="center" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="350,200" size="100,40" font="FdLcD;40" halign="right" valign="center" >
 			<convert type="EventTime">Remaining</convert>
@@ -207,9 +210,13 @@
 		<widget source="parent.Event" render="Progress" position="20,170" size="440,20" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="20,200" size="260,40" font="FdLcD;40" halign="center" valign="center" >
-			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText"></convert>
+		<widget source="parent.Event" render="Label" position="20,200" size="130,40" font="FdLcD;40" halign="center" valign="center" >
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="parent.Event" render="Label" position="150,200" size="130,40" font="FdLcD;40" halign="center" valign="center" >
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="350,200" size="100,40" font="FdLcD;40" halign="right" valign="center" >
 			<convert type="EventTime">Remaining</convert>
@@ -303,7 +310,7 @@
 			<convert type="ClockToText">ShortDate</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="center,center" size="225,100" font="FdLcD;85" halign="center" noWrap="1">
-			<convert type="ClockToText"></convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 	</screen>
 
@@ -493,7 +500,7 @@
 		</widget> -->
 		<!-- Current time -->
 		<widget source="global.CurrentTime" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="left" transparent="1">
-			<convert type="ClockToText"></convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<!-- Remaining movie time -->
 		<widget source="session.CurrentService" render="Label" position="0,194" size="400,46" font="FdLcD;46" halign="right" transparent="1">
