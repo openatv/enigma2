@@ -237,6 +237,8 @@ def getButtonSetupFunctions():
 		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
 	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
 		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", "Plugins"))
+	if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/BluetoothSetup/plugin.pyo"):
+		ButtonSetupFunctions.append((_("Bluetooth Setup"), "Bluetooth/", "Plugins"))
 	return ButtonSetupFunctions
 
 class ButtonSetup(Screen):
@@ -623,6 +625,10 @@ class InfoBarButtonSetup():
 				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
 					self.session.open(KodiMainScreen)
+			elif selected[0] == "Bluetooth":
+				if os.path.isfile("/usr/lib/enigma2/python/Plugins/SystemPlugins/BluetoothSetup/plugin.pyo"):
+					from Plugins.SystemPlugins.BluetoothSetup.plugin import BluetoothSetup
+					self.session.open(BluetoothSetup)
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
