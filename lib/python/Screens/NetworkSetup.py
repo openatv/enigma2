@@ -828,6 +828,13 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
 
+	def makeLineDnsNameservers(self, nameservers = []):
+		line = ""
+		entry = ' '.join([("%d.%d.%d.%d" % tuple(x)) for x in nameservers if x != [0, 0, 0, 0] ])
+		if len(entry):
+			line+="\tdns-nameservers %s\n" % entry
+		return line
+
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def __init__(self, session,iface):
