@@ -1327,9 +1327,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 	def TriggeredByConfigElement(self, configElement):
 		self.scan_ter.channel.removeNotifier(self.TriggeredByConfigElement)
 		self.scan_ter.frequency.removeNotifier(self.TriggeredByConfigElement)
+		self.TerrestrialTransponders.removeNotifier(self.TriggeredByConfigElement)
+		self.CableTransponders.removeNotifier(self.TriggeredByConfigElement)
 		self.createSetup()
 		self.scan_ter.channel.addNotifier(self.TriggeredByConfigElement, initial_call = False)
 		self.scan_ter.frequency.addNotifier(self.TriggeredByConfigElement, initial_call = False)
+		self.TerrestrialTransponders.addNotifier(self.TriggeredByConfigElement, initial_call = False)
+		self.CableTransponders.addNotifier(self.TriggeredByConfigElement, initial_call = False)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)

@@ -9,6 +9,7 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components import Harddisk
 from os import path, listdir, system
+from boxbranding import getMachineBuild
 
 class MultiBootStartup(ConfigListScreen, Screen):
 
@@ -287,7 +288,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			if 'boxmode' in ENTRY:
 				cmdx = 6
 				cmd4 = "rootwait"
-				bootmode = temp[5].split("hd51_4.boxmode=")[1].replace("'",'')
+				bootmode = temp[5].split("%s_4.boxmode=")[1].replace("'",'') %getMachineBuild()
 			setmode = self.optionsList[self.option][0].split('=')[1]
 			#verify entries
 			if cmdx != len(temp) or 'boot' != temp[0] or 'rw' != temp[3] or cmd4 != temp[4] or kernel != root-kernel-1 or "'" != ENTRY[-1:]:
@@ -336,14 +337,14 @@ class MultiBootStartup(ConfigListScreen, Screen):
 				if "boxmode" in boot:
 					failboot = True
 				elif self.option:
-					newboot = boot.replace("rootwait", "rootwait hd51_4.%s" %(self.optionsList[self.option][0]))
+					newboot = boot.replace("rootwait", "rootwait %s_4.%s" %(getMachineBuild(), self.optionsList[self.option][0]))
 					writeoption = True
 
 		if self.enable_bootnamefile:
 			if failboot:
 				self.writeFile('/boot/bootname', 'STARTUP_1=STARTUP_1')
 			else:
-				self.writeFile('/boot/bootname', '%s=%s' %('STARTUP_%s' %boot[22:23], self.list[self.selection]))
+				self.writeFile('/boot/bootname', '%s=%s' %('STARTUP_%s' %getMachineBuild() ,boot[22:23], self.list[self.selection]))
 
 		message = _("Do you want to reboot now with selected image?")
 		if failboot:
