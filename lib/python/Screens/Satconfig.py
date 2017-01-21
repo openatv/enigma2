@@ -168,7 +168,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append(self.configMode)
 
 			if nimConfig.configMode.value == "simple":			#simple setup
-				self.diseqcModeEntry = getConfigListEntry(pgettext("Satellite configuration mode", "Mode"), nimConfig.diseqcMode, _("Change settings for your switch modes: single lnb, tonburst or diseqc"))
+				self.diseqcModeEntry = getConfigListEntry(pgettext(_("Satellite configuration mode"), _("Mode")), nimConfig.diseqcMode, _("Change settings for your switch modes: single lnb, tonburst or diseqc"))
 				self.list.append(self.diseqcModeEntry)
 				if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					self.createSimpleSetup(self.list, nimConfig.diseqcMode.value)
