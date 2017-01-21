@@ -358,15 +358,15 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if currLnb.lof.value != "unicable":
 					currLnb.lof.value = "unicable"
 			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
-			self.advancedLof = getConfigListEntry("LOF", currLnb.lof)
+			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
 			self.list.append(self.advancedLof)
 			if currLnb.lof.value == "user_defined":
-				self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
-				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
+				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
 			if currLnb.lof.value == "unicable":
-				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
+				self.advancedUnicable = getConfigListEntry(_("Unicable ")+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedDiction = getConfigListEntry(_("Diction"), currLnb.dictionuser)
@@ -380,8 +380,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.advancedSCR = getConfigListEntry(_("Channel"), satcr)
 					self.list.append(self.advancedSCR)
 					self.list.append(getConfigListEntry(_("Frequency"), stcrvco))
-					self.list.append(getConfigListEntry("LOF/L", currLnb.lofl))
-					self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
+					self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+					self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 				elif currLnb.unicable.value == "unicable_matrix":
 					nimmanager.sec.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
