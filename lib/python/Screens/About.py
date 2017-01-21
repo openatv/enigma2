@@ -10,11 +10,10 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.config import config
 from enigma import eTimer, getEnigmaVersionString, getDesktop
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate, getImageDevBuild
+from boxbranding import getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getDriverDate, getImageDevBuild
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 from Tools.StbHardware import getFPVersion
-from Components.InputDevice import iInputDevices, iRcTypeControl
 from os import path
 from re import search
 import skin
@@ -495,6 +494,15 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
+		wlan3 = about.getIfConfig('wlan3')
+		if wlan3.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + wlan3['addr'] + "\n"
+			if wlan3.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + wlan3['netmask'] + "\n"
+			if wlan3.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + wlan3['hwaddr'] + "\n"
+			self.iface = 'wlan3'
+
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
 		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
 		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
@@ -516,7 +524,7 @@ class SystemNetworkInfo(Screen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					if self.iface == 'wlan0' or self.iface == 'ra0':
+					if self.iface == 'wlan0' or self.iface == 'wlan3' or self.iface == 'ra0':
 						if status[self.iface]["essid"] == "off":
 							essid = _("No Connection")
 						else:

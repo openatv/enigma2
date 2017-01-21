@@ -147,16 +147,18 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		if SystemInfo["CanChangeOsdAlpha"]:
 			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 		if SystemInfo["CanChangeOsdPosition"]:
-			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user interface left/right")))
 			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
-			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))
+			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user interface left/right")))
 			self.list.append(getConfigListEntry(_("Height"), config.osd.dst_height, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
+			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))			
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 		self.onLayoutFinish.append(self.layoutFinished)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
+		if self.restoreService not in self.onClose:
+			self.onClose.append(self.restoreService)
 		self.selectionChanged()
 
 	def selectionChanged(self):
@@ -165,6 +167,14 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 	def layoutFinished(self):
 		self.setTitle(_(self.setup_title))
 		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
+
+	def restoreService(self):
+		try:
+			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.session.nav.stopService()
+			self.session.nav.playService(serviceRef)
+		except:
+			pass
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary

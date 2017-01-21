@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This skin is at github.com/OpenViX/enigma2/tree/master/data/display800 -->
 <skin>
 	<!-- ## ANALOGUE CLOCK ## -->
 	<screen name="AnalogueClock">
@@ -48,7 +49,7 @@
 	<screen name="LCDInfoBarStartEndTime">
 		<widget source="session.Event_Now" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDRecordIcon">
@@ -82,7 +83,7 @@
 	<screen name="LCDChannelSelectionStartEndTime">
 		<widget source="parent.ServiceEvent" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 
@@ -110,7 +111,7 @@
 	<screen name="LCDEPGStartEndTime">
 		<widget source="parent.Event" render="Label" position="360,390" size="380,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 
@@ -353,6 +354,16 @@
 		<widget source="SetupTitle" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
 		<widget source="SetupEntry" render="Label" position="40,200" size="720,160" foregroundColor="white" font="FdLcDLight;65" halign="center" valign="top" zPosition="2" />
 		<widget source="SetupValue" render="Label" position="40,380" size="720,70" foregroundColor="white" font="FdLcDLight;60" halign="center" valign="top" zPosition="2" />
+	</screen>
+
+	<!-- STANDBY -->
+	<screen name="StandbySummary" position="0,0" size="800,480"> 
+		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,100" font="FdLcD;100" foregroundColor="white" halign="center" valign="center" zPosition="10">
+			<convert type="ClockToText">ShortDate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="40,230" size="720,200" font="FdLcD;175" foregroundColor="white" halign="center" valign="center" zPosition="10">
+			<convert type="ClockToText">Default</convert>
+		</widget>
 	</screen>
 
 	<!-- ET PORTAL -->

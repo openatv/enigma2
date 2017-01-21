@@ -724,17 +724,16 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	int size=uc_shape.size();
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
 	uc_visual.resize(size);
-//		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-//	FriBidiChar array[size], target[size];
-// Works better in the data segment - remembering to free before return...
-	FriBidiChar *array = (FriBidiChar*)malloc(sizeof(FriBidiChar)*size);
-	if (size > 0 and array == NULL)
-		eFatal("[eTextPara] renderString: failed to get space for array");
-	FriBidiChar *target = (FriBidiChar*)malloc(sizeof(FriBidiChar)*size);
-	if (size > 0 and target == NULL)
-		eFatal("[eTextPara] renderString: failed to get space for target");
+		// gaaanz lahm, aber anders geht das leider nicht, sorry.
+	FriBidiChar *array = new FriBidiChar[size];
+	FriBidiChar *target = new FriBidiChar[size];
 	std::copy(uc_shape.begin(), uc_shape.end(), array);
-	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
+	if(!fribidi_log2vis(array, size, &dir, target, 0, 0, 0))
+	{
+		delete [] target;
+		delete [] array;
+		return -1;
+	}
 	uc_visual.assign(target, target+size);
 
 	glyphs.reserve(size);
@@ -875,10 +874,8 @@ nprint:				isprintable=0;
 		lineChars.push_back(charCount);
 		charCount=0;
 	}
-// Now free this space...
-	free(array);
-	free(target);
-
+	delete [] target;
+	delete [] array;
 	return 0;
 }
 

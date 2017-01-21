@@ -49,11 +49,7 @@ class Console(Screen):
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
 			lastpage = self["text"].isAtLastPage()
-			str = self["text"].getText()
-			str += _("Execution finished!!")
-			self["text"].setText(str)
-			if lastpage:
-				self["text"].lastPage()
+			self["text"].appendText(_("Execution finished!!"))
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
@@ -66,7 +62,4 @@ class Console(Screen):
 			self.container.dataAvail.remove(self.dataAvail)
 
 	def dataAvail(self, str):
-		lastpage = self["text"].isAtLastPage()
-		self["text"].setText(self["text"].getText() + str)
-		if lastpage:
-			self["text"].lastPage()
+		self["text"].appendText(str)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
+<!-- This skin is at github.com/OpenViX/enigma2/tree/master/data/display400 -->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -223,7 +224,7 @@
 			<convert type="ClockToText">FullDate</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="0,38" size="400,160" font="FdLcD;150" halign="center" noWrap="1" foregroundColor="blue">
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update_stable.png" position="280,207" size="30,30">
 			<convert type="ConditionalShowHide"/>

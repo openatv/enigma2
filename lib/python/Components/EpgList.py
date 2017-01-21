@@ -560,12 +560,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		height = esize.height()
 		if self.type == EPG_TYPE_MULTI:
 			fontSize = self.eventFontSizeMulti + config.epgselection.multi_eventfs.value
-			servW = int((fontSize + 4) * 6.5)  # Service font is 4 px larger
-			if config.usage.time.wide.value:
-				progW = int(fontSize * 6.8)
-			else:
-				progW = int(fontSize * 6.8)
-			servLeft, servWidth, progLeft, progWidth, progHeight, descLeft = skin.parameters.get("MultiEPGColumnFormats", (0, servW - 10, servW, progW, height - 8, servW + progW + 10))
+			servW = int((fontSize + 4) * 5.9)  # Service font is 4 px larger
+			progW = int(fontSize * 6.8)
+			servLeft, servWidth, progLeft, progWidth, progHeight, descLeft = skin.parameters.get("EPGMultiEPGColumnFormats", (0, servW, servW + 10, progW, height - 8, servW + progW + 20))
+			# if config.usage.time.wide.value:
+			# 	progW = int(fontSize * 6.8)
 			progTop = int((height - progHeight) / 2)
 			self.service_rect = Rect(servLeft, 0, servWidth, height)
 			self.progress_rect = Rect(progLeft, progTop, progWidth, progHeight)
@@ -591,7 +590,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				if self.showServiceNumber:
 					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.infobar_servfs.value)
 					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000" ).width()
-
 			w = (channelw + piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
@@ -602,13 +600,15 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
 			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
-			self.weekday_rect = Rect(0, 0, int(fontSize * 1.9), height)
+			dayW = int(fontSize * 2.1)
+			timeW = int(fontSize * 6.3)
+			dayLeft, dayWidth, timeLeft, timeWidth, descOffset = skin.parameters.get("EPGSingleEPGColumnFormats", (0, dayW, dayW + 10, timeW, 20))
 			if config.usage.time.wide.value:
-				scale = 7.4
-			else:
-				scale = 6.3
-			self.datetime_rect = Rect(self.weekday_rect.width() + 20, 0, int(fontSize * scale), height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width() + 20, 0, width - self.datetime_rect.left() - self.datetime_rect.width() - 20, height)
+				timeWidth = int(timeWidth * 1.25)
+			self.weekday_rect = Rect(dayLeft, 0, dayWidth, height)
+			self.datetime_rect = Rect(timeLeft, 0, timeWidth, height)
+			descLeft = timeLeft + timeWidth + descOffset
+			self.descr_rect = Rect(descLeft, 0, width - descLeft, height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -1531,7 +1531,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 					border_width = self.borderWidth, border_color = self.borderColor))
 
 			for x in range(0, num_lines):
-				timetext = strftime(config.usage.time.short.value, localtime(time_base + (x * timeStepsCalc)))
+				ttime = localtime(time_base + (x * timeStepsCalc))
+				if config.usage.time.enabled.value:
+					timetext = strftime(config.usage.time.short.value, ttime)
+				else:
+					if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
+						timetext = strftime("%H:%M", ttime)
+					else:
+						if int(strftime("%H", ttime)) > 12:
+							timetext = strftime("%-I:%M", ttime) + _('pm')
+						else:
+							timetext = strftime("%-I:%M", ttime) + _('am')
 				res.append(MultiContentEntryText(
 					pos = (service_rect.width() + xpos, 0),
 					size = (incWidth, self.listHeight),

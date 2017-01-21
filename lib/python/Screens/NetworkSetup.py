@@ -571,17 +571,13 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.default = None
 
 		if iNetwork.isWirelessInterface(self.iface):
-			if iNetwork.detectWlanModule(self.iface) == 'wl':
-				from Plugins.SystemPlugins.WirelessLan.Wlan import wl
-				self.ws = wl()
-			else:
-				from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant
-				self.ws = wpaSupplicant()
+			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant
+			self.ws = wpaSupplicant()
 			self.encryptionlist = []
 			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
-			if iNetwork.detectWlanModule(self.iface) != 'wl':
+			if not os_path.exists("/tmp/bcm/" + self.iface):
 				self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
 			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.weplist = []
@@ -642,19 +638,22 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						if p.__call__.has_key("configStrings"):
 							self.configStrings = p.__call__["configStrings"]
 
-						self.hiddenSSID = getConfigListEntry(_("Hidden network"), config.plugins.wlan.hiddenessid)
-						self.list.append(self.hiddenSSID)
+						isExistBcmWifi = os_path.exists("/tmp/bcm/" + self.iface)
+						if not isExistBcmWifi:
+							self.hiddenSSID = getConfigListEntry(_("Hidden network"), config.plugins.wlan.hiddenessid)
+							self.list.append(self.hiddenSSID)
 						self.wlanSSID = getConfigListEntry(_("Network name (SSID)"), config.plugins.wlan.essid)
 						self.list.append(self.wlanSSID)
 						self.encryption = getConfigListEntry(_("Encryption"), config.plugins.wlan.encryption)
 						self.list.append(self.encryption)
-
-						self.encryptionType = getConfigListEntry(_("Encryption key type"), config.plugins.wlan.wepkeytype)
+						if not isExistBcmWifi:
+							self.encryptionType = getConfigListEntry(_("Encryption key type"), config.plugins.wlan.wepkeytype)
 						self.encryptionKey = getConfigListEntry(_("Encryption key"), config.plugins.wlan.psk)
 
 						if config.plugins.wlan.encryption.value != "Unencrypted":
 							if config.plugins.wlan.encryption.value == 'WEP':
-								self.list.append(self.encryptionType)
+								if not isExistBcmWifi:
+									self.list.append(self.encryptionType)
 							self.list.append(self.encryptionKey)
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

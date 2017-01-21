@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
+<!-- This skin is at github.com/OpenViX/enigma2/tree/master/data/vfd128 -->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -201,7 +202,7 @@
 			<convert type="ClockToText">ShortDate</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="0,15" size="120,22" font="FdLcD;22" halign="left" noWrap="1">
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png"  position="105,22" size="19,10">
 			<convert type="ConditionalShowHide">Blink</convert>

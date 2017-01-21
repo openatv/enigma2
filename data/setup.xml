@@ -13,12 +13,11 @@
 	</setup>
 	<setup key="usage" title="Customize settings">
 		<item level="0" text="Setup mode" description="Choose which level of menu/settings to display. 'Expert' level shows all items.">config.usage.setup_level</item>
-		<item level="0" text="Show menu numbers" description="This option allows you to show menu number quick links.">config.usage.menu_show_numbers</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners.">config.usage.alternatives_priority</item>
 		<item level="2" text="Enable fallback remote receiver" description="Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
-		<item level="2" text="Fallback remote receiver URL" description="Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'IP_second_box:8001'.">config.usage.remote_fallback</item>
+		<item level="2" text="Fallback remote receiver URL" description="Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'.">config.usage.remote_fallback</item>
 		<item level="2" text="Enable timer conflict detection" description="When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Preferred tuner DVB-S" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-S_priority_tuner_available">config.usage.frontend_priority_dvbs</item>
@@ -68,6 +67,7 @@
 		<item level="1" text="Show full menu path" description="This option allows you to show the full menu path">config.usage.show_menupath</item>
 		<item level="1" text="Sort setting screens alphabetically" description="This option allows you to disable sorting of the option in setting screens">config.usage.sort_settings</item>
 		<item level="1" text="Sort menu screens alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item>
+		<item level="0" text="Show menu numbers" description="This option allows you to show menu number quick links.">config.usage.menu_show_numbers</item>		
 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item>
 		<item level="1" text="Show PVR status in Movie Player infobar" description="This option moves the PVR status from the separate window into the Movie Player infobar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on exit" description="When enabled, the PiP can be closed by the EXIT button.">config.usage.pip_hideOnExit</item>
@@ -268,9 +268,6 @@
 		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum number of days" description="Logs older than the specified number of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum total space used (MB)" description="When maximum space for all logs is reached, the oldest logs will be deleted.">config.crash.sizeloglimit</item>
-		<item level="2" text="Vix forum user name" description="Enter your forum user name, to make it easier to trace logs.">config.logmanager.user</item>
-		<item level="2" text="e-mail address" description="Enter your e-mail address to send a copy of the log to.">config.logmanager.useremail</item>
-		<item level="2" text="Send yourself a copy" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
 		<item level="1" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after the specified time.">config.timeshift.startdelay</item>
@@ -331,7 +328,7 @@
 		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.infobar_piconwidth</item>
 		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all.">config.epgselection.infobar_infowidth</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.infobar_timeline24h</item>
+		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.\nNOTE: This setting is not used if the global time format settings are available.">config.epgselection.infobar_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
 	<setup key="epggraphical" title="GraphicalEPG settings">
@@ -362,7 +359,7 @@
 		<item level="2" text="Info icon width" description="Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all.">config.epgselection.graph_infowidth</item>
 		<item level="2" text="Position of recording icons" description="Set the position of the recording icons">config.epgselection.graph_rec_icon_height</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.">config.epgselection.graph_timeline24h</item>
+		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.\nNOTE: This setting is not used if the global time format settings are available.">config.epgselection.graph_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
 	<setup key="pluginbrowsersetup" title="Plugin browser settings">
