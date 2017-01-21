@@ -58,9 +58,9 @@ def getChipSetString():
 			return "unavailable"
 
 def getCPUSpeedString():
-	if getMachineBuild() in ('vusolo4k'):
+	if getMachineBuild() in ('vusolo4k','vuultimo4k'):
 		return "1,5 GHz"
-	elif getMachineBuild() in ('vuuno4k','vuultimo4k','dm900', 'gb7252', 'dags7252'):
+	elif getMachineBuild() in ('vuuno4k','dm900', 'gb7252', 'dags7252'):
 		return "1,7 GHz"
 	elif getMachineBuild() in ('hd51','hd52','sf4008','vs1500'):
 		try:
@@ -120,7 +120,9 @@ def getCpuCoresString():
 			if len(splitted) > 1:
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("processor"):
-					if int(splitted[1]) > 0:
+					if getMachineBuild() in ('vuultimo4k'):
+						cores = 4
+					elif int(splitted[1]) > 0:
 						cores = 2
 					else:
 						cores = 1
