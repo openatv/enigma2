@@ -133,6 +133,7 @@
 		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="20,170" size="440,20" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
+		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="20,200" size="130,40" font="FdLcD;40" halign="center" valign="center" >
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
