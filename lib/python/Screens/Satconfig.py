@@ -6,10 +6,12 @@ from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager
 from Components.Button import Button
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigSatlist, ConfigYesNo
+from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigSatlist, ConfigYesNo, ConfigSubsection
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
+from Components.Sources.Boolean import Boolean
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.ServiceStopScreen import ServiceStopScreen
@@ -22,6 +24,102 @@ from datetime import datetime
 from os import path
 
 from  Tools.BugHunting import printCallSequence
+
+config.tunermisc = ConfigSubsection()
+if SystemInfo["ForceLNBPowerChanged"]:
+	config.tunermisc.forceLnbPower = ConfigSelection(default = "off", choices = [ ("on", _("Yes")), ("off", _("No"))] )
+	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
+
+if SystemInfo["ForceToneBurstChanged"]:
+	config.tunermisc.forceToneBurst = ConfigSelection(default = "disable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
+	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
+
+def setForceLNBPowerChanged(configElement):
+	f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
+	f.write(configElement.value)
+	f.close()
+
+def setForceToneBurstChanged(configElement):
+	f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
+	f.write(configElement.value)
+	f.close()
+
+class TunerSetup(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = ["Setup" ]
+		self.setup_title = _("Tuner settings")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label()
+
+		self.onChangedEntry = [ ]
+
+		self.list = [ ]
+		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+
+		from Components.ActionMap import ActionMap
+		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
+			{
+				"cancel": self.keyCancel,
+				"save": self.apply,
+				"menu": self.closeRecursive,
+			}, -2)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["description"] = Label("")
+
+		self.createSetup()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
+
+	def createSetup(self):
+		level = config.usage.setup_level.index
+
+		self.list = [ ]
+
+		if level >= 1:
+			if SystemInfo["ForceLNBPowerChanged"]:
+				self.list.append(getConfigListEntry(_("Force LNB Power"), config.tunermisc.forceLnbPower, _("Force LNB Tuner Power settings.")))
+			if SystemInfo["ForceToneBurstChanged"]:
+				self.list.append(getConfigListEntry(_("Force ToneBurst"), config.tunermisc.forceToneBurst, _("Force LNB Tuner ToneBurst settings.")))
+
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+		self.createSetup()
+
+	def confirm(self, confirmed):
+		self.keySave()
+
+	def apply(self):
+		self.keySave()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -204,10 +302,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Tone amplitude"), nimConfig.toneAmplitude))
 			if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
 				self.list.append(getConfigListEntry(_("SCPC optimized search range"), nimConfig.scpcSearchRange))
-			if path.exists("/proc/stb/frontend/fbc/force_lnbon") and config.usage.setup_level.index >= 2: # expert
-				self.list.append(getConfigListEntry(_("Force LNB Power"), self.nimConfig.dvbs.forceLnbPower))
-			if path.exists("/proc/stb/frontend/fbc/force_toneburst") and config.usage.setup_level.index >= 2: # expert
-				self.list.append(getConfigListEntry(_("Force ToneBurst"), self.nimConfig.dvbs.forceToneBurst))
 
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.dvbc.configMode)
