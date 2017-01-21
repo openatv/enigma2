@@ -611,7 +611,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.list.append(self.secondaryDNSEntry)
 
 			havewol = False
-			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'gbipbox', 'gbquad', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
+			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'gbipbox', 'gbquad', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'vuultimo4k'):
 				havewol = True
 			if getBoxType() == 'et10000' and self.iface == 'eth0':
 				havewol = False
@@ -664,6 +664,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 		if self["config"].getCurrent() == self.WakeOnWiFiEntry:
 			iNetwork.onlyWoWifaces[self.iface] = self.onlyWakeOnWiFi.value
+			open(SystemInfo["WakeOnLAN"], "w").write(self.onlyWakeOnWiFi.value and "enable" or "disable")
 			self.createSetup()
 		if iNetwork.isWirelessInterface(self.iface):
 			if self["config"].getCurrent() == self.encryption:
@@ -692,7 +693,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if ret == True:
 			num_configured_if = len(iNetwork.getConfiguredAdapters())
 			if num_configured_if >= 1:
-				if self.iface in iNetwork.getConfiguredAdapters():
+				if self.iface in iNetwork.getConfiguredAdapters() or (iNetwork.onlyWoWifaces.has_key(self.iface) and iNetwork.onlyWoWifaces[self.iface] is True):
 					self.applyConfig(True)
 				else:
 					self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("A second configured interface has been found.\n\nDo you want to disable the second network interface?"), default = True)
@@ -786,7 +787,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if not result:
 			return
 		if SystemInfo["WakeOnLAN"]:
-			config.network.wol.setValue(self.wolstartvalue)	
+			config.network.wol.setValue(self.wolstartvalue)
 		if self.oldInterfaceState is False:
 			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
@@ -1088,6 +1089,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
 			self.updateStatusbar()
+			if iNetwork.getAdapterAttribute(self.iface, "up") is True and iNetwork.onlyWoWifaces.has_key(self.iface) and iNetwork.onlyWoWifaces[self.iface] is True:
+				iNetwork.deactivateInterface(self.iface, self.deactivateInterfaceCB)
+
+	def deactivateInterfaceCB(self, data):
+		iNetwork.getInterfaces()
 
 	def WlanScanClosed(self,*ret):
 		if ret[0] is not None:
@@ -2478,8 +2484,8 @@ class NetworkSamba(Screen):
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
-		import process		
-		p = process.ProcessList()		
+		import process
+		p = process.ProcessList()
 		samba_process = str(p.named('smbd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
