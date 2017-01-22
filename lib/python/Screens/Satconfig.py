@@ -911,7 +911,6 @@ class NimSelection(Screen):
 					nimConfig = nimmanager.getNimConfig(x.slot).dvbs
 					configMode = nimConfig.configMode.value
 					if isFBCLink(x.slot) and configMode != "advanced":
-						from enigma import getLinkedSlotID
 						link = getLinkedSlotID(x.slot)
 
 						if link == -1:
