@@ -135,7 +135,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
 
-			cmd1 = "opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base' > /tmp/installed-list.txt"
+			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^joe$|^mc$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^streamproxy$' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
