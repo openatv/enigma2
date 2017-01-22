@@ -36,24 +36,26 @@ def InitConfig():
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 	else:	
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
-																							'/etc/tuxbox/config/', '/etc/auto.network', '/etc/enigma2/automounts.xml', '/etc/passwd', '/etc/shadow',
-																							'/etc/dropbear/', '/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
-																							'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
-																							'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
-																							'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
-																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
-																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
-																							'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
-																							'/usr/share/enigma2/MetrixHD/skinparts/',
-																							'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
-																							'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
-																							'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
-																							'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
-																							eEnv.resolve("${datadir}/enigma2/keymap.usr")]\
-																							+eEnv_resolve_multi('/usr/bin/*cam*')\
-																							+eEnv_resolve_multi('/etc/*.emu')\
-																							+eEnv_resolve_multi('/etc/init.d/softcam*')))
+	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'),
+		'/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
+		'/etc/tuxbox/config/', '/etc/auto.network', '/etc/enigma2/automounts.xml', '/etc/passwd', '/etc/shadow',
+		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
+		'/etc/dropbear/', '/etc/default/dropbear', '/home/root/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
+		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
+		'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
+		'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
+		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
+		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
+		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
+		'/usr/share/enigma2/MetrixHD/skinparts/',
+		'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
+		'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
+		'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
+		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
+		eEnv.resolve("${datadir}/enigma2/keymap.usr")]\
+		+eEnv_resolve_multi('/usr/bin/*cam*')\
+		+eEnv_resolve_multi('/etc/*.emu')\
+		+eEnv_resolve_multi('/etc/init.d/softcam*')))
 	config.plugins.configurationbackup.backupdirs         = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
@@ -133,11 +135,12 @@ class BackupScreen(Screen, ConfigListScreen):
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
 
-			cmd1 = "opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base' > /tmp/installed-list.txt"
+			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^joe$|^mc$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^streamproxy$' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
+			cmd3 = cmd3 + " --exclude home/root/.cache"
 			cmd = [cmd1, cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
