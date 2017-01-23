@@ -191,7 +191,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices["loopthrough"] = _("Loop through to")
 			if isFBCLink(self.nim.slot):
 				choices = { "nothing": _("not configured"),
-						"advanced": _("advanced")}
+						"advanced": _("Advanced")}
 			if self.nim.isMultiType():
 				self.nimConfig.dvbs.configMode.setChoices(choices, default = "nothing")
 			else:
