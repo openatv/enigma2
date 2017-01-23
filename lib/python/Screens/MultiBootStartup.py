@@ -154,8 +154,8 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		Image 3: boot emmcflash0.kernel3 'root=/dev/mmcblk0p7 rw rootwait'
 		Image 4: boot emmcflash0.kernel4 'root=/dev/mmcblk0p9 rw rootwait'
 		#options
-		Standard:     hd51_4.boxmode=1 (or no option)
-		Experimental: hd51_4.boxmode=12
+		Standard:     hd51_4.boxmode=12 (or no option)
+		Experimental: hd51_4.boxmode=1
 		#example
 		boot emmcflash0.kernel1 'root=/dev/mmcblk0p3 rw rootwait hd51_4.boxmode=12'
 		
@@ -284,11 +284,11 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			#read boxmode and new boxmode settings
 			cmdx = 5
 			cmd4 = "rootwait'"
-			bootmode = '1'
+			bootmode = '12'
 			if 'boxmode' in ENTRY:
 				cmdx = 6
 				cmd4 = "rootwait"
-				bootmode = temp[5].split("%s_4.boxmode=")[1].replace("'",'') %getMachineBuild()
+				bootmode = temp[5].split("%s_4.boxmode=" %getMachineBuild())[1].replace("'",'')
 			setmode = self.optionsList[self.option][0].split('=')[1]
 			#verify entries
 			if cmdx != len(temp) or 'boot' != temp[0] or 'rw' != temp[3] or cmd4 != temp[4] or kernel != root-kernel-1 or "'" != ENTRY[-1:]:
