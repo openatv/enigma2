@@ -261,7 +261,7 @@ class LogManager(Screen):
 		else:
 			self["key_red"].setText(_("Debug Logs"))
 			self.logtype = 'crashlogs'
-			self.matchingPattern = 'enigma2_crash_'
+			self.matchingPattern = 'Enigma2_crash_'
 		self["list"].matchingPattern = re.compile(self.matchingPattern)
 		self["list"].changeDir(self.defaultDir)
 
