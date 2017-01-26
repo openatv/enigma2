@@ -126,7 +126,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_TEXT;
 	}
 	else if (ev->code == KEY_BACK) {
-		ev->code = KEY_LIST;
+		ev->code = KEY_MEDIA;
 	}
 	else if (ev->code == KEY_PLAYPAUSE) {
 		ev->code = KEY_PLAY;
