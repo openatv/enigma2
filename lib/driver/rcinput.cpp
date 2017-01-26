@@ -109,7 +109,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
-#if TRIVIARRC
+#if TIVIARRC
 	if (ev->code == KEY_EPG) {
 		ev->code = KEY_INFO;
 	}

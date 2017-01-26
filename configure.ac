@@ -177,7 +177,7 @@ AM_CONDITIONAL(TMNANO2T, test "$BOXTYPE" == tmnano2t)
 AM_CONDITIONAL(TMNANOSE, test "$BOXTYPE" == tmnanose)
 AM_CONDITIONAL(TMNANOSEM2, test "$BOXTYPE" == tmnanosem2)
 AM_CONDITIONAL(TMNANOSEM2PLUS, test "$BOXTYPE" == tmnanosem2plus)
-AM_CONDITIONAL(TRIVIARMINI, test "$BOXTYPE" == triviarmini)
+AM_CONDITIONAL(TIVIARMIN, test "$BOXTYPE" == tiviarmin)
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
 AM_CONDITIONAL(VUULTIMO, test "$BOXTYPE" == vuultimo)
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
@@ -534,8 +534,8 @@ if test "$BOXTYPE" == "formuler1" -o "$BOXTYPE" == "formuler3" -o "$BOXTYPE" == 
 	AC_DEFINE(KEY_BOOKMARKS_TO_KEY_MEDIA, 1,[define when rc sends a KEY_BOOKMARKS event for its KEY_MEDIA key])
 fi
 
-if test "$BOXTYPE" == "triviarmini" ; then
-	AC_DEFINE(TRIVIARRC, 1,[define use TRIVIARRC KEY MAPPING])
+if test "$BOXTYPE" == "tiviarmin" ; then
+	AC_DEFINE(TIVIARRC, 1,[define use TIVIARRC KEY MAPPING])
 fi
 
 if test "$BOXTYPE" == "ew7358" -o "$BOXTYPE" == "ew7362"; then
