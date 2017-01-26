@@ -67,7 +67,7 @@ def skin_user_skinname():
 	skin_name = config.skin.primary_skin.value
 	skin_base = skin_name[:skin_name.rfind('/')]
 	skin_path = resolveFilename(SCOPE_SKIN, skin_name)
-	if not os.path.isdir(skin_path):
+	if not os.path.isfile(skin_path):
 		print "[skin::skin_user_skinname] ignoring not-found skin:", skin_path
 		return None
 	name = "skin_user_" + skin_base + ".xml"
