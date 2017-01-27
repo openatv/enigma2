@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This skin is at github.com/OpenViX/enigma2/tree/master/data/display720 -->
 <skin>
 	<!-- ## ANALOGUE CLOCK ## -->
 	<screen name="AnalogueClock">
@@ -48,7 +49,7 @@
 	<screen name="LCDInfoBarStartEndTime">
 		<widget source="session.Event_Now" render="Label" position="300,400" size="400,70" font="FdLcD;60" foregroundColor="green" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDRecordIcon">
@@ -59,7 +60,7 @@
 	</screen>
 	<screen name="LCDTime">
 		<widget source="global.CurrentTime" render="Label" position="415,490" size="282,70" font="FdLcD;60" foregroundColor="white" halign="right" valign="center" zPosition="2">
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDTunerInfo">
@@ -177,7 +178,7 @@
 	<screen name="LCDChannelSelectionStartEndTime">
 		<widget source="parent.ServiceEvent" render="Label" position="300,400" size="400,70" font="FdLcD;60" foregroundColor="green" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	
@@ -205,7 +206,7 @@
 	<screen name="LCDEPGStartEndTime">
 		<widget source="parent.Event" render="Label" position="300,400" size="400,70" font="FdLcD;60" foregroundColor="green" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	
@@ -261,19 +262,19 @@
 	<screen name="LCDPiconInfoBarStartEndTime">
 		<widget source="session.Event_Now" render="Label" position="300,150" size="400,70" font="FdLcD;60" foregroundColor="green" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconChannelSelectionStartEndTime">
 		<widget source="parent.ServiceEvent" render="Label" position="300,150" size="400,70" font="FdLcD;60" foregroundColor="green" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconEPGStartEndTime">
 		<widget source="parent.Event" render="Label" position="300,150" size="400,70" font="FdLcD;60" foregroundColor="green" halign="right" valign="center">
 			<convert type="EventTime">Times</convert>
-			<convert type="ClockToText">Default,Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 	<screen name="LCDPiconWeather">
@@ -477,7 +478,7 @@
 		<widget source="parent.Title" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center"  />
 		<widget name="scan_progress" render="Progress" position="27,400" size="660,25" borderWidth="2"  foregroundColor="#e5b243" />
 		<widget source="global.CurrentTime" render="Label" position="500,490" size="182,52" halign="right" font="FdLcD;50">
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 

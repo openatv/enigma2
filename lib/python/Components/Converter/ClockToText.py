@@ -34,7 +34,15 @@ class ClockToText(Converter, object):
 		#
 		"Timestamp": lambda t: str(t),
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD": lambda t: strftime(config.usage.date.short.value + " " + config.usage.time.short.value, localtime(t)),  # _("%e/%m %R")
+		"VFD": lambda t: strftime(config.usage.date.compact.value + config.usage.time.short.value, localtime(t)),  # _("%e%m%R")
+		# 		TRANSLATORS: VFD08 hour:minute in strftime() format! See 'man strftime'
+		"VFD08": lambda t: strftime(config.usage.time.short.value, localtime(t)),  # _("%R")
+		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
+		"VFD12": lambda t: strftime(config.usage.date.compact.value + config.usage.time.short.value, localtime(t)),  # _("%e%b%R")
+		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
+		"VFD14": lambda t: strftime(config.usage.date.short.value + " " + config.usage.time.short.value, localtime(t)),  # _("%e/%b %R")
+		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
+		"VFD18": lambda t: strftime(config.usage.date.dayshort.value + " " + config.usage.time.short.value, localtime(t)),  # _("%a %e/%b %R")
 		# 		TRANSLATORS: full time representation hour:minute:seconds
 		"WithSeconds": lambda t: strftime(config.usage.time.long.value, localtime(t))  # _("%T")
 	}
@@ -47,12 +55,20 @@ class ClockToText(Converter, object):
 		self.separator = " - "
 		self.formats = []
 
-		buffer = type.lstrip()
-		if buffer[0:5] == "Parse":
-			parse = buffer[5:6]
+		type = type.lstrip()
+		if type[0:5] == "Parse":
+			parse = type[5:6]
 		else:
-			buffer.replace(';', ',')  # Some builds use ";" as a separator, most use ",".  If "Parse" is NOT used change ";" to "," and parse on ",".
-			parse = ","
+			# OpenViX used ";" as the only ClockToText token separator.  For legacy
+			# support if the first token is "Format" skip the multiple parse character
+			# processing.
+			#
+			# Otherwise, some builds use ";" as a separator, most use ",".  If "Parse"
+			# is NOT used change "," to ";" and parse on ";".
+			#
+			parse = ";"
+			if type[0:6] != "Format":
+				type = type.replace(",", ";")
 
 		args = [arg.lstrip() for arg in type.split(parse)]
 		for arg in args:

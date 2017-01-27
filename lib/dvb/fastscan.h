@@ -229,6 +229,7 @@ class eFastScan: public Object, public iObject
 	eDVBFrontendParametersSatellite transponderParameters;
 	bool originalNumbering;
 	bool useFixedServiceInfo;
+	bool createRadioBouquet;
 	int versionNumber;
 	std::string providerName, bouquetFilename;
 	int m_pid;
@@ -241,12 +242,11 @@ class eFastScan: public Object, public iObject
 	void networkTableReady(int error);
 
 	void fillBouquet(eBouquet *bouquet, std::map<int, eServiceReferenceDVB> &numbered_channels);
-	int getOrbpos(FastScanServiceListConstIterator);
 	void parseResult();
 #endif /* no SWIG */
 
 public:
-	eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering = false, bool fixedserviceinfo = false);
+	eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering = false, bool fixedserviceinfo = false, bool createRadioBouquet = false);
 	~eFastScan();
 
 	void start(int frontendid = 0);

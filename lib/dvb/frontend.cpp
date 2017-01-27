@@ -520,8 +520,6 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
 	,m_fd(-1), m_dvbversion(0), m_rotor_mode(false), m_need_rotor_workaround(false), m_multitype(false)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
-	char filename[64];
-
 	m_filename = devicenodename;
 
 	m_timeout = eTimer::create(eApp);
@@ -536,14 +534,9 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
 	m_data[FREQ_OFFSET] = 0;
 	m_idleInputpower[0]=m_idleInputpower[1]=0;
 
-	snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/fbc_id", m_slotid);
-
-	if (access(filename, F_OK) == 0)
-		m_fbc = true;
-
 	ok = !openFrontend();
 	closeFrontend();
-}
+};
 
 void eDVBFrontend::reopenFrontend()
 {

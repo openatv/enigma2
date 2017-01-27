@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Skin: LCD mod from HD75hd -->
+<!-- This skin is at github.com/OpenViX/enigma2/tree/master/data/display480 -->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -297,7 +298,7 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="480,320">
 		<widget source="global.CurrentTime" render="Label" position="center,50" size="225,100" font="FdLcD;85" halign="center" transparent="1" noWrap="1" >
-			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<eLabel position="100,150" size="200,1" backgroundColor="white" />
 		<widget source="global.CurrentTime" render="Label" position="0,165" size="400,34" font="FdLcD;34" halign="center" transparent="1" noWrap="1">
