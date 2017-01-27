@@ -4,6 +4,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
 from Components.config import config
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from time import localtime, mktime, strftime
 
 
@@ -22,8 +23,15 @@ class ETSIClassifications(dict):
 			age += 3
 			return _("Minimum age %d years") % age
 
+	def imageRating(self, age):
+		if age == 0:
+			return "ratings/ETSI-ALL.png"
+		elif age <= 15:
+			age += 3
+			return "ratings/ETSI-%d.png" % age
+
 	def __init__(self):
-		self.update([(i, (self.shortRating(c), self.longRating(c))) for i, c in enumerate(range(0, 15))])
+		self.update([(i, (self.shortRating(c), self.longRating(c), self.imageRating(c))) for i, c in enumerate(range(0, 15))])
 
 
 class AusClassifications(dict):
@@ -41,9 +49,20 @@ class AusClassifications(dict):
 		"AV": _("Adult Audience, Strong Violence 15+"),
 		"R": _("Restricted 18+")
 	}
+	IMAGES = {
+		"": "ratings/blank.png",
+		"P": "ratings/AUS-P.png",
+		"C": "ratings/AUS-C.png",
+		"G": "ratings/AUS-G.png",
+		"PG": "ratings/AUS-PG.png",
+		"M": "ratings/AUS-M.png",
+		"MA": "ratings/AUS-MA.png",
+		"AV": "ratings/AUS-AV.png",
+		"R": "ratings/AUS-R.png"
+	}
 
 	def __init__(self):
-		self.update([(i, (c, self.LONGTEXT[c])) for i, c in enumerate(self.SHORTTEXT)])
+		self.update([(i, (c, self.LONGTEXT[c], self.IMAGES[c])) for i, c in enumerate(self.SHORTTEXT)])
 
 
 # Each country classification object in the map tuple must be an object that
@@ -55,8 +74,8 @@ class AusClassifications(dict):
 # If there is no matching country then the default ETSI should be selected.
 
 countries = {
-	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age)),
-	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age))
+	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ETSI-na.png")),
+	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png"))
 }
 
 
@@ -84,6 +103,7 @@ class EventName(Converter, object):
 
 	RAWRATING = 31
 	RATINGCOUNTRY = 32
+	RATINGICON = 33
 
 	KEYWORDS = {
 		# Arguments...
@@ -111,6 +131,7 @@ class EventName(Converter, object):
 		"ThirdDescription": ("type", THIRD_DESCRIPTION),
 		"RawRating": ("type", RAWRATING),
 		"RatingCountry": ("type", RATINGCOUNTRY),
+		"RatingIcon": ("type", RATINGICON),
 		# Options...
 		"Separated": ("separator", "\n\n"),
 		"NotSeparated": ("separator", "\n"),
@@ -120,6 +141,7 @@ class EventName(Converter, object):
 
 	RATSHORT = 0
 	RATLONG = 1
+	RATICON = 2
 
 	RATNORMAL = 0
 	RATDEFAULT = 1
@@ -175,7 +197,7 @@ class EventName(Converter, object):
 
 		if self.type == self.NAME:
 			return self.trimText(event.getEventName())
-		elif self.type in (self.RATING, self.SRATING):
+		elif self.type in (self.RATING, self.SRATING, self.RATINGICON):
 			rating = event.getParentalData()
 			if rating:
 				age = rating.getRating()
@@ -190,8 +212,9 @@ class EventName(Converter, object):
 				if rating:
 					if self.type == self.RATING:
 						return self.trimText(rating[self.RATLONG])
-					else:
+					elif self.type == self.SRATING:
 						return self.trimText(rating[self.RATSHORT])
+					return resolveFilename(SCOPE_ACTIVE_SKIN, rating[self.RATICON])
 		elif self.type == self.GENRE:
 			if not config.usage.show_genre_info.value:
 				return ""
