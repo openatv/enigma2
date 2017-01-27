@@ -218,6 +218,16 @@ eConsolePy_setCWD(eConsolePy* self, PyObject *args)
 }
 
 static PyObject *
+eConsolePy_setBufferSize(eConsolePy* self, PyObject *args)
+{
+	int size = 0;
+	if (!PyArg_ParseTuple(args, "i", &size))
+		return NULL;
+	self->cont->setBufferSize(size);
+	Py_RETURN_NONE;
+}
+
+static PyObject *
 eConsolePy_kill(eConsolePy* self)
 {
 	self->cont->kill();
@@ -290,6 +300,9 @@ eConsolePy_readFromFile(eConsolePy* self, PyObject *args)
 static PyMethodDef eConsolePy_methods[] = {
 	{"setCWD", (PyCFunction)eConsolePy_setCWD, METH_VARARGS,
 	 "set working dir"
+	},
+	{"setBufferSize", (PyCFunction)eConsolePy_setBufferSize, METH_VARARGS,
+	 "set transfer buffer size"
 	},
 	{"execute", (PyCFunction)eConsolePy_execute, METH_VARARGS,
 	 "execute command"

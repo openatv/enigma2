@@ -543,7 +543,7 @@ class SystemNetworkInfo(AboutBase):
 		self.list.updateScreen()
 
 	def updateInternetStatus(self, restart=False):
-		if (iNetwork.PingConsole is None or len(iNetwork.PingConsole.appContainers) == 0):
+		if (iNetwork.pingConsole is None or len(iNetwork.pingConsole.appContainers) == 0):
 			iNetwork.checkNetworkState(self.checkNetworkCB)
 		if(restart):
 			self.inetPollTimer.start(self.inetPollTime)

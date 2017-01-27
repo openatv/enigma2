@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- This skin is at github.com/OpenViX/enigma2/tree/master/data/display800 -->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -14,12 +15,12 @@
 		<color color="#ffffff" name="WindowTitleForeground"/>
 		<color color="#000000" name="WindowTitleBackground"/>
 	</windowstyle>
-	
-	<fonts>   
+
+	<fonts>
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 		<font filename="verdana.ttf" name="FdLcDLight" scale="100"/>
 	</fonts>
-	
+
 	<colors>
 		<color name="transparent" value="#ffffffff" />
 		<color name="red" value="#00f50808" />
@@ -30,9 +31,9 @@
 		<color name="black" value="#00000000" />
 		<color name="grey" value="#00b3b3b3" />
 	</colors>
-	
+
 	<!-- MAIN -->
-	
+
 	<!-- CHANNEL SELECTION-->
 	<screen name="ChannelSelection_summary" position="0,0" size="800,480"> 
 		<panel name="LCDChannelSelectionChannelName" />
@@ -47,7 +48,7 @@
 			<convert type="RdsInfo">RtpText</convert>
 		</widget>
 	</screen>
-	
+
 	<!-- EPG -->
 	<screen name="GraphicalEPGPIG_summary" position="0,0" size="800,480">
 		<panel name="LCDEPGChannelName" />
@@ -66,7 +67,7 @@
 	<screen name="EPGSelectionMulti_summary" position="0,0" size="800,480">
 		<panel name="GraphicalEPGPIG_summary" />
 	</screen>
-	
+
 	<!-- INFOBAR -->
 	<screen name="InfoBarSummary" position="0,0" size="800,480"> 
 		<panel name="LCDInfoBarChannelName" />
@@ -76,16 +77,6 @@
 		<panel name="LCDInfoBarStartEndTime" />
 		<panel name="LCDRecordIcon" />
 	</screen>
-	
-	<!-- STANDBY -->
-	<screen name="StandbySummary" position="0,0" size="800,480"> 
-		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,180" font="FdLcD;100" foregroundColor="yellow" halign="center" valign="center" zPosition="10">
-			<convert type="ClockToText">Mixed</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" position="40,270" size="720,75" font="FdLcD;70" foregroundColor="white" halign="center" zPosition="10">
-			<convert type="ClockToText">FullDate</convert>
-		</widget>
-	</screen>
-		
+
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
 </skin>
