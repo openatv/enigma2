@@ -170,7 +170,7 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_SD:
 			return video_height < 720
 		elif self.type == self.IS_HD:
-			return video_height >= 720 and video_height < 2160
+			return video_height >= 720 and video_height < 2151
 		elif self.type == self.IS_1080:
 			return video_height > 1000 and video_height <= 1080
 		elif self.type == self.IS_720:
@@ -180,7 +180,7 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_480:
 			return video_height > 0 and video_height <= 480
 		elif self.type == self.IS_4K:
-			return video_height >= 2160
+			return video_height > 2152 and video_height <= 2160
 		return False
 
 	boolean = property(getBoolean)
