@@ -1292,8 +1292,20 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 #else
 	if ((dvb_audiosink || dvb_videosink) && !m_paused)
 	{
-		g_signal_emit_by_name(dvb_videosink ? dvb_videosink : dvb_audiosink, "get-decoder-time", &pos);
-		if (!GST_CLOCK_TIME_IS_VALID(pos)) return -1;
+		if (m_sourceinfo.is_audio)
+		{
+			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
+			if(!GST_CLOCK_TIME_IS_VALID(pos))
+				return -1;
+		}
+		else
+		{
+			g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
+			if (!GST_CLOCK_TIME_IS_VALID(pos) || 0)
+				 g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
+			if(!GST_CLOCK_TIME_IS_VALID(pos))
+				return -1;
+		}
 	}
 #endif
 	else
@@ -1865,6 +1877,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 	switch (GST_MESSAGE_TYPE (msg))
 	{
 		case GST_MESSAGE_EOS:
+			eDebug("[eServiceMP3] ** EOS RECEIVED **");
 			m_event((iPlayableService*)this, evEOF);
 			break;
 		case GST_MESSAGE_STATE_CHANGED:
