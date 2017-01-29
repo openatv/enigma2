@@ -25,11 +25,43 @@ def setPositionParameter(parameter, configElement):
 		f.write('1')
 		f.close()
 
-	#	InitOsd is now the 2nd Initialisation routine and is called after LCD iniialisation
-	#	by mytest.py .. this was historically the case before the 3D modification
-	#	It is important that this call remains in mytest.py at this position!
-
 def InitOsd():
+	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
+
+	def languageNotifier(configElement):
+		language.activateLanguage(configElement.value)
+
+	config.osd = ConfigSubsection()
+	config.osd.language = ConfigText(default = "en_GB")
+	config.osd.language.addNotifier(languageNotifier)
+	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
+	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
+	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
+	config.av.osd_alpha = NoSave(ConfigNumber(default = 255))
+	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
+	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
+	config.osd.show3dextensions = ConfigYesNo(default = False)
+
+	def set3DMode(configElement):
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
+			print '[UserInterfacePositioner] Setting 3D mode:',configElement.value
+			file3d = fileCheck('/proc/stb/fb/3dmode') or fileCheck('/proc/stb/fb/primary/3d')
+			f = open(file3d, "w")
+			f.write(configElement.value)
+			f.close()
+	config.osd.threeDmode.addNotifier(set3DMode)
+
+	def set3DZnorm(configElement):
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
+			print '[UserInterfacePositioner] Setting 3D depth:',configElement.value
+			f = open("/proc/stb/fb/znorm", "w")
+			f.write('%d' % int(configElement.value))
+			f.close()
+	config.osd.threeDznorm.addNotifier(set3DZnorm)
+
+def InitOsdPosition():
 	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
@@ -69,45 +101,6 @@ def InitOsd():
 			f.close()
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
-
-	#	InitOsd3D is the 1st Initialisation routine and is called by mytest.py to enable 3D setup by Videomode.py
-	#	It is important that this call remains in mytest.py at this position! 
-
-def InitOsd3D():
-	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
-
-	def languageNotifier(configElement):
-		language.activateLanguage(configElement.value)
-
-	config.osd = ConfigSubsection()
-	config.osd.language = ConfigText(default = "en_GB")
-	config.osd.language.addNotifier(languageNotifier)
-	config.osd.dst_left = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 720, wraparound = False)
-	config.osd.dst_width = ConfigSelectionNumber(default = 720, stepwidth = 1, min = 0, max = 720, wraparound = False)
-	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
-	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
-	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
-	config.av.osd_alpha = NoSave(ConfigNumber(default = 255))
-	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
-	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
-	config.osd.show3dextensions = ConfigYesNo(default = False)
-
-	def set3DMode(configElement):
-		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
-			print '[UserInterfacePositioner] Setting 3D mode:',configElement.value
-			file3d = fileCheck('/proc/stb/fb/3dmode') or fileCheck('/proc/stb/fb/primary/3d')
-			f = open(file3d, "w")
-			f.write(configElement.value)
-			f.close()
-	config.osd.threeDmode.addNotifier(set3DMode)
-
-	def set3DZnorm(configElement):
-		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
-			print '[UserInterfacePositioner] Setting 3D depth:',configElement.value
-			f = open("/proc/stb/fb/znorm", "w")
-			f.write('%d' % int(configElement.value))
-			f.close()
-	config.osd.threeDznorm.addNotifier(set3DZnorm)
 
 class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
