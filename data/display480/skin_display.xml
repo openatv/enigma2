@@ -334,7 +334,7 @@
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="240,205" size="230,50" font="FdLcD;50" halign="right" noWrap="1">
-			<convert type="ServicePosition">Remaining,</convert>
+			<convert type="ServicePosition">Remaining</convert>
 		</widget>
 		<widget name="statusicon_summary" position="240,210" zPosition="3" size="50,50" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" />		
 		<panel name="Yellow_Clock_Panel" />
