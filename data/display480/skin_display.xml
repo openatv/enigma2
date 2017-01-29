@@ -26,6 +26,13 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
+	
+	<screen name="Yellow_Clock_Panel">
+		<widget source="global.CurrentTime" render="Label" position="140,255" size="200,60" halign="center" font="FdLcD;55" foregroundColor="#FFFF00">
+			<convert type="ClockToText"></convert>
+		</widget>
+	</screen>
+	
 
 <!-- main-->
 	<!-- menus-->
@@ -329,10 +336,8 @@
 		<widget source="session.CurrentService" render="Label" position="240,205" size="230,50" font="FdLcD;50" halign="right" noWrap="1">
 			<convert type="ServicePosition">Remaining,</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="140,255" size="200,60" halign="center" font="FdLcD;55" foregroundColor="#FFFF00">
-			<convert type="ClockToText"></convert>
-		</widget>
 		<widget name="statusicon_summary" position="240,210" zPosition="3" size="50,50" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" />		
+		<panel name="Yellow_Clock_Panel" />
 	</screen>
 
 	<screen name="MovieContextMenuSummary" position="0,0" size="480,320">
@@ -359,9 +364,7 @@
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryTunerStatusPanel" />
-		<widget source="global.CurrentTime" render="Label" position="140,255" size="200,60" halign="center" font="FdLcD;55" foregroundColor="#FFFF00">
-			<convert type="ClockToText"></convert>
-		</widget>
+		<panel name="Yellow_Clock_Panel" />
 	</screen>
 
 <!-- misc-->
