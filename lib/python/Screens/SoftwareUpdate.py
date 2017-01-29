@@ -118,6 +118,8 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
+				if ver >= len(releasenotes):
+						break
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split('openvix: ')
 				if len(releasever) > 1:
