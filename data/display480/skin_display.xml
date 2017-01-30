@@ -359,10 +359,9 @@
 	</screen>
 	
 	<screen name="MovieSelectionSummary" position="0,0" size="480,320">
-		<widget source="parent.Service" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="yellow" noWrap="0">
-			<convert type="MovieInfo">RecordServiceName</convert>
+		<widget source="parent.Service" render="Label" position="0,5" size="480,160" font="FdLcD;50" halign="center" valign="center" foregroundColor="yellow" >
+			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="name" render="Label" position="0,70" size="480,90" font="FdLcD;40" halign="center" valign="center" />
 		<widget source="parent.Service" render="Label" position="0,161" size="240,100" font="FdLcD;40" halign="center" valign="bottom" noWrap="0">
 			<convert type="ServiceTime">Duration</convert>
 			<convert type="ClockToText">AsLength</convert>
@@ -551,8 +550,5 @@
 		<widget source="SetupTitle" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1"  />
 		<widget source="SetupEntry" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="SetupValue" render="Label" position="0,93" size="400,16" font="FdLcD;14" halign="left" transparent="1" />
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerStatusPanel" />
-		<panel name="SummaryClockPanel" />
 	</screen>
 </skin>
