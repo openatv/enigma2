@@ -494,6 +494,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_last_seek_pos = 0; /* CVR last seek position */
 	m_last_play_pos = 0;
+	m_media_lenght = 0;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -681,7 +682,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 				g_object_set(dvb_audiosink, "sync", TRUE, NULL);
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
 		}
-		if(dvb_videosink)
+		if(dvb_videosink && !m_sourceinfo.is_audio)
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		/*
 		 * avoid video conversion, let the dvbmediasink handle that using native video flag
@@ -892,9 +893,14 @@ RESULT eServiceMP3::stop()
 	pts_t pts;
 	if (getPlayPosition(pts) >= 0)
 	{
-		m_last_play_pos = pts;
+		if((0.90L * m_media_lenght) > pts)
+		{
+			m_last_play_pos = pts;
+			eDebug("[serviceMP3] Save last playpostion = %" G_GINT64_FORMAT " media_lenght = %" G_GINT64_FORMAT, m_last_play_pos, m_media_lenght);
+		}
+		else
+			m_last_play_pos = 0;
 	}
-	eDebug("[serviceMP3] tempo cvr last playpostion = %#"G_GINT64_MODIFIER "x", m_last_play_pos);
 #endif
 
 	eDebug("[eServiceMP3] stop %s", m_ref.path.c_str());
@@ -912,8 +918,8 @@ RESULT eServiceMP3::stop()
 	ret = gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	if (ret != GST_STATE_CHANGE_SUCCESS)
 		eDebug("[eServiceMP3] stop GST_STATE_NULL failure");
-
-	saveCuesheet();
+	if(!m_sourceinfo.is_audio)
+		saveCuesheet();
 	m_subtitles_paused = false;
 	m_nownext_timer->stop();
 	/* make sure that media is stopped before proceeding further */
@@ -1003,6 +1009,7 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 		/* len is in nanoseconds. we have 90 000 pts per second. */
 
 	pts = len / 11111LL;
+	m_media_lenght = pts;
 	return 0;
 }
 
@@ -1103,11 +1110,11 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		{
 			GstStateChangeReturn ret;
 			/* make sure that last state change was successfull */
-			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 0);
+			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 			if (ret == GST_STATE_CHANGE_SUCCESS)
 			{
 				gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
-				ret = gst_element_get_state(m_gst_playbin, &state, &pending, 0);
+				ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 				if (ret == GST_STATE_CHANGE_SUCCESS)
 					return 0;
 			}
@@ -1938,7 +1945,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
-					if(!m_cuesheet_loaded) /* cuesheet CVR */
+					if(!m_sourceinfo.is_audio && !m_cuesheet_loaded) /* cuesheet CVR */
 						loadCuesheet();
 					updateEpgCacheNowNext();
 				}	break;
@@ -2090,7 +2097,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 #if GST_VERSION_MAJOR >= 1
 		case GST_MESSAGE_TOC:
 		{
-			HandleTocEntry(msg);
+			if(!m_sourceinfo.is_audio)
+				HandleTocEntry(msg);
 			break;
 		}
 #endif
@@ -3216,14 +3224,22 @@ void eServiceMP3::saveCuesheet()
 			/* no entrys and file was not modified -> delete file */
 			removefile = true;
 		else
+		{
 			/* no entrys -> do nothing, have entries -> write file */
-			if (m_cue_entries.size() == 0)
+			if (m_cue_entries.size() == 0 && m_last_play_pos > 0)
 				return;
+			else
+				removefile = true;
+		}
 	}
 	else
+	{
 		/* no file and no entries -> do nothing, have entries -> write file */
-		if (m_cue_entries.size() == 0)
+		if (m_cue_entries.size() == 0 && m_last_play_pos > 0)
 			return;
+		else if(m_cue_entries.size() == 0 && m_last_play_pos == 0)
+			removefile = true;
+	}
 
 	FILE *f = fopen(filename.c_str(), "wb");
 
