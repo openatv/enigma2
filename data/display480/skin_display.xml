@@ -53,9 +53,9 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="480,320">
-		<widget source="SetupTitle" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="yellow" />
-		<widget source="SetupEntry" render="Label" position="0,90" size="480,90" font="FdLcD;40" halign="center" valign="center" />
-		<widget source="SetupValue" render="Label" position="0,200" size="480,70" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="SetupTitle" render="Label" position="0,5" size="480,60" font="FdLcD;45" halign="center" valign="center" foregroundColor="yellow" />
+		<widget source="SetupEntry" render="Label" position="0,65" size="480,90" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="SetupValue" render="Label" position="0,160" size="480,90" font="FdLcD;35" halign="center" valign="center" />
 	</screen>
 
 	<screen name="InfoBarSummary" position="0,0" size="480,320">
@@ -332,7 +332,7 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="480,320">
-		<widget source="session.CurrentService" render="Label" position="0,5" size="480,120" font="FdLcD;50" halign="center" valign="center" foregroundColor="yellow">
+		<widget source="session.CurrentService" render="Label" position="0,5" size="480,120" font="FdLcD;50" halign="center" foregroundColor="yellow">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="20,170" size="440,20" borderWidth="1">
@@ -547,8 +547,8 @@
 		<widget source="parent.summary_status" render="Label" position="0,41" size="400,18" font="FdLcD;16" halign="left" noWrap="1" />
 	</screen>
 	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="480,320">
-		<widget source="SetupTitle" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1"  />
-		<widget source="SetupEntry" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="SetupValue" render="Label" position="0,93" size="400,16" font="FdLcD;14" halign="left" transparent="1" />
+		<widget source="SetupTitle" render="Label" position="0,5" size="480,70" font="FdLcD;45" halign="center" valign="center" foregroundColor="yellow" />
+		<widget source="SetupEntry" render="Label" position="0,71" size="480,90" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="SetupValue" render="Label" position="0,161" size="400,16" font="FdLcD;14" halign="left" transparent="1" />
 	</screen>
 </skin>
