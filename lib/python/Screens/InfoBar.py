@@ -230,25 +230,21 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.doShow()
 
 	def showMovies(self, defaultRef=None):
-		#if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
-		#	from Screens.BoxPortal import BoxPortal
-		#	self.session.open(BoxPortal)
-		#else:
-		#	self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		#	if self.lastservice and ':0:/' in self.lastservice.toString():
-		#		self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
-		#	self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
-		self.showMoviePlayer(defaultRef)
-
-	def showMoviePlayer(self, defaultRef=None): #for using with hotkeys (ButtonSetup.py) regardless of plugins which overwrite the showMovies function
 		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
 			from Screens.BoxPortal import BoxPortal
 			self.session.open(BoxPortal)
 		else:
-			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if self.lastservice and ':0:/' in self.lastservice.toString():
-				self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
-			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
+		#	self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		#	if self.lastservice and ':0:/' in self.lastservice.toString():
+		#		self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
+		#	self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
+			self.showMoviePlayer(defaultRef)
+
+	def showMoviePlayer(self, defaultRef=None): #for using with hotkeys (ButtonSetup.py) regardless of plugins which overwrite the showMovies function
+		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if self.lastservice and ':0:/' in self.lastservice.toString():
+			self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
 
 	def movieSelected(self, service):
 		ref = self.lastservice
