@@ -686,8 +686,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		et = localtime(beginTime + duration)
 		res = [
 			None,  # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime("%a %d %b", t)),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, "%s ~ %s" % (strftime("%H:%M", t), strftime("%H:%M", et)))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime(config.usage.date.dayshort.value, t)),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, "%s - %s" % (strftime(config.usage.time.short.value, t), strftime(config.usage.time.short.value, et)))
 		]
 		if clock_types:
 			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
