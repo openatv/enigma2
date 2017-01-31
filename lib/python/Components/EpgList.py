@@ -603,7 +603,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			progW = int(fontSize * 6.8)
 			servLeft, servWidth, progLeft, progWidth, progHeight, descLeft = skin.parameters.get("EPGMultiEPGColumnFormats", (0, servW, servW + 10, progW, height - 8, servW + progW + 20))
 			# if config.usage.time.wide.value:
-			# 	progW = int(fontSize * 6.8)
+			# 	progW = int(progW * 1.0)
 			progTop = int((height - progHeight) / 2)
 			self.service_rect = Rect(servLeft, 0, servWidth, height)
 			self.progress_rect = Rect(progLeft, progTop, progWidth, progHeight)
