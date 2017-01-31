@@ -49,11 +49,11 @@ class BoxPortal(Screen):
 			list.append((_("Enhanced Movie Center"), "emc", "", "50"))
 		if isExtension_installed('Media Center'):
 			list.append((_("Media Center"), "bmc", "", "50"))
-		if isExtension_installed('Media player'):
+		if isExtension_installed(_("Media player")):
 			list.append((_("Media Player"), "MediaPlayer", "", "50"))
 		if isExtension_installed('MediaPortal'):
 			list.append((_("Media Portal"), "MediaPortal", "", "50"))
-		if isExtension_installed('AZPlay'):
+		if isExtension_installed(_("AZPlay")):
 			list.append((_("AZPlay"), "AZPlay", "", "50"))
 		list.append((_("Teletext"), "teletext", "", "50"))
 		self["menu"] = List(list)
