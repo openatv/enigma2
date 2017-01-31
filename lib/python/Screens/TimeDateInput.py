@@ -1,5 +1,5 @@
 from Screen import Screen
-from Components.config import ConfigClock, ConfigDateTime, ClockTime, getConfigListEntry, KEY_PAGEUP, KEY_PAGEDOWN, KEY_LEFT, KEY_RIGHT, KEY_PREV, KEY_NEXT
+from Components.config import config, ConfigClock, ConfigDateTime, ClockTime, getConfigListEntry, KEY_PAGEUP, KEY_PAGEDOWN, KEY_LEFT, KEY_RIGHT, KEY_PREV, KEY_NEXT
 
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -79,7 +79,7 @@ class TimeDateInput(TimeDateInputBase):
 		if conf_date:
 			self.save_mask |= self.DATE_MASK
 		else:
-			conf_date = ConfigDateTime(default=time.time(), formatstring=config.usage.date.full.value, increment=86400)
+			conf_date = ConfigDateTime(default=time.time(), formatstring=config.usage.date.daylong.value, increment=86400)
 		self.timeinput_date = conf_date
 		self.timeinput_time = conf_time
 
@@ -166,7 +166,7 @@ class TimeDateDurationInput(TimeDateInputBase):
 			if conf_date:
 				self.save_mask |= self.DATE_MASK
 			else:
-				conf_date = ConfigDateTime(default=time.time(), formatstring=_("%a %d %b %Y"), increment=24 * 60 * 60)
+				conf_date = ConfigDateTime(default=time.time(), formatstring=config.usage.date.daylong.value, increment=24 * 60 * 60)
 		else:
 			conf_date = None
 		if self.show_entries & self.DURATION_MASK:
