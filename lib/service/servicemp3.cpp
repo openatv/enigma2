@@ -3226,19 +3226,29 @@ void eServiceMP3::saveCuesheet()
 		else
 		{
 			/* no entrys -> do nothing, have entries -> write file */
+#if GST_VERSION_MAJOR >= 1
 			if (m_cue_entries.size() == 0 && m_last_play_pos > 0)
 				return;
 			else
 				removefile = true;
+#else
+			if (m_cue_entries.size() == 0)
+				return;
+#endif
 		}
 	}
 	else
 	{
 		/* no file and no entries -> do nothing, have entries -> write file */
+#if GST_VERSION_MAJOR >= 1
 		if (m_cue_entries.size() == 0 && m_last_play_pos > 0)
 			return;
 		else if(m_cue_entries.size() == 0 && m_last_play_pos == 0)
 			removefile = true;
+#else
+		if (m_cue_entries.size() == 0)
+				return;
+#endif
 	}
 
 	FILE *f = fopen(filename.c_str(), "wb");
