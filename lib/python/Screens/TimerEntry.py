@@ -193,7 +193,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		], default=repeated)
 		self.timerentry_renamerepeat = ConfigYesNo(default=rename_repeat)
 
-		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = config.usage.date.full.value, increment = 86400)
+		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
 		self.timerentry_showendtime = ConfigSelection(default = False, choices = [(True, _("yes")), (False, _("no"))])
@@ -204,7 +204,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			tmp.append(default)
 		self.timerentry_dirname = ConfigSelection(default=default, choices=tmp)
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = config.usage.date.full.value, increment = 86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
 
 		self.timerentry_weekday = ConfigSelection(default=weekday_table[weekday], choices=[
 			("mon", _("Monday")),
