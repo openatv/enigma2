@@ -294,7 +294,7 @@ class EventViewBase:
 			text = '\n\n' + _('Similar broadcasts:')
 			ret.sort(self.sort_func)
 			for x in ret:
-				text += "\n%s  -  %s" % (strftime(config.usage.date.long.value + ", " + config.usage.time.short.value, localtime(x[1])), x[0])
+				text += "\n%s  -  %s" % (strftime(config.usage.date.daylong.value + " " + config.usage.time.short.value, localtime(x[1])), x[0])
 			descr = self["epg_description"]
 			descr.setText(descr.getText() + text)
 			descr = self["FullDescription"]
