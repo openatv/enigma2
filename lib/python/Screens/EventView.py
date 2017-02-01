@@ -254,7 +254,7 @@ class EventViewBase:
 		begint = event.getBeginTime()
 		begintime = localtime(begint)
 		endtime = localtime(begint + event.getDuration())
-		self["datetime"].setText("%s ~ %s" % (strftime(_("%a %d %b %R"), begintime), strftime(_("%R"), endtime)))
+		self["datetime"].setText("%s - %s" % (strftime(config.usage.date.dayshort.value + " " + config.usage.time.short.value, begintime), strftime(config.usage.time.short.value, endtime)))
 		self["duration"].setText(_("%d min") % (event.getDuration() / 60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
