@@ -155,9 +155,9 @@ class UpdatePlugin(Screen, ProtectedScreen):
 						# (_("Upgrade and reboot system"), "cold")
 					]
 					choices.append((_("Cancel"), ""))
-					if self.total_packages > 150:
-						message += "\n" + _("You should consider a full USB update instead.")
-					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, text=message, list=choices, skin_name="SoftwareUpdateChoices")
+					if self.total_packages > 100:
+						message += "\n" + _("\nThis is a large update. Consider a full USB update instead.\n")
+					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, text=message, list=choices)
 					upgrademessage.setTitle(_('Software update'))
 				else:
 					self["actions"].setEnabled(True)
