@@ -109,6 +109,66 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 
+#if TIVIARRC
+	if (ev->code == KEY_EPG) {
+		ev->code = KEY_INFO;
+	}
+	else if (ev->code == KEY_MEDIA) {
+		ev->code = KEY_EPG;
+	}
+	else if (ev->code == KEY_INFO) {
+		ev->code = KEY_BACK;
+	}
+	else if (ev->code == KEY_PREVIOUS) {
+		ev->code = KEY_SUBTITLE;
+	}
+	else if (ev->code == KEY_NEXT) {
+		ev->code = KEY_TEXT;
+	}
+	else if (ev->code == KEY_BACK) {
+		ev->code = KEY_MEDIA;
+	}
+	else if (ev->code == KEY_PLAYPAUSE) {
+		ev->code = KEY_PLAY;
+	}
+	else if (ev->code == KEY_RECORD) {
+		ev->code = KEY_PREVIOUS;
+	}
+	else if (ev->code == KEY_STOP) {
+		ev->code = KEY_PAUSE;
+	}
+	else if (ev->code == KEY_PROGRAM) {
+		ev->code = KEY_STOP;
+	}
+	else if (ev->code == KEY_BOOKMARKS) {
+		ev->code = KEY_RECORD;
+	}
+	else if (ev->code == KEY_SLEEP) {
+		ev->code = KEY_NEXT;
+	}
+	else if (ev->code == KEY_TEXT) {
+		ev->code = KEY_PAGEUP;
+	}
+	else if (ev->code == KEY_SUBTITLE) {
+		ev->code = KEY_PAGEDOWN;
+	}
+	else if (ev->code == KEY_LIST) {
+		ev->code = KEY_F3;
+	}
+	else if (ev->code ==  KEY_RADIO) {
+		ev->code =  KEY_MODE;
+	}
+	else if (ev->code == KEY_AUDIO) {
+		ev->code = KEY_TV;
+	}
+	else if (ev->code == KEY_HELP) {
+		ev->code = KEY_SLEEP;
+	}
+	else if (ev->code == KEY_TV) {
+		ev->code = KEY_VMODE;
+	}
+#endif
+
 #if WETEKRC
 /*
 	eDebug("-->BackspaceFLAG %d", bflag);
