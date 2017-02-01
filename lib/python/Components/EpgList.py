@@ -648,6 +648,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.datetime_rect = Rect(timeLeft, 0, timeWidth, height)
 			descLeft = timeLeft + timeWidth + descOffset
 			self.descr_rect = Rect(descLeft, 0, width - descLeft, height)
+			self.showend = True
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
