@@ -197,6 +197,8 @@ eDVBResourceManager::eDVBResourceManager()
 	eDebug("found %zd adapter, %zd frontends(%zd sim) and %zd demux, boxtype %d",
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
 
+	m_fbc_mng = new eFBCTunerManager(this);
+	
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
 
@@ -948,7 +950,7 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 	int check_fbc_linked = 0;
 	eDVBRegisteredFrontend *fbc_fe = NULL;
 	eDVBRegisteredFrontend *best_fbc_fe = NULL;
-	eFBCTunerManager* fbcmng = eFBCTunerManager::getInstance();
+	eFBCTunerManager* fbcmng = m_fbc_mng;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
@@ -1492,7 +1494,7 @@ int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &fepar
 	int check_fbc_linked = 0;
 	eDVBRegisteredFrontend *fbc_fe = NULL;
 //	eDVBRegisteredFrontend *best_fbc_fe = NULL;
-	eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
+	eFBCTunerManager *fbcmng = m_fbc_mng;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
