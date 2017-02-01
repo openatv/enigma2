@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Components.config import ConfigSelection, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
+from Components.config import config, ConfigSelection, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
 from Components.ActionMap import NumberActionMap, HelpableNumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
@@ -10,7 +10,6 @@ from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
-from Components.config import config
 from PowerTimer import AFTEREVENT, TIMERTYPE
 from boxbranding import getMachineBrand, getMachineName
 from time import localtime, mktime, time, strftime
@@ -145,12 +144,12 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.timerentry_autosleeprepeat = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=autosleeprepeat)
 		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=autosleepinstandbyonly)
 
-		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = config.usage.date.full.value, increment = 86400)
+		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
 		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) / 60) > 1), choices=[(True, _("yes")), (False, _("no"))])
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = config.usage.date.full.value, increment = 86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
 
 		self.timerentry_weekday = ConfigSelection(default=weekday_table[weekday], choices=[("mon", _("Monday")), ("tue", _("Tuesday")), ("wed", _("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
@@ -400,7 +399,7 @@ class TimerLog(Screen):
 		self.updateText()
 
 	def fillLogList(self):
-		self.list = [(str(strftime("%a %d %b %Y %H:%M", localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
+		self.list = [(str(strftime(config.usage.date.daylong.value + " " + config.usage.time.short.value, localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
 
 	def clearLog(self):
 		self.log_entries = []
