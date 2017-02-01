@@ -639,15 +639,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
 			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
-			dayW = int(fontSize * 2.1)
-			timeW = int(fontSize * 6.3)
-			dayLeft, dayWidth, timeLeft, timeWidth, descOffset = skin.parameters.get("EPGSingleEPGColumnFormats", (0, dayW, dayW + 10, timeW, 20))
+			dayW = int(fontSize * 5.6)
+			timeW = int(fontSize * 6.1)
+			dayLeft, dayWidth, timeLeft, timeWidth, descOffset = skin.parameters.get("EPGSingleEPGColumnFormats", (0, dayW, dayW + 10, timeW, 15))
 			if config.usage.time.wide.value:
-				timeWidth = int(timeWidth * 1.25)
+				timeWidth = int(timeWidth * 1.5)
 			self.weekday_rect = Rect(dayLeft, 0, dayWidth, height)
 			self.datetime_rect = Rect(timeLeft, 0, timeWidth, height)
 			descLeft = timeLeft + timeWidth + descOffset
 			self.descr_rect = Rect(descLeft, 0, width - descLeft, height)
+			self.showend = True  # This is not an unused variable. It is a flag used by EPGSearch plugin
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
@@ -1583,11 +1584,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 						textOffset += tickWidth + tickXOffset
 				else:
 					line.visible = False
-				ttime = localtime(time_base + x * timeStepsCalc)
-				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
-					timetext = strftime("%H:%M", ttime)
+				ttime = localtime(time_base + (x * timeStepsCalc))
+				if config.usage.time.enabled.value:
+					timetext = strftime(config.usage.time.short.value, ttime)
 				else:
-					timetext = strftime("%-I:%M%P", ttime)
+					if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
+						timetext = strftime("%H:%M", ttime)
+					else:
+						if int(strftime("%H", ttime)) > 12:
+							timetext = strftime("%-I:%M", ttime) + _('pm')
+						else:
+							timetext = strftime("%-I:%M", ttime) + _('am')
 				res.append(MultiContentEntryText(
 					pos=(service_rect.width() + xpos + textOffset, 0),
 					size=(incWidth, self.listHeight),

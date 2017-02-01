@@ -8,6 +8,7 @@ from Components.Input import Input
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Pixmap import Pixmap
 from Components.AVSwitch import AVSwitch
+from Components.config import config
 from Tools.BoundFunction import boundFunction
 
 from enigma import eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, ePicLoad, eTimer
@@ -364,4 +365,4 @@ class Cam:
 		self.longitude = element.findtext("longitude", 0)
 
 		datex = datetime.fromtimestamp(int(element.findtext("last_update", 0)))
-		self.last_update = datex.strftime("%d %b %Y %H:%M:%S")
+		self.last_update = datex.strftime(config.usage.date.long.value + " " + config.usage.time.long.value)
