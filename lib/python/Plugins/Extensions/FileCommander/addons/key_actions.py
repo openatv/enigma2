@@ -116,7 +116,7 @@ class key_actions():
 				curSelDir = sourceDir
 				dir_stats = os_stat(curSelDir)
 				dir_infos = "   " + str(self.Humanizer(dir_stats.st_size)) + "    "
-				dir_infos = dir_infos + time_strftime("%a %d %b %Y %H:%M:%S", time_localtime(dir_stats.st_mtime)) + "    "
+				dir_infos = dir_infos + time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(dir_stats.st_mtime)) + "    "
 				dir_infos = dir_infos + _("Mode") + " " + str(mode[-3:])
 				return (dir_infos)
 			else:
@@ -130,7 +130,7 @@ class key_actions():
 			mode = oct(mode)
 			file_stats = os_stat(longname)
 			file_infos = filename + "   " + str(self.Humanizer(file_stats.st_size)) + "    "
-			file_infos = file_infos + time_strftime("%a %d %b %Y %H:%M:%S", time_localtime(file_stats.st_mtime)) + "    "
+			file_infos = file_infos + time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(file_stats.st_mtime)) + "    "
 			file_infos = file_infos + _("Mode") + " " + str(mode[-3:])
 			return (file_infos)
 
