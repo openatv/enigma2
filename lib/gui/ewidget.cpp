@@ -39,8 +39,8 @@ void eWidget::move(ePoint pos)
 	if (m_notify_child_on_position_change)
 		for (ePtrList<eWidget>::iterator i(m_childs.begin()); i != m_childs.end(); ++i)
 			i->event(evtParentChangedPosition);
-		recalcClipRegionsWhenVisible();
-		/* try native move if supported. */
+	recalcClipRegionsWhenVisible();
+	/* try native move if supported. */
 	if ((m_vis & wVisShow) && ((!m_desktop) || m_desktop->movedWidget(this)))
 		invalidate();
 }

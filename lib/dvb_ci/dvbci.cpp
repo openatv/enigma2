@@ -1467,7 +1467,7 @@ int eDVBCISlot::setClockRate(int rate)
 {
 	char buf[64];
 	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_tsclk", slotid);
-	if(CFile::write(buf, rate ? "high" : "normal") == -1);
+	if(CFile::write(buf, rate ? "high" : "normal") == -1)
 		return -1;
 	return 0;
 }
