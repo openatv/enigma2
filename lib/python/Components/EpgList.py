@@ -639,11 +639,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
 			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
-			dayW = int(fontSize * 2.1)
-			timeW = int(fontSize * 6.3)
-			dayLeft, dayWidth, timeLeft, timeWidth, descOffset = skin.parameters.get("EPGSingleEPGColumnFormats", (0, dayW, dayW + 10, timeW, 20))
+			dayW = int(fontSize * 5.6)
+			timeW = int(fontSize * 6.1)
+			dayLeft, dayWidth, timeLeft, timeWidth, descOffset = skin.parameters.get("EPGSingleEPGColumnFormats", (0, dayW, dayW + 10, timeW, 15))
 			if config.usage.time.wide.value:
-				timeWidth = int(timeWidth * 1.25)
+				timeWidth = int(timeWidth * 1.5)
 			self.weekday_rect = Rect(dayLeft, 0, dayWidth, height)
 			self.datetime_rect = Rect(timeLeft, 0, timeWidth, height)
 			descLeft = timeLeft + timeWidth + descOffset
