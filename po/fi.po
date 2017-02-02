@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-10 23:30+0000\n"
-"PO-Revision-Date: 2017-01-13 17:51+0200\n"
+"POT-Creation-Date: 2017-01-22 20:17+0000\n"
+"PO-Revision-Date: 2017-01-25 19:40+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com>\n"
 "Language-Team: AndyBlac/timoj/Kojo/Samzam\n"
 "Language: fi\n"
@@ -218,6 +218,10 @@ msgstr "%-e %b"
 msgid "%-e %b %Y"
 msgstr "%-e %b %Y"
 
+#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+msgid "%-e%b"
+msgstr "%-e%b"
+
 msgid "%-e-%B-%Y"
 msgstr "%-e-%B-%Y"
 
@@ -230,11 +234,17 @@ msgstr "%-e-%b-%Y"
 msgid "%-e/%m"
 msgstr "%-e/%m"
 
+msgid "%-e/%m "
+msgstr "%-e/%m "
+
 msgid "%-e/%m/%Y"
 msgstr "%-e/%m/%Y"
 
 msgid "%-m/%-e"
 msgstr "%-m/%-e"
+
+msgid "%-m/%-e "
+msgstr "%-m/%-e "
 
 msgid "%-m/%-e/%Y"
 msgstr "%-m/%-e/%Y"
@@ -629,8 +639,14 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "%d WLAN-verkko löytyi!"
 msgstr[1] "%d WLAN-verkkoa löytyi!"
 
+msgid "%d%b"
+msgstr "%d%b"
+
 msgid "%m/%-e"
 msgstr "%m/%-e"
+
+msgid "%m/%-e "
+msgstr "%m/%-e "
 
 #, python-format
 msgid "%s"
@@ -937,11 +953,17 @@ msgstr "9-Month-9999"
 msgid "9/9"
 msgstr "9/9"
 
+msgid "9/9 "
+msgstr "9/9 "
+
 msgid "9/9/9999"
 msgstr "9/9/9999"
 
 msgid "9/99"
 msgstr "9/99"
+
+msgid "9/99 "
+msgstr "9/99 "
 
 msgid "9/99/9999"
 msgstr "9/99/9999"
@@ -957,6 +979,9 @@ msgstr "99 Month 9999"
 
 msgid "99/9"
 msgstr "99/9"
+
+msgid "99/9 "
+msgstr "99/9 "
 
 msgid "9999 Mon 9"
 msgstr "9999 Mon 9"
@@ -1003,6 +1028,9 @@ msgstr "99:99AM/PM"
 msgid "99:99am/pm"
 msgstr "99:99am/pm"
 
+msgid "99Mon"
+msgstr "99Mon"
+
 msgid "9:99"
 msgstr "9:99"
 
@@ -1020,6 +1048,9 @@ msgstr "9:99AM/PM"
 
 msgid "9:99am/pm"
 msgstr "9:99am/pm"
+
+msgid "9Mon"
+msgstr "9Mon"
 
 #
 msgid "< Default >"
@@ -1462,9 +1493,6 @@ msgstr "Lisää/poista ajastus tähän ohjelmaan"
 msgid "Adding schedule..."
 msgstr "Lisätään aikataulu..."
 
-msgid "Additional Info"
-msgstr "Lisätiedot"
-
 msgid "Address"
 msgstr "Osoite"
 
@@ -1594,9 +1622,6 @@ msgstr "Määrittää näytetäänkö etupaneelissa kuvakkeita."
 
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Määrittää piilotetaanko tunnettujen tiedostojen tiedostopäätteet."
-
-msgid "Allows you to send a copy of the log to yourself."
-msgstr "Määrittää lähetetäänkö kopio lokista sinulle."
 
 msgid ""
 "Allows you to set the maximum size (MB) of the individual debug logs. When "
@@ -1778,9 +1803,6 @@ msgstr ""
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr "Haluatko varmasti tallentaa EPG:n välimuistin tänne:\n"
 
-msgid "Are you sure you want to send this log:\n"
-msgstr "Haluatko varmasti lähettää tämän lokin:\n"
-
 #, python-format
 msgid "Are you sure you want to update your %s %s ?"
 msgstr "Haluatko päivittää %s %s:n?"
@@ -1814,9 +1836,6 @@ msgstr "Määritetyt kanavat/palveluntarjoajat:"
 
 msgid "At End:"
 msgstr "Lopussa:"
-
-msgid "Attach a file"
-msgstr "Liitä tiedosto"
 
 msgid "Attention, this is repeated timer!\n"
 msgstr "Huomaa, että tämä on toistuva ajastus!\n"
@@ -2662,19 +2681,14 @@ msgstr "Sulje valinta"
 msgid "Close title selection"
 msgstr "Sulje otsikon valinta"
 
+msgid "Code R. LP-HP & Guard Int"
+msgstr "Koodi R. LP-HP & virheenkorjaus"
+
 msgid "Code rate HP"
 msgstr "Koodinopeus HP"
 
 msgid "Code rate LP"
 msgstr "Koodinopeus LP"
-
-#
-msgid "Coderate HP"
-msgstr "Koodinopeus (HP)"
-
-#
-msgid "Coderate LP"
-msgstr "Koodinopeus (LP)"
 
 #
 msgid "Collection name"
@@ -3187,8 +3201,8 @@ msgid "Connected: "
 msgstr "Yhdistetty: "
 
 #
-msgid "Constellation"
-msgstr "Modulaatio"
+msgid "Constellation & FFT mode"
+msgstr "Konstellaatio & FFT"
 
 msgid "Content"
 msgstr "Sisältö"
@@ -3295,6 +3309,9 @@ msgstr "Luo DVD-ISO"
 #
 msgid "Create directory"
 msgstr "Luo hakemisto"
+
+msgid "Create seperate radio userbouquet"
+msgstr "Luo erillinen radio-suosikkilista"
 
 msgid "Creating AP and SC Files"
 msgstr "Luodaan AP- ja SC-tiedostot"
@@ -4069,16 +4086,6 @@ msgstr "Haluatko poistaa ajastuksen %s?"
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Haluatko poistaa kirjanmerkin %s?"
 
-msgid "Do you want to add any additional information ?"
-msgstr "Haluatko lisätä lisätietoja?"
-
-msgid ""
-"Do you want to attach a text file to explain the log ?\n"
-"(choose 'No' to type message using virtual keyboard.)"
-msgstr ""
-"Haluatko liittää tekstitiedoston jossa on lisätietoja lokista?\n"
-"(valitse 'Ei' jos haluat kirjoittaa viestin virtuaalinäppäimistöllä.)"
-
 #
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Haluatko polttaa tämän kokoelman DVD:lle?"
@@ -4132,13 +4139,6 @@ msgstr "Haluatko palauttaa asetukset?"
 #
 msgid "Do you want to resume playback?"
 msgstr "Jatketaanko toistoa?"
-
-msgid ""
-"Do you want to send all the selected files:\n"
-"(choose 'No' to only send the currently selected file.)"
-msgstr ""
-"Haluatko lähettää kaikki valitut tiedostot:\n"
-"(valitse 'ei' lähettääksesi vain nykyinen valinta.)"
 
 #
 #, python-format
@@ -4403,6 +4403,10 @@ msgstr "Ota käyttöön autom. pikahaku"
 msgid "Enable auto fast scan"
 msgstr "Ota käyttöön autom. pikahaku"
 
+#, python-format
+msgid "Enable auto fast scan for %s"
+msgstr "Ota käyttöön automaattinen pikahaku -> %s"
+
 #
 msgid "Enable bouquet edit"
 msgstr "Kanavalistojen lisäys ja poisto"
@@ -4523,12 +4527,6 @@ msgstr "Syötä PIN-koodi"
 msgid "Enter the service pin"
 msgstr "Syötä kanavan tunnusluku"
 
-msgid "Enter your e-mail address to send a copy of the log to."
-msgstr "Syötä oma sähköpostiosoitteesi lokin kopion lähettämistä varten."
-
-msgid "Enter your forum user name, to make it easier to trace logs."
-msgstr "Syötä foorumin käyttäjänimesi, jotta lokien jäljitys on helpompaa."
-
 msgid "Enter your password here:"
 msgstr "Syötä salasana tähän:"
 
@@ -4565,14 +4563,6 @@ msgstr "Virhe plugin-lisäosan suorittamisessa"
 
 msgid "Error reading webpage!"
 msgstr "Virhe luettaessa web-sivua!"
-
-#, python-format
-msgid ""
-"Error:\n"
-"%s"
-msgstr ""
-"Virhe:\n"
-"%s"
 
 #
 #, python-format
@@ -4786,26 +4776,33 @@ msgstr "F3"
 msgid "FAILED"
 msgstr "EPÄONNISTUI"
 
-msgid "FBC Unicable"
-msgstr "FBC Unicable"
+msgid "FBC SCR (Unicable or JESS)"
+msgstr "FBC SCR (Unicable tai JESS)"
 
-msgid "FBC automatic loop through"
-msgstr "FBC automaattinen läpikytkentä"
+msgid "FBC automatic"
+msgstr "FBC automaattinen"
 
 msgid ""
-"FBC automatic loop through\n"
-"inactive"
+"FBC automatic\n"
+"connected to"
 msgstr ""
-"FBC automaattinen läpikytkentä\n"
-" inaktiivinen"
+"FBC automaattinen\n"
+"kytketty ->"
 
 #, python-format
 msgid ""
-"FBC automatic loop through\n"
-"linked to %s"
+"FBC automatic\n"
+"connected to %s"
 msgstr ""
-"FBC automaattinen läpikytkentä\n"
-"linkitetty %s"
+"FBC automaattinen\n"
+"kytketty -> %s"
+
+msgid ""
+"FBC automatic\n"
+"inactive"
+msgstr ""
+"FBC automaattinen\n"
+"ei käytössä"
 
 #
 msgid "FEC"
@@ -4898,6 +4895,10 @@ msgid ""
 msgstr ""
 "Tiedostoa oscam.conf ei löytynyt.\n"
 "Syötä käyttäjänimi/salasana manuaalisesti."
+
+#
+msgid "Filename"
+msgstr "Tiedostonnimi"
 
 msgid "Filesystem Check"
 msgstr "Tiedostojärjestelmän tarkistus"
@@ -4993,6 +4994,13 @@ msgstr "Ranska"
 #
 msgid "Frequency"
 msgstr "Taajuus"
+
+msgid "Frequency & Channel"
+msgstr "Taajuus & kanava"
+
+#
+msgid "Frequency & Polarization"
+msgstr "Taajuus & polarisaatio"
 
 #
 msgid "Frequency (kHz)"
@@ -5286,10 +5294,6 @@ msgstr "Piilota kanavanvaihdon virheilmoitukset"
 
 msgid "Hierarchy info"
 msgstr "Hierarkia info"
-
-#
-msgid "Hierarchy information"
-msgstr "Hierarkia-tietoja"
 
 #
 msgid "High bitrate support"
@@ -5777,6 +5781,12 @@ msgstr "Epäkelpo transponderin tieto"
 msgid "Inversion"
 msgstr "Inversio"
 
+msgid "Inversion & Bandwidth"
+msgstr "Inversio & kaistanleveys"
+
+msgid "Inversion, Pilot & Roll-off"
+msgstr "Inversio, Pilot & Roll-off"
+
 msgid "Invert"
 msgstr "Käänteinen"
 
@@ -5792,9 +5802,6 @@ msgstr "Otetaanko tämä video-tila käyttöön?"
 #
 msgid "Italian"
 msgstr "Italia"
-
-msgid "JESS"
-msgstr "JESS"
 
 msgid "JUMP 24 HOURS"
 msgstr "HYPPÄÄ 24 TUNTIA"
@@ -6146,8 +6153,8 @@ msgid "Longitude"
 msgstr "Pituusaste"
 
 #
-msgid "Loop through to"
-msgstr "Läpisyöttö"
+msgid "Loop through from"
+msgstr "Läpisyöttö virittimeltä"
 
 msgid "Lower Framerate save CPU Time"
 msgstr "Matalampi kuvataajuus vähentää CPU-kuormaa"
@@ -6552,9 +6559,6 @@ msgstr "Multimedia"
 msgid "Multiple service support"
 msgstr "Usean kanavan tuki"
 
-msgid "Multiplex"
-msgstr "Multipleksi"
-
 #
 msgid "Multisat"
 msgstr "Usea satelliitti"
@@ -6583,8 +6587,8 @@ msgstr "NFS-asetukset"
 msgid "NFS setup"
 msgstr "NFS-asetukset"
 
-msgid "NIM"
-msgstr "NIM"
+msgid "NIM & Type"
+msgstr "NIM & Tyyppi"
 
 #
 msgid "NO"
@@ -7237,10 +7241,6 @@ msgstr "PDC"
 
 msgid "PGS file"
 msgstr "PGS-tiedosto"
-
-#
-msgid "PIDs"
-msgstr "PIDit"
 
 msgid "PIP"
 msgstr "PiP"
@@ -8761,8 +8761,14 @@ msgstr "SABnzbd-asetukset"
 msgid "SCPC optimized search range"
 msgstr "SCPC optimoitu hakualue"
 
-msgid "SID"
-msgstr "SID"
+msgid "SCR (Unicable/JESS)"
+msgstr "SCR (Unicable/JESS)"
+
+msgid "SCR JESS"
+msgstr "SCR JESS"
+
+msgid "SCR Unicable"
+msgstr "SCR Unicable"
 
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
@@ -9191,12 +9197,6 @@ msgstr "Satelliittivalinta 1 (USALS)"
 msgid "Selecting satellites 2 (USALS)"
 msgstr "Satelliittivalinta 2 (USALS)"
 
-msgid "Send"
-msgstr "Lähetä"
-
-msgid "Send Confirmation"
-msgstr "Lähetä vahvistus"
-
 #
 msgid "Send DiSEqC"
 msgstr "Lähetä DiSEqC"
@@ -9204,9 +9204,6 @@ msgstr "Lähetä DiSEqC"
 #
 msgid "Send DiSEqC only on satellite change"
 msgstr "Lähetä DiSEqC vain satelliitin vaihdossa"
-
-msgid "Send yourself a copy"
-msgstr "Lähetä kopio itsellesi"
 
 #
 msgid "Seperate titles with a main menu"
@@ -9242,8 +9239,13 @@ msgstr "Palvelimet:"
 msgid "Service"
 msgstr "Kanava"
 
-msgid "Service Information"
-msgstr "Kanavan tiedot"
+#
+msgid "Service & PIDs"
+msgstr "Kanava & PID:t"
+
+#
+msgid "Service ID"
+msgstr "Kanava ID"
 
 msgid "Service Name"
 msgstr "Kanavan nimi"
@@ -9272,6 +9274,9 @@ msgstr ""
 "Valittua kanavaa ei löydy.\n"
 "(Aikaraja ylittyi Program Map\n"
 "Tablea luettaessa.)"
+
+msgid "Service name"
+msgstr "Kanavan nimi"
 
 msgid "Service name font size"
 msgstr "Kanavanimen tekstikoko"
@@ -9879,8 +9884,14 @@ msgstr "Näytä tv..."
 msgid "Show time elapsed as positive"
 msgstr "Näytä kulunut aika positiivisena"
 
-msgid "Show time in 24 hour clock format."
-msgstr "Näytä kellonaika 24-tunnin muodossa."
+msgid ""
+"Show time in 24 hour clock format.\n"
+"NOTE: This setting is not used if the global time format settings are "
+"available."
+msgstr ""
+"Näytä 24-tunnin kello.\n"
+"HUOM! Tätä asetusta ei käytetä jos maailmanlaajuiset aikaasetukset on "
+"käytettävissä."
 
 msgid "Show time remaining/elapsed"
 msgstr "Näytä jäljellä oleva/kulunut aika"
@@ -10277,10 +10288,10 @@ msgstr "Erikois"
 
 msgid ""
 "Specify the complete URL of the fallback remote receiver including the port "
-"number (:8001 by default), e.g. 'IP_second_box:8001'."
+"number (:8001 by default), e.g. 'http://IP_second_box:8001'."
 msgstr ""
-"Määrittele varaetävastaanottimen koko URL mukaanlukien porttinumero "
-"(oletus :8001), esim. 'Toisen boksin IP:8001'."
+"Määrittele etävastaanottimen koko URL mukaanlukien porttinumero "
+"(oletus :8001), esim. 'http://toisen boksin IP:8001'."
 
 #
 msgid "Split preview mode"
@@ -10669,6 +10680,9 @@ msgstr "Vaihdettavat viritintyypit:"
 msgid "Symbol rate"
 msgstr "Symbol rate"
 
+msgid "Symbol rate & FEC"
+msgstr "Symbol rate & FEC"
+
 msgid "Symbolrate:"
 msgstr "Symbolinopeus:"
 
@@ -10687,6 +10701,10 @@ msgstr "Synkronoi laitteen kello lähettimestä tai internetistä."
 #
 msgid "System"
 msgstr "Järjestelmä"
+
+#
+msgid "System & Modulation"
+msgstr "Järjestelmä & modulaatio"
 
 #, python-format
 msgid "System temp:\t%s"
@@ -11711,10 +11729,6 @@ msgstr "Lähetin"
 msgid "Transponder Information"
 msgstr "Lähettimen tietoja"
 
-#
-msgid "Transponder type"
-msgstr "Lähettimen tyyppi"
-
 msgid "Trash can"
 msgstr "Roskakori"
 
@@ -11772,18 +11786,21 @@ msgstr "Virittimien asetukset"
 msgid "Tuner is not supported"
 msgstr "Viritin ei ole tuettu"
 
+#
+msgid "Tuner live values"
+msgstr "Virittimen tilatiedot"
+
 msgid "Tuner not available."
 msgstr "Viritin ei saatavilla"
 
 msgid "Tuner settings"
 msgstr "Virittimen asetukset"
 
+msgid "Tuner settings values"
+msgstr "Virittimen asetusarvot"
+
 msgid "Tuner slot"
 msgstr "Virittimen paikka"
-
-#
-msgid "Tuner status"
-msgstr "Virittimen tila"
 
 #
 msgid "Tuner status:"
@@ -11791,6 +11808,12 @@ msgstr "Virittimen tila:"
 
 msgid "Tuner type"
 msgstr "Virittimen tyyppi"
+
+msgid "Tuning info: live values"
+msgstr "Viritintiedot: tilatiedot"
+
+msgid "Tuning info: settings values"
+msgstr "Viritintiedot: asetusarvot"
 
 #
 msgid "Turkish"
@@ -11833,6 +11856,9 @@ msgstr "Hakutapa"
 msgid "Type: "
 msgstr "Tyyppi: "
 
+msgid "URL"
+msgstr "URL"
+
 #
 msgid "USALS"
 msgstr "USALS"
@@ -11870,12 +11896,6 @@ msgstr "Salaamaton"
 #
 msgid "Unhide parental control services"
 msgstr "Näytä lapsilukitut kanavat"
-
-msgid "Unicable"
-msgstr "Unicable"
-
-msgid "Unicable/JESS"
-msgstr "Unicable/JESS"
 
 #
 msgid "Uninstall"
@@ -12255,17 +12275,8 @@ msgstr "Video-ulostulo"
 msgid "Video: %s fps"
 msgstr "Video: %s fps"
 
-msgid "Videocodec"
-msgstr "Lähetyskoodekki"
-
-msgid "Videoformat"
-msgstr "Formaatti"
-
-msgid "Videomode"
-msgstr "Videokoodekki"
-
-msgid "Videosize"
-msgstr "Koko"
+msgid "Videocodec, size & format"
+msgstr "Videokoodekki, koko & formaatti"
 
 msgid "View"
 msgstr "Näytä"
@@ -12361,9 +12372,6 @@ msgstr "Virtuosso Image Xtreme"
 
 msgid "Visual impaired commentary"
 msgstr "Näkövammaisten äänitekstitys"
-
-msgid "Vix forum user name"
-msgstr "Vix-foorumin käyttäjänimi"
 
 #
 msgid "Voltage mode"
@@ -13115,10 +13123,6 @@ msgstr "Et voi poistaa tätä!"
 msgid "You didn't select a channel to record from."
 msgstr "Et valinnut tallennuskanavaa."
 
-msgid "You have already sent this log, are you sure you want to resend it?\n"
-msgstr ""
-"Olet jo lähettänyt tämän lokin, haluatko varmasti lähettää tämän uudelleen?\n"
-
 #
 msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
@@ -13144,16 +13148,6 @@ msgstr ""
 
 msgid "You have not selected any logs to delete."
 msgstr "Et ole valinnut poistettavia lokeja."
-
-msgid "You have not selected any logs to send"
-msgstr "Et ole valinnut lähetettäviä lokeja."
-
-msgid ""
-"You have not setup your user info in the setup screen\n"
-"Press MENU, enter your info, and then try again"
-msgstr ""
-"Et ole määrittänyt käyttäjätietoja asetusvalikossa\n"
-"Paina MENU, syötä tiedot, ja yritä sitten uudelleen"
 
 #
 #, python-format
@@ -13502,6 +13496,10 @@ msgstr "Käänteinen aakkosjärjestys, uusin ensin"
 msgid "alternative"
 msgstr "Vaihtoehtoinen"
 
+#
+msgid "am"
+msgstr "am"
+
 msgid "and never ask again this session"
 msgstr "älä kysy vahvistusta uudelleen"
 
@@ -13727,9 +13725,6 @@ msgstr "Tallennettu"
 msgid "drama (general)"
 msgstr "Draama (yleinen)"
 
-msgid "e-mail address"
-msgstr "Sähköpostiosoite"
-
 #
 msgid "east"
 msgstr "itään"
@@ -13928,13 +13923,6 @@ msgstr "käsityö"
 msgid "handled"
 msgstr "hoidettu"
 
-msgid ""
-"has been sent to the ViX team.\n"
-"please quote"
-msgstr ""
-"on lähetetty ViX beta teemille.\n"
-"lainaa"
-
 msgid "height"
 msgstr "Korkeus"
 
@@ -14079,6 +14067,10 @@ msgstr "elokuva/draama (yleinen)"
 
 msgid "ms"
 msgstr "ms"
+
+#
+msgid "multi"
+msgstr "Moni"
 
 #
 msgid "multinorm"
@@ -14257,6 +14249,9 @@ msgstr "Kuvaa ladataan. Odota..."
 
 msgid "please wait..."
 msgstr "odota..."
+
+msgid "pm"
+msgstr "pm"
 
 msgid "popular culture/traditional arts"
 msgstr "populäärikulttuuri/perinteinen taide"
@@ -14687,18 +14682,6 @@ msgstr "viikoittain"
 msgid "west"
 msgstr "länteen"
 
-msgid "when asking questions about this log"
-msgstr "kun kysyt tästä lokista"
-
-msgid ""
-"when asking questions about this log\n"
-"\n"
-"A copy has been sent to yourself."
-msgstr ""
-"kun kysyt tästä lokista\n"
-"\n"
-"Kopio lähetetään sinulle."
-
 msgid "white"
 msgstr "Valkoinen"
 
@@ -14790,3 +14773,15 @@ msgstr "Vaihdettu"
 
 #~ msgid "%d.%02d. %02d:%02d"
 #~ msgstr "%d.%02d. %02d:%02d"
+
+#~ msgid "Additional Info"
+#~ msgstr "Lisätiedot"
+
+#~ msgid "Allows you to send a copy of the log to yourself."
+#~ msgstr "Määrittää lähetetäänkö kopio lokista sinulle."
+
+#~ msgid "Are you sure you want to send this log:\n"
+#~ msgstr "Haluatko varmasti lähettää tämän lokin:\n"
+
+#~ msgid "Attach a file"
+#~ msgstr "Liitä tiedosto"
