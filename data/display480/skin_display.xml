@@ -551,4 +551,12 @@
 		<widget source="SetupEntry" render="Label" position="0,71" size="480,90" font="FdLcD;40" halign="center" valign="center" />
 		<widget source="SetupValue" render="Label" position="0,161" size="400,16" font="FdLcD;14" halign="left" transparent="1" />
 	</screen>
+
+<!-- ServiceScanSummary -->
+	<screen name="ServiceScanSummary" position="0,0" size="480,320">
+		<widget name="Title" size="480,70" font="FdLcD;45" halign="center" valign="center" foregroundColor="yellow" />
+		<widget name="scan_progress" position="20,75" zPosition="1" borderWidth="2" size="440,20" foregroundColor="#e5b243" />
+		<widget name="Service" position="20,100" size="440,100" font="FdLcD;35" transparent="1" />
+	</screen>
+
 </skin>
