@@ -22,7 +22,7 @@
 		<color name="greenish" value="#04b404" />
 		<color name="lightcyan" value="#7fffff" />
 	</colors>
-	
+
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
@@ -34,19 +34,22 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-	
+
 	<screen name="Yellow_Clock_Panel">
 		<widget source="global.CurrentTime" render="Label" position="140,255" size="200,60" halign="center" font="FdLcD;55" foregroundColor="yellow">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-	
+
+	<screen name="Parent_Title">	
+		<widget source="parent.Title" render="Label" position="0,5" size="480,60" font="FdLcD;50" halign="center" valign="center" foregroundColor="yellow" />	
+	</screen>	
 
 <!-- main-->
 	<!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="480,320">
-		<widget source="parent.title" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="yellow" />
-		<widget source="parent.menu" render="Label" position="0,90" size="480,90" font="FdLcD;40" halign="center" valign="center">
+		<panel name="Parent_Title" />
+		<widget source="parent.menu" render="Label" position="0,65" size="480,85" font="FdLcD;40" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -137,7 +140,7 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="480,320">
 		<widget source="parent.ServiceEvent" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="yellow" >
@@ -214,7 +217,7 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 <!-- EPG Screens -->
 	<screen name="EPGSelection_summary" position="0,0" size="480,320">
 		<widget source="parent.Service" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="yellow" >
@@ -357,7 +360,7 @@
 		</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieSelectionSummary" position="0,0" size="480,320">
 		<widget source="parent.Service" render="Label" position="0,5" size="480,160" font="FdLcD;50" halign="center" valign="center" foregroundColor="yellow" >
 			<convert type="ServiceName">Name</convert>
@@ -393,10 +396,10 @@
 	</screen>
 
 <!-- Plugin browser -->
-	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,26" font="FdLcD;25" noWrap="1" />
-		<widget source="entry" render="Label" position="top" size="*,61" font="FdLcD;50" halign="left" />
-		<widget source="desc" render="Label" position="fill" font="FdLcD;22" valign="top" />
+	<screen name="PluginBrowserSummary" position="0,0" size="480,320">
+		<panel name="Parent_Title" />
+		<widget source="entry" render="Label" position="10,65" size="460,85" font="FdLcD;40" halign="center" valign="top" />
+		<widget source="desc" render="Label" position="10,155" size="460,165" font="FdLcD;35" halign="center" valign="top" />
 	</screen>
 
 <!-- JobView Summary -->
@@ -419,13 +422,9 @@
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
 	</screen>
 
-
-
 	<screen name="ChoiceBox_summary" position="0,0" size="480,320">
 		<widget source="parent.summary_list" render="Label" position="0,0" size="480,320" font="FdLcD;18" noWrap="1" />
 	</screen>
-
-	
 
 	<screen name="AboutSummary" position="0,0" size="480,320">
 		<widget source="AboutText" render="Label" position="0,0" size="480,320" font="FdLcD;11" />
@@ -482,23 +481,23 @@
 
 <!-- ViX -->
 	<screen name="VIXDevicesPanelSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="entry" render="Label" position="0,21" size="400,16" font="FdLcD;14" halign="left" noWrap="1" />
-		<widget source="desc" render="Label" position="0,38" size="400,26" font="FdLcD;12" halign="left" transparent="1" />
+		<panel name="Parent_Title" />
+		<widget source="entry" render="Label" position="0,65" size="480,90" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="desc" render="Label" position="0,160" size="480,90" font="FdLcD;35" halign="center" valign="center" />		
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="VIXSwap_summary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="parent.swapname_summary" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="parent.swapactive_summary" render="Label" position="0,93" size="400,16" font="FdLcD;14" halign="left" transparent="1" />
+		<panel name="Parent_Title" />
+		<widget source="parent.swapname_summary" render="Label" position="0,65" size="480,90" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="parent.swapactive_summary" render="Label" position="0,160" size="480,90" font="FdLcD;35" halign="center" valign="center" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="UpdatePlugin_summary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
-		<widget source="parent.package" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
-		<widget source="parent.status" render="Label" position="0,93" size="400,16" font="FdLcD;14" halign="left" transparent="1" />
+		<panel name="Parent_Title" />
+		<widget source="parent.package" render="Label" position="0,65" size="480,90" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="parent.status" render="Label" position="0,160" size="480,90" font="FdLcD;35" halign="center" valign="center" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
@@ -507,7 +506,7 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="400,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 	</screen>
-	
+
 	<!-- LCD screen EMC -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="480,320" >
 		<!-- Movie name -->		
