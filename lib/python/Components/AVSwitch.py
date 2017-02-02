@@ -661,6 +661,31 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
 
+	if os.path.exists("/proc/stb/info/boxmode"):
+		f = open("/proc/stb/info/boxmode", "r")
+		have_boxmode = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_boxmode = False
+
+	SystemInfo["haveboxmode"] = have_boxmode
+
+	if have_boxmode:
+		def setBoxmode(configElement):
+			try:
+				f = open("/proc/stb/info/boxmode", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.boxmode = ConfigSelection(choices={
+				"12": _("enable PIP no HDR"),
+				"1": _("12bit 4:2:0/4:2:2 no PIP")},
+				default = "12")
+		config.av.boxmode.addNotifier(setBoxmode)
+	else:
+		config.av.boxmode = ConfigNothing()
+
 	if os.path.exists("/proc/stb/video/hdmi_colordepth"):
 		f = open("/proc/stb/video/hdmi_colordepth", "r")
 		have_HdmiColordepth = f.read().strip().split(" ")
