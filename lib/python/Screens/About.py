@@ -72,9 +72,7 @@ class About(Screen):
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString()
 
-		AboutText += _("CPU:\t%s\n") % about.getCPUString().replace('bcm', 'BCM')
-		AboutText += _("CPU speed:\t%s\n") % about.getCPUSpeedString()
-		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
+		AboutText += _("CPU:\t%s %s %s\n") % (about.getCPUArch(), about.getCPUSpeedString(), about.getCpuCoresString())
 		imageSubBuild = ""
 		if getImageType() != 'release':
 			imageSubBuild = ".%s" % getImageDevBuild()
