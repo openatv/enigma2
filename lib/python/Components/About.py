@@ -78,6 +78,11 @@ def getCPUSpeedString():
 		return cpu_speed
 	return _("unavailable")
 
+def getCPUArch():
+	if "ARM" in getCPUString():
+		return getCPUString()
+	return _("Mipsel")
+
 def getCPUString():
 	system = _("unavailable")
 	try:
