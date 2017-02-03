@@ -1460,6 +1460,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self['list'].setItemsPerPage()
 					self['list'].fillGraphEPG(None)
 					self.moveTimeLines()
+				else:
+					return 0
 			elif number == 8:
 				self.nextPage()
 			elif number == 9:
