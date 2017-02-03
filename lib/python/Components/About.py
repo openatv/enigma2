@@ -102,6 +102,12 @@ def getCPUString():
 		return _("unavailable")
 
 def getCpuCoresString():
+	MachinesCores = {
+					1 : 'Single core',
+					2 : 'Dual core',
+					4 : 'Quad core',
+					8 : 'Octo core'
+					}
 	try:
 		cores = 1
 		file = open('/proc/cpuinfo', 'r')
@@ -113,7 +119,7 @@ def getCpuCoresString():
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("processor"):
 					cores = int(splitted[1]) + 1
-		return cores
+		return MachinesCores[cores]
 	except IOError:
 		return _("unavailable")
 
