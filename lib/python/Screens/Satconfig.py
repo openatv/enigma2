@@ -8,7 +8,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigSatlist, ConfigYesNo, ConfigSubsection
+from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigSatlist, ConfigYesNo, ConfigSubsection, ConfigSelection
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
@@ -25,15 +25,6 @@ from os import path
 
 from  Tools.BugHunting import printCallSequence
 
-config.tunermisc = ConfigSubsection()
-if SystemInfo["ForceLNBPowerChanged"]:
-	config.tunermisc.forceLnbPower = ConfigSelection(default = "off", choices = [ ("on", _("Yes")), ("off", _("No"))] )
-	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
-
-if SystemInfo["ForceToneBurstChanged"]:
-	config.tunermisc.forceToneBurst = ConfigSelection(default = "disable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
-	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
-
 def setForceLNBPowerChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
 	f.write(configElement.value)
@@ -43,6 +34,15 @@ def setForceToneBurstChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
 	f.write(configElement.value)
 	f.close()
+
+config.tunermisc = ConfigSubsection()
+if SystemInfo["ForceLNBPowerChanged"]:
+	config.tunermisc.forceLnbPower = ConfigSelection(default = "off", choices = [ ("on", _("Yes")), ("off", _("No"))] )
+	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
+
+if SystemInfo["ForceToneBurstChanged"]:
+	config.tunermisc.forceToneBurst = ConfigSelection(default = "disable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
+	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
 
 class TunerSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
