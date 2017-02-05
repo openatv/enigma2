@@ -275,7 +275,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			self.serviceFontSizeGraph = 20
 			self.eventFontSizeGraph = 18
-			self.eventFontSizeSingle = 22
+			self.eventFontSizeSingle = 20
 			self.eventFontSizeMulti = 22
 			self.serviceFontSizeInfobar = 20
 			self.eventFontSizeInfobar = 22
@@ -518,8 +518,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = self.listHeight / config.epgselection.enhanced_itemsperpage.value
 			else:
 				itemHeight = 32
-			if itemHeight < 25:
-				itemHeight = 25
+			if itemHeight < 20:
+				itemHeight = 20
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 			self.listHeight = self.instance.size().height()
@@ -639,15 +639,17 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.picon_size = eSize(piconWidth, piconHeight)
 		else:
 			fontSize = self.eventFontSizeSingle + config.epgselection.enhanced_eventfs.value
-			dayW = int(fontSize * 5.6)
-			timeW = int(fontSize * 6.1)
-			dayLeft, dayWidth, timeLeft, timeWidth, descOffset = skin.parameters.get("EPGSingleEPGColumnFormats", (0, dayW, dayW + 10, timeW, 15))
+			dateScale, timesScale, wideScale = skin.parameters.get("EPGSingleColumnScales", (5.7, 6.0, 1.5))
+			dateW = int(fontSize * dateScale)
+			timesW = int(fontSize * timesScale)
+			left, dateWidth, sepWidth, timesWidth, breakWidth = skin.parameters.get("EPGSingleColumnSpecs", (0, dateW, 5, timesW, 20))
 			if config.usage.time.wide.value:
-				timeWidth = int(timeWidth * 1.5)
-			self.weekday_rect = Rect(dayLeft, 0, dayWidth, height)
-			self.datetime_rect = Rect(timeLeft, 0, timeWidth, height)
-			descLeft = timeLeft + timeWidth + descOffset
-			self.descr_rect = Rect(descLeft, 0, width - descLeft, height)
+				timesWidth = int(timesWidth * wideScale)
+			self.weekday_rect = Rect(left, 0, dateWidth, height)
+			left += dateWidth + sepWidth
+			self.datetime_rect = Rect(left, 0, timesWidth, height)
+			left += timesWidth + breakWidth
+			self.descr_rect = Rect(left, 0, width - left, height)
 			self.showend = True  # This is not an unused variable. It is a flag used by EPGSearch plugin
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
@@ -732,12 +734,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1 = self.weekday_rect
 		r2 = self.datetime_rect
 		r3 = self.descr_rect
+		split = int(r2.w * 0.55)
 		t = localtime(beginTime)
 		et = localtime(beginTime + duration)
 		res = [
 			None,  # no private data needed
 			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime(config.usage.date.dayshort.value, t)),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_CENTER | RT_VALIGN_CENTER, "%s - %s" % (strftime(config.usage.time.short.value, t), strftime(config.usage.time.short.value, et)))
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, split, r2.h, 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, strftime(config.usage.time.short.value + " -", t)),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x + split, r2.y, r2.w - split, r2.h, 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, strftime(config.usage.time.short.value, et))
 		]
 		if clock_types:
 			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
