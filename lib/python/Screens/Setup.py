@@ -224,12 +224,22 @@ class Setup(ConfigListScreen, Screen):
 				continue
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
+				item_tunerlevel = int(x.get("tunerlevel", 0))
+				item_rectunerlevel = int(x.get("rectunerlevel", 0))
 
 				if not self.onNotifiers:
 					self.onNotifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
 				if item_level > config.usage.setup_level.index:
+					continue
+				if item_tunerlevel == 1 and not config.usage.frontend_priority.value in ("expert_mode", "experimental_mode"):
+					continue
+				if item_tunerlevel == 2 and not config.usage.frontend_priority.value == "experimental_mode":
+					continue
+				if item_rectunerlevel == 1 and not config.usage.recording_frontend_priority.value in ("expert_mode", "experimental_mode"):
+					continue
+				if item_rectunerlevel == 2 and not config.usage.recording_frontend_priority.value == "experimental_mode":
 					continue
 
 				requires = x.get("requires")

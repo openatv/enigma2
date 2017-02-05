@@ -308,6 +308,7 @@ private:
 	bool m_subtitles_paused;
 	bool m_use_prefillbuffer;
 	bool m_paused;
+	bool m_first_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	/* servicemMP3 chapter TOC support CVR */
@@ -315,7 +316,6 @@ private:
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */
 	gint64 m_last_seek_pos;
-	gint64 m_last_play_pos;
 	gint64 m_media_lenght;
 #endif
 	bufferInfo m_bufferInfo;

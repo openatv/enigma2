@@ -1064,7 +1064,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 40.5);
 		sat_max = 1618;
 	}
-	if (!strcmp(m_description, "AVL6211")) // ET10000
+	else if (!strcmp(m_description, "AVL6211")) // ET10000
 	{
 		ret = (int)(snr / 37.5);
 		sat_max = 1700;
@@ -1350,6 +1350,27 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (snr * 2000) / 0xFFFF;
 		sat_max = 2000;
+	}
+	else if (!strcmp(m_description, "Si21662")) // SF4008 S2
+	{
+		ret = (int)(snr / 46.8);
+		sat_max = 1400;
+	}
+	else if (!strcmp(m_description, "Si21682")) // SF4008 T/T2/C
+	{
+	    int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 17);
+				cab_max = 3800;
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 22.3);
+				ter_max = 2900;
+				break;
+		}
 	}
 
 	signalqualitydb = ret;
@@ -3182,12 +3203,25 @@ RESULT eDVBFrontend::setData(int num, long val)
 	return -EINVAL;
 }
 
+bool eDVBFrontend::isPreferred(int preferredFrontend, int slotid)
+{
+	if ((preferredFrontend >= 0) && (preferredFrontend & eDVBFrontend::preferredFrontendBinaryMode))
+		return (preferredFrontend & 1<<slotid);
+	else
+		return (preferredFrontend >= 0 && slotid == preferredFrontend);
+}
+
 int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 {
 	int type;
 	int types;
 	int score = 0;
-	bool preferred = (eDVBFrontend::getPreferredFrontend() >= 0 && m_slotid == eDVBFrontend::getPreferredFrontend());
+	int preferredFrontend = eDVBFrontend::getPreferredFrontend();
+	bool preferred = eDVBFrontend::isPreferred(preferredFrontend,m_slotid);
+	if ((preferredFrontend & eDVBFrontend::preferredFrontendPrioForced) && !preferred)
+	{
+		return 0;
+	}
 	if (feparm->getSystem(type) || feparm->getSystems(types) || !m_enabled)
 	{
 		eDebugDeliverySystem("m_dvbid:%d m_slotid:%d type:%d types:%d m_enabled:%d", m_dvbid, m_slotid, type, types, m_enabled);
@@ -3311,7 +3345,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	if (score && preferred)
 	{
 		/* make 'sure' we always prefer this frontend */
-		score += 100000; /* the offset has to be so ridiculously high because of the high scores which are used for DVB-S(2) */
+		score += eDVBFrontend::preferredFrontendScore; /* the offset has to be so ridiculously high because of the high scores which are used for DVB-S(2) */
 	}
 	return score;
 }
