@@ -67,7 +67,12 @@ class OnlineUpdateCheckPoller:
 					config.softwareupdate.updatefound.setValue(True)
 					if not versioncheck.user_notified:
 						versioncheck.user_notified = True
-						Notifications.AddNotificationWithCallback(self.updateNotificationAnswer, SuspendableMessageBox, _("Online update available.\nInstall now?"))
+						msg = _("Online update available.\n")
+						if self.total_packages > 100:
+							msg += _("\nThis is a large update. Consider a full USB update instead.\n")
+						msg += _("\nInstall now?\n")
+						default = self.total_packages <= 100
+						Notifications.AddNotificationWithUniqueIDCallback(self.updateNotificationAnswer, "OnlineUpdateAvailable", SuspendableMessageBox, msg, default=default)
 				else:
 					config.softwareupdate.updatefound.setValue(False)
 			else:
