@@ -10,7 +10,7 @@ from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference
 
 from Components.config import config
 from Components import Harddisk
-from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
+from Components.UsageConfig import defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
@@ -21,7 +21,7 @@ from Tools.XMLTools import stringToXML
 import timer
 import NavigationInstance
 from ServiceReference import ServiceReference
-from enigma import pNavigation, eDVBFrontend
+from enigma import pNavigation
 
 
 # ok, for descriptions etc we have:
@@ -183,9 +183,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.descramble = descramble
 			self.record_ecm = record_ecm
 
-		config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
-		config.usage.recording_frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.recording_frontend_priority, config.usage.recording_frontend_priority_multiselect, config.usage.recording_frontend_priority_strictly))
-		self.needChangePriorityFrontend = config.usage.recording_frontend_priority_intval.value != "-2" and config.usage.recording_frontend_priority_intval.value != config.usage.frontend_priority_intval.value
+		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
 		self.rename_repeat = rename_repeat
 		self.isAutoTimer = isAutoTimer
@@ -744,10 +742,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if self.needChangePriorityFrontend:
 			elem = None
 			if not self.change_frontend and not setdefault:
-				elem = config.usage.recording_frontend_priority_intval.value
+				elem = config.usage.recording_frontend_priority.value
 				self.change_frontend = True
 			elif self.change_frontend and setdefault:
-				elem = config.usage.frontend_priority_intval.value
+				elem = config.usage.frontend_priority.value
 				self.change_frontend = False
 			if elem is not None:
 				setPreferredTuner(int(elem))
