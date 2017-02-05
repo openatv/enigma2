@@ -50,10 +50,8 @@ public:
 #include <lib/dvb/sec.h>
 class eSecCommandList;
 
-#endif
 class eDVBFrontend: public iDVBFrontend, public Object
 {
-#ifndef SWIG
 public:
 	enum {
 		NEW_CSW,
@@ -151,9 +149,7 @@ private:
 
 	uint64_t m_DebugOptions;
 
-#endif
 public:
-#ifndef SWIG
 	eDVBFrontend(const char *devidenodename, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
 	virtual ~eDVBFrontend();
 
@@ -183,7 +179,6 @@ public:
 	void getTransponderData(ePtr<iDVBTransponderData> &dest, bool original);
 	void getFrontendData(ePtr<iDVBFrontendData> &dest);
 
-	bool isPreferred(int preferredFrontend, int slotid);
 	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm);
 	int getDVBID() { return m_dvbid; }
 	int getSlotID() { return m_slotid; }
@@ -192,12 +187,6 @@ public:
 	static int getTypePriorityOrder() { return PriorityOrder; }
 	static void setPreferredFrontend(int index) { PreferredFrontendIndex = index; }
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
-#endif
-	static const int preferredFrontendScore = 100000;
-	static const int preferredFrontendBinaryMode = 0x4000;
-	static const int preferredFrontendPrioForced = 0x2000;
-	static const int preferredFrontendPrioHigh   = 0x1000;
-#ifndef SWIG
 	bool supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist);
 	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist, bool append=false);
 	bool setDeliverySystem(fe_delivery_system_t delsys);
@@ -230,9 +219,9 @@ public:
 	void getTop(iDVBFrontend &fe, eDVBFrontend * &top_fe);
 
 	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
-#endif // SWIG
 
 };
 
+#endif // SWIG
 
 #endif
