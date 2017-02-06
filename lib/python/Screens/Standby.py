@@ -9,9 +9,11 @@ from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceRefe
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Tools import Notifications
 from time import localtime, time
+from os import path, system
 import Screens.InfoBar
 from gettext import dgettext
 import Components.RecordingConfig
+import os
 
 inStandby = None
 
@@ -26,6 +28,10 @@ def setLCDModeMinitTV(value):
 class Standby2(Screen):
 	def Power(self):
 		print "[Standby] leave standby"
+		
+		if os.path.exists("/usr/script/StandbyLeave.sh"):
+			os.system("/usr/script/StandbyLeave.sh &")
+
 		if (getBrandOEM() in ('fulan')):
 			open("/proc/stb/hdmi/output", "w").write("on")
 		#set input to encoder
@@ -57,6 +63,9 @@ class Standby2(Screen):
 		self.avswitch = AVSwitch()
 
 		print "[Standby] enter standby"
+
+		if os.path.exists("/usr/script/StandbyEnter.sh"):
+			os.system("/usr/script/StandbyEnter.sh &")
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
