@@ -520,6 +520,9 @@ def reloadWindowstyles():
 	for ws in windowStyles:
 		loadSingleSkinData(*ws)
 
+def paramConvert(val):
+	return float(val) if '.' in val else int(val)
+
 def loadSingleSkinData(desktop, skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
 	assert skin.tag == "skin", "root element in skin must be 'skin'!"
@@ -697,9 +700,10 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			try:
 				name = get("name")
 				value = get("value")
-				parameters[name] = "," in value and map(int, value.split(",")) or int(value)
+				parameters[name] = "," in value and map(paramConvert, value.split(",")) or paramConvert(value)
 			except Exception, ex:
 				print "[Skin] bad parameter", ex
+
 	for c in skin.findall("subtitles"):
 		from enigma import eSubtitleWidget
 		scale = ((1, 1), (1, 1))
