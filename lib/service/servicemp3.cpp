@@ -1022,7 +1022,9 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 		/* len is in nanoseconds. we have 90 000 pts per second. */
 
 	pts = len / 11111LL;
+#if GST_VERSION_MAJOR >= 1
 	m_media_lenght = pts;
+#endif
 	return 0;
 }
 
