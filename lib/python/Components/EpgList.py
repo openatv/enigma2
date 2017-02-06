@@ -276,7 +276,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.serviceFontSizeGraph = 20
 			self.eventFontSizeGraph = 18
 			self.eventFontSizeSingle = 20
-			self.eventFontSizeMulti = 20
+			self.eventFontSizeMulti = 22
 			self.serviceFontSizeInfobar = 20
 			self.eventFontSizeInfobar = 22
 
