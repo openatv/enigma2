@@ -262,10 +262,6 @@ class wpaSupplicant:
 		encryption = config.plugins.wlan.encryption.value
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
-		
-		if existBcmWifi(iface):
-			self.writeBcmWifiConfig(iface, essid, encryption, psk)
-			return
 
 		fp = file(getWlanConfigName(iface), 'w')
 		fp.write('#WPA Supplicant Configuration by enigma2\n')
