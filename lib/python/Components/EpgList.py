@@ -532,8 +532,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = self.listHeight / config.epgselection.multi_itemsperpage.value
 			else:
 				itemHeight = 32
-			if itemHeight < 25:
-				itemHeight = 25
+			if itemHeight < 20:
+				itemHeight = 20
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 			self.listHeight = self.instance.size().height()
@@ -599,16 +599,23 @@ class EPGList(HTMLComponent, GUIComponent):
 		height = esize.height()
 		if self.type == EPG_TYPE_MULTI:
 			fontSize = self.eventFontSizeMulti + config.epgselection.multi_eventfs.value
-			servW = int((fontSize + 4) * 5.9)  # Service font is 4 px larger
-			progW = int(fontSize * 6.8)
-			servLeft, servWidth, progLeft, progWidth, progHeight, descLeft = skin.parameters.get("EPGMultiEPGColumnFormats", (0, servW, servW + 10, progW, height - 8, servW + progW + 20))
-			# if config.usage.time.wide.value:
-			# 	progW = int(fontSize * 6.8)
+			servScale, timeScale, durScale, wideScale = skin.parameters.get("EPGMultiColumnScales", (6.5, 6.0, 4.5, 1.5))
+			# servW = int((fontSize + 4) * servScale)  # Service font is 4 px larger
+			servW = int(fontSize * servScale)
+			timeW = int(fontSize * timeScale)
+			durW = int(fontSize * durScale)
+			left, servWidth, sepWidth, timeWidth, progHeight, breakWidth, durWidth, gapWidth = skin.parameters.get("EPGMultiColumnSpecs", (0, servW, 10, timeW, height - 12, 10, durW, 10))
+			if config.usage.time.wide.value:
+				timeWidth = int(timeWidth * wideScale)
+			self.service_rect = Rect(left, 0, servWidth, height)
+			left += servWidth + sepWidth
+			self.start_end_rect = Rect(left, 0, timeWidth, height)
 			progTop = int((height - progHeight) / 2)
-			self.service_rect = Rect(servLeft, 0, servWidth, height)
-			self.progress_rect = Rect(progLeft, progTop, progWidth, progHeight)
-			self.start_end_rect = Rect(progLeft, 0, progWidth, height)
-			self.descr_rect = Rect(descLeft, 0, width - descLeft, height)
+			self.progress_rect = Rect(left, progTop, timeWidth, progHeight)
+			left += timeWidth + breakWidth
+			self.duration_rect = Rect(left, 0, durWidth, height)
+			left += durWidth + gapWidth
+			self.descr_rect = Rect(left, 0, width - left, height)
 		elif self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			servicew = 0
 			piconw = 0
@@ -784,51 +791,50 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
 		r1 = self.service_rect
-		r2 = self.progress_rect
-		r3 = self.descr_rect
-		r4 = self.start_end_rect
-		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)]  # no private data needed
+		r2 = self.start_end_rect
+		r3 = self.progress_rect
+		r4 = self.duration_rect
+		r5 = self.descr_rect
+		res = [
+			None,  # no private data needed
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)
+		]
 		if beginTime is not None:
 			fontSize = self.eventFontSizeMulti + config.epgselection.multi_eventfs.value
-			duration_wid = int(fontSize * 4.1)
-			clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 			if nowTime < beginTime:
 				begin = localtime(beginTime)
 				end = localtime(beginTime + duration)
-				if config.usage.time.wide.value:
-					format = "%s-%s"
-				else:
-					format = "%s - %s"
+				split = int(r2.w * 0.55)
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER | RT_VALIGN_CENTER, format % (strftime(config.usage.time.short.value, begin), strftime(config.usage.time.short.value, end))),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, duration_wid - 10, r3.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%d min") % (duration / 60))
+					(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, split, r2.h, 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, strftime(config.usage.time.short.value + " - ", begin)),
+					(eListboxPythonMultiContent.TYPE_TEXT, r2.x + split, r2.y, r2.w - split, r2.h, 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, strftime(config.usage.time.short.value, end))
 				))
+				remaining = duration / 60
+				prefix = ""
 			else:
 				percent = (nowTime - beginTime) * 100 / duration
-				prefix = "+"
 				remaining = ((beginTime + duration) - int(time())) / 60
 				if remaining <= 0:
 					prefix = ""
-				res.extend((
-					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.x, r2.y, r2.w, r2.h, percent),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, duration_wid - 10, r3.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%s%d min") % (prefix, remaining))
-				))
-			pos = r3.w
+				else:
+					prefix = "+"
+				res.append((eListboxPythonMultiContent.TYPE_PROGRESS, r3.x, r3.y, r3.w, r3.h, percent))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 0, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%s%d Min") % (prefix, remaining)))
+			width = r5.w
+			clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 			if clock_types:
 				clk_sz = 25 if self.screenwidth and self.screenwidth == 1920 else 21
-				pos -= clk_sz / 2 if clock_types in (1,6,11) else clk_sz
-
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + pos, (r3.h - clk_sz) / 2, clk_sz, clk_sz, self.clocks[clock_types]))
+				width -= clk_sz / 2 if clock_types in (1, 6, 11) else clk_sz
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r5.x + width, (r5.h - clk_sz) / 2, clk_sz, clk_sz, self.clocks[clock_types]))
 				if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
-					pos -= clk_sz + 1
+					width -= clk_sz + 1
 					if self.wasEntryAutoTimer:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + pos, (r3.h - clk_sz) / 2, clk_sz, clk_sz, self.autotimericon))
+						icon = self.autotimericon
 					else:
-						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + pos, (r3.h - clk_sz) / 2, clk_sz, clk_sz, self.icetvicon))
-				pos -= 5
-
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + duration_wid, r3.y, pos - duration_wid, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
-
+						icon = self.icetvicon
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r5.x + width, (r5.h - clk_sz) / 2, clk_sz, clk_sz, icon))
+				width -= 5
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r5.x, r5.y, width, r5.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName))
 		return res
 
 	def buildGraphEntry(self, service, service_name, events, picon, channel):
