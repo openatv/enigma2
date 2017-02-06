@@ -274,11 +274,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.eventFontSizeInfobar = 28
 		else:
 			self.serviceFontSizeGraph = 20
-			self.eventFontSizeGraph = 18
+			self.eventFontSizeGraph = 20
 			self.eventFontSizeSingle = 20
-			self.eventFontSizeMulti = 22
+			self.eventFontSizeMulti = 20
 			self.serviceFontSizeInfobar = 20
-			self.eventFontSizeInfobar = 22
+			self.eventFontSizeInfobar = 20
 
 		self.origListHeight = self.listHeight = None
 		self.origListWidth = self.listWidth = None
@@ -546,7 +546,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = self.listHeight / config.epgselection.infobar_itemsperpage.value
 			else:
 				itemHeight = 32
-			if itemHeight < 25:
+			if itemHeight < 20:
 				itemHeight = 20
 			self.l.setItemHeight(int(itemHeight))
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
