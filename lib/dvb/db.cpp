@@ -408,10 +408,16 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(char* line, int version)
 				system=eDVBFrontendParametersSatellite::System_DVB_S,
 				modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
 				rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
-				pilot=eDVBFrontendParametersSatellite::Pilot_Unknown;
-			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+				pilot=eDVBFrontendParametersSatellite::Pilot_Unknown,
+				is_id = NO_STREAM_ID_FILTER,
+				pls_code = 1,
+				pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
+
+			sscanf(line+2, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
 				&frequency, &symbol_rate, &polarisation, &fec, &orbital_position,
-				&inversion, &flags, &system, &modulation, &rolloff, &pilot);
+				&inversion, &flags, &system, &modulation, &rolloff, &pilot,
+				&is_id, &pls_code, &pls_mode);
+
 			sat.frequency = frequency;
 			sat.symbol_rate = symbol_rate;
 			sat.polarisation = polarisation;
@@ -434,8 +440,13 @@ static ePtr<eDVBFrontendParameters> parseFrontendData(char* line, int version)
 				//	sat.parm3 = parm3;
 				//}
 				//else ...
+				if (strncmp(options, "MIS/PLS:", 8) == 0)
+					sscanf(options+8, "%d:%d:%d", &is_id, &pls_code, &pls_mode);
 				options = next;
 			}
+			sat.is_id = is_id;
+			sat.pls_mode = pls_mode & 3;
+			sat.pls_code = pls_code & 0x3FFFF;
 			feparm->setDVBS(sat);
 			feparm->setFlags(flags);
 			break;
@@ -752,6 +763,15 @@ void eDVBDB::saveServicelist(const char *file)
 				fprintf(f, ":%d:%d:%d:%d", sat.system, sat.modulation, sat.rolloff, sat.pilot);
 				if (g)
 					fprintf(g, ":%d:%d:%d:%d", sat.system, sat.modulation, sat.rolloff, sat.pilot);
+
+				if (sat.is_id != NO_STREAM_ID_FILTER ||
+					(sat.pls_code & 0x3FFFF) != 1 ||
+					(sat.pls_mode & 3) != eDVBFrontendParametersSatellite::PLS_Root)
+				{
+					fprintf(f, ":%d:%d:%d", sat.is_id, sat.pls_code & 0x3FFFF, sat.pls_mode & 3);
+					if (g)
+						fprintf(g, ",MIS/PLS:%d:%d:%d", sat.is_id, sat.pls_code & 0x3FFFF, sat.pls_mode & 3);
+				}
 			}
 			fprintf(f, "\n");
 			if (g)
@@ -1230,7 +1250,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 	}
 
 	int tmp, *dest = NULL,
-		modulation, system, freq, sr, pol, fec, inv, pilot, rolloff, tsid, onid;
+		modulation, system, freq, sr, pol, fec, inv, pilot, rolloff, is_id, pls_code, pls_mode, tsid, onid;
 	char *end_ptr;
 
 	xmlNode *root_element = xmlDocGetRootElement(doc);
@@ -1294,6 +1314,9 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				inv = eDVBFrontendParametersSatellite::Inversion_Unknown;
 				pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
 				rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;
+				is_id = NO_STREAM_ID_FILTER;
+				pls_code = 1;
+				pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
 				tsid = -1;
 				onid = -1;
 
@@ -1309,6 +1332,9 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					else if (name == "inversion") dest = &inv;
 					else if (name == "rolloff") dest = &rolloff;
 					else if (name == "pilot") dest = &pilot;
+					else if (name == "is_id") dest = &is_id;
+					else if (name == "pls_code") dest = &pls_code;
+					else if (name == "pls_mode") dest = &pls_mode;
 					else if (name == "tsid") dest = &tsid;
 					else if (name == "onid") dest = &onid;
 					else continue;
@@ -1325,7 +1351,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 
 				if (freq && sr && pol != -1)
 				{
-					tuple = PyTuple_New(12);
+					tuple = PyTuple_New(15);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
 					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(sr));
@@ -1336,8 +1362,11 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					PyTuple_SET_ITEM(tuple, 7, PyInt_FromLong(inv));
 					PyTuple_SET_ITEM(tuple, 8, PyInt_FromLong(rolloff));
 					PyTuple_SET_ITEM(tuple, 9, PyInt_FromLong(pilot));
-					PyTuple_SET_ITEM(tuple, 10, PyInt_FromLong(tsid));
-					PyTuple_SET_ITEM(tuple, 11, PyInt_FromLong(onid));
+					PyTuple_SET_ITEM(tuple, 10, PyInt_FromLong(is_id));
+					PyTuple_SET_ITEM(tuple, 11, PyInt_FromLong(pls_mode & 3));
+					PyTuple_SET_ITEM(tuple, 12, PyInt_FromLong(pls_code & 0x3FFFF));
+					PyTuple_SET_ITEM(tuple, 13, PyInt_FromLong(tsid));
+					PyTuple_SET_ITEM(tuple, 14, PyInt_FromLong(onid));
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}

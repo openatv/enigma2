@@ -914,6 +914,7 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 			c = i->m_frontend->isCompatibleWith(feparm);
 
 		if (c)	/* if we have at least one frontend which is compatible with the source, flag this. */
+			eDebug("[eDVBResourceManager] allocateFrontend, score=%d", c);
 			foundone = 1;
 
 		if (!i->m_inuse)
