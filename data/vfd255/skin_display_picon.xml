@@ -23,7 +23,7 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;20" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="75,20" font="FdLcD;18" halign="right" noWrap="1">
 			<convert type="ClockToText"/>
 		</widget>
 	</screen>
@@ -107,7 +107,7 @@
 		<widget source="parent.Service" render="LcdPicon" position="0,0" size="170,40" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="0,44" size="190,20" font="FdLcD;18" halign="left" noWrap="1">
+		<widget source="parent.Event" render="Label" position="0,44" size="175,20" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="172,31" size="84,14" font="FdLcD;15" halign="left">
@@ -127,7 +127,7 @@
 		<widget source="session.CurrentService" render="LcdPicon" position="0,0" size="170,40" backgroundColor="#ff000000">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,44" size="190,20" font="FdLcD;18" halign="left" noWrap="1">
+		<widget source="session.Event_Now" render="Label" position="0,44" size="175,20" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="172,31" size="84,14" font="FdLcD;15" halign="left">
@@ -191,7 +191,7 @@
 		<widget source="parent.ServiceEvent" render="LcdPicon" position="0,0" size="170,40" backgroundColor="#ff000000">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,44" size="190,20" font="FdLcD;18" halign="left" noWrap="1">
+		<widget source="parent.ServiceEvent" render="Label" position="0,44" size="175,20" font="FdLcD;18" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="172,31" size="84,14" font="FdLcD;15" halign="left">
@@ -240,8 +240,8 @@
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="255,24" font="FdLcD;22" halign="left"  noWrap="1">
 			<convert type="ClockToText">FullDate</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
-			<convert type="ClockToText">Format:%H:%M</convert>
+		<widget source="global.CurrentTime" render="Label" position="0,24" size="150,40" font="FdLcD;36" halign="left" noWrap="1">
+			<convert type="ClockToText">Default</convert>
 		</widget>
 		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="update.png" position="241,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>
@@ -275,7 +275,7 @@
 	<screen name="PluginBrowserSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="entry" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
-		<widget source="desc" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="left" transparent="1" />
+		<widget source="desc" render="Label" position="0,50" size="175,14" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
@@ -349,8 +349,8 @@
 		<widget source="service" render="Label" position="0,0" size="160,22" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="name" render="Label" position="0,21" size="255,18" font="FdLcD;17" halign="left" noWrap="1" />
 		<widget source="time" render="Label" position="0,39" size="190,35" font="FdLcD;14" halign="left" transparent="1" />
-		<widget source="duration" render="Label" position="0,52" size="190,35" font="FdLcD;13" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="0,50" size="190,35" font="FdLcD;13" halign="right" transparent="1" />
+		<widget source="duration" render="Label" position="0,52" size="175,35" font="FdLcD;13" halign="left" transparent="1" />
+		<widget source="state" render="Label" position="0,50" size="175,35" font="FdLcD;13" halign="right" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
@@ -412,7 +412,7 @@
 	<screen name="UpdatePlugin_summary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,21" font="FdLcD;18" halign="left" noWrap="1" />
 		<widget source="parent.package" render="Label" position="0,21" size="255,18" font="FdLcD;16" halign="left" noWrap="1" />
-		<widget source="parent.status" render="Label" position="0,50" size="193,14" font="FdLcD;12" halign="left" transparent="1" />
+		<widget source="parent.status" render="Label" position="0,50" size="175,14" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
