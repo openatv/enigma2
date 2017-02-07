@@ -1,7 +1,9 @@
+import os
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
+from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Components.Harddisk import harddiskmanager
 from GlobalActions import globalActionMap
@@ -9,11 +11,9 @@ from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceRefe
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Tools import Notifications
 from time import localtime, time
-from os import path, system
 import Screens.InfoBar
 from gettext import dgettext
 import Components.RecordingConfig
-import os
 
 inStandby = None
 
@@ -30,7 +30,7 @@ class Standby2(Screen):
 		print "[Standby] leave standby"
 		
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
-			os.system("/usr/script/StandbyLeave.sh &")
+			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
 		if (getBrandOEM() in ('fulan')):
 			open("/proc/stb/hdmi/output", "w").write("on")
@@ -65,7 +65,7 @@ class Standby2(Screen):
 		print "[Standby] enter standby"
 
 		if os.path.exists("/usr/script/StandbyEnter.sh"):
-			os.system("/usr/script/StandbyEnter.sh &")
+			Console().ePopen("/usr/script/StandbyEnter.sh &")
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
