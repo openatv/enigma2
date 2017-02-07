@@ -51,7 +51,11 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 		LD_PRELOAD=$LIBS @bindir@/enigma2 &> /home/root/logs/Enigma2_debug_$(date +%Y-%m-%d_%H-%M-%S).log
 	fi
 else
-	LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
+	if [ ! "$(grep config.misc.firstrun=False /etc/enigma2/settings)" ]; then
+		LD_PRELOAD=$LIBS @bindir@/enigma2
+	else
+		LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
+	fi
 fi
 
 # enigma2 exit codes:
