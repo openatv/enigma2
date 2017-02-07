@@ -2927,13 +2927,14 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if(has_prev())
 		{
 			eDVBFrontend *fe = (eDVBFrontend *)this;
-			fe->getTop(this, fe);
+			getTop(this, fe);
 
 			int state;
 			fe->getState(state);
 			if (state != eDVBFrontend::stateClosed)
 			{
 				eSecCommandList sec_takeover_sequence;
+				sec_takeover_sequence.push_front(eSecCommand(eSecCommand::CHANGE_TUNER_TYPE, m_type));
 				sec_takeover_sequence.push_front(eSecCommand(eSecCommand::TAKEOVER, (long)this));
 				fe->setSecSequence(sec_takeover_sequence, (eDVBFrontend *)this);
 				eDebug("takeover_sec %d",fe->getDVBID());
