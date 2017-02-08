@@ -761,12 +761,12 @@ int eDVBFrontend::openFrontend()
 			}
 			else
 				eWarning("ioctl FE_GET_PROPERTY/DTV_ENUM_DELSYS failed: %m");
+			ioctlMeasureEval("DTV_ENUM_DELSYS");
 #else
 			/* no DTV_ENUM_DELSYS support */
 			if (1)
 #endif
 			{
-				ioctlMeasureEval("DTV_ENUM_DELSYS");
 				/* old DVB API, fill delsys map with some defaults */
 				switch (fe_info.type)
 				{
@@ -855,6 +855,21 @@ int eDVBFrontend::openFrontend()
 		|| (m_delsys[SYS_DVBC_ANNEX_AC] && m_delsys[SYS_DVBS])
 		|| (m_delsys[SYS_DVBC_ANNEX_AC] && m_delsys[SYS_DVBT]);
 #endif
+	if(!m_multitype)
+	{
+		if(m_delsys[SYS_DVBS])
+			m_type = feSatellite;
+		else if(m_delsys[SYS_DVBT])
+			m_type = feTerrestrial;
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
+		else if(m_delsys[SYS_DVBC_ANNEX_A])
+#else
+		else if(m_delsys[SYS_DVBC_ANNEX_AC])
+#endif
+			m_type = feCable;
+		else if(m_delsys[SYS_ATSC])
+			m_type = feATSC;
+	}
 	if(m_type == feSatellite)
 		setTone(iDVBFrontend::toneOff);
 	setVoltage(iDVBFrontend::voltageOff);
