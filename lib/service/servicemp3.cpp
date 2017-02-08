@@ -24,7 +24,7 @@
 #include <time.h>
 #include <sys/time.h>
 
-#define HTTP_TIMEOUT 15
+#define HTTP_TIMEOUT 10
 
 /*
  * UNUSED variable from service reference is now used as buffer flag for gstreamer
@@ -497,6 +497,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_last_seek_pos = 0; /* CVR last seek position */
 	m_media_lenght = 0;
+	m_last_play_pos = 0;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -685,17 +686,30 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 				g_object_set(dvb_audiosink, "e2-sync", TRUE, NULL);
 				g_object_set(dvb_audiosink, "e2-async", TRUE, NULL);
 			}
+			else if(m_sourceinfo.is_streaming)
+			{
+				g_object_set(dvb_audiosink, "e2-sync", TRUE, NULL);
+				g_object_set(dvb_audiosink, "e2-async", FALSE, NULL);
+			}
 			else
 			{
-				g_object_set(dvb_audiosink, "e2-sync", FALSE, NULL);
-				g_object_set(dvb_audiosink, "e2-async", FALSE, NULL);
+				g_object_set(dvb_audiosink, "e2-sync", TRUE, NULL);
+				g_object_set(dvb_audiosink, "e2-async", TRUE, NULL);
 			}
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
 		}
 		if(dvb_videosink && !m_sourceinfo.is_audio)
 		{
-			g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
-			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
+			if(m_sourceinfo.is_streaming)
+			{
+				g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
+				g_object_set(dvb_videosink, "e2-async", TRUE, NULL);
+			}
+			else
+			{
+				g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
+				g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
+			}
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		}
 		/*
@@ -808,6 +822,7 @@ eServiceMP3::~eServiceMP3()
 		gst_object_unref (GST_OBJECT (m_gst_playbin));
 		m_ref.path.clear();
 		m_ref.name.clear();
+		m_media_lenght = 0;
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
 }
@@ -902,7 +917,23 @@ RESULT eServiceMP3::stop()
 {
 	if (!m_gst_playbin || m_state == stStopped)
 		return -1;
-
+#if GST_VERSION_MAJOR >= 1
+	/* hack for emc 1 concerning cuts file
+	 * This is a real hack , but required cause emc
+     * has a severe degradation in keeping resumepoints of a movie.
+	 * By standard InfoBarGenerics.py the resume position is saved into
+	 * /etc/enigma2/resumeponits.pkl file , this allows saving a movie
+	 * resumepoints for movies located in ro only location */
+	pts_t pts;
+	if (getPlayPosition(pts) >= 0)
+	{
+		/* it's usseles to save last 20 seconds */
+		if( pts <= (m_media_lenght - 1800000LL))
+			m_last_play_pos = pts;
+		eDebug("[serviceMP3] tempo cvr last playpostion = %" G_GINT64_FORMAT, m_last_play_pos);
+	}
+	eDebug("[serviceMP3] tempo cvr last playpostion = %" G_GINT64_FORMAT " media_lenght = %" G_GINT64_FORMAT, m_last_play_pos, m_media_lenght);
+#endif
 	eDebug("[eServiceMP3] stop %s", m_ref.path.c_str());
 	m_state = stStopped;
 
@@ -914,7 +945,6 @@ RESULT eServiceMP3::stop()
 		gst_element_state_get_name(state),
 		gst_element_state_get_name(pending),
 		gst_element_state_change_return_get_name(ret));
-
 	ret = gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	if (ret != GST_STATE_CHANGE_SUCCESS)
 		eDebug("[eServiceMP3] stop GST_STATE_NULL failure");
@@ -997,7 +1027,13 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 {
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
-
+#if GST_VERSION_MAJOR >= 1
+	if(m_media_lenght > 0 && !m_sourceinfo.is_streaming)
+	{
+		pts = m_media_lenght;
+		return 0;
+	}
+#endif
 	GstFormat fmt = GST_FORMAT_TIME;
 	gint64 len;
 #if GST_VERSION_MAJOR < 1
@@ -1009,7 +1045,11 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 		/* len is in nanoseconds. we have 90 000 pts per second. */
 
 	pts = len / 11111LL;
+#if GST_VERSION_MAJOR >= 1
 	m_media_lenght = pts;
+	if(!m_sourceinfo.is_streaming)
+		eDebug("[eServiceMP3] media_lenght = %" G_GINT64_FORMAT, m_media_lenght);
+#endif
 	return 0;
 }
 
@@ -1024,7 +1064,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 #else
 	m_last_seek_pos = to * 11111LL;
-	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT | GST_SEEK_FLAG_SNAP_BEFORE),
 		GST_SEEK_TYPE_SET, m_last_seek_pos,
 		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 #endif
@@ -1037,6 +1077,8 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	{
 		m_event((iPlayableService*)this, evUpdatedInfo);
 	}
+
+	eDebug("[eServiceMP3] seekToImpl(pts_t to) DONE");
 	return 0;
 }
 
@@ -1299,7 +1341,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if ( (pos = get_pts_pcrscr()) > 0)
 		pos *= 11111LL;
 #else
-	if ((dvb_audiosink || dvb_videosink) && !m_paused)
+	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_sourceinfo.is_streaming)
 	{
 		if (m_sourceinfo.is_audio)
 		{
@@ -1309,9 +1351,9 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		}
 		else
 		{
-			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
+			g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
 			if (!GST_CLOCK_TIME_IS_VALID(pos) || 0)
-				 g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
+				 g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 			if(!GST_CLOCK_TIME_IS_VALID(pos))
 				return -1;
 		}
@@ -3220,7 +3262,19 @@ void eServiceMP3::saveCuesheet()
 			return;
 		filename.append(".cuts");
 		if (stat(filename.c_str(), &s) == 0)
-			removefile = true;
+		{
+			/* hack for emc 2 */
+			if (m_last_play_pos > 0)
+			{
+				m_cue_entries.insert(cueEntry(m_last_play_pos, 3));
+				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#"G_GINT64_MODIFIER "x", m_last_play_pos);
+			}
+			else
+			{
+				removefile = true;
+				eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE ***");
+			}
+		}
 		else
 			return;
 	}
@@ -3229,11 +3283,23 @@ void eServiceMP3::saveCuesheet()
 		if (::access(filename.c_str(), R_OK) < 0)
 			return;
 		filename.append(".cuts");
-		if (stat(filename.c_str(), &s) == 0 && m_cue_entries.size() == 0)
+		/* hack for emc 3*/
+		if (stat(filename.c_str(), &s) == 0 && m_cue_entries.size() == 0 && !m_sourceinfo.is_audio)
+		{
+			m_cuesheet_loaded = false;
+			loadCuesheet();
+			if (m_cue_entries.size() == 0 && m_last_play_pos <= 0)
+			{			
+				removefile = true;
+				eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE NO LAST PLAY NO MANUAL CUTS***");
+			}
+		}
+		else if (m_sourceinfo.is_audio)
 		{
 			removefile = true;
-			eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE ***");
+			eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE MEDIA IS_AUDIO***");
 		}
+		/* do nothing we are working without emc */
 		else if (m_cue_entries.size() == 0)
 			return;
 	}

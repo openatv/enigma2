@@ -22,7 +22,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		-1, 0, 0,
-		1079, 1, "Astra 1 19.2e"),
+		1079, 1, _("Astra 1 19.2e")),
 
 		# astra 235 astra ses
 		( 12168, 27500, \
@@ -31,7 +31,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		-1, 0, 0,
-		3224, 3, "Astra 3 23.5e"),
+		3224, 3, _("Astra 3 23.5e")),
 
 		# astra 282 bbc
 		( 10773, 22000, \
@@ -40,7 +40,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		-1, 0, 0,
-		2045, 2, "Astra 2 28.2e"),
+		2045, 2, _("Astra 2 28.2e")),
 
 		# hotbird 130 rai
 		( 10992, 27500, \
@@ -49,7 +49,16 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		-1, 0, 0,
-		12400, 318, "Hotbird 13.0e"),
+		12400, 318, _("Hotbird 13.0e")),
+
+		# hispasat 300 tsa
+		( 10890, 27500, \
+		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_3_4, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 3300, \
+		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
+		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
+                -1, 0, 0,
+		1388, 1388, _("Hispasat 30.0w")),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
@@ -239,8 +248,24 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		else:
 			self.tunerStopScan(False)
 			return
-		self["tunerstatusbar"].setText(_("Tuner status %s") % (dict["tuner_state"]))
+		if dict["tuner_state"] == "TUNING":
+                        self["tunerstatusbar"].setText(_("Tuner status TUNING"))
 
+		elif dict["tuner_state"] == "FAILED":
+                        self["tunerstatusbar"].setText(_("Tuner status FAILED"))
+
+		elif dict["tuner_state"] == "LOSTLOCK":
+                        self["tunerstatusbar"].setText(_("Tuner status LOSTLOCK"))
+
+		elif dict["tuner_state"] == "LOCKED":
+                        self["tunerstatusbar"].setText(_("Tuner status LOCKED"))
+
+		elif dict["tuner_state"] == "IDLE":
+                        self["tunerstatusbar"].setText(_("Tuner status IDLE"))
+
+		elif dict["tuner_state"] == "UNKNOWN":
+                        self["tunerstatusbar"].setText(_("Tuner status UNKNOWN"))
+			
 		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self.tunerStopScan(False)
 			return

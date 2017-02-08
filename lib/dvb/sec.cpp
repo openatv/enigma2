@@ -534,7 +534,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				{
 					case 1:
 						eDebugNoSimulate("JESS (EN50607)");
-						if(gfrq)
+						if(lnb_param.SatCR_switch_reliable)
 						{
 							long inv;
 							frontend.getData(eDVBFrontend::SPECTINV_CNT, inv);
@@ -547,7 +547,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					case 0:
 					default:
 						eDebugNoSimulate("Unicable (EN50494)");
-						if(gfrq)
+						if(lnb_param.SatCR_switch_reliable)
 						{
 							long inv;
 							frontend.getData(eDVBFrontend::SPECTINV_CNT, inv);
@@ -1262,6 +1262,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				if (state != eDVBFrontend::stateClosed)
 				{
 					eSecCommandList sec_takeover_sequence;
+					sec_takeover_sequence.push_front(eSecCommand(eSecCommand::CHANGE_TUNER_TYPE,((eDVBFrontend *)&frontend)->getCurrentType()));
 					sec_takeover_sequence.push_front(eSecCommand(eSecCommand::TAKEOVER, (long)&frontend));
 					fe->setSecSequence(sec_takeover_sequence, (eDVBFrontend *)&frontend);
 					eDebugNoSimulate("takeover_sec %d",fe->getDVBID());
@@ -1367,6 +1368,7 @@ void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend)
 		if (state != eDVBFrontend::stateClosed)
 		{
 			eSecCommandList sec_takeover_sequence;
+			sec_takeover_sequence.push_front(eSecCommand(eSecCommand::CHANGE_TUNER_TYPE,((eDVBFrontend *)&frontend)->getCurrentType()));
 			sec_takeover_sequence.push_front(eSecCommand(eSecCommand::TAKEOVER, (long)&frontend));
 			fe->setSecSequence(sec_takeover_sequence, (eDVBFrontend *)&frontend);
 			eDebug("takeover_sec %d",fe->getDVBID());
