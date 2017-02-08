@@ -239,11 +239,12 @@ public:
 	{
 		audiotype_t audiotype;
 		containertype_t containertype;
-		bool is_audio;
-		bool is_video;
-		bool is_streaming;
+		gboolean is_audio;
+		gboolean is_video;
+		gboolean is_streaming;
+		gboolean is_hls;
 		sourceStream()
-			:audiotype(atUnknown), containertype(ctNone), is_audio(FALSE), is_video(FALSE), is_streaming(FALSE)
+			:audiotype(atUnknown), containertype(ctNone), is_audio(FALSE), is_video(FALSE), is_streaming(FALSE), is_hls(FALSE)
 		{
 		}
 	};
