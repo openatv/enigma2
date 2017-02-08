@@ -1066,18 +1066,19 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	{
 		m_event((iPlayableService*)this, evUpdatedInfo);
 	}
+#if GST_VERSION_MAJOR >= 1
 	else
 	{
 		/* make sure that the seek was fully completed on all elements
 	 	* before proceeding further, this will happen when async_done is received
 	 	*/
-		gst_element_get_state(m_gst_playbin, NULL, NULL, GST_CLOCK_TIME_NONE);
+		gst_element_get_state(m_gst_playbin, NULL, NULL, 3LL * GST_SECOND);
 		/*eDebug("[eServiceMP3] after seek state:%s pending:%s ret:%s",
 			gst_element_state_get_name(state),
 			gst_element_state_get_name(pending),
 			gst_element_state_change_return_get_name(ret));*/
 	}
-
+#endif
 	eDebug("[eServiceMP3] seekToImpl(pts_t to) DONE");
 	return 0;
 }
