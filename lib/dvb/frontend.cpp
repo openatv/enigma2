@@ -761,12 +761,12 @@ int eDVBFrontend::openFrontend()
 			}
 			else
 				eWarning("ioctl FE_GET_PROPERTY/DTV_ENUM_DELSYS failed: %m");
+			ioctlMeasureEval("DTV_ENUM_DELSYS");
 #else
 			/* no DTV_ENUM_DELSYS support */
 			if (1)
 #endif
 			{
-				ioctlMeasureEval("DTV_ENUM_DELSYS");
 				/* old DVB API, fill delsys map with some defaults */
 				switch (fe_info.type)
 				{
