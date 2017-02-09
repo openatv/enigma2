@@ -26,14 +26,6 @@ if HAVE_COLORLCD
 SUBDIRS += display96
 endif
 
-if HAVE_COLORLCD2
-SUBDIRS += display96
-endif
-
-if HAVE_COLORLCD3
-SUBDIRS += display128dm
-endif
-
 if HAVE_COLORLCD128
 SUBDIRS += display128
 endif
