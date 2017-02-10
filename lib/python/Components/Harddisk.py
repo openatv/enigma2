@@ -64,7 +64,7 @@ class Harddisk:
 	def __init__(self, device, removable = False):
 		self.device = device
 
-		if os.access("/dev/.udev", 0):
+		if os.access("/dev/.udev", 0) or os.access("/run/udev/data", 0):
 			self.type = DEVTYPE_UDEV
 		elif os.access("/dev/.devfsd", 0):
 			self.type = DEVTYPE_DEVFS
