@@ -23,7 +23,7 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="195,48" size="60,22" font="FdLcD;20" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="180,44" size="75,20" font="FdLcD;18" halign="right" noWrap="1">
 			<convert type="ClockToText"/>
 		</widget>
 	</screen>
@@ -48,42 +48,42 @@
 		</widget>
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="158,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="139,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="167,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-b.png" position="148,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="176,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-c.png" position="157,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="185,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-d.png" position="165,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-a-act.png" position="158,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-a-act.png" position="139,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-b-act.png" position="167,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-b-act.png" position="148,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-c-act.png" position="176,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-c-act.png" position="157,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-d-act.png" position="185,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="tuner-d-act.png" position="165,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
@@ -100,7 +100,7 @@
 		<widget source="parent.Event" render="Progress" position="0,43" size="140,5" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
+		<widget source="parent.Event" render="Label" position="0,51" size="135,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
@@ -189,8 +189,8 @@
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="255,24" font="FdLcD;22" halign="left"  noWrap="1">
 			<convert type="ClockToText">FullDate</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
-			<convert type="ClockToText">Format:%H:%M</convert>
+		<widget source="global.CurrentTime" render="Label" position="0,24" size="150,40" font="FdLcD;36" halign="left" noWrap="1">
+			<convert type="ClockToText">Default</convert>
 		</widget>
 		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="update.png" position="241,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>
@@ -296,7 +296,7 @@
 		<widget source="name" render="Label" position="0,21" size="255,18" font="FdLcD;17" halign="left" noWrap="1" />
 		<widget source="time" render="Label" position="0,39" size="190,35" font="FdLcD;14" halign="left" transparent="1" />
 		<widget source="duration" render="Label" position="0,52" size="190,35" font="FdLcD;13" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="0,50" size="190,35" font="FdLcD;13" halign="right" transparent="1" />
+		<widget source="state" render="Label" position="0,50" size="175,35" font="FdLcD;13" halign="right" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
