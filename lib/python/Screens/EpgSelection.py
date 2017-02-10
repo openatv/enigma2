@@ -239,9 +239,15 @@ class EPGSelection(Screen, HelpableScreen):
 				self.skinName = 'GraphicalInfoBarEPG'
 			now = time() - int(config.epg.histminutes.value) * 60
 			if self.type == EPG_TYPE_GRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				if 'primetime' in config.epgselection.graph_startmode.value:
+					basetime = localtime(self.ask_time)
+					basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.graph_primetimehour.value), int(config.epgselection.graph_primetimemins.value), 0, basetime[6], basetime[7], basetime[8])
+					self.ask_time = mktime(basetime)
+					if self.ask_time + 3600 < time():
+						self.ask_time += 86400
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
 			self.closeRecursive = False
 			self.bouquetlist_active = False
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
@@ -386,12 +392,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
 		self.listTimer.callback.append(self.hidewaitingtext)
-		self.createTimer = eTimer()
-		if not HardwareInfo().is_nextgen():
-			self.createTimer.callback.append(self.onCreate)
-			self.onLayoutFinish.append(self.LayoutFinish)
-		else:
-			self.onLayoutFinish.append(self.onCreate)
+		self.onLayoutFinish.append(self.LayoutFinish)
 
 	def createSetup(self):
 		self.closeEventViewDialog()
@@ -451,11 +452,11 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def LayoutFinish(self):
 		self['lab1'].show()
-		self.createTimer.start(800)
+		self.createTimer = eTimer()
+		self.createTimer.start(500, True)
+		self.onCreate()
 
 	def onCreate(self):
-		if not HardwareInfo().is_nextgen():
-			self.createTimer.stop()
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		title = None
 		self['list'].recalcEntrySize()
@@ -475,7 +476,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.type == EPG_TYPE_GRAPH:
 				self['list'].setShowServiceMode(config.epgselection.graph_servicetitle_mode.value)
 				self.moveTimeLines()
-				if config.epgselection.graph_channel1.value:
+				if 'channel1' in config.epgselection.graph_startmode.value:
 					self['list'].instance.moveSelectionTo(0)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self['list'].setShowServiceMode(config.epgselection.infobar_servicetitle_mode.value)
@@ -612,9 +613,15 @@ class EPGSelection(Screen, HelpableScreen):
 		self.services = self.getBouquetServices(self.getCurrentBouquet())
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				if 'primetime' in config.epgselection.graph_startmode.value:
+					basetime = localtime(self.ask_time)
+					basetime = (basetime[0], basetime[1], basetime[2], int(config.epgselection.graph_primetimehour.value), int(config.epgselection.graph_primetimemins.value), 0, basetime[6], basetime[7], basetime[8])
+					self.ask_time = mktime(basetime)
+					if self.ask_time + 3600 < time():
+						self.ask_time += 86400
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
 			self['list'].resetOffset()
 			self['list'].fillGraphEPG(self.services, self.ask_time)
 			self.moveTimeLines(True)
