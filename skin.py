@@ -460,6 +460,9 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 def applyAllAttributes(guiObject, desktop, attributes, scale):
 	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
 
+def paramConvert(val):
+	return float(val) if '.' in val else int(val)
+
 def loadSingleSkinData(desktop, skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
 	assert skin.tag == "skin", "root element in skin must be 'skin'!"
@@ -612,7 +615,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			try:
 				name = get("name")
 				value = get("value")
-				parameters[name] = "," in value and map(int, value.split(",")) or int(value)
+				parameters[name] = "," in value and map(paramConvert, value.split(",")) or paramConvert(value)
 			except Exception, ex:
 				print "[Skin] bad parameter", ex
 
