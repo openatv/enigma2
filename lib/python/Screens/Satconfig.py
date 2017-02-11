@@ -936,10 +936,16 @@ class NimSelection(Screen):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
 
-		nimConfig = nimmanager.getNimConfig(nim.slot).dvbs
-		if isFBCLink(nim.slot) and nimConfig.configMode.value == "loopthrough":
-			return
+		if isFBCLink(nim.slot):
+			if nim.isCompatible("DVB-S"):
+				nimConfig = nimmanager.getNimConfig(nim.slot).dvbs
+			elif nim.isCompatible("DVB-C"):
+				nimConfig = nimmanager.getNimConfig(nim.slot).dvbc
+			elif nim.isCompatible("DVB-T"):
+				nimConfig = nimmanager.getNimConfig(nim.slot).dvbt
 
+			if nimConfig.configMode.value == "loopthrough":
+				return
 		if nim is not None and not nim.empty and nim.isSupported():
 			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 
