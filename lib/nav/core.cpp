@@ -204,11 +204,14 @@ void eNavigation::getRecordingsSlotIDsOnly(std::vector<int> &slotids, pNavigatio
 		{
 			ePtr<iFrontendInformation> fe_info;
 			it->first->frontendInfo(fe_info);
-			slotids.push_back(fe_info->getFrontendInfo(iFrontendInformation_ENUMS::frontendNumber));
-		//	eDebug("[core.cpp] getRecordingsServicesOnly: returning type %d (asked for type %d)", m_recordings_types[it->first], type);
+			if (fe_info)
+				slotids.push_back(fe_info->getFrontendInfo(iFrontendInformation_ENUMS::frontendNumber));
+			else
+				slotids.push_back(-1);
+		//	eDebug("[core.cpp] getRecordingsSlotIDsOnly: returning type %d (asked for type %d)", m_recordings_types[it->first], type);
 		}
 		//else
-		//	eDebug("[core.cpp] getRecordingsServicesOnly: not returning type %d (asked for type %d)", m_recordings_types[it->first], type);
+		//	eDebug("[core.cpp] getRecordingsSlotIDsOnly: not returning type %d (asked for type %d)", m_recordings_types[it->first], type);
 	}
 }
 
