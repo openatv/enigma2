@@ -547,11 +547,9 @@ def InitUsageConfig():
 
 	def adjustCompactDate():
 		if config.usage.time.wide_display.value:
-			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", "")
-			config.usage.date.compact.value = config.usage.date.compact.value.replace("=", "")
+			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", "").replace("=", "")
 		else:
-			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", " ")
-			config.usage.date.compact.value = config.usage.date.compact.value.replace("=", "-")
+			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", " ").replace("=", "-")
 
 	config.usage.date.dayfull.addNotifier(setDateStyles)
 
