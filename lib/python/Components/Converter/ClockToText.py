@@ -75,7 +75,7 @@ class ClockToText(Converter, object):
 		args = [arg.lstrip() for arg in type.split(parse)]
 		for arg in args:
 			if arg[0:6] == "Format":
-				self.formats.append(lambda t: strftime(arg[7:], localtime(t)))
+				self.formats.append(eval("lambda t: strftime(\"%s\", localtime(t))" % arg[7:]))
 				continue
 			if arg[0:7] == "NoSpace":
 				# Eat old OpenVIX option as it doesn't make sense now.
