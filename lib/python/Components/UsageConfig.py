@@ -361,150 +361,33 @@ def InitUsageConfig():
 		(_("%A %Y-%B-%-e"), _("Dayname 9999-Month-9")),
 		(_("%A %Y/%m/%-e"), _("Dayname 9999/99/9"))
 	])
+
 	# TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
-	config.usage.date.shortdayfull = ConfigSelection(default=_("%a %-e %B %Y"), choices=[
-		(_("%a %d %B %Y"), _("Day 99 Month 9999")),
-		(_("%a %-e %B %Y"), _("Day 9 Month 9999")),
-		(_("%a %-e-%B-%Y"), _("Day 9-Month-9999")),
-		(_("%a %-e/%m/%Y"), _("Day 9/99/9999")),
-		(_("%a %B %d %Y"), _("Day Month 99 9999")),
-		(_("%a %B %-e %Y"), _("Day Month 9 9999")),
-		(_("%a %B-%-e-%Y"), _("Day Month-9-9999")),
-		(_("%a %-m/%-e/%Y"), _("Day 9/9/9999")),
-		(_("%a %Y %B %d"), _("Day 9999 Month 99")),
-		(_("%a %Y %B %-e"), _("Day 9999 Month 9")),
-		(_("%a %Y-%B-%d"), _("Day 9999-Month-99")),
-		(_("%a %Y-%B-%-e"), _("Day 9999-Month-9")),
-		(_("%a %Y/%m/%-e"), _("Day 9999/99/9"))
-	])
+	config.usage.date.shortdayfull = ConfigText(default=_("%a %-e %B %Y"))
+
 	# TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
-	config.usage.date.daylong = ConfigSelection(default=_("%a %-e %b %Y"), choices=[
-		(_("%a %d %b %Y"), _("Day 99 Mon 9999")),
-		(_("%a %-e %b %Y"), _("Day 9 Mon 9999")),
-		(_("%a %-e-%b-%Y"), _("Day 9-Mon-9999")),
-		(_("%a %-e/%m/%Y"), _("Day 9/99/9999")),
-		(_("%a %b %d %Y"), _("Day Mon 99 9999")),
-		(_("%a %b %-e %Y"), _("Day Mon 9 9999")),
-		(_("%a %b-%-e-%Y"), _("Day Mon-9-9999")),
-		(_("%a %-m/%-e/%Y"), _("Day 9/9/9999")),
-		(_("%a %Y %b %d"), _("Day 9999 Mon 99")),
-		(_("%a %Y %b %-e"), _("Day 9999 Mon 9")),
-		(_("%a %Y-%b-%d"), _("Day 9999-Mon-99")),
-		(_("%a %Y-%b-%-e"), _("Day 9999-Mon-9")),
-		(_("%a %Y/%m/%-e"), _("Day 9999/99/9"))
-	])
+	config.usage.date.daylong = ConfigText(default=_("%a %-e %b %Y"))
+
 	# TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
-	config.usage.date.dayshortfull = ConfigSelection(default=_("%A %-e %B"), choices=[
-		(_("%A %d %B"), _("Dayname 99 Month")),
-		(_("%A %-e %B"), _("Dayname 9 Month")),
-		(_("%A %-e-%B"), _("Dayname 9-Month")),
-		(_("%A %-e/%m"), _("Dayname 9/99")),
-		(_("%A %B %d"), _("Dayname Month 99")),
-		(_("%A %B %-e"), _("Dayname Month 9")),
-		(_("%A %B-%-e"), _("Dayname Month-9")),
-		(_("%A %-m/%-e"), _("Dayname 9/9")),
-		(_("%A %B %d"), _("Dayname Month 99")),
-		(_("%A %B %-e"), _("Dayname Month 9")),
-		(_("%A %B-%d"), _("Dayname Month-99")),
-		(_("%A %B-%-e"), _("Dayname Month-9")),
-		(_("%A %m/%-e"), _("Dayname 99/9"))
-	])
+	config.usage.date.dayshortfull = ConfigText(default=_("%A %-e %B"))
+
 	# TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
-	config.usage.date.dayshort = ConfigSelection(default=_("%a %-e %b"), choices=[
-		(_("%a %d %b"), _("Day 99 Mon")),
-		(_("%a %-e %b"), _("Day 9 Mon")),
-		(_("%a %-e-%b"), _("Day 9-Mon")),
-		(_("%a %-e/%m"), _("Day 9/99")),
-		(_("%a %b %d"), _("Day Mon 99")),
-		(_("%a %b %-e"), _("Day Mon 9")),
-		(_("%a %b-%-e"), _("Day Mon-9")),
-		(_("%a %-m/%-e"), _("Day 9/9")),
-		(_("%a %b %d"), _("Day Mon 99")),
-		(_("%a %b %-e"), _("Day Mon 9")),
-		(_("%a %b-%d"), _("Day Mon-99")),
-		(_("%a %b-%-e"), _("Day Mon-9")),
-		(_("%a %m/%-e"), _("Day 99/9"))
-	])
+	config.usage.date.dayshort = ConfigText(default=_("%a %-e %b"))
+
 	# TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
-	config.usage.date.daysmall = ConfigSelection(default=_("%a %-e"), choices=[
-		(_("%a %d"), _("Day 99")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %d"), _("Day 99")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %d"), _("Day 99")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %d"), _("Day 99")),
-		(_("%a %-e"), _("Day 9")),
-		(_("%a %-e"), _("Day 9"))
-	])
+	config.usage.date.daysmall = ConfigText(default=_("%a %-e"))
+
 	# TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
-	config.usage.date.full = ConfigSelection(default=_("%-e %B %Y"), choices=[
-		(_("%d %B %Y"), _("99 Month 9999")),
-		(_("%-e %B %Y"), _("9 Month 9999")),
-		(_("%-e-%B-%Y"), _("9-Month-9999")),
-		(_("%-e/%m/%Y"), _("9/99/9999")),
-		(_("%B %d %Y"), _("Month 99 9999")),
-		(_("%B %-e %Y"), _("Month 9 9999")),
-		(_("%B-%-e-%Y"), _("Month-9-9999")),
-		(_("%-m/%-e/%Y"), _("9/9/9999")),
-		(_("%Y %B %d"), _("9999 Month 99")),
-		(_("%Y %B %-e"), _("9999 Month 9")),
-		(_("%Y-%B-%d"), _("9999-Month-99")),
-		(_("%Y-%B-%-e"), _("9999-Month-9")),
-		(_("%Y/%m/%-e"), _("9999/99/9"))
-	])
+	config.usage.date.full = ConfigText(default=_("%-e %B %Y"))
+
 	# TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
-	config.usage.date.long = ConfigSelection(default=_("%-e %b %Y"), choices=[
-		(_("%d %b %Y"), _("99 Mon 9999")),
-		(_("%-e %b %Y"), _("9 Mon 9999")),
-		(_("%-e-%b-%Y"), _("9-Mon-9999")),
-		(_("%-e/%m/%Y"), _("9/99/9999")),
-		(_("%b %d %Y"), _("Mon 99 9999")),
-		(_("%b %-e %Y"), _("Mon 9 9999")),
-		(_("%b-%-e-%Y"), _("Mon-9-9999")),
-		(_("%-m/%-e/%Y"), _("9/9/9999")),
-		(_("%Y %b %d"), _("9999 Mon 99")),
-		(_("%Y %b %-e"), _("9999 Mon 9")),
-		(_("%Y-%b-%d"), _("9999-Mon-99")),
-		(_("%Y-%b-%-e"), _("9999-Mon-9")),
-		(_("%Y/%m/%-e"), _("9999/99/9"))
-	])
+	config.usage.date.long = ConfigText(default=_("%-e %b %Y"))
+
 	# TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-	config.usage.date.short = ConfigSelection(default=_("%-e %b"), choices=[
-		(_("%d %b"), _("99 Mon")),
-		(_("%-e %b"), _("9 Mon")),
-		(_("%-e-%b"), _("9-Mon")),
-		(_("%-e/%m"), _("9/99")),
-		(_("%b %d"), _("Mon 99")),
-		(_("%b %-e"), _("Mon 9")),
-		(_("%b-%-e"), _("Mon-9")),
-		(_("%-m/%-e"), _("9/9")),
-		(_("%b %d"), _("Mon 99")),
-		(_("%b %-e"), _("Mon 9")),
-		(_("%b-%d"), _("Mon-99")),
-		(_("%b-%-e"), _("Mon-9")),
-		(_("%m/%-e"), _("99/9"))
-	])
+	config.usage.date.short = ConfigText(default=_("%-e %b"))
+
 	# TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
-	config.usage.date.compact_template = ConfigSelection(default=_("%-e_%b_"), choices=[
-		(_("%d_%b_"), _("99 Mon")),
-		(_("%-e_%b_"), _("9 Mon")),
-		(_("%-e=%b_"), _("9-Mon")),
-		(_("%-e/%m "), _("9/99")),
-		(_("%d_%b_"), _("99 Mon")),
-		(_("%-e_%b_"), _("9 Mon")),
-		(_("%-e=%b_"), _("9-Mon")),
-		(_("%-m/%-e "), _("9/9")),
-		(_("%d_%b_"), _("99 Mon")),
-		(_("%-e_%b_"), _("9 Mon")),
-		(_("%d=%b_"), _("99-Mon")),
-		(_("%-e=%b_"), _("9-Mon")),
-		(_("%m/%-e "), _("99/9"))
-	])
+	config.usage.date.compact_template = ConfigText(default=_("%-e_%b_"))
 	config.usage.date.compact = ConfigText(default=_("%-e_%b_"))
 
 	def setDateStyles(configElement):
@@ -568,24 +451,12 @@ def InitUsageConfig():
 			(_("%T"), _("99:99:99")),
 			(_("%-H:%M:%S"), _("9:99:99")),
 		])
+
 	# TRANSLATORS: time representation hour:minute:seconds for 24 hour clock and hour:minute for 12 hour clocks
-	config.usage.time.mixed = ConfigSelection(default=_("%T"), choices=[
-		(_("%T"), _("99:99:99")),
-		(_("%-H:%M:%S"), _("9:99:99")),
-		(_("%I:%M%^p"), _("99:99AM/PM")),
-		(_("%-I:%M%^p"), _("9:99AM/PM")),
-		(_("%I:%M%P"), _("99:99am/pm")),
-		(_("%-I:%M%P"), _("9:99am/pm"))
-	])
+	config.usage.time.mixed = ConfigText(default=_("%T"))
+
 	# TRANSLATORS: short time representation hour:minute (Same as "Default")
-	config.usage.time.short = ConfigSelection(default=_("%R"), choices=[
-		(_("%R"), _("99:99")),
-		(_("%-H:%M"), _("9:99")),
-		(_("%I:%M%^p"), _("99:99AM/PM")),
-		(_("%-I:%M%^p"), _("9:99AM/PM")),
-		(_("%I:%M%P"), _("99:99am/pm")),
-		(_("%-I:%M%P"), _("9:99am/pm"))
-	])
+	config.usage.time.short = ConfigText(default=_("%R"))
 
 	def setTimeStyles(configElement):
 		timeStyles = {
