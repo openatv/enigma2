@@ -414,19 +414,25 @@ def InitUsageConfig():
 
 	# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 	config.usage.date.dayfull = ConfigSelection(default=_("%A %-e %B %Y"), choices=[
-		(_("%A %d %B %Y"), _("Dayname 99 Month 9999")),
-		(_("%A %-e %B %Y"), _("Dayname 9 Month 9999")),
-		(_("%A %-e-%B-%Y"), _("Dayname 9-Month-9999")),
-		(_("%A %-e/%m/%Y"), _("Dayname 9/99/9999")),
-		(_("%A %B %d %Y"), _("Dayname Month 99 9999")),
-		(_("%A %B %-e %Y"), _("Dayname Month 9 9999")),
-		(_("%A %B-%-e-%Y"), _("Dayname Month-9-9999")),
-		(_("%A %-m/%-e/%Y"), _("Dayname 9/9/9999")),
-		(_("%A %Y %B %d"), _("Dayname 9999 Month 99")),
-		(_("%A %Y %B %-e"), _("Dayname 9999 Month 9")),
-		(_("%A %Y-%B-%d"), _("Dayname 9999-Month-99")),
-		(_("%A %Y-%B-%-e"), _("Dayname 9999-Month-9")),
-		(_("%A %Y/%m/%-e"), _("Dayname 9999/99/9"))
+		(_("%A %d %B %Y"), _("Dayname DD Month Year")),
+		(_("%A %-e %B %Y"), _("Dayname D Month Year")),
+		(_("%A %d-%B-%Y"), _("Dayname DD-Month-Year")),
+		(_("%A %-e-%B-%Y"), _("Dayname D-Month-Year")),
+		(_("%A %d/%m/%Y"), _("Dayname DD/MM/Year")),
+		(_("%A %-e/%m/%Y"), _("Dayname D/MM/Year")),
+		(_("%A %B %d %Y"), _("Dayname Month DD Year")),
+		(_("%A %B %-e %Y"), _("Dayname Month D Year")),
+		(_("%A %B-%d-%Y"), _("Dayname Month-DD-Year")),
+		(_("%A %B-%-e-%Y"), _("Dayname Month-D-Year")),
+		(_("%A %m/%d/%Y"), _("Dayname MM/DD/Year")),
+		(_("%A %m/%-e/%Y"), _("Dayname MM/D/Year")),
+		(_("%A %-m/%-e/%Y"), _("Dayname M/D/Year")),
+		(_("%A %Y %B %d"), _("Dayname Year Month DD")),
+		(_("%A %Y %B %-e"), _("Dayname Year Month D")),
+		(_("%A %Y-%B-%d"), _("Dayname Year-Month-DD")),
+		(_("%A %Y-%B-%-e"), _("Dayname Year-Month-D")),
+		(_("%A %Y/%m/%d"), _("Dayname Year/MM/DD")),
+		(_("%A %Y/%m/%-e"), _("Dayname Year/MM/D"))
 	])
 
 	# TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
@@ -454,24 +460,31 @@ def InitUsageConfig():
 	config.usage.date.short = ConfigText(default=_("%-e %b"))
 
 	# TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
-	config.usage.date.compact_template = ConfigText(default=_("%-e_%b_"))
-	config.usage.date.compact = ConfigText(default=_("%-e_%b_"))
+	config.usage.date.compact_template = ConfigText(default=_("%-e+%b_"))
+	config.usage.date.compact = ConfigText(default=_("%-e+%b_"))
+	config.usage.date.compressed = ConfigText(default=_("%-e+%b_"))
 
 	def setDateStyles(configElement):
 		dateStyles = {
 			# dayfull            shortdayfull      daylong           dayshortfull   dayshort       daysmall    full           long           short       compact_template
-			_("%A %d %B %Y"): (_("%a %d %B %Y"), _("%a %d %b %Y"), _("%A %d %B"), _("%a %d %b"), _("%a %d"), _("%d %B %Y"), _("%d %b %Y"), _("%d %b"), _("%d_%b_")),
-			_("%A %-e %B %Y"): (_("%a %-e %B %Y"), _("%a %-e %b %Y"), _("%A %-e %B"), _("%a %-e %b"), _("%a %-e"), _("%-e %B %Y"), _("%-e %b %Y"), _("%-e %b"), _("%-e_%b_")),
+			_("%A %d %B %Y"): (_("%a %d %B %Y"), _("%a %d %b %Y"), _("%A %d %B"), _("%a %d %b"), _("%a %d"), _("%d %B %Y"), _("%d %b %Y"), _("%d %b"), _("%d+%b_")),
+			_("%A %-e %B %Y"): (_("%a %-e %B %Y"), _("%a %-e %b %Y"), _("%A %-e %B"), _("%a %-e %b"), _("%a %-e"), _("%-e %B %Y"), _("%-e %b %Y"), _("%-e %b"), _("%-e+%b_")),
+			_("%A %d-%B-%Y"): (_("%a %d-%B-%Y"), _("%a %d-%b-%Y"), _("%A %d-%B"), _("%a %d-%b"), _("%a %d"), _("%d-%B-%Y"), _("%d-%b-%Y"), _("%d-%b"), _("%d=%b_")),
 			_("%A %-e-%B-%Y"): (_("%a %-e-%B-%Y"), _("%a %-e-%b-%Y"), _("%A %-e-%B"), _("%a %-e-%b"), _("%a %-e"), _("%-e-%B-%Y"), _("%-e-%b-%Y"), _("%-e-%b"), _("%-e=%b_")),
+			_("%A %d/%m/%Y"): (_("%a %d/%m/%Y"), _("%a %d/%m/%Y"), _("%A %d/%m"), _("%a %d/%m"), _("%a %d"), _("%d/%m/%Y"), _("%d/%m/%Y"), _("%d/%m"), _("%d/%m ")),
 			_("%A %-e/%m/%Y"): (_("%a %-e/%m/%Y"), _("%a %-e/%m/%Y"), _("%A %-e/%m"), _("%a %-e/%m"), _("%a %-e"), _("%-e/%m/%Y"), _("%-e/%m/%Y"), _("%-e/%m"), _("%-e/%m ")),
-			_("%A %B %d %Y"): (_("%a %B %d %Y"), _("%a %b %d %Y"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%B %d %Y"), _("%b %d %Y"), _("%b %d"), _("%d_%b_")),
-			_("%A %B %-e %Y"): (_("%a %B %-e %Y"), _("%a %b %-e %Y"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%B %-e %Y"), _("%b %-e %Y"), _("%b %-e"), _("%-e_%b_")),
+			_("%A %B %d %Y"): (_("%a %B %d %Y"), _("%a %b %d %Y"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%B %d %Y"), _("%b %d %Y"), _("%b %d"), _("%d+%b_")),
+			_("%A %B %-e %Y"): (_("%a %B %-e %Y"), _("%a %b %-e %Y"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%B %-e %Y"), _("%b %-e %Y"), _("%b %-e"), _("%-e+%b_")),
+			_("%A %B-%d-%Y"): (_("%a %B-%d-%Y"), _("%a %b-%d-%Y"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%B-%d-%Y"), _("%b-%d-%Y"), _("%b-%d"), _("%d=%b_")),
 			_("%A %B-%-e-%Y"): (_("%a %B-%-e-%Y"), _("%a %b-%-e-%Y"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%B-%-e-%Y"), _("%b-%-e-%Y"), _("%b-%-e"), _("%-e=%b_")),
+			_("%A %m/%d/%Y"): (_("%a %m/%d/%Y"), _("%a %m/%d/%Y"), _("%A %m/%d"), _("%a %m/%d"), _("%a %d"), _("%m/%d/%Y"), _("%m/%d/%Y"), _("%m/%d"), _("%m/%d ")),
+			_("%A %m/%-e/%Y"): (_("%a %m/%-e/%Y"), _("%a %m/%-e/%Y"), _("%A %m/%-e"), _("%a %m/%-e"), _("%a %-e"), _("%m/%-e/%Y"), _("%m/%-e/%Y"), _("%m/%-e"), _("%m/%-e ")),
 			_("%A %-m/%-e/%Y"): (_("%a %-m/%-e/%Y"), _("%a %-m/%-e/%Y"), _("%A %-m/%-e"), _("%a %-m/%-e"), _("%a %-e"), _("%-m/%-e/%Y"), _("%-m/%-e/%Y"), _("%-m/%-e"), _("%-m/%-e ")),
-			_("%A %Y %B %d"): (_("%a %Y %B %d"), _("%a %Y %b %d"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%Y %B %d"), _("%Y %b %d"), _("%b %d"), _("%d_%b_")),
-			_("%A %Y %B %-e"): (_("%a %Y %B %-e"), _("%a %Y %b %-e"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%Y %B %-e"), _("%Y %b %-e"), _("%b %-e"), _("%-e_%b_")),
+			_("%A %Y %B %d"): (_("%a %Y %B %d"), _("%a %Y %b %d"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%Y %B %d"), _("%Y %b %d"), _("%b %d"), _("%d+%b_")),
+			_("%A %Y %B %-e"): (_("%a %Y %B %-e"), _("%a %Y %b %-e"), _("%A %B %-e"), _("%a %b %-e"), _("%a %-e"), _("%Y %B %-e"), _("%Y %b %-e"), _("%b %-e"), _("%-e+%b_")),
 			_("%A %Y-%B-%d"): (_("%a %Y-%B-%d"), _("%a %Y-%b-%d"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%Y-%B-%d"), _("%Y-%b-%d"), _("%b-%d"), _("%d=%b_")),
 			_("%A %Y-%B-%-e"): (_("%a %Y-%B-%-e"), _("%a %Y-%b-%-e"), _("%A %B-%-e"), _("%a %b-%-e"), _("%a %-e"), _("%Y-%B-%-e"), _("%Y-%b-%-e"), _("%b-%-e"), _("%-e=%b_")),
+			_("%A %Y/%m/%d"): (_("%a %Y/%m/%d"), _("%a %Y/%m/%d"), _("%A %m/%d"), _("%a %m/%d"), _("%a %d"), _("%Y/%m/%d"), _("%Y/%m/%d"), _("%m/%d"), _("%m/%d ")),
 			_("%A %Y/%m/%-e"): (_("%a %Y/%m/%-e"), _("%a %Y/%m/%-e"), _("%A %m/%-e"), _("%a %m/%-e"), _("%a %-e"), _("%Y/%m/%-e"), _("%Y/%m/%-e"), _("%m/%-e"), _("%m/%-e "))
 		}
 		style = dateStyles.get(configElement.value, ((_("Invalid")) * 9))
@@ -497,29 +510,34 @@ def InitUsageConfig():
 
 	def adjustCompactDate():
 		if config.usage.time.wide_display.value:
-			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", "").replace("=", "")
+			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", "").replace("=", "").replace("+", "")
 		else:
-			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", " ").replace("=", "-")
+			config.usage.date.compact.value = config.usage.date.compact_template.value.replace("_", " ").replace("=", "-").replace("+", " ")
+		config.usage.date.compressed.value = config.usage.date.compact_template.value.replace("_", " ").replace("=", "").replace("+", "")
 
 	config.usage.date.dayfull.addNotifier(setDateStyles)
 
 	# TRANSLATORS: full time representation hour:minute:seconds
 	if locale.nl_langinfo(locale.AM_STR) and locale.nl_langinfo(locale.PM_STR):
 		config.usage.time.long = ConfigSelection(default=_("%T"), choices=[
-			(_("%T"), _("99:99:99")),
-			(_("%-H:%M:%S"), _("9:99:99")),
-			(_("%I:%M:%S%^p"), _("99:99:99AM/PM")),
-			(_("%-I:%M:%S%^p"), _("9:99:99AM/PM")),
-			(_("%I:%M:%S%P"), _("99:99:99am/pm")),
-			(_("%-I:%M:%S%P"), _("9:99:99am/pm"))
+			(_("%T"), _("HH:mm:ss")),
+			(_("%-H:%M:%S"), _("H:mm:ss")),
+			(_("%I:%M:%S%^p"), _("hh:mm:ssAM/PM")),
+			(_("%-I:%M:%S%^p"), _("h:mm:ssAM/PM")),
+			(_("%I:%M:%S%P"), _("hh:mm:ssam/pm")),
+			(_("%-I:%M:%S%P"), _("h:mm:ssam/pm")),
+			(_("%I:%M:%S"), _("hh:mm:ss")),
+			(_("%-I:%M:%S"), _("h:mm:ss"))
 		])
 	else:
 		config.usage.time.long = ConfigSelection(default=_("%T"), choices=[
-			(_("%T"), _("99:99:99")),
-			(_("%-H:%M:%S"), _("9:99:99")),
+			(_("%T"), _("HH:mm:ss")),
+			(_("%-H:%M:%S"), _("H:mm:ss")),
+			(_("%I:%M:%S"), _("hh:mm:ss")),
+			(_("%-I:%M:%S"), _("h:mm:ss"))
 		])
 
-	# TRANSLATORS: time representation hour:minute:seconds for 24 hour clock and hour:minute for 12 hour clocks
+	# TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
 	config.usage.time.mixed = ConfigText(default=_("%T"))
 
 	# TRANSLATORS: short time representation hour:minute (Same as "Default")
@@ -533,7 +551,9 @@ def InitUsageConfig():
 			_("%I:%M:%S%^p"): (_("%I:%M%^p"), _("%I:%M%^p")),
 			_("%-I:%M:%S%^p"): (_("%-I:%M%^p"), _("%-I:%M%^p")),
 			_("%I:%M:%S%P"): (_("%I:%M%P"), _("%I:%M%P")),
-			_("%-I:%M:%S%P"): (_("%-I:%M%P"), _("%-I:%M%P"))
+			_("%-I:%M:%S%P"): (_("%-I:%M%P"), _("%-I:%M%P")),
+			_("%I:%M:%S"): (_("%I:%M:%S"), _("%I:%M")),
+			_("%-I:%M:%S"): (_("%-I:%M:%S"), _("%-I:%M"))
 		}
 		style = timeStyles.get(configElement.value, ((_("Invalid")) * 2))
 		config.usage.time.mixed.value = style[0]
@@ -547,17 +567,21 @@ def InitUsageConfig():
 	# TRANSLATORS: short time representation hour:minute (Same as "Default")
 	if locale.nl_langinfo(locale.AM_STR) and locale.nl_langinfo(locale.PM_STR):
 		config.usage.time.display = ConfigSelection(default=_("%R"), choices=[
-			(_("%R"), _("99:99")),
-			(_("%-H:%M"), _("9:99")),
-			(_("%I:%M%^p"), _("99:99AM/PM")),
-			(_("%-I:%M%^p"), _("9:99AM/PM")),
-			(_("%I:%M%P"), _("99:99am/pm")),
-			(_("%-I:%M%P"), _("9:99am/pm"))
+			(_("%R"), _("HH:mm")),
+			(_("%-H:%M"), _("H:mm")),
+			(_("%I:%M%^p"), _("hh:mmAM/PM")),
+			(_("%-I:%M%^p"), _("h:mmAM/PM")),
+			(_("%I:%M%P"), _("hh:mmam/pm")),
+			(_("%-I:%M%P"), _("h:mmam/pm")),
+			(_("%I:%M"), _("hh:mm")),
+			(_("%-I:%M"), _("h:mm"))
 		])
 	else:
-		config.usage.time.display = ConfigSelection(default=_("%T"), choices=[
-			(_("%T"), _("99:99:99")),
-			(_("%-H:%M:%S"), _("9:99:99")),
+		config.usage.time.display = ConfigSelection(default=_("%R"), choices=[
+			(_("%R"), _("HH:mm")),
+			(_("%-H:%M"), _("H:mm")),
+			(_("%I:%M"), _("hh:mm")),
+			(_("%-I:%M"), _("h:mm"))
 		])
 
 	def setTimeDisplayStyles(configElement):
