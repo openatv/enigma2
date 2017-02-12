@@ -858,7 +858,7 @@ class NimSelection(Screen):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
 
-		if isFBCLink(nim.slot):
+		if isFBCLink(nim):
 			if nim.isCompatible("DVB-S"):
 				nimConfig = nimmanager.getNimConfig(nim.slot).dvbs
 			elif nim.isCompatible("DVB-C"):
