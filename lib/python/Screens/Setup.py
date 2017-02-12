@@ -224,12 +224,15 @@ class Setup(ConfigListScreen, Screen):
 				continue
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
+				item_tuxtxtlevel = int(x.get("tt_level", 0))
 
 				if not self.onNotifiers:
 					self.onNotifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
 
 				if item_level > config.usage.setup_level.index:
+					continue
+				if (item_tuxtxtlevel == 1) and (config.usage.tuxtxt_font_and_res.value != "expert_mode"):
 					continue
 
 				requires = x.get("requires")

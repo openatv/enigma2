@@ -13,6 +13,8 @@ from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType
 from keyids import KEYIDS
 
+TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
+
 def InitUsageConfig():
 	config.misc.SettingsVersion = ConfigFloat(default = [1,1], limits = [(1,10),(0,99)])
 	config.misc.SettingsVersion.value = [1,1]
@@ -118,6 +120,105 @@ def InitUsageConfig():
 
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
+
+	config.usage.tuxtxt_font_and_res = ConfigSelection(default = "TTF_SD", choices = [("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("expert_mode", _("Expert mode"))])
+	config.usage.tuxtxt_UseTTF = ConfigSelection(default = "1", choices = [("0", "0"), ("1", "1")])
+	config.usage.tuxtxt_TTFBold = ConfigSelection(default = "1", choices = [("0", "0"), ("1", "1")])
+	config.usage.tuxtxt_TTFScreenResX = ConfigSelection(default = "720", choices = [("720", "720"), ("1280", "1280"), ("1920", "1920")])
+	config.usage.tuxtxt_StartX = ConfigInteger(default=50, limits = (0, 200))
+	config.usage.tuxtxt_EndX = ConfigInteger(default=670, limits = (500, 1920))
+	config.usage.tuxtxt_StartY = ConfigInteger(default=30, limits = (0, 200))
+	config.usage.tuxtxt_EndY = ConfigInteger(default=555, limits = (400, 1080))
+	config.usage.tuxtxt_TTFShiftY = ConfigInteger(default=2, limits = (-9, 9))
+	config.usage.tuxtxt_TTFShiftX = ConfigInteger(default=0, limits = (-9, 9))
+	config.usage.tuxtxt_TTFWidthFactor16 = ConfigInteger(default=29, limits = (8, 31))
+	config.usage.tuxtxt_TTFHeightFactor16 = ConfigInteger(default=14, limits = (8, 31))
+	config.usage.tuxtxt_CleanAlgo = ConfigInteger(default=0, limits = (0, 9))
+
+	def writeTuxtxtConf(param,val):
+		command = "sed -i -r 's|(%s)\s+([-0-9]+)|\\1 %d|g' %s" % (param,val,TUXTXT_CFG_FILE)
+		try:
+			os.system(command)
+		except:
+			print "Error: failed to patch %s %d is %s!" % (param,val,TUXTXT_CFG_FILE)
+	
+	def tuxtxtChanged(dummyConfigElement):
+		if config.usage.tuxtxt_font_and_res.value == "X11_SD":
+			writeTuxtxtConf("UseTTF",0)
+			writeTuxtxtConf("TTFBold",1)
+			writeTuxtxtConf("TTFScreenResX",720)
+			writeTuxtxtConf("StartX",50)
+			writeTuxtxtConf("EndX",670)
+			writeTuxtxtConf("StartY",30)
+			writeTuxtxtConf("EndY",555)
+			writeTuxtxtConf("TTFShiftY",0)
+			writeTuxtxtConf("TTFShiftX",0)
+			writeTuxtxtConf("TTFWidthFactor16",26)
+			writeTuxtxtConf("TTFHeightFactor16",14)
+		elif config.usage.tuxtxt_font_and_res.value == "TTF_SD":
+			writeTuxtxtConf("UseTTF",1)
+			writeTuxtxtConf("TTFBold",1)
+			writeTuxtxtConf("TTFScreenResX",720)
+			writeTuxtxtConf("StartX",50)
+			writeTuxtxtConf("EndX",670)
+			writeTuxtxtConf("StartY",30)
+			writeTuxtxtConf("EndY",555)
+			writeTuxtxtConf("TTFShiftY",2)
+			writeTuxtxtConf("TTFShiftX",0)
+			writeTuxtxtConf("TTFWidthFactor16",29)
+			writeTuxtxtConf("TTFHeightFactor16",14)
+		elif config.usage.tuxtxt_font_and_res.value == "TTF_HD":
+			writeTuxtxtConf("UseTTF",1)
+			writeTuxtxtConf("TTFBold",0)
+			writeTuxtxtConf("TTFScreenResX",1280)
+			writeTuxtxtConf("StartX",80)
+			writeTuxtxtConf("EndX",1200)
+			writeTuxtxtConf("StartY",35)
+			writeTuxtxtConf("EndY",685)
+			writeTuxtxtConf("TTFShiftY",-3)
+			writeTuxtxtConf("TTFShiftX",0)
+			writeTuxtxtConf("TTFWidthFactor16",26)
+			writeTuxtxtConf("TTFHeightFactor16",14)
+		elif config.usage.tuxtxt_font_and_res.value == "TTF_FHD":
+			writeTuxtxtConf("UseTTF",1)
+			writeTuxtxtConf("TTFBold",0)
+			writeTuxtxtConf("TTFScreenResX",1920)
+			writeTuxtxtConf("StartX",140)
+			writeTuxtxtConf("EndX",1780)
+			writeTuxtxtConf("StartY",52)
+			writeTuxtxtConf("EndY",1027)
+			writeTuxtxtConf("TTFShiftY",-6)
+			writeTuxtxtConf("TTFShiftX",0)
+			writeTuxtxtConf("TTFWidthFactor16",26)
+			writeTuxtxtConf("TTFHeightFactor16",14)
+		elif config.usage.tuxtxt_font_and_res.value == "expert_mode":
+			writeTuxtxtConf("UseTTF",            int(config.usage.tuxtxt_UseTTF.value))
+			writeTuxtxtConf("TTFBold",           int(config.usage.tuxtxt_TTFBold.value))
+			writeTuxtxtConf("TTFScreenResX",     int(config.usage.tuxtxt_TTFScreenResX.value))
+			writeTuxtxtConf("StartX",            config.usage.tuxtxt_StartX.value)
+			writeTuxtxtConf("EndX",              config.usage.tuxtxt_EndX.value)
+			writeTuxtxtConf("StartY",            config.usage.tuxtxt_StartY.value)
+			writeTuxtxtConf("EndY",              config.usage.tuxtxt_EndY.value)
+			writeTuxtxtConf("TTFShiftY",         config.usage.tuxtxt_TTFShiftY.value)
+			writeTuxtxtConf("TTFShiftX",         config.usage.tuxtxt_TTFShiftX.value)
+			writeTuxtxtConf("TTFWidthFactor16",  config.usage.tuxtxt_TTFWidthFactor16.value)
+			writeTuxtxtConf("TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value)
+		writeTuxtxtConf("CleanAlgo",         config.usage.tuxtxt_CleanAlgo.value)
+	
+	config.usage.tuxtxt_font_and_res.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_UseTTF.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_TTFBold.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_TTFScreenResX.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_StartX.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_EndX.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_StartY.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_EndY.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_TTFShiftY.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_TTFShiftX.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(tuxtxtChanged)
+	config.usage.tuxtxt_CleanAlgo.addNotifier(tuxtxtChanged)
+	
 	config.usage.sort_settings = ConfigYesNo(default = False)
 	config.usage.sort_menu_byname = ConfigYesNo(default = False)
 	config.usage.sort_plugins_byname = ConfigYesNo(default = True)
