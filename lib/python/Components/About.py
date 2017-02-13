@@ -56,7 +56,7 @@ def getCPUSpeedString():
 		print "[About] getCPUSpeedString, /proc/cpuinfo not available"
 
 	if cpu_speed == 0:
-		if getMachineBuild() in ('hd51','hd52'):
+		if getMachineBuild() in ('hd51','hd52','sf4008'):
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
