@@ -133,7 +133,7 @@ class About(Screen):
 				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
 				bootloader = f.readline().replace('\x00', '').replace('\n', '')
 				f.close()
-				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
+				AboutText += _("Bootloader:\t%s\n") % (bootloader)
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
