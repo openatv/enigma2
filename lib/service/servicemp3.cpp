@@ -693,7 +693,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			else
 			{
 				g_object_set(dvb_audiosink, "e2-sync", FALSE, NULL);
-				g_object_set(dvb_audiosink, "e2-async", TRUE, NULL);
+				g_object_set(dvb_audiosink, "e2-async", FALSE, NULL);
 			}
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
 		}
@@ -1214,7 +1214,7 @@ seek_unpause:
 				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
 				GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 			/* playbin needs sometimes a bit of time to have all elements in line at same render position msg async issued if ok */
-			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3 * GST_SECOND);
+			//ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3 * GST_SECOND);
 #else
 			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 #endif
@@ -1226,7 +1226,7 @@ seek_unpause:
 			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME,
 				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
 				GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
-			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3 * GST_SECOND);
+			//ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3 * GST_SECOND);
 #else
 			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
 #endif
