@@ -172,7 +172,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
 
 		if SystemInfo["haveboxmode"]:
-			self.list.append(getConfigListEntry(_("Video Chip Mode*"), config.av.boxmode,_("Choose between High Dynamic Range (HDR) or Picture in Picture (PIP). Both are not possible at the same time. A FULL RESTART is required for it to take effect")))
+			self.list.append(getConfigListEntry(_("Video Chip Mode*"), config.av.boxmode,_("Choose between High Dynamic Range (HDR) or Picture in Picture (PIP). Both are not possible at the same time. A FULL REBOOT is required for it to take effect")))
 
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 #			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
