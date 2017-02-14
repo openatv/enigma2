@@ -40,6 +40,8 @@ class ClockToText(Converter, object):
 		# 		TRANSLATORS: VFD08 hour:minute in strftime() format! See 'man strftime'
 		"VFD08": lambda t: strftime(config.usage.time.display.value, localtime(t)),  # _("%R")
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
+		"VFD11": lambda t: strftime(config.usage.date.compressed.value + config.usage.time.display.value, localtime(t)),  # _("%e%b%R")
+		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
 		"VFD12": lambda t: strftime(config.usage.date.compact.value + config.usage.time.display.value, localtime(t)),  # _("%e%b%R")
 		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
 		"VFD14": lambda t: strftime(config.usage.date.short.value + " " + config.usage.time.display.value, localtime(t)),  # _("%e/%b %R")
@@ -75,7 +77,7 @@ class ClockToText(Converter, object):
 		args = [arg.lstrip() for arg in type.split(parse)]
 		for arg in args:
 			if arg[0:6] == "Format":
-				self.formats.append(lambda t: strftime(arg[7:], localtime(t)))
+				self.formats.append(eval("lambda t: strftime(\"%s\", localtime(t))" % arg[7:]))
 				continue
 			if arg[0:7] == "NoSpace":
 				# Eat old OpenVIX option as it doesn't make sense now.

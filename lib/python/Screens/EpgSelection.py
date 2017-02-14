@@ -1353,7 +1353,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.zapFunc:
 			self.zapSelectedService()
 			self.closeEventViewDialog()
-			self.close(True)
+			self.close('close')
 		else:
 			self.closeEventViewDialog()
 			self.close()

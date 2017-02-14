@@ -1641,7 +1641,12 @@ class InfoBarEPG:
 		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
 			self.openInfoBarEPG(True)
 		elif answer == 'close' and isMoviePlayerInfoBar(self):
+			# Stash the playing service and stop it so
+			# that it will be properly restarted when
+			# MoviePlayer closes and the new evStart event
+			# will be directed to the main InfoBar
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.session.nav.stopService()
 			self.close()
 
 	def openSimilarList(self, eventid, refstr):
