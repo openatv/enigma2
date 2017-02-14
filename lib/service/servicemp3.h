@@ -312,6 +312,7 @@ private:
 	bool m_first_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
+	bool m_audiosink_not_running;
 	/* servicemMP3 chapter TOC support CVR */
 #if GST_VERSION_MAJOR >= 1
 	bool m_use_chapter_entries;
