@@ -49,7 +49,9 @@ class ExtremeInfo(Poll, Converter, object):
     GBOX = 35
     INCUBUS = 36
     WICARDD = 37
-
+    BULCRYPT = 38
+    BULECM = 39
+    
     def __init__(self, type):
         Poll.__init__(self)
         Converter.__init__(self, type)
@@ -131,6 +133,10 @@ class ExtremeInfo(Poll, Converter, object):
             self.type = self.INCUBUS
         elif type == 'Wicardd':
             self.type = self.WICARDD
+        elif type == 'BulCrypt':
+            self.type = self.BULCRYPT
+        elif type == 'BulEcm':
+            self.type = self.BULECM
 
     @cached
     def getText(self):
@@ -267,6 +273,12 @@ class ExtremeInfo(Poll, Converter, object):
             return caemm
         if self.type == self.WICARDD:
             caemm = self.getWicardd()
+            return caemm
+        if self.type == self.BULCRYPT:
+            caemm = self.getBulCrypt()
+            return caemm
+        if self.type == self.BULECM:
+            caemm = self.getBulEcm()
             return caemm
         return False
 
@@ -732,6 +744,45 @@ class ExtremeInfo(Poll, Converter, object):
 
         return False
 
+    def getBulEcm(self):
+        service = self.source.service
+        if service:
+            info = service and service.info()
+            if info:
+                try:
+                    f = open('/tmp/ecm.info', 'r')
+                    content = f.read()
+                    f.close()
+                except:
+                    content = ''
+
+                contentInfo = content.split('\n')
+                if content == '':
+                    return False
+                for line in contentInfo:
+                    if line.startswith('caid:'):
+                        caid = self.parseEcmInfoLine(line)
+                        if caid.__contains__('x'):
+                            idx = caid.index('x')
+                            caid = caid[idx + 1:]
+                            if len(caid) == 3:
+                                caid = '0%s' % caid
+                            caid = caid[:2]
+                            caid = caid.upper()
+                            if caid == '55':
+                                return True
+                    elif line.startswith('====='):
+                        caid = self.parseInfoLine(line)
+                        if caid.__contains__('x'):
+                            idx = caid.index('x')
+                            caid = caid[idx + 1:]
+                            caid = caid[:2]
+                            caid = caid.upper()
+                            if caid == '55':
+                                return True
+
+        return False
+    
     def getIrdCrypt(self):
         service = self.source.service
         if service:
@@ -922,6 +973,25 @@ class ExtremeInfo(Poll, Converter, object):
 
         return False
 
+    def getBulCrypt(self):
+        service = self.source.service
+        if service:
+            info = service and service.info()
+            if info:
+                caids = info.getInfoObject(iServiceInformation.sCAIDs)
+                if caids:
+                    if len(caids) > 0:
+                        for caid in caids:
+                            caid = self.int2hex(caid)
+                            if len(caid) == 3:
+                                caid = '0%s' % caid
+                            caid = caid[:2]
+                            caid = caid.upper()
+                            if caid == '55':
+                                return True
+
+        return False 
+    
     def int2hex(self, int):
         return '%x' % int
 
