@@ -48,6 +48,10 @@ class RecordingSettings(Screen,ConfigListScreen):
 		if config.usage.setup_level.notifiers:
 			config.usage.setup_level.notifiers.remove(self.levelChanged)
 
+	def removeNotifierRecordFrontendPriority(self):
+		if config.usage.recording_frontend_priority.notifiers:
+			config.usage.recording_frontend_priority.notifiers.remove(self.levelChanged)
+
 	def levelChanged(self, configElement):
 		list = []
 		self.refill(list)
@@ -279,12 +283,20 @@ class RecordingSettings(Screen,ConfigListScreen):
 				continue
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
+				item_rectunerlevel = int(x.get("rectunerlevel", 0))
 
 				if not self.levelChanged in config.usage.setup_level.notifiers:
 					config.usage.setup_level.notifiers.append(self.levelChanged)
 					self.onClose.append(self.removeNotifier)
+				if not self.levelChanged in config.usage.recording_frontend_priority.notifiers:
+					config.usage.recording_frontend_priority.notifiers.append(self.levelChanged)
+					self.onClose.append(self.removeNotifierRecordFrontendPriority)
 
 				if item_level > config.usage.setup_level.index:
+					continue
+				if item_rectunerlevel == 1 and not config.usage.recording_frontend_priority.value in ("expert_mode", "experimental_mode"):
+					continue
+				if item_rectunerlevel == 2 and not config.usage.recording_frontend_priority.value == "experimental_mode":
 					continue
 
 				requires = x.get("requires")
