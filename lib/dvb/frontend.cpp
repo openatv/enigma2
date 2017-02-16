@@ -3252,12 +3252,25 @@ RESULT eDVBFrontend::setData(int num, long val)
 	return -EINVAL;
 }
 
+bool eDVBFrontend::isPreferred(int preferredFrontend, int slotid)
+{
+	if ((preferredFrontend >= 0) && (preferredFrontend & eDVBFrontend::preferredFrontendBinaryMode))
+		return (preferredFrontend & 1<<slotid);
+	else
+		return (preferredFrontend >= 0 && slotid == preferredFrontend);
+}
+
 int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 {
 	int type;
 	int types;
 	int score = 0;
-	bool preferred = (eDVBFrontend::getPreferredFrontend() >= 0 && m_slotid == eDVBFrontend::getPreferredFrontend());
+	int preferredFrontend = eDVBFrontend::getPreferredFrontend();
+	bool preferred = eDVBFrontend::isPreferred(preferredFrontend,m_slotid);
+	if ((preferredFrontend >= 0) && (preferredFrontend & eDVBFrontend::preferredFrontendPrioForced) && !preferred)
+	{
+		return 0;
+	}
 	if (feparm->getSystem(type) || feparm->getSystems(types) || !m_enabled)
 	{
 		eDebugDeliverySystem("m_dvbid:%d m_slotid:%d type:%d types:%d m_enabled:%d", m_dvbid, m_slotid, type, types, m_enabled);
@@ -3381,7 +3394,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	if (score && preferred)
 	{
 		/* make 'sure' we always prefer this frontend */
-		score += 100000; /* the offset has to be so ridiculously high because of the high scores which are used for DVB-S(2) */
+		score += eDVBFrontend::preferredFrontendScore; /* the offset has to be so ridiculously high because of the high scores which are used for DVB-S(2) */
 	}
 	return score;
 }
