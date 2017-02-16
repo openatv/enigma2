@@ -189,7 +189,6 @@
 		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
 		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay (in milliseconds). The configured delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
 		<item level="2" text="Default recording type" description="Descramble &amp; record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.">config.recording.ecm_data</item>
-		<item level="2" text="Enable timer conflict detection" description="When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 	</setup>
 	<setup key="harddisk" title="Hard disk settings" >
 		<item level="0" text="Hard disk standby after" description="Configure duration of inactivity before the hard disk drive goes to standby">config.usage.hdd_standby</item>
@@ -372,5 +371,6 @@
 	<setup key="fallback" title="Fallback configuration">
 		<item level="2" text="Enable fallback remote receiver" description="Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
 		<item level="2" text="Fallback remote receiver URL" description="Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'.">config.usage.remote_fallback</item>
+		<item level="2" text="Timer conflict detection when fallback is enabled" description="When using the remote fallback tuner for recordings, it is impossible to correctly detect timer conflicts. This option allows you to skip timer confict detection when remote fallback is enabled, but can lead to timer conflicts. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 	</setup>
 </setupxml>
