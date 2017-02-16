@@ -8,6 +8,15 @@ from boxbranding import getImageDistro, getImageVersion
 opkgDestinations = []
 opkgStatusPath = ''
 
+def Load_defaults():
+	config.plugins.softwaremanager = ConfigSubsection()
+	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+	config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
+
 def opkgExtraDestinations():
 	global opkgDestinations
 	return ''.join([" --add-dest %s:%s" % (i,i) for i in opkgDestinations])
@@ -151,6 +160,12 @@ class IpkgComponent:
 	def parseLine(self, data):
 		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
 			item = data.split(' - ', 2)
+			try:
+				# workaround when user use update with own button config
+				if config.plugins.softwaremanager.overwriteSettingsFiles.value:
+					pass
+			except:
+				Load_defaults()
 			if item[0].find('-settings-') > -1 and not config.plugins.softwaremanager.overwriteSettingsFiles.value:
 				self.excludeList.append(item)
 				return
