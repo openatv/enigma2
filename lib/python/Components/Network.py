@@ -64,7 +64,7 @@ class Network:
 	def getAddrInet(self, iface, callback):
 		if not self.Console:
 			self.Console = Console()
-		cmd = "ip -o addr show dev " + iface
+		cmd = "busybox ip -o addr show dev " + iface
 		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
 
 	def IPaddrFinished(self, result, retval, extra_args):
