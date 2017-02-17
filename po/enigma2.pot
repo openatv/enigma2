@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2017-02-03 21:45+0300\n"
+"POT-Creation-Date: 2017-02-17 13:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -361,6 +361,9 @@ msgstr ""
 
 msgid "/s"
 msgstr ""
+
+msgid ""
+msgstr "/sec]"
 
 msgid "/usr/share/enigma2 directory"
 msgstr ""
@@ -1203,6 +1206,12 @@ msgid "Adjust 3D settings"
 msgstr ""
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
+msgstr ""
+
+msgid "Adjust the horizontal position of the letters used for teletext."
+msgstr ""
+
+msgid "Adjust the vertical position of the letters used for teletext."
 msgstr ""
 
 msgid "adult movie/drama"
@@ -2404,7 +2413,13 @@ msgstr ""
 msgid "Channel +/- button mode"
 msgstr ""
 
-msgid "Start mode"
+msgid "Channel 1"
+msgstr ""
+
+msgid "Channel 1 at start"
+msgstr ""
+
+msgid "Channel 1 with Primetime"
 msgstr ""
 
 msgid "Channel down"
@@ -2932,10 +2947,19 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
+msgid "Configure the display resolution and the font used for teletext."
+msgstr ""
+
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
 msgid "Configure the duration in minutes for the sleep timer."
+msgstr ""
+
+msgid "Configure the end coordinate in x of the teletext display area."
+msgstr ""
+
+msgid "Configure the end coordinate in y of the teletext display area."
 msgstr ""
 
 msgid "Configure the first audio language (highest priority)."
@@ -2972,6 +2996,9 @@ msgid "Configure the hard disk drive to go to standby after the specified idle t
 msgstr ""
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
+msgstr ""
+
+msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr ""
 
 msgid "Configure the horizontal alignment of the subtitles."
@@ -3031,6 +3058,9 @@ msgstr ""
 msgid "Configure the refresh rate of the screen."
 msgstr ""
 
+msgid "Configure the screen resolution for teletext (Not all skins support full-HD teletext)."
+msgstr ""
+
 msgid "Configure the second audio language."
 msgstr ""
 
@@ -3056,6 +3086,12 @@ msgid "Configure the source of the frontend data as shown on the infobars. 'Sett
 msgstr ""
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
+msgstr ""
+
+msgid "Configure the start coordinate in x of the teletext display area."
+msgstr ""
+
+msgid "Configure the start coordinate in y of the teletext display area."
 msgstr ""
 
 msgid "Configure the subtitle delay when timing information is not available."
@@ -3085,7 +3121,22 @@ msgstr ""
 msgid "Configure the width allocated to the service name."
 msgstr ""
 
+msgid "Configure the width of the TrueType font letters used for teletext."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
+msgstr ""
+
+msgid "Configure whether a bold TrueType font is used for teletext."
+msgstr ""
+
+msgid "Configure whether a fixed font or a scalable TrueType font is used for teletext."
+msgstr ""
+
+msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
+msgstr ""
+
+msgid "Configure whether another tuner from the preferred list is allocated instead of sharing a tuner that is already active recording the same channel."
 msgstr ""
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
@@ -4811,6 +4862,15 @@ msgstr ""
 msgid "experimental film/video"
 msgstr ""
 
+msgid "Experimental: strict limitation to preferred tuners"
+msgstr ""
+
+msgid "Experimental: strict limitation to preferred tuners for recordings"
+msgstr ""
+
+msgid "Experimental mode"
+msgstr ""
+
 msgid "Expert"
 msgstr ""
 
@@ -5093,6 +5153,9 @@ msgid "fitness & health"
 msgstr ""
 
 msgid "Fixed"
+msgstr ""
+
+msgid "Fixed X11 font (SD)"
 msgstr ""
 
 msgid "FLASH"
@@ -5595,6 +5658,9 @@ msgstr ""
 msgid "Helps setting up your signal"
 msgstr ""
 
+msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
+msgstr ""
+
 msgid "Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."
 msgstr ""
 
@@ -5772,13 +5838,7 @@ msgstr ""
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
 msgstr ""
 
-msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
-msgstr ""
-
-msgid "Channel 1"
-msgstr ""
-
-msgid "Channel 1 with Primetime"
+msgid "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel."
 msgstr ""
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
@@ -5863,6 +5923,12 @@ msgid "Immediate shutdown"
 msgstr ""
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+msgstr ""
+
+msgid "In expert mode, configure which tuners will be preferred, when more than one tuner is available."
+msgstr ""
+
+msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr ""
 
 msgid ""
@@ -8776,6 +8842,12 @@ msgstr ""
 msgid "Preferred tuner for recordings"
 msgstr ""
 
+msgid "Preferred tuners, multiple selection allowed"
+msgstr ""
+
+msgid "Preferred tuners for recordings, multiple selection allowed"
+msgstr ""
+
 msgid "Prepare another USB stick for image flashing"
 msgstr ""
 
@@ -8858,6 +8930,9 @@ msgid "Previous"
 msgstr ""
 
 msgid "Primary DNS"
+msgstr ""
+
+msgid "Primetime"
 msgstr ""
 
 msgid "PRIMETIME"
@@ -10239,6 +10314,9 @@ msgid "Select target folder"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr ""
 
 msgid "Select the movie path"
@@ -11886,6 +11964,9 @@ msgstr ""
 msgid "Start instant recording"
 msgstr ""
 
+msgid "Start mode"
+msgstr ""
+
 msgid "Start Mode"
 msgstr ""
 
@@ -12336,10 +12417,49 @@ msgstr ""
 msgid "Teletext"
 msgstr ""
 
+msgid "Teletext CleanAlgo (resolution reset algorithm)"
+msgstr ""
+
 msgid "Teletext base visibility"
 msgstr ""
 
+msgid "Teletext EndX (right border)"
+msgstr ""
+
+msgid "Teletext EndY (upper border)"
+msgstr ""
+
+msgid "Teletext font and resolution"
+msgstr ""
+
+msgid "Teletext StartX (left border)"
+msgstr ""
+
+msgid "Teletext StartY (lower border)"
+msgstr ""
+
 msgid "Teletext subtitle color"
+msgstr ""
+
+msgid "Teletext TTFBold (0=normal, 1=bold)"
+msgstr ""
+
+msgid "Teletext TTFScreenResX (screen X resolution)"
+msgstr ""
+
+msgid "Teletext TTFShiftX (horizontal letter position)"
+msgstr ""
+
+msgid "Teletext TTFShiftY (vertical letter position)"
+msgstr ""
+
+msgid "Teletext TTFWidthFactor16 (TrueType letter width)"
+msgstr ""
+
+msgid "Teletext TTFHeightFactor16 (TrueType letter height)"
+msgstr ""
+
+msgid "Teletext UseTTF (0=fixed font, 1=TrueType)"
 msgstr ""
 
 msgid "Telnet"
@@ -13312,6 +13432,15 @@ msgid "Tries left:"
 msgstr ""
 
 msgid "true"
+msgstr ""
+
+msgid "TrueType font (full-HD)"
+msgstr ""
+
+msgid "TrueType font (HD)"
+msgstr ""
+
+msgid "TrueType font (SD)"
 msgstr ""
 
 msgid "Try to find used transponders in cable network.. please wait..."
@@ -14516,6 +14645,9 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr ""
 
 msgid "Which event do you want to save permanently?"
+msgstr ""
+
+msgid "While available"
 msgstr ""
 
 msgid "White"
