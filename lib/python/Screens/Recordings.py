@@ -146,6 +146,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 		else:
 			self.default_entry = getConfigListEntry(_("Movie location"), self.default_dirname, _("Set the default location for your recordings. Press 'OK' to add new locations, select left/right to select an existing location."))
 			list.append(self.default_entry)
+			self.timer_entry = self.instantrec_entry = None
 
 		self.refill(list)
 		self["config"].setList(list)

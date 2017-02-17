@@ -64,26 +64,29 @@ else:
 
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
-config.plugins.softwaremanager = ConfigSubsection()
-config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
-config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
-config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
-config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
-config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
-config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
-config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
-				[
-				 ("Y", _("Yes, always")),
-				 ("N", _("No, never")),
-				 ("ask", _("Always ask"))
-				], "Y")
+def Load_defaults():
+	config.plugins.softwaremanager = ConfigSubsection()
+	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+	config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
+	config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
+					[
+					("Y", _("Yes, always")),
+					("N", _("No, never")),
+					("ask", _("Always ask"))
+					], "Y")
 
-config.plugins.softwaremanager.updatetype = ConfigSelection(
-				[
-					("hot", _("Upgrade with GUI")),
-					("cold", _("Unattended upgrade without GUI")),
-				], "hot")
-config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+	config.plugins.softwaremanager.updatetype = ConfigSelection(
+					[
+						("hot", _("Upgrade with GUI")),
+						("cold", _("Unattended upgrade without GUI")),
+					], "hot")
+	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
+
+Load_defaults()
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
