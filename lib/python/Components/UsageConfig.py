@@ -1181,6 +1181,9 @@ def patchTuxtxtConfFile(dummyConfigElement):
 		#replace keyword (%s) followed by any value ([-0-9]+) by that keyword \1 and the new value %d
 		command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % (f[0],f[1])
 	command += "' %s" % TUXTXT_CFG_FILE
+	for f in tuxtxt2:
+		#if keyword is not found in file, append keyword and value
+		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi"  % (f[0],TUXTXT_CFG_FILE,f[0],f[1],TUXTXT_CFG_FILE)
 	try:
 		os.system(command)
 	except:
