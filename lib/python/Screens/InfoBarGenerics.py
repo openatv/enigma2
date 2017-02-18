@@ -1641,7 +1641,12 @@ class InfoBarEPG:
 		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
 			self.openInfoBarEPG(True)
 		elif answer == 'close' and isMoviePlayerInfoBar(self):
+			# Stash the playing service and stop it so
+			# that it will be properly restarted when
+			# MoviePlayer closes and the new evStart event
+			# will be directed to the main InfoBar
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.session.nav.stopService()
 			self.close()
 
 	def openSimilarList(self, eventid, refstr):
@@ -3853,6 +3858,7 @@ class InfoBarCueSheetSupport:
 		self.cut_list = []
 		self.is_closing = False
 		self.resume_point = None
+		self.force_next_resume = False
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evStart: self.__serviceStarted,
 			iPlayableService.evCuesheetChanged: self.downloadCuesheet,
@@ -3884,10 +3890,13 @@ class InfoBarCueSheetSupport:
 			if (last > 900000) and (not length[1] or (last < length[1] - 900000)):
 				self.resume_point = last
 				l = last / 90000
-				if "ask" in config.usage.on_movie_start.value or not length[1]:
+				if self.force_next_resume:
+					self.playLastCB(True)
+				elif "ask" in config.usage.on_movie_start.value or not length[1]:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
+		self.forceNextResume(False)
 
 	def playLastCB(self, answer):
 # This can occasionally get called with an empty (new?) self!?!
@@ -3899,6 +3908,9 @@ class InfoBarCueSheetSupport:
 		if answer and self.resume_point:
 			self.doSeek(self.resume_point)
 		self.hideAfterResume()
+
+	def forceNextResume(self, force=True):
+		self.force_next_resume = force
 
 	def hideAfterResume(self):
 		if isinstance(self, InfoBarShowHide):

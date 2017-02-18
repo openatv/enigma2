@@ -1331,6 +1331,11 @@ class EPGSelection(Screen, HelpableScreen):
 			return  # stop and do not continue.
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and self.StartRef and self.StartBouquet:
+				def forceResume():
+					from InfoBar import MoviePlayer
+					if MoviePlayer.instance:
+						MoviePlayer.instance.forceNextResume()
+
 				if (
 					(self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.value) or
 					(self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.value) or
@@ -1339,7 +1344,11 @@ class EPGSelection(Screen, HelpableScreen):
 				):
 					if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
 						self.zapFunc(None, zapback=True)
+					else:
+						forceResume()
+						self.session.nav.playService(self.StartRef)
 				elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
+					forceResume()
 					self.session.nav.playService(self.StartRef)
 				else:
 					self.zapFunc(None, False)
@@ -1353,7 +1362,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.zapFunc:
 			self.zapSelectedService()
 			self.closeEventViewDialog()
-			self.close(True)
+			self.close('close')
 		else:
 			self.closeEventViewDialog()
 			self.close()

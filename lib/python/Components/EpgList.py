@@ -462,10 +462,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.cur_event = best
 		self.selEntry(0)
 
-	def onHide(self):
-		# clear the event used as a reference for findBestEvent(), as the next EPG invocation will be back to current time
-		self.ref_event = None
-
 	def selectionChanged(self):
 		for x in self.onSelChanged:
 			if x is not None:
