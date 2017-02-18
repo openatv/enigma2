@@ -87,16 +87,103 @@ class AVSwitch:
 	# 	del modes["DVI-PC"]
 	
 	# Machines that do not have component video (red, green and blue RCA sockets).
-	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','gbx1','gbx3','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','mutant500c','mutant1200','mutant1500','odimm7','optimussos1','osmega','osmini','osminiplus','sf128','sf138','sf4008','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmnanom3','tmsingle','tmtwin4k','optimussos1','uniboxhd1','vusolo2','vusolo4k','vuuno4k','vuultimo4k','xp1000'):
+	no_YPbPr = (
+		'dm500hd',
+		'dm500hdv2',
+		'dm800',
+		'e3hd',
+		'ebox7358',
+		'eboxlumi',
+		'ebox5100',
+		'enfinity',
+		'et4x00',
+		'gbx1',
+		'gbx3',
+		'iqonios300hd',
+		'ixusszero',
+		'mbmicro',
+		'mbtwinplus',
+		'mutant51',
+		'mutant500c',
+		'mutant1200',
+		'mutant1500',
+		'odimm7',
+		'optimussos1',
+		'osmega',
+		'osmini',
+		'osminiplus',
+		'sf128',
+		'sf138',
+		'sf4008',
+		'tm2t',
+		'tmnano',
+		'tmnano2super',
+		'tmnano3t',
+		'tmnanose',
+		'tmnanosecombo',
+		'tmnanoseplus',
+		'tmnanosem2',
+		'tmnanosem2plus',
+		'tmnanom3',
+		'tmsingle',
+		'tmtwin4k',
+		'uniboxhd1',
+		'vusolo2',
+		'vusolo4k',
+		'vuuno4k',
+		'vuultimo4k',
+		'xp1000'
+	)
+	
+	# Machines that have composite video (yellow RCA socket) but do not have Scart.
+	yellow_RCA_no_scart = (
+		'gb800ueplus',
+		'gbultraue',
+		'mbmicro',
+		'mbtwinplus',
+		'mutant500c',
+		'osmega',
+		'osmini',
+		'osminiplus',
+		'sf138',
+		'tmnano',
+		'tmnanose',
+		'tmnanosecombo',
+		'tmnanosem2',
+		'tmnanoseplus',
+		'tmnanosem2plus',
+		'tmnano2super',
+		'tmnano3t',
+		'xpeedlx3'
+	)
+	
+	# Machines that have neither yellow RCA nor Scart sockets
+	no_yellow_RCA__no_scart = (
+		'et5x00',
+		'et6x00',
+		'gbquad',
+		'gbx1',
+		'gbx3',
+		'ixussone',
+		'mutant51',
+		'mutant1500',
+		'sf4008',
+		'tmnano2t',
+		'tmnanom3',
+		'tmtwin4k',
+		'vusolo4k',
+		'vuuno4k',
+		'vuultimo4k'
+	)
+	
+	if modes.has_key("YPbPr") and getBoxType() in no_YPbPr:
 		del modes["YPbPr"]
 		
-	# Machines that have composite video (yellow RCA socket) but do not have Scart.
-	if modes.has_key("Scart") and getBoxType() in ('gb800ueplus','gbultraue','mbmicro','mbtwinplus','mutant500c','osmega','osmini','osminiplus','sf138','tmnano','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmnano2super','tmnano3t','xpeedlx3'):
+	if modes.has_key("Scart") and getBoxType() in yellow_RCA_no_scart:
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
 		
-	# Machines that have neither RCA nor Scart sockets 
-	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','gbx1','gbx3','ixussone','sf4008','tmnano2t','tmnanom3','tmtwin4k','vusolo4k','vuuno4k','vuultimo4k','mutant51','mutant1500'):
+	if modes.has_key("Scart") and getBoxType() in no_yellow_RCA__no_scart:
 		del modes["Scart"]
 
 	def __init__(self):
