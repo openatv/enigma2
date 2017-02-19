@@ -38,7 +38,7 @@ def InitConfig():
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'),
 		'/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
-		'/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/passwd', '/etc/shadow',
+		'/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', 
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
 		'/etc/dropbear/', '/etc/default/dropbear', '/home/root/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
 		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
@@ -135,7 +135,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
 
-			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^joe$|^mc$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^streamproxy$' > /tmp/installed-list.txt"
+			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^joe$|^mc$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^streamproxy$|^wget$' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
