@@ -1069,19 +1069,6 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	{
 		m_event((iPlayableService*)this, evUpdatedInfo);
 	}
-#if GST_VERSION_MAJOR >= 1
-	else
-	{
-		/* make sure that the seek was fully completed on all elements
-	 	* before proceeding further, this will happen when async_done is received
-	 	*/
-		gst_element_get_state(m_gst_playbin, NULL, NULL, 1LL * GST_SECOND);
-		/*eDebug("[eServiceMP3] after seek state:%s pending:%s ret:%s",
-			gst_element_state_get_name(state),
-			gst_element_state_get_name(pending),
-			gst_element_state_change_return_get_name(ret));*/
-	}
-#endif
 	eDebug("[eServiceMP3] seekToImpl(pts_t to) DONE");
 	return 0;
 }
@@ -1119,7 +1106,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		/* pipeline sometimes block due to audio track issue off gstreamer.
 		If the pipeline is blocked up on pending state change to paused ,
         this issue is solved by seek to playposition*/
-		ret = gst_element_get_state(m_gst_playbin, &state, &pending, 1LL * GST_SECOND);
+		ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2LL * GST_SECOND);
 		if (state == GST_STATE_PLAYING && pending == GST_STATE_PAUSED)
 		{
 			if (pos_ret >= 0)
@@ -1213,8 +1200,6 @@ seek_unpause:
 			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME,
 				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
 				GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
-			/* playbin needs sometimes a bit of time to have all elements in line at same render position msg async issued if ok */
-			//ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3 * GST_SECOND);
 #else
 			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 #endif
@@ -1226,7 +1211,6 @@ seek_unpause:
 			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME,
 				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
 				GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
-			//ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3 * GST_SECOND);
 #else
 			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
 #endif
@@ -2143,7 +2127,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				eWarning("[eServiceMP3] Gstreamer warning : %s (%i) from %s" , warn->message, warn->code, sourceName);
 				if(dvb_subsink)
 				{
-					if (!gst_element_seek (dvb_subsink, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+					if (!gst_element_seek (dvb_subsink, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE),
 						GST_SEEK_TYPE_SET, m_last_seek_pos,
 						GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 					{
