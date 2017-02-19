@@ -686,6 +686,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.filePlayingTimer = eTimer()
 		self.filePlayingTimer.timeout.get().append(self.FilePlaying)
 
+		self.sorttimer = eTimer()
+		self.sorttimer.callback.append(self._updateButtonTexts)
+
 		self.playingInForeground = None
 		# create optional description border and hide immediately
 		self["DescriptionBorder"] = Pixmap()
@@ -1185,6 +1188,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
+			if btn.value == 'sort' and self.sorttimer.isActive():
+				continue
 			label = userDefinedActions[btn.value]
 			if btn.value == 'delete':
 				item = self.getCurrentSelection()
@@ -2514,8 +2519,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self['key_yellow'].setText(sorttext)
 		if config.movielist.btn_blue.value == "sort":
 			self['key_blue'].setText(sorttext)
-		self.sorttimer = eTimer()
-		self.sorttimer.callback.append(self._updateButtonTexts)
 		self.sorttimer.start(3000, True)  # time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
 		self["movie_sort"].setPixmapNum(self.getPixmapSortIndex(l_moviesort[index][0]))
