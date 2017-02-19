@@ -146,13 +146,21 @@ class CableTransponderSearchSupport:
 	def __init__(self):
 		pass
 
-	def tryGetRawFrontend(self, feid):
+	def tryGetRawFrontend(self, feid, delsys = None):
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
 			raw_channel = res_mgr.allocateRawChannel(self.feid)
 			if raw_channel:
 				frontend = raw_channel.getFrontend()
 				if frontend:
+					if delsys == 'DVB-C':
+						frontend.changeType(iDVBFrontend.feCable)
+					elif delsys in ('DVB-T','DVB-T2'):
+						frontend.changeType(iDVBFrontend.feTerrestrial)
+					elif delsys in ('DVB-S','DVB-S2'):
+						frontend.changeType(iDVBFrontend.feSatellite)
+					elif delsys == 'ATSC':
+						frontend.changeType(iDVBFrontend.feATSC)
 					frontend.closeFrontend() # immediate close...
 					del frontend
 					del raw_channel
@@ -251,12 +259,12 @@ class CableTransponderSearchSupport:
 				print "GetCommand ->", err
 			return "tda1002x"
 
-		if not self.tryGetRawFrontend(nim_idx):
+		if not self.tryGetRawFrontend(nim_idx, "DVB-C"):
 			self.session.nav.stopService()
-			if not self.tryGetRawFrontend(nim_idx):
+			if not self.tryGetRawFrontend(nim_idx, "DVB-C"):
 				if self.session.pipshown:
 					self.session.infobar.showPiP()
-				if not self.tryGetRawFrontend(nim_idx):
+				if not self.tryGetRawFrontend(nim_idx, "DVB-C"):
 					self.cableTransponderSearchFinished()
 					return
 		self.__tlist = [ ]
@@ -507,13 +515,13 @@ class TerrestrialTransponderSearchSupport:
 		return ""
 
 	def startTerrestrialTransponderSearch(self, nim_idx, region):
-		if not self.tryGetRawFrontend(nim_idx):
+		if not self.tryGetRawFrontend(nim_idx, "DVB-T"):
 			self.session.nav.stopService()
-			if not self.tryGetRawFrontend(nim_idx):
+			if not self.tryGetRawFrontend(nim_idx, "DVB-T"):
 				if self.session.pipshown: # try to disable pip
 					self.session.pipshown = False
 					del self.session.pip
-				if not self.tryGetRawFrontend(nim_idx):
+				if not self.tryGetRawFrontend(nim_idx, "DVB-T"):
 					self.terrestrialTransponderSearchFinished()
 					return
 		self.__tlist = [ ]
