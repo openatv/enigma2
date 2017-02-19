@@ -2499,7 +2499,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def do_sortdefault(self):
 		print '[MovieSelection] SORT:', config.movielist.moviesort.value
-		config.movielist.moviesort.load()
+		config.movielist.moviesort.value = config.movielist.moviesort.default
 		print '[MovieSelection] SORT:', config.movielist.moviesort.value
 		self.sortBy(int(config.movielist.moviesort.value))
 
