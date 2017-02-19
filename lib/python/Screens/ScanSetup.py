@@ -1529,7 +1529,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			pol_list = ['H','V','L','R']
 			fec_list = ['Auto','1/2','2/3','3/4','5/6','7/8','8/9','3/5','4/5','9/10','None']
 			stream = ''
-			if tp[10] > -1: # not default input stream id
+			if tp[10] > -1 and tp[5] == eDVBFrontendParametersSatellite.System_DVB_S2: # not default input stream id
 				stream = _(" Stream %s") % str(tp[10])
 			return str(tp[1] / 1000) + " " + pol_list[tp[3]] + " " + str(tp[2] / 1000) + " " + fec_list[tp[4]] + stream
 		return _("Invalid transponder data")
