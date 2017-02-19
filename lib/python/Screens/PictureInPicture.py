@@ -20,7 +20,7 @@ def timedStopPipPigMode():
 		if SystemInfo["hasPIPVisibleProc"]:
 			open(SystemInfo["hasPIPVisibleProc"], "w").write("1")
 		elif hasattr(InfoBar.instance.session, "pip"):
-			InfoBar.instance.session.pip.playService(InfoBar.instance.session.pip.currentService)
+			InfoBar.instance.session.pip.relocate()
 	global PipPigModeEnabled
 	PipPigModeEnabled = False
 
