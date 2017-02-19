@@ -599,12 +599,12 @@ class SelectionEventInfo:
 		self.onShown.append(self.__selectionChanged)
 
 	def __selectionChanged(self):
-		if self.execing and self.settings["description"] == MovieList.SHOW_DESCRIPTION:
-			self.timer.start(100, True)
+		self.timer.start(100, True)
 
 	def updateEventInfo(self):
-		serviceref = self.getCurrent()
-		self["Service"].newService(serviceref)
+		if self.execing and self.settings["description"] == MovieList.SHOW_DESCRIPTION:
+			serviceref = self.getCurrent()
+			self["Service"].newService(serviceref)
 
 class MovieSelectionSummary(Screen):
 	# Kludgy component to display current selection on LCD. Should use
