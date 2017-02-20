@@ -1069,7 +1069,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	{
 		if (m_errorInfo.missing_codec.find("image/") == 0)
 		{
-			eDebug("[eServiceMP3] seekToImpl ACCURATE");
+			//eDebug("[eServiceMP3] seekToImpl ACCURATE");
 			if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE),
 				GST_SEEK_TYPE_SET, m_last_seek_pos,
 				GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
@@ -1080,7 +1080,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		}
 		else
 		{
-			eDebug("[eServiceMP3] seekToImpl KEY_UNIT 1");
+			//eDebug("[eServiceMP3] seekToImpl KEY_UNIT 1");
 			if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
 				GST_SEEK_TYPE_SET, m_last_seek_pos,
 				GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
@@ -1092,7 +1092,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	}
 	else
 	{
-		eDebug("[eServiceMP3] seekToImpl KEY_UNIT 2");
+		//eDebug("[eServiceMP3] seekToImpl KEY_UNIT 2");
 		if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
 			GST_SEEK_TYPE_SET, m_last_seek_pos,
 			GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
@@ -2086,7 +2086,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					setPCMDelay(pcm_delay);
 					if(!m_sourceinfo.is_streaming && !m_cuesheet_loaded) /* cuesheet CVR */
 						loadCuesheet();
-					//updateEpgCacheNowNext();
 					/* avoid position taking on audiosink when audiosink is not running */
 					ret = gst_element_get_state(dvb_audiosink, &state, &pending, 3 * GST_SECOND);
 					if (state == GST_STATE_NULL)
@@ -2245,7 +2244,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					close(fd);
 					// eDebug("[eServiceMP3] /tmp/.id3coverart %d bytes written ", ret);
 				}
-				eDebug("[eServiceMP3] *** image track avbl ***");
 				m_event((iPlayableService*)this, evUser+13);
 			}
 			gst_tag_list_free(tags);
@@ -2367,7 +2365,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			m_event((iPlayableService*)this, evUpdatedInfo);
 			if ( m_errorInfo.missing_codec != "" )
 			{
-				eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE MISSING THE CODECS %s", m_errorInfo.missing_codec.c_str());
 				if (m_errorInfo.missing_codec.find("video/") == 0 || (m_errorInfo.missing_codec.find("audio/") == 0 && m_audioStreams.empty()))
 					m_event((iPlayableService*)this, evUser+12);
 			}
