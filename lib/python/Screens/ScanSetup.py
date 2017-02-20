@@ -35,8 +35,8 @@ def buildTerTransponder(frequency,
 	parm.plp_id = plp_id
 	return parm
 
-def getInitialTransponderList(tlist, pos):
-	list = nimmanager.getTransponders(pos)
+def getInitialTransponderList(tlist, pos, feid = None):
+	list = nimmanager.getTransponders(pos, feid)
 	for x in list:
 		if x[0] == 0:		#SAT
 			parm = eDVBFrontendParametersSatellite()
@@ -1361,20 +1361,20 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 				selsatidx = self.scan_satselection[index_to_scan].index
 				if len(nimsats):
 					orbpos = nimsats[selsatidx][0]
-					tps = nimmanager.getTransponders(orbpos)
+					tps = nimmanager.getTransponders(orbpos, index_to_scan)
 					if len(tps) and len(tps) > self.preDefTransponders.index:
 						tp = tps[self.preDefTransponders.index]
 						self.addSatTransponder(tlist, tp[1] / 1000, tp[2] / 1000, tp[3], tp[4], tp[7], orbpos, tp[5], tp[6], tp[8], tp[9], tp[10], tp[11], tp[12])
 				removeAll = False
 			elif self.scan_type.value == "single_satellite":
 				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
-				getInitialTransponderList(tlist, sat[0])
+				getInitialTransponderList(tlist, sat[0], index_to_scan)
 			elif "multisat" in self.scan_type.value:
 				SatList = nimmanager.getSatListForNim(index_to_scan)
 				for x in self.multiscanlist:
 					if x[1].value:
 						print "[ScanSetup]    " + str(x[0])
-						getInitialTransponderList(tlist, x[0])
+						getInitialTransponderList(tlist, x[0], index_to_scan)
 
 		elif self.DVB_type.value == "DVB-C":
 			if self.scan_typecable.value == "single_transponder":
@@ -1513,7 +1513,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 				fec = self.scan_sat.fec.value
 			compare = [0, self.scan_sat.frequency.value*1000, self.scan_sat.symbolrate.value*1000, self.scan_sat.polarization.value, fec]
 			i = 0
-			tps = nimmanager.getTransponders(orbpos)
+			tps = nimmanager.getTransponders(orbpos, int(self.scan_nims.value))
 			for tp in tps:
 				if tp[0] == 0:
 					if default is None and self.compareTransponders(tp, compare):
@@ -1782,7 +1782,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 				if nim.isCompatible("DVB-S"):
 					# get initial transponders for each satellite to be scanned
 					for sat in networks:
-						getInitialTransponderList(tlist, sat[0])
+						getInitialTransponderList(tlist, sat[0], n.nim_index)
 				elif nim.isCompatible("DVB-C"):
 					if config.Nims[nim.slot].cable.scan_type.value == "provider":
 						getInitialCableTransponderList(tlist, nim.slot)

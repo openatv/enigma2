@@ -3,7 +3,8 @@ from datetime import datetime
 import xml.etree.cElementTree
 import os
 
-from enigma import eDVBSatelliteEquipmentControl as secClass, \
+from enigma import  eDVBFrontendParametersSatellite, \
+	eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
 	eDVBSatelliteRotorParameters as rotorParam, \
@@ -653,9 +654,12 @@ class NimManager:
 	def getConfiguredSats(self):
 		return self.sec.getConfiguredSats()
 
-	def getTransponders(self, pos):
+	def getTransponders(self, pos, feid = None):
 		if self.transponders.has_key(pos):
-			return self.transponders[pos]
+			if feid is None or self.nim_slots[feid].isMultistream():
+				return self.transponders[pos]
+			else: # remove multistream transponders
+				return [tp for tp in self.transponders[pos] if not (tp[5] == eDVBFrontendParametersSatellite.System_DVB_S2 and (tp[10] > -1 or tp[11] > 0 or tp[12] > 1))]
 		else:
 			return []
 
