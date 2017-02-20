@@ -35,7 +35,7 @@ def getChipSetString():
 		f = open('/proc/stb/info/chipset', 'r')
 		chipset = f.read()
 		f.close()
-		return str(chipset.lower().replace('\n','').replace('bcm','').replace('brcm',''))
+		return str(chipset.lower().replace('\n','').replace('brcm','bcm'))
 	except IOError:
 		return _("unavailable")
 
@@ -95,6 +95,8 @@ def getCPUString():
 				if splitted[0].startswith("system type"):
 					system = splitted[1].split(' ')[0]
 				elif splitted[0].startswith("model name"):
+					system = splitted[1].split(' ')[0]
+				elif splitted[0].startswith("Processor"):
 					system = splitted[1].split(' ')[0]
 		file.close()
 		return system
