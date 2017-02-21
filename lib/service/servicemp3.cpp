@@ -1054,16 +1054,54 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
 		GST_SEEK_TYPE_SET, time_nanoseconds,
 		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
-#else
-	m_last_seek_pos = to * 11111LL;
-	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
-		GST_SEEK_TYPE_SET, m_last_seek_pos,
-		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
-#endif
 	{
 		eDebug("[eServiceMP3] seekTo failed");
 		return -1;
 	}
+#else
+	m_last_seek_pos = to * 11111LL;
+/* this below hack is included to cover up a gstreamer bug
+ * https://bugzilla.gnome.org/show_bug.cgi?id=778690
+ * The moment this bug is removed we must just revert this to 
+ * standard seek GST_SEEK_FLAG_KEY_UNIT
+*/
+	if ( m_errorInfo.missing_codec != "")
+	{
+		if (m_errorInfo.missing_codec.find("image/") == 0)
+		{
+			//eDebug("[eServiceMP3] seekToImpl ACCURATE");
+			if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE),
+				GST_SEEK_TYPE_SET, m_last_seek_pos,
+				GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+			{
+				eDebug("[eServiceMP3] seekTo failed");
+				return -1;
+			}
+		}
+		else
+		{
+			//eDebug("[eServiceMP3] seekToImpl KEY_UNIT 1");
+			if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+				GST_SEEK_TYPE_SET, m_last_seek_pos,
+				GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+			{
+				eDebug("[eServiceMP3] seekTo failed");
+				return -1;
+			}
+		}
+	}
+	else
+	{
+		//eDebug("[eServiceMP3] seekToImpl KEY_UNIT 2");
+		if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+			GST_SEEK_TYPE_SET, m_last_seek_pos,
+			GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+		{
+			eDebug("[eServiceMP3] seekTo failed");
+			return -1;
+		}
+	}
+#endif
 
 	if (m_paused)
 	{
@@ -2048,7 +2086,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					setPCMDelay(pcm_delay);
 					if(!m_sourceinfo.is_streaming && !m_cuesheet_loaded) /* cuesheet CVR */
 						loadCuesheet();
-					updateEpgCacheNowNext();
 					/* avoid position taking on audiosink when audiosink is not running */
 					ret = gst_element_get_state(dvb_audiosink, &state, &pending, 3 * GST_SECOND);
 					if (state == GST_STATE_NULL)
@@ -2065,6 +2102,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					if (!m_is_live && ret == GST_STATE_CHANGE_NO_PREROLL)
 						m_is_live = true;
 					m_event((iPlayableService*)this, evGstreamerPlayStarted);
+					updateEpgCacheNowNext();
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
