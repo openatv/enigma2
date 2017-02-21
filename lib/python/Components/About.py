@@ -30,12 +30,30 @@ def getKernelVersionString():
 	except:
 		return _("unknown")
 
+def getIsBroadcom():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("Hardware"):
+					system = splitted[1].split(' ')[0]
+		file.close()
+		if 'Broadcom' in system:
+			return True
+		else:
+			return False
+	except IOError:
+		return False
+
 def getChipSetString():
 	try:
 		f = open('/proc/stb/info/chipset', 'r')
 		chipset = f.read()
 		f.close()
-		return str(chipset.lower().replace('\n','').replace('brcm','bcm'))
+		return str(chipset.lower().replace('\n','').replace('brcm','').replace('bcm',''))
 	except IOError:
 		return _("unavailable")
 
