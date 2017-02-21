@@ -296,34 +296,45 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	char filename[256];
 	char name[128] = {0};
 	int vtunerid = nr - 1;
-	char *line;
-	size_t line_size = 256;
 
 	pumpThread = 0;
+
+	char buffer[4*1024];
+	char* buf_pos;
+	ssize_t rd;
+	int fd;
 
 	int num_fe = 0;
 	
 	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
 
 	/* we need to know exactly what frontend is internal or initialized! */
-	CFile f("/proc/bus/nim_sockets", "r");
-	if (!f)
+	fd = open("/proc/bus/nim_sockets", O_RDONLY);
+	if (fd < 0)
 	{
 		eDebug("Cannot open /proc/bus/nim_sockets");
 		goto error;
 	}
-	
-	line = (char*) malloc(line_size);
-	while (getline(&line, &line_size, f) != -1)
+
+	rd = read(fd, buffer, sizeof(buffer));
+	if (rd < 0)
+	{
+		eDebug("Cannot read /proc/bus/nim_sockets");
+		goto error;
+	}
+
+	buf_pos = buffer;
+	while ((buf_pos = strstr(buf_pos, "Frontend_Device: ")) != NULL)
 	{
 		int num_fe_tmp;
-		if (sscanf(line, "%*[ \t]Frontend_Device: %d", &num_fe_tmp) == 1)
+		if (sscanf(buf_pos, "Frontend_Device: %d", &num_fe_tmp) == 1)
 		{
 			if (num_fe_tmp > num_fe)
 				num_fe = num_fe_tmp;
 		}
+		buf_pos += 1;
 	}
-	free(line);
+
 	num_fe++;
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter0/frontend%d", num_fe);
 	virtualFrontendName = filename;
