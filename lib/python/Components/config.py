@@ -1629,7 +1629,10 @@ class ConfigNumber(ConfigText):
 		ConfigText.__init__(self, str(default), fixed_size=False)
 
 	def getValue(self):
-		return int(self.text)
+		try:
+			return int(self.text)
+		except:
+			return 0
 
 	def setValue(self, val):
 		self.text = str(val)
