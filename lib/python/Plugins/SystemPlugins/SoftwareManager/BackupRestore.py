@@ -121,8 +121,11 @@ class BackupScreen(Screen, ConfigListScreen):
 
 	def doBackup(self):
 		configfile.save()
-		if config.plugins.softwaremanager.epgcache.value:
-			eEPGCache.getInstance().save()
+		try:
+			if config.plugins.softwaremanager.epgcache.value:
+				eEPGCache.getInstance().save()
+		except:
+			pass
 		try:
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
