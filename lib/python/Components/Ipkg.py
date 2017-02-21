@@ -1,7 +1,7 @@
 import os
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
-from Components.config import config
+from Components.config import config, ConfigSubsection, ConfigYesNo
 from shutil import rmtree
 from boxbranding import getImageDistro, getImageVersion
 
