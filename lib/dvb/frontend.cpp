@@ -1015,28 +1015,28 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108)")) // VU+Ultimo/VU+Uno DVB-S2 NIM
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1600) + 0.2100) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1600) + 0.2100) * 100);
 	}
 	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)")
 		|| !strcmp(m_description, "Vuplus DVB-S NIM(AVL6211)")
 		|| !strcmp(m_description, "BCM7335 DVB-S2 NIM (internal)")
 		) // VU+
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1244) + 2.5079) * 100);
 		if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)"))
 			sat_max = 1490;
 	}
 	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // VU+ Solo2
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1800) - 1.0000) * 100);
 	}
 	else if (!strcmp(m_description, "Vuplus DVB-S NIM(7376 FBC)")) // VU+ Solo4k
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1850) - 0.3500) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1850) - 0.3500) * 100);
 	}
 	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
 	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")
 		|| !strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")
@@ -1046,7 +1046,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		|| !strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")
 		) // Gigablue
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1800) - 1.0000) * 100);
 	}
 	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")
 		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")
@@ -1175,16 +1175,16 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		switch (type)
 		{
 		case feSatellite:
-			signalquality = (ret >= sat_max ? 65536 : ret * 65536 / sat_max);
+			signalquality = (ret >= sat_max ? 65535 : ret * 65535 / sat_max);
 			break;
 		case feCable:
-			signalquality = (ret >= cab_max ? 65536 : ret * 65536 / cab_max);
+			signalquality = (ret >= cab_max ? 65535 : ret * 65535 / cab_max);
 			break;
 		case feTerrestrial:
-			signalquality = (ret >= ter_max ? 65536 : ret * 65536 / ter_max);
+			signalquality = (ret >= ter_max ? 65535 : ret * 65535 / ter_max);
 			break;
 		case feATSC:
-			signalquality = (ret >= atsc_max ? 65536 : ret * 65536 / atsc_max);
+			signalquality = (ret >= atsc_max ? 65535 : ret * 65535 / atsc_max);
 			break;
 		}
 	}
@@ -1242,20 +1242,25 @@ int eDVBFrontend::readFrontendData(int type)
 					{
 						for(unsigned int i=0; i<prop[0].u.st.len; i++)
 						{
-							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL)
+							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL &&
+								type == iFrontendInformation_ENUMS::signalQualitydB)
+							{
 								signalqualitydb = prop[0].u.st.stat[i].svalue / 10;
-							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
+								return signalqualitydb;
+							}
+							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE &&
+								type == iFrontendInformation_ENUMS::signalQuality)
+							{
 								signalquality = prop[0].u.st.stat[i].svalue;
+								return signalquality;
+							}
 						}
 					}
 				}
 #endif
 				// fallback to old DVB API
-				if(!signalquality && !signalqualitydb || strstr(m_description, "Sundtek"))
-				{
-					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
-					calculateSignalQuality(snr, signalquality, signalqualitydb);
-				}
+				int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
+				calculateSignalQuality(snr, signalquality, signalqualitydb);
 
 				if (type == iFrontendInformation_ENUMS::signalQuality)
 				{
