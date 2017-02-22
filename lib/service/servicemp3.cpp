@@ -813,7 +813,9 @@ eServiceMP3::~eServiceMP3()
 		gst_object_unref (GST_OBJECT (m_gst_playbin));
 		m_ref.path.clear();
 		m_ref.name.clear();
+#if GST_VERSION_MAJOR >= 1
 		m_media_lenght = 0;
+#endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
 }
