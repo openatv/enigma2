@@ -69,7 +69,7 @@
 <!-- 		<item level="1" text="Sort menu screens alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item> -->
 <!-- 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item> -->
 		<item level="1" text="Show PVR status in movie player infobar" description="Enable to move PVR status info from a separate window into the movie player infobar.">config.usage.movieplayer_pvrstate</item>
-		<item level="2" text="Close PiP on EXIT" description="When enabled: In live TV mode, EXIT closes the PiP window (and infobar). In movie player mode, EXIT closes the infobar or PiP window if shown. If neither the PiP window or infobar are visible, EXIT behaviour operates in accordance with the 'Quit movie player with EXIT button' setting.">config.usage.pip_hideOnExit</item>
+		<item level="2" text="Close PiP on EXIT" requires="PIPAvailable" description="When enabled: In live TV mode, EXIT closes the PiP window (and infobar). In movie player mode, EXIT closes the infobar or PiP window if shown. If neither the PiP window or infobar are visible, EXIT behaviour operates in accordance with the 'Quit movie player with EXIT button' setting.">config.usage.pip_hideOnExit</item>
 <!-- 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown in the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item> -->
 		<item level="0" text="Show menu numbers" description="Enable to show number short cuts next to menu entries.">config.usage.menu_show_numbers</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
@@ -274,7 +274,7 @@
 <!-- 		<item level="0" text="TV button mode" description="Select what you want the TV button to activate.">config.usage.tvradiobutton_mode</item> -->
 <!-- 		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- buttons to activate.">config.usage.channelbutton_mode</item> -->
 <!-- 		<item level="0" text="Use UI colored Buttons*" description="Select if you want to use the ViX colored buttons (set to 'no' if you want to use (Multi Quick Button).">config.vixsettings.ColouredButtons</item> -->
-		<item level="1" text="Behaviour of 0 in PiP mode" description="Choose what you want the '0' button to do when PIP is active.">config.usage.pip_zero_button</item>
+		<item level="1" text="Behaviour of 0 in PiP mode" requires="PIPAvailable" description="Choose what you want the '0' button to do when PIP is active.">config.usage.pip_zero_button</item>
 		<item level="1" text="PREV/NEXT history mode" description="Configure the method of navigating history when using PREV/NEXT buttons.">config.usage.historymode</item>
 	</setup>
 	<setup key="softcamsetup" title="Softcam settings">
