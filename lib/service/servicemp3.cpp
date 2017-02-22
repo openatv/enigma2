@@ -2964,13 +2964,13 @@ void eServiceMP3::pushSubtitles()
 
 		if (m_decoder_time_valid_state < 4)
 		{
-			eDebug("[eServiceMP3] *** push subtitles, waiting for clock to stabilise");
+			//eDebug("[eServiceMP3] *** push subtitles, waiting for clock to stabilise");
 			m_prev_decoder_time = running_pts;
 			next_timer = 100;
 			goto exit;
 		}
 
-		eDebug("[eServiceMP3] *** push subtitles, clock stable");
+		//eDebug("[eServiceMP3] *** push subtitles, clock stable");
 	}
 
 	decoder_ms = running_pts / 90;
