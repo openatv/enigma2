@@ -445,6 +445,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText()
 
+		Load_defaults()
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 

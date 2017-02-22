@@ -34,7 +34,7 @@ def InitConfig():
 	config.plugins.configurationbackup = ConfigSubsection()
 	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" %boxtype):
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
-	else:	
+	else:
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'),
 		'/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
@@ -129,7 +129,11 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
-			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs_default.value )
+			try:
+				self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs_default.value )
+			except:
+				InitConfig()
+				self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs_default.value )
 			for f in config.plugins.configurationbackup.backupdirs.value:
 				if not f in self.backupdirs:
 					self.backupdirs = self.backupdirs + " " + f
