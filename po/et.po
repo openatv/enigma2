@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-21 22:10+0000\n"
-"PO-Revision-Date: 2017-02-09 16:07+0200\n"
+"POT-Creation-Date: 2017-02-19 07:59+0200\n"
+"PO-Revision-Date: 2017-02-22 11:46+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -173,11 +173,17 @@ msgstr "%-H:%M"
 msgid "%-H:%M:%S"
 msgstr "%-H:%M:%S"
 
+msgid "%-I:%M"
+msgstr "%-I:%M"
+
 msgid "%-I:%M%P"
 msgstr "%-I:%M%P"
 
 msgid "%-I:%M%^p"
 msgstr "%-I:%M%^p"
+
+msgid "%-I:%M:%S"
+msgstr "%-I:%M:%S"
 
 msgid "%-I:%M:%S%P"
 msgstr "%-I:%M:%S%P"
@@ -198,8 +204,8 @@ msgid "%-e %b %Y"
 msgstr "%-e %b %Y"
 
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
-msgid "%-e%b"
-msgstr "%-e%b"
+msgid "%-e+%b_"
+msgstr "%-e+%b_"
 
 msgid "%-e-%B-%Y"
 msgstr "%-e-%B-%Y"
@@ -219,6 +225,9 @@ msgstr "%-e/%m "
 msgid "%-e/%m/%Y"
 msgstr "%-e/%m/%Y"
 
+msgid "%-e=%b_"
+msgstr "%-e=%b_"
+
 msgid "%-m/%-e"
 msgstr "%-m/%-e"
 
@@ -235,6 +244,14 @@ msgstr "%.0f GB"
 #, python-format
 msgid "%.0f MB"
 msgstr "%.0f MB"
+
+#, python-format
+msgid "%.0f kB"
+msgstr "%.0f kB"
+
+#, python-format
+msgid "%.2f GB"
+msgstr "%.2f GB"
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%A %-e %B"
@@ -283,6 +300,9 @@ msgstr "%A %B-%-e-%Y"
 msgid "%A %B-%d"
 msgstr "%A %B-%d"
 
+msgid "%A %B-%d-%Y"
+msgstr "%A %B-%d-%Y"
+
 msgid "%A %Y %B %-e"
 msgstr "%A %Y %B %-e"
 
@@ -298,14 +318,38 @@ msgstr "%A %Y-%B-%d"
 msgid "%A %Y/%m/%-e"
 msgstr "%A %Y/%m/%-e"
 
+msgid "%A %Y/%m/%d"
+msgstr "%A %Y/%m/%d"
+
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
 msgid "%A %d %B %Y"
 msgstr "%A %d %B %Y"
 
+msgid "%A %d-%B"
+msgstr "%A %d-%B"
+
+msgid "%A %d-%B-%Y"
+msgstr "%A %d-%B-%Y"
+
+msgid "%A %d/%m"
+msgstr "%A %d/%m"
+
+msgid "%A %d/%m/%Y"
+msgstr "%A %d/%m/%Y"
+
 msgid "%A %m/%-e"
 msgstr "%A %m/%-e"
+
+msgid "%A %m/%-e/%Y"
+msgstr "%A %m/%-e/%Y"
+
+msgid "%A %m/%d"
+msgstr "%A %m/%d"
+
+msgid "%A %m/%d/%Y"
+msgstr "%A %m/%d/%Y"
 
 msgid "%B %-e %Y"
 msgstr "%B %-e %Y"
@@ -316,14 +360,23 @@ msgstr "%B %d %Y"
 msgid "%B-%-e-%Y"
 msgstr "%B-%-e-%Y"
 
+msgid "%B-%d-%Y"
+msgstr "%B-%d-%Y"
+
 msgid "%H:%M"
 msgstr "%H:%M"
+
+msgid "%I:%M"
+msgstr "%I:%M"
 
 msgid "%I:%M%P"
 msgstr "%I:%M%P"
 
 msgid "%I:%M%^p"
 msgstr "%I:%M%^p"
+
+msgid "%I:%M:%S"
+msgstr "%I:%M:%S"
 
 msgid "%I:%M:%S%P"
 msgstr "%I:%M:%S%P"
@@ -335,7 +388,7 @@ msgstr "%I:%M:%S%^p"
 msgid "%R"
 msgstr "%R"
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock and hour:minute for 12 hour clocks
+#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
 msgid "%T"
 msgstr "%T"
 
@@ -365,6 +418,9 @@ msgstr "%Y-%b-%d"
 
 msgid "%Y/%m/%-e"
 msgstr "%Y/%m/%-e"
+
+msgid "%Y/%m/%d"
+msgstr "%Y/%m/%d"
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
 msgid "%a %-e"
@@ -412,6 +468,9 @@ msgstr "%a %B %d %Y"
 msgid "%a %B-%-e-%Y"
 msgstr "%a %B-%-e-%Y"
 
+msgid "%a %B-%d-%Y"
+msgstr "%a %B-%d-%Y"
+
 msgid "%a %Y %B %-e"
 msgstr "%a %Y %B %-e"
 
@@ -439,6 +498,9 @@ msgstr "%a %Y-%b-%d"
 msgid "%a %Y/%m/%-e"
 msgstr "%a %Y/%m/%-e"
 
+msgid "%a %Y/%m/%d"
+msgstr "%a %Y/%m/%d"
+
 msgid "%a %b %-e"
 msgstr "%a %b %-e"
 
@@ -460,6 +522,9 @@ msgstr "%a %b-%-e-%Y"
 msgid "%a %b-%d"
 msgstr "%a %b-%d"
 
+msgid "%a %b-%d-%Y"
+msgstr "%a %b-%d-%Y"
+
 msgid "%a %d"
 msgstr "%a %d"
 
@@ -472,8 +537,32 @@ msgstr "%a %d %b"
 msgid "%a %d %b %Y"
 msgstr "%a %d %b %Y"
 
+msgid "%a %d-%B-%Y"
+msgstr "%a %d-%B-%Y"
+
+msgid "%a %d-%b"
+msgstr "%a %d-%b"
+
+msgid "%a %d-%b-%Y"
+msgstr "%a %d-%b-%Y"
+
+msgid "%a %d/%m"
+msgstr "%a %d/%m"
+
+msgid "%a %d/%m/%Y"
+msgstr "%a %d/%m/%Y"
+
 msgid "%a %m/%-e"
 msgstr "%a %m/%-e"
+
+msgid "%a %m/%-e/%Y"
+msgstr "%a %m/%-e/%Y"
+
+msgid "%a %m/%d"
+msgstr "%a %m/%d"
+
+msgid "%a %m/%d/%Y"
+msgstr "%a %m/%d/%Y"
 
 msgid "%b %-e"
 msgstr "%b %-e"
@@ -496,6 +585,9 @@ msgstr "%b-%-e-%Y"
 msgid "%b-%d"
 msgstr "%b-%d"
 
+msgid "%b-%d-%Y"
+msgstr "%b-%d-%Y"
+
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
@@ -504,6 +596,10 @@ msgstr "%d %b"
 
 msgid "%d %b %Y"
 msgstr "%d %b %Y"
+
+#, python-format
+msgid "%d B"
+msgstr "%d B"
 
 #, python-format
 msgid "%d GB"
@@ -523,6 +619,8 @@ msgstr "%d MB"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
+#. TRANSLATORS: short time representation hour:minute
+#. _("%R")
 #. TRANSLATORS: short time representation hour:minute
 #. _("%R")
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
@@ -578,6 +676,10 @@ msgid "%d minutes"
 msgstr "%d minutit"
 
 #, python-format
+msgid "%d ms"
+msgstr "%d ms"
+
+#, python-format
 msgid "%d of %d Bytes"
 msgstr "%d - %d baidist"
 
@@ -603,14 +705,47 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "Leiti %d traadita võrk!"
 msgstr[1] "Leiti %d traadita võrku!"
 
-msgid "%d%b"
-msgstr "%d%b"
+msgid "%d+%b_"
+msgstr "%d+%b_"
+
+msgid "%d-%B-%Y"
+msgstr "%d-%B-%Y"
+
+msgid "%d-%b"
+msgstr "%d-%b"
+
+msgid "%d-%b-%Y"
+msgstr "%d-%b-%Y"
+
+msgid "%d/%m"
+msgstr "%d/%m"
+
+msgid "%d/%m "
+msgstr "%d/%m "
+
+msgid "%d/%m/%Y"
+msgstr "%d/%m/%Y"
+
+msgid "%d=%b_"
+msgstr "%d=%b_"
 
 msgid "%m/%-e"
 msgstr "%m/%-e"
 
 msgid "%m/%-e "
 msgstr "%m/%-e "
+
+msgid "%m/%-e/%Y"
+msgstr "%m/%-e/%Y"
+
+msgid "%m/%d"
+msgstr "%m/%d"
+
+msgid "%m/%d "
+msgstr "%m/%d "
+
+msgid "%m/%d/%Y"
+msgstr "%m/%d/%Y"
 
 #, python-format
 msgid "%s"
@@ -672,7 +807,7 @@ msgstr[0] "%s uuendatud pakett saadaval"
 msgstr[1] "%s uuendatud paketti saadaval"
 
 #, python-format
-msgid "%s%d min"
+msgid "%s%d Min"
 msgstr "%s%d min"
 
 #, python-format
@@ -843,6 +978,15 @@ msgstr "3D seaded"
 msgid "3X"
 msgstr "3X"
 
+msgid "420"
+msgstr "420"
+
+msgid "422"
+msgstr "422"
+
+msgid "444"
+msgstr "444"
+
 msgid "480p 24Hz"
 msgstr "480p 24Hz"
 
@@ -869,126 +1013,6 @@ msgstr "720p 24Hz"
 
 msgid "8bit"
 msgstr "8bit"
-
-msgid "9 Mon"
-msgstr ""
-
-msgid "9 Mon 9999"
-msgstr ""
-
-msgid "9 Month 9999"
-msgstr ""
-
-msgid "9-Mon"
-msgstr ""
-
-msgid "9-Mon-9999"
-msgstr ""
-
-msgid "9-Month-9999"
-msgstr ""
-
-msgid "9/9"
-msgstr ""
-
-msgid "9/9 "
-msgstr ""
-
-msgid "9/9/9999"
-msgstr ""
-
-msgid "9/99"
-msgstr ""
-
-msgid "9/99 "
-msgstr ""
-
-msgid "9/99/9999"
-msgstr ""
-
-msgid "99 Mon"
-msgstr ""
-
-msgid "99 Mon 9999"
-msgstr ""
-
-msgid "99 Month 9999"
-msgstr ""
-
-msgid "99/9"
-msgstr ""
-
-msgid "99/9 "
-msgstr ""
-
-msgid "9999 Mon 9"
-msgstr ""
-
-msgid "9999 Mon 99"
-msgstr ""
-
-msgid "9999 Month 9"
-msgstr ""
-
-msgid "9999 Month 99"
-msgstr ""
-
-msgid "9999-Mon-9"
-msgstr ""
-
-msgid "9999-Mon-99"
-msgstr ""
-
-msgid "9999-Month-9"
-msgstr ""
-
-msgid "9999-Month-99"
-msgstr ""
-
-msgid "9999/99/9"
-msgstr ""
-
-msgid "99:99"
-msgstr ""
-
-msgid "99:99:99"
-msgstr ""
-
-msgid "99:99:99AM/PM"
-msgstr ""
-
-msgid "99:99:99am/pm"
-msgstr ""
-
-msgid "99:99AM/PM"
-msgstr ""
-
-msgid "99:99am/pm"
-msgstr ""
-
-msgid "99Mon"
-msgstr ""
-
-msgid "9:99"
-msgstr ""
-
-msgid "9:99:99"
-msgstr ""
-
-msgid "9:99:99AM/PM"
-msgstr ""
-
-msgid "9:99:99am/pm"
-msgstr ""
-
-msgid "9:99AM/PM"
-msgstr ""
-
-msgid "9:99am/pm"
-msgstr ""
-
-msgid "9Mon"
-msgstr ""
 
 msgid "< Default >"
 msgstr "< Vaikimisi >"
@@ -1164,6 +1188,12 @@ msgstr "AAC transkodeerimine"
 
 msgid "AC3"
 msgstr "AC3"
+
+msgid "AC3 downmix"
+msgstr "AC3 > stereo"
+
+msgid "AC3+ transcoding"
+msgstr "AC3+ transkodeerimine"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr "TSID/ONID HANKIMINE"
@@ -1451,6 +1481,9 @@ msgstr "Testimata uuendused lubatud"
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
 
+msgid "Allows the %s %s to save EPG data to file for use on a restart. Default is 'yes'. Only set to 'no' if this receiver is running as a client and passively sharing epg.dat from another receiver."
+msgstr "Võimaldab %s %s epg.dat faili salvestamise, et seda kasutada taaskäivitumisel. Vaikeväärtus on 'jah'. Määra 'ei' ainult juhul, kui vastuvõtja töötab kliendina ja kasutab passiivselt teise vastuvõtja epg.dat faili."
+
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt salvestada EPG andmeid."
 
@@ -1504,6 +1537,9 @@ msgstr "Raadio kuvamine TV stiilis"
 
 msgid "Alternative services tuner priority"
 msgstr "Tuuneri eelistus asenduskanalitel"
+
+msgid "Always"
+msgstr "Alati"
 
 msgid "Always ask"
 msgstr "Küsitakse iga kord"
@@ -1676,6 +1712,9 @@ msgstr "Tähelepanu, see on korduvtaimer!\n"
 msgid "Audio"
 msgstr "Heli"
 
+msgid "Audio Channel"
+msgstr "Helikanal"
+
 msgid "Audio PID"
 msgstr "Heli PID"
 
@@ -1821,8 +1860,44 @@ msgstr "BT 2020 NCL"
 msgid "BT 709"
 msgstr "BT 709"
 
+msgid "BT2020 CL"
+msgstr "BT2020 CL"
+
+msgid "BT2020 NCL"
+msgstr "BT2020 NCL"
+
+msgid "BT470 BG"
+msgstr "BT470 BG"
+
+msgid "BT601 XvYCC"
+msgstr "BT601 XvYCC"
+
+msgid "BT709"
+msgstr "BT709"
+
+msgid "BT709 XvYCC"
+msgstr "BT709 XvYCC"
+
 msgid "Back"
 msgstr "Tagasi"
+
+msgid "Back USB"
+msgstr "Tagakülje USB"
+
+msgid "Back USB 3.0"
+msgstr "Tagakülje USB 3.0"
+
+msgid "Back, inner USB"
+msgstr "Tagakülje sisene USB"
+
+msgid "Back, lower USB"
+msgstr "Tagakülje alumine USB"
+
+msgid "Back, outer USB"
+msgstr "Tagakülje väline USB"
+
+msgid "Back, upper USB"
+msgstr "Tagakülje ülemine USB"
 
 msgid "Back/Recall"
 msgstr "Back/Recall"
@@ -1921,8 +1996,10 @@ msgid "Boost green"
 msgstr "Rohelise võimendus"
 
 #, python-format
-msgid "Bootloader:\t\t%s\n"
-msgstr "Alglaadur:\t\t%s\n"
+msgid "Bootloader:\t%s\n"
+msgstr ""
+"Alglaadur:\t%s\n"
+"\n"
 
 msgid "Bouquet List"
 msgstr "Lemmiknimekirjad"
@@ -2064,12 +2141,8 @@ msgid "CI assignment"
 msgstr "CI määrangud"
 
 #, python-format
-msgid "CPU speed:\t%s\n"
-msgstr "CPU kiirus:\t%s\n"
-
-#, python-format
-msgid "CPU:\t%s\n"
-msgstr "CPU:\t%s\n"
+msgid "CPU:\t%s %s %s\n"
+msgstr "CPU:\t%s %s %s\n"
 
 msgid "CVBS"
 msgstr "Komposiit (CVBS)"
@@ -2309,11 +2382,17 @@ msgstr "Vali salvestise lihtsaks leidmiseks märksõna."
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr "Kas kord päevas, kord nädalas, tööpäevadel või kasutaja määratud."
 
-msgid "Choose the display formatting style for dates. The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Määra kuupäeva vorming. Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
+msgid "Choose between High Dynamic Range (HDR) or Picture in Picture (PIP). Both are not possible at the same time. A FULL REBOOT is required for it to take effect"
+msgstr "Vali, kas HDR (Ülisuur ulatus) või PiP (Pilt pildis). Üheaegselt neid kasutada ei ole võimalik. Muudatuste jõustamiseks tuleb vastuvõtja taaskäivitada"
 
-msgid "Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Määra kellaaja vorming. Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
+msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Määra kuupäeva vorming. 'P' / 'PP' on kuupäev ja  'K' / 'KK' on kuu. ( 'PP' ja 'KK' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
+
+msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Vali kellaaja vorming. 'H' / 'HH' on 24-tunni kella tund, 'h' / 'hh' 12-tunni kella tund, 'mm' on minutid ja 'ss' on sekundid. ('HH' ja 'hh' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
+
+msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
+msgstr "Vali esipaneeli näidiku kellaaja vorming. 'H' / 'HH' on 24-tunni kella tund, 'h' / 'hh' 12-tunni kella tund, 'mm' on minutid ja 'ss' on sekundid. ('HH' ja 'hh' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
 
 msgid "Choose the location for crash and debug logs folder."
 msgstr "Määra vea- ja silumislogide asukoht."
@@ -2333,8 +2412,20 @@ msgstr "Vali, mida '0' nupp PIP- režiimis teeb."
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Määra, kas AAC heli transkodeerida."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
-msgstr "Määra, kas mitmekanaline heli taandada stereoks."
+msgid "Choose whether AC3+ sound tracks should be transcoded to AC3."
+msgstr "Määra, kas AC3+ heli transkodeerida AC3 heliks."
+
+msgid "Choose whether DTS-HD sound tracks should be transcoded to DTS."
+msgstr "Määra, kas DTS-HD heli transkodeerida DTS heliks."
+
+msgid "Choose whether multi channel aac sound tracks should be downmixed to stereo."
+msgstr "Määra, kas mitmekanaline AAC heli taandada stereoks."
+
+msgid "Choose whether multi channel ac3 sound tracks should be downmixed to stereo."
+msgstr "Määra, kas mitmekanaline AC3 heli taandada stereoks."
+
+msgid "Choose whether multi channel dts sound tracks should be downmixed to stereo."
+msgstr "Määra, kas mitmekanaline DTS heli taandada stereoks."
 
 msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Määra, kas mitmekanaline heli väljastada PCM helina."
@@ -2425,6 +2516,9 @@ msgstr "Värvi vorming"
 
 msgid "Color space"
 msgstr "Värviruum"
+
+msgid "Combo"
+msgstr "Combo"
 
 msgid "Comedy"
 msgstr "Komöödia"
@@ -2819,6 +2913,9 @@ msgstr "Kontrast"
 msgid "Control of the position how finished timers are shown in the Timer List."
 msgstr "Määra aegunud taimerite asukoht taimerite nimekirjas."
 
+msgid "Controlled by HDMI"
+msgstr "HDMI juhitav"
+
 msgid "Convert ext3 filesystem to ext4"
 msgstr "Teisenda ext3 > ext4"
 
@@ -2842,10 +2939,6 @@ msgstr "Kopeeri lemmiknimekirjadesse"
 
 msgid "Copying files"
 msgstr "Failide kopeerimine"
-
-#, python-format
-msgid "Cores:\t%s\n"
-msgstr "Tuumad:\t%s\n"
 
 msgid "Could not find installed channel list."
 msgstr "Paigaldatud kanalinimekirja ei leitud."
@@ -2949,9 +3042,6 @@ msgstr "Aktiivne transponder"
 msgid "Current value: "
 msgstr "Praegune väärtus: "
 
-msgid "Current version:"
-msgstr "Praegune versioon:"
-
 msgid "Custom"
 msgstr "Kohandatud"
 
@@ -2996,6 +3086,12 @@ msgstr "DMM tavaline"
 
 msgid "DTS"
 msgstr "DTS"
+
+msgid "DTS downmix"
+msgstr "DTS > stereo"
+
+msgid "DTS-HD transcoding"
+msgstr "DTS-HD transkodeerimine"
 
 msgid "DUAL LAYER DVD"
 msgstr "Kahekihiline DVD"
@@ -3057,179 +3153,62 @@ msgstr "Kuupäev"
 msgid "Date style"
 msgstr "Kuupäeva kuju"
 
-msgid "Day 9"
-msgstr ""
+msgid "Dayname D Month Year"
+msgstr "Nädalapäev P Kuu Aasta"
 
-msgid "Day 9 Mon"
-msgstr ""
+msgid "Dayname D-Month-Year"
+msgstr "Nädalapäev P-Kuu-Aasta"
 
-msgid "Day 9 Mon 9999"
-msgstr ""
+msgid "Dayname D/MM/Year"
+msgstr "Nädalapäev P/KK/Aasta"
 
-msgid "Day 9 Month 9999"
-msgstr ""
+msgid "Dayname DD Month Year"
+msgstr "Nädalapäev PP Kuu Aasta"
 
-msgid "Day 9-Mon"
-msgstr ""
+msgid "Dayname DD-Month-Year"
+msgstr "Nädalapäev PP-Kuu-Aasta"
 
-msgid "Day 9-Mon-9999"
-msgstr ""
+msgid "Dayname DD/MM/Year"
+msgstr "Nädalapäev PP/KK/Aasta"
 
-msgid "Day 9-Month-9999"
-msgstr ""
+msgid "Dayname M/D/Year"
+msgstr "Nädalapäev K/P/Aasta"
 
-msgid "Day 9/9"
-msgstr ""
+msgid "Dayname MM/D/Year"
+msgstr "Nädalapäev KK/P/Aasta"
 
-msgid "Day 9/9/9999"
-msgstr ""
+msgid "Dayname MM/DD/Year"
+msgstr "Nädalapäev KK/PP/Aasta"
 
-msgid "Day 9/99"
-msgstr ""
+msgid "Dayname Month D Year"
+msgstr "Nädalapäev Kuu P Aasta"
 
-msgid "Day 9/99/9999"
-msgstr ""
+msgid "Dayname Month DD Year"
+msgstr "Nädalapäev Kuu PP Aasta"
 
-msgid "Day 99"
-msgstr ""
+msgid "Dayname Month-D-Year"
+msgstr "Nädalapäev Kuu-P-Aasta"
 
-msgid "Day 99 Mon"
-msgstr ""
+msgid "Dayname Month-DD-Year"
+msgstr "Nädalapäev Kuu-PP-Aasta"
 
-msgid "Day 99 Mon 9999"
-msgstr ""
+msgid "Dayname Year Month D"
+msgstr "Nädalapäev Aasta Kuu P"
 
-msgid "Day 99 Month 9999"
-msgstr ""
+msgid "Dayname Year Month DD"
+msgstr "Nädalapäev Aasta Kuu PP"
 
-msgid "Day 99/9"
-msgstr ""
+msgid "Dayname Year-Month-D"
+msgstr "Nädalapäev Aasta-Kuu-P"
 
-msgid "Day 9999 Mon 9"
-msgstr ""
+msgid "Dayname Year-Month-DD"
+msgstr "Nädalapäev Aasta-Kuu-PP"
 
-msgid "Day 9999 Mon 99"
-msgstr ""
+msgid "Dayname Year/MM/D"
+msgstr "Nädalapäev Aasta/KK/P"
 
-msgid "Day 9999 Month 9"
-msgstr ""
-
-msgid "Day 9999 Month 99"
-msgstr ""
-
-msgid "Day 9999-Mon-9"
-msgstr ""
-
-msgid "Day 9999-Mon-99"
-msgstr ""
-
-msgid "Day 9999-Month-9"
-msgstr ""
-
-msgid "Day 9999-Month-99"
-msgstr ""
-
-msgid "Day 9999/99/9"
-msgstr ""
-
-msgid "Day Mon 9"
-msgstr ""
-
-msgid "Day Mon 9 9999"
-msgstr ""
-
-msgid "Day Mon 99"
-msgstr ""
-
-msgid "Day Mon 99 9999"
-msgstr ""
-
-msgid "Day Mon-9"
-msgstr ""
-
-msgid "Day Mon-9-9999"
-msgstr ""
-
-msgid "Day Mon-99"
-msgstr ""
-
-msgid "Day Month 9 9999"
-msgstr ""
-
-msgid "Day Month 99 9999"
-msgstr ""
-
-msgid "Day Month-9-9999"
-msgstr ""
-
-msgid "Dayname 9 Month"
-msgstr ""
-
-msgid "Dayname 9 Month 9999"
-msgstr ""
-
-msgid "Dayname 9-Month"
-msgstr ""
-
-msgid "Dayname 9-Month-9999"
-msgstr ""
-
-msgid "Dayname 9/9"
-msgstr ""
-
-msgid "Dayname 9/9/9999"
-msgstr ""
-
-msgid "Dayname 9/99"
-msgstr ""
-
-msgid "Dayname 9/99/9999"
-msgstr ""
-
-msgid "Dayname 99 Month"
-msgstr ""
-
-msgid "Dayname 99 Month 9999"
-msgstr ""
-
-msgid "Dayname 99/9"
-msgstr ""
-
-msgid "Dayname 9999 Month 9"
-msgstr ""
-
-msgid "Dayname 9999 Month 99"
-msgstr ""
-
-msgid "Dayname 9999-Month-9"
-msgstr ""
-
-msgid "Dayname 9999-Month-99"
-msgstr ""
-
-msgid "Dayname 9999/99/9"
-msgstr ""
-
-msgid "Dayname Month 9"
-msgstr ""
-
-msgid "Dayname Month 9 9999"
-msgstr ""
-
-msgid "Dayname Month 99"
-msgstr ""
-
-msgid "Dayname Month 99 9999"
-msgstr ""
-
-msgid "Dayname Month-9"
-msgstr ""
-
-msgid "Dayname Month-9-9999"
-msgstr ""
-
-msgid "Dayname Month-99"
-msgstr ""
+msgid "Dayname Year/MM/DD"
+msgstr "Nädalapäev Aasta/KK/PP"
 
 msgid "De-select"
 msgstr "Valik maha"
@@ -3437,9 +3416,6 @@ msgstr "DiSEqC-testri seadistused"
 
 msgid "Digital contour removal"
 msgstr "Digitaalse kontuuri kõrvaldamine"
-
-msgid "Digital downmix"
-msgstr "DD / DTS > stereo"
 
 msgid "Dim delay"
 msgstr "Tuhmistamise viiteaeg"
@@ -3653,9 +3629,6 @@ msgstr "DD / DTS > stereo on"
 msgid "Documentary"
 msgstr "Dokumentaal"
 
-msgid "Dolby Digital / DTS downmix"
-msgstr "Dolby Digital / DTS > stereo"
-
 msgid "Don't save"
 msgstr "Ära talleta"
 
@@ -3839,6 +3812,9 @@ msgstr "Luba 5 V toide aktiivantennile"
 msgid "Enable EIT EPG"
 msgstr "EIT EPG lubatud"
 
+msgid "Enable EPG save"
+msgstr "EPG salvestamine lubatud"
+
 msgid "Enable FreeSat EPG"
 msgstr "FreeSat EPG lubatud"
 
@@ -3900,8 +3876,8 @@ msgstr "Teleteksti puhverdamine"
 msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
 msgstr "Luba enigma2 kaugvastuvõtja tuunerite kasutamine, kui kohalik tuuner ei ole saadaval (nt. tuuner on hõivatud või kanalitüüp on kohaliku tuuneri jaoks sobimatu)."
 
-msgid "Enable timer conflict detection"
-msgstr "Taimerikonflikti tuvastamine"
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
+msgstr "Kuva valikud 'jah/ei', 'tõene/väär', 'sees/väljas' ja 'luba/keela' graafilise lülitina."
 
 msgid "Enable to highlight events that are currently in progress."
 msgstr "Määrates 'jah', tõstetakse hetkel toimuvad saated esile."
@@ -4202,8 +4178,8 @@ msgstr "F3 - pikk"
 msgid "FAILED"
 msgstr "NURJUS"
 
-msgid "FBC SCR (Unicable or JESS)"
-msgstr "FBC SCR (Unicable või JESS)"
+msgid "FBC SCR (Unicable/JESS)"
+msgstr "FBC SCR (Unicable/JESS)"
 
 msgid "FBC automatic"
 msgstr "FBC automaatne"
@@ -4229,6 +4205,9 @@ msgid ""
 msgstr ""
 "FBC automaatne\n"
 "väljas"
+
+msgid "FCC 1953"
+msgstr "FCC 1953"
 
 msgid "FEC"
 msgstr "FEC"
@@ -4260,6 +4239,9 @@ msgstr "Nurjus"
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "/tmp/positionersetup.logi loomine nurjus: "
+
+msgid "Fallback configuration"
+msgstr "Kaugvastuvõtja seadistamine"
 
 msgid "Fallback remote receiver URL"
 msgstr "Kaugvastuvõtja URL"
@@ -4434,8 +4416,17 @@ msgstr "Asukohast :"
 msgid "Front Display Panel"
 msgstr "Esipaneeli näidik"
 
+msgid "Front USB"
+msgstr "Esikülje USB"
+
+msgid "Front USB 3.0"
+msgstr "Esikülje USB 3.0"
+
 msgid "Front display settings"
 msgstr "Esipaneeli näidik"
+
+msgid "Full Range RGB"
+msgstr "Täielik RGB"
 
 msgid "Full screen"
 msgstr "Täisekraan"
@@ -4523,6 +4514,9 @@ msgstr "Mine kindlale kellaajale/kuupäevale"
 msgid "Go up the list"
 msgstr "Liigu nimekirjas üles"
 
+msgid "Gold"
+msgstr "Gold"
+
 msgid "Goto"
 msgstr "Mine"
 
@@ -4580,6 +4574,12 @@ msgstr "Kaitsevahemik"
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = 1x tunnis / D: = 1x päevas / W: = 1x nädalas / M: = 1x kuus"
 
+msgid "H:mm"
+msgstr "H:mm"
+
+msgid "H:mm:ss"
+msgstr "H:mm:ss"
+
 msgid "HD list"
 msgstr "HD kanalid"
 
@@ -4609,6 +4609,15 @@ msgstr "HDMI värviruum"
 
 msgid "HDMIin"
 msgstr "HDMIin"
+
+msgid "HDR, 12bit 4:2:0/4:2:2, no PIP"
+msgstr "HDR, 12bit 4:2:0/4:2:2, PIP puudub"
+
+msgid "HH:mm"
+msgstr "HH:mm"
+
+msgid "HH:mm:ss"
+msgstr "HH:mm:ss"
 
 msgid "Handle standby from TV"
 msgstr "Ooteseisundisse teleri kaudu"
@@ -4956,6 +4965,12 @@ msgstr "Inotify jälgimine"
 msgid "Input"
 msgstr "Sisend"
 
+msgid "Input "
+msgstr "Sisend"
+
+msgid "Input Stream ID"
+msgstr "Sisendvoo ID"
+
 msgid "Input device setup"
 msgstr "Sisendseadmete seadistamine"
 
@@ -5037,6 +5052,9 @@ msgstr "Keskmine"
 
 msgid "Internal"
 msgstr "Sisemine"
+
+msgid "Internal USB"
+msgstr "Sisene USB"
 
 msgid "Internal flash"
 msgstr "Sisemälu"
@@ -5494,6 +5512,9 @@ msgstr "Suurim lubatud kettaruum (MB)"
 msgid "Maybe the reason that recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Põhjuseks võib olla käsilolev salvestamine. Enne ajami häälestamist peata salvestamine."
 
+msgid "Mb/s"
+msgstr "Mb/s"
+
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Jäänud/kulunud meediafailide esitusel"
 
@@ -5549,6 +5570,9 @@ msgstr "min"
 msgid "Mins Secs"
 msgstr "min sek"
 
+msgid "Mipsel"
+msgstr "Mipsel"
+
 msgid "Missing "
 msgstr "Puudub "
 
@@ -5580,41 +5604,11 @@ msgstr "Modulaator"
 msgid "Mon"
 msgstr "E"
 
-msgid "Mon 9"
-msgstr ""
-
-msgid "Mon 9 9999"
-msgstr ""
-
-msgid "Mon 99"
-msgstr ""
-
-msgid "Mon 99 9999"
-msgstr ""
-
-msgid "Mon-9"
-msgstr ""
-
-msgid "Mon-9-9999"
-msgstr ""
-
-msgid "Mon-99"
-msgstr ""
-
 msgid "Mon-Fri"
 msgstr "E-R"
 
 msgid "Monday"
 msgstr "Esmaspäev"
-
-msgid "Month 9 9999"
-msgstr ""
-
-msgid "Month 99 9999"
-msgstr ""
-
-msgid "Month-9-9999"
-msgstr ""
 
 msgid "Monthly"
 msgstr "Kord kuus"
@@ -5769,6 +5763,19 @@ msgstr "Tuuner ja tüüp"
 msgid "NO"
 msgstr "EI"
 
+msgid ""
+"NOTE: This feature is intended for people who cannot disable overscan on their television / display.  Please first try to disable overscan before using this feature.\n"
+"\n"
+"USAGE: Adjust the screen size and position settings so that the shaded user interface layer *just* covers the test pattern in the background.\n"
+"\n"
+"Select Yes to continue or No to exit."
+msgstr ""
+"MÄRKUS: See võimalus on neile, kes ei saa oma teleril keelata liighälvitust (overscan).  Esmalt ürita siiski liighälvitus keelata.\n"
+"\n"
+"KASUTAMINE: Kohanda pildi suurust ja asukohta nii, et varjutatud kiht kataks täpselt taustal oleva testpildi.\n"
+"\n"
+"Jätkamiseks vali 'Jah', katkestamiseks 'Ei'."
+
 msgid "NTP"
 msgstr "NTP"
 
@@ -5856,9 +5863,6 @@ msgstr "Uus profiil: "
 
 msgid "New timers location"
 msgstr "Uue taimeri asukoht"
-
-msgid "New version:"
-msgstr "Uus versioon:"
 
 msgid "News"
 msgstr "Uudised"
@@ -6232,6 +6236,9 @@ msgstr "Lemmiknimekirjad"
 msgid "Open nameserver configuration"
 msgstr "Ava nimeserveri seaded"
 
+msgid "Open service list"
+msgstr "Ava kanalinimekiri"
+
 msgid "Open service list and select the next channel"
 msgstr "Ava kanalinimekiri ja vali järgmine kanal"
 
@@ -6316,11 +6323,23 @@ msgstr "PGS fail"
 msgid "PIP"
 msgstr "PIP"
 
+msgid "PIP enabled, no HDR"
+msgstr "PIP lubatud, HDR puudub"
+
 msgid "PIP with OSD"
 msgstr "PIP ja OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
+
+msgid "PLS Code"
+msgstr "PLS kood"
+
+msgid "PLS Mode"
+msgstr "PLS režiim"
+
+msgid "PLS Mode & PLS Code"
+msgstr "PLS režiim ja PLS kood"
 
 msgid "PMT PID"
 msgstr "PMT PID"
@@ -6693,10 +6712,10 @@ msgid "Please set up tuner R"
 msgstr "Seadista tuuner R"
 
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
+"Please setup your user interface by adjusting the values till the edges of the user interface box are covering the test pattern and touching the edges of your TV.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Seadista kasutajaliides muutes väärtusi, kuni sinise kasti servad puudutavad ekraani servi.\n"
+"Seadista kasutajaliides muutes väärtusi, kuni kasutajaliidese kasti servad täidavad testpildi ja puudutavad ekraani servi.\n"
 "Kui oled valmis, vajuta jätkamiseks OK."
 
 msgid "Please use the UP/DOWN keys to select your language. Then press the OK button to select it."
@@ -7570,6 +7589,9 @@ msgstr "Roll-off"
 msgid "Romanian"
 msgstr "Rumeenia"
 
+msgid "Root"
+msgstr "Juur"
+
 msgid "Root directory"
 msgstr "Tüvikataloog"
 
@@ -7603,6 +7625,9 @@ msgstr "SABnzbd seaded"
 msgid "SABnzbd setup"
 msgstr "SABnzbd seaded"
 
+msgid "SATA"
+msgstr "SATA"
+
 msgid "SCPC optimized search range"
 msgstr "SCPC optimeeritud otsingu vahemik"
 
@@ -7614,6 +7639,9 @@ msgstr "SCR JESS"
 
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
+
+msgid "SD"
+msgstr "SD"
 
 msgid "SINGLE LAYER DVD"
 msgstr "ÜHEKIHILINE DVD"
@@ -7726,7 +7754,6 @@ msgstr "Otsi "
 msgid "Scan "
 msgstr "Otsi "
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
 #, python-format
 msgid "Scan %s"
 msgstr "%s otsing"
@@ -8361,6 +8388,9 @@ msgstr "Taimerite nimekiri"
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Jäänud/kulunud transponderi näit"
 
+msgid "Show True/False as graphical switch"
+msgstr "SEES/VÄLJAS kuvamine graafilise lülitina"
+
 msgid "Show VCR scart on main menu"
 msgstr "Kuva VCR-SCART valik peamenüüs"
 
@@ -8769,6 +8799,12 @@ msgstr "Vaatajakaardi PIN"
 msgid "Smooth"
 msgstr "Pehmendus"
 
+msgid "Smpte 170M"
+msgstr "Smpte 170M"
+
+msgid "Smpte 240M"
+msgstr "Smpte 240M"
+
 msgid "Social/Political/Economics"
 msgstr "Ühiskond/poliitika/majandus"
 
@@ -8912,6 +8948,9 @@ msgstr "Erisaade"
 msgid "Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'."
 msgstr "Määra kaugvastuvõtja täielik URL koos pordi numbriga (vaikimisi :8001). Näiteks '192.168.x.x:8001'."
 
+msgid "Speed:"
+msgstr "Kiirus:"
+
 msgid "Split preview mode"
 msgstr "Poolitatud eelvaade"
 
@@ -8940,7 +8979,7 @@ msgid "Standby and Restart"
 msgstr "Seiskamine"
 
 msgid "StandbyLED"
-msgstr "Näidik ooteseisundis"
+msgstr "Ooteseisundi LED"
 
 msgid "Start"
 msgstr "Käivita"
@@ -9907,6 +9946,9 @@ msgstr "Taimer"
 msgid "Timer List"
 msgstr "Taimerid"
 
+msgid "Timer conflict detection when fallback is enabled"
+msgstr "Taimerikonflikti tuvastus kaugvastuvõtjal on lubatud"
+
 msgid "Timer entry"
 msgstr "Taimeri sisestus"
 
@@ -10383,13 +10425,16 @@ msgstr "Esipaneeli jaoks omad pikonid *"
 msgid "Use slim screen"
 msgstr "Kasuta kitsast vaadet"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Kasuta ekraanigraafika suuruse muutmiseks VASAK/PAREM nuppe. VASAK vähendab ja PAREM suurendab."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the user interface. LEFT button decreases the size, RIGHT increases the size."
+msgstr "Kasuta ekraanigraafika kõrguse muutmiseks VASAK/PAREM nuppe. VASAK vähendab ja PAREM suurendab."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
-msgstr "Kasuta ekraanigraafika vasakule ja paremale liigutamiseks VASAK/PAREM nuppe."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the user interface. LEFT button decreases the size, RIGHT increases the size."
+msgstr "Kasuta ekraanigraafika laiuse muutmiseks VASAK/PAREM nuppe. VASAK vähendab ja PAREM suurendab."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the user interface left/right."
+msgstr "Kasuta ekraanigraafika vasakule/paremale liigutamiseks VASAK/PAREM nuppe."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the user interface up/down."
 msgstr "Kasuta ekraanigraafika üles/alla liigutamiseks VASAK/PAREM nuppe."
 
 msgid "Use the alternative or the conventional radio mode."
@@ -10485,6 +10530,9 @@ msgstr "Tavaliselt subtiitreid ei näidata, kui nende keel kattub heli keelega. 
 msgid "VCR scart"
 msgstr "VCR scart"
 
+msgid "VLAN connection"
+msgstr "VLAN ühendus"
+
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
@@ -10509,6 +10557,9 @@ msgstr "Vertikaalse pööramise kiirus"
 
 msgid "ViX EPG"
 msgstr "ViX EPG"
+
+msgid "Video Chip Mode*"
+msgstr "Videokiibi režiim*"
 
 msgid "Video Enhancement Settings"
 msgstr "Pildi paranduste sätted"
@@ -10729,6 +10780,23 @@ msgid "Weighted position"
 msgstr "Kaalutud positsioon"
 
 msgid ""
+"Welcome to OpenViX!\n"
+"\n"
+"NOTE: This section of the wizard is intended for people who cannot disable overscan on their television / display.  Please first try to disable overscan before using this feature.\n"
+"\n"
+"USAGE: If you continue adjust the screen size and position settings so that the shaded user interface layer *just* covers the test pattern in the background.\n"
+"\n"
+"Select Yes to change these settings or No to skip this step."
+msgstr ""
+"OpenViX tervitab!\n"
+"\n"
+"MÄRKUS: See võimalus on neile, kes ei saa oma teleril keelata liighälvitust (overscan).  Esmalt ürita siiski liighälvitus keelata.\n"
+"\n"
+"KASUTAMINE: Kohanda pildi suurust ja asukohta nii, et varjutatud kiht kataks täpselt taustal oleva testpildi.\n"
+"\n"
+"Jätkamiseks vali 'Jah', selle sammu vahele jätmiseks vali 'Ei'."
+
+msgid ""
 "Welcome to the cutlist editor.\n"
 "\n"
 "Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
@@ -10939,6 +11007,9 @@ msgstr "Määra, kas 4:3 kuvasuhtega sisu tuleb skaleerida/venitada."
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
 msgstr "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muudatusi ja salvestab need. Määra 'ei' ainult juhul, kui oled täiesti kindel, et tead, mida teed."
 
+msgid "When using the remote fallback tuner for recordings, it is impossible to correctly detect timer conflicts. This option allows you to skip timer confict detection when remote fallback is enabled, but can lead to timer conflicts. This setting is only for advanced users; the default is 'yes'."
+msgstr "Kasutades salvestamiseks kaugvastuvõtjat, ei tööta taimerikonflikti tuvastus korralikult. See valik võimaldab taimerikonflikti tuvastuse välja lülitada. See säte on ainult kogenud kasutajatele. Vaikeväärtus on 'jah'."
+
 #, python-format
 msgid ""
 "When you perform a factory reset, you will lose ALL of your configuration data\n"
@@ -10952,9 +11023,6 @@ msgstr ""
 "Pärast algseadistuse taastamist taaskäivitub %s %s automaatselt!\n"
 "\n"
 "Kas taastada algseadistus?"
-
-msgid "When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'."
-msgstr "Kasutades salvestamise varuvariandina kaugvastuvõtjat, ei tööta taimerikonflikti tuvastus korralikult. See valik võimaldab taimerikonflikti tuvastuse välja lülitada. See säte on ainult kogenud kasutajatele. Vaikeväärtus on 'jah'."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kuhu teha varukoopia seadistustest?"
@@ -11331,13 +11399,6 @@ msgstr ""
 msgid "Your current collection will get lost!"
 msgstr "Praegune valimik hävib!"
 
-msgid ""
-"Your frontprocessor firmware must be upgraded.\n"
-"Press OK to start upgrade."
-msgstr ""
-"Esiprotsessori püsivara tuleb uuendada.\n"
-"Vajuta OK uuendamiseks."
-
 #, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
@@ -11701,6 +11762,9 @@ msgstr "Draama"
 msgid "e-mail address"
 msgstr "e-posti aadress"
 
+msgid "eMMC"
+msgstr "eMMC"
+
 msgid "east"
 msgstr "ida"
 
@@ -11875,6 +11939,24 @@ msgstr "salvesta see kaader rasterpildina"
 msgid "green"
 msgstr "Roheline"
 
+msgid "h:mm"
+msgstr "h:mm"
+
+msgid "h:mm:ss"
+msgstr "h:mm:ss"
+
+msgid "h:mm:ssAM/PM"
+msgstr "h:mm:ssAM/PM"
+
+msgid "h:mm:ssam/pm"
+msgstr "h:mm:ssam/pm"
+
+msgid "h:mmAM/PM"
+msgstr "h:mmAM/PM"
+
+msgid "h:mmam/pm"
+msgstr "h:mmam/pm"
+
 msgid "handicraft"
 msgstr "käsitöö"
 
@@ -11890,6 +11972,24 @@ msgstr ""
 
 msgid "height"
 msgstr "kõrgus"
+
+msgid "hh:mm"
+msgstr "hh:mm"
+
+msgid "hh:mm:ss"
+msgstr "hh:mm:ss"
+
+msgid "hh:mm:ssAM/PM"
+msgstr "hh:mm:ssAM/PM"
+
+msgid "hh:mm:ssam/pm"
+msgstr "hh:mm:ssam/pm"
+
+msgid "hh:mmAM/PM"
+msgstr "hh:mmAM/PM"
+
+msgid "hh:mmam/pm"
+msgstr "hh:mmam/pm"
 
 msgid "hide"
 msgstr "Peida"
@@ -12243,6 +12343,9 @@ msgstr "Vanemad ees"
 msgid "rewind to the previous chapter"
 msgstr "Tagasi eelmisele peatükile"
 
+msgid "rgb"
+msgstr "RGB"
+
 msgid "right"
 msgstr "Parem"
 
@@ -12552,6 +12655,12 @@ msgstr "Kord nädalas"
 msgid "west"
 msgstr "lääs"
 
+msgid "when PiPzap enabled zap channel down..."
+msgstr "kui PiPzap on lubatud, järgmisele kanalile"
+
+msgid "when PiPzap enabled zap channel up..."
+msgstr "kui PiPzap on lubatud, eelmisele kanalile"
+
 msgid "when asking questions about this log"
 msgstr "küsides selle logi kohta"
 
@@ -12634,6 +12743,9 @@ msgstr "vahetatud"
 #~ "\n"
 #~ "%d.%d.%d, %2d:%02d  -  %s"
 
+#~ msgid "%-e%b"
+#~ msgstr "%-e%b"
+
 #~ msgid "%02d:%02d"
 #~ msgstr "%02d:%02d"
 
@@ -12645,6 +12757,9 @@ msgstr "vahetatud"
 
 #~ msgid "%a %e/%m  %-H:%M"
 #~ msgstr "%a %e/%m  %-H:%M"
+
+#~ msgid "%d%b"
+#~ msgstr "%d%b"
 
 #~ msgid "%d.%02d. %02d:%02d"
 #~ msgstr "%d.%02d. %02d:%02d"
@@ -12662,11 +12777,23 @@ msgstr "vahetatud"
 #~ "Lõpetanud toitetaimer soovib\n"
 #~ "%s %s välja lülitada. Kas nõustud?"
 
+#~ msgid "CPU speed:\t%s\n"
+#~ msgstr "CPU kiirus:\t%s\n"
+
+#~ msgid "Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin."
+#~ msgstr "Määra kellaaja vorming. Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
+
 #~ msgid "Coderate HP"
 #~ msgstr "Veaparandustegur HP"
 
 #~ msgid "Coderate LP"
 #~ msgstr "Veaparandustegur LP"
+
+#~ msgid "Cores:\t%s\n"
+#~ msgstr "Tuumad:\t%s\n"
+
+#~ msgid "Current version:"
+#~ msgstr "Praegune versioon:"
 
 #~ msgid "Customize"
 #~ msgstr "Kasutaja eelistused"
@@ -12674,17 +12801,26 @@ msgstr "vahetatud"
 #~ msgid "Diction"
 #~ msgstr "Õigekiri"
 
+#~ msgid "Digital downmix"
+#~ msgstr "DD / DTS > stereo"
+
+#~ msgid "Dolby Digital / DTS downmix"
+#~ msgstr "Dolby Digital / DTS > stereo"
+
 #~ msgid "Enable Focus Animation"
 #~ msgstr "Fookuse animeerimine"
+
+#~ msgid "Enable timer conflict detection"
+#~ msgstr "Taimerikonflikti tuvastamine"
+
+#~ msgid "FBC SCR (Unicable or JESS)"
+#~ msgstr "FBC SCR (Unicable või JESS)"
 
 #~ msgid "Fallback remote receiver streaming port"
 #~ msgstr "Kaugvastuvõtja voogesituse port"
 
 #~ msgid "Hierarchy information"
 #~ msgstr "Hierarhia teave"
-
-#~ msgid "Input Stream ID"
-#~ msgstr "Sisendvoo ID"
 
 #~ msgid ""
 #~ "Misconfigured unicable connection from tuner %s to tuner %s!\n"
@@ -12702,20 +12838,14 @@ msgstr "vahetatud"
 #~ msgid "Network setup"
 #~ msgstr "Võrgu häälestamine"
 
+#~ msgid "New version:"
+#~ msgstr "Uus versioon:"
+
 #~ msgid "PIDs"
 #~ msgstr "PIDid"
 
-#~ msgid "PLS Code"
-#~ msgstr "PLS kood"
-
-#~ msgid "PLS Mode"
-#~ msgstr "PLS režiim"
-
 #~ msgid "RF output"
 #~ msgstr "RF-väljund"
-
-#~ msgid "Root"
-#~ msgstr "Juur"
 
 #~ msgid "SID"
 #~ msgstr "SID"
@@ -12763,11 +12893,15 @@ msgstr "vahetatud"
 #~ msgid "Videocodec"
 #~ msgstr "Koodek"
 
-#~ msgid "Videomode"
-#~ msgstr "Videorežiim"
-
 #~ msgid "Videosize"
 #~ msgstr "Lahutus"
+
+#~ msgid ""
+#~ "Your frontprocessor firmware must be upgraded.\n"
+#~ "Press OK to start upgrade."
+#~ msgstr ""
+#~ "Esiprotsessori püsivara tuleb uuendada.\n"
+#~ "Vajuta OK uuendamiseks."
 
 #~ msgid "bc%s"
 #~ msgstr "bc%s"
