@@ -1394,7 +1394,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if ( (pos = get_pts_pcrscr()) > 0)
 		pos *= 11111LL;
 #else
-	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_sourceinfo.is_streaming)
+	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_sourceinfo.is_hls)
 	{
 		if (m_sourceinfo.is_audio)
 		{
