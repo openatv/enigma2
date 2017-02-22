@@ -35,7 +35,7 @@ from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.Extensions.Infopanel.plugin import ShowSoftcamPanelExtensions
 from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
-from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin, SoftwareManagerSetup
+from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN, fileExists
@@ -166,6 +166,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			"yellow": self.keyyellow,
 			})
 
+		Load_defaults()
 		self.MainQmenu()
 		self.selectedList = self["list"]
 		self.selectionChanged()
@@ -325,7 +326,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup",_("Setup rotor"),_("Setup your positioner for your satellite system")))
 		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan",_("Automatic Service Searching"),_("Automatic scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan",_("Manual Service Searching"),_("Manual scan for services")))
-		if SATFINDER == True:		
+		if SATFINDER == True:
 			self.sublist.append(QuickSubMenuEntryComponent("Sat Finder",_("Search Sats"),_("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
