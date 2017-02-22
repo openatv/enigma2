@@ -78,6 +78,8 @@ class ServiceScan:
 								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
 								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
 								tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec, ""))
+						if tp.is_id > -1 and tp.system == tp.System_DVB_S2:
+							tp_text = ("%s IS %d") % (tp_text, tp.is_id)
 					elif tp_type == iDVBFrontend.feCable:
 						network = _("Cable")
 						tp = transponder.getDVBC()

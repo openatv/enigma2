@@ -566,9 +566,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			isNTSC = (video_attr_high & 0x10 == 0)
 			isLowResolution = (video_attr_low & 0x18 == 0x18)
 		except:
-#			If the service is an .iso or .img file we assume it is PAL
+#			If the service is an .iso or .img or .nrg file we assume it is PAL
 #			Sorry we cannot open image files here.
-			print "[DVD] Cannot read file or is ISO/IMG"
+			print "[DVD] Cannot read file or is ISO/IMG/NRG"
 		finally:
 			if ifofile is not None:
 				ifofile.close()

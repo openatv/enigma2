@@ -5,8 +5,8 @@
 		<item level="0" text="Sync time using" description="Synchronize system time using transponder or internet.">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
-		<item level="0" text="Date style" description="Choose the display formatting style for dates. The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
-		<item level="0" text="Time style" description="Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
+		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
+		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
 	<setup key="avsetup">
 		<!-- This is just a placeholder, the Videomode plugin implements this submenu -->
@@ -16,9 +16,6 @@
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
 		<item level="2" text="Alternative services tuner priority" description="Configure which tuner type will be preferred, when the same service is available on different types of tuners.">config.usage.alternatives_priority</item>
-		<item level="2" text="Enable fallback remote receiver" description="Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
-		<item level="2" text="Fallback remote receiver URL" description="Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'.">config.usage.remote_fallback</item>
-		<item level="2" text="Enable timer conflict detection" description="When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 		<item level="2" text="Preferred tuner" description="Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites.">config.usage.frontend_priority</item>
 		<item level="2" text="Preferred tuner DVB-S" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-S_priority_tuner_available">config.usage.frontend_priority_dvbs</item>
 		<item level="2" text="Preferred tuner DVB-T" description="When enabled, this setting has more weight than 'Preferred tuner'." requires="DVB-T_priority_tuner_available">config.usage.frontend_priority_dvbt</item>
@@ -74,6 +71,7 @@
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown in the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
 		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the '0' button to do when PIP is active.">config.usage.pip_zero_button</item>
 		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
+		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for every bouquet.">config.usage.alternative_number_mode</item>
@@ -105,7 +103,8 @@
 		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
 		<item level="2" text="Automatic refresh" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
 		<item level="2" text="Refresh every (in hours)" requires="config.epg.cacheloadsched" description="The %s %s reads the stored EPG data every (hours).">config.epg.cacheloadtimer</item>
-		<item level="2" text="Automatic save" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
+		<item level="2" text="Enable EPG save" description="Allows the %s %s to save EPG data to file for use on a restart. Default is 'yes'. Only set to 'no' if this receiver is running as a client and passively sharing epg.dat from another receiver.">config.epg.cachesaveenabled</item>
+		<item level="2" text="Automatic save" requires="config.epg.cachesaveenabled" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every (in hours)" requires="config.epg.cachesavesched" description="The %s %s stores the EPG data every (hours).">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT now/next in infobar" description="Display the EIT now/next eventdata in infobar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
@@ -234,7 +233,7 @@
 		<item level="2" text="Final scroll delay" description="Delay in miliseconds after finish scrolling text on display." requires="VFD_final_scroll_delay">config.usage.vfd_final_scroll_delay</item>
 		<item level="1" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):" requires="VFD_scroll_repeats">config.usage.vfd_scroll_repeats</item>
 		<item level="1" text="Scrolling Speed" description="Set the scrolling speed of text on the front display." requires="VFD_scroll_delay">config.usage.vfd_scroll_delay</item>
-		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
+		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the front panel.">config.lcd.mode</item>
 		<item level="1" text="Show Time Remaining/Elapsed" description="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
 		<item level="1" text="Show Transponder Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_vfd</item>
@@ -369,5 +368,10 @@
 	<setup key="pluginbrowsersetup" title="Plugin browser settings">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
+	</setup>
+	<setup key="fallback" title="Fallback configuration">
+		<item level="2" text="Enable fallback remote receiver" description="Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
+		<item level="2" text="Fallback remote receiver URL" requires="config.usage.remote_fallback_enabled" description="Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'.">config.usage.remote_fallback</item>
+		<item level="2" text="Timer conflict detection when fallback is enabled" requires="config.usage.remote_fallback_enabled" description="When using the remote fallback tuner for recordings, it is impossible to correctly detect timer conflicts. This option allows you to skip timer confict detection when remote fallback is enabled, but can lead to timer conflicts. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 	</setup>
 </setupxml>

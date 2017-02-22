@@ -3,7 +3,8 @@ from datetime import datetime
 import xml.etree.cElementTree
 import os
 
-from enigma import eDVBSatelliteEquipmentControl as secClass, \
+from enigma import  eDVBFrontendParametersSatellite, \
+	eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
 	eDVBSatelliteRotorParameters as rotorParam, \
@@ -604,7 +605,7 @@ class NIM(object):
 		return (self.frontend_id is not None) or self.__is_empty
 
 	def isMultistream(self):
-		multistream = self.frontend_id and eDVBResourceManager.getInstance().frontendIsMultistream(self.frontend_id) or False
+		multistream = self.frontend_id is not None and eDVBResourceManager.getInstance().frontendIsMultistream(self.frontend_id) or False
 		# HACK due to poor support for VTUNER_SET_FE_INFO
 		# When vtuner does not accept fe_info we have to fallback to detection using tuner name
 		# More tuner names will be added when confirmed as multistream (FE_CAN_MULTISTREAM)
@@ -653,9 +654,12 @@ class NimManager:
 	def getConfiguredSats(self):
 		return self.sec.getConfiguredSats()
 
-	def getTransponders(self, pos):
+	def getTransponders(self, pos, feid = None):
 		if self.transponders.has_key(pos):
-			return self.transponders[pos]
+			if feid is None or self.nim_slots[feid].isMultistream():
+				return self.transponders[pos]
+			else: # remove multistream transponders
+				return [tp for tp in self.transponders[pos] if not (tp[5] == eDVBFrontendParametersSatellite.System_DVB_S2 and (tp[10] > -1 or tp[11] > 0 or tp[12] > 1))]
 		else:
 			return []
 
@@ -1133,7 +1137,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 	advanced_lnb_csw_choices = [("none", _("None")), ("AA", _("Port A")), ("AB", _("Port B")), ("BA", _("Port C")), ("BB", _("Port D"))]
 
-	advanced_lnb_ucsw_choices = [("0", _("None"))] + [(str(y), "Input " + str(y)) for y in range(1, 17)]
+	advanced_lnb_ucsw_choices = [("0", _("None"))] + [(str(y), _("Input ") + str(y)) for y in range(1, 17)]
 
 	diseqc_mode_choices = [
 		("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")),

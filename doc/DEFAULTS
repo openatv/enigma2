@@ -3,8 +3,7 @@ Contents:
 2) Where are defaults used?
 3) How do you build a default?
 4) What are the contents of an .info file?
-5) What about .dmpkg files?
-6) Details about the default types
+5) Details about the default types
 
 1) What is a default?
 
@@ -20,7 +19,6 @@ There are several places, where defaults are used. Some require user interaction
 - First of all an "image default" is installed, when you start e2 for the first time. No user interaction is needed for that.
 - After that e2 tries to mount a "preset partion" (also called "dealer partition"). If this partition contains defaults,
   the user is presented with a list of these defaults and can choose to install/not install each of these defaults.
-- You can create ".dmpkg files" and put them on a SD card (or something, that will be given to the FileScanner.
 - The default satlists feature uses defaults.
 
 3) How do you build a default?
@@ -85,10 +83,7 @@ As mentioned above, each <file> tag can have it's own prerequisites. An example 
 </file>
 So this would only install the lamedb.192 file, if you have a DVB-S NIM in your box AND some of the tuners is configured to 19.2.
 
-5) What about .dmpkg files?
-.dmpkg files are nothing else than tar'ed defaults. You can also use gzipped tars.
-
-6) Details about the default types
+5) Details about the default types
 - "image default"
   An image default is stored in /usr/share/enigma2/defaults. You can have several defaults at the same time, but you should keep
   in mind, that these defaults are all installed without user interaction. So defaults with contrary contents should be avoided
@@ -102,9 +97,6 @@ So this would only install the lamedb.192 file, if you have a DVB-S NIM in your 
   This can be used for customizing a users box. For example, a dealer can put in a skin, the settings for the user's sat dish etc.
   into the preset partition. This partition will not be overwritten by an original Dream image. So if the user installs a new image
   from the Dream website, the default settings are presented to the user in the start wizard of the new image.
-- .dmpkg Packages are already explained in detail. This could be used to easily distribute update for packages (e.g. the e2 core package)
-  for quick hotfixes on boxes without internet connection. The advantage over normal .ipk packages is, that one .dmpkg package
-  can contain more than one .ipk package.
 - Default satlists are stored either in the "image default"-directory or in the "preset partition" directory. The satlists must contain a
   <tag> tag in the global <prerequisites> tag:
   <prerequisites>

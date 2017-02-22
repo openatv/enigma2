@@ -48,9 +48,13 @@ struct eDVBFrontendParametersSatellite
 		Pilot_Off, Pilot_On, Pilot_Unknown
 	};
 
+	enum {
+		PLS_Root, PLS_Gold, PLS_Combo, PLS_Unknown
+	};
+
 	bool no_rotor_command_on_tune;
 	unsigned int frequency, symbol_rate;
-	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot;
+	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot, is_id, pls_mode, pls_code;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersSatellite);
 
@@ -68,7 +72,7 @@ struct eDVBFrontendParametersCable
 	 * The values are the same as those in eDVBFrontendParametersSatellite.
 	 */
 	enum {
-		FEC_Auto=0, FEC_1_2=1, FEC_2_3=2, FEC_3_4=3, FEC_5_6=4, FEC_7_8=5, FEC_8_9=6, FEC_3_5=7, FEC_4_5=8, FEC_9_10=9, FEC_None=15
+		FEC_Auto=0, FEC_1_2=1, FEC_2_3=2, FEC_3_4=3, FEC_5_6=4, FEC_7_8=5, FEC_8_9=6, FEC_3_5=7, FEC_4_5=8, FEC_9_10=9, FEC_6_7=10, FEC_None=15
 	};
 
 	enum {
@@ -202,6 +206,9 @@ public:
 	int getRolloff() const;
 	int getPilot() const;
 	int getSystem() const;
+	int getIsId() const;
+	int getPLSMode() const;
+	int getPLSCode() const;
 	int getBandwidth() const;
 	int getCodeRateLp() const;
 	int getCodeRateHp() const;
@@ -233,6 +240,9 @@ public:
 	int getRolloff() const;
 	int getPilot() const;
 	int getSystem() const;
+	int getIsId() const;
+	int getPLSMode() const;
+	int getPLSCode() const;
 };
 
 class eDVBCableTransponderData : public eDVBTransponderData

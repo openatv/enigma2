@@ -182,18 +182,18 @@ eM2TSFile::eM2TSFile(const char *filename):
 #ifdef HAVE_LIBUDFREAD
 	m_udf = NULL;
 	m_udf_file = NULL;
-	std::string iso_file = filename;
-	size_t pos = iso_file.find(".iso/BDMV");
-	if (pos != std::string::npos)
+	std::string udf_file = filename;
+	size_t pos = udf_file.find("/BDMV");
+	if (pos != std::string::npos && (udf_file.find(".iso") != std::string::npos || udf_file.find(".img") != std::string::npos || udf_file.find(".nrg") != std::string::npos))
 	{
-		eDebug("[eM2TSFile] try open as iso:%s", filename);
-		std::string file_path = iso_file.substr(pos + 4);
-		iso_file = iso_file.substr(0, pos + 4);
+		eDebug("[eM2TSFile] try open as udf file:%s", filename);
+		std::string file_path = udf_file.substr(pos);
+		udf_file = udf_file.substr(0, pos);
 		m_udf = udfread_init();
 		if (m_udf)
 		{
-			if (udfread_open(m_udf, iso_file.c_str()) < 0)
-				eDebug("[eM2TSFile] udfread_open(%s) failed!", iso_file.c_str());
+			if (udfread_open(m_udf, udf_file.c_str()) < 0)
+				eDebug("[eM2TSFile] udfread_open(%s) failed!", udf_file.c_str());
 			else
 			{
 				m_udf_file = udfread_file_open(m_udf, file_path.c_str());

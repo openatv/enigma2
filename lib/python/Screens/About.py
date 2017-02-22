@@ -69,12 +69,13 @@ class About(Screen):
 
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
-		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString()
+		if about.getChipSetString() != _("unavailable"):
+			if about.getIsBroadcom():
+				AboutText += _("Chipset:\tBCM%s\n") % about.getChipSetString().upper()
+			else:
+				AboutText += _("Chipset:\t%s\n") % about.getChipSetString().upper()
 
-		AboutText += _("CPU:\t%s\n") % about.getCPUString().replace('bcm', 'BCM')
-		AboutText += _("CPU speed:\t%s\n") % about.getCPUSpeedString()
-		AboutText += _("Cores:\t%s\n") % about.getCpuCoresString()
+		AboutText += _("CPU:\t%s %s %s\n") % (about.getCPUArch(), about.getCPUSpeedString(), about.getCpuCoresString())
 		imageSubBuild = ""
 		if getImageType() != 'release':
 			imageSubBuild = ".%s" % getImageDevBuild()
@@ -135,7 +136,7 @@ class About(Screen):
 				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
 				bootloader = f.readline().replace('\x00', '').replace('\n', '')
 				f.close()
-				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
+				AboutText += _("Bootloader:\t%s\n") % (bootloader)
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
@@ -430,6 +431,8 @@ class SystemNetworkInfo(Screen):
 		self["statuspic"].show()
 		self["devicepic"] = MultiPixmap()
 
+		self["AboutScrollLabel"] = ScrollLabel()
+
 		self.iface = None
 		self.createscreen()
 		self.iStatus = None
@@ -507,9 +510,19 @@ class SystemNetworkInfo(Screen):
 		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
 		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
 
+		self.console = Console()
+		self.console.ePopen('ethtool %s' % self.iface, self.SpeedFinished)
+
+	def SpeedFinished(self, result, retval, extra_args):
+		result_tmp = result.split('\n')
+		for line in result_tmp:
+			if 'Speed:' in line:
+				speed = line.split(': ')[1][:-4]
+				self.AboutText += _("Speed:") + "\t" + speed + _('Mb/s')
+		
 		hostname = file('/proc/sys/kernel/hostname').read()
 		self.AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
-		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
+		self["AboutScrollLabel"].setText(self.AboutText)
 
 	def cleanup(self):
 		if self.iStatus:
@@ -615,13 +628,11 @@ class SystemNetworkInfo(Screen):
 						self["statuspic"].setPixmapNum(0)
 					else:
 						self["statuspic"].setPixmapNum(1)
-					self["statuspic"].show()
 				else:
 					self["statuspic"].setPixmapNum(1)
-					self["statuspic"].show()
 			else:
 				self["statuspic"].setPixmapNum(1)
-				self["statuspic"].show()
+			self["statuspic"].show()
 		except:
 			pass
 

@@ -20,7 +20,7 @@ class TimerSanityCheck:
 		self.eflag = 1
 
 	def check(self, ext_timer=1):
-		if not config.usage.timer_sanity_check_enabled.value:
+		if config.usage.remote_fallback_enabled.value and not config.usage.timer_sanity_check_enabled.value:
 			return True
 		if ext_timer != 1:
 			self.newtimer = ext_timer

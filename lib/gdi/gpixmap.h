@@ -22,12 +22,12 @@ struct gRGB
 			unsigned char a, r, g, b;
 		};
 #endif
-		unsigned long value;
+		unsigned int value;
 	};
 	gRGB(int r, int g, int b, int a=0): b(b), g(g), r(r), a(a)
 	{
 	}
-	gRGB(unsigned long val): value(val)
+	gRGB(unsigned int val): value(val)
 	{
 	}
 	gRGB(const gRGB& other): value(other.value)
@@ -35,7 +35,7 @@ struct gRGB
 	}
 	gRGB(const char *colorstring)
 	{
-		unsigned long val = 0;
+		unsigned int val = 0;
 		if (colorstring)
 		{
 			for (int i = 0; i < 8; i++)
@@ -51,17 +51,17 @@ struct gRGB
 	{
 	}
 
-	unsigned long argb() const
+	unsigned int argb() const
 	{
 		return value;
 	}
 
-	void set(unsigned long val)
+	void set(unsigned int val)
 	{
 		value = val;
 	}
 
-	void operator=(unsigned long val)
+	void operator=(unsigned int val)
 	{
 		value = val;
 	}
@@ -93,7 +93,7 @@ struct gRGB
 	}
 	operator const std::string () const
 	{
-		unsigned long val = value;
+		unsigned int val = value;
 		std::string escapecolor = "\\c";
 		escapecolor.resize(10);
 		for (int i = 9; i >= 2; i--)

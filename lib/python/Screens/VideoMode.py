@@ -147,9 +147,11 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
-				self.list.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), config.av.downmix_ac3, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
+				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3, _("Choose whether multi channel ac3 sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixDTS"]:
+				self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts, _("Choose whether multi channel dts sound tracks should be downmixed to stereo.")))
 			if SystemInfo["CanDownmixAAC"]:
-				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
+				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel aac sound tracks should be downmixed to stereo.")))
 			if SystemInfo["CanAACTranscode"]:
 				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
 			if SystemInfo["CanPcmMultichannel"]:
@@ -170,6 +172,9 @@ class VideoSetup(Screen, ConfigListScreen):
 
 			if SystemInfo["Canedidchecking"]:
 				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
+
+		if SystemInfo["haveboxmode"]:
+			self.list.append(getConfigListEntry(_("Video Chip Mode*"), config.av.boxmode,_("Choose between High Dynamic Range (HDR) or Picture in Picture (PIP). Both are not possible at the same time. A FULL REBOOT is required for it to take effect")))
 
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 #			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))

@@ -40,7 +40,7 @@ class AVSwitch:
 	rates["1080p"] =	{	"50Hz":		{ 50: "1080p50" },
 							"60Hz":		{ 60: "1080p" },
 							"multi":	{ 50: "1080p50", 60: "1080p" } }
-							
+
 	rates["2160p"] =	{	"50Hz":		{ 50: "2160p50" },
 							"60Hz":		{ 60: "2160p" },
 							"multi":	{ 50: "2160p50", 60: "2160p" } }
@@ -64,7 +64,7 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if about.getChipSetString() in ('5272s', '7251s', '7252', '7252s', '7366', '7376', '7444s'):
+	if about.getChipSetString() in ('5272s', '7251', '7251s', '7252', '7252s', '7366', '7376', '7444s'):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "2160p", "1080i"}
 	elif about.getChipSetString() in ('7241', '7356', '73565', '7358', '7362', '73625', '7424', '7425', '7552'):
@@ -83,16 +83,103 @@ class AVSwitch:
 	# 	del modes["DVI-PC"]
 	
 	# Machines that do not have component video (red, green and blue RCA sockets).
-	if modes.has_key("YPbPr") and getBoxType() in ('dm500hdv2','dm500hd','dm800','e3hd','ebox7358','eboxlumi','ebox5100','enfinity','et4x00','gbx1','gbx3','iqonios300hd','ixusszero','mbmicro','mbtwinplus','mutant51','mutant500c','mutant1200','mutant1500','odimm7','optimussos1','osmega','osmini','osminiplus','sf128','sf138','sf4008','tm2t','tmnano','tmnano2super','tmnano3t','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmnanom3','tmsingle','optimussos1','uniboxhd1','vusolo2','vusolo4k','vuuno4k','vuultimo4k','xp1000'):
+	no_YPbPr = (
+		'dm500hd',
+		'dm500hdv2',
+		'dm800',
+		'e3hd',
+		'ebox7358',
+		'eboxlumi',
+		'ebox5100',
+		'enfinity',
+		'et4x00',
+		'gbx1',
+		'gbx3',
+		'iqonios300hd',
+		'ixusszero',
+		'mbmicro',
+		'mbtwinplus',
+		'mutant51',
+		'mutant500c',
+		'mutant1200',
+		'mutant1500',
+		'odimm7',
+		'optimussos1',
+		'osmega',
+		'osmini',
+		'osminiplus',
+		'sf128',
+		'sf138',
+		'sf4008',
+		'tm2t',
+		'tmnano',
+		'tmnano2super',
+		'tmnano3t',
+		'tmnanose',
+		'tmnanosecombo',
+		'tmnanoseplus',
+		'tmnanosem2',
+		'tmnanosem2plus',
+		'tmnanom3',
+		'tmsingle',
+		'tmtwin4k',
+		'uniboxhd1',
+		'vusolo2',
+		'vusolo4k',
+		'vuuno4k',
+		'vuultimo4k',
+		'xp1000'
+	)
+	
+	# Machines that have composite video (yellow RCA socket) but do not have Scart.
+	yellow_RCA_no_scart = (
+		'gb800ueplus',
+		'gbultraue',
+		'mbmicro',
+		'mbtwinplus',
+		'mutant500c',
+		'osmega',
+		'osmini',
+		'osminiplus',
+		'sf138',
+		'tmnano',
+		'tmnanose',
+		'tmnanosecombo',
+		'tmnanosem2',
+		'tmnanoseplus',
+		'tmnanosem2plus',
+		'tmnano2super',
+		'tmnano3t',
+		'xpeedlx3'
+	)
+	
+	# Machines that have neither yellow RCA nor Scart sockets
+	no_yellow_RCA__no_scart = (
+		'et5x00',
+		'et6x00',
+		'gbquad',
+		'gbx1',
+		'gbx3',
+		'ixussone',
+		'mutant51',
+		'mutant1500',
+		'sf4008',
+		'tmnano2t',
+		'tmnanom3',
+		'tmtwin4k',
+		'vusolo4k',
+		'vuuno4k',
+		'vuultimo4k'
+	)
+	
+	if modes.has_key("YPbPr") and getBoxType() in no_YPbPr:
 		del modes["YPbPr"]
 		
-	# Machines that have composite video (yellow RCA socket) but do not have Scart.
-	if modes.has_key("Scart") and getBoxType() in ('gb800ueplus','gbultraue','mbmicro','mbtwinplus','mutant500c','osmega','osmini','osminiplus','sf138','tmnano','tmnanose','tmnanosecombo','tmnanoseplus','tmnanosem2','tmnanosem2plus','tmnano2super','tmnano3t','xpeedlx3'):
+	if modes.has_key("Scart") and getBoxType() in yellow_RCA_no_scart:
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
 		
-	# Machines that have neither RCA nor Scart sockets 
-	if modes.has_key("Scart") and getBoxType() in ('et5x00','et6x00','gbquad','gbx1','gbx3','ixussone','sf4008','tmnano2t','tmnanom3','vusolo4k','vuuno4k','vuultimo4k','mutant51','mutant1500'):
+	if modes.has_key("Scart") and getBoxType() in no_yellow_RCA__no_scart:
 		del modes["Scart"]
 
 	def __init__(self):
@@ -158,11 +245,11 @@ class AVSwitch:
 		if mode_60 is None or force == 50:
 			mode_60 = mode_50
 
-		if os.path.exists('/proc/stb/video/videomode_50hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
+		if os.path.exists('/proc/stb/video/videomode_50hz') and getBoxType() not in ('gbquadplus', 'gb800solo', 'gb800se', 'gb800ue', 'gb800ueplus'):
 			f = open("/proc/stb/video/videomode_50hz", "w")
 			f.write(mode_50)
 			f.close()
-		if os.path.exists('/proc/stb/video/videomode_60hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
+		if os.path.exists('/proc/stb/video/videomode_60hz') and getBoxType() not in ('gbquadplus', 'gb800solo', 'gb800se', 'gb800ue', 'gb800ueplus'):
 			f = open("/proc/stb/video/videomode_60hz", "w")
 			f.write(mode_60)
 			f.close()
@@ -487,13 +574,22 @@ def InitAVSwitch():
 				f.close()
 			except:
 				pass
-		config.av.hdmicolorspace = ConfigSelection(choices={
-				"Edid(auto)": _("Auto"),
-				"Hdmi_Rgb": _("RGB"),
-				"444": _("YCbCr444"),
-				"422": _("YCbCr422"),
-				"420": _("YCbCr420")},
-				default = "Edid(auto)")
+		if getBoxType() in ('vusolo4k','vuuno4k','vuultimo4k'):
+			config.av.hdmicolorspace = ConfigSelection(choices={
+					"Edid(Auto)": _("Auto"),
+					"Hdmi_Rgb": _("RGB"),
+					"444": _("YCbCr444"),
+					"422": _("YCbCr422"),
+					"420": _("YCbCr420")},
+					default = "Edid(Auto)")
+		else:
+			config.av.hdmicolorspace = ConfigSelection(choices={
+					"auto": _("auto"),
+					"rgb": _("rgb"),
+					"420": _("420"),
+					"422": _("422"),
+					"444": _("444")},
+					default = "auto")
 		config.av.hdmicolorspace.addNotifier(setHDMIColorspace)
 	else:
 		config.av.hdmicolorspace = ConfigNothing()
@@ -524,6 +620,31 @@ def InitAVSwitch():
 		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
+
+	if os.path.exists("/proc/stb/info/boxmode"):
+		f = open("/proc/stb/info/boxmode", "r")
+		have_boxmode = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_boxmode = False
+
+	SystemInfo["haveboxmode"] = have_boxmode
+
+	if have_boxmode:
+		def setBoxmode(configElement):
+			try:
+				f = open("/proc/stb/info/boxmode", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.boxmode = ConfigSelection(choices={
+				"12": _("PIP enabled, no HDR"),
+				"1": _("HDR, 12bit 4:2:0/4:2:2, no PIP")},
+				default = "12")
+		config.av.boxmode.addNotifier(setBoxmode)
+	else:
+		config.av.boxmode = ConfigNothing()
 
 	if os.path.exists("/proc/stb/video/hdmi_colordepth"):
 		f = open("/proc/stb/video/hdmi_colordepth", "r")
@@ -671,6 +792,23 @@ def InitAVSwitch():
 					config.av.pcm_multichannel.setValue(False)
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
+
+	try:
+		f = open("/proc/stb/audio/dts_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix_dts = "downmix" in file
+	except:
+		can_downmix_dts = False
+
+	SystemInfo["CanDownmixDTS"] = can_downmix_dts
+	if can_downmix_dts:
+		def setDTSDownmix(configElement):
+			f = open("/proc/stb/audio/dts", "w")
+			f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
+		config.av.downmix_dts = ConfigYesNo(default = True)
+		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
 	try:
 		f = open("/proc/stb/audio/aac_choices", "r")

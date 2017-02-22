@@ -25,7 +25,8 @@ from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Components.AVSwitch import AVSwitch
 from Components.Harddisk import harddiskmanager
 from Components.config import config
-from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST
+from Components.SystemInfo import SystemInfo
+from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
 
@@ -123,8 +124,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
 		# 'None' is magic to start at the list of mountpoints
-		defaultDir = config.mediaplayer.defaultDir.value
-		self.filelist = FileList(defaultDir, matchingPattern = "(?i)^.*\.(mp2|mp3|ogg|ts|mts|m2ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|divx|m4v|mkv|mp4|m4a|dat|flac|flv|mov|dts|3gp|3g2|asf|wmv|wma)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
+		defaultDir = config.mediaplayer.defaultDir.getValue()
+		self.filelist = FileList(defaultDir, matchingPattern = "(?i)^.*\.(dts|mp3|wav|wave|oga|ogg|flac|m4a|mp2|m2a|wma|ac3|mka|aac|ape|alac|mpg|vob|m4v|mkv|avi|divx|dat|flv|mp4|mov|wmv|asf|3gp|3g2|mpeg|mpe|rm|rmvb|ogm|ogv|m2ts|mts|ts|m3u|e2pls|pls)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 
 		self.playlist = MyPlayList()
@@ -185,8 +186,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				"menu": (self.showMenu, _("Menu")),
 				"skipListbegin": (self.skip_listbegin, _("Jump to beginning of list")),
 				"skipListend": (self.skip_listend, _("Jump to end of list")),
-				"prevBouquet": (self.switchLists, _("Switch between filelist/playlist")),
-				"nextBouquet": (self.switchLists, _("Switch between filelist/playlist")),
+				"prevBouquet": (self.prevBouquet, self.prevBouquetHelpText),
+				"nextBouquet": (self.nextBouquet, self.nextBouquetHelptext),
 				"delete": (self.deletePlaylistEntry, _("Delete playlist entry")),
 				"shift_stop": (self.clear_playlist, _("Clear playlist")),
 				"shift_record": (self.playlist.PlayListShuffle, _("Shuffle playlist")),
@@ -256,6 +257,27 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				iPlayableService.evUser+12: self.__evPluginError,
 				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
 			})
+
+		self.servicelist = None
+		self.pipZapAvailable = False
+		if InfoBar.instance is not None:
+			self.servicelist = InfoBar.instance.servicelist
+			if self.servicelist and hasattr(self.servicelist, 'dopipzap'):
+				self.pipZapAvailable = SystemInfo.get("NumVideoDecoders", 1) > 1
+
+	def prevBouquetHelpText(self):
+		if not self.shown and self.isPiPzap():
+			value = _("when PiPzap enabled zap channel up...")
+		else:
+			value = _("Switch between filelist/playlist")
+		return value
+
+	def nextBouquetHelptext(self):
+		if not self.shown and self.isPiPzap():
+			value = _("when PiPzap enabled zap channel down...")
+		else:
+			value = _("Switch between filelist/playlist")
+		return value
 
 	def hideAndInfoBar(self):
 		self.hide()
@@ -417,12 +439,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.righttimer = False
 		self.switchToPlayList()
 
-	def switchLists(self):
-		if self.currList == "filelist":
-			self.switchToPlayList()
-			return
-		self.switchToFileList()
-
 	def switchToFileList(self):
 		self.currList = "filelist"
 		self.filelist.selectionEnabled(1)
@@ -569,11 +585,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			if config.usage.setup_level.index >= 1: # intermediate+
 				menulist.append((_("Shuffle playlist"), "shuffle"))
 		menulist.append((_("Hide player"), "hide"))
-		menulist.append((_("Load playlist"), "loadplaylist"))
+		menulist.append((_("Load playlist"), "loadplaylist"));
 		if config.usage.setup_level.index >= 1: # intermediate+
 			menulist.append((_("Save playlist"), "saveplaylist"))
 			menulist.append((_("Delete saved playlist"), "deleteplaylist"))
 			menulist.append((_("Edit settings"), "settings"))
+		if self.pipZapAvailable:
+			menulist.append((_("Menu") + " PiP", "pip"))
+			if self.isPiPzap():
+				menulist.append((_("Open service list"), "servicelist"))
 		self.timerHideMediaPlayerInfoBar()
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menulist)
 
@@ -612,6 +632,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			self.session.openWithCallback(self.applySettings, MediaPlayerSettings, self)
 		elif choice[1] == "audiocd":
 			self.playAudioCD()
+		elif choice[1] == "pip":
+			self.activatePiP()
+		elif choice[1] == "servicelist":
+			self.openServiceList()
 
 	def playAudioCD(self):
 		from enigma import eServiceReference
@@ -996,6 +1020,109 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				if self.isAudioCD:
 					self.clear_playlist()
 
+	def isPiPzap(self):
+		return self.pipZapAvailable and self.servicelist and self.servicelist.dopipzap
+
+	def openServiceList(self):
+		if self.isPiPzap():
+			self.session.execDialog(self.servicelist)
+
+	def activatePiP(self):
+		if self.pipZapAvailable:
+			if InfoBar.instance is not None:
+				modeslist = [ ]
+				keyslist = [ ]
+				if InfoBar.pipShown(InfoBar.instance):
+					slist = self.servicelist
+					if slist:
+						if slist.dopipzap:
+							modeslist.append((_("Zap focus to main screen"), "pipzap"))
+						else:
+							modeslist.append((_("Zap focus to Picture in Picture"), "pipzap"))
+						keyslist.append('red')
+					modeslist.append((_("Move Picture in Picture"), "move"))
+					keyslist.append('green')
+					modeslist.append((_("Disable Picture in Picture"), "stop"))
+					keyslist.append('blue')
+				else:
+					modeslist.append((_("Activate Picture in Picture"), "start"))
+					keyslist.append('blue')
+				dlg = self.session.openWithCallback(self.pipAnswerConfirmed, ChoiceBox, list = modeslist, keys = keyslist)
+				dlg.setTitle(_("Menu") + " PiP")
+
+	def pipAnswerConfirmed(self, answer):
+		answer = answer and answer[1]
+		if answer is not None and InfoBar.instance is not None:
+			slist = self.servicelist
+			if answer == "pipzap":
+				InfoBar.togglePipzap(InfoBar.instance)
+			elif answer == "move":
+				InfoBar.movePiP(InfoBar.instance)
+			elif answer == "stop":
+				if InfoBar.pipShown(InfoBar.instance):
+					if slist and slist.dopipzap:
+						slist.togglePipzap()
+					if hasattr(self.session, 'pip'):
+						del self.session.pip
+					self.session.pipshown = False
+			elif answer == "start":
+				prev_playingref = self.session.nav.currentlyPlayingServiceOrGroup
+				if prev_playingref:
+					self.session.nav.currentlyPlayingServiceOrGroup = None
+				InfoBar.showPiP(InfoBar.instance)
+				if prev_playingref:
+					self.session.nav.currentlyPlayingServiceOrGroup = prev_playingref
+				if slist and not slist.dopipzap and hasattr(self.session, 'pip'):
+					InfoBar.togglePipzap(InfoBar.instance)
+
+	def nextBouquet(self):
+		if not self.shown and self.isPiPzap():
+			slist = self.servicelist
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value and slist.atEnd():
+							slist.nextBouquet()
+						else:
+							slist.moveDown()
+						cur = slist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
+			else:
+				slist.moveDown()
+			slist.zap(enable_pipzap = True)
+		else:
+			if self.currList == "filelist":
+				self.switchToPlayList()
+			else:
+				self.switchToFileList()
+
+	def prevBouquet(self):
+		if not self.shown and self.isPiPzap():
+			slist = self.servicelist
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value:
+							if slist.atBegin():
+								slist.prevBouquet()
+						slist.moveUp()
+						cur = slist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
+			else:
+				slist.moveUp()
+			slist.zap(enable_pipzap = True)
+		else:
+			if self.currList == "filelist":
+				self.switchToPlayList()
+			else:
+				self.switchToFileList()
+
 class MediaPlayerLCDScreen(Screen):
 	skin = (
 	"""<screen name="MediaPlayerLCDScreen" position="0,0" size="132,64" id="1">
@@ -1048,7 +1175,7 @@ def filescan_open(list, session, **kwargs):
 	mp.savePlaylistOnExit = False
 
 	for file in list:
-		if file.mimetype == "video/MP2T":
+		if file.mimetype == "video/mp2t":
 			stype = 1
 		else:
 			stype = 4097
@@ -1070,7 +1197,7 @@ def movielist_open(list, session, **kwargs):
 	from enigma import eServiceReference
 	from Screens.InfoBar import InfoBar
 	f = list[0]
-	if f.mimetype == "video/MP2T":
+	if f.mimetype == "video/mp2t":
 		stype = 1
 	else:
 		stype = 4097
@@ -1084,7 +1211,7 @@ def movielist_open(list, session, **kwargs):
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return [
-		Scanner(mimetypes = ["video/mpeg", "video/MP2T", "video/x-msvideo", "video/mkv"],
+		Scanner(mimetypes = ["video/mpeg", "video/mp2t", "video/x-msvideo", "video/mkv", "video/x-ms-wmv", "video/x-matroska", "video/ogg", "video/dvd", "video/mp4", "video/avi", "video/divx", "video/x-mpeg", "video/x-flv", "video/quicktime", "video/x-ms-asf", "video/3gpp", "video/3gpp2", "application/vnd.rn-realmedia", "application/vnd.rn-realmedia-vbr", "video/mts"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
@@ -1104,7 +1231,7 @@ def filescan(**kwargs):
 			description = _("View video CD..."),
 			openfnc = filescan_open,
 		),
-		Scanner(mimetypes = ["audio/mpeg", "audio/x-wav", "application/ogg", "audio/x-flac"],
+		Scanner(mimetypes = ["audio/mpeg", "audio/x-wav", "audio/dts", "audio/ogg", "audio/flac", "audio/mp4", "audio/x-ms-wma", "audio/ac3", "audio/x-matroska", "audio/x-aac", "audio/x-monkeys-audio"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),

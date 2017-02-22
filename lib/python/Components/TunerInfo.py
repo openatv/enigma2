@@ -51,9 +51,9 @@ class TunerInfo(GUIComponent):
 		if self.type == self.SNR_DB:
 			value = self.getValue(self.SNR_DB)
 		elif self.type == self.SNR_PERCENTAGE or self.type == self.SNR_BAR:
-			value = self.getValue(self.SNR) * 100 / 65536
+			value = self.getValue(self.SNR) * 100 / 65535
 		elif self.type == self.AGC_PERCENTAGE or self.type == self.AGC_BAR:
-			value = self.getValue(self.AGC) * 100 / 65536
+			value = self.getValue(self.AGC) * 100 / 65535
 		elif self.type == self.BER_VALUE or self.type == self.BER_BAR:
 			value = self.getValue(self.BER)
 		elif self.type == self.LOCK_STATE:

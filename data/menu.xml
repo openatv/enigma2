@@ -37,11 +37,15 @@
 			<id val="setup"/>
 			<menu weight="7" level="0" text="Service searching" entryID="service_searching_selection">
 				<id val="scan"/>
-				<item weight="10" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection"/></item>
+				<item weight="1" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection"/></item>
+				<!-- <item weight="10" text="AutoBouquetsMaker" entryID="AutoBouquetsMaker" requires="AutoBouquetsMaker"><plugin system="AutoBouquetsMaker" screen="AutoBouquetsMaker"/></item> -->
 				<item weight="20" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple"/></item>
 				<!-- <item weight="25" text="Blind scan" entryID="blind_scan" requires="Blindscan"><plugin system="Blindscan" screen="Blindscan"/></item> -->
 				<item weight="30" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup"/></item>
 				<!-- <item weight="35" text="Satfinder" entryID="satfinder" requires="Satfinder"><plugin system="Satfinder" screen="Satfinder"/></item> -->
+				<!-- <item weight="75" text="TerrestrialScanScreen" entryID="TerrestrialScanScreen" requires="TerrestrialScanScreen"><plugin system="TerrestrialScanScreen" screen="TerrestrialScanScreen"/></item> -->
+				<item weight="100" text="Fallback configuration" entryID="fallback_setup"><setup id="fallback"/></item>
+				<!-- Fastscan, Cablescan, Positioner setup, Sundtek Control Centre: item weight not specified in the plugin. -->
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system"/>

@@ -593,8 +593,8 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				{
 					// no real alphatest yet
 					int width=area.width();
-					unsigned char *s = (unsigned char*)srcptr;
-					unsigned char *d = (unsigned char*)dstptr;
+					uint8_t *s = srcptr;
+					uint8_t *d = dstptr;
 					// use duff's device here!
 					while (width--)
 					{
@@ -634,19 +634,20 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			{
 				if (flag & blitAlphaTest)
 				{
-					int width=area.width();
-					unsigned long *src=(unsigned long*)srcptr;
-					unsigned long *dst=(unsigned long*)dstptr;
+					int width = area.width();
+					uint32_t *src = srcptr;
+					uint32_t *dst = dstptr;
 					while (width--)
 					{
 						if (!((*src)&0xFF000000))
 						{
-							src++;
-							dst++;
+							++src;
+							++dst;
 						} else
 							*dst++=*src++;
 					}
-				} else if (flag & blitAlphaBlend)
+				}
+				else if (flag & blitAlphaBlend)
 				{
 					int width = area.width();
 					gRGB *src = (gRGB*)srcptr;
@@ -656,7 +657,8 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 						dst->alpha_blend(*src++);
 						++dst;
 					}
-				} else
+				}
+				else
 					memcpy(dstptr, srcptr, area.width()*surface->bypp);
 				srcptr = (uint32_t*)((uint8_t*)srcptr + src.surface->stride);
 				dstptr = (uint32_t*)((uint8_t*)dstptr + surface->stride);
@@ -747,8 +749,8 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					{
 						if (!((*srcp)&0xFF000000))
 						{
-							srcp++;
-							dstp++;
+							++srcp;
+							++dstp;
 						} else
 						{
 							uint32_t icol = *srcp++;

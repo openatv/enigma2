@@ -22,7 +22,7 @@ class ClientsStreaming(Converter, Poll, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
-		self.poll_interval = 30000
+		self.poll_interval = 5000
 		self.poll_enabled = True
 		if type == "REF":
 			self.type = self.REF
@@ -71,10 +71,10 @@ class ClientsStreaming(Converter, Poll, object):
 			ips.append((ip))
 
 			if int(x[2]) == 0:
-				strtype = "S"
+				strtype = "Streaming: "
 				encoder = _('NO')
 			else:
-				strtype = "T"
+				strtype = "Transcoding: "
 				encoder = _('YES')
 
 			encoders.append((encoder))
@@ -89,7 +89,7 @@ class ClientsStreaming(Converter, Poll, object):
 				if self.type == self.INFO_RESOLVE_SHORT:
 					ip, sep, tail = ip.partition('.')
 
-			info += ("%s %-8s %s\n") % (strtype, ip, service_name)
+			info += ("%s  %-8s %s\n") % (strtype, ip, service_name)
 
 			clients.append((ip, service_name, encoder))
 

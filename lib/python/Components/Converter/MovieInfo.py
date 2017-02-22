@@ -53,10 +53,15 @@ class MovieInfo(Converter, object):
 					return _("Directory")
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
-					if filesize >= 100000*1024*1024:
-						return _("%.0f GB") % (filesize / (1024.0*1024.0*1024.0))
-					else:
-						return _("%.0f MB") % (filesize / (1024.0*1024.0))
+					if filesize >= 104857600000: #100000*1024*1024
+						return _("%.0f GB") % (filesize / 1073741824.0)
+					elif filesize >= 1073741824: #1024*1024*1024
+						return _("%.2f GB") % (filesize / 1073741824.0)
+					elif filesize >= 1048576:
+						return _("%.0f MB") % (filesize / 1048576.0)
+					elif filesize >= 1024:
+						return _("%.0f kB") % (filesize / 1024.0)
+					return _("%d B") % filesize
 		return ""
 
 	text = property(getText)

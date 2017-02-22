@@ -489,6 +489,9 @@ public:
 	virtual int getRolloff() const = 0;
 	virtual int getPilot() const = 0;
 	virtual int getSystem() const = 0;
+	virtual int getIsId() const = 0;
+	virtual int getPLSMode() const = 0;
+	virtual int getPLSCode() const = 0;
 	virtual int getBandwidth() const = 0;
 	virtual int getCodeRateLp() const = 0;
 	virtual int getCodeRateHp() const = 0;
