@@ -599,12 +599,12 @@ class SelectionEventInfo:
 		self.onShown.append(self.__selectionChanged)
 
 	def __selectionChanged(self):
-		if self.execing and self.settings["description"] == MovieList.SHOW_DESCRIPTION:
-			self.timer.start(100, True)
+		self.timer.start(100, True)
 
 	def updateEventInfo(self):
-		serviceref = self.getCurrent()
-		self["Service"].newService(serviceref)
+		if self.execing and self.settings["description"] == MovieList.SHOW_DESCRIPTION:
+			serviceref = self.getCurrent()
+			self["Service"].newService(serviceref)
 
 class MovieSelectionSummary(Screen):
 	# Kludgy component to display current selection on LCD. Should use
@@ -685,6 +685,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 		self.filePlayingTimer = eTimer()
 		self.filePlayingTimer.timeout.get().append(self.FilePlaying)
+
+		self.sorttimer = eTimer()
+		self.sorttimer.callback.append(self._updateButtonTexts)
 
 		self.playingInForeground = None
 		# create optional description border and hide immediately
@@ -1185,6 +1188,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
+			if btn.value == 'sort' and self.sorttimer.isActive():
+				continue
 			label = userDefinedActions[btn.value]
 			if btn.value == 'delete':
 				item = self.getCurrentSelection()
@@ -1595,6 +1600,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		print '[MovieSelection] SORTBY:', newType
 		if newType < MovieList.TRASHSORT_SHOWRECORD:
 			self.settings["moviesort"] = newType
+			if not config.movielist.settings_per_directory.value:
+				config.movielist.moviesort.value = newType
+				config.movielist.moviesort.save()
 			self.saveLocalSettings()
 			self.setSortType(newType)
 # Unset specific trash-sorting if other sort chosen while in Trash
@@ -2491,7 +2499,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def do_sortdefault(self):
 		print '[MovieSelection] SORT:', config.movielist.moviesort.value
-		config.movielist.moviesort.load()
+		config.movielist.moviesort.value = config.movielist.moviesort.default
 		print '[MovieSelection] SORT:', config.movielist.moviesort.value
 		self.sortBy(int(config.movielist.moviesort.value))
 
@@ -2514,8 +2522,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self['key_yellow'].setText(sorttext)
 		if config.movielist.btn_blue.value == "sort":
 			self['key_blue'].setText(sorttext)
-		self.sorttimer = eTimer()
-		self.sorttimer.callback.append(self._updateButtonTexts)
 		self.sorttimer.start(3000, True)  # time for displaying sorting type just applied
 		self.sortBy(int(l_moviesort[index][0]))
 		self["movie_sort"].setPixmapNum(self.getPixmapSortIndex(l_moviesort[index][0]))
