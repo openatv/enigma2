@@ -1387,7 +1387,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strcmp(m_description, "Si21662")) // SF4008 S2
 	{
 		ret = (int)(snr / 46.8);
-		sat_max = 1400;
+		sat_max = 1620;
 	}
 	else if (!strcmp(m_description, "Si21682")) // SF4008 T/T2/C
 	{
