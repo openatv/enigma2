@@ -44,7 +44,7 @@ class ActionMap:
 
 	def action(self, context, action):
 		print " ".join(("[ActionMap]", context, action))
-		if self.actions.has_key(action):
+		if action in self.actions:
 			res = self.actions[action]()
 			if res is not None:
 				return res

@@ -179,7 +179,7 @@ class ServiceScan:
 		self.feid = self.scanList[self.run]["feid"]
 		self.flags = self.scanList[self.run]["flags"]
 		self.networkid = 0
-		if self.scanList[self.run].has_key("networkid"):
+		if "networkid" in self.scanList[self.run]:
 			self.networkid = self.scanList[self.run]["networkid"]
 		self.state = self.Idle
 		self.scanStatusChanged()

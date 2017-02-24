@@ -616,7 +616,7 @@ class MovieList(GUIComponent):
 				# For auto tags, we are keeping a (tag, movies) dictionary.
 				#It will be used later to check if movies have a complete sentence in common.
 				for tag in this_tags:
-					if autotags.has_key(tag):
+					if tag in autotags:
 						autotags[tag].append(name)
 					else:
 						autotags[tag] = [name]
