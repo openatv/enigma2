@@ -727,8 +727,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			 */
 			flags |= GST_PLAY_FLAG_BUFFERING;
 			/* increase the default 2 second / 2 MB buffer limitations to 10s / 10MB */
-			g_object_set(m_gst_playbin, "buffer-duration", 5LL * GST_SECOND, NULL);
+			g_object_set(m_gst_playbin, "buffer-duration", (gint64)(5LL * GST_SECOND), NULL);
 			g_object_set(m_gst_playbin, "buffer-size", m_buffer_size, NULL);
+			if (m_sourceinfo.is_hls)
+				g_object_set(m_gst_playbin, "connection-speed", (guint64)(4495000LL), NULL);
 		}
 		g_object_set (m_gst_playbin, "flags", flags, NULL);
 		g_object_set (m_gst_playbin, "uri", uri, NULL);
