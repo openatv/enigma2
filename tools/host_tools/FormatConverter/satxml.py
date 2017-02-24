@@ -73,7 +73,7 @@ class satxml(datasource):
 				xmltransponder = satxml.createElement("transponder")
 				paramlist = ["frequency", "symbol_rate", "polarization", "fec", "system", "modulation", "tsid", "onid"]
 				for param in paramlist:
-					if transponder.has_key(param):
+					if param in transponder:
 						xmltransponder.setAttribute(param, transponder[param])
 				xmlsat.appendChild(xmltransponder)
 		prettyxml = satxml.toprettyxml()

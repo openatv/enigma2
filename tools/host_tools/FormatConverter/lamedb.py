@@ -39,7 +39,7 @@ class lamedb(datasource):
 				if ord(line[0]) == 9:
 					transponder = line.strip().split(' ')[1].split(':')
 					sat = transponder[4]
-					if not sats.has_key(sat):
+					if sat not in sats:
 						sats[sat] = []
 					sats[sat].append((transponder, tsid, onid))
 					tsid = None
