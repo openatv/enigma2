@@ -29,11 +29,13 @@ class StreamingClientsInfo(Screen):
 		self["ScrollLabel"] = ScrollLabel()
 
 		self["key_red"] = Button(_("Close"))
+		self["key_blue"] = Button()
 		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
 			{
 				"cancel": self.exit,
 				"ok": self.exit,
 				"red": self.exit,
+				"blue": self.stopStreams,
 				"up": self["ScrollLabel"].pageUp,
 				"down": self["ScrollLabel"].pageDown
 			})
@@ -57,4 +59,12 @@ class StreamingClientsInfo(Screen):
 		clients = ClientsStreaming("INFO_RESOLVE")
 		text = clients.getText()
 		self["ScrollLabel"].setText(text or _("No clients streaming"))
+		self["key_blue"].setText(text and _("Stop Streams") or "")
 		self.timer.startLongTimer(5)
+
+	def stopStreams(self):
+		streamServer = enigma.eStreamServer.getInstance()
+		if not streamServer:
+			return
+		for x in streamServer.getConnectedClients():
+			streamServer.stopStream()
