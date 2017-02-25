@@ -1329,6 +1329,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return  # stop and do not continue.
+		closeParam = True
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and self.StartRef and self.StartBouquet:
 				def forceResume():
@@ -1347,16 +1348,14 @@ class EPGSelection(Screen, HelpableScreen):
 					else:
 						forceResume()
 						self.session.nav.playService(self.StartRef)
-				elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
-					forceResume()
-					self.session.nav.playService(self.StartRef)
 				else:
 					self.zapFunc(None, False)
+					closeParam = 'close'
 		if self.session.pipshown:
 			self.session.pipshown = False
 			del self.session.pip
 		self.closeEventViewDialog()
-		self.close(True)
+		self.close(closeParam)
 
 	def zap(self):
 		if self.zapFunc:
