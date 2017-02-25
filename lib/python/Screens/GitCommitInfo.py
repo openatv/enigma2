@@ -22,7 +22,7 @@ else:
 
 E2Branches = {
 	'developer' : 'Dev',
-	'release' : 'Master'
+	'release' : 'master'
 	}
 
 project = 0
@@ -49,7 +49,7 @@ def readGithubCommitLogsSoftwareUpdate():
 		except:
 			log = loads(urllib2.urlopen(url, timeout=5).read())
 		for c in log:
-			if gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("Enigma2", "OE-A Core"):
+			if gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("Enigma2", "ViX Core", "OE-A Core"):
 					continue
 			if c['commit']['message'].startswith('openvix:'):
 				gitstart = False
@@ -109,7 +109,7 @@ def readGithubCommitLogs():
 		except:
 			log = loads(urllib2.urlopen(url, timeout=5).read())
 		for c in log:
-			if gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("Enigma2", "OE-A Core"):
+			if gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("Enigma2", "ViX Core", "OE-A Core"):
 				continue
 			if c['commit']['message'].startswith('openvix:'):
 				blockstart = False
