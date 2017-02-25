@@ -80,6 +80,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/IniLCNScanner"):
 else:
 	HAVE_LCN_SCANNER = False
 
+try:
+	from Plugins.SystemPlugins.RemoteControlCode.plugin import RCSetupScreen
+	HAVE_REMOTE_CONTROL_CODE = True
+except:
+	HAVE_REMOTE_CONTROL_CODE = False
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -277,7 +283,8 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent(_("Front panel skin"), _("Skin setup"), _("Set up your front panel skin")))
 		if SystemInfo["Fan"]:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Fan settings"), _("Fan setup"), _("Set up your fan")))
-		self.sublist.append(QuickSubMenuEntryComponent(_("Remote control code settings"), _("Remote control code setup"), _("Set up your remote control")))
+		if HAVE_REMOTE_CONTROL_CODE:
+			self.sublist.append(QuickSubMenuEntryComponent(_("Remote control code settings"), _("Remote control code setup"), _("Set up your remote control")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Factory reset"), _("Load default"), _("Reset all settings to defaults")))
 		self["sublist"].list = self.sublist
 
@@ -502,7 +509,6 @@ class GeneralSetup(Screen):
 			from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 			self.session.open(HdmiCECSetupScreen)
 		elif selected == _("Remote control code settings"):
-			from Plugins.SystemPlugins.RemoteControlCode.plugin import RCSetupScreen
 			self.session.open(RCSetupScreen)
 		elif selected == _("Fan settings"):
 			from Plugins.SystemPlugins.FanControl.plugin import FanSetupScreen
