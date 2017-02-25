@@ -1016,9 +1016,8 @@ class ConfigClock(ConfigSequence):
 			if self.marked_pos == 2 and digit >= 6:  # Only 0, 1, ..., 5 allowed (tens digit of minutes)
 				return
 
-			value = list("%02d%02d" % (hour, self._value[1]))
-			value[self.marked_pos] = str(digit)
-			value = "".join(value)
+			value = bytearray(b"%02d%02d" % (hour, self._value[1]))  # Must be ASCII!
+			value[self.marked_pos] = digit + ord(b'0')
 			hour = int(value[:2])
 			minute = int(value[2:])
 
