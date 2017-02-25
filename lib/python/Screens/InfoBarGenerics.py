@@ -1555,14 +1555,13 @@ class InfoBarEPG:
 		else:
 			self.openBouquetEPG(bouquets=bouquets)
 
-	def openMultiServiceEPG(self):
+	def openMultiServiceEPG(self, reopen=False):
 		if self.servicelist is None:
 			return
 		self.EPGtype = "multi"
 		self.StartBouquet = self.servicelist.getRoot()
-		if isMoviePlayerInfoBar(self):
-			self.StartRef = self.lastservice
-		else:
+		if not reopen:
+			self.StartBouquet = self.servicelist.getRoot()
 			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.MultiServiceEPG()
 
