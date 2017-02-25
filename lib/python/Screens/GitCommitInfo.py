@@ -130,7 +130,7 @@ def readGithubCommitLogs():
 				if releasever > ImageVer:
 					blockstart = True
 					continue
-			elif blockstart and getScreenTitle() in ("Enigma2", "OE-A Core"):
+			elif blockstart and getScreenTitle() in ("Enigma2", "ViX Core", "OE-A Core"):
 				blockstart = True
 				continue
 
