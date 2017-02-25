@@ -331,7 +331,6 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices", var=self.trafficLight, menu_path=self.menu_path_compressed)
 			upgrademessage.setTitle(self.title)
 		elif answer[1] == "changes":
-			print 'MENUPATH:',self.menu_path
 			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges, self.menu_path)
 		elif answer[1] == "backup":
 			self.doSettingsBackup()
