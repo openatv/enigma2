@@ -318,7 +318,7 @@ class Network:
 
 	def setAdapterAttribute(self, iface, attribute, value):
 # 		print "setting for adapter", iface, "attribute", attribute, " to value", value
-		if iface in elf.ifaces:
+		if iface in self.ifaces:
 			self.ifaces[iface][attribute] = value
 
 	def removeAdapterAttribute(self, iface, attribute):
