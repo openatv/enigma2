@@ -36,6 +36,8 @@ class AboutBase(Screen):
 				"ok": self.close,
 			})
 
+		self.onClose.append(self.cleanup)
+
 	@staticmethod
 	def sizeStr(size, unknown=_("unavailable")):
 		if float(size) / 2 ** 20 >= 1:
@@ -81,6 +83,9 @@ class AboutBase(Screen):
 		l = list(AboutBase.makeEmptyEntry())
 		l[AboutBase.ENT_HEADINFOLABEL:AboutBase.ENT_HEADINFO + 1] = label, info
 		return tuple(l)
+
+	def cleanup(self):
+		pass
 
 	def setBindings(self):
 		actionMap = eActionMap.getInstance()
@@ -256,6 +261,9 @@ class Devices(AboutBase):
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
+
+	def cleanup(self):
+		self.activityTimer.stop()
 
 	def mountInfo(self, name, mountpoint, kind, twoLines=False, indent=''):
 		if path.isdir(mountpoint):
@@ -598,7 +606,6 @@ class SystemNetworkInfo(AboutBase):
 				self.iStatus = iStatus
 			except:
 				pass
-			self.onClose.append(self.cleanup)
 
 	def getLinkState(self, ifaceName, iface):
 		return 'flags' in iface \
