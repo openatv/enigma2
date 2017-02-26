@@ -9,7 +9,7 @@ class RollerCharLCD(VariableText, Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
-		if getBoxType() == 'vuduo':
+		if getBoxType() in ('vuduo', 'sf4008'):
 			self.stringlength = 16
 		else:
 			self.stringlength = 12

@@ -1,12 +1,9 @@
 import NavigationInstance
 from config import config
-from time import localtime, mktime, gmtime
+from time import  time, localtime, mktime, gmtime
 from ServiceReference import ServiceReference
 from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
 from timer import TimerEntry
-from time import time
-
-
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):

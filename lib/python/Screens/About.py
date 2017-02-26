@@ -1,5 +1,6 @@
 from Screen import Screen
 from Screens.SoftwareUpdate import UpdatePlugin
+from Screens.GitCommitInfo import CommitInfo
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.StaticText import StaticText
@@ -43,7 +44,7 @@ class About(Screen):
 		Screen.setTitle(self, title)
 		self.skinName = "AboutOE"
 		self.populate()
-		
+
 		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("Translations"))
 		self["key_yellow"] = Button(_("Software update"))
@@ -147,7 +148,7 @@ class About(Screen):
 		self.session.open(UpdatePlugin, self.menu_path)
 
 	def showAboutReleaseNotes(self):
-		self.session.open(ViewGitLog, self.menu_path)
+		self.session.open(CommitInfo, self.menu_path)
 
 	def createSummary(self):
 		return AboutSummary
@@ -519,7 +520,7 @@ class SystemNetworkInfo(Screen):
 			if 'Speed:' in line:
 				speed = line.split(': ')[1][:-4]
 				self.AboutText += _("Speed:") + "\t" + speed + _('Mb/s')
-		
+
 		hostname = file('/proc/sys/kernel/hostname').read()
 		self.AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
 		self["AboutScrollLabel"].setText(self.AboutText)
@@ -673,90 +674,6 @@ class AboutSummary(Screen):
 			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
 
 		self["AboutText"] = StaticText(AboutText)
-
-
-class ViewGitLog(Screen):
-	def __init__(self, session, menu_path = ""):
-		Screen.__init__(self, session)
-		self.menu_path = menu_path
-		self.screentitle = _("OE Changes")
-		self.skinName = "SoftwareUpdateChanges"
-		self.logtype = 'oe'
-		self["menu_path_compressed"] = StaticText("")
-		self["text"] = ScrollLabel()
-		self['title_summary'] = StaticText()
-		self['text_summary'] = StaticText()
-		self["key_red"] = Button(_("Close"))
-		self["key_green"] = Button(_("OK"))
-		self["key_yellow"] = Button(_("Show E2 Log"))
-		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
-									  {
-										  'cancel': self.closeRecursive,
-										  'green': self.closeRecursive,
-										  "red": self.closeRecursive,
-										  "yellow": self.changelogtype,
-										  "left": self.pageUp,
-										  "right": self.pageDown,
-										  "down": self.pageDown,
-										  "up": self.pageUp
-									  }, -1)
-		self.onLayoutFinish.append(self.getlog)
-
-	def changelogtype(self):
-		if self.logtype == 'oe':
-			self["key_yellow"].setText(_("Show OE Log"))
-			self.screentitle = _("Enigma2 Changes")
-			self.logtype = 'e2'
-		else:
-			self["key_yellow"].setText(_("Show E2 Log"))
-			self.screentitle = _("OE Changes")
-			self.logtype = 'oe'
-		self.getlog()
-
-	def pageUp(self):
-		self["text"].pageUp()
-
-	def pageDown(self):
-		self["text"].pageDown()
-
-	def getlog(self):
-		if config.usage.show_menupath.value == 'large':
-			if not self.menu_path.endswith(self.screentitle):
-				self.menu_path += self.screentitle
-			title = self.menu_path
-			self["menu_path_compressed"].setText("")
-		elif config.usage.show_menupath.value == 'small':
-			title = self.screentitle
-			self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
-		else:
-			title = self.screentitle
-			self["menu_path_compressed"].setText("")
-		self.setTitle(title)
-
-		releasenotes = ""
-		fd = open('/etc/' + self.logtype + '-git.log', 'r')
-		for line in fd.readlines():
-			if getImageType() == 'release' and line.startswith('openvix: developer'):
-				continue
-			elif getImageType() == 'developer' and line.startswith('openvix: release'):
-				continue
-			releasenotes += line
-		fd.close()
-		self["text"].setText(releasenotes)
-		summarytext = releasenotes
-		try:
-			self['title_summary'].setText(summarytext[0] + ':')
-			self['text_summary'].setText(summarytext[1])
-		except:
-			self['title_summary'].setText("")
-			self['text_summary'].setText("")
-
-	def unattendedupdate(self):
-		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
-
-	def closeRecursive(self):
-		self.close((_("Cancel"), ""))
-
 
 class TranslationInfo(Screen):
 	def __init__(self, session, menu_path=""):

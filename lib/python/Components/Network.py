@@ -103,7 +103,7 @@ class Network:
 					if bcast is not None:
 						data['bcast'] = self.convertIP(bcast)
 
-		if not data.has_key('ip'):
+		if 'ip' not in data:
 			data['dhcp'] = True
 			data['ip'] = [0, 0, 0, 0]
 			data['netmask'] = [0, 0, 0, 0]
@@ -144,17 +144,17 @@ class Network:
 			if not iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet static\n")
 				fp.write("  hostname $(hostname)\n")
-				if iface.has_key('ip'):
+				if 'ip' in iface:
 # 					print tuple(iface['ip'])
 					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
 					fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
-					if iface.has_key('gateway'):
+					if 'gateway' in iface:
 						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
-			if iface.has_key("configStrings"):
+			if "configStrings" in iface:
 				fp.write(iface["configStrings"])
-			if iface["preup"] is not False and not iface.has_key("configStrings"):
+			if iface["preup"] is not False and "configStrings" not in iface:
 				fp.write(iface["preup"])
-			if iface["predown"] is not False and not iface.has_key("configStrings"):
+			if iface["predown"] is not False and "configStrings" not in iface:
 				fp.write(iface["predown"])
 			fp.write("\n")
 		fp.close()
@@ -191,28 +191,28 @@ class Network:
 			if currif == iface: #read information only for available interfaces
 				if split[0] == "address":
 					ifaces[currif]["address"] = map(int, split[1].split('.'))
-					if self.ifaces[currif].has_key("ip"):
+					if "ip" in self.ifaces[currif]:
 						if self.ifaces[currif]["ip"] != ifaces[currif]["address"] and ifaces[currif]["dhcp"] == False:
 							self.ifaces[currif]["ip"] = map(int, split[1].split('.'))
 				if split[0] == "netmask":
 					ifaces[currif]["netmask"] = map(int, split[1].split('.'))
-					if self.ifaces[currif].has_key("netmask"):
+					if "netmask" in self.ifaces[currif]:
 						if self.ifaces[currif]["netmask"] != ifaces[currif]["netmask"] and ifaces[currif]["dhcp"] == False:
 							self.ifaces[currif]["netmask"] = map(int, split[1].split('.'))
 				if split[0] == "gateway":
 					ifaces[currif]["gateway"] = map(int, split[1].split('.'))
-					if self.ifaces[currif].has_key("gateway"):
+					if "gateway" in self.ifaces[currif]:
 						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] == False:
 							self.ifaces[currif]["gateway"] = map(int, split[1].split('.'))
 				if split[0] == "pre-up":
-					if self.ifaces[currif].has_key("preup"):
+					if "preup" in self.ifaces[currif]:
 						self.ifaces[currif]["preup"] = i
 				if split[0] in ("pre-down","post-down"):
-					if self.ifaces[currif].has_key("predown"):
+					if "predown" in self.ifaces[currif]:
 						self.ifaces[currif]["predown"] = i
 
 		for ifacename, iface in ifaces.items():
-			if self.ifaces.has_key(ifacename):
+			if ifacename in self.ifaces:
 				self.ifaces[ifacename]["dhcp"] = iface["dhcp"]
 		if not self.console.appContainers:
 			# save configured interfacelist
@@ -318,13 +318,12 @@ class Network:
 
 	def setAdapterAttribute(self, iface, attribute, value):
 # 		print "setting for adapter", iface, "attribute", attribute, " to value", value
-		if self.ifaces.has_key(iface):
+		if iface in self.ifaces:
 			self.ifaces[iface][attribute] = value
 
 	def removeAdapterAttribute(self, iface, attribute):
-		if self.ifaces.has_key(iface):
-			if self.ifaces[iface].has_key(attribute):
-				del self.ifaces[iface][attribute]
+		if iface in self.ifaces and attribute in self.ifaces[iface]:
+			del self.ifaces[iface][attribute]
 
 	def getNameserverList(self):
 		if len(self.nameservers) == 0:

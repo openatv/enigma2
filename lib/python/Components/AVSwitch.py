@@ -78,7 +78,7 @@ class AVSwitch:
 	if getBrandOEM() == 'vuplus' and getBoxType() not in ('vusolo4k', 'vuultimo4k', 'vuuno4k'):
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
-	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
+	# if "DVI-PC" in modes and not getModeList("DVI-PC"):
 	# 	print "[VideoHardware] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
 	
@@ -172,14 +172,14 @@ class AVSwitch:
 		'vuultimo4k'
 	)
 	
-	if modes.has_key("YPbPr") and getBoxType() in no_YPbPr:
+	if "YPbPr" in modes and getBoxType() in no_YPbPr:
 		del modes["YPbPr"]
 		
-	if modes.has_key("Scart") and getBoxType() in yellow_RCA_no_scart:
+	if "Scart" in modes and getBoxType() in yellow_RCA_no_scart:
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
 		
-	if modes.has_key("Scart") and getBoxType() in no_yellow_RCA__no_scart:
+	if "Scart" in modes and getBoxType() in no_yellow_RCA__no_scart:
 		del modes["Scart"]
 
 	def __init__(self):

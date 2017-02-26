@@ -200,7 +200,7 @@ class SoftwareTools(PackageInfoHandler):
 					self.packagesIndexlist.remove(package)
 			for package in self.packagesIndexlist[:]:
 				attributes = package[0]["attributes"]
-				if attributes.has_key("packagetype"):
+				if "packagetype" in attributes:
 					if attributes["packagetype"] == "internal":
 						self.packagesIndexlist.remove(package)
 			if callback is None:
@@ -224,7 +224,7 @@ class SoftwareTools(PackageInfoHandler):
 			packagename = attributes["packagename"]
 			for x in self.available_packetlist:
 				if x[0] == packagename:
-					if self.installed_packetlist.has_key(packagename):
+					if packagename in self.installed_packetlist:
 						if self.installed_packetlist[packagename] != x[1]:
 							self.available_updates +=1
 							self.available_updatelist.append([packagename])
@@ -265,7 +265,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.UpdateConsole.killAll()
 
 	def verifyPrerequisites(self, prerequisites):
-		if prerequisites.has_key("hardware"):
+		if "hardware" in prerequisites:
 			hardware_found = False
 			for hardware in prerequisites["hardware"]:
 				if hardware == getBoxType():

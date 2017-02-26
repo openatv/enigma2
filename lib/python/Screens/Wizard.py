@@ -46,44 +46,44 @@ class Wizard(Screen):
 			self.currContent = name
 			if name == "step":
 				self.lastStep += 1
-				if attrs.has_key('id'):
+				if 'id' in attrs:
 					id = str(attrs.get('id'))
 				else:
 					id = ""
 				#print "[Wizard] id:", id
-				if attrs.has_key('nextstep'):
+				if 'nextstep' in attrs:
 					nextstep = str(attrs.get('nextstep'))
 				else:
 					nextstep = None
-				if attrs.has_key('timeout'):
+				if 'timeout' in attrs:
 					timeout = int(attrs.get('timeout'))
 				else:
 					timeout = None
-				if attrs.has_key('timeoutaction'):
+				if 'timeoutaction' in attrs:
 					timeoutaction = str(attrs.get('timeoutaction'))
 				else:
 					timeoutaction = 'nextpage'
 
-				if attrs.has_key('timeoutstep'):
+				if 'timeoutstep' in attrs:
 					timeoutstep = str(attrs.get('timeoutstep'))
 				else:
 					timeoutstep = ''
 				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "timeout": timeout, "timeoutaction": timeoutaction, "timeoutstep": timeoutstep, "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": "", "code_async": "", "codeafter_async": "", "nextstep": nextstep}
-				if attrs.has_key('laststep'):
+				if 'laststep' in attrs:
 					self.wizard[self.lastStep]["laststep"] = str(attrs.get('laststep'))
 			elif name == "text":
 				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n")
 			elif name == "displaytext":
 				self.wizard[self.lastStep]["displaytext"] = str(attrs.get('value')).replace("\\n", "\n")
 			elif name == "list":
-				if attrs.has_key('type'):
+				if 'type' in attrs:
 					if attrs["type"] == "dynamic":
 						self.wizard[self.lastStep]["dynamiclist"] = attrs.get("source")
 					#self.wizard[self.lastStep]["list"].append(("Hallo", "test"))
-				if attrs.has_key("evaluation"):
+				if "evaluation" in attrs:
 					#print "[Wizard] evaluation"
 					self.wizard[self.lastStep]["listevaluation"] = attrs.get("evaluation")
-				if attrs.has_key("onselect"):
+				if "onselect" in attrs:
 					self.wizard[self.lastStep]["onselect"] = attrs.get("onselect")
 			elif name == "listentry":
 				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
@@ -97,16 +97,16 @@ class Wizard(Screen):
 						exec "from " + str(attrs.get('module')) + " import *"
 
 					self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
-					if attrs.has_key('args'):
+					if 'args' in attrs:
 						#print "has args"
 						self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
 				elif type == "dynamic":
 					self.wizard[self.lastStep]["config"]["source"] = str(attrs.get('source'))
-					if attrs.has_key('evaluation'):
+					if 'evaluation' in attrs:
 						self.wizard[self.lastStep]["config"]["evaluation"] = str(attrs.get('evaluation'))
 			elif name == "code":
 				self.async_code = attrs.has_key('async') and str(attrs.get('async')) == "yes"
-				if attrs.has_key('pos') and str(attrs.get('pos')) == "after":
+				if 'pos' in attrs and str(attrs.get('pos')) == "after":
 					self.codeafter = True
 				else:
 					self.codeafter = False
@@ -330,7 +330,7 @@ class Wizard(Screen):
 			if len(self.wizard[currStep]["evaluatedlist"]) > 0:
 # 				print "current:", self["list"].current
 				nextStep = self["list"].current[1]
-				if self.wizard[currStep].has_key("listevaluation"):
+				if "listevaluation" in self.wizard[currStep]:
 					exec("self." + self.wizard[self.currStep]["listevaluation"] + "('" + nextStep + "')")
 				else:
 					self.currStep = self.getStepWithID(nextStep)
@@ -410,7 +410,7 @@ class Wizard(Screen):
 			self.handleInputHelpers()
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
 			self["list"].selectPrevious()
-			if self.wizard[self.currStep].has_key("onselect"):
+			if "onselect" in self.wizard[self.currStep]:
 				print "[Wizard] current:", self["list"].current
 				self.selection = self["list"].current[-1]
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
@@ -425,7 +425,7 @@ class Wizard(Screen):
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
 			#self["list"].instance.moveSelection(self["list"].instance.moveDown)
 			self["list"].selectNext()
-			if self.wizard[self.currStep].has_key("onselect"):
+			if "onselect" in self.wizard[self.currStep]:
 # 				print "current:", self["list"].current
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				#exec("self." + self.wizard[self.currStep]["onselect"] + "()")
@@ -440,7 +440,7 @@ class Wizard(Screen):
 		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None:
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
-			if self.wizard[self.currStep].has_key("onselect"):
+			if "onselect" in self.wizard[self.currStep]:
 				self.selection = self["list"].current[-1]
 				print "[Wizard] self.selection:", self.selection
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
@@ -489,7 +489,7 @@ class Wizard(Screen):
 		exec (self.wizard[self.currStep]["condition"])
 		if not self.condition:
 # 			print "keys*******************:", self.wizard[self.currStep].keys()
-			if self.wizard[self.currStep].has_key("laststep"): # exit wizard, if condition of laststep doesn't hold
+			if "laststep" in self.wizard[self.currStep]: # exit wizard, if condition of laststep doesn't hold
 				self.markDone()
 				self.exit()
 				return
@@ -497,7 +497,7 @@ class Wizard(Screen):
 				self.currStep += 1
 				self.updateValues()
 		else:
-			if self.wizard[self.currStep].has_key("displaytext"):
+			if "displaytext" in self.wizard[self.currStep]:
 				displaytext = self.getTranslation(self.wizard[self.currStep]["displaytext"])
 # 				print "set LCD text"
 				for x in self.lcdCallbacks:
@@ -517,7 +517,7 @@ class Wizard(Screen):
 
 # 			print "wizard text", self.getTranslation(self.wizard[self.currStep]["text"])
 			self.updateText(firstset = True)
-			if self.wizard[self.currStep].has_key("displaytext"):
+			if "displaytext" in self.wizard[self.currStep]:
 				displaytext = self.getTranslation(self.wizard[self.currStep]["displaytext"])
 # 				print "set LCD text"
 				for x in self.lcdCallbacks:
@@ -556,7 +556,7 @@ class Wizard(Screen):
 
 				#self["list"].instance.setZPosition(1)
 				self.list = []
-				if self.wizard[self.currStep].has_key("dynamiclist"):
+				if "dynamiclist" in self.wizard[self.currStep]:
 # 					print "dynamic list, calling",  self.wizard[self.currStep]["dynamiclist"]
 					newlist = eval("self." + self.wizard[self.currStep]["dynamiclist"] + "()")
 					#self.wizard[self.currStep]["evaluatedlist"] = []
@@ -606,7 +606,7 @@ class Wizard(Screen):
 
 
 			else:
-				if self.has_key("config"):
+				if "config" in self:
 					self["config"].hide()
 
 	def timeoutCounterFired(self):
@@ -624,20 +624,20 @@ class Wizard(Screen):
 	def handleInputHelpers(self):
 		if self["config"].getCurrent() is not None:
 			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-				if self.has_key("VKeyIcon"):
+				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(True)
 					self["VKeyIcon"].boolean = True
-				if self.has_key("HelpWindow"):
+				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint
 						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
 			else:
-				if self.has_key("VKeyIcon"):
+				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(False)
 					self["VKeyIcon"].boolean = False
 		else:
-			if self.has_key("VKeyIcon"):
+			if "VKeyIcon" in self:
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
 
@@ -649,7 +649,7 @@ class Wizard(Screen):
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
 			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-				if self.has_key("HelpWindow"):
+				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint

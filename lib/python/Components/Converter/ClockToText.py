@@ -13,10 +13,16 @@ class ClockToText(Converter, object):
 		"AsLengthSeconds": lambda t: "" if t < 0 else "%d:%02d:%02d" % (t / 3600, t / 60 % 60, t % 60),
 		# 		TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 		"Date": lambda t: strftime(config.usage.date.dayfull.value, localtime(t)),  # _("%A %e %B %Y")
-		# 		TRANSLATORS: short time representation hour:minute
+		# 		TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
 		"Default": lambda t: strftime(config.usage.time.short.value, localtime(t)),  # _("%R")
-		# 		TRANSLATORS: short time representation hour:minute
+		# 		TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
 		"Display": lambda t: strftime(config.usage.time.display.value, localtime(t)),  # _("%R")
+		# 		TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
+		"DisplayDate": lambda t: strftime(config.usage.date.display.value, localtime(t)),  # _("%e %b")
+		# 		TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
+		"DisplayDayDate": lambda t: strftime(config.usage.date.displayday.value, localtime(t)),  # _("%a %e %b")
+		# 		TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
+		"DisplayTime": lambda t: strftime(config.usage.time.display.value, localtime(t)),  # _("%R")
 		# 		TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 		"Full": lambda t: strftime(config.usage.date.dayshort.value + " " + config.usage.time.short.value, localtime(t)),  # _("%a %e %b %R")
 		# 		TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'

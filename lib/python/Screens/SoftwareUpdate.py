@@ -11,11 +11,11 @@ from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
+from Screens.GitCommitInfo import CommitInfo, gitcommitinfo
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
-from Components.GitLog import gitlog
 from Components.Ipkg import IpkgComponent
 from Components.Pixmap import Pixmap
 from Components.Label import Label
@@ -25,136 +25,26 @@ from Components.Slider import Slider
 
 ocram = ''
 
-class SoftwareUpdateChanges(Screen):
+class SoftwareUpdateChanges(CommitInfo):
 	def __init__(self, session, menu_path=""):
-		Screen.__init__(self, session)
-		self.menu_path = menu_path
-		self.screentitle = _("OE Changes")
-		self.logtype = 'oe'
-		self["menu_path_compressed"] = StaticText("")
-		self["text"] = ScrollLabel()
-		self['title_summary'] = StaticText()
-		self['text_summary'] = StaticText()
-		self["key_red"] = Button(_("Close"))
-		self["key_green"] = Button(_("Update"))
-		self["key_yellow"] = Button(_("Show E2 Log"))
-		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
+		CommitInfo.__init__(self, session, menu_path=menu_path)
+
+		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
 		{
 			'cancel': self.closeRecursive,
 			"red": self.closeRecursive,
-			"green": self.unattendedupdate,
-			"yellow": self.changelogtype,
-			"left": self.pageUp,
-			"right": self.pageDown,
-			"down": self.pageDown,
-			"up": self.pageUp
+			"up": self["AboutScrollLabel"].pageUp,
+			"down": self["AboutScrollLabel"].pageDown,
+			"left": self.left,
+			"right": self.right
 		},-1)
-		self.onLayoutFinish.append(self.getlog)
 
-	def changelogtype(self):
-		if self.logtype == 'oe':
-			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enigma2 Changes"))
-			self.logtype = 'e2'
-		else:
-			self["key_yellow"].setText(_("Show E2 Log"))
-			self.setTitle(_("OE-A Changes"))
-			self.logtype = 'oe'
-		self.getlog()
+		self["key_red"] = Button(_("Close"))
 
-	def pageUp(self):
-		self["text"].pageUp()
+	def readGithubCommitLogs(self):
+		self.updateScreenTitle(gitcommitinfo.getScreenTitle())
+		self["AboutScrollLabel"].setText(gitcommitinfo.readGithubCommitLogsSoftwareUpdate())
 
-	def pageDown(self):
-		self["text"].pageDown()
-
-	def getlog(self):
-		if config.usage.show_menupath.value == 'large':
-			if not self.menu_path.endswith(self.screentitle):
-				self.menu_path += self.screentitle
-			title = self.menu_path
-			self["menu_path_compressed"].setText("")
-		elif config.usage.show_menupath.value == 'small':
-			title = self.screentitle
-			self["menu_path_compressed"].setText(self.menu_path + " >" if not self.menu_path.endswith(' / ') else self.menu_path[:-3] + " >" or "")
-		else:
-			title = self.screentitle
-			self["menu_path_compressed"].setText("")
-		self.setTitle(title)
-
-		global ocram
-		ocramprocessed = False
-		releasenotes = gitlog.fetchlog(self.logtype)
-		if '404 Not Found' not in releasenotes:
-			if getImageType() == 'release':
-				ImageVer = getImageBuild()
-			else:
-				ImageVer = "%s.%s" % (getImageBuild(),getImageDevBuild())
-				ImageVer = float(ImageVer)
-
-			releasenotes = releasenotes.split('\n\n')
-			ver = -1
-			releasever = ""
-			viewrelease = ""
-			while not releasever.replace('.','').isdigit():
-				ver += 1
-				releasever = releasenotes[int(ver)].split('\n')
-				releasever = releasever[0].split('openvix: ')
-				if len(releasever) > 1:
-					releasever = releasever[1].split(' ')
-					tmp = releasever[1].split('.')
-					if len(tmp) > 2:
-						if getImageType() == 'release':
-							releasever = tmp[2]
-						else:
-							releasever = '%s.%s' % (tmp[2], tmp[3])
-				else:
-					releasever = releasever[0]
-
-			while releasever > ImageVer:
-				if ocram and not ocramprocessed and self.logtype == 'oe':
-					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
-					ocramprocessed = True
-				else:
-					viewrelease += releasenotes[int(ver)]+'\n\n'
-				ver += 1
-				if ver >= len(releasenotes):
-						break
-				releasever = releasenotes[int(ver)].split('\n')
-				releasever = releasever[0].split('openvix: ')
-				if len(releasever) > 1:
-					releasever = releasever[1].split(' ')
-					tmp = releasever[1].split('.')
-					if len(tmp) > 2:
-						if getImageType() == 'release':
-							releasever = tmp[2]
-						else:
-							releasever = '%s.%s' % (tmp[2], tmp[3])
-							releasever = float(releasever)
-				else:
-					releasever = releasever[0]
-
-			if not viewrelease and ocram and not ocramprocessed and self.logtype == 'oe':
-				viewrelease = ocram
-				ocramprocessed = True
-			self["text"].setText(viewrelease)
-			summarytext = viewrelease.split(':\n')
-			try:
-				self['title_summary'].setText(summarytext[0]+':')
-				self['text_summary'].setText(summarytext[1])
-			except:
-				self['title_summary'].setText("")
-				self['text_summary'].setText(viewrelease)
-		else:
-			self['title_summary'].setText("")
-			self['text_summary'].setText(_("Error downloading the change log."))
-			self['text'].setText(_("Error downloading the change log."))
-
-	def unattendedupdate(self):
-		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
-
-	def closeRecursive(self):
-		self.close(("menu", "menu"))
 
 class UpdatePlugin(Screen, ProtectedScreen):
 	def __init__(self, session, *args):
@@ -225,7 +115,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self['tl_yellow'].hide()
 		self['tl_green'].hide()
 		self['tl_off'].hide()
-		self.trafficLight = feedsstatuscheck.getFeedsBool() 
+		self.trafficLight = feedsstatuscheck.getFeedsBool()
 		if self.trafficLight in feedsstatuscheck.feed_status_msgs:
 			status_text = feedsstatuscheck.feed_status_msgs[self.trafficLight]
 		else:
@@ -261,7 +151,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.startCheck()
 		else:
 			self.close()
-	
+
 	def startCheck(self):
 		self.updating = True
 		self.activity = 0
@@ -301,7 +191,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		if event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
 		elif event == IpkgComponent.EVENT_UPGRADE:
-			if self.sliderPackages.has_key(param):
+			if param in self.sliderPackages:
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
 			self.status.setText(_("Upgrading") + ": %s/%s" % (self.packages, self.total_packages))

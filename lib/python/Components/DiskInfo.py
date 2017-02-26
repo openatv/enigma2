@@ -34,7 +34,7 @@ class DiskInfo(VariableText, GUIComponent):
 				elif free < 10000000000:
 					free = _("%d MB") % (free >> 20)
 				else:
-					free = _("%d Gb") % (free >> 30)
+					free = _("%d GB") % (free >> 30)
 				self.setText(" ".join((free, percent, _("free diskspace"))))
 			except:
 				# occurs when f_blocks is 0 or a similar error
