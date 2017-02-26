@@ -1720,7 +1720,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			for x in networks:
 				if x not in known_networks:
 					need_scan = True
-					print "[ScanSetup] %s not in %s" % (x, known_networks)
+#					print "[ScanSetup] %s not in %s" % (x, known_networks)
 					known_networks.append(x)
 
 			# don't offer to scan nims if nothing is connected
