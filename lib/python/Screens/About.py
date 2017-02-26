@@ -116,6 +116,11 @@ class About(AboutBase):
 		about.getBootLoaderVersion(self.populate)
 
 	def populate(self, bootLoaderInfo):
+		# Check that About wasn't closed while the boot loader search
+		# ran
+		if "list" not in self:
+			return
+
 		self.list = []
 
 		self.list.append(self.makeHeadingInfoEntry(_("Model:"), "%s %s" % (getMachineBrand(), getMachineName())))
