@@ -405,7 +405,7 @@ class ButtonSetupSelect(Screen):
 
 class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
-		if action in tuple(x[1] for x in getHotkeys()) and action in self.actions:
+		if action in tuple(x[1] for x in ButtonSetupKeys) and action in self.actions:
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -415,7 +415,7 @@ class ButtonSetupActionMap(ActionMap):
 
 class helpableButtonSetupActionMap(HelpableActionMap):
 	def action(self, contexts, action):
-		if action in tuple(x[1] for x in getHotkeys()) and action in self.actions:
+		if action in tuple(x[1] for x in ButtonSetupKeys) and action in self.actions:
 			res = self.actions[action](action)
 			if res is not None:
 				return res
