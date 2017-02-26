@@ -945,9 +945,6 @@ class RecordTimer(timer.Timer):
 		return isRunning
 
 	def loadTimer(self):
-		# TODO: PATH!
-		if not Directories.fileExists(self.Filename):
-			return
 		try:
 			file = open(self.Filename, 'r')
 			doc = xml.etree.cElementTree.parse(file)
