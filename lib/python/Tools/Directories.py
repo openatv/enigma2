@@ -239,7 +239,7 @@ def defaultRecordingLocation(candidate=None):
 				stat = os.statvfs(candidate[1])
 				# Free space counts double
 				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
-				if (islocal and not havelocal) or (islocal or not havelocal and size > biggest):
+				if (islocal and not havelocal) or ((islocal or not havelocal) and size > biggest):
 					path = candidate[1]
 					havelocal = islocal
 					biggest = size

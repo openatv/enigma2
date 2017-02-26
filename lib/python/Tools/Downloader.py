@@ -2,7 +2,6 @@ from boxbranding import getMachineBrand, getMachineName
 
 from twisted.web import client
 from twisted.internet import reactor, defer
-from twisted.python import failure
 from urlparse import urlparse
 
 class HTTPProgressDownloader(client.HTTPDownloader):
@@ -57,8 +56,9 @@ class downloadWithProgress:
 		return self.factory.deferred
 
 	def stop(self):
-		print "[stop]"
-		self.connection.disconnect()
+		if self.connection:
+			print "[stop]"
+			self.connection.disconnect()
 
 	def addProgress(self, progress_callback):
 		print "[addProgress]"
