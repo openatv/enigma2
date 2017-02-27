@@ -507,22 +507,22 @@ class NIM(object):
 				"ATSC": ("ATSC", None),
 			}
 
-		# get multi type using delsys information
-		if self.frontend_id is not None:
-			types = [type for type in nim_types if eDVBResourceManager.getInstance().frontendIsCompatible(self.frontend_id, type)]
-			print "[NIM] get types from delsys", types
-			if "DVB-T2" in types:
-				# DVB-T2 implies DVB-T support
-				types.remove("DVB-T")
-			if "DVB-S2" in types:
-				# DVB-S2 implies DVB-S support
-				types.remove("DVB-S")
-			if len(types) > 1:
-				self.multi_type = {}
-				for type in types:
-					self.multi_type[str(types.index(type))] = type
-			elif len(self.multi_type) > 1:
-				print "[NIM] DVB API not reporting tuner %d as multitype" % self.frontend_id
+#		# get multi type using delsys information
+#		if self.frontend_id is not None:
+#			types = [type for type in nim_types if eDVBResourceManager.getInstance().frontendIsCompatible(self.frontend_id, type)]
+#			print "[NIM] get types from delsys", types
+#			if "DVB-T2" in types:
+#				# DVB-T2 implies DVB-T support
+#				types.remove("DVB-T")
+#			if "DVB-S2" in types:
+#				# DVB-S2 implies DVB-S support
+#				types.remove("DVB-S")
+#			if len(types) > 1:
+#				self.multi_type = {}
+#				for type in types:
+#					self.multi_type[str(types.index(type))] = type
+#			elif len(self.multi_type) > 1:
+#				print "[NIM] DVB API not reporting tuner %d as multitype" % self.frontend_id
 
 	def isCompatible(self, what):
 		if not self.isSupported():
@@ -1521,10 +1521,14 @@ def InitNimManager(nimmgr, update_slots = []):
 			addMultiType = True
 		if slot.isMultiType() and addMultiType:
 			typeList = []
-			for id in slot.getMultiTypeList().keys():
-				type = slot.getMultiTypeList()[id]
+			default = None
+			for id, type in slot.getMultiTypeList().items():
 				typeList.append((id, type))
-			nim.multiType = ConfigSelection(typeList, "0")
+				if type == "DVB-T2":
+					default = id
+				if default is None and type == "DVB-T":
+					default = id
+			nim.multiType = ConfigSelection(typeList, default=default)
 
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr), initial_call=False)
