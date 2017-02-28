@@ -233,7 +233,8 @@
 		<item level="1" requires="LcdDisplay" text="Show time remaining/elapsed" description="Choose how remaining time, elapsed time, or both, are displayed on the front panel.">config.usage.swap_time_remaining_on_vfd</item>
 		<item level="2" text="Initial scroll delay" description="Delay in miliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
 		<item level="2" text="Final scroll delay" description="Delay in miliseconds after finish scrolling text on display." requires="VFD_final_scroll_delay">config.usage.vfd_final_scroll_delay</item>
-		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
+		<item level="0" text="Date style" description="Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled_display">config.usage.date.display</item>
+		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 		<item level="1" requires="LcdDisplay" text="Show transponder remaining/elapsed as" description="Choose how remaining/elapsed time for live TV is displayed on the front panel.">config.usage.swap_time_display_on_vfd</item>
 		<item level="1" requires="LcdDisplay" text="Show media playback remaining/elapsed as" description="Choose how remaining/elapsed time for media playback is displayed on the front panel.">config.usage.swap_media_time_display_on_vfd</item>
 		<item level="0" requires="LcdDisplay" text="Show time elapsed as positive" description="Choose how elapsed time is displayed on the front panel. You can specify a + (positive) or - (negative) value.">config.usage.elapsed_time_positive_vfd</item>
@@ -347,7 +348,7 @@
 		<item level="2" text="Picon width" description="Set the width allocated to the picon column.">config.epgselection.infobar_piconwidth</item>
 		<item level="2" text="Info icon width" description="Specify the minimum width used to display the 'i' (info) icon in the EPG. A value of '0' hides the icon.">config.epgselection.infobar_infowidth</item>
 		<item level="2" text="Timeline font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.\nNOTE: This setting is not used if the global time format settings are available.">config.epgselection.infobar_timeline24h</item>
+		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.infobar_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
 	<setup key="epggraphical" title="GraphicalEPG settings">
@@ -378,7 +379,7 @@
 		<item level="2" text="Info icon width" description="Specify the minimum width used to display the 'i' (info) icon in the EPG. A value of '0' hides the icon.">config.epgselection.graph_infowidth</item>
 		<item level="2" text="Position of recording icons" description="Set the position of the recording icons">config.epgselection.graph_rec_icon_height</item>
 		<item level="2" text="Timeline font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
-		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format.\nNOTE: This setting is not used if the global time format settings are available.">config.epgselection.graph_timeline24h</item>
+		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.graph_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
 	<setup key="pluginbrowsersetup" title="Plugin browser settings">
