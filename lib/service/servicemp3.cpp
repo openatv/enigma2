@@ -700,7 +700,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		if(dvb_videosink && !m_sourceinfo.is_audio)
 		{
 			g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
-			g_object_set(dvb_videosink, "e2-async", TRUE, NULL);
+			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		}
 		/*
@@ -727,8 +727,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			 */
 			flags |= GST_PLAY_FLAG_BUFFERING;
 			/* increase the default 2 second / 2 MB buffer limitations to 10s / 10MB */
-			g_object_set(m_gst_playbin, "buffer-duration", 5LL * GST_SECOND, NULL);
+			g_object_set(m_gst_playbin, "buffer-duration", (gint64)(5LL * GST_SECOND), NULL);
 			g_object_set(m_gst_playbin, "buffer-size", m_buffer_size, NULL);
+			if (m_sourceinfo.is_hls)
+				g_object_set(m_gst_playbin, "connection-speed", (guint64)(4495000LL), NULL);
 		}
 		g_object_set (m_gst_playbin, "flags", flags, NULL);
 		g_object_set (m_gst_playbin, "uri", uri, NULL);
@@ -984,7 +986,10 @@ RESULT eServiceMP3::pause()
 	m_subtitles_paused = true;
 	m_subtitle_sync_timer->start(1, true);
 	eDebug("[eServiceMP3] pause");
-	trickSeek(0.0);
+	if(!m_paused)
+		trickSeek(0.0);
+	else
+		eDebug("[eServiceMP3] Already Paused no need to pause");
 
 	return 0;
 }
@@ -1021,13 +1026,7 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 {
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
-/*#if GST_VERSION_MAJOR >= 1
-	if(m_media_lenght > 0 && !m_sourceinfo.is_streaming)
-	{
-		pts = m_media_lenght;
-		return 0;
-	}
-#endif*/
+
 	GstFormat fmt = GST_FORMAT_TIME;
 	gint64 len;
 #if GST_VERSION_MAJOR < 1
@@ -1041,8 +1040,6 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 	pts = len / 11111LL;
 #if GST_VERSION_MAJOR >= 1
 	m_media_lenght = pts;
-	//if(!m_sourceinfo.is_streaming)
-	//eDebug("[eServiceMP3] media_lenght = %" G_GINT64_FORMAT, m_media_lenght);
 #endif
 	return 0;
 }
@@ -1062,46 +1059,12 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	}
 #else
 	m_last_seek_pos = to * 11111LL;
-/* this below hack is included to cover up a gstreamer bug
- * https://bugzilla.gnome.org/show_bug.cgi?id=778690
- * The moment this bug is removed we must just revert this to 
- * standard seek GST_SEEK_FLAG_KEY_UNIT
-*/
-	if ( m_errorInfo.missing_codec != "")
+	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+		GST_SEEK_TYPE_SET, m_last_seek_pos,
+		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 	{
-		if (m_errorInfo.missing_codec.find("image/") == 0)
-		{
-			//eDebug("[eServiceMP3] seekToImpl ACCURATE");
-			if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE),
-				GST_SEEK_TYPE_SET, m_last_seek_pos,
-				GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
-			{
-				eDebug("[eServiceMP3] seekTo failed");
-				return -1;
-			}
-		}
-		else
-		{
-			//eDebug("[eServiceMP3] seekToImpl KEY_UNIT 1");
-			if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
-				GST_SEEK_TYPE_SET, m_last_seek_pos,
-				GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
-			{
-				eDebug("[eServiceMP3] seekTo failed");
-				return -1;
-			}
-		}
-	}
-	else
-	{
-		//eDebug("[eServiceMP3] seekToImpl KEY_UNIT 2");
-		if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
-			GST_SEEK_TYPE_SET, m_last_seek_pos,
-			GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
-		{
-			eDebug("[eServiceMP3] seekTo failed");
-			return -1;
-		}
+		eDebug("[eServiceMP3] seekTo failed");
+		return -1;
 	}
 #endif
 
@@ -1146,7 +1109,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		/* pipeline sometimes block due to audio track issue off gstreamer.
 		If the pipeline is blocked up on pending state change to paused ,
         this issue is solved by seek to playposition*/
-		ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2LL * GST_SECOND);
+		ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3LL * GST_SECOND);
 		if (state == GST_STATE_PLAYING && pending == GST_STATE_PAUSED)
 		{
 			if (pos_ret >= 0)

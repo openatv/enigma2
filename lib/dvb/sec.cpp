@@ -132,7 +132,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			std::multimap<int, eDVBSatelliteSwitchParameters>::iterator sit;
 //				lnb_param.m_satellites.find(sat.orbital_position);
 
-			eDebug("%d option(s) at position %d", lnb_param.m_satellites.count(sat.orbital_position), sat.orbital_position);
+			eSecDebugNoSimulate("%d option(s) at position %d", lnb_param.m_satellites.count(sat.orbital_position), sat.orbital_position);
 
 			if (lnb_param.m_satellites.count(sat.orbital_position))
 			{

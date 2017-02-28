@@ -95,7 +95,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 		self.YellowAction = REFRESH
 
 		self.mlist = []
-		self["key_green"] = Label(_("Restart"))
+		self["key_green"] = Label(_("ReStart"))
 		self["key_red"] = Label(_("Stop"))
 		self["key_yellow"] = Label(_("Refresh"))
 		self.partyfeed = os.path.exists("/etc/opkg/3rdparty-feed.conf") or os.path.exists("/etc/opkg/3rd-party-feed.conf")
@@ -315,7 +315,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 				actcam = self.mlist[oldcamIndex]
 				if self.first == 0:
 					self.cam1sel.setValue(actcam)		
-				self["key_green"].setText(_("Restart"))
+				self["key_green"].setText(_("ReStart"))
 				self["actifcam"].setText(_("active CAM 1: ") + actcam )
 				print '[SOFTCAM] set active cam 1 to: ' + actcam
 			else:
@@ -564,7 +564,7 @@ class SoftcamPanel(ConfigListScreen, Screen):
 							stopcmd = self.emuStop[self.cam2Index]							
 							self.createInitdscript("cam2", camname, startcmd, stopcmd, config.softcam.waittime.value)
 
-					self["key_green"].setText(_("Restart"))
+					self["key_green"].setText(_("ReStart"))
 
 		except:
 			pass
