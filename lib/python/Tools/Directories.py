@@ -235,7 +235,7 @@ def defaultRecordingLocation(candidate=None):
 		havelocal = False
 		for candidate in mounts:
 			try:
-				islocal = candidate[1].startswith('/dev/') # Good enough
+				islocal = candidate[0].startswith('/dev/') # Good enough
 				stat = os.statvfs(candidate[1])
 				# Free space counts double
 				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
