@@ -89,7 +89,7 @@ class ClientsStreaming(Converter, Poll, object):
 				if self.type == self.INFO_RESOLVE_SHORT:
 					ip, sep, tail = ip.partition('.')
 
-			info += ("%s  %-8s %s\n") % (strtype, ip, service_name)
+			info += ("%s  %-8s  %s\n") % (strtype, ip, service_name)
 
 			clients.append((ip, service_name, encoder))
 
