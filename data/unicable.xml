@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
-<unicable version="20160810">
+<unicable version="20170222">
 	<lnb>
 		<manufacturer name="Dura-Sat(DUR-line)">
 			<product name="UK101" scrs="1210,1420,1680,2040"/>
@@ -7,8 +7,7 @@
 			<product name="UK124" format="jess" scrs= "1210,1420,1680,2040,1005,1050,1095,1140,1260,1305,1350,1475,1520,1565,1610,1725,1770,1815,1860,1905,1950,1995,2085,2130"/>
 		</manufacturer>
 		<manufacturer name="DStv">
-			<product name="LMX500" format="jess"
-				scrs= "1210,1420,1680,2040,1006,1057,1108,1159,1261,1312,1363,1471,1522,1573,1624,1731,1782,1833,1884,1935,1986,2091,2142,2193"/>
+			<product name="LMX500" format="jess" scrs= "1210,1420,1680,2040,1006,1057,1108,1159,1261,1312,1363,1471,1522,1573,1624,1731,1782,1833,1884,1935,1986,2091,2142,2193"/>
 		</manufacturer>
 		<manufacturer name="EDISON">
 			<product name="SCR-1" scrs="1210,1420,1680,2040"/>
@@ -30,12 +29,12 @@
 			<product name="150 SCR" scrs="1210,1420,1680,2040"/>
 		</manufacturer>
 		<manufacturer name="Inverto">
-			<product name="IDLP-40UNIQD+S" scrs="1680,1420,2040,1210"/>
-			<product name="IDLB-QUDL-UNI2L-OPP" scrs="1210,1420,1680,2040"/>
-			<product name="IDLB-QUDL42-UNI2L-1PP" scrs="1210,1420,1680,2040"/>
-			<product name="IDLU-24UL40-UNMOO-OPP" format="jess" scrs="1210,1420,1680,2040,1005,1050,1095,1140,1260,1305,1350,1475,1520,1565,1610,1725,1770,1815,1860,1905,1950,1995,2085,2130"/>
-			<product name="IDLU-32UL40-UNBOO-OPP" format="jess" scrs="1210,1420,1680,2040,984,1020,1056,1092,1128,1164,1256,1292,1328,1364,1458,1494,1530,1566,1602,1638,1716,1752,1788,1824,1860,1896,1932,1968,2004,2076,2112,2148"/>
-		</manufacturer>
+                        <product name="IDLP-40UNIQD+S" scrs="1680,1420,2040,1210"/>
+                        <product name="IDLB-QUDL-UNI2L-OPP" scrs="1210,1420,1680,2040"/>
+                        <product name="IDLB-QUDL42-UNI2L-1PP" scrs="1210,1420,1680,2040"/>
+                        <product name="IDLU-24UL40-UNMOO-OPP" positions="4" format="jess" scrs="1210,1420,1680,2040,1005,1050,1095,1140,1260,1305,1350,1475,1520,1565,1610,1725,1770,1815,1860,1905,1950,1995,2085,2130"/>
+                        <product name="IDLU-32UL40-UNBOO-OPP" positions="4" format="jess" scrs="1210,1420,1680,2040,984,1020,1056,1092,1128,1164,1256,1292,1328,1364,1458,1494,1530,1566,1602,1638,1716,1752,1788,1824,1860,1896,1932,1968,2004,2076,2112,2148"/>
+                </manufacturer>
 		<manufacturer name="Kathrein">
 			<product name="UAS481" lofl="10200" lofh="10200" scrs="1400,1516,1632,1748"/>
 		</manufacturer>
@@ -83,32 +82,32 @@
 			<product name="UCS 92440" positions="2" scrs="1400,1632,1284,1516"/>
 		</manufacturer>
 		<manufacturer name="Arsman">
-			<product name="UMS22" positions="1" scrs="1284,1400" permpin1="0x6F" permpin2="0xDE"/>
-			<product name="UMS54" positions="1" scrs="1210,1420,1680,2040" permpin1="0x6F" permpin2="0xDE" permpin3="0x7F" permpin4="0xEE"/>
-			<product name="UMC54" positions="1" scrs="1210,1420,1680,2040" permpin1="0x6F" permpin2="0xDE" permpin3="0x7F" permpin4="0xEE"/>
+			<product name="UMS22" scrs="1284,1400" permpin1="0x6F" permpin2="0xDE"/>
+			<product name="UMS54" scrs="1210,1420,1680,2040" permpin1="0x6F" permpin2="0xDE" permpin3="0x7F" permpin4="0xEE"/>
+			<product name="UMC54" scrs="1210,1420,1680,2040" permpin1="0x6F" permpin2="0xDE" permpin3="0x7F" permpin4="0xEE"/>
 		</manufacturer>
 		<manufacturer name="Astra Strobel">
-			<product name="SEV 103" positions="1" scrs="1284,1400,1514"/>
-			<product name="SEV 108" positions="1" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="SEV 103" scrs="1284,1400,1514"/>
+			<product name="SEV 108" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 			<product name="SEV 208" positions="2" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 		</manufacturer>
 		<manufacturer name="Axing">
-			<product name="SES 556-19" positions="1" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="SES 556-09" positions="1" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="SES 556-19" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="SES 556-09" scrs="1280,1382,1484,1586,1688,1790"/>
 			<product name="SES 996-19" positions="2" scrs="1280,1382,1484,1586,1688,1790"/>
 			<product name="SES 996-09" positions="2" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="SES 46-00" positions="1" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="SES 46-00" scrs="1280,1382,1484,1586,1688,1790"/>
 			<product name="SES 86-00" positions="2" scrs="1280,1382,1484,1586,1688,1790"/>
 		</manufacturer>
 		<manufacturer name="DCT Delta">
-			<product name="SUM518" scrs="1284,1400,1516,1632,1748,1864,1980,2096" alias1="SCR0" alias2="SCR1" alias3="SCR2" alias4="SCR3" alias5="SCR4" alias6="SCR5" alias7="SCR6" alias8="SCR7"/>
+			<product name="SUM518" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 			<product name="SUM918" positions="2" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 			<product name="SUM928" positions="2" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 		</manufacturer>
 		<manufacturer name="Dura-Sat(Dur-Line)">
 			<product name="Dur-DCR5-1-8(L4/K)" format="jess" scrs="1280,1382,1484,1586,1688,1790,1892,1994"/>
 			<product name="DCR 5-2-4" scrs="1280,1382,1484,1586"/>
-			<product name="DPC-32 K" format="jess" positions="1" scrs="1210,1420,1680,2040,984,1020,1056,1092,1128,1164,1256,1292,1328,1364,1458,1494,1530,1566,1602,1638,1716,1752,1788,1824,1860,1896,1932,1968,2004,2076,2112,2148"/>
+			<product name="DPC-32 K" format="jess" scrs="1210,1420,1680,2040,984,1020,1056,1092,1128,1164,1256,1292,1328,1364,1458,1494,1530,1566,1602,1638,1716,1752,1788,1824,1860,1896,1932,1968,2004,2076,2112,2148"/>
 			<product name="UCP2" scrs="1400,1516"/>
 			<product name="UCP3" scrs="1280,1382,1484"/>
 			<product name="UCP18" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
@@ -118,25 +117,26 @@
 			<product name="VDU563NT" scrs="1280,1382,1484"/>
 			<product name="VDU583NT" scrs="1280,1382,1484"/>
 			<product name="VDU586NT" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="VDU518NT" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 			<product name="VDU983NT" positions="2" scrs="1280,1382,1484"/>
 		</manufacturer>
 		<manufacturer name="DStv">
-			<product name="DStv Switch (5-1)" positions="1" scrs="1210,1420,1680,2040"/>
-			<product name="DStv Switch (5-2)" positions="1" scrs="1210,1420,1680,2040"/>
+			<product name="DStv Switch (5-1)" scrs="1210,1420,1680,2040"/>
+			<product name="DStv Switch (5-2)" scrs="1210,1420,1680,2040"/>
 			<product name="DStv Switch (24-1Z)" format="jess" scrs= "1210,1420,1680,2040,1006,1057,1108,1159,1261,1312,1363,1471,1522,1573,1624,1731,1782,1833,1884,1935,1986,2091,2142,2193"/>
 		</manufacturer>
 		<manufacturer name="EMP-Centauri">
-			<product name="MS4/1(6)EUN-3" positions="1" scrs="1400,1632,1284,1516,1864,2096"/>
-			<product name="MS4/1(8)PIN-4" positions="1" scrs="1080,1176,1237,1413,1555,1668,1842,1960" />
+			<product name="MS4/1(6)EUN-3" scrs="1400,1632,1284,1516,1864,2096"/>
+			<product name="MS4/1(8)PIN-4" scrs="1080,1176,1237,1413,1555,1668,1842,1960" />
 			<product name="MS8/1(8)PIN-4" positions="2" scrs="1080,1176,1237,1413,1555,1668,1842,1960"/>
-			<product name="MS5/5+2PIP-4" positions="1" scrs="1080,1176,1237,1413,1555,1668,1842,1960" />
-			<product name="MS5/5+2PEP-4" positions="1" scrs="1080,1176,1237,1413,1555,1668,1842,1960" />
+			<product name="MS5/5+2PIP-4" scrs="1080,1176,1237,1413,1555,1668,1842,1960" />
+			<product name="MS5/5+2PEP-4" scrs="1080,1176,1237,1413,1555,1668,1842,1960" />
 		</manufacturer>
 		<manufacturer name="Fuba">
-			<product name="MCR 212" positions="1" scrs="1400,1516"/>
-			<product name="MCR 221" format="jess" positions="1" scrs="1280,1382"/>
-			<product name="MCR 441" format="jess" positions="1" scrs="1280,1382,1484,1586"/>
-			<product name="MCR 518" positions="1" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="MCR 212" scrs="1400,1516"/>
+			<product name="MCR 221" format="jess" scrs="1280,1382"/>
+			<product name="MCR 441" format="jess" scrs="1280,1382,1484,1586"/>
+			<product name="MCR 518" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 			<product name="MCR 918" positions="2" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 		</manufacturer>
 		<manufacturer name="G-STAR">
@@ -144,25 +144,27 @@
 			<product name="GS-516-S1" scrs="1280,1382,1484,1586,1688,1790"/>
 		</manufacturer>
 		<manufacturer name="GSS (Grundig SAT-Systems)">
-			<product name="SDUC 502" positions="1" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
+			<product name="SDUC 502" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 			<product name="SDUC 902" positions="2" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 		</manufacturer>
 		<manufacturer name="Inverto">
-			<product name="IDLP-UST1O1-CUO1O-4PP" positions="1" scrs="1210,1420,1680,2040"/>
-			<product name="IDLP-UST11O-CUO1O-8PP" positions="1" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
-			<product name="IDLP-UST112-CUO1O-8PP" positions="1" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="IDLP-UST1O1-CUO1O-4PP" scrs="1210,1420,1680,2040"/>
+			<product name="IDLP-UST11O-CUO1O-8PP" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="IDLP-UST111-CUO1O-8PP" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="IDLP-UST112-CUO1O-8PP" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 			<product name="IDLP-USS200-CUO10-8PP" positions="2" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
-			<product name="IDLU-UST110-CUO1O-32P" format="jess" positions="1" scrs="1210,1420,1680,2040,984,1020,1056,1092,1128,1164,1256,1292,1328,1364,1458,1494,1530,1566,1602,1638,1716,1752,1788,1824,1860,1896,1932,1968,2004,2076,2112,2148"/>
+			<product name="IDLU-UST110-CUO1O-32P" format="jess" scrs="1210,1420,1680,2040,984,1020,1056,1092,1128,1164,1256,1292,1328,1364,1458,1494,1530,1566,1602,1638,1716,1752,1788,1824,1860,1896,1932,1968,2004,2076,2112,2148"/>
+			<product name="IDLU-UWT110-CUO10-32P" format="jess" positions="2" scrs="1210,1420,1680,2040,984,1020,1056,1092,1128,1164,1256,1292,1328,1364,1458,1494,1530,1566,1602,1638,1716,1752,1788,1824,1860,1896,1932,1968,2004,2076,2112,2148"/>
 		</manufacturer>
 		<manufacturer name="Johansson">
-			<product name="9712A" positions="1" scrs="1280,1382,1484"/>
-			<product name="9730I" positions="1" scrs="1210,1420,1680,2040"/>
-			<product name="9740" positions="1" scrs="1280,1382,1484"/>
-			<product name="9740D" positions="1" scrs="1280,1382,1484"/>
-			<product name="9740I" positions="1" scrs="1210,1420,1680"/>
-			<product name="9742" positions="1" scrs="1280,1382,1484"/>
-			<product name="9742D" positions="1" scrs="1280,1382,1484"/>
-			<product name="9742I" positions="1" scrs="1210,1420,1680"/>
+			<product name="9712A" scrs="1280,1382,1484"/>
+			<product name="9730I" scrs="1210,1420,1680,2040"/>
+			<product name="9740" scrs="1280,1382,1484"/>
+			<product name="9740D" scrs="1280,1382,1484"/>
+			<product name="9740I" scrs="1210,1420,1680"/>
+			<product name="9742" scrs="1280,1382,1484"/>
+			<product name="9742D" scrs="1280,1382,1484"/>
+			<product name="9742I" scrs="1210,1420,1680"/>
 			<product name="9750" positions="2" scrs="1280,1382,1484"/>
 			<product name="9750D" positions="2" scrs="1280,1382,1484"/>
 			<product name="9750I" positions="2" scrs="1210,1420,1680"/>
@@ -182,29 +184,34 @@
 			<product name="JPS0501-6" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
 			<product name="JPS0502-3" format="jess" scrs="1280,1382,1484"/>
 			<product name="JPS0502-6" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="JPS0504-3" format="jess" scrs="1280,1382,1484"/>
-			<product name="JPS0506-3" format="jess" scrs="1280,1382,1484"/>
-			<product name="JPS0508-3" format="jess" scrs="1280,1382,1484"/>
-			<product name="JRS0502-2+4" format="jess" scrs="1280,1382"/>
+			<product name="JPS0502-3(A/T)" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS0502-6(M/T)" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="JPS0504-3(A/T)" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS0504-6(M/T)" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="JRS0504-2(A/T)" format="jess" scrs="1280,1382"/>
+			<product name="JPS0506-3(A/T)" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS0508-3(A/M/T)" format="jess" scrs="1280,1382,1484"/>
+			<product name="JRS0502-2+4(T)" format="jess" scrs="1280,1382"/>
 			<product name="old JRS0502-2+4" scrs="1280,1382"/>
 			<product name="JRS0504-2" format="jess" scrs="1280,1382"/>
-			<product name="JPS0901-6" positions="2" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="JPS0901-12" positions="2" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
+			<product name="JPS0901-6(A/M/T)" positions="2" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="JPS0901-12(AN/TN)" positions="2" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
+			<product name="JPS0902-12(MN/TN)" positions="2" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
 			<product name="JPS0902-3" positions="2" format="jess" scrs="1280,1382,1484"/>
-			<product name="JPS0902-6" positions="2" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="JPS0904-3" positions="2" format="jess" scrs="1280,1382,1484"/>
-			<product name="JPS0904-6" positions="2" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="JPS0906-3" positions="2" format="jess" scrs="1280,1382,1484"/>
-			<product name="JPS0908-3" positions="2" format="jess" scrs="1280,1382,1484"/>
-			<product name="JRS0902-2+4" positions="2" format="jess" scrs="1280,1382"/>
-			<product name="JRS0904-2" positions="2" format="jess" scrs="1280,1382"/>
-			<product name="JPS1701-12" positions="4" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
-			<product name="JPS1702-12" positions="4" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
-			<product name="JPS1702-6" positions="4" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="JPS1704-3" positions="4" format="jess" scrs="1280,1382,1484"/>
-			<product name="JPS1704-6" positions="4" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
-			<product name="JPS1706-3" positions="4" format="jess" scrs="1280,1382,1484"/>
-			<product name="JPS1708-3" positions="4" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS0902-6(A/M/T)" positions="2" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="JPS0904-3(A/M/T)" positions="2" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS0904-6(M/T)" positions="2" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="JPS0906-3(A/M/T)" positions="2" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS0908-3(A/M/T)" positions="2" format="jess" scrs="1280,1382,1484"/>
+			<product name="JRS0902-2+4(T)" positions="2" format="jess" scrs="1280,1382"/>
+			<product name="JRS0904-2(A/T)" positions="2" format="jess" scrs="1280,1382"/>
+			<product name="JPS1701-12(AN/TN)" positions="4" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
+			<product name="JPS1702-12(AN/TN)" positions="4" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
+			<product name="JPS1702-6(A/M/T)" positions="4" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="JPS1704-3(A/M/T)" positions="4" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS1704-6(M/T)" positions="4" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
+			<product name="JPS1706-3(A/M/T)" positions="4" format="jess" scrs="1280,1382,1484"/>
+			<product name="JPS1708-3(A/M/T)" positions="4" format="jess" scrs="1280,1382,1484"/>
 			<product name="JPS1701-12 (EFGH)" positions="4" positionsoffset="4" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
 			<product name="JPS1702-12 (EFGH)" positions="4" positionsoffset="4" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
 			<product name="JPS1702-6 (EFGH)" positions="4" positionsoffset="4" format="jess" scrs="1280,1382,1484,1586,1688,1790"/>
@@ -228,38 +235,40 @@
 			<product name="EXR2942" positions="2" scrs="1284,1400,1516,1632"/>
 			<product name="EXR2981" positions="2" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 			<product name="EXU908" positions="2" scrs="1284,1400,1516,1632"/>
-			<product name="EXE 159" format="jess" scrs="974" permpin1="151,1076" permpin2="052,1178" permpin3="133,1280" permpin4="124,1382" permpin5="205,1484" permpin6="196,1586" permpin7="187,1688" permpin8="178,1790" permpin9="099"/>
-			<product name="EXE 259" format="jess" scrs="974" permpin1="151,1076" permpin2="052,1178" permpin3="133,1280" permpin4="124,1382" permpin5="205,1484" permpin6="196,1586" permpin7="187,1688" permpin8="178,1790" permpin9="099"/>
+			<product name="EXE 159" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="EXE 259" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="EXE 1512" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
+			<product name="EXE 2512" format="jess" scrs="974,1076,1178,1280,1382,1484,1586,1688,1790,1892,1994,2096"/>
 		</manufacturer>
 		<manufacturer name="Kreiling">
 			<product name="KR 2-1-2 Uni-D" positions="2" scrs="1400,1516"/>
-			<product name="KR 5-1+4" positions="1" scrs="1280,1382,1484,1586,1688,1790,1892,1994"/>
-			<product name="KR 5-2+4" positions="1" scrs="1280,1382,1484,1586"/>
-			<product name="KR 5-5-1-8" positions="1" scrs="1280,1382,1484,1586,1688,1790,1892,1994"/>
-			<product name="KR 5-5-2-4" positions="1" scrs="1280,1382,1484,1586"/>
+			<product name="KR 5-1+4" scrs="1280,1382,1484,1586,1688,1790,1892,1994"/>
+			<product name="KR 5-2+4" scrs="1280,1382,1484,1586"/>
+			<product name="KR 5-5-1-8" scrs="1280,1382,1484,1586,1688,1790,1892,1994"/>
+			<product name="KR 5-5-2-4" scrs="1280,1382,1484,1586"/>
 		</manufacturer>
 		<manufacturer name="LEM ELETTRONICA">
-			<product name="SC444" positions="1" scrs="1210,1420,1680,2040"/>
-			<product name="SCK54 (1/2/T)" positions="1" scrs="1210,1420,1680,2040"/>
-			<product name="SCK56 (1/2/T)" positions="1" scrs="0974,1076,1178,1280,1382,1484"/>
-			<product name="SCK58 (1/2/T)" positions="1" scrs="0974,1076,1178,1280,1382,1484,1586,1688"/>
+			<product name="SC444" scrs="1210,1420,1680,2040"/>
+			<product name="SCK54 (1/2/T)" scrs="1210,1420,1680,2040"/>
+			<product name="SCK56 (1/2/T)" scrs="0974,1076,1178,1280,1382,1484"/>
+			<product name="SCK58 (1/2/T)" scrs="0974,1076,1178,1280,1382,1484,1586,1688"/>
 			<product name="SCK94 (1/2/T)" positions="2" scrs="1210,1420,1680,2040"/>
 			<product name="SCK98 (1/T)" positions="2" scrs="0974,1076,1178,1280,1382,1484,1586,1688"/>
-			<product name="SCQ44 (4/8/T)" positions="1" scrs="1210,1420,1680,2040"/>
-			<product name="SCX44 (4/6/8)" positions="1" scrs="1210,1420,1680,2040"/>
-			<product name="SCX53 (4/6/8/T)" positions="1" scrs="1210,1420,1680"/>
-			<product name="SCX54 (4/6/8/T)" positions="1" scrs="1210,1420,1680,2040"/>
+			<product name="SCQ44 (4/8/T)" scrs="1210,1420,1680,2040"/>
+			<product name="SCX44 (4/6/8)" scrs="1210,1420,1680,2040"/>
+			<product name="SCX53 (4/6/8/T)" scrs="1210,1420,1680"/>
+			<product name="SCX54 (4/6/8/T)" scrs="1210,1420,1680,2040"/>
 			<product name="SCX94 (4/6/8/T)" positions="2" scrs="1210,1420,1680,2040"/>
 		</manufacturer>
 		<manufacturer name="Rogetech">
-			<product name="CMS-518C" positions="1" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="CMS-518C" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 		</manufacturer>
 		<manufacturer name="ROTEK">
 			<product name="EKL2/1" scrs="1400,1516"/>
 			<product name="EKL2/1E,1632,1748"/>
 		</manufacturer>
 		<manufacturer name="SetOne">
-			<product name="SCR 5/8" positions="1" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
+			<product name="SCR 5/8" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 		</manufacturer>
 		<manufacturer name="Smart">
 			<product name="DPA 51" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
@@ -283,9 +292,14 @@
 			<product name="SUS 5581 NFA Leg 3x3 1" format="UniSEqC" scrs="0974,1076,1178"/>
 			<product name="SUS 5581 NFA Leg 3x3 2" format="UniSEqC" scrs="1280,1382,1484"/>
 			<product name="SUS 5581 NFA Leg 3x3 3" format="UniSEqC" scrs="1586,1688,1790"/>
+			<product name="SUS 41 F" positions="4" format="jess" scrs="1076,1178,1280,1382"/>
+			<product name="SUS 41 F2" positions="4" scrs="1076,1178,1280,1382"/>
+			<product name="SUS 41 F3" positions="4" format="jess" scrs="1076,1178,1280,1382"/>
+			<product name="SUS 9942/8 NF Leg 2x4" positions="2" scrs="1076,1178,1280,1382"/>
 		</manufacturer>
 		<manufacturer name="Technisat">
 			<product name="TechniRouter Mini 2/1x2" positions="2" scrs="1284,1400" permpin1="111" permpin2="222"/>
+			<product name="TechniRouter 5/1x4" scrs="1210,1420,1680,2040"/>
 			<product name="TechniRouter 5/1x8" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 			<product name="TechniRouter 9/1x8" positions="2" scrs="1284,1400,1516,1632,1748,1864,1980,2096"/>
 			<product name="TechniRouter 5/2x4" scrs="1284,1400,1516,1632"/>
@@ -298,17 +312,17 @@
 			<product name="SCR 9/2x4" positions="2" scrs="1284,1400,1516,1632"/>
 		</manufacturer>
 		<manufacturer name="Triax">
-			<product name="TUM 518" positions="1" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
+			<product name="TUM 518" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
 			<product name="TUM 918" positions="2" scrs="1076,1178,1280,1382,1484,1586,1688,1790"/>
-			<product name="TUM 543C" format="jess" positions="1" scrs="1280,1382,1484"/>
-			<product name="TUM 583C" format="jess" positions="1" scrs="1280,1382,1484"/>
+			<product name="TUM 543C" format="jess" scrs="1280,1382,1484"/>
+			<product name="TUM 583C" format="jess" scrs="1280,1382,1484"/>
 			<product name="TUM 943C" format="jess" positions="2" scrs="1280,1382,1484"/>
 			<product name="TUM 983C" format="jess" positions="2" scrs="1280,1382,1484"/>
 			<product name="TUM 1743C" format="jess" positions="4" scrs="1280,1382,1484"/>
 			<product name="TUM 1783C" format="jess" positions="4" scrs="1280,1382,1484"/>
 		</manufacturer>
 		<manufacturer name="Unitron-Johansson">
-			<product name="9732" positions="1" format="dSRC" scrs="1210,1420,1680,2040,985,1050,1115,1275,1340,1485,1550,1615,1745,1810,1875,1940"/>
+			<product name="9732" format="dSRC" scrs="1210,1420,1680,2040,985,1050,1115,1275,1340,1485,1550,1615,1745,1810,1875,1940"/>
 		</manufacturer>
 		<manufacturer name="Wisi">
 			<product name="DY 64 1800" scrs="1178,1280,1382,1484,1586,1688,1790,1892"/>

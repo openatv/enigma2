@@ -283,6 +283,19 @@ void eStreamServer::stopStream()
 	}
 }
 
+bool eStreamServer::stopStreamClient(const std::string remotehost, const std::string serviceref)
+{
+	for (eSmartPtrList<eStreamClient>::iterator it = clients.begin(); it != clients.end(); ++it)
+	{
+		if(it->getRemoteHost() == remotehost && it->getServiceref() == serviceref)
+		{
+			it->stopStream();
+			return true;
+		}
+	}
+	return false;
+}
+
 PyObject *eStreamServer::getConnectedClients()
 {
 	ePyObject ret;
