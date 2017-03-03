@@ -36,6 +36,8 @@ class AboutBase(Screen):
 				"ok": self.close,
 			})
 
+		self.onClose.append(self.cleanup)
+
 	@staticmethod
 	def sizeStr(size, unknown=_("unavailable")):
 		if float(size) / 2 ** 20 >= 1:
@@ -82,6 +84,9 @@ class AboutBase(Screen):
 		l[AboutBase.ENT_HEADINFOLABEL:AboutBase.ENT_HEADINFO + 1] = label, info
 		return tuple(l)
 
+	def cleanup(self):
+		pass
+
 	def setBindings(self):
 		actionMap = eActionMap.getInstance()
 		actionMap.unbindNativeKey("ListboxActions", eListbox.moveUp)
@@ -116,6 +121,11 @@ class About(AboutBase):
 		about.getBootLoaderVersion(self.populate)
 
 	def populate(self, bootLoaderInfo):
+		# Check that About wasn't closed while the boot loader search
+		# ran
+		if "list" not in self:
+			return
+
 		self.list = []
 
 		self.list.append(self.makeHeadingInfoEntry(_("Model:"), "%s %s" % (getMachineBrand(), getMachineName())))
@@ -251,6 +261,9 @@ class Devices(AboutBase):
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.populate2)
 		self.populate()
+
+	def cleanup(self):
+		self.activityTimer.stop()
 
 	def mountInfo(self, name, mountpoint, kind, twoLines=False, indent=''):
 		if path.isdir(mountpoint):
@@ -593,7 +606,6 @@ class SystemNetworkInfo(AboutBase):
 				self.iStatus = iStatus
 			except:
 				pass
-			self.onClose.append(self.cleanup)
 
 	def getLinkState(self, ifaceName, iface):
 		return 'flags' in iface \
