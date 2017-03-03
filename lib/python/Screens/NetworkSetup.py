@@ -516,8 +516,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.default = None
 		self.primaryDNSEntry = None
 		self.secondaryDNSEntry = None
-		self.onlyWakeOnWiFi = None
-		self.WakeOnWiFiEntry = None
+		self.onlyWakeOnWiFi = False
+		self.WakeOnWiFiEntry = False
 
 		if iNetwork.isWirelessInterface(self.iface):
 			driver = iNetwork.detectWlanModule(self.iface)
@@ -615,7 +615,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				havewol = True
 			if getBoxType() in ('et10000' , 'vuultimo4k') and self.iface == 'eth0':
 				havewol = False
-			if havewol and self.onlyWakeOnWiFi.value != True:
+			if havewol and self.onlyWakeOnWiFi != True:
 				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
 
 			self.extended = None
