@@ -2,7 +2,6 @@
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/version.h>
 
-#include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/base/wrappers.h>
 #include <lib/dvb/cahandler.h>
@@ -262,45 +261,23 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 
 	pumpThread = 0;
 
-	char buffer[4*1024];
-	char* buf_pos;
-	ssize_t rd;
-	int fd;
-
 	int num_fe = 0;
-	
-	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
-
-	/* we need to know exactly what frontend is internal or initialized! */
-	fd = open("/proc/bus/nim_sockets", O_RDONLY);
-	if (fd < 0)
+	while (1)
 	{
-		eDebug("Cannot open /proc/bus/nim_sockets");
-		goto error;
+		/*
+		 * Some frontend devices might have been just created, if
+		 * they are virtual (vtuner) frontends.
+		 * In that case, we cannot be sure the devicenodes are available yet.
+		 * So it is safer to scan for sys entries, than for device nodes
+		 */
+		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb0.frontend%d", num_fe);
+		if (::access(filename, X_OK) < 0) break;
+		num_fe++;
 	}
-
-	rd = read(fd, buffer, sizeof(buffer));
-	if (rd < 0)
-	{
-		eDebug("Cannot read /proc/bus/nim_sockets");
-		goto error;
-	}
-
-	buf_pos = buffer;
-	while ((buf_pos = strstr(buf_pos, "Frontend_Device: ")) != NULL)
-	{
-		int num_fe_tmp;
-		if (sscanf(buf_pos, "Frontend_Device: %d", &num_fe_tmp) == 1)
-		{
-			if (num_fe_tmp > num_fe)
-				num_fe = num_fe_tmp;
-		}
-		buf_pos += 1;
-	}
-
-	num_fe++;
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter0/frontend%d", num_fe);
 	virtualFrontendName = filename;
+
+	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
 
 	/* find the device name */
 	snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/product", nr);
@@ -1653,6 +1630,7 @@ void eDVBChannel::cueSheetEvent(int event)
 // The / and * are done in order, resulting in a distinct integer
 // truncation after bitrate / 8 / 90000
 // I don't think that this is intended...
+// github.com/OpenViX/enigma2/commit/33d172b5a3ad1b22d69ce60c2102552537b77929
 //				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio / 8;
 				m_skipmode_frames = m_cue->m_skipmode_ratio / 90000;
 				m_skipmode_m = (bitrate / 8) * (m_skipmode_frames / 8);
@@ -2160,27 +2138,15 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 	m_source = source;
 	m_tstools.setSource(m_source, streaminfo_file);
 
-		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
-		   THEN DO A REAL FIX HERE! */
-
 	if (m_pvr_fd_dst < 0)
 	{
-		/* (this codepath needs to be improved anyway.) */
-#ifdef HAVE_OLDPVR
-		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
-		if (m_pvr_fd_dst < 0)
-		{
-			eDebug("[eDVBChannel] can't open /dev/misc/pvr: %m"); // or wait for the driver to be improved.
-			return -ENODEV;
-		}
-#else
 		ePtr<eDVBAllocatedDemux> &demux = m_demux ? m_demux : m_decoder_demux;
 		if (demux)
 		{
 			m_pvr_fd_dst = demux->get().openDVR(O_WRONLY);
 			if (m_pvr_fd_dst < 0)
 			{
-				eDebug("[eDVBChannel] can't open /dev/dvb/adapterX/dvrX: %m"); // or wait for the driver to be improved.
+				eDebug("[eDVBChannel] can't open /dev/dvb/adapterX/dvrX: %m");
 				return -ENODEV;
 			}
 		}
@@ -2189,7 +2155,6 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			eDebug("[eDVBChannel] no demux allocated yet.. so its not possible to open the dvr device!!");
 			return -ENODEV;
 		}
-#endif
 	}
 
 	m_pvr_thread = new eDVBChannelFilePush(m_source->getPacketSize());
