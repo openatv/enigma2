@@ -40,7 +40,7 @@ class StreamingClientsInfo(Screen):
 				"down": self["ScrollLabel"].pageDown
 			})
 
-		self.onLayoutFinish.append(self.update_info)
+		self.onLayoutFinish.append(self.start)
 
 	def exit(self):
 		self.stop()
@@ -49,6 +49,7 @@ class StreamingClientsInfo(Screen):
 	def start(self):
 		if self.update_info not in self.timer.callback:
 			self.timer.callback.append(self.update_info)
+		self.timer.startLongTimer(0)
 
 	def stop(self):
 		if self.update_info in self.timer.callback:
