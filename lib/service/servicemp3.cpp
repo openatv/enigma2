@@ -1383,7 +1383,8 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
-
+// todo :Check if amlogic stb's are always using gstreamer < 1
+// if not this procedure needs to be altered.
 #if HAVE_AMLOGIC
 	if ( (pos = get_pts_pcrscr()) > 0)
 		pos *= 11111LL;
@@ -1422,18 +1423,26 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		GstFormat fmt = GST_FORMAT_TIME;
 #if GST_VERSION_MAJOR < 1
 		if (!gst_element_query_position(m_gst_playbin, &fmt, &pos))
-#else
-		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
-#endif
 		{
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
 			return -1;
 		}
+#else
+		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
+		{
+			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
+			return -1;
+		}
+		else
+			pos = pos / 11111LL;
+#endif
 	}
 
 	/* pos is in nanoseconds. we have 90 000 pts per second. */
+#if GST_VERSION_MAJOR < 1
 	pts = pos / 11111LL;
-#if GST_VERSION_MAJOR >= 1
+#else
+	pts = pos;
 	m_last_seek_pos = pts;
 #endif
 	//eDebug("[eServiceMP3] current play pts = %" G_GINT64_FORMAT, pts);
