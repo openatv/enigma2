@@ -1178,7 +1178,7 @@ int eDVBFrontend::readFrontendData(int type)
 				int signalquality = 0;
 				int signalqualitydb = 0;
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
-				if (m_dvbversion >= DVB_VERSION(5, 10))
+				if (m_dvbversion >= DVB_VERSION(5, 10) && !strstr(m_description, "FTM-4862 (Availink AVL6862)") && !strstr(m_description, "Sundtek"))
 				{
 					dtv_property prop[1];
 					prop[0].cmd = DTV_STAT_CNR;
