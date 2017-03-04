@@ -15,6 +15,7 @@ dist_pkgdata_DATA = \
 	freesat.t2 \
 	unicable.xml \
 	hd-testcard.mvi \
+	iso-639-3.pck \
 	distro-logo.png
 
 if HAVE_TEXTLCD
@@ -60,3 +61,6 @@ endif
 if HAVE_BWLCD128
 SUBDIRS += vfd128
 endif
+
+iso-639-3.pck: $(srcdir)/iso-639-3.tab
+	python $(srcdir)/convert-iso-639-3.py $< $@

@@ -16,6 +16,7 @@ from enigma import iPlayableService, eTimer, eSize, eDVBDB, eServiceReference, e
 
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
+
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
@@ -78,6 +79,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.settings.menupage.addNotifier(self.fillList)
 
 	def fillList(self, arg=None):
+		from Tools.ISO639 import LanguageCodes
 		streams = []
 		conflist = []
 		selectedidx = 0
