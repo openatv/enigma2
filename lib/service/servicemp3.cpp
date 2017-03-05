@@ -497,8 +497,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_audiosink_not_running = false;
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
-	m_last_seek_pos = 0;
+	m_last_seek_pos = 0; /* CVR last seek position */
 	m_media_lenght = 0;
+	m_last_play_pos = 0;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -912,7 +913,22 @@ RESULT eServiceMP3::stop()
 {
 	if (!m_gst_playbin || m_state == stStopped)
 		return -1;
-
+#if GST_VERSION_MAJOR >= 1
+	/* hack for emc 1 concerning cuts file
+	 * This is a real hack , but required cause emc
+     * has a severe degradation in keeping resumepoints of a movie.
+	 * By standard InfoBarGenerics.py the resume position is saved into
+	 * /etc/enigma2/resumeponits.pkl file , this allows saving a movie
+	 * resumepoints for movies located in ro only location */
+	pts_t pts;
+	if (getPlayPosition(pts) >= 0)
+	{
+		/* it's usseles to save last 20 seconds */
+		if( pts <= (m_media_lenght - 1800000LL))
+			m_last_play_pos = pts;
+	}
+	eDebug("[serviceMP3] tempo cvr last playpostion = %" G_GINT64_FORMAT " media_lenght = %" G_GINT64_FORMAT, m_last_play_pos, m_media_lenght);
+#endif
 	eDebug("[eServiceMP3] stop %s", m_ref.path.c_str());
 	m_state = stStopped;
 
@@ -944,7 +960,6 @@ RESULT eServiceMP3::stop()
 RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr)
 {
 	ptr=this;
-	eDebug("[eServiceMP3] pause(ePtr<iPauseableService> &ptr)");
 	return 0;
 }
 
@@ -952,13 +967,13 @@ RESULT eServiceMP3::setSlowMotion(int ratio)
 {
 	if (!ratio)
 		return 0;
-	eDebug("[eServiceMP3] setSlowMotion ratio=%.1f",1.0/(gdouble)ratio);
+	eDebug("[eServiceMP3] setSlowMotion ratio=%f",1.0/(gdouble)ratio);
 	return trickSeek(1.0/(gdouble)ratio);
 }
 
 RESULT eServiceMP3::setFastForward(int ratio)
 {
-	eDebug("[eServiceMP3] setFastForward ratio=%.1f",(gdouble)ratio);
+	eDebug("[eServiceMP3] setFastForward ratio=%i",ratio);
 	return trickSeek(ratio);
 }
 
@@ -1031,7 +1046,7 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 
 RESULT eServiceMP3::seekToImpl(pts_t to)
 {
-	//eDebug("[eServiceMP3] seekToImpl pts_t to %" G_GINT64_FORMAT, (gint64)to);
+	eDebug("[eServiceMP3] seekToImpl(pts_t to)");
 		/* convert pts to nanoseconds */
 #if GST_VERSION_MAJOR < 1
 	gint64 time_nanoseconds = to * 11111LL;
@@ -1043,9 +1058,9 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		return -1;
 	}
 #else
-	m_last_seek_pos = to;
+	m_last_seek_pos = to * 11111LL;
 	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
-		GST_SEEK_TYPE_SET, (gint64)(m_last_seek_pos * 11111LL),
+		GST_SEEK_TYPE_SET, m_last_seek_pos,
 		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 	{
 		eDebug("[eServiceMP3] seekTo failed");
@@ -1057,16 +1072,14 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 	{
 		m_event((iPlayableService*)this, evUpdatedInfo);
 	}
-#if GST_VERSION_MAJOR >= 1
-	//eDebug("[eServiceMP3] seekToImpl DONE position %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
-#endif
+	eDebug("[eServiceMP3] seekToImpl(pts_t to) DONE");
 	return 0;
 }
 
 RESULT eServiceMP3::seekTo(pts_t to)
 {
 	RESULT ret = -1;
-	//eDebug("[eServiceMP3] seekTo(pts_t to)");
+	eDebug("[eServiceMP3] seekTo(pts_t to)");
 	if (m_gst_playbin)
 	{
 		m_prev_decoder_time = -1;
@@ -1082,27 +1095,16 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 {
 	if (!m_gst_playbin)
 		return -1;
-	//eDebug("[eServiceMP3] trickSeek %.1f", ratio);
+	eDebug("[eServiceMP3] trickSeek(gdouble ratio)");
 	GstState state, pending;
 	GstStateChangeReturn ret;
-	int pos_ret = -1;
 	pts_t pts;
 
 	if (ratio > -0.01 && ratio < 0.01)
 	{
-#if GST_VERSION_MAJOR >= 1
-		if(m_last_seek_pos > 0)
-		{
-			pts = m_last_seek_pos;
-			pos_ret = 1;
-		}
-		else
-			pos_ret = getPlayPosition(pts);
-#else
-		pos_ret = getPlayPosition(pts);
-#endif
+		int pos_ret = getPlayPosition(pts);
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
-		if ( pos_ret >= 0)
+		if (pos_ret >= 0)
 			seekTo(pts);
 		/* pipeline sometimes block due to audio track issue off gstreamer.
 		If the pipeline is blocked up on pending state change to paused ,
@@ -1177,24 +1179,11 @@ seek_unpause:
 
 	bool validposition = false;
 	gint64 pos = 0;
-#if GST_VERSION_MAJOR >= 1
-	if (m_last_seek_pos > 0)
-	{
-		validposition = true;
-		pos = m_last_seek_pos * 11111LL;
-	}
-	else if (getPlayPosition(pts) >= 0)
-	{
-		validposition = true;
-		pos = pts * 11111LL;
-	}
-#else
 	if (getPlayPosition(pts) >= 0)
 	{
 		validposition = true;
 		pos = pts * 11111LL;
 	}
-#endif
 
 	ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 	if (state != GST_STATE_PLAYING)
@@ -1242,31 +1231,13 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 	if (!m_gst_playbin)
 		return -1;
 
-	//eDebug("[eServiceMP3]  seekRelative direction %d, pts_t to %" G_GINT64_FORMAT, direction, (gint64)to);
+	eDebug("[eServiceMP3]  seekRelative(int direction, pts_t to)");
 	pts_t ppos;
-#if GST_VERSION_MAJOR >= 1
-	if (direction > 0 && m_last_seek_pos > 0)
-	{
-		ppos = m_last_seek_pos + to;
-		return seekTo(ppos);
-	}
-	else if (direction > 0)
-	{
-		if (getPlayPosition(ppos) < 0) return -1;
-		ppos += to;
-		return seekTo(ppos);
-	}
-	ppos = m_last_seek_pos - to;
-	if (ppos < 0)
-		ppos = 0;
-	return seekTo(ppos);
-#else
 	if (getPlayPosition(ppos) < 0) return -1;
 	ppos += to * direction;
 	if (ppos < 0)
 		ppos = 0;
 	return seekTo(ppos);
-#endif
 }
 
 #if GST_VERSION_MAJOR < 1
@@ -1383,8 +1354,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
-// todo :Check if amlogic stb's are always using gstreamer < 1
-// if not this procedure needs to be altered.
+
 #if HAVE_AMLOGIC
 	if ( (pos = get_pts_pcrscr()) > 0)
 		pos *= 11111LL;
@@ -1423,28 +1393,17 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		GstFormat fmt = GST_FORMAT_TIME;
 #if GST_VERSION_MAJOR < 1
 		if (!gst_element_query_position(m_gst_playbin, &fmt, &pos))
-		{
-			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
-			return -1;
-		}
 #else
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
+#endif
 		{
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
 			return -1;
 		}
-		else
-			pos = pos / 11111LL;
-#endif
 	}
 
 	/* pos is in nanoseconds. we have 90 000 pts per second. */
-#if GST_VERSION_MAJOR < 1
 	pts = pos / 11111LL;
-#else
-	pts = pos;
-	m_last_seek_pos = pts;
-#endif
 	//eDebug("[eServiceMP3] current play pts = %" G_GINT64_FORMAT, pts);
 	return 0;
 }
@@ -2172,7 +2131,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				if(dvb_subsink)
 				{
 					if (!gst_element_seek (dvb_subsink, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_ACCURATE),
-						GST_SEEK_TYPE_SET, (gint64)(m_last_seek_pos * 11111LL),
+						GST_SEEK_TYPE_SET, m_last_seek_pos,
 						GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 					{
 						eDebug("[eServiceMP3] seekToImpl subsink failed");
@@ -3334,7 +3293,6 @@ void eServiceMP3::loadCuesheet()
 	{
 		while (1)
 		{
-			pts_t where_pts;
 			unsigned long long where;
 			unsigned int what;
 
@@ -3343,27 +3301,13 @@ void eServiceMP3::loadCuesheet()
 			if (!fread(&what, sizeof(what), 1, f))
 				break;
 
-			where_pts = be64toh(where);
+			where = be64toh(where);
 			what = ntohl(what);
 
-			//if (what > 3)
-				//break;
-			if(what < 3 && m_cuesheet_changed == 2)
-			{
-				if (where_pts < m_media_lenght - 1800000)
-					m_cue_entries.insert(cueEntry(where_pts, what));
-			}
-			else if(what < 4 && m_cuesheet_changed != 2)
-			{
-				pts_t lenght_media = 0;
-				int res = getLength (lenght_media);
-				if (res >= 0 && where_pts < (lenght_media - 1800000))
-					m_cue_entries.insert(cueEntry(where_pts, what));
-				else
-					break;
-			}
-			else
+			if (what > 3)
 				break;
+
+			m_cue_entries.insert(cueEntry(where, what));
 		}
 		fclose(f);
 		eDebug("[eServiceMP3] cuts file has %zd entries", m_cue_entries.size());
@@ -3391,10 +3335,10 @@ void eServiceMP3::saveCuesheet()
 		if (stat(filename.c_str(), &s) == 0)
 		{
 			/* hack for emc 2 */
-			if (m_last_seek_pos > (m_media_lenght - 1800000))
+			if (m_last_play_pos > 0)
 			{
-				m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
-				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#"G_GINT64_MODIFIER "x", m_last_seek_pos);
+				m_cue_entries.insert(cueEntry(m_last_play_pos, 3));
+				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#"G_GINT64_MODIFIER "x", m_last_play_pos);
 			}
 			else
 			{
@@ -3414,15 +3358,12 @@ void eServiceMP3::saveCuesheet()
 		if (stat(filename.c_str(), &s) == 0 && m_cue_entries.size() == 0 && !m_sourceinfo.is_audio)
 		{
 			m_cuesheet_loaded = false;
-			m_cuesheet_changed = 2;
 			loadCuesheet();
-			if (m_cue_entries.size() == 0 && m_last_seek_pos > (m_media_lenght - 1800000))
+			if (m_cue_entries.size() == 0 && m_last_play_pos <= 0)
 			{			
 				removefile = true;
 				eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE NO LAST PLAY NO MANUAL CUTS***");
 			}
-			else if (m_last_seek_pos < (m_media_lenght - 1800000))
-				m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
 		}
 		else if (m_sourceinfo.is_audio)
 		{
