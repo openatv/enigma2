@@ -74,6 +74,9 @@ class ServiceInfo(AboutBase):
 		(_("Transmission mode"), "transmission_mode", TYPE_TEXT),
 		(_("Guard interval"), "guard_interval", TYPE_TEXT),
 		(_("Hierarchy info"), "hierarchy_information", TYPE_TEXT),
+		(_("Input stream ID"), "is_id", TYPE_TEXT),
+		(_("PLS mode"), "pls_mode", TYPE_TEXT),
+		(_("PLS code"), "pls_code", TYPE_TEXT),
 	)
 
 	def __init__(self, session, menu_path="", serviceref=None):

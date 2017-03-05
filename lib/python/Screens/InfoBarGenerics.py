@@ -1468,7 +1468,7 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBrandOEM() in ('skylake', 'xtrend', 'odin', 'dags' ,'gigablue', 'xp', 'ceryon', 'broadmedia', 'gfutures', 'xcore'):
+			if getBrandOEM() in ('formuler', 'skylake', 'xtrend', 'odin', 'dags' ,'gigablue', 'xp', 'ceryon', 'broadmedia', 'gfutures', 'xcore', 'octagon'):
 				self.openEventView()
 			else:
 				self.showDefaultInfoEPG()
@@ -2611,9 +2611,8 @@ class InfoBarExtensions:
 
 	def updateExtension(self, extension, key=None):
 		self.extensionsList.append(extension)
-		if key is not None:
-			if key in self.extensionKeys:
-				key = None
+		if key is not None and key in self.extensionKeys:
+			key = None
 
 		if key is None:
 			for x in self.availableKeys:

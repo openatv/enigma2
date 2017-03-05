@@ -143,7 +143,7 @@ def dump(d, p=""):
 			dump(val, p + "(dict)/" + entry)
 	if hasattr(d, "__dict__"):
 		for name, value in d.__dict__.items():
-			if not str(value) in had:
+			if str(value) not in had:
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
 			else:
@@ -670,7 +670,7 @@ Components.SetupDevices.InitSetupDevices()
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd3D()
+Screens.UserInterfacePositioner.InitOsd()
 
 profile("AVSwitch")
 import Components.AVSwitch
@@ -725,6 +725,10 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 
+profile("UserInterface")
+import Screens.UserInterfacePositioner
+Screens.UserInterfacePositioner.InitOsdPosition()
+
 profile("EpgCacheSched")
 import Components.EpgLoadSave
 Components.EpgLoadSave.EpgCacheSaveCheck()
@@ -740,10 +744,6 @@ Screens.Ci.InitCiConfig()
 
 profile("RcModel")
 import Components.RcModel
-
-profile("UserInterface")
-import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd()
 
 # from enigma import dump_malloc_stats
 # t = eTimer()

@@ -278,8 +278,11 @@ class Network:
 				self.wlan_interfaces.append(iface)
 		else:
 			if iface not in self.lan_interfaces:
-				name = _("LAN connection")
-				if len(self.lan_interfaces):
+				if iface == "eth1":
+					name = _("VLAN connection")
+				else:	
+					name = _("LAN connection")	
+				if len(self.lan_interfaces) and not iface == "eth1":
 					name += " " + str(len(self.lan_interfaces) + 1)
 				self.lan_interfaces.append(iface)
 		return name
@@ -324,9 +327,8 @@ class Network:
 			self.ifaces[iface][attribute] = value
 
 	def removeAdapterAttribute(self, iface, attribute):
-		if iface in self.ifaces:
-			if attribute in self.ifaces[iface]:
-				del self.ifaces[iface][attribute]
+		if iface in self.ifaces and attribute in self.ifaces[iface]:
+			del self.ifaces[iface][attribute]
 
 	def getNameserverList(self):
 		if len(self.nameservers) == 0:

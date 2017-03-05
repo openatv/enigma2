@@ -1,6 +1,5 @@
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
 from Components.ServiceList import refreshServiceList
-# from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
@@ -159,6 +158,9 @@ class ParentalControl:
 	def getProtectionLevel(self, service):
 		return service not in self.blacklist and -1 or 0
 
+	def isServiceProtectionBouquet(self, service):
+		return service in self.blacklist and TYPE_BOUQUETSERVICE in self.blacklist[service]
+
 	def getConfigValues(self):
 		# Read all values from configuration
 		self.checkPinInterval = False
@@ -261,7 +263,6 @@ class ParentalControl:
 	def readServicesFromBouquet(self, sBouquetSelection, formatstring):
 		# This method gives back a list of services for a given bouquet
 		from enigma import eServiceCenter, eServiceReference
-
 		serviceHandler = eServiceCenter.getInstance()
 		refstr = sBouquetSelection
 		root = eServiceReference(refstr)

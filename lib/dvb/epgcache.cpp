@@ -1217,9 +1217,18 @@ void eEPGCache::load()
 	}
 	else
 	{
-		unlink(EPGDATX);
-		renameResult = rename(EPGDAT, EPGDATX);
-		if (renameResult) eDebug("[EPGC] failed to rename %s to %s: %m", EPGDAT, EPGDATX);
+		// only write to epg.dat if this is enabled in enigma2 config
+		if (!eConfigManager::getConfigBoolValue("config.epg.cachesaveenabled", false))
+		{
+			renameResult = -1;
+			eDebug("[eEPGCache::load] writing to %s is disabled in enigma2 config", EPGDAT);
+		}
+		else
+		{
+			unlink(EPGDATX);
+			renameResult = rename(EPGDAT, EPGDATX);
+			if (renameResult) eDebug("[EPGC] failed to rename %s to %s: %m", EPGDAT, EPGDATX);
+		}
 	}
 	{
 		int size=0;
@@ -1329,6 +1338,12 @@ void eEPGCache::save()
 	eDebug("[EPGC] save()");
 #endif
 	const char* EPGDAT = m_filename.c_str();
+	// only write to epg.dat if this is enabled in enigma2 config
+	if (!eConfigManager::getConfigBoolValue("config.epg.cachesaveenabled", false))
+	{
+		eDebug("[eEPGCache::save] writing to epg.dat is disabled in enigma2 config");
+		return;
+	}
 	if (eventData::isCacheCorrupt)
 		return;
 	// only save epg.dat if it is not empty

@@ -642,7 +642,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
 				callFnc = p.__call__["ifaceSupported"](self.iface)
 				if callFnc is not None:
-					if "WlanPluginEntry" in p.__call__:  # internally used only for WLAN Plugin
+					if "WlanPluginEntry" in p.__call__: # internally used only for WLAN Plugin
 						self.extended = callFnc
 						if "configStrings" in p.__call__:
 							self.configStrings = p.__call__["configStrings"]
@@ -1048,7 +1048,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			callFnc = p.__call__["ifaceSupported"](self.iface)
 			if callFnc is not None:
 				self.extended = callFnc
-				if "WlanPluginEntry" in p.__call__:  # internally used only for WLAN Plugin
+				if "WlanPluginEntry" in p.__call__: # internally used only for WLAN Plugin
 					menu.append(SubNetworkMenuEntryComponent((_("Scan wireless networks")), "scanwlan"))
 					if iNetwork.getAdapterAttribute(self.iface, "up"):
 						menu.append(SubNetworkMenuEntryComponent((_("Show WLAN status")), "wlanstatus"))

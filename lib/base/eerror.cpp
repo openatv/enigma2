@@ -80,6 +80,7 @@ void DumpUnfreed()
 #endif
 
 int debugLvl = lvlDebug;
+static bool debugTime = false;
 
 static pthread_mutex_t DebugLock = PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 #define RINGBUFFER_SIZE 16384
@@ -145,7 +146,7 @@ void eDebugImpl(int flags, const char* fmt, ...)
 	struct timespec tp;
 	pid_t tid = syscall(SYS_gettid);
 
-	if (! (flags & _DBGFLG_NOTIME)) {
+	if (debugTime && !(flags & _DBGFLG_NOTIME)) {
 		clock_gettime(CLOCK_MONOTONIC, &tp);
 		pos = snprintf(buf, eDEBUG_BUFLEN, "{%d}<%6lu.%03lu> ", tid, tp.tv_sec, tp.tv_nsec/1000000);
 	}
@@ -165,7 +166,7 @@ void eDebugImpl(int flags, const char* fmt, ...)
 		// pos still contains size of timestring
 		// +2 for \0 and optional newline
 		buf = new char[pos + vsize + 2];
-		if (! (flags & _DBGFLG_NOTIME))
+		if (debugTime && !(flags & _DBGFLG_NOTIME))
 			pos = snprintf(buf, pos + vsize, "{%d}<%6lu.%03lu> ", tid, tp.tv_sec, tp.tv_nsec/1000000);
 		va_start(ap, fmt);
 		vsize = vsnprintf(buf + pos, vsize + 1, fmt, ap);
@@ -196,4 +197,9 @@ void ePythonOutput(const char *string, int lvl)
 	if (debugLvl >= lvl)
 		eDebugImpl(_DBGFLG_NONEWLINE, "%s", string);
 #endif
+}
+
+void setDebugTime(bool enable)
+{
+	debugTime = enable;
 }

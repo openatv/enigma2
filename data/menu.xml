@@ -95,6 +95,7 @@ InfoBar.instance.showMovies()
 				<item text="Manual scan" entryID="id_mainmenu_tasks_setup_tv_scan_manual">
 					<screen module="ScanSetup" />
 				</item>
+				<item text="Fallback configuration" entryID="fallback_setup"><setup id="fallback"/></item>
 			</menu>
 			<item weight="20" level="0" text="Recording settings" entryID="record_paths">
 				<screen module="Recordings" screen="RecordingSettings" />

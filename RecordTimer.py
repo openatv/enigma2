@@ -4,8 +4,7 @@ from time import localtime, strftime, ctime, time
 from bisect import insort
 from sys import maxint
 import os
-
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReferenceDVB, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
+from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReferenceDVB, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, eStreamServer
 
 from Components.config import config
 from Components import Harddisk
@@ -454,8 +453,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.next_activation = self.begin
 				self.backoff = 0
 				return True
-
 			self.log(7, "prepare failed")
+			if eStreamServer.getInstance().getConnectedClients():
+				eStreamServer.getInstance().stopStream()
+				return False
 			if self.first_try_prepare or (self.ts_dialog is not None and not self.checkingTimeshiftRunning()):
 				self.first_try_prepare = False
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
@@ -988,9 +989,6 @@ class RecordTimer(timer.Timer):
 		return isRunning
 
 	def loadTimer(self):
-		# TODO: PATH!
-		if not Directories.fileExists(self.Filename):
-			return
 		try:
 			f = open(self.Filename, 'r')
 			doc = xml.etree.cElementTree.parse(f)

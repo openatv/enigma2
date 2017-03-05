@@ -45,6 +45,14 @@ class MenuList(HTMLComponent, GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(idx)
 
+	def first(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.moveTop)
+
+	def last(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.moveEnd)
+
 	def pageUp(self):
 		if self.instance is not None:
 			self.instance.moveSelection(self.instance.pageUp)

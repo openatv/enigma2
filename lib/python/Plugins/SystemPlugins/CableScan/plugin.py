@@ -77,11 +77,6 @@ class CableScanStatus(Screen):
 		self["scan_progress"] = ProgressBar()
 		self["scan_state"] = Label(_("scan state"))
 
-		service = self.session.nav.getCurrentService()
-		self.prevservice = service and service.frontendInfo().getAll(True)["tuner_number"] == scanTuner and self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if self.prevservice:
-			self.session.nav.stopService()
-
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.ok,
@@ -93,17 +88,11 @@ class CableScanStatus(Screen):
 	def doServiceScan(self):
 		self["scan"] = CableScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.scanNetwork, self.scanFrequency, self.scanSymbolRate, self.scanModulation, self.keepNumbers, self.hdList)
 
-	def restoreService(self):
-		if self.prevservice:
-			self.session.nav.playService(self.prevservice)
-
 	def ok(self):
 		if self["scan"].isDone():
-			self.restoreService()
 			self.close()
 
 	def cancel(self):
-		self.restoreService()
 		self.close()
 
 config.plugins.CableScan = ConfigSubsection()
@@ -144,13 +133,10 @@ class CableScanScreen(ConfigListScreen, Screen):
 			"menu": self.closeRecursive,
 		}, -2)
 
-		nim_list = []
-		for x in nimlist:
-			nim_list.append((nimmanager.nim_slots[x].slot, nimmanager.nim_slots[x].friendly_full_description))
-		self.scan_nims = ConfigSelection(choices = nim_list)
+		self.nimlist = nimlist
+		self.prevservice = None
 
 		self.list = []
-		self.list.append(getConfigListEntry(_("Tuner"), self.scan_nims))
 		self.list.append(getConfigListEntry(_('Frequency'), config.plugins.CableScan.frequency))
 		self.list.append(getConfigListEntry(_('Symbol rate'), config.plugins.CableScan.symbolrate))
 		self.list.append(getConfigListEntry(_('Modulation'), config.plugins.CableScan.modulation))
@@ -164,7 +150,12 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self["config"].l.setList(self.list)
 		self["introduction"] = Label(_("Configure your network settings, and press OK to start the scan"))
 
+	def restoreService(self):
+		if self.prevservice:
+			self.session.nav.playService(self.prevservice)
+
 	def keySave(self):
+		self.restoreService()
 		config.plugins.CableScan.save()
 		self.close()
 
@@ -172,13 +163,33 @@ class CableScanScreen(ConfigListScreen, Screen):
 		config.plugins.CableScan.save()
 		self.startScan()
 
+	def getFreeTuner(self):
+		dvbc_tuners_mask = sum([2**int(x) for x in self.nimlist])
+		freeTunerMask = dvbc_tuners_mask - (self.session.screen["TunerInfo"].tuner_use_mask & dvbc_tuners_mask)
+		if not freeTunerMask:
+			service = self.session.nav.getCurrentService()
+			if service:
+				tunedTunerMask = 2**service.frontendInfo().getAll(True)["tuner_number"]
+				recordingMask = sum([2**int(x) for x in [recording.frontendInfo().getAll(True)["tuner_number"] for recording in self.session.nav.getRecordings()]])
+				if not(tunedTunerMask & recordingMask):
+					self.prevservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					self.session.nav.stopService()
+					freeTunerMask = tunedTunerMask
+		import math
+		self.freeTuner = freeTunerMask and int(math.log(freeTunerMask, 2))
+		return freeTunerMask > 0
+
 	def startScan(self):
-		if int(self.scan_nims.value) in [recording.frontendInfo().getAll(True)["tuner_number"] for recording in self.session.nav.getRecordings()]:
-			self.session.open(MessageBox, _("A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."), type=MessageBox.TYPE_ERROR)
+		if self.getFreeTuner():
+			self.session.open(CableScanStatus, scanTuner=self.freeTuner, scanNetwork=config.plugins.CableScan.networkid.value, scanFrequency=config.plugins.CableScan.frequency.floatint, scanSymbolRate=config.plugins.CableScan.symbolrate.value * 1000, scanModulation=int(config.plugins.CableScan.modulation.value), keepNumbers=config.plugins.CableScan.keepnumbering.value, hdList=config.plugins.CableScan.hdlist.value)
 		else:
-			self.session.open(CableScanStatus, scanTuner=int(self.scan_nims.value), scanNetwork=config.plugins.CableScan.networkid.value, scanFrequency=config.plugins.CableScan.frequency.floatint, scanSymbolRate=config.plugins.CableScan.symbolrate.value * 1000, scanModulation=int(config.plugins.CableScan.modulation.value), keepNumbers=config.plugins.CableScan.keepnumbering.value, hdList=config.plugins.CableScan.hdlist.value)
+			self.session.open(MessageBox, _("A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."), type=MessageBox.TYPE_ERROR)
 
 	def keyCancel(self):
+		self.restoreService()
+		if self["config"].isChanged():
+			for x in self["config"].list:
+				x[1].cancel()
 		self.close()
 
 class CableScanAutoScreen(CableScanScreen):
@@ -194,10 +205,14 @@ class CableScanAutoScreen(CableScanScreen):
 		}, -1)
 
 		self.onClose.append(self.__onClose)
+		self.nimlist = nimlist
 
 		self.scan = eCableScan(config.plugins.CableScan.networkid.value, config.plugins.CableScan.frequency.floatint, config.plugins.CableScan.symbolrate.value * 1000, int(config.plugins.CableScan.modulation.value), config.plugins.CableScan.keepnumbering.value, config.plugins.CableScan.hdlist.value)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
-		self.scan.start(int(nimlist[0]))
+		if self.getFreeTuner():
+			self.scan.start(self.freeTuner)
+		else:
+			close(False)
 
 	def __onClose(self):
 		if self.scan:

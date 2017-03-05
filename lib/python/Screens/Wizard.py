@@ -505,7 +505,7 @@ class Wizard(Screen):
 		exec (self.wizard[self.currStep]["condition"])
 		if not self.condition:
 			# print "keys*******************:", self.wizard[self.currStep].keys()
-			if "laststep" in self.wizard[self.currStep]:  # exit wizard, if condition of laststep doesn't hold
+			if "laststep" in self.wizard[self.currStep]: # exit wizard, if condition of laststep doesn't hold
 				self.markDone()
 				self.exit()
 				return
@@ -661,7 +661,7 @@ class Wizard(Screen):
 				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(True)
 					self["VKeyIcon"].boolean = True
-				if "VKeyIcon" in self:
+				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint

@@ -26,10 +26,11 @@ protected:
 
 	std::string request;
 
-	void streamStopped();
-	void tuneFailed();
+	void streamStopped() { stopStream(); }
+	void tuneFailed() { stopStream(); }
 
 public:
+	void stopStream();
 	eStreamClient(eStreamServer *handler, int socket, const std::string remotehost);
 	~eStreamClient();
 
@@ -62,6 +63,8 @@ public:
 #endif
 
 	static eStreamServer *getInstance();
+	void stopStream();
+	bool stopStreamClient(const std::string remotehost, const std::string serviceref);
 	PyObject *getConnectedClients();
 };
 

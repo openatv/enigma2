@@ -90,7 +90,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("Loop through from")
 			if self.nim.isFBCLink():
-				choices = { "nothing": _("FBC automatic"), "advanced": _("FBC SCR (Unicable or JESS)")}
+				choices = { "nothing": _("FBC automatic"), "advanced": _("FBC SCR (Unicable/JESS)")}
 			self.nimConfig.configMode.setChoices(choices, self.nim.isFBCLink() and "nothing" or "simple")
 
 	def createSetup(self):
