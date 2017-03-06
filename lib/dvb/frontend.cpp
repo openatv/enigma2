@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-
+#include <stdio.h>
 #include <sstream>
 
 #ifndef I2C_SLAVE_FORCE
@@ -613,6 +613,82 @@ void eDVBFrontend::reopenFrontend()
 	openFrontend();
 }
 
+int eDVBFrontend::initModeList()
+{
+	int fd;
+	char buffer[4*1024];
+	int rd;
+	char id1[256];
+	char* buf_pos;
+	char* buf_pos2;
+	char system[10];
+	int mode;
+
+	fd = open("/proc/bus/nim_sockets", O_RDONLY);
+	if (fd < 0)
+	{
+		eDebug("Cannot open /proc/bus/nim_sockets");
+		return -1;
+	}
+	rd = read(fd, buffer, sizeof(buffer));
+	close(fd);
+	if (rd < 0)
+	{
+		eDebug("Cannot read /proc/bus/nim_sockets");
+		return -1;
+	}
+	buf_pos = buffer;
+
+	snprintf(id1, sizeof(id1), "NIM Socket %d", m_slotid);
+
+	buf_pos = strstr(buf_pos, id1);
+	buf_pos2 = strstr(buf_pos+sizeof(id1), "NIM Socket");
+
+	while ((buf_pos = strstr(buf_pos, "Mode ")) != NULL)
+	{
+		int num_fe_tmp;
+		if (sscanf(buf_pos, "Mode %d:%s", &mode, system) == 2)
+		{
+			if(buf_pos2 && buf_pos >= buf_pos2)
+				break;
+			eDebug("[adenin]content of line:  mode:%d system:<%s>", mode, system);
+			for (char *p=system ; *p; p++) *p = toupper(*p);
+			if (!strcmp(system, "DVB-C") || !strcmp(system, "DVB-C2"))
+			{
+				eDebug("[adenin] add mode %d to DVB-C",mode);
+#ifdef SYS_DVBC_ANNEX_A
+				m_modelist[SYS_DVBC_ANNEX_A] = mode;
+				m_modelist[SYS_DVBC_ANNEX_C] = mode;
+#else
+				m_modelist[SYS_DVBC_ANNEX_AC] = mode;
+#endif
+				m_modelist[SYS_DVBC_ANNEX_B] = mode;
+			}
+			else if (!strcmp(system, "DVB-S") || !strcmp(system, "DVB-S2"))
+			{
+				eDebug("[adenin] add mode %d to DVB-S",mode);
+				m_modelist[SYS_DVBS] = mode;
+				m_modelist[SYS_DVBS2] = mode;
+			}
+			else if (!strcmp(system, "DVB-T") || !strcmp(system, "DVB-T2"))
+			{
+				eDebug("[adenin] add mode %d to DVB-T",mode);
+				m_modelist[SYS_DVBT] = mode;
+				m_modelist[SYS_DVBT2] = mode;
+			}
+			else if (!strcmp(system, "ATSC"))
+			{
+				eDebug("[adenin] add mode %d to ATSC",mode);
+				m_modelist[SYS_ATSC] = mode;
+			}
+			else
+				eDebug("error: frontend %d unsupported delivery system %s", m_slotid, system);
+		}
+		buf_pos += 1;
+	}
+	return 0;
+}
+
 int eDVBFrontend::openFrontend()
 {
 	if (m_state != stateClosed)
@@ -621,63 +697,8 @@ int eDVBFrontend::openFrontend()
 	m_state=stateIdle;
 	m_tuning=0;
 
-	{
-		CFile f("/proc/bus/nim_sockets", "r");
-		if (!f)
-			eDebug("Cannot open /proc/bus/nim_sockets");
-		else
-		{
-			int nim_socket = -1;
-			size_t line_size = 0;
-			int mode = -1;
-			char system[256];
-			char *line = NULL;
-			m_modelist.clear();
-			while (getline(&line, &line_size, f) != -1)
-			{
-				if (sscanf(line, "NIM Socket %d", &nim_socket) == 1)
-				{
-				}
-				if (nim_socket == m_slotid)
-				{
-					mode = -1;
-					if (sscanf(line, "%*[ \t]Mode %d:%s", &mode, system) == 2)
-					{
-						for (char *p=system ; *p; ++p) *p = toupper(*p);
-						if (!strcmp(system, "DVB-C") || !strcmp(system, "DVB-C2"))
-						{
-#ifdef SYS_DVBC_ANNEX_A
-							m_modelist[SYS_DVBC_ANNEX_A] = mode;
-							m_modelist[SYS_DVBC_ANNEX_C] = mode;
-#else
-							m_modelist[SYS_DVBC_ANNEX_AC] = mode;
-#endif
-							m_modelist[SYS_DVBC_ANNEX_B] = mode;
-						}
-						else if (!strcmp(system, "DVB-S") || !strcmp(system, "DVB-S2"))
-						{
-							m_modelist[SYS_DVBS] = mode;
-							m_modelist[SYS_DVBS2] = mode;
-						}
-						else if (!strcmp(system, "DVB-T") || !strcmp(system, "DVB-T2"))
-						{
-							m_modelist[SYS_DVBT] = mode;
-							m_modelist[SYS_DVBT2] = mode;
-						}
-						else if (!strcmp(system, "ATSC"))
-						{
-							m_modelist[SYS_ATSC] = mode;
-						}
-						else
-							eDebug("error: frontend %d unsupported delivery system %s", m_slotid, system);
-					}
-				}
-				free(line);
-				line = NULL;
-				line_size = 0;
-			}
-		}
-	}
+	if(initModeList())
+		eDebug("Error: initModelist");
 
 	if (!m_simulate)
 	{
@@ -2498,8 +2519,8 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 				case eDVBFrontendParametersTerrestrial::System_DVB_T2: system = SYS_DVBT2; break;
 			}
 
-			char configStr[255];
-			snprintf(configStr, 255, "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
+			char configStr[256];
+			snprintf(configStr, sizeof(configStr), "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
 			//if (eConfigManager::getConfigBoolValue(configStr))
 			//	p[cmdseq.num].cmd = DTV_LNA, p[cmdseq.num].u.data = 1, cmdseq.num++;
 			//else
@@ -3035,8 +3056,8 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 		m_sec_sequence.push_back(eSecCommand(eSecCommand::CHANGE_TUNER_TYPE, type));
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
-		char configStr[255];
-		snprintf(configStr, 255, "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
+		char configStr[256];
+		snprintf(configStr, sizeof(configStr), "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
 		if (eConfigManager::getConfigBoolValue(configStr))
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
@@ -3428,12 +3449,20 @@ bool eDVBFrontend::changeType(int type)
 #endif
 		case feTerrestrial:
 		{
+			char configStr[255];
+			snprintf(configStr, 255, "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
+			if (eConfigManager::getConfigBoolValue(configStr))
+				 setVoltage(iDVBFrontend::voltage13);
+			else
+				 setVoltage(iDVBFrontend::voltageOff);
+
 			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBT]);
 			p[1].u.data = SYS_DVBT;
 			break;
 		}
 		case feCable:
 		{
+			 setVoltage(iDVBFrontend::voltageOff);
 #ifdef SYS_DVBC_ANNEX_A
 			snprintf(mode, sizeof(mode), "%d", m_modelist[SYS_DVBC_ANNEX_A]);
 			p[1].u.data = SYS_DVBC_ANNEX_A;
@@ -3457,12 +3486,13 @@ bool eDVBFrontend::changeType(int type)
 	eDebug("data %d",p[1].u.data );
 	if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) == -1)
 	{
-		eDebug("FE_SET_PROPERTY failed %m, -> use procfs to switch delivery system");
+		eDebug("FE_SET_PROPERTY failed %m, -> use procfs to switch delivery system tuner %d mode %s",m_slotid ,mode);
 		closeFrontend();
 		char filename[256];
 		snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
 		CFile::writeStr(filename, mode);
 		reopenFrontend();
+		m_type = type;
 		return true;
 	}
 	else

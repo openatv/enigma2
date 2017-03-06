@@ -202,6 +202,7 @@ public:
 	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist, bool append=false);
 	bool setDeliverySystem(fe_delivery_system_t delsys);
 
+	int initModeList();
 	void reopenFrontend();
 	int openFrontend();
 	int closeFrontend(bool force=false, bool no_delayed=false);
@@ -210,7 +211,7 @@ public:
 	const dvb_frontend_info getFrontendInfo() const { return fe_info; }
 	const dvb_frontend_info getFrontendInfo(fe_delivery_system_t delsys)  { return m_fe_info[delsys]; }
 	bool is_FBCTuner() { return m_fbc; }
-	bool setFBCTuner(bool enable) { m_fbc = enable; }
+	void setFBCTuner(bool enable) { m_fbc = enable; }
 	bool getEnabled() { return m_enabled; }
 	void setEnabled(bool enable) { m_enabled = enable; }
 	bool is_multistream();
