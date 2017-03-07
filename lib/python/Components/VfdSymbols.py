@@ -66,7 +66,7 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_circle", "w").write("3")
 			else:
 				open("/proc/stb/lcd/symbol_circle", "w").write("0")
-		elif getBoxType() in ('mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038'):
+		elif getBoxType() in ('alphatriple','mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038'):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			if recordings > 0:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
