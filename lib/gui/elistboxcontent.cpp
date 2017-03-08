@@ -191,7 +191,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	{
 		if (local_style->m_background && cursorValid)
 		{
-			if (validitem) painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHABLEND);
+			if (validitem) painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHATEST);
 		}
 		else if (selected && !local_style->m_selection)
 			painter.clear();
@@ -212,7 +212,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 
 		if (selected && local_style && local_style->m_selection) {
-			painter.blit(local_style->m_selection, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_selection->size().height()) / 2), eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_selection->size().height()) / 2), eRect(), gPainter::BT_ALPHATEST);
 		}
 
 		if (item == Py_None)
@@ -371,7 +371,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	} else
 	{
 		if (local_style->m_background && cursorValid)
-			painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHATEST);
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
@@ -384,7 +384,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		painter.setFont(fnt);
 
 		if (selected && local_style && local_style->m_selection) {
-			painter.blit(local_style->m_selection, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_selection->size().height()) / 2), eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, ePoint(offset.x(), offset.y() + (m_itemsize.height() - local_style->m_selection->size().height()) / 2), eRect(), gPainter::BT_ALPHATEST);
 		}
 
 			/* the first tuple element is a string for the left side.
@@ -621,7 +621,7 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 		if (local_style->m_background && cursorValid)
 		{
 			if (local_style->m_transparent_background)
-				painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHABLEND);
+				painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHATEST);
 			else
 				painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_background->size().height()) / 2), eRect(), 0);
 			return;
@@ -647,7 +647,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 		if (local_style->m_background && cursorValid)
 		{
 			if (local_style->m_transparent_background)
-				painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHABLEND);
+				painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_background->size().height()) / 2), eRect(), gPainter::BT_ALPHATEST);
 			else
 				painter.blit(local_style->m_background, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_background->size().height()) / 2), eRect(), 0);
 			return;
@@ -685,7 +685,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 		style.setStyle(painter, eWindowStyle::styleListboxSelected);
 		clearRegionSelectedHelper(painter, local_style, offset, size, pbackColorSelected, cursorValid, clear);
 		if (local_style && local_style->m_selection) {
-			painter.blit(local_style->m_selection, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_selection->size().height()) / 2), eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, ePoint(offset.x(), offset.y() + (size.height() - local_style->m_selection->size().height()) / 2), eRect(), gPainter::BT_ALPHATEST);
 		}
 	}
 	else
