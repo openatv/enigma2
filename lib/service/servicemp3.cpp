@@ -1243,23 +1243,42 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 		return -1;
 
 	//eDebug("[eServiceMP3]  seekRelative direction %d, pts_t to %" G_GINT64_FORMAT, direction, (gint64)to);
-	pts_t ppos;
+	gint64 ppos = 0;
 #if GST_VERSION_MAJOR >= 1
-	if (direction > 0 && m_last_seek_pos > 0)
+	if (direction > 0)
 	{
-		ppos = m_last_seek_pos + to;
-		return seekTo(ppos);
+		if (m_last_seek_pos > 0)
+		{
+			ppos = m_last_seek_pos + to;
+			return seekTo(ppos);
+		}
+		else
+		{
+			if (getPlayPosition(ppos) < 0)
+				return -1;
+			ppos += to;
+			return seekTo(ppos);
+		}
 	}
-	else if (direction > 0)
+	else
 	{
-		if (getPlayPosition(ppos) < 0) return -1;
-		ppos += to;
-		return seekTo(ppos);
+		if (m_last_seek_pos > 0)
+		{
+			ppos = m_last_seek_pos - to;
+			if (ppos < 0)
+				ppos = 0;
+			return seekTo(ppos);
+		}
+		else
+		{
+			if (getPlayPosition(ppos) < 0)
+				return -1;
+			ppos -= to;
+			if (ppos < 0)
+				ppos = 0;
+			return seekTo(ppos);
+		}
 	}
-	ppos = m_last_seek_pos - to;
-	if (ppos < 0)
-		ppos = 0;
-	return seekTo(ppos);
 #else
 	if (getPlayPosition(ppos) < 0) return -1;
 	ppos += to * direction;
@@ -1442,8 +1461,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 #if GST_VERSION_MAJOR < 1
 	pts = pos / 11111LL;
 #else
-	pts = pos;
-	m_last_seek_pos = pts;
+	pts = m_last_seek_pos = pos;
 #endif
 	//eDebug("[eServiceMP3] current play pts = %" G_GINT64_FORMAT, pts);
 	return 0;
