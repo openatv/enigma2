@@ -499,6 +499,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
+	m_play_position_timer = eTimer::create(eApp);
+	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
+	m_use_last_seek = false;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -816,6 +819,9 @@ eServiceMP3::~eServiceMP3()
 		m_ref.name.clear();
 #if GST_VERSION_MAJOR >= 1
 		m_media_lenght = 0;
+		m_play_position_timer->stop();
+		m_last_seek_pos = 0;
+		m_use_last_seek = false;
 #endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
@@ -940,6 +946,14 @@ RESULT eServiceMP3::stop()
 
 	return 0;
 }
+
+#if GST_VERSION_MAJOR >= 1
+void eServiceMP3::playPositionTiming()
+{
+	//eDebug("[eServiceMP3] ***** USE IOCTL POSITION ******");
+	m_use_last_seek = false;
+}
+#endif
 
 RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr)
 {
@@ -1402,6 +1416,21 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
+#if GST_VERSION_MAJOR >= 1
+	// allow only one ioctl call per second
+	// in case of seek procedure ,
+	if(!m_use_last_seek)
+	{
+		//eDebug("[eServiceMP3] ** WE START USE LAST SEEK TIMER");
+		m_use_last_seek = true;
+		m_play_position_timer->start(1000, true);
+	}
+	else
+	{
+		pts = m_last_seek_pos;
+		return 0;
+	}
+#endif
 // todo :Check if amlogic stb's are always using gstreamer < 1
 // if not this procedure needs to be altered.
 #if HAVE_AMLOGIC
@@ -1447,6 +1476,8 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			return -1;
 		}
 #else
+		if(m_paused && m_last_seek_pos > 0)
+			pts = m_last_seek_pos;
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
 		{
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
