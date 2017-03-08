@@ -1,5 +1,6 @@
 from Source import Source
 from Components.Element import cached
+from enigma import eListbox
 
 class List(Source, object):
 	"""The datasource of a listbox. Currently, the format depends on the used converter. So
@@ -9,7 +10,7 @@ setup the "fonts".
 
 This has been done so another converter could convert the list to a different format, for example
 to generate HTML."""
-	def __init__(self, list=None, enableWrapAround=False, item_height=25, fonts=None):
+	def __init__(self, list=None, enableWrapAround=None, item_height=25, fonts=None):
 		if not list: list = []
 		if not fonts: fonts = []
 		Source.__init__(self)
@@ -18,7 +19,9 @@ to generate HTML."""
 		self.item_height = item_height
 		self.fonts = fonts
 		self.disable_callbacks = False
-		self.enableWrapAround = enableWrapAround
+		if enableWrapAround is not None:
+			print "[List] Setting enableWrapAround no longer supported. Use the skin settings instead."
+		self.enableWrapAround = None
 		self.__style = "default" # style might be an optional string which can be used to define different visualisations in the skin
 
 	def setList(self, list):
@@ -73,20 +76,10 @@ to generate HTML."""
 	index = property(getIndex, setIndex)
 
 	def selectNext(self):
-		if self.getIndex() + 1 >= self.count():
-			if self.enableWrapAround:
-				self.index = 0
-		else:
-			self.index += 1
-		self.setIndex(self.index)
+		self.move(eListbox.moveDown)
 
 	def selectPrevious(self):
-		if self.getIndex() - 1 < 0:
-			if self.enableWrapAround:
-				self.index = self.count() - 1
-		else:
-			self.index -= 1
-		self.setIndex(self.index)
+		self.move(eListbox.moveUp)
 
 	@cached
 	def getStyle(self):
@@ -118,23 +111,15 @@ to generate HTML."""
 
 	selectionEnabled = property(getSelectionEnabled, setSelectionEnabled)
 
+	def move(self, direction):
+		if self.master is not None:
+			self.master.move(direction)
+
 	def pageUp(self):
-		if self.getIndex() == 0:
-			self.index = self.count() - 1
-		elif self.getIndex() - 10 < 0:
-			self.index = 0
-		else:
-			self.index -= 10
-		self.setIndex(self.index)
+		self.move(eListbox.pageUp)
 
 	def pageDown(self):
-		if self.getIndex() == self.count() - 1:
-			self.index = 0
-		elif self.getIndex() + 10 >= self.count():
-			self.index = self.count() - 1
-		else:
-			self.index += 10
-		self.setIndex(self.index)
+		self.move(eListbox.pageDown)
 
 	def up(self):
 		self.selectPrevious()

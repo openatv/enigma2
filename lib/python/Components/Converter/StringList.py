@@ -40,6 +40,10 @@ class StringList(Converter):
 
 	index = property(getIndex, setIndex)
 
+	def move(self, direction):
+		if self.master is not None:
+			self.master.move(direction)
+
 	def entry_changed(self, index):
 		if self.content:
 			self.content.invalidateEntry(index)
