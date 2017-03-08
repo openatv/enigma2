@@ -1097,32 +1097,17 @@ class EPGSelection(Screen, HelpableScreen):
 			return
 		eventid = event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
-		eventBegin = event.getBeginTime()
-		eventDuration = event.getDuration()
-		x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
-		eventstart = foundtimer = title = None
+		foundtimer = title = None
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-				if timer.eit == eventid:
-					foundtimer = timer
-					break
-				elif x and x[1] in (2,7,12):
-					if not eventstart:
-						tmp = localtime(eventBegin)
-						eventstart = int(str(tmp.tm_hour) + str(tmp.tm_min).zfill(2))
-						eventdate = str(tmp.tm_year) + str(tmp.tm_mon) + str(tmp.tm_mday)
-						tmp = localtime(eventBegin + eventDuration)
-						eventend = int(str(tmp.tm_hour) + str(tmp.tm_min).zfill(2))
-					tmp = localtime(timer.begin)
-					timerstart = int(str(tmp.tm_hour) + str(tmp.tm_min).zfill(2))
-					timerdate = str(tmp.tm_year) + str(tmp.tm_mon) + str(tmp.tm_mday)
-					tmp = localtime(timer.end)
-					timerend = int(str(tmp.tm_hour) + str(tmp.tm_min).zfill(2))
-					if eventstart >= timerstart and 2400 - eventend >= 2400 - timerend:
-						if not timer.repeated and eventdate == timerdate:
-							foundtimer = timer
-						elif timer.repeated:
-							foundtimer = timer
+			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and timer.eit == eventid:
+				foundtimer = timer
+				break
+		else:
+			eventBegin = event.getBeginTime()
+			eventDuration = event.getDuration()
+			x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr, True)
+			if x and x[1] in (2,7,12):
+				foundtimer = x[3]
 
 		if foundtimer:
 			timer = foundtimer
@@ -1385,14 +1370,17 @@ class EPGSelection(Screen, HelpableScreen):
 		serviceref = cur[1]
 		eventid = event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
-		eventBegin = event.getBeginTime()
-		eventDuration = event.getDuration()
-		x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and (timer.eit == eventid or (x and x[1] in (2,7,12))):
+			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and timer.eit == eventid:
 				isRecordEvent = True
 				break
+		else:
+			eventBegin = event.getBeginTime()
+			eventDuration = event.getDuration()
+			x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
+			if x and x[1] in (2,7,12):
+				isRecordEvent = True
 
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
 			self.setTimerButtonText(_("Change timer"))

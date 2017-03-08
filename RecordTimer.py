@@ -1311,7 +1311,7 @@ class RecordTimer(timer.Timer):
 			self.saveTimer()
 		return None
 
-	def isInTimer(self, eventid, begin, duration, service):
+	def isInTimer(self, eventid, begin, duration, service, getTimer = False):
 		returnValue = None
 		type = 0
 		time_match = 0
@@ -1471,7 +1471,10 @@ class RecordTimer(timer.Timer):
 							type = type_offset + 2
 
 				if time_match:
-					returnValue = (time_match, type, isAutoTimer)
+					if getTimer:
+						returnValue = (time_match, type, isAutoTimer, x)
+					else:
+						returnValue = (time_match, type, isAutoTimer)
 					if type in (2,7,12): # when full recording do not look further
 						break
 		return returnValue
