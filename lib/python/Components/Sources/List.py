@@ -11,18 +11,20 @@ setup the "fonts".
 This has been done so another converter could convert the list to a different format, for example
 to generate HTML."""
 	def __init__(self, list=None, enableWrapAround=None, item_height=25, fonts=None):
-		if not list: list = []
-		if not fonts: fonts = []
+		if not list:
+			list = []
+		if not fonts:
+			fonts = []
 		Source.__init__(self)
 		self.__list = list
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 		self.item_height = item_height
 		self.fonts = fonts
 		self.disable_callbacks = False
 		if enableWrapAround is not None:
 			print "[List] Setting enableWrapAround no longer supported. Use the skin settings instead."
 		self.enableWrapAround = None
-		self.__style = "default" # style might be an optional string which can be used to define different visualisations in the skin
+		self.__style = "default"  # style might be an optional string which can be used to define different visualisations in the skin
 
 	def setList(self, list):
 		self.__list = list
@@ -123,7 +125,7 @@ to generate HTML."""
 
 	def up(self):
 		self.selectPrevious()
-		
+
 	def down(self):
 		self.selectNext()
 
