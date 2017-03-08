@@ -317,7 +317,7 @@ private:
 #if GST_VERSION_MAJOR >= 1
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */
-	pts_t m_last_seek_pos;
+	gint64 m_last_seek_pos;
 	pts_t m_media_lenght;
 	ePtr<eTimer> m_play_position_timer;
 	void playPositionTiming();
