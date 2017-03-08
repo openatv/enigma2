@@ -445,6 +445,8 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			if getBoxType() in ('dm900'):
 				standby_default = 4
+			elif getBoxType() in ('spycat4kmini', 'osmega'):
+				standby_default = 10
 			else:
 				standby_default = 1
 
@@ -452,6 +454,10 @@ def InitLcd():
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
+		elif getBoxType() in ('spycat4kmini', 'osmega'):
+			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
+			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
+			config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
 		else:
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
