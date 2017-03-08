@@ -499,6 +499,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
+	m_play_position_timer = eTimer::create(eApp);
+	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
+	m_use_last_seek = false;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -816,6 +819,9 @@ eServiceMP3::~eServiceMP3()
 		m_ref.name.clear();
 #if GST_VERSION_MAJOR >= 1
 		m_media_lenght = 0;
+		m_play_position_timer->stop();
+		m_last_seek_pos = 0;
+		m_use_last_seek = false;
 #endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
@@ -940,6 +946,14 @@ RESULT eServiceMP3::stop()
 
 	return 0;
 }
+
+#if GST_VERSION_MAJOR >= 1
+void eServiceMP3::playPositionTiming()
+{
+	//eDebug("[eServiceMP3] ***** USE IOCTL POSITION ******");
+	m_use_last_seek = false;
+}
+#endif
 
 RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr)
 {
@@ -1243,23 +1257,42 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 		return -1;
 
 	//eDebug("[eServiceMP3]  seekRelative direction %d, pts_t to %" G_GINT64_FORMAT, direction, (gint64)to);
-	pts_t ppos;
+	gint64 ppos = 0;
 #if GST_VERSION_MAJOR >= 1
-	if (direction > 0 && m_last_seek_pos > 0)
+	if (direction > 0)
 	{
-		ppos = m_last_seek_pos + to;
-		return seekTo(ppos);
+		if (m_last_seek_pos > 0)
+		{
+			ppos = m_last_seek_pos + to;
+			return seekTo(ppos);
+		}
+		else
+		{
+			if (getPlayPosition(ppos) < 0)
+				return -1;
+			ppos += to;
+			return seekTo(ppos);
+		}
 	}
-	else if (direction > 0)
+	else
 	{
-		if (getPlayPosition(ppos) < 0) return -1;
-		ppos += to;
-		return seekTo(ppos);
+		if (m_last_seek_pos > 0)
+		{
+			ppos = m_last_seek_pos - to;
+			if (ppos < 0)
+				ppos = 0;
+			return seekTo(ppos);
+		}
+		else
+		{
+			if (getPlayPosition(ppos) < 0)
+				return -1;
+			ppos -= to;
+			if (ppos < 0)
+				ppos = 0;
+			return seekTo(ppos);
+		}
 	}
-	ppos = m_last_seek_pos - to;
-	if (ppos < 0)
-		ppos = 0;
-	return seekTo(ppos);
 #else
 	if (getPlayPosition(ppos) < 0) return -1;
 	ppos += to * direction;
@@ -1378,11 +1411,26 @@ unsigned int eServiceMP3::get_pts_pcrscr(void)
 #endif
 RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 {
-	gint64 pos;
-	pts = 0;
+	gint64 pos = 0;
 
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
+#if GST_VERSION_MAJOR >= 1
+	// allow only one ioctl call per second
+	// in case of seek procedure , the position
+	// is updated by the seektoImpl function.
+	if(!m_use_last_seek)
+	{
+		//eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
+		m_use_last_seek = true;
+		m_play_position_timer->start(1000, true);
+	}
+	else
+	{
+		pts = m_last_seek_pos;
+		return 0;
+	}
+#endif
 // todo :Check if amlogic stb's are always using gstreamer < 1
 // if not this procedure needs to be altered.
 #if HAVE_AMLOGIC
@@ -1428,13 +1476,18 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			return -1;
 		}
 #else
+		if(m_paused && m_last_seek_pos > 0)
+		{
+			pts = m_last_seek_pos;
+			return 0;
+		}
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
 		{
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
 			return -1;
 		}
 		else
-			pos = pos / 11111LL;
+			pos;
 #endif
 	}
 
@@ -1442,8 +1495,8 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 #if GST_VERSION_MAJOR < 1
 	pts = pos / 11111LL;
 #else
-	pts = pos;
-	m_last_seek_pos = pts;
+	m_last_seek_pos = pos / 11111LL;
+	pts = m_last_seek_pos;
 #endif
 	//eDebug("[eServiceMP3] current play pts = %" G_GINT64_FORMAT, pts);
 	return 0;
