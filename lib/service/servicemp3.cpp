@@ -1418,10 +1418,11 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		return -1;
 #if GST_VERSION_MAJOR >= 1
 	// allow only one ioctl call per second
-	// in case of seek procedure ,
+	// in case of seek procedure , the position
+	// is updated by the seektoImpl function.
 	if(!m_use_last_seek)
 	{
-		//eDebug("[eServiceMP3] ** WE START USE LAST SEEK TIMER");
+		//eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
 		m_use_last_seek = true;
 		m_play_position_timer->start(1000, true);
 	}
@@ -1477,7 +1478,10 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		}
 #else
 		if(m_paused && m_last_seek_pos > 0)
+		{
 			pts = m_last_seek_pos;
+			return 0;
+		}
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
 		{
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
