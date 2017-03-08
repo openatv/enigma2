@@ -218,6 +218,23 @@ def resolveFilename(scope, base = "", path_prefix = None):
 pathExists = os.path.exists
 isMount = os.path.ismount
 
+def bestRecordingLocation(candidates):
+	path = ''
+	biggest = 0
+	for candidate in candidates:
+		try:
+			stat = os.statvfs(candidate[1])
+			# must have some free space (i.e. not read-only)
+			if stat.f_bavail:
+				# Free space counts double
+				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
+				if size > biggest:
+					path = candidate[1]
+					biggest = size
+		except Exception, e:
+			print "[DRL]", e
+	return path
+
 def defaultRecordingLocation(candidate=None):
 	if candidate and os.path.exists(candidate):
 		return candidate
@@ -231,20 +248,11 @@ def defaultRecordingLocation(candidate=None):
 		# Find the largest local disk
 		from Components import Harddisk
 		mounts = [m for m in Harddisk.getProcMounts() if m[1].startswith('/media/')]
-		biggest = 0
-		havelocal = False
-		for candidate in mounts:
-			try:
-				islocal = candidate[1].startswith('/dev/') # Good enough
-				stat = os.statvfs(candidate[1])
-				# Free space counts double
-				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
-				if (islocal and not havelocal) or ((islocal or not havelocal) and size > biggest):
-					path = candidate[1]
-					havelocal = islocal
-					biggest = size
-			except Exception, e:
-				print "[DRL]", e
+		# Search local devices first, use the larger one
+		path = bestRecordingLocation([m for m in mounts if m[0].startswith('/dev/')])
+		# If we haven't found a viable candidate yet, try remote mounts
+		if not path:
+			path = bestRecordingLocation(mounts)
 	if path:
 		# If there's a movie subdir, we'd probably want to use that.
 		movie = os.path.join(path, 'movie')

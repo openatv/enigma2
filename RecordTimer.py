@@ -4,7 +4,7 @@ from time import localtime, strftime, ctime, time
 from bisect import insort
 from sys import maxint
 import os
-from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
+from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, eServiceCenter
 
 from Components.config import config
 from Components import Harddisk

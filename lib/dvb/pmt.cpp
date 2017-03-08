@@ -813,7 +813,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 {
 	RESULT res=0;
 	m_reference = ref;
-	m_use_decode_demux = use_decode_demux;
+	m_use_decode_demux = (use_decode_demux || descramble);
 	m_no_pat_entry_delay->stop();
 	m_service_type = type;
 
