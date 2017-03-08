@@ -19,7 +19,6 @@ to generate HTML."""
 		self.fonts = fonts
 		self.disable_callbacks = False
 		self.enableWrapAround = enableWrapAround
-		self.__selectionEnabled = False
 		self.__style = "default" # style might be an optional string which can be used to define different visualisations in the skin
 
 	def setList(self, list):
@@ -109,12 +108,15 @@ to generate HTML."""
 		self.index = old_index
 		self.disable_callbacks = False
 
+	@cached
+	def getSelectionEnabled(self):
+		return self.master and self.master.selectionEnabled
+
 	def setSelectionEnabled(self, enabled):
-		self.__selection_enabled = enabled
 		if self.master is not None:
 			self.master.setSelectionEnabled(enabled)
 
-	selectionEnabled = property(lambda self: self.__selectionEnabled, setSelectionEnabled)
+	selectionEnabled = property(getSelectionEnabled, setSelectionEnabled)
 
 	def pageUp(self):
 		if self.getIndex() == 0:
