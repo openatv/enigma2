@@ -369,6 +369,7 @@ void eHdmiCEC::hdmiEvent(int what)
 		{
 			bool keypressed = false;
 			static unsigned char pressedkey = 0;
+			static unsigned int data_idx = 0;
 
 			eDebugNoNewLineStart("eHdmiCEC: received message");
 			for (int i = 0; i < rxmessage.length; i++)
@@ -379,11 +380,12 @@ void eHdmiCEC::hdmiEvent(int what)
 			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
 			if (hdmicec_report_active_menu)
 			{
-				switch (rxmessage.data[0])
+				data_idx = getPressedIndex(rxmessage);
+				switch (rxmessage.data[data_idx])
 				{
 					case 0x44: /* key pressed */
 						keypressed = true;
-						pressedkey = rxmessage.data[1];
+						pressedkey = rxmessage.data[data_idx+1];
 					case 0x45: /* key released */
 					{
 						long code = translateKey(pressedkey);
@@ -396,7 +398,7 @@ void eHdmiCEC::hdmiEvent(int what)
 					}
 				}
 			}
-			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[0], (char*)&rxmessage.data[1], rxmessage.length);
+			ePtr<iCECMessage> msg = new eCECMessage(rxmessage.address, rxmessage.data[data_idx], (char*)&rxmessage.data[data_idx+1], rxmessage.length);
 			messageReceived(msg);
 		}
 	}
@@ -512,13 +514,54 @@ long eHdmiCEC::translateKey(unsigned char code)
 		case 0x74:
 			key = 0x190;
 			break;
+		case 0x40:		/* KEY_POWER */
+			key = 0x74;
+			break;
+		case 0x11:		/* KEY_DVD_MENU */
+			key = 0x8b;
+			break;
+		case 0x10:		/* KEY_TOP_MENU */
+			key = 0x16d;
+			break;
+		case 0x0a:		/* KEY_SETUP */
+			key = 0x8d;
+			break;
+		case 0x33:		/* KEY_SOUND */
+			key = 0xd5;
+			break;
+		case 0x35:		/* KEY_INFO */
+			key = 0x166;
+			break;
+		case 0x4a:		/* KEY_EJECTCD */
+			key = 0x172;
+			break;
+		case 0x0b:		/* KEY_CONTEXT_MENU */
+			key = 0x1b6;
+			break;
 		default:
 			key = 0x8b;
 			break;
 	}
 	return key;
 }
-
+int eHdmiCEC::getPressedIndex(rxmessage)
+{
+	for (int i = 0; i < rxmessage.length; i++)
+	{
+		if(rxmessage.data[i] == 0x44)
+		{
+			idx = i;
+			break;
+		}
+		
+		if(rxmessage.data[i] == 0x45)
+		{
+			idx = i;
+			break;
+		}
+	}
+	return idx;
+}
 void eHdmiCEC::sendMessage(struct cec_message &message)
 {
 	if (hdmiFd >= 0)
