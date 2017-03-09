@@ -846,6 +846,41 @@ static inline uint32_t fe_udiv(uint32_t a, uint32_t b)
 	return (a + b / 2) / b;
 }
 
+void eDVBFrontend::calculateSignalPercentage(int signalqualitydb, int &signalquality)
+{
+	int maxdb; // assume 100% as 2/3 of maximum dB
+	int type = -1;
+	oparm.getSystem(type);
+	switch (type)
+	{
+		case feSatellite:
+			maxdb = 1500;
+			break;
+		case feCable:
+			maxdb = 2800;
+			break;
+		case feTerrestrial:
+			maxdb = 1900;
+			break;
+		case feATSC:
+		{
+			eDVBFrontendParametersATSC parm = {0};
+			oparm.getATSC(parm);
+			switch (parm.modulation)
+			{
+				case eDVBFrontendParametersATSC::Modulation_VSB_8:
+					maxdb = 1900;
+					break;
+				default:
+					maxdb = 2800;
+					break;
+			}
+			break;
+		}
+	}
+	signalquality = (signalqualitydb >= maxdb ? 65535 : signalqualitydb * 65535 / maxdb);
+}
+
 void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb)
 {
 	int sat_max = 1600; // for stv0288 / bsbe2
@@ -1206,18 +1241,27 @@ int eDVBFrontend::readFrontendData(int type)
 					{
 						for(unsigned int i=0; i<prop[0].u.st.len; i++)
 						{
-							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL &&
-								type == iFrontendInformation_ENUMS::signalQualitydB)
+							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL)
 							{
 								signalqualitydb = prop[0].u.st.stat[i].svalue / 10;
-								return signalqualitydb;
 							}
-							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE &&
-								type == iFrontendInformation_ENUMS::signalQuality)
+							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
 							{
 								signalquality = prop[0].u.st.stat[i].svalue;
-								return signalquality;
 							}
+						}
+						if (signalqualitydb)
+						{
+							if(type == iFrontendInformation_ENUMS::signalQualitydB)
+							{
+								return signalqualitydb;
+							}
+							if(!signalquality)
+							{
+								/* provide an estimated percentage when drivers lack this info */
+								calculateSignalPercentage(signalqualitydb, signalquality);
+							}
+							return signalquality;
 						}
 					}
 				}
