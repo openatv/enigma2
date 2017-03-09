@@ -1115,6 +1115,18 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		}
 		ret = snr * 10;
 	}
+	else if (!strcmp(m_description, "FTM-4862 (Availink AVL6862)")) // Osmega /S2/T2/C
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feSatellite:
+				ret = (snr + 2300) / 11.5;
+				sat_max = 1550;
+				break;
+		}
+	}
 
 	signalqualitydb = ret;
 	if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
