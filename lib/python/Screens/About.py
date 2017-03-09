@@ -2,7 +2,7 @@ from os import path, listdir, stat
 from re import match
 
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageType, getImageBuild, getImageDevBuild, getDriverDate
-from enigma import eTimer, getEnigmaVersionString, gFont, eActionMap, eListbox
+from enigma import eTimer, getEnigmaVersionString, gFont
 from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.Harddisk import Partition, harddiskmanager, getProcMounts, getPartitionNames
@@ -27,14 +27,14 @@ class AboutBase(Screen):
 		self.list = []
 		self["list"] = List(self.list)
 
-		self.setBindings()
-
 		self["actions"] = ActionMap(
-			["SetupActions", "ColorActions"],
+			["SetupActions", "DirectionActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
-			})
+				"up": self.pageUp,
+				"down": self.pageDown,
+			}, prio=-1)
 
 		self.onClose.append(self.cleanup)
 
@@ -87,27 +87,13 @@ class AboutBase(Screen):
 	def cleanup(self):
 		pass
 
-	def setBindings(self):
-		actionMap = eActionMap.getInstance()
-		actionMap.unbindNativeKey("ListboxActions", eListbox.moveUp)
-		actionMap.unbindNativeKey("ListboxActions", eListbox.moveDown)
-		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_UP"], 5, "ListboxActions", "pageUp")
-		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_DOWN"], 5, "ListboxActions", "pageDown")
-		self.onClose.append(self.restoreBindings)
+	def pageUp(self):
+		if "list" in self:
+			self["list"].pageUp()
 
-	def restoreBindings(self):
-		# After setBindings(), both KEY_UP and KEY_LEFT are bound to
-		# pageUp, and KEY_DOWN, KEY_RIGHT are bound to pageDown,
-		# so all four are unbound by the unbindNativeKey()s here
-		# and all must be rebound to their defaults
-
-		actionMap = eActionMap.getInstance()
-		actionMap.unbindNativeKey("ListboxActions", eListbox.pageUp)
-		actionMap.unbindNativeKey("ListboxActions", eListbox.pageDown)
-		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_UP"], 5, "ListboxActions", "moveUp")
-		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_DOWN"], 5, "ListboxActions", "moveDown")
-		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_LEFT"], 5, "ListboxActions", "pageUp")
-		actionMap.bindKey("keymap.xml", "generic", KEYIDS["KEY_RIGHT"], 5, "ListboxActions", "pageDown")
+	def pageDown(self):
+		if "list" in self:
+			self["list"].pageDown()
 
 
 class About(AboutBase):
