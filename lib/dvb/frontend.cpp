@@ -1132,7 +1132,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 40.5);
 		sat_max = 1900;
 	}
-	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
+	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX") || !strcmp(m_description, "TechniSat USB device"))
 	{
 		ret = (snr * 2000) / 0xFFFF;
 		sat_max = 2000;
