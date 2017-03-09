@@ -100,6 +100,15 @@ def getAboutText():
 
 	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 
+	iface = "eth0"
+	eth0 = about.getIfConfig('eth0')
+	if eth0.has_key('addr'):
+		AboutText += _("LAN IP:") + "\t\t" + eth0['addr'] + "\n"
+
+	wlan0 = about.getIfConfig('wlan0')
+	if wlan0.has_key('addr'):
+		AboutText += _("WLAN IP:") + "\t\t" + wlan0['addr'] + "\n"
+
 	fp_version = getFPVersion()
 	if fp_version is None:
 		fp_version = ""
@@ -123,6 +132,7 @@ def getAboutText():
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
 		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+
 
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
