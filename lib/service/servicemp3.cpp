@@ -3027,9 +3027,10 @@ void eServiceMP3::pushSubtitles()
 	if (m_decoder_time_valid_state < 4)
 	{
 		m_decoder_time_valid_state++;
-
+#if GST_VERSION_MAJOR < 1
 		if (m_prev_decoder_time == running_pts && !m_paused)
 			m_decoder_time_valid_state = 1;
+#endif
 
 		if (m_decoder_time_valid_state < 4)
 		{
