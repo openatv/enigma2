@@ -309,7 +309,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 	</menu>
 	<menu weight="20" level="0" entryID="mainmenu_tasks_power" text="Power / Restart" endtext="&gt;&lt;">
 		<id val="shutdown" default=" "/>
-		<item level="0" text="Sleep Timer" entryID="mainmenu_tasks_power_sleeptimer">
+		<item level="0" text="Power Timers" entryID="mainmenu_tasks_power_sleeptimer">
 			<screen module="PowerTimerEdit" screen="PowerTimerEditList" />
 		</item>
 		<item level="0" text="Standby" entryID="mainmenu_tasks_power_standby" endtext=" ">
