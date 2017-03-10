@@ -322,6 +322,7 @@ private:
 	ePtr<eTimer> m_play_position_timer;
 	void playPositionTiming();
 	bool m_use_last_seek;
+	bool m_seeking_or_paused;
 #endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;

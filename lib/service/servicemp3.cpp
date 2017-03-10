@@ -502,6 +502,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
 	m_use_last_seek = false;
+	m_seeking_or_paused = false;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -822,6 +823,7 @@ eServiceMP3::~eServiceMP3()
 		m_play_position_timer->stop();
 		m_last_seek_pos = 0;
 		m_use_last_seek = false;
+		m_seeking_or_paused = false;
 #endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
@@ -1066,13 +1068,15 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		return -1;
 	}
 #endif
-
 	if (m_paused)
 	{
 		m_event((iPlayableService*)this, evUpdatedInfo);
+		
 	}
 #if GST_VERSION_MAJOR >= 1
 	//eDebug("[eServiceMP3] seekToImpl DONE position %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
+	if (!m_paused)
+		m_seeking_or_paused = false;
 #endif
 	return 0;
 }
@@ -1085,6 +1089,7 @@ RESULT eServiceMP3::seekTo(pts_t to)
 	{
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
+		m_seeking_or_paused = true;
 		ret = seekToImpl(to);
 	}
 
@@ -1116,6 +1121,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		pos_ret = getPlayPosition(pts);
 #endif
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+#if GST_VERSION_MAJOR >= 1
+		m_seeking_or_paused = true;
+#endif
 		if ( pos_ret >= 0)
 			seekTo(pts);
 		/* pipeline sometimes block due to audio track issue off gstreamer.
@@ -1177,6 +1185,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 				gst_element_state_get_name(state),
 				gst_element_state_get_name(pending),
 				gst_element_state_change_return_get_name(ret));
+#if GST_VERSION_MAJOR >= 1
+			m_seeking_or_paused = false;
+#endif
 			return 0;
 		}
 		else
@@ -1218,6 +1229,9 @@ seek_unpause:
 				gst_element_state_get_name(pending),
 				gst_element_state_change_return_get_name(ret));
 		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+#if GST_VERSION_MAJOR >= 1
+		m_seeking_or_paused = false;
+#endif
 	}
 
 	if (validposition)
@@ -1259,6 +1273,7 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 	//eDebug("[eServiceMP3]  seekRelative direction %d, pts_t to %" G_GINT64_FORMAT, direction, (gint64)to);
 	gint64 ppos = 0;
 #if GST_VERSION_MAJOR >= 1
+	m_seeking_or_paused = true;
 	if (direction > 0)
 	{
 		if (m_last_seek_pos > 0)
@@ -1427,7 +1442,10 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	}
 	else
 	{
-		pts = m_last_seek_pos;
+		if (m_paused || m_seeking_or_paused)
+			pts = m_last_seek_pos;
+		else
+			pts = m_last_seek_pos + 9000;
 		return 0;
 	}
 #endif
