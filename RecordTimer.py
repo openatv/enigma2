@@ -580,7 +580,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and Screens.Standby.inStandby and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
 				self.keypress()  # This unbinds the keypress detection
 				if not Screens.Standby.inStandby:  # Not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[RecordTimer] Recording or Recording due is next 15 mins, not return to deepstandby'
@@ -596,7 +596,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if int(ClientsStreaming("NUMBER").getText()) > 0:
 					if not Screens.Standby.inStandby: # not already in standby
 						Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox,
-							 _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
+							 _("A finished record timer wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName())
 							 + _("\n(DeepStandby request changed to Standby owing to there being streaming clients.)"), timeout = 180)
 					return True
 #
@@ -604,7 +604,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					if Screens.Standby.inStandby:  # In standby
 						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout=180)
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			return True
 
 	def _zapToTimerService(self):
