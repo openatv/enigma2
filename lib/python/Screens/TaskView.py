@@ -9,7 +9,7 @@ from Tools import Notifications
 from boxbranding import getMachineBrand, getMachineName
 
 class JobView(InfoBarNotifications, Screen, ConfigListScreen):
-	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True, afterEventChangeable = True , afterEvent="nothing"):
+	def __init__(self, session, job, parent=None, cancelable=True, backgroundable=True, afterEventChangeable=True, afterEvent="nothing"):
 		from Components.Sources.StaticText import StaticText
 		from Components.Sources.Progress import Progress
 		from Components.Sources.Boolean import Boolean
@@ -39,8 +39,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		self.onShow.append(self.windowShow)
 		self.onHide.append(self.windowHide)
 
-		self["setupActions"] = ActionMap(["ColorActions", "SetupActions"],
-		{
+		self["setupActions"] = ActionMap(["ColorActions", "SetupActions"], {
 			"green": self.ok,
 			"red": self.abort,
 			"blue": self.background,
@@ -53,7 +52,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 			shutdownString = _("go to deep standby")
 		else:
 			shutdownString = _("shut down")
-		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default = self.job.afterEvent or "nothing")
+		self.settings.afterEvent = ConfigSelection(choices=[("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default=self.job.afterEvent or "nothing")
 		self.job.afterEvent = self.settings.afterEvent.value
 		self.afterEventChangeable = afterEventChangeable
 		self.setupList()
@@ -61,7 +60,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 
 	def setupList(self):
 		if self.afterEventChangeable:
-			self["config"].setList( [ getConfigListEntry(_("After event"), self.settings.afterEvent) ])
+			self["config"].setList([getConfigListEntry(_("After event"), self.settings.afterEvent)])
 		else:
 			self["config"].hide()
 		self.job.afterEvent = self.settings.afterEvent.value
@@ -89,7 +88,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		self["summary_job_progress"].range = j.end
 		self["job_progress"].value = j.progress
 		self["summary_job_progress"].value = j.progress
-		#print "JobView::state_changed:", j.end, j.progress
+		# print "JobView::state_changed:", j.end, j.progress
 		self["job_status"].text = j.getStatustext()
 		if j.status == j.IN_PROGRESS:
 			self["job_task"].text = j.tasks[j.current_task].name
@@ -120,7 +119,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		if self.job.status == self.job.NOT_STARTED:
 			job_manager.active_jobs.remove(self.job)
 			self.close(False)
-		elif self.job.status == self.job.IN_PROGRESS and self["cancelable"].boolean == True:
+		elif self.job.status == self.job.IN_PROGRESS and self["cancelable"].boolean:
 			self.job.cancel()
 		else:
 			self.close(False)
@@ -134,10 +133,10 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		from Screens.MessageBox import MessageBox
 		if self.settings.afterEvent.value == "deepstandby":
 			if not Screens.Standby.inTryQuitMainloop:
-				Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A completed task wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout = 20)
+				Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A completed task wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout=20)
 		elif self.settings.afterEvent.value == "standby":
 			if not Screens.Standby.inStandby:
-				Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A completed task wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName()), timeout = 20)
+				Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A completed task wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName()), timeout=20)
 
 	def checkNotifications(self):
 		InfoBarNotifications.checkNotifications(self)
