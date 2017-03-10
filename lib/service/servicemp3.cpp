@@ -1445,7 +1445,10 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		if (m_paused || m_seeking_or_paused)
 			pts = m_last_seek_pos;
 		else
-			pts = m_last_seek_pos + 9000;
+		{
+			m_last_seek_pos += 9000;
+			pts = m_last_seek_pos;
+		}
 		return 0;
 	}
 #endif
