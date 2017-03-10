@@ -3015,7 +3015,7 @@ void eServiceMP3::pushSubtitles()
 	// wait until clock is stable.
 #if GST_VERSION_MAJOR >= 1
 	running_pts = m_last_seek_pos;
-	if (m_prev_decoder_time == running_pts)
+	if (m_decoder_time_valid_state == 0)
 		m_decoder_time_valid_state = 2;
 	else
 		m_decoder_time_valid_state = 4;
