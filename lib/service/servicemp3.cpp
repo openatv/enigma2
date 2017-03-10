@@ -502,6 +502,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
 	m_use_last_seek = false;
+	m_seeking_or_paused = false;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -822,6 +823,7 @@ eServiceMP3::~eServiceMP3()
 		m_play_position_timer->stop();
 		m_last_seek_pos = 0;
 		m_use_last_seek = false;
+		m_seeking_or_paused = false;
 #endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
@@ -1066,13 +1068,15 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		return -1;
 	}
 #endif
-
 	if (m_paused)
 	{
 		m_event((iPlayableService*)this, evUpdatedInfo);
+		
 	}
 #if GST_VERSION_MAJOR >= 1
 	//eDebug("[eServiceMP3] seekToImpl DONE position %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
+	if (!m_paused)
+		m_seeking_or_paused = false;
 #endif
 	return 0;
 }
@@ -1085,6 +1089,7 @@ RESULT eServiceMP3::seekTo(pts_t to)
 	{
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
+		m_seeking_or_paused = true;
 		ret = seekToImpl(to);
 	}
 
@@ -1116,6 +1121,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		pos_ret = getPlayPosition(pts);
 #endif
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+#if GST_VERSION_MAJOR >= 1
+		m_seeking_or_paused = true;
+#endif
 		if ( pos_ret >= 0)
 			seekTo(pts);
 		/* pipeline sometimes block due to audio track issue off gstreamer.
@@ -1177,6 +1185,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 				gst_element_state_get_name(state),
 				gst_element_state_get_name(pending),
 				gst_element_state_change_return_get_name(ret));
+#if GST_VERSION_MAJOR >= 1
+			m_seeking_or_paused = false;
+#endif
 			return 0;
 		}
 		else
@@ -1218,6 +1229,9 @@ seek_unpause:
 				gst_element_state_get_name(pending),
 				gst_element_state_change_return_get_name(ret));
 		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+#if GST_VERSION_MAJOR >= 1
+		m_seeking_or_paused = false;
+#endif
 	}
 
 	if (validposition)
@@ -1259,6 +1273,7 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 	//eDebug("[eServiceMP3]  seekRelative direction %d, pts_t to %" G_GINT64_FORMAT, direction, (gint64)to);
 	gint64 ppos = 0;
 #if GST_VERSION_MAJOR >= 1
+	m_seeking_or_paused = true;
 	if (direction > 0)
 	{
 		if (m_last_seek_pos > 0)
@@ -1427,7 +1442,13 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	}
 	else
 	{
-		pts = m_last_seek_pos;
+		if (m_paused || m_seeking_or_paused)
+			pts = m_last_seek_pos;
+		else
+		{
+			m_last_seek_pos += 9000;
+			pts = m_last_seek_pos;
+		}
 		return 0;
 	}
 #endif
@@ -1486,8 +1507,6 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
 			return -1;
 		}
-		else
-			pos;
 #endif
 	}
 
@@ -2619,18 +2638,16 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 						if (y == 0)
 						{
 							m_use_chapter_entries = true;
-							if (m_cuesheet_loaded)
-								m_cue_entries.clear();
-							else
+							if (!m_cuesheet_loaded)
 								loadCuesheet();
-								m_cue_entries.clear();
+							m_cue_entries.clear();
 						}
 						/* first chapter is movie start no cut needed */
 						else if (y >= 1)
 						{
 							gint64 start = 0;
 							gint64 pts = 0;
-							gint type = 0;
+							guint type = 0;
 							gst_toc_entry_get_start_stop_times(sub_entry, &start, NULL);
 							type = 2;
 							if(start > 0)
@@ -2965,7 +2982,7 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		{
 			if ( subType < stVOB )
 			{
-				int delay = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay");
+				int delay_ms = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay") / 90;
 				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
 
 				double convert_fps = 1.0;
@@ -2981,6 +2998,21 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 
 				uint32_t start_ms = buf_pos / 1000000ULL;
 				uint32_t end_ms = start_ms + (duration_ns / 1000000ULL);
+				if (delay_ms > 0)
+				{
+					//eDebug("[eServiceMP3] sub title delay add is %d", delay_ms);
+					start_ms += delay_ms;
+					end_ms += delay_ms;
+				}
+				else if (delay_ms < 0)
+				{
+					if (start_ms >= (uint32_t)(delay_ms * -1))
+					{
+						//eDebug("[eServiceMP3] sub title delay substract is %d", delay_ms);
+						start_ms += delay_ms;
+						end_ms += delay_ms;
+					}
+				}
 				m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, line)));
 				m_subtitle_sync_timer->start(1, true);
 			}
@@ -3001,25 +3033,25 @@ void eServiceMP3::pushSubtitles()
 	int32_t next_timer = 0, decoder_ms, start_ms, end_ms, diff_start_ms, diff_end_ms, delay_ms;
 	double convert_fps = 1.0;
 	subtitle_pages_map_t::iterator current;
+	// wait until clock is stable.
 #if GST_VERSION_MAJOR >= 1
-	m_decoder_time_valid_state = 4;
-#endif
-	// wait until clock is stable
-
+	running_pts = m_last_seek_pos;
+	if (m_decoder_time_valid_state == 0)
+		m_decoder_time_valid_state = 2;
+	else
+		m_decoder_time_valid_state = 4;
+#else
 	if (getPlayPosition(running_pts) < 0)
 		m_decoder_time_valid_state = 0;
-#if GST_VERSION_MAJOR >= 1
-	else
-		m_prev_decoder_time = running_pts;
 #endif
-
 
 	if (m_decoder_time_valid_state < 4)
 	{
 		m_decoder_time_valid_state++;
-
+#if GST_VERSION_MAJOR < 1
 		if (m_prev_decoder_time == running_pts && !m_paused)
 			m_decoder_time_valid_state = 1;
+#endif
 
 		if (m_decoder_time_valid_state < 4)
 		{
@@ -3459,7 +3491,7 @@ void eServiceMP3::saveCuesheet()
 			if (m_last_seek_pos > (m_media_lenght - 1800000))
 			{
 				m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
-				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#"G_GINT64_MODIFIER "x", m_last_seek_pos);
+				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#" G_GINT64_MODIFIER "x", m_last_seek_pos);
 			}
 			else
 			{
@@ -3522,8 +3554,8 @@ void eServiceMP3::saveCuesheet()
 			return;
 		}
 
-		unsigned long long where = 0;
-		int what = 0;
+		signed long long where = 0;
+		guint what = 0;
 
 		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 		{
