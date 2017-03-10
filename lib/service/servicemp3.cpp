@@ -1486,8 +1486,6 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
 			return -1;
 		}
-		else
-			pos;
 #endif
 	}
 
@@ -2619,18 +2617,16 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 						if (y == 0)
 						{
 							m_use_chapter_entries = true;
-							if (m_cuesheet_loaded)
-								m_cue_entries.clear();
-							else
+							if (!m_cuesheet_loaded)
 								loadCuesheet();
-								m_cue_entries.clear();
+							m_cue_entries.clear();
 						}
 						/* first chapter is movie start no cut needed */
 						else if (y >= 1)
 						{
 							gint64 start = 0;
 							gint64 pts = 0;
-							gint type = 0;
+							guint type = 0;
 							gst_toc_entry_get_start_stop_times(sub_entry, &start, NULL);
 							type = 2;
 							if(start > 0)
@@ -2965,7 +2961,7 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		{
 			if ( subType < stVOB )
 			{
-				int delay = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay");
+				int delay_ms = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay") / 90;
 				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
 
 				double convert_fps = 1.0;
@@ -2981,6 +2977,21 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 
 				uint32_t start_ms = buf_pos / 1000000ULL;
 				uint32_t end_ms = start_ms + (duration_ns / 1000000ULL);
+				if (delay_ms > 0)
+				{
+					//eDebug("[eServiceMP3] sub title delay add is %d", delay_ms);
+					start_ms += delay_ms;
+					end_ms += delay_ms;
+				}
+				else if (delay_ms < 0)
+				{
+					if (start_ms >= (uint32_t)(delay_ms * -1))
+					{
+						//eDebug("[eServiceMP3] sub title delay substract is %d", delay_ms);
+						start_ms += delay_ms;
+						end_ms += delay_ms;
+					}
+				}
 				m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, line)));
 				m_subtitle_sync_timer->start(1, true);
 			}
@@ -3459,7 +3470,7 @@ void eServiceMP3::saveCuesheet()
 			if (m_last_seek_pos > (m_media_lenght - 1800000))
 			{
 				m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
-				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#"G_GINT64_MODIFIER "x", m_last_seek_pos);
+				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#" G_GINT64_MODIFIER "x", m_last_seek_pos);
 			}
 			else
 			{
@@ -3522,8 +3533,8 @@ void eServiceMP3::saveCuesheet()
 			return;
 		}
 
-		unsigned long long where = 0;
-		int what = 0;
+		signed long long where = 0;
+		guint what = 0;
 
 		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 		{
