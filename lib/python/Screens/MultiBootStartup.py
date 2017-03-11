@@ -279,23 +279,23 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			temp = ENTRY.split(' ')
 			#read kernel, root as number and device name
 			kernel = int(temp[1].split("emmcflash0.kernel")[1])
-			root = int(temp[2].split("'root=/dev/mmcblk0p")[1])
-			device = temp[2].split("=")[1]
+			root = int(temp[4].split("root=/dev/mmcblk0p")[1])
+			device = temp[4].split("=")[1]
 			#read boxmode and new boxmode settings
-			cmdx = 5
+			cmdx = 7
 			cmd4 = "rootwait'"
 			bootmode = '1'
 			if 'boxmode' in ENTRY:
-				cmdx = 6
+				cmdx = 8
 				cmd4 = "rootwait"
-				bootmode = temp[5].split("%s_4.boxmode=" %getMachineBuild())[1].replace("'",'')
+				bootmode = temp[7].split("%s_4.boxmode=" %getMachineBuild())[1].replace("'",'')
 			setmode = self.optionsList[self.option][0].split('=')[1]
 			#verify entries
-			if cmdx != len(temp) or 'boot' != temp[0] or 'rw' != temp[3] or cmd4 != temp[4] or kernel != root-kernel-1 or "'" != ENTRY[-1:]:
+			if cmdx != len(temp) or 'boot' != temp[0] or 'rw' != temp[5] or cmd4 != temp[6] or kernel != root-kernel-1 or "'" != ENTRY[-1:]:
 				print "[MultiBootStartup] Command line in '/boot/STARTUP' - problem with not matching entries!"
 				ret = True
 			#verify length
-			elif ('boxmode' not in ENTRY and len(ENTRY) > 58) or ('boxmode' in ENTRY and len(ENTRY) > 76):
+			elif ('boxmode' not in ENTRY and len(ENTRY) > 96) or ('boxmode' in ENTRY and len(ENTRY) > 114):
 				print "[MultiBootStartup] Command line in '/boot/STARTUP' - problem with line length!"
 				ret = True
 			#verify boxmode
@@ -328,6 +328,12 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			for x in self.optionsList:
 				if (x[0] + "'" in boot or x[0] + " " in boot) and x[0] != self.optionsList[self.option][0]:
 					newboot = boot.replace(x[0],self.optionsList[self.option][0])
+					if self.optionsList[self.option][0] == "boxmode=1":
+						newboot = newboot.replace("520M@248M", "440M@328M")
+						newboot = newboot.replace("200M@768M", "192M@768M")
+					elif self.optionsList[self.option][0] == "boxmode=12":
+						newboot = newboot.replace("440M@328M", "520M@248M")
+						newboot = newboot.replace("192M@768M", "200M@768M")
 					writeoption = True
 					break
 				elif (x[0] + "'" in boot or x[0] + " " in boot) and x[0] == self.optionsList[self.option][0]:
@@ -338,6 +344,12 @@ class MultiBootStartup(ConfigListScreen, Screen):
 					failboot = True
 				elif self.option:
 					newboot = boot.replace("rootwait", "rootwait %s_4.%s" %(getMachineBuild(), self.optionsList[self.option][0]))
+					if self.optionsList[self.option][0] == "boxmode=1":
+						newboot = newboot.replace("520M@248M", "440M@328M")
+						newboot = newboot.replace("200M@768M", "192M@768M")
+					elif self.optionsList[self.option][0] == "boxmode=12":
+						newboot = newboot.replace("440M@328M", "520M@248M")
+						newboot = newboot.replace("192M@768M", "200M@768M")
 					writeoption = True
 
 		if self.enable_bootnamefile:
@@ -350,7 +362,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		if failboot:
 			print "[MultiBootStartup] wrong bootsettings: " + boot
 			if '/dev/mmcblk0p3' in Harddisk.getextdevices("ext4"):
-				if self.writeFile('/boot/STARTUP', "boot emmcflash0.kernel1 'root=/dev/mmcblk0p3 rw rootwait'"):
+				if self.writeFile('/boot/STARTUP', "boot emmcflash0.kernel1 'brcm_cma=440M@328M brcm_cma=192M@768M root=/dev/mmcblk0p3 rw rootwait'"):
 					txt = _("Next boot will start from Image 1.")
 				else:
 					txt =_("Can not repair file %s") %("'/boot/STARTUP'") + "\n" + _("Caution, next boot is starts with these settings!") + "\n"
@@ -410,7 +422,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		for name in listdir(PATH):
 			if path.isfile(path.join(PATH, name)):
 				try:
-					cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
 				except IndexError:
 					continue
 				if cmdline in Harddisk.getextdevices("ext4") and not name == "STARTUP":

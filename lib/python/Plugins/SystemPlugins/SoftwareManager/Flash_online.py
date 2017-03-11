@@ -158,7 +158,7 @@ class FlashOnline(Screen):
 			self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
 			self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
-			cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+			cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
 			self.devrootfs = cmdline
 			print "[Flash Online] MULTI rootfs ", self.devrootfs
 
@@ -176,10 +176,10 @@ class FlashOnline(Screen):
 			for name in os.listdir(path):
 				if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 					try:
-						cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+						cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
 					except IndexError:
 						continue
-					cmdline_startup = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+					cmdline_startup = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
 					if (cmdline != cmdline_startup) and (name != "STARTUP"):
 						files.append(name)
 			files.insert(0,"STARTUP")
