@@ -19,6 +19,13 @@
 
 /************************************************/
 
+static const char *crash_emailaddr =
+#ifndef CRASH_EMAILADDR
+	"the OpenViX forum";
+#else
+	CRASH_EMAILADDR;
+#endif
+
 /* Defined in bsod.cpp */
 void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2);
 
@@ -180,8 +187,8 @@ void bsodFatal(const char *component)
 	os.clear();
 	os << "We are really sorry. Your receiver encountered "
 		"a software problem, and needs to be restarted.\n"
-		"Please upload the crash log " << crashlog_name << " to the OpenViX forum.\n"
-		"Your STB will restart in 10 seconds!\n"
+		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
+		"Your STB restarts in 10 seconds!\n"
 		"Component: " << component;
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
