@@ -10,6 +10,9 @@ class eStreamServer;
 
 class eStreamClient: public eDVBServiceStream
 {
+	private:
+	static void set_tcp_buffer_size(int fd, int optname, int buf_size);
+
 protected:
 	eStreamServer *parent;
 	int encoderFd;
