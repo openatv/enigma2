@@ -5,6 +5,8 @@
 #include <pwd.h>
 #include <shadow.h>
 #include <crypt.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
