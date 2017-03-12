@@ -501,7 +501,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_media_lenght = 0;
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
-	m_use_last_seek = false;
+	//m_use_last_seek = false;
+	m_last_seek_count = -10;
 	m_seeking_or_paused = false;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
@@ -822,7 +823,8 @@ eServiceMP3::~eServiceMP3()
 		m_media_lenght = 0;
 		m_play_position_timer->stop();
 		m_last_seek_pos = 0;
-		m_use_last_seek = false;
+		//m_use_last_seek = false;
+		m_last_seek_count = -10;
 		m_seeking_or_paused = false;
 #endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
@@ -953,7 +955,14 @@ RESULT eServiceMP3::stop()
 void eServiceMP3::playPositionTiming()
 {
 	//eDebug("[eServiceMP3] ***** USE IOCTL POSITION ******");
-	m_use_last_seek = false;
+	//m_use_last_seek = false;
+	if (m_last_seek_count >= 1)
+	{
+		if (m_last_seek_count == 10)
+			m_last_seek_count = 0;
+		else
+			m_last_seek_count++;
+	}
 }
 #endif
 
@@ -1070,13 +1079,17 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 #endif
 	if (m_paused)
 	{
+		m_last_seek_count = 0;
 		m_event((iPlayableService*)this, evUpdatedInfo);
 		
 	}
 #if GST_VERSION_MAJOR >= 1
 	//eDebug("[eServiceMP3] seekToImpl DONE position %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
 	if (!m_paused)
+	{
 		m_seeking_or_paused = false;
+		m_last_seek_count = 1;
+	}
 #endif
 	return 0;
 }
@@ -1110,13 +1123,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 	if (ratio > -0.01 && ratio < 0.01)
 	{
 #if GST_VERSION_MAJOR >= 1
-		if(m_last_seek_pos > 0)
-		{
-			pts = m_last_seek_pos;
-			pos_ret = 1;
-		}
-		else
-			pos_ret = getPlayPosition(pts);
+		pos_ret = getPlayPosition(pts);
 #else
 		pos_ret = getPlayPosition(pts);
 #endif
@@ -1179,15 +1186,16 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		if (!strcmp(name, "filesrc") || !strcmp(name, "souphttpsrc"))
 		{
 			/* previous state was already ok if we come here just give all elements time to unpause */
+#if GST_VERSION_MAJOR >= 1
+			m_seeking_or_paused = false;
+			m_last_seek_count = 0;
+#endif
 			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 			eDebug("[eServiceMP3] unpause state:%s pending:%s ret:%s",
 				gst_element_state_get_name(state),
 				gst_element_state_get_name(pending),
 				gst_element_state_change_return_get_name(ret));
-#if GST_VERSION_MAJOR >= 1
-			m_seeking_or_paused = false;
-#endif
 			return 0;
 		}
 		else
@@ -1231,6 +1239,7 @@ seek_unpause:
 		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 #if GST_VERSION_MAJOR >= 1
 		m_seeking_or_paused = false;
+		m_last_seek_count = 0;
 #endif
 	}
 
@@ -1273,40 +1282,24 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 	//eDebug("[eServiceMP3]  seekRelative direction %d, pts_t to %" G_GINT64_FORMAT, direction, (gint64)to);
 	gint64 ppos = 0;
 #if GST_VERSION_MAJOR >= 1
-	m_seeking_or_paused = true;
+	//m_seeking_or_paused = true;
 	if (direction > 0)
 	{
-		if (m_last_seek_pos > 0)
-		{
-			ppos = m_last_seek_pos + to;
-			return seekTo(ppos);
-		}
-		else
-		{
-			if (getPlayPosition(ppos) < 0)
-				return -1;
-			ppos += to;
-			return seekTo(ppos);
-		}
+		if (getPlayPosition(ppos) < 0)
+			return -1;
+		ppos += to;
+		m_seeking_or_paused = true;
+		return seekTo(ppos);
 	}
 	else
 	{
-		if (m_last_seek_pos > 0)
-		{
-			ppos = m_last_seek_pos - to;
-			if (ppos < 0)
-				ppos = 0;
-			return seekTo(ppos);
-		}
-		else
-		{
-			if (getPlayPosition(ppos) < 0)
-				return -1;
-			ppos -= to;
-			if (ppos < 0)
-				ppos = 0;
-			return seekTo(ppos);
-		}
+		if (getPlayPosition(ppos) < 0)
+			return -1;
+		ppos -= to;
+		if (ppos < 0)
+			ppos = 0;
+		m_seeking_or_paused = true;
+		return seekTo(ppos);
 	}
 #else
 	if (getPlayPosition(ppos) < 0) return -1;
@@ -1434,11 +1427,26 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	// allow only one ioctl call per second
 	// in case of seek procedure , the position
 	// is updated by the seektoImpl function.
-	if(!m_use_last_seek)
+	if(m_last_seek_count <= 0)
 	{
 		//eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
-		m_use_last_seek = true;
-		m_play_position_timer->start(1000, true);
+		//m_use_last_seek = true;
+		if (m_last_seek_count == -10)
+		{
+			eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
+			m_play_position_timer->start(100, false);
+			m_last_seek_count = 0;
+		}
+		else
+		{
+			if (m_paused)
+			{
+				pts = m_last_seek_pos;
+				m_last_seek_count = 0;
+			}
+			else
+				m_last_seek_count = 1;
+		}
 	}
 	else
 	{
@@ -1446,8 +1454,10 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			pts = m_last_seek_pos;
 		else
 		{
-			m_last_seek_pos += 9000;
-			pts = m_last_seek_pos;
+			if (m_last_seek_count >= 1)
+				pts = m_last_seek_pos + ((m_last_seek_count - 1) * 9000);
+			else
+				pts = m_last_seek_pos;
 		}
 		return 0;
 	}
@@ -1472,9 +1482,9 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			/* avoid taking the audio play position if audio sink is in state NULL */
 			if(!m_audiosink_not_running)
 			{
-				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
+				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos) || 0)
-				 	g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
+				 	g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
 				if(!GST_CLOCK_TIME_IS_VALID(pos))
 					return -1;
 			}
@@ -3035,7 +3045,8 @@ void eServiceMP3::pushSubtitles()
 	subtitle_pages_map_t::iterator current;
 	// wait until clock is stable.
 #if GST_VERSION_MAJOR >= 1
-	running_pts = m_last_seek_pos;
+	if (getPlayPosition(running_pts) < 0)
+		m_decoder_time_valid_state = 0;
 	if (m_decoder_time_valid_state == 0)
 		m_decoder_time_valid_state = 2;
 	else
