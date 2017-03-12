@@ -783,7 +783,10 @@
 		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 	</map>
 	<map context="StandbyActions">
-		<key id="KEY_POWER" mapto="power" flags="m" />
+		<key id="KEY_POWER" mapto="power_make"   flags="m" />
+		<key id="KEY_POWER" mapto="power_break"  flags="b" />
+		<key id="KEY_POWER" mapto="power_long"   flags="l" />
+		<key id="KEY_POWER" mapto="power_repeat" flags="r" />
 		<key id="KEY_KP1" mapto="discrete_on" flags="m" />
 	</map>
 

@@ -413,6 +413,16 @@ class PowerKey:
 						menu_screen.setTitle(_("Standby / restart"))
 						return
 		elif action == "standby":
+			try:
+				config.hdmicec.control_tv_standby_skipnow.setValue(False)
+			except:
+				pass # no HdmiCec
+			self.standby()
+		elif action == "standby_noTVshutdown":
+			try:
+				config.hdmicec.control_tv_standby_skipnow.setValue(True)
+			except:
+				pass # no HdmiCec
 			self.standby()
 		elif action == "powertimerStandby":
 			val = 3
