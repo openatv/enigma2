@@ -2,6 +2,11 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#include <ios>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/cfile.h>
@@ -145,18 +150,25 @@ eDVBCIInterfaces::eDVBCIInterfaces()
  : eServerSocket(CIPLUS_SERVER_SOCKET, eApp)
 {
 	int num_ci = 0;
+	std::stringstream path;
+	std::ifstream file;
 
 	instance = this;
 	client = NULL;
 
 	eDebug("[CI] scanning for common interfaces..");
 
-	while (1)
+	for (;;)
 	{
-		char filename[128];
-		sprintf(filename, "/dev/ci%d", num_ci);
+		path.str("");
+		path.clear();
+		path << "/dev/ci" << num_ci;
+		file.open(path.str().c_str(), std::fstream::in);
 
-		if (::access(filename, R_OK) < 0) break;
+		if(!file.is_open())
+			break;
+
+		file.close();
 
 		ePtr<eDVBCISlot> cislot;
 
@@ -171,10 +183,15 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 
 	for (int tuner_no = 0; tuner_no < 26; ++tuner_no) // NOTE: this assumes tuners are A .. Z max.
 	{
-		char filename[32];
-		snprintf(filename, sizeof(filename), "/proc/stb/tsmux/input%d", tuner_no);
+		path.str("");
+		path.clear();
+		path << "/proc/stb/tsmux/input" << tuner_no;
+		file.open(path.str().c_str(), std::fstream::in);
 
-		if (::access(filename, R_OK) < 0) break;
+		if(!file.is_open())
+			break;
+
+		file.close();
 
 		setInputSource(tuner_no, eDVBCISlot::getTunerLetter(tuner_no));
 	}
