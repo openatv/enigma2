@@ -395,6 +395,7 @@ class InfoBarTimeshift:
 
 		if ts.isTimeshiftEnabled():
 			print "[TIMESHIFT] - hu, timeshift already enabled?"
+			self.activateTimeshiftEndAndPause()
 		else:
 			self.activateAutorecordTimeshift()
 			self.activateTimeshiftEndAndPause()

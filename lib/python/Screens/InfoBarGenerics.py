@@ -2509,9 +2509,7 @@ class InfoBarSeek:
 		elif config.plugins.infopanel_yellowkey.list.value == '2':
 			ToggleVideo()
 		else:
-			if self.seekstate != self.SEEK_STATE_EOF:
-				self.lastseekstate = self.seekstate
-				self.setSeekState(self.SEEK_STATE_PAUSE) 
+			self.playpauseService()
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:

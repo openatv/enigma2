@@ -439,7 +439,8 @@
 			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
 			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
 		</device>
-		<key id="KEY_YELLOW" mapto="playpauseService" flags="m" />
+		<key id="KEY_YELLOW" mapto="pauseServiceYellow" flags="b" />
+		<!--key id="KEY_YELLOW" mapto="playpauseService" flags="m" /-->
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
