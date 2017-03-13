@@ -228,14 +228,11 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="255,64">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="255,24" font="FdLcD;22" halign="left"  noWrap="1">
-			<convert type="ClockToText">FullDate</convert>
+		<widget source="global.CurrentTime" render="Label" position="161,0" size="95,24" font="FdLcD;22" halign="right"  noWrap="1">
+			<convert type="ClockToText">Format:%a %d</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="FdLcD;46" halign="left" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="160,62" font="FdLcD;62" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
-		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="update.png" position="241,0" size="14,12">
-			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="223,52"  size="32,12">
 			<convert type="ConditionalShowHide">Blink</convert>
