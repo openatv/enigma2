@@ -169,9 +169,15 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	for (eSmartPtrList<eDVBCISlot>::iterator it(m_slots.begin()); it != m_slots.end(); ++it)
 		it->setSource("A");
 
-	// FIXME initiliaze all inputs by checking /proc/stb/tsmux/inputX instead of using fixed 2 / 4
-	for (int tuner_no = 0; tuner_no < (num_ci > 1 ? 4 : 2); ++tuner_no)
+	for (int tuner_no = 0; tuner_no < 26; ++tuner_no) // NOTE: this assumes tuners are A .. Z max.
+	{
+		char filename[32];
+		snprintf(filename, sizeof(filename), "/proc/stb/tsmux/input%d", tuner_no);
+
+		if (::access(filename, R_OK) < 0) break;
+
 		setInputSource(tuner_no, eDVBCISlot::getTunerLetter(tuner_no));
+	}
 
 	eDebug("[CI] done, found %d common interface slots", num_ci);
 }
