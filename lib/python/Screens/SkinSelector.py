@@ -58,7 +58,7 @@ class SkinSelectorBase:
 			self["Preview"].show()
 
 	def layoutFinished(self):
-		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 1.0, 1, 1, 1, "#00000000"))
+		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 1.0, 1, 1, 1, "#ff000000"))
 		tmp = self.config.value.find("/"+self.SKINXML)
 		if tmp != -1:
 			tmp = self.config.value[:tmp]

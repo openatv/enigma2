@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-19 07:59+0200\n"
-"PO-Revision-Date: 2017-02-22 11:46+0200\n"
+"POT-Creation-Date: 2017-03-09 10:10+0200\n"
+"PO-Revision-Date: 2017-03-09 15:08+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -164,6 +164,10 @@ msgstr " (suurem kui ajami mistahes autom.)"
 msgid " (lower than any auto)"
 msgstr " (väiksem kui mistahes autom.)"
 
+#, python-format
+msgid " Stream %s"
+msgstr "%s voogesitus"
+
 msgid " and"
 msgstr "ja"
 
@@ -192,50 +196,68 @@ msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
-msgid "%-e %B %Y"
-msgstr "%-e %B %Y"
+msgid "%-d %B %Y"
+msgstr "%-d %B %Y"
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-msgid "%-e %b"
-msgstr "%-e %b"
+#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+msgid "%-d %b"
+msgstr "%-d %b"
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
-msgid "%-e %b %Y"
-msgstr "%-e %b %Y"
+msgid "%-d %b %Y"
+msgstr "%-d %b %Y"
 
-#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
-msgid "%-e+%b_"
-msgstr "%-e+%b_"
+msgid "%-d+%b_"
+msgstr "%-d+%b_"
 
-msgid "%-e-%B-%Y"
-msgstr "%-e-%B-%Y"
+msgid "%-d-%B-%Y"
+msgstr "%-d-%B-%Y"
 
-msgid "%-e-%b"
-msgstr "%-e-%b"
+msgid "%-d-%b"
+msgstr "%-d-%b"
 
-msgid "%-e-%b-%Y"
-msgstr "%-e-%b-%Y"
+msgid "%-d-%b-%Y"
+msgstr "%-d-%b-%Y"
 
-msgid "%-e/%m"
-msgstr "%-e/%m"
+msgid "%-d/%-m"
+msgstr "%-d/%-m"
 
-msgid "%-e/%m "
-msgstr "%-e/%m "
+msgid "%-d/%-m "
+msgstr "%-d/%-m "
 
-msgid "%-e/%m/%Y"
-msgstr "%-e/%m/%Y"
+msgid "%-d/%-m/%Y"
+msgstr "%-d/%-m/%Y"
 
-msgid "%-e=%b_"
-msgstr "%-e=%b_"
+msgid "%-d/%m"
+msgstr "%-d/%m"
 
-msgid "%-m/%-e"
-msgstr "%-m/%-e"
+msgid "%-d/%m "
+msgstr "%-d/%m "
 
-msgid "%-m/%-e "
-msgstr "%-m/%-e "
+msgid "%-d/%m/%Y"
+msgstr "%-d/%m/%Y"
 
-msgid "%-m/%-e/%Y"
-msgstr "%-m/%-e/%Y"
+msgid "%-d=%b_"
+msgstr "%-d=%b_"
+
+msgid "%-m/%-d"
+msgstr "%-m/%-d"
+
+msgid "%-m/%-d "
+msgstr "%-m/%-d "
+
+msgid "%-m/%-d/%Y"
+msgstr "%-m/%-d/%Y"
+
+msgid "%-m/%d"
+msgstr "%-m/%d"
+
+msgid "%-m/%d "
+msgstr "%-m/%d "
+
+msgid "%-m/%d/%Y"
+msgstr "%-m/%d/%Y"
 
 #, python-format
 msgid "%.0f GB"
@@ -254,36 +276,48 @@ msgid "%.2f GB"
 msgstr "%.2f GB"
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
-msgid "%A %-e %B"
-msgstr "%A %-e %B"
+msgid "%A %-d %B"
+msgstr "%A %-d %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-msgid "%A %-e %B %Y"
-msgstr "%A %-e %B %Y"
+msgid "%A %-d %B %Y"
+msgstr "%A %-d %B %Y"
 
-msgid "%A %-e-%B"
-msgstr "%A %-e-%B"
+msgid "%A %-d-%B"
+msgstr "%A %-d-%B"
 
-msgid "%A %-e-%B-%Y"
-msgstr "%A %-e-%B-%Y"
+msgid "%A %-d-%B-%Y"
+msgstr "%A %-d-%B-%Y"
 
-msgid "%A %-e/%m"
-msgstr "%A %-e/%m"
+msgid "%A %-d/%-m"
+msgstr "%A %-d/%-m"
 
-msgid "%A %-e/%m/%Y"
-msgstr "%A %-e/%m/%Y"
+msgid "%A %-d/%-m/%Y"
+msgstr "%A %-d/%-m/%Y"
 
-msgid "%A %-m/%-e"
-msgstr "%A %-m/%-e"
+msgid "%A %-d/%m"
+msgstr "%A %-d/%m"
 
-msgid "%A %-m/%-e/%Y"
-msgstr "%A %-m/%-e/%Y"
+msgid "%A %-d/%m/%Y"
+msgstr "%A %-d/%m/%Y"
 
-msgid "%A %B %-e"
-msgstr "%A %B %-e"
+msgid "%A %-m/%-d"
+msgstr "%A %-m/%-d"
 
-msgid "%A %B %-e %Y"
-msgstr "%A %B %-e %Y"
+msgid "%A %-m/%-d/%Y"
+msgstr "%A %-m/%-d/%Y"
+
+msgid "%A %-m/%d"
+msgstr "%A %-m/%d"
+
+msgid "%A %-m/%d/%Y"
+msgstr "%A %-m/%d/%Y"
+
+msgid "%A %B %-d"
+msgstr "%A %B %-d"
+
+msgid "%A %B %-d %Y"
+msgstr "%A %B %-d %Y"
 
 msgid "%A %B %d"
 msgstr "%A %B %d"
@@ -291,11 +325,11 @@ msgstr "%A %B %d"
 msgid "%A %B %d %Y"
 msgstr "%A %B %d %Y"
 
-msgid "%A %B-%-e"
-msgstr "%A %B-%-e"
+msgid "%A %B-%-d"
+msgstr "%A %B-%-d"
 
-msgid "%A %B-%-e-%Y"
-msgstr "%A %B-%-e-%Y"
+msgid "%A %B-%-d-%Y"
+msgstr "%A %B-%-d-%Y"
 
 msgid "%A %B-%d"
 msgstr "%A %B-%d"
@@ -303,20 +337,26 @@ msgstr "%A %B-%d"
 msgid "%A %B-%d-%Y"
 msgstr "%A %B-%d-%Y"
 
-msgid "%A %Y %B %-e"
-msgstr "%A %Y %B %-e"
+msgid "%A %Y %B %-d"
+msgstr "%A %Y %B %-d"
 
 msgid "%A %Y %B %d"
 msgstr "%A %Y %B %d"
 
-msgid "%A %Y-%B-%-e"
-msgstr "%A %Y-%B-%-e"
+msgid "%A %Y-%B-%-d"
+msgstr "%A %Y-%B-%-d"
 
 msgid "%A %Y-%B-%d"
 msgstr "%A %Y-%B-%d"
 
-msgid "%A %Y/%m/%-e"
-msgstr "%A %Y/%m/%-e"
+msgid "%A %Y/%-m/%-d"
+msgstr "%A %Y/%-m/%-d"
+
+msgid "%A %Y/%-m/%d"
+msgstr "%A %Y/%-m/%d"
+
+msgid "%A %Y/%m/%-d"
+msgstr "%A %Y/%m/%-d"
 
 msgid "%A %Y/%m/%d"
 msgstr "%A %Y/%m/%d"
@@ -333,17 +373,23 @@ msgstr "%A %d-%B"
 msgid "%A %d-%B-%Y"
 msgstr "%A %d-%B-%Y"
 
+msgid "%A %d/%-m"
+msgstr "%A %d/%-m"
+
+msgid "%A %d/%-m/%Y"
+msgstr "%A %d/%-m/%Y"
+
 msgid "%A %d/%m"
 msgstr "%A %d/%m"
 
 msgid "%A %d/%m/%Y"
 msgstr "%A %d/%m/%Y"
 
-msgid "%A %m/%-e"
-msgstr "%A %m/%-e"
+msgid "%A %m/%-d"
+msgstr "%A %m/%-d"
 
-msgid "%A %m/%-e/%Y"
-msgstr "%A %m/%-e/%Y"
+msgid "%A %m/%-d/%Y"
+msgstr "%A %m/%-d/%Y"
 
 msgid "%A %m/%d"
 msgstr "%A %m/%d"
@@ -351,14 +397,14 @@ msgstr "%A %m/%d"
 msgid "%A %m/%d/%Y"
 msgstr "%A %m/%d/%Y"
 
-msgid "%B %-e %Y"
-msgstr "%B %-e %Y"
+msgid "%B %-d %Y"
+msgstr "%B %-d %Y"
 
 msgid "%B %d %Y"
 msgstr "%B %d %Y"
 
-msgid "%B-%-e-%Y"
-msgstr "%B-%-e-%Y"
+msgid "%B-%-d-%Y"
+msgstr "%B-%-d-%Y"
 
 msgid "%B-%d-%Y"
 msgstr "%B-%d-%Y"
@@ -392,120 +438,147 @@ msgstr "%R"
 msgid "%T"
 msgstr "%T"
 
-msgid "%Y %B %-e"
-msgstr "%Y %B %-e"
+msgid "%Y %B %-d"
+msgstr "%Y %B %-d"
 
 msgid "%Y %B %d"
 msgstr "%Y %B %d"
 
-msgid "%Y %b %-e"
-msgstr "%Y %b %-e"
+msgid "%Y %b %-d"
+msgstr "%Y %b %-d"
 
 msgid "%Y %b %d"
 msgstr "%Y %b %d"
 
-msgid "%Y-%B-%-e"
-msgstr "%Y-%B-%-e"
+msgid "%Y-%B-%-d"
+msgstr "%Y-%B-%-d"
 
 msgid "%Y-%B-%d"
 msgstr "%Y-%B-%d"
 
-msgid "%Y-%b-%-e"
-msgstr "%Y-%b-%-e"
+msgid "%Y-%b-%-d"
+msgstr "%Y-%b-%-d"
 
 msgid "%Y-%b-%d"
 msgstr "%Y-%b-%d"
 
-msgid "%Y/%m/%-e"
-msgstr "%Y/%m/%-e"
+msgid "%Y/%-m/%-d"
+msgstr "%Y/%-m/%-d"
+
+msgid "%Y/%-m/%d"
+msgstr "%Y/%-m/%d"
+
+msgid "%Y/%m/%-d"
+msgstr "%Y/%m/%-d"
 
 msgid "%Y/%m/%d"
 msgstr "%Y/%m/%d"
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
-msgid "%a %-e"
-msgstr "%a %-e"
+msgid "%a %-d"
+msgstr "%a %-d"
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
-msgid "%a %-e %B %Y"
-msgstr "%a %-e %B %Y"
+msgid "%a %-d %B %Y"
+msgstr "%a %-d %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
-msgid "%a %-e %b"
-msgstr "%a %-e %b"
+msgid "%a %-d %b"
+msgstr "%a %-d %b"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
-msgid "%a %-e %b %Y"
-msgstr "%a %-e %b %Y"
+msgid "%a %-d %b %Y"
+msgstr "%a %-d %b %Y"
 
-msgid "%a %-e-%B-%Y"
-msgstr "%a %-e-%B-%Y"
+msgid "%a %-d+%b_"
+msgstr "%a %-d+%b_"
 
-msgid "%a %-e-%b"
-msgstr "%a %-e-%b"
+msgid "%a %-d-%B-%Y"
+msgstr "%a %-d-%B-%Y"
 
-msgid "%a %-e-%b-%Y"
-msgstr "%a %-e-%b-%Y"
+msgid "%a %-d-%b"
+msgstr "%a %-d-%b"
 
-msgid "%a %-e/%m"
-msgstr "%a %-e/%m"
+msgid "%a %-d-%b-%Y"
+msgstr "%a %-d-%b-%Y"
 
-msgid "%a %-e/%m/%Y"
-msgstr "%a %-e/%m/%Y"
+msgid "%a %-d/%-m"
+msgstr "%a %-d/%-m"
 
-msgid "%a %-m/%-e"
-msgstr "%a %-m/%-e"
+msgid "%a %-d/%-m/%Y"
+msgstr "%a %-d/%-m/%Y"
 
-msgid "%a %-m/%-e/%Y"
-msgstr "%a %-m/%-e/%Y"
+msgid "%a %-d/%m"
+msgstr "%a %-d/%m"
 
-msgid "%a %B %-e %Y"
-msgstr "%a %B %-e %Y"
+msgid "%a %-d/%m/%Y"
+msgstr "%a %-d/%m/%Y"
+
+msgid "%a %-m/%-d"
+msgstr "%a %-m/%-d"
+
+msgid "%a %-m/%-d/%Y"
+msgstr "%a %-m/%-d/%Y"
+
+msgid "%a %-m/%d"
+msgstr "%a %-m/%d"
+
+msgid "%a %-m/%d/%Y"
+msgstr "%a %-m/%d/%Y"
+
+msgid "%a %B %-d %Y"
+msgstr "%a %B %-d %Y"
 
 msgid "%a %B %d %Y"
 msgstr "%a %B %d %Y"
 
-msgid "%a %B-%-e-%Y"
-msgstr "%a %B-%-e-%Y"
+msgid "%a %B-%-d-%Y"
+msgstr "%a %B-%-d-%Y"
 
 msgid "%a %B-%d-%Y"
 msgstr "%a %B-%d-%Y"
 
-msgid "%a %Y %B %-e"
-msgstr "%a %Y %B %-e"
+msgid "%a %Y %B %-d"
+msgstr "%a %Y %B %-d"
 
 msgid "%a %Y %B %d"
 msgstr "%a %Y %B %d"
 
-msgid "%a %Y %b %-e"
-msgstr "%a %Y %b %-e"
+msgid "%a %Y %b %-d"
+msgstr "%a %Y %b %-d"
 
 msgid "%a %Y %b %d"
 msgstr "%a %Y %b %d"
 
-msgid "%a %Y-%B-%-e"
-msgstr "%a %Y-%B-%-e"
+msgid "%a %Y-%B-%-d"
+msgstr "%a %Y-%B-%-d"
 
 msgid "%a %Y-%B-%d"
 msgstr "%a %Y-%B-%d"
 
-msgid "%a %Y-%b-%-e"
-msgstr "%a %Y-%b-%-e"
+msgid "%a %Y-%b-%-d"
+msgstr "%a %Y-%b-%-d"
 
 msgid "%a %Y-%b-%d"
 msgstr "%a %Y-%b-%d"
 
-msgid "%a %Y/%m/%-e"
-msgstr "%a %Y/%m/%-e"
+msgid "%a %Y/%-m/%-d"
+msgstr "%a %Y/%-m/%-d"
+
+msgid "%a %Y/%-m/%d"
+msgstr "%a %Y/%-m/%d"
+
+msgid "%a %Y/%m/%-d"
+msgstr "%a %Y/%m/%-d"
 
 msgid "%a %Y/%m/%d"
 msgstr "%a %Y/%m/%d"
 
-msgid "%a %b %-e"
-msgstr "%a %b %-e"
+msgid "%a %b %-d"
+msgstr "%a %b %-d"
 
-msgid "%a %b %-e %Y"
-msgstr "%a %b %-e %Y"
+msgid "%a %b %-d %Y"
+msgstr "%a %b %-d %Y"
 
 msgid "%a %b %d"
 msgstr "%a %b %d"
@@ -513,11 +586,11 @@ msgstr "%a %b %d"
 msgid "%a %b %d %Y"
 msgstr "%a %b %d %Y"
 
-msgid "%a %b-%-e"
-msgstr "%a %b-%-e"
+msgid "%a %b-%-d"
+msgstr "%a %b-%-d"
 
-msgid "%a %b-%-e-%Y"
-msgstr "%a %b-%-e-%Y"
+msgid "%a %b-%-d-%Y"
+msgstr "%a %b-%-d-%Y"
 
 msgid "%a %b-%d"
 msgstr "%a %b-%d"
@@ -546,17 +619,23 @@ msgstr "%a %d-%b"
 msgid "%a %d-%b-%Y"
 msgstr "%a %d-%b-%Y"
 
+msgid "%a %d/%-m"
+msgstr "%a %d/%-m"
+
+msgid "%a %d/%-m/%Y"
+msgstr "%a %d/%-m/%Y"
+
 msgid "%a %d/%m"
 msgstr "%a %d/%m"
 
 msgid "%a %d/%m/%Y"
 msgstr "%a %d/%m/%Y"
 
-msgid "%a %m/%-e"
-msgstr "%a %m/%-e"
+msgid "%a %m/%-d"
+msgstr "%a %m/%-d"
 
-msgid "%a %m/%-e/%Y"
-msgstr "%a %m/%-e/%Y"
+msgid "%a %m/%-d/%Y"
+msgstr "%a %m/%-d/%Y"
 
 msgid "%a %m/%d"
 msgstr "%a %m/%d"
@@ -564,11 +643,11 @@ msgstr "%a %m/%d"
 msgid "%a %m/%d/%Y"
 msgstr "%a %m/%d/%Y"
 
-msgid "%b %-e"
-msgstr "%b %-e"
+msgid "%b %-d"
+msgstr "%b %-d"
 
-msgid "%b %-e %Y"
-msgstr "%b %-e %Y"
+msgid "%b %-d %Y"
+msgstr "%b %-d %Y"
 
 msgid "%b %d"
 msgstr "%b %d"
@@ -576,17 +655,29 @@ msgstr "%b %d"
 msgid "%b %d %Y"
 msgstr "%b %d %Y"
 
-msgid "%b-%-e"
-msgstr "%b-%-e"
+msgid "%b+%-d "
+msgstr "%b+%-d "
 
-msgid "%b-%-e-%Y"
-msgstr "%b-%-e-%Y"
+msgid "%b+%d "
+msgstr "%b+%d "
+
+msgid "%b-%-d"
+msgstr "%b-%-d"
+
+msgid "%b-%-d-%Y"
+msgstr "%b-%-d-%Y"
 
 msgid "%b-%d"
 msgstr "%b-%d"
 
 msgid "%b-%d-%Y"
 msgstr "%b-%d-%Y"
+
+msgid "%b=%-d "
+msgstr "%b=%-d "
+
+msgid "%b=%d "
+msgstr "%b=%d "
 
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
@@ -606,10 +697,6 @@ msgid "%d GB"
 msgstr "%d GB"
 
 #, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
-
-#, python-format
 msgid "%d KB"
 msgstr "%d KB"
 
@@ -619,9 +706,15 @@ msgstr "%d MB"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
-#. TRANSLATORS: short time representation hour:minute
+#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
 #. _("%R")
-#. TRANSLATORS: short time representation hour:minute
+#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
+#. _("%R")
+#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
+#. _("%e %b")
+#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
+#. _("%a %e %b")
+#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
 #. _("%R")
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 #. _("%a %e %b %R")
@@ -717,6 +810,15 @@ msgstr "%d-%b"
 msgid "%d-%b-%Y"
 msgstr "%d-%b-%Y"
 
+msgid "%d/%-m"
+msgstr "%d/%-m"
+
+msgid "%d/%-m "
+msgstr "%d/%-m "
+
+msgid "%d/%-m/%Y"
+msgstr "%d/%-m/%Y"
+
 msgid "%d/%m"
 msgstr "%d/%m"
 
@@ -729,14 +831,14 @@ msgstr "%d/%m/%Y"
 msgid "%d=%b_"
 msgstr "%d=%b_"
 
-msgid "%m/%-e"
-msgstr "%m/%-e"
+msgid "%m/%-d"
+msgstr "%m/%-d"
 
-msgid "%m/%-e "
-msgstr "%m/%-e "
+msgid "%m/%-d "
+msgstr "%m/%-d "
 
-msgid "%m/%-e/%Y"
-msgstr "%m/%-e/%Y"
+msgid "%m/%-d/%Y"
+msgstr "%m/%-d/%Y"
 
 msgid "%m/%d"
 msgstr "%m/%d"
@@ -1192,9 +1294,6 @@ msgstr "AC3"
 msgid "AC3 downmix"
 msgstr "AC3 > stereo"
 
-msgid "AC3+ transcoding"
-msgstr "AC3+ transkodeerimine"
-
 msgid "ACQUIRING TSID/ONID"
 msgstr "TSID/ONID HANKIMINE"
 
@@ -1538,9 +1637,6 @@ msgstr "Raadio kuvamine TV stiilis"
 msgid "Alternative services tuner priority"
 msgstr "Tuuneri eelistus asenduskanalitel"
 
-msgid "Always"
-msgstr "Alati"
-
 msgid "Always ask"
 msgstr "Küsitakse iga kord"
 
@@ -1860,44 +1956,8 @@ msgstr "BT 2020 NCL"
 msgid "BT 709"
 msgstr "BT 709"
 
-msgid "BT2020 CL"
-msgstr "BT2020 CL"
-
-msgid "BT2020 NCL"
-msgstr "BT2020 NCL"
-
-msgid "BT470 BG"
-msgstr "BT470 BG"
-
-msgid "BT601 XvYCC"
-msgstr "BT601 XvYCC"
-
-msgid "BT709"
-msgstr "BT709"
-
-msgid "BT709 XvYCC"
-msgstr "BT709 XvYCC"
-
 msgid "Back"
 msgstr "Tagasi"
-
-msgid "Back USB"
-msgstr "Tagakülje USB"
-
-msgid "Back USB 3.0"
-msgstr "Tagakülje USB 3.0"
-
-msgid "Back, inner USB"
-msgstr "Tagakülje sisene USB"
-
-msgid "Back, lower USB"
-msgstr "Tagakülje alumine USB"
-
-msgid "Back, outer USB"
-msgstr "Tagakülje väline USB"
-
-msgid "Back, upper USB"
-msgstr "Tagakülje ülemine USB"
 
 msgid "Back/Recall"
 msgstr "Back/Recall"
@@ -2360,6 +2420,10 @@ msgid "Childrens"
 msgstr "Lapsed"
 
 #, python-format
+msgid "Chipset:\t%s\n"
+msgstr "Kiibistik:\t%s\n"
+
+#, python-format
 msgid "Chipset:\tBCM%s\n"
 msgstr "Kiibistik:\tBCM%s\n"
 
@@ -2391,7 +2455,10 @@ msgstr "Määra kuupäeva vorming. 'P' / 'PP' on kuupäev ja  'K' / 'KK' on kuu.
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vali kellaaja vorming. 'H' / 'HH' on 24-tunni kella tund, 'h' / 'hh' 12-tunni kella tund, 'mm' on minutid ja 'ss' on sekundid. ('HH' ja 'hh' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
 
-msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
+msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Määra esipaneelil kuvatav kuupäeva vorming. 'P' / 'PP' on kuupäev ja  'K' / 'KK' on kuu. ( 'PP' ja 'KK' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
+
+msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Vali esipaneeli näidiku kellaaja vorming. 'H' / 'HH' on 24-tunni kella tund, 'h' / 'hh' 12-tunni kella tund, 'mm' on minutid ja 'ss' on sekundid. ('HH' ja 'hh' puhul kuvatakse ühekohalise numbri ette null.) Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
 
 msgid "Choose the location for crash and debug logs folder."
@@ -2411,12 +2478,6 @@ msgstr "Vali, mida '0' nupp PIP- režiimis teeb."
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Määra, kas AAC heli transkodeerida."
-
-msgid "Choose whether AC3+ sound tracks should be transcoded to AC3."
-msgstr "Määra, kas AC3+ heli transkodeerida AC3 heliks."
-
-msgid "Choose whether DTS-HD sound tracks should be transcoded to DTS."
-msgstr "Määra, kas DTS-HD heli transkodeerida DTS heliks."
 
 msgid "Choose whether multi channel aac sound tracks should be downmixed to stereo."
 msgstr "Määra, kas mitmekanaline AAC heli taandada stereoks."
@@ -2913,9 +2974,6 @@ msgstr "Kontrast"
 msgid "Control of the position how finished timers are shown in the Timer List."
 msgstr "Määra aegunud taimerite asukoht taimerite nimekirjas."
 
-msgid "Controlled by HDMI"
-msgstr "HDMI juhitav"
-
 msgid "Convert ext3 filesystem to ext4"
 msgstr "Teisenda ext3 > ext4"
 
@@ -3042,6 +3100,9 @@ msgstr "Aktiivne transponder"
 msgid "Current value: "
 msgstr "Praegune väärtus: "
 
+msgid "Current version:"
+msgstr "Praegune versioon:"
+
 msgid "Custom"
 msgstr "Kohandatud"
 
@@ -3089,9 +3150,6 @@ msgstr "DTS"
 
 msgid "DTS downmix"
 msgstr "DTS > stereo"
-
-msgid "DTS-HD transcoding"
-msgstr "DTS-HD transkodeerimine"
 
 msgid "DUAL LAYER DVD"
 msgstr "Kahekihiline DVD"
@@ -3153,11 +3211,62 @@ msgstr "Kuupäev"
 msgid "Date style"
 msgstr "Kuupäeva kuju"
 
+msgid "Day D Mon"
+msgstr "Päev P Kuu"
+
+msgid "Day D-Mon"
+msgstr "Päev P-Kuu"
+
+msgid "Day D/M"
+msgstr "Päev P/K"
+
+msgid "Day D/MM"
+msgstr "Päev P/KK"
+
+msgid "Day DD Mon"
+msgstr "Päev PP Kuu"
+
+msgid "Day DD-Mon"
+msgstr "Päev PP-Kuu"
+
+msgid "Day DD/M"
+msgstr "Päev PP/K"
+
+msgid "Day DD/MM"
+msgstr "Päev PP/KK"
+
+msgid "Day M/D"
+msgstr "Päev K/P"
+
+msgid "Day M/DD"
+msgstr "Päev K/PP"
+
+msgid "Day MM/D"
+msgstr "Päev KK/P"
+
+msgid "Day MM/DD"
+msgstr "Päev KK/PP"
+
+msgid "Day Mon D"
+msgstr "Päev Kuu P"
+
+msgid "Day Mon DD"
+msgstr "Päev Kuu PP"
+
+msgid "Day Mon-D"
+msgstr "Päev Kuu-P"
+
+msgid "Day Mon-DD"
+msgstr "Päev Kuu-PP"
+
 msgid "Dayname D Month Year"
 msgstr "Nädalapäev P Kuu Aasta"
 
 msgid "Dayname D-Month-Year"
 msgstr "Nädalapäev P-Kuu-Aasta"
+
+msgid "Dayname D/M/Year"
+msgstr "Nädalapäev P/K/Aasta"
 
 msgid "Dayname D/MM/Year"
 msgstr "Nädalapäev P/KK/Aasta"
@@ -3168,11 +3277,17 @@ msgstr "Nädalapäev PP Kuu Aasta"
 msgid "Dayname DD-Month-Year"
 msgstr "Nädalapäev PP-Kuu-Aasta"
 
+msgid "Dayname DD/M/Year"
+msgstr "Nädalapäev PP/K/Aasta"
+
 msgid "Dayname DD/MM/Year"
 msgstr "Nädalapäev PP/KK/Aasta"
 
 msgid "Dayname M/D/Year"
 msgstr "Nädalapäev K/P/Aasta"
+
+msgid "Dayname M/DD/Year"
+msgstr "Nädalapäev K/PP/Aasta"
 
 msgid "Dayname MM/D/Year"
 msgstr "Nädalapäev KK/P/Aasta"
@@ -3203,6 +3318,12 @@ msgstr "Nädalapäev Aasta-Kuu-P"
 
 msgid "Dayname Year-Month-DD"
 msgstr "Nädalapäev Aasta-Kuu-PP"
+
+msgid "Dayname Year/M/D"
+msgstr "Nädalapäev Aasta/K/P"
+
+msgid "Dayname Year/M/DD"
+msgstr "Nädalapäev Aasta/K/PP"
 
 msgid "Dayname Year/MM/D"
 msgstr "Nädalapäev Aasta/KK/P"
@@ -3918,9 +4039,6 @@ msgstr "Lõpuaeg"
 msgid "English"
 msgstr "Inglise"
 
-msgid "Enigma2 Changes"
-msgstr "Enigma2 muudatused"
-
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 kujunduse valik"
 
@@ -3971,9 +4089,6 @@ msgstr "Viga"
 
 msgid "Error code"
 msgstr "Veakood"
-
-msgid "Error downloading the change log."
-msgstr "Viga muudatuslogi hankimisel."
 
 msgid "Error executing plugin"
 msgstr "Viga plugina käivitamisel"
@@ -4206,9 +4321,6 @@ msgstr ""
 "FBC automaatne\n"
 "väljas"
 
-msgid "FCC 1953"
-msgstr "FCC 1953"
-
 msgid "FEC"
 msgstr "FEC"
 
@@ -4416,17 +4528,8 @@ msgstr "Asukohast :"
 msgid "Front Display Panel"
 msgstr "Esipaneeli näidik"
 
-msgid "Front USB"
-msgstr "Esikülje USB"
-
-msgid "Front USB 3.0"
-msgstr "Esikülje USB 3.0"
-
 msgid "Front display settings"
 msgstr "Esipaneeli näidik"
-
-msgid "Full Range RGB"
-msgstr "Täielik RGB"
 
 msgid "Full screen"
 msgstr "Täisekraan"
@@ -4648,6 +4751,9 @@ msgstr "Help - pikk"
 
 msgid "Helps setting up your antenna"
 msgstr "Hõlbustab antenni seadistamist"
+
+msgid "Hidden / Blank"
+msgstr "Varjatud / tühi"
 
 msgid "Hidden network"
 msgstr "Varjatud võrk"
@@ -5053,9 +5159,6 @@ msgstr "Keskmine"
 msgid "Internal"
 msgstr "Sisemine"
 
-msgid "Internal USB"
-msgstr "Sisene USB"
-
 msgid "Internal flash"
 msgstr "Sisemälu"
 
@@ -5101,6 +5204,9 @@ msgstr "Kas need seaded sobivad?"
 
 msgid "Is this video mode ok?"
 msgstr "Kas see videorežiim sobib?"
+
+msgid "It seems you have hit your API limit - please try again later."
+msgstr "Paistab, et oled saavutanud API limiidi, ürita hiljem uuesti"
 
 msgid "Italian"
 msgstr "Itaalia"
@@ -5864,6 +5970,9 @@ msgstr "Uus profiil: "
 msgid "New timers location"
 msgstr "Uue taimeri asukoht"
 
+msgid "New version:"
+msgstr "Uus versioon:"
+
 msgid "News"
 msgstr "Uudised"
 
@@ -5906,6 +6015,9 @@ msgstr "Kaabel-tv tuunerit ei leitud!"
 
 msgid "No card inserted!"
 msgstr "Kaart ei ole sisestatud!"
+
+msgid "No clients streaming"
+msgstr "IPTV kliente ei ole"
 
 msgid ""
 "No data on transponder!\n"
@@ -5976,9 +6088,6 @@ msgstr "Kanalit/levitajat pole valitud"
 
 msgid "No standby"
 msgstr "Ooteseisundita"
-
-msgid "No stream clients"
-msgstr "IPTV kliente pole"
 
 msgid "No suitable sat tuner found!"
 msgstr "Sat-tv tuunerit ei leitud!"
@@ -6145,12 +6254,6 @@ msgstr "Ridade arv"
 
 msgid "Number of rows to display"
 msgstr "Kuvatavate ridade arv"
-
-msgid "OE Changes"
-msgstr "OE muudatused"
-
-msgid "OE-A Changes"
-msgstr "OE-A muudatused"
 
 msgid "OK"
 msgstr "OK"
@@ -6730,6 +6833,9 @@ msgstr ""
 "Muuda akna suurust CHANNEL +/- nuppudega.\n"
 "Tagasi TV režiimi 'OK' nupuga või tühista liigutamine EXIT-nupuga."
 
+msgid "Please wait"
+msgstr "Palun oota"
+
 msgid "Please wait (downloading channel list)"
 msgstr "Oota (kanalinimekirja hankimine)"
 
@@ -6988,6 +7094,15 @@ msgstr "Valiku muutmiseks vajuta OK."
 
 msgid "Press OK, save and exit..."
 msgstr "Vajuta OK, salvesta ja välju"
+
+msgid ""
+"Press up/down to scroll through the selected log\n"
+"\n"
+"Press left/right to see different log types"
+msgstr ""
+"Valitud logi kerimiseks kasuta ÜLES/ALLA nuppe\n"
+"\n"
+"Erinevate logide kuvamiseks vajuta VASAK/PAREM nuppe"
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Selle liidese vaikimisi liideseks määramiseks vajuta kollast nuppu."
@@ -7625,9 +7740,6 @@ msgstr "SABnzbd seaded"
 msgid "SABnzbd setup"
 msgstr "SABnzbd seaded"
 
-msgid "SATA"
-msgstr "SATA"
-
 msgid "SCPC optimized search range"
 msgstr "SCPC optimeeritud otsingu vahemik"
 
@@ -7639,9 +7751,6 @@ msgstr "SCR JESS"
 
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
-
-msgid "SD"
-msgstr "SD"
 
 msgid "SINGLE LAYER DVD"
 msgstr "ÜHEKIHILINE DVD"
@@ -7754,6 +7863,7 @@ msgstr "Otsi "
 msgid "Scan "
 msgstr "Otsi "
 
+#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
 #, python-format
 msgid "Scan %s"
 msgstr "%s otsing"
@@ -8328,9 +8438,6 @@ msgstr "Kuva kliendid"
 msgid "Show Display Icons"
 msgstr "Kuva ikoonid"
 
-msgid "Show E2 Log"
-msgstr "Kuva E2 logi"
-
 msgid "Show EIT now/next in infobar"
 msgstr "Kuva EIT nüüd/järgmine inforibal"
 
@@ -8354,9 +8461,6 @@ msgstr "Jäänud/kulunud näit meedia esitusel"
 
 msgid "Show MiniTV in the Front Display"
 msgstr "Kuva MiniTV esipaneelil"
-
-msgid "Show OE Log"
-msgstr "Näita OE logi"
 
 msgid "Show OScam Info in extensions?"
 msgstr "Kuva OScam info laienduste menüüs"
@@ -8604,12 +8708,8 @@ msgstr "Telekanalile"
 msgid "Show time elapsed as positive"
 msgstr "Kulunud aeg \"+\" märgiga"
 
-msgid ""
-"Show time in 24 hour clock format.\n"
-"NOTE: This setting is not used if the global time format settings are available."
-msgstr ""
-"24 tunni kella kasutamine.\n"
-"MÄRGE: Seda sätet ei kasutata, kui saadaval on üldine kellaaja vorming."
+msgid "Show time in 24 hour clock format."
+msgstr "Kellaaeg 24 tunni vormingus."
 
 msgid "Show time remaining/elapsed"
 msgstr "Jäänud/kulunud aja näit"
@@ -8798,12 +8898,6 @@ msgstr "Vaatajakaardi PIN"
 
 msgid "Smooth"
 msgstr "Pehmendus"
-
-msgid "Smpte 170M"
-msgstr "Smpte 170M"
-
-msgid "Smpte 240M"
-msgstr "Smpte 240M"
 
 msgid "Social/Political/Economics"
 msgstr "Ühiskond/poliitika/majandus"
@@ -9034,6 +9128,9 @@ msgstr "Peata"
 
 msgid "Stop PiP"
 msgstr "Sulge PiP"
+
+msgid "Stop Streams"
+msgstr "Peata voogesitused"
 
 msgid "Stop all current recordings"
 msgstr "Peata kõik aktiivsed salvestused"
@@ -9496,6 +9593,17 @@ msgstr "Sisestatud PIN koodid on erinevad."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varundamine nurjus. Vali varukoopiale uus asukoht."
+
+msgid "The commit log cannot be retrieved at the moment - please try again later."
+msgstr "Uuenduste logi ei saa hetkel kätte - proovi hiljem uuesti"
+
+#, python-format
+msgid ""
+"The commit log cannot be retrieved at the moment - please try again later.\n"
+"%s"
+msgstr ""
+"Uuenduste logi ei saa hetkel kätte - proovi hiljem uuesti.\n"
+"%s"
 
 msgid "The current update may be unstable"
 msgstr "See uuendus ei pruugi olla stabiilne"
@@ -10248,9 +10356,6 @@ msgstr "Ukraina"
 
 msgid "Unable to change the password for the root user"
 msgstr "Juurkasutaja parooli muutmine nurjus"
-
-msgid "Unattended upgrade without GUI and reboot system"
-msgstr "Automatiseeritud uuendamine ja taaskäivitus"
 
 msgid "Undefined"
 msgstr "Määramata"
@@ -11399,6 +11504,13 @@ msgstr ""
 msgid "Your current collection will get lost!"
 msgstr "Praegune valimik hävib!"
 
+msgid ""
+"Your frontprocessor firmware must be upgraded.\n"
+"Press OK to start upgrade."
+msgstr ""
+"Esiprotsessori püsivara tuleb uuendada.\n"
+"Vajuta OK uuendamiseks."
+
 #, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
@@ -11761,9 +11873,6 @@ msgstr "Draama"
 
 msgid "e-mail address"
 msgstr "e-posti aadress"
-
-msgid "eMMC"
-msgstr "eMMC"
 
 msgid "east"
 msgstr "ida"
@@ -12743,8 +12852,41 @@ msgstr "vahetatud"
 #~ "\n"
 #~ "%d.%d.%d, %2d:%02d  -  %s"
 
+#~ msgid "%-e %B %Y"
+#~ msgstr "%-e %B %Y"
+
+#~ msgid "%-e %b"
+#~ msgstr "%-e %b"
+
+#~ msgid "%-e %b %Y"
+#~ msgstr "%-e %b %Y"
+
 #~ msgid "%-e%b"
 #~ msgstr "%-e%b"
+
+#~ msgid "%-e+%b_"
+#~ msgstr "%-e+%b_"
+
+#~ msgid "%-e-%B-%Y"
+#~ msgstr "%-e-%B-%Y"
+
+#~ msgid "%-e-%b"
+#~ msgstr "%-e-%b"
+
+#~ msgid "%-e-%b-%Y"
+#~ msgstr "%-e-%b-%Y"
+
+#~ msgid "%-e/%m"
+#~ msgstr "%-e/%m"
+
+#~ msgid "%-e/%m "
+#~ msgstr "%-e/%m "
+
+#~ msgid "%-e/%m/%Y"
+#~ msgstr "%-e/%m/%Y"
+
+#~ msgid "%-e=%b_"
+#~ msgstr "%-e=%b_"
 
 #~ msgid "%02d:%02d"
 #~ msgstr "%02d:%02d"
@@ -12755,8 +12897,155 @@ msgstr "vahetatud"
 #~ msgid "%2d:%02d:%02d"
 #~ msgstr "%2d:%02d:%02d"
 
+#~ msgid "%A %-e %B"
+#~ msgstr "%A %-e %B"
+
+#~ msgid "%A %-e %B %Y"
+#~ msgstr "%A %-e %B %Y"
+
+#~ msgid "%A %-e-%B"
+#~ msgstr "%A %-e-%B"
+
+#~ msgid "%A %-e-%B-%Y"
+#~ msgstr "%A %-e-%B-%Y"
+
+#~ msgid "%A %-e/%m"
+#~ msgstr "%A %-e/%m"
+
+#~ msgid "%A %-e/%m/%Y"
+#~ msgstr "%A %-e/%m/%Y"
+
+#~ msgid "%A %B %-e"
+#~ msgstr "%A %B %-e"
+
+#~ msgid "%A %B %-e %Y"
+#~ msgstr "%A %B %-e %Y"
+
+#~ msgid "%A %B-%-e"
+#~ msgstr "%A %B-%-e"
+
+#~ msgid "%A %B-%-e-%Y"
+#~ msgstr "%A %B-%-e-%Y"
+
+#~ msgid "%A %Y %B %-e"
+#~ msgstr "%A %Y %B %-e"
+
+#~ msgid "%A %Y-%B-%-e"
+#~ msgstr "%A %Y-%B-%-e"
+
+#~ msgid "%A %Y/%m/%-e"
+#~ msgstr "%A %Y/%m/%-e"
+
+#~ msgid "%A %m/%-e"
+#~ msgstr "%A %m/%-e"
+
+#~ msgid "%A %m/%-e/%Y"
+#~ msgstr "%A %m/%-e/%Y"
+
+#~ msgid "%B %-e %Y"
+#~ msgstr "%B %-e %Y"
+
+#~ msgid "%B-%-e-%Y"
+#~ msgstr "%B-%-e-%Y"
+
+#~ msgid "%Y %B %-e"
+#~ msgstr "%Y %B %-e"
+
+#~ msgid "%Y %b %-e"
+#~ msgstr "%Y %b %-e"
+
+#~ msgid "%Y-%B-%-e"
+#~ msgstr "%Y-%B-%-e"
+
+#~ msgid "%Y-%b-%-e"
+#~ msgstr "%Y-%b-%-e"
+
+#~ msgid "%Y/%m/%-e"
+#~ msgstr "%Y/%m/%-e"
+
+#~ msgid "%a %-e"
+#~ msgstr "%a %-e"
+
+#~ msgid "%a %-e %B %Y"
+#~ msgstr "%a %-e %B %Y"
+
+#~ msgid "%a %-e %b"
+#~ msgstr "%a %-e %b"
+
+#~ msgid "%a %-e %b %Y"
+#~ msgstr "%a %-e %b %Y"
+
+#~ msgid "%a %-e-%B-%Y"
+#~ msgstr "%a %-e-%B-%Y"
+
+#~ msgid "%a %-e-%b"
+#~ msgstr "%a %-e-%b"
+
+#~ msgid "%a %-e-%b-%Y"
+#~ msgstr "%a %-e-%b-%Y"
+
+#~ msgid "%a %-e/%m"
+#~ msgstr "%a %-e/%m"
+
+#~ msgid "%a %-e/%m/%Y"
+#~ msgstr "%a %-e/%m/%Y"
+
+#~ msgid "%a %B %-e %Y"
+#~ msgstr "%a %B %-e %Y"
+
+#~ msgid "%a %B-%-e-%Y"
+#~ msgstr "%a %B-%-e-%Y"
+
+#~ msgid "%a %Y %B %-e"
+#~ msgstr "%a %Y %B %-e"
+
+#~ msgid "%a %Y %b %-e"
+#~ msgstr "%a %Y %b %-e"
+
+#~ msgid "%a %Y-%B-%-e"
+#~ msgstr "%a %Y-%B-%-e"
+
+#~ msgid "%a %Y-%b-%-e"
+#~ msgstr "%a %Y-%b-%-e"
+
+#~ msgid "%a %Y/%m/%-e"
+#~ msgstr "%a %Y/%m/%-e"
+
+#~ msgid "%a %b %-e"
+#~ msgstr "%a %b %-e"
+
+#~ msgid "%a %b %-e %Y"
+#~ msgstr "%a %b %-e %Y"
+
+#~ msgid "%a %b-%-e"
+#~ msgstr "%a %b-%-e"
+
+#~ msgid "%a %b-%-e-%Y"
+#~ msgstr "%a %b-%-e-%Y"
+
 #~ msgid "%a %e/%m  %-H:%M"
 #~ msgstr "%a %e/%m  %-H:%M"
+
+#~ msgid "%a %m/%-e"
+#~ msgstr "%a %m/%-e"
+
+#~ msgid "%a %m/%-e/%Y"
+#~ msgstr "%a %m/%-e/%Y"
+
+#~ msgid "%b %-e"
+#~ msgstr "%b %-e"
+
+#~ msgid "%b %-e %Y"
+#~ msgstr "%b %-e %Y"
+
+#~ msgid "%b-%-e"
+#~ msgstr "%b-%-e"
+
+#~ msgid "%b-%-e-%Y"
+#~ msgstr "%b-%-e-%Y"
+
+#~ msgid "%d Gb"
+#~ msgstr "%d Gb"
 
 #~ msgid "%d%b"
 #~ msgstr "%d%b"
@@ -12770,6 +13059,15 @@ msgstr "vahetatud"
 #~ msgid "%k:%M %e/%m"
 #~ msgstr "%k:%M %e/%m"
 
+#~ msgid "%m/%-e"
+#~ msgstr "%m/%-e"
+
+#~ msgid "%m/%-e "
+#~ msgstr "%m/%-e "
+
+#~ msgid "%m/%-e/%Y"
+#~ msgstr "%m/%-e/%Y"
+
 #~ msgid ""
 #~ "A finished power timer wants to shut down\n"
 #~ "your %s %s. Shutdown now?"
@@ -12777,11 +13075,59 @@ msgstr "vahetatud"
 #~ "Lõpetanud toitetaimer soovib\n"
 #~ "%s %s välja lülitada. Kas nõustud?"
 
+#~ msgid "AC3+ transcoding"
+#~ msgstr "AC3+ transkodeerimine"
+
+#~ msgid "Always"
+#~ msgstr "Alati"
+
+#~ msgid "BT2020 CL"
+#~ msgstr "BT2020 CL"
+
+#~ msgid "BT2020 NCL"
+#~ msgstr "BT2020 NCL"
+
+#~ msgid "BT470 BG"
+#~ msgstr "BT470 BG"
+
+#~ msgid "BT601 XvYCC"
+#~ msgstr "BT601 XvYCC"
+
+#~ msgid "BT709"
+#~ msgstr "BT709"
+
+#~ msgid "BT709 XvYCC"
+#~ msgstr "BT709 XvYCC"
+
+#~ msgid "Back USB"
+#~ msgstr "Tagakülje USB"
+
+#~ msgid "Back USB 3.0"
+#~ msgstr "Tagakülje USB 3.0"
+
+#~ msgid "Back, inner USB"
+#~ msgstr "Tagakülje sisene USB"
+
+#~ msgid "Back, lower USB"
+#~ msgstr "Tagakülje alumine USB"
+
+#~ msgid "Back, outer USB"
+#~ msgstr "Tagakülje väline USB"
+
+#~ msgid "Back, upper USB"
+#~ msgstr "Tagakülje ülemine USB"
+
 #~ msgid "CPU speed:\t%s\n"
 #~ msgstr "CPU kiirus:\t%s\n"
 
 #~ msgid "Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin."
 #~ msgstr "Määra kellaaja vorming. Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
+
+#~ msgid "Choose whether AC3+ sound tracks should be transcoded to AC3."
+#~ msgstr "Määra, kas AC3+ heli transkodeerida AC3 heliks."
+
+#~ msgid "Choose whether DTS-HD sound tracks should be transcoded to DTS."
+#~ msgstr "Määra, kas DTS-HD heli transkodeerida DTS heliks."
 
 #~ msgid "Coderate HP"
 #~ msgstr "Veaparandustegur HP"
@@ -12789,14 +13135,17 @@ msgstr "vahetatud"
 #~ msgid "Coderate LP"
 #~ msgstr "Veaparandustegur LP"
 
+#~ msgid "Controlled by HDMI"
+#~ msgstr "HDMI juhitav"
+
 #~ msgid "Cores:\t%s\n"
 #~ msgstr "Tuumad:\t%s\n"
 
-#~ msgid "Current version:"
-#~ msgstr "Praegune versioon:"
-
 #~ msgid "Customize"
 #~ msgstr "Kasutaja eelistused"
+
+#~ msgid "DTS-HD transcoding"
+#~ msgstr "DTS-HD transkodeerimine"
 
 #~ msgid "Diction"
 #~ msgstr "Õigekiri"
@@ -12813,14 +13162,35 @@ msgstr "vahetatud"
 #~ msgid "Enable timer conflict detection"
 #~ msgstr "Taimerikonflikti tuvastamine"
 
+#~ msgid "Enigma2 Changes"
+#~ msgstr "Enigma2 muudatused"
+
+#~ msgid "Error downloading the change log."
+#~ msgstr "Viga muudatuslogi hankimisel."
+
 #~ msgid "FBC SCR (Unicable or JESS)"
 #~ msgstr "FBC SCR (Unicable või JESS)"
+
+#~ msgid "FCC 1953"
+#~ msgstr "FCC 1953"
 
 #~ msgid "Fallback remote receiver streaming port"
 #~ msgstr "Kaugvastuvõtja voogesituse port"
 
+#~ msgid "Front USB"
+#~ msgstr "Esikülje USB"
+
+#~ msgid "Front USB 3.0"
+#~ msgstr "Esikülje USB 3.0"
+
+#~ msgid "Full Range RGB"
+#~ msgstr "Täielik RGB"
+
 #~ msgid "Hierarchy information"
 #~ msgstr "Hierarhia teave"
+
+#~ msgid "Internal USB"
+#~ msgstr "Sisene USB"
 
 #~ msgid ""
 #~ "Misconfigured unicable connection from tuner %s to tuner %s!\n"
@@ -12838,14 +13208,26 @@ msgstr "vahetatud"
 #~ msgid "Network setup"
 #~ msgstr "Võrgu häälestamine"
 
-#~ msgid "New version:"
-#~ msgstr "Uus versioon:"
+#~ msgid "No stream clients"
+#~ msgstr "IPTV kliente pole"
+
+#~ msgid "OE Changes"
+#~ msgstr "OE muudatused"
+
+#~ msgid "OE-A Changes"
+#~ msgstr "OE-A muudatused"
 
 #~ msgid "PIDs"
 #~ msgstr "PIDid"
 
 #~ msgid "RF output"
 #~ msgstr "RF-väljund"
+
+#~ msgid "SATA"
+#~ msgstr "SATA"
+
+#~ msgid "SD"
+#~ msgstr "SD"
 
 #~ msgid "SID"
 #~ msgstr "SID"
@@ -12856,11 +13238,27 @@ msgstr "vahetatud"
 #~ msgid "Service Information"
 #~ msgstr "Kanali andmed"
 
-#~ msgid "Show time in 24 hour clock format."
-#~ msgstr "Kellaaeg 24 tunni vormingus."
+#~ msgid "Show E2 Log"
+#~ msgstr "Kuva E2 logi"
+
+#~ msgid "Show OE Log"
+#~ msgstr "Näita OE logi"
+
+#~ msgid ""
+#~ "Show time in 24 hour clock format.\n"
+#~ "NOTE: This setting is not used if the global time format settings are available."
+#~ msgstr ""
+#~ "24 tunni kella kasutamine.\n"
+#~ "MÄRGE: Seda sätet ei kasutata, kui saadaval on üldine kellaaja vorming."
 
 #~ msgid "Shutdown"
 #~ msgstr "Lülita välja"
+
+#~ msgid "Smpte 170M"
+#~ msgstr "Smpte 170M"
+
+#~ msgid "Smpte 240M"
+#~ msgstr "Smpte 240M"
 
 #~ msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
 #~ msgstr "Kaugvastuvõtja voogesituse port. Vaikimisi on see '8001'"
@@ -12881,6 +13279,9 @@ msgstr "vahetatud"
 #~ msgid "Tuning algorithm"
 #~ msgstr "Häälestumise algorütm"
 
+#~ msgid "Unattended upgrade without GUI and reboot system"
+#~ msgstr "Automatiseeritud uuendamine ja taaskäivitus"
+
 #~ msgid "Unicable"
 #~ msgstr "Unicable"
 
@@ -12896,15 +13297,11 @@ msgstr "vahetatud"
 #~ msgid "Videosize"
 #~ msgstr "Lahutus"
 
-#~ msgid ""
-#~ "Your frontprocessor firmware must be upgraded.\n"
-#~ "Press OK to start upgrade."
-#~ msgstr ""
-#~ "Esiprotsessori püsivara tuleb uuendada.\n"
-#~ "Vajuta OK uuendamiseks."
-
 #~ msgid "bc%s"
 #~ msgstr "bc%s"
+
+#~ msgid "eMMC"
+#~ msgstr "eMMC"
 
 #~ msgid "not used"
 #~ msgstr "pole lukustatud"
