@@ -2578,19 +2578,12 @@ class InfoBarSeek:
 			return
 		prevstate = self.seekstate
 
-		setpause = getMachineBuild() in ('hd51','vs1500') and 1 # 0/1 enable workaround for some boxes these in pause mode not seek to new position
 		if self.seekstate == self.SEEK_STATE_EOF:
 			if prevstate == self.SEEK_STATE_PAUSE:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
-		elif setpause and self.seekstate == self.SEEK_STATE_PAUSE:
-			print "[InfoBarGenerics] workaround jump in pause mode"
-			setpause = 2
-			self.setSeekState(self.SEEK_STATE_PLAY)
 		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
-		if setpause == 2:
-			self.setSeekState(self.SEEK_STATE_PAUSE)
 		if abs(pts) > 100 and config.usage.show_infobar_on_skip.value:
 			self.showAfterSeek()
 
