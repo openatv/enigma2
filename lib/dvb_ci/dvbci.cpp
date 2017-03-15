@@ -151,7 +151,6 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 {
 	int num_ci = 0;
 	std::stringstream path;
-	std::ifstream file;
 
 	instance = this;
 	client = NULL;
@@ -163,12 +162,9 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		path.str("");
 		path.clear();
 		path << "/dev/ci" << num_ci;
-		file.open(path.str().c_str(), std::fstream::in);
 
-		if(!file.is_open())
+		if(::access(path.str().c_str(), R_OK) < 0)
 			break;
-
-		file.close();
 
 		ePtr<eDVBCISlot> cislot;
 
@@ -186,12 +182,9 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		path.str("");
 		path.clear();
 		path << "/proc/stb/tsmux/input" << tuner_no;
-		file.open(path.str().c_str(), std::fstream::in);
 
-		if(!file.is_open())
+		if(::access(path.str().c_str(), R_OK) < 0)
 			break;
-
-		file.close();
 
 		setInputSource(tuner_no, eDVBCISlot::getTunerLetter(tuner_no));
 	}
