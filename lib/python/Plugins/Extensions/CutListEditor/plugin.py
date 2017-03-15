@@ -437,6 +437,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 	def toggleIntro(self):
 		config.plugins.CutListEditor.showIntro.value = not config.plugins.CutListEditor.showIntro.value
+		config.plugins.CutListEditor.showIntro.save()
 
 def main(session, service, **kwargs):
 	session.open(CutListEditor, service)
