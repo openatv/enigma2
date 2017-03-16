@@ -151,14 +151,13 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
 
+		# disable cutlists. we want to freely browse around in the movie
+		# However, downloading and uploading the cue sheet restores the
+		# default state, so we need to keep disabling it.
 		service = session.nav.getCurrentService()
-		cue = service and service.cueSheet()
-		if cue is not None:
-			# disable cutlists. we want to freely browse around in the movie
-			print "cut lists disabled!"
-			cue.setCutListEnable(0)
+		self.cue = service and service.cueSheet()
 
-		self.downloadCuesheet()
+		self.getCuesheet()
 
 		self["Timeline"] = ServicePositionGauge(self.session.nav)
 		self["cutlist"] = List(self.getCutlist())
@@ -174,11 +173,13 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			{
 				"setIn": (self.setIn, _("Make this mark an 'in' point")),
 				"setOut": (self.setOut, _("Make this mark an 'out' point")),
+				"setStart": (self.setStart, _("Make this mark the initial 'in' point")),
+				"setEnd": (self.setEnd, _("Make this mark the final 'out' point")),
 				"setMark": (self.setMark, _("Make this mark just a mark")),
 				"addMark": (self.__addMark, _("Add a mark")),
 				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"leave": (self.exit, _("Exit editor")),
-				"showMenu": (self.showMenu, _("menu")),
+				"showMenu": (self.showMenu, _("Menu")),
 			}, prio=-4)
 
 		self.onExecBegin.append(self.showTutorial)
@@ -207,25 +208,48 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def checkSkipShowHideLock(self):
 		pass
 
+	def getCuesheet(self):
+		self.downloadCuesheet()
+		if self.cue is not None:
+			self.cue.setCutListEnable(2)
+
+	def putCuesheet(self):
+		self.uploadCuesheet()
+		if self.cue is not None:
+			self.cue.setCutListEnable(2)
+
 	def setType(self, index, type):
 		if len(self.cut_list):
 			self.cut_list[index] = (self.cut_list[index][0], type)
 			self["cutlist"].modifyEntry(index, CutListEntry(*self.cut_list[index]))
 
-	def setIn(self):
-		m = self["cutlist"].getIndex()
-		self.setType(m, 0)
-		self.uploadCuesheet()
-
 	def setOut(self):
-		m = self["cutlist"].getIndex()
-		self.setType(m, 1)
-		self.uploadCuesheet()
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+		#self.context_position = self.cueGetCurrentPosition()
+		#self.menuCallback(CutListContextMenu.RET_STARTCUT)
+		self.cut_start = self.cueGetCurrentPosition()
+
+	def setIn(self):
+		if self.cut_start is None:
+			return
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+		self.context_position = self.cueGetCurrentPosition()
+		self.menuCallback(CutListContextMenu.RET_ENDCUT)
+
+	def setStart(self):
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+		self.context_position = self.cueGetCurrentPosition()
+		self.menuCallback(CutListContextMenu.RET_REMOVEBEFORE)
+
+	def setEnd(self):
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+		self.context_position = self.cueGetCurrentPosition()
+		self.menuCallback(CutListContextMenu.RET_REMOVEAFTER)
 
 	def setMark(self):
 		m = self["cutlist"].getIndex()
 		self.setType(m, 2)
-		self.uploadCuesheet()
+		self.putCuesheet()
 
 	def __addMark(self):
 		self.toggleMark(onlyadd=True, tolerance=90000) # do not allow two marks in <1s
@@ -260,7 +284,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 	def refillList(self):
 		print "cue sheet changed, refilling"
-		self.downloadCuesheet()
+		self.getCuesheet()
 
 		# get the first changed entry, counted from the end, and select it
 		new_list = self.getCutlist()
@@ -332,7 +356,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 			bisect.insort(self.cut_list, (self.cut_start, 1))
 			bisect.insort(self.cut_list, (self.context_position, 0))
-			self.uploadCuesheet()
+			self.putCuesheet()
 			self.cut_start = None
 		elif result == CutListContextMenu.RET_DELETECUT:
 			out_before = None
@@ -352,14 +376,14 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			if in_after is not None:
 				self.cut_list.remove(in_after)
 			self.inhibit_seek = True
-			self.uploadCuesheet()
+			self.putCuesheet()
 			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_MARK:
 			self.__addMark()
 		elif result == CutListContextMenu.RET_DELETEMARK:
 			self.cut_list.remove(self.context_nearest_mark)
 			self.inhibit_seek = True
-			self.uploadCuesheet()
+			self.putCuesheet()
 			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_REMOVEBEFORE:
 			# remove in/out marks before current position
@@ -369,7 +393,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			# add 'in' point
 			bisect.insort(self.cut_list, (self.context_position, 0))
 			self.inhibit_seek = True
-			self.uploadCuesheet()
+			self.putCuesheet()
 			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_REMOVEAFTER:
 			# remove in/out marks after current position
@@ -379,7 +403,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			# add 'out' point
 			bisect.insort(self.cut_list, (self.context_position, 1))
 			self.inhibit_seek = True
-			self.uploadCuesheet()
+			self.putCuesheet()
 			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
