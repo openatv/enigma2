@@ -69,9 +69,9 @@ class Standby2(Screen):
 		print "[Standby] TVoff"
 		try:
 			config.hdmicec.control_tv_standby_skipnow.setValue(False)
+			config.hdmicec.TVoffCounter.value += 1
 		except:
 			pass # no HdmiCec
-		config.hdmicec.TVoffCounter.value += 1
 
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():
