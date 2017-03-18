@@ -2,6 +2,11 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#include <ios>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/cfile.h>
@@ -145,18 +150,21 @@ eDVBCIInterfaces::eDVBCIInterfaces()
  : eServerSocket(CIPLUS_SERVER_SOCKET, eApp)
 {
 	int num_ci = 0;
+	std::stringstream path;
 
 	instance = this;
 	client = NULL;
 
 	eDebug("[CI] scanning for common interfaces..");
 
-	while (1)
+	for (;;)
 	{
-		char filename[128];
-		sprintf(filename, "/dev/ci%d", num_ci);
+		path.str("");
+		path.clear();
+		path << "/dev/ci" << num_ci;
 
-		if (::access(filename, R_OK) < 0) break;
+		if(::access(path.str().c_str(), R_OK) < 0)
+			break;
 
 		ePtr<eDVBCISlot> cislot;
 
@@ -169,9 +177,17 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	for (eSmartPtrList<eDVBCISlot>::iterator it(m_slots.begin()); it != m_slots.end(); ++it)
 		it->setSource("A");
 
-	// FIXME initiliaze all inputs by checking /proc/stb/tsmux/inputX instead of using fixed 2 / 4
-	for (int tuner_no = 0; tuner_no < (num_ci > 1 ? 4 : 2); ++tuner_no)
+	for (int tuner_no = 0; tuner_no < (num_ci > 1 ? 26 : 2); ++tuner_no) // NOTE: this assumes tuners are A .. Z max.
+	{
+		path.str("");
+		path.clear();
+		path << "/proc/stb/tsmux/input" << tuner_no;
+
+		if(::access(path.str().c_str(), R_OK) < 0)
+			break;
+
 		setInputSource(tuner_no, eDVBCISlot::getTunerLetter(tuner_no));
+	}
 
 	eDebug("[CI] done, found %d common interface slots", num_ci);
 }
