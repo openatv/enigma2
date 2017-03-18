@@ -170,7 +170,7 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gbx3h\n", rd))
 		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "gbuhdquad\n", rd))
+	else if (!strncmp(tmp, "gbquad4k\n", rd))
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "ebox5000\n", rd))
 		m_boxtype = DM800;
