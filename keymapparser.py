@@ -38,8 +38,7 @@ def parseKeys(context, filename, actionmap, device, keys):
 		id = get_attr("id")
 		flags = get_attr("flags")
 
-		print "XXX",id,unmap,mapto,flags
-		if unmap:
+		if unmap is not None:
 			assert id, "[keymapparser] %s: must specify id in context %s, unmap '%s'" % (filename, context, unmap)
 			keyid = getKeyId(id)
 			actionmap.unbindPythonKey(context, keyid, unmap)	
