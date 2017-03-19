@@ -34,21 +34,29 @@ def parseKeys(context, filename, actionmap, device, keys):
 	for x in keys.findall("key"):
 		get_attr = x.attrib.get
 		mapto = get_attr("mapto")
+		unmap = get_attr("unmap")
 		id = get_attr("id")
 		flags = get_attr("flags")
 
-		flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
+		print "XXX",id,unmap,mapto,flags
+		if unmap:
+			assert id, "[keymapparser] %s: must specify id in context %s, unmap '%s'" % (filename, context, unmap)
+			keyid = getKeyId(id)
+			actionmap.unbindPythonKey(context, keyid, unmap)	
+		else:	
+			assert mapto, "[keymapparser] %s: must specify mapto (or unmap) in context %s, id '%s'" % (filename, context, id)
+			assert id, "[keymapparser] %s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
+			keyid = getKeyId(id)
 
-		flags = sum(map(flag_ascii_to_id, flags))
+			flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
 
-		assert mapto, "[keymapparser] %s: must specify mapto in context %s, id '%s'" % (filename, context, id)
-		assert id, "[keymapparser] %s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
-		assert flags, "[keymapparser] %s: must specify at least one flag in context %s, id '%s'" % (filename, context, id)
+			flags = sum(map(flag_ascii_to_id, flags))
 
-		keyid = getKeyId(id)
-#		print "[keymapparser] " + context + "::" + mapto + " -> " + device + "." + hex(keyid)
-		actionmap.bindKey(filename, device, keyid, flags, context, mapto)
-		addKeyBinding(filename, keyid, context, mapto, flags)
+			assert flags, "[keymapparser] %s: must specify at least one flag in context %s, id '%s'" % (filename, context, id)
+
+#			print "[keymapparser] " + context + "::" + mapto + " -> " + device + "." + hex(keyid)
+			actionmap.bindKey(filename, device, keyid, flags, context, mapto)
+			addKeyBinding(filename, keyid, context, mapto, flags)
 
 def parseTrans(filename, actionmap, device, keys):
 	for x in keys.findall("toggle"):
