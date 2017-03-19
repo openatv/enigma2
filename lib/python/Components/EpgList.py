@@ -682,8 +682,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None, # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t)), foreColor, foreColorSel, backColor, backColorSel),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t), foreColor, foreColorSel, backColor, backColorSel)
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime(_("%a"), t)), foreColor, foreColorSel, backColor, backColorSel),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime(_("%e/%m, %-H:%M"), t), foreColor, foreColorSel, backColor, backColorSel)
 		]
 		if clock_types:
 			if self.wasEntryAutoTimer and clock_types in (2,7,12):
@@ -724,8 +724,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		t = localtime(beginTime)
 		res = [
 			None,  # no private data needed
-			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime("%a", t))),
-			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime("%e/%m, %-H:%M", t))
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, _(strftime(_("%a"), t))),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime(_("%e/%m, %-H:%M"), t))
 		]
 		if clock_types:
 			if self.wasEntryAutoTimer and clock_types in (2,7,12):
@@ -780,7 +780,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
+					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, _("%02d.%02d - %02d.%02d")%(begin[3],begin[4],end[3],end[4])),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, fact1, r3.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%d min") % (duration / 60))
 				))
 			else:
@@ -891,7 +891,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			else:
 				piconWidth = 0
 		else:
-			piconWidth = 0
+			piconWidth = 10
 
 		if self.showServiceTitle: # we have more space so reset parms
 			namefont = 0
@@ -1542,17 +1542,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 			ServiceWidth = service_rect.width()
 			if nowTime[2] != begTime[2]:
 				if ServiceWidth > 179:
-					datestr = strftime("%A %d %B", localtime(time_base))
+					datestr = strftime(_("%A %d %B"), localtime(time_base))
 				elif ServiceWidth > 139:
-					datestr = strftime("%a %d %B", localtime(time_base))
+					datestr = strftime(_("%a %d %B"), localtime(time_base))
 				elif ServiceWidth > 129:
-					datestr = strftime("%a %d %b", localtime(time_base))
+					datestr = strftime(_("%a %d %b"), localtime(time_base))
 				elif ServiceWidth > 119:
-					datestr = strftime("%a %d", localtime(time_base))
+					datestr = strftime(_("%a %d"), localtime(time_base))
 				elif ServiceWidth > 109:
-					datestr = strftime("%A", localtime(time_base))
+					datestr = strftime(_("%A"), localtime(time_base))
 				else:
-					datestr = strftime("%a", localtime(time_base))
+					datestr = strftime(_("%a"), localtime(time_base))
 			else:
 				datestr = '%s'%(_("Today"))
 
