@@ -1424,27 +1424,27 @@ class NetworkAdapterTest(Screen):
 		self["infoshortcuts"].setEnabled(True)
 		self["shortcuts"].setEnabled(False)
 		if self.activebutton == 1: # Adapter Check
-			self["InfoText"].setText(_("This test detects your configured LAN adapter."))
+			self["InfoText"].setText(_("LAN adapter\n\nThis test detects your configured LAN adapter."))
 			self["InfoTextBorder"].show()
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 2: #LAN Check
-			self["InfoText"].setText(_("This test checks whether a network cable is connected to your LAN adapter.\nIf you get a \"disconnected\" message:\n- verify that a network cable is attached\n- verify that the cable is not broken"))
+			self["InfoText"].setText(_("Local network\n\nThis test checks whether a network cable is connected to your LAN adapter.\n\nIf you get a \"disconnected\" message:\n- Verify that a network cable is attached.\n- Verify that the cable is not broken."))
 			self["InfoTextBorder"].show()
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 3: #DHCP Check
-			self["InfoText"].setText(_("This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\nIf you get a \"disabled\" message:\n - then your LAN adapter is configured for manual IP setup\n- verify thay you have entered correct IP informations in the adapter setup dialog.\nIf you get an \"enabled\" message:\n-verify that you have a configured and working DHCP server in your network."))
+			self["InfoText"].setText(_("DHCP\n\nThis test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n\nIf you get a \"disabled\" message:\n- Your LAN adapter is configured for manual IP setup.\n- Verify that you have entered correct IP informations in the adapter setup dialog.\n\nIf you get an \"enabled\" message:\n- Verify that you have a configured and working DHCP server in your network."))
 			self["InfoTextBorder"].show()
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 4: # IP Check
-			self["InfoText"].setText(_("This test checks whether a valid IP address is found for your LAN adapter.\nIf you get a \"unconfirmed\" message:\n- no valid IP address was found\n- please check your DHCP server, cabling and adapter setup"))
+			self["InfoText"].setText(_("IP address\n\nThis test checks whether a valid IP address is found for your LAN adapter.\n\nIf you get a \"unconfirmed\" message:\n- No valid IP address was found.\n- Please check your DHCP server, cabling and adapter setup."))
 			self["InfoTextBorder"].show()
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
 		if self.activebutton == 5: # DNS Check
-			self["InfoText"].setText(_("This test checks for configured nameservers.\nIf you get a \"unconfirmed\" message:\n- please check your DHCP server, cabling and adapter setup\n- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"))
+			self["InfoText"].setText(_("Nameserver\n\nThis test checks for configured nameservers.\n\nIf you get a \"unconfirmed\" message:\n- Please check your DHCP server, cabling and adapter setup.\n- If you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration."))
 			self["InfoTextBorder"].show()
 			self["InfoText"].show()
 			self["key_red"].setText(_("Back"))
