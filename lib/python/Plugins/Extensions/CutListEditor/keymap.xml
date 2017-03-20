@@ -3,8 +3,8 @@
 	<map context="CutlistSeekActions">
 		<key id="KEY_YELLOW" mapto="seekBack" flags="b" />
 		<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
-		<key id="KEY_YELLOW" mapto="seekBackManual" flags="l" />
-		<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
+		<key id="KEY_YELLOW" mapto="SeekbarBack" flags="l" />
+		<key id="KEY_BLUE" mapto="SeekbarFwd" flags="l" />
 		<device name="dreambox advanced remote control (native)">
 			<!--key id="KEY_GREEN" mapto="unPauseService" flags="m" /-->
 			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
@@ -49,5 +49,6 @@
 		<key id="KEY_OK" mapto="showMenu" flags="m" />
 		<key id="KEY_ENTER" mapto="showMenu" flags="m" />
 		<key id="KEY_MENU" mapto="showMenu" flags="m" />
+		<key id="KEY_LAST" mapto="backMenu" flags="m" />
 	</map>
 </keymap>

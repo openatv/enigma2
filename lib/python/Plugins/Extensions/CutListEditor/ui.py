@@ -4,6 +4,7 @@ from enigma import getDesktop, iPlayableService
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Components.ServicePosition import ServicePositionGauge
 from Components.ActionMap import HelpableActionMap
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
@@ -51,12 +52,15 @@ class CutListContextMenu(FixedMenu):
 	RET_REMOVEBEFORE = 5
 	RET_REMOVEAFTER = 6
 	RET_GRABFRAME = 7
+	RET_ENABLECUTS = 8
+	RET_DISABLECUTS = 9
+	RET_EXECUTECUTS = 10
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
 	SHOW_DELETECUT = 2
 
-	def __init__(self, session, state, nearmark):
+	def __init__(self, session, state, nearmark, cut_state):
 		menu = [(_("back"), self.close)] #, (None, )]
 
 		if state == self.SHOW_STARTCUT:
@@ -76,6 +80,13 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("remove before this position"), self.removeBefore))
 		menu.append((_("remove after this position"), self.removeAfter))
+
+		if cut_state == 2:
+			menu.append((_("enable cuts"), self.enableCuts))
+		else:
+			menu.append((_("disable cuts"), self.disableCuts))
+
+		menu.append((_("execute cuts"), self.executeCuts))
 
 #		menu.append((None, ))
 
@@ -108,6 +119,15 @@ class CutListContextMenu(FixedMenu):
 
 	def removeAfter(self):
 		self.close(self.RET_REMOVEAFTER)
+
+	def enableCuts(self):
+		return self.close(self.RET_ENABLECUTS)
+
+	def disableCuts(self):
+		return self.close(self.RET_DISABLECUTS)
+
+	def executeCuts(self):
+		return self.close(self.RET_EXECUTECUTS)
 
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
@@ -145,6 +165,11 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		<ePixmap pixmap="icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
 	</screen>"""
 
+	BACK_BACK = 0
+	BACK_RESTORE = 1
+	BACK_RESTOREEXIT = 2
+	BACK_REMOVE = 3
+
 	tutorial_seen = False
 
 	def __init__(self, session, service):
@@ -163,8 +188,12 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		# default state, so we need to keep disabling it.
 		service = session.nav.getCurrentService()
 		self.cue = service and service.cueSheet()
+		self.cut_state = 2
 
 		self.getCuesheet()
+
+		# preserve the original cuts to possibly restore them later
+		self.prev_cuts = self.cut_list[:]
 
 		self["Timeline"] = ServicePositionGauge(self.session.nav)
 		self["cutlist"] = List(self.getCutlist())
@@ -173,11 +202,10 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.onPlayStateChanged.append(self.updateStateLabel)
 		self.updateStateLabel(self.seekstate)
 
-		self["key_red"]    = Label(_("Start cut / Remove after"))
-		self["key_green"]  = Label(_("End cut / Remove before"))
+		self["key_red"]    = Label(_("Start cut"))
+		self["key_green"]  = Label(_("End cut"))
 		self["key_yellow"] = Label(_("Backward"))
 		self["key_blue"]   = Label(_("Forward"))
-		self["okbutton"]   = Label(_("OK = Menu"))
 
 		desktopSize = getDesktop(0).size()
 		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
@@ -193,6 +221,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"leave": (self.exit, _("Exit editor")),
 				"showMenu": (self.showMenu, _("Menu")),
+				"backMenu": (self.backMenu, _("Restore previous cuts")),
 			}, prio=-4)
 
 		self.onExecBegin.append(self.showTutorial)
@@ -224,12 +253,12 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def getCuesheet(self):
 		self.downloadCuesheet()
 		if self.cue is not None:
-			self.cue.setCutListEnable(2)
+			self.cue.setCutListEnable(self.cut_state)
 
 	def putCuesheet(self):
 		self.uploadCuesheet()
 		if self.cue is not None:
-			self.cue.setCutListEnable(2)
+			self.cue.setCutListEnable(self.cut_state)
 
 	def setType(self, index, type):
 		if len(self.cut_list):
@@ -357,7 +386,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		else:
 			nearmark = True
 
-		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state, nearmark)
+		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state, nearmark, self.cut_state)
 
 	def menuCallback(self, *result):
 		if not len(result):
@@ -423,8 +452,41 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = True
 			self.putCuesheet()
 			self.inhibit_seek = False
+		elif result == CutListContextMenu.RET_ENABLECUTS:
+			self.cut_state = 3
+			if self.cue is not None:
+				self.cue.setCutListEnable(self.cut_state)
+		elif result == CutListContextMenu.RET_DISABLECUTS:
+			self.cut_state = 2
+			if self.cue is not None:
+				self.cue.setCutListEnable(self.cut_state)
+		elif result == CutListContextMenu.RET_EXECUTECUTS:
+			try:
+				from Plugins.Extensions.MovieCut.plugin import main
+				service = self.session.nav.getCurrentlyPlayingServiceReference()
+				self.session.nav.stopService()	# need to stop to save the cuts file
+				main(self.session, service)
+				self.close()
+			except ImportError:
+				self.session.open(Message, _("The MovieCut plugin is not installed."), type=MessageBox.TYPE_INFO, timeout=10)
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
+
+	def backMenu(self):
+		menu = [(_("back"), self.BACK_BACK),
+				(_("restore previous cuts"), self.BACK_RESTORE),
+				(_("restore previous cuts & exit"), self.BACK_RESTOREEXIT),
+				(_("remove all cuts"), self.BACK_REMOVE)]
+		self.session.openWithCallback(self.backCallback, ChoiceBox, title="Restore cuts", list=menu)
+
+	def backCallback(self, result):
+		if result and result[1]:
+			self.cut_list = self.prev_cuts if result[1] != self.BACK_REMOVE else []
+			self.inhibit_seek = True
+			self.putCuesheet()
+			self.inhibit_seek = False
+			if result[1] == self.BACK_RESTOREEXIT:
+				self.close()
 
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
