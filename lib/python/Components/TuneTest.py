@@ -25,9 +25,9 @@ class Tuner:
 				parm.pls_mode = transponder[11]
 				parm.pls_code = transponder[12]
 			else:
-				parm.is_id = -1
+				parm.is_id = 0 #-1
 				parm.pls_mode = 0
-				parm.pls_code = 0
+				parm.pls_code = 1
 			self.tuneSatObj(parm)
 
 	def tuneSatObj(self, transponderObj):
