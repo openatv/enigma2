@@ -153,14 +153,12 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
-		ret["bandwidth"] = {
-			0 : _("Auto"),
-			10000000 : "10 MHz",
-			8000000 : "8 MHz",
-			7000000 : "7 MHz",
-			6000000 : "6 MHz",
-			5000000 : "5 MHz",
-			1712000 : "1.712 MHz"}.get(tp.get("bandwidth"))
+		x = tp.get("bandwidth")
+		if isinstance(x, int):
+			x = str("%.3f" % (float(x) / 1000000.0)).rstrip('0').rstrip('.') + " MHz" if x else "Auto"
+		else:
+			x = ""
+		ret["bandwidth"] = x
 		#print 'bandwidth:',tp.get("bandwidth")
 		ret["code_rate_lp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
