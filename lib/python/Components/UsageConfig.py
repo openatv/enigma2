@@ -670,7 +670,6 @@ def InitUsageConfig():
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value*60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
-	config.epg.cachesaveenabled = ConfigYesNo(default = True)
 	config.epg.cacheloadsched = ConfigYesNo(default = False)
 	config.epg.cachesavesched = ConfigYesNo(default = False)
 	def EpgCacheLoadSchedChanged(configElement):
