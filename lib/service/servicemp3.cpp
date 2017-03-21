@@ -1079,7 +1079,9 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 #endif
 	if (m_paused)
 	{
+#if GST_VERSION_MAJOR >= 1
 		m_last_seek_count = 0;
+#endif
 		m_event((iPlayableService*)this, evUpdatedInfo);
 		
 	}
@@ -1102,7 +1104,9 @@ RESULT eServiceMP3::seekTo(pts_t to)
 	{
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
+#if GST_VERSION_MAJOR >= 1
 		m_seeking_or_paused = true;
+#endif
 		ret = seekToImpl(to);
 	}
 
