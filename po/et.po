@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-09 10:10+0200\n"
-"PO-Revision-Date: 2017-03-09 15:08+0200\n"
+"POT-Creation-Date: 2017-03-21 11:16+0200\n"
+"PO-Revision-Date: 2017-03-22 12:08+0200\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -1580,9 +1580,6 @@ msgstr "Testimata uuendused lubatud"
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
 
-msgid "Allows the %s %s to save EPG data to file for use on a restart. Default is 'yes'. Only set to 'no' if this receiver is running as a client and passively sharing epg.dat from another receiver."
-msgstr "Võimaldab %s %s epg.dat faili salvestamise, et seda kasutada taaskäivitumisel. Vaikeväärtus on 'jah'. Määra 'ei' ainult juhul, kui vastuvõtja töötab kliendina ja kasutab passiivselt teise vastuvõtja epg.dat faili."
-
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt salvestada EPG andmeid."
 
@@ -2686,7 +2683,7 @@ msgid "Configure nameservers"
 msgstr "Seadista nimeserverid"
 
 msgid "Configure on which devices the background delete option should be used."
-msgstr "Määra, millisel salvestil taustal kustutamise võimalust kasutatakse,"
+msgstr "Määra, millisel andmekandjal taustal kustutamise võimalust kasutatakse,"
 
 msgid "Configure remote control type"
 msgstr "Puldi tüübi valik"
@@ -3136,6 +3133,29 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid ""
+"DHCP\n"
+"\n"
+"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+"\n"
+"If you get a \"disabled\" message:\n"
+"- Your LAN adapter is configured for manual IP setup.\n"
+"- Verify that you have entered correct IP informations in the adapter setup dialog.\n"
+"\n"
+"If you get an \"enabled\" message:\n"
+"- Verify that you have a configured and working DHCP server in your network."
+msgstr ""
+"DHCP\n"
+"\n"
+"See test kontrollib, kas kohtvõrgu kaart on seadistatud automaatse IP aadressi jaoks DHCP-d kasutades.\n"
+"Kui näed teadet \"keelatud\":\n"
+"\n"
+"- siis kohtvõrgu kaart on seadistatud IP käsitsi määramiseks\n"
+"- kontrolli, et menüüs 'Võrgukaardi seaded'. on IP andmed sisestatud korrektselt.\n"
+"\n"
+"Kui näed teadet \"Lubatud\":\n"
+"- kontrolli, et võrgus on seadistatud ja töötav DHCP server."
+
 msgid "DLNA support"
 msgstr "DLNA tugi"
 
@@ -3490,7 +3510,7 @@ msgid "Details for plugin: "
 msgstr "Plugina üksikasjad: "
 
 msgid "Detected devices:"
-msgstr "Salvestid:"
+msgstr "Andmekandjad:"
 
 msgid "Detected tuners:"
 msgstr "Tuunerid:"
@@ -3647,7 +3667,7 @@ msgid ""
 "Do you really want to initialize this device?\n"
 "All the data on the device will be lost!"
 msgstr ""
-"Kas vormindada salvesti?\n"
+"Kas vormindada andmekandja?\n"
 "Kogu ketta sisu läheb kaduma!"
 
 msgid "Do you really want to move to the trash can ?"
@@ -3932,9 +3952,6 @@ msgstr "Luba 5 V toide aktiivantennile"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG lubatud"
-
-msgid "Enable EPG save"
-msgstr "EPG salvestamine lubatud"
 
 msgid "Enable FreeSat EPG"
 msgstr "FreeSat EPG lubatud"
@@ -4249,7 +4266,7 @@ msgstr "Väline PiP"
 
 #, python-format
 msgid "External Storage %s"
-msgstr "Väline salvesti %s"
+msgstr "Väline andmekandja %s"
 
 msgid "External subtitle color"
 msgstr "Väliste subtiitrite värv"
@@ -4860,6 +4877,23 @@ msgstr "IMDb otsing"
 msgid "IP address"
 msgstr "IP aadress"
 
+msgid ""
+"IP address\n"
+"\n"
+"This test checks whether a valid IP address is found for your LAN adapter.\n"
+"\n"
+"If you get a \"unconfirmed\" message:\n"
+"- No valid IP address was found.\n"
+"- Please check your DHCP server, cabling and adapter setup."
+msgstr ""
+"IP aadress\n"
+"\n"
+"See test kontrollib, kas kohtvõrgukaardile on leitud kehtiv IP aadress.\n"
+"\n"
+"Kui näed teadet \"kinnitamata\":\n"
+"- kehtivat IP aadressi ei leitud\n"
+"- kontrolli DHCP ja võrgukaardi seadeid ning kaabeldust"
+
 msgid "IP-Address"
 msgstr "IP aadress"
 
@@ -5060,7 +5094,7 @@ msgid "Initialize"
 msgstr "Vorminda"
 
 msgid "Initializing storage device..."
-msgstr "Salvesti vormindamine"
+msgstr "Andmekandja vormindamine"
 
 msgid "Inotify Monitoring"
 msgstr "Inotify jälgimine"
@@ -5283,6 +5317,15 @@ msgstr "Klaviatuuri seaded"
 msgid "LAN adapter"
 msgstr "Kohtvõrgu adapter"
 
+msgid ""
+"LAN adapter\n"
+"\n"
+"This test detects your configured LAN adapter."
+msgstr ""
+"Kohtvõrgukaart\n"
+"\n"
+"See test tuvastab seadistatud võrgukaardi."
+
 msgid "LAN connection"
 msgstr "LAN ühendus"
 
@@ -5420,7 +5463,7 @@ msgid "List available networks"
 msgstr "Loetle saadaolevad võrgud"
 
 msgid "List of storage devices"
-msgstr "Salvestite loetelu"
+msgstr "Andmekandjad"
 
 #, python-format
 msgid "List version %d, found %d channel"
@@ -5460,6 +5503,23 @@ msgstr "Kohalik vastuvõtja"
 
 msgid "Local network"
 msgstr "Kohtvõrk"
+
+msgid ""
+"Local network\n"
+"\n"
+"This test checks whether a network cable is connected to your LAN adapter.\n"
+"\n"
+"If you get a \"disconnected\" message:\n"
+"- Verify that a network cable is attached.\n"
+"- Verify that the cable is not broken."
+msgstr ""
+"Kohtvõrk\n"
+"\n"
+"See test kontrollib, kas võrgukaabel on ühendatud võrgukaardiga.\n"
+"\n"
+"Kui näed \"ühendamata\" teadet:\n"
+"- veendu, et võrgukaabel on ühendatud\n"
+"- veendu, et kaabel on terve"
 
 msgid "Location"
 msgstr "Asukoht"
@@ -5876,7 +5936,7 @@ msgid ""
 "\n"
 "Select Yes to continue or No to exit."
 msgstr ""
-"MÄRKUS: See võimalus on neile, kes ei saa oma teleril keelata liighälvitust (overscan).  Esmalt ürita siiski liighälvitus keelata.\n"
+"MÄRKUS: See on võimalus neile, kes ei saa oma teleril keelata liighälvitust (overscan).  Esmalt ürita siiski liighälvitus keelata.\n"
 "\n"
 "KASUTAMINE: Kohanda pildi suurust ja asukohta nii, et varjutatud kiht kataks täpselt taustal oleva testpildi.\n"
 "\n"
@@ -5899,6 +5959,22 @@ msgstr "Nimi:"
 
 msgid "Nameserver"
 msgstr "Nimeserver"
+
+msgid ""
+"Nameserver\n"
+"\n"
+"This test checks for configured nameservers.\n"
+"\n"
+"If you get a \"unconfirmed\" message:\n"
+"- Please check your DHCP server, cabling and adapter setup.\n"
+"- If you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration."
+msgstr ""
+"Nimeserver\n"
+"\n"
+"See test kontrollib nimeserveri seadeid.\n"
+"Kui ilmub teade: \"kinnitamata\":\n"
+"- kontrolli üle DHCP server, kaabeldus ja võrgukaardi seaded \n"
+"- kui seadistasid oma nimeserverid käsitsi, siis kontrolli üle nimeserveri seaded"
 
 #, python-format
 msgid "Nameserver %d"
@@ -6716,7 +6792,7 @@ msgid "Please follow the instructions on the TV"
 msgstr "Jälgi ekraanil olevaid juhiseid"
 
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
-msgstr "Eelnevalt valitud salvesti ei ole kättesaadav ja selle asemel kasutatakse vaikimisi määratud kataloogi."
+msgstr "Eelnevalt valitud andmekandja ei ole kättesaadav ja selle asemel kasutatakse vaikimisi määratud kataloogi."
 
 msgid "Please open Picture in Picture first"
 msgstr "Ava esmalt Pilt Pildis (PiP)"
@@ -6746,7 +6822,7 @@ msgid "Please select a subservice..."
 msgstr "Vali alamkanal"
 
 msgid "Please select medium to be scanned"
-msgstr "Vali salvesti, millelt otsitakse"
+msgstr "Vali andmekandja, millelt otsida"
 
 msgid "Please select medium to use as backup location"
 msgstr "Vali asukoht varukoopiale"
@@ -6846,7 +6922,7 @@ msgid "Please wait while gathering EPG data..."
 msgstr "EPG andmete kogumine..."
 
 msgid "Please wait while scanning for devices..."
-msgstr "Salvestite uurimine"
+msgstr "Andmekandjate uurimine"
 
 msgid "Please wait while scanning is in progress..."
 msgstr "Oota otsingu lõppemist"
@@ -8126,7 +8202,7 @@ msgid "Send yourself a copy"
 msgstr "Saada endale koopia"
 
 msgid "Seperate titles with a main menu"
-msgstr "Eraldi salvestised peamenüüga"
+msgstr "Eralda salvestised peamenüüga"
 
 msgid "Sequence repeat"
 msgstr "Järjekorra kordus"
@@ -8814,7 +8890,7 @@ msgid "Site longitude"
 msgstr "Koha pikkuskraad"
 
 msgid "Size: "
-msgstr "Suurus: "
+msgstr "Maht: "
 
 msgid "Skin Setting"
 msgstr "Kujunduse seaded"
@@ -8986,13 +9062,13 @@ msgid "Sort"
 msgstr "Järjestus"
 
 msgid "Sort EPG List"
-msgstr "Saatekava järjestamine"
+msgstr "Saatekava sortimine"
 
 msgid "Sort Trash by deletion time"
 msgstr "Sordi prügikast aja järgi"
 
 msgid "Sort by"
-msgstr "Järjestamine"
+msgstr "Sortimine"
 
 msgid "Sort by default"
 msgstr "Vaikejärjestus"
@@ -9208,7 +9284,7 @@ msgid "Stops timeshift being used if a recording is in progress. (Advisable for 
 msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
 
 msgid "Storage devices"
-msgstr "Salvestid"
+msgstr "Andmekandjad"
 
 msgid "Store at index"
 msgstr "Salvesta indeksis"
@@ -9558,7 +9634,7 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
-"Ajanihkeks valitud salvesti ei toeta püsiviitu.\n"
+"Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
 "Vorminda see EXT2 või EXT3 failisüsteemi!"
 
 msgid ""
@@ -9944,57 +10020,6 @@ msgstr "See plugin paigaldatakse."
 
 msgid "This plugin will be removed."
 msgstr "See plugin eemaldatakse."
-
-msgid ""
-"This test checks for configured nameservers.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- please check your DHCP server, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Test kontrollib nimeserveri seadeid.\n"
-"Kui tekib \"kinnitamata\" kiri:\n"
-"- kontrolli üle DHCP, kaabeldus ja võrgukaardi seaded \n"
-"- kui seadistasid oma nimeserverid käsitsi, siis kontrolli üle nimeserveri seaded"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"See test kontrollib, kas võrgukaabel on ühendatud võrgukaardiga.\n"
-"Kui näed \"ühendamata\" teadet:\n"
-"- veendu, et võrgukaabel on ühendatud\n"
-"- veendu, et kaabel on terve"
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP server, cabling and adapter setup"
-msgstr ""
-"See test kontrollib, kas kohtvõrgukaardile on leitud kehtiv IP aadress.\n"
-"Kui näed teadet \"kinnitamata\":\n"
-"- kehtivat IP aadressi ei leitud\n"
-"- kontrolli DHCP ja võrgukaardi seadeid ning kaabeldust"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify thay you have entered correct IP informations in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"See test kontrollib, kas kohtvõrgu kaart on seadistatud automaatse IP aadressi jaoks DHCP-d kasutades.\n"
-"Kui näed teadet \"keelatud\":\n"
-"- siis kohtvõrgu kaart on seadistatud IP käsitsi määramiseks\n"
-"- kontrolli, et menüüs 'Võrgukaardi seaded'. on IP andmed sisestatud korrektselt.\n"
-"Kui näed teadet \"lubatud\":\n"
-"- kontrolli, et võrgus on seadistatud ja töötav DHCP server."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "See test tuvastab seadistatud võrgukaardi."
 
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
@@ -10710,7 +10735,7 @@ msgid "Video: %s fps"
 msgstr "Video: %s fps"
 
 msgid "Videocodec, size & format"
-msgstr "Videokoodek, suurus ja kuvasuhe"
+msgstr "Video andmed"
 
 msgid "View"
 msgstr "Vaata"
@@ -12594,7 +12619,7 @@ msgid "social/spiritual science"
 msgstr "sotsiaalteemad/hingeteadus"
 
 msgid "sorting of playlists"
-msgstr "pleilistide järjestamine"
+msgstr "pleilistide sortimine"
 
 msgid "special (general)"
 msgstr "Erisaade"
@@ -12844,473 +12869,3 @@ msgstr "Kanalivahetus ja salvestamine"
 
 msgid "zapped"
 msgstr "vahetatud"
-
-#~ msgid ""
-#~ "\n"
-#~ "%d.%d.%d, %2d:%02d  -  %s"
-#~ msgstr ""
-#~ "\n"
-#~ "%d.%d.%d, %2d:%02d  -  %s"
-
-#~ msgid "%-e %B %Y"
-#~ msgstr "%-e %B %Y"
-
-#~ msgid "%-e %b"
-#~ msgstr "%-e %b"
-
-#~ msgid "%-e %b %Y"
-#~ msgstr "%-e %b %Y"
-
-#~ msgid "%-e%b"
-#~ msgstr "%-e%b"
-
-#~ msgid "%-e+%b_"
-#~ msgstr "%-e+%b_"
-
-#~ msgid "%-e-%B-%Y"
-#~ msgstr "%-e-%B-%Y"
-
-#~ msgid "%-e-%b"
-#~ msgstr "%-e-%b"
-
-#~ msgid "%-e-%b-%Y"
-#~ msgstr "%-e-%b-%Y"
-
-#~ msgid "%-e/%m"
-#~ msgstr "%-e/%m"
-
-#~ msgid "%-e/%m "
-#~ msgstr "%-e/%m "
-
-#~ msgid "%-e/%m/%Y"
-#~ msgstr "%-e/%m/%Y"
-
-#~ msgid "%-e=%b_"
-#~ msgstr "%-e=%b_"
-
-#~ msgid "%02d:%02d"
-#~ msgstr "%02d:%02d"
-
-#~ msgid "%2d:%02d"
-#~ msgstr "%2d:%02d"
-
-#~ msgid "%2d:%02d:%02d"
-#~ msgstr "%2d:%02d:%02d"
-
-#~ msgid "%A %-e %B"
-#~ msgstr "%A %-e %B"
-
-#~ msgid "%A %-e %B %Y"
-#~ msgstr "%A %-e %B %Y"
-
-#~ msgid "%A %-e-%B"
-#~ msgstr "%A %-e-%B"
-
-#~ msgid "%A %-e-%B-%Y"
-#~ msgstr "%A %-e-%B-%Y"
-
-#~ msgid "%A %-e/%m"
-#~ msgstr "%A %-e/%m"
-
-#~ msgid "%A %-e/%m/%Y"
-#~ msgstr "%A %-e/%m/%Y"
-
-#~ msgid "%A %B %-e"
-#~ msgstr "%A %B %-e"
-
-#~ msgid "%A %B %-e %Y"
-#~ msgstr "%A %B %-e %Y"
-
-#~ msgid "%A %B-%-e"
-#~ msgstr "%A %B-%-e"
-
-#~ msgid "%A %B-%-e-%Y"
-#~ msgstr "%A %B-%-e-%Y"
-
-#~ msgid "%A %Y %B %-e"
-#~ msgstr "%A %Y %B %-e"
-
-#~ msgid "%A %Y-%B-%-e"
-#~ msgstr "%A %Y-%B-%-e"
-
-#~ msgid "%A %Y/%m/%-e"
-#~ msgstr "%A %Y/%m/%-e"
-
-#~ msgid "%A %m/%-e"
-#~ msgstr "%A %m/%-e"
-
-#~ msgid "%A %m/%-e/%Y"
-#~ msgstr "%A %m/%-e/%Y"
-
-#~ msgid "%B %-e %Y"
-#~ msgstr "%B %-e %Y"
-
-#~ msgid "%B-%-e-%Y"
-#~ msgstr "%B-%-e-%Y"
-
-#~ msgid "%Y %B %-e"
-#~ msgstr "%Y %B %-e"
-
-#~ msgid "%Y %b %-e"
-#~ msgstr "%Y %b %-e"
-
-#~ msgid "%Y-%B-%-e"
-#~ msgstr "%Y-%B-%-e"
-
-#~ msgid "%Y-%b-%-e"
-#~ msgstr "%Y-%b-%-e"
-
-#~ msgid "%Y/%m/%-e"
-#~ msgstr "%Y/%m/%-e"
-
-#~ msgid "%a %-e"
-#~ msgstr "%a %-e"
-
-#~ msgid "%a %-e %B %Y"
-#~ msgstr "%a %-e %B %Y"
-
-#~ msgid "%a %-e %b"
-#~ msgstr "%a %-e %b"
-
-#~ msgid "%a %-e %b %Y"
-#~ msgstr "%a %-e %b %Y"
-
-#~ msgid "%a %-e-%B-%Y"
-#~ msgstr "%a %-e-%B-%Y"
-
-#~ msgid "%a %-e-%b"
-#~ msgstr "%a %-e-%b"
-
-#~ msgid "%a %-e-%b-%Y"
-#~ msgstr "%a %-e-%b-%Y"
-
-#~ msgid "%a %-e/%m"
-#~ msgstr "%a %-e/%m"
-
-#~ msgid "%a %-e/%m/%Y"
-#~ msgstr "%a %-e/%m/%Y"
-
-#~ msgid "%a %B %-e %Y"
-#~ msgstr "%a %B %-e %Y"
-
-#~ msgid "%a %B-%-e-%Y"
-#~ msgstr "%a %B-%-e-%Y"
-
-#~ msgid "%a %Y %B %-e"
-#~ msgstr "%a %Y %B %-e"
-
-#~ msgid "%a %Y %b %-e"
-#~ msgstr "%a %Y %b %-e"
-
-#~ msgid "%a %Y-%B-%-e"
-#~ msgstr "%a %Y-%B-%-e"
-
-#~ msgid "%a %Y-%b-%-e"
-#~ msgstr "%a %Y-%b-%-e"
-
-#~ msgid "%a %Y/%m/%-e"
-#~ msgstr "%a %Y/%m/%-e"
-
-#~ msgid "%a %b %-e"
-#~ msgstr "%a %b %-e"
-
-#~ msgid "%a %b %-e %Y"
-#~ msgstr "%a %b %-e %Y"
-
-#~ msgid "%a %b-%-e"
-#~ msgstr "%a %b-%-e"
-
-#~ msgid "%a %b-%-e-%Y"
-#~ msgstr "%a %b-%-e-%Y"
-
-#~ msgid "%a %e/%m  %-H:%M"
-#~ msgstr "%a %e/%m  %-H:%M"
-
-#~ msgid "%a %m/%-e"
-#~ msgstr "%a %m/%-e"
-
-#~ msgid "%a %m/%-e/%Y"
-#~ msgstr "%a %m/%-e/%Y"
-
-#~ msgid "%b %-e"
-#~ msgstr "%b %-e"
-
-#~ msgid "%b %-e %Y"
-#~ msgstr "%b %-e %Y"
-
-#~ msgid "%b-%-e"
-#~ msgstr "%b-%-e"
-
-#~ msgid "%b-%-e-%Y"
-#~ msgstr "%b-%-e-%Y"
-
-#~ msgid "%d Gb"
-#~ msgstr "%d Gb"
-
-#~ msgid "%d%b"
-#~ msgstr "%d%b"
-
-#~ msgid "%d.%02d. %02d:%02d"
-#~ msgstr "%d.%02d. %02d:%02d"
-
-#~ msgid "%d.%B %Y"
-#~ msgstr "%d.%B %Y"
-
-#~ msgid "%k:%M %e/%m"
-#~ msgstr "%k:%M %e/%m"
-
-#~ msgid "%m/%-e"
-#~ msgstr "%m/%-e"
-
-#~ msgid "%m/%-e "
-#~ msgstr "%m/%-e "
-
-#~ msgid "%m/%-e/%Y"
-#~ msgstr "%m/%-e/%Y"
-
-#~ msgid ""
-#~ "A finished power timer wants to shut down\n"
-#~ "your %s %s. Shutdown now?"
-#~ msgstr ""
-#~ "Lõpetanud toitetaimer soovib\n"
-#~ "%s %s välja lülitada. Kas nõustud?"
-
-#~ msgid "AC3+ transcoding"
-#~ msgstr "AC3+ transkodeerimine"
-
-#~ msgid "Always"
-#~ msgstr "Alati"
-
-#~ msgid "BT2020 CL"
-#~ msgstr "BT2020 CL"
-
-#~ msgid "BT2020 NCL"
-#~ msgstr "BT2020 NCL"
-
-#~ msgid "BT470 BG"
-#~ msgstr "BT470 BG"
-
-#~ msgid "BT601 XvYCC"
-#~ msgstr "BT601 XvYCC"
-
-#~ msgid "BT709"
-#~ msgstr "BT709"
-
-#~ msgid "BT709 XvYCC"
-#~ msgstr "BT709 XvYCC"
-
-#~ msgid "Back USB"
-#~ msgstr "Tagakülje USB"
-
-#~ msgid "Back USB 3.0"
-#~ msgstr "Tagakülje USB 3.0"
-
-#~ msgid "Back, inner USB"
-#~ msgstr "Tagakülje sisene USB"
-
-#~ msgid "Back, lower USB"
-#~ msgstr "Tagakülje alumine USB"
-
-#~ msgid "Back, outer USB"
-#~ msgstr "Tagakülje väline USB"
-
-#~ msgid "Back, upper USB"
-#~ msgstr "Tagakülje ülemine USB"
-
-#~ msgid "CPU speed:\t%s\n"
-#~ msgstr "CPU kiirus:\t%s\n"
-
-#~ msgid "Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin."
-#~ msgstr "Määra kellaaja vorming. Ekraanil kuvatav põhineb valitul, kuid seda võib mõjutada ka kasutatav kujundus."
-
-#~ msgid "Choose whether AC3+ sound tracks should be transcoded to AC3."
-#~ msgstr "Määra, kas AC3+ heli transkodeerida AC3 heliks."
-
-#~ msgid "Choose whether DTS-HD sound tracks should be transcoded to DTS."
-#~ msgstr "Määra, kas DTS-HD heli transkodeerida DTS heliks."
-
-#~ msgid "Coderate HP"
-#~ msgstr "Veaparandustegur HP"
-
-#~ msgid "Coderate LP"
-#~ msgstr "Veaparandustegur LP"
-
-#~ msgid "Controlled by HDMI"
-#~ msgstr "HDMI juhitav"
-
-#~ msgid "Cores:\t%s\n"
-#~ msgstr "Tuumad:\t%s\n"
-
-#~ msgid "Customize"
-#~ msgstr "Kasutaja eelistused"
-
-#~ msgid "DTS-HD transcoding"
-#~ msgstr "DTS-HD transkodeerimine"
-
-#~ msgid "Diction"
-#~ msgstr "Õigekiri"
-
-#~ msgid "Digital downmix"
-#~ msgstr "DD / DTS > stereo"
-
-#~ msgid "Dolby Digital / DTS downmix"
-#~ msgstr "Dolby Digital / DTS > stereo"
-
-#~ msgid "Enable Focus Animation"
-#~ msgstr "Fookuse animeerimine"
-
-#~ msgid "Enable timer conflict detection"
-#~ msgstr "Taimerikonflikti tuvastamine"
-
-#~ msgid "Enigma2 Changes"
-#~ msgstr "Enigma2 muudatused"
-
-#~ msgid "Error downloading the change log."
-#~ msgstr "Viga muudatuslogi hankimisel."
-
-#~ msgid "FBC SCR (Unicable or JESS)"
-#~ msgstr "FBC SCR (Unicable või JESS)"
-
-#~ msgid "FCC 1953"
-#~ msgstr "FCC 1953"
-
-#~ msgid "Fallback remote receiver streaming port"
-#~ msgstr "Kaugvastuvõtja voogesituse port"
-
-#~ msgid "Front USB"
-#~ msgstr "Esikülje USB"
-
-#~ msgid "Front USB 3.0"
-#~ msgstr "Esikülje USB 3.0"
-
-#~ msgid "Full Range RGB"
-#~ msgstr "Täielik RGB"
-
-#~ msgid "Hierarchy information"
-#~ msgstr "Hierarhia teave"
-
-#~ msgid "Internal USB"
-#~ msgstr "Sisene USB"
-
-#~ msgid ""
-#~ "Misconfigured unicable connection from tuner %s to tuner %s!\n"
-#~ "Tuner %s option \"connected to\" are disabled now"
-#~ msgstr ""
-#~ "Valesti seadistatud unicable ühendus tuunerist %s tuunerisse %s!\n"
-#~ "Tuuneri %s valik 'ühendatud' keelati"
-
-#~ msgid "Multiplex"
-#~ msgstr "Multipleks"
-
-#~ msgid "NIM"
-#~ msgstr "NIM"
-
-#~ msgid "Network setup"
-#~ msgstr "Võrgu häälestamine"
-
-#~ msgid "No stream clients"
-#~ msgstr "IPTV kliente pole"
-
-#~ msgid "OE Changes"
-#~ msgstr "OE muudatused"
-
-#~ msgid "OE-A Changes"
-#~ msgstr "OE-A muudatused"
-
-#~ msgid "PIDs"
-#~ msgstr "PIDid"
-
-#~ msgid "RF output"
-#~ msgstr "RF-väljund"
-
-#~ msgid "SATA"
-#~ msgstr "SATA"
-
-#~ msgid "SD"
-#~ msgstr "SD"
-
-#~ msgid "SID"
-#~ msgstr "SID"
-
-#~ msgid "Same behavior as current animation"
-#~ msgstr "Sama aktiivse animatsiooniga"
-
-#~ msgid "Service Information"
-#~ msgstr "Kanali andmed"
-
-#~ msgid "Show E2 Log"
-#~ msgstr "Kuva E2 logi"
-
-#~ msgid "Show OE Log"
-#~ msgstr "Näita OE logi"
-
-#~ msgid ""
-#~ "Show time in 24 hour clock format.\n"
-#~ "NOTE: This setting is not used if the global time format settings are available."
-#~ msgstr ""
-#~ "24 tunni kella kasutamine.\n"
-#~ "MÄRGE: Seda sätet ei kasutata, kui saadaval on üldine kellaaja vorming."
-
-#~ msgid "Shutdown"
-#~ msgstr "Lülita välja"
-
-#~ msgid "Smpte 170M"
-#~ msgstr "Smpte 170M"
-
-#~ msgid "Smpte 240M"
-#~ msgstr "Smpte 240M"
-
-#~ msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
-#~ msgstr "Kaugvastuvõtja voogesituse port. Vaikimisi on see '8001'"
-
-#~ msgid ""
-#~ "The unicable connection setting is wrong.\n"
-#~ " Maybe recursive connection of tuners."
-#~ msgstr ""
-#~ "Unicable ühendus on valesti seadistatud.\n"
-#~ " Tuunerid võivad olla ühendatud rekursiivselt."
-
-#~ msgid "This can be either the IP or name of the fallback receiver, not including the scheme or port number (e.g. either 'xxx.xxx.xxx.xxx' or 'name_second_box')."
-#~ msgstr "See võib olla kas IP või kaugvastuvõtja nimi ilma pordi numbrita (nt. kas 'xxx.xxx.xxx.xxx' või 'teise_vastuvõtja_nimi)"
-
-#~ msgid "Transponder type"
-#~ msgstr "Transponderi tüüp"
-
-#~ msgid "Tuning algorithm"
-#~ msgstr "Häälestumise algorütm"
-
-#~ msgid "Unattended upgrade without GUI and reboot system"
-#~ msgstr "Automatiseeritud uuendamine ja taaskäivitus"
-
-#~ msgid "Unicable"
-#~ msgstr "Unicable"
-
-#~ msgid "Unicable LNB"
-#~ msgstr "Unicable LNB"
-
-#~ msgid "Unicable Matrix"
-#~ msgstr "Unicable Matrix"
-
-#~ msgid "Videocodec"
-#~ msgstr "Koodek"
-
-#~ msgid "Videosize"
-#~ msgstr "Lahutus"
-
-#~ msgid "bc%s"
-#~ msgstr "bc%s"
-
-#~ msgid "eMMC"
-#~ msgstr "eMMC"
-
-#~ msgid "not used"
-#~ msgstr "pole lukustatud"
-
-#~ msgid "only 4K"
-#~ msgstr "ainult 4K"
-
-#~ msgid "reliable"
-#~ msgstr "töökindel"
-
-#~ msgid "traditional (fast)"
-#~ msgstr "klassikaline (kiire)"
