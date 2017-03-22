@@ -300,7 +300,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return
 		if self.tuning_type.value == "single_transponder":
 			transponder = (
-				self.scan_cab.frequency.floatint,
+				self.scan_cab.frequency.value,
 				self.scan_cab.symbolrate.value*1000,
 				self.scan_cab.modulation.value,
 				self.scan_cab.fec.value,
@@ -354,7 +354,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return
 		if self.tuning_type.value == "single_transponder":
 			transponder = (
-				self.scan_ats.frequency.floatint*1000,
+				self.scan_ats.frequency.value*1000,
 				self.scan_ats.modulation.value,
 				self.scan_ats.inversion.value,
 				self.scan_ats.system.value,
