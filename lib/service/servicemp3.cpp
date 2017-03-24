@@ -497,14 +497,13 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_audiosink_not_running = false;
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
-	m_last_seek_pos = 0;
-	m_media_lenght = 0;
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
-	//m_use_last_seek = false;
 	m_last_seek_count = -10;
 	m_seeking_or_paused = false;
 	m_to_paused = false;
+	m_last_seek_pos = 0;
+	m_media_lenght = 0;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -824,9 +823,9 @@ eServiceMP3::~eServiceMP3()
 		m_media_lenght = 0;
 		m_play_position_timer->stop();
 		m_last_seek_pos = 0;
-		//m_use_last_seek = false;
 		m_last_seek_count = -10;
 		m_seeking_or_paused = false;
+		m_to_paused = false;
 #endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
@@ -956,10 +955,9 @@ RESULT eServiceMP3::stop()
 void eServiceMP3::playPositionTiming()
 {
 	//eDebug("[eServiceMP3] ***** USE IOCTL POSITION ******");
-	//m_use_last_seek = false;
 	if (m_last_seek_count >= 1)
 	{
-		if (m_last_seek_count == 10)
+		if (m_last_seek_count == 19)
 			m_last_seek_count = 0;
 		else
 			m_last_seek_count++;
@@ -1445,7 +1443,6 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if(m_last_seek_count <= 0)
 	{
 		//eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
-		//m_use_last_seek = true;
 		if (m_last_seek_count == -10)
 		{
 			eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
@@ -3180,8 +3177,11 @@ exit:
 
 RESULT eServiceMP3::enableSubtitles(iSubtitleUser *user, struct SubtitleTrack &track)
 {
+	bool starting_subtitle = false;
 	if (m_currentSubtitleStream != track.pid)
 	{
+		if (m_currentSubtitleStream == -1)
+			starting_subtitle = true;
 		g_object_set (m_gst_playbin, "current-text", -1, NULL);
 		m_cachedSubtitleStream = -1;
 		m_subtitle_sync_timer->stop();
@@ -3205,7 +3205,7 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser *user, struct SubtitleTrack &t
 #endif
 
 #if GST_VERSION_MAJOR >= 1
-		if (m_last_seek_pos > 0)
+		if (m_last_seek_pos > 0 && !starting_subtitle)
 		{
 			seekTo(m_last_seek_pos);
 			gst_sleepms(50);
