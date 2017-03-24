@@ -497,13 +497,13 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_audiosink_not_running = false;
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
-	m_last_seek_pos = 0;
-	m_media_lenght = 0;
 	m_play_position_timer = eTimer::create(eApp);
 	CONNECT(m_play_position_timer->timeout, eServiceMP3::playPositionTiming);
-	//m_use_last_seek = false;
 	m_last_seek_count = -10;
 	m_seeking_or_paused = false;
+	m_to_paused = false;
+	m_last_seek_pos = 0;
+	m_media_lenght = 0;
 #endif
 	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
 	m_extra_headers = "";
@@ -823,9 +823,9 @@ eServiceMP3::~eServiceMP3()
 		m_media_lenght = 0;
 		m_play_position_timer->stop();
 		m_last_seek_pos = 0;
-		//m_use_last_seek = false;
 		m_last_seek_count = -10;
 		m_seeking_or_paused = false;
+		m_to_paused = false;
 #endif
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
@@ -955,10 +955,9 @@ RESULT eServiceMP3::stop()
 void eServiceMP3::playPositionTiming()
 {
 	//eDebug("[eServiceMP3] ***** USE IOCTL POSITION ******");
-	//m_use_last_seek = false;
 	if (m_last_seek_count >= 1)
 	{
-		if (m_last_seek_count == 10)
+		if (m_last_seek_count == 19)
 			m_last_seek_count = 0;
 		else
 			m_last_seek_count++;
@@ -1077,20 +1076,25 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 		return -1;
 	}
 #endif
-	if (m_paused)
-	{
 #if GST_VERSION_MAJOR >= 1
+	if (m_paused || m_to_paused)
+	{
 		m_last_seek_count = 0;
-#endif
 		m_event((iPlayableService*)this, evUpdatedInfo);
-		
 	}
+#else
+	if (m_paused)
+		m_event((iPlayableService*)this, evUpdatedInfo);
+#endif
 #if GST_VERSION_MAJOR >= 1
 	//eDebug("[eServiceMP3] seekToImpl DONE position %" G_GINT64_FORMAT, (gint64)m_last_seek_pos);
 	if (!m_paused)
 	{
-		m_seeking_or_paused = false;
-		m_last_seek_count = 1;
+		if (!m_to_paused)
+		{
+			m_seeking_or_paused = false;
+			m_last_seek_count = 1;
+		}
 	}
 #endif
 	return 0;
@@ -1127,14 +1131,14 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 	if (ratio > -0.01 && ratio < 0.01)
 	{
 #if GST_VERSION_MAJOR >= 1
+		//m_last_seek_count = 0;
 		pos_ret = getPlayPosition(pts);
+		m_to_paused = true;
 #else
 		pos_ret = getPlayPosition(pts);
 #endif
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
-#if GST_VERSION_MAJOR >= 1
-		m_seeking_or_paused = true;
-#endif
+		//m_paused = true;
 		if ( pos_ret >= 0)
 			seekTo(pts);
 		/* pipeline sometimes block due to audio track issue off gstreamer.
@@ -1155,6 +1159,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 				seekTo(pts);
 			}
 		}
+#if GST_VERSION_MAJOR >= 1
+		//m_last_seek_count = 0;
+#endif
 		return 0;
 	}
 
@@ -1190,12 +1197,13 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		if (!strcmp(name, "filesrc") || !strcmp(name, "souphttpsrc"))
 		{
 			/* previous state was already ok if we come here just give all elements time to unpause */
+			m_to_paused = false;
+			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 #if GST_VERSION_MAJOR >= 1
 			m_seeking_or_paused = false;
 			m_last_seek_count = 0;
 #endif
-			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
-			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 			eDebug("[eServiceMP3] unpause state:%s pending:%s ret:%s",
 				gst_element_state_get_name(state),
 				gst_element_state_get_name(pending),
@@ -1244,6 +1252,7 @@ seek_unpause:
 #if GST_VERSION_MAJOR >= 1
 		m_seeking_or_paused = false;
 		m_last_seek_count = 0;
+		m_to_paused = false;
 #endif
 	}
 
@@ -1434,11 +1443,10 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if(m_last_seek_count <= 0)
 	{
 		//eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
-		//m_use_last_seek = true;
 		if (m_last_seek_count == -10)
 		{
 			eDebug("[eServiceMP3] ** START USE LAST SEEK TIMER");
-			m_play_position_timer->start(100, false);
+			m_play_position_timer->start(50, false);
 			m_last_seek_count = 0;
 		}
 		else
@@ -1447,6 +1455,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			{
 				pts = m_last_seek_pos;
 				m_last_seek_count = 0;
+				return 0;
 			}
 			else
 				m_last_seek_count = 1;
@@ -1455,11 +1464,14 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	else
 	{
 		if (m_paused || m_seeking_or_paused)
+		{
+			m_last_seek_count = 0;
 			pts = m_last_seek_pos;
+		}
 		else
 		{
 			if (m_last_seek_count >= 1)
-				pts = m_last_seek_pos + ((m_last_seek_count - 1) * 9000);
+				pts = m_last_seek_pos + ((m_last_seek_count - 1) * 4500);
 			else
 				pts = m_last_seek_pos;
 		}
@@ -1472,7 +1484,11 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if ( (pos = get_pts_pcrscr()) > 0)
 		pos *= 11111LL;
 #else
+#if GST_VERSION_MAJOR < 1
 	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_sourceinfo.is_hls)
+#else
+	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused && !m_sourceinfo.is_hls)
+#endif
 	{
 		if (m_sourceinfo.is_audio)
 		{
@@ -1511,15 +1527,17 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 			return -1;
 		}
 #else
-		if(m_paused && m_last_seek_pos > 0)
-		{
-			pts = m_last_seek_pos;
-			return 0;
-		}
 		if (!gst_element_query_position(m_gst_playbin, fmt, &pos))
 		{
 			//eDebug("[eServiceMP3] gst_element_query_position failed in getPlayPosition");
-			return -1;
+			if (m_last_seek_pos > 0)
+			{
+				pts = m_last_seek_pos;
+				m_last_seek_count = 0;
+				return 0;
+			}
+			else
+				return -1;
 		}
 #endif
 	}
@@ -1953,23 +1971,11 @@ RESULT eServiceMP3::selectTrack(unsigned int i)
 		if (ppos < 0)
 			ppos = 0;
 	}
-#if GST_VERSION_MAJOR < 0
 	if (validposition)
 	{
 		//flush
 		seekTo(ppos);
 	}
-#else
-	/* only flush if the audio types are not the same */
-    if (m_audioStreams[m_currentAudioStream].type != m_audioStreams[i].type)
-	{
-		if (validposition)
-		{
-			//flush
-			seekTo(ppos);
-		}
-	}
-#endif
 	return selectAudioStream(i);
 }
 
@@ -3171,8 +3177,11 @@ exit:
 
 RESULT eServiceMP3::enableSubtitles(iSubtitleUser *user, struct SubtitleTrack &track)
 {
+	bool starting_subtitle = false;
 	if (m_currentSubtitleStream != track.pid)
 	{
+		if (m_currentSubtitleStream == -1)
+			starting_subtitle = true;
 		g_object_set (m_gst_playbin, "current-text", -1, NULL);
 		m_cachedSubtitleStream = -1;
 		m_subtitle_sync_timer->stop();
@@ -3193,6 +3202,14 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser *user, struct SubtitleTrack &t
 		 * we have to force a seek, before the new subtitle stream will start
 		 */
 		seekRelative(-1, 90000);
+#endif
+
+#if GST_VERSION_MAJOR >= 1
+		if (m_last_seek_pos > 0 && !starting_subtitle)
+		{
+			seekTo(m_last_seek_pos);
+			gst_sleepms(50);
+		}
 #endif
 
 	}

@@ -321,9 +321,9 @@ private:
 	pts_t m_media_lenght;
 	ePtr<eTimer> m_play_position_timer;
 	void playPositionTiming();
-	//bool m_use_last_seek;
 	gint m_last_seek_count;
 	bool m_seeking_or_paused;
+	bool m_to_paused;
 #endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
