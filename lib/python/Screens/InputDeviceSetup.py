@@ -382,7 +382,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("xp3000", 17),
 				("sh1", 20),
 				("h3", 21),
-				("h5", 21)
+				("h5", 21),
 				("h7", 21)
 				]
 
