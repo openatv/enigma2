@@ -746,6 +746,10 @@ class NimManager:
 		# nim_slots is an array which has exactly one entry for each slot, even for empty ones.
 		self.nim_slots = [ ]
 
+		if config.clientmode.enabled.value:
+			print "[NimManager][enumerateNIMs] Receiver in client mode. Local NIMs will be ignored."
+			return
+
 		try:
 			nimfile = open("/proc/bus/nim_sockets")
 		except IOError:
