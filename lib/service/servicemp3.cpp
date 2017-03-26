@@ -3520,7 +3520,7 @@ void eServiceMP3::saveCuesheet()
 		if (stat(filename.c_str(), &s) == 0)
 		{
 			/* hack for emc 2 */
-			if (m_last_seek_pos > (m_media_lenght - 1800000))
+			if (m_last_seek_pos < (m_media_lenght - 1800000))
 			{
 				m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
 				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#" G_GINT64_MODIFIER "x", m_last_seek_pos);
