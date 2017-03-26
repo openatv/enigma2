@@ -16,6 +16,9 @@ from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
 
 
+def SecToMSS(sec):
+	return "%d:%02d" % (sec / 60, sec % 60)
+
 def CutListEntry(where, what, where_next=None):
 	w = where / 90
 	ms = w % 1000
@@ -35,11 +38,7 @@ def CutListEntry(where, what, where_next=None):
 		type = "LAST"
 		type_col = 0x000000
 
-	if where_next:
-		w = (where_next / 90 - w) / 1000
-		d = "%d:%02d" % (w / 60, w % 60)
-	else:
-		d = ""
+	d = SecToMSS((where_next / 90 - w) / 1000) if where_next else ""
 
 	return (where, what), "%dh:%02dm:%02ds:%03d" % (h, m, s, ms), type, d, type_col
 
@@ -195,6 +194,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		# preserve the original cuts to possibly restore them later
 		self.prev_cuts = self.cut_list[:]
 
+		self["InLen"] = Label()
+		self["OutLen"] = Label()
 		self["Timeline"] = ServicePositionGauge(self.session.nav)
 		self["cutlist"] = List(self.getCutlist())
 		self["cutlist"].onSelectionChanged.append(self.selectionChanged)
@@ -306,11 +307,30 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.close()
 
 	def getCutlist(self):
+		length = self.getSeek() and self.getSeek().getLength()
+		length = not length[0] and length[1] or 0
+
+		in_len = out_len = 0
+		last_pts, last_type = 0, self.CUT_TYPE_LAST
+		for pts, type in self.cut_list:
+			if last_type != type in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT):
+				if type == self.CUT_TYPE_IN:
+					out_len += pts - last_pts
+				else:
+					in_len += pts - last_pts
+				last_pts, last_type = pts, type
+		if length:
+			if last_type == self.CUT_TYPE_OUT:
+				out_len += length - last_pts
+			else:
+				in_len += length - last_pts
+		self["InLen"].setText(SecToMSS(in_len / 90000))
+		self["OutLen"].setText(SecToMSS(out_len / 90000))
+
 		r = [ ]
 		for i, e in enumerate(self.cut_list):
 			if i == len(self.cut_list) - 1:
-				n = self.getSeek() and self.getSeek().getLength()
-				n = not n[0] and n[1] or 0
+				n = length
 			else:
 				n = self.cut_list[i+1][0]
 			r.append(CutListEntry(*e, where_next=n))
