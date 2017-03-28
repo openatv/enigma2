@@ -86,7 +86,7 @@ def moviePlayState(cutsFileName, ref, length):
 	if resume and length:
 		if resume >= length:
 			return 100
-		return (100 * resume) // length
+		return int(100.0 * resume / length + 0.5)
 
 	# Need to gather more info
 	# Resume position and end pts, stored in non-volatile memory, cached in RAM
@@ -103,7 +103,7 @@ def moviePlayState(cutsFileName, ref, length):
 		if length and resume:
 			if resume >= length:
 				return 100
-			return (100 * resume) // length
+			return int(100.0 * resume / length + 0.5)
 
 		return 0
 	return None
