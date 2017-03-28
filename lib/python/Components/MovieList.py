@@ -544,8 +544,7 @@ class MovieList(GUIComponent):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
 			x = self.list[cur_idx]  # x = ref,info,begin,...
-			if showLen:
-				data.len = info.getLength(serviceref)
+			data.len = info.getLength(serviceref)
 			if showSize:
 				data.size = info.getFileSize(serviceref)
 			self.list[cur_idx] = (x[0], x[1], x[2], data)  # update entry in list... so next time we don't need to recalc
@@ -573,7 +572,7 @@ class MovieList(GUIComponent):
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
-				data.part = moviePlayState(pathName + '.cuts', serviceref, 0)
+				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len * 90000)
 				if switch == 'i':
 					if data.part is not None and data.part >= 0:
 						data.icon = self.iconPart[data.part // 25]
