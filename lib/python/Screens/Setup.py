@@ -112,13 +112,13 @@ class Setup(ConfigListScreen, Screen):
 		list = []
 
 		self.refill(list)
-		
+
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
 		self.createSetup()
 
 		#check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label("")
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
