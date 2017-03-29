@@ -23,3 +23,9 @@ class SimpleSummary(Screen):
 		# if parent has a "skin_summary" defined, use that as default
 		self.skin = parent.__dict__.get("skin_summary", self.skin)
 
+	def updateProgress(self):
+		pass
+
+	def updateService(self):
+		pass
+
