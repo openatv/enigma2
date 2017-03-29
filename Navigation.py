@@ -74,7 +74,7 @@ class Navigation:
 			print "[NAVIGATION] timer wakeup detection window: %s - %s" %(ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
 			print "-"*100
 		thisBox = getBoxType()
-		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan', 'entwopia')):
+		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3', 'et8000') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan', 'entwopia')):
 			print"[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND FOR THIS BOXTYPE (%s)" %thisBox
 			config.workaround.deeprecord.setValue(True)
 			config.workaround.deeprecord.save()
