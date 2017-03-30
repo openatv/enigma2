@@ -490,7 +490,7 @@ class AutoVideoMode(Screen):
 						write_mode = multi_videomode
 					else:
 						write_mode = current_mode
-						
+
 			if write_mode and current_mode != write_mode:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':
