@@ -505,6 +505,10 @@ class MovieList(GUIComponent):
 		switch = config.usage.show_icons_in_movielist.value
 		width = self.l.getItemSize().width()
 		dateWidth = self.dateWidth
+		if config.usage.time.wide.value:
+			dateWidth = int(dateWidth * 1.15)
+		if not config.movielist.use_fuzzy_dates.value:
+			dateWidth += 35
 		showLen = self.showCol(config.movielist.showlengths, self.COL_LENGTH)
 		lenWidth = self.lenWidth if showLen else 0
 		showSize = self.showCol(config.movielist.showsizes, self.COL_SIZE)
@@ -605,7 +609,10 @@ class MovieList(GUIComponent):
 
 		begin_string = ""
 		if begin > 0:
-			begin_string = ' '.join(FuzzyTime(begin, inPast=True))
+			if config.movielist.use_fuzzy_dates.value:
+				begin_string = ' '.join(FuzzyTime(begin, inPast = True))
+			else:
+				begin_string = strftime("%s %s" % (config.usage.date.daylong.value, config.usage.time.short.value), localtime(begin))
 
 		textItems = []
 		xPos = width
