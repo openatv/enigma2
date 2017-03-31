@@ -164,10 +164,11 @@ class ConfigElement(object):
 		try:
 			del self.__notifiers[str(notifier)]
 		except:
-			try:
-				del self.__notifiers_final[str(notifier)]
-			except:
-				pass
+			pass
+		try:
+			del self.__notifiers_final[str(notifier)]
+		except:
+			pass
 
 	def clearNotifiers(self):
 		self.__notifiers = { }
