@@ -205,8 +205,11 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		self["key_red"]    = Label(_("Start cut"))
 		self["key_green"]  = Label(_("End cut"))
-		self["key_yellow"] = Label(_("Backward"))
-		self["key_blue"]   = Label(_("Forward"))
+		self["key_yellow"] = Label(_("Step back"))
+		self["key_blue"]   = Label(_("Step forward"))
+
+		self["SeekActions"].actions.update({"stepFwd": self.stepFwd})
+		self.helpList.append((self["SeekActions"], "CutlistSeekActions", [("stepFwd", _("Step forward"))]))
 
 		desktopSize = getDesktop(0).size()
 		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
@@ -222,7 +225,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"removeMark": (self.__removeMark, _("Remove a mark")),
 				"leave": (self.exit, _("Exit editor")),
 				"showMenu": (self.showMenu, _("Menu")),
-				"backMenu": (self.backMenu, _("Restore previous cuts")),
+				"backMenu": (self.backMenu, _("Restore previous cuts...")),
 			}, prio=-4)
 
 		self.onExecBegin.append(self.showTutorial)
@@ -507,6 +510,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = False
 			if result[1] == self.BACK_RESTOREEXIT:
 				self.close()
+
+	def stepFwd(self):
+		self.doSeekRelative(1)
 
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
