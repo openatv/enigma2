@@ -1,7 +1,8 @@
 <!--suppress XmlUnboundNsPrefix -->
 <setupxml>
 	<setup key="time" title="Time settings">
-		<item level="0" text="Timezone" description="Choose your timezone.">config.timezone.val</item>
+		<item level="0" text="Timezone area" description="Choose your timezone area.">config.timezone.area</item>
+		<item level="0" text="Timezone" description="Choose the location in your timezone area.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronise system time with the TV transponder or an Internet time server (NTP).">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Enter the name of the NTP server you want to use.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Set up the network time synchronisation interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>

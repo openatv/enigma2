@@ -63,9 +63,9 @@ class AVSwitch:
 					"multi": {50: "1080p50", 60: "1080p"}
 	}
 
-	rates["2160p"] =	{	"50Hz":		{ 50: "2160p50" },
-							"60Hz":		{ 60: "2160p" },
-							"multi":	{ 50: "2160p50", 60: "2160p" } }
+	rates["2160p"] = { "50Hz":  { 50: "2160p50" },
+					   "60Hz":  { 60: "2160p" },
+					   "multi": { 50: "2160p50", 60: "2160p" } }
 
 	rates["PC"] = {
 					"1024x768": {60: "1024x768"},  # not possible on DM7025
@@ -104,7 +104,7 @@ class AVSwitch:
 	# if "DVI-PC" in modes and not getModeList("DVI-PC"):
 	# 	print "[VideoHardware] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	
+
 	# Machines that do not have component video (red, green and blue RCA sockets).
 	no_YPbPr = (
 		'dm500hd',
@@ -154,14 +154,14 @@ class AVSwitch:
 		'vuultimo4k',
 		'xp1000'
 	)
-	
+
 	# Machines that have composite video (yellow RCA socket) but do not have Scart.
 	yellow_RCA_no_scart = (
 		'gb800ueplus',
 		'gbultraue',
 		'mbmicro',
 		'mbtwinplus',
-		'mutant11',		
+		'mutant11',
 		'mutant500c',
 		'osmega',
 		'osmini',
@@ -177,7 +177,7 @@ class AVSwitch:
 		'tmnano3t',
 		'xpeedlx3'
 	)
-	
+
 	# Machines that have neither yellow RCA nor Scart sockets
 	no_yellow_RCA__no_scart = (
 		'et5x00',
@@ -196,14 +196,14 @@ class AVSwitch:
 		'vuuno4k',
 		'vuultimo4k'
 	)
-	
+
 	if "YPbPr" in modes and getBoxType() in no_YPbPr:
 		del modes["YPbPr"]
-		
+
 	if "Scart" in modes and getBoxType() in yellow_RCA_no_scart:
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
-		
+
 	if "Scart" in modes and getBoxType() in no_yellow_RCA__no_scart:
 		del modes["Scart"]
 
@@ -610,7 +610,7 @@ def InitAVSwitch():
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
 			iAVSwitch.setColorFormat(3)
 		elif config.av.videoport and config.av.videoport.value in ("RCA"):
-			iAVSwitch.setColorFormat(0)			
+			iAVSwitch.setColorFormat(0)
 		else:
 			if getBoxType() == 'et6x00':
 				colmap = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
@@ -667,7 +667,7 @@ def InitAVSwitch():
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
-		
+
 	if os.path.exists("/proc/stb/video/hdmi_colorspace"):
 		f = open("/proc/stb/video/hdmi_colorspace", "r")
 		have_colorspace = f.read().strip().split(" ")
