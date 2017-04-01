@@ -15,7 +15,7 @@ from json import loads
 import urllib2
 
 if getImageType() == 'release':
-	ImageVer = getImageBuild()
+	ImageVer = "%03d" % int(getImageBuild())
 else:
 	ImageVer = "%s.%s" % (getImageBuild(),getImageDevBuild())
 	ImageVer = float(ImageVer)
@@ -63,9 +63,10 @@ def readGithubCommitLogsSoftwareUpdate():
 				if len(tmp) > 2:
 					if getImageType() == 'release':
 						releasever = tmp[2]
+						releasever = "%03d" % int(releasever)
 					else:
 						releasever = '%s.%s' % (tmp[2], tmp[3])
-				releasever = float(releasever)
+						releasever = float(releasever)
 				if ImageVer >= releasever:
 					blockstart = True
 					break
@@ -124,9 +125,10 @@ def readGithubCommitLogs():
 				if len(tmp) > 2:
 					if getImageType() == 'release':
 						releasever = tmp[2]
+						releasever = "%03d" % int(releasever)
 					else:
 						releasever = '%s.%s' % (tmp[2], tmp[3])
-				releasever = float(releasever)
+						releasever = float(releasever)
 				if releasever > ImageVer:
 					blockstart = True
 					continue

@@ -126,11 +126,11 @@ class ChoiceBox(Screen):
 			"shiftDown": self.additionalMoveDown,
 			"menu": self.setDefaultChoiceList,
 			"back": lambda: 0,  # drop through to self["cancelaction"]
-		}, -2)
+		}, prio=-2)
 
 		self["cancelaction"] = ActionMap(["WizardActions"], {
 			"back": self.cancel,
-		}, -1)
+		}, prio=-1)
 		self.onShown.append(self.onshow)
 
 	def onshow(self):

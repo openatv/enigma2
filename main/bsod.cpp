@@ -19,6 +19,13 @@
 
 /************************************************/
 
+static const char *crash_emailaddr =
+#ifndef CRASH_EMAILADDR
+	"the Beyonwiz forum";
+#else
+	CRASH_EMAILADDR;
+#endif
+
 /* Defined in bsod.cpp */
 void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2);
 
@@ -180,7 +187,7 @@ void bsodFatal(const char *component)
 		os.clear();
 		os << "We are really sorry. Your receiver encountered "
 			"a software problem, and needs to be restarted.\n"
-			"Please upload the crash log " << crashlog_name << " to the Beyonwiz forum.\n"
+			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
 			"Your receiver will restart in 10 seconds!\n"
 			"Component: " << component;
 

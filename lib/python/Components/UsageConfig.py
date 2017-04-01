@@ -740,7 +740,6 @@ def InitUsageConfig():
 
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
-	config.epg.cachesaveenabled = ConfigYesNo(default = True)
 	config.epg.cacheloadsched = ConfigYesNo(default=False)
 	config.epg.cachesavesched = ConfigYesNo(default=False)
 

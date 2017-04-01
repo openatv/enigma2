@@ -104,8 +104,7 @@
 		<item level="2" text="EPG cache filename" description="Enter the name of the file that stores EPG data when the %s %s is shut down.">config.misc.epgcachefilename</item>
 		<item level="2" text="EPG cache reload" description="Enable to regularly replace EPG data with the contents of the EPG cache file. Used to import EPG from external sources. Only enable this if the receiver does not receive EPG via any other means.">config.epg.cacheloadsched</item>
 		<item level="2" text="Reload every hours" requires="config.epg.cacheloadsched" description="Number of hours between EPG data reloads from the cache file.">config.epg.cacheloadtimer</item>
-		<item level="2" text="Enable EPG save" description="Enable to save EPG data to the cache file for use on a restart. Default is 'yes'. Only set to 'no' if this receiver is running as a client and passively sharing epg.dat from another receiver.">config.epg.cachesaveenabled</item>
-		<item level="2" text="EPG cache save" requires="config.epg.cachesaveenabled" description="Enable to regularly save EPG data to the cache file.">config.epg.cachesavesched</item>
+		<item level="2" text="EPG cache save" description="Enable to regularly save EPG data to the cache file.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every hours" requires="config.epg.cachesavesched" description="Number of hours between EPG data saves to the cache file.">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT now/next in infobar" description="Enable to display EIT now/next event data in the infobar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when available.">config.epg.eit</item>
