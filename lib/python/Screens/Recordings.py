@@ -167,7 +167,7 @@ class RecordingSettings(Screen, ConfigListScreen):
 	# for summary:
 	def changedEntry(self):
 		self.item = self["config"].getCurrent()
-		if self.item[0] in (_("Default movie location"), _("Timer record location"), _("Instant record location"), _("Movie location")):
+		if self.item[0] in (_("Default movie location"), _("Timer recording location"), _("Instant recording location"), _("Movie location")):
 			self.checkReadWriteDir(self.item[1])
 		for x in self.onChangedEntry:
 			x()

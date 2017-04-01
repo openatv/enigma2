@@ -77,16 +77,13 @@ def lastPlayPosFromCache(ref):
 def moviePlayState(cutsFileName, ref, length):
 	"""Returns None, 0..100 for percentage"""
 	# .cuts file - bookmarks, edit points and resume, kept with a recording
-	resume, end = _getCutsResumeInfo(cutsFileName)
-
-	if length is None or (length <= 0):
-		length = end
+	resume = _getCutsResumeInfo(cutsFileName)
 
 	# There was enough info in the .cuts file
-	if resume and length:
+	if resume and length and length > 0:
 		if resume >= length:
 			return 100
-		return (100 * resume) // length
+		return int(100.0 * resume / length + 0.5)
 
 	# Need to gather more info
 	# Resume position and end pts, stored in non-volatile memory, cached in RAM
@@ -103,14 +100,12 @@ def moviePlayState(cutsFileName, ref, length):
 		if length and resume:
 			if resume >= length:
 				return 100
-			return (100 * resume) // length
+			return int(100.0 * resume / length + 0.5)
 
 		return 0
 	return None
 
-
 def _getCutsResumeInfo(filename):
-	last_mark_pts = None
 	resume_pts = None
 	try:
 		with open(filename, 'rb') as f:
@@ -121,11 +116,9 @@ def _getCutsResumeInfo(filename):
 				cut, cutType = cutsParser.unpack(data)
 				if cutType == 3:  # Resume point
 					resume_pts = cut
-				elif last_mark_pts is None or cut > last_mark_pts:
-					last_mark_pts = cut
 	except:
 		pass
-	return resume_pts, last_mark_pts
+	return resume_pts
 
 def resetMoviePlayState(cutsFileName, ref=None):
 	try:
@@ -544,8 +537,7 @@ class MovieList(GUIComponent):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
 			x = self.list[cur_idx]  # x = ref,info,begin,...
-			if showLen:
-				data.len = info.getLength(serviceref)
+			data.len = info.getLength(serviceref)
 			if showSize:
 				data.size = info.getFileSize(serviceref)
 			self.list[cur_idx] = (x[0], x[1], x[2], data)  # update entry in list... so next time we don't need to recalc
@@ -573,7 +565,7 @@ class MovieList(GUIComponent):
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
-				data.part = moviePlayState(pathName + '.cuts', serviceref, 0)
+				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len * 90000)
 				if switch == 'i':
 					if data.part is not None and data.part >= 0:
 						data.icon = self.iconPart[data.part // 25]

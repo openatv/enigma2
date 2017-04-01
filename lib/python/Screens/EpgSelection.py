@@ -385,9 +385,11 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close('reopengraph')
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self.close('reopeninfobargraph')
-		else:
-			if self.type == EPG_TYPE_INFOBAR:
+		elif self.type == EPG_TYPE_INFOBAR:
 				self.close('reopeninfobar')
+		else:
+			self['list'].setFontsize()
+			self['list'].setItemsPerPage()
 
 	def togglePIG(self):
 		if not config.epgselection.graph_pig.value:
