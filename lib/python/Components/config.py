@@ -600,11 +600,11 @@ class ConfigDateTime(ConfigElement):
 	value = property(ConfigElement.getValue, setValue)
 
 class ClockTime:
-	def __init__(self, mainclass, default, timeconv=localtime):
+	def __init__(self, mainclass, default, timeconv=localtime, durationmode=False):
 		self.mainclass = mainclass
 		self.base = None
 		self._value = self.last_value = self.default = int(default)
-		self.clock = ConfigClock(default, timeconv=timeconv)
+		self.clock = ConfigClock(default, timeconv=timeconv, durationmode=durationmode)
 
 	def _timeUpdate(self, conf):
 		value = self.getAdjustedValue()
@@ -663,7 +663,7 @@ class ClockTime:
 
 class ConfigClockTime(ClockTime, ConfigDateTime):
 	def __init__(self, default, formatstring, increment=24 * 60 * 60, increment1=0, base=None):
-		ClockTime.__init__(self, ConfigDateTime, default)
+		ClockTime.__init__(self, ConfigDateTime, default, durationmode=False)
 
 		ConfigDateTime.__init__(self, default, formatstring, increment=increment, increment1=increment1, base=base)
 
@@ -709,7 +709,7 @@ class ConfigClockDuration(ClockTime, ConfigDuration):
 	def __init__(self, default, formatstring, increment=24 * 60 * 60, increment1=0, base=time()):
 		assert default > base, "initial time must not be less than base time"
 
-		ClockTime.__init__(self, ConfigDateTime, default - base, timeconv=gmtime)
+		ClockTime.__init__(self, ConfigDateTime, default - base, timeconv=gmtime, durationmode=True)
 
 		ConfigDuration.__init__(self, default, formatstring, increment=increment, increment1=increment1, base=base)
 
@@ -1113,9 +1113,15 @@ class ConfigPosition(ConfigSequence):
 
 clock_limits = [(0, 23), (0, 59)]
 class ConfigClock(ConfigSequence):
-	def __init__(self, default, timeconv=localtime):
+	def __init__(self, default, timeconv=localtime, durationmode=False):
 		self.t = timeconv(default)
 		ConfigSequence.__init__(self, seperator=":", limits=clock_limits, default=[self.t.tm_hour, self.t.tm_min])
+		if durationmode:
+			self.wideformat = False
+			self.timeformat = "%_H:%M"
+		else:
+			self.wideformat = config.usage.time.wide.value
+			self.timeformat = config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H")
 
 	def increment(self):
 		# Check if Minutes maxed out
@@ -1148,18 +1154,16 @@ class ConfigClock(ConfigSequence):
 		self.changed()
 
 	def handleKey(self, key):
-		if key == KEY_DELETE and config.usage.time.wide.value:
+		if key == KEY_DELETE and self.wideformat:
 			if self._value[0] < 12:
 				self._value[0] += 12
 				self.validate()
 				self.changed()
-
-		elif key == KEY_BACKSPACE and config.usage.time.wide.value:
+		elif key == KEY_BACKSPACE and self.wideformat:
 			if self._value[0] >= 12:
 				self._value[0] -= 12
 				self.validate()
 				self.changed()
-
 		elif key in KEY_NUMBERS or key == KEY_ASCII:
 			if key == KEY_ASCII:
 				code = getPrevAsciiCode()
@@ -1171,7 +1175,7 @@ class ConfigClock(ConfigSequence):
 
 			hour = self._value[0]
 			pmadjust = 0
-			if config.usage.time.wide.value:
+			if self.wideformat:
 				if hour > 11:  # All the PM times
 					hour -= 12
 					pmadjust = 12
@@ -1196,7 +1200,7 @@ class ConfigClock(ConfigSequence):
 			hour = int(value[:2])
 			minute = int(value[2:])
 
-			if config.usage.time.wide.value:
+			if self.wideformat:
 				if hour == 12:  # 12AM & 12PM map to back to 00
 					hour = 0
 				elif hour > 12:
@@ -1220,7 +1224,7 @@ class ConfigClock(ConfigSequence):
 		newtime = list(self.t)
 		newtime[3] = self._value[0]
 		newtime[4] = self._value[1]
-		value = strftime(config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H"), newtime)
+		value = strftime(self.timeformat, newtime)
 		return value, mPos
 
 integer_limits = (0, 9999999999)
