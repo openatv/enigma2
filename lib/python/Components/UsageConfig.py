@@ -15,7 +15,17 @@ from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 
 def InitUsageConfig():
-	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[
+		("30", "30 " + _("minutes")),
+		("60", "1 " + _("hour")),
+		("120", "2 " + _("hours")),
+		("240", "4 " + _("hours")),
+		("360", "6 " + _("hours")),
+		("480", "8 " + _("hours")),
+		("720", "12 " + _("hours")),
+		("1440", "24 " + _("hours")),
+		])
+
 	if getBrandOEM() in ('vuplus'):
 		config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 	else:

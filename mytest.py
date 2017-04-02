@@ -63,8 +63,8 @@ config.misc.radiopic = ConfigText(default=radiopic)
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.SyncTimeUsing = ConfigSelection(default="0", choices=[
-	("0", "Transponder Time"),
-	("1", _("NTP"))])
+	("0", _("TV broadcast")),
+	("1", _("NTP (Internet)"))])
 config.misc.NTPserver = ConfigText(default='au.pool.ntp.org', fixed_size=False)
 
 config.misc.startCounter = ConfigInteger(default=0)  # number of e2 starts...
