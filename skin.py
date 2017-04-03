@@ -34,6 +34,8 @@ constant_widgets = {}
 variables = {}
 DEFAULT_SKIN = "MetrixHD/skin.xml"
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+if SystemInfo["grautec"]:
+	DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml"
 isVTISkin = False
 
 def dump(x, i=0):
@@ -122,9 +124,6 @@ def skinExists(skin = False):
 			config.skin.primary_skin.value = "skin.xml"
 		config.skin.primary_skin.save()
 skinExists()
-
-if SystemInfo["grautec"]:
-	DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml"
 
 def getSkinPath():
 	primary_skin_path = config.skin.primary_skin.value.replace('skin.xml', '')
