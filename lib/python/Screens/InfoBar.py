@@ -54,7 +54,7 @@ class InfoBar(
 			"showRadio": (self.showRadio, _("Listen to the radio...")),
 			"showTv": (self.TvRadioToggle, self._helpTvRadioToggle()),
 			"openTimerList": (self.openTimerList, _("Open timer list...")),
-			"openSleepTimer": (self.openSleepTimer, _("Show/add sleep timers...")),
+			"openSleepTimer": (self.openSleepTimer, _("Show/add power timers...")),
 			"showMediaPlayer": (self.showMediaPlayer, _("Open the media player...")),
 			"showPluginBrowser": (self.showPluginBrowser, _("Open the plugins screen...")),
 			"showSetup": (self.showSetup, _("Open the settings screen...")),

@@ -92,7 +92,7 @@ SID_code_states = SID_symbol_states.setdefault(getBoxType(), (None, 0))
 
 n_recordings = 0  # Must be when we start running...
 def SetIconDisplay(nrec):
-	if SID_code_states[0] == None:  # Not the code for us
+	if SID_code_states[0] is None:  # Not the code for us
 		return
 	(wdev, max_states) = SID_code_states
 	if nrec == 0:                   # An absolute setting - clear it...
@@ -119,8 +119,8 @@ def SetIconDisplay(nrec):
 
 
 def RecordingsState(alter):
-# Since we are about to modify it we need to declare it as global
-#
+	# Since we are about to modify it we need to declare it as global
+	#
 	global n_recordings
 	if not -1 <= alter <= 1:
 		return
@@ -443,7 +443,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if not self.justplay:
 					open(self.Filename + self.record_service.getFilenameExtension(), "w").close()
 					# Give the Trashcan a chance to clean up
-					# Need try/except as Trashcan.instance may not exist 
+					# Need try/except as Trashcan.instance may not exist
 					# for a missed recording started at boot-time.
 					try:
 						Trashcan.instance.cleanIfIdle()
@@ -524,8 +524,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 #
 						from Screens.InfoBar import MoviePlayer
 						if MoviePlayer.instance is not None:
-# This is one of the more wierdly named functions, it actually
-# functions as setMoviePlayerInactive
+							# This is one of the more wierdly named functions, it actually
+							# functions as setMoviePlayerInactive
 							NavigationInstance.instance.isMovieplayerActive()
 # Since next_state is StateRunning we set self.begin
 							self.begin = time() + 1
@@ -570,17 +570,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 # Trying to back off isn't worth it as backing off in Record timers
 # currently only refers to *starting* a recording.
 #
-			from Components.Converter.ClientsStreaming import ClientsStreaming;
-			if (not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and
-				('0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or
-				 '4097:' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString())
-			    ):
+			from Components.Converter.ClientsStreaming import ClientsStreaming
+			if not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and
+			(
+				'0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or
+				'4097:' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString()
+			):
 				return True
 
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and Screens.Standby.inStandby and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
 				self.keypress()  # This unbinds the keypress detection
 				if not Screens.Standby.inStandby:  # Not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout=180)
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
 				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
 					print '[RecordTimer] Recording or Recording due is next 15 mins, not return to deepstandby'
@@ -592,19 +593,20 @@ class RecordTimerEntry(timer.TimerEntry, object):
 # Also might want to back off - but that is set-up for trying to start
 # recordings, so has a low maximum delay.
 #
-				from Components.Converter.ClientsStreaming import ClientsStreaming;
+				from Components.Converter.ClientsStreaming import ClientsStreaming
 				if int(ClientsStreaming("NUMBER").getText()) > 0:
-					if not Screens.Standby.inStandby: # not already in standby
-						Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox,
-							 _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
-							 + _("\n(DeepStandby request changed to Standby owing to there being streaming clients.)"), timeout = 180)
+					if not Screens.Standby.inStandby:  # not already in standby
+						Notifications.AddNotificationWithCallback(
+							self.sendStandbyNotification, MessageBox,
+							_("A finished record timer wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName())
+							+ _("\n(DeepStandby request changed to Standby owing to there being streaming clients.)"), timeout=180)
 					return True
 #
 				if not Screens.Standby.inTryQuitMainloop:  # The shutdown messagebox is not open
 					if Screens.Standby.inStandby:  # In standby
 						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), timeout=180)
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			return True
 
 	def _zapToTimerService(self):
@@ -729,9 +731,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					choice.insert(1, (_("Save timeshift and zap"), "save"))
 			else:
 				message += _("Reminder, you have chosen to save timeshift file.")
-			#if self.justplay or self.always_zap:
-			#	choice.insert(2, (_("Don't zap"), "continue"))
+			# if self.justplay or self.always_zap:
+			# 	choice.insert(2, (_("Don't zap"), "continue"))
 			choice.insert(2, (_("Don't zap"), "continue"))
+
 			def zapAction(choice):
 				start_zap = True
 				if choice:
@@ -740,7 +743,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if choice in ("save", "save_movie"):
 							ts = self.InfoBarInstance.getTimeshift()
 							if ts and ts.isTimeshiftEnabled():
-								if choice =="save_movie":
+								if choice == "save_movie":
 									self.InfoBarInstance.save_timeshift_in_movie_dir = True
 								self.InfoBarInstance.save_timeshift_file = True
 								ts.saveTimeshiftFile()
@@ -840,19 +843,19 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			NavigationInstance.instance.RecordTimer.removeEntry(self)
 		elif event == iRecordableService.evGstRecordEnded:
 			if self.repeated:
-				self.processRepeated(findRunningEvent = False)
+				self.processRepeated(findRunningEvent=False)
 			NavigationInstance.instance.RecordTimer.doActivate(self)
 
 	# We have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
 		if self.__record_service is not None:
-#			print "[RecordTimer][remove callback]"
+			# print "[RecordTimer][remove callback]"
 			NavigationInstance.instance.record_event.remove(self.gotRecordEvent)
 
 		self.__record_service = service
 
 		if self.__record_service is not None:
-#			print "[RecordTimer][add callback]"
+			# print "[RecordTimer][add callback]"
 			NavigationInstance.instance.record_event.append(self.gotRecordEvent)
 
 	record_service = property(lambda self: self.__record_service, setRecordService)
@@ -1059,13 +1062,13 @@ class RecordTimer(timer.Timer):
 				list.append(' ice_timer_id="' + str(timer.ice_timer_id) + '"')
 			list.append('>\n')
 
-#		Handle repeat entries, which never end and so never get pruned by cleanupDaily
+# 		Handle repeat entries, which never end and so never get pruned by cleanupDaily
 #       Repeating timers get, e.g., repeated="127" (dow bitmap)
 
 			ignore_before = 0
 			if config.recording.keep_timers.value > 0:
 				if int(timer.repeated) > 0:
-					ignore_before = time() - config.recording.keep_timers.value*86400
+					ignore_before = time() - config.recording.keep_timers.value * 86400
 
 			for log_time, code, msg in timer.log_entries:
 				if log_time < ignore_before:
@@ -1346,9 +1349,9 @@ class RecordTimer(timer.Timer):
 		if entry.state != entry.StateEnded:
 			self.timeChanged(entry)
 
-#		print "[RecordTimer]state: ", entry.state
-#		print "[RecordTimer]in processed: ", entry in self.processed_timers
-#		print "[RecordTimer]in running: ", entry in self.timer_list
+# 		print "[RecordTimer]state: ", entry.state
+# 		print "[RecordTimer]in processed: ", entry in self.processed_timers
+# 		print "[RecordTimer]in running: ", entry in self.timer_list
 
 		# Autoincrease instant timer if possible
 		if not entry.dontSave:
