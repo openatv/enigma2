@@ -452,6 +452,11 @@
 		<key id="KEY_9" mapto="seekdef:9" flags="m"/>
 	</map>
 
+	<map context="InfobarTimeshiftEnableActions">
+		<key id="KEY_PLAYPAUSE" mapto="timeshiftEnableAndPause" flags="m"/>
+		<key id="KEY_PAUSE" mapto="timeshiftEnableAndPause" flags="m"/>
+	</map>
+
 	<map context="InfobarTimeshiftActions">
 		<key id="KEY_STOP" mapto="timeshiftStop" flags="m"/>
 		<!--<key id="KEY_RECORD" mapto="instantRecord" flags="m"/>-->
