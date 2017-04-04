@@ -2189,6 +2189,22 @@ class ConfigSubsection(object):
 	def dict(self):
 		return self.content.items
 
+# This converts old timezone settings string to the new two tier format.
+# The conversion table only contains Australian zones - OpenViX are not
+# interested in providing backwards compatibility.
+# If the old string is not found, the defaults are used instead.
+def convertOldTimezone(old_name):
+	old_zones = {
+		"(GMT+08:00) Perth": ("Australia", "Perth"),
+		"(GMT+09:30) Adelaide": ("Australia", "Adelaide"),
+		"(GMT+09:30) Darwin": ("Australia", "Darwin"),
+		"(GMT+10:00) Brisbane": ("Australia", "Brisbane"),
+		"(GMT+10:00) Canberra, Melbourne, Sydney": ("Australia", "Sydney"),
+		"(GMT+10:00) Hobart": ("Australia", "Hobart"),
+	}
+
+	return old_zones.get(old_name, ("Australia", "Sydney"))
+
 # the root config object, which also can "pickle" (=serialize)
 # down the whole config tree.
 #
@@ -2264,7 +2280,21 @@ class Config(ConfigSubsection):
 			print "[Config] Couldn't write %s" % filename
 
 	def loadFromFile(self, filename, base_file=True):
-		self.unpickle(open(filename, "r"), base_file)
+		lines = open(filename, "r")
+		lines = self.upgradeOldSettings(lines)
+
+		self.unpickle(lines, base_file)
+
+	def upgradeOldSettings(self, lines):
+		result = []
+		for line in lines:
+			if line.startswith("config.timezone.val=("):
+				area, val = convertOldTimezone(line.strip().split("=")[1])
+				result.append("config.timezone.area=%s" % area)
+				result.append("config.timezone.val=%s" % val)
+			else:
+				result.append(line)
+		return result
 
 config = Config()
 config.misc = ConfigSubsection()
