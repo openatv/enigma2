@@ -1,3 +1,5 @@
+from enigma import eTimer
+
 from config import config, ConfigSelection, ConfigSubsection
 from os import environ, unlink, symlink, walk, path
 import time
@@ -36,6 +38,33 @@ class Timezones:
 	def __init__(self):
 		self.timezones = {}
 		self.readTimezonesFromSystem()
+		if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
+			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
+			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+			self.autopoller = AutoPoller()
+			self.autotimer = AutoTimer()
+		self.timer = eTimer()
+		self.ATupdate = None
+
+	def startATupdate(self):
+		if self.ATupdate:
+			self.timer.stop()
+		if self.query not in self.timer.callback:
+			self.timer.callback.append(self.query)
+		print "[Timezones] AutoTimer poll will be run in 3 minutes"
+		self.timer.startLongTimer(3 * 60)
+
+	def stopATupdate(self):
+		self.ATupdate = None
+		if self.query in self.timer.callback:
+			self.timer.callback.remove(self.query)
+		self.timer.stop()
+
+	def query(self):
+		print "[Timezones] AutoTimer poll running"
+		self.stopATupdate()
+		self.autotimer.parseEPG()
+		self.autopoller.start()
 
 	def readTimezonesFromSystem(self):
 		tzfiles = [];
@@ -90,6 +119,11 @@ class Timezones:
 		return
 
 	def activateTimezone(self, tz, tzarea):
+		if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo") and config.plugins.autotimer.autopoll.value:
+			print "[Timezones] trying to stop main AutoTimer poller"
+			self.autopoller.stop()
+			self.ATupdate = True
+
 		if tzarea == Timezones.gen_label:
 			fulltz = tz
 		else:
@@ -116,5 +150,7 @@ class Timezones:
 		except:
 			from enigma import e_tzset
 			e_tzset()
+		if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo") and config.plugins.autotimer.autopoll.value:
+			self.startATupdate()
 
 timezones = Timezones()
