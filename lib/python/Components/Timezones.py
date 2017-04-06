@@ -63,7 +63,7 @@ class Timezones:
 	def query(self):
 		print "[Timezones] AutoTimer poll running"
 		self.stopATupdate()
-		self.autotimer.parseEPG()
+		self.autotimer.parseEPG(autoPoll=True)
 		self.autopoller.start()
 
 	def readTimezonesFromSystem(self):
