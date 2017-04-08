@@ -65,9 +65,11 @@ except:
 
 profile("ChannelSelection.py after imports")
 
+# defined in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
+# and dxHideVBI=512
 FLAG_SERVICE_NEW_FOUND = 64
 FLAG_IS_DEDICATED_3D = 128
-FLAG_HIDE_VBI = 512 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
+FLAG_HIDE_VBI = 512
 
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
@@ -242,7 +244,7 @@ class ChannelContextMenu(Screen):
 							_append_when_current_valid(current, menu, actions, (_("Add service to bouquet"), self.addServiceToBouquetSelected), level=0, key="7")
 							self.addFunction = self.addServiceToBouquetSelected
 						if not self.inBouquet:
-							_append_when_current_valid(current, menu, actions, (_("Remove entry"), self.removeEntry), level = 0, key="9")
+							_append_when_current_valid(current, menu, actions, (_("Remove entry"), self.removeEntry), level=0, key="9")
 							self.removeFunction = self.removeSatelliteService
 					else:
 						if not self.inBouquet:
@@ -250,20 +252,20 @@ class ChannelContextMenu(Screen):
 							self.addFunction = self.addServiceToBouquetSelected
 					if SystemInfo["PIPAvailable"]:
 						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(current.toCompareString()) == -1:
-#							if self.csel.dopipzap:
-#								_append_when_current_valid(current, menu, actions, (_("Play in main window"), self.playMain), level=0, key="red")
-#								else:	
+							# if self.csel.dopipzap:
+								# _append_when_current_valid(current, menu, actions, (_("Play in main window"), self.playMain), level=0, key="red")
+								# else:
 									_append_when_current_valid(current, menu, actions, (_("Play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
-#					_append_when_current_valid(current, menu, actions, (_("Find currently playing service"), self.findCurrentlyPlayed), level=0, key="4")
+# 					_append_when_current_valid(current, menu, actions, (_("Find currently playing service"), self.findCurrentlyPlayed), level=0, key="4")
 				else:
 					if 'FROM SATELLITES' in current_root.getPath() and current and _("Services") in eServiceCenter.getInstance().info(current).getName(current):
 						unsigned_orbpos = current.getUnsignedData(4) >> 16
 						if unsigned_orbpos == 0xFFFF:
-							_append_when_current_valid(current, menu, actions, (_("Remove cable services"), self.removeSatelliteServices), level = 0, key="bullet")
+							_append_when_current_valid(current, menu, actions, (_("Remove cable services"), self.removeSatelliteServices), level=0, key="bullet")
 						elif unsigned_orbpos == 0xEEEE:
-							_append_when_current_valid(current, menu, actions, (_("Remove terrestrial services"), self.removeSatelliteServices), level = 0, key="bullet")
+							_append_when_current_valid(current, menu, actions, (_("Remove terrestrial services"), self.removeSatelliteServices), level=0, key="bullet")
 						else:
-							_append_when_current_valid(current, menu, actions, (_("Remove selected satellite"), self.removeSatelliteServices), level = 0, key="bullet")
+							_append_when_current_valid(current, menu, actions, (_("Remove selected satellite"), self.removeSatelliteServices), level=0, key="bullet")
 					if haveBouquets:
 						if not self.inBouquet and "PROVIDERS" not in current_sel_path:
 							_append_when_current_valid(current, menu, actions, (_("Copy to bouquets"), self.copyCurrentToBouquetList), level=0, key="bullet")
@@ -465,7 +467,7 @@ class ChannelContextMenu(Screen):
 		self.session.open(ServiceInfo, serviceref=self.csel.getCurrentSelection())
 
 	def setStartupService(self):
-		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list = [(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
+		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list=[(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
 
 	def setStartupServiceCallback(self, answer):
 		if answer:
@@ -740,10 +742,12 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 	def __init__(self):
 		self.ChoiceBoxDialog = None
 		self.RemoveTimerDialog = None
-		self.hotkeys = [("Info (EPG)", "info", "Infobar/openEventView"),
+		self.hotkeys = [
+			("Info (EPG)", "info", "Infobar/openEventView"),
 			("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
 			("Epg/Guide", "epg", "Infobar/EPGPressed/1"),
-			("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")]
+			("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")
+		]
 		self["ChannelSelectEPGActions"] = ButtonSetupActionMap(["ChannelSelectEPGActions"], dict((x[1], self.ButtonSetupGlobal) for x in self.hotkeys))
 		self.currentSavedPath = []
 		self.onExecBegin.append(self.clearLongkeyPressed)
@@ -2074,7 +2078,7 @@ config.radio.lastroot = ConfigText()
 config.servicelist = ConfigSubsection()
 config.servicelist.lastmode = ConfigText(default='tv')
 config.servicelist.startupservice = ConfigText()
-config.servicelist.startupservice_onstandby = ConfigYesNo(default = False)
+config.servicelist.startupservice_onstandby = ConfigYesNo(default=False)
 config.servicelist.startuproot = ConfigText()
 config.servicelist.startupmode = ConfigText(default='tv')
 
@@ -2253,7 +2257,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def togglePipzap(self):
 		if not (hasattr(self.session, 'pip') and self.session.pip):
-			raise AssertionError, "Invalid self.session.pip"
+			raise AssertionError("Invalid self.session.pip")
 		title = self.instance.getTitle()
 		pos = title.find(' (')
 		if pos != -1:
@@ -2786,7 +2790,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		del self.info["RdsDecoder"]
 		self.session.deleteDialog(self.info)
 		self.infobar.rds_display.onRassInteractivePossibilityChanged.remove(self.RassInteractivePossibilityChanged)
-		lastservice=eServiceReference(config.tv.lastservice.value)
+		lastservice = eServiceReference(config.tv.lastservice.value)
 		self.session.nav.playService(lastservice)
 
 	def startRassInteractive(self):
@@ -3055,10 +3059,10 @@ class HistoryZapSelector(Screen):
 		else:
 			refstr = str(ref)
 		refstr = refstr and GetWithAlternative(refstr)
-		print 'refstr:',refstr
+		print 'refstr:', refstr
 		if '%3a//' in refstr:
 			return "%s" % _("Stream")
-		op = int(refstr.split(':', 10)[6][:-4] or "0",16)
+		op = int(refstr.split(':', 10)[6][:-4] or "0", 16)
 		if op == 0xeeee:
 			return "%s" % _("DVB-T")
 		if op == 0xffff:
