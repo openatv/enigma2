@@ -420,7 +420,7 @@ class AutoVideoMode(Screen):
 			if video_rate != -1:
 				if video_rate == 25000 and video_pol == 'i':
 					new_rate = 50000
-				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i') or (video_rate == 29970 and video_pol == 'p' and config.av.autores.value == 'disabled'): 
+				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i') or (video_rate == 29970 and video_pol == 'p' and config.av.autores.value == 'disabled'):
 					new_rate = 60000
 				elif video_rate == 23976:
 					new_rate = 24000
@@ -490,10 +490,7 @@ class AutoVideoMode(Screen):
 						write_mode = multi_videomode
 					else:
 						write_mode = current_mode
-				else:
-					if new_rate == '24' and config_rate == 'multi': 
-						write_mode = config_res+'p'+new_rate
-						
+
 			if write_mode and current_mode != write_mode:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				if config.av.autores.value != "disabled" and config.av.autores_label_timeout.value != '0':

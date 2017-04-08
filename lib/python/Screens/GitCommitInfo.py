@@ -27,10 +27,10 @@ E2Branches = {
 
 project = 0
 projects = [
+	("https://api.github.com/repos/oe-alliance/oe-alliance-core/commits?sha=4.0", "OE-A Core"),
 	("https://api.github.com/repos/OpenViX/enigma2/commits?sha=%s" % E2Branches[getImageType()], "Enigma2"),
 	("https://api.github.com/repos/OpenViX/vix-core/commits", "ViX Core"),
 	("https://api.github.com/repos/OpenViX/skins/commits", "ViX Skins"),
-	("https://api.github.com/repos/oe-alliance/oe-alliance-core/commits?sha=4.0", "OE-A Core"),
 	("https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits?sha=2.3", "OE-A Plugins"),
 	("https://api.github.com/repos/oe-alliance/AutoBouquetsMaker/commits", "AutoBouquetsMaker"),
 	("https://api.github.com/repos/oe-alliance/branding-module/commits", "Branding Module"),
@@ -49,7 +49,7 @@ def readGithubCommitLogsSoftwareUpdate():
 		except:
 			log = loads(urllib2.urlopen(url, timeout=5).read())
 		for c in log:
-			if c['commit']['message'].startswith('openbh:') or (gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("Enigma2", "ViX Core", "ViX Skins", "OE-A Core")):
+			if c['commit']['message'].startswith('openbh:') or (gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("OE-A Core", "Enigma2", "ViX Core", "ViX Skins")):
 					continue
 			if c['commit']['message'].startswith('openvix:'):
 				gitstart = False
@@ -110,7 +110,7 @@ def readGithubCommitLogs():
 		except:
 			log = loads(urllib2.urlopen(url, timeout=5).read())
 		for c in log:
-			if c['commit']['message'].startswith('openbh:') or (gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("Enigma2", "ViX Core", "ViX Skins", "OE-A Core")):
+			if c['commit']['message'].startswith('openbh:') or (gitstart and not c['commit']['message'].startswith('openvix:') and getScreenTitle() in ("OE-A Core", "Enigma2", "ViX Core", "ViX Skins")):
 				continue
 			if c['commit']['message'].startswith('openvix:'):
 				blockstart = False
@@ -132,7 +132,7 @@ def readGithubCommitLogs():
 				if releasever > ImageVer:
 					blockstart = True
 					continue
-			elif blockstart and getScreenTitle() in ("Enigma2", "ViX Core", "ViX Skins", "OE-A Core"):
+			elif blockstart and getScreenTitle() in ("OE-A Core", "Enigma2", "ViX Core", "ViX Skins"):
 				blockstart = True
 				continue
 

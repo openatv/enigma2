@@ -687,6 +687,7 @@ class NimSelection(Screen):
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
+		self["key_yellow"] = StaticText(_("Client mode"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions", "ChannelSelectEPGActions"],
 		{
@@ -697,7 +698,12 @@ class NimSelection(Screen):
 			"red": self.close,
 			"green": self.okbuttonClick,
 			"menu": self.exit,
+			"yellow": self.clientmode,
 		}, -2)
+
+	def clientmode(self):
+		from Screens.ClientMode import ClientModeScreen
+		self.session.open(ClientModeScreen, self.menu_path)
 
 	def exit(self):
 		self.close(True)

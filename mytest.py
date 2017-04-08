@@ -26,6 +26,11 @@ enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
 from traceback import print_exc
+
+profile("ClientMode")
+import Components.ClientMode
+Components.ClientMode.InitClientMode()
+
 profile("SimpleSummary")
 from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
@@ -38,7 +43,8 @@ config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 def setLoadUnlinkedUserbouquets(configElement):
 	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
-enigma.eDVBDB.getInstance().reloadBouquets()
+if config.clientmode.enabled.value == False:
+	enigma.eDVBDB.getInstance().reloadBouquets()
 
 profile("ParentalControl")
 import Components.ParentalControl
@@ -603,6 +609,10 @@ import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 import Components.InputHotplug
 
+profile("TimeZones")
+import Components.Timezones
+Components.Timezones.InitTimeZones()
+
 profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
@@ -668,6 +678,10 @@ Screens.Ci.InitCiConfig()
 
 profile("RcModel")
 import Components.RcModel
+
+if config.clientmode.enabled.value:
+	import Components.ChannelsImporter
+	Components.ChannelsImporter.autostart()
 
 #from enigma import dump_malloc_stats
 #t = eTimer()

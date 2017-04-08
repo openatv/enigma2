@@ -13,37 +13,37 @@ class AVSwitch:
 	rates = { } # high-level, use selectable modes.
 	modes = { }  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] =		{	"50Hz":		{ 50: "pal" },
-							"60Hz":		{ 60: "pal60" },
-							"multi":	{ 50: "pal", 60: "pal60" } }
+	rates["PAL"]  = { "50Hz":  { 50: "pal" },
+					  "60Hz":  { 60: "pal60" },
+					  "multi": { 50: "pal", 60: "pal60" } }
 
-	rates["NTSC"] =		{	"60Hz": 	{ 60: "ntsc" } }
+	rates["NTSC"]  = { "60Hz": { 60: "ntsc" } }
 
-	rates["Multi"] =	{	"multi":	{ 50: "pal", 60: "ntsc" } }
+	rates["Multi"] = { "multi": { 50: "pal", 60: "ntsc" } }
 
-	rates["480i"] =		{	"60Hz": 	{ 60: "480i" } }
+	rates["480i"] = { "60Hz": { 60: "480i" } }
 
-	rates["576i"] =		{	"50Hz": 	{ 50: "576i" } }
+	rates["576i"] = { "50Hz": { 50: "576i" } }
 
-	rates["480p"] =		{	"60Hz": 	{ 60: "480p" } }
+	rates["480p"] = { "60Hz": { 60: "480p" } }
 
-	rates["576p"] =		{	"50Hz": 	{ 50: "576p" } }
+	rates["576p"] = { "50Hz": { 50: "576p" } }
 
-	rates["720p"] =		{	"50Hz": 	{ 50: "720p50" },
-							"60Hz": 	{ 60: "720p" },
-							"multi": 	{ 50: "720p50", 60: "720p" } }
+	rates["720p"] = { "50Hz": { 50: "720p50" },
+					  "60Hz": { 60: "720p" },
+					  "multi": { 50: "720p50", 60: "720p" } }
 
-	rates["1080i"] =	{	"50Hz":		{ 50: "1080i50" },
-							"60Hz":		{ 60: "1080i" },
-							"multi":	{ 50: "1080i50", 60: "1080i" } }
+	rates["1080i"] = { "50Hz":  { 50: "1080i50" },
+					   "60Hz":  { 60: "1080i" },
+					   "multi": { 50: "1080i50", 60: "1080i" } }
 
-	rates["1080p"] =	{	"50Hz":		{ 50: "1080p50" },
-							"60Hz":		{ 60: "1080p" },
-							"multi":	{ 50: "1080p50", 60: "1080p" } }
+	rates["1080p"] = { "50Hz":  { 50: "1080p50" },
+					   "60Hz":  { 60: "1080p" },
+					   "multi": { 50: "1080p50", 60: "1080p" } }
 
-	rates["2160p"] =	{	"50Hz":		{ 50: "2160p50" },
-							"60Hz":		{ 60: "2160p" },
-							"multi":	{ 50: "2160p50", 60: "2160p" } }
+	rates["2160p"] = { "50Hz":  { 50: "2160p50" },
+					   "60Hz":  { 60: "2160p" },
+					   "multi": { 50: "2160p50", 60: "2160p" } }
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -81,7 +81,7 @@ class AVSwitch:
 	# if "DVI-PC" in modes and not getModeList("DVI-PC"):
 	# 	print "[VideoHardware] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	
+
 	# Machines that do not have component video (red, green and blue RCA sockets).
 	no_YPbPr = (
 		'dm500hd',
@@ -131,14 +131,14 @@ class AVSwitch:
 		'vuultimo4k',
 		'xp1000'
 	)
-	
+
 	# Machines that have composite video (yellow RCA socket) but do not have Scart.
 	yellow_RCA_no_scart = (
 		'gb800ueplus',
 		'gbultraue',
 		'mbmicro',
 		'mbtwinplus',
-		'mutant11',		
+		'mutant11',
 		'mutant500c',
 		'osmega',
 		'osmini',
@@ -154,7 +154,7 @@ class AVSwitch:
 		'tmnano3t',
 		'xpeedlx3'
 	)
-	
+
 	# Machines that have neither yellow RCA nor Scart sockets
 	no_yellow_RCA__no_scart = (
 		'et5x00',
@@ -173,14 +173,14 @@ class AVSwitch:
 		'vuuno4k',
 		'vuultimo4k'
 	)
-	
+
 	if "YPbPr" in modes and getBoxType() in no_YPbPr:
 		del modes["YPbPr"]
-		
+
 	if "Scart" in modes and getBoxType() in yellow_RCA_no_scart:
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
-		
+
 	if "Scart" in modes and getBoxType() in no_yellow_RCA__no_scart:
 		del modes["Scart"]
 
@@ -487,7 +487,7 @@ def InitAVSwitch():
 		if "auto" in f.readline():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy2_choices.update({"auto": _("Auto")})
-		f.close()	
+		f.close()
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -521,7 +521,7 @@ def InitAVSwitch():
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
 			iAVSwitch.setColorFormat(3)
 		elif config.av.videoport and config.av.videoport.value in ("RCA"):
-			iAVSwitch.setColorFormat(0)			
+			iAVSwitch.setColorFormat(0)
 		else:
 			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 			iAVSwitch.setColorFormat(map[configElement.value])
@@ -530,7 +530,7 @@ def InitAVSwitch():
 	def setAspectRatio(configElement):
 		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox" : 6}
 		iAVSwitch.setAspectRatio(map[configElement.value])
-	
+
 	iAVSwitch.setInput("ENCODER") # init on startup
 	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
@@ -558,7 +558,7 @@ def InitAVSwitch():
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
-		
+
 	if os.path.exists("/proc/stb/video/hdmi_colorspace"):
 		f = open("/proc/stb/video/hdmi_colorspace", "r")
 		have_colorspace = f.read().strip().split(" ")

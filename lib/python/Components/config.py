@@ -91,12 +91,12 @@ class ConfigElement(object):
 		else:
 			self.saved_value = self.tostring(self.value)
 		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
+			self.changedFinal()  # call none immediate_feedback notifiers, immediate_feedback Notifiers are called as they are chanaged, so do not need to be called here.
 
 	def cancel(self):
 		self.load()
 		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
+			self.changedFinal()  # call none immediate_feedback notifiers, immediate_feedback Notifiers are called as they are chanaged, so do not need to be called here.
 
 	def isChanged(self):
 # NOTE - sv should already be stringified!
@@ -164,10 +164,11 @@ class ConfigElement(object):
 		try:
 			del self.__notifiers[str(notifier)]
 		except:
-			try:
-				del self.__notifiers_final[str(notifier)]
-			except:
-				pass
+			pass
+		try:
+			del self.__notifiers_final[str(notifier)]
+		except:
+			pass
 
 	def clearNotifiers(self):
 		self.__notifiers = { }
@@ -184,7 +185,6 @@ class ConfigElement(object):
 
 	def onDeselect(self, session):
 		if not self.last_value == self.value:
-			self.changedFinal()
 			self.last_value = self.value
 
 KEY_LEFT = 0
