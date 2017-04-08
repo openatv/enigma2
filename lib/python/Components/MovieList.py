@@ -484,7 +484,7 @@ class MovieList(GUIComponent):
 				if ext == '2':
 					piconSize = ih  * 1.667
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width-textPosX-dateSize-listMarginX-listEndX, ih), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER, text=data.txt))
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(width-piconSize-listEndX, listEndX), size=(piconSize, ih), png=picon, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(width-piconSize-listEndX, listEndX), size=(piconSize, ih), png=picon, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
 				res.append(MultiContentEntryText(pos=(listBeginX, ih+textPosY), size=(width-listBeginX-dateSize-listMarginX-listEndX, ih), font=1, flags=RT_HALIGN_LEFT, text=desc))
 				res.append(MultiContentEntryText(pos=(width-dateSize-listEndX, ih+textPosY), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 				return res
