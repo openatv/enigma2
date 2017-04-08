@@ -571,8 +571,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 # currently only refers to *starting* a recording.
 #
 			from Components.Converter.ClientsStreaming import ClientsStreaming
-			if not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and
-			(
+			if not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and (
 				'0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or
 				'4097:' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString()
 			):
