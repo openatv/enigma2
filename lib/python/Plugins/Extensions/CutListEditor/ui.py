@@ -183,6 +183,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
+		self.pauseService()
 
 		# disable cutlists. we want to freely browse around in the movie
 		# However, downloading and uploading the cue sheet restores the
@@ -241,6 +242,10 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.cut_start = None
 		self.inhibit_seek = False
 		self.onClose.append(self.__onClose)
+
+		# If there's only marks, jump to the first (assuming it to be new).
+		if self.cut_list and not [x for x in self.cut_list if x[1] != self.CUT_TYPE_MARK]:
+			self.doSeek(self.cut_list[0][0])
 
 	def __onClose(self):
 		self.session.nav.playService(self.old_service, forceRestart=True)
