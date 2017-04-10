@@ -486,6 +486,7 @@ lib/python/Plugins/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/CutListEditor/meta/Makefile
+lib/python/Plugins/Extensions/CutListEditor/src/Makefile
 lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile

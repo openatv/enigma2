@@ -1,6 +1,6 @@
-import bisect
+import bisect, os
 
-from enigma import getDesktop, iPlayableService
+from enigma import getDesktop, iPlayableService, eConsoleAppContainer, eEnv
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -15,6 +15,7 @@ from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
 
+mtrunc_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/CutListEditor/bin/mtrunc")
 
 def SecToMSS(sec):
 	return "%d:%02d" % (sec / 60, sec % 60)
@@ -25,18 +26,13 @@ def CutListEntry(where, what, where_next=None):
 	s = (w / 1000) % 60
 	m = (w / 60000) % 60
 	h = w / 3600000
-	if what == 0:
-		type = "IN"
-		type_col = 0x004000
-	elif what == 1:
-		type = "OUT"
-		type_col = 0x400000
-	elif what == 2:
-		type = "MARK"
-		type_col = 0x000040
-	elif what == 3:
-		type = "LAST"
-		type_col = 0x000000
+	type, type_col = (
+		("IN",   0x004000),
+		("OUT",  0x400000),
+		("MARK", 0x000040),
+		("LAST", 0x000000),
+		("",     0x000000)
+	)[what if what < 4 else 4]
 
 	d = SecToMSS((where_next / 90 - w) / 1000) if where_next else ""
 
@@ -50,10 +46,11 @@ class CutListContextMenu(FixedMenu):
 	RET_DELETEMARK = 4
 	RET_REMOVEBEFORE = 5
 	RET_REMOVEAFTER = 6
-	RET_GRABFRAME = 7
+	RET_ENDHERE = 7
 	RET_ENABLECUTS = 8
 	RET_DISABLECUTS = 9
 	RET_EXECUTECUTS = 10
+	RET_GRABFRAME = 11
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
@@ -79,13 +76,15 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("remove before this position"), self.removeBefore))
 		menu.append((_("remove after this position"), self.removeAfter))
+		if os.access(mtrunc_path, os.X_OK):
+			menu.append((_("end at this position and exit"), self.endHere))
 
 		if cut_state == 2:
-			menu.append((_("enable cuts"), self.enableCuts))
+			menu.append((_("enable cuts (preview)"), self.enableCuts))
 		else:
-			menu.append((_("disable cuts"), self.disableCuts))
+			menu.append((_("disable cuts (edit)"), self.disableCuts))
 
-		menu.append((_("execute cuts"), self.executeCuts))
+		menu.append((_("execute cuts and exit"), self.executeCuts))
 
 #		menu.append((None, ))
 
@@ -119,14 +118,17 @@ class CutListContextMenu(FixedMenu):
 	def removeAfter(self):
 		self.close(self.RET_REMOVEAFTER)
 
+	def endHere(self):
+		self.close(self.RET_ENDHERE)
+
 	def enableCuts(self):
-		return self.close(self.RET_ENABLECUTS)
+		self.close(self.RET_ENABLECUTS)
 
 	def disableCuts(self):
-		return self.close(self.RET_DISABLECUTS)
+		self.close(self.RET_DISABLECUTS)
 
 	def executeCuts(self):
-		return self.close(self.RET_EXECUTECUTS)
+		self.close(self.RET_EXECUTECUTS)
 
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
@@ -475,6 +477,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = True
 			self.putCuesheet()
 			self.inhibit_seek = False
+		elif result == CutListContextMenu.RET_ENDHERE:
+			self.session.openWithCallback(self.truncCallback, MessageBox, text=_("Delete everything from this position?"), type=MessageBox.TYPE_YESNO, default=False)
 		elif result == CutListContextMenu.RET_ENABLECUTS:
 			self.cut_state = 3
 			if self.cue is not None:
@@ -491,9 +495,37 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				main(self.session, service)
 				self.close()
 			except ImportError:
-				self.session.open(Message, _("The MovieCut plugin is not installed."), type=MessageBox.TYPE_INFO, timeout=10)
+				self.session.open(MessageBox, _("The MovieCut plugin is not installed."), type=MessageBox.TYPE_INFO, timeout=10)
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
+
+	def truncCallback(self, answer):
+		if answer:
+			# remove marks after current position
+			for (where, what) in self.cut_list[:]:
+				if where >= self.context_position:
+					self.cut_list.remove((where, what))
+			self.inhibit_seek = True
+			self.putCuesheet()
+			self.inhibit_seek = False
+			self.service = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.session.nav.stopService()
+			self.container = eConsoleAppContainer()
+			#self.container.appClosed.append(self.truncDone)
+			self.container.execute(mtrunc_path, "mtrunc", self.service.getPath(), "-e", str(self.context_position))
+			self.close()
+
+	# Not restarting the service won't update the gauge; restarting the service restores cut
+	# skipping and saving the last position; updating self.cue prevents further playback.
+	# def truncDone(self, result):
+	#	self.session.nav.playService(self.service)
+	#	#self.pauseService()
+	#	self.setSeekState(self.SEEK_STATE_PAUSE)
+	#	service = self.session.nav.getCurrentService()
+	#	self.cue = service and service.cueSheet()
+	#	self.getCuesheet()
+	#	self.prev_cuts = self.cut_list[:]
+	#	self.last_cuts = self.getCutlist()
 
 	def backMenu(self):
 		menu = [(_("back"), self.BACK_BACK),
