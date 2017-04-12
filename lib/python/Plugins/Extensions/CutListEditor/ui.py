@@ -77,7 +77,7 @@ class CutListContextMenu(FixedMenu):
 		menu.append((_("remove before this position"), self.removeBefore))
 		menu.append((_("remove after this position"), self.removeAfter))
 		if os.access(mtrunc_path, os.X_OK):
-			menu.append((_("end at this position and exit"), self.endHere))
+			menu.append((_("end at this position"), self.endHere))
 
 		if cut_state == 2:
 			menu.append((_("enable cuts (preview)"), self.enableCuts))
@@ -188,8 +188,6 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		# disable cutlists. we want to freely browse around in the movie
 		# However, downloading and uploading the cue sheet restores the
 		# default state, so we need to keep disabling it.
-		service = session.nav.getCurrentService()
-		self.cue = service and service.cueSheet()
 		self.cut_state = 2
 
 		self.getCuesheet()
@@ -261,15 +259,19 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def checkSkipShowHideLock(self):
 		pass
 
+	def setCutListEnable(self):
+		service = self.session.nav.getCurrentService()
+		cue = service and service.cueSheet()
+		if cue is not None:
+			cue.setCutListEnable(self.cut_state)
+
 	def getCuesheet(self):
 		self.downloadCuesheet()
-		if self.cue is not None:
-			self.cue.setCutListEnable(self.cut_state)
+		self.setCutListEnable()
 
 	def putCuesheet(self):
 		self.uploadCuesheet()
-		if self.cue is not None:
-			self.cue.setCutListEnable(self.cut_state)
+		self.setCutListEnable()
 
 	def setType(self, index, type):
 		if len(self.cut_list):
@@ -486,12 +488,10 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.session.openWithCallback(self.truncCallback, MessageBox, text=_("Delete everything from this position?"), type=MessageBox.TYPE_YESNO, default=False)
 		elif result == CutListContextMenu.RET_ENABLECUTS:
 			self.cut_state = 3
-			if self.cue is not None:
-				self.cue.setCutListEnable(self.cut_state)
+			self.setCutListEnable()
 		elif result == CutListContextMenu.RET_DISABLECUTS:
 			self.cut_state = 2
-			if self.cue is not None:
-				self.cue.setCutListEnable(self.cut_state)
+			self.setCutListEnable()
 		elif result == CutListContextMenu.RET_EXECUTECUTS:
 			try:
 				from Plugins.Extensions.MovieCut.plugin import main
@@ -513,24 +513,21 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = True
 			self.putCuesheet()
 			self.inhibit_seek = False
+			self.prev_cuts = self.cut_list[:]
+			self.last_cuts = self.getCutlist()
 			self.service = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.session.nav.stopService()
 			self.container = eConsoleAppContainer()
-			#self.container.appClosed.append(self.truncDone)
+			self.container.appClosed.append(self.truncDone)
 			self.container.execute(mtrunc_path, "mtrunc", self.service.getPath(), "-e", str(self.context_position))
-			self.close()
 
-	# Not restarting the service won't update the gauge; restarting the service restores cut
-	# skipping and saving the last position; updating self.cue prevents further playback.
-	# def truncDone(self, result):
-	#	self.session.nav.playService(self.service)
-	#	#self.pauseService()
-	#	self.setSeekState(self.SEEK_STATE_PAUSE)
-	#	service = self.session.nav.getCurrentService()
-	#	self.cue = service and service.cueSheet()
-	#	self.getCuesheet()
-	#	self.prev_cuts = self.cut_list[:]
-	#	self.last_cuts = self.getCutlist()
+	def truncDone(self, result):
+		self.session.nav.playService(self.service)
+		self.pauseService()
+		self.setCutListEnable()
+		if self.cut_list and (self.cut_list[0][1] == self.CUT_TYPE_IN \
+							  or not [x for x in self.cut_list if x[1] != self.CUT_TYPE_MARK]):
+			self.doSeek(self.cut_list[0][0])
 
 	def backMenu(self):
 		menu = [(_("back"), self.BACK_BACK),
