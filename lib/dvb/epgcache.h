@@ -129,11 +129,11 @@ public:
 };
 #endif
 
-class eEPGCache: public eMainloop, private eThread, public Object
+class eEPGCache: public eMainloop, private eThread, public sigc::trackable
 {
 #ifndef SWIG
 	DECLARE_REF(eEPGCache)
-	struct channel_data: public Object
+	struct channel_data: public sigc::trackable
 	{
 		pthread_mutex_t channel_active;
 		channel_data(eEPGCache*);

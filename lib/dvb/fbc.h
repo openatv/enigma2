@@ -13,7 +13,7 @@ class eDVBResourceManager;
 class eDVBFrontend;
 class eDVBRegisteredFrontend;
 
-class eFBCTunerManager: public iObject, public Object
+class eFBCTunerManager: public iObject, public sigc::trackable
 {
 private:
 	typedef std::bitset<8> connect_choices_t;

@@ -3,7 +3,7 @@
 
 #include <lib/dvb_ci/dvbci_session.h>
 
-class eDVBCIDateTimeSession: public eDVBCISession, public Object
+class eDVBCIDateTimeSession: public eDVBCISession, public sigc::trackable
 {
 	enum {
 		stateFinal=statePrivate, stateSendDateTime

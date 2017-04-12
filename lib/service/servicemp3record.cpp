@@ -489,7 +489,7 @@ RESULT eServiceMP3Record::frontendInfo(ePtr<iFrontendInformation> &ptr)
 	return -1;
 }
 
-RESULT eServiceMP3Record::connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)
+RESULT eServiceMP3Record::connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iRecordableService*)this, m_event.connect(event));
 	return 0;

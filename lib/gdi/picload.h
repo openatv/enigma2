@@ -48,7 +48,7 @@ struct Cfilepara
 };
 #endif
 
-class ePicLoad: public eMainloop, public eThread, public Object, public iObject
+class ePicLoad: public eMainloop, public eThread, public sigc::trackable, public iObject
 {
 	DECLARE_REF(ePicLoad);
 

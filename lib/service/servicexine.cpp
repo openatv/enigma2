@@ -164,7 +164,7 @@ void eServiceXine::eventListener(const xine_event_t *event)
 	}
 }
 
-RESULT eServiceXine::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+RESULT eServiceXine::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;

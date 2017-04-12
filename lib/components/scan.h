@@ -6,7 +6,7 @@
 
 class eDVBScan;
 
-class eComponentScan: public Object, public iObject
+class eComponentScan: public sigc::trackable, public iObject
 {
 	DECLARE_REF(eComponentScan);
 #ifndef SWIG

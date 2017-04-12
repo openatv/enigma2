@@ -143,7 +143,7 @@ int eDVBServiceStream::doRecord()
 			return -1;
 		}
 		m_record->setTargetFD(m_target_fd);
-		m_record->connectEvent(slot(*this, &eDVBServiceStream::recordEvent), m_con_record_event);
+		m_record->connectEvent(sigc::mem_fun(*this, &eDVBServiceStream::recordEvent), m_con_record_event);
 	}
 
 	eDebug("[eDVBServiceStream] start streaming...");

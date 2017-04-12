@@ -2451,7 +2451,7 @@ tune_error:
 	return res;
 }
 
-RESULT eDVBFrontend::connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)
+RESULT eDVBFrontend::connectStateChange(const sigc::slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_stateChanged.connect(stateChange));
 	return 0;

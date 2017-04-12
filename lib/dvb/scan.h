@@ -23,7 +23,7 @@ struct service
 	bool scrambled;
 };
 
-class eDVBScan: public Object, public iObject
+class eDVBScan: public sigc::trackable, public iObject
 {
 	DECLARE_REF(eDVBScan);
 		/* chid helper functions: */
@@ -89,7 +89,7 @@ class eDVBScan: public Object, public iObject
 
 	void channelDone();
 
-	Signal1<void,int> m_event;
+	sigc::signal1<void,int> m_event;
 	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt);
 	RESULT processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTableSection &vct, int onid);
 
@@ -110,7 +110,7 @@ public:
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags, int networkid = 0);
 
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
-	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &connection);
 	void insertInto(iDVBChannelList *db, bool backgroundscanresult=false);
 
 	void getStats(int &transponders_done, int &transponders_total, int &services);

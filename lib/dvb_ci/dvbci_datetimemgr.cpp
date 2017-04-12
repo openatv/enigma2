@@ -7,7 +7,7 @@ eDVBCIDateTimeSession::eDVBCIDateTimeSession():
 	m_timer(eTimer::create(eApp)), m_interval(0)
 {
 	//CONNECT(m_timer->timeout, eDVBCIDateTimeSession::sendDateTime);
-	m_timer->timeout.connect(SigC::slot(*this, &eDVBCIDateTimeSession::sendDateTime));
+	m_timer->timeout.connect(sigc::mem_fun(*this, &eDVBCIDateTimeSession::sendDateTime));
 }
 
 int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *data, int len)

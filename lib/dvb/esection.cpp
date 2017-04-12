@@ -62,7 +62,7 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 	m_table = table;
 
 	m_reader = reader;
-	m_reader->connectRead(slot(*this, &eGTable::sectionRead), m_sectionRead_conn);
+	m_reader->connectRead(sigc::mem_fun(*this, &eGTable::sectionRead), m_sectionRead_conn);
 
 	m_tries = 0;
 

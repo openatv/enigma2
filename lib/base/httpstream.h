@@ -6,7 +6,7 @@
 #include <lib/base/itssource.h>
 #include <lib/base/thread.h>
 
-class eHttpStream: public iTsSource, public Object, public eThread
+class eHttpStream: public iTsSource, public sigc::trackable, public eThread
 {
 	DECLARE_REF(eHttpStream);
 

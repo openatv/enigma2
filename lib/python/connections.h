@@ -36,7 +36,7 @@ inline PyObject *PyFrom(std::pair<const char*, int>& p)
 }
 
 template <class R>
-class PSignal0: public PSignal, public Signal0<R>
+class PSignal0: public PSignal, public sigc::signal0<R>
 {
 public:
 	R operator()()
@@ -47,12 +47,12 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
-		return Signal0<R>::operator()();
+		return sigc::signal0<R>::operator()();
 	}
 };
 
 template <class R, class V0>
-class PSignal1: public PSignal, public Signal1<R,V0>
+class PSignal1: public PSignal, public sigc::signal1<R,V0>
 {
 public:
 	R operator()(V0 a0)
@@ -64,12 +64,12 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
-		return Signal1<R,V0>::operator()(a0);
+		return sigc::signal1<R,V0>::operator()(a0);
 	}
 };
 
 template <class R, class V0, class V1>
-class PSignal2: public PSignal, public Signal2<R,V0,V1>
+class PSignal2: public PSignal, public sigc::signal2<R,V0,V1>
 {
 public:
 	R operator()(V0 a0, V1 a1)
@@ -82,12 +82,12 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
-		return Signal2<R,V0,V1>::operator()(a0, a1);
+		return sigc::signal2<R,V0,V1>::operator()(a0, a1);
 	}
 };
 
 template <class R, class V0, class V1, class V2>
-class PSignal3: public PSignal, public Signal3<R,V0,V1,V2>
+class PSignal3: public PSignal, public sigc::signal3<R,V0,V1,V2>
 {
 public:
 	R operator()(V0 a0, V1 a1, V2 a2)
@@ -101,7 +101,7 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
-		return Signal3<R,V0,V1,V2>::operator()(a0, a1, a2);
+		return sigc::signal3<R,V0,V1,V2>::operator()(a0, a1, a2);
 	}
 };
 

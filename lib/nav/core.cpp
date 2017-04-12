@@ -33,19 +33,19 @@ RESULT eNavigation::playService(const eServiceReference &service)
 	if (m_runningService)
 	{
 		m_runningService->setTarget(m_decoder);
-		m_runningService->connectEvent(slot(*this, &eNavigation::serviceEvent), m_service_event_conn);
+		m_runningService->connectEvent(sigc::mem_fun(*this, &eNavigation::serviceEvent), m_service_event_conn);
 		res = m_runningService->start();
 	}
 	return res;
 }
 
-RESULT eNavigation::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection)
+RESULT eNavigation::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_event.connect(event));
 	return 0;
 }
 
-RESULT eNavigation::connectRecordEvent(const Slot2<void,ePtr<iRecordableService>,int> &event, ePtr<eConnection> &connection)
+RESULT eNavigation::connectRecordEvent(const sigc::slot2<void,ePtr<iRecordableService>,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_record_event.connect(event));
 	return 0;
@@ -91,7 +91,7 @@ RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 		else
 		{
 			ePtr<eConnection> conn;
-			service->connectEvent(slot(*this, &eNavigation::recordEvent), conn);
+			service->connectEvent(sigc::mem_fun(*this, &eNavigation::recordEvent), conn);
 			m_recordings[service]=conn;
 			m_recordings_services[service]=ref;
 		}
