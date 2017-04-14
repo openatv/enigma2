@@ -1264,9 +1264,14 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (strstr(m_description, "BCM4506")
 		|| strstr(m_description, "BCM4506 (internal)")
 		|| strstr(m_description, "BCM4505")
+		|| strstr(m_description, "BCM73625 (G3)")
 		)
 	{
 		ret = (snr * 100) >> 8;
+	}
+	else if (!strcmp(m_description, "ATBM781x"))
+	{
+		ret = snr*10;
 	}
 	else if (strstr(m_description, "Si2166B"))
 	{
@@ -1358,10 +1363,6 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			break;
 		}
 	}
-	else if (!strcmp(m_description, "BCM73625 (G3)")) // DM520
-	{
-		ret = snr * 100 / 256;
-	}
 	else if (!strcmp(m_description, "Broadcom BCM73XX")
 		|| !strcmp(m_description, "FTS-260 (Montage RS6000)")
 		|| !strcmp(m_description, "Panasonic MN88472")
@@ -1420,6 +1421,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				ter_max = 2900;
 				break;
 		}
+	}
+	else if (!strncmp(m_description, "Si216", 5)) // all new Models with SI Tuners
+	{
+		ret = snr;
 	}
 
 	signalqualitydb = ret;
