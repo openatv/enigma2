@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-22 11:17+0200\n"
-"PO-Revision-Date: 2017-01-25 12:21+0200\n"
+"POT-Creation-Date: 2017-04-07 13:15+0300\n"
+"PO-Revision-Date: 2017-04-15 14:26+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et_EE\n"
@@ -87,6 +87,11 @@ msgid ""
 "stick.If you already have a prepared bootable USB stick, please insert it "
 "now. Otherwise plug in a USB stick with a minimum size of 64 MB!\"\""
 msgstr ""
+"\"\"See plugin valmistab ette USB pulga, mida saab kasutada %s %s püsivara "
+"uuendamiseks ilma võrgu- või WLAN ühenduseta. Esmalt tuleb USB pulk teha "
+"alglaetavaks. Järgmiseks hangitakse uuenduste serverist NFI image fail ja "
+"salvestatakse see USB pulgale. Kui alglaetav USB pulga juba olemas, siis "
+"ühenda nüüd see. Vastasel korral ühenda min. 64 MB USB pulk!\"\""
 
 msgid "!! Bootloader Upgrade !!"
 msgstr "!! Alglaaduri uuendus !!"
@@ -510,6 +515,9 @@ msgstr "128"
 msgid "128 Mb"
 msgstr "128 Mb"
 
+msgid "12bit 4:2:0/4:2:2 no PIP"
+msgstr "12bit 4:2:0/4:2:2, PIP puudub"
+
 msgid "12V output"
 msgstr "12V väljund"
 
@@ -864,6 +872,9 @@ msgstr "<tundmatu>"
 
 msgid "A"
 msgstr "A"
+
+msgid "AZPlay"
+msgstr "AZPlay"
 
 msgid ""
 "A background update check is in progress, please wait a few minutes and try "
@@ -1306,6 +1317,12 @@ msgstr ""
 "küllastatuna kui võimalik. Kui oled tulemusega rahul, vajuta OK video "
 "peenhäälestuse sulgemiseks või kasuta numbrinuppe teiste testpiltide "
 "valikuks."
+
+msgid "Adjust the horizontal position of the letters used for teletext."
+msgstr "Kohanda teleteksti horisontaalset asukohta."
+
+msgid "Adjust the vertical position of the letters used for teletext."
+msgstr "Kohanda teleteksti vertikaalset asukohta."
 
 msgid "adult movie/drama"
 msgstr "täiskasvanute film/draama"
@@ -2546,6 +2563,9 @@ msgstr "LEMMIKNIMEKIRJA VAHETUS"
 msgid "Change bouquets in quickzap"
 msgstr "Lemmiknimekirjade vahetus noolenuppudega"
 
+msgid "Change Boxmode to control Hardware Chip Modes*"
+msgstr ""
+
 msgid "Change next timer"
 msgstr "Muuda järgmist taimerit"
 
@@ -2565,7 +2585,7 @@ msgid "Change repeat and delay settings?"
 msgstr "Kas muuta korduse ja viiteaja seadistusi?"
 
 msgid "Change settings for your switch modes: single lnb, tonburst or diseqc"
-msgstr ""
+msgstr "Seadista lüliti režiime: üksik lnb, toonimpulss või diseqc"
 
 msgid "Change step size"
 msgstr "Muuda sammu suurust"
@@ -2601,8 +2621,14 @@ msgstr "Kanal"
 msgid "Channel +/- button mode"
 msgstr "CH +/- nuppude vajutus"
 
+msgid "Channel 1"
+msgstr "Kanal 1"
+
 msgid "Channel 1 at start"
 msgstr "Käivitus kanalil 1"
+
+msgid "Channel 1 with Primetime"
+msgstr "Kanal 1 koos tippajaga"
 
 msgid "Channel down"
 msgstr "CH-"
@@ -3206,11 +3232,20 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Määra selle LNB DiSEqC režiim."
 
+msgid "Configure the display resolution and the font used for teletext."
+msgstr "Seadista teleteksti lahutust ja kirjatüüpi."
+
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
 
 msgid "Configure the duration in minutes for the sleep timer."
 msgstr "Määra aeg unetaimeri käivitamiseni (min)."
+
+msgid "Configure the end coordinate in x of the teletext display area."
+msgstr "Määra x-koordinaadi lõpp teleteksti kuvaalas."
+
+msgid "Configure the end coordinate in y of the teletext display area."
+msgstr "Määra y-koordinaadi lõpp teleteksti kuvaalas."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Määra heli keele esimene eelistus."
@@ -3255,6 +3290,10 @@ msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Määra kõvaketta ooteseisundisse minek pärast teatud jõudeoleku aega."
 
+msgid "Configure the height of the TrueType font letters used for teletext."
+msgstr ""
+"Kohanda teletekstis kasutatava TrueType kirjatüübi tähemärkide kõrgust."
+
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Määra subtiitrite horisontaalne asetus."
 
@@ -3289,7 +3328,7 @@ msgid ""
 "Configure the minimum width before showing the 'i' icon, '0' is equal to not "
 "showing the icon at all."
 msgstr ""
-"Määra vähim laius enne 'i' ikooni näitamist. Määrates '0', ikooni ei näidata"
+"Määra vähim laius enne 'i' ikooni kuvamist. Määrates '0', ikooni ei kuvata."
 
 msgid "Configure the nameserver (DNS)."
 msgstr "Seadista nimeserver (DNS)."
@@ -3340,6 +3379,13 @@ msgstr "Määra saatekava keele esimene eelistus."
 msgid "Configure the refresh rate of the screen."
 msgstr "Määra ekraani värskendussagedus."
 
+msgid ""
+"Configure the screen resolution for teletext (Not all skins support full-HD "
+"teletext)."
+msgstr ""
+"Kohanda teleteksti ekraanilahutust. (Kõik kujundused ei toeta FHD "
+"teleteksti.)"
+
 msgid "Configure the second audio language."
 msgstr "Määra heli keele teine eelistus."
 
@@ -3376,6 +3422,12 @@ msgstr ""
 "Määra taustal kustutamise kiirus. Madal kiirus mõjutab kõvaketta jõudlust "
 "vähem."
 
+msgid "Configure the start coordinate in x of the teletext display area."
+msgstr "Määra x-koordinaadi algus teleteksti kuvaalas."
+
+msgid "Configure the start coordinate in y of the teletext display area."
+msgstr "Määra y-koordinaadi algus teleteksti kuvaalas."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Määra subtiitrite ajastuse puudumisel viiteaeg."
 
@@ -3407,9 +3459,37 @@ msgstr "Määra kanalilogodele antav ruum."
 msgid "Configure the width allocated to the service name."
 msgstr "Määra kanalinime kasutatav ruum."
 
+msgid "Configure the width of the TrueType font letters used for teletext."
+msgstr "Kohanda teletekstis kasutatava TrueType kirjatüübi tähemärkide laiust."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 "Määra, kas saatekavas näidatakse kanalinimesi, kanalilogosi või mõlemaid."
+
+msgid "Configure whether a bold TrueType font is used for teletext."
+msgstr "Määra, kas teletekstis kasutatakse rasvast TrueType kirjatüüpi."
+
+msgid ""
+"Configure whether a fixed font or a scalable TrueType font is used for "
+"teletext."
+msgstr ""
+"Määra, kas teletekstis määratud suurusega või skaleeritavat TrueType "
+"kirjatüüpi."
+
+msgid ""
+"Configure whether another tuner from the preferred list is allocated for "
+"recordings instead of sharing a tuner that is already active receiving the "
+"same live TV channel."
+msgstr ""
+"Määra, kas kasutada salvestusteks määratud tuunerit või juba sama saate "
+"vastuvõtuga hõivatud tuunerit."
+
+msgid ""
+"Configure whether another tuner from the preferred list is allocated instead "
+"of sharing a tuner that is already active recording the same channel."
+msgstr ""
+"Määra, kas kasutada salvestusteks määratud tuunerit või juba sama kanali "
+"vastuvõtuga hõivatud tuunerit."
 
 # data/setup.xml
 msgid ""
@@ -3612,7 +3692,7 @@ msgid ""
 "Copy your keymap to\n"
 "/usr/share/enigma2/keymap.usr"
 msgstr ""
-"Koopeeri nupuasetus asukohta \n"
+"Kopeeri nupuasetus asukohta \n"
 " / usr/share/enigma2/keymap.usr"
 
 msgid "Copying files"
@@ -3679,6 +3759,9 @@ msgstr "Loo DVD-ISO"
 
 msgid "Create ISO"
 msgstr "Loo ISO"
+
+msgid "Create seperate radio userbouquet"
+msgstr "Loo eraldi lemmiknimekiri raadiokanalitele"
 
 msgid "Creating AP and SC Files"
 msgstr "AP ja SC failide loomine"
@@ -4069,7 +4152,7 @@ msgstr "Andmekandjad"
 
 #
 msgid "Detected NIMs:"
-msgstr "Leitud tuunerid:"
+msgstr "Tuunerid:"
 
 msgid "detective/thriller"
 msgstr "detektiiv/triller"
@@ -4422,7 +4505,7 @@ msgid "Do you want to download the image to %s ?"
 msgstr "Kas laadida tõmmis asukohta %s ?"
 
 msgid "Do you want to enable the parental control feature on your %s %s?"
-msgstr "Kas lubad lasteluku kasutamise?"
+msgstr "Kas lubada lastelukk %s %s-l?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Kas paigaldada kanalinimekiri?"
@@ -4463,7 +4546,7 @@ msgid "Do you want to restart now?"
 msgstr "Kas taaskäivitada kohe?"
 
 msgid "Do you want to restore your settings?"
-msgstr "Kas taastada seaded?"
+msgstr "Kas taastada vastuvõtja seadistused?"
 
 msgid "Do you want to resume this playback?"
 msgstr "Kas jätkata vaatamist katkestatud kohalt?"
@@ -4585,7 +4668,7 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Andmete laadimine. Oota veidi."
 
 msgid "Dream-Package"
-msgstr ""
+msgstr "Dream-pakett"
 
 msgid "Dreambox Bludisc Record"
 msgstr "Dreambox Bludisc salvestus"
@@ -4795,7 +4878,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Luba 5 V toide aktiivantennile"
 
 msgid "Enable AC3/Dolby"
-msgstr "Luba AC3/Dolby helitase"
+msgstr "Luba AC3/Dolby"
 
 msgid ""
 "Enable and set the duration of the second infobar (press OK twice) that may "
@@ -4810,6 +4893,9 @@ msgstr "Luba kaabelvõrgu automaatotsing"
 
 msgid "Enable auto fast scan"
 msgstr "Luba automaatne kiirotsing"
+
+msgid "Enable auto fast scan for %s"
+msgstr ""
 
 msgid "Enable Autorecord"
 msgstr "Autosalvestus lubatud"
@@ -4878,6 +4964,9 @@ msgstr "Võrguliikluse kontroll lubatud"
 
 msgid "Enable panic button"
 msgstr "Paanikanupp lubatud"
+
+msgid "enable PIP no HDR"
+msgstr "PIP lubatud, HDR puudub"
 
 msgid "Enable preview"
 msgstr "Eelvaatlus lubatud"
@@ -4974,6 +5063,9 @@ msgstr "lõpeta kanalivahetus"
 
 msgid "English"
 msgstr "Inglise"
+
+msgid "Enhanced Movie Center"
+msgstr "EMC filmilist"
 
 msgid "enigma2 and network"
 msgstr "enigma2 ja võrk"
@@ -5302,6 +5394,16 @@ msgstr "Välju juhendatud seadistusabist"
 msgid "experimental film/video"
 msgstr "eksperimentaalne film/video"
 
+msgid "Experimental: strict limitation to preferred tuners"
+msgstr "Eksperimentaalne: rangelt piiratud eelistatud tuuneritega"
+
+msgid "Experimental: strict limitation to preferred tuners for recordings"
+msgstr ""
+"Eksperimentaalne: rangelt piiratud salvestusteks eelistatud tuuneritega"
+
+msgid "Experimental mode"
+msgstr "Eksperimentaalne"
+
 msgid "Expert"
 msgstr "Täpsem"
 
@@ -5344,6 +5446,9 @@ msgstr "Lisatarkvara"
 
 msgid "Extended System"
 msgstr ""
+
+msgid "Extension"
+msgstr "Laiendus"
 
 msgid "Extensions"
 msgstr "Laiendused"
@@ -5592,6 +5697,9 @@ msgstr "kehakultuur ja tervis"
 msgid "Fixed"
 msgstr "Määratud"
 
+msgid "Fixed X11 font (SD)"
+msgstr "Määratud X11 kirjatüüp (SD)"
+
 msgid "FLASH"
 msgstr "SISEMÄLU"
 
@@ -5790,7 +5898,7 @@ msgstr "Täisekraan"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Fulview resulution"
-msgstr "Täisvaate eraldus"
+msgstr "Täisekraani lahutus"
 
 msgid "further education"
 msgstr "täiendõpe"
@@ -5892,10 +6000,10 @@ msgid "Goto :"
 msgstr "Mine :"
 
 msgid "Goto Date/Time"
-msgstr ""
+msgstr "Kuupäeva/aja juurde"
 
 msgid "Goto Date/Timer"
-msgstr ""
+msgstr "Kuupäeva/taimeri juurde"
 
 # Powerlost usage.config
 msgid "goto deep-standby"
@@ -6116,6 +6224,14 @@ msgid "Helps setting up your signal"
 msgstr "Hõlbustab antenni seadistamist"
 
 msgid ""
+"Here can set the EPG will alway open at the current channel, the first "
+"channel or one of both with primetime. If no primetime selected, the current "
+"time is used."
+msgstr ""
+"Siin saab määrata, kuidas EPG avada. Aktiivsel kanalil, esimesel kanalil või "
+"ühel neist tippajal. Kui tippaega ei ole valitud, kasutatakse hetke aega."
+
+msgid ""
 "Here you can browse (but not modify) the files that are added to the "
 "backupfile by default (E2-setup, channels, network)."
 msgstr ""
@@ -6266,11 +6382,11 @@ msgstr ""
 "omale"
 
 msgid "If enabled the video will always be de-interlaced."
-msgstr "Määrates 'jah', toimub alati video ülerealaotuse eemaldamine"
+msgstr "Kui lubatud, toimub alati video ülerealaotuse eemaldamine"
 
 # /data/setup.xml
 msgid "If enabled, AIT data is included in recordings."
-msgstr "Määrates 'jah', kaasatakse salvestistesse AIT andmed."
+msgstr "Kui lubatud, kaasatakse salvestistesse AIT andmed."
 
 msgid ""
 "If enabled, will checks for the time after the start of the receiver is "
@@ -6302,28 +6418,27 @@ msgstr ""
 "kettaruumi kontroll ajanihke ajal'."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
-msgstr "Määrates 'jah', ei näidata kanaleid, millel puudub saatekava."
+msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
 
 msgid "If set to 'yes' it will show the 'PO' packages in browser."
-msgstr "Määrates 'jah', näidatakse nimekirjas 'PO' pakette."
+msgstr "Kui lubatud, kuvatakse nimekirjas 'PO' paketid."
 
 msgid "If set to 'yes' it will show the 'SRC' packages in browser."
-msgstr "Määrates 'jah', näidatakse nimekirjas 'SRC' pakette."
+msgstr "Kui lubatud, kuvatakse nimekirjas 'SRC' paketid."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
-msgstr "Määrates 'jah', näidatakse saatekavas väikest teleekraani."
+msgstr "Kui lubatud, kuvatakse saatekavas väike teleekraan."
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr "Määrates 'jah', näidatakse saatekava avamisel alati lemmiknimekirju."
+msgstr "Kui lubatud, kuvatakse saatekava avamisel alati lemmiknimekirjad."
 
 msgid ""
 "If set to 'yes' the channel list will be shown after switching between radio "
 "and TV modes."
-msgstr ""
-"Määrates 'jah', näidatakse TV ja raadio režiimi vahetudes kanalinimekirja."
+msgstr "Kui lubatud, avatakse TV ja raadio režiimi vahetudes kanalinimekiri."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
-msgstr "Määrates 'jah', näidatakse inforibal kanalinumbrit."
+msgstr "Kui lubatud, kuvatakse inforibal kanalinumber."
 
 msgid ""
 "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' "
@@ -6333,22 +6448,22 @@ msgstr ""
 "avatakse saatekava hetkel töötaval kanalil."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
-msgstr "Määrates 'jah', näidatakse uue saate algamisel inforiba."
+msgstr "Kui lubatud, kuvatakse uue saate algamisel inforiba."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr "Määrates 'jah', näidatakse kanalivahetusel inforiba."
+msgstr "Kui lubatud, kuvatakse kanalivahetusel inforiba."
 
 msgid ""
 "If set to 'yes' you can preview channels in the channel list. Press 'OK' to "
 "preview the selected channel, press a 2nd 'OK' to exit and zap to that "
 "channel, pressing 'EXIT' to return to the channel you started at."
 msgstr ""
-"Määrates 'jah', näidatakse kanalinimekirjas eelvaadet. Vajuta 'OK' valitud "
+"Kui lubatud, saab kanalinimekirjas kanaleid eelvaadelda. Vajuta 'OK' valitud "
 "kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud "
-"kanalile minekuks. Vajutades 'EXIT' lähed tagasi kanalile, millelt alustasid."
+"kanalile minekuks. Vajutades 'EXIT' naased kanalile, millelt alustasid."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
-msgstr "Määrates 'jah', näidatakse saatekavas kanali eelvaadet."
+msgstr "Kui lubatud, saab saatekavas kanaleid eelvaadelda."
 
 msgid ""
 "If set to 'yes', allows you use the seekbar to jump to a point within the "
@@ -6363,7 +6478,7 @@ msgstr "Määrates 'jah', töötab autosalvestus automaatselt ajanihke taustal"
 msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
-msgstr "Määrates 'jah', näidatakse edasi/tagasi kerimisel inforiba."
+msgstr "Kui lubatud, kuvatakse edasi/tagasi kerimisel inforiba."
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -6446,7 +6561,7 @@ msgid "IMDB search for current event"
 msgstr "IMDB otsing käesolevale saatele"
 
 msgid "Immediate shutdown"
-msgstr "Kohene väljalülitus"
+msgstr "Kohene seiskamine"
 
 msgid ""
 "In addition to the check at an event start, a repetitive check can be used, "
@@ -6456,6 +6571,19 @@ msgstr ""
 "Lisaks kontrollile saate algusel, on võimalik kasutada korduvat kontrolli, "
 "et tingimuste 'Ajavaru tundides' või 'Kontrolli vaba kettaruumi' täitmine "
 "avastataks varem."
+
+msgid ""
+"In expert mode, configure which tuners will be preferred, when more than one "
+"tuner is available."
+msgstr ""
+"Määra, millist tuunerit eelistatakse, kui saadaval on rohkem kui üks tuuner."
+
+msgid ""
+"In expert mode, configure which tuners will be preferred for recordings, "
+"when more than one tuner is available."
+msgstr ""
+"Määra, millist tuunerit eelistatakse salvestamisel, kui saadaval on rohkem "
+"kui üks tuuner."
 
 # RecordTimer.py
 msgid ""
@@ -6928,7 +7056,7 @@ msgid "Keymap Selection"
 msgstr "Nupuasetuse valik"
 
 msgid "Kleiner Test"
-msgstr ""
+msgstr "Väike test"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi meediakeskus"
@@ -6991,7 +7119,7 @@ msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin DVB-T/T2 kanalitele"
 
 msgid "LCN rules:"
-msgstr "LCN reeglid"
+msgstr "LCN reeglid:"
 
 msgid "LCN Scanner"
 msgstr "LCN otsing"
@@ -7388,6 +7516,12 @@ msgstr "Jäänud/kulunud meediafailide esitusel"
 msgid "Media player"
 msgstr "Meediamängija"
 
+msgid "Media Player"
+msgstr "Meediamängija"
+
+msgid "Media Portal"
+msgstr "Media Portal"
+
 msgid "Media scanner"
 msgstr "Meediaotsing"
 
@@ -7397,6 +7531,9 @@ msgstr "Meediamängija"
 
 msgid "MediaPlayerLCDScreen"
 msgstr "Meediapleieri ekraaninäidik"
+
+msgid "MediaPortal"
+msgstr "Media Portal"
 
 msgid "medicine/physiology/psychology"
 msgstr "meditsiin/füsioloogia/psühholoogia"
@@ -7575,7 +7712,7 @@ msgid "Mount: "
 msgstr "Haagitud: "
 
 msgid "MountManager"
-msgstr "Haakehaldur"
+msgstr "Haakepunktid"
 
 msgid "Mounts"
 msgstr "Haakepunktid"
@@ -7662,7 +7799,7 @@ msgid "movie/drama (general)"
 msgstr "film/draama"
 
 msgid "Movieplayer"
-msgstr ""
+msgstr "Filmimängija"
 
 msgid "Moving"
 msgstr "Liigutamine"
@@ -7685,6 +7822,9 @@ msgstr "ms"
 # InfoPanel
 msgid "Mtd"
 msgstr "Mtd"
+
+msgid "multi"
+msgstr "multi"
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
@@ -7740,10 +7880,10 @@ msgid "Mute"
 msgstr "Vaigista"
 
 msgid "myChannelSelection"
-msgstr ""
+msgstr "Kanali valik"
 
 msgid "myProviderSelection"
-msgstr ""
+msgstr "Levitaja valik"
 
 msgid "N/A"
 msgstr "Ei ole kasutusel"
@@ -7941,13 +8081,13 @@ msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI image on paigaldatud. Taaskäivitamiseks vajuta kollast nuppu!"
 
 msgid "NFIDownload"
-msgstr ""
+msgstr "NFIDownload"
 
 msgid "NFIFlash"
-msgstr ""
+msgstr "NFIFlash"
 
 msgid "NFOViewer"
-msgstr ""
+msgstr "NFOViewer"
 
 msgid "NFS"
 msgstr "NFS"
@@ -8880,9 +9020,8 @@ msgstr "Filmi lõppedes pausile"
 msgid "Pause playback"
 msgstr "Peata taasesitus"
 
-# Help
 msgid "Pause/Continue playback"
-msgstr "Peata/jätka taasesitust"
+msgstr "Paus/taasesitus"
 
 msgid "PCM"
 msgstr "PCM"
@@ -8953,7 +9092,7 @@ msgid "picons"
 msgstr "Kanalilogod"
 
 msgid "picshow"
-msgstr ""
+msgstr "slaidiesitlus"
 
 msgid "Picture in graphics"
 msgstr "Pilt ekraanigraafikas (PiG)"
@@ -8973,7 +9112,7 @@ msgid "PicturePlayer"
 msgstr "Pildimängija"
 
 msgid "Pic_Exif"
-msgstr ""
+msgstr "Pic_Exif"
 
 msgid "pid:"
 msgstr "pid:"
@@ -9418,13 +9557,13 @@ msgid "PluginDetails"
 msgstr "Plugina andmed"
 
 msgid "PluginManager"
-msgstr ""
+msgstr "Pluginahaldur"
 
 msgid "PluginManagerHelp"
-msgstr ""
+msgstr "Pluginahalduri abi"
 
 msgid "PluginManagerInfo"
-msgstr ""
+msgstr "Pluginahalduri info"
 
 msgid "Plugins"
 msgstr "Pluginad"
@@ -9577,6 +9716,12 @@ msgstr "Eelistatud tuuner"
 msgid "Preferred tuner for recordings"
 msgstr "Eelistatud tuuner salvestamiseks"
 
+msgid "Preferred tuners, multiple selection allowed"
+msgstr "Eelistatud tuunerid. Lubatud on mitu valikut."
+
+msgid "Preferred tuners for recordings, multiple selection allowed"
+msgstr "Eelistatud tuunerid salvestamiseks. Lubatud on mitu valikut."
+
 msgid "Prepare another USB stick for image flashing"
 msgstr "Valmista image paigaldamiseks ette teine USB pulk"
 
@@ -9672,6 +9817,9 @@ msgstr "Eelmine"
 
 msgid "Primary DNS"
 msgstr "Esmane nimeserver"
+
+msgid "Primetime"
+msgstr "Tippaeg"
 
 msgid "PRIMETIME"
 msgstr "TIPPAEG"
@@ -10086,7 +10234,7 @@ msgid "Recordings always have priority"
 msgstr "Salvestused omavad alati eelist"
 
 msgid "RecordTimerQuestion\")"
-msgstr ""
+msgstr "salvestustaimeri küsimus\")"
 
 msgid "Recovery Mode"
 msgstr "Taasterežiim"
@@ -10298,7 +10446,7 @@ msgid "Remove title"
 msgstr "Eemalda pealkiri"
 
 msgid "RemoveTimerQuestion"
-msgstr ""
+msgstr "Salvestustaimeri küsimus"
 
 msgid "Removing"
 msgstr "Eemaldamine"
@@ -10404,6 +10552,9 @@ msgstr "satellites.xml taastamine ei ole võimalik!"
 msgid "Restart"
 msgstr "Taaskäivitus"
 
+msgid "ReStart"
+msgstr "Taaskäivitus"
+
 msgid "Restart %s %s."
 msgstr "Taaskäivita %s %s."
 
@@ -10458,7 +10609,7 @@ msgstr "Taasta varukoopiaid"
 
 # ChannelSelection.py
 msgid "restore deleted userbouquets"
-msgstr "Taasta kustutatud kasutajanimekirjad"
+msgstr "Taasta kustutatud lemmiknimekirjad"
 
 msgid "Restore is running..."
 msgstr "Taastamine"
@@ -10647,7 +10798,7 @@ msgid "Satellite"
 msgstr "Satelliit"
 
 msgid "Satellite configuration mode"
-msgstr ""
+msgstr "Satelliitide seadistamine"
 
 msgid "Satellite dish setup"
 msgstr "Antenni seaded"
@@ -11130,6 +11281,13 @@ msgstr ""
 "vahetamiseks kasuta 'CH+/-' nuppe. Toimingu eemaldamiseks vali määratud "
 "toiming ja vajuta 'OK'. Toimingute järjekorra muutmiseks kasuta 'Eelmine/"
 "Järgmine' nuppe."
+
+msgid ""
+"Select the method of restoring screen resolution and framebuffer when "
+"leaving teletext."
+msgstr ""
+"Vali ekraanilahutuse ja ekraanipuhvri taastamise meetod teletekstist "
+"väljumisel."
 
 msgid "Select the movie path"
 msgstr "Vali salvestuskataloog"
@@ -12903,6 +13061,9 @@ msgstr "Seiskamine"
 msgid "Standby / restart"
 msgstr "Seiskamine"
 
+msgid "Standby without TV shutdown"
+msgstr "Ooteseisundisse telerit sulgemata"
+
 msgid "Start"
 msgstr "Käivita"
 
@@ -12920,6 +13081,9 @@ msgstr "Alusta algusest"
 
 msgid "Start instant recording"
 msgstr "Kohene salvestamine"
+
+msgid "Start mode"
+msgstr ""
 
 msgid "Start Mode"
 msgstr "Käivitumine"
@@ -13263,6 +13427,9 @@ msgstr "Vaheta lühike SININE ja pikk SININE"
 msgid "Switch config"
 msgstr "Seadistuse vahetamine"
 
+msgid "Switch Mode to enable HDR Modes or PIP Functions"
+msgstr ""
+
 msgid "Switch next channel"
 msgstr "Järgmisele kanalile"
 
@@ -13399,12 +13566,51 @@ msgstr "tehnoloogia/loodusteadus"
 msgid "Teletext"
 msgstr "Teletekst"
 
+msgid "Teletext CleanAlgo (resolution reset algorithm)"
+msgstr "Teletekst: lähtestamine (lahutuse lähtestamise algorütm)"
+
 # UserInterfacePositioner
 msgid "Teletext base visibility"
-msgstr "Teleteksti üldine läbipaistvus"
+msgstr "Teletekst: üldine läbipaistvus"
+
+msgid "Teletext EndX (right border)"
+msgstr "Teletekst: X-lõpp (parem serv)"
+
+msgid "Teletext EndY (upper border)"
+msgstr "Teletekst: Y-lõpp (ülemine serv)"
+
+msgid "Teletext font and resolution"
+msgstr "Teletekst: font ja lahutus"
+
+msgid "Teletext StartX (left border)"
+msgstr "Teletekst: X-algus (vasak serv)"
+
+msgid "Teletext StartY (lower border)"
+msgstr "Teletekst: Y-algus (alumine serv)"
 
 msgid "Teletext subtitle color"
-msgstr "Teleteksti subtiitrite värv"
+msgstr "Teletekst: subtiitrite värv"
+
+msgid "Teletext TTFBold (0=normal, 1=bold)"
+msgstr "Teletekst: TTF rasvane (0=tavaline, 1=rasvane)"
+
+msgid "Teletext TTFScreenResX (screen X resolution)"
+msgstr "Teletekst: TTF lahutusX (ekraanilahutus X)"
+
+msgid "Teletext TTFShiftX (horizontal letter position)"
+msgstr "Teletekst: TTF X-nihe (teksti horisontaalne asukoht)"
+
+msgid "Teletext TTFShiftY (vertical letter position)"
+msgstr "Teletekst: TTF Y-nihe (teksti vertikaalne asukoht)"
+
+msgid "Teletext TTFWidthFactor16 (TrueType letter width)"
+msgstr "Teletekst: TTF laius 16 (TrueType teksti laius)"
+
+msgid "Teletext TTFHeightFactor16 (TrueType letter height)"
+msgstr "Teletekst: TTF kõrgus 16 (TrueType teksti kõrgus)"
+
+msgid "Teletext UseTTF (0=fixed font, 1=TrueType)"
+msgstr "Teletekst: TTF kasutamine (0=fikseeritud laiusega font, 1=TrueType)"
 
 msgid "Telnet"
 msgstr "Telnet"
@@ -14607,7 +14813,7 @@ msgid "TRANSLATOR_INFO"
 msgstr ""
 "OpenATV-enigma2\n"
 "tõlge eesti keelde\n"
-"Aprill 2016"
+"Aprill 2017"
 
 msgid "Transmission mode"
 msgstr "Edastusviis"
@@ -14639,6 +14845,15 @@ msgstr "Katseid järel:"
 
 msgid "true"
 msgstr "tõene"
+
+msgid "TrueType font (full-HD)"
+msgstr "TrueType font (FHD)"
+
+msgid "TrueType font (HD)"
+msgstr "TrueType font (HD)"
+
+msgid "TrueType font (SD)"
+msgstr "TrueType font (SD)"
 
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr "Kaabelvõrgu sageduste otsing. Oota..."
@@ -14904,8 +15119,8 @@ msgid ""
 "Update delay for Events in List. Scrolling in List is faster with higher "
 "delay, specialy on big Lists !"
 msgstr ""
-"Viiteaeg saadete uuendamiseks nimekirjas. Kerimine nimekirjas on kiirem "
-"suurema viiteaja puhul, eriti suurtes nimekirjades."
+"Viiteaeg saadete uuendamiseks nimekirjas. Nimekirjas kerimine on suurema "
+"viiteaja puhul kiirem, eriti suurtes nimekirjades."
 
 msgid "Update failed!"
 msgstr "Uuendamine nurjus!"
@@ -15087,7 +15302,7 @@ msgid "Use Keymap"
 msgstr "Kasuta nupuasetust"
 
 msgid "Use Manual dns-nameserver"
-msgstr ""
+msgstr "Kasutuses käsitsi määratud dns-nimeserver"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "Kasuta saadavusel MHW EPG infot."
@@ -16097,6 +16312,9 @@ msgstr "Kuhu talletada ajutised ajanihke failid?"
 msgid "Which event do you want to save permanently?"
 msgstr "Millise saate soovid lõplikult talletada?"
 
+msgid "While available"
+msgstr "Saadavusel"
+
 msgid "White"
 msgstr "Valge"
 
@@ -16416,8 +16634,8 @@ msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
 msgstr ""
-"Oled otsustanud seadistused taastada. Enigma2 taaskäivitub pärast "
-"taastamist. Vajuta nüüd OK taastamise alustamiseks."
+"Oled otsustanud seadistused taastada. Selle lõpetuseks vastuvõtja "
+"taaskäivitub. Taastamise alustamiseks vajuta OK."
 
 msgid "You have chosen to save the current timeshift"
 msgstr "Oled valinud ajanihke faili talletamise."
@@ -16985,33 +17203,37 @@ msgstr ""
 "\n"
 "[Lemmiknimekirjad (TV)]\n"
 
+# Help
+#~ msgid "Pauze/Continue playback"
+#~ msgstr "Peata/jätka taasesitust"
+
 #
-msgid "Sort order for menu entries"
-msgstr "Menüü kirjete järjestus"
+#~ msgid "Sort order for menu entries"
+#~ msgstr "Menüü kirjete järjestus"
 
-msgid "Sort plug-in browser entries"
-msgstr "Pluginate menüü kirjete järjestus"
+#~ msgid "Sort plug-in browser entries"
+#~ msgstr "Pluginate menüü kirjete järjestus"
 
-msgid "Show blinking Clock in Standby on Display during recording"
-msgstr "Ooteseisundis salvestamise ajal vilkuv kell esipaneelil"
+#~ msgid "Show blinking Clock in Standby on Display during recording"
+#~ msgstr "Ooteseisundis salvestamise ajal vilkuv kell esipaneelil"
 
-msgid "show picons in quickzap"
-msgstr "Kanalilogod kanalivahetusel"
+#~ msgid "show picons in quickzap"
+#~ msgstr "Kanalilogod kanalivahetusel"
 
-msgid "Delivery system workaround"
-msgstr "Jaotussüsteemi erilahendus"
+#~ msgid "Delivery system workaround"
+#~ msgstr "Jaotussüsteemi erilahendus"
 
-msgid "Workaround for old tuner driver"
-msgstr "Erilahendus vana tuuneri ajuri tarbeks"
+#~ msgid "Workaround for old tuner driver"
+#~ msgstr "Erilahendus vana tuuneri ajuri tarbeks"
 
-msgid "Default 'Timer type' *"
-msgstr "'Taimeri tüüp' vaikeväärtus*"
+#~ msgid "Default 'Timer type' *"
+#~ msgstr "'Taimeri tüüp' vaikeväärtus*"
 
-msgid "Default 'After event'"
-msgstr "'Pärast sündmust' vaikeväärtus"
+#~ msgid "Default 'After event'"
+#~ msgstr "'Pärast sündmust' vaikeväärtus"
 
-msgid "Crash at skin error for debug reasons ?"
-msgstr "Kujunduse vigade eiramine"
+#~ msgid "Crash at skin error for debug reasons ?"
+#~ msgstr "Kujunduse vigade eiramine"
 
 # #############
 #~ msgid "/-"
