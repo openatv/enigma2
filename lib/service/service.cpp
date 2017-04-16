@@ -7,12 +7,12 @@
 
 static std::string encode(const std::string s)
 {
-	int len = s.size();
 	std::string res;
-	int i;
-	for (i=0; i<len; ++i)
+
+	res.reserve(s.size());
+	for (std::string::const_iterator it = s.begin(); it != s.end(); ++it)
 	{
-		unsigned char c = s[i];
+		const unsigned char c = *it;
 		if ((c == ':') || (c < 32) || (c == '%'))
 		{
 			res += "%";
@@ -85,25 +85,40 @@ eServiceReference::eServiceReference(const std::string &string)
 std::string eServiceReference::toString() const
 {
 	std::string ret;
+	ret.reserve((6 * sizeof(data)/sizeof(*data)) + 8 + path.length() + name.length()); /* Estimate required space */
+
 	ret += getNum(type);
-	ret += ":";
+	ret += ':';
 	ret += getNum(flags);
-	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
-		ret+=":"+ getNum(data[i], 0x10);
-	ret+=":"+encode(path); /* we absolutely have a problem when the path contains a ':' (for example: http://). we need an encoding here. */
-	if (name.length())
-		ret+=":"+encode(name);
+	for (unsigned int i = 0; i < sizeof(data)/sizeof(*data); ++i)
+	{
+		ret += ':';
+		ret += getNum(data[i], 0x10);
+	}
+	ret += ':';
+	ret += encode(path); /* we absolutely have a problem when the path contains a ':' (for example: http://). we need an encoding here. */
+	if (!name.empty())
+	{
+		ret += ':';
+		ret += encode(name);
+	}
 	return ret;
 }
 
 std::string eServiceReference::toCompareString() const
 {
 	std::string ret;
+	ret.reserve((6 * sizeof(data)/sizeof(*data)) + 8 + path.length()); /* Estimate required space */
+
 	ret += getNum(type);
 	ret += ":0";
 	for (unsigned int i=0; i<sizeof(data)/sizeof(*data); ++i)
-		ret+=":"+getNum(data[i], 0x10);
-	ret+=":"+encode(path);
+	{
+		ret += ':';
+		ret += getNum(data[i], 0x10);
+	}
+	ret += ':';
+	ret += encode(path);
 	return ret;
 }
 
