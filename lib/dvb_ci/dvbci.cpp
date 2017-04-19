@@ -177,11 +177,11 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	for (eSmartPtrList<eDVBCISlot>::iterator it(m_slots.begin()); it != m_slots.end(); ++it)
 		it->setSource("A");
 
-	for (int tuner_no = 0; tuner_no < (num_ci > 1 ? 26 : 2); ++tuner_no) // NOTE: this assumes tuners are A .. Z max.
+	for (int tuner_no = 0; tuner_no < 26; ++tuner_no) // NOTE: this assumes tuners are A .. Z max.
 	{
 		path.str("");
 		path.clear();
-		path << "/proc/stb/tsmux/input" << tuner_no;
+		path << "/proc/stb/tsmux/input" << tuner_no << "_choices";
 
 		if(::access(path.str().c_str(), R_OK) < 0)
 			break;
