@@ -89,6 +89,25 @@ class AutoDiseqc(Screen, ConfigListScreen):
 			12400,
 			318,
 			"Hotbird 13.0e"),
+
+		# thor  3592 CT24
+		(
+			12072,
+			28000,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_7_8,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			3592,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			-1,
+			0,
+			1,
+			706,
+			1536,
+			"Thor 5/6/7 0.8w"),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
