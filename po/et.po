@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-21 11:16+0200\n"
-"PO-Revision-Date: 2017-03-22 12:08+0200\n"
+"POT-Creation-Date: 2017-04-05 15:30+0300\n"
+"PO-Revision-Date: 2017-04-06 16:46+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -630,6 +630,9 @@ msgstr "%a %d/%m"
 
 msgid "%a %d/%m/%Y"
 msgstr "%a %d/%m/%Y"
+
+msgid "%a %e %b  %-H:%M"
+msgstr "%a %e %b  %-H:%M"
 
 msgid "%a %m/%-d"
 msgstr "%a %m/%-d"
@@ -1598,6 +1601,9 @@ msgstr "Võimaldab peita tuntud failitüüpide laiendid."
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Võimaldab saata logi koopia iseendale."
 
+msgid "Allows you to set a schedule to import the EPG and channels list. The EPG and channels list will always be imported on reboot or GUI restart."
+msgstr "Võimaldab EPG ja kanalinimekirjade impordi ajastamise. EPG ja kanalinimekirjad imporditakse alati pärast vastuvõtja või kasutajaliidese taaskäivitust."
+
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 msgstr "Võimaldab määrata üksikute silumislogide piirsuuruse (MB). Kui see on saavutatud, luuakse uus fail."
 
@@ -1641,7 +1647,7 @@ msgid "Always hide infobar"
 msgstr "Inforiba alati varjatud"
 
 msgid "Always show bouquets"
-msgstr "Lemmiknimekirjad kuvatakse iga kord"
+msgstr "Avamisel kuvatakse lemmiknimekirjad"
 
 msgid "An empty filename is illegal."
 msgstr "Tühi failinimi ei ole lubatud."
@@ -2533,6 +2539,12 @@ msgstr "Kustuta logi"
 msgid "Clear playlist"
 msgstr "Tühjenda pleilist"
 
+msgid "Client mode"
+msgstr "Kliendirežiim"
+
+msgid "Client mode sets up this receiver to stream from another receiver. In this mode no local tuners will be available and channel lists, EPG, etc, will come from the remote receiver. All tuner settings will be cleared."
+msgstr "Kliendirežiim paneb selle vastuvõtja striimima teisest vastuvõtjast. Selles režiimis kohalikud tuunerid ei tööta ja kanalinimekirjad, EPG jne. tulevad kaugvastuvõtjast. Kõik tuuneri seaded tühistatakse."
+
 msgid "Clients"
 msgstr "Kliendid"
 
@@ -2937,6 +2949,9 @@ msgstr "Toimub transkodeerimine, PiP pole võimalik!"
 
 msgid "Connected: "
 msgstr "Ühendatud: "
+
+msgid "Connection using the supplied FTP parameters failed. Please recheck the details and try again."
+msgstr "Ühendus antud FTP parameetritega nurjus. Kontrolli üle ja proovi uuesti."
 
 msgid "Constellation & FFT mode"
 msgstr "Konstellatsioon ja FFT"
@@ -3617,7 +3632,7 @@ msgid "Display message before playing next movie"
 msgstr "Teavitus enne järgmise filmi alustamist"
 
 msgid "Display the EIT now/next eventdata in infobar."
-msgstr "Kuva EIT nüüd/järgmine inforibal."
+msgstr "EIT nüüd/järgmine saateinfo inforibal."
 
 msgid "Do not change"
 msgstr "Ära muuda"
@@ -3769,6 +3784,9 @@ msgstr "DD / DTS > stereo on"
 
 msgid "Documentary"
 msgstr "Dokumentaal"
+
+msgid "Domain"
+msgstr "Domeen"
 
 msgid "Don't save"
 msgstr "Ära talleta"
@@ -3954,7 +3972,7 @@ msgid "Enable EIT EPG"
 msgstr "EIT EPG lubatud"
 
 msgid "Enable FreeSat EPG"
-msgstr "FreeSat EPG lubatud"
+msgstr "Freesat EPG lubatud"
 
 msgid "Enable MHW EPG"
 msgstr "MHW EPG lubatud"
@@ -3984,17 +4002,20 @@ msgstr "Automaatne kiirotsing lubatud %s"
 msgid "Enable bouquet edit"
 msgstr "Muuda lemmiknimekirju"
 
+msgid "Enable client mode"
+msgstr "Luba kliendirežiim"
+
 msgid "Enable debug logs *"
 msgstr "Silumislogid lubatud *"
 
 msgid "Enable fallback remote receiver"
-msgstr "Kaugvastuvõtja kasutamine asendustuunerina"
+msgstr "Kaugvastuvõtja kasutamine"
 
 msgid "Enable favourite edit"
 msgstr "Luba lemmikute muutmine"
 
 msgid "Enable infobar fade-out"
-msgstr "Inforiba hajumine lubatud"
+msgstr "Inforiba hajumine"
 
 msgid "Enable move mode"
 msgstr "Liiguta kanaleid"
@@ -4018,7 +4039,7 @@ msgid "Enable to display all true/false, yes/no, on/off and enable/disable set u
 msgstr "Kuva valikud 'jah/ei', 'tõene/väär', 'sees/väljas' ja 'luba/keela' graafilise lülitina."
 
 msgid "Enable to highlight events that are currently in progress."
-msgstr "Määrates 'jah', tõstetakse hetkel toimuvad saated esile."
+msgstr "Kui lubatud, tõstetakse hetkel toimuvad saated esile."
 
 msgid "Enabled"
 msgstr "Kasutusel"
@@ -4074,8 +4095,26 @@ msgstr "Sisesta püsiv PIN kood"
 msgid "Enter pin code"
 msgstr "Sisesta PIN"
 
+msgid "Enter the FTP password of the host receiver (normally just leave empty)."
+msgstr "Sisesta servervastuvõtja FTP kasutajanimi (tavaliselt jäta tühjaks)."
+
+msgid "Enter the FTP port of the host receiver (normally '21')."
+msgstr "Sisesta servervastuvõtja FTP port (tavaliselt '21')."
+
+msgid "Enter the FTP username of the host receiver (normally 'root')."
+msgstr "Sisesta servervastuvõtja kasutajanimi (tavaliselt 'root')."
+
+msgid "Enter the IP address of the host receiver."
+msgstr "Sisesta servervastuvõtja IP aadress."
+
+msgid "Enter the domain of the host receiver. Do not include 'http://' or port number."
+msgstr "Sisesta servervastuvõtja domeen. Pordi number või 'http://' jäta välja."
+
 msgid "Enter the service pin"
 msgstr "Sisesta kanali PIN"
+
+msgid "Enter the streaming port of the host receiver (normally '8001')."
+msgstr "Sisesta servervastuvõtja voogesituse port (tavaliselt '8001')."
 
 msgid "Enter your e-mail address to send a copy of the log to."
 msgstr "Sisesta endale logi koopia saatmiseks oma e-posti aadress."
@@ -4149,6 +4188,21 @@ msgstr "Saateinfo"
 
 msgid "Event view menu"
 msgstr "Saateinfo menüü"
+
+msgid "Every 12 hours"
+msgstr "12 tunni tagant"
+
+msgid "Every 2 hours"
+msgstr "2 tunni tagant"
+
+msgid "Every 3 hours"
+msgstr "3 tunni tagant"
+
+msgid "Every 6 hours"
+msgstr "6 tunni tagant"
+
+msgid "Every hour"
+msgstr "Kord tunnis"
 
 msgid "Everyday"
 msgstr "Iga päev"
@@ -4354,6 +4408,12 @@ msgstr "FP versioon:\t%s"
 msgid "FTP Setup"
 msgstr "FTP seaded"
 
+msgid "FTP connection failure"
+msgstr "FTP ühenduse tõrge"
+
+msgid "FTP passive mode"
+msgstr "FTP passiivne režiim"
+
 msgid "FTP setup"
 msgstr "FTP seaded"
 
@@ -4370,7 +4430,7 @@ msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "/tmp/positionersetup.logi loomine nurjus: "
 
 msgid "Fallback configuration"
-msgstr "Kaugvastuvõtja seadistamine"
+msgstr "Kaugvastuvõtja seaded"
 
 msgid "Fallback remote receiver URL"
 msgstr "Kaugvastuvõtja URL"
@@ -4569,6 +4629,13 @@ msgid ""
 "Do you want to restart the GUI now?"
 msgstr ""
 "Kujunduse jõustamiseks tuleb kasutajaliides taaskäivitada\n"
+"Kas teha seda kohe?"
+
+msgid ""
+"GUI needs a restart to switch modes\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"Režiimi vahetamiseks tuleb kasutajaliides taaskäivitada\n"
 "Kas teha seda kohe?"
 
 msgid "GUI settings"
@@ -4838,6 +4905,27 @@ msgstr "Horisontaalne"
 msgid "Horizontal turning speed"
 msgstr "Horisontaalse pööramise kiirus"
 
+msgid "Host domain"
+msgstr "Serveri domeen"
+
+msgid "Host receiver FTP password"
+msgstr "Servervastuvõtja FTP parool"
+
+msgid "Host receiver FTP port"
+msgstr "Servervastuvõtja FTP port"
+
+msgid "Host receiver FTP username"
+msgstr "Servervastuvõtja FTP kasutajanimi"
+
+msgid "Host receiver IP address"
+msgstr "Servervastuvõtja IP aadress"
+
+msgid "Host receiver address type"
+msgstr "Servervastuvõtja aadressi tüüp"
+
+msgid "Host receiver streaming port"
+msgstr "Servervastuvõtja IPTV port"
+
 msgid "Hostname:"
 msgstr "Masinanimi: "
 
@@ -4873,6 +4961,9 @@ msgstr "IMDB otsing käesolevale saatele"
 
 msgid "IMDb Search"
 msgstr "IMDb otsing"
+
+msgid "IP"
+msgstr "IP"
 
 msgid "IP address"
 msgstr "IP aadress"
@@ -4913,52 +5004,52 @@ msgid "Idle Time: "
 msgstr "Jõudeaeg:"
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video content"
-msgstr "Määrates 'jah', üritab vastuvõtja valida lahutuse vastavalt video sisu omale"
+msgstr "Kui lubatud, üritab vastuvõtja valida lahutuse vastavalt video sisu omale"
 
 msgid "If enabled the video will always be de-interlaced."
-msgstr "Määrates 'jah', toimub alati video ülerealaotuse eemaldamine"
+msgstr "Kui lubatud, toimub alati video ülerealaotuse eemaldamine"
 
 msgid "If set to 'yes' channels without EPG will not be shown."
-msgstr "Määrates 'jah', ei näidata kanaleid, millel puudub saatekava."
+msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
 
 msgid "If set to 'yes' it will show the 'PO' packages in browser."
-msgstr "Määrates 'jah', kuvatakse nimekirjas 'PO' paketid."
+msgstr "Kui lubatud, kuvatakse nimekirjas 'PO' paketid."
 
 msgid "If set to 'yes' it will show the 'SRC' packages in browser."
-msgstr "Määrates 'jah', kuvatakse nimekirjas 'SRC' paketid."
+msgstr "Kui lubatud, kuvatakse nimekirjas 'SRC' paketid."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
-msgstr "Määrates 'jah', näidatakse saatekavas väikest teleekraani."
+msgstr "Kui lubatud, kuvatakse saatekavas väike teleekraan."
 
 msgid "If set to 'yes' the EPG will always open at the first channel of bouquet. If set to 'no' the EPG will open on the current channel."
-msgstr "Määrates 'jah', avatakse saatekava alati esimesel kanalil. Määrates 'ei', avatakse saatekava aktiivsel kanalil."
+msgstr "Kui lubatud, avatakse saatekava alati esimesel kanalil. Määrates 'ei', avatakse saatekava aktiivsel kanalil."
 
 msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
-msgstr "Määrates 'jah', näidatakse saatekava avamisel alati lemmiknimekirju."
+msgstr "Kui lubatud, kuvatakse saatekava avamisel alati lemmiknimekirjad."
 
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
-msgstr "Määrates 'jah', avatakse TV ja raadio režiimi vahetudes kanalinimekiri."
+msgstr "Kui lubatud, avatakse TV ja raadio režiimi vahetudes kanalinimekiri."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
-msgstr "Määrates 'jah', näidatakse inforibal kanalinumbrit."
+msgstr "Kui lubatud, kuvatakse inforibal kanalinumber."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
-msgstr "Määrates 'jah', näidatakse uue saate algamisel inforiba."
+msgstr "Kui lubatud, kuvatakse uue saate algamisel inforiba."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr "Määrates 'jah', näidatakse kanalivahetusel inforiba."
+msgstr "Kui lubatud, kuvatakse kanalivahetusel inforiba."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
-msgstr "Määrates 'jah', näidatakse saatekavas kanali eelvaadet."
+msgstr "Kui lubatud, saab saatekavas kanaleid eelvaadelda."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
-msgstr "Määrates 'jah', võib kanalinimekirjas vaadata kanali eelvaadet. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' naased kanalile, millelt alustasid."
+msgstr "Kui lubatud, saab kanalinimekirjas kanaleid eelvaadelda. Vajuta 'OK' valitud kanali eelvaatluseks, vajuta uuesti 'OK' nimekirja sulgemiseks ja antud kanalile minekuks. Vajutades 'EXIT' naased kanalile, millelt alustasid."
 
 msgid "If set to 'yes', allows you to use the seekbar to jump to a point within the event."
-msgstr "Määrates 'jah', saad kasutada saates soovitud kohani liikumiseks otsiriba."
+msgstr "Kui lubatud, saab kasutada saates soovitud kohani liikumiseks otsiriba."
 
 msgid "If set to 'yes', the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
-msgstr "Määrates 'jah', näidatakse edasi/tagasi kerimisel inforiba."
+msgstr "Kui lubatud, kuvatakse edasi/tagasi kerimisel inforiba."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Kui tekst on esipaneelil kuvamiseks liiga pikk, korratakse seda (kordade arv:)"
@@ -5261,7 +5352,7 @@ msgid "Jump forward 24 hours"
 msgstr "Hüpe 24 tundi edasi"
 
 msgid "Jump to beginning of list"
-msgstr "Hüpe nimekirja algusesse"
+msgstr "Hüpe nimekirja algusse"
 
 msgid "Jump to current time"
 msgstr "Hüpe hetke ajale"
@@ -5493,7 +5584,7 @@ msgid "Load playlist"
 msgstr "Pleilisti laadimine"
 
 msgid "Load unlinked userbouquets"
-msgstr "Sidumata lemmiknimekirjad kuvatakse"
+msgstr "Sidumata lemmiknimekirjade kuvamine"
 
 msgid "Load-Save-Delete"
 msgstr "Laadi/talleta/kustuta"
@@ -5640,7 +5731,7 @@ msgid "Margin after recording (minutes)"
 msgstr "Salvestuse lõppu lisatakse (min)"
 
 msgid "Margin before recording (minutes)"
-msgstr "Salvestuse algusesse lisatakse (min)"
+msgstr "Salvestuse algusse lisatakse (min)"
 
 msgid "Mark service as a dedicated 3D service"
 msgstr "Märgista 3D kanalina"
@@ -5834,7 +5925,7 @@ msgid "Move to position X"
 msgstr "Liigu positsioonile X"
 
 msgid "Move up a page"
-msgstr "Liigu lehe algusesse"
+msgstr "Liigu lehe algusse"
 
 msgid "Move up to first entry"
 msgstr "Liigu esimesele reale"
@@ -6154,7 +6245,7 @@ msgid "No priority"
 msgstr "Eelistus puudub"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
-msgstr "Ühtegi tuunerit ei ole seadistatud. Kontrolli tuuneri seadistusi."
+msgstr "Ühtegi tuunerit ei ole seadistatud. Kontrolli tuuneri seadeid."
 
 msgid "No service"
 msgstr "Teenus puudub"
@@ -7453,7 +7544,7 @@ msgid "Recordings"
 msgstr "Salvestused"
 
 msgid "Recordings always have priority"
-msgstr "Salvestused omavad alati eelist"
+msgstr "Salvestustel on alati eesõigus"
 
 msgid "Red"
 msgstr "Punane"
@@ -7646,6 +7737,9 @@ msgstr "Korda"
 
 msgid "Repeat Display Message"
 msgstr "Korda teadet ekraanil"
+
+msgid "Repeat how often"
+msgstr "Kordamise sagedus"
 
 msgid "Repeat type"
 msgstr "Kordamise liik"
@@ -7990,6 +8084,9 @@ msgstr "Otsing"
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Skännitakse ajamiga ühendatud antenni poolt järjestatud algsed kanalinimekirjad"
 
+msgid "Schedule EPG and channel list import"
+msgstr "EPG ja kanalinimekirjade impordi ajastamine"
+
 msgid "Scrolling Speed"
 msgstr "Kerimise kiirus"
 
@@ -8089,6 +8186,9 @@ msgstr "Failide valimine"
 
 msgid "Select backup location"
 msgstr "Varukoopia asukoht"
+
+msgid "Select between entering an IP address or a domain."
+msgstr "Vali IP aadress või domeen."
 
 msgid "Select channel to record from"
 msgstr "Vali kanal, millelt salvestada"
@@ -8304,7 +8404,7 @@ msgid "Services"
 msgstr "Kanalid"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
-msgstr "Kanalid võib rühmitada lemmiknimekirjadesse. Määrates 'jah', saab kasutada rohkem kui ühte lemmiknimekirja."
+msgstr "Kanalid võib rühmitada lemmiknimekirjadesse. Kui lubatud, saab kasutada rohkem kui ühte lemmiknimekirja."
 
 msgid "Set Framerate for MiniTV"
 msgstr "Määra MiniTV kaadrisagedus"
@@ -8388,6 +8488,9 @@ msgstr "Määra salvestuse nimi."
 msgid "Set the position of the recording icons"
 msgstr "Määra salvestusikoonide asukoht"
 
+msgid "Set the repeat interval of the schedule."
+msgstr "Määra importimise sagedus."
+
 msgid "Set the scrolling speed of text on the front display, this uses a software render in some skins."
 msgstr "Määra teksti kerimise kiirus esipaneelil. Mõni kujundus kasutab selleks tarkvaralist renderdamist."
 
@@ -8399,6 +8502,9 @@ msgstr "Määra ooteaeg enne video allika lahutuse/värskendussageduse kontrolli
 
 msgid "Set the time delay before hiding the infobar."
 msgstr "Määra aeg inforiba peitmiseks."
+
+msgid "Set the time of day to perform the import."
+msgstr "Määra importimise kellaaeg."
 
 msgid "Set the time the timer must start."
 msgstr "Määra taimeri algusaeg."
@@ -8454,8 +8560,8 @@ msgstr "Ajami häälestamine"
 msgid "Setup your satellite equipment"
 msgstr "Satelliidiseadmed"
 
-msgid "Setup your timezone."
-msgstr "Määra ajavöönd."
+msgid "Setup your timezone area."
+msgstr "Määra ajavööndi piirkond."
 
 msgid "Share Folder's"
 msgstr "Jagatud kataloogid"
@@ -8471,6 +8577,9 @@ msgstr "Teravus"
 
 msgid "Short filenames"
 msgstr "Lühikesed failinimed"
+
+msgid "Should the FTP connection to the remote receiver be established in passive mode (normally 'no')?"
+msgstr "Kas FTP ühendus kaugvastuvõtjaga tuleks luua passiivses režiimis (tavaliselt 'ei')?"
 
 msgid "Show /tmp/ecm.info"
 msgstr "Kuva /tmp/ecm.info"
@@ -8602,7 +8711,7 @@ msgid "Show channel number in infobar"
 msgstr "Kanalinumbrid inforibal"
 
 msgid "Show channel numbers in channel selection"
-msgstr "Kanalinumbrid lemmiknimekirjas"
+msgstr "Kanalinumbrite kuvamine"
 
 msgid "Show columns"
 msgstr "Kuvamine tulpadena"
@@ -8710,7 +8819,7 @@ msgid "Show picon background color"
 msgstr "Pikoni tausta värv"
 
 msgid "Show picons in service list"
-msgstr "Pikonid kanalinimekirjas"
+msgstr "Pikonite kuvamine"
 
 msgid "Show positioner movement"
 msgstr "Ajami liikumise tähistus"
@@ -8800,7 +8909,7 @@ msgid "Show transponder remaining/elapsed as"
 msgstr "Jäänud/kulunud transponderi näit"
 
 msgid "Show warning when in a stream"
-msgstr "Hoiatus, kui toimub voogesitus"
+msgstr "Hoiatus IPTV kanalil"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Teavitus ajanihke lõppemisel"
@@ -10052,6 +10161,9 @@ msgstr "Aeg"
 msgid "Time Update in Minutes:"
 msgstr "Kellaaja uuendamine (min):"
 
+msgid "Time import should start"
+msgstr "Importimise algusaeg"
+
 msgid "Time scale"
 msgstr "Ajavahemik"
 
@@ -10080,7 +10192,7 @@ msgid "Timer List"
 msgstr "Taimerid"
 
 msgid "Timer conflict detection when fallback is enabled"
-msgstr "Taimerikonflikti tuvastus kaugvastuvõtjal on lubatud"
+msgstr "Taimerikonflikti tuvastus, kui kaugvastuvõtja on lubatud"
 
 msgid "Timer entry"
 msgstr "Taimeri sisestus"
@@ -10158,6 +10270,9 @@ msgstr "Ajanihke talletamine kanalivahetusel"
 
 msgid "Timezone"
 msgstr "Ajavöönd"
+
+msgid "Timezone area"
+msgstr "Ajavööndi piirkond"
 
 msgid "Title"
 msgstr "Pealkiri"
@@ -10299,7 +10414,7 @@ msgid "Tuner :"
 msgstr "Tuuner:"
 
 msgid "Tuner configuration"
-msgstr "Tuuneri seadistus"
+msgstr "Tuuneri seaded"
 
 msgid "Tuner is not supported"
 msgstr "Tuuner ei ole toetatud"
@@ -10935,7 +11050,7 @@ msgid ""
 msgstr ""
 "Tere tulemast salvestise lõikajasse.\n"
 "\n"
-"Keri lõikekoha algusesse.Vajuta OK, 'lõike algus'.\n"
+"Keri lõikekoha algusse.Vajuta OK, 'lõike algus'.\n"
 "\n"
 "Edasi otsi lõike lõpp, vajuta OK, vali 'lõike lõpp'. Tehtud."
 
@@ -10985,133 +11100,133 @@ msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
 
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Määrates 'jah', laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii saab oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."
+msgstr "Kui lubatud, laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab, et lemmiknimekirjad, mis on olemas, aga puuduvad bouquets.tv või bouquets.radio failides, laaditakse ikkagi. Nii saab oma lemmiknimekirjad säilitada ka paigaldatud kanalinimekirjade uuendamisel."
 
 msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Määrates 'jah', otsitakse ka eksperimentaalseid uuendusi"
+msgstr "Kui lubatud, otsitakse ka eksperimentaalseid uuendusi"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
-msgstr "Määrates 'jah', kaasatakse AIT andmed http voogudesse. See võimaldab vastuvõtjal HbbTV kasutamise."
+msgstr "Kui lubatud, kaasatakse AIT andmed http voogudesse. See võimaldab vastuvõtjal HbbTV kasutamise."
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
-msgstr "Määrates 'jah', kaasatakse EIT andmed http voogudesse. See võimaldab klientvastuvõtjal EPG kasutamise."
+msgstr "Kui lubatud, kaasatakse EIT andmed http voogudesse. See võimaldab klientvastuvõtjal EPG kasutamise."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
-msgstr "Määrates 'jah', teavitatakse filmi lõppemisest ja uue alustamisest hüpikaknaga."
+msgstr "Kui lubatud, teavitatakse filmi lõppemisest ja uue alustamisest hüpikaknaga."
 
 msgid "When enabled, a popup message will be shown when a recording starts."
-msgstr "Määrates 'jah', teavitatakse salvestuse algamisest hüpikaknaga."
+msgstr "Kui lubatud, teavitatakse salvestuse algamisest hüpikaknaga."
 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
-msgstr "Määrates 'jah', lubatakse vaba tuuneri puudumisel algaval salvestusel vaadatav saade katkestada."
+msgstr "Kui lubatud, lubatakse vaba tuuneri puudumisel algaval salvestusel vaadatav saade katkestada."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
-msgstr "Määrates 'jah', kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada või jätkata."
+msgstr "Kui lubatud, kuvatakse hoiatus ja kasutajal on võimalus ajanihe peatada või jätkata."
 
 msgid "When enabled, a warning will be displayed that timeshift is not supported in an IP stream.."
-msgstr "Määrates 'jah', teavitatakse sellest, et IPTV ei toeta ajanihet."
+msgstr "Kui lubatud, teavitatakse sellest, et IPTV ei toeta ajanihet."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off."
-msgstr "Määrates 'jah', dekodeeritakse sisenevad http vood alati. See võtab rohkem ressursse, luba ainult vajadusel. Iga voog dekodeeritakse hoolimata seadistustes määratust alati, kui kanalitüübile lisatakse 0x100. Vaikeväärtus on 'ei'."
+msgstr "Kui lubatud, dekodeeritakse sisenevad http vood alati. See võtab rohkem ressursse, luba ainult vajadusel. Konkreetne voog dekodeeritakse hoolimata seadistustes määratust alati, kui kanalitüübile lisatakse 0x100. Vaikeväärtus on 'ei'."
 
 msgid "When enabled, authentication is required to watch http streams."
-msgstr "Määrates 'jah', on http voogude vaatamiseks vajalik autentimine."
+msgstr "Kui lubatud, on http voogude vaatamiseks vajalik autentimine."
 
 msgid "When enabled, channel numbering will start at '1' for every bouquet."
-msgstr "Määrates 'jah', algavad kanalinumbrid igas lemmiknimekirjas numbriga '1'."
+msgstr "Kui lubatud, algavad kanalinumbrid igas lemmiknimekirjas numbriga '1'."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
-msgstr "Määrates 'jah', venitatakse 4:3 sisuga pilti täitmaks kogu ekraani."
+msgstr "Kui lubatud, venitatakse 4:3 sisuga pilti täitmaks kogu ekraani."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached."
-msgstr "Määrates 'jah', liigutakse kanalivahetusel lemmiknimekirja lõppu jõudes järgmisesse lemmiknimekirja."
+msgstr "Kui lubatud, liigutakse kanalivahetusel lemmiknimekirja lõppu jõudes järgmisesse lemmiknimekirja."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Määrates 'jah', ei kustutata salvestisi silmapilkselt, vaid liigutatakse prügikasti."
+msgstr "Kui lubatud, ei kustutata salvestisi silmapilkselt, vaid liigutatakse prügikasti."
 
 msgid "When enabled, external subtitles will always be turned on for movie playback."
-msgstr "Määrates 'jah', käivitatakse välised subtiitrid alati koos filmiga."
+msgstr "Kui lubatud, käivitatakse välised subtiitrid alati koos filmiga."
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
-msgstr "Määrates 'jah', eelistatakse mõlema saadavusel DVB subtiitreid teleteksti omadele."
+msgstr "Kui lubatud, eelistatakse mõlema saadavusel DVB subtiitreid teleteksti omadele."
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
-msgstr "Määrates 'jah', tsentreeritakse DVB subtiitrid horisontaalselt."
+msgstr "Kui lubatud, tsentreeritakse DVB subtiitrid horisontaalselt."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
-msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende algsel asukohal."
+msgstr "Kui lubatud, kuvatakse DVB subtiitrid nende algsel asukohal."
 
 msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende tõelise värvi asemel kollasena."
+msgstr "Kui lubatud, kuvatakse DVB subtiitrid nende tõelise värvi asemel kollasena."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
-msgstr "Määrates 'jah', dekodeeritakse http vood serveri poolt. Klientvastuvõtja ei pea neid enam dekodeerima. Vaikeväärtus on 'jah'."
+msgstr "Kui lubatud, dekodeeritakse http vood serveri poolt. Klientvastuvõtja ei pea neid enam dekodeerima. Vaikeväärtus on 'jah'."
 
 msgid "When enabled, it is possible to leave the Movie Player with exit."
-msgstr "Määrates 'jah', saab lõpetada filmi esituse EXIT nupuga."
+msgstr "Kui lubatud, saab lõpetada filmi esituse EXIT nupuga."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr "Määrates 'jah', kasuta energiakulu mõõtmist, et tuvastada ajami peatumist (kui vastuvõtja seda toetab)."
+msgstr "Kui lubatud, mõõdetakse energia kulu, tuvastamaks ajami pööramise lõppemist (kui vastuvõtja seda toetab)."
 
 msgid "When enabled, network trash cans are probed for cleaning."
-msgstr "Määrates 'jah', uuritakse kustutamisel ka võrgukettaid."
+msgstr "Kui lubatud, uuritakse kustutamisel ka võrgukettaid."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Määrates 'jah', viib '0' vajutus alati kanalile 1 ja kustutab kanalivahetuse ajaloo."
+msgstr "Kui lubatud, viib '0' vajutus alati kanalile 1 ja kustutab kanalivahetuse ajaloo."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
-msgstr "Määrates 'jah', kohandatakse subtiitrite reamurdmist vastavalt ekraani laiusele."
+msgstr "Kui lubatud, seatakse subtiitrid vastavusse ekraani laiusega."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
-msgstr "Määrates 'jah', kuvatakse kanalinimekirjas kanalinumbrid."
+msgstr "Kui lubatud, kuvatakse kanalinimekirjas kanalinumbrid."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
-msgstr "Määrates 'jah', lubatakse vaegkuuljate subtiitrite kasutamine."
+msgstr "Kui lubatud, lubatakse vaegkuuljate subtiitrite kasutamine."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
-msgstr "Määrates 'jah', eelistatakse võimalusel vaegkuuljate subtiitreid."
+msgstr "Kui lubatud, eelistatakse võimalusel vaegkuuljate subtiitreid."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
-msgstr "Määrates 'jah', puhverdatakse teleteksti lehed, võimaldamaks kiiremat ligipääsu."
+msgstr "Kui lubatud, puhverdatakse teleteksti lehed, võimaldamaks kiiremat ligipääsu."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
-msgstr "Määrates 'jah', kuvatakse teleteksti subtiitrid nende algsel asukohal."
+msgstr "Kui lubatud, kuvatakse teleteksti subtiitrid nende algsel asukohal."
 
 msgid "When enabled, the PiP can be closed by the EXIT button."
-msgstr "Määrates 'jah', saab PiP sulgeda EXIT nupuga."
+msgstr "Kui lubatud, saab PiP sulgeda EXIT nupuga."
 
 msgid "When enabled, the VCR scart option will be shown in the main menu"
-msgstr "Määrates 'jah', kuvatakse VCR-SCART valik peamenüüs"
+msgstr "Kui lubatud, kuvatakse VCR-SCART valik peamenüüs"
 
 msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
-msgstr "Määrates 'jah', näidatakse filmilistis salvestiste kestust (laadimine võib kesta veidi kauem)."
+msgstr "Kui lubatud, kuvatakse filmilistis salvestiste kestus (laadimine võib kesta veidi kauem)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
-msgstr "Määrates 'jah', kasutab vastuvõtja automaatselt varem valitud heliriba."
+msgstr "Kui lubatud, kasutab vastuvõtja automaatselt varem valitud heliriba."
 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
-msgstr "Määrates 'jah', kasutab vastuvõtja automaatselt varem valitud subtiitreid."
+msgstr "Kui lubatud, kasutab vastuvõtja automaatselt varem valitud subtiitreid."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
+msgstr "Kui lubatud, kasutab vastuvõtja (võimaluse korral) AC3 heli."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3+ heli."
+msgstr "Kui lubatud, kasutab vastuvõtja (võimaluse korral) AC3+ heli."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "See valik kaalub üle valiku 'Eelistatud tuuner salvestamiseks'."
+msgstr "Kui lubatud, kaalub see valik üle valiku 'Eelistatud tuuner salvestamiseks'."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "See valik kaalub üle valiku 'Eelistatud tuuner'."
+msgstr "Kui lubatud, kaalub see valik üle valiku 'Eelistatud tuuner'."
 
 msgid "When enabled, timeshift starts automatically in background after the specified time."
 msgstr "Kui lubatud, käivitub ajanihe automaatselt pärast määratud aja möödumist."
 
 msgid "When enabled, use DHCP for the IP configuration."
-msgstr "Määrates 'jah', kasutatakse IP aadressi määramiseks DHCP-d."
+msgstr "Kui lubatud, kasutatakse IP aadressi määramiseks DHCP-d."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
-msgstr "Määrates 'jah', tuvastab vastuvõtja VCR SCART sisendi kasutuse."
+msgstr "Kui lubatud, tuvastab vastuvõtja VCR SCART sisendi kasutuse."
 
 msgid "When maximum space for all logs is reached, the oldest logs will be deleted."
 msgstr "Kui logidele lubatud suurim kettaruum on täis, kustutakse kõige vanemad."
@@ -11123,10 +11238,10 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Salvestamine lõpetatakse pärast saatekavas näidatud aega."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
-msgstr "Määrates 'jah', aktiveerub PIG taasesituse lõppedes."
+msgstr "Kui lubatud, aktiveerub PIG taasesituse lõppedes."
 
 msgid "When set, each directory will show the previous state used. When off, the default values will be shown."
-msgstr "Määrates 'jah', peetakse iga kausta seadistused meeles, määrates 'ei', kasutatakse vaikeväärtusi."
+msgstr "Kui lubatud, peetakse iga kausta seadistused meeles, määrates 'ei', kasutatakse vaikeväärtusi."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Määra, kas 16:9 kuvasuhtega sisu tuleb skaleerida/venitada."
@@ -11194,7 +11309,7 @@ msgid "With popup"
 msgstr "Hüpikaknaga"
 
 msgid "With this option set to 'yes' the channel list will always show you the list of bouquets. If set to 'no' the current bouquet will be opened."
-msgstr "Määrates 'jah', avatakse alati lemmiknimekirjade valik. Määrates 'ei' avatakse praegune kanalinimekiri."
+msgstr "Kui lubatud, avatakse alati lemmiknimekirjade valik. Määrates 'ei' avatakse praegune kanalinimekiri."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Siin saab määrata, kas käsiloevaid tööülesandeid näidatakse laienduste menüüs (sinine nupp)."
@@ -11260,7 +11375,7 @@ msgid "Yes"
 msgstr "Jah"
 
 msgid "Yes (save index in setup tuner)"
-msgstr "Jah (salvesta indeks tuuneri seadistustes)"
+msgstr "Jah (salvesta indeks tuuneri seadetes)"
 
 msgid "Yes to all"
 msgstr "Kõigile JAH"
@@ -11571,6 +11686,9 @@ msgstr "Vastuvõtjal puudub internetiühendus"
 
 msgid "Your receiver is not connected to the internet"
 msgstr "Vastuvõtja ei ole internetiga ühendatud"
+
+msgid "Your timezone in the area."
+msgstr "Ajavöönd piirkonnas"
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"

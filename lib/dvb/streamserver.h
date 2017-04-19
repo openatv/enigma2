@@ -30,6 +30,8 @@ protected:
 
 	std::string request;
 
+	ePtr<eTimer> m_timeout;
+
 	void streamStopped() { stopStream(); }
 	void tuneFailed() { stopStream(); }
 
