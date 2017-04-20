@@ -242,13 +242,14 @@ int eDVBAdapterLinux::exist(int nr)
 
 bool eDVBAdapterLinux::isusb(int nr)
 {
-	char devicename[256];
-	snprintf(devicename, sizeof(devicename), "/sys/class/dvb/dvb%d.frontend0/device/ep_00", nr);
-	if (::access(devicename, X_OK) < 0 )
-	{
-		snprintf(devicename, sizeof(devicename), "/sys/class/dvb/dvb%d.frontend0/device/ep_84", nr);
-	}
-	return ::access(devicename, X_OK) >= 0;
+	bool res = false;
+	char subsystem_name[256], link_name[256];
+	snprintf(subsystem_name, sizeof(subsystem_name),
+		"/sys/class/dvb/dvb%d.frontend0/device/subsystem", nr);
+	ssize_t link_len = ::readlink(subsystem_name, link_name, sizeof(link_name));
+	if (link_len >= 4)  //* All 4's here are the length of "/usb"
+		res = (strncmp("/usb", link_name+link_len-4, 4) == 0);
+	return res;;
 }
 
 DEFINE_REF(eDVBUsbAdapter);
