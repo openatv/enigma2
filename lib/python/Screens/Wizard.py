@@ -589,7 +589,7 @@ class Wizard(Screen):
 					if isinstance(element, ConfigSelection):
 						for choice in element.choices.choices:
 							print "choice:", choice
-							if configelement == "config.timezone.val":
+							if configelement in ("config.timezone.area", "config.timezone.val"):
 								self.list.append((choice, choice))
 							else:
 								self.list.append((choice[1], choice[0]))
