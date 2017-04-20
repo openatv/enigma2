@@ -67,6 +67,7 @@ def getKernelVersionString():
 		return _("unknown")
 
 def getLastUpdateString():
+	lastupdated = _("unknown")
 	try:
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
@@ -85,9 +86,9 @@ def getLastUpdateString():
 				time = ':'.join((hour, minute))
 				lastupdated = ' '.join((date, time))
 		file.close()
-		return lastupdated
 	except IOError:
-		return "unavailable"
+		pass
+	return lastupdated
 
 
 class BootLoaderVersionFetcher:
