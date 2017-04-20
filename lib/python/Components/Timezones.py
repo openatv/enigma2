@@ -73,6 +73,7 @@ class Timezones:
 		'Australia': 'Sydney',
 		'Europe': 'London',
 		'Generic': 'UTC',
+		'Pacific': 'Auckland',
 	}
 	def getTimezoneDefault(self, area=None, choices=None):
 		if area == None:
