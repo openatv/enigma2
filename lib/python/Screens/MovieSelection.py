@@ -2293,7 +2293,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					self.delete(True)
 			else:
 				if '.Trash' in cur_path:
-					are_you_sure = _("Do you really want to permanently remove everything from trash?")
+					are_you_sure = _("Do you really want to permanently remove the folder and its contents from trash?")
 				else:
 					are_you_sure = _("Do you really want to delete?")
 				if args:
@@ -2325,7 +2325,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						self.showActionFeedback(_("Deleted '%s'") % name)
 		else:
 			if not args:
-				if config.usage.movielist_asktrash.value:
+				if config.usage.movielist_asktrash.value and '.Trash' not in cur_path:
 					are_you_sure = _("Do you really want to move '%s' to trash?") % name
 					mbox = self.session.openWithCallback(self.delete, MessageBox, are_you_sure, default=False)
 					mbox.setTitle(self.getTitle())
@@ -2365,7 +2365,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					are_you_sure = _("Do you really want to delete '%s'?") % name
 			else:
 				if '.Trash' in cur_path:
-					are_you_sure = _("Do you really want to permamently remove '%s' from trash?") % name
+					are_you_sure = _("Do you really want to permanently remove '%s' from trash?") % name
 				else:
 					are_you_sure = _("Do you really want to delete '%s'?") % name
 				msg = ''
