@@ -516,10 +516,11 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	bool useTwoCharMapping = !table || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
 
-	if (useTwoCharMapping) { // useTwoCharMapping using iso6937. Then must be table set to 0 for using in recode()
+	if (useTwoCharMapping && table == 5) { // i hope this dont break other transponders which realy use ISO8859-5 and two char byte mapping...
+//		eDebug("[convertDVBUTF8] Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6937");
 		table = 0;
 	}
-	else if ( !table || table == -1 )
+	else if ( table == -1 )
 		table = defaultEncodingTable;
 
 	switch(table)
