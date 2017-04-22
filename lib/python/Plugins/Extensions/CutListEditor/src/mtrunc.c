@@ -104,7 +104,7 @@ void truncsc( int fs, off64_t off )
   {
     if (buf[0] >= off)
     {
-      ftruncate( fs, ltell( fs ) );
+      ftruncate( fs, ltell( fs ) - 16 );
       break;
     }
   }
@@ -167,7 +167,7 @@ void mtrunc( int fa, int fs, int fts, pts_t et )
   off64_t off;
 
   off = readoff( fa, et );
-  ftruncate( fa, ltell( fa ) );
+  ftruncate( fa, ltell( fa ) - 16 );
   truncsc( fs, off );
   ftruncate64( fts, off );
 }
