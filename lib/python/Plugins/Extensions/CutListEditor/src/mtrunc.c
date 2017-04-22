@@ -143,9 +143,9 @@ off64_t readoff( int fa, pts_t t )
     if (buf0[1] - buf1[1] > 45000 || buf1[1] - buf0[1] > 900000)
     {
       if (absless( buf1[1] + (1LL << 33) - buf0[1], 900000 ))
-	time_offset -= 1LL << 33;
+        time_offset -= 1LL << 33;
       else
-	time_offset += buf1[1] - buf0[1];
+        time_offset += buf1[1] - buf0[1];
     }
     lt = tt;
     if (buf0[1] - buf1[1] > 0 && buf0[1] - buf1[1] <= 45000)
@@ -199,7 +199,7 @@ int main( int argc, char* argv[] )
     {
       if (i == argc - 1)
       {
-	bad = true;
+        bad = true;
         break;
       }
       et = strtotime( argv[++i] );
@@ -222,7 +222,7 @@ int main( int argc, char* argv[] )
   if (argc == 1 || et == 0 || bad)
   {
     printf( "Usage: mtrunc ts_file -e end\n"
-	    "   -e : End the movie at this time, given as [[hour:][min]:][sec.[msec]] or PTS\n" );
+            "   -e : End the movie at this time, given as [[hour:][min]:][sec.[msec]] or PTS\n" );
     exit( 1 );
   }
 
