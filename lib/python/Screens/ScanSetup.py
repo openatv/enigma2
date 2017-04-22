@@ -1273,7 +1273,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		parm.orbital_position = orbital_position
 		parm.rolloff = rolloff
 		parm.pilot = pilot
-		parm.is_id = is_id
+		parm.is_id = is_id or -1
 		parm.pls_mode = pls_mode
 		parm.pls_code = pls_code
 		tlist.append(parm)
