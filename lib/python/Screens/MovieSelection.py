@@ -122,7 +122,7 @@ def friendlyMoviePath(path, base=None):
 			return path[len(base):]
 	home = defaultMoviePath().rstrip('/')
 	if path.startswith(home):
-		return "Home" + path[len(home):]
+		return _("Home") + path[len(home):]
 	return path
 
 def setPreferredTagEditor(te):
