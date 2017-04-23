@@ -16,7 +16,7 @@
 #include <lib/service/iservice.h>
 #include <lib/nav/core.h>
 
-class eMain: public eApplication, public Object
+class eMain: public eApplication, public sigc::trackable
 {
 	eInit init;
 
@@ -60,7 +60,7 @@ public:
 			}
 		}
 #endif
-		m_nav->connectEvent(slot(*this, &eMain::event), m_conn_event);
+		m_nav->connectEvent(sigc::mem_fun(*this, &eMain::event), m_conn_event);
 
 //		eServiceReference ref("1:0:1:6de2:44d:1:c00000:0:0:0:");
 		eServiceReference ref("4097:47:0:0:0:0:0:0:0:0:/sine_60s_100.mp3");

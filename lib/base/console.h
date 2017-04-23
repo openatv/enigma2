@@ -19,7 +19,7 @@ struct queue_data
 	int dataSent;
 };
 
-class eConsoleAppContainer: public Object, public iObject
+class eConsoleAppContainer: public sigc::trackable, public iObject
 {
 	DECLARE_REF(eConsoleAppContainer);
 	int fd[3];

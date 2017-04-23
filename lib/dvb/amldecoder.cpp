@@ -72,7 +72,7 @@ m_showSinglePicTimer(eTimer::create(eApp)), m_VideoRead(eTimer::create(eApp))
 	TRACE__
 	if (m_demux)
 	{
-		m_demux->connectEvent(slot(*this, &eAMLTSMPEGDecoder::demux_event), m_demux_event_conn);
+		m_demux->connectEvent(sigc::mem_fun(*this, &eAMLTSMPEGDecoder::demux_event), m_demux_event_conn);
 	}
 	memset(&m_codec, 0, sizeof(codec_para_t ));
 	m_codec.handle = -1;
@@ -521,7 +521,7 @@ void eAMLTSMPEGDecoder::parseVideoInfo()
 	}
 }
 
-RESULT eAMLTSMPEGDecoder::connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &conn)
+RESULT eAMLTSMPEGDecoder::connectVideoEvent(const sigc::slot1<void, struct videoEvent> &event, ePtr<eConnection> &conn)
 {
 	TRACE__
 	conn = new eConnection(this, m_video_event.connect(event));

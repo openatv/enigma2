@@ -13,8 +13,8 @@ pNavigation::pNavigation(int decoder)
 	ASSERT(service_center);
 	m_core = new eNavigation(service_center, decoder);
 
-	m_core->connectEvent(slot(*this, &pNavigation::navEvent), m_nav_event_connection);
-	m_core->connectRecordEvent(slot(*this, &pNavigation::navRecordEvent), m_nav_record_event_connection);
+	m_core->connectEvent(sigc::mem_fun(*this, &pNavigation::navEvent), m_nav_event_connection);
+	m_core->connectRecordEvent(sigc::mem_fun(*this, &pNavigation::navRecordEvent), m_nav_record_event_connection);
 }
 
 RESULT pNavigation::playService(const eServiceReference &service)

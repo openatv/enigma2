@@ -18,9 +18,9 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create PES reader!");
 	else if (type == 0)
-		m_pes_reader->connectRead(slot(*this, &eDVBRdsDecoder::processData), m_read_connection);
+		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBRdsDecoder::processData), m_read_connection);
 	else
-		m_pes_reader->connectRead(slot(*this, &eDVBRdsDecoder::gotAncillaryData), m_read_connection);
+		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBRdsDecoder::gotAncillaryData), m_read_connection);
 	CONNECT(m_abortTimer->timeout, eDVBRdsDecoder::abortNonAvail);
 }
 
@@ -95,7 +95,7 @@ static int frequency[3][4] = {
 	{ 11025,12000,8000,0 }
 };
 
-void eDVBRdsDecoder::connectEvent(const Slot1<void, int> &slot, ePtr<eConnection> &connection)
+void eDVBRdsDecoder::connectEvent(const sigc::slot1<void, int> &slot, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_event.connect(slot));
 }

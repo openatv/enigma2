@@ -40,7 +40,7 @@ struct eVobSubtitlePage
 class eDVBTeletextSubtitlePage;
 class eDVBSubtitlePage;
 
-class eSubtitleWidget: public eWidget, public iSubtitleUser, public Object
+class eSubtitleWidget: public eWidget, public iSubtitleUser, public sigc::trackable
 {
 public:
 	eSubtitleWidget(eWidget *parent);

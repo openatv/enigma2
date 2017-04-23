@@ -14,11 +14,11 @@ class eDVBServiceRecord: public eDVBServiceBase,
 	public iRecordableService,
 	public iStreamableService,
 	public iSubserviceList,
-	public Object
+	public sigc::trackable
 {
 	DECLARE_REF(eDVBServiceRecord);
 public:
-	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm);
 	RESULT prepareStreaming(bool descramble, bool includeecm);
 	RESULT start(bool simulate=false);
@@ -66,7 +66,7 @@ private:
 
 			/* events */
 	void serviceEvent(int event);
-	Signal2<void,iRecordableService*,int> m_event;
+	sigc::signal2<void,iRecordableService*,int> m_event;
 
 			/* recorder events */
 	void recordEvent(int event);

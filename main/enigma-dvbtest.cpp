@@ -11,7 +11,7 @@
 #include <lib/dvb/specs.h>
 #include <unistd.h>
 
-class eMain: public eApplication, public Object
+class eMain: public eApplication, public sigc::trackable
 {
 	ePtr<eDVBResourceManager> m_mgr;
 	ePtr<iDVBChannel> m_channel;
@@ -63,7 +63,7 @@ public:
 		if (m_channel)
 		{
 				/* Auf State-Change listenen */
-			m_channel->connectStateChange(slot(*this, &eMain::channelStateChanged), m_state_change_connection);
+			m_channel->connectStateChange(sigc::mem_fun(*this, &eMain::channelStateChanged), m_state_change_connection);
 				/* Initial provozieren */
 			channelStateChanged(m_channel);
 		}

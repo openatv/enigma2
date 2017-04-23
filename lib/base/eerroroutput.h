@@ -7,7 +7,7 @@
 #include <lib/base/ebase.h>
 
 
-class eErrorOutput: public eMainloop, public eThread, public Object
+class eErrorOutput: public eMainloop, public eThread, public sigc::trackable
 {
 	DECLARE_REF(eErrorOutput)
 	struct Message

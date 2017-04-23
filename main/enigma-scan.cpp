@@ -13,7 +13,7 @@
 #include <lib/dvb/scan.h>
 #include <unistd.h>
 
-class eMain: public eApplication, public Object
+class eMain: public eApplication, public sigc::trackable
 {
 	eInit init;
 
@@ -65,7 +65,7 @@ public:
 		m_scan = new eDVBScan(m_channel);
 		m_scan->start(list);
 
-		m_scan->connectEvent(slot(*this, &eMain::scanEvent), m_scan_event_connection);
+		m_scan->connectEvent(sigc::mem_fun(*this, &eMain::scanEvent), m_scan_event_connection);
 	}
 
 	~eMain()

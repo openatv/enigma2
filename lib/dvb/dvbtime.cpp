@@ -254,7 +254,7 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 		eDebug("[eDVBLocalTimerHandler] no resource manager !!!!!!!");
 	else
 	{
-		res_mgr->connectChannelAdded(slot(*this,&eDVBLocalTimeHandler::DVBChannelAdded), m_chanAddedConn);
+		res_mgr->connectChannelAdded(sigc::mem_fun(*this,&eDVBLocalTimeHandler::DVBChannelAdded), m_chanAddedConn);
 		time_t now = time(0);
 		if ( now < 1072224000 ) // 01.01.2004
 			eDebug("RTC not ready... wait for transponder time");
@@ -646,7 +646,7 @@ void eDVBLocalTimeHandler::DVBChannelAdded(eDVBChannel *chan)
 		tmp.first->second.timetable = NULL;
 		tmp.first->second.channel = chan;
 		tmp.first->second.m_prevChannelState = -1;
-		chan->connectStateChange(slot(*this, &eDVBLocalTimeHandler::DVBChannelStateChanged), tmp.first->second.m_stateChangedConn);
+		chan->connectStateChange(sigc::mem_fun(*this, &eDVBLocalTimeHandler::DVBChannelStateChanged), tmp.first->second.m_stateChangedConn);
 	}
 }
 

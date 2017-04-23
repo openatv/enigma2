@@ -86,7 +86,7 @@ static inline int time_after(struct timespec oldtime, uint32_t delta_ms)
 }
 #endif
 
-class eDVBCISlot: public iObject, public Object
+class eDVBCISlot: public iObject, public sigc::trackable
 {
 	friend class eDVBCIInterfaces;
 	DECLARE_REF(eDVBCISlot);
