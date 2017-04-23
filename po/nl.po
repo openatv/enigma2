@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-09 03:18+0100\n"
-"PO-Revision-Date: 2017-02-09 23:42+0100\n"
+"POT-Creation-Date: 2017-04-20 04:01+0200\n"
+"PO-Revision-Date: 2017-04-24 00:45+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -555,6 +555,9 @@ msgstr "128"
 
 msgid "128 Mb"
 msgstr "128 Mb"
+
+msgid "12bit 4:2:0/4:2:2 no PIP"
+msgstr "12bit 4:2:0/4:2:2 geen PIP"
 
 msgid "12V output"
 msgstr "12V uitgang"
@@ -1338,6 +1341,14 @@ msgstr ""
 "verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op OK om dit "
 "menu af te sluiten of selecteert u een ander testscherm d.m.v. de "
 "nummerknoppen."
+
+msgid "Adjust the horizontal position of the letters used for teletext."
+msgstr ""
+"Pas de horizontale positie van de letters aan voor gebruikt van teletekst."
+
+msgid "Adjust the vertical position of the letters used for teletext."
+msgstr ""
+"Pas de verticale positie van de letters aan voor gebruikt van teletekst."
 
 msgid "adult movie/drama"
 msgstr "erotiek / drama"
@@ -2616,8 +2627,14 @@ msgstr "Zender"
 msgid "Channel +/- button mode"
 msgstr "Zender +/- knop functie"
 
+msgid "Channel 1"
+msgstr "Kanaal 1"
+
 msgid "Channel 1 at start"
 msgstr "Zender 1 bij opstarten"
+
+msgid "Channel 1 with Primetime"
+msgstr "Kanaal 1 met Primetime"
 
 msgid "Channel down"
 msgstr "Vorige zender"
@@ -3278,6 +3295,11 @@ msgstr ""
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configureer de DiSEqC modus voor deze LNB."
 
+msgid "Configure the display resolution and the font used for teletext."
+msgstr ""
+"Configureer de weergaveresolutie en het lettertype dat wordt gebruikt voor "
+"teletekst."
+
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 "Met deze optie kunt u de screensaver activeren en stelt u tevens de tijd in "
@@ -3287,6 +3309,14 @@ msgstr ""
 
 msgid "Configure the duration in minutes for the sleep timer."
 msgstr "Configureer de slaaptimer in minuten."
+
+msgid "Configure the end coordinate in x of the teletext display area."
+msgstr ""
+"Configureer de eind-coördinaat in x van het weergavegebied van teletekst."
+
+msgid "Configure the end coordinate in y of the teletext display area."
+msgstr ""
+"Configureer de eind-coördinaat in y van het weergavegebied van teletekst."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "De eerste audio taal instellen (hoogste prioriteit)."
@@ -3348,6 +3378,11 @@ msgid ""
 msgstr ""
 "Configureer de harde schijf om in stand-by te gaan, na de verstreken "
 "inactieve tijd als de box al in stand-by staat."
+
+msgid "Configure the height of the TrueType font letters used for teletext."
+msgstr ""
+"Configureer de hoogte van de TrueType-lettertype letters gebruikt voor "
+"teletekst."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr ""
@@ -3470,6 +3505,13 @@ msgstr ""
 "\n"
 "U kunt kiezen voor multi, 50Hz of 60Hz."
 
+msgid ""
+"Configure the screen resolution for teletext (Not all skins support full-HD "
+"teletext)."
+msgstr ""
+"Configureer de schermresolutie voor teletekst (niet alle skins ondersteunen "
+"full-HD teletekst)."
+
 msgid "Configure the second audio language."
 msgstr "De tweede audio taal instellen."
 
@@ -3529,6 +3571,14 @@ msgstr ""
 "U kunt hier een waarde kiezen tussen 10 - 100Mb/sec. De standaardwaarde is "
 "20 Mb."
 
+msgid "Configure the start coordinate in x of the teletext display area."
+msgstr ""
+"Configureer de start coördinaat in x van het weergavegebied van teletekst."
+
+msgid "Configure the start coordinate in y of the teletext display area."
+msgstr ""
+"Configureer de start coördinaat in y van het weergavegebied van teletekst."
+
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr ""
 "Met deze optie stelt u de vertraging van de ondertitels in indien er geen "
@@ -3580,9 +3630,42 @@ msgstr "Breedte beschikbaar voor picons."
 msgid "Configure the width allocated to the service name."
 msgstr "Breedte beschikbaar voor zendernaam."
 
+msgid "Configure the width of the TrueType font letters used for teletext."
+msgstr ""
+"Configureer de breedte van de TrueType-lettertype letters gebruikt voor "
+"teletekst."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 "Kies of de zendernamen, de picons of beide vertoond moeten worden in de EPG."
+
+msgid "Configure whether a bold TrueType font is used for teletext."
+msgstr ""
+"Configureren of vette TrueType-lettertype wordt gebruikt voor teletekst."
+
+msgid ""
+"Configure whether a fixed font or a scalable TrueType font is used for "
+"teletext."
+msgstr ""
+"Configureren of een vast lettertype of een schaalbare TrueType-lettertype "
+"wordt gebruikt voor teletekst."
+
+msgid ""
+"Configure whether another tuner from the preferred list is allocated for "
+"recordings instead of sharing a tuner that is already active receiving the "
+"same live TV channel."
+msgstr ""
+"Configureren of een andere tuner uit de voorkeurslijst wordt toegewezen voor "
+"opnames in plaats van het delen van een tuner die reeds actief is met "
+"ontvangt van hetzelfde live Tv-kanaal."
+
+msgid ""
+"Configure whether another tuner from the preferred list is allocated instead "
+"of sharing a tuner that is already active recording the same channel."
+msgstr ""
+"Configureren of een ander tuner van de voorkeurslijst is toegewezen in "
+"plaats van het delen van een tuner die reeds actief is met een opname op "
+"hetzelfde kanaal."
 
 msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
@@ -3853,6 +3936,9 @@ msgstr "DVD-ISO maken"
 
 msgid "Create ISO"
 msgstr "Maak ISO"
+
+msgid "Create seperate radio userbouquet"
+msgstr "Creëer apart radio gebruikersbouquet"
 
 msgid "Creating AP and SC Files"
 msgstr "Creëer AP en SC bestanden"
@@ -4969,6 +5055,9 @@ msgstr "Automatische kabelscan inschakelen"
 msgid "Enable auto fast scan"
 msgstr "Auto Fastscan inschakelen"
 
+msgid "Enable auto fast scan for %s"
+msgstr "Activeer snelle auto scan voor %s"
+
 msgid "Enable Autorecord"
 msgstr "Aktiveer automatische opname"
 
@@ -5034,6 +5123,9 @@ msgstr "Activeer Netwerkverkeer controle"
 
 msgid "Enable panic button"
 msgstr "Paniekknop gebruiken"
+
+msgid "enable PIP no HDR"
+msgstr "activeer PIP geen HDR"
 
 msgid "Enable preview"
 msgstr "Voorbeeld inschakelen"
@@ -5458,6 +5550,15 @@ msgstr "Wizard afsluiten"
 msgid "experimental film/video"
 msgstr "experimentele film/video"
 
+msgid "Experimental: strict limitation to preferred tuners"
+msgstr "Experimenteel: strikte beperking naar voorkeurs tuners"
+
+msgid "Experimental: strict limitation to preferred tuners for recordings"
+msgstr "Experimenteel: strikte beperking tot voorkeur tuners voor de opnames"
+
+msgid "Experimental mode"
+msgstr "Experimentele modus"
+
 msgid "Expert"
 msgstr "Expert"
 
@@ -5744,6 +5845,9 @@ msgstr "fitness & gezondheid"
 
 msgid "Fixed"
 msgstr "Vast"
+
+msgid "Fixed X11 font (SD)"
+msgstr "Vast X11 lettertype (SD)"
 
 msgid "FLASH"
 msgstr "FLASH"
@@ -6256,6 +6360,15 @@ msgid "Helps setting up your signal"
 msgstr "Helpt u het signaal in te stellen"
 
 msgid ""
+"Here can set the EPG will alway open at the current channel, the first "
+"channel or one of both with primetime. If no primetime selected, the current "
+"time is used."
+msgstr ""
+"Hier kunt instellen of de EPG altijd wordt geopend op de huidige zender, of "
+"de eerste zender of één van beide met primetime. Als geen primetime is "
+"geselecteerd, wordt de huidige tijd gebruikt."
+
+msgid ""
 "Here you can browse (but not modify) the files that are added to the "
 "backupfile by default (E2-setup, channels, network)."
 msgstr ""
@@ -6628,6 +6741,20 @@ msgstr ""
 "Naast de controle op een programma start, kan een herhaalde controle worden "
 "gebruikt, zodat de benodigdheden van 'buffer limiet in uren' of 'vrije "
 "ruimte controleren' eerder worden gecontroleerd."
+
+msgid ""
+"In expert mode, configure which tuners will be preferred, when more than one "
+"tuner is available."
+msgstr ""
+"In expert modus, configureer welke tuners de voorkeur hebben, wanneer meer "
+"dan een tuner beschikbaar is."
+
+msgid ""
+"In expert mode, configure which tuners will be preferred for recordings, "
+"when more than one tuner is available."
+msgstr ""
+"In expert modus, configureer welke tuners de voorkeur hebben voor opnames, "
+"wanneer meer dan een tuner beschikbaar is."
 
 msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
@@ -7836,6 +7963,9 @@ msgstr "ms"
 
 msgid "Mtd"
 msgstr "Mtd"
+
+msgid "multi"
+msgstr "multi"
 
 msgid "Multi EPG"
 msgstr "Multi EPG"
@@ -9683,6 +9813,12 @@ msgstr "Voorkeurstuner"
 msgid "Preferred tuner for recordings"
 msgstr "Voorkeurstuner voor opnames"
 
+msgid "Preferred tuners, multiple selection allowed"
+msgstr "Voorkeurstuners, meerdere selecteren toegestaan"
+
+msgid "Preferred tuners for recordings, multiple selection allowed"
+msgstr "Voorkeurstuners voor opnames, meerdere selecteren toegestaan"
+
 msgid "Prepare another USB stick for image flashing"
 msgstr "Bereid een andere USB stick voor om de image te flashen"
 
@@ -9775,6 +9911,9 @@ msgstr "Vorige"
 
 msgid "Primary DNS"
 msgstr "Primaire DNS"
+
+msgid "Primetime"
+msgstr "Primetime"
 
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
@@ -10494,6 +10633,9 @@ msgstr "herstellen satellites.xml niet mogelijkl!"
 msgid "Restart"
 msgstr "Herstarten"
 
+msgid "ReStart"
+msgstr "Herstarten"
+
 msgid "Restart %s %s."
 msgstr "Herstart %s %s."
 
@@ -11205,6 +11347,13 @@ msgstr ""
 "Selecteer de gewenste functie en klik op \"OK\" om deze toe te wijzen. "
 "Gebruik \"Ch+/-\" om te schakelen tussen de lijsten. Selecteer een "
 "toegewezen functie en klik op \"OK\" om deze ongedaan te maken."
+
+msgid ""
+"Select the method of restoring screen resolution and framebuffer when "
+"leaving teletext."
+msgstr ""
+"Selecteer de methode voor het herstellen van de schermresolutie en "
+"framebuffer bij het verlaten van teletekst."
 
 msgid "Select the movie path"
 msgstr "Selecteer het opnamepad"
@@ -12968,6 +13117,9 @@ msgstr "Afsluiten"
 msgid "Standby / restart"
 msgstr "Afsluiten"
 
+msgid "Standby without TV shutdown"
+msgstr "Stand-by zonder uitschakelen TV"
+
 msgid "Start"
 msgstr "Start"
 
@@ -12986,6 +13138,9 @@ msgstr "Start vanaf het begin"
 msgid "Start instant recording"
 msgstr "Start een directe opname"
 
+msgid "Start mode"
+msgstr "Startmodus"
+
 msgid "Start Mode"
 msgstr "Start methode"
 
@@ -12999,7 +13154,7 @@ msgid "Start recording?"
 msgstr "Opname starten?"
 
 msgid "Start teletext"
-msgstr "Start teletext"
+msgstr "Start teletekst"
 
 msgid "Start test"
 msgstr "Start test"
@@ -13455,13 +13610,52 @@ msgid "technology/natural science"
 msgstr "technologisch/natuurwetenschappen"
 
 msgid "Teletext"
-msgstr "Teletext"
+msgstr "Teletekst"
+
+msgid "Teletext CleanAlgo (resolution reset algorithm)"
+msgstr "Teletekst CleanAlgo (resolutie reset algoritme)"
 
 msgid "Teletext base visibility"
 msgstr "Teletekst basis zichtbaarheid"
 
+msgid "Teletext EndX (right border)"
+msgstr "Teletekst EindeX (rechter rand)"
+
+msgid "Teletext EndY (upper border)"
+msgstr "Teletekst EindeY (boven rand)"
+
+msgid "Teletext font and resolution"
+msgstr "Teletekst lettertype en resolutie"
+
+msgid "Teletext StartX (left border)"
+msgstr "Teletekst StartX (linker rand)"
+
+msgid "Teletext StartY (lower border)"
+msgstr "Teletekst StartY (beneden rand)"
+
 msgid "Teletext subtitle color"
 msgstr "Kleur teletekstondertitels"
+
+msgid "Teletext TTFBold (0=normal, 1=bold)"
+msgstr "Teletekst-TTFBold (0 = standaard, 1 = vet)"
+
+msgid "Teletext TTFScreenResX (screen X resolution)"
+msgstr "Teletekst TTFScreenResX (X schermresolutie)"
+
+msgid "Teletext TTFShiftX (horizontal letter position)"
+msgstr "Teletekst TTFShiftX (horizontale letter positie)"
+
+msgid "Teletext TTFShiftY (vertical letter position)"
+msgstr "Teletekst TTFShiftY (verticale letter positie)"
+
+msgid "Teletext TTFWidthFactor16 (TrueType letter width)"
+msgstr "Teletekst TTFWidthFactor16 (TrueType-letter breedte)"
+
+msgid "Teletext TTFHeightFactor16 (TrueType letter height)"
+msgstr "Teletekst TTFHeightFactor16 (TrueType-letter hoogte)"
+
+msgid "Teletext UseTTF (0=fixed font, 1=TrueType)"
+msgstr "Teletekst-gebruikTTF (0 = vast lettertype, 1 = TrueType)"
 
 msgid "Telnet"
 msgstr "Telnet"
@@ -14710,6 +14904,15 @@ msgstr "Aantal resterende pogingen:"
 msgid "true"
 msgstr "juist"
 
+msgid "TrueType font (full-HD)"
+msgstr "TrueType lettertype (full-HD)"
+
+msgid "TrueType font (HD)"
+msgstr "TrueType lettertype (HD)"
+
+msgid "TrueType font (SD)"
+msgstr "TrueType lettertype (SD)"
+
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
 "Probeert gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik "
@@ -15179,7 +15382,7 @@ msgid "Use original DVB subtitle position"
 msgstr "Gebruik de oorspronkelijk positie van DVB ondertitels"
 
 msgid "Use original teletext position"
-msgstr "Originele teletextpositie gebruiken"
+msgstr "Originele teletekstpositie gebruiken"
 
 msgid "Use power measurement"
 msgstr "Meet stroom verbruik"
@@ -16229,6 +16432,9 @@ msgstr "Waar wilt u de tijdelijke timeshift opnames opslaan?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Welk programma wilt u permanent verwijderen?"
+
+msgid "While available"
+msgstr "Wanneer beschikbaar"
 
 msgid "White"
 msgstr "Wit"
