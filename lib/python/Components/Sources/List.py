@@ -21,13 +21,13 @@ to generate HTML."""
 		self.item_height = item_height
 		self.fonts = fonts
 		self.disable_callbacks = False
-		if enableWrapAround is not None:
-			print "[List] Setting enableWrapAround no longer supported. Use the skin settings instead."
-		self.enableWrapAround = None
+		self.enableWrapAround = enableWrapAround
 		self.__style = "default"  # style might be an optional string which can be used to define different visualisations in the skin
 
 	def setList(self, list):
 		self.__list = list
+		if self.enableWrapAround is not None and self.enableWrapAround != self.wrap_around:
+			self.wrap_around = self.enableWrapAround
 		self.changed((self.CHANGED_ALL,))
 
 	list = property(lambda self: self.__list, setList)
@@ -42,6 +42,19 @@ to generate HTML."""
 
 	def count(self):
 		return len(self.__list)
+
+	# pass through: getWrapAround / setWrapAround to master
+	@cached
+	def getWrapAround(self):
+		if self.master is None:
+			return None
+		return self.master.wrap_around
+
+	def setWrapAround(self, wrap_around):
+		if self.master is not None:
+			self.master.wrap_around = wrap_around
+
+	wrap_around = property(getWrapAround, setWrapAround)
 
 	def selectionChanged(self, index):
 		if self.disable_callbacks:
@@ -77,11 +90,35 @@ to generate HTML."""
 
 	index = property(getIndex, setIndex)
 
+	_operation_fallbacks = {
+		eListbox.moveDown: 1,
+		eListbox.moveUp: -1,
+		eListbox.pageDown: 10,
+		eListbox.pageUp: -10,
+	}
+
+	def _doMove(self, operation, wrap_around):
+		oldPos = self.index
+		self.move(operation)
+		newPos = self.index
+		if oldPos is not None and oldPos == newPos:
+			offset = self._operation_fallbacks.get(operation, 0);
+			newPos += offset
+			if newPos >= self.count():
+				if wrap_around:
+					self.index = 0
+			elif newPos < 0:
+				if wrap_around:
+					self.index = self.count() - 1
+			else:
+				self.index = newPos
+
 	def selectNext(self):
-		self.move(eListbox.moveDown)
+		self._doMove(eListbox.moveDown, self.wrap_around)
 
 	def selectPrevious(self):
-		self.move(eListbox.moveUp)
+		self._doMove(eListbox.moveUp, self.wrap_around)
+
 
 	@cached
 	def getStyle(self):
@@ -118,10 +155,10 @@ to generate HTML."""
 			self.master.move(direction)
 
 	def pageUp(self):
-		self.move(eListbox.pageUp)
+		self._doMove(eListbox.pageUp, False)
 
 	def pageDown(self):
-		self.move(eListbox.pageDown)
+		self._doMove(eListbox.pageDown, False)
 
 	def up(self):
 		self.selectPrevious()
