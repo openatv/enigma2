@@ -1410,7 +1410,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 46.8);
 		sat_max = 1620;
 	}
-	else if (!strcmp(m_description, "Si21682")) // SF4008 T/T2/C
+	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
 	{
 	    int type = -1;
 		oparm.getSystem(type);
