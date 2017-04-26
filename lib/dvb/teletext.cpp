@@ -66,7 +66,7 @@ const char * const eDVBTeletextParser::my_country_codes[] =
 
 unsigned char country_lookup[] =
 {
-	255, 1, 4, 11, 11, 11, 5, 4,
+	255, 1, 4, 11, 11, 11, 5, 3,
 	8, 8, 0, 0, 7, 12, 10, 10,
 	10, 9, 2, 6, 6, 11, 11, 17,
 	18, 255, 255, 255, 255, 255, 255, 255
