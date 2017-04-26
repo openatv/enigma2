@@ -186,6 +186,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 			self.session.open(MessageBox, _("A recording is currently running on the selected tuner. Please select a different tuner or consider to stop the recording to try again."), type=MessageBox.TYPE_ERROR)
 
 	def keyCancel(self):
+		refreshServiceList()
 		self.restoreService()
 		if self["config"].isChanged():
 			for x in self["config"].list:
