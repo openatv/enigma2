@@ -283,7 +283,8 @@ void eCableScan::parseSDT()
 				{
 					logicalchannelid = it->second;
 
-					/* check if logical logicalchannalid was already used in the TV numberedServiceRefs list to give priority when the serviceid was already used in the HD 					logicalchannelid list */
+					/* check if logical logicalchannalid was already used in the TV numberedServiceRefs list to give priority when the serviceid was already used in the HD
+					logicalchannelid list */
 					std::map<int, eServiceReferenceDVB>::const_iterator it = numberedServiceRefs.find(logicalchannelid);
 					if (it != numberedServiceRefs.end())
 					{
