@@ -204,7 +204,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				# them across lines to make it clearer
 				# what each test is.
 				from Components.Converter.ClientsStreaming import ClientsStreaming
-				if (
+				if ((
 					not Screens.Standby.inStandby and NavigationInstance.instance.getCurrentlyPlayingServiceReference() and
 					(
 						'0:0:0:0:0:0:0:0:0' in NavigationInstance.instance.getCurrentlyPlayingServiceReference().toString() or
@@ -212,9 +212,10 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					) or
 					(int(ClientsStreaming("NUMBER").getText()) > 0)
 				) or
-				recordingsActive(900) or
-				(self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or
-				(self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and internalHDDNotSleeping()):
+					recordingsActive(900) or
+					(self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or
+					(self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and internalHDDNotSleeping())
+				):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff

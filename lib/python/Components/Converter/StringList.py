@@ -8,6 +8,19 @@ class StringList(Converter):
 		Converter.__init__(self, type)
 		self.content = None
 
+	# pass through: getWrapAround / setWrapAround to master
+	@cached
+	def getWrapAround(self):
+		if self.master is None:
+			return None
+		return self.master.wrap_around
+
+	def setWrapAround(self, wrap_around):
+		if self.master is not None:
+			self.master.wrap_around = wrap_around
+
+	wrap_around = property(getWrapAround, setWrapAround)
+
 	def changed(self, what):
 		if not self.content:
 			self.content = eListboxPythonStringContent()
