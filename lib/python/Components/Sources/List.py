@@ -104,14 +104,13 @@ to generate HTML."""
 		if oldPos is not None and oldPos == newPos:
 			offset = self._operation_fallbacks.get(operation, 0);
 			newPos += offset
-			if newPos >= self.count():
-				if wrap_around:
-					self.index = 0
+			listEnd = self.count() - 1
+			if 0 <= newPos <= listEnd or not wrap_around:
+				self.index = min(newPos, listEnd)
 			elif newPos < 0:
-				if wrap_around:
-					self.index = self.count() - 1
+				self.index = listEnd
 			else:
-				self.index = newPos
+				self.index = 0
 
 	def selectNext(self):
 		self._doMove(eListbox.moveDown, self.wrap_around)
