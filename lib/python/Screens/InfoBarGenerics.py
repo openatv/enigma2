@@ -533,6 +533,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	STATE_HIDING = 1
 	STATE_SHOWING = 2
 	STATE_SHOWN = 3
+	skipToggleShow = False
 
 	def __init__(self):
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
@@ -711,6 +712,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			#idx = config.usage.infobar_timeout.index
 			#if idx:
 			#	self.hideTimer.start(idx*1000, True)
+		self.skipToggleShow = False
 
 	def doShow(self):
 		self.show()
@@ -723,6 +725,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.hideTimer.stop()
 		self.DimmingTimer.start(300, True)
 		self.dimmed = config.usage.show_infobar_dimming_speed.value
+		self.skipToggleShow = False
 
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
@@ -759,6 +762,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 #					pass
 
 	def toggleShow(self):
+		if self.skipToggleShow:
+			self.skipToggleShow = False
+			return
 		if not hasattr(self, "LongButtonPressed"):
 			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
@@ -816,6 +822,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.execing:
 			self.show()
 			self.hideTimer.stop()
+			self.skipToggleShow = False
 
 	def unlockShow(self):
 		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
@@ -2521,6 +2528,7 @@ class InfoBarSeek:
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		if config.usage.show_infobar_on_skip.value and not config.usage.show_infobar_locked_on_pause.value:
 			self.showAfterSeek()
+		self.skipToggleShow = True # skip 'break' action (toggleShow) after 'make' action (unPauseService)
 
 	def doPause(self, pause):
 		if pause:
