@@ -2519,6 +2519,8 @@ class InfoBarSeek:
 			return
 		self.doPause(False)
 		self.setSeekState(self.SEEK_STATE_PLAY)
+		if config.usage.show_infobar_on_skip.value and not config.usage.show_infobar_locked_on_pause.value:
+			self.showAfterSeek()
 
 	def doPause(self, pause):
 		if pause:
@@ -2586,7 +2588,7 @@ class InfoBarSeek:
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
-		if abs(pts) > 100 and config.usage.show_infobar_on_skip.value:
+		if (abs(pts) > 100 or not config.usage.show_infobar_locked_on_pause.value) and config.usage.show_infobar_on_skip.value:
 			self.showAfterSeek()
 
 	def DoSeekAction(self):
@@ -2765,6 +2767,11 @@ class InfoBarSeek:
 		if self.seekstate == self.SEEK_STATE_PLAY or self.seekstate == self.SEEK_STATE_EOF:
 			self.lockedBecauseOfSkipping = False
 			self.unlockShow()
+		elif self.seekstate == self.SEEK_STATE_PAUSE and not config.usage.show_infobar_locked_on_pause.value:
+			if config.usage.show_infobar_on_skip.value:
+				self.lockedBecauseOfSkipping = False
+				self.unlockShow()
+				self.showAfterSeek()
 		else:
 			wantlock = self.seekstate != self.SEEK_STATE_PLAY
 			if config.usage.show_infobar_on_skip.value:
