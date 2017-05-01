@@ -684,11 +684,30 @@ class NimManager:
 	def getCableFlags(self, nim):
 		return self.cablesList[config.Nims[nim].scan_provider.index][1]
 
+	def getTerrestrialsList(self):
+		return self.terrestrialsList
+
+	def getTerrestrialsCountrycodeList(self):
+		countrycodes = []
+		for x in self.terrestrialsList:
+			if x[2] and x[2] not in countrycodes:
+				countrycodes.append(x[2])
+		countrycodes.sort()
+		return countrycodes
+
+	def getTerrestrialsByCountrycode(self, countrycode):
+		if countrycode:
+			return [x for x in self.terrestrialsList if x[2] == countrycode]
+		return []
+
 	def getTerrestrialDescription(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][0]
 
 	def getTerrestrialFlags(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
+
+	def getTerrestrialCountrycode(self, nim):
+		return self.terrestrialsList[config.Nims[nim].terrestrial.index][2]
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]
