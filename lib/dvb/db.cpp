@@ -1575,6 +1575,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 	{
 		ePyObject ter_name;
 		ePyObject ter_flags;
+		ePyObject ter_countrycode;
 
 		for(xmlAttrPtr attr = terrestrial->properties; attr; attr = attr->next)
 		{
@@ -1591,16 +1592,23 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					ter_flags = PyInt_FromLong(tmp);
 				}
 			}
+			else if (name == "countrycode")
+			{
+				ter_countrycode = PyString_FromString((const char*)attr->children->content);
+			}
 		}
 
 		if (ter_name)
 		{
 			ePyObject tplist = PyList_New(0);
-			ePyObject tuple = PyTuple_New(2);
+			ePyObject tuple = PyTuple_New(3);
 			if (!ter_flags)
 				ter_flags = PyInt_FromLong(0);
+			if (!ter_countrycode)
+				ter_countrycode = PyString_FromString("");
 			PyTuple_SET_ITEM(tuple, 0, ter_name);
 			PyTuple_SET_ITEM(tuple, 1, ter_flags);
+			PyTuple_SET_ITEM(tuple, 2, ter_countrycode);
 			PyList_Append(ter_list, tuple);
 			Py_DECREF(tuple);
 			PyDict_SetItem(tp_dict, ter_name, tplist);
@@ -1688,9 +1696,16 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 
 			Py_DECREF(tplist);
 		}
-		else if (ter_flags)
+		else if (ter_flags || ter_countrycode) 
 		{
-			Py_DECREF(ter_flags);
+			if (ter_flags)
+			{
+				Py_DECREF(ter_flags);
+			}
+			if (ter_countrycode)
+			{
+				Py_DECREF(ter_countrycode);
+			}
 		}
 
 		// next terrestrial
