@@ -126,19 +126,22 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.selectSatsEntry = None
 		self.advancedSelectSatsEntry = None
 		self.singleSatEntry = None
-
-		if not  hasattr(self, "terrestrialCountriesEntry"):
+		self.terrestrialRegionsEntry = None
+		
+		if not hasattr(self, "terrestrialCountriesEntry"):
 			self.terrestrialCountriesEntry = None
-			if self.nim.isCompatible("DVB-T"):
-				countrycodelist = nimmanager.getTerrestrialsCountrycodeList()
-				countrycode = nimmanager.getTerrestrialCountrycode(self.slotid)
-				default = countrycode in countrycodelist and countrycode or None
-				choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in countrycodelist], key=lambda listItem: listItem[1])
+
+		if self.nim.isCompatible("DVB-T"):
+			# country/region tier one
+			if self.terrestrialCountriesEntry is None:
+				terrestrialcountrycodelist = nimmanager.getTerrestrialsCountrycodeList()
+				terrestrialcountrycode = nimmanager.getTerrestrialCountrycode(self.slotid)
+				default = terrestrialcountrycode in terrestrialcountrycodelist and terrestrialcountrycode or None
+				choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
 				self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
 				self.terrestrialCountriesEntry = getConfigListEntry("Country", self.terrestrialCountries)
-				self.terreOrigReg = self.nimConfig.terrestrial.value
-		self.terrestrialRegionsEntry = None
-		if self.nim.isCompatible("DVB-T"):
+				self.originalTerrestrialRegion = self.nimConfig.terrestrial.value
+			# country/region tier two
 			if self.terrestrialCountries.value == "all":
 				terrstrialNames = [x[0] for x in sorted(sorted(nimmanager.getTerrestrialsList(), key=lambda listItem: listItem[0]), key=lambda listItem: self.countrycodeToCountry(listItem[2]))]
 			else:
@@ -147,6 +150,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
 			def updateTerrestrialProvider(configEntry, extra_args):
 				extra_args[0].value = configEntry.value
+				extra_args[0].save()
 			self.terrestrialRegions.addNotifier(updateTerrestrialProvider, extra_args = [self.nimConfig.terrestrial])
 			self.terrestrialRegionsEntry = getConfigListEntry("Region", self.terrestrialRegions)
 
@@ -662,8 +666,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			return
 		for x in self["config"].list:
 			x[1].cancel()
-		if self.nim.isCompatible("DVB-T"):
-			self.nimConfig.terrestrial.value = self.terreOrigReg
+		if hasattr(self, "originalTerrestrialRegion"):
+			self.nimConfig.terrestrial.value = self.originalTerrestrialRegion
+			self.nimConfig.terrestrial.save()
 		# we need to call saveAll to reset the connectedTo choices
 		self.saveAll()
 		self.restartPrevService()
