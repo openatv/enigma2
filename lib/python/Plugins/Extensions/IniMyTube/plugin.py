@@ -1,8 +1,6 @@
 from . import _
 
 from Plugins.Plugin import PluginDescriptor
-from MyTubeService import validate_cert
-from enigma import eTPM
 from Components.config import ConfigSubsection, config, ConfigYesNo
 
 config.plugins.mytubestart = ConfigSubsection()
