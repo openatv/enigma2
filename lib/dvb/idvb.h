@@ -305,6 +305,7 @@ public:
 		dxNewFound=64,
 		dxIsDedicated3D=128,
 		dxHideVBI=512,
+		dxIsScrambledPMT=1024,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }

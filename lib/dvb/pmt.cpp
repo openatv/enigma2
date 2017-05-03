@@ -81,6 +81,11 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 						eDebug("[eDVBServicePMTHandler] create cached caPMT");
 						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
 					}
+					else if (m_ca_servicePtr && (m_service->m_flags & eDVBService::dxIsScrambledPMT))
+					{
+						eDebug("[eDVBServicePMTHandler] create caPMT to descramble PMT");
+						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
+					}
 				}
 			}
 
