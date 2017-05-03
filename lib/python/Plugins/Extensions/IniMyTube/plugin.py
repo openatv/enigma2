@@ -13,9 +13,9 @@ def MyTubeMain(session, **kwargs):
 
 
 def menu(menuid, **kwargs):
-    if menuid == 'id_mainmenu_movies':
-        return [(_('You Tube'), MyTubeMain, 'id_mainmenu_movies_youtube', 50)]
-    return []
+	if menuid == 'id_mainmenu_movies':
+		return [(_('You Tube'), MyTubeMain, 'id_mainmenu_movies_youtube', 50)]
+	return []
 
 
 def Plugins(path, **kwargs):
