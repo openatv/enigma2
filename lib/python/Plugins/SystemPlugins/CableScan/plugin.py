@@ -213,7 +213,7 @@ class CableScanAutoScreen(CableScanScreen):
 		if self.getFreeTuner():
 			self.scan.start(self.freeTuner)
 		else:
-			close(False)
+			self.close(False)
 
 	def __onClose(self):
 		if self.scan:
