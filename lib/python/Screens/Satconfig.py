@@ -127,33 +127,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedSelectSatsEntry = None
 		self.singleSatEntry = None
 		self.terrestrialRegionsEntry = None
-		
+
 		if not hasattr(self, "terrestrialCountriesEntry"):
 			self.terrestrialCountriesEntry = None
-
-		if self.nim.isCompatible("DVB-T"):
-			# country/region tier one
-			if self.terrestrialCountriesEntry is None:
-				terrestrialcountrycodelist = nimmanager.getTerrestrialsCountrycodeList()
-				terrestrialcountrycode = nimmanager.getTerrestrialCountrycode(self.slotid)
-				default = terrestrialcountrycode in terrestrialcountrycodelist and terrestrialcountrycode or None
-				choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
-				self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
-				self.terrestrialCountriesEntry = getConfigListEntry("Country", self.terrestrialCountries)
-				self.originalTerrestrialRegion = self.nimConfig.terrestrial.value
-			# country/region tier two
-			if self.terrestrialCountries.value == "all":
-				terrstrialNames = [x[0] for x in sorted(sorted(nimmanager.getTerrestrialsList(), key=lambda listItem: listItem[0]), key=lambda listItem: self.countrycodeToCountry(listItem[2]))]
-			else:
-				terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
-			default = self.nimConfig.terrestrial.value in terrstrialNames and self.nimConfig.terrestrial.value or None
-			self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
-			def updateTerrestrialProvider(configEntry, extra_args):
-				extra_args[0].value = configEntry.value
-				extra_args[0].save()
-			self.terrestrialRegions.addNotifier(updateTerrestrialProvider, extra_args = [self.nimConfig.terrestrial])
-			self.terrestrialRegionsEntry = getConfigListEntry("Region", self.terrestrialRegions)
-
+		
 		if self.nim.isMultiType():
 			multiType = self.nimConfig.multiType
 			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
@@ -262,6 +239,27 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append(self.configMode)
 			self.have_advanced = False
 			if self.nimConfig.configMode.value == "enabled":
+				# country/region tier one
+				if self.terrestrialCountriesEntry is None:
+					terrestrialcountrycodelist = nimmanager.getTerrestrialsCountrycodeList()
+					terrestrialcountrycode = nimmanager.getTerrestrialCountrycode(self.slotid)
+					default = terrestrialcountrycode in terrestrialcountrycodelist and terrestrialcountrycode or None
+					choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
+					self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
+					self.terrestrialCountriesEntry = getConfigListEntry("Country", self.terrestrialCountries)
+					self.originalTerrestrialRegion = self.nimConfig.terrestrial.value
+				# country/region tier two
+				if self.terrestrialCountries.value == "all":
+					terrstrialNames = [x[0] for x in sorted(sorted(nimmanager.getTerrestrialsList(), key=lambda listItem: listItem[0]), key=lambda listItem: self.countrycodeToCountry(listItem[2]))]
+				else:
+					terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
+				default = self.nimConfig.terrestrial.value in terrstrialNames and self.nimConfig.terrestrial.value or None
+				self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
+				def updateTerrestrialProvider(configEntry, extra_args):
+					extra_args[0].value = configEntry.value
+					extra_args[0].save()
+				self.terrestrialRegions.addNotifier(updateTerrestrialProvider, extra_args = [self.nimConfig.terrestrial])
+				self.terrestrialRegionsEntry = getConfigListEntry("Region", self.terrestrialRegions)
 				self.list.append(self.terrestrialCountriesEntry)
 				self.list.append(self.terrestrialRegionsEntry)
 				#self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.terrestrial))
