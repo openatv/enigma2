@@ -242,6 +242,14 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
+# EventView.py#L308
+msgid "\n%d.%d.%d, %2d:%02d  -  %s"
+msgstr "\n%02d.%02d.%d, %02d:%02d  -  %s"
+
+# EpgList.py#L686
+msgid "%e/%m, %-H:%M"
+msgstr "%02e.%02m, %-02H:%02M"
+
 #, python-format
 msgid "%d Gb"
 msgstr "%d GB"
@@ -3223,8 +3231,8 @@ msgstr "5V für aktive Antenne aktivieren"
 msgid "Enable Cleanup Wizard?"
 msgstr "Aufräumassistent aktivieren?"
 
-msgid "Enable debug log"
-msgstr "Debug-Log aktivieren"
+msgid "Enable debug log *"
+msgstr "Debug-Log aktivieren *"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG aktivieren"
@@ -4240,6 +4248,9 @@ msgstr "Wenn 'Ja' Programmvorschau im EPG. Mit OK die Vorschau, ein zweiter Druc
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar bei schnellem Vor- und Rücklauf in der Medienwiedergabe angezeigt."
+
+msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
+msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar im pausierten Zustand dauerhaft angezeigt und nicht ausgeblendet."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch (Anzahl der Durchgänge):"
@@ -7874,6 +7885,10 @@ msgstr "Zeige Infoleiste beim Sendungswechsel"
 #
 msgid "Show infobar on skip forward/backward"
 msgstr "Zeige Infoleiste beim Spulen"
+
+#
+msgid "Show infobar permanently while paused"
+msgstr "Zeige Infoleiste permanent während Pause"
 
 #
 msgid "Show positioner movement"

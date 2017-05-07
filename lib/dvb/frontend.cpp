@@ -1302,6 +1302,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
+	else if (!strcmp(m_description, "BCM7362 (internal) DVB-S2")) // Xsarius
+	{
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.28) - 10.0) * 100);
+	}
 	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")
 		|| !strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")
 		|| !strcmp(m_description, "BCM7358 DVB-S2 NIM (internal)")
@@ -1393,8 +1397,8 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (strstr(m_description, "Sundtek DVB-S/S2 (IV)"))
 	{
-		ret = (int)(snr / 52);
-		sat_max = 1690;
+		ret = (int)(snr / 40.5);
+		sat_max = 1900;
 	}
 	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
 	{
@@ -1406,7 +1410,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 46.8);
 		sat_max = 1620;
 	}
-	else if (!strcmp(m_description, "Si21682")) // SF4008 T/T2/C
+	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
 	{
 	    int type = -1;
 		oparm.getSystem(type);
@@ -1419,6 +1423,31 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			case feTerrestrial:
 				ret = (int)(snr / 22.3);
 				ter_max = 2900;
+				break;
+		}
+	}
+	else if(!strcmp(m_description, "WinTV HVR-850") || !strcmp(m_description, "Hauppauge"))
+	{
+		eDVBFrontendParametersATSC parm;
+		oparm.getATSC(parm);
+		switch (parm.modulation)
+		{
+		case eDVBFrontendParametersATSC::Modulation_QAM256: atsc_max = 4000; break;
+		case eDVBFrontendParametersATSC::Modulation_QAM64: atsc_max = 2900; break;
+		case eDVBFrontendParametersATSC::Modulation_VSB_8: atsc_max = 2700; break;
+		default: break;
+		}
+		ret = snr * 10;
+	}
+	else if (!strcmp(m_description, "FTM-4862 (Availink AVL6862)")) // Osmega /S2/T2/C
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feSatellite:
+				ret = (snr + 2300) / 11.5;
+				sat_max = 1550;
 				break;
 		}
 	}

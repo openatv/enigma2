@@ -62,7 +62,7 @@ def getCPUSpeedString():
 		return "1,5 GHz"
 	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex'):
 		return "1,3 GHz"
-	elif getMachineBuild() in ('vuuno4k','dm900', 'gb7252', 'dags7252'):
+	elif getMachineBuild() in ('vuuno4k','dm900', 'gb7252', 'dags7252','xc7439'):
 		return "1,7 GHz"
 	elif getMachineBuild() in ('hd51','hd52','sf4008','vs1500','et1x000','h7'):
 		try:

@@ -70,6 +70,7 @@
 		<item level="1" text="Position of finished Timers in Timerlist" description="Control of the position how finished timer are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
 		<item level="2" text="Show infobar on channel change" description="If set to 'yes' the infobar will be displayed when changing channels.">config.usage.show_infobar_on_zap</item>
 		<item level="1" text="Show infobar on skip forward/backward" description="If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback.">config.usage.show_infobar_on_skip</item>
+		<item level="1" text="Show infobar permanently while paused" description="If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout).">config.usage.show_infobar_locked_on_pause</item>
 		<item level="1" text="Show infobar on event change" description="If set to 'yes' the infobar will be displayed when a new event starts.">config.usage.show_infobar_on_event_change</item>
 		<item level="1" text="Show channel number in infobar" description="If set to 'yes' the channel number will be displayed in the infobar.">config.usage.show_infobar_channel_number</item>
 		<item level="0" text="Show picon background colour" description="This option allows you choose the background colour of transparent picons.">config.usage.show_picon_bkgrn</item>
@@ -345,7 +346,7 @@
 	</setup>
 	<setup level="2" key="logs" title="Logs settings">
 		<item level="2" text="Logs location" description="Choose the location for crash and debuglogs.">config.crash.debug_path</item>
-		<item level="2" text="Enable debug log" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
+		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
 		<!--<item level="2" text="User name" description="Enter your forum user name, to make it easier trace logs.">config.logmanager.user</item>
