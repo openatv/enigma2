@@ -78,3 +78,4 @@ SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["ForceLNBPowerChanged"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
 SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
+SystemInfo["XcoreVFD"] = getMachineBuild() in ('xc7346')
