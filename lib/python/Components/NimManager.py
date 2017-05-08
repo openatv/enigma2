@@ -678,11 +678,29 @@ class NimManager:
 			return self.transpondersatsc[self.atscList[nimConfig.atsc.index][0]]
 		return []
 
+	def getCablesList(self):
+		return self.cablesList
+
+	def getCablesCountrycodeList(self):
+		countrycodes = []
+		for x in self.cablesList:
+			if x[2] and x[2] not in countrycodes:
+				countrycodes.append(x[2])
+		return countrycodes
+
+	def getCablesByCountrycode(self, countrycode):
+		if countrycode:
+			return [x for x in self.cablesList if x[2] == countrycode]
+		return []
+
 	def getCableDescription(self, nim):
 		return self.cablesList[config.Nims[nim].cable.scan_provider.index][0]
 
 	def getCableFlags(self, nim):
 		return self.cablesList[config.Nims[nim].cable.scan_provider.index][1]
+		
+	def getCableCountrycode(self, nim):
+		return self.cablesList[config.Nims[nim].cable.scan_provider.index][2]
 
 	def getTerrestrialsList(self):
 		return self.terrestrialsList
@@ -692,7 +710,6 @@ class NimManager:
 		for x in self.terrestrialsList:
 			if x[2] and x[2] not in countrycodes:
 				countrycodes.append(x[2])
-		countrycodes.sort()
 		return countrycodes
 
 	def getTerrestrialsByCountrycode(self, countrycode):
