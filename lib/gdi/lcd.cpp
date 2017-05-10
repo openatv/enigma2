@@ -252,17 +252,15 @@ void eDBoxLCD::update()
 
 	if (lcd_type == 0 || lcd_type == 2)
 	{
-		unsigned char raw[132*8];
+		unsigned char raw[132 * 8];
 		int x, y, yy;
-		for (y=0; y<8; y++)
+		for (y = 0; y < 8; y++)
 		{
-			for (x=0; x<132; x++)
+			for (x = 0; x < 132; x++)
 			{
-				int pix=0;
-				for (yy=0; yy<8; yy++)
-				{
-					pix|=(_buffer[(y*8+yy)*132+x]>=108)<<yy;
-				}
+				int pix = 0;
+				for (yy = 0; yy < 8; yy++)
+					pix |= (_buffer[(y * 8 + yy) * 132 + x] >= 108) << yy;
 				if (flipped)
 				{
 					/* 8 pixels per byte, swap bits */
