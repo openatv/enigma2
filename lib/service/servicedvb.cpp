@@ -1325,7 +1325,7 @@ RESULT eDVBServicePlay::start()
 	int packetsize = 188;
 	eDVBServicePMTHandler::serviceType type = eDVBServicePMTHandler::livetv;
 	if(tryFallbackTuner(/*REF*/service, /*REF*/m_is_stream, m_is_pvr, /*simulate*/false))
-		eDebug("ServicePlay: fallback tuner selected");
+		eDebug("[eDVBServicePlay] fallback tuner selected");
 
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using
 		   two (one for decoding, one for data source), as we must be prepared
