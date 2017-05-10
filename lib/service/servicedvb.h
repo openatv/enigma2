@@ -84,7 +84,7 @@ public:
 
 class eDVBServicePlay: public eDVBServiceBase,
 		public iPlayableService, public iPauseableService,
-		public iSeekableService, public Object, public iServiceInformation,
+		public iSeekableService, public sigc::trackable, public iServiceInformation,
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
@@ -96,7 +96,7 @@ public:
 	virtual ~eDVBServicePlay();
 
 		// iPlayableService
-	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target, bool noaudio);
@@ -222,7 +222,7 @@ protected:
 
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
-	Signal2<void,iPlayableService*,int> m_event;
+	sigc::signal2<void,iPlayableService*,int> m_event;
 
 	bool m_is_stream;
 

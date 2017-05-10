@@ -37,13 +37,13 @@ public:
 	long long getFileSize(const eServiceReference &ref);
 };
 
-class eServiceHDMI: public iPlayableService, public iServiceInformation, public Object
+class eServiceHDMI: public iPlayableService, public iServiceInformation, public sigc::trackable
 {
 	DECLARE_REF(eServiceHDMI);
 public:
 	virtual ~eServiceHDMI();
 
-	RESULT connectEvent(const Slot2<void, iPlayableService*, int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const sigc::slot2<void, iPlayableService*, int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target, bool noaudio);
@@ -75,19 +75,19 @@ public:
 private:
 	friend class eServiceFactoryHDMI;
 	eServiceHDMI(eServiceReference ref);
-	Signal2<void,iPlayableService*, int> m_event;
+	sigc::signal2<void,iPlayableService*, int> m_event;
 	eServiceReference m_ref;
 	int m_decoder_index;
 	bool m_noaudio;
 	ePtr<iTSMPEGDecoder> m_decoder;
 };
 
-class eServiceHDMIRecord: public eDVBServiceBase, public iRecordableService, public Object
+class eServiceHDMIRecord: public eDVBServiceBase, public iRecordableService, public sigc::trackable
 {
 	DECLARE_REF(eServiceHDMIRecord);
 public:
 	eServiceHDMIRecord(const eServiceReference &ref);
-	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm);
 	RESULT prepareStreaming(bool descramble = true, bool includeecm = false);
 	RESULT start(bool simulate=false);
@@ -115,7 +115,7 @@ private:
 	int doRecord();
 
 	/* events */
-	Signal2<void,iRecordableService*,int> m_event;
+	sigc::signal2<void,iRecordableService*,int> m_event;
 
 	/* recorder events */
 	void recordEvent(int event);

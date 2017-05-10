@@ -11,7 +11,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <sys/un.h>
-class eSocketMMIHandler: public Object
+class eSocketMMIHandler: public sigc::trackable
 {
 	eIOBuffer buffer;
 	int listenfd, connfd, clilen;
@@ -24,7 +24,7 @@ class eSocketMMIHandler: public Object
 	char *name;
 public:
 	const char *getName() const { return name; }
-	Signal4<int, int, const unsigned char*, const void *, int> mmi_progress;
+	sigc::signal4<int, int, const unsigned char*, const void *, int> mmi_progress;
 	int send_to_mmisock( void *, size_t );
 	bool connected() { return !!connsn; }
 	eSocketMMIHandler();

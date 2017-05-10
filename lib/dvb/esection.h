@@ -8,7 +8,7 @@
 #define TABLE_eDebugNoNewLineStart(x...) do { if (m_debug) eDebugNoNewLineStart(x); } while(0)
 #define TABLE_eDebugNoNewLine(x...) do { if (m_debug) eDebugNoNewLine(x); } while(0)
 
-class eGTable: public iObject, public Object
+class eGTable: public iObject, public sigc::trackable
 {
 	DECLARE_REF(eGTable);
 	ePtr<iDVBSectionReader> m_reader;
@@ -26,7 +26,7 @@ protected:
 	virtual int createTable(unsigned int nr, const uint8_t *data, unsigned int max)=0;
 	virtual unsigned int totalSections(unsigned int max) { return max + 1; }
 public:
-	Signal1<void, int> tableReady;
+	sigc::signal1<void, int> tableReady;
 	eGTable();
 	RESULT start(iDVBSectionReader *reader, const eDVBTableSpec &table);
 	RESULT start(iDVBDemux *reader, const eDVBTableSpec &table);
@@ -84,12 +84,12 @@ public:
 	}
 };
 
-class eAUGTable: public Object
+class eAUGTable: public sigc::trackable
 {
 protected:
 	void slotTableReady(int);
 public:
-	Signal1<void, int> tableReady;
+	sigc::signal1<void, int> tableReady;
 	virtual void getNext(int err)=0;
 };
 

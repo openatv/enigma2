@@ -114,7 +114,7 @@ public:
 		eventStopped,
 	};
 #ifndef SWIG
-	Signal1<void,int> serviceEvent;
+	sigc::signal1<void,int> serviceEvent;
 
 	int getProgramInfo(program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);

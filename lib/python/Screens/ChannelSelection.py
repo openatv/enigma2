@@ -188,6 +188,7 @@ class ChannelContextMenu(Screen):
 		}
 		menu = []
 
+
 		menu.append(ChoiceEntryComponent("menu", (_("Configuration..."), self.openSetup)))
 
 		self["menu"] = ChoiceList(menu)

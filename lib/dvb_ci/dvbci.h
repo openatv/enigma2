@@ -40,7 +40,7 @@ typedef std::set<providerPair> providerSet;
 typedef std::set<uint16_t> caidSet;
 typedef std::set<eServiceReference> serviceSet;
 
-class eDVBCISlot: public iObject, public Object
+class eDVBCISlot: public iObject, public sigc::trackable
 {
 	friend class eDVBCIInterfaces;
 	DECLARE_REF(eDVBCISlot);

@@ -6,18 +6,20 @@
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>
 #include "freesatv2.h"
+#include "big5.h"
+#include "gb18030.h"
 
 std::string buildShortName( const std::string &str )
 {
 	std::string tmp;
 	static char stropen[] = "\xc2\x86";
 	static char strclose[] = "\xc2\x87";
-	size_t open=std::string::npos-1;
-	while ( (open = str.find(stropen, open+2)) != std::string::npos )
+	size_t open = std::string::npos-1;
+	while ((open = str.find(stropen, open+2)) != std::string::npos)
 	{
 		size_t close = str.find(strclose, open);
-		if ( close != std::string::npos )
-			tmp+=str.substr( open+2, close-(open+2) );
+		if (close != std::string::npos)
+			tmp += str.substr(open+2, close-(open+2));
 	}
 	return tmp.length() ? tmp : str;
 }
@@ -328,112 +330,185 @@ static inline unsigned int recode(unsigned char d, int cp)
 		return d;
 	switch (cp)
 	{
-	case 0:		// ISO6937
-		return iso6937[d-0xA0];
-	case 1:		// 8859-1 <-> unicode mapping
-		return d;
-	case 2:		// 8859-2 -> unicode mapping
-		return c88592[d-0xA0];
-	case 3:		// 8859-3 -> unicode mapping
-		return c88593[d-0xA0];
-	case 4:		// 8859-2 -> unicode mapping
-		return c88594[d-0xA0];
-	case 5:		// 8859-5 -> unicode mapping
-		return c88595[d-0xA0];
-	case 6:		// 8859-6 -> unicode mapping
-		return c88596[d-0xA0];
-	case 7:		// 8859-7 -> unicode mapping
-		return c88597[d-0xA0];
-	case 8:		// 8859-8 -> unicode mapping
-		return c88598[d-0xA0];
-	case 9:		// 8859-9 -> unicode mapping
-		return c88599[d-0xA0];
-	case 10:// 8859-10 -> unicode mapping
-		return c885910[d-0xA0];
-	case 11:// 8859-11 -> unicode mapping
-		return c885911[d-0xA0];
-/*	case 12:// 8859-12 -> unicode mapping  // reserved for indian use..
-		return c885912[d-0xA0];*/
-	case 13:// 8859-13 -> unicode mapping
-		return c885913[d-0xA0];
-	case 14:// 8859-14 -> unicode mapping
-		return c885914[d-0xA0];
-	case 15:// 8859-15 -> unicode mapping
-		return c885915[d-0xA0];
-	case 16:// 8859-16 -> unicode mapping
-		return c885916[d-0xA0];
-	default:
-		return d;
+	case 0:  return iso6937[d-0xA0]; // ISO6937
+	case 1:  return d;		 // 8859-1 -> unicode mapping
+	case 2:  return c88592[d-0xA0];  // 8859-2 -> unicode mapping
+	case 3:  return c88593[d-0xA0];  // 8859-3 -> unicode mapping
+	case 4:  return c88594[d-0xA0];  // 8859-2 -> unicode mapping
+	case 5:  return c88595[d-0xA0];  // 8859-5 -> unicode mapping
+	case 6:  return c88596[d-0xA0];  // 8859-6 -> unicode mapping
+	case 7:  return c88597[d-0xA0];  // 8859-7 -> unicode mapping
+	case 8:  return c88598[d-0xA0];  // 8859-8 -> unicode mapping
+	case 9:  return c88599[d-0xA0];  // 8859-9 -> unicode mapping
+	case 10: return c885910[d-0xA0]; // 8859-10 -> unicode mapping
+	case 11: return c885911[d-0xA0]; // 8859-11 -> unicode mapping
+//	case 12: return c885912[d-0xA0]; // 8859-12 -> unicode mapping  reserved for indian use..
+	case 13: return c885913[d-0xA0]; // 8859-13 -> unicode mapping
+	case 14: return c885914[d-0xA0]; // 8859-14 -> unicode mapping
+	case 15: return c885915[d-0xA0]; // 8859-15 -> unicode mapping
+	case 16: return c885916[d-0xA0]; // 8859-16 -> unicode mapping
+	default: return d;
 	}
 }
 
-std::string convertDVBUTF8(const unsigned char *data, int len, int table, int tsidonid)
+std::string UnicodeToUTF8(long c)
 {
-	if (!len)
+	if ( c < 0x80 ) {
+		char utf[2] = {c, 0};
+		return std::string((char*)utf, 1);
+	}
+	else if ( c < 0x800) {
+                char utf[3] = { 0xc0 | (c >> 6), 0x80 | (c & 0x3f), 0};
+		return std::string((char*)utf, 2);
+	}
+	else if ( c < 0x10000) {
+                char utf[4] = { 0xe0 | (c >> 12), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f), 0};
+		return std::string((char*)utf, 3);
+	}
+	else if ( c < 0x200000) {
+                char utf[5] = { 0xf0 | (c >> 18), 0x80 | ((c >> 12) & 0x3f), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f), 0};
+		return std::string((char*)utf, 4);
+	}
+	eDebug("[UnicodeToUTF8] invalid unicode character: code=0x%08x", c); // not a valid unicode
+	return "";
+}
+
+std::string GB18030ToUTF8(const char *szIn, int len, int *pconvertedLen)
+{
+	std::string szOut = "";
+	unsigned long code = 0;
+	int i;
+
+	for (i = 0; i < len;) {
+		int cl = 0;
+
+		cl = gb18030_mbtowc((ucs4_t*)(&code), (const unsigned char *)szIn + i, len - i);
+		if (cl > 0) {
+			szOut += UnicodeToUTF8(code);
+			i += cl;
+		}
+		else
+			++i;
+	}
+
+	if (pconvertedLen)
+		*pconvertedLen = i;
+	return szOut;
+}
+
+std::string Big5ToUTF8(const char *szIn, int len, int *pconvertedLen)
+{
+	std::string szOut = "";
+	unsigned long code = 0;
+	int i = 0;
+
+	for (;i < len; i++) {
+		if (((unsigned char)szIn[i] > 0xA0) && (unsigned char)szIn[i] <= 0xF9 &&
+			( (((unsigned char)szIn[i+1] >= 0x40) && ((unsigned char)szIn[i+1] <=0x7F )) ||
+			  (((unsigned char)szIn[i+1] >  0xA0) && ((unsigned char)szIn[i+1] < 0xFF))
+			) ) {
+			big5_mbtowc((ucs4_t*)(&code), (const unsigned char *)szIn + i, 2);
+			szOut += UnicodeToUTF8(code);
+			i++;
+		}
+		else
+			szOut += szIn[i];
+	}
+
+	if (pconvertedLen)
+		*pconvertedLen = i;
+	return szOut;
+}
+
+std::string convertDVBUTF8(const unsigned char *data, int len, int table, int tsidonid,int *pconvertedLen)
+{
+	if (!len){
+		if (pconvertedLen)
+			*pconvertedLen = 0;
 		return "";
+	}
 
-	int i=0, t=0;
+	int i = 0;
+	std::string output = "";
 
-	if ( tsidonid )
+	//eDebug("[convertDVBUTF8] table=0x%02X tsidonid=0x%08X len=%d data[0..14]]=%02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X data=%s",
+	//	table, tsidonid, len,
+	//	data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7],
+	//	data[8], data[9], data[10], data[11], data[12], data[13], data[14],
+	//	std::string((char*)data, len).c_str());
+
+	if (tsidonid)
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
 
+	// first byte in strings may override general encoding table.
 	switch(data[0])
 	{
-		case 1 ... 11:
+		case ISO8859_5 ... ISO8859_15:
 			// For Thai providers, encoding char is present but faulty.
 			if (table != 11)
-				table=data[i]+4;
+				table = data[i] + 4;
 			++i;
-//			eDebug("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d",table);
+			// eDebug("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
 			break;
-		case 0x10:
+		case ISO8859_xx:
 		{
-			int n=(data[++i]<<8);
+			int n = data[++i] << 8;
 			n |= (data[++i]);
-//			eDebug("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d",n);
+			// eDebug("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d", n);
 			++i;
 			switch(n)
 			{
-				case 12:
-					eDebug("[convertDVBUTF8] unsup. ISO8859-12 enc.");
+				case ISO8859_12:
+					eDebug("[convertDVBUTF8] ISO8859-12 encoding unsupported");
 					break;
 				default:
-					table=n;
+					table = n;
 					break;
 			}
 			break;
 		}
-		case 0x11: //  Basic Multilingual Plane of ISO/IEC 10646-1 enc  (UTF-16... Unicode)
-			table = 65;
+		case UNICODE_ENCODING: //  Basic Multilingual Plane of ISO/IEC 10646-1 enc  (UTF-16... Unicode)
+			table = UNICODE_ENCODING;
 			tsidonid = 0;
 			++i;
 			break;
-		case 0x12:
+		case KSX1001_ENCODING:
 			++i;
-			eDebug("[convertDVBUTF8] unsup. KSC 5601 enc.");
+			eDebug("[convertDVBUTF8] KSC 5601 encing unsupported.");
 			break;
-		case 0x13:
+		case GB18030_ENCODING: // GB-2312-1980 enc.
 			++i;
-			eDebug("[convertDVBUTF8] unsup. GB-2312-1980 enc.");
+			table = GB18030_ENCODING;
 			break;
-		case 0x14:
+		case BIG5_ENCODING: // Big5 subset of ISO/IEC 10646-1 enc.
 			++i;
-			eDebug("[convertDVBUTF8] unsup. Big5 subset of ISO/IEC 10646-1 enc.");
+			table = BIG5_ENCODING;
 			break;
-		case 0x15: // UTF-8 encoding of ISO/IEC 10646-1
-			return std::string((char*)data+1, len-1);
+		case UTF8_ENCODING: // UTF-8 encoding of ISO/IEC 10646-1
+			++i;
+			table = UTF8_ENCODING;
+			break;
+		case UTF16BE_ENCODING:
+			++i;
+			table = UTF16BE_ENCODING;
+			break;
+		case UTF16LE_ENCODING:
+			++i;
+			table = UTF16LE_ENCODING;
+			break;
 		case 0x1F:
 			{
 				// Attempt to decode Freesat Huffman encoded string
 				std::string decoded_string = huffmanDecoder.decode(data, len);
-				if (!decoded_string.empty()) return decoded_string;
+				if (!decoded_string.empty())
+					return decoded_string;
 			}
-			i++;
+			++i;
 			eDebug("[convertDVBUTF8] failed to decode bbc freesat huffman");
 			break;
 		case 0x0:
 		case 0xC ... 0xF:
-		case 0x16 ... 0x1E:
+		case 0x18 ... 0x1E:
 			eDebug("[convertDVBUTF8] reserved %d", data[0]);
 			++i;
 			break;
@@ -445,51 +520,90 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 //		eDebug("[convertDVBUTF8] Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6937");
 		table = 0;
 	}
+	else if ( table == -1 )
+		table = defaultEncodingTable;
 
-	unsigned char res[2048];
-	while (i < len)
+	switch(table)
 	{
-		unsigned long code=0;
-		if ( useTwoCharMapping && i+1 < len && (code=doVideoTexSuppl(data[i], data[i+1])) )
-			i+=2;
-		if (!code) {
-			if (table == 65) { // unicode
-				if (i+1 < len) {
-					code=(data[i] << 8) | data[i+1];
-					i += 2;
-				}
-			}
-			else
-				code=recode(data[i++], table);
-		}
-		if (!code)
-			continue;
-				// Unicode->UTF8 encoding
-		if (code < 0x80) // identity ascii <-> utf8 mapping
-			res[t++]=char(code);
-		else if (code < 0x800) // two byte mapping
-		{
-			res[t++]=(code>>6)|0xC0;
-			res[t++]=(code&0x3F)|0x80;
-		} else if (code < 0x10000) // three bytes mapping
-		{
-			res[t++]=(code>>12)|0xE0;
-			res[t++]=((code>>6)&0x3F)|0x80;
-			res[t++]=(code&0x3F)|0x80;
-		} else
-		{
-			res[t++]=(code>>18)|0xF0;
-			res[t++]=((code>>12)&0x3F)|0x80;
-			res[t++]=((code>>6)&0x3F)|0x80;
-			res[t++]=(code&0x3F)|0x80;
-		}
-		if (t+4 > 2047)
-		{
-			eDebug("[convertDVBUTF8] buffer to small.. break now");
+		case UTF8_ENCODING:
+			output = std::string((char*)data + i, len - i);
+			if (pconvertedLen)
+				*pconvertedLen += len;
 			break;
-		}
+		case GB18030_ENCODING:
+			output = GB18030ToUTF8((const char *)(data + i), len - i, pconvertedLen);
+			if (pconvertedLen)
+				*pconvertedLen += len;
+			break;
+		case BIG5_ENCODING:
+			output = Big5ToUTF8((const char *)(data + i), len - i, pconvertedLen);
+			if (pconvertedLen)
+				*pconvertedLen += len;
+			break;
+		default:
+			std::string res = "";
+			while (i < len)
+			{
+				unsigned long code = 0;
+				if (useTwoCharMapping && i+1 < len && (code = doVideoTexSuppl(data[i], data[i+1])))
+					i += 2;
+				else if (table == UTF16BE_ENCODING || table == UNICODE_ENCODING) {
+					if (i+2 > len)
+						break;
+					unsigned long w1 = ((unsigned long)(data[i])<<8) | ((unsigned long)(data[i+1]));
+					if (w1 < 0xD800UL || w1 > 0xDFFFUL) {
+						code = w1;
+						i += 2;
+					}
+					else if (w1 > 0xDBFFUL)
+						break;
+					else if (i+4 < len) {
+						unsigned long w2 = ((unsigned long)(data[i+2]) << 8) | ((unsigned long)(data[i+3]));
+						if (w2 < 0xDC00UL || w2 > 0xDFFFUL)
+							return std::string("");
+						code = 0x10000UL + (((w1 & 0x03FFUL) << 10 ) | (w2 & 0x03FFUL));
+						i += 4;
+					}
+					else
+						break;
+				}
+				else if (table == UTF16LE_ENCODING) {
+					if ((i+2) > len)
+						break;
+					unsigned long w1 = ((unsigned long)(data[i+1]) << 8) | ((unsigned long)(data[i]));
+					if (w1 < 0xD800UL || w1 > 0xDFFFUL) {
+						code = w1;
+						i += 2;
+					}
+					else if (w1 > 0xDBFFUL)
+						break;
+					else if (i+4 < len) {
+						unsigned long w2 = ((unsigned long)(data[i+3]) << 8) | ((unsigned long)(data[i+2]));
+						if (w2 < 0xDC00UL || w2 > 0xDFFFUL)
+							break;
+						code = 0x10000UL + (((w2 & 0x03FFUL) << 10 ) | (w1 & 0x03FFUL));
+						i += 4;
+					}
+					else
+						break;
+				}
+				if (!code)
+					code = recode(data[i++], table);
+
+				if (!code)
+					continue;
+				res += UnicodeToUTF8(code);
+			}
+			if (pconvertedLen)
+				*pconvertedLen = i;
+			output = res;
+			break;
 	}
-	return std::string((char*)res, t);
+
+	if (pconvertedLen && *pconvertedLen < len)
+		eDebug("[convertDVBUTF8] %d chars converted, and %d chars left..", *pconvertedLen, len-*pconvertedLen);
+	//eDebug("[convertDVBUTF8] table=0x%02X twochar=%d output:%s\n", table, useTwoCharMapping, output.c_str());
+	return output;
 }
 
 std::string convertUTF8DVB(const std::string &string, int table)
@@ -500,178 +614,129 @@ std::string convertUTF8DVB(const std::string &string, int table)
 
 	unsigned char buf[len];
 
-	for(int i=0;i<len;i++)
+	for (int i = 0; i < len; i++)
 	{
-		unsigned char c1=string[i];
+		unsigned char c1 = string[i];
 		unsigned int c;
-		if(c1<0x80)
-			c=c1;
+		if (c1 < 0x80)
+			c = c1;
 		else
 		{
-			i++;
-			unsigned char c2=string[i];
-			c=((c1&0x3F)<<6) + (c2&0x3F);
-			if (table==0||table==1||c1<0xA0)
+			++i;
+			unsigned char c2 = string[i];
+			c = ((c1&0x3F)<<6) + (c2&0x3F);
+			if (table == 0 || table == 1 || c1 < 0xA0)
 				;
 			else
 			{
 				if (!coding_table)
 				{
-					switch(table)
+					switch (table)
 					{
-						case 2:
-							coding_table = c88592;
-							break;
-						case 3:
-							coding_table = c88593;
-							break;
-						case 4:
-							coding_table = c88594;
-							break;
-						case 5:
-							coding_table = c88595;
-							break;
-						case 6:
-							coding_table = c88596;
-							break;
-						case 7:
-							coding_table = c88597;
-							break;
-						case 8:
-							coding_table = c88598;
-							break;
-						case 9:
-							coding_table = c88599;
-							break;
-						case 10:
-							coding_table = c885910;
-							break;
-						case 11:
-							coding_table = c885911;
-							break;
-/*						case 12:   // reserved.. for indian use
-							coding_table = c885912;
-						break;*/
-						case 13:
-							coding_table = c885913;
-							break;
-						case 14:
-							coding_table = c885914;
-							break;
-						case 15:
-							coding_table = c885915;
-							break;
-						case 16:
-							coding_table = c885916;
-							break;
+						case 2: coding_table = c88592; break;
+						case 3: coding_table = c88593; break;
+						case 4: coding_table = c88594; break;
+						case 5: coding_table = c88595; break;
+						case 6: coding_table = c88596; break;
+						case 7: coding_table = c88597; break;
+						case 8: coding_table = c88598; break;
+						case 9: coding_table = c88599; break;
+						case 10: coding_table = c885910; break;
+						case 11: coding_table = c885911; break;
+//						case 12: coding_table = c885912; break; // reserved.. for indian use
+						case 13: coding_table = c885913; break;
+						case 14: coding_table = c885914; break;
+						case 15: coding_table = c885915; break;
+						case 16: coding_table = c885916; break;
 						default:
 							eFatal("[convertUTF8DVB] unknown coding table %d", table);
 							break;
 					}
 				}
-				for(unsigned int j=0;j<96;j++)
+				for (unsigned int j = 0; j < 96; j++)
 				{
-					if(coding_table[j]==c)
+					if (coding_table[j] == c)
 					{
-						c=0xA0+j;
+						c = 0xA0 + j;
 						break;
 					}
 				}
 			}
 		}
-		buf[t++]=(unsigned char)c;
+		buf[t++] = (unsigned char)c;
 	}
-	return std::string((char*)buf,t);
+	return std::string((char*)buf, t);
 }
 
 std::string convertLatin1UTF8(const std::string &string)
 {
-	unsigned int t=0, i=0, len=string.size();
+	unsigned int i = 0, len = string.size();
 
-	unsigned char res[2048];
+	std::string res = "";
 
 	while (i < len)
 	{
-		unsigned long code=(unsigned char)string[i++];
-				// Unicode->UTF8 encoding
-		if (code < 0x80) // identity latin <-> utf8 mapping
-			res[t++]=char(code);
-		else if (code < 0x800) // two byte mapping
-		{
-			res[t++]=(code>>6)|0xC0;
-			res[t++]=(code&0x3F)|0x80;
-		} else if (code < 0x10000) // three bytes mapping
-		{
-			res[t++]=(code>>12)|0xE0;
-			res[t++]=((code>>6)&0x3F)|0x80;
-			res[t++]=(code&0x3F)|0x80;
-		} else
-		{
-			res[t++]=(code>>18)|0xF0;
-			res[t++]=((code>>12)&0x3F)|0x80;
-			res[t++]=((code>>6)&0x3F)|0x80;
-			res[t++]=(code&0x3F)|0x80;
-		}
-		if (t+4 > 2047)
-		{
-			eDebug("[convertLatin1UTF8] buffer to small.. break now");
-			break;
-		}
+		unsigned long code = (unsigned char)string[i++];
+		res += UnicodeToUTF8(code);
 	}
-	return std::string((char*)res, t);
+	return res;
 }
 
 int isUTF8(const std::string &string)
 {
-	unsigned int len=string.size();
+	unsigned int len = string.size();
 
-	for (unsigned int i=0; i < len; ++i)
+	// Unicode chars: #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]
+	// (i.e. any Unicode character, excluding the surrogate blocks, FFFE, and FFFF.
+	// Avoid "compatibility characters", as defined in section 2.3 of The Unicode Standard, Version 5.0.0.
+	// Following characters are also discouraged. They are either control characters or permanently
+	// undefined Unicode characters:
+	//[#x7F-#x84], [#x86-#x9F], [#xFDD0-#xFDEF],
+	//[#x1FFFE-#x1FFFF], [#x2FFFE-#x2FFFF], [#x3FFFE-#x3FFFF],
+	//[#x4FFFE-#x4FFFF], [#x5FFFE-#x5FFFF], [#x6FFFE-#x6FFFF],
+	//[#x7FFFE-#x7FFFF], [#x8FFFE-#x8FFFF], [#x9FFFE-#x9FFFF],
+	//[#xAFFFE-#xAFFFF], [#xBFFFE-#xBFFFF], [#xCFFFE-#xCFFFF],
+	//[#xDFFFE-#xDFFFF], [#xEFFFE-#xEFFFF], [#xFFFFE-#xFFFFF],
+	//[#x10FFFE-#x10FFFF].
+
+	for (unsigned int i = 0; i < len; ++i)
 	{
-		if (!(string[i]&0x80)) // normal ASCII
+		if (!(string[i] & 0x80)) // normal ASCII
 			continue;
-		if ((string[i] & 0xE0) == 0xC0) // one char following.
-		{
-				// first, length check:
-			if (i+1 >= len)
-				return 0; // certainly NOT utf-8
-			i++;
-			if ((string[i]&0xC0) != 0x80)
-				return 0; // no, not UTF-8.
-		} else if ((string[i] & 0xF0) == 0xE0)
-		{
-			if ((i+1) >= len)
-				return 0;
-			i++;
-			if ((string[i]&0xC0) != 0x80)
-				return 0;
-			i++;
-			if ((string[i]&0xC0) != 0x80)
+		int l = 0;
+		if ((string[i] & 0xE0) == 0xC0) // 2-byte
+			l = 1;
+		else if ((string[i] & 0xF0) == 0xE0)  // 3-byte
+			l = 2;
+		else if ((string[i] & 0xF8) == 0xF0) // 4-byte
+			l = 3;
+		if (l == 0 || i + l >= len) // no UTF leader or not enough bytes
+			return 0;
+
+		while (l-- > 0) {
+			if ((string[++i] & 0xC0) != 0x80)
 				return 0;
 		}
 	}
 	return 1; // can be UTF8 (or pure ASCII, at least no non-UTF-8 8bit characters)
 }
 
+
 unsigned int truncateUTF8(std::string &s, unsigned int newsize)
 {
-	unsigned int length = s.size();
+        unsigned int len = s.size();
 
-	while (length > newsize)
-	{
-		if ((unsigned char)s[length - 1] > 0x7F)
-		{
-			do
-			{
-				/* remove all UTF data bytes, not including the start byte, which is {0xC0 <= startbyte <= 0xFD} */
-				length--;
-			} while (length > 0 && (unsigned char)s[length - 1] <= 0xBF); /* remove only databytes */
-		}
-		/* remove the UTF startbyte, or normal ascii character */
-		if (length > 0) length--;
-	}
-	s.resize(length);
-	return length;
+        // Assume s is a real UTF8 string!!!
+        while (len > newsize) {
+                while (len-- > 0  && (s[len] & 0xC0) == 0x80)
+                        ; // remove UTF data bytes,  e.g. range 0x80 - 0xBF
+                if (len > 0)   // remove the UTF startbyte, or normal ascii character
+                         --len;
+        }
+        s.resize(len);
+        return len;
 }
+
 
 std::string removeDVBChars(const std::string &s)
 {
@@ -679,13 +744,13 @@ std::string removeDVBChars(const std::string &s)
 
 	int len = s.length();
 
-	for(int i = 0; i < len; i++)
+	for (int i = 0; i < len; i++)
 	{
 		unsigned char c1 = s[i];
 		unsigned int c;
 
 			/* UTF8? decode (but only simple) */
-		if((c1 > 0x80) && (i < len-1))
+		if ((c1 > 0x80) && (i < len-1))
 		{
 			unsigned char c2 = s[i + 1];
 			c = ((c1&0x3F)<<6) + (c2&0x3F);
@@ -695,29 +760,87 @@ std::string removeDVBChars(const std::string &s)
 				continue;
 			}
 		}
-
 		res += s[i];
 	}
 
 	return res;
 }
 
+
 void makeUpper(std::string &s)
 {
 	std::transform(s.begin(), s.end(), s.begin(), (int(*)(int)) toupper);
 }
 
-std::string replace_all(const std::string &in, const std::string &entity, const std::string &symbol)
+
+std::string replace_all(const std::string &in, const std::string &entity, const std::string &symbol, int table)
 {
 	std::string out = in;
 	std::string::size_type loc = 0;
-	while (( loc = out.find(entity, loc)) != std::string::npos )
-	{
-		out.replace(loc, entity.length(), symbol);
-		loc += symbol.length();
+	if( table == -1 )
+		table = defaultEncodingTable;
+
+	switch(table){
+	case UTF8_ENCODING:
+		while (loc < out.length()) {
+			if ( (entity.length() + loc) <= out.length() && !out.compare(loc, entity.length(), entity)) {
+				out.replace(loc, entity.length(), symbol);
+				loc += symbol.length();
+				continue;
+			}
+			if (out.at(loc) < 0x80)
+				++loc;
+			else if ((out.at(loc) & 0xE0) == 0xC0)
+				loc += 2;
+			else if ((out.at(loc) & 0xF0) == 0xE0)
+				loc += 3;
+			else if ((out.at(loc) & 0xF8) == 0xF0)
+				loc += 4;
+		}
+		break;
+	case BIG5_ENCODING:
+	case GB18030_ENCODING:
+		while (loc<out.length()) {
+			if ((entity.length() + loc) <= out.length() && !out.compare(loc, entity.length(), entity)) {
+				out.replace(loc, entity.length(), symbol);
+				loc += symbol.length();
+				continue;
+			}
+			if (loc+1 >= out.length())
+				break;
+			unsigned char c1 = out.at(loc);
+			unsigned char c2 = out.at(loc+1);
+			if ((c1 > 0x80 && c1 < 0xff && c2 >= 0x40 && c2 < 0xff)	|| //GBK
+				(c1 > 0xa0 && c1 < 0xf9 && ((c2 >= 0x40 && c2 < 0x7f) || (c2 > 0xa0 && c2 < 0xff)))	//BIG5
+				)
+				loc += 2;
+			else
+				++loc;
+		}
+		break;
+	case UTF16BE_ENCODING:
+	case UTF16LE_ENCODING:
+		while (loc<out.length()) {
+			if ((entity.length() + loc) <= out.length() && !out.compare(loc, entity.length(), entity)) {
+				out.replace(loc, entity.length(), symbol);
+				loc += symbol.length();
+				continue;
+			}
+			loc += 2;
+		}
+		break;
+
+	default:
+		while ((loc = out.find(entity, loc)) != std::string::npos)
+		{
+			out.replace(loc, entity.length(), symbol);
+			loc += symbol.length();
+		}
+		break;
 	}
 	return out;
 }
+
 
 std::string urlDecode(const std::string &s)
 {
@@ -734,10 +857,12 @@ std::string urlDecode(const std::string &s)
 		else
 		{
 			i += 2;
-			if (i >= len) break;
+			if (i >= len)
+				break;
 			char t[3] = {s[i - 1], s[i], 0};
 			unsigned char r = strtoul(t, 0, 0x10);
-			if (r) res += r;
+			if (r)
+				res += r;
 		}
 	}
 	return res;

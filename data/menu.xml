@@ -86,16 +86,11 @@ InfoBar.instance.showMovies()
 			<id val="id_mainmenu_tasks_setup_tv" default="&gt;&lt;"/>
 			<menu weight="10" level="0" text="Service searching" entryID="mainmenu_tasks_setup_tv_scan">
 				<id val="id_mainmenu_tasks_setup_tv_scan" />
-				<item text="Tuner configuration" entryID="id_mainmenu_tasks_setup_tv_scan_tuner">
-					<screen module="Satconfig" screen="NimSelection" />
-				</item>
-				<item text="Automatic scan" entryID="id_mainmenu_tasks_setup_tv_scan_auto">
-					<screen module="ScanSetup" screen="ScanSimple" />
-				</item>
-				<item text="Manual scan" entryID="id_mainmenu_tasks_setup_tv_scan_manual">
-					<screen module="ScanSetup" />
-				</item>
-				<item text="Fallback configuration" entryID="fallback_setup"><setup id="fallback"/></item>
+				<item weight="1" text="Tuner configuration" entryID="id_mainmenu_tasks_setup_tv_scan_tuner" requires="ClientModeDisabled"><screen module="Satconfig" screen="NimSelection"/></item>
+				<item weight="2" text="Tuner configuration" entryID="client_mode" requires="ClientModeEnabled"><screen module="ClientMode" screen="ClientModeScreen"/></item>
+				<item text="Automatic scan" entryID="id_mainmenu_tasks_setup_tv_scan_auto" requires="ClientModeDisabled"><screen module="ScanSetup" screen="ScanSimple" /></item>
+				<item text="Manual scan" entryID="id_mainmenu_tasks_setup_tv_scan_manual"><screen module="ScanSetup" /></item>
+				<item weight="100" text="Fallback configuration" entryID="fallback_setup" requires="ClientModeDisabled"><setup id="fallback"/></item>
 			</menu>
 			<item weight="20" level="0" text="Recording settings" entryID="record_paths">
 				<screen module="Recordings" screen="RecordingSettings" />

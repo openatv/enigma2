@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 21:19+0100\n"
-"PO-Revision-Date: 2017-01-08 10:12+0100\n"
+"POT-Creation-Date: 2017-04-08 10:04+0200\n"
+"PO-Revision-Date: 2017-04-14 12:33+0200\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.9\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -165,6 +165,10 @@ msgstr ""
 msgid " (lower than any auto)"
 msgstr ""
 
+#, python-format
+msgid " Stream %s"
+msgstr " Stream %s"
+
 msgid " and"
 msgstr "und"
 
@@ -174,10 +178,16 @@ msgstr "%-H:%M"
 msgid "%-H:%M:%S"
 msgstr ""
 
+msgid "%-I:%M"
+msgstr ""
+
 msgid "%-I:%M%P"
 msgstr ""
 
 msgid "%-I:%M%^p"
+msgstr ""
+
+msgid "%-I:%M:%S"
 msgstr ""
 
 msgid "%-I:%M:%S%P"
@@ -187,36 +197,67 @@ msgid "%-I:%M:%S%^p"
 msgstr ""
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
-msgid "%-e %B %Y"
-msgstr ""
+msgid "%-d %B %Y"
+msgstr "%-d %B %Y"
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
-msgid "%-e %b"
-msgstr ""
+#. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
+msgid "%-d %b"
+msgstr "%-d %b"
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
-msgid "%-e %b %Y"
+msgid "%-d %b %Y"
+msgstr "%-d %b %Y"
+
+msgid "%-d+%b_"
 msgstr ""
 
-msgid "%-e-%B-%Y"
+msgid "%-d-%B-%Y"
 msgstr ""
 
-msgid "%-e-%b"
+msgid "%-d-%b"
 msgstr ""
 
-msgid "%-e-%b-%Y"
+msgid "%-d-%b-%Y"
 msgstr ""
 
-msgid "%-e/%m"
+msgid "%-d/%-m"
 msgstr ""
 
-msgid "%-e/%m/%Y"
+msgid "%-d/%-m "
 msgstr ""
 
-msgid "%-m/%-e"
+msgid "%-d/%-m/%Y"
 msgstr ""
 
-msgid "%-m/%-e/%Y"
+msgid "%-d/%m"
+msgstr ""
+
+msgid "%-d/%m "
+msgstr ""
+
+msgid "%-d/%m/%Y"
+msgstr ""
+
+msgid "%-d=%b_"
+msgstr ""
+
+msgid "%-m/%-d"
+msgstr ""
+
+msgid "%-m/%-d "
+msgstr ""
+
+msgid "%-m/%-d/%Y"
+msgstr ""
+
+msgid "%-m/%d"
+msgstr ""
+
+msgid "%-m/%d "
+msgstr ""
+
+msgid "%-m/%d/%Y"
 msgstr ""
 
 #, python-format
@@ -228,40 +269,56 @@ msgid "%.0f MB"
 msgstr ""
 
 #, python-format
-msgid "%02d:%02d"
-msgstr "%02d:%02d"
+msgid "%.0f kB"
+msgstr ""
+
+#, python-format
+msgid "%.2f GB"
+msgstr ""
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
-msgid "%A %-e %B"
+msgid "%A %-d %B"
 msgstr ""
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-msgid "%A %-e %B %Y"
+msgid "%A %-d %B %Y"
+msgstr "%A %-d %B %Y"
+
+msgid "%A %-d-%B"
 msgstr ""
 
-msgid "%A %-e-%B"
+msgid "%A %-d-%B-%Y"
 msgstr ""
 
-msgid "%A %-e-%B-%Y"
+msgid "%A %-d/%-m"
 msgstr ""
 
-msgid "%A %-e/%m"
+msgid "%A %-d/%-m/%Y"
 msgstr ""
 
-msgid "%A %-e/%m/%Y"
+msgid "%A %-d/%m"
 msgstr ""
 
-msgid "%A %-m/%-e"
+msgid "%A %-d/%m/%Y"
 msgstr ""
 
-msgid "%A %-m/%-e/%Y"
+msgid "%A %-m/%-d"
 msgstr ""
 
-msgid "%A %B %-e"
+msgid "%A %-m/%-d/%Y"
 msgstr ""
 
-msgid "%A %B %-e %Y"
+msgid "%A %-m/%d"
 msgstr ""
+
+msgid "%A %-m/%d/%Y"
+msgstr ""
+
+msgid "%A %B %-d"
+msgstr "%A %B %-d"
+
+msgid "%A %B %-d %Y"
+msgstr "%A %B %-d %Y"
 
 msgid "%A %B %d"
 msgstr ""
@@ -269,28 +326,40 @@ msgstr ""
 msgid "%A %B %d %Y"
 msgstr ""
 
-msgid "%A %B-%-e"
+msgid "%A %B-%-d"
 msgstr ""
 
-msgid "%A %B-%-e-%Y"
+msgid "%A %B-%-d-%Y"
 msgstr ""
 
 msgid "%A %B-%d"
 msgstr ""
 
-msgid "%A %Y %B %-e"
+msgid "%A %B-%d-%Y"
 msgstr ""
+
+msgid "%A %Y %B %-d"
+msgstr "%A %Y %B %-d"
 
 msgid "%A %Y %B %d"
 msgstr ""
 
-msgid "%A %Y-%B-%-e"
+msgid "%A %Y-%B-%-d"
 msgstr ""
 
 msgid "%A %Y-%B-%d"
 msgstr ""
 
-msgid "%A %Y/%m/%-e"
+msgid "%A %Y/%-m/%-d"
+msgstr ""
+
+msgid "%A %Y/%-m/%d"
+msgstr ""
+
+msgid "%A %Y/%m/%-d"
+msgstr ""
+
+msgid "%A %Y/%m/%d"
 msgstr ""
 
 msgid "%A %d %B"
@@ -299,25 +368,61 @@ msgstr ""
 msgid "%A %d %B %Y"
 msgstr ""
 
-msgid "%A %m/%-e"
+msgid "%A %d-%B"
 msgstr ""
 
-msgid "%B %-e %Y"
+msgid "%A %d-%B-%Y"
 msgstr ""
+
+msgid "%A %d/%-m"
+msgstr ""
+
+msgid "%A %d/%-m/%Y"
+msgstr ""
+
+msgid "%A %d/%m"
+msgstr ""
+
+msgid "%A %d/%m/%Y"
+msgstr ""
+
+msgid "%A %m/%-d"
+msgstr ""
+
+msgid "%A %m/%-d/%Y"
+msgstr ""
+
+msgid "%A %m/%d"
+msgstr ""
+
+msgid "%A %m/%d/%Y"
+msgstr ""
+
+msgid "%B %-d %Y"
+msgstr "%B %-d %Y"
 
 msgid "%B %d %Y"
 msgstr ""
 
-msgid "%B-%-e-%Y"
+msgid "%B-%-d-%Y"
+msgstr ""
+
+msgid "%B-%d-%Y"
 msgstr ""
 
 msgid "%H:%M"
 msgstr "%H:%M"
 
+msgid "%I:%M"
+msgstr ""
+
 msgid "%I:%M%P"
 msgstr ""
 
 msgid "%I:%M%^p"
+msgstr ""
+
+msgid "%I:%M:%S"
 msgstr ""
 
 msgid "%I:%M:%S%P"
@@ -330,115 +435,151 @@ msgstr ""
 msgid "%R"
 msgstr ""
 
-#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock and hour:minute for 12 hour clocks
+#. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
 msgid "%T"
 msgstr ""
 
-msgid "%Y %B %-e"
-msgstr ""
+msgid "%Y %B %-d"
+msgstr "%Y %B %-d"
 
 msgid "%Y %B %d"
 msgstr ""
 
-msgid "%Y %b %-e"
-msgstr ""
+msgid "%Y %b %-d"
+msgstr "%Y %b %-d"
 
 msgid "%Y %b %d"
 msgstr ""
 
-msgid "%Y-%B-%-e"
+msgid "%Y-%B-%-d"
 msgstr ""
 
 msgid "%Y-%B-%d"
 msgstr ""
 
-msgid "%Y-%b-%-e"
+msgid "%Y-%b-%-d"
 msgstr ""
 
 msgid "%Y-%b-%d"
 msgstr ""
 
-msgid "%Y/%m/%-e"
+msgid "%Y/%-m/%-d"
+msgstr ""
+
+msgid "%Y/%-m/%d"
+msgstr ""
+
+msgid "%Y/%m/%-d"
+msgstr ""
+
+msgid "%Y/%m/%d"
 msgstr ""
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
-msgid "%a %-e"
+msgid "%a %-d"
 msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
-msgid "%a %-e %B %Y"
-msgstr ""
+msgid "%a %-d %B %Y"
+msgstr "%a %-d %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
-msgid "%a %-e %b"
-msgstr ""
+msgid "%a %-d %b"
+msgstr "%a %-d %b"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
-msgid "%a %-e %b %Y"
+msgid "%a %-d %b %Y"
+msgstr "%a %-d %b %Y"
+
+msgid "%a %-d+%b_"
 msgstr ""
 
-msgid "%a %-e-%B-%Y"
+msgid "%a %-d-%B-%Y"
 msgstr ""
 
-msgid "%a %-e-%b"
+msgid "%a %-d-%b"
 msgstr ""
 
-msgid "%a %-e-%b-%Y"
+msgid "%a %-d-%b-%Y"
 msgstr ""
 
-msgid "%a %-e/%m"
+msgid "%a %-d/%-m"
 msgstr ""
 
-msgid "%a %-e/%m/%Y"
+msgid "%a %-d/%-m/%Y"
 msgstr ""
 
-msgid "%a %-m/%-e"
+msgid "%a %-d/%m"
 msgstr ""
 
-msgid "%a %-m/%-e/%Y"
+msgid "%a %-d/%m/%Y"
 msgstr ""
 
-msgid "%a %B %-e %Y"
+msgid "%a %-m/%-d"
 msgstr ""
+
+msgid "%a %-m/%-d/%Y"
+msgstr ""
+
+msgid "%a %-m/%d"
+msgstr ""
+
+msgid "%a %-m/%d/%Y"
+msgstr ""
+
+msgid "%a %B %-d %Y"
+msgstr "%a %B %-d %Y"
 
 msgid "%a %B %d %Y"
 msgstr ""
 
-msgid "%a %B-%-e-%Y"
+msgid "%a %B-%-d-%Y"
 msgstr ""
 
-msgid "%a %Y %B %-e"
+msgid "%a %B-%d-%Y"
 msgstr ""
+
+msgid "%a %Y %B %-d"
+msgstr "%a %Y %B %-d"
 
 msgid "%a %Y %B %d"
 msgstr ""
 
-msgid "%a %Y %b %-e"
-msgstr ""
+msgid "%a %Y %b %-d"
+msgstr "%a %Y %b %-d"
 
 msgid "%a %Y %b %d"
 msgstr ""
 
-msgid "%a %Y-%B-%-e"
+msgid "%a %Y-%B-%-d"
 msgstr ""
 
 msgid "%a %Y-%B-%d"
 msgstr ""
 
-msgid "%a %Y-%b-%-e"
+msgid "%a %Y-%b-%-d"
 msgstr ""
 
 msgid "%a %Y-%b-%d"
 msgstr ""
 
-msgid "%a %Y/%m/%-e"
+msgid "%a %Y/%-m/%-d"
+msgstr "%a %Y/%-m/%-d"
+
+msgid "%a %Y/%-m/%d"
 msgstr ""
 
-msgid "%a %b %-e"
+msgid "%a %Y/%m/%-d"
+msgstr "%a %Y/%m/%-d"
+
+msgid "%a %Y/%m/%d"
 msgstr ""
 
-msgid "%a %b %-e %Y"
-msgstr ""
+msgid "%a %b %-d"
+msgstr "%a %b %-d"
+
+msgid "%a %b %-d %Y"
+msgstr "%a %b %-d %Y"
 
 msgid "%a %b %d"
 msgstr ""
@@ -446,13 +587,16 @@ msgstr ""
 msgid "%a %b %d %Y"
 msgstr ""
 
-msgid "%a %b-%-e"
+msgid "%a %b-%-d"
 msgstr ""
 
-msgid "%a %b-%-e-%Y"
+msgid "%a %b-%-d-%Y"
 msgstr ""
 
 msgid "%a %b-%d"
+msgstr ""
+
+msgid "%a %b-%d-%Y"
 msgstr ""
 
 msgid "%a %d"
@@ -467,14 +611,47 @@ msgstr ""
 msgid "%a %d %b %Y"
 msgstr ""
 
-msgid "%a %m/%-e"
+msgid "%a %d-%B-%Y"
 msgstr ""
 
-msgid "%b %-e"
+msgid "%a %d-%b"
 msgstr ""
 
-msgid "%b %-e %Y"
+msgid "%a %d-%b-%Y"
 msgstr ""
+
+msgid "%a %d/%-m"
+msgstr ""
+
+msgid "%a %d/%-m/%Y"
+msgstr ""
+
+msgid "%a %d/%m"
+msgstr ""
+
+msgid "%a %d/%m/%Y"
+msgstr ""
+
+msgid "%a %e %b  %-H:%M"
+msgstr "%a %e %b  %-H:%M"
+
+msgid "%a %m/%-d"
+msgstr ""
+
+msgid "%a %m/%-d/%Y"
+msgstr ""
+
+msgid "%a %m/%d"
+msgstr ""
+
+msgid "%a %m/%d/%Y"
+msgstr ""
+
+msgid "%b %-d"
+msgstr ""
+
+msgid "%b %-d %Y"
+msgstr "%b %-d %Y"
 
 msgid "%b %d"
 msgstr ""
@@ -482,13 +659,28 @@ msgstr ""
 msgid "%b %d %Y"
 msgstr ""
 
-msgid "%b-%-e"
+msgid "%b+%-d "
 msgstr ""
 
-msgid "%b-%-e-%Y"
+msgid "%b+%d "
+msgstr ""
+
+msgid "%b-%-d"
+msgstr ""
+
+msgid "%b-%-d-%Y"
 msgstr ""
 
 msgid "%b-%d"
+msgstr ""
+
+msgid "%b-%d-%Y"
+msgstr ""
+
+msgid "%b=%-d "
+msgstr ""
+
+msgid "%b=%d "
 msgstr ""
 
 msgid "%d %B %Y"
@@ -501,12 +693,12 @@ msgid "%d %b %Y"
 msgstr "%d %b %y"
 
 #, python-format
-msgid "%d GB"
-msgstr "%d GB"
+msgid "%d B"
+msgstr ""
 
 #, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
+msgid "%d GB"
+msgstr "%d GB"
 
 #, python-format
 msgid "%d KB"
@@ -518,7 +710,15 @@ msgstr "%d MB"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
-#. TRANSLATORS: short time representation hour:minute
+#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
+#. _("%R")
+#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
+#. _("%R")
+#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
+#. _("%e %b")
+#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
+#. _("%a %e %b")
+#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
 #. _("%R")
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 #. _("%a %e %b %R")
@@ -573,6 +773,10 @@ msgid "%d minutes"
 msgstr "%d Minuten"
 
 #, python-format
+msgid "%d ms"
+msgstr "%d ms"
+
+#, python-format
 msgid "%d of %d Bytes"
 msgstr "%d von %d Bytes"
 
@@ -598,11 +802,55 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] "%d Funk-Netzwerk gefunden!"
 msgstr[1] "%d Funk-Netzwerke gefunden!"
 
-#, python-format
-msgid "%d.%02d. %02d:%02d"
-msgstr "%d.%02d. %02d:%02d"
+msgid "%d+%b_"
+msgstr ""
 
-msgid "%m/%-e"
+msgid "%d-%B-%Y"
+msgstr ""
+
+msgid "%d-%b"
+msgstr ""
+
+msgid "%d-%b-%Y"
+msgstr ""
+
+msgid "%d/%-m"
+msgstr ""
+
+msgid "%d/%-m "
+msgstr ""
+
+msgid "%d/%-m/%Y"
+msgstr ""
+
+msgid "%d/%m"
+msgstr ""
+
+msgid "%d/%m "
+msgstr ""
+
+msgid "%d/%m/%Y"
+msgstr ""
+
+msgid "%d=%b_"
+msgstr ""
+
+msgid "%m/%-d"
+msgstr ""
+
+msgid "%m/%-d "
+msgstr ""
+
+msgid "%m/%-d/%Y"
+msgstr ""
+
+msgid "%m/%d"
+msgstr ""
+
+msgid "%m/%d "
+msgstr ""
+
+msgid "%m/%d/%Y"
 msgstr ""
 
 #, python-format
@@ -665,8 +913,8 @@ msgstr[0] "%s neues Paket verfügbar"
 msgstr[1] "%s neue Pakete verfügbar"
 
 #, python-format
-msgid "%s%d min"
-msgstr "%s %d Min"
+msgid "%s%d Min"
+msgstr "%s%d Min"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -836,6 +1084,15 @@ msgstr "3D Einstellungen"
 msgid "3X"
 msgstr "3X"
 
+msgid "420"
+msgstr ""
+
+msgid "422"
+msgstr ""
+
+msgid "444"
+msgstr ""
+
 msgid "480p 24Hz"
 msgstr "480p 24Hz"
 
@@ -861,111 +1118,6 @@ msgid "720p 24Hz"
 msgstr "720p 24Hz"
 
 msgid "8bit"
-msgstr ""
-
-msgid "9 Mon"
-msgstr ""
-
-msgid "9 Mon 9999"
-msgstr ""
-
-msgid "9 Month 9999"
-msgstr "9 Monat 9999"
-
-msgid "9-Mon"
-msgstr ""
-
-msgid "9-Mon-9999"
-msgstr ""
-
-msgid "9-Month-9999"
-msgstr "9-Monat-9999"
-
-msgid "9/9"
-msgstr ""
-
-msgid "9/9/9999"
-msgstr ""
-
-msgid "9/99"
-msgstr ""
-
-msgid "9/99/9999"
-msgstr ""
-
-msgid "99 Mon"
-msgstr ""
-
-msgid "99 Mon 9999"
-msgstr "99 Mon"
-
-msgid "99 Month 9999"
-msgstr "99 Monat 9999"
-
-msgid "99/9"
-msgstr ""
-
-msgid "9999 Mon 9"
-msgstr "9999 Mon 9"
-
-msgid "9999 Mon 99"
-msgstr "9999 Mon 99"
-
-msgid "9999 Month 9"
-msgstr "9999 Monat 9"
-
-msgid "9999 Month 99"
-msgstr "9999 Monat 99"
-
-msgid "9999-Mon-9"
-msgstr "9999-Mon-9"
-
-msgid "9999-Mon-99"
-msgstr "9999-Mon-99"
-
-msgid "9999-Month-9"
-msgstr "9999-Monat-9"
-
-msgid "9999-Month-99"
-msgstr "9999-Monat-99"
-
-msgid "9999/99/9"
-msgstr ""
-
-msgid "99:99"
-msgstr ""
-
-msgid "99:99:99"
-msgstr ""
-
-msgid "99:99:99AM/PM"
-msgstr ""
-
-msgid "99:99:99am/pm"
-msgstr ""
-
-msgid "99:99AM/PM"
-msgstr ""
-
-msgid "99:99am/pm"
-msgstr ""
-
-msgid "9:99"
-msgstr ""
-
-msgid "9:99:99"
-msgstr ""
-
-msgid "9:99:99AM/PM"
-msgstr ""
-
-msgid "9:99:99am/pm"
-msgstr ""
-
-msgid "9:99AM/PM"
-msgstr ""
-
-msgid "9:99am/pm"
 msgstr ""
 
 msgid "< Default >"
@@ -1142,6 +1294,9 @@ msgstr "AAC Transkodierung"
 
 msgid "AC3"
 msgstr "AC3"
+
+msgid "AC3 downmix"
+msgstr "AC3 Downmix"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr "Sammeln von TSID/ONID"
@@ -1345,6 +1500,9 @@ msgstr "Adresse"
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Verändere die Farbeinstellungen, so dass alle Farbabstufungen voneinander unterschieden werden können, diese aber so gesättigt wie möglich dargestellt werden. Sofern mit dem Ergebnis zufrieden, OK drücken, um die Feineinstellungen zu beenden. Mit den Zahlentasten können weitere Testbilder gewählt werden."
 
+msgid "Adult Audience, Strong Violence 15+"
+msgstr "Für Erwachsene, starke Gewalt 15+"
+
 msgid "Advanced"
 msgstr "erweitert"
 
@@ -1443,6 +1601,9 @@ msgstr "Erlaubt es Erweiterungen bekannter Dateitypen zu verstecken."
 
 msgid "Allows you to send a copy of the log to yourself."
 msgstr "Erlaubt es dir eine Kopie an dich selbst zu schicken."
+
+msgid "Allows you to set a schedule to import the EPG and channels list. The EPG and channels list will always be imported on reboot or GUI restart."
+msgstr "Erlaubt es einen Zeitplan für den Import von EPG und Kanalliste zu setzen. EPG und Kanalliste wird immer beim Start geladen."
 
 msgid "Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created."
 msgstr "Maximale Größe (MB) vom Debug Log festlegen. Wenn die Größe erreicht wurde wird eine neue Datei erstellt."
@@ -1651,6 +1812,9 @@ msgstr "Achtung! Dies ist ein Wiederholungstimer\n"
 msgid "Audio"
 msgstr "Audio"
 
+msgid "Audio Channel"
+msgstr "Audiokanal"
+
 msgid "Audio PID"
 msgstr "Audio PID"
 
@@ -1677,6 +1841,9 @@ msgstr "Format der Audiospur (%s)"
 msgid "Audio track (%s) language"
 msgstr "Sprache der Audiospur (%s)"
 
+msgid "Australia"
+msgstr "Australien"
+
 msgid "Author: "
 msgstr "Autor: "
 
@@ -1689,6 +1856,9 @@ msgstr "Auto"
 
 msgid "Auto Deep Standby"
 msgstr "automatisch Ausschalten"
+
+msgid "Auto Detect"
+msgstr "Automatisch erkennen"
 
 msgid "Auto EXIF Orientation rotation/flipping"
 msgstr "Automatisch nach EXIF drehen/spiegeln"
@@ -1773,6 +1943,10 @@ msgstr "Vorhandene Freigaben:"
 
 msgid "B"
 msgstr "B"
+
+#, python-format
+msgid "BC%d"
+msgstr ""
 
 msgid "BER:"
 msgstr ""
@@ -1886,7 +2060,7 @@ msgid "Boost green"
 msgstr "Verstärke Grün"
 
 #, python-format
-msgid "Bootloader:\t\t%s\n"
+msgid "Bootloader:\t%s\n"
 msgstr "Bootloader:\t\t%s\n"
 
 msgid "Bouquet List"
@@ -2029,11 +2203,7 @@ msgid "CI assignment"
 msgstr "CI-Zuweisung"
 
 #, python-format
-msgid "CPU speed:\t%s\n"
-msgstr ""
-
-#, python-format
-msgid "CPU:\t%s\n"
+msgid "CPU:\t%s %s %s\n"
 msgstr ""
 
 msgid "CVBS"
@@ -2242,8 +2412,18 @@ msgstr ""
 "Prüfe Tuner %s\n"
 "DiSEqC Port %s für %s"
 
+msgid "Children"
+msgstr "Kinder"
+
 msgid "Children/Youth"
 msgstr "Kinder/Jugend"
+
+msgid "Childrens"
+msgstr "Kinder"
+
+#, python-format
+msgid "Chipset:\t%s\n"
+msgstr "Chipsatz:\tBCM%s\n"
 
 #, python-format
 msgid "Chipset:\tBCM%s\n"
@@ -2256,17 +2436,36 @@ msgstr "Chipsatz: BCM%s"
 msgid "Choose Bouquet"
 msgstr "Wähle Favoritenliste"
 
+msgid "Choose a country scheme for decoding genre information in EPG events."
+msgstr "Wähle ein Land für die Genre-Informationen im EPG aus."
+
+msgid "Choose a country scheme for decoding rating information in EPG events."
+msgstr "Wähle ein Land für die Altersangaben im EPG aus."
+
 msgid "Choose a tag for easy finding a recording."
 msgstr "Wähle einen TAG um Aufnahmen einfacher finden zu können."
 
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr "Wähle zwischen täglich, wöchentlich, wochentags oder benutzerdefiniert."
 
-msgid "Choose the display formatting style for dates. The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Wähle Datumsformat für Anzeigen. Die Anzeige wird entsprechend der Einstellung geschehen und kann vom Skin beeinflusst werden."
+msgid "Choose between High Dynamic Range (HDR) or Picture in Picture (PIP). Both are not possible at the same time. A FULL REBOOT is required for it to take effect"
+msgstr "Wähle zwischen High Dynamic Range (HDR) oder Bild in Bild (PiP). Beides gleichzeitig ist nicht möglich. Ein kompletter Neustart ist erforderlich damit Änderungen wirksam werden."
 
-msgid "Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Wähle Zeitformat für Anzeigen. Die Anzeige wird entsprechend der Einstellung geschehen und kann vom Skin beeinflusst werden."
+msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Wähle Datumsformat für Anzeige. 'T'/'TT' ist der Tag und 'M'/'MM' ist der Monat in Ziffern. 'DD' und 'MM' bekommen eine führende 0 wenn einstellig. Die Anzeige wird entsprechend der Einstellung geschehen und kann vom Skin beeinflusst werden."
+
+msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr ""
+"Wähle Anzeigeart für Zeit. 'H'/'HH' ist die Stunde bei 24 Stunden Anzeige.  'h'/'hh' ist die Stunde bei 12 Stunden Anzeige., 'mm' sind die Minuten und 'ss' Sind die Sekunden. \n"
+"'HH' und 'hh' bekommen führende 0 bei einstelligen Zeiten. Die Anzeige wird durch diese Einstellungen aber auch den Skin bestimmt."
+
+msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Wähle Datumsformat für Frontpanel. 'T'/'TT' ist der Tag und 'M'/'MM' ist der Monat in Ziffern. 'DD' und 'MM' bekommen eine führende 0 wenn einstellig. Die Anzeige wird entsprechend der Einstellung geschehen und kann vom Skin beeinflusst werden."
+
+msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
+msgstr ""
+"Wähle Anzeigeart für Zeit des Frontpanel. 'H'/'HH' ist die Stunde bei 24 Stunden Anzeige.  'h'/'hh' ist die Stunde bei 12 Stunden Anzeige., 'mm' sind die Minuten und 'ss' Sind die Sekunden. \n"
+"'HH' und 'hh' bekommen führende 0 bei einstelligen Zeiten. Die Anzeige auf Frontpanel wird durch diese Einstellungen aber auch den Skin bestimmt."
 
 msgid "Choose the location for crash and debug logs folder."
 msgstr "Wähle den Speicherort für Crash- und Debug-Logs."
@@ -2286,8 +2485,14 @@ msgstr "Wähle was bei der 0-Taste passieren soll wenn PiP aktiv ist."
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Wähle ob AAC Tonspuren transkodiert werden sollen."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
-msgstr "Wähle ob Mehrkanalton zu Stereo runter gerechnet werden soll."
+msgid "Choose whether multi channel aac sound tracks should be downmixed to stereo."
+msgstr "Wähle ob AAC Mehrkanalton zu Stereo runter gerechnet werden soll."
+
+msgid "Choose whether multi channel ac3 sound tracks should be downmixed to stereo."
+msgstr "Wähle ob AC3 Mehrkanalton zu Stereo runter gerechnet werden soll."
+
+msgid "Choose whether multi channel dts sound tracks should be downmixed to stereo."
+msgstr "Wähle ob DTS Mehrkanalton zu Stereo runter gerechnet werden soll."
 
 msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Wähle ob Mehrkanalton als PCM ausgegeben werden sollen."
@@ -2337,6 +2542,12 @@ msgstr "Log löschen"
 msgid "Clear playlist"
 msgstr "Wiedergabeliste leeren"
 
+msgid "Client mode"
+msgstr "Client Modus"
+
+msgid "Client mode sets up this receiver to stream from another receiver. In this mode no local tuners will be available and channel lists, EPG, etc, will come from the remote receiver. All tuner settings will be cleared."
+msgstr "Client Modus richtet den Receiver so ein das von einem anderen Receiver gestreamt wird. In diesem Modus gibt es keine lokalen Tuner und Kanalliste, EPG usw. werden vom Server-Receiver geholt. Alle Tunereinstellungen werden gelöscht."
+
 msgid "Clients"
 msgstr "Klienten"
 
@@ -2358,16 +2569,13 @@ msgstr "Dialog schließen"
 msgid "Close title selection"
 msgstr "Titelauswahl schließen"
 
+msgid "Code R. LP-HP & Guard Int"
+msgstr ""
+
 msgid "Code rate HP"
 msgstr "Empfangsrate HP"
 
 msgid "Code rate LP"
-msgstr "Empfangsrate LP"
-
-msgid "Coderate HP"
-msgstr "Empfangsrate HP"
-
-msgid "Coderate LP"
 msgstr "Empfangsrate LP"
 
 msgid "Collection name"
@@ -2381,6 +2589,12 @@ msgstr "Farbformat"
 
 msgid "Color space"
 msgstr "Farbraum"
+
+msgid "Combo"
+msgstr ""
+
+msgid "Comedy"
+msgstr "Comedy"
 
 msgid "Command To Run"
 msgstr "Kommando zum Ausführen"
@@ -2739,8 +2953,11 @@ msgstr "Transcoding verbunden. Beschränkung - Kein PiP!"
 msgid "Connected: "
 msgstr "Verbunden:"
 
-msgid "Constellation"
-msgstr "Konstellation"
+msgid "Connection using the supplied FTP parameters failed. Please recheck the details and try again."
+msgstr "Verbindung mit den FRP-Einstellungen fehlgeschlagen. Bitte überprüfen und erneut versuchen."
+
+msgid "Constellation & FFT mode"
+msgstr "Konstellation & FFT Modus"
 
 msgid "Content"
 msgstr "Inhalt"
@@ -2796,10 +3013,6 @@ msgstr "in Favoritenliste kopieren"
 msgid "Copying files"
 msgstr "Dateien kopieren"
 
-#, python-format
-msgid "Cores:\t%s\n"
-msgstr "Kerne:\t%s\n"
-
 msgid "Could not find installed channel list."
 msgstr "Kann keine installierte Senderliste finden."
 
@@ -2825,6 +3038,12 @@ msgstr "Aufnahme wegen ungültigen Sender %s fehlgeschlagen"
 msgid "Could not save configfile %s!"
 msgstr "Kann Config-Datei %s nicht speichern!"
 
+msgid "Country for EPG event genre information"
+msgstr "Land für Genreinformationen"
+
+msgid "Country for EPG event rating information"
+msgstr "Land für EPG Altersangaben"
+
 msgid "Crash Logs"
 msgstr "Crash Logs"
 
@@ -2833,6 +3052,9 @@ msgstr "DVD-ISO erstellen"
 
 msgid "Create directory"
 msgstr "Verzeichnis erstellen"
+
+msgid "Create seperate radio userbouquet"
+msgstr "Erzeuge separates Radio userbouquet"
 
 msgid "Creating AP and SC Files"
 msgstr "AP- und SC-Dateien erzeugen"
@@ -2858,6 +3080,9 @@ msgstr "Cron Verwaltung"
 
 msgid "CronTimers"
 msgstr "CronTimer"
+
+msgid "Current Affairs"
+msgstr "Gegenwart"
 
 msgid "Current CEC address"
 msgstr "Aktuelle CEC-Adresse"
@@ -2926,6 +3151,28 @@ msgstr ""
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid ""
+"DHCP\n"
+"\n"
+"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
+"\n"
+"If you get a \"disabled\" message:\n"
+"- Your LAN adapter is configured for manual IP setup.\n"
+"- Verify that you have entered correct IP informations in the adapter setup dialog.\n"
+"\n"
+"If you get an \"enabled\" message:\n"
+"- Verify that you have a configured and working DHCP server in your network."
+msgstr ""
+"DHCP\n"
+"\n"
+"Dieser Test prüft ob der Netzwerkadapter seine IP-Adresse automatisch per DHCP bekommt.\n"
+"\n"
+"Wenn hier \"aktiviert\" steht:\n"
+"- dann hat der Netzwerkadapter eine feste IP-Adresse\n"
+"- überprüfe ob die Einstellungen bezüglich der IP-Adresse stimmen.\n"
+"Wenn hier \"deaktiviert\" steht:\n"
+"Überprüfe ob sich im Netzwerk ein DHCP-Server befindet und dieser auch aktiviert ist."
+
 msgid "DLNA support"
 msgstr "DLNA-Unterstützung"
 
@@ -2937,6 +3184,9 @@ msgstr ""
 
 msgid "DTS"
 msgstr "DTS"
+
+msgid "DTS downmix"
+msgstr "DTS Downmix"
 
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
@@ -2999,179 +3249,125 @@ msgstr "Datum"
 msgid "Date style"
 msgstr "Zeitformat"
 
-msgid "Day 9"
-msgstr "Tag 9"
+msgid "Day D Mon"
+msgstr "Tag D Mon"
 
-msgid "Day 9 Mon"
-msgstr "Tag 9 Mon"
+msgid "Day D-Mon"
+msgstr "Tag T-Mon"
 
-msgid "Day 9 Mon 9999"
-msgstr "Tag 9 Mon 9999"
+msgid "Day D/M"
+msgstr "Tag T/M"
 
-msgid "Day 9 Month 9999"
-msgstr "Tag 9 Monat 9999"
+msgid "Day D/MM"
+msgstr "Tag T/MM"
 
-msgid "Day 9-Mon"
-msgstr "Tag 9-Mon"
+msgid "Day DD Mon"
+msgstr "Tag TT Mon"
 
-msgid "Day 9-Mon-9999"
-msgstr "Tag 9-Mon-9999"
+msgid "Day DD-Mon"
+msgstr "Tag TT-Mon"
 
-msgid "Day 9-Month-9999"
-msgstr "Tag 0-Monat-9999"
+msgid "Day DD/M"
+msgstr "Tag TT/M"
 
-msgid "Day 9/9"
-msgstr "Tag 9/9"
+msgid "Day DD/MM"
+msgstr "Tag TT/MM"
 
-msgid "Day 9/9/9999"
-msgstr "Tag 9/99/9999"
+msgid "Day M/D"
+msgstr "Tag M/T"
 
-msgid "Day 9/99"
-msgstr "Tag 9/99"
+msgid "Day M/DD"
+msgstr "Tag M/TT"
 
-msgid "Day 9/99/9999"
-msgstr "Tag 9/99/9999"
+msgid "Day MM/D"
+msgstr "Tag MM/T"
 
-msgid "Day 99"
-msgstr "Tag 99"
+msgid "Day MM/DD"
+msgstr "Tag MM/TT"
 
-msgid "Day 99 Mon"
-msgstr "Tag 99 Mon"
+msgid "Day Mon D"
+msgstr "Tag Mon D"
 
-msgid "Day 99 Mon 9999"
-msgstr "Tag 99 Mon 9999"
+msgid "Day Mon DD"
+msgstr "Tag Mon DD"
 
-msgid "Day 99 Month 9999"
-msgstr "Tag 99 Monat 9999"
+msgid "Day Mon-D"
+msgstr "Tag Mon-D"
 
-msgid "Day 99/9"
-msgstr "Tag 99/9"
+msgid "Day Mon-DD"
+msgstr "Tag Mon-DD"
 
-msgid "Day 9999 Mon 9"
-msgstr "Tag 9999 Mon 9"
+msgid "Dayname D Month Year"
+msgstr "Tagesname T Monat Jahr"
 
-msgid "Day 9999 Mon 99"
-msgstr "Tag 9999 Mon 99"
+msgid "Dayname D-Month-Year"
+msgstr "Tagesname T-Monat-Jahr"
 
-msgid "Day 9999 Month 9"
-msgstr "Tag 9999 Monat 9"
+msgid "Dayname D/M/Year"
+msgstr "Tagesname T/M/Jahr"
 
-msgid "Day 9999 Month 99"
-msgstr "Tag 9999 Monat 99"
+msgid "Dayname D/MM/Year"
+msgstr "Tagesname T/MM/Jahr"
 
-msgid "Day 9999-Mon-9"
-msgstr "Tag 9999-Mon-9"
+msgid "Dayname DD Month Year"
+msgstr "Tagesname TT Monat Jahr"
 
-msgid "Day 9999-Mon-99"
-msgstr "Tag 9999-Mon-99"
+msgid "Dayname DD-Month-Year"
+msgstr "Tagesname TT-Monat-Jahr"
 
-msgid "Day 9999-Month-9"
-msgstr "Tag 9999-Monat-9"
+msgid "Dayname DD/M/Year"
+msgstr "Tagesname TT/M/Jahr"
 
-msgid "Day 9999-Month-99"
-msgstr "Tag 9999-Monat-99"
+msgid "Dayname DD/MM/Year"
+msgstr "Tagesname TT/MM/Jahr"
 
-msgid "Day 9999/99/9"
-msgstr "Tag 9999/99/9"
+msgid "Dayname M/D/Year"
+msgstr "Tagesname M/T/Jahr"
 
-msgid "Day Mon 9"
-msgstr "Tag Mon 9"
+msgid "Dayname M/DD/Year"
+msgstr "Tagesname M/TT/Jahr"
 
-msgid "Day Mon 9 9999"
-msgstr "Tag Mon 9 9999"
+msgid "Dayname MM/D/Year"
+msgstr "Tagesname MM/T/Jahr"
 
-msgid "Day Mon 99"
-msgstr "Tag Mon 99"
+msgid "Dayname MM/DD/Year"
+msgstr "Tagesname MM/TT/Jahr"
 
-msgid "Day Mon 99 9999"
-msgstr "Tag Mon 99 99"
+msgid "Dayname Month D Year"
+msgstr "Tagesname Monat T Jahr"
 
-msgid "Day Mon-9"
-msgstr "Tag Mon-9"
+msgid "Dayname Month DD Year"
+msgstr "Tagesname Monat TT Jahr"
 
-msgid "Day Mon-9-9999"
-msgstr "Tag Mon-9-9999"
+msgid "Dayname Month-D-Year"
+msgstr "Tagesname Monat-T-Jahr"
 
-msgid "Day Mon-99"
-msgstr "Tag Mon-99"
+msgid "Dayname Month-DD-Year"
+msgstr "Tagesname Monat-TT-Jahr"
 
-msgid "Day Month 9 9999"
-msgstr "Tag Monat 9 9999"
+msgid "Dayname Year Month D"
+msgstr "Tagesname Jahr Monat T"
 
-msgid "Day Month 99 9999"
-msgstr "Tag Monat 99 9999"
+msgid "Dayname Year Month DD"
+msgstr "Tagesname Jahr Monat TT"
 
-msgid "Day Month-9-9999"
-msgstr "Tag Monat-9-9999"
+msgid "Dayname Year-Month-D"
+msgstr "Tagesname Jahr-Monat-T"
 
-msgid "Dayname 9 Month"
-msgstr "Tagesname 9 Monat"
+msgid "Dayname Year-Month-DD"
+msgstr "Tagesname Jahr-Monat-TT"
 
-msgid "Dayname 9 Month 9999"
-msgstr "Tagesname 9 Monat 9999"
+msgid "Dayname Year/M/D"
+msgstr "Tagesname Jahr/M/T"
 
-msgid "Dayname 9-Month"
-msgstr "Tagesname 9-Monat"
+msgid "Dayname Year/M/DD"
+msgstr "Tagesname Jahr/M/TT"
 
-msgid "Dayname 9-Month-9999"
-msgstr "Tagesname 9-Monat-9999"
+msgid "Dayname Year/MM/D"
+msgstr "Tagesname Jahr/MM/T"
 
-msgid "Dayname 9/9"
-msgstr "Tagesname 9/9"
-
-msgid "Dayname 9/9/9999"
-msgstr "Tagesname 9/9/9999"
-
-msgid "Dayname 9/99"
-msgstr "Tagesname 9/99"
-
-msgid "Dayname 9/99/9999"
-msgstr "Tagesname 9/99/9999"
-
-msgid "Dayname 99 Month"
-msgstr "Tagesname 99 monat"
-
-msgid "Dayname 99 Month 9999"
-msgstr "Tagesname 99 Monat 9999"
-
-msgid "Dayname 99/9"
-msgstr "Tagesname 99/9"
-
-msgid "Dayname 9999 Month 9"
-msgstr "Tagesname 9999 Monat 9"
-
-msgid "Dayname 9999 Month 99"
-msgstr "Tagesname 9999 Monat 99"
-
-msgid "Dayname 9999-Month-9"
-msgstr "Tagesname 9999-Monat-9"
-
-msgid "Dayname 9999-Month-99"
-msgstr "Tagesname 9999-Monat-99"
-
-msgid "Dayname 9999/99/9"
-msgstr "Tagesname 9999/99/9"
-
-msgid "Dayname Month 9"
-msgstr "Tagesname Monat 9"
-
-msgid "Dayname Month 9 9999"
-msgstr "Tagesname Monat 9 9999"
-
-msgid "Dayname Month 99"
-msgstr "Tagesname Monat 99"
-
-msgid "Dayname Month 99 9999"
-msgstr "Tagesname Monat 99 9999"
-
-msgid "Dayname Month-9"
-msgstr "Tagesname Monat-9"
-
-msgid "Dayname Month-9-9999"
-msgstr "Tagesname Monat-9-9999"
-
-msgid "Dayname Month-99"
-msgstr "Tagesname Monat-99"
+msgid "Dayname Year/MM/DD"
+msgstr "Tagesname Jahr/MM/T"
 
 msgid "De-select"
 msgstr "Markierung aufheben"
@@ -3379,9 +3575,6 @@ msgstr "DiSEqC-Tester Einstellungen"
 
 msgid "Digital contour removal"
 msgstr "Entfernen digitaler Konturen"
-
-msgid "Digital downmix"
-msgstr "Digital Downmix"
 
 msgid "Dim delay"
 msgstr "Dimmen Verzögerung"
@@ -3592,8 +3785,11 @@ msgstr "Das Paket aktualisieren:\n"
 msgid "Dobly Digital downmix is now"
 msgstr "DD/DTS Downmix ist jetzt"
 
-msgid "Dolby Digital / DTS downmix"
-msgstr "DD/DTS Downmix"
+msgid "Documentary"
+msgstr "Dokumentation"
+
+msgid "Domain"
+msgstr ""
 
 msgid "Don't save"
 msgstr "Nicht speichern"
@@ -3627,6 +3823,9 @@ msgstr "Herunterladen"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
+
+msgid "Drama"
+msgstr "Drama"
 
 #, python-format
 msgid "Drivers:\t%s\n"
@@ -3751,8 +3950,11 @@ msgstr "Titel schneiden"
 msgid "Edit upgrade source url."
 msgstr "Update Quell-Url bearbeiten."
 
-msgid "Education/Science/..."
-msgstr "Bildung/Wissenschaft/..."
+msgid "Education/Information"
+msgstr "Erziehung/Information"
+
+msgid "Education/Science/Factual"
+msgstr "Bildung/Wissenschaft/Fakten"
 
 msgid "Elapsed"
 msgstr "Verstrichen"
@@ -3796,8 +3998,15 @@ msgstr "Automatische Schnellsuche aktivieren"
 msgid "Enable auto fast scan"
 msgstr "Automatische Schnellsuche aktivieren"
 
+#, python-format
+msgid "Enable auto fast scan for %s"
+msgstr "Automatische Schnellsuche für %s aktivieren"
+
 msgid "Enable bouquet edit"
 msgstr "Favoriten bearbeiten"
+
+msgid "Enable client mode"
+msgstr "Aktivieren Client-Modus"
 
 msgid "Enable debug logs *"
 msgstr "Aktiviere Debug Log *"
@@ -3829,8 +4038,8 @@ msgstr "Videotext Cache aktivieren"
 msgid "Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner)."
 msgstr "Aktiviere die Benutzung eines anderen Enigma2 Receivers im Netzwerk wenn kein lokaler Tuner mehr verfügbar ist, z.B. wenn alle Tuner durch Aufnahmen/Streams belegt sind oder es für die Empfangsart (Kabel/Sat) keinen lokalen Tuner gibt."
 
-msgid "Enable timer conflict detection"
-msgstr "Aktiviere Konfliktprüfung bei Timern"
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
+msgstr "Alle richtig/falsch, ja/nein, an/aus, aktivieren/deaktivieren Einstellungen als Schalter darstellen."
 
 msgid "Enable to highlight events that are currently in progress."
 msgstr "Aktiviere Hervorhebung der aktuellen Sendung."
@@ -3871,9 +4080,6 @@ msgstr "Endzeit"
 msgid "English"
 msgstr "Englisch"
 
-msgid "Enigma2 Changes"
-msgstr "Enigma2 Änderungen"
-
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 Skinauswahl"
 
@@ -3892,8 +4098,26 @@ msgstr "Dauerhaften PIN-Code eingeben"
 msgid "Enter pin code"
 msgstr "PIN-Code eingeben"
 
+msgid "Enter the FTP password of the host receiver (normally just leave empty)."
+msgstr "Gebe FTP Passowrt für den Notfallreceiver an (normalerweise leer lassen)."
+
+msgid "Enter the FTP port of the host receiver (normally '21')."
+msgstr "Gebe FTP Port für den Notfallreceiver an (normalerweise '21')."
+
+msgid "Enter the FTP username of the host receiver (normally 'root')."
+msgstr "Gebe FTP Benutzer für den Notfallreceiver an (normalerweise 'root')."
+
+msgid "Enter the IP address of the host receiver."
+msgstr "Gebe IP-Adresse vom Notfallreceiver an."
+
+msgid "Enter the domain of the host receiver. Do not include 'http://' or port number."
+msgstr "Gebe Domain vom Notfallreceiver an. 'http://' oder Portnummer nicht mit angeben."
+
 msgid "Enter the service pin"
 msgstr "Den Sender-PIN-Code eingeben"
+
+msgid "Enter the streaming port of the host receiver (normally '8001')."
+msgstr "Streaming Port des Host-Receivers. Standard ist '8001'."
 
 msgid "Enter your e-mail address to send a copy of the log to."
 msgstr "Gebe deine E-Mail-Adresse an zu der eine Kopie des Logs geschickt werden soll."
@@ -3903,6 +4127,9 @@ msgstr "Gebe deinen Foren-Nick ein damit die Logs einfacher zugeordnet werden k�
 
 msgid "Enter your password here:"
 msgstr "Passwort eingeben:"
+
+msgid "Entertainment"
+msgstr "Unterhaltung"
 
 msgid "Entitlements"
 msgstr "Berechtigungen"
@@ -3921,9 +4148,6 @@ msgstr "Fehler"
 
 msgid "Error code"
 msgstr "Fehler Code"
-
-msgid "Error downloading the change log."
-msgstr "Fehler beim herunterladen vom change.log"
 
 msgid "Error executing plugin"
 msgstr "Ausführen des Plugins fehlgeschlagen"
@@ -3967,6 +4191,21 @@ msgstr "Sendungsdetails"
 
 msgid "Event view menu"
 msgstr "Sendungsdetails Menü"
+
+msgid "Every 12 hours"
+msgstr "Alle 12 Stunden"
+
+msgid "Every 2 hours"
+msgstr "Alle 2 Stunden"
+
+msgid "Every 3 hours"
+msgstr "Alle 3 Stunden"
+
+msgid "Every 6 hours"
+msgstr "Alle 6 Stunden"
+
+msgid "Every hour"
+msgstr "Jede Stunde"
 
 msgid "Everyday"
 msgstr "Jeden Tag"
@@ -4128,26 +4367,33 @@ msgstr "F3 lang"
 msgid "FAILED"
 msgstr "FEHLGESCHLAGEN"
 
-msgid "FBC Unicable"
-msgstr "FBC Unicable"
+msgid "FBC SCR (Unicable/JESS)"
+msgstr "FBC (Unicable / JESS)"
 
-msgid "FBC automatic loop through"
-msgstr "FBC automatisch durchschleifen"
+msgid "FBC automatic"
+msgstr "FBC Automatik"
 
 msgid ""
-"FBC automatic loop through\n"
-"inactive"
+"FBC automatic\n"
+"connected to"
 msgstr ""
-"FBC automatisch durchschleifen\n"
-"deaktiviert"
+"FBC Automatik\n"
+"verbunden mit "
 
 #, python-format
 msgid ""
-"FBC automatic loop through\n"
-"linked to %s"
+"FBC automatic\n"
+"connected to %s"
 msgstr ""
-"FBC automatisch durchschleifen\n"
+"FBC Automatik\n"
 "verbunden mit %s"
+
+msgid ""
+"FBC automatic\n"
+"inactive"
+msgstr ""
+"FBC Automatik\n"
+"deaktiviert"
 
 msgid "FEC"
 msgstr "FEC"
@@ -4165,6 +4411,12 @@ msgstr "Version:\t%s"
 msgid "FTP Setup"
 msgstr "FTP Einstellungen"
 
+msgid "FTP connection failure"
+msgstr "FTP Verbindungsfehler"
+
+msgid "FTP passive mode"
+msgstr "FTP passiver Modus"
+
 msgid "FTP setup"
 msgstr "FTP Einstellungen"
 
@@ -4179,6 +4431,9 @@ msgstr "Fehlgeschlagen"
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Kann /tmp/positionersetup.log nicht schreiben: "
+
+msgid "Fallback configuration"
+msgstr "Notfall-Receiver Konfiguration"
 
 msgid "Fallback remote receiver URL"
 msgstr "Ausweichreceiver URL"
@@ -4232,6 +4487,9 @@ msgid ""
 msgstr ""
 "Datei oscam.conf nicht gefunden.\n"
 "Bitte Benutzername/Passwort eingeben."
+
+msgid "Filename"
+msgstr "Dateiname"
 
 msgid "Filesystem Check"
 msgstr "Dateisystemüberprüfung"
@@ -4317,6 +4575,12 @@ msgstr "Französisch"
 msgid "Frequency"
 msgstr "Frequenz"
 
+msgid "Frequency & Channel"
+msgstr "Frequenz & Kanal"
+
+msgid "Frequency & Polarization"
+msgstr "Frequenz & Polarisation"
+
 msgid "Frequency (kHz)"
 msgstr "Frequenz (kHz)"
 
@@ -4371,6 +4635,14 @@ msgstr ""
 "um das neue Aussehen übernehmen zu können.\n"
 "Jetzt neu starten?"
 
+msgid ""
+"GUI needs a restart to switch modes\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"Die Benutzeroberfläche muss neu gestartet werden,\n"
+"um das neue Aussehen übernehmen zu können.\n"
+"Jetzt neu starten?"
+
 msgid "GUI settings"
 msgstr "Benutzeroberfläche Einstellungen"
 
@@ -4385,6 +4657,9 @@ msgstr "Allgemeine AC3 Verzögerung"
 
 msgid "General PCM delay"
 msgstr "Allgemeine MPEG2 Verzögerung"
+
+msgid "Generic"
+msgstr "Allgemein"
 
 msgid "Genre"
 msgstr "Kategorie"
@@ -4430,6 +4705,9 @@ msgstr "Gehe zum angegebenen Datum/Uhrzeit"
 
 msgid "Go up the list"
 msgstr "In der Liste rauf gehen"
+
+msgid "Gold"
+msgstr ""
 
 msgid "Goto"
 msgstr "Gehe zu"
@@ -4488,6 +4766,12 @@ msgstr "Guard Intervall"
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Stündlich / D: = Täglich / W: =Wöchentlich / M: =Monatlich"
 
+msgid "H:mm"
+msgstr ""
+
+msgid "H:mm:ss"
+msgstr ""
+
 msgid "HD list"
 msgstr "HD Liste"
 
@@ -4517,6 +4801,15 @@ msgstr "HDMI Farbraum"
 
 msgid "HDMIin"
 msgstr "HDMIin"
+
+msgid "HDR, 12bit 4:2:0/4:2:2, no PIP"
+msgstr "HDR, 12bit 4:2:0/4:2:2, kein PIP"
+
+msgid "HH:mm"
+msgstr ""
+
+msgid "HH:mm:ss"
+msgstr ""
 
 msgid "Handle standby from TV"
 msgstr "Fernseher in Bereitschaft versetzen"
@@ -4548,6 +4841,9 @@ msgstr "Hilfe lang"
 msgid "Helps setting up your antenna"
 msgstr "Hilft die Schüssel einzurichten"
 
+msgid "Hidden / Blank"
+msgstr "Versteckt/Leer"
+
 msgid "Hidden network"
 msgstr "Verstecktes Netzwerk"
 
@@ -4577,9 +4873,6 @@ msgstr "Verberge Zap Fehler"
 
 msgid "Hierarchy info"
 msgstr "Hierarchie Information"
-
-msgid "Hierarchy information"
-msgstr "Hierarchie..."
 
 msgid "High bitrate support"
 msgstr "Kann hohe Datenraten verarbeiten"
@@ -4617,6 +4910,27 @@ msgstr "Horizontal"
 msgid "Horizontal turning speed"
 msgstr "Horizontale Geschwindigkeit"
 
+msgid "Host domain"
+msgstr "Notfallreceiver Domain"
+
+msgid "Host receiver FTP password"
+msgstr "Notfallreceiver FTP Passwort"
+
+msgid "Host receiver FTP port"
+msgstr "Notfallreceiver FTP Port"
+
+msgid "Host receiver FTP username"
+msgstr "Notfallreceiver FTP Benutzername"
+
+msgid "Host receiver IP address"
+msgstr "Notfallreceiver IP-Adresse"
+
+msgid "Host receiver address type"
+msgstr "Notfallreceiver Adressart"
+
+msgid "Host receiver streaming port"
+msgstr "Notfallreceiver Streaming-Port"
+
 msgid "Hostname:"
 msgstr "Hostname:"
 
@@ -4653,8 +4967,28 @@ msgstr "IMDB Suche nach laufenden Programm"
 msgid "IMDb Search"
 msgstr "IMDb Suche"
 
+msgid "IP"
+msgstr "IP"
+
 msgid "IP address"
 msgstr "IP-Adresse"
+
+msgid ""
+"IP address\n"
+"\n"
+"This test checks whether a valid IP address is found for your LAN adapter.\n"
+"\n"
+"If you get a \"unconfirmed\" message:\n"
+"- No valid IP address was found.\n"
+"- Please check your DHCP server, cabling and adapter setup."
+msgstr ""
+"IP Adress\n"
+"\n"
+"Dieser Test überprüft, ob eine gültige IP-Adresse gefunden wurde.\n"
+"\n"
+"Wenn eine \"Unbestätigt\"-Meldung erscheint:\n"
+"- Wurde keine gültige IP-Adresse gefunden.\n"
+"- Überprüfe DHCP, die Verkabelung und die Adapter-Einstellungen"
 
 msgid "IP-Address"
 msgstr "IP-Adresse"
@@ -4825,6 +5159,9 @@ msgstr "Infobar EPG Einstellungen"
 msgid "Information"
 msgstr "Informationen"
 
+msgid "Infotainment"
+msgstr "Infotainment"
+
 msgid "Init"
 msgstr "Initialisieren"
 
@@ -4863,6 +5200,12 @@ msgstr "Inotify Überwachung"
 
 msgid "Input"
 msgstr "Eingabe"
+
+msgid "Input "
+msgstr "Eingabe"
+
+msgid "Input Stream ID"
+msgstr ""
 
 msgid "Input device setup"
 msgstr "Eingabegeräte Einstellungen"
@@ -4974,6 +5317,12 @@ msgstr "ungültige Transponderdaten"
 msgid "Inversion"
 msgstr "Inversion"
 
+msgid "Inversion & Bandwidth"
+msgstr "Inversion & Bandbreite"
+
+msgid "Inversion, Pilot & Roll-off"
+msgstr ""
+
 msgid "Invert"
 msgstr "Umkehren"
 
@@ -4986,11 +5335,11 @@ msgstr "Sind die Einstellungen richtig?"
 msgid "Is this video mode ok?"
 msgstr "Ist dieser Videomodus in Ordnung?"
 
+msgid "It seems you have hit your API limit - please try again later."
+msgstr "Es sieht so aus als wenn eine API-Grenze erreicht wurde. Bitte spärt erneut versuchen."
+
 msgid "Italian"
 msgstr "Italienisch"
-
-msgid "JESS"
-msgstr ""
 
 msgid "JUMP 24 HOURS"
 msgstr "Springe 24 Stunden"
@@ -5063,6 +5412,15 @@ msgstr "Tastatur Einstellungen"
 
 msgid "LAN adapter"
 msgstr "Netzwerkadapter"
+
+msgid ""
+"LAN adapter\n"
+"\n"
+"This test detects your configured LAN adapter."
+msgstr ""
+"LAN Adapter\n"
+"\n"
+"Dieser Test erkennt den konfigurierten Netzwerkadapter."
 
 msgid "LAN connection"
 msgstr "LAN Verbindung"
@@ -5242,6 +5600,23 @@ msgstr "Lokale Box"
 msgid "Local network"
 msgstr "Lokales Netzwerk"
 
+msgid ""
+"Local network\n"
+"\n"
+"This test checks whether a network cable is connected to your LAN adapter.\n"
+"\n"
+"If you get a \"disconnected\" message:\n"
+"- Verify that a network cable is attached.\n"
+"- Verify that the cable is not broken."
+msgstr ""
+"Lokales Netz (LAN)\n"
+"\n"
+"Dieser Test überprüft, ob ein Netzwerkkabel angeschlossen ist.\n"
+"\n"
+"Wenn eine \"Nicht verbunden\"-Meldung erscheint:\n"
+"- Überprüfe ob ein Netzwerkkabel angeschlossen ist.\n"
+"- Stelle sicher, dass das Netzwerkkabel nicht defekt ist."
+
 msgid "Location"
 msgstr "Zielverzeichnis"
 
@@ -5293,7 +5668,7 @@ msgstr "langer Tastendruck"
 msgid "Longitude"
 msgstr "Längengrad"
 
-msgid "Loop through to"
+msgid "Loop through from"
 msgstr "Verbunden mit"
 
 msgid "Lower Framerate save CPU Time"
@@ -5369,6 +5744,12 @@ msgstr "3D Flag für diesen Sender setzen"
 msgid "Mark/Portal/Playlist"
 msgstr ""
 
+msgid "Mature Adult Audience 15+"
+msgstr "Erwachsene Zuschauer 15+"
+
+msgid "Mature Audience 15+"
+msgstr "Erwachsene Zuschauer 15+"
+
 msgid "Max memory positions"
 msgstr "Maximale Positionsspeicher"
 
@@ -5392,6 +5773,9 @@ msgstr "Maximaler Speicherbedarf (MB)"
 
 msgid "Maybe the reason that recording is currently running. Please stop the recording before trying to configure the positioner."
 msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor die Rotor Einstellungen vorgenommen werden."
+
+msgid "Mb/s"
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Zeige Zeit bei Wiedergabe verbleibend/verstrichen"
@@ -5448,6 +5832,9 @@ msgstr "Minuten"
 msgid "Mins Secs"
 msgstr "Minuten Sekunden"
 
+msgid "Mipsel"
+msgstr ""
+
 msgid "Missing "
 msgstr "Fehlend"
 
@@ -5479,41 +5866,11 @@ msgstr "Modulator"
 msgid "Mon"
 msgstr "Mo"
 
-msgid "Mon 9"
-msgstr "Mon 9"
-
-msgid "Mon 9 9999"
-msgstr "Mon 9 9999"
-
-msgid "Mon 99"
-msgstr "Mon 99"
-
-msgid "Mon 99 9999"
-msgstr "Mon 99 9999"
-
-msgid "Mon-9"
-msgstr "Mo-9"
-
-msgid "Mon-9-9999"
-msgstr "Mon-9-9999"
-
-msgid "Mon-99"
-msgstr "Mo-99"
-
 msgid "Mon-Fri"
 msgstr "Mo-Fr"
 
 msgid "Monday"
 msgstr "Montag"
-
-msgid "Month 9 9999"
-msgstr "Monat 9 9999"
-
-msgid "Month 99 9999"
-msgstr "Monat 99 9999"
-
-msgid "Month-9-9999"
-msgstr "Monat-9-9999"
 
 msgid "Monthly"
 msgstr "Monatlich"
@@ -5593,6 +5950,9 @@ msgstr "Auf Position von Index drehen"
 msgid "Movement"
 msgstr "Drehung"
 
+msgid "Movie"
+msgstr "Film"
+
 msgid "Movie List"
 msgstr "Aufnahmeliste"
 
@@ -5635,14 +5995,14 @@ msgstr "Multimedia"
 msgid "Multiple service support"
 msgstr "Kann mehrere Sender entschlüsseln"
 
-msgid "Multiplex"
-msgstr "Multiplex"
-
 msgid "Multisat"
 msgstr "Multisat"
 
 msgid "Multisat all select"
 msgstr "Multi-Sat alle wählen"
+
+msgid "Music"
+msgstr "Musik"
 
 msgid "Music/Ballet/Dance"
 msgstr "Musik/Ballett/Tanz"
@@ -5659,11 +6019,22 @@ msgstr "NFS Einstellungen"
 msgid "NFS setup"
 msgstr "NFS Einstellungen"
 
-msgid "NIM"
-msgstr "NIM"
+msgid "NIM & Type"
+msgstr ""
 
 msgid "NO"
 msgstr "Nein"
+
+msgid ""
+"NOTE: This feature is intended for people who cannot disable overscan on their television / display.  Please first try to disable overscan before using this feature.\n"
+"\n"
+"USAGE: Adjust the screen size and position settings so that the shaded user interface layer *just* covers the test pattern in the background.\n"
+"\n"
+"Select Yes to continue or No to exit."
+msgstr ""
+"Achtung: Dieses Feature ist gedacht für Leute die Overscan am Fernseher nicht deaktivieren können. Bitte zuerst versuchen ob Overscan am Fernseher ausgeschaltet werden kann.\n"
+"Benutzung: Bild-Position und -Größe so einstellen das der graue Bereich gerade das Testbild im Hintergrund bedeckt.\n"
+"Wähle Ja um fortzufahren und Nein um abzubrechen."
 
 msgid "NTP"
 msgstr "NTP"
@@ -5682,6 +6053,23 @@ msgstr ""
 
 msgid "Nameserver"
 msgstr "DNS"
+
+msgid ""
+"Nameserver\n"
+"\n"
+"This test checks for configured nameservers.\n"
+"\n"
+"If you get a \"unconfirmed\" message:\n"
+"- Please check your DHCP server, cabling and adapter setup.\n"
+"- If you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration."
+msgstr ""
+"Naemserver (DNS)\n"
+"\n"
+"Dieser Test sucht nach konfigurierten Nameservern\n"
+"Wenn eine \"Unbestätigt\"-Meldung erscheint:\n"
+"\n"
+"- Überprüfe DHCP, die Verkabelung und die Adapter-Einstellungen.\n"
+"- Wurde der Namensserver manuell konfiguriert, überprüfe bitte die Konfiguration in den \"DNS\" Einstellungen"
 
 #, python-format
 msgid "Nameserver %d"
@@ -5756,7 +6144,10 @@ msgstr "Neuer Speicherort für Timer"
 msgid "New version:"
 msgstr "Neue Version:"
 
-msgid "News Current Affairs"
+msgid "News"
+msgstr ""
+
+msgid "News/Current Affairs"
 msgstr "Nachrichten/Gegenwart"
 
 msgid "Next"
@@ -5797,6 +6188,9 @@ msgstr "Kein Kabelempfänger gefunden!"
 
 msgid "No card inserted!"
 msgstr "Keine Karte eingeschoben!"
+
+msgid "No clients streaming"
+msgstr "Keine streamenden Klienten"
 
 msgid ""
 "No data on transponder!\n"
@@ -5867,9 +6261,6 @@ msgstr "Keine Sender/Anbieter ausgewählt"
 
 msgid "No standby"
 msgstr "Keine Bereitschaft"
-
-msgid "No stream clients"
-msgstr "Keine Streaming Klienten"
 
 msgid "No suitable sat tuner found!"
 msgstr "Kein verwendbarer Sat Tuner gefunden!"
@@ -5950,6 +6341,9 @@ msgstr "Nord"
 msgid "Norwegian"
 msgstr "Norwegisch"
 
+msgid "Not Classified"
+msgstr "Nicht bewertet"
+
 msgid "Not Defined"
 msgstr "nicht definiert"
 
@@ -5985,6 +6379,9 @@ msgstr ""
 
 msgid "Not mounted"
 msgstr "Nicht verbunden"
+
+msgid "Not running"
+msgstr "Läuft nicht"
 
 msgid "Not-Associated"
 msgstr "Nicht verbunden"
@@ -6030,12 +6427,6 @@ msgstr "Anzahl von Zeilen"
 
 msgid "Number of rows to display"
 msgstr "Anzahl von Zeilen"
-
-msgid "OE Changes"
-msgstr "OE Änderungen"
-
-msgid "OE-A Changes"
-msgstr "OE-A Änderungen"
 
 msgid "OK"
 msgstr "OK"
@@ -6121,6 +6512,9 @@ msgstr "öffne Favoritenliste"
 msgid "Open nameserver configuration"
 msgstr "DNS Konfiguration öffnen"
 
+msgid "Open service list"
+msgstr "Öffne Senderliste"
+
 msgid "Open service list and select the next channel"
 msgstr "Öffne Senderliste und wähle den nächsten Sender"
 
@@ -6202,16 +6596,25 @@ msgstr ""
 msgid "PGS file"
 msgstr "PGS Datei"
 
-msgid "PIDs"
-msgstr "PIDs"
-
 msgid "PIP"
 msgstr "PiP"
+
+msgid "PIP enabled, no HDR"
+msgstr "PiP aktiviert, kein HDR"
 
 msgid "PIP with OSD"
 msgstr "PiP mit OSD"
 
 msgid "PLP ID"
+msgstr ""
+
+msgid "PLS Code"
+msgstr ""
+
+msgid "PLS Mode"
+msgstr "PLS Modus"
+
+msgid "PLS Mode & PLS Code"
 msgstr ""
 
 msgid "PMT PID"
@@ -6251,6 +6654,9 @@ msgstr "Panik nach"
 msgid "Parent directory"
 msgstr "übergeordnetes Verzeichnis"
 
+msgid "Parental Guidance Recommended"
+msgstr "Kontrolle von Erwachsenen empfohlen"
+
 msgid "Parental control"
 msgstr "Jugendschutz"
 
@@ -6277,6 +6683,9 @@ msgstr "Wiedergabe pausieren"
 
 msgid "Pause/Continue playback"
 msgstr "Wiedergabe pausieren/fortsetzen"
+
+msgid "Pausing"
+msgstr "Pausiert"
 
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Spitzenlast (max. Warteschlange pro Arbeitsthread)"
@@ -6579,7 +6988,7 @@ msgid "Please set up tuner R"
 msgstr "Bitte Tuner R konfigurieren"
 
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of the blue box are touching the edges of your TV.\n"
+"Please setup your user interface by adjusting the values till the edges of the user interface box are covering the test pattern and touching the edges of your TV.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Konfiguriere die Benutzeroberfläche durch ändern der Werte bis die blaue Box die Ränder des Fernsehers erreichen.\n"
@@ -6596,6 +7005,9 @@ msgstr ""
 "Verschieben des 'Bild in Bild' über die Navigationstasten.\n"
 "Favoritenliste +/-, um die Größe zu ändern.\n"
 "OK zum Speichern, Exit zum Abbrechen."
+
+msgid "Please wait"
+msgstr "Bitte warten..."
 
 msgid "Please wait (downloading channel list)"
 msgstr "Bitte warten (Senderliste wird runter geladen)"
@@ -6801,6 +7213,9 @@ msgstr "Bevorzugter Tuner für Aufnahmen"
 msgid "Preparing... Please wait"
 msgstr "Vorbereitung läuft... Bitte warten!"
 
+msgid "Preschool"
+msgstr "Vorschulalter"
+
 msgid "Press '0' to toggle PiP mode"
 msgstr "Drücke '0' um PiP-Modus zu wechseln"
 
@@ -6852,6 +7267,15 @@ msgstr "Drücke OK um die Auswahl umzuschalten."
 
 msgid "Press OK, save and exit..."
 msgstr "Dürcke OK für Speichern und Verlassen..."
+
+msgid ""
+"Press up/down to scroll through the selected log\n"
+"\n"
+"Press left/right to see different log types"
+msgstr ""
+"Drücke hoch/runter um durch das gewählte Log zu scrollen\n"
+"\n"
+"Drücke links/rechts um die verschiedenen Logarten zu sehen"
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Drücke Gelb um diese Schnittstelle als Standard zu setzen."
@@ -7320,6 +7744,9 @@ msgstr "Wiederholungen"
 msgid "Repeat Display Message"
 msgstr "Nachricht wiederholen"
 
+msgid "Repeat how often"
+msgstr "Wie oft wiederholen?"
+
 msgid "Repeat type"
 msgstr "Wiederholungstyp"
 
@@ -7348,6 +7775,9 @@ msgstr "Partitionstabelle erneut einlesen"
 
 msgid "Reserved"
 msgstr "Reserviert"
+
+msgid "Reserved for future use"
+msgstr "Reserviert für die Zukunft"
 
 msgid "Reset"
 msgstr "Zurücksetzen"
@@ -7406,6 +7836,9 @@ msgstr "Einstellungen wiederherstellen"
 msgid "Restoring..."
 msgstr "Wiederherstellung..."
 
+msgid "Restricted 18+"
+msgstr "Eingeschränkt 18+"
+
 msgid "Resume from last position"
 msgstr "An letzter Position fortsetzen"
 
@@ -7449,6 +7882,9 @@ msgstr "Roll-off"
 msgid "Romanian"
 msgstr "Romänisch"
 
+msgid "Root"
+msgstr ""
+
 msgid "Root directory"
 msgstr "Hauptverzeichnis"
 
@@ -7485,8 +7921,14 @@ msgstr "SABnzbd Einstellungen"
 msgid "SCPC optimized search range"
 msgstr "SCPC optimierter Suchbereich"
 
-msgid "SID"
-msgstr "SID"
+msgid "SCR (Unicable/JESS)"
+msgstr "SCR (Unicable / JESS)"
+
+msgid "SCR JESS"
+msgstr ""
+
+msgid "SCR Unicable"
+msgstr "SCR Unicable"
 
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
@@ -7650,6 +8092,9 @@ msgstr "Suche..."
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Sendersuche sortiert nach Satelliten, wenn ein Rotor angeschlossen ist."
 
+msgid "Schedule EPG and channel list import"
+msgstr "Zeitplan Import EPG und Kanalliste"
+
 msgid "Scrolling Speed"
 msgstr "Scrollgeschwindigkeit"
 
@@ -7749,6 +8194,9 @@ msgstr "Wähle die zu sichernden Dateien"
 
 msgid "Select backup location"
 msgstr "Wähle das Sicherungs Verzeichnis"
+
+msgid "Select between entering an IP address or a domain."
+msgstr "Wähle zwischen IP-Adresse oder Domain"
 
 msgid "Select channel to record from"
 msgstr "Wähle Sender von dem aufgenommen werden soll"
@@ -7891,8 +8339,11 @@ msgstr "Server:"
 msgid "Service"
 msgstr "Sender"
 
-msgid "Service Information"
-msgstr "Sender Information"
+msgid "Service & PIDs"
+msgstr "Sender & PIDs"
+
+msgid "Service ID"
+msgstr "Sender ID"
 
 msgid "Service Name"
 msgstr "Sendername"
@@ -7919,6 +8370,9 @@ msgstr ""
 "Kanal ist ungültig!\n"
 "(Zeit lief beim Lesen der PMT ab)"
 
+msgid "Service name"
+msgstr "Sendername"
+
 msgid "Service name font size"
 msgstr "Sendername Schriftgröße"
 
@@ -7931,6 +8385,9 @@ msgstr ""
 
 msgid "Service number font size"
 msgstr "Sendernummer Schriftgröße"
+
+msgid "Service off-air"
+msgstr "Sender sendet nicht"
 
 msgid "Service reference"
 msgstr "Service Referenz"
@@ -8039,6 +8496,9 @@ msgstr "Setze den Namen den die Aufnahme bekommen soll."
 msgid "Set the position of the recording icons"
 msgstr "Setze die Position des Aufnahme-Icons."
 
+msgid "Set the repeat interval of the schedule."
+msgstr "Setze das Wiederholungsintervall für den Import."
+
 msgid "Set the scrolling speed of text on the front display, this uses a software render in some skins."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display. Dies wird von einigen Renderern von Skins benutzt."
 
@@ -8050,6 +8510,9 @@ msgstr "Verzögerung einstellen nach der Auflösung/Wiederholrate des Videos gep
 
 msgid "Set the time delay before hiding the infobar."
 msgstr "Wähle die Anzeigedauer von Infobar."
+
+msgid "Set the time of day to perform the import."
+msgstr "Setze die Uhrzeit wann der Import stattfinden soll."
 
 msgid "Set the time the timer must start."
 msgstr "Setze die Zeit für den Start des Timers."
@@ -8105,7 +8568,7 @@ msgstr "Rotor konfigurieren."
 msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung konfigurieren"
 
-msgid "Setup your timezone."
+msgid "Setup your timezone area."
 msgstr "Zeitzone konfigurieren."
 
 msgid "Share Folder's"
@@ -8122,6 +8585,9 @@ msgstr "Schärfe"
 
 msgid "Short filenames"
 msgstr "Kurze Dateinamen"
+
+msgid "Should the FTP connection to the remote receiver be established in passive mode (normally 'no')?"
+msgstr "Soll die FTP-Verbindung zum Notfallreceiver passiv aufgebaut werden (normal 'nein')?"
 
 msgid "Show /tmp/ecm.info"
 msgstr "Zeige /tmp/ecm.info"
@@ -8165,9 +8631,6 @@ msgstr "Zeige Klienten"
 msgid "Show Display Icons"
 msgstr "Zeige Display Icons"
 
-msgid "Show E2 Log"
-msgstr "Zeige E2 Log"
-
 msgid "Show EIT now/next in infobar"
 msgstr "Zeige EIT jetzt/demnächst in Infobar"
 
@@ -8180,9 +8643,6 @@ msgstr "Zeige EPG für den aktuellen Sender"
 msgid "Show EPG..."
 msgstr "Zeige EPG..."
 
-msgid "Show Games show"
-msgstr "Show/Quiz"
-
 msgid "Show Log"
 msgstr "Zeige Log"
 
@@ -8194,9 +8654,6 @@ msgstr "Zeige Zeit bei Wiedergabe als verbleibend/verstrichen"
 
 msgid "Show MiniTV in the Front Display"
 msgstr "Zeige MiniTV im Display"
-
-msgid "Show OE Log"
-msgstr "Zeige OE Log"
 
 msgid "Show OScam Info in extensions?"
 msgstr "Zeige OScam in Erweiterungen?"
@@ -8227,6 +8684,9 @@ msgstr "Zeige Timerliste"
 
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Zeige Transponder verbleibend/verstrichen"
+
+msgid "Show True/False as graphical switch"
+msgstr "Zeige Ja/Nein als Schalter"
 
 msgid "Show VCR scart on main menu"
 msgstr "Zeige SCART im Hauptmenü"
@@ -8281,6 +8741,9 @@ msgstr "Zeige EPG"
 
 msgid "Show event details"
 msgstr "Zeige Sendungs-Details"
+
+msgid "Show event genre information"
+msgstr "Zeige Genreinformationen"
 
 msgid "Show event info plugins"
 msgstr "Zeige Sendungsdetails-Plugins"
@@ -8459,6 +8922,9 @@ msgstr "Zeige Warnung wenn IP-Stream aktiv"
 msgid "Show warning when timeshift is stopped"
 msgstr "Zeige Warnung wenn TimeShift beendet wird"
 
+msgid "Show/Games show"
+msgstr "Show/Quiz"
+
 msgid "Shows live tv or informations on LCD."
 msgstr "Zeigt LiveTV oder Informationen auf LCD."
 
@@ -8594,6 +9060,9 @@ msgstr "Diaschau-Intervall (sek.)"
 
 msgid "Slide top to bottom"
 msgstr "Gleiten von oben nach unten"
+
+msgid "Slim"
+msgstr ""
 
 #, python-format
 msgid "Slot %d"
@@ -8760,14 +9229,23 @@ msgstr "Benutzter Platz:"
 msgid "Spanish"
 msgstr "Spanisch"
 
-msgid "Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'IP_second_box:8001'."
-msgstr "Komplette URL des Notfallreceivers mit der Portnummer angeben (z.B. IP-Notfallreceiver:8001)."
+msgid "Special"
+msgstr ""
+
+msgid "Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'."
+msgstr "Komplette URL des Notfallreceivers mit der Portnummer angeben (z.B. IP-Notfallreceiver:8001), z.B. 'http://IP-der-zweiten-Box:8001'."
+
+msgid "Speed:"
+msgstr ""
 
 msgid "Split preview mode"
 msgstr "Splitscreen für Vorschau-Modus"
 
 msgid "Splitscreen"
 msgstr "Splitscreen"
+
+msgid "Sport"
+msgstr "Sport"
 
 msgid "Sports"
 msgstr "Sport"
@@ -8820,6 +9298,9 @@ msgstr "TimeShift startet"
 msgid "Starting on"
 msgstr "Beginnend ab"
 
+msgid "Starts in a few seconds"
+msgstr "Startet in wenigen Sekunden"
+
 msgid "Status"
 msgstr ""
 
@@ -8840,6 +9321,9 @@ msgstr "Stopp"
 
 msgid "Stop PiP"
 msgstr "PiP beenden"
+
+msgid "Stop Streams"
+msgstr "Stream stoppen"
 
 msgid "Stop all current recordings"
 msgstr "Alle aktuellen Aufnahmen beenden"
@@ -9087,6 +9571,9 @@ msgstr "Umschaltbare Tuner-Typen:"
 msgid "Symbol rate"
 msgstr "Symbolrate"
 
+msgid "Symbol rate & FEC"
+msgstr "Symbolrate"
+
 msgid "Symbolrate:"
 msgstr "Symbolrate:"
 
@@ -9104,6 +9591,9 @@ msgstr "Synchronisiere Systemzeit mit Transponder oder Internet."
 
 msgid "System"
 msgstr "System"
+
+msgid "System & Modulation"
+msgstr "Modulation"
 
 #, python-format
 msgid "System temp:\t%s"
@@ -9296,6 +9786,15 @@ msgstr "Die eingegebenen Pincodes sind unterschiedlich."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs Verzeichnis auswählen."
+
+msgid "The commit log cannot be retrieved at the moment - please try again later."
+msgstr ""
+
+#, python-format
+msgid ""
+"The commit log cannot be retrieved at the moment - please try again later.\n"
+"%s"
+msgstr ""
 
 msgid "The current update may be unstable"
 msgstr "Das aktuelle Update könnte instabil sein"
@@ -9533,6 +10032,9 @@ msgstr "Diese Option erlaubt dir zu wählen ob verbleibende/verstrichene Zeit od
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are perfomed. "
 msgstr "Diese Option erlaubt dir zu wählen was der erste Tastendruck in der Senderliste bewirkt ('2' springt zu '2' oder 'A' zuerst)"
 
+msgid "This option allows you to choose whether or not to display genre information for the event."
+msgstr "Diese Option erlaubt dir zu wählen ob Genreinformationen angezeigt werden sollen."
+
 msgid "This option allows you to disable sorting of the menus"
 msgstr "Diese Option erlaubt dir die Sortierung in den Menüs auszuschalten"
 
@@ -9636,57 +10138,6 @@ msgid "This plugin will be removed."
 msgstr "Diese Erweiterung wird deinstalliert."
 
 msgid ""
-"This test checks for configured nameservers.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- please check your DHCP server, cabling and adapter setup\n"
-"- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
-msgstr ""
-"Dieser Test sucht nach konfigurierten Nameservern\n"
-"Wenn eine \"Unbestätigt\"-Meldung erscheint:\n"
-"- Überprüfe DHCP, die Verkabelung und die Adapter-Einstellungen.\n"
-"- Wurde der Namensserver manuell konfiguriert, überprüfe bitte die Konfiguration in den \"DNS\" Einstellungen"
-
-msgid ""
-"This test checks whether a network cable is connected to your LAN adapter.\n"
-"If you get a \"disconnected\" message:\n"
-"- verify that a network cable is attached\n"
-"- verify that the cable is not broken"
-msgstr ""
-"Dieser Test überprüft, ob ein Netzwerkkabel angeschlossen ist.\n"
-"Wenn eine \"Nicht verbunden\"-Meldung erscheint:\n"
-"- Überprüfe ob ein Netzwerkkabel angeschlossen ist.\n"
-"- Stelle sicher, dass das Netzwerkkabel nicht defekt ist."
-
-msgid ""
-"This test checks whether a valid IP address is found for your LAN adapter.\n"
-"If you get a \"unconfirmed\" message:\n"
-"- no valid IP address was found\n"
-"- please check your DHCP server, cabling and adapter setup"
-msgstr ""
-"Dieser Test überprüft, ob eine gültige IP-Adresse gefunden wurde.\n"
-"Wenn eine \"Unbestätigt\"-Meldung erscheint:\n"
-"- Wurde keine gültige IP-Adresse gefunden.\n"
-"- Überprüfe DHCP, die Verkabelung und die Adapter-Einstellungen"
-
-msgid ""
-"This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
-"If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
-"- verify thay you have entered correct IP informations in the adapter setup dialog.\n"
-"If you get an \"enabled\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
-msgstr ""
-"Dieser Test prüft ob der Netzwerkadapter seine IP-Adresse automatisch per DHCP bekommt.\n"
-"Wenn hier \"aktiviert\" steht:\n"
-"- dann hat der Netzwerkadapter eine feste IP-Adresse\n"
-"- überprüfe ob die Einstellungen bezüglich der IP-Adresse stimmen.\n"
-"Wenn hier \"deaktiviert\" steht:\n"
-"Überprüfe ob sich im Netzwerk ein DHCP-Server befindet und dieser auch aktiviert ist."
-
-msgid "This test detects your configured LAN adapter."
-msgstr "Dieser Test erkennt den konfigurierten Netzwerkadapter."
-
-msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
@@ -9717,6 +10168,9 @@ msgstr "Zeit"
 msgid "Time Update in Minutes:"
 msgstr "Zeit Aktualisierung in Minuten:"
 
+msgid "Time import should start"
+msgstr "Startzeit des Imports"
+
 msgid "Time scale"
 msgstr "Zeitraum"
 
@@ -9743,6 +10197,9 @@ msgstr "Timer"
 
 msgid "Timer List"
 msgstr "Timerliste"
+
+msgid "Timer conflict detection when fallback is enabled"
+msgstr "Timerkonfliktermittelung wenn Notfallreceiver ist aktiviert"
 
 msgid "Timer entry"
 msgstr "Timer-Eintrag"
@@ -9819,6 +10276,9 @@ msgid "Timeshift-save action on zap"
 msgstr "TimeShift Speicheraktion beim Umschalten"
 
 msgid "Timezone"
+msgstr "Zeitzone"
+
+msgid "Timezone area"
 msgstr "Zeitzone"
 
 msgid "Title"
@@ -9921,9 +10381,6 @@ msgstr "Transponder"
 msgid "Transponder Information"
 msgstr "Transponder Information"
 
-msgid "Transponder type"
-msgstr "Transponder Typ"
-
 msgid "Trash can"
 msgstr "Mülleimer"
 
@@ -9969,23 +10426,32 @@ msgstr "Tuner-Konfiguration"
 msgid "Tuner is not supported"
 msgstr "nicht unterstützter Tuner"
 
+msgid "Tuner live values"
+msgstr "Tuner-Status"
+
 msgid "Tuner not available."
 msgstr "Tuner nicht verfügbar."
 
 msgid "Tuner settings"
 msgstr "Tuner Einstellungen"
 
+msgid "Tuner settings values"
+msgstr "Tuner Einstellungen"
+
 msgid "Tuner slot"
 msgstr "Tuner Slot"
-
-msgid "Tuner status"
-msgstr "Tuner-Status"
 
 msgid "Tuner status:"
 msgstr "Tuner-Status:"
 
 msgid "Tuner type"
 msgstr "Tuner Typ"
+
+msgid "Tuning info: live values"
+msgstr "Tuning Info: reale Werte"
+
+msgid "Tuning info: settings values"
+msgstr "Tuning Info: gesetzte Werte"
 
 msgid "Turkish"
 msgstr "Türkisch"
@@ -10023,6 +10489,9 @@ msgstr "Art der Suche"
 msgid "Type: "
 msgstr "Typ:"
 
+msgid "URL"
+msgstr ""
+
 msgid "USALS"
 msgstr "USALS"
 
@@ -10035,8 +10504,8 @@ msgstr "Ukrainisch"
 msgid "Unable to change the password for the root user"
 msgstr "Änderung vom Passwort von root nicht möglich"
 
-msgid "Unattended upgrade without GUI and reboot system"
-msgstr "Stille Aktualisierung ohne Benutzeroberfläche (automatischer Neustart)"
+msgid "Undefined"
+msgstr "Undefiniert"
 
 msgid "Undetermined"
 msgstr "Unbestimmt"
@@ -10052,12 +10521,6 @@ msgstr "Unverschlüsselt"
 
 msgid "Unhide parental control services"
 msgstr "Geschützte Sender sichtbar machen"
-
-msgid "Unicable"
-msgstr "Unicable"
-
-msgid "Unicable/JESS"
-msgstr "Unicable / JESS"
 
 msgid "Uninstall"
 msgstr "Deinstallieren"
@@ -10214,13 +10677,16 @@ msgstr "Benutze separate PIcon für Front-Display*"
 msgid "Use slim screen"
 msgstr "Benutze minimale Darstellung"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the user interface. LEFT button decreases the size, RIGHT increases the size."
 msgstr "Benutze die Tasten Links/Rechts der Fernbedienungen um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the user interface. LEFT button decreases the size, RIGHT increases the size."
+msgstr "Benutze die Tasten Links/Rechts der Fernbedienungen um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the user interface left/right."
 msgstr "Benutze die Tasten Links/Rechts um das OSD nach links/rechts zu verschieben"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the user interface up/down."
 msgstr "Benutze die Tasten Links/Rechts um das OSD nach oben/unten zu verschieben"
 
 msgid "Use the alternative or the conventional radio mode."
@@ -10316,6 +10782,9 @@ msgstr "Wenn Untertitel und die Tonspur die selbe Sprache benutzen werden Untert
 msgid "VCR scart"
 msgstr "Scart-Videorekorder"
 
+msgid "VLAN connection"
+msgstr "VLAN Verbindung"
+
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Intro-Trailer)"
 
@@ -10340,6 +10809,9 @@ msgstr "Vertikale Geschwindigkeit"
 
 msgid "ViX EPG"
 msgstr "ViX EPG"
+
+msgid "Video Chip Mode*"
+msgstr "Videochipmodus"
 
 msgid "Video Enhancement Settings"
 msgstr "Bildoptimierung Einstellungen"
@@ -10384,17 +10856,8 @@ msgstr "Bild Ausgang"
 msgid "Video: %s fps"
 msgstr "Video: %s FPS"
 
-msgid "Videocodec"
-msgstr "Videocodec"
-
-msgid "Videoformat"
-msgstr "Videoformat"
-
-msgid "Videomode"
-msgstr "Videomodus"
-
-msgid "Videosize"
-msgstr "Bildgröße"
+msgid "Videocodec, size & format"
+msgstr "Videocodec, Größe und Format"
 
 msgid "View"
 msgstr "Anzeigen"
@@ -10567,6 +11030,23 @@ msgstr "Wöchentlich"
 
 msgid "Weighted position"
 msgstr "Gewichtete Position"
+
+msgid ""
+"Welcome to OpenViX!\n"
+"\n"
+"NOTE: This section of the wizard is intended for people who cannot disable overscan on their television / display.  Please first try to disable overscan before using this feature.\n"
+"\n"
+"USAGE: If you continue adjust the screen size and position settings so that the shaded user interface layer *just* covers the test pattern in the background.\n"
+"\n"
+"Select Yes to change these settings or No to skip this step."
+msgstr ""
+"Willkommen zu OpenVIX!\n"
+"\n"
+"Achtung: Dieser Bereich des Assistenten ist gedacht für Leute die Overscan am Fernseher nicht deaktivieren können. Versuche zuerst Overscan am Fernseher zu deaktivieren.\n"
+"\n"
+"Benutzung: Ändere größe und Position des grauen Bereiches so das es GERADE das Testmuster im Hintergrund bedeckt.\n"
+"\n"
+"Wähle Ja um Werte zu übernehmen oder Nein um diesen Schritt zu überspringen."
 
 msgid ""
 "Welcome to the cutlist editor.\n"
@@ -10779,6 +11259,9 @@ msgstr "Wenn der Bildinhalt ein Aspect/Ratio von 4:3 hat wähle ob das Bild skal
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure of what you're doing."
 msgstr "Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du tust."
 
+msgid "When using the remote fallback tuner for recordings, it is impossible to correctly detect timer conflicts. This option allows you to skip timer confict detection when remote fallback is enabled, but can lead to timer conflicts. This setting is only for advanced users; the default is 'yes'."
+msgstr "Wenn Ausweichreceiver für Aufnahmen benutzt werden arbeitet die Konflikterkennung von Timer nicht richtig. Mit dieser Option kann die Konflikterkennung abgeschaltet werden. Diese Option ist nur für erfahrene Anwender. Standard ist 'JA'"
+
 #, python-format
 msgid ""
 "When you perform a factory reset, you will lose ALL of your configuration data\n"
@@ -10792,9 +11275,6 @@ msgstr ""
 "Nach der Wiederherstellung wird die %s %s automatisch neu starten\n"
 "\n"
 "Werkseinstellungen wirklich wiederherstellen?"
-
-msgid "When you use the remote fallback tuner for recording, the timer conflict detection can't properly detect conflicts. This option allows you to turn off the timer confict detection. This setting is only for advanced users; the default is 'yes'."
-msgstr "Wenn Ausweichreceiver für Aufnahmen benutzt werden arbeitet die Konflikterkennung von Timer nicht richtig. Mit dieser Option kann die Konflikterkennung abgeschaltet werden. Diese Option ist nur für erfahrene Anwender. Standard ist 'JA'"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin die Einstellungen sichern?"
@@ -11213,6 +11693,9 @@ msgstr "Deine Box hat keine Internetverbindung"
 msgid "Your receiver is not connected to the internet"
 msgstr "Deine Box ist nicht mit dem Internet verbunden"
 
+msgid "Your timezone in the area."
+msgstr "Deine Zeitzone."
+
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
@@ -11337,11 +11820,17 @@ msgstr "Apha umgedreht dann Neueste"
 msgid "alternative"
 msgstr "Alternative"
 
+msgid "am"
+msgstr "am"
+
 msgid "and never ask again this session"
 msgstr "in dieser Sitzung nicht wieder fragen"
 
 msgid "are you sure you want to cancel all the changes"
 msgstr "Bist Du sicher das alle Änderungen verworfen werden sollen"
+
+msgid "arts/culture (general)"
+msgstr "Kunst/Kultur (ohne Musik, allgemein)"
 
 msgid "arts/culture (without music, general)"
 msgstr "Kunst/Kultur (ohne Musik, allgemein)"
@@ -11386,8 +11875,8 @@ msgid "ballet"
 msgstr "Ballett"
 
 #, python-format
-msgid "bc%s"
-msgstr "bc%s"
+msgid "bc%d"
+msgstr ""
 
 msgid "better"
 msgstr "besser"
@@ -11437,8 +11926,11 @@ msgstr "Zentriert, umgebrochen"
 msgid "chapters"
 msgstr "Kapitel"
 
-msgid "childrens's/youth program (general)"
+msgid "children's/youth program (general)"
 msgstr "Kinder-/Jugendprogramm (allgemein)"
+
+msgid "childrens (general)"
+msgstr "Kinderprogramm (allgemein)"
 
 msgid "circular left"
 msgstr "links-zirkular"
@@ -11451,6 +11943,9 @@ msgstr "Schließe Freigabeansicht"
 
 msgid "comedy"
 msgstr "Comedy"
+
+msgid "comedy (general)"
+msgstr "Komödie (allgemein)"
 
 msgid "confirmed"
 msgstr "Bestätigt"
@@ -11466,6 +11961,9 @@ msgstr "kopieren"
 
 msgid "create directory"
 msgstr "Verzeichnis erstellen"
+
+msgid "current affairs (general)"
+msgstr "Nachrichten/Gegenwart (allgemein)"
 
 msgid "daily"
 msgstr "täglich"
@@ -11512,11 +12010,17 @@ msgstr "nichts machen"
 msgid "documentary"
 msgstr "Dokumentation"
 
+msgid "documentary (general)"
+msgstr "Dokumentation (allgemein)"
+
 msgid "don't descramble, record ecm"
 msgstr "Nicht entschlüsseln, Aufnahme ECM"
 
 msgid "done!"
 msgstr "erledigt!"
+
+msgid "drama (general)"
+msgstr "Film/Drama (allgemein)"
 
 msgid "e-mail address"
 msgstr "E-Mail-Adresse"
@@ -11532,6 +12036,9 @@ msgstr "ecm.info"
 
 msgid "economics/social advisory"
 msgstr "Wirtschaft/Soziales Ratgeber"
+
+msgid "education/information (general)"
+msgstr "Bildung/Wissenschaft/Tatsachen (allgemein)"
 
 msgid "education/science/factual topics (general)"
 msgstr "Bildung/Wissenschaft/Tatsachen (allgemein)"
@@ -11562,6 +12069,9 @@ msgstr "Unterhaltung (10-16 Jahre)"
 
 msgid "entertainment (6-14 year old)"
 msgstr "Unterhaltung (6-14 Jahre)"
+
+msgid "entertainment (general)"
+msgstr "Unterhaltung (allgemein)"
 
 msgid "epg cache backup"
 msgstr "Backup vom EPG Cache"
@@ -11689,6 +12199,24 @@ msgstr "Diesen Frame als Bitmap speichern"
 msgid "green"
 msgstr "grün"
 
+msgid "h:mm"
+msgstr ""
+
+msgid "h:mm:ss"
+msgstr ""
+
+msgid "h:mm:ssAM/PM"
+msgstr ""
+
+msgid "h:mm:ssam/pm"
+msgstr ""
+
+msgid "h:mmAM/PM"
+msgstr ""
+
+msgid "h:mmam/pm"
+msgstr ""
+
 msgid "handicraft"
 msgstr "Handwerk"
 
@@ -11705,6 +12233,24 @@ msgstr ""
 msgid "height"
 msgstr "Höhe"
 
+msgid "hh:mm"
+msgstr ""
+
+msgid "hh:mm:ss"
+msgstr ""
+
+msgid "hh:mm:ssAM/PM"
+msgstr ""
+
+msgid "hh:mm:ssam/pm"
+msgstr ""
+
+msgid "hh:mmAM/PM"
+msgstr ""
+
+msgid "hh:mmam/pm"
+msgstr ""
+
 msgid "hide"
 msgstr "verstecke"
 
@@ -11719,6 +12265,9 @@ msgstr "uhop um 1 erhöhen"
 
 msgid "information/education/school program"
 msgstr "Information/Bildung/Schule"
+
+msgid "infotainment (general)"
+msgstr "Information (allgemein)"
 
 msgid "init module"
 msgstr "Modul initialisieren"
@@ -11819,14 +12368,23 @@ msgstr "Motorsport"
 msgid "move"
 msgstr "verschieben"
 
+msgid "movie (general)"
+msgstr "Film/Drama (allgemein)"
+
 msgid "movie/drama (general)"
 msgstr "Film/Drama (allgemein)"
 
 msgid "ms"
 msgstr "ms"
 
+msgid "multi"
+msgstr "Multinorm"
+
 msgid "multinorm"
 msgstr "Multinorm"
+
+msgid "music (general)"
+msgstr "Musik (allgemein)"
 
 msgid "music/ballet/dance (general)"
 msgstr "Musik/Ballett/Tanz (allgemein)"
@@ -11845,6 +12403,9 @@ msgstr "niemals"
 
 msgid "new media"
 msgstr "neue Medien"
+
+msgid "news (general)"
+msgstr "Nachrichten (allgemein)"
 
 msgid "news magazine"
 msgstr "Nachrichtenmagazin"
@@ -11976,6 +12537,9 @@ msgstr "Bitte warten, Bild wird geladen..."
 msgid "please wait..."
 msgstr "Bitte warten..."
 
+msgid "pm"
+msgstr ""
+
 msgid "popular culture/traditional arts"
 msgstr "populäre Kultur/traditionell Kunst"
 
@@ -12038,6 +12602,9 @@ msgstr "umgekehrt nach Datum"
 
 msgid "rewind to the previous chapter"
 msgstr "Zum vorherigen Kapitel zurück"
+
+msgid "rgb"
+msgstr ""
 
 msgid "right"
 msgstr "rechts"
@@ -12168,7 +12735,7 @@ msgstr "Vorwärts springen (Zeit eingeben)"
 msgid "slow"
 msgstr "langsam"
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr "Soap/Melodram/Folklore"
 
 msgid "social/political issues/economics (general)"
@@ -12180,8 +12747,14 @@ msgstr "soziale/spirituelle Wissenschaft"
 msgid "sorting of playlists"
 msgstr "Sortierung der Wiedergabeliste"
 
+msgid "special (general)"
+msgstr "Special (allgemein)"
+
 msgid "special events"
 msgstr "Spezialveranstaltung"
+
+msgid "sport (general)"
+msgstr "Sport (allgemein)"
 
 msgid "sports (general)"
 msgstr "Sport (allgemein)"
@@ -12342,6 +12915,12 @@ msgstr "wöchentlich"
 msgid "west"
 msgstr "Drehen nach Westen"
 
+msgid "when PiPzap enabled zap channel down..."
+msgstr "Wenn PiPZap aktiviert ist wechsle Kanal runter..."
+
+msgid "when PiPzap enabled zap channel up..."
+msgstr "Wenn PiPZap aktiviert ist wechsle Kanal hoch..."
+
 msgid "when asking questions about this log"
 msgstr "wenn Fragen zu diesem Log gestellt werden"
 
@@ -12424,20 +13003,62 @@ msgstr "umgeschaltet"
 #~ "\n"
 #~ "<Dieser Tuner wird automatisch konfiguriert>"
 
+#~ msgid "%02d:%02d"
+#~ msgstr "%02d:%02d"
+
 #~ msgid "%2d:%02d"
 #~ msgstr "%2d:%02d"
 
 #~ msgid "%2d:%02d:%02d"
 #~ msgstr "%2d:%02d:%02d"
 
-#~ msgid "%a %e/%m  %-H:%M"
-#~ msgstr "%a %e/%m  %-H:%M"
+#~ msgid "%d Gb"
+#~ msgstr "%d Gb"
+
+#~ msgid "%d.%02d. %02d:%02d"
+#~ msgstr "%d.%02d. %02d:%02d"
 
 #~ msgid "%d.%B %Y"
 #~ msgstr "%d.%B %Y"
 
 #~ msgid "%k:%M %e/%m"
 #~ msgstr "%k:%M %e/%m"
+
+#~ msgid "9 Month 9999"
+#~ msgstr "9 Monat 9999"
+
+#~ msgid "9-Month-9999"
+#~ msgstr "9-Monat-9999"
+
+#~ msgid "99 Mon 9999"
+#~ msgstr "99 Mon"
+
+#~ msgid "99 Month 9999"
+#~ msgstr "99 Monat 9999"
+
+#~ msgid "9999 Mon 9"
+#~ msgstr "9999 Mon 9"
+
+#~ msgid "9999 Mon 99"
+#~ msgstr "9999 Mon 99"
+
+#~ msgid "9999 Month 9"
+#~ msgstr "9999 Monat 9"
+
+#~ msgid "9999 Month 99"
+#~ msgstr "9999 Monat 99"
+
+#~ msgid "9999-Mon-9"
+#~ msgstr "9999-Mon-9"
+
+#~ msgid "9999-Mon-99"
+#~ msgstr "9999-Mon-99"
+
+#~ msgid "9999-Month-9"
+#~ msgstr "9999-Monat-9"
+
+#~ msgid "9999-Month-99"
+#~ msgstr "9999-Monat-99"
 
 #~ msgid ""
 #~ "A finished power timer wants to shut down\n"
@@ -12452,11 +13073,23 @@ msgstr "umgeschaltet"
 #~ msgid "Choose Tuner"
 #~ msgstr "Wähle Tuner"
 
+#~ msgid "Choose the display formatting style for times. The screen display will be based on your choice but can be influenced by the skin."
+#~ msgstr "Wähle Zeitformat für Anzeigen. Die Anzeige wird entsprechend der Einstellung geschehen und kann vom Skin beeinflusst werden."
+
+#~ msgid "Coderate HP"
+#~ msgstr "Empfangsrate HP"
+
+#~ msgid "Coderate LP"
+#~ msgstr "Empfangsrate LP"
+
 #~ msgid "Configure the refresh rate of the screen."
 #~ msgstr "Konfiguriere die Wiederholrate für den Bildschirm."
 
 #~ msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
 #~ msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
+
+#~ msgid "Cores:\t%s\n"
+#~ msgstr "Kerne:\t%s\n"
 
 #~ msgid "Could not connect to %s %s .NFI image feed server:"
 #~ msgstr "Verbindung zum %s %s NFI Image Feed Server konnte nicht hergestellt werden:"
@@ -12467,11 +13100,161 @@ msgstr "umgeschaltet"
 #~ msgid "Customize"
 #~ msgstr "Anpassen"
 
+#~ msgid "Day 9"
+#~ msgstr "Tag 9"
+
+#~ msgid "Day 9 Mon 9999"
+#~ msgstr "Tag 9 Mon 9999"
+
+#~ msgid "Day 9 Month 9999"
+#~ msgstr "Tag 9 Monat 9999"
+
+#~ msgid "Day 9-Mon-9999"
+#~ msgstr "Tag 9-Mon-9999"
+
+#~ msgid "Day 9-Month-9999"
+#~ msgstr "Tag 0-Monat-9999"
+
+#~ msgid "Day 9/9/9999"
+#~ msgstr "Tag 9/99/9999"
+
+#~ msgid "Day 9/99"
+#~ msgstr "Tag 9/99"
+
+#~ msgid "Day 9/99/9999"
+#~ msgstr "Tag 9/99/9999"
+
+#~ msgid "Day 99"
+#~ msgstr "Tag 99"
+
+#~ msgid "Day 99 Mon"
+#~ msgstr "Tag 99 Mon"
+
+#~ msgid "Day 99 Mon 9999"
+#~ msgstr "Tag 99 Mon 9999"
+
+#~ msgid "Day 99 Month 9999"
+#~ msgstr "Tag 99 Monat 9999"
+
+#~ msgid "Day 99/9"
+#~ msgstr "Tag 99/9"
+
+#~ msgid "Day 9999 Mon 9"
+#~ msgstr "Tag 9999 Mon 9"
+
+#~ msgid "Day 9999 Mon 99"
+#~ msgstr "Tag 9999 Mon 99"
+
+#~ msgid "Day 9999 Month 9"
+#~ msgstr "Tag 9999 Monat 9"
+
+#~ msgid "Day 9999 Month 99"
+#~ msgstr "Tag 9999 Monat 99"
+
+#~ msgid "Day 9999-Mon-9"
+#~ msgstr "Tag 9999-Mon-9"
+
+#~ msgid "Day 9999-Mon-99"
+#~ msgstr "Tag 9999-Mon-99"
+
+#~ msgid "Day 9999-Month-9"
+#~ msgstr "Tag 9999-Monat-9"
+
+#~ msgid "Day 9999-Month-99"
+#~ msgstr "Tag 9999-Monat-99"
+
+#~ msgid "Day 9999/99/9"
+#~ msgstr "Tag 9999/99/9"
+
+#~ msgid "Day Mon 9 9999"
+#~ msgstr "Tag Mon 9 9999"
+
+#~ msgid "Day Mon 99"
+#~ msgstr "Tag Mon 99"
+
+#~ msgid "Day Mon 99 9999"
+#~ msgstr "Tag Mon 99 99"
+
+#~ msgid "Day Mon-9-9999"
+#~ msgstr "Tag Mon-9-9999"
+
+#~ msgid "Day Mon-99"
+#~ msgstr "Tag Mon-99"
+
+#~ msgid "Day Month 9 9999"
+#~ msgstr "Tag Monat 9 9999"
+
+#~ msgid "Day Month 99 9999"
+#~ msgstr "Tag Monat 99 9999"
+
+#~ msgid "Day Month-9-9999"
+#~ msgstr "Tag Monat-9-9999"
+
+#~ msgid "Dayname 9 Month"
+#~ msgstr "Tagesname 9 Monat"
+
+#~ msgid "Dayname 9 Month 9999"
+#~ msgstr "Tagesname 9 Monat 9999"
+
+#~ msgid "Dayname 9-Month-9999"
+#~ msgstr "Tagesname 9-Monat-9999"
+
+#~ msgid "Dayname 9/9/9999"
+#~ msgstr "Tagesname 9/9/9999"
+
+#~ msgid "Dayname 9/99"
+#~ msgstr "Tagesname 9/99"
+
+#~ msgid "Dayname 9/99/9999"
+#~ msgstr "Tagesname 9/99/9999"
+
+#~ msgid "Dayname 99 Month"
+#~ msgstr "Tagesname 99 monat"
+
+#~ msgid "Dayname 99 Month 9999"
+#~ msgstr "Tagesname 99 Monat 9999"
+
+#~ msgid "Dayname 99/9"
+#~ msgstr "Tagesname 99/9"
+
+#~ msgid "Dayname 9999 Month 9"
+#~ msgstr "Tagesname 9999 Monat 9"
+
+#~ msgid "Dayname 9999 Month 99"
+#~ msgstr "Tagesname 9999 Monat 99"
+
+#~ msgid "Dayname 9999-Month-9"
+#~ msgstr "Tagesname 9999-Monat-9"
+
+#~ msgid "Dayname 9999-Month-99"
+#~ msgstr "Tagesname 9999-Monat-99"
+
+#~ msgid "Dayname 9999/99/9"
+#~ msgstr "Tagesname 9999/99/9"
+
+#~ msgid "Dayname Month 9 9999"
+#~ msgstr "Tagesname Monat 9 9999"
+
+#~ msgid "Dayname Month 99"
+#~ msgstr "Tagesname Monat 99"
+
+#~ msgid "Dayname Month 99 9999"
+#~ msgstr "Tagesname Monat 99 9999"
+
+#~ msgid "Dayname Month-9-9999"
+#~ msgstr "Tagesname Monat-9-9999"
+
+#~ msgid "Dayname Month-99"
+#~ msgstr "Tagesname Monat-99"
+
 #~ msgid "Device Information"
 #~ msgstr "Geräteinformation"
 
 #~ msgid "Diction"
 #~ msgstr "Schreibweise"
+
+#~ msgid "Digital downmix"
+#~ msgstr "Digital Downmix"
 
 #~ msgid "Disable FastZapping"
 #~ msgstr "Deaktiviere schnelles Umschalten"
@@ -12488,6 +13271,9 @@ msgstr "umgeschaltet"
 #~ msgstr ""
 #~ "Soll der Samba-Klient ebenfalls installiert werden?\n"
 #~ "Der Klient erlaubt es sich mit Windows-Freigaben zu verbinden."
+
+#~ msgid "Dolby Digital / DTS downmix"
+#~ msgstr "DD/DTS Downmix"
 
 #~ msgid "Download"
 #~ msgstr "Herunterladen"
@@ -12513,14 +13299,20 @@ msgstr "umgeschaltet"
 #~ msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 #~ msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."
 
+#~ msgid "Enable timer conflict detection"
+#~ msgstr "Aktiviere Konfliktprüfung bei Timern"
+
 #~ msgid "Enable unlinked bouquets"
 #~ msgstr "Aktiviere nicht verbundene Favoritenlisten"
 
 #~ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 #~ msgstr "Aktiviert ein Merkmal so das ein anderer Empfänger einen Stream entschlüsseln kann (wenn ECM Daten im Stream enthalten sind und eine Karte vorhanden ist)."
 
-#~ msgid "Fallback remote receiver streaming port"
-#~ msgstr "Ausweichreceiver Streaming-Port"
+#~ msgid "Enigma2 Changes"
+#~ msgstr "Enigma2 Änderungen"
+
+#~ msgid "Error downloading the change log."
+#~ msgstr "Fehler beim herunterladen vom change.log"
 
 #~ msgid "Find currently played service"
 #~ msgstr "suche gerade aktiven Sender"
@@ -12549,6 +13341,9 @@ msgstr "umgeschaltet"
 #~ msgid "Get latest release image"
 #~ msgstr "Neuestes Release-Image"
 
+#~ msgid "Hierarchy information"
+#~ msgstr "Hierarchie..."
+
 #~ msgid "Image Information"
 #~ msgstr "Image Informationen"
 
@@ -12568,6 +13363,39 @@ msgstr "umgeschaltet"
 #~ "Falsche Konfiguration Unicable-Verbindung von Tuner %s nach Tuner %s!\n"
 #~ "Tuner %s Einstellung \"verbunden mit\" ist jetzt deaktiviert."
 
+#~ msgid "Mon 9"
+#~ msgstr "Mon 9"
+
+#~ msgid "Mon 9 9999"
+#~ msgstr "Mon 9 9999"
+
+#~ msgid "Mon 99"
+#~ msgstr "Mon 99"
+
+#~ msgid "Mon 99 9999"
+#~ msgstr "Mon 99 9999"
+
+#~ msgid "Mon-9"
+#~ msgstr "Mo-9"
+
+#~ msgid "Mon-9-9999"
+#~ msgstr "Mon-9-9999"
+
+#~ msgid "Mon-99"
+#~ msgstr "Mo-99"
+
+#~ msgid "Month 9 9999"
+#~ msgstr "Monat 9 9999"
+
+#~ msgid "Month 99 9999"
+#~ msgstr "Monat 99 9999"
+
+#~ msgid "Month-9-9999"
+#~ msgstr "Monat-9-9999"
+
+#~ msgid "Multiplex"
+#~ msgstr "Multiplex"
+
 #~ msgid "NFI image flashing"
 #~ msgstr "NFI Image Flashing"
 
@@ -12576,23 +13404,32 @@ msgstr "umgeschaltet"
 #~ "NFI Image Flashen beendet.\n"
 #~ "Drücke Gelb um neu zu starten!"
 
+#~ msgid "NIM"
+#~ msgstr "NIM"
+
 #~ msgid "Network Information"
 #~ msgstr "Netzwerkinformationen"
 
 #~ msgid "Network setup"
 #~ msgstr "Netzwerkeinstellungen"
 
-#~ msgid "No clients streaming"
-#~ msgstr "Keine streamenden Klienten"
-
-#~ msgid "No connection"
-#~ msgstr "Keine Verbindung"
-
 #~ msgid "No details for this image file"
 #~ msgstr "Keine Details zum Image verfügbar"
 
+#~ msgid "No stream clients"
+#~ msgstr "Keine Streaming Klienten"
+
+#~ msgid "OE Changes"
+#~ msgstr "OE Änderungen"
+
+#~ msgid "OE-A Changes"
+#~ msgstr "OE-A Änderungen"
+
 #~ msgid "OpenVpn Log"
 #~ msgstr "OpenVpn Log"
+
+#~ msgid "PIDs"
+#~ msgstr "PIDs"
 
 #~ msgid "Parental control setup"
 #~ msgstr "Jugendschutz Einstellungen"
@@ -12630,6 +13467,9 @@ msgstr "umgeschaltet"
 #~ msgid "SET FAILED!\n"
 #~ msgstr "SETZEN FEHLGESCHLAGEN!\n"
 
+#~ msgid "SID"
+#~ msgstr "SID"
+
 #~ msgid "Samba Log"
 #~ msgstr "Samba/CIFS Log"
 
@@ -12642,11 +13482,20 @@ msgstr "umgeschaltet"
 #~ msgid "Select desired image from feed list"
 #~ msgstr "Wähle Image vom Feed-Server"
 
+#~ msgid "Service Information"
+#~ msgstr "Sender Information"
+
 #~ msgid "Setting"
 #~ msgstr "Einstellungen"
 
 #~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 #~ msgstr "Soll der Assistent fortfahren und die Image-Datei %s in den Flashspeicher schreiben?"
+
+#~ msgid "Show E2 Log"
+#~ msgstr "Zeige E2 Log"
+
+#~ msgid "Show OE Log"
+#~ msgstr "Zeige OE Log"
 
 #~ msgid "Show status icons in movielist"
 #~ msgstr "Zeige Status-Icons in der Filmliste"
@@ -12656,9 +13505,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "Skin name:\t%s\n"
 #~ msgstr "Skinname:\t%s\n"
-
-#~ msgid "Streaming port of the fallback remote receiver. By default this is '8001'"
-#~ msgstr "Streaming Port des Ausweichreceivers. Standard ist '8001'."
 
 #~ msgid ""
 #~ "System temperature: %s%sC\n"
@@ -12727,8 +13573,8 @@ msgstr "umgeschaltet"
 #~ "2) Box einschalten und die '-' Taste am Gerät drücken.\n"
 #~ "3) Auf Neustart warten und den Anweisungen des Assistenten folgen."
 
-#~ msgid "Translation Information"
-#~ msgstr "Übersetzung Information"
+#~ msgid "Transponder type"
+#~ msgstr "Transponder Typ"
 
 #~ msgid "Tuning algorithm"
 #~ msgstr "Tuningmethode"
@@ -12739,11 +13585,23 @@ msgstr "umgeschaltet"
 #~ msgid "USB stick wizard"
 #~ msgstr "USB-Stick-Assistent"
 
+#~ msgid "Unattended upgrade without GUI and reboot system"
+#~ msgstr "Stille Aktualisierung ohne Benutzeroberfläche (automatischer Neustart)"
+
+#~ msgid "Unicable"
+#~ msgstr "Unicable"
+
 #~ msgid "Unicable LNB"
 #~ msgstr "Unicable LNB"
 
 #~ msgid "Unicable Matrix"
 #~ msgstr "Unicable Matrix"
+
+#~ msgid "Videocodec"
+#~ msgstr "Videocodec"
+
+#~ msgid "Videosize"
+#~ msgstr "Bildgröße"
 
 #~ msgid "When enabled the LNB power will not be switched off in standby"
 #~ msgstr "Wenn aktiviert wird die LNB-Spannung in Bereitschaft nicht ausgeschaltet."
@@ -12763,8 +13621,8 @@ msgstr "umgeschaltet"
 #~ msgid "Zap back to service before tuner setup?"
 #~ msgstr "Zurückschalten zum vorher laufenden Sender?"
 
-#~ msgid "am"
-#~ msgstr "am"
+#~ msgid "bc%s"
+#~ msgstr "bc%s"
 
 #~ msgid "continue"
 #~ msgstr "Weiter"

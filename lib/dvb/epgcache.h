@@ -130,7 +130,7 @@ public:
 };
 #endif
 
-class eEPGCache: public eMainloop, private eThread, public Object
+class eEPGCache: public eMainloop, private eThread, public sigc::trackable
 {
 public:
 	enum eit_type_t {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4
@@ -160,7 +160,7 @@ public:
 private:
 #ifndef SWIG
 	DECLARE_REF(eEPGCache)
-	struct channel_data: public Object
+	struct channel_data: public sigc::trackable
 	{
 		pthread_mutex_t channel_active;
 		channel_data(eEPGCache*);
