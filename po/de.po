@@ -248,7 +248,11 @@ msgstr "\n%02d.%02d.%d, %02d:%02d  -  %s"
 
 # EpgList.py#L686
 msgid "%e/%m, %-H:%M"
-msgstr "%02e.%02m, %-02H:%02M"
+msgstr "%02e.%02m, %H:%M"
+
+# Date & Time in Timer-Log ( Timer & PowerTimer )
+msgid "%Y-%m-%d %H-%M"
+msgstr "%d.%m.%Y %H:%M"
 
 #, python-format
 msgid "%d Gb"
@@ -532,7 +536,7 @@ msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
 msgid "4X"
-msgstr "4X"
+msgstr "4x"
 
 msgid "4 hours"
 msgstr "4 Stunden"
@@ -18180,4 +18184,14 @@ msgstr "DNS-Server manuell einstellen"
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Nur für Wake on WLan (WoW) aktivieren"
 
+msgid "8 character"
+msgstr "8 Zeichen"
 
+msgid "12 character"
+msgstr "12 Zeichen"
+
+msgid "switch 12 to 8 character display mode"
+msgstr "Umschalten von 12 nach 8 Display Zeichen"
+
+msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgstr "12, zeigt latin-1 Zeichensatz außer griechisch und kyrillisch, umschalten auf 8 wenn benötigt."

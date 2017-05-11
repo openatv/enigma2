@@ -433,6 +433,15 @@ def InitLcd():
 				f.write(configElement.value)
 				f.close()
 
+		def setXcoreVFD(configElement):
+			if fileExists("/sys/module/brcmstb_osmega/parameters/pt6302_cgram"):
+				f = open("/sys/module/brcmstb_osmega/parameters/pt6302_cgram", "w")
+				f.write(configElement.value)
+				f.close()
+
+		config.usage.vfd_xcorevfd = ConfigSelection(default = "0", choices = [("0", _("12 character")), ("1", _("8 character"))])
+		config.usage.vfd_xcorevfd.addNotifier(setXcoreVFD)
+
 		config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
 
@@ -513,7 +522,11 @@ def InitLcd():
 
 		if SystemInfo["VFD_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def scroll_delay(el):
-				open(SystemInfo["VFD_scroll_delay"], "w").write(str(el.value))
+				# add workaround for Boxes who need hex code
+				if getBoxType() == 'sf4008':
+					open(SystemInfo["VFD_scroll_delay"], "w").write(hex(int(el.value)))
+				else:
+					open(SystemInfo["VFD_scroll_delay"], "w").write(str(el.value))
 			config.usage.vfd_scroll_delay = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback = False)
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
@@ -522,8 +535,14 @@ def InitLcd():
 
 		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def initial_scroll_delay(el):
-				open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
+				if getBoxType() == 'sf4008':
+					# add workaround for Boxes who need hex code
+					open(SystemInfo["VFD_initial_scroll_delay"], "w").write(hex(int(el.value)))
+				else:
+					open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
+
 			choicelist = [
+			("3000", "3 " + _("seconds")),
 			("5000", "5 " + _("seconds")),
 			("10000", "10 " + _("seconds")),
 			("20000", "20 " + _("seconds")),
@@ -534,8 +553,14 @@ def InitLcd():
 
 		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def final_scroll_delay(el):
-				open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
+				if getBoxType() == 'sf4008':
+					# add workaround for Boxes who need hex code
+					open(SystemInfo["VFD_final_scroll_delay"], "w").write(hex(int(el.value)))
+				else:
+					open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
+
 			choicelist = [
+			("3000", "3 " + _("seconds")),
 			("5000", "5 " + _("seconds")),
 			("10000", "10 " + _("seconds")),
 			("20000", "20 " + _("seconds")),
