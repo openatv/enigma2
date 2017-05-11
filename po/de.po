@@ -248,7 +248,11 @@ msgstr "\n%02d.%02d.%d, %02d:%02d  -  %s"
 
 # EpgList.py#L686
 msgid "%e/%m, %-H:%M"
-msgstr "%02e.%02m, %-02H:%02M"
+msgstr "%02e.%02m, %H:%M"
+
+# Date & Time in Timer-Log ( Timer & PowerTimer )
+msgid "%Y-%m-%d %H-%M"
+msgstr "%d.%m.%Y %H:%M"
 
 #, python-format
 msgid "%d Gb"
