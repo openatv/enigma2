@@ -1457,6 +1457,7 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 	{
 		ePyObject cab_name;
 		ePyObject cab_flags;
+		ePyObject cab_countrycode;
 
 		for(xmlAttrPtr attr = cable->properties; attr; attr = attr->next)
 		{
@@ -1469,16 +1470,23 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 				if (!*end_ptr)
 					cab_flags = PyInt_FromLong(tmp);
 			}
+			else if (name == "countrycode")
+			{
+				cab_countrycode = PyString_FromString((const char*)attr->children->content);
+			}
 		}
 
 		if (cab_name)
 		{
 			ePyObject tplist = PyList_New(0);
-			ePyObject tuple = PyTuple_New(2);
+			ePyObject tuple = PyTuple_New(3);
 			if (!cab_flags)
 				cab_flags = PyInt_FromLong(0);
+			if (!cab_countrycode)
+				cab_countrycode = PyString_FromString("");
 			PyTuple_SET_ITEM(tuple, 0, cab_name);
 			PyTuple_SET_ITEM(tuple, 1, cab_flags);
+			PyTuple_SET_ITEM(tuple, 2, cab_countrycode);
 			PyList_Append(cab_list, tuple);
 			Py_DECREF(tuple);
 			PyDict_SetItem(tp_dict, cab_name, tplist);
@@ -1538,9 +1546,16 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 
 			Py_DECREF(tplist);
 		}
-		else if (cab_flags)
+		else if (cab_flags || cab_countrycode)
 		{
-			Py_DECREF(cab_flags);
+			if (cab_flags)
+			{
+				Py_DECREF(cab_flags);
+			}
+			if (cab_countrycode)
+			{
+				Py_DECREF(cab_countrycode);
+			}
 		}
 
 		// next cable
@@ -1594,6 +1609,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 	{
 		ePyObject ter_name;
 		ePyObject ter_flags;
+		ePyObject ter_countrycode;
 
 		for(xmlAttrPtr attr = terrestrial->properties; attr; attr = attr->next)
 		{
@@ -1610,16 +1626,23 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					ter_flags = PyInt_FromLong(tmp);
 				}
 			}
+			else if (name == "countrycode")
+			{
+				ter_countrycode = PyString_FromString((const char*)attr->children->content);
+			}
 		}
 
 		if (ter_name)
 		{
 			ePyObject tplist = PyList_New(0);
-			ePyObject tuple = PyTuple_New(2);
+			ePyObject tuple = PyTuple_New(3);
 			if (!ter_flags)
 				ter_flags = PyInt_FromLong(0);
+			if (!ter_countrycode)
+				ter_countrycode = PyString_FromString("");
 			PyTuple_SET_ITEM(tuple, 0, ter_name);
 			PyTuple_SET_ITEM(tuple, 1, ter_flags);
+			PyTuple_SET_ITEM(tuple, 2, ter_countrycode);
 			PyList_Append(ter_list, tuple);
 			Py_DECREF(tuple);
 			PyDict_SetItem(tp_dict, ter_name, tplist);
@@ -1707,9 +1730,16 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 
 			Py_DECREF(tplist);
 		}
-		else if (ter_flags)
+		else if (ter_flags || ter_countrycode) 
 		{
-			Py_DECREF(ter_flags);
+			if (ter_flags)
+			{
+				Py_DECREF(ter_flags);
+			}
+			if (ter_countrycode)
+			{
+				Py_DECREF(ter_countrycode);
+			}
 		}
 
 		// next terrestrial
