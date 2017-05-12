@@ -709,6 +709,12 @@ void eDVBScan::channelDone()
 		std::vector<NetworkInformationSection*>::const_iterator i;
 		for (i = m_NIT->getSections().begin(); i != m_NIT->getSections().end(); ++i)
 		{
+			if (m_networkid && m_networkid != (*i)->getNetworkId())
+			{
+				SCAN_eDebug("[eDVBScan] ignoring NetworkId %d!", (*i)->getNetworkId());
+				continue;
+			}
+
 			const TransportStreamInfoList &tsinfovec = *(*i)->getTsInfo();
 
 			for (TransportStreamInfoConstIterator tsinfo(tsinfovec.begin());
