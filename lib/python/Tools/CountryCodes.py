@@ -233,7 +233,7 @@ ISO3166 = [
 	(_("Uganda"), "UG", "UGA"),
 	(_("Ukraine"), "UA", "UKR"),
 	(_("United Arab Emirates"), "AE", "ARE"),
-	(_("United Kingdom of Great Britain and Northern Ireland"), "GB", "GBR"),
+	(_("United Kingdom"), "GB", "GBR"),
 	(_("United States of America"), "US", "USA"),
 	(_("United States Minor Outlying Islands"), "UM", "UMI"),
 	(_("Uruguay"), "UY", "URY"),
