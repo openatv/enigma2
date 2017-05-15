@@ -624,7 +624,7 @@ class NIM(object):
 		return self.isFBCTuner() and (self.slot % 8 < 2)
 
 	def isFBCLink(self):
-		return self.isFBCTuner() and not (self.slot % 8 < 2)
+		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
 	slot_id = property(getSlotID)
 
@@ -678,17 +678,53 @@ class NimManager:
 			return self.transpondersatsc[self.atscList[nimConfig.atsc.index][0]]
 		return []
 
+	def getCablesList(self):
+		return self.cablesList
+
+	def getCablesCountrycodeList(self):
+		countrycodes = []
+		for x in self.cablesList:
+			if x[2] and x[2] not in countrycodes:
+				countrycodes.append(x[2])
+		return countrycodes
+
+	def getCablesByCountrycode(self, countrycode):
+		if countrycode:
+			return [x for x in self.cablesList if x[2] == countrycode]
+		return []
+
 	def getCableDescription(self, nim):
-		return self.cablesList[config.Nims[nim].scan_provider.index][0]
+		return self.cablesList[config.Nims[nim].cable.scan_provider.index][0]
 
 	def getCableFlags(self, nim):
-		return self.cablesList[config.Nims[nim].scan_provider.index][1]
+		return self.cablesList[config.Nims[nim].cable.scan_provider.index][1]
+		
+	def getCableCountrycode(self, nim):
+		return self.cablesList[config.Nims[nim].cable.scan_provider.index][2]
+
+	def getTerrestrialsList(self):
+		return self.terrestrialsList
+
+	def getTerrestrialsCountrycodeList(self):
+		countrycodes = []
+		for x in self.terrestrialsList:
+			if x[2] and x[2] not in countrycodes:
+				countrycodes.append(x[2])
+		return countrycodes
+
+	def getTerrestrialsByCountrycode(self, countrycode):
+		if countrycode:
+			return [x for x in self.terrestrialsList if x[2] == countrycode]
+		return []
 
 	def getTerrestrialDescription(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][0]
 
 	def getTerrestrialFlags(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
+
+	def getTerrestrialCountrycode(self, nim):
+		return self.terrestrialsList[config.Nims[nim].terrestrial.index][2]
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]
@@ -1415,7 +1451,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.cable
 		except:
 			#list = [(str(n), x[0]) for n, x in enumerate(nimmgr.cablesList)]
-			list = [(x[0], x[0]) for x in nimmgr.cablesList]
+			list = [x[0] for x in nimmgr.cablesList]
 			nim.cable = ConfigSubsection()
 			nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 99999))
 			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
@@ -1423,7 +1459,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			if list:
 				possible_scan_types.append(("provider", _("Provider")))
 				default_scan_type = "provider"
-				nim.cable.scan_provider = ConfigSelection(default = "0", choices = list)
+				nim.cable.scan_provider = ConfigSelection(choices = list)
 			nim.cable.scan_type = ConfigSelection(default = default_scan_type, choices = possible_scan_types)
 			nim.cable.scan_band_EU_VHF_I = ConfigYesNo(default = True)
 			nim.cable.scan_band_EU_MID = ConfigYesNo(default = True)
@@ -1453,7 +1489,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.terrestrial
 		except:
 			#list = [(str(n), x[0]) for n, x in enumerate(nimmgr.terrestrialsList)]
-			list = [(x[0], x[0]) for x in nimmgr.terrestrialsList]
+			list = [x[0] for x in nimmgr.terrestrialsList]
 			nim.terrestrial = ConfigSelection(choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 
@@ -1462,7 +1498,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.atsc
 		except:
 			#list = [(str(n), x[0]) for n, x in enumerate(nimmgr.atscList)]
-			list = [(x[0], x[0]) for x in nimmgr.atscList]
+			list = [x[0]for x in nimmgr.atscList]
 			nim.atsc = ConfigSelection(choices = list)
 
 	def tunerTypeChanged(nimmgr, configElement, initial=False):

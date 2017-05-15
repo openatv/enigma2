@@ -372,7 +372,7 @@
 	</setup>
 	<setup key="fallback" title="Fallback configuration">
 		<item level="2" text="Enable fallback remote receiver" description="Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
-		<item level="2" text="Fallback remote receiver URL" requires="config.usage.remote_fallback_enabled" description="Specify the complete URL of the fallback remote receiver including the port number (:8001 by default), e.g. 'http://IP_second_box:8001'.">config.usage.remote_fallback</item>
+		<item level="2" text="Fallback remote receiver URL" requires="config.usage.remote_fallback_enabled" description="Specify the URL/IP of the fallback remote receiver, e.g. '192.168.0.1'. The other details such as http:// and the port number will be filled in automatically when you select save">config.usage.remote_fallback</item>
 		<item level="2" text="Timer conflict detection when fallback is enabled" requires="config.usage.remote_fallback_enabled" description="When using the remote fallback tuner for recordings, it is impossible to correctly detect timer conflicts. This option allows you to skip timer confict detection when remote fallback is enabled, but can lead to timer conflicts. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 	</setup>
 </setupxml>

@@ -18,7 +18,7 @@ eLCD::eLCD()
 {
 	_buffer = NULL;
 	lcdfd = -1;
-	locked=0;
+	locked = 0;
 	instance = this;
 }
 
@@ -30,10 +30,10 @@ eLCD *eLCD::getInstance()
 void eLCD::setSize(int xres, int yres, int bpp)
 {
 	res = eSize(xres, yres);
-	_buffer=new unsigned char[xres * yres * bpp/8];
-	memset(_buffer, 0, res.height()*res.width()*bpp/8);
-	_stride=res.width()*bpp/8;
-	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d", xres, yres, bpp, _buffer, xres*yres*bpp/8, _stride);
+	_buffer = new unsigned char[xres * yres * bpp/8];
+	memset(_buffer, 0, res.height() * res.width() * bpp / 8);
+	_stride = res.width() * bpp / 8;
+	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d", xres, yres, bpp, _buffer, xres * yres * bpp / 8, _stride);
 }
 
 eLCD::~eLCD()
@@ -48,13 +48,13 @@ int eLCD::lock()
 	if (locked)
 		return -1;
 
-	locked=1;
+	locked = 1;
 	return lcdfd;
 }
 
 void eLCD::unlock()
 {
-	locked=0;
+	locked = 0;
 }
 
 #ifdef HAVE_TEXTLCD
@@ -71,7 +71,7 @@ void eLCD::renderText(ePoint start, const char *text)
 
 eDBoxLCD::eDBoxLCD()
 {
-	int xres=132, yres=64, bpp=8;
+	int xres = 132, yres = 64, bpp = 8;
 	flipped = false;
 	inverted = 0;
 	lcd_type = 0;
@@ -79,13 +79,13 @@ eDBoxLCD::eDBoxLCD()
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	if (lcdfd < 0)
 	{
-		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || !access("/proc/stb/fp/oled_brightness", W_OK) )
+		if (!access("/proc/stb/lcd/oled_brightness", W_OK) ||
+		    !access("/proc/stb/fp/oled_brightness", W_OK) )
 			lcd_type = 2;
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
-	} else
-	{
-		lcd_type = 1;
 	}
+	else
+		lcd_type = 1;
 
 	if (lcdfd < 0)
 		eDebug("[eDboxLCD] No oled0 or lcd0 device found!");
@@ -99,7 +99,7 @@ eDBoxLCD::eDBoxLCD()
 #define	LCD_MODE_BIN		1
 #endif
 
-		int i=LCD_MODE_BIN;
+		int i = LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
 		FILE *f = fopen("/proc/stb/lcd/xres", "r");
 		if (f)
@@ -165,13 +165,13 @@ int eDBoxLCD::setLCDContrast(int contrast)
 	eDebug("[eDboxLCD] setLCDContrast %d", contrast);
 
 	int fp;
-	if((fp=open("/dev/dbox/fp0", O_RDWR))<0)
+	if((fp = open("/dev/dbox/fp0", O_RDWR)) < 0)
 	{
 		eDebug("[eDboxLCD] can't open /dev/dbox/fp0: %m");
 		return(-1);
 	}
 
-	if(ioctl(lcdfd, LCD_IOCTL_SRV, &contrast)<0)
+	if(ioctl(lcdfd, LCD_IOCTL_SRV, &contrast) < 0)
 		eDebug("[eDboxLCD] can't set lcd contrast: %m");
 	close(fp);
 #endif
@@ -185,19 +185,19 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 		return(0);
 
 	eDebug("[eDboxLCD] setLCDBrightness %d", brightness);
-	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
+	FILE *f = fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)
 		f = fopen("/proc/stb/fp/oled_brightness", "w");
 	if (f)
 	{
 		if (fprintf(f, "%d", brightness) == 0)
-			eDebug("[eDboxLCD] write /proc/stb/lcd/oled_brightness failed: %m");
+			eDebug("[eDboxLCD] write /proc/stb/lcd|fp/oled_brightness failed: %m");
 		fclose(f);
 	}
 	else
 	{
 		int fp;
-		if((fp=open("/dev/dbox/fp0", O_RDWR)) < 0)
+		if ((fp = open("/dev/dbox/fp0", O_RDWR)) < 0)
 		{
 			eDebug("[eDboxLCD] can't open /dev/dbox/fp0: %m");
 			return(-1);
@@ -205,7 +205,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 #ifndef FP_IOCTL_LCD_DIMM
 #define FP_IOCTL_LCD_DIMM       3
 #endif
-		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
+		if (ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
 			eDebug("[eDboxLCD] can't set lcd brightness: %m");
 		close(fp);
 	}
@@ -252,17 +252,15 @@ void eDBoxLCD::update()
 
 	if (lcd_type == 0 || lcd_type == 2)
 	{
-		unsigned char raw[132*8];
+		unsigned char raw[132 * 8];
 		int x, y, yy;
-		for (y=0; y<8; y++)
+		for (y = 0; y < 8; y++)
 		{
-			for (x=0; x<132; x++)
+			for (x = 0; x < 132; x++)
 			{
-				int pix=0;
-				for (yy=0; yy<8; yy++)
-				{
-					pix|=(_buffer[(y*8+yy)*132+x]>=108)<<yy;
-				}
+				int pix = 0;
+				for (yy = 0; yy < 8; yy++)
+					pix |= (_buffer[(y * 8 + yy) * 132 + x] >= 108) << yy;
 				if (flipped)
 				{
 					/* 8 pixels per byte, swap bits */

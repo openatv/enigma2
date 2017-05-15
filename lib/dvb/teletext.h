@@ -33,7 +33,7 @@ struct eDVBTeletextSubtitlePage
 	void clear() { m_elements.clear(); }
 };
 
-class eDVBTeletextParser: public iObject, public ePESParser, public Object
+class eDVBTeletextParser: public iObject, public ePESParser, public sigc::trackable
 {
 	DECLARE_REF(eDVBTeletextParser);
 public:
@@ -44,8 +44,8 @@ public:
 	int start(int pid);
 	void setPageAndMagazine(int page, int magazine, const char * lang);
 	void setMagazine(int magazine);
-	void connectNewStream(const Slot0<void> &slot, ePtr<eConnection> &connection);
-	void connectNewPage(const Slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
+	void connectNewStream(const sigc::slot0<void> &slot, ePtr<eConnection> &connection);
+	void connectNewPage(const sigc::slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
 	std::set<eDVBServicePMTHandler::subtitleStream> m_found_subtitle_pages;
 private:
 	std::map<int, unsigned int> m_modifications;
@@ -66,8 +66,8 @@ private:
 
 	void addSubtitleString(int color, std::string string, int source_line);
 
-	Signal0<void> m_new_subtitle_stream;
-	Signal1<void,const eDVBTeletextSubtitlePage&> m_new_subtitle_page;
+	sigc::signal0<void> m_new_subtitle_stream;
+	sigc::signal1<void,const eDVBTeletextSubtitlePage&> m_new_subtitle_page;
 };
 
 #endif

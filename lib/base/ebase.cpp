@@ -276,7 +276,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 					m_inActivate = 0;
 				}
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-					eDebug("[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+					eLog(5, "[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 		}
 		for (; i < fdcount; ++i)

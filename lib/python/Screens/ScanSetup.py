@@ -887,7 +887,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			"fec": eDVBFrontendParametersSatellite.FEC_Auto,
 			"fec_s2": eDVBFrontendParametersSatellite.FEC_9_10,
 			"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK,
-			"is_id": -1,
+			"is_id": 0,
 			"pls_mode": eDVBFrontendParametersSatellite.PLS_Root,
 			"pls_code": 1 }
 		defaultCab = {
@@ -928,7 +928,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 					defaultSat["fec_s2"] = frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)
 					defaultSat["rolloff"] = frontendData.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35)
 					defaultSat["pilot"] = frontendData.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown)
-					defaultSat["is_id"] = frontendData.get("is_id", defaultSat["is_id"])
+					defaultSat["is_id"] = frontendData.get("is_id", defaultSat["is_id"]) > defaultSat["is_id"] and frontendData.get("is_id", defaultSat["is_id"]) or defaultSat["is_id"]
 					defaultSat["pls_mode"] = frontendData.get("pls_mode", eDVBFrontendParametersSatellite.PLS_Root)
 					defaultSat["pls_code"] = frontendData.get("pls_code", defaultSat["pls_code"])
 				else:
@@ -1273,7 +1273,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		parm.orbital_position = orbital_position
 		parm.rolloff = rolloff
 		parm.pilot = pilot
-		parm.is_id = is_id
+		parm.is_id = is_id or -1
 		parm.pls_mode = pls_mode
 		parm.pls_code = pls_code
 		tlist.append(parm)

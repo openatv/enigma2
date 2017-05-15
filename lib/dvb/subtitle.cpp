@@ -1094,7 +1094,7 @@ eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("[eDVBSubtitleParser] failed to create PES reader!");
 	else
-		m_pes_reader->connectRead(slot(*this, &eDVBSubtitleParser::processData), m_read_connection);
+		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBSubtitleParser::processData), m_read_connection);
 }
 
 eDVBSubtitleParser::~eDVBSubtitleParser()
@@ -1125,7 +1125,7 @@ int eDVBSubtitleParser::start(int pid, int composition_page_id, int ancillary_pa
 	return -1;
 }
 
-void eDVBSubtitleParser::connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection)
+void eDVBSubtitleParser::connectNewPage(const sigc::slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
 }
