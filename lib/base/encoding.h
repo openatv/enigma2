@@ -13,7 +13,7 @@
 #define ISO8859_10			0x06	// Latin 6
 #define ISO8859_11			0x07	// Latin/Thai
 #define ISO8859_12			0x08	// Reserved
-#define ISO8859_13			0x08	// Latin 7
+#define ISO8859_13			0x09	// Latin 7
 #define ISO8859_14			0x0A	// Latin 8 (Celtic)
 #define ISO8859_15			0x0B	// Latin 9
 #define ISO8859_xx			0x10	// encoded in next two bytes

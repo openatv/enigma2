@@ -624,7 +624,7 @@ class NIM(object):
 		return self.isFBCTuner() and (self.slot % 8 < 2)
 
 	def isFBCLink(self):
-		return self.isFBCTuner() and not (self.slot % 8 < 2)
+		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
 	slot_id = property(getSlotID)
 
