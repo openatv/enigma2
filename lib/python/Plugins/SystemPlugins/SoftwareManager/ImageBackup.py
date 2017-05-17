@@ -302,7 +302,7 @@ class ImageBackup(Screen):
 			cmdlist.append(cmd3)
 		cmdlist.append("chmod 644 %s/%s" %(self.WORKDIR, self.ROOTFSBIN))
 
-		if self.MODEL in ("gbquad4k"):
+		if self.MODEL in ("gbquad4k","gbue4k"):
 			cmdlist.append('echo " "')
 			cmdlist.append('echo "Create: boot dump"')
 			cmdlist.append('echo " "')
@@ -426,7 +426,7 @@ class ImageBackup(Screen):
 		else:
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 
-		if self.MODEL in ("gbquad4k"):
+		if self.MODEL in ("gbquad4k","gbue4k"):
 			system('mv %s/boot.bin %s/boot.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/rescue.bin %s/rescue.bin' %(self.WORKDIR, self.MAINDEST))
 
