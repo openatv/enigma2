@@ -32,6 +32,8 @@ def getChannelNumber(frequency, nim):
 			elif 470 <= f < 863: 	# IV,V
 				d = (f + 2) % 8
 				return str(int(f - 470) / 8 + 21) + (d < 3.5 and "-" or d > 4.5 and "+" or "")
+	elif "Zealand" in descr and 506 <= f <= 700:
+		return str(int(f - 506) / 8 + 25)
 	else:	# Australian rules
 		# TODO: Need to figure out a sensible way of dealing with the Australian
 		#       requirement to support a +/- 125kHz optional offset for each channel
@@ -55,6 +57,8 @@ def channel2frequency(channel, nim):
 			return (177500 + 7000*(channel- 5))*1000
 		elif 21 <= channel <= 69:
 			return (474000 + 8000*(channel-21))*1000
+	elif "Zealand" in descr and 25 <= channel <= 50:
+		return (506000 + 8000 * (int(channel) - 25)) * 1000
 	else:	# Australian rules
 		res = 205500000
 		if channel != "9A":
