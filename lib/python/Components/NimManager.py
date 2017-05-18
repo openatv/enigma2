@@ -621,7 +621,7 @@ class NIM(object):
 		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
 
 	def isFBCRoot(self):
-		return self.isFBCTuner() and (self.slot % 8 < 2)
+		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
 	def isFBCLink(self):
 		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
@@ -633,19 +633,22 @@ class NIM(object):
 
 	friendly_type = property(getFriendlyType)
 
+	def getFullDescription(self):
+		return self.empty and _("(empty)") or "%s (%s)" % (self.description, self.isSupported() and self.friendly_type or _("not supported"))
+
 	def getFriendlyFullDescription(self):
-		nim_text = self.slot_name + ": "
+		return "%s: %s" % (self.slot_name, self.getFullDescription())
 
-		if self.empty:
-			nim_text += _("(empty)")
-		elif not self.isSupported():
-			nim_text += self.description + " (" + _("not supported") + ")"
-		else:
-			nim_text += self.description + " (" + self.friendly_type + ")"
-
-		return nim_text
+	def getFriendlyFullDescriptionCompressed(self):
+		if self.isFBCRoot():
+			return "%s-%s: %s" % (self.slot_name, chr(ord('A') + self.slot + 7), self.getFullDescription())
+		#compress by combining dual tuners by checking if the next tuner has an rf switch
+		elif os.access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), os.F_OK):
+			return "%s-%s: %s" % (self.slot_name, chr(ord('A') + self.slot + 1), self.getFullDescription())
+		return getFriendlyFullDescription()
 
 	friendly_full_description = property(getFriendlyFullDescription)
+	friendly_full_description_compressed = property(getFriendlyFullDescriptionCompressed)
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
@@ -890,9 +893,11 @@ class NimManager:
 		InitNimManager(self)	#init config stuff
 
 	# get a list with the friendly full description
-	def nimList(self, showFBCTuners=True):
-		list = [slot.friendly_full_description for slot in self.nim_slots if showFBCTuners or not slot.isFBCLink()]
-		return list
+	def nimList(self):
+		return [slot.friendly_full_description for slot in self.nim_slots]
+
+	def nimListCompressed(self):
+		return [slot.friendly_full_description_compressed for slot in self.nim_slots if not (slot.isFBCLink() or slot.internally_connectable)]
 
 	def getSlotCount(self):
 		return len(self.nim_slots)
