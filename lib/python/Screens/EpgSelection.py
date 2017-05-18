@@ -390,6 +390,7 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['list'].setFontsize()
 			self['list'].setItemsPerPage()
+			self['list'].recalcEntrySize()
 
 	def togglePIG(self):
 		if not config.epgselection.graph_pig.value:
