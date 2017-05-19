@@ -526,19 +526,10 @@ class NIM(object):
 				print "[NIM] DVB API not reporting tuner %d as multitype" % self.frontend_id
 
 	def isCompatible(self, what):
-		if not self.isSupported():
-			return False
-		return what in self.compatible[self.getType()]
+		return self.isSupported() and what in self.compatible[self.getType()]
 
 	def canBeCompatible(self, what):
-		if not self.isSupported():
-			return False
-		if self.isCompatible(what):
-			return True
-		for type in self.multi_type.values():
-			if what in self.compatible[type]:
-				return True
-		return False
+		return self.isSupported() and (self.isCompatible(what) or [x for x in self.multi_type.values() if what in self.compatible[x]]) and True
 
 	def getType(self):
 		try:
@@ -560,16 +551,14 @@ class NIM(object):
 			}
 		return connectable[self.getType()]
 
+	def getSlotID(self, slot=None):
+		return chr(ord('A') + (slot or self.slot))
+
 	def getSlotName(self):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
-		return _("Tuner") + " " + chr(ord('A') + self.slot)
-
-	slot_name = property(getSlotName)
-
-	def getSlotID(self):
-		return chr(ord('A') + self.slot)
+		return "%s %s" % (_("Tuner"), self.slot_id)
 
 	def getI2C(self):
 		return self.i2c
@@ -595,7 +584,7 @@ class NIM(object):
 			f.close()
 
 	def isMultiType(self):
-		return len(self.multi_type) > 0
+		return len(self.multi_type) and True
 
 	def isEmpty(self):
 		return self.__is_empty
@@ -626,12 +615,8 @@ class NIM(object):
 	def isFBCLink(self):
 		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
-	slot_id = property(getSlotID)
-
 	def getFriendlyType(self):
 		return self.getType() or _("empty")
-
-	friendly_type = property(getFriendlyType)
 
 	def getFullDescription(self):
 		return self.empty and _("(empty)") or "%s (%s)" % (self.description, self.isSupported() and self.friendly_type or _("not supported"))
@@ -641,14 +626,17 @@ class NIM(object):
 
 	def getFriendlyFullDescriptionCompressed(self):
 		if self.isFBCRoot():
-			return "%s-%s: %s" % (self.slot_name, chr(ord('A') + self.slot + 7), self.getFullDescription())
-		#compress by combining dual tuners by checking if the next tuner has an rf switch
+			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 7), self.getFullDescription())
+		#compress by combining dual tuners by checking if the next tuner has a rf switch
 		elif os.access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), os.F_OK):
-			return "%s-%s: %s" % (self.slot_name, chr(ord('A') + self.slot + 1), self.getFullDescription())
+			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 1), self.getFullDescription())
 		return self.getFriendlyFullDescription()
 
+	slot_id = property(getSlotID)
+	slot_name = property(getSlotName)
 	friendly_full_description = property(getFriendlyFullDescription)
 	friendly_full_description_compressed = property(getFriendlyFullDescriptionCompressed)
+	friendly_type = property(getFriendlyType)
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
