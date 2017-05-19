@@ -645,7 +645,7 @@ class NIM(object):
 		#compress by combining dual tuners by checking if the next tuner has an rf switch
 		elif os.access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), os.F_OK):
 			return "%s-%s: %s" % (self.slot_name, chr(ord('A') + self.slot + 1), self.getFullDescription())
-		return getFriendlyFullDescription()
+		return self.getFriendlyFullDescription()
 
 	friendly_full_description = property(getFriendlyFullDescription)
 	friendly_full_description_compressed = property(getFriendlyFullDescriptionCompressed)
