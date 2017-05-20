@@ -366,6 +366,20 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_F1_TO_KEY_F6
+	if (ev->code == KEY_F1)
+	{
+		ev->code = KEY_F6;
+	}
+#endif
+
+#if KEY_F2_TO_KEY_AUX
+	if (ev->code == KEY_F2)
+	{
+		ev->code = KEY_AUX;
+	}
+#endif
+
 #if KEY_F3_TO_KEY_LIST
 	if (ev->code == KEY_F3)
 	{
