@@ -151,7 +151,6 @@ class Network:
 				fp.write("#only WakeOnWiFi " + ifacename + "\n")
 			if iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
-				fp.write("  hostname $(hostname)\n")
 			if not iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet static\n")
 				fp.write("  hostname $(hostname)\n")
