@@ -162,7 +162,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		'''
 
 		self.optionsList = (('boxmode=1', _('2160p60 without PiP (Standard)')), ('boxmode=12', _('2160p50 with PiP (Experimental)')))
-		self.bootloaderList = ('v1.07-r19', 'v1.07-r21')
+		self.bootloaderList = ('v1.07-r19', 'v1.07-r21', 'v1.07-r35')
 
 		#for compatibility to old or other images set 'self.enable_bootnamefile = False'
 		#if 'False' and more as on file with same kernel exist is possible no exact matching found (only to display)
