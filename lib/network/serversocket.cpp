@@ -52,7 +52,7 @@ void eServerSocket::notifier(int)
 		{
 			if (IN6_IS_ADDR_V4MAPPED(&client_addr.sock_in6.sin6_addr)) {
 // Just get the normal IPv4 reprsentation by fudging in the IPv4 address part
-				strRemoteHost = inet_ntop(PF_INET, (sockaddr_in *)&client_addr.sock_in6.sin6_addr.s6_addr[12], straddr, sizeof(straddr));
+				strRemoteHost = inet_ntop(AF_INET, (sockaddr_in *)&client_addr.sock_in6.sin6_addr.s6_addr[12], straddr, sizeof(straddr));
 			}
 			else
 			{
