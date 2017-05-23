@@ -625,8 +625,6 @@ class NIM(object):
 		return "%s: %s" % (self.slot_name, self.getFullDescription())
 
 	def getFriendlyFullDescriptionCompressed(self):
-#		if self.isFBCRoot():
-#			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 7), self.getFullDescription())
 		if self.isFBCTuner():
 			return "%s-%s: %s" % (self.getSlotID(self.slot - (self.slot % 8)), self.getSlotID((self.slot - (self.slot % 8)) + 7), self.getFullDescription())
 		#compress by combining dual tuners by checking if the next tuner has a rf switch
