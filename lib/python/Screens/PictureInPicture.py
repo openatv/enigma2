@@ -36,7 +36,13 @@ def PipPigMode(value):
 				if SystemInfo["hasPIPVisibleProc"]:
 					open(SystemInfo["hasPIPVisibleProc"], "w").write("0")
 				else:
-					InfoBar.instance.session.pip.pipservice = False
+					import skin
+					x, y, w, h = skin.parameters.get("PipHidePosition",(0, 0, 8, 8))
+ 					pip = InfoBar.instance.session.pip
+					pip.instance.move(ePoint(x, y))
+					pip["video"].instance.move(ePoint(x, y))
+					pip.instance.resize(eSize(*(w, h)))
+					pip["video"].instance.resize(eSize(*(w, h)))
 				PipPigModeEnabled = True
 		else:
 			PipPigModeTimer.start(100, True)
