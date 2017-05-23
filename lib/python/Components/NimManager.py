@@ -552,7 +552,7 @@ class NIM(object):
 		return connectable[self.getType()]
 
 	def getSlotID(self, slot=None):
-		return chr(ord('A') + (slot or self.slot))
+		return chr(ord('A') + (slot if slot is not None else self.slot))
 
 	def getSlotName(self):
 		# get a friendly description for a slot name.
@@ -625,8 +625,10 @@ class NIM(object):
 		return "%s: %s" % (self.slot_name, self.getFullDescription())
 
 	def getFriendlyFullDescriptionCompressed(self):
-		if self.isFBCRoot():
-			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 7), self.getFullDescription())
+#		if self.isFBCRoot():
+#			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 7), self.getFullDescription())
+		if self.isFBCTuner():
+			return "%s-%s: %s" % (self.getSlotID(self.slot - (self.slot % 8)), self.getSlotID((self.slot - (self.slot % 8)) + 7), self.getFullDescription())
 		#compress by combining dual tuners by checking if the next tuner has a rf switch
 		elif os.access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), os.F_OK):
 			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 1), self.getFullDescription())
