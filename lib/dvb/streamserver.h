@@ -26,6 +26,8 @@ protected:
 
 	std::string request;
 
+	ePtr<eTimer> m_timeout;
+
 	void streamStopped();
 	void tuneFailed();
 
