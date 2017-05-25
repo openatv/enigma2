@@ -352,7 +352,7 @@ class ServiceInfo(Screen):
 		from Components.Converter.PliExtraInfo import caid_data
 		self["Title"].text = _("Service info - ECM Info")
 		tlist = []
-		for caid in set(list(self.info.getInfoObject(iServiceInformation.sCAIDPIDs))):
+		for caid in sorted(set(list(self.info.getInfoObject(iServiceInformation.sCAIDPIDs))), key=lambda x: (x[0], x[1])):
 			CaIdDescription = _("Undefined")
 			extra_info = ""
 			for caid_entry in caid_data:
