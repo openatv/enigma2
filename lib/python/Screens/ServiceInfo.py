@@ -372,5 +372,6 @@ class ServiceInfo(Screen):
 				else:
 					extra_info = "extra data=%s" % caid[2]
 			tlist.append(ServiceInfoListEntry("ECMPid %04X (%d) %04X-%s %s" % (caid[1], caid[1], caid[0], CaIdDescription, extra_info)))
+		if not tlist:
+			tlist.append(ServiceInfoListEntry(_("No ECMPids available (FTA Service)")))
 		self["infolist"].l.setList(tlist)
-
