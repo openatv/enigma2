@@ -78,7 +78,7 @@ class FlashOnline(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
-		if getMachineBuild() in ("hd51","vs1500"):
+		if getMachineBuild() in ("hd51","vs1500","h7"):
 			self.devrootfs = "/dev/mmcblk0p3"
 		else:
 			self.devrootfs = "/dev/mmcblk1p3"
@@ -161,7 +161,7 @@ class FlashOnline(Screen):
 			self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
 			self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
-			if getMachineBuild() in ("hd51","vs1500"):
+			if getMachineBuild() in ("hd51","vs1500","h7"):
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
@@ -179,7 +179,7 @@ class FlashOnline(Screen):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("hd51","vs1500"):
+			if getMachineBuild() in ("hd51","vs1500","h7"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
