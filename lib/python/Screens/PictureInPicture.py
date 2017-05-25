@@ -8,8 +8,8 @@ from Components.config import config, ConfigPosition, ConfigSelection
 from Tools import Notifications
 from Screens.MessageBox import MessageBox
 
-MAX_X = 720
-MAX_Y = 576
+MAX_X = 1420
+MAX_Y = 1052
 pip_config_initialized = False
 PipPigModeEnabled = False
 PipPigModeTimer = eTimer()
@@ -37,12 +37,10 @@ def PipPigMode(value):
 					open(SystemInfo["hasPIPVisibleProc"], "w").write("0")
 				else:
 					import skin
-					x, y, w, h = skin.parameters.get("PipHidePosition",(0, 0, 8, 8))
- 					pip = InfoBar.instance.session.pip
-					pip.instance.move(ePoint(x, y))
-					pip["video"].instance.move(ePoint(x, y))
-					pip.instance.resize(eSize(*(w, h)))
-					pip["video"].instance.resize(eSize(*(w, h)))
+					x, y, w, h = skin.parameters.get("PipHidePosition",(16, 16, 16, 16))
+					pip = InfoBar.instance.session.pip
+					pip.move(x, y, doSave=False)
+					pip.resize(w, h, doSave=False)
 				PipPigModeEnabled = True
 		else:
 			PipPigModeTimer.start(100, True)
@@ -98,9 +96,11 @@ class PictureInPicture(Screen):
 		self.relocate()
 		self.setExternalPiP(config.av.pip_mode.value == "external")
 
-	def move(self, x, y):
-		config.av.pip.value[0] = x
-		config.av.pip.value[1] = y
+	def move(self, x, y, doSave=True):
+		if doSave:
+			config.av.pip.value[0] = x
+			config.av.pip.value[1] = y
+			config.av.pip.save()
 		w = config.av.pip.value[2]
 		h = config.av.pip.value[3]
 		if config.av.pip_mode.value == "cascade":
@@ -115,14 +115,13 @@ class PictureInPicture(Screen):
 		elif config.av.pip_mode.value in "bigpig external":
 			x = 0
 			y = 0
-		config.av.pip.save()
 		self.instance.move(ePoint(x, y))
-		self["video"].instance.move(ePoint(x, y))
 
-	def resize(self, w, h):
-		config.av.pip.value[2] = w
-		config.av.pip.value[3] = h
-		config.av.pip.save()
+	def resize(self, w, h, doSave=True):
+		if doSave:
+			config.av.pip.value[2] = w
+			config.av.pip.value[3] = h
+			config.av.pip.save()
 		if config.av.pip_mode.value == "standard":
 			self.instance.resize(eSize(*(w, h)))
 			self["video"].instance.resize(eSize(*(w, h)))
