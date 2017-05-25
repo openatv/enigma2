@@ -68,6 +68,13 @@ int eDVBPMTParser::getProgramInfo(program &program)
 					program::capid_pair pair;
 					pair.caid = descr->getCaSystemId();
 					pair.capid = descr->getCaPid();
+					pair.databytes.clear();
+					for(std::vector<unsigned char>::const_iterator it = descr->getCaDataBytes()->begin(); it != descr->getCaDataBytes()->end(); ++it)
+					{
+						char t[2];
+						sprintf(t, "%02X", *it);
+						pair.databytes += t;
+					}
 					program.caids.push_back(pair);
 				}
 				else if ((*desc)->getTag() == REGISTRATION_DESCRIPTOR)
@@ -368,6 +375,13 @@ int eDVBPMTParser::getProgramInfo(program &program)
 							program::capid_pair pair;
 							pair.caid = descr->getCaSystemId();
 							pair.capid = descr->getCaPid();
+							pair.databytes.clear();
+							for(std::vector<unsigned char>::const_iterator it = descr->getCaDataBytes()->begin(); it != descr->getCaDataBytes()->end(); ++it)
+							{
+								char t[2];
+								sprintf(t, "%02X", *it	);
+								pair.databytes += t;
+							}
 							program.caids.push_back(pair);
 							break;
 						}
@@ -468,6 +482,7 @@ eDVBPMTParser::eStreamData::eStreamData(eDVBPMTParser::program &program)
 	{
 		caIds.push_back(it->caid);
 		ecmPids.push_back(it->capid);
+		ecmDataBytes.push_back(it->databytes);
 	}
 }
 
@@ -560,12 +575,13 @@ RESULT eDVBPMTParser::eStreamData::getDemuxId(int &result) const
 	return 0;
 }
 
-RESULT eDVBPMTParser::eStreamData::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const
+RESULT eDVBPMTParser::eStreamData::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes) const
 {
 	for (unsigned int i = 0; (i < caIds.size()) && (i < ecmPids.size()); i++)
 	{
 		caids.push_back(caIds[i]);
 		ecmpids.push_back(ecmPids[i]);
+		ecmdatabytes.push_back(ecmDataBytes[i]);
 	}
 	return 0;
 }

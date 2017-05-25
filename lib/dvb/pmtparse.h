@@ -8,6 +8,7 @@
 #include <dvbsi++/program_map_section.h>
 #include <dvbsi++/program_association_section.h>
 #include <dvbsi++/application_information_section.h>
+#include <dvbsi++/ca_descriptor.h>
 
 class eDVBPMTParser: public sigc::trackable
 {
@@ -72,6 +73,7 @@ public:
 		{
 			uint16_t caid;
 			int capid;
+			std::string databytes;
 			bool operator< (const struct capid_pair &t) const { return t.caid < caid; }
 		};
 		std::vector<videoStream> videoStreams;
@@ -96,6 +98,7 @@ public:
 		DECLARE_REF(eStreamData);
 		std::vector<int> caIds;
 		std::vector<int> ecmPids;
+		std::vector<std::string> ecmDataBytes;
 		std::vector<int> videoStreams;
 		std::vector<int> audioStreams;
 		std::vector<int> subtitleStreams;
@@ -114,7 +117,7 @@ public:
 		RESULT getServiceId(int &result) const;
 		RESULT getAdapterId(int &result) const;
 		RESULT getDemuxId(int &result) const;
-		RESULT getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids) const;
+		RESULT getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes) const;
 	};
 
 	virtual int getProgramInfo(program &program);

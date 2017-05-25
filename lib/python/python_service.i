@@ -27,7 +27,8 @@ PyObject *getInfoObject(int w)
 		{
 			ePyObject ret;
 			std::vector<int> caids, ecmpids;
-			self->getCaIds(caids, ecmpids);
+			std::vector<std::string> databytes;
+			self->getCaIds(caids, ecmpids, databytes);
 			unsigned int cnt = caids.size();
 
 			ret = PyList_New(cnt);
@@ -42,16 +43,18 @@ PyObject *getInfoObject(int w)
 		{
 			ePyObject ret;
 			std::vector<int> caids, ecmpids;
-			self->getCaIds(caids, ecmpids);
+			std::vector<std::string> databytes;
+			self->getCaIds(caids, ecmpids, databytes);
 			unsigned int cnt = caids.size();
 
 			ret = PyList_New(cnt);
 
 			for (unsigned int i = 0; i < cnt; i++)
 			{
-				ePyObject tuple = PyTuple_New(2);
+				ePyObject tuple = PyTuple_New(3);
 				PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(caids[i]));
 				PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(ecmpids[i]));
+				PyTuple_SET_ITEM(tuple, 2, PyString_FromString(databytes[i].c_str()));
 				PyList_SET_ITEM(ret, i, tuple);
 			}
 			return ret;
