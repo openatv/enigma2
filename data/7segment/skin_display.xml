@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+<!-- main-->
+	<screen name="InfoBarSummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay"></convert>
+		</widget>
+	</screen>
+
+<!-- movieplayer-->
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+	</screen>
+
+<!-- DVD -->
+	<screen name="DVDSummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+	</screen>
+
+<!-- MediaPlayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+	</screen>
+
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay">Clock</convert>
+		</widget>
+	</screen>
+</skin>
