@@ -8,8 +8,8 @@ from Components.config import config, ConfigPosition, ConfigSelection
 from Tools import Notifications
 from Screens.MessageBox import MessageBox
 
-MAX_X = 1420
-MAX_Y = 1052
+MAX_X = 720
+MAX_Y = 576
 pip_config_initialized = False
 PipPigModeEnabled = False
 PipPigModeTimer = eTimer()
