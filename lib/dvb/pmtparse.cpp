@@ -37,6 +37,21 @@ void eDVBPMTParser::clearProgramInfo(program &program)
 	program.defaultSubtitleStream = -1;
 }
 
+void eDVBPMTParser::processCaDescriptor(program &program, CaDescriptor *descr)
+{
+	program::capid_pair pair;
+	pair.caid = descr->getCaSystemId();
+	pair.capid = descr->getCaPid();
+	pair.databytes.clear();
+	for(std::vector<unsigned char>::const_iterator it = descr->getCaDataBytes()->begin(); it != descr->getCaDataBytes()->end(); ++it)
+	{
+		char t[2];
+		sprintf(t, "%02X", *it);
+		pair.databytes += t;
+	}
+	program.caids.push_back(pair);
+}
+
 int eDVBPMTParser::getProgramInfo(program &program)
 {
 	ePtr<eTable<ProgramMapSection> > ptr;
@@ -64,18 +79,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 			{
 				if ((*desc)->getTag() == CA_DESCRIPTOR)
 				{
-					CaDescriptor *descr = (CaDescriptor*)(*desc);
-					program::capid_pair pair;
-					pair.caid = descr->getCaSystemId();
-					pair.capid = descr->getCaPid();
-					pair.databytes.clear();
-					for(std::vector<unsigned char>::const_iterator it = descr->getCaDataBytes()->begin(); it != descr->getCaDataBytes()->end(); ++it)
-					{
-						char t[2];
-						sprintf(t, "%02X", *it);
-						pair.databytes += t;
-					}
-					program.caids.push_back(pair);
+					processCaDescriptor(program, (CaDescriptor*)(*desc));
 				}
 				else if ((*desc)->getTag() == REGISTRATION_DESCRIPTOR)
 				{
@@ -371,18 +375,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 							break;
 						case CA_DESCRIPTOR:
 						{
-							CaDescriptor *descr = (CaDescriptor*)(*desc);
-							program::capid_pair pair;
-							pair.caid = descr->getCaSystemId();
-							pair.capid = descr->getCaPid();
-							pair.databytes.clear();
-							for(std::vector<unsigned char>::const_iterator it = descr->getCaDataBytes()->begin(); it != descr->getCaDataBytes()->end(); ++it)
-							{
-								char t[2];
-								sprintf(t, "%02X", *it	);
-								pair.databytes += t;
-							}
-							program.caids.push_back(pair);
+							processCaDescriptor(program, (CaDescriptor*)(*desc));
 							break;
 						}
 						default:

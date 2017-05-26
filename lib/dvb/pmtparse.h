@@ -8,6 +8,7 @@
 #include <dvbsi++/program_map_section.h>
 #include <dvbsi++/program_association_section.h>
 #include <dvbsi++/application_information_section.h>
+#include <dvbsi++/ca_descriptor.h>
 
 class eDVBPMTParser: public sigc::trackable
 {
@@ -119,6 +120,7 @@ public:
 		RESULT getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes) const;
 	};
 
+	void processCaDescriptor(program &program, CaDescriptor *desc);
 	virtual int getProgramInfo(program &program);
 	void clearProgramInfo(program &program);
 };
