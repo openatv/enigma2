@@ -8,7 +8,6 @@
 #include <dvbsi++/program_map_section.h>
 #include <dvbsi++/program_association_section.h>
 #include <dvbsi++/application_information_section.h>
-#include <dvbsi++/ca_descriptor.h>
 
 class eDVBPMTParser: public sigc::trackable
 {
