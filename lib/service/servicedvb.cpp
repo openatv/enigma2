@@ -1433,6 +1433,13 @@ RESULT eDVBServicePlay::stop()
 
 	m_nownext_timer->stop();
 	m_event((iPlayableService*)this, evStopped);
+
+	// In case the event callout changes the cue sheet
+	if ((m_is_pvr || m_timeshift_enabled) && m_cuesheet_changed)
+	{
+		saveCuesheet();
+	}
+
 	return 0;
 }
 

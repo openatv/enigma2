@@ -203,7 +203,7 @@ class Devices(Screen):
 		self.activityTimer.stop()
 		self.Console = Console()
 		niminfo = ""
-		nims = nimmanager.nimList(showFBCTuners=False)
+		nims = nimmanager.nimListCompressed()
 		for count in range(len(nims)):
 			if niminfo:
 				niminfo += "\n"

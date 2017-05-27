@@ -526,19 +526,10 @@ class NIM(object):
 				print "[NIM] DVB API not reporting tuner %d as multitype" % self.frontend_id
 
 	def isCompatible(self, what):
-		if not self.isSupported():
-			return False
-		return what in self.compatible[self.getType()]
+		return self.isSupported() and what in self.compatible[self.getType()]
 
 	def canBeCompatible(self, what):
-		if not self.isSupported():
-			return False
-		if self.isCompatible(what):
-			return True
-		for type in self.multi_type.values():
-			if what in self.compatible[type]:
-				return True
-		return False
+		return self.isSupported() and (self.isCompatible(what) or [x for x in self.multi_type.values() if what in self.compatible[x]]) and True
 
 	def getType(self):
 		try:
@@ -560,16 +551,14 @@ class NIM(object):
 			}
 		return connectable[self.getType()]
 
+	def getSlotID(self, slot=None):
+		return chr(ord('A') + (slot if slot is not None else self.slot))
+
 	def getSlotName(self):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
-		return _("Tuner") + " " + chr(ord('A') + self.slot)
-
-	slot_name = property(getSlotName)
-
-	def getSlotID(self):
-		return chr(ord('A') + self.slot)
+		return "%s %s" % (_("Tuner"), self.slot_id)
 
 	def getI2C(self):
 		return self.i2c
@@ -595,7 +584,7 @@ class NIM(object):
 			f.close()
 
 	def isMultiType(self):
-		return len(self.multi_type) > 0
+		return len(self.multi_type) and True
 
 	def isEmpty(self):
 		return self.__is_empty
@@ -621,31 +610,36 @@ class NIM(object):
 		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
 
 	def isFBCRoot(self):
-		return self.isFBCTuner() and (self.slot % 8 < 2)
+		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
 	def isFBCLink(self):
 		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
 
-	slot_id = property(getSlotID)
+	def isNotFirstFBCTuner(self):
+		return self.isFBCTuner() and self.slot % 8 and True
 
 	def getFriendlyType(self):
 		return self.getType() or _("empty")
 
-	friendly_type = property(getFriendlyType)
+	def getFullDescription(self):
+		return self.empty and _("(empty)") or "%s (%s)" % (self.description, self.isSupported() and self.friendly_type or _("not supported"))
 
 	def getFriendlyFullDescription(self):
-		nim_text = self.slot_name + ": "
+		return "%s: %s" % (self.slot_name, self.getFullDescription())
 
-		if self.empty:
-			nim_text += _("(empty)")
-		elif not self.isSupported():
-			nim_text += self.description + " (" + _("not supported") + ")"
-		else:
-			nim_text += self.description + " (" + self.friendly_type + ")"
+	def getFriendlyFullDescriptionCompressed(self):
+		if self.isFBCTuner():
+			return "%s %s-%s: %s" % (_("Tuner"), self.getSlotID(self.slot - (self.slot % 8)), self.getSlotID((self.slot - (self.slot % 8)) + 7), self.getFullDescription())
+		#compress by combining dual tuners by checking if the next tuner has a rf switch
+		elif os.access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), os.F_OK):
+			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 1), self.getFullDescription())
+		return self.getFriendlyFullDescription()
 
-		return nim_text
-
+	slot_id = property(getSlotID)
+	slot_name = property(getSlotName)
 	friendly_full_description = property(getFriendlyFullDescription)
+	friendly_full_description_compressed = property(getFriendlyFullDescriptionCompressed)
+	friendly_type = property(getFriendlyType)
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
@@ -890,9 +884,11 @@ class NimManager:
 		InitNimManager(self)	#init config stuff
 
 	# get a list with the friendly full description
-	def nimList(self, showFBCTuners=True):
-		list = [slot.friendly_full_description for slot in self.nim_slots if showFBCTuners or not slot.isFBCLink()]
-		return list
+	def nimList(self):
+		return [slot.friendly_full_description for slot in self.nim_slots]
+
+	def nimListCompressed(self):
+		return [slot.friendly_full_description_compressed for slot in self.nim_slots if not(slot.isNotFirstFBCTuner() or slot.internally_connectable)]
 
 	def getSlotCount(self):
 		return len(self.nim_slots)
