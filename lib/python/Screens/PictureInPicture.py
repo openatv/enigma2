@@ -36,7 +36,11 @@ def PipPigMode(value):
 				if SystemInfo["hasPIPVisibleProc"]:
 					open(SystemInfo["hasPIPVisibleProc"], "w").write("0")
 				else:
-					InfoBar.instance.session.pip.pipservice = False
+					import skin
+					x, y, w, h = skin.parameters.get("PipHidePosition",(16, 16, 16, 16))
+					pip = InfoBar.instance.session.pip
+					pip.move(x, y, doSave=False)
+					pip.resize(w, h, doSave=False)
 				PipPigModeEnabled = True
 		else:
 			PipPigModeTimer.start(100, True)
@@ -92,9 +96,11 @@ class PictureInPicture(Screen):
 		self.relocate()
 		self.setExternalPiP(config.av.pip_mode.value == "external")
 
-	def move(self, x, y):
-		config.av.pip.value[0] = x
-		config.av.pip.value[1] = y
+	def move(self, x, y, doSave=True):
+		if doSave:
+			config.av.pip.value[0] = x
+			config.av.pip.value[1] = y
+			config.av.pip.save()
 		w = config.av.pip.value[2]
 		h = config.av.pip.value[3]
 		if config.av.pip_mode.value == "cascade":
@@ -109,13 +115,13 @@ class PictureInPicture(Screen):
 		elif config.av.pip_mode.value in "bigpig external":
 			x = 0
 			y = 0
-		config.av.pip.save()
 		self.instance.move(ePoint(x, y))
 
-	def resize(self, w, h):
-		config.av.pip.value[2] = w
-		config.av.pip.value[3] = h
-		config.av.pip.save()
+	def resize(self, w, h, doSave=True):
+		if doSave:
+			config.av.pip.value[2] = w
+			config.av.pip.value[3] = h
+			config.av.pip.save()
 		if config.av.pip_mode.value == "standard":
 			self.instance.resize(eSize(*(w, h)))
 			self["video"].instance.resize(eSize(*(w, h)))
