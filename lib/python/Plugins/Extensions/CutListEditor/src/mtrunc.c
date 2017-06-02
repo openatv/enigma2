@@ -45,12 +45,6 @@ inline off_t ltell( int f )
 }
 
 
-inline bool absless( pts_t x, int lim )
-{
-  return (x < lim && x > -lim);
-}
-
-
 pts_t strtotime( char* str )
 {
   char* e;
@@ -113,52 +107,36 @@ void truncsc( int fs, off64_t off )
 
 off64_t readoff( int fa, pts_t t )
 {
-  off64_t buf0[2], buf1[2];
+  off64_t buf[2], buf1[2];
   pts_t time_offset;
   pts_t tt, lt;
 
-  if (!(readbufinternal( fa, buf0 ) && readbufinternal( fa, buf1 )))
+  if (!(readbufinternal( fa, buf ) && readbufinternal( fa, buf1 )))
   {
     printf( "The corresponding \".ap\"-file is empty.\n" );
     exit( 8 );
   }
+  lseek( fa, 0, SEEK_SET );
 
-  time_offset = buf0[1];
-  if (buf1[1] > buf0[1] && buf1[1] - buf0[1] < 900000)
-    time_offset -= (buf1[1] - buf0[1]) * buf0[0] / (buf1[0] - buf0[0]);
-  else if (buf1[1] > buf0[1] || buf0[1] - buf1[1] > 45000)
-    time_offset = buf1[1];
+  time_offset = buf[1];
+  if (buf[0] != 0 && buf[0] < buf1[0])
+    time_offset -= (buf1[1] - buf[1]) * buf[0] / (buf1[0] - buf[0]);
 
-  lt = buf0[1] - time_offset;
-  if (buf0[1] - buf1[1] > 0 && buf0[1] - buf1[1] <= 45000)
-    tt = lt, buf1[1] = buf0[1];
-  else
-    tt = buf1[1] - time_offset;
-
-  while (tt < t)
+  lt = -1;
+  do
   {
-    memcpy( buf0, buf1, sizeof(buf1) );
-    if (!readbufinternal( fa, buf1 ))
+    if (!readbufinternal( fa, buf ))
       break;
-    if (buf0[1] - buf1[1] > 45000 || buf1[1] - buf0[1] > 900000)
+    tt = buf[1] - time_offset;
+    if (tt <= lt || tt - lt > 90000*10)
     {
-      if (absless( buf1[1] + (1LL << 33) - buf0[1], 900000 ))
-        time_offset -= 1LL << 33;
-      else
-        time_offset += buf1[1] - buf0[1];
+      time_offset = buf[1] - lt - 90000/25;
+      tt = buf[1] - time_offset;
     }
     lt = tt;
-    if (buf0[1] - buf1[1] > 0 && buf0[1] - buf1[1] <= 45000)
-      tt = lt, buf1[1] = buf0[1];
-    else
-      tt = buf1[1] - time_offset;
-  }
-  if (lt == tt || (t - lt > tt - t && tt - t < (int)(0.18 * 90000)))
-    memcpy( buf0, buf1, sizeof(buf1) );
-  else
-    lseek( fa, -16, SEEK_CUR );
+  } while (tt < t);
 
-  return buf0[0];
+  return buf[0];
 }
 
 
