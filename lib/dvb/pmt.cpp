@@ -287,6 +287,7 @@ void eDVBServicePMTHandler::AITready(int error)
 {
 	eDebug("AITready");
 	ePtr<eTable<ApplicationInformationSection> > ptr;
+	m_aitInfoList.clear();
 	if (!m_AIT.getCurrent(ptr))
 	{
                 short profilecode = 0;
@@ -319,7 +320,7 @@ void eDVBServicePMTHandler::AITready(int error)
 				{
 					saveData(orgid, m_AITData, sectionLength);
 				}
-					if (controlCode == 1 || controlCode == 2) /* 1:AUTOSTART, 2:ETC */
+				if (controlCode == 1 || controlCode == 2) /* 1:AUTOSTART, 2:ETC */
 				{
 					for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin();
 						desc != (*i)->getDescriptors()->end(); ++desc)
@@ -398,6 +399,11 @@ void eDVBServicePMTHandler::AITready(int error)
 				if(!hbbtvUrl.empty())
 				{
 					const char* uu = hbbtvUrl.c_str();
+					struct aitInfo aitinfo;
+					aitinfo.id = appid;
+					aitinfo.name = applicaionName;
+					aitinfo.url = hbbtvUrl;
+					m_aitInfoList.push_back(aitinfo);
 					if(!strncmp(uu, "http://", 7) || !strncmp(uu, "dvb://", 6) || !strncmp(uu, "https://", 8))
 					{
 						if(controlCode == 1) m_HBBTVUrl = hbbtvUrl;
