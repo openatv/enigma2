@@ -3658,7 +3658,7 @@ class InfoBarQuickMenu:
 		if config.workaround.blueswitch.value == "1":
 			self.showExtensionSelection()
 		else:
-			self.quickmenuStart()			
+			self.quickmenuStart()
 
 	def quickmenuStart(self):
 		try:
