@@ -497,7 +497,6 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		if sub[0] == 0:  # dvb
 			menu = [
 				getConfigMenuItem("config.subtitles.dvb_subtitles_yellow"),
-				getConfigMenuItem("config.subtitles.dvb_subtitles_centered"),
 				getConfigMenuItem("config.subtitles.dvb_subtitles_backtrans"),
 				getConfigMenuItem("config.subtitles.dvb_subtitles_original_position"),
 				getConfigMenuItem("config.subtitles.subtitle_position"),

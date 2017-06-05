@@ -51,7 +51,7 @@ static int extract_pts(pts_t &pts, uint8_t *pkt)
 
 void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, uint8_t *data, int len)
 {
-	bool subcentered = eConfigManager::getConfigBoolValue("config.subtitles.dvb_subtitles_centered") && object->object_horizontal_position * 2 + len < 98 * region->width / 100;
+	bool subcentered = eConfigManager::getConfigBoolValue("config.subtitles.dvb_subtitles_centered");
 	int x = subcentered ? (region->width - len) /2 : object->object_horizontal_position;
 	int y = object->object_vertical_position + line;
 	if (x + len > region->width)
