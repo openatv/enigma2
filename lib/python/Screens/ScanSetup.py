@@ -1429,7 +1429,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 							action = SEARCH_TERRESTRIAL2_TRANSPONDERS
 						else:
 							skip_t2 = False
-				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.description[self.TerrestrialRegion.value], int(self.scan_ter.system.value), skip_t2)
+				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.description[self.TerrestrialRegion.value], int(self.scan_ter.complete_system.value), skip_t2)
 
 		elif self.DVB_type.value == "ATSC":
 			if self.scan_type_atsc.value == "single_transponder":
