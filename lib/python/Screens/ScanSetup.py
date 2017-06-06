@@ -148,10 +148,6 @@ def GetDeviceId(filter, nim_idx):
 	return device_id
 
 class CableTransponderSearchSupport:
-
-	def __init__(self):
-		pass
-
 	def __init__(self):
 		pass
 
