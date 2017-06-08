@@ -377,7 +377,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
 			if currLnb.lof.value == "unicable":
-				self.advancedUnicable = getConfigListEntry("SCR (Unicable/JESS)"), currLnb.unicable)
+				self.advancedUnicable = getConfigListEntry("SCR (Unicable/JESS) "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedFormat = getConfigListEntry(_("Format"), currLnb.format)
