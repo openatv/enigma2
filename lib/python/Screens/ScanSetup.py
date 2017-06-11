@@ -148,10 +148,6 @@ def GetDeviceId(filter, nim_idx):
 	return device_id
 
 class CableTransponderSearchSupport:
-
-	def __init__(self):
-		pass
-
 	def __init__(self):
 		pass
 
@@ -830,7 +826,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 					self.TerrestrialCompleteEntry = getConfigListEntry(_('Scan options'), self.scan_ter_complete_type)
 					self.list.append(self.TerrestrialCompleteEntry)
 				if self.TerrestrialCompleteEntry is None or self.scan_ter_complete_type.value == "extended":
-					if nim.isCompatible("DVB-T2"):
+					if nim.canBeCompatible("DVB-T2"):
 						self.systemEntry = getConfigListEntry(_('System'), self.scan_ter.complete_system)
 						self.list.append(self.systemEntry)
 					else:
@@ -1002,7 +998,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			self.scan_nims.setValue(str(frontendData.get("tuner_number", nim_list[0][0])))
 
 		for slot in nimmanager.nim_slots:
-			if slot.isCompatible("DVB-T"):
+			if slot.isCompatible("DVB-T") or (slot.isCompatible("DVB-S") and slot.canBeCompatible("DVB-T")):
 				self.ter_tnumber = slot.slot
 		if self.ter_tnumber is not None:
 			self.ter_channel_input = supportedChannels(self.ter_tnumber)
@@ -1424,12 +1420,12 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 					action = SEARCH_TERRESTRIAL2_TRANSPONDERS
 				elif SystemInfo["Blindscan_t2_available"]:
 					skip_t2 = True
-					if nim.isCompatible("DVB-T2"):
+					if nim.canBeCompatible("DVB-T2"):
 						if len(self.terrestrialTransponderGetCmd(nim.slot)):
 							action = SEARCH_TERRESTRIAL2_TRANSPONDERS
 						else:
 							skip_t2 = False
-				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.description[self.TerrestrialRegion.value], int(self.scan_ter.system.value), skip_t2)
+				getInitialTerrestrialTransponderList(tlist, self.TerrestrialRegion.description[self.TerrestrialRegion.value], int(self.scan_ter.complete_system.value), skip_t2)
 
 		elif self.DVB_type.value == "ATSC":
 			if self.scan_type_atsc.value == "single_transponder":

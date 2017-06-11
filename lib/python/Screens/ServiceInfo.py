@@ -371,7 +371,10 @@ class ServiceInfo(Screen):
 					extra_info = "provid=%s" % provid
 				else:
 					extra_info = "extra data=%s" % caid[2]
-			tlist.append(ServiceInfoListEntry("ECMPid %04X (%d) %04X-%s %s" % (caid[1], caid[1], caid[0], CaIdDescription, extra_info)))
+			from Tools.GetEcmInfo import GetEcmInfo
+			ecmdata = GetEcmInfo().getEcmData()
+			color = "\c00??;?00" if caid[1] == int(ecmdata[3], 16) and caid[0] == int(ecmdata[1], 16) else ""
+			tlist.append(ServiceInfoListEntry("%sECMPid %04X (%d) %04X-%s %s" % (color, caid[1], caid[1], caid[0], CaIdDescription, extra_info)))
 		if not tlist:
 			tlist.append(ServiceInfoListEntry(_("No ECMPids available (FTA Service)")))
 		self["infolist"].l.setList(tlist)

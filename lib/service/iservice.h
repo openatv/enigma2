@@ -390,6 +390,7 @@ public:
 		sBuffer,
 		sIsDedicated3D,
 		sHideVBI,
+		sCenterDVBSubs,
 
 		sUser = 0x100
 	};

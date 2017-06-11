@@ -339,6 +339,10 @@ class SecConfigure:
 					sec.setLNBLOFL(10750000)
 					sec.setLNBLOFH(10750000)
 					sec.setLNBThreshold(10750000)
+				elif currLnb.lof.value == "ka_sat":
+					sec.setLNBLOFL(21200000)
+					sec.setLNBLOFH(21200000)
+					sec.setLNBThreshold(21200000)
 
 				if currLnb.increased_voltage.value:
 					sec.setLNBIncreasedVoltage(True)
@@ -631,7 +635,7 @@ class NIM(object):
 		if self.isFBCTuner():
 			return "%s-%s: %s" % (self.getSlotName(self.slot & ~7), self.getSlotID((self.slot & ~7) + 7), self.getFullDescription())
 		#compress by combining dual tuners by checking if the next tuner has a rf switch
-		elif os.access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), os.F_OK):
+		elif self.frontend_id is not None and os.access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), os.F_OK):
 			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 1), self.getFullDescription())
 		return self.getFriendlyFullDescription()
 
@@ -888,7 +892,7 @@ class NimManager:
 		return [slot.friendly_full_description for slot in self.nim_slots]
 
 	def nimListCompressed(self):
-		return [slot.friendly_full_description_compressed for slot in self.nim_slots if not(slot.isNotFirstFBCTuner() or slot.internally_connectable)]
+		return [slot.friendly_full_description_compressed for slot in self.nim_slots if not(slot.isNotFirstFBCTuner() or slot.internally_connectable >= 0)]
 
 	def getSlotCount(self):
 		return len(self.nim_slots)
@@ -1154,6 +1158,7 @@ def InitNimManager(nimmgr, update_slots = []):
 		"unicable": _("SCR (Unicable/JESS)"),
 		"c_band": _("C-Band"),
 		"circular_lnb": _("Circular LNB"),
+		"ka_sat": _("KA-SAT"),
 		"user_defined": _("User defined")}
 
 	lnb_choices_default = "universal_lnb"
@@ -1283,7 +1288,7 @@ def InitNimManager(nimmgr, update_slots = []):
 						section.format.addNotifier(formatChanged)
 
 				unicable_xml = xml.etree.cElementTree.parse(eEnv.resolve("${datadir}/enigma2/unicable.xml")).getroot()
-				unicableList = [("unicable_lnb", _("SCR (Unicable/JESS)") + " " + _("LNB")), ("unicable_matrix", _("SCR (Unicable/JESS)") + " " + _("Switch")), ("unicable_user", _("SCR (Unicable/JESS)") + " " + _("User defined"))]
+				unicableList = [("unicable_lnb", _("LNB")), ("unicable_matrix", _("Switch")), ("unicable_user", _("User defined"))]
 				if not config.unicable.content.items.get("unicable", False):
 					config.unicable.unicable = ConfigSelection(unicableList)
 				section.unicable = ConfigSelection(unicableList, default=config.unicable.unicable.value)
