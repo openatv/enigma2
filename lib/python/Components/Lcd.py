@@ -438,6 +438,18 @@ def InitLcd():
 				f = open("/sys/module/brcmstb_osmega/parameters/pt6302_cgram", "w")
 				f.write(configElement.value)
 				f.close()
+			if fileExists("/sys/module/brcmstb_spycat4k/parameters/pt6302_cgram"):
+				f = open("/sys/module/brcmstb_spycat4k/parameters/pt6302_cgram", "w")
+				f.write(configElement.value)
+				f.close()
+			if fileExists("/sys/module/brcmstb_spycat4kmini/parameters/pt6302_cgram"):
+				f = open("/sys/module/brcmstb_spycat4kmini/parameters/pt6302_cgram", "w")
+				f.write(configElement.value)
+				f.close()
+			if fileExists("/sys/module/brcmstb_spycat4kcombo/parameters/pt6302_cgram"):
+				f = open("/sys/module/brcmstb_spycat4kcombo/parameters/pt6302_cgram", "w")
+				f.write(configElement.value)
+				f.close()
 
 		config.usage.vfd_xcorevfd = ConfigSelection(default = "0", choices = [("0", _("12 character")), ("1", _("8 character"))])
 		config.usage.vfd_xcorevfd.addNotifier(setXcoreVFD)
