@@ -226,11 +226,13 @@ class ChannelContextMenu(Screen):
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 							_append_when_current_valid(current, menu, actions, (_("Remove 'Hide dotted line on the top for this service'"), self.removeHideVBIFlag), level=0, key="6")
 						else:
-							_append_when_current_valid(current, menu, actions, (_("Hide dotted line on the top for this service"), self.addHideVBIFlag), level=0, key="5")
-						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_CENTER_DVB_SUBS:
-							_append_when_current_valid(current, menu, actions, (_("Do not center DVB subs on this service"), self.removeCenterDVBSubsFlag), level=0, key="bullet")
-						else:
-							_append_when_current_valid(current, menu, actions, (_("Do center DVB subs on this service"), self.addCenterDVBSubsFlag), level=0, key="bullet")
+							_append_when_current_valid(current, menu, (_("Hide dotted line on the top for this service"), self.addHideVBIFlag), level=0, key="5")
+						if eDVBDB.getInstance().getCachedPid(eServiceReference(current.toString()), 9) >> 16 not in (-1, eDVBDB.getInstance().getCachedPid(eServiceReference(current.toString()), 2)):
+							#Only show when a DVB subtitle is cached on this service
+							if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_CENTER_DVB_SUBS:
+								_append_when_current_valid(current, menu, (_("Do not center DVB subs on this service"), self.removeCenterDVBSubsFlag), level=0, key="bullet")
+							else:
+								_append_when_current_valid(current, menu, (_("Do center DVB subs on this service"), self.addCenterDVBSubsFlag), level=0, key="bullet")
 
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
