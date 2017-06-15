@@ -541,7 +541,7 @@ if test "$BOXTYPE" == "g300" -o "$BOXTYPE" == "g100" -o "$BOXTYPE" == "sf4008" -
 	AC_DEFINE(FORCE_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
 fi
 
-if test "$BOXTYPE" == "xc7362" -o "$BOXTYPE" == "xc7346" -o "$BOXTYPE" == "xc7439"; then
+if test "$BOXTYPE" == "xc7362" -o "$BOXTYPE" == "xc7346" -o "$BOXTYPE" == "xc7439" -o "$BOXTYPE" == "osnino"; then
 	AC_DEFINE(KEY_MEDIA_TO_KEY_LIST, 1,[define MEDIA to LIST])
 fi
 
