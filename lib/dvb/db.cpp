@@ -2007,6 +2007,18 @@ PyObject *eDVBDB::getFlag(const eServiceReference &ref)
 	return PyInt_FromLong(0);
 }
 
+PyObject *eDVBDB::getCachedPid(const eServiceReference &ref, int id)
+{
+	if (ref.type == eServiceReference::idDVB)
+	{
+		eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
+		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
+		if (it != m_services.end())
+			return PyInt_FromLong(it->second->getCacheEntry((eDVBService::cacheID)id));
+	}
+	return PyInt_FromLong(0);
+}
+
 bool eDVBDB::isCrypted(const eServiceReference &ref)
 {
 	if (ref.type == eServiceReference::idDVB)
