@@ -44,7 +44,7 @@ def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("%s Setup") % cur_skin, description=_("Personalize your Skin"), where = PluginDescriptor.WHERE_MENU, icon="plugin.png", fnc=menu)]
 
 def menu(menuid, **kwargs):
-	if menuid == "mainmenu" and not config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and not config.skin.primary_skin.value == "MetrixHD/skin.xml":
+	if menuid == "system" and not config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and not config.skin.primary_skin.value == "MetrixHD/skin.xml":
 		print "madieatv"
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
@@ -370,7 +370,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.keyGreen()
 
 	def openSkinSelector(self):
-		self.session.openWithCallback(self.skinChanged, SkinSelector, silent_close = True)
+		self.session.openWithCallback(self.skinChanged, SkinSelector)
 
 	def openSkinSelectorDelayed(self):
 		self.delaytimer = eTimer()
