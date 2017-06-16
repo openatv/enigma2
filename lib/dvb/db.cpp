@@ -2016,7 +2016,7 @@ PyObject *eDVBDB::getCachedPid(const eServiceReference &ref, int id)
 		if (it != m_services.end())
 			return PyInt_FromLong(it->second->getCacheEntry((eDVBService::cacheID)id));
 	}
-	return PyInt_FromLong(0);
+	return PyInt_FromLong(-1);
 }
 
 bool eDVBDB::isCrypted(const eServiceReference &ref)
