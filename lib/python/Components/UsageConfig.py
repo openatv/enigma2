@@ -643,8 +643,8 @@ def InitUsageConfig():
 
 	if SystemInfo["hasXcoreVFD"]:
 		def set12to8characterVFD(configElement):
-			open(SystemInfo["hasXcoreVFD"], "w").write(configElement.value == "8" and "1" or "0")
-		config.usage.toggle12to8characterVFD = ConfigSelection(default = "8", choices = [("12", "12"),("8", "8")])
+			open(SystemInfo["hasXcoreVFD"], "w").write(not configElement.value and "1" or "0")
+		config.usage.toggle12to8characterVFD = ConfigYesNo(default = False)
 		config.usage.toggle12to8characterVFD.addNotifier(set12to8characterVFD)
 
 	config.epg = ConfigSubsection()
