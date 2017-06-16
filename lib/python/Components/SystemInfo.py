@@ -61,3 +61,4 @@ SystemInfo["HasForceToneburst"] = fileCheck("/proc/stb/frontend/fbc/force_tonebu
 SystemInfo["HasMMC"] = getBoxType() in ('mutant51', 'mutant52', 'sf4008', 'tmtwin4k', 'vusolo4k', 'vuultimo4k', 'vuuno4k')
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
 SystemInfo["CanDoTranscodeAndPIP"] = getBoxType() in ('vusolo4k',)
+SystemInfo["hasXcoreVFD"] = fileCheck("/sys/module/brcmstb_%s/parameters/pt6302_cgram" % getBoxType()
