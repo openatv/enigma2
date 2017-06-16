@@ -213,6 +213,12 @@ void eRCDeviceInputDev::handleCode(long rccode)
 */
 #endif
 
+#if KEY_VIDEO_TO_KEY_VMODE
+	if (ev->code == KEY_VIDEO) {
+		ev->code = KEY_VMODE;
+	}
+#endif
+
 #if KEY_F7_TO_KEY_MENU
 	if (ev->code == KEY_F7) {
 		ev->code = KEY_MENU;
