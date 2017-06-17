@@ -268,12 +268,12 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 self.hideRc()
 			</code>
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="plugins" />
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
 			</list>
 		</step>
-		<step id="scan" nextstep="end">
+		<step id="scan" nextstep="plugins">
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
@@ -299,7 +299,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<text value="Do you want to do another manual service scan?" />
 			<displaytext value="Do you want to do another manual service scan?" />
 			<list>
-				<listentry caption="No, scan later manually" step="end" />
+				<listentry caption="No, scan later manually" step="plugins" />
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
 			</list>
 		</step>
@@ -352,6 +352,17 @@ config.ParentalControl.setuppin.save()
 			<displaytext value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
 		</step>
 -->
+		<step id="plugins">
+			<condition>
+self.condition = config.misc.installwizard.hasnetwork.value and config.misc.installwizard.ipkgloaded.value
+			</condition>
+			<text value="Plugin install" />
+			<config screen="InstallWizard" module="InstallWizard" args="2" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+			</code>
+		</step>
 		<step id="end" laststep="true">
 			<condition>
 self.condition = self.isLastWizard
