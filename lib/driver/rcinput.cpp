@@ -213,9 +213,9 @@ void eRCDeviceInputDev::handleCode(long rccode)
 */
 #endif
 
-#if KEY_VIDEO_TO_KEY_VMODE
+#if KEY_VIDEO_TO_KEY_ANGLE
 	if (ev->code == KEY_VIDEO) {
-		ev->code = KEY_VMODE;
+		ev->code = KEY_ANGLE;
 	}
 #endif
 
