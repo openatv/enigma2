@@ -129,7 +129,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 	def openSetup(self):
 		from Screens.Setup import Setup
 		self.session.open(Setup, "pluginbrowsersetup", None, self.menu_path)
-		
+
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and (not config.ParentalControl.config_sections.main_menu.value or hasattr(self.session, 'infobar') and self.session.infobar is None) and config.ParentalControl.config_sections.plugin_browser.value
 
@@ -236,13 +236,13 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self["list"].l.setList(self.list)
 
 	def delete(self):
-		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, self.menu_path, PluginDownloadBrowser.REMOVE)
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE, True, self.menu_path,)
 
 	def download(self):
 		if kernelMismatch():
 			self.session.openWithCallback(self.close, MessageBox, _("The Linux kernel has changed, plugins are not compatible. \nInstall latest image using USB stick or Image Manager."), type=MessageBox.TYPE_INFO, timeout=30, close_on_any_key=True)
 			return
-		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, self.menu_path, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime, self.menu_path,)
 		self.firsttime = False
 
 	def PluginDownloadBrowserClosed(self):
@@ -264,7 +264,7 @@ class PluginDownloadBrowser(Screen):
 	PLUGIN_PREFIX = 'enigma2-plugin-'
 	lastDownloadDate = None
 
-	def __init__(self, session, menu_path="", type = 0, needupdate = True):
+	def __init__(self, session, type = 0, needupdate = True, menu_path=""):
 		Screen.__init__(self, session)
 		self.menu_path = menu_path
 		self.type = type
@@ -329,11 +329,11 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install'
-			self.ipkg_remove =  self.ipkg + ' remove --autoremove' 
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install -force-defaults'
-			self.ipkg_remove =  self.ipkg + ' remove' 
+			self.ipkg_remove =  self.ipkg + ' remove'
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
