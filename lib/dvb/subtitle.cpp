@@ -55,23 +55,13 @@ void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle
 	int x = subcentered ? (region->width - len) /2 : object->object_horizontal_position;
 	int y = object->object_vertical_position + line;
 	if (x + len > region->width)
-	{
 		len = region->width - x;
-	}
-	if (len < 0)
+	if (len < 0 || y >= region->height)
 		return;
-	if (y >= region->height)
-	{
-		return;
-	}
-	if( subcentered && region->region_id && line < 3 )
-	{
+	if(subcentered && region->region_id && line < 3)
 		for (int i = 0; i < len; i++ )
 			if( data[i] <= 8)
-			{
 				data[i] = 0;
-			}
-	}
 	memcpy((uint8_t*)region->buffer->surface->data + region->buffer->surface->stride * y + x, data, len);
 }
 

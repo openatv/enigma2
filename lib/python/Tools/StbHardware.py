@@ -1,7 +1,7 @@
 from fcntl import ioctl
 from struct import pack, unpack
+from os import path
 from Components.config import config
-from boxbranding import getBoxType, getBrandOEM
 
 def getFPVersion():
 	ret = None
@@ -47,7 +47,7 @@ def setRTCoffset():
 		print "[StbHardware] Error: setRTCoffset failed!"
 
 def setRTCtime(wutime):
-	if getBrandOEM() == 'ini':
+	if path.exists("/proc/stb/fp/rtc_offset"):
 		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")

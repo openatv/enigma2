@@ -54,7 +54,7 @@ from Tools.ServiceReference import hdmiInServiceRef, service_types_tv_ref
 
 import NavigationInstance
 
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getDesktop, eDVBDB
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, iRecordableService, eServiceReference, eEPGCache, eActionMap, getDesktop, eDVBDB
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
 from keyids import KEYFLAGS, KEYIDS, invertKeyIds
 
@@ -388,6 +388,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	STATE_HIDING = 1
 	STATE_SHOWING = 2
 	STATE_SHOWN = 3
+	FLAG_HIDE_VBI = 512
+	FLAG_CENTER_DVB_SUBS = 2048
 
 	def __init__(self):
 		self["ShowHideActions"] = HelpableActionMap(self, "InfobarShowHideActions", {
@@ -3860,11 +3862,65 @@ class InfoBarCueSheetSupport:
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evStart: self.__serviceStarted,
 			iPlayableService.evCuesheetChanged: self.downloadCuesheet,
+			iPlayableService.evStopped: self.__evStopped,
 		})
+
+		self.__blockDownloadCuesheet = False
+		self.__recording = None
+		self.__recordingCuts = []
+
+	def __evStopped(self):
+		if isMoviePlayerInfoBar(self):
+			if self.__recording and self.__recordingCuts:
+				# resume mark may have been added...
+
+				self.downloadCuesheet()
+
+				# Clear marks added from the recording,
+				# They will be added to the .cuts file when the
+				# recording finishes.
+
+				self.__clearRecordingCuts()
+				self.uploadCuesheet()
+
+	def __onClose(self):
+		if self.__gotRecordEvent in NavigationInstance.instance.record_event:
+			NavigationInstance.instance.record_event.remove(self.__gotRecordEvent)
+		self.__recording = None
+
+	__endEvents = (
+		iRecordableService.evEnd,
+		iRecordableService.evRecordStopped,
+		iRecordableService.evRecordFailed,
+		iRecordableService.evRecordWriteError,
+		iRecordableService.evRecordAborted,
+		iRecordableService.evGstRecordEnded,
+	)
+
+	def __gotRecordEvent(self, record, event):
+		if record.getPtrString() != self.__recording.getPtrString():
+			return
+		if event in self.__endEvents:
+			if self.__gotRecordEvent in NavigationInstance.instance.record_event:
+				NavigationInstance.instance.record_event.remove(self.__gotRecordEvent)
+
+			# When the recording ends, the mapping of
+			# cut points from time to file offset changes
+			# slightly. Upload the recording cut marks to
+			# catch these changes.
+
+			self.updateFromRecCuesheet()
+
+			self.__recording = None
+		elif event == iRecordableService.evNewEventInfo:
+			self.updateFromRecCuesheet()
 
 	def __serviceStarted(self):
 		if self.is_closing:
 			return
+
+		self.__findRecording()
+
 		# print "new service started! trying to download cuts!"
 		self.downloadCuesheet()
 
@@ -3906,6 +3962,19 @@ class InfoBarCueSheetSupport:
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 		self.forceNextResume(False)
+
+	def __findRecording(self):
+		if isMoviePlayerInfoBar(self):
+			playing = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			navInstance = NavigationInstance.instance
+			for timer in navInstance.RecordTimer.timer_list:
+				if timer.isRunning() and not timer.justplay and timer.record_service:
+					if playing and playing.getPath() == timer.Filename + timer.record_service.getFilenameExtension():
+						if self.__gotRecordEvent not in navInstance.record_event:
+							navInstance.record_event.append(self.__gotRecordEvent)
+						self.__recording = timer.record_service
+						self.onClose.append(self.__onClose)
+						break
 
 	def playLastCB(self, answer):
 # This can occasionally get called with an empty (new?) self!?!
@@ -4051,15 +4120,35 @@ class InfoBarCueSheetSupport:
 			cue.setCutListEnable(config.seek.autoskip.value and 1 or 0)
 		return cue
 
+	def __clearRecordingCuts(self):
+		if self.__recordingCuts:
+			cut_list = []
+			for point in self.cut_list:
+				if point in self.__recordingCuts:
+					self.__recordingCuts.remove(point)
+				else:
+					cut_list.append(point)
+			self.__recordingCuts = []
+			self.cut_list = cut_list
+
 	def uploadCuesheet(self):
 		cue = self.__getCuesheet()
 
 		if cue is None:
 			# print "upload failed, no cuesheet interface"
 			return
+		self.__blockDownloadCuesheet = True
 		cue.setCutList(self.cut_list)
+		self.__blockDownloadCuesheet = False
 
 	def downloadCuesheet(self):
+		# Stop cuesheet uploads from causing infinite recursion
+		# through evCuesheetChanged if updateFromRecCuesheet()
+		# does an uploadCuesheet()
+
+		if self.__blockDownloadCuesheet:
+			return
+
 		cue = self.__getCuesheet()
 
 		if cue is None:
@@ -4067,6 +4156,18 @@ class InfoBarCueSheetSupport:
 			self.cut_list = []
 		else:
 			self.cut_list = cue.getCutList()
+		self.updateFromRecCuesheet()
+
+	def updateFromRecCuesheet(self):
+		if self.__recording:
+			self.__clearRecordingCuts()
+			rec_cuts = self.__recording.getCutList()
+			for point in rec_cuts:
+				if point not in self.cut_list:
+					insort(self.cut_list, point)
+					self.__recordingCuts.append(point)
+			if self.__recordingCuts:
+				self.uploadCuesheet()
 
 class InfoBarSummary(Screen):
 	skin = """
@@ -4199,6 +4300,19 @@ class InfoBarSubtitleSupport(object):
 		else:
 			return 0
 
+	def doCenterDVBSubs(self):
+		service = self.session.nav.getCurrentlyPlayingServiceReference()
+		servicepath = service and service.getPath()
+		if servicepath and servicepath.startswith("/"):
+			if service.toString().startswith("1:"):
+				info = eServiceCenter.getInstance().info(service)
+				service = info and info.getInfoString(service, iServiceInformation.sServiceref)
+				config.subtitles.dvb_subtitles_centered.value = service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & self.FLAG_CENTER_DVB_SUBS and True
+				return
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		config.subtitles.dvb_subtitles_centered.value = info and info.getInfo(iServiceInformation.sCenterDVBSubs) and True
+
 	def subtitleCycle(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
@@ -4246,6 +4360,7 @@ class InfoBarSubtitleSupport(object):
 			cachedsubtitle = subtitle and subtitle.getCachedSubtitle()
 			if cachedsubtitle:
 				self.enableSubtitle(cachedsubtitle)
+				self.doCenterDVBSubs()
 
 	def enableSubtitle(self, selectedSubtitle):
 		subtitle = self.getCurrentServiceSubtitle()
@@ -4253,6 +4368,7 @@ class InfoBarSubtitleSupport(object):
 		if subtitle and self.selected_subtitle:
 			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 			self.subtitle_window.show()
+			self.doCenterDVBSubs()
 		else:
 			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)

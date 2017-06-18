@@ -788,6 +788,13 @@ class NimSelection(Screen):
 	def setResultClass(self):
 		self.resultclass = NimSetup
 
+	def OrbToStr(self, orbpos=-1):
+		if orbpos == -1 or orbpos > 3600: return "??"
+		if orbpos > 1800:
+			orbpos = 3600 - orbpos
+			return "%d.%dW" % (orbpos/10, orbpos%10)
+		return "%d.%dE" % (orbpos/10, orbpos%10)
+
 	def extraInfo(self):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
@@ -875,7 +882,7 @@ class NimSelection(Screen):
 								text += "         " + ", ".join(satnames[2:])
 						elif nimConfig.diseqcMode.value in ("positioner", "positioner_select"):
 							text = {"positioner": _("Positioner"), "positioner_select": _("Positioner (selecting satellites)")}[nimConfig.diseqcMode.value]
-							text += ":"
+							text += ": "
 							if nimConfig.positionerMode.value == "usals":
 								text += "USALS"
 							elif nimConfig.positionerMode.value == "manual":
@@ -883,14 +890,19 @@ class NimSelection(Screen):
 						else:
 							text = _("Simple")
 					elif nimConfig.configMode.value == "advanced":
-						text = _("Advanced")
+						text = _("Advanced") + "\n"
+						text += _("Sats") + ": "
+						satnames = []
+						for sat in nimmanager.getSatListForNim(slotid):
+							satnames.append(self.OrbToStr(int(sat[0])))
+						text += ", ".join(satnames)
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C") or x.isCompatible("ATSC"):
 					if nimConfig.configMode.value == "nothing":
 						text = _("Nothing connected")
 					elif nimConfig.configMode.value == "enabled":
 						text = _("Enabled")
 				if x.isMultiType():
-					text = _("Switchable tuner types:") + "(" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text
+					text = _("Switchable tuner types:") + " (" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text
 				if not x.isSupported():
 					text = _("Tuner is not supported")
 

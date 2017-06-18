@@ -69,7 +69,7 @@ class FrontendInfo(Converter, object):
 						color = "\c0000??00"
 					elif self.source.tuner_mask & 1 << n.slot:
 						color = "\c00????00"
-					elif len(nimmanager.nim_slots) <= self.space_for_tuners or self.show_all_non_link_tuners and not n.isFBCLink():
+					elif len(nimmanager.nim_slots) <= self.space_for_tuners or self.show_all_non_link_tuners and not (n.isFBCLink() or n.internally_connectable):
 						color = "\c007?7?7?"
 					else:
 						continue
