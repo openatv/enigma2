@@ -133,7 +133,7 @@ self.selectKey("RIGHT")
 				<condition>
 from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 5 and not nimmanager.nim_slots[5].empty and not nimmanager.nim_slots[5].isFBCLink()
-            </condition>
+			</condition>
 			<text value="Please set up tuner F" />
 			<displaytext value="Please set up tuner F" />
 			<config screen="NimSetup" module="Satconfig" args="5" type="ConfigList" />
@@ -175,7 +175,7 @@ self.selectKey("RIGHT")
 				<condition>
 from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty and not nimmanager.nim_slots[8].isFBCLink()
-            </condition>
+			</condition>
 			<text value="Please set up tuner I" />
 			<displaytext value="Please set up tuner I" />
 			<config screen="NimSetup" module="Satconfig" args="8" type="ConfigList" />
@@ -199,7 +199,7 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 			</step>
-			<step id="nimj">
+			<step id="nimk">
 				<condition>
 from Components.NimManager import nimmanager
 self.condition = len(nimmanager.nim_slots) > 10 and not nimmanager.nim_slots[10].empty and not nimmanager.nim_slots[10].isFBCLink()
