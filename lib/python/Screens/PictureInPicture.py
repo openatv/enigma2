@@ -21,7 +21,7 @@ def timedStopPipPigMode():
 		if SystemInfo["hasPIPVisibleProc"]:
 			open(SystemInfo["hasPIPVisibleProc"], "w").write("1")
 		elif hasattr(InfoBar.instance.session, "pip"):
-			InfoBar.instance.session.pip.playService(InfoBar.instance.session.pip.currentService)
+			InfoBar.instance.session.pip.relocate()
 	global PipPigModeEnabled
 	PipPigModeEnabled = False
 
@@ -195,7 +195,7 @@ class PictureInPicture(Screen):
 				print "[PictureInPicture] playing pip service", ref and ref.toString()
 			else:
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text = _("No free tuner available!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+					Notifications.AddPopup(text = "PiP...\n" + _("No free tuner!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
 				return False
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(1, True):

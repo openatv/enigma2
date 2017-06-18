@@ -240,6 +240,7 @@
 		<item level="0" requires="LcdDisplay" text="Show time elapsed as positive" description="Choose how elapsed time is displayed on the front panel. You can specify a + (positive) or - (negative) value.">config.usage.elapsed_time_positive_vfd</item>
 		<item level="1" requires="GraphicLCD" text="Scrolling speed (software render)" description="Set the scrolling speed of text on the front display. This uses a software render in some skins.">config.lcd.scroll_speed</item>
 		<item level="1" requires="GraphicLCD" text="Scrolling delay (software render)" description="Set the delay time between text repetitions. This uses a software render in some skins.">config.lcd.scroll_delay</item>		
+		<item level="2" text="Use 12 characters display mode" description="If enabled, display shows 12 chars instead 8, but in latin-1/translit only." requires="hasXcoreVFD">config.usage.toggle12to8characterVFD</item>
 	</setup>
 	<setup key="satconfig" title="Satellite dish settings">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
