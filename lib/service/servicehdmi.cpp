@@ -191,7 +191,7 @@ eServiceHDMIRecord::eServiceHDMIRecord(const eServiceReference &ref)
 	m_thread = NULL;
 }
 
-RESULT eServiceHDMIRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm)
+RESULT eServiceHDMIRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize)
 {
 	m_filename = filename;
 

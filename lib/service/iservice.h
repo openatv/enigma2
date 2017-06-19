@@ -1013,7 +1013,7 @@ public:
 	virtual RESULT connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)=0;
 #endif
 	virtual SWIG_VOID(RESULT) getError(int &SWIG_OUTPUT)=0;
-	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1, const char *name=0, const char *descr=0, const char *tags=0, bool descramble = true, bool recordecm = false)=0;
+	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1, const char *name=0, const char *descr=0, const char *tags=0, bool descramble = true, bool recordecm = false, int packetsize = 188)=0;
 	virtual RESULT prepareStreaming(bool descramble = true, bool includeecm = false)=0;
 	virtual RESULT start(bool simulate=false)=0;
 	virtual RESULT stop()=0;
