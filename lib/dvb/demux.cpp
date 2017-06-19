@@ -722,7 +722,7 @@ RESULT eDVBTSRecorder::start()
 	flt.pid     = i->first;
 	++i;
 	flt.input   = DMX_IN_FRONTEND;
-	flt.flags   = 0;
+	flt.flags   = (m_packetsize == 192) ? 0x80000000 : 0;
 	int res = ::ioctl(m_source_fd, DMX_SET_PES_FILTER, &flt);
 	if (res)
 	{
