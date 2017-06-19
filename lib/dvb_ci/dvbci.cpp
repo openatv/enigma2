@@ -600,11 +600,24 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 								eDVBFrontend *fe = (eDVBFrontend*) &(*frontend);
 								tunernum = fe->getSlotID();
 							}
+							if (tunernum != -1)
+							{
+								setInputSource(tunernum, ci_source.str());
+								ci_it->setSource(eDVBCISlot::getTunerLetter(tunernum));
+							}
+							else
+							{
+								/*
+								 * No associated frontend, this must be a DVR source
+								 *
+								 * No need to set tuner input (setInputSource), because we have no tuner.
+								 */
+								std::stringstream source;
+								source << "DVR" << channel->getDvrId();
+								ci_it->setSource(source.str());
+							}
 						}
-						ASSERT(tunernum != -1);
 						ci_it->current_tuner = tunernum;
-						setInputSource(tunernum, ci_source.str());
-						ci_it->setSource(eDVBCISlot::getTunerLetter(tunernum));
 					}
 					else
 					{
@@ -685,6 +698,8 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 				caids.push_back(0xFFFF);
 				slot->sendCAPMT(pmthandler, caids);  // send a capmt without caids to remove a running service
 				slot->removeService(service_to_remove.getServiceID().get());
+				/* restore ci source to the default (tuner "A") */
+				slot->setSource("A");
 			}
 
 			if (!--slot->use_count)
