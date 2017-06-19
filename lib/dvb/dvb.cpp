@@ -2047,6 +2047,16 @@ int eDVBChannel::reserveDemux()
 	return -1;
 }
 
+int eDVBChannel::getDvrId()
+{
+	ePtr<eDVBAllocatedDemux> dmx = m_decoder_demux ? m_decoder_demux : m_demux;
+	if (dmx)
+	{
+		return dmx->get().getDvrId();
+	}
+	return -1;
+}
+
 RESULT eDVBChannel::requestTsidOnid()
 {
 	if (!getDemux(m_tsid_onid_demux, 0))

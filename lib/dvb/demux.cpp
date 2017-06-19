@@ -44,7 +44,8 @@ eDVBDemux::eDVBDemux(int adapter, int demux):
 	adapter(adapter),
 	demux(demux),
 	source(-1),
-	m_dvr_busy(0)
+	m_dvr_busy(0),
+	m_dvr_id(-1)
 {
 }
 
@@ -97,6 +98,7 @@ RESULT eDVBDemux::setSourcePVR(int pvrnum)
 	if (res)
 		eDebug("[eDVBDemux] DMX_SET_SOURCE dvr%d failed: %m", pvrnum);
 	source = -1;
+	m_dvr_id = pvrnum;
 	::close(fd);
 	return res;
 }

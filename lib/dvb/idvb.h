@@ -569,6 +569,7 @@ public:
 	virtual RESULT requestTsidOnid() { return -1; }
 	PSignal2<void, int, int> receivedTsidOnid;
 	virtual int reserveDemux() { return -1; }
+	virtual int getDvrId() { return -1; }
 #ifndef SWIG
 	enum
 	{
