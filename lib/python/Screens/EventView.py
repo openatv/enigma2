@@ -20,10 +20,6 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
-try:
-	from Screens.TimerEdit import TimerSanityConflict
-except: # maybe already been imported from another module
-	pass
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, menu):
@@ -185,6 +181,10 @@ class EventViewBase:
 						if change_time:
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
+						try:
+							from Screens.TimerEdit import TimerSanityConflict
+						except: # maybe already been imported from another module
+							pass
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self["key_green"].setText(_("Change timer"))
 			self.key_green_choice = self.REMOVE_TIMER
