@@ -2399,40 +2399,52 @@ void eEPGCache::channel_data::readFreeSatScheduleOtherData( const uint8_t *data)
 }
 #endif
 
+/** @copydoc eEPGCache::lookupEventTime
+ */
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result, int direction)
-// if t == -1 we search the current event...
 {
 	uniqueEPGKey key(handleGroup(service));
 
-	// check if EPG for this service is ready...
+	// check whether EPG for this service is ready...
 	eventCache::iterator It = eventDB.find( key );
-	if ( It != eventDB.end() && !It->second.byEvent.empty() ) // entrys cached ?
+	if ( It != eventDB.end() && !It->second.byEvent.empty() ) // entries cached ?
 	{
-		if (t==-1)
+		if ( t == -1 )
 			t = ::time(0);
-		timeMap::iterator i = direction <= 0 ? It->second.byTime.lower_bound(t) :  // find > or equal
-			It->second.byTime.upper_bound(t); // just >
-		if ( i != It->second.byTime.end() )
+		timeMap::iterator i = It->second.byTime.upper_bound(t); // find first > t
+		if ( direction > 0 )
 		{
-			if ( direction < 0 || (direction == 0 && i->first > t) )
-			{
-				timeMap::iterator x = i;
-				--x;
-				if ( x != It->second.byTime.end() )
-				{
-					time_t start_time = x->first;
-					if (direction >= 0)
-					{
-						if (t < start_time)
-							return -1;
-						if (t > (start_time+x->second->getDuration()))
-							return -1;
-					}
-					i = x;
-				}
-				else
-					return -1;
+			if ( i != It->second.byTime.end() ) {
+				result = i->second;
+				return 0;
 			}
+			else
+				return -1;
+		}
+
+		// direction <= 0
+		if ( i == It->second.byTime.begin() )
+			return -1;
+		--i;
+		// time_t start_time = i->first;
+		time_t end_time = i->first + i->second->getDuration();
+		if ( direction == 0 ) {
+			// start_time <= t from map and iterator properties
+			if ( t < end_time ) {
+				result = i->second;
+				return 0;
+			}
+			else
+				return -1;
+		}
+
+		// direction < 0
+		if ( t >= end_time ) {
+			result = i->second;
+			return 0;
+		}
+		if ( i != It->second.byTime.begin() ) {
+			--i;
 			result = i->second;
 			return 0;
 		}
@@ -2440,6 +2452,24 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	return -1;
 }
 
+/**
+ * @brief Look up an event in the EPG database by service reference and time.
+ * The service reference is specified in @p service.
+ * The lookup time is in @p t.
+ * The @p direction specifies whether to return the event matching @p t, its
+ * predecessor or successor.
+ *
+ * @param service as an eServiceReference.
+ * @param t the lookup time. If t == -1, look up the current time.
+ * @param result the matched event, if one is found.
+ * @param direction The event offset from the match.
+ * @p direction > 0 return the earliest event that starts after t.
+ * @p direction == 0 return the event that spans t. If t is spanned by a gap in the EPG, return None.
+ * @p direction < 0 return the event immediately before the event that spans t.  * If t is spanned by a gap in the EPG, return the event immediately before the gap.
+ * @return 0 for successful match and valid data in @p result,
+ * -1 for unsuccessful.
+ * In a call from Python, a return of -1 corresponds to a return value of None.
+ */
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, Event *& result, int direction)
 {
 	singleLock s(cache_lock);
@@ -2450,6 +2480,8 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, Ev
 	return ret;
 }
 
+/** @copydoc eEPGCache::lookupEventTime
+ */
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, ePtr<eServiceEvent> &result, int direction)
 {
 	singleLock s(cache_lock);
