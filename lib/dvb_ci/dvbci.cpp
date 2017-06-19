@@ -747,16 +747,19 @@ int eDVBCIInterfaces::getMMIState(int slotid)
 
 int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 {
-	char buf[64];
-	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/input%d", tuner_no);
-
-	if (CFile::write(buf, source.c_str()) == -1)
+	if (tuner_no >= 0)
 	{
-		eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", source.c_str());
-		return 0;
-	}
+		char buf[64];
+		snprintf(buf, sizeof(buf), "/proc/stb/tsmux/input%d", tuner_no);
 
-	eDebug("[CI] eDVBCIInterfaces setInputSource(%d, %s)", tuner_no, source.c_str());
+		if (CFile::write(buf, source.c_str()) == -1)
+		{
+			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", source.c_str());
+			return 0;
+		}
+
+		eDebug("[CI] eDVBCIInterfaces setInputSource(%d, %s)", tuner_no, source.c_str());
+	}
 	return 0;
 }
 
