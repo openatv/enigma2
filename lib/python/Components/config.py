@@ -1116,9 +1116,12 @@ class ConfigClock(ConfigSequence):
 	def __init__(self, default, timeconv=localtime, durationmode=False):
 		self.t = timeconv(default)
 		ConfigSequence.__init__(self, seperator=":", limits=clock_limits, default=[self.t.tm_hour, self.t.tm_min])
-		self.durationmode = durationmode
-		self.wideformat = None
-		self.timeformat = None
+		if durationmode:
+			self.wideformat = False
+			self.timeformat = "%_H:%M"
+		else:
+			self.wideformat = None  # Defer until later
+			self.timeformat = None  # Defer until later
 
 	def increment(self):
 		# Check if Minutes maxed out
@@ -1152,10 +1155,7 @@ class ConfigClock(ConfigSequence):
 
 	def handleKey(self, key):
 		if self.wideformat is None:
-			if self.durationmode:
-				self.wideformat = False
-			else:
-				self.wideformat = config.usage.time.wide.value
+			self.wideformat = config.usage.time.wide.value
 		if key == KEY_DELETE and self.wideformat:
 			if self._value[0] < 12:
 				self._value[0] += 12
@@ -1221,10 +1221,7 @@ class ConfigClock(ConfigSequence):
 
 	def genText(self):
 		if self.timeformat is None:
-			if self.durationmode:
-				self.timeformat = "%_H:%M"
-			else:
-				self.timeformat = config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H")
+			self.timeformat = config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H")
 		mPos = self.marked_pos
 		if mPos >= 2:
 			mPos += 1  # Skip over the separator
