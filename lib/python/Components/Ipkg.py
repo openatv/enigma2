@@ -66,7 +66,6 @@ class IpkgComponent:
 		self.cache = None
 		self.callbackList = []
 		self.fetchedList = []
-		self.excludeList = []
 		self.setCurrentCommand()
 
 	def setCurrentCommand(self, command=None):
@@ -92,14 +91,9 @@ class IpkgComponent:
 			append = ""
 			if args["test_only"]:
 				append = " -test"
-			if len(self.excludeList) > 0:
-				for x in self.excludeList:
-					print"[IPKG] exclude Package (hold): '%s'" % x[0]
-					os.system("opkg flag hold " + x[0])
 			self.runCmdEx("upgrade" + append)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
-			self.excludeList = []
 			if args['installed_only']:
 				self.runCmdEx("list_installed")
 			else:
@@ -110,7 +104,6 @@ class IpkgComponent:
 			self.runCmd("remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
 			self.fetchedList = []
-			self.excludeList = []
 			self.runCmd("list-upgradable")
 		self.setCurrentCommand(cmd)
 
@@ -118,10 +111,6 @@ class IpkgComponent:
 		self.callCallbacks(self.EVENT_DONE)
 		self.cmd.appClosed.remove(self.cmdFinished)
 		self.cmd.dataAvail.remove(self.cmdData)
-		if len(self.excludeList) > 0:
-			for x in self.excludeList:
-				print"[IPKG] restore Package flag (unhold): '%s'" % x[0]
-				os.system("opkg flag ok " + x[0])
 
 	def cmdData(self, data):
 		# print "data:", data
@@ -192,9 +181,6 @@ class IpkgComponent:
 
 	def getFetchedList(self):
 		return self.fetchedList
-
-	def getExcludeList(self):
-		return self.excludeList
 
 	def stop(self):
 		self.cmd.kill()
