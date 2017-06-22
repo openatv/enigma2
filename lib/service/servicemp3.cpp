@@ -86,6 +86,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("mp3");
 		extensions.push_back("wav");
 		extensions.push_back("wave");
+		extensions.push_back("oga");
 		extensions.push_back("ogg");
 		extensions.push_back("flac");
 		extensions.push_back("m4a");
@@ -464,7 +465,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 
 	m_sourceinfo.is_video = FALSE;
 	m_sourceinfo.audiotype = atUnknown;
-	if ( (strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin") && strcasecmp(ext, ".dat") ) == 0 )
+	if ( (strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpe") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin") && strcasecmp(ext, ".dat") ) == 0 )
 	{
 		m_sourceinfo.containertype = ctMPEGPS;
 		m_sourceinfo.is_video = TRUE;
@@ -741,7 +742,7 @@ DEFINE_REF(eServiceMP3);
 
 DEFINE_REF(GstMessageContainer);
 
-RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+RESULT eServiceMP3::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
@@ -1761,7 +1762,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 					m_paused = false;
 					if (m_currentAudioStream < 0)
 					{
-						int autoaudio = 0;
+						unsigned int autoaudio = 0;
 						int autoaudio_level = 5;
 						std::string configvalue;
 						std::vector<std::string> autoaudio_languages;
@@ -1777,7 +1778,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect4");
 						if (configvalue != "" && configvalue != "None")
 							autoaudio_languages.push_back(configvalue);
-						for (int i = 0; i < m_audioStreams.size(); i++)
+						for (unsigned int i = 0; i < m_audioStreams.size(); i++)
 						{
 							if (!m_audioStreams[i].language_code.empty())
 							{
@@ -2275,7 +2276,7 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 							{
 								m_cue_entries.insert(cueEntry(pts, type));
 								/* extra debug info for testing purposes CVR should_be_removed later on */
-								eLog(5, "[eServiceMP3] toc_subtype %s,Nr = %d, start= %#"G_GINT64_MODIFIER "x",
+								eLog(5, "[eServiceMP3] toc_subtype %s,Nr = %d, start= %#" G_GINT64_MODIFIER "x",
 										gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (sub_entry)), y + 1, pts);
 							}
 						}

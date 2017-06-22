@@ -8,7 +8,7 @@ class ConsoleItem:
 		self.containers = containers
 		# Create a unique name
 		name = cmd
-		if containers.has_key(name):
+		if name in containers:
 			name = str(cmd) + '@' + hex(id(self))
 		self.name = name
 		containers[name] = self

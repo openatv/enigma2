@@ -381,9 +381,8 @@ class Status:
 
 	def getAdapterAttribute(self, iface, attribute):
 		self.iface = iface
-		if self.iface in self.wlaniface:
-			if attribute in self.wlaniface[self.iface]:
-				return self.wlaniface[self.iface][attribute]
+		if self.iface in self.wlaniface and attribute in self.wlaniface[self.iface]:
+			return self.wlaniface[self.iface][attribute]
 		return None
 
 iStatus = Status()

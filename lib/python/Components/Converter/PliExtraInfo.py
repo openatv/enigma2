@@ -9,6 +9,23 @@ from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Tools.GetEcmInfo import GetEcmInfo
 from Poll import Poll
 
+caid_data = (
+	( "0x100",  "0x1ff", "Seca",     "S",  True  ),
+	( "0x500",  "0x5ff", "Via",      "V",  True  ),
+	( "0x600",  "0x6ff", "Irdeto",   "I",  True  ),
+	( "0x900",  "0x9ff", "NDS",      "Nd", True  ),
+	( "0xb00",  "0xbff", "Conax",    "Co", True  ),
+	( "0xd00",  "0xdff", "CryptoW",  "Cw", True  ),
+	( "0xe00",  "0xeff", "PowerVU",  "P",  False ),
+	("0x1000", "0x10FF", "Tandberg", "TB", False ),
+	("0x1700", "0x17ff", "Beta",     "B",  True  ),
+	("0x1800", "0x18ff", "Nagra",    "N",  True  ),
+	("0x2600", "0x2600", "Biss",     "Bi", False ),
+	("0x4ae0", "0x4ae1", "Dre",      "D",  False ),
+	("0x4aee", "0x4aee", "BulCrypt", "B1", False ),
+	("0x5581", "0x5581", "BulCrypt", "B2", False )
+)
+
 def addspace(text):
 	if text:
 		text += "  "
@@ -21,22 +38,6 @@ class PliExtraInfo(Poll, Converter, object):
 		self.type = type
 		self.poll_interval = 1000
 		self.poll_enabled = True
-		self.caid_data = (
-			( "0x100",  "0x1ff", "Seca",     "S",  True  ),
-			( "0x500",  "0x5ff", "Via",      "V",  True  ),
-			( "0x600",  "0x6ff", "Irdeto",   "I",  True  ),
-			( "0x900",  "0x9ff", "NDS",      "Nd", True  ),
-			( "0xb00",  "0xbff", "Conax",    "Co", True  ),
-			( "0xd00",  "0xdff", "CryptoW",  "Cw", True  ),
-			( "0xe00",  "0xeff", "PowerVU",  "P",  False ),
-			("0x1700", "0x17ff", "Beta",     "B",  True  ),
-			("0x1800", "0x18ff", "Nagra",    "N",  True  ),
-			("0x2600", "0x2600", "Biss",     "Bi", False ),
-			("0x4ae0", "0x4ae1", "Dre",      "D",  False ),
-			("0x4aee", "0x4aee", "BulCrypt", "B1", False ),
-			("0x5581", "0x5581", "BulCrypt", "B2", False ),
-			("0x1010", "0x1010", "Tandberg", "T", True  )
-		)
 		self.ca_table = (
 			("CryptoCaidSecaAvailable",	"S",	False),
 			("CryptoCaidViaAvailable",	"V",	False),
@@ -87,7 +88,7 @@ class PliExtraInfo(Poll, Converter, object):
 		res = ""
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
-		for caid_entry in self.caid_data:
+		for caid_entry in caid_data:
 			if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
 				color="\c0000??00"
 			else:
@@ -301,7 +302,7 @@ class PliExtraInfo(Poll, Converter, object):
 	def createCryptoSpecial(self, info):
 		caid_name = "FTA"
 		try:
-			for caid_entry in self.caid_data:
+			for caid_entry in caid_data:
 				if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
 					caid_name = caid_entry[2]
 					break
@@ -802,7 +803,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
-		for caid_entry in self.caid_data:
+		for caid_entry in caid_data:
 			if caid_entry[3] == request_caid:
 				if request_selected:
 					if int(caid_entry[0], 16) <= int(current_caid, 16) <= int(caid_entry[1], 16):

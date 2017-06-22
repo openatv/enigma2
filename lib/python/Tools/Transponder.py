@@ -130,6 +130,11 @@ def ConvertToHumanReadable(tp, tunertype = None):
 				eDVBFrontendParametersSatellite.Pilot_Off : _("Off")}.get(tp.get("pilot"))
 		ret["frequency"] = (tp.get("frequency") and "%1.3f MHz" % (tp.get("frequency")/1000.0)) or '0 MHz'
 		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
+		ret["pls_mode"] = {
+			eDVBFrontendParametersSatellite.PLS_Root : _("Root"),
+			eDVBFrontendParametersSatellite.PLS_Gold : _("Gold"),
+			eDVBFrontendParametersSatellite.PLS_Combo : _("Combo"),
+			eDVBFrontendParametersSatellite.PLS_Unknown : _("Unknown")}.get(tp.get("pls_mode"))
 	elif tunertype == "DVB-C":
 		ret["tuner_type"] = _("Cable")
 		ret["modulation"] = {
@@ -165,14 +170,12 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			ret["channel"] = chan
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
-		ret["bandwidth"] = {
-			0 : _("Auto"),
-			10000000 : "10 MHz",
-			8000000 : "8 MHz",
-			7000000 : "7 MHz",
-			6000000 : "6 MHz",
-			5000000 : "5 MHz",
-			1712000 : "1.712 MHz"}.get(tp.get("bandwidth"))
+		x = tp.get("bandwidth")
+		if isinstance(x, int):
+			x = str("%.3f" % (float(x) / 1000000.0)).rstrip('0').rstrip('.') + " MHz" if x else "Auto"
+		else:
+			x = ""
+		ret["bandwidth"] = x
 		#print 'bandwidth:',tp.get("bandwidth")
 		ret["code_rate_lp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),

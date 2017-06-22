@@ -43,6 +43,7 @@ public:
 	RESULT removeServices(int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);
 	RESULT removeService(const eServiceReference &service);
 	PyObject *getFlag(const eServiceReference &service);
+	PyObject *getCachedPid(const eServiceReference &service, int id);
 	bool isCrypted(const eServiceReference &service);
 	RESULT addCAID(const eServiceReference &service, unsigned int caid);
 	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);

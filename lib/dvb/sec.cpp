@@ -1749,3 +1749,17 @@ void eDVBSatelliteEquipmentControl::setRotorMoving(int slot_no, bool b)
 	else
 		m_rotorMoving &= ~(1 << slot_no);
 }
+
+bool eDVBSatelliteEquipmentControl::isOrbitalPositionConfigured(int orbital_position)
+{
+	for (int idx=0; idx <= m_lnbidx; ++idx)
+	{
+		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
+		std::map<int, eDVBSatelliteSwitchParameters>::iterator sit = lnb_param.m_satellites.find(orbital_position);
+		if (sit != lnb_param.m_satellites.end())
+		{
+			return true;
+		}
+	}
+	return false;
+}

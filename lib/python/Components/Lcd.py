@@ -113,24 +113,26 @@ class LCD:
 		self.autoDimDownLCDTimer.stop()
 		if not Screens.Standby.inTryQuitMainloop:
 			if self.Brightness is not None and not self.autoDimUpLCDTimer.isActive():
-				self.autoDimUpLCDTimer.start(10, True)
+				self.autoDimUpLCDTimer.start(25, True)
 
 	def autoDimDownLCD(self):
 		if not Screens.Standby.inTryQuitMainloop:
 			if self.dimBrightness is not None and self.currBrightness > self.dimBrightness:
-				self.currBrightness = self.currBrightness - 1
+				self.currBrightness = self.currBrightness - 256 / self.oled_brightness_scale
+				if self.currBrightness < self.dimBrightness:
+					self.currBrightness = self.dimBrightness
 				eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
-				self.autoDimDownLCDTimer.start(10, True)
+				self.autoDimDownLCDTimer.start(25, True)
 
 	def autoDimUpLCD(self):
 		if not Screens.Standby.inTryQuitMainloop:
 			self.autoDimDownLCDTimer.stop()
 			if self.currBrightness < self.Brightness:
-				self.currBrightness = self.currBrightness + 5
-				if self.currBrightness >= self.Brightness:
+				self.currBrightness = self.currBrightness + 2 * 256 / self.oled_brightness_scale
+				if self.currBrightness > self.Brightness:
 					self.currBrightness = self.Brightness
 				eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
-				self.autoDimUpLCDTimer.start(10, True)
+				self.autoDimUpLCDTimer.start(25, True)
 			else:
 				if self.dimBrightness is not None and self.currBrightness > self.dimBrightness and self.dimDelay is not None and self.dimDelay > 0:
 					self.autoDimDownLCDTimer.startLongTimer(self.dimDelay)

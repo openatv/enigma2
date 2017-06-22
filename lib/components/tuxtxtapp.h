@@ -8,7 +8,7 @@
 #include <lib/python/python.h>
 #include <lib/python/connections.h>
 
-class eTuxtxtApp: private eThread, public Object
+class eTuxtxtApp: private eThread, public sigc::trackable
 {
 #ifndef SWIG
 	int pid;

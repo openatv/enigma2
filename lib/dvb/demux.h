@@ -29,7 +29,7 @@ public:
 	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
 	RESULT getCAAdapterID(uint8_t &id) { id = adapter; return 0; }
 	RESULT flush();
-	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
+	RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn);
 	int openDVR(int flags);
 
 	int getRefCount() { return ref; }
@@ -46,16 +46,16 @@ private:
 	friend class eDVBTSRecorder;
 	friend class eDVBCAService;
 	friend class eTSMPEGDecoder;
-	Signal1<void, int> m_event;
+	sigc::signal1<void, int> m_event;
 
 	int openDemux(void);
 };
 
-class eDVBSectionReader: public iDVBSectionReader, public Object
+class eDVBSectionReader: public iDVBSectionReader, public sigc::trackable
 {
 	DECLARE_REF(eDVBSectionReader);
 	int fd;
-	Signal1<void, const uint8_t*> read;
+	sigc::signal1<void, const uint8_t*> read;
 	ePtr<eDVBDemux> demux;
 	int active;
 	int checkcrc;
@@ -67,14 +67,14 @@ public:
 	RESULT setBufferSize(int size);
 	RESULT start(const eDVBSectionFilterMask &mask);
 	RESULT stop();
-	RESULT connectRead(const Slot1<void,const uint8_t*> &read, ePtr<eConnection> &conn);
+	RESULT connectRead(const sigc::slot1<void,const uint8_t*> &read, ePtr<eConnection> &conn);
 };
 
-class eDVBPESReader: public iDVBPESReader, public Object
+class eDVBPESReader: public iDVBPESReader, public sigc::trackable
 {
 	DECLARE_REF(eDVBPESReader);
 	int m_fd;
-	Signal2<void, const uint8_t*, int> m_read;
+	sigc::signal2<void, const uint8_t*, int> m_read;
 	ePtr<eDVBDemux> m_demux;
 	int m_active;
 	void data(int);
@@ -85,7 +85,7 @@ public:
 	RESULT setBufferSize(int size);
 	RESULT start(int pid);
 	RESULT stop();
-	RESULT connectRead(const Slot2<void,const uint8_t*, int> &read, ePtr<eConnection> &conn);
+	RESULT connectRead(const sigc::slot2<void,const uint8_t*, int> &read, ePtr<eConnection> &conn);
 };
 
 class eDVBRecordFileThread: public eFilePushThreadRecorder
@@ -138,7 +138,7 @@ protected:
 	void flush();
 };
 
-class eDVBTSRecorder: public iDVBTSRecorder, public Object
+class eDVBTSRecorder: public iDVBTSRecorder, public sigc::trackable
 {
 	DECLARE_REF(eDVBTSRecorder);
 public:
@@ -162,7 +162,7 @@ public:
 	RESULT getCurrentPCR(pts_t &pcr);
 	RESULT getFirstPTS(pts_t &pts);
 
-	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
+	RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn);
 private:
 	RESULT startPID(int pid);
 	void stopPID(int pid);
@@ -170,7 +170,7 @@ private:
 	void filepushEvent(int event);
 
 	std::map<int,int> m_pids;
-	Signal1<void,int> m_event;
+	sigc::signal1<void,int> m_event;
 
 	ePtr<eDVBDemux> m_demux;
 

@@ -15,7 +15,7 @@ static AvahiClient *avahi_client = NULL;
 /* API to the E2 event loop */
 static AvahiPoll avahi_poll_api;
 
-struct AvahiTimeout: public Object
+struct AvahiTimeout: public sigc::trackable
 {
 	ePtr<eTimer> timer;
 	AvahiTimeoutCallback callback;
@@ -36,7 +36,7 @@ struct AvahiTimeout: public Object
 	}
 };
 
-struct AvahiWatch: public Object
+struct AvahiWatch: public sigc::trackable
 {
 	ePtr<eSocketNotifier> sn;
 	AvahiWatchCallback callback;

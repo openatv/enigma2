@@ -6,7 +6,7 @@
 #include <lib/dvb/pesparse.h>
 #include <lib/gdi/gpixmap.h>
 
-class eDVBRdsDecoder: public iObject, public ePESParser, public Object
+class eDVBRdsDecoder: public iObject, public ePESParser, public sigc::trackable
 {
 	DECLARE_REF(eDVBRdsDecoder);
 	int msgPtr, bsflag, qdar_pos, t_ptr, qdarmvi_show;
@@ -25,7 +25,7 @@ public:
 	eDVBRdsDecoder(iDVBDemux *demux, int type);
 	~eDVBRdsDecoder();
 	int start(int pid);
-	void connectEvent(const Slot1<void, int> &slot, ePtr<eConnection> &connection);
+	void connectEvent(const sigc::slot1<void, int> &slot, ePtr<eConnection> &connection);
 	const char *getRadioText() { return (const char*)message; }
 	const char *getRtpText() { return (const char*)rtplus_osd; }
 	ePyObject getRassPictureMask();
@@ -39,7 +39,7 @@ private:
 	void process_qdar(unsigned char*);
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
-	Signal1<void, int> m_event;
+	sigc::signal1<void, int> m_event;
 	ePtr<eTimer> m_abortTimer;
 };
 

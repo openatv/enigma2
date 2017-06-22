@@ -96,18 +96,16 @@ class IniTerrestrialLocation(Screen):
 		self.onLayoutFinish.append(self.createSetup)
 
 	def createSetup(self):
-		n = 0
 		self.mlist = []
 		for x in nimmanager.terrestrialsList:
-			self.mlist.append(TerrestrialMenuEntryComponent((x[0]), str(n)))
-			n += 1
+			self.mlist.append(TerrestrialMenuEntryComponent((x[0]), x[0]))
 
 		self["config"].setList(self.mlist)
 
 		for nim in nimmanager.nim_slots:
 			if nim.isCompatible("DVB-T"):
 				nimConfig = nim.config
-				index = nimConfig.terrestrial.getValue()
+				index = nimConfig.terrestrial.index
 				self["config"].moveToIndex(int(index))
 				break
 
@@ -116,7 +114,7 @@ class IniTerrestrialLocation(Screen):
 		for nim in nimmanager.nim_slots:
 			if nim.isCompatible("DVB-T"):
 				nimConfig = nim.config
-				nimConfig.terrestrial.setValue(str(item[0]))
+				nimConfig.terrestrial.setValue(item[0])
 				nimConfig.terrestrial.save()
 
 	def getNetworksForNim(self, nim):

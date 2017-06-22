@@ -505,7 +505,7 @@ class Wizard(Screen):
 		exec (self.wizard[self.currStep]["condition"])
 		if not self.condition:
 			# print "keys*******************:", self.wizard[self.currStep].keys()
-			if "laststep" in self.wizard[self.currStep]:  # exit wizard, if condition of laststep doesn't hold
+			if "laststep" in self.wizard[self.currStep]: # exit wizard, if condition of laststep doesn't hold
 				self.markDone()
 				self.exit()
 				return
@@ -589,7 +589,7 @@ class Wizard(Screen):
 					if isinstance(element, ConfigSelection):
 						for choice in element.choices.choices:
 							print "choice:", choice
-							if configelement == "config.timezone.val":
+							if configelement in ("config.timezone.area", "config.timezone.val"):
 								self.list.append((choice, choice))
 							else:
 								self.list.append((choice[1], choice[0]))
@@ -631,11 +631,12 @@ class Wizard(Screen):
 						self.configInstance.setAnimationMode(0)
 						self["config"].l.setList(self.configInstance["config"].list)
 						callbacks = self.configInstance["config"].onSelectionChanged
-						self.configInstance["config"].destroy()
-						print "[Wizard] clearConfigList", self.configInstance["config"], self["config"]
+# The following line is commented out as it prevents the VirtualKeyboard
+# from working for Wifi SSID/key setting in the FirstInstallWizard.
+#						self.configInstance["config"].destroy()
+#						print "[Wizard] clearConfigList", self.configInstance["config"], self["config"]
 						self.configInstance["config"] = self["config"]
 						self.configInstance["config"].onSelectionChanged = callbacks
-						print "[Wizard] clearConfigList", self.configInstance["config"], self["config"]
 				else:
 					self["config"].l.setList([])
 					self.handleInputHelpers()
@@ -661,7 +662,7 @@ class Wizard(Screen):
 				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(True)
 					self["VKeyIcon"].boolean = True
-				if "VKeyIcon" in self:
+				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint

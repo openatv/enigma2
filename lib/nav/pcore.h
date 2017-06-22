@@ -6,7 +6,7 @@
 
 /* a subset of eNavigation */
 
-class pNavigation: public iObject, public Object
+class pNavigation: public iObject, public sigc::trackable
 {
 	DECLARE_REF(pNavigation);
 public:

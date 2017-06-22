@@ -26,7 +26,7 @@ TYPE_VALUE_BITRATE = 8
 def to_unsigned(x):
 	return x & 0xFFFFFFFF
 
-def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
+def ServiceInfoListEntry(a, b="", valueType=TYPE_TEXT, param=4):
 	if not isinstance(b, str):
 		if valueType == TYPE_VALUE_HEX:
 			b = ("0x%0" + str(param) + "x") % to_unsigned(b)
@@ -74,6 +74,9 @@ class ServiceInfo(AboutBase):
 		(_("Transmission mode"), "transmission_mode", TYPE_TEXT),
 		(_("Guard interval"), "guard_interval", TYPE_TEXT),
 		(_("Hierarchy info"), "hierarchy_information", TYPE_TEXT),
+		(_("Input stream ID"), "is_id", TYPE_TEXT),
+		(_("PLS mode"), "pls_mode", TYPE_TEXT),
+		(_("PLS code"), "pls_code", TYPE_TEXT),
 	)
 
 	def __init__(self, session, menu_path="", serviceref=None):
@@ -258,3 +261,34 @@ class ServiceInfo(AboutBase):
 			v = _("N/A")
 
 		return v
+
+	def ShowECMInformation(self):
+		from Components.Converter.PliExtraInfo import caid_data
+		self["Title"].text = _("Service info - ECM Info")
+		tlist = []
+		for caid in sorted(set(self.info.getInfoObject(iServiceInformation.sCAIDPIDs)), key=lambda x: (x[0], x[1])):
+			CaIdDescription = _("Undefined")
+			extra_info = ""
+			for caid_entry in caid_data:
+				if int(caid_entry[0], 16) <= caid[0] <= int(caid_entry[1], 16):
+					CaIdDescription = caid_entry[2]
+					break
+			if caid[2]:
+				provid = ""
+				if CaIdDescription == "Seca":
+					provid = caid[2][:4]
+				if CaIdDescription == "Nagra":
+					provid = caid[2][-4:]
+				if CaIdDescription == "Via":
+					provid = caid[2][-6:]
+				if provid:
+					extra_info = "provid=%s" % provid
+				else:
+					extra_info = "extra data=%s" % caid[2]
+			from Tools.GetEcmInfo import GetEcmInfo
+			ecmdata = GetEcmInfo().getEcmData()
+			color = "\c00??;?00" if caid[1] == int(ecmdata[3], 16) and caid[0] == int(ecmdata[1], 16) else ""
+			tlist.append(ServiceInfoListEntry("%sECMPid %04X (%d) %04X-%s %s" % (color, caid[1], caid[1], caid[0], CaIdDescription, extra_info)))
+		if not tlist:
+			tlist.append(ServiceInfoListEntry(_("No ECMPids available (FTA Service)")))
+		self["infolist"].l.setList(tlist)

@@ -24,7 +24,7 @@
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="180,44" size="75,20" font="FdLcD;18" halign="right" noWrap="1">
-			<convert type="ClockToText"/>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 	</screen>
 

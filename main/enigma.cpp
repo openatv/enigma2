@@ -99,7 +99,10 @@ void keyEvent(const eRCKey &key)
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/epgcache.h>
 
-class eMain: public eApplication, public Object
+/* Defined in eerror.cpp */
+void setDebugTime(bool enable);
+
+class eMain: public eApplication, public sigc::trackable
 {
 	eInit init;
 	ePythonConfigQuery config;
@@ -236,16 +239,17 @@ int main(int argc, char **argv)
 	printf("[Enigma2] PYTHONPATH: %s\n", getenv("PYTHONPATH"));
 	printf("[Enigma2] DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
-	// get enigma2 debug level
+	// get enigma2 debug level settings
 	debugLvl = getenv("ENIGMA_DEBUG_LVL") ? atoi(getenv("ENIGMA_DEBUG_LVL")) : 4;
 	if (debugLvl < 0)
 		debugLvl = 0;
-	printf("[Enigma2] ENIGMA2_DEBUG settings: Level=%d\n", debugLvl);
+	printf("ENIGMA_DEBUG_LVL=%d\n", debugLvl);
+	if (getenv("ENIGMA_DEBUG_TIME"))
+		setDebugTime(atoi(getenv("ENIGMA_DEBUG_TIME")) != 0);
 
 	ePython python;
 	eMain main;
 
-#if 1
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 	my_dc->setResolution(1280, 720, 32);
@@ -283,7 +287,6 @@ int main(int argc, char **argv)
 	dsk_lcd.setDC(my_lcd_dc);
 
 	dsk.setBackgroundColor(gRGB(0,0,0,0xFF));
-#endif
 
 		/* redrawing is done in an idle-timer, so we have to set the context */
 	dsk.setRedrawTask(main);
@@ -326,7 +329,7 @@ int main(int argc, char **argv)
 
 	gRC::getInstance()->setSpinnerDC(my_dc);
 
-	eRCInput::getInstance()->keyEvent.connect(slot(keyEvent));
+	eRCInput::getInstance()->keyEvent.connect(sigc::ptr_fun(&keyEvent));
 
 	printf("[MAIN] executing main\n");
 
