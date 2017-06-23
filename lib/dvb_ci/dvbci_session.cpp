@@ -41,7 +41,7 @@ ePtr<eDVBCISession> eDVBCISession::sessions[SLMS];
 
 int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 {
-	if (len < 127)
+	if (len < 128)
 	{
 		*pkt++=len;
 		return 1;

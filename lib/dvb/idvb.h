@@ -359,12 +359,15 @@ public:
 		dxNewFound=64,
 		dxIsDedicated3D=128,
 		dxHideVBI=512,
+		dxIsScrambledPMT=1024,
+		dxCenterDVBSubs=2048,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
 	bool isHidden() const { return m_flags & dxDontshow; }
 	bool isDedicated3D() const { return m_flags & dxIsDedicated3D; }
 	bool doHideVBI() const { return m_flags & dxHideVBI; }
+	bool doCenterDVBSubs() const { return m_flags & dxCenterDVBSubs; }
 
 	CAID_LIST m_ca;
 
@@ -543,6 +546,9 @@ public:
 	virtual int getRolloff() const = 0;
 	virtual int getPilot() const = 0;
 	virtual int getSystem() const = 0;
+	virtual int getIsId() const = 0;
+	virtual int getPLSMode() const = 0;
+	virtual int getPLSCode() const = 0;
 	virtual int getBandwidth() const = 0;
 	virtual int getCodeRateLp() const = 0;
 	virtual int getCodeRateHp() const = 0;
@@ -567,7 +573,7 @@ public:
 	virtual int closeFrontend(bool force = false, bool no_delayed = false)=0;
 	virtual void reopenFrontend()=0;
 #ifndef SWIG
-	virtual RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
+	virtual RESULT connectStateChange(const sigc::slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
 #endif
 	virtual RESULT getState(int &SWIG_OUTPUT)=0;
 	virtual RESULT setTone(int tone)=0;
@@ -635,8 +641,8 @@ public:
 	{
 		evtPreStart, evtEOF, evtSOF, evtFailed, evtStopped
 	};
-	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
-	virtual RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
+	virtual RESULT connectStateChange(const sigc::slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
+	virtual RESULT connectEvent(const sigc::slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
 
 		/* demux capabilities */
 	enum
@@ -666,7 +672,7 @@ class iTSMPEGDecoder;
 	   everything is specified in pts and not file positions */
 
 	/* implemented in dvb.cpp */
-class eCueSheet: public iObject, public Object
+class eCueSheet: public iObject, public sigc::trackable
 {
 	DECLARE_REF(eCueSheet);
 public:
@@ -687,12 +693,12 @@ public:
 
 			/* backend */
 	enum { evtSeek, evtSkipmode, evtSpanChanged };
-	RESULT connectEvent(const Slot1<void, int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const sigc::slot1<void, int> &event, ePtr<eConnection> &connection);
 
 	std::list<std::pair<pts_t,pts_t> > m_spans;	/* begin, end */
 	std::list<std::pair<int, pts_t> > m_seek_requests; /* relative, delta */
 	pts_t m_skipmode_ratio;
-	Signal1<void,int> m_event;
+	sigc::signal1<void,int> m_event;
 	ePtr<iDVBDemux> m_decoding_demux;
 	ePtr<iTSMPEGDecoder> m_decoder;
 };
@@ -808,7 +814,7 @@ public:
 		unsigned short framerate;
 	};
 
-	virtual RESULT connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;
+	virtual RESULT connectVideoEvent(const sigc::slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;
 
 	virtual int getVideoWidth() = 0;
 	virtual int getVideoHeight() = 0;

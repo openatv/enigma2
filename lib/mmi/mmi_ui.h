@@ -18,7 +18,7 @@ struct slot_ui_data
 };
 #endif
 
-class eMMI_UI: public Object
+class eMMI_UI: public sigc::trackable
 {
 	int m_max_slots;
 	virtual void stateChanged(int)=0;

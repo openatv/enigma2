@@ -55,23 +55,13 @@ void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle
 	int x = subcentered ? (region->width - len) /2 : object->object_horizontal_position;
 	int y = object->object_vertical_position + line;
 	if (x + len > region->width)
-	{
 		len = region->width - x;
-	}
-	if (len < 0)
+	if (len < 0 || y >= region->height)
 		return;
-	if (y >= region->height)
-	{
-		return;
-	}
-	if( subcentered && region->region_id && line < 3 )
-	{
+	if(subcentered && region->region_id && line < 3)
 		for (int i = 0; i < len; i++ )
 			if( data[i] <= 8)
-			{
 				data[i] = 0;
-			}
-	}
 	memcpy((uint8_t*)region->buffer->surface->data + region->buffer->surface->stride * y + x, data, len);
 }
 
@@ -1094,7 +1084,7 @@ eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("[eDVBSubtitleParser] failed to create PES reader!");
 	else
-		m_pes_reader->connectRead(slot(*this, &eDVBSubtitleParser::processData), m_read_connection);
+		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBSubtitleParser::processData), m_read_connection);
 }
 
 eDVBSubtitleParser::~eDVBSubtitleParser()
@@ -1125,7 +1115,7 @@ int eDVBSubtitleParser::start(int pid, int composition_page_id, int ancillary_pa
 	return -1;
 }
 
-void eDVBSubtitleParser::connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection)
+void eDVBSubtitleParser::connectNewPage(const sigc::slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
 }

@@ -1,8 +1,14 @@
 <!--suppress XmlUnboundNsPrefix -->
 <wizard>
-		<step id="start" laststep="true">
-			<text value="Please select your time zone" />
-			<displaytext value="Please select your time zone" />
-			<list type="config" configelement="config.timezone.val" />
-		</step>
+	<step id="start" nextstep="zone">
+		<text value="Please select your time zone region" />
+		<displaytext value="Please select your time zone region" />
+		<list type="config" configelement="config.timezone.area" />
+	</step>
+
+	<step id="zone" laststep="true">
+		<text value="Please select your time zone" />
+		<displaytext value="Please select your time zone" />
+		<list type="config" configelement="config.timezone.val" />
+	</step>
 </wizard>

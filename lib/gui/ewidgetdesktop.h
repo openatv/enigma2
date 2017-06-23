@@ -28,7 +28,7 @@ struct eWidgetDesktopCompBuffer
 	gRGB m_background_color;
 };
 
-class eWidgetDesktop: public Object
+class eWidgetDesktop: public sigc::trackable
 {
 public:
 	eWidgetDesktop(eSize screen);

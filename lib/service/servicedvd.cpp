@@ -33,6 +33,7 @@ eServiceFactoryDVD::eServiceFactoryDVD()
 		std::list<std::string> extensions;
 		extensions.push_back("iso");
 		extensions.push_back("img");
+		extensions.push_back("nrg");
 		sc->addServiceFactory(eServiceFactoryDVD::id, this, extensions);
 	}
 }
@@ -377,7 +378,7 @@ eServiceDVD::~eServiceDVD()
 	disableSubtitles();
 }
 
-RESULT eServiceDVD::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+RESULT eServiceDVD::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;

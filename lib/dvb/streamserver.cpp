@@ -5,6 +5,9 @@
 #include <pwd.h>
 #include <shadow.h>
 #include <crypt.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
 
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
@@ -18,7 +21,7 @@
 #include <lib/dvb/encoder.h>
 
 eStreamClient::eStreamClient(eStreamServer *handler, int socket, const std::string remotehost)
- : parent(handler), encoderFd(-1), streamFd(socket), streamThread(NULL), m_remotehost(remotehost)
+ : parent(handler), encoderFd(-1), streamFd(socket), streamThread(NULL), m_remotehost(remotehost), m_timeout(eTimer::create(eApp))
 {
 	running = false;
 }
@@ -43,12 +46,19 @@ void eStreamClient::start()
 {
 	rsn = eSocketNotifier::create(eApp, streamFd, eSocketNotifier::Read);
 	CONNECT(rsn->activated, eStreamClient::notifier);
+	CONNECT(m_timeout->timeout, eStreamClient::stopStream);
 }
 
-static void set_tcp_buffer_size(int fd, int optname, int buf_size)
+void eStreamClient::set_socket_option(int fd, int optid, int option)
 {
-	if (::setsockopt(fd, SOL_SOCKET, optname, &buf_size, sizeof(buf_size)))
-		eDebug("Failed to set TCP SNDBUF or RCVBUF size: %m");
+	if(::setsockopt(fd, SOL_SOCKET, optid, &option, sizeof(option)))
+		eDebug("Failed to set socket option: %m");
+}
+
+void eStreamClient::set_tcp_option(int fd, int optid, int option)
+{
+	if(::setsockopt(fd, SOL_TCP, optid, &option, sizeof(option)))
+		eDebug("Failed to set TCP parameter: %m");
 }
 
 void eStreamClient::notifier(int what)
@@ -73,6 +83,7 @@ void eStreamClient::notifier(int what)
 	if (request.substr(0, 5) == "GET /")
 	{
 		size_t pos;
+		size_t posdur;
 		if (eConfigManager::getConfigBoolValue("config.streaming.authentication"))
 		{
 			bool authenticated = false;
@@ -136,14 +147,24 @@ void eStreamClient::notifier(int what)
 				const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
 				writeAll(streamFd, reply, strlen(reply));
 				/* We don't expect any incoming data, so set a tiny buffer */
-				set_tcp_buffer_size(streamFd, SO_RCVBUF, 1 * 1024);
+				set_socket_option(streamFd, SO_RCVBUF, 1 * 1024);
 				 /* We like 188k packets, so set the TCP window size to that */
-				set_tcp_buffer_size(streamFd, SO_SNDBUF, 188 * 1024);
+				set_socket_option(streamFd, SO_SNDBUF, 188 * 1024);
+				/* activate keepalive */
+				set_socket_option(streamFd, SO_KEEPALIVE, 1);
+				/* configure keepalive */
+				set_tcp_option(streamFd, TCP_KEEPINTVL, 10); // every 10 seconds
+				set_tcp_option(streamFd, TCP_KEEPIDLE, 1);	// after 1 second of idle
+				set_tcp_option(streamFd, TCP_KEEPCNT, 2);	// drop connection after second miss
+				/* also set 10 seconds data push timeout */
+				set_tcp_option(streamFd, TCP_USER_TIMEOUT, 10 * 1000);
+
 				if (serviceref.substr(0, 10) == "file?file=") /* convert openwebif stream reqeust back to serviceref */
 					serviceref = "1:0:1:0:0:0:0:0:0:0:" + serviceref.substr(10);
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
 				{
+					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
 					if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
 					{
 						running = true;
@@ -156,7 +177,25 @@ void eStreamClient::notifier(int what)
 					request = serviceref.substr(pos);
 					serviceref = serviceref.substr(0, pos);
 					pos = request.find("?bitrate=");
-					if (pos != std::string::npos)
+					posdur = request.find("?duration=");
+					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
+					if (posdur != std::string::npos)
+					{
+						if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
+						{
+							running = true;
+							m_serviceref = serviceref;
+							m_useencoder = false;
+						}
+						int timeout = 0;
+						sscanf(request.substr(posdur).c_str(), "?duration=%d", &timeout);
+						eDebug("[eDVBServiceStream] duration: %d seconds", timeout);
+						if (timeout)
+						{
+							m_timeout->startLongTimer(timeout);
+						}
+					}
+					else if (pos != std::string::npos)
 					{
 						/* we need to stream transcoded data */
 						int bitrate = 1024 * 1024;
@@ -212,14 +251,7 @@ void eStreamClient::notifier(int what)
 	request.clear();
 }
 
-void eStreamClient::streamStopped()
-{
-	ePtr<eStreamClient> ref = this;
-	rsn->stop();
-	parent->connectionLost(this);
-}
-
-void eStreamClient::tuneFailed()
+void eStreamClient::stopStream()
 {
 	ePtr<eStreamClient> ref = this;
 	rsn->stop();
@@ -279,6 +311,28 @@ void eStreamServer::connectionLost(eStreamClient *client)
 	{
 		clients.erase(it);
 	}
+}
+
+void eStreamServer::stopStream()
+{
+	eSmartPtrList<eStreamClient>::iterator it = clients.begin();
+	if (it != clients.end())
+	{
+		it->stopStream();
+	}
+}
+
+bool eStreamServer::stopStreamClient(const std::string remotehost, const std::string serviceref)
+{
+	for (eSmartPtrList<eStreamClient>::iterator it = clients.begin(); it != clients.end(); ++it)
+	{
+		if(it->getRemoteHost() == remotehost && it->getServiceref() == serviceref)
+		{
+			it->stopStream();
+			return true;
+		}
+	}
+	return false;
 }
 
 PyObject *eStreamServer::getConnectedClients()

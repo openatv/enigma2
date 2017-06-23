@@ -118,11 +118,14 @@ class About(AboutBase):
 
 		self.list.append(self.makeEmptyEntry())
 
-		if path.exists('/proc/stb/info/chipset'):
-			self.list.append(self.makeInfoEntry(_("Chipset:"), "BCM%s" % about.getChipSetString()))
-
+		if about.getChipSetString() != _("unavailable"):
+			if about.getIsBroadcom():
+				self.list.append(self.makeInfoEntry(_("Chipset:"), "BCM%s" % about.getChipSetString().upper()))
+			else:
+				self.list.append(self.makeInfoEntry(_("Chipset:"), about.getChipSetString().upper()))
 		self.list.append(self.makeInfoEntry(_("CPU:"), about.getCPUString().replace('bcm', 'BCM')))
-		self.list.append(self.makeInfoEntry(_("CPU Speed:"), about.getCPUSpeedString()))
+		self.list.append(self.makeInfoEntry(_("Architecture:"), about.getCPUArch()))
+		self.list.append(self.makeInfoEntry(_("Speed:"), about.getCPUSpeedString()))
 		self.list.append(self.makeInfoEntry(_("Cores:"), str(about.getCpuCoresString())))
 
 		string = getDriverDate()

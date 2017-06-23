@@ -5,7 +5,7 @@
 #include <lib/base/message.h>
 #include <lib/base/ebase.h>
 
-class eBackgroundFileEraser: public eMainloop, private eThread, public Object
+class eBackgroundFileEraser: public eMainloop, private eThread, public sigc::trackable
 {
 	struct Message
 	{

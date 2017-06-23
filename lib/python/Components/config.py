@@ -95,12 +95,12 @@ class ConfigElement(object):
 		else:
 			self.saved_value = self.tostring(self.value)
 		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
+			self.changedFinal()  # call none immediate_feedback notifiers, immediate_feedback Notifiers are called as they are chanaged, so do not need to be called here.
 
 	def cancel(self):
 		self.load()
 		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
+			self.changedFinal()  # call none immediate_feedback notifiers, immediate_feedback Notifiers are called as they are chanaged, so do not need to be called here.
 
 	def isChanged(self):
 # NOTE - sv should already be stringified!
@@ -170,10 +170,11 @@ class ConfigElement(object):
 		try:
 			del self.__notifiers[str(notifier)]
 		except:
-			try:
-				del self.__notifiers_final[str(notifier)]
-			except:
-				pass
+			pass
+		try:
+			del self.__notifiers_final[str(notifier)]
+		except:
+			pass
 
 	def clearNotifiers(self):
 		self.__notifiers = { }
@@ -190,7 +191,6 @@ class ConfigElement(object):
 
 	def onDeselect(self, session):
 		if not self.last_value == self.value:
-			self.changedFinal()
 			self.last_value = self.value
 
 KEY_LEFT = 0
@@ -439,22 +439,22 @@ class ConfigSelection(ConfigElement):
 #
 boolean_descriptions = {False: _("false"), True: _("true")}
 class ConfigBoolean(ConfigElement):
-	def __init__(self, default=False, descriptions=boolean_descriptions, grafic=True):
+	def __init__(self, default=False, descriptions=boolean_descriptions, graphic=True):
 		ConfigElement.__init__(self)
 		self.descriptions = descriptions
 		self.value = self.last_value = self.default = default
-		self.grafic = False
-		if grafic:
+		self.graphic = False
+		if graphic:
 			from skin import switchPixmap
 			offPath = switchPixmap.get('menu_off')
 			onPath = switchPixmap.get('menu_on')
 			if offPath and onPath:
-				falseIcon = LoadPixmap(cached=True, path=offPath)
-				trueIcon = LoadPixmap(cached=True, path=onPath)
+				falseIcon = LoadPixmap(offPath, cached=True)
+				trueIcon = LoadPixmap(onPath, cached=True)
 				if falseIcon and trueIcon:
 					self.falseIcon = falseIcon
 					self.trueIcon = trueIcon
-					self.grafic = True
+					self.graphic = True
 
 	def handleKey(self, key):
 		if key in (KEY_LEFT, KEY_RIGHT):
@@ -472,11 +472,11 @@ class ConfigBoolean(ConfigElement):
 
 	def getMulti(self, selected):
 		from config import config
-		if self.grafic and config.usage.boolean_graphic.value:
+		if self.graphic and config.usage.boolean_graphic.value:
 			if self.value:
-				return ('bolean', self.trueIcon)
+				return ('pixmap', self.trueIcon)
 			else:
-				return ('bolean', self.falseIcon)
+				return ('pixmap', self.falseIcon)
 		else:
 			return "text", self.getText()
 
@@ -2196,6 +2196,22 @@ class ConfigSubsection(object):
 	def dict(self):
 		return self.content.items
 
+# This converts old timezone settings string to the new two tier format.
+# The conversion table only contains Australian zones - OpenViX are not
+# interested in providing backwards compatibility.
+# If the old string is not found, the defaults are used instead.
+def convertOldTimezone(old_name):
+	old_zones = {
+		"(GMT+08:00) Perth": ("Australia", "Perth"),
+		"(GMT+09:30) Adelaide": ("Australia", "Adelaide"),
+		"(GMT+09:30) Darwin": ("Australia", "Darwin"),
+		"(GMT+10:00) Brisbane": ("Australia", "Brisbane"),
+		"(GMT+10:00) Canberra, Melbourne, Sydney": ("Australia", "Sydney"),
+		"(GMT+10:00) Hobart": ("Australia", "Hobart"),
+	}
+
+	return old_zones.get(old_name, ("Australia", "Sydney"))
+
 # the root config object, which also can "pickle" (=serialize)
 # down the whole config tree.
 #
@@ -2271,7 +2287,21 @@ class Config(ConfigSubsection):
 			print "[Config] Couldn't write %s" % filename
 
 	def loadFromFile(self, filename, base_file=True):
-		self.unpickle(open(filename, "r"), base_file)
+		lines = open(filename, "r")
+		lines = self.upgradeOldSettings(lines)
+
+		self.unpickle(lines, base_file)
+
+	def upgradeOldSettings(self, lines):
+		result = []
+		for line in lines:
+			if line.startswith("config.timezone.val=("):
+				area, val = convertOldTimezone(line.strip().split("=")[1])
+				result.append("config.timezone.area=%s" % area)
+				result.append("config.timezone.val=%s" % val)
+			else:
+				result.append(line)
+		return result
 
 config = Config()
 config.misc = ConfigSubsection()

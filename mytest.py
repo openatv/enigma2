@@ -10,6 +10,8 @@ if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
 
+# Don't remove this line. It may seem to do nothing, but if removed,
+# it will break output redirection for crash logs.
 import Tools.RedirectOutput
 import enigma
 from boxbranding import getBoxType, getMachineProcModel, getMachineBuild
@@ -20,6 +22,11 @@ enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
 from traceback import print_exc
+
+profile("ClientMode")
+import Components.ClientMode
+Components.ClientMode.InitClientMode()
+
 profile("SimpleSummary")
 from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
@@ -32,7 +39,8 @@ config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 def setLoadUnlinkedUserbouquets(configElement):
 	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
-enigma.eDVBDB.getInstance().reloadBouquets()
+if config.clientmode.enabled.value == False:
+	enigma.eDVBDB.getInstance().reloadBouquets()
 
 profile("ParentalControl")
 import Components.ParentalControl
@@ -143,7 +151,7 @@ def dump(d, p=""):
 			dump(val, p + "(dict)/" + entry)
 	if hasattr(d, "__dict__"):
 		for name, value in d.__dict__.items():
-			if not str(value) in had:
+			if str(value) not in had:
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
 			else:
@@ -664,13 +672,17 @@ import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 import Components.InputHotplug
 
+profile("TimeZones")
+import Components.Timezones
+Components.Timezones.InitTimeZones()
+
 profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd3D()
+Screens.UserInterfacePositioner.InitOsd()
 
 profile("AVSwitch")
 import Components.AVSwitch
@@ -725,6 +737,10 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 
+profile("UserInterface")
+import Screens.UserInterfacePositioner
+Screens.UserInterfacePositioner.InitOsdPosition()
+
 profile("EpgCacheSched")
 import Components.EpgLoadSave
 Components.EpgLoadSave.EpgCacheSaveCheck()
@@ -741,9 +757,9 @@ Screens.Ci.InitCiConfig()
 profile("RcModel")
 import Components.RcModel
 
-profile("UserInterface")
-import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd()
+if config.clientmode.enabled.value:
+	import Components.ChannelsImporter
+	Components.ChannelsImporter.autostart()
 
 # from enigma import dump_malloc_stats
 # t = eTimer()

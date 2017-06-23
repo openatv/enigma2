@@ -530,7 +530,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* pvalue is borrowed */
 							/* plist is 0 or borrowed */
 					}
-					else if (!strcmp(atype, "bolean"))
+					else if (!strcmp(atype, "pixmap"))
 					{
 						ePyObject data;
 						ePyObject ppixmap = PyTuple_GET_ITEM(value, 1);
@@ -541,7 +541,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePtr<gPixmap> pixmap;
 						if (SwigFromPython(pixmap, ppixmap))
 						{
-							eDebug("eListboxPythonMultiContent (Pixmap) get pixmap failed");
+							eDebug("[eListboxPythonMultiContent] (Pixmap) get pixmap failed");
 							const char *value = (ppixmap && PyString_Check(ppixmap)) ? PyString_AsString(ppixmap) : "<not-a-string>";
 							painter.setFont(fnt2);
 							if (value_alignment_left)
@@ -784,10 +784,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (PyTuple_Check(items))
 					buildfunc_ret = items = PyObject_CallObject(m_buildFunc, items);
 				else
-					eDebug("eListboxPythonMultiContent: items is not a tuple");
+					eDebug("[eListboxPythonMultiContent] items is not a tuple");
 			}
 			else
-				eDebug("eListboxPythonMultiContent: buildfunc is not a callable");
+				eDebug("[eListboxPythonMultiContent] buildfunc is not a callable");
 		}
 
 		if (!items)
@@ -832,13 +832,13 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 			if (!item)
 			{
-				eDebug("eListboxPythonMultiContent: no items[%d] ?", i);
+				eDebug("[eListboxPythonMultiContent] no items[%d] ?", i);
 				goto error_out;
 			}
 
 			if (!PyTuple_Check(item))
 			{
-				eDebug("eListboxPythonMultiContent: items[%d] is not a tuple.", i);
+				eDebug("[eListboxPythonMultiContent] items[%d] is not a tuple.", i);
 				goto error_out;
 			}
 
@@ -846,7 +846,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 			if (!size)
 			{
-				eDebug("eListboxPythonMultiContent: items[%d] is an empty tuple.", i);
+				eDebug("[eListboxPythonMultiContent] items[%d] is an empty tuple.", i);
 				goto error_out;
 			}
 
@@ -870,7 +870,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (!(px && py && pwidth && pheight && pfnt && pflags && pstring))
 				{
-					eDebug("eListboxPythonMultiContent: tuple too small (must be (TYPE_TEXT, x, y, width, height, font, flags, string [, color, colorSelected, backColor, backColorSelected, borderWidth, borderColor])");
+					eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_TEXT, x, y, width, height, font, flags, string [, color, colorSelected, backColor, backColorSelected, borderWidth, borderColor])");
 					goto error_out;
 				}
 
@@ -977,7 +977,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				{
 					if (!(px && py && pwidth && pheight && pfilled_perc))
 					{
-						eDebug("eListboxPythonMultiContent: tuple too small (must be (TYPE_PROGRESS, x, y, width, height, filled percent [, borderWidth, color, colorSelected, backColor, backColorSelected]))");
+						eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_PROGRESS, x, y, width, height, filled percent [, borderWidth, color, colorSelected, backColor, backColorSelected]))");
 						goto error_out;
 					}
 				}
@@ -988,7 +988,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						continue;
 					if (!(px && py && pwidth && pheight && pfilled_perc, ppixmap))
 					{
-						eDebug("eListboxPythonMultiContent: tuple too small (must be (TYPE_PROGRESS_PIXMAP, x, y, width, height, filled percent, pixmap, [,borderWidth, color, colorSelected, backColor, backColorSelected]))");
+						eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_PROGRESS_PIXMAP, x, y, width, height, filled percent, pixmap, [,borderWidth, color, colorSelected, backColor, backColorSelected]))");
 						goto error_out;
 					}
 				}
@@ -1103,7 +1103,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (!(px && py && pwidth && pheight && ppixmap))
 				{
-					eDebug("eListboxPythonMultiContent: tuple too small (must be (TYPE_PIXMAP, x, y, width, height, pixmap [, backColor, backColorSelected, flags] ))");
+					eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_PIXMAP, x, y, width, height, pixmap [, backColor, backColorSelected, flags] ))");
 					goto error_out;
 				}
 
@@ -1122,7 +1122,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				ePtr<gPixmap> pixmap;
 				if (SwigFromPython(pixmap, ppixmap))
 				{
-					eDebug("eListboxPythonMultiContent: (Pixmap) get pixmap failed");
+					eDebug("[eListboxPythonMultiContent] (Pixmap) get pixmap failed");
 					goto error_out;
 				}
 
@@ -1152,7 +1152,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				break;
 			}
 			default:
-				eWarning("eListboxPythonMultiContent: received unknown type (%d)", type);
+				eWarning("[eListboxPythonMultiContent] received unknown type (%d)", type);
 				goto error_out;
 			}
 		}

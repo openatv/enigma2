@@ -1,7 +1,8 @@
 <!--suppress XmlUnboundNsPrefix -->
 <setupxml>
 	<setup key="time" title="Time settings">
-		<item level="0" text="Timezone" description="Choose your timezone.">config.timezone.val</item>
+		<item level="0" text="Timezone area" description="Choose your timezone area.">config.timezone.area</item>
+		<item level="0" text="Timezone" description="Choose the location in your timezone area.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronise system time with the TV broadcast or an Internet time server (NTP).">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Enter the DNS name of the NTP server." requires="config.misc.SyncTimeUsing" >config.misc.NTPserver</item>
 		<item level="0" text="NTP update interval" description="Choose how often to contact the NTP server." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
@@ -102,7 +103,7 @@
 	<setup key="epgsettings" title="EPG settings">
 		<item level="2" text="EPG cache location" description="Choose the storage location for EPG data when the %s %s is shut down. The chosen location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG cache filename" description="Enter the name of the file that stores EPG data when the %s %s is shut down.">config.misc.epgcachefilename</item>
-		<item level="2" text="EPG cache reload" description="Enable to regularly replace EPG data with the contents of the EPG cache file. Used to import EPG from external sources.">config.epg.cacheloadsched</item>
+		<item level="2" text="EPG cache reload" description="Enable to regularly replace EPG data with the contents of the EPG cache file. Used to import EPG from external sources. Only enable this if the receiver does not receive EPG via any other means.">config.epg.cacheloadsched</item>
 		<item level="2" text="Reload every hours" requires="config.epg.cacheloadsched" description="Number of hours between EPG data reloads from the cache file.">config.epg.cacheloadtimer</item>
 		<item level="2" text="EPG cache save" description="Enable to regularly save EPG data to the cache file.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every hours" requires="config.epg.cachesavesched" description="Number of hours between EPG data saves to the cache file.">config.epg.cachesavetimer</item>
@@ -131,7 +132,6 @@
 		<item level="1" text="Subtitle delay for no timing info" description="Set the subtitle delay when timing information is not available.">config.subtitles.subtitle_noPTSrecordingdelay</item>
 		<item level="1" text="Yellow DVB subtitles" description="Enable to display graphical DVB subtitles in yellow, instead of the original colour.">config.subtitles.dvb_subtitles_yellow</item>
 		<item level="1" text="Use original DVB subtitle position" description="Enable to display graphical DVB subtitles at their original position.">config.subtitles.dvb_subtitles_original_position</item>
-		<item level="1" text="Center DVB subtitles" description="Enable to centrally align graphical DVB subtitles.">config.subtitles.dvb_subtitles_centered</item>
 		<item level="1" text="Subtitle delay for bad timing info" description="Set an additional delay to improve subtitle synchronisation.">config.subtitles.subtitle_bad_timing_delay</item>
 		<item level="1" text="DVB subtitle black transparency" description="Set the transparency level of the black background of graphical DVB subtitles.">config.subtitles.dvb_subtitles_backtrans</item>
 		<item level="1" text="External subtitle colour" description="Set colour alternatives for external subtitles (normal in white, italic in yellow, bold in cyan, underscore in green).">config.subtitles.pango_subtitle_colors</item>
@@ -240,6 +240,7 @@
 		<item level="0" requires="LcdDisplay" text="Show time elapsed as positive" description="Choose how elapsed time is displayed on the front panel. You can specify a + (positive) or - (negative) value.">config.usage.elapsed_time_positive_vfd</item>
 		<item level="1" requires="GraphicLCD" text="Scrolling speed (software render)" description="Set the scrolling speed of text on the front display. This uses a software render in some skins.">config.lcd.scroll_speed</item>
 		<item level="1" requires="GraphicLCD" text="Scrolling delay (software render)" description="Set the delay time between text repetitions. This uses a software render in some skins.">config.lcd.scroll_delay</item>		
+		<item level="2" text="Use 12 characters display mode" description="If enabled, display shows 12 chars instead 8, but in latin-1/translit only." requires="hasXcoreVFD">config.usage.toggle12to8characterVFD</item>
 	</setup>
 	<setup key="satconfig" title="Satellite dish settings">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
@@ -385,5 +386,10 @@
 	<setup key="pluginbrowsersetup" title="Plugin browser settings">
 		<item level="2" text="Show translation packages" description="Enable to show 'PO' packages in the browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="Enable to show 'SRC' packages in the browser.">config.pluginbrowser.src</item>
+	</setup>
+	<setup key="fallback" title="Fallback configuration">
+		<item level="2" text="Enable fallback remote receiver" description="Enable the use of the tuners of a remote enigma2 receiver when no local tuner is available (e.g. when the tuner is occupied or service type is unavailable on the local tuner).">config.usage.remote_fallback_enabled</item>
+		<item level="2" text="Fallback remote receiver URL" requires="config.usage.remote_fallback_enabled" description="Specify the URL/IP of the fallback remote receiver, e.g. '192.168.0.1'. The other details such as http:// and the port number will be filled in automatically when you select save">config.usage.remote_fallback</item>
+		<item level="2" text="Timer conflict detection when fallback is enabled" requires="config.usage.remote_fallback_enabled" description="When using the remote fallback tuner for recordings, it is impossible to correctly detect timer conflicts. This option allows you to skip timer confict detection when remote fallback is enabled, but can lead to timer conflicts. This setting is only for advanced users; the default is 'yes'.">config.usage.timer_sanity_check_enabled</item>
 	</setup>
 </setupxml>

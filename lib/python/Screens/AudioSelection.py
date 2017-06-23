@@ -5,14 +5,14 @@ from Screens.MessageBox import MessageBox
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff
+from Components.config import config, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff, ConfigYesNo
 from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
 from Components.VolumeControl import VolumeControl
 
-from enigma import iPlayableService, eTimer, eSize
+from enigma import iPlayableService, eTimer, eSize, eDVBDB, eServiceReference, eServiceCenter, iServiceInformation
 
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
@@ -135,7 +135,12 @@ class AudioSelection(Screen, ConfigListScreen):
 			if SystemInfo["CanDownmixAC3"]:
 				self.settings.downmix_ac3 = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix_ac3.addNotifier(self.changeAC3Downmix, initial_call=False)
-				conflist.append(getConfigListEntry(_("Dolby Digital / DTS downmix"), self.settings.downmix_ac3, None))
+				conflist.append(getConfigListEntry(_("Dolby Digital / AC3 downmix"), self.settings.downmix_ac3, None))
+				
+			if SystemInfo["CanDownmixDTS"]:
+				self.settings.downmix_dts = ConfigOnOff(default=config.av.downmix_dts.value)
+				self.settings.downmix_dts.addNotifier(self.changeDTSDownmix, initial_call = False)
+				conflist.append(getConfigListEntry(_("DTS downmix"), self.settings.downmix_dts, None))
 
 			if SystemInfo["CanDownmixAAC"]:
 				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
@@ -159,7 +164,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					choicelist = [("0", _("left")), ("1", _("stereo")), ("2", _("right"))]
 					self.settings.channelmode = ConfigSelection(choices=choicelist, default=str(self.audioChannel.getCurrentChannel()))
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call=False)
-					conflist.append(getConfigListEntry(_("Channels"), self.settings.channelmode, None))
+					conflist.append(getConfigListEntry(_("Audio Channels"), self.settings.channelmode, None))
 				selectedAudio = self.audioTracks.getCurrentTrack()
 				for x in range(n):
 					number = str(x + 1)
@@ -336,6 +341,13 @@ class AudioSelection(Screen, ConfigListScreen):
 			config.av.pcm_multichannel.save()
 		self.fillList()
 
+	def changeDTSDownmix(self, downmix):
+		if downmix.value:
+			config.av.downmix_dts.setValue(True)
+		else:
+			config.av.downmix_dts.setValue(False)
+		config.av.downmix_dts.save()
+
 	def changePCMMultichannel(self, multichan):
 		if multichan.value:
 			config.av.pcm_multichannel.setValue(True)
@@ -505,22 +517,32 @@ class SubtitleSelection(AudioSelection):
 		self.skinName = ["AudioSelection"]
 
 class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
+
+	FLAG_CENTER_DVB_SUBS = 2048
+
 	def __init__(self, session, infobar):
 		Screen.__init__(self, session)
 		self.infobar = infobar or self.session.infobar
-
 		self.wait = eTimer()
 		self.wait.timeout.get().append(self.resyncSubtitles)
-
+		self.service = self.session.nav.getCurrentlyPlayingServiceReference()
+		servicepath = self.service and self.service.getPath()
+		if servicepath and servicepath.startswith("/") and self.service.toString().startswith("1:"):
+			info = eServiceCenter.getInstance().info(self.service)
+			self.service_string = info and info.getInfoString(self.service, iServiceInformation.sServiceref)
+		else:
+			self.service_string = self.service.toString()
+		self.center_dvb_subs = ConfigYesNo(default = (eDVBDB.getInstance().getFlag(eServiceReference(self.service_string)) & self.FLAG_CENTER_DVB_SUBS) and True)
+		self.center_dvb_subs.addNotifier(self.setCenterDvbSubs)
 		self["videofps"] = Label("")
 
 		sub = self.infobar.selected_subtitle
 		if sub[0] == 0:  # dvb
 			menu = [
 				getConfigMenuItem("config.subtitles.dvb_subtitles_yellow"),
-				getConfigMenuItem("config.subtitles.dvb_subtitles_centered"),
 				getConfigMenuItem("config.subtitles.dvb_subtitles_backtrans"),
 				getConfigMenuItem("config.subtitles.dvb_subtitles_original_position"),
+				(_("Center DVB subtitles"), self.center_dvb_subs),
 				getConfigMenuItem("config.subtitles.subtitle_position"),
 				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
 				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
@@ -563,6 +585,14 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 
 		self.onLayoutFinish.append(self.layoutFinished)
 
+	def setCenterDvbSubs(self, configElement):
+		if configElement.value:
+			eDVBDB.getInstance().addFlag(eServiceReference(self.service_string), self.FLAG_CENTER_DVB_SUBS)
+			config.subtitles.dvb_subtitles_centered.value = True
+		else:
+			eDVBDB.getInstance().removeFlag(eServiceReference(self.service_string), self.FLAG_CENTER_DVB_SUBS)
+			config.subtitles.dvb_subtitles_centered.value = False
+
 	def layoutFinished(self):
 		if not self["videofps"].text:
 			self.instance.resize(eSize(self.instance.size().width(), self["config"].l.getItemSize().height()*len(self["config"].getList()) + 10))
@@ -577,8 +607,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 
 	def getFps(self):
 		from enigma import iServiceInformation
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
+		info = self.service and self.service.info()
 		if not info:
 			return ""
 		fps = info.getInfo(iServiceInformation.sFrameRate)
@@ -587,6 +616,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		return ""
 
 	def cancel(self):
+		self.center_dvb_subs.removeNotifier(self.setCenterDvbSubs)
 		self.close()
 
 	def ok(self):

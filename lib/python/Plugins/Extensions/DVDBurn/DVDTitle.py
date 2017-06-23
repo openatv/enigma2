@@ -86,7 +86,7 @@ class DVDTitle:
 			if active:
 				trackstring = audiotrack.format.value
 				language = audiotrack.language.value
-				if languageChoices.langdict.has_key(language):
+				if language in languageChoices:
 					trackstring += ' (' + languageChoices.langdict[language] + ')'
 				audiolist.append(trackstring)
 		audiostring = ', '.join(audiolist)

@@ -2,8 +2,6 @@
 #define __smartptr_h
 
 #include "object.h"
-#include <stdio.h>
-#include <string.h>
 #include <lib/python/swig.h>
 
 template<class T>

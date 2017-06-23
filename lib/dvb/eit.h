@@ -7,7 +7,7 @@
 #include <dvbsi++/event_information_section.h>
 #include <lib/service/event.h>
 
-class eDVBServiceEITHandler: public Object
+class eDVBServiceEITHandler: public sigc::trackable
 {
 	int sourceId;
 	int ETTpid;
