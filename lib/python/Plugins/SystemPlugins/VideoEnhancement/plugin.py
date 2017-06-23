@@ -403,12 +403,12 @@ def videoEnhancementSetupMain(session, **kwargs):
 	session.open(VideoEnhancementSetup)
 
 def startSetup(menuid):
-	if menuid != "system":
+	if menuid != "av":
 		return [ ]
-	return [(_("Video Enhancement Settings") , videoEnhancementSetupMain, "videoenhancement_setup", None)]
+	return [(_("Video Enhancement") , videoEnhancementSetupMain, "videoenhancement_setup", None)]
 
 def Plugins(**kwargs):
 	list = []
 	if config.usage.setup_level.index >= 2 and os_path.exists("/proc/stb/vmpeg/0/pep_apply"):
-		list.append(PluginDescriptor(name=_("Video enhancement setup"), description=_("Advanced video enhancement setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup))
+		list.append(PluginDescriptor(name=_("Video Enhancement"), description=_("Advanced video enhancement setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup))
 	return list

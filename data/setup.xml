@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <setupxml>
-	<setup key="time" title="Time settings">
+	<setup key="time" title="Time">
 		<item level="0" text="Timezone area" description="Setup your timezone area.">config.timezone.area</item>
 		<item level="0" text="Timezone" description="Your timezone in the area.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize system time using transponder or internet.">config.misc.SyncTimeUsing</item>
@@ -12,7 +12,7 @@
 	<setup key="avsetup">
 		<!-- This is just a placeholder, the Videomode plugin implements this submenu -->
 	</setup>
-	<setup key="usage" title="Customize settings">
+	<setup key="usage" title="Settings">
 		<item level="0" text="Setup mode" description="Choose which level of menu/settings to display. 'Expert' level shows all items.">config.usage.setup_level</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="12V output" description="12V output." requires="12V_Output">config.usage.output_12V</item>
@@ -33,7 +33,7 @@
 		<item level="2" text="Descramble receiving http streams" description="When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off.">config.streaming.descramble_client</item>
 		<item level="2" text="Require authentication for http streams" description="When enabled, authentication is required to watch http streams.">config.streaming.authentication</item>
 	</setup>
-	<setup key="userinterface" title="GUI settings">
+	<setup key="userinterface" title="Settings">
 		<item level="0" text="1st Infobar timeout" description="Set the time delay before hiding the infobar.">config.usage.infobar_timeout</item>
 		<item level="2" text="Show second infobar" description="Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel.">config.usage.show_second_infobar</item>
 		<item level="0" text="Enable infobar fade-out" description="Fade the infobar when hiding">config.usage.show_infobar_do_dimming</item>
@@ -74,7 +74,7 @@
 		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
-	<setup key="channelselection" title="Channel selection settings">
+	<setup key="channelselection" title="Channel selection">
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for every bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Always show bouquets" description="With this option set to 'yes' the channel list will always show you the list of bouquets. If set to 'no' the current bouquet will be opened.">config.usage.show_bouquetalways</item>
 		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached.">config.usage.quickzap_bouquet_change</item>
@@ -99,7 +99,7 @@
 		<item level="2" text="Load unlinked userbouquets" description="When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded">config.misc.load_unlinked_userbouquets</item>
 		<item level="1" text="Zap mode" requires="ZapMode" description="Setup how to control the channel changing.">config.misc.zapmode</item>
 	</setup>
-	<setup key="epgsettings" title="EPG settings">
+	<setup key="epgsettings" title="Settings">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes.">config.misc.epgcachefilename</item>
 		<item level="2" text="Automatic refresh" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
@@ -119,7 +119,7 @@
 		<item level="2" text="Country for EPG event rating information" description="Choose a country scheme for decoding rating information in EPG events.">config.misc.epgratingcountry</item>
 		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events.">config.misc.epggenrecountry</item>
 	</setup>
-	<setup key="subtitlesetup" title="Subtitle settings">
+	<setup key="subtitlesetup" title="Subtitles">
 		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
 		<item level="2" text="Use original teletext position" description="When enabled, teletext subtitles will be displayed at their original position.">config.subtitles.ttx_subtitle_original_position</item>
 		<item level="2" text="Rewrap subtitles" description="When enabled, reformat subtitles to match the width of the screen.">config.subtitles.subtitle_rewrap</item>
@@ -140,7 +140,7 @@
 		<item level="2" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
 		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will always be turned on for movie playback.">config.subtitles.pango_autoturnon</item>
 	</setup>
-	<setup key="autolanguagesetup" title="Auto language settings">
+	<setup key="autolanguagesetup" title="Automatic language">
 		<item level="1" text="Audio language selection 1" description="Configure the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
 		<item level="1" text="Audio language selection 2" description="Configure the second audio language.">config.autolanguage.audio_autoselect2</item>
 		<item level="1" text="Audio language selection 3" description="Configure the third audio language.">config.autolanguage.audio_autoselect3</item>
@@ -160,7 +160,7 @@
 		<item level="1" text="EPG language selection 1" description="Configure the primary EPG language.">config.autolanguage.audio_epglanguage</item>
 		<item level="1" text="EPG language selection 2" description="Configure the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
-	<setup key="recording" title="Recording and playback settings">
+	<setup key="recording" title="Recording and playback">
 <!--		<item level="2" text="Preferred tuner for recordings" description="Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen.">config.usage.recording_frontend_priority</item>-->
 		<item level="1" text="Recordings always have priority" description="When enabled, a recording is allowed to interrupt live TV, when there are no free tuners.">config.recording.asktozap</item>
 		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
@@ -190,10 +190,10 @@
 		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay (in milliseconds). The configured delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
 		<item level="2" text="Default recording type" description="Descramble &amp; record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.">config.recording.ecm_data</item>
 	</setup>
-	<setup key="harddisk" title="Hard disk settings" >
+	<setup key="harddisk" title="Settings" >
 		<item level="0" text="Hard disk standby after" description="Configure duration of inactivity before the hard disk drive goes to standby">config.usage.hdd_standby</item>
 	</setup>
-	<setup key="network" title="Network settings">
+	<setup key="network" title="Settings">
 		<item text="Use DHCP" description="When enabled, use DHCP for the IP configuration.">config.network.dhcp</item>
 		<item text="IP address" description="Configure the IP address.">config.network.ip</item>
 		<item text="Netmask" description="Configure the netmask.">config.network.netmask</item>
@@ -212,7 +212,7 @@
 	<setup key="keyboard" title="Keyboard settings">
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
-	<setup key="display" title="Front display settings" requires="FrontpanelDisplay">
+	<setup key="display" title="Settings" requires="FrontpanelDisplay">
 		<item level="0" text="Use separate Picon pack for Front Display *" description="Use picon_lcd directory for picons on color LCD">config.lcd.picon_pack</item>
 		<item level="0" text="Show MiniTV in the Front Display" description="You can Display MiniTV with or without OSD Menu" requires="LCDMiniTV">config.lcd.minitvmode</item>
 		<item level="0" text="Show PIP in the Front Display" description="You can Display PIP with or without OSD Menu" requires="LCDMiniTVPiP">config.lcd.minitvpipmode</item>
@@ -243,7 +243,7 @@
 		<item level="1" text="Scrolling delay (software render)" description="Set the delay time between repeated loops, this uses a software render in some skins.">config.lcd.scroll_delay</item>		
 		<item level="2" text="Use 12 characters display mode" description="If enabled, display shows 12 chars instead 8, but in latin-1/translit only." requires="hasXcoreVFD">config.usage.toggle12to8characterVFD</item>
 	</setup>
-	<setup key="satconfig" title="Satellite dish settings">
+	<setup key="satconfig" title="Settings">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
 		<item text="Configuration mode" description="Configure the tuner mode.">config.sat.configmode</item>
 		<item text="DiSEqC" description="Configure the DiSEqC mode for this LNB.">config.sat.diseqc</item>
@@ -251,18 +251,18 @@
 		<item text="Latitude" description="Configure the latitude of your location.">config.sat.diseqcb</item>
 		<item text="Use power measurement" description="When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)." >config.sat.diseqcc</item>
 	</setup>
-	<setup key="softwareupdate" title="Software update settings">
+	<setup key="softwareupdate" title="Settings">
 		<item level="1" text="Background check" description="Perform an online update check in the background">config.softwareupdate.check</item>
 		<item level="1" text="Check every (hours)" description="Setup the interval (in hours) to check for online updates." requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
 		<item level="1" text="Allow unstable (experimental) updates" description="When enabled the online checker will also check for experimental versions">config.softwareupdate.updatebeta</item>
 		<item level="1" text="Automatic settings backup" description="Perform a settings backup before updating.">config.softwareupdate.autosettingsbackup</item>
 		<item level="1" text="Automatic image backup" description="Perform a complete image backup before updating.">config.softwareupdate.autoimagebackup</item>
 	</setup>
-	<setup key="softcamsetup" title="Softcam settings">
+	<setup key="softcamsetup" title="Settings">
 		<item level="2" text="Show CCcam Info in extensions?" description="Allows you to show/hide CCcam Info in extensions (blue button).">config.cccaminfo.showInExtensions</item>
 		<item level="2" text="Show OScam Info in extensions?" description="Allows you to show/hide OScam Info in extensions (blue button).">config.oscaminfo.showInExtensions</item>
 	</setup>
-	<setup key="logs" title="Logs settings">
+	<setup key="logs" title="Settings">
 		<item level="2" text="Logs folder location" description="Choose the location for crash and debug logs folder.">config.crash.debug_path</item>
 		<item level="2" text="Enable debug logs *" description="Allows you to enable the debug logs. They contain very detailed information about everything the system does. Reboot required to enable this!">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size (MB) of the individual debug logs. When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
@@ -273,7 +273,7 @@
 		<item level="2" text="e-mail address" description="Enter your e-mail address to send a copy of the log to.">config.logmanager.useremail</item>
 		<item level="2" text="Send yourself a copy" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item>
 	</setup>
-	<setup key="timeshift" title="Timeshift settings">
+	<setup key="timeshift" title="Timeshift">
 		<item level="1" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after the specified time.">config.timeshift.startdelay</item>
 		<item level="1" text="Show warning when timeshift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="2" text="Timeshift-save action on zap" description="Select if timeshift should continue when set to record.">config.timeshift.favoriteSaveAction</item>
@@ -281,12 +281,12 @@
 		<item level="2" text="Use timeshift seekbar while timeshifting?" description="If set to 'yes', allows you to use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>
 		<item level="2" text="Show warning when in a stream" description="When enabled, a warning will be displayed that timeshift is not supported in an IP stream..">config.timeshift.stream_warning</item>
 	</setup>
-	<setup key="epgsingle" title="ChannelEPG settings">
+	<setup key="epgsingle" title="ChannelEPG">
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="epgmulti" title="MultiEPG settings">
+	<setup key="epgmulti" title="MultiEPG">
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.multi_preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.multi_showbouquet</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
@@ -296,7 +296,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.multi_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.multi_eventfs</item>
 	</setup>
-	<setup key="epgenhanced" title="SingleEPG settings">
+	<setup key="epgenhanced" title="SingleEPG">
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.enhanced_preview_mode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical.">config.epgselection.sort</item>
@@ -305,7 +305,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="epginfobar" title="InfobarEPG settings">
+	<setup key="epginfobar" title="InfobarEPG">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
@@ -315,7 +315,7 @@
 		<item level="2" text="Number of rows" description="Configure the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 	</setup>
-	<setup key="epginfobargraphical" title="Graphical InfobarEPG settings">
+	<setup key="epginfobargraphical" title="Graphical InfobarEPG">
 		<item level="2" text="View mode" description="This option allows you set the layout view (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG.">config.epgselection.infobar_servicetitle_mode</item>
@@ -335,7 +335,7 @@
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.infobar_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
-	<setup key="epggraphical" title="GraphicalEPG settings">
+	<setup key="epggraphical" title="GraphicalEPG">
 		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics).">config.epgselection.graph_type_mode</item>
 		<item level="2" text="Channel preview mode" description="If set to 'yes' you can preview channels in the EPG list.">config.epgselection.graph_preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="If set to 'yes' the bouquets will be shown each time you open the EPG.">config.epgselection.graph_showbouquet</item>
@@ -366,7 +366,7 @@
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.graph_timeline24h</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.graph_prevtimeperiod</item>
 	</setup>
-	<setup key="pluginbrowsersetup" title="Plugin browser settings">
+	<setup key="pluginbrowsersetup" title="Settings">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
 	</setup>

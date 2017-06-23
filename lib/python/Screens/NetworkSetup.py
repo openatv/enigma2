@@ -40,7 +40,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session, menu_path = ""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		screentitle = _("Network Setup")
+		screentitle = _("Device")
 		self.menu_path = menu_path
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
@@ -1616,7 +1616,7 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		screentitle = _("Mounts Setup")
+		screentitle = _("Mounts")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -1726,7 +1726,7 @@ class NetworkMountsMenu(Screen,HelpableScreen):
 class NetworkAfp(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("AFP Setup")
+		screentitle = _("AFP")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -1866,7 +1866,7 @@ class NetworkAfp(Screen):
 class NetworkFtp(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("FTP Setup")
+		screentitle = _("FTP")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -1956,7 +1956,7 @@ class NetworkFtp(Screen):
 class NetworkNfs(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("NFS Setup")
+		screentitle = _("NFS")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -2093,7 +2093,7 @@ class NetworkNfs(Screen):
 class NetworkOpenvpn(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("OpenVpn Setup")
+		screentitle = _("OpenVpn")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -2263,7 +2263,7 @@ class NetworkVpnLog(Screen):
 class NetworkSamba(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Samba Setup")
+		screentitle = _("Samba")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -2441,7 +2441,7 @@ class NetworkSambaLog(Screen):
 class NetworkTelnet(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Telnet Setup")
+		screentitle = _("Telnet")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -2531,7 +2531,7 @@ class NetworkTelnet(Screen):
 class NetworkInadyn(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Inadyn Setup")
+		screentitle = _("Inadyn")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -2890,7 +2890,7 @@ config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkuShare(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("uShare Setup")
+		screentitle = _("uShare")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -3413,7 +3413,7 @@ config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
 class NetworkMiniDLNA(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("MiniDLNA Setup")
+		screentitle = _("MiniDLNA")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path

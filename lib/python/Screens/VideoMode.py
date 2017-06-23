@@ -22,7 +22,7 @@ resolutionlabel = None
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("AV settings")
+		screentitle = _("Settings")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path

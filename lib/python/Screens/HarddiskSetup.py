@@ -91,7 +91,7 @@ class HarddiskSetup(Screen):
 class HarddiskSelection(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Initialization")
+		screentitle = _("Initialize Devices")
 		self.menu_path = menu_path
 		if config.usage.show_menupath.value == 'large':
 			self.menu_path += screentitle
@@ -172,7 +172,7 @@ class HarddiskFsckSelection(HarddiskSelection):
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session, menu_path=""):
 		HarddiskSelection.__init__(self, session)
-		screentitle = _("Convert filesystem ext3 to ext4")
+		screentitle = _("Convert ext3 to ext4")
 		self.menu_path = menu_path
 		if config.usage.show_menupath.value == 'large':
 			self.menu_path += screentitle

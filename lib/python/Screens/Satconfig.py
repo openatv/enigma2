@@ -727,7 +727,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 class NimSelection(Screen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Tuner configuration")
+		screentitle = _("Tuner setup")
 		self.menu_path = menu_path
 		if config.usage.show_menupath.value == 'large':
 			self.menu_path += screentitle
