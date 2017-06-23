@@ -89,7 +89,8 @@ class InfoBar(
 		self["serviceName1"] = Label()
 
 		self.current_begin_time = 0
-		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
+		if InfoBar.instance is not None:
+			raise AssertionError("class InfoBar is a singleton class and just one instance of this class is allowed!")
 		InfoBar.instance = self
 
 		if config.misc.initialchannelselection.value:

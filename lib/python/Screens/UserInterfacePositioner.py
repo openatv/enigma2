@@ -47,7 +47,7 @@ def InitOsd():
 
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
-			print '[UserInterfacePositioner] Setting 3D mode:',configElement.value
+			# print '[UserInterfacePositioner] Setting 3D mode:',configElement.value
 			file3d = fileCheck('/proc/stb/fb/3dmode') or fileCheck('/proc/stb/fb/primary/3d')
 			f = open(file3d, "w")
 			f.write(configElement.value)
@@ -56,7 +56,7 @@ def InitOsd():
 
 	def set3DZnorm(configElement):
 		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
-			print '[UserInterfacePositioner] Setting 3D depth:',configElement.value
+			# print '[UserInterfacePositioner] Setting 3D depth:',configElement.value
 			f = open("/proc/stb/fb/znorm", "w")
 			f.write('%d' % int(configElement.value))
 			f.close()
@@ -91,11 +91,11 @@ def InitOsdPosition():
 		if SystemInfo["CanChangeOsdPosition"]:
 			setPositionParameter("height", configElement)
 	config.osd.dst_height.addNotifier(setOSDHeight)
-	print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+	# print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def setOSDAlpha(configElement):
 		if SystemInfo["CanChangeOsdAlpha"]:
-			print '[UserInterfacePositioner] Setting OSD alpha:', str(configElement.value)
+			# print '[UserInterfacePositioner] Setting OSD alpha:', str(configElement.value)
 			config.av.osd_alpha.setValue(configElement.value)
 			f = open("/proc/stb/video/alpha", "w")
 			f.write(str(configElement.value))
@@ -106,7 +106,7 @@ def InitOsdPosition():
 class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("Position Setup")
+		screentitle = _("OSD Position")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
@@ -121,9 +121,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			self.setup_title = title
 			self["menu_path_compressed"] = StaticText("")
 		self.Console = Console()
-
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.session.nav.stopService()
 
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -222,7 +219,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_height.setValue(576)
 		for item in self["config"].list:
 			self["config"].invalidate(item)
-		print '[UserInterfacePositioner] Setting default OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+		# print '[UserInterfacePositioner] Setting default OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def setPreviewPosition(self):
 		size_w = getDesktop(0).size().width()
@@ -243,7 +240,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_height.setValue(dst_height)
 		for item in self["config"].list:
 			self["config"].invalidate(item)
-		print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
+		# print '[UserInterfacePositioner] Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -252,15 +249,9 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
-	def playOldService(self):
-		try:
-			self.session.nav.playService(self.oldref)
-		except:
-			pass
 
 	def keySave(self):
 		self.saveAll()
-		self.playOldService()
 		self.close()
 
 	def cancelConfirm(self, result):
@@ -268,7 +259,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			return
 		for x in self["config"].list:
 			x[1].cancel()
-		self.playOldService()
 		self.close()
 
 	def keyCancel(self):
@@ -276,7 +266,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
-			self.playOldService()
 			self.close()
 
 # This is called by the Wizard...
@@ -287,7 +276,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_top.save()
 		config.osd.dst_height.save()
 		configfile.save()
-		self.playOldService()
 		self.close()
 
 
