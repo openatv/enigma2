@@ -122,9 +122,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			self["menu_path_compressed"] = StaticText("")
 		self.Console = Console()
 
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.session.nav.stopService()
-
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -252,15 +249,9 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
-	def playOldService(self):
-		try:
-			self.session.nav.playService(self.oldref)
-		except:
-			pass
 
 	def keySave(self):
 		self.saveAll()
-		self.playOldService()
 		self.close()
 
 	def cancelConfirm(self, result):
@@ -268,7 +259,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			return
 		for x in self["config"].list:
 			x[1].cancel()
-		self.playOldService()
 		self.close()
 
 	def keyCancel(self):
@@ -276,7 +266,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
-			self.playOldService()
 			self.close()
 
 # This is called by the Wizard...
@@ -287,7 +276,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_top.save()
 		config.osd.dst_height.save()
 		configfile.save()
-		self.playOldService()
 		self.close()
 
 
