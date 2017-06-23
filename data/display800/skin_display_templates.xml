@@ -358,11 +358,14 @@
 
 	<!-- STANDBY -->
 	<screen name="StandbySummary" position="0,0" size="800,480"> 
-		<widget source="global.CurrentTime" render="Label" position="40,70" size="720,100" font="FdLcD;100" foregroundColor="white" halign="center" valign="center" zPosition="10">
+		<widget source="global.CurrentTime" render="Label" position="40,40" size="720,110" font="FdLcD;100" foregroundColor="white" halign="center" valign="center" zPosition="1">
 			<convert type="ClockToText">ShortDate</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="40,230" size="720,200" font="FdLcD;175" foregroundColor="white" halign="center" valign="center" zPosition="10">
+		<widget source="global.CurrentTime" render="Label" position="40,190" size="720,180" font="FdLcD;165" foregroundColor="white" halign="center" valign="center" zPosition="1">
 			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="session.FrontendInfo" render="Label" position="40,380" size="720,70" font="FdLcD;65" foregroundColor="white" halign="left" valign="center" zPosition="2">
+			<convert type="FrontendInfo">USE_TUNERS_STRING</convert>
 		</widget>
 	</screen>
 
