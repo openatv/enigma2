@@ -155,6 +155,8 @@ class EPGFetcher(object):
             if "last_update_time" in shows:
                 config.plugins.icetv.last_update_time.value = shows["last_update_time"]
             self.addLog("EPG download OK")
+            if self.updateDescriptions(channel_show_map):
+                NavigationInstance.instance.RecordTimer.saveTimer()
             if "timers" in shows:
                 res = self.processTimers(shows["timers"])
             self.addLog("End update")
@@ -220,6 +222,38 @@ class EPGFetcher(object):
             extended = show.get("desc", "").encode("utf8")
             res[channel_id].append((start, duration, title, short, extended, 0, event_id))
         return res
+
+    def updateDescriptions(self, showMap):
+
+        # Emulate what the XML parser does to CR and LF in attributes
+        def attrNewlines(s):
+            return s.replace("\r\n", ' ').replace('\r', ' ').replace('\n', ' ') if '\r' in s or '\n' in s else s
+
+        updated = False
+        if not showMap:
+             return updated
+        for timer in _session.nav.RecordTimer.timer_list:
+            if timer.ice_timer_id and timer.service_ref.ref and not getattr(timer, "record_service", None):
+                evt = timer.getEventFromEPG()
+                if evt:
+                    timer_updated = False
+                    # servicename = timer.service_ref.getServiceName()
+                    desc = attrNewlines(evt.getShortDescription())
+                    if not desc:
+                        desc = attrNewlines(evt.getExtendedDescription())
+                    if desc and timer.description != desc and attrNewlines(timer.description) != desc:
+                            # print "[EPGFetcher] updateDescriptions from EPG description", servicename, "'" + timer.name + "':", "'" + timer.description + "' -> '" + desc + "'"
+                            timer.description = desc
+                            timer_updated = True
+                    eit = evt.getEventId()
+                    if eit and timer.eit != eit:
+                            # print "[EPGFetcher] updateDescriptions from EPG eit", servicename, "'" + timer.name + "':", timer.eit, "->", eit
+                            timer.eit = eit
+                            timer_updated = True
+                    if timer_updated:
+                        self.addLog("Update timer details from EPG '" + timer.name + "'")
+                    updated |= timer_updated
+        return updated
 
     def processTimers(self, timers):
         update_queue = []
