@@ -38,7 +38,7 @@
 			<menu weight="3" text="EPG" entryID="epg_menu">
 				<id val="epg"/>
 				<item level="0" entryID="epg_setup"><setup id="epgsettings"/></item>
-				<menu level="2" text="Load-Save-Delete" entryID="epgloadsave_menu">
+				<menu level="2" text="Load-save-delete" entryID="epgloadsave_menu">
 					<id val="epgloadsave_menu"/>
 					<item level="0" entryID="saveepgcache" text="Save EPG">
 <code>
@@ -92,20 +92,20 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<!-- Menu / Setup / User Interface / Channel Selection settings -->
 				<item weight="2" level="0" entryID="channelselection_setup"><setup id="channelselection"/></item>
 				<!-- Menu / Setup / User Interface / Skin Setup -->
-				<menu weight="3" level="0" text="Skin Setup" entryID="gui_skin" requires="OsdMenu">
+				<menu weight="3" level="0" text="Skin setup" entryID="gui_skin" requires="OsdMenu">
 					<id val="skinsetup"/>
 					<item weight="1" level="0" text="Skin" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 					<item level="2" text="3D" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 					<item level="2" text="OSD position" entryID="osdsetup" requires="OsdSetup"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner"/></item>
 				</menu>
 				<!-- Menu / Setup / User Interface / Front Panel -->
-				<menu weight="4" level="0" text="Front Panel Display" entryID="display_selection" requires="Display">
+				<menu weight="4" level="0" text="Front panel display" entryID="display_selection" requires="Display">
 					<id val="display"/>
 					<item weight="1" level="0" text="Settings" entryID="display_setup"><setup id="display"/></item>
 					<item weight="2" level="0" text="Skin" entryID="lcd_skin_setup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 				</menu>
 				<!-- Menu / Setup / User Interface / LED Display -->
-				<menu weight="5" level="0" text="LED Display Panel" entryID="leddisplay_selection" requires="DisplayLED">
+				<menu weight="5" level="0" text="LED display panel" entryID="leddisplay_selection" requires="DisplayLED">
 					<id val="leddisplay"/>
 				</menu>
 				<!-- Menu / Setup / User Interface / Button Setup -->
@@ -142,19 +142,13 @@ self.session.open(SABnzbdSetupScreen)
 					<item level="2" text="Samba" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 					<item level="2" text="Telnet" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 					<item level="2" text="uShare" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
-					<item level="2" text="Password setup" entryID="password_setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
 				</menu>
-			</menu>
-
-			<!-- Menu / Setup / Recordings, Playback & Timeshift -->
-			<menu weight="6" level="1" text="Timeshift, Recording &amp; Playback" entryID="rec_setup">
-			 	<id val="rec" />
-					<item weight="10" level="0" text="Timeshift" entryID="timshift_setup"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
-					<item weight="15" level="0" text="Recording &amp; playback" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
+				<!-- Menu / Setup / Network / Password -->
+				<item level="2" text="Password" entryID="password_setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
 			</menu>
 
 			<!-- Menu / Setup / Common Interface -->
-			<menu weight="7" text="Common Interface" entryID="cicam_setup">
+			<menu weight="7" text="Common interface" entryID="cicam_setup">
 				<id val="cicam"/>
 				<item weight="10" level="1" text="Common interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection"/></item>
 			</menu>
@@ -171,7 +165,7 @@ self.session.open(SABnzbdSetupScreen)
 			<menu weight="9" level="0" text="Storage" entryID="hardisk_selection" requires="Harddisk">
 				<id val="harddisk"/>
 				<item level="1" text="Settings" entryID="harddisk_setup"><setup id="harddisk"/></item>
-				<item level="0" text="Initialize Devices" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
+				<item level="0" text="Initialize devices" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 				<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 				<item level="0" text="Convert ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 			</menu>
@@ -182,24 +176,30 @@ self.session.open(SABnzbdSetupScreen)
 				<item weight="1" level="0" text="Settings" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
 				<item weight="2" level="0" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin"/></item>	
 			</menu>
+			<!-- Menu / Setup / Time Settings -->
+			<item level="0" entryID="time_setup"><setup id="time"/></item>
+			<!-- Menu / Setup / RF Setup -->
+			<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+			<!-- Menu / Setup / Input Devices -->
+			<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection"/></item>
+			<!-- Menu / Setup / Keyboard Setup -->
+			<item entryID="keyboard_setup" text="Keyboard"><setup id="keyboard"/></item>
+			<!-- Menu / Setup / Logs -->
+			<menu level="2" text="Logs" entryID="logs_setup">
+				<id val="logs_menu"/>
+				<item level="2" text="Settings" entryID="logs_setup"><setup id="logs"/></item>
+				<item level="2" text="Log manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
+			</menu>
+			<!-- Menu / Setup / Recordings, Playback & Timeshift -->
+			<menu weight="11" level="1" text="Timeshift, Recording &amp; Playback" entryID="rec_setup">
+			 	<id val="rec" />
+					<item weight="10" level="0" text="Timeshift" entryID="timshift_setup"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
+					<item weight="15" level="0" text="Recording &amp; playback" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
+			</menu>
 
 			<!-- Menu / Setup / System (OLD SYSTEM ENTRY FOR COMPATIBILITY) -->
 			<menu weight="98" level="0" text="System" entryID="system_selection">
 				<id val="system"/>
-				<!-- Menu / Setup / System / Time Settings -->
-				<item level="0" entryID="time_setup"><setup id="time"/></item>
-				<!-- Menu / Setup / System / RF Setup -->
-				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-				<!-- Menu / Setup / System / Input Devices -->
-				<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection"/></item>
-				<!-- Menu / Setup / System / Keyboard Setup -->
-				<item entryID="keyboard_setup" text="Keyboard"><setup id="keyboard"/></item>
-				<!-- Menu / Setup / System / Logs -->
-				<menu level="2" text="Logs" entryID="logs_setup">
-					<id val="logs_menu"/>
-					<item level="2" text="Settings" entryID="logs_setup"><setup id="logs"/></item>
-					<item level="2" text="Log manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
-				</menu>
 				<!-- Menu / Setup / System / Factory Reset -->
 				<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
 <code>
@@ -256,6 +256,6 @@ self.session.open(HdmiCECSetupScreen)
 			<item text="Restart GUI" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="Deep standby" requires="DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
-			<item text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+			<item text="Shut down" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 		</menu>
 </menu>
