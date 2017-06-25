@@ -76,7 +76,7 @@ self.selectKey("RIGHT")
 		<step id="nimb">
 			<condition>
 from Components.NimManager import nimmanager
-self.condition = len(nimmanager.nim_slots) > 1 and not nimmanager.nim_slots[1].empty
+self.condition = len(nimmanager.nim_slots) > 1 and not nimmanager.nim_slots[1].empty and not nimmanager.nim_slots[1].isFBCLink()
 			</condition>
 			<text value="Please set up tuner B" />
 			<displaytext value="Please set up tuner B" />
