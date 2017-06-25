@@ -105,8 +105,12 @@ def readMetafile(filename):
 
 class InfoBarTimeshift:
 	def __init__(self):
+		self["TimeshiftEnableActions"] = HelpableActionMap(self, "InfobarTimeshiftEnableActions", {
+			"timeshiftEnableAndPause": (self.enableTimeshift, _("Pause and enter timeshift")),
+		}, prio=-1, description=_("Enable timeshift"))
+
 		self["TimeshiftActions"] = HelpableActionMap(self, "InfobarTimeshiftActions", {
-			"timeshiftStop": (self.stopTimeshift, _("Stop timeshift")),
+			"timeshiftStop": (self._stopTimeshift, _("Stop timeshift")),
 			"instantRecord": (self.instantRecord, _("Instant record...")),
 			"jumpPreviousFile": (self.__jumpPreviousFile, _("Skip to previous event in timeshift")),
 			"jumpNextFile": (self.__jumpNextFile, _("Skip to next event in timeshift")),
@@ -125,6 +129,7 @@ class InfoBarTimeshift:
 
 		config.seek.updown_skips.addNotifier(notifyActivateActionsUpDown, initial_call=False, immediate_feedback=False)
 
+		self["TimeshiftEnableActions"].setEnabled(False)
 		self["TimeshiftActions"].setEnabled(False)
 		self.setEnableTimeshiftActivateActions(False)
 
@@ -198,6 +203,8 @@ class InfoBarTimeshift:
 		self.pts_curevent_station = ""
 		self.pts_curevent_eventid = None
 
+		self.pts_disable = False
+
 		# Init PTS Infobar
 
 	# Called when switching between timeshift and live
@@ -206,9 +213,16 @@ class InfoBarTimeshift:
 		activate = not self.isSeekable() and int(config.timeshift.startdelay.value)
 		state = self.getSeek() and self.timeshiftEnabled()
 		dprint("isSeekable=%s, timeshiftEnabled=%s, config.timeshift.startdelay=%s, activate=%s, state=%s" % (self.isSeekable(), self.timeshiftEnabled(), config.timeshift.startdelay.value, activate, state))
-		self["TimeshiftActions"].setEnabled(state)
-		self.setEnableTimeshiftActivateActions(activate)
-		self["SeekActionsPTS"].setEnabled(state)
+		if int(config.timeshift.startdelay.value):
+			self["TimeshiftEnableActions"].setEnabled(False)
+			self["TimeshiftActions"].setEnabled(state)
+			self.setEnableTimeshiftActivateActions(activate)
+			self["SeekActionsPTS"].setEnabled(state)
+		else:
+			self["TimeshiftEnableActions"].setEnabled(True)
+			self["TimeshiftActions"].setEnabled(False)
+			self.setEnableTimeshiftActivateActions(False)
+			self["SeekActionsPTS"].setEnabled(False)
 
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -242,6 +256,7 @@ class InfoBarTimeshift:
 		dprint("__serviceEnd")
 		self.service_changed = False
 		if not config.timeshift.isRecording.value:
+			self.maybeDisableTimeshift()
 			self.__seekableStatusChanged()
 
 	def __evSOF(self):
@@ -377,6 +392,26 @@ class InfoBarTimeshift:
 	def timeshiftEnabled(self):
 		ts = self.getTimeshift()
 		return ts and ts.isTimeshiftEnabled()
+
+	def enableTimeshift(self):
+		dprint("enableTimeshift")
+		if not int(config.timeshift.startdelay.value):
+			dprint("enable timeshift, set startdelay=2")
+			config.timeshift.startdelay.value = "2"
+			self.pts_disable = True
+			self.startTimeshift()
+			self.activateTimeshiftPause()
+
+	def _stopTimeshift(self):
+		dprint("_stopTimeshift")
+		self.maybeDisableTimeshift()
+		self.stopTimeshift();
+
+	def maybeDisableTimeshift(self):
+		if self.pts_disable:
+			dprint("disable timeshift, set startdelay=0")
+			config.timeshift.startdelay.value = "0"
+			self.pts_disable = False
 
 	def startTimeshift(self):
 		dprint("startTimeshift")
@@ -573,7 +608,6 @@ class InfoBarTimeshift:
 
 	def autostartPermanentTimeshift(self):
 		dprint("autostartPermanentTimeshift")
-		self["TimeshiftActions"].setEnabled(True)
 		if self.session.nav.getCurrentlyPlayingServiceReference() and 'http' in self.session.nav.getCurrentlyPlayingServiceReference().toString() and int(config.timeshift.startdelay.value):
 			if config.timeshift.stream_warning.value:
 				self.session.open(MessageBox, _("Timeshift on a stream is not supported!"), MessageBox.TYPE_ERROR, timeout=5)
@@ -585,7 +619,12 @@ class InfoBarTimeshift:
 			return 0
 
 		if int(config.timeshift.startdelay.value):
+			self["TimeshiftEnableActions"].setEnabled(False)
+			self["TimeshiftActions"].setEnabled(True)
 			self.activatePermanentTimeshift()
+		else:
+			self["TimeshiftEnableActions"].setEnabled(True)
+			self["TimeshiftActions"].setEnabled(False)
 
 	def activatePermanentTimeshift(self):
 		dprint("activatePermanentTimeshift")
