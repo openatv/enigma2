@@ -242,11 +242,7 @@ def getNimList():
 	return [x for x in nimmanager.getNimListOfType("DVB-C") if config.Nims[x].configMode.value != "nothing"]
 
 def CableScanMain(session, **kwargs):
-	nimlist = getNimList()
-	if nimlist:
-		Session.open(CableScanScreen, nimlist)
-	else:
-		Session.open(MessageBox, _("No cable tuner found!"), type=MessageBox.TYPE_ERROR)
+		Session.open(CableScanScreen, getNimList())
 
 def restartScanAutoStartTimer(reply=False):
 	if reply:
@@ -280,7 +276,7 @@ def startSession(session, **kwargs):
 	config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call=False)
 
 def CableScanStart(menuid, **kwargs):
-	if menuid == "scan":
+	if menuid == "scan" and getNimList():
 		return [(_("Cable Scan"), CableScanMain, "cablescan", None)]
 	else:
 		return []

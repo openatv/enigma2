@@ -19,7 +19,7 @@ class eDVBServiceRecord: public eDVBServiceBase,
 	DECLARE_REF(eDVBServiceRecord);
 public:
 	RESULT connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
-	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm);
+	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize = 188);
 	RESULT prepareStreaming(bool descramble, bool includeecm);
 	RESULT start(bool simulate=false);
 	RESULT stop();
@@ -44,6 +44,7 @@ private:
 	bool m_descramble;
 	bool m_is_stream_client;
 	bool m_is_pvr;
+	int m_packet_size;
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstreamclient = false);
 
