@@ -280,7 +280,7 @@ def startSession(session, **kwargs):
 	config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call=False)
 
 def CableScanStart(menuid, **kwargs):
-	if menuid == "scan":
+	if menuid == "scan" and getNimList():
 		return [(_("Cable Scan"), CableScanMain, "cablescan", None)]
 	else:
 		return []
