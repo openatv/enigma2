@@ -146,21 +146,18 @@ self.session.open(SABnzbdSetupScreen)
 				<!-- Menu / Setup / Network / Password -->
 				<item level="2" text="Password" entryID="password_setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
 			</menu>
-
 			<!-- Menu / Setup / Common Interface -->
 			<menu weight="7" text="Common interface" entryID="cicam_setup">
 				<id val="cicam"/>
 				<item weight="10" level="1" text="Common interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection"/></item>
 			</menu>
-
 			<!-- Menu / Setup / Softcam -->
-			<menu weight="8" text="SoftCam" entryID="cam_setup">
+			<menu weight="8" text="Softcam" entryID="cam_setup">
 				<id val="cam"/>
 				<item weight="1" level="2" text="Settings" entryID="softcam_setup"><setup id="softcamsetup"/></item>
 				<item weight="98" level="2" text="CCcam info" entryID="cccaminfo" requires="CCcamInstalled"><screen module="CCcamInfo" screen="CCcamInfoMain"/></item>
 				<item weight="99" level="2" text="OScam info" entryID="oscaminfo" requires="OScamInstalled"><screen module="OScamInfo" screen="OscamInfoMenu"/></item>
 			</menu>
-			
 			<!-- Menu / Setup / Storage -->
 			<menu weight="9" level="0" text="Storage" entryID="hardisk_selection" requires="Harddisk">
 				<id val="harddisk"/>
@@ -169,7 +166,6 @@ self.session.open(SABnzbdSetupScreen)
 				<item level="0" text="Filesystem check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 				<item level="0" text="Convert ext3 to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
 			</menu>
-
 			<!-- Menu / Setup / Software Update -->
 			<menu weight="10" level="0" text="Software update" entryID="software_update">
 				<id val="softwareupdatemenu"/>
@@ -178,12 +174,6 @@ self.session.open(SABnzbdSetupScreen)
 			</menu>
 			<!-- Menu / Setup / Time Settings -->
 			<item level="0" entryID="time_setup"><setup id="time"/></item>
-			<!-- Menu / Setup / RF Setup -->
-			<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-			<!-- Menu / Setup / Input Devices -->
-			<item level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection"/></item>
-			<!-- Menu / Setup / Keyboard Setup -->
-			<item entryID="keyboard_setup" text="Keyboard"><setup id="keyboard"/></item>
 			<!-- Menu / Setup / Logs -->
 			<menu level="2" text="Logs" entryID="logs_setup">
 				<id val="logs_menu"/>
@@ -196,10 +186,15 @@ self.session.open(SABnzbdSetupScreen)
 					<item weight="10" level="0" text="Timeshift" entryID="timshift_setup"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
 					<item weight="15" level="0" text="Recording &amp; playback" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 			</menu>
-
 			<!-- Menu / Setup / System (OLD SYSTEM ENTRY FOR COMPATIBILITY) -->
 			<menu weight="98" level="0" text="System" entryID="system_selection">
 				<id val="system"/>
+				<!-- Menu / Setup / System / Input Devices -->
+				<item weight="96" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection"/></item>
+				<!-- Menu / Setup / System / Keyboard Setup -->
+				<item weight="97" entryID="keyboard_setup" text="Keyboard"><setup id="keyboard"/></item>
+				<!-- Menu / Setup / System / RF Setup -->
+				<item weight="98" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				<!-- Menu / Setup / System / Factory Reset -->
 				<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
 <code>
@@ -231,8 +226,8 @@ self.session.open(HdmiCECSetupScreen)
 		<menu weight="5" text="Timers" entryID="timer_menu">
 			<id val="timermenu"/>
 			<item weight="1" level="0" text="Timers" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList"/></item>
-			<item weight="100" level="0" text="CronTimers" entryID="crontimer_edit"><screen module="CronTimer" screen="CronTimers"/></item>
-			<item weight="100" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList"/></item>
+			<item weight="100" level="0" text="Cron timers" entryID="crontimer_edit"><screen module="CronTimer" screen="CronTimers"/></item>
+			<item weight="100" level="0" text="Power timers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList"/></item>
 		</menu>
 
 <!-- Menu / Information -->
