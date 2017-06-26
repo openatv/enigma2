@@ -1,5 +1,5 @@
 # the implementation here is a bit crappy.
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 import time
 from Directories import resolveFilename, SCOPE_CONFIG
 
@@ -47,6 +47,8 @@ def profile(id):
 		dev_fmt = ("/dev/mcu", "%d  \n")
 	elif box_type == "ebox5000":
 		dev_fmt = ("/proc/progress", "%d"),
+	elif getMachineBuild() in ("inihdp", "inihdx"):
+		dev_fmt = ("/proc/vfd", "Loading %d%%\n")
 	else:
 		dev_fmt = ("/proc/progress", "%d \n")
 	(dev, fmt) = dev_fmt
