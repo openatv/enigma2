@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <setupxml>
-	<setup key="time" title="Time settings">
+	<setup key="time" title="Time">
 		<item level="0" text="Timezone area" description="Choose your timezone area.">config.timezone.area</item>
 		<item level="0" text="Timezone" description="Choose the location in your timezone area.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronise system time with the TV broadcast or an Internet time server (NTP).">config.misc.SyncTimeUsing</item>
@@ -75,7 +75,7 @@
 		<item level="0" text="Show menu numbers" description="Enable to show number short cuts next to menu entries.">config.usage.menu_show_numbers</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
-	<setup key="channelselection" title="Channel selection settings">
+	<setup key="channelselection" title="Channel selection">
 		<item level="1" text="Alternative numbering mode" description="Enable to force channel numbering to start at '1' for every bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Always show bouquets" description="Enable to show the list of bouquets when the channel list is opened. Disable to open the current bouquet.">config.usage.show_bouquetalways</item>
 <!-- 		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached.">config.usage.quickzap_bouquet_change</item> -->
@@ -120,7 +120,7 @@
 		<item level="2" text="Country for EPG event rating information" description="Choose a country scheme for decoding rating information in EPG events.">config.misc.epgratingcountry</item>
 		<item level="2" text="Country for EPG event genre information" description="Choose a country scheme for decoding genre information in EPG events.">config.misc.epggenrecountry</item>
 	</setup>
-	<setup key="subtitlesetup" title="Subtitle settings">
+	<setup key="subtitlesetup" title="Subtitles">
 		<item level="1" text="Teletext subtitle colour" description="Set the colour of teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
 		<item level="1" text="Use original teletext position" description="Enable to display teletext subtitles at their original position.">config.subtitles.ttx_subtitle_original_position</item>
 		<item level="1" text="Rewrap teletext subtitles" description="Enable to override the original line breaks in teletext subtitles. This changes the layout of subtitle text.">config.subtitles.subtitle_rewrap</item>
@@ -141,7 +141,7 @@
 		<item level="2" text="External subtitle switch fonts" description="Configure if the subtitle should switch between normal, italic, bold and bolditalic">config.subtitles.pango_subtitle_fontswitch</item>
 		<item level="2" text="External subtitle dialog colorisation" description="Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)">config.subtitles.colourise_dialogs</item>
 	</setup>
-	<setup key="autolanguagesetup" title="Auto language settings">
+	<setup key="autolanguagesetup" title="Automatic language">
 		<item level="1" text="Audio language selection 1" description="Set the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
 		<item level="1" text="Audio language selection 2" description="Set the second audio language.">config.autolanguage.audio_autoselect2</item>
 		<item level="1" text="Audio language selection 3" description="Set the third audio language.">config.autolanguage.audio_autoselect3</item>
@@ -160,7 +160,7 @@
 		<item level="1" text="EPG language selection 1" description="Set the primary EPG language.">config.autolanguage.audio_epglanguage</item>
 		<item level="1" text="EPG language selection 2" description="Set the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
-	<setup key="recording" title="Recording and playback settings">
+	<setup key="recording" title="Recording and playback">
 		<item level="1" text="Recordings always have priority" description="Enable to allow a recording to interrupt live TV when there are no free tuners.">config.recording.asktozap</item>
 		<item level="0" text="Margin before recording (minutes)" description="Set to a non-zero value to begin a recording earlier than the start time shown in the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording (minutes)" description="Set to a non-zero value to stop a recording later than the end time shown in the EPG.">config.recording.margin_after</item>
@@ -290,7 +290,7 @@
 		<item level="2" text="Maximum number of days" description="Logs older than the specified number of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum total space used (MB)" description="When maximum space for all logs is reached, the oldest logs will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
-	<setup key="timeshift" title="Timeshift settings">
+	<setup key="timeshift" title="Timeshift">
 		<item level="1" text="Automatically start timeshift after" description="Enable to automatically start timeshifting in the background after the specified time.">config.timeshift.startdelay</item>
 		<item level="1" text="Show warning when timeshift is stopped" description="Enable to display a warning dialog with user options to stop or to continue the timeshift.">config.usage.check_timeshift</item>
 		<item level="2" text="Timeshift save action on zap" description="Select if timeshift should continue when set to record.">config.timeshift.favoriteSaveAction</item>
@@ -298,12 +298,12 @@
 		<!--<item level="2" text="Use timeshift seekbar while timeshifting" description="If set to 'yes', allows you to use the seekbar to jump to a point within the event.">config.timeshift.showinfobar</item>-->
 		<item level="2" text="Show warning when in a stream" description="When enabled, a warning will be displayed that timeshift is not supported in an IP stream..">config.timeshift.stream_warning</item>
 	</setup>
-	<setup key="epgsingle" title="ChannelEPG settings">
+	<setup key="epgsingle" title="ChannelEPG">
 		<item level="1" text="Sort list by" description="Choose to sort the list by time or alphanumerically.">config.epgselection.sort</item>
 		<item level="1" text="Number of rows" description="Specify the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="1" text="Event font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="epgmulti" title="MultiEPG settings">
+	<setup key="epgmulti" title="MultiEPG">
 		<item level="2" text="Channel preview mode" description="Enable to preview channels in the EPG list.">config.epgselection.multi_preview_mode</item>
 		<item level="1" text="Show bouquet on launch" description="Enable to show all bouquets each time you open the EPG.">config.epgselection.multi_showbouquet</item>
 		<item level="2" text="Skip empty services" description="Enable to hide channels without EPG data.">config.epgselection.overjump</item>
@@ -313,7 +313,7 @@
 		<item level="1" text="Number of rows" description="Specify the number of rows shown.">config.epgselection.multi_itemsperpage</item>
 		<item level="2" text="Event font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.multi_eventfs</item>
 	</setup>
-	<setup key="epgenhanced" title="SingleEPG settings">
+	<setup key="epgenhanced" title="SingleEPG">
 		<item level="2" text="Channel preview mode" description="Enable to preview channels in the EPG list.">config.epgselection.enhanced_preview_mode</item>
 		<item level="2" text="Skip empty services" description="Enable to hide channels without EPG data.">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="Choose to sort the list by time or alphanumerically.">config.epgselection.sort</item>
@@ -322,7 +322,7 @@
 		<item level="1" text="Number of rows" description="Specify the number of rows shown.">config.epgselection.enhanced_itemsperpage</item>
 		<item level="2" text="Event font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.enhanced_eventfs</item>
 	</setup>
-	<setup key="epginfobar" title="InfobarEPG settings">
+	<setup key="epginfobar" title="InfobarEPG">
 		<item level="0" text="View mode" description="Choose the layout view mode (Text or Graphics).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Enable to preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="2" text="Skip empty services" description="Enable to hide channels without EPG data.">config.epgselection.overjump</item>
@@ -332,7 +332,7 @@
 		<item level="1" text="Number of rows" description="Specify the number of rows shown.">config.epgselection.infobar_itemsperpage</item>
 		<item level="2" text="Event font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.infobar_eventfs</item>
 	</setup>
-	<setup key="epginfobargraphical" title="Graphical InfobarEPG settings">
+	<setup key="epginfobargraphical" title="Graphical InfobarEPG">
 		<item level="0" text="View mode" description="Choose the layout view mode (Text / Graphics Multi channel EPG or Single channel EPG).">config.epgselection.infobar_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Enable to preview channels in the EPG list.">config.epgselection.infobar_preview_mode</item>
 		<item level="0" text="Service Title mode" description="Configure to show channel names, picons, or both, in the EPG.">config.epgselection.infobar_servicetitle_mode</item>
@@ -352,7 +352,7 @@
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.infobar_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.infobar_prevtimeperiod</item>
 	</setup>
-	<setup key="epggraphical" title="GraphicalEPG settings">
+	<setup key="epggraphical" title="GraphicalEPG">
 		<item level="0" text="View mode" description="Choose the layout view mode (Text or Graphics).">config.epgselection.graph_type_mode</item>
 		<item level="2" text="Channel preview mode" description="Enable to preview channels in the EPG list.">config.epgselection.graph_preview_mode</item>
 		<item level="0" text="Show bouquet on launch" description="Enable to display bouquets each time you open the EPG.">config.epgselection.graph_showbouquet</item>

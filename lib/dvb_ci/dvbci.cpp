@@ -600,11 +600,24 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 								eDVBFrontend *fe = (eDVBFrontend*) &(*frontend);
 								tunernum = fe->getSlotID();
 							}
+							if (tunernum != -1)
+							{
+								setInputSource(tunernum, ci_source.str());
+								ci_it->setSource(eDVBCISlot::getTunerLetter(tunernum));
+							}
+							else
+							{
+								/*
+								 * No associated frontend, this must be a DVR source
+								 *
+								 * No need to set tuner input (setInputSource), because we have no tuner.
+								 */
+								std::stringstream source;
+								source << "DVR" << channel->getDvrId();
+								ci_it->setSource(source.str());
+							}
 						}
-						ASSERT(tunernum != -1);
 						ci_it->current_tuner = tunernum;
-						setInputSource(tunernum, ci_source.str());
-						ci_it->setSource(eDVBCISlot::getTunerLetter(tunernum));
 					}
 					else
 					{
@@ -685,6 +698,8 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 				caids.push_back(0xFFFF);
 				slot->sendCAPMT(pmthandler, caids);  // send a capmt without caids to remove a running service
 				slot->removeService(service_to_remove.getServiceID().get());
+				/* restore ci source to the default (tuner "A") */
+				slot->setSource("A");
 			}
 
 			if (!--slot->use_count)
@@ -747,16 +762,19 @@ int eDVBCIInterfaces::getMMIState(int slotid)
 
 int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 {
-	char buf[64];
-	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/input%d", tuner_no);
-
-	if (CFile::write(buf, source.c_str()) == -1)
+	if (tuner_no >= 0)
 	{
-		eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", source.c_str());
-		return 0;
-	}
+		char buf[64];
+		snprintf(buf, sizeof(buf), "/proc/stb/tsmux/input%d", tuner_no);
 
-	eDebug("[CI] eDVBCIInterfaces setInputSource(%d, %s)", tuner_no, source.c_str());
+		if (CFile::write(buf, source.c_str()) == -1)
+		{
+			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", source.c_str());
+			return 0;
+		}
+
+		eDebug("[CI] eDVBCIInterfaces setInputSource(%d, %s)", tuner_no, source.c_str());
+	}
 	return 0;
 }
 

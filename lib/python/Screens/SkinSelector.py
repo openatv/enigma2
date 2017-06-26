@@ -151,7 +151,7 @@ class SkinSelector(Screen, SkinSelectorBase):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		SkinSelectorBase.__init__(self, session)
-		screentitle = _("Skin setup")
+		screentitle = _("Skin")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path

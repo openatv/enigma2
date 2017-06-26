@@ -1,7 +1,7 @@
 # the implementation here is a bit crappy.
+from boxbranding import getBoxType, getMachineBuild
 import time
 from Directories import resolveFilename, SCOPE_CONFIG
-from boxbranding import getBoxType, getMachineBuild
 
 PERCENTAGE_START = 50
 PERCENTAGE_END = 100

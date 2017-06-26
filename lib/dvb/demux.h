@@ -20,6 +20,7 @@ public:
 	RESULT setSourceFrontend(int fenum);
 	int getSource() { return source; }
 	RESULT setSourcePVR(int pvrnum);
+	int getDvrId() { return m_dvr_id; }
 
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
 	RESULT createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reader);
@@ -37,6 +38,7 @@ private:
 	int adapter, demux, source;
 
 	int m_dvr_busy;
+	int m_dvr_id;
 	friend class eDVBSectionReader;
 	friend class eDVBPESReader;
 	friend class eDVBAudio;

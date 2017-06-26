@@ -60,7 +60,7 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_('Animation Setup'))
+		self.setTitle(_('Animations'))
 
 	def keyGreen(self):
 		config.misc.window_animation_speed.save()
@@ -233,7 +233,7 @@ def animationSetupMain(session, **kwargs):
 	session.open(AnimationSetupScreen)
 
 def startAnimationSetup(menuid):
-	if menuid != "osd_menu":
+	if menuid != "skinsetup":
 		return []
 
 	return [( _("Animations"), animationSetupMain, "animation_setup", 3)]

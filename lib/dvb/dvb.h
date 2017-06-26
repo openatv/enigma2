@@ -296,6 +296,7 @@ public:
 
 	RESULT requestTsidOnid();
 	int reserveDemux();
+	int getDvrId();
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;

@@ -282,7 +282,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
-		screentitle = _("OSD 3D Setup")
+		screentitle = _("3D")
 		if config.usage.show_menupath.value == 'large':
 			menu_path += screentitle
 			title = menu_path
