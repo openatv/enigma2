@@ -91,11 +91,34 @@ class Timezones:
 	def getTimezoneAreaList(self):
 		return sorted(self.timezones.keys())
 
+	userFriendlyTZNames = {
+		"Asia/Ho_Chi_Minh": _("Ho Chi Minh City"),
+		"Australia/LHI": None, # Exclude
+		"Australia/Lord_Howe": _("Lord Howe Island"),
+		"Australia/North": _("Northern Territory"),
+		"Australia/South": _("South Australia"),
+		"Australia/West": _("Western Australia"),
+		"Pacific/Chatham": _("Chatham Islands"),
+		"Pacific/Easter": _("Easter Island"),
+		"Pacific/Galapagos": _("Galapagos Islands"),
+		"Pacific/Gambier": _("Gambier Islands"),
+		"Pacific/Johnston": _("Johnston Atoll"),
+		"Pacific/Marquesas": _("Marquesas Islands"),
+		"Pacific/Midway": _("Midway Islands"),
+		"Pacific/Norfolk": _("Norfolk Island"),
+		"Pacific/Pitcairn": _("Pitcairn Islands"),
+		"Pacific/Wake": _("Wake Island"),
+	}
+
+	@staticmethod
+	def getUserFriendlyTZName(area, tzname):
+		return Timezones.userFriendlyTZNames.get(area + '/' + tzname, tzname.replace('_', ' '))
+
 	# Return all zone entries for an Area, sorted.
 	def getTimezoneList(self, area=None):
 		if area == None:
 			area = config.timezone.area.getValue()
-		return sorttz(self.timezones[area])
+		return [(tzname, self.getUserFriendlyTZName(area, tzname)) for tzname in sorttz(self.timezones[area]) if self.getUserFriendlyTZName(area, tzname)]
 
 	default_for_area = {
 		'Europe': 'London',
@@ -110,7 +133,7 @@ class Timezones:
 				area = "Europe"
 		if choices == None:
 			choices = self.getTimezoneList(area=area)
-		return Timezones.default_for_area.setdefault(area, choices[0])
+		return Timezones.default_for_area.setdefault(area, choices[0][0])
 
 	def updateTimezoneChoices(self, area, zone_field):
 		choices = self.getTimezoneList(area=area)
