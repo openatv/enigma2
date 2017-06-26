@@ -672,11 +672,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			message += _("Timeshift is running. Select an action.\n")
 			choice = [(_("Zap"), "zap"), (_("Don't zap and disable timer"), "disable"), (_("Don't zap and remove timer"), "remove")]
 			if not self.InfoBarInstance.save_timeshift_file:
-				choice.insert(1, (_("Save timeshift in movie dir and zap"), "save_movie"))
-				if self.InfoBarInstance.timeshiftActivated():
-					choice.insert(0, (_("Save timeshift and zap"), "save"))
-				else:
-					choice.insert(1, (_("Save timeshift and zap"), "save"))
+				choice.insert(0, (_("Save timeshift and zap"), "save"))
 			else:
 				message += _("Reminder, you have chosen to save timeshift file.")
 			#if self.justplay or self.always_zap:
@@ -685,17 +681,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			def zapAction(choice):
 				start_zap = True
 				if choice:
-					if choice in ("zap", "save", "save_movie"):
+					if choice in ("zap", "save"):
 						self.log(8, "zap to recording service")
-						if choice in ("save", "save_movie"):
+						if choice == "save":
 							ts = self.InfoBarInstance.getTimeshift()
 							if ts and ts.isTimeshiftEnabled():
-								if choice =="save_movie":
-									self.InfoBarInstance.save_timeshift_in_movie_dir = True
-								self.InfoBarInstance.save_timeshift_file = True
-								ts.saveTimeshiftFile()
 								del ts
-								self.InfoBarInstance.saveTimeshiftFiles()
+								self.InfoBarInstance.save_timeshift_file = True
+								self.InfoBarInstance.SaveTimeshift()
 					elif choice == "disable":
 						self.disable()
 						NavigationInstance.instance.RecordTimer.timeChanged(self)
