@@ -174,12 +174,6 @@ self.session.open(SABnzbdSetupScreen)
 			</menu>
 			<!-- Menu / Setup / Time Settings -->
 			<item level="0" entryID="time_setup"><setup id="time"/></item>
-			<!-- Menu / Setup / Logs -->
-			<menu level="2" text="Logs" entryID="logs_setup">
-				<id val="logs_menu"/>
-				<item level="2" text="Settings" entryID="logs_setup"><setup id="logs"/></item>
-				<item level="2" text="Log manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
-			</menu>
 			<!-- Menu / Setup / Recordings, Playback & Timeshift -->
 			<menu weight="11" level="1" text="Timeshift, Recording &amp; Playback" entryID="rec_setup">
 			 	<id val="rec" />
@@ -189,12 +183,18 @@ self.session.open(SABnzbdSetupScreen)
 			<!-- Menu / Setup / System (OLD SYSTEM ENTRY FOR COMPATIBILITY) -->
 			<menu weight="98" level="0" text="System" entryID="system_selection">
 				<id val="system"/>
+				<!-- Menu / Setup / System / Logs -->
+				<menu weight="1"level="2" text="Logs" entryID="logs_setup">
+					<id val="logs_menu"/>
+					<item level="2" text="Settings" entryID="logs_setup"><setup id="logs"/></item>
+					<item level="2" text="Log manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
+				</menu>
 				<!-- Menu / Setup / System / Input Devices -->
-				<item weight="96" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection"/></item>
+				<item weight="2" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection"/></item>
 				<!-- Menu / Setup / System / Keyboard Setup -->
-				<item weight="97" entryID="keyboard_setup" text="Keyboard"><setup id="keyboard"/></item>
+				<item weight="3" entryID="keyboard_setup" text="Keyboard"><setup id="keyboard"/></item>
 				<!-- Menu / Setup / System / RF Setup -->
-				<item weight="98" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+				<item weight="4" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 				<!-- Menu / Setup / System / Factory Reset -->
 				<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
 <code>
