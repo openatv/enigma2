@@ -335,7 +335,21 @@
 			<convert type="ClockToText">Default</convert>
 		</widget>
 	</screen>
-
+	<!-- EMC Player -->
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="800,480"> 
+		<widget source="session.CurrentService" render="Label" position="40,90" size="720,260" font="FdLcD;75" foregroundColor="white" halign="center" valign="center" zPosition="2">
+			  <convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="Service" render="Progress" position="40,350" size="720,25" foregroundColor="white" borderWidth="2" zPosition="2">
+			  <convert type="EMCServicePosition">Position</convert>
+		</widget>		
+		<widget source="session.CurrentService" render="Label" position="40,480" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
 	<!-- NUMBERZAP -->
 	<screen name="NumberZap_summary" position="0,0" size="800,480">
 		<widget source="parent.servicename" render="Label" position="40,50" size="720,110" foregroundColor="white" font="FdLcD;85" halign="center" valign="center" zPosition="2" />
