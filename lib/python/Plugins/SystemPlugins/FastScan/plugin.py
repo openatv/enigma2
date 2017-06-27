@@ -286,7 +286,7 @@ class FastScanAutoScreen(FastScanScreen):
 	def scanCompleted(self, result):
 		print "[AutoFastScan] completed result = ", result
 		refreshServiceList()
-		self.close(result>0)
+		self.close(result)
 
 	def Power(self):
 		from Screens.Standby import inStandby
@@ -327,7 +327,7 @@ def restartScanAutoStartTimer(reply=False):
 	if not reply:
 		print "[AutoFastScan] Scan was not succesfully retry in one hour"
 		FastScanAutoStartTimer.startLongTimer(3600)
-	else:
+	elif reply is not True:
 		global autoproviders
 		if autoproviders:
 			provider = autoproviders.pop(0)
