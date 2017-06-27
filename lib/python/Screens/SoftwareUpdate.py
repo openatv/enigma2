@@ -50,7 +50,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
-		screentitle = _("Software Update")
+		screentitle = _("Software update")
 		self.menu_path = args[0]
 		if config.usage.show_menupath.value == 'large':
 			self.menu_path += screentitle
@@ -357,7 +357,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name == dgettext('vix', 'Backup Manager'):
+			if job.name == dgettext('vix', 'Backup manager'):
 				break
 		self.showJobView(job)
 
@@ -368,7 +368,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name == dgettext('vix', 'Image Manager'):
+			if job.name == dgettext('vix', 'Image manager'):
 				break
 		self.showJobView(job)
 
@@ -383,9 +383,9 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.close()
 
 	def showJobView(self, job):
-		if job.name == dgettext('vix', 'Image Manager'):
+		if job.name == dgettext('vix', 'Image manager'):
 			self.ImageBackupDone = True
-		elif job.name == dgettext('vix', 'Backup Manager'):
+		elif job.name == dgettext('vix', 'Backup manager'):
 			self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False

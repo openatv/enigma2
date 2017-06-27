@@ -540,12 +540,12 @@ class SystemNetworkInfo(Screen):
 				if status is not None:
 					if self.iface == 'wlan0' or self.iface == 'wlan3' or self.iface == 'ra0':
 						if status[self.iface]["essid"] == "off":
-							essid = _("No Connection")
+							essid = _("No connection")
 						else:
 							essid = status[self.iface]["essid"]
 						if status[self.iface]["accesspoint"] == "Not-Associated":
 							accesspoint = _("Not-Associated")
-							essid = _("No Connection")
+							essid = _("No connection")
 						else:
 							accesspoint = status[self.iface]["accesspoint"]
 						if self.has_key("BSSID"):
@@ -555,7 +555,7 @@ class SystemNetworkInfo(Screen):
 
 						quality = status[self.iface]["quality"]
 						if self.has_key("quality"):
-							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
+							self.AboutText += _('Link quality:') + '\t' + quality + '\n'
 
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
@@ -566,7 +566,7 @@ class SystemNetworkInfo(Screen):
 
 						signal = status[self.iface]["signal"]
 						if self.has_key("signal"):
-							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
+							self.AboutText += _('Signal strength:') + '\t' + signal + '\n'
 
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":

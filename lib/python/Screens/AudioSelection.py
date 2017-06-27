@@ -120,7 +120,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			if SystemInfo["CanPcmMultichannel"]:
 				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.value)
 				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call = False)
-				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
+				conflist.append(getConfigListEntry(_("PCM multichannel"), self.settings.pcm_multichannel, None))
 
 			if n > 0:
 				self.audioChannel = service.audioChannel()
@@ -128,7 +128,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					choicelist = [("0",_("left")), ("1",_("stereo")), ("2", _("right"))]
 					self.settings.channelmode = ConfigSelection(choices = choicelist, default = str(self.audioChannel.getCurrentChannel()))
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call = False)
-					conflist.append(getConfigListEntry(_("Audio Channel"), self.settings.channelmode, None))
+					conflist.append(getConfigListEntry(_("Audio channel"), self.settings.channelmode, None))
 				selectedAudio = self.audioTracks.getCurrentTrack()
 				for x in range(n):
 					number = str(x + 1)
@@ -161,19 +161,19 @@ class AudioSelection(Screen, ConfigListScreen):
 				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 				self.settings.surround_3d = ConfigSelection(choices = choice_list, default = config.av.surround_3d.value)
 				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
-				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d, None))
+				conflist.append(getConfigListEntry(_("3D surround"), self.settings.surround_3d, None))
 
 			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
 				choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
 				self.settings.surround_3d_speaker = ConfigSelection(choices = choice_list, default = config.av.surround_3d_speaker.value)
 				self.settings.surround_3d_speaker.addNotifier(self.change3DSurroundSpeaker)
-				conflist.append(getConfigListEntry(_("3D Surround Speaker Position"), self.settings.surround_3d_speaker, None))
+				conflist.append(getConfigListEntry(_("3D surround speaker position"), self.settings.surround_3d_speaker, None))
 
 			if SystemInfo["CanAutoVolume"]:
 				choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 				self.settings.autovolume = ConfigSelection(choices = choice_list, default = config.av.autovolume.value)
 				self.settings.autovolume.addNotifier(self.changeAutoVolume)
-				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
+				conflist.append(getConfigListEntry(_("Auto volume level"), self.settings.autovolume, None))
 
 #			if SystemInfo["Canedidchecking"]:
 #				choice_list = [("00000000", _("off")), ("00000001", _("on"))]
@@ -244,7 +244,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				idx += 1
 
 			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0)  and not ".DVDPlayer'>" in `self.infobar`:
-				conflist.append(getConfigListEntry(_("Subtitle Quickmenu"), ConfigNothing(), None))
+				conflist.append(getConfigListEntry(_("Subtitle quickmenu"), ConfigNothing(), None))
 
 		if len(conflist) > 0 and conflist[0][0]:
 			self["key_red"].setBoolean(True)

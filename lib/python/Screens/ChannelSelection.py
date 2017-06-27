@@ -224,7 +224,7 @@ class ChannelContextMenu(Screen):
 							_append_when_current_valid(current, menu, actions, (_("Mark service as a dedicated 3D service"), self.addDedicated3DFlag), level=0, key="3")
 					if not (current_sel_path):
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
-							_append_when_current_valid(current, menu, actions, (_("Remove 'Hide dotted line on the top for this service'"), self.removeHideVBIFlag), level=0, key="6")
+							_append_when_current_valid(current, menu, actions, (_("Remove 'hide dotted line on the top for this service'"), self.removeHideVBIFlag), level=0, key="6")
 						else:
 							_append_when_current_valid(current, menu, actions, (_("Hide dotted line on the top for this service"), self.addHideVBIFlag), level=0, key="5")
 						if eDVBDB.getInstance().getCachedPid(eServiceReference(current.toString()), 9) >> 16 not in (-1, eDVBDB.getInstance().getCachedPid(eServiceReference(current.toString()), 2)):
@@ -232,7 +232,7 @@ class ChannelContextMenu(Screen):
 							if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_CENTER_DVB_SUBS:
 								_append_when_current_valid(current, menu, actions, (_("Do not center DVB subs on this service"), self.removeCenterDVBSubsFlag), level=0, key="bullet")
 							else:
-								_append_when_current_valid(current, menu, actions, (_("Do center DVB subs on this service"), self.addCenterDVBSubsFlag), level=0, key="bullet")
+								_append_when_current_valid(current, menu, actions, (_("Center DVB subs on this service"), self.addCenterDVBSubsFlag), level=0, key="bullet")
 
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
@@ -580,7 +580,7 @@ class ChannelContextMenu(Screen):
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.minitvmode.value)
 						f.close()
-				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+				self.session.openWithCallback(self.close, MessageBox, _("Could not open picture in picture"), MessageBox.TYPE_ERROR)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()

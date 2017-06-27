@@ -93,10 +93,10 @@ class EPGSelection(Screen, HelpableScreen):
 		self['Event'] = Event()
 		self['lab1'] = Label(_('Please wait while gathering EPG data...'))
 		self.key_green_choice = self.EMPTY
-		self['key_red'] = Button(_('IMDb Search'))
-		self['key_green'] = Button(_('Add Timer'))
-		self['key_yellow'] = Button(_('EPG Search'))
-		self['key_blue'] = Button(_('Add AutoTimer'))
+		self['key_red'] = Button(_('IMDb search'))
+		self['key_green'] = Button(_('Add timer'))
+		self['key_yellow'] = Button(_('EPG search'))
+		self['key_blue'] = Button(_('Add Autotimer'))
 		self['dialogactions'] = HelpableActionMap(self, 'WizardActions',
 			{
 				'back': (self.closeChoiceBoxDialog, _('Close dialog')),
@@ -114,12 +114,12 @@ class EPGSelection(Screen, HelpableScreen):
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', 
 			{
 				'red': (self.redButtonPressed, _('IMDB search for current event')),
-				'redlong': (self.redButtonPressedLong, _('Sort EPG List')),
+				'redlong': (self.redButtonPressedLong, _('Sort EPG list')),
 				'green': (self.greenButtonPressed, _('Add/Remove timer for current event')),
-				'greenlong': (self.greenButtonPressedLong, _('Show Timer List')),
+				'greenlong': (self.greenButtonPressedLong, _('Show timer list')),
 				'yellow': (self.yellowButtonPressed, _('Search for similar events')),
-				'blue': (self.blueButtonPressed, _('Add a auto timer for current event')),
-				'bluelong': (self.blueButtonPressedLong, _('Show AutoTimer List'))
+				'blue': (self.blueButtonPressed, _('Add an autotimer for current event')),
+				'bluelong': (self.blueButtonPressedLong, _('Show Autotimer list'))
 			}, -1)
 		self['colouractions'].csel = self
 		self['recordingactions'] = HelpableActionMap(self, 'InfobarInstantRecord',
@@ -288,7 +288,7 @@ class EPGSelection(Screen, HelpableScreen):
 					'info': (self.Info, _('Show detailed event info')),
 					'infolong': (self.InfoLong, _('Show single epg for current channel')),
 					'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
-					'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
+					'tvlong': (self.togglePIG, _('Toggle picture In graphics')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, -1)
 			self['epgactions'].csel = self
@@ -907,7 +907,7 @@ class EPGSelection(Screen, HelpableScreen):
 			addAutotimerFromEventSilent(self.session, evt=event, service=serviceref)
 			self.refreshTimer.start(3000)
 		except ImportError:
-			self.session.open(MessageBox, _('The AutoTimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _('The Autotimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
@@ -933,7 +933,7 @@ class EPGSelection(Screen, HelpableScreen):
 			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
 			self.session.openWithCallback(self.editCallback, AutoTimerOverview, autotimer)
 		except ImportError:
-			self.session.open(MessageBox, _('The AutoTimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _('The Autotimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def editCallback(self, session):
 		global autopoller

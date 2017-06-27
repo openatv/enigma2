@@ -19,7 +19,7 @@ class CronTimers(Screen):
 		Screen.__init__(self, session)
 		if not path.exists('/usr/scripts'):
 			mkdir('/usr/scripts', 0755)
-		screentitle = _("Cron Manager")
+		screentitle = _("Cron manager")
 		menu_path += screentitle
 		if config.usage.show_menupath.value == 'large':
 			title = menu_path
@@ -36,7 +36,7 @@ class CronTimers(Screen):
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
-		self['lab2'] = Label(_("Current Status:"))
+		self['lab2'] = Label(_("Current status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['labrun'].hide()
@@ -83,8 +83,8 @@ class CronTimers(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
-		self.message.setTitle(_('Installing Service'))
+		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
@@ -110,8 +110,8 @@ class CronTimers(Screen):
 			self.close()
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
-		self.message.setTitle(_('Removing Service'))
+		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self, result = None, retval = None, extra_args = None):
@@ -347,14 +347,14 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		if config.crontimers.runwhen.value != 'Hourly':
 			self.list.append(getConfigListEntry(_("Time to execute command or script"), config.crontimers.cmdtime))
 		if config.crontimers.runwhen.value == 'Weekly':
-			self.list.append(getConfigListEntry(_("What Day of week ?"), config.crontimers.dayofweek))
+			self.list.append(getConfigListEntry(_("What day of week ?"), config.crontimers.dayofweek))
 		if config.crontimers.runwhen.value == 'Monthly':
 			self.list.append(getConfigListEntry(_("What date of month ?"), config.crontimers.dayofmonth))
 		self.list.append(getConfigListEntry(_("Command type"), config.crontimers.commandtype))
 		if config.crontimers.commandtype.value == 'custom':
-			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.user_command))
+			self.list.append(getConfigListEntry(_("Command to run"), config.crontimers.user_command))
 		else:
-			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.predefined_command))
+			self.list.append(getConfigListEntry(_("Command to run"), config.crontimers.predefined_command))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -372,7 +372,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		sel = self['config'].getCurrent()
 		if sel:
 			self.vkvar = sel[0]
-			if self.vkvar == _("Command To Run"):
+			if self.vkvar == _("Command to run"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
 				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
