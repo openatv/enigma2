@@ -18,13 +18,13 @@
 		<menu weight="1" text="Setup" flushConfigOnClose="1" entryID="setup_selection" >
 			<id val="setup"/>
 			<!-- Menu / Setup / AV -->
-			<menu weight="1" level="0" text="Audio &amp; Video" entryID="av_setup">
+			<menu weight="1" level="0" text="Audio &amp; video" entryID="av_setup">
 				<id val="av"/>
 				<item weight="1" text="Settings" entryID="av_setup"><screen module="VideoMode" screen="VideoSetup"/></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup"/></item>
 			</menu>
 			<!-- Menu / Setup / Tuners -->
-			<menu weight="2" level="0" text="Tuner Config" entryID="service_searching_selection">
+			<menu weight="2" level="0" text="Tuner config" entryID="service_searching_selection">
 				<id val="scan"/>
 				<!-- Menu / Setup / Tuners / Settings -->
 				<item weight="1" entryID="usage_setup"><setup id="usage"/></item>
@@ -175,7 +175,7 @@ self.session.open(SABnzbdSetupScreen)
 			<!-- Menu / Setup / Time Settings -->
 			<item level="0" entryID="time_setup"><setup id="time"/></item>
 			<!-- Menu / Setup / Recordings, Playback & Timeshift -->
-			<menu weight="11" level="1" text="Recordings, Playback &amp; Timeshift" entryID="rec_setup">
+			<menu weight="11" level="1" text="Recordings, playback &amp; timeshift" entryID="rec_setup">
 			 	<id val="rec" />
 					<item weight="10" level="0" text="Timeshift" entryID="timshift_setup"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
 					<item weight="15" level="0" text="Recording &amp; playback" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
@@ -184,7 +184,7 @@ self.session.open(SABnzbdSetupScreen)
 			<menu weight="98" level="0" text="System" entryID="system_selection">
 				<id val="system"/>
 				<!-- Menu / Setup / System / Logs -->
-				<menu weight="1"level="2" text="Logs" entryID="logs_setup">
+				<menu weight="1" level="2" text="Logs" entryID="logs_setup">
 					<id val="logs_menu"/>
 					<item level="2" text="Settings" entryID="logs_setup"><setup id="logs"/></item>
 					<item level="2" text="Log manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
