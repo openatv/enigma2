@@ -336,6 +336,19 @@
 		</widget>
 	</screen>
 	<!-- EMC Player -->
+	<screen name="EMCSelection_summary" position="0,0" size="800,480"> 
+		<widget source="parent.Title" render="Label" position="40,40" size="720,90" font="FdLcD;75" foregroundColor="white" halign="center" valign="center" zPosition="2" />
+		<widget source="parent.Service" render="Label" position="40,150" size="720,150" font="FdLcDLight;60" foregroundColor="white" halign="center" valign="top" zPosition="2">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="40,480" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="ServiceTime">Duration</convert>
+			<convert type="ClockToText">AsLength</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="40,400" size="320,70" font="FdLcD;60" foregroundColor="white" halign="left" valign="center">
+			<convert type="MovieInfo">FileSize</convert>
+		</widget>
+	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="800,480"> 
 		<widget source="session.CurrentService" render="Label" position="40,90" size="720,260" font="FdLcD;75" foregroundColor="white" halign="center" valign="center" zPosition="2">
 			  <convert type="ServiceName">Name</convert>
