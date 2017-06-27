@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-16 18:03+0100\n"
-"PO-Revision-Date: 2017-05-19 14:26+0300\n"
+"POT-Creation-Date: 2017-06-23 08:25+0100\n"
+"PO-Revision-Date: 2017-06-24 14:34+0300\n"
 "Last-Translator: rimas\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 
 msgid ""
 "\n"
@@ -862,7 +862,7 @@ msgstr "%s %s täpsem pult (natiivne)"
 
 #, python-format
 msgid "%s %s format data DVD (HDTV compatible)"
-msgstr "%s %s vormingus DVD"
+msgstr "%s %s vormingus DVD (HDTV kõlbulik)"
 
 #, python-format
 msgid "%s %s front panel"
@@ -946,7 +946,7 @@ msgid "* = Restart Required"
 msgstr "* = Vajalik taaskäivitus"
 
 msgid "* Only available if more than one interface is active."
-msgstr "* Saadaval vaid mitme aktiivse võrgukaardi puhul."
+msgstr "* Võimalik vaid mitme aktiivse võrgukaardi puhul."
 
 msgid "* current animation"
 msgstr "* aktiivne animatsioon"
@@ -1341,7 +1341,7 @@ msgid "About"
 msgstr "Süsteemist"
 
 msgid "About..."
-msgstr "Süsteemist"
+msgstr "Süsteemist..."
 
 msgid "Accesspoint:"
 msgstr "Tugijaam:"
@@ -1920,7 +1920,7 @@ msgid "Auto focus"
 msgstr "Autofookus"
 
 msgid "Auto focus commencing ..."
-msgstr "Autofookus käivitub"
+msgstr "Autofookus käivitub..."
 
 msgid "Auto language settings"
 msgstr "Automaatsed keelevalikud"
@@ -2035,7 +2035,7 @@ msgid "Backup failed."
 msgstr "Varukoopia loomine nurjus."
 
 msgid "Backup is running..."
-msgstr "Varukoopia loomine"
+msgstr "Varukoopia loomine..."
 
 msgid "Backup system settings"
 msgstr "Seadistuste varundamine"
@@ -2224,7 +2224,7 @@ msgid "Button setup"
 msgstr "Nuppude seadistus"
 
 msgid "Button setup for"
-msgstr "Nuppude seadistus:"
+msgstr "Nuppude seadistus >"
 
 msgid "ButtonSetup"
 msgstr "Nuppude seadistus"
@@ -2457,7 +2457,7 @@ msgid "Channel List"
 msgstr "Kanalinimekiri"
 
 msgid "Channel down"
-msgstr "CH-"
+msgstr "CH -"
 
 msgid "Channel info"
 msgstr "Kanaliinfo"
@@ -2523,13 +2523,13 @@ msgid "Check the internet connection again"
 msgstr "Kontrolli uuesti internetiühendust"
 
 msgid "Checking Logs..."
-msgstr "Logide uurimine"
+msgstr "Logide uurimine..."
 
 msgid "Checking filesystem..."
-msgstr "Failisüsteemi kontroll"
+msgstr "Failisüsteemi kontroll..."
 
 msgid "Checking for Updates..."
-msgstr "Uuenduste otsimine"
+msgstr "Uuenduste otsimine..."
 
 msgid "Checking the internet connection"
 msgstr "Internetiühenduse kontroll"
@@ -3817,6 +3817,12 @@ msgstr "EIT nüüd/järgmine saateinfo inforibal."
 msgid "Djibouti"
 msgstr "Djibouti"
 
+msgid "Do center DVB subs on this service"
+msgstr "Tsentreeri DVB subtiitrid sellel kanalil"
+
+msgid "Do not center DVB subs on this service"
+msgstr "Tsentreerimata DVB subtiitrid sellel kanalil"
+
 msgid "Do not change"
 msgstr "Ära muuda"
 
@@ -3922,6 +3928,9 @@ msgstr "Kas sooritada kanaliotsing?"
 
 msgid "Do you want to do another manual service scan?"
 msgstr "Kas teha uus käsiotsing?"
+
+msgid "Do you want to install plugins"
+msgstr "Kas paigaldada pluginaid"
 
 msgid "Do you want to install the package:\n"
 msgstr "Kas paigaldada pakett:\n"
@@ -4033,6 +4042,9 @@ msgstr "E"
 #, python-format
 msgid "E2 (re)starts:\t%s\n"
 msgstr "E2 käivitusi:\t%s\n"
+
+msgid "ECM Info"
+msgstr "ECM info"
 
 msgid "ECM Statistics"
 msgstr "ECM statistika"
@@ -5312,6 +5324,9 @@ msgstr "Kui lubatud, üritab vastuvõtja valida lahutuse vastavalt video sisu om
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Kui lubatud, toimub alati video ülerealaotuse eemaldamine."
 
+msgid "If enabled, display shows 12 chars instead 8, but in latin-1/translit only."
+msgstr "Kui lubatud, kuvatakse näidikul 8 asemel 12 kohta, aga ainult latin-1/translit vormingus."
+
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
 
@@ -6276,6 +6291,9 @@ msgctxt "Video output mode"
 msgid "Mode"
 msgstr "Režiim"
 
+msgid "Model"
+msgstr "Mudel"
+
 #, python-format
 msgid "Model:\t%s %s\n"
 msgstr "Mudel:\t%s %s\n"
@@ -6651,6 +6669,9 @@ msgstr "DVD-ROM puudub!"
 msgid "No Connection"
 msgstr "Ühendus puudub"
 
+msgid "No ECMPids available (FTA Service)"
+msgstr "ECMPid pole saadaval (vabalevi kanal)"
+
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kõvaketas puudub või on vormindamata!"
 
@@ -6699,9 +6720,6 @@ msgstr "Kiire kerimine pole veel võimalik, aga edasi/tagasi hüppamiseks saad k
 
 msgid "No free index available"
 msgstr "Vaba indeks puudub"
-
-msgid "No free tuner available!"
-msgstr "Vaba tuuner puudub!"
 
 msgid "No free tuner!"
 msgstr "Vaba tuuner puudub!"
@@ -7576,6 +7594,9 @@ msgstr "Plugina menüü seaded"
 msgid "Plugin details"
 msgstr "Plugina üksikasjad"
 
+msgid "Plugin install"
+msgstr "Plugina paigaldamine"
+
 msgid "Plugin manager activity information"
 msgstr "Pluginahalduri tegevuse info"
 
@@ -8430,7 +8451,7 @@ msgid "Rotor turning speed"
 msgstr "Ajami pööramise kiirus"
 
 msgid "Rotor: "
-msgstr "Ajam:"
+msgstr "Ajam: "
 
 msgid "Run how often ?"
 msgstr "Kui tihti käivitada?"
@@ -8610,7 +8631,7 @@ msgid "Scaling mode"
 msgstr "Skaleerimine"
 
 msgid "Scan"
-msgstr "Otsi "
+msgstr "Otsi"
 
 msgid "Scan "
 msgstr "Otsi "
@@ -8939,6 +8960,9 @@ msgstr "Kanalinime kuju"
 
 msgid "Service font size"
 msgstr "Kanalinime tähesuurus"
+
+msgid "Service info - ECM Info"
+msgstr "Kanali info - ECM info"
 
 msgid "Service info font size"
 msgstr "Saateinfo tähesuurus"
@@ -11303,6 +11327,9 @@ msgstr "Kasutaja eelistused"
 msgid "Use"
 msgstr "Kasuta"
 
+msgid "Use 12 characters display mode"
+msgstr "12 kohaline näidik"
+
 msgid "Use DHCP"
 msgstr "DHCP lubatud"
 
@@ -11878,9 +11905,6 @@ msgstr "Kui lubatud, käivitatakse välised subtiitrid alati koos filmiga."
 
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr "Kui lubatud, eelistatakse mõlema saadavusel DVB subtiitreid teleteksti omadele."
-
-msgid "When enabled, graphical DVB subtitles will be centered horizontally."
-msgstr "Kui lubatud, tsentreeritakse DVB subtiitrid horisontaalselt."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Kui lubatud, kuvatakse DVB subtiitrid nende algsel asukohal."
@@ -12488,7 +12512,7 @@ msgid "Zoom from right"
 msgstr "Paremalt kasvav"
 
 msgid "[TimeShift] Restarting Timeshift!"
-msgstr "[Ajanihe] - Ajanihe käivitatakse uuesti!"
+msgstr "[Ajanihe] Ajanihe käivitatakse uuesti!"
 
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Ajanihe] Salvestiste liitmine nurjus!"
@@ -13573,6 +13597,9 @@ msgstr "turism/reisimine"
 msgid "true"
 msgstr "jah"
 
+msgid "type"
+msgstr "tüüp"
+
 msgid "uShare Name"
 msgstr "uShare nimi"
 
@@ -13729,6 +13756,9 @@ msgstr "Kanalivahetus ja salvestamine"
 msgid "zapped"
 msgstr "vahetatud"
 
+#~ msgid "No free tuner available!"
+#~ msgstr "Vaba tuuner puudub!"
+
 #~ msgid "Provider to scan"
 #~ msgstr "Otsitav levitaja"
 
@@ -13737,3 +13767,6 @@ msgstr "vahetatud"
 
 #~ msgid "Terrestrial provider"
 #~ msgstr "DVB-T levitaja"
+
+#~ msgid "When enabled, graphical DVB subtitles will be centered horizontally."
+#~ msgstr "Kui lubatud, tsentreeritakse DVB subtiitrid horisontaalselt."

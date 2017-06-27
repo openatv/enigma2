@@ -88,7 +88,7 @@ class eServiceHDMIRecord: public eDVBServiceBase, public iRecordableService, pub
 public:
 	eServiceHDMIRecord(const eServiceReference &ref);
 	RESULT connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
-	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm);
+	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize);
 	RESULT prepareStreaming(bool descramble = true, bool includeecm = false);
 	RESULT start(bool simulate=false);
 	RESULT stop();

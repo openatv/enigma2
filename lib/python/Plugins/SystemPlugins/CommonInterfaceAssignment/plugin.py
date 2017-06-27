@@ -50,16 +50,16 @@ class CIselectMainMenu(Screen):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state != -1:
 					if state == 0:
-						appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
+						appname = _("Slot %d") %(slot+1) + " - " + _("No module found")
 					elif state == 1:
-						appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
+						appname = _("Slot %d") %(slot+1) + " - " + _("Init modules")
 					elif state == 2:
 						appname = _("Slot %d") %(slot+1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
 					self.list.append( (appname, ConfigNothing(), 0, slot) )
 				else:
-					self.list.append( (_("Slot %d") %(slot+1) + " - " + _("no module found") , ConfigNothing(), 1, -1) )
+					self.list.append( (_("Slot %d") %(slot+1) + " - " + _("No module found") , ConfigNothing(), 1, -1) )
 		else:
-			self.list.append( (_("no CI slots found") , ConfigNothing(), 1, -1) )
+			self.list.append( (_("No CI slots found") , ConfigNothing(), 1, -1) )
 
 		menuList = ConfigList(self.list)
 		menuList.list = self.list
@@ -345,7 +345,7 @@ class easyCIconfigMenu(CIconfigMenu):
 
 class CAidSelect(Screen):
 	skin = """
-		<screen name="CAidSelect" position="center,center" size="450,440" title="select CAId's" >
+		<screen name="CAidSelect" position="center,center" size="450,440" title="Select CAId's" >
 			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -641,16 +641,16 @@ def main(session, **kwargs):
 	session.open(CIselectMainMenu)
 
 def menu(menuid, **kwargs):
-	if menuid == "cam" and eDVBCIInterfaces.getInstance().getNumOfSlots():
-		return [(_("Common Interface Assignment"), main, "ci_assign", 11)]
+	if menuid == "cicam" and eDVBCIInterfaces.getInstance().getNumOfSlots():
+		return [(_("Common interface assignment"), main, "ci_assign", 11)]
 	return [ ]
 
 def Plugins(**kwargs):
 	if config.usage.setup_level.index > 1:
 		return [PluginDescriptor( where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc = sessionstart ),
 				PluginDescriptor( where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart ),
-				PluginDescriptor( name = _("Common Interface assignment"), description = _("a gui to assign services/providers/caids to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
+				PluginDescriptor( name = _("Common interface assignment"), description = _("a gui to assign services/providers/caids to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
 	else:
 		return [PluginDescriptor( where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc = sessionstart ),
 				PluginDescriptor( where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart ),
-				PluginDescriptor( name = _("Common Interface assignment"), description = _("a gui to assign services/providers to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
+				PluginDescriptor( name = _("Common interface assignment"), description = _("a gui to assign services/providers to common interface modules"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu )]
