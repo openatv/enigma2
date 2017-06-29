@@ -37,9 +37,9 @@ gRC::gRC(): rp(0), wp(0)
 	int res = pthread_create(&the_thread, &attr, thread_wrapper, this);
 	pthread_attr_destroy(&attr);
 	if (res)
-		eFatal("RC thread couldn't be created");
+		eFatal("[gRC] thread couldn't be created");
 	else
-		eDebug("RC thread created successfully");
+		eDebug("[gRC] thread created successfully");
 #endif
 }
 
@@ -53,9 +53,9 @@ gRC::~gRC()
 	o.opcode=gOpcode::shutdown;
 	submit(o);
 #ifndef SYNC_PAINT
-	eDebug("waiting for gRC thread shutdown");
+	eDebug("[gRC] waiting for gRC thread shutdown");
 	pthread_join(the_thread, 0);
-	eDebug("gRC thread has finished");
+	eDebug("[gRC] thread has finished");
 #endif
 }
 
@@ -77,7 +77,7 @@ void gRC::submit(const gOpcode &o)
 #else
 			thread();
 #endif
-			//printf("render buffer full...\n");
+			//eDebug("[gRC] render buffer full...");
 			//fflush(stdout);
 			usleep(1000);  // wait 1 msec
 			continue;
@@ -190,7 +190,7 @@ void *gRC::thread()
 				if (!idle)
 				{
 					if (!m_spinner_enabled)
-						eDebug("main thread is non-idle! display spinner!");
+						eDebug("[gRC] main thread is non-idle! display spinner!");
 					enableSpinner();
 				} else
 					disableSpinner();
@@ -223,7 +223,7 @@ void gRC::enableSpinner()
 {
 	if (!m_spinner_dc)
 	{
-		eDebug("no spinner DC!");
+		eDebug("[gRC] enabelSpinner: no spinner DC!");
 		return;
 	}
 
@@ -245,7 +245,7 @@ void gRC::disableSpinner()
 
 	if (!m_spinner_dc)
 	{
-		eDebug("no spinner DC!");
+		eDebug("[gRC] disableSpinner: no spinner DC!");
 		return;
 	}
 
@@ -887,7 +887,7 @@ void gDC::exec(const gOpcode *o)
 		incrementSpinner();
 		break;
 	default:
-		eFatal("illegal opcode %d. expect memory leak!", o->opcode);
+		eFatal("[gDC] illegal opcode %d. expect memory leak!", o->opcode);
 	}
 }
 
@@ -897,7 +897,7 @@ gRGB gDC::getRGB(gColor col)
 		return gRGB(col, col, col);
 	if (col<0)
 	{
-		eFatal("bla transp");
+		eFatal("[gDC] getRGB transp");
 		return gRGB(0, 0, 0, 0xFF);
 	}
 	return m_pixmap->surface->clut.data[col];

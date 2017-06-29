@@ -40,7 +40,7 @@ void ePixmap::setPixmapFromFile(const char *filename)
 
 	if (!m_pixmap)
 	{
-		eDebug("ePixmap::setPixmapFromFile: loadPNG failed");
+		eDebug("[ePixmap] setPixmapFromFile: loadPNG failed");
 		return;
 	}
 

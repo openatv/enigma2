@@ -40,7 +40,7 @@ gLCDDC::gLCDDC()
 		surface.clut.colors = 0;
 		surface.clut.data = 0;
 	}
-	eDebug("LCD resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, surface.stride);
+	eDebug("[gLCDDC] resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, surface.stride);
 
 	m_pixmap = new gPixmap(&surface);
 }
@@ -86,4 +86,4 @@ void gLCDDC::setUpdate(int u)
 	update = u;
 }
 
-eAutoInitPtr<gLCDDC> init_gLCDDC(eAutoInitNumbers::graphic-1, "gLCDDC");
+eAutoInitPtr<gLCDDC> init_gLCDDC(eAutoInitNumbers::graphic-1, "gLCD");

@@ -51,7 +51,7 @@ static unsigned char *simple_resize_24(unsigned char *orgin, int ox, int oy, int
 	unsigned char *cr = new unsigned char[dx * dy * 3];
 	if (cr == NULL)
 	{
-		eDebug("[Picload] Error malloc");
+		eDebug("[ePicLoad] Error malloc");
 		return orgin;
 	}
 	const int stride = 3 * dx;
@@ -77,7 +77,7 @@ static unsigned char *simple_resize_8(unsigned char *orgin, int ox, int oy, int 
 	unsigned char* cr = new unsigned char[dx * dy];
 	if (cr == NULL)
 	{
-		eDebug("[Picload] Error malloc");
+		eDebug("[ePicLoad] Error malloc");
 		return(orgin);
 	}
 	const int stride = dx;
@@ -100,7 +100,7 @@ static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx
 	unsigned char* cr = new unsigned char[dx * dy * 3];
 	if (cr == NULL)
 	{
-		eDebug("[Picload] Error malloc");
+		eDebug("[ePicLoad] Error malloc");
 		return orgin;
 	}
 	const int stride = 3 * dx;
@@ -298,20 +298,20 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (png_ptr == NULL)
 	{
-		eDebug("[png_load] Error png_create_read_struct");
+		eDebug("[ePicLoad] Error png_create_read_struct");
 		return;
 	}
 	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if (info_ptr == NULL)
 	{
-		eDebug("[png_load] Error png_create_info_struct");
+		eDebug("[ePicLoad] Error png_create_info_struct");
 		png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
 		return;
 	}
 
 	if (setjmp(png_jmpbuf(png_ptr)))
 	{
-		eDebug("[png_load] Error setjmp");
+		eDebug("[ePicLoad] Error setjmp");
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 		return;
 	}
@@ -333,10 +333,11 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 		unsigned char *pic_buffer = new unsigned char[pixel_cnt];
 		if(!pic_buffer)
 		{
-			eDebug("[png_load] Error malloc");
+			eDebug("[ePicLoad] Error malloc");
 			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 			return;
 		}
+
 
 		int number_passes = png_set_interlace_handling(png_ptr);
 		png_read_update_info(png_ptr, info_ptr);
@@ -409,7 +410,7 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 		int bpp =  png_get_rowbytes(png_ptr, info_ptr)/width;
 		if ((bpp != 4) && (bpp != 3))
 		{
-			eDebug("[png_load] Error processing");
+			eDebug("[ePicLoad] Error processing");
 			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 			return;
 		}
@@ -417,7 +418,7 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 		unsigned char * pic_buffer = new unsigned char[pixel_cnt * bpp];
 		if(!pic_buffer)
 		{
-			eDebug("[png_load] Error malloc");
+			eDebug("[ePicLoad] Error malloc");
 			png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 			return;
 		}
@@ -436,7 +437,7 @@ static void png_load(Cfilepara* filepara, unsigned int background)
 			unsigned char * pic_buffer24 = new unsigned char[pixel_cnt * 3];
 			if(!pic_buffer24)
 			{
-				eDebug("[png_load] Error malloc");
+				eDebug("[ePicLoad] Error malloc");
 				delete [] pic_buffer;
 				return;
 			}
@@ -522,7 +523,7 @@ static unsigned char *jpeg_load(const char *file, int *ox, int *oy, unsigned int
 
 	*ox=ciptr->output_width;
 	*oy=ciptr->output_height;
-	// eDebug("jpeg_read ox=%d oy=%d w=%d (%d), h=%d (%d) scale=%d rec_outbuf_height=%d", ciptr->output_width, ciptr->output_height, ciptr->image_width, max_x, ciptr->image_height, max_y, ciptr->scale_denom, ciptr->rec_outbuf_height);
+	// eDebug("[jpeg_load] jpeg_read ox=%d oy=%d w=%d (%d), h=%d (%d) scale=%d rec_outbuf_height=%d", ciptr->output_width, ciptr->output_height, ciptr->image_width, max_x, ciptr->image_height, max_y, ciptr->scale_denom, ciptr->rec_outbuf_height);
 
 	if(ciptr->output_components == 3)
 	{
@@ -552,14 +553,14 @@ static int jpeg_save(const char * filename, int ox, int oy, unsigned char *pic_b
 
 	if (!outfile)
 	{
-		eDebug("[Picload] jpeg can't write %s", filename);
+		eDebug("[ePicLoad] jpeg can't write %s", filename);
 		return 1;
 	}
 
 	cinfo.err = jpeg_std_error(&jerr);
 	jpeg_create_compress(&cinfo);
 
-	eDebug("[Picload] save Thumbnail... %s",filename);
+	eDebug("[ePicLoad] save Thumbnail... %s",filename);
 
 	jpeg_stdio_dest(&cinfo, outfile);
 
@@ -697,7 +698,7 @@ static void gif_load(Cfilepara* filepara)
 #endif
 	return;
 ERROR_R:
-	eDebug("[Picload] <Error gif>");
+	eDebug("[ePicLoad] <Error gif>");
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
 	DGifCloseFile(gft);
 #else
@@ -761,7 +762,7 @@ void ePicLoad::thread()
 
 void ePicLoad::decodePic()
 {
-	eDebug("[Picload] decode picture... %s",m_filepara->file);
+	eDebug("[ePicLoad] decode picture... %s",m_filepara->file);
 
 	switch(m_filepara->id)
 	{
@@ -777,7 +778,7 @@ void ePicLoad::decodePic()
 
 void ePicLoad::decodeThumb()
 {
-	eDebug("[Picload] get Thumbnail... %s",m_filepara->file);
+	eDebug("[ePicLoad] get Thumbnail... %s",m_filepara->file);
 
 	bool exif_thumbnail = false;
 	bool cachefile_found = false;
@@ -796,7 +797,7 @@ void ePicLoad::decodeThumb()
 					free(m_filepara->file);
 					m_filepara->file = strdup(THUMBNAILTMPFILE);
 					exif_thumbnail = true;
-					eDebug("[Picload] Exif Thumbnail found");
+					eDebug("[ePicLoad] Exif Thumbnail found");
 				}
 				m_filepara->addExifInfo(exif->m_exifinfo->CameraMake);
 				m_filepara->addExifInfo(exif->m_exifinfo->CameraModel);
@@ -841,7 +842,7 @@ void ePicLoad::decodeThumb()
 				free(m_filepara->file);
 				m_filepara->file = strdup(cachefile.c_str());
 				m_filepara->id = F_JPEG;
-				eDebug("[Picload] Cache File found");
+				eDebug("[ePicLoad] Cache File found");
 			}
 		}
 	}
@@ -894,18 +895,18 @@ void ePicLoad::decodeThumb()
 					if(!convert_8Bit_to_24Bit(m_filepara, tmp))
 					{
 						if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, tmp))
-							eDebug("[Picload] error saving cachefile");
+							eDebug("[ePicLoad] error saving cachefile");
 					}
 					else
-						eDebug("[Picload] error saving cachefile");
+						eDebug("[ePicLoad] error saving cachefile");
 					delete [] tmp;
 				}
 				else
-					eDebug("[Picload] Error malloc");
+					eDebug("[ePicLoad] Error malloc");
 			}
 			else
 				if(jpeg_save(cachefile.c_str(), m_filepara->ox, m_filepara->oy, m_filepara->pic_buffer))
-					eDebug("[Picload] error saving cachefile");
+					eDebug("[ePicLoad] error saving cachefile");
 		}
 		resizePic();
 	}
@@ -955,11 +956,11 @@ void ePicLoad::gotMessage(const Message &msg)
 			msg_main.send(Message(Message::decode_finished));
 			break;
 		case Message::quit: // called from decode thread
-			eDebug("[Picload] decode thread ... got quit msg");
+			eDebug("[ePicLoad] decode thread ... got quit msg");
 			quit(0);
 			break;
 		case Message::decode_finished: // called from main thread
-			//eDebug("[Picload] decode finished... %s", m_filepara->file);
+			//eDebug("[ePicLoad] decode finished... %s", m_filepara->file);
 			if((m_filepara != NULL) && (m_filepara->callback))
 				PictureData(m_filepara->picinfo.c_str());
 			else
@@ -975,7 +976,7 @@ void ePicLoad::gotMessage(const Message &msg)
 			msg_main.send(Message(Message::decode_finished));
 			break;
 		default:
-			eDebug("unhandled thread message");
+			eDebug("[ePicLoad] unhandled thread message");
 	}
 }
 
@@ -983,7 +984,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 {
 	if(async && threadrunning && m_filepara != NULL)
 	{
-		eDebug("[Picload] thread running");
+		eDebug("[ePicLoad] thread running");
 		m_filepara->callback = false;
 		return 1;
 	}
@@ -993,6 +994,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 		delete m_filepara;
 		m_filepara = NULL;
 	}
+
 
 	int file_id = -1;
 	unsigned char id[10];
@@ -1014,9 +1016,9 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 	if(file_id < 0 || m_filepara->max_x <= 0 || m_filepara->max_y <= 0)
 	{
 		if(file_id < 0)
-			eDebug("[Picload] <format not supported>");
+			eDebug("[ePicLoad] <format not supported>");
 		else
-			eDebug("[Picload] <error in Para>");
+			eDebug("[ePicLoad] <error in Para>");
 		if(async)
 		{
 			msg_thread.send(Message(Message::decode_error));
@@ -1048,7 +1050,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 		// in case of memeory leak, maybe we need this
 		//	delete m_filepara;
 		//	m_filepara = NULL;
-			eDebug("[Picload] <no data>");
+			eDebug("[ePicLoad] <no data>");
 			return 4;
 		}
 	}
@@ -1060,7 +1062,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 		//in case of memeory leak, maybe we need this
 		//	delete m_filepara;
 		//	m_filepara = NULL;
-			eDebug("[Picload] <no data>");
+			eDebug("[ePicLoad] <no data>");
 			return 4;
 		}
 	}
@@ -1145,7 +1147,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	result = 0;
 	if (m_filepara == NULL)
 	{
-		eDebug("picload - Weird situation, I wasn't decoding anything!");
+		eDebug("[ePicLoad] - Weird situation, I wasn't decoding anything!");
 		return 1;
 	}
 	if(m_filepara->pic_buffer == NULL)
@@ -1207,6 +1209,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 				tmp_buffer += h_x;
 			}
 
+
 			tmp_buffer += extra_stride;
 		}
 
@@ -1247,6 +1250,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 				tmp_buffer += surface->stride;
 			}
 		}
+
 
 		for(int a = m_filepara->oy; a > 0; --a)
 		{
@@ -1332,7 +1336,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
 		m_conf.background = strtoul(bg_str+1, NULL, 16);
-	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
+	eDebug("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
 			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
 			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
 	return 1;
@@ -1345,7 +1349,7 @@ SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y
 {
 	long asp1, asp2;
 	result = 0;
-	eDebug("deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
+	eDebug("[ePicLoad] deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
 	ePicLoad mPL;
 
 	switch(aspect)

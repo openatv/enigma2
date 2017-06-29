@@ -15,7 +15,7 @@ int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *dat
 	eDebugNoNewLineStart("SESSION(%d)/DATETIME %02x %02x %02x: ", session_nb, tag[0],tag[1], tag[2]);
 	for (int i=0; i<len; i++)
 		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-	eDebugEOL();
+	eDebugNoNewLine("\n");
 
 	if ((tag[0]==0x9f) && (tag[1]==0x84))
 	{

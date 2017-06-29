@@ -392,6 +392,7 @@ public:
 	void setRotorMoving(int, bool); // called from the frontend's
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }
+	bool isOrbitalPositionConfigured(int orbital_position);
 
 	PyObject *getBandCutOffFrequency(int slot_no, int orbital_position);
 	PyObject *getFrequencyRangeList(int slot_no, int orbital_position);

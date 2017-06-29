@@ -45,7 +45,8 @@ int mapEncoding(char *s_table)
 		return no_table_id | UTF16BE_ENCODING;
 	if (strcmp(s_table, "utf16le") == 0)
 		return no_table_id | UTF16LE_ENCODING;
-
+	else
+		eDebug("[eDVBTextEncodingHandler] unsupported table in encoding.conf: %s. ", s_table);
 	return -1;
 }
 

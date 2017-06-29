@@ -1,6 +1,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
+#include <lib/service/iservice.h>
 #include <errno.h>
 #include <sys/stat.h>
 
@@ -152,14 +153,14 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 	CFile f(recordings.c_str(), "r");
 	if (!f)
 	{
-//		eDebug("no recordings.epl found: %s: %m", recordings.c_str());
+//		eDebug("[eDVBMetaParser] no recordings.epl found: %s: %m", recordings.c_str());
 		return -1;
 	}
 
 	std::string description;
 	eServiceReferenceDVB ref;
 
-//	eDebug("parsing recordings.epl..");
+//	eDebug("[eDVBMetaParser] parsing recordings.epl..");
 
 	while (1)
 	{
@@ -183,7 +184,7 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 			description = line + 14;
 		else if ((line[0] == '/') && (ref.path.substr(ref.path.find_last_of('/')) == filename.substr(filename.find_last_of('/'))))
 		{
-//			eDebug("hit! ref %s descr %s", m_ref.toString().c_str(), m_name.c_str());
+//			eDebug("[eDVBMetaParser] hit! ref %s descr %s", m_ref.toString().c_str(), m_name.c_str());
 			m_ref = ref;
 			m_name = description;
 			m_description = "";
@@ -211,6 +212,20 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	CFile f(filename.c_str(), "w");
 	if (!f)
 		return -ENOENT;
+
+	if (ref.getName().empty())
+	{
+		ePtr<iServiceHandler> service_center;
+		ePtr<iStaticServiceInformation> service_info;
+		eServiceCenter::getInstance(service_center);
+		service_center->info(ref, service_info);
+		if (service_info)
+		{
+			std::string service_name;
+			service_info->getName(ref, service_name);
+			ref.setName(service_name);
+		}
+	}
 	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%lld\n%lld\n%s\n%d\n%d\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str(), m_packet_size, m_scrambled);
 	return 0;
 }

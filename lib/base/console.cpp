@@ -43,6 +43,7 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 
 		execvp(cmd, (char * const *)argv);
 				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
+		eDebug("[eConsoleAppContainer] Finished %s", cmd);
 		_exit(0);
 	}
 	if (close(pfdout[0]) == -1 || close(pfdin[1]) == -1 || close(pfderr[1]) == -1)
@@ -106,16 +107,19 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	if (running())
 		return -1;
 
+	eDebug("[eConsoleAppContainer] Starting %s", cmdline);
 	pid=-1;
 	killstate=0;
 
-	// get one read ,one write and the err pipe to the prog..
+	// get one read, one write and the err pipe to the prog..
 	pid = bidirpipe(fd, cmdline, argv, m_cwd.empty() ? 0 : m_cwd.c_str());
 
-	if ( pid == -1 )
+	if ( pid == -1 ) {
+		eDebug("[eConsoleAppContainer] failed to start %s", cmdline);
 		return -3;
+	}
 
-//	eDebug("pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
+//	eDebug("[eConsoleAppContainer] pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
 
 	::fcntl(fd[0], F_SETFL, O_NONBLOCK);
 	::fcntl(fd[1], F_SETFL, O_NONBLOCK);
@@ -142,7 +146,7 @@ void eConsoleAppContainer::kill()
 {
 	if ( killstate != -1 && pid != -1 )
 	{
-		eDebug("user kill(SIGKILL) console App");
+		eDebug("[eConsoleAppContainer] user kill(SIGKILL)");
 		killstate=-1;
 		/*
 		 * Use a negative pid value, to signal the whole process group
@@ -172,7 +176,7 @@ void eConsoleAppContainer::sendCtrlC()
 {
 	if ( killstate != -1 && pid != -1 )
 	{
-		eDebug("user send SIGINT(Ctrl-C) to console App");
+		eDebug("[eConsoleAppContainer] user send SIGINT(Ctrl-C)");
 		/*
 		 * Use a negative pid value, to signal the whole process group
 		 * ('pid' might not even be running anymore at this point)
@@ -230,7 +234,7 @@ void eConsoleAppContainer::readyRead(int what)
 	bool hungup = what & eSocketNotifier::Hungup;
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
-//		eDebug("what = %d");
+//		eDebug("[eConsoleAppContainer] readyRead what = %d", what);
 		char* buf = &buffer[0];
 		int rd;
 		while((rd = read(fd[0], buf, buffer.size())) > 0)
@@ -269,13 +273,13 @@ void eConsoleAppContainer::readyErrRead(int what)
 {
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
-//		eDebug("what = %d");
+//		eDebug("[eConsoleAppContainer] readyErrRead what = %d", what);
 		char* buf = &buffer[0];
 		int rd;
 		while((rd = read(fd[2], buf, buffer.size())) > 0)
 		{
 /*			for ( int i = 0; i < rd; i++ )
-				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
+				eDebug("[eConsoleAppContainer] %d = %c (%02x)", i, buf[i], buf[i] );*/
 			buf[rd]=0;
 			/*emit*/ dataAvail(std::make_pair(buf, rd));
 			stderrAvail(std::make_pair(buf, rd));
@@ -299,7 +303,7 @@ void eConsoleAppContainer::readyWrite(int what)
 		queue_data &d = outbuf.front();
 		int wr = ::write( fd[1], d.data+d.dataSent, d.len-d.dataSent );
 		if (wr < 0)
-			eDebug("eConsoleAppContainer write failed (%m)");
+			eDebug("[eConsoleAppContainer] write on fd=%d failed: %m", fd[1]);
 		else
 			d.dataSent += wr;
 		if (d.dataSent == d.len)
@@ -323,7 +327,7 @@ void eConsoleAppContainer::readyWrite(int what)
 				close(filefd[0]);
 				filefd[0] = -1;
 				::close(fd[1]);
-				eDebug("readFromFile done - closing eConsoleAppContainer stdin pipe");
+				eDebug("[eConsoleAppContainer] readFromFile done - closing stdin pipe");
 				fd[1]=-1;
 				dataSent(0);
 				out->stop();

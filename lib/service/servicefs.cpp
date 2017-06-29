@@ -130,14 +130,14 @@ eServiceFS::eServiceFS(const char *path, const char *additional_extensions): pat
 						if (sscanf(cmds, "0x%x:%16s", &id, buf2) == 2)
 							m_additional_extensions[id].push_back(buf2);
 						else
-							eDebug("parse additional_extension (%s) failed", cmds);
+							eDebug("[eServiceFS] parse additional_extension (%s) failed", cmds);
 					}
 					else
 					{
 						if (sscanf(cmds, "%d:%16s", &id, buf2) == 2)
 							m_additional_extensions[id].push_back(buf2);
 						else
-							eDebug("parse additional_extension (%s) failed", cmds);
+							eDebug("[eServiceFS] parse additional_extension (%s) failed", cmds);
 					}
 					if (!tmp)
 						break;

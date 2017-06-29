@@ -119,7 +119,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 
 void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 {
-	eDebug("setPage");
+	eDebug("[eSubtitleWidget] setPage");
 	m_dvb_page = p;
 	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
@@ -140,8 +140,8 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 			}
 			line++;
 		}
-		eDebug("add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
-		eDebug("disp width %d, disp height %d", p.m_display_size.width(), p.m_display_size.height());
+		eDebug("[eSubtitleWidget] add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
+		eDebug("[eSubtitleWidget] disp width %d, disp height %d", p.m_display_size.width(), p.m_display_size.height());
 		eRect r = eRect(it->m_position, it->m_pixmap->size());
 		r.scale(size().width(), p.m_display_size.width(), size().height(), p.m_display_size.height());
 		m_visible_region |= r;

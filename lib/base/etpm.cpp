@@ -78,7 +78,7 @@ bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, size_t len)
 
 	if (write(fd, buf, sizeof(buf)) != (ssize_t)sizeof(buf))
 	{
-		fprintf(stderr, "%s: incomplete write\n", __func__);
+		eDebug("[eTPM] %s: incomplete write: %m", __func__);
 		return false;
 	}
 
@@ -94,7 +94,7 @@ void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 
 	if (read(fd, buf, 4) != 4)
 	{
-		fprintf(stderr, "%s: incomplete read\n", __func__);
+		eDebug("[eTPM] %s: incomplete read: %m", __func__);
 		return NULL;
 	}
 
@@ -108,7 +108,7 @@ void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 	ssize_t rd = read(fd, val, *len);
 	if (rd < 0)
 	{
-		perror("eTPM::recv_cmd read");
+		eDebug("[eTPM] %s: incomplete read2: %m", __func__);
 		free(val);
 		val = (void *)0;
 	}
@@ -116,7 +116,7 @@ void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 	{
 		if ((size_t)rd != *len)
 		{
-			fprintf(stderr, "%s: incomplete read\n", __func__);
+			eDebug("[eTPM] %s: incomplete read3: %m", __func__);
 			free(val);
 			val = (void *)0;
 		}
