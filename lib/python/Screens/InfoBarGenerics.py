@@ -3610,8 +3610,6 @@ class InfoBarINFOpanel:
 			isHBBTV = True
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebkitHbbTV/plugin.pyo"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/QtHbbtv/plugin.pyo"):
-			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:
 			service = self.session.nav.getCurrentService()
@@ -4997,7 +4995,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if getMachineBuild() in ('inihdp', 'hd2400', 'dm7080', 'dm820', 'dm900', 'gb7252', 'vuultimo4k') or getBoxType() in ('spycat4k','spycat4kcombo'):
+		if getMachineBuild() in ('inihdp', 'hd2400', 'dm7080', 'dm820', 'dm900', 'gb7252', 'vuultimo4k'):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
