@@ -28,6 +28,8 @@ msgid ""
 "\n"
 "<This tuner is configured automatically>"
 msgstr ""
+"\n"
+"<Questo tuner è configurato automaticamente>"
 
 msgid ""
 "\n"
@@ -81,7 +83,7 @@ msgid ""
 "Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Gestione estensioni e plugin per il tuo%s %s"
+"Gestione estensioni e plugin per il tuo %s %s"
 
 #, python-format
 msgid ""
@@ -89,14 +91,14 @@ msgid ""
 "Online update of your %s %s software."
 msgstr ""
 "\n"
-"Aggiornamento online software %s %s."
+"Aggiornamento online del software del tuo %s %s."
 
 msgid ""
 "\n"
 "Press OK on your remote control to continue."
 msgstr ""
 "\n"
-"Premere OK per continuare."
+"Premere OK sul telecomando per continuare."
 
 msgid ""
 "\n"
@@ -167,11 +169,11 @@ msgstr ""
 
 #, python-format
 msgid " (Channel %s)"
-msgstr ""
+msgstr " (Canale %s)"
 
 #, python-format
 msgid " (Partition %d)"
-msgstr ""
+msgstr " (Partizione %d)"
 
 msgid " (PiP)"
 msgstr " (PiP)"
@@ -186,13 +188,13 @@ msgid " (disabled)"
 msgstr "(disabilitato)"
 
 msgid " (higher than any auto)"
-msgstr ""
+msgstr " (maggiore di qualunque automatico)"
 
 msgid " (higher than rotor any auto)"
-msgstr ""
+msgstr " (maggiore di qualunque rotor auto)"
 
 msgid " (lower than any auto)"
-msgstr ""
+msgstr " (minore di qualunque auto)"
 
 #, python-format
 msgid " Except %s"
@@ -206,24 +208,25 @@ msgid ""
 msgstr ""
 "Non avviata !! \n"
 "\n"
-"Controlla le configurazione del tuo emulatore"
+"Il binario della Cam deve essere nella commandline\n"
+"Controlla la configurazione del tuo emulatore"
 
 msgid " and"
-msgstr "e"
+msgstr " e"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
 msgid "%-H:%M - "
-msgstr ""
+msgstr "%-H:%M - "
 
 #, python-format
 msgid "%.0f GB"
-msgstr ""
+msgstr "%.0f GB"
 
 #, python-format
 msgid "%.0f MB"
-msgstr ""
+msgstr "%.0f MB"
 
 #, python-format
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
@@ -232,12 +235,12 @@ msgstr "%02d.%02d - %02d.%02d (%s%d min)"
 #. TRANSLATORS: short time representation hour:minute
 #, python-format
 msgid "%2d:%02d"
-msgstr ""
+msgstr "%2d:%02d"
 
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
-msgstr ""
+msgstr "%2d:%02d:%02d"
 
 msgid "%A %d %B"
 msgstr "%A %d %B"
@@ -257,7 +260,7 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -362,7 +365,7 @@ msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
 msgid "%d.%m.   "
-msgstr ""
+msgstr "%d.%m.   "
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
@@ -370,7 +373,7 @@ msgstr "%k:%M %e/%m"
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
-msgstr "%s %s Controllo remoto avanzatol (nativo)"
+msgstr "%s %s Controllo remoto avanzato (nativo)"
 
 #, python-format
 msgid "%s %s front panel"
@@ -438,25 +441,25 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Disponibile solo se più di un'interfaccia è attiva."
 
 msgid "* current animation"
-msgstr ""
+msgstr "* animazione corrente"
 
 msgid "+/-"
 msgstr "+/-"
 
 msgid "-1"
-msgstr ""
+msgstr "-1"
 
 msgid "-2"
-msgstr ""
+msgstr "-2"
 
 msgid "-3"
-msgstr ""
+msgstr "-3"
 
 msgid "-4"
-msgstr ""
+msgstr "-4"
 
 msgid "-5"
-msgstr ""
+msgstr "-5"
 
 msgid "/s"
 msgstr "/s"
@@ -468,40 +471,40 @@ msgid "/var directory"
 msgstr "directory /var"
 
 msgid "0"
-msgstr ""
+msgstr "0"
 
 msgid "0 (disabled)"
 msgstr "0 (disabilitato)"
 
 msgid "0.2s"
-msgstr ""
+msgstr "0.2s"
 
 msgid "0.3s"
-msgstr ""
+msgstr "0.3s"
 
 msgid "0.4s"
-msgstr ""
+msgstr "0.4s"
 
 msgid "0.5s"
-msgstr ""
+msgstr "0.5s"
 
 msgid "0.6s"
-msgstr ""
+msgstr "0.6s"
 
 msgid "0.7s"
-msgstr ""
+msgstr "0.7s"
 
 msgid "0.8s"
-msgstr ""
+msgstr "0.8s"
 
 msgid "0.9s"
-msgstr ""
+msgstr "0.9s"
 
 msgid "1"
 msgstr "1"
 
 msgid "1 GB"
-msgstr ""
+msgstr "1 GB"
 
 msgid "1 min."
 msgstr "1 min."
@@ -519,13 +522,13 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "1.2s"
-msgstr ""
+msgstr "1.2s"
 
 msgid "1.5s"
-msgstr ""
+msgstr "1.5s"
 
 msgid "1.7s"
-msgstr ""
+msgstr "1.7s"
 
 msgid "10"
 msgstr "10"
@@ -540,7 +543,7 @@ msgid "10 seconds"
 msgstr "10 secondi"
 
 msgid "1024 Mb"
-msgstr ""
+msgstr "1024 Mb"
 
 msgid "1080i"
 msgstr "1080i"
@@ -552,10 +555,10 @@ msgid "1080i 60Hz"
 msgstr "1080i 60Hz"
 
 msgid "1080i50"
-msgstr ""
+msgstr "1080i50"
 
 msgid "1080i50: 24p/50i/60i"
-msgstr ""
+msgstr "1080i50: 24p/50i/60i"
 
 msgid "1080p 24Hz"
 msgstr "1080p 24Hz"
@@ -573,7 +576,7 @@ msgid "1080p 60Hz"
 msgstr "1080p 60Hz"
 
 msgid "1080p50: 24p/50p/60p"
-msgstr ""
+msgstr "1080p50: 24p/50p/60p"
 
 msgid "120"
 msgstr "120"
@@ -591,7 +594,7 @@ msgid "15 seconds"
 msgstr "15 secondi"
 
 msgid "1536 Mb"
-msgstr ""
+msgstr "1536 Mb"
 
 msgid "16:10"
 msgstr "16:10"
@@ -618,16 +621,16 @@ msgid "1X"
 msgstr "1X"
 
 msgid "1s"
-msgstr ""
+msgstr "1s"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid "2 GB"
-msgstr ""
+msgstr "2 GB"
 
 msgid "2.5s"
-msgstr ""
+msgstr "2.5s"
 
 msgid "20"
 msgstr "20"
@@ -636,10 +639,10 @@ msgid "20 seconds"
 msgstr "20 secondi"
 
 msgid "2048 Mb"
-msgstr ""
+msgstr "2048 Mb"
 
 msgid "2160p50: 24p/50p/60p"
-msgstr ""
+msgstr "2160p50: 24p/50p/60p"
 
 msgid "23.976"
 msgstr "23.976"
@@ -669,25 +672,25 @@ msgid "2nd Infobar INFO"
 msgstr "2^ infobar INFO"
 
 msgid "2s"
-msgstr ""
+msgstr "2s"
 
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 msgid "2x, 4x"
-msgstr ""
+msgstr "2x, 4x"
 
 msgid "2x, 4x, 6x"
-msgstr ""
+msgstr "2x, 4x, 6x"
 
 msgid "2x, 4x, 6x, 8x"
-msgstr ""
+msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
 
 msgid "3.5s"
-msgstr ""
+msgstr "3.5s"
 
 msgid "30"
 msgstr "30"
@@ -696,7 +699,7 @@ msgid "30 min."
 msgstr "30 min."
 
 msgid "30 minutes"
-msgstr ""
+msgstr "30 minuti"
 
 msgid "30 seconds"
 msgstr "30 secondi"
@@ -711,7 +714,7 @@ msgid "3D Surround"
 msgstr "3D Surround"
 
 msgid "3D Surround Speaker Position"
-msgstr ""
+msgstr "Posizione Altoparlanti 3D Surround"
 
 msgid "3X"
 msgstr "3X"
@@ -720,16 +723,16 @@ msgid "3d mode"
 msgstr "modalità 3D"
 
 msgid "3s"
-msgstr ""
+msgstr "3s"
 
 msgid "4"
-msgstr ""
+msgstr "4"
 
 msgid "4 GB"
-msgstr ""
+msgstr "4 GB"
 
 msgid "480p 24Hz"
-msgstr ""
+msgstr "480p 24Hz"
 
 msgid "4:3"
 msgstr "4:3"
@@ -744,7 +747,7 @@ msgid "4X"
 msgstr "4X"
 
 msgid "4s"
-msgstr ""
+msgstr "4s"
 
 msgid "5"
 msgstr "5"
@@ -756,7 +759,7 @@ msgid "5 min."
 msgstr "5 min."
 
 msgid "5 minutes"
-msgstr ""
+msgstr "5 minuti"
 
 msgid "5 seconds"
 msgstr "5 secondi"
@@ -765,13 +768,13 @@ msgid "512 Mb"
 msgstr "512 Mb"
 
 msgid "5s"
-msgstr ""
+msgstr "5s"
 
 msgid "60"
 msgstr "60"
 
 msgid "60 minutes"
-msgstr ""
+msgstr "60 minuti"
 
 msgid "64 Mb"
 msgstr "64 Mb"
@@ -783,25 +786,25 @@ msgid "720p 24Hz"
 msgstr "720p 24Hz"
 
 msgid "720p50"
-msgstr ""
+msgstr "720p50"
 
 msgid "720p50: 24p/50p/60p"
-msgstr ""
+msgstr "720p50: 24p/50p/60p"
 
 msgid "8 GB"
-msgstr ""
+msgstr "8 GB"
 
 msgid "< Default >"
-msgstr ""
+msgstr "< Default >"
 
 msgid "< Default with Picon >"
-msgstr ""
+msgstr "< Default con Picon >"
 
 msgid "<Current movielist location>"
-msgstr "<Percorso attuale>"
+msgstr "<Percorso attuale elenco filmati>"
 
 msgid "<Default movie location>"
-msgstr "<Percorso predefinito>"
+msgstr "<Percorso predefinito filmato>"
 
 msgid "<Last timer location>"
 msgstr "<Ultimo percorso timer>"
@@ -821,12 +824,15 @@ msgid ""
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
+"Una registrazione, recTimer o PowerTimer è in esecuzione o inizia in 15 minuti.\n"
+"Estendere il timer di sleep di 30 minuti. Il tuo %s %s\n"
+"si spegnerà dopo l'evento di Registrazione o il PowerTimer. Attivare lo Standby ora ?"
 
 msgid ""
 "A background update check is in progress, please wait a few minutes and try "
 "again."
 msgstr ""
-"Un aggiornamento in background è in corso, attendi qualche minuti e riprova. "
+"Un aggiornamento in background è in corso, attendi qualche minuto e riprova. "
 
 #, python-format
 msgid ""
@@ -857,7 +863,7 @@ msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Un Powertime scaduto vuole riavviare la GUI.\n"
+"Un Powertimer scaduto vuole riavviare la GUI.\n"
 "Farlo ora?"
 
 #, python-format
@@ -865,7 +871,7 @@ msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Un Powertime scaduto vuole mettere il tuo\n"
+"Un Powertimer scaduto vuole mettere il tuo\n"
 "%s %s in standby. Farlo ora?"
 
 #, python-format
@@ -873,7 +879,7 @@ msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Un Powertime scaduto vuole spegnere il tuo %s %s.\n"
+"Un Powertimer scaduto vuole spegnere il tuo %s %s.\n"
 "Farlo ora?"
 
 #, python-format
@@ -881,7 +887,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Il termine di una registrazione programmata prevede\n"
+"Il termine di una registrazione programmata vuole\n"
 "porre in standby il %s %s. Farlo ora?"
 
 #, python-format
@@ -904,21 +910,21 @@ msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
-"Registrazione in corso!\n"
+"Una registrazione è in corso!\n"
 "Cosa si desidera fare?"
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
-"Registrazioni in corso! Prima di poter configurare il motore, è necessario "
-"arrestarle!"
+"Una registrazione è in corso! Interrompi la registrazione prima di "
+"configurare il motore !"
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "scan."
 msgstr ""
-"La registrazione è  in esecuzione. Interrompere la registrazione prima di "
+"Una registrazione è  in esecuzione. Interrompi la registrazione prima di "
 "tentare la scansione."
 
 msgid ""
@@ -983,16 +989,22 @@ msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
+"Un timer ha fallito la registrazione!\n"
+"Annullare la pseudo registrazione (esempio EPG refresh) e riprovare?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
+"Un timer ha fallito la registrazione!\n"
+"Annullare lo streaming e riprovare?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable PIP and try again?\n"
 msgstr ""
+"Un timer ha fallito la registrazione!\n"
+"Disabilitare PIP e riprovare?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -1002,22 +1014,22 @@ msgstr ""
 "Disabilitare la TV e riprovare?\n"
 
 msgid "AAC downmix"
-msgstr ""
+msgstr "AAC downmix"
 
 msgid "AAC transcoding"
-msgstr ""
+msgstr "AAC transcoding"
 
 msgid "AC3"
-msgstr ""
+msgstr "AC3"
 
 msgid "AC3/Dolby offset"
 msgstr "Compensazione AC3/Dolby"
 
 msgid "AFP"
-msgstr ""
+msgstr "AFP"
 
 msgid "AFP Setup"
-msgstr ""
+msgstr "Configurazione AFP"
 
 msgid "AV Setup"
 msgstr "Configura AV"
@@ -1030,16 +1042,16 @@ msgid "Abort"
 msgstr "Annullare"
 
 msgid "Aborted a pseudo recording.\n"
-msgstr ""
+msgstr "Annullata una pseudo registrazione.\n"
 
 msgid "Aborted a streaming service.\n"
-msgstr ""
+msgstr "Annullato un servizio streaming.\n"
 
 msgid "Aborting updateprogress"
-msgstr "Annulla il processo di aggiornamento"
+msgstr "Annullamento del processo di aggiornamento"
 
 msgid "About"
-msgstr ""
+msgstr "Informazioni"
 
 msgid "About..."
 msgstr "Informazioni..."
@@ -1051,7 +1063,7 @@ msgid "Activate"
 msgstr "Attivo"
 
 msgid "Activate HbbTV (Redbutton)"
-msgstr ""
+msgstr "Attivare HbbTV (PulsanteRosso)"
 
 msgid "Activate MAC-address configuration"
 msgstr "Attiva la configurazione del MAC-address"
@@ -1063,10 +1075,10 @@ msgid "Activate current configuration"
 msgstr "Attivare configurazione attuale"
 
 msgid "Activate timeshift End"
-msgstr ""
+msgstr "Attivare Fine TimeShift"
 
 msgid "Activate timeshift end and pause"
-msgstr ""
+msgstr "Attivare Fine TimeShift e Pausa"
 
 msgid "Active"
 msgstr "Attivo"
@@ -1114,7 +1126,7 @@ msgid "Add bookmark"
 msgstr "Agg. contrassegno"
 
 msgid "Add bouquet services"
-msgstr ""
+msgstr "Agg. servizi bouquet"
 
 msgid "Add directory to playlist"
 msgstr "Aggiungere cartella alla playlist"
@@ -1138,7 +1150,7 @@ msgid "Add recording (indefinitely)"
 msgstr "Aggiungi registrazione (tempo indeterminato)"
 
 msgid "Add recording (stop after current event)"
-msgstr "Aggiungi registrazione (ferme dopo questo evento)"
+msgstr "Aggiungi registrazione (ferma dopo questo evento)"
 
 msgid "Add service"
 msgstr "Agg. canale"
@@ -1168,7 +1180,7 @@ msgid "Additional Info"
 msgstr "Info aggiuntive"
 
 msgid "Additional files/folders to backup"
-msgstr ""
+msgstr "Files/cartelle aggiuntive da backuppare"
 
 msgid "Address"
 msgstr "Indirizzo"
@@ -1251,12 +1263,14 @@ msgid ""
 "Allows you to adjust the amount of time the resolution infomation display on "
 "screen."
 msgstr ""
+"Ti permette di regolare il tempo per cui le info di risoluzione vengono "
+"sullo schermo."
 
 msgid "Allows you to hide the extensions of known file types."
-msgstr "Ti abilita a nascondere le estensioni dei file conosciuti."
+msgstr "Ti abilita a nascondere le estensioni dei tipi file conosciuti."
 
 msgid "Allows you to setup the button to do what you choose."
-msgstr "Ti abilita a configurare il tasto da te scelto."
+msgstr "Ti permette di configurare un pulsante a fare quello che decidi tu."
 
 msgid "Alpha"
 msgstr "Trasparenza"
@@ -1265,10 +1279,10 @@ msgid "Alphanumeric"
 msgstr "Alfanumerico"
 
 msgid "Also on standby"
-msgstr ""
+msgstr "Anche in standby"
 
 msgid "Alternative"
-msgstr "Alternative"
+msgstr "Alternativa"
 
 msgid "Always ask"
 msgstr "Chiedere sempre"
@@ -1277,7 +1291,7 @@ msgid "Always hide infobar"
 msgstr "Nascondi sempre infobar"
 
 msgid "Always use smart1080p mode"
-msgstr ""
+msgstr "Usa sempre il modo smart1080p"
 
 msgid "An empty filename is illegal."
 msgstr "Nome di file vuoto: non consentito !"
@@ -1292,13 +1306,13 @@ msgid "An unknown error occurred!"
 msgstr "Si è verificato un errore sconosciuto !"
 
 msgid "Animation Setup"
-msgstr ""
+msgstr "Configurazione Animazione"
 
 msgid "Animation Speed"
-msgstr ""
+msgstr "Velocità animazione"
 
 msgid "Animations"
-msgstr ""
+msgstr "Animazioni"
 
 msgid "Any activity"
 msgstr "Tutte le attività"
@@ -1310,17 +1324,17 @@ msgid "Are you ready to run the script ?"
 msgstr "Avviare lo script? "
 
 msgid "Are you sure to purge all deleted userbouquets?"
-msgstr ""
+msgstr "Sei sicuro di eliminare definitivamente i bouquet utente cancellati?"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
-msgstr ""
+msgstr "Sei sicuro di rimuovere tutti i servizi %d.%d%s%s ?"
 
 msgid "Are you sure to remove all cable services?"
-msgstr ""
+msgstr "Sei sicuro di rimuovere tutti i servizi via cavo?"
 
 msgid "Are you sure to remove all terrestrial services?"
-msgstr ""
+msgstr "Sei sicuro di rimuovere tutti i servizi terrestri?"
 
 msgid "Are you sure to remove this entry?"
 msgstr "Sei sicuro di voler eliminare questa voce?"
@@ -1393,7 +1407,7 @@ msgid ""
 "STB will restart after the restore"
 msgstr ""
 "Sei sicuro di voler ripristinare il backup %s %s ? \n"
-"Il ricevitore sarà riavviato dopo il ripristin"
+"Il ricevitore sarà riavviato dopo il ripristino"
 
 msgid ""
 "Are you sure you want to restore your STB backup?\n"
@@ -1403,7 +1417,7 @@ msgstr ""
 "Il ricevitore sarà riavviato dopo il ripristino"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
-msgstr "Sei sicuro di voler salvare la cache EPG per:\n"
+msgstr "Sei sicuro di voler salvare la cache EPG in:\n"
 
 msgid "Are you sure you want to send this log:\n"
 msgstr "Sei sicuro di voler inviare questo log:\n"
@@ -1449,7 +1463,7 @@ msgid "Attach a file"
 msgstr "Allegare un file"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Audio Auto Volume Level"
 msgstr "Audio Auto Volume Level"
@@ -1465,7 +1479,7 @@ msgid "Audio Settings"
 msgstr "Configurazioni audio"
 
 msgid "Audio Source"
-msgstr ""
+msgstr "Sorgente Audio"
 
 msgid "Audio Sync"
 msgstr "Sincronizzazione Audio"
@@ -1500,7 +1514,7 @@ msgid "Auto Standby"
 msgstr "Auto Standby"
 
 msgid "Auto Volume Level"
-msgstr ""
+msgstr "Livello volume automatico"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Divisione automatica capitoli ogni x minuti (0=mai)"
@@ -1533,7 +1547,7 @@ msgid "Automatic resolution"
 msgstr "Risoluzione automatica"
 
 msgid "Automatic resolution label"
-msgstr ""
+msgstr "Etichetta Risoluzione Automatica"
 
 msgid "Automatic scan"
 msgstr "Scansione automatica"
@@ -1565,10 +1579,10 @@ msgstr "B"
 
 #, python-format
 msgid "BC%d"
-msgstr ""
+msgstr "BC%d"
 
 msgid "BDMV Bludisc (HDTV titles only)"
-msgstr ""
+msgstr "BDMV Bludisc (HDTV titles only)"
 
 msgid "BDMV Compatible Bludisc (HDTV only)"
 msgstr ""
@@ -1593,7 +1607,7 @@ msgid "Back-up Tool for a %s\n"
 msgstr "Back-up Tool per  %s\n"
 
 msgid "Back/Recall"
-msgstr ""
+msgstr "Indietro/Richiama"
 
 msgid "Background"
 msgstr "Sfondo"
@@ -1701,7 +1715,7 @@ msgid "Behavior when a movie reaches the end"
 msgstr "Comportamento quando finisce un video"
 
 msgid "Big PiP"
-msgstr ""
+msgstr "Pip grande"
 
 msgid "Bitrate:"
 msgstr "Bitrate:"
@@ -1716,7 +1730,7 @@ msgid "Black screen till locked"
 msgstr "Schermo nero fino al blocco"
 
 msgid "Blinking REC Symbol"
-msgstr ""
+msgstr "Simbolo REC lampeggiante"
 
 msgid "Block noise reduction"
 msgstr "Riduzione disturbo blocchi"
@@ -1744,7 +1758,7 @@ msgstr "Luminosità"
 
 #, python-format
 msgid "Buffering %d%%"
-msgstr ""
+msgstr "Buffering %d%%"
 
 msgid "Buffers:"
 msgstr "Buffers:"
@@ -1920,7 +1934,7 @@ msgid "Calculation complete"
 msgstr "Calcolo completo"
 
 msgid "Calibrate"
-msgstr "Calibrate"
+msgstr "Calibrazione"
 
 msgid ""
 "Can't going to live TV!\n"
