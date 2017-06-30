@@ -46,7 +46,7 @@ from Screens.TimerEntry import TimerEntry as TimerEntry
 from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
 from boxbranding import getBoxType, getMachineProcModel, getMachineBuild, getMachineBrand, getMachineName
 
 from time import time, localtime, strftime
@@ -288,6 +288,11 @@ class InfoBarScreenSaver:
 			self.show()
 			self.ScreenSaverTimerStart()
 			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
+
+class HideVBILine(Screen):
+	skin = """<screen position="0,0" size="%s,%s" backgroundColor="0" flags="wfNoBorder"/>""" % (getDesktop(0).size().width() * 2/3, getDesktop(0).size().height() / 360)
+	def __init__(self, session):
+		Screen.__init__(self, session)
 
 class SecondInfoBar(Screen):
 	ADD_TIMER = 0
@@ -561,6 +566,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
+		self.hideVBILineScreen = self.session.instantiateDialog(HideVBILine)
+		self.hideVBILineScreen.show()
+
 		self.onShowHideNotifiers = []
 
 		self.standardInfoBar = False
@@ -570,6 +578,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if isStandardInfoBar(self):
 			self.SwitchSecondInfoBarScreen()
 		self.onLayoutFinish.append(self.__layoutFinished)
+		self.onExecBegin.append(self.__onExecBegin)
+
+	def __onExecBegin(self):
+		self.showHideVBI()
 
 	def __layoutFinished(self):
 		if self.secondInfoBarScreen:
@@ -577,6 +589,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
+		self.hideVBILineScreen.hide()
 		try:
 			if self.pvrStateDialog:
 				pass
@@ -695,6 +708,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.execing:
 			if config.usage.show_infobar_on_zap.value:
 				self.doShow()
+		self.showHideVBI()
 
 	def startHideTimer(self):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
@@ -950,6 +964,27 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					break
 		else:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def checkHideVBI(self):
+		service = self.session.nav.getCurrentlyPlayingServiceReference()
+		servicepath = service and service.getPath()
+		if servicepath and servicepath.startswith("/"):
+			if service.toString().startswith("1:"):
+				info = eServiceCenter.getInstance().info(service)
+				service = info and info.getInfoString(service, iServiceInformation.sServiceref)
+				FLAG_HIDE_VBI = 512
+				return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_HIDE_VBI and True
+			else:
+				return ".hidvbi." in servicepath.lower()
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		return info and info.getInfo(iServiceInformation.sHideVBI)
+
+	def showHideVBI(self):
+		if self.checkHideVBI():
+			self.hideVBILineScreen.show()
+		else:
+			self.hideVBILineScreen.hide()
 
 class BufferIndicator(Screen):
 	def __init__(self, session):
@@ -3575,8 +3610,6 @@ class InfoBarINFOpanel:
 			isHBBTV = True
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebkitHbbTV/plugin.pyo"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/QtHbbtv/plugin.pyo"):
-			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:
 			service = self.session.nav.getCurrentService()
@@ -3658,7 +3691,7 @@ class InfoBarQuickMenu:
 		if config.workaround.blueswitch.value == "1":
 			self.showExtensionSelection()
 		else:
-			self.quickmenuStart()
+			self.quickmenuStart()			
 
 	def quickmenuStart(self):
 		try:
@@ -4962,7 +4995,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if getMachineBuild() in ('inihdp', 'hd2400', 'dm7080', 'dm820', 'dm900', 'gb7252', 'vuultimo4k') or getBoxType() in ('spycat4k','spycat4kcombo'):
+		if getMachineBuild() in ('inihdp', 'hd2400', 'dm7080', 'dm820', 'dm900', 'gb7252', 'vuultimo4k'):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:

@@ -1923,6 +1923,10 @@ int eDVBServicePlay::getInfo(int w)
 		if (m_dvb_service)
 			return m_dvb_service->isDedicated3D();
 		return false;
+	case sHideVBI: 
+		if (m_dvb_service) 
+			return m_dvb_service->doHideVBI();
+		return false;
 	case sVideoPID:
 		if (m_dvb_service)
 		{
