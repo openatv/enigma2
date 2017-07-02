@@ -828,6 +828,9 @@ void eDVBDB::saveServicelist(const char *file)
 		{
 			fprintf(f, "\ta %d:%d:%d:%d:%d\n",
 				atsc.frequency, atsc.inversion, atsc.modulation, flags, atsc.system);
+			if (g)
+				fprintf(g, "a:%d:%d:%d:%d:%d\n",
+					atsc.frequency, atsc.inversion, atsc.modulation, flags, atsc.system);
 		}
 		fprintf(f, "/\n");
 		channels++;
