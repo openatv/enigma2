@@ -328,6 +328,8 @@ class PluginDownloadBrowser(Screen):
 		})
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
+			if config.plugins.softwaremanager.overwriteConfigFiles.value == "Y":
+				self.ipkg += " --force-maintainer"
 			self.ipkg_install = self.ipkg + ' install'
 			self.ipkg_remove =  self.ipkg + ' remove --autoremove'
 		else:

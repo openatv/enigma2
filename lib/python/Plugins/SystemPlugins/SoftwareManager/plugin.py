@@ -43,8 +43,9 @@ config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection([
 	("Y", _("Yes, always")),
 	("N", _("No, never")),
-	("ask", _("Always ask"))
-], "ask")
+	# opkg does not support interactive use
+	# ("ask", _("Always ask"))
+], "N")
 config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
 config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
 config.plugins.softwaremanager.epgcache = ConfigYesNo(default=True)
