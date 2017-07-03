@@ -12,9 +12,7 @@ from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLo
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
-from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eEnv, eEPGCache
-from Tools.Directories import *
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)

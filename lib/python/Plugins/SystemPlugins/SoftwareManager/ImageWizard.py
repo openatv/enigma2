@@ -1,13 +1,11 @@
 from os import access, path, W_OK, R_OK
 
-from enigma import eEnv
-
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
 from Screens.Rc import Rc
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Components.Pixmap import Pixmap
-from Components.config import config, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
+from Components.config import config, ConfigBoolean
 from Components.Harddisk import harddiskmanager
 from BackupRestore import getBackupFilename, getBackupDirectory
 
