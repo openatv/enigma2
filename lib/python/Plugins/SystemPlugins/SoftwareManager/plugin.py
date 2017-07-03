@@ -327,7 +327,7 @@ class UpdatePluginMenu(Screen):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_ERROR)
 
 	def startRestore(self, ret=False):
 		if ret:
