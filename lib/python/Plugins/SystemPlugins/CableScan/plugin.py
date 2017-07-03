@@ -242,7 +242,7 @@ def getNimList():
 	return [x for x in nimmanager.getNimListOfType("DVB-C") if config.Nims[x].configMode.value != "nothing"]
 
 def CableScanMain(session, **kwargs):
-		Session.open(CableScanScreen, getNimList())
+		session.open(CableScanScreen, getNimList())
 
 def restartScanAutoStartTimer(reply=False):
 	if reply:
@@ -270,10 +270,14 @@ def standbyCountChanged(value):
 		inStandby.onClose.append(leaveStandby)
 		CableScanAutoStartTimer.startLongTimer(150)
 
-def startSession(session, **kwargs):
+def autostart(reason, **kwargs):
 	global Session
-	Session = session
-	config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call=False)
+	if reason == 0 and "session" in kwargs and not Session:
+		Session = kwargs["session"]
+		config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call=False)
+	elif reason == 1 and Session:
+		Session = None
+		config.misc.standbyCounter.removeNotifier(standbyCountChanged)
 
 def CableScanStart(menuid, **kwargs):
 	if menuid == "scan" and getNimList():
@@ -284,6 +288,6 @@ def CableScanStart(menuid, **kwargs):
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-C"):
 		return [PluginDescriptor(name=_("Cable Scan"), description="Scan cable provider channels", where = PluginDescriptor.WHERE_MENU, fnc=CableScanStart),
-			PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=startSession)]
+			PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart)]
 	else:
 		return []
