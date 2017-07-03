@@ -17,19 +17,22 @@ def InitTimeZones():
 	config.timezone.val.addNotifier(timezoneNotifier, initial_call = True, immediate_feedback = True)
 	config.timezone.val.callNotifiersOnSaveAndCancel = True
 
-def sorttz(tzlist):
+def sorttzChoices(tzchoices):
 	sort_list = []
-	for tzitem in tzlist:
-		if tzitem.startswith("GMT"):
-			if len(tzitem[3:]) > 1 and (tzitem[3:4] == "-" or tzitem[3:4] == "+") and tzitem[4:].isdigit():
-				sortkey = int(tzitem[3:])
+	for tzitem in tzchoices:
+		if tzitem[0].startswith("GMT"):
+			if len(tzitem[0][3:]) > 1 and (tzitem[0][3:4] == "-" or tzitem[0][3:4] == "+") and tzitem[0][4:].isdigit():
+				sortkey = int(tzitem[0][3:])
 			else:
 				sortkey = 0
 		else:
-			sortkey = tzitem
+			sortkey = tzitem[1]
 		sort_list.append((tzitem, sortkey))
-	sort_list = sorted(sort_list, key=lambda listItem: listItem[1])
+	sort_list.sort(key=lambda listItem: listItem[1])
 	return [i[0] for i in sort_list]
+
+def sorttz(tzlist):
+	return [i[0] for i in sorttzChoices(zip(tzlist, tzlist))]
 
 class Timezones:
 	tzbase = "/usr/share/zoneinfo"
@@ -98,6 +101,7 @@ class Timezones:
 		"Australia/North": _("Northern Territory"),
 		"Australia/South": _("South Australia"),
 		"Australia/West": _("Western Australia"),
+		"Brazil/DeNoronha": _("Fernando de Noronha"),
 		"Pacific/Chatham": _("Chatham Islands"),
 		"Pacific/Easter": _("Easter Island"),
 		"Pacific/Galapagos": _("Galapagos Islands"),
@@ -118,7 +122,7 @@ class Timezones:
 	def getTimezoneList(self, area=None):
 		if area == None:
 			area = config.timezone.area.getValue()
-		return [(tzname, self.getUserFriendlyTZName(area, tzname)) for tzname in sorttz(self.timezones[area]) if self.getUserFriendlyTZName(area, tzname)]
+		return sorttzChoices((tzname, self.getUserFriendlyTZName(area, tzname)) for tzname in self.timezones[area] if self.getUserFriendlyTZName(area, tzname))
 
 	default_for_area = {
 		'Europe': 'London',
