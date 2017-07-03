@@ -46,6 +46,9 @@ def getBackupDirectory():
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
 
+def getBackupFullPath():
+	return path.join(getBackupPath(), getBackupFilename())
+
 def getBackupSymlinkPath():
 	return path.join("/tmp", getBackupFilename())
 
@@ -77,7 +80,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		self.finished_cb = None
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.fullbackupfilename = getBackupFullPath()
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -100,14 +103,18 @@ class BackupScreen(Screen, ConfigListScreen):
 			self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
-				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
+				self.newfilename = path.join(self.backuppath, dt + '-' + self.backupfile)
 				if path.exists(self.newfilename):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."), cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs], finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
+				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."),
+					cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],
+					finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 			else:
-				self.session.open(Console, title=_("Backup is running..."), cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs], finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
+				self.session.open(Console, title=_("Backup is running..."),
+					cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],
+					finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
@@ -324,7 +331,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.finished_cb = None
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.fullbackupfilename = getBackupFullPath()
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.onLayoutFinish.append(self.layoutFinished)

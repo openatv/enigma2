@@ -1,4 +1,4 @@
-from os import access, W_OK, R_OK
+from os import access, path, W_OK, R_OK
 
 from enigma import eEnv
 
@@ -9,11 +9,9 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
-import BackupRestore
+from BackupRestore import getBackupFilename, getBackupDirectory
 
 config.misc.firstrun = ConfigBoolean(default=True)
-
-backupfile = "enigma2settingsbackup.tar.gz"
 
 def checkConfigBackup():
 	parts = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
@@ -22,36 +20,16 @@ def checkConfigBackup():
 			parts.remove(x)
 	if len(parts):
 		for x in parts:
-			if x[1].endswith('/'):
-				fullbackupfile = x[1] + 'backup/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.value = str(x[1])
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
-			else:
-				fullbackupfile = x[1] + '/backup/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.value = str(x[1])
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
+			if fileExists(path.join(x[1], getBackupDirectory(), getBackupFilename())):
+				config.plugins.configurationbackup.backuplocation.value = str(x[1])
+				config.plugins.configurationbackup.backuplocation.save()
+				config.plugins.configurationbackup.save()
+				return x
 		return None
 
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.value
-	if backuplocation.endswith('/'):
-		fullbackupfile = backuplocation + 'backup/' + backupfile
-		if fileExists(fullbackupfile):
-			return True
-		else:
-			return False
-	else:
-		fullbackupfile = backuplocation + '/backup/' + backupfile
-		if fileExists(fullbackupfile):
-			return True
-		else:
-			return False
+	return fileExists(path.join(backuplocation, getBackupDirectory(), getBackupFilename()))
 
 if checkConfigBackup() is None:
 	backupAvailable = 0
