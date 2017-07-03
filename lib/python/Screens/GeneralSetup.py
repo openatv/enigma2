@@ -611,8 +611,6 @@ class GeneralSetup(Screen):
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif selected == _("Restore backup"):
 			self.backuppath = getBackupPath()
-			if not path.isdir(self.backuppath):
-				self.backuppath = getBackupPath()
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
