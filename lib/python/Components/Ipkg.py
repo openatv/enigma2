@@ -2,6 +2,7 @@ import os
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
 from boxbranding import getImageDistro
+from Components.config import config
 
 opkgDestinations = []
 opkgStatusPath = ''
@@ -61,7 +62,10 @@ class IpkgComponent:
 	CMD_UPGRADE_LIST = 5
 
 	def __init__(self, ipkg='opkg'):
-		self.ipkg = ipkg
+		if config.plugins.softwaremanager.overwriteConfigFiles.value == "Y" and ipkg == "opkg":
+			self.ipkg = "opkg --force-maintainer"
+		else:
+			self.ipkg = ipkg
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
 		self.callbackList = []

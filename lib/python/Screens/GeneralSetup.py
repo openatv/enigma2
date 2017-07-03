@@ -610,12 +610,7 @@ class GeneralSetup(Screen):
 		elif selected == _("Create backup"):
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif selected == _("Restore backup"):
-			self.backuppath = getBackupPath()
-			if not path.isdir(self.backuppath):
-				self.backuppath = getBackupPath()
-			self.backupfile = getBackupFilename()
-			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
-			if os_path.exists(self.fullbackupfilename):
+			if path.exists(path.join(getBackupPath(), getBackupFilename())):
 				self.session.openWithCallback(
 					self.startRestore, MessageBox,
 					_("Are you sure you want to restore your %s %s backup?\nYour %s %s will reboot after the restore") %
@@ -731,7 +726,7 @@ class GeneralSetup(Screen):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_ERROR)
 
 	def startRestore(self, ret=False):
 		if ret:

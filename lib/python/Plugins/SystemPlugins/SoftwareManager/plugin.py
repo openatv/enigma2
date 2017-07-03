@@ -35,16 +35,16 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUG
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from ImageWizard import ImageWizard
-from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename
+from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getBackupFilename, getBackupFullPath
 from SoftwareTools import iSoftwareTools
-import BackupRestore
 
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection([
 	("Y", _("Yes, always")),
 	("N", _("No, never")),
-	("ask", _("Always ask"))
-], "ask")
+	# opkg does not support interactive use
+	# ("ask", _("Always ask"))
+], "N")
 config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
 config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
 config.plugins.softwaremanager.epgcache = ConfigYesNo(default=True)
@@ -190,7 +190,7 @@ class UpdatePluginMenu(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.fullbackupfilename = getBackupFullPath()
 		self.onShown.append(self.setWindowTitle)
 		self.onChangedEntry = []
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
@@ -326,7 +326,7 @@ class UpdatePluginMenu(Screen):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_ERROR)
 
 	def startRestore(self, ret=False):
 		if ret:
