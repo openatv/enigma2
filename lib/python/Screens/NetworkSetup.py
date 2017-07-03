@@ -2316,7 +2316,7 @@ class NetworkSamba(Screen):
 	def doInstall(self, callback, pkgname):
 		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing service'))
-		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
+		self.Console.ePopen('/usr/bin/opkg install --force-maintainer ' + pkgname, callback)
 
 	def installComplete(self, result=None, retval=None, extra_args=None):
 		self.session.open(TryQuitMainloop, 2)
@@ -2433,7 +2433,7 @@ class NetworkSambaLog(Screen):
 			'down': self['infotext'].pageDown
 		})
 		strview = ''
-		self.Console.ePopen('tail /tmp/smb.log > /tmp/tmp.log')
+		self.Console.ePopen('tail /var/log/samba/log.?mbd > /tmp/tmp.log')
 		time.sleep(1)
 		if fileExists('/tmp/tmp.log'):
 			f = open('/tmp/tmp.log', 'r')
@@ -2442,6 +2442,8 @@ class NetworkSambaLog(Screen):
 			f.close()
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
+
+SAMBA_CONFIG_FILE = "/etc/samba/smb_host.conf"
 
 class NetworkSambaSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -2486,8 +2488,8 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 		self.smb_server_string = NoSave(ConfigText(fixed_size=False))
 		self.smb_workgroup = NoSave(ConfigText(fixed_size=False))
 
-		if fileExists('/etc/samba/smb.conf'):
-			f = open('/etc/samba/smb.conf', 'r')
+		if fileExists(SAMBA_CONFIG_FILE):
+			f = open(SAMBA_CONFIG_FILE, 'r')
 			for line in f.readlines():
 				line = line.strip()
 				if line.startswith('server string = '):
@@ -2505,23 +2507,23 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 		self['config'].l.setList(self.list)
 
 	def saveSmb(self):
-		if fileExists('/etc/samba/smb.conf'):
-			inme = open('/etc/samba/smb.conf', 'r')
-			out = open('/etc/samba/smb.conf.tmp', 'w')
-			for line in inme.readlines():
-				line = line.strip()
-				if line.startswith('server string'):
-					line = 'server string = ' + self.smb_server_string.value.strip()
-				elif line.startswith('workgroup'):
-					line = 'workgroup = ' + self.smb_workgroup.value.strip()
+		lines = []
+		if fileExists(SAMBA_CONFIG_FILE):
+			infile = open(SAMBA_CONFIG_FILE, 'r')
+			lines = infile.readlines()
+			infile.close()
+		out = open(SAMBA_CONFIG_FILE + '.tmp', 'w')
+		if self.smb_server_string.value.strip():
+			out.write("server string = %s\n" % self.smb_server_string.value.strip())
+		if self.smb_workgroup.value.strip():
+			out.write("workgroup = %s\n" % self.smb_workgroup.value.strip())
+		for line in lines:
+			line = line.strip()
+			if not line.startswith(('server string', 'workgroup')):
 				out.write((line + '\n'))
-			out.close()
-			inme.close()
-		else:
-			self.session.open(MessageBox, _("Sorry Samba Config is Missing"), MessageBox.TYPE_INFO)
-			self.close()
-		if fileExists('/etc/samba/smb.conf.tmp'):
-			rename('/etc/samba/smb.conf.tmp', '/etc/samba/smb.conf')
+		out.close()
+		if fileExists(SAMBA_CONFIG_FILE + '.tmp'):
+			rename(SAMBA_CONFIG_FILE + '.tmp', SAMBA_CONFIG_FILE)
 		self.myStop()
 
 	def myStop(self):
