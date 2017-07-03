@@ -18,20 +18,19 @@ config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	eEnv.resolve('${sysconfdir}/enigma2/'),
-	'/etc/network/interfaces',
-	'/etc/wpa_supplicant.conf',
-	'/etc/wpa_supplicant.ath0.conf',
-	'/etc/wpa_supplicant.wlan0.conf',
-	'/etc/resolv.conf',
-	'/etc/default_gw',
+	'/etc/localtime',
 	'/etc/hostname',
-	'/etc/samba/',
+	'/etc/default_gw',
+	'/etc/resolv.conf',
+	'/etc/network/interfaces',
+	'/etc/wpa_supplicant*.conf',
+	'/etc/samba/smb_host.conf',
+	'/etc/inadyn.conf',
+	'/etc/ushare.conf',
+	'/etc/minidlna.conf',
 	'/etc/auto.network',
 	'/etc/fstab',
-	'/etc/minidlna.conf',
-	'/etc/vsftpd.conf',
-	'/etc/dropbear',
-	'/etc/ssh',
+	'/etc/ssh/ssh_host_*',
 ])
 
 def getBackupPath():
