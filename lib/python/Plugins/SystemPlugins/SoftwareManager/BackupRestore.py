@@ -38,7 +38,10 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
-	return path.join(backuppath, 'backup')
+	return path.join(backuppath, getBackupDirectory())
+
+def getBackupDirectory():
+	return "backup/beyonwiz/v1"
 
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
