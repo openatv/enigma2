@@ -2239,10 +2239,10 @@ class PacketManager(Screen, NumericalTextInput):
                             upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
 			return((name, version, _(description), state, upgradeablepng, divpng))
 		else:
-                        if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installablepng.png")):
-                            installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installablepng.png"))
+                        if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png")):
+                            installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/installable.png"))
                         else:
-                            installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installablepng.png"))
+                            installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
