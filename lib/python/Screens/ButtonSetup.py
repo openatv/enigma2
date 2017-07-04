@@ -160,11 +160,11 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Plugin browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	ButtonSetupFunctions.append((_("Channel info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
 	ButtonSetupFunctions.append((_("Timers"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
-	ButtonSetupFunctions.append((_("AutoTimer overview"), "Infobar/showAutoTimerList", "Setup"))
+	ButtonSetupFunctions.append((_("Autotimer overview"), "Infobar/showAutoTimerList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
 			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
-	ButtonSetupFunctions.append((_("PowerMenu"), "Menu/shutdown", "Power"))
+	ButtonSetupFunctions.append((_("Power menu"), "Menu/shutdown", "Power"))
 	ButtonSetupFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
 	ButtonSetupFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
 	ButtonSetupFunctions.append((_("Restart GUI"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))

@@ -12,36 +12,39 @@ from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLo
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
-from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eEnv, eEPGCache
-from Tools.Directories import *
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	eEnv.resolve('${sysconfdir}/enigma2/'),
-	'/etc/network/interfaces',
-	'/etc/wpa_supplicant.conf',
-	'/etc/wpa_supplicant.ath0.conf',
-	'/etc/wpa_supplicant.wlan0.conf',
-	'/etc/resolv.conf',
-	'/etc/default_gw',
+	'/etc/localtime',
 	'/etc/hostname',
-	'/etc/samba/',
+	'/etc/default_gw',
+	'/etc/resolv.conf',
+	'/etc/network/interfaces',
+	'/etc/wpa_supplicant*.conf',
+	'/etc/samba/smb_host.conf',
+	'/etc/inadyn.conf',
+	'/etc/ushare.conf',
+	'/etc/minidlna.conf',
 	'/etc/auto.network',
 	'/etc/fstab',
-	'/etc/minidlna.conf',
-	'/etc/vsftpd.conf',
-	'/etc/dropbear',
-	'/etc/ssh',
+	'/etc/ssh/ssh_host_*',
 ])
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
-	return path.join(backuppath, 'backup')
+	return path.join(backuppath, getBackupDirectory())
+
+def getBackupDirectory():
+	return "backup/beyonwiz/v1"
 
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
+
+def getBackupFullPath():
+	return path.join(getBackupPath(), getBackupFilename())
 
 def getBackupSymlinkPath():
 	return path.join("/tmp", getBackupFilename())
@@ -74,7 +77,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		self.finished_cb = None
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.fullbackupfilename = getBackupFullPath()
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -97,14 +100,18 @@ class BackupScreen(Screen, ConfigListScreen):
 			self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
-				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
+				self.newfilename = path.join(self.backuppath, dt + '-' + self.backupfile)
 				if path.exists(self.newfilename):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."), cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs], finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
+				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."),
+					cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],
+					finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 			else:
-				self.session.open(Console, title=_("Backup is running..."), cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs], finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
+				self.session.open(Console, title=_("Backup is running..."),
+					cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],
+					finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
@@ -321,7 +328,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.finished_cb = None
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
-		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+		self.fullbackupfilename = getBackupFullPath()
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.onLayoutFinish.append(self.layoutFinished)
