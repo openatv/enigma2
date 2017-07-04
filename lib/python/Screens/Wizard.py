@@ -595,12 +595,11 @@ class Wizard(Screen):
 						self.configInstance.setAnimationMode(0)
 						self["config"].l.setList(self.configInstance["config"].list)
 						callbacks = self.configInstance["config"].onSelectionChanged
-# The following line is commented out as it prevents the VirtualKeyboard
-# from working for Wifi SSID/key setting in the FirstInstallWizard.
-#						self.configInstance["config"].destroy()
-#						print "[Wizard] clearConfigList", self.configInstance["config"], self["config"]
+						self.configInstance["config"].destroy()
+						print "[Wizard] clearConfigList", self.configInstance["config"], self["config"]
 						self.configInstance["config"] = self["config"]
 						self.configInstance["config"].onSelectionChanged = callbacks
+						print "[Wizard] clearConfigList", self.configInstance["config"], self["config"]
 				else:
 					self["config"].l.setList([])
 					self.handleInputHelpers()
