@@ -1,4 +1,4 @@
-import bisect, os
+import bisect, os, time
 
 from enigma import getDesktop, iPlayableService, eConsoleAppContainer, eEnv
 
@@ -31,8 +31,9 @@ def CutListEntry(where, what, where_next=None):
 		("OUT",  0x400000),
 		("MARK", 0x000040),
 		("LAST", 0x000000),
+		("EOF",  0x000000),
 		("",     0x000000)
-	)[what if what < 4 else 4]
+	)[what if what < 5 else 5]
 
 	d = SecToMSS((where_next / 90 - w) / 1000) if where_next else ""
 
@@ -240,10 +241,26 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.cut_start = None
 		self.inhibit_seek = False
 		self.onClose.append(self.__onClose)
+		# Use onShown to set the initial list index, since apparently that doesn't
+		# work from here.
+		self.onShown.append(self.__onShown)
 
-		# If there's only marks, jump to the first (assuming it to be new).
-		if self.cut_list and not [x for x in self.cut_list if x[1] != self.CUT_TYPE_MARK]:
-			self.doSeek(self.cut_list[0][0])
+	def __onShown(self, override=False):
+		if self.already_shown and not override:
+			return
+		if self.cut_list:
+			cl = self["cutlist"]
+			# If there's only marks, jump to the first (assuming a new recording).
+			if not [x for x in self.cut_list if x[1] != self.CUT_TYPE_MARK]:
+				# Assume the start mark has been missed if it's not less than
+				# 16 minutes.
+				if self.cut_list[0][0] < 16*60*90000:
+					cl.index = 1
+			else:
+				# Playback will start at the initial IN cut, so point the list
+				# there, too.
+				if cl.list[0][0][1] == self.CUT_TYPE_OUT:
+					cl.index = 1
 
 	def __onClose(self):
 		self.session.nav.playService(self.old_service, forceRestart=True)
@@ -324,6 +341,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		in_len = out_len = 0
 		last_pts, last_type = 0, self.CUT_TYPE_LAST
+		first_cut = None
 		for pts, type in self.cut_list:
 			if last_type != type in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT):
 				if type == self.CUT_TYPE_IN:
@@ -331,6 +349,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				else:
 					in_len += pts - last_pts
 				last_pts, last_type = pts, type
+				if first_cut is None:
+					first_cut = (self.CUT_TYPE_OUT, self.CUT_TYPE_IN)[type]
 		if length:
 			if last_type == self.CUT_TYPE_OUT:
 				out_len += length - last_pts
@@ -339,13 +359,20 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self["InLen"].setText(SecToMSS(in_len / 90000))
 		self["OutLen"].setText(SecToMSS(out_len / 90000))
 
-		r = [ ]
-		for i, e in enumerate(self.cut_list):
-			if i == len(self.cut_list) - 1:
+		if first_cut is None:
+			first_cut = self.CUT_TYPE_IN
+		cl = self.cut_list
+		if cl and cl[0] == (0, 3): # remove the ready-to-watch LAST mark
+			cl = cl[1:]
+		r = [CutListEntry(0, first_cut, cl[0][0] if cl else length)]
+		for i, e in enumerate(cl):
+			if i == len(cl) - 1:
 				n = length
 			else:
-				n = self.cut_list[i+1][0]
+				n = cl[i+1][0]
 			r.append(CutListEntry(*e, where_next=n))
+		if length:
+			r.append(CutListEntry(length, 4))
 		return r
 
 	def selectionChanged(self):
@@ -359,20 +386,36 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			if seek is None:
 				print "no seek"
 				return
-			seek.seekTo(pts)
+			# EOF may not be seekable, so go back a bit (2 seems sufficient) and then
+			# forward to the next access point (which will flicker if EOF is
+			# seekable, but better than waiting for a timeout when it's not).
+			if where[0][1] == 4:
+				curpos = seek.getPlayPosition()
+				seek.seekTo(pts-2)
+				i = 0
+				while i < 15:
+					i += 1
+					time.sleep(0.01)
+					if seek.getPlayPosition() != curpos:
+						seek.seekRelative(1, 1)
+						break
+			else:
+				seek.seekTo(pts)
 
 	def refillList(self):
 		print "cue sheet changed, refilling"
 		self.getCuesheet()
 
-		# get the first changed entry, counted from the end, and select it
+		# select the first changed entry from the end (not counting EOF)
 		new_list = self.getCutlist()
 		self["cutlist"].list = new_list
 
-		l1 = len(new_list)
-		l2 = len(self.last_cuts)
+		l1 = len(new_list) - 1
+		l2 = len(self.last_cuts) - 1
+		if new_list[l1][0][1] != 4: l1 += 1
+		if self.last_cuts[l2][0][1] != 4: l2 += 1
 		for i in range(min(l1, l2)):
-			if new_list[l1-i-1] != self.last_cuts[l2-i-1]:
+			if new_list[l1-i-1][0] != self.last_cuts[l2-i-1][0]:
 				self["cutlist"].setIndex(l1-i-1)
 				break
 		self.last_cuts = new_list
@@ -525,9 +568,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.session.nav.playService(self.service)
 		self.pauseService()
 		self.setCutListEnable()
-		if self.cut_list and (self.cut_list[0][1] == self.CUT_TYPE_IN \
-							  or not [x for x in self.cut_list if x[1] != self.CUT_TYPE_MARK]):
-			self.doSeek(self.cut_list[0][0])
+		self.__onShown(override=True)
 
 	def backMenu(self):
 		menu = [(_("back"), self.BACK_BACK),
