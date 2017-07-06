@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-26 22:59+0300\n"
-"PO-Revision-Date: 2017-06-02 14:59+0300\n"
+"PO-Revision-Date: 2017-07-06 11:40+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -108,7 +108,7 @@ msgid "%-H:%M"
 msgstr "%-V:%M"
 
 msgid "%-H:%M - "
-msgstr "%-V:%M - "
+msgstr "%-V:%M -"
 
 msgid "%.0f GB"
 msgstr "%.iš GB"
@@ -120,7 +120,7 @@ msgid "%.2f GB"
 msgstr "%.2f GB"
 
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr "%02d.%02d - %02d.%02d (%s%d min.)"
 
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
@@ -132,7 +132,7 @@ msgid "%02d:%02d"
 msgstr "%02d:%02d"
 
 msgid "%2.1f sec"
-msgstr "%2.1f sek"
+msgstr "%2.1f sek."
 
 msgid "%2d:%02d"
 msgstr "%2d:%02d"
@@ -141,31 +141,31 @@ msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
 msgid "%A %d %B"
-msgstr "%A %d %B"
-
-msgid "%A %e %B"
 msgstr "%A %e %B"
 
+msgid "%A %e %B"
+msgstr "%B %e, %A"
+
 msgid "%A %e %b"
-msgstr "%A %e %b"
+msgstr "%b %e %A"
 
 msgid "%A %e %B %Y"
-msgstr "%A %e %B %Y"
+msgstr "%Y %B %e, %A"
 
 msgid "%a %e %B %Y"
-msgstr "%a %e %B %Y"
+msgstr "%Y %B %e, %a"
 
 msgid "%a %e/%m"
-msgstr "%a %e/%m"
+msgstr "%m/%e, %a"
 
 msgid "%a %e/%m  %-H:%M"
-msgstr "%a %e/%m  %-H:%M"
+msgstr "%m/%e, %a  %-H:%M"
 
 msgid "%d  "
 msgstr "%d  "
 
 msgid "%d %B %Y"
-msgstr "%d %B %Y"
+msgstr "%Y %B %e, %A"
 
 msgid "%d channel found"
 msgid_plural "%d channels found"
@@ -201,7 +201,7 @@ msgstr[1] "%d minutės"
 msgstr[2] "%d minučių"
 
 msgid "%d min"
-msgstr "%d min"
+msgstr "%d min."
 
 msgid "%d minute"
 msgid_plural "%d minutes"
@@ -217,9 +217,9 @@ msgstr "%d iš %d kilobaitų"
 
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
-msgstr[0] "%d pikselio pločio"
+msgstr[0] "%d pikselių plotis"
 msgstr[1] "%d pikselių pločio"
-msgstr[2] "%d pikselių pločio"
+msgstr[2] "%d pikselių pločių"
 
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -237,25 +237,25 @@ msgid "%d-%m"
 msgstr "%m.%d"
 
 msgid "%d.%B %Y"
-msgstr "%d.%B %Y"
+msgstr "%Y %B %e"
 
 msgid "%d.%m.   "
-msgstr "%m.%d.   "
+msgstr "%m.%d."
 
 msgid "%H:%M"
 msgstr "%V:%M"
 
 msgid "%k:%M %e/%m"
-msgstr "%k:%M %e/%m"
+msgstr "%m-%e %k:%M"
 
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
 msgid "%s %s advanced remote control (native)"
-msgstr "%s %s išplėstinis nuotolinio valdymo pultas (vietinis)"
+msgstr "%s %s išplėstinis nuotolinio valdymo pultas (gimtasis)"
 
 msgid "%s %s front panel"
-msgstr "%s %s priekinis skydelis"
+msgstr "priekinis skydelis %s %s "
 
 msgid "%s %s ir keyboard"
 msgstr "%s%s ir klaviatūra"
@@ -264,7 +264,7 @@ msgid "%s %s ir mouse"
 msgstr "%s%s ir pelė"
 
 msgid "%s %s remote control (native)"
-msgstr "%s%s nuotolinio valdymo pultas (vietinis)"
+msgstr "%s%s nuotolinio valdymo pultas (gimtasis)"
 
 msgid "%s %s software because updates are available."
 msgstr "%s %s galimi nauji atnaujinimai."
@@ -282,7 +282,7 @@ msgstr[1] "galimi %s atnaujinimo paketai"
 msgstr[2] "galimybė %s atnaujinimo paketų"
 
 msgid "%s%d min"
-msgstr "%s%d min"
+msgstr "%s%d min."
 
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
@@ -349,7 +349,7 @@ msgid "* current animation"
 msgstr "* dabartinė animacija"
 
 msgid "* Only available if more than one interface is active."
-msgstr "* Pasiekiama, jei tik daugiau kaip viena sąsaja yra aktyvi."
+msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
 
 msgid ""
 "*** boxmode=1 (Standard) ***\n"
@@ -630,7 +630,7 @@ msgid "1s"
 msgstr "1s"
 
 msgid "1st Infobar timeout"
-msgstr "Pagrindinė info juosta išsijungs po"
+msgstr "Pirma info juosta išsijungs po"
 
 msgid "1X"
 msgstr "1X"
@@ -699,16 +699,16 @@ msgid "29.97"
 msgstr "29.97"
 
 msgid "2nd infobar"
-msgstr "2 info juosta"
+msgstr "Antra info juosta"
 
 msgid "2nd Infobar ECM"
-msgstr "2 info juostos ECM"
+msgstr "Antros info juostos ECM"
 
 msgid "2nd Infobar INFO"
-msgstr "2 info juostos INFO"
+msgstr "Antros info juostos INFO"
 
 msgid "2nd Infobar timeout"
-msgstr "2 info juosta išsijungs po"
+msgstr "Antra info juosta išsijungs po"
 
 msgid "2s"
 msgstr "2s"
@@ -759,10 +759,10 @@ msgid "3D Mode"
 msgstr "3D režimas"
 
 msgid "3D Surround"
-msgstr "3D erdvinis garsas"
+msgstr "Erdvinis garsas"
 
 msgid "3D Surround Speaker Position"
-msgstr "3D erdvinio garso garsiakalbio padėtis"
+msgstr "Erdvinio garso kolonėlių padėtis"
 
 msgid "3s"
 msgstr "3s"
@@ -894,7 +894,7 @@ msgid "< Default >"
 msgstr "< Numatytasis >"
 
 msgid "< Default with Picon >"
-msgstr "< Numatytasis su logotipu >"
+msgstr "< Numatytasis su pikonu >"
 
 msgid "<Current movielist location>"
 msgstr "<Dabartinė filmų sąrašo vieta>"
@@ -2605,13 +2605,13 @@ msgid "Change to bouquet"
 msgstr "Keisti į paketą"
 
 msgid "change Volume down"
-msgstr "sumažinti garsą"
+msgstr "sumažinti garsumą"
 
 msgid "Change Volume offset"
 msgstr "Keisti garsumą"
 
 msgid "change Volume up"
-msgstr "padidinti garsą"
+msgstr "padidinti garsumą"
 
 msgid "Changelog"
 msgstr "Pakeitimų žurnalas"
@@ -2881,13 +2881,13 @@ msgid "CI (Common Interface) Setup"
 msgstr "CI (Įstatomo modulio) nustatymas"
 
 msgid "CI assignment"
-msgstr "CI nustatymas"
+msgstr "CI priskyrimas"
 
 msgid "CI Legacy"
 msgstr "CI palikimas"
 
 msgid "CI Operation Mode"
-msgstr "CI darbinė būsena"
+msgstr "CI veikimo būsena"
 
 msgid "CI Plus 1.2"
 msgstr "CI Plus 1.2"
@@ -3161,7 +3161,7 @@ msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfigūruokite, ar išvis turi būti išsaugotas epg.dat."
 
 msgid "Configure if service picons will be shown in the servicelist."
-msgstr "Konfigūruoti, jei kanalo logotipas bus rodomas kanalų sąraše."
+msgstr "Konfigūruoti, jei kanalo pikonas bus rodomas kanalų sąraše."
 
 msgid ""
 "Configure if the subtitle should switch between normal, italic, bold and "
@@ -3493,7 +3493,7 @@ msgstr ""
 "apačioje."
 
 msgid "Configure the width allocated to the picon."
-msgstr "Konfigūruokite plotį, skirtą logotipams."
+msgstr "Konfigūruokite plotį, skirtą pikonams."
 
 msgid "Configure the width allocated to the service name."
 msgstr "Konfigūruokite plotį, skirta kanalų pavadinimui."
@@ -3503,7 +3503,7 @@ msgstr "Konfigūruokite TrueType šrifto raidžių plotį, naudojamą teletekstu
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
-"Konfigūruokite, EPG rodyti kanalų pavadinimus, logotipus, ar abu kartu."
+"Konfigūruokite EPG, kad rodyti kanalų pavadinimus, pikonus, ar abu kartu."
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr ""
@@ -6802,7 +6802,7 @@ msgid "Install Finished."
 msgstr "Įdiegimas baigtas."
 
 msgid "Install lcd picons on"
-msgstr "Įdiegti LCD logotipus į"
+msgstr "Įdiegti LCD pikonus į"
 
 msgid "Install local extension"
 msgstr "Įdiekite vietinį išplėtimą"
@@ -6811,7 +6811,7 @@ msgid "Install or remove finished."
 msgstr "Įdiegimas arba pašalinimas baigtas."
 
 msgid "Install picons on"
-msgstr "Įdiegti logotipus į"
+msgstr "Įdiegti pikonus į"
 
 msgid "Install plugins"
 msgstr "Įdiegti priedus"
@@ -7901,7 +7901,7 @@ msgid "Namespace"
 msgstr "Pavadinimų erdvė"
 
 msgid "Native"
-msgstr "Vietinė"
+msgstr "Gimtasis"
 
 msgid "nature/animals/environment"
 msgstr "gamta/gyvūnai/aplinka"
@@ -8760,7 +8760,7 @@ msgid "OpenVpn Setup"
 msgstr "OpenVpn nustatymas"
 
 msgid "Option to disable picons on the Infobar"
-msgstr "Ši parinktis leidžia išjungti logotipų rodymą infojuostoje"
+msgstr "Ši parinktis leidžia išjungti pikonų rodymą info juostoje"
 
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
@@ -8850,10 +8850,10 @@ msgid "Overwrite Emu Files ?"
 msgstr "Perrašyti Emu failus?"
 
 msgid "Overwrite Picon Files ?"
-msgstr "Perrašyti logotipų failus?"
+msgstr "Perrašyti pikonų failus?"
 
 msgid "Overwrite picon files during software upgrade?"
-msgstr "Perrašyti logotipų failus, atnaujinant programinę įrangą?"
+msgstr "Perrašyti pikonų failus, atnaujinant programinę įrangą?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr ""
@@ -9038,19 +9038,19 @@ msgid "Persian"
 msgstr "Persų"
 
 msgid "Picon"
-msgstr "Logotipas"
+msgstr "Pikonas"
 
 msgid "Picon and service name"
-msgstr "Logotipas ir kanalo pavadinimas"
+msgstr "Pikonas ir kanalo pavadinimas"
 
 msgid "Picon and Service Name"
-msgstr "Logotipas ir kanalo pavadinimas"
+msgstr "Pikonas ir kanalo pavadinimas"
 
 msgid "Picon width"
-msgstr "Logotipo plotis"
+msgstr "Pikono plotis"
 
 msgid "picons"
-msgstr "logotipai"
+msgstr "pikonai"
 
 msgid "picshow"
 msgstr "logotipo rodymas"
@@ -10194,7 +10194,7 @@ msgstr "Raudonas, ilgai spausti"
 
 msgid ""
 "Reduce the size of the service picons for more line spacing between them."
-msgstr "Sumažinti kanalo logotipų dydį daugiau tarpų tarp eilučių tarp jų."
+msgstr "Sumažinti kanalo pikonų dydį, daugiau tarpų tarp eilučių."
 
 msgid "Reduce time scale"
 msgstr "Sumažinti laiko skalę"
@@ -11434,7 +11434,7 @@ msgid "Service number font size"
 msgstr "Kanalo numerio šrifto dydis"
 
 msgid "Service picons downsize"
-msgstr "Kanalų logotipų sumažinimas"
+msgstr "Kanalų pikonų sumažinimas"
 
 msgid "service PIN"
 msgstr "kanalo PIN"
@@ -12181,7 +12181,7 @@ msgid "Show infobar permanently while paused"
 msgstr "Pauzės metu, visą laiką rodyti info juostą"
 
 msgid "Show infobar picons"
-msgstr "Rodyti info juostos logotipus"
+msgstr "Rodyti info juostos pikonus"
 
 msgid "Show job tasks in extensions"
 msgstr "Plėtinių lange rodyti darbines užduotis"
@@ -12256,10 +12256,10 @@ msgid "Show OscamInfo in Extensions Menu"
 msgstr "Rodyti OscamInfo išplėstiniame meniu"
 
 msgid "Show picon background colour"
-msgstr "Rodyti logotipų fono spalvą"
+msgstr "Rodyti pikonų fono spalvą"
 
 msgid "show picons in service list"
-msgstr "kanalų pasirinkimo sąraše rodyti kanalų logotipus"
+msgstr "kanalų pasirinkimo sąraše rodyti kanalų pikonus"
 
 msgid "Show PIP"
 msgstr "Paveikslėlis paveikslėlyje"
@@ -13967,7 +13967,7 @@ msgstr "Ši parinktis leidžia jums parodyti m2k modulius, skirtus atsisiuntimui
 
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
-"Ši parinktis leidžia jums parodyti logotipų modulius, skirtus atsisiuntimui"
+"Ši parinktis leidžia jums parodyti pikonų modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show pli modules in downloads"
 msgstr "Ši parinktis leidžia jums parodyti pli modulius, skirtus atsisiuntimui"
@@ -14072,7 +14072,7 @@ msgstr ""
 
 msgid ""
 "This option allows you choose the background colour of transparent picons."
-msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
+msgstr "Ši parinktis leidžia pasirinkti skaidrių pikonų fono spalvą."
 
 msgid ""
 "This option allows you enable smoothing filter to control the dithering "
