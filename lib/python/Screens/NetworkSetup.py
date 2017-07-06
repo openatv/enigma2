@@ -2485,8 +2485,8 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 			cb(name, desc)
 
 	def updateList(self):
-		self.smb_server_string = NoSave(ConfigText(fixed_size=False))
-		self.smb_workgroup = NoSave(ConfigText(fixed_size=False))
+		self.smb_server_string = NoSave(ConfigText(default="%h Samba server", fixed_size=False))
+		self.smb_workgroup = NoSave(ConfigText(default="WORKGROUP", fixed_size=False))
 
 		if fileExists(SAMBA_CONFIG_FILE):
 			f = open(SAMBA_CONFIG_FILE, 'r')
@@ -2494,15 +2494,13 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 				line = line.strip()
 				if line.startswith('server string = '):
 					line = line[16:]
-					self.smb_server_string.value = line
-					smb_server_string1 = getConfigListEntry(_("Server Name") + ":", self.smb_server_string)
-					self.list.append(smb_server_string1)
+					self.smb_server_string.value = line.strip()
 				elif line.startswith('workgroup = '):
 					line = line[12:]
-					self.smb_workgroup.value = line
-					smb_workgroup1 = getConfigListEntry(_("Workgroup Name") + ":", self.smb_workgroup)
-					self.list.append(smb_workgroup1)
+					self.smb_workgroup.value = line.strip()
 			f.close()
+		self.list.append(getConfigListEntry(_("Server description"), self.smb_server_string))
+		self.list.append(getConfigListEntry(_("Workgroup name"), self.smb_workgroup))
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
 
