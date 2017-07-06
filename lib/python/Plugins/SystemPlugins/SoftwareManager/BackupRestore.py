@@ -32,6 +32,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	'/etc/auto.network',
 	'/etc/fstab',
 	'/etc/ssh/ssh_host_*',
+	'/home/root/.ssh',
 ])
 
 def getBackupPath():
