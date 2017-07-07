@@ -62,7 +62,7 @@ class IpkgComponent:
 	CMD_UPGRADE_LIST = 5
 
 	def __init__(self, ipkg='opkg'):
-		if config.plugins.softwaremanager.overwriteConfigFiles.value == "Y" and ipkg == "opkg":
+		if config.softwareupdate.overwriteConfigFiles.value and ipkg == "opkg":
 			self.ipkg = "opkg --force-maintainer"
 		else:
 			self.ipkg = ipkg

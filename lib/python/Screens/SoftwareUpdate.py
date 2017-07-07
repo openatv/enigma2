@@ -127,15 +127,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
-			else:
-				self["actions"].setEnabled(True)
-				self.session.openWithCallback(
-					self.modificationCallback,
-					MessageBox,
-					_("A configuration file (%s) has been modified since it was installed.\nDo you want to keep your modifications?") % param
-				)
+			self.ipkg.write(config.softwareupdate.overwriteConfigFiles.value and "Y" or "N")
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
 			self.updating = False
@@ -237,9 +229,6 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.close()
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args={'test_only': False})
-
-	def modificationCallback(self, res):
-		self.ipkg.write(res and "N" or "Y")
 
 	def exit(self):
 		if self.updating:

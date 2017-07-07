@@ -25,12 +25,14 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	'/etc/network/interfaces',
 	'/etc/wpa_supplicant*.conf',
 	'/etc/samba/smb_host.conf',
+	'/etc/samba/smb_user.conf',
 	'/etc/inadyn.conf',
 	'/etc/ushare.conf',
 	'/etc/minidlna.conf',
 	'/etc/auto.network',
 	'/etc/fstab',
 	'/etc/ssh/ssh_host_*',
+	'/home/root/.ssh',
 ])
 
 def getBackupPath():
