@@ -39,12 +39,6 @@ from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScr
 from SoftwareTools import iSoftwareTools
 
 config.plugins.softwaremanager = ConfigSubsection()
-config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection([
-	("Y", _("Yes, always")),
-	("N", _("No, never")),
-	# opkg does not support interactive use
-	# ("ask", _("Always ask"))
-], "N")
 config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
 config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
 config.plugins.softwaremanager.epgcache = ConfigYesNo(default=True)
@@ -384,7 +378,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = []
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles, _("Overwrite configuration files during software upgrade?"))
+		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.softwareupdate.overwriteConfigFiles, _("Overwrite configuration files during software update?"))
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(getConfigListEntry(_("Show software manager in tasks/setup menu"), config.plugins.softwaremanager.onSetupMenu, _("Show an entry for the software manager in the live TV main menu, below 'Setup'.\nRequires reboot or GUI restart to take effect.")))
 		self.list.append(getConfigListEntry(_("Show software manager on blue button"), config.plugins.softwaremanager.onBlueButton, _("Show an entry for the software manager extensions popup menu, BLUE button in live TV.")))

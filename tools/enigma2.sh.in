@@ -8,9 +8,29 @@ sysconfdir=@sysconfdir@
 bindir=@bindir@
 libdir=@libdir@
 
-# perform a NTP update sync, before starting Enigma2, as it is broke in OE.
+#check if factory mode is present
+if [ -x /home/root/factory/enigma2 -a -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
+	echo "factory test mode"
+	/home/root/factory/enigma2
+	exit 2
+fi
+
+if [ -x ${bindir}/showiframe ]; then
+	if [ -f ${sysconfdir}/enigma2/backdrop.mvi ]; then
+		${bindir}/showiframe ${sysconfdir}/enigma2/backdrop.mvi
+	elif [ -f ${datadir}/backdrop.mvi ]; then
+		${bindir}/showiframe ${datadir}/backdrop.mvi
+	fi
+fi
+
 if [ -x /usr/sbin/ntpdate ]; then
-	/usr/sbin/ntpdate -b -s -u au.pool.ntp.org && sleep 2
+	[ $(date +%Y) -lt 2017 ] && /usr/sbin/ntpdate -b -s -u au.pool.ntp.org
+fi
+
+# The enigma2 config directory will not exist on first boot
+if [ ! -f ${sysconfdir}/enigma2/settings ]; then
+	mkdir -p -m 755 ${sysconfdir}/enigma2
+	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
 fi
 
 # set the debug log file path if debug logging is enabled
@@ -19,29 +39,6 @@ if grep -qi 'config.crash.enabledebug=true' ${sysconfdir}/enigma2/settings; then
 	debug_dir=$(sed -n 's/config.crash.debug_path=//p' ${sysconfdir}/enigma2/settings)
 	[ -n "${debug_dir}" -a -d "${debug_dir}" ] || debug_dir=/home/root/logs/
 	debug_path="${debug_dir}Enigma2-$(date +%Y-%m-%d_%H-%M-%S).log"
-fi
-
-# The enigma2 config directory will not exist on first boot
-if [ ! -d ${sysconfdir}/enigma2 ]; then
-	mkdir -p -m 755 ${sysconfdir}/enigma2
-	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
-fi
-
-if [ -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
-	echo "factory test mode"
-else
-	if [ -x ${bindir}/showiframe ]; then
-		if [ -f ${sysconfdir}/enigma2/backdrop.mvi ]; then
-			${bindir}/showiframe ${sysconfdir}/enigma2/backdrop.mvi
-		elif [ -f ${datadir}/backdrop.mvi ]; then
-			${bindir}/showiframe ${datadir}/backdrop.mvi
-		fi
-	fi
-fi
-
-#check if factory mode is present
-if [ ! -f ${sysconfdir}/enigma2/settings ]; then
-	cp -a ${datadir}/enigma2/defaults/* ${sysconfdir}/enigma2/
 fi
 
 # hook to execute scripts always before enigma2 start
@@ -67,14 +64,10 @@ sync
 # (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
 #         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
-if [ -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
-	/home/root/factory/enigma2
+if [ -n "${debug_path}" ]; then
+	LD_PRELOAD=$LIBS ${bindir}/enigma2 &> ${debug_path}
 else
-	if [ -n "${debug_path}" ]; then
-		LD_PRELOAD=$LIBS ${bindir}/enigma2 &> ${debug_path}
-	else
-		LD_PRELOAD=$LIBS ${bindir}/enigma2
-	fi
+	LD_PRELOAD=$LIBS ${bindir}/enigma2
 fi
 
 # enigma2 exit codes:
