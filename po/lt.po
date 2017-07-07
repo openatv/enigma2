@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-26 22:59+0300\n"
-"PO-Revision-Date: 2017-07-06 11:40+0300\n"
+"PO-Revision-Date: 2017-07-08 01:02+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -105,16 +105,16 @@ msgid "%+6d"
 msgstr "%+6d"
 
 msgid "%-H:%M"
-msgstr "%-V:%M"
+msgstr "%-V:%M -"
 
 msgid "%-H:%M - "
 msgstr "%-V:%M -"
 
 msgid "%.0f GB"
-msgstr "%.iš GB"
+msgstr "%.0f GB"
 
 msgid "%.0f MB"
-msgstr "%.iš MB"
+msgstr "%.0f MB"
 
 msgid "%.2f GB"
 msgstr "%.2f GB"
@@ -141,7 +141,7 @@ msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
 msgid "%A %d %B"
-msgstr "%A %e %B"
+msgstr "%B %e, %A"
 
 msgid "%A %e %B"
 msgstr "%B %e, %A"
@@ -165,7 +165,7 @@ msgid "%d  "
 msgstr "%d  "
 
 msgid "%d %B %Y"
-msgstr "%Y %B %e, %A"
+msgstr "%Y %B %e"
 
 msgid "%d channel found"
 msgid_plural "%d channels found"
@@ -181,9 +181,9 @@ msgstr "%d GB"
 
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "%d valanda"
-msgstr[1] "%d valandos"
-msgstr[2] "%d valandų"
+msgstr[0] "%d val."
+msgstr[1] "%d val."
+msgstr[2] "%d val."
 
 msgid "%d KB"
 msgstr "%d KB"
@@ -196,9 +196,9 @@ msgstr "%d MB"
 
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] "%d minutė"
-msgstr[1] "%d minutės"
-msgstr[2] "%d minučių"
+msgstr[0] "%d min."
+msgstr[1] "%d min."
+msgstr[2] "%d min."
 
 msgid "%d min"
 msgstr "%d min."
@@ -210,16 +210,16 @@ msgstr[1] "%d minutės"
 msgstr[2] "%d minučių"
 
 msgid "%d minutes"
-msgstr "%d minutės"
+msgstr "%d min."
 
 msgid "%d of %d kBytes"
 msgstr "%d iš %d kilobaitų"
 
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
-msgstr[0] "%d pikselių plotis"
+msgstr[0] "%d pikselio pločio"
 msgstr[1] "%d pikselių pločio"
-msgstr[2] "%d pikselių pločių"
+msgstr[2] "%d pikselių pločio"
 
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -258,10 +258,10 @@ msgid "%s %s front panel"
 msgstr "priekinis skydelis %s %s "
 
 msgid "%s %s ir keyboard"
-msgstr "%s%s ir klaviatūra"
+msgstr "%s%s IR klaviatūra"
 
 msgid "%s %s ir mouse"
-msgstr "%s%s ir pelė"
+msgstr "%s%s IR pelė"
 
 msgid "%s %s remote control (native)"
 msgstr "%s%s nuotolinio valdymo pultas (gimtasis)"
@@ -337,7 +337,7 @@ msgid "(empty)"
 msgstr "(tuščia)"
 
 msgid "(Show only reader:"
-msgstr "(rodyti tik skaitytuvą:"
+msgstr "(rodyti tik skaitytoją:"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(rodyti pasirinktinį DVD garso meniu)"
@@ -371,7 +371,7 @@ msgid ""
 msgstr ""
 "*** Imtuvo režimas = 1 (standartinis) ***\n"
 "\n"
-"+++ Įranga +++\n"
+"+++ Savybės +++\n"
 "3840x2160p60 10 bitų HEVC, 3840x2160p60 8 bitų VP9, 1920x1080p60 8 bitų "
 "AVC,\n"
 "TIK PAGRINDINIS (ne PIP), Apribotas monitoriaus naudojimas, UHD tik (ne "
@@ -412,7 +412,7 @@ msgid ""
 msgstr ""
 "*** Imtuvo režimas = 12 (eksperimentinis) ***\n"
 "\n"
-"+++ Įranga +++\n"
+"+++ Savybės +++\n"
 "3840x2160p50 10 bitų PAGRINDINIAM atkodavimui, 1080p25/50i PIP palaikymas, "
 "HDMI įvestis (jei yra),\n"
 " TIK UHD ekranas, ne SD ekranas, ne perkoduojamas\n"
@@ -441,7 +441,7 @@ msgid "-24"
 msgstr "-24"
 
 msgid "/s"
-msgstr "/s"
+msgstr "/sek."
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 katalogas"
@@ -456,28 +456,28 @@ msgid "0 (disabled)"
 msgstr "0 (išjungta)"
 
 msgid "0.2s"
-msgstr "0.2s"
+msgstr "0.2sek."
 
 msgid "0.3s"
-msgstr "0.3s"
+msgstr "0.3sek."
 
 msgid "0.4s"
-msgstr "0.4s"
+msgstr "0.4sek."
 
 msgid "0.5s"
-msgstr "0.5s"
+msgstr "0.5sek."
 
 msgid "0.6s"
-msgstr "0.6s"
+msgstr "0.6sek."
 
 msgid "0.7s"
-msgstr "0.7s"
+msgstr "0.7sek."
 
 msgid "0.8s"
-msgstr "0.8s"
+msgstr "0.8sek."
 
 msgid "0.9s"
-msgstr "0.9s"
+msgstr "0.9sek."
 
 msgid "1"
 msgstr "1"
@@ -489,7 +489,7 @@ msgid "1 min."
 msgstr "1 min."
 
 msgid "1 second"
-msgstr "1 sekundė"
+msgstr "1 sek."
 
 msgid "1.0"
 msgstr "1.0"
@@ -501,13 +501,13 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "1.2s"
-msgstr "1.2s"
+msgstr "1.2sek."
 
 msgid "1.5s"
-msgstr "1.5s"
+msgstr "1.5sek."
 
 msgid "1.7s"
-msgstr "1.7s"
+msgstr "1.7sek."
 
 msgid "10"
 msgstr "10"
@@ -567,7 +567,7 @@ msgid "128 Mb"
 msgstr "128 Mb"
 
 msgid "12bit 4:2:0/4:2:2 no PIP"
-msgstr "12bitų 4:2:0/4:2:2 ne PIP"
+msgstr "12bitų 4:2:0/4:2:2 be PIP"
 
 msgid "12V output"
 msgstr "12V išvestis"
@@ -609,19 +609,19 @@ msgid "16:9 Letterbox"
 msgstr "16:10 įterpiant juodas juostas"
 
 msgid "16_10_letterbox"
-msgstr "16_10 įterpiant juodas juostas"
+msgstr "16x10 įterpiant juodas juostas"
 
 msgid "16_10_panscan"
-msgstr "16_10_nukerpant šonus"
+msgstr "16x10_nukerpant šonus"
 
 msgid "16_9"
-msgstr "16_9"
+msgstr "16x9"
 
 msgid "16_9_always"
-msgstr "16_9 visada"
+msgstr "16x9 visada"
 
 msgid "16_9_letterbox"
-msgstr "16_9 įterpiant juodas juostas"
+msgstr "16x9 įterpiant juodas juostas"
 
 msgid "18 V"
 msgstr "18 V"
@@ -630,7 +630,7 @@ msgid "1s"
 msgstr "1s"
 
 msgid "1st Infobar timeout"
-msgstr "Pirma info juosta išsijungs po"
+msgstr "Pirma infojuosta išsijungs po"
 
 msgid "1X"
 msgstr "1X"
@@ -699,16 +699,16 @@ msgid "29.97"
 msgstr "29.97"
 
 msgid "2nd infobar"
-msgstr "Antra info juosta"
+msgstr "Antra infojuosta"
 
 msgid "2nd Infobar ECM"
-msgstr "Antros info juostos ECM"
+msgstr "Antros infojuostos ECM"
 
 msgid "2nd Infobar INFO"
-msgstr "Antros info juostos INFO"
+msgstr "Antros infojuostos INFO"
 
 msgid "2nd Infobar timeout"
-msgstr "Antra info juosta išsijungs po"
+msgstr "Antra infojuosta išsijungs po"
 
 msgid "2s"
 msgstr "2s"
@@ -894,7 +894,7 @@ msgid "< Default >"
 msgstr "< Numatytasis >"
 
 msgid "< Default with Picon >"
-msgstr "< Numatytasis su pikonu >"
+msgstr "< Numatytasis su piktograma >"
 
 msgid "<Current movielist location>"
 msgstr "<Dabartinė filmų sąrašo vieta>"
@@ -1219,7 +1219,7 @@ msgid "Add a mark"
 msgstr "Pridėti žymą"
 
 msgid "Add a nameserver entry"
-msgstr "Pridėti serverio pavadinimo įrašą"
+msgstr "Pridėti DNS serverį"
 
 msgid "Add a new title"
 msgstr "Pridėkite naują pavadinimą"
@@ -1405,7 +1405,7 @@ msgid "After PowerLost"
 msgstr "Po įtampos dingimo"
 
 msgid "After pressing OK, please wait!"
-msgstr "Paspaudę OK, prašome laukti!"
+msgstr "Paspaudę OK, palaukite!"
 
 msgid "After Recording"
 msgstr "Po įrašymo"
@@ -1514,14 +1514,15 @@ msgid "Allows you to setup the button to do what you choose."
 msgstr "Leidžia susikurti mygtuką pasirinktiems veiksmams atlikti."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Leidžia rodyti/slėpti CCcam išplėtimus (mėlynas mygtukas)."
+msgstr "Leidžia rodyti/slėpti CCcam plėtinius (mėlynas mygtukas)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr ""
-"Leidžia rodyti/slėpti žurnalo tvarkyklę išplėtimuose (mėlynas mygtukas)."
+"Leidžia rodyti/slėpti žurnalų valdymą plėtinių lange ('MĖLYNAS' mygtukas)."
 
 msgid "Allows you to show/hide OScam in extensions (blue button)."
-msgstr "Leidžia rodyti/slėpti OScam išplėtimus (mėlynas mygtukas)."
+msgstr ""
+"Leidžia rodyti/slėpti OScam informaciją plėtinių lange ('MĖLYNAS' mygtukas)."
 
 msgid "Alpha"
 msgstr "Permatoma"
@@ -1569,7 +1570,7 @@ msgid "Always ask"
 msgstr "Visada klausti"
 
 msgid "Always hide infobar"
-msgstr "Visada paslėpti info juostą"
+msgstr "Visada paslėpti infojuostą"
 
 msgid "Always show bouquets"
 msgstr "Visada rodyti paketus"
@@ -1912,7 +1913,7 @@ msgid "Automatic refresh"
 msgstr "Automatinis atnaujinimas"
 
 msgid "Automatic resolution"
-msgstr "Automatinė raiška"
+msgstr "Automatinė rezoliucija"
 
 msgid "Automatic resolution label"
 msgstr "Automatinės raiškos etiketė"
@@ -3161,7 +3162,7 @@ msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfigūruokite, ar išvis turi būti išsaugotas epg.dat."
 
 msgid "Configure if service picons will be shown in the servicelist."
-msgstr "Konfigūruoti, jei kanalo pikonas bus rodomas kanalų sąraše."
+msgstr "Konfigūruoti, jei kanalo piktograma bus rodomas kanalų sąraše."
 
 msgid ""
 "Configure if the subtitle should switch between normal, italic, bold and "
@@ -3369,7 +3370,7 @@ msgstr ""
 "nerodyti logotipo visai."
 
 msgid "Configure the nameserver (DNS)."
-msgstr "Konfigūruokite serverio pavadinimą (DNS)."
+msgstr "Konfigūruokite serverio vardą (DNS)."
 
 msgid "Configure the netmask."
 msgstr "Konfigūruokite potinklio kaukę."
@@ -3493,7 +3494,7 @@ msgstr ""
 "apačioje."
 
 msgid "Configure the width allocated to the picon."
-msgstr "Konfigūruokite plotį, skirtą pikonams."
+msgstr "Konfigūruokite plotį, skirtą piktogramoms."
 
 msgid "Configure the width allocated to the service name."
 msgstr "Konfigūruokite plotį, skirta kanalų pavadinimui."
@@ -3503,7 +3504,7 @@ msgstr "Konfigūruokite TrueType šrifto raidžių plotį, naudojamą teletekstu
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
-"Konfigūruokite EPG, kad rodyti kanalų pavadinimus, pikonus, ar abu kartu."
+"Konfigūruokite EPG, kad rodyti kanalų pavadinimus, piktograma, ar abu kartu."
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr ""
@@ -3684,7 +3685,7 @@ msgstr ""
 "Nustatykite pozicijas, kaip baigti laikmačiai bus rodomi laikmačių sąraše."
 
 msgid "Control the Infobar fading speed"
-msgstr "Nustatykite info juostos išnykimo/išblukimo greitį"
+msgstr "Nustatykite infojuostos išnykimo/išblukimo greitį"
 
 msgid "Control your Softcams"
 msgstr "Valdykite savo emuliatorius"
@@ -4370,7 +4371,7 @@ msgid "Display Setup"
 msgstr "Monitoriaus valdymas"
 
 msgid "Display the EIT now/next eventdata in infobar."
-msgstr "Info juostoje rodyti EIT dabar/sekantis įvykių duomenis."
+msgstr "Infojuostoje rodyti EIT dabar/sekantis įvykių duomenis."
 
 msgid "DLNA support"
 msgstr "DLNA palaikymas"
@@ -4440,7 +4441,7 @@ msgid "Do you really want to download the plugin \"%s\"?"
 msgstr "Ar tikrai norite parsisiųsti priedą \"%s\"?"
 
 msgid "Do you really want to exit?"
-msgstr "Ar tikrai norite išeiti?"
+msgstr "Ar tikrai norite užverti?"
 
 msgid ""
 "Do you really want to initialize the device?\n"
@@ -4844,7 +4845,7 @@ msgid "Edit settings"
 msgstr "Redaguoti nustatymus"
 
 msgid "Edit the Nameserver configuration of your %s %s.\n"
-msgstr "Redaguoti %s %s serverių konfigūraciją.\n"
+msgstr "Redaguoti %s %s DNS serverių konfigūraciją.\n"
 
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Redaguoti %s %s tinklo konfigūraciją.\n"
@@ -4898,7 +4899,7 @@ msgid ""
 "Enable and set the duration of the second infobar (press OK twice) that may "
 "include more information on the current service."
 msgstr ""
-"Įjunkite ir nustatykite antrosios info juostos rodymo trukmę (paspaudus du "
+"Įjunkite ir nustatykite antrosios infojuostos rodymo trukmę (paspaudus du "
 "kartus 'OK'). Ji suteiks papildomos, platesnės informacijos apie žiūrimą "
 "kanalą."
 
@@ -5353,7 +5354,7 @@ msgid "Exif"
 msgstr "Exif"
 
 msgid "Exit"
-msgstr "Išeiti"
+msgstr "Užverti"
 
 msgid "exit DVD player or return to file browser"
 msgstr "užverti DVD grotuvą, arba sugrįžti į failų naršyklę"
@@ -5386,7 +5387,7 @@ msgid "Exit movie player?"
 msgstr "Užverti filmų grotuvą?"
 
 msgid "Exit nameserver configuration"
-msgstr "Užverti serverio konfigūravimą"
+msgstr "Užverti DNS serverio konfigūravimą"
 
 msgid "exit network adapter configuration"
 msgstr "užverti tinklo adapterio konfigūravimą"
@@ -5461,19 +5462,19 @@ msgid "Extension"
 msgstr "Papildymai"
 
 msgid "Extensions"
-msgstr "Išplėtimai"
+msgstr "Plėtiniai"
 
 msgid "extensions"
-msgstr "išplėtimai"
+msgstr "plėtiniai"
 
 msgid "Extensions management"
-msgstr "Išplėtimų valdymas"
+msgstr "Plėtinių valdymas"
 
 msgid "extensions."
-msgstr "išplėtimai."
+msgstr "plėtiniai."
 
 msgid "Extensions/QuickMenu"
-msgstr "Išplėtimai/greitasis meniu"
+msgstr "Plėtiniai/greitasis meniu"
 
 msgid "External"
 msgstr "Išorinis"
@@ -5946,10 +5947,10 @@ msgid "Getting Event Info failed!"
 msgstr "Informacijos apie įvykį gauti nepavyko!"
 
 msgid "Getting plugin information. Please wait..."
-msgstr "Gaunama informacija apie priedus. Prašome palaukti..."
+msgstr "Gaunama informacija apie priedus. Palaukite..."
 
 msgid "Getting Softcam list. Please wait..."
-msgstr "Gaunamas emuliatorių sąrašas. Prašome palaukti..."
+msgstr "Gaunamas emuliatorių sąrašas. Palaukite..."
 
 msgid "Go down the list"
 msgstr "Sąrašu žemyn"
@@ -6441,7 +6442,7 @@ msgstr ""
 "kanalų sąrašas."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
-msgstr "Jei nustatyta 'taip', info juostoje bus rodomas kanalo numeris."
+msgstr "Jei nustatyta 'taip', infojuostoje bus rodomas kanalo numeris."
 
 msgid ""
 "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' "
@@ -6455,7 +6456,7 @@ msgstr ""
 "Jei nustatyta 'taip', naujam įvykiui prasidedant, bus rodoma infojuosta."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr "Jei nustatyta 'taip', perjungiant kanalus, bus rodoma info juosta."
+msgstr "Jei nustatyta 'taip', perjungiant kanalus, bus rodoma infojuosta."
 
 msgid ""
 "If set to 'yes' you can preview channels in the channel list. Press 'OK' to "
@@ -6488,13 +6489,13 @@ msgid ""
 "Rewinding during media playback."
 msgstr ""
 "Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medija failų "
-"atkūrimo metu, bus rodoma info juosta."
+"atkūrimo metu, bus rodoma infojuosta."
 
 msgid ""
 "If set to 'yes; the infobar will remain shown permanently in 'paused' state "
 "(no timeout)."
 msgstr ""
-"Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" būsenoje "
+"Jeigu nustatyta 'taip; infojuosta bus rodoma visą laiką \"pauzės\" būsenoje "
 "(be pertraukos)."
 
 msgid ""
@@ -6670,7 +6671,7 @@ msgid "Info (EPG) Long"
 msgstr "Info (EPG) ilgai spausti"
 
 msgid "Info bar"
-msgstr "Info juosta"
+msgstr "Infojuosta"
 
 msgid "Info button (long)"
 msgstr "Info mygtukas (ilgai spausti)"
@@ -6682,31 +6683,31 @@ msgid "INFO button mode"
 msgstr "INFO mygtuko režimas"
 
 msgid "Info icon width"
-msgstr "Info logotipo plotis"
+msgstr "Plotis info piktogramai"
 
 msgid "INFO Panel"
-msgstr "Info skydas"
+msgstr "Valdymo langas"
 
 msgid "Info Panel"
-msgstr "Info skydas"
+msgstr "Valdymo langas"
 
 msgid "INFO-Panel..."
-msgstr "INFORMACIJOS skydelis..."
+msgstr "Valdymo langas..."
 
 msgid "InfoBar"
-msgstr "Info juosta"
+msgstr "InfojuostaP"
 
 msgid "Infobar EPG"
-msgstr "EPG info juosta"
+msgstr "EPG infojuosta"
 
 msgid "InfoBar EPG mode"
-msgstr "Info juostos EPG režimas"
+msgstr "Infojuostos EPG režimas"
 
 msgid "Infobar fade-out speed"
-msgstr "Info juostos išnykimo greitis"
+msgstr "Infojuostos išnykimo greitis"
 
 msgid "Infobar frontend data source"
-msgstr "Info juostos išorinės sąsajos duomenų šaltinis"
+msgstr "Infojuostos išorinės sąsajos duomenų šaltinis"
 
 msgid "InfobarEPG settings"
 msgstr "EPG info juostos nustatymai"
@@ -6790,10 +6791,10 @@ msgid "Install channel list"
 msgstr "Įdiegti kanalų sąrašą"
 
 msgid "Install extensions"
-msgstr "Įdiekite išplėtimus"
+msgstr "Įdiekite plėtinius"
 
 msgid "Install extensions."
-msgstr "Įdiekite išplėtimus."
+msgstr "Įdiekite plėtinius."
 
 msgid "Install Failed !!"
 msgstr "Įdiegti nepavyko !!"
@@ -6802,7 +6803,7 @@ msgid "Install Finished."
 msgstr "Įdiegimas baigtas."
 
 msgid "Install lcd picons on"
-msgstr "Įdiegti LCD pikonus į"
+msgstr "Įdiegti LCD piktogramą į"
 
 msgid "Install local extension"
 msgstr "Įdiekite vietinį išplėtimą"
@@ -6811,7 +6812,7 @@ msgid "Install or remove finished."
 msgstr "Įdiegimas arba pašalinimas baigtas."
 
 msgid "Install picons on"
-msgstr "Įdiegti pikonus į"
+msgstr "Įdiegti piktogramas į"
 
 msgid "Install plugins"
 msgstr "Įdiegti priedus"
@@ -7411,7 +7412,7 @@ msgid "making a backup before updating"
 msgstr "prieš atnaujinimą padaryti atsarginę kopiją"
 
 msgid "Manage extensions"
-msgstr "Išplėtimų valdymas"
+msgstr "Plėtinių valdymas"
 
 msgid "Manage network mounts"
 msgstr "Tvarkyti tinklo pajungimus"
@@ -7886,16 +7887,16 @@ msgid "Name:"
 msgstr "Pavadinimas:"
 
 msgid "Nameserver"
-msgstr "Serverio pavadinimas"
+msgstr "DNS serveris"
 
 msgid "Nameserver %d"
-msgstr "Serverio pavadinimas %d"
+msgstr "DNS serveris %d"
 
 msgid "Nameserver settings"
-msgstr "Serverio pavadinimo nustatymai"
+msgstr "DNS serverio nustatymai"
 
 msgid "Nameserver setup"
-msgstr "Serverio pavadinimo sąranka"
+msgstr "DNS serverio valdymas"
 
 msgid "Namespace"
 msgstr "Pavadinimų erdvė"
@@ -8042,10 +8043,10 @@ msgid "Next"
 msgstr "Kitas"
 
 msgid "Next boot will start from Image 1."
-msgstr "Kita įkrova prasidės nuo vaizdo 1."
+msgstr "Kita įkrova prasidės nuo 1 atvaizdo."
 
 msgid "next higher Resolution"
-msgstr "kita didesnė raiška"
+msgstr "kita didesnė rezoliucija"
 
 msgid "nfi"
 msgstr "nfi"
@@ -8055,8 +8056,8 @@ msgstr "NFI atvaizdo įdiegimas"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
-"NFI atvaizdo diegimas baigtas. Spauskite geltoną mygtuką, kad paleisti iš "
-"naujo!"
+"NFI atvaizdas įdiegtas. Norėdami paleisti iš naujo, spauskite geltoną "
+"mygtuką!"
 
 msgid "NFIDownload"
 msgstr "NFI parsisiuntimas"
@@ -8071,7 +8072,7 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFS Setup"
-msgstr "NFS nustatymas"
+msgstr "NFS valdymas"
 
 msgid "NIM"
 msgstr "Imtuvas"
@@ -8104,7 +8105,7 @@ msgstr ""
 "/hdd nerasta !!\n"
 "Patikrinkite ar turite pajungtą HDD.\n"
 "\n"
-"Išeiti iš priedo."
+"užverti priedą."
 
 msgid "No active channel found."
 msgstr "Aktyvaus kanalo nerasta."
@@ -8469,7 +8470,7 @@ msgstr ""
 "/hdd nepakanka laisvos vietos!!\n"
 "Reikia bent 300Mb laisvos vietos.\n"
 "\n"
-"Išeiti iš priedo."
+"užverti priedą."
 
 msgid "Not enough free space to record"
 msgstr "Nėra pakankamai laisvos vietos įrašymui"
@@ -8592,7 +8593,7 @@ msgstr ""
 "ofgwrite nerastas !!\n"
 "Prašome įsitikinti, kad turite ofgwrite įdiegtą į /usr/bin/ofgwrite.\n"
 "\n"
-"Išeiti iš priedo."
+"užverti priedą."
 
 msgid "ofgwrite will stop enigma2 now to run the flash.\n"
 msgstr "ofgwrite dabar sustabdys enigma2 ir pradės diegimą.\n"
@@ -8673,7 +8674,7 @@ msgid "OnlineVersionCheck"
 msgstr "Versijos patikrinimas internetu"
 
 msgid "Only extensions."
-msgstr "Tik išplėtimus."
+msgstr "Tik plėtinius."
 
 msgid "Only free scan"
 msgstr "Skenuoti tik nekoduotus"
@@ -8715,7 +8716,7 @@ msgid "Open MediaPortal..."
 msgstr "Atverti Medija Portalą..."
 
 msgid "open nameserver configuration"
-msgstr "atverti serverio pavadinimo konfigūraciją"
+msgstr "atverti DNS serverio konfigūraciją"
 
 msgid "Open satellites list"
 msgstr "Atverti palydovų sąrašą"
@@ -8760,7 +8761,7 @@ msgid "OpenVpn Setup"
 msgstr "OpenVpn nustatymas"
 
 msgid "Option to disable picons on the Infobar"
-msgstr "Ši parinktis leidžia išjungti pikonų rodymą info juostoje"
+msgstr "Ši parinktis leidžia išjungti piktogramų rodymą infojuostoje"
 
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
@@ -8850,10 +8851,10 @@ msgid "Overwrite Emu Files ?"
 msgstr "Perrašyti Emu failus?"
 
 msgid "Overwrite Picon Files ?"
-msgstr "Perrašyti pikonų failus?"
+msgstr "Perrašyti piktogramų failus?"
 
 msgid "Overwrite picon files during software upgrade?"
-msgstr "Perrašyti pikonų failus, atnaujinant programinę įrangą?"
+msgstr "Perrašyti piktogramų failus, atnaujinant programinę įrangą?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr ""
@@ -9038,19 +9039,19 @@ msgid "Persian"
 msgstr "Persų"
 
 msgid "Picon"
-msgstr "Pikonas"
+msgstr "Piktograma"
 
 msgid "Picon and service name"
-msgstr "Pikonas ir kanalo pavadinimas"
+msgstr "Piktograma ir kanalo pavadinimas"
 
 msgid "Picon and Service Name"
-msgstr "Pikonas ir kanalo pavadinimas"
+msgstr "Piktograma ir kanalo pavadinimas"
 
 msgid "Picon width"
-msgstr "Pikono plotis"
+msgstr "Piktogramos plotis"
 
 msgid "picons"
-msgstr "pikonai"
+msgstr "piktogramos"
 
 msgid "picshow"
 msgstr "logotipo rodymas"
@@ -9416,10 +9417,10 @@ msgstr ""
 "'OK'."
 
 msgid "Please wait (downloading channel list)"
-msgstr "Prašome palaukti (atsisiunčiamas kanalų sąrašas)"
+msgstr "Palaukite (atsisiunčiamas kanalų sąrašas)"
 
 msgid "Please wait (updating packages)"
-msgstr "Prašome palaukti (atnaujinami paketai)"
+msgstr "Palaukite (atnaujinami paketai)"
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Palaukite, kol aktyvuosis jūsų tinklo konfigūracija..."
@@ -9452,19 +9453,19 @@ msgid "Please wait whilst feeds state is checked."
 msgstr "Palaukite, kol tikrinama šaltinių būklė."
 
 msgid "please wait, loading picture..."
-msgstr "prašome laukti, įkeliamas paveikslėlis..."
+msgstr "palaukite, įkeliamas paveikslėlis..."
 
 msgid "Please wait."
-msgstr "Prašome laukti..."
+msgstr "Palaukite..."
 
 msgid "Please wait..."
-msgstr "Prašome laukti..."
+msgstr "Palaukite..."
 
 msgid "please wait..."
-msgstr "prašome laukti..."
+msgstr "palaukite..."
 
 msgid "Please wait... Loading list..."
-msgstr "Prašome laukti... Užkraunamas sąrašas..."
+msgstr "Palaukite... užkraunamas sąrašas..."
 
 msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 msgstr "NEPALEIDINĖKITE iš naujo ir NEIŠJUNKITE maitinimo įtampos.\n"
@@ -9674,7 +9675,7 @@ msgid "Prepare another USB stick for image flashing"
 msgstr "Paruoškite kitą USB laikmeną atvaizdo diegimui"
 
 msgid "Preparing... Please wait"
-msgstr "Ruošiama... Prašome laukti"
+msgstr "Ruošiama... palaukite"
 
 msgid "Press '0' to toggle PiP mode"
 msgstr "PiP langams sukeisti, spauskite '0'"
@@ -9961,7 +9962,7 @@ msgid "QuickMenu"
 msgstr "Greitasis meniu"
 
 msgid "QuickMenu/Extensions"
-msgstr "Greitasis meniu/Išplėtimai"
+msgstr "Greitasis meniu/plėtiniai"
 
 msgid "QuickMenuDevices"
 msgstr "Greitojo meniu įrenginiai"
@@ -10033,7 +10034,7 @@ msgid "Really delete done timers?"
 msgstr "Tikrai pašalinti atliktus laikmačius?"
 
 msgid "Really exit the subservices quickzap?"
-msgstr "Tikrai išeiti iš greito subkanalų perjungimo?"
+msgstr "Tikrai užverti greitą subkanalų perjungimą?"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Tikrai iš naujo paleisti į atkūrimo režimą?"
@@ -10194,7 +10195,7 @@ msgstr "Raudonas, ilgai spausti"
 
 msgid ""
 "Reduce the size of the service picons for more line spacing between them."
-msgstr "Sumažinti kanalo pikonų dydį, daugiau tarpų tarp eilučių."
+msgstr "Sumažinti kanalo piktogramos dydį, daugiau tarpų tarp eilučių."
 
 msgid "Reduce time scale"
 msgstr "Sumažinti laiko skalę"
@@ -10290,7 +10291,7 @@ msgid "Remove a mark"
 msgstr "Pašalinti žymeklį"
 
 msgid "Remove a nameserver entry"
-msgstr "Pašalinti serverio pavadinimo įrašą"
+msgstr "Pašalinti DNS serverio duomenis"
 
 msgid "remove after this position"
 msgstr "pašalinti po šios vietos"
@@ -10671,7 +10672,7 @@ msgid "Running"
 msgstr "Veikiantis"
 
 msgid "Running Myrestore script, Please wait ..."
-msgstr "Palaukite, vykdomas Mano atnaujinimo scenarijus ..."
+msgstr "Palaukite, vykdomas Mano atkūrimo scenarijus ..."
 
 msgid "running..."
 msgstr "veikiantis..."
@@ -10784,13 +10785,13 @@ msgid "Save every (in hours)"
 msgstr "Išsaugoti kiekvieną (valandomis)"
 
 msgid "save last directory on exit"
-msgstr "išsaugoti paskutinį katalogą išeinant"
+msgstr "uždarant, išsaugoti paskutinį katalogą"
 
 msgid "Save playlist"
 msgstr "Išsaugoti grojaraštį"
 
 msgid "save playlist on exit"
-msgstr "išsaugoti grojaraštį išeinant"
+msgstr "uždarant, išsaugoti grojaraštį"
 
 msgid "Save timeshift as movie and continue recording"
 msgstr "Išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
@@ -10835,7 +10836,7 @@ msgid "Scan files..."
 msgstr "Skenuoti failus..."
 
 msgid "Scan for local extensions and install them"
-msgstr "Skenuoti vietinius išplėtimus ir juos įdiegti"
+msgstr "Skenuoti vietinius plėtinius ir juos įdiegti"
 
 msgid "scan state"
 msgstr "skenavimo eiga"
@@ -10950,7 +10951,7 @@ msgid "Searching for available updates. Please wait..."
 msgstr "Ieškoma galimų atnaujinimų. Palaukite..."
 
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr "Ieškoma naujai įdiegtų, ar pašalintų paketų. Prašome laukti..."
+msgstr "Ieškoma naujai įdiegtų, ar pašalintų paketų. Palaukite..."
 
 msgid "Searching west ..."
 msgstr "Ieškoma vakarų ..."
@@ -10965,7 +10966,7 @@ msgid "Secondary DNS"
 msgstr "Antrinis DNS"
 
 msgid "SecondInfoBar"
-msgstr "Antroji info juosta"
+msgstr "Antroji infojuosta"
 
 msgid "seconds"
 msgstr "sekundžių"
@@ -11434,7 +11435,7 @@ msgid "Service number font size"
 msgstr "Kanalo numerio šrifto dydis"
 
 msgid "Service picons downsize"
-msgstr "Kanalų pikonų sumažinimas"
+msgstr "Kanalų piktogramų sumažinimas"
 
 msgid "service PIN"
 msgstr "kanalo PIN"
@@ -11594,7 +11595,7 @@ msgid ""
 "infobar Lite or event info."
 msgstr ""
 "Nustatykite ekrano tipą, jums paspaudus 'OK', kai informacijos juosta rodo 2 "
-"paprastas info juostas arba įvykio informaciją."
+"paprastas infojuostas arba įvykio informaciją."
 
 msgid ""
 "Set the scrolling speed of text on the front display, this is used by "
@@ -11624,8 +11625,8 @@ msgid ""
 "Set the time to hide the second infobar. The bar also disappears on pressing "
 "'OK'."
 msgstr ""
-"Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat "
-"dingsta ir paspaudus 'OK'."
+"Nustatyti laiką, kad paslėpti antrą infojuostą. Infojuosta taip pat dingsta "
+"ir paspaudus 'OK'."
 
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
@@ -12022,13 +12023,13 @@ msgid "show cards with uphop 9"
 msgstr "rodyti korteles su uphop 9"
 
 msgid "Show CCcam in extensions ?"
-msgstr "Rodyti CCcam išplėtimus ?"
+msgstr "Rodyti CCcam plėtinius ?"
 
 msgid "Show CCcamInfo in Extensions Menu"
-msgstr "Rodyti CCcamInfo išplėstiniame meniu"
+msgstr "Rodyti CCcamInfo plėtinių meniu"
 
 msgid "Show channel number in infobar"
-msgstr "Rodyti kanalo numerį info juostoje"
+msgstr "Rodyti kanalo numerį infojuostoje"
 
 msgid "Show channel numbers in channel selection"
 msgstr "Kanalų sąrašo lange rodyti kanalo numerį"
@@ -12079,10 +12080,10 @@ msgid "Show E2 Log"
 msgstr "Rodyti E2 žurnalą"
 
 msgid "Show EIT now/next in infobar"
-msgstr "Info juostoje rodyti EIT dabar/sekantis"
+msgstr "Infojuostoje rodyti EIT dabar/sekantis"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
-msgstr "Info juostoje rodyti kodavimo informaciją (kai tą palaiko tema)."
+msgstr "Infojuostoje rodyti kodavimo informaciją (kai tą palaiko tema)."
 
 msgid "Show EPG"
 msgstr "Rodyti EPG"
@@ -12118,7 +12119,7 @@ msgid "Show extension selection"
 msgstr "Rodyti išplėtimų pasirinkimą"
 
 msgid "Show extensions..."
-msgstr "Rodyti išplėtimus..."
+msgstr "Rodyti plėtinius..."
 
 msgid "Show favourites list"
 msgstr "Rodyti mėgstamiausių sąrašą"
@@ -12154,7 +12155,7 @@ msgid "Show icon for new/unseen items"
 msgstr "Naujus/nežiūrėtus įvykius pažymėti logotipu"
 
 msgid "Show in extensions list ?"
-msgstr "Rodyti išplėtimų sąraše?"
+msgstr "Rodyti plėtinių sąraše?"
 
 msgid "Show info"
 msgstr "Rodyti informaciją"
@@ -12163,25 +12164,25 @@ msgid "Show info line"
 msgstr "Rodyti info liniją"
 
 msgid "Show Infobar"
-msgstr "Rodyti info juostą"
+msgstr "Rodyti infojuostą"
 
 msgid "Show infobar lite *"
-msgstr "Rodyti supaprastintą info juostą *"
+msgstr "Rodyti supaprastintą infojuostą *"
 
 msgid "Show infobar on channel change"
-msgstr "Rodyti info juostą, perjungiant kanalą"
+msgstr "Rodyti infojuostą, perjungiant kanalą"
 
 msgid "Show infobar on event change"
-msgstr "Rodyti info juostą, keičiantis įvykiui"
+msgstr "Rodyti infojuostą, keičiantis įvykiui"
 
 msgid "Show infobar on skip forward/backward"
-msgstr "Rodyti info juostą praleidžiant į priekį/atgal"
+msgstr "Rodyti infojuostą praleidžiant į priekį/atgal"
 
 msgid "Show infobar permanently while paused"
-msgstr "Pauzės metu, visą laiką rodyti info juostą"
+msgstr "Pauzės metu, visą laiką rodyti infojuostą"
 
 msgid "Show infobar picons"
-msgstr "Rodyti info juostos pikonus"
+msgstr "Rodyti infojuostos piktogramas"
 
 msgid "Show job tasks in extensions"
 msgstr "Plėtinių lange rodyti darbines užduotis"
@@ -12193,7 +12194,7 @@ msgid "Show Log"
 msgstr "Loginis žurnalas"
 
 msgid "Show Log Manager in extensions list ?"
-msgstr "Rodyti žurnalo tvarkyklę išplėtimų sąraše?"
+msgstr "Rodyti žurnalo tvarkyklę plėtinių sąraše?"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Rodyti medijos atkūrime liko/praėjo kaip"
@@ -12250,16 +12251,16 @@ msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Rodyti arba slėpti išplėstą aprašymą, (priklauso nuo temos)."
 
 msgid "Show OScam in extensions ?"
-msgstr "Rodyti OScam išplėtimuose?"
+msgstr "Rodyti OScam tarp plėtinių ?"
 
 msgid "Show OscamInfo in Extensions Menu"
-msgstr "Rodyti OscamInfo išplėstiniame meniu"
+msgstr "Rodyti OscamInfo tarp plėtinių meniu"
 
 msgid "Show picon background colour"
-msgstr "Rodyti pikonų fono spalvą"
+msgstr "Rodyti piktogramos fono spalvą"
 
 msgid "show picons in service list"
-msgstr "kanalų pasirinkimo sąraše rodyti kanalų pikonus"
+msgstr "kanalų pasirinkimo sąraše rodyti kanalų piktogramas"
 
 msgid "Show PIP"
 msgstr "Paveikslėlis paveikslėlyje"
@@ -12277,7 +12278,7 @@ msgid "show program information..."
 msgstr "rodyti programos informaciją..."
 
 msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Rodyti PVR būseną filmų grotuvo info juostoje"
+msgstr "Rodyti PVR būseną filmų grotuvo infojuostoje"
 
 msgid "Show quickmenu..."
 msgstr "Rodyti greitą meniu..."
@@ -12295,7 +12296,7 @@ msgid "Show recording symbol depending on recording type"
 msgstr "Rodyti įrašymo simbolį priklausomai nuo įrašymo tipo"
 
 msgid "Show Restart Network in Extensions list *"
-msgstr "Rodyti 'paleisti iš naujo tinklą' išplėstiniame sąraše *"
+msgstr "Rodyti 'paleisti iš naujo tinklą' plėtinių sąraše *"
 
 msgid "Show RFmod setup..."
 msgstr "Rodyti RF modulio sąranką..."
@@ -12334,7 +12335,7 @@ msgid "Show single service EPG"
 msgstr "Rodyti vieno kanalo EPG"
 
 msgid "Show Softcam-Panel in Extensions Menu"
-msgstr "Rodyti emuliatorių skydelį išplėstiniame meniu"
+msgstr "Rodyti emuliatorių skydelį plėtinių meniu"
 
 msgid "Show source packages"
 msgstr "Rodyti paketų šaltinį"
@@ -12735,10 +12736,10 @@ msgid "Software"
 msgstr "Programinė įranga"
 
 msgid "Software management"
-msgstr "Programinės įrangos tvarkyklė"
+msgstr "Programinės įrangos valdymas"
 
 msgid "Software Manager"
-msgstr "Programinės įrangos tvarkyklė"
+msgstr "Programinės įrangos valdymas"
 
 msgid "Software Manager Setup"
 msgstr "Programinės įrangos valdymas"
@@ -12768,7 +12769,7 @@ msgid "SoftwareManager setup"
 msgstr "Programinės įrangos tvarkyklės valdymas"
 
 msgid "Softwaremanager..."
-msgstr "Programinės įrangos tvarkyklė..."
+msgstr "Programinės įrangos valdymas..."
 
 msgid "SoftwareManagerInfo"
 msgstr "Programinės įrangos informacija"
@@ -12870,7 +12871,7 @@ msgid "Sort EPG List"
 msgstr "Rūšiuoti EPG sąrašą"
 
 msgid "Sort Extensions list alphabetically"
-msgstr "Rūšiuoti išplėtimų sąrašą pagal abėcėlę"
+msgstr "Rūšiuoti plėtinių sąrašą pagal abėcėlę"
 
 msgid "Sort list by"
 msgstr "Rūšiuoti sąrašą pagal"
@@ -13317,8 +13318,7 @@ msgstr "Perjungti tarp įprastinio ir sąrašo režimų"
 
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
 msgstr ""
-"Perjungti Mėlynas-Trumpai (Greitas meniu) su Mėlynas-(ilgai spausti) "
-"(Išplėtimai)"
+"Perjungti mėlyną: mėlynas-trumpai (greitas meniu)/ mėlynas-ilgai (plėtiniai)"
 
 msgid "Switch config"
 msgstr "Perjungti konfigūraciją"
@@ -13488,7 +13488,7 @@ msgid "Teletext TTFBold (0=normal, 1=bold)"
 msgstr "Teleteksto TTFBold (0=normalus, 1=paryškintas)"
 
 msgid "Teletext TTFScreenResX (screen X resolution)"
-msgstr "Teleteksto TTFScreenResX (ekrano X raiška)"
+msgstr "Teleteksto TTFScreenResX (ekrano X rezoliucija)"
 
 msgid "Teletext TTFShiftX (horizontal letter position)"
 msgstr "Teleteksto TTFShiftX (horizontali raidės pozicija)"
@@ -13967,7 +13967,7 @@ msgstr "Ši parinktis leidžia jums parodyti m2k modulius, skirtus atsisiuntimui
 
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
-"Ši parinktis leidžia jums parodyti pikonų modulius, skirtus atsisiuntimui"
+"Ši parinktis leidžia jums parodyti piktogramų modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show pli modules in downloads"
 msgstr "Ši parinktis leidžia jums parodyti pli modulius, skirtus atsisiuntimui"
@@ -14072,7 +14072,7 @@ msgstr ""
 
 msgid ""
 "This option allows you choose the background colour of transparent picons."
-msgstr "Ši parinktis leidžia pasirinkti skaidrių pikonų fono spalvą."
+msgstr "Ši parinktis leidžia pasirinkti skaidrių piktogramų fono spalvą."
 
 msgid ""
 "This option allows you enable smoothing filter to control the dithering "
@@ -14244,8 +14244,7 @@ msgid ""
 "This option moves the PVR status from the seprate window into the "
 "MoviePlayer infobar."
 msgstr ""
-"Ši parinktis perkelia PVR būseną atskirame lange į filmų grotuvo informacinę "
-"juostą."
+"Ši parinktis perkelia PVR būseną iš atskiro lango į filmų grotuvo infojuostą."
 
 msgid ""
 "This option set the level of surpression of musquito noise (Musquito Noise "
@@ -14318,11 +14317,11 @@ msgid ""
 "- if you configured your nameservers manually please verify your entries in "
 "the \"Nameserver\" configuration"
 msgstr ""
-"Šis testas tikrina sukonfigūruotų serverių pavadinimus.\n"
+"Šis testas tikrina sukonfigūruotus DNS serverius.\n"
 "Jei jūs gaunate pranešimą 'nepatvirtinta':\n"
 "- tikrinkite savo DHCP, kabelį ir tinklo adapterio nustatymus\n"
 "- jeigu konfigūravote savo serverių pavadinimus rankiniu būdu, patikrinkite, "
-"ką įvedėte 'Serverio pavadinimo' konfigūracijoje"
+"ką įvedėte 'DNS serverio' konfigūracijoje"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
@@ -14772,18 +14771,18 @@ msgstr ""
 msgid "Try to find used Transponders in terrestrial network.. please wait..."
 msgstr ""
 "Bandoma rasti veikiančius transponderius antžeminės televizijos tinkle.. "
-"prašome palaukti..."
+"palaukite..."
 
 msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr ""
 "Bandoma rasti veikiančius transponderius antžeminės televizijos tinkle.. "
-"prašome palaukti..."
+"palaukite..."
 
 msgid "Trying to download a new packetlist. Please wait..."
-msgstr "Bandoma parsisiųsti naują paketo sąrašą. Prašome palaukti..."
+msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
 
 msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Bandome atsisiųsti naują atnaujinimų sąrašą. Prašome laukti..."
+msgstr "Bandome atsisiųsti naują atnaujinimų sąrašą. Palaukite..."
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -14990,7 +14989,7 @@ msgid "until standby/restart"
 msgstr "iki budėjimo/paleisti iš naujo"
 
 msgid "Unzipping files, Please wait ..."
-msgstr "Išarchyvuojami failai, prašome laukti ..."
+msgstr "Išarchyvuojami failai, palaukite..."
 
 msgid "Up"
 msgstr "Aukštyn"
@@ -16683,7 +16682,7 @@ msgid "Your %s %s is shutting down"
 msgstr "Jūsų %s %s išsijungia"
 
 msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Jūsų %s%s išsijungia. Prašome laukti..."
+msgstr "Jūsų %s%s išsijungia. Palaukite..."
 
 msgid ""
 "Your %s %s isn't connected to the internet properly. Please check it and try "
@@ -17002,7 +17001,7 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
-"Paspaudę OK, prašome laukti!"
+"Paspaudę OK, palaukite!"
 
 msgid ""
 "\n"
@@ -17086,7 +17085,7 @@ msgid ""
 "Scan for local extensions and install them."
 msgstr ""
 "\n"
-"Skenuoti vietinius išplėtimus ir juos įdiegti."
+"Skenuoti vietinius plėtinius ir juos įdiegti."
 
 msgid ""
 "\n"
@@ -17116,7 +17115,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[Mano - paketai (RADIJAS)]\n"
+"[Mano radijo paketai]\n"
 
 msgid ""
 "\n"
@@ -17125,7 +17124,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"[Mano - paketai (TV)]\n"
+"[Mano TV paketai]\n"
 
 #~ msgid "Programmlisten from DXAndy"
 #~ msgstr "Programų sąrašo-atnaujinimas iš DXAndy"
