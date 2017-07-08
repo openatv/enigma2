@@ -387,6 +387,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 {
 	bool simulate = ((eDVBFrontend*)&frontend)->is_simulate();
 	int lnb_idx = -1;
+	int gfrq = 0;
+	int gfrq_a = 0;
 
 	if (canTune(sat, &frontend, slot_id, &lnb_idx))
 	{
@@ -524,18 +526,22 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				frontend.getData(eDVBFrontend::CUR_LOF, curr_lof);
 				frontend.getData(eDVBFrontend::CUR_BAND, curr_band);
 
-				int gfrq = curr_frq  > 0 ? abs(curr_frq - curr_lof) + (curr_sym*13)/20000 : 0;
-				int gfrq_a = curr_frq  > 0 ? abs(curr_frq - curr_lof) - (curr_sym*13)/20000 : 0;
+				if((curr_frq > 0) && (curr_sym > 0))
+				{
+					gfrq = curr_frq  > 0 ? abs(curr_frq - curr_lof) + (curr_sym*13)/20000 : 0;
+					gfrq_a = curr_frq  > 0 ? abs(curr_frq - curr_lof) - (curr_sym*13)/20000 : 0;
+				}
 
 				frontend.setData(eDVBFrontend::CUR_FREQ, sat.frequency);
 				frontend.setData(eDVBFrontend::CUR_SYM, sat.symbol_rate);
 				frontend.setData(eDVBFrontend::CUR_LOF, lof);
 				frontend.setData(eDVBFrontend::CUR_BAND, band);
+
 				switch(lnb_param.SatCR_format)
 				{
 					case 1:
 						eDebugNoSimulate("[eDVBSatelliteEquipmentControl] JESS (EN50607)");
-						if(lnb_param.SatCR_switch_reliable)
+						if(lnb_param.SatCR_switch_reliable && gfrq && gfrq_a)
 						{
 							long inv;
 							frontend.getData(eDVBFrontend::SPECTINV_CNT, inv);
@@ -548,7 +554,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					case 0:
 					default:
 						eDebugNoSimulate("[eDVBSatelliteEquipmentControl] Unicable (EN50494)");
-						if(lnb_param.SatCR_switch_reliable)
+						if(lnb_param.SatCR_switch_reliable && gfrq && gfrq_a)
 						{
 							long inv;
 							frontend.getData(eDVBFrontend::SPECTINV_CNT, inv);
@@ -850,7 +856,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				compare.voltage = iDVBFrontend::voltageOff;
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS] ) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS] > lnb_param.BootUpTime ? m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS] : lnb_param.BootUpTime) );
 
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
@@ -936,7 +942,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 				long pin = 0;
 //<<<
 //>>> TODO optimize this
-				if(lnb_param.SatCR_switch_reliable)
+				if(lnb_param.SatCR_switch_reliable && gfrq && gfrq_a)
 				{
 					switch(lnb_param.SatCR_format)
 					{
@@ -1304,7 +1310,7 @@ void eDVBSatelliteEquipmentControl::prepareTurnOffSatCR(iDVBFrontend &frontend)
 
 	sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS]) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP,  m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS] > m_lnbs[m_lnbidx].BootUpTime ? m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS] : m_lnbs[m_lnbidx].BootUpTime ) );
 
 	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage18_5) );
 	sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
@@ -1521,6 +1527,18 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSatCRTuningAlgo(int SatCR_switch_rel
 		return -EPERM;
 	if ( currentLNBValid() )
 		m_lnbs[m_lnbidx].SatCR_switch_reliable = SatCR_switch_reliable;
+	else
+		return -ENOENT;
+	return 0;
+}
+
+RESULT eDVBSatelliteEquipmentControl::setLNBBootupTime(int BootUpTime)
+{
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBBootupTime(%d)", BootUpTime);
+	if(!((BootUpTime >= 0)))
+		return -EPERM;
+	if ( currentLNBValid() )
+		m_lnbs[m_lnbidx].BootUpTime = BootUpTime;
 	else
 		return -ENOENT;
 	return 0;

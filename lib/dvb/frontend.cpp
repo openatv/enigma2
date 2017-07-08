@@ -2103,7 +2103,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			{
 				if (!m_simulate)
 				{
-					if (readFrontendData(iFrontendInformation_ENUMS::lockState))
+					if (readFrontendData(iFrontendInformation_ENUMS::lockState) && readFrontendData(iFrontendInformation_ENUMS::signalQuality))
 					{
 						eDebugNoSimulate("tuner locked .. wait");
 						if (m_timeoutCount)
@@ -2348,6 +2348,10 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 							{
 								eDebugNoSimulate("[SEC-Master] tuner %d timeout wait takeover frontend", m_dvbid);
 								m_break_waitteakover = 1;
+								m_sec_sequence.clear();		// delete all subsequent commands
+								m_sec_sequence.push_back(eSecCommand(eSecCommand::NONE));
+								m_sec_sequence.push_back(eSecCommand(eSecCommand::START_TUNE_TIMEOUT, 1000));
+								m_sec_sequence.current() = m_sec_sequence.begin();
 							}
 						}
 						if(m_break_waitteakover)
