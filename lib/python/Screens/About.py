@@ -39,7 +39,7 @@ class AboutBase(Screen):
 		self.onClose.append(self.cleanup)
 
 	@staticmethod
-	def sizeStr(size, unknown=_("unavailable")):
+	def sizeStr(size, unknown=_("unknown")):
 		if float(size) / 2 ** 20 >= 1:
 			return str(round(float(size) / 2 ** 20, 2)) + _("TB")
 		if (float(size) / 2 ** 10) >= 1:
@@ -118,7 +118,7 @@ class About(AboutBase):
 
 		self.list.append(self.makeEmptyEntry())
 
-		if about.getChipSetString() != _("unavailable"):
+		if about.getChipSetString() != _("unknown"):
 			if about.getIsBroadcom():
 				self.list.append(self.makeInfoEntry(_("Chipset:"), "BCM%s" % about.getChipSetString().upper()))
 			else:
@@ -127,26 +127,6 @@ class About(AboutBase):
 		self.list.append(self.makeInfoEntry(_("Architecture:"), about.getCPUArch()))
 		self.list.append(self.makeInfoEntry(_("Speed:"), about.getCPUSpeedString()))
 		self.list.append(self.makeInfoEntry(_("Cores:"), str(about.getCpuCoresString())))
-
-		string = getDriverDate()
-		year = string[0:4]
-		month = string[4:6]
-		day = string[6:8]
-		driversdate = '-'.join((year, month, day))
-		self.list.append(self.makeInfoEntry(_("Drivers:"), driversdate))
-		self.list.append(self.makeInfoEntry(_("Image:"), about.getImageVersionString()))
-		self.list.append(self.makeInfoEntry(_("Kernel:"), about.getKernelVersionString()))
-		self.list.append(self.makeInfoEntry(_("Oe-Core:"), about.getEnigmaVersionString()))
-		self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo))
-
-		fp_version = getFPVersion()
-		if fp_version is not None:
-			self.list.append(self.makeInfoEntry(_("Front Panel:"), "%d" % fp_version))
-
-		self.list.append(self.makeEmptyEntry())
-		self.list.append(self.makeInfoEntry(_("Last Upgrade:"), about.getLastUpdateString()))
-		self.list.append(self.makeEmptyEntry())
-		self.list.append(self.makeInfoEntry(_("WWW:"), about.getImageUrlString()))
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			tempinfo = file('/proc/stb/sensors/temp0/value').read()
@@ -157,14 +137,26 @@ class About(AboutBase):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			self.list.append(self.makeInfoEntry(_("System temperature:"), tempinfo.replace('\n', '') + mark + "C"))
-
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
 			tempinfo = file('/proc/stb/fp/temp_sensor_avs').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			self.list.append(self.makeInfoEntry(_("Processor temperature:"), tempinfo.replace('\n', '') + mark + "C"))
+		fp_version = getFPVersion()
+		if fp_version is not None:
+			self.list.append(self.makeInfoEntry(_("Front Panel:"), "%d" % fp_version))
+		self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo))
+		self.list.append(self.makeInfoEntry(_("Kernel:"), about.getKernelVersionString()))
+		self.list.append(self.makeInfoEntry(_("Drivers:"), getDriverDate()))
 
+		self.list.append(self.makeEmptyEntry())
+
+		self.list.append(self.makeInfoEntry(_("WWW:"), about.getImageUrlString()))
+		self.list.append(self.makeInfoEntry(_("Version:"), about.getImageVersionString()))
+		self.list.append(self.makeInfoEntry(_("Build:"), about.getBuildString()))
+		self.list.append(self.makeInfoEntry(_("Revision:"), about.getLastUpdateString()))
+		self.list.append(self.makeInfoEntry(_("Enigma2:"), about.getEnigmaVersionString()))
 		self.list.append(self.makeInfoEntry(_("GStreamer:"), about.getGStreamerVersionString().replace("GStreamer", "").strip()))
 		self.list.append(self.makeInfoEntry(_("Python:"), about.getPythonVersionString()))
 
@@ -274,7 +266,7 @@ class Devices(AboutBase):
 				mountfree /= 10 ** 6
 			sizeinfo = "%s%s" % (
 				_("Size: "),
-				self.sizeStr(mounttotal, _("unavailable"))
+				self.sizeStr(mounttotal, _("unknown"))
 			)
 			freeinfo = "%s%s" % (
 				_("Free: "),
@@ -408,7 +400,7 @@ class SystemMemoryInfo(AboutBase):
 		mounts = getProcMounts()
 		if mounts:
 			part = Partition(mounts[0][1])
-			FlashTotal = self.sizeStr(part.total() / 10 ** 6, _("unavailable"))
+			FlashTotal = self.sizeStr(part.total() / 10 ** 6, _("unknown"))
 			FlashFree = self.sizeStr(part.free() / 10 ** 6, _("full"))
 
 		self.list.append(self.makeEmptyEntry())

@@ -384,7 +384,7 @@ void runMainloop()
 
 const char *getEnigmaVersionString()
 {
-	return enigma2_date;
+	return enigma2_rev;
 }
 
 const char *getGStreamerVersionString()
