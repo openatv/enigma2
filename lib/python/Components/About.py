@@ -1,95 +1,62 @@
-from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from Components.Console import Console
 import sys
-import time
 import re
-from boxbranding import getImageVersion, getMachineBrand
-from sys import modules
+from boxbranding import getImageVersion, getMachineBrand, getMachineBuild
 import socket, fcntl, struct
+import enigma
 
+# Be carefull with this function. Some legacy code expects this to return a
+# string that can be parsed as a float. What's worse, there are some assumptions
+# made about what that value means (such as "4.0" signifying a transition point
+# for package names (based on oe-alliance versioning))
 def getVersionString():
 	return getImageVersion()
 
-def getFlashDateString():
+def parseImageVersionFile():
+	result = {}
 	try:
-		f = open("/etc/install","r")
-		flashdate = f.read()
-		f.close()
-		return flashdate
+		with open('/etc/image-version', 'r') as f:
+			lines = f.readlines()
+		for x in lines:
+			splitted = x.split('=', 1)
+			if len(splitted) == 2:
+				result[splitted[0].strip()] = splitted[1].strip()
 	except:
-		return _("unknown")
+		pass
+	return result
+
+# Use a cached version for two reasons:
+# 1. It's faster
+# 2. It shows the currently running version rather than the installed, but
+#    not active version (because the user has not restarted since updating)
+image_version_info = parseImageVersionFile()
 
 def getImageVersionString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "version":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
+	return image_version_info.get('version', _("unknown"))
+
+def getBuildString():
+	return image_version_info.get('build', _("unknown"))
+
+def getLastUpdateString():
+	return image_version_info.get('date', _("unknown"))
 
 def getImageUrlString():
-	try:
-		if getMachineBrand() == "GI":
-			return "www.xpeed-lx.de"
-		elif getMachineBrand() == "Beyonwiz":
-			return "www.beyonwiz.com.au"
-		else:
-			file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-			lines = file.readlines()
-			for x in lines:
-				splitted = x.split('=')
-				if splitted[0] == "url":
-					version = splitted[1].replace('\n','')
-			file.close()
-			return version
-	except IOError:
-		return "unavailable"
+	return image_version_info.get('url', "www.beyonwiz.com.au")
 
 def getEnigmaVersionString():
-	return getImageVersion()
+	return enigma.getEnigmaVersionString()
 
 def getGStreamerVersionString():
-	import enigma
 	return enigma.getGStreamerVersionString()
 
 def getKernelVersionString():
+	result = _("unknown")
 	try:
-		f = open("/proc/version","r")
-		kernelversion = f.read().split(' ', 4)[2].split('-',2)[0]
-		f.close()
-		return kernelversion
+		with open("/proc/version","r") as f:
+			result = f.read().split(' ', 4)[2].split('-',2)[0]
 	except:
-		return _("unknown")
-
-def getLastUpdateString():
-	lastupdated = _("unknown")
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "date":
-				#YYYY MM DD hh mm
-				#2005 11 29 01 16
-				string = splitted[1].replace('\n','')
-				year = string[0:4]
-				month = string[4:6]
-				day = string[6:8]
-				date = '-'.join((year, month, day))
-				hour = string[8:10]
-				minute = string[10:12]
-				time = ':'.join((hour, minute))
-				lastupdated = ' '.join((date, time))
-		file.close()
-	except IOError:
 		pass
-	return lastupdated
-
+	return result
 
 class BootLoaderVersionFetcher:
 	monMap = {
@@ -132,8 +99,6 @@ __bootLoaderFetcher = BootLoaderVersionFetcher()
 
 def getBootLoaderVersion(callback):
 	__bootLoaderFetcher.searchBootVer(callback)
-
-import socket, fcntl, struct
 
 SIOCGIFADDR    = 0x8915
 SIOCGIFBRDADDR = 0x8919
@@ -196,7 +161,9 @@ def getIfConfig(ifname):
 
 def getAllIfTransferredData():
 	transData = {}
-	for line in file("/proc/net/dev").readlines():
+	with open("/proc/net/dev") as f:
+		lines = f.readlines()
+	for line in lines:
 		flds = line.split(':')
 		if len(flds) > 1:
 			ifname = flds[0].strip()
@@ -206,7 +173,9 @@ def getAllIfTransferredData():
 	return transData
 
 def getIfTransferredData(ifname):
-	for line in file("/proc/net/dev").readlines():
+	with open("/proc/net/dev") as f:
+		lines = f.readlines()
+	for line in lines:
 		if ifname in line:
 			data = line.split('%s:' % ifname)[1].split()
 			rx_bytes, tx_bytes = (data[0], data[8])
@@ -216,7 +185,9 @@ def getIfTransferredData(ifname):
 def getGateways():
 	gateways = {}
 	count = 0
-	for line in file("/proc/net/route").readlines():
+	with open("/proc/net/route") as f:
+		lines = f.readlines()
+	for line in lines:
 		if count > 0:
 			flds = line.strip().split()
 			for i in range(1, 4):
@@ -234,19 +205,19 @@ def getGateways():
 def getIfGateways(ifname):
 	return getGateways().get(ifname)
 
-def getModelString():	
+def getModelString():
+	result = _("unknown")
 	try:
-		file = open("/proc/stb/info/boxtype", "r")
-		model = file.readline().strip()
-		file.close()
-		return model
-	except IOError:
-		return "unknown"		
+		with open("/proc/stb/info/boxtype", "r") as f:
+			result = f.readline().strip()
+	except:
+		pass
+	return result
 
 def getIsBroadcom():
 	try:
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
+		with open('/proc/cpuinfo', 'r') as f:
+			lines = f.readlines()
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
@@ -256,29 +227,27 @@ def getIsBroadcom():
 				elif splitted[0].startswith("system type"):
 					if splitted[1].split(' ')[0].startswith('BCM'):
 						system = 'Broadcom'
-		file.close()
 		if 'Broadcom' in system:
 			return True
-		else:
-			return False
 	except:
-		return False
+		pass
+	return False
 
 def getChipSetString():
+	result = _("unknown")
 	try:
-		f = open('/proc/stb/info/chipset', 'r')
-		chipset = f.read()
-		f.close()
+		with open('/proc/stb/info/chipset', 'r') as f:
+			chipset = f.read()
 		return str(chipset.lower().replace('\n','').replace('brcm','').replace('bcm',''))
-	except IOError:
-		return _("unavailable")
+	except:
+		pass
+	return result
 
 def getCPUSpeedString():
 	cpu_speed = 0
 	try:
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
-		file.close()
+		with open('/proc/cpuinfo', 'r') as f:
+			lines = f.readlines()
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
@@ -286,31 +255,22 @@ def getCPUSpeedString():
 				if splitted[0].startswith("cpu MHz"):
 					cpu_speed = float(splitted[1].split(' ')[0])
 					break
-	except IOError:
-		print "[About] getCPUSpeedString, /proc/cpuinfo not available"
 
-	if cpu_speed == 0:
-		if getMachineBuild() in ('hd51','hd52','sf4008'):
-			import binascii
-			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
-			clockfrequency = f.read()
-			f.close()
-			cpu_speed = round(int(binascii.hexlify(clockfrequency), 16)/1000000,1)
-		else:
-			try: # Solo4K
-				file = open('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq', 'r')
-				cpu_speed = float(file.read()) / 1000
-				file.close()
-			except IOError:
-				print "[About] getCPUSpeedString, /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq not available"
+		if cpu_speed == 0:
+			if getMachineBuild() in ('hd51','hd52','sf4008'):
+				import binascii
+				with open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb') as f:
+					clockfrequency = f.read()
+				cpu_speed = round(int(binascii.hexlify(clockfrequency), 16)/1000000,1)
+			else:
+				with open('/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq', 'r') as f:
+					cpu_speed = float(f.read()) / 1000
+	except:
+		pass
 
 	if cpu_speed > 0:
-		if cpu_speed >= 1000:
-			cpu_speed = "%sGHz" % str(round(cpu_speed/1000,1))
-		else:
-			cpu_speed = "%sMHz" % str(int(cpu_speed))
-		return cpu_speed
-	return _("unavailable")
+		return "%sMHz" % str(int(cpu_speed))
+	return _("unknown")
 
 def getCPUArch():
 	if "ARM" in getCPUString():
@@ -318,46 +278,38 @@ def getCPUArch():
 	return _("Mipsel")
 
 def getCPUString():
-	system = _("unavailable")
+	result = _("unknown")
 	try:
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
+		with open('/proc/cpuinfo', 'r') as f:
+			lines = f.readlines()
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("system type"):
-					system = splitted[1].split(' ')[0]
+					result = splitted[1].split(' ')[0]
 				elif splitted[0].startswith("model name"):
-					system = splitted[1].split(' ')[0]
+					result = splitted[1].split(' ')[0]
 				elif splitted[0].startswith("Processor"):
-					system = splitted[1].split(' ')[0]
-		file.close()
-		return system
-	except IOError:
-		return _("unavailable")
+					result = splitted[1].split(' ')[0]
+	except:
+		pass
+	return result
 
 def getCpuCoresString():
-	MachinesCores = {
-					1 : 'Single core',
-					2 : 'Dual core',
-					4 : 'Quad core',
-					8 : 'Octo core'
-					}
+	cores = 0
 	try:
-		cores = 1
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
-		file.close()
+		with open('/proc/cpuinfo', 'r') as f:
+			lines = f.readlines()
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("processor"):
-					cores = int(splitted[1]) + 1
-		return MachinesCores[cores]
-	except IOError:
-		return _("unavailable")
+					cores = max(cores, int(splitted[1]))
+	except:
+		pass
+	return str(cores + 1)
 
 def getPythonVersionString():
 	v = sys.version_info
