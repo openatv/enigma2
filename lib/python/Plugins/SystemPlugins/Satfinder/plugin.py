@@ -324,7 +324,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if self.scan_input_as.value == "channel":
 			frequency = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
 		else:
-			frequency = self.scan_ter.frequency.floatint * 1000
+			frequency = self.scan_ter.frequency.value * 1000
 		if self.tuning_type.value == "single_transponder":
 			transponder = [
 				2, #TERRESTRIAL
