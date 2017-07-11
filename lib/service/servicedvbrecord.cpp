@@ -551,8 +551,12 @@ void eDVBServiceRecord::gotNewEvent(int /*error*/)
 			eDebug("[eDVBServiceRecord] getting PCR failed!");
 		else
 		{
-			m_event_timestamps[event_id] = p;
-			eDebug("[eDVBServiceRecord] pcr of eit change: %llx", p);
+			std::pair<std::map<int, pts_t>::iterator, bool> ret;
+			ret = m_event_timestamps.insert(std::pair<int, pts_t>(event_id, p));
+			if (ret.second)
+				eDebug("[eDVBServiceRecord] pcr of eit change for event %d: %llx", ret.first->first, ret.first->second);
+			else
+				eDebug("[eDVBServiceRecord] pcr of eit change for event %d at %llx already set to: %llx", ret.first->first, p, ret.first->second);
 		}
 	}
 
