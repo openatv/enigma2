@@ -126,6 +126,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.selectSatsEntry = None
 		self.advancedSelectSatsEntry = None
 		self.singleSatEntry = None
+		self.toneamplitude = None
+		self.scpc = None
+		self.forcelnbpower = None
+		self.forcetoneburst = None
 		self.terrestrialRegionsEntry = None
 		self.cableRegionsEntry = None
 		
@@ -191,15 +195,19 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 							cur_orb_pos = satlist[0]
 						self.fillListWithAdvancedSatEntrys(self.nimConfig.advanced.sat[cur_orb_pos])
 				self.have_advanced = True
-			if config.usage.setup_level.index >= 2:
+			if self.nimConfig.configMode.value != "nothing" and config.usage.setup_level.index >= 2:
 				if fileExists("/proc/stb/frontend/%d/tone_amplitude" % self.nim.slot):
-					self.list.append(getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude))
+					self.toneamplitude = getConfigListEntry(_("Tone amplitude"), self.nimConfig.toneAmplitude)
+					self.list.append(self.toneamplitude)
 				if fileExists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % self.nim.slot):
-					self.list.append(getConfigListEntry(_("SCPC optimized search range"), self.nimConfig.scpcSearchRange))
+					self.scpc = getConfigListEntry(_("SCPC optimized search range"), self.nimConfig.scpcSearchRange)
+					self.list.append(self.scpc)
 				if SystemInfo["HasForceLNBOn"] and self.nim.isFBCRoot():
-					self.list.append(getConfigListEntry(_("Force LNB Power"), config.misc.forceLnbPower))
+					self.forcelnbpower = getConfigListEntry(_("Force LNB Power"), config.misc.forceLnbPower)
+					self.list.append(self.forcelnbpower)
 				if SystemInfo["HasForceToneburst"] and self.nim.isFBCRoot():
-					self.list.append(getConfigListEntry(_("Force ToneBurst"), config.misc.forceToneBurst))
+					self.forcetoneburst = getConfigListEntry(_("Force ToneBurst"), config.misc.forceToneBurst)
+					self.list.append(self.forcetoneburst)
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
@@ -312,7 +320,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if self["config"].getCurrent() in (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,\
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, self.advancedType, self.advancedSCR, self.advancedPosition, self.advancedFormat, self.advancedManufacturer,\
 			self.advancedUnicable, self.advancedConnected, self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,	self.commandOrder,\
-			self.showAdditionalMotorOptions, self.cableScanType, self.multiType, self.terrestrialCountriesEntry, self.cableCountriesEntry):
+			self.showAdditionalMotorOptions, self.cableScanType, self.multiType, self.terrestrialCountriesEntry, self.cableCountriesEntry, self.toneamplitude, self.scpc, self.forcelnbpower, self.forcetoneburst):
 			       self.createSetup()
 
 	def run(self):
