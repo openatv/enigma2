@@ -4,9 +4,10 @@ from GUIComponent import GUIComponent
 from enigma import eLabel, eWidget, eSlider, fontRenderClass, ePoint, eSize
 
 class ScrollLabel(HTMLComponent, GUIComponent):
-	def __init__(self, text=""):
+	def __init__(self, text="", showscrollbar=True):
 		GUIComponent.__init__(self)
 		self.message = text
+		self.showscrollbar=showscrollbar
 		self.instance = None
 		self.long_text = None
 		self.right_text = None
@@ -86,7 +87,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 				self.lastPage()
 			else:
 				self.setPos(0)
-			if self.TotalTextHeight > self.pageHeight:
+			if self.showscrollbar and self.TotalTextHeight > self.pageHeight:
 				self.scrollbar.show()
 				self.updateScrollbar()
 			else:
