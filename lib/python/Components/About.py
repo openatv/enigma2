@@ -4,6 +4,7 @@ import re
 from boxbranding import getImageVersion, getMachineBrand, getMachineBuild
 import socket, fcntl, struct
 import enigma
+import os
 
 # Be carefull with this function. Some legacy code expects this to return a
 # string that can be parsed as a float. What's worse, there are some assumptions
@@ -72,9 +73,14 @@ class BootLoaderVersionFetcher:
 		pass
 
 	def searchBootVer(self, appcallback):
-		self.console = Console()
-		cmd = "strings -n 28 /dev/mtd3ro | grep ' [0-2][0-9]:[0-5][0-9]:[0-5][0-9] '"
-		self.console.ePopen(cmd, callback=self.searchBootVerFinished, extra_args=appcallback)
+		if (os.path.isfile("/proc/device-tree/bolt/date")):
+			with open("/proc/device-tree/bolt/date") as f:
+				result = f.read().strip()
+			appcallback(result)
+		else:
+			self.console = Console()
+			cmd = "strings -n 28 /dev/mtd3ro | grep ' [0-2][0-9]:[0-5][0-9]:[0-5][0-9] '"
+			self.console.ePopen(cmd, callback=self.searchBootVerFinished, extra_args=appcallback)
 
 	def searchBootVerFinished(self, result, retval, extra_args):
 		callback = extra_args
