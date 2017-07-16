@@ -195,7 +195,7 @@ class Network:
 		currif = ""
 		for i in interfaces:
 			split = i.strip().split(' ')
-			if split[0] == "iface":
+			if split[0] == "iface" and split[2] != "inet6":
 				currif = split[1]
 				ifaces[currif] = {}
 				if len(split) == 4 and split[3] == "dhcp":
