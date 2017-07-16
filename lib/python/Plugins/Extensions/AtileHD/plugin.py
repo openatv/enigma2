@@ -421,6 +421,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 				remove(self.color_file)
 			if self.myAtileHD_style.value != 'default':
 				symlink(self.myAtileHD_style.value, self.color_file)
+			if not path.exists("mySkin_off"):
 				touch("mySkin_off")
 				print "makedir mySkin_off"
 			if self.myAtileHD_active.value:
