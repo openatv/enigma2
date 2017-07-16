@@ -3110,7 +3110,7 @@ class InfoBarExtensions:
 		return _("Restart Network")
 
 	def getRestartNetwork(self):
-			return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
+		return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
 
 	def get3DSetupname(self):
 		return _("OSD 3D Setup")

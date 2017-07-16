@@ -277,6 +277,7 @@ public:
 	int SatCR_idx;
 	int SatCR_format;
 	int SatCR_switch_reliable;
+	int BootUpTime;
 	unsigned int SatCRvco;
 	unsigned int TuningWord;
 	unsigned int GuardTuningWord;
@@ -369,6 +370,7 @@ public:
 /* Unicable Specific Parameters */
 	RESULT setLNBSatCRpositionnumber(int UnicablePositionNumber);
 	RESULT setLNBSatCRTuningAlgo(int SatCR_switch_reliable);
+	RESULT setLNBBootupTime(int BootUpTime);
 	RESULT setLNBSatCRformat(int SatCR_format);	//DiSEqc or JESS (or ...)
 	RESULT setLNBSatCR(int SatCR_idx);
 	RESULT setLNBSatCRvco(int SatCRvco);
