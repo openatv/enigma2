@@ -53,6 +53,7 @@ add_type("video/mts", ".mts")
 add_type("video/mp2t", ".ts")
 add_type("application/x-debian-package", ".ipk")
 add_type("application/x-dream-image", ".nfi")
+add_type("video/webm", ".webm")
 
 def getType(file):
 	(type, _) = guess_type(file)

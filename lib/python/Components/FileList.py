@@ -53,6 +53,7 @@ EXTENSIONS = {
 		"m2ts": "movie",
 		"mts": "movie",
 		"ts": "movie",
+		"webm": "movie",
 	}
 
 def FileEntryComponent(name, absolute = None, isDir = False):
