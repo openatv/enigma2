@@ -315,7 +315,7 @@ class ServiceInfo(Screen):
 					(_("Inversion"), "%s" % frontendData["inversion"], TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-T":
 				return (tuner,
-					(_("Frequency & Channel"), "%s - Ch. %s" % (frontendData.get("frequency", 0), getChannelNumber(frontendData["frequency"], frontendData["tuner_number"])), TYPE_TEXT),
+					(_("Frequency & Channel"), "%.3f MHz" % ((frontendData.get("frequency", 0) / 1000) / 1000.0) + " - " + frontendData["channel"], TYPE_TEXT),
 					(_("Inversion & Bandwidth"), "%s - %s" % (frontendData["inversion"], frontendData["bandwidth"]), TYPE_TEXT),
 					(_("Code R. LP-HP & Guard Int"), "%s - %s - %s" % (frontendData["code_rate_lp"], frontendData["code_rate_hp"], frontendData["guard_interval"]), TYPE_TEXT),
 					(_("Constellation & FFT mode"), "%s - %s" % (frontendData["constellation"], frontendData["transmission_mode"]), TYPE_TEXT),
