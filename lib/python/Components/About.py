@@ -46,7 +46,7 @@ def getChipSetString():
 		return "73625"
 	elif getMachineBuild() in ('dm900'):
 		return "7252S"
-	elif getMachineBuild() in ('hd51','vs1500','h7'):
+	elif getMachineBuild() in ('hd51','vs1500','h7','et13000'):
 		return "7251S"
 	else:
 		try:

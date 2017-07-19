@@ -535,7 +535,7 @@ def InitLcd():
 		if SystemInfo["VFD_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def scroll_delay(el):
 				# add workaround for Boxes who need hex code
-				if getBoxType() in ('sf4008', 'et13000'):
+				if getBoxType() in ('sf4008', 'beyonwizu4'):
 					open(SystemInfo["VFD_scroll_delay"], "w").write(hex(int(el.value)))
 				else:
 					open(SystemInfo["VFD_scroll_delay"], "w").write(str(el.value))
@@ -547,7 +547,7 @@ def InitLcd():
 
 		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def initial_scroll_delay(el):
-				if getBoxType() in ('sf4008', 'et13000'):
+				if getBoxType() in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
 					open(SystemInfo["VFD_initial_scroll_delay"], "w").write(hex(int(el.value)))
 				else:
@@ -565,7 +565,7 @@ def InitLcd():
 
 		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def final_scroll_delay(el):
-				if getBoxType() in ('sf4008', 'et13000'):
+				if getBoxType() in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
 					open(SystemInfo["VFD_final_scroll_delay"], "w").write(hex(int(el.value)))
 				else:
