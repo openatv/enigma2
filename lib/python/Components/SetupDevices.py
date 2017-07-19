@@ -26,7 +26,7 @@ def InitSetupDevices():
 	config.osd = ConfigSubsection()
 	if getMachineBrand() in ('Vimastec'):
 		config.osd.language = ConfigText(default = "fr_FR")
-	elif getMachineBrand() in ('Zgemma') or getBrandOEM() in ('airdigital'):
+	elif getMachineBrand() in ('Zgemma','Beyonwiz') or getBrandOEM() in ('airdigital'):
 		config.osd.language = ConfigText(default = "en_US")
 	else:
 		config.osd.language = ConfigText(default = "de_DE")
