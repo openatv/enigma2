@@ -9,7 +9,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLocations
-from Components.config import config
+from Components.config import config, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from enigma import eTimer, eEnv, eEPGCache
@@ -33,7 +33,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	'/etc/fstab',
 	'/etc/ssh/ssh_host_*',
 	'/home/root/.ssh',
-])
+], keep_nonexistent_files=True)
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -152,7 +152,7 @@ class BackupSelection(Screen):
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
-		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs, keepNonexistentFiles=True)
 		self["checkList"] = self.filelist
 
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"], {

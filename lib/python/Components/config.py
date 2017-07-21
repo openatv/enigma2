@@ -1873,11 +1873,12 @@ class ConfigSet(ConfigElement):
 	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
 
 class ConfigLocations(ConfigElement):
-	def __init__(self, default=None, visible_width=False):
+	def __init__(self, default=None, visible_width=False, keep_nonexistent_files=False):
 		if not default:
 			default = []
 		ConfigElement.__init__(self)
 		self.visible_width = visible_width
+		self.keep_nonexistent_files = keep_nonexistent_files
 		self.pos = -1
 		self.default = default
 		self.locations = []
@@ -1918,7 +1919,7 @@ class ConfigLocations(ConfigElement):
 		locations = [[x, None, False, False] for x in tmp]
 		self.refreshMountpoints()
 		for x in locations:
-			if fileExists(x[0]):
+			if self.keep_nonexistent_files or fileExists(x[0]):
 				x[1] = self.getMountpoint(x[0])
 				x[2] = True
 		self.locations = locations
