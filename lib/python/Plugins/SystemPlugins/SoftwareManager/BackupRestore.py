@@ -8,8 +8,7 @@ from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLocations
-from Components.config import config, configfile
+from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigLocations
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from enigma import eTimer, eEnv, eEPGCache
