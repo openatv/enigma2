@@ -148,6 +148,7 @@ class BackupSelection(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText(_("Set to default"))
 
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
@@ -160,6 +161,7 @@ class BackupSelection(Screen):
 			"red": self.exit,
 			"yellow": self.changeSelectionState,
 			"green": self.saveSelection,
+			"blue": self.setDefaults,
 			"ok": self.okClicked,
 			"left": self.left,
 			"right": self.right,
@@ -209,6 +211,12 @@ class BackupSelection(Screen):
 		config.plugins.configurationbackup.save()
 		config.save()
 		self.close(None)
+
+	def setDefaults(self):
+		config.plugins.configurationbackup.backupdirs.saved_value = None
+		config.plugins.configurationbackup.backupdirs.load()
+		self["checkList"].selectedFiles = config.plugins.configurationbackup.backupdirs.value
+		self["checkList"].changeDir(self["checkList"].current_directory)
 
 	def exit(self):
 		self.close(None)
