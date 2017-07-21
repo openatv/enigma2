@@ -8,8 +8,7 @@ from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLocations
-from Components.config import config
+from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigLocations
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from enigma import eTimer, eEnv, eEPGCache
@@ -33,7 +32,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[
 	'/etc/fstab',
 	'/etc/ssh/ssh_host_*',
 	'/home/root/.ssh',
-])
+], keep_nonexistent_files=True)
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -148,11 +147,12 @@ class BackupSelection(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText(_("Set to default"))
 
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
-		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs, keepNonexistentFiles=True)
 		self["checkList"] = self.filelist
 
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"], {
@@ -160,6 +160,7 @@ class BackupSelection(Screen):
 			"red": self.exit,
 			"yellow": self.changeSelectionState,
 			"green": self.saveSelection,
+			"blue": self.setDefaults,
 			"ok": self.okClicked,
 			"left": self.left,
 			"right": self.right,
@@ -205,10 +206,16 @@ class BackupSelection(Screen):
 	def saveSelection(self):
 		self.selectedFiles = self["checkList"].getSelectedList()
 		config.plugins.configurationbackup.backupdirs.value = self.selectedFiles
-		config.plugins.configurationbackup.backupdirs.save()
-		config.plugins.configurationbackup.save()
-		config.save()
+		if config.plugins.configurationbackup.backupdirs.isChanged():
+			config.plugins.configurationbackup.backupdirs.save()
+			configfile.save()
 		self.close(None)
+
+	def setDefaults(self):
+		config.plugins.configurationbackup.backupdirs.saved_value = None
+		config.plugins.configurationbackup.backupdirs.load()
+		self["checkList"].selectedFiles = config.plugins.configurationbackup.backupdirs.value
+		self["checkList"].changeDir(self["checkList"].current_directory)
 
 	def exit(self):
 		self.close(None)

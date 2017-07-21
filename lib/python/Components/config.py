@@ -1873,11 +1873,12 @@ class ConfigSet(ConfigElement):
 	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
 
 class ConfigLocations(ConfigElement):
-	def __init__(self, default=None, visible_width=False):
+	def __init__(self, default=None, visible_width=False, keep_nonexistent_files=False):
 		if not default:
 			default = []
 		ConfigElement.__init__(self)
 		self.visible_width = visible_width
+		self.keep_nonexistent_files = keep_nonexistent_files
 		self.pos = -1
 		self.default = default
 		self.locations = []
@@ -1918,23 +1919,28 @@ class ConfigLocations(ConfigElement):
 		locations = [[x, None, False, False] for x in tmp]
 		self.refreshMountpoints()
 		for x in locations:
-			if fileExists(x[0]):
+			if self.keep_nonexistent_files or fileExists(x[0]):
 				x[1] = self.getMountpoint(x[0])
 				x[2] = True
 		self.locations = locations
 
 	def save(self):
-		locations = self.locations
-		if self.save_disabled or not locations:
+		location_str = self.tostring([x[0] for x in self.locations])
+		if self.save_disabled or (location_str == self.tostring(self.default) and not self.save_forced):
 			self.saved_value = None
 		else:
-			self.saved_value = self.tostring([x[0] for x in locations])
+			self.saved_value = location_str
+		if self.callNotifiersOnSaveAndCancel:
+			self.changedFinal()
 
 	def isChanged(self):
 		sv = self.saved_value
 		locations = self.locations
-		if val is None and not locations:
-			return False
+		if sv is None:
+			if self.default is not None:
+				sv = self.tostring(self.default)
+			else:
+				return False
 		retval = self.tostring([x[0] for x in locations]) != sv
 #debug		if retval:
 #debug			print 'orig ConfigLocations X (val):', sv
