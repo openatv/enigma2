@@ -1933,8 +1933,11 @@ class ConfigLocations(ConfigElement):
 	def isChanged(self):
 		sv = self.saved_value
 		locations = self.locations
-		if val is None and not locations:
-			return False
+		if sv is None:
+			if self.default is not None:
+				sv = self.tostring(self.default)
+			else:
+				return False
 		retval = self.tostring([x[0] for x in locations]) != sv
 #debug		if retval:
 #debug			print 'orig ConfigLocations X (val):', sv
