@@ -1924,11 +1924,13 @@ class ConfigLocations(ConfigElement):
 		self.locations = locations
 
 	def save(self):
-		locations = self.locations
-		if self.save_disabled or not locations:
+		location_str = self.tostring([x[0] for x in self.locations])
+		if self.save_disabled or (location_str == self.tostring(self.default) and not self.save_forced):
 			self.saved_value = None
 		else:
-			self.saved_value = self.tostring([x[0] for x in locations])
+			self.saved_value = location_str
+		if self.callNotifiersOnSaveAndCancel:
+			self.changedFinal()
 
 	def isChanged(self):
 		sv = self.saved_value
