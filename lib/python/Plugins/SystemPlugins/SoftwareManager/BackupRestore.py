@@ -9,7 +9,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.config import configfile, ConfigSubsection, ConfigText, ConfigLocations
-from Components.config import config
+from Components.config import config, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from enigma import eTimer, eEnv, eEPGCache
@@ -205,9 +205,9 @@ class BackupSelection(Screen):
 	def saveSelection(self):
 		self.selectedFiles = self["checkList"].getSelectedList()
 		config.plugins.configurationbackup.backupdirs.value = self.selectedFiles
-		config.plugins.configurationbackup.backupdirs.save()
-		config.plugins.configurationbackup.save()
-		config.save()
+		if config.plugins.configurationbackup.backupdirs.isChanged():
+			config.plugins.configurationbackup.backupdirs.save()
+			configfile.save()
 		self.close(None)
 
 	def exit(self):
