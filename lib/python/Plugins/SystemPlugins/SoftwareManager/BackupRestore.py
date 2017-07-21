@@ -205,9 +205,9 @@ class BackupSelection(Screen):
 	def saveSelection(self):
 		self.selectedFiles = self["checkList"].getSelectedList()
 		config.plugins.configurationbackup.backupdirs.value = self.selectedFiles
-		config.plugins.configurationbackup.backupdirs.save()
-		config.plugins.configurationbackup.save()
-		config.save()
+		if config.plugins.configurationbackup.backupdirs.isChanged():
+			config.plugins.configurationbackup.backupdirs.save()
+			configfile.save()
 		self.close(None)
 
 	def exit(self):
