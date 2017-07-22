@@ -377,7 +377,7 @@ class InfoBarTimeshift:
 					self.pts_delay_timer.start(1000, True)
 
 	def getTimeshift(self):
-		if self.ts_disabled:
+		if self.ts_disabled or self.pts_delay_timer.isActive():
 			return None
 
 		service = self.session.nav.getCurrentService()

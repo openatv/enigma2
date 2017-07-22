@@ -18,9 +18,7 @@ class Cover(Renderer):
     GUI_WIDGET = ePixmap
 
     def changed(self, what):
-        if not config.usage.movielist_show_cover.value:
-            return
-        elif not self.instance:
+        if not self.instance:
             return
         else:
             picname = ''
