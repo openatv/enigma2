@@ -326,12 +326,13 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=Fal
 
 
 class MultiFileSelectList(FileList):
-	def __init__(self, preselectedFiles, directory, showMountpoints=False, matchingPattern=None, showDirectories=True, showFiles=True, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=False, additionalExtensions=None):
+	def __init__(self, preselectedFiles, directory, showMountpoints=False, matchingPattern=None, showDirectories=True, showFiles=True, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=False, additionalExtensions=None, keepNonexistentFiles=False):
 		if preselectedFiles is None:
 			self.selectedFiles = []
 		else:
 			self.selectedFiles = preselectedFiles
 		FileList.__init__(self, directory, showMountpoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
+		self.keepNonexistentFiles = keepNonexistentFiles
 		self.changeDir(directory)
 		font = skin.fonts.get("FileListMulti", ("Regular", 20, 25))
 		self.l.setFont(0, gFont(font[0], font[1]))
@@ -372,7 +373,7 @@ class MultiFileSelectList(FileList):
 	def getSelectedList(self):
 		selectedFilesExist = []
 		for x in self.selectedFiles:
-			if pathExists(x):
+			if self.keepNonexistentFiles or pathExists(x):
 				selectedFilesExist.append(x)
 		return selectedFilesExist
 
