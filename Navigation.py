@@ -1,7 +1,7 @@
 from time import time
 from os import path
 
-from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, setPreferredTuner
+from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, setPreferredTuner, eDVBLocalTimeHandler
 
 from Components.ParentalControl import parentalControl
 from Components.config import config
@@ -39,27 +39,42 @@ class Navigation:
 		self.RecordTimer = RecordTimer.RecordTimer()
 		self.PowerTimer = PowerTimer.PowerTimer()
 		self.__wasTimerWakeup = False
+		self.__nextRecordTimerAfterEventActionAuto = nextRecordTimerAfterEventActionAuto
+		self.__nextPowerManagerAfterEventActionAuto = nextPowerManagerAfterEventActionAuto
 		if getFPWasTimerWakeup():
 			self.__wasTimerWakeup = True
-			if nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
-				print '[Navigation] RECTIMER: wakeup to standby detected.'
-				f = open("/tmp/was_rectimer_wakeup", "w")
-				f.write('1')
-				f.close()
-				# as we woke the box to record, place the box in standby.
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+			self._processTimerWakeup()
 
-			elif nextPowerManagerAfterEventActionAuto:
-				print '[Navigation] POWERTIMER: wakeup to standby detected.'
-				f = open("/tmp/was_powertimer_wakeup", "w")
-				f.write('1')
-				f.close()
-				# as a PowerTimer WakeToStandby was actiond to it.
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+	def _processTimerWakeup(self):
+		now = time()
+		timeHandlerCallbacks =  eDVBLocalTimeHandler.getInstance().m_timeUpdated.get()
+		if self.__nextRecordTimerAfterEventActionAuto and now < eDVBLocalTimeHandler.timeOK:  # 01.01.2004
+			print '[Navigation] RECTIMER: wakeup to standby but system time not set.'
+			if self._processTimerWakeup not in timeHandlerCallbacks:
+				timeHandlerCallbacks.append(self._processTimerWakeup)
+			return
+		if self._processTimerWakeup in timeHandlerCallbacks:
+			timeHandlerCallbacks.remove(self._processTimerWakeup)
+
+		if self.__nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - now) <= 360:
+			print '[Navigation] RECTIMER: wakeup to standby detected.'
+			f = open("/tmp/was_rectimer_wakeup", "w")
+			f.write('1')
+			f.close()
+			# as we woke the box to record, place the box in standby.
+			self.standbytimer = eTimer()
+			self.standbytimer.callback.append(self.gotostandby)
+			self.standbytimer.start(15000, True)
+
+		elif self.__nextPowerManagerAfterEventActionAuto:
+			print '[Navigation] POWERTIMER: wakeup to standby detected.'
+			f = open("/tmp/was_powertimer_wakeup", "w")
+			f.write('1')
+			f.close()
+			# as a PowerTimer WakeToStandby was actiond to it.
+			self.standbytimer = eTimer()
+			self.standbytimer.callback.append(self.gotostandby)
+			self.standbytimer.start(15000, True)
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
@@ -191,9 +206,10 @@ class Navigation:
 
 	def recordService(self, ref, simulate=False):
 		service = None
-		if not simulate: print "[Navigation] recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
+		if not simulate:
+			print "[Navigation] recording service:", (ref and ref.toString())
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
