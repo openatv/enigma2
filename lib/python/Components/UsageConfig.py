@@ -741,28 +741,14 @@ def InitUsageConfig():
 		("1", _("Internal hdd only")),
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
-
+	
 	if SystemInfo["ZapMode"]:
-		try:
-			if os.path.exists("/proc/stb/video/zapping_mode"):
-				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen"))]
-				zapfile = "/proc/stb/video/zapping_mode"
-			else:
-				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
-				zapfile = "/proc/stb/video/zapmode"
-		except:
-			zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
-			zapfile = "/proc/stb/video/zapmode"
-
 		def setZapmode(el):
-			try:
-				file = open(zapfile, "w")
-				file.write(el.value)
-				file.close()
-			except:
-				pass
-		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
+			open(SystemInfo["ZapMode"], "w").write(el.value)
+		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
+			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
+
 	config.usage.historymode = ConfigSelection(default = "1", choices = [("0", _("Just zap")), ("1", _("Show menu"))])
 
 	config.subtitles = ConfigSubsection()
