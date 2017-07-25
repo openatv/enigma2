@@ -1197,7 +1197,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		if (!strcmp(name, "filesrc") || !strcmp(name, "souphttpsrc"))
 		{
 			/* previous state was already ok if we come here just give all elements time to unpause */
+#if GST_VERSION_MAJOR >= 1
 			m_to_paused = false;
+#endif
 			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 #if GST_VERSION_MAJOR >= 1
