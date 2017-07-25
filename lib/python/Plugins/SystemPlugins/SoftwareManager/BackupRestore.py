@@ -56,6 +56,8 @@ def InitConfig():
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_colors.xml")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_header.xml")\
 		+eEnv_resolve_multi('/usr/bin/*cam*')\
 		+eEnv_resolve_multi('/etc/*.emu')\
 		+eEnv_resolve_multi('/etc/init.d/softcam*')))
