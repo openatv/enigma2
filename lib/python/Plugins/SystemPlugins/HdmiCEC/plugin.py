@@ -70,8 +70,8 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup))
 			self.list.append(getConfigListEntry(_("Wakeup signal from TV"), config.hdmicec.tv_wakeup_detection))
 			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
-			self.list.append(getConfigListEntry(_("Put your %s %s in standby") % (getMachineBrand(), getMachineName()), config.hdmicec.control_receiver_standby))
-			self.list.append(getConfigListEntry(_("Wakeup your %s %s from standby") % (getMachineBrand(), getMachineName()), config.hdmicec.control_receiver_wakeup))
+			self.list.append(getConfigListEntry(_("Put your AV Receiver in standby"), config.hdmicec.control_receiver_standby))
+			self.list.append(getConfigListEntry(_("Wakeup your AV Receiver from standby") , config.hdmicec.control_receiver_wakeup))
 			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval))
 			if fileExists("/proc/stb/hdmi/preemphasis"):
 				self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis))
