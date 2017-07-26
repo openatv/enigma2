@@ -698,7 +698,7 @@ class NimManager:
 		return self.cablesList[config.Nims[nim].cable.scan_provider.index][1]
 		
 	def getCableCountrycode(self, nim):
-		return self.cablesList[config.Nims[nim].cable.scan_provider.index][2]
+		return self.cablesList and self.cablesList[config.Nims[nim].cable.scan_provider.index][2] or None
 
 	def getTerrestrialsList(self):
 		return self.terrestrialsList
@@ -722,7 +722,7 @@ class NimManager:
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
 
 	def getTerrestrialCountrycode(self, nim):
-		return self.terrestrialsList[config.Nims[nim].terrestrial.index][2]
+		return self.terrestrialsList and self.terrestrialsList[config.Nims[nim].terrestrial.index][2] or None
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]

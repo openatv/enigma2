@@ -224,7 +224,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						default = cablecountrycode in cablecountrycodelist and cablecountrycode or None
 						choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in cablecountrycodelist], key=lambda listItem: listItem[1])
 						self.cableCountries = ConfigSelection(default = default, choices = choices)
-						self.cableCountriesEntry = getConfigListEntry("Country", self.cableCountries)
+						self.cableCountriesEntry = getConfigListEntry(_("Country"), self.cableCountries)
 						self.originalCableRegion = self.nimConfig.cable.scan_provider.value
 					# country/region tier two
 					if self.cableCountries.value == "all":
@@ -237,7 +237,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						extra_args[0].value = configEntry.value
 						extra_args[0].save()
 					self.cableRegions.addNotifier(updateCableProvider, extra_args = [self.nimConfig.cable.scan_provider])
-					self.cableRegionsEntry = getConfigListEntry("Region", self.cableRegions)
+					self.cableRegionsEntry = getConfigListEntry(_("Region"), self.cableRegions)
 					self.list.append(self.cableCountriesEntry)
 					self.list.append(self.cableRegionsEntry)
 					#self.list.append(getConfigListEntry(_("Provider to scan"), self.nimConfig.cable.scan_provider))
@@ -284,7 +284,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					default = terrestrialcountrycode in terrestrialcountrycodelist and terrestrialcountrycode or None
 					choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
 					self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
-					self.terrestrialCountriesEntry = getConfigListEntry("Country", self.terrestrialCountries)
+					self.terrestrialCountriesEntry = getConfigListEntry(_("Country"), self.terrestrialCountries)
 					self.originalTerrestrialRegion = self.nimConfig.terrestrial.value
 				# country/region tier two
 				if self.terrestrialCountries.value == "all":
@@ -297,7 +297,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					extra_args[0].value = configEntry.value
 					extra_args[0].save()
 				self.terrestrialRegions.addNotifier(updateTerrestrialProvider, extra_args = [self.nimConfig.terrestrial])
-				self.terrestrialRegionsEntry = getConfigListEntry("Region", self.terrestrialRegions)
+				self.terrestrialRegionsEntry = getConfigListEntry(_("Region"), self.terrestrialRegions)
 				self.list.append(self.terrestrialCountriesEntry)
 				self.list.append(self.terrestrialRegionsEntry)
 				#self.list.append(getConfigListEntry(_("Terrestrial provider"), self.nimConfig.terrestrial))
