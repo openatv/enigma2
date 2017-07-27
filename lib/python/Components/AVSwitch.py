@@ -13,6 +13,7 @@ class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
 	rates = {}  # high-level, use selectable modes.
 	modes = {}  # a list of (high-level) modes for a certain port.
+	supports2160p = False
 	supports1080p = False
 
 	rates["PAL"] = {
@@ -86,9 +87,11 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if about.getChipSetString() in ('5272s', '7251', '7251s', '7252', '7252s', '7366', '7376', '7444s'):
-		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
-		widescreen_modes = {"720p", "1080p", "2160p", "1080i"}
+	if about.getChipSetString() in ('5272s', '7251', '7251S', '7251s', '7252', '7252S', '7252s', '7366', '7376', '7444s'):
+		supports2160p = True
+		supports1080p = True
+		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i", "2160p"]
+		widescreen_modes = {"1080p", "1080i", "720p", "2160p" }
 	elif about.getChipSetString() in ('7241', '7356', '73565', '7358', '7362', '73625', '7424', '7425', '7552'):
 		supports1080p = True
 		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i"]
@@ -115,6 +118,7 @@ class AVSwitch:
 		'eboxlumi',
 		'ebox5100',
 		'enfinity',
+		'et13000',
 		'et4x00',
 		'gbx1',
 		'gbx3',
@@ -152,7 +156,7 @@ class AVSwitch:
 		'vusolo4k',
 		'vuuno4k',
 		'vuultimo4k',
-		'xp1000'
+		'xp1000',
 	)
 
 	# Machines that have composite video (yellow RCA socket) but do not have Scart.
@@ -175,11 +179,12 @@ class AVSwitch:
 		'tmnanosem2plus',
 		'tmnano2super',
 		'tmnano3t',
-		'xpeedlx3'
+		'xpeedlx3',
 	)
 
 	# Machines that have neither yellow RCA nor Scart sockets
 	no_yellow_RCA__no_scart = (
+		'et13000',
 		'et5x00',
 		'et6x00',
 		'gbquad',
@@ -194,17 +199,17 @@ class AVSwitch:
 		'tmtwin4k',
 		'vusolo4k',
 		'vuuno4k',
-		'vuultimo4k'
+		'vuultimo4k',
 	)
 
-	if "YPbPr" in modes and getBoxType() in no_YPbPr:
+	if "YPbPr" in modes and (getBoxType() in no_YPbPr or getMachineBuild() in no_YPbPr):
 		del modes["YPbPr"]
 
-	if "Scart" in modes and getBoxType() in yellow_RCA_no_scart:
+	if "Scart" in modes and (getBoxType() in yellow_RCA_no_scart or getMachineBuild() in yellow_RCA_no_scart):
 		modes["RCA"] = modes["Scart"]
 		del modes["Scart"]
 
-	if "Scart" in modes and getBoxType() in no_yellow_RCA__no_scart:
+	if "Scart" in modes and (getBoxType() in no_yellow_RCA__no_scart or getMachineBuild() in no_yellow_RCA__no_scart):
 		del modes["Scart"]
 
 	def __init__(self):
@@ -213,7 +218,7 @@ class AVSwitch:
 		self.current_mode = None
 		self.current_port = None
 
-		self.readAvailableModes()
+		self.modes_available = self.readAvailableModes()
 
 		self.createConfig()
 		self.readPreferredModes()
@@ -358,7 +363,7 @@ class AVSwitch:
 
 			modes = self.getModeList(port)
 			if len(modes):
-				config.av.videomode[port] = ConfigSelection(choices=[mode for (mode, rates) in modes], default="1080i")
+				config.av.videomode[port] = ConfigSelection(choices=[mode for (mode, rates) in modes])
 			for (mode, rates) in modes:
 				config.av.videorate[mode] = ConfigSelection(choices=rates)
 		config.av.videoport = ConfigSelection(choices=lst)
@@ -510,14 +515,21 @@ def InitAVSwitch():
 	# *p30 -> 1080p30
 	# *p24 -> 1080p24
 
-	if iAVSwitch.supports1080p:
+	if iAVSwitch.supports2160p:
+		conv_60 = ["2160p", "1080p", "1080i", "720p", "480p", "480i"]
+		conv_50 = ["2160p50", "1080p50", "1080i50", "720p50", "576p", "576i"] + conv_60
+		conv_30 = ["2160p30", "1080p30"] + conv_60
+		conv_24 = ["1080p24"] + conv_60
+	elif iAVSwitch.supports1080p:
 		conv_60 = ["1080p", "1080i", "720p", "480p", "480i"]
 		conv_50 = ["1080p50", "1080i50", "720p50", "576p", "576i"] + conv_60
+		conv_30 = ["1080p30"] + conv_60
+		conv_24 = ["1080p24"] + conv_60
 	else:
 		conv_60 = ["1080i", "720p", "480p", "480i"]
 		conv_50 = ["1080i50", "720p50", "576p", "576i"] + conv_60
-	conv_30 = ["1080p30"] + conv_60
-	conv_24 = ["1080p24"] + conv_60
+		conv_30 = ["1080p30"] + conv_60
+		conv_24 = ["1080p24"] + conv_60
 
 	config.av.autores_sd24 = ConfigSelection(choices=conv_24)
 	config.av.autores_sd25 = ConfigSelection(choices=conv_50)
