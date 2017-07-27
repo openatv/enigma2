@@ -233,10 +233,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						cableNames = sorted([x[0] for x in nimmanager.getCablesByCountrycode(self.cableCountries.value)])
 					default = self.nimConfig.cable.scan_provider.value in cableNames and self.nimConfig.cable.scan_provider.value or None
 					self.cableRegions = ConfigSelection(default = default, choices = cableNames)
-					def updateCableProvider(configEntry, extra_args):
-						extra_args[0].value = configEntry.value
-						extra_args[0].save()
-					self.cableRegions.addNotifier(updateCableProvider, extra_args = [self.nimConfig.cable.scan_provider])
+					def updateCableProvider(configEntry):
+						self.nimConfig.cable.scan_provider.value = configEntry.value
+						self.nimConfig.cable.scan_provider.save()
+					self.cableRegions.addNotifier(updateCableProvider)
 					self.cableRegionsEntry = getConfigListEntry(_("Region"), self.cableRegions)
 					self.list.append(self.cableCountriesEntry)
 					self.list.append(self.cableRegionsEntry)
@@ -293,10 +293,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
 				default = self.nimConfig.terrestrial.value in terrstrialNames and self.nimConfig.terrestrial.value or None
 				self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
-				def updateTerrestrialProvider(configEntry, extra_args):
-					extra_args[0].value = configEntry.value
-					extra_args[0].save()
-				self.terrestrialRegions.addNotifier(updateTerrestrialProvider, extra_args = [self.nimConfig.terrestrial])
+				def updateTerrestrialProvider(configEntry):
+					self.nimConfig.terrestrial.value = configEntry.value
+					self.nimConfig.terrestrial.save()
+				self.terrestrialRegions.addNotifier(updateTerrestrialProvider)
 				self.terrestrialRegionsEntry = getConfigListEntry(_("Region"), self.terrestrialRegions)
 				self.list.append(self.terrestrialCountriesEntry)
 				self.list.append(self.terrestrialRegionsEntry)
