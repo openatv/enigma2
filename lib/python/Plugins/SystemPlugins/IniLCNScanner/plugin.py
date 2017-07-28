@@ -14,6 +14,7 @@ from boxbranding import getMachineBuild
 import os
 import sys
 import xml.etree.cElementTree
+from Components.SystemInfo import SystemInfo
 
 class LCN():
 	DUP_LCN_MIN = 350
@@ -220,7 +221,7 @@ class LCN():
 
 	def writeTVBouquet(self):
 		# Add HDMI-IN
-		if getMachineBuild() in ('inihdp'):
+		if SystemInfo['HDMIin']:
 			extras = [hdmiInServiceRef()]
 		else:
 			extras = []

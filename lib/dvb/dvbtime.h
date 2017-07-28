@@ -101,6 +101,9 @@ public:
 	eDVBLocalTimeHandler();
 	~eDVBLocalTimeHandler();
 #endif
+	// 1.1.2004 - system time can be assumed to be OK if >= timeOK
+	static const time_t timeOK = 1072915200;
+
 	bool getUseDVBTime() { return m_use_dvb_time; }
 	void setUseDVBTime(bool b);
 	void syncDVBTime();
