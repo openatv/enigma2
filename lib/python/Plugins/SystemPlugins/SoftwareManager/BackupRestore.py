@@ -1,5 +1,6 @@
 from os import path, makedirs, listdir, stat, rename, remove, symlink
 from datetime import date
+from glob import iglob
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -98,20 +99,22 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if not path.exists(self.backuppath):
 				makedirs(self.backuppath)
-			self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
+			backuplist = [fn for globname in config.plugins.configurationbackup.backupdirs.value for fn in iglob(globname)]
+			self.backupdirs = ' '.join(backuplist)
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
 				self.newfilename = path.join(self.backuppath, dt + '-' + self.backupfile)
 				if path.exists(self.newfilename):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename, self.newfilename)
+			cmdlist = [["tar", "-czvf", self.fullbackupfilename] + backuplist]
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."),
-					cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],
+					cmdlist=cmdlist,
 					finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 			else:
 				self.session.open(Console, title=_("Backup is running..."),
-					cmdlist=["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],
+					cmdlist=cmdlist,
 					finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:

@@ -1196,7 +1196,7 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu" and config.mediaplayer.onMainMenu.value:
-		return [(_("Media Player"), main, "media_player", 1)]
+		return [(_("Media player"), main, "media_player", 1)]
 	return []
 
 def filescan_open(list, session, **kwargs):

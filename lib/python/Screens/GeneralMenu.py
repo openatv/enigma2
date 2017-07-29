@@ -479,11 +479,11 @@ class GeneralMenu(Screen):
 				if l.name in [
 					_("Front Panel Update"),
 					_("CrossEPG Downloader"),
-					_("OpenWebif"),
+					"OpenWebif",  # Do not translate this, the plugin uses an unstranslated ID string
 					_("Software management"),
 					_("MediaPortal"),
-					_("AutoTimer"),
-					_("Media Player"),
+					"AutoTimer",  # Do not translate this, the plugin uses an unstranslated ID string
+					_("Media player"),
 					_("Picture player"),
 					_("YouTube TV Settings")]:
 					print "Skip plugin =>", l.name
@@ -498,17 +498,17 @@ class GeneralMenu(Screen):
 				if l[0] in [
 					_("Front Panel Update"),
 					_("CrossEPG Downloader"),
-					_("OpenWebif"),
+					"OpenWebif",  # Do not translate this, the plugin uses an unstranslated ID string
 					_("MediaPortal"),
-					_("Media Player"),
+					_("Media player"),
 					_("Picture player"),
 					_("YouTube TV Settings")]:
 					print "Skip menu =>", l[0]
 				else:
 					list.append(tuple(menuitem))
-			# This is little HACK to show AutoTimer in TV section, as We do not want to clone AutTimer git and reqwrite it to show in our section
+			# This is little HACK to show AutoTimer in TV section, as we do not want to clone AutoTimer git and rewrite it to show in our section
 			for l in plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU):
-				if l.name == _("AutoTimer"):
+				if l.name == "AutoTimer":  # Do not translate this, the plugin uses an unstranslated ID string
 					if menuID == "id_mainmenu_tv":
 						if isinstance(l.iconstr, str):
 							menuitem = [l.name, '/'.join((l.path, l.iconstr)), boundFunction(self.runPlugin, (l, None)), 60]
