@@ -257,15 +257,16 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="720,576"> 
-		<widget source="session.CurrentService" render="Label" position="15,21" size="675,244" foregroundColor="#e5b243" font="FdLcD; 60" valign="center" halign="center" zPosition="14">
+		<widget source="session.CurrentService" render="Label" position="255,21" size="460,244" foregroundColor="#e5b243" font="FdLcD; 55" valign="center" halign="center" zPosition="14">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="27,320" size="660,35" foregroundColor="#02c6ff" borderWidth="2">
+		<widget source="session.CurrentService" render="Progress" position="265,320" size="445,30" foregroundColor="#02c6ff" borderWidth="2">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="220,400" size="266,70" font="FdLcD;70" halign="center" foregroundColor="#02c6ff" >
+		<widget source="session.CurrentService" render="Label" position="255,400" size="445,70" font="FdLcD;55" halign="center" foregroundColor="#02c6ff" >
 			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
+		<widget source="session.CurrentService" render="Cover" backgroundColor="#00FFFFFF" position="0,0" size="250,500" transparent="1" zPosition="15" alphatest="blend" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
