@@ -590,20 +590,20 @@ class oscInfo(Screen, OscamInfo):
 		self["key_red"] = StaticText(_("Close"))
 		if self.what == "c":
 			self["key_green"] = StaticText("")
-			self["key_yellow"] = StaticText("Servers")
-			self["key_blue"] = StaticText("Log")
+			self["key_yellow"] = StaticText(_("Servers"))
+			self["key_blue"] = StaticText(_("Log"))
 		elif self.what == "s":
-			self["key_green"] = StaticText("Clients")
+			self["key_green"] = StaticText(_("Clients"))
 			self["key_yellow"] = StaticText("")
-			self["key_blue"] = StaticText("Log")
+			self["key_blue"] = StaticText(_("Log"))
 		elif self.what == "l":
-			self["key_green"] = StaticText("Clients")
-			self["key_yellow"] = StaticText("Servers")
+			self["key_green"] = StaticText(_("Clients"))
+			self["key_yellow"] = StaticText(_("Servers"))
 			self["key_blue"] = StaticText("")
 		else:
-			self["key_green"] = StaticText("Clients")
-			self["key_yellow"] = StaticText("Servers")
-			self["key_blue"] = StaticText("Log")
+			self["key_green"] = StaticText(_("Clients"))
+			self["key_yellow"] = StaticText(_("Servers"))
+			self["key_blue"] = StaticText(_("Log"))
 		if config.oscaminfo.autoupdate.value:
 			self.loop = eTimer()
 			self.loop.callback.append(self.showData)
@@ -761,17 +761,17 @@ class oscInfo(Screen, OscamInfo):
 			if self.what == "c":
 				self.setTitle("Client Info ( Oscam-Version: %s )" % self.getVersion())
 				self["key_green"].setText("")
-				self["key_yellow"].setText("Servers")
-				self["key_blue"].setText("Log")
+				self["key_yellow"].setText(_("Servers"))
+				self["key_blue"].setText(_("Log"))
 			elif self.what == "s":
 				self.setTitle("Server Info ( Oscam-Version: %s )" % self.getVersion())
-				self["key_green"].setText("Clients")
+				self["key_green"].setText(_("Clients"))
 				self["key_yellow"].setText("")
-				self["key_blue"].setText("Log")
+				self["key_blue"].setText(_("Log"))
 			elif self.what == "l":
 				self.setTitle("Oscam Log ( Oscam-Version: %s )" % self.getVersion())
-				self["key_green"].setText("Clients")
-				self["key_yellow"].setText("Servers")
+				self["key_green"].setText(_("Clients"))
+				self["key_yellow"].setText(_("Servers"))
 				self["key_blue"].setText("")
 				self.itemheight = 20
 		else:
@@ -781,9 +781,9 @@ class oscInfo(Screen, OscamInfo):
 			for i in self.errmsg:
 				self.out.append( self.buildListEntry( (i,) ))
 			self.setTitle(_("Error") + ": " + data)
-			self["key_green"].setText("Clients")
-			self["key_yellow"].setText("Servers")
-			self["key_blue"].setText("Log")
+			self["key_green"].setText(_("Clients"))
+			self["key_yellow"].setText(_("Servers"))
+			self["key_blue"].setText(_("Log"))
 
 		if self.listchange:
 			self.listchange = False
