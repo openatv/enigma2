@@ -72,7 +72,7 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
 			else:
 				open("/proc/stb/lcd/symbol_recording", "w").write("0")
-		elif getBoxType() in ('wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx'):
+		elif getBoxType() in ('wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx'):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -84,7 +84,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("0")
-		elif getBoxType() in ('mbmicrov2','mbmicro', 'e4hd', 'e4hdhybrid', '9911lx'):
+		elif getBoxType() in ('mbmicrov2','mbmicro', 'e4hd', 'e4hdhybrid'):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
