@@ -266,6 +266,7 @@ class ServiceInfo(AboutBase):
 		from Components.Converter.PliExtraInfo import caid_data
 		self["Title"].text = _("Service info - ECM Info")
 		tlist = []
+		provid = ""
 		for caid in sorted(set(self.info.getInfoObject(iServiceInformation.sCAIDPIDs)), key=lambda x: (x[0], x[1])):
 			CaIdDescription = _("Undefined")
 			extra_info = ""
@@ -274,7 +275,6 @@ class ServiceInfo(AboutBase):
 					CaIdDescription = caid_entry[2]
 					break
 			if caid[2]:
-				provid = ""
 				if CaIdDescription == "Seca":
 					provid = caid[2][:4]
 				if CaIdDescription == "Nagra":

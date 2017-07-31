@@ -698,7 +698,7 @@ class NimManager:
 		return self.cablesList[config.Nims[nim].cable.scan_provider.index][1]
 		
 	def getCableCountrycode(self, nim):
-		return self.cablesList[config.Nims[nim].cable.scan_provider.index][2]
+		return self.cablesList and self.cablesList[config.Nims[nim].cable.scan_provider.index][2] or None
 
 	def getTerrestrialsList(self):
 		return self.terrestrialsList
@@ -722,7 +722,7 @@ class NimManager:
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
 
 	def getTerrestrialCountrycode(self, nim):
-		return self.terrestrialsList[config.Nims[nim].terrestrial.index][2]
+		return self.terrestrialsList and self.terrestrialsList[config.Nims[nim].terrestrial.index][2] or None
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]
@@ -1460,6 +1460,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				possible_scan_types.append(("provider", _("Provider")))
 				default_scan_type = "provider"
 				nim.cable.scan_provider = ConfigSelection(choices = list)
+			nim.cable.config_scan_details = ConfigYesNo(default = False)
 			nim.cable.scan_type = ConfigSelection(default = default_scan_type, choices = possible_scan_types)
 			nim.cable.scan_band_EU_VHF_I = ConfigYesNo(default = True)
 			nim.cable.scan_band_EU_MID = ConfigYesNo(default = True)

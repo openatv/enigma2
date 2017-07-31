@@ -27,6 +27,8 @@ eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 
 	CONNECT(m_pump.recv_msg, eServiceMP3Record::gstPoll);
 	CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3Record::sourceTimeout);
+	if (eConfigManager::getConfigBoolValue("config.mediaplayer.useAlternateUserAgent"))
+		m_useragent = eConfigManager::getConfigValue("config.mediaplayer.alternateUserAgent");
 }
 
 eServiceMP3Record::~eServiceMP3Record()
@@ -146,7 +148,6 @@ int eServiceMP3Record::doPrepare()
 				else
 					m_useragent = m_extra_headers.substr(hpos_start);
 			}
-
 		}
 		else
 		{
