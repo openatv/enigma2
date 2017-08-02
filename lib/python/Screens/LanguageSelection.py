@@ -66,7 +66,7 @@ class LanguageSelection(Screen):
 
 	def updateCache(self):
 		print"updateCache"
-		self["languages"].setList([('update cache','Updating cache, please wait...',None)])
+		self["languages"].setList([('update cache',_('Updating cache, please wait...'),None)])
 		self.updateTimer = eTimer()
 		self.updateTimer.callback.append(self.startupdateCache)
 		self.updateTimer.start(100)
