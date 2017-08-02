@@ -50,7 +50,7 @@ class OscamInfo:
 	ECMTIME = 5
 	IP_PORT = 6
 	HEAD = { NAME: _("Label"), PROT: _("Protocol"),
-		CAID_SRVID: "CAID:SrvID", SRVNAME: _("Serv.Name"),
+		CAID_SRVID: _("CAID:SrvID"), SRVNAME: _("Serv.Name"),
 		ECMTIME: _("ECM-Time"), IP_PORT: _("IP address") }
 	version = ""
 
@@ -208,7 +208,7 @@ class OscamInfo:
 					if cl.find("request").attrib.has_key("ecmtime"):
 						ecmtime = cl.find("request").attrib["ecmtime"]
 						if ecmtime == "0" or ecmtime == "":
-							ecmtime = "n/a"
+							ecmtime = _("n/a")
 						else:
 							ecmtime = str(float(ecmtime) / 1000)[:5]
 					else:
@@ -220,7 +220,7 @@ class OscamInfo:
 						else:
 							srvname_short = srvname
 					else:
-						srvname_short = "n/A"
+						srvname_short = _("n/A")
 					login = cl.find("times").attrib["login"]
 					online = cl.find("times").attrib["online"]
 					if proto.lower() == "dvbapi":
@@ -279,10 +279,10 @@ class OscamInfo:
 			if data.attrib.has_key("version"):
 				self.version = data.attrib["version"]
 			else:
-				self.version = "n/a"
+				self.version = _("n/a")
 			return self.version
 		else:
-			self.version = "n/a"
+			self.version = _("n/a")
 		return self.version
 
 	def getTotalCards(self, reader):
@@ -309,7 +309,7 @@ class OscamInfo:
 							if spec in proto:
 								name = cl.attrib["name"]
 								cards = self.getTotalCards(name)
-								readers.append( ( "%s ( %s Cards )" % (name, cards), name) )
+								readers.append( ( _("%s ( %s Cards )") % (name, cards), name) )
 						else:
 							if cl.attrib["name"] != "" and cl.attrib["name"] != "" and cl.attrib["protocol"] != "":
 								readers.append( (cl.attrib["name"], cl.attrib["name"]) )  # return tuple for later use in Choicebox
@@ -338,19 +338,19 @@ class OscamInfo:
 			data = open(ecminfo, "r").readlines()
 			for i in data:
 				if "caid" in i:
-					result.append( ("CAID", i.split(":")[1].strip()) )
+					result.append( (_("CAID"), i.split(":")[1].strip()) )
 				elif "pid" in i:
-					result.append( ("PID", i.split(":")[1].strip()) )
+					result.append( (_("PID"), i.split(":")[1].strip()) )
 				elif "prov" in i:
 					result.append( (_("Provider"), i.split(":")[1].strip()) )
 				elif "reader" in i:
-					result.append( ("Reader", i.split(":")[1].strip()) )
+					result.append( (_("Reader"), i.split(":")[1].strip()) )
 				elif "from" in i:
 					result.append( (_("Address"), i.split(":")[1].strip()) )
 				elif "protocol" in i:
 					result.append( (_("Protocol"), i.split(":")[1].strip()) )
 				elif "hops" in i:
-					result.append( ("Hops", i.split(":")[1].strip()) )
+					result.append( (_("Hops"), i.split(":")[1].strip()) )
 				elif "ecm time" in i:
 					result.append( (_("ECM Time"), i.split(":")[1].strip()) )
 			return result
@@ -458,7 +458,7 @@ class OscamInfoMenu(Screen):
 			osc = OscamInfo()
 			reader = osc.getReaders()
 			if reader is not None:
-				reader.append( ("All", "all") )
+				reader.append( (_("All"), "all") )
 				if isinstance(reader, list):
 					if len(reader) == 1:
 						self.session.open(oscReaderStats, reader[0][1])
@@ -759,17 +759,17 @@ class oscInfo(Screen, OscamInfo):
 					if i != "":
 						self.out.append( self.buildLogListEntry( (i,) ))
 			if self.what == "c":
-				self.setTitle("Client Info ( Oscam-Version: %s )" % self.getVersion())
+				self.setTitle(_("Client Info ( Oscam-Version: %s )") % self.getVersion())
 				self["key_green"].setText("")
 				self["key_yellow"].setText(_("Servers"))
 				self["key_blue"].setText(_("Log"))
 			elif self.what == "s":
-				self.setTitle("Server Info ( Oscam-Version: %s )" % self.getVersion())
+				self.setTitle(_("Server Info ( Oscam-Version: %s )") % self.getVersion())
 				self["key_green"].setText(_("Clients"))
 				self["key_yellow"].setText("")
 				self["key_blue"].setText(_("Log"))
 			elif self.what == "l":
-				self.setTitle("Oscam Log ( Oscam-Version: %s )" % self.getVersion())
+				self.setTitle(_("Oscam Log ( Oscam-Version: %s )") % self.getVersion())
 				self["key_green"].setText(_("Clients"))
 				self["key_yellow"].setText(_("Servers"))
 				self["key_blue"].setText("")
@@ -873,7 +873,7 @@ class oscEntitlements(Screen, OscamInfo):
 		caids = data.keys()
 		caids.sort()
 		outlist = []
-		res = [ ("CAID", "System", "1", "2", "3", "4", "5", "Total", "Reshare", "") ]
+		res = [ ("CAID", _("System"), "1", "2", "3", "4", "5", "Total", _("Reshare"), "") ]
 		for i in caids:
 			csum = 0
 			ca_id = i
@@ -951,7 +951,7 @@ class oscEntitlements(Screen, OscamInfo):
 		else:
 			self["output"].setStyle("default")
 		self["output"].setList(result)
-		title = [ _("Reader"), self.cccamreader, _("Cards:"), cardTotal, "Server:", hostadr ]
+		title = [ _("Reader"), self.cccamreader, _("Cards:"), cardTotal, _("Server:"), hostadr ]
 		self.setTitle( " ".join(title))
 
 class oscReaderStats(Screen, OscamInfo):
@@ -1155,7 +1155,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 			self.oscamconfig.append(getConfigListEntry(_("Username (httpuser)"), config.oscaminfo.username))
 			self.oscamconfig.append(getConfigListEntry(_("Password (httpwd)"), config.oscaminfo.password))
 			self.oscamconfig.append(getConfigListEntry(_("IP address"), config.oscaminfo.ip))
-			self.oscamconfig.append(getConfigListEntry("Port", config.oscaminfo.port))
+			self.oscamconfig.append(getConfigListEntry(_("Port"), config.oscaminfo.port))
 		self.oscamconfig.append(getConfigListEntry(_("Automatically update Client/Server View?"), config.oscaminfo.autoupdate))
 		if config.oscaminfo.autoupdate.value:
 			self.oscamconfig.append(getConfigListEntry(_("Update interval (in seconds)"), config.oscaminfo.intervall))
