@@ -196,7 +196,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default = False, choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default=((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
 		default = self.timer.dirname or defaultMoviePath()
 		tmp = config.movielist.videodirs.value
@@ -273,8 +273,8 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.list.append(self.entryStartTime)
 
 		self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Set the time the ZAP timer completes and performs any \"After event\" action."))
-		# if self.timerentry_justplay.value == "zap":
-		# 	self.list.append(self.entryShowEndTime)
+		if self.timerentry_justplay.value == "zap":
+			self.list.append(self.entryShowEndTime)
 		self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime, _("The time the timer completes and the \"After event\" action is taken. If the end time is earlier than the start time of the timer, the completion action takes place at that time on the following day."))
 		if self.timerentry_justplay.value != "zap" or self.timerentry_showendtime.value:
 			self.list.append(self.entryEndTime)
