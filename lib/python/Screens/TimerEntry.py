@@ -196,7 +196,8 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default=((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
+		duration = self.timer.end - self.timer.begin
+		self.timerentry_showendtime = ConfigSelection(default=duration > 4 and duration != config.recording.margin_before.value * 60 + 1, choices = [(True, _("yes")), (False, _("no"))])
 
 		default = self.timer.dirname or defaultMoviePath()
 		tmp = config.movielist.videodirs.value
@@ -427,7 +428,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		if end < begin:
 			end += 86400
 
-		# if the timer type is a Zap and no end is set, set duration to 1 second so time is shown in EPG's.
+		# if the timer type is a Zap and no end is set, set duration to short, fairly arbitrary, time so timer is shown in EPG's.
 		if self.timerentry_justplay.value == "zap":
 			if not self.timerentry_showendtime.value:
 				end = begin + (config.recording.margin_before.value * 60) + 1
