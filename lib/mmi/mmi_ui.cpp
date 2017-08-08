@@ -46,37 +46,37 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 				timeout = d[1];
 			else
 			{
-				eDebug("mmi close tag incorrect.. no timeout given.. assume 5 seconds");
+				eDebug("[eMMI_UI] mmi close tag incorrect.. no timeout given.. assume 5 seconds");
 				timeout = 5;
 			}
 		}
 		else if (d[0] > 1)
-			eDebug("mmi close tag incorrect.. byte 4 should be 0 or 1");
+			eDebug("[eMMI_UI] mmi close tag incorrect.. byte 4 should be 0 or 1");
 		mmiScreenClose(slot_id, timeout);
 		break;
 	}
 	case 0x01:
-		eDebug("MMI display control");
+		eDebug("[eMMI_UI] MMI display control");
 		if (((unsigned char*)data)[0] != 1)
-			eDebug("kann ich nicht. aber das sag ich dem modul nicht.");
+			eDebug("[eMMI_UI] displeay control failes: expected 1 as first byte, got %d", ((unsigned char*)data)[0]);
 		return 1;
 	case 0x07:		//Tmenu_enq
 	{
 		unsigned char *d=(unsigned char*)data;
 		unsigned char *max=((unsigned char*)d) + len;
 		int textlen = len - 2;
-		eDebug("in enq");
+		eDebug("[eMMI_UI] in enq");
 		if ((d+2) > max)
 			break;
 		int blind = *d++ & 1;
 		int alen = *d++;
-			eDebug("%d bytes text", textlen);
+			eDebug("[eMMI_UI] %d bytes text", textlen);
 		if ((d+textlen) > max)
 			break;
 		char str[textlen + 1];
 		memcpy(str, ((char*)d), textlen);
 		str[textlen] = '\0';
-		eDebug("enq-text: %s",str);
+		eDebug("[eMMI_UI] enq-text: %s",str);
 		mmiScreenEnq(slot_id, blind, alen, (char*)convertDVBUTF8(str).c_str());
 		break;
 	}
@@ -86,7 +86,7 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 		unsigned char *d=(unsigned char*)data;
 		unsigned char *max=((unsigned char*)d) + len;
 		int pos = 0;
-		eDebug("Tmenu_last");
+		eDebug("[eMMI_UI] Tmenu_last");
 		if (d > max)
 			break;
 		int n=*d++;
@@ -98,31 +98,30 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 			n=0;
 		else
 			n++;
-		eDebug("%d texts", n);
+		eDebug("[eMMI_UI] %d texts", n);
 		for (int i=0; i < (n+3); ++i)
 		{
 			int textlen;
 			if ((d+3) > max)
 				break;
-			eDebug("text tag: %02x %02x %02x", d[0], d[1], d[2]);
+			eDebug("[eMMI_UI] text tag: %02x %02x %02x", d[0], d[1], d[2]);
 			d+=3;
 			d+=eDVBCISession::parseLengthField(d, textlen);
-			eDebug("%d bytes text", textlen);
+			eDebug("[eMMI_UI] %d bytes text", textlen);
 			if ((d+textlen) > max)
 				break;
 			char str[textlen + 1];
 			memcpy(str, ((char*)d), textlen);
 			str[textlen] = '\0';
 			mmiScreenAddText(slot_id, pos++, (char*)convertDVBUTF8(str).c_str());
-			while (textlen--)
-				eDebugNoNewLine("%c", *d++);
-			eDebug("");
+			eDebug("[eMMI_UI] %s", str);
+			d += textlen;
 		}
 		mmiScreenFinish(slot_id);
 		break;
 	}
 	default:
-		eDebug("unknown APDU tag 9F 88 %02x", tag[2]);
+		eDebug("[eMMI_UI] unknown APDU tag 9F 88 %02x", tag[2]);
 		break;
 	}
 	return 0;
@@ -223,7 +222,7 @@ int eMMI_UI::mmiScreenBegin(int slot, int listmenu)
 	if (slot >= m_max_slots)
 		return 0;
 
-	eDebug("eMMI_UI::mmiScreenBegin");
+	eDebug("[eMMI_UI] mmiScreenBegin");
 
 	slot_ui_data &data = slotdata[slot];
 
@@ -252,7 +251,7 @@ int eMMI_UI::mmiScreenAddText(int slot, int type, char *value)
 	if (slot >= m_max_slots)
 		return 0;
 
-	eDebug("eMMI_UI::mmiScreenAddText(%s)",value ? value : "");
+	eDebug("[eMMI_UI] mmiScreenAddText(%s)",value ? value : "");
 
 	slot_ui_data &data = slotdata[slot];
 
@@ -267,7 +266,7 @@ int eMMI_UI::mmiScreenAddText(int slot, int type, char *value)
 	else
 	 	PyTuple_SET_ITEM(tuple, 0, PyString_FromString("TEXT"));
 
-	eDebug("addText %s with id %d", value, type);
+	eDebug("[eMMI_UI] addText %s with id %d", value, type);
 
 	PyTuple_SET_ITEM(tuple, 1, PyString_FromString(value));
 
@@ -286,7 +285,7 @@ int eMMI_UI::mmiScreenFinish(int slot)
 {
 	if (slot < m_max_slots)
 	{
-		eDebug("eMMI_UI::mmiScreenFinish");
+		eDebug("[eMMI_UI] mmiScreenFinish");
 		slotdata[slot].mmiScreenReady = 1;
 		stateChanged(slot);
 	}

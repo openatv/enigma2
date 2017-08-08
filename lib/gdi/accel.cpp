@@ -98,19 +98,19 @@ gAccel::~gAccel()
 #ifdef ACCEL_DEBUG
 void gAccel::dumpDebug()
 {
-	eDebug("-- gAccel info --");
+	eDebug("[gAccel] info --");
 	for (MemoryBlockList::const_iterator it = m_accel_allocation.begin();
 		 it != m_accel_allocation.end();
 		 ++it)
 	 {
 		 gUnmanagedSurface *surface = it->surface;
 		 if (surface)
-			eDebug("surface: (%d (%dk), %d (%dk)) %p %dx%d:%d",
+			eDebug("[gAccel] surface: (%d (%dk), %d (%dk)) %p %dx%d:%d",
 					it->index, it->index >> (10 - ACCEL_ALIGNMENT_SHIFT),
 					it->size, it->size >> (10 - ACCEL_ALIGNMENT_SHIFT),
 					surface, surface->stride, surface->y, surface->bpp);
 		else
-			eDebug("   free: (%d (%dk), %d (%dk))",
+			eDebug("[gAccel]    free: (%d (%dk), %d (%dk))",
 					it->index, it->index >> (10 - ACCEL_ALIGNMENT_SHIFT),
 					it->size, it->size >> (10 - ACCEL_ALIGNMENT_SHIFT));
 	 }
@@ -133,7 +133,7 @@ void gAccel::releaseAccelMemorySpace()
 		{
 			int size = surface->y * surface->stride;
 #ifdef ACCEL_DEBUG
-			eDebug("%s: Re-locating %p->%x(%p) %dx%d:%d", __func__, surface, surface->data_phys, surface->data, surface->x, surface->y, surface->bpp);
+			eDebug("[gAccel] %s: Re-locating %p->%x(%p) %dx%d:%d", __func__, surface, surface->data_phys, surface->data, surface->x, surface->y, surface->bpp);
 #endif
 			unsigned char *new_data = new unsigned char [size];
 			memcpy(new_data, surface->data, size);
@@ -310,19 +310,19 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 	int size = stride * surface->y;
 	if (!size)
 	{
-		eDebug("accelAlloc called with size 0");
+		eDebug("[gAccel] accelAlloc called with size 0");
 		return -2;
 	}
 	if (surface->bpp == 8)
 		size += 256 * 4;
 	else if (surface->bpp != 32)
 	{
-		eDebug("Accel does not support bpp=%d", surface->bpp);
+		eDebug("[gAccel] Accel does not support bpp=%d", surface->bpp);
 		return -4;
 	}
 
 #ifdef ACCEL_DEBUG
-	eDebug("[%s] %p size=%d %dx%d:%d", __func__, surface, size, surface->x, surface->y, surface->bpp);
+	eDebug("[gAccel] [%s] %p size=%d %dx%d:%d", __func__, surface, size, surface->x, surface->y, surface->bpp);
 #endif
 
 	size += ACCEL_ALIGNMENT_MASK;
@@ -354,7 +354,7 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 		}
 	}
 
-	eDebug("accel alloc failed\n");
+	eDebug("[gAccel] accel alloc failed\n");
 	return -3;
 }
 
@@ -364,7 +364,7 @@ void gAccel::accelFree(gUnmanagedSurface* surface)
 	if (phys_addr != 0)
 	{
 #ifdef ACCEL_DEBUG
-		eDebug("[%s] %p->%x %dx%d:%d", __func__, surface, surface->data_phys, surface->x, surface->y, surface->bpp);
+		eDebug("[gAccel] [%s] %p->%x %dx%d:%d", __func__, surface, surface->data_phys, surface->x, surface->y, surface->bpp);
 #endif
 		/* The lock scope is "good enough", the only other method that
 		 * might alter data_phys is the global release, and that will

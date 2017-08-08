@@ -33,6 +33,7 @@ eServiceFactoryDVD::eServiceFactoryDVD()
 		std::list<std::string> extensions;
 		extensions.push_back("iso");
 		extensions.push_back("img");
+		extensions.push_back("nrg");
 		sc->addServiceFactory(eServiceFactoryDVD::id, this, extensions);
 	}
 	m_service_info = new eStaticServiceDVDInfo();

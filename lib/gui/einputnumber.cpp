@@ -42,7 +42,7 @@ void eInputContentNumber::getDisplay(std::string &res, int &cursor)
 
 void eInputContentNumber::moveCursor(int dir)
 {
-	eDebug("move cursor..");
+	eDebug("[eInputContentNumber] move cursor..");
 	int old_cursor = m_cursor;
 
 	switch (dir)
@@ -118,7 +118,7 @@ void eInputContentNumber::deleteChar(int dir)
 {
 	if (dir == deleteForward)
 	{
-		eDebug("forward");
+		eDebug("[eInputContentNumber] forward");
 		if (m_cursor != m_len)
 			++m_cursor;
 		else

@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[6.0],[http://www.opena.tv])
+AC_INIT([enigma2],[6.1],[http://www.opena.tv])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -760,6 +760,8 @@ lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
 lib/python/Plugins/Extensions/Makefile
+lib/python/Plugins/Extensions/AtileHD/Makefile
+lib/python/Plugins/Extensions/AtileHD/pic/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/CutListEditor/meta/Makefile
 lib/python/Plugins/Extensions/DVDBurn/Makefile

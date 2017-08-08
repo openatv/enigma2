@@ -17,8 +17,9 @@ eLCD *eLCD::instance;
 
 eLCD::eLCD()
 {
+	_buffer = NULL;
 	lcdfd = -1;
-	locked=0;
+	locked = 0;
 	instance = this;
 }
 
@@ -30,16 +31,17 @@ eLCD *eLCD::getInstance()
 void eLCD::setSize(int xres, int yres, int bpp)
 {
 	res = eSize(xres, yres);
-	_buffer=new unsigned char[xres * yres * bpp/8];
-	memset(_buffer, 0, res.height()*res.width()*bpp/8);
-	_stride=res.width()*bpp/8;
-	eDebug("lcd buffer %p %d bytes, stride %d", _buffer, xres*yres*bpp/8, _stride);
+	_buffer = new unsigned char[xres * yres * bpp/8];
+	memset(_buffer, 0, res.height() * res.width() * bpp / 8);
+	_stride = res.width() * bpp / 8;
+	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d", xres, yres, bpp, _buffer, xres * yres * bpp / 8, _stride);
 }
 
 eLCD::~eLCD()
 {
 	if (_buffer)
 		delete [] _buffer;
+	instance = NULL;
 }
 
 int eLCD::lock()
@@ -47,13 +49,13 @@ int eLCD::lock()
 	if (locked)
 		return -1;
 
-	locked=1;
+	locked = 1;
 	return lcdfd;
 }
 
 void eLCD::unlock()
 {
-	locked=0;
+	locked = 0;
 }
 
 #ifdef HAVE_TEXTLCD
@@ -70,7 +72,7 @@ void eLCD::renderText(ePoint start, const char *text)
 
 eDBoxLCD::eDBoxLCD()
 {
-	int xres=132, yres=64, bpp=8;
+	int xres = 132, yres = 64, bpp = 8;
 	flipped = false;
 	dump = false;
 	inverted = 0;
@@ -133,28 +135,29 @@ eDBoxLCD::eDBoxLCD()
 	
 	if (lcdfd < 0)
 	{
-		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || !access("/proc/stb/fp/oled_brightness", W_OK) )
+		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || 
+		    !access("/proc/stb/fp/oled_brightness", W_OK) )
 			lcd_type = 2;
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
-		eDebug("found OLED display!");
+		eDebug("[eLCD] found OLED display!");
 		lcd_type = 1;
 	}
 
 	if (lcdfd < 0)
-		eDebug("couldn't open LCD - load lcd.ko!");
+		eDebug("[eDboxLCD] No oled0 or lcd0 device found!");
 	else
 	{
 
 #ifndef LCD_IOCTL_ASC_MODE
 #define LCDSET                  0x1000
-#define LCD_IOCTL_ASC_MODE		(21|LCDSET)
-#define	LCD_MODE_ASC			0
-#define	LCD_MODE_BIN			1
+#define LCD_IOCTL_ASC_MODE	(21|LCDSET)
+#define	LCD_MODE_ASC		0
+#define	LCD_MODE_BIN		1
 #endif
 
-		int i=LCD_MODE_BIN;
+		int i = LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
 		FILE *f = fopen("/proc/stb/lcd/xres", "r");
 		if (f)
@@ -179,6 +182,8 @@ eDBoxLCD::eDBoxLCD()
 			}
 			lcd_type = 3;
 		}
+		eDebug("[eDboxLCD] xres=%d, yres=%d, bpp=%d lcd_type=%d", xres, yres, bpp, lcd_type);
+
 	}
 #endif
 	if (FILE * file = fopen("/proc/stb/lcd/right_half", "w"))
@@ -193,7 +198,7 @@ eDBoxLCD::eDBoxLCD()
 
 void eDBoxLCD::setInverted(unsigned char inv)
 {
-	inverted=inv;
+	inverted = inv;
 	update();
 }
 
@@ -212,22 +217,24 @@ void eDBoxLCD::setDump(bool onoff)
 int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
-
+	if (lcdfd < 0)
+		return(0);
 #ifndef LCD_IOCTL_SRV
 #define LCDSET                  0x1000
 #define	LCD_IOCTL_SRV			(10|LCDSET)
 #endif
+	eDebug("[eDboxLCD] setLCDContrast %d", contrast);
 
 	int fp;
 	if((fp=open("/dev/dbox/fp0", O_RDWR))<0)
 	{
-		eDebug("[LCD] can't open /dev/dbox/fp0");
+		eDebug("[DboxLCD] can't open /dev/dbox/fp0");
 		return(-1);
 	}
 
 	if(ioctl(lcdfd, LCD_IOCTL_SRV, &contrast)<0)
 	{
-		eDebug("[LCD] can't set lcd contrast");
+		eDebug("[eDboxLCD] can't set lcd contrast");
 	}
 	close(fp);
 #endif
@@ -237,14 +244,17 @@ int eDBoxLCD::setLCDContrast(int contrast)
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
 #ifndef NO_LCD
-//	eDebug("setLCDBrightness %d", brightness);
+	if (lcdfd < 0)
+		return(0);
+
+	eDebug("[eDboxLCD] setLCDBrightness %d", brightness);
 	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)
 		f = fopen("/proc/stb/fp/oled_brightness", "w");
 	if (f)
 	{
 		if (fprintf(f, "%d", brightness) == 0)
-			eDebug("write /proc/stb/lcd/oled_brightness failed!! (%m)");
+			eDebug("[eDboxLCD] write /proc/stb/lcd/oled_brightness failed!! (%m)");
 		fclose(f);
 	}
 	else
@@ -252,14 +262,14 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 		int fp;
 		if((fp=open("/dev/dbox/fp0", O_RDWR)) < 0)
 		{
-			eDebug("[LCD] can't open /dev/dbox/fp0");
+			eDebug("[eDboxLCD] can't open /dev/dbox/fp0");
 			return(-1);
 		}
 #ifndef FP_IOCTL_LCD_DIMM
 #define FP_IOCTL_LCD_DIMM       3
 #endif
 		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
-			eDebug("[LCD] can't set lcd brightness");
+			eDebug("[eDboxLCD] can't set lcd brightness");
 		close(fp);
 	}
 #endif
@@ -271,19 +281,19 @@ int eDBoxLCD::setLED(int value, int option)
 	switch(option)
 	{
 		case LED_BRIGHTNESS:
-			eDebug("setLEDNormalState %d", value);
+			eDebug("[eDboxLCD] setLEDNormalState %d", value);
 			if(ioctl(lcdfd, LED_IOCTL_BRIGHTNESS_NORMAL, (unsigned char)value) < 0)
-				eDebug("[LED] can't set led brightness");
+				eDebug("[eDboxLCD] can't set led brightness");
 			break;
 		case LED_DEEPSTANDBY:
-			eDebug("setLEDBlinkingTime %d", value);
+			eDebug("[eDboxLCD] setLEDBlinkingTime %d", value);
 			if(ioctl(lcdfd, LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, (unsigned char)value) < 0)
-				eDebug("[LED] can't set led deep standby");
+				eDebug("[eDboxLCD] can't set led deep standby");
 			break;
 		case LED_BLINKINGTIME:
-			eDebug("setLEDBlinkingTime %d", value);
+			eDebug("[eDboxLCD] setLEDBlinkingTime %d", value);
 			if(ioctl(lcdfd, LED_IOCTL_BLINKING_TIME, (unsigned char)value) < 0)
-				eDebug("[LED] can't set led blinking time");
+				eDebug("[eDboxLCD] can't set led blinking time");
 			break;
 	}
 	return(0);
@@ -313,7 +323,7 @@ void eDBoxLCD::dumpLCD2PNG(void)
  			switch(bpp)
  			{
  				case 8:
- 					eDebug(" 8 bit not supportet yet");
+ 					eDebug("[eDboxLCD] 8 bit not supportet yet");
  					break;
  				case 16:
  					{
@@ -345,10 +355,10 @@ void eDBoxLCD::dumpLCD2PNG(void)
  					}
  					break;
  				case 32:
- 					eDebug(" 32 bit not supportet yet");
+ 					eDebug("[eDboxLCD]  32 bit not supportet yet");
  					break;
  				default:
- 					eDebug("%d bit not supportet yet",bpp);
+ 					eDebug("[eDboxLCD] %d bit not supportet yet",bpp);
  			}
  		}
  }
