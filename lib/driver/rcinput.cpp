@@ -364,6 +364,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_CONTEXT_MENU_TO_KEY_AUX
+	if (ev->code == KEY_CONTEXT_MENU)
+	{
+		/* Gigablue New Remote rc has a KEY_HDMI-IN, which sends KEY_CONTEXT_MENU events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_AUX;
+	}
+#endif
+
 #if KEY_F2_TO_KEY_F6
 	if (ev->code == KEY_F2)
 	{
