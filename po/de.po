@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2016-10-27 14:24+0200\n"
+"PO-Revision-Date: 2017-08-16 19:03+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Stop recording now"
@@ -243,8 +243,12 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 # EventView.py#L308
-msgid "\n%d.%d.%d, %2d:%02d  -  %s"
-msgstr "\n%02d.%02d.%d, %02d:%02d  -  %s"
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
+"\n"
+"%02d.%02d.%d, %02d:%02d  -  %s"
 
 # EpgList.py#L686
 msgid "%e/%m, %-H:%M"
@@ -2063,15 +2067,9 @@ msgstr "Typ der Statusanzeige in der Filmliste"
 msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
 msgstr "Konfiguriere die vertikale Position von Untertiteln, gemessen vom unteren Bildrand."
 
-#: setup.xml / don´t use \n for linefeed in source text, it will not find the translation
-msgid ""
-"Configure how recording filenames are constructed. "
-"Standard: Date Time - Channel - Title "
-"Very very short: Title "
-"Very short: Title - Date Time "
-"Short with time: Date Time - Title "
-"Short: Date - Title "
-"Long: Date Time - Channel - Title - Info"
+#: setup.xml / don´t use \n for linefeed in source text, it will not find the
+#: translation
+msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
 msgstr ""
 "Zusammensetzung des Dateinamens von Aufnahmen.\n"
 "Standard: Datum Zeit - Sender - Titel\n"
@@ -2391,7 +2389,7 @@ msgstr "Benutzerdefinierte Textposition"
 msgid "Customize"
 msgstr "Extras"
 
-#AtileHD
+# AtileHD
 msgid "Setup - %s"
 msgstr "Setup - %s"
 
@@ -2421,7 +2419,6 @@ msgstr "Temperatur Einheit"
 
 msgid "Location # (http://weather.yahoo.com/):"
 msgstr "Ort # (http://weather.yahoo.com/):"
-
 
 msgid "Please enter search string for your location"
 msgstr "Geben Sie den Ort ein, nach dem gesucht werden soll"
@@ -6392,13 +6389,13 @@ msgstr "Experimentell: strikte Beschränkung auf bevorzugte Tuner"
 
 msgid "While available"
 msgstr "Solange verfügbar"
- 
+
 msgid "Preferred tuner for recordings"
 msgstr "Bevorzugter Tuner bei Aufnahmen"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Bevorzugte Tuner bei Aufnahmen, Mehrfachauswahl möglich"
- 
+
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Experimentell: strikte Beschränkung auf bevorzugte Tuner bei Aufnahmen"
 
@@ -6678,8 +6675,12 @@ msgid "Recording in progress"
 msgstr "Laufende Aufnahme"
 
 #: Satfinder/plugin.py
-msgid "\nRecording in progress."
-msgstr "\nLaufende Aufnahme."
+msgid ""
+"\n"
+"Recording in progress."
+msgstr ""
+"\n"
+"Laufende Aufnahme."
 
 #: Satfinder/plugin.py
 msgid "%s not available."
@@ -12536,16 +12537,26 @@ msgstr ""
 "backupstick oder backupstick.txt vorhanden sein."
 
 # ImageBackup.py
-msgid "No USB-Device found for fullbackup !!\n\n\n"
-msgstr "Kein USB-Stick für das Fullbackup gefunden!!\n\n\n"
+msgid ""
+"No USB-Device found for fullbackup !!\n"
+"\n"
+"\n"
+msgstr ""
+"Kein USB-Stick für das Fullbackup gefunden!!\n"
+"\n"
+"\n"
 
 # ImageBackup.py
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr "Für ein Backup auf dem USB-Stick,\n"
 
 # ImageBackup.py
-msgid "contain a file with the name: \n\n"
-msgstr "muss eine Datei mit dem Namen:\n\n"
+msgid ""
+"contain a file with the name: \n"
+"\n"
+msgstr ""
+"muss eine Datei mit dem Namen:\n"
+"\n"
 
 # ImageBackup.py
 msgid "backupstick or backupstick.txt"
@@ -15635,8 +15646,17 @@ msgstr ""
 msgid "Storage devices"
 msgstr "Speichergeräte"
 
+# setup.xml
 msgid "Channel list cursor behavior"
 msgstr "Cursorverhalten"
+
+# setup.xml 6.1 Version
+msgid "Channel list show MiniTV"
+msgstr "MiniTV in der Kanalliste anzeigen"
+
+# setup.xml 6.1 Version
+msgid "Channel list show MiniTV when Skin use."
+msgstr "MiniTV in der Kanalliste anzeigen, wenn der Skin es ermöglicht."
 
 # 4.2 Version
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
@@ -18026,8 +18046,18 @@ msgid "Do you want to reboot now with selected image?"
 msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
 
 #: MultiBootStartup.py
-msgid "Your box needs Bootloaderversion(s)\n\n%s\n\nto make compatible with Bootoptions!"
-msgstr "Ihre Box braucht Bootloaderversion\n\n%s\n\num Bootoptionen nutzen zu können!"
+msgid ""
+"Your box needs Bootloaderversion(s)\n"
+"\n"
+"%s\n"
+"\n"
+"to make compatible with Bootoptions!"
+msgstr ""
+"Ihre Box braucht Bootloaderversion\n"
+"\n"
+"%s\n"
+"\n"
+"um Bootoptionen nutzen zu können!"
 
 #: MultiBootStartup.py
 msgid "File not found - rename failed!"
@@ -18211,8 +18241,12 @@ msgstr "immer"
 msgid "Don't ask again!"
 msgstr "Nicht mehr nachfragen"
 
-msgid "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\nUpdate now?"
-msgstr "Die Box nicht ausschalten beim Update!\nJetzt Updaten?"
+msgid ""
+"DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
+"Update now?"
+msgstr ""
+"Die Box nicht ausschalten beim Update!\n"
+"Jetzt Updaten?"
 
 msgid "Bootloader update required!"
 msgstr "Bootloader Update Erforderlich!"
@@ -18226,14 +18260,22 @@ msgstr "Kein Update erforderlich!"
 msgid "Update failed!"
 msgstr "Update Fehlerhaft!"
 
-msgid "Don't worry your device is still ok! There are several safety mechanisms in place!\nYour device is still as fine as it was before this procedure!"
-msgstr "Keine sorge das Gerät ist weiterhin Betriebsbereit! Es gibt diverse Sicherheitsfunktionen!\nDas Gerät Arbeitet wie vor dem Update!"
+msgid ""
+"Don't worry your device is still ok! There are several safety mechanisms in place!\n"
+"Your device is still as fine as it was before this procedure!"
+msgstr ""
+"Keine sorge das Gerät ist weiterhin Betriebsbereit! Es gibt diverse Sicherheitsfunktionen!\n"
+"Das Gerät Arbeitet wie vor dem Update!"
 
 msgid "Update finished!"
 msgstr "Update Fertig!"
 
-msgid "Update succeeded!\nYour Bootloader is now up-to-date!"
-msgstr "Update Erfolgreich!\nDer Bootloader ist nun Aktuell!"
+msgid ""
+"Update succeeded!\n"
+"Your Bootloader is now up-to-date!"
+msgstr ""
+"Update Erfolgreich!\n"
+"Der Bootloader ist nun Aktuell!"
 
 msgid "Use Manual dns-nameserver"
 msgstr "DNS-Server manuell einstellen"
