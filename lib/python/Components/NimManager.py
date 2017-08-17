@@ -444,7 +444,7 @@ class SecConfigure:
 						sec.setLNBLOFH(currLnb.lofh.value * 1000)
 						sec.setLNBThreshold(currLnb.threshold.value * 1000)
 						sec.setLNBSatCRpositions(64)
-						sec.setLNBBootupTime(2700)
+						sec.setLNBBootupTime(currLnb.bootuptimeuser.value)
 					elif currLnb.unicable.value == "unicable_matrix":
 						self.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
 						setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix)
@@ -1631,7 +1631,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 			p_update({"positions":tuple(positions)})							#add positons to dict product
 
-			bootuptime = product.get("bootuptime",0)
+			bootuptime = product.get("bootuptime",2700)
 			p_update({"bootuptime":tuple([bootuptime])})							#add add boot up time
 
 			m_update({product.get("name"):p})								#add dict product to dict manufacturer
@@ -1679,7 +1679,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 			p_update({"positions":tuple(positions)})							#add positons to dict product
 
-			bootuptime = product.get("bootuptime",0)
+			bootuptime = product.get("bootuptime",2700)
 			p_update({"bootuptime":tuple([bootuptime])})							#add boot up time
 
 			m_update({product.get("name"):p})								#add dict product to dict manufacturer
@@ -1847,6 +1847,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 			#TODO satpositions for satcruser
 
+			section.bootuptimeuser = ConfigInteger(default=2700, limits = (0, 15000))
 			section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default="EN50494")
 			section.satcruserEN50494 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50494, default="1")
 			section.satcruserEN50607 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50607, default="1")
