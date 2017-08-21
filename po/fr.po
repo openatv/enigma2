@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 12:20+0200\n"
-"PO-Revision-Date: 2017-08-03 09:06+0200\n"
+"POT-Creation-Date: 2017-08-07 04:30+0300\n"
+"PO-Revision-Date: 2017-08-18 07:34+0200\n"
 "Last-Translator: aleko66 @ openATV <aleko66@gmail.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -262,6 +262,9 @@ msgstr "logiciel de %s %s car des mises à jour sont disponibles."
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+msgid "%s ( %s Cards )"
+msgstr "%s ( %s Cartes )"
+
 msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s n'est plus utilisé. Doit-il être effacé ?"
 
@@ -416,6 +419,9 @@ msgstr ""
 "x 1/2, entrelacement 576i50\n"
 "Écran 0 (UHD) Restrictions de codage : 3840x2160p50"
 
+msgid "---Weather---"
+msgstr "---Météo---"
+
 msgid "+/-"
 msgstr "+/-"
 
@@ -541,6 +547,13 @@ msgstr "1080p 60Hz"
 
 msgid "1080p50: 24p/50p/60p"
 msgstr "1080p50: 24p/50p/60p"
+
+msgid ""
+"12, show latin-1 characters except for greek and cyrillic, switch to 8 if "
+"needed."
+msgstr ""
+"12, affiche les caractères latin-1 à l'exception du grec et du cyrillique, "
+"basculer à 8 si nécessaire."
 
 msgid "120"
 msgstr "120"
@@ -2386,6 +2399,9 @@ msgstr "CAID"
 msgid "caid:"
 msgstr "caid :"
 
+msgid "CAID:SrvID"
+msgstr "CAID:SrvID"
+
 msgid "CaID: "
 msgstr "CaID : "
 
@@ -2981,6 +2997,9 @@ msgstr "Cliquer sur le bouton de la télécommande que vous voulez changer"
 msgid "Client Info"
 msgstr "Info Client"
 
+msgid "Client Info ( Oscam-Version: %s )"
+msgstr "Info Client ( Version-Oscam : %s )"
+
 msgid "ClientIP"
 msgstr "IPclient"
 
@@ -3110,6 +3129,12 @@ msgstr ""
 "titres."
 
 msgid ""
+"Configure default setting for new timers. Need a restart after changing."
+msgstr ""
+"Configure le type de minuterie par défaut pour les nouvelles minuteries. "
+"Redémarrage du décodeur requis après changement."
+
+msgid ""
 "Configure for how many minutes finished events should remain visible in the "
 "EPG. Useful when you need information about an event which has just "
 "finished, or has been delayed."
@@ -3174,6 +3199,9 @@ msgstr ""
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Configure si l'epg.dat doit être complétement sauvegardé."
+
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Choisir si on veut afficher les picons lors du zapping rapide"
 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
@@ -4016,6 +4044,12 @@ msgstr "Défaut (Enregistrement direct)"
 msgid "Default (Timeshift)"
 msgstr "Défaut (PauseDirect)"
 
+msgid "Default 'After event'"
+msgstr "'Après événement' par défaut"
+
+msgid "Default 'Timer type' *"
+msgstr "Type de minuterie par défaut *"
+
 msgid "Default files/folders to backup"
 msgstr "Fichiers/dossiers par défaut à sauvegarder"
 
@@ -4198,6 +4232,9 @@ msgstr "Eléments supprimés"
 
 msgid "Deleting files"
 msgstr "Suppression des fichiers"
+
+msgid "Delivery system workaround"
+msgstr "Contournement sortie système"
 
 msgid "Depth"
 msgstr "Profondeur"
@@ -4892,6 +4929,12 @@ msgstr "Editer les chapitres du titre actuel"
 
 msgid "Edit DNS"
 msgstr "Editer DNS"
+
+msgid "Edit mode off"
+msgstr "Mode édition inactif"
+
+msgid "Edit mode on"
+msgstr "Mode édition actif"
 
 msgid "Edit new entry"
 msgstr "Editer une nouvelle entrée"
@@ -6243,6 +6286,9 @@ msgstr "Configuration HDMI CEC"
 msgid "HDMI CEC Setup"
 msgstr "Configuration HDMI CEC"
 
+msgid "HDMI Colordepth"
+msgstr "Profondeur couleur HDMI"
+
 msgid "HDMI Colorimetry"
 msgstr "Colorimétrie HDMI"
 
@@ -6324,11 +6370,11 @@ msgstr "Cacher les extensions connues"
 msgid "Hide parental locked services"
 msgstr "Cacher les services sous contrôle parental"
 
-msgid "Hide VBI line for this service"
-msgstr "Cacher ligne blanche VBI pour ce service"
-
 msgid "Hide player"
 msgstr "Cacher le lecteur"
+
+msgid "Hide VBI line for this service"
+msgstr "Cacher ligne blanche VBI pour ce service"
 
 msgid "Hide zap errors"
 msgstr "Masquer les erreurs de zap"
@@ -6371,6 +6417,9 @@ msgstr "Accueil"
 
 msgid "Homepage long"
 msgstr "Homepage long"
+
+msgid "Hops"
+msgstr "Sauts"
 
 msgid "hops:"
 msgstr "hops :"
@@ -6670,6 +6719,11 @@ msgid ""
 msgstr ""
 "En mode expert, configurez les tuners préférés pour les enregistrements "
 "lorsque plus d'un tuner est disponible."
+
+msgid "In the Standby blinking Clock on the LCD Display"
+msgstr ""
+"En veille pendant un enregistrement, affiche l'horloge clignotante sur "
+"l'écran LCD"
 
 msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
@@ -7093,6 +7147,9 @@ msgstr "Juste mettre à l'échelle"
 msgid "Just zap"
 msgstr "Juste zapper"
 
+msgid "KA-SAT"
+msgstr "KA-SAT"
+
 msgid "Keep service"
 msgstr "Garder service"
 
@@ -7381,6 +7438,9 @@ msgstr "Verrouillé :"
 
 msgid "locked"
 msgstr "verrouillé"
+
+msgid "Log"
+msgstr "Log"
 
 msgid "Log Manager"
 msgstr "Gestionnaire de log"
@@ -7807,6 +7867,12 @@ msgstr "Déplacer vers l'est"
 msgid "Move Left/Right"
 msgstr "Déplacer gauche/droite"
 
+msgid "Move mode off"
+msgstr "Mode déplacement inactif"
+
+msgid "Move mode on"
+msgstr "Mode déplacement actif"
+
 msgid "Move PIP"
 msgstr "Déplacer PiP"
 
@@ -7949,6 +8015,12 @@ msgstr "Ma sélection de fournisseur"
 
 msgid "N/A"
 msgstr "N/A"
+
+msgid "n/a"
+msgstr "n/a"
+
+msgid "n/A"
+msgstr "n/A"
 
 msgid "Name"
 msgstr "Nom"
@@ -8873,6 +8945,9 @@ msgstr "Configuration Oscam Info"
 msgid "Oscam Info - Main Menu"
 msgstr "Menu principal d'Oscam Info"
 
+msgid "Oscam Log ( Oscam-Version: %s )"
+msgstr "Oscam Log ( Version-Oscam : %s )"
+
 msgid "OscamInfo"
 msgstr "Oscam Info"
 
@@ -9163,6 +9238,9 @@ msgstr "Visualisateur d'images"
 
 msgid "Pic_Exif"
 msgstr "Exif_Img"
+
+msgid "PID"
+msgstr "PID"
 
 msgid "pid:"
 msgstr "pid :"
@@ -10091,6 +10169,9 @@ msgstr "Mettre la TV en veille"
 msgid "Put your %s %s in standby"
 msgstr "Mettre votre %s %s en veille"
 
+msgid "Put your AV Receiver in standby"
+msgstr "Mettre votre récepteur en mode veille"
+
 msgid "PU_History"
 msgstr "Historique_PU"
 
@@ -10403,6 +10484,9 @@ msgstr "Rafraîchir"
 msgid "Refresh every (in hours)"
 msgstr "Vérifier chaque (heures)"
 
+msgid "Refresh interval in minutes:"
+msgstr "Intervalle de rafraîchissement en minutes :"
+
 msgid "Refresh rate"
 msgstr "Taux de rafraîchissement"
 
@@ -10411,9 +10495,6 @@ msgstr "Taux de rafraîchissement pour 'Mode le plus bas'"
 
 msgid "Refresh rate selection."
 msgstr "Sélection vitesse rafraîchissement."
-
-msgid "Refresh interval in minutes:"
-msgstr "Intervalle de rafraîchissement en minutes :"
 
 # TODO
 msgid "Regard deep standby as standby"
@@ -10669,6 +10750,9 @@ msgid "Reset video enhancement settings to your last configuration?"
 msgstr ""
 "Réinitialiser les paramètres vidéo améliorée à votre dernière configuration ?"
 
+msgid "Reshare"
+msgstr "Repartage"
+
 msgid "Reshare:"
 msgstr "Repartage :"
 
@@ -10702,6 +10786,9 @@ msgstr "Relancer l'IGU"
 msgid "Restart GUI now?"
 msgstr "Relancer l'IGU maintenant ?"
 
+msgid "Restart necessary, restart GUI now?"
+msgstr "Redémarrage nécessaire, redémarrer IGU maintenant ?"
+
 msgid "Restart Network"
 msgstr "Relancer le réseau"
 
@@ -10725,9 +10812,6 @@ msgstr "Relancer votre connexion réseau et vos interfaces.\n"
 
 msgid "RestartNetwork"
 msgstr "RedémarrerRéseau"
-
-msgid "Restart necessary, restart GUI now?"
-msgstr "Redémarrage nécessaire, redémarrer IGU maintenant ?"
 
 msgid "Restore"
 msgstr "Restaurer"
@@ -11580,6 +11664,9 @@ msgstr "Serveur hors-service"
 msgid "Server:"
 msgstr "Serveur :"
 
+msgid "Server Info ( Oscam-Version: %s )"
+msgstr "Info Serveur ( Version-Oscam : %s )"
+
 msgid "Servers"
 msgstr "Serveurs"
 
@@ -12119,6 +12206,9 @@ msgstr "Nom de fichiers court"
 msgid "Short filenames with time"
 msgstr "Nom de fichiers court avec heure"
 
+msgid "show"
+msgstr "afficher"
+
 msgid "Show /tmp/ecm.info"
 msgstr "Afficher /tmp/ecm.info"
 
@@ -12190,6 +12280,11 @@ msgstr "Afficher image d'arrière-plan en mode Radio"
 
 msgid "Show background when tuned to a radio channel."
 msgstr "Afficher l'écran de fond lorsqu'on écoute une radio."
+
+msgid "Show blinking Clock in Standby on Display during recording"
+msgstr ""
+"Afficher horloge clignotante en veille sur l'affichage pendant "
+"l'enregistrement"
 
 msgid "Show blinking Clock on Display during recording"
 msgstr "Afficher l'horloge clignotante sur l'écran pendant l'enregistrement"
@@ -12478,6 +12573,9 @@ msgstr "Afficher OScamInfo dans le menu extension"
 
 msgid "Show picon background colour"
 msgstr "Afficher la couleur de fond des picons"
+
+msgid "show picons in quickzap"
+msgstr "Afficher picons en zapping rapide"
 
 msgid "show picons in service list"
 msgstr "Afficher picons dans la liste des services"
@@ -13081,9 +13179,6 @@ msgstr "Désolé, aucune sauvegarde n'a été trouvée !"
 msgid "Sorry, no details available!"
 msgstr "Désolé, aucun détail disponible !"
 
-msgid "Sorry, there was a problem:"
-msgstr "Désolé, il y a eu un problème :"
-
 msgid ""
 "Sorry, no physical devices that supports SWAP attached. Can't create "
 "Swapfile on network or fat32 filesystems"
@@ -13091,6 +13186,9 @@ msgstr ""
 "Désolé, aucun périphérique physique qui supporte SWAP n'est branché. "
 "Impossible de créer un fichier swap sur le réseau ou sur un système de "
 "fichier FAT32"
+
+msgid "Sorry, there was a problem:"
+msgstr "Désolé, il y a eu un problème :"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -13123,8 +13221,14 @@ msgstr "Trier la liste :"
 msgid "Sort menu screen's alphabetically"
 msgstr "Trier l'écran des menus dans l'ordre alphabétique"
 
+msgid "Sort order for menu entries"
+msgstr "Ordre de tri pour les entrées du menu"
+
 msgid "Sort plug-in browser alphabetically"
 msgstr "Trier la liste des plugins dans l'ordre alphabétique"
+
+msgid "Sort plug-in browser entries"
+msgstr "Ordre de tri pour les entrées du navigateur de plug-in"
 
 msgid "Sort setting screen's alphabetically"
 msgstr "Trier l'écran des paramètres dans l'ordre alphabétique"
@@ -13552,6 +13656,9 @@ msgstr "Gestionnaire de swap"
 
 msgid "Swedish"
 msgstr "Suédois"
+
+msgid "switch 12 to 8 character display mode"
+msgstr "Bascule mode d'affichage de 12 à 8 caractères"
 
 msgid "Switch between Audio-, Subtitlepage"
 msgstr "Basculer entre choix audio ou sélection des sous-titres"
@@ -14290,6 +14397,10 @@ msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 "Cette option permet de définir le niveau de contraste dynamique de l'image."
 
+msgid "This option allows you can config the Colordepth for UHD"
+msgstr ""
+"Cette option vous permet de configurer la profondeur de couleur pour UHD"
+
 msgid "This option allows you can config the Colorimetry for HDR"
 msgstr "Cette option vous permet de configurer la colorimétrique pour HDR"
 
@@ -14457,6 +14568,13 @@ msgstr "Cette option permet de désactiver le tri de la liste des plugins."
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Cette option vous permet d'activer le 3D Surround Sound."
+
+msgid "This option allows you to hide and sorting of the menus"
+msgstr "Cette option permet de masquer et de trier les menus"
+
+msgid "This option allows you to hide and sorting of the plugin browser."
+msgstr ""
+"Cette option permet de masquer et de trier dans le navigateur de plugins."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Cette option vous permet de désactiver l'affichage."
@@ -15021,7 +15139,7 @@ msgstr ""
 "Traduction française\n"
 "Enigma2 - OpenATV\n"
 "Support : www.opena.tv\n"
-"Dernière MÀJ : 2 août 2017 par aleko66@gmail.com"
+"Dernière MÀJ : 18 août 2017 par aleko66@gmail.com"
 
 msgid "Transmission mode"
 msgstr "Mode de transmission"
@@ -15381,6 +15499,9 @@ msgstr "mises à jour disponibles."
 
 msgid "Updates Available:"
 msgstr "Mises à jour disponible :"
+
+msgid "Updating cache, please wait..."
+msgstr "Mise à jour du cache, veuillez patienter..."
 
 msgid "Updating mount locations."
 msgstr "Mise à jour des points de montage."
@@ -16055,6 +16176,9 @@ msgstr "Réveil de la TV depuis le mode veille"
 msgid "Wakeup your %s %s from standby"
 msgstr "Réveil de votre %s %s depuis le mode veille"
 
+msgid "Wakeup your AV Receiver from standby"
+msgstr "Sortir votre récepteur du mode veille"
+
 msgid "Warning"
 msgstr "Avertissement"
 
@@ -16069,9 +16193,6 @@ msgstr "Regarder les enregistrements…"
 
 msgid "water sport"
 msgstr "sport nautique"
-
-msgid "---Weather---"
-msgstr "---Météo---"
 
 msgid ""
 "We are really sorry. Your receiver encountered a software problem, and needs "
@@ -16678,6 +16799,9 @@ msgstr "Statut Wlan (WiFi)"
 
 msgid "WOL Standby"
 msgstr "Réveil depuis le réseau (WOL)"
+
+msgid "Workaround for old tuner driver"
+msgstr "Contournement pour pilote ancien tuner"
 
 msgid "working"
 msgstr "travail en cours..."
@@ -17483,84 +17607,13 @@ msgstr ""
 "\n"
 "[Utilisateur - bouquets (TV)]\n"
 
-msgid "Edit mode on"
-msgstr "Mode édition actif"
+# setup.xml for 6.1 Version
+msgid "Channel list show MiniTV"
+msgstr "Affiche MiniTV dans liste des chaînes"
 
-msgid "Edit mode off"
-msgstr "Mode édition inactif"
-
-msgid "Move mode on"
-msgstr "Mode déplacement actif"
-
-msgid "Move mode off"
-msgstr "Mode déplacement inactif"
-
-msgid "show"
-msgstr "afficher"
-
-msgid "HDMI Colordepth"
-msgstr "Profondeur couleur HDMI"
-
-msgid "This option allows you can config the Colordepth for UHD"
-msgstr ""
-"Cette option vous permet de configurer la profondeur de couleur pour UHD"
-
-msgid "show picons in quickzap"
-msgstr "Afficher picons en zapping rapide"
-
-msgid "Configure if service picons will be shown in quickzap."
-msgstr "Choisir si on veut afficher les picons lors du zapping rapide"
-
-msgid "Delivery system workaround"
-msgstr "Contournement sortie système"
-
-msgid "Workaround for old tuner driver"
-msgstr "Contournement pour pilote ancien tuner"
-
-msgid "Default 'Timer type' *"
-msgstr "Type de minuterie par défaut *"
-
-msgid ""
-"Configure default setting for new timers. Need a restart after changing."
-msgstr ""
-"Configure le type de minuterie par défaut pour les nouvelles minuteries. "
-"Redémarrage du décodeur requis après changement."
-
-msgid "Default 'After event'"
-msgstr "'Après événement' par défaut"
-
-msgid "Sort plug-in browser entries"
-msgstr "Ordre de tri pour les entrées du navigateur de plug-in"
-
-msgid "This option allows you to hide and sorting of the plugin browser."
-msgstr ""
-"Cette option permet de masquer et de trier dans le navigateur de plugins."
-
-msgid "Sort order for menu entries"
-msgstr "Ordre de tri pour les entrées du menu"
-
-msgid "This option allows you to hide and sorting of the menus"
-msgstr "Cette option permet de masquer et de trier les menus"
-
-msgid "Show blinking Clock in Standby on Display during recording"
-msgstr ""
-"Afficher horloge clignotante en veille sur l'affichage pendant "
-"l'enregistrement"
-
-msgid "In the Standby blinking Clock on the LCD Display"
-msgstr ""
-"En veille pendant un enregistrement, affiche l'horloge clignotante sur "
-"l'écran LCD"
-
-msgid "switch 12 to 8 character display mode"
-msgstr "Bascule mode d'affichage de 12 à 8 caractères"
-
-msgid ""
-"12, show latin-1 characters except for greek and cyrillic, switch to 8 if "
-"needed."
-msgstr ""
-"12, affiche les caractères latin-1 à l'exception du grec et du cyrillique, "
-"basculer à 8 si nécessaire."
+# setup.xml for 6.1 Version
+msgid "Channel list show MiniTV when Skin use."
+msgstr "Affiche MiniTV dans liste des chaînes quand un thème est utilisé."
 
 #~ msgid "%d"
 #~ msgid_plural "%d"
