@@ -160,11 +160,6 @@ def getAboutText():
 		f = open('/proc/stb/sensors/temp/value', 'r')
 		tempinfo = f.read()
 		f.close()
-	elif getMachineBuild() in ('gb7252'):
-		f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
-		tempinfo = f.read()
-		tempinfo = tempinfo[:-4]
-		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
 		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
@@ -174,6 +169,14 @@ def getAboutText():
 		f = open('/proc/stb/fp/temp_sensor_avs', 'r')
 		tempinfo = f.read()
 		f.close()
+	elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+		try:
+			f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
+			tempinfo = f.read()
+			tempinfo = tempinfo[:-4]
+			f.close()
+		except:
+			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
 		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
