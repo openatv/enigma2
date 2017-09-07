@@ -337,6 +337,10 @@ class TryQuitMainloop(MessageBox):
 			self.quitScreen.show()
 			print "[Standby] quitMainloop #1"
 			quitMainloopCode = self.retval
+			if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
+				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k 
+				print "[Standby] LCDminiTV off"
+				setLCDModeMinitTV("0")
 			if getBoxType() == "vusolo4k":  #workaround for white display flash
 				open("/proc/stb/fp/oled_brightness", "w").write("0")
 			quitMainloop(self.retval)
