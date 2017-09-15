@@ -500,6 +500,8 @@ class SecondInfoBar(Screen):
 		extended = event.getExtendedDescription()
 		if description and extended:
 			description += '\n'
+		elif description and not extended:
+			extended = description
 		text = description + extended
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
