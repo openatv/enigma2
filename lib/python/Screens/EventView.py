@@ -63,7 +63,7 @@ class EventViewBase:
 		self["Event"] = Event()
 		self["epg_description"] = ScrollLabel()
 		self["FullDescription"] = ScrollLabel()
-		self["summary_description"] = StaticText()
+		self["summary_description"] = ScrollLabel()
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
@@ -227,6 +227,7 @@ class EventViewBase:
 
 		short = event.getShortDescription()
 		extended = event.getExtendedDescription()
+		summary = event.getExtendedDescription()
 
 		if short == text:
 			short = ""
@@ -235,16 +236,17 @@ class EventViewBase:
 			pass #extended = extended
 		elif short and extended:
 			extended = short + '\n' + extended
+		elif short and not summary:
+                        summary = short
 		elif short:
 			extended = short
 
 		if text and extended:
-			text += "\n\n"
+			text += "\n"
 		text += extended
 		self["epg_description"].setText(text)
 		self["FullDescription"].setText(extended)
-
-		self["summary_description"].setText(extended)
+		self["summary_description"].setText(summary)
 
 		beginTimeString = event.getBeginTimeString()
 
@@ -287,10 +289,12 @@ class EventViewBase:
 	def pageUp(self):
 		self["epg_description"].pageUp()
 		self["FullDescription"].pageUp()
+		self["summary_description"].pageUp()
 
 	def pageDown(self):
 		self["epg_description"].pageDown()
 		self["FullDescription"].pageDown()
+		self["summary_description"].pageDown()
 
 	def getSimilarEvents(self):
 		# search similar broadcastings
@@ -309,6 +313,8 @@ class EventViewBase:
 			descr = self["epg_description"]
 			descr.setText(descr.getText()+text)
 			descr = self["FullDescription"]
+			descr.setText(descr.getText()+text)
+			descr = self["summary_description"]
 			descr.setText(descr.getText()+text)
 			self["key_red"].setText(_("Similar"))
 
