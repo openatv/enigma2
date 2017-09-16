@@ -856,10 +856,10 @@ def InitAVSwitch():
 			f.close()
 		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI")), ("force_ddp",  _("force AC3plus"))]
-			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "hdmi_best")
+			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "force_ac3")
 		else:
 			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3"))]
-			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "use_hdmi_caps")
+			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "force_ac3")
 		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
 
 	try:
@@ -881,7 +881,7 @@ def InitAVSwitch():
 			config.av.dtshd = ConfigSelection(choices = choice_list, default = "use_hdmi_caps")
 		else:
 			choice_list = [("downmix",  _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps",  _("controlled by HDMI")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
-			config.av.dtshd = ConfigSelection(choices = choice_list, default = "hdmi_best")
+			config.av.dtshd = ConfigSelection(choices = choice_list, default = "downmix")
 		config.av.dtshd.addNotifier(setDTSHD)
 
 	try:
@@ -899,7 +899,7 @@ def InitAVSwitch():
 			f.write(configElement.value)
 			f.close()
 		choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
-		config.av.wmapro = ConfigSelection(choices = choice_list, default = "hdmi_best")
+		config.av.wmapro = ConfigSelection(choices = choice_list, default = "downmix")
 		config.av.wmapro.addNotifier(setWMAPRO)
 
 	try:
@@ -931,9 +931,16 @@ def InitAVSwitch():
 	if can_downmix_aac:
 		def setAACDownmix(configElement):
 			f = open("/proc/stb/audio/aac", "w")
-			f.write(configElement.value and "downmix" or "passthrough")
+			if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				f.write(configElement.value)
+			else:
+				f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
-		config.av.downmix_aac = ConfigYesNo(default = True)
+		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+			config.av.downmix_aac = ConfigSelection(choices = choice_list, default = "downmix")
+		else:
+			config.av.downmix_aac = ConfigYesNo(default = True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
 
 	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
