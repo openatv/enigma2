@@ -452,7 +452,7 @@ void eDBoxLCD::update()
 						fclose(file);
 					}
 				}
-				else if ((strcmp(boxtype_name, "dm900\n") == 0))
+				else if ((strcmp(boxtype_name, "dm900\n") == 0) || (strcmp(boxtype_name, "dm920\n") == 0))
 				{
 					unsigned char gb_buffer[_stride * res.height()];
 					for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
