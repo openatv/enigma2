@@ -13,6 +13,8 @@
 #endif
 #include <lib/gdi/glcddc.h>
 
+#define DM900_LCD_Y_OFFSET 4
+
 eLCD *eLCD::instance;
 
 eLCD::eLCD()
@@ -30,11 +32,13 @@ eLCD *eLCD::getInstance()
 
 void eLCD::setSize(int xres, int yres, int bpp)
 {
-	res = eSize(xres, yres);
+	_stride = xres * bpp / 8;
 	_buffer = new unsigned char[xres * yres * bpp/8];
-	memset(_buffer, 0, res.height() * res.width() * bpp / 8);
-	_stride = res.width() * bpp / 8;
-	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d", xres, yres, bpp, _buffer, xres * yres * bpp / 8, _stride);
+	if ((strcmp(boxtype_name, "dm900\n") == 0))
+		xres -= DM900_LCD_Y_OFFSET;
+	res = eSize(xres, yres);
+	memset(_buffer, 0, xres * yres * bpp / 8);
+	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d, boxtype: %s", xres, yres, bpp, _buffer, xres * yres * bpp / 8, _stride, boxtype_name);
 }
 
 eLCD::~eLCD()
@@ -78,15 +82,22 @@ eDBoxLCD::eDBoxLCD()
 	inverted = 0;
 	lcd_type = 0;
 	FILE *boxtype_file;
-	char boxtype_name[20];
 	FILE *fp_file;
 	char fp_version[20];
 #ifndef NO_LCD
+	snprintf(boxtype_name, sizeof(boxtype_name), "unknown");
 	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
-		
+	}
+	else if((boxtype_file = fopen("/proc/stb/info/model", "r")) != NULL)
+	{
+		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+		fclose(boxtype_file);
+	}
+	if((strcmp(boxtype_name, "unknown") != 0))
+	{
 		if((strcmp(boxtype_name, "7300S\n") == 0) || (strcmp(boxtype_name, "7400S\n") == 0) || (strcmp(boxtype_name, "7220S\n") == 0) || (strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "formuler4\n") == 0) || (strcmp(boxtype_name, "formuler4turbo\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "hd1200\n") == 0) || (strcmp(boxtype_name, "hd1265\n") == 0) || (strcmp(boxtype_name, "hd500c\n") == 0) || (strcmp(boxtype_name, "hd530c\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0) || (strcmp(boxtype_name, "yhgd2580\n") == 0) || (strcmp(boxtype_name, "spycatmini\n") == 0) || (strcmp(boxtype_name, "spycatminiplus\n") == 0) || (strcmp(boxtype_name, "fegasusx3\n") == 0) || (strcmp(boxtype_name, "fegasusx5s\n") == 0) || (strcmp(boxtype_name, "fegasusx5t\n") == 0) || (strcmp(boxtype_name, "ini-2000oc\n") == 0) || (strcmp(boxtype_name, "osmini\n") == 0) || (strcmp(boxtype_name, "jj7362\n") == 0) || (strcmp(boxtype_name, "9900lx\n") == 0) || (strcmp(boxtype_name, "lc\n") == 0) || (strcmp(boxtype_name, "hd1500\n") == 0) || (strcmp(boxtype_name, "g100\n") == 0) || (strcmp(boxtype_name, "g101\n") == 0) || (strcmp(boxtype_name, "bre2ze_t2c\n") == 0) || (strcmp(boxtype_name, "vs1000\n") == 0) || (strcmp(boxtype_name, "tiviarmin\n") == 0) || (strcmp(boxtype_name, "et1x000\n") == 0))
 		{
 			lcdfd = open("/dev/null", O_RDWR);
@@ -423,6 +434,7 @@ void eDBoxLCD::update()
 			else
 			{
 				FILE *file;
+/*
 				FILE *boxtype_file;
 				char boxtype_name[20];
 				if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
@@ -435,6 +447,7 @@ void eDBoxLCD::update()
 					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 					fclose(boxtype_file);
 				}
+*/
 				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0) || (strcmp(boxtype_name, "8100S\n") == 0))
 				{
 					//gggrrrrrbbbbbggg bit order from memory
@@ -467,7 +480,9 @@ void eDBoxLCD::update()
 					unsigned char gb_buffer[_stride * res.height()];
 					for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
 					{
-						unsigned int src = ((unsigned int*)_buffer)[offset];
+						unsigned int src = 0;
+						if (offset%(_stride>>2) >= DM900_LCD_Y_OFFSET)
+							src = ((unsigned int*)_buffer)[offset - DM900_LCD_Y_OFFSET];
 						//                                             blue                         red                  green low                     green high
 						((unsigned int*)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
 					}
