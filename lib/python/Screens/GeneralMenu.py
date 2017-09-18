@@ -17,6 +17,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.config import config
 from Components.ActionMap import ActionMap
+from Components.Harddisk import harddiskmanager
 from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
 from Components.PluginComponent import plugins
 from Components.Sources.StaticText import StaticText
