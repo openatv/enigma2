@@ -464,7 +464,7 @@ def InitLcd():
 			config.lcd.contrast.addNotifier(setLCDcontrast);
 		else:
 			config.lcd.contrast = ConfigNothing()
-			if getBoxType() in ('dm900'):
+			if getBoxType() in ('dm900', 'dm920'):
 				standby_default = 4
 			elif getBoxType() in ('spycat4kmini', 'osmega'):
 				standby_default = 10
