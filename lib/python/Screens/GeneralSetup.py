@@ -86,6 +86,13 @@ try:
 except:
 	HAVE_REMOTE_CONTROL_CODE = False
 
+try:
+	from Plugins.SystemPlugins.FanControl.plugin import FanSetupScreen
+	HAVE_FAN_CONTROL = True
+except:
+	HAVE_FAN_CONTROL = False
+
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -281,7 +288,7 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent(_("Front panel settings"), _("Front panel setup"), _("Set up your front panel")))
 		if SystemInfo["GraphicLCD"]:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Front panel skin"), _("Skin setup"), _("Set up your front panel skin")))
-		if SystemInfo["Fan"]:
+		if SystemInfo["Fan"] and HAVE_FAN_CONTROL:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Fan settings"), _("Fan setup"), _("Set up your fan")))
 		if HAVE_REMOTE_CONTROL_CODE:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Remote control code settings"), _("Remote control code setup"), _("Set up your remote control")))
@@ -511,7 +518,6 @@ class GeneralSetup(Screen):
 		elif selected == _("Remote control code settings"):
 			self.session.open(RCSetupScreen)
 		elif selected == _("Fan settings"):
-			from Plugins.SystemPlugins.FanControl.plugin import FanSetupScreen
 			self.session.open(FanSetupScreen)
 		elif selected == _("Factory reset"):
 			from Screens.FactoryReset import FactoryReset
