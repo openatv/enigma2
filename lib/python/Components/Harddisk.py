@@ -687,6 +687,10 @@ DEVICEDB = {
 		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "CF Card Slot",  # hdc
 		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk",
 	},
+	"beyonwizu4":
+	{
+		"/devices/platform/rdb/f045a000.sata/ata1": "Internal Harddisk",
+	},
 }
 
 def addInstallTask(job, package):
@@ -944,7 +948,7 @@ class HarddiskManager:
 		dev = devname[:3]
 		part = devname[3:]
 		for p in part:
-			if not p.isdigit():
+			if (not p.isdigit()) or dev == "ram":
 				return devname, 0
 		return dev, part and int(part) or 0
 
