@@ -310,7 +310,7 @@ class ImageBackup(Screen):
 			cmdlist.append('echo " "')
 			cmdlist.append('echo "Create: rescue dump"')
 			cmdlist.append('echo " "')
-			cmdlist.append("dd if=/dev/mmcblk0p5 of=%s/rescue.bin" % self.WORKDIR)
+			cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/rescue.bin" % self.WORKDIR)
 
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "Create: kerneldump"')
@@ -327,7 +327,7 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "Check: kerneldump"')
 		cmdlist.append("sync")
 
-		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
+		if SystemInfo["HaveMultiBootHD"] or SystemInfo["HaveMultiBootXC"] and self.list[self.selection] == "Recovery":
 			GPT_OFFSET=0
 			GPT_SIZE=1024
 			BOOT_PARTITION_OFFSET = int(GPT_OFFSET) + int(GPT_SIZE)
@@ -429,6 +429,7 @@ class ImageBackup(Screen):
 		if self.MODEL in ("gbquad4k","gbue4k"):
 			system('mv %s/boot.bin %s/boot.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/rescue.bin %s/rescue.bin' %(self.WORKDIR, self.MAINDEST))
+			system('cp -f /usr/share/gpt.bin %s/gpt.bin' %(self.MAINDEST))
 
 		if self.MODEL in ("gbquad", "gbquadplus", "gb800ue", "gb800ueplus", "gbultraue", "gbultraueh", "twinboxlcd", "twinboxlcdci", "singleboxlcd", "sf208", "sf228"):
 			lcdwaitkey = '/usr/share/lcdwaitkey.bin'
