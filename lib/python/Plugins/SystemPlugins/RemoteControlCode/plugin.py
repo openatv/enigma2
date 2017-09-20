@@ -1,5 +1,5 @@
 from enigma import ePicLoad
-
+from boxbranding import getBoxType
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -10,22 +10,50 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 from os import path as os_path
 
-modelist = [
-	("0", _("All supported")),
-	("5", _("Beyonwiz T3 (0xABCD)")),
-	("10", _("Beyonwiz T3 alternate (0xAE97)")),
-	("6", _("Beyonwiz (0x02F2)")),
-	("7", _("Beyonwiz (0x02F3)")),
-	("8", _("Beyonwiz (0x02F4)")),
-	# ("1", _("INI3000 (0x0932)")),
-	# ("2", _("INI7000 (0x0831")),
-	("3", _("HDx (0x0933)")),
-	# ("4", _("MIRACLEBOX (0x02F9)")),
-	# ("9", _("YHGD2580 (0x08F7)")),
-]
+if getBoxType() == "beyonwizu4":
+	modelist = [
+		("16", _("Default")),
+		("507", _("Beyonwiz U4 (0xAE97)")),
+		("509", _("Beyonwiz U4/T4/T2 (0x02F3)")),
+		("508", _("Beyonwiz T2/T4 (0x02F2)")),
+		("510", _("Beyonwiz T2/T4 (0x02F4)")),
+		("506", _("Beyonwiz T3 (0xABCD)")),
+		]
+	imagemap = {
+		"506" : "ini5.png",
+		"507" : "BeyonwizU4.png",
+		"508" : "ini6.png",
+		"509" : "BeyonwizU4.png",
+		"510" : "ini6.png",
+		}
+else:
+	modelist = [
+		("0", _("All supported")),
+		("5", _("Beyonwiz T3 (0xABCD)")),
+		("6", _("Beyonwiz (0x02F2)")),
+		("7", _("Beyonwiz (0x02F3)")),
+		("8", _("Beyonwiz (0x02F4)")),
+		("10", _("Beyonwiz U4 (0xAE97)")),
+		# ("1", _("INI3000 (0x0932)")),
+		# ("2", _("INI7000 (0x0831")),
+		("3", _("HDx (0x0933)")),
+		# ("4", _("MIRACLEBOX (0x02F9)")),
+		# ("9", _("YHGD2580 (0x08F7)")),
+	]
+	imagemap = {
+		"1" : "ini1.png",
+		"2" : "ini2.png",
+		"3" : "ini3.png",
+		"4" : "ini4.png",
+		"5" : "ini5.png",
+		"6" : "ini6.png",
+		"7" : "ini6.png",
+		"8" : "ini6.png",
+		"10" : "BeyonwizU4.png",
+		}
 
 config.plugins.RCSetup = ConfigSubsection()
-config.plugins.RCSetup.mode = ConfigSelection(choices=modelist, default="0")
+config.plugins.RCSetup.mode = ConfigSelection(choices=modelist)
 
 def applySettings():
 	f = open("/proc/stb/ir/rc/type", "w")
@@ -117,8 +145,8 @@ class RCSetupScreen(Screen, ConfigListScreen):
 		self.close()
 
 	def loadPreview(self):
-		root = "/usr/lib/enigma2/python/Plugins/SystemPlugins/RemoteControlCode/img/ini"
-		pngpath = root + self.current_sel.value + "/rc.png"
+		root = "/usr/lib/enigma2/python/Plugins/SystemPlugins/RemoteControlCode/img/"
+		pngpath = root + imagemap.get(self.current_sel.value, "other.png")
 
 		if not os_path.exists(pngpath):
 			pngpath = resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png")
