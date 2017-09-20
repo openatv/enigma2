@@ -106,7 +106,7 @@ def needHDDFormat():
 class StartHDDFormatWizard(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Hard disk format required!"))
+		Screen.setTitle(self, _("HDD format required"))
 
 		system("showiframe /usr/share/enigma2/black.mvi")
 
@@ -118,13 +118,12 @@ class StartHDDFormatWizard(Screen):
 		if not self.internalHdd:
 			self.close()
 
-		msg = "The internal hard disk is not formatted correctly. In order for your %s %s to function at its best, it is recommended that you format the hard disk." % (getMachineBrand(), getMachineName())
-		msg += "\n\nWARNING: Formatting will erase all data on the hard disk."
-		msg += "\n\nPress OK to format your %s's hard disk." % getMachineName()
-		msg += "\nOtherwise, press POWER to power down, or EXIT to skip the HDD format."
+		msg = "The internal HDD is not formatted correctly. In order for your %s %s to function at its best, it is recommended that you format the HDD." % (getMachineBrand(), getMachineName())
+		msg += "\n\nWARNING: Formatting will erase all data on the HDD."
+		msg += "\n\nPress OK to format your %s's HDD, " % getMachineName()
+		msg += "POWER to power down, or EXIT to skip the HDD format."
 		self["text"] = Label(msg)
 		self["errors"] = ScrollLabel()
-		self["errors"].hide()
 
 		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
 		{
@@ -192,7 +191,7 @@ class StartHDDFormatWizard(Screen):
 			msg += "If you are setting up your %s, the setup will continue after the restart." % getMachineName()
 			self.session.openWithCallback(self.tryReboot, MessageBox, _(msg), type=MessageBox.TYPE_INFO, timeout=10)
 		else:
-			msg = "Formatting the internal disk of your %s %s has failed." % (getMachineBrand(), getMachineName())
+			msg = "Formatting the internal HDD of your %s %s has failed." % (getMachineBrand(), getMachineName())
 			msg += "\n\nPress OK to retry the format, POWER to shut down, or EXIT to skip the format."
 			msg += "\n\nIf the internal HDD was pre-installed in your %s, please note down any error messages below and call %s support." % (getMachineName(), getMachineBrand())
 			self["text"].setText(msg)
@@ -206,7 +205,7 @@ class StartHDDFormatWizard(Screen):
 					errs += " in job"
 				errs += " " + failedJobname
 			if not errs:
-				errs = "Disk format"
+				errs = "HDD format"
 			errs += " failed:\n"
 			if self.failedConditions:
 				errs += '\n'.join(x.getErrorMessage(self.failedTask)
@@ -229,7 +228,9 @@ class StartHDDFormatWizard(Screen):
 		pass
 
 	def askCancel(self):
-		self.session.openWithCallback(self.askCancelCallback, MessageBox, _("Do you really want to skip the internal disk format?\n\nUsing a non-standard disk format can cause problems and make support more difficult.\n\nIf you skipped the format because the hard disk might need checking, run a filesystem check as soon as you can."), default=False, simple=True)
+		self.session.openWithCallback(self.askCancelCallback, MessageBox, _("Do you really want to skip the internal HDD format?\n\n"
+			"Using a non-standard HDD format can cause problems and make support more difficult.\n\n"
+			"If you skipped the format because the HDD might need checking, run a filesystem check as soon as you can."), default=False, simple=True)
 
 	def askCancelCallback(self, answer):
 		if answer:

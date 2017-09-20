@@ -685,11 +685,11 @@ DEVICEDB = {
 	{
 		# dm7025:
 		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "CF Card Slot",  # hdc
-		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk",
+		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal HDD",
 	},
 	"beyonwizu4":
 	{
-		"/devices/platform/rdb/f045a000.sata/ata1": "Internal Harddisk",
+		"/devices/platform/rdb/f045a000.sata/ata1": "Internal HDD",
 	},
 }
 
