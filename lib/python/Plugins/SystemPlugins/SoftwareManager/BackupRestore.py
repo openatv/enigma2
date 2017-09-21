@@ -22,6 +22,7 @@ from os import system, popen, path, makedirs, listdir, access, stat, rename, rem
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
+import ShellCompatibleFunctions
 
 boxtype = getBoxType()
 distro = getImageDistro()
@@ -40,7 +41,7 @@ def InitConfig():
 		'/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
 		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
-		'/etc/dropbear/', '/etc/default/dropbear', '/home/root/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
+		'/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
 		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
 		'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
 		'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
@@ -144,8 +145,13 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.backupdirs = self.backupdirs + " /tmp/installed-list.txt"
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
+			if not "/tmp/passwd.txt" in self.backupdirs:
+				self.backupdirs = self.backupdirs + " /tmp/passwd.txt"
+			if not "/tmp/groups.txt" in self.backupdirs:
+				self.backupdirs = self.backupdirs + " /tmp/groups.txt"
 
-			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^joe$|^mc$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^streamproxy$|^wget$' > /tmp/installed-list.txt"
+			ShellCompatibleFunctions.backupUserDB()
+			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^davfs2$|^joe$|^mc$|^mergerfs$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^rclone$|^streamproxy$|^wget$' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
@@ -448,6 +454,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
 
 	def restoreFinishedCB(self,retval = None):
+		ShellCompatibleFunctions.restoreUserDB()
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):
