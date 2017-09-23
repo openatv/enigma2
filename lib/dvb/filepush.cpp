@@ -1,4 +1,4 @@
-#include <lib/base/filepush.h>
+#include "filepush.h"
 #include <lib/base/eerror.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -15,6 +15,7 @@
 #endif
 //#define SHOW_WRITE_TIME
 
+DEFINE_REF(eFilePushThread);
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
 	 prio(io_prio_level),
@@ -91,7 +92,7 @@ void eFilePushThread::thread()
 				int rc = ioctl(fd_video, VIDEO_DISCONTINUITY, (void*)param);
 			}
 #endif
-			m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining);
+			m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize);
 			ASSERT(!(current_span_remaining % m_blocksize));
 			m_current_position = current_span_offset;
 			bytes_read = 0;
@@ -339,12 +340,16 @@ void eFilePushThread::setScatterGather(iFilePushScatterGather *sg)
 
 void eFilePushThread::sendEvent(int evt)
 {
+	/* add a ref, to make sure the object is not destroyed while the messagepump contains unhandled messages */
+	AddRef();
 	m_messagepump.send(evt);
 }
 
 void eFilePushThread::recvEvent(const int &evt)
 {
 	m_event(evt);
+	/* release the ref which we grabbed in sendEvent() */
+	Release();
 }
 
 void eFilePushThread::filterRecordData(const unsigned char *data, int len)
@@ -387,6 +392,10 @@ void eFilePushThreadRecorder::thread()
 		if (bytes < 0)
 		{
 			bytes = 0;
+			/* Check m_stop after interrupted syscall. */
+			if (m_stop) {
+				break;
+			}
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 				continue;
 			if (errno == EOVERFLOW)
@@ -413,7 +422,7 @@ void eFilePushThreadRecorder::thread()
 #endif
 		if (w < 0)
 		{
-			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread");
+			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
 			sendEvent(evtWriteError);
 			break;
 		}

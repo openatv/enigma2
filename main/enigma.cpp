@@ -358,7 +358,7 @@ int main(int argc, char **argv)
 
 	eRCInput::getInstance()->keyEvent.connect(sigc::ptr_fun(&keyEvent));
 
-	printf("[MAIN] executing main\n");
+	eDebug("[MAIN] executing main\n");
 
 	bsodCatchSignals();
 	catchTermSignal();

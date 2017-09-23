@@ -4872,6 +4872,19 @@ class InfoBarSubtitleSupport(object):
 		else:
 			return 0
 
+	def doCenterDVBSubs(self):
+		service = self.session.nav.getCurrentlyPlayingServiceReference()
+		servicepath = service and service.getPath()
+		if servicepath and servicepath.startswith("/"):
+			if service.toString().startswith("1:"):
+				info = eServiceCenter.getInstance().info(service)
+				service = info and info.getInfoString(service, iServiceInformation.sServiceref)
+				config.subtitles.dvb_subtitles_centered.value = service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & self.FLAG_CENTER_DVB_SUBS and True
+				return
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		config.subtitles.dvb_subtitles_centered.value = info and info.getInfo(iServiceInformation.sCenterDVBSubs) and True
+
 	def subtitleQuickMenu(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
@@ -4893,6 +4906,7 @@ class InfoBarSubtitleSupport(object):
 			cachedsubtitle = subtitle.getCachedSubtitle()
 			if cachedsubtitle:
 				self.enableSubtitle(cachedsubtitle)
+				self.doCenterDVBSubs()
 
 	def enableSubtitle(self, selectedSubtitle):
 		subtitle = self.getCurrentServiceSubtitle()
@@ -4900,6 +4914,7 @@ class InfoBarSubtitleSupport(object):
 		if subtitle and self.selected_subtitle:
 			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 			self.subtitle_window.show()
+			self.doCenterDVBSubs()
 		else:
 			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)

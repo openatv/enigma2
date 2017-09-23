@@ -34,7 +34,7 @@
 }
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
-	:m_last_channel_state(-1), m_ca_servicePtr(0), doDescramble(false), m_dvb_scan(0), m_decode_demux_num(0xFF),
+	:m_last_channel_state(-1), m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF),
 	m_no_pat_entry_delay(eTimer::create()), m_have_cached_program(false)
 {
 	m_use_decode_demux = 0;
@@ -80,7 +80,7 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 			if (m_service && !m_service->cacheEmpty())
 			{
 				serviceEvent(eventNewProgramInfo);
-				if (doDescramble)
+				if (m_use_decode_demux)
 				{
 					if (!m_ca_servicePtr)
 					{
@@ -89,6 +89,11 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 					if (m_ca_servicePtr && !m_service->usePMT())
 					{
 						eDebug("[eDVBServicePMTHandler] create cached caPMT");
+						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
+					}
+					else if (m_ca_servicePtr && (m_service->m_flags & eDVBService::dxIsScrambledPMT))
+					{
+						eDebug("[eDVBServicePMTHandler] create caPMT to descramble PMT");
 						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
 					}
 				}
@@ -172,7 +177,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 			/* do not start epg caching for other types of services */
 			break;
 		}
-		if (doDescramble)
+		if (m_use_decode_demux)
 		{
 			if (!m_ca_servicePtr)
 			{
@@ -235,7 +240,7 @@ void eDVBServicePMTHandler::PATready(int)
 			pmtpid = pmtpid_single;
 		}
 		if (pmtpid == -1) {
-			eDebug("no PAT entry found.. start delay");
+			eDebug("[eDVBServicePMTHandler] no PAT entry found.. start delay");
 			m_no_pat_entry_delay->start(1000, true);
 		}
 		else {
@@ -285,7 +290,7 @@ void saveData(int orgid, unsigned char* data, int sectionLength)
 
 void eDVBServicePMTHandler::AITready(int error)
 {
-	eDebug("AITready");
+	eDebug("[eDVBServicePMTHandler] AITready");
 	ePtr<eTable<ApplicationInformationSection> > ptr;
 	m_aitInfoList.clear();
 	if (!m_AIT.getCurrent(ptr))
@@ -481,7 +486,7 @@ void eDVBServicePMTHandler::getAITApplications(std::map<int, std::string> &aitli
 	}
 }
 
-void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
+void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes)
 {
 	program prog;
 
@@ -491,6 +496,7 @@ void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &
 		{
 			caids.push_back(it->caid);
 			ecmpids.push_back(it->capid);
+			ecmdatabytes.push_back(it->databytes);
 		}
 	}
 }
@@ -859,6 +865,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			program::capid_pair pair;
 			pair.caid = *it;
 			pair.capid = -1; // not known yet
+			pair.databytes.clear();
 			program.caids.push_back(pair);
 		}
 	}
@@ -899,7 +906,7 @@ int eDVBServicePMTHandler::getDecodeDemux(ePtr<iDVBDemux> &demux)
 	int ret=0;
 		/* if we're using the decoding demux as data source
 		   (for example in pvr playbacks), return that one. */
-	if (m_use_decode_demux)
+	if (m_pvr_channel)
 	{
 		demux = m_demux;
 		return ret;
@@ -946,7 +953,7 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 				{
 					eDebug("[eDVBServicePMTHandler] ignore sdt update data.... incorrect transponder tuned!!!");
 					if (chid.dvbnamespace != curr_chid.dvbnamespace)
-						eDebug("incorrect namespace. expected: %x current: %x",chid.dvbnamespace.get(), curr_chid.dvbnamespace.get());
+						eDebug("[eDVBServicePMTHandler] incorrect namespace. expected: %x current: %x",chid.dvbnamespace.get(), curr_chid.dvbnamespace.get());
 					if (chid.transport_stream_id != curr_chid.transport_stream_id)
 						eDebug("[eDVBServicePMTHandler] incorrect transport_stream_id. expected: %x current: %x",chid.transport_stream_id.get(), curr_chid.transport_stream_id.get());
 					if (chid.original_network_id != curr_chid.original_network_id)
@@ -964,18 +971,21 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
 {
 	ePtr<iTsSource> s;
-	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service, type, descramble);
+	return tuneExt(ref, s, NULL, cue, simulate, service, type, descramble);
 }
 
-int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
+int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
 {
 	RESULT res=0;
 	m_reference = ref;
-	m_use_decode_demux = use_decode_demux;
+
+		/*
+		 * We need to m_use decode demux only when we are descrambling (demuxers > ca demuxers)
+		 * To avoid confusion with use_decode_demux now we look only descramble argument
+		 */
+	m_use_decode_demux = descramble;
 	m_no_pat_entry_delay->stop();
 	m_service_type = type;
-
-	doDescramble = descramble;
 
 		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
@@ -1010,7 +1020,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 				if (!tstools.findPMT(program))
 				{
 					m_pmt_pid = program.pmtPid;
-					eDebug("[eDVBServicePMTHandler] PMT pid found on pid %04x, service id %d", m_pmt_pid, program.serviceId);
+					eDebug("[eDVBServicePMTHandler] PMT pid %04x, service id %d", m_pmt_pid, program.serviceId);
 					m_reference.setServiceID(program.serviceId);
 				}
 			}
@@ -1025,6 +1035,8 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 		if (res)
 			eDebug("[eDVBServicePMTHandler] allocatePVRChannel failed!\n");
 		m_channel = m_pvr_channel;
+		if (!res && descramble)
+			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	}
 
 	if (!simulate)

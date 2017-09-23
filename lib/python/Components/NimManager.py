@@ -750,12 +750,12 @@ class NIM(object):
 			print "%s is not suportetd "%(what)
 			return False
 		if self.isMultiType():
-			print"[adenin] %s is multitype"%(self.slot)
+			#print"[adenin] %s is multitype"%(self.slot)
 			for type in self.multi_type.values():
 				if what in self.compatible[type]:
 					return True
 		elif  what in self.compatible[self.getType()]:
-			print"[adenin] %s is NOT multitype"%(self.slot)
+			#print"[adenin] %s is NOT multitype"%(self.slot)
 			return True
 		return False
 
@@ -2189,7 +2189,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			if slot.isMultiType():
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 				types = slot.getMultiTypeList()
-				print"[adenin]",types
+				#print"[adenin]",types
 				for FeType in types.itervalues():
 					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 						continue

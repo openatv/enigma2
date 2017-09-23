@@ -50,7 +50,8 @@ eDVBDemux::eDVBDemux(int adapter, int demux):
 #ifdef HAVE_AMLOGIC
 	m_pvr_fd(-1),
 #endif
-	m_dvr_busy(0)
+	m_dvr_busy(0),
+	m_dvr_id(-1)
 {
 }
 
@@ -68,9 +69,6 @@ int eDVBDemux::openDemux(void)
 
 int eDVBDemux::openDVR(int flags)
 {
-#ifdef HAVE_OLDPVR
-	return ::open("/dev/misc/pvr", flags);
-#else
 	char filename[32];
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/dvr%d", adapter, demux);
 	eDebug("[eDVBDemux] open dvr %s", filename);
@@ -79,7 +77,6 @@ int eDVBDemux::openDVR(int flags)
 	return m_pvr_fd;
 #else
 	return ::open(filename, flags);
-#endif
 #endif
 }
 
@@ -117,6 +114,7 @@ RESULT eDVBDemux::setSourcePVR(int pvrnum)
 	if (res)
 		eDebug("[eDVBDemux] DMX_SET_SOURCE dvr%d failed: %m", pvrnum);
 	source = -1;
+	m_dvr_id = pvrnum;
 	::close(fd);
 	return res;
 }
