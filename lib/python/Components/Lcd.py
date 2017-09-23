@@ -338,12 +338,19 @@ def InitLcd():
 				pass
 			def setLCDScreenshot(configElement):
  				ilcd.setScreenShot(configElement.value);
-				
-			config.lcd.modepip = ConfigSelection(choices={
-					"0": _("off"),
-					"5": _("PIP"),
-					"7": _("PIP with OSD")},
-					default = "0")
+
+			if getBoxType() in ('gbquad4k', 'gbue4k'):
+				config.lcd.modepip = ConfigSelection(choices={
+						"0": _("off"),
+						"4": _("PIP"),
+						"6": _("PIP with OSD")},
+						default = "0")
+			else:
+				config.lcd.modepip = ConfigSelection(choices={
+						"0": _("off"),
+						"5": _("PIP"),
+						"7": _("PIP with OSD")},
+						default = "0")
 			if config.misc.boxtype.value in ( 'gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
 				config.lcd.modepip.addNotifier(setLCDModePiP)
 			else:
@@ -352,12 +359,24 @@ def InitLcd():
 			config.lcd.screenshot = ConfigYesNo(default=False)
  			config.lcd.screenshot.addNotifier(setLCDScreenshot)	
 
-			config.lcd.modeminitv = ConfigSelection(choices={
-					"0": _("normal"),
-					"1": _("MiniTV"),
-					"2": _("OSD"),
-					"3": _("MiniTV with OSD")},
-					default = "0")
+			if getBoxType() in ('gbquad4k', 'gbue4k'):
+				#  (0:normal, 1:video0, 2:fb, 3:vide0+fb, 4:video1, 5:vide0+video1, 6:video1+fb, 7:video0+video1+fb)
+				config.lcd.modeminitv = ConfigSelection(default = "0", choices=[
+						("0", _("normal")),
+						("1", _("MiniTV - video0")),
+						("3", _("MiniTV with OSD - video0+fb")),
+						("2", _("OSD - fb")),
+						("4", _("MiniTV - video1")),
+						("6", _("MiniTV with OSD - video1+fb")),
+						("5", _("MiniTV - video0+video1")),
+						("7", _("MiniTV with OSD - video0+video1+fb"))]) 
+			else:
+				config.lcd.modeminitv = ConfigSelection(choices={
+						"0": _("normal"),
+						"1": _("MiniTV"),
+						"2": _("OSD"),
+						"3": _("MiniTV with OSD")},
+						default = "0")
 			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
