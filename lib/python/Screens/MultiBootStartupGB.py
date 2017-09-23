@@ -52,6 +52,10 @@ class MultiBootStartup(ConfigListScreen, Screen):
 	def layoutFinished(self):
 		self.setTitle(self.title)
 
+	def createSummary(self):
+		from Screens.SimpleSummary import SimpleSummary
+		return SimpleSummary
+
 	def startup(self):
 		self["config"].setText(_("Select Image: %s") %self.list[self.selection])
 
