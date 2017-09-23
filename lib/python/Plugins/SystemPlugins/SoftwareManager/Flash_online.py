@@ -168,7 +168,7 @@ class FlashOnline(Screen):
 				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
 				self.multi = self.multi[-1:]
 			else:
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split("",1)[0]
+				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
 				self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
 			if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
