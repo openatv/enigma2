@@ -168,10 +168,17 @@ keyDescriptions = [
 		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
 		KEYIDS["KEY_FAVORITES"]: ("FAV",),
 		KEYIDS["KEY_SCREEN"]: ("SCREEN",),
+		KEYIDS["KEY_AUX"]: ("WIZTV",),
+		KEYIDS["KEY_SWITCHVIDEOMODE"]: ("TV-OUT",),
+		KEYIDS["KEY_CALENDAR"]: ("AUTOTIMER",),
+		KEYIDS["KEY_SLOW"]: ("SLOW",),
+		KEYIDS["KEY_QUESTION"]: ("ABOUT",),
+		KEYIDS["KEY_SETUP"]: ("SETUP",),
 		# Discrete power codes
 		KEYIDS["KEY_POWER2"]: ("POWER2",),
 		KEYIDS["KEY_SUSPEND"]: ("SUSPEND",),
 		KEYIDS["KEY_WAKEUP"]: ("WAKEUP",),
+
 	},
 	{       # XP1000
 		KEYIDS["BTN_0"]: ("UP", "fp"),
@@ -217,7 +224,7 @@ keyDescriptions = [
 		KEYIDS["KEY_STOP"]: ("STOP",),
 		KEYIDS["KEY_RECORD"]: ("RECORD",),
 		KEYIDS["KEY_BOOKMARKS"]: ("PORTAL",),
-		KEYIDS["KEY_VMODE"]: ("VMODE",),
+		KEYIDS["KEY_SWITCHVIDEOMODE"]: ("VMODE",),
 		KEYIDS["KEY_PROGRAM"]: ("TIMER",),
 		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
 		KEYIDS["KEY_EPG"]: ("EPG",),
