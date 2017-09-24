@@ -22,6 +22,7 @@ from os import system, popen, path, makedirs, listdir, access, stat, rename, rem
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
+import ShellCompatibleFunctions
 
 boxtype = getBoxType()
 distro = getImageDistro()
@@ -38,9 +39,9 @@ def InitConfig():
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'),
 		'/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
-		'/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', 
+		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
-		'/etc/dropbear/', '/etc/default/dropbear', '/home/root/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
+		'/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
 		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
 		'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
 		'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
@@ -54,6 +55,8 @@ def InitConfig():
 		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
 		+eEnv_resolve_multi('/usr/bin/*cam*')\
 		+eEnv_resolve_multi('/etc/*.emu')\
 		+eEnv_resolve_multi('/etc/init.d/softcam*')))
@@ -142,8 +145,13 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.backupdirs = self.backupdirs + " /tmp/installed-list.txt"
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
+			if not "/tmp/passwd.txt" in self.backupdirs:
+				self.backupdirs = self.backupdirs + " /tmp/passwd.txt"
+			if not "/tmp/groups.txt" in self.backupdirs:
+				self.backupdirs = self.backupdirs + " /tmp/groups.txt"
 
-			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^joe$|^mc$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^streamproxy$|^wget$' > /tmp/installed-list.txt"
+			ShellCompatibleFunctions.backupUserDB()
+			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^davfs2$|^joe$|^mc$|^mergerfs$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^rclone$|^streamproxy$|^wget$' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
@@ -376,7 +384,7 @@ class RestoreMenu(Screen):
 
 	def CB_startRestore(self, ret = False):
 		self.exe = True
-		cmds = ["tar -xzvf " + self.path + "/" + self.sel + " --exclude=etc/passwd --exclude=etc/shadow --exclude=etc/group -C /", "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh", "killall -9 enigma2", "/etc/init.d/autofs restart"]
+		cmds = ["tar -xzvf " + self.path + "/" + self.sel + " --exclude=etc/passwd --exclude=etc/shadow --exclude=etc/group --exclude=etc/samba/distro --exclude=etc/samba/smb.conf -C /", "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh", "killall -9 enigma2", "/etc/init.d/autofs restart"]
 		if ret == True:
 			cmds.insert(0, "rm -R /etc/enigma2")
 			self.session.open(Console, title = _("Restoring..."), cmdlist = cmds)
@@ -437,7 +445,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.setTitle(_("Restoring..."))
 
 	def doRestore(self):
-		restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " --exclude=etc/passwd --exclude=etc/shadow --exclude=etc/group -C /", "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"]
+		restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " --exclude=etc/passwd --exclude=etc/shadow --exclude=etc/group --exclude=etc/samba/distro --exclude=etc/samba/smb.conf -C /", "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"]
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
@@ -446,6 +454,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
 
 	def restoreFinishedCB(self,retval = None):
+		ShellCompatibleFunctions.restoreUserDB()
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):

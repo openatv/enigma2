@@ -140,7 +140,7 @@
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="b" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" />
-		<key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" />
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="b" />
 		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="b" />
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="b" />
 		<!--key id="KEY_CHANNELUP" mapto="ChannelPlusPressedLong" flags="l" />
@@ -1002,6 +1002,10 @@
 		<key id="KEY_FAVORITES" mapto="favorites_long" flags="l"/>
 		<key id="KEY_MEDIA" mapto="media" flags="b"/>
 		<key id="KEY_MEDIA" mapto="media_long" flags="l"/>
+		<key id="KEY_MODE" mapto="mode" flags="b"/>
+		<key id="KEY_MODE" mapto="mode_long" flags="l"/>
+		<key id="KEY_ARCHIVE" mapto="archive" flags="b"/>
+		<key id="KEY_ARCHIVE" mapto="archive_long" flags="l"/>
 		<key id="KEY_OPEN" mapto="open" flags="b"/>
 		<key id="KEY_OPEN" mapto="open_long" flags="l"/>
 		<key id="KEY_WWW" mapto="www" flags="b"/>
@@ -1034,6 +1038,8 @@
 		<key id="KEY_F3" mapto="f3_long" flags="l"/>
 		<key id="KEY_F4" mapto="f4" flags="b"/>
 		<key id="KEY_F4" mapto="f4_long" flags="l"/>
+		<key id="KEY_F6" mapto="f6" flags="b"/>
+		<key id="KEY_F6" mapto="f6_long" flags="l"/>
 		<key id="KEY_AUX" mapto="HDMIin" flags="b"/>
 		<key id="KEY_AUX" mapto="HDMIin_long" flags="l"/>
 	</map>

@@ -306,11 +306,16 @@ public:
 		dxNewFound=64,
 		dxIsDedicated3D=128,
 		dxIsParentalProtected=256,
+		dxHideVBI=512,
+		dxIsScrambledPMT=1024,
+		dxCenterDVBSubs=2048,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
 	bool isHidden() const { return (m_flags & dxDontshow || m_flags & dxIsParentalProtected); }
 	bool isDedicated3D() const { return m_flags & dxIsDedicated3D; }
+	bool doHideVBI() const { return m_flags & dxHideVBI; }
+	bool doCenterDVBSubs() const { return m_flags & dxCenterDVBSubs; }
 
 	CAID_LIST m_ca;
 
@@ -575,6 +580,7 @@ public:
 	virtual RESULT requestTsidOnid() { return -1; }
 	PSignal2<void, int, int> receivedTsidOnid;
 	virtual int reserveDemux() { return -1; }
+	virtual int getDvrId() { return -1; }
 #ifndef SWIG
 	enum
 	{

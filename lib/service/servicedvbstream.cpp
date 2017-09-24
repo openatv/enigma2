@@ -23,7 +23,7 @@ eDVBServiceStream::eDVBServiceStream()
 
 void eDVBServiceStream::serviceEvent(int event)
 {
-	eDebug("STREAM service event %d", event);
+	eDebug("[eDVBServiceStream] STREAM service event %d", event);
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
@@ -45,7 +45,7 @@ void eDVBServiceStream::serviceEvent(int event)
 	}
 	case eDVBServicePMTHandler::eventTuneFailed:
 	{
-		eDebug("stream failed to tune");
+		eDebug("[eDVBServiceStream] stream failed to tune");
 		tuneFailed();
 		break;
 	}
@@ -133,20 +133,20 @@ int eDVBServiceStream::doRecord()
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
 		{
-			eDebug("eDVBServiceStream - NO DEMUX available");
+			eDebug("[eDVBServiceStream] NO DEMUX available");
 			return -1;
 		}
 		demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
 		if (!m_record)
 		{
-			eDebug("eDVBServiceStream - no ts recorder available.");
+			eDebug("[eDVBServiceStream] no ts recorder available.");
 			return -1;
 		}
 		m_record->setTargetFD(m_target_fd);
 		m_record->connectEvent(sigc::mem_fun(*this, &eDVBServiceStream::recordEvent), m_con_record_event);
 	}
 
-	eDebug("start streaming...");
+	eDebug("[eDVBServiceStream] start streaming...");
 
 	if (recordCachedPids())
 	{
@@ -157,7 +157,7 @@ int eDVBServiceStream::doRecord()
 	eDVBServicePMTHandler::program program;
 	if (m_service_handler.getProgramInfo(program))
 	{
-		eDebug("getting program info failed.");
+		eDebug("[eDVBServiceStream] getting program info failed.");
 	}
 	else
 	{
@@ -199,7 +199,7 @@ int eDVBServiceStream::doRecord()
 		int timing_pid = -1, timing_stream_type = -1;
 		iDVBTSRecorder::timing_pid_type timing_pid_type = iDVBTSRecorder::none;
 
-		eDebugNoNewLineStart("STREAM: have %zd video stream(s)", program.videoStreams.size());
+		eDebugNoNewLineStart("[eDVBServiceStream] have %zd video stream(s)", program.videoStreams.size());
 		if (!program.videoStreams.empty())
 		{
 			eDebugNoNewLine(" (");
@@ -397,7 +397,7 @@ void eDVBServiceStream::recordEvent(int event)
 		streamStopped();
 		break;
 	default:
-		eDebug("unhandled record event %d", event);
+		eDebug("[eDVBServiceStream] unhandled record event %d", event);
 		break;
 	}
 }

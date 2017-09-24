@@ -77,31 +77,31 @@ void setIoPrio(int prio_class, int prio)
 {
 	if (prio_class < 0 || prio_class > 3)
 	{
-		eDebug("prio class(%d) out of valid range (0..3)", prio_class);
+		eDebug("[setIoPrio] class(%d) out of valid range (0..3)", prio_class);
 		return;
 	}
 	if (prio < 0 || prio > 7)
 	{
-		eDebug("prio level(%d) out of range (0..7)", prio);
+		eDebug("[setIoPrio] level(%d) out of range (0..7)", prio);
 		return;
 	}
 	if (ioprio_set(IOPRIO_WHO_PROCESS, 0 /*pid 0 .. current process*/, prio | prio_class << IOPRIO_CLASS_SHIFT) == -1)
-		eDebug("setIoPrio failed (%m) !");
+		eDebug("[setIoPrio] failed: %m");
 	else
-		eDebug("setIoPrio %s level %d ok", to_prio[prio_class], prio);
+		eDebug("[setIoPrio] %s level %d ok", to_prio[prio_class], prio);
 }
 
 void printIoPrio()
 {
 	int pid = 0, ioprio = ioprio_get(IOPRIO_WHO_PROCESS, pid);
 
-	eDebug("pid=%d, %d", pid, ioprio);
+	eDebug("[printIoPrio] pid=%d, %d", pid, ioprio);
 
 	if (ioprio == -1)
-		eDebug("ioprio_get(%m)");
+		eDebug("[printIoPrio] ioprio_get(%m)");
 	else {
 		int ioprio_class = ioprio >> IOPRIO_CLASS_SHIFT;
 		ioprio = ioprio & 0xff;
-		eDebug("%s: prio %d", to_prio[ioprio_class], ioprio);
+		eDebug("[printIoPrio] %s: prio %d", to_prio[ioprio_class], ioprio);
 	}
 }

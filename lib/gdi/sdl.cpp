@@ -10,7 +10,7 @@
 gSDLDC::gSDLDC() : m_pump(eApp, 1)
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-		eWarning("Could not initialize SDL: %s", SDL_GetError());
+		eWarning("[gSDLDC] Could not initialize SDL: %s", SDL_GetError());
 		return;
 	}
 
@@ -40,7 +40,7 @@ void gSDLDC::keyEvent(const SDL_Event &event)
 {
 	eSDLInputDriver *driver = eSDLInputDriver::getInstance();
 
-	eDebug("SDL Key %s: key=%d", (event.type == SDL_KEYDOWN) ? "Down" : "Up", event.key.keysym.sym);
+	eDebug("[gSDLDC] Key %s: key=%d", (event.type == SDL_KEYDOWN) ? "Down" : "Up", event.key.keysym.sym);
 
 	if (driver)
 		driver->keyPressed(&event.key);
@@ -54,7 +54,7 @@ void gSDLDC::pumpEvent(const SDL_Event &event)
 		keyEvent(event);
 		break;
 	case SDL_QUIT:
-		eDebug("SDL Quit");
+		eDebug("[gSDLDC] Quit");
 		extern void quitMainloop(int exit_code);
 		quitMainloop(0);
 		break;
@@ -78,7 +78,7 @@ void gSDLDC::exec(const gOpcode *o)
 	switch (o->opcode) {
 	case gOpcode::flush:
 		pushEvent(EV_FLIP);
-		eDebug("FLUSH");
+		eDebug("[gSDLDC] FLUSH");
 		break;
 	default:
 		gDC::exec(o);
@@ -99,7 +99,7 @@ void gSDLDC::evSetVideoMode(unsigned long xres, unsigned long yres)
 {
 	m_screen = SDL_SetVideoMode(xres, yres, 32, SDL_HWSURFACE);
 	if (!m_screen) {
-		eFatal("Could not create SDL surface: %s", SDL_GetError());
+		eFatal("[gSDLDC] Could not create SDL surface: %s", SDL_GetError());
 		return;
 	}
 

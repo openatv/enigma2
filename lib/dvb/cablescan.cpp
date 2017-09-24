@@ -37,7 +37,7 @@ void eCableScan::start(int frontendid)
 
 	if (res->allocateRawChannel(m_channel, frontendid))
 	{
-		eDebug("eCableScan: failed to allocate channel!");
+		eDebug("[eCableScan] failed to allocate channel!");
 		scanCompleted(-1);
 		return;
 	}
@@ -64,7 +64,7 @@ void eCableScan::start(int frontendid)
 
 void eCableScan::NITReady(int error)
 {
-	eDebug("eCableScan::NITReady %d", error);
+	eDebug("[eCableScan] NITReady %d", error);
 
 	if (!error)
 	{
@@ -81,7 +81,7 @@ void eCableScan::NITReady(int error)
 
 void eCableScan::SDTReady(int error)
 {
-	eDebug("eCableScan::SDTReady %d", error);
+	eDebug("[eCableScan] SDTReady %d", error);
 
 	if (!error)
 	{
@@ -400,7 +400,7 @@ void eCableScan::createBouquets()
 		}
 		else
 		{
-			eDebug("failed to create bouquet!");
+			eDebug("[eCableScan] failed to create bouquet!");
 		}
 	}
 	else
@@ -451,7 +451,7 @@ void eCableScan::createBouquets()
 			}
 			else
 			{
-				eDebug("failed to create bouquet!");
+				eDebug("[eCableScan] failed to create bouquet!");
 			}
 		}
 		else

@@ -3,14 +3,13 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
+#include <lib/base/nconfig.h>
 #include <lib/base/httpstream.h>
 #include <fcntl.h>
-#include <lib/base/nconfig.h>
 
 	/* for cutlist */
 #include <byteswap.h>
 #include <netinet/in.h>
-
 
 DEFINE_REF(eDVBServiceRecord);
 
@@ -21,8 +20,10 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstr
 	m_state = stateIdle;
 	m_want_record = 0;
 	m_record_ecm = false;
+	m_packet_size = 188;
 	m_descramble = true;
 	m_is_stream_client = isstreamclient;
+	m_is_pvr = !m_ref.path.empty() && !m_is_stream_client;
 	m_tuned = 0;
 	m_target_fd = -1;
 	m_error = 0;
@@ -33,12 +34,12 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref, bool isstr
 
 void eDVBServiceRecord::serviceEvent(int event)
 {
-	eDebug("RECORD service event %d", event);
+	eDebug("[eDVBServiceRecord] RECORD service event %d", event);
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
 	{
-		eDebug("tuned..");
+		eDebug("[eDVBServiceRecord] tuned..");
 		m_tuned = 1;
 
 			/* start feeding EIT updates */
@@ -56,7 +57,7 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 	case eDVBServicePMTHandler::eventTuneFailed:
 	{
-		eDebug("record failed to tune");
+		eDebug("[eDVBServiceRecord] record failed to tune");
 		m_event((iRecordableService*)this, evTuneFailed);
 		break;
 	}
@@ -85,12 +86,16 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 }
 
-RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm)
+RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize)
 {
+	bool config_recording_always_ecm = eConfigManager::getConfigBoolValue("config.recording.always_ecm", false);
+	bool config_recording_never_decrypt = eConfigManager::getConfigBoolValue("config.recording.never_decrypt", false);
+
 	m_filename = filename;
 	m_streaming = 0;
-	m_descramble = descramble;
-	m_record_ecm = recordecm;
+	m_descramble = config_recording_never_decrypt ? false : descramble;
+	m_record_ecm = config_recording_always_ecm ? true : recordecm;
+	m_packet_size = packetsize;
 
 	if (m_state == stateIdle)
 	{
@@ -132,7 +137,8 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				meta.m_description = descr;
 			if (tags)
 				meta.m_tags = tags;
-			meta.m_scrambled = m_record_ecm; /* assume we will record scrambled data, when ecm will be included in the recording */
+			meta.m_scrambled = !m_descramble;
+			meta.m_packet_size = m_packet_size;
 			ret = meta.updateMeta(filename) ? -255 : 0;
 			if (!ret)
 			{
@@ -170,7 +176,7 @@ RESULT eDVBServiceRecord::start(bool simulate)
 RESULT eDVBServiceRecord::stop()
 {
 	if (!m_simulate)
-		eDebug("stop recording!");
+		eDebug("[eDVBServiceRecord] stop recording!");
 	if (m_state == stateRecording)
 	{
 		if (m_record)
@@ -185,7 +191,7 @@ RESULT eDVBServiceRecord::stop()
 
 		m_state = statePrepared;
 	} else if (!m_simulate)
-		eDebug("(was not recording)");
+		eDebug("[eDVBServiceRecord] (was not recording)");
 	if (m_state == statePrepared)
 	{
 		m_record = 0;
@@ -201,6 +207,10 @@ int eDVBServiceRecord::doPrepare()
 	if (m_state == stateIdle)
 	{
 		eDVBServicePMTHandler::serviceType servicetype;
+
+		if(tryFallbackTuner(/*REF*/m_ref, /*REF*/m_is_stream_client, m_is_pvr, m_simulate))
+			eDebug("[eDVBServiceRecord] fallback tuner selected");
+
 		if (m_streaming)
 		{
 			servicetype = m_record_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
@@ -224,7 +234,13 @@ int eDVBServiceRecord::doPrepare()
 				* streams are considered to be descrambled by default;
 				* user can indicate a stream is scrambled, by using servicetype id + 0x100
 				*/
+				bool config_descramble_client = eConfigManager::getConfigBoolValue("config.streaming.descramble_client", false);
+
 				m_descramble = (m_ref.type == eServiceFactoryDVB::id + 0x100);
+
+				if(config_descramble_client)
+					m_descramble = true;
+
 				m_record_ecm = false;
 				servicetype = eDVBServicePMTHandler::streamclient;
 				eHttpStream *f = new eHttpStream();
@@ -234,13 +250,23 @@ int eDVBServiceRecord::doPrepare()
 			else
 			{
 				/* re-record a recording */
+				int packetsize = 188;
+				eDVBMetaParser meta;
+				if (!meta.parseFile(m_ref.path))
+				{
+					std::string path = m_ref.path;
+					m_ref = meta.m_ref;
+					m_ref.path = path;
+					packetsize = meta.m_packet_size;
+					m_descramble = meta.m_scrambled;
+				}
 				servicetype = eDVBServicePMTHandler::offline;
-				eRawFile *f = new eRawFile();
+				eRawFile *f = new eRawFile(packetsize);
 				f->open(m_ref.path.c_str());
 				source = ePtr<iTsSource>(f);
 			}
 		}
-		return m_service_handler.tuneExt(m_ref, 0, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, m_descramble);
+		return m_service_handler.tuneExt(m_ref, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, m_descramble);
 	}
 	return 0;
 }
@@ -260,12 +286,12 @@ int eDVBServiceRecord::doRecord()
 
 	if (!m_record && m_tuned && !m_streaming && !m_simulate)
 	{
-		eDebug("Recording to %s...", m_filename.c_str());
+		eDebug("[eDVBServiceRecord] Recording to %s...", m_filename.c_str());
 		::remove(m_filename.c_str());
 		int fd = ::open(m_filename.c_str(), O_WRONLY | O_CREAT | O_LARGEFILE | O_CLOEXEC, 0666);
 		if (fd == -1)
 		{
-			eDebug("eDVBServiceRecord - can't open recording file!");
+			eDebug("[eDVBServiceRecord] can't open recording file: %m");
 			m_error = errOpenRecordFile;
 			m_event((iRecordableService*)this, evRecordFailed);
 			return errOpenRecordFile;
@@ -274,17 +300,19 @@ int eDVBServiceRecord::doRecord()
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
 		{
-			eDebug("eDVBServiceRecord - NO DEMUX available!");
+			eDebug("[eDVBServiceRecord] NO DEMUX available!");
 			m_error = errNoDemuxAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoDemuxAvailable;
 		}
-		demux->createTSRecorder(m_record);
+		demux->createTSRecorder(m_record, m_packet_size);
 		if (!m_record)
 		{
-			eDebug("eDVBServiceRecord - no ts recorder available.");
+			eDebug("[eDVBServiceRecord] no ts recorder available.");
 			m_error = errNoTsRecorderAvailable;
 			m_event((iRecordableService*)this, evRecordFailed);
+			::close(fd);
 			return errNoTsRecorderAvailable;
 		}
 		m_record->setTargetFD(fd);
@@ -297,14 +325,14 @@ int eDVBServiceRecord::doRecord()
 	if (m_streaming)
 	{
 		m_state = stateRecording;
-		eDebug("start streaming...");
+		eDebug("[eDVBServiceRecord] start streaming...");
 	} else
 	{
-		eDebugNoNewLineStart("start recording...");
+		eDebug("[eDVBServiceRecord] start recording...");
 
 		eDVBServicePMTHandler::program program;
 		if (m_service_handler.getProgramInfo(program))
-			eDebug("getting program info failed.");
+			eDebug("[eDVBServiceRecord] getting program info failed.");
 		else
 		{
 			std::set<int> pids_to_record;
@@ -345,7 +373,7 @@ int eDVBServiceRecord::doRecord()
 			int timing_pid = -1, timing_stream_type = -1;
 			iDVBTSRecorder::timing_pid_type timing_pid_type = iDVBTSRecorder::none;
 
-			eDebugNoNewLine("RECORD: have %zd video stream(s)", program.videoStreams.size());
+			eDebugNoNewLineStart("[eDVBServiceRecord] RECORD: have %zd video stream(s)", program.videoStreams.size());
 			if (!program.videoStreams.empty())
 			{
 				eDebugNoNewLine(" (");
@@ -409,7 +437,7 @@ int eDVBServiceRecord::doRecord()
 			eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 			if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
 				pids_to_record.insert(program.pcrPid);
-			eDebugNoNewLineEnd(", and the text pid is %04x", program.textPid);
+			eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
 			if (program.textPid != -1)
 				pids_to_record.insert(program.textPid); // Videotext
 
@@ -444,13 +472,13 @@ int eDVBServiceRecord::doRecord()
 
 			for (std::set<int>::iterator i(new_pids.begin()); i != new_pids.end(); ++i)
 			{
-				eDebug("ADD PID: %04x", *i);
+				eDebug("[eDVBServiceRecord] ADD PID: %04x", *i);
 				m_record->addPID(*i);
 			}
 
 			for (std::set<int>::iterator i(obsolete_pids.begin()); i != obsolete_pids.end(); ++i)
 			{
-				eDebug("REMOVED PID: %04x", *i);
+				eDebug("[eDVBServiceRecord] REMOVED PID: %04x", *i);
 				m_record->removePID(*i);
 			}
 
@@ -511,7 +539,7 @@ void eDVBServiceRecord::recordEvent(int event)
 		m_event((iRecordableService*)this, evRecordWriteError);
 		return;
 	default:
-		eDebug("unhandled record event %d", event);
+		eDebug("[eDVBServiceRecord] unhandled record event %d", event);
 	}
 }
 
@@ -530,11 +558,11 @@ void eDVBServiceRecord::gotNewEvent(int /*error*/)
 	if (m_record)
 	{
 		if (m_record->getCurrentPCR(p))
-			eDebug("getting PCR failed!");
+			eDebug("[eDVBServiceRecord] getting PCR failed!");
 		else
 		{
 			m_event_timestamps[event_id] = p;
-			eDebug("pcr of eit change: %llx", p);
+			eDebug("[eDVBServiceRecord] pcr of eit change: %llx", p);
 		}
 	}
 
@@ -575,7 +603,7 @@ void eDVBServiceRecord::saveCutlist()
 				eDebug("[eDVBServiceRecord] fixing up PTS failed, not saving");
 				continue;
 			}
-			eDebug("fixed up %llx to %llx (offset %llx)", i->second, p, offset);
+			eDebug("[eDVBServiceRecord] fixed up %llx to %llx (offset %llx)", i->second, p, offset);
 			where = htobe64(p);
 			what = htonl(2); /* mark */
 			fwrite(&where, sizeof(where), 1, f);

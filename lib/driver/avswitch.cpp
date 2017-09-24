@@ -21,7 +21,7 @@ eAVSwitch::eAVSwitch()
 	m_fp_fd = open("/dev/dbox/fp0", O_RDONLY|O_NONBLOCK);
 	if (m_fp_fd == -1)
 	{
-		eDebug("couldnt open /dev/dbox/fp0 to monitor vcr scart slow blanking changed!");
+		eDebug("[eAVSwitch] failed to open /dev/dbox/fp0 to monitor vcr scart slow blanking changed: %m");
 		m_fp_notifier=0;
 	}
 	else
@@ -52,10 +52,10 @@ int eAVSwitch::getVCRSlowBlanking()
 		if (f)
 		{
 			if (fscanf(f, "%d", &val) != 1)
-				eDebug("read /proc/stb/fp/vcr_fns failed!! (%m)");
+				eDebug("[eAVSwitch] read /proc/stb/fp/vcr_fns failed: %m");
 		}
 		else if (ioctl(m_fp_fd, FP_IOCTL_GET_VCR, &val) < 0)
-			eDebug("FP_GET_VCR failed (%m)");
+			eDebug("[eAVSwitch] FP_GET_VCR failed: %m");
 	}
 	return val;
 }
@@ -64,7 +64,7 @@ void eAVSwitch::fp_event(int what)
 {
 	if (what & POLLERR) // driver not ready for fp polling
 	{
-		eDebug("fp driver not read for polling.. so disable polling");
+		eDebug("[eAVSwitch] fp driver not read for polling.. so disable polling");
 		m_fp_notifier->stop();
 	}
 	else
@@ -74,7 +74,7 @@ void eAVSwitch::fp_event(int what)
 		{
 			int events;
 			if (fscanf(f, "%d", &events) != 1)
-				eDebug("read /proc/stb/fp/events failed!! (%m)");
+				eDebug("[eAVSwitch] read /proc/stb/fp/events failed: %m");
 			else if (events & FP_EVENT_VCR_SB_CHANGED)
 				/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
 		}
@@ -82,7 +82,7 @@ void eAVSwitch::fp_event(int what)
 		{
 			int val = FP_EVENT_VCR_SB_CHANGED;  // ask only for this event
 			if (ioctl(m_fp_fd, FP_IOCTL_GET_EVENT, &val) < 0)
-				eDebug("FP_IOCTL_GET_EVENT failed (%m)");
+				eDebug("[eAVSwitch] FP_IOCTL_GET_EVENT failed: %m");
 			else if (val & FP_EVENT_VCR_SB_CHANGED)
 				/* emit */ vcr_sb_notifier(getVCRSlowBlanking());
 		}
@@ -105,7 +105,7 @@ bool eAVSwitch::haveScartSwitch()
 	char tmp[255];
 	int fd = open("/proc/stb/avs/0/input_choices", O_RDONLY);
 	if(fd < 0) {
-		eDebug("cannot open /proc/stb/avs/0/input_choices");
+		eDebug("[eAVSwitch] cannot open /proc/stb/avs/0/input_choices: %m");
 		return false;
 	}
 	read(fd, tmp, 255);
@@ -128,7 +128,7 @@ void eAVSwitch::setInput(int val)
 	m_active = val == 0;
 
 	if((fd = open("/proc/stb/avs/0/input", O_WRONLY)) < 0) {
-		eDebug("cannot open /proc/stb/avs/0/input");
+		eDebug("[eAVSwitch] cannot open /proc/stb/avs/0/input: %m");
 		return;
 	}
 
@@ -148,30 +148,26 @@ void eAVSwitch::setColorFormat(int format)
 	1-RGB
 	2-S-Video
 	*/
-	const char *cvbs="cvbs";
-	const char *rgb="rgb";
-	const char *svideo="svideo";
-	const char *yuv="yuv";
+	const char *fmt = "";
 	int fd;
 
-	if((fd = open("/proc/stb/avs/0/colorformat", O_WRONLY)) < 0) {
-		printf("cannot open /proc/stb/avs/0/colorformat\n");
+	if (access("/proc/stb/avs/0/colorformat", W_OK))
+		return;  // no colorformat file...
+
+	switch (format) {
+		case 0: fmt = "cvbs";   break;
+		case 1: fmt = "rgb";    break;
+		case 2: fmt = "svideo"; break;
+		case 3: fmt = "yuv";    break;
+	}
+	if (*fmt == '\0')
+		return; // invalid format
+
+	if ((fd = open("/proc/stb/avs/0/colorformat", O_WRONLY)) < 0) {
+		eDebug("[eAVSwitch] cannot open /proc/stb/avs/0/colorformat: %m");
 		return;
 	}
-	switch(format) {
-		case 0:
-			write(fd, cvbs, strlen(cvbs));
-			break;
-		case 1:
-			write(fd, rgb, strlen(rgb));
-			break;
-		case 2:
-			write(fd, svideo, strlen(svideo));
-			break;
-		case 3:
-			write(fd, yuv, strlen(yuv));
-			break;
-	}
+	write(fd, fmt, strlen(fmt));
 	close(fd);
 }
 
@@ -191,7 +187,7 @@ void eAVSwitch::setAspectRatio(int ratio)
 
 	int fd;
 	if((fd = open("/proc/stb/video/aspect", O_WRONLY)) < 0) {
-		eDebug("cannot open /proc/stb/video/aspect");
+		eDebug("[eAVSwitch] cannot open /proc/stb/video/aspect: %m");
 		return;
 	}
 //	eDebug("set aspect to %s", aspect[ratio]);
@@ -199,19 +195,19 @@ void eAVSwitch::setAspectRatio(int ratio)
 	close(fd);
 
 	if((fd = open("/proc/stb/video/policy", O_WRONLY)) < 0) {
-		eDebug("cannot open /proc/stb/video/policy");
+		eDebug("[eAVSwitch] cannot open /proc/stb/video/policy: %m");
 		return;
 	}
 //	eDebug("set ratio to %s", policy[ratio]);
 	write(fd, policy[ratio], strlen(policy[ratio]));
 	close(fd);
 
-	if((fd = open("/proc/stb/video/policy2", O_WRONLY)) < 0) {
-		eDebug("cannot open /proc/stb/video/policy2");
-		return;
-	}
-	write(fd, policy[ratio], strlen(policy[ratio]));
-	close(fd);
+//	if((fd = open("/proc/stb/video/policy2", O_WRONLY)) < 0) {
+//		eDebug("[eAVSwitch] cannot open /proc/stb/video/policy2");
+//		return;
+//	}
+//	write(fd, policy[ratio], strlen(policy[ratio]));
+//	close(fd);
 }
 
 void eAVSwitch::setVideomode(int mode)
@@ -226,12 +222,12 @@ void eAVSwitch::setVideomode(int mode)
 	{
 		int fd1 = open("/proc/stb/video/videomode_50hz", O_WRONLY);
 		if(fd1 < 0) {
-			eDebug("cannot open /proc/stb/video/videomode_50hz");
+			eDebug("[eAVSwitch] cannot open /proc/stb/video/videomode_50hz: %m");
 			return;
 		}
 		int fd2 = open("/proc/stb/video/videomode_60hz", O_WRONLY);
 		if(fd2 < 0) {
-			eDebug("cannot open /proc/stb/video/videomode_60hz");
+			eDebug("[eAVSwitch] cannot open /proc/stb/video/videomode_60hz: %m");
 			close(fd1);
 			return;
 		}
@@ -244,7 +240,7 @@ void eAVSwitch::setVideomode(int mode)
 	{
 		int fd = open("/proc/stb/video/videomode", O_WRONLY);
 		if(fd < 0) {
-			eDebug("cannot open /proc/stb/video/videomode");
+			eDebug("[eAVSwitch] cannot open /proc/stb/video/videomode: %m");
 			return;
 		}
 		switch(mode) {
@@ -255,7 +251,7 @@ void eAVSwitch::setVideomode(int mode)
 				write(fd, ntsc, strlen(ntsc));
 				break;
 			default:
-				eDebug("unknown videomode %d", mode);
+				eDebug("[eAVSwitch] unknown videomode %d", mode);
 		}
 		close(fd);
 	}
@@ -267,7 +263,7 @@ void eAVSwitch::setWSS(int val) // 0 = auto, 1 = auto(4:3_off)
 {
 	int fd;
 	if((fd = open("/proc/stb/denc/0/wss", O_WRONLY)) < 0) {
-		eDebug("cannot open /proc/stb/denc/0/wss");
+		eDebug("[eAVSwitch] cannot open /proc/stb/denc/0/wss: %m");
 		return;
 	}
 	const char *wss[] = {

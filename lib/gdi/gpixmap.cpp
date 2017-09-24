@@ -143,7 +143,7 @@ gSurface::gSurface(int width, int height, int _bpp, int accel):
 #endif
 	{
 		if (gAccel::getInstance()->accelAlloc(this) != 0)
-				eDebug("ERROR: accelAlloc failed");
+				eDebug("[gSurface] ERROR: accelAlloc failed");
 	}
 	if (!data)
 	{
@@ -222,7 +222,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 					*dst++=col;
 			}
 		}	else
-			eWarning("couldn't fill %d bpp", surface->bpp);
+			eWarning("[gPixmap] couldn't fill %d bpp", surface->bpp);
 	}
 }
 
@@ -249,7 +249,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 				if (!gAccel::getInstance()->fill(surface,  area, col)) {
 #ifdef GPIXMAP_DEBUG
 					s.stop();
-					eDebug("[BLITBENCH] accel fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+					eDebug("[gPixmap] [BLITBENCH] accel fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
 #endif
 					continue;
 				}
@@ -263,7 +263,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[BLITBENCH] cpu fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+			eDebug("[gPixmap] [BLITBENCH] cpu fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
 #endif
 		} else if (surface->bpp == 16)
 		{
@@ -281,7 +281,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 					*dst++=col;
 			}
 		}	else
-			eWarning("couldn't rgbfill %d bpp", surface->bpp);
+			eWarning("[gPixmap] couldn't rgbfill %d bpp", surface->bpp);
 	}
 }
 
@@ -354,13 +354,13 @@ static void convert_palette(uint32_t* pal, const gPalette& clut)
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
 {
 	bool accel = (surface->data_phys && src.surface->data_phys);
-//	eDebug("blit: -> %d,%d+%d,%d -> %d,%d+%d,%d, flags=0x%x, accel=%d",
+//	eDebug("[gPixmap] blit: -> %d,%d+%d,%d -> %d,%d+%d,%d, flags=0x%x, accel=%d",
 //		_pos.x(), _pos.y(), _pos.width(), _pos.height(),
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
 //		flag, accel);
 	eRect pos = _pos;
 
-//	eDebug("source size: %d %d", src.size().width(), src.size().height());
+//	eDebug("[gPixmap] source size: %d %d", src.size().width(), src.size().height());
 
 	if (!(flag & blitScale)) /* pos' size is valid only when scaling */
 		pos = eRect(pos.topLeft(), src.size());
@@ -393,7 +393,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		}
 	}
 
-//	eDebug("SCALE %x %x", scale_x, scale_y);
+//	eDebug("[gPixmap] SCALE %x %x", scale_x, scale_y);
 
 	for (unsigned int i=0; i<clip.rects.size(); ++i)
 	{
@@ -408,13 +408,13 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		eRect srcarea = area;
 		srcarea.moveBy(-pos.x(), -pos.y());
 
-//		eDebug("srcarea before scale: %d %d %d %d",
+//		eDebug("[gPixmap] srcarea before scale: %d %d %d %d",
 //			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
 
 		if (flag & blitScale)
 			srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y, srcarea.width() * FIX / scale_x, srcarea.height() * FIX / scale_y);
 
-//		eDebug("srcarea after scale: %d %d %d %d",
+//		eDebug("[gPixmap] srcarea after scale: %d %d %d %d",
 //			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
 #ifdef FORCE_NO_ACCELNEVER
 		accel = false;
@@ -456,7 +456,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag)) {
 #ifdef GPIXMAP_DEBUG
 				s.stop();
-				eDebug("[BLITBENCH] accel blit took %u us", s.elapsed_us());
+				eDebug("[gPixmap] [BLITBENCH] accel blit took %u us", s.elapsed_us());
 #endif
 				continue;
 			}
@@ -579,11 +579,11 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			}
 			else
 			{
-				eWarning("unimplemented: scale on non-accel surface %d->%d bpp", src.surface->bpp, surface->bpp);
+				eWarning("[gPixmap] unimplemented: scale on non-accel surface %d->%d bpp", src.surface->bpp, surface->bpp);
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[BLITBENCH] CPU scale blit took %u us", s.elapsed_us());
+			eDebug("[gPixmap] [BLITBENCH] CPU scale blit took %u us", s.elapsed_us());
 #endif
 			continue;
 		}
@@ -722,7 +722,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
 
 			if (flag & blitAlphaBlend)
-				eWarning("ignore unsupported 8bpp -> 16bpp alphablend!");
+				eWarning("[gPixmap] ignore unsupported 8bpp -> 16bpp alphablend!");
 
 			for (int y=0; y<area.height(); y++)
 			{
@@ -823,10 +823,10 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			}
 		}
 		else
-			eWarning("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
+			eWarning("[gPixmap] cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
 #ifdef GPIXMAP_DEBUG
 		s.stop();
-		eDebug("[BLITBENCH] cpu blit took %u us", s.elapsed_us());
+		eDebug("[gPixmap] [BLITBENCH] cpu blit took %u us", s.elapsed_us());
 #endif
 	}
 }

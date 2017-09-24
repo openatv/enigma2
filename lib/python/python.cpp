@@ -40,10 +40,10 @@ ePyObject::operator PyObject*()
 	{
 		if (!m_erased && m_ob->ob_refcnt > 0)
 			return m_ob;
-		eDebug("invalid access PyObject %s with refcount <= 0 %d",
+		eDebug("[ePyObject] invalid access PyObject %s with refcount <= 0 %d",
 			m_erased ? "deleted" : "undeleted", m_ob->ob_refcnt);
 		if (m_file)
-			eDebug("last modified in file %s line %d from %d to %d",
+			eDebug("[ePyObject] last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
 		bsodFatal("enigma2, refcnt");
 	}
@@ -54,27 +54,27 @@ void ePyObject::incref(const char *file, int line)
 {
 	if (!m_ob)
 	{
-		eDebug("invalid incref python object with null pointer %s %d!!!", file, line);
+		eDebug("[ePyObject] invalid incref python object with null pointer %s %d!!!", file, line);
 		if (m_file)
-			eDebug("last modified in file %s line %d from %d to %d",
+			eDebug("[ePyObject] last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
 		bsodFatal("enigma2, refcnt");
 	}
 	if (m_erased || m_ob->ob_refcnt <= 0)
 	{
-		eDebug("invalid incref %s python object with refcounting value %d in file %s line %d!!!",
+		eDebug("[ePyObject] invalid incref %s python object with refcounting value %d in file %s line %d!!!",
 			m_erased ? "deleted" : "undeleted", m_ob->ob_refcnt, file, line);
 		if (m_file)
-			eDebug("last modified in file %s line %d from %d to %d",
+			eDebug("[ePyObject] last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
 		bsodFatal("enigma2, refcnt");
 	}
 	if (m_ob->ob_refcnt == 0x7FFFFFFF)
 	{
-		eDebug("invalid incref %s python object with refcounting value %d (MAX_INT!!!) in file %s line %d!!!",
+		eDebug("[ePyObject] invalid incref %s python object with refcounting value %d (MAX_INT!!!) in file %s line %d!!!",
 			m_erased ? "deleted" : "undeleted", m_ob->ob_refcnt, file, line);
 		if (m_file)
-			eDebug("last modified in file %s line %d from %d to %d",
+			eDebug("[ePyObject] last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
 		bsodFatal("enigma2, refcnt");
 	}
@@ -89,18 +89,18 @@ void ePyObject::decref(const char *file, int line)
 {
 	if (!m_ob)
 	{
-		eDebug("invalid decref python object with null pointer %s %d!!!", file, line);
+		eDebug("[ePyObject] invalid decref python object with null pointer %s %d!!!", file, line);
 		if (m_file)
-			eDebug("last modified in file %s line %d from %d to %d",
+			eDebug("[ePyObject] last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
 		bsodFatal("enigma2, refcnt");
 	}
 	if (m_erased || m_ob->ob_refcnt <= 0)
 	{
-		eDebug("invalid decref %s python object with refcounting value %d in file %s line %d!!!",
+		eDebug("[ePyObject] invalid decref %s python object with refcounting value %d in file %s line %d!!!",
 			m_erased ? "deleted" : "undeleted", m_ob->ob_refcnt, file, line);
 		if (m_file)
-			eDebug("last modified in file %s line %d from %d to %d",
+			eDebug("[ePyObject] last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
 		bsodFatal("enigma2, refcnt");
 	}
@@ -206,7 +206,7 @@ int ePython::call(ePyObject pFunc, ePyObject pArgs)
 		 	PyErr_Print();
 			ePyObject FuncStr = PyObject_Str(pFunc);
 			ePyObject ArgStr = PyObject_Str(pArgs);
-		 	eDebug("(PyObject_CallObject(%s,%s) failed)", PyString_AS_STRING(FuncStr), PyString_AS_STRING(ArgStr));
+		 	eDebug("[ePyObject] (PyObject_CallObject(%s,%s) failed)", PyString_AS_STRING(FuncStr), PyString_AS_STRING(ArgStr));
 			Py_DECREF(FuncStr);
 			Py_DECREF(ArgStr);
 			/* immediately show BSOD, so we have the actual error at the bottom */
