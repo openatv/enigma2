@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2017-09-17 21:45+0300\n"
+"POT-Creation-Date: 2017-09-24 02:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -15,6 +15,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "  REC  "
+msgstr ""
+
+msgid " - video0"
+msgstr ""
+
+msgid " - video1"
+msgstr ""
+
+msgid " - video0+video1"
 msgstr ""
 
 msgid " (Channel %s)"
@@ -1433,6 +1442,12 @@ msgstr ""
 msgid "Always use smart1080p mode"
 msgstr ""
 
+msgid "Always include ECM in recordings"
+msgstr ""
+
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgstr ""
+
 msgid "am"
 msgstr ""
 
@@ -1679,6 +1694,9 @@ msgid "audio track (%s) language"
 msgstr ""
 
 msgid "audio tracks"
+msgstr ""
+
+msgid "Audio volume step size"
 msgstr ""
 
 msgid "Aufnahme"
@@ -3040,6 +3058,9 @@ msgstr ""
 msgid "Configure the gateway."
 msgstr ""
 
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr ""
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr ""
 
@@ -3779,6 +3800,9 @@ msgstr ""
 msgid "Descramble http streams"
 msgstr ""
 
+msgid "Descramble receiving http streams"
+msgstr ""
+
 msgid "Description"
 msgstr ""
 
@@ -3986,6 +4010,12 @@ msgid "DMM advanced"
 msgstr ""
 
 msgid "DMM normal"
+msgstr ""
+
+msgid "Do center DVB subs on this service"
+msgstr ""
+
+msgid "Do not center DVB subs on this service"
 msgstr ""
 
 msgid "Do not change"
@@ -7453,6 +7483,12 @@ msgstr ""
 msgid "never abort"
 msgstr ""
 
+msgid "Never decrypt while recording"
+msgstr ""
+
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgstr ""
+
 msgid "New"
 msgstr ""
 
@@ -10450,6 +10486,9 @@ msgid "Select if you want to use the image coloured Buttons (set to 'no' if you 
 msgstr ""
 
 msgid "Select Image: %s"
+msgstr ""
+
+msgid "Select Image: STARTUP_1"
 msgstr ""
 
 msgid "Select input device"
@@ -14762,6 +14801,9 @@ msgid "When enabled, a warning will be displayed and the user will get an option
 msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
+msgstr ""
+
+msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
