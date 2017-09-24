@@ -239,7 +239,7 @@ int eDVBSatelliteTransponderData::getInversion() const
 	{
 	case INVERSION_OFF: return eDVBFrontendParametersSatellite::Inversion_Off;
 	case INVERSION_ON: return eDVBFrontendParametersSatellite::Inversion_On;
-	default: eDebug("got unsupported inversion from frontend! report as INVERSION_AUTO!\n");
+	default: eDebug("[eDVBSatelliteTransponderData] got unsupported inversion from frontend! report as INVERSION_AUTO!\n");
 	case INVERSION_AUTO: return eDVBFrontendParametersSatellite::Inversion_Unknown;
 	}
 }
@@ -281,7 +281,7 @@ int eDVBSatelliteTransponderData::getFecInner() const
 	case FEC_8_9: return eDVBFrontendParametersSatellite::FEC_8_9;
 	case FEC_9_10: return eDVBFrontendParametersSatellite::FEC_9_10;
 	case FEC_NONE: return eDVBFrontendParametersSatellite::FEC_None;
-	default: eDebug("got unsupported FEC from frontend! report as FEC_AUTO!\n");
+	default: eDebug("[eDVBSatelliteTransponderData] got unsupported FEC from frontend! report as FEC_AUTO!\n");
 	case FEC_AUTO: return eDVBFrontendParametersSatellite::FEC_Auto;
 	}
 }
@@ -292,7 +292,7 @@ int eDVBSatelliteTransponderData::getModulation() const
 
 	switch (getProperty(DTV_MODULATION))
 	{
-	default: eDebug("got unsupported modulation from frontend! report as QPSK!");
+	default: eDebug("[eDVBSatelliteTransponderData] got unsupported modulation from frontend! report as QPSK!");
 	case QPSK: return eDVBFrontendParametersSatellite::Modulation_QPSK;
 	case PSK_8: return eDVBFrontendParametersSatellite::Modulation_8PSK;
 	case APSK_16: return eDVBFrontendParametersSatellite::Modulation_16APSK;
@@ -338,7 +338,7 @@ int eDVBSatelliteTransponderData::getSystem() const
 
 	switch (getProperty(DTV_DELIVERY_SYSTEM))
 	{
-	default: eDebug("got unsupported system from frontend! report as DVBS!");
+	default: eDebug("[eDVBSatelliteTransponderData] got unsupported system from frontend! report as DVBS!");
 	case SYS_DVBS: return eDVBFrontendParametersSatellite::System_DVB_S;
 	case SYS_DVBS2: return eDVBFrontendParametersSatellite::System_DVB_S2;
 	}

@@ -63,7 +63,7 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 			} else
 			// if rename fails, try deleting the file itself without renaming.
 			{
-				eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
+				eDebug("[eBackgroundFileEraser] Rename %s -> %s failed: %m", filename.c_str(), delname.c_str());
 				delname = filename;
 			}
 		}
@@ -99,7 +99,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 					int fd = ::open(c_filename, O_WRONLY|O_SYNC);
 					if (fd == -1)
 					{
-						eDebug("File %s cannot be opened for writing", c_filename);
+						eDebug("[eBackgroundFileEraser] Cannot open %s for writing: %m", c_filename);
 					}
 					else
 					{
@@ -114,7 +114,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 							st.st_size -= erase_speed;
 							if (::ftruncate(fd, st.st_size) != 0)
 							{
-								eDebug("Failed to truncate %s (%m)", c_filename);
+								eDebug("[eBackgroundFileEraser] Failed to truncate %s: %m", c_filename);
 								break; // don't try again
 							}
 							usleep(500000); // wait half a second
@@ -127,7 +127,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		if (!unlinked)
 		{
 			if ( ::unlink(c_filename) < 0 )
-				eDebug("remove file %s failed (%m)", c_filename);
+				eDebug("[eBackgroundFileEraser] removing %s failed: %m", c_filename);
 		}
 		stop_thread_timer->start(1000, true); // stop thread in one seconds
 	}

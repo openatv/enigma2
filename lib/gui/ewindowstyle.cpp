@@ -32,7 +32,7 @@ void eWindowStyleManager::getStyle(int style_id, ePtr<eWindowStyle> &style)
 	if (it != m_current_style.end())
 		style = it->second;
 	else
-		eDebug("eWindowStyleManager::getStyle(style_id=%d): NOT FOUND", style_id);
+		eDebug("[eWindowStyleManager] getStyle(style_id=%d): NOT FOUND", style_id);
 }
 
 void eWindowStyleManager::setStyle(int style_id, eWindowStyle *style)
@@ -60,7 +60,7 @@ eWindowStyleSimple::eWindowStyleSimple()
 
 void eWindowStyleSimple::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
 {
-//	eDebug("handle new size: %d x %d", size.width(), size.height());
+//	eDebug("[eWindowStyleManager] handle new size: %d x %d", size.width(), size.height());
 
 	eWidget *child = wnd->child();
 

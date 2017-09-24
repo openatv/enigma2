@@ -1,4 +1,4 @@
-#include <lib/base/filepush.h>
+#include "filepush.h"
 #include <lib/base/eerror.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -15,6 +15,7 @@
 #endif
 //#define SHOW_WRITE_TIME
 
+DEFINE_REF(eFilePushThread);
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
 	 prio(io_prio_level),
@@ -29,7 +30,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_run_state(0)
 {
 	if (m_buffer == NULL)
-		eFatal("Failed to allocate %d bytes", buffersize);
+		eFatal("[eFilePushThread] Failed to allocate %d bytes", buffersize);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
 }
 
@@ -57,7 +58,7 @@ void eFilePushThread::thread()
 	ignore_but_report_signals();
 	hasStarted(); /* "start()" blocks until we get here */
 	setIoPrio(prio_class, prio);
-	eDebug("FILEPUSH THREAD START");
+	eDebug("[eFilePushThread] START thread");
 
 	do
 	{
@@ -91,7 +92,7 @@ void eFilePushThread::thread()
 				int rc = ioctl(fd_video, VIDEO_DISCONTINUITY, (void*)param);
 			}
 #endif
-			m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining);
+			m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize);
 			ASSERT(!(current_span_remaining % m_blocksize));
 			m_current_position = current_span_offset;
 			bytes_read = 0;
@@ -134,10 +135,10 @@ void eFilePushThread::thread()
 				continue;
 			if (errno == EOVERFLOW)
 			{
-				eWarning("OVERFLOW while playback?");
+				eWarning("[eFilePushThread] OVERFLOW while playback?");
 				continue;
 			}
-			eDebug("eFilePushThread *read error* (%m) - not yet handled");
+			eDebug("[eFilePushThread] read error: %m");
 		}
 
 			/* a read might be mis-aligned in case of a short read. */
@@ -156,7 +157,7 @@ void eFilePushThread::thread()
 				switch (poll(&pfd, 1, 250)) // wait for 250ms
 				{
 					case 0:
-						eDebug("wait for driver eof timeout");
+						eDebug("[eFilePushThread] wait for driver eof timeout");
 #if defined(__sh__) // Fix to ensure that event evtEOF is called at end of playbackl part 2/3
 						if (already_empty)
 						{
@@ -171,10 +172,10 @@ void eFilePushThread::thread()
 						continue;
 #endif
 					case 1:
-						eDebug("wait for driver eof ok");
+						eDebug("[eFilePushThread] wait for driver eof ok");
 						break;
 					default:
-						eDebug("wait for driver eof aborted by signal");
+						eDebug("[eFilePushThread] wait for driver eof aborted by signal");
 						/* Check m_stop after interrupted syscall. */
 						if (m_stop)
 							break;
@@ -193,13 +194,13 @@ void eFilePushThread::thread()
 
 			if (m_stream_mode)
 			{
-				eDebug("reached EOF, but we are in stream mode. delaying 1 second.");
+				eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 1 second.");
 				sleep(1);
 				continue;
 			}
 			else if (++eofcount < 10)
 			{
-				eDebug("reached EOF, but the file may grow. delaying 1 second.");
+				eDebug("[eFilePushThread] reached EOF, but the file may grow. delaying 1 second.");
 				sleep(1);
 				continue;
 			}
@@ -229,7 +230,7 @@ void eFilePushThread::thread()
 #endif
 						continue;
 					}
-					eDebug("eFilePushThread WRITE ERROR");
+					eDebug("[eFilePushThread] write: %m");
 					sendEvent(evtWriteError);
 					break;
 				}
@@ -256,7 +257,7 @@ void eFilePushThread::thread()
 		m_run_state = 0;
 		m_run_cond.signal(); /* Tell them we're here */
 		while (m_stop == 2) {
-			eDebug("FILEPUSH THREAD PAUSED");
+			eDebug("[eFilePushThread] PAUSED");
 			m_run_cond.wait(m_run_mutex);
 		}
 		if (m_stop == 0)
@@ -264,7 +265,7 @@ void eFilePushThread::thread()
 	}
 
 	} while (m_stop == 0);
-	eDebug("FILEPUSH THREAD STOP");
+	eDebug("[eFilePushThread] STOP");
 }
 
 void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
@@ -283,7 +284,7 @@ void eFilePushThread::stop()
 	if (m_stop == 1)
 		return;
 	m_stop = 1;
-	eDebug("eFilePushThread stopping thread");
+	eDebug("[eFilePushThread] stopping thread");
 	m_run_cond.signal(); /* Break out of pause if needed */
 	sendSignal(SIGUSR1);
 	kill(); /* Kill means join actually */
@@ -293,7 +294,7 @@ void eFilePushThread::pause()
 {
 	if (m_stop == 1)
 	{
-		eWarning("eFilePushThread::pause called while not running");
+		eWarning("[eFilePushThread] pause called while not running");
 		return;
 	}
 	/* Set thread into a paused state by setting m_stop to 2 and wait
@@ -303,7 +304,7 @@ void eFilePushThread::pause()
 	sendSignal(SIGUSR1);
 	m_run_cond.signal(); /* Trigger if in weird state */
 	while (m_run_state) {
-		eDebug("FILEPUSH waiting for pause");
+		eDebug("[eFilePushThread] waiting for pause");
 		m_run_cond.wait(m_run_mutex);
 	}
 }
@@ -312,7 +313,7 @@ void eFilePushThread::resume()
 {
 	if (m_stop != 2)
 	{
-		eWarning("eFilePushThread::resume called while not paused");
+		eWarning("[eFilePushThread] resume called while not paused");
 		return;
 	}
 	/* Resume the paused thread by resetting the flag and
@@ -339,12 +340,16 @@ void eFilePushThread::setScatterGather(iFilePushScatterGather *sg)
 
 void eFilePushThread::sendEvent(int evt)
 {
+	/* add a ref, to make sure the object is not destroyed while the messagepump contains unhandled messages */
+	AddRef();
 	m_messagepump.send(evt);
 }
 
 void eFilePushThread::recvEvent(const int &evt)
 {
 	m_event(evt);
+	/* release the ref which we grabbed in sendEvent() */
+	Release();
 }
 
 void eFilePushThread::filterRecordData(const unsigned char *data, int len)
@@ -387,6 +392,10 @@ void eFilePushThreadRecorder::thread()
 		if (bytes < 0)
 		{
 			bytes = 0;
+			/* Check m_stop after interrupted syscall. */
+			if (m_stop) {
+				break;
+			}
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 				continue;
 			if (errno == EOVERFLOW)
@@ -413,7 +422,7 @@ void eFilePushThreadRecorder::thread()
 #endif
 		if (w < 0)
 		{
-			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread");
+			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
 			sendEvent(evtWriteError);
 			break;
 		}

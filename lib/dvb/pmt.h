@@ -71,7 +71,6 @@ class eDVBServicePMTHandler: public eDVBPMTParser
 
 	int m_last_channel_state;
 	eDVBCAService *m_ca_servicePtr;
-	bool doDescramble;
 	ePtr<eDVBScan> m_dvb_scan; // for sdt scan
 
 	eAUTable<eTable<ProgramAssociationSection> > m_PAT;
@@ -146,7 +145,7 @@ public:
 	int getDataDemux(ePtr<iDVBDemux> &demux);
 	int getDecodeDemux(ePtr<iDVBDemux> &demux);
 	void getAITApplications(std::map<int, std::string> &aitlist);
-	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
+	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes);
 	PyObject *getHbbTVApplications();
 
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
@@ -178,7 +177,7 @@ public:
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0, serviceType type = livetv, bool descramble = true);
 
 	/* new interface */
-	int tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &, const char *streaminfo_file, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0, serviceType type = livetv, bool descramble = true);
+	int tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &, const char *streaminfo_file, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0, serviceType type = livetv, bool descramble = true);
 
 	void free();
 private:

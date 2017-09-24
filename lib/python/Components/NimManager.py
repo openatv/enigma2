@@ -69,6 +69,7 @@ class SecConfigure:
 				tunermask |= (1 << slot)
 		sec.setLNBSatCR(-1)
 		sec.setLNBSatCRTuningAlgo(0)
+		sec.setLNBBootupTime(0)
 		sec.setLNBSatCRpositionnumber(1)
 		sec.setLNBLOFL(CircularLNB and 10750000 or 9750000)
 		sec.setLNBLOFH(CircularLNB and 10750000 or 10600000)
@@ -392,6 +393,7 @@ class SecConfigure:
 				if currLnb.lof.value != "unicable":
 					sec.setLNBSatCR(-1)
 					sec.setLNBSatCRTuningAlgo(0)
+					sec.setLNBBootupTime(0)
 				if currLnb.lof.value == "universal_lnb":
 					sec.setLNBLOFL(9750000)
 					sec.setLNBLOFH(10600000)
@@ -418,6 +420,7 @@ class SecConfigure:
 								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
 								sec.setLNBThreshold(manufacturer.loft[product_name][position_idx].value * 1000)
 								sec.setLNBSatCRTuningAlgo(currLnb.unicableTuningAlgo.value == "reliable" and 1 or 0)
+								sec.setLNBBootupTime(manufacturer.bootuptime[product_name][0].value)
 								configManufacturer.save_forced = True
 								manufacturer.product.save_forced = True
 								manufacturer.vco[product_name][manufacturer_scr[product_name].index].save_forced = True
@@ -441,6 +444,7 @@ class SecConfigure:
 						sec.setLNBLOFH(currLnb.lofh.value * 1000)
 						sec.setLNBThreshold(currLnb.threshold.value * 1000)
 						sec.setLNBSatCRpositions(64)
+						sec.setLNBBootupTime(currLnb.bootuptimeuser.value)
 					elif currLnb.unicable.value == "unicable_matrix":
 						self.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
 						setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix)
@@ -636,6 +640,7 @@ class SecConfigure:
 			tmp.lofl = ConfigSubDict()
 			tmp.lofh = ConfigSubDict()
 			tmp.loft = ConfigSubDict()
+			tmp.bootuptime = ConfigSubDict()
 			tmp.diction = ConfigSubDict()
 			tmp.product = ConfigSelection(choices = [], default = None)
 			tmp.positions = ConfigSubDict()
@@ -651,6 +656,9 @@ class SecConfigure:
 			positions = int(positionslist[0])
 			tmp.positions[PN] = ConfigSubList()
 			tmp.positions[PN].append(ConfigInteger(default=positions, limits = (positions, positions)))
+
+			tmp.bootuptime[PN] = ConfigSubList()
+			tmpbootuptime[PN].append(ConfigInteger(default=0, limits = (0, 0)))
 
 			positionsoffsetlist=[0,]	##adenin_todo
 			positionsoffset = int(positionsoffsetlist[0])
@@ -742,12 +750,12 @@ class NIM(object):
 			print "%s is not suportetd "%(what)
 			return False
 		if self.isMultiType():
-			print"[adenin] %s is multitype"%(self.slot)
+			#print"[adenin] %s is multitype"%(self.slot)
 			for type in self.multi_type.values():
 				if what in self.compatible[type]:
 					return True
 		elif  what in self.compatible[self.getType()]:
-			print"[adenin] %s is NOT multitype"%(self.slot)
+			#print"[adenin] %s is NOT multitype"%(self.slot)
 			return True
 		return False
 
@@ -1623,6 +1631,9 @@ def InitNimManager(nimmgr, update_slots = []):
 
 			p_update({"positions":tuple(positions)})							#add positons to dict product
 
+			bootuptime = product.get("bootuptime",2700)
+			p_update({"bootuptime":tuple([bootuptime])})							#add add boot up time
+
 			m_update({product.get("name"):p})								#add dict product to dict manufacturer
 		unicablelnbproducts.update({manufacturer.get("name"):m})
 
@@ -1667,6 +1678,9 @@ def InitNimManager(nimmgr, update_slots = []):
 				positions_append(tuple(lof))
 
 			p_update({"positions":tuple(positions)})							#add positons to dict product
+
+			bootuptime = product.get("bootuptime",2700)
+			p_update({"bootuptime":tuple([bootuptime])})							#add boot up time
 
 			m_update({product.get("name"):p})								#add dict product to dict manufacturer
 		unicablematrixproducts.update({manufacturer.get("name"):m})						#add dict manufacturer to dict unicablematrixproducts
@@ -1761,14 +1775,22 @@ def InitNimManager(nimmgr, update_slots = []):
 					tmp.lofl = ConfigSubDict()
 					tmp.lofh = ConfigSubDict()
 					tmp.loft = ConfigSubDict()
+					tmp.bootuptime = ConfigSubDict()
 					tmp.positionsoffset = ConfigSubDict()
 					tmp.positions = ConfigSubDict()
 					tmp.diction = ConfigSubDict()
 					for article in products:
-						positionslist = unicableproducts[manufacturer][article].get("positions")
 						positionsoffsetlist = unicableproducts[manufacturer][article].get("positionsoffset")
 						positionsoffset = int(positionsoffsetlist[0])
+
+						positionslist = unicableproducts[manufacturer][article].get("positions")
 						positions = int(positionslist[0])
+
+						bootuptimelist = unicableproducts[manufacturer][article].get("bootuptime")
+						bootuptime = int(bootuptimelist[0])
+						tmp.bootuptime[article] = ConfigSubList()
+						tmp.bootuptime[article].append(ConfigInteger(default=bootuptime, limits = (bootuptime, bootuptime)))
+
 						dictionlist = [unicableproducts[manufacturer][article].get("diction")]
 						if dictionlist[0][0] !="EN50607" or ((lnb > positionsoffset) and (lnb <= (positions + positionsoffset))):
 							tmp.positionsoffset[article] = ConfigSubList()
@@ -1825,6 +1847,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 			#TODO satpositions for satcruser
 
+			section.bootuptimeuser = ConfigInteger(default=2700, limits = (0, 15000))
 			section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default="EN50494")
 			section.satcruserEN50494 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50494, default="1")
 			section.satcruserEN50607 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50607, default="1")
@@ -2166,7 +2189,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			if slot.isMultiType():
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 				types = slot.getMultiTypeList()
-				print"[adenin]",types
+				#print"[adenin]",types
 				for FeType in types.itervalues():
 					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 						continue

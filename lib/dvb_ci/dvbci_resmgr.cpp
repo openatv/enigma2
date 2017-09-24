@@ -6,32 +6,32 @@
 int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
 #ifdef __sh__
-	eDebug("eDVBCIResourceManagerSession::%s >", __func__);
-	eDebugNoNewLineStart("SESSION(%d) %02x %02x %02x (len = %d): ", session_nb, tag[0], tag[1], tag[2], len);
+	eDebug("[CI RM] eDVBCIResourceManagerSession::%s >", __func__);
+	eDebugNoNewLineStart("[CI RM] SESSION(%d) %02x %02x %02x (len = %d): ", session_nb, tag[0], tag[1], tag[2], len);
 #else
-	eDebugNoNewLineStart("SESSION(%d) %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
+	eDebugNoNewLineStart("[CI RM] SESSION(%d) %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
 #endif
 	for (int i=0; i<len; i++)
 		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-	eDebugEOL();
+	eDebugNoNewLine("\n");
 	if ((tag[0]==0x9f) && (tag[1]==0x80))
 	{
 		switch (tag[2])
 		{
 		case 0x10:  // profile enquiry
-			eDebug("cam fragt was ich kann.");
+			eDebug("[CI RM] cam profile inquiry");
 			state=stateProfileEnquiry;
 			return 1;
 			break;
 		case 0x11: // Tprofile
-			eDebugNoNewLineStart("mein cam kann: ");
+			eDebugNoNewLineStart("[CI RM] can do: ");
 			if (!len)
-				eDebugNoNewLineEnd("nichts");
+				eDebugNoNewLine("nothing");
 			else
 			{
 				for (int i=0; i<len; i++)
 					eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-				eDebugEOL();
+				eDebugNoNewLine("\n");
 			}
 			if (state == stateFirstProfileEnquiry)
 			{
@@ -41,7 +41,7 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			state=stateFinal;
 			break;
 		default:
-			eDebug("unknown APDU tag 9F 80 %02x", tag[2]);
+			eDebug("[CI RM] unknown APDU tag 9F 80 %02x", tag[2]);
 		}
 	}
 
@@ -68,7 +68,7 @@ int eDVBCIResourceManagerSession::doAction()
 	}
 	case stateProfileChange:
 	{
-		eDebug("bla kaputt");
+		eDebug("[CI RM] cannot deal with statProfileChange");
 		break;
 	}
 	case stateProfileEnquiry:
@@ -89,7 +89,7 @@ int eDVBCIResourceManagerSession::doAction()
 		return 0;
 	}
 	case stateFinal:
-		eDebug("stateFinal und action! kann doch garnicht sein ;)");
+		eDebug("[CI RM] Should not happen: action on stateFinal");
 	default:
 		break;
 	}

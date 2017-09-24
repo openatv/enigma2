@@ -104,7 +104,7 @@ void eSocket::notifier(int what)
 		int bytesavail=256;
 		if (issocket)
 			if (ioctl(getDescriptor(), FIONREAD, &bytesavail)<0)
-				eDebug("FIONREAD failed.\n");
+				eDebug("[eSocket] FIONREAD failed.\n");
 
 		{
 			if (issocket)
@@ -137,12 +137,12 @@ void eSocket::notifier(int what)
 					}
 				}
 				else
-					eDebug("TIOCGICOUNT failed(%m)");
+					eDebug("[eSocket] TIOCGICOUNT failed(%m)");
 			}
 			int r;
 			if ((r=readbuffer.fromfile(getDescriptor(), bytesavail)) != bytesavail)
 				if (issocket)
-					eDebug("fromfile failed!");
+					eDebug("[eSocket] fromfile failed!");
 			readyRead_();
 		}
 	} else if (what & eSocketNotifier::Write)
@@ -162,7 +162,7 @@ void eSocket::notifier(int what)
 					}
 				}
 			} else
-				eDebug("got ready to write, but nothin in buffer. strange.");
+				eDebug("[eSocket] got ready to write, but nothin in buffer. strange.");
 			if (mystate == Closing)
 				close();
 		} else if (mystate == Connecting)
@@ -233,6 +233,7 @@ int eSocket::connectToHost(std::string hostname, int port)
 	struct hostent *server;
 	int res;
 
+
 	if (mystate == Invalid)
 	{
 		/* the socket has been closed, create a new socket descriptor */
@@ -248,7 +249,7 @@ int eSocket::connectToHost(std::string hostname, int port)
 	server=gethostbyname2(hostname.c_str(), AF_INET6);
 	if(server==NULL)
 	{
-		eDebug("can't resolve %s", hostname.c_str());
+		eDebug("[eSocket] can't resolve %s", hostname.c_str());
 		error_(errno);
 		return(-2);
 	}
@@ -259,7 +260,7 @@ int eSocket::connectToHost(std::string hostname, int port)
 	res=::connect(socketdesc, (const sockaddr*)&serv_addr, sizeof(serv_addr));
 	if ((res < 0) && (errno != EINPROGRESS) && (errno != EINTR))
 	{
-		eDebug("can't connect to host: %s", hostname.c_str());
+		eDebug("[eSocket] can't connect to host: %s", hostname.c_str());
 		close();
 		error_(errno);
 		return(-3);
@@ -280,7 +281,7 @@ eSocket::eSocket(eMainloop *ml, int domain): readbuffer(32768), writebuffer(3276
 {
 	int s=socket(domain, SOCK_STREAM, 0);
 #if 0
-	eDebug("[SOCKET]: initalized socket %d", socketdesc);
+	eDebug("[eSocket] initalized socket %d", socketdesc);
 #endif
 	mystate=Idle;
 	setSocket(s, 1, ml);

@@ -194,7 +194,7 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 	{
 		if (alpha->surface->bpp != 8)
 		{
-			eWarning("alpha channel for jpg must be 8bit");
+			eWarning("[loadJPG] alpha channel for jpg must be 8bit");
 			alpha = 0;
 		}
 	}
@@ -222,12 +222,12 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 	{
 		if (((int)cinfo.output_width != alpha->surface->x) || ((int)cinfo.output_height != alpha->surface->y))
 		{
-			eWarning("alpha channel size (%dx%d) must match jpeg size (%dx%d)", alpha->surface->x, alpha->surface->y, cinfo.output_width, cinfo.output_height);
+			eWarning("[loadJPG] alpha channel size (%dx%d) must match jpeg size (%dx%d)", alpha->surface->x, alpha->surface->y, cinfo.output_width, cinfo.output_height);
 			alpha = 0;
 		}
 		if (grayscale)
 		{
-			eWarning("we don't support grayscale + alpha at the moment");
+			eWarning("[loadJPG] we don't support grayscale + alpha at the moment");
 			alpha = 0;
 		}
 	}
