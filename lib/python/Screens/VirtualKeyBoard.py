@@ -72,7 +72,7 @@ class VirtualKeyBoard(Screen):
 			}
 
 		self["country"] = StaticText("")
-		self["header"] = Label(title)
+		self["header"] = Label()
 		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8",'ignore')), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 

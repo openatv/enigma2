@@ -52,22 +52,22 @@ int eEnv::resolveVar(std::string &dest, const char *src)
 	if (ret != 0) {
 		switch (ret) {
 		case WRDE_BADCHAR:
-			eDebug("[eEnv] %s: bad character", __func__);
+			eDebug("%s: bad character", __func__);
 			break;
 		case WRDE_BADVAL:
-			eDebug("[eEnv] %s: bad value", __func__);
+			eDebug("%s: bad value", __func__);
 			break;
 		case WRDE_CMDSUB:
-			eDebug("[eEnv] %s: invalid command substitution", __func__);
+			eDebug("%s: invalid command substitution", __func__);
 			break;
 		case WRDE_NOSPACE:
-			eDebug("[eEnv] %s: out of memory", __func__);
+			eDebug("%s: out of memory", __func__);
 			break;
 		case WRDE_SYNTAX:
-			eDebug("[eEnv] %s: syntax error", __func__);
+			eDebug("%s: syntax error", __func__);
 			break;
 		default:
-			eDebug("[eEnv] %s: unknown error", __func__);
+			eDebug("%s: unknown error", __func__);
 			break;
 		}
 

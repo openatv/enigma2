@@ -62,8 +62,7 @@ int eThread::runAsync(int prio, int policy)
 	}
 
 	if (the_thread) {
-		int ret = pthread_join(the_thread, 0);
-		eDebug("[eThread] old thread joined %d", ret);
+		eDebug("old thread joined %d", pthread_join(the_thread, 0));
 		the_thread = 0;
 	}
 
@@ -71,7 +70,7 @@ int eThread::runAsync(int prio, int policy)
 	{
 		pthread_attr_destroy(&attr);
 		m_alive = 0;
-		eDebug("[eThread] couldn't create new thread");
+		eDebug("couldn't create new thread");
 		return -1;
 	}
 
@@ -92,7 +91,7 @@ eThread::~eThread()
 	if (the_thread)
 	{
 		/* Warn about this class' design being borked */
-		eWarning("[eThread] Destroyed thread without joining it, this usually means your thread is now running with a halfway destroyed object");
+		eWarning("Destroyed thread without joining it, this usually means your thread is now running with a halfway destroyed object");
 		kill();
 	}
 }
@@ -104,7 +103,7 @@ int eThread::sync(void)
 	m_state.down(); /* this might block */
 	res = m_alive;
 	if (m_state.value() != 0)
-		eFatal("[eThread] sync: m_state.value() == %d - was %d before", m_state.value(), debug_val_before);
+		eFatal("eThread::sync: m_state.value() == %d - was %d before", m_state.value(), debug_val_before);
 	ASSERT(m_state.value() == 0);
 	m_state.up();
 	return res; /* 0: thread is guaranteed not to run. 1: state unknown. */
@@ -115,7 +114,7 @@ int eThread::sendSignal(int sig)
 	if (m_alive)
 		return pthread_kill(the_thread, sig);
 	else
-		eDebug("[eThread] send signal to non running thread");
+		eDebug("send signal to non running thread");
 	return -1;
 }
 
@@ -129,7 +128,7 @@ void eThread::kill()
 	int ret = pthread_join(the_thread, NULL);
 	the_thread = 0;
 	if (ret)
-		eWarning("[eThread] pthread_join failed, code: %d", ret);
+		eWarning("pthread_join failed, code: %d", ret);
 }
 
 void eThread::hasStarted()

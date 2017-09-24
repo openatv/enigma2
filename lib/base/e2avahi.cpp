@@ -369,7 +369,7 @@ AvahiTimeout* avahi_timeout_new(const AvahiPoll *api, const struct timeval *tv, 
  * NULL, the timeout is disabled. It is safe to call this function from an AvahiTimeoutCallback */
 void avahi_timeout_update(AvahiTimeout *t, const struct timeval *tv)
 {
-	eDebug("[Avahi] %s", __func__);
+	eDebug("[Avahi] %s\n", __func__);
 	t->timer->stop();
 	avahi_set_timer(t, tv);
 }
@@ -377,7 +377,7 @@ void avahi_timeout_update(AvahiTimeout *t, const struct timeval *tv)
 /** Free a timeout. It is safe to call this function from an AvahiTimeoutCallback */
 void avahi_timeout_free(AvahiTimeout *t)
 {
-	eDebug("[Avahi] %s", __func__);
+	eDebug("[Avahi] %s\n", __func__);
 	t->timer->stop();
 	delete t;
 }

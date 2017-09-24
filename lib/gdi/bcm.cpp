@@ -9,7 +9,6 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
-#include <lib/base/eerror.h>
 
 #define FBIO_ACCEL  0x23
 
@@ -28,12 +27,12 @@ int bcm_accel_init(void)
 	fb_fd = open("/dev/fb0", O_RDWR);
 	if (fb_fd < 0)
 	{
-		eDebug("[bcm] /dev/fb0 %m");
+		perror("/dev/fb0");
 		return 1;
 	}
 	if (exec_list())
 	{
-		eDebug("[bcm] interface not available - %m");
+		fprintf(stderr, "BCM accel interface not available - %m\n");
 		close(fb_fd);
 		fb_fd = -1;
 		return 1;

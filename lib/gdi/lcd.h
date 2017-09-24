@@ -33,7 +33,6 @@ protected:
 	int locked;
 	static eLCD *instance;
 	void setSize(int xres, int yres, int bpp);
-	char boxtype_name[20];
 #endif
 public:
 	static eLCD *getInstance();

@@ -100,7 +100,6 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 	freeinfo = true;
 	m_exifinfo->Thumnailstate = Thumb;
 
-
 	m_szLastError[0]='\0';
 	ExifImageWidth = MotorolaOrder = SectionsRead=0;
 	memset(&Sections, 0, MAX_SECTIONS * sizeof(Section_t));
@@ -174,7 +173,7 @@ bool Cexif::DecodeExif(const char *filename, int Thumb)
 		case M_SOS:
 			return true;
 		case M_EOI:
-			eDebug("[Cexif] No image in jpeg!\n");
+			printf("No image in jpeg!\n");
 			return false;
 		case M_COM:
 			if (HaveCom)

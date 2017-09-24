@@ -13,7 +13,6 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/epgcache.cpp \
 	dvb/esection.cpp \
 	dvb/fastscan.cpp \
-	dvb/filepush.cpp \
 	dvb/frontend.cpp \
 	dvb/frontendparms.cpp \
 	dvb/metaparser.cpp \
@@ -52,7 +51,6 @@ dvbinclude_HEADERS = \
 	dvb/epgcache.h \
 	dvb/esection.h \
 	dvb/fastscan.h \
-	dvb/filepush.h \
 	dvb/frontend.h \
 	dvb/frontendparms.h \
 	dvb/idemux.h \

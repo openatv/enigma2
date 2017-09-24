@@ -4,7 +4,6 @@
 #include <sys/select.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-#include <glib.h>
 
 #include <vector>
 #include <string>
@@ -46,7 +45,7 @@ int Select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, stru
 			if (exceptfds) *exceptfds = xset;
 			if (timeout) *timeout = interval;
 			if (errno == EINTR) continue;
-			eDebug("Select] error: %m");
+			eDebug("select error (%m)");
 			break;
 		}
 
@@ -64,7 +63,7 @@ ssize_t singleRead(int fd, void *buf, size_t count)
 		if (retval < 0)
 		{
 			if (errno == EINTR) continue;
-			eDebug("[singleRead] error: %m");
+			eDebug("singleRead error (%m)");
 		}
 		return retval;
 	}
@@ -253,53 +252,10 @@ ssize_t writeAll(int fd, const void *buf, size_t count)
 		if (retval < 0)
 		{
 			if (errno == EINTR) continue;
-			eDebug("[writeAll] error: %m");
+			eDebug("writeAll error (%m)");
 			return retval;
 		}
 		handledcount += retval;
 	}
 	return handledcount;
-}
-
-std::string base64encode(const std::string str)
-{
-	if(str.empty())
-	{
-		return std::string();
-	}
-
-	char *out = g_base64_encode((const guchar*)str.c_str(), (gsize)str.length());
-
-	if(!out)
-	{
-		g_free(out);
-		return std::string();
-	}
-
-	std::string ret((const char*)out);
-	g_free(out);
-
-	return ret;
-}
-
-std::string base64decode(const std::string hash)
-{
-	if(hash.empty())
-	{
-		return std::string();
-	}
-
-	gsize len;
-	guchar *out = g_base64_decode((const gchar*)hash.c_str(), &len);
-
-	if(!out || !len)
-	{
-		g_free(out);
-		return std::string();
-	}
-
-	std::string ret((const char*)out, len);
-	g_free(out);
-
-	return ret;
 }

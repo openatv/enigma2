@@ -68,10 +68,6 @@ def getButtonSetupKeys():
 		(_("Directory long"), "directory_long", ""),
 		(_("Back/Recall"), "back", ""),
 		(_("Back/Recall") + " " + _("long"), "back_long", ""),
-		(_("History"), "archive", ""),
-		(_("History long"), "archive_long", ""),
-		(_("Aspect"), "mode", ""),
-		(_("Aspect long"), "mode_long", ""),
 		(_("Home"), "home", ""),
 		(_("End"), "end", ""),
 		(_("Next"), "next", ""),
@@ -116,9 +112,7 @@ def getButtonSetupKeys():
 		(_("F3"), "f3", ""),
 		(_("F3 long"), "f3_long", ""),
 		(_("F4"), "f4", ""),
-		(_("F4 long"), "f4_long", ""),
-		(_("PIP"), "f6", ""),
-		(_("PIP long"), "f6_long", ""),]
+		(_("F4 long"), "f4_long", ""),]
 
 config.misc.ButtonSetup = ConfigSubsection()
 config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)

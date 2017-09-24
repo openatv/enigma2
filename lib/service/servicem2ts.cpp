@@ -32,10 +32,10 @@ private:
 	off_t m_current_offset;
 	off_t m_length;
 	off_t lseek_internal(off_t offset, int whence);
-#ifdef HAVE_LIBUDFREAD
+	#ifdef HAVE_LIBUDFREAD
 	udfread *m_udf;
 	UDFFILE *m_udf_file;
-#endif
+	#endif
 };
 
 class eStaticServiceM2TSInformation: public iStaticServiceInformation
@@ -182,18 +182,18 @@ eM2TSFile::eM2TSFile(const char *filename):
 #ifdef HAVE_LIBUDFREAD
 	m_udf = NULL;
 	m_udf_file = NULL;
-	std::string udf_file = filename;
-	size_t pos = udf_file.find("/BDMV");
-	if (pos != std::string::npos && (udf_file.find(".iso") != std::string::npos || udf_file.find(".img") != std::string::npos || udf_file.find(".nrg") != std::string::npos))
+	std::string iso_file = filename;
+	size_t pos = iso_file.find(".iso/BDMV");
+	if (pos != std::string::npos)
 	{
-		eDebug("[eM2TSFile] try open as udf file:%s", filename);
-		std::string file_path = udf_file.substr(pos);
-		udf_file = udf_file.substr(0, pos);
+		eDebug("[eM2TSFile] try open as iso:%s", filename);
+		std::string file_path = iso_file.substr(pos + 4);
+		iso_file = iso_file.substr(0, pos + 4);
 		m_udf = udfread_init();
 		if (m_udf)
 		{
-			if (udfread_open(m_udf, udf_file.c_str()) < 0)
-				eDebug("[eM2TSFile] udfread_open(%s) failed!", udf_file.c_str());
+			if (udfread_open(m_udf, iso_file.c_str()) < 0)
+				eDebug("[eM2TSFile] udfread_open(%s) failed!", iso_file.c_str());
 			else
 			{
 				m_udf_file = udfread_file_open(m_udf, file_path.c_str());
@@ -257,7 +257,7 @@ ssize_t eM2TSFile::read(off_t offset, void *b, size_t count)
 sync:
 	if ((offset+m_sync_offset) != m_current_offset)
 	{
-//		eDebug("[eM2TSFile] seekTo %lld", offset+m_sync_offset);
+//		eDebug("seekTo %lld", offset+m_sync_offset);
 		m_current_offset = lseek_internal(offset+m_sync_offset, SEEK_SET);
 		if (m_current_offset < 0)
 			return m_current_offset;
@@ -277,7 +277,7 @@ sync:
 		if (tmp[4] != 0x47)
 		{
 			if (rd > 0) {
-				eDebug("[eM2TSFile] short read at pos %lld async!!", m_current_offset);
+				eDebug("short read at pos %lld async!!", m_current_offset);
 				return rd;
 			}
 			else {
@@ -290,20 +290,20 @@ sync:
 					ret = ::read(m_fd, tmp+192, 384);
 
 #if 0
-				eDebugNoNewLineStart("[eM2TSFile] m2ts out of sync at pos %lld, real %lld:", offset + m_sync_offset, m_current_offset);
+				eDebugNoNewLine("m2ts out of sync at pos %lld, real %lld:", offset + m_sync_offset, m_current_offset);
 				for (; x < 192; ++x)
 					eDebugNoNewLine(" %02x", tmp[x]);
-				eDebugNoNewLine("\n");
+				eDebug("");
 				x=0;
 #else
-				eDebug("[eM2TSFile] m2ts out of sync at pos %lld, real %lld", offset + m_sync_offset, m_current_offset);
+				eDebug("m2ts out of sync at pos %lld, real %lld", offset + m_sync_offset, m_current_offset);
 #endif
 				for (; x < 192; ++x)
 				{
 					if (tmp[x] == 0x47 && tmp[x+192] == 0x47)
 					{
 						int add_offs = (x - 4);
-						eDebug("[eM2TSFile] sync found at pos %d, sync_offset is now %d, old was %d", x, add_offs + m_sync_offset, m_sync_offset);
+						eDebug("sync found at pos %d, sync_offset is now %d, old was %d", x, add_offs + m_sync_offset, m_sync_offset);
 						m_sync_offset += add_offs;
 						goto sync;
 					}

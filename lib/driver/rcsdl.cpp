@@ -337,7 +337,7 @@ int eSDLInputDevice::translateKey(SDLKey key)
 	P(EURO);
 	P(UNDO);
 	default:
-		eDebug("[eSDLInputDevice] unhandled SDL keycode: %d", key);
+		eDebug("unhandled SDL keycode: %d", key);
 		return KEY_RESERVED;
 	}
 
@@ -364,7 +364,7 @@ eSDLInputDriver::~eSDLInputDriver()
 
 void eSDLInputDriver::keyPressed(const SDL_KeyboardEvent *key)
 {
-	eDebug("[eSDLInputDevice] km=%d enabled=%d locked=%d",
+	eDebug("km=%d enabled=%d locked=%d",
 		input->getKeyboardMode(), enabled, input->islocked());
 
 	if (!enabled || input->islocked())

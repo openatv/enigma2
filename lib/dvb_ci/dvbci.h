@@ -36,6 +36,15 @@ struct queueData
 	}
 };
 
+enum data_source
+{
+#ifdef TUNER_FBC
+	TUNER_A=0, TUNER_B, TUNER_C, TUNER_D, TUNER_E, TUNER_F, TUNER_G, TUNER_H, TUNER_I, TUNER_J, TUNER_K, TUNER_L, TUNER_M, TUNER_N, TUNER_O, TUNER_P, TUNER_Q, TUNER_R, CI_A, CI_B, CI_C, CI_D
+#else
+	TUNER_A, TUNER_B, TUNER_C, TUNER_D, TUNER_E, TUNER_F, CI_A, CI_B, CI_C, CI_D
+#endif
+};
+
 typedef std::pair<std::string, uint32_t> providerPair;
 typedef std::set<providerPair> providerSet;
 typedef std::set<uint16_t> caidSet;
@@ -95,7 +104,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	providerSet possible_providers;
 	int use_count;
 	eDVBCISlot *linked_next; // needed for linked CI handling
-	std::string current_source;
+	data_source current_source;
 	int current_tuner;
 	bool user_mapped;
 	void data(int);
@@ -134,9 +143,8 @@ public:
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
 	void removeService(uint16_t program_number=0xFFFF);
 	int getNumOfServices() { return running_services.size(); }
-	int setSource(const std::string &source);
+	int setSource(data_source source);
 	int setClockRate(int);
-	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
 #ifdef __sh__
 	bool checkQueueSize();
 	void thread();
@@ -199,7 +207,7 @@ public:
 	int cancelEnq(int slot);
 	int getMMIState(int slot);
 	int sendCAPMT(int slot);
-	int setInputSource(int tunerno, const std::string &source);
+	int setInputSource(int tunerno, data_source source);
 	int setCIClockRate(int slot, int rate);
 #ifdef SWIG
 public:

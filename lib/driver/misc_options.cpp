@@ -25,7 +25,7 @@ int Misc_Options::set_12V_output(int state)
 	int fd = open("/proc/stb/misc/12V_output", O_WRONLY);
 	if (fd < 0)
 	{
-		eDebug("[Misc_Options] cannot open /proc/stb/misc/12V_output: %m");
+		eDebug("couldn't open /proc/stb/misc/12V_output");
 		return -1;
 	}
 	const char *str=0;
@@ -45,11 +45,10 @@ bool Misc_Options::detected_12V_output()
 	int fd = open("/proc/stb/misc/12V_output", O_WRONLY);
 	if (fd < 0)
 	{
-		eDebug("[Misc_Options] 12Vdetect cannot open /proc/stb/misc/12V_output: %m");
+		eDebug("couldn't open /proc/stb/misc/12V_output");
 		return false;
 	}
 	close(fd);
-	eDebug("[Misc_Options] 12V output detected");
 	return true;
 }
 

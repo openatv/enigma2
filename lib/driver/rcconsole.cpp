@@ -10,7 +10,7 @@ eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::ge
 	handle=open(filename, O_RDONLY|O_NONBLOCK);
 	if (handle<0)
 	{
-		eDebug("[eRCConsoleDriver] failed to open %s: %m", filename);
+		eDebug("failed to open %s", filename);
 		sn=0;
 	} else
 	{

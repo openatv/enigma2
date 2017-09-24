@@ -6,11 +6,11 @@ void PutToDict(ePyObject &dict, const char *key, long value)
 	if (item)
 	{
 		if (PyDict_SetItemString(dict, key, item))
-			eDebug("[PutToDict] put %s to dict failed", key);
+			eDebug("put %s to dict failed", key);
 		Py_DECREF(item);
 	}
 	else
-		eDebug("[PutToDict] could not create PyObject for %s", key);
+		eDebug("could not create PyObject for %s", key);
 }
 
 void PutToDict(ePyObject &dict, const char *key, ePyObject item)
@@ -18,11 +18,11 @@ void PutToDict(ePyObject &dict, const char *key, ePyObject item)
 	if (item)
 	{
 		if (PyDict_SetItemString(dict, key, item))
-			eDebug("[PutToDict] put %s to dict failed", key);
+			eDebug("put %s to dict failed", key);
 		Py_DECREF(item);
 	}
 	else
-		eDebug("[PutToDict] invalid PyObject for %s", key);
+		eDebug("invalid PyObject for %s", key);
 }
 
 void PutToDict(ePyObject &dict, const char *key, const char *value)
@@ -31,11 +31,11 @@ void PutToDict(ePyObject &dict, const char *key, const char *value)
 	if (item)
 	{
 		if (PyDict_SetItemString(dict, key, item))
-			eDebug("[PutToDict] put %s to dict failed", key);
+			eDebug("put %s to dict failed", key);
 		Py_DECREF(item);
 	}
 	else
-		eDebug("[PutToDict] could not create PyObject for %s", key);
+		eDebug("could not create PyObject for %s", key);
 }
 
 static PyObject *createTuple(int pid, const char *type)

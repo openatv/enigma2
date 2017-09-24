@@ -34,7 +34,7 @@
 }
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
-	:m_last_channel_state(-1), m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF),
+	:m_last_channel_state(-1), m_ca_servicePtr(0), doDescramble(false), m_dvb_scan(0), m_decode_demux_num(0xFF),
 	m_no_pat_entry_delay(eTimer::create()), m_have_cached_program(false)
 {
 	m_use_decode_demux = 0;
@@ -69,18 +69,18 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 				m_pvr_demux_tmp = NULL;
 			}
 			else if (m_channel->getDemux(m_demux, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
-				eDebug("[eDVBServicePMTHandler] Allocating %s-decoding a demux for now tuned-in channel failed.", m_use_decode_demux ? "" : "non-");
+				eDebug("Allocating %s-decoding a demux for now tuned-in channel failed.", m_use_decode_demux ? "" : "non-");
 		}
 
 		if (m_demux)
 		{
-			eDebug("[eDVBServicePMTHandler] ok ... now we start!!");
+			eDebug("ok ... now we start!!");
 			m_have_cached_program = false;
 
 			if (m_service && !m_service->cacheEmpty())
 			{
 				serviceEvent(eventNewProgramInfo);
-				if (m_use_decode_demux)
+				if (doDescramble)
 				{
 					if (!m_ca_servicePtr)
 					{
@@ -89,11 +89,6 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 					if (m_ca_servicePtr && !m_service->usePMT())
 					{
 						eDebug("[eDVBServicePMTHandler] create cached caPMT");
-						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
-					}
-					else if (m_ca_servicePtr && (m_service->m_flags & eDVBService::dxIsScrambledPMT))
-					{
-						eDebug("[eDVBServicePMTHandler] create caPMT to descramble PMT");
 						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
 					}
 				}
@@ -112,7 +107,7 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 	} else if ((m_last_channel_state != iDVBChannel::state_failed) &&
 			(state == iDVBChannel::state_failed))
 	{
-		eDebug("[eDVBServicePMTHandler] tune failed.");
+		eDebug("tune failed.");
 		serviceEvent(eventTuneFailed);
 	}
 }
@@ -177,7 +172,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 			/* do not start epg caching for other types of services */
 			break;
 		}
-		if (m_use_decode_demux)
+		if (doDescramble)
 		{
 			if (!m_ca_servicePtr)
 			{
@@ -192,7 +187,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 			if (!m_PMT.getCurrent(ptr))
 				eDVBCAHandler::getInstance()->handlePMT(m_reference, ptr);
 			else
-				eDebug("[eDVBServicePMTHandler] cannot call buildCAPMT");
+				eDebug("eDVBServicePMTHandler cannot call buildCAPMT");
 		}
 	}
 }
@@ -204,7 +199,7 @@ void eDVBServicePMTHandler::sendEventNoPatEntry()
 
 void eDVBServicePMTHandler::PATready(int)
 {
-	eDebug("[eDVBServicePMTHandler] PATready");
+	eDebug("PATready");
 	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
@@ -215,7 +210,7 @@ void eDVBServicePMTHandler::PATready(int)
 		int tsid=-1;
 		std::vector<ProgramAssociationSection*>::const_iterator i = ptr->getSections().begin();
 		tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
-		eDebug("[eDVBServicePMTHandler] PAT TSID: 0x%04x (%d)", tsid, tsid);
+		eDebug("PAT TSID: 0x%04x (%d)", tsid, tsid);
 		for (i = ptr->getSections().begin(); pmtpid == -1 && i != ptr->getSections().end(); ++i)
 		{
 			const ProgramAssociationSection &pat = **i;
@@ -235,16 +230,16 @@ void eDVBServicePMTHandler::PATready(int)
 		}
 		if (pmtpid_single != -1) // only one PAT entry .. and not valid pmtpid found
 		{
-			eDebug("[eDVBServicePMTHandler] use single pat entry!");
+			eDebug("use single pat entry!");
 			m_reference.setServiceID(eServiceID(service_id_single));
 			pmtpid = pmtpid_single;
 		}
 		if (pmtpid == -1) {
-			eDebug("[eDVBServicePMTHandler] no PAT entry found.. start delay");
+			eDebug("no PAT entry found.. start delay");
 			m_no_pat_entry_delay->start(1000, true);
 		}
 		else {
-			eDebug("[eDVBServicePMTHandler] use pmtpid %04x for service_id %04x", pmtpid, m_reference.getServiceID().get());
+			eDebug("use pmtpid %04x for service_id %04x", pmtpid, m_reference.getServiceID().get());
 			m_no_pat_entry_delay->stop();
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
 		}
@@ -269,28 +264,28 @@ void saveData(int orgid, unsigned char* data, int sectionLength)
 
 	if (data[6] > 0)
 	{
-		eDebug("[eDVBServicePMTHandler] section_number %d > 0", data[6]);
+		eDebug("section_number %d > 0", data[6]);
 		data[6] = 0;
 	}
 	if (data[7] > data[6])
 	{
-		eDebug("[eDVBServicePMTHandler] last_section_number %d > section_number %d", data[7], data[6]);
+		eDebug("last_section_number %d > section_number %d", data[7], data[6]);
 		data[7] = data[6];
 	}
 
 	if((fd = open(fileName, O_RDWR|O_CREAT|O_TRUNC)) < 0)
 	{
-		eDebug("[eDVBServicePMTHandler] Fail to save a AIT Data.");
+		eDebug("Fail to save a AIT Data.");
 		return;
 	}
 	rc = write(fd, data, sectionLength);
-	eDebug("[eDVBServicePMTHandler] Save Data Len : [%d]", rc);
+	eDebug("Save Data Len : [%d]", rc);
 	close(fd);
 }
 
 void eDVBServicePMTHandler::AITready(int error)
 {
-	eDebug("[eDVBServicePMTHandler] AITready");
+	eDebug("AITready");
 	ePtr<eTable<ApplicationInformationSection> > ptr;
 	m_aitInfoList.clear();
 	if (!m_AIT.getCurrent(ptr))
@@ -309,7 +304,7 @@ void eDVBServicePMTHandler::AITready(int error)
 			std::list<ApplicationInformation *>::const_iterator i = (*it)->getApplicationInformation()->begin();
 			memcpy(m_AITData, ptr->getBufferData(), 4096);
 			sectionLength = (*it)->getSectionLength() + 3;
-			eDebug("[eDVBServicePMTHandler] Section Length : %d, Total Section Length : %d", (*it)->getSectionLength(), sectionLength);
+			eDebug("Section Length : %d, Total Section Length : %d", (*it)->getSectionLength(), sectionLength);
 			for (; i != (*it)->getApplicationInformation()->end(); ++i)
 			{
 				std::string hbbtvUrl = "", applicaionName = "";
@@ -320,7 +315,7 @@ void eDVBServicePMTHandler::AITready(int error)
                                 profilecode = 0;
 				orgid = applicationIdentifier->getOrganisationId();
 				appid = applicationIdentifier->getApplicationId();
-				eDebug("[eDVBServicePMTHandler] found applicaions ids >> pid : %x, orgid : %d, appid : %d", m_ait_pid, orgid, appid);
+				eDebug("found applicaions ids >> pid : %x, orgid : %d, appid : %d", m_ait_pid, orgid, appid);
 				if (controlCode == 1)
 				{
 					saveData(orgid, m_AITData, sectionLength);
@@ -453,11 +448,11 @@ void eDVBServicePMTHandler::AITready(int error)
 		if (m_HbbTVApplications.size())
 		{
 			for(HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin() ; infoiter != m_HbbTVApplications.end() ; ++infoiter)
-				eDebug("[eDVBServicePMTHandler] Found : control[%d], name[%s], url[%s]",
+				eDebug("Found : control[%d], name[%s], url[%s]",
 					(*infoiter)->m_ControlCode, (*infoiter)->m_ApplicationName.c_str(), (*infoiter)->m_HbbTVUrl.c_str());
 			serviceEvent(eventHBBTVInfo);
 		}
-		else eDebug("[eDVBServicePMTHandler] No found anything.");
+		else eDebug("No found anything.");
 	}
 	/* for now, do not keep listening for table updates */
 	m_AIT.stop();
@@ -465,7 +460,7 @@ void eDVBServicePMTHandler::AITready(int error)
 
 void eDVBServicePMTHandler::OCready(int error)
 {
-	eDebug("[eDVBServicePMTHandler] OCready");
+	eDebug("OCready");
 	ePtr<eTable<OCSection> > ptr;
 	if (!m_OC.getCurrent(ptr))
 	{
@@ -486,7 +481,7 @@ void eDVBServicePMTHandler::getAITApplications(std::map<int, std::string> &aitli
 	}
 }
 
-void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes)
+void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
 {
 	program prog;
 
@@ -496,7 +491,6 @@ void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &
 		{
 			caids.push_back(it->caid);
 			ecmpids.push_back(it->capid);
-			ecmdatabytes.push_back(it->databytes);
 		}
 	}
 }
@@ -865,7 +859,6 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			program::capid_pair pair;
 			pair.caid = *it;
 			pair.capid = -1; // not known yet
-			pair.databytes.clear();
 			program.caids.push_back(pair);
 		}
 	}
@@ -906,7 +899,7 @@ int eDVBServicePMTHandler::getDecodeDemux(ePtr<iDVBDemux> &demux)
 	int ret=0;
 		/* if we're using the decoding demux as data source
 		   (for example in pvr playbacks), return that one. */
-	if (m_pvr_channel)
+	if (m_use_decode_demux)
 	{
 		demux = m_demux;
 		return ret;
@@ -938,7 +931,7 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 		{
 			ePtr<iDVBChannelList> db;
 			if (m_resourceManager->getChannelList(db) != 0)
-				eDebug("[eDVBServicePMTHandler] no channel list");
+				eDebug("no channel list");
 			else
 			{
 				eDVBChannelID chid, curr_chid;
@@ -947,17 +940,17 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 				if (chid == curr_chid)
 				{
 					m_dvb_scan->insertInto(db, true);
-					eDebug("[eDVBServicePMTHandler] sdt update done!");
+					eDebug("sdt update done!");
 				}
 				else
 				{
-					eDebug("[eDVBServicePMTHandler] ignore sdt update data.... incorrect transponder tuned!!!");
+					eDebug("ignore sdt update data.... incorrect transponder tuned!!!");
 					if (chid.dvbnamespace != curr_chid.dvbnamespace)
-						eDebug("[eDVBServicePMTHandler] incorrect namespace. expected: %x current: %x",chid.dvbnamespace.get(), curr_chid.dvbnamespace.get());
+						eDebug("incorrect namespace. expected: %x current: %x",chid.dvbnamespace.get(), curr_chid.dvbnamespace.get());
 					if (chid.transport_stream_id != curr_chid.transport_stream_id)
-						eDebug("[eDVBServicePMTHandler] incorrect transport_stream_id. expected: %x current: %x",chid.transport_stream_id.get(), curr_chid.transport_stream_id.get());
+						eDebug("incorrect transport_stream_id. expected: %x current: %x",chid.transport_stream_id.get(), curr_chid.transport_stream_id.get());
 					if (chid.original_network_id != curr_chid.original_network_id)
-						eDebug("[eDVBServicePMTHandler] incorrect namespace. expected: %x current: %x",chid.original_network_id.get(), curr_chid.original_network_id.get());
+						eDebug("incorrect namespace. expected: %x current: %x",chid.original_network_id.get(), curr_chid.original_network_id.get());
 				}
 			}
 			break;
@@ -971,21 +964,18 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
 {
 	ePtr<iTsSource> s;
-	return tuneExt(ref, s, NULL, cue, simulate, service, type, descramble);
+	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service, type, descramble);
 }
 
-int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
+int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service, serviceType type, bool descramble)
 {
 	RESULT res=0;
 	m_reference = ref;
-
-		/*
-		 * We need to m_use decode demux only when we are descrambling (demuxers > ca demuxers)
-		 * To avoid confusion with use_decode_demux now we look only descramble argument
-		 */
-	m_use_decode_demux = descramble;
+	m_use_decode_demux = use_decode_demux;
 	m_no_pat_entry_delay->stop();
 	m_service_type = type;
+
+	doDescramble = descramble;
 
 		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
@@ -997,7 +987,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 		ref.getChannelID(chid);
 		res = m_resourceManager->allocateChannel(chid, m_channel, simulate);
 		if (!simulate)
-			eDebug("[eDVBServicePMTHandler] allocate Channel: res %d", res);
+			eDebug("allocate Channel: res %d", res);
 
 		ePtr<iDVBChannelList> db;
 		if (!m_resourceManager->getChannelList(db))
@@ -1011,7 +1001,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 		{
 			eDVBTSTools tstools;
 			bool b = source || !tstools.openFile(ref.path.c_str(), 1);
-			eWarning("[eDVBServicePMTHandler] no .meta file found, trying to find PMT pid");
+			eWarning("no .meta file found, trying to find PMT pid");
 			if (source)
 				tstools.setSource(source, NULL);
 			if (b)
@@ -1020,23 +1010,21 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 				if (!tstools.findPMT(program))
 				{
 					m_pmt_pid = program.pmtPid;
-					eDebug("[eDVBServicePMTHandler] PMT pid %04x, service id %d", m_pmt_pid, program.serviceId);
+					eDebug("PMT pid found on pid %04x, service id %d", m_pmt_pid, program.serviceId);
 					m_reference.setServiceID(program.serviceId);
 				}
 			}
 			else
-				eWarning("[eDVBServicePMTHandler] no valid source to find PMT pid!");
+				eWarning("no valid source to find PMT pid!");
 		}
-		eDebug("[eDVBServicePMTHandler] alloc PVR");
+		eDebug("alloc PVR");
 			/* allocate PVR */
 		eDVBChannelID chid;
 		if (m_service_type == streamclient) ref.getChannelID(chid);
 		res = m_resourceManager->allocatePVRChannel(chid, m_pvr_channel);
 		if (res)
-			eDebug("[eDVBServicePMTHandler] allocatePVRChannel failed!\n");
+			eDebug("allocatePVRChannel failed!\n");
 		m_channel = m_pvr_channel;
-		if (!res && descramble)
-			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	}
 
 	if (!simulate)
@@ -1080,7 +1068,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 			m_pvr_channel->setCueSheet(cue);
 
 			if (m_pvr_channel->getDemux(m_pvr_demux_tmp, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
-				eDebug("[eDVBServicePMTHandler] Allocating %s-decoding a demux for PVR channel failed.", m_use_decode_demux ? "" : "non-");
+				eDebug("Allocating %s-decoding a demux for PVR channel failed.", m_use_decode_demux ? "" : "non-");
 			else if (source)
 				m_pvr_channel->playSource(source, streaminfo_file);
 			else

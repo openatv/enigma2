@@ -4,13 +4,13 @@
 #ifndef SWIG
 
 #include <lib/base/ebase.h>
+#include <lib/base/filepush.h>
 #include <lib/base/elock.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/tstools.h>
 #include <lib/dvb/esection.h>
-#include "filepush.h"
 #include <connection.h>
 #include <lib/dvb/fbc.h>
 
@@ -314,7 +314,6 @@ public:
 
 	RESULT requestTsidOnid();
 	int reserveDemux();
-	int getDvrId();
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
@@ -333,7 +332,7 @@ private:
 	ePtr<eConnection> m_conn_frontendStateChanged;
 
 		/* for PVR playback */
-	ePtr<eDVBChannelFilePush> m_pvr_thread;
+	eDVBChannelFilePush *m_pvr_thread;
 	void pvrEvent(int event);
 
 	int m_pvr_fd_dst;
@@ -347,7 +346,7 @@ private:
 	int m_skipmode_m, m_skipmode_n, m_skipmode_frames, m_skipmode_frames_remainder;
 
 	std::list<std::pair<off_t, off_t> > m_source_span;
-	void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize);
+	void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size);
 	void flushPVR(iDVBDemux *decoding_demux=0);
 
 	eSingleLock m_cuesheet_lock;

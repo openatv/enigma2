@@ -61,9 +61,7 @@ except:
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64
-FLAG_IS_DEDICATED_3D = 128 
-FLAG_HIDE_VBI = 512
-FLAG_CENTER_DVB_SUBS = 2048 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
+FLAG_IS_DEDICATED_3D = 128 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
 
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
@@ -206,14 +204,6 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("Unmark service as dedicated 3D service"), self.removeDedicated3DFlag), level=0)
 						else:
 							append_when_current_valid(current, menu, (_("Mark service as dedicated 3D service"), self.addDedicated3DFlag), level=0)
-					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
-						append_when_current_valid(current, menu, (_("Remove hide VBI line for this service"), self.removeHideVBIFlag), level=0)
-					else:
-						append_when_current_valid(current, menu, (_("Hide VBI line for this service"), self.addHideVBIFlag), level=0)
-					if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_CENTER_DVB_SUBS:
-						append_when_current_valid(current, menu, (_("Do not center DVB subs on this service"), self.removeCenterDVBSubsFlag), level=0)
-					else:
-						append_when_current_valid(current, menu, (_("Do center DVB subs on this service"), self.addCenterDVBSubsFlag), level=0)
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
 						if bouquets is None:
@@ -326,28 +316,7 @@ class ChannelContextMenu(Screen):
 		self.set3DMode(False)
 		self.close()
 
-	def addHideVBIFlag(self):
-		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)
-		eDVBDB.getInstance().reloadBouquets()
-		self.close()
-
-	def removeHideVBIFlag(self):
-		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)
-		eDVBDB.getInstance().reloadBouquets()
-		self.close()
-
-	def addCenterDVBSubsFlag(self):
-		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_CENTER_DVB_SUBS)
-		eDVBDB.getInstance().reloadBouquets()
-		config.subtitles.dvb_subtitles_centered.value = True
-		self.close()
-
-	def removeCenterDVBSubsFlag(self):
-		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_CENTER_DVB_SUBS)
-		eDVBDB.getInstance().reloadBouquets()
-		config.subtitles.dvb_subtitles_centered.value = False
-		self.close()
-
+		
 	def isProtected(self):
 		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
 
@@ -546,7 +515,7 @@ class ChannelContextMenu(Screen):
 				if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
 					print '[LCDMiniTV] disable PIP'
 					f = open("/proc/stb/lcd/mode", "w")
-					f.write(config.lcd.modeminitv.value)
+					f.write(config.lcd.minitvmode.value)
 					f.close()
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.setAnimationMode(0)
@@ -561,7 +530,7 @@ class ChannelContextMenu(Screen):
 					if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
 						print '[LCDMiniTV] enable PIP'
 						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modepip.value)
+						f.write(config.lcd.minitvpipmode.value)
 						f.close()
 						f = open("/proc/stb/vmpeg/1/dst_width", "w")
 						f.write("0")
@@ -579,7 +548,7 @@ class ChannelContextMenu(Screen):
 					if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
 						print '[LCDMiniTV] disable PIP'
 						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modeminitv.value)
+						f.write(config.lcd.minitvmode.value)
 						f.close()
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
@@ -2669,10 +2638,10 @@ class PiPZapSelection(ChannelSelection):
 					self.saveRoot()
 					self.saveChannel(ref)
 					self.setCurrentSelection(ref)
-					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
 						print '[LCDMiniTV] enable PIP'
 						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modepip.value)
+						f.write(config.lcd.minitvpipmode.value)
 						f.close()
 						f = open("/proc/stb/vmpeg/1/dst_width", "w")
 						f.write("0")
@@ -2688,10 +2657,10 @@ class PiPZapSelection(ChannelSelection):
 					self.pipzapfailed = True
 					self.session.pipshown = False
 					del self.session.pip
-					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
 							print '[LCDMiniTV] disable PIP'
 							f = open("/proc/stb/lcd/mode", "w")
-							f.write(config.lcd.modeminitv.value)
+							f.write(config.lcd.minitvmode.value)
 							f.close()
 					self.close(None)
 
@@ -2701,10 +2670,10 @@ class PiPZapSelection(ChannelSelection):
 		if self.startservice and hasattr(self.session, 'pip') and self.session.pip.getCurrentService() and self.startservice == self.session.pip.getCurrentService():
 			self.session.pipshown = False
 			del self.session.pip
-			if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+			if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.minitvpipmode.value) >= 1:
 					print '[LCDMiniTV] disable PIP'
 					f = open("/proc/stb/lcd/mode", "w")
-					f.write(config.lcd.modeminitv.value)
+					f.write(config.lcd.minitvmode.value)
 					f.close()
 		self.correctChannelNumber()
 		self.close(None)

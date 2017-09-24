@@ -131,7 +131,7 @@ int eIOBuffer::fromfile(int fd, int len)
 		if (r < 0)
 		{
 			if (errno != EWOULDBLOCK && errno != EBUSY && errno != EINTR)
-				eDebug("[eIOBuffer] read fd=%d: %m", fd);
+				eDebug("couldn't read: %m");
 		}
 		else
 		{
@@ -159,7 +159,7 @@ int eIOBuffer::tofile(int fd, int len)
 		if (w < 0)
 		{
 			if (errno != EWOULDBLOCK && errno != EBUSY && errno != EINTR)
-				eDebug("[eIOBuffer] write fd=%d: %m", fd);
+				eDebug("write: %m");
 			w=0;
 		}
 		ptr+=w;

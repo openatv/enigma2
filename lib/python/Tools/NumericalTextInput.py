@@ -52,15 +52,15 @@ MAP_DE = (
 	u"wxyz9WXYZ",
 	)
 MAP_ES = (
-	u"0,¿?¡!&@=*'+\"()€$~%#",
+	u"0,?!&@=*'+\"()$~%#",
 	u" 1.:;/-_",
-	u"abcçáà2ABCÁÀÇ",
+	u"abcáà2ABCÁÀ",
 	u"deéèf3DEFÉÈ",
 	u"ghiíì4GHIÍÌ",
 	u"jkl5JKL",
 	u"mnñoóò6MNÑOÓÒ",
 	u"pqrs7PQRS",
-	u"tuvúùü8TUVÚÙÜ",
+	u"tuvúù8TUVÚÙ",
 	u"wxyz9WXYZ",
 	)
 MAP_SE = (
