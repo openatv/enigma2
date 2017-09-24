@@ -271,7 +271,7 @@ void eFbLCD::disableManualBlit()
 
 int eFbLCD::setLCDBrightness(int brightness)
 {
-	eDebug("[eFbLCD] setLCDBrightness %d", brightness);
+	//eDebug("[eFbLCD] setLCDBrightness %d", brightness);
 	FILE *f = fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (f)
 	{
