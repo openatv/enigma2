@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-03 00:37+0300\n"
-"PO-Revision-Date: 2017-09-03 22:18+0300\n"
+"POT-Creation-Date: 2017-09-24 02:10+0300\n"
+"PO-Revision-Date: 2017-09-24 22:39+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -16,10 +16,21 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.4\n"
 
 msgid "  REC  "
 msgstr "  ĮRAŠ  "
+
+#| msgid "S-Video"
+msgid " - video0"
+msgstr " - vaizdas0"
+
+#| msgid "S-Video"
+msgid " - video1"
+msgstr " - vaizdas1"
+
+msgid " - video0+video1"
+msgstr " - vaizdas0+vaizdas1"
 
 msgid " (Channel %s)"
 msgstr " (Kanalas %s)"
@@ -1597,6 +1608,20 @@ msgstr "Visada rodyti paketus"
 msgid "Always use smart1080p mode"
 msgstr "Visada naudoti išmanų 1080p režimą"
 
+msgid "Always include ECM in recordings"
+msgstr "Į įrašus visada įtraukti ECM"
+
+msgid ""
+"Always include ECM messages in recordings. This overrides the individual "
+"timer settings globally. It allows recordings to be always decrypted "
+"afterwards (sometimes called offline decoding), if supported by your "
+"receiver. Default: off."
+msgstr ""
+"Į įrašus visada įtraukti ECM pranešimus. Tai atšaukia bendruosius visų "
+"laikmačių nustatymus. Tai leidžia įrašus visada vėliau iššifruoti (tai "
+"kartais vadinama iškodavimu atsijungus), jei tą palaiko jūsų imtuvas. "
+"Numatytasis: 'Ne'."
+
 msgid "am"
 msgstr "priešpiet"
 
@@ -1864,6 +1889,9 @@ msgstr "garso takelio (%s) kalba"
 
 msgid "audio tracks"
 msgstr "garso takeliai"
+
+msgid "Audio volume step size"
+msgstr "Garso stiprumo žingsnio dydis"
 
 msgid "Aufnahme"
 msgstr "Įrašymo"
@@ -2876,6 +2904,11 @@ msgstr ""
 "Ši parinktis leidžia nustatyti, ar AC3 garso takeliai bus sulieti į stereo "
 "garsą."
 
+msgid ""
+"Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgstr ""
+"Pasirinkite, ar DTS kanalo garso takeliai turėtų būti sulieti ar perkoduoti."
+
 msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr ""
 "Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti "
@@ -2898,6 +2931,13 @@ msgstr "Pasirinkite, ar daugiakanaliai garso takeliai bus išvesti, kaip PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Pasirinkti, ar rodyti logotipą judant motorizuotai lėkštei."
+
+msgid ""
+"Choose whether WMA Pro channel sound tracks should be downmixed or "
+"transcoded."
+msgstr ""
+"Pasirinkite, ar WMA Pro kanalo garso takeliai turėtų būti sulieti arba "
+"perkoduoti."
 
 msgid ""
 "Choose which level of menu/setting's to display. 'Expert'-level shows all "
@@ -3357,6 +3397,9 @@ msgstr "Konfigūruokite '< >' mygtukų funkciją."
 msgid "Configure the gateway."
 msgstr "Konfigūruokite tinklo šliuzą."
 
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Nustatykite bendrą garso stiprumo žingsnio dydį (riba 1-10)."
+
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time "
 "when the box is in standby."
@@ -3747,6 +3790,15 @@ msgstr "Konvertuoti ext3 failų sistemą į ext4"
 
 msgid "Converting ext3 to ext4..."
 msgstr "Konvertuojama ext3 į ext4..."
+
+msgid "convert to AC3"
+msgstr "konvertuoti į AC3"
+
+msgid "convert to DTS"
+msgstr "konvertuoti į DTS"
+
+msgid "convert to multi-channel PCM"
+msgstr "konvertuoti į daugiakanalį PCM"
 
 msgid "cooking"
 msgstr "maisto gaminimas"
@@ -4224,6 +4276,9 @@ msgstr "iškoduoti ir įrašyti ECM"
 msgid "Descramble http streams"
 msgstr "Iškoduoti http srautus"
 
+msgid "Descramble receiving http streams"
+msgstr "Iškoduoti http srautus"
+
 msgid "Description"
 msgstr "Aprašymas"
 
@@ -4436,6 +4491,12 @@ msgstr "DMM išsamiai"
 
 msgid "DMM normal"
 msgstr "DMM veikiantis"
+
+msgid "Do center DVB subs on this service"
+msgstr "Šiam kanalui centruoti DVB subtitrus"
+
+msgid "Do not center DVB subs on this service"
+msgstr "Šiam kanalui necentruoti DVB subtitrų"
 
 msgid "Do not change"
 msgstr "Nieko nekeisti"
@@ -4739,6 +4800,9 @@ msgstr "Parsisiunčiama %s"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Palaukite, parsiunčiama informacija apie priedus..."
 
+msgid "Downmix"
+msgstr "Suliejimas"
+
 msgid "Dream-Package"
 msgstr "Dream paketas"
 
@@ -4765,6 +4829,9 @@ msgstr "DTS perkodavimas"
 
 msgid "DTS downmix"
 msgstr "DTS perkodavimas"
+
+msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
+msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 
 msgid "DUAL LAYER DVD"
 msgstr "DVISLUOKSNIS DVD"
@@ -5830,6 +5897,9 @@ msgstr "futbolas, amerikietiškas futbolas"
 msgid "For more information see http://www.opena.tv"
 msgstr "Daugiau informacijos rasite http://www.opena.tv"
 
+msgid "force AC3plus"
+msgstr "priverstinai AC3plus"
+
 msgid "Force de-interlace"
 msgstr "Priverstinis vaizdo eilučių suliejimas"
 
@@ -5838,6 +5908,12 @@ msgstr "Priverstinė LNB įtampa"
 
 msgid "Force ToneBurst"
 msgstr "Priverstinis tono impulsas"
+
+msgid "Force LNB Tuner Power settings."
+msgstr "Priverstinis LNB imtuvo įtampos nustatymas."
+
+msgid "Force LNB Tuner ToneBurst settings."
+msgstr "Priverstinis LNB imtuvo ToneBurst nustatymas."
 
 msgid "foreign countries/expeditions"
 msgstr "užsienio šalys/ekspedicijos"
@@ -8104,6 +8180,19 @@ msgstr "niekada"
 msgid "never abort"
 msgstr "niekada nenutraukti"
 
+msgid "Never decrypt while recording"
+msgstr "Įrašinėjant, niekada neiškoduoti"
+
+msgid ""
+"Never decrypt the content while recording. This overrides the individual "
+"timer settings globally. If enabled, recordings are stored in crypted "
+"presentation and must be decrypted afterwards (sometimes called offline "
+"decoding). Default: off."
+msgstr ""
+"Niekada neiškoduoti įrašomo turinio. Tai atšaukia bendruosius visų laikmačių "
+"nustatymus. Jei įjungta, įrašai saugomi šifruoti ir vėliau turi būti "
+"iškoduojami (tai kartais vadimama iškodavimu atsijungus). Numatytasis: 'Ne'."
+
 msgid "New"
 msgstr "Naujas"
 
@@ -9077,6 +9166,9 @@ msgstr "Slaptažodis (httpwd)"
 
 msgid "Password:"
 msgstr "Slaptažodis:"
+
+msgid "Passthrough"
+msgstr "Pereiti"
 
 msgid "Pause"
 msgstr "Pauzė"
@@ -11326,6 +11418,9 @@ msgstr ""
 
 msgid "Select Image: %s"
 msgstr "Pasirinkite atvaizdą: %s"
+
+msgid "Select Image: STARTUP_1"
+msgstr "Pasirinkite atvaizdą: STARTUP_1"
 
 msgid "Select input device"
 msgstr "Pasirinkite įvesties įrenginį"
@@ -15407,6 +15502,9 @@ msgstr "Naudoti šliuzą"
 msgid "Use as HDD"
 msgstr "Naudoti kaip HDD"
 
+msgid "use best / controlled by HDMI"
+msgstr "geriausia naudoti / valdoma HDMI"
+
 msgid "Use circular LNB"
 msgstr "Naudoti apskritiminę LNB"
 
@@ -16230,6 +16328,17 @@ msgstr ""
 "Kai čia įjungta, http sraute bus įtraukti ir AIT duomenys. Tai leis kliento "
 "imtuvui naudotis HbbTV."
 
+msgid ""
+"When enabled, always descramble receiving http streams. This takes up more "
+"resources (descrambling demuxers), only enable if necessary. Individual "
+"streams are always descrambled if 0x100 is added to the service type, "
+"regardless of this setting. Default off."
+msgstr ""
+"Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai "
+"pareikalaus gerokai daugiau resursų, todėl įjunkite tik kai būtina. Atskiri "
+"srautai visada iškoduojami nepaisant šio nustatymo, jei prie kanalo tipo "
+"įrašyta  0x100. Numatytasis yra 'ne'."
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 "Kai čia įjungta, http srautų žiūrėjimui turėsite nurodyti savo "
@@ -16580,6 +16689,9 @@ msgstr "Wlan skenavimas"
 
 msgid "WlanStatus"
 msgstr "Wlan būsena"
+
+msgid "WMA Pro"
+msgstr "WMA Pro"
 
 msgid "WOL Standby"
 msgstr "WOL budėjimas"
@@ -17387,9 +17499,6 @@ msgstr ""
 
 #~ msgid "Programmlisten Restore"
 #~ msgstr "Programų sąrašo atkūrimas"
-
-#~ msgid "Select Image: STARTUP_1"
-#~ msgstr "Pasirinkite atvaizdą: STARTUP_1"
 
 #~ msgid "Video:"
 #~ msgstr "Vaizdas:"
