@@ -411,3 +411,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
 		self.l.setRecordIndicatorMode(int(config.usage.record_indicator_mode.value))
 		self.l.setColumnWidth(int(config.usage.servicelist_column.value))
+		
+	def selectionEnabled(self, enabled):
+		if self.instance is not None:
+			self.instance.setSelectionEnable(enabled)

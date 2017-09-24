@@ -964,6 +964,7 @@ public:
 	virtual SWIG_VOID(RESULT) stream(ePtr<iStreamableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) streamed(ePtr<iStreamedService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) keys(ePtr<iServiceKeys> &SWIG_OUTPUT)=0;
+	virtual void setQpipMode(bool value, bool audio)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 

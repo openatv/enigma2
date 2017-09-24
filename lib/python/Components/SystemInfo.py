@@ -62,6 +62,8 @@ SystemInfo["VFD_final_scroll_delay"] = fileCheck("/proc/stb/lcd/final_scroll_del
 SystemInfo["LCDMiniTV"] = fileExists("/proc/stb/lcd/mode")
 SystemInfo["LCDMiniTVPiP"] = SystemInfo["LCDMiniTV"] and getBoxType() != 'gb800ueplus'
 SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach")
+SystemInfo["MiniTV"] = fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable")
+SystemInfo["FastChannelChange"] = False
 SystemInfo["CIHelper"] = fileExists("/usr/bin/cihelper")
 SystemInfo["grautec"] = fileExists("/tmp/usbtft")
 SystemInfo["3DMode"] = fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/fb/primary/3d")

@@ -161,6 +161,8 @@ public:
 	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
 	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
 
+	void setQpipMode(bool value, bool audio) { }
+
 		// iPausableService
 	RESULT pause();
 	RESULT unpause();

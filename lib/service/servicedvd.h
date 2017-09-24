@@ -76,6 +76,7 @@ public:
 	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
 	RESULT streamed(ePtr<iStreamedService> &ptr) { ptr = 0; return -1; }
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
+	void setQpipMode(bool value, bool audio) { }
 
 		// iPlayableService
 	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);

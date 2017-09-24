@@ -2165,7 +2165,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	m_current_audio_pid = apid;
 
-	if (m_decoder->setAudioPID(apid, apidtype))
+	if (!m_noaudio && m_decoder->setAudioPID(apid, apidtype))
 	{
 		eDebug("set audio pid failed");
 		return -4;
@@ -3560,6 +3560,20 @@ ePtr<iStreamData> eDVBServicePlay::getStreamingData()
 	return retval;
 }
 
+void eDVBServicePlay::setQpipMode(bool value, bool audio)
+{
+	m_noaudio = !audio;
+
+	if(m_decoder)
+	{
+		if (!m_noaudio)
+			selectAudioStream();
+		else
+			m_decoder->setAudioPID(-1, -1);
+
+		m_decoder->set();
+	}
+}
 
 DEFINE_REF(eDVBServicePlay)
 
