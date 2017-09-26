@@ -113,13 +113,16 @@ class HelpMenuList(List):
 
 				for n in buttons:
 					(name, flags) = (getKeyDescription(n[0]), n[1])
-					if name is not None and (len(name) < 2 or name[1] not in("fp", "kbd")):
-						if flags & 8:  # for long keypresses, make the second tuple item "long".
-							name = (name[0], "long")
-						nlong = (n[0], flags & 8)
-						if nlong not in buttonsProcessed:
-							buttonNames.append(name)
-							buttonsProcessed.add(nlong)
+					if name is not None:
+						if not self.rcPos.getRcKeyPos(name[0]):
+							continue
+						if (len(name) < 2 or name[1] not in("fp", "kbd")):
+							if flags & 8:  # for long keypresses, make the second tuple item "long".
+								name = (name[0], "long")
+							nlong = (n[0], flags & 8)
+							if nlong not in buttonsProcessed:
+								buttonNames.append(name)
+								buttonsProcessed.add(nlong)
 
 				# only show non-empty entries with keys that are available on the used rc
 				if not (buttonNames and help):

@@ -232,6 +232,9 @@ int main(int argc, char **argv)
 	atexit(object_dump);
 #endif
 
+	// Clear LD_PRELOAD so that shells and processes launched by Enigma2 can pass on file handles and pipes
+	unsetenv("LD_PRELOAD");
+
 	gst_init(&argc, &argv);
 
 	// set pythonpath if unset
