@@ -103,6 +103,7 @@ class MediaPlayerInfoBar(Screen):
 class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarAudioSelection, InfoBarAspectSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen, InfoBarResolutionSelection):
 	ALLOW_SUSPEND = True
 	ENABLE_RESUME_SUPPORT = True
+	FLAG_CENTER_DVB_SUBS = 2048
 
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
