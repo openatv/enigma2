@@ -25,8 +25,6 @@ from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup, AudioSetup
 
 from Plugins.Plugin import PluginDescriptor
-from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
-from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
@@ -47,7 +45,13 @@ from re import search
 
 import NavigationInstance
 
-plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/NetworkBrowser"):
+	from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
+	from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
+	plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
+	NETWORKBROWSER = True
+else:
+	NETWORKBROWSER = False
 
 if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AudioSync"):
 	from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
@@ -291,8 +295,9 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Mount Settings Menu ##############################
 	def Qmount(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Mount Manager",_("Manage network mounts"),_("Setup your network mounts")))
-		self.sublist.append(QuickSubMenuEntryComponent("Network Browser",_("Search for network shares"),_("Search for network shares")))
+		if NETWORKBROWSER == True:
+			self.sublist.append(QuickSubMenuEntryComponent("Mount Manager",_("Manage network mounts"),_("Setup your network mounts")))
+			self.sublist.append(QuickSubMenuEntryComponent("Network Browser",_("Search for network shares"),_("Search for network shares")))
 		self.sublist.append(QuickSubMenuEntryComponent("Device Manager",_("Mounts Devices"),_("Setup your Device mounts (USB, HDD, others...)")))
 		self["sublist"].l.setList(self.sublist)
 
