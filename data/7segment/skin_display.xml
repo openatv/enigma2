@@ -1,37 +1,95 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
+<!-- MyClockRecPanel -->	
+	<screen name="MyClockRecPanel">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay">Clock</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="1,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay"></convert>
 		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
 	</screen>
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="1,1">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ServicePosition">Remaining</convert>
+		<panel name="MyClockRecPanel" />
+	</screen>
+
+<!-- menus-->
+	<screen name="MenuSummary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
+	</screen>
+	<screen name="QuickMenu_summary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
+	</screen>
+
+<!-- Numberzap -->    
+	<screen name="NumberZap_summary" position="0,0" size="1,1">
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+	</screen> 
+	<screen name="NumberZapPicon_summary" position="0,0" size="1,1">
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+	</screen>
+
+<!-- misc-->
+	<screen name="SimpleSummary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
+	</screen>
+	<screen name="ChoiceBox_summary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
+	</screen>
+	<screen name="MessageBox_summary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
+	</screen>
+	<screen name="MessageBoxSimple_summary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
+	</screen>
+	<screen name="JobView_summary" position="0,0" size="1,1">
+		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="1,1" >
+			<convert type="ProgressToText">InPercent</convert>
 		</widget>
 	</screen>
 
 <!-- DVD -->
 	<screen name="DVDSummary" position="0,0" size="1,1">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ServicePosition">Remaining</convert>
-		</widget>
+		<panel name="MyClockRecPanel" />
 	</screen>
 
 <!-- MediaPlayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="1,1">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ServicePosition">Remaining</convert>
-		</widget>
+		<panel name="MyClockRecPanel" />
+	</screen>
+
+<!-- EMC  -->
+	<screen name="EMCSelection_summary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
+	</screen>
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="1,1">
+		<panel name="MyClockRecPanel" />
 	</screen>
 
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="1,1">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="VfdDisplay">Clock</convert>
-		</widget>
+		<panel name="MyClockRecPanel" />
 	</screen>
 </skin>
