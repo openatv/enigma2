@@ -29,7 +29,51 @@ distro = getImageDistro()
 
 def eEnv_resolve_multi(path):
 	resolve = eEnv.resolve(path)
-	return resolve.split()
+	if resolve == path:
+		return []
+	else:
+		return resolve.split()
+
+# MANDATORY_RIGHTS contains commands to ensure correct rights for certain files, shared with ShellCompatibleFunctions for FastRestore
+MANDATORY_RIGHTS = ShellCompatibleFunctions.MANDATORY_RIGHTS
+
+# BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly, shared with ShellCompatibleFunctions for FastRestore
+BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
+
+# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
+BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
+	'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
+	'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
+	'/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
+	'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
+	'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
+	'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
+	'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
+	'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
+	'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
+	'/usr/share/enigma2/MetrixHD/skinparts/',
+	'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
+	'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
+	'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
+	'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
+	'/etc/rc3.d/S99tuner.sh',
+	eEnv.resolve("${datadir}/enigma2/keymap.usr"),
+	eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
+	+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
+	+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
+	+eEnv_resolve_multi('/usr/bin/*cam*')\
+	+eEnv_resolve_multi('/etc/*.emu')\
+	+eEnv_resolve_multi('/etc/init.d/softcam*')\
+	+eEnv_resolve_multi('/etc/sundtek.*')\
+	+eEnv_resolve_multi('/usr/sundtek/*')\
+	+eEnv_resolve_multi('/opt/bin/*')\
+
+# Drop non existant paths from list
+TMPFILES=[]
+for f in BACKUPFILES:
+	if path.exists(f):
+		TMPFILES.append(f)
+BACKUPFILES=TMPFILES
 
 def InitConfig():
 	config.plugins.configurationbackup = ConfigSubsection()
@@ -37,29 +81,7 @@ def InitConfig():
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 	else:
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'),
-		'/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
-		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
-		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
-		'/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
-		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
-		'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
-		'/etc/cron/crontabs/root', '/etc/cron/root', '/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
-		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
-		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
-		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
-		'/usr/share/enigma2/MetrixHD/skinparts/',
-		'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
-		'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
-		'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
-		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
-		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
-		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
-		+eEnv_resolve_multi('/usr/bin/*cam*')\
-		+eEnv_resolve_multi('/etc/*.emu')\
-		+eEnv_resolve_multi('/etc/init.d/softcam*')))
+	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=BACKUPFILES))
 	config.plugins.configurationbackup.backupdirs         = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
@@ -133,30 +155,32 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
+			self.backupdirs=""
 			try:
-				self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs_default.value )
+				self.backupdirs += " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
 			except:
 				InitConfig()
-				self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs_default.value )
+				self.backupdirs += " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
 			for f in config.plugins.configurationbackup.backupdirs.value:
-				if not f in self.backupdirs:
-					self.backupdirs = self.backupdirs + " " + f
-			if not "/tmp/installed-list.txt" in self.backupdirs:
-				self.backupdirs = self.backupdirs + " /tmp/installed-list.txt"
-			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
-				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
-			if not "/tmp/passwd.txt" in self.backupdirs:
-				self.backupdirs = self.backupdirs + " /tmp/passwd.txt"
-			if not "/tmp/groups.txt" in self.backupdirs:
-				self.backupdirs = self.backupdirs + " /tmp/groups.txt"
+				if not f.strip("/") in self.backupdirs:
+					self.backupdirs += " " + f.strip("/")
+			if not "tmp/installed-list.txt" in self.backupdirs:
+				self.backupdirs += " tmp/installed-list.txt"
+			if not "tmp/changed-configfiles.txt" in self.backupdirs:
+				self.backupdirs += " tmp/changed-configfiles.txt"
+			if not "tmp/passwd.txt" in self.backupdirs:
+				self.backupdirs += " tmp/passwd.txt"
+			if not "tmp/groups.txt" in self.backupdirs:
+				self.backupdirs += " tmp/groups.txt"
 
 			ShellCompatibleFunctions.backupUserDB()
 			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^davfs2$|^joe$|^mc$|^mergerfs$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^rclone$|^streamproxy$|^wget$' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
-			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
+			cmd3 = "tar -C / -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
-			cmd3 = cmd3 + " --exclude home/root/.cache"
+			for f in BLACKLISTED:
+				cmd3 = cmd3 + " --exclude " + f.strip("/")
 			cmd = [cmd1, cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
@@ -384,7 +408,11 @@ class RestoreMenu(Screen):
 
 	def CB_startRestore(self, ret = False):
 		self.exe = True
-		cmds = ["tar -xzvf " + self.path + "/" + self.sel + " --exclude=etc/passwd --exclude=etc/shadow --exclude=etc/group --exclude=etc/samba/distro --exclude=etc/samba/smb.conf -C /", "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh", "killall -9 enigma2", "/etc/init.d/autofs restart"]
+		tarcmd = "tar -C / -xzvf " + self.path + "/" + self.sel
+		for f in BLACKLISTED:
+			tarcmd = tarcmd + " --exclude " + f.strip("/")
+
+		cmds = [ tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2" ]
 		if ret == True:
 			cmds.insert(0, "rm -R /etc/enigma2")
 			self.session.open(Console, title = _("Restoring..."), cmdlist = cmds)
@@ -445,7 +473,10 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.setTitle(_("Restoring..."))
 
 	def doRestore(self):
-		restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " --exclude=etc/passwd --exclude=etc/shadow --exclude=etc/group --exclude=etc/samba/distro --exclude=etc/samba/smb.conf -C /", "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"]
+		tarcmd = "tar -C / -xzvf " + self.fullbackupfilename
+		for f in BLACKLISTED:
+				tarcmd = tarcmd + " --exclude " + f.strip("/")
+		restorecmdlist = ["rm -R /etc/enigma2", tarcmd, MANDATORY_RIGHTS]
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")

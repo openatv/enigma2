@@ -3,6 +3,12 @@
 
 import subprocess,shutil,os
 
+# MANDATORY_RIGHTS contains commands to ensure correct rights for certain files
+MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"
+
+# BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly
+BLACKLISTED = ['home/root/.cache', 'etc/passwd', 'etc/shadow', 'etc/group', 'etc/samba/distro', 'etc/samba/smb.conf']
+
 def backupUserDB():
 	oldpasswd=()
 	oldshadow=()
@@ -172,4 +178,3 @@ def restoreUserDB():
 		newshadowfile.write("%s:%s:%s\n" % (name, passwd, rest))
 	newshadowfile.close()
 	shutil.move("/tmp/shadow.new", "/etc/shadow")
-
