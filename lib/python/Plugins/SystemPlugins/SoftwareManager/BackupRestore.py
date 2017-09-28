@@ -67,6 +67,7 @@ BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma
 	+eEnv_resolve_multi('/etc/sundtek.*')\
 	+eEnv_resolve_multi('/usr/sundtek/*')\
 	+eEnv_resolve_multi('/opt/bin/*')\
+	+eEnv_resolve_multi('/usr/script/*')
 
 # Drop non existant paths from list
 TMPFILES=[]
