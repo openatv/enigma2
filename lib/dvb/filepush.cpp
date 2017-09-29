@@ -54,6 +54,7 @@ void eFilePushThread::thread()
 	{
 	int eofcount = 0;
 	int buf_end = 0;
+	int poll_timeout_count = 0;
 	size_t bytes_read = 0;
 	off_t current_span_offset = 0;
 	size_t current_span_remaining = 0;
@@ -92,7 +93,10 @@ void eFilePushThread::thread()
 #endif
 		}
 		else
+		{
+			eDebug("[eFilePushThread] no read buffer space left");
 			buf_end = 0;
+		}
 
 		if (buf_end < 0)
 		{
@@ -127,7 +131,10 @@ void eFilePushThread::thread()
 				switch (poll(&pfd, 1, 250)) // wait for 250ms
 				{
 					case 0:
-						eDebug("[eFilePushThread] wait for driver eof timeout");
+						if ((++poll_timeout_count % 20) == 0)
+						{
+							eDebug("[eFilePushThread] wait for driver eof timeout - %ds", poll_timeout_count / 4);
+						}
 						continue;
 					case 1:
 						eDebug("[eFilePushThread] wait for driver eof ok");
@@ -139,6 +146,10 @@ void eFilePushThread::thread()
 							break;
 						continue;
 				}
+			}
+			else
+			{
+				poll_timeout_count = 0;
 			}
 
 			if (m_stop)
