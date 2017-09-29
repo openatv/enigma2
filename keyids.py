@@ -224,7 +224,8 @@ KEYIDS = {
 	"KEY_BRIGHTNESSDOWN": 224,
 	"KEY_BRIGHTNESSUP": 225,
 	"KEY_MEDIA": 226,
-	"KEY_VMODE": 227,
+	"KEY_VMODE": 227,  # Deprecated, retained for backwards compatibility
+	"KEY_SWITCHVIDEOMODE": 227,
 	"KEY_UNKNOWN": 240,
 	"KEY_OK": 352,
 	"KEY_SELECT": 353,
@@ -309,11 +310,19 @@ KEYFLAGS = {
 	4: "ascii"
 }
 
+# First entry in each tuple is the preferred name
+knownAlisaes = {
+	227: ("KEY_SWITCHVIDEOMODE", "KEY_VMODE")
+}
+
 def invertKeyIds():
 	invkids = dict()
 	for k, v in KEYIDS.iteritems():
 		if v not in invkids:
 			invkids[v] = k
 		else:
-			print "[keyids] key", v, "is mapped to both", invkids[v], "and", k
+			if v in knownAlisaes and k in knownAlisaes[v]:
+				invkids[v] = knownAlisaes[v][0]
+			else:
+				print "[keyids] key", v, "is mapped to both", invkids[v], "and", k
 	return invkids

@@ -58,6 +58,7 @@ class InfoBar(
 			"showMediaPlayer": (self.showMediaPlayer, _("Open the media player...")),
 			"showPluginBrowser": (self.showPluginBrowser, _("Open the plugins screen...")),
 			"showSetup": (self.showSetup, _("Open the settings screen...")),
+			"showInformation": (self.showInformation, _("Open the system information screen...")),
 			"showWWW": (self.showWWW, _("Open Web browser...")),
 			"showLanSetup": (self.showLanSetup, _("Show LAN Setup...")),
 			"showFormat": (self.showFormat, _("Display the screen format...")),
@@ -260,6 +261,10 @@ class InfoBar(
 	def showSetup(self):
 		from Screens.GeneralSetup import GeneralSetup
 		self.session.open(GeneralSetup)
+
+	def showInformation(self):
+		from Screens.Menu import UserMenuID
+		self.session.open(UserMenuID, menuID="information")
 
 	def showLanSetup(self):
 		from Screens.NetworkSetup import NetworkAdapterSelection

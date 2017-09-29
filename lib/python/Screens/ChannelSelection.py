@@ -23,7 +23,7 @@ from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
-from enigma import eActionMap, eServiceReferenceDVB, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
+from enigma import eActionMap, eServiceReferenceDVB, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG, eDVBLocalTimeHandler
 from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
@@ -2233,8 +2233,71 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		else:
 			self.setModeTv()
 		lastservice = eServiceReference(self.lastservice.value)
+		# If the time still needs to be set, try to make the startup service a DVB service
+		if not lastservice.valid() or (lastservice.type != eServiceReference.idDVB and time() < eDVBLocalTimeHandler.timeOK):  # 01.01.2004
+			print "[ChannelSelection] invalid service or time not set and not on a DVB service - try to use fallback DVB service"
+			lastservice, bouquet, rootbouquet = self.findFallbackService()
+			self.forceZap(lastservice, bouquet, rootbouquet)
 		if lastservice.valid():
 			self.zap()
+
+	def findFallbackService(self):
+		mask = ~(eServiceReference.shouldSort | eServiceReference.hasSortKey | eServiceReference.sort1)
+		return self.findServiceBouquet(lambda ref: ref.type == eServiceReference.idDVB and not ref.flags & mask)
+
+	def forceZap(self, service, bouquet, rootbouquet):
+		if service.valid():
+			self.setRoot(bouquet)
+			self.clearPath()
+			self.enterPath(rootbouquet)
+			if config.usage.multibouquet.value:
+				self.enterPath(bouquet)
+			self.saveRoot()
+			self.saveChannel(service)
+			self.addToHistory(service)
+			self.setCurrentSelection(service)
+		return service
+
+	def findServiceBouquet(self, matchFunc):
+
+		def matchService(bouquet, serviceHandler, matchFunc):
+			servicelist = serviceHandler.list(bouquet)
+			if servicelist is not None:
+				serviceIterator = servicelist.getNext()
+				while serviceIterator.valid():
+					if matchFunc(serviceIterator):
+						return eServiceReference(serviceIterator)
+					serviceIterator = servicelist.getNext()
+			return eServiceReference()
+
+		service_types_ref = service_types_tv_ref
+		foundService = eServiceReference()
+		serviceHandler = eServiceCenter.getInstance()
+		if config.usage.multibouquet.value:
+			bqroot = eServiceReference(service_types_ref)
+			bqroot.setPath('FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
+			rootbouquet = bqroot
+			currentBouquet = self.getRoot()
+			for searchCurrent in (True, False):
+				bouquet = eServiceReference(bqroot)
+				bouquetlist = serviceHandler.list(bouquet)
+				if bouquetlist is not None:
+					bouquet = bouquetlist.getNext()
+					while bouquet.valid():
+						if bouquet.flags & eServiceReference.isDirectory and (currentBouquet is None or (currentBouquet == bouquet) == searchCurrent):
+							foundService = matchService(bouquet, serviceHandler, matchFunc)
+							if foundService.valid():
+								break
+						bouquet = bouquetlist.getNext()
+					if foundService.valid():
+						break
+		else:
+			bqroot = serviceRefAppendPath(service_types_ref, ' FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet')
+			rootbouquet = bqroot
+			bouquet = eServiceReference(bqroot)
+			if bouquet.valid() and bouquet.flags & eServiceReference.isDirectory:
+				foundService = matchService(bouquet, serviceHandler, matchFunc)
+		return foundService, bouquet, rootbouquet
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()

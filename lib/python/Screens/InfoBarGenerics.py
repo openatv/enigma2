@@ -3713,10 +3713,39 @@ class InfoBarTimerButton:
 	def __init__(self):
 		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions", {
 			"timerSelection": (self.timerSelection, _("Open timer list...")),
+			"openAutoTimerList": (self.openAutoTimerList, self._helpOpenAutoTimerList),
 		}, description=_("Timer control"))
 
 	def timerSelection(self):
 		self.session.open(TimerEditList)
+
+	def _helpOpenAutoTimerList(self):
+		try:
+			from Plugins.Extensions.AutoTimer.plugin import autopoller, autotimer
+			return _("Open AutoTimer list...")
+		except ImportError:
+			return None
+
+	def openAutoTimerList(self):
+		try:
+			from Plugins.Extensions.AutoTimer.plugin import autopoller, autotimer
+			if autopoller is not None:
+				autopoller.stop()
+			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
+			self.session.openWithCallback(self.autoTimerEditCallback, AutoTimerOverview, autotimer)
+		except ImportError:
+			self.session.open(MessageBox, _('The Autotimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
+
+	def autoTimerEditCallback(self, session):
+		try:
+			from Plugins.Extensions.AutoTimer.plugin import autopoller, autotimer
+			if session is not None:
+				autotimer.writeXml()
+				autotimer.parseEPG()
+			if config.plugins.autotimer.autopoll.value and autopoller is not None:
+				autopoller.start()
+		except ImportError:
+			self.session.open(MessageBox, _('The Autotimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
 
 class InfoBarVmodeButton:
 	def __init__(self):
