@@ -2844,7 +2844,7 @@ void eDVBServicePlay::switchToTimeshift()
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
 
-	m_cue->seekTo(0, -2);
+	m_cue->seekTo(0, -90000);
 
 	ePtr<iTsSource> source = createTsSource(r);
 	m_service_handler_timeshift.tuneExt(r, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
