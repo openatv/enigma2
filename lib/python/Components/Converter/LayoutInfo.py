@@ -215,10 +215,3 @@ class LayoutInfo(Poll, Converter):
         return fmt % {'size': value,
          'frac': fractal,
          'unit': SIZE_UNITS[u]}
-
-    def doSuspend(self, suspended):
-        if suspended:
-            self.poll_enabled = False
-        else:
-            self.downstream_elements.changed((self.CHANGED_POLL,))
-            self.poll_enabled = True
