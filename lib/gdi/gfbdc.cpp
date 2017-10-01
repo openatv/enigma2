@@ -160,6 +160,24 @@ void gFBDC::exec(const gOpcode *o)
 #else
 		fb->blit();
 #endif
+#ifdef CONFIG_ION
+		if (surface_back.data_phys)
+		{
+			gUnmanagedSurface s(surface);
+			surface = surface_back;
+			surface_back = s;
+
+			if (surface.data_phys > surface_back.data_phys)
+			{
+				fb->setOffset(0);
+			}
+			else
+			{
+				fb->setOffset(surface_back.y);
+			}
+			memcpy(surface.data, surface_back.data, surface.stride * surface.y);
+		}
+#endif
 		break;
 	case gOpcode::sendShow:
 	{
@@ -274,7 +292,7 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 		surface_back.data_phys = 0;
 	}
 
-	eDebug("[gFBDC] resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, fb->Stride());
+	eDebug("[gFBDC] resolution: %d x %d x %d (stride: %d) pages: %d", surface.x, surface.y, surface.bpp, fb->Stride(), fb->getNumPages());
 
 #ifndef CONFIG_ION
 	/* accel is already set in fb.cpp */
