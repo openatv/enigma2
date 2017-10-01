@@ -330,7 +330,7 @@ int main(int argc, char **argv)
 	{
 		int i = 0;
 		bool def = false;
-		std::string path = "${sysconfdir}/enigma2";
+		std::string path = "${sysconfdir}/enigma2/spinner";
 #define MAX_SPINNER 64
 		ePtr<gPixmap> wait[MAX_SPINNER];
 		while(i < MAX_SPINNER)
@@ -345,12 +345,10 @@ int main(int argc, char **argv)
 			{
 				if (!i)
 				{
-					if (def)
-						eDebug("[MAIN] failed to load %s! (%m)", rfilename.c_str());
-					else
+					if (!def)
 					{
 						def = true;
-						snprintf(filename, sizeof(filename), "${datadir}/enigma2/%s/", active_skin.c_str());
+						snprintf(filename, sizeof(filename), "${datadir}/enigma2/%s", active_skin.c_str());
 						path = filename;
 						continue;
 					}
