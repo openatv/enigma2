@@ -214,45 +214,45 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.setTitle(_("Subtitle selection"))
 
 			idx = 0
-
-			for x in subtitlelist:
-				number = str(x[1])
-				description = "?"
-				language = ""
-				selected = ""
-
-				if self.selectedSubtitle and x[:4] == self.selectedSubtitle[:4]:
-					selected = "X"
-					selectedidx = idx
-
-				try:
-					if x[4] != "und":
-						if LanguageCodes.has_key(x[4]):
-							language = _(LanguageCodes[x[4]][0])
-						else:
-							language = x[4]
-				except:
+			if (subtitlelist is not None):
+				for x in subtitlelist:
+					number = str(x[1])
+					description = "?"
 					language = ""
+					selected = ""
 
-				if x[0] == 0:
-					description = "DVB"
-					number = "%x" % (x[1])
+					if self.selectedSubtitle and x[:4] == self.selectedSubtitle[:4]:
+						selected = "X"
+						selectedidx = idx
 
-				elif x[0] == 1:
-					description = "teletext"
-					number = "%x%02x" %(x[3] and x[3] or 8, x[2])
-
-				elif x[0] == 2:
-					types = ("unknown", "embedded", "SSA file", "ASS file",
-							"SRT file", "VOB file", "PGS file")
 					try:
-						description = types[x[2]]
+						if x[4] != "und":
+							if LanguageCodes.has_key(x[4]):
+								language = _(LanguageCodes[x[4]][0])
+							else:
+								language = x[4]
 					except:
-						description = _("unknown") + ": %s" % x[2]
-					number = str(int(number) + 1)
+						language = ""
 
-				streams.append((x, "", number, description, language, selected))
-				idx += 1
+					if x[0] == 0:
+						description = "DVB"
+						number = "%x" % (x[1])
+
+					elif x[0] == 1:
+						description = "teletext"
+						number = "%x%02x" %(x[3] and x[3] or 8, x[2])
+
+					elif x[0] == 2:
+						types = ("unknown", "embedded", "SSA file", "ASS file",
+								"SRT file", "VOB file", "PGS file")
+						try:
+							description = types[x[2]]
+						except:
+							description = _("unknown") + ": %s" % x[2]
+						number = str(int(number) + 1)
+
+					streams.append((x, "", number, description, language, selected))
+					idx += 1
 
 			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0)  and not ".DVDPlayer'>" in `self.infobar`:
 				conflist.append(getConfigListEntry(_("Subtitle Quickmenu"), ConfigNothing(), None))
