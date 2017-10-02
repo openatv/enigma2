@@ -15,6 +15,15 @@
 #include <lib/base/cfile.h>
 #endif
 
+#ifdef CONFIG_ION
+extern void bcm_accel_blit(
+		int src_addr, int src_width, int src_height, int src_stride, int src_format,
+		int dst_addr, int dst_width, int dst_height, int dst_stride,
+		int src_x, int src_y, int width, int height,
+		int dst_x, int dst_y, int dwidth, int dheight,
+		int pal_addr, int flags);
+#endif
+
 gFBDC::gFBDC()
 {
 	fb=new fbClass;
@@ -167,6 +176,7 @@ void gFBDC::exec(const gOpcode *o)
 			surface = surface_back;
 			surface_back = s;
 
+			fb->waitVSync();
 			if (surface.data_phys > surface_back.data_phys)
 			{
 				fb->setOffset(0);
@@ -175,7 +185,12 @@ void gFBDC::exec(const gOpcode *o)
 			{
 				fb->setOffset(surface_back.y);
 			}
-			memcpy(surface.data, surface_back.data, surface.stride * surface.y);
+			bcm_accel_blit(
+				surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride, 0,
+				surface.data_phys, surface.x, surface.y, surface.stride,
+				0, 0, surface.x, surface.y,
+				0, 0, surface.x, surface.y,
+				0, 0);
 		}
 #endif
 		break;
