@@ -1961,6 +1961,7 @@ class InfoBarSeek:
 			# "okButton": (self.okButton, _("Continue playback")),
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
 			"seekBack": (self.seekBack, _("Rewind/step back from pause")),
+			"slowFwd": (self.slowFwd, _("Slow forward/step back from pause")),
 			"seekFwdManual": (self.seekFwdManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", True)),
 			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
 
@@ -1977,6 +1978,7 @@ class InfoBarSeek:
 
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
 			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
+			"slowFwd": (self.slowFwd, _("Slow forward/step back from pause")),
 			"seekFwdManual": (self.seekFwdManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", True)),
 			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
 			"SeekbarFwd": (self.seekFwdSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", True)),
@@ -2298,6 +2300,27 @@ class InfoBarSeek:
 			else:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.pts_lastseekspeed = self.seekstate[1]
+
+	def slowFwd(self):
+		seek = self.getSeek()
+		if seek and not (seek.isCurrentlySeekable() & 2):
+			if not self.fast_winding_hint_message_showed and (seek.isCurrentlySeekable() & 1):
+				self.session.open(MessageBox, _("No slow forward possible yet.. but you can use the number buttons to skip forward/backward!"), MessageBox.TYPE_INFO, timeout=10)
+				self.fast_winding_hint_message_showed = True
+				return
+			return 0  # treat as unhandled action
+		if self.seekstate == self.SEEK_STATE_PLAY or self.isStateForward(self.seekstate) or self.isStateBackward(self.seekstate):
+			if len(config.seek.speeds_slowmotion.value):
+				self.setSeekState(self.makeStateSlowMotion(config.seek.speeds_slowmotion.value[-1]))
+			else:
+				return 0
+		elif self.seekstate == self.SEEK_STATE_PAUSE:
+			self.doSeekRelative(1)
+		elif self.seekstate == self.SEEK_STATE_EOF:
+			pass
+		elif self.isStateSlowMotion(self.seekstate):
+			speed = self.getLower(self.seekstate[2], config.seek.speeds_slowmotion.value) or config.seek.speeds_slowmotion.value[0]
+			self.setSeekState(self.makeStateSlowMotion(speed))
 
 	def _helpSeekManualSeekbar(self, manual=True, fwd=True):
 		if manual:
