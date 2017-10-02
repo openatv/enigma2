@@ -340,6 +340,11 @@ bool eDVBAdapterLinux::isusb(int nr)
 		return true;
 	}
 	snprintf(devicename, sizeof(devicename), "/sys/class/dvb/dvb%d.frontend0/device/ep_84", nr);
+	if (::access(devicename, X_OK) >= 0)
+	{
+		return true;
+	}
+	snprintf(devicename, sizeof(devicename), "/sys/class/dvb/dvb%d.frontend0/device/ep_8f", nr);
 	return ::access(devicename, X_OK) >= 0;
 }
 
