@@ -1426,7 +1426,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				break;
 		}
 	}
-	else if(!strcmp(m_description, "WinTV HVR-850") || !strcmp(m_description, "Hauppauge"))
+	else if(!strcmp(m_description, "WinTV HVR-850") || !strcmp(m_description, "Hauppauge") || !strcmp(m_description, "LG Electronics LGDT3306A VSB/QAM Frontend"))
 	{
 		eDVBFrontendParametersATSC parm;
 		oparm.getATSC(parm);
