@@ -525,6 +525,8 @@ from Screens.Ci import CiHandler
 
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
+profile("Load:VideoResolutionKey")
+from Screens.VideoResolution import VideoResolutionKey
 
 from time import time, localtime, strftime
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
@@ -570,6 +572,8 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	global Screens
 	Screens.Standby.powerKey = power = PowerKey(session)
+	profile("Init:VideoResolutionKey")
+	resolution = VideoResolutionKey(session)
 
 	if getBoxType() in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone') or getMachineBuild() in ('inihde', 'inihdx'):
 		profile("VFDSYMBOLS")
