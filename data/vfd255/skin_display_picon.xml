@@ -235,6 +235,11 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
+	<screen name="GeneralMenuSummary" position="0,0" size="255,64" >
+		<widget name="mTitle" position="0,0" size="255,32" font="FdLcD;28" halign="center"/>
+		<widget name="mMenu" position="0,36" size="255,28" font="FdLcD;24" halign="center"/>
+	</screen>
+
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="255,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="255,24" font="FdLcD;22" halign="left"  noWrap="1">
@@ -370,6 +375,11 @@
 		<widget source="parent.list" render="Label" position="0,50" size="255,14" font="FdLcD;12" halign="center" noWrap="1"  >
 			<convert type="StringListSelection" />
 		</widget>
+	</screen>
+
+	<screen name="VideoResolution_summary" position="0,0" size="255,64" >
+		<widget source="parent.Title" render="Label" position="0,0" size="255,32" font="FdLcD;28" halign="center" />
+		<widget source="parent.summary_resolution" render="Label" position="0,36" size="255,28" font="FdLcD;24" halign="center" />
 	</screen>
 
 <!-- DVD -->
