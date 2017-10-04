@@ -11703,7 +11703,7 @@ msgid "record"
 msgstr "Aufnehmen"
 
 msgid "zap and record"
-msgstr "Umschalten und Aufnehmen"
+msgstr "Umschalten und aufnehmen"
 
 #
 msgid "recording..."
@@ -18345,22 +18345,22 @@ msgid "When enabled, always descramble receiving http streams. This takes up mor
 msgstr "Wenn aktiviert, dann werden empfangene HTTP-Streams immer entschlüsselt. Dies verbraucht mehr Ressourcen (Demuxer). Aktivieren Sie diese Option nur, wenn es notwendig ist. Individuelle Streams sind immer entschlüsselt, wenn 0x100 zum Servicetyp hinzugefügt wurde, unabhängig von dieser Einstellung."
 
 msgid "Always include ECM in recordings"
-msgstr "Immer ECM mit Aufnehmen"
+msgstr "Immer ECM mit aufnehmen"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
-msgstr "Immer ECM mit Aufnehmen. Diese Einstellung setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer Verschlüsselt gespeichert und Nachträglich entschlüsselt, Die Hardware muss diese Funktion Unterstützen. Standard: Aus."
+msgstr "Immer ECM mit aufnehmen. Diese Einstellung setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt. Standard: Aus."
 
 msgid "Never decrypt while recording"
 msgstr "Bei der Aufnahme niemals entschlüsseln"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
-msgstr "Niemals Entschlüsseln wärend einer Aufnahme. Diese Funktion setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer Verschlüsselt gespeichert und müssen Nachträglich entschlüsselt werden. Standard: Aus."
+msgstr "Während einer Aufnahme niemals entschlüsseln. Diese Funktion setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden. Standard: Aus."
 
 msgid "Do not center DVB subs on this service"
-msgstr "Untertitel niemals Zentrieren auf diesen Sender"
+msgstr "Untertitel auf diesem Sender niemals zentrieren"
 
 msgid "Do center DVB subs on this service"
-msgstr "Untertitel immer Zentrieren auf diesen Sender"
+msgstr "Untertitel auf diesem Sender immer zentrieren"
 
 msgid "Audio volume step size"
 msgstr "Ton Lautstärke Schrittweite"
@@ -18372,7 +18372,7 @@ msgid "Delivery system workaround"
 msgstr "Tuner System Spezial Funktion"
 
 msgid "Workaround for old tuner driver"
-msgstr "Nur Aktivieren wenn es Probleme gibt mit Multituner"
+msgstr "Nur aktivieren, wenn es Probleme mit Multituner gibt"
 
 msgid "Incorrect format for skip value: '%s'\nSkip cancelled."
 msgstr "Es wurde kein gültiger Wert eingegeben: '%s'\nSprung wird abgebrochen."
