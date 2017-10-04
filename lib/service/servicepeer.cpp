@@ -55,6 +55,17 @@ void done_servicepeer()
 	e2avahi_resolve_cancel(service_type, e2avahi_resolve_callback, &peers);
 }
 
+/* For now, just return whatever comes first in the map, which is
+ * reather unpredictable. We'd probably want some ranking here. */
+bool getAnyPeerStreamingBox(std::string &result)
+{
+	PeerMapping::iterator it = peers.begin();
+	if (it == peers.end())
+		return false;
+	result = it->second;
+	return true;
+}
+
 PyObject *getPeerStreamingBoxes()
 {
 	ePyObject ret = PyList_New(peers.size());

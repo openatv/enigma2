@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2017-08-16 19:03+0200\n"
+"PO-Revision-Date: 2017-10-04 21:53+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Stop recording now"
@@ -2713,7 +2713,7 @@ msgstr "Umschalten LCD/LiveTV"
 
 #: ButtonSetup.py
 msgid "Back/Recall"
-msgstr ""
+msgstr "Zurück"
 
 #: ButtonSetup.py
 msgid "long"
@@ -5016,7 +5016,7 @@ msgstr "OK lang"
 
 #: ButtonSetup.py
 msgid "Media"
-msgstr ""
+msgstr "Medien"
 
 #: ButtonSetup.py
 msgid "Media long"
@@ -6654,7 +6654,7 @@ msgstr "Keine Aufnahme wegen Timerkonflikt mit Timer '%s'"
 
 #: InfoBarGenerics.py:3704
 msgid "Could not record due to invalid service %s"
-msgstr "Could not record due to invalid service '%s'"
+msgstr "Aufgrund ungültiger Dienst %s konnte nicht aufgezeichnet werden."
 
 #: InfoBarGenerics.py
 msgid "Dolby Digital downmix is now"
@@ -16194,7 +16194,7 @@ msgstr "Seite zurück lang"
 
 #: ButtonSetup.py
 msgid "TV"
-msgstr ""
+msgstr "TV"
 
 #: ButtonSetup.py
 msgid "Rec"
@@ -16298,7 +16298,7 @@ msgstr "Suche/Web lang"
 
 #: ButtonSetup.py
 msgid "Mark/Portal/Playlist"
-msgstr ""
+msgstr "Mark/Portal/Playlist"
 
 #: ButtonSetup.py
 msgid "Sleep"
@@ -16325,11 +16325,11 @@ msgid "Context long"
 msgstr "Kontext lang"
 
 msgid "F1/F3"
-msgstr ""
+msgstr "F1/F3"
 
 #: ButtonSetup.py
 msgid "F1/LAN"
-msgstr ""
+msgstr "F1/LAN"
 
 #: ButtonSetup.py
 msgid "F1/LAN long"
@@ -16337,7 +16337,7 @@ msgstr "F1/LAN lang"
 
 #: ButtonSetup.py
 msgid "F2"
-msgstr ""
+msgstr "F2"
 
 #: ButtonSetup.py
 msgid "F2 long"
@@ -16345,7 +16345,7 @@ msgstr "F2 lang"
 
 #: ButtonSetup.py
 msgid "F3"
-msgstr ""
+msgstr "F3"
 
 #: ButtonSetup.py
 msgid "F3 long"
@@ -16731,11 +16731,11 @@ msgstr "Sundtek Control-Center"
 
 #: ButtonSetup.py
 msgid "Pause"
-msgstr ""
+msgstr "Anhalten"
 
 #: ButtonSetup.py
 msgid "SAT"
-msgstr ""
+msgstr "SAT"
 
 #: ButtonSetup.py
 msgid "SAT long"
@@ -16799,7 +16799,7 @@ msgstr "Untertitelmenü"
 
 #: ButtonSetup.py
 msgid "Letterbox zoom"
-msgstr ""
+msgstr "Letterbox-zoom"
 
 #: ButtonSetup.py
 msgid "Show PIP"
@@ -16875,15 +16875,15 @@ msgstr "Untertitel Einstellungen"
 
 #: ButtonSetup.py
 msgid "PPanel"
-msgstr ""
+msgstr "PPanel"
 
 #: ButtonSetup.py:
 msgid "Shellscript"
-msgstr ""
+msgstr "Shellscript"
 
 #: ButtonSetup.py
 msgid "EnhancedMovieCenter"
-msgstr ""
+msgstr "EnhancedMovieCenter"
 
 #: ButtonSetup.py
 msgid "QuickMenu"
@@ -17425,11 +17425,11 @@ msgstr "Sind Sie sicher, alle gelöschten Userbouquets zu entfernen?"
 
 #: TimerEntry.py
 msgid "normal"
-msgstr ""
+msgstr "normal"
 
 #: TimerEntry.py
 msgid "%d %B %Y"
-msgstr ""
+msgstr "%d %B %Y"
 
 #: TimerEntry.py
 msgid "Set the name the recording will get."
@@ -17716,7 +17716,7 @@ msgstr "Video Clipping"
 
 #: SystemPlugins/VideoClippingSetup/plugin.py:135
 msgid "clip overscan / letterbox borders"
-msgstr ""
+msgstr "Clip \"Overscan\" / Letterbox Grenzen"
 
 msgid ""
 "\n"
@@ -18374,5 +18374,1004 @@ msgstr "Tuner System Spezial Funktion"
 msgid "Workaround for old tuner driver"
 msgstr "Nur aktivieren, wenn es Probleme mit Multituner gibt"
 
-msgid "Incorrect format for skip value: '%s'\nSkip cancelled."
-msgstr "Es wurde kein gültiger Wert eingegeben: '%s'\nSprung wird abgebrochen."
+msgid ""
+"Incorrect format for skip value: '%s'\n"
+"Skip cancelled."
+msgstr ""
+"Es wurde kein gültiger Wert eingegeben: '%s'\n"
+"Sprung wird abgebrochen."
+
+msgid "Country"
+msgstr "Land"
+
+#: CountryCodes.py:2
+msgid "Afghanistan"
+msgstr "Afghanistan"
+
+#: CountryCodes.py:3
+msgid "Aland Islands"
+msgstr "Ålandinseln"
+
+#: CountryCodes.py:4
+msgid "Albania"
+msgstr "Albanien"
+
+#: CountryCodes.py:5
+msgid "Algeria"
+msgstr "Algerien"
+
+#: CountryCodes.py:6
+msgid "American Samoa"
+msgstr "Amerikanisch-Samoa"
+
+#: CountryCodes.py:7
+msgid "Andorra"
+msgstr "Andorra"
+
+#: CountryCodes.py:8
+msgid "Angola"
+msgstr "Angola"
+
+#: CountryCodes.py:9
+msgid "Anguilla"
+msgstr "Anguilla"
+
+#: CountryCodes.py:10
+msgid "Antarctica"
+msgstr "Antarktika"
+
+#: CountryCodes.py:11
+msgid "Antigua and Barbuda"
+msgstr "Antigua und Barbuda"
+
+#: CountryCodes.py:12
+msgid "Argentina"
+msgstr "Argentinien"
+
+#: CountryCodes.py:13
+msgid "Armenia"
+msgstr "Armenien"
+
+#: CountryCodes.py:14
+msgid "Aruba"
+msgstr "Aruba"
+
+#: CountryCodes.py:15
+msgid "Australia"
+msgstr "Australien"
+
+#: CountryCodes.py:16
+msgid "Austria"
+msgstr "Österreich"
+
+#: CountryCodes.py:17
+msgid "Azerbaijan"
+msgstr "Aserbaidschan"
+
+#: CountryCodes.py:18
+msgid "Bahamas"
+msgstr "Bahamas"
+
+#: CountryCodes.py:19
+msgid "Bahrain"
+msgstr "Bahrain"
+
+#: CountryCodes.py:20
+msgid "Bangladesh"
+msgstr "Bangladesch"
+
+#: CountryCodes.py:21
+msgid "Barbados"
+msgstr "Barbados"
+
+#: CountryCodes.py:22
+msgid "Belarus"
+msgstr "Weißrussland"
+
+#: CountryCodes.py:23
+msgid "Belgium"
+msgstr "Belgien"
+
+#: CountryCodes.py:24
+msgid "Belize"
+msgstr "Belize"
+
+#: CountryCodes.py:25
+msgid "Benin"
+msgstr "Benin"
+
+#: CountryCodes.py:26
+msgid "Bermuda"
+msgstr "Bermuda"
+
+#: CountryCodes.py:27
+msgid "Bhutan"
+msgstr "Bhutan"
+
+#: CountryCodes.py:28
+msgid "Bolivia (Plurinational State of)"
+msgstr "Bolivien (Plurinationaler Staat)"
+
+#: CountryCodes.py:29
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr "Bonaire, Sint Eustatius und Saba"
+
+#: CountryCodes.py:30
+msgid "Bosnia and Herzegovina"
+msgstr "Bosnien und Herzegowina"
+
+#: CountryCodes.py:31
+msgid "Botswana"
+msgstr "Botswana"
+
+#: CountryCodes.py:32
+msgid "Bouvet Island"
+msgstr "Bouvet Insel"
+
+#: CountryCodes.py:33
+msgid "Brazil"
+msgstr "Brasilien"
+
+#: CountryCodes.py:34
+msgid "British Indian Ocean Territory"
+msgstr "Britisches Territorium im Indischen Ozean"
+
+#: CountryCodes.py:35
+msgid "Brunei Darussalam"
+msgstr "Brunei Darussalam"
+
+#: CountryCodes.py:36
+msgid "Bulgaria"
+msgstr "Bulgarien"
+
+#: CountryCodes.py:37
+msgid "Burkina Faso"
+msgstr "Burkina Faso"
+
+#: CountryCodes.py:38
+msgid "Burundi"
+msgstr "Burundi"
+
+#: CountryCodes.py:39
+msgid "Cabo Verde"
+msgstr "Kap Verde"
+
+#: CountryCodes.py:40
+msgid "Cambodia"
+msgstr "Kambodscha"
+
+#: CountryCodes.py:41
+msgid "Cameroon"
+msgstr "Kameru"
+
+#: CountryCodes.py:42
+msgid "Canada"
+msgstr "Kanada"
+
+#: CountryCodes.py:43
+msgid "Cayman Islands"
+msgstr "Kaimaninseln"
+
+#: CountryCodes.py:44
+msgid "Central African Republic"
+msgstr "Zentralafrikanische Republik"
+
+#: CountryCodes.py:45
+msgid "Chad"
+msgstr "Tschad"
+
+#: CountryCodes.py:46
+msgid "Chile"
+msgstr "Chile"
+
+#: CountryCodes.py:47
+msgid "China"
+msgstr "China"
+
+#: CountryCodes.py:48
+msgid "Christmas Island"
+msgstr "Weihnachtsinsel"
+
+#: CountryCodes.py:49
+msgid "Cocos (Keeling) Islands"
+msgstr "Kokosinseln"
+
+#: CountryCodes.py:50
+msgid "Colombia"
+msgstr "Kolumbien"
+
+#: CountryCodes.py:51
+msgid "Comoros"
+msgstr "Komoren"
+
+#: CountryCodes.py:52
+msgid "Congo"
+msgstr "Kongo"
+
+#: CountryCodes.py:53
+msgid "Congo (Democratic Republic of the)"
+msgstr "Demokratische Republik Kongo"
+
+#: CountryCodes.py:54
+msgid "Cook Islands"
+msgstr "Cookinseln"
+
+#: CountryCodes.py:55
+msgid "Costa Rica"
+msgstr "Costa Rica"
+
+#: CountryCodes.py:56
+msgid "Cote d'Ivoire"
+msgstr "Cote d'Ivoire"
+
+#: CountryCodes.py:57
+msgid "Croatia"
+msgstr "Kroatien"
+
+#: CountryCodes.py:58
+msgid "Cuba"
+msgstr "Kuba"
+
+#: CountryCodes.py:59
+msgid "Curacao"
+msgstr "Curacao"
+
+#: CountryCodes.py:60
+msgid "Cyprus"
+msgstr "Zypern"
+
+#: CountryCodes.py:61
+msgid "Czechia"
+msgstr "Tschechien"
+
+#: CountryCodes.py:62
+msgid "Denmark"
+msgstr "Dänemark"
+
+#: CountryCodes.py:63
+msgid "Djibouti"
+msgstr "Dschibuti"
+
+#: CountryCodes.py:64
+msgid "Dominica"
+msgstr "Dominica"
+
+#: CountryCodes.py:65
+msgid "Dominican Republic"
+msgstr "Dominikanische Republik"
+
+#: CountryCodes.py:66
+msgid "Ecuador"
+msgstr "Ecuador"
+
+#: CountryCodes.py:67
+msgid "Egypt"
+msgstr "Ägypten"
+
+#: CountryCodes.py:68
+msgid "El Salvador"
+msgstr "El Salvador"
+
+#: CountryCodes.py:69
+msgid "Equatorial Guinea"
+msgstr "Äquatorialguinea"
+
+#: CountryCodes.py:70
+msgid "Eritrea"
+msgstr "Eritrea"
+
+#: CountryCodes.py:71
+msgid "Estonia"
+msgstr "Estland"
+
+#: CountryCodes.py:72
+msgid "Ethiopia"
+msgstr "Äthiopien"
+
+#: CountryCodes.py:73
+msgid "Falkland Islands (Malvinas)"
+msgstr "Falklandinseln (Malvinas)"
+
+#: CountryCodes.py:74
+msgid "Faroe Islands"
+msgstr "Färöer"
+
+#: CountryCodes.py:75
+msgid "Fiji"
+msgstr "Fidschi"
+
+#: CountryCodes.py:76
+msgid "Finland"
+msgstr "Finnland"
+
+#: CountryCodes.py:77
+msgid "France"
+msgstr "Frankreich"
+
+#: CountryCodes.py:78
+msgid "French Guiana"
+msgstr "Französisch-Guayana"
+
+#: CountryCodes.py:79
+msgid "French Polynesia"
+msgstr "Französisch-Polynesien"
+
+#: CountryCodes.py:80
+msgid "French Southern Territories"
+msgstr "Französische Süd- und Antarktisgebiete"
+
+#: CountryCodes.py:81
+msgid "Gabon"
+msgstr "Gabun"
+
+#: CountryCodes.py:82
+msgid "Gambia"
+msgstr "Gambiau"
+
+#: CountryCodes.py:83
+msgid "Georgia"
+msgstr "Georgienu"
+
+#: CountryCodes.py:84
+msgid "Germany"
+msgstr "Deutschland"
+
+#: CountryCodes.py:85
+msgid "Ghana"
+msgstr "Ghana"
+
+#: CountryCodes.py:86
+msgid "Gibraltar"
+msgstr "Gibraltar"
+
+#: CountryCodes.py:87
+msgid "Greece"
+msgstr "Griechenland"
+
+#: CountryCodes.py:88
+msgid "Greenland"
+msgstr "Grönland"
+
+#: CountryCodes.py:89
+msgid "Grenada"
+msgstr "Grenada"
+
+#: CountryCodes.py:90
+msgid "Guadeloupe"
+msgstr "Guadeloupe"
+
+#: CountryCodes.py:91
+msgid "Guam"
+msgstr "Guam"
+
+#: CountryCodes.py:92
+msgid "Guatemala"
+msgstr "Guatemala"
+
+#: CountryCodes.py:93
+msgid "Guernsey"
+msgstr "Guernsey"
+
+#: CountryCodes.py:94
+msgid "Guinea"
+msgstr "Guinea"
+
+#: CountryCodes.py:95
+msgid "Guinea-Bissau"
+msgstr "Guinea-Bissau"
+
+#: CountryCodes.py:96
+msgid "Guyana"
+msgstr "Guyana"
+
+#: CountryCodes.py:97
+msgid "Haiti"
+msgstr "Haiti"
+
+#: CountryCodes.py:98
+msgid "Heard Island and McDonald Islands"
+msgstr "Heard und McDonald Inseln"
+
+#: CountryCodes.py:99
+msgid "Holy See"
+msgstr "Liechtenstein"
+
+#: CountryCodes.py:100
+msgid "Honduras"
+msgstr "Honduras"
+
+#: CountryCodes.py:101
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+#: CountryCodes.py:102
+msgid "Hungary"
+msgstr "Ungarn"
+
+#: CountryCodes.py:103
+msgid "Iceland"
+msgstr "Island"
+
+#: CountryCodes.py:104
+msgid "India"
+msgstr "Indien"
+
+#: CountryCodes.py:105
+msgid "Indonesia"
+msgstr "Indonesien"
+
+#: CountryCodes.py:106
+msgid "Iran (Islamic Republic of)"
+msgstr "Iran (Islamische Republik)"
+
+#: CountryCodes.py:107
+msgid "Iraq"
+msgstr "Irak"
+
+#: CountryCodes.py:108
+msgid "Ireland"
+msgstr "Irland"
+
+#: CountryCodes.py:109
+msgid "Isle of Man"
+msgstr "Isle of Man"
+
+#: CountryCodes.py:110
+msgid "Israel"
+msgstr "Israel"
+
+#: CountryCodes.py:111
+msgid "Italy"
+msgstr "Italien"
+
+#: CountryCodes.py:112
+msgid "Jamaica"
+msgstr "Jamaika"
+
+#: CountryCodes.py:113
+msgid "Japan"
+msgstr "Japan"
+
+#: CountryCodes.py:114
+msgid "Jersey"
+msgstr "Jersey"
+
+#: CountryCodes.py:115
+msgid "Jordan"
+msgstr "Jordanien"
+
+#: CountryCodes.py:116
+msgid "Kazakhstan"
+msgstr "Kasachstan"
+
+#: CountryCodes.py:117
+msgid "Kenya"
+msgstr "Kenia"
+
+#: CountryCodes.py:118
+msgid "Kiribati"
+msgstr "Kiribati"
+
+#: CountryCodes.py:119
+msgid "Korea (Democratic People's Republic of)"
+msgstr "Nordkorea (Volksrepublik)"
+
+#: CountryCodes.py:120
+msgid "Korea (Republic of)"
+msgstr "Südkorea"
+
+#: CountryCodes.py:121
+msgid "Kuwait"
+msgstr "Kuwait"
+
+#: CountryCodes.py:122
+msgid "Kyrgyzstan"
+msgstr "Kirgisistan"
+
+#: CountryCodes.py:123
+msgid "Lao People's Democratic Republic"
+msgstr "Demokratische Volksrepublik Laos"
+
+#: CountryCodes.py:124
+msgid "Latvia"
+msgstr "Lettland"
+
+#: CountryCodes.py:125
+msgid "Lebanon"
+msgstr "Libanon"
+
+#: CountryCodes.py:126
+msgid "Lesotho"
+msgstr "Lesotho"
+
+#: CountryCodes.py:127
+msgid "Liberia"
+msgstr "Liberia"
+
+#: CountryCodes.py:128
+msgid "Libya"
+msgstr "Libyen"
+
+#: CountryCodes.py:129
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+#: CountryCodes.py:130
+msgid "Lithuania"
+msgstr "Litauen"
+
+#: CountryCodes.py:131
+msgid "Luxembourg"
+msgstr "Luxemburg"
+
+#: CountryCodes.py:132
+msgid "Macao"
+msgstr "Macau"
+
+#: CountryCodes.py:133
+msgid "Macedonia (the former Yugoslav Republic of)"
+msgstr "Mazedonien"
+
+#: CountryCodes.py:134
+msgid "Madagascar"
+msgstr "Madagaskar"
+
+#: CountryCodes.py:135
+msgid "Malawi"
+msgstr "Malawi"
+
+#: CountryCodes.py:136
+msgid "Malaysia"
+msgstr "Malaysia"
+
+#: CountryCodes.py:137
+msgid "Maldives"
+msgstr "Malediven"
+
+#: CountryCodes.py:138
+msgid "Mali"
+msgstr "Mali"
+
+#: CountryCodes.py:139
+msgid "Malta"
+msgstr "Malta"
+
+#: CountryCodes.py:140
+msgid "Marshall Islands"
+msgstr "Marshallinseln"
+
+#: CountryCodes.py:141
+msgid "Martinique"
+msgstr "Martinique"
+
+#: CountryCodes.py:142
+msgid "Mauritania"
+msgstr "Mauretanien"
+
+#: CountryCodes.py:143
+msgid "Mauritius"
+msgstr "Mauritius"
+
+#: CountryCodes.py:144
+msgid "Mayotte"
+msgstr "Mayotte"
+
+#: CountryCodes.py:145
+msgid "Mexico"
+msgstr "Mexiko"
+
+#: CountryCodes.py:146
+msgid "Micronesia (Federated States of)"
+msgstr "Mikronesien (Föderierte Staaten)"
+
+#: CountryCodes.py:147
+msgid "Moldova (Republic of)"
+msgstr "Moldawien"
+
+#: CountryCodes.py:148
+msgid "Monaco"
+msgstr "Monaco"
+
+#: CountryCodes.py:149
+msgid "Mongolia"
+msgstr "Mongolei"
+
+#: CountryCodes.py:150
+msgid "Montenegro"
+msgstr "Montenegro"
+
+#: CountryCodes.py:151
+msgid "Montserrat"
+msgstr "Montserrat"
+
+#: CountryCodes.py:152
+msgid "Morocco"
+msgstr "Marokko"
+
+#: CountryCodes.py:153
+msgid "Mozambique"
+msgstr "Mosambik"
+
+#: CountryCodes.py:154
+msgid "Myanmar"
+msgstr "Myanmar"
+
+#: CountryCodes.py:155
+msgid "Namibia"
+msgstr "Namibia"
+
+#: CountryCodes.py:156
+msgid "Nauru"
+msgstr "Nauru"
+
+#: CountryCodes.py:157
+msgid "Nepal"
+msgstr "Nepal"
+
+#: CountryCodes.py:158
+msgid "Netherlands"
+msgstr "Niederlande"
+
+#: CountryCodes.py:159
+msgid "New Caledonia"
+msgstr "Neukaledonien"
+
+#: CountryCodes.py:160
+msgid "New Zealand"
+msgstr "Neuseeland"
+
+#: CountryCodes.py:161
+msgid "Nicaragua"
+msgstr "Nicaragua"
+
+#: CountryCodes.py:162
+msgid "Niger"
+msgstr "Niger"
+
+#: CountryCodes.py:163
+msgid "Nigeria"
+msgstr "Nigeria"
+
+#: CountryCodes.py:164
+msgid "Niue"
+msgstr "Niue"
+
+#: CountryCodes.py:165
+msgid "Norfolk Island"
+msgstr "Norfolkinsel"
+
+#: CountryCodes.py:166
+msgid "Northern Mariana Islands"
+msgstr "Nördliche Marianen"
+
+#: CountryCodes.py:167
+msgid "Norway"
+msgstr "Norwegen"
+
+#: CountryCodes.py:168
+msgid "Oman"
+msgstr "Oman"
+
+#: CountryCodes.py:169
+msgid "Pakistan"
+msgstr "Pakistan"
+
+#: CountryCodes.py:170
+msgid "Palau"
+msgstr "Palau"
+
+#: CountryCodes.py:171
+msgid "Palestine, State of"
+msgstr "Palästina, Staat"
+
+#: CountryCodes.py:172
+msgid "Panama"
+msgstr "Panama"
+
+#: CountryCodes.py:173
+msgid "Papua New Guinea"
+msgstr "Papua-Neuguinea"
+
+#: CountryCodes.py:174
+msgid "Paraguay"
+msgstr "Paraguay"
+
+#: CountryCodes.py:175
+msgid "Peru"
+msgstr "Peru"
+
+#: CountryCodes.py:176
+msgid "Philippines"
+msgstr "Philippinen"
+
+#: CountryCodes.py:177
+msgid "Pitcairn"
+msgstr "Pitcairn"
+
+#: CountryCodes.py:178
+msgid "Poland"
+msgstr "Polen"
+
+#: CountryCodes.py:179
+msgid "Portugal"
+msgstr "Portugal"
+
+#: CountryCodes.py:180
+msgid "Puerto Rico"
+msgstr "Puerto Rico"
+
+#: CountryCodes.py:181
+msgid "Qatar"
+msgstr "Katar"
+
+#: CountryCodes.py:182
+msgid "Reunion"
+msgstr "Réunion"
+
+#: CountryCodes.py:183
+msgid "Romania"
+msgstr "Rumänien"
+
+#: CountryCodes.py:184
+msgid "Russian Federation"
+msgstr "Russland"
+
+#: CountryCodes.py:185
+msgid "Rwanda"
+msgstr "Rwanda"
+
+#: CountryCodes.py:186
+msgid "Saint Barthelemy"
+msgstr "Saint-Barthélemy"
+
+#: CountryCodes.py:187
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr "St. Helena, Ascension und Tristan da Cunha"
+
+#: CountryCodes.py:188
+msgid "Saint Kitts and Nevis"
+msgstr "St. Kitts und Nevis"
+
+#: CountryCodes.py:189
+msgid "Saint Lucia"
+msgstr "Sankt Lucia"
+
+#: CountryCodes.py:190
+msgid "Saint Martin (French part)"
+msgstr "Saint-Martin"
+
+#: CountryCodes.py:191
+msgid "Saint Pierre and Miquelon"
+msgstr "Saint-Pierre und Miquelon"
+
+#: CountryCodes.py:192
+msgid "Saint Vincent and the Grenadines"
+msgstr "St. Vincent und die Grenadinen"
+
+#: CountryCodes.py:193
+msgid "Samoa"
+msgstr "Samoa"
+
+#: CountryCodes.py:194
+msgid "San Marino"
+msgstr "San Marino"
+
+#: CountryCodes.py:195
+msgid "Sao Tome and Principe"
+msgstr "S&atilde;o Tom&eacute; und Pr&iacute;ncipe"
+
+#: CountryCodes.py:196
+msgid "Saudi Arabia"
+msgstr "Saudi-Arabien"
+
+#: CountryCodes.py:197
+msgid "Senegal"
+msgstr "Senegal"
+
+#: CountryCodes.py:198
+msgid "Serbia"
+msgstr "Serbien"
+
+#: CountryCodes.py:199
+msgid "Seychelles"
+msgstr "Seychellen"
+
+#: CountryCodes.py:200
+msgid "Sierra Leone"
+msgstr "Sierra Leone"
+
+#: CountryCodes.py:201
+msgid "Singapore"
+msgstr "Singapur"
+
+#: CountryCodes.py:202
+msgid "Sint Maarten (Dutch part)"
+msgstr "St. Martin (Niederländischer Teil)"
+
+#: CountryCodes.py:203
+msgid "Slovakia"
+msgstr "Slowakei"
+
+#: CountryCodes.py:204
+msgid "Slovenia"
+msgstr "Slowenien"
+
+#: CountryCodes.py:205
+msgid "Solomon Islands"
+msgstr "Salomonen"
+
+#: CountryCodes.py:206
+msgid "Somalia"
+msgstr "Somalia"
+
+#: CountryCodes.py:207
+msgid "South Africa"
+msgstr "Südafrika"
+
+#: CountryCodes.py:208
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Südgeorgien und die Südlichen Sandwichinseln"
+
+#: CountryCodes.py:209
+msgid "South Sudan"
+msgstr "Südsudan"
+
+#: CountryCodes.py:210
+msgid "Spain"
+msgstr "Spanien"
+
+#: CountryCodes.py:211
+msgid "Sri Lanka"
+msgstr "Sri Lanka"
+
+#: CountryCodes.py:212
+msgid "Sudan"
+msgstr "Sudan"
+
+#: CountryCodes.py:213
+msgid "Suriname"
+msgstr "Suriname"
+
+#: CountryCodes.py:214
+msgid "Svalbard and Jan Mayen"
+msgstr "Svalbard und Jan Mayen Islands"
+
+#: CountryCodes.py:215
+msgid "Swaziland"
+msgstr "Swasiland"
+
+#: CountryCodes.py:216
+msgid "Sweden"
+msgstr "Schweden"
+
+#: CountryCodes.py:217
+msgid "Switzerland"
+msgstr "Schweiz"
+
+#: CountryCodes.py:218
+msgid "Syrian Arab Republic"
+msgstr "Syrien"
+
+#: CountryCodes.py:220
+msgid "Tajikistan"
+msgstr "Tadschikistan"
+
+#: CountryCodes.py:221
+msgid "Tanzania, United Republic of"
+msgstr "Tanzania"
+
+#: CountryCodes.py:222
+msgid "Thailand"
+msgstr "Thailand"
+
+#: CountryCodes.py:223
+msgid "Timor-Leste"
+msgstr "Osttimor"
+
+#: CountryCodes.py:224
+msgid "Togo"
+msgstr "Togo"
+
+#: CountryCodes.py:225
+msgid "Tokelau"
+msgstr "Tokelau"
+
+#: CountryCodes.py:226
+msgid "Tonga"
+msgstr "Tonga"
+
+#: CountryCodes.py:227
+msgid "Trinidad and Tobago"
+msgstr "Trinidad und Tobago"
+
+#: CountryCodes.py:228
+msgid "Tunisia"
+msgstr "Tunesien"
+
+#: CountryCodes.py:229
+msgid "Turkey"
+msgstr "Türkei"
+
+#: CountryCodes.py:230
+msgid "Turkmenistan"
+msgstr "Turkmenistan"
+
+#: CountryCodes.py:231
+msgid "Turks and Caicos Islands"
+msgstr "Turks- und Caicosinseln"
+
+#: CountryCodes.py:232
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+#: CountryCodes.py:233
+msgid "Uganda"
+msgstr "Uganda"
+
+#: CountryCodes.py:234
+msgid "Ukraine"
+msgstr "Ukraine"
+
+#: CountryCodes.py:235
+msgid "United Arab Emirates"
+msgstr "Vereinigte Arabische Emirate"
+
+#: CountryCodes.py:236
+msgid "United Kingdom"
+msgstr "England"
+
+#: CountryCodes.py:237
+msgid "United States of America"
+msgstr "Vereinigte Staaten"
+
+#: CountryCodes.py:238
+msgid "United States Minor Outlying Islands"
+msgstr "Vereinigte Staaten Kleinere Ausgelagerte Inseln"
+
+#: CountryCodes.py:239
+msgid "Uruguay"
+msgstr "Uruguay"
+
+#: CountryCodes.py:240
+msgid "Uzbekistan"
+msgstr "Usbekistan"
+
+#: CountryCodes.py:241
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+#: CountryCodes.py:242
+msgid "Venezuela (Bolivarian Republic of)"
+msgstr "Venezuela (Bolivarische Republik)"
+
+#: CountryCodes.py:243
+msgid "Viet Nam"
+msgstr "Vietnam"
+
+#: CountryCodes.py:244
+msgid "Virgin Islands (British)"
+msgstr "Jungferninseln (Britisch)"
+
+#: CountryCodes.py:245
+msgid "Virgin Islands (U.S.)"
+msgstr "Jungferninseln (US)"
+
+#: CountryCodes.py:246
+msgid "Wallis and Futuna"
+msgstr "Wallis und Futuna"
+
+#: CountryCodes.py:247
+msgid "Western Sahara"
+msgstr "Westsahara"
+
+#: CountryCodes.py:248
+msgid "Yemen"
+msgstr "Jemen"
+
+#: CountryCodes.py:249
+msgid "Zambia"
+msgstr "Sambia"
+
+#: CountryCodes.py:250
+msgid "Zimbabwe"
+msgstr "Simbabwe"

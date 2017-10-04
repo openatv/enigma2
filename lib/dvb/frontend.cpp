@@ -862,6 +862,21 @@ int eDVBFrontend::openFrontend()
 	{
 		m_fe_info[SYS_DVBS].frequency_min = m_fe_info[SYS_DVBS2].frequency_min = 900000;
 		m_fe_info[SYS_DVBS].frequency_max = m_fe_info[SYS_DVBS2].frequency_max = 2200000;
+
+		eDebug("[eDVBFrontend] opening frontend %d", m_dvbid);
+		int tmp_fd = ::open(m_filename.c_str(), O_RDONLY | O_NONBLOCK | O_CLOEXEC);
+		if (tmp_fd < 0)
+		{
+			eWarning("[eDVBFrontend] opening %s failed: %m", m_filename.c_str());
+		}
+		else
+		{
+			if (::ioctl(tmp_fd, FE_GET_INFO, &fe_info) < 0)
+			{
+				eWarning("[eDVBFrontend] ioctl FE_GET_INFO on frontend %s failed: %m", m_filename.c_str());
+			}
+			::close(tmp_fd);
+		}
 	}
 	m_multitype = (
 		m_delsys[SYS_DVBS] && m_delsys[SYS_DVBT])
@@ -1101,7 +1116,7 @@ static inline uint32_t fe_udiv(uint32_t a, uint32_t b)
 	return (a + b / 2) / b;
 }
 
-void eDVBFrontend::calculateSignalPercentage(int signalqualitydb, int &signalquality)
+int eDVBFrontend::calculateSignalPercentage(int signalqualitydb)
 {
 	int maxdb; // assume 100% as 2/3 of maximum dB
 	int type = -1;
@@ -1132,8 +1147,10 @@ void eDVBFrontend::calculateSignalPercentage(int signalqualitydb, int &signalqua
 			}
 			break;
 		}
+		default:
+			return 0;
 	}
-	signalquality = (signalqualitydb >= maxdb ? 65535 : signalqualitydb * 65535 / maxdb);
+	return signalqualitydb >= maxdb ? 65535 : (signalqualitydb * 65535 / maxdb);
 }
 void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb)
 {
@@ -1590,7 +1607,7 @@ int eDVBFrontend::readFrontendData(int type)
 							if(!signalquality)
 							{
 								/* provide an estimated percentage when drivers lack this info */
-								calculateSignalPercentage(signalqualitydb, signalquality);
+								signalquality = calculateSignalPercentage(signalqualitydb);
 							}
 							return signalquality;
 						}
@@ -3390,7 +3407,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		{
 			return 0;
 		}
-		bool multistream = (parm.is_id != NO_STREAM_ID_FILTER) && !(
+		bool multistream = (static_cast<unsigned int>(parm.is_id) != NO_STREAM_ID_FILTER) && !(
 			   (parm.is_id == 0 && (parm.pls_mode & 3) == eDVBFrontendParametersSatellite::PLS_Root  && (parm.pls_code & 0x3FFFF) == 1)
 			|| (parm.is_id == 0 && (parm.pls_mode & 3) == eDVBFrontendParametersSatellite::PLS_Gold  && (parm.pls_code & 0x3FFFF) == 0)
 			|| (parm.is_id == 0 && (parm.pls_mode & 3) == eDVBFrontendParametersSatellite::PLS_Combo && (parm.pls_code & 0x3FFFF) == 1)

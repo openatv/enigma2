@@ -104,6 +104,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		ret["system"] = {
 			eDVBFrontendParametersSatellite.System_DVB_S : "DVB-S",
 			eDVBFrontendParametersSatellite.System_DVB_S2 : "DVB-S2"}.get(tp.get("system"))
+		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
+		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
 		if ret["system"] == "DVB-S2":
 			ret["rolloff"] = {
 				eDVBFrontendParametersSatellite.RollOff_alpha_0_35 : "0.35",
@@ -114,13 +116,15 @@ def ConvertToHumanReadable(tp, tunertype = None):
 				eDVBFrontendParametersSatellite.Pilot_Unknown : _("Auto"),
 				eDVBFrontendParametersSatellite.Pilot_On : _("On"),
 				eDVBFrontendParametersSatellite.Pilot_Off : _("Off")}.get(tp.get("pilot"))
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
-		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
-		ret["pls_mode"] = {
-			eDVBFrontendParametersSatellite.PLS_Root : _("Root"),
-			eDVBFrontendParametersSatellite.PLS_Gold : _("Gold"),
-			eDVBFrontendParametersSatellite.PLS_Combo : _("Combo"),
-			eDVBFrontendParametersSatellite.PLS_Unknown : _("Unknown")}.get(tp.get("pls_mode"))
+			ret["pls_mode"] = {
+				eDVBFrontendParametersSatellite.PLS_Root : _("Root"),
+				eDVBFrontendParametersSatellite.PLS_Gold : _("Gold"),
+				eDVBFrontendParametersSatellite.PLS_Combo : _("Combo"),
+				eDVBFrontendParametersSatellite.PLS_Unknown : _("Unknown")}.get(tp.get("pls_mode"))
+		else:
+			ret["pls_mode"] = None
+			ret["is_id"] = None
+			ret["pls_code"] = None
 	elif tunertype == "DVB-C":
 		ret["tuner_type"] = _("Cable")
 		ret["modulation"] = {

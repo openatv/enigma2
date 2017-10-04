@@ -144,7 +144,7 @@ private:
 	int tuneLoopInt();
 	void setFrontend(bool recvEvents=true);
 	bool setSecSequencePos(int steps);
-	void calculateSignalPercentage(int signalqualitydb, int &signalquality);
+	int calculateSignalPercentage(int signalqualitydb);
 	void calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb);
 
 	static int PriorityOrder;

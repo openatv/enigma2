@@ -18,6 +18,7 @@
 #include <lib/python/python.h>
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/httpstream.h>
+#include "servicepeer.h"
 
 		/* for subtitles */
 #include <lib/gui/esubtitle.h>
@@ -2363,7 +2364,7 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 	std::string remote_fallback_url =
 		eConfigManager::getConfigValue("config.usage.remote_fallback");
 
-	if (remote_fallback_url.empty())
+	if (remote_fallback_url.empty() && !getAnyPeerStreamingBox(remote_fallback_url))
 		return false;
 
 	if (eDVBResourceManager::getInstance(res_mgr))
