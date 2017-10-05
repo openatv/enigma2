@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-24 02:10+0300\n"
-"PO-Revision-Date: 2017-09-24 22:39+0300\n"
+"POT-Creation-Date: 2017-10-05 18:00+0300\n"
+"PO-Revision-Date: 2017-10-05 19:59+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -18,14 +18,18 @@ msgstr ""
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.0.4\n"
 
+msgid "  Menu key : Select quad channel"
+msgstr "  Menu mygtukas: Pasirinkite, keturių kanalų, kanalą"
+
+msgid "  Red key : Show/Hide channel name"
+msgstr "  Raudonas mygtukas: rodyti / slėpti kanalo pavadinimą"
+
 msgid "  REC  "
 msgstr "  ĮRAŠ  "
 
-#| msgid "S-Video"
 msgid " - video0"
 msgstr " - vaizdas0"
 
-#| msgid "S-Video"
 msgid " - video1"
 msgstr " - vaizdas1"
 
@@ -1210,7 +1214,7 @@ msgid "Activate network settings"
 msgstr "Aktyvuoti tinklo nustatymus"
 
 msgid "Activate Picture in Picture"
-msgstr "Aktyvuoti paveikslėlį paveikslėlyje"
+msgstr "Įjungti vaizdą vaizde"
 
 msgid "Activate the configured network settings."
 msgstr "Aktyvuoti tinklo nustatymų konfigūraciją."
@@ -1298,6 +1302,9 @@ msgstr "Pridėti failus į grojaraštį"
 
 msgid "add marker"
 msgstr "pridėti žymeklį"
+
+msgid "Add New Quad Channel Entry"
+msgstr "Pridėti naują Quad kanalo įrašą"
 
 msgid "Add provider"
 msgstr "Pridėti tiekėją"
@@ -2320,6 +2327,9 @@ msgstr "Paketų sąrašas"
 msgid "bouquetname"
 msgstr "paketo pavadinimas"
 
+msgid "Box or driver is not support Quad PiP."
+msgstr "Imtuvas, arba tvarkyklė nepalaiko Quad PiP."
+
 msgid "Box Portal"
 msgstr "Rodyti imtuvo portalą"
 
@@ -3102,6 +3112,9 @@ msgstr "Spalvų formatas"
 msgid "Color space"
 msgstr "Spalvų erdvė"
 
+msgid "Combo"
+msgstr "Kombo"
+
 msgid "comedy"
 msgstr "komedija"
 
@@ -3801,19 +3814,19 @@ msgid "cooking"
 msgstr "maisto gaminimas"
 
 msgid "Cool Channel Guide"
-msgstr "Šaunių kanalų vadovas"
+msgstr "Cool Channel vadovas"
 
 msgid "Cool Easy Guide"
-msgstr "Šaunus paprastas vadovas"
+msgstr "Cool Easy vadovas"
 
 msgid "Cool Info Guide"
-msgstr "Šaunus informacinis vadovas"
+msgstr "Cool Info vadovas"
 
 msgid "Cool Single Guide"
-msgstr "Šaunus vienas vadovas"
+msgstr "Cool Single vadovas"
 
 msgid "Cool TV Guide"
-msgstr "Šaunios TV vadovas"
+msgstr "Cool TV vadovas"
 
 msgid "copy"
 msgstr "kopijuoti"
@@ -3850,7 +3863,7 @@ msgid "Could not load Medium! No disc inserted?"
 msgstr "Nepavyko atverti laikmenos! Neįdėtas diskas?"
 
 msgid "Could not open Picture in Picture"
-msgstr "Nepavyko atverti paveikslėlio paveikslėlyje"
+msgstr "Nepavyko atverti vaizdo vaizde"
 
 msgid "Could not open the file %s!"
 msgstr "Nepavyko atverti failo %s!"
@@ -3863,6 +3876,9 @@ msgstr "Nepavyko įrašyti dėl neveikiančių kanalų %s"
 
 msgid "Could not save configfile %s!"
 msgstr "Konfigūracijos failo %s išsaugoti nepavyko!"
+
+msgid "Country"
+msgstr "Šalis"
 
 msgid "Cpu"
 msgstr "Procesorius"
@@ -4388,7 +4404,7 @@ msgid "disable move mode"
 msgstr "išjungti perkėlimo režimą"
 
 msgid "Disable Picture in Picture"
-msgstr "Išjungti paveikslėlį paveikslėlyje"
+msgstr "Išjungti vaizdą vaizde"
 
 msgid "Disable the HDD Process on VFD"
 msgstr "Išjungti HDD atvaizdavimą VFD ekrane"
@@ -4966,6 +4982,9 @@ msgstr "Įjungti redagavimą"
 msgid "Edit new entry"
 msgstr "Redaguoti naują įrašą"
 
+msgid "Edit Quad Channel Entry"
+msgstr "Redaguoti Quad kanalo įrašą"
+
 msgid "Edit settings"
 msgstr "Redaguoti nustatymus"
 
@@ -5109,6 +5128,9 @@ msgstr "Įjungti panikos mygtuką"
 
 msgid "enable PIP no HDR"
 msgstr "įjungti PIP be HDR"
+
+msgid "Enable Quad PIP"
+msgstr "Įjungti Quad PIP"
 
 msgid "Enable preview"
 msgstr "Įjungti peržiūrą"
@@ -5278,6 +5300,28 @@ msgstr "EPG talpyklos tikrinimas"
 
 msgid "EPG filename"
 msgstr "EPG failo pavadinimas"
+
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG mygtukas: Perjungti į kanalų sąrašą\n"
+"OK mygtukas: Pašalinti pasirinktą kanalą\n"
+"PVR mygtukas: Įvesties kanalo pavadinimas\n"
+"Exit mygtukas: Baigti kanalo redagavimą"
+
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG mygtukas: Perjungti į keturių PiP kanalų įrašą\n"
+"OK mygtukas: Pridėti naują įrašą\n"
+"PVR mygtukas: Įvesties kanalo pavadinimas\n"
+"EXIT mygtukas: Baigti kanalo redagavimą"
 
 msgid "EPG language selection 1"
 msgstr "1-a pasirinkta EPG kalba"
@@ -5525,6 +5569,12 @@ msgstr "Užverti tinklo vedlį"
 
 msgid "exit networkadapter setup menu"
 msgstr "užverti tinklo adapterio nuostatų meniu"
+
+msgid "Exit Quad Channel Selection"
+msgstr "Išeiti iš Quad kanalo pasirinkimo"
+
+msgid "Exit quad PiP"
+msgstr "Išeikite iš keturių PiP kanalų"
 
 msgid "Exit the wizard"
 msgstr "Užverti nustatymų vedlį"
@@ -6121,6 +6171,9 @@ msgstr "eiti į išjungimą"
 
 msgid "Go up the list"
 msgstr "Sąrašu aukštyn"
+
+msgid "Gold"
+msgstr "Auksinė"
 
 msgid "Goto"
 msgstr "Eiti į"
@@ -6796,6 +6849,13 @@ msgstr "Įtraukti ECM http srautus"
 msgid "Include EIT in http streams"
 msgstr "Įtraukti EIT į http srautus"
 
+msgid ""
+"Incorrect format for skip value: '%s'\n"
+"Skip cancelled."
+msgstr ""
+"Neteisingas praleistų reikšmių formatas: '%s'\n"
+"Praleidimas atšauktas."
+
 msgid "Incorrect type service for PiP!"
 msgstr "Kanalas netinkamas PiP!"
 
@@ -6924,6 +6984,9 @@ msgstr "Informuoti apie pokyčius"
 
 msgid "Input"
 msgstr "Įėjimas"
+
+msgid "Input channel name."
+msgstr "Įveskite kanalo pavadinimą."
 
 msgid "Input devices"
 msgstr "Įvesties įrenginiai"
@@ -8238,6 +8301,9 @@ msgstr "Kita įkrova prasidės nuo 1 atvaizdo."
 msgid "next higher Resolution"
 msgstr "kita didesnė rezoliucija"
 
+msgid "Next quad PiP channel"
+msgstr "Kitas, keturių PiP kanalų, kanalas"
+
 msgid "nfi"
 msgstr "nfi"
 
@@ -8277,7 +8343,7 @@ msgid "NO"
 msgstr "NE"
 
 msgid "No (supported) DVDROM found!"
-msgstr "Palaikomo DVDROM nerasta!"
+msgstr "Palaikomo DVD ROM nerasta!"
 
 msgid ""
 "No /hdd found !!\n"
@@ -8362,7 +8428,7 @@ msgid "no delay"
 msgstr "neuždelsiant"
 
 msgid "No description available."
-msgstr "Joks apibūdinimas nepasiekiamas."
+msgstr "Nėra aprašymo."
 
 msgid "No details for this image file"
 msgstr "Nėra informacijos apie šį atvaizdą"
@@ -8411,13 +8477,13 @@ msgid "no image found"
 msgstr "nėra atvaizdo"
 
 msgid "no module found"
-msgstr "modulis nerastas"
+msgstr "modulio nerasta"
 
 msgid "No network connection available."
-msgstr "Joks tinklo ryšys nepasiekiamas."
+msgstr "Nėra prieinamo tinklo ryšio."
 
 msgid "No networks found"
-msgstr "Jokie tinklai nesurasti"
+msgstr "Jokių tinklų nerasta"
 
 msgid "No new ECM info"
 msgstr "Naujos ECM informacijos nėra"
@@ -8492,10 +8558,10 @@ msgid "No Timeshift found to save as recording!"
 msgstr "Laiko poslinkis nenustatytas, kad išsaugoti tuos įrašus!"
 
 msgid "No to all"
-msgstr "'Ne' visiems"
+msgstr "'Ne' viskam"
 
 msgid "No transparency"
-msgstr "Neskaidrus"
+msgstr "Nepermatomas"
 
 msgid "No tuner is available for recording a timer!\n"
 msgstr "Laikmačiui įrašyti nėra laisvo imtuvo!\n"
@@ -8525,7 +8591,7 @@ msgid "No update required!"
 msgstr "Atnaujinimas nebūtinas!"
 
 msgid "No updates available. Please try again later."
-msgstr "Atnaujinimų nėra. Bandykite patikrinti vėliau."
+msgstr "Jokių naujinimų. Bandykite vėliau."
 
 msgid ""
 "No USB-Device found for fullbackup !!\n"
@@ -9123,13 +9189,13 @@ msgid "PANEL Config"
 msgstr "SKYDELIO konfigūracija"
 
 msgid "Panel-Info"
-msgstr "SKYDELIO-Informacija"
+msgstr "Skydelio informacija"
 
 msgid "PANEL-Info"
-msgstr "SKYDELIO-Informacija"
+msgstr "SKYDELIO informacija"
 
 msgid "PANEL-Info2"
-msgstr "SKYDELIO-Informacija 2"
+msgstr "SKYDELIO informacija 2"
 
 msgid "Panic channel"
 msgstr "Panikos kanalas"
@@ -9144,10 +9210,10 @@ msgid "Parental control"
 msgstr "Tėvų kontrolė"
 
 msgid "Parental control services editor"
-msgstr "Tėvų kontrolės kanalų redaktorius"
+msgstr "Redaguoti tėvų kontrolės kanalus"
 
 msgid "Parental control setup"
-msgstr "Tėvų kontrolės nustatymai"
+msgstr "Tėvų kontrolės sąranka"
 
 msgid "Partitions"
 msgstr "Skaidiniai"
@@ -9253,10 +9319,10 @@ msgid "picshow"
 msgstr "logotipo rodymas"
 
 msgid "Picture in graphics"
-msgstr "Perjungti paveikslėlį į grafiką"
+msgstr "Vaizdas grafikoje"
 
 msgid "Picture in Picture Setup"
-msgstr "Paveikslėlio paveikslėlyje nustatymai"
+msgstr "Vaizdo vaizde nustatymai"
 
 msgid "Picture player"
 msgstr "Paveikslėlių grotuvas"
@@ -9304,19 +9370,19 @@ msgid "PiP-Zap"
 msgstr "PiP jungti"
 
 msgid "PiPSetup"
-msgstr "PiP valdymas"
+msgstr "PiP sąranka"
 
 msgid "PiPZap"
-msgstr "PiP perjungimas"
+msgstr "PiP jungimas"
 
 msgid "placeholder message 2"
 msgstr "vietos rezervavimo žinutė 2"
 
 msgid "Play"
-msgstr "Leisti"
+msgstr "Pradėti"
 
 msgid "play as picture in picture"
-msgstr "rodyti paveikslėlį paveikslėlyje"
+msgstr "rodyti, kaip vaizdą vaizde"
 
 msgid "Play audio in background"
 msgstr "Leisti garso įrašą fone"
@@ -9466,7 +9532,7 @@ msgstr ""
 "vietoje jos naudojamas numatytasis katalogas."
 
 msgid "Please open Picture in Picture first"
-msgstr "Pirmiausiai atverkite paveikslėlį paveikslėlyje"
+msgstr "Pirmiausiai atsidarykite vaizdą vaizde"
 
 msgid "please press exit to go back to the menu.\n"
 msgstr "prašome paspausti exit, kad grįžti į meniu.\n"
@@ -10030,6 +10096,9 @@ msgid ""
 msgstr ""
 "Panikos mygtuko paspaudimas perjungs į šį kanalą jūsų pirmajame pakete."
 
+msgid "Prev quad PiP channel"
+msgstr "Ankstesnis, keturių PiP kanalų, kanalas"
+
 msgid "Preview"
 msgstr "Peržiūra"
 
@@ -10218,6 +10287,15 @@ msgstr "Python išorinės sąsajos dėl /tmp/mmi.socket"
 
 msgid "Python:\t%s"
 msgstr "Python versija:\t%s"
+
+msgid "Quad PiP Channel Selection"
+msgstr "Quad PiP kanalo pasirinkimas"
+
+msgid "Quad PiP is not available."
+msgstr "Quad PiP nėra."
+
+msgid "Quad PiP Screen"
+msgstr "Quad PiP ekranas"
 
 msgid "Question"
 msgstr "Klausimas"
@@ -10569,6 +10647,9 @@ msgstr "Nuotolinis aparatas"
 msgid "Remote Control Code"
 msgstr "Nuotolinio valdymo pulto kodas"
 
+msgid "Remote control model shown"
+msgstr "Pateiktas nuotolinio valdymo pulto modelis"
+
 msgid "Remote control type"
 msgstr "Nuotolinio valdymo tipas"
 
@@ -10640,6 +10721,9 @@ msgstr "Pašalinti priedus"
 
 msgid "Remove Plugins"
 msgstr "Pašalinti priedus"
+
+msgid "Remove Quad Channel Entry"
+msgstr "Pašalinti Quad kanalo įrašą"
 
 msgid "remove selected satellite"
 msgstr "pašalinti pasirinktą palydovą"
@@ -10943,6 +11027,9 @@ msgstr "romansas"
 
 msgid "Romanian"
 msgstr "Rumunų"
+
+msgid "Root"
+msgstr "Pagrindinis"
 
 msgid "root and kernel"
 msgstr "šaknis ir branduolys"
@@ -11358,6 +11445,9 @@ msgstr "Pasirinkite pirmą emuliatorių"
 msgid "Select Cam 2"
 msgstr "Pasirinkite antrą emuliatorių"
 
+msgid "Select channel audio"
+msgstr "Pasirinkite kanalo garsą"
+
 msgid "Select channel to record from"
 msgstr "Išsirinkite kanalą įrašymui"
 
@@ -11451,6 +11541,9 @@ msgstr "Pasirinkite skaičiaus"
 
 msgid "Select provider to add..."
 msgstr "Išsirinkite tiekėją, kurį norite pridėti..."
+
+msgid "Select Quad Channels"
+msgstr "Pasirinkite Quad kanalus"
 
 msgid "Select Red-key action"
 msgstr "Pasirinkite raudoną mygtuką veiksmui"
@@ -12214,6 +12307,9 @@ msgstr "Trumpi failų pavadinimai su laiku"
 msgid "show"
 msgstr "rodyti"
 
+msgid "Show/Hide focus bar"
+msgstr "Rodyti / slėpti fokusavimo juostą"
+
 msgid "Show /tmp/ecm.info"
 msgstr "Rodyti /tmp/ecm.info"
 
@@ -12343,6 +12439,9 @@ msgstr "Rodyti kanalo numerį infojuostoje"
 msgid "Show channel numbers in channel selection"
 msgstr "Kanalų sąrašo lange rodyti kanalo numerį"
 
+msgid "Show channel selection"
+msgstr "Rodyti kanalų pasirinkimą"
+
 msgid "Show CI messages"
 msgstr "Rodyti CI pranešimus"
 
@@ -12353,22 +12452,22 @@ msgid "Show columns"
 msgstr "Rodyti stulpelius"
 
 msgid "Show CoolChannelGuide"
-msgstr "Rodyti Šaunų kanalo vadovą"
+msgstr "Rodyti CoolChannel vadovą"
 
 msgid "Show CoolEasyGuide"
-msgstr "Rodyti Šaunų kanalo vadovą"
+msgstr "Rodyti CoolEasy vadovą"
 
 msgid "Show CoolInfoGuide"
-msgstr "Rodyti Šaunų info vadovą"
+msgstr "Rodyti Coolinfo vadovą"
 
 msgid "Show CoolSingleGuide"
-msgstr "Rodyti Šaunų vieną vadovą"
+msgstr "Rodyti CoolSingle vadovą"
 
 msgid "Show CoolTVGuide"
-msgstr "Rodyti Šaunų TV vadovą"
+msgstr "Rodyti CoolTV vadovą"
 
 msgid "Show crypto icons"
-msgstr "Rodyti kodavimo logotipus"
+msgstr "Rodyti kodavimo piktogramas"
 
 msgid "Show crypto info in infobar"
 msgstr "Rodyti kodavimo informaciją infojuostoje"
@@ -12605,7 +12704,7 @@ msgid "Show Record Movies"
 msgstr "Rodyti įrašytus filmus"
 
 msgid "Show recording symbol"
-msgstr "Rodyti įrašymo simbolį priklausomai nuo įrašymo tipo"
+msgstr "Rodyti įrašymo simbolį"
 
 msgid "Show Restart Network in Extensions list *"
 msgstr "Rodyti 'paleisti iš naujo tinklą' plėtinių sąraše *"
@@ -12746,7 +12845,7 @@ msgid "Show VCR scart on main menu"
 msgstr "Rodyti VCR skartą pagrindiniame meniu"
 
 msgid "Show warning before restart"
-msgstr "Rodyti įspėjimą prieš imtuvo paleidimą iš naujo remiantis įrašymo tipu"
+msgstr "Rodyti įspėjimą prieš paleidimą iš naujo"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Rodyti perspėjimą, sustojus laiko poslinkiui"
@@ -12958,7 +13057,7 @@ msgid "Slide left to right"
 msgstr "Skaidrės iš kairės į dešinę"
 
 msgid "Slide picture in loop"
-msgstr "Rodyti paveikslėlius cikliškai"
+msgstr "Rodyti nuotraukas ištisai ratu"
 
 msgid "Slide right to left"
 msgstr "Skaidrės iš dešinės į kairę"
@@ -13937,7 +14036,7 @@ msgid ""
 "The Cool TV Guide plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Šaunios TV vadovo priedas neįdiegtas!\n"
+"Cool TV vadovo priedas neįdiegtas!\n"
 "Įdiekite jį."
 
 msgid "The current update may be unstable"
@@ -16582,6 +16681,11 @@ msgstr "Kur norite išsaugoti laikinus laiko poslinkio įrašus?"
 msgid "Which event do you want to save permanently?"
 msgstr "Kurio įvykio įrašą norite išsaugoti visam laikui?"
 
+msgid ""
+"Which remote control gets shown. Only influences graphical representation."
+msgstr ""
+"Kuris nuotolinio valdymo pultas bus rodomas. Įtakoja tik grafinį vaizdą."
+
 msgid "While available"
 msgstr "Kol galima"
 
@@ -17262,7 +17366,10 @@ msgid "Zap focus to main screen"
 msgstr "Perjungti priartinimą į pagrindinį ekraną"
 
 msgid "Zap focus to Picture in Picture"
-msgstr "Perjungti paveikslėlio centrą paveikslėlyje"
+msgstr "Perjungti vaizdo centrą vaizde"
+
+msgid "Zap focused channel on full screen"
+msgstr "Jungti sufokusuotą kanalą per visą ekraną"
 
 msgid "Zap mode"
 msgstr "Perjungimo būdas"
@@ -17487,6 +17594,759 @@ msgstr ""
 "\n"
 "\n"
 "[Mano TV paketai]\n"
+
+msgid "Afghanistan"
+msgstr "Afganistanas"
+
+msgid "Aland Islands"
+msgstr "Alandų salos"
+
+msgid "Albania"
+msgstr "Albanija"
+
+msgid "Algeria"
+msgstr "Alžyras"
+
+msgid "American Samoa"
+msgstr "Amerikos Samoa"
+
+msgid "Andorra"
+msgstr "Andora"
+
+msgid "Angola"
+msgstr "Angola"
+
+msgid "Anguilla"
+msgstr "Angilija"
+
+msgid "Antarctica"
+msgstr "Antarktika"
+
+msgid "Antigua and Barbuda"
+msgstr "Antigva ir Barbuda"
+
+msgid "Argentina"
+msgstr "Argentina"
+
+msgid "Armenia"
+msgstr "Armėnija"
+
+msgid "Aruba"
+msgstr "Aruba"
+
+msgid "Australia"
+msgstr "Australija"
+
+msgid "Austria"
+msgstr "Austrija"
+
+msgid "Azerbaijan"
+msgstr "Azerbaidžanas"
+
+msgid "Bahamas"
+msgstr "Bahamai"
+
+msgid "Bahrain"
+msgstr "Bahreinas"
+
+msgid "Bangladesh"
+msgstr "Bangladešas"
+
+msgid "Barbados"
+msgstr "Barbadosas"
+
+msgid "Belarus"
+msgstr "Baltarusija"
+
+msgid "Belgium"
+msgstr "Belgija"
+
+msgid "Belize"
+msgstr "Belizas"
+
+msgid "Benin"
+msgstr "Beninas"
+
+msgid "Bermuda"
+msgstr "Bermudai"
+
+msgid "Bhutan"
+msgstr "Butanas"
+
+msgid "Bolivia (Plurinational State of)"
+msgstr "Bolivija (daugiatautė valstybė)"
+
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr "Bonairė, Sint Eustatijus ir Saba"
+
+msgid "Bosnia and Herzegovina"
+msgstr "Bosnija ir Hercogovina"
+
+msgid "Botswana"
+msgstr "Botsvana"
+
+msgid "Bouvet Island"
+msgstr "Buveto sala"
+
+msgid "Brazil"
+msgstr "Brasiliano"
+
+msgid "British Indian Ocean Territory"
+msgstr "Indijos Vandenyno Britų Sritis"
+
+msgid "Brunei Darussalam"
+msgstr "Brunėjus"
+
+msgid "Bulgaria"
+msgstr "Bulgarija"
+
+msgid "Burkina Faso"
+msgstr "Burkina Fasas"
+
+msgid "Burundi"
+msgstr "Burundis"
+
+msgid "Cabo Verde"
+msgstr "Žaliasis Kyšulys"
+
+msgid "Cambodia"
+msgstr "Kambodža"
+
+msgid "Cameroon"
+msgstr "Kamerūnas"
+
+msgid "Canada"
+msgstr "Kanados"
+
+msgid "Cayman Islands"
+msgstr "Kaimanų salos"
+
+msgid "Central African Republic"
+msgstr "Centrinė Afrikos Respublika"
+
+msgid "Chad"
+msgstr "Čadas"
+
+msgid "Chile"
+msgstr "Čilė"
+
+msgid "China"
+msgstr "Kinija"
+
+msgid "Christmas Island"
+msgstr "Kalėdų sala"
+
+msgid "Cocos (Keeling) Islands"
+msgstr "Kokosų (Kylingo) salos"
+
+msgid "Colombia"
+msgstr "Kolumbija"
+
+msgid "Comoros"
+msgstr "Komorai"
+
+msgid "Congo"
+msgstr "Kongas"
+
+msgid "Congo (Democratic Republic of the)"
+msgstr "Kongo Demokratinė Respublika"
+
+msgid "Cook Islands"
+msgstr "Kuko salos"
+
+msgid "Costa Rica"
+msgstr "Kosta Rika"
+
+msgid "Cote d'Ivoire"
+msgstr "Dramblio Kaulo Krantas"
+
+msgid "Croatia"
+msgstr "Kroatija"
+
+msgid "Cuba"
+msgstr "Kuba"
+
+msgid "Curacao"
+msgstr "Kiurasao"
+
+msgid "Cyprus"
+msgstr "Kipras"
+
+msgid "Czechia"
+msgstr "Čekija"
+
+msgid "Denmark"
+msgstr "Danija"
+
+msgid "Djibouti"
+msgstr "Džibutis"
+
+msgid "Dominica"
+msgstr "Dominika"
+
+msgid "Dominican Republic"
+msgstr "Dominikos Respublika"
+
+msgid "Ecuador"
+msgstr "Ekvadoras"
+
+msgid "Egypt"
+msgstr "Egiptas"
+
+msgid "El Salvador"
+msgstr "El salvadoras"
+
+msgid "Equatorial Guinea"
+msgstr "Pusiaujo Gvinėja"
+
+msgid "Eritrea"
+msgstr "Eritrėja"
+
+msgid "Estonia"
+msgstr "Estija"
+
+msgid "Ethiopia"
+msgstr "Etiopija"
+
+msgid "Falkland Islands (Malvinas)"
+msgstr "Folklando (Malvinų) Salos"
+
+msgid "Faroe Islands"
+msgstr "Farerų salos"
+
+msgid "Fiji"
+msgstr "Fidži"
+
+msgid "Finland"
+msgstr "Suomija"
+
+msgid "France"
+msgstr "Prancūzija"
+
+msgid "French Guiana"
+msgstr "Prancūzijos Gviana"
+
+msgid "French Polynesia"
+msgstr "Prancūzų Polinezija"
+
+msgid "French Southern Territories"
+msgstr "Prancūzijos pietinės teritorijos"
+
+msgid "Gabon"
+msgstr "Gabonas"
+
+msgid "Gambia"
+msgstr "Gambija"
+
+msgid "Georgia"
+msgstr "Gruzija"
+
+msgid "Germany"
+msgstr "Vokietija"
+
+msgid "Ghana"
+msgstr "Gana"
+
+msgid "Gibraltar"
+msgstr "Gibraltaras"
+
+msgid "Greece"
+msgstr "Graikija"
+
+msgid "Greenland"
+msgstr "Grenlandija"
+
+msgid "Grenada"
+msgstr "Grenada"
+
+msgid "Guadeloupe"
+msgstr "Gvadelupė"
+
+msgid "Guam"
+msgstr "Guamas"
+
+msgid "Guatemala"
+msgstr "Gvatemala"
+
+msgid "Guernsey"
+msgstr "Gernsis"
+
+msgid "Guinea"
+msgstr "Gvinėja"
+
+msgid "Guinea-Bissau"
+msgstr "Bisau Gvinėja"
+
+msgid "Guyana"
+msgstr "Gajana"
+
+msgid "Haiti"
+msgstr "Haitis"
+
+msgid "Heard Island and McDonald Islands"
+msgstr "Herdo ir Makdonaldo salos"
+
+msgid "Holy See"
+msgstr "Vatikanas"
+
+msgid "Honduras"
+msgstr "Hondūras"
+
+msgid "Hong Kong"
+msgstr "Honkongas"
+
+msgid "Hungary"
+msgstr "Vengrija"
+
+msgid "Iceland"
+msgstr "Islandija"
+
+msgid "India"
+msgstr "Indija"
+
+msgid "Indonesia"
+msgstr "Indonezija"
+
+msgid "Iran (Islamic Republic of)"
+msgstr "Irano Islamo Respublika"
+
+msgid "Iraq"
+msgstr "Irakas"
+
+msgid "Ireland"
+msgstr "Airija"
+
+msgid "Isle of Man"
+msgstr "Meno sala"
+
+msgid "Israel"
+msgstr "Izraelis"
+
+msgid "Italy"
+msgstr "Italija"
+
+msgid "Jamaica"
+msgstr "Jamaika"
+
+msgid "Japan"
+msgstr "Japonija"
+
+msgid "Jersey"
+msgstr "Džersis"
+
+msgid "Jordan"
+msgstr "Jordanija"
+
+msgid "Kazakhstan"
+msgstr "Kazachstanas"
+
+msgid "Kenya"
+msgstr "Kenija"
+
+msgid "Kiribati"
+msgstr "Kiribatis"
+
+msgid "Korea (Democratic People's Republic of)"
+msgstr "Korėjos Demokratinė Liaudies Respublika"
+
+msgid "Korea (Republic of)"
+msgstr "Korėjos Respublika"
+
+msgid "Kuwait"
+msgstr "Kuveitas"
+
+msgid "Kyrgyzstan"
+msgstr "Kirgistanas"
+
+msgid "Lao People's Democratic Republic"
+msgstr "Laoso Liaudies Demokratinė Respublika"
+
+msgid "Latvia"
+msgstr "Latvija"
+
+msgid "Lebanon"
+msgstr "Libanas"
+
+msgid "Lesotho"
+msgstr "Lesotas"
+
+msgid "Liberia"
+msgstr "Liberija"
+
+msgid "Libya"
+msgstr "Libija"
+
+msgid "Liechtenstein"
+msgstr "Lichtenšteinas"
+
+msgid "Lithuania"
+msgstr "Lietuva"
+
+msgid "Luxembourg"
+msgstr "Liuksemburgas"
+
+msgid "Macao"
+msgstr "Makao"
+
+msgid "Macedonia (the former Yugoslav Republic of)"
+msgstr "Buvusioji Jugoslavijos Respublika Makedonija"
+
+msgid "Madagascar"
+msgstr "Madagaskaras"
+
+msgid "Malawi"
+msgstr "Malavis"
+
+msgid "Malaysia"
+msgstr "Malaizija"
+
+msgid "Maldives"
+msgstr "Maldyvai"
+
+msgid "Mali"
+msgstr "Malis"
+
+msgid "Malta"
+msgstr "Malta"
+
+msgid "Marshall Islands"
+msgstr "Maršalo salos"
+
+msgid "Martinique"
+msgstr "Martinika"
+
+msgid "Mauritania"
+msgstr "Mauritanija"
+
+msgid "Mauritius"
+msgstr "Mauricijus"
+
+msgid "Mayotte"
+msgstr "Majotas"
+
+msgid "Mexico"
+msgstr "Meksika"
+
+msgid "Micronesia (Federated States of)"
+msgstr "Mikronezijos Federacinės Valstijos"
+
+msgid "Moldova (Republic of)"
+msgstr "Moldovos Respublika"
+
+msgid "Monaco"
+msgstr "Monakas"
+
+msgid "Mongolia"
+msgstr "Mongolija"
+
+msgid "Montenegro"
+msgstr "Juodkalnija"
+
+msgid "Montserrat"
+msgstr "Montseratas"
+
+msgid "Morocco"
+msgstr "Marokas"
+
+msgid "Mozambique"
+msgstr "Mozambikas"
+
+msgid "Myanmar"
+msgstr "Mianmaras"
+
+msgid "Namibia"
+msgstr "Namibija"
+
+msgid "Nauru"
+msgstr "Nauriečių"
+
+msgid "Nepal"
+msgstr "Nepalas"
+
+msgid "Netherlands"
+msgstr "Nyderlandai"
+
+msgid "New Caledonia"
+msgstr "Naujoji Kaledonija"
+
+msgid "New Zealand"
+msgstr "Naujoji Zelandija"
+
+msgid "Nicaragua"
+msgstr "Nikaragva"
+
+msgid "Niger"
+msgstr "Nigeris"
+
+msgid "Nigeria"
+msgstr "Nigerija"
+
+msgid "Niue"
+msgstr "Niujė"
+
+msgid "Norfolk Island"
+msgstr "Norfolko sala"
+
+msgid "Northern Mariana Islands"
+msgstr "Šiaurinės Marianos Salos"
+
+msgid "Norway"
+msgstr "Norvegija"
+
+msgid "Oman"
+msgstr "Omanas"
+
+msgid "Pakistan"
+msgstr "Pakistanas"
+
+msgid "Palau"
+msgstr "Palau"
+
+msgid "Palestine, State of"
+msgstr "Palestinos valstybė"
+
+msgid "Panama"
+msgstr "Panama"
+
+msgid "Papua New Guinea"
+msgstr "Papua Naujoji Gvinėja"
+
+msgid "Paraguay"
+msgstr "Paragvajus"
+
+msgid "Peru"
+msgstr "Peru"
+
+msgid "Philippines"
+msgstr "Filipinai"
+
+msgid "Pitcairn"
+msgstr "Pitkernas"
+
+msgid "Poland"
+msgstr "Lenkija"
+
+msgid "Portugal"
+msgstr "Portugalija"
+
+msgid "Puerto Rico"
+msgstr "Puerto Rikas"
+
+msgid "Qatar"
+msgstr "Kataras"
+
+msgid "Reunion"
+msgstr "Reuniono sala"
+
+msgid "Romania"
+msgstr "Rumunija"
+
+msgid "Russian Federation"
+msgstr "Rusijos Federacija"
+
+msgid "Rwanda"
+msgstr "Ruanda"
+
+msgid "Saint Barthelemy"
+msgstr "Sent Bartolomėjus"
+
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr "Elenos, Dangun Žengimo ir Tristano da Kunjos salos"
+
+msgid "Saint Kitts and Nevis"
+msgstr "Šv. Kitso ir Nevio salos"
+
+msgid "Saint Lucia"
+msgstr "Sent Lusija"
+
+msgid "Saint Martin (French part)"
+msgstr "Šv. Martyno sala (Prancūzijos dalis)"
+
+msgid "Saint Pierre and Miquelon"
+msgstr "Šv. Pjero ir Mikelono Salos"
+
+msgid "Saint Vincent and the Grenadines"
+msgstr "Šv. Vincento ir Grenadinų salos"
+
+msgid "Samoa"
+msgstr "Samoa"
+
+msgid "San Marino"
+msgstr "San Marinas"
+
+msgid "Sao Tome and Principe"
+msgstr "San Tomė ir Prinsipė"
+
+msgid "Saudi Arabia"
+msgstr "Saudo Arabija"
+
+msgid "Senegal"
+msgstr "Senegalas"
+
+msgid "Serbia"
+msgstr "Serbija"
+
+msgid "Seychelles"
+msgstr "Seišeliai"
+
+msgid "Sierra Leone"
+msgstr "Siera Leonė"
+
+msgid "Singapore"
+msgstr "Singapūras"
+
+msgid "Sint Maarten (Dutch part)"
+msgstr "Sint Martenas (Nyderlandų dalis)"
+
+msgid "Slovakia"
+msgstr "Slovakija"
+
+msgid "Slovenia"
+msgstr "Slovenija"
+
+msgid "Solomon Islands"
+msgstr "Saliamono Salos"
+
+msgid "Somalia"
+msgstr "Somalis"
+
+msgid "South Africa"
+msgstr "Pietų Afrika"
+
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Pietų Džordžijos ir Pietų Sandvičo Salos"
+
+msgid "South Sudan"
+msgstr "Pietų Sudanas"
+
+msgid "Spain"
+msgstr "Ispanija"
+
+msgid "Sri Lanka"
+msgstr "Šri Lanka"
+
+msgid "Sudan"
+msgstr "Sudanas"
+
+msgid "Suriname"
+msgstr "Surinamas"
+
+msgid "Svalbard and Jan Mayen"
+msgstr "Svalbardas ir Jan Majenas"
+
+msgid "Swaziland"
+msgstr "Svazilendas"
+
+msgid "Sweden"
+msgstr "Švedija"
+
+msgid "Switzerland"
+msgstr "Šveicarų"
+
+msgid "Syrian Arab Republic"
+msgstr "Sirijos Arabų Respublika"
+
+msgid "[a]"
+msgstr "[a]"
+
+msgid "Tajikistan"
+msgstr "Tadžikistanas"
+
+msgid "Tanzania, United Republic of"
+msgstr "Tanzanijos Jungtinė Respublika"
+
+msgid "Thailand"
+msgstr "Tailandas"
+
+msgid "Timor-Leste"
+msgstr "Rytų Timoras"
+
+msgid "Togo"
+msgstr "Togas"
+
+msgid "Tokelau"
+msgstr "Tokelau"
+
+msgid "Tonga"
+msgstr "Tongų"
+
+msgid "Trinidad and Tobago"
+msgstr "Trinidadas and Tobagas"
+
+msgid "Tunisia"
+msgstr "Tunisas"
+
+msgid "Turkey"
+msgstr "Turkija"
+
+msgid "Turkmenistan"
+msgstr "Turkmenistanas"
+
+msgid "Turks and Caicos Islands"
+msgstr "Terkso ir Kaikoso salos"
+
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+msgid "Uganda"
+msgstr "Uganda"
+
+msgid "Ukraine"
+msgstr "Ukraina"
+
+msgid "United Arab Emirates"
+msgstr "Jungtiniai Arabų Emiratai"
+
+msgid "United Kingdom"
+msgstr "Jungtinė Karalystė"
+
+msgid "United States of America"
+msgstr "Jungtinės Amerikos Valstijos"
+
+msgid "United States Minor Outlying Islands"
+msgstr "Jungtinių Valstijų Mažosios Tolimosios Salos"
+
+msgid "Uruguay"
+msgstr "Urugvajus"
+
+msgid "Uzbekistan"
+msgstr "Uzbekistanas"
+
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+msgid "Venezuela (Bolivarian Republic of)"
+msgstr "Venesuelos Bolivaro Respublika"
+
+msgid "Viet Nam"
+msgstr "Vietnamas"
+
+msgid "Virgin Islands (British)"
+msgstr "Mergelių salos (J.K.)"
+
+msgid "Virgin Islands (U.S.)"
+msgstr "Mergelių salos, JAV"
+
+msgid "Wallis and Futuna"
+msgstr "Valis ir Futuna"
+
+msgid "Western Sahara"
+msgstr "Vakarinė Sahara"
+
+msgid "Yemen"
+msgstr "Jemenas"
+
+msgid "Zambia"
+msgstr "Zambija"
+
+msgid "Zimbabwe"
+msgstr "Zimbabvė"
+
+#~ msgid "Clean network trash can's"
+#~ msgstr "Išvalyti tinklo šiukšliadėžes"
+
+#~ msgid "Show recording symbol depending on recording type"
+#~ msgstr "Rodyti įrašymo simbolį priklausomai nuo įrašymo tipo"
 
 #~ msgid "Programmlisten from DXAndy"
 #~ msgstr "Programų sąrašo-atnaujinimas iš DXAndy"
