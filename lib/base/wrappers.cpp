@@ -303,3 +303,10 @@ std::string base64decode(const std::string hash)
 
 	return ret;
 }
+
+std::string readLink(const std::string &link)
+{
+	char buf[256];
+	ssize_t size = ::readlink(link.c_str(), buf, sizeof(buf));
+	return std::string(buf, (size > 0) ? size : 0);
+}
