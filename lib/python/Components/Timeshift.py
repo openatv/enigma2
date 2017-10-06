@@ -800,13 +800,16 @@ class InfoBarTimeshift:
 		# print 'savefilename', savefilename
 		if savefilename is None:
 			# print 'TEST1'
-			for filename in os.listdir(config.usage.timeshift_path.value):
-				# print 'filename', filename
-				filepath = config.usage.timeshift_path.value + filename
-				if isTimeshiftFileTS(filename) and os.path.isfile(filepath):
-					statinfo = os.stat(filepath)
-					if statinfo.st_mtime > (time() - 5.0):
-						savefilename = filename
+			ts = self.getTimeshift()
+			if ts is not None:
+				filepath = ts.getTimeshiftFilename()
+				if filepath and os.path.isfile(filepath):
+					savefiledir, savefilename = os.path.split(filepath)
+					if not os.path.samefile(savefiledir, config.usage.timeshift_path.value) and os.path.isfile(filepath):
+						print "[Timeshift] System timeshift directory", savefiledir, "doesn't match configured directory", config.usage.timeshift_path.value
+						savefilename = None
+				else:
+					print "[Timeshift] Timeshift file not found:", filepath
 
 		# print 'savefilename', savefilename
 		if savefilename is None:
