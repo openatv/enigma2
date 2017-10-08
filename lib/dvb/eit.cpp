@@ -44,7 +44,7 @@ void eDVBServiceEITHandler::EITready(int error)
 					const ATSCEventInformationSection *eit = *i;
 					for (ATSCEventListConstIterator ev = eit->getEvents()->begin(); ev != eit->getEvents()->end(); ++ev)
 					{
-						if ((*ev)->getStartTime() + (*ev)->getLengthInSeconds() < now)
+						if (static_cast<time_t>((*ev)->getStartTime() + (*ev)->getLengthInSeconds()) < now)
 						{
 							continue;
 						}
