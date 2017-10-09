@@ -60,7 +60,7 @@ def getChipSetString():
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k','vuultimo4k'):
 		return "1,5 GHz"
-	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex'):
+	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
 		return "1,3 GHz"
 	elif getMachineBuild() in ('vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		return "1,7 GHz"
