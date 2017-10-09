@@ -20,10 +20,9 @@ class Label(VariableText, Renderer):
 	def changed(self, what):
 		if what[0] == self.CHANGED_CLEAR:
 			self.text = ""
+		elif self.source:
+			self.text = self.source.text
 		else:
-			if self.source:
-				self.text = self.source.text
-			else:
-				self.text = "<no-source>"
-				print "SKINERROR: render label has no source"
+			self.text = "<no-source>"
+			print "SKINERROR: render label has no source"
 
