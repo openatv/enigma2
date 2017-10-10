@@ -325,7 +325,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("sf4008", 501),
 				("g100", 501),
 				("sf4018", 501),
-				("sf5008, 9),
+				("sf5008", 9),
 				("gbquadplus", 502),
 				("g300", 503),
 				("e3hd", 504),
