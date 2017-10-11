@@ -130,8 +130,8 @@
 	</map>
 
 	<map context="InfobarChannelSelection">
-		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
-		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
+		<key id="KEY_LEFT" mapto="LeftPressed" flags="b" />
+		<key id="KEY_RIGHT" mapto="RightPressed" flags="b" />
 		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
 		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
 		<!--key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
@@ -968,8 +968,10 @@
 		<key id="KEY_END" mapto="end" flags="b"/>
 		<key id="KEY_EPG" mapto="epg" flags="b"/>
 		<key id="KEY_EPG" mapto="epg_long" flags="l"/>
-		<key id="KEY_LEFT" mapto="cross_left" flags="mr"/>
-		<key id="KEY_RIGHT" mapto="cross_right" flags="mr"/>
+		<key id="KEY_LEFT" mapto="cross_left" flags="b"/>
+		<key id="KEY_RIGHT" mapto="cross_right" flags="b"/>
+		<key id="KEY_LEFT" mapto="cross_left_long" flags="l"/>
+		<key id="KEY_RIGHT" mapto="cross_right_long" flags="l"/>
 		<key id="KEY_UP" mapto="cross_up" flags="m"/>
 		<key id="KEY_DOWN" mapto="cross_down" flags="m"/>
 		<key id="KEY_PAGEUP" mapto="pageup" flags="b"/>
