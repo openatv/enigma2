@@ -339,8 +339,8 @@ bool eDVBAdapterLinux::isusb(int nr)
 	{
 		return true;
 	}
-	snprintf(devicename, sizeof(devicename), "/sys/class/dvb/dvb%d.frontend0", nr);
-	return readLink(devicename).find("usb") != std::string::npos;
+	snprintf(devicename, sizeof(devicename), "/sys/class/dvb/dvb%d.frontend0/device/subsystem", nr);
+	return readLink(devicename).find("/usb") != std::string::npos;
 }
 
 DEFINE_REF(eDVBUsbAdapter);
