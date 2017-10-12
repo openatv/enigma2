@@ -34,7 +34,7 @@ void eLCD::setSize(int xres, int yres, int bpp)
 {
 	_stride = xres * bpp / 8;
 	_buffer = new unsigned char[xres * yres * bpp/8];
-	if ((strcmp(boxtype_name, "dm900\n") == 0))
+	if ((strcmp(boxtype_name, "dm900\n") == 0) || (strcmp(boxtype_name, "dm920\n") == 0))
 		xres -= DM900_LCD_Y_OFFSET;
 	res = eSize(xres, yres);
 	memset(_buffer, 0, xres * yres * bpp / 8);
