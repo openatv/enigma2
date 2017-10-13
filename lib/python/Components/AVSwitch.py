@@ -264,6 +264,7 @@ class AVSwitch:
 		# we can ignore "port"
 		self.current_mode = mode
 		self.current_port = port
+		self.current_rate = rate
 		modes = self.rates[mode][rate]
 
 		mode_50 = modes.get(50)

@@ -1851,7 +1851,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			eSingleLocker l(m_tstools_lock);
 			if (m_tstools.getNextAccessPoint(nextap, now, pts))
 			{
-				pts = now - 90000; /* approx. 1s */
+				if (pts >= 0)
+					pts = now + 90000; /* approx. 1s */
+				else
+					pts = now - 90000; /* approx. 1s */
 				eDebug("[eDVBChannel] AP relative seeking failed!");
 			} else
 			{
