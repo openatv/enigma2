@@ -314,6 +314,9 @@
 		<key id="KEY_KP0" mapto="discrete_off" flags="m"/>
 		<key id="KEY_POWER2" mapto="deepstandby" flags="m"/>
 		<key id="KEY_SUSPEND" mapto="discrete_off" flags="m"/>
+		<key id="KEY_SWITCHVIDEOMODE" mapto="videomode_down" flags="m"/>
+		<key id="KEY_SWITCHVIDEOMODE" mapto="videomode_up" flags="b"/>
+		<key id="KEY_SWITCHVIDEOMODE" mapto="videomode_long" flags="l"/>
 		<device name="dreambox front panel">
 			<key id="KEY_POWER" mapto="deepstandby" flags="l"/>
 			<key id="KEY_POWER" mapto="power_down" flags="m"/>
@@ -324,6 +327,12 @@
 	<map context="PowerKeyActions">
 		<key id="KEY_POWER" mapto="powerdown" flags="m"/>
 		<key id="KEY_POWER" mapto="powerup" flags="b"/>
+	</map>
+
+	<map context="VideoResolutionButtonActions">
+		<key id="KEY_SWITCHVIDEOMODE" mapto="videomode_down" flags="m"/>
+		<key id="KEY_SWITCHVIDEOMODE" mapto="videomode_up" flags="b"/>
+		<key id="KEY_SWITCHVIDEOMODE" mapto="videomode_long" flags="l"/>
 	</map>
 
 	<map context="NumberActions">

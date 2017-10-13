@@ -122,6 +122,10 @@
 		<panel name="WizardSummary" />
 	</screen>
 
+	<screen name="VideoResolution_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_resolution" render="Label" position="0,0" size="126,64" font="Regular;11" noWrap="1" />
+	</screen>
+
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
