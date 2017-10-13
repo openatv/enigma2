@@ -358,8 +358,8 @@ class ButtonSetupSelect(Screen):
 			"right": self.keyRight,
 			"pageUp": self.toggleMode,
 			"pageDown": self.toggleMode,
-			"shiftUp": self.moveUp,
-			"shiftDown": self.moveDown,
+			"moveUp": self.moveUp,
+			"moveDown": self.moveDown,
 		}, -1)
 		self.onShown.append(self.enableKeyMap)
 		self.onClose.append(self.disableKeyMap)
