@@ -122,7 +122,7 @@ class RCSetupScreen(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			config.plugins.RCSetup.mode.value = self.last_good[0]
+			config.plugins.RCSetup.mode.value = self.last_good
 			applySettings()
 		else:
 			applySettings()
