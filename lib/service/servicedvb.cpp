@@ -17,6 +17,7 @@
 #include <lib/dvb/tstools.h>
 #include <lib/python/python.h>
 #include <lib/base/nconfig.h> // access to python config
+#include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
 #include "servicepeer.h"
 
@@ -2815,6 +2816,12 @@ ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref, int p
 	if (ref.path.substr(0, 7) == "http://")
 	{
 		eHttpStream *f = new eHttpStream();
+		f->open(ref.path.c_str());
+		return ePtr<iTsSource>(f);
+	}
+	else if (ref.path.substr(0, 8) == "https://")
+	{
+		eHttpsStream *f = new eHttpsStream();
 		f->open(ref.path.c_str());
 		return ePtr<iTsSource>(f);
 	}
