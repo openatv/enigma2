@@ -7,7 +7,6 @@ SUBDIRS = TuxboxPlugins \
 	MediaPlayer \
 	SocketMMI \
 	DVDBurn \
-	IniMyTube \
 	IniSHOUTcast \
 	IniZapHistoryBrowser \
 	IniGmailReader \

@@ -503,7 +503,6 @@ lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/IniGmailReader/Makefile
 lib/python/Plugins/Extensions/IniWebcamViewer/Makefile
-lib/python/Plugins/Extensions/IniMyTube/Makefile
 lib/python/Plugins/Extensions/IniZapHistoryBrowser/Makefile
 lib/python/Plugins/Extensions/IniSHOUTcast/Makefile
 lib/python/Plugins/Extensions/FileCommander/Makefile
