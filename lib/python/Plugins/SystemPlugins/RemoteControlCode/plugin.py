@@ -12,12 +12,12 @@ from os import path as os_path
 
 if getBoxType() == "beyonwizu4":
 	modelist = [
-		("16", _("Default")),
 		("507", _("Beyonwiz U4 (0xAE97)")),
 		("509", _("Beyonwiz U4/T4/T2 (0x02F3)")),
 		("508", _("Beyonwiz T2/T4 (0x02F2)")),
 		("510", _("Beyonwiz T2/T4 (0x02F4)")),
 		("506", _("Beyonwiz T3 (0xABCD)")),
+		# ("16", _("Generic (0x00FF)")),
 		]
 	imagemap = {
 		"506" : "ini5.png",
