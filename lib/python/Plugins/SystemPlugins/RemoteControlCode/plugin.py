@@ -115,7 +115,7 @@ class RCSetupScreen(Screen, ConfigListScreen):
 		RC = config.plugins.RCSetup.mode.value
 		if (RC) != self.last_good:
 			from Screens.MessageBox import MessageBox
-			self.session.openWithCallback(self.confirm, MessageBox, _("Is this remote OK?"), MessageBox.TYPE_YESNO, timeout=15, default=False)
+			self.session.openWithCallback(self.confirm, MessageBox, _("Is this remote OK?"), MessageBox.TYPE_YESNO, timeout=30, default=False)
 		else:
 			config.plugins.RCSetup.save()
 			self.close()
