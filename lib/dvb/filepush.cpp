@@ -228,6 +228,9 @@ void eFilePushThread::thread()
 #if HAVE_CPULOADFIX
 						sleep(2);
 #endif
+#if HAVE_HISILICON
+						usleep(100000);
+#endif
 						continue;
 					}
 					eDebug("[eFilePushThread] write: %m");
@@ -397,6 +400,9 @@ void eFilePushThreadRecorder::thread()
 				break;
 			}
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
+#if HAVE_HISILICON
+				usleep(100000);
+#endif
 				continue;
 			if (errno == EOVERFLOW)
 			{
