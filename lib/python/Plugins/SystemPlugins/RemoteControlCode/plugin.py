@@ -12,12 +12,12 @@ from os import path as os_path
 
 if getBoxType() == "beyonwizu4":
 	modelist = [
-		("16", _("Default")),
 		("507", _("Beyonwiz U4 (0xAE97)")),
 		("509", _("Beyonwiz U4/T4/T2 (0x02F3)")),
 		("508", _("Beyonwiz T2/T4 (0x02F2)")),
 		("510", _("Beyonwiz T2/T4 (0x02F4)")),
 		("506", _("Beyonwiz T3 (0xABCD)")),
+		# ("16", _("Generic (0x00FF)")),
 		]
 	imagemap = {
 		"506" : "ini5.png",
@@ -115,7 +115,7 @@ class RCSetupScreen(Screen, ConfigListScreen):
 		RC = config.plugins.RCSetup.mode.value
 		if (RC) != self.last_good:
 			from Screens.MessageBox import MessageBox
-			self.session.openWithCallback(self.confirm, MessageBox, _("Is this remote OK?"), MessageBox.TYPE_YESNO, timeout=15, default=False)
+			self.session.openWithCallback(self.confirm, MessageBox, _("Is this remote OK?"), MessageBox.TYPE_YESNO, timeout=30, default=False)
 		else:
 			config.plugins.RCSetup.save()
 			self.close()
