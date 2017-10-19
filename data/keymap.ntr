@@ -792,10 +792,10 @@
 	</map>
 
 	<map context="PiPSetupActions">
-		<key id="KEY_UP" mapto="up" flags="m" />
-		<key id="KEY_DOWN" mapto="down" flags="m" />
-		<key id="KEY_LEFT" mapto="left" flags="m" />
-		<key id="KEY_RIGHT" mapto="right" flags="m" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
@@ -964,8 +964,10 @@
 		<key id="KEY_PAUSE" mapto="pause" flags="m"/>
 		<key id="KEY_REWIND" mapto="rewind" flags="b"/>
 		<key id="KEY_FASTFORWARD" mapto="fastforward" flags="b"/>
-		<key id="KEY_PREVIOUSSONG" mapto="rewind" flags="b"/>
-		<key id="KEY_NEXTSONG" mapto="fastforward" flags="b"/>
+		<key id="KEY_PREVIOUSSONG" mapto="prevsong" flags="b"/>
+		<key id="KEY_NEXTSONG" mapto="nextsong" flags="b"/>
+		<key id="KEY_PREVIOUSSONG" mapto="prevsong_long" flags="l"/>
+		<key id="KEY_NEXTSONG" mapto="nextsong_long" flags="l"/>
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b"/>
 		<key id="KEY_PROGRAM" mapto="prog" flags="b"/>
 		<key id="KEY_PROGRAM" mapto="prog_long" flags="l"/>
