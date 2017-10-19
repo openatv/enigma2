@@ -68,14 +68,14 @@ class CronManager(Screen):
 		self.onLayoutFinish.append(self.updateList)
 
 	def CrondStart(self):
-		if self.my_crond_run == False:
-			self.Console.ePopen('/etc/init.d/crond start')
-			sleep(3)
-			self.updateList()
-		elif self.my_crond_run == True:
-			self.Console.ePopen('/etc/init.d/crond stop')
-			sleep(3)
-			self.updateList()
+		if not self.my_crond_run:
+			self.Console.ePopen('/etc/init.d/crond start', self.StartStopCallback)
+		elif self.my_crond_run:
+			self.Console.ePopen('/etc/init.d/crond stop', self.StartStopCallback)
+
+	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+		sleep(3)
+		self.updateList()
 
 	def autostart(self):
 		if path.exists('/etc/rc0.d/K60crond'):
