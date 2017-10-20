@@ -78,7 +78,7 @@ class FlashOnline(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
-		if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
+		if getMachineBuild() in ("hd51","vs1500","h7","8100s"):
 			self.devrootfs = "/dev/mmcblk0p3"
 		elif getMachineBuild() in ("gb7252"):
 			self.devrootfs = "/dev/mmcblk0p4"
@@ -171,8 +171,10 @@ class FlashOnline(Screen):
 				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
 				self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
-			if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
+			if getMachineBuild() in ("hd51","vs1500","h7"):
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
+			elif getMachineBuild() in ("8100s"):
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
 			self.devrootfs = cmdline
@@ -189,7 +191,7 @@ class FlashOnline(Screen):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
+			if getMachineBuild() in ("hd51","vs1500","h7"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
@@ -197,6 +199,17 @@ class FlashOnline(Screen):
 						except IndexError:
 							continue
 						cmdline_startup = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
+						if (cmdline != cmdline_startup) and (name != "STARTUP"):
+							files.append(name)
+				files.insert(0,"STARTUP")
+			elif getMachineBuild() in ("8100s"):
+				for name in os.listdir(path):
+					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
+						try:
+							cmdline = self.read_startup("/boot/" + name).split("=",4)[4].split(" ",1)[0]
+						except IndexError:
+							continue
+						cmdline_startup = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
 						if (cmdline != cmdline_startup) and (name != "STARTUP"):
 							files.append(name)
 				files.insert(0,"STARTUP")

@@ -18,6 +18,10 @@ if VUUNO4K
 SUBDIRS += QuadPip
 endif
 
+if S8100
+SUBDIRS += MiniTV
+endif
+
 if HAVE_WETEK_XBMC
 SUBDIRS +=  StartKodi
 endif
