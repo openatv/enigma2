@@ -448,6 +448,10 @@ class ImageBackup(Screen):
 				system('cp %s %s/lcdwaitkey.bin' %(lcdwaitkey, self.MAINDEST))
 			if path.exists(lcdwarning):
 				system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))
+		if self.MODEL in ("e4hdultra"):
+			lcdwarning = '/usr/share/lcdflashing.bmp'
+			if path.exists(lcdwarning):
+				system('cp %s %s/lcdflashing.bmp' %(lcdwarning, self.MAINDEST))
 		if self.MODEL == "gb800solo":
 			burnbat = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 			f = open("%s/burn.bat" % (burnbat), "w")
