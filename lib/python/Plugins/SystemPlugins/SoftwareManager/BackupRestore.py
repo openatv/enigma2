@@ -176,14 +176,17 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.backupdirs += " tmp/groups.txt"
 
 			ShellCompatibleFunctions.backupUserDB()
-			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^davfs2$|^joe$|^mc$|^mergerfs$|^nano$|^oe-alliance-branding-remote|^openvpn|^easy-rsa$|^simple-rsa$|^p7|^perl|^rclone$|^streamproxy$|^wget$' > /tmp/installed-list.txt"
+			pkgs=ShellCompatibleFunctions.listpkg(type="user")
+			installed = open("/tmp/installed-list.txt", "rw+")
+			installed.write('\n'.join(pkgs))
+			installed.close()
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -C / -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
 			for f in BLACKLISTED:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
-			cmd = [cmd1, cmd2, cmd3]
+			cmd = [cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile

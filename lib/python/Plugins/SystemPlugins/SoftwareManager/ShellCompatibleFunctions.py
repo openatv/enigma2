@@ -9,6 +9,11 @@ MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default
 # BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly
 BLACKLISTED = ['home/root/.cache', 'etc/passwd', 'etc/shadow', 'etc/group', 'etc/samba/distro', 'etc/samba/smb.conf']
 
+IMAGE_INSTALL = ['openatv-base', 'enigma2-plugin-settings-defaultsat', 'run-postinsts']
+
+PACKAGES = '/var/lib/opkg/lists'
+INSTALLEDPACKAGES = '/var/lib/opkg/status'
+
 def backupUserDB():
 	oldpasswd=()
 	oldshadow=()
@@ -178,3 +183,43 @@ def restoreUserDB():
 		newshadowfile.write("%s:%s:%s\n" % (name, passwd, rest))
 	newshadowfile.close()
 	shutil.move("/tmp/shadow.new", "/etc/shadow")
+
+def listpkg(type="all"):
+	pkgs = []
+	ret = []
+	for line in open(INSTALLEDPACKAGES, 'r'):
+		if line.startswith('Package:'):
+			package = line.split(":",1)[1].strip()
+			version = ''
+			status = ''
+			autoinstalled = False
+			continue
+		if package is None:
+			continue
+		if line.startswith('Version:'):
+			version = line.split(":",1)[1].strip()
+		if line.startswith('Auto-Installed:'):
+			auto = line.split(":",1)[1].strip()
+			if auto == "yes":
+				autoinstalled = True
+		elif len(line) <= 1:
+			pkgs.append({
+				"package": package,
+				"version": version,
+				"status": status,
+				"autoinstalled": autoinstalled
+			})
+			package = None
+
+	for package in pkgs:
+		if type == "all":
+			ret.append(package['package'])
+		elif type == "auto":
+			if package['autoinstalled']:
+				ret.append(package['package'])
+		elif type == "user":
+			if not package['autoinstalled']:
+				if not package['package'] in IMAGE_INSTALL:
+					ret.append(package['package'])
+
+	return sorted(ret)
