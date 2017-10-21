@@ -177,7 +177,7 @@ class BackupScreen(Screen, ConfigListScreen):
 
 			ShellCompatibleFunctions.backupUserDB()
 			pkgs=ShellCompatibleFunctions.listpkg(type="user")
-			installed = open("/tmp/installed-list.txt", "rw+")
+			installed = open("/tmp/installed-list.txt", "w")
 			installed.write('\n'.join(pkgs))
 			installed.close()
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
