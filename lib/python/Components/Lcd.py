@@ -478,19 +478,18 @@ def InitLcd():
 		config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
 
-		standby_default = 0
+		if getBoxType() in ('dm900', 'dm920', 'e4hdultra'):
+			standby_default = 4
+		elif getBoxType() in ('spycat4kmini', 'osmega'):
+			standby_default = 10
+		else:
+			standby_default = 1
 
 		if not ilcd.isOled():
 			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
 			config.lcd.contrast.addNotifier(setLCDcontrast);
 		else:
 			config.lcd.contrast = ConfigNothing()
-			if getBoxType() in ('dm900', 'dm920', 'e4hdultra'):
-				standby_default = 4
-			elif getBoxType() in ('spycat4kmini', 'osmega'):
-				standby_default = 10
-			else:
-				standby_default = 1
 
 		if getBoxType() in ('novatwin', 'novacombo', 'mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
