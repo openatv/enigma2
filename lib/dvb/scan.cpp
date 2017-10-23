@@ -23,6 +23,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/db.h>
 #include <errno.h>
+#include "absdiff.h"
 
 #define SCAN_eDebug(x...) do { if (m_scan_debug) eDebug(x); } while(0)
 #define SCAN_eDebugNoNewLineStart(x...) do { if (m_scan_debug) eDebugNoNewLineStart(x); } while(0)
@@ -82,14 +83,14 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 		ret = tsid != 0x4321;
 		break;
 	case 0x0002:
-		ret = abs(orbital_position-282) < 6 && tsid != 2019;
+		ret = absdiff(orbital_position, 282) < 6 && tsid != 2019;
 		// 12070H and 10936V have same tsid/onid.. but even the same services are provided
 		break;
 	case 0x2000:
 		ret = tsid != 0x1000;
 		break;
 	case 0x5E: // Sirius 4.8E 12322V and 12226H
-		ret = abs(orbital_position-48) < 3 && tsid != 1;
+		ret = absdiff(orbital_position, 48) < 3 && tsid != 1;
 		break;
 	case 0x0070: // Eutelsat W7 36.0E 12174L and 12284R have same ONID/TSID (0x0070/0x0008)
 		ret = orbital_position != 360 || tsid != 0x0008;
@@ -108,7 +109,7 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 		ret = (orbital_position != 685 && orbital_position != 3560) || tsid != 1;
 		break;
 	case 70: // Thor 0.8W 11862H 12341V
-		ret = abs(orbital_position-3592) < 3 && tsid != 46;
+		ret = absdiff(orbital_position, 3592) < 3 && tsid != 46;
 		break;
 	case 32: // NSS 806 (40.5W) 4059R, 3774L
 		ret = orbital_position != 3195 || tsid != 21;
@@ -312,8 +313,8 @@ RESULT eDVBScan::startFilter()
 				{
 					eDVBFrontendParametersCable parm;
 					m_ch_current->getDVBC(parm);
-					if ((tsid == 0x00d7 && abs(parm.frequency-618000) < 2000) ||
-						(tsid == 0x00d8 && abs(parm.frequency-626000) < 2000))
+					if ((tsid == 0x00d7 && absdiff(parm.frequency, 618000) < 2000) ||
+						(tsid == 0x00d8 && absdiff(parm.frequency, 626000) < 2000))
 						tsid = -1;
 				}
 			}
@@ -891,10 +892,10 @@ void eDVBScan::channelDone()
 						eDVBFrontendParametersSatellite p;
 						m_ch_current->getDVBS(p);
 
-						if ( abs(p.orbital_position - sat.orbital_position) < 5 )
+						if ( absdiff(p.orbital_position, sat.orbital_position) < 5 )
 							sat.orbital_position = p.orbital_position;
 
-						if ( abs(abs(3600 - p.orbital_position) - sat.orbital_position) < 5 )
+						if ( absdiff(absdiff(3600, p.orbital_position), sat.orbital_position) < 5 )
 						{
 							SCAN_eDebug("[eDVBScan] found transponder with incorrect west/east flag ... correct this");
 							sat.orbital_position = p.orbital_position;
