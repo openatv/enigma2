@@ -45,10 +45,9 @@ def Plugins(**kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "system" and not config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and not config.skin.primary_skin.value == "MetrixHD/skin.xml" and not config.skin.primary_skin.value =="SevenHD/skin.xml":
-		print "madieatv"
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
-		print "madieatv2"
+		pass
 	return [ ]
 
 def main(session, **kwargs):
