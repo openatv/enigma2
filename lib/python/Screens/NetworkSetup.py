@@ -2381,7 +2381,7 @@ class NetworkSamba(Screen):
 		self.my_Samba_active = False
 		self.my_Samba_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SambaStartStop, 'yellow': self.activateSamba, 'blue': self.Sambashowlog})
-		self.service_name = basegroup + '-samba'
+		self.service_name = basegroup + '-smbfs-server'
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
