@@ -1260,6 +1260,10 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 			if (m_video_clip_fd >= 0)
 				finishShowSinglePic();
 #endif
+#if HAVE_HISILICON
+			if (m_video_clip_fd >= 0)
+				finishShowSinglePic();
+#endif
 			if (m_video_clip_fd == -1)
 				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY);
 			if (m_video_clip_fd >= 0)
@@ -1277,9 +1281,13 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					streamtype = VIDEO_STREAMTYPE_MPEG4_H264;
 				else
 					streamtype = VIDEO_STREAMTYPE_MPEG2;
-
+#if HAVE_HISILICON
+				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, 0xff) < 0)
+					eDebug("[eTSMPEGDecoder] VIDEO_SELECT_SOURCE MEMORY failed: %m");
+#else
 				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
 					eDebug("[eTSMPEGDecoder] VIDEO_SELECT_SOURCE MEMORY failed: %m");
+#endif
 #if not defined(__sh__)
 				if (ioctl(m_video_clip_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
 					eDebug("[eTSMPEGDecoder] VIDEO_SET_STREAMTYPE failed: %m");
@@ -1301,7 +1309,11 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					write(m_video_clip_fd, seq_end, sizeof(seq_end));
 				writeAll(m_video_clip_fd, stuffing, 8192);
 #if not defined(__sh__)
+#if HAVE_HISILICON
+				;
+#else
 				m_showSinglePicTimer->start(150, true);
+#endif
 #endif
 			}
 			close(f);

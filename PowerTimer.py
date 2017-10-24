@@ -368,7 +368,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						quitMainloop(3)
 					else:
 						callback = self.sendTryToRestartNotification
-						message = _("A finished powertimer wants to restart the user interface.\nDo that now?") % (getMachineBrand(), getMachineName())
+						message = _("A finished powertimer wants to restart the user interface.\nDo that now?")
 						messageboxtyp = MessageBox.TYPE_YESNO
 						timeout = 180
 						default = True

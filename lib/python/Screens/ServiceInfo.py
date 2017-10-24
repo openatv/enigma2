@@ -145,12 +145,12 @@ class ServiceInfo(Screen):
 			videomode = "-"
 			resolution = "-"
 			if self.info:
-				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "HEVC", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
+				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "HEVC", "H265", "CAVS", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
 				width = self.info.getInfo(iServiceInformation.sVideoWidth)
 				height = self.info.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
 					resolution = "%dx%d" % (width,height)
-					resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
+					resolution += ("i", "p", "-")[self.info.getInfo(iServiceInformation.sProgressive)]
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 					if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
