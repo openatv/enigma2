@@ -216,7 +216,7 @@ ISO3166 = [
 	(_("Sweden"), "SE", "SWE"),
 	(_("Switzerland"), "CH", "CHE"),
 	(_("Syrian Arab Republic"), "SY", "SYR"),
-	(_("[a]"), "TW", "TWN"),
+	(_("Taiwan"), "TW", "TWN"),
 	(_("Tajikistan"), "TJ", "TJK"),
 	(_("Tanzania, United Republic of"), "TZ", "TZA"),
 	(_("Thailand"), "TH", "THA"),
