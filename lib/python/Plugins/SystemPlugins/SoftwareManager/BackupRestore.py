@@ -564,7 +564,6 @@ class RestoreMyMetrixHD(Screen):
 		self["summary_description"] = StaticText(_("Please wait while your skin setting is restoring..."))
 		self.onShown.append(self.setWindowTitle) 
 
-		self.check = 0
 		# if not waiting is bsod possible (RuntimeError: modal open are allowed only from a screen which is modal!)
 		self.restoreSkinTimer = eTimer()
 		self.restoreSkinTimer.callback.append(self.restoreSkin)
@@ -574,43 +573,23 @@ class RestoreMyMetrixHD(Screen):
 		self.setTitle(_("Restore MetrixHD Settings"))
 
 	def restoreSkin(self):
-		self.MainSettingsView = False
-		self.checkSkinTimer = eTimer()
-		self.checkSkinTimer.callback.append(self.checkSkin)
-		self.checkSkinTimer.start(10000, False)
 		try:
-			import Plugins.Extensions.MyMetrixLite.MainSettingsView as MainSettingsView
-			self.MainSettingsView = MainSettingsView
-			reload(self.MainSettingsView)
-			#variables testing
-			result = self.MainSettingsView.skinReady
-			resultCode = self.MainSettingsView.skinReadyCode
-			#restore skin
-			self.MainSettingsView.MainSettingsView(None,True)
-		except:
-			self.checkSkinTimer.stop()
-			self.session.openWithCallback(self.checkSkinCallback, MessageBox, _("Error creating MetrixHD-Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."), MessageBox.TYPE_ERROR, timeout = 30)
-
-	def checkSkin(self):
-		result = True
-		resultCode = 1
-		self.check += 1
-		if self.MainSettingsView:
-			result = self.MainSettingsView.skinReady
-			resultCode = self.MainSettingsView.skinReadyCode
-		if self.check >= 12 or result:
-			self.checkSkinTimer.stop()
-			if resultCode > 0:
+			from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
+			result = ActivateSkinSettings().WriteSkin(True)
+			if result:
 				infotext = ({1:_("Unknown Error creating Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."),
 							2:_("Error creating HD-Skin. Not enough flash memory free."),
 							3:_("Error creating FullHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
 							4:_("Error creating FullHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
 							5:_("Error creating FullHD-Skin.\nUsing HD-Skin!"),
 							6:_("Some FullHD-Icons are missing.\nUsing HD-Icons!"),
-							}[resultCode])
+							7:_("Error, unknown Result!"),
+							}[result])
 				self.session.openWithCallback(self.checkSkinCallback, MessageBox, infotext, MessageBox.TYPE_ERROR, timeout = 30)
 			else:
 				self.close()
+		except:
+			self.session.openWithCallback(self.checkSkinCallback, MessageBox, _("Error creating MetrixHD-Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."), MessageBox.TYPE_ERROR, timeout = 30)
 
 	def checkSkinCallback(self, ret = None):
 		self.close()

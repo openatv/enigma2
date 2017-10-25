@@ -145,8 +145,8 @@ class SkinSelectorBase:
 			else:
 				try:
 					if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml":
-						from Plugins.Extensions.MyMetrixLite.MainSettingsView import MainSettingsView
-						MainSettingsView(None).getEHDiconRefresh(restore=True)
+						from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
+						ActivateSkinSettings().RefreshIcons(True) #restore default icons
 				except:
 					pass
 				config.skin.primary_skin.value = self.skinfile
