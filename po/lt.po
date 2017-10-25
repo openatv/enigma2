@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-13 05:00+0300\n"
-"PO-Revision-Date: 2017-10-13 14:10+0300\n"
+"POT-Creation-Date: 2017-10-24 01:45+0300\n"
+"PO-Revision-Date: 2017-10-24 19:54+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -134,6 +134,9 @@ msgstr "%.0f MB"
 msgid "%.2f GB"
 msgstr "%.2f GB"
 
+msgid "%02d.%02d - %02d.%02d"
+msgstr "%s %02d.%02d.%02d.%02d"
+
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr "%02d.%02d - %02d.%02d (%s%d min.)"
 
@@ -257,6 +260,9 @@ msgstr "%Y %B %e"
 msgid "%d.%m.   "
 msgstr "%m.%d."
 
+msgid "%e/%m, %-H:%M"
+msgstr "%m/%e, %a  %-H:%M"
+
 msgid "%H:%M"
 msgstr "%V:%M"
 
@@ -290,8 +296,27 @@ msgstr "%s (%s)\n"
 msgid "%s ( %s Cards )"
 msgstr "%s (%s kortelės)"
 
+msgid "%s - Setup"
+msgstr "%s - Sąranka"
+
+msgid "%s additional screens"
+msgstr "%s papildomi ekranai"
+
 msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s daugiau nenaudojamas. Pašalinti?"
+
+msgid "%s not available."
+msgstr "%s: nėra."
+
+msgid "%s Setup"
+msgstr "%s Sąranka"
+
+msgid ""
+"%s\n"
+"(%s, %d MB free)"
+msgstr ""
+"%s\n"
+"(%s, %d MB laisva)"
 
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
@@ -334,6 +359,9 @@ msgstr "%s1080i rodyti kaip 1080p"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
+
+msgid "%Y-%m-%d %H-%M"
+msgstr "%Y.%m.%d %H:%M"
 
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr ""
@@ -463,6 +491,9 @@ msgstr "-24"
 
 msgid "/s"
 msgstr "/sek."
+
+msgid "/sec]"
+msgstr "/sek.]"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 katalogas"
@@ -1540,6 +1571,9 @@ msgstr "Leidžia įjungti/išjungti logotipų rodymą priekiniame skyde."
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Leidžia paslėpti žinomų failų tipų plėtinius."
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr "Leidžia pasiųsti žurnalo įrašo kopiją sau."
+
 msgid ""
 "Allows you to set the maximum size of the Debug log size (MB). When that "
 "size is reached, a new file will be created."
@@ -1569,6 +1603,9 @@ msgstr "alfa, tada seniausia"
 
 msgid "alphabetic"
 msgstr "abėcėlinis"
+
+msgid "alphabetical"
+msgstr "abėcėlės tvarka"
 
 msgid "alphabetic reverse"
 msgstr "ne abėcėlės tvarka"
@@ -1842,6 +1879,12 @@ msgstr "Pabaigoje:"
 
 msgid "athletics"
 msgstr "atletika"
+
+msgid "ATSC"
+msgstr "ATSC"
+
+msgid "ATSC provider"
+msgstr "ATSC tiekėjas"
 
 msgid "Attach a file"
 msgstr "Prisegti failą"
@@ -2297,6 +2340,9 @@ msgstr "Mėlyna ilgai"
 msgid "BlueSwitch: Blue-Short/Blue-Long"
 msgstr "Perjungti mėlyną: mėlynas-trumpai / mėlynas-ilgai"
 
+msgid "Bluetooth Setup"
+msgstr "Bluetooth sąranka"
+
 msgid "Bookmarks"
 msgstr "Žymės"
 
@@ -2440,6 +2486,9 @@ msgstr "Sukaupta talpykloje:"
 
 msgid "CAID"
 msgstr "CAID"
+
+msgid "CaID"
+msgstr "CaID"
 
 msgid "caid:"
 msgstr "caid:"
@@ -2606,6 +2655,9 @@ msgstr "CCcam Info"
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo pagrindinis meniu"
 
+msgid "Celsius"
+msgstr "Pagal Celsijų"
+
 msgid "center"
 msgstr "centras"
 
@@ -2640,6 +2692,9 @@ msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
 "Pakeiskite imtuvo režimą, kad kontroliuoti techninės įrangos lusto režimus*"
 
+msgid "Change Configuration mode simple to advanced"
+msgstr "Pakeisti konfigūracijos režimą iš paprasto į išplėstinį"
+
 msgid "Change next timer"
 msgstr "Keisti kitą laikmatį"
 
@@ -2661,6 +2716,9 @@ msgstr "Keisti pakartojimo ir delsos nustatymus?"
 msgid "Change settings for your switch modes: single lnb, tonburst or diseqc"
 msgstr ""
 "Keisti perjungimo būsenų nustatymus: vienas LNB, tono signalas arba diseqc"
+
+msgid "Change skin"
+msgstr "Pakeisti temą"
 
 msgid "Change step size"
 msgstr "Keisti žingsnio dydį"
@@ -2846,6 +2904,9 @@ msgstr "Vaikams/jaunimui"
 msgid "childrens's/youth program (general)"
 msgstr "vaikų/jaunimo programa (bendrai)"
 
+msgid "Chipset"
+msgstr "Lustų rinkinys"
+
 msgid "Chipset: BCM%s"
 msgstr "Lustų rinkinys: BCM%s"
 
@@ -2854,6 +2915,9 @@ msgstr "Lustų rinkinys:\t%s"
 
 msgid "Choice Box"
 msgstr "Pasirinkimų langas"
+
+msgid "Choice where to put \"%s\""
+msgstr "Pasirinkite kur dėti \"%s\""
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Pasirinkite žymeklį, kad būtų lengviau rasti įrašą."
@@ -3205,13 +3269,10 @@ msgstr ""
 "grafinę aplinką, turi būti rodomas įspėjimas, kad vyksta įrašymas."
 
 msgid ""
-"Configure how recording filenames are constructed.\n"
-"Standard: Date Time - Channel - Title\n"
-"Very very short: Title\n"
-"Very short: Title - Date Time\n"
-"Short with time: Date Time - Title\n"
-"Short: Date - Title\n"
-"Long: Date Time - Channel - Title - Info"
+"Configure how recording filenames are constructed. Standard: Date Time - "
+"Channel - Title Very very short: Title Very short: Title - Date Time Short "
+"with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - "
+"Title - Info"
 msgstr ""
 "Konfigūruokite įrašų pavadinimų sukūrimą.\n"
 "Standartas: data laikas - kanalas - pavadinimas\n"
@@ -3853,6 +3914,9 @@ msgstr "Branduoliai: %s"
 msgid "Cores:\t%s"
 msgstr "Branduoliai:\t%s"
 
+msgid "Could not connect to server"
+msgstr "Prie serverio prisijungti nepavyko"
+
 msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr "Nepavyko prisijungti prie %s %s .NFI atvaizdo šaltinių serverio:"
 
@@ -3888,6 +3952,9 @@ msgstr "Procesorius: %s"
 
 msgid "CPU:\t%s"
 msgstr "Procesorius: %s"
+
+msgid "Crash at skin error for debug reasons ?"
+msgstr "Temos 'lūžimo' metu derinti klaidų priežastis ?"
 
 msgid "Crash Logs"
 msgstr "Gedimų žurnalai"
@@ -4303,6 +4370,9 @@ msgstr "Išsamiau apie priedą: "
 
 msgid "Detected Devices:"
 msgstr "Aptikti įrenginiai:"
+
+msgid "Detected HDD:"
+msgstr "Aptiktas HDD:"
 
 msgid "Detected NIMs:"
 msgstr "Aptikti imtuvai:"
@@ -5033,6 +5103,11 @@ msgstr "įjungti"
 msgid "Enable"
 msgstr "Įjungti"
 
+#, fuzzy
+#| msgid "Enable preview"
+msgid "Enable %s pro:"
+msgstr "Įjungti peržiūrą"
+
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
 
@@ -5492,6 +5567,9 @@ msgstr "Įvykių peržiūra"
 msgid "Eventview menu"
 msgstr "Įvykių peržiūros meniu"
 
+msgid "Everyday"
+msgstr "Kasdien"
+
 msgid "Everywhere"
 msgstr "Visur"
 
@@ -5593,6 +5671,9 @@ msgstr "Eksperimentinis režimas"
 
 msgid "Expert"
 msgstr "Ekspertinis"
+
+msgid "Expert mode"
+msgstr "Ekspertinis režimas"
 
 msgid "Ext. NumberZap"
 msgstr "Išor. Numerio jungimas"
@@ -5719,6 +5800,9 @@ msgstr "Gamykliniai nustatymai"
 
 msgid "Fade the Infobar on hide"
 msgstr "Infojuosta užsidarydama išbluks"
+
+msgid "Fahrenheit"
+msgstr "Pagal Farenheitą"
 
 msgid "Failed"
 msgstr "Klaidingas"
@@ -5935,6 +6019,11 @@ msgstr "folk/tradicinė muzika"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Šios užduotys bus atliktos, kai paspausite 'OK'!"
 
+#, fuzzy
+#| msgid "Fontsize"
+msgid "Font:"
+msgstr "Шрифт"
+
 msgid "Fontsize"
 msgstr "Šrifto dydis"
 
@@ -6052,11 +6141,17 @@ msgstr "Priekinis USB lizdas"
 msgid "Front USB 3.0"
 msgstr "Priekinis USB 3.0 lizdas"
 
+msgid "Frontprocessor version: %d"
+msgstr "Priekinio procesoriaus versija: %d"
+
 msgid "Frontprocessor version: %s"
 msgstr "Priekinio procesoriaus versija: %s"
 
 msgid "Frozen Cam Check"
 msgstr "Tikrinti emuliatoriaus problemas"
+
+msgid "FSBL Update Check"
+msgstr "FSBL atnaujinimo tikrinimas"
 
 msgid "FTP"
 msgstr "FTP"
@@ -6072,6 +6167,9 @@ msgstr "Pilna atsarginė kopija %s"
 
 msgid "Full Image Backup "
 msgstr "Pilna atvaizdo atsarginė kopija "
+
+msgid "Full Range RGB"
+msgstr "Plačios gamos RGB"
 
 msgid "Full transparency"
 msgstr "Visiškai skaidrus"
@@ -6610,6 +6708,12 @@ msgstr ""
 "Jei nustatyta 'ne', galėsite išsaugoti senesnius įvykius, net ir po "
 "perjungimo, ar nutrauktus dėl laiko poslinkio."
 
+#, fuzzy
+#| msgid "if set to 'no', only an debug message is written to the Debug log"
+msgid "if set to 'no', only an debug message is written to the Debug log "
+msgstr ""
+"Jei nustatyta \"ne\", tik derinimo pranešimas įrašomas į derinimo žurnalą"
+
 msgid ""
 "If set to 'no', timeshift used only one buffer file. It's recommend "
 "'Timeshift checking for older files [in minutes]' and 'Timeshift checking "
@@ -6742,6 +6846,9 @@ msgstr ""
 "Dabar nebesirūpinkite šviesiais atspalviais. Jie bus nustatyti sekančiame "
 "žingsnyje.\n"
 "Jeigu Jūs patenkinti gautu rezultatu, spauskite OK."
+
+msgid "Image"
+msgstr "Atvaizdas"
 
 msgid "Image Backup"
 msgstr "Atvaizdo atsarginė kopija"
@@ -6991,6 +7098,9 @@ msgstr "Įveskite kanalo pavadinimą."
 msgid "Input devices"
 msgstr "Įvesties įrenginiai"
 
+msgid "Input Stream ID"
+msgstr "Srauto įvesties ID"
+
 msgid "insert mark here"
 msgstr "įterpkite žymeklį čia"
 
@@ -7162,6 +7272,9 @@ msgstr "ISO failas yra per didelis šiai failų sistemai!"
 msgid "ISO path"
 msgstr "ISO kelias"
 
+msgid "It follows:"
+msgstr "Tai reiškia:"
+
 msgid "Italian"
 msgstr "Italų"
 
@@ -7282,8 +7395,14 @@ msgstr "Mygtukų išdėstymo pasirinkimas"
 msgid "Kleiner Test"
 msgstr "Mažas testas"
 
+msgid "Kodi installed:"
+msgstr "Kodi įdiegta:"
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi medija centras"
+
+msgid "Kodi/extra partition free space:"
+msgstr "Kodi/extra skaidinio laisva vieta:"
 
 msgid "Label"
 msgstr "Etiketė"
@@ -7530,6 +7649,9 @@ msgstr "Vieta"
 
 msgid "Location # (http://weather.yahoo.com/):"
 msgstr "Vietovė # (http://weather.yahoo.com/):"
+
+msgid "Location list"
+msgstr "Vietovių sąrašas"
 
 msgid "Lock ratio"
 msgstr "Fiksavimo santykis"
@@ -8307,6 +8429,12 @@ msgstr "kita didesnė rezoliucija"
 msgid "Next quad PiP channel"
 msgstr "Kitas, keturių PiP kanalų, kanalas"
 
+msgid "Nextsong"
+msgstr "Kitas daina"
+
+msgid "Nextsong long"
+msgstr "Kita daina (ilgai spausti)"
+
 msgid "nfi"
 msgstr "nfi"
 
@@ -8478,6 +8606,9 @@ msgstr "Oscam.conf nenurodytas vartotojas httpuser"
 
 msgid "no image found"
 msgstr "nėra atvaizdo"
+
+msgid "No matching place names found"
+msgstr "Atitinkančių vietovardžių nerasta"
 
 msgid "no module found"
 msgstr "modulio nerasta"
@@ -9058,6 +9189,12 @@ msgstr "OScam Informacija"
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam Informacijos pagrindinis meniu"
 
+msgid "oscam webif blocking localhost (127.0.0.1)"
+msgstr "oscam webif blokuoja localhost (127.0.0.1)"
+
+msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
+msgstr "oscam webif blokuoja localhost (::1 ir 127.0.0.1)"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -9303,6 +9440,9 @@ msgstr "Negrįžtamai pašalinti visus ištrintus elementus"
 msgid "Persian"
 msgstr "Persų"
 
+msgid "Personalize your Skin"
+msgstr "Individualizuokite temą"
+
 msgid "Picon"
 msgstr "Piktograma"
 
@@ -9515,6 +9655,11 @@ msgstr "Įrašykite naują aprašymą:"
 msgid "Please enter new name:"
 msgstr "Įrašykite naują pavadinimą:"
 
+#, fuzzy
+#| msgid "Please enter new description:"
+msgid "Please enter search string for your location"
+msgstr "Įrašykite naują aprašymą:"
+
 msgid "Please enter the correct pin code"
 msgstr "Įrašykite teisingą PIN kodą"
 
@@ -9542,6 +9687,9 @@ msgstr "prašome paspausti exit, kad grįžti į meniu.\n"
 
 msgid "Please press OK to continue."
 msgstr "Spauskite 'OK', kad tęsti."
+
+msgid "Please press OK to start Kodi..."
+msgstr "Prašome paspausti OK, kad paleisti Kodi..."
 
 msgid "please press OK when ready"
 msgstr "kai būsite pasiruošę, spauskite OK"
@@ -9826,6 +9974,12 @@ msgstr "pli"
 
 msgid "PLP ID"
 msgstr "PLP ID"
+
+msgid "PLS Code"
+msgstr "PLS kodas"
+
+msgid "PLS Mode"
+msgstr "PLS režimas"
 
 msgid "Plugin"
 msgstr "Priedas"
@@ -10114,6 +10268,12 @@ msgstr "Peržiūrėti pasirinktą kanalą"
 msgid "Previous"
 msgstr "Ankstesnis"
 
+msgid "Prevsong"
+msgstr "Ankstesnė daina"
+
+msgid "Prevsong long"
+msgstr "Ankstesnė daina (ilgai spausti)"
+
 msgid "Primary DNS"
 msgstr "Pirminis DNS"
 
@@ -10149,6 +10309,15 @@ msgstr "Programa"
 
 msgid "Program long"
 msgstr "Program, ilgai spausti"
+
+msgid "Programmlisten from DXAndy"
+msgstr "Programų sąrašo-atnaujinimas iš DXAndy"
+
+msgid "Programmlisten History"
+msgstr "Programų sąrašo istorija"
+
+msgid "Programmlisten Restore"
+msgstr "Programų sąrašo atkūrimas"
 
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "Klausymo programa-atnaujinimas iš DXAndy"
@@ -10874,6 +11043,10 @@ msgstr "Paleisti iš naujo %s %s."
 msgid "Restart enigma"
 msgstr "Paleisti iš naujo Enigma2"
 
+#, fuzzy
+msgid "Restart Enigma2 to apply the changes?"
+msgstr "Kad įsigaliotų, paleiskite enigma2 iš naujo."
+
 msgid "Restart GUI"
 msgstr "Paleisti iš naujo grafinę aplinką"
 
@@ -11321,6 +11494,9 @@ msgstr "Ieškoti palydovų, tikrinti signalą ir užfiksuoti"
 
 msgid "Search the epg for current event."
 msgstr "Ieškoti EPG apie šį įvykį."
+
+msgid "Search weather location ID"
+msgstr "Orų prognozės vietovės ID"
 
 msgid "Search west"
 msgstr "Ieškoti vakarų"
@@ -12091,6 +12267,9 @@ msgstr "Nustatymai..."
 msgid "Setup"
 msgstr "Nustatymai"
 
+msgid "Setup - %s"
+msgstr "Nustatymas - %s"
+
 msgid "Setup AFP"
 msgstr "AFP nustatymas"
 
@@ -12604,6 +12783,9 @@ msgstr "Rodyti infojuostos piktogramas"
 msgid "Show job tasks in extensions"
 msgstr "Plėtinių lange rodyti darbines užduotis"
 
+msgid "Show Live in MiniTV"
+msgstr "Rodyti tiesiogiai į MiniTV"
+
 msgid "Show live tv when movie stopped"
 msgstr "Kai filmas sustabdytas, rodyti TV transliaciją"
 
@@ -12684,6 +12866,9 @@ msgstr "kanalų pasirinkimo sąraše rodyti kanalų piktogramas"
 
 msgid "Show PIP"
 msgstr "Paveikslėlis paveikslėlyje"
+
+msgid "Show PIP in MiniTV"
+msgstr "Rodyti PIP į MiniTV"
 
 msgid "Show PIP in the Front Display"
 msgstr "Rodyti PIP priekiniame monitoriuje"
@@ -12955,6 +13140,9 @@ msgstr "Paprastas pavadinimo nustatymas (suderinama su senais grotuvais)"
 msgid "Simple zoom"
 msgstr "Paprastas priartinimas"
 
+msgid "Simplified Chinese"
+msgstr "Supaprastinta kinų"
+
 msgid "Simulate (no write)"
 msgstr "Imituoti (ne rašyti)"
 
@@ -13097,6 +13285,9 @@ msgstr "Sulėtinto judėjimo greitis"
 
 msgid "Small progress"
 msgstr "Nedidelė pažanga"
+
+msgid "Small Test"
+msgstr "Mažas testas"
 
 msgid "Smartcard PIN"
 msgstr "Intelektualiosios kortelės PIN"
@@ -13242,6 +13433,9 @@ msgstr "Atsiprašome MiniDLNA konfigūracijos nėra"
 
 msgid "Sorry no backups found!"
 msgstr "Atsiprašome, bet atsarginių kopijų nerasta!"
+
+msgid "Sorry only possible to record 2 channels at once"
+msgstr "Atsiprašome, vienu metu galima įrašyti tik 2 kanalus"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Atsiprašome uShare konfigūracijos nėra"
@@ -13406,6 +13600,9 @@ msgstr "Pradėti iš pradžių"
 
 msgid "Start instant recording"
 msgstr "Pradėti tiesioginį įrašymą"
+
+msgid "Start Kodi"
+msgstr "Pradėti Kodi"
 
 msgid "Start mode"
 msgstr "Paleidimo režimas"
@@ -13628,6 +13825,10 @@ msgstr "Juostos"
 msgid "Strongest position"
 msgstr "Stipriausia pozicija"
 
+#, fuzzy
+msgid "Style:"
+msgstr "Stilius"
+
 msgid "Subservice mode"
 msgstr "Subkanalo režimas"
 
@@ -13849,6 +14050,9 @@ msgstr "Sistemos pranešimas"
 
 msgid "System Message Check"
 msgstr "Sistemos pranešimų tikrinimas"
+
+msgid "System partition free space:"
+msgstr "Sistemos skaidinio laisva vieta:"
 
 msgid "System Setup"
 msgstr "Sistemos nustatymai"
@@ -15151,6 +15355,9 @@ msgstr "Takelis"
 msgid "traditional (fast)"
 msgstr "tradicinis (greitas)"
 
+msgid "Traditional Chinese"
+msgstr "Tradicinė kinų"
+
 msgid "Transcode"
 msgstr "Perkoduoti"
 
@@ -15285,8 +15492,29 @@ msgstr "Imtuvo būsena"
 msgid "Tuner status %s"
 msgstr "Imtuvo būsena %s"
 
+msgid "Tuner status FAILED"
+msgstr "Imtuvo būsena NEPAVYKUSI"
+
+msgid "Tuner status IDLE"
+msgstr "Imtuvo būsena LAUKIME"
+
+msgid "Tuner status LOCKED"
+msgstr "Imtuvo būsena FIKSUOTA"
+
+msgid "Tuner status LOSTLOCK"
+msgstr "Imtuvo būsena PAPRASTA FIKSUOTA"
+
+msgid "Tuner status TUNING"
+msgstr "Imtuvo būsena DERINAMA"
+
+msgid "Tuner status UNKNOWN"
+msgstr "Imtuvo būsena NEŽINOMA"
+
 msgid "Tuner type"
 msgstr "Imtuvo tipas"
+
+msgid "Tuner type %s"
+msgstr "Imtuvo tipas %s"
 
 msgid "TUNER:"
 msgstr "IMTUVAS:"
@@ -15872,6 +16100,9 @@ msgstr "varjetė šou"
 msgid "VCR scart"
 msgstr "VCR skartas"
 
+msgid "Version"
+msgstr "Versija"
+
 msgid "Version: "
 msgstr "Versija: "
 
@@ -16242,6 +16473,9 @@ msgstr "Trečiadienis"
 msgid "Weekday"
 msgstr "Savaitės diena"
 
+msgid "Weekend"
+msgstr "Savaitgalis"
+
 msgid "Weekly"
 msgstr "Kas savaitę"
 
@@ -16436,16 +16670,22 @@ msgstr ""
 "Kai čia įjungta, http sraute bus įtraukti ir AIT duomenys. Tai leis kliento "
 "imtuvui naudotis HbbTV."
 
+#, fuzzy
+#| msgid ""
+#| "When enabled, always descramble receiving http streams. This takes up "
+#| "more resources (descrambling demuxers), only enable if necessary. "
+#| "Individual streams are always descrambled if 0x100 is added to the "
+#| "service type, regardless of this setting. Default off."
 msgid ""
 "When enabled, always descramble receiving http streams. This takes up more "
 "resources (descrambling demuxers), only enable if necessary. Individual "
 "streams are always descrambled if 0x100 is added to the service type, "
-"regardless of this setting. Default off."
+"regardless of this setting."
 msgstr ""
-"Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai "
-"pareikalaus gerokai daugiau resursų, todėl įjunkite tik kai būtina. Atskiri "
-"srautai visada iškoduojami nepaisant šio nustatymo, jei prie kanalo tipo "
-"įrašyta  0x100. Numatytasis yra 'ne'."
+"Se abilitato, decodificare sempre ricevendo flussi http. Questo richiede più "
+"risorse (decodifica demuxer), attivare solo se necessario. Flussi "
+"individuali sono sempre decodificati se 0x100 è aggiunto al tipo di "
+"servizio, indipendentemente da questa impostazione. Predefinito Off"
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
@@ -17000,6 +17240,9 @@ msgstr ""
 "Su geltonu mygtuku galite pasirinkti tiesioginį atvaizdo įdiegimą\n"
 "arba pasirinkti atkūrimą, kad sukurti USB disko atvaizdą švariam įdiegimui."
 
+msgid "You can switch with left and right this tuner types %s"
+msgstr "Galite perjungti su 'kairėn' ir 'dešinėn' šio imtuvo tipus %s"
+
 msgid "You cannot delete this!"
 msgstr "Jūs negalite to ištrinti!"
 
@@ -17449,6 +17692,30 @@ msgstr "[Laiko poslinkis] įrašų sujungti nepavyko!"
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[Laiko poslinkis] Laiko poslinkis paleidžiamas iš naujo!"
+
+#| msgid "Please press OK to continue."
+msgid ""
+"\n"
+"   Please press OK to start Kodi..."
+msgstr ""
+"\n"
+"   Prašome spausti OK, kad paleisti Kodi..."
+
+msgid ""
+"\n"
+"  WARNING: \n"
+"  There is not enough space to install Kodi!"
+msgstr ""
+"\n"
+"  DĖMESIO: \n"
+"  Nėra pakankamai vietos Kodi įdiegimui!"
+
+msgid ""
+"\n"
+" Kodi not present. Proceed with install?"
+msgstr ""
+"\n"
+" Kodi nėra. Tęsti įdiegimą?"
 
 msgid ""
 "\n"
@@ -18348,6 +18615,23 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
+#~ msgid ""
+#~ "Configure how recording filenames are constructed.\n"
+#~ "Standard: Date Time - Channel - Title\n"
+#~ "Very very short: Title\n"
+#~ "Very short: Title - Date Time\n"
+#~ "Short with time: Date Time - Title\n"
+#~ "Short: Date - Title\n"
+#~ "Long: Date Time - Channel - Title - Info"
+#~ msgstr ""
+#~ "Konfigūruokite įrašų pavadinimų sukūrimą.\n"
+#~ "Standartas: data laikas - kanalas - pavadinimas\n"
+#~ "Labai labai trumpas: pavadinimas\n"
+#~ "Labai trumpas: pavadinimas - data laikas\n"
+#~ "Trumpas su laiku: data laikas - pavadinimas\n"
+#~ "Trumpas: data - pavadinimas\n"
+#~ "Ilgas: data laikas - kanalas - pavadinimas - informacija"
+
 #~ msgid "Zgemma H.S/H.2S/H.2H/H5"
 #~ msgstr "Zgemma H.S/H.2S/H.2H/H5"
 
@@ -18360,59 +18644,17 @@ msgstr "Zimbabvė"
 #~ msgid "Show recording symbol depending on recording type"
 #~ msgstr "Rodyti įrašymo simbolį priklausomai nuo įrašymo tipo"
 
-#~ msgid "Programmlisten from DXAndy"
-#~ msgstr "Programų sąrašo-atnaujinimas iš DXAndy"
-
-#~ msgid "Programmlisten History"
-#~ msgstr "Programų sąrašo istorija"
-
-#~ msgid "Programmlisten Restore"
-#~ msgstr "Programų sąrašo atkūrimas"
-
 #~ msgid "Video:"
 #~ msgstr "Vaizdas:"
 
 #~ msgid "Audio:"
 #~ msgstr "Garsas:"
 
-#~ msgid "Input Stream ID"
-#~ msgstr "Srauto įvesties ID"
-
-#~ msgid "PLS Mode"
-#~ msgstr "PLS režimas"
-
-#~ msgid "PLS Code"
-#~ msgstr "PLS kodas"
-
 #~ msgid "Greek, Modern (1453-)"
 #~ msgstr "Graikų, modernus (1453-)"
 
-#~ msgid ""
-#~ "Configure how recording filenames are constructed. Standard: Date Time - "
-#~ "Channel - Title Very very short: Title Very short: Title - Date Time "
-#~ "Short with time: Date Time - Title Short: Date - Title Long: Date Time - "
-#~ "Channel - Title - Info"
-#~ msgstr ""
-#~ "Konfigūruokite įrašų pavadinimų sukūrimą.\n"
-#~ "Standartas: data laikas - kanalas - pavadinimas\n"
-#~ "Labai labai trumpas: pavadinimas\n"
-#~ "Labai trumpas: pavadinimas - data laikas\n"
-#~ "Trumpas su laiku: data laikas - pavadinimas\n"
-#~ "Trumpas: data - pavadinimas\n"
-#~ "Ilgas: data laikas - kanalas - pavadinimas - informacija"
-
-#~ msgid "alphabetical"
-#~ msgstr "abėcėlės tvarka"
-
 #~ msgid "Internal Flash"
 #~ msgstr "Vidinė atmintis"
-
-#~ msgid "Crash at skin error for debug reasons ?"
-#~ msgstr "Temos 'lūžimo' metu derinti klaidų priežastis ?"
-
-#~ msgid "if set to 'no', only an debug message is written to the Debug log"
-#~ msgstr ""
-#~ "Jei nustatyta \"ne\", tik derinimo pranešimas įrašomas į derinimo žurnalą"
 
 #~ msgid ""
 #~ "Configure default setting for timer type. Need a restart after changing."
