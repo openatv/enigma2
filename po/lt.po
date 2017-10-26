@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-24 01:45+0300\n"
-"PO-Revision-Date: 2017-10-24 19:54+0300\n"
+"POT-Creation-Date: 2017-10-25 21:45+0300\n"
+"PO-Revision-Date: 2017-10-25 23:19+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -5103,10 +5103,8 @@ msgstr "įjungti"
 msgid "Enable"
 msgstr "Įjungti"
 
-#, fuzzy
-#| msgid "Enable preview"
 msgid "Enable %s pro:"
-msgstr "Įjungti peržiūrą"
+msgstr "Įjungti %s pro:"
 
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
@@ -5446,6 +5444,9 @@ msgstr "jojimas"
 msgid "Error"
 msgstr "Klaida"
 
+msgid "Error, unknown Result!"
+msgstr "Klaida, nežinomas rezultatas!"
+
 msgid "ERROR - failed to scan (%s)!"
 msgstr "KLAIDA - nenuskenuota (%s)!"
 
@@ -5524,21 +5525,6 @@ msgstr "eSATA"
 
 msgid "Estonian"
 msgstr "Estų"
-
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000"
-msgstr "et8000/et10000"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
 
 msgid "Ethernet network interface"
 msgstr "Vietinio laidinio tinklo sąsaja"
@@ -6019,10 +6005,8 @@ msgstr "folk/tradicinė muzika"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Šios užduotys bus atliktos, kai paspausite 'OK'!"
 
-#, fuzzy
-#| msgid "Fontsize"
 msgid "Font:"
-msgstr "Шрифт"
+msgstr "Šriftas:"
 
 msgid "Fontsize"
 msgstr "Šrifto dydis"
@@ -6708,8 +6692,6 @@ msgstr ""
 "Jei nustatyta 'ne', galėsite išsaugoti senesnius įvykius, net ir po "
 "perjungimo, ar nutrauktus dėl laiko poslinkio."
 
-#, fuzzy
-#| msgid "if set to 'no', only an debug message is written to the Debug log"
 msgid "if set to 'no', only an debug message is written to the Debug log "
 msgstr ""
 "Jei nustatyta \"ne\", tik derinimo pranešimas įrašomas į derinimo žurnalą"
@@ -9655,10 +9637,8 @@ msgstr "Įrašykite naują aprašymą:"
 msgid "Please enter new name:"
 msgstr "Įrašykite naują pavadinimą:"
 
-#, fuzzy
-#| msgid "Please enter new description:"
 msgid "Please enter search string for your location"
-msgstr "Įrašykite naują aprašymą:"
+msgstr "Įrašykite savo vietovės paieškos eilutę"
 
 msgid "Please enter the correct pin code"
 msgstr "Įrašykite teisingą PIN kodą"
@@ -11043,9 +11023,8 @@ msgstr "Paleisti iš naujo %s %s."
 msgid "Restart enigma"
 msgstr "Paleisti iš naujo Enigma2"
 
-#, fuzzy
 msgid "Restart Enigma2 to apply the changes?"
-msgstr "Kad įsigaliotų, paleiskite enigma2 iš naujo."
+msgstr "Kad įsigaliotų, paleisti enigma2 iš naujo?"
 
 msgid "Restart GUI"
 msgstr "Paleisti iš naujo grafinę aplinką"
@@ -13825,9 +13804,8 @@ msgstr "Juostos"
 msgid "Strongest position"
 msgstr "Stipriausia pozicija"
 
-#, fuzzy
 msgid "Style:"
-msgstr "Stilius"
+msgstr "Stilius:"
 
 msgid "Subservice mode"
 msgstr "Subkanalo režimas"
@@ -16670,22 +16648,16 @@ msgstr ""
 "Kai čia įjungta, http sraute bus įtraukti ir AIT duomenys. Tai leis kliento "
 "imtuvui naudotis HbbTV."
 
-#, fuzzy
-#| msgid ""
-#| "When enabled, always descramble receiving http streams. This takes up "
-#| "more resources (descrambling demuxers), only enable if necessary. "
-#| "Individual streams are always descrambled if 0x100 is added to the "
-#| "service type, regardless of this setting. Default off."
 msgid ""
 "When enabled, always descramble receiving http streams. This takes up more "
 "resources (descrambling demuxers), only enable if necessary. Individual "
 "streams are always descrambled if 0x100 is added to the service type, "
 "regardless of this setting."
 msgstr ""
-"Se abilitato, decodificare sempre ricevendo flussi http. Questo richiede più "
-"risorse (decodifica demuxer), attivare solo se necessario. Flussi "
-"individuali sono sempre decodificati se 0x100 è aggiunto al tipo di "
-"servizio, indipendentemente da questa impostazione. Predefinito Off"
+"Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai "
+"pareikalaus gerokai daugiau resursų, todėl įjunkite tik kai būtina. Atskiri "
+"srautai visada iškoduojami nepaisant šio nustatymo, jei prie kanalo tipo "
+"įrašyta 0x100, nepriklausomai nuo šio nustatymo."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
@@ -17693,7 +17665,6 @@ msgstr "[Laiko poslinkis] įrašų sujungti nepavyko!"
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[Laiko poslinkis] Laiko poslinkis paleidžiamas iš naujo!"
 
-#| msgid "Please press OK to continue."
 msgid ""
 "\n"
 "   Please press OK to start Kodi..."
@@ -18519,8 +18490,8 @@ msgstr "Šveicarų"
 msgid "Syrian Arab Republic"
 msgstr "Sirijos Arabų Respublika"
 
-msgid "[a]"
-msgstr "[a]"
+msgid "Taiwan"
+msgstr "Taivanis"
 
 msgid "Tajikistan"
 msgstr "Tadžikistanas"
@@ -18614,6 +18585,24 @@ msgstr "Zambija"
 
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000"
+#~ msgstr "et8000/et10000"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "[a]"
+#~ msgstr "[a]"
 
 #~ msgid ""
 #~ "Configure how recording filenames are constructed.\n"
