@@ -2,19 +2,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-03 00:37+0300\n"
-"PO-Revision-Date: 2017-09-08 16:25+0300\n"
-"Last-Translator: rimas\n"
+"POT-Creation-Date: 2017-10-23 18:15+0300\n"
+"PO-Revision-Date: 2017-10-26 22:28+0300\n"
+"Last-Translator: rimas <rimas@meil.com>\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et_EE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.4\n"
+
+msgid "  Menu key : Select quad channel"
+msgstr "  Menu: Vali Quad PiP kanal"
+
+msgid "  Red key : Show/Hide channel name"
+msgstr " Punane: Kuva/peida kanali nimi"
 
 msgid "  REC  "
 msgstr "  REC  "
+
+msgid " - video0"
+msgstr " - video0"
+
+msgid " - video1"
+msgstr " - video1"
+
+msgid " - video0+video1"
+msgstr " - video0+video1"
 
 msgid " (Channel %s)"
 msgstr " (Kanal %s)"
@@ -113,6 +128,9 @@ msgstr "%.0f MB"
 
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+msgid "%02d.%02d - %02d.%02d"
+msgstr "%02d.%02d - %02d.%02d"
 
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr "%02d.%02d - %02d.%02d (%s%d min)"
@@ -231,6 +249,9 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr "%d.%m.   "
 
+msgid "%e/%m, %-H:%M"
+msgstr "%e/%m, %-H:%M"
+
 msgid "%H:%M"
 msgstr "%H:%M"
 
@@ -264,8 +285,27 @@ msgstr "%s (%s)\n"
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s kaarti )"
 
+msgid "%s - Setup"
+msgstr "%s - Seaded"
+
+msgid "%s additional screens"
+msgstr ""
+
 msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s ei ole enam kasutuses. Kas see tuleks kustutada?"
+
+msgid "%s not available."
+msgstr "%s pole saadaval."
+
+msgid "%s Setup"
+msgstr "%s seaded"
+
+msgid ""
+"%s\n"
+"(%s, %d MB free)"
+msgstr ""
+"%s\n"
+"(%s, %d MB vaba)"
 
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
@@ -307,6 +347,9 @@ msgstr "%s1080i kuvatakse 1080p"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
+
+msgid "%Y-%m-%d %H-%M"
+msgstr "%Y-%m-%d %H-%M"
 
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' sisaldab %d faili ja %d alamkataloogi.\n"
@@ -395,6 +438,9 @@ msgstr "-24"
 
 msgid "/s"
 msgstr "/s"
+
+msgid "/sec]"
+msgstr "/sek]"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 kataloog"
@@ -1251,6 +1297,9 @@ msgstr "Lisa failid mängukavva"
 msgid "add marker"
 msgstr "Lisa märgis"
 
+msgid "Add New Quad Channel Entry"
+msgstr "Lisa uus Quad PiP kanal"
+
 #
 msgid "Add provider"
 msgstr "Lisa levitaja"
@@ -1515,6 +1564,9 @@ msgstr "Tähestikuline, vanemad ees"
 msgid "alphabetic"
 msgstr "Tähestikuline"
 
+msgid "alphabetical"
+msgstr "Tähestikuline"
+
 msgid "alphabetic reverse"
 msgstr "Pööratud tähestikuline"
 
@@ -1560,6 +1612,20 @@ msgstr "Lemmiknimekirju näidatakse iga kord"
 
 msgid "Always use smart1080p mode"
 msgstr "Smart1080p alati kasutuses"
+
+msgid "Always include ECM in recordings"
+msgstr "Kaasa alati salvestistele ECM"
+
+msgid ""
+"Always include ECM messages in recordings. This overrides the individual "
+"timer settings globally. It allows recordings to be always decrypted "
+"afterwards (sometimes called offline decoding), if supported by your "
+"receiver. Default: off."
+msgstr ""
+"Salvestised sisaldavad alati ka ECM sõnumeid. See valik alistab üksiku "
+"taimeri seadistused globaalselt ja võimaldab salvestisi hiljem dekrüptida "
+"(võrguta dekodeerimine), kui vastuvõtja seda toetab. Vaikimisi: välja "
+"lülitatud."
 
 msgid "am"
 msgstr "e.l."
@@ -1757,7 +1823,7 @@ msgid "Aspect list..."
 msgstr "Kuvasuhe."
 
 msgid "Aspect long"
-msgstr ""
+msgstr "Aspect - pikk"
 
 msgid "Aspect ratio"
 msgstr "Kuvasuhe"
@@ -1785,6 +1851,12 @@ msgstr "Lõpus:"
 
 msgid "athletics"
 msgstr "kergejõustik"
+
+msgid "ATSC"
+msgstr "ATSC"
+
+msgid "ATSC provider"
+msgstr "ATSC levitaja"
 
 msgid "Attach a file"
 msgstr "Lisa fail"
@@ -1843,6 +1915,9 @@ msgstr "Heliriba (%s) keel"
 
 msgid "audio tracks"
 msgstr "Heliribad"
+
+msgid "Audio volume step size"
+msgstr "Helitugevuse sammu suurus"
 
 msgid "Aufnahme"
 msgstr "Salvestus"
@@ -2173,7 +2248,7 @@ msgstr "BDMV ühilduv Bludisc (ainult HDTV)"
 
 #
 msgid "because of the used filesystem the back-up\n"
-msgstr "Tulenevalt kasutuses olevast failisüsteemist\n"
+msgstr "Sõltuvalt kasutuses olevast failisüsteemist\n"
 
 msgid "Begin time"
 msgstr "Algusaeg"
@@ -2251,6 +2326,9 @@ msgstr "Sinine - pikk"
 msgid "BlueSwitch: Blue-Short/Blue-Long"
 msgstr "Lühike SININE/pikk SININE vahetus"
 
+msgid "Bluetooth Setup"
+msgstr "Bluetooth seaded"
+
 msgid "Bookmarks"
 msgstr "Järjehoidjad"
 
@@ -2281,6 +2359,9 @@ msgstr "Lemmiknimekirjad"
 
 msgid "bouquetname"
 msgstr "Lemmiknimekirja nimi"
+
+msgid "Box or driver is not support Quad PiP."
+msgstr "Quad PiP ei ole vastuvõtja või ajuri poolt toetatud."
 
 msgid "Box Portal"
 msgstr ""
@@ -2395,6 +2476,9 @@ msgstr "Vahemälus:"
 
 msgid "CAID"
 msgstr "CAID"
+
+msgid "CaID"
+msgstr "CaID"
 
 msgid "caid:"
 msgstr "caid:"
@@ -2560,6 +2644,9 @@ msgstr "CCcam info"
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcam info peamenüü"
 
+msgid "Celsius"
+msgstr "Celsius"
+
 msgid "center"
 msgstr "Keskel"
 
@@ -2593,6 +2680,9 @@ msgstr "Lemmiknimekirjade vahetus noolenuppudega"
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
 
+msgid "Change Configuration mode simple to advanced"
+msgstr ""
+
 msgid "Change next timer"
 msgstr "Muuda järgmist taimerit"
 
@@ -2613,6 +2703,9 @@ msgstr "Kas muuta korduse ja viiteaja seadistusi?"
 
 msgid "Change settings for your switch modes: single lnb, tonburst or diseqc"
 msgstr "Seadista lüliti režiime: üksik lnb, toonimpulss või diseqc"
+
+msgid "Change skin"
+msgstr "Kujunduse vahetus"
 
 msgid "Change step size"
 msgstr "Muuda sammu suurust"
@@ -2798,6 +2891,9 @@ msgstr "Lapsed/noored"
 msgid "childrens's/youth program (general)"
 msgstr "laste/noortesaade"
 
+msgid "Chipset"
+msgstr "Kiibistik"
+
 msgid "Chipset: BCM%s"
 msgstr "Kiibistik: BCM%s"
 
@@ -2806,6 +2902,9 @@ msgstr "Kiibistik:\t%s"
 
 msgid "Choice Box"
 msgstr "Valikukast"
+
+msgid "Choice where to put \"%s\""
+msgstr ""
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Vali salvestise lihtsaks leidmiseks märksõna."
@@ -2860,6 +2959,10 @@ msgstr "Määra, kas AC3+ heli taandada stereoks."
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Määra, kas AC3 heli taandada stereoks."
 
+msgid ""
+"Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgstr "Määra, kas DTS heli taandada stereoks või transkodeerida."
+
 msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Määra, kas DTS heli taandada stereoks."
 
@@ -2878,9 +2981,14 @@ msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Määra, kas ajami liikumisel näidatakse ikooni."
 
 msgid ""
+"Choose whether WMA Pro channel sound tracks should be downmixed or "
+"transcoded."
+msgstr "Määra, kas WMA Pro heli taandada stereoks või transkodeerida."
+
+msgid ""
 "Choose which level of menu/setting's to display. 'Expert'-level shows all "
 "items."
-msgstr "Vali seadistusmenüüde kuvamise tase. 'Täpsem' näitab kõiki võimalusi."
+msgstr "Vali seadistusmenüüde kuvamise tase. 'Ekspert' näitab kõiki võimalusi."
 
 msgid "Choose which tuner to configure."
 msgstr "Vali seadistatav tuuner."
@@ -2945,7 +3053,6 @@ msgstr "Ringpolarisatsioon parem"
 msgid "CIselectMainMenu"
 msgstr "CI valik"
 
-#
 msgid "Clean network trash cans"
 msgstr "Võrguketta prügikasti tühjendamine"
 
@@ -3038,6 +3145,9 @@ msgstr "Värvi vorming"
 
 msgid "Color space"
 msgstr "Värviruum"
+
+msgid "Combo"
+msgstr ""
 
 msgid "comedy"
 msgstr "komöödia"
@@ -3319,6 +3429,9 @@ msgstr "Määra <  > nuppude toiming."
 
 msgid "Configure the gateway."
 msgstr "Seadista lüüs."
+
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Seadista helitugevuse muutuse sammu suurus (vahemik 1-10)."
 
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time "
@@ -3701,6 +3814,15 @@ msgstr "Teisenda ext3 > ext4"
 msgid "Converting ext3 to ext4..."
 msgstr "Ext3 > ext4 teisendamine."
 
+msgid "convert to AC3"
+msgstr "Teisenda > AC3"
+
+msgid "convert to DTS"
+msgstr "Teisenda > DTS"
+
+msgid "convert to multi-channel PCM"
+msgstr "Teisenda > mitmekanaline PCM"
+
 msgid "cooking"
 msgstr "kokasaade"
 
@@ -3745,8 +3867,11 @@ msgstr "Tuumad: %s"
 msgid "Cores:\t%s"
 msgstr "Tuumad:\t%s"
 
+msgid "Could not connect to server"
+msgstr "Ühenduse loomine serveriga nurjus"
+
 msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Ei saa ühendust %s %s tarkvara serveriga:"
+msgstr "Ei saa ühendust %s %s .NFI püsivara serveriga:"
 
 msgid "Could not find installed channel list."
 msgstr "Paigaldatud kanalinimekirja ei leitud."
@@ -3768,6 +3893,9 @@ msgstr "Salvestamine nurjus. Kehtetu kanal %s"
 
 msgid "Could not save configfile %s!"
 msgstr "Seadistusfaili %s talletamine nurjus!"
+
+msgid "Country"
+msgstr "Riik"
 
 # InfoPanel
 msgid "Cpu"
@@ -3874,7 +4002,7 @@ msgid "Current version:"
 msgstr "Praegune versioon:"
 
 msgid "Currently installed image"
-msgstr "Paigaldatud tarkvara"
+msgstr "Paigaldatud püsivara"
 
 msgid "currently installed image: %s"
 msgstr "paigaldatud image: %s"
@@ -4188,6 +4316,9 @@ msgstr "Dekodeeri ja salvesta ecm"
 msgid "Descramble http streams"
 msgstr "Dekodeeri http vood"
 
+msgid "Descramble receiving http streams"
+msgstr "Dekodeeri sisenevad http vood"
+
 msgid "Description"
 msgstr "Sisututvustus"
 
@@ -4198,6 +4329,9 @@ msgid "Details for plugin: "
 msgstr "Plugina üksikasjad: "
 
 msgid "Detected Devices:"
+msgstr "Andmekandjad:"
+
+msgid "Detected HDD:"
 msgstr "Andmekandjad:"
 
 #
@@ -4409,6 +4543,12 @@ msgstr "DMM täpne"
 
 msgid "DMM normal"
 msgstr "DMM tavaline"
+
+msgid "Do center DVB subs on this service"
+msgstr "Tsentreeritud DVB subtiitrid sellel kanalil"
+
+msgid "Do not center DVB subs on this service"
+msgstr "Tsentreerimata DVB subtiitrid sellel kanalil"
 
 msgid "Do not change"
 msgstr "Ära muuda"
@@ -4715,6 +4855,9 @@ msgstr "%s allalaadimine"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Andmete laadimine. Oota veidi."
 
+msgid "Downmix"
+msgstr "Taanda"
+
 msgid "Dream-Package"
 msgstr "Dream-pakett"
 
@@ -4741,6 +4884,9 @@ msgstr "DTS"
 
 msgid "DTS downmix"
 msgstr "DTS > stereo"
+
+msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
+msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 
 msgid "DUAL LAYER DVD"
 msgstr "Kahekihiline DVD"
@@ -4879,6 +5025,9 @@ msgstr "Luba muutmine"
 msgid "Edit new entry"
 msgstr "Muuda uut kirjet"
 
+msgid "Edit Quad Channel Entry"
+msgstr "Muuda Quad PiP kanalit"
+
 msgid "Edit settings"
 msgstr "Muuda seadeid"
 
@@ -4927,6 +5076,9 @@ msgstr "Luba"
 
 msgid "Enable"
 msgstr "Luba"
+
+msgid "Enable %s pro:"
+msgstr "Luba %s pro:"
 
 msgid "Enable 5V for active antenna"
 msgstr "Luba 5 V toide aktiivantennile"
@@ -5022,6 +5174,9 @@ msgstr "Paanikanupp lubatud"
 msgid "enable PIP no HDR"
 msgstr "PIP lubatud, HDR puudub"
 
+msgid "Enable Quad PIP"
+msgstr "Luba Quad PiP"
+
 msgid "Enable preview"
 msgstr "Eelvaatlus lubatud"
 
@@ -5061,7 +5216,7 @@ msgid "Enable ViaSat EPG"
 msgstr "Viasat EPG lubatud"
 
 msgid "Enable Virgin EPG"
-msgstr "Luba Virgin EPG"
+msgstr "Virgin EPG lubatud"
 
 msgid "Enable Wake On LAN"
 msgstr "WOL lubatud"
@@ -5193,6 +5348,28 @@ msgstr "EPG vahemälu kontroll"
 
 msgid "EPG filename"
 msgstr "EPG faili nimi"
+
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG: Kuva kanalinimekiri\n"
+"OK: Eemalda valitud kanal\n"
+"PVR: Sisesta kanali nimi\n"
+"EXIT: Lõpeta muutmine"
+
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG: Lülitu Quad PiP kanalile\n"
+"OK: Lisa uus kanal\n"
+"PVR: Sisesta kanali nimi\n"
+"EXIT: Lõpeta muutmine"
 
 msgid "EPG language selection 1"
 msgstr "EPG keelevalik 1"
@@ -5363,6 +5540,9 @@ msgstr "Saateinfo"
 msgid "Eventview menu"
 msgstr "Saateinfo menüü"
 
+msgid "Everyday"
+msgstr "Iga päev"
+
 msgid "Everywhere"
 msgstr "Kõikjal"
 
@@ -5442,6 +5622,12 @@ msgstr "Välju võrgu häälestusest"
 msgid "exit networkadapter setup menu"
 msgstr "Välju võrgukaardi seadistusmenüüst"
 
+msgid "Exit Quad Channel Selection"
+msgstr "Sulge Quad PiP kanalivalik"
+
+msgid "Exit quad PiP"
+msgstr "Sulge Quad PiP"
+
 msgid "Exit the wizard"
 msgstr "Välju juhendatud seadistusabist"
 
@@ -5459,7 +5645,10 @@ msgid "Experimental mode"
 msgstr "Eksperimentaalne"
 
 msgid "Expert"
-msgstr "Täpsem"
+msgstr "Ekspert"
+
+msgid "Expert mode"
+msgstr "Eksperdi režiim"
 
 msgid "Ext. NumberZap"
 msgstr ""
@@ -5591,6 +5780,9 @@ msgstr "Algseadistus"
 
 msgid "Fade the Infobar on hide"
 msgstr "Luba inforiba hajumine"
+
+msgid "Fahrenheit"
+msgstr "Fahrenheit"
 
 msgid "Failed"
 msgstr "Nurjus"
@@ -5781,14 +5973,14 @@ msgid "Flash On the fly (select a image)"
 msgstr "Paigalda süsteemitõmmis (tee valik)"
 
 msgid "Flash on the fly your your Receiver software."
-msgstr "Paigalda vastuvõtjale uus tarkvara."
+msgstr "Paigalda vastuvõtjale uus püsivara."
 
 msgid "Flash Online"
 msgstr "Süsteemitõmmise paigaldus"
 
 #
 msgid "Flash Online a new image"
-msgstr "Paigalda uus süsteemitõmmis"
+msgstr "Paigalda vastuvõtjale uus püsivara"
 
 msgid "Flashing"
 msgstr "Vilkuv"
@@ -5812,6 +6004,9 @@ msgstr "folk/rahvamuusika"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Pärast OK vajutamist tehakse järgmised toimingud!"
 
+msgid "Font:"
+msgstr "Kirjatüüp:"
+
 msgid "Fontsize"
 msgstr "Tähesuurus"
 
@@ -5821,6 +6016,9 @@ msgstr "jalgpall"
 msgid "For more information see http://www.opena.tv"
 msgstr "Enama info jaoks vaata http://www.opena.tv"
 
+msgid "force AC3plus"
+msgstr "Sunnitud AC3+"
+
 msgid "Force de-interlace"
 msgstr "Sunnitud ülerealaotuse eemaldamine (deinterlace)"
 
@@ -5829,6 +6027,12 @@ msgstr "Sunnitud LNB toide"
 
 msgid "Force ToneBurst"
 msgstr "Sunnitud toonimpulss"
+
+msgid "Force LNB Tuner Power settings."
+msgstr "Sunnitud LNB toite seaded."
+
+msgid "Force LNB Tuner ToneBurst settings."
+msgstr "Sunnitud LNB toonimpulsi seaded."
 
 msgid "foreign countries/expeditions"
 msgstr "välisriigid/ekspeditsioonid"
@@ -5920,12 +6124,18 @@ msgstr "Esikülje USB port"
 msgid "Front USB 3.0"
 msgstr "Esikülje USB 3.0 port"
 
+msgid "Frontprocessor version: %d"
+msgstr "Esiprotsessori versioon: %d"
+
 msgid "Frontprocessor version: %s"
 msgstr "Esiprotsessori versioon: %s"
 
 # Softcam Setup
 msgid "Frozen Cam Check"
 msgstr "EMU hangumise kontroll"
+
+msgid "FSBL Update Check"
+msgstr "FSBL uuenduste kontroll"
 
 msgid "FTP"
 msgstr "FTP"
@@ -5942,6 +6152,9 @@ msgstr "Süsteemitõmmis asukohta %s"
 
 msgid "Full Image Backup "
 msgstr "Täielik süsteemitõmmis "
+
+msgid "Full Range RGB"
+msgstr "Täielik RGB"
 
 msgid "Full transparency"
 msgstr "Täiesti läbipaistev"
@@ -5991,10 +6204,10 @@ msgid "German"
 msgstr "Saksa"
 
 msgid "Get latest experimental image"
-msgstr "Hangi uusim eksperimentaalne tarkvara"
+msgstr "Hangi uusim eksperimentaalne püsivara"
 
 msgid "Get latest release image"
-msgstr "Hangi uusim stabiilne tarkvara"
+msgstr "Hangi uusim stabiilne püsivara"
 
 msgid "get the cards' server"
 msgstr "hangi kaardiserver"
@@ -6012,7 +6225,7 @@ msgid "Go down the list"
 msgstr "Liigu nimekirjas alla"
 
 msgid "go to deep standby"
-msgstr "Puhkeseisund"
+msgstr "Vastuvõtja puhkeseisundisse"
 
 msgid "Go to first movie or last item"
 msgstr "Liigu esimesele või uusimale nimetusele"
@@ -6039,10 +6252,13 @@ msgid "Go to previous page of service"
 msgstr "Mine kanalinimekirja eelmisele lehele"
 
 msgid "go to standby"
-msgstr "Ooteseisund"
+msgstr "Vastuvõtja ooteseisundisse"
 
 msgid "Go up the list"
 msgstr "Liigu nimekirjas üles"
+
+msgid "Gold"
+msgstr ""
 
 msgid "Goto"
 msgstr "Mine"
@@ -6346,7 +6562,7 @@ msgid "highest Resolution"
 msgstr "Kõrgeim lahutus"
 
 msgid "History"
-msgstr ""
+msgstr "Ajalugu"
 
 msgid "History back"
 msgstr "Kanaliajaloos tagasi"
@@ -6355,7 +6571,7 @@ msgid "History buttons mode"
 msgstr "Ajaloonuppude vajutus"
 
 msgid "History long"
-msgstr ""
+msgstr "History - pikk"
 
 msgid "History next"
 msgstr "Kanaliajaloos edasi"
@@ -6598,6 +6814,9 @@ msgstr ""
 "Ära hooli praegu heledatest varjunditest, need seame paika järgmisena. \n"
 "Kui oled tulemusega rahul, vajuta OK."
 
+msgid "Image"
+msgstr ""
+
 msgid "Image Backup"
 msgstr "Täielik süsteemitõmmis"
 
@@ -6605,7 +6824,7 @@ msgid "Image flash utility"
 msgstr "Tööriist süsteemitõmmise paigaldamiseks"
 
 msgid "Image Info"
-msgstr "Tarkvara info"
+msgstr "Püsivara info"
 
 msgid "Image Information"
 msgstr "Andmeid süsteemist"
@@ -6614,14 +6833,14 @@ msgid "Image Manager"
 msgstr "Süsteemitõmmised"
 
 msgid "Image Version"
-msgstr "Tarkvara versioon"
+msgstr "Püsivara versioon"
 
 msgid "Image-Version"
-msgstr "Tarkvara versioon"
+msgstr "Püsivara versioon"
 
 #
 msgid "ImageWizard"
-msgstr "Tarkvaraabiline"
+msgstr "Püsivara abiline"
 
 msgid "IMDb Details"
 msgstr "IMDb"
@@ -6704,6 +6923,13 @@ msgstr "ECM kaasatud http voogudesse"
 
 msgid "Include EIT in http streams"
 msgstr "EIT kaasatud http voogudesse"
+
+msgid ""
+"Incorrect format for skip value: '%s'\n"
+"Skip cancelled."
+msgstr ""
+"Vigane vorming hüppe väärtuseks: '%s'\n"
+"Hüpe tühistati."
 
 msgid "Incorrect type service for PiP!"
 msgstr "PiP jaoks sobimatu kanal!"
@@ -6839,8 +7065,14 @@ msgstr "Inotify jälgimine"
 msgid "Input"
 msgstr "Sisend"
 
+msgid "Input channel name."
+msgstr "Sisesta  kanali nimi."
+
 msgid "Input devices"
 msgstr "Sisendseadmed"
+
+msgid "Input Stream ID"
+msgstr "Sisendvoo ID"
 
 msgid "insert mark here"
 msgstr "Pane märk siia"
@@ -7016,6 +7248,9 @@ msgstr "ISO fail on selle failisüsteemi jaoks liiga suur!"
 msgid "ISO path"
 msgstr "ISO asukoht"
 
+msgid "It follows:"
+msgstr ""
+
 msgid "Italian"
 msgstr "Itaalia"
 
@@ -7142,8 +7377,14 @@ msgstr "Nupuasetuse valik"
 msgid "Kleiner Test"
 msgstr "Väike test"
 
+msgid "Kodi installed:"
+msgstr "Kodi paigaldatud:"
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi meediakeskus"
+
+msgid "Kodi/extra partition free space:"
+msgstr ""
 
 msgid "Label"
 msgstr "Nimi"
@@ -7240,6 +7481,9 @@ msgstr "Vasak"
 
 msgid "Left from servicename"
 msgstr "Kanalinimest vasakul"
+
+msgid "Left long"
+msgstr "Vasak - pikk"
 
 msgid "left, wrapped"
 msgstr "Vasakul, reamurdmisega"
@@ -7351,7 +7595,7 @@ msgid "LNB"
 msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
-msgstr ""
+msgstr "LNB/lüliti alglaadimise aeg [ms]"
 
 msgid "Load"
 msgstr "Laadi"
@@ -7387,6 +7631,9 @@ msgstr "Asukoht"
 
 msgid "Location # (http://weather.yahoo.com/):"
 msgstr "Asukoht # (http://weather.yahoo.com/):"
+
+msgid "Location list"
+msgstr "Asukohaloend"
 
 msgid "Lock ratio"
 msgstr "Lukusta suhe"
@@ -7694,7 +7941,7 @@ msgid "Minimum age %d years"
 msgstr "Väikseim vanus %d aastat"
 
 msgid "Minimum send interval"
-msgstr "Väikseim saatmise intervall"
+msgstr "Väikseim saatmise vahemik"
 
 msgid "MiniTV"
 msgstr "MiniTV"
@@ -7706,10 +7953,10 @@ msgid "mins"
 msgstr "min"
 
 msgid "Mins"
-msgstr "min"
+msgstr "Minutit"
 
 msgid "Mins Secs"
-msgstr "min sek"
+msgstr "Minutit sekundit"
 
 msgid "minute"
 msgstr "minut"
@@ -8126,6 +8373,20 @@ msgstr "Mitte kunagi"
 msgid "never abort"
 msgstr "Mitte kunagi"
 
+msgid "Never decrypt while recording"
+msgstr "Ära kunagi dekrüpti salvestamise ajal"
+
+msgid ""
+"Never decrypt the content while recording. This overrides the individual "
+"timer settings globally. If enabled, recordings are stored in crypted "
+"presentation and must be decrypted afterwards (sometimes called offline "
+"decoding). Default: off."
+msgstr ""
+"Ära dekrüpti sisu salvestamise ajal. See valik alistab üksiku taimeri "
+"seadistused globaalselt ja selle lubamisel salvestised talletatakse "
+"krüpteeritult. Lahtikrüptida saad hiljem (võrguta dekodeerimine). Vaikimisi: "
+"välja lülitatud."
+
 msgid "New"
 msgstr "Uus"
 
@@ -8175,6 +8436,15 @@ msgstr ""
 
 msgid "next higher Resolution"
 msgstr "kõrguselt järgmine lahutus"
+
+msgid "Next quad PiP channel"
+msgstr "Järgmine Quad PiP kanal"
+
+msgid "Nextsong"
+msgstr ""
+
+msgid "Nextsong long"
+msgstr ""
 
 msgid "nfi"
 msgstr "nfi"
@@ -8345,6 +8615,9 @@ msgstr "Oscam.conf failis on 'httpuser' määramata"
 
 msgid "no image found"
 msgstr "Süsteemitõmmist ei leitud"
+
+msgid "No matching place names found"
+msgstr "Asukoha vastet ei leitud"
 
 msgid "no module found"
 msgstr "moodulit ei leitud"
@@ -8935,6 +9208,12 @@ msgstr "Oscam info"
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam info peamenüü"
 
+msgid "oscam webif blocking localhost (127.0.0.1)"
+msgstr ""
+
+msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
+msgstr ""
+
 msgid "OSD"
 msgstr "Ekraanigraafika"
 
@@ -9122,6 +9401,9 @@ msgstr "Parool (httpwd)"
 msgid "Password:"
 msgstr "Parool:"
 
+msgid "Passthrough"
+msgstr "Läbiviik"
+
 msgid "Pause"
 msgstr "Paus"
 
@@ -9186,6 +9468,9 @@ msgstr "Kustuta lõplikult kõik failid"
 
 msgid "Persian"
 msgstr "Pärsia"
+
+msgid "Personalize your Skin"
+msgstr "Kujunduse kohandamine"
 
 msgid "Picon"
 msgstr "Kanalilogo"
@@ -9401,6 +9686,9 @@ msgstr "Sisesta uus kirjeldus:"
 msgid "Please enter new name:"
 msgstr "Sisesta uus nimi:"
 
+msgid "Please enter search string for your location"
+msgstr "Sisesta otsisõna asukoha otsinguks"
+
 msgid "Please enter the correct pin code"
 msgstr "Sisesta õige kood"
 
@@ -9428,6 +9716,9 @@ msgstr "Menüüsse naasmiseks vajuta EXIT.\n"
 
 msgid "Please press OK to continue."
 msgstr "Jätkamiseks vajuta OK."
+
+msgid "Please press OK to start Kodi..."
+msgstr "Kodi käivitamiseks vajuta OK..."
 
 msgid "please press OK when ready"
 msgstr "kui valmis, vajuta OK"
@@ -9713,6 +10004,12 @@ msgstr "PLi"
 msgid "PLP ID"
 msgstr "PLP ID"
 
+msgid "PLS Code"
+msgstr "PLS kood"
+
+msgid "PLS Mode"
+msgstr "PLS režiim"
+
 msgid "Plugin"
 msgstr "Plugin"
 
@@ -9990,6 +10287,9 @@ msgstr ""
 "Paanikanupu vajutamisel lülitub vastuvõtja esimese lemmiknimekirja esimesele "
 "kanalile."
 
+msgid "Prev quad PiP channel"
+msgstr "Quad PiP kanali eelvaade"
+
 msgid "Preview"
 msgstr "Eelvaade"
 
@@ -10001,6 +10301,12 @@ msgstr "Valitud kanali eelvaatlus"
 
 msgid "Previous"
 msgstr "Eelmine"
+
+msgid "Prevsong"
+msgstr ""
+
+msgid "Prevsong long"
+msgstr ""
 
 msgid "Primary DNS"
 msgstr "Esmane nimeserver"
@@ -10037,6 +10343,15 @@ msgstr "Program"
 
 msgid "Program long"
 msgstr "Program - pikk"
+
+msgid "Programmlisten from DXAndy"
+msgstr ""
+
+msgid "Programmlisten History"
+msgstr ""
+
+msgid "Programmlisten Restore"
+msgstr ""
 
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "DXAndy kanalinimekirja uuendaja"
@@ -10179,6 +10494,15 @@ msgstr "Python programm /tmp/mmi.socket jaoks"
 
 msgid "Python:\t%s"
 msgstr "Python:\t%s"
+
+msgid "Quad PiP Channel Selection"
+msgstr "Quad PiP kanalivalik"
+
+msgid "Quad PiP is not available."
+msgstr "Quad PiP ei ole saadaval."
+
+msgid "Quad PiP Screen"
+msgstr "Quad PiP aken"
 
 msgid "Question"
 msgstr "Küsimus"
@@ -10541,6 +10865,9 @@ msgstr "Kaugvastuvõtja"
 msgid "Remote Control Code"
 msgstr "Puldi kood"
 
+msgid "Remote control model shown"
+msgstr "Kuvatav puldi mudel"
+
 msgid "Remote control type"
 msgstr "Puldi tüüp"
 
@@ -10613,6 +10940,9 @@ msgstr "Eemalda pluginaid"
 #
 msgid "Remove Plugins"
 msgstr "Eemalda pluginaid"
+
+msgid "Remove Quad Channel Entry"
+msgstr "Eemalda Quad PiP kanal"
 
 msgid "remove selected satellite"
 msgstr "Eemalda valitud satelliit"
@@ -10760,6 +11090,9 @@ msgstr "Taaskäivita %s %s."
 msgid "Restart enigma"
 msgstr "Enigma2 taaskäivitus"
 
+msgid "Restart Enigma2 to apply the changes?"
+msgstr "Kas taaskäivitada Enigma2 muudatuste jõustamiseks?"
+
 msgid "Restart GUI"
 msgstr "Enigma2 taaskäivitus"
 
@@ -10906,6 +11239,9 @@ msgstr "Parem"
 msgid "Right from servicename"
 msgstr "Kanalinimest paremal"
 
+msgid "Right long"
+msgstr "Parem - pikk"
+
 msgid "right, wrapped"
 msgstr "Paremal, reamurdmisega"
 
@@ -10920,6 +11256,9 @@ msgstr "romantika"
 
 msgid "Romanian"
 msgstr "Rumeenia"
+
+msgid "Root"
+msgstr "Juur"
 
 msgid "root and kernel"
 msgstr "juur ja kernel"
@@ -11210,6 +11549,9 @@ msgstr "Otsi satelliite, kontrolli signaali ja lukustust"
 msgid "Search the epg for current event."
 msgstr "Otsi käesoleva saate kava."
 
+msgid "Search weather location ID"
+msgstr "Asukoha ID otsing"
+
 msgid "Search west"
 msgstr "Otsi läänest"
 
@@ -11266,6 +11608,9 @@ msgstr "Keri edasi"
 
 msgid "Seek forward (enter time)"
 msgstr "Keri edasi (sisesta aeg)"
+
+msgid "Seekbar"
+msgstr "Otsiriba"
 
 msgid "Seekbar activation"
 msgstr "Otsiriba käivitamine"
@@ -11342,6 +11687,9 @@ msgstr "EMU 1 valik"
 msgid "Select Cam 2"
 msgstr "EMU 2 valik"
 
+msgid "Select channel audio"
+msgstr "Vali kanali heliriba"
+
 msgid "Select channel to record from"
 msgstr "Vali kanal, millelt salvestada"
 
@@ -11399,7 +11747,10 @@ msgstr ""
 "MultiQuickButtonit)."
 
 msgid "Select Image: %s"
-msgstr "Vali tarkvara: %s"
+msgstr "Vali püsivara: %s"
+
+msgid "Select Image: STARTUP_1"
+msgstr ""
 
 msgid "Select input device"
 msgstr "Vali sisendseade"
@@ -11435,6 +11786,9 @@ msgstr "Numbri valik"
 
 msgid "Select provider to add..."
 msgstr "Vali lisatav levitaja"
+
+msgid "Select Quad Channels"
+msgstr "Vali Quad PiP kanalid"
 
 msgid "Select Red-key action"
 msgstr "Punase nupu vajutus"
@@ -11576,7 +11930,7 @@ msgid "Select Your Skin"
 msgstr "Kujunduse valik"
 
 msgid "Selected Image:\t%s"
-msgstr "Valitud tarkvara:\t%s"
+msgstr "Valitud püsivara:\t%s"
 
 msgid ""
 "Selected settingslist: %s\n"
@@ -11967,6 +12321,9 @@ msgstr "Seaded"
 msgid "Setup"
 msgstr "Seadistamine"
 
+msgid "Setup - %s"
+msgstr "%s seadistamine"
+
 msgid "Setup AFP"
 msgstr "AFP seaded"
 
@@ -12199,6 +12556,9 @@ msgstr "Lühikesed failinimed + kellaaeg"
 msgid "show"
 msgstr "Näita"
 
+msgid "Show/Hide focus bar"
+msgstr "Kuva/peida valikuriba"
+
 msgid "Show /tmp/ecm.info"
 msgstr "Kuva /tmp/ecm.info"
 
@@ -12331,6 +12691,9 @@ msgstr "Kanalinumbrid inforibal"
 msgid "Show channel numbers in channel selection"
 msgstr "Kanalinumbrid lemmiknimekirjas"
 
+msgid "Show channel selection"
+msgstr "Kuva kanalivalik"
+
 msgid "Show CI messages"
 msgstr "Kuva CI teated"
 
@@ -12413,7 +12776,7 @@ msgid "Show Eventview"
 msgstr "Saateinfo"
 
 msgid "Show extended description"
-msgstr "Kuva täpsem sisututvus"
+msgstr "Kuva pikem sisututvus"
 
 msgid "Show extension selection"
 msgstr "Laienduste valik"
@@ -12553,7 +12916,7 @@ msgid "Show only found image and mtd partitions.\n"
 msgstr "Näita ainult leitud tõmmist ja MTD partitsioone.\n"
 
 msgid "Show or hide the extended description, (skin dependent)."
-msgstr "Täpsema saatetutvustuse näitamine või varjamine (sõltub kujundusest)."
+msgstr "Pikema saatetutvustuse näitamine või varjamine (sõltub kujundusest)."
 
 msgid "Show OScam in extensions ?"
 msgstr "Kuva OScam laienduste menüüs"
@@ -12602,9 +12965,8 @@ msgstr "Salvestava kanali tähistamine"
 msgid "Show Record Movies"
 msgstr "Kuva salvestised"
 
-# data/setup.xml
 msgid "Show recording symbol"
-msgstr "Kuva salvestuse tüübile vastav ikoon"
+msgstr "Kuva salvestusikoon"
 
 # setup.xml
 msgid "Show Restart Network in Extensions list *"
@@ -12746,7 +13108,7 @@ msgid "Show VCR scart on main menu"
 msgstr "Kuva VCR-SCART valik peamenüüs"
 
 msgid "Show warning before restart"
-msgstr "Hoiatus enne taaskäivitamist vastavalt salvestuse tüübile"
+msgstr "Hoiatus enne taaskäivitamist"
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Teavitus ajanihke lõppemisest"
@@ -12846,6 +13208,9 @@ msgstr "Lihtne pealkiri (vanemate pleieritega ühilduv)"
 
 msgid "Simple zoom"
 msgstr "Suurendus"
+
+msgid "Simplified Chinese"
+msgstr "Lihtsustatud Hiina"
 
 msgid "Simulate (no write)"
 msgstr "Matki (ei kirjuta)"
@@ -13083,7 +13448,7 @@ msgid "Software Update"
 msgstr "Tarkvara uuendamine"
 
 msgid "Softwaremanager information"
-msgstr "Tarkvarahalduri andmed"
+msgstr "Tarkvarahalduri info"
 
 msgid "SoftwareManager information"
 msgstr "Tarkvarahalduri info"
@@ -13145,6 +13510,9 @@ msgstr "MiniDLNA on seadistamata"
 #
 msgid "Sorry no backups found!"
 msgstr "Varukoopiat ei leitud!"
+
+msgid "Sorry only possible to record 2 channels at once"
+msgstr "Kahjuks saab salvestada korraga ainult 2 kanalit"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "uShare on seadistamata"
@@ -13310,6 +13678,9 @@ msgstr "Alusta algusest"
 
 msgid "Start instant recording"
 msgstr "Kohene salvestamine"
+
+msgid "Start Kodi"
+msgstr "Käivita Kodi"
 
 msgid "Start mode"
 msgstr "Käivitumine"
@@ -13530,6 +13901,9 @@ msgstr "Triibud"
 msgid "Strongest position"
 msgstr "Tugevaim positsioon"
 
+msgid "Style:"
+msgstr "Laad:"
+
 msgid "Subservice mode"
 msgstr "Alamkanalid"
 
@@ -13663,7 +14037,7 @@ msgid "Switch config"
 msgstr "Seadistuse vahetamine"
 
 msgid "Switch Mode to enable HDR Modes or PIP Functions"
-msgstr ""
+msgstr "Vaheta režiimi HDR või PiP lubamiseks"
 
 msgid "Switch next channel"
 msgstr "Järgmisele kanalile"
@@ -13755,6 +14129,9 @@ msgstr "Süsteemisõnum"
 
 msgid "System Message Check"
 msgstr "Süsteemisõnumi kontroll"
+
+msgid "System partition free space:"
+msgstr "Süsteemipartitsiooni vaba ruum:"
 
 # Quick Menue
 msgid "System Setup"
@@ -13981,6 +14358,9 @@ msgid ""
 "minutes. This setting changed the time window before the wakeup time. So can "
 "be detected a wakeup by a timer even at very early starting receivers."
 msgstr ""
+"Vaikeväärtused on: äratusaeg '- 5 minutit' ja taimeri algusaeg '+ 5 "
+"minutit'. See säte muudab ajaakent enne äratusaega. Nii tuvastatakse "
+"taimeriga äratamine ka väga vara käivituvatel vastuvõtjatel."
 
 msgid ""
 "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
@@ -14031,7 +14411,7 @@ msgstr ""
 "\n"
 "%s\n"
 "\n"
-"Kas soovid seda kasutada tarkvara paigaldamiseks?"
+"Kas soovid seda kasutada püsivara paigaldamiseks?"
 
 msgid "The following files were found..."
 msgstr "Leiti järgnevad failid..."
@@ -14641,7 +15021,7 @@ msgid ""
 "the \"Nameserver\" configuration"
 msgstr ""
 "Test kontrollib nimeserveri seadeid.\n"
-"Kui tekib \"kinnitamata\" kiri:\n"
+"Kui näed teadet \"kinnitamata\":\n"
 "- kontrolli üle DHCP, kaabeldus ja võrgukaardi seaded \n"
 "- kui seadistasid oma nimeserverid käsitsi, siis kontrolli üle nimeserveri "
 "seaded"
@@ -14654,7 +15034,7 @@ msgid ""
 "- verify that the cable is not broken"
 msgstr ""
 "See test kontrollib, kas võrgukaabel on ühendatud võrgukaardiga.\n"
-"Kui näed \"ühendamata\" teadet:\n"
+"Kui näed teadet \"ühendamata\":\n"
 "- veendu, et võrgukaabel on ühendatud\n"
 "- veendu, et kaabel on terve"
 
@@ -15039,6 +15419,9 @@ msgstr "Rada"
 msgid "traditional (fast)"
 msgstr "klassikaline (kiire)"
 
+msgid "Traditional Chinese"
+msgstr "Traditsiooniline Hiina"
+
 msgid "Transcode"
 msgstr "Transkodeeri"
 
@@ -15177,8 +15560,29 @@ msgstr "Tuuneri olek"
 msgid "Tuner status %s"
 msgstr "Tuuneri olek %s"
 
+msgid "Tuner status FAILED"
+msgstr ""
+
+msgid "Tuner status IDLE"
+msgstr ""
+
+msgid "Tuner status LOCKED"
+msgstr ""
+
+msgid "Tuner status LOSTLOCK"
+msgstr ""
+
+msgid "Tuner status TUNING"
+msgstr ""
+
+msgid "Tuner status UNKNOWN"
+msgstr ""
+
 msgid "Tuner type"
 msgstr "Tuuneri tüüp"
+
+msgid "Tuner type %s"
+msgstr "Tuuneri tüüp %s"
 
 msgid "TUNER:"
 msgstr "TUUNER:"
@@ -15502,6 +15906,9 @@ msgstr "Lüüs lubatud"
 msgid "Use as HDD"
 msgstr "Kasuta kõvakettana"
 
+msgid "use best / controlled by HDMI"
+msgstr "kasuta parimat / HDMI juhitav"
+
 msgid "Use circular LNB"
 msgstr "Ringpolar LNB kasutamine"
 
@@ -15539,7 +15946,7 @@ msgid "Use HDMI-preemphasis"
 msgstr "HDMI-preemphasis"
 
 msgid "Use image coloured Buttons *"
-msgstr "Kasuta tarkvara värvinuppe*"
+msgstr "Kasuta püsivara värvinuppe*"
 
 msgid "Use individual settings for each directory"
 msgstr "Omadused jäetakse iga kataloogi puhul meelde"
@@ -15764,6 +16171,9 @@ msgstr "mitmesugust"
 msgid "VCR scart"
 msgstr "VCR scart"
 
+msgid "Version"
+msgstr "Versioon"
+
 msgid "Version: "
 msgstr "Versioon: "
 
@@ -15897,6 +16307,9 @@ msgstr "Kuvasuhe"
 
 msgid "Videomode"
 msgstr "Videorežiim"
+
+msgid "Videosetup"
+msgstr ""
 
 msgid "Videosize"
 msgstr "Lahutus"
@@ -16116,7 +16529,7 @@ msgid ""
 "Your receiver restarts in 10 seconds!\n"
 "Component: enigma2"
 msgstr ""
-"Vastuvõtja tarkvaral tekkis probleem ja vajalik on taaskäivitus.\n"
+"Vastuvõtjal tekkis tarkvaraline probleem ja vajalik on taaskäivitus.\n"
 "Saada logifail %senigma2_crash_xxxxxx.log aadressile www.opena.tv.\n"
 "Vastuvõtja taaskäivitub  10 sekundi pärast!\n"
 "Komponent: enigma2"
@@ -16139,6 +16552,9 @@ msgstr "Kolmapäev"
 
 msgid "Weekday"
 msgstr "Tööpäev"
+
+msgid "Weekend"
+msgstr "Nädalavahetus"
 
 msgid "Weekly"
 msgstr "Iga nädal"
@@ -16293,7 +16709,7 @@ msgid ""
 "When enabled, a recording is allowed to abort picture-in-picture mode, when "
 "there are no free tuners."
 msgstr ""
-"Kui lubatud, võivad salvestusted vaba tuuneri puudumisel sulgeda PiP-akna."
+"Kui lubatud, võivad salvestused vaba tuuneri puudumisel sulgeda PiP-akna."
 
 # Record neu 5.1
 msgid ""
@@ -16315,7 +16731,7 @@ msgid ""
 "When enabled, a recording is allowed to interrupt live tv, when there are no "
 "free tuners."
 msgstr ""
-"Kui lubatud, võivad salvestusted vaba tuuneri puudumisel saate vaatamise "
+"Kui lubatud, võivad salvestused vaba tuuneri puudumisel saate vaatamise "
 "katkestada."
 
 msgid ""
@@ -16331,6 +16747,17 @@ msgid ""
 msgstr ""
 "Kui lubatud, kaasatakse AIT andmed http voogudesse. See võimaldab "
 "vastuvõtjal HbbTV kasutamise."
+
+msgid ""
+"When enabled, always descramble receiving http streams. This takes up more "
+"resources (descrambling demuxers), only enable if necessary. Individual "
+"streams are always descrambled if 0x100 is added to the service type, "
+"regardless of this setting. Default off."
+msgstr ""
+"Kui lubatud, dekodeeritakse sisenevad http vood alati. See võtab rohkem "
+"ressursse, luba ainult vajadusel. Konkreetne voog dekodeeritakse hoolimata "
+"seadistustes määratust alati, kui kanalitüübile lisatakse 0x100. "
+"Vaikeväärtus on 'ei'."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kui lubatud, on http voogude vaatamiseks vajalik autentimine."
@@ -16556,6 +16983,10 @@ msgstr "Kuhu talletada ajutised ajanihke failid?"
 msgid "Which event do you want to save permanently?"
 msgstr "Millise saate soovid lõplikult talletada?"
 
+msgid ""
+"Which remote control gets shown. Only influences graphical representation."
+msgstr "Millist pulti kuvatakse. Mõjutab ainult graafilist esitlust."
+
 msgid "While available"
 msgstr "Saadavusel"
 
@@ -16660,6 +17091,9 @@ msgstr "Wlan otsing"
 
 msgid "WlanStatus"
 msgstr "Wlan olek"
+
+msgid "WMA Pro"
+msgstr "WMA Pro"
 
 msgid "WOL Standby"
 msgstr "WOL ooteseisundis"
@@ -16855,6 +17289,10 @@ msgstr ""
 "Võid paigaldada kollase nupu abil süsteemitõmmise\n"
 " või luua uueks paigalduseks süsteemikoopia."
 
+# Satconfig.py
+msgid "You can switch with left and right this tuner types %s"
+msgstr "<  ja > nuppudega saab vahetada selle tuuneri tüüpe %s"
+
 msgid "You cannot delete this!"
 msgstr "Seda ei või kustutada!"
 
@@ -16874,8 +17312,8 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
-"Otsustasid luua uue alglaetava USB-pulga tarkvarale. Kõik vana info USB "
-"pulgal läheb kaduma."
+"Otsustasid luua uue alglaetava USB-pulga. Kõik vana info USB pulgal läheb "
+"kaduma."
 
 msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
@@ -16934,7 +17372,7 @@ msgstr ""
 "Nüüd on vaja ühendada %s %s arvutiga. Kui on vaja abi, siis vaata : http://"
 "www.opena.tv.\n"
 "%s %s peatatakse. Kui on täidetud uuendamise juhised veebilehelt, siis uus "
-"tarkvara pakub seadistuste taastamist."
+"püsivara pakub seadistuste taastamist."
 
 msgid ""
 "You need to set a PIN code and hide it from your children.\n"
@@ -17144,12 +17582,12 @@ msgid ""
 "\n"
 "Do you still want to update?"
 msgstr ""
-"Vastuvõtja tarkvara on aegunud!\n"
+"Vastuvõtja püsivara on aegunud!\n"
 "\n"
 "Pärast nii pikka aga on suur oht, et %s %s pärast tarkvarauuendust enam ei "
 "käivitu või selle töös esineb tõrkeid.\n"
 "\n"
-"Stabiilse töö saavutamiseks tuleks tarkvara uuesti paigaldada!\n"
+"Stabiilse töö saavutamiseks tuleks püsivara uuesti paigaldada!\n"
 "\n"
 "Tarkvarauuendus on su oma risk!!!\n"
 "\n"
@@ -17226,6 +17664,9 @@ msgstr "Kanalivahetus peaekraanil"
 msgid "Zap focus to Picture in Picture"
 msgstr "Kanalivahetus PiP-aknas"
 
+msgid "Zap focused channel on full screen"
+msgstr "Ava valitud kanal täisekraanil"
+
 msgid "Zap mode"
 msgstr "Kanalivahetus"
 
@@ -17255,12 +17696,6 @@ msgstr "vahetatud"
 msgid "zapping"
 msgstr "Kanalivahetus"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5"
-msgstr "Zgemma H.S/H.2S/H.2H/H5"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
 msgid "Zoom from left"
 msgstr "Vasakult kasvav"
 
@@ -17286,7 +17721,7 @@ msgid "[favourite edit]"
 msgstr "[lemmikute muutmine]"
 
 msgid "[Image Info]\n"
-msgstr "[Tarkvara info]\n"
+msgstr "[Püsivara info]\n"
 
 msgid "[move mode]"
 msgstr "[liigutamine]"
@@ -17296,6 +17731,29 @@ msgstr "[Ajanihe] Salvestiste liitmine nurjus!"
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[Ajanihe] - Ajanihe käivitatakse uuesti!"
+
+msgid ""
+"\n"
+"   Please press OK to start Kodi..."
+msgstr ""
+"\n"
+"   Kodi käivitamiseks vajuta OK..."
+
+msgid ""
+"\n"
+"  WARNING: \n"
+"  There is not enough space to install Kodi!"
+msgstr ""
+"\n"
+"  HOIATUS: \n"
+"  Kodi paigaldamiseks ei ole piisavalt vaba ruumi!"
+
+msgid ""
+"\n"
+" Kodi not present. Proceed with install?"
+msgstr ""
+"\n"
+" Kodi ei ole paigaldatud. Kas jätkata paigaldusega?"
 
 msgid ""
 "\n"
@@ -17449,6 +17907,770 @@ msgstr ""
 "\n"
 "\n"
 "[Lemmiknimekirjad (TV)]\n"
+
+msgid "Afghanistan"
+msgstr "Afghanistan"
+
+msgid "Aland Islands"
+msgstr "Ahvenamaa"
+
+msgid "Albania"
+msgstr "Albaania"
+
+msgid "Algeria"
+msgstr "Alžeeria"
+
+msgid "American Samoa"
+msgstr "Ameerika Samoa"
+
+msgid "Andorra"
+msgstr "Andorra"
+
+msgid "Angola"
+msgstr "Angoola"
+
+msgid "Anguilla"
+msgstr "Anguilla"
+
+msgid "Antarctica"
+msgstr "Antarktika"
+
+msgid "Antigua and Barbuda"
+msgstr "Antigua ja Barbuda"
+
+msgid "Argentina"
+msgstr "Argentiina"
+
+msgid "Armenia"
+msgstr "Armeenia"
+
+msgid "Aruba"
+msgstr "Aruba"
+
+msgid "Australia"
+msgstr "Austraalia"
+
+msgid "Austria"
+msgstr "Austria"
+
+msgid "Azerbaijan"
+msgstr "Azerbaidžaan"
+
+msgid "Bahamas"
+msgstr "Bahama saared"
+
+msgid "Bahrain"
+msgstr "Bahrein"
+
+msgid "Bangladesh"
+msgstr "Bangladesh"
+
+msgid "Barbados"
+msgstr "Barbados"
+
+msgid "Belarus"
+msgstr "Valgevene"
+
+msgid "Belgium"
+msgstr "Belgia"
+
+msgid "Belize"
+msgstr "Belize"
+
+msgid "Benin"
+msgstr "Benin"
+
+msgid "Bermuda"
+msgstr "Bermuda"
+
+msgid "Bhutan"
+msgstr "Bhutan"
+
+msgid "Bolivia (Plurinational State of)"
+msgstr "Boliivia"
+
+msgid "Bonaire, Sint Eustatius and Saba"
+msgstr "Bonaire, Sint-Eustatius ja Saba"
+
+msgid "Bosnia and Herzegovina"
+msgstr "Bosnia ja Hertsegoviina"
+
+msgid "Botswana"
+msgstr "Botswana"
+
+msgid "Bouvet Island"
+msgstr "Lihavõttesaar"
+
+msgid "Brazil"
+msgstr "Brasiilia"
+
+msgid "British Indian Ocean Territory"
+msgstr "Briti India ookeani territoorium"
+
+msgid "Brunei Darussalam"
+msgstr "Brunei Darussalam"
+
+msgid "Bulgaria"
+msgstr "Bulgaaria"
+
+msgid "Burkina Faso"
+msgstr "Burkina Faso"
+
+msgid "Burundi"
+msgstr "Burundi"
+
+msgid "Cabo Verde"
+msgstr "Roheneemesaared"
+
+msgid "Cambodia"
+msgstr "Kambodža"
+
+msgid "Cameroon"
+msgstr "Kamerun"
+
+msgid "Canada"
+msgstr "Kanada"
+
+msgid "Cayman Islands"
+msgstr "Kaimani saared"
+
+msgid "Central African Republic"
+msgstr "Kesk Aafrika Vabariik"
+
+msgid "Chad"
+msgstr "Tšaad"
+
+msgid "Chile"
+msgstr "Tšiili"
+
+msgid "China"
+msgstr "Hiina"
+
+msgid "Christmas Island"
+msgstr "Jõulusaar"
+
+msgid "Cocos (Keeling) Islands"
+msgstr "Kookossaared"
+
+msgid "Colombia"
+msgstr "Kolumbia"
+
+msgid "Comoros"
+msgstr "Komoori saared"
+
+msgid "Congo"
+msgstr "Kongo"
+
+msgid "Congo (Democratic Republic of the)"
+msgstr "Kongo Demokraatlik Vabariik"
+
+msgid "Cook Islands"
+msgstr "Cooki saared"
+
+msgid "Costa Rica"
+msgstr "Costa Rica"
+
+msgid "Cote d'Ivoire"
+msgstr "Elevandiluurannik"
+
+msgid "Croatia"
+msgstr "Horvaatia"
+
+msgid "Cuba"
+msgstr "Kuuba"
+
+msgid "Curacao"
+msgstr "Curaçao"
+
+msgid "Cyprus"
+msgstr "Küpros"
+
+msgid "Czechia"
+msgstr "Tšehhi"
+
+msgid "Denmark"
+msgstr "Taani"
+
+msgid "Djibouti"
+msgstr "Djibouti"
+
+msgid "Dominica"
+msgstr "Dominica"
+
+msgid "Dominican Republic"
+msgstr "Dominikaani Vabariik"
+
+msgid "Ecuador"
+msgstr "Ecuador"
+
+msgid "Egypt"
+msgstr "Egiptus"
+
+msgid "El Salvador"
+msgstr "El Salvador"
+
+msgid "Equatorial Guinea"
+msgstr "Ekvatoriaal-Ginea"
+
+msgid "Eritrea"
+msgstr "Eritrea"
+
+msgid "Estonia"
+msgstr "Eesti"
+
+msgid "Ethiopia"
+msgstr "Etioopia"
+
+msgid "Falkland Islands (Malvinas)"
+msgstr "Falklandi saared (Malviinid)"
+
+msgid "Faroe Islands"
+msgstr "Fääri saared"
+
+msgid "Fiji"
+msgstr "Fidži"
+
+msgid "Finland"
+msgstr "Soome"
+
+msgid "France"
+msgstr "Prantsusmaa"
+
+msgid "French Guiana"
+msgstr "Prantsuse Guajaana"
+
+msgid "French Polynesia"
+msgstr "Prantsuse Polüneesia"
+
+msgid "French Southern Territories"
+msgstr "Prantsuse Lõunaalad"
+
+msgid "Gabon"
+msgstr "Gabon"
+
+msgid "Gambia"
+msgstr "Gambia"
+
+msgid "Georgia"
+msgstr "Gruusia"
+
+msgid "Germany"
+msgstr "Saksamaa"
+
+msgid "Ghana"
+msgstr "Ghana"
+
+msgid "Gibraltar"
+msgstr "Gibraltar"
+
+msgid "Greece"
+msgstr "Kreeka"
+
+msgid "Greenland"
+msgstr "Gröönimaa"
+
+msgid "Grenada"
+msgstr "Grenada"
+
+msgid "Guadeloupe"
+msgstr "Guadeloupe"
+
+msgid "Guam"
+msgstr "Guam"
+
+msgid "Guatemala"
+msgstr "Guatemala"
+
+msgid "Guernsey"
+msgstr "Guernsey"
+
+msgid "Guinea"
+msgstr "Guinea"
+
+msgid "Guinea-Bissau"
+msgstr "Guinea-Bissau"
+
+msgid "Guyana"
+msgstr "Guajaana"
+
+msgid "Haiti"
+msgstr "Haiiti"
+
+msgid "Heard Island and McDonald Islands"
+msgstr "Heard ja McDonald saared"
+
+msgid "Holy See"
+msgstr "Vatikan"
+
+msgid "Honduras"
+msgstr "Honduras"
+
+msgid "Hong Kong"
+msgstr "Hong Kong"
+
+msgid "Hungary"
+msgstr "Ungari"
+
+msgid "Iceland"
+msgstr "Island"
+
+msgid "India"
+msgstr "India"
+
+msgid "Indonesia"
+msgstr "Indoneesia"
+
+msgid "Iran (Islamic Republic of)"
+msgstr "Iraan"
+
+msgid "Iraq"
+msgstr "Iraak"
+
+msgid "Ireland"
+msgstr "Iirimaa"
+
+msgid "Isle of Man"
+msgstr "Man'i saar"
+
+msgid "Israel"
+msgstr "Iisrael"
+
+msgid "Italy"
+msgstr "Itaalia"
+
+msgid "Jamaica"
+msgstr "Jamaika"
+
+msgid "Japan"
+msgstr "Jaapan"
+
+msgid "Jersey"
+msgstr "Jersey"
+
+msgid "Jordan"
+msgstr "Jordaania"
+
+msgid "Kazakhstan"
+msgstr "Kasashtan"
+
+msgid "Kenya"
+msgstr "Keenia"
+
+msgid "Kiribati"
+msgstr "Kiribati"
+
+msgid "Korea (Democratic People's Republic of)"
+msgstr "Põhja-Korea"
+
+msgid "Korea (Republic of)"
+msgstr "Lõuna-Korea"
+
+msgid "Kuwait"
+msgstr "Kuveit"
+
+msgid "Kyrgyzstan"
+msgstr "Kõrgõstan"
+
+msgid "Lao People's Democratic Republic"
+msgstr "Laos"
+
+msgid "Latvia"
+msgstr "Läti"
+
+msgid "Lebanon"
+msgstr "Liibanon"
+
+msgid "Lesotho"
+msgstr "Lesotho"
+
+msgid "Liberia"
+msgstr "Libeeria"
+
+msgid "Libya"
+msgstr "Liibüa"
+
+msgid "Liechtenstein"
+msgstr "Liechtenstein"
+
+msgid "Lithuania"
+msgstr "Leedu"
+
+msgid "Luxembourg"
+msgstr "Luksemburg"
+
+msgid "Macao"
+msgstr "Macao"
+
+msgid "Macedonia (the former Yugoslav Republic of)"
+msgstr "Makedoonia"
+
+msgid "Madagascar"
+msgstr "Madagaskar"
+
+msgid "Malawi"
+msgstr "Malaavi"
+
+msgid "Malaysia"
+msgstr "Malaisia"
+
+msgid "Maldives"
+msgstr "Malediivid"
+
+msgid "Mali"
+msgstr "Mali"
+
+msgid "Malta"
+msgstr "Malta"
+
+msgid "Marshall Islands"
+msgstr "Marshalli saared"
+
+msgid "Martinique"
+msgstr "Martinique"
+
+msgid "Mauritania"
+msgstr "Mauritaania"
+
+msgid "Mauritius"
+msgstr "Mauritius"
+
+msgid "Mayotte"
+msgstr "Mayotte"
+
+msgid "Mexico"
+msgstr "Mehhiko"
+
+msgid "Micronesia (Federated States of)"
+msgstr "Mikroneesia Liiduriigid"
+
+msgid "Moldova (Republic of)"
+msgstr "Moldova"
+
+msgid "Monaco"
+msgstr "Monaco"
+
+msgid "Mongolia"
+msgstr "Mongoolia"
+
+msgid "Montenegro"
+msgstr "Montenegro"
+
+msgid "Montserrat"
+msgstr "Montserrat"
+
+msgid "Morocco"
+msgstr "Maroko"
+
+msgid "Mozambique"
+msgstr "Mosambiik"
+
+msgid "Myanmar"
+msgstr "Myanmar (Birma)"
+
+msgid "Namibia"
+msgstr "Namiibia"
+
+msgid "Nauru"
+msgstr "Nauru"
+
+msgid "Nepal"
+msgstr "Nepaal"
+
+msgid "Netherlands"
+msgstr "Holland"
+
+msgid "New Caledonia"
+msgstr "Uus Kaledoonia"
+
+msgid "New Zealand"
+msgstr "Uus Meremaa"
+
+msgid "Nicaragua"
+msgstr "Nikaraagua"
+
+msgid "Niger"
+msgstr "Niger"
+
+msgid "Nigeria"
+msgstr "Nigeeria"
+
+msgid "Niue"
+msgstr "Niue"
+
+msgid "Norfolk Island"
+msgstr "Norfolki saar"
+
+msgid "Northern Mariana Islands"
+msgstr "Põhja-Mariaanid"
+
+msgid "Norway"
+msgstr "Norra"
+
+msgid "Oman"
+msgstr "Omaan"
+
+msgid "Pakistan"
+msgstr "Pakistan"
+
+msgid "Palau"
+msgstr "Palau"
+
+msgid "Palestine, State of"
+msgstr "Palestiina"
+
+msgid "Panama"
+msgstr "Panama"
+
+msgid "Papua New Guinea"
+msgstr "Papua Uus Guinea"
+
+msgid "Paraguay"
+msgstr "Paraguay"
+
+msgid "Peru"
+msgstr "Peruu"
+
+msgid "Philippines"
+msgstr "Filipiinid"
+
+msgid "Pitcairn"
+msgstr "Pitcairn"
+
+msgid "Poland"
+msgstr "Poola"
+
+msgid "Portugal"
+msgstr "Portugal"
+
+msgid "Puerto Rico"
+msgstr "Puerto Rico"
+
+msgid "Qatar"
+msgstr "Katar"
+
+msgid "Reunion"
+msgstr "Réunion"
+
+msgid "Romania"
+msgstr "Rumeenia"
+
+msgid "Russian Federation"
+msgstr "Venemaa"
+
+msgid "Rwanda"
+msgstr "Ruanda"
+
+msgid "Saint Barthelemy"
+msgstr "Saint Barthélemy"
+
+msgid "Saint Helena, Ascension and Tristan da Cunha"
+msgstr "Saint Helena, Ascension ja Tristan da Cunha"
+
+msgid "Saint Kitts and Nevis"
+msgstr "Saint Kitts ja Nevis"
+
+msgid "Saint Lucia"
+msgstr "Saint Lucia"
+
+msgid "Saint Martin (French part)"
+msgstr "Saint-Martin (Prantsuse osa)"
+
+msgid "Saint Pierre and Miquelon"
+msgstr "Saint Pierre ja Miquelon"
+
+msgid "Saint Vincent and the Grenadines"
+msgstr "Saint Vincent ja Grenadiinid"
+
+msgid "Samoa"
+msgstr "Samoa"
+
+msgid "San Marino"
+msgstr "San Marino"
+
+msgid "Sao Tome and Principe"
+msgstr "São Tomé ja Príncipe"
+
+msgid "Saudi Arabia"
+msgstr "Saudi Araabia"
+
+msgid "Senegal"
+msgstr "Senegal"
+
+msgid "Serbia"
+msgstr "Serbia"
+
+msgid "Seychelles"
+msgstr "Seišellid"
+
+msgid "Sierra Leone"
+msgstr "Sierra Leone"
+
+msgid "Singapore"
+msgstr "Singapur"
+
+msgid "Sint Maarten (Dutch part)"
+msgstr "Sint Maarten (Hollandi osa)"
+
+msgid "Slovakia"
+msgstr "Slovakkia"
+
+msgid "Slovenia"
+msgstr "Sloveenia"
+
+msgid "Solomon Islands"
+msgstr "Saalomoni saared"
+
+msgid "Somalia"
+msgstr "Somaalia"
+
+msgid "South Africa"
+msgstr "Lõuna-Aafrika"
+
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Lõuna-Georgia ja Lõuna-Sandwichi saared"
+
+msgid "South Sudan"
+msgstr "Lõuna-Sudaan"
+
+msgid "Spain"
+msgstr "Hispaania"
+
+msgid "Sri Lanka"
+msgstr "Sri Lanka"
+
+msgid "Sudan"
+msgstr "Sudaan"
+
+msgid "Suriname"
+msgstr "Suriname"
+
+msgid "Svalbard and Jan Mayen"
+msgstr "Svalbard ja Jan Mayen"
+
+msgid "Swaziland"
+msgstr "Svaasimaa"
+
+msgid "Sweden"
+msgstr "Rootsi"
+
+msgid "Switzerland"
+msgstr "Šveits"
+
+msgid "Syrian Arab Republic"
+msgstr "Süüria"
+
+msgid "[a]"
+msgstr "[a]"
+
+msgid "Tajikistan"
+msgstr "Tadžikistan"
+
+msgid "Tanzania, United Republic of"
+msgstr "Tansaania"
+
+msgid "Thailand"
+msgstr "Tai"
+
+msgid "Timor-Leste"
+msgstr "Ida-Timor"
+
+msgid "Togo"
+msgstr "Togo"
+
+msgid "Tokelau"
+msgstr "Tokelau"
+
+msgid "Tonga"
+msgstr "Tonga"
+
+msgid "Trinidad and Tobago"
+msgstr "Trinidad ja Tobago"
+
+msgid "Tunisia"
+msgstr "Tuneesia"
+
+msgid "Turkey"
+msgstr "Türgi"
+
+msgid "Turkmenistan"
+msgstr "Turkmenistan"
+
+msgid "Turks and Caicos Islands"
+msgstr "Turksi and Caicose saared"
+
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+msgid "Uganda"
+msgstr "Uganda"
+
+msgid "Ukraine"
+msgstr "Ukraina"
+
+msgid "United Arab Emirates"
+msgstr "Araabia Ühendemiraadid"
+
+msgid "United Kingdom"
+msgstr "Ühendkuningriik"
+
+msgid "United States of America"
+msgstr "Ameerika Ühendriigid"
+
+msgid "United States Minor Outlying Islands"
+msgstr "Ühendriikide hajasaared"
+
+msgid "Uruguay"
+msgstr "Uruguai"
+
+msgid "Uzbekistan"
+msgstr "Usbekistan"
+
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+msgid "Venezuela (Bolivarian Republic of)"
+msgstr "Venezuela"
+
+msgid "Viet Nam"
+msgstr "Vietnam"
+
+msgid "Virgin Islands (British)"
+msgstr "Briti Neitsisaared"
+
+msgid "Virgin Islands (U.S.)"
+msgstr "USA Neitsisaared"
+
+msgid "Wallis and Futuna"
+msgstr "Wallis ja Futuna"
+
+msgid "Western Sahara"
+msgstr "Lääne-Sahaara"
+
+msgid "Yemen"
+msgstr "Jeemen"
+
+msgid "Zambia"
+msgstr "Zambia"
+
+msgid "Zimbabwe"
+msgstr "Zimbabwe"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#
+#~ msgid "Clean network trash can's"
+#~ msgstr "Võrguketta prügikasti tühjendamine"
+
+# data/setup.xml
+#~ msgid "Show recording symbol depending on recording type"
+#~ msgstr "Kuva salvestuse tüübile vastav ikoon"
+
+#~ msgid "Show warning before box restart based on recording type"
+#~ msgstr "Hoiatus enne taaskäivitamist vastavalt salvestuse tüübile"
 
 # Help
 #~ msgid "Pauze/Continue playback"
@@ -17680,7 +18902,3 @@ msgstr ""
 
 #~ msgid "24 Hours"
 #~ msgstr "24 tundi"
-
-# Satconfig.py
-#~ msgid "You can switch with left and right this tuner types %s"
-#~ msgstr "<  ja > nuppudega saab vahetada selle tuuneri tüüpe %s"
