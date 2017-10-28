@@ -19,11 +19,13 @@ import urllib2
 import os
 import shutil
 import math
-from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getImageVersion, getMachineKernelFile, getMachineRootFile, getMachineBuild
+from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getImageVersion, getMachineKernelFile, getMachineRootFile, getMachineBuild, getMachineMtdKernel, getMachineMtdRoot
 distro =  getImageDistro()
 ImageVersion = getImageVersion()
 ROOTFSBIN = getMachineRootFile()
 KERNELBIN = getMachineKernelFile()
+MTDKERNEL = getMachineMtdKernel()
+MTDROOTFS = getMachineMtdRoot()
 
 #############################################################################################################
 image = 0 # 0=openATV / 1=openMips
@@ -527,6 +529,8 @@ class doFlashImage(Screen):
 				text += _("Simulate (no write)")
 				if SystemInfo["HaveMultiBoot"]:
 					cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+				elif getMachineBuild() in ("u5"):
+					cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
 				else:
 					cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				self.close()
@@ -542,6 +546,8 @@ class doFlashImage(Screen):
 					if self.List not in ("STARTUP","cmdline.txt"):
 						cmdlist.append("umount -fl /oldroot_bind")
 						cmdlist.append("umount -fl /newroot")
+				elif getMachineBuild() in ("u5"):
+					cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
 				else:
 					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				message = "echo -e '\n"
