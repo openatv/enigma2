@@ -59,41 +59,39 @@ class TimerEntry:
 	# Return the start and end time for the next time a repeat timer runs
 	# from the current begin, end, repeatbegin and day flags
 	# (as an 7-element array day[0] for Monday, day[6] for Sunday).
-	# The values in day[] are inverted from the corresponding bits in the
-	# repeat flags
 
 	def nextRepeatTime(self, begin, end, repeatedbegindate, day, findRunningEvent=True, findNextEvent=False):
-		if not all(day):
+		if any(day):
 			now = int(time()) + 1
 			if findNextEvent:
 				now = end + 120
 			# To avoid problems with daylight saving,
 			# we need to calculate with localtime,
 			# in struct_time representation
-			localrepeatedbegindate = localtime(repeatedbegindate)
-
 			localbegin = localtime(begin)
 			localend = localtime(end)
 			localnow = localtime(now)
 
+			# The begin date is constant in the loop, so precaculate
+			# its conversion back from local time
+			localrepeatedbegindate = localtime(repeatedbegindate)
+			repeatedbegindate = int(mktime(localrepeatedbegindate))
+
 			# Step through the days until the day for the new timer
 			# start/end is:
-			#     a day on which the timer repeats (not day[localbegin.tm_wday])
+			#     a day on which the timer repeats (day[localbegin.tm_wday])
 			#  and
-			#     the start is after the initial start time for the repeat timer
+			#     the start is on or after the initial start time for the repeat timer
 			#  and
 			#     if findRunningEvent
 			#        the new timer end has not passed
 			#     otherwise
 			#        the new timer start has not passed
 
-			while (
-				day[localbegin.tm_wday] or
-				(mktime(localrepeatedbegindate) > mktime(localbegin)) or
-				(
-					not day[localbegin.tm_wday] and (findRunningEvent and localend < localnow) or
-					((not findRunningEvent) and localbegin < localnow)
-				)
+			while not (
+				day[localbegin.tm_wday] and
+				int(mktime(localbegin)) >= repeatedbegindate and
+				localnow < localend if findRunningEvent else localnow < localbegin
 			):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
@@ -105,7 +103,6 @@ class TimerEntry:
 			end = int(mktime(localend))
 			if begin == end:
 				end += 1
-
 		return begin, end
 
 	# Update self.begin and self.end using the self.repeated flags
@@ -114,21 +111,11 @@ class TimerEntry:
 			self.findRunningEvent = findRunningEvent
 			self.findNextEvent = findNextEvent
 
-			# Expand the repeat flags out into day[].
-			# In this process the flags are *inverted* in day[] from
-			# their values in self.repeated.
-
-			day = []
-			flags = self.repeated
-			for x in (0, 1, 2, 3, 4, 5, 6):
-				if flags & 1 == 1:
-					day.append(0)
-				else:
-					day.append(1)
-				flags >>= 1
+			# Convert self.repeated into equivalent boolean
+			# array, day[0] for Monday, day[6] for Saturday
+			day = [bool(self.repeated & (1<<n)) for n in range(7)]
 
 			self.begin, self.end = self.nextRepeatTime(self.begin, self.end, self.repeatedbegindate, day, findRunningEvent=findRunningEvent, findNextEvent=findNextEvent)
-
 			self.timeChanged()
 
 	def __lt__(self, o):
