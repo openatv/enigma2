@@ -137,11 +137,11 @@ primary_skin_path = getSkinPath()
 if fileExists('/tmp/restore_skins'):
 	os.unlink('/tmp/restore_skins')
 	import glob
-	for skin in glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py'):
+	for skin in glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.pyo'):
 		try:
 			print '-'*50 
 			print 'restore skin from "%s" ...' % skin
-			if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace('.py','').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
+			if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace('.pyo','').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
 				print '... failed!'
 			else:
 				print '... done!'
