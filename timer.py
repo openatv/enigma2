@@ -56,21 +56,63 @@ class TimerEntry:
 	def isFindNextEvent(self):
 		return self.findNextEvent
 
-	# Update self.begin and self.end using the self.repeated flags
-	def processRepeated(self, findRunningEvent=True, findNextEvent=False):
-		if self.repeated != 0:
+	# Return the start and end time for the next time a repeat timer runs
+	# from the current begin, end, repeatbegin and day flags
+	# (as an 7-element array day[0] for Monday, day[6] for Sunday).
+	# The values in day[] are inverted from the corresponding bits in the
+	# repeat flags
+
+	def nextRepeatTime(self, begin, end, repeatedbegindate, day, findRunningEvent=True, findNextEvent=False):
+		if not all(day):
 			now = int(time()) + 1
 			if findNextEvent:
-				now = self.end + 120
-			self.findRunningEvent = findRunningEvent
-			self.findNextEvent = findNextEvent
+				now = end + 120
 			# To avoid problems with daylight saving,
 			# we need to calculate with localtime,
 			# in struct_time representation
-			localrepeatedbegindate = localtime(self.repeatedbegindate)
-			localbegin = localtime(self.begin)
-			localend = localtime(self.end)
+			localrepeatedbegindate = localtime(repeatedbegindate)
+
+			localbegin = localtime(begin)
+			localend = localtime(end)
 			localnow = localtime(now)
+
+			# Step through the days until the day for the new timer
+			# start/end is:
+			#     a day on which the timer repeats (not day[localbegin.tm_wday])
+			#  and
+			#     the start is after the initial start time for the repeat timer
+			#  and
+			#     if findRunningEvent
+			#        the new timer end has not passed
+			#     otherwise
+			#        the new timer start has not passed
+
+			while (
+				day[localbegin.tm_wday] or
+				(mktime(localrepeatedbegindate) > mktime(localbegin)) or
+				(
+					not day[localbegin.tm_wday] and (findRunningEvent and localend < localnow) or
+					((not findRunningEvent) and localbegin < localnow)
+				)
+			):
+				localbegin = self.addOneDay(localbegin)
+				localend = self.addOneDay(localend)
+
+			# We now have a struct_time representation of
+			# begin and end in localtime,
+			# but we have to calculate back to (gmt) seconds since epoch
+			begin = int(mktime(localbegin))
+			end = int(mktime(localend))
+			if begin == end:
+				end += 1
+
+		return begin, end
+
+	# Update self.begin and self.end using the self.repeated flags
+	def processRepeated(self, findRunningEvent=True, findNextEvent=False):
+		if self.repeated != 0:
+			self.findRunningEvent = findRunningEvent
+			self.findNextEvent = findNextEvent
 
 			# Expand the repeat flags out into day[].
 			# In this process the flags are *inverted* in day[] from
@@ -85,35 +127,7 @@ class TimerEntry:
 					day.append(1)
 				flags >>= 1
 
-			# Step through the days until the day for the new timer
-			# start/end is:
-			#     a day on which the timer repeats (day[localbegin.tm_wday] == 0)
-			#  and
-			#     the start is after the initial start time for the repeat timer
-			#  and
-			#     if findRunningEvent
-			#        the new timer end has not passed
-			#     otherwise
-			#        the new timer start has not passed
-
-			while (
-				(day[localbegin.tm_wday] != 0) or
-				(mktime(localrepeatedbegindate) > mktime(localbegin)) or
-				(
-					day[localbegin.tm_wday] == 0 and (findRunningEvent and localend < localnow) or
-					((not findRunningEvent) and localbegin < localnow)
-				)
-			):
-				localbegin = self.addOneDay(localbegin)
-				localend = self.addOneDay(localend)
-
-			# We now have a struct_time representation of
-			# begin and end in localtime,
-			# but we have to calculate back to (gmt) seconds since epoch
-			self.begin = int(mktime(localbegin))
-			self.end = int(mktime(localend))
-			if self.begin == self.end:
-				self.end += 1
+			self.begin, self.end = self.nextRepeatTime(self.begin, self.end, self.repeatedbegindate, day, findRunningEvent=findRunningEvent, findNextEvent=findNextEvent)
 
 			self.timeChanged()
 
