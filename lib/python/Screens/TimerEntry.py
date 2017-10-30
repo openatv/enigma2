@@ -111,10 +111,8 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
 		# calculate default values
-		day = []
 		weekday = 0
-		for x in (0, 1, 2, 3, 4, 5, 6):
-			day.append(0)
+		day = [False] * 7
 		if self.timer.repeated:  # repeated
 			repeat_type = "repeated"
 			if self.timer.repeated == 31:  # Mon-Fri
@@ -123,24 +121,16 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 				repeated = "daily"
 			else:
 				flags = self.timer.repeated
-				repeated = "user"
-				count = 0
-				for x in (0, 1, 2, 3, 4, 5, 6):
-					if flags == 1:  # weekly
-						#  print "Set to weekday " + str(x)
-						weekday = x
-					if flags & 1 == 1:  # set user defined flags
-						day[x] = 1
-						count += 1
-					else:
-						day[x] = 0
-					flags >>= 1
-				if count == 1:
+				day = [bool(flags & (1<<n)) for n in range(7)]
+				if sum(day) == 1:
 					repeated = "weekly"
+					weekday = day.index(True)
+				else:
+					repeated = "user"
 		else:  # once
 			repeat_type = "once"
 			repeated = None
-			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
+			weekday = localtime(self.timer.begin).tm_wday
 			day[weekday] = 1
 
 		self.timerentry_justplay = ConfigSelection(
@@ -193,7 +183,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		], default=repeated)
 		self.timerentry_renamerepeat = ConfigYesNo(default=rename_repeat)
 
-		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=24 * 60 * 60)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
 		duration = self.timer.end - self.timer.begin
@@ -205,7 +195,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			tmp.append(default)
 		self.timerentry_dirname = ConfigSelection(default=default, choices=tmp)
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=24 * 60 * 60)
 
 		self.timerentry_weekday = ConfigSelection(default=weekday_table[weekday], choices=[
 			("mon", _("Monday")),
@@ -218,7 +208,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		])
 
 		self.timerentry_day = ConfigSubList()
-		for x in (0, 1, 2, 3, 4, 5, 6):
+		for x in range(7):
 			self.timerentry_day.append(ConfigYesNo(default=day[x]))
 
 		# FIXME some service-chooser needed here
@@ -426,7 +416,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 		# if the endtime is less than the starttime, add 1 day.
 		if end < begin:
-			end += 86400
+			end += 24 * 60 * 60
 
 		# if the timer type is a Zap and no end is set, set duration to short, fairly arbitrary, time so timer is shown in EPG's.
 		if self.timerentry_justplay.value == "zap":
@@ -434,6 +424,36 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 				end = begin + (config.recording.margin_before.value * 60) + 1
 
 		return begin, end
+
+	def getRepeatedBeginEnd(self):
+		if self.timerentry_repeated.value == "daily":
+			repeated = [True] * 7
+		elif self.timerentry_repeated.value == "weekly":
+			repeated = [False] * 7
+			repeated[self.timerentry_weekday.index] = True
+		elif self.timerentry_repeated.value == "weekdays":
+			repeated = [True] * 5 + [False] * 2
+		if self.timerentry_repeated.value == "user":
+			repeated = [self.timerentry_day[x].value for x in range(7)]
+
+		endtime = self.timerentry_endtime.value
+		starttime = self.timerentry_starttime.value
+
+		repeatedbegindate = self.timerentry_repeatedbegindate.value
+		if any(repeated):
+			begin = self.getTimestamp(repeatedbegindate, starttime)
+			end = self.getTimestamp(repeatedbegindate, endtime)
+		else:
+			now = time()
+			begin = self.getTimestamp(now, starttime)
+			end = self.getTimestamp(now, endtime)
+		repeatedbegindate = self.getTimestamp(repeatedbegindate, starttime)
+
+		# when a timer end is set before the start, add 1 day
+		if end < begin:
+			end += 24 * 60 * 60
+
+		return begin, end, repeatedbegindate, repeated
 
 	def selectChannelSelector(self, *args):
 		self.session.openWithCallback(
@@ -486,34 +506,11 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
-		if self.timerentry_type.value == "repeated":
-			if self.timerentry_repeated.value == "daily":
-				for x in (0, 1, 2, 3, 4, 5, 6):
-					self.timer.setRepeated(x)
-
-			if self.timerentry_repeated.value == "weekly":
-				self.timer.setRepeated(self.timerentry_weekday.index)
-
-			if self.timerentry_repeated.value == "weekdays":
-				for x in (0, 1, 2, 3, 4):
-					self.timer.setRepeated(x)
-
-			if self.timerentry_repeated.value == "user":
-				for x in (0, 1, 2, 3, 4, 5, 6):
-					if self.timerentry_day[x].value:
-						self.timer.setRepeated(x)
-
-			self.timer.repeatedbegindate = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
-			if self.timer.repeated:
-				self.timer.begin = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
-				self.timer.end = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_endtime.value)
-			else:
-				self.timer.begin = self.getTimestamp(time(), self.timerentry_starttime.value)
-				self.timer.end = self.getTimestamp(time(), self.timerentry_endtime.value)
-
-			# when a timer end is set before the start, add 1 day
-			if self.timer.end < self.timer.begin:
-				self.timer.end += 86400
+		elif self.timerentry_type.value == "repeated":
+			self.timer.begin, self.timer.end, self.timer.repeatedbegindate, repeated = self.getRepeatedBeginEnd()
+			for i, r in enumerate(repeated):
+				if r:
+					self.timer.setRepeated(i)
 
 		if self.timer.eit is not None:
 			event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
@@ -545,14 +542,14 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.timerentry_starttime.increment()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
-			self.timerentry_date.value += 86400
+			self.timerentry_date.value += 24 * 60 * 60
 			self["config"].invalidate(self.entryDate)
 
 	def decrementStart(self):
 		self.timerentry_starttime.decrement()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [23, 59]:
-			self.timerentry_date.value -= 86400
+			self.timerentry_date.value -= 24 * 60 * 60
 			self["config"].invalidate(self.entryDate)
 
 	def incrementEnd(self):
