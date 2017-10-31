@@ -28,7 +28,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
-from RecordTimer import AFTEREVENT
+from RecordTimer import AFTEREVENT, parseEvent
 
 
 class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
@@ -51,6 +51,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		Screen.setTitle(self, title)
 
 		self.timer = timer
+		self.eit = self.timer.eit
 
 		self.entryDate = None
 		self.entryService = None
@@ -220,11 +221,25 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.timerentry_service_ref = self.timer.service_ref
 		self.timerentry_service = ConfigSelection([servicename])
 
+		self.eventName, self.eventDescription, __ = self.getEventInfo()
+
+		for i in [
+			self.timerentry_type, self.timerentry_repeated,
+			self.timerentry_date, self.timerentry_starttime,
+			self.timerentry_endtime,
+			self.timerentry_repeatedbegindate,
+			self.timerentry_weekday,
+		] + self.timerentry_day[0:7]:
+			i.addNotifier(self.updateEventInfo)
+
+		self.timerentry_name.addNotifier(self.nameInfoUpdated, immediate_feedback=False)
+		self.timerentry_description.addNotifier(self.descriptionInfoUpdated, immediate_feedback=False)
+
 	def createSetup(self, widget):
 		self.list = []
-		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("The name the recording will get."))
+		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("The name the recording will get.\nA manually entered name will override naming extracted from the EPG. Clear the name and move the selection away to return to updating the name from the EPG"))
 		self.list.append(self.entryName)
-		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("The description of the recording."))
+		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("The description of the recording.\nA manually entered description will override naming extracted from the EPG. Clear the description and move the selection away to return to updating the description from the EPG"))
 		self.list.append(self.entryDescription)
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Choose between record and ZAP."))
 		self.list.append(self.timerJustplayEntry)
@@ -399,6 +414,10 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		if args:
 			self.timerentry_service_ref = ServiceReference(args[0])
 			self.timerentry_service.setCurrentText(self.timerentry_service_ref.getServiceName())
+			# Update the event info, because
+			# ConfigSelection.setCurrentText() doesn't call
+			# ConfigElement.changed()
+			self.updateEventInfo(self.timerentry_service)
 			self["config"].invalidate(self.channelEntry)
 
 	def getTimestamp(self, date, mytime):
@@ -471,6 +490,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		if not self.timerentry_service_ref.isRecordable():
 			self.session.openWithCallback(self.selectChannelSelector, MessageBox, _("You didn't select a channel to record from."), MessageBox.TYPE_ERROR)
 			return
+		self.timer.eit = self.eit
 		self.timer.name = self.timerentry_name.value
 		self.timer.description = self.timerentry_description.value
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
@@ -533,6 +553,56 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 					self.timer.service_ref = ServiceReference(event.getLinkageService(parent, 0))
 		self.saveTimer()
 		self.close((True, self.timer))
+
+	def getEventInfo(self):
+		if self.timerentry_type.value == "once":
+			begin, end = self.getBeginEnd()
+		elif self.timerentry_type.value == "repeated":
+			begin, end, repeatedbegindate, repeated = self.getRepeatedBeginEnd()
+			if sum(repeated):
+				begin, end = self.timer.nextRepeatTime(begin, end, repeatedbegindate, repeated)
+		queryTime = (begin + end) / 2
+		ref = self.timerentry_service_ref and self.timerentry_service_ref.ref
+		epgcache = eEPGCache.getInstance()
+		evt = epgcache.lookupEventTime(ref, queryTime)
+		if evt:
+			ev_begin, ev_end, name, description, eit = parseEvent(evt)
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8")
+			return name, description, eit
+		else:
+			return "", "", None
+
+	def updateEventInfo(self, confEntry):
+		name, description, eit = self.getEventInfo()
+		self.eit = eit
+		if name and self.eventName != name:
+			if self.timerentry_name.value == self.eventName and (self.timerentry_name.value != name or not self.timerentry_name.value):
+				self.timerentry_name.value = name
+				if "config" in self:
+					self["config"].invalidate(self.entryName)
+			self.eventName = name
+		if self.eventDescription != description:
+			if self.timerentry_description.value == self.eventDescription and (self.timerentry_description.value != description or not self.timerentry_description.value):
+				self.timerentry_description.value = description
+				if "config" in self:
+					self["config"].invalidate(self.entryDescription)
+			self.eventDescription = description
+
+	def nameInfoUpdated(self, confEntry):
+		if not self.timerentry_name.value:
+			name, __, __ = self.getEventInfo()
+			if name:
+				self.timerentry_name.value = name
+				if "config" in self:
+					self["config"].invalidate(self.entryName)
+
+	def descriptionInfoUpdated(self, confEntry):
+		if not self.timerentry_description.value:
+			__, description, __ = self.getEventInfo()
+			if description:
+				self.timerentry_description.value = description
+				if "config" in self:
+					self["config"].invalidate(self.entryDescription)
 
 	def changeTimerType(self):
 		self.timerentry_justplay.selectNext()
