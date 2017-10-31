@@ -412,7 +412,7 @@ class CiMessageHandler:
 			elif handler.availableMMI(slot) == 1:
 				if self.session:
 					show_ui = False
-					if config.ci[slot].show_ci_messages.value:
+					if config.ci[slot].show_ci_messages.value and config.misc.firstrun.value == 0:
 						show_ui = True
 					screen_data = handler.getMMIScreen(slot)
 					if config.ci[slot].use_static_pin.value:
