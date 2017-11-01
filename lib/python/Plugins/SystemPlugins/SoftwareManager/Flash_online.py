@@ -1,4 +1,5 @@
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
@@ -370,7 +371,7 @@ class doFlashImage(Screen):
 	def green(self):
 		if self.getSel():
 			self.hide()
-			self.session.openWithCallback(self.greenCB, MessageBox, _("Do you want to backup your settings now?"), default=False)
+			self.session.openWithCallback(self.greenCB, MessageBox, _("Do you want to backup your settings now?"), default=True)
 
 	def startInstallOnline(self, ret = None):
 		box = self.box()
@@ -478,31 +479,64 @@ class doFlashImage(Screen):
 			if answer[1] != "abort":
 				if restoreSettings:
 					try:
-						os.system('mkdir -p /media/hdd/images/config')
-						os.system('touch /media/hdd/images/config/settings')
+						if not os.path.exists('/media/hdd/images/config'):
+							os.makedirs('/media/hdd/images/config')
+						open('/media/hdd/images/config/settings','w').close()
 					except:
 						print "postFlashActionCallback: failed to create /media/hdd/images/config/settings"
 				else:
 					if os.path.exists('/media/hdd/images/config/settings'):
-						os.system('rm -f /media/hdd/images/config/settings')
+						os.unlink('/media/hdd/images/config/settings')
 				if restoreAllPlugins:
 					try:
-						os.system('mkdir -p /media/hdd/images/config')
-						os.system('touch /media/hdd/images/config/plugins')
+						if not os.path.exists('/media/hdd/images/config'):
+							os.makedirs('/media/hdd/images/config')
+						open('/media/hdd/images/config/plugins','w').close()
 					except:
 						print "postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
 				else:
 					if os.path.exists('/media/hdd/images/config/plugins'):
-						os.system('rm -f /media/hdd/images/config/plugins')
+						os.unlink('/media/hdd/images/config/plugins')
 				if restoreSettingsnoPlugin:
 					try:
-						os.system('mkdir -p /media/hdd/images/config')
-						os.system('touch /media/hdd/images/config/noplugins')
+						if not os.path.exists('/media/hdd/images/config'):
+							os.makedirs('/media/hdd/images/config')
+						open('/media/hdd/images/config/noplugins','w').close()
 					except:
 						print "postFlashActionCallback: failed to create /media/hdd/images/config/noplugins"
 				else:
 					if os.path.exists('/media/hdd/images/config/noplugins'):
-						os.system('rm -f /media/hdd/images/config/noplugins')
+						os.unlink('/media/hdd/images/config/noplugins')
+
+				if restoreSettings or restoreAllPlugins or restoreSettingsnoPlugin:
+					if config.plugins.softwaremanager.restoremode.value is not None:
+						try:
+							if not os.path.exists('/media/hdd/images/config'):
+								os.makedirs('/media/hdd/images/config')
+							if config.plugins.softwaremanager.restoremode.value == "slow":
+								if not os.path.exists('/media/hdd/images/config/slow'):
+									open('/media/hdd/images/config/slow','w').close()
+								if os.path.exists('/media/hdd/images/config/fast'):
+									os.unlink('/media/hdd/images/config/fast')
+								if os.path.exists('/media/hdd/images/config/turbo'):
+									os.unlink('/media/hdd/images/config/turbo')
+							elif config.plugins.softwaremanager.restoremode.value == "fast":
+								if not os.path.exists('/media/hdd/images/config/fast'):
+									open('/media/hdd/images/config/fast','w').close()
+								if os.path.exists('/media/hdd/images/config/slow'):
+									os.unlink('/media/hdd/images/config/slow')
+								if os.path.exists('/media/hdd/images/config/turbo'):
+									os.unlink('/media/hdd/images/config/turbo')
+							elif config.plugins.softwaremanager.restoremode.value == "turbo":
+								if not os.path.exists('/media/hdd/images/config/turbo'):
+									open('/media/hdd/images/config/turbo','w').close()
+								if os.path.exists('/media/hdd/images/config/slow'):
+									os.unlink('/media/hdd/images/config/slow')
+								if os.path.exists('/media/hdd/images/config/fast'):
+									os.unlink('/media/hdd/images/config/fast')
+						except:
+							print "postFlashActionCallback: failed to create restore mode flagfile"
+
 				if self.flashWithPostFlashActionMode == 'online':
 					self.unzip_image(self.filename, flashPath)
 				else:
