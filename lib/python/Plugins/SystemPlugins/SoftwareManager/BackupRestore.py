@@ -673,10 +673,9 @@ class installedPlugins(Screen):
 
 	def readPluginList(self):
 		self.PluginList = []
-		f = open("/tmp/installed-list.txt", "r")
-		lines = f.readlines()
-		for x in lines:
-			self.PluginList.append(x[:x.find(' - ')])
+		with open('/tmp/installed-list.txt') as f:
+			for line in f:
+				self.PluginList.append(line.strip())
 		f.close()
 		self.createMenuList()
 
