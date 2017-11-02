@@ -370,8 +370,107 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t b
 	m_stop(1),
 	m_messagepump(eApp, 0)
 {
+	m_protocol = m_stream_id = m_session_id = m_packet_no = 0;
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
 }
+
+#define copy16(a,i,v) { a[i] = ((v)>>8) & 0xFF; a[i+1] = (v) & 0xFF; }
+#define copy32(a,i,v) { a[i] = ((v)>>24) & 0xFF;\
+                        a[i+1] = ((v)>>16) & 0xFF;\
+                        a[i+2] = ((v)>>8) & 0xFF;\
+                        a[i+3] = (v) & 0xFF; }
+#define _PROTO_RTSP_UDP 1
+#define _PROTO_RTSP_TCP 2
+
+
+int eFilePushThreadRecorder::pushReply(void *buf, int len)
+{
+	eDebug("pushed reply of %d bytes", len);
+	m_reply.insert(m_reply.end(), (unsigned char *)buf, (unsigned char *)buf+len);
+	return 0;
+}
+
+static int errs;
+uint64_t init_tick;
+
+int64_t getTick()
+{         //ms
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	uint64_t theTick = ts.tv_nsec / 1000000;
+	theTick += ts.tv_sec * 1000;
+	if (init_tick == 0)
+		init_tick = theTick;
+	return theTick - init_tick;
+}
+
+int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
+{
+	unsigned char *buf = (unsigned char *)m_buffer;
+	int it = 0, pos  = 0, bytes = 0;
+	int i, left;
+	static int cnt;
+	unsigned char *b;
+	uint64_t start = getTick();
+	if(m_reply.size() > 0)
+	{
+		pos = m_reply.size();
+		buf[0] = 0;
+		memcpy(m_buffer, m_reply.data(), pos);
+		eDebug("added reply of %d bytes", pos, m_buffer);
+		m_reply.clear();
+	}
+	while(size - pos >= 188 + 16 )
+	{
+		left = size - pos - 16;
+		left = (left > 188*7) ? 188*7 : ((left / 188)*188);
+		if(m_packet_no == 0)
+			left = 188;
+//		eDebug("reading %d bytes, left %d, pos %d", left, size - pos, pos);
+		unsigned char *buf = (unsigned char *)m_buffer;
+		buf += pos;
+		bytes = ::read(fd, buf + 16, left );
+//		eDebug("read %d bytes from %d", bytes, left);
+		if(bytes <= 0)
+			break;
+		m_packet_no ++;
+		it++;
+		for(i=0;i<bytes;i+=188)
+		{
+			b = buf + 16 + i;
+			int pid = (b[1] & 0x1F) * 256 + b[2];
+			
+			if((b[3] & 0x80)) // mark decryption failed if not decrypted by enigma
+			{
+				if((errs++ % 100)==0)eDebug("decrypt errs %d, pid %d", errs, pid);
+				b[1] |= 0x1F;
+				b[2] |= 0xFF;
+			}
+		}
+		buf[0] = 0x24;
+		buf[1] = 0;
+		copy16(buf, 2, (uint16_t )(bytes + 12));
+		copy16(buf, 4, 0x8021);
+		copy16(buf, 6, m_stream_id);
+		copy32(buf, 8, cnt);
+		copy32(buf, 12, m_session_id);
+		cnt++;
+		pos += bytes + 16;
+		if(left != bytes) // less bytes
+			break;
+
+		if(getTick() - start > 50) // do not read more than 50ms
+			break;
+	}
+	uint64_t ts = getTick() - start;
+//	if(pos < size / 2)
+	if((ts > 1000) || m_packet_no < 5)
+		eDebug("returning %d bytes, last read %d bytes in %jd ms (iteration %d)", pos, bytes, ts, m_packet_no);
+	if(pos == 0)
+		return bytes;
+	return pos;
+}
+
 
 void eFilePushThreadRecorder::thread()
 {
@@ -391,7 +490,11 @@ void eFilePushThreadRecorder::thread()
 	/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
-		ssize_t bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+		ssize_t bytes;
+		if(m_protocol == _PROTO_RTSP_TCP)
+			bytes = read_dmx( m_fd_source, m_buffer, m_buffersize);
+		else
+			bytes = ::read(m_fd_source, m_buffer, m_buffersize);
 		if (bytes < 0)
 		{
 			bytes = 0;
