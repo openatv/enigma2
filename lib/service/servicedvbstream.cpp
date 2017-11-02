@@ -24,6 +24,9 @@ eDVBServiceStream::eDVBServiceStream()
 void eDVBServiceStream::serviceEvent(int event)
 {
 	eDebug("[eDVBServiceStream] STREAM service event %d", event);
+	if(event == eDVBServicePMTHandler::eventTuneFailed || event == eDVBServicePMTHandler::eventMisconfiguration || event == eDVBServicePMTHandler::eventNoResources)
+		eventUpdate(event);
+
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
@@ -64,6 +67,8 @@ void eDVBServiceStream::serviceEvent(int event)
 		tuneFailed();
 		break;
 	}
+	if(event != eDVBServicePMTHandler::eventTuneFailed && event != eDVBServicePMTHandler::eventMisconfiguration && event != eDVBServicePMTHandler::eventNoResources)
+		eventUpdate(event);
 }
 
 int eDVBServiceStream::start(const char *serviceref, int fd)
@@ -159,7 +164,7 @@ int eDVBServiceStream::doRecord()
 	{
 		eDebug("[eDVBServiceStream] getting program info failed.");
 	}
-	else
+	else if(m_record_no_pids == 0)
 	{
 		std::set<int> pids_to_record;
 
