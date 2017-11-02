@@ -1419,6 +1419,12 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return # stop and do not continue.
+		if hasattr(self, 'servicelist') and self.servicelist:
+			selected_ref = str(ServiceReference(self.servicelist.getCurrentSelection()))
+			current_ref = str(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()))
+			if selected_ref != current_ref:
+				self.servicelist.restoreRoot()
+				self.servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
 			if self.zapFunc and self.StartRef and self.StartBouquet:
 				if ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.value) or 
