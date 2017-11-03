@@ -18,7 +18,6 @@
  *
  */
 
-
 #include <sys/select.h>
 #include <unistd.h>
 #include <string.h>
@@ -63,15 +62,19 @@
 static int global_stream_id = 0;
 int tcp_port = 8554;
 
+char public_str[] = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
+const char *app_name = "enigma2";
+const char *version = "0.1";
+
 static const char *satip_xml =
 	"<?xml version=\"1.0\"?>"
 	"<root xmlns=\"urn:schemas-upnp-org:device-1-0\" configId=\"0\">"
 	"<specVersion><major>1</major><minor>1</minor></specVersion>"
 	"<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>"
-	"<friendlyName>enigma</friendlyName><manufacturer>Gigablue</manufacturer>"
-	"<manufacturerURL>http://gigablue.de</manufacturerURL>"
-	"<modelDescription>Enigma for Linux</modelDescription><modelName>enigma</modelName>"
-	"<modelNumber>1.1</modelNumber><modelURL></modelURL><serialNumber>1</serialNumber><UDN>uuid:11223344-9999-0001-b7ae</UDN>"
+	"<friendlyName>%s</friendlyName><manufacturer>%s</manufacturer>"
+	"<manufacturerURL>%s</manufacturerURL>"
+	"<modelDescription>%s</modelDescription><modelName>%s</modelName>"
+	"<modelNumber>1.1</modelNumber><modelURL>%s</modelURL><serialNumber>1</serialNumber><UDN>uuid:11223344-9999-0001-b7ae-%s</UDN>"
 	"<iconList>"
 	//	"<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>"
 	//	"<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>"
@@ -80,7 +83,6 @@ static const char *satip_xml =
 	"</iconList>"
 	"<presentationURL>http://%s:%d/</presentationURL>\r\n"
 	"<satip:X_SATIPCAP xmlns:satip=\"urn:ses-com:satip\">%s</satip:X_SATIPCAP>"
-	"%s"
 	"</device></root>";
 
 std::set<eServiceReferenceDVB> processed_sr;
@@ -90,6 +92,7 @@ eRTSPStreamClient::eRTSPStreamClient(eRTSPStreamServer *handler, int socket, con
 {
 	session_id = 0;
 	stream_id = 0;
+	creator[0] = 0;
 	eDebug("Client starting %d", streamFd);
 	init_rtsp();
 }
@@ -138,6 +141,51 @@ void eRTSPStreamClient::init_rtsp()
 	time_addsr = 0;
 	transponder_id = 0;
 	proto = PROTO_RTSP_TCP;
+}
+
+void eRTSPStreamClient::init_branding()
+{
+	FILE *f;
+	char line[120];
+	const char *image_version = "/etc/image-version";
+
+	if (creator[0])
+		return;
+	memset(machine_brand, 0, sizeof(machine_brand));
+	memset(machine_name, 0, sizeof(machine_name));
+	memset(creator, 0, sizeof(creator));
+	memset(version, 0, sizeof(version));
+	memset(machine_url, 0, sizeof(machine_url));
+	memset(date, 0, sizeof(date));
+
+	f = fopen(image_version, "r");
+	if (f == NULL)
+	{
+		eDebug("Error opening %s, RTSP branding missing", image_version);
+		creator[0] = ' ';
+		return;
+	}
+	while (fgets(line, sizeof(line), f))
+	{
+		line[strlen(line) - 1] = 0;
+		if (!strncmp(line, "machine_brand", 13))
+			strncpy(machine_brand, line + 14, sizeof(machine_brand) - 1);
+		else if (!strncmp(line, "machine_name", 12))
+			strncpy(machine_name, line + 13, sizeof(machine_name) - 1);
+		else if (!strncmp(line, "creator", 7))
+			strncpy(creator, line + 8, sizeof(creator) - 1);
+		else if (!strncmp(line, "version", 7))
+			strncpy(version, line + 8, sizeof(version) - 1);
+		else if (!strncmp(line, "url=", 4))
+			strncpy(machine_url, line + 4, sizeof(machine_url) - 1);
+		else if (!strncmp(line, "date=", 5))
+			strncpy(date, line + 7, sizeof(date) - 1); // ignore first 2 chars from the date ==> 12 chars remaining
+	}
+	fclose(f);
+	if (!creator[0])
+		creator[0] = ' ';
+
+	eDebug("brand = %s, name = %s, creator = %s, version = %s, url = %s, date = %s", machine_brand, machine_name, creator, version, machine_url, date);
 }
 
 void eRTSPStreamClient::start()
@@ -776,39 +824,6 @@ void eRTSPStreamClient::del_pid(int p)
 	//	update_service_list();
 }
 
-/*
-   eServiceReferenceDVB *eRTSPStreamClient::getServiceforPid(int p)
-   {
-   eServiceReferenceDVB *m_ref = NULL;
-   int sid = 0;
-   if(first && (m_service_handler.pid_sid.size() > 0))
-   {
-   first = false;
-   for(std::map<int, int>::iterator search = m_service_handler.pid_sid.begin(); search != m_service_handler.pid_sid.end(); search++)
-   {
-   eDebug("PMT pid %d sid %d", search->first, search->second);
-   }
-   }
-   std::map<int, int>::iterator search = m_service_handler.pid_sid.find(p);
-   if(search != m_service_handler.pid_sid.end())
-   {
-   sid = search->second;
-   for(int i = 0; i<n_service_list; i++)
-   {
-   if(service_list[i].getServiceID() == sid)
-    m_ref = &service_list[i];
-   }
-   }
-   if(m_ref == NULL)
-   {
-   eDebug("service ref for pid %d, sid %d not found", p, sid);
-   return NULL;
-   }
-   eDebug("pid %d returned service ref %s", p, m_ref->toString().c_str());
-   return m_ref;
-   }
- */
-
 const char *event_desc[] = {"NoResources", "TuneFailed", "NoPAT", "NoPATEntry", "NoPMT", "NewProgramInfo", "Tuned", "PreStart", "SOF", "EOF", "Misconfiguration", "HBBTVInfo", "Stopped"};
 
 int eRTSPStreamClient::set_demux_buffer(int size)
@@ -826,7 +841,7 @@ int eRTSPStreamClient::set_demux_buffer(int size)
 
 void eRTSPStreamClient::eventUpdate(int event)
 {
-	if (event >= 0 && event <= sizeof(event_desc))
+	if (event >= 0 && event <= (int)sizeof(event_desc))
 		eDebug("eventUpdate %s", event_desc[event]);
 	else
 		eDebug("eventUpdate %d", event);
@@ -881,10 +896,6 @@ get_current_timestamp(void)
 			 t->tm_min, t->tm_sec, t->tm_year + 1900);
 	return date_str;
 }
-
-char public_str[] = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
-const char *app_name = "enigma_minisatip";
-const char *version = "0.1";
 
 void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr)
 {
@@ -1281,7 +1292,8 @@ void eRTSPStreamClient::notifier(int what)
 		if (tuner_s2 + tuner_t + tuner_c + tuner_t2 + tuner_c2 == 0)
 			len = sprintf(adapters, "DVBS2-0,");
 		adapters[len - 1] = 0;
-		sprintf(buf, satip_xml, m_remotehost.c_str(), tcp_port, adapters);
+		init_branding();
+		sprintf(buf, satip_xml, app_name, machine_brand, machine_url, creator, machine_name, machine_url, date, m_remotehost.c_str(), tcp_port, adapters);
 
 		len = sprintf(reply_all, reply, tcp_port, strlen(buf), buf);
 		writeAll(streamFd, reply_all, len);
