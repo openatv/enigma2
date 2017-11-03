@@ -15,8 +15,6 @@
 	<setup key="usage" title="Customize">
 		<item level="0" text="Setup mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
 		<item level="0" text="Show menu numbers" description="This option allows you to show menu number quick links.">config.usage.menu_show_numbers</item>
-		<item level="0" text="Volume adjust slow" description="Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_slow</item>
-		<item level="0" text="Volume adjust fast" description="Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)">config.usage.volume_step_fast</item>
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
 		<item level="1" text="Teletext font and resolution" description="Configure the display resolution and the font used for teletext.">config.usage.tuxtxt_font_and_res</item>
 		<item level="1" tt_level="1" text="Teletext UseTTF (0=fixed font, 1=TrueType)" description="Configure whether a fixed font or a scalable TrueType font is used for teletext.">config.usage.tuxtxt_UseTTF</item>
@@ -55,6 +53,9 @@
 		<item level="2" text="Wakeup time before a timer begins [mins]" description="The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)">config.workaround.wakeuptime</item>
 		<item level="2" text="Time window for detection of the wakeup by a timer [mins]" description="The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers.">config.workaround.wakeupwindow</item>
 		<item level="2" text="Remote control model shown" description="Which remote control gets shown. Only influences graphical representation.">config.usage.rc_model</item>
+		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files. (e.g. mp4)">config.usage.useVideoCuesheet</item>
+		<item level="2" text="Enable cut file support for audio files" description="Enable cut file support for audio files. (e.g. mp3)">config.usage.useAudioCuesheet</item>
+		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files. (gstreamer version must be greather than 1)">config.usage.useChapterInfo</item>
 	</setup>
 	<setup key="userinterface" title="OSD settings">
 		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>

@@ -48,6 +48,13 @@ def InitUsageConfig():
 	config.workaround.wakeupwindow = ConfigSelectionNumber(default = 5, stepwidth = 5, min = 5, max = 60, wraparound = True)
 
 	config.usage = ConfigSubsection()
+
+	#settings for servicemp3 and handling from cuesheet file
+	config.usage.useVideoCuesheet = ConfigYesNo(default = True)		#use marker for video media file
+	config.usage.useAudioCuesheet = ConfigYesNo(default = True)		#use marker for audio media file
+	config.usage.useChapterInfo = ConfigYesNo(default = True) 		#show chapter positions (gst >= 1 and supported media files)
+	###
+
 	config.usage.shutdownOK = ConfigBoolean(default = True)
 	config.usage.shutdownNOK_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby")), ("deepstandby", _("goto deep-standby"))])
 	config.usage.boot_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby"))])
@@ -108,9 +115,6 @@ def InitUsageConfig():
 	config.usage.panicchannel = ConfigInteger(default = 1, limits=(1,5000) )
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
-
-	config.usage.volume_step_slow = ConfigSelectionNumber(default = 1, stepwidth = 1, min = 1, max = 10, wraparound = False)
-	config.usage.volume_step_fast = ConfigSelectionNumber(default = 3, stepwidth = 1, min = 1, max = 10, wraparound = False)
 
 	choicelist = []
 	for i in range(1, 21):

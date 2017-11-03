@@ -499,6 +499,7 @@ class AudioSetup(Screen, ConfigListScreen):
 			if SystemInfo["CanAutoVolume"]:
 				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
 			self.list.append(getConfigListEntry(_("Audio volume step size"), config.av.volume_stepsize, _("Configure the general audio volume step size (limit 1-10).")))
+			self.list.append(getConfigListEntry(_("Audio volume step size fast mode"), config.av.volume_stepsize_fastmode, _("Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
