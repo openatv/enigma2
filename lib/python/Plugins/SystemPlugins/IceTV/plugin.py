@@ -31,7 +31,7 @@ from collections import deque, defaultdict
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
 import NavigationInstance
-from twisted.internet import reactor
+from twisted.internet import reactor, threads
 
 _session = None
 password_requested = False
@@ -107,8 +107,17 @@ class EPGFetcher(object):
             # print "[IceTV] Add timer job"
             reactor.callInThread(self.postTimer, entry)
         else:
-            # print "[IceTV] Modify timer job"
-            reactor.callInThread(self.putTimer, entry)
+            # print "[IceTV] Modify timer jobs"
+            ice_timer_id = entry.ice_timer_id
+            entry.ice_timer_id = None
+            # Delete the timer on the IceTV side, then post the new one
+            # print "[IceTV] Modify timer jobs - delete timer job"
+            d = threads.deferToThread(lambda: self.deleteTimer(ice_timer_id))
+            d.addCallback(lambda x: self.deferredPostTimer(entry))
+
+    def deferredPostTimer(self, entry):
+        # print "[IceTV] Modify timer jobs - add timer job"
+        reactor.callInThread(self.postTimer, entry)
 
     def freqChanged(self, refresh_interval):
         self.fetch_timer.stop()
@@ -209,7 +218,11 @@ class EPGFetcher(object):
         res = defaultdict(list)
         for show in shows:
             channel_id = long(show["channel_id"])
-            event_id = ice.showIdToEventId(show["id"])
+            event_id = int(show.get("eit_id"))
+            if event_id is None:
+                event_id = ice.showIdToEventId(show["id"])
+            if event_id <= 0:
+                event_id = None
             if "deleted_record" in show and int(show["deleted_record"]) == 1:
                 start = 999
                 duration = 10
@@ -234,7 +247,7 @@ class EPGFetcher(object):
              return updated
         for timer in _session.nav.RecordTimer.timer_list:
             if timer.ice_timer_id and timer.service_ref.ref and not getattr(timer, "record_service", None):
-                evt = timer.getEventFromEPG()
+                evt = timer.getEventFromEPGId() or timer.getEventFromEPG()
                 if evt:
                     timer_updated = False
                     # servicename = timer.service_ref.getServiceName()
@@ -291,7 +304,10 @@ class EPGFetcher(object):
                         for timer in _session.nav.RecordTimer.timer_list:
                             if timer.ice_timer_id == ice_timer_id:
                                 # print "[IceTV] updating timer:", timer
-                                if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, self.channel_service_map[channel_id]):
+                                eit = int(iceTimer.get("eit_id", -1))
+                                if eit <= 0:
+                                    eit = None
+                                if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, eit, self.channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
                                         iceTimer["state"] = "failed"
                                         iceTimer["message"] = "Failed to update timer '%s'" % name
@@ -313,7 +329,10 @@ class EPGFetcher(object):
                             if serviceref.valid():
                                 serviceref = ServiceReference(eServiceReference(serviceref))
                                 # print "[IceTV] New %s is valid" % str(serviceref), serviceref.getServiceName()
-                                recording = RecordTimerEntry(serviceref, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, name, "", None, ice_timer_id=ice_timer_id)
+                                eit = int(iceTimer.get("eit_id", -1))
+                                if eit <= 0:
+                                    eit = None
+                                recording = RecordTimerEntry(serviceref, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, name, "", eit, ice_timer_id=ice_timer_id)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
                                     iceTimer["state"] = "pending"
@@ -366,7 +385,7 @@ class EPGFetcher(object):
                     return True
         return False
 
-    def updateTimer(self, timer, name, start, end, channels):
+    def updateTimer(self, timer, name, start, end, eit, channels):
         changed = False
         db = eDVBDB.getInstance()
         for channel in channels:
@@ -387,6 +406,9 @@ class EPGFetcher(object):
         if timer.end != end:
             changed = True
             timer.end = end
+        if eit and timer.eit != eit:
+            changed = True
+            timer.eit = eit
         return changed
 
     def modifyTimer(self, timer):
@@ -435,7 +457,11 @@ class EPGFetcher(object):
             # print "[IceTV] updating ice_timer", local_timer.ice_timer_id
             req = ice.Timer(local_timer.ice_timer_id)
             timer = {}
+            if not local_timer.eit:
+                self.addLog("Timer '%s' has no event id; update not sent to IceTV" % local_timer.name)
+                return
             timer["id"] = local_timer.ice_timer_id
+            timer["eit_id"] = local_timer.eit
             timer["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
             timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
             if local_timer.isRunning():
@@ -466,8 +492,12 @@ class EPGFetcher(object):
         if local_timer.ice_timer_id is None:
             try:
                 # print "[IceTV] uploading new timer"
+                if not local_timer.eit:
+                    self.addLog("Timer '%s' has no event id; not sent to IceTV" % local_timer.name)
+		    return
                 channel_id = self.serviceToIceChannelId(local_timer.service_ref)
                 req = ice.Timers()
+                req.data["eit_id"] = local_timer.eit
                 req.data["name"] = local_timer.name
                 req.data["message"] = "Created by %s" % config.plugins.icetv.device.label.value
                 req.data["action"] = "record"
