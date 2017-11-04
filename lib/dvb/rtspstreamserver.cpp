@@ -287,7 +287,11 @@ void eRTSPStreamClient::getFontends(int &dvbt, int &dvbt2, int &dvbs2, int &dvbc
 	{
 		if (it->m_frontend->supportsDeliverySystem((fe_delivery_system_t)SYS_DVBS2, false))
 			dvbs2++;
+#ifdef SYS_DVBC_ANNEX_A
 		if (it->m_frontend->supportsDeliverySystem((fe_delivery_system_t)SYS_DVBC_ANNEX_A, false))
+#else
+		if (it->m_frontend->supportsDeliverySystem((fe_delivery_system_t)SYS_DVBC_ANNEX_AC, false))
+#endif
 			dvbc++;
 		if (it->m_frontend->supportsDeliverySystem((fe_delivery_system_t)SYS_DVBC2, false))
 			dvbc2++;
@@ -399,8 +403,11 @@ std::string eRTSPStreamClient::searchServiceRef(int sys, int freq, int pol, int 
 				found = 1;
 			}
 		}
-
+#ifdef SYS_DVBC_ANNEX_A
 		if (!p->getDVBC(cab1) && ((sys == SYS_DVBC_ANNEX_A) || (sys == SYS_DVBC2)))
+#else
+		if (!p->getDVBC(cab1) && ((sys == SYS_DVBC_ANNEX_AC) || (sys == SYS_DVBC2)))
+#endif
 		{
 			if ((abs(cab1.frequency - freq) < 2000))
 			{
