@@ -33,6 +33,9 @@
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/ca.h>
 #include <linux/dvb/version.h>
+
+#include <sstream>
+
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -41,7 +44,6 @@
 #include <lib/base/cfile.h>
 #include <lib/base/e2avahi.h>
 #include <lib/dvb/decoder.h>
-
 #include <lib/dvb/rtspstreamserver.h>
 #include <lib/dvb/encoder.h>
 #include <lib/dvb/db.h>
@@ -65,25 +67,6 @@ int tcp_port = 8554;
 char public_str[] = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
 const char *app_name = "enigma2";
 const char *version = "0.1";
-
-static const char *satip_xml =
-	"<?xml version=\"1.0\"?>"
-	"<root xmlns=\"urn:schemas-upnp-org:device-1-0\" configId=\"0\">"
-	"<specVersion><major>1</major><minor>1</minor></specVersion>"
-	"<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>"
-	"<friendlyName>%s</friendlyName><manufacturer>%s</manufacturer>"
-	"<manufacturerURL>%s</manufacturerURL>"
-	"<modelDescription>%s</modelDescription><modelName>%s</modelName>"
-	"<modelNumber>1.1</modelNumber><modelURL>%s</modelURL><serialNumber>1</serialNumber><UDN>uuid:11223344-9999-0001-b7ae-%s</UDN>"
-	"<iconList>"
-	//	"<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>"
-	//	"<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>"
-	//	"<icon><mimetype>image/jpeg</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.jpg</url></icon>"
-	//	"<icon><mimetype>image/jpeg</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.jpg</url></icon>"
-	"</iconList>"
-	"<presentationURL>http://%s:%d/</presentationURL>\r\n"
-	"<satip:X_SATIPCAP xmlns:satip=\"urn:ses-com:satip\">%s</satip:X_SATIPCAP>"
-	"</device></root>";
 
 std::set<eServiceReferenceDVB> processed_sr;
 
@@ -1276,34 +1259,83 @@ void eRTSPStreamClient::notifier(int what)
 
 	if (request.substr(0, 5) == "GET /")
 	{
-		char buf[2000];
-		char reply_all[3000];
-		char adapters[200];
-		int len = 0;
+		std::stringstream ss;
+		std::string s;
 		int tuner_s2, tuner_t, tuner_c, tuner_t2, tuner_c2;
-		const char *reply = "HTTP/1.0 200 OK\r\nCACHE-CONTROL: no-cache\r\nContent-type: text/xml\r\nX-SATIP-RTSP-Port: %d\r\nContent-Length: %d\r\n\r\n%s";
 
-		memset(buf, 0, sizeof(buf));
-		getFontends(tuner_t, tuner_t2, tuner_s2, tuner_c, tuner_c2);
-		memset(adapters, 0, sizeof(adapters));
-		if (tuner_s2)
-			len += sprintf(adapters, "DVBS2-%d,", tuner_s2);
-		if (tuner_t)
-			len += sprintf(adapters + len, "DVBT-%d,", tuner_t);
-		if (tuner_c)
-			len += sprintf(adapters + len, "DVBC-%d,", tuner_c);
-		if (tuner_t2)
-			len += sprintf(adapters + len, "DVBT2-%d,", tuner_t2);
-		if (tuner_c2)
-			len += sprintf(adapters + len, "DVBC2-%d,", tuner_c2);
-		if (tuner_s2 + tuner_t + tuner_c + tuner_t2 + tuner_c2 == 0)
-			len = sprintf(adapters, "DVBS2-0,");
-		adapters[len - 1] = 0;
 		init_branding();
-		sprintf(buf, satip_xml, app_name, machine_brand, machine_url, creator, machine_name, machine_url, date, m_remotehost.c_str(), tcp_port, adapters);
 
-		len = sprintf(reply_all, reply, tcp_port, strlen(buf), buf);
-		writeAll(streamFd, reply_all, len);
+		// TODO Add atsc tuner
+		getFontends(tuner_t, tuner_t2, tuner_s2, tuner_c, tuner_c2);
+
+		ss << "<?xml version=\"1.0\"?>";
+		ss << "<root xmlns=\"urn:schemas-upnp-org:device-1-0\" configId=\"0\">";
+		ss << "<specVersion><major>1</major><minor>1</minor></specVersion>";
+		ss << "<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>";
+		ss << "<friendlyName>" << app_name << "</friendlyName>";
+		ss << "<manufacturer>" << machine_brand <<  "</manufacturer>";
+		ss << "<manufacturerURL>"  << machine_url << "</manufacturerURL>";
+		ss << "<modelDescription>" << creator << "</modelDescription>";
+		ss << "<modelName>" << machine_name << "</modelName>";
+		ss << "<modelNumber>1.1</modelNumber>";
+		ss << "<modelURL>" << machine_url << "</modelURL>";
+		ss << "<serialNumber>1</serialNumber>";
+		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << date << "</UDN>";
+		ss << "<iconList>";
+		//ss << "<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>";
+		//ss << "<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>";
+		//ss <<"<icon><mimetype>image/jpeg</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.jpg</url></icon>";
+		//ss <<"<icon><mimetype>image/jpeg</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.jpg</url></icon>";
+		ss << "</iconList>";
+		ss << "<presentationURL>http://" << m_remotehost << ":" <<  tcp_port <<"/</presentationURL>\r\n";
+		ss << "<satip:X_SATIPCAP xmlns:satip=\"urn:ses-com:satip\">";
+
+		if (tuner_s2)
+		{
+			ss << "DVBS2-" << tuner_s2;
+			s = ",";
+		}
+		if (tuner_t)
+		{
+			ss << "DVBT-" << tuner_t << s;
+			s = ",";
+		}
+		if (tuner_c)
+		{
+			ss << "DVBC-" << tuner_c << s;
+			s = ",";
+		}
+		if (tuner_t2)
+		{
+			ss << "DVBT2-" << tuner_t2 << s;
+			s = ",";
+		}
+		if (tuner_c2)
+		{
+			ss << "DVBC2-" << tuner_c2 << s;
+			s = ",";
+		}
+		if (!s.length())
+		{
+			ss << "DVBS2-0";
+		}
+
+		ss << "</satip:X_SATIPCAP>";
+		ss << "</device></root>";
+
+		s = ss.str();
+
+		ss.str(std::string());
+		ss.clear();
+
+		ss << "HTTP/1.0 200 OK\r\nCACHE-CONTROL: no-cache\r\nContent-type: text/xml\r\n";
+		ss << "X-SATIP-RTSP-Port: " << tcp_port << "\r\n";
+		ss << "Content-Length: " << s.length() << "\r\n\r\n";
+		ss << s;
+
+		s = ss.str();
+
+		writeAll(streamFd, s.c_str(), s.length());
 		rsn->stop();
 		parent->connectionLost(this);
 		return;
