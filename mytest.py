@@ -614,9 +614,9 @@ def runScreenTest():
 		import Screens.PowerLost
 		Screens.PowerLost.PowerLost(session)
 
-	config.usage.shutdownOK.setValue(False)
-	config.usage.shutdownOK.save()
 	if not RestoreSettings:
+		config.usage.shutdownOK.setValue(False)
+		config.usage.shutdownOK.save()
 		configfile.save()
 
 	# kill showiframe if it is running (sh4 hack...)
