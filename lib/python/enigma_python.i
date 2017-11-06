@@ -36,13 +36,13 @@ is usually caused by not marking PSignals as immutable.
 %{
 
 #define SWIG_COMPILE
-#include <lib/base/branding.h>
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/etpm.h>
 #include <lib/base/message.h>
+#include <lib/base/modelinformation.h>
 #include <lib/base/e2avahi.h>
 #include <lib/driver/rc.h>
 #include <lib/driver/rcinput_swig.h>
@@ -159,13 +159,13 @@ typedef long time_t;
 
 %immutable eSocketNotifier::activated;
 %include <lib/base/ebase.h>
+%include <lib/base/modelinformation.h>
 %include <lib/base/smartptr.h>
 %include <lib/service/event.h>
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
 %include <lib/base/e2avahi.h>
 %include <lib/service/servicepeer.h>
-%include <lib/base/branding.h>
 
 // TODO: embed these...
 %immutable ePicLoad::PictureData;

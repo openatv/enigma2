@@ -1,14 +1,14 @@
-#ifndef __lib_base_branding_h
-#define __lib_base_branding_h
+#ifndef __lib_base_modelinformation_h
+#define __lib_base_modelinformation_h
 
 #include <map>
 #include <string>
 
-class eBranding
+class eModelInformation
 {
 	public:
-		eBranding();
-		static eBranding& getInstance() { static eBranding m_instance; return m_instance; }
+		eModelInformation();
+		static eModelInformation& getInstance() { static eModelInformation m_instance; return m_instance; }
 		std::string getValue(const std::string &key);
 		std::string BoxType() { return getValue("box_type"); }
 		std::string BuildType() { return getValue("build_type"); }
@@ -23,7 +23,7 @@ class eBranding
 		std::string Url() { return getValue("url"); }
 		std::string Catalog() { return getValue("catalog"); }
 	private:
-		std::map<std::string,std::string> m_branding;
+		std::map<std::string,std::string> m_modelinformation;
 };
 
 #endif

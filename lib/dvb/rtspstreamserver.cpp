@@ -38,7 +38,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include <lib/base/branding.h>
+#include <lib/base/modelinformation.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -1215,7 +1215,7 @@ void eRTSPStreamClient::notifier(int what)
 		std::string s;
 		int tuner_s2, tuner_t, tuner_c, tuner_t2, tuner_c2;
 
-		eBranding &branding = eBranding::getInstance();
+		eModelInformation &modelinformation = eModelInformation::getInstance();
 
 		// TODO Add atsc tuner
 		getFontends(tuner_t, tuner_t2, tuner_s2, tuner_c, tuner_c2);
@@ -1225,14 +1225,14 @@ void eRTSPStreamClient::notifier(int what)
 		ss << "<specVersion><major>1</major><minor>1</minor></specVersion>";
 		ss << "<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>";
 		ss << "<friendlyName>" << app_name << "</friendlyName>";
-		ss << "<manufacturer>" << branding.MachineBrand() <<  "</manufacturer>";
-		ss << "<manufacturerURL>"  << branding.Url() << "</manufacturerURL>";
-		ss << "<modelDescription>" << branding.Creator() << "</modelDescription>";
-		ss << "<modelName>" << branding.MachineName() << "</modelName>";
+		ss << "<manufacturer>" << modelinformation.MachineBrand() <<  "</manufacturer>";
+		ss << "<manufacturerURL>"  << modelinformation.Url() << "</manufacturerURL>";
+		ss << "<modelDescription>" << modelinformation.Creator() << "</modelDescription>";
+		ss << "<modelName>" << modelinformation.MachineName() << "</modelName>";
 		ss << "<modelNumber>1.1</modelNumber>";
-		ss << "<modelURL>" << branding.Url() << "</modelURL>";
+		ss << "<modelURL>" << modelinformation.Url() << "</modelURL>";
 		ss << "<serialNumber>1</serialNumber>";
-		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << branding.Date() << "</UDN>";
+		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << modelinformation.Date() << "</UDN>";
 		ss << "<iconList>";
 		//ss << "<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>";
 		//ss << "<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>";
