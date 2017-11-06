@@ -24,7 +24,6 @@ class eRTSPStreamClient : public eDVBServiceStream
 	eDVBRecordStreamThread *streamThread;
 	std::string m_remotehost;
 	std::string m_serviceref;
-	char machine_brand[50], machine_name[50], creator[50], version[50], machine_url[50], date[50];
 	bool m_useencoder;
 	int proto;
 	int freq, pol, sys;
@@ -80,7 +79,6 @@ class eRTSPStreamClient : public eDVBServiceStream
 	void http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr);
 	void describe_frontend(char *buf, int len);
 	void getFontends(int &dvbt, int &dvbt2, int &dvbs2, int &dvbc, int &dvbc2);
-	void init_branding();
 
   public:
 	void stopStream();

@@ -37,6 +37,7 @@
 #include <iomanip>
 #include <sstream>
 
+#include <lib/base/branding.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -76,7 +77,6 @@ eRTSPStreamClient::eRTSPStreamClient(eRTSPStreamServer *handler, int socket, con
 {
 	session_id = 0;
 	stream_id = 0;
-	creator[0] = 0;
 	eDebug("Client starting %d", streamFd);
 	init_rtsp();
 }
@@ -125,51 +125,6 @@ void eRTSPStreamClient::init_rtsp()
 	time_addsr = 0;
 	transponder_id = 0;
 	proto = PROTO_RTSP_TCP;
-}
-
-void eRTSPStreamClient::init_branding()
-{
-	FILE *f;
-	char line[120];
-	const char *image_version = "/etc/image-version";
-
-	if (creator[0])
-		return;
-	memset(machine_brand, 0, sizeof(machine_brand));
-	memset(machine_name, 0, sizeof(machine_name));
-	memset(creator, 0, sizeof(creator));
-	memset(version, 0, sizeof(version));
-	memset(machine_url, 0, sizeof(machine_url));
-	memset(date, 0, sizeof(date));
-
-	f = fopen(image_version, "r");
-	if (f == NULL)
-	{
-		eDebug("Error opening %s, RTSP branding missing", image_version);
-		creator[0] = ' ';
-		return;
-	}
-	while (fgets(line, sizeof(line), f))
-	{
-		line[strlen(line) - 1] = 0;
-		if (!strncmp(line, "machine_brand", 13))
-			strncpy(machine_brand, line + 14, sizeof(machine_brand) - 1);
-		else if (!strncmp(line, "machine_name", 12))
-			strncpy(machine_name, line + 13, sizeof(machine_name) - 1);
-		else if (!strncmp(line, "creator", 7))
-			strncpy(creator, line + 8, sizeof(creator) - 1);
-		else if (!strncmp(line, "version", 7))
-			strncpy(version, line + 8, sizeof(version) - 1);
-		else if (!strncmp(line, "url=", 4))
-			strncpy(machine_url, line + 4, sizeof(machine_url) - 1);
-		else if (!strncmp(line, "date=", 5))
-			strncpy(date, line + 7, sizeof(date) - 1); // ignore first 2 chars from the date ==> 12 chars remaining
-	}
-	fclose(f);
-	if (!creator[0])
-		creator[0] = ' ';
-
-	eDebug("brand = %s, name = %s, creator = %s, version = %s, url = %s, date = %s", machine_brand, machine_name, creator, version, machine_url, date);
 }
 
 void eRTSPStreamClient::start()
@@ -1264,7 +1219,7 @@ void eRTSPStreamClient::notifier(int what)
 		std::string s;
 		int tuner_s2, tuner_t, tuner_c, tuner_t2, tuner_c2;
 
-		init_branding();
+		eBranding &branding = eBranding::getInstance();
 
 		// TODO Add atsc tuner
 		getFontends(tuner_t, tuner_t2, tuner_s2, tuner_c, tuner_c2);
@@ -1274,14 +1229,14 @@ void eRTSPStreamClient::notifier(int what)
 		ss << "<specVersion><major>1</major><minor>1</minor></specVersion>";
 		ss << "<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>";
 		ss << "<friendlyName>" << app_name << "</friendlyName>";
-		ss << "<manufacturer>" << machine_brand <<  "</manufacturer>";
-		ss << "<manufacturerURL>"  << machine_url << "</manufacturerURL>";
-		ss << "<modelDescription>" << creator << "</modelDescription>";
-		ss << "<modelName>" << machine_name << "</modelName>";
+		ss << "<manufacturer>" << branding.MachineBrand() <<  "</manufacturer>";
+		ss << "<manufacturerURL>"  << branding.Url() << "</manufacturerURL>";
+		ss << "<modelDescription>" << branding.Creator() << "</modelDescription>";
+		ss << "<modelName>" << branding.MachineName() << "</modelName>";
 		ss << "<modelNumber>1.1</modelNumber>";
-		ss << "<modelURL>" << machine_url << "</modelURL>";
+		ss << "<modelURL>" << branding.Url() << "</modelURL>";
 		ss << "<serialNumber>1</serialNumber>";
-		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << date << "</UDN>";
+		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << branding.Date() << "</UDN>";
 		ss << "<iconList>";
 		//ss << "<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>";
 		//ss << "<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>";
