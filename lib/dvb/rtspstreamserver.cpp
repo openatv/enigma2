@@ -29,6 +29,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <time.h>
 #include <linux/dvb/frontend.h>
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/ca.h>
@@ -822,25 +823,20 @@ void eRTSPStreamClient::eventUpdate(int event)
 	update_service_list();
 }
 
-char *
-get_current_timestamp(void)
+std::string eRTSPStreamClient::get_current_timestamp()
 {
-	static char date_str[200];
 	time_t date;
 	struct tm *t;
-	const char *day[] =
-		{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-	const char *month[] =
-		{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
-		 "Nov", "Dec"};
+	char buffer[40];
+
 	time(&date);
 	t = gmtime(&date);
 	if (!t)
-		return (char *)"Fri, Sat Jan 1 00:00:20 2000 GMT";
-	snprintf(date_str, sizeof(date_str), "%s, %s %d %02d:%02d:%02d %d GMT",
-			 day[t->tm_wday], month[t->tm_mon], t->tm_mday, t->tm_hour,
-			 t->tm_min, t->tm_sec, t->tm_year + 1900);
-	return date_str;
+		return "Sat, Jan 1 00:00:20 2000 GMT";
+
+	strftime(buffer, sizeof(buffer), "%a, %b %d %H:%M:%S %Y GMT", t);
+
+	return std::string(buffer);
 }
 
 void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr)
