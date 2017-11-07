@@ -877,7 +877,7 @@ void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, in
 	}
 	ss << "\r\n";
 
-	ss << "Date:" << get_current_timestamp() << "\r\n";
+	ss << "Date: " << get_current_timestamp() << "\r\n";
 
 	if (session_id && ah && !strstr(ah, "Session") && rc != 454)
 		ss << "Session: " << std::setfill('0') << std::setw(10) << session_id << "\r\n";
