@@ -400,11 +400,6 @@ void eRTSPStreamClient::process_pids(int op, char *pid_str)
 	if (op == _PIDS)
 		pids.clear();
 
-	if (buf_size == 0)
-		pids.insert(301);
-	else
-		pids.erase(301);
-
 	eDebug("%s: operation %d, pid_str %s (len pids: %d)", __FUNCTION__, op, pid_str, pids.size());
 	if (op == _PIDS && !::strcmp(buf, "all"))
 	{
