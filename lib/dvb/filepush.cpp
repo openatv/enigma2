@@ -385,8 +385,8 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t b
 
 int eFilePushThreadRecorder::pushReply(void *buf, int len)
 {
-	eDebug("pushed reply of %d bytes", len);
 	m_reply.insert(m_reply.end(), (unsigned char *)buf, (unsigned char *)buf+len);
+	eDebug("pushed reply of %d bytes", len);
 	return 0;
 }
 
@@ -464,7 +464,7 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 	}
 	uint64_t ts = getTick() - start;
 //	if(pos < size / 2)
-	if((ts > 1000) || m_packet_no < 5)
+	if(((ts > 1000) || m_packet_no < 5) && (bytes > 0))
 		eDebug("returning %d bytes, last read %d bytes in %jd ms (iteration %d)", pos, bytes, ts, m_packet_no);
 	if(pos == 0)
 		return bytes;
@@ -486,7 +486,13 @@ void eFilePushThreadRecorder::thread()
 	sigaction(SIGUSR1, &act, 0);
 
 	hasStarted();
-
+	if(m_protocol == _PROTO_RTSP_TCP)
+	{
+		int flags = fcntl(m_fd_source, F_GETFL, 0);
+		flags |= O_NONBLOCK;
+		if(fcntl(m_fd_source, F_SETFL, flags) == -1)
+			eDebug("failed setting DMX handle %d in non-blocking mode, error %d: %s", m_fd_source, errno, strerror(errno));		
+	}
 	/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
