@@ -52,6 +52,8 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb_ci/dvbci.h>
 
+#include "absdiff.h"
+
 #define _ADD_PIDS 1
 #define _DEL_PIDS 2
 #define _PIDS 3
@@ -322,7 +324,7 @@ std::string eRTSPStreamClient::searchServiceRef(int sys, int freq, int pol, int 
 		if (!p->getDVBS(sat1) && ((sys == SYS_DVBS) || (sys == SYS_DVBS2)))
 		{
 			//			eDebug("freq = %d, sat.freq %d, OP %d, SOP %d, pol %d pol %d", freq, sat1.frequency, orbital_position, sat1.orbital_position, pol, sat1.polarisation);
-			if ((abs(sat1.frequency - freq) < 2000) && sat1.polarisation == pol && orbital_position == sat1.orbital_position)
+			if ((absdiff(sat1.frequency, freq) < 2000) && sat1.polarisation == pol && orbital_position == sat1.orbital_position)
 			{
 				sat = sat1;
 				eDebug("Adding %s to the list for frequency %d (%s) f:%x", s.toString().c_str(), sat.frequency, i->second->m_service_name.c_str(), flags);
@@ -334,7 +336,7 @@ std::string eRTSPStreamClient::searchServiceRef(int sys, int freq, int pol, int 
 
 		if (!p->getDVBT(ter1) && ((sys == SYS_DVBT) || (sys == SYS_DVBT2)))
 		{
-			if ((abs(ter1.frequency / 1000 - freq) < 2000))
+			if ((absdiff(ter1.frequency / 1000, freq) < 2000))
 			{
 				ter = ter1;
 				eDebug("Adding %s to the list (%s) f:%x", s.toString().c_str(), i->second->m_service_name.c_str(), flags);
@@ -349,7 +351,7 @@ std::string eRTSPStreamClient::searchServiceRef(int sys, int freq, int pol, int 
 		if (!p->getDVBC(cab1) && ((sys == SYS_DVBC_ANNEX_AC) || (sys == SYS_DVBC2)))
 #endif
 		{
-			if ((abs(cab1.frequency - freq) < 2000))
+			if ((absdiff(cab1.frequency, freq) < 2000))
 			{
 				cab = cab1;
 				eDebug("Adding %s to the list (%s) f:%x", s.toString().c_str(), i->second->m_service_name.c_str(), flags);
