@@ -67,7 +67,6 @@
 #endif
 
 static int global_stream_id = 0;
-int tcp_port = 8554;
 
 char public_str[] = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
 const char *app_name = "enigma2";
@@ -1237,7 +1236,7 @@ void eRTSPStreamClient::notifier(int what)
 		//ss <<"<icon><mimetype>image/jpeg</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.jpg</url></icon>";
 		//ss <<"<icon><mimetype>image/jpeg</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.jpg</url></icon>";
 		ss << "</iconList>";
-		ss << "<presentationURL>http://" << m_remotehost << ":" <<  tcp_port <<"/</presentationURL>\r\n";
+		ss << "<presentationURL>http://" << m_remotehost << ":" << parent->Port() <<"/</presentationURL>\r\n";
 		ss << "<satip:X_SATIPCAP xmlns:satip=\"urn:ses-com:satip\">";
 
 		if (tuner_s2)
@@ -1279,7 +1278,7 @@ void eRTSPStreamClient::notifier(int what)
 		ss.clear();
 
 		ss << "HTTP/1.0 200 OK\r\nCACHE-CONTROL: no-cache\r\nContent-type: text/xml\r\n";
-		ss << "X-SATIP-RTSP-Port: " << tcp_port << "\r\n";
+		ss << "X-SATIP-RTSP-Port: " << parent->Port() << "\r\n";
 		ss << "Content-Length: " << s.length() << "\r\n\r\n";
 		ss << s;
 
@@ -1329,7 +1328,7 @@ DEFINE_REF(eRTSPStreamServer);
 eRTSPStreamServer *eRTSPStreamServer::m_instance = NULL;
 
 eRTSPStreamServer::eRTSPStreamServer()
-	: eServerSocket(tcp_port, eApp)
+	: eServerSocket(8554, eApp)
 {
 	m_instance = this;
 	//	e2avahi_announce(NULL, "_e2stream._tcp", 8001);
