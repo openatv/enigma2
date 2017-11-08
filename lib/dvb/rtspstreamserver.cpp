@@ -29,10 +29,16 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <time.h>
 #include <linux/dvb/frontend.h>
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/ca.h>
 #include <linux/dvb/version.h>
+
+#include <iomanip>
+#include <sstream>
+
+#include <lib/base/modelinformation.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -41,7 +47,6 @@
 #include <lib/base/cfile.h>
 #include <lib/base/e2avahi.h>
 #include <lib/dvb/decoder.h>
-
 #include <lib/dvb/rtspstreamserver.h>
 #include <lib/dvb/encoder.h>
 #include <lib/dvb/db.h>
@@ -66,25 +71,6 @@ char public_str[] = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
 const char *app_name = "enigma2";
 const char *version = "0.1";
 
-static const char *satip_xml =
-	"<?xml version=\"1.0\"?>"
-	"<root xmlns=\"urn:schemas-upnp-org:device-1-0\" configId=\"0\">"
-	"<specVersion><major>1</major><minor>1</minor></specVersion>"
-	"<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>"
-	"<friendlyName>%s</friendlyName><manufacturer>%s</manufacturer>"
-	"<manufacturerURL>%s</manufacturerURL>"
-	"<modelDescription>%s</modelDescription><modelName>%s</modelName>"
-	"<modelNumber>1.1</modelNumber><modelURL>%s</modelURL><serialNumber>1</serialNumber><UDN>uuid:11223344-9999-0001-b7ae-%s</UDN>"
-	"<iconList>"
-	//	"<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>"
-	//	"<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>"
-	//	"<icon><mimetype>image/jpeg</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.jpg</url></icon>"
-	//	"<icon><mimetype>image/jpeg</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.jpg</url></icon>"
-	"</iconList>"
-	"<presentationURL>http://%s:%d/</presentationURL>\r\n"
-	"<satip:X_SATIPCAP xmlns:satip=\"urn:ses-com:satip\">%s</satip:X_SATIPCAP>"
-	"</device></root>";
-
 std::set<eServiceReferenceDVB> processed_sr;
 
 eRTSPStreamClient::eRTSPStreamClient(eRTSPStreamServer *handler, int socket, const std::string remotehost)
@@ -92,7 +78,6 @@ eRTSPStreamClient::eRTSPStreamClient(eRTSPStreamServer *handler, int socket, con
 {
 	session_id = 0;
 	stream_id = 0;
-	creator[0] = 0;
 	eDebug("Client starting %d", streamFd);
 	init_rtsp();
 }
@@ -141,51 +126,6 @@ void eRTSPStreamClient::init_rtsp()
 	time_addsr = 0;
 	transponder_id = 0;
 	proto = PROTO_RTSP_TCP;
-}
-
-void eRTSPStreamClient::init_branding()
-{
-	FILE *f;
-	char line[120];
-	const char *image_version = "/etc/image-version";
-
-	if (creator[0])
-		return;
-	memset(machine_brand, 0, sizeof(machine_brand));
-	memset(machine_name, 0, sizeof(machine_name));
-	memset(creator, 0, sizeof(creator));
-	memset(version, 0, sizeof(version));
-	memset(machine_url, 0, sizeof(machine_url));
-	memset(date, 0, sizeof(date));
-
-	f = fopen(image_version, "r");
-	if (f == NULL)
-	{
-		eDebug("Error opening %s, RTSP branding missing", image_version);
-		creator[0] = ' ';
-		return;
-	}
-	while (fgets(line, sizeof(line), f))
-	{
-		line[strlen(line) - 1] = 0;
-		if (!strncmp(line, "machine_brand", 13))
-			strncpy(machine_brand, line + 14, sizeof(machine_brand) - 1);
-		else if (!strncmp(line, "machine_name", 12))
-			strncpy(machine_name, line + 13, sizeof(machine_name) - 1);
-		else if (!strncmp(line, "creator", 7))
-			strncpy(creator, line + 8, sizeof(creator) - 1);
-		else if (!strncmp(line, "version", 7))
-			strncpy(version, line + 8, sizeof(version) - 1);
-		else if (!strncmp(line, "url=", 4))
-			strncpy(machine_url, line + 4, sizeof(machine_url) - 1);
-		else if (!strncmp(line, "date=", 5))
-			strncpy(date, line + 7, sizeof(date) - 1); // ignore first 2 chars from the date ==> 12 chars remaining
-	}
-	fclose(f);
-	if (!creator[0])
-		creator[0] = ' ';
-
-	eDebug("brand = %s, name = %s, creator = %s, version = %s, url = %s, date = %s", machine_brand, machine_name, creator, version, machine_url, date);
 }
 
 void eRTSPStreamClient::start()
@@ -459,11 +399,6 @@ void eRTSPStreamClient::process_pids(int op, char *pid_str)
 
 	if (op == _PIDS)
 		pids.clear();
-
-	if (buf_size == 0)
-		pids.insert(301);
-	else
-		pids.erase(301);
 
 	eDebug("%s: operation %d, pid_str %s (len pids: %d)", __FUNCTION__, op, pid_str, pids.size());
 	if (op == _PIDS && !::strcmp(buf, "all"))
@@ -883,90 +818,85 @@ void eRTSPStreamClient::eventUpdate(int event)
 	update_service_list();
 }
 
-char *
-get_current_timestamp(void)
+std::string eRTSPStreamClient::get_current_timestamp()
 {
-	static char date_str[200];
 	time_t date;
 	struct tm *t;
-	const char *day[] =
-		{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
-	const char *month[] =
-		{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
-		 "Nov", "Dec"};
+	char buffer[40];
+
 	time(&date);
 	t = gmtime(&date);
 	if (!t)
-		return (char *)"Fri, Sat Jan 1 00:00:20 2000 GMT";
-	snprintf(date_str, sizeof(date_str), "%s, %s %d %02d:%02d:%02d %d GMT",
-			 day[t->tm_wday], month[t->tm_mon], t->tm_mday, t->tm_hour,
-			 t->tm_min, t->tm_sec, t->tm_year + 1900);
-	return date_str;
+		return "Sat, Jan 1 00:00:20 2000 GMT";
+
+	strftime(buffer, sizeof(buffer), "%a, %b %d %H:%M:%S %Y GMT", t);
+
+	return std::string(buffer);
 }
 
 void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr)
 {
-	char *desc1;
-	char server[50];
-	const char *reply =
-		"%s/1.0 %d %s\r\nDate: %s%s%s\r\n%s%s\r\nContent-Length: %d\r\n\r\n%s";
-	const char *reply0 = "%s/1.0 %d %s\r\nDate: %s%s%s\r\n%s%s\r\n\r\n";
-	char *d;
-	char *proto;
-	char sess_id[100], scseq[100];
-
-	proto = (char *)"RTSP";
+	std::stringstream ss;
 
 	if (!ah || !ah[0])
 		ah = public_str;
+
 	if (!desc)
 		desc = (char *)"";
+
+        if (!lr)
+                lr = strlen(desc);
+
+	ss << "RTSP" << "/1.0" << " ";
+
 	if (rc == 200)
-		d = (char *)"OK";
+		ss << rc << " " << "OK";
 	else if (rc == 400)
-		d = (char *)"Bad Request";
+		ss << rc << " " << "Bad Request";
 	else if (rc == 403)
-		d = (char *)"Forbidden";
+		ss << rc << " " << "Forbidden";
 	else if (rc == 404)
-		d = (char *)"Not Found";
+		ss << rc << " " << "Not Found";
 	else if (rc == 500)
-		d = (char *)"Internal Server Error";
+		ss << rc << " " << "Internal Server Error";
 	else if (rc == 501)
-		d = (char *)"Not Implemented";
+		ss << rc << " " << "Not Implemented";
 	else if (rc == 405)
-		d = (char *)"Method Not Allowed";
+		ss << rc << " " << "Method Not Allowed";
 	else if (rc == 454)
-		d = (char *)"Session Not Found";
+		ss << rc << " " << "Session Not Found";
 	else
 	{
-		d = (char *)"Service Unavailable";
 		rc = 503;
+		ss << rc << " " << "Service Unavailable";
 	}
-	char resp[10000];
-	desc1 = desc;
-	resp[sizeof(resp) - 1] = 0;
-	if (!lr)
-		lr = strlen(desc);
+	ss << "\r\n";
 
-	sess_id[0] = 0;
-	scseq[0] = 0;
-	server[0] = 0;
-
-	sprintf(server, "\r\nServer: %s/%s", app_name, version);
+	ss << "Date: " << get_current_timestamp() << "\r\n";
 
 	if (session_id && ah && !strstr(ah, "Session") && rc != 454)
-		sprintf(sess_id, "\r\nSession: %010d", session_id);
+		ss << "Session: " << std::setfill('0') << std::setw(10) << session_id << "\r\n";
+
 	if (cseq > 0)
-		sprintf(scseq, "\r\nCseq: %d", cseq);
+		ss << "Cseq: " << cseq << "\r\n";
+
+	ss << ah << "\r\n";
+
+	ss << "Server: " << app_name << "/" << version << "\r\n";
 
 	if (lr > 0)
-		snprintf(resp, sizeof(resp) - 1, reply, proto, rc, d, get_current_timestamp(), sess_id, scseq, ah, server, lr, desc1);
+		ss << "Content-Length: " << lr << "\r\n\r\n" << desc;
 	else
-		snprintf(resp, sizeof(resp) - 1, reply0, proto, rc, d, get_current_timestamp(), sess_id, scseq, ah, server);
-	eDebug("reply to %d, mr %p,len %d: %s", sock, mr, strlen(resp), resp);
+		ss << "\r\n";
+
+	char *resp = strdup(ss.str().c_str());
+	int len = strlen(resp);
+
+	eDebug("reply to %d, mr %p, len %d: %s", sock, mr, len, resp);
+
 	if (mr)
 	{
-		mr->pushReply(resp, strlen(resp));
+		mr->pushReply((void *)resp, len);
 	}
 	else
 	{
@@ -975,7 +905,6 @@ void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, in
 		tv.tv_nsec = 5000000;
 		int times = 20;
 		int pos = 0;
-		int len = strlen(resp);
 		int rb = 0;
 		while (pos < len)
 		{
@@ -997,6 +926,8 @@ void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, in
 			eDebug("error writing %d out of %d to socket %d, errno: %d", pos, len, sock, errno);
 		eDebug("wrote successfully %d", len);
 	}
+
+	free(resp);
 }
 
 const char *fe_inversion[] =
@@ -1276,34 +1207,83 @@ void eRTSPStreamClient::notifier(int what)
 
 	if (request.substr(0, 5) == "GET /")
 	{
-		char buf[2000];
-		char reply_all[3000];
-		char adapters[200];
-		int len = 0;
+		std::stringstream ss;
+		std::string s;
 		int tuner_s2, tuner_t, tuner_c, tuner_t2, tuner_c2;
-		const char *reply = "HTTP/1.0 200 OK\r\nCACHE-CONTROL: no-cache\r\nContent-type: text/xml\r\nX-SATIP-RTSP-Port: %d\r\nContent-Length: %d\r\n\r\n%s";
 
-		memset(buf, 0, sizeof(buf));
+		eModelInformation &modelinformation = eModelInformation::getInstance();
+
+		// TODO Add atsc tuner
 		getFontends(tuner_t, tuner_t2, tuner_s2, tuner_c, tuner_c2);
-		memset(adapters, 0, sizeof(adapters));
-		if (tuner_s2)
-			len += sprintf(adapters, "DVBS2-%d,", tuner_s2);
-		if (tuner_t)
-			len += sprintf(adapters + len, "DVBT-%d,", tuner_t);
-		if (tuner_c)
-			len += sprintf(adapters + len, "DVBC-%d,", tuner_c);
-		if (tuner_t2)
-			len += sprintf(adapters + len, "DVBT2-%d,", tuner_t2);
-		if (tuner_c2)
-			len += sprintf(adapters + len, "DVBC2-%d,", tuner_c2);
-		if (tuner_s2 + tuner_t + tuner_c + tuner_t2 + tuner_c2 == 0)
-			len = sprintf(adapters, "DVBS2-0,");
-		adapters[len - 1] = 0;
-		init_branding();
-		sprintf(buf, satip_xml, app_name, machine_brand, machine_url, creator, machine_name, machine_url, date, m_remotehost.c_str(), tcp_port, adapters);
 
-		len = sprintf(reply_all, reply, tcp_port, strlen(buf), buf);
-		writeAll(streamFd, reply_all, len);
+		ss << "<?xml version=\"1.0\"?>";
+		ss << "<root xmlns=\"urn:schemas-upnp-org:device-1-0\" configId=\"0\">";
+		ss << "<specVersion><major>1</major><minor>1</minor></specVersion>";
+		ss << "<device><deviceType>urn:ses-com:device:SatIPServer:1</deviceType>";
+		ss << "<friendlyName>" << app_name << "</friendlyName>";
+		ss << "<manufacturer>" << modelinformation.MachineBrand() <<  "</manufacturer>";
+		ss << "<manufacturerURL>"  << modelinformation.Url() << "</manufacturerURL>";
+		ss << "<modelDescription>" << modelinformation.Creator() << "</modelDescription>";
+		ss << "<modelName>" << modelinformation.MachineName() << "</modelName>";
+		ss << "<modelNumber>1.1</modelNumber>";
+		ss << "<modelURL>" << modelinformation.Url() << "</modelURL>";
+		ss << "<serialNumber>1</serialNumber>";
+		ss << "<UDN>uuid:11223344-9999-0001-b7ae-" << modelinformation.Date() << "</UDN>";
+		ss << "<iconList>";
+		//ss << "<icon><mimetype>image/png</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.png</url></icon>";
+		//ss << "<icon><mimetype>image/png</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.png</url></icon>";
+		//ss <<"<icon><mimetype>image/jpeg</mimetype><width>48</width><height>48</height><depth>24</depth><url>/sm.jpg</url></icon>";
+		//ss <<"<icon><mimetype>image/jpeg</mimetype><width>120</width><height>120</height><depth>24</depth><url>/lr.jpg</url></icon>";
+		ss << "</iconList>";
+		ss << "<presentationURL>http://" << m_remotehost << ":" <<  tcp_port <<"/</presentationURL>\r\n";
+		ss << "<satip:X_SATIPCAP xmlns:satip=\"urn:ses-com:satip\">";
+
+		if (tuner_s2)
+		{
+			ss << "DVBS2-" << tuner_s2;
+			s = ",";
+		}
+		if (tuner_t)
+		{
+			ss << "DVBT-" << tuner_t << s;
+			s = ",";
+		}
+		if (tuner_c)
+		{
+			ss << "DVBC-" << tuner_c << s;
+			s = ",";
+		}
+		if (tuner_t2)
+		{
+			ss << "DVBT2-" << tuner_t2 << s;
+			s = ",";
+		}
+		if (tuner_c2)
+		{
+			ss << "DVBC2-" << tuner_c2 << s;
+			s = ",";
+		}
+		if (!s.length())
+		{
+			ss << "DVBS2-0";
+		}
+
+		ss << "</satip:X_SATIPCAP>";
+		ss << "</device></root>";
+
+		s = ss.str();
+
+		ss.str(std::string());
+		ss.clear();
+
+		ss << "HTTP/1.0 200 OK\r\nCACHE-CONTROL: no-cache\r\nContent-type: text/xml\r\n";
+		ss << "X-SATIP-RTSP-Port: " << tcp_port << "\r\n";
+		ss << "Content-Length: " << s.length() << "\r\n\r\n";
+		ss << s;
+
+		s = ss.str();
+
+		writeAll(streamFd, s.c_str(), s.length());
 		rsn->stop();
 		parent->connectionLost(this);
 		return;
