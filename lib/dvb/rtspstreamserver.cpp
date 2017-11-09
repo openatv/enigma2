@@ -177,11 +177,6 @@ int split(char **rv, char *s, int lrv, char sep)
 	return j;
 }
 
-#define LR(s)                         \
-	{                                 \
-		LOG("map_int returns %d", s); \
-		return s;                     \
-	}
 int map_intd(char *s, char **v, int dv)
 {
 	int i, n = dv;
