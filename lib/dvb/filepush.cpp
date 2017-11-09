@@ -391,17 +391,12 @@ int eFilePushThreadRecorder::pushReply(void *buf, int len)
 }
 
 static int errs;
-uint64_t init_tick;
 
 int64_t getTick()
 {         //ms
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
-	uint64_t theTick = ts.tv_nsec / 1000000;
-	theTick += ts.tv_sec * 1000;
-	if (init_tick == 0)
-		init_tick = theTick;
-	return theTick - init_tick;
+	return (ts.tv_nsec / 1000000) + (ts.tv_sec * 1000);
 }
 
 int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
