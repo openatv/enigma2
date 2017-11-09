@@ -77,7 +77,7 @@ class eRTSPStreamClient : public eDVBServiceStream
 	int set_demux_buffer(int size);
 	void process_pids(int op, char *pids);
 	std::string get_current_timestamp();
-	void http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr);
+	void http_response(int sock, int rc, const std::string &ah, const std::string &desc, int cseq, int lr);
 	void describe_frontend(char *buf, int len);
 	void getFontends(int &dvbt, int &dvbt2, int &dvbs2, int &dvbc, int &dvbc2);
 
