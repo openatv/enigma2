@@ -830,18 +830,12 @@ std::string eRTSPStreamClient::get_current_timestamp()
 	return std::string(buffer);
 }
 
-void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr)
+void eRTSPStreamClient::http_response(int sock, int rc, const std::string &ah, const std::string &desc, int cseq, int lr)
 {
 	std::stringstream ss;
 
-	if (!ah || !ah[0])
-		ah = public_str;
-
-	if (!desc)
-		desc = (char *)"";
-
         if (!lr)
-                lr = strlen(desc);
+		lr = desc.size();
 
 	ss << "RTSP" << "/1.0" << " ";
 
@@ -870,7 +864,7 @@ void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, in
 
 	ss << "Date: " << get_current_timestamp() << "\r\n";
 
-	if (session_id && ah && !strstr(ah, "Session") && rc != 454)
+	if (session_id && ah.find("Session") == std::string::npos && rc != 454)
 		ss << "Session: " << std::setfill('0') << std::setw(10) << session_id << "\r\n";
 
 	if (cseq > 0)
@@ -1031,6 +1025,8 @@ void eRTSPStreamClient::notifier(int what)
 		return;
 
 	ePtr<eRTSPStreamClient> ref = this;
+	std::string transport_reply;
+
 	char tmpbuf[4096], buf[8192];
 	int len;
 	int rlen;
@@ -1044,7 +1040,7 @@ void eRTSPStreamClient::notifier(int what)
 	}
 
 	tmpbuf[len] = 0;
-	eDebug("rtsp read\n%s", tmpbuf);
+	eDebug("rtsp read %d\n%s", len, tmpbuf);
 	request.append(tmpbuf, len);
 	memset(buf, 0, sizeof(buf));
 	rlen = request.size();
@@ -1073,49 +1069,44 @@ void eRTSPStreamClient::notifier(int what)
 	{
 		if (satip2enigma(url))
 		{
-			char error[100];
-			snprintf(error, sizeof(error), "Error: Tuning multiple transponders not supprted");
-			http_response(streamFd, 404, error, NULL, cseq, 0);
+			http_response(streamFd, 404, "Error: Tuning multiple transponders not supported", "", cseq, 0);
 			goto done;
 		}
 	}
 
 	if ((request.substr(0, 8) == "OPTIONS "))
 	{
-		http_response(streamFd, 200, public_str, NULL, cseq, 0);
+		http_response(streamFd, 200, public_str, "", cseq, 0);
 		update_service_list();
 		goto done;
 	}
 
 	if ((request.substr(0, 9) == "DESCRIBE "))
 	{
-		char sbuf[1000];
-		char buf[100];
+		std::stringstream ss;
 		char tp[100];
-		int pos = 0;
-		pos = request.find('?', 10);
-		if (pos == (int)std::string::npos)
-			pos = request.find(' ', 10);
 
 		describe_frontend(tp, sizeof(tp));
-		snprintf(sbuf, sizeof(sbuf),
-				 "m=video 0 RTP/AVP 33\r\nc=IN IP4 0.0.0.0\r\na=control:stream=%d\r\na=fmtp:33 %s\r\nb=AS:5000\r\na=%s\r\n",
-				 stream_id + 1, tp, running ? "sendonly" : "inactive");
-		// NEEDS CHANGED
+
+		ss << "m=video 0 RTP/AVP 33\r\nc=IN IP4 0.0.0.0\r\na=control:stream=" << stream_id + 1 << "\r\n";
+		ss << "a=fmtp:33 " << tp << "\r\nb=AS:5000\r\n" << "a=" << (running ? "sendonly" : "inactive") << "\r\n";
+
+		// TODO: NEEDS CHANGED
 		if (!stream_id)
 		{
-			http_response(streamFd, 404, NULL, NULL, cseq, 0);
+			http_response(streamFd, 404, public_str, "", cseq, 0);
 			goto done;
 		}
-		snprintf(buf, sizeof(buf), "Content-type: application/sdp\r\nContent-Base: %s",
-				 request.substr(9, pos - 9).c_str());
 
-		http_response(streamFd, 200, buf, sbuf, cseq, 0);
+		size_t pos = request.find('?', 10);
+		if (pos == std::string::npos)
+			pos = request.find(' ', 10);
 
+		std::string ah = "Content-type: application/sdp\r\nContent-Base: " + request.substr(9, pos - 9);
+
+		http_response(streamFd, 200, ah, ss.str(), cseq, 0);
 		goto done;
 	}
-	char transport_reply[300];
-	transport_reply[0] = 0;
 
 	if ((request.substr(0, 6) == "SETUP ") || (request.substr(0, 5) == "PLAY "))
 	{
@@ -1130,14 +1121,16 @@ void eRTSPStreamClient::notifier(int what)
 		if (transport && tcp)
 		{
 			proto = PROTO_RTSP_TCP;
-			snprintf(transport_reply, sizeof(transport_reply),
-					 "Transport: RTP/AVP/TCP;interleaved=0-1\r\nSession: %010d;timeout=%d\r\ncom.ses.streamID: %d",
-					 session_id, 30, stream_id);
+			std::stringstream tr;
+			tr << "Transport: RTP/AVP/TCP;interleaved=0-1\r\n";
+			tr << "Session: " << std::setfill('0') << std::setw(10) << session_id;
+			tr << ";timeout=" << 30 << "\r\n" << "com.ses.streamID: " << stream_id;
+			transport_reply = tr.str();
 		}
 		if (transport && port)
 		{
-			eDebug("UDP transport not supported to %s, use RTSP over TCP", (char *)m_remotehost.c_str());
-			http_response(streamFd, 405, (char *)"UDP: Not supported, use rtsp over tcp", NULL, cseq, 0);
+			eDebug("UDP transport not supported to %s, use RTSP over TCP", m_remotehost.c_str());
+			http_response(streamFd, 405, "UDP: Not supported, use rtsp over tcp", "", cseq, 0);
 			goto done;
 			/*
 			   int client_port = map_intd(port, NULL, -1);
@@ -1148,7 +1141,7 @@ void eRTSPStreamClient::notifier(int what)
 			   if(remote_socket < 0 )
 			   {
 			   eDebug("Could not create udp socket to %s:%d", rhost, client_port);
-			   http_response(streamFd, 404, NULL, NULL, cseq, 0);
+			   http_response(streamFd, 404, public_str, "", cseq, 0);
 			   goto done;
 
 			   }
@@ -1166,9 +1159,9 @@ void eRTSPStreamClient::notifier(int what)
 		if ((request.substr(0, 6) == "SETUP "))
 		{
 			if (transport[0])
-				http_response(streamFd, 200, transport_reply, NULL, cseq, 0);
+				http_response(streamFd, 200, transport_reply, "", cseq, 0);
 			else
-				http_response(streamFd, 454, NULL, NULL, cseq, 0);
+				http_response(streamFd, 454, public_str, "", cseq, 0);
 			goto done;
 		}
 	}
@@ -1187,16 +1180,16 @@ void eRTSPStreamClient::notifier(int what)
 		else if (!tune_completed)
 		{
 			eDebug("No service ref detected: <%s>, proto %d", m_serviceref.c_str(), proto);
-			http_response(streamFd, 404, (char *)"Transponder: Not Found in Enigma DB, do network scan", NULL, cseq, 0);
+			http_response(streamFd, 404, "Transponder: Not Found in Enigma DB, do network scan", "", cseq, 0);
 			goto done;
 		}
 		else if (proto == 0)
 		{
 			eDebug("No (TCP) transport detected  detected: <%s>", m_serviceref.c_str());
-			http_response(streamFd, 405, (char *)"rtsp_over_tcp: not specified", NULL, cseq, 0);
+			http_response(streamFd, 405, "rtsp_over_tcp: not specified", "", cseq, 0);
 			goto done;
 		}
-		http_response(streamFd, 200, transport_reply[0] ? transport_reply : NULL, NULL, cseq, 0);
+		http_response(streamFd, 200, transport_reply.empty() ? public_str : transport_reply, "", cseq, 0);
 
 		goto done;
 	}
