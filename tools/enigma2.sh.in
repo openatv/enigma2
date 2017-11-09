@@ -144,6 +144,16 @@ fi
 # >128 signal
 
 ret=$?
+
+if [ "$ret" -ne "1" ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype`
+		if [ $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 5
+		fi
+	fi
+fi
+
 case $ret in
 	1)
 		if [ -e /proc/stb/info/boxtype ]; then
@@ -166,12 +176,6 @@ case $ret in
 	3)
 		rm -fR /home/root/.gstreamer-0.10
 		rm -f /tmp/.listen.camd.socket.ignore
-		if [ -e /proc/stb/info/boxtype ]; then
-			stbcheck=`cat /proc/stb/info/boxtype`
-			if [ $stbcheck == "u5" ]; then
-				killall -9 showiframe; sleep 5
-			fi
-		fi
 		;;
 	4)
 		/sbin/rmmod lcd
