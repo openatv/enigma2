@@ -1,11 +1,15 @@
 <keymap>
-      <translate>
-              <device name="gigablue remote control">
-                      <!-- <key from="KEY_OPTION" to="KEY_SUBTITLE"/> -->
-                      <key from="KEY_HOME" to="KEY_UNKNOWN"/>
-              </device>
-              <device name="dreambox advanced remote control (native)">
-                      <key from="KEY_EDIT" to="KEY_TIME"/> <!--VU new RCU have a TIMER Button but send KEY_EDIT  -->
-              </device>
-      </translate>
+	<translate>
+		<device name="gigablue remote control">
+			<!-- <key from="KEY_OPTION" to="KEY_SUBTITLE"/> -->
+			<key from="KEY_HOME" to="KEY_UNKNOWN"/>
+		</device>
+		<device name="dreambox advanced remote control (native)">
+			<key from="KEY_EDIT" to="KEY_TIME"/> <!--VU new RCU have a TIMER Button but send KEY_EDIT  -->
+		</device>
+		<device name="LUNIX3 4K remote control (native)">
+			<key from="KEY_SLOW" to="KEY_F1"/> <!--Lunix3 4k KEY_F1 send KEY_SLOW  -->
+			<key from="KEY_WWW" to="KEY_DIRECTORY"/> <!--Lunix3 4k Button Plugins but send KEY_WWW -->
+		</device>
+	</translate>
 </keymap>
