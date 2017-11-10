@@ -956,8 +956,9 @@ const char *fe_gi[] =
 	 "1128", "19128", "19256", "pn420", "pn595", "pn945",
 	 NULL};
 
-void eRTSPStreamClient::describe_frontend(char *buf, int max_len)
+std::string eRTSPStreamClient::describe_frontend()
 {
+	std::stringstream ss;
 	int strength = 0, status = 0, snr = 0;
 	int len = 0;
 	m_channel = NULL;
@@ -981,42 +982,70 @@ void eRTSPStreamClient::describe_frontend(char *buf, int max_len)
 		}
 	}
 	if (sys == 0)
-		len += snprintf(buf + len, max_len - len, "ver=1.0;src=1;tuner=%d,0,0,0,0,,,,,,,;pids=", fe + 1);
+		ss << "ver=1.0;src=1;tuner=" << fe + 1 << ",0,0,0,0,,,,,,,";
 	else if (sys == SYS_DVBS || sys == SYS_DVBS2)
-		len +=
-			snprintf(buf + len, max_len - len,
-					 "ver=1.0;src=%d;tuner=%d,%d,%d,%d,%d,%s,%s,%s,%s,%s,%d,%s;pids=",
-					 src + 1, fe + 1, strength, status, snr,
-					 sat.frequency / 1000, fe_pol[sat.polarisation],
-					 fe_modulation_sat[sat.modulation], fe_pilot[sat.pilot],
-					 fe_rolloff[sat.rolloff], fe_delsys[sys], sat.symbol_rate / 1000,
-					 fe_fec[sat.fec]);
-	else if (sys == SYS_DVBT || sys == SYS_DVBT2)
-		len +=
-			snprintf(buf + len, max_len - len,
-					 "ver=1.1;tuner=%d,%d,%d,%d,%.2f,%d,%s,%s,%s,%s,%s,%d,%d,%d;pids=",
-					 fe + 1, strength, status, snr,
-					 (double)ter.frequency / 1000000.0, ter.bandwidth / 1000000, fe_delsys[sys],
-					 fe_tmode[ter.transmission_mode], fe_modulation_ter[ter.modulation],
-					 fe_gi[ter.guard_interval], "", ter.plp_id, 0, 0);
-	else
-		len +=
-			snprintf(buf + len, max_len - len,
-					 "ver=1.2;tuner=%d,%d,%d,%d,%.2f,8,%s,%s,%d,%d,%d,%d,%d;pids=",
-					 fe + 1, strength, status, snr,
-					 (double)cab.frequency / 1000.0, fe_delsys[sys],
-					 fe_modulation_cab[cab.modulation], cab.symbol_rate, 0, 0,
-					 0, cab.inversion);
-
-	int pid = -1;
-	for (std::set<int>::iterator it = pids.begin(); it != pids.end(); it++)
 	{
-		pid = *it;
-		len += snprintf(buf + len, max_len - len, "%d,", pid);
+		ss << "ver=1.0;src=" << src + 1;
+		ss << ";tuner=" << fe + 1;
+		ss << "," << strength;
+		ss << "," << status;
+		ss << "," << snr;
+		ss << "," << sat.frequency / 1000;
+		ss << "," << fe_pol[sat.polarisation];
+		ss << "," << fe_modulation_sat[sat.modulation];
+		ss << "," << fe_pilot[sat.pilot];
+		ss << "," << fe_rolloff[sat.rolloff];
+		ss << "," << fe_delsys[sys];
+		ss << "," << sat.symbol_rate / 1000;
+		ss << "," << fe_fec[sat.fec];
 	}
-	if (pid != -1)
-		buf[len - 1] = 0;
-	eDebug("describe_frontend => %s", buf);
+	else if (sys == SYS_DVBT || sys == SYS_DVBT2)
+	{
+		ss << "ver=1.1;tuner=" << fe + 1;
+		ss << "," << strength;
+		ss << "," << status;
+		ss << "," << snr;
+		ss << "," << std::setprecision(2) << std::fixed << (double)ter.frequency / 1000000.0;
+		ss << "," << ter.bandwidth / 1000000;
+		ss << "," << fe_delsys[sys];
+		ss << "," << fe_tmode[ter.transmission_mode];
+		ss << "," << fe_modulation_ter[ter.modulation];
+		ss << "," << fe_gi[ter.guard_interval];
+		ss << "," << "";
+		ss << "," << ter.plp_id;
+		ss << "," << 0;
+		ss << "," << 0;
+	}
+	else
+	{
+		ss << "ver=1.2;tuner=" << fe + 1;
+		ss << "," << strength;
+		ss << "," << status;
+		ss << "," << snr;
+		ss << "," << std::setprecision(2) << std::fixed << (double)cab.frequency / 1000.0;
+		ss << "," << 8;
+		ss << "," << fe_delsys[sys];
+		ss << "," << fe_modulation_cab[cab.modulation];
+		ss << "," << cab.symbol_rate;
+		ss << "," << 0;
+		ss << "," << 0;
+		ss << "," << 0;
+		ss << "," << cab.inversion;
+	}
+
+	ss <<";pids=";
+
+	if (!pids.empty())
+	{
+		std::set<int>::iterator it = pids.begin();
+		ss << *it;
+		for (it++; it != pids.end(); it++)
+			ss << "," << *it;
+	}
+
+	std::string s = ss.str();
+	eDebug("describe_frontend => %s", s.c_str());
+	return s;
 }
 
 void eRTSPStreamClient::notifier(int what)
@@ -1084,12 +1113,9 @@ void eRTSPStreamClient::notifier(int what)
 	if ((request.substr(0, 9) == "DESCRIBE "))
 	{
 		std::stringstream ss;
-		char tp[100];
-
-		describe_frontend(tp, sizeof(tp));
 
 		ss << "m=video 0 RTP/AVP 33\r\nc=IN IP4 0.0.0.0\r\na=control:stream=" << stream_id + 1 << "\r\n";
-		ss << "a=fmtp:33 " << tp << "\r\nb=AS:5000\r\n" << "a=" << (running ? "sendonly" : "inactive") << "\r\n";
+		ss << "a=fmtp:33 " << describe_frontend() << "\r\nb=AS:5000\r\n" << "a=" << (running ? "sendonly" : "inactive") << "\r\n";
 
 		// TODO: NEEDS CHANGED
 		if (!stream_id)
