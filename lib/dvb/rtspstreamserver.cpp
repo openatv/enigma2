@@ -68,7 +68,6 @@
 
 static int global_stream_id = 0;
 
-char public_str[] = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
 const char *app_name = "enigma2";
 const char *version = "0.1";
 
@@ -1055,6 +1054,7 @@ void eRTSPStreamClient::notifier(int what)
 
 	ePtr<eRTSPStreamClient> ref = this;
 	std::string transport_reply;
+	std::string public_str = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
 
 	char tmpbuf[4096], buf[8192];
 	int len;
