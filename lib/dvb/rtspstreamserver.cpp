@@ -483,12 +483,10 @@ int eRTSPStreamClient::addCachedPids(ePtr<eDVBService> service, eServiceReferenc
 	return !found;
 }
 
-int64_t getTick();
-
 void eRTSPStreamClient::update_service_list()
 {
 	eServiceReferenceDVB sr;
-	//	uint64_t now = getTick();
+	//	uint64_t now = eFilePushThreadRecorder::getTick();
 	std::set<eServiceReferenceDVB> new_sr, obsolete_sr, delete_cached;
 	if (clear_previous_channel == 1)
 		return;
@@ -569,8 +567,8 @@ void eRTSPStreamClient::update_service_list()
 			}
 		}
 		if (m_record && !time_addsr)
-			time_addsr = getTick();
-		if (time_addsr && (getTick() - time_addsr > 2000))
+			time_addsr = eFilePushThreadRecorder::getTick();
+		if (time_addsr && (eFilePushThreadRecorder::getTick() - time_addsr > 2000))
 		{
 			eDebug("deleting SR %s because it timed out", ref.toString().c_str());
 			delete_cached.insert(ref);
