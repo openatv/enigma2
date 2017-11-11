@@ -75,10 +75,13 @@ def getButtonSetupKeys():
 		(_("Aspect"), "mode", ""),
 		(_("Aspect long"), "mode_long", ""),
 		(_("Home"), "home", ""),
+		(_("Home long"), "home_long", ""),
 		(_("End"), "end", ""),
+		(_("End long"), "end_long", ""),
 		(_("Next"), "next", ""),
 		(_("Previous"), "previous", ""),
 		(_("Audio"), "audio", ""),
+		(_("Audio long"), "audio_long", ""),
 		(_("Play"), "play", ""),
 		(_("Playpause"), "playpause", ""),
 		(_("Stop"), "stop", ""),
@@ -115,8 +118,12 @@ def getButtonSetupKeys():
 		(_("SAT long"), "sat_long", ""),
 		(_("Prov"), "prov", ""),
 		(_("Prov long"), "prov_long", ""),
-		(_("F1/LAN"), "f1", ""),
-		(_("F1/LAN long"), "f1_long", ""),
+		(_("LAN"), "lan", ""),
+		(_("LAN long"), "lan_long", ""),
+		(_("PC"), "pc", ""),
+		(_("PC long"), "pc_long", ""),
+		(_("F1"), "f1", ""),
+		(_("F1 long"), "f1_long", ""),
 		(_("F2"), "f2", ""),
 		(_("F2 long"), "f2_long", ""),
 		(_("F3"), "f3", ""),
@@ -124,7 +131,9 @@ def getButtonSetupKeys():
 		(_("F4"), "f4", ""),
 		(_("F4 long"), "f4_long", ""),
 		(_("PIP"), "f6", ""),
-		(_("PIP long"), "f6_long", ""),]
+		(_("PIP long"), "f6_long", ""),
+		(_("ZOOM"), "zoom", ""),
+		(_("ZOOM long"), "zoom_long", "")]
 
 config.misc.ButtonSetup = ConfigSubsection()
 config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)
