@@ -1089,7 +1089,7 @@ void eRTSPStreamClient::notifier(int what)
 	if (sep)
 		cseq = map_intd(sep + 5, NULL, 0);
 
-	int pos1 = request.find(' ', 0);
+	int pos1 = request.find(' ', 0) + 1;
 	int pos = request.find(' ', pos1 + 1);
 	std::string url = urlDecode(request.substr(pos1, pos - pos1));
 	eDebug("URL = %s", url.c_str());
