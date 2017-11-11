@@ -135,80 +135,6 @@ void eRTSPStreamClient::start()
 	CONNECT(rsn->activated, eRTSPStreamClient::notifier);
 }
 
-char *strip(char *s) // strip spaces from the front of a string
-{
-	if (s < (char *)1000)
-		return NULL;
-
-	while (*s && *s == ' ')
-		s++;
-	return s;
-}
-
-int split(char **rv, char *s, int lrv, char sep)
-{
-	int i = 0, j = 0;
-
-	if (!s)
-		return 0;
-	for (i = 0; s[i] && s[i] == sep && s[i] < 32; i++)
-		;
-
-	rv[j++] = &s[i];
-	//      LOG("start %d %d\n",i,j);
-	while (j < lrv)
-	{
-		if (s[i] == 0 || s[i + 1] == 0)
-			break;
-		if (s[i] == sep || s[i] < 33)
-		{
-			s[i] = 0;
-			if (s[i + 1] != sep && s[i + 1] > 32)
-				rv[j++] = &s[i + 1];
-		}
-		else if (s[i] < 14)
-			s[i] = 0;
-		//              LOG("i=%d j=%d %d %c \n",i,j,s[i],s[i]);
-		i++;
-	}
-	if (s[i] == sep)
-		s[i] = 0;
-	rv[j] = NULL;
-	return j;
-}
-
-int map_intd(char *s, char **v, int dv)
-{
-	int i, n = dv;
-
-	if (s == NULL)
-	{
-		eDebug("map_int: s=>NULL, v=%p, %s %s", v, v ? v[0] : "NULL", v ? v[1] : "NULL");
-		return dv;
-	}
-
-	s = strip(s);
-
-	if (!*s)
-	{
-		eDebug("map_int: s is empty");
-		return dv;
-	}
-	if (v == NULL)
-	{
-		if (s[0] != '+' && s[0] != '-' && (s[0] < '0' || s[0] > '9'))
-		{
-			eDebug("map_int: s not a number: %s, v=%p, %s %s", s, v, v ? v[0] : "NULL", v ? v[1] : "NULL");
-			return dv;
-		}
-		return atoi(s);
-	}
-	for (i = 0; v[i]; i++)
-		if (!strncasecmp(s, v[i], strlen(v[i])))
-			n = i;
-	return n;
-}
-
 void eRTSPStreamClient::getFontends(int &dvbt, int &dvbt2, int &dvbs2, int &dvbc, int &dvbc2)
 {
 	ePtr<eDVBResourceManager> m_res_mgr;
@@ -1088,11 +1014,11 @@ void eRTSPStreamClient::notifier(int what)
 		eDebug("New Line not found, continuing to read");
 		return;
 	}
-	int cseq = 0;
-	char *sep = ::strcasestr(buf, (char *)"cseq:");
 
+	int cseq = 0;
+	const char *sep = ::strcasestr(buf, (char *)"cseq:");
 	if (sep)
-		cseq = map_intd(sep + 5, NULL, 0);
+		cseq = strtol(sep + 5, NULL, 10);
 
 	int pos1 = request.find(' ', 0) + 1;
 	int pos = request.find(' ', pos1 + 1);
