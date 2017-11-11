@@ -987,28 +987,26 @@ void eRTSPStreamClient::notifier(int what)
 	std::string transport_reply;
 	std::string public_str = "Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN";
 
-	char tmpbuf[4096], buf[8192];
-	int len;
-	int rlen;
-	if ((len = singleRead(streamFd, tmpbuf, sizeof(tmpbuf))) <= 0)
 	{
-		eDebug("error on reading from socket %d", streamFd);
-		rsn->stop();
-		stop();
-		parent->connectionLost(this);
-		return;
+		char tmpbuf[4096];
+		int len;
+
+		if ((len = singleRead(streamFd, tmpbuf, sizeof(tmpbuf))) <= 0)
+		{
+			eDebug("error on reading from socket %d", streamFd);
+			rsn->stop();
+			stop();
+			parent->connectionLost(this);
+			return;
+		}
+		tmpbuf[len] = 0;
+		eDebug("rtsp read %d\n%s", len, tmpbuf);
+
+		request.append(tmpbuf, len);
 	}
 
-	tmpbuf[len] = 0;
-	eDebug("rtsp read %d\n%s", len, tmpbuf);
-	request.append(tmpbuf, len);
-	memset(buf, 0, sizeof(buf));
-	rlen = request.size();
-	if (rlen > (int)sizeof(buf))
-		rlen = sizeof(buf);
-	strncpy(buf, request.c_str(), rlen);
-	//	for(int i = 0; i < strlen(buf); i++)
-	//		eDebugNoNewLine("%02X ", buf[i]); eDebug("\n");
+	const char* buf = request.c_str();
+
 	if ((request.find("\n\n") == std::string::npos) && (request.find("\r\n\r\n") == std::string::npos))
 	{
 		eDebug("New Line not found, continuing to read");
@@ -1016,7 +1014,7 @@ void eRTSPStreamClient::notifier(int what)
 	}
 
 	int cseq = 0;
-	const char *sep = ::strcasestr(buf, (char *)"cseq:");
+	const char *sep = ::strcasestr(buf, "cseq:");
 	if (sep)
 		cseq = strtol(sep + 5, NULL, 10);
 
@@ -1067,13 +1065,9 @@ void eRTSPStreamClient::notifier(int what)
 
 	if ((request.substr(0, 6) == "SETUP ") || (request.substr(0, 5) == "PLAY "))
 	{
-		char *transport = NULL, *tcp = NULL, *port = NULL;
-
-		transport = ::strcasestr(buf, (char *)"transport:");
-		tcp = ::strcasestr(buf, (char *)"RTP/AVP/TCP");
-		port = ::strcasestr(buf, (char *)"client_port=");
-		if (port)
-			port += 12;
+		bool transport = !!::strcasestr(buf, "transport:");
+		bool tcp = !!::strcasestr(buf, "RTP/AVP/TCP");
+		bool port = !!::strcasestr(buf, "client_port=");
 
 		if (transport && tcp)
 		{
@@ -1090,6 +1084,7 @@ void eRTSPStreamClient::notifier(int what)
 			http_response(streamFd, 405, "UDP: Not supported, use rtsp over tcp", "", cseq, 0);
 			goto done;
 			/*
+			   //FIXME parse port
 			   int client_port = map_intd(port, NULL, -1);
 			   char *rhost = (char *)m_remotehost.c_str();
 			   proto = PROTO_RTSP_UDP;
@@ -1115,7 +1110,7 @@ void eRTSPStreamClient::notifier(int what)
 		}
 		if ((request.substr(0, 6) == "SETUP "))
 		{
-			if (transport[0])
+			if (transport)
 				http_response(streamFd, 200, transport_reply, "", cseq, 0);
 			else
 				http_response(streamFd, 454, public_str, "", cseq, 0);
