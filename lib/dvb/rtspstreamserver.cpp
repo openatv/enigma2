@@ -407,7 +407,7 @@ void eRTSPStreamClient::process_pids(int op, char *pid_str)
 	for (int i = 0; i < la; i++)
 	{
 		int p = map_intd(arg[i], NULL, -1);
-		if (p < 0 && p > 8191)
+		if (p < 0 || p > 8191)
 			continue;
 		if (op == _PIDS || op == _ADD_PIDS)
 			add_pid(p);
