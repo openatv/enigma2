@@ -374,7 +374,7 @@ int eRTSPStreamClient::satip2enigma(std::string satipstr)
 		src = atoi(u.Query("src").c_str()) - 1;
 
 	if (!u.Query("freq").empty())
-		freq = atof(u.Query("freq").c_str()) * 1000;
+		freq1 = atof(u.Query("freq").c_str()) * 1000;
 
 	if (!u.Query("msys").empty())
 	{
