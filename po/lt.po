@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-25 21:45+0300\n"
-"PO-Revision-Date: 2017-10-25 23:19+0300\n"
+"POT-Creation-Date: 2017-11-07 01:10+0300\n"
+"PO-Revision-Date: 2017-11-12 14:26+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -1943,6 +1943,9 @@ msgstr "garso takeliai"
 msgid "Audio volume step size"
 msgstr "Garso stiprumo žingsnio dydis"
 
+msgid "Audio volume step size fast mode"
+msgstr "Garso garsumo žingsnio dydžio greitas režimas"
+
 msgid "Aufnahme"
 msgstr "Įrašymo"
 
@@ -3433,6 +3436,13 @@ msgstr "Konfigūruokite baigimo koordinates x teleteksto ekrano pločiui."
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Konfigūruokite baigimo koordinates y teleteksto ekrano pločiui."
+
+msgid ""
+"Configure the fast mode audio volume step size (limit 1-10). Activated when "
+"volume key permanent press or press fast in a row."
+msgstr ""
+"Nustatykite bendrą garso stiprumo žingsnio dydį (riba 1-10). Aktyvus, kai "
+"garso klavišą spausite pastoviai arba greitai spausite iš eilės."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Konfigūruokite pagrindinę garso kalbą (didžiausias prioritetas)."
@@ -5145,11 +5155,26 @@ msgstr ""
 msgid "enable bouquet edit"
 msgstr "įjungti paketo redagavimą"
 
+msgid "Enable chapter support for video files"
+msgstr "Įjungti vaizdo įrašų failų skyrių palaikymą"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr "Įjungti CI padėjėją lizdui CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Įjungti CI padėjėją lizdui CI1"
+
+msgid "Enable cut file support for audio files"
+msgstr "Įjungti failų karpymo palaikymą garso failams"
+
+msgid "Enable cut file support for audio files. (e.g. mp3)"
+msgstr "Įjungti failų karpymo palaikymą garso failams (pvz.: mp3)"
+
+msgid "Enable cut file support for non *.ts files"
+msgstr "Įjungti failų karpymo palaikymą ne*.ts failams"
+
+msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
+msgstr "Įjungti failų karpymo palaikymą ne*.ts failams (pvz.: mp4)"
 
 msgid "Enable debug log *"
 msgstr "Įjungti klaidų žurnalą *"
@@ -7972,6 +7997,9 @@ msgstr "Režimas 1"
 msgid "Mode 2"
 msgstr "Režimas 2"
 
+msgid "Mode for autorestore"
+msgstr "Automatinio atkūrimo režimas"
+
 msgid "Model: "
 msgstr "Modelis: "
 
@@ -9171,11 +9199,8 @@ msgstr "OScam Informacija"
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam Informacijos pagrindinis meniu"
 
-msgid "oscam webif blocking localhost (127.0.0.1)"
-msgstr "oscam webif blokuoja localhost (127.0.0.1)"
-
-msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
-msgstr "oscam webif blokuoja localhost (::1 ir 127.0.0.1)"
+msgid "oscam webif disabled"
+msgstr "oscam webif išjungtas"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12609,6 +12634,13 @@ msgstr "Kanalų sąrašo lange rodyti kanalo numerį"
 msgid "Show channel selection"
 msgstr "Rodyti kanalų pasirinkimą"
 
+msgid ""
+"Show chapter positions for supported video files. (gstreamer version must be "
+"greather than 1)"
+msgstr ""
+"Rodyti palaikomų vaizdo įrašų skyrių pozicijas. (gstreamer versija turi būti "
+"didesnė nei 1)"
+
 msgid "Show CI messages"
 msgstr "Rodyti CI pranešimus"
 
@@ -13644,24 +13676,6 @@ msgstr "Būsena:"
 
 msgid "Step east"
 msgstr "Žingsnis į rytus"
-
-msgid ""
-"Step value for fast switching or long press the volume button. Depending on "
-"the setting (if greater) and the current volume (if less) will adjusted the "
-"step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Žingsnio reikšmė greitam perjungimui arba ilgai spaudžiamam garso mygtukui. "
-"Atsižvelgiant į parametrus (jei didesnis) ir dabartinę reikšmę (jei mažesnė) "
-"bus pakoreguotas žingsnis. (30 į 4, 18 į 3, 9 į 2 ir 3 į 1)"
-
-msgid ""
-"Step value for single press the volume button. Depending on the setting (if "
-"greater) and the current volume (if less) will adjusted the step. (30 to 4, "
-"18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Žingsnio reikšmė vienam spaudžiamam garso mygtukui. Atsižvelgiant į "
-"parametrus (jei didesnis) ir dabartinę reikšmę (jei mažesnė) bus "
-"pakoreguotas žingsnis. (30 į 4, 18 į 3, 9 į 2 ir 3 į 1)"
 
 msgid "Step west"
 msgstr "Žingsnis į vakarus"
@@ -15500,6 +15514,20 @@ msgstr "IMTUVAS:"
 msgid "Tuning algorithm"
 msgstr "Derinimo algoritmas"
 
+msgid "turbo"
+msgstr "turbo"
+
+msgid ""
+"Turbo: One reboot after flash\n"
+"Fast: One reboot after flash, one reboot after restore\n"
+"Slow: One reboot after flash, one reboot after restore in GUI"
+msgstr ""
+"Turbo: vienas paleidimas iš naujo po įdiegimo\n"
+"Greitas: vienas paleidimas iš naujo po įdiegimo, vienas paleidimas po "
+"atkūrimo\n"
+"Lėtas: vienas paleidimas iš naujo po įdiegimo, vienas paleidimas po grafinės "
+"aplinkos atkūrimo"
+
 msgid "Turkish"
 msgstr "Turkų"
 
@@ -16320,12 +16348,6 @@ msgstr "Garsumas"
 
 msgid "Volume Adjust"
 msgstr "Garsumo reguliavimas"
-
-msgid "Volume adjust fast"
-msgstr "Greitas garsumo reguliavimas"
-
-msgid "Volume adjust slow"
-msgstr "Lėtas garsumo reguliavimas"
 
 msgid "Volume Config"
 msgstr "Garsumo konfigūracija"
@@ -18585,6 +18607,36 @@ msgstr "Zambija"
 
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
+
+#~ msgid "oscam webif blocking localhost (127.0.0.1)"
+#~ msgstr "oscam webif blokuoja localhost (127.0.0.1)"
+
+#~ msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
+#~ msgstr "oscam webif blokuoja localhost (::1 ir 127.0.0.1)"
+
+#~ msgid ""
+#~ "Step value for fast switching or long press the volume button. Depending "
+#~ "on the setting (if greater) and the current volume (if less) will "
+#~ "adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
+#~ msgstr ""
+#~ "Žingsnio reikšmė greitam perjungimui arba ilgai spaudžiamam garso "
+#~ "mygtukui. Atsižvelgiant į parametrus (jei didesnis) ir dabartinę reikšmę "
+#~ "(jei mažesnė) bus pakoreguotas žingsnis. (30 į 4, 18 į 3, 9 į 2 ir 3 į 1)"
+
+#~ msgid ""
+#~ "Step value for single press the volume button. Depending on the setting "
+#~ "(if greater) and the current volume (if less) will adjusted the step. (30 "
+#~ "to 4, 18 to 3, 9 to 2 and 3 to 1)"
+#~ msgstr ""
+#~ "Žingsnio reikšmė vienam spaudžiamam garso mygtukui. Atsižvelgiant į "
+#~ "parametrus (jei didesnis) ir dabartinę reikšmę (jei mažesnė) bus "
+#~ "pakoreguotas žingsnis. (30 į 4, 18 į 3, 9 į 2 ir 3 į 1)"
+
+#~ msgid "Volume adjust fast"
+#~ msgstr "Greitas garsumo reguliavimas"
+
+#~ msgid "Volume adjust slow"
+#~ msgstr "Lėtas garsumo reguliavimas"
 
 #~ msgid "et4000"
 #~ msgstr "et4000"
