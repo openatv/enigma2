@@ -3386,7 +3386,10 @@ class InfoBarPlugins:
 		if isinstance(self, InfoBarChannelSelection):
 			plugin(session = self.session, servicelist = self.servicelist)
 		else:
-			plugin(session = self.session)
+			try:
+				plugin(session = self.session)
+			except Exception, err:
+				print '[InfoBarGenerics] Error: ', err
 
 from Components.Task import job_manager
 class InfoBarJobman:

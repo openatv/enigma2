@@ -383,17 +383,17 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
 					self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
 					self.terrestrialCountriesEntry = getConfigListEntry(_("Country"), self.terrestrialCountries)
-					self.originalTerrestrialRegion = self.nimConfig.dvbt.configMode.value
+					self.originalTerrestrialRegion = self.nimConfig.dvbt.terrestrial.value
 				# country/region tier two
 				if self.terrestrialCountries.value == "all":
 					terrstrialNames = [x[0] for x in sorted(sorted(nimmanager.getTerrestrialsList(), key=lambda listItem: listItem[0]), key=lambda listItem: self.countrycodeToCountry(listItem[2]))]
 				else:
 					terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
-				default = self.nimConfig.dvbt.configMode.value in terrstrialNames and self.nimConfig.dvbt.configMode.value or None
+				default = self.nimConfig.dvbt.terrestrial.value in terrstrialNames and self.nimConfig.dvbt.terrestrial.value or None
 				self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
 				def updateTerrestrialProvider(configEntry):
-					self.nimConfig.dvbt.configMode.value = configEntry.value
-					self.nimConfig.dvbt.configMode.save()
+					self.nimConfig.dvbt.terrestrial.value = configEntry.value
+					self.nimConfig.dvbt.terrestrial.save()
 				self.terrestrialRegions.addNotifier(updateTerrestrialProvider)
 				self.terrestrialRegionsEntry = getConfigListEntry(_("Region"), self.terrestrialRegions)
 				self.list.append(self.terrestrialCountriesEntry)

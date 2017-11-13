@@ -201,7 +201,7 @@
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
-		<key id="KEY_PC" mapto="showNetworkSetup" flags="mr" />
+		<key id="KEY_PC" mapto="showNetworkSetup" flags="b" />
 		<key id="KEY_ANGLE" mapto="showRFmod" flags="l" /> 
 		<key id="KEY_ANGLE" mapto="toggleAspectRatio" flags="b" />
 		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="b" />
@@ -939,6 +939,7 @@
 		<key id="KEY_BACK" mapto="back" flags="b"/>
 		<key id="KEY_BACK" mapto="back_long" flags="l"/>
 		<key id="KEY_END" mapto="end" flags="b"/>
+		<key id="KEY_END" mapto="end_long" flags="l"/>
 		<key id="KEY_EPG" mapto="epg" flags="b"/>
 		<key id="KEY_EPG" mapto="epg_long" flags="l"/>
 		<key id="KEY_LEFT" mapto="cross_left" flags="b"/>
@@ -960,6 +961,7 @@
 		<key id="KEY_ARCHIVE" mapto="archive_long" flags="l"/>
 		<key id="KEY_PREVIOUS" mapto="previous" flags="mr"/>
 		<key id="KEY_AUDIO" mapto="audio" flags="b"/>
+		<key id="KEY_AUDIO" mapto="audio_long" flags="l"/>
 		<key id="KEY_PLAY" mapto="play" flags="m"/>
 		<key id="KEY_STOP" mapto="stop" flags="b"/>
 		<key id="KEY_PAUSE" mapto="pause" flags="m"/>
@@ -1001,12 +1003,17 @@
 		<key id="KEY_SLEEP" mapto="sleep" flags="b"/>
 		<key id="KEY_SLEEP" mapto="sleep_long" flags="l"/>
 		<key id="KEY_HOME" mapto="home" flags="b"/>
+		<key id="KEY_HOME" mapto="home_long" flags="l"/>
 		<key id="KEY_SAT" mapto="sat" flags="b" />
 		<key id="KEY_SAT" mapto="sat_long" flags="l" />
 		<key id="KEY_AB" mapto="prov" flags="b" />
 		<key id="KEY_AB" mapto="prov_long" flags="l" />
 		<key id="KEY_CONTEXT_MENU" mapto="contextMenu" flags="b"/>
 		<key id="KEY_CONTEXT_MENU" mapto="context_long" flags="l"/>
+		<key id="KEY_PC" mapto="pc" flags="b" />
+		<key id="KEY_PC" mapto="pc_long" flags="l" />
+		<key id="KEY_LAN" mapto="lan" flags="b" />
+		<key id="KEY_LAN" mapto="lan_long" flags="l" />
 		<key id="KEY_F1" mapto="f1" flags="b"/>
 		<key id="KEY_F1" mapto="f1_long" flags="l"/>
 		<key id="KEY_F2" mapto="f2" flags="b"/>
@@ -1019,6 +1026,8 @@
 		<key id="KEY_F6" mapto="f6_long" flags="l"/>
 		<key id="KEY_AUX" mapto="HDMIin" flags="b"/>
 		<key id="KEY_AUX" mapto="HDMIin_long" flags="l"/>
+		<key id="KEY_ZOOM" mapto="zoom" flags="b"/>
+		<key id="KEY_ZOOM" mapto="zoom_long" flags="l"/>
 	</map>
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />

@@ -134,8 +134,8 @@ def getSkinPath():
 primary_skin_path = getSkinPath()
 
 ##################################################################################################
-if fileExists('/tmp/restore_skins'):
-	os.unlink('/tmp/restore_skins')
+if fileExists('/etc/.restore_skins'):
+	os.unlink('/etc/.restore_skins')
 	import glob
 	for skin in glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.pyo'):
 		try:

@@ -55,68 +55,74 @@ class OscamInfo:
 	version = ""
 
 	def confPath(self):
-		# Find and parse running oscam
-		opath = None
-		owebif = None
+		owebif = False
 		oport = None
-		ipcompiled = "no"
+		opath = None
+		ipcompiled = False
+
+		# Find and parse running oscam
 		if fileExists("/tmp/.oscam/oscam.version"):
-			data = open("/tmp/.oscam/oscam.version", "r").readlines()
-			for i in data:
-				if "configdir:" in i.lower():
-					opath = i.split(":")[1].strip() + "/oscam.conf"
-				elif "web interface support:" in i.lower():
-					owebif = i.split(":")[1].strip()
-				elif "webifport:" in i.lower():
-					oport = i.split(":")[1].strip()
-				elif "ipv6 support:" in i.lower():
-					ipcompiled = i.split(":")[1].strip()
-				else:
-					continue
-		if owebif == "yes" and oport is not "0":
-			return opath, ipcompiled
-		else:
-			return None, None
+			with open('/tmp/.oscam/oscam.version', 'r') as data:
+				for i in data:
+					if "web interface support:" in i.lower():
+						owebif = i.split(":")[1].strip()
+						if owebif == "no":
+							owebif = False
+						elif owebif == "yes":
+							owebif = True
+					elif "webifport:" in i.lower():
+						oport = i.split(":")[1].strip()
+						if oport == "0":
+							oport = None
+					elif "configdir:" in i.lower():
+						opath = i.split(":")[1].strip()
+					elif "ipv6 support:" in i.lower():
+						ipcompiled = i.split(":")[1].strip()
+						if ipcompiled == "no":
+							ipcompiled = False
+						elif ipcompiled == "yes":
+							ipcompiled = True
+					else:
+						continue
+		return owebif, oport, opath, ipcompiled
 
 	def getUserData(self):
-		blocked = True
-		port = "0"
-		ipconfigured = "no"
-		[oscamconf, ipcompiled] = self.confPath()
-		
-		ret = _("file oscam.conf could not be found")
-		if oscamconf is not None:
-			# Assume both errors at once
-			ret = _("oscam webif disabled")
-			if ipcompiled == "yes":
-				ret = ret + ", " + _("oscam webif blocking localhost (::1 and 127.0.0.1)")
-			else:
-				ret = ret + ", " + _("oscam webif blocking localhost (127.0.0.1)")
-			user = pwd = ""
-			data = open(oscamconf, "r").readlines()
-			for i in data:
-				if "httpuser" in i.lower():
-					user = i.split("=")[1].strip()
-				elif "httppwd" in i.lower():
-					pwd = i.split("=")[1].strip()
-				elif "httpport" in i.lower():
-					port = i.split("=")[1].strip()
-					ret = ret.replace(_("oscam webif disabled"),"").strip()
-					if ret.startswith(", "):
-						ret = ret.replace(", ","")
-				elif "httpallowed" in i.lower():
-					allowed = i.split("=")[1].strip()
-					if "::1" in allowed or "127.0.0.1" in allowed:
-						blocked = False
-						ret = ret.replace(_("oscam webif blocking localhost (::1 and 127.0.0.1)"),"").replace(_("oscam webif blocking localhost (127.0.0.1)"),"")
-						if ret.endswith(", "):
-							ret = ret.replace(", ","")
-					if "::1" in allowed and ipcompiled == "yes":
-						ipconfigured = "yes"
-			
-			if not port == "0" and not blocked:
+		[webif, port, conf, ipcompiled] = self.confPath()
+		conf += "/oscam.conf"
+
+		# Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in,
+		# and no user and password are required
+		blocked = False
+		ipconfigured = ipcompiled
+		user = pwd = None
+
+		ret = _("oscam webif disabled")
+
+		if webif and port is not None:
+		# oscam reports it got webif support and webif is running (Port != 0)
+			if conf is not None and os.path.exists(conf):
+				# If we have a config file, we need to investigate it further
+				with open(conf, 'r') as data:
+					for i in data:
+						if "httpuser" in i.lower():
+							user = i.split("=")[1].strip()
+						elif "httppwd" in i.lower():
+							pwd = i.split("=")[1].strip()
+						elif "httpport" in i.lower():
+							port = i.split("=")[1].strip()
+						elif "httpallowed" in i.lower():
+							# Once we encounter a httpallowed statement, we have to assume oscam webif is blocking us ...
+							blocked = True
+							allowed = i.split("=")[1].strip()
+							if "::1" in allowed or "127.0.0.1" in allowed or "0.0.0.0-255.255.255.255" in allowed:
+								# ... until we find either 127.0.0.1 or ::1 in allowed list
+								blocked = False
+							if "::1" not in allowed:
+								ipconfigured = False
+
+			if not blocked:
 				ret = [user, pwd, port, ipconfigured]
-		
+
 		return ret
 
 	def openWebIF(self, part = None, reader = None):
