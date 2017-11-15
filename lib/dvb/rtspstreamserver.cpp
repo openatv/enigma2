@@ -352,7 +352,7 @@ const char *fe_pol[] = {"h", "v", "l", "r", NULL};
 
 int eRTSPStreamClient::satip2enigma(std::string satipstr)
 {
-	int freq1 = 0, pol1 = -1, sys1 = 0, sid = 0;
+	int new_freq = 0, new_pol = -1, new_sys = 0, sid = 0;
 	int do_tune = 0;
 
 	eDVBResourceManager::getInstance(m_mgr);
@@ -374,36 +374,36 @@ int eRTSPStreamClient::satip2enigma(std::string satipstr)
 		src = atoi(u.Query("src").c_str()) - 1;
 
 	if (!u.Query("freq").empty())
-		freq1 = atof(u.Query("freq").c_str()) * 1000;
+		new_freq = atof(u.Query("freq").c_str()) * 1000;
 
 	if (!u.Query("msys").empty())
 	{
-		sys1 = 0;
+		new_sys = 0;
 		const char* s = u.Query("msys").c_str();
 		for (int i = 0; fe_delsys[i]; i++)
 			if (!strncasecmp(s, fe_delsys[i], strlen(fe_delsys[i])))
-				sys1 = i;
+				new_sys = i;
 	}
 
 	if (!u.Query("pol").empty())
 	{
-		pol1 = -1;
+		new_pol = -1;
 		const char* s = u.Query("pol").c_str();
 		for (int i = 0; fe_pol[i]; i++)
 			if (!strncasecmp(s, fe_pol[i], strlen(fe_pol[i])))
-				pol1 = i;
+				new_pol = i;
 	}
 
 	if (!u.Query("sid").empty())
 		sid = atoi(u.Query("sid").c_str());
 
-	if (freq && freq1 && freq != freq1)
+	if (freq && new_freq && freq != new_freq)
 		do_tune = 1;
 
-	if (pol != -1 && pol1 != -1 && pol != pol1)
+	if (pol != -1 && new_pol != -1 && pol != new_pol)
 		do_tune = 1;
 
-	eDebug("initial values, freq %d, pol %d, sys %d, old freq = %d, tune %d", freq1, pol1, sys1, freq, do_tune);
+	eDebug("initial values, freq %d, pol %d, sys %d, old freq = %d, tune %d", new_freq, new_pol, new_sys, freq, do_tune);
 
 	if (do_tune)
 	{
@@ -428,12 +428,12 @@ int eRTSPStreamClient::satip2enigma(std::string satipstr)
 		//return -1;
 	}
 
-	if (freq1)
-		freq = freq1;
-	if (pol1 != -1)
-		pol = pol1;
-	if (sys1)
-		sys = sys1;
+	if (new_freq)
+		freq = new_freq;
+	if (new_pol != -1)
+		pol = new_pol;
+	if (new_sys)
+		sys = new_sys;
 
 	if (!u.Query("addpids").empty())
 		process_pids(_ADD_PIDS, u.Query("addpids"));
@@ -451,7 +451,7 @@ int eRTSPStreamClient::satip2enigma(std::string satipstr)
 
 	eDebug("tunning to %d, pol %d, sys %d", freq, pol, sys);
 
-	if (freq1 && !sref.empty()) // 0 - horizontal, 1 - vertical , 2 ->left, 3->Right
+	if (new_freq && !sref.empty()) // 0 - horizontal, 1 - vertical , 2 ->left, 3->Right
 	{
 		eDebug("Using service ref %s, state %d %d", sref.c_str(), m_state, stateIdle);
 		m_serviceref = sref;
