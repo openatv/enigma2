@@ -148,6 +148,9 @@ class BackupScreen(Screen, ConfigListScreen):
 		self.setTitle(_("Backup is running..."))
 
 	def doBackup(self):
+		self.save_shutdownOK = config.usage.shutdownOK.value
+		config.usage.shutdownOK.setValue(True)
+		config.usage.shutdownOK.save()
 		configfile.save()
 		try:
 			if config.plugins.softwaremanager.epgcache.value:
@@ -204,6 +207,9 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
 
 	def backupFinishedCB(self,retval = None):
+		config.usage.shutdownOK.setValue(self.save_shutdownOK)
+		config.usage.shutdownOK.save()
+		configfile.save()
 		self.close(True)
 
 	def backupErrorCB(self,retval = None):

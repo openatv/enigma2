@@ -67,6 +67,7 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 {
 	struct sockaddr_un serv_addr;
 	strRemoteHost = "";
+	m_port = 0;
 
 	memset(&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sun_family = AF_LOCAL;
