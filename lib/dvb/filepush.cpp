@@ -471,8 +471,8 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 			usleep(5000);
 	}
 	uint64_t ts = getTick() - start;
-	//	if (ts > 1000)
-	eDebug("returning %d bytes, last read %d bytes in %jd ms (iteration %d)", pos, bytes, ts, m_packet_no);
+	if (ts > 1000)
+		eDebug("returning %d bytes, last read %d bytes in %jd ms (iteration %d)", pos, bytes, ts, m_packet_no);
 	if (pos == 0)
 		return bytes;
 	return pos;
