@@ -409,6 +409,7 @@ int64_t eFilePushThreadRecorder::getTick()
 int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 {
 	int it = 0, pos = 0, bytes = 0;
+	int max_pack = 42;
 	int i, left;
 	static int cnt;
 	unsigned char *b;
@@ -416,7 +417,7 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 	while (size - pos >= 188 + 16)
 	{
 		left = size - pos - 16;
-		left = (left > 188 * 7) ? 188 * 7 : ((left / 188) * 188);
+		left = (left > 188 * max_pack) ? 188 * max_pack : ((left / 188) * 188);
 		if (m_packet_no == 0)
 			left = 188;
 		//		eDebug("reading %d bytes, left %d, pos %d", left, size - pos, pos);
