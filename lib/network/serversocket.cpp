@@ -74,6 +74,7 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 	strcpy(serv_addr.sun_path, path.c_str());
 
 	okflag=1;
+	m_port = 0;
 
 	unlink(path.c_str());
 #if HAVE_LINUXSOCKADDR
