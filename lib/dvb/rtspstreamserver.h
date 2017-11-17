@@ -39,9 +39,7 @@ class eRTSPStreamClient : public eDVBServiceStream
 	std::set<int> pids;
 	std::map<int, eServiceReferenceDVB> pid_sr;
 	std::string request;
-	eServiceReferenceDVB service_list[100];
 	std::set<eServiceReferenceDVB> not_cached_sr;
-	int n_service_list;
 	int src, fe;
 	eDVBFrontendParametersSatellite sat;
 	eDVBFrontendParametersTerrestrial ter;

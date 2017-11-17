@@ -89,6 +89,7 @@ public:
 	int pushReply(void *buf, int len);	
 	void sendEvent(int evt);
 	static int64_t getTick();
+	static int read_ts(int fd, unsigned char *buf, int size);
 protected:
 	// This method should write the data out and return the number of bytes written.
 	// If result <0, set 'errno'. The simplest implementation is just "::write(m_buffer, ...)"
