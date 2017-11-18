@@ -492,32 +492,41 @@ def InitAVSwitch():
 	"letterbox": _("Letterbox"),
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 	"panscan": _("Pan&scan")}
+	
+	# vu drivers missing /proc/stb/video/policy2_choices add manuell scale
+	if getBrandOEM() in ('vuplus'):
+		policy2_choices.update({"scale": _("Just scale")})
+
 	try:
-		if "nonliner" in open("/proc/stb/video/policy2_choices").read():
+		policy2_read = open("/proc/stb/video/policy2_choices").read()
+	except:
+		policy2_read = ""
+	try:
+		if "nonliner" in policy2_read:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 			policy2_choices.update({"nonliner": _("Nonlinear")})
 	except:
 		pass
 	try:
-		if "nonlinear" in open("/proc/stb/video/policy2_choices").read():
+		if "nonlinear" in policy2_read:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 			policy2_choices.update({"nonlinear": _("Nonlinear")})
 	except:
 		pass
 	try:
-		if "bestfit" in open("/proc/stb/video/policy2_choices").read():
+		if "bestfit" in policy2_read:
 				# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 			policy2_choices.update({"bestfit": _("Just scale")})
 	except:
 		pass
 	try:
-		if "scale" in open("/proc/stb/video/policy2_choices").read():
+		if "scale" in policy2_read:
 				# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 			policy2_choices.update({"scale": _("Just scale")})
 	except:
 		pass
 	try:
-		if "auto" in open("/proc/stb/video/policy2_choices").read():
+		if "auto" in policy2_read:
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy2_choices.update({"auto": _("Auto")})
 	except:
@@ -526,44 +535,49 @@ def InitAVSwitch():
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 	"panscan": _("Pan&scan")}
+
 	try:
-		if "letterbox" in open("/proc/stb/video/policy_choices").read():
+		policy_read = open("/proc/stb/video/policy_choices").read()
+	except:
+		policy_read = ""
+	try:
+		if "letterbox" in policy_read:
 			# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 			policy_choices.update({"letterbox": _("Letterbox")})
 	except:
 		pass
 	try:
-		if "nonliner" in open("/proc/stb/video/policy_choices").read():
+		if "nonliner" in policy_read:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 			policy_choices.update({"nonliner": _("Nonlinear")})
 	except:
 		pass
 	try:
-		if "nonlinear" in open("/proc/stb/video/policy_choices").read():
+		if "nonlinear" in policy_read:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 			policy_choices.update({"nonlinear": _("Nonlinear")})
 	except:
 		pass
 	try:
-		if "pillarbox" in open("/proc/stb/video/policy_choices").read():
+		if "pillarbox" in policy_read:
 			# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 			policy_choices.update({"pillarbox": _("Pillarbox")})
 	except:
 		pass
 	try:
-		if "bestfit" in open("/proc/stb/video/policy_choices").read():
+		if "bestfit" in policy_read:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 			policy_choices.update({"bestfit": _("Just scale")})
 	except:
 		pass
 	try:
-		if "scale" in open("/proc/stb/video/policy_choices").read():
+		if "scale" in policy_read:
 			# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 			policy_choices.update({"scale": _("Just scale")})
 	except:
 		pass
 	try:
-		if "auto" in open("/proc/stb/video/policy_choices").read():
+		if "auto" in policy_read:
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy_choices.update({"auto": _("Auto")})
 	except:
