@@ -907,8 +907,8 @@ std::string eRTSPStreamClient::describe_frontend()
 		m_channel->getFrontend(frontend);
 		if (frontend)
 		{
-			snr = frontend->readFrontendData(iFrontendInformation_ENUMS::signalQualitydB);
-			strength = frontend->readFrontendData(iFrontendInformation_ENUMS::signalPower);
+			int init_snr = snr = frontend->readFrontendData(iFrontendInformation_ENUMS::signalQuality);
+			int init_str = strength = frontend->readFrontendData(iFrontendInformation_ENUMS::signalPower);
 			status = ((frontend->readFrontendData(iFrontendInformation_ENUMS::frontendStatus) & FE_HAS_LOCK) > 0);
 			if (snr > 65535)
 				snr = snr >> 28;
@@ -916,7 +916,7 @@ std::string eRTSPStreamClient::describe_frontend()
 				snr = snr >> 12;
 			strength = strength >> 8;
 			eDVBFrontend *f = (eDVBFrontend *)(iDVBFrontend *)frontend;
-			eDebug("%s: adapter %d slot %d frequency %d", __FUNCTION__, f->getDVBID(), f->getSlotID(), frontend->readFrontendData(iFrontendInformation_ENUMS::frequency));
+			eDebug("%s: adapter %d slot %d frequency %d, snr: %d -> %d, strength: %d -> %d", __FUNCTION__, f->getDVBID(), f->getSlotID(), frontend->readFrontendData(iFrontendInformation_ENUMS::frequency), init_snr, snr, init_str, strength);
 		}
 	}
 	if (sys == 0)

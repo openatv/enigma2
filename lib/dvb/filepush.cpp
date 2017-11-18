@@ -406,29 +406,68 @@ int64_t eFilePushThreadRecorder::getTick()
 	return (ts.tv_nsec / 1000000) + (ts.tv_sec * 1000);
 }
 
+// wrapper around ::read, to read multiple of 188 or error (it does not block)
+int eFilePushThreadRecorder::read_ts(int fd, unsigned char *buf, int size)
+{
+	int rb = 0, bytes = 0;
+	int left = size;
+	do
+	{
+		rb = ::read(fd, buf + bytes, left);
+		if (rb > 0 && ((bytes % 188) != 0))
+			eDebug("%s read %d out of %d bytes, total %d, size %d, fd %d", ((bytes + rb) % 188) ? "incomplete" : "completed", rb, left, bytes, size, fd);
+
+		if (rb <= 0 && errno != EAGAIN && errno != EINTR)
+			return rb;
+
+		if (rb > 0)
+		{
+			bytes += rb;
+			left -= rb;
+		}
+		if ((bytes % 188) != 0)
+		{
+			left = 188 - (bytes % 188);
+		}
+
+	} while ((bytes % 188) != 0);
+
+	if (bytes == 0)
+		return rb;
+
+	return bytes;
+}
 int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 {
+	unsigned char *buf;
 	int it = 0, pos = 0, bytes = 0;
 	int max_pack = 42;
 	int i, left;
 	static int cnt;
 	unsigned char *b;
 	uint64_t start = getTick();
-	while (size - pos >= 188 + 16)
+	while (size - pos > 188 + 16)
 	{
 		left = size - pos - 16;
-		left = (left > 188 * max_pack) ? 188 * max_pack : ((left / 188) * 188);
-		if (m_packet_no == 0)
-			left = 188;
-		//		eDebug("reading %d bytes, left %d, pos %d", left, size - pos, pos);
-		unsigned char *buf = (unsigned char *)m_buffer;
-		buf += pos;
-		bytes = ::read(fd, buf + 16, left);
-		//		eDebug("read %d bytes from %d", bytes, left);
-		if (bytes <= 0 && errno != EAGAIN && errno != EINTR)
+		left = (left > 188 * max_pack) ? 188 * max_pack : (((int)(left / 188) - 1) * 188);
+		if (left < 188)
 			break;
+
+		buf = (unsigned char *)m_buffer + pos;
+
+		bytes = read_ts(fd, buf + 16, left);
+
+		if (bytes <= 0 && errno != EAGAIN && errno != EINTR)
+		{
+			eDebug("error reading from DMX handle %d, errno %d: %m", fd, errno);
+			break;
+		}
+
 		if (bytes > 0)
 		{
+			if ((bytes % 188) != 0)
+				eDebug("incomplete packet read from %d with size %d", fd, bytes);
+
 			m_packet_no++;
 			it++;
 			for (i = 0; i < bytes; i += 188)
@@ -439,7 +478,7 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 				if ((b[3] & 0x80)) // mark decryption failed if not decrypted by enigma
 				{
 					if ((errs++ % 100) == 0)
-						eDebug("decrypt errs %d, pid %d", errs, pid);
+						eDebug("decrypt errs %d, pid %d, m_buffer %p, pos %d, buf %p, i %d: %02X %02X %02X %02X", errs, pid, m_buffer, pos, buf, i, b[0], b[1], b[2], b[3]);
 					b[1] |= 0x1F;
 					b[2] |= 0xFF;
 				}
@@ -473,7 +512,7 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 	}
 	uint64_t ts = getTick() - start;
 	if (ts > 1000)
-		eDebug("returning %d bytes, last read %d bytes in %jd ms (iteration %d)", pos, bytes, ts, m_packet_no);
+		eDebug("returning %d bytes from %d, last read %d bytes in %jd ms (iteration %d)", pos, size, bytes, ts, m_packet_no);
 	if (pos == 0)
 		return bytes;
 	return pos;
