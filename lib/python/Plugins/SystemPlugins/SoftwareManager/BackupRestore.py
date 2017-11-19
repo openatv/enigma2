@@ -66,6 +66,7 @@ def InitConfig():
 		+eEnv_resolve_multi('/etc/*.emu')\
 		+eEnv_resolve_multi('/etc/cron*')\
 		+eEnv_resolve_multi('/etc/init.d/softcam*')\
+		+eEnv_resolve_multi('/etc/init.d/cardserver*')\
 		+eEnv_resolve_multi('/etc/sundtek.*')\
 		+eEnv_resolve_multi('/usr/sundtek/*')\
 		+eEnv_resolve_multi('/opt/bin/*')\
