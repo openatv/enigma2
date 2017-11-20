@@ -40,50 +40,51 @@ MANDATORY_RIGHTS = ShellCompatibleFunctions.MANDATORY_RIGHTS
 # BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly, shared with ShellCompatibleFunctions for FastRestore
 BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
 
-# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
-BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
-	'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
-	'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
-	'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
-	'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
-	'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
-	'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
-	'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
-	'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
-	'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
-	'/usr/share/enigma2/MetrixHD/skinparts/',
-	'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
-	'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
-	'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
-	'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
-	'/etc/rc3.d/S99tuner.sh',
-	eEnv.resolve("${datadir}/enigma2/keymap.usr"),
-	eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
-	+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
-	+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
-	+eEnv_resolve_multi('/usr/bin/*cam*')\
-	+eEnv_resolve_multi('/etc/*.emu')\
-	+eEnv_resolve_multi('/etc/cron*')\
-	+eEnv_resolve_multi('/etc/init.d/softcam*')\
-	+eEnv_resolve_multi('/etc/sundtek.*')\
-	+eEnv_resolve_multi('/usr/sundtek/*')\
-	+eEnv_resolve_multi('/opt/bin/*')\
-	+eEnv_resolve_multi('/usr/script/*')
-
-# Drop non existant paths from list
-TMPFILES=[]
-for f in BACKUPFILES:
-	if path.exists(f):
-		TMPFILES.append(f)
-BACKUPFILES=TMPFILES
-
 def InitConfig():
+	# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
+	BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
+		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
+		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
+		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
+		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
+		'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
+		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
+		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
+		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
+		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config',
+		'/usr/share/enigma2/MetrixHD/skinparts/',
+		'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
+		'/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db',
+		'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
+		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
+		'/etc/rc3.d/S99tuner.sh',
+		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
+		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
+		+eEnv_resolve_multi('/usr/bin/*cam*')\
+		+eEnv_resolve_multi('/etc/*.emu')\
+		+eEnv_resolve_multi('/etc/cron*')\
+		+eEnv_resolve_multi('/etc/init.d/softcam*')\
+		+eEnv_resolve_multi('/etc/init.d/cardserver*')\
+		+eEnv_resolve_multi('/etc/sundtek.*')\
+		+eEnv_resolve_multi('/usr/sundtek/*')\
+		+eEnv_resolve_multi('/opt/bin/*')\
+		+eEnv_resolve_multi('/usr/script/*')
+
+	# Drop non existant paths from list
+	tmpfiles=[]
+	for f in BACKUPFILES:
+		if path.exists(f):
+			tmpfiles.append(f)
+	backupset=tmpfiles
+
 	config.plugins.configurationbackup = ConfigSubsection()
 	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" %boxtype):
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 	else:
 		config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=BACKUPFILES))
+	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
 	config.plugins.configurationbackup.backupdirs         = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
@@ -160,12 +161,8 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
-			self.backupdirs=""
-			try:
-				self.backupdirs += " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
-			except:
-				InitConfig()
-				self.backupdirs += " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
+			InitConfig()
+			self.backupdirs=" ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
 			for f in config.plugins.configurationbackup.backupdirs.value:
 				if not f.strip("/") in self.backupdirs:
 					self.backupdirs += " " + f.strip("/")
