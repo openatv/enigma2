@@ -5030,7 +5030,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if getMachineBuild() in ('inihdp', 'hd2400', 'dm7080', 'dm820', 'dm900', 'dm920', 'gb7252', 'vuultimo4k', 'vuuno4kse','et13000','sf5008') or getBoxType() in ('spycat4k','spycat4kcombo'):
+		if SystemInfo["HDMIin"]:
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
