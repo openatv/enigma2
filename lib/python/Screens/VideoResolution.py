@@ -65,7 +65,7 @@ class VideoResolution(Screen):
 		}, prio=-1)
 
 		def sortKey(port, mode, rate):
-			return (port, int(mode[0:-1]), mode[-1], rate[0:-2])
+			return (port, int(mode[0:-1]), mode[-1], rate)
 
 		ports = [p[0] for p in config.av.videoport.choices[:]]
 		modes = config.av.videomode
