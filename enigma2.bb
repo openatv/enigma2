@@ -20,6 +20,15 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit autotools-brokensep pkgconfig pythonnative
 
+do_unpack[noexec] = "1"
+do_patch[no_exec] = "1"
+do_populate_sysroot[noexec] = "1"
+do_populate_lic[noexec] = "1"
+do_packagedata[noexec] = "1"
+do_package_write_ipk[noexec] = "1"
+do_rm_work[noexec] = "1"
+do_rm_work_all[noexec] = "1"
+
 ACLOCALDIR = "${B}/aclocal-copy"
 e2_copy_aclocal () {
         rm -rf ${ACLOCALDIR}/
