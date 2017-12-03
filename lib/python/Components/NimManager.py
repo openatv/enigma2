@@ -1142,7 +1142,8 @@ def InitSecParams():
 # the C(++) part should can handle this
 # the configElement should be only visible when diseqc 1.2 is disabled
 
-def InitNimManager(nimmgr, update_slots = []):
+def InitNimManager(nimmgr, update_slots=None):
+	update_slots = [] if update_slots is None else update_slots
 	hw = HardwareInfo()
 	addNimConfig = False
 	try:
