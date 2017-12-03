@@ -484,7 +484,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None, is_empty = False):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type=None, frontend_id = None, i2c = None, is_empty = False):
 		nim_types = ["DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2", "ATSC"]
 
 		if type and type not in nim_types:
@@ -496,7 +496,7 @@ class NIM(object):
 		self.description = description
 		self.has_outputs = has_outputs
 		self.internally_connectable = internally_connectable
-		self.multi_type = multi_type
+		self.multi_type = {} if multi_type is None else multi_type
 		self.i2c = i2c
 		self.frontend_id = frontend_id
 		self.__is_empty = is_empty
