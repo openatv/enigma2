@@ -809,6 +809,10 @@ class NimManager:
 			elif line.startswith("Has_Outputs:"):
 				input = str(line[len("Has_Outputs:") + 1:])
 				entries[current_slot]["has_outputs"] = (input == "yes")
+			# U4 entry is named "Has_Ouput:" (singular, rather than plural and with a spelling mistake!)
+			elif line.startswith("Has_Ouput:"):
+				input = str(line[len("Has_Ouput:") + 1:])
+				entries[current_slot]["has_outputs"] = (input == "yes")
 			elif line.startswith("Internally_Connectable:"):
 				input = int(line[len("Internally_Connectable:") + 1:])
 				entries[current_slot]["internally_connectable"] = input
