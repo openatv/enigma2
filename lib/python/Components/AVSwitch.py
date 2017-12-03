@@ -666,7 +666,7 @@ def InitAVSwitch():
 					"422": _("YCbCr422"),
 					"420": _("YCbCr420")},
 					default = "Edid(Auto)")
-		elif getBoxType() in ('dm900','dm920','vurero4k'):
+		elif getBoxType() in ('dm900','dm920','vuzero4k'):
 			config.av.hdmicolorspace = ConfigSelection(choices={
 					"Edid(Auto)": _("Auto"),
 					"Hdmi_Rgb": _("RGB"),
