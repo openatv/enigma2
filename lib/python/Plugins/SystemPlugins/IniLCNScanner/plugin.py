@@ -166,7 +166,7 @@ class LCN():
 				if unsigned_orbpos == 0xEEEE:  # Terrestrial
 					self.e2services.append(service)
 
-	def writeBouquet(self, filename, name_marker, extras=[]):
+	def writeBouquet(self, filename, name_marker, extras=None):
 		try:
 			f = open(resolveFilename(SCOPE_CONFIG, filename), "w")
 		except Exception, e:

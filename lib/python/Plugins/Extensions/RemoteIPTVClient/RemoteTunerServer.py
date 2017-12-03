@@ -53,10 +53,10 @@ class RemoteTunerServerEditor(ConfigListScreen, Screen):
 			<widget name="text" position="0,470" zPosition="1" size="560,40" font="Regular;28" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, ip = [192, 168, 1, 100], username="root", password="beyonwiz", ftpport=21, ftppassive=False):
+	def __init__(self, session, ip=None, username="root", password="beyonwiz", ftpport=21, ftppassive=False):
 		Screen.__init__(self, session)
 		
-		config.plugins.RemoteStreamConverter.ip.value = ip
+		config.plugins.RemoteStreamConverter.ip.value = [192, 168, 1, 100] if ip is None else ip
 		config.plugins.RemoteStreamConverter.username.value = username
 		config.plugins.RemoteStreamConverter.password.value  = password
 		config.plugins.RemoteStreamConverter.port.value = ftpport
