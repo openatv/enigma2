@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-15 20:30+0300\n"
+"POT-Creation-Date: 2017-11-25 17:25+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
 "Language-Team: MCelliot_g <mcelliot_g@hotmail.com>\n"
@@ -14,7 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#| msgid "Preview selected channel"
 msgid "  Menu key : Select quad channel"
 msgstr "  Πλήκτρο μενού : Επιλογή τετραπλού καναλιού"
 
@@ -24,11 +23,9 @@ msgstr "  Κόκκινο πλήκτρο: Εμφάνιση/Απόκρυψη ον�
 msgid "  REC  "
 msgstr " ΕΓΓΡ "
 
-#| msgid "S-Video"
 msgid " - video0"
 msgstr " - βίντεο0"
 
-#| msgid "S-Video"
 msgid " - video1"
 msgstr " - βίντεo1"
 
@@ -134,6 +131,10 @@ msgstr "%.0f MB"
 
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#| msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgid "%02d.%02d - %02d.%02d"
+msgstr "%02d.%02d - %02d.%02d"
 
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr "%02d.%02d - %02d.%02d (%s%d λεπτ)"
@@ -251,6 +252,10 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr "%d.%m.   "
 
+#| msgid "%a %e/%m  %-H:%M"
+msgid "%e/%m, %-H:%M"
+msgstr "%e/%m, %-H:%M"
+
 msgid "%H:%M"
 msgstr "%H:%M"
 
@@ -284,8 +289,30 @@ msgstr "%s (%s)\n"
 msgid "%s ( %s Cards )"
 msgstr "%s ( %s Κάρτες )"
 
+msgid "%s - Setup"
+msgstr "%s - Εγκατάσταση"
+
+#| msgid "Scan additional SR"
+msgid "%s additional screens"
+msgstr "%s πρόσθετες οθόνες"
+
 msgid "%s is no longer used. Should it be deleted?"
 msgstr "Το %s δεν χρησιμοποιείται πλέον. Να γίνει διαγραφή του;"
+
+#| msgid "Tuner not available."
+msgid "%s not available."
+msgstr "Το %s δεν είναι διαθέσιμο."
+
+#| msgid "Setup"
+msgid "%s Setup"
+msgstr "%s Εγκατάσταση"
+
+msgid ""
+"%s\n"
+"(%s, %d MB free)"
+msgstr ""
+"%s\n"
+"(%s, %d MB ελεύθερα)"
 
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
@@ -327,6 +354,10 @@ msgstr "%sΕμφάνιση 1080i ως 1080p"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
+
+#| msgid "%Y-%m-%d"
+msgid "%Y-%m-%d %H-%M"
+msgstr "%Y-%m-%d %H-%M"
 
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "Το '%s' περιέχει %d αρχείο(α) και %d υπό-φακέλους.\n"
@@ -452,6 +483,9 @@ msgstr "-24"
 
 msgid "/s"
 msgstr "/s"
+
+msgid "/sec]"
+msgstr "/δευτ]"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "φάκελος /usr/share/enigma2"
@@ -1539,6 +1573,9 @@ msgstr "Επιτρέπει ή όχι την εμφάνιση των εικονι
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Επιτρέπει την απόκρυψη των επεκτάσεων γνωστών τύπων αρχείου."
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr "Επιτρέπει την αποστολή ενός αντιγράφου της καταγραφής σε εσάς."
+
 msgid ""
 "Allows you to set the maximum size of the Debug log size (MB). When that "
 "size is reached, a new file will be created."
@@ -1567,6 +1604,9 @@ msgid "alpha then oldest"
 msgstr "άλφα έπειτα το παλιότερο"
 
 msgid "alphabetic"
+msgstr "αλφαβητικά"
+
+msgid "alphabetical"
 msgstr "αλφαβητικά"
 
 msgid "alphabetic reverse"
@@ -1839,6 +1879,12 @@ msgstr "Στο Τέλος:"
 msgid "athletics"
 msgstr "αθλητισμός"
 
+msgid "ATSC"
+msgstr "ATSC"
+
+msgid "ATSC provider"
+msgstr "Πάροχος ATSC"
+
 msgid "Attach a file"
 msgstr "Επισύναψη αρχείου"
 
@@ -1895,6 +1941,9 @@ msgstr "κομμάτια ήχου"
 
 msgid "Audio volume step size"
 msgstr "Μέγεθος βήματος έντασης ήχου"
+
+msgid "Audio volume step size fast mode"
+msgstr "Μέγεθος βήματος έντασης ήχου σε γρήγορη λειτουργία"
 
 msgid "Aufnahme"
 msgstr "Εγγραφή"
@@ -2294,6 +2343,9 @@ msgstr "Μπλε παρατεταμένο"
 msgid "BlueSwitch: Blue-Short/Blue-Long"
 msgstr "Εναλλαγή Μπλε: Μπλε σύντομο/Μπλε παρατεταμένο"
 
+msgid "Bluetooth Setup"
+msgstr "Ρυθμίσεις Bluetooth"
+
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
 
@@ -2324,7 +2376,6 @@ msgstr "Λίστα Μπουκέτων"
 msgid "bouquetname"
 msgstr "όνομα μπουκέτου"
 
-#| msgid "Your %s %s does not support PiP HD"
 msgid "Box or driver is not support Quad PiP."
 msgstr "Ο δέκτης ή ο οδηγός δεν υποστηρίζει το Τετραπλό PiP."
 
@@ -2439,6 +2490,10 @@ msgstr "Σε προσωρινή μνήμη:"
 
 msgid "CAID"
 msgstr "CAID"
+
+#| msgid "CaID: "
+msgid "CaID"
+msgstr "CaID"
 
 msgid "caid:"
 msgstr "caid:"
@@ -2608,6 +2663,9 @@ msgstr "Πληροφορίες CCcam"
 msgid "CCcamInfo Mainmenu"
 msgstr "Κύριο Μενού Πληροφοριών CCcam"
 
+msgid "Celsius"
+msgstr "Κελσίου"
+
 msgid "center"
 msgstr "κέντρο"
 
@@ -2641,6 +2699,9 @@ msgstr "Αλλαγή μπουκέτου στο γρήγορο ζάπινγκ"
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Αλλαγή Λειτουργίας Δέκτη για έλεγχο των Chip Υλικού*"
 
+msgid "Change Configuration mode simple to advanced"
+msgstr "Αλλαγή τύπου Ρυθμίσεων από απλό σε προχωρημένο"
+
 msgid "Change next timer"
 msgstr "Αλλαγή επόμενου χρονοδιακόπτη"
 
@@ -2661,6 +2722,9 @@ msgstr "Αλλαγή ρυθμίσεων επανάληψης και καθυστ
 
 msgid "Change settings for your switch modes: single lnb, tonburst or diseqc"
 msgstr "Αλλαγή ρυθμίσεων λειτουργίας διακοπτών: μονό lnb, ριπή τόνου ή diseqc"
+
+msgid "Change skin"
+msgstr "Αλλαγή θέματος"
 
 msgid "Change step size"
 msgstr "Αλλαγή μεγέθους βήματος"
@@ -2847,6 +2911,9 @@ msgstr "Παιδικά/Εφηβικά"
 msgid "childrens's/youth program (general)"
 msgstr "παδικά/νεανικό πρόγραμμα (γενικά)"
 
+msgid "Chipset"
+msgstr "Chipset"
+
 msgid "Chipset: BCM%s"
 msgstr "Chipset: BCM%s"
 
@@ -2855,6 +2922,9 @@ msgstr "Chipset:\t%s"
 
 msgid "Choice Box"
 msgstr "Πλαίσιο Επιλογών"
+
+msgid "Choice where to put \"%s\""
+msgstr "Επιλογή τοποθεσίας του \"%s\""
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Επιλογή ετικέτας για εύκολη εύρεση μιας εγγραφής."
@@ -3202,21 +3272,15 @@ msgstr ""
 "για ενεργές εγγραφές κατά την προσπάθεια επανεκκίνησης του δέκτη ή του Ε2."
 
 msgid ""
-"Configure how recording filenames are constructed.\n"
-"Standard: Date Time - Channel - Title\n"
-"Very very short: Title\n"
-"Very short: Title - Date Time\n"
-"Short with time: Date Time - Title\n"
-"Short: Date - Title\n"
-"Long: Date Time - Channel - Title - Info"
+"Configure how recording filenames are constructed. Standard: Date Time - "
+"Channel - Title Very very short: Title Very short: Title - Date Time Short "
+"with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - "
+"Title - Info"
 msgstr ""
-"Ρύθμιση του τρόπου σύνθεσης των ονομάτων αρχείου των εγγραφών.\n"
-"Στάνταρ: Ημερομηνία Ώρα - Κανάλι - Τίτλος\n"
-"Πάρα πολύ σύντομα: Τίτλος\n"
-"Πολύ σύντομα: Τίτλος - Ημερομηνία Ώρα\n"
-"Σύντομα με ώρα: Ημερομηνία Ώρα - Τίτλος\n"
-"Σύντομα: Ημερομηνία - Τίτλος\n"
-"Μακριά: Ημερομηνία Ώρα - Κανάλι - Τίτλος - Πληροφορίες"
+"Ρύθμιση του τρόπου σύνθεσης των ονομάτων αρχείου των εγγραφών. Στάνταρ: "
+"Ημερομηνία Ώρα - Κανάλι - Τίτλος Πάρα πολύ σύντομα: Τίτλος Πολύ σύντομα: "
+"Τίτλος - Ημερομηνία Ώρα Σύντομα με ώρα: Ημερομηνία Ώρα - Τίτλος Σύντομα: "
+"Ημερομηνία - Τίτλος Μακριά: Ημερομηνία Ώρα - Κανάλι - Τίτλος - Πληροφορίες"
 
 msgid ""
 "Configure if and how crypto icons will be shown in the channel selection "
@@ -3379,6 +3443,14 @@ msgid "Configure the end coordinate in y of the teletext display area."
 msgstr ""
 "Ρύθμιση της τελευταίας συντεταγμένης y της περιοχής προβολής του "
 "τηλεκειμένου."
+
+msgid ""
+"Configure the fast mode audio volume step size (limit 1-10). Activated when "
+"volume key permanent press or press fast in a row."
+msgstr ""
+"Ρύθμιση της γρήγορης λειτουργίας του μεγέθους βήματος ήχου (όριο 1-10). "
+"Ενεργοποιείται με την παρατεταμένη πίεση του πλήκτρου ήχου ή με τη γρήγορη "
+"σε σειρά."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Ρύθμιση της πρώτης γλώσσας του ήχου (ύψιστη προτεραιότητα)."
@@ -3867,6 +3939,9 @@ msgstr "Πυρήνες: %s"
 msgid "Cores:\t%s"
 msgstr "Πυρήνες:\t%s"
 
+msgid "Could not connect to server"
+msgstr "Αδυναμία σύνδεσης στο διακομιστή"
+
 msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr "Αδυναμία σύνδεσης στην πηγή image .NFI του %s %s:"
 
@@ -3902,6 +3977,9 @@ msgstr "Επεξεργαστής: %s"
 
 msgid "CPU:\t%s"
 msgstr "Επεξεργαστής:\t%s"
+
+msgid "Crash at skin error for debug reasons ?"
+msgstr "Εμφάνιση crash σε σφάλμα θέματος για εκσφαλμάτωση ;"
 
 msgid "Crash Logs"
 msgstr "Καταγραφές Crash"
@@ -4323,6 +4401,9 @@ msgstr "Λεπτομέρειες για το πρόσθετο: "
 
 msgid "Detected Devices:"
 msgstr "Εντοπισμένες Συσκευές:"
+
+msgid "Detected HDD:"
+msgstr "Εντοπισμένοι HDD:"
 
 msgid "Detected NIMs:"
 msgstr "Εντοπισμένα NIMs:"
@@ -5059,6 +5140,9 @@ msgstr "ενεργοποίηση"
 msgid "Enable"
 msgstr "Ενεργοποίηση"
 
+msgid "Enable %s pro:"
+msgstr "Ενεργοποίηση του %s pro:"
+
 msgid "Enable 5V for active antenna"
 msgstr "Ενεργοποίηση των 5V για την ενεργή κεραία"
 
@@ -5094,11 +5178,28 @@ msgstr "Ενεργοποίηση αναβοσβηνόμενου συμβόλου
 msgid "enable bouquet edit"
 msgstr "ενεργοποίηση επεξεργασίας μπουκέτων"
 
+msgid "Enable chapter support for video files"
+msgstr "Ενεργοποίηση υποστήριξης κεφάλαιων για τα αρχεία βίντεο"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr "Ενεργοποίηση CIHelper για τη ΘΥΡΑ CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Ενεργοποίηση CIHelper για τη ΘΥΡΑ CI1"
+
+msgid "Enable cut file support for audio files"
+msgstr "Ενεργοποίηση υποστήριξης αποκοπών αρχείου για τα αρχεία ήχου"
+
+msgid "Enable cut file support for audio files. (e.g. mp3)"
+msgstr ""
+"Ενεργοποίηση υποστήριξης αποκοπών αρχείου για τα αρχεία ήχου. (π.χ. mp3)"
+
+msgid "Enable cut file support for non *.ts files"
+msgstr "Ενεργοποίηση υποστήριξης αποκοπών αρχείου για τα μη *.ts αρχεία"
+
+msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
+msgstr ""
+"Ενεργοποίηση υποστήριξης αποκοπών αρχείου για τα μη *.ts αρχεία. (π.χ. mp4)"
 
 msgid "Enable debug log *"
 msgstr "Ενεργοποίηση καταγραφής εκσφαλμάτωσης *"
@@ -5395,6 +5496,9 @@ msgstr "ιπποδρομίες"
 msgid "Error"
 msgstr "Σφάλμα"
 
+msgid "Error, unknown Result!"
+msgstr "Σφάλμα, άγνωστο Αποτέλεσμα!"
+
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ΣΦΑΛΜΑ - Αποτυχία ανίχνευσης  (%s)!"
 
@@ -5474,21 +5578,6 @@ msgstr "eSATA"
 msgid "Estonian"
 msgstr "Εσθονικά"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000"
-msgstr "et8000/et10000"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "Ethernet network interface"
 msgstr "Διεπαφή ενσύρματου δικτύου"
 
@@ -5515,6 +5604,9 @@ msgstr "Επισκόπηση Προγραμμάτων"
 
 msgid "Eventview menu"
 msgstr "Μενού επισκόπησης προγραμμάτων"
+
+msgid "Everyday"
+msgstr "Καθημερινά"
 
 msgid "Everywhere"
 msgstr "Παντού"
@@ -5617,6 +5709,9 @@ msgstr "Πειραματική λειτουργία"
 
 msgid "Expert"
 msgstr "Προχωρημένο"
+
+msgid "Expert mode"
+msgstr "Προχωρημένη λειτουργία"
 
 msgid "Ext. NumberZap"
 msgstr "Εξωτ. Αριθμός Ζάπιγκ"
@@ -5744,6 +5839,9 @@ msgstr "Επαναφορά εργοστασιακών ρυθμίσεων"
 
 msgid "Fade the Infobar on hide"
 msgstr "Ξεθώριασμα της Μπάρας Πληροφοριών κατά την απόκρυψη"
+
+msgid "Fahrenheit"
+msgstr "Φαρενάιτ"
 
 msgid "Failed"
 msgstr "Απέτυχε"
@@ -5961,6 +6059,9 @@ msgstr "λαϊκή/παραδοσιακή μουσική"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Οι ακόλουθες ενέργειες θα εκτελεστούν αφού πιέσετε ΟΚ!"
 
+msgid "Font:"
+msgstr "Γραμματοσειρά:"
+
 msgid "Fontsize"
 msgstr "Μέγεθος γραμματοσειράς"
 
@@ -6078,11 +6179,18 @@ msgstr "Εμπρόσθιο USB"
 msgid "Front USB 3.0"
 msgstr "Εμπρόσθιο USB 3.0"
 
+msgid "Frontprocessor version: %d"
+msgstr "Έκδοση μετωπιαίου επεξεργαστή: %d"
+
 msgid "Frontprocessor version: %s"
 msgstr "Έκδοση επεξεργαστή: %s"
 
 msgid "Frozen Cam Check"
 msgstr "Έλεγχος Παγωμένου Cam"
+
+#| msgid "Update Cache"
+msgid "FSBL Update Check"
+msgstr "Έλεγχος ενημέρωσης του FSBL"
 
 msgid "FTP"
 msgstr "FTP"
@@ -6098,6 +6206,9 @@ msgstr "Πλήρης εφεδρεία στο %s"
 
 msgid "Full Image Backup "
 msgstr "Πλήρης Εφεδρεία Image "
+
+msgid "Full Range RGB"
+msgstr "Πλήρης κλίμακα RGB"
 
 msgid "Full transparency"
 msgstr "Πλήρης διαφάνεια"
@@ -6639,6 +6750,11 @@ msgstr ""
 "Αν επιλεγεί το 'όχι', μπορείτε να αποθηκεύσετε τις παλιότερες εκπομπές ακόμα "
 "και μετά το ζάπινγκ ή τη διακοπή της χρονομετατόπισης."
 
+msgid "if set to 'no', only an debug message is written to the Debug log "
+msgstr ""
+"αν επιλεγεί το 'όχι', θα γραφτεί μόνο ένα μήνυμα εκσφαλμάτωσης στο "
+"καταγραφολόγιο "
+
 msgid ""
 "If set to 'no', timeshift used only one buffer file. It's recommend "
 "'Timeshift checking for older files [in minutes]' and 'Timeshift checking "
@@ -6776,6 +6892,9 @@ msgstr ""
 "Μην λαμβάνετε υπόψιν τις φωτεινές σκιές τώρα. Θα ρυθμιστούν στο επόμενο "
 "βήμα.\n"
 "Εάν σας ικανοποιεί το αποτέλεσμα, πιέστε ΟΚ."
+
+msgid "Image"
+msgstr "Image"
 
 msgid "Image Backup"
 msgstr "Εφεδρεία Image"
@@ -7025,6 +7144,9 @@ msgstr "Εισαγωγή ονόματος καναλιού."
 msgid "Input devices"
 msgstr "Συσκευές εισόδου"
 
+msgid "Input Stream ID"
+msgstr "ID Ροής Εισόδου"
+
 msgid "insert mark here"
 msgstr "εισαγωγή σημειωτή"
 
@@ -7197,6 +7319,9 @@ msgstr "Το αρχείο ISO είναι πολύ μεγάλο για αυτό �
 msgid "ISO path"
 msgstr "Διαδρομή ISO"
 
+msgid "It follows:"
+msgstr "Ακολουθεί:"
+
 msgid "Italian"
 msgstr "Ιταλικά"
 
@@ -7320,8 +7445,14 @@ msgstr "Επιλογή διάταξης πλήκτρων"
 msgid "Kleiner Test"
 msgstr "Κουίζ"
 
+msgid "Kodi installed:"
+msgstr "Το Kodi εγκαταστάθηκε:"
+
 msgid "Kodi MediaCenter"
 msgstr "Κέντρο Πολυμέσων Kodi"
+
+msgid "Kodi/extra partition free space:"
+msgstr "Kodi/ελεύθερος χώρος πρόσθετου διαμερίσματος:"
 
 msgid "Label"
 msgstr "Ετικέτα"
@@ -7567,6 +7698,9 @@ msgstr "Τοποθεσία"
 
 msgid "Location # (http://weather.yahoo.com/):"
 msgstr "Τοποθεσία # (http://weather.yahoo.com/):"
+
+msgid "Location list"
+msgstr "Λίστα τοποθεσιών"
 
 msgid "Lock ratio"
 msgstr "Κλείδωμα αναλογιών"
@@ -7905,6 +8039,9 @@ msgstr "Λειτουργία 1"
 
 msgid "Mode 2"
 msgstr "Λειτουργία 2"
+
+msgid "Mode for autorestore"
+msgstr "Λειτουργία αυτόματης αποκατάστασης"
 
 msgid "Model: "
 msgstr "Μοντέλο: "
@@ -8529,6 +8666,9 @@ msgstr "Δεν έχει οριστεί χρήστης http στο oscam.conf"
 msgid "no image found"
 msgstr "δεν βρέθηκε image"
 
+msgid "No matching place names found"
+msgstr "Δεν βρέθηκαν συσχετισμένα ονόματα θέσεων"
+
 msgid "no module found"
 msgstr "δεν βρέθηκε άρθρωμα"
 
@@ -9112,6 +9252,9 @@ msgstr "Πληροφορίες Oscam"
 msgid "OscamInfo Mainmenu"
 msgstr "Πληροφορίες Oscam Κύριο Μενού"
 
+msgid "oscam webif disabled"
+msgstr "oscam webif ανενεργό"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -9359,6 +9502,9 @@ msgstr "Οριστική διαγραφή όλων των διεγραμμένω
 msgid "Persian"
 msgstr "Περσικά"
 
+msgid "Personalize your Skin"
+msgstr "Προσαρμογή του Θέματός σας"
+
 msgid "Picon"
 msgstr "Λογότυπο (picon)"
 
@@ -9570,6 +9716,9 @@ msgstr "Εισαγωγή νέας περιγραφής:"
 msgid "Please enter new name:"
 msgstr "Παρακαλώ εισάγετε νέο όνομα:"
 
+msgid "Please enter search string for your location"
+msgstr "Εισάγετε όρο αναζήτησης για την τοποθεσία σας"
+
 msgid "Please enter the correct pin code"
 msgstr "Εισάγετε το σωστό PIN"
 
@@ -9597,6 +9746,9 @@ msgstr "παρακαλώ πιέστε exit για επιστροφή στο με
 
 msgid "Please press OK to continue."
 msgstr "Παρακαλώ πιέστε ΟΚ για συνέχεια."
+
+msgid "Please press OK to start Kodi..."
+msgstr "Παρακαλώ πιέστε OK για να ξεκινήσει το Kodi..."
 
 msgid "please press OK when ready"
 msgstr "πιέστε OK όταν είστε έτοιμοι"
@@ -9884,6 +10036,12 @@ msgstr "pli"
 
 msgid "PLP ID"
 msgstr "PLP ID"
+
+msgid "PLS Code"
+msgstr "PLS Κωδικός"
+
+msgid "PLS Mode"
+msgstr "PLS Λειτουργία"
 
 msgid "Plugin"
 msgstr "Πρόσθετο"
@@ -10216,6 +10374,15 @@ msgstr "Πρόγραμμα"
 msgid "Program long"
 msgstr "Πρόγραμμα παρατεταμένο"
 
+msgid "Programmlisten from DXAndy"
+msgstr "Λίστα Προγραμμάτων από τον DXAndy"
+
+msgid "Programmlisten History"
+msgstr "Ιστορικό λίστας προγραμμάτων"
+
+msgid "Programmlisten Restore"
+msgstr "Επαναφορά λίστας προγραμμάτων"
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "Ενημέρωση λίστας προγραμμάτων από τον DXAndy"
 
@@ -10360,11 +10527,9 @@ msgstr "Python:\t%s"
 msgid "Quad PiP Channel Selection"
 msgstr "Επιλογή Καναλιού Τετραπλού PiP"
 
-#| msgid "Tuner not available."
 msgid "Quad PiP is not available."
 msgstr "Το Τετραπλό PiP δεν είναι διαθέσιμο."
 
-#| msgid "QuitMainloopScreen"
 msgid "Quad PiP Screen"
 msgstr "Οθόνη Τετραπλού PiP"
 
@@ -10944,6 +11109,9 @@ msgstr "Επανεκκίνηση του %s %s."
 msgid "Restart enigma"
 msgstr "Επανεκκίνηση enigma"
 
+msgid "Restart Enigma2 to apply the changes?"
+msgstr "Να γίνει επανεκκίνηση του Enigma2 για να εφαρμοστούν οι αλλαγές;"
+
 msgid "Restart GUI"
 msgstr "Επανεκκίνηση Επιφάνειας Χρήστη"
 
@@ -11391,6 +11559,10 @@ msgstr "Ανίχνευση Δορυφόρων, έλεγχος σήματος κ�
 
 msgid "Search the epg for current event."
 msgstr "Ανίχνευση στο epg για το τρέχον πρόγραμμα."
+
+#| msgid "Select location"
+msgid "Search weather location ID"
+msgstr "Αναζήτηση ID τοποθεσίας καιρού"
 
 msgid "Search west"
 msgstr "Αναζήτηση δυτικά"
@@ -12164,6 +12336,9 @@ msgstr "Ρυθμίσεις..."
 msgid "Setup"
 msgstr "Εγκατάσταση"
 
+msgid "Setup - %s"
+msgstr "Εγκατάσταση - %s"
+
 msgid "Setup AFP"
 msgstr "Ρυθμίσεις AFP"
 
@@ -12530,6 +12705,13 @@ msgstr "Εμφάνιση αριθμού καναλιού στην επιλογή
 msgid "Show channel selection"
 msgstr "Εμφάνιση επιλογής καναλιών"
 
+msgid ""
+"Show chapter positions for supported video files. (gstreamer version must be "
+"greather than 1)"
+msgstr ""
+"Εμφάνιση θέσεων στα κεφάλαια για υποστηριζόμενα αρχεία βίντεο. (η έκδοση του "
+"gstreamer πρέπει να είναι μεγαλύτερη της 1)"
+
 msgid "Show CI messages"
 msgstr "Εμφάνιση μηνυμάτων CI"
 
@@ -12685,6 +12867,9 @@ msgstr "Εμφάνιση λογότυπων (picons) στη μπάρα πληρ�
 msgid "Show job tasks in extensions"
 msgstr "Εμφάνιση εργασιών στις προεκτάσεις"
 
+msgid "Show Live in MiniTV"
+msgstr "Εμφάνιση ζωντανής TV σε MiniTV"
+
 msgid "Show live tv when movie stopped"
 msgstr "Εμφάνιση ζωντανής TV όταν μία ταινία σταματήσει"
 
@@ -12766,6 +12951,9 @@ msgstr "εμφάνιση λογότυπων (picons) στη λίστα υπηρ�
 
 msgid "Show PIP"
 msgstr "Εμφάνιση PIP"
+
+msgid "Show PIP in MiniTV"
+msgstr "Εμφάνιση του PIP σε MiniTV"
 
 msgid "Show PIP in the Front Display"
 msgstr "Εμφάνιση PIP στον Οθόνη Πρόσοψης"
@@ -13046,6 +13234,9 @@ msgstr "Απλή τιτλοδοσία (συμβατότητα με συσκευ�
 msgid "Simple zoom"
 msgstr "Απλό ζουμάρισμα"
 
+msgid "Simplified Chinese"
+msgstr "Απλοποιημένα Κινεζικά"
+
 msgid "Simulate (no write)"
 msgstr "Εξομοίωση (μη εγγραφή)"
 
@@ -13189,6 +13380,9 @@ msgstr "Ταχύτητες αργής κίνησης"
 
 msgid "Small progress"
 msgstr "Μικρή πρόοδος"
+
+msgid "Small Test"
+msgstr "Μικρό Τεστ"
 
 msgid "Smartcard PIN"
 msgstr "PIN έξυπνης κάρτας"
@@ -13335,6 +13529,9 @@ msgstr "Λυπούμαστε, απουσιάζει το αρχείο ρυθμί�
 
 msgid "Sorry no backups found!"
 msgstr "Λυπούμαστε, δεν βρέθηκαν αντίγραφα ασφαλείας!"
+
+msgid "Sorry only possible to record 2 channels at once"
+msgstr "Λυπούμαστε είναι δυνατή μόνο η εγγραφή 2 καναλιών ταυτόχρονα"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Λυπούμαστε, απουσιάζει το αρχείο ρυθμίσεων του uShare"
@@ -13500,6 +13697,10 @@ msgstr "Έναρξη  από την αρχή"
 msgid "Start instant recording"
 msgstr "Έναρξη άμεσης εγγραφής"
 
+#| msgid "Start mode"
+msgid "Start Kodi"
+msgstr "Εκκίνηση του Kodi"
+
 msgid "Start mode"
 msgstr "Λειτουργίαε εκκίνησης"
 
@@ -13561,24 +13762,6 @@ msgstr "Κατάσταση:"
 
 msgid "Step east"
 msgstr "Βήμα ανατολικά"
-
-msgid ""
-"Step value for fast switching or long press the volume button. Depending on "
-"the setting (if greater) and the current volume (if less) will adjusted the "
-"step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Μέγεθος βήματος για γρήγορη αλλαγή ή παρατεταμένη πίεση του πλήκτρου "
-"έντασης. Ανάλογα με τη ρύθμιση (εάν μεγαλύτερη) και την τρέχουσα ένταση (εάν "
-"μικρότερη) θα ρυθμιστεί το βήμα. (30 σε 4, 18 σε 3, 9 σε 2 και 3 σε 1)"
-
-msgid ""
-"Step value for single press the volume button. Depending on the setting (if "
-"greater) and the current volume (if less) will adjusted the step. (30 to 4, "
-"18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Μέγεθος βήματος ανά πίεση του πλήκτρου έντασης. Ανάλογα με τη ρύθμιση (εάν "
-"μεγαλύτερη) και την τρέχουσα ένταση (εάν μικρότερη) θα ρυθμιστεί το βήμα. "
-"(30 σε 4, 18 σε 3, 9 σε 2 και 3 σε 1)"
 
 msgid "Step west"
 msgstr "Βήμα δυτικά"
@@ -13713,6 +13896,12 @@ msgstr "Πληροφορίες πελατών ροής"
 msgid "StreamingClientsInfo"
 msgstr "Πληροφορίες Πελατών Ροής"
 
+msgid "Stretch linear"
+msgstr "Γραμμική κλιμάκωση"
+
+msgid "Stretch nonlinear"
+msgstr "Μη γραμμική κλιμάκωση"
+
 msgid "Strict DLNA"
 msgstr "Αυστηρό DLNA"
 
@@ -13721,6 +13910,9 @@ msgstr "Ρίγες"
 
 msgid "Strongest position"
 msgstr "Ισχυρότερη θέση"
+
+msgid "Style:"
+msgstr "Στυλ:"
 
 msgid "Subservice mode"
 msgstr "Λειτουργία υπο-υπηρεσιών"
@@ -13944,6 +14136,9 @@ msgstr "Μήνυμα Συστήματος"
 
 msgid "System Message Check"
 msgstr "Έλεγχος για Μηνύματα Συστήματος"
+
+msgid "System partition free space:"
+msgstr "Ελεύθερος χώρος διαμερίσματος συστήματος:"
 
 msgid "System Setup"
 msgstr "Ρυθμίσεις Συστήματος"
@@ -15255,6 +15450,9 @@ msgstr "Κομμάτι"
 msgid "traditional (fast)"
 msgstr "παραδοσιακή (γρήγορη)"
 
+msgid "Traditional Chinese"
+msgstr "Παραδοσιακά Κινεζικά"
+
 msgid "Transcode"
 msgstr "Διακωδικοποίηση"
 
@@ -15392,14 +15590,49 @@ msgstr "Κατάσταση tuner"
 msgid "Tuner status %s"
 msgstr "Κατάσταση tuner %s"
 
+msgid "Tuner status FAILED"
+msgstr "Κατάσταση tuner ΑΠΟΤΥΧΙΑ"
+
+msgid "Tuner status IDLE"
+msgstr "Κατάσταση tuner ΑΔΡΑΝΕΙΑ"
+
+msgid "Tuner status LOCKED"
+msgstr "Κατάσταση tuner ΚΛΕΙΔΩΜΑ"
+
+msgid "Tuner status LOSTLOCK"
+msgstr "Κατάσταση tuner ΑΠΩΛΕΙΑ ΚΛΕΙΔΩΜΑΤΟΣ"
+
+msgid "Tuner status TUNING"
+msgstr "Κατάσταση tuner ΣΥΝΤΟΝΙΣΜΟΣ"
+
+msgid "Tuner status UNKNOWN"
+msgstr "Κατάσταση tuner ΑΓΝΩΣΤΟ"
+
 msgid "Tuner type"
 msgstr "Τύπος tuner"
+
+msgid "Tuner type %s"
+msgstr "Τύπος tuner %s"
 
 msgid "TUNER:"
 msgstr "TUNER:"
 
 msgid "Tuning algorithm"
 msgstr "Αλγόριθμος συντονισμού"
+
+msgid "turbo"
+msgstr "τούρμπο"
+
+msgid ""
+"Turbo: One reboot after flash\n"
+"Fast: One reboot after flash, one reboot after restore\n"
+"Slow: One reboot after flash, one reboot after restore in GUI"
+msgstr ""
+"Τούρμπο: Μία επανεκκίνηση μετά το φλασάρισμα\n"
+"Γρήγορο: Μία επανεκκίνηση μετά το φλασμάρισμα, μία επανεκκίνηση μετά την "
+"αποκατάσταση\n"
+"Αργό: Μία επανεκκίνηση μετά το φλασάρισμα, μία επανεκκίνηση μετά την "
+"αποκατάσταση στο γραφικό περιβάλλον"
 
 msgid "Turkish"
 msgstr "Τουρκικά"
@@ -15977,6 +16210,9 @@ msgstr "βαριετέ"
 msgid "VCR scart"
 msgstr "VCR scart"
 
+msgid "Version"
+msgstr "Έκδοση"
+
 msgid "Version: "
 msgstr "Έκδοση: "
 
@@ -16217,12 +16453,6 @@ msgstr "Ένταση"
 msgid "Volume Adjust"
 msgstr "Προσαρμογή Έντασης Ήχου"
 
-msgid "Volume adjust fast"
-msgstr "Γρήγορη ρύθμιση έντασης"
-
-msgid "Volume adjust slow"
-msgstr "Αργή ρύθμιση έντασης"
-
 msgid "Volume Config"
 msgstr "Ρυθμίσεις Έντασης Ήχου"
 
@@ -16348,6 +16578,9 @@ msgstr "Τετάρτη"
 
 msgid "Weekday"
 msgstr "Καθημερινή"
+
+msgid "Weekend"
+msgstr "Σαββατοκύριακο"
 
 msgid "Weekly"
 msgstr "Εβδομαδιαία"
@@ -16555,13 +16788,13 @@ msgid ""
 "When enabled, always descramble receiving http streams. This takes up more "
 "resources (descrambling demuxers), only enable if necessary. Individual "
 "streams are always descrambled if 0x100 is added to the service type, "
-"regardless of this setting. Default off."
+"regardless of this setting."
 msgstr ""
 "Όταν είναι ενεργό, οι λαμβανόμενες ροές http αποκωδικοποιούνται πάντα. Αυτό "
 "καταναλώνει περισσότερους πόρους (αποκωδικοποίηση των αποπλεκτών), και "
 "πρέπει να είναι ενεργό μόνο όταν απαιτείται. Οι ιδιαίτερες εγγραφές "
 "αποκωδικοποιούνται πάντοτε όταν στον τύπο υπηρεσίας προστίθεται το 0x100, "
-"ανεξαρτήτως ρύθμισης. Προεπιλογή ανενεργό."
+"ανεξαρτήτως ρύθμισης."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
@@ -16953,14 +17186,8 @@ msgstr "σε λειτουργία"
 msgid "Would you save the entered PIN %s persistent?"
 msgstr "Θέλετε να αποθηκευτεί το PIN %s που εισήχθη ως σταθερό;"
 
-msgid "WPA"
-msgstr "WPA"
-
 msgid "WPA or WPA2"
 msgstr "WPA ή WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Σφάλμα κατά την εγγραφή. Δίσκος γεμάτος;\n"
@@ -16992,12 +17219,6 @@ msgstr "Www παρατεταμένο"
 
 msgid "XBox 360 support"
 msgstr "Υποστήριξη XBox 360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "Year"
 msgstr "Έτος"
@@ -17135,6 +17356,10 @@ msgstr ""
 "Μπορείτε να επιλέξετε με το κίτρινο το Image για Διαδικτυακό Φλασάρισμα\n"
 " ή να επιλέξετε την Επαναφορά για να δημιουργηθεί ένα Image σε Δίσκο USB για "
 "καθαρή Εγκατάσταση."
+
+msgid "You can switch with left and right this tuner types %s"
+msgstr ""
+"Μπορείτε να αλλάξετε τους τύπους tuner %s με τα πλήκτρα αριστερά και δεξιά"
 
 msgid "You cannot delete this!"
 msgstr "Δεν μπορείτε να διαγράψετε αυτό!"
@@ -17480,9 +17705,6 @@ msgstr ""
 "\n"
 "Επιλέξτε τι θέλετε να γίνει μετά."
 
-msgid "YPbPr"
-msgstr "YPbPr"
-
 msgid "zap"
 msgstr "μετάβαση"
 
@@ -17585,6 +17807,30 @@ msgstr "[Χρονομετατόπιση] Αποτυχία συγχώνευσης
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[Χρονομετατόπιση] Επανεκκίνηση Χρονομετόπισης!"
+
+#| msgid "Please press OK to continue."
+msgid ""
+"\n"
+"   Please press OK to start Kodi..."
+msgstr ""
+"\n"
+"   Παρακαλώ πιέστε OK για να ξεκινήσει το Kodi..."
+
+msgid ""
+"\n"
+"  WARNING: \n"
+"  There is not enough space to install Kodi!"
+msgstr ""
+"\n"
+"  ΠΡΟΕΙΔΟΠΟΙΗΣΗ: \n"
+"  Δεν υπάρχει αρκετός χώρος για την εγκατάσταση του Kodi!"
+
+msgid ""
+"\n"
+" Kodi not present. Proceed with install?"
+msgstr ""
+"\n"
+" Το Kodi δεν βρέθηκε. Να προχωρήσει η εγκατάστασή του;"
 
 msgid ""
 "\n"
@@ -18388,8 +18634,8 @@ msgstr "Ελβετία"
 msgid "Syrian Arab Republic"
 msgstr "Συριακή Αραβική Δημοκρατία"
 
-msgid "[a]"
-msgstr "[a]"
+msgid "Taiwan"
+msgstr "Ταϊβάν"
 
 msgid "Tajikistan"
 msgstr "Τατζικιστάν"
@@ -18484,27 +18730,6 @@ msgstr "Ζάμπια"
 msgid "Zimbabwe"
 msgstr "Ζιμπάμπουε"
 
-msgid "Full Range RGB"
-msgstr "Πλήρης κλίμακα RGB"
-
-msgid "Everyday"
-msgstr "Καθημερινά"
-
-msgid "Weekend"
-msgstr "Σαββατοκύριακο"
-
-msgid "Expert mode"
-msgstr "Προχωρημένη λειτουργία"
-
-msgid "alphabetical"
-msgstr "αλφαβητικά"
-
-msgid "Simplified Chinese"
-msgstr "Απλοποιημένα Κινεζικά"
-
-msgid "Traditional Chinese"
-msgstr "Παραδοσιακά Κινεζικά"
-
 msgid "CPU-Load: %s"
 msgstr "CPU-Φόρτος: %s"
 
@@ -18523,100 +18748,6 @@ msgstr "Flash Μνήμη ελεύθερη: %s MByte"
 msgid "CPU-Speed: %s MHz"
 msgstr "Ταχύτητα CPU: %s MHz"
 
-msgid "%d Mins"
-msgstr "%d Λεπτά"
-
-msgid "%d"
-msgid_plural "%d"
-msgstr[0] "%d"
-msgstr[1] "%d"
-
-msgid "Celsius"
-msgstr "Κελσίου"
-
-msgid "Fahrenheit"
-msgstr "Φαρενάιτ"
-
-msgid "It follows:"
-msgstr "Ακολουθεί:"
-
-msgid "Es folgt:"
-msgstr "Ακολουθεί:"
-
-msgid "Version"
-msgstr "Έκδοση"
-
-msgid "Image"
-msgstr "Image"
-
-msgid "Frontprocessor version: %d"
-msgstr "Έκδοση μετωπιαίου επεξεργαστή: %d"
-
-msgid "Detected HDD:"
-msgstr "Εντοπισμένοι HDD:"
-
-msgid ""
-"%s\n"
-"(%s, %d MB free)"
-msgstr ""
-"%s\n"
-"(%s, %d MB ελεύθερα)"
-
-msgid "Tuner status TUNING"
-msgstr "Κατάσταση tuner ΣΥΝΤΟΝΙΣΜΟΣ"
-
-msgid "Tuner status FAILED"
-msgstr "Κατάσταση tuner ΑΠΟΤΥΧΙΑ"
-
-msgid "Tuner status LOSTLOCK"
-msgstr "Κατάσταση tuner ΑΠΩΛΕΙΑ ΚΛΕΙΔΩΜΑΤΟΣ"
-
-msgid "Tuner status LOCKED"
-msgstr "Κατάσταση tuner ΚΛΕΙΔΩΜΑ"
-
-msgid "Tuner status IDLE"
-msgstr "Κατάσταση tuner ΑΔΡΑΝΕΙΑ"
-
-msgid "Tuner status UNKNOWN"
-msgstr "Κατάσταση tuner ΑΓΝΩΣΤΟ"
-
-msgid "Bluetooth Setup"
-msgstr "Ρυθμίσεις Bluetooth"
-
-msgid "Sorry only possible to record 2 channels at once"
-msgstr "Λυπούμαστε είναι δυνατή μόνο η εγγραφή 2 καναλιών ταυτόχρονα"
-
-msgid "/sec]"
-msgstr "/δευτ]"
-
-msgid "You can switch with left and right this tuner types %s"
-msgstr ""
-"Μπορείτε να αλλάξετε τους τύπους tuner %s με τα πλήκτρα αριστερά και δεξιά"
-
-msgid "Change Configuration mode simple to advanced"
-msgstr "Αλλαγή τύπου Ρυθμίσεων από απλό σε προχωρημένο"
-
-msgid "Input Stream ID"
-msgstr "ID Ροής Εισόδου"
-
-msgid "PLS Mode"
-msgstr "PLS Λειτουργία"
-
-msgid "PLS Code"
-msgstr "PLS Κωδικός"
-
-msgid "No matching place names found"
-msgstr "Δεν βρέθηκαν συσχετισμένα ονόματα θέσεων"
-
-msgid "Programmlisten from DXAndy"
-msgstr "Λίστα Προγραμμάτων από τον DXAndy"
-
-msgid "Programmlisten History"
-msgstr "Ιστορικό λίστας προγραμμάτων"
-
-msgid "Programmlisten Restore"
-msgstr "Επαναφορά λίστας προγραμμάτων"
-
 msgid "Video:"
 msgstr "Βίντεο:"
 
@@ -18626,24 +18757,5 @@ msgstr "Ήχος:"
 msgid "Greek, Modern (1453-)"
 msgstr "Ελληνικά, Νέα (1453-)"
 
-msgid ""
-"Configure how recording filenames are constructed. Standard: Date Time - "
-"Channel - Title Very very short: Title Very short: Title - Date Time Short "
-"with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - "
-"Title - Info"
-msgstr ""
-"Ρύθμιση του τρόπου σύνθεσης των ονομάτων αρχείου των εγγραφών. Στάνταρ: "
-"Ημερομηνία Ώρα - Κανάλι - Τίτλος Πάρα πολύ σύντομα: Τίτλος Πολύ σύντομα: "
-"Τίτλος - Ημερομηνία Ώρα Σύντομα με ώρα: Ημερομηνία Ώρα - Τίτλος Σύντομα: "
-"Ημερομηνία - Τίτλος Μακριά: Ημερομηνία Ώρα - Κανάλι - Τίτλος - Πληροφορίες"
-
 msgid "Internal Flash"
 msgstr "Εσωτερική Flash"
-
-msgid "Crash at skin error for debug reasons ?"
-msgstr "Εμφάνιση crash σε σφάλμα θέματος για εκσφαλμάτωση ;"
-
-msgid "if set to 'no', only an debug message is written to the Debug log"
-msgstr ""
-"αν επιλεγεί το 'όχι', θα γραφτεί μόνο ένα μήνυμα εκσφαλμάτωσης στο "
-"καταγραφολόγιο"
