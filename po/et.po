@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-23 18:15+0300\n"
-"PO-Revision-Date: 2017-10-26 22:28+0300\n"
+"POT-Creation-Date: 2017-11-13 10:50+0200\n"
+"PO-Revision-Date: 2017-11-13 17:41+0200\n"
 "Last-Translator: rimas <rimas@meil.com>\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et_EE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu: Vali Quad PiP kanal"
@@ -104,7 +104,7 @@ msgid ""
 msgstr ""
 "\"\"See plugin valmistab ette USB pulga, mida saab kasutada %s %s püsivara "
 "uuendamiseks ilma võrgu- või WLAN ühenduseta. Esmalt tuleb USB pulk teha "
-"alglaetavaks. Järgmiseks hangitakse uuenduste serverist NFI image fail ja "
+"alglaetavaks. Järgmiseks hangitakse uuenduste serverist NFI püsivara fail ja "
 "salvestatakse see USB pulgale. Kui alglaetav USB pulga juba olemas, siis "
 "ühenda nüüd see. Vastasel korral ühenda min. 64 MB USB pulk!\"\""
 
@@ -289,7 +289,7 @@ msgid "%s - Setup"
 msgstr "%s - Seaded"
 
 msgid "%s additional screens"
-msgstr ""
+msgstr "%s täiendavad ekraanimenüüd"
 
 msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s ei ole enam kasutuses. Kas see tuleks kustutada?"
@@ -1536,6 +1536,9 @@ msgstr "Võimaldab lubada/keelata ikoonide kuvamise esipaneelil."
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Võimaldab peita tuntud failitüüpide laiendid."
 
+msgid "Allows you to send a copy of the log to yourself."
+msgstr "Võimaldab saata logi koopia iseendale."
+
 msgid ""
 "Allows you to set the maximum size of the Debug log size (MB). When that "
 "size is reached, a new file will be created."
@@ -1608,7 +1611,7 @@ msgid "Always hide infobar"
 msgstr "Inforiba alati varjatud"
 
 msgid "Always show bouquets"
-msgstr "Lemmiknimekirju näidatakse iga kord"
+msgstr "Avamisel kuvatakse lemmiknimekirjad"
 
 msgid "Always use smart1080p mode"
 msgstr "Smart1080p alati kasutuses"
@@ -1816,7 +1819,7 @@ msgid "Ask user (with default as 'yes')"
 msgstr "Küsitakse (vaikimisi 'jah')"
 
 msgid "Aspect"
-msgstr ""
+msgstr "Aspect"
 
 #
 msgid "Aspect list..."
@@ -1918,6 +1921,9 @@ msgstr "Heliribad"
 
 msgid "Audio volume step size"
 msgstr "Helitugevuse sammu suurus"
+
+msgid "Audio volume step size fast mode"
+msgstr "Helitugevuse sammu suurus kiirrežiimis"
 
 msgid "Aufnahme"
 msgstr "Salvestus"
@@ -2681,7 +2687,7 @@ msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
 
 msgid "Change Configuration mode simple to advanced"
-msgstr ""
+msgstr "Lihtne seadistusrežiim -> täpsem režiim"
 
 msgid "Change next timer"
 msgstr "Muuda järgmist taimerit"
@@ -2904,7 +2910,7 @@ msgid "Choice Box"
 msgstr "Valikukast"
 
 msgid "Choice where to put \"%s\""
-msgstr ""
+msgstr "Vali \"%s\" asukoht"
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Vali salvestise lihtsaks leidmiseks märksõna."
@@ -3239,21 +3245,15 @@ msgstr ""
 "vastuvõtja või kasutajaliides taaskäivitamisel."
 
 msgid ""
-"Configure how recording filenames are constructed.\n"
-"Standard: Date Time - Channel - Title\n"
-"Very very short: Title\n"
-"Very short: Title - Date Time\n"
-"Short with time: Date Time - Title\n"
-"Short: Date - Title\n"
-"Long: Date Time - Channel - Title - Info"
+"Configure how recording filenames are constructed. Standard: Date Time - "
+"Channel - Title Very very short: Title Very short: Title - Date Time Short "
+"with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - "
+"Title - Info"
 msgstr ""
-"Määra salvestiste failinimede kuju:\n"
-"Tavaline: Kuupäev, kellaaeg - kanal - nimi\n"
-"Ülilühike: Nimi\n"
-"Väga lühike: Nimi - kuupäev, kellaaeg\n"
-"Lühike + nimi: Kuupäev, kellaaeg - Nimi\n"
-"Lühike: Kuupäev - Nimi\n"
-"Pikk: Kuupäev, kellaaeg - kanal - nimi - info"
+"Määra salvestiste failinimede kuju.Tavaline: Kuupäev - kellaaeg - kanal - "
+"nimi Ülilühike: Nimi Väga lühike: Nimi - kuupäev - kellaaeg Lühike "
+"kuupäevaga: Kuupäev, kellaaeg - nimi Lühike: Kuupäev - Nimi Pikk: Kuupäev - "
+"kellaaeg - kanal - nimi - info"
 
 msgid ""
 "Configure if and how crypto icons will be shown in the channel selection "
@@ -3397,6 +3397,13 @@ msgstr "Määra x-koordinaadi lõpp teleteksti kuvaalas."
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Määra y-koordinaadi lõpp teleteksti kuvaalas."
+
+msgid ""
+"Configure the fast mode audio volume step size (limit 1-10). Activated when "
+"volume key permanent press or press fast in a row."
+msgstr ""
+"Seadista helitugevuse kiirrežiimi sammu suurus (vahemikus 1-10). "
+"Aktiveeritakse helitugevuse nupu pikal või kiirel järjestikusel vajutusel."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Määra heli keele esimene eelistus."
@@ -3907,6 +3914,9 @@ msgstr "CPU: %s"
 msgid "CPU:\t%s"
 msgstr "Protsessor:\t%s"
 
+msgid "Crash at skin error for debug reasons ?"
+msgstr "Kujunduse vigade eiramine"
+
 msgid "Crash Logs"
 msgstr "Vealogid"
 
@@ -4005,7 +4015,7 @@ msgid "Currently installed image"
 msgstr "Paigaldatud püsivara"
 
 msgid "currently installed image: %s"
-msgstr "paigaldatud image: %s"
+msgstr "paigaldatud püsivara: %s"
 
 msgid "Custom"
 msgstr "Kohandatud"
@@ -4602,7 +4612,9 @@ msgstr "Kas kustutada see taimer?"
 msgid ""
 "Do you really want to delete\n"
 "%s ?"
-msgstr "Kas kustutada %s?"
+msgstr ""
+"Kas kustutada\n"
+"%s?"
 
 msgid "Do you really want to download the plugin \"%s\"?"
 msgstr "Kas paigaldada plugin \"%s\"?"
@@ -4692,7 +4704,7 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Kas teha uus käsiotsing?"
 
 msgid "Do you want to download the image to %s ?"
-msgstr "Kas laadida tõmmis asukohta %s ?"
+msgstr "Kas laadida tõmmis asukohta %s?"
 
 msgid "Do you want to enable the parental control feature on your %s %s?"
 msgstr "Kas lubada lastelukk %s %s-l?"
@@ -4723,7 +4735,7 @@ msgstr "Kas taaskäivitada %s %s"
 
 #
 msgid "Do you want to reboot your %s %s?"
-msgstr "Kas taaskäivitada %s %s ?"
+msgstr "Kas taaskäivitada %s %s?"
 
 msgid "Do you want to reboot your receiver?"
 msgstr "Kas taaskäivitada vastuvõtja?"
@@ -5115,11 +5127,26 @@ msgstr "Luba vilkuv REC esipaneelil"
 msgid "enable bouquet edit"
 msgstr "Muuda lemmiknimekirju"
 
+msgid "Enable chapter support for video files"
+msgstr "Luba peatüki tugi videofailidele"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr "Luba CIHelper pesale CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Luba CIHelper pesale CI1"
+
+msgid "Enable cut file support for audio files"
+msgstr "Luba audiofailide lõikamine"
+
+msgid "Enable cut file support for audio files. (e.g. mp3)"
+msgstr "Luba audiofailide lõikamine (näiteks mp3)"
+
+msgid "Enable cut file support for non *.ts files"
+msgstr "Luba mitte-ts failide lõikamine"
+
+msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
+msgstr "Luba mitte-ts failide lõikamine (näiteks mp4)"
 
 msgid "Enable debug log *"
 msgstr "Silumislogid lubatud *"
@@ -5203,7 +5230,7 @@ msgid "Enable Swap at startup"
 msgstr "Alglaadimisel saale lubatud"
 
 msgid "Enable teletext caching"
-msgstr "Teleteksti puhverdamine lubatud"
+msgstr "Teleteksti puhverdamine"
 
 msgid "Enable terrestrial LCN:"
 msgstr "Luba dvb-t LCN:"
@@ -5420,6 +5447,9 @@ msgstr "ratsutamine"
 msgid "Error"
 msgstr "Viga"
 
+msgid "Error, unknown Result!"
+msgstr "Viga, tundmatu tulemus!"
+
 msgid "ERROR - failed to scan (%s)!"
 msgstr "VIGA - (%s) otsing nurjus!"
 
@@ -5497,21 +5527,6 @@ msgstr "eSATA"
 
 msgid "Estonian"
 msgstr "Eesti"
-
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000"
-msgstr "et8000/et10000"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
 
 msgid "Ethernet network interface"
 msgstr "Etherneti võrguliides"
@@ -5800,7 +5815,7 @@ msgid "Fallback remote receiver URL"
 msgstr "Kaugvastuvõtja URL"
 
 msgid "false"
-msgstr "väär"
+msgstr "ei"
 
 msgid "Fan %d"
 msgstr "Vent. %d"
@@ -6697,6 +6712,9 @@ msgstr ""
 "Määrates 'ei', saad talletada ajanihke failid ka pärast kanalivahetust või "
 "ajanihke lõppu."
 
+msgid "if set to 'no', only an debug message is written to the Debug log "
+msgstr "Kui keelatud, kirjutatakse silumislogisse ainult silumise sõnum"
+
 msgid ""
 "If set to 'no', timeshift used only one buffer file. It's recommend "
 "'Timeshift checking for older files [in minutes]' and 'Timeshift checking "
@@ -6815,7 +6833,7 @@ msgstr ""
 "Kui oled tulemusega rahul, vajuta OK."
 
 msgid "Image"
-msgstr ""
+msgstr "Püsivara"
 
 msgid "Image Backup"
 msgstr "Täielik süsteemitõmmis"
@@ -7105,7 +7123,7 @@ msgid "Install lcd picons on"
 msgstr "Paigalda lcd kanalilogod asukohta"
 
 msgid "Install local extension"
-msgstr "Paigalda IPK"
+msgstr "IPK paigaldamine"
 
 msgid "Install or remove finished."
 msgstr "Paigaldamine või kustutamine on tehtud."
@@ -7453,7 +7471,7 @@ msgid "Leave DVD player?"
 msgstr "Kas väljuda DVD mängijast?"
 
 msgid "leave movie player..."
-msgstr "Lõpeta taasesitus."
+msgstr "Lõpeta taasesitus"
 
 msgid "LED brightness during deep standby."
 msgstr "LED puhkeseisundis."
@@ -7983,6 +8001,9 @@ msgstr "Režiim 1"
 msgid "Mode 2"
 msgstr "Režiim 2"
 
+msgid "Mode for autorestore"
+msgstr "Automaatse taastamise režiim"
+
 msgid "Model: "
 msgstr "Tüüp: "
 
@@ -8043,7 +8064,7 @@ msgid "Mount failed"
 msgstr "Haakimine nurjus"
 
 msgid "Mount Manager"
-msgstr "Võrgu haakepunktid"
+msgstr "Haakepunktid"
 
 msgid "Mount Setup"
 msgstr "Haakepunktide seadistused"
@@ -8441,10 +8462,10 @@ msgid "Next quad PiP channel"
 msgstr "Järgmine Quad PiP kanal"
 
 msgid "Nextsong"
-msgstr ""
+msgstr "Nextsong"
 
 msgid "Nextsong long"
-msgstr ""
+msgstr "Nextsong - pikk"
 
 msgid "nfi"
 msgstr "nfi"
@@ -8453,7 +8474,7 @@ msgid "NFI image flashing"
 msgstr "NFI tõmmise paigaldamine"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI image on paigaldatud. Taaskäivitamiseks vajuta kollast nuppu!"
+msgstr "NFI tõmmis on paigaldatud. Taaskäivitamiseks vajuta kollast nuppu!"
 
 msgid "NFIDownload"
 msgstr "NFIDownload"
@@ -8878,7 +8899,7 @@ msgid "Not enough free space to record"
 msgstr "Salvestamiseks napib ruumi"
 
 msgid "Not Flashing"
-msgstr "Ei vilgu"
+msgstr "Pidev"
 
 msgid "not locked"
 msgstr "pole lukustatud"
@@ -9069,7 +9090,7 @@ msgstr "Veeb"
 
 # /SoftwareManager/Flash_online.py
 msgid "Online = Download a image and flash it"
-msgstr "Veeb = Laadi alla ja paigalda süsteemitõmmis"
+msgstr "Veeb = Laadi alla ja paigalda püsivara"
 
 #
 msgid "Online software update"
@@ -9208,11 +9229,8 @@ msgstr "Oscam info"
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam info peamenüü"
 
-msgid "oscam webif blocking localhost (127.0.0.1)"
-msgstr ""
-
-msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
-msgstr ""
+msgid "oscam webif disabled"
+msgstr "oscam veebiliides keelatud"
 
 msgid "OSD"
 msgstr "Ekraanigraafika"
@@ -10207,7 +10225,7 @@ msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Eelistatud tuunerid salvestamiseks. Lubatud on mitu valikut"
 
 msgid "Prepare another USB stick for image flashing"
-msgstr "Valmista image paigaldamiseks ette teine USB pulk"
+msgstr "Valmista tõmmise paigaldamiseks ette teine USB pulk"
 
 msgid "Preparing... Please wait"
 msgstr "Ettevalmistamine...Oota"
@@ -10303,10 +10321,10 @@ msgid "Previous"
 msgstr "Eelmine"
 
 msgid "Prevsong"
-msgstr ""
+msgstr "Prevsong"
 
 msgid "Prevsong long"
-msgstr ""
+msgstr "Prevsong - pikk"
 
 msgid "Primary DNS"
 msgstr "Esmane nimeserver"
@@ -10345,7 +10363,7 @@ msgid "Program long"
 msgstr "Program - pikk"
 
 msgid "Programmlisten from DXAndy"
-msgstr ""
+msgstr "DXAndy kanalinimekirjad"
 
 msgid "Programmlisten History"
 msgstr ""
@@ -10472,7 +10490,7 @@ msgid "Put your %s %s in standby"
 msgstr "Vii %s %s ooteseisundisse"
 
 msgid "Put your AV Receiver in standby"
-msgstr "AV ressiiver ootesisundisse"
+msgstr "AV ressiiver ooteseisundisse"
 
 msgid "PU_History"
 msgstr ""
@@ -11163,7 +11181,7 @@ msgid "Restore settings from a backup"
 msgstr "Taasta seadistused varukoopiast"
 
 msgid "Restore system settings"
-msgstr "Taasta seadistused"
+msgstr "Seadistuste taastamine"
 
 msgid ""
 "Restore your settings back from a backup. After restore the box will restart "
@@ -12694,6 +12712,13 @@ msgstr "Kanalinumbrid lemmiknimekirjas"
 msgid "Show channel selection"
 msgstr "Kuva kanalivalik"
 
+msgid ""
+"Show chapter positions for supported video files. (gstreamer version must be "
+"greather than 1)"
+msgstr ""
+"Näita toetatud videofailidel peatüki asukohti (gstreamer peab olema suurem "
+"kui 1)"
+
 msgid "Show CI messages"
 msgstr "Kuva CI teated"
 
@@ -12853,6 +12878,9 @@ msgstr "Kuva kanalilogo inforibal"
 msgid "Show job tasks in extensions"
 msgstr "Kuva tööülesanded laienduste menüüs"
 
+msgid "Show Live in MiniTV"
+msgstr "Telekanal MiniTV-s"
+
 msgid "Show live tv when movie stopped"
 msgstr "Filmi lõppedes tagasi telekanalile"
 
@@ -12937,6 +12965,9 @@ msgstr "Kanalilogod lemmiknimekirjas"
 msgid "Show PIP"
 msgstr "Kuva PiP"
 
+msgid "Show PIP in MiniTV"
+msgstr "PiP MiniTV-s"
+
 msgid "Show PIP in the Front Display"
 msgstr "Kuva PiP esipaneelil"
 
@@ -12944,7 +12975,7 @@ msgid "Show positioner movement"
 msgstr "Ajami liikumise tähistus"
 
 msgid "Show preview of current mode (*)."
-msgstr "Kuva aktiivse režiimi eelvaade *"
+msgstr "Kuva aktiivse režiimi eelvaade (*)."
 
 msgid "show program information..."
 msgstr "Saateinfo"
@@ -13017,7 +13048,7 @@ msgstr "Kuva lähtefailid"
 
 # Menue Anpassungen OSD
 msgid "Show spinning logo when system is busy."
-msgstr "Näita süsteemi hõivatusel animatsiooni"
+msgstr "Näita süsteemi hõivatusel animatsiooni."
 
 msgid "Show status icons in movielist"
 msgstr "Oleku tähistus filmilistis"
@@ -13361,6 +13392,9 @@ msgstr "Aeglustuskiirused"
 msgid "Small progress"
 msgstr "Väike edenemisriba"
 
+msgid "Small Test"
+msgstr "Väike test"
+
 msgid "Smartcard PIN"
 msgstr "Vaatajakaardi PIN"
 
@@ -13439,7 +13473,7 @@ msgid "Software Panel"
 msgstr "Tarkvara paneel"
 
 msgid "Software restore"
-msgstr "Tarkvara taastamine"
+msgstr "Püsivara taastamise abiline"
 
 msgid "Software update"
 msgstr "Tarkvara uuendamine"
@@ -13742,24 +13776,6 @@ msgstr "Olek:"
 
 msgid "Step east"
 msgstr "Samm itta"
-
-msgid ""
-"Step value for fast switching or long press the volume button. Depending on "
-"the setting (if greater) and the current volume (if less) will adjusted the "
-"step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Helitugevuse nupu pika vajutuse sammu väärtus. Sammu suurust kohandatakse "
-"sõltuvalt valikust (kui suurem) ja hetke helitugevusest (kui väiksem). "
-"(30>4, 18>3, 9>2 ja 3>1)"
-
-msgid ""
-"Step value for single press the volume button. Depending on the setting (if "
-"greater) and the current volume (if less) will adjusted the step. (30 to 4, "
-"18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Helitugevuse nupu ühekordse vajutuse sammu väärtus. Sammu suurust "
-"kohandatakse sõltuvalt valikust (kui suurem) ja hetke helitugevusest (kui "
-"väiksem). (30>4, 18>3, 9>2 ja 3>1)"
 
 msgid "Step west"
 msgstr "Samm läände"
@@ -14109,14 +14125,14 @@ msgid "Sync failure moving back to origin !"
 msgstr "Sünkroonimine nurjus, tagasi esialgsele!"
 
 msgid "Sync NTP every (minutes)"
-msgstr "NTP sükroonimise intervall"
+msgstr "Sükroonimise intervall"
 
 msgid "Sync time using"
 msgstr "Aja sünkroonimiseks"
 
 # Zeitenstellung
 msgid "Synchronize systemtime using transponder or internet."
-msgstr "Sünkrooni vastuvõtja aeg kasutades transponderit või internetti."
+msgstr "Sünkrooni süsteemi aeg kasutades transponderit või internetti."
 
 msgid "System"
 msgstr "Süsteem"
@@ -14179,11 +14195,11 @@ msgid "Teletext"
 msgstr "Teletekst"
 
 msgid "Teletext CleanAlgo (resolution reset algorithm)"
-msgstr "Teletekst: lähtestamine (lahutuse lähtestamise algorütm)"
+msgstr "Teleteksti lähtestamine (lahutuse lähtestamise algorütm)"
 
 # UserInterfacePositioner
 msgid "Teletext base visibility"
-msgstr "Teletekst: üldine läbipaistvus"
+msgstr "Teleteksti üldine läbipaistvus"
 
 msgid "Teletext EndX (right border)"
 msgstr "Teletekst: X-lõpp (parem serv)"
@@ -14554,7 +14570,7 @@ msgid ""
 "Now you can download an NFI image file!"
 msgstr ""
 "USB pulk on nüüd alglaaditav.\n"
-"Nüüd saad NFI image faili alla laadida!"
+"Nüüd saad NFI tõmmise alla laadida!"
 
 msgid "The user interface of your %s %s is restarting"
 msgstr "%s %s kasutajaliides taaskäivitub"
@@ -14628,7 +14644,7 @@ msgstr ""
 "On suur oht, et %s %s pärast tarkvarauuendust enam ei käivitu\n"
 "või tema töös esineb tõrkeid.\n"
 "\n"
-"Vajalik on süsteemi uus paigaldus!\n"
+"Vajalik on püsivara uus paigaldus!\n"
 "\n"
 "Kas paigaldada uus süsteemitõmmis?\n"
 "\n"
@@ -15248,7 +15264,7 @@ msgid "Timeshift checking for free space?"
 msgstr "Vaba kettaruumi kontroll ajanihke ajal"
 
 msgid "Timeshift checking for older files [in minutes]"
-msgstr "Vanemate failide kontroll ajanihke ajal (min)"
+msgstr "Vanemate failide kontroll ajanihke ajal (minutites)"
 
 msgid "Timeshift event based file splitting"
 msgstr "Ajanihkefaili tükeldamine saadete järgi"
@@ -15442,8 +15458,7 @@ msgstr "Tõlge"
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "OpenATV-enigma2\n"
-"tõlge eesti keelde\n"
-"Aprill 2017"
+"tõlge eesti keelde"
 
 msgid "Transmission mode"
 msgstr "Edastusviis"
@@ -15474,7 +15489,7 @@ msgid "Tries left:"
 msgstr "Katseid järel:"
 
 msgid "true"
-msgstr "tõene"
+msgstr "jah"
 
 msgid "TrueType font (full-HD)"
 msgstr "TrueType font (FHD)"
@@ -15561,22 +15576,22 @@ msgid "Tuner status %s"
 msgstr "Tuuneri olek %s"
 
 msgid "Tuner status FAILED"
-msgstr ""
+msgstr "Tuuneri olek NURJUS"
 
 msgid "Tuner status IDLE"
-msgstr ""
+msgstr "Tuuneri olek JÕUDE"
 
 msgid "Tuner status LOCKED"
-msgstr ""
+msgstr "Tuuneri olek LUKUSTATUD"
 
 msgid "Tuner status LOSTLOCK"
-msgstr ""
+msgstr "Tuuneri olek LUKK MAAS"
 
 msgid "Tuner status TUNING"
-msgstr ""
+msgstr "Tuuneri olek HÄÄLESTUMINE"
 
 msgid "Tuner status UNKNOWN"
-msgstr ""
+msgstr "Tuuneri olek TEADMATA"
 
 msgid "Tuner type"
 msgstr "Tuuneri tüüp"
@@ -15589,6 +15604,19 @@ msgstr "TUUNER:"
 
 msgid "Tuning algorithm"
 msgstr "Häälestumise algorütm"
+
+msgid "turbo"
+msgstr "Turbo"
+
+msgid ""
+"Turbo: One reboot after flash\n"
+"Fast: One reboot after flash, one reboot after restore\n"
+"Slow: One reboot after flash, one reboot after restore in GUI"
+msgstr ""
+"Turbo: Üks taaskäivitus pärast püsivara paigaldust\n"
+"Kiire: Üks taaskäivitus pärast püsivara paigaldust, üks pärast taastamist\n"
+"Aeglane: Üks taaskäivitus pärast püsivara paigaldust, üks pärast menüü kaudu "
+"taastamist"
 
 msgid "Turkish"
 msgstr "Türgi"
@@ -15643,7 +15671,7 @@ msgid "Ukrainian"
 msgstr "Ukraina"
 
 msgid "Unable to read image number"
-msgstr ""
+msgstr "Püsivara numbri lugemine nurjus"
 
 #
 msgid "Unattended upgrade without GUI"
@@ -16422,12 +16450,6 @@ msgstr "Helitugevus"
 msgid "Volume Adjust"
 msgstr "Helitaseme kohandamine"
 
-msgid "Volume adjust fast"
-msgstr "Helitaseme kohandamine - kiire"
-
-msgid "Volume adjust slow"
-msgstr "Helitaseme kohandamine - aeglane"
-
 msgid "Volume Config"
 msgstr "Helitugevuse seadistamine"
 
@@ -16602,7 +16624,7 @@ msgid ""
 "the firmware of your %s %s by providing a backup facility for your current "
 "settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Tere tulemast süsteemi uuendamise abilisse. Seadistusabiline aitab %s %s "
+"Tere tulemast püsivara uuendamise abilisse. Seadistusabiline aitab %s %s "
 "seadete varundamisel ja püsivara uuendamisel."
 
 #
@@ -16752,12 +16774,11 @@ msgid ""
 "When enabled, always descramble receiving http streams. This takes up more "
 "resources (descrambling demuxers), only enable if necessary. Individual "
 "streams are always descrambled if 0x100 is added to the service type, "
-"regardless of this setting. Default off."
+"regardless of this setting."
 msgstr ""
 "Kui lubatud, dekodeeritakse sisenevad http vood alati. See võtab rohkem "
 "ressursse, luba ainult vajadusel. Konkreetne voog dekodeeritakse hoolimata "
-"seadistustes määratust alati, kui kanalitüübile lisatakse 0x100. "
-"Vaikeväärtus on 'ei'."
+"seadistustes määratust alati, kui kanalitüübile lisatakse 0x100."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kui lubatud, on http voogude vaatamiseks vajalik autentimine."
@@ -18559,8 +18580,8 @@ msgstr "Šveits"
 msgid "Syrian Arab Republic"
 msgstr "Süüria"
 
-msgid "[a]"
-msgstr "[a]"
+msgid "Taiwan"
+msgstr "Taiwan"
 
 msgid "Tajikistan"
 msgstr "Tadžikistan"
@@ -18655,6 +18676,82 @@ msgstr "Zambia"
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
+#~ msgid "oscam webif blocking localhost (127.0.0.1)"
+#~ msgstr "oscam veebiliides blokib localhost'i (127.0.0.1)"
+
+#~ msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
+#~ msgstr "oscam veebiliides blokib localhost'i (::1 ja 127.0.0.1)"
+
+#~ msgid ""
+#~ "Step value for fast switching or long press the volume button. Depending "
+#~ "on the setting (if greater) and the current volume (if less) will "
+#~ "adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
+#~ msgstr ""
+#~ "Helitugevuse nupu pika vajutuse sammu väärtus. Sammu suurust kohandatakse "
+#~ "sõltuvalt valikust (kui suurem) ja hetke helitugevusest (kui väiksem). "
+#~ "(30>4, 18>3, 9>2 ja 3>1)"
+
+#~ msgid ""
+#~ "Step value for single press the volume button. Depending on the setting "
+#~ "(if greater) and the current volume (if less) will adjusted the step. (30 "
+#~ "to 4, 18 to 3, 9 to 2 and 3 to 1)"
+#~ msgstr ""
+#~ "Helitugevuse nupu ühekordse vajutuse sammu väärtus. Sammu suurust "
+#~ "kohandatakse sõltuvalt valikust (kui suurem) ja hetke helitugevusest (kui "
+#~ "väiksem). (30>4, 18>3, 9>2 ja 3>1)"
+
+#~ msgid "Volume adjust fast"
+#~ msgstr "Helitaseme kohandamine - kiire"
+
+#~ msgid "Volume adjust slow"
+#~ msgstr "Helitaseme kohandamine - aeglane"
+
+#~ msgid ""
+#~ "Configure how recording filenames are constructed.\n"
+#~ "Standard: Date Time - Channel - Title\n"
+#~ "Very very short: Title\n"
+#~ "Very short: Title - Date Time\n"
+#~ "Short with time: Date Time - Title\n"
+#~ "Short: Date - Title\n"
+#~ "Long: Date Time - Channel - Title - Info"
+#~ msgstr ""
+#~ "Määra salvestiste failinimede kuju:\n"
+#~ "Tavaline: Kuupäev, kellaaeg - kanal - nimi\n"
+#~ "Ülilühike: Nimi\n"
+#~ "Väga lühike: Nimi - kuupäev, kellaaeg\n"
+#~ "Lühike + nimi: Kuupäev, kellaaeg - Nimi\n"
+#~ "Lühike: Kuupäev - Nimi\n"
+#~ "Pikk: Kuupäev, kellaaeg - kanal - nimi - info"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000"
+#~ msgstr "et8000/et10000"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid ""
+#~ "When enabled, always descramble receiving http streams. This takes up "
+#~ "more resources (descrambling demuxers), only enable if necessary. "
+#~ "Individual streams are always descrambled if 0x100 is added to the "
+#~ "service type, regardless of this setting. Default off."
+#~ msgstr ""
+#~ "Kui lubatud, dekodeeritakse sisenevad http vood alati. See võtab rohkem "
+#~ "ressursse, luba ainult vajadusel. Konkreetne voog dekodeeritakse "
+#~ "hoolimata seadistustes määratust alati, kui kanalitüübile lisatakse "
+#~ "0x100. Vaikeväärtus on 'ei'."
+
+#~ msgid "[a]"
+#~ msgstr "[a]"
+
 #~ msgid "Zgemma H.S/H.2S/H.2H/H5"
 #~ msgstr "Zgemma H.S/H.2S/H.2H/H5"
 
@@ -18675,9 +18772,6 @@ msgstr "Zimbabwe"
 # Help
 #~ msgid "Pauze/Continue playback"
 #~ msgstr "Peata/jätka taasesitust"
-
-#~ msgid "Crash at skin error for debug reasons ?"
-#~ msgstr "Kujunduse vigade eiramine"
 
 # #############
 #~ msgid "/-"
