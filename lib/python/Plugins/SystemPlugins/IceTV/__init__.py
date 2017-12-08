@@ -17,6 +17,7 @@ def getIceTVDeviceType():
         ("Beyonwiz", "T2"): 31,
         ("Beyonwiz", "T3"): 22,
         ("Beyonwiz", "T4"): 30,
+        ("Beyonwiz", "U4"): 36,
     }.get((getMachineBrand(), getMachineName()), 22)
 
 config.plugins.icetv = ConfigSubsection()
