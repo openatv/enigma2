@@ -41,7 +41,7 @@ fi
 
 if [ -x @bindir@/showiframe ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype`
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
 		if [ ! $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 1
 		fi
@@ -147,7 +147,7 @@ ret=$?
 
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype`
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
 		if [ $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 5
 		fi
@@ -157,7 +157,7 @@ fi
 case $ret in
 	1)
 		if [ -e /proc/stb/info/boxtype ]; then
-			stbcheck=`cat /proc/stb/info/boxtype`
+			stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
 			if [ $stbcheck == "u5" ]; then
 				/usr/bin/hihalt
 			else

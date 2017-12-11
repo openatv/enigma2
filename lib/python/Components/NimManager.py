@@ -1,4 +1,4 @@
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
@@ -1186,6 +1186,8 @@ class NimManager:
 				entries[current_slot] = {}
 			elif line.startswith("Type:"):
 				entries[current_slot]["type"] = str(line[6:])
+				if entries[current_slot]["type"] == "DVB-S2X":
+					entries[current_slot]["type"] = "DVB-S2"
 				entries[current_slot]["isempty"] = False
 			elif line.strip().startswith("Input_Name:"):
 				entries[current_slot]["input_name"] = str(line.strip()[12:])
@@ -2201,7 +2203,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	nimmgr.sec = SecConfigure(nimmgr)
 
 	def tunerTypeChanged(nimmgr, configElement):
-		if int(iDVBFrontend.dvb_api_version) < 5:
+		if int(iDVBFrontend.dvb_api_version) < 5 or getBrandOEM() in ('vuplus'):
 			print "dvb_api_version ",iDVBFrontend.dvb_api_version
 			print "api <5 or old style tuner driver"
 			fe_id = configElement.fe_id

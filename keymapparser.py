@@ -30,6 +30,8 @@ def getKeyId(id):
 			raise KeymapError("[keymapparser] key id '" + str(id) + "' is illegal")
 	return keyid
 
+unmapDict = {}
+
 def parseKeys(context, filename, actionmap, device, keys):
 	for x in keys.findall("key"):
 		get_attr = x.attrib.get
@@ -42,6 +44,7 @@ def parseKeys(context, filename, actionmap, device, keys):
 			assert id, "[keymapparser] %s: must specify id in context %s, unmap '%s'" % (filename, context, unmap)
 			keyid = getKeyId(id)
 			actionmap.unbindPythonKey(context, keyid, unmap)	
+			unmapDict.update({(context, id, unmap):filename})
 		else:	
 			assert mapto, "[keymapparser] %s: must specify mapto (or unmap) in context %s, id '%s'" % (filename, context, id)
 			assert id, "[keymapparser] %s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
@@ -53,9 +56,11 @@ def parseKeys(context, filename, actionmap, device, keys):
 
 			assert flags, "[keymapparser] %s: must specify at least one flag in context %s, id '%s'" % (filename, context, id)
 
-#			print "[keymapparser] " + context + "::" + mapto + " -> " + device + "." + hex(keyid)
-			actionmap.bindKey(filename, device, keyid, flags, context, mapto)
-			addKeyBinding(filename, keyid, context, mapto, flags)
+			# if a key was unmapped, it can only be assigned a new function in the same keymap file (avoid file parsing sequence dependency)
+			if unmapDict.get((context, id, mapto)) in [filename, None]:
+#				print "[keymapparser] " + context + "::" + mapto + " -> " + device + "." + hex(keyid)
+				actionmap.bindKey(filename, device, keyid, flags, context, mapto)
+				addKeyBinding(filename, keyid, context, mapto, flags)
 
 def parseTrans(filename, actionmap, device, keys):
 	for x in keys.findall("toggle"):
