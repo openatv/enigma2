@@ -195,6 +195,13 @@
 		<widget source="entry" render="Label" position="top" size="*,61" font="FdLcD;50" halign="left" />
 		<widget source="desc" render="Label" position="fill" font="FdLcD;22" valign="top" />
 	</screen>
+	
+<!-- Servicescan -->
+	<screen name="ServiceScanSummary" position="0,0" size="400,240">
+		<widget name="Title" position="0,0" size="400,85" font="FdLcD;28" halign="center" valign="center" />
+		<widget name="scan_progress" position="0,100" size="400,35"  borderWidth="2" />
+		<widget name="Service" position="0,150" size="400,85" font="FdLcD;28" halign="center" valign="center" />
+	</screen>
 
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="0,0" size="400,240">
