@@ -110,7 +110,6 @@ void DumpUnfreed();
 
 #define CHECKFORMAT __attribute__ ((__format__(__printf__, 1, 2)))
 
-extern sigc::signal2<void, int, const std::string&> logOutput;
 extern int logOutputConsole;
 extern int logOutputColors;
 

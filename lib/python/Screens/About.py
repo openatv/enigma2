@@ -137,7 +137,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s'):
+	if getMachineBuild() not in ('vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr'):
 		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
@@ -628,6 +628,15 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
+		wlan1 = about.getIfConfig('wlan1')
+		if wlan1.has_key('addr'):
+			self.AboutText += _("IP:") + "\t" + wlan1['addr'] + "\n"
+			if wlan1.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t" + wlan1['netmask'] + "\n"
+			if wlan1.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t" + wlan1['hwaddr'] + "\n"
+			self.iface = 'wlan1'
+
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
 		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
 		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
@@ -649,7 +658,7 @@ class SystemNetworkInfo(Screen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					if self.iface == 'wlan0' or self.iface == 'ra0':
+					if self.iface == 'wlan0' or self.iface == 'wlan1' or self.iface == 'ra0':
 						if status[self.iface]["essid"] == "off":
 							essid = _("No Connection")
 						else:

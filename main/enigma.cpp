@@ -275,8 +275,6 @@ int main(int argc, char **argv)
 	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
 	printf("DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
-	bsodLogInit();
-
 	ePython python;
 	eMain main;
 
