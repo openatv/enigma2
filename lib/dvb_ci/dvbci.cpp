@@ -333,6 +333,8 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	std::stringstream path;
 
 	instance = this;
+	m_stream_interface = interface_none;
+	m_stream_finish_mode = finish_none;
 
 	eDebug("[CI] scanning for common interfaces..");
 
@@ -380,6 +382,38 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	}
 
 	eDebug("[CI] done, found %d common interface slots", num_ci);
+
+	if (num_ci)
+	{
+		static const char *proc_ci_choices = "/proc/stb/tsmux/ci0_input_choices";
+
+		if (CFile::contains_word(proc_ci_choices, "PVR"))	// lowest prio = PVR
+			m_stream_interface = interface_use_pvr;
+
+		if (CFile::contains_word(proc_ci_choices, "DVR"))	// low prio = DVR
+			m_stream_interface = interface_use_dvr;
+
+		if (CFile::contains_word(proc_ci_choices, "DVR0"))	// high prio = DVR0
+			m_stream_interface = interface_use_dvr;
+
+		if (m_stream_interface == interface_none)			// fallback = DVR
+		{
+			m_stream_interface = interface_use_dvr;
+			eDebug("[CI] Streaming CI routing interface not advertised, assuming DVR method");
+		}
+
+		if (CFile::contains_word(proc_ci_choices, "PVR_NONE"))	// low prio = PVR_NONE
+			m_stream_finish_mode = finish_use_pvr_none;
+
+		if (CFile::contains_word(proc_ci_choices, "NONE"))		// high prio = NONE
+			m_stream_finish_mode = finish_use_none;
+
+		if (m_stream_finish_mode == finish_none)				// fallback = "tuner"
+		{
+			m_stream_finish_mode = finish_use_tuner_a;
+			eDebug("[CI] Streaming CI finish interface not advertised, assuming \"tuner\" method");
+		}
+	}
 }
 
 eDVBCIInterfaces::~eDVBCIInterfaces()
@@ -806,9 +840,29 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 								 *
 								 * No need to set tuner input (setInputSource), because we have no tuner.
 								 */
-								std::stringstream source;
-								source << "DVR" << channel->getDvrId();
-								ci_it->setSource(source.str());
+
+								switch(m_stream_interface)
+								{
+									case interface_use_dvr:
+									{
+										std::stringstream source;
+										source << "DVR" << channel->getDvrId();
+										ci_it->setSource(source.str());
+										break;
+									}
+
+									case interface_use_pvr:
+									{
+										ci_it->setSource("PVR");
+										break;
+									}
+
+									default:
+									{
+										eDebug("[CI] warning: no valid CI streaming interface");
+										break;
+									}
+								}
 							}
 						}
 						ci_it->current_tuner = tunernum;
@@ -892,13 +946,52 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 				caids.push_back(0xFFFF);
 				slot->sendCAPMT(pmthandler, caids);  // send a capmt without caids to remove a running service
 				slot->removeService(service_to_remove.getServiceID().get());
-				/* restore ci source to the default (tuner "A") */
 				if (slot->current_tuner == -1)
+				{
+					// no previous tuner to go back to, signal to CI interface CI action is finished
+
+					std::string finish_source;
+
+					switch (m_stream_finish_mode)
+					{
+						case finish_use_tuner_a:
+						{
 #ifdef DREAMBOX_DUAL_TUNER
-					slot->setSource(getTunerLetterDM(0));
+							finish_source = getTunerLetterDM(0);
 #else
-					slot->setSource("A");
+							finish_source = "A";
 #endif
+							break;
+						}
+
+						case finish_use_pvr_none:
+						{
+							finish_source = "PVR_NONE";
+							break;
+						}
+
+						case finish_use_none:
+						{
+							finish_source = "NONE";
+							break;
+						}
+
+						default:
+							(void)0;
+					}
+
+					if(finish_source == "")
+					{
+						eDebug("[CI] warning: CI streaming finish mode not set, assuming \"tuner A\"");
+#ifdef DREAMBOX_DUAL_TUNER
+							finish_source = getTunerLetterDM(0);
+#else
+							finish_source = "A";
+#endif
+					}
+
+					slot->setSource(finish_source);
+				}
 			}
 
 			if (!--slot->use_count)

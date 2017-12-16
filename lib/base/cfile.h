@@ -41,6 +41,8 @@ struct CFile
 	static int writeInt(const char *filename, int value);
 	static int writeStr(const char *filename, std::string value);
 	static int write(const char *filename, const char *value);
+	static std::string read(const std::string &filename);
+	static bool contains_word(const std::string &filename, const std::string &word);
 };
 
 #endif

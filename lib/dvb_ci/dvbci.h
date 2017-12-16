@@ -172,7 +172,25 @@ typedef std::list<CIPmtHandler> PMTHandlerList;
 
 class eDVBCIInterfaces
 {
+private:
+	typedef enum
+	{
+		interface_none,
+		interface_use_dvr,
+		interface_use_pvr,
+	} stream_interface_t;
+
+	typedef enum
+	{
+		finish_none,
+		finish_use_tuner_a,
+		finish_use_pvr_none,
+		finish_use_none,
+	} stream_finish_mode_t;
+
 	DECLARE_REF(eDVBCIInterfaces);
+	stream_interface_t m_stream_interface;
+	stream_finish_mode_t m_stream_finish_mode;
 	static eDVBCIInterfaces *instance;
 	eSmartPtrList<eDVBCISlot> m_slots;
 	eDVBCISlot *getSlot(int slotid);
