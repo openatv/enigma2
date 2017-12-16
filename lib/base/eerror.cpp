@@ -80,7 +80,6 @@ void DumpUnfreed()
 };
 #endif
 
-sigc::signal2<void, int, const std::string&> logOutput;
 int logOutputConsole = 1;
 int logOutputColors = 1;
 
@@ -89,6 +88,61 @@ static bool inNoNewLine = false;
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+#define RINGBUFFER_SIZE 16384
+static char ringbuffer[RINGBUFFER_SIZE];
+static unsigned int ringbuffer_head;
+
+static void logOutput(const char *data, unsigned int len)
+{
+	while (len)
+	{
+		unsigned int remaining = RINGBUFFER_SIZE - ringbuffer_head;
+
+		if (remaining > len)
+			remaining = len;
+
+		memcpy(ringbuffer + ringbuffer_head, data, remaining);
+		len -= remaining;
+		data += remaining;
+		ringbuffer_head += remaining;
+		ASSERT(ringbuffer_head <= RINGBUFFER_SIZE);
+		if (ringbuffer_head == RINGBUFFER_SIZE)
+			ringbuffer_head = 0;
+	}
+}
+
+static void logOutput(int level, const std::string &log)
+{
+	logOutput(log.c_str(), log.size());
+}
+
+void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2)
+{
+	unsigned int begin = ringbuffer_head;
+	while (ringbuffer[begin] == 0)
+	{
+		++begin;
+		if (begin == RINGBUFFER_SIZE)
+			begin = 0;
+		if (begin == ringbuffer_head)
+			return;
+	}
+
+	if (begin < ringbuffer_head)
+	{
+		*p1 = ringbuffer + begin;
+		*s1 = ringbuffer_head - begin;
+		*p2 = NULL;
+		*s2 = 0;
+	}
+	else
+	{
+		*p1 = ringbuffer + begin;
+		*s1 = RINGBUFFER_SIZE - begin;
+		*p2 = ringbuffer;
+		*s2 = ringbuffer_head;
+	}
+}
 
 static const char *alertToken[] = {
 // !!! all strings must be written in lower case !!!
@@ -188,7 +242,6 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	removeAnsiEsc(buf, ncbuf);
-	singleLock s(DebugLock);
 	logOutput(lvlFatal, std::string(header) + std::string(ncbuf) + "\n");
 
 	if (!logOutputColors)
@@ -259,7 +312,6 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 		snprintf(flagstring, sizeof(flagstring), "%s", "[   ]");
 
 	snprintf(header, sizeof(header), "%s%s %s %s:%d %s ", inNoNewLine?"\n":"", timebuffer, flagstring, file, line, function);
-	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(header) + std::string(ncbuf) + "\n");
 	if (logOutputConsole)
 	{
@@ -318,7 +370,6 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 		snprintf(flagstring, sizeof(flagstring), "%s", "<   >");
 
 	snprintf(header, sizeof(header), "%s%s %s %s:%d %s ", inNoNewLine?"\n":"", timebuffer, flagstring, file, line, function);
-	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(header) + std::string(ncbuf));
 	if (logOutputConsole)
 	{
@@ -358,7 +409,6 @@ void eDebugNoNewLine(const char* fmt, ...)
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	removeAnsiEsc(buf, ncbuf);
-	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(ncbuf));
 	if (logOutputConsole)
 	{
@@ -385,7 +435,6 @@ void eDebugNoNewLineEnd(const char* fmt, ...)
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	va_end(ap);
 	removeAnsiEsc(buf, ncbuf);
-	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string(ncbuf) + "\n");
 	if (logOutputConsole)
 	{
@@ -423,7 +472,6 @@ void eDebugNoNewLineEnd(const char* fmt, ...)
 
 void eDebugEOL(void)
 {
-	singleLock s(DebugLock);
 	logOutput(lvlDebug, std::string("\n"));
 	if (logOutputConsole)
 	{
@@ -455,7 +503,6 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 	vsnprintf(buf, sizeof(buf), fmt, ap);
 	removeAnsiEsc(buf, ncbuf);
 	va_end(ap);
-	singleLock s(DebugLock);
 	logOutput(lvlWarning, std::string(header) + std::string(ncbuf) + "\n");
 	if (logOutputConsole)
 	{
@@ -527,7 +574,6 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 		snprintf(flagstring, sizeof(flagstring), "%s", "{ D }");
 		snprintf(header, sizeof(header), "%s%s %s ", inNoNewLine?"\n":"", timebuffer, flagstring);
 	}
-	singleLock s(DebugLock);
 	logOutput(lvlWarning, std::string(header) + std::string(ncbuf));
 	if (logOutputConsole)
 	{
