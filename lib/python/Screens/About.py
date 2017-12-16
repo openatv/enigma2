@@ -658,7 +658,7 @@ class SystemNetworkInfo(Screen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					if self.iface == 'wlan0' or 'wlan1' or self.iface == 'ra0':
+					if self.iface == 'wlan0' or self.iface == 'wlan1' or self.iface == 'ra0':
 						if status[self.iface]["essid"] == "off":
 							essid = _("No Connection")
 						else:
