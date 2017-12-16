@@ -12,6 +12,7 @@
 #include <dvbsi++/registration_descriptor.h>
 #include <dvbsi++/extension_descriptor.h>
 #include <dvbsi++/frequency_list_descriptor.h>
+#include <lib/base/nconfig.h> // access to python config
 #include <lib/dvb/specs.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/scan.h>
@@ -132,7 +133,8 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 eDVBNamespace eDVBScan::buildNamespace(eOriginalNetworkID onid, eTransportStreamID tsid, unsigned long hash)
 {
 		// on valid ONIDs, ignore frequency ("sub network") part
-	if (isValidONIDTSID((hash >> 16) & 0xFFFF, onid, tsid))
+	if (eConfigManager::getConfigBoolValue("config.usage.subnetwork", true)
+		&& isValidONIDTSID((hash >> 16) & 0xFFFF, onid, tsid))
 		hash &= ~0xFFFF;
 	return eDVBNamespace(hash);
 }
