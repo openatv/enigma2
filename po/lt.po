@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-25 17:25+0300\n"
-"PO-Revision-Date: 2017-11-25 17:22+0200\n"
+"POT-Creation-Date: 2017-12-17 02:25+0300\n"
+"PO-Revision-Date: 2017-12-17 11:46+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.5\n"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas: Pasirinkite, keturių kanalų, kanalą"
@@ -761,7 +761,7 @@ msgid "29.97"
 msgstr "29.97"
 
 msgid "2nd infobar"
-msgstr "Antra infojuosta"
+msgstr "Antra info juosta"
 
 msgid "2nd Infobar ECM"
 msgstr "Antros infojuostos ECM"
@@ -1644,7 +1644,7 @@ msgid "Always ask"
 msgstr "Visada klausti"
 
 msgid "Always hide infobar"
-msgstr "Visada paslėpti infojuostą"
+msgstr "Visada paslėpti info juostą"
 
 msgid "Always show bouquets"
 msgstr "Visada rodyti paketus"
@@ -3322,7 +3322,7 @@ msgid "Configure if service picons will be shown in quickzap."
 msgstr "Nustatykite, ar kanalų logotipai bus rodomi greitame jungime."
 
 msgid "Configure if service picons will be shown in the servicelist."
-msgstr "Konfigūruoti, jei kanalo piktograma bus rodomas kanalų sąraše."
+msgstr "Konfigūruoti, jei kanalo logotipas bus rodomas kanalų sąraše."
 
 msgid ""
 "Configure if the subtitle should switch between normal, italic, bold and "
@@ -3674,7 +3674,7 @@ msgstr "Konfigūruokite TrueType šrifto raidžių plotį, naudojamą teletekstu
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
-"Konfigūruokite EPG, kad rodyti kanalų pavadinimus, piktograma, ar abu kartu."
+"Konfigūruokite EPG, kad rodyti kanalų pavadinimus, logotipus, ar abu kartu."
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr ""
@@ -4574,7 +4574,7 @@ msgid "Display Setup"
 msgstr "Monitoriaus valdymas"
 
 msgid "Display the EIT now/next eventdata in infobar."
-msgstr "Infojuostoje rodyti EIT dabar/sekantis įvykių duomenis."
+msgstr "Info juostoje rodyti EIT dabar/sekantis įvykių duomenis."
 
 msgid "DLNA support"
 msgstr "DLNA palaikymas"
@@ -5126,7 +5126,7 @@ msgid ""
 "Enable and set the duration of the second infobar (press OK twice) that may "
 "include more information on the current service."
 msgstr ""
-"Įjunkite ir nustatykite antrosios infojuostos rodymo trukmę (paspaudus du "
+"Įjunkite ir nustatykite antrosios info juostos rodymo trukmę (paspaudus du "
 "kartus 'OK'). Ji suteiks papildomos, platesnės informacijos apie žiūrimą "
 "kanalą."
 
@@ -5195,7 +5195,7 @@ msgid "Enable freesat EPG"
 msgstr "Įjungti freesat EPG"
 
 msgid "Enable infobar fade-out"
-msgstr "Įjungti infojuostos palaipsnį išnykimą"
+msgstr "Įjungti info juostos išnykimą"
 
 msgid "Enable intro screen"
 msgstr "Įjungti įvadinį vaizdą"
@@ -6048,6 +6048,9 @@ msgstr "priverstinai AC3plus"
 msgid "Force de-interlace"
 msgstr "Priverstinis vaizdo eilučių suliejimas"
 
+msgid "Force Legacy Signal Stats"
+msgstr "Priverstinė pasenusių signalų statistika"
+
 msgid "Force LNB Power"
 msgstr "Priverstinė LNB įtampa"
 
@@ -6755,7 +6758,7 @@ msgstr ""
 "kanalų sąrašas."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
-msgstr "Jei nustatyta 'taip', infojuostoje bus rodomas kanalo numeris."
+msgstr "Jei nustatyta 'taip', info juostoje bus rodomas kanalo numeris."
 
 msgid ""
 "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' "
@@ -6766,10 +6769,10 @@ msgstr ""
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr ""
-"Jei nustatyta 'taip', naujam įvykiui prasidedant, bus rodoma infojuosta."
+"Jei nustatyta 'taip', naujam įvykiui prasidedant, bus rodoma info juosta."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr "Jei nustatyta 'taip', perjungiant kanalus, bus rodoma infojuosta."
+msgstr "Jei nustatyta 'taip', perjungiant kanalus, bus rodoma info juosta."
 
 msgid ""
 "If set to 'yes' you can preview channels in the channel list. Press 'OK' to "
@@ -6801,14 +6804,14 @@ msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
-"Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medija failų "
-"atkūrimo metu, bus rodoma infojuosta."
+"Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medijos failų "
+"atkūrimo metu, bus rodoma info juosta."
 
 msgid ""
 "If set to 'yes; the infobar will remain shown permanently in 'paused' state "
 "(no timeout)."
 msgstr ""
-"Jeigu nustatyta 'taip; infojuosta bus rodoma visą laiką \"pauzės\" būsenoje "
+"Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" būsenoje "
 "(be pertraukos)."
 
 msgid ""
@@ -6854,14 +6857,17 @@ msgstr ""
 "žingsnyje.\n"
 "Jeigu Jūs patenkinti gautu rezultatu, spauskite OK."
 
+msgid "Ignore DVB namespace sub network"
+msgstr "Ignoruoti DVB pavadinimų potinklį"
+
 msgid "Image"
 msgstr "Atvaizdas"
 
 msgid "Image Backup"
-msgstr "Atvaizdo atsarginė kopija"
+msgstr "Atsarginė atvaizdo kopija"
 
 msgid "Image flash utility"
-msgstr "Atvaizdo diegimo programėlė"
+msgstr "Atvaizdo įdiegimo programėlė"
 
 msgid "Image Info"
 msgstr "Atvaizdo informacija"
@@ -6876,28 +6882,28 @@ msgid "Image Version"
 msgstr "Atvaizdo versija"
 
 msgid "Image-Version"
-msgstr "Atvaizdo versija"
+msgstr "Atvaizdo-versija"
 
 msgid "ImageWizard"
 msgstr "Atvaizdo vedlys"
 
 msgid "IMDb Details"
-msgstr "IMDb išsami informacija"
+msgstr "IMDb detaliau"
 
 msgid "IMDB Search"
 msgstr "IMDB paieška"
 
 msgid "IMDB search"
-msgstr "IMDb paieška"
+msgstr "IMDB paieška"
 
 msgid "IMDb Search"
 msgstr "IMDb paieška"
 
 msgid "IMDB search for current event"
-msgstr "Ieškoti šio įvykio IMDb"
+msgstr "Ieškoti šio įvykio IMDB"
 
 msgid "Immediate shutdown"
-msgstr "Išjungimas nedelsiant"
+msgstr "Nedelsiant išjungti"
 
 msgid ""
 "In addition to the check at an event start, a repetitive check can be used, "
@@ -6955,7 +6961,7 @@ msgid "Include AIT in recordings"
 msgstr "Įtraukti AIT į įrašus"
 
 msgid "Include CI assignment"
-msgstr "CI priskyrimas"
+msgstr "Įtraukti CI priskyrimą"
 
 msgid "Include ECM in http streams"
 msgstr "Įtraukti ECM http srautus"
@@ -6992,49 +6998,49 @@ msgid "Info"
 msgstr "Informacija"
 
 msgid "Info (EPG)"
-msgstr "Informacija (EPG)"
+msgstr "Info (EPG)"
 
 msgid "Info (EPG) Long"
-msgstr "Info (EPG) ilgai spausti"
+msgstr "Info (EPG) (ilgai spausti)"
 
 msgid "Info bar"
-msgstr "Infojuosta"
+msgstr "Info juosta"
 
 msgid "Info button (long)"
 msgstr "Info mygtukas (ilgai spausti)"
 
 msgid "Info button (short)"
-msgstr "Info mygtukas (trumpai)"
+msgstr "Info mygtukas (trumpai spausti)"
 
 msgid "INFO button mode"
 msgstr "INFO mygtuko režimas"
 
 msgid "Info icon width"
-msgstr "Plotis info piktogramai"
+msgstr "Info logotipo plotis"
 
 msgid "INFO Panel"
-msgstr "Valdymo langas"
+msgstr "INFO skydas"
 
 msgid "Info Panel"
-msgstr "Valdymo langas"
+msgstr "Info Skydas"
 
 msgid "INFO-Panel..."
-msgstr "Valdymo langas..."
+msgstr "INFO skydas..."
 
 msgid "InfoBar"
-msgstr "InfojuostaP"
+msgstr "Info juosta"
 
 msgid "Infobar EPG"
 msgstr "EPG infojuosta"
 
 msgid "InfoBar EPG mode"
-msgstr "Infojuostos EPG režimas"
+msgstr "Info juostos EPG režimas"
 
 msgid "Infobar fade-out speed"
-msgstr "Infojuostos išnykimo greitis"
+msgstr "Info juostos išnykimo greitis"
 
 msgid "Infobar frontend data source"
-msgstr "Infojuostos išorinės sąsajos duomenų šaltinis"
+msgstr "Info juostos išorinės sąsajos duomenų šaltinis"
 
 msgid "InfobarEPG settings"
 msgstr "EPG info juostos nustatymai"
@@ -7136,7 +7142,7 @@ msgid "Install Finished."
 msgstr "Įdiegimas baigtas."
 
 msgid "Install lcd picons on"
-msgstr "Įdiegti LCD piktogramą į"
+msgstr "Įdiegti LCD logotipus"
 
 msgid "Install local extension"
 msgstr "Įdiekite vietinį išplėtimą"
@@ -7145,7 +7151,7 @@ msgid "Install or remove finished."
 msgstr "Įdiegimas arba pašalinimas baigtas."
 
 msgid "Install picons on"
-msgstr "Įdiegti piktogramas į"
+msgstr "Įdiegti logotipus į"
 
 msgid "Install plugins"
 msgstr "Įdiegti priedus"
@@ -9088,6 +9094,9 @@ msgstr "tik budėjimo režime"
 msgid "Only on startup"
 msgstr "Tik paleidimo metu"
 
+msgid "On valid ONIDs, ignore frequency sub network part"
+msgstr "Esant galiojantiems ONID, ignoruokite dažnio potinklio dalį"
+
 msgid "Open"
 msgstr "Atverti"
 
@@ -9161,7 +9170,7 @@ msgid "OpenVpn Setup"
 msgstr "OpenVpn nustatymas"
 
 msgid "Option to disable picons on the Infobar"
-msgstr "Ši parinktis leidžia išjungti piktogramų rodymą infojuostoje"
+msgstr "Ši parinktis leidžia išjungti logotipų rodymą info juostoje"
 
 msgid "Option to enable the Hardware Standby Timer"
 msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
@@ -9463,7 +9472,7 @@ msgid "Picon width"
 msgstr "Piktogramos plotis"
 
 msgid "picons"
-msgstr "piktogramos"
+msgstr "logotipai"
 
 msgid "picshow"
 msgstr "logotipo rodymas"
@@ -10735,7 +10744,7 @@ msgstr "Raudonas, ilgai spausti"
 
 msgid ""
 "Reduce the size of the service picons for more line spacing between them."
-msgstr "Sumažinti kanalo piktogramos dydį, daugiau tarpų tarp eilučių."
+msgstr "Sumažinti kanalo logotipo dydį, daugiau tarpų tarp eilučių."
 
 msgid "Reduce time scale"
 msgstr "Sumažinti laiko skalę"
@@ -12020,7 +12029,7 @@ msgid "Service number font size"
 msgstr "Kanalo numerio šrifto dydis"
 
 msgid "Service picons downsize"
-msgstr "Kanalų piktogramų sumažinimas"
+msgstr "Kanalų logotipų sumažinimas"
 
 msgid "service PIN"
 msgstr "kanalo PIN"
@@ -12179,8 +12188,8 @@ msgid ""
 "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd "
 "infobar Lite or event info."
 msgstr ""
-"Nustatykite ekrano tipą, jums paspaudus 'OK', kai informacijos juosta rodo 2 "
-"paprastas infojuostas arba įvykio informaciją."
+"Nustatykite ekrano tipą, jums paspaudus 'OK', kai info juosta rodo 2 "
+"paprastas info juostas arba įvykio informaciją."
 
 msgid ""
 "Set the scrolling speed of text on the front display, this is used by "
@@ -12204,14 +12213,14 @@ msgid "Set the time the timer must stop."
 msgstr "Nustatykite laikmačio sustabdymo laiką."
 
 msgid "Set the time to hide the infobar."
-msgstr "Nustatykite laiką, kad paslėpti infojuostą."
+msgstr "Nustatykite laiką, kad paslėpti info juostą."
 
 msgid ""
 "Set the time to hide the second infobar. The bar also disappears on pressing "
 "'OK'."
 msgstr ""
-"Nustatyti laiką, kad paslėpti antrą infojuostą. Infojuosta taip pat dingsta "
-"ir paspaudus 'OK'."
+"Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat "
+"dingsta ir paspaudus 'OK'."
 
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
@@ -12626,7 +12635,7 @@ msgid "Show CCcamInfo in Extensions Menu"
 msgstr "Rodyti CCcamInfo plėtinių meniu"
 
 msgid "Show channel number in infobar"
-msgstr "Rodyti kanalo numerį infojuostoje"
+msgstr "Rodyti kanalo numerį info juostoje"
 
 msgid "Show channel numbers in channel selection"
 msgstr "Kanalų sąrašo lange rodyti kanalo numerį"
@@ -12669,7 +12678,7 @@ msgid "Show crypto icons"
 msgstr "Rodyti kodavimo piktogramas"
 
 msgid "Show crypto info in infobar"
-msgstr "Rodyti kodavimo informaciją infojuostoje"
+msgstr "Rodyti kodavimo informaciją info juostoje"
 
 msgid "Show default backup files"
 msgstr "Numatytieji atsarginės kopijos failai"
@@ -12687,10 +12696,10 @@ msgid "Show E2 Log"
 msgstr "Rodyti E2 žurnalą"
 
 msgid "Show EIT now/next in infobar"
-msgstr "Infojuostoje rodyti EIT dabar/sekantis"
+msgstr "Info juostoje rodyti EIT dabar/sekantis"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
-msgstr "Infojuostoje rodyti kodavimo informaciją (kai tą palaiko tema)."
+msgstr "Info uostoje rodyti kodavimo informaciją (kai tą palaiko tema)."
 
 msgid "Show EPG"
 msgstr "Rodyti EPG"
@@ -12774,22 +12783,22 @@ msgid "Show Infobar"
 msgstr "Rodyti infojuostą"
 
 msgid "Show infobar lite *"
-msgstr "Rodyti supaprastintą infojuostą *"
+msgstr "Rodyti supaprastintą info juostą *"
 
 msgid "Show infobar on channel change"
-msgstr "Rodyti infojuostą, perjungiant kanalą"
+msgstr "Rodyti info juostą, perjungiant kanalą"
 
 msgid "Show infobar on event change"
-msgstr "Rodyti infojuostą, keičiantis įvykiui"
+msgstr "Rodyti info juostą, keičiantis įvykiui"
 
 msgid "Show infobar on skip forward/backward"
-msgstr "Rodyti infojuostą praleidžiant į priekį/atgal"
+msgstr "Rodyti info juostą praleidžiant į priekį/atgal"
 
 msgid "Show infobar permanently while paused"
-msgstr "Pauzės metu, visą laiką rodyti infojuostą"
+msgstr "Pauzės metu, visą laiką rodyti info juostą"
 
 msgid "Show infobar picons"
-msgstr "Rodyti infojuostos piktogramas"
+msgstr "Rodyti info juostos logotipus"
 
 msgid "Show job tasks in extensions"
 msgstr "Plėtinių lange rodyti darbines užduotis"
@@ -12870,10 +12879,10 @@ msgid "Show picon background colour"
 msgstr "Rodyti piktogramos fono spalvą"
 
 msgid "show picons in quickzap"
-msgstr "Rodyti logotipus greitame jungime"
+msgstr "Rodyti logotipus greitame perjungime"
 
 msgid "show picons in service list"
-msgstr "kanalų pasirinkimo sąraše rodyti kanalų piktogramas"
+msgstr "kanalų pasirinkimo sąraše rodyti kanalų logotipus"
 
 msgid "Show PIP"
 msgstr "Paveikslėlis paveikslėlyje"
@@ -12894,7 +12903,7 @@ msgid "show program information..."
 msgstr "rodyti programos informaciją..."
 
 msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Rodyti PVR būseną filmų grotuvo infojuostoje"
+msgstr "Rodyti PVR būseną filmų grotuvo info juostoje"
 
 msgid "Show quickmenu..."
 msgstr "Rodyti greitą meniu..."
@@ -14604,7 +14613,7 @@ msgstr "Ši parinktis leidžia jums parodyti m2k modulius, skirtus atsisiuntimui
 
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
-"Ši parinktis leidžia jums parodyti piktogramų modulius, skirtus atsisiuntimui"
+"Ši parinktis leidžia jums parodyti logotipų modulius, skirtus atsisiuntimui"
 
 msgid "This allows you to show pli modules in downloads"
 msgstr "Ši parinktis leidžia jums parodyti pli modulius, skirtus atsisiuntimui"
@@ -14712,7 +14721,7 @@ msgstr ""
 
 msgid ""
 "This option allows you choose the background colour of transparent picons."
-msgstr "Ši parinktis leidžia pasirinkti skaidrių piktogramų fono spalvą."
+msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
 
 msgid ""
 "This option allows you enable smoothing filter to control the dithering "
@@ -14890,7 +14899,8 @@ msgid ""
 "This option moves the PVR status from the seprate window into the "
 "MoviePlayer infobar."
 msgstr ""
-"Ši parinktis perkelia PVR būseną iš atskiro lango į filmų grotuvo infojuostą."
+"Ši parinktis perkelia PVR būseną iš atskiro lango į filmų grotuvo info "
+"juostą."
 
 msgid ""
 "This option set the level of surpression of musquito noise (Musquito Noise "
@@ -18599,6 +18609,36 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
+#~ msgid "CPU-Load: %s"
+#~ msgstr "Procesoriaus apkrova: %s"
+
+#~ msgid "CPU-Temp: %s"
+#~ msgstr "CPU temperatūra: %s"
+
+#~ msgid "SYS-Temp: %s"
+#~ msgstr "SIST. Temp: %s"
+
+#~ msgid "RAM-Free: %s MB"
+#~ msgstr "RAM laisva: %s MB"
+
+#~ msgid "Flash Memory free: %s MByte"
+#~ msgstr "Laisvos vidinės atminties: %s MBaitai"
+
+#~ msgid "CPU-Speed: %s MHz"
+#~ msgstr "CPU greitis: %s MHz"
+
+#~ msgid "Video:"
+#~ msgstr "Vaizdas:"
+
+#~ msgid "Audio:"
+#~ msgstr "Garsas:"
+
+#~ msgid "Greek, Modern (1453-)"
+#~ msgstr "Graikų, modernus (1453-)"
+
+#~ msgid "Internal Flash"
+#~ msgstr "Vidinė atmintis"
+
 #~ msgid "Down long"
 #~ msgstr "Žemyn (ilgai spausti)"
 
@@ -18696,18 +18736,6 @@ msgstr "Zimbabvė"
 
 #~ msgid "Show recording symbol depending on recording type"
 #~ msgstr "Rodyti įrašymo simbolį priklausomai nuo įrašymo tipo"
-
-#~ msgid "Video:"
-#~ msgstr "Vaizdas:"
-
-#~ msgid "Audio:"
-#~ msgstr "Garsas:"
-
-#~ msgid "Greek, Modern (1453-)"
-#~ msgstr "Graikų, modernus (1453-)"
-
-#~ msgid "Internal Flash"
-#~ msgstr "Vidinė atmintis"
 
 #~ msgid ""
 #~ "Configure default setting for timer type. Need a restart after changing."
