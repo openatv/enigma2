@@ -487,7 +487,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["actions"] = HelpableActionMap(self, ["ColorActions", "OkCancelActions"], {
 			"cancel": (self.keyCancel, _("Exit network adapter configuration")),
-			"ok": (self.keySave, _("Activate network adapter configuration")),
 			"red": (self.keyCancel, _("Exit network adapter configuration")),
 			"green": (self.keySave, _("Activate network adapter configuration")),
 			"blue": (self.KeyBlue, _("Open nameserver configuration"))
@@ -518,7 +517,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["Adaptertext"] = StaticText(_("Network:"))
 		self["Adapter"] = StaticText()
-		self["introduction2"] = StaticText(_("Press OK to activate the settings."))
+		self["introduction2"] = StaticText(_("Press GREEN to activate the settings."))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_blue"] = StaticText(_("Edit DNS"))

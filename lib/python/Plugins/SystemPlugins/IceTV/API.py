@@ -16,7 +16,7 @@ from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, er
 from . import config, saveConfigFile, getIceTVDeviceType
 from boxbranding import getMachineBrand, getMachineName
 
-_version_string = "20170617"
+_version_string = "20171208"
 _protocol = "http://"
 _server = "api.icetv.com.au"
 _device_type_id = getIceTVDeviceType()

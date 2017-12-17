@@ -484,7 +484,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None, is_empty = False):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type=None, frontend_id = None, i2c = None, is_empty = False):
 		nim_types = ["DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2", "ATSC"]
 
 		if type and type not in nim_types:
@@ -496,7 +496,7 @@ class NIM(object):
 		self.description = description
 		self.has_outputs = has_outputs
 		self.internally_connectable = internally_connectable
-		self.multi_type = multi_type
+		self.multi_type = {} if multi_type is None else multi_type
 		self.i2c = i2c
 		self.frontend_id = frontend_id
 		self.__is_empty = is_empty
@@ -808,6 +808,10 @@ class NimManager:
 				entries[current_slot]["isempty"] = False
 			elif line.startswith("Has_Outputs:"):
 				input = str(line[len("Has_Outputs:") + 1:])
+				entries[current_slot]["has_outputs"] = (input == "yes")
+			# U4 entry is named "Has_Ouput:" (singular, rather than plural and with a spelling mistake!)
+			elif line.startswith("Has_Ouput:"):
+				input = str(line[len("Has_Ouput:") + 1:])
 				entries[current_slot]["has_outputs"] = (input == "yes")
 			elif line.startswith("Internally_Connectable:"):
 				input = int(line[len("Internally_Connectable:") + 1:])
@@ -1138,7 +1142,8 @@ def InitSecParams():
 # the C(++) part should can handle this
 # the configElement should be only visible when diseqc 1.2 is disabled
 
-def InitNimManager(nimmgr, update_slots = []):
+def InitNimManager(nimmgr, update_slots=None):
+	update_slots = [] if update_slots is None else update_slots
 	hw = HardwareInfo()
 	addNimConfig = False
 	try:

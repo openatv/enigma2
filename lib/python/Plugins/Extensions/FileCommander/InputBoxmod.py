@@ -174,14 +174,14 @@ class InputBoxmod(Screen):
 		self["input"].toggleOverwrite()
 
 class PinInput(InputBox):
-	def __init__(self, session, service="", triesEntry=None, pinList=[], *args, **kwargs):
+	def __init__(self, session, service="", triesEntry=None, pinList=None, *args, **kwargs):
 		InputBox.__init__(self, session=session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
 
 		self.waitTime = 15
 
 		self.triesEntry = triesEntry
 
-		self.pinList = pinList
+		self.pinList = [] if pinList is None else pinList
 		self["service"] = Label(service)
 
 		if self.getTries() == 0:
