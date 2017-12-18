@@ -31,6 +31,7 @@ class eErrorOutput: public eMainloop, public eThread, public sigc::trackable
 public:
 	bool isErrorOututActive(){return (threadrunning &&  pipe_fd[1]);};
 	int getPipe(){return pipe_fd[1];};
+	void sync(){fsync(pipe_fd[1]);};
 #ifndef SWIG
 	eErrorOutput();
 	~eErrorOutput();

@@ -532,6 +532,11 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 	}
 	inNoNewLine = false;
 }
+
+void _eSyncLog(void)
+{
+	m_erroroutput->sync();
+}
 #endif // DEBUG
 
 
