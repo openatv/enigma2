@@ -131,6 +131,8 @@ enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 	void _eWarning(const char *file, int line, const char *function, const char* fmt, ...);
 #define eWarning(args ...) _eWarning(__FILE__, __LINE__, __FUNCTION__, args)
 	#define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
+	void _eSyncLog(void);
+#define eSyncLog(void) _eSyncLog(void)
 #else  // DEBUG
 	inline void eDebug(const char* fmt, ...)
 	{
@@ -157,6 +159,10 @@ enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
 	}
 
 	inline void eLogNoNewLine(int level, const char* fmt, ...)
+	{
+	}
+
+	inline void eSyncLog(void)
 	{
 	}
 	#define ASSERT(x) do { } while (0)
