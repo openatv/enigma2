@@ -793,7 +793,6 @@ class HarddiskManager:
 					if partition[0:len(blockdev)] != blockdev:
 						continue
 					if dev == 179 and not re.search(r"mmcblk\dp\d+", partition):
-						print "Skipped"
 						continue
 					partitions.append(partition)
 			else:
