@@ -337,9 +337,6 @@ int main(int argc, char **argv)
 			std::string rfilename;
 			snprintf(filename, sizeof(filename), "%s/wait%d.png", path.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
-			if (::access(rfilename.c_str(), R_OK) < 0)
-				break;
-
 			loadPNG(wait[i], rfilename.c_str());
 
 			if (!wait[i])
