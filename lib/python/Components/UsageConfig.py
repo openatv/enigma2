@@ -70,6 +70,8 @@ def InitUsageConfig():
 	config.misc.ecm_info = ConfigYesNo(default = False)
 	config.usage.menu_show_numbers = ConfigYesNo(default = False)
 	config.usage.subnetwork = ConfigYesNo(default = True)
+	config.usage.subnetwork_cable = ConfigYesNo(default = True)
+	config.usage.subnetwork_terrestrial = ConfigYesNo(default = True)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
