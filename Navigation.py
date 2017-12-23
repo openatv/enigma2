@@ -237,7 +237,10 @@ class Navigation:
 	def dispatchRecordEvent(self, rec_service, event):
 #		print "record_event", rec_service, event
 		for x in self.record_event:
-			x(rec_service, event)
+			try:
+				x(rec_service, event)
+			except:
+				pass
 
 	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True):
 		oldref = self.currentlyPlayingServiceOrGroup
