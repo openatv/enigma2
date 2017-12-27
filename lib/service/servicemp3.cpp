@@ -401,7 +401,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_cuesheet_changed(0),
 	m_cutlist_enabled(1),
 	m_ref(ref),
-	m_pump(eApp, 1)
+	m_pump(eApp, 1, "eServiceMP3")
 {
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_streamingsrc_timeout = 0;

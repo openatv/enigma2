@@ -13,7 +13,7 @@
 eBackgroundFileEraser *eBackgroundFileEraser::instance;
 
 eBackgroundFileEraser::eBackgroundFileEraser():
-	messages(this,1),
+	messages(this,1, "eBackgroundFileEraser"),
 	stop_thread_timer(eTimer::create(this)),
 	erase_speed(20 << 20),
 	erase_flags(ERASE_FLAG_HDD)
