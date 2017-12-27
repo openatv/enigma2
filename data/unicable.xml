@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<unicable version="20171004">
+<unicable version="20171226">
 <!--
 structur of tree
 unicable (version)
@@ -189,6 +189,10 @@ unicable (version)
 			<product name="SES 86-00" format="EN50494" positions="2" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
 		</manufacturer>
 		<manufacturer name="DCT Delta">
+			<product name="MSU 401/2-16K (SCR1-4)" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="MSU 401/2-16K (SCR5-16/JESS)" format="JESS"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
 			<product name="SUM518" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096" alias1="SCR0" alias2="SCR1" alias3="SCR2" alias4="SCR3" alias5="SCR4" alias6="SCR5" alias7="SCR6" alias8="SCR7"/>
 			<product name="SUM918" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 			<product name="SUM928" positions="2" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
@@ -206,6 +210,7 @@ unicable (version)
 			<product name="UCP18" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 			<product name="UCP20" scr1="1210" scr2="1420"/>
 			<product name="UCP30" positions="2" scr1="1210" scr2="1420" scr3="1680"/>
+			<product name="UCP30V2" positions="2" scr1="1284" scr2="1400" scr3="1516"/>
 			<product name="VDU543NT" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="VDU563NT" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="VDU583NT" scr1="1280" scr2="1382" scr3="1484"/>
@@ -301,6 +306,7 @@ unicable (version)
 			<product name="JPS0506-3(A/T)"   format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="JPS0508-3(A/M/T)"   format="JESS" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="JRS0502-2+4(T)" format="JESS" scr1="1280" scr2="1382"/>
+			<product name="JRS0502-8+4T"   format="JESS" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
 			<product name="old JRS0502-2+4" format="EN50494" scr1="1280" scr2="1382"/>
 			<product name="JRS0504-2"   format="JESS" scr1="1280" scr2="1382"/>
 			<product name="JPS0901-6(A/M/T)"   positions="2" format="JESS" scr1="1280" scr2="1382" scr3="1484" scr4="1586" scr5="1688" scr6="1790"/>
