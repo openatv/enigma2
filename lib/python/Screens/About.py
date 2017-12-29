@@ -9,7 +9,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from enigma import eTimer, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getBrandOEM
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -54,6 +54,7 @@ def parseLines(filename):
 def getAboutText():
 	AboutText = ""
 	AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+	AboutText += _("OEM Model:\t\t%s\n") % getBrandOEM()
 
 	bootloader = ""
 	if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
