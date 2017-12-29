@@ -318,6 +318,8 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 			{
 				eDebug("[eDVBLocalTimeHandler] invalid system time, refuse to disable transponder time sync");
 				return;
+			} else {
+				m_time_ready = true;
 			}
 		}
 		if (m_use_dvb_time) {
