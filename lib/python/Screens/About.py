@@ -54,7 +54,7 @@ def parseLines(filename):
 def getAboutText():
 	AboutText = ""
 	AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
-	AboutText += _("OEM Model:\t\t%s\n") % getBrandOEM()
+	AboutText += _("OEM Model:\t%s\n") % getBrandOEM()
 
 	bootloader = ""
 	if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
