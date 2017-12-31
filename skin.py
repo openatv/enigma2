@@ -882,7 +882,10 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)):
 						pngfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
 					png = loadPixmap(pngfile, desktop)
-					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
+					try:
+						style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
+					except:
+						pass
 				#print "  borderset:", bpName, filename
 		for color in windowstyle.findall("color"):
 			get_attr = color.attrib.get

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2017-10-24 01:45+0300\n"
-"PO-Revision-Date: 2017-10-24 02:00+0300\n"
+"POT-Creation-Date: 2017-12-31 05:30+0300\n"
+"PO-Revision-Date: 2017-12-31 05:35+0300\n"
 "Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language: en_US\n"
@@ -1926,6 +1926,9 @@ msgstr "audio tracks"
 msgid "Audio volume step size"
 msgstr "Audio volume step size"
 
+msgid "Audio volume step size fast mode"
+msgstr "Audio volume step size fast mode"
+
 msgid "Aufnahme"
 msgstr "Aufnahme"
 
@@ -3400,6 +3403,13 @@ msgstr "Configure the end coordinate in x of the teletext display area."
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Configure the end coordinate in y of the teletext display area."
+
+msgid ""
+"Configure the fast mode audio volume step size (limit 1-10). Activated when "
+"volume key permanent press or press fast in a row."
+msgstr ""
+"Configure the fast mode audio volume step size (limit 1-10). Activated when "
+"volume key permanent press or press fast in a row."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Configure the first audio language (highest priority)."
@@ -5104,11 +5114,26 @@ msgstr "Enable blinking rec symbol on the LCD Display"
 msgid "enable bouquet edit"
 msgstr "enable bouquet edit"
 
+msgid "Enable chapter support for video files"
+msgstr "Enable chapter support for video files"
+
 msgid "Enable CIHelper for SLOT CI0"
 msgstr "Enable CIHelper for SLOT CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Enable CIHelper for SLOT CI1"
+
+msgid "Enable cut file support for audio files"
+msgstr "Enable cut file support for audio files"
+
+msgid "Enable cut file support for audio files. (e.g. mp3)"
+msgstr "Enable cut file support for audio files. (e.g. mp3)"
+
+msgid "Enable cut file support for non *.ts files"
+msgstr "Enable cut file support for non *.ts files"
+
+msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
+msgstr "Enable cut file support for non *.ts files. (e.g. mp4)"
 
 msgid "Enable debug log *"
 msgstr "Enable debug log *"
@@ -5402,6 +5427,9 @@ msgstr "equestrian"
 msgid "Error"
 msgstr "Error"
 
+msgid "Error, unknown Result!"
+msgstr "Error, unknown Result!"
+
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ERROR - failed to scan (%s)!"
 
@@ -5479,21 +5507,6 @@ msgstr "eSATA"
 
 msgid "Estonian"
 msgstr "Estonian"
-
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000"
-msgstr "et8000/et10000"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
 
 msgid "Ethernet network interface"
 msgstr "Ethernet network interface"
@@ -5990,6 +6003,9 @@ msgstr "force AC3plus"
 
 msgid "Force de-interlace"
 msgstr "Force de-interlace"
+
+msgid "Force Legacy Signal Stats"
+msgstr "Force Legacy Signal Stats"
 
 msgid "Force LNB Power"
 msgstr "Force LNB Power"
@@ -6785,6 +6801,15 @@ msgstr ""
 "Do not care about the bright shades now. They will be set up in the next "
 "step.\n"
 "If you are happy with the result, press OK."
+
+msgid "Ignore DVB-C namespace sub network"
+msgstr "Ignore DVB-C namespace sub network"
+
+msgid "Ignore DVB-S namespace sub network"
+msgstr "Ignore DVB-S namespace sub network"
+
+msgid "Ignore DVB-T namespace sub network"
+msgstr "Ignore DVB-T namespace sub network"
 
 msgid "Image"
 msgstr "Image"
@@ -7927,6 +7952,9 @@ msgstr "Mode 1"
 msgid "Mode 2"
 msgstr "Mode 2"
 
+msgid "Mode for autorestore"
+msgstr "Mode for autorestore"
+
 msgid "Model: "
 msgstr "Model: "
 
@@ -8886,6 +8914,9 @@ msgstr "OE Changes"
 msgid "OE Log"
 msgstr "OE Log"
 
+msgid "OEM Model:\t\t%s\n"
+msgstr "OEM Model:\t\t%s\n"
+
 msgid "of a DUAL layer medium used."
 msgstr "of a DUAL layer medium used."
 
@@ -9014,6 +9045,9 @@ msgstr "only in Standby"
 msgid "Only on startup"
 msgstr "Only on startup"
 
+msgid "On valid ONIDs, ignore frequency sub network part"
+msgstr "On valid ONIDs, ignore frequency sub network part"
+
 msgid "Open"
 msgstr "Open"
 
@@ -9125,11 +9159,8 @@ msgstr "OScamInfo"
 msgid "OscamInfo Mainmenu"
 msgstr "OscamInfo Mainmenu"
 
-msgid "oscam webif blocking localhost (127.0.0.1)"
-msgstr "oscam webif blocking localhost (127.0.0.1)"
-
-msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
-msgstr "oscam webif blocking localhost (::1 and 127.0.0.1)"
+msgid "oscam webif disabled"
+msgstr "oscam webif disabled"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12538,6 +12569,13 @@ msgstr "Show channel numbers in channel selection"
 msgid "Show channel selection"
 msgstr "Show channel selection"
 
+msgid ""
+"Show chapter positions for supported video files. (gstreamer version must be "
+"greather than 1)"
+msgstr ""
+"Show chapter positions for supported video files. (gstreamer version must be "
+"greather than 1)"
+
 msgid "Show CI messages"
 msgstr "Show CI messages"
 
@@ -13569,24 +13607,6 @@ msgstr "Status:"
 msgid "Step east"
 msgstr "Step east"
 
-msgid ""
-"Step value for fast switching or long press the volume button. Depending on "
-"the setting (if greater) and the current volume (if less) will adjusted the "
-"step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Step value for fast switching or long press the volume button. Depending on "
-"the setting (if greater) and the current volume (if less) will adjusted the "
-"step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
-
-msgid ""
-"Step value for single press the volume button. Depending on the setting (if "
-"greater) and the current volume (if less) will adjusted the step. (30 to 4, "
-"18 to 3, 9 to 2 and 3 to 1)"
-msgstr ""
-"Step value for single press the volume button. Depending on the setting (if "
-"greater) and the current volume (if less) will adjusted the step. (30 to 4, "
-"18 to 3, 9 to 2 and 3 to 1)"
-
 msgid "Step west"
 msgstr "Step west"
 
@@ -13717,6 +13737,12 @@ msgstr "Streaming clients info"
 
 msgid "StreamingClientsInfo"
 msgstr "StreamingClientsInfo"
+
+msgid "Stretch linear"
+msgstr "Stretch linear"
+
+msgid "Stretch nonlinear"
+msgstr "Stretch nonlinear"
 
 msgid "Strict DLNA"
 msgstr "Strict DLNA"
@@ -15387,6 +15413,18 @@ msgstr "TUNER:"
 msgid "Tuning algorithm"
 msgstr "Tuning algorithm"
 
+msgid "turbo"
+msgstr "turbo"
+
+msgid ""
+"Turbo: One reboot after flash\n"
+"Fast: One reboot after flash, one reboot after restore\n"
+"Slow: One reboot after flash, one reboot after restore in GUI"
+msgstr ""
+"Turbo: One reboot after flash\n"
+"Fast: One reboot after flash, one reboot after restore\n"
+"Slow: One reboot after flash, one reboot after restore in GUI"
+
 msgid "Turkish"
 msgstr "Turkish"
 
@@ -16202,12 +16240,6 @@ msgstr "Volume"
 msgid "Volume Adjust"
 msgstr "Volume Adjust"
 
-msgid "Volume adjust fast"
-msgstr "Volume adjust fast"
-
-msgid "Volume adjust slow"
-msgstr "Volume adjust slow"
-
 msgid "Volume Config"
 msgstr "Volume Config"
 
@@ -16906,14 +16938,8 @@ msgstr "working"
 msgid "Would you save the entered PIN %s persistent?"
 msgstr "Would you save the entered PIN %s persistent?"
 
-msgid "WPA"
-msgstr "WPA"
-
 msgid "WPA or WPA2"
 msgstr "WPA or WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Write error while recording. Disk full?\n"
@@ -16945,12 +16971,6 @@ msgstr "Www long"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "Year"
 msgstr "Year"
@@ -17430,9 +17450,6 @@ msgstr ""
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "zap"
 msgstr "zap"
@@ -18362,8 +18379,8 @@ msgstr "Switzerland"
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
 
-msgid "[a]"
-msgstr "[a]"
+msgid "Taiwan"
+msgstr "Taiwan"
 
 msgid "Tajikistan"
 msgstr "Tajikistan"
@@ -18457,37 +18474,3 @@ msgstr "Zambia"
 
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
-
-#~ msgid ""
-#~ "Configure how recording filenames are constructed.\n"
-#~ "Standard: Date Time - Channel - Title\n"
-#~ "Very very short: Title\n"
-#~ "Very short: Title - Date Time\n"
-#~ "Short with time: Date Time - Title\n"
-#~ "Short: Date - Title\n"
-#~ "Long: Date Time - Channel - Title - Info"
-#~ msgstr ""
-#~ "Configure how recording filenames are constructed.\n"
-#~ "Standard: Date Time - Channel - Title\n"
-#~ "Very very short: Title\n"
-#~ "Very short: Title - Date Time\n"
-#~ "Short with time: Date Time - Title\n"
-#~ "Short: Date - Title\n"
-#~ "Long: Date Time - Channel - Title - Info"
-
-#~ msgid ""
-#~ "When enabled, always descramble receiving http streams. This takes up "
-#~ "more resources (descrambling demuxers), only enable if necessary. "
-#~ "Individual streams are always descrambled if 0x100 is added to the "
-#~ "service type, regardless of this setting. Default off."
-#~ msgstr ""
-#~ "When enabled, always descramble receiving http streams. This takes up "
-#~ "more resources (descrambling demuxers), only enable if necessary. "
-#~ "Individual streams are always descrambled if 0x100 is added to the "
-#~ "service type, regardless of this setting. Default off."
-
-#~ msgid "Zgemma H.S/H.2S/H.2H/H5"
-#~ msgstr "Zgemma H.S/H.2S/H.2H/H5"
-
-#~ msgid "Zgemma Star S/2S/H1/H2"
-#~ msgstr "Zgemma Star S/2S/H1/H2"
