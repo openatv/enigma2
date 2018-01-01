@@ -47,6 +47,7 @@ class Language:
 		self.addLanguage("Hebrew", "he", "IL", "ISO-8859-15")
 		self.addLanguage("Hrvatski", "hr", "HR", "ISO-8859-15")
 		self.addLanguage("Magyar", "hu", "HU", "ISO-8859-15")
+		self.addLanguage("Indonesian", "id", "ID", "ISO-8859-15")
 		self.addLanguage("Íslenska", "is", "IS", "ISO-8859-15")
 		self.addLanguage("Italiano", "it", "IT", "ISO-8859-15")
 		self.addLanguage("Kurdish", "ku", "KU", "ISO-8859-15")

@@ -2,26 +2,26 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2017-12-31 05:30+0300\n"
-"PO-Revision-Date: 2017-12-31 05:35+0300\n"
-"Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
-"Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
-"Language: en_US\n"
+"POT-Creation-Date: 2017-12-31 19:58+0300\n"
+"PO-Revision-Date: 2017-10-24 02:00+0300\n"
+"Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
+"Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-SourceCharset: UTF-8\n"
-"X-Generated: TM2TURK by thawtes\n"
+"X-Generated: DVBS | by budiarno\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "  Menu key : Select quad channel"
-msgstr "  Menu key : Select quad channel"
+msgstr "  Tombol menu : Pilih keempat kanal"
 
 msgid "  Red key : Show/Hide channel name"
-msgstr "  Red key : Show/Hide channel name"
+msgstr "  Tombol merah : Tampil/Sembunyi-kan nama kanal"
 
 msgid "  REC  "
-msgstr "  REC  "
+msgstr "  REK  "
 
 msgid " - video0"
 msgstr " - video0"
@@ -33,22 +33,22 @@ msgid " - video0+video1"
 msgstr " - video0+video1"
 
 msgid " (Channel %s)"
-msgstr " (Channel %s)"
+msgstr " (Kanal %s)"
 
 msgid " (disabled)"
-msgstr " (disabled)"
+msgstr " (dimatikan)"
 
 msgid " (higher than any auto)"
-msgstr " (higher than any auto)"
+msgstr " (lebih tinggi dari auto apapun)"
 
 msgid " (higher than rotor any auto)"
-msgstr " (higher than rotor any auto)"
+msgstr " (lebih tinggi dari rotor auto apapun)"
 
 msgid " (lower than any auto)"
-msgstr " (lower than any auto)"
+msgstr " (lebih rendah dari auto apapun)"
 
 msgid " (Partition %d)"
-msgstr " (Partition %d)"
+msgstr " (Partisi %d)"
 
 msgid " (PiP)"
 msgstr " (PiP)"
@@ -60,22 +60,22 @@ msgid " (TV)"
 msgstr " (TV)"
 
 msgid " (unknown mode)"
-msgstr " (unknown mode)"
+msgstr " (mode tak dikenal)"
 
 msgid " and"
-msgstr " and"
+msgstr " dan"
 
 msgid ""
 " available !!\n"
 "\n"
 "Do you want to install the new settingslist?"
 msgstr ""
-" available !!\n"
+" tersedia !!\n"
 "\n"
-"Do you want to install the new settingslist?"
+"Anda ingin memasang daftar pengaturan baru?"
 
 msgid " Except %s"
-msgstr " Except %s"
+msgstr " Kecuali %s"
 
 msgid ""
 " Not Started !!\n"
@@ -83,16 +83,16 @@ msgid ""
 "Cam binname must be in the start command line\n"
 "Check your emu config file"
 msgstr ""
-" Not Started !!\n"
+" Tidak dijalankan !!\n"
 "\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
+"Binname dari Cam harus ada di awal baris perintah\n"
+"Periksa berkas pengaturan emu anda"
 
 msgid " of "
-msgstr " of "
+msgstr " dari "
 
 msgid " updated"
-msgstr " updated"
+msgstr " diperbarui"
 
 msgid ""
 "\"\"This plugin creates a USB stick which can be used to update the firmware "
@@ -102,15 +102,15 @@ msgid ""
 "stick.If you already have a prepared bootable USB stick, please insert it "
 "now. Otherwise plug in a USB stick with a minimum size of 64 MB!\"\""
 msgstr ""
-"\"\"This plugin creates a USB stick which can be used to update the firmware "
-"of your %s %s without the need for a network or WLAN connection.First, a USB "
-"stick needs to be prepared so that it becomes bootable.In the next step, an "
-"NFI image file can be downloaded from the update server and saved on the USB "
-"stick.If you already have a prepared bootable USB stick, please insert it "
-"now. Otherwise plug in a USB stick with a minimum size of 64 MB!\"\""
+"\"\"Plugin ini membuat penyimpanan USB yang bisa digunakan untuk memperbarui firmware "
+"anda %s %s tanpa perlu koneksi jaringan atau WLAN.Pertama, penyimpanan "
+"USB perlu dipersiapkan sehingga bisa booting. Langkah berikutnya, sebuah "
+"berkas image NFI bisa diunduh dari server pembaruan dan disimpan pada USB "
+"tersebut.Jika anda telah menyiapkan penyimpanan USB yg bisa booting, silakan ditancapkan "
+"sekarang. Jika tidak, tancapkan penyimpanan USB minimal ukuran 64 MB\"\""
 
 msgid "!! Bootloader Upgrade !!"
-msgstr "!! Bootloader Upgrade !!"
+msgstr "!! Peningkatan Bootloader !!"
 
 msgid "%+6d"
 msgstr "%+6d"
@@ -134,7 +134,7 @@ msgid "%02d.%02d - %02d.%02d"
 msgstr "%02d.%02d - %02d.%02d"
 
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr "%02d.%02d - %02d.%02d (%s%d mnt)"
 
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
@@ -146,7 +146,7 @@ msgid "%02d:%02d"
 msgstr "%02d:%02d"
 
 msgid "%2.1f sec"
-msgstr "%2.1f sec"
+msgstr "%2.1f dtk"
 
 msgid "%2d:%02d"
 msgstr "%2d:%02d"
@@ -183,8 +183,8 @@ msgstr "%d %B %Y"
 
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d channel found"
-msgstr[1] "%d channels found"
+msgstr[0] "%d kanal ditemukan"
+msgstr[1] "%d kanal-kanal ditemukan"
 
 msgid "%d Gb"
 msgstr "%d Gb"
@@ -194,8 +194,8 @@ msgstr "%d GB"
 
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "%d hour"
-msgstr[1] "%d hours"
+msgstr[0] "%d jam"
+msgstr[1] "%d jam"
 
 msgid "%d KB"
 msgstr "%d KB"
@@ -208,37 +208,37 @@ msgstr "%d MB"
 
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] "%d Min"
-msgstr[1] "%d Mins"
+msgstr[0] "%d Mnt"
+msgstr[1] "%d Mnt"
 
 msgid "%d min"
-msgstr "%d min"
+msgstr "%d mnt"
 
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] "%d minute"
-msgstr[1] "%d minutes"
+msgstr[0] "%d menit"
+msgstr[1] "%d menit"
 
 msgid "%d minutes"
-msgstr "%d minutes"
+msgstr "%d menit"
 
 msgid "%d of %d kBytes"
 msgstr "%d of %d kBytes"
 
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
-msgstr[0] "%d pixel wide"
-msgstr[1] "%d pixels wide"
+msgstr[0] "%d lebar piksel"
+msgstr[1] "%d lebar piksel"
 
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d second"
-msgstr[1] "%d seconds"
+msgstr[0] "%d detik"
+msgstr[1] "%d detik"
 
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
-msgstr[0] "%d wireless network found!"
-msgstr[1] "%d wireless networks found!"
+msgstr[0] "%d jaringat nirkabel ditemukan!"
+msgstr[1] "%d jaringat nirkabel ditemukan!"
 
 msgid "%d-%m"
 msgstr "%d-%m"
@@ -262,43 +262,43 @@ msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
 msgid "%s %s advanced remote control (native)"
-msgstr "%s %s advanced remote control (native)"
+msgstr "%s %s remot kontrol tingkat lanjut (bawaan)"
 
 msgid "%s %s front panel"
-msgstr "%s %s front panel"
+msgstr "%s %s panel depan"
 
 msgid "%s %s ir keyboard"
-msgstr "%s %s ir keyboard"
+msgstr "%s %s papan kunci ir"
 
 msgid "%s %s ir mouse"
-msgstr "%s %s ir mouse"
+msgstr "%s %s mouse ir"
 
 msgid "%s %s remote control (native)"
-msgstr "%s %s remote control (native)"
+msgstr "%s %s remote kontrol (bawaan)"
 
 msgid "%s %s software because updates are available."
-msgstr "%s %s software because updates are available."
+msgstr "%s %s perangkat lunak karena pembaruan tersedia."
 
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 msgid "%s ( %s Cards )"
-msgstr "%s ( %s Cards )"
+msgstr "%s ( %s Kartu )"
 
 msgid "%s - Setup"
-msgstr "%s - Setup"
+msgstr "%s - Pengaturan"
 
 msgid "%s additional screens"
-msgstr "%s additional screens"
+msgstr "%s layar tambahan"
 
 msgid "%s is no longer used. Should it be deleted?"
-msgstr "%s is no longer used. Should it be deleted?"
+msgstr "%s tidak lagi digunakan. Perlukah dihapus?"
 
 msgid "%s not available."
-msgstr "%s not available."
+msgstr "%s tidak tersedia."
 
 msgid "%s Setup"
-msgstr "%s Setup"
+msgstr "%s Pengaturan"
 
 msgid ""
 "%s\n"
@@ -309,41 +309,41 @@ msgstr ""
 
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] "%s updated package available"
-msgstr[1] "%s updated packages available"
+msgstr[0] "%s paket pembaruan tersedia"
+msgstr[1] "%s paket-paket pembaruan tersedia"
 
 msgid "%s%d min"
-msgstr "%s%d min"
+msgstr "%s%d mnt"
 
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
 msgid "%sMode for FHD (up to 1080p)"
-msgstr "%sMode for FHD (up to 1080p)"
+msgstr "%sMode untuk FHD (sampai 1080p)"
 
 msgid "%sMode for HD (up to 720p)"
-msgstr "%sMode for HD (up to 720p)"
+msgstr "%sMode untuk HD (sampai 720p)"
 
 msgid "%sMode for SD (up to 576p)"
-msgstr "%sMode for SD (up to 576p)"
+msgstr "%sMode untuk SD (sampai 576p)"
 
 msgid "%sMode for UHD (up to 2160p)"
-msgstr "%sMode for UHD (up to 2160p)"
+msgstr "%sMode untuk UHD (sampai 2160p)"
 
 msgid "%sRefresh rate for FHD"
-msgstr "%sRefresh rate for FHD"
+msgstr "%sRefresh rate untuk FHD"
 
 msgid "%sRefresh rate for HD"
-msgstr "%sRefresh rate for HD"
+msgstr "%sRefresh rate untuk HD"
 
 msgid "%sRefresh rate for SD"
-msgstr "%sRefresh rate for SD"
+msgstr "%sRefresh rate untuk SD"
 
 msgid "%sRefresh rate for UHD"
-msgstr "%sRefresh rate for UHD"
+msgstr "%sRefresh rate untuk UHD"
 
 msgid "%sShow 1080i as 1080p"
-msgstr "%sShow 1080i as 1080p"
+msgstr "%sTampilkan 1080i jadi 1080p"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
@@ -352,35 +352,35 @@ msgid "%Y-%m-%d %H-%M"
 msgstr "%Y-%m-%d %H-%M"
 
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
-msgstr "'%s' contains %d file(s) and %d sub-directories.\n"
+msgstr "'%s' berisi %d berkas dan %d sub-folder.\n"
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
 "files, the condition which occurred first has priority."
 msgstr ""
-"'Buffer in hours' or 'number of last events'. For deleting older timeshift "
-"files, the condition which occurred first has priority."
+"'Buffer dalam jam' atau 'jumlah acara terakhir'. Untuk hapus berkas timeshift "
+"sebelumnya, kondisi yang terjadi pertama dapat prioritas."
 
 msgid "( All readers)"
-msgstr "( All readers)"
+msgstr "( Semua pembaca)"
 
 msgid "(empty)"
-msgstr "(empty)"
+msgstr "(kosong)"
 
 msgid "(Show only reader:"
-msgstr "(Show only reader:"
+msgstr "(Tampilkan pembaca saja:"
 
 msgid "(show optional DVD audio menu)"
-msgstr "(show optional DVD audio menu)"
+msgstr "(tampilkan menu audio DVD pilihan)"
 
 msgid "* = Restart Required"
-msgstr "* = Restart Required"
+msgstr "* = Diperlukan Restart"
 
 msgid "* current animation"
-msgstr "* current animation"
+msgstr "* animasi saat ini"
 
 msgid "* Only available if more than one interface is active."
-msgstr "* Only available if more than one interface is active."
+msgstr "* Hanya tersedia jika lebih dari satu antarmuka aktif."
 
 msgid ""
 "*** boxmode=1 (Standard) ***\n"
@@ -400,7 +400,7 @@ msgid ""
 "\n"
 "If you want 1080p60 component, HDMI also needs to be 1080p60."
 msgstr ""
-"*** boxmode=1 (Standard) ***\n"
+"*** boxmode=1 (Standar) ***\n"
 "\n"
 "+++ Features +++\n"
 "3840x2160p60 10-bit HEVC, 3840x2160p60 8-bit VP9, 1920x1080p60 8-bit AVC,\n"
@@ -461,7 +461,7 @@ msgstr ""
 "Display 0 (UHD) Encode Restrictions: 3840x2160p50"
 
 msgid "---Weather---"
-msgstr "---Weather---"
+msgstr "---Cuaca---"
 
 msgid "+/-"
 msgstr "+/-"
@@ -476,43 +476,43 @@ msgid "/s"
 msgstr "/s"
 
 msgid "/sec]"
-msgstr "/sec]"
+msgstr "/dtk]"
 
 msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 directory"
+msgstr "direktori /usr/share/enigma2"
 
 msgid "/var directory"
-msgstr "/var directory"
+msgstr "direktori /var"
 
 msgid "0"
 msgstr "0"
 
 msgid "0 (disabled)"
-msgstr "0 (disabled)"
+msgstr "0 (dimatikan)"
 
 msgid "0.2s"
-msgstr "0.2s"
+msgstr "0.2d"
 
 msgid "0.3s"
-msgstr "0.3s"
+msgstr "0.3d"
 
 msgid "0.4s"
-msgstr "0.4s"
+msgstr "0.4d"
 
 msgid "0.5s"
-msgstr "0.5s"
+msgstr "0.5d"
 
 msgid "0.6s"
-msgstr "0.6s"
+msgstr "0.6d"
 
 msgid "0.7s"
-msgstr "0.7s"
+msgstr "0.7d"
 
 msgid "0.8s"
-msgstr "0.8s"
+msgstr "0.8d"
 
 msgid "0.9s"
-msgstr "0.9s"
+msgstr "0.9d"
 
 msgid "1"
 msgstr "1"
@@ -521,10 +521,10 @@ msgid "1 GB"
 msgstr "1 GB"
 
 msgid "1 min."
-msgstr "1 min."
+msgstr "1 mnt."
 
 msgid "1 second"
-msgstr "1 second"
+msgstr "1 detik"
 
 msgid "1.0"
 msgstr "1.0"
@@ -536,25 +536,25 @@ msgid "1.2"
 msgstr "1.2"
 
 msgid "1.2s"
-msgstr "1.2s"
+msgstr "1.2d"
 
 msgid "1.5s"
-msgstr "1.5s"
+msgstr "1.5d"
 
 msgid "1.7s"
-msgstr "1.7s"
+msgstr "1.7d"
 
 msgid "10"
 msgstr "10"
 
 msgid "10 (default)"
-msgstr "10 (default)"
+msgstr "10 (bawaan)"
 
 msgid "10 min."
-msgstr "10 min."
+msgstr "10 mnt."
 
 msgid "10 seconds"
-msgstr "10 seconds"
+msgstr "10 detik"
 
 msgid "1024 Mb"
 msgstr "1024 Mb"
@@ -593,14 +593,14 @@ msgid "1080p50: 24p/50p/60p"
 msgstr "1080p50: 24p/50p/60p"
 
 msgid "12 character"
-msgstr "12 character"
+msgstr "12 karakter"
 
 msgid ""
 "12, show latin-1 characters except for greek and cyrillic, switch to 8 if "
 "needed."
 msgstr ""
-"12, show latin-1 characters except for greek and cyrillic, switch to 8 if "
-"needed."
+"12, tampilkan karakter latin-1 kecuali untuk Yunani dan Kyrillic, tukar ke 8 jika "
+"diperlukan."
 
 msgid "120"
 msgstr "120"
@@ -612,22 +612,22 @@ msgid "128 Mb"
 msgstr "128 Mb"
 
 msgid "12bit 4:2:0/4:2:2 no PIP"
-msgstr "12bit 4:2:0/4:2:2 no PIP"
+msgstr "12bit 4:2:0/4:2:2 tanpa PIP"
 
 msgid "12V output"
-msgstr "12V output"
+msgstr "keluaran 12V"
 
 msgid "12V output."
-msgstr "12V output."
+msgstr "keluaran 12V."
 
 msgid "13 V"
 msgstr "13 V"
 
 msgid "15 min."
-msgstr "15 min."
+msgstr "15 mnt."
 
 msgid "15 seconds"
-msgstr "15 seconds"
+msgstr "15 detik"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
@@ -639,7 +639,7 @@ msgid "16:10"
 msgstr "16:10"
 
 msgid "16:10 Letterbox"
-msgstr "16:10 Letterbox"
+msgstr "16:10 Kotaksurat"
 
 msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
@@ -648,13 +648,13 @@ msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 always"
-msgstr "16:9 always"
+msgstr "16:9 selalu"
 
 msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
+msgstr "16:9 Kotaksurat"
 
 msgid "16_10_letterbox"
-msgstr "16_10_letterbox"
+msgstr "16_10_kotaksurat"
 
 msgid "16_10_panscan"
 msgstr "16_10_panscan"
@@ -663,10 +663,10 @@ msgid "16_9"
 msgstr "16_9"
 
 msgid "16_9_always"
-msgstr "16_9_always"
+msgstr "16_9_selalu"
 
 msgid "16_9_letterbox"
-msgstr "16_9_letterbox"
+msgstr "16_9_kotaksurat"
 
 msgid "18 V"
 msgstr "18 V"
@@ -675,7 +675,7 @@ msgid "1s"
 msgstr "1s"
 
 msgid "1st Infobar timeout"
-msgstr "1st Infobar timeout"
+msgstr "Waktu habis Infobar ke-1"
 
 msgid "1X"
 msgstr "1X"
@@ -687,25 +687,25 @@ msgid "2 GB"
 msgstr "2 GB"
 
 msgid "2.5s"
-msgstr "2.5s"
+msgstr "2.5d"
 
 msgid "20"
 msgstr "20"
 
 msgid "20 seconds"
-msgstr "20 seconds"
+msgstr "20 detik"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
 
 msgid "2160p50 with PiP (Experimental)"
-msgstr "2160p50 with PiP (Experimental)"
+msgstr "2160p50 dengan PiP (Percobaan)"
 
 msgid "2160p50: 24p/50p/60p"
 msgstr "2160p50: 24p/50p/60p"
 
 msgid "2160p60 without PiP (Standard)"
-msgstr "2160p60 without PiP (Standard)"
+msgstr "2160p60 tanpa PiP (Standar)"
 
 msgid "23.976"
 msgstr "23.976"
@@ -714,10 +714,10 @@ msgid "24"
 msgstr "24"
 
 msgid "24+ Hours"
-msgstr "24+ Hours"
+msgstr "24+ Jam"
 
 msgid "24- Hours"
-msgstr "24- Hours"
+msgstr "24- Jam"
 
 msgid "240"
 msgstr "240"
@@ -744,19 +744,19 @@ msgid "29.97"
 msgstr "29.97"
 
 msgid "2nd infobar"
-msgstr "2nd infobar"
+msgstr "infobar ke-2"
 
 msgid "2nd Infobar ECM"
-msgstr "2nd Infobar ECM"
+msgstr "ECM Infobar ke-2"
 
 msgid "2nd Infobar INFO"
-msgstr "2nd Infobar INFO"
+msgstr "INFO Infobar ke-2"
 
 msgid "2nd Infobar timeout"
-msgstr "2nd Infobar timeout"
+msgstr "waktu habis Infobar ke-2"
 
 msgid "2s"
-msgstr "2s"
+msgstr "2d"
 
 msgid "2x"
 msgstr "2x"
@@ -777,19 +777,19 @@ msgid "3"
 msgstr "3"
 
 msgid "3.5s"
-msgstr "3.5s"
+msgstr "3.5d"
 
 msgid "30"
 msgstr "30"
 
 msgid "30 min."
-msgstr "30 min."
+msgstr "30 mnt."
 
 msgid "30 minutes"
-msgstr "30 minutes"
+msgstr "30 menit"
 
 msgid "30 seconds"
-msgstr "30 seconds"
+msgstr "30 detik"
 
 msgid "32"
 msgstr "32"
@@ -798,19 +798,19 @@ msgid "32 Mb"
 msgstr "32 Mb"
 
 msgid "3d mode"
-msgstr "3d mode"
+msgstr "mode 3d"
 
 msgid "3D Mode"
-msgstr "3D Mode"
+msgstr "Mode 3D"
 
 msgid "3D Surround"
-msgstr "3D Surround"
+msgstr "Surround 3D"
 
 msgid "3D Surround Speaker Position"
-msgstr "3D Surround Speaker Position"
+msgstr "Posisi pengeras suara Surround 3D"
 
 msgid "3s"
-msgstr "3s"
+msgstr "3d"
 
 msgid "3X"
 msgstr "3X"
@@ -837,19 +837,19 @@ msgid "4:3"
 msgstr "4:3"
 
 msgid "4:3 Letterbox"
-msgstr "4:3 Letterbox"
+msgstr "4:3 Kotaksurat"
 
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
 msgid "4s"
-msgstr "4s"
+msgstr "4d"
 
 msgid "4X"
 msgstr "4X"
 
 msgid "4_3_letterbox"
-msgstr "4_3_letterbox"
+msgstr "4_3_kotaksurat"
 
 msgid "4_3_panscan"
 msgstr "4_3_panscan"
@@ -858,16 +858,16 @@ msgid "5"
 msgstr "5"
 
 msgid "5 (default)"
-msgstr "5 (default)"
+msgstr "5 (bawaan)"
 
 msgid "5 min."
-msgstr "5 min."
+msgstr "5 mnt."
 
 msgid "5 minutes"
-msgstr "5 minutes"
+msgstr "5 menit"
 
 msgid "5 seconds"
-msgstr "5 seconds"
+msgstr "5 detik"
 
 msgid "50p/24p"
 msgstr "50p/24p"
@@ -882,7 +882,7 @@ msgid "512 Mb"
 msgstr "512 Mb"
 
 msgid "5s"
-msgstr "5s"
+msgstr "5d"
 
 msgid "6"
 msgstr "6"
@@ -891,7 +891,7 @@ msgid "60"
 msgstr "60"
 
 msgid "60 minutes"
-msgstr "60 minutes"
+msgstr "60 menit"
 
 msgid "60p/24p"
 msgstr "60p/24p"
@@ -927,7 +927,7 @@ msgid "8"
 msgstr "8"
 
 msgid "8 character"
-msgstr "8 character"
+msgstr "8 karakter"
 
 msgid "8 GB"
 msgstr "8 GB"
@@ -936,25 +936,25 @@ msgid "9"
 msgstr "9"
 
 msgid "< Alternate Skin >"
-msgstr "< Alternate Skin >"
+msgstr "< Tampilan pengganti >"
 
 msgid "< Default >"
-msgstr "< Default >"
+msgstr "< Bawaan >"
 
 msgid "< Default with Picon >"
-msgstr "< Default with Picon >"
+msgstr "< Bawaan dengan Picon >"
 
 msgid "<Current movielist location>"
-msgstr "<Current movielist location>"
+msgstr "<Lokasi daftar film saat ini>"
 
 msgid "<Default movie location>"
-msgstr "<Default movie location>"
+msgstr "<Lokasi film bawaan>"
 
 msgid "<Last timer location>"
-msgstr "<Last timer location>"
+msgstr "<Lokasi pewaktu terakhir>"
 
 msgid "<unknown>"
-msgstr "<unknown>"
+msgstr "<tak dikenal>"
 
 msgid "A"
 msgstr "A"
@@ -966,191 +966,191 @@ msgid ""
 "A background update check is in progress, please wait a few minutes and try "
 "again."
 msgstr ""
-"A background update check is in progress, please wait a few minutes and try "
-"again."
+"Pembaruan di latar sedang berjalan, mohon tunggu beberapa menit dan coba "
+"lagi."
 
 msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
 "Do you want to keep your modifications?"
 msgstr ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
+"Berkas konfigurasi (%s) telah dirubah sejak ia dipasang.\n"
+"Anda ingin menyimpan perubahan anda?"
 
 msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
-"A configuration file (%s) was modified since Installation.\n"
-"Do you want to keep your version?"
+"Berkas konfigurasi (%s) telah dirubah sejak pemasangan.\n"
+"Apakah anda ingin menyimpan versi anda?"
 
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"A finished powertimer wants to reboot your %s %s.\n"
-"Do that now?"
+"Pewaktu daya telah selesai ingin me-reboot %s %s anda.\n"
+"Lakukan sekarang?"
 
 msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"A finished powertimer wants to restart the user interface.\n"
-"Do that now?"
+"Pewaktu daya telah selesai ingin me-restart antarmuka pengguna.\n"
+"Lakukan sekarang?"
 
 msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"A finished powertimer wants to set your\n"
-"%s %s to standby. Do that now?"
+"Pewaktu daya telah selesai ingin menyetel\n"
+"%s %s ke standby. Lakukan sekarang?"
 
 msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"A finished powertimer wants to shutdown your %s %s.\n"
-"Do that now?"
+"Pewaktu daya telah selesai ingin mematikan %s %s anda.\n"
+"Lakukan sekarang?"
 
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
+"Pewaktu rekam telah selesai ingin menyetel\n"
+"%s %s anda ke standby. Lakukan sekarang?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
+"Pewaktu rekam telah selesai ingin mematikan\n"
+"%s %s anda. Matikan sekarang?"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "a gui to assign services/providers to common interface modules"
+msgstr "gui untuk menetapkan layanan/penyedia ke modul antarmuka umum"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "a gui to assign services/providers/caids to common interface modules"
+msgstr "gui untuk menetapkan layanan/penyedia/caid ke modul antarmuka umum"
 
 msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"A recording has been started:\n"
+"Rekaman telah dijalankan:\n"
 "%s"
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
+"Rekaman sedang berlangsung. Mohon berhenti merekam sebelum mencoba untuk "
+"mengatur posisioner."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "scan."
 msgstr ""
-"A recording is currently running. Please stop the recording before trying to "
-"scan."
+"Rekaman sedang berlangsung. Mohon berhenti merekam sebelum mencoba untuk "
+"melacak kanal."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
+"Rekaman sedang berlangsung. Mohon berhenti merekam sebelum mencoba untuk "
+"menjalankan satfinder."
 
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
-"A recording is currently running.\n"
-"What do you want to do?"
+"Rekaman sedang berlangsung.\n"
+"Apa yang ingin anda lakukan?"
 
 msgid ""
 "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
+"Rekaman, Pewaktu Rekam atau Pewaktu Daya sedang berjalan atau mulai dalam 15 menit.\n"
+"Perpanjang pewaktu tidur 30 menit. %s %s Anda\n"
+"akan dimatikan setelah Rekaman atau Pewaktu daya acara. Menuju ke Standby sekarang?"
 
 msgid "A repeating timer or just once?"
-msgstr "A repeating timer or just once?"
+msgstr "Pewaktu berulang atau hanya sekali?"
 
 msgid "A required tool (%s) was not found."
-msgstr "A required tool (%s) was not found."
+msgstr "Peralatan yg diperlukan (%s) tidak ditemukan."
 
 msgid "A search for available updates is currently in progress."
-msgstr "A search for available updates is currently in progress."
+msgstr "Pencarian pembaruan yg tersedia sedang berlangsung."
 
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
-"A second configured interface has been found.\n"
+"Antarmuka terkonfigurasi kedua telah ditemukan.\n"
 "\n"
-"Do you want to disable the second network interface?"
+"Anda ingin mematikan antarmuka jaringan kedua?"
 
 msgid ""
 "A sleep timer wants to set your %s %s to standby.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
+"Pewaktu tidur ingin menyetel %s %s anda ke standby.\n"
+"Lakukan sekarang atau setel perpanjang menit tambahan?"
 
 msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"A sleep timer wants to set your\n"
-"%s %s to standby. Do that now?"
+"Pewaktu tidur ingin menyetel\n"
+"%s %s anda ke standby. Lakukan sekarang?"
 
 msgid ""
 "A sleep timer wants to shut down your %s %s.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
+"Pewaktu tidur ingin mematikan %s %s anda.\n"
+"Lakukan sekarang atau setel perpanjang menit tambahan?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"A sleep timer wants to shut down\n"
-"your %s %s. Shutdown now?"
+"Pewaktu tidur ingin mematikan\n"
+"%s %s anda. Matikan sekarang?"
 
 msgid "A small overview of the available icon states and actions."
-msgstr "A small overview of the available icon states and actions."
+msgstr "Tinjau sedikit ikon status dan tindakan yang tersedia."
 
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
-"A timer failed to record!\n"
-"Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
+"Pewaktu gagal merekam!\n"
+"Batalkan rekaman semu (misal, penyegaran EPG) dan coba lagi?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
-"A timer failed to record!\n"
-"Abort streaming and try again?\n"
+"Pewaktu gagal merekam!\n"
+"Batalkan streaming dan coba lagi?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable PIP and try again?\n"
 msgstr ""
-"A timer failed to record!\n"
-"Disable PIP and try again?\n"
+"Pewaktu gagal merekam!\n"
+"Matikan PIP dan coba lagi?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"A timer failed to record!\n"
-"Disable TV and try again?\n"
+"Pewaktu gagal merekam!\n"
+"Matikan TV dan coba lagi?\n"
 
 msgid "AAC downmix"
 msgstr "AAC downmix"
@@ -1159,34 +1159,34 @@ msgid "AAC transcoding"
 msgstr "AAC transcoding"
 
 msgid "Abort"
-msgstr "Abort"
+msgstr "Batalkan"
 
 msgid "abort alternatives edit"
-msgstr "abort alternatives edit"
+msgstr "batalkan perubahan alternatif"
 
 msgid "abort bouquet edit"
-msgstr "abort bouquet edit"
+msgstr "batalkan perubahan buket"
 
 msgid "abort favourites edit"
-msgstr "abort favourites edit"
+msgstr "batalkan perubahan pavorit"
 
 msgid "Aborted a pseudo recording.\n"
-msgstr "Aborted a pseudo recording.\n"
+msgstr "Batalkan rekaman semu.\n"
 
 msgid "Aborted a streaming service.\n"
-msgstr "Aborted a streaming service.\n"
+msgstr "Batalkan layanan streaming.\n"
 
 msgid "Aborting updateprogress"
-msgstr "Aborting updateprogress"
+msgstr "Batalkan proses pembaruan"
 
 msgid "About"
-msgstr "About"
+msgstr "Tentang"
 
 msgid "about to start"
-msgstr "about to start"
+msgstr "hampir mulai"
 
 msgid "About..."
-msgstr "About..."
+msgstr "Tentang..."
 
 msgid "AC3"
 msgstr "AC3"
@@ -1204,196 +1204,196 @@ msgid "AC3 plus transcoding"
 msgstr "AC3 plus transcoding"
 
 msgid "Accesspoint:"
-msgstr "Accesspoint:"
+msgstr "Poin akses:"
 
 msgid "Action on long powerbutton press"
-msgstr "Action on long powerbutton press"
+msgstr "Tindakan pada tekan tombol daya lama"
 
 msgid "Action on short powerbutton press"
-msgstr "Action on short powerbutton press"
+msgstr "Tindakan pada tekan tombol daya sebentar"
 
 msgid "Activate"
-msgstr "Activate"
+msgstr "Aktifkan"
 
 msgid "Activate current configuration"
-msgstr "Activate current configuration"
+msgstr "Aktifkan konfigurasi saat ini"
 
 msgid "Activate HbbTV (Redbutton)"
-msgstr "Activate HbbTV (Redbutton)"
+msgstr "Aktifkan HbbTV (Tombol merah)"
 
 msgid "Activate MAC-address configuration"
-msgstr "Activate MAC-address configuration"
+msgstr "Aktifkan konfigurasi alamat-MAC"
 
 msgid "activate network adapter configuration"
-msgstr "activate network adapter configuration"
+msgstr "aktifkan konfigurasi adapter jaringan"
 
 msgid "Activate network settings"
-msgstr "Activate network settings"
+msgstr "Aktifkan pengaturan jaringan"
 
 msgid "Activate Picture in Picture"
-msgstr "Activate Picture in Picture"
+msgstr "Aktifkan PiP"
 
 msgid "Activate the configured network settings."
-msgstr "Activate the configured network settings."
+msgstr "Aktifkan pengaturan jaringan terkonfigurasi."
 
 msgid "Activate timeshift End"
-msgstr "Activate timeshift End"
+msgstr "Aktifkan Akhir timeshift"
 
 msgid "Activate timeshift end and pause"
-msgstr "Activate timeshift end and pause"
+msgstr "Aktifkan akhir dan jeda timeshift"
 
 msgid "activatePiP"
-msgstr "activatePiP"
+msgstr "aktifkanPiP"
 
 msgid "Active"
-msgstr "Active"
+msgstr "Aktif"
 
 msgid "active CAM 1: "
-msgstr "active CAM 1: "
+msgstr "CAM 1: aktif "
 
 msgid "active CAM 2: "
-msgstr "active CAM 2: "
+msgstr "CAM 2: aktif "
 
 msgid "Active clients"
-msgstr "Active clients"
+msgstr "Klien aktif"
 
 msgid "Adapter settings"
-msgstr "Adapter settings"
+msgstr "Pengaturan adapter"
 
 msgid "Add"
-msgstr "Add"
+msgstr "Tambah"
 
 msgid "Add a auto timer for current event"
-msgstr "Add a auto timer for current event"
+msgstr "Tambah pewaktu auto untuk acara saat ini"
 
 msgid "Add a mark"
-msgstr "Add a mark"
+msgstr "Tambah penanda"
 
 msgid "Add a nameserver entry"
-msgstr "Add a nameserver entry"
+msgstr "Tambah entri nameserver"
 
 msgid "Add a new title"
-msgstr "Add a new title"
+msgstr "Tambah judul baru"
 
 msgid "Add a record timer"
-msgstr "Add a record timer"
+msgstr "Tambah pewaktu rekam"
 
 msgid "Add a record timer for current event"
-msgstr "Add a record timer for current event"
+msgstr "Tambah pewaktu rekam untuk acara saat ini"
 
 msgid "Add a zap timer for current event"
-msgstr "Add a zap timer for current event"
+msgstr "Tambah pewaktu zap untuk acara saat ini"
 
 msgid "Add a zap timer for next event"
-msgstr "Add a zap timer for next event"
+msgstr "Tambah pewaktu zap untuk acara berikutnya"
 
 msgid "add alternatives"
-msgstr "add alternatives"
+msgstr "tambah alternatif"
 
 msgid "Add AutoTimer"
-msgstr "Add AutoTimer"
+msgstr "Tambah PewaktuAuto"
 
 msgid "Add bookmark"
-msgstr "Add bookmark"
+msgstr "Tambah penanda"
 
 msgid "add bookmark"
-msgstr "add bookmark"
+msgstr "tambah penanda"
 
 msgid "add bouquet"
-msgstr "add bouquet"
+msgstr "tambah buket"
 
 msgid "add bouquet to parental protection"
-msgstr "add bouquet to parental protection"
+msgstr "tambah buket ke proteksi orangtua"
 
 msgid "add Current"
-msgstr "add Current"
+msgstr "tambah Saat Ini"
 
 msgid "Add directory to playlist"
-msgstr "Add directory to playlist"
+msgstr "Tambah direktori ke daftar putar"
 
 msgid "Add file to playlist"
-msgstr "Add file to playlist"
+msgstr "Tambah berkas ke daftar putar"
 
 msgid "Add files to playlist"
-msgstr "Add files to playlist"
+msgstr "Tambah berkas ke daftar putar"
 
 msgid "add marker"
-msgstr "add marker"
+msgstr "tambah penanda"
 
 msgid "Add New Quad Channel Entry"
-msgstr "Add New Quad Channel Entry"
+msgstr "Tambah Entri Kanal Empat Baru"
 
 msgid "Add provider"
-msgstr "Add provider"
+msgstr "Tambah penyedia"
 
 msgid "Add recording (enter recording duration)"
-msgstr "Add recording (enter recording duration)"
+msgstr "Tambah rekaman (masukkan durasi rekaman)"
 
 msgid "Add recording (enter recording endtime)"
-msgstr "Add recording (enter recording endtime)"
+msgstr "Tambah rekaman (masukkan batas waktu rekaman)"
 
 msgid "Add recording (indefinitely)"
-msgstr "Add recording (indefinitely)"
+msgstr "Tambah rekaman (tak terbatas waktu)"
 
 msgid "Add recording (stop after current event)"
-msgstr "Add recording (stop after current event)"
+msgstr "Tambah rekaman (berhenti setelah acara saat ini)"
 
 msgid "add Service"
-msgstr "add Service"
+msgstr "tambah Layanan"
 
 msgid "Add service"
-msgstr "Add service"
+msgstr "Tambah layanan"
 
 msgid "add service to bouquet"
-msgstr "add service to bouquet"
+msgstr "tambah layanan ke buket"
 
 msgid "add service to favourites"
-msgstr "add service to favourites"
+msgstr "tambah layanan ke pavorit"
 
 msgid "Add Timer"
-msgstr "Add Timer"
+msgstr "Tambah Pewaktu"
 
 msgid "Add timer"
-msgstr "Add timer"
+msgstr "Tambah pewaktu"
 
 msgid "Add title"
-msgstr "Add title"
+msgstr "Tambah judul"
 
 msgid "Add to bouquet"
-msgstr "Add to bouquet"
+msgstr "Tambah ke buket"
 
 msgid "Add to favourites"
-msgstr "Add to favourites"
+msgstr "Tambah ke pavorit"
 
 msgid "add to parental protection"
-msgstr "add to parental protection"
+msgstr "tambah ke proteksi orangtua"
 
 msgid "Add/remove change timer for current event"
-msgstr "Add/remove change timer for current event"
+msgstr "Tambah/hapus ubah pewaktu pada acara saat ini"
 
 msgid "Add/Remove Timer"
-msgstr "Add/Remove Timer"
+msgstr "Tambah/Hapus Pewaktu"
 
 msgid "Add/Remove timer for current event"
-msgstr "Add/Remove timer for current event"
+msgstr "Tambah/Hapus pewaktu pada acara saat ini"
 
 msgid "Adding schedule..."
-msgstr "Adding schedule..."
+msgstr "Menambah jadwal..."
 
 msgid "Additional files/folders to backup"
-msgstr "Additional files/folders to backup"
+msgstr "Berkas/folder tambahan untuk cadang"
 
 msgid "Additional Info"
-msgstr "Additional Info"
+msgstr "Info Tambahan"
 
 msgid "Address"
-msgstr "Address"
+msgstr "Alamat"
 
 msgid "address:"
-msgstr "address:"
+msgstr "alamat:"
 
 msgid "Adjust 3D settings"
-msgstr "Adjust 3D settings"
+msgstr "Setel pengaturan 3D"
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -1401,74 +1401,74 @@ msgid ""
 "OK to close the video fine-tuning, or use the number keys to select other "
 "test screens."
 msgstr ""
-"Adjust the color settings so that all the color shades are distinguishable, "
-"but appear as saturated as possible. If you are happy with the result, press "
-"OK to close the video fine-tuning, or use the number keys to select other "
-"test screens."
+"Setel pengaturan warna agar semua nuansa warna bisa dibedakan, "
+"tapi tampak sejenuh mungkin. Jika anda senang dengan hasilnya, tekan "
+"OK untuk menutup setelan video, atau gunakan tombol nomor untuk memilih "
+"layar test lainnya."
 
 msgid "Adjust the horizontal position of the letters used for teletext."
-msgstr "Adjust the horizontal position of the letters used for teletext."
+msgstr "Setel posisi horizontal abjad yang digunakan pada teleteks."
 
 msgid "Adjust the vertical position of the letters used for teletext."
-msgstr "Adjust the vertical position of the letters used for teletext."
+msgstr "Setel posisi vertikal abjad yang digunakan pada teleteks."
 
 msgid "adult movie/drama"
-msgstr "adult movie/drama"
+msgstr "film dewasa/drama"
 
 msgid "advanced"
-msgstr "advanced"
+msgstr "mahir"
 
 msgid "Advanced"
-msgstr "Advanced"
+msgstr "Mahir"
 
 msgid "Advanced Options"
-msgstr "Advanced Options"
+msgstr "Pilihan Mahir"
 
 msgid "Advanced options"
-msgstr "Advanced options"
+msgstr "Pilihan mahir"
 
 msgid "Advanced restore"
-msgstr "Advanced restore"
+msgstr "Pemulihan mahir"
 
 msgid "Advanced software"
-msgstr "Advanced software"
+msgstr "Perangkat lunak mahir"
 
 msgid "Advanced software plugin"
-msgstr "Advanced software plugin"
+msgstr "Plugin perangkat lunak mahir"
 
 msgid "Advanced video enhancement setup"
-msgstr "Advanced video enhancement setup"
+msgstr "Pengaturan peningkatan video mahir"
 
 msgid "adventure/western/war"
-msgstr "adventure/western/war"
+msgstr "petualangan/barat/perang"
 
 msgid "advertisement/shopping"
-msgstr "advertisement/shopping"
+msgstr "iklan/belanja"
 
 msgid "AFP"
 msgstr "AFP"
 
 msgid "AFP Setup"
-msgstr "AFP Setup"
+msgstr "Pengaturan AFP"
 
 msgid "After event"
-msgstr "After event"
+msgstr "Setelah acara"
 
 msgid "After PowerLost"
-msgstr "After PowerLost"
+msgstr "Setelah Kehilangan Daya"
 
 msgid "After pressing OK, please wait!"
-msgstr "After pressing OK, please wait!"
+msgstr "Setelah tekan OK, mohon tunggu!"
 
 msgid "After Recording"
-msgstr "After Recording"
+msgstr "Setelah Rekaman"
 
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your %s %s's manual on how to do that."
 msgstr ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your %s %s's manual on how to do that."
+"Setelah start wizard selesai, anda perlu melindungi layanan tunggal. "
+"Baca manual %s %s anda tentang bagaimana melakukannya."
 
 msgid "AGC:"
 msgstr "AGC:"
@@ -1480,103 +1480,103 @@ msgid "Alias"
 msgstr "Alias"
 
 msgid "Alignment of events"
-msgstr "Alignment of events"
+msgstr "Penyelarasan acara"
 
 msgid "Alignment of service names"
-msgstr "Alignment of service names"
+msgstr "Penyelarasan nama layanan"
 
 msgid "All"
-msgstr "All"
+msgstr "Semua"
 
 msgid "All ages"
-msgstr "All ages"
+msgstr "Semua umur"
 
 msgid "All resolutions"
-msgstr "All resolutions"
+msgstr "Semua resolusi"
 
 msgid "All satellites 1 (USALS)"
-msgstr "All satellites 1 (USALS)"
+msgstr "Semua satelit 1 (USALS)"
 
 msgid "All satellites 2 (USALS)"
-msgstr "All satellites 2 (USALS)"
+msgstr "Semua satelit 2 (USALS)"
 
 msgid "All satellites 3 (USALS)"
-msgstr "All satellites 3 (USALS)"
+msgstr "Semua satelit 3 (USALS)"
 
 msgid "All satellites 4 (USALS)"
-msgstr "All satellites 4 (USALS)"
+msgstr "Semua satelit 4 (USALS)"
 
 msgid "All Services"
-msgstr "All Services"
+msgstr "Semua Layanan"
 
 msgid "All services provider"
-msgstr "All services provider"
+msgstr "Semua penyedia layanan"
 
 msgid "Allocate"
-msgstr "Allocate"
+msgstr "Alokasikan"
 
 msgid "Allocate unused memory index"
-msgstr "Allocate unused memory index"
+msgstr "Alokasikan indeks memori tak terpakai"
 
 msgid "Allow quit movieplayer with exit"
-msgstr "Allow quit movieplayer with exit"
+msgstr "Izinkan matikan movieplayer dengan tombol exit"
 
 msgid "Allow subtitle language to equal audio language"
-msgstr "Allow subtitle language to equal audio language"
+msgstr "Izinkan bahasa teks film sama dengan bahasa audio"
 
 msgid "Allow subtitles for hearing impaired"
-msgstr "Allow subtitles for hearing impaired"
+msgstr "Izinkan teks film untuk tuna rungu"
 
 msgid "Allow unstable (untested) updates"
-msgstr "Allow unstable (untested) updates"
+msgstr "Izinkan pembaruan tak stabil (belum teruji)"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Allows the %s %s to read the stored EPG data regularly."
+msgstr "Izinkan %s %s untuk membaca data EPG yg tersimpan secara teratur."
 
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Allows the %s %s to store the EPG data regularly."
+msgstr "Izinkan %s %s menyimpan data EPG secara teratur."
 
 msgid ""
 "Allows you to adjust the amount of time the resolution infomation display on "
 "screen."
 msgstr ""
-"Allows you to adjust the amount of time the resolution infomation display on "
-"screen."
+"Memungkinkan anda menyetel jumlah waktu informasi resolusi tampil pada "
+"layar."
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
 "of everything the system does."
 msgstr ""
-"Allows you to enable the debug log. They contain very detailed information "
-"of everything the system does."
+"Memungkinkan anda untuk mengaktifkan log debug. Ia berisi informasi sanget detil "
+"tentang apa saja yg dilakukan sistem."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
-msgstr "Allows you to enable/disable displaying icons on the frontpanel."
+msgstr "Memungkinkan anda untuk mengaktifkan/mematikan pemunculan ikon di panel depan."
 
 msgid "Allows you to hide the extensions of known file types."
-msgstr "Allows you to hide the extensions of known file types."
+msgstr "Memungkinkan anda untuk menyembunyikan ekstensi jenis berkas yg diketahui."
 
 msgid "Allows you to send a copy of the log to yourself."
-msgstr "Allows you to send a copy of the log to yourself."
+msgstr "Memungkinkan anda mengirim salinan log ke diri anda sendiri."
 
 msgid ""
 "Allows you to set the maximum size of the Debug log size (MB). When that "
 "size is reached, a new file will be created."
 msgstr ""
-"Allows you to set the maximum size of the Debug log size (MB). When that "
-"size is reached, a new file will be created."
+"Memungkinkan anda menyetel ukuran maksimal Log Debug (MB). Ketika "
+"ukuran itu tercapai, maka berkas baru akan dibuat."
 
 msgid "Allows you to setup the button to do what you choose."
-msgstr "Allows you to setup the button to do what you choose."
+msgstr "Memungkinkan anda mengatur tombol sesuai yg anda pilih."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Allows you to show/hide CCcam in extensions (blue button)."
+msgstr "Memungkinkan anda menampilkan/menyembunyikan CCcam di ekstensi (tombol biru)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
-msgstr "Allows you to show/hide Log Manager in extensions (blue button)."
+msgstr "Memungkinkan anda menampilkan/menyembunyikan Log Manager di ekstensi (tombol biru)."
 
 msgid "Allows you to show/hide OScam in extensions (blue button)."
-msgstr "Allows you to show/hide OScam in extensions (blue button)."
+msgstr "Memungkinkan anda menampilkan/menyembunyikan OSCam di ekstensi (tombol biru)."
 
 msgid "Alpha"
 msgstr "Alpha"
@@ -1925,9 +1925,6 @@ msgstr "audio tracks"
 
 msgid "Audio volume step size"
 msgstr "Audio volume step size"
-
-msgid "Audio volume step size fast mode"
-msgstr "Audio volume step size fast mode"
 
 msgid "Aufnahme"
 msgstr "Aufnahme"
@@ -3403,13 +3400,6 @@ msgstr "Configure the end coordinate in x of the teletext display area."
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Configure the end coordinate in y of the teletext display area."
-
-msgid ""
-"Configure the fast mode audio volume step size (limit 1-10). Activated when "
-"volume key permanent press or press fast in a row."
-msgstr ""
-"Configure the fast mode audio volume step size (limit 1-10). Activated when "
-"volume key permanent press or press fast in a row."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Configure the first audio language (highest priority)."
@@ -5114,26 +5104,11 @@ msgstr "Enable blinking rec symbol on the LCD Display"
 msgid "enable bouquet edit"
 msgstr "enable bouquet edit"
 
-msgid "Enable chapter support for video files"
-msgstr "Enable chapter support for video files"
-
 msgid "Enable CIHelper for SLOT CI0"
 msgstr "Enable CIHelper for SLOT CI0"
 
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Enable CIHelper for SLOT CI1"
-
-msgid "Enable cut file support for audio files"
-msgstr "Enable cut file support for audio files"
-
-msgid "Enable cut file support for audio files. (e.g. mp3)"
-msgstr "Enable cut file support for audio files. (e.g. mp3)"
-
-msgid "Enable cut file support for non *.ts files"
-msgstr "Enable cut file support for non *.ts files"
-
-msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
-msgstr "Enable cut file support for non *.ts files. (e.g. mp4)"
 
 msgid "Enable debug log *"
 msgstr "Enable debug log *"
@@ -5427,9 +5402,6 @@ msgstr "equestrian"
 msgid "Error"
 msgstr "Error"
 
-msgid "Error, unknown Result!"
-msgstr "Error, unknown Result!"
-
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ERROR - failed to scan (%s)!"
 
@@ -5507,6 +5479,21 @@ msgstr "eSATA"
 
 msgid "Estonian"
 msgstr "Estonian"
+
+msgid "et4000"
+msgstr "et4000"
+
+msgid "et5000/6000"
+msgstr "et5000/6000"
+
+msgid "et8000/et10000"
+msgstr "et8000/et10000"
+
+msgid "et9000/et9100"
+msgstr "et9000/et9100"
+
+msgid "et9200/9500/6500"
+msgstr "et9200/9500/6500"
 
 msgid "Ethernet network interface"
 msgstr "Ethernet network interface"
@@ -6003,9 +5990,6 @@ msgstr "force AC3plus"
 
 msgid "Force de-interlace"
 msgstr "Force de-interlace"
-
-msgid "Force Legacy Signal Stats"
-msgstr "Force Legacy Signal Stats"
 
 msgid "Force LNB Power"
 msgstr "Force LNB Power"
@@ -6801,15 +6785,6 @@ msgstr ""
 "Do not care about the bright shades now. They will be set up in the next "
 "step.\n"
 "If you are happy with the result, press OK."
-
-msgid "Ignore DVB-C namespace sub network"
-msgstr "Ignore DVB-C namespace sub network"
-
-msgid "Ignore DVB-S namespace sub network"
-msgstr "Ignore DVB-S namespace sub network"
-
-msgid "Ignore DVB-T namespace sub network"
-msgstr "Ignore DVB-T namespace sub network"
 
 msgid "Image"
 msgstr "Image"
@@ -7952,9 +7927,6 @@ msgstr "Mode 1"
 msgid "Mode 2"
 msgstr "Mode 2"
 
-msgid "Mode for autorestore"
-msgstr "Mode for autorestore"
-
 msgid "Model: "
 msgstr "Model: "
 
@@ -8914,9 +8886,6 @@ msgstr "OE Changes"
 msgid "OE Log"
 msgstr "OE Log"
 
-msgid "OEM Model:\t\t%s\n"
-msgstr "OEM Model:\t\t%s\n"
-
 msgid "of a DUAL layer medium used."
 msgstr "of a DUAL layer medium used."
 
@@ -9045,9 +9014,6 @@ msgstr "only in Standby"
 msgid "Only on startup"
 msgstr "Only on startup"
 
-msgid "On valid ONIDs, ignore frequency sub network part"
-msgstr "On valid ONIDs, ignore frequency sub network part"
-
 msgid "Open"
 msgstr "Open"
 
@@ -9159,8 +9125,11 @@ msgstr "OScamInfo"
 msgid "OscamInfo Mainmenu"
 msgstr "OscamInfo Mainmenu"
 
-msgid "oscam webif disabled"
-msgstr "oscam webif disabled"
+msgid "oscam webif blocking localhost (127.0.0.1)"
+msgstr "oscam webif blocking localhost (127.0.0.1)"
+
+msgid "oscam webif blocking localhost (::1 and 127.0.0.1)"
+msgstr "oscam webif blocking localhost (::1 and 127.0.0.1)"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12569,13 +12538,6 @@ msgstr "Show channel numbers in channel selection"
 msgid "Show channel selection"
 msgstr "Show channel selection"
 
-msgid ""
-"Show chapter positions for supported video files. (gstreamer version must be "
-"greather than 1)"
-msgstr ""
-"Show chapter positions for supported video files. (gstreamer version must be "
-"greather than 1)"
-
 msgid "Show CI messages"
 msgstr "Show CI messages"
 
@@ -13607,6 +13569,24 @@ msgstr "Status:"
 msgid "Step east"
 msgstr "Step east"
 
+msgid ""
+"Step value for fast switching or long press the volume button. Depending on "
+"the setting (if greater) and the current volume (if less) will adjusted the "
+"step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
+msgstr ""
+"Step value for fast switching or long press the volume button. Depending on "
+"the setting (if greater) and the current volume (if less) will adjusted the "
+"step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
+
+msgid ""
+"Step value for single press the volume button. Depending on the setting (if "
+"greater) and the current volume (if less) will adjusted the step. (30 to 4, "
+"18 to 3, 9 to 2 and 3 to 1)"
+msgstr ""
+"Step value for single press the volume button. Depending on the setting (if "
+"greater) and the current volume (if less) will adjusted the step. (30 to 4, "
+"18 to 3, 9 to 2 and 3 to 1)"
+
 msgid "Step west"
 msgstr "Step west"
 
@@ -13737,12 +13717,6 @@ msgstr "Streaming clients info"
 
 msgid "StreamingClientsInfo"
 msgstr "StreamingClientsInfo"
-
-msgid "Stretch linear"
-msgstr "Stretch linear"
-
-msgid "Stretch nonlinear"
-msgstr "Stretch nonlinear"
 
 msgid "Strict DLNA"
 msgstr "Strict DLNA"
@@ -15413,18 +15387,6 @@ msgstr "TUNER:"
 msgid "Tuning algorithm"
 msgstr "Tuning algorithm"
 
-msgid "turbo"
-msgstr "turbo"
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-
 msgid "Turkish"
 msgstr "Turkish"
 
@@ -16240,6 +16202,12 @@ msgstr "Volume"
 msgid "Volume Adjust"
 msgstr "Volume Adjust"
 
+msgid "Volume adjust fast"
+msgstr "Volume adjust fast"
+
+msgid "Volume adjust slow"
+msgstr "Volume adjust slow"
+
 msgid "Volume Config"
 msgstr "Volume Config"
 
@@ -16938,8 +16906,14 @@ msgstr "working"
 msgid "Would you save the entered PIN %s persistent?"
 msgstr "Would you save the entered PIN %s persistent?"
 
+msgid "WPA"
+msgstr "WPA"
+
 msgid "WPA or WPA2"
 msgstr "WPA or WPA2"
+
+msgid "WPA2"
+msgstr "WPA2"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Write error while recording. Disk full?\n"
@@ -16971,6 +16945,12 @@ msgstr "Www long"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 support"
+
+msgid "XP1000"
+msgstr "XP1000"
+
+msgid "XP3000"
+msgstr "XP3000"
 
 msgid "Year"
 msgstr "Year"
@@ -17450,6 +17430,9 @@ msgstr ""
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
+
+msgid "YPbPr"
+msgstr "YPbPr"
 
 msgid "zap"
 msgstr "zap"
@@ -18379,8 +18362,8 @@ msgstr "Switzerland"
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
 
-msgid "Taiwan"
-msgstr "Taiwan"
+msgid "[a]"
+msgstr "[a]"
 
 msgid "Tajikistan"
 msgstr "Tajikistan"
@@ -18474,3 +18457,37 @@ msgstr "Zambia"
 
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
+
+#~ msgid ""
+#~ "Configure how recording filenames are constructed.\n"
+#~ "Standard: Date Time - Channel - Title\n"
+#~ "Very very short: Title\n"
+#~ "Very short: Title - Date Time\n"
+#~ "Short with time: Date Time - Title\n"
+#~ "Short: Date - Title\n"
+#~ "Long: Date Time - Channel - Title - Info"
+#~ msgstr ""
+#~ "Configure how recording filenames are constructed.\n"
+#~ "Standard: Date Time - Channel - Title\n"
+#~ "Very very short: Title\n"
+#~ "Very short: Title - Date Time\n"
+#~ "Short with time: Date Time - Title\n"
+#~ "Short: Date - Title\n"
+#~ "Long: Date Time - Channel - Title - Info"
+
+#~ msgid ""
+#~ "When enabled, always descramble receiving http streams. This takes up "
+#~ "more resources (descrambling demuxers), only enable if necessary. "
+#~ "Individual streams are always descrambled if 0x100 is added to the "
+#~ "service type, regardless of this setting. Default off."
+#~ msgstr ""
+#~ "When enabled, always descramble receiving http streams. This takes up "
+#~ "more resources (descrambling demuxers), only enable if necessary. "
+#~ "Individual streams are always descrambled if 0x100 is added to the "
+#~ "service type, regardless of this setting. Default off."
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
