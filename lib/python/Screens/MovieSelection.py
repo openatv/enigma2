@@ -2353,7 +2353,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			else:
 				name = _("%d items") % len(self.moveList)
 			path = os.path.normpath(current.getPath())
-			self.selectMovieLocation(title=_("Choose destination: %s") % name, callback=self.gotMoveMovieDest, base=os.path.dirname(path))
+			self.selectMovieLocation(title=_("Choose move destination: %s") % name, callback=self.gotMoveMovieDest, base=os.path.dirname(path))
 
 	def gotMoveMovieDest(self, choice):
 		if not choice:
@@ -2389,7 +2389,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			else:
 				name = _("%d items") % len(self.copyList)
 			path = os.path.normpath(current.getPath())
-			self.selectMovieLocation(title=_("Choose destination: %s") % name, callback=self.gotCopyMovieDest, base=os.path.dirname(path))
+			self.selectMovieLocation(title=_("Choose copy destination: %s") % name, callback=self.gotCopyMovieDest, base=os.path.dirname(path))
 
 	def gotCopyMovieDest(self, choice):
 		if not choice:
