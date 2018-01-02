@@ -694,7 +694,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		else:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
-				self.pvrStateDialog.hide()
+				try:
+					self.pvrStateDialog.hide()
+				except:
+					pass
 
 	def hidePipOnExitCallback(self, answer):
 		if answer:
