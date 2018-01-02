@@ -1999,6 +1999,7 @@ class InfoBarSeek:
 			"pauseService": (self.pauseService, _("Pause playback")),
 			"unPauseService": (self.unPauseServiceOK, self._helpUnPauseServiceOK),
 			# "okButton": (self.okButton, _("Continue playback")),
+			"seekAbsolute": (self.seekAbsolute, _("Skip to (enter time in minutes)")),
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
 			"seekBack": (self.seekBack, _("Rewind/step back from pause")),
 			"slowFwd": (self.slowFwd, _("Slow forward/step back from pause")),
@@ -2019,6 +2020,7 @@ class InfoBarSeek:
 			"seekFwd": (self.seekFwd, _("Fast forward/slow forward from pause")),
 			"seekBack": (self.seekBack, _("Rewind/slow back from pause")),
 			"slowFwd": (self.slowFwd, _("Slow forward/step back from pause")),
+			"seekAbsolute": (self.seekAbsolute, _("Skip to (enter time in minutes)")),
 			"seekFwdManual": (self.seekFwdManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", True)),
 			"seekBackManual": (self.seekBackManual, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value != "leftright", False)),
 			"SeekbarFwd": (self.seekFwdSeekbar, lambda: self._helpSeekManualSeekbar(config.seek.baractivation.value == "leftright", True)),
@@ -2371,6 +2373,34 @@ class InfoBarSeek:
 		else:
 			return _("Open seekbar")
 
+	def seekAbsolute(self):
+		# Default to seeking to the end, where the end is the final out cut, if available.
+		length = 0
+		service = self.session.nav.getCurrentService()
+		if service is not None:
+			cue = service.cueSheet()
+			if cue is not None:
+				cut_list = cue.getCutList()
+				last = 0
+				for pts, type in cut_list:
+					if pts > last:
+						if type == 0: # in
+							length = 0
+						elif type == 1: # out
+							length = pts
+		if length == 0:
+			seekable = self.getSeek()
+			if seekable is None:
+				return
+			length = seekable.getLength() or (None, 0)
+			length = length[1]
+		length /= 90000 * 60
+		self.session.openWithCallback(self.absSeekTo, MinuteInput, title=_("Skip to (min)"), basemins=length)
+
+	def absSeekTo(self, minutes):
+		if minutes is not None:
+			self.doSeek(minutes * 60 * 90000)
+
 	def seekFwdManual(self, fwd=True):
 		if config.seek.baractivation.value == "leftright":
 			self.session.open(Seekbar, fwd)
@@ -2390,7 +2420,8 @@ class InfoBarSeek:
 			self.session.openWithCallback(self.fwdSeekTo, MinuteInput, title=_("Skip forward (min)"))
 
 	def fwdSeekTo(self, minutes):
-		self.doSeekRelative(minutes * 60 * 90000)
+		if minutes is not None:
+			self.doSeekRelative(minutes * 60 * 90000)
 
 	def seekBackSeekbar(self, fwd=False):
 		if not config.seek.baractivation.value == "leftright":
@@ -2400,7 +2431,8 @@ class InfoBarSeek:
 
 	def rwdSeekTo(self, minutes):
 #		print "[InfoBarGenerics] rwdSeekTo"
-		self.doSeekRelative(-minutes * 60 * 90000)
+		if minutes is not None:
+			self.doSeekRelative(-minutes * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
 		if self.seekstate in (self.SEEK_STATE_PLAY, self.SEEK_STATE_EOF):

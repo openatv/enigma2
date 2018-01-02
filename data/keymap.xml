@@ -376,9 +376,12 @@
 			<key id="KEY_BLUE" mapto="SeekbarFwd" flags="l"/>
 		</device>
 
-		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m"/>
+		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="b"/>
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m"/>
-		<key id="KEY_PLAY" mapto="playpauseService" flags="m"/>
+		<key id="KEY_PLAY" mapto="playpauseService" flags="b"/>
+
+		<key id="KEY_PLAYPAUSE" mapto="seekAbsolute" flags="l"/>
+		<key id="KEY_PLAY" mapto="seekAbsolute" flags="l"/>
 
 		<key id="KEY_REWIND" mapto="seekBack" flags="b"/>
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b"/>
@@ -411,9 +414,12 @@
 			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b"/>
 		</device>
 
-		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m"/>
+		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="b"/>
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m"/>
-		<key id="KEY_PLAY" mapto="playpauseService" flags="m"/>
+		<key id="KEY_PLAY" mapto="playpauseService" flags="b"/>
+
+		<key id="KEY_PLAYPAUSE" mapto="seekAbsolute" flags="l"/>
+		<key id="KEY_PLAY" mapto="seekAbsolute" flags="l"/>
 
 		<key id="KEY_UP" mapto="seekdef:up" flags="m" />
 		<key id="KEY_DOWN" mapto="seekdef:down" flags="m" />
