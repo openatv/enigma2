@@ -18,10 +18,8 @@ class FileTransferTask(Task):
 		self.dst_isDir = False
 		self.dst_file = dst_file + "/" + os.path.basename(src_file)
 		src_file_append = ""
-		if not src_isDir:
-			src_file_fields = src_file.rsplit(".", 1)
-			if len(src_file_fields):
-				src_file = src_file_fields[0] + "."
+		if not src_isDir and src_file.endswith(".ts"):
+			src_file = src_file[:-2]
 			src_file_append = "*"
 		cmd = "mv"
 		if do_copy:
