@@ -1826,6 +1826,8 @@ class Seekbar(Screen, HelpableScreen):
 		self.fwd = fwd
 		self.percent = 0.0
 		self.length = None
+		self.first_digit = True
+		self.digit_time = 0.0
 		service = session.nav.getCurrentService()
 		if service:
 			self.seek = service.seek()
@@ -1848,15 +1850,15 @@ class Seekbar(Screen, HelpableScreen):
 			"left": (self.keyLeft, lambda: _("Move seek position left by ") + "%.1f" % (float(config.seek.sensibility.value) / 10.0) + "%"),
 			"right": (self.keyRight, lambda: _("Move seek position right by ") + "%.1f" % (float(config.seek.sensibility.value) / 10.0) + "%"),
 
-			"1": (self.keyNumberGlobal, _("Skip to 10% position")),
-			"2": (self.keyNumberGlobal, _("Skip to 20% position")),
-			"3": (self.keyNumberGlobal, _("Skip to 30% position")),
-			"4": (self.keyNumberGlobal, _("Skip to 40% position")),
-			"5": (self.keyNumberGlobal, _("Skip to 50% position")),
-			"6": (self.keyNumberGlobal, _("Skip to 60% position")),
-			"7": (self.keyNumberGlobal, _("Skip to 70% position")),
-			"8": (self.keyNumberGlobal, _("Skip to 80% position")),
-			"9": (self.keyNumberGlobal, _("Skip to 90% position")),
+			"1": (self.keyNumberGlobal, _("Skip to 10% position; add 1%")),
+			"2": (self.keyNumberGlobal, _("Skip to 20% position; add 2%")),
+			"3": (self.keyNumberGlobal, _("Skip to 30% position; add 3%")),
+			"4": (self.keyNumberGlobal, _("Skip to 40% position; add 4%")),
+			"5": (self.keyNumberGlobal, _("Skip to 50% position; add 5%")),
+			"6": (self.keyNumberGlobal, _("Skip to 60% position; add 6%")),
+			"7": (self.keyNumberGlobal, _("Skip to 70% position; add 7%")),
+			"8": (self.keyNumberGlobal, _("Skip to 80% position; add 8%")),
+			"9": (self.keyNumberGlobal, _("Skip to 90% position; add 9%")),
 			"0": (self.keyNumberGlobal, _("Skip to 0% position (start)")),
 		}, prio=-1)
 
@@ -1899,14 +1901,25 @@ class Seekbar(Screen, HelpableScreen):
 		self.percent -= float(config.seek.sensibility.value) / 10.0
 		if self.percent < 0.0:
 			self.percent = 0.0
+		self.first_digit = True
 
 	def keyRight(self):
 		self.percent += float(config.seek.sensibility.value) / 10.0
 		if self.percent > 100.0:
 			self.percent = 100.0
+		self.first_digit = True
 
 	def keyNumberGlobal(self, number):
-		self.percent = min(max(float(number) * 10.0, 0), 90)
+		now = time()
+		if now - self.digit_time >= 1.0:
+			self.first_digit = True
+		self.digit_time = now
+		if self.first_digit:
+			self.percent = min(max(float(number) * 10.0, 0), 90)
+			self.first_digit = False
+		else:
+			self.percent += number
+			self.first_digit = True
 
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
