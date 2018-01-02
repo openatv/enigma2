@@ -821,7 +821,11 @@ class InfoBarNumberZap:
 		}, description=_("Recall channel, panic button & number zap"))
 
 	def keyNumberGlobal(self, number):
-		if number != 0 and self.isSeekable() and config.seek.number_skips.value:
+		if (number != 0
+			and (config.seek.number_skip.value == "always"
+				 or (self.isSeekable()
+					 and (config.seek.number_skip.value == "all"
+						  or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))))):
 			return 0
 
 		if self.pts_blockZap_timer.isActive():
@@ -842,7 +846,11 @@ class InfoBarNumberZap:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def helpKeyNumberGlobal(self, number):
-		if number != 0 and self.isSeekable() and config.seek.number_skips.value:
+		if (number != 0
+			and (config.seek.number_skip.value == "always"
+				 or (self.isSeekable()
+					 and (config.seek.number_skip.value == "all"
+						  or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))))):
 			return None
 
 		if number == 0:
@@ -1948,7 +1956,17 @@ class InfoBarSeek:
 				# print "action:", action
 				time = self.seekTime(action)
 				if time is not None:
-					self.screen.doSeekRelative(time * 90000)
+					if 0 < time < 1:
+						seekable = self.screen.getSeek()
+						if seekable is not None:
+							length = seekable.getLength() or (None, 0)
+							length = length[1]
+							if length:
+								self.screen.doSeek(int(time * length))
+								if config.usage.show_infobar_on_skip.value:
+									self.screen.showAfterSeek()
+					else:
+						self.screen.doSeekRelative(time * 90000)
 					return 1
 				else:
 					return HelpableActionMap.action(self, contexts, action)
@@ -1960,8 +1978,14 @@ class InfoBarSeek:
 				elif action[:8] == "seekdef:":
 					if not config.seek.updown_skips.value and action[8:] in ("up", "down"):
 						return None
-					if not config.seek.number_skips.value and action[8:] in ("1", "3", "4", "6", "7", "9"):
-
+					tsEnabled = False
+					if config.seek.number_skip.value == "media":
+						service = self.session.nav.getCurrentService()
+						ts = service and service.timeshift()
+						tsEnabled = ts and ts.isTimeshiftEnabled()
+					if ((config.seek.number_skip.value == "0" or
+						 (config.seek.number_skip.value == "media" and tsEnabled)) and
+						action[8:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9")):
 						return None
 					if action[8:] == "up":
 						return config.seek.selfdefined_up.value
@@ -1971,6 +1995,8 @@ class InfoBarSeek:
 						return -config.seek.selfdefined_left.value
 					elif action[8:] == "right":
 						return config.seek.selfdefined_right.value
+					elif config.seek.number_method.value == "abspc":
+						return int(action[8:]) / 10.0
 					else:
 						key = int(action[8:])
 						return (
@@ -1985,6 +2011,8 @@ class InfoBarSeek:
 				skip = skipFn()
 				if skip is None:
 					return None
+				elif 0 < skip < 1:
+					return "%s %d%%" % (_("Skip to"), int(skip * 100))
 				else:
 					return "%s %3d %s" % (_("Skip forward ") if skip >= 0 else _("Skip back "), abs(skip), _("sec"))
 
@@ -1992,6 +2020,8 @@ class InfoBarSeek:
 			def skipString(skip):
 				if callable(skip):
 					return boundFunction(InfoBarSeekActionMap.skipStringFn, skip)
+				elif 0 < skip < 1:
+					return "%s %d%%" % (_("Skip to"), int(skip * 100))
 				else:
 					return "%s %3d %s" % (_("Skip forward ") if skip >= 0 else _("Skip back "), abs(skip), _("sec"))
 
