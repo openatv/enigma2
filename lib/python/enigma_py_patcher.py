@@ -21,8 +21,8 @@ for line, str in enumerate(source):
 		if '_enigma.' not in tmpstr:
 			str = str[:pos]+str[pos+6:]
 
-	if oldstr != str:
-		print "!!! Patch enigma.py line %d\n%s\n%s" %(line, oldstr[:len(oldstr)-1], str)
+	#if oldstr != str:
+	#	print "!!! Patch enigma.py line %d\n%s\n%s" %(line, oldstr[:len(oldstr)-1], str)
 
 	dest.write(str)
 

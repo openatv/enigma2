@@ -369,7 +369,7 @@ std::string UnicodeToUTF8(long c)
                 char utf[5] = { 0xf0 | (c >> 18), 0x80 | ((c >> 12) & 0x3f), 0x80 | ((c >> 6) & 0x3f), 0x80 | (c & 0x3f), 0};
 		return std::string((char*)utf, 4);
 	}
-	eDebug("[UnicodeToUTF8] invalid unicode character: code=0x%08x", c); // not a valid unicode
+	eDebug("[UnicodeToUTF8] invalid unicode character: code=0x%08lx", c); // not a valid unicode
 	return "";
 }
 
