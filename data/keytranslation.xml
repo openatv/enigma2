@@ -7,14 +7,5 @@
 		<device name="dreambox advanced remote control (native)">
 			<key from="KEY_EDIT" to="KEY_TIME"/> <!--VU new RCU have a TIMER Button but send KEY_EDIT  -->
 		</device>
-		<device name="LUNIX remote control (native)">
-			<key from="KEY_F2" to="KEY_MEDIA"/> <!--Lunix Button MEDIA but send KEY_F2 -->
-			<key from="KEY_SLOW" to="KEY_F1"/> <!--Lunix KEY_F1 send KEY_SLOW  -->
-			<key from="KEY_SCREEN" to="KEY_F2"/> <!--Lunix KEY_F2 send KEY_SCREEN  -->
-			<key from="KEY_WWW" to="KEY_DIRECTORY"/> <!--Lunix Button Plugins but send KEY_WWW -->
-		</device>
-		<device name="LUNIX3 4K remote control (native)">
-			<key from="KEY_SCREEN" to="KEY_F2"/> <!--Lunix3 4k KEY_F2 send KEY_SCREEN  -->
-		</device>
 	</translate>
 </keymap>
