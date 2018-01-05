@@ -306,7 +306,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
 
-		self.Filename = Directories.getRecordingFilename(filename, self.MountPath)
+		self.Filename, num = Directories.getRecordingFilename(filename, self.MountPath, wantnum=True)
+		self.begin += num
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
 

@@ -296,7 +296,7 @@ def fileExists(f, mode='r'):
 def fileCheck(f, mode='r'):
 	return fileExists(f, mode) and f
 
-def getRecordingFilename(basename, dirname=None):
+def getRecordingFilename(basename, dirname=None, wantnum=False):
 	# filter out non-allowed characters
 	non_allowed_characters = "/.\\:*?<>|\""
 	filename = ""
@@ -330,7 +330,7 @@ def getRecordingFilename(basename, dirname=None):
 			open(path + ".ts").close()
 			i += 1
 		except IOError:
-			return path
+			return path if not wantnum else (path, i)
 
 # this is clearly a hack:
 def InitFallbackFiles():
