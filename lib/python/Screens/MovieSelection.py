@@ -75,7 +75,7 @@ preferredTagEditor = None
 # Extra mappings between extensions and service types.
 extraExtensionServTypes = '16384:jpg 16384:png 16384:gif 16384:bmp'
 
-# this kludge is needed because ConfigSelection only takes numbers
+# this kludge is needed because ConfigSelection only takes strings
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
 	(str(MovieList.SORT_GROUPWISE), _("Recordings by date, other media by name"), 'Rec New->Old & A->Z'),
@@ -97,8 +97,8 @@ l_moviesort = [
 # GML:1
 # 4th item is the textual value set in UsageConfig.py
 l_trashsort = [
-	(str(MovieList.TRASHSORT_SHOWRECORD), _("delete time - show record time (Trash ONLY)"), '03/02/01', "show record time"),
-	(str(MovieList.TRASHSORT_SHOWDELETE), _("delete time - show delete time (Trash ONLY)"), '03/02/01', "show delete time")]
+	(str(MovieList.TRASHSORT_SHOWRECORD), _("By delete time, show record time (Trash ONLY)"), '03/02/01', "show record time"),
+	(str(MovieList.TRASHSORT_SHOWDELETE), _("By delete time, show delete time (Trash ONLY)"), '03/02/01', "show delete time")]
 
 try:
 	from Plugins.Extensions import BlurayPlayer
@@ -1585,6 +1585,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				config.usage.trashsort_deltime.value = "show record time"
 			elif newType == MovieList.TRASHSORT_SHOWDELETE:
 				config.usage.trashsort_deltime.value = "show delete time"
+		config.usage.trashsort_deltime.save()
 		self.reloadList()
 
 	def showDescription(self, newType):
