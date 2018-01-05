@@ -362,7 +362,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		if first_cut is None:
 			first_cut = self.CUT_TYPE_IN
 		cl = self.cut_list
-		if cl and cl[0] == (0, 3): # remove the ready-to-watch LAST mark
+		if cl and cl[0][1] == self.CUT_TYPE_LAST and cl[0][0] <= 1: # remove state indicator marks
 			cl = cl[1:]
 		r = [CutListEntry(0, first_cut, cl[0][0] if cl else length)]
 		for i, e in enumerate(cl):
