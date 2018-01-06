@@ -14,8 +14,10 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
+from Components.config import config, ConfigYesNo
 
 mtrunc_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/CutListEditor/bin/mtrunc")
+config.usage.cutlisteditor_tutorial_seen = ConfigYesNo(default=False)
 
 def SecToMSS(sec):
 	return "%d:%02d" % (sec / 60, sec % 60)
@@ -43,6 +45,7 @@ class CutListContextMenu(FixedMenu):
 	RET_STARTCUT = 0
 	RET_ENDCUT = 1
 	RET_DELETECUT = 2
+	RET_MARKIN = 12
 	RET_MARK = 3
 	RET_DELETEMARK = 4
 	RET_REMOVEBEFORE = 5
@@ -61,19 +64,19 @@ class CutListContextMenu(FixedMenu):
 		menu = [(_("back"), self.close)] #, (None, )]
 
 		if state == self.SHOW_STARTCUT:
-			menu.append((_("start cut here"), self.startCut))
+			menu.append((_("start cut here (reset)"), self.startCut))
 		else:
-			menu.append((_("start cut here"), ))
+			menu.append((_("start cut here"), self.startCut))
 
 		if state == self.SHOW_ENDCUT:
-			menu.append((_("end cut here"), self.endCut))
+			menu.append((_("end cut here (reset)"), self.endCut))
 		else:
-			menu.append((_("end cut here"), ))
+			menu.append((_("end cut here"), self.endCut))
 
 		if state == self.SHOW_DELETECUT:
 			menu.append((_("delete cut"), self.deleteCut))
 		else:
-			menu.append((_("delete cut"), ))
+			menu.append((_("delete cut (disabled)"), ))
 
 		menu.append((_("remove before this position"), self.removeBefore))
 		menu.append((_("remove after this position"), self.removeAfter))
@@ -87,7 +90,7 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("execute cuts and exit"), self.executeCuts))
 
-#		menu.append((None, ))
+		menu.append((_("insert mark after each in"), self.markIn))
 
 		if not nearmark:
 			menu.append((_("insert mark here"), self.insertMark))
@@ -106,6 +109,9 @@ class CutListContextMenu(FixedMenu):
 
 	def deleteCut(self):
 		self.close(self.RET_DELETECUT)
+
+	def markIn(self):
+		self.close(self.RET_MARKIN)
 
 	def insertMark(self):
 		self.close(self.RET_MARK)
@@ -170,9 +176,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	BACK_BACK = 0
 	BACK_RESTORE = 1
 	BACK_RESTOREEXIT = 2
-	BACK_REMOVE = 3
-
-	tutorial_seen = False
+	BACK_REMOVEMARKS = 3
+	BACK_REMOVECUTS = 4
+	BACK_REMOVEALL = 5
 
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
@@ -225,6 +231,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"setMark": (self.setMark, _("Make this mark just a mark")),
 				"addMark": (self.__addMark, _("Add a mark")),
 				"removeMark": (self.__removeMark, _("Remove a mark")),
+				"truncate": (self.truncate, _("End at this position")),
+				"execute": (self.execute, _("Execute cuts and exit")),
 				"leave": (self.exit, _("Exit editor")),
 				"showMenu": (self.showMenu, _("Menu")),
 				"backMenu": (self.backMenu, _("Restore previous cuts...")),
@@ -239,6 +247,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		# to track new entries we save the last version of the cutlist
 		self.last_cuts = self.getCutlist()
 		self.cut_start = None
+		self.cut_end = None
+		self.state = CutListContextMenu.SHOW_DELETECUT
 		self.inhibit_seek = False
 		self.onClose.append(self.__onClose)
 		# Use onShown to set the initial list index, since apparently that doesn't
@@ -269,8 +279,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self["SeekState"].setText(state[3].strip())
 
 	def showTutorial(self):
-		if not CutListEditor.tutorial_seen:
-			CutListEditor.tutorial_seen = True
+		if not config.usage.cutlisteditor_tutorial_seen.value:
+			config.usage.cutlisteditor_tutorial_seen.value = True
+			config.usage.cutlisteditor_tutorial_seen.save()
 			self.session.open(MessageBox,_("Welcome to the cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
 
 	def checkSkipShowHideLock(self):
@@ -297,15 +308,12 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 	def setOut(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE)
-		#self.context_position = self.cueGetCurrentPosition()
-		#self.menuCallback(CutListContextMenu.RET_STARTCUT)
-		self.cut_start = self.cueGetCurrentPosition()
+		self.context_position = self.cueGetCurrentPosition()
+		self.menuCallback(CutListContextMenu.RET_STARTCUT)
 
 	def setIn(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.context_position = self.cueGetCurrentPosition()
-		if self.cut_start is None or self.cut_start >= self.context_position:
-			return
 		self.menuCallback(CutListContextMenu.RET_ENDCUT)
 
 	def setStart(self):
@@ -317,6 +325,16 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.context_position = self.cueGetCurrentPosition()
 		self.menuCallback(CutListContextMenu.RET_REMOVEAFTER)
+
+	def truncate(self):
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+		self.context_position = self.cueGetCurrentPosition()
+		self.menuCallback(CutListContextMenu.RET_ENDHERE)
+
+	def execute(self):
+		self.setSeekState(self.SEEK_STATE_PAUSE)
+		self.context_position = self.cueGetCurrentPosition()
+		self.menuCallback(CutListContextMenu.RET_EXECUTECUTS)
 
 	def setMark(self):
 		m = self["cutlist"].getIndex()
@@ -420,66 +438,53 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				break
 		self.last_cuts = new_list
 
-	def getStateForPosition(self, pos):
-		state = -1
-		for (where, what) in self.cut_list:
-			if what in [0, 1]:
-				if where < pos:
-					state = what
-				elif where == pos:
-					state = 1
-				elif state == -1:
-					state = 1 - what
-		if state == -1:
-			state = 0
-		return state
-
 	def showMenu(self):
 		curpos = self.cueGetCurrentPosition()
 		if curpos is None:
 			return
-
 		self.setSeekState(self.SEEK_STATE_PAUSE)
-
 		self.context_position = curpos
 
 		self.context_nearest_mark = self.toggleMark(onlyreturn=True)
-
-		cur_state = self.getStateForPosition(curpos)
-		if cur_state == 0:
-			print "currently in 'IN'"
-			if self.cut_start is None or self.context_position < self.cut_start:
-				state = CutListContextMenu.SHOW_STARTCUT
-			else:
-				state = CutListContextMenu.SHOW_ENDCUT
-		else:
-			print "currently in 'OUT'"
-			state = CutListContextMenu.SHOW_DELETECUT
-
 		if self.context_nearest_mark is None:
 			nearmark = False
 		else:
 			nearmark = True
 
-		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state, nearmark, self.cut_state)
+		self.session.openWithCallback(self.menuCallback, CutListContextMenu, self.state, nearmark, self.cut_state)
 
 	def menuCallback(self, *result):
 		if not len(result):
 			return
 		result = result[0]
 
-		if result == CutListContextMenu.RET_STARTCUT:
-			self.cut_start = self.context_position
-		elif result == CutListContextMenu.RET_ENDCUT:
+		if result in (CutListContextMenu.RET_STARTCUT, CutListContextMenu.RET_ENDCUT):
+			if result == CutListContextMenu.RET_STARTCUT:
+				self.cut_start = self.context_position
+				self.state = CutListContextMenu.SHOW_STARTCUT
+				if self.cut_end is None:
+					return
+				if self.cut_start >= self.cut_end:
+					self.cut_end = None
+					return
+			else: # CutListContextMenu.RET_ENDCUT
+				self.cut_end = self.context_position
+				self.state = CutListContextMenu.SHOW_ENDCUT
+				if self.cut_start is None:
+					return
+				if self.cut_end <= self.cut_start:
+					self.cut_start = None
+					return
 			# remove marks between the new cut
 			for (where, what) in self.cut_list[:]:
-				if self.cut_start <= where <= self.context_position:
+				if self.cut_start <= where <= self.cut_end:
 					self.cut_list.remove((where, what))
 
 			bisect.insort(self.cut_list, (self.cut_start, 1))
-			bisect.insort(self.cut_list, (self.context_position, 0))
+			bisect.insort(self.cut_list, (self.cut_end, 0))
 			self.putCuesheet()
-			self.cut_start = None
+			self.cut_start = self.cut_end = None
+			self.state = CutListContextMenu.SHOW_DELETECUT
 		elif result == CutListContextMenu.RET_DELETECUT:
 			out_before = None
 			in_after = None
@@ -497,6 +502,18 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 			if in_after is not None:
 				self.cut_list.remove(in_after)
+			self.inhibit_seek = True
+			self.putCuesheet()
+			self.inhibit_seek = False
+		elif result == CutListContextMenu.RET_MARKIN:
+			added = 1
+			first = True
+			for (i, (where, what)) in enumerate(self.cut_list[:]):
+				if what == self.CUT_TYPE_IN:
+					if not first:
+						self.cut_list.insert(i+added, (where, self.CUT_TYPE_MARK))
+						added += 1
+					first = False
 			self.inhibit_seek = True
 			self.putCuesheet()
 			self.inhibit_seek = False
@@ -574,12 +591,21 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		menu = [(_("back"), self.BACK_BACK),
 				(_("restore previous cuts"), self.BACK_RESTORE),
 				(_("restore previous cuts & exit"), self.BACK_RESTOREEXIT),
-				(_("remove all cuts"), self.BACK_REMOVE)]
+				(_("remove marks (preserve cuts)"), self.BACK_REMOVEMARKS),
+				(_("remove cuts (preserve marks)"), self.BACK_REMOVECUTS),
+				(_("remove all"), self.BACK_REMOVEALL)]
 		self.session.openWithCallback(self.backCallback, ChoiceBox, title="Restore cuts", list=menu)
 
 	def backCallback(self, result):
 		if result and result[1]:
-			self.cut_list = self.prev_cuts if result[1] != self.BACK_REMOVE else []
+			if result[1] == self.BACK_REMOVEALL:
+				self.cut_list = []
+			elif result[1] == self.BACK_REMOVEMARKS:
+				self.cut_list = [x for x in self.cut_list if x[1] != self.CUT_TYPE_MARK]
+			elif result[1] == self.BACK_REMOVECUTS:
+				self.cut_list = [x for x in self.cut_list if x[1] not in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT)]
+			else:
+				self.cut_list = self.prev_cuts
 			self.inhibit_seek = True
 			self.putCuesheet()
 			self.inhibit_seek = False
