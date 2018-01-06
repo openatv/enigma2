@@ -97,6 +97,7 @@ class FileList(MenuList):
 		self.additional_extensions = additionalExtensions
 		self.mountpoints = []
 		self.current_directory = None
+		self.parent_directory = None
 		self.current_mountpoint = None
 		self.useServiceRef = useServiceRef
 		self.showDirectories = showDirectories
@@ -171,6 +172,7 @@ class FileList(MenuList):
 			else:
 				self.current_mountpoint = None
 		self.current_directory = directory
+		self.parent_directory = False
 		directories = []
 		files = []
 
@@ -219,8 +221,10 @@ class FileList(MenuList):
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
 				self.list.append(FileEntryComponent(name="<" + _("List of Storage Devices") + ">", absolute=None, isDir=True, isLink=False))
+				self.parent_directory = None
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(FileEntryComponent(name="<" + _("Parent Directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True, isLink=False))
+				self.parent_directory = '/'.join(directory.split('/')[:-2]) + '/'
+				self.list.append(FileEntryComponent(name="<" + _("Parent Directory") + ">", absolute=self.parent_directory, isDir=True, isLink=False))
 
 		if self.showDirectories:
 			for x in directories:
@@ -264,6 +268,9 @@ class FileList(MenuList):
 
 	def getCurrentDirectory(self):
 		return self.current_directory
+
+	def getParentDirectory(self):
+		return self.parent_directory
 
 	def canDescent(self):
 		if self.getSelection() is None:

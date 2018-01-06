@@ -113,7 +113,17 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 
 		ConfigListScreen.__init__(self, self.list)
 		# self["help"] = Label(_("Help:\nKey [0] refresh screen. Key [1] new folder.\nKey [2] new symlink with name. Key [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder. Key [EPG] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files."))
-		self["help"] = Label(_("Help:\nKey [0] Refresh screen.\nKey [1] New folder.\nKey [2] New symlink with file name.\nKey [3] New symlink with foldername.\nKey [4] Change permissions: chmod 644/755.\nKey [5] Change to default folder.\nKey [INFO] Shows tasklist. Check progress of copy/move operations.\nKey [MEDIA] Select multiple files.\nKey [OK] Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
+		self["help"] = Label(_("Keys:\n"
+							   "0: Refresh screen.\n"
+							   "1: New folder.\n"
+							   "2: New symlink with file name.\n"
+							   "3: New symlink with folder name.\n"
+							   "4: Change permissions: chmod 644/755.\n"
+							   "5: Change to default folder.\n"
+							   "BACK: Change to parent folder.\n"
+							   "INFO: Show task list. Check progress of copy/move operations.\n"
+							   "MEDIA: Select multiple files.\n"
+							   "OK: Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["setupActions"] = ActionMap(["SetupActions"], {
@@ -206,8 +216,8 @@ class FileCommanderScreen(Screen, key_actions):
 		# set current folder
 		self["list_left_head"] = Label(path_left)
 		self["list_right_head"] = Label(path_right)
-		self["list_left"] = FileList(path_left, matchingPattern=filter)
-		self["list_right"] = FileList(path_right, matchingPattern=filter)
+		self["list_left"] = FileList(path_left, matchingPattern=filter, enableWrapAround=True)
+		self["list_right"] = FileList(path_right, matchingPattern=filter, enableWrapAround=True)
 
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Move"))
@@ -215,7 +225,7 @@ class FileCommanderScreen(Screen, key_actions):
 		self["key_blue"] = Label(_("Rename"))
 		self["VKeyIcon"] = Boolean(False)
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
+		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
 			"ok": self.ok,
 			"back": self.exit,
 			"menu": self.goMenu,
@@ -231,6 +241,7 @@ class FileCommanderScreen(Screen, key_actions):
 			# "8": self.test,
 			"startTeletext": self.file_viewer,
 			"info": self.openTasklist,
+			"directoryUp": self.goParentfolder,
 			"up": self.goUp,
 			"down": self.goDown,
 			"left": self.goLeft,
@@ -319,6 +330,12 @@ class FileCommanderScreen(Screen, key_actions):
 		self.SOURCELIST.changeDir(config.plugins.filecommander.path_default.value)
 		self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 		self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
+
+	def goParentfolder(self):
+		if self.SOURCELIST.getParentDirectory() != False:
+			self.SOURCELIST.changeDir(self.SOURCELIST.getParentDirectory())
+			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
+			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
 
 	def goRestart(self, answer):
 		config.plugins.filecommander.path_left.value = config.plugins.filecommander.path_left_tmp.value
@@ -672,14 +689,14 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		self["list_right_head"] = Label(path_right)
 
 		if leftactive:
-			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter)
-			self["list_right"] = FileList(path_right, matchingPattern=filter)
+			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter, enableWrapAround=True)
+			self["list_right"] = FileList(path_right, matchingPattern=filter, enableWrapAround=True)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
 			self.listLeft()
 		else:
-			self["list_left"] = FileList(path_left, matchingPattern=filter)
-			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter)
+			self["list_left"] = FileList(path_left, matchingPattern=filter, enableWrapAround=True)
+			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter, enableWrapAround=True)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
 			self.listRight()
