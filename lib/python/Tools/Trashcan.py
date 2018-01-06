@@ -182,9 +182,6 @@ class CleanTrashTask(Components.Task.PythonTask):
 					serviceRefMap = findMatchingServiceRefs(root, files)
 
 					for name in files:
-# Don't delete any per-directory config files from .Trash if the option is in use
-						if (config.movielist.settings_per_directory.value and name == ".e2settings.pkl"):
-							continue
 						try:
 							fn = os.path.join(root, name)
 							st = os.stat(fn)
