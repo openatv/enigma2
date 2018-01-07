@@ -227,7 +227,7 @@ class Dish(Screen):
 
 	def OrbToStr(self, orbpos):
 		if orbpos == INVALID_POSITION:
-			return "N/A"
+			return _("N/A")
 		if orbpos > 1800:
 			orbpos = 3600 - orbpos
 			return "%d.%d°W" % (orbpos/10, orbpos%10)
