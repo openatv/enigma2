@@ -315,7 +315,7 @@ public:
 private:
 #ifndef SWIG
 	static eDVBSatelliteEquipmentControl *instance;
-	eDVBSatelliteLNBParameters m_lnbs[144]; // i think its enough
+	eDVBSatelliteLNBParameters m_lnbs[512]; // at the moment we have max 2 FBC Tuners.. a 8 channels... max 32 LNB per channel
 	int m_lnbidx; // current index for set parameters
 	std::multimap<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends, &m_avail_simulate_frontends;
