@@ -573,7 +573,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			instance.setContent(self.l)
 			self.l.setSelectionClip(eRect(0, 0, 0, 0), False)
 		else:
-			instance.setWrapAround(False)
+			instance.setWrapAround(self.type == EPG_TYPE_ENHANCED)
 			instance.selectionChanged.get().append(self.selectionChanged)
 			instance.setContent(self.l)
 
