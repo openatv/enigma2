@@ -1413,6 +1413,15 @@ class EPGList(HTMLComponent, GUIComponent):
 				break
 			index += 1
 
+	def moveToTime(self, time):
+		cur_sel = self.l.getCurrentSelection()
+		if not cur_sel or not self.epgcache:
+			return
+		service = ServiceReference(cur_sel[0])
+		event = self.epgcache.lookupEventTime(service.ref, time)
+		if event:
+			self.moveToEventId(event.getEventId())
+
 class TimelineText(HTMLComponent, GUIComponent):
 
 	attribMap = {
