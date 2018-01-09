@@ -724,7 +724,10 @@ class NumberZap(Screen):
 
 	def keyOK(self):
 		self.Timer.stop()
-		self.close(self.service, self.bouquet)
+		if self.numberString:
+		    self.close(self.service, self.bouquet)
+		else:
+		    self.close()
 
 	def handleServiceName(self):
 		if self.searchNumber:
@@ -753,6 +756,16 @@ class NumberZap(Screen):
 		if len(self.numberString) >= 4:
 			self.keyOK()
 
+	def keyBackspace(self):
+		self.Timer.start(5000, True)
+		self.numberString = self.numberString[:-1]
+		self["number"].setText(self.numberString)
+		self["number_summary"].setText(self.numberString)
+		if self.numberString:
+		    self.handleServiceName()
+		else:
+		    self["servicename"].setText("")
+
 	def __init__(self, session, number, searchNumberFunction=None):
 		Screen.__init__(self, session)
 		self.onChangedEntry = []
@@ -773,6 +786,7 @@ class NumberZap(Screen):
 			"cancel": self.quit,
 			"ok": self.keyOK,
 			"blue": self.keyBlue,
+			"deleteBackward": self.keyBackspace,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
