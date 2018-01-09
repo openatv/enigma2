@@ -939,12 +939,15 @@ class InfoBarNumberZap:
 			serviceIterator = servicelist.getNext()
 			while serviceIterator.valid():
 				if num == serviceIterator.getChannelNum():
+					if serviceIterator.flags & eServiceReference.isInvisible:
+						break
 					return serviceIterator
 				serviceIterator = servicelist.getNext()
 		return None
 
 	def searchNumber(self, number, firstBouquetOnly=False, bouquet=None):
-		bouquet = bouquet or self.servicelist.getRoot()
+		current_bouquet = self.servicelist.getRoot()
+		bouquet = bouquet or current_bouquet
 		service = None
 		serviceHandler = eServiceCenter.getInstance()
 		if not firstBouquetOnly:
@@ -965,6 +968,17 @@ class InfoBarNumberZap:
 						if config.usage.alternative_number_mode.value or firstBouquetOnly:
 							break
 					bouquet = bouquetlist.getNext()
+		if service is not None and bouquet != current_bouquet:
+			servicelist = serviceHandler.list(current_bouquet)
+			if servicelist:
+				svc = service.toCompareString()
+				serviceIterator = servicelist.getNext()
+				while serviceIterator.valid():
+					if svc == serviceIterator.toCompareString():
+						service = serviceIterator
+						bouquet = current_bouquet
+						break
+					serviceIterator = servicelist.getNext()
 		return service, bouquet
 
 	def selectAndStartService(self, service, bouquet, checkTimeshift=True):
