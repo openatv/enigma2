@@ -18,7 +18,7 @@ extern "C" void tuxtxt_handlePressedKey(int key);
 eAutoInitP0<eTuxtxtApp> init_eTuxtxtApp(eAutoInitNumbers::lowlevel, "Tuxtxt");
 eTuxtxtApp *eTuxtxtApp::instance = NULL;
 
-eTuxtxtApp::eTuxtxtApp() : pid(0), enableTtCaching(false), uiRunning(false), messagePump(eApp, 0)
+eTuxtxtApp::eTuxtxtApp() : pid(0), enableTtCaching(false), uiRunning(false), messagePump(eApp, 0, "eTuxtxtApp")
 {
 	CONNECT(messagePump.recv_msg, eTuxtxtApp::recvEvent);
 	pthread_mutex_init( &cacheChangeLock, 0 );

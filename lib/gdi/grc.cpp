@@ -50,9 +50,9 @@ gRC *gRC::instance=0;
 
 gRC::gRC(): rp(0), wp(0)
 #ifdef SYNC_PAINT
-,m_notify_pump(eApp, 0)
+,m_notify_pump(eApp, 0, "gRC")
 #else
-,m_notify_pump(eApp, 1)
+,m_notify_pump(eApp, 1, "gRC")
 #endif
 {
 	ASSERT(!instance);

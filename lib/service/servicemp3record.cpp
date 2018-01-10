@@ -16,7 +16,7 @@ DEFINE_REF(eServiceMP3Record);
 eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 	m_ref(ref),
 	m_streamingsrc_timeout(eTimer::create(eApp)),
-	m_pump(eApp, 1)
+	m_pump(eApp, 1, "eServiceMP3Record")
 {
 	m_state = stateIdle;
 	m_error = 0;
