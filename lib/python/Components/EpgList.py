@@ -1242,6 +1242,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		epg_time = t - config.epg.histminutes.value * 60
 		test = ['RIBDT', (service.ref.toString(), 0, epg_time, -1)]
 		self.list = self.queryEPG(test)
+		# Add explicit gaps if data isn't available.
+		for i in range(len(self.list) - 1, 0, -1):
+			this_beg = self.list[i][2]
+			prev_end = self.list[i-1][2] + self.list[i-1][3]
+			if prev_end + 5 * 60 < this_beg:
+				self.list.insert(i, (self.list[i][0], None, prev_end, this_beg - prev_end, None))
 		self.l.setList(self.list)
 		self.recalcEntrySize()
 		if t != epg_time:
