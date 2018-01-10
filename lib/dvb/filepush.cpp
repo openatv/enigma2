@@ -16,7 +16,7 @@ eFilePushThread::eFilePushThread(int blocksize, size_t buffersize):
 	 m_blocksize(blocksize),
 	 m_buffersize(buffersize),
 	 m_buffer((unsigned char *)malloc(buffersize)),
-	 m_messagepump(eApp, 0),
+	 m_messagepump(eApp, 0, "eFilePushThread"),
 	 m_run_state(0)
 {
 	if (m_buffer == NULL)
@@ -323,7 +323,7 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t b
 	m_buffer(buffer),
 	m_overflow_count(0),
 	m_stop(1),
-	m_messagepump(eApp, 0)
+	m_messagepump(eApp, 0, "eFilePushThreadRecorder")
 {
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
 }

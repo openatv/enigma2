@@ -169,8 +169,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		else:
 			self.service_ref = ServiceReference(None)
 		self.dontSave = False
+		self.eit = None
 		if not description or not name or not eit:
-			evt = self.getEventFromEPG()
+			evt = self.getEventFromEPGId(eit) or self.getEventFromEPG()
 			if evt:
 				if not description:
 					description = evt.getShortDescription()
@@ -308,6 +309,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.Filename = Directories.getRecordingFilename(filename, self.MountPath)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
+
+	def getEventFromEPGId(self, id=None):
+		id = id or self.eit
+		epgcache = eEPGCache.getInstance()
+		ref = self.service_ref and self.service_ref.ref
+		return id and epgcache.lookupEventId(ref, id) or None
 
 	def getEventFromEPG(self):
 		epgcache = eEPGCache.getInstance()

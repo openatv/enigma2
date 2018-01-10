@@ -113,7 +113,7 @@ DEFINE_REF(eServiceDVD);
 
 eServiceDVD::eServiceDVD(eServiceReference ref):
 	m_ref(ref), m_ddvdconfig(ddvd_create()), m_subtitle_widget(0), m_state(stIdle),
-	m_current_trick(0), m_pump(eApp, 1), m_width(-1), m_height(-1),
+	m_current_trick(0), m_pump(eApp, 1, "eServiceDVD"), m_width(-1), m_height(-1),
 	m_aspect(-1), m_framerate(-1), m_progressive(-1)
 {
 	int aspect = DDVD_16_9;

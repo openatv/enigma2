@@ -42,7 +42,8 @@ class Console(object):
 		# know if there's still stuff running
 		self.appContainers = {}
 
-	def ePopen(self, cmd, callback=None, extra_args=[]):
+	def ePopen(self, cmd, callback=None, extra_args=None):
+		extra_args = [] if extra_args is None else extra_args
 		print "[Console] command:", cmd
 		return ConsoleItem(self.appContainers, cmd, callback, extra_args)
 

@@ -87,9 +87,6 @@ void bsodFatal(const char *component)
 		return;
 	bsodhandled = true;
 
-	if (!component)
-		component = "Enigma2";
-
 	/* Retrieve current ringbuffer state */
 	const char* logp1;
 	unsigned int logs1;
@@ -152,7 +149,7 @@ void bsodFatal(const char *component)
 					stringFromFile("/etc/image-version").c_str(),
 					__DATE__,
 					getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
-					component,
+					component ? component : "Enigma2",
 					stringFromFile("/proc/cmdline").c_str(),
 					stringFromFile("/proc/bus/nim_sockets").c_str()
 				);
@@ -188,8 +185,7 @@ void bsodFatal(const char *component)
 		os << "We are really sorry. Your receiver encountered "
 			"a software problem, and needs to be restarted.\n"
 			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-			"Your receiver will restart in 10 seconds!\n"
-			"Component: " << component;
+			"Your receiver will restart in 10 seconds!\n";
 
 		p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
