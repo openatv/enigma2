@@ -2096,8 +2096,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		mbox.setTitle(self.getTitle())
 
 	def selectMovieLocation(self, title, callback, base=None):
-		bookmarks = [(_("(Other...)"), None)]
+		bookmarks = []
 		buildMovieLocationList(bookmarks, base)
+		bookmarks.append((_("(Other...)"), None))
 		self.onMovieSelected = callback
 		self.movieSelectTitle = title
 		self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks, skin_name="MovieSelectionLocations")
