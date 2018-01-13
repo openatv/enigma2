@@ -97,6 +97,13 @@ stbcheck=00
 if [ -e /proc/stb/info/subtype ]; then
    stbcheck=`cat /proc/stb/info/subtype`
 fi
+if [ -e /proc/stb/info/boxtype ] && [ -e /proc/stb/info/chipset ]; then
+   boxtype=`cat /proc/stb/info/boxtype`
+   chipset=`cat /proc/stb/info/chipset`
+   if  [ $boxtype == "et7000" ] && [ $chipset == "bcm73625" ]; then
+       stbcheck=01
+   fi
+fi
 if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ] && [ ! $stbcheck == "1" ]; then
 	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
 fi

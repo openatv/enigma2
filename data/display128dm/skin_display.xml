@@ -240,11 +240,11 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<!-- Movie progress -->
-		<widget source="Service" render="Progress" position="0,36" size="126,8" borderWidth="1" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/OLED_Pointer.png:94,0" transparent="1">
+		<widget source="Service" render="Progress" position="0,36" size="126,8" borderWidth="1" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress.png:94,0" transparent="1">
 			<convert type="EMCServicePosition">Position</convert>
 		</widget> 
 		<!-- Movie recording progress (For OLED display only -->
-		<!--widget source="Service" render="Progress" position="0,36" size="126,8" borderWidth="1" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/OLED_RecPointer.png:94,0" transparent="1" >
+		<!--widget source="Service" render="Progress" position="0,36" size="126,8" borderWidth="1" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress_rec.png:94,0" transparent="1" >
 			<convert type="EMCRecordPosition">Position</convert>
 		</widget-->
 		<!-- Remaining movie time -->

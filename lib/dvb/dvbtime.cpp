@@ -576,21 +576,32 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 		time_difference = t - linuxTime;   // calc our new linux_time -> enigma_time correction
 		eDebug("[eDVBLocalTimerHandler] m_time_difference is %d", time_difference );
 
-		if ( time_difference )
-		{
-			eDebug("[eDVBLocalTimerHandler] set Linux Time");
-			timeval tnow;
-			gettimeofday(&tnow,0);
-			tnow.tv_sec=t;
-			settimeofday(&tnow,0);
-#ifdef DEBUG
-			linuxTime=time(0);
-			localtime_r(&linuxTime, &now);
-			eDebug("[eDVBLocalTimerHandler] time after update is %02d:%02d:%02d",
-			now.tm_hour,
-			now.tm_min,
-			now.tm_sec);
-#endif
+		if ( time_difference ) {
+			if ( (time_difference >= -15) && (time_difference <= 15) ) {
+				// Slew small diffs ...
+				// Even good transponders can differ by 0-5 sec, if we would step these
+				// the system clock would permanentely jump around when zapping.
+				timeval tdelta, tolddelta;
+				tdelta.tv_sec=time_difference;
+				int rc=adjtime(&tdelta,&tolddelta);
+				if(rc==0) {
+					eDebug("[eDVBLocalTimerHandler] slewing Linux Time by %03d seconds", time_difference);
+				} else {
+					eDebug("[eDVBLocalTimerHandler] slewing Linux Time by %03d seconds FAILED", time_difference);
+				}
+			} else {
+				// ... only step larger diffs
+				timeval tnow;
+				gettimeofday(&tnow,0);
+				tnow.tv_sec=t;
+				settimeofday(&tnow,0);
+				linuxTime=time(0);
+				localtime_r(&linuxTime, &now);
+				eDebug("[eDVBLocalTimerHandler] stepped Linux Time to %02d:%02d:%02d",
+				now.tm_hour,
+				now.tm_min,
+				now.tm_sec);
+			}
 		}
 
  		 /*emit*/ m_timeUpdated();
