@@ -428,7 +428,25 @@ void eDBoxLCD::update()
 					fclose(boxtype_file);
 				}
 */
-				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0) || (strcmp(boxtype_name, "8100S\n") == 0))
+				if ((strcmp(boxtype_name, "dm900\n") == 0) || (strcmp(boxtype_name, "dm920\n") == 0))
+				{
+					unsigned char gb_buffer[_stride * res.height()];
+					for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
+					{
+						unsigned int src = 0;
+						if (offset%(_stride>>2) >= DM900_LCD_Y_OFFSET)
+							src = ((unsigned int*)_buffer)[offset - DM900_LCD_Y_OFFSET];
+						//                                             blue                         red                  green low                     green high
+						((unsigned int*)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
+					}
+					write(lcdfd, gb_buffer, _stride * res.height());
+					if (file != NULL)
+					{
+						fclose(file);
+					}
+				}
+#ifdef LCD_COLOR_BITORDER_RGB565
+				else if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0) || (strcmp(boxtype_name, "8100S\n") == 0))
 				{
 					//gggrrrrrbbbbbggg bit order from memory
 					//gggbbbbbrrrrrggg bit order to LCD
@@ -455,23 +473,7 @@ void eDBoxLCD::update()
 						fclose(file);
 					}
 				}
-				else if ((strcmp(boxtype_name, "dm900\n") == 0) || (strcmp(boxtype_name, "dm920\n") == 0))
-				{
-					unsigned char gb_buffer[_stride * res.height()];
-					for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
-					{
-						unsigned int src = 0;
-						if (offset%(_stride>>2) >= DM900_LCD_Y_OFFSET)
-							src = ((unsigned int*)_buffer)[offset - DM900_LCD_Y_OFFSET];
-						//                                             blue                         red                  green low                     green high
-						((unsigned int*)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
-					}
-					write(lcdfd, gb_buffer, _stride * res.height());
-					if (file != NULL)
-					{
-						fclose(file);
-					}
-				}
+#endif
 				else
 				{
 					write(lcdfd, _buffer, _stride * res.height());
