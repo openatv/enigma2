@@ -184,7 +184,7 @@ def restoreUserDB():
 	newshadowfile.close()
 	shutil.move("/tmp/shadow.new", "/etc/shadow")
 
-def listpkg(type="all"):
+def listpkg(type="installed"):
 	pkgs = []
 	ret = []
 	for line in open(INSTALLEDPACKAGES, 'r'):
@@ -212,7 +212,7 @@ def listpkg(type="all"):
 			package = None
 
 	for package in pkgs:
-		if type == "all":
+		if type == "installed":
 			ret.append(package['package'])
 		elif type == "auto":
 			if package['autoinstalled']:
