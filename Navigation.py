@@ -71,7 +71,6 @@ class Navigation:
 		print "="*100
 		if self.wakeuptime > 0: 
 			print "[NAVIGATION] wakeup time from deep-standby expected: *** %s ***" %(ctime(self.wakeuptime))
-			print "[NAVIGATION] timer wakeup detection window: %s - %s" %(ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
 			print "-"*100
 		thisBox = getBoxType()
 		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3', 'et8000') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'fulan', 'entwopia') or getMachineBuild() in ('dags7335' , 'dags7356', 'dags7362')):
@@ -83,6 +82,7 @@ class Navigation:
 		if config.workaround.deeprecord.value: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
 			wasTimerWakeup = False
 			print "[NAVIGATION] starting deepstandby-workaround"
+			print "[NAVIGATION] timer wakeup detection window: %s - %s" %(ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
 			if now <= 31536000: # check for NTP-time sync, if no sync, wait for transponder time
 				self.timesynctimer = eTimer()
 				self.timesynctimer.callback.append(self.TimeSynctimer)
