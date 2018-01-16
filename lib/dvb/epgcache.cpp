@@ -3394,25 +3394,24 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //     1 = case insensitive (NO_CASE_CHECK)
 //     2 = regex search (REGEX_CHECK)
 
-std::string eEPGCache::casetypestr(int value)
+const char* eEPGCache::casetypestr(int value)
 {
-	std::string result="";
 	switch (value)
 	{
 		case CASE_CHECK:
-			result="case sensitive";
+			return "case sensitive";
 			break;
 		case NO_CASE_CHECK:
-			result="case insensitive";
+			return "case insensitive";
 			break;
 		case REGEX_CHECK:
-			result="regex";
+			return "regex";
 			break;
 		default:
-			result="unknown";
+			return "unknown";
 			break;
 	}
-	return result;
+	return "unknown";
 }
 
 
@@ -3544,16 +3543,17 @@ PyObject *eEPGCache::search(ePyObject arg)
 #else
 					int textlen = PyString_Size(obj);
 #endif              
+					const char *ctype = casetypestr(casetype);
 					switch (querytype)
 					{
-						case 1:
-							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, casetypestr(casetype));
+						case EXAKT_TITLE_SEARCH:
+							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, ctype);
 							break;
-						case 2:
-							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, casetypestr(casetype));
+						case PARTIAL_TITLE_SEARCH:
+							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, ctype);
 							break;
-						case 3:
-							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, casetypestr(casetype));
+						case PARTIAL_DESCRIPTION_SEARCH:
+							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, ctype);
 							break;
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
@@ -3651,7 +3651,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 					int textlen = PyString_Size(obj);
 #endif
 					int lloop=0;
-					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, casetypestr(casetype));
+					const char *ctype = casetypestr(casetype);
+					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, ctype);
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
 					{
 						singleLock s(cache_lock);
