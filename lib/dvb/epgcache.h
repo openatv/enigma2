@@ -402,7 +402,7 @@ public:
 	};
 
 	PyObject *lookupEvent(SWIG_PYOBJECT(ePyObject) list, SWIG_PYOBJECT(ePyObject) convertFunc=(PyObject*)0);
-	std::string casetypestr(int value);
+	const char* casetypestr(int value);
 	PyObject *search(SWIG_PYOBJECT(ePyObject));
 
 	/* Used by servicedvbrecord.cpp, timeshift, etc. to write the EIT file */
