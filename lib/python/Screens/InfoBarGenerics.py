@@ -957,6 +957,8 @@ class InfoBarNumberZap:
 			bouquetlist = serviceHandler.list(bouquet)
 			if bouquetlist:
 				bouquet = bouquetlist.getNext()
+				if bouquet == current_bouquet and firstBouquetOnly:
+					bouquet = bouquetlist.getNext()
 				while bouquet.valid():
 					if bouquet.flags & eServiceReference.isDirectory:
 						service = self.searchNumberHelper(serviceHandler, number, bouquet)
