@@ -203,7 +203,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['epgactions'].csel = self
 			numHelp = _('Enter number(s) to jump to channel')
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', {
-				'0': (self.keyNumberGlobal, numHelp),
+				'0': (self.keyNumberGlobal, _('Jump to original channel')),
 				'1': (self.keyNumberGlobal, numHelp),
 				'2': (self.keyNumberGlobal, numHelp),
 				'3': (self.keyNumberGlobal, numHelp),
@@ -1524,6 +1524,11 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
+			if number == 0 and not self.zapnumberstarted:
+				num = self.currentService.getChannelNum()
+				self.service, self.bouquet = self.searchNumber(num)
+				self.doNumberZap()
+				return
 			self.zapnumberstarted = True
 			self.NumberZapTimer.start(5000, True)
 			if not self.NumberZapField:
