@@ -617,6 +617,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveBouquetUp()
 			self.BouquetOK()
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
+			if self.zapnumberstarted:
+				self.doNumberZapBack()
+				return
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
 			self.servicelist.prevBouquet()
@@ -1369,6 +1372,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.eventviewDialog = None
 
 	def closeScreen(self):
+		if self.zapnumberstarted:
+			self.stopNumberZap()
+			return
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return  # stop and do not continue.
@@ -1540,6 +1546,21 @@ class EPGSelection(Screen, HelpableScreen):
 			self["number"].show()
 			if len(self.NumberZapField) >= 4:
 				self.doNumberZap()
+
+	def doNumberZapBack(self):
+		if self.NumberZapField:
+			self.NumberZapField = self.NumberZapField[:-1]
+			if self.NumberZapField:
+				self.handleServiceName()
+				self["number"].setText("Channel change\n" + self.zaptoservicename + '\n' + self.NumberZapField)
+			else:
+				self.stopNumberZap()
+
+	def stopNumberZap(self):
+		self.zapnumberstarted = False
+		self["number"].hide()
+		self.NumberZapField = None
+		self.NumberZapTimer.stop()
 
 	def doNumberZap(self):
 		self.zapnumberstarted = False
