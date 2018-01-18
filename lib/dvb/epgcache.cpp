@@ -14,6 +14,7 @@
 #include <sstream>
 #include <iomanip>
 #include <string>
+#include <regex>
 #include <time.h>
 #include <unistd.h>  // for usleep
 #include <sys/vfs.h> // for statfs
@@ -33,6 +34,9 @@
 #define UPDATE_INTERVAL 3600000  // 60 min
 /* Time to wait after tuning in before EPG data capturing starts */
 #define ZAP_DELAY 2000          // 2 sec
+
+static const int EIT_SHORT_EVENT_DESCRIPTOR_SIZE=sizeof(struct eit_short_event_descriptor_struct);
+static const int EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE=sizeof(struct eit_short_event_descriptor_struct);
 
 struct DescriptorPair
 {
@@ -813,7 +817,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, channel_data *chann
 	 * SCHEDULE_OTHER. As a result SCHEDULE will contain data for different tsid's,
 	 * so we should not replace it with the current tsid.
 	 */
-	bool use_transponder_chid = onid != 0x101 && onid != 0x100 && (source == SCHEDULE || (source == NOWNEXT && data[0] == 0x4E));
+	bool use_transponder_chid = onid != 0x101 && onid != 0x100 && (source == SCHEDULE || (source == NOWNEXT && data[0] == EXTENDED_EVENT_DESCRIPTOR));
 
 	if (use_transponder_chid && channel)
 	{
@@ -3196,7 +3200,7 @@ void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<
 	for (int descrIndex = 0; descrIndex <= lastDescriptorNumber; ++descrIndex)
 	{
 		eit_extended_descriptor_struct *ext_evt = (eit_extended_descriptor_struct*) x;
-		ext_evt->descriptor_tag = EIT_EXTENDED_EVENT_DESCRIPOR;
+		ext_evt->descriptor_tag = EXTENDED_EVENT_DESCRIPTOR;
 		//descriptor header length is 6, including the 2 tag and length bytes
 		//so the length field must be: stringlength + 1 (2 4-bits numbers) + 3 (lang code) + 2 bytes for item info length field and text length field
 		int currentTextLength = descrIndex < lastDescriptorNumber ? MAX_LEN : remainingTextLength;
@@ -3378,7 +3382,8 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //     0 = search for similar broadcastings (SIMILAR_BROADCASTINGS_SEARCH)
 //     1 = search events with exactly title name (EXACT_TITLE_SEARCH)
 //     2 = search events with text in title name (PARTIAL_TITLE_SEARCH)
-//     3 = search events starting with title name (START_TITLE_SEARCH)
+//     3 = search events with text in description name (PARTIAL_DESCRIPTION_SEARCH)
+//     4 = search events starting with title name (START_TITLE_SEARCH)
 //  when type is 0 (SIMILAR_BROADCASTINGS_SEARCH)
 //   the fourth is the servicereference string
 //   the fifth is the eventid
@@ -3386,7 +3391,29 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //   the fourth is the search text
 //   the fifth is
 //     0 = case sensitive (CASE_CHECK)
-//     1 = case insensitive (NO_CASECHECK)
+//     1 = case insensitive (NO_CASE_CHECK)
+//     2 = regex search (REGEX_CHECK)
+
+const char* eEPGCache::casetypestr(int value)
+{
+	switch (value)
+	{
+		case CASE_CHECK:
+			return "case sensitive";
+			break;
+		case NO_CASE_CHECK:
+			return "case insensitive";
+			break;
+		case REGEX_CHECK:
+			return "regex";
+			break;
+		default:
+			return "unknown";
+			break;
+	}
+	return "unknown";
+}
+
 
 PyObject *eEPGCache::search(ePyObject arg)
 {
@@ -3452,7 +3479,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 		if (tuplesize > 2)
 		{
 			querytype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 2));
-			if (tuplesize > 4 && querytype == 0)
+			if (tuplesize > 4 && querytype == SIMILAR_BROADCASTINGS_SEARCH)
 			{
 				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
 				if (PyString_Check(obj))
@@ -3478,7 +3505,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 									uint8_t *descr_data = it->second.data;
 									switch(descr_data[0])
 									{
-									case 0x4D ... 0x4E:
+									case SHORT_EVENT_DESCRIPTOR ... EXTENDED_EVENT_DESCRIPTOR:
 										descr.push_back(crc);
 										break;
 									default:
@@ -3504,7 +3531,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					return NULL;
 				}
 			}
-			else if (tuplesize > 4 && (querytype > 0) )
+			else if (tuplesize > 4 && ((querytype == EXAKT_TITLE_SEARCH) || (querytype==START_TITLE_SEARCH) || (querytype==PARTIAL_TITLE_SEARCH)))
 			{
 				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
 				if (PyString_Check(obj))
@@ -3515,17 +3542,18 @@ PyObject *eEPGCache::search(ePyObject arg)
 					int textlen = PyString_GET_SIZE(obj);
 #else
 					int textlen = PyString_Size(obj);
-#endif
+#endif              
+					const char *ctype = casetypestr(casetype);
 					switch (querytype)
 					{
-						case 1:
-							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, casetype?"ignore case":"case sensitive");
+						case EXAKT_TITLE_SEARCH:
+							eDebug("[eEPGCache] lookup events with '%s' as title (%s)", str, ctype);
 							break;
-						case 2:
-							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, casetype?"ignore case":"case sensitive");
+						case PARTIAL_TITLE_SEARCH:
+							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, ctype);
 							break;
-						case 3:
-							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, casetype?"ignore case":"case sensitive");
+						case PARTIAL_DESCRIPTION_SEARCH:
+							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, ctype);
 							break;
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
@@ -3536,11 +3564,12 @@ PyObject *eEPGCache::search(ePyObject arg)
 							it != eventData::descriptors.end(); ++it)
 						{
 							uint8_t *data = it->second.data;
-							if ( data[0] == 0x4D ) // short event descriptor
+							eit_short_event_descriptor_struct *short_event_descriptor = (eit_short_event_descriptor_struct *) ((u_char *) data);
+							if ((u_char)short_event_descriptor->descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR ) // short event descriptor
 							{
 								const char *titleptr = (const char*)&data[6];
-								int title_len = data[5];
-								if (data[6] < 0x20)
+								int title_len = (int)short_event_descriptor->event_name_length;
+								if (data[EIT_SHORT_EVENT_DESCRIPTOR_SIZE] < 0x20) // Codepage
 								{
 									/* custom encoding */
 									title = convertDVBUTF8((unsigned char*)titleptr, title_len, 0x40, 0);
@@ -3550,18 +3579,18 @@ PyObject *eEPGCache::search(ePyObject arg)
 								if (title_len < textlen)
 									/*Doesn't fit, so cannot match anything */
 									continue;
-								if (querytype == 1)
+								if (querytype == EXAKT_TITLE_SEARCH)
 								{
 									/* require exact title match */
 									if (title_len != textlen)
 										continue;
 								}
-								else if (querytype == 3)
+								else if (querytype == START_TITLE_SEARCH)
 								{
 									/* Do a "startswith" match by pretending the text isn't that long */
 									title_len = textlen;
 								}
-								if (casetype)
+								if (casetype == NO_CASE_CHECK)
 								{
 									while (title_len >= textlen)
 									{
@@ -3574,7 +3603,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 										titleptr++;
 									}
 								}
-								else
+								else if (casetype == CASE_CHECK)
 								{
 									while (title_len >= textlen)
 									{
@@ -3587,6 +3616,133 @@ PyObject *eEPGCache::search(ePyObject arg)
 										titleptr++;
 									}
 								}
+								else if (casetype == REGEX_CHECK)
+								{
+									std::regex pattern(str);
+									std::string input(titleptr,title_len);
+									if (regex_search(input.begin(),input.end(),pattern))
+									{
+										descr.push_back(it->first);
+									}
+								}
+							}
+						}
+					}
+					Py_END_ALLOW_THREADS;
+				}
+				else
+				{
+					PyErr_SetString(PyExc_StandardError,
+						"type error");
+					eDebug("[eEPGCache] tuple arg 4 is not a string");
+					return NULL;
+				}
+			}
+			else if (tuplesize > 4 && (querytype == PARTIAL_DESCRIPTION_SEARCH) )
+			{
+				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
+				if (PyString_Check(obj))
+				{
+					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
+					const char *str = PyString_AS_STRING(obj);
+#if PY_VERSION_HEX < 0x02060000
+					int textlen = PyString_GET_SIZE(obj);
+#else
+					int textlen = PyString_Size(obj);
+#endif
+					int lloop=0;
+					const char *ctype = casetypestr(casetype);
+					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, ctype);
+					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
+					{
+						singleLock s(cache_lock);
+						std::string content;
+						for (DescriptorMap::iterator it(eventData::descriptors.begin());
+							it != eventData::descriptors.end(); ++it)
+						{
+							uint8_t *data = it->second.data;
+							
+							eit_extended_descriptor_struct *extended_event_descriptor = (eit_extended_descriptor_struct *) ((u_char *) data);
+							if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
+							{
+								int content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
+								const char *contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
+								if (data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2] < 0x20) //Codepage
+								{
+									/* custom encoding */
+									content = convertDVBUTF8((unsigned char*)contentptr, content_len, 0x40, 0);
+									contentptr = content.data();
+									content_len = content.length();
+								}
+								#ifdef DEBUG
+								int dbglen=content_len;
+								#endif
+								if (content_len < textlen)
+									/*Doesn't fit, so cannot match anything */
+									continue;
+								if (casetype == NO_CASE_CHECK)
+								{
+									while (content_len >= textlen)
+									{
+										if (!strncasecmp(contentptr, str, textlen))
+										{
+											descr.push_back(it->first);
+											#ifdef DEBUG
+											eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
+											char buff[1000]={0};
+											eDebug("[eEPGCache] EIT data:\n");
+			 								std::string tmp="";
+			 								int z=0;
+											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
+											{
+												if ((lloop>0) && (lloop%16==0)) { eDebug(buff); z=0; }
+												snprintf(&buff[z*3], sizeof(buff), "%02X ", data[lloop]);
+												z++;
+											}
+											if (z>1) { eDebug(buff);}
+											#endif
+											break;
+										}
+										content_len--;
+										contentptr++;
+									}
+								}
+								else if (casetype == CASE_CHECK)
+								{
+									while (content_len >= textlen)
+									{
+										if (!memcmp(contentptr, str, textlen))
+										{
+											descr.push_back(it->first);
+											#ifdef DEBUG
+											eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
+											char buff[1000]={0};
+											eDebug("[eEPGCache] EIT data:\n");
+			 								std::string tmp="";
+			 								int z=0;
+											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
+											{
+												if ((lloop>0) && (lloop%16==0)) { eDebug(buff); z=0; }
+												snprintf(&buff[z*3], sizeof(buff), "%02X ", data[lloop]);
+												z++;
+											}
+											if (z>1) { eDebug(buff);}
+											#endif
+											break;
+										}
+										content_len--;
+										contentptr++;
+									}
+								}
+								else if (casetype == REGEX_CHECK)
+								{
+									std::regex pattern(str);
+									std::string input(contentptr,content_len);
+									if (regex_search(input.begin(),input.end(),pattern))
+									{
+										descr.push_back(it->first);
+									}
+								}                               
 							}
 						}
 					}
@@ -3645,7 +3801,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 			// check all events
 			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
 			{
-				if (querytype == 0)
+				if (querytype == SIMILAR_BROADCASTINGS_SEARCH)
 				{
 					/* ignore the current event, when looking for similar events */
 					if (evit->second->getEventID() == eventid)
@@ -3671,8 +3827,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 						}
 					}
 				}
-				if ( (querytype == 0 && cnt == descr.size()) ||
-					 ((querytype > 0) && cnt != 0) )
+				if ( (querytype == SIMILAR_BROADCASTINGS_SEARCH && cnt == descr.size()) ||
+					 ((querytype > SIMILAR_BROADCASTINGS_SEARCH) && cnt != 0) )
 				{
 					const uniqueEPGKey &service = cit->first;
 					std::vector<eServiceReference> refs;
@@ -4358,7 +4514,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 
 	eit_short_event_descriptor_struct *short_event_descriptor =
 		(eit_short_event_descriptor_struct *) ( (u_char *) event_data + EIT_LOOP_SIZE);
-	short_event_descriptor->descriptor_tag = EIT_SHORT_EVENT_DESCRIPTOR;
+	short_event_descriptor->descriptor_tag = SHORT_EVENT_DESCRIPTOR;
 	short_event_descriptor->descriptor_length = EIT_SHORT_EVENT_DESCRIPTOR_SIZE +
 		prog_title_length - 1;
 	short_event_descriptor->language_code_1 = 'e';
@@ -4399,7 +4555,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 				packet_length += 8 + sum_length;
 				descr_ll += 8 + sum_length;
 
-				ext_event_descriptor->descriptor_tag = EIT_EXTENDED_EVENT_DESCRIPOR;
+				ext_event_descriptor->descriptor_tag = EXTENDED_EVENT_DESCRIPTOR;
 				ext_event_descriptor->descriptor_length = sum_length + 6;
 				ext_event_descriptor->descriptor_number = i;
 				ext_event_descriptor->last_descriptor_number = nbr_descr - 1;
@@ -4896,8 +5052,6 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 	else if (m_MHWFilterMask2.pid == m_mhw2_title_pid)
 	// Titles table
 	{
-		bool finish=false;
-		bool finish1=false;
 		if (data[0] == 0xdc)
 		{
 			int pos=10;
@@ -4994,7 +5148,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 		// more Summaries table
 			if (!checkMHWTimeout())
 			{
-				int len, loop, pos, lenline;
+				int len, loop, pos;
 				bool valid;
 				valid = false;
 				if( dataLen > 13 )
@@ -5879,7 +6033,7 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 			for (int descr_index = 0; descr_index <= last_descriptor_number; ++descr_index)
 			{
 				eit_extended_descriptor_struct *data_eit_short_event = (eit_extended_descriptor_struct*)data_tmp;
-				data_eit_short_event->descriptor_tag = EIT_EXTENDED_EVENT_DESCRIPOR;
+				data_eit_short_event->descriptor_tag = EXTENDED_EVENT_DESCRIPTOR;
 				int current_text_length = descr_index < last_descriptor_number ? MAX_LEN : remaining_text_length;
 				if (IS_UTF8(title.flags))
 					current_text_length++;
