@@ -132,7 +132,7 @@ class VirtualKeyBoard(Screen):
 				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"Ü", u"*"],
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"OK", u"LEFT", u"RIGHT"]]
+				[u"SHIFT", u"SPACE", u"?", u"\\",u"|",u"^", u"OK", u"LEFT", u"RIGHT"]]
 			self.nextLang = 'es_ES'
 		elif self.lang == 'es_ES':
 			self.keys_list = [
@@ -299,7 +299,7 @@ class VirtualKeyBoard(Screen):
 				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"+", u"]"],
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"?", u'"', u"|"],
 				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT", u"~"]]
+				[u"SHIFT", u"SPACE", u"|", u"^", u"OK", u"LEFT", u"RIGHT", u"~"]]
 			self.lang = 'en_US'
 			self.nextLang = 'de_DE'
 		self["country"].setText(self.lang)
