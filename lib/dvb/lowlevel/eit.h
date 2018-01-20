@@ -107,9 +107,6 @@ struct eit_loop_struct1 {
 	u_char	descriptors_loop_length_lo	: 8;
 };
 
-#define EIT_SHORT_EVENT_DESCRIPTOR 0x4d
-#define EIT_SHORT_EVENT_DESCRIPTOR_SIZE 6
-
 struct eit_short_event_descriptor_struct {
 	u_char	descriptor_tag			: 8;
 	u_char	descriptor_length		: 8;
@@ -120,8 +117,6 @@ struct eit_short_event_descriptor_struct {
 
 	u_char	event_name_length		: 8;
 };
-
-#define EIT_EXTENDED_EVENT_DESCRIPOR 0x4e
 
 typedef struct eit_event_struct {
 	u_char	event_id_hi			: 8;
@@ -156,8 +151,6 @@ typedef struct eit_event_struct {
 	void setDescriptorsLoopLength(int dll)	{ descriptors_loop_length_hi = dll >> 8; descriptors_loop_length_lo = dll & 0xFF; };
 } eit_event_t;
 #define EIT_LOOP_SIZE 12
-
-#define EIT_EXTENDED_EVENT_DESCRIPOR 0x4e
 
 struct eit_extended_descriptor_struct {
 	u_char descriptor_tag : 8;
