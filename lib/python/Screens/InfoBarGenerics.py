@@ -55,7 +55,7 @@ from Tools.ServiceReference import hdmiInServiceRef, service_types_tv_ref
 import NavigationInstance
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, iRecordableService, eServiceReference, eEPGCache, eActionMap, getDesktop, eDVBDB
-from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild
+from boxbranding import getBoxType, getBrandOEM, getMachineBrand, getMachineName, getMachineBuild, getImageDistro
 from keyids import KEYFLAGS, KEYIDS, invertKeyIds
 
 from time import time, localtime, strftime
@@ -1470,7 +1470,7 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBrandOEM() in ('formuler', 'skylake', 'xtrend', 'odin', 'dags' ,'gigablue', 'xp', 'ceryon', 'broadmedia', 'gfutures', 'xcore', 'octagon'):
+			if getImageDistro() != "beyonwiz" and getBrandOEM() in ('formuler', 'skylake', 'xtrend', 'odin', 'dags', 'gigablue', 'xp', 'ceryon', 'broadmedia', 'gfutures', 'xcore', 'octagon'):
 				self.openEventView()
 			else:
 				self.showDefaultInfoEPG()
