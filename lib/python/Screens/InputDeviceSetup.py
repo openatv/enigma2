@@ -12,8 +12,6 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.Pixmap import Pixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 
-boxtype = getBoxType()
-
 class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -286,6 +284,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("505", _("ODIN_M7"))
 				]
 		defaultRcList = [
+				("Default", 0),
 				("et4000", 13),
 				("et5000", 7),
 				("et6000", 7),
@@ -416,15 +415,17 @@ class RemoteControlType(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Remote control type"), self.rctype))
 		self["config"].list = self.list
 
-		self.defaultRcType = None
+		self.defaultRcType = 0
 		self.getDefaultRcType()
 
 	def getDefaultRcType(self):
-		data = iRcTypeControl.getBoxType()
+		boxtype = getBoxType()
 		for x in self.defaultRcList:
-			if x[0] in data:
+			if x[0] in boxtype:
 				self.defaultRcType = x[1]
 				break
+		if (boxtype==0):
+			print "Error, boxtype cannot be detected. Using \"Default\""
 
 	def setDefaultRcType(self):
 		iRcTypeControl.writeRcType(self.defaultRcType)
