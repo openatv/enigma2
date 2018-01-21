@@ -31,13 +31,8 @@ def getKernelVersionString():
 		return _("unknown")
 	
 def getModelString():
-	try:
-		file = open("/proc/stb/info/boxtype", "r")
-		model = file.readline().strip()
-		file.close()
+		model = getBoxType()
 		return model
-	except IOError:
-		return "unknown"
 
 def getChipSetString():
 	if getMachineBuild() in ('dm7080','dm820'):
