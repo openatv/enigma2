@@ -821,15 +821,29 @@ class InfoBarNumberZap:
 		}, description=_("Recall channel, panic button & number zap"))
 
 	def keyNumberGlobal(self, number):
-		if (number != 0
-			and (config.seek.number_skip.value == "always"
-				 or (self.isSeekable()
-					 and (config.seek.number_skip.value == "all"
-						  or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))))):
-			return 0
-
 		if self.pts_blockZap_timer.isActive():
 			return 0
+
+		if number != 0:
+			if config.seek.number_skip.value == "always":
+				if self.timeshiftEnabled():
+					shift = None
+					if config.seek.number_method.value == "abspc":
+						length = int(time() - self.pts_starttime)
+						shift = length * (10 - number) / 10
+					elif number in (1, 4, 7):
+						shift = (config.seek.selfdefined_13.value,
+								 config.seek.selfdefined_46.value,
+								 config.seek.selfdefined_79.value
+								)[number / 3]
+					if shift:
+						self.activateTimeshift(shiftTime=shift)
+						return
+				return 0
+			if (self.isSeekable()
+				and (config.seek.number_skip.value == "all"
+					 or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))):
+				return 0
 
 		# if self.save_current_timeshift and self.timeshiftEnabled():
 		# 	InfoBarTimeshift.saveTimeshiftActions(self)
@@ -846,12 +860,22 @@ class InfoBarNumberZap:
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
 
 	def helpKeyNumberGlobal(self, number):
-		if (number != 0
-			and (config.seek.number_skip.value == "always"
-				 or (self.isSeekable()
-					 and (config.seek.number_skip.value == "all"
-						  or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))))):
-			return None
+		if number != 0:
+			if config.seek.number_skip.value == "always":
+				if self.timeshiftEnabled():
+					if config.seek.number_method.value == "abspc":
+						return _("Enter timeshift and skip to %d%% position") % (number * 10)
+					if number in (1, 4, 7):
+						return "%s %3d %s" % (_("Enter timeshift and skip back"),
+											  (config.seek.selfdefined_13.value,
+											   config.seek.selfdefined_46.value,
+											   config.seek.selfdefined_79.value)[number / 3],
+											  _("sec"))
+				return None
+			if (self.isSeekable()
+				and (config.seek.number_skip.value == "all"
+					 or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))):
+				return None
 
 		if number == 0:
 			if config.usage.panicbutton.value:

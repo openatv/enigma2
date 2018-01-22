@@ -879,7 +879,7 @@ def InitUsageConfig():
 	config.seek.selfdefined_down = ConfigSelectionNumber(default=60, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_left = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_right = ConfigSelectionNumber(default=10, min=1, max=300, stepwidth=1, wraparound=True)
-	config.seek.number_skip = ConfigSelection(default="0", choices=[("0", _("Never")), ("media", _("Media (timeshift zaps)")), ("all", _("All")), ("always", _("Always (disable zap)"))])
+	config.seek.number_skip = ConfigSelection(default="0", choices=[("0", _("Never")), ("media", _("Media (timeshift zaps)")), ("all", _("All")), ("always", _("Always (enter timeshift if possible)"))])
 	config.seek.number_method = ConfigSelection(default="relsec", choices=[("relsec", _("Relative seconds")), ("abspc", _("Absolute percentage"))])
 	config.seek.selfdefined_13 = ConfigSelectionNumber(default=30, min=1, max=300, stepwidth=1, wraparound=True)
 	config.seek.selfdefined_46 = ConfigSelectionNumber(default=180, min=5, max=1800, stepwidth=5, wraparound=True)
