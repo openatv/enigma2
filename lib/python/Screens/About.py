@@ -155,7 +155,7 @@ class About(AboutBase):
 		self.list.append(self.makeInfoEntry(_("WWW:"), about.getImageUrlString()))
 		self.list.append(self.makeInfoEntry(_("Version:"), about.getImageVersionString()))
 		self.list.append(self.makeInfoEntry(_("Build:"), about.getBuildString()))
-		self.list.append(self.makeInfoEntry(_("Revision:"), about.getLastUpdateString()))
+		self.list.append(self.makeInfoEntry(_("Revision:"), getImageBuild()))
 		self.list.append(self.makeInfoEntry(_("Enigma2:"), about.getEnigmaVersionString()))
 		self.list.append(self.makeInfoEntry(_("GStreamer:"), about.getGStreamerVersionString().replace("GStreamer", "").strip()))
 		self.list.append(self.makeInfoEntry(_("Python:"), about.getPythonVersionString()))
