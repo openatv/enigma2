@@ -77,9 +77,6 @@ config.misc.startCounter = ConfigInteger(default=0)  # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0))  # number of standby
 config.misc.DeepStandby = NoSave(ConfigYesNo(default=False))  # detect deepstandby
 
-profile("FanControl")
-from Components.FanControl import fancontrol
-
 # demo code for use of standby enter leave callbacks
 # def leaveStandby():
 # 	print "!!!!!!!!!!!!!!!!!leave standby"
