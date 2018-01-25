@@ -503,9 +503,13 @@ class MoviePlayer(
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		elif answer in ("playlist", "playlistquit", "loop"):
 			(next_service, item, length) = self.getPlaylistServiceInfo(self.cur_service)
+			from MovieSelection import playingSelection
 			if next_service is not None:
-				if config.usage.next_movie_msg.value:
+				if config.usage.next_movie_msg.value and not playingSelection:
 					self.displayPlayedName(next_service, item, length)
+				if playingSelection:
+					self.is_closing = False
+					self.forceNextResume(True)
 				self.session.nav.playService(next_service)
 				self.cur_service = next_service
 			else:
@@ -528,7 +532,8 @@ class MoviePlayer(
 		if not playing:
 			return
 		setResumePoint(self.session)
-		self.handleLeave(config.usage.on_movie_eof.value)
+		from MovieSelection import playingSelection
+		self.handleLeave("playlist" if playingSelection else config.usage.on_movie_eof.value)
 
 	def up(self):
 		slist = self.servicelist
@@ -640,6 +645,9 @@ class MoviePlayer(
 		if service is not None:
 			self.cur_service = service
 			self.is_closing = False
+			from MovieSelection import playingSelection
+			if playingSelection:
+				self.forceNextResume(True)
 			self.session.nav.playService(service)
 			self.returning = False
 		elif self.returning:
