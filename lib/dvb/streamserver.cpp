@@ -213,6 +213,7 @@ void eStreamClient::notifier(int what)
 						int framerate = 25000;
 						int interlaced = 0;
 						int aspectratio = 0;
+						std::string vcodec, acodec;
 						sscanf(request.substr(pos).c_str(), "?bitrate=%d", &bitrate);
 						pos = request.find("?width=");
 						if (pos != std::string::npos)
@@ -229,9 +230,29 @@ void eStreamClient::notifier(int what)
 						pos = request.find("?aspectratio=");
 						if (pos != std::string::npos)
 							sscanf(request.substr(pos).c_str(), "?aspectratio=%d", &aspectratio);
+						pos = request.find("?vcodec=");
+						if (pos != std::string::npos)
+						{
+							vcodec = request.substr(pos + 8);
+							pos = vcodec.find('?');
+							if (pos != std::string::npos)
+							{
+								vcodec = vcodec.substr(0, pos);
+							}
+						}
+						pos = request.find("?acodec=");
+						if (pos != std::string::npos)
+						{
+							acodec = request.substr(pos + 8);
+							pos = acodec.find('?');
+							if (pos != std::string::npos)
+							{
+								acodec = acodec.substr(0, pos);
+							}
+						}
 						encoderFd = -1;
 						if (eEncoder::getInstance())
-							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio);
+							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio, vcodec, acodec);
 						if (encoderFd >= 0)
 						{
 							running = true;

@@ -18,7 +18,7 @@ public:
 	eEncoder();
 	~eEncoder();
 
-	int allocateEncoder(const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio);
+	int allocateEncoder(const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio, const std::string &vcodec = "", const std::string &acodec = "");
 	void freeEncoder(int encoderfd);
 	int getUsedEncoderCount();
 
