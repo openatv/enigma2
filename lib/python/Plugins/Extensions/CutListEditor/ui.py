@@ -250,6 +250,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.cut_end = None
 		self.state = CutListContextMenu.SHOW_DELETECUT
 		self.inhibit_seek = False
+		self.inhibit_cut = False
 		self.onClose.append(self.__onClose)
 		# Use onShown to set the initial list index, since apparently that doesn't
 		# work from here.
@@ -307,11 +308,17 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self["cutlist"].modifyEntry(index, CutListEntry(*self.cut_list[index]))
 
 	def setOut(self):
+		if self.inhibit_cut:
+			self.inhibit_cut = False
+			return
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.context_position = self.cueGetCurrentPosition()
 		self.menuCallback(CutListContextMenu.RET_STARTCUT)
 
 	def setIn(self):
+		if self.inhibit_cut:
+			self.inhibit_cut = False
+			return
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.context_position = self.cueGetCurrentPosition()
 		self.menuCallback(CutListContextMenu.RET_ENDCUT)
@@ -320,11 +327,13 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.context_position = self.cueGetCurrentPosition()
 		self.menuCallback(CutListContextMenu.RET_REMOVEBEFORE)
+		self.inhibit_cut = True
 
 	def setEnd(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.context_position = self.cueGetCurrentPosition()
 		self.menuCallback(CutListContextMenu.RET_REMOVEAFTER)
+		self.inhibit_cut = True
 
 	def truncate(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE)
