@@ -202,7 +202,7 @@ static inline unsigned long decode_hamming_2418(unsigned char *b)
 	return ((b[0] & 0x04) >> 2) | ((b[0] & 0x70) >> 3) | ((b[1] & 0x7f) << 4) | ((b[2] & 0x7f) << 11);
 }
 
-static int extractPTS(pts_t &pts, unsigned char *pkt)
+static bool extractPTS(pts_t &pts, unsigned char *pkt)
 {
 	if (pkt[7] & 0x80) /* PTS present? */
 	{
@@ -212,9 +212,9 @@ static int extractPTS(pts_t &pts, unsigned char *pkt)
 		pts |= ((unsigned long long)(pkt[12] & 0xff)) << 7;
 		pts |= ((unsigned long long)(pkt[13] & 0xfe)) >> 1;
 
-		return 0;
-	} else
-		return -1;
+		return true;
+	}
+	return false;
 }
 
 eDVBTeletextParser::eDVBTeletextParser(iDVBDemux *demux) : m_pid(-1)
@@ -254,7 +254,8 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 	unsigned char *p = pkt;
 
 	pts_t pts;
-	int have_pts = extractPTS(pts, pkt);
+	if (!extractPTS(pts, pkt))
+		pts = 0;
 
 	//eDebug("[eDVBTeletextParser] PES packet len=%d", len);
 	p += 4; len -= 4; /* start code, already be verified by pes parser */
@@ -306,7 +307,7 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 			/* page on the same magazine? end current page. */
 			if ((serial_mode || M == m_page_M) && m_page_open)
 			{
-				handlePageEnd(!have_pts, pts);
+				handlePageEnd(pts);
 				m_page_open = 0;
 			}
 
@@ -611,11 +612,9 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 	addSubtitleString(color, std::string((const char*)out, outidx), m_Y);
 }
 
-void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
+void eDVBTeletextParser::handlePageEnd(const pts_t &pts)
 {
-	m_subtitle_page.m_have_pts = have_pts;
 	m_subtitle_page.m_pts = pts;
-	m_subtitle_page.m_timeout = 90000 * 20; /* 20s */
 	if (m_page_X != 0)
 		m_new_subtitle_page(m_subtitle_page); /* send assembled subtitle page to display */
 }

@@ -560,7 +560,6 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.showbackground"),
 				getConfigMenuItem("config.subtitles.subtitle_alignment"),
 				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
-				getConfigMenuItem("config.subtitles.subtitle_noPTSrecordingdelay"),
 			]
 		else: 		# pango
 			menu = [

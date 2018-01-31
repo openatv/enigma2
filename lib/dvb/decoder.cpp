@@ -25,7 +25,7 @@
 DEFINE_REF(eDVBAudio);
 
 eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
-	:m_demux(demux), m_dev(dev), m_is_freezed(false)
+	:m_demux(demux), m_dev(dev), m_is_freezed(false), m_last_pts(0)
 {
 	char filename[128];
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux ? demux->adapter : 0, dev);
@@ -222,8 +222,16 @@ int eDVBAudio::getPTS(pts_t &now)
 {
 	if (m_fd >= 0)
 	{
-		if (::ioctl(m_fd, AUDIO_GET_PTS, &now) < 0)
+		int ret = ::ioctl(m_fd, AUDIO_GET_PTS, &now);
+		if (ret < 0)
 			eDebug("[eDVBAudio%d] AUDIO_GET_PTS failed: %m", m_dev);
+		if (now == 0)
+		{
+			eDebug("[eDVBAudio%d] AUDIO_GET_PTS got zero - using cached value", m_dev);
+			now = m_last_pts;
+		}
+		m_last_pts = now;
+		return ret;
 	}
 	return 0;
 }
@@ -243,7 +251,7 @@ DEFINE_REF(eDVBVideo);
 int eDVBVideo::m_close_invalidates_attributes = -1;
 
 eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
-	: m_demux(demux), m_dev(dev),
+	: m_demux(demux), m_dev(dev), m_last_pts(0),
 	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1)
 {
 	char filename[128];
@@ -496,6 +504,12 @@ int eDVBVideo::getPTS(pts_t &now)
 		int ret = ::ioctl(m_fd, VIDEO_GET_PTS, &now);
 		if (ret < 0)
 			eDebug("[eDVBVideo%d] VIDEO_GET_PTS failed: %m", m_dev);
+		if (now == 0)
+		{
+			eDebug("[eDVBVideo%d] VIDEO_GET_PTS got zero - using cached value", m_dev);
+			now = m_last_pts;
+		}
+		m_last_pts = now;
 		return ret;
 	}
 	return 0;
