@@ -772,6 +772,36 @@ def InitAVSwitch():
 		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
+		
+		
+	if os.path.exists("/proc/stb/video/hdmi_hdrtype"):
+		f = open("/proc/stb/video/hdmi_hdrtype", "r")
+		have_HdmiHdrType = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_HdmiHdrType = False
+
+	SystemInfo["havehdmihdrtype"] = have_HdmiHdrType
+
+	if have_HdmiHdrType:
+		def setHdmiHdrType(configElement):
+			try:
+				f = open("/proc/stb/video/hdmi_hdrtype", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.hdmihdrtype = ConfigSelection(choices={
+				"auto": _("Auto"),
+				"dolby": _("dolby"),
+				"hdr10": _("hdr10"),
+				"hlg": _("hlg")},
+				default = "auto")
+		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
+	else:
+		config.av.hdmihdrtype = ConfigNothing()
+		
+		
 
 	if os.path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")
