@@ -41,7 +41,7 @@ class VideoResolution(Screen):
 	videoResChoices = (
 		("HDMI", "480p", "60Hz"),
 		("HDMI", "576p", "50Hz"),
-		("HDMI", "720p", "60Hz"),
+		("HDMI", "720p", "50Hz"),
 		("HDMI", "1080i", "50Hz"),
 		("HDMI", "1080p", "50Hz"),
 		("HDMI", "2160p", "50Hz"),
