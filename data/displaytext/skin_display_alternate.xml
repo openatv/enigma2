@@ -169,7 +169,7 @@
 	</screen>
 	
 <!-- EMC  -->
-	<screen name="EMCSelection_summary" position="0,0" size="132,64">
+	<screen name="EMCSelectionSummary" position="0,0" size="132,64">
 		<widget source="parent.Service" render="Label" position="0,0" size="132,64" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
