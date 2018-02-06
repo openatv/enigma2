@@ -8,6 +8,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
+from Components.VolumeControl import VolumeControl
 
 profile("LOAD:enigma")
 import enigma
@@ -414,6 +415,7 @@ class MoviePlayer(
 			}.get(config.usage.leave_movieplayer_onExit.value, _("No current function"))
 
 	def leavePlayerOnExit(self):
+		VolumeControl.instance and VolumeControl.instance.volHide()
 		if self.shown:
 			self.hide()
 		elif self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:
