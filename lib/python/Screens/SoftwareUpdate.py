@@ -8,6 +8,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.TextBox import TextBox
+from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.Console import Console
@@ -143,6 +144,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [
 						(_("View the changes"), "showlist"),
+						(_("Back up current settings"), "backup"),
 						(_("Update and ask to reboot"), "hot"),
 						# (_("Upgrade and reboot system"), "cold")
 					]
@@ -224,11 +226,22 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			for i in sorted(self.ipkg.getFetchedList(), key=lambda d: d[0]):
 				text += format % (i[0], i[1], i[2])
 			self.session.openWithCallback(boundFunction(self.ipkgCallback, IpkgComponent.EVENT_DONE, None), SoftwareUpdateChangeView, text)
+		elif answer[1] == "backup":
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif answer[1] == "cold":
 			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args={'test_only': False})
+
+	def backupDone(self, retval=None):
+		if retval is True:
+			self.session.openWithCallback(self.backupMessageDone, MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
+		else:
+			self.session.openWithCallback(self.backupMessageDone, MessageBox, _("Backup failed."), MessageBox.TYPE_ERROR)
+
+	def backupMessageDone(self, retval=None):
+		self.ipkgCallback(IpkgComponent.EVENT_DONE, None)
 
 	def exit(self):
 		if self.updating:
