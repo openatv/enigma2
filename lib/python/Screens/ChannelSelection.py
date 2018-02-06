@@ -1662,7 +1662,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 					#  else:
 					#  	titleStr += '/'
 					nameStr = self.getServiceName(end_ref)
-					titleStr += nameStr
+					titleStr = nameStr + titleStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
