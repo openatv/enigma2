@@ -94,6 +94,7 @@ class eAUGTable: public sigc::trackable
 protected:
 	void slotTableReady(int);
 public:
+	virtual ~eAUGTable(){};
 	sigc::signal1<void, int> tableReady;
 	virtual void getNext(int err)=0;
 };
