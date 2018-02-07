@@ -113,6 +113,27 @@ config.skin = ConfigSubsection()
 config.skin.primary_skin = ConfigText(default = DEFAULT_SKIN)
 config.skin.display_skin = ConfigText(default = DEFAULT_DISPLAY_SKIN)
 
+##################################################################################################
+if fileExists('/etc/.restore_skins'):
+	os.unlink('/etc/.restore_skins')
+	import glob
+	lastpath = ''
+	for skin in sorted(glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py*')):
+		try:
+			print '[RESTORE_SKIN] restore skin from "%s" ...' % skin
+			skinpath, ext = os.path.splitext(skin)
+			if skinpath == lastpath or not ext in '.pyo':
+				print '[RESTORE_SKIN] ...skip!'
+				continue
+			lastpath = skinpath
+			if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace(ext,'').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
+				print '[RESTORE_SKIN] ... failed!'
+			else:
+				print '[RESTORE_SKIN] ... done!'
+		except Exception, err:
+			print '[RESTORE_SKIN] ...error occurred: ', err
+##################################################################################################
+
 def skinExists(skin = False):
 	if not skin or not isinstance(skin, skin):
 		skin = config.skin.primary_skin.value
@@ -132,23 +153,6 @@ def getSkinPath():
 	return primary_skin_path
 	
 primary_skin_path = getSkinPath()
-
-##################################################################################################
-if fileExists('/etc/.restore_skins'):
-	os.unlink('/etc/.restore_skins')
-	import glob
-	for skin in glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.pyo'):
-		try:
-			print '-'*50 
-			print 'restore skin from "%s" ...' % skin
-			if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace('.pyo','').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
-				print '... failed!'
-			else:
-				print '... done!'
-		except Exception, err:
-			print '...error occurred: ', err
-		print '-'*50
-##################################################################################################
 
 profile("LoadSkin")
 res = None
