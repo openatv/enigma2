@@ -309,10 +309,8 @@ class FileCommanderScreen(Screen, key_actions):
 			self.doRefresh()
 
 	def goMenu(self):
-		if self["list_left"].getCurrentDirectory():
-			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		if self["list_right"].getCurrentDirectory():
-			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
+		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
 		self.session.openWithCallback(self.goRestart, FileCommanderConfigScreen)
 
 	def goDefaultfolder(self):
@@ -344,11 +342,11 @@ class FileCommanderScreen(Screen, key_actions):
 
 # ## Multiselect ###
 	def listSelect(self):
+		if not self.SOURCELIST.getCurrentDirectory():
+			return
 		selectedid = self.SOURCELIST.getSelectionID()
-		if self["list_left"].getCurrentDirectory():
-			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		if self["list_right"].getCurrentDirectory():
-			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
+		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
 		if self.SOURCELIST == self["list_left"]:
 			leftactive = True
 		else:
@@ -597,8 +595,8 @@ class FileCommanderScreen(Screen, key_actions):
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
 
 	def doRefreshDir(self):
-		self["list_left"].changeDir(config.plugins.filecommander.path_left_tmp.value)
-		self["list_right"].changeDir(config.plugins.filecommander.path_right_tmp.value)
+		self["list_left"].changeDir(config.plugins.filecommander.path_left_tmp.value or None)
+		self["list_right"].changeDir(config.plugins.filecommander.path_right_tmp.value or None)
 		if self.SOURCELIST == self["list_left"]:
 			self["list_left"].selectionEnabled(1)
 			self["list_right"].selectionEnabled(0)
@@ -658,8 +656,8 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		self.selectedFiles = []
 		self.selectedid = selectedid
 
-		path_left = config.plugins.filecommander.path_left_tmp.value
-		path_right = config.plugins.filecommander.path_right_tmp.value
+		path_left = config.plugins.filecommander.path_left_tmp.value or None
+		path_right = config.plugins.filecommander.path_right_tmp.value or None
 
 		# set filter
 		if config.plugins.filecommander.extension.value == "myfilter":
@@ -728,10 +726,8 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			self.goDown()
 
 	def exit(self):
-		if self["list_left"].getCurrentDirectory():
-			config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory()
-		if self["list_right"].getCurrentDirectory():
-			config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory()
+		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
+		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
 		self.close()
 
 	def ok(self):
