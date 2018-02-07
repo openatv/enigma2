@@ -30,7 +30,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	  m_run_state(0)
 {
 	if (m_buffer == NULL)
-		eFatal("[eFilePushThread] Failed to allocate %d bytes", buffersize);
+		eFatal("[eFilePushThread] Failed to allocate %zu bytes", buffersize);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
 }
 
