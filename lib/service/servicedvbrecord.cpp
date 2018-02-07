@@ -623,6 +623,10 @@ PyObject *eDVBServiceRecord::getCutList()
 
 void eDVBServiceRecord::saveCutlist()
 {
+	// Save cuts only when main file is accessible.
+	if (::access(m_filename.c_str(), R_OK) < 0)
+		return;
+
 	std::string filename = m_filename + ".cuts";
 
 	// If a cuts file exists, append to it (who cares about sorting it)
