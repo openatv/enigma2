@@ -965,28 +965,38 @@ class MovieList(GUIComponent):
 		for tag in realtags:
 			self.tags[tag] = set([tag])
 
+	def getNameKey(self, ref, info):
+		# append the file name numeric suffix to the name, to reliably
+		# sort recordings that have been split
+		name = info and info.getName(ref)
+		if name:
+			path = ref.getPath()
+			if path.endswith(".ts") and path[-7] == "_":
+				name += path[-6:-3]
+		return name and name.lower() or ""
+
 	def buildAlphaNumericSortKey(self, x):
 		# x = ref,info,begin,...
 		ref = x[0]
-		name = x[1] and x[1].getName(ref)
+		name = self.getNameKey(ref, x[1])
 		if ref.flags & eServiceReference.mustDescent:
-			return 0, name and name.lower() or "", -x[2]
-		return 1, name and name.lower() or "", -x[2]
+			return 0, name, -x[2]
+		return 1, name, -x[2]
 
 # as for buildAlphaNumericSortKey, but without negating dates
 	def buildAlphaDateSortKey(self, x):
 		# x = ref,info,begin,...
 		ref = x[0]
-		name = x[1] and x[1].getName(ref)
+		name = self.getNameKey(ref, x[1])
 		if ref.flags & eServiceReference.mustDescent:
-			return 0, name and name.lower() or "", x[2]
-		return 1, name and name.lower() or "", x[2]
+			return 0, name, x[2]
+		return 1, name, x[2]
 
 	def buildAlphaNumericFlatSortKey(self, x):
 		# x = ref,info,begin,...
 		ref = x[0]
-		name = x[1] and x[1].getName(ref) or ".."
-		if name and ref.flags & eServiceReference.mustDescent:
+		name = self.getNameKey(ref, x[1]) or ".."
+		if ref.flags & eServiceReference.mustDescent:
 			# only use directory basename for sorting
 			try:
 				name = os.path.basename(os.path.normpath(name))
@@ -996,18 +1006,18 @@ class MovieList(GUIComponent):
 			name = "Trash"
 		# print "[MovieList] Sorting for -%s-" % name
 
-		return 1, name and name.lower() or "", -x[2]
+		return 1, name, -x[2]
 
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
-		name = x[1] and x[1].getName(ref)
+		name = self.getNameKey(ref, x[1])
 		if ref.flags & eServiceReference.mustDescent and os.path.exists(ref.getPath()):
 			try:
 				mtime = -os.stat(ref.getPath()).st_mtime
 			except:
 				mtime = 0
-			return 0, x[1] and mtime, name and name.lower() or ""
-		return 1, -x[2], name and name.lower() or ""
+			return 0, x[1] and mtime, name
+		return 1, -x[2], name
 
 	def buildGroupwiseSortkey(self, x):
 		# Sort recordings by date, sort MP3 and stuff by name
@@ -1020,9 +1030,9 @@ class MovieList(GUIComponent):
 	def buildSizeAlphaSortKey(self, x):
 		ref = x[0]
 		info = x[1]
-		name = info and info.getName(ref)
+		name = self.getNameKey(ref, info)
 		size = info and info.getFileSize(ref)
-		return 1, size, name and name.lower() or "", -x[2]
+		return 1, size, name, -x[2]
 
 	def buildSizeRevAlphaSortKey(self, x):
 		x = self.buildSizeAlphaSortKey(x)
@@ -1031,9 +1041,9 @@ class MovieList(GUIComponent):
 	def buildLengthAlphaSortKey(self, x):
 		ref = x[0]
 		info = x[1]
-		name = info and info.getName(ref)
+		name = self.getNameKey(ref, info)
 		len = info and info.getLength(ref)
-		return 1, len, name and name.lower() or "", -x[2]
+		return 1, len, name, -x[2]
 
 	def buildLengthRevAlphaSortKey(self, x):
 		x = self.buildLengthAlphaSortKey(x)
