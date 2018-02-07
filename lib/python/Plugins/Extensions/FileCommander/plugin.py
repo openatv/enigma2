@@ -216,8 +216,8 @@ class FileCommanderScreen(Screen, key_actions):
 		# set current folder
 		self["list_left_head"] = Label(path_left)
 		self["list_right_head"] = Label(path_right)
-		self["list_left"] = FileList(path_left, matchingPattern=filter, enableWrapAround=True)
-		self["list_right"] = FileList(path_right, matchingPattern=filter, enableWrapAround=True)
+		self["list_left"] = FileList(path_left, matchingPattern=filter)
+		self["list_right"] = FileList(path_right, matchingPattern=filter)
 
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Move"))
@@ -689,14 +689,14 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		self["list_right_head"] = Label(path_right)
 
 		if leftactive:
-			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter, enableWrapAround=True)
-			self["list_right"] = FileList(path_right, matchingPattern=filter, enableWrapAround=True)
+			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter)
+			self["list_right"] = FileList(path_right, matchingPattern=filter)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
 			self.listLeft()
 		else:
-			self["list_left"] = FileList(path_left, matchingPattern=filter, enableWrapAround=True)
-			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter, enableWrapAround=True)
+			self["list_left"] = FileList(path_left, matchingPattern=filter)
+			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
 			self.listRight()
@@ -706,7 +706,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		self["key_yellow"] = Label(_("Copy"))
 		self["key_blue"] = Label(_("Skip selection"))
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions"], {
+		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions"], {
 			"ok": self.ok,
 			"back": self.exit,
 			# "menu": self.goMenu,
@@ -715,6 +715,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 			"nextBouquet": self.listRight,
 			"prevBouquet": self.listLeft,
 			"info": self.openTasklist,
+			"directoryUp": self.goParentfolder,
 			"up": self.goUp,
 			"down": self.goDown,
 			"left": self.goLeft,
@@ -767,6 +768,14 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 
 	def goMenu(self):
 		self.session.open(FileCommanderConfigScreen)
+
+	def goParentfolder(self):
+		if self.ACTIVELIST == self.SOURCELIST:
+			return
+		if self.ACTIVELIST.getParentDirectory() != False:
+			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
+			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
+			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
 
 	def goLeft(self):
 		self.ACTIVELIST.pageUp()
