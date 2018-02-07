@@ -333,11 +333,9 @@ class MovieList(GUIComponent):
 			index = self.findService(self._playInBackground)
 			if index is not None:
 				self.invalidateItem(index)
-				self.l.invalidateEntry(index)
 			index = self.findService(value)
 			if index is not None:
 				self.invalidateItem(index)
-				self.l.invalidateEntry(index)
 			self._playInBackground = value
 
 	playInBackground = property(get_playInBackground, set_playInBackground)
@@ -491,6 +489,7 @@ class MovieList(GUIComponent):
 	def invalidateItem(self, index):
 		x = self.list[index]
 		self.list[index] = (x[0], x[1], x[2], None)
+		self.l.invalidateEntry(index)
 
 	def invalidateCurrentItem(self):
 		self.invalidateItem(self.getCurrentIndex())
