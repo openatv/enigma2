@@ -741,7 +741,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		else:
 			if self.ACTIVELIST.canDescent():  # isDir
 				self.ACTIVELIST.descent()
-			if self.ACTIVELIST == self["list_right"]:
+			if self.ACTIVELIST == self["list_left"]:
 				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory())
 				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory())
 			else:
