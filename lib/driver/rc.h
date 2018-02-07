@@ -111,6 +111,7 @@ public:
 class eRCInputEventDriver: public eRCDriver
 {
 protected:
+	bool m_remote_control;
 	int handle;
 	unsigned char evCaps[(EV_MAX / 8) + 1];
 	unsigned char keyCaps[(KEY_MAX / 8) + 1];

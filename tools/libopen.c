@@ -237,7 +237,6 @@ int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
 	return fd;
 }
 
-
 int socketpair(int d, int type, int protocol, int sv[2])
 {
 	typedef int (*FUNC_PTR) (int d, int type, int protocol, int sv[2]);
