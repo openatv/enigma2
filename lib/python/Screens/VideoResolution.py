@@ -100,6 +100,7 @@ class VideoResolution(Screen):
 
 		self.orig = self.choices.index(currentChoice)
 		self.pref = self.choices.index(prefChoice)
+		self.prefAuto = config.av.autores.value
 
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.choose)
@@ -141,17 +142,18 @@ class VideoResolution(Screen):
 			self.choose()
 
 	def origMode(self):
-		self.setMode(self.orig)
+		self.setMode(self.orig, self.prefAuto)
 
 	def prefMode(self):
-		self.setMode(self.pref)
+		self.setMode(self.pref, self.prefAuto)
 
-	def setMode(self, newpos):
+	def setMode(self, newpos, auto=False):
 		self.pos = max(min(newpos, len(self.choices) - 1), 0)
 		self.showChoice()
 		choice = self.choices[self.pos]
 		if (iAVSwitch.current_port, iAVSwitch.current_mode, iAVSwitch.current_rate) != choice[1:]:
 			iAVSwitch.setMode(*choice[1:])
+		config.av.autores.value = auto
 		self.Timer.start(self.timeout, True)
 
 	def showChoice(self):
@@ -170,7 +172,8 @@ class VideoResolution(Screen):
 			mode = config.av.videomode[port].value
 			rate = config.av.videorate[mode].value
 			choice = self.choices[self.pos]
-			if (port, mode, rate) != choice[1:]:
+			if (port, mode, rate) != choice[1:] or config.av.autores.value != self.prefAuto:
+				config.av.autores.save()
 				iAVSwitch.saveMode(*choice[1:])
 				configfile.save()
 		self.close()
