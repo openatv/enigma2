@@ -303,7 +303,7 @@ void eServiceTS::recv_event(int evt)
 		bool wasnull = !m_audioInfo;
 		m_streamthread->getAudioInfo(m_audioInfo);
 		if (m_audioInfo)
-			eDebug("[servicets] %d audiostreams found", m_audioInfo->audioStreams.size());
+			eDebug("[servicets] %zu audiostreams found", m_audioInfo->audioStreams.size());
 		if (m_audioInfo && wasnull) {
 			int sel = getCurrentTrack();
 			if (sel < 0)
