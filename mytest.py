@@ -505,46 +505,6 @@ from Screens.Ci import CiHandler
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
-profile("Load:StackTracePrinter")
-from threading import Thread, current_thread
-from sys import _current_frames
-from traceback import extract_stack
-from time import sleep
-class StackTracePrinter(Thread):
-	def __init__(self):
-		Thread.__init__(self)
-		self.__running = False
-
-	def activate(self, MainThread_ident):
-		self.MainThread_ident = MainThread_ident
-		if not self.__running:
-			self.__running = True
-			self.start()
-
-	def run(self):
-		while (self.__running == True):
-			if (os.path.isfile("/tmp/doPythonStackTrace")):
-				os.remove("/tmp/doPythonStackTrace")
-				print "========== Stacktrace of running Python threads =========="
-				for threadId, stack in _current_frames().items():
-					if (threadId != current_thread().ident):
-						if (threadId == self.MainThread_ident):
-							print "========== MainThread %s ==========" % threadId
-						else:
-							print "========== Thread ID %s ==========" % threadId
-						for filename, lineno, name, line in extract_stack(stack):
-							print 'File: "%s", line %d, in %s' % (filename, lineno, name)
-							if line:
-								print "  %s" % (line.strip())
-				print "=========================================================="
-			sleep(1)
-		Thread.__init__(self)
-
-	def deactivate(self):
-		self.__running = False
-
-StackTracePrinter = StackTracePrinter()
-
 from time import time, localtime, strftime
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
@@ -637,10 +597,6 @@ def runScreenTest():
 	profile("Init:AutoVideoMode")
 	import Screens.VideoMode
 	Screens.VideoMode.autostart(session)
-
-	profile("Init:StackTracePrinter")
-	from threading import current_thread
-	StackTracePrinter.activate(current_thread().ident)
 
 	profile("RunReactor")
 	profile_final()
