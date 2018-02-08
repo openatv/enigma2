@@ -1138,6 +1138,9 @@ class InfoBarChannelSelection:
 			self.keyHide()
 			doMove = up is not None and "keep" not in config.usage.servicelist_cursor_behavior.value
 			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+				# The current selection may not be the current service due to
+				# changing channels in the single EPG.
+				self.servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 				if not config.usage.show_bouquetalways.value:
 					if doMove:
 						if up:
@@ -1192,6 +1195,9 @@ class InfoBarChannelSelection:
 				return
 			servicelist = self.servicelist
 			dopipzapSave = servicelist.dopipzap
+			# The current selection may not be the current service due to
+			# changing channels in the single EPG.
+			servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.longPressToggle = False
@@ -1238,6 +1244,9 @@ class InfoBarChannelSelection:
 				return
 			servicelist = self.servicelist
 			dopipzapSave = servicelist.dopipzap
+			# The current selection may not be the current service due to
+			# changing channels in the single EPG.
+			servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.longPressToggle = False

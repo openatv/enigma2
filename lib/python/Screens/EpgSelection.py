@@ -177,12 +177,23 @@ class EPGSelection(Screen, HelpableScreen):
 				}, prio=-1, description=_('Navigation'))
 				self['epgcursoractions'].csel = self
 			elif self.type == EPG_TYPE_ENHANCED:
+				self['epgcursoractions'] = HelpableActionMap(self, ['DirectionActions', 'EPGSelectActions'], {
+					'left': (self.prevPage, _('Move up a page')),
+					'right': (self.nextPage, _('Move down a page')),
+					'up': (self.moveUp, _('Go to previous event')),
+					'down': (self.moveDown, _('Go to next event')),
+					'rewind': (self.jumpNow, _('Jump to now')),
+					'play': (self.jumpNextDay, _('Jump forward a day')),
+					'playlong': (self.jumpPrevDay, _('Jump back a day')),
+					'fastforward': (self.jumpNextWeek, _('Jump forward a week')),
+					'fastforwardlong': (self.jumpLastWeek, _('Jump back a week'))
+				}, prio=-1, description=_('Navigation'))
+				self['epgcursoractions'].csel = self
 				self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {
 					'nextBouquet': (self.nextBouquet, _('Go to next bouquet')),
 					'prevBouquet': (self.prevBouquet, _('Go to previous bouquet')),
 					'nextService': (self.nextService, _('Go to next channel')),
 					'prevService': (self.prevService, _('Go to previous channel')),
-					'input_date_time': (self.enterDateTime, _('Go to specific date/time')),
 					'info': (self.Info, self._helpInfo),
 					'infolong': (self.InfoLong, self._helpInfoLong),
 					'timer': (self.showTimerList, _('Show timer list')),
@@ -190,16 +201,9 @@ class EPGSelection(Screen, HelpableScreen):
 					'menu': (self.createSetup, _('Setup menu'))
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
 				self['epgactions'].csel = self
-				self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', {
-					'left': (self.prevPage, _('Move up a page')),
-					'right': (self.nextPage, _('Move down a page')),
-					'up': (self.moveUp, _('Go to previous event')),
-					'down': (self.moveDown, _('Go to next event'))
-				}, prio=-1, description=_('Navigation'))
-				self['epgcursoractions'].csel = self
 			numHelp = _('Enter number(s) to jump to channel')
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', {
-				'0': (self.keyNumberGlobal, numHelp),
+				'0': (self.keyNumberGlobal, _('Jump to original channel')),
 				'1': (self.keyNumberGlobal, numHelp),
 				'2': (self.keyNumberGlobal, numHelp),
 				'3': (self.keyNumberGlobal, numHelp),
@@ -613,6 +617,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveBouquetUp()
 			self.BouquetOK()
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR) and config.usage.multibouquet.value:
+			if self.zapnumberstarted:
+				self.doNumberZapBack()
+				return
 			self.CurrBouquet = self.servicelist.getCurrentSelection()
 			self.CurrService = self.servicelist.getRoot()
 			self.servicelist.prevBouquet()
@@ -677,6 +684,42 @@ class EPGSelection(Screen, HelpableScreen):
 			self.updEvent(-24)
 		elif self.serviceChangeCB:
 			self.serviceChangeCB(-1, self)
+
+	def jumpTime(self, reltime=None):
+		if not reltime:
+			reltime = int(time())
+		else:
+			cur = self['list'].getCurrent()
+			event = cur[0]
+			reltime += event.getBeginTime() + 60
+		self['list'].moveToTime(reltime)
+
+	def jumpNow(self):
+		self.jumpTime()
+
+	def jumpNextDay(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self.jumpTime(24 * 60 * 60)
+
+	def jumpNextWeek(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self.jumpTime(7 * 24 * 60 * 60)
+
+	def jumpPrevDay(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self.jumpTime(-24 * 60 * 60)
+
+	def jumpLastWeek(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self.jumpTime(-7 * 24 * 60 * 60)
 
 	def enterDateTime(self):
 		global mepg_config_initialized
@@ -1329,6 +1372,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.eventviewDialog = None
 
 	def closeScreen(self):
+		if self.zapnumberstarted:
+			self.stopNumberZap()
+			return
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return  # stop and do not continue.
@@ -1484,6 +1530,11 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].fillGraphEPG(None, self.ask_time)
 				self.moveTimeLines(True)
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
+			if number == 0 and not self.zapnumberstarted:
+				num = self.currentService.getChannelNum()
+				self.service, self.bouquet = self.searchNumber(num)
+				self.doNumberZap()
+				return
 			self.zapnumberstarted = True
 			self.NumberZapTimer.start(5000, True)
 			if not self.NumberZapField:
@@ -1495,6 +1546,21 @@ class EPGSelection(Screen, HelpableScreen):
 			self["number"].show()
 			if len(self.NumberZapField) >= 4:
 				self.doNumberZap()
+
+	def doNumberZapBack(self):
+		if self.NumberZapField:
+			self.NumberZapField = self.NumberZapField[:-1]
+			if self.NumberZapField:
+				self.handleServiceName()
+				self["number"].setText("Channel change\n" + self.zaptoservicename + '\n' + self.NumberZapField)
+			else:
+				self.stopNumberZap()
+
+	def stopNumberZap(self):
+		self.zapnumberstarted = False
+		self["number"].hide()
+		self.NumberZapField = None
+		self.NumberZapTimer.stop()
 
 	def doNumberZap(self):
 		self.zapnumberstarted = False
