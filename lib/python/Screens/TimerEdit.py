@@ -108,6 +108,8 @@ class TimerEditList(Screen, TimerListButtons):
 			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		
+		self.disable_on_cancel = False
+
 		self.onChangedEntry = []
 		list = []
 		self.list = list
@@ -184,18 +186,20 @@ class TimerEditList(Screen, TimerListButtons):
 			t = cur
 			if t.disabled:
 # 				print "[TimerEdit] try to ENABLE timer"
-				t.enable()
 				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
+				if timersanitycheck.doubleCheck():
+					print "[TimerEdit] Timer doubled"
+					return
+				t.enable()
 				if not timersanitycheck.check():
-					t.disable()
 					print "[TimerEdit] Sanity check failed"
 					simulTimerList = timersanitycheck.getSimulTimerList()
 					if simulTimerList is not None:
+						self.disable_on_cancel = True
+						self.session.nav.RecordTimer.timeChanged(t)
 						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList, self.menu_path)
 				else:
 					print "[TimerEdit] Sanity check passed"
-					if timersanitycheck.doubleCheck():
-						t.disable()
 			else:
 				if t.isRunning():
 					if t.repeated:
@@ -433,8 +437,14 @@ class TimerEditList(Screen, TimerListButtons):
 
 			self.fillTimerList()
 			self.updateState()
-		# else:
-# 			print "[TimerEdit] Timeredit aborted"
+		else:
+#			print "[TimerEdit] Timeredit aborted"
+			if self.disable_on_cancel:
+				answer[1].disable()
+				self.session.nav.RecordTimer.timeChanged(answer[1])
+				self.fillTimerList()
+				self.updateState()
+		self.disable_on_cancel = False
 
 	def finishedAdd(self, answer):
 # 		print "[TimerEdit] finished add"
