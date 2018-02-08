@@ -4114,7 +4114,7 @@ class InfoBarCueSheetSupport:
 			pts = mark[0]
 		elif end:
 			pts = config.seek.autoskip.value and self.cueGetEndCutPosition() or -1
-			pts -= 900000 # go to 10 seconds before the end
+			pts -= 5 * 90000 # go to 5 seconds before the end
 		else:
 			return False
 
