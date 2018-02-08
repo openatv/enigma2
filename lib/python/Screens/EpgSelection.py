@@ -182,11 +182,11 @@ class EPGSelection(Screen, HelpableScreen):
 					'right': (self.nextPage, _('Move down a page')),
 					'up': (self.moveUp, _('Go to previous event')),
 					'down': (self.moveDown, _('Go to next event')),
-					'input_date_time': (self.jumpNow, _('Jump to now')),
-					'tv': (self.jumpNextDay, _('Jump forward a day')),
-					'tvlong': (self.jumpPrevDay, _('Jump back a day')),
-					'radio': (self.jumpNextWeek, _('Jump forward a week')),
-					'radiolong': (self.jumpLastWeek, _('Jump back a week'))
+					'rewind': (self.jumpNow, _('Jump to now')),
+					'play': (self.jumpNextDay, _('Jump forward a day')),
+					'playlong': (self.jumpPrevDay, _('Jump back a day')),
+					'fastforward': (self.jumpNextWeek, _('Jump forward a week')),
+					'fastforwardlong': (self.jumpLastWeek, _('Jump back a week'))
 				}, prio=-1, description=_('Navigation'))
 				self['epgcursoractions'].csel = self
 				self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {

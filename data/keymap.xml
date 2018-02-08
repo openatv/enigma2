@@ -649,8 +649,13 @@
 		<key id="KEY_TV2" mapto="tvlong" flags="l"/>
 		<key id="KEY_PROGRAM" mapto="timer" flags="b"/>
 		<key id="KEY_PROGRAM" mapto="timerlong" flags="l"/>
-		<key id="KEY_RADIO" mapto="radio" flags="b"/>
-		<key id="KEY_RADIO" mapto="radiolong" flags="l"/>
+		<key id="KEY_PLAY" mapto="play" flags="b"/>
+		<key id="KEY_PLAY" mapto="playlong" flags="l"/>
+		<key id="KEY_PLAYPAUSE" mapto="play" flags="b"/>
+		<key id="KEY_PLAYPAUSE" mapto="playlong" flags="l"/>
+		<key id="KEY_REWIND" mapto="rewind" flags="m"/>
+		<key id="KEY_FASTFORWARD" mapto="fastforward" flags="b"/>
+		<key id="KEY_FASTFORWARD" mapto="fastforwardlong" flags="l"/>
 	</map>
 
 	<map context="EventViewActions">
