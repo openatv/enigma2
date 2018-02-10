@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
 from Tools.Directories import fileExists, shellquote
+from Components.MovieList import MOVIE_EXTENSIONS
 from enigma import eTimer
 import os
+
+ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 
 class FileTransferJob(Job):
 	def __init__(self, src_file, dst_file, src_isDir, do_copy, title):
@@ -19,10 +22,10 @@ class FileTransferTask(Task):
 		self.dst_file = dst_file + "/" + os.path.basename(src_file)
 		src_file_append = ""
 		if not src_isDir:
-			src_file_fields = src_file.rsplit(".", 1)
-			if len(src_file_fields):
-				src_file = src_file_fields[0] + "."
-			src_file_append = "*"
+			root, ext = os.path.splitext(src_file)
+			if ext in ALL_MOVIE_EXTENSIONS:
+				src_file = root
+				src_file_append = ".*"
 		cmd = "mv"
 		if do_copy:
 			cmd = "cp -pr"

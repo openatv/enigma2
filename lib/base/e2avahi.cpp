@@ -23,7 +23,7 @@ struct AvahiTimeout: public sigc::trackable
 
 	void timeout()
 	{
-		eDebug("[Avahi] timeout elapsed");
+//		eDebug("[Avahi] timeout elapsed");
 		callback(this, userdata);
 	}
 
@@ -45,7 +45,7 @@ struct AvahiWatch: public sigc::trackable
 
 	void activated(int event)
 	{
-		eDebug("[Avahi] watch activated: %#x", event);
+//		eDebug("[Avahi] watch activated: %#x", event);
 		lastEvent = event;
 		callback(this, sn->getFD(), (AvahiWatchEvent)event, userdata);
 	}
@@ -276,7 +276,7 @@ static void avahi_client_reset_all()
 
 static void avahi_client_callback(AvahiClient *client, AvahiClientState state, void *d)
 {
-	eDebug("[Avahi] client state: %d", state);
+//	eDebug("[Avahi] client state: %d", state);
 	switch(state)
 	{
 		case AVAHI_CLIENT_S_RUNNING:
