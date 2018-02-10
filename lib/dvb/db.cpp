@@ -70,7 +70,7 @@ RESULT eBouquet::removeService(const eServiceReference &ref, bool renameBouquet)
 
 RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 {
-	if ( pos < 0 || pos >= m_services.size() )
+	if (pos >= m_services.size())
 		return -1;
 	++pos;
 	list::iterator source=m_services.end();
