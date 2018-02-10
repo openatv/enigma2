@@ -120,8 +120,6 @@ class Setup(ConfigListScreen, Screen):
 		# check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-		self["key_yellow"] = Label()
-		self["key_blue"] = Label()
 		self["description"] = Label()
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"], {
