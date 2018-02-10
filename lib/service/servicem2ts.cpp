@@ -264,7 +264,7 @@ sync:
 	}
 
 	while (rd < count) {
-		size_t ret;
+		ssize_t ret;
 #ifdef HAVE_LIBUDFREAD
 		if (m_udf_file)
 			ret = udfread_file_read(m_udf_file, tmp, 192);
