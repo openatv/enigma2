@@ -4914,7 +4914,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 		{
 			std::string the_text = (char *) (data + 11 + summary->nb_replays * 7);
 
-			unsigned int pos=0;
+			size_t pos = 0;
 			while((pos = the_text.find("\r\n")) != std::string::npos)
 				the_text.replace(pos, 2, " ");
 
