@@ -681,12 +681,12 @@ SWIG_TEMPLATE_TYPEDEF(ePtr<iCueSheet>, iCueSheetPtr);
 
 class PyList;
 
-class eDVBTeletextSubtitlePage;
-class eDVBSubtitlePage;
+struct eDVBTeletextSubtitlePage;
+struct eDVBSubtitlePage;
 struct ePangoSubtitlePage;
 class eRect;
-struct gRegion;
-struct gPixmap;
+class gRegion;
+class gPixmap;
 
 SWIG_IGNORE(iSubtitleUser);
 class iSubtitleUser
