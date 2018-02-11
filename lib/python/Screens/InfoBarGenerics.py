@@ -783,7 +783,7 @@ class NumberZap(Screen):
 
 		self.handleServiceName()
 
-		self["actions"] = NumberActionMap(["SetupActions", "ShortcutActions"], {
+		self["actions"] = NumberActionMap(["SetupActions", "ShortcutActions", "BackspaceActions"], {
 			"cancel": self.quit,
 			"ok": self.keyOK,
 			"blue": self.keyBlue,

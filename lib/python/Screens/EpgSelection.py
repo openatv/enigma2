@@ -202,7 +202,7 @@ class EPGSelection(Screen, HelpableScreen):
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
 				self['epgactions'].csel = self
 			numHelp = _('Enter number(s) to jump to channel')
-			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', {
+			self['input_actions'] = HelpableNumberActionMap(self, ['NumberActions', 'BackspaceActions'], {
 				'0': (self.keyNumberGlobal, _('Jump to original channel')),
 				'1': (self.keyNumberGlobal, numHelp),
 				'2': (self.keyNumberGlobal, numHelp),
@@ -212,7 +212,8 @@ class EPGSelection(Screen, HelpableScreen):
 				'6': (self.keyNumberGlobal, numHelp),
 				'7': (self.keyNumberGlobal, numHelp),
 				'8': (self.keyNumberGlobal, numHelp),
-				'9': (self.keyNumberGlobal, numHelp)
+				'9': (self.keyNumberGlobal, numHelp),
+				'deleteBackward': (self.doNumberZapBack, _('Backspace channel number'))
 			}, prio=-1, description=_('Zap by channel number'))
 			self['input_actions'].csel = self
 			self.list = []
@@ -1548,7 +1549,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.doNumberZap()
 
 	def doNumberZapBack(self):
-		if self.NumberZapField:
+		if self.zapnumberstarted and self.NumberZapField:
 			self.NumberZapField = self.NumberZapField[:-1]
 			if self.NumberZapField:
 				self.handleServiceName()
