@@ -823,7 +823,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def layoutFinished(self):
 		self.newConfig()
-		self.setTitle(_("Reception Settings"))
+		self.setTitle(_("Reception Settings") + " " + _("Tuner") + " " + self.nim.slot_input_name)
 
 	def keyLeft(self):
 		cur = self["config"].getCurrent()
@@ -1023,7 +1023,7 @@ class NimSelection(Screen):
 
 	def NimSetupCB(self, index=None):
 		self.loadFBCLinks()
-		self.updateList()
+		self.updateList(index)
 
 	def showNim(self, nim):
 		return True
