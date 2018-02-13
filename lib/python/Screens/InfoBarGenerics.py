@@ -783,7 +783,7 @@ class NumberZap(Screen):
 
 		self.handleServiceName()
 
-		self["actions"] = NumberActionMap(["SetupActions", "ShortcutActions"], {
+		self["actions"] = NumberActionMap(["SetupActions", "ShortcutActions", "BackspaceActions"], {
 			"cancel": self.quit,
 			"ok": self.keyOK,
 			"blue": self.keyBlue,
@@ -1138,6 +1138,9 @@ class InfoBarChannelSelection:
 			self.keyHide()
 			doMove = up is not None and "keep" not in config.usage.servicelist_cursor_behavior.value
 			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+				# The current selection may not be the current service due to
+				# changing channels in the single EPG.
+				self.servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 				if not config.usage.show_bouquetalways.value:
 					if doMove:
 						if up:
@@ -1192,6 +1195,9 @@ class InfoBarChannelSelection:
 				return
 			servicelist = self.servicelist
 			dopipzapSave = servicelist.dopipzap
+			# The current selection may not be the current service due to
+			# changing channels in the single EPG.
+			servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.longPressToggle = False
@@ -1238,6 +1244,9 @@ class InfoBarChannelSelection:
 				return
 			servicelist = self.servicelist
 			dopipzapSave = servicelist.dopipzap
+			# The current selection may not be the current service due to
+			# changing channels in the single EPG.
+			servicelist.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		elif self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.longPressToggle = False
@@ -4102,15 +4111,19 @@ class InfoBarCueSheetSupport:
 					ret = cp[0]
 			elif cp[1] == self.CUT_TYPE_IN:
 				isin = True
+				ret = False
 		return ret
 
-	def jumpPreviousNextMark(self, cmp, start=False):
+	def jumpPreviousNextMark(self, cmp, start=False, end=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
 			return False
 		mark = self.getNearestCutPoint(current_pos, cmp=cmp, start=start)
 		if mark is not None:
 			pts = mark[0]
+		elif end:
+			pts = config.seek.autoskip.value and self.cueGetEndCutPosition() or -1
+			pts -= 5 * 90000 # go to 5 seconds before the end
 		else:
 			return False
 
@@ -4125,8 +4138,7 @@ class InfoBarCueSheetSupport:
 		self.jumpPreviousNextMark(lambda x: -x - 5 * 90000, start=True)
 
 	def jumpNextMark(self):
-		if not self.jumpPreviousNextMark(lambda x: x - 90000):
-			self.doSeek(-1)
+		self.jumpPreviousNextMark(lambda x: x - 90000, end=True)
 
 	def getNearestCutPoint(self, pts, cmp=abs, start=False):
 		# can be optimized
