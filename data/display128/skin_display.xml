@@ -233,7 +233,10 @@
 			</widget>
 		</panel>
 	</screen>
-	
+	<screen name="EMCSelectionSummary" position="fill">
+		<panel name="EMCSelection_summary" />
+	</screen>
+
 	<screen name="EMCMoviePlayerSummary" position="fill">
 		<!-- Movie name -->
 		<widget source="session.CurrentService" render="Label" position="0,0" size="128,37" font="FdLcD;17" foregroundColor="#FFFF00" halign="center" valign="top">

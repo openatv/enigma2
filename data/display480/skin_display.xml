@@ -492,6 +492,23 @@
 	</screen>
 	
 	<!-- LCD screen EMC -->
+	<screen name="EMCSelection_summary" position="5,0" size="471,320"> 
+		<widget source="parent.Title" render="Label" position="0,0" size="471,96" font="FdLcD;32" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<eLabel position="0,99" size="471,1" backgroundColor="white" />
+		<widget source="parent.Service" render="Label" position="0,99" size="471,175" font="FdLcD;34" halign="center" valign="center">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="0,275" size="471,53" font="FdLcD;34" halign="left" transparent="1">
+			<convert type="ServiceTime">Duration</convert>
+			<convert type="ClockToText">AsLength</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="0,275" size="471,53" font="FdLcD;34" halign="right" transparent="1">
+			<convert type="MovieInfo">FileSize</convert>
+		</widget>
+	</screen>
+	<screen name="EMCSelectionSummary" position="0,0" size="471,320">
+		<panel name="EMCSelection_summary" />
+	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="480,320" >
 		<!-- Movie name -->		
 		<widget source="session.CurrentService" render="Label" position="0,10" size="400,148" font="FdLcD;40" halign="center" valign="center" transparent="1" >
