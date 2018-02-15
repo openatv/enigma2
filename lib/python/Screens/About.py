@@ -19,6 +19,8 @@ from Tools.StbHardware import getFPVersion
 from os import path
 from re import search
 
+import time
+
 def parse_ipv4(ip):
 	ret = ""
 	idx = 0
@@ -50,6 +52,15 @@ def parseLines(filename):
 	except IOError:
 		print "[ERROR] failed to open file %s" % filename
 	return ret
+
+def MyDateConverter(StringDate):
+	## StringDate must be a string "YYYY-MM-DD"
+	try:
+		StringDate = StringDate.replace("-"," ")
+		StringDate = time.strftime(_("%Y-%m-%d"), time.strptime(StringDate, "%Y %m %d"))
+		return StringDate
+	except:
+		return _("unknown")
 
 def getAboutText():
 	AboutText = ""
@@ -133,7 +144,7 @@ def getAboutText():
 	month = string[4:6]
 	day = string[6:8]
 	driversdate = '-'.join((year, month, day))
-	AboutText += _("Drivers:\t%s") % driversdate + "\n"
+	AboutText += _("Drivers:\t%s") % MyDateConverter(driversdate) + "\n"
 
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
@@ -141,7 +152,7 @@ def getAboutText():
 	if getMachineBuild() not in ('h9','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr'):
 		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
 
-	AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
+	AboutText += _("Last update:\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:
