@@ -282,6 +282,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("503", _("MIRACLEBOX_TWINPLUS")),
 				("504", _("E3HD/XPEEDLX/GI")),
 				("505", _("ODIN_M7")),
+				("507", _("Beyonwiz U4")),
 				("511", _("OCTAGON SF5008"))
 				]
 		defaultRcList = [
@@ -335,6 +336,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("et1x000", 504),
 				("xpeedc.", 504),
 				("odinm7", 505),
+				("beyonwizu4", 507),
 				("sf5008", 511)
 				]
 	else:
