@@ -277,11 +277,12 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("20", _("Zgemma Star S/2S/H1/H2")),
 				("21", _("Zgemma H.S/H.2S/H.2H/H5/H7")),
 				("500", _("WWIO_BRE2ZE_TC")),
-				("501", _("OCTAGON_SFXXX8")),
+				("501", _("OCTAGON_SF4008")),
 				("502", _("GIGABLUE Black")),
 				("503", _("MIRACLEBOX_TWINPLUS")),
 				("504", _("E3HD/XPEEDLX/GI")),
-				("505", _("ODIN_M7"))
+				("505", _("ODIN_M7")),
+				("511", _("OCTAGON SF5008"))
 				]
 		defaultRcList = [
 				("default", 0),
@@ -327,14 +328,14 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("sf4008", 501),
 				("g100", 501),
 				("sf4018", 501),
-				("sf5008", 9),
 				("gbquadplus", 502),
 				("g300", 503),
 				("e3hd", 504),
 				("et7000mini", 504),
 				("et1x000", 504),
 				("xpeedc.", 504),
-				("odinm7", 505)
+				("odinm7", 505),
+				("sf5008", 511)
 				]
 	else:
 		rcList = [
@@ -345,7 +346,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("6", _("DMM advanced")),
 				("7", _("et5000/6000")),
 				("8", _("VU+")),
-				("9", _("et8000/et10000/et13000/SF5008")),
+				("9", _("et8000/et10000/et13000")),
 				("11", _("et9200/9500/6500")),
 				("13", _("et4000")),
 				("14", _("XP1000")),
@@ -391,7 +392,6 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("xp1000", 14),
 				("xp3000", 17),
 				("sh1", 20),
-				("sf5008", 9),
 				("h3", 21),
 				("h5", 21),
 				("h7", 21),
