@@ -600,8 +600,13 @@ if test "$BOXTYPE" == "sh1" -o "$BOXTYPE" == "lc"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-if test "$BOXTYPE" == "7000s" -o "$BOXTYPE" == "7100s" -o "$BOXTYPE" == "7105s" -o "$BOXTYPE" == "7200s" -o "$BOXTYPE" == "7205s" -o "$BOXTYPE" == "7210s" -o "$BOXTYPE" == "7215s" -o "$BOXTYPE" == "7300s" -o "$BOXTYPE" == "7400s" -o "$BOXTYPE" == "8100s"; then
+if test "$BOXTYPE" == "7000s" -o "$BOXTYPE" == "7100s" -o "$BOXTYPE" == "7105s" -o "$BOXTYPE" == "7200s" -o "$BOXTYPE" == "7205s" -o "$BOXTYPE" == "7210s" -o "$BOXTYPE" == "7215s" -o "$BOXTYPE" == "7300s" -o "$BOXTYPE" == "7400s"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+	AC_DEFINE(LCD_COLOR_BITORDER_RGB565, 1,[define if lcd uses RGB565 bitorder])
+fi
+
+if test "$BOXTYPE" == "8100s"; then
+	AC_DEFINE(KEY_VIDEO_TO_KEY_EPG, 1,[define when rc sends a KEY_VIDEO event for its KEY_EPG])
 	AC_DEFINE(LCD_COLOR_BITORDER_RGB565, 1,[define if lcd uses RGB565 bitorder])
 fi
 
