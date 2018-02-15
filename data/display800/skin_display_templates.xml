@@ -275,8 +275,8 @@
             <convert type="ClockToText">Default</convert>
         </widget>
 	</screen>
-	<screen name="LCDPicon">
-		<widget source="session.CurrentService" render="LcdPicon" position="50,25" size="340,240" transparent="1" alphatest="blend" zPosition="2">	
+    <screen name="LCDPicon">
+		<widget source="session.CurrentService" render="LcdPicon" position="40,40" size="350,210" transparent="1" alphatest="blend" zPosition="2">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
@@ -284,7 +284,7 @@
 		</widget>			
 	</screen>
 	<screen name="LCDChannelSelectionPicon">
-		<widget source="parent.ServiceEvent" render="LcdPicon" position="50,25" size="340,240" transparent="1" alphatest="blend" zPosition="2">	
+		<widget source="parent.ServiceEvent" render="LcdPicon" position="40,40" size="350,210" transparent="1" alphatest="blend" zPosition="2">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
@@ -292,7 +292,7 @@
 		</widget>
 	</screen>
 	<screen name="LCDEPGPicon">
-		<widget source="parent.Service" render="LcdPicon" position="50,25" size="340,240" transparent="1" alphatest="blend" zPosition="2">	
+		<widget source="parent.Service" render="LcdPicon" position="40,40" size="350,210" transparent="1" alphatest="blend" zPosition="2">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="540,10" size="220,84" font="FdLcD;84" halign="left" backgroundColor="LCDBackground">
@@ -443,7 +443,7 @@
 			<convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
-	<screen name="EMCSelectionOwn_summary" position="0,0" size="800,480"> 
+	<screen name="EMCSelectionSummary" position="0,0" size="800,480">
 		<panel name="EMCSelection_summary" />
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="800,480"> 

@@ -638,6 +638,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_BOOKMARKS_IS_KEY_DIRECTORY
+	if (ev->code == KEY_BOOKMARKS)
+	{
+		/* Beyonwiz U4 RCU workaround to open pluginbrowser */
+		ev->code = KEY_DIRECTORY;
+	}
+#endif
+
 	switch (ev->value)
 	{
 		case 0:
