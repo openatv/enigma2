@@ -44,7 +44,7 @@ class HddMount(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Mount Manager"))
-		self['key_red'] = Label(" ")
+		self['key_red'] = StaticText(" ")
 		self['key_green'] = Label(_("Setup Mounts"))
 		self['key_yellow'] = Label("Unmount")
 		self['key_blue'] = Label("Mount")
