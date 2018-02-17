@@ -252,7 +252,7 @@ int eHttpStream::open(const char *url)
 void eHttpStream::thread()
 {
 	hasStarted();
-	sleep(1);
+	usleep(500000); // wait half a second in general as not only fallback receiver needs this.
 	std::string currenturl, newurl;
 	currenturl = streamUrl;
 	for (unsigned int i = 0; i < 5; i++)
