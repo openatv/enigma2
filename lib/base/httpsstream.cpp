@@ -3,7 +3,6 @@
 #include <lib/base/httpsstream.h>
 #include <lib/base/eerror.h>
 #include <lib/base/wrappers.h>
-#include <lib/base/nconfig.h> // access to python config
 
 // for shutdown
 #include <sys/socket.h>
@@ -311,8 +310,7 @@ int eHttpsStream::open(const char *url)
 void eHttpsStream::thread()
 {
 	hasStarted();
-	if (eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false))
-		usleep(500000); // wait half a second
+	sleep(1);
 	std::string currenturl, newurl;
 	currenturl = streamUrl;
 	for (unsigned int i = 0; i < 5; i++)
