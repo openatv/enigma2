@@ -3578,8 +3578,8 @@ class InfoBarInstantRecord:
 class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions", {
-			"audioSelection": (self.audioSelectionCycle, _("Cycle through audio tracks")),
-			"audioSelectionLong": (self.audioSelection, _("Audio options & track selection...")),
+			"audioSelectionLong": (self.audioSelectionCycle, _("Cycle through audio tracks")),
+			"audioSelection": (self.audioSelection, _("Audio options & track selection...")),
 		}, description=_("Audio track selection, downmix and other audio options"))
 
 	def audioSelection(self):
