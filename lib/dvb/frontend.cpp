@@ -2316,7 +2316,7 @@ RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)
 
 RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 {
-	unsigned int timeout;
+	unsigned int timeout = 2000;
 	int type;
 	eDebugNoSimulate("[eDVBFrontend] (%d)tune", m_dvbid);
 
