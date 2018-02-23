@@ -208,6 +208,7 @@ int TDT::createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 void TDT::start()
 {
 	eDVBTableSpec spec;
+	memset(&spec, 0, sizeof(spec));
 	spec.pid = TimeAndDateSection::PID;
 	spec.tid = TimeAndDateSection::TID;
 	spec.tid_mask = 0xFC;
