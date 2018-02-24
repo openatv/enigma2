@@ -8,25 +8,25 @@ EXTRA_DIST = $(LANGPO)
 
 # the TRANSLATORS: allows putting translation comments before the to-be-translated line.
 enigma2-py.pot: $(top_srcdir)/*.py $(top_srcdir)/lib/python/*/*.py $(top_srcdir)/lib/python/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*.py
-	$(XGETTEXT) --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
+	$(AM_V_GEN)$(XGETTEXT) --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
 
 enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/python/Plugins/SystemPlugins/*/*.xml
-	$(PYTHON) $^ > $@
+	$(AM_V_GEN)$(PYTHON) $^ > $@
 
 enigma2.pot: enigma2-py.pot enigma2-xml.pot
-	sed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
-	sed --in-place enigma2-xml.pot --expression=s/CHARSET/UTF-8/
-	cat $^ | $(MSGUNIQ) --no-wrap --no-location -o $@ -
+	$(AM_V_GEN)sed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
+	$(AM_V_GEN)sed --in-place enigma2-xml.pot --expression=s/CHARSET/UTF-8/
+	$(AM_V_GEN)cat $^ | $(MSGUNIQ) --no-wrap --no-location -o $@ -
 
 %.po: enigma2.pot
-	if [ -f $@ ]; then \
+	$(AM_V_GEN)if [ -f $@ ]; then \
 		$(MSGMERGE) -q --backup=none --no-wrap --no-location -s -U $@ $< && touch $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
 	fi
 
 .po.mo:
-	$(MSGFMT) -o $@ $<
+	$(AM_V_GEN)$(MSGFMT) -o $@ $<
 
 BUILT_SOURCES = $(LANGMO)
 CLEANFILES = $(LANGMO) enigma2-py.pot enigma2-xml.pot enigma2.pot
@@ -34,14 +34,14 @@ CLEANFILES = $(LANGMO) enigma2-py.pot enigma2-xml.pot enigma2.pot
 dist-hook: $(LANGPO)
 
 install-data-local: $(LANGMO)
-	for lang in $(LANGS); do \
+	$(AM_V_GEN)for lang in $(LANGS); do \
 		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
 		$(INSTALL_DATA) $$lang.po $(DESTDIR)$(pkgdatadir)/po/@PACKAGE_NAME@-$$lang.po; \
 		$(INSTALL_DATA) $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
 	done
 
 uninstall-local:
-	for lang in $(LANGS); do \
+	$(AM_V_GEN)for lang in $(LANGS); do \
 		$(RM) $(DESTDIR)$(pkgdatadir)/po/@PACKAGE_NAME@-$$lang.po; \
 		$(RM) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
 	done
