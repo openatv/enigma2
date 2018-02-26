@@ -646,6 +646,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_VIDEO_TO_KEY_BOOKMARKS
+	if (ev->code == KEY_VIDEO)
+	{
+		/* Axas Ultra have two keys open Movie folder , use Media key to open Mediaportal */
+		ev->code = KEY_BOOKMARKS;
+	}
+#endif
+
 	switch (ev->value)
 	{
 		case 0:

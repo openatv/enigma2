@@ -81,7 +81,7 @@
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">VFDPosition</convert>
+			<convert type="ServicePosition">Remaining,ShowNoSeconds2,OnlyMinute</convert>
 		</widget>
 	</screen>
 
@@ -188,7 +188,7 @@
 <!-- mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">VFDPosition</convert>
+			<convert type="ServicePosition">Remaining,ShowNoSeconds2,OnlyMinute</convert>
 		</widget>
 	</screen>
 
