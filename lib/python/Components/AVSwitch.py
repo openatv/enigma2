@@ -575,7 +575,7 @@ def InitAVSwitch():
 	# "auto", "bestfit" and "full" are aliasses for the same: Stretch linear
 	if "full" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-		policy_choices.update({"full: _("Stretch linear")})
+		policy_choices.update({"full": _("Stretch linear")})
 	if "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
 		policy_choices.update({"auto": _("Stretch linear")})
