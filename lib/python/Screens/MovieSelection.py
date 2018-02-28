@@ -726,6 +726,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 		self.selectionMode = False
 		self.prevDirection = None
+		self.skip_toggle = False
 
 		title = _("Movie selection")
 		self.setTitle(title)
@@ -758,18 +759,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			"showText": (self.btn_text, boundFunction(self.getinitUserDefinedActionsDescription, "btn_text")),
 		}, description=_("Basic functions"))
 
+		keyNumberHelp = _("Search movie list, SMS style ABC2")
 		self["NumberActions"] = HelpableNumberActionMap(self, ["NumberActions", "InputAsciiActions"], {
 			"gotAsciiCode": self.keyAsciiCode,
-			"0": (self.keyNumberGlobal, lambda: _("Toggle selection") if self.selectionMode else _("Enter selection mode")),
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal
+			"1": (self.keyNumberGlobal, keyNumberHelp),
+			"2": (self.keyNumberGlobal, keyNumberHelp),
+			"3": (self.keyNumberGlobal, keyNumberHelp),
+			"4": (self.keyNumberGlobal, keyNumberHelp),
+			"5": (self.keyNumberGlobal, keyNumberHelp),
+			"6": (self.keyNumberGlobal, keyNumberHelp),
+			"7": (self.keyNumberGlobal, keyNumberHelp),
+			"8": (self.keyNumberGlobal, keyNumberHelp),
+			"9": (self.keyNumberGlobal, keyNumberHelp),
 		})
 
 		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions", {
@@ -795,9 +796,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			"yellowlong": (self.btn_yellowlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellowlong")),
 			"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
 		}, description=_("User-selectable functions"))
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", {
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "MovieSelectionActions"], {
 			"cancel": (self.abort, lambda: _("Exit selection mode") if self.selectionMode else _("Exit movie list")),
 			"ok": (self.itemSelected, lambda: _("Toggle selection and move up/down") if self.selectionMode else _("Select movie")),
+			"enterToggle": (self.enterToggle, lambda: _("Toggle selection") if self.selectionMode else _("Enter selection mode")),
+			"invertSelection": (self.invertSelection, _("Invert selection")),
+			"toggleMoveUp": (self.toggleMoveUp, _("Toggle selection and move up")),
+			"toggleMoveDown": (self.toggleMoveDown, _("Toggle selection and move down")),
 		}, description=_("Selection and exit"))
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions", {
 			"up": (self.keyUp, _("Go up the list")),
@@ -1077,13 +1082,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.list.moveToFirstMovie()
 
 	def keyNumberGlobal(self, number):
-		if number == 0:
-			if not self.selectionMode:
-				self.list.startSelectionMode()
-				self.selectionMode = True
-			else:
-				self.list.toggleCurrentItem()
-			return
 		unichar = self.numericalTextInput.getKey(number)
 		charstr = unichar.encode("utf-8")
 		if len(charstr) == 1:
@@ -1502,6 +1500,40 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if config.movielist.show_live_tv_in_movielist.value:
 				self.LivePlayTimer.start(100)
 			self.filePlayingTimer.start(100)
+
+	def enterToggle(self):
+		if self.skip_toggle:
+			self.skip_toggle = False
+			return
+		if not self.selectionMode:
+			self.list.startSelectionMode()
+			self.selectionMode = True
+		else:
+			self.list.toggleCurrentItem()
+
+	def invertSelection(self):
+		if not self.selectionMode:
+			self.list.startSelectionMode()
+			self.selectionMode = True
+			self.list.toggleCurrentItem()
+		self.list.invertSelection()
+		self.skip_toggle = True 	# ignore the break
+
+	def toggleMoveUp(self):
+		if not self.selectionMode:
+			self.list.startSelectionMode()
+			self.selectionMode = True
+		else:
+			self.list.toggleCurrentItem()
+		self.keyUp()
+
+	def toggleMoveDown(self):
+		if not self.selectionMode:
+			self.list.startSelectionMode()
+			self.selectionMode = True
+		else:
+			self.list.toggleCurrentItem()
+		self.keyDown()
 
 	def itemSelected(self, answer=True):
 		if self.selectionMode:

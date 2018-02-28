@@ -1164,6 +1164,24 @@ class MovieList(GUIComponent):
 				self.selectionList.append(item[0])
 			self.invalidateCurrentItem()
 
+	def invertSelection(self):
+		# invert the same type (directory or file) as the current
+		cur = self.getCurrent()
+		cur = 0 if not cur else cur.flags & eServiceReference.mustDescent
+		for item in self.list:
+			if item[0] and item[1] and item[0].flags & eServiceReference.mustDescent == cur:
+				if item[0] in self.selectionList:
+					self.selectionList.remove(item[0])
+				else:
+					# don't select the trash
+					if item[0].flags & eServiceReference.mustDescent:
+						pathName = item[0].getPath()
+						name = os.path.basename(os.path.normpath(pathName))
+						if name == '.Trash':
+							continue
+					self.selectionList.append(item[0])
+		self.refreshDisplay()
+
 	def getSelected(self):
 		sel = []
 		for service in self.selectionList:

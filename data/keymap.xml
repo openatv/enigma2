@@ -513,6 +513,10 @@
 		<key id="KEY_MENU" mapto="contextMenu" flags="m"/>
 		<key id="KEY_SPACE" mapto="contextMenu" flags="m"/>
 		<key id="KEY_INFO" mapto="showEventInfo" flags="m"/>
+		<key id="KEY_REWIND" mapto="toggleMoveUp" flags="m"/>
+		<key id="KEY_FASTFORWARD" mapto="toggleMoveDown" flags="m"/>
+		<key id="KEY_0" mapto="enterToggle" flags="b"/>
+		<key id="KEY_0" mapto="invertSelection" flags="l"/>
 	</map>
 
 	<map context="FileNavigateActions">
