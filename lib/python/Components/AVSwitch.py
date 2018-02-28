@@ -519,6 +519,9 @@ def InitAVSwitch():
 	if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
 		policy2_choices.update({"scale": _("Stretch linear")})
+	if "full" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy2_choices.update({"full": _("Stretch linear")})
 	if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
 		policy2_choices.update({"auto": _("Stretch linear")})
@@ -569,6 +572,10 @@ def InitAVSwitch():
 	if "scale" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
 		policy_choices.update({"scale": _("Stretch linear")})
+	# "auto", "bestfit" and "full" are aliasses for the same: Stretch linear
+	if "full" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy_choices.update({"full: _("Stretch linear")})
 	if "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
 		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
 		policy_choices.update({"auto": _("Stretch linear")})
@@ -794,6 +801,7 @@ def InitAVSwitch():
 		config.av.hdmihdrtype = ConfigSelection(choices={
 				"auto": _("Auto"),
 				"dolby": _("dolby"),
+				"none": _("sdr"),
 				"hdr10": _("hdr10"),
 				"hlg": _("hlg")},
 				default = "auto")
