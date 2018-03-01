@@ -513,10 +513,12 @@
 		<key id="KEY_MENU" mapto="contextMenu" flags="m"/>
 		<key id="KEY_SPACE" mapto="contextMenu" flags="m"/>
 		<key id="KEY_INFO" mapto="showEventInfo" flags="m"/>
-		<key id="KEY_REWIND" mapto="toggleMoveUp" flags="m"/>
-		<key id="KEY_FASTFORWARD" mapto="toggleMoveDown" flags="m"/>
-		<key id="KEY_0" mapto="enterToggle" flags="b"/>
-		<key id="KEY_0" mapto="invertSelection" flags="l"/>
+		<key id="KEY_0" mapto="toggleMark" flags="b"/>
+		<key id="KEY_REWIND" mapto="toggleMoveUp" flags="b"/>
+		<key id="KEY_FASTFORWARD" mapto="toggleMoveDown" flags="b"/>
+		<key id="KEY_0" mapto="invertMarks" flags="l"/>
+		<key id="KEY_REWIND" mapto="markNone" flags="l"/>
+		<key id="KEY_FASTFORWARD" mapto="markAll" flags="l"/>
 	</map>
 
 	<map context="FileNavigateActions">
@@ -542,8 +544,6 @@
 		<key id="KEY_AUDIO" mapto="AudioSelection" flags="m"/>
 		<key id="KEY_EXIT" mapto="leavePlayerOnExit" flags="m"/>
 		<key id="KEY_ESC" mapto="leavePlayerOnExit" flags="m"/>
-		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m"/>
-		<key id="KEY_PLAY" mapto="playpauseService" flags="m"/>
 	</map>
 
 	<map context="InfobarCueSheetActions">

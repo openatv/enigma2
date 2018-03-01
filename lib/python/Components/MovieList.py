@@ -204,7 +204,7 @@ class MovieList(GUIComponent):
 		self.fontName, self.fontSize, height, width = skin.fonts.get("MovieSelectionFont", ("Regular", 20, 25, 18))
 		self.listHeight = None
 		self.listWidth = None
-		# pbarShift, trashShift, dirShift, selShift, dateWidth, lenWidth
+		# pbarShift, trashShift, dirShift, markShift, dateWidth, lenWidth
 		# and sizeWidth are properties that return their
 		# calculated size if set to None
 		self.pbarShift = None  # Defaults to being calculated from bar height
@@ -222,11 +222,12 @@ class MovieList(GUIComponent):
 		self.partIconeShift = None  # Defaults to being calculated from icon height
 		self.spaceRight = 2
 		self.spaceIconeText = 2
+		self.markWidth = 16
 		self.iconsWidth = 22
 
 		self.trashShift = None  # Defaults to being calculated from trash icon height
 		self.dirShift = None  # Defaults to being calculated from directory icon height
-		self.selShift = None  # Defaults to being calculated from selected icon height
+		self.markShift = None  # Defaults to being calculated from selected icon height
 		self.dateWidth = None  # Defaults to being calculated from font size
 		self.dateWidthScale = 9.0  # Over-ridden by self.dateWidth if set
 		self.lenWidth = None  # Defaults to being calculated from font size
@@ -241,7 +242,7 @@ class MovieList(GUIComponent):
 		self._playInForeground = None
 		self._char = ''
 
-		self.selectionList = None
+		self.markList = []
 
 		if root is not None:
 			self.reload(root)
@@ -262,8 +263,8 @@ class MovieList(GUIComponent):
 		self.updateRecordings()
 		self.updatePlayPosCache()
 
-		self.iconSelected = [LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/sel_off.png")),
-							 LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/sel_on.png"))]
+		self.iconMarked = [LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/mark_off.png")),
+						   LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/mark_on.png"))]
 
 	@property
 	def dateWidth(self):
@@ -321,20 +322,20 @@ class MovieList(GUIComponent):
 		self._dirShift = val
 
 	@property
-	def selShift(self):
-		if self._selShift is None:
+	def markShift(self):
+		if self._markShift is None:
 			# assume on & off are the same size
-			selHeight = self.iconSelected[0].size().height()
+			markHeight = self.iconMarked[0].size().height()
 			# prefer to chop off the top, not the bottom
-			if selHeight >= self.itemHeight:
-				return self.itemHeight - selHeight
-			return max(0, int((self.itemHeight - selHeight + 1.0) / 2))
+			if markHeight >= self.itemHeight:
+				return self.itemHeight - markHeight
+			return max(0, int((self.itemHeight - markHeight + 1.0) / 2))
 		else:
-			return self._selShift
+			return self._markShift
 
-	@selShift.setter
-	def selShift(self, val):
-		self._selShift = val
+	@markShift.setter
+	def markShift(self, val):
+		self._markShift = val
 
 	@property
 	def pbarShift(self):
@@ -452,6 +453,9 @@ class MovieList(GUIComponent):
 		def spaceIconeText(value):
 			self.spaceIconeText = int(value)
 
+		def markWidth(value):
+			self.markWidth = int(value)
+
 		def iconsWidth(value):
 			self.iconsWidth = int(value)
 
@@ -461,8 +465,8 @@ class MovieList(GUIComponent):
 		def dirShift(value):
 			self.dirShift = int(value)
 
-		def selShift(value):
-			self.selShift = int(value)
+		def markShift(value):
+			self.markShift = int(value)
 
 		def spaceRight(value):
 			self.spaceRight = int(value)
@@ -537,6 +541,7 @@ class MovieList(GUIComponent):
 		lenWidth = self.lenWidth if showLen else 0
 		showSize = self.showCol(config.movielist.showsizes, self.COL_SIZE)
 		sizeWidth = self.sizeWidth if showSize else 0
+		markSize = self.markWidth
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
@@ -544,13 +549,9 @@ class MovieList(GUIComponent):
 		pathName = serviceref.getPath()
 		res = [None]
 
-		if self.selectionList is None:
-			iconPos = 0
-			textPos = iconSize + space
-		else:
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, self.selShift), size=(iconSize, self.iconSelected[0].size().height()), png=self.iconSelected[self.getCurrent() in self.selectionList]))
-			iconPos = iconSize + space
-			textPos = (iconSize + space) * 2
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, self.markShift), size=(markSize, self.iconMarked[0].size().height()), png=self.iconMarked[self.getCurrent() in self.markList]))
+		iconPos = markSize + space
+		textPos = iconPos + iconSize + space
 
 		if serviceref.flags & eServiceReference.mustDescent:
 			# Directory
@@ -634,10 +635,7 @@ class MovieList(GUIComponent):
 			elif switch in ('p', 's'):
 				if switch == 'p':
 					iconSize = self.pbarLargeWidth
-					if self.selectionList is None:
-						textPos = iconSize + space
-					else:
-						textPos = self.iconsWidth + iconSize + space * 2
+					textPos = self.markSize + iconSize + space * 2
 				if hasattr(data, 'part') and data.part > 0:
 					res.append(MultiContentEntryProgress(pos=(iconPos, self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 				elif hasattr(data, 'icon') and data.icon is not None:
@@ -742,6 +740,10 @@ class MovieList(GUIComponent):
 			elif self.numUserFiles > 0:
 				self.numUserFiles -= 1
 			del self.list[index]
+			try:
+				self.markList.remove(serviceref)
+			except:
+				pass
 			self.refreshDisplay()
 
 	def findService(self, service):
@@ -1142,36 +1144,38 @@ class MovieList(GUIComponent):
 		if self._lbl:
 			self._lbl.visible = False
 
-	def startSelectionMode(self, serviceList=None):
-		if serviceList:
-			self.selectionList = serviceList[:]
-		else:
-			self.selectionList = []
-			self.toggleCurrentItem()
+	def markItems(self, serviceList):
+		self.markList = serviceList[:]
 		self.refreshDisplay()
 
-	def endSelectionMode(self):
-		self.selectionList = None
+	def markAll(self):
+		self.markList = []
+		return self.invertMarks()
+
+	def markNone(self):
+		self.markList = []
 		self.refreshDisplay()
+		return 0
 
 	def toggleCurrentItem(self):
 		item = self.l.getCurrentSelection()
 		# don't select special items (e.g. the parent directory)
 		if item and item[0] and item[1]:
-			if item[0] in self.selectionList:
-				self.selectionList.remove(item[0])
+			if item[0] in self.markList:
+				self.markList.remove(item[0])
 			else:
-				self.selectionList.append(item[0])
+				self.markList.append(item[0])
 			self.invalidateCurrentItem()
+		return len(self.markList)
 
-	def invertSelection(self):
+	def invertMarks(self):
 		# invert the same type (directory or file) as the current
 		cur = self.getCurrent()
 		cur = 0 if not cur else cur.flags & eServiceReference.mustDescent
 		for item in self.list:
 			if item[0] and item[1] and item[0].flags & eServiceReference.mustDescent == cur:
-				if item[0] in self.selectionList:
-					self.selectionList.remove(item[0])
+				if item[0] in self.markList:
+					self.markList.remove(item[0])
 				else:
 					# don't select the trash
 					if item[0].flags & eServiceReference.mustDescent:
@@ -1179,16 +1183,20 @@ class MovieList(GUIComponent):
 						name = os.path.basename(os.path.normpath(pathName))
 						if name == '.Trash':
 							continue
-					self.selectionList.append(item[0])
+					self.markList.append(item[0])
 		self.refreshDisplay()
+		return len(self.markList)
 
-	def getSelected(self):
-		sel = []
-		for service in self.selectionList:
+	def getMarked(self):
+		marked = []
+		for service in self.markList[:]:
 			idx = self.findService(service)
-			if idx:
-				sel.append(self.list[idx])
-		return sel
+			if idx is not None:
+				marked.append(self.list[idx])
+		return marked
+
+	def countMarked(self):
+		return len(self.getMarked())
 
 def getShortName(name, serviceref):
 	if serviceref.flags & eServiceReference.mustDescent:  # Directory

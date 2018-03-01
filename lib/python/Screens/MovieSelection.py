@@ -542,17 +542,17 @@ class MovieContextMenu(Screen, ProtectedScreen):
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
 						menu += [(csel.unhideParentalServices, _("Unhide parental control services"))]
-				# Plugins expect a valid selection, so only include them if we selected a non-dir
-				if not(service.flags & eServiceReference.mustDescent):
-					if csel.selectionMode:
-						serviceList = [item[0] for item in csel.getSelected() if isSimpleFile(item)]
-						if not serviceList:
-							serviceList = [service]
-					for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-						if csel.selectionMode:
-							menu += [(boundFunction(p, session, serviceList[0], serviceList=serviceList), p.description)]
-						else:
-							menu += [(boundFunction(p, session, service), p.description)]
+
+		# Plugins expect a valid selection, so only include them if we selected a non-dir
+		serviceList = [item[0] for item in csel.getMarked() if isSimpleFile(item)]
+		if not serviceList and service and not(service.flags & eServiceReference.mustDescent):
+			serviceList = [service]
+		if serviceList:
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
+				if len(serviceList) == 1:
+					menu += [(boundFunction(p, session, serviceList[0]), p.description)]
+				elif p.multi:
+					menu += [(boundFunction(p, session, serviceList[0], serviceList=serviceList), p.description)]
 
 		self["config"] = List(menu)
 
@@ -724,9 +724,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 		self.playGoTo = None  # 1 - preview next item / -1 - preview previous
 
-		self.selectionMode = False
-		self.prevDirection = None
-		self.skip_toggle = False
+		self.marked = 0
 
 		title = _("Movie selection")
 		self.setTitle(title)
@@ -774,7 +772,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		})
 
 		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions", {
-			"playpauseService": (self.preview, lambda: _("Play selected") if self.selectionMode else _("Preview")),
 			"leavePlayer": (self.playbackStop, _("Stop")),
 			"moveNext": (self.playNext, _("Play next")),
 			"movePrev": (self.playPrev, _("Play previous")),
@@ -797,12 +794,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
 		}, description=_("User-selectable functions"))
 		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "MovieSelectionActions"], {
-			"cancel": (self.abort, lambda: _("Exit selection mode") if self.selectionMode else _("Exit movie list")),
-			"ok": (self.itemSelected, lambda: _("Toggle selection and move up/down") if self.selectionMode else _("Select movie")),
-			"enterToggle": (self.enterToggle, lambda: _("Toggle selection") if self.selectionMode else _("Enter selection mode")),
-			"invertSelection": (self.invertSelection, _("Invert selection")),
-			"toggleMoveUp": (self.toggleMoveUp, _("Toggle selection and move up")),
-			"toggleMoveDown": (self.toggleMoveDown, _("Toggle selection and move down")),
+			"cancel": (self.abort, _("Exit movie list")),
+			"ok": (self.itemSelected, _("Select movie")),
+			"toggleMark": (self.toggleMark, _("Toggle mark")),
+			"invertMarks": (self.invertMarks, _("Invert marks (of files or directories)")),
+			"toggleMoveUp": (self.toggleMoveUp, _("Toggle mark and move up")),
+			"toggleMoveDown": (self.toggleMoveDown, _("Toggle mark and move down")),
+			"markAll": (self.markAll, _("Mark all (files or directories)")),
+			"markNone": (self.markNone, _("Remove marks")),
 		}, description=_("Selection and exit"))
 		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions", {
 			"up": (self.keyUp, _("Go up the list")),
@@ -951,19 +950,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def _callButton(self, name):
 		if name.startswith('@'):
-			item = self.getCurrentSelection()
-			if isSimpleFile(item) or self.selectionMode:
+			serviceList = [item[0] for item in self.getMarked() if isSimpleFile(item)]
+			if serviceList:
 				name = name[1:]
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					if name == p.name:
-						if self.selectionMode:
-							serviceList = [i[0] for i in self.getSelected() if isSimpleFile(i)]
-							if not serviceList and isSimpleFile(item):
-								serviceList = [item[0]]
-							if serviceList:
-								p(self.session, serviceList[0], serviceList=serviceList)
-						else:
-							p(self.session, item[0])
+						if len(serviceList) == 1:
+							p(self.session, serviceList[0])
+						elif p.multi:
+							p(self.session, serviceList[0], serviceList=serviceList)
 		elif name.startswith('/'):
 			self.gotFilename(name)
 		else:
@@ -1042,17 +1037,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self["list"].moveToLast()
 		else:
 			self["list"].moveUp()
-		self.prevDirection = self.keyUp
 
 	def keyDown(self):
 		if self["list"].getCurrentIndex() == len(self["list"]) - 1:
 			self["list"].moveToFirst()
 		else:
 			self["list"].moveDown()
-		self.prevDirection = self.keyDown
 
 	def directoryUp(self):
-		if self.selectionMode:
+		if self.marked:
 			return
 		cur = config.movielist.last_videodir.value.rstrip("/")
 		root = config.movielist.root.value.rstrip("/")
@@ -1182,21 +1175,51 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.reloadList()
 
 	def can_move(self, item):
+		if self.marked:
+			items = self.getMarked()
+			if items:
+				for item in items:
+					if canMove(item):
+						return True
+				return False
 		return canMove(item)
 
 	def can_copy(self, item):
+		if self.marked:
+			items = self.getMarked()
+			if items:
+				for item in items:
+					if canCopy(item):
+						return True
+				return False
 		return canCopy(item)
 
 	def can_rename(self, item):
-		return not self.selectionMode and canRename(item)
+		if self.marked and self.getMarked():
+			return False
+		return canRename(item)
 
 	def can_delete(self, item):
+		if self.marked:
+			items = self.getMarked()
+			if items:
+				for item in items:
+					if canDelete(item):
+						return True
+				return False
 		if not item:
 			return False
 		return canDelete(item) or isTrashFolder(item[0])
 
 	def can_default(self, item):
 		# returns whether item is a regular file
+		if self.marked:
+			items = self.getMarked()
+			if items:
+				for item in items:
+					if isSimpleFile(item):
+						return True
+				return False
 		return isSimpleFile(item)
 
 	def can_sort(self, item):
@@ -1295,21 +1318,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		# Returns None or (serviceref, info, begin, len)
 		return self["list"].l.getCurrentSelection()
 
-	def getSelected(self):
-		if self.selectionMode:
-			items = self.list.getSelected()
+	def getMarked(self):
+		if self.marked:
+			items = self.list.getMarked()
 		else:
 			item = self.getCurrentSelection()
-			if item is None:
-				items = []
-			else:
-				items = [item]
+			items = [item] if item else []
 		return items
-
-	def endSelectionMode(self):
-		if self.selectionMode:
-			self.selectionMode = False
-			self.list.endSelectionMode()
 
 	def playAsBLURAY(self, path):
 		try:
@@ -1403,26 +1418,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.LivePlayTimer.start(100)
 
 	def preview(self):
-		if self.selectionMode:
-			global playlist
-			items = playlist
-			del items[:]
-			for item in self.getSelected():
-				if item:
-					item = item[0]
-					path = item.getPath()
-					if not item.flags & eServiceReference.mustDescent:
-						ext = os.path.splitext(path)[1].lower()
-						if ext in IMAGE_EXTENSIONS:
-							continue
-						else:
-							items.append(item)
-			if items:
-				global playingSelection
-				playingSelection = True
-				self.saveconfig()
-				self.close(items[0])
-			return
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
@@ -1501,45 +1496,64 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				self.LivePlayTimer.start(100)
 			self.filePlayingTimer.start(100)
 
-	def enterToggle(self):
-		if self.skip_toggle:
-			self.skip_toggle = False
-			return
-		if not self.selectionMode:
-			self.list.startSelectionMode()
-			self.selectionMode = True
-		else:
-			self.list.toggleCurrentItem()
-
-	def invertSelection(self):
-		if not self.selectionMode:
-			self.list.startSelectionMode()
-			self.selectionMode = True
-			self.list.toggleCurrentItem()
-		self.list.invertSelection()
-		self.skip_toggle = True 	# ignore the break
+	def toggleMark(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self.marked = self.list.toggleCurrentItem()
 
 	def toggleMoveUp(self):
-		if not self.selectionMode:
-			self.list.startSelectionMode()
-			self.selectionMode = True
-		else:
-			self.list.toggleCurrentItem()
-		self.keyUp()
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self.marked = self.list.toggleCurrentItem()
+			self.keyUp()
 
 	def toggleMoveDown(self):
-		if not self.selectionMode:
-			self.list.startSelectionMode()
-			self.selectionMode = True
-		else:
-			self.list.toggleCurrentItem()
-		self.keyDown()
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if not InfoBarInstance.LongButtonPressed:
+			self.marked = self.list.toggleCurrentItem()
+			self.keyDown()
+
+	def invertMarks(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self.marked = self.list.invertMarks()
+
+	def markAll(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self.marked = self.list.markAll()
+
+	def markNone(self):
+		from InfoBar import InfoBar
+		InfoBarInstance = InfoBar.instance
+		if InfoBarInstance.LongButtonPressed:
+			self.marked = self.list.markNone()
 
 	def itemSelected(self, answer=True):
-		if self.selectionMode:
-			self.list.toggleCurrentItem()
-			if self.prevDirection:
-				self.prevDirection()
+		if self.marked:
+			global playlist
+			items = playlist
+			del items[:]
+			for item in self.getMarked():
+				if item:
+					item = item[0]
+					path = item.getPath()
+					if not item.flags & eServiceReference.mustDescent:
+						ext = os.path.splitext(path)[1].lower()
+						if ext in IMAGE_EXTENSIONS:
+							continue
+						else:
+							items.append(item)
+			if items:
+				global playingSelection
+				playingSelection = True
+				self.saveconfig()
+				self.close(items[0])
 			return
 		current = self.getCurrent()
 		if current is not None:
@@ -1697,10 +1711,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.updateDescription()
 
 	def abort(self):
-		if self.selectionMode:
-			self.endSelectionMode()
-			return
-
 		global playlist
 		del playlist[:]
 		if self.list.playInBackground:
@@ -1803,6 +1813,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		(nDirs, nFiles) = self["list"].userItemCount()
 		self["numFolders"].text = _("Directories: %d") % nDirs
 		self["numFiles"].text = _("Files: %d") % nFiles
+		self.marked = self.list.countMarked()
 
 	def reloadList(self, sel=None, home=False):
 		self.reload_sel = sel
@@ -1873,7 +1884,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.pathselectEnabled = True
 
 	def doPathSelect(self):
-		if self.selectionMode:
+		if self.marked:
 			return
 		if self.pathselectEnabled:
 			self.session.openWithCallback(
@@ -2050,10 +2061,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		return False
 
 	def can_bookmarks(self, item):
-		return not self.selectionMode
+		return not self.marked
 
 	def do_bookmarks(self):
-		if not self.selectionMode:
+		if not self.marked:
 			self.selectMovieLocation(title=_("Choose movie path"), callback=self.gotFilename)
 
 	def can_addbookmark(self, item):
@@ -2121,7 +2132,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			mbox.setTitle(self.getTitle())
 
 	def do_rename(self):
-		if self.selectionMode:
+		if self.marked:
 			return
 		item = self.getCurrentSelection()
 		if not canRename(item):
@@ -2148,7 +2159,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def do_decode(self):
 		from ServiceReference import ServiceReference
-		for item in self.getSelected():
+		for item in self.getMarked():
 			info = item[1]
 			filepath = item[0].getPath()
 			if not filepath.endswith('.ts'):
@@ -2213,10 +2224,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				mbox.setTitle(self.getTitle())
 
 	def do_reset(self):
-		for item in self.getSelected():
+		for item in self.getMarked():
 			current = item[0]
 			resetMoviePlayState(current.getPath() + ".cuts", current)
-			if not self.selectionMode:
+			if not self.marked:
 				self.list.invalidateCurrentItem()  # trigger repaint
 			else:
 				index = self.list.findService(current)
@@ -2225,7 +2236,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def do_move(self):
 		item = None
 		self.moveList = []
-		for i in self.getSelected():
+		for i in self.getMarked():
 			if canMove(i) and i[1] is not None:
 				item = i
 				self.moveList.append(i)
@@ -2286,7 +2297,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				moveServiceFiles(current, dest, name)
 				self["list"].removeService(current)
 			self.updateFileFolderCounts()
-			self.endSelectionMode()
 		except Exception, e:
 			mbox = self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
@@ -2294,7 +2304,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def do_copy(self):
 		item = None
 		self.copyList = []
-		for i in self.getSelected():
+		for i in self.getMarked():
 			if canCopy(i) and i[1] is not None:
 				item = i
 				self.copyList.append(i)
@@ -2359,14 +2369,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if len(self.delList) == 1:
 			self.delItem = self.delList[0]
 			self.delete()
-			self.endSelectionMode()
 			return
 		if self.delList:
 			self.do_delete(fromRec=True)
 
 	def do_delete(self, fromRec=False):
 		self.delItem = None
-		if not self.selectionMode:
+		if not self.marked:
 			self.delete()
 			return
 
@@ -2379,7 +2388,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			subfiles = 0
 			subdirs = 0
 			self.inTrash = None
-			for item in self.getSelected():
+			for item in self.getMarked():
 				current = item[0]
 				info = item[1]
 				cur_path = os.path.realpath(current.getPath())
@@ -2421,7 +2430,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if len(self.delList) == 1:
 				self.delItem = self.delList[0]
 				self.delete()
-				self.endSelectionMode()
 				return
 
 			if self.recList:
@@ -2466,8 +2474,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				self.delete(True)
 			else:
 				self.deleteConfirmed(True)
-		if not self.getSelected():
-			self.endSelectionMode()
 
 	def delete(self, *args):
 		item = self.delItem or self.getCurrentSelection()
@@ -2716,10 +2722,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.trashinfo.update(current.getPath())
 
 	def can_gohome(self, item):
-		return not self.selectionMode
+		return not self.marked
 
 	def do_gohome(self):
-		if self.selectionMode:
+		if self.marked:
 			return
 		self.gotFilename(defaultMoviePath())
 
@@ -2800,8 +2806,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		items = playlist
 		if playingSelection:
 			playingSelection = False
-			self.list.startSelectionMode(items)
-			self.selectionMode = True
+			self.list.markItems(items)
+			self.marked = len(items)
 			del items[:]
 		else:
 			del items[:]
