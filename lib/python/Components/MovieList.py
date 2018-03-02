@@ -635,7 +635,7 @@ class MovieList(GUIComponent):
 			elif switch in ('p', 's'):
 				if switch == 'p':
 					iconSize = self.pbarLargeWidth
-					textPos = self.markSize + iconSize + space * 2
+					textPos = markSize + iconSize + space * 2
 				if hasattr(data, 'part') and data.part > 0:
 					res.append(MultiContentEntryProgress(pos=(iconPos, self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 				elif hasattr(data, 'icon') and data.icon is not None:
