@@ -3807,32 +3807,30 @@ class InfoBarTimerButton:
 	def timerSelection(self):
 		self.session.open(TimerEditList)
 
+	@staticmethod
+	def _getAutoTimerPluginFunc():
+		# Use the WHERE_MENU descriptor because it's the only
+		# AutoTimer plugin descriptor that opens the AotoTimer
+		# overview and is always present.
+
+		for l in plugins.getPlugins(PluginDescriptor.WHERE_MENU):
+			if l.name == _("Auto Timers"):  # Must use translated name
+				menuEntry = l("timermenu")
+				if menuEntry and len(menuEntry[0]) > 1 and callable(menuEntry[0][1]):
+					return menuEntry[0][1]
+		return None
+
 	def _helpOpenAutoTimerList(self):
-		try:
-			from Plugins.Extensions.AutoTimer.plugin import autopoller, autotimer
+		autotimerFunc = self._getAutoTimerPluginFunc()
+		if autotimerFunc is not None:
 			return _("Open AutoTimer list...")
-		except ImportError:
-			return None
+		return None
 
 	def openAutoTimerList(self):
-		try:
-			from Plugins.Extensions.AutoTimer.plugin import autopoller, autotimer
-			if autopoller is not None:
-				autopoller.stop()
-			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
-			self.session.openWithCallback(self.autoTimerEditCallback, AutoTimerOverview, autotimer)
-		except ImportError:
-			self.session.open(MessageBox, _('The Autotimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def autoTimerEditCallback(self, session):
-		try:
-			from Plugins.Extensions.AutoTimer.plugin import autopoller, autotimer
-			if session is not None:
-				autotimer.writeXml()
-				autotimer.parseEPG()
-			if config.plugins.autotimer.autopoll.value and autopoller is not None:
-				autopoller.start()
-		except ImportError:
+		autotimerFunc = self._getAutoTimerPluginFunc()
+		if autotimerFunc is not None:
+			autotimerFunc(self.session)
+		else:
 			self.session.open(MessageBox, _('The Autotimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
 
 class InfoBarVmodeButton:
