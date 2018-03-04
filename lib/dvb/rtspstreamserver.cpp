@@ -1194,31 +1194,26 @@ void eRTSPStreamClient::notifier(int what)
 		{
 			ss << "DVBS2-" << tuner_s2;
 			s = ",";
-			ss << s;
 		}
 		if (tuner_t)
 		{
-			ss << "DVBT-" << tuner_t;
+			ss << s << "DVBT-" << tuner_t;
 			s = ",";
-			ss << s;
 		}
 		if (tuner_c)
 		{
-			ss << "DVBC-" << tuner_c;
+			ss << s << "DVBC-" << tuner_c;
 			s = ",";
-			ss << s;
 		}
 		if (tuner_t2)
 		{
-			ss << "DVBT2-" << tuner_t2;
+			ss << s << "DVBT2-" << tuner_t2;
 			s = ",";
-			ss << s;
 		}
 		if (tuner_c2)
 		{
-			ss << "DVBC2-" << tuner_c2;
+			ss << s << "DVBC2-" << tuner_c2;
 			s = ",";
-			ss << s;
 		}
 		if (!s.length())
 		{
