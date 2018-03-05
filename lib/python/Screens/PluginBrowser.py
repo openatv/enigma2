@@ -28,6 +28,7 @@ config.pluginfilter = ConfigSubsection()
 config.pluginfilter.kernel = ConfigYesNo(default = False)
 config.pluginfilter.drivers = ConfigYesNo(default = True)
 config.pluginfilter.extensions = ConfigYesNo(default = True)
+config.pluginfilter.po = ConfigYesNo(default = True)
 config.pluginfilter.m2k = ConfigYesNo(default = True)
 config.pluginfilter.picons = ConfigYesNo(default = True)
 config.pluginfilter.pli = ConfigYesNo(default = False)
@@ -474,6 +475,8 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
 		if config.pluginfilter.extensions.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'extensions')
+		if config.pluginfilter.po.value:
+			self.PLUGIN_PREFIX2.append('enigma2-locale-')
 		if config.pluginfilter.m2k.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'm2k')
 		if config.pluginfilter.picons.value:
@@ -502,7 +505,6 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'weblinks')
 		if config.pluginfilter.kernel.value:
 			self.PLUGIN_PREFIX2.append('kernel-module-')
-		self.PLUGIN_PREFIX2.append('enigma2-locale-')
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
@@ -853,6 +855,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
 		self.list.append(getConfigListEntry(_("extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
+		self.list.append(getConfigListEntry(_("languages"), config.pluginfilter.po, _("This allows you to show languages in downloads")))
 		self.list.append(getConfigListEntry(_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
 		if Check_Softcam():
 			self.list.append(getConfigListEntry(_("softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
@@ -868,7 +871,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("vix"), config.pluginfilter.vix, _("This allows you to show vix modules in downloads")))
 		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("kernel modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
-		self.list.append(getConfigListEntry(_("user feed url"), config.pluginfilter.userfeed, _("Please enter the your personal feed URL")))
+		self.list.append(getConfigListEntry(_("user feed url"), config.pluginfilter.userfeed, _("Please enter your personal feed URL")))
 		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
