@@ -58,13 +58,13 @@ class CronManager(Screen):
 		self.my_crond_active = False
 		self.my_crond_run = False
 		
-		self['key_red'] = Label(_("Add"))
-		self['key_green'] = Label(_("Delete"))
+		self['key_red'] = Label(_("Delete"))
+		self['key_green'] = Label(_("Add"))
 		self['key_yellow'] = Label(_("Start"))
 		self['key_blue'] = Label(_("Autostart"))
 		self.list = []
 		self['list'] = List(self.list)
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {'ok': self.info, 'back': self.close, 'red': self.addtocron, 'green': self.delcron, 'yellow': self.CrondStart, 'blue': self.autostart, "menu": self.closeRecursive})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {'ok': self.info, 'back': self.close, 'green': self.addtocron, 'red': self.delcron, 'yellow': self.CrondStart, 'blue': self.autostart, "menu": self.closeRecursive})
 		self.onLayoutFinish.append(self.updateList)
 
 	def CrondStart(self):
