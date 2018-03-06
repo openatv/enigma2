@@ -34,9 +34,7 @@ config.pluginfilter.picons = ConfigYesNo(default = True)
 config.pluginfilter.pli = ConfigYesNo(default = False)
 config.pluginfilter.security = ConfigYesNo(default = True)
 config.pluginfilter.settings = ConfigYesNo(default = True)
-config.pluginfilter.skins = ConfigYesNo(default = True)
-config.pluginfilter.skincomponents = ConfigYesNo(default = True)
-config.pluginfilter.skinpacks = ConfigYesNo(default = False)
+config.pluginfilter.skin = ConfigYesNo(default = True)
 config.pluginfilter.display = ConfigYesNo(default = True)
 config.pluginfilter.softcams = ConfigYesNo(default = True)
 config.pluginfilter.systemplugins = ConfigYesNo(default = True)
@@ -487,12 +485,8 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'security')
 		if config.pluginfilter.settings.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'settings')
-		if config.pluginfilter.skins.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
-		if config.pluginfilter.skincomponents.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skincomponents')
-		if config.pluginfilter.skinpacks.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skinpacks')
+		if config.pluginfilter.skin.value:
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skin')
 		if config.pluginfilter.display.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'display')
 		if config.pluginfilter.softcams.value:
@@ -859,10 +853,8 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
 		if Check_Softcam():
 			self.list.append(getConfigListEntry(_("softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
-		self.list.append(getConfigListEntry(_("skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
-		self.list.append(getConfigListEntry(_("skincomponents"), config.pluginfilter.skincomponents, _("This allows you to show skincomponents in downloads")))
-		self.list.append(getConfigListEntry(_("skinpacks"), config.pluginfilter.skinpacks, _("This allows you to show skinpacks in downloads")))
-		self.list.append(getConfigListEntry(_("display"), config.pluginfilter.skins, _("This allows you to show lcd skins in downloads")))
+		self.list.append(getConfigListEntry(_("skin"), config.pluginfilter.skin, _("This allows you to show skin modules in downloads")))
+		self.list.append(getConfigListEntry(_("display"), config.pluginfilter.display, _("This allows you to show lcd skins in downloads")))
 		self.list.append(getConfigListEntry(_("picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
 		self.list.append(getConfigListEntry(_("settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
 		self.list.append(getConfigListEntry(_("m2k"), config.pluginfilter.m2k, _("This allows you to show m2k modules in downloads")))
