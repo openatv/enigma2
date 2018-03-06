@@ -110,7 +110,7 @@ if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/p
 	except:
 		pass
 
-from Plugins.Extensions.Infopanel.CronManager import *
+from Screens.CronTimer import *
 from Plugins.Extensions.Infopanel.ScriptRunner import *
 from Plugins.Extensions.Infopanel.MountManager import *
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
@@ -487,8 +487,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(Info, "Swap")
 		elif menu == "SystemInfo":
 			self.System()
-		elif menu == "CronManager":
-			self.session.open(CronManager)	
+		elif menu == "CronTimer":
+			self.session.open(CronTimers)
 		elif menu == "JobManager":
 			self.session.open(ScriptRunner)
 		elif menu == "OScamInfo":
@@ -538,7 +538,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('MountManager'), _("MountManager"), 'MountManager')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronManager'), _("CronManager"), 'CronManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("CronManager"), 'CronTimer')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
