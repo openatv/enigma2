@@ -736,6 +736,19 @@ def InitUsageConfig():
 	config.crash.debug_text = ConfigText(default=crashlogheader, fixed_size=False)
 	config.crash.skin_error_crash = ConfigYesNo(default = True)
 
+	def updateStackTracePrinter(configElement):
+		from Components.StackTrace import StackTracePrinter
+		if configElement.value:
+			if (os.path.isfile("/tmp/doPythonStackTrace")):
+				os.remove("/tmp/doPythonStackTrace")
+			from threading import current_thread
+			StackTracePrinter.getInstance().activate(current_thread().ident)
+		else:
+			StackTracePrinter.getInstance().deactivate()
+
+	config.crash.pystackonspinner = ConfigYesNo(default = False)
+	config.crash.pystackonspinner.addNotifier(updateStackTracePrinter, immediate_feedback = False, call_on_save_or_cancel = True, initial_call = True)
+
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 	config.usage.timerlist_show_epg = ConfigYesNo(default = True)
 
