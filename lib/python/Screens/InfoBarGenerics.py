@@ -4404,6 +4404,8 @@ class InfoBarSubtitleSupport(object):
 			iPlayableService.evUpdatedInfo: self.__updatedInfo
 		})
 
+		self.subtitleSeekTimer = eTimer()
+		self.subtitleSeekTimer.callback.append(self.subtitleSeek)
 
 		class SubtitleLabel(Screen):
 			def __init__(self, session):
@@ -4425,6 +4427,10 @@ class InfoBarSubtitleSupport(object):
 				self.hideTimer.start(3 * 1000, True)
 
 		self.subtitle_label = self.session.instantiateDialog(SubtitleLabel)
+
+	def subtitleSeek(self):
+		if self.isSeekable():
+			self.doSeekRelative(160 * -90)
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
@@ -4509,6 +4515,9 @@ class InfoBarSubtitleSupport(object):
 			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
 			self.subtitle_window.show()
 			self.doCenterDVBSubs()
+			ref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+			if ref.getType() < eServiceReference.idUser:
+				self.subtitleSeekTimer.start(150, True)
 		else:
 			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
