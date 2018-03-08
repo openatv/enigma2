@@ -4404,6 +4404,28 @@ class InfoBarSubtitleSupport(object):
 			iPlayableService.evUpdatedInfo: self.__updatedInfo
 		})
 
+
+		class SubtitleLabel(Screen):
+			def __init__(self, session):
+				self.skin = """
+				<screen position="e-400,c+20%" size="300,26" flags="wfNoBorder" backgroundColor="#77777777" zPosition="11" >
+					<widget name="content" position="10,2" size="280,24" font="Regular;18" valign="center" halign="center" noWrap="1" foregroundColor="#00EEEEEE" backgroundColor="#AA111111" borderWidth="1" transparent="1" />
+				</screen>
+				"""
+				Screen.__init__(self, session)
+
+				self["content"] = Label()
+
+				self.hideTimer = eTimer()
+				self.hideTimer.callback.append(self.hide)
+
+				self.onShow.append(self.hide_me)
+
+			def hide_me(self):
+				self.hideTimer.start(3 * 1000, True)
+
+		self.subtitle_label = self.session.instantiateDialog(SubtitleLabel)
+
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
 		return service and service.subtitle()
@@ -4414,8 +4436,7 @@ class InfoBarSubtitleSupport(object):
 	def subtitleSelection(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
-		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.selected_subtitle or subtitlelist:
+		if self.selected_subtitle or subtitle:
 			self.session.open(SubtitleSelection, self)
 		else:
 			return 0
@@ -4439,7 +4460,6 @@ class InfoBarSubtitleSupport(object):
 		subtitlelist = subtitle and subtitle.getSubtitleList()
 		sel = None
 		message = None
-		messagetype = MessageBox.TYPE_INFO
 		if subtitlelist:
 			if config.subtitles.hide_teletext_undetermined_cycle.value:
 				subtitlelist = [s for s in subtitlelist if s[0] != 1 or s[4] != "und"]
@@ -4451,13 +4471,11 @@ class InfoBarSubtitleSupport(object):
 				sel = subtitlelist[index]
 				if sel is not None:
 					language = SubtitleSelection.getSubtitleLanguage(sel)
-					description, number = SubtitleSelection.getSubtitleDescription(sel)
-					message = _("Selected %s subtitles from %s (%s)") % (language, description, number)
+					message = _("%s subtitles") % language
 			else:
 				message = _("Can't find next subtitle")
-				messagetype = MessageBox.TYPE_WARNING
 		else:
-			message = _("No subtitles available")
+			message = _("No subtitles")
 		if sel is None and message is None:
 			if self.selected_subtitle:
 				message = _("Subtitles off")
@@ -4467,7 +4485,9 @@ class InfoBarSubtitleSupport(object):
 		if sel != self.selected_subtitle:
 			self.enableSubtitle(sel)
 
-		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="SubtitleCycle")
+		self.subtitle_label["content"].setText(message)
+		self.subtitle_label.hide()
+		self.subtitle_label.show()
 
 	def __serviceChanged(self):
 		if self.selected_subtitle:
