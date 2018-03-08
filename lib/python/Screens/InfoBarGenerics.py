@@ -3581,15 +3581,40 @@ class InfoBarAudioSelection:
 			"audioSelectionLong": (self.audioSelectionCycle, _("Cycle through audio tracks")),
 			"audioSelection": (self.audioSelection, _("Audio options & track selection...")),
 		}, description=_("Audio track selection, downmix and other audio options"))
+		self.audio_selection_was_long = False
+
+		class AudioLabel(Screen):
+			def __init__(self, session):
+				self.skin = """
+				<screen position="50,c+20%" size="500,26" flags="wfNoBorder" backgroundColor="#77777777" zPosition="11" >
+					<widget name="content" position="10,2" size="480,24" font="Regular;18" valign="center" halign="center" noWrap="1" foregroundColor="#00EEEEEE" backgroundColor="#AA111111" borderWidth="1" transparent="1" />
+				</screen>
+				"""
+				Screen.__init__(self, session)
+
+				self["content"] = Label()
+
+				self.hideTimer = eTimer()
+				self.hideTimer.callback.append(self.hide)
+
+				self.onShow.append(self.hide_me)
+
+			def hide_me(self):
+				self.hideTimer.start(3 * 1000, True)
+
+		self.audio_label = self.session.instantiateDialog(AudioLabel)
 
 	def audioSelection(self):
-		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		if self.audio_selection_was_long:
+			self.audio_selection_was_long = False
+		else:
+			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
 		print "[InfoBarGenerics][audioSelected] ", ret
 
 	def audioSelectionCycle(self):
-		messagetype = MessageBox.TYPE_INFO
+		self.audio_selection_was_long = True
 
 		service = self.session.nav.getCurrentService()
 		audio = service and service.audioTracks()
@@ -3602,21 +3627,21 @@ class InfoBarAudioSelection:
 				selectedAudio = 0
 			if selectedAudio != origAudio:
 				audio.selectTrack(selectedAudio)
-			number = str(selectedAudio + 1)
 			info = audio.getTrackInfo(selectedAudio)
 			language = AudioSelection.getAudioLanguage(info)
 			description = AudioSelection.getAudioDescription(info)
 			if n == 1:
-				message = _("Only one audio track:\n%s %s (%s)")
+				message = _("Only one audio track: %s %s")
 			elif selectedAudio == origAudio:
-				message = _("Can't change audio track from:\n%s %s (%s)")
-				messagetype = MessageBox.TYPE_WARNING
+				message = _("Can't change audio track from: %s %s")
 			else:
-				message = _("Changed audio track to:\n%s %s (%s)")
-			message = message % (language, description, number)
+				message = _("Changed audio track to: %s %s")
+			message = message % (language, description)
 		else:
-			message = _("No audio tracks to select from")
-		Notifications.AddPopup(text=message, type=messagetype, timeout=5, id="AudioCycle")
+			message = _("No audio tracks")
+		self.audio_label["content"].setText(message)
+		self.audio_label.hide()
+		self.audio_label.show()
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
