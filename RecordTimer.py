@@ -398,8 +398,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				else:
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
-						self.messageString += _("The TV was switched to the recording service!\n")
-						self.messageStringShow = True
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
 						self.log(5, "zap to recording service")
