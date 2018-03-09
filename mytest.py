@@ -505,6 +505,10 @@ from Screens.Ci import CiHandler
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
+profile("Load:StackTracePrinter")
+from Components.StackTrace import StackTracePrinter
+StackTracePrinterInst = StackTracePrinter()
+
 from time import time, localtime, strftime
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
