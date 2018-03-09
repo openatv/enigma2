@@ -979,7 +979,7 @@ def InitUsageConfig():
 		("1", _("white")),
 		("2", _("yellow"))])
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default=False)
-	config.subtitles.subtitle_position = ConfigSelection(default="50", choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"])
+	config.subtitles.ttx_subtitle_position = ConfigSelection(default="50", choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"])
 	config.subtitles.subtitle_alignment = ConfigSelection(default="center", choices=[("left", _("left")), ("center", _("center")), ("right", _("right"))])
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
 	config.subtitles.colourise_dialogs = ConfigYesNo(default = False)
@@ -997,6 +997,7 @@ def InitUsageConfig():
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default=False)
 	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default="0", choices=[("0", _("Original")), ("1", _("Fixed")), ("2", _("Relative"))])
+	config.subtitles.subtitle_position = ConfigSelection(default="50", choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"])
 	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
 	config.subtitles.subtitle_bad_timing_delay = ConfigSelection(default="0", choices=subtitle_delay_choicelist)
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default="0", choices=[

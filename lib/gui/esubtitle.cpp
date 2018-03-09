@@ -54,7 +54,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 		{
 			int height = size().height() / 3;
 
-			int lowerborder = eConfigManager::getConfigIntValue("config.subtitles.subtitle_position", 50);
+			int lowerborder = eConfigManager::getConfigIntValue("config.subtitles.ttx_subtitle_position", 50);
 			int line = newpage.m_elements[0].m_source_line;
 			/* create a new page with just one text element */
 			m_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(color, "", 0));
