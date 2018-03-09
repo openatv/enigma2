@@ -3,7 +3,7 @@ import struct
 import random
 from time import localtime, strftime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
@@ -222,6 +222,7 @@ class MovieList(GUIComponent):
 		self.partIconeShift = None  # Defaults to being calculated from icon height
 		self.spaceRight = 2
 		self.spaceIconeText = 2
+		self.listPos = 50
 		self.markWidth = 16
 		self.iconsWidth = 22
 
@@ -453,6 +454,9 @@ class MovieList(GUIComponent):
 		def spaceIconeText(value):
 			self.spaceIconeText = int(value)
 
+		def listPos(value):
+			self.listPos = int(value)
+
 		def markWidth(value):
 			self.markWidth = int(value)
 
@@ -509,6 +513,7 @@ class MovieList(GUIComponent):
 			itemHeight = 25  # some default (270/5)
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
+		self.l.setSelectionClip(eRect(self.listPos, 0, self.listWidth - self.listPos, itemHeight), False)
 		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 	def setFontsize(self):
@@ -549,8 +554,8 @@ class MovieList(GUIComponent):
 		pathName = serviceref.getPath()
 		res = [None]
 
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, self.markShift), size=(markSize, self.iconMarked[0].size().height()), png=self.iconMarked[self.getCurrent() in self.markList]))
-		iconPos = markSize + space
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(self.listPos - markSize - space, self.markShift), size=(markSize, self.iconMarked[0].size().height()), png=self.iconMarked[self.getCurrent() in self.markList]))
+		iconPos = self.listPos
 		textPos = iconPos + iconSize + space
 
 		if serviceref.flags & eServiceReference.mustDescent:
@@ -635,7 +640,7 @@ class MovieList(GUIComponent):
 			elif switch in ('p', 's'):
 				if switch == 'p':
 					iconSize = self.pbarLargeWidth
-					textPos = markSize + iconSize + space * 2
+					textPos = iconPos + iconSize + space
 				if hasattr(data, 'part') and data.part > 0:
 					res.append(MultiContentEntryProgress(pos=(iconPos, self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 				elif hasattr(data, 'icon') and data.icon is not None:
