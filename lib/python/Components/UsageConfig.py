@@ -978,13 +978,14 @@ def InitUsageConfig():
 		("0", _("original")),
 		("1", _("white")),
 		("2", _("yellow"))])
-	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default=False)
+	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default=True)
 	config.subtitles.ttx_subtitle_position = ConfigSelection(default="50", choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"])
 	config.subtitles.subtitle_alignment = ConfigSelection(default="center", choices=[("left", _("left")), ("center", _("center")), ("right", _("right"))])
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
 	config.subtitles.colourise_dialogs = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(default="3", choices=["1", "2", "3", "4", "5"])
-	config.subtitles.subtitle_fontsize = ConfigSelection(choices=["%d" % x for x in range(16, 101) if not x % 2], default="38")
+	# Teletext subtitles are 12 lines per screen. The font with borders / outline MUST fit in a 60 pixel high bounding box. In practice, the max is about a 42 point font
+	config.subtitles.subtitle_fontsize = ConfigSelection(choices=["%d" % x for x in range(20, 43, 2)], default="30")
 	config.subtitles.showbackground = ConfigYesNo(default = False)
 
 	subtitle_delay_choicelist = []
