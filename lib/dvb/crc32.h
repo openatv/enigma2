@@ -3,7 +3,7 @@
 
 /* $Id: crc32.h,v 1.1 2003-10-17 15:35:49 tmbinc Exp $ */
 
-typedef unsigned int uint32_t;
+#include <stdint.h>
 
 extern const uint32_t crc32_table[256];
 
