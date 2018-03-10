@@ -3394,7 +3394,7 @@ void eDVBServicePlay::newSubtitleStream()
 }
 
 // How many seconds before subtitle pages are considered to have bad timing.
-#define MAX_SUBTITLE_LIFESPAN 60
+#define MAX_SUBTITLE_LIFESPAN 90
 
 // Used to sort subtitles in chronological order
 bool compare_pts(const eDVBTeletextSubtitlePage &a, const eDVBTeletextSubtitlePage &b)

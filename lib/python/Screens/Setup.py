@@ -201,15 +201,15 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				requires = x.get("requires")
-				if requires and requires.startswith('config.'):
-					item = eval(requires or "")
-					if item.value and not item.value == "0":
-						SystemInfo[requires] = True
-					else:
-						SystemInfo[requires] = False
-
-				if requires and not SystemInfo.get(requires, False):
-					continue
+				if requires:
+					negate = requires.startswith('!')
+					if negate:
+						requires = requires[1:]
+					if requires.startswith('config.'):
+						item = eval(requires)
+						SystemInfo[requires] = (item.value and not item.value == "0")
+					if requires and not (negate ^ SystemInfo.get(requires, False)):
+						continue
 
 				if self.PluginLanguageDomain:
 					item_text = dgettext(self.PluginLanguageDomain, x.get("text", "??").encode("UTF-8"))
