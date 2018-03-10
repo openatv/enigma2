@@ -1112,6 +1112,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def playNext(self):
 		if self.list.playInBackground:
+			global playingList
+			if playingList:
+				next = self.findServiceInPlaylist(self.list.playInBackground, +1)
+				if next is not None:
+					self.list.moveTo(next)
+					self.callLater(self.preview)
+				return
 			if self.list.moveTo(self.list.playInBackground):
 				if self.isItemPlayable(self.list.getCurrentIndex() + 1):
 					self.list.moveDown()
@@ -1124,6 +1131,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def playPrev(self):
 		if self.list.playInBackground:
+			global playingList
+			if playingList:
+				prev = self.findServiceInPlaylist(self.list.playInBackground, -1)
+				if prev is not None:
+					self.list.moveTo(prev)
+					self.callLater(self.preview)
+				return
 			if self.list.moveTo(self.list.playInBackground):
 				if self.isItemPlayable(self.list.getCurrentIndex() - 1):
 					self.list.moveUp()
@@ -1139,6 +1153,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					path = os.path.abspath(os.path.join(path, os.path.pardir))
 					path = os.path.abspath(os.path.join(path, os.path.pardir))
 					self.gotFilename(path)
+
+	def findServiceInPlaylist(self, service, dir):
+		global playlist
+		for i, item in enumerate(playlist):
+			if item == service:
+				i += dir
+				if 0 <= i < len(playlist):
+					return playlist[i]
+				break
+		return None
 
 	def __onClose(self):
 		config.misc.standbyCounter.removeNotifier(self.standbyCountChanged)
@@ -1393,6 +1417,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def __evEOF(self):
 		playInBackground = self.list.playInBackground
 		playInForeground = self.list.playInForeground
+		global playlist, playingList
 		if not playInBackground:
 			print "[MovieSelection] Not playing anything in background"
 			return
@@ -1400,6 +1425,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.list.playInBackground = None
 		self.list.playInForeground = None
 		if config.movielist.play_audio_internal.value:
+			global playingList
+			if playingList:
+				next = self.findServiceInPlaylist(playInBackground, +1)
+				if next is not None:
+					self.list.moveTo(next)
+					self.callLater(self.preview)
+					return
 			index = self.list.findService(playInBackground)
 			if index is None:
 				return  # Not found?
@@ -1539,6 +1571,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			global playlist
 			items = playlist
 			del items[:]
+			audio = config.movielist.play_audio_internal.value
 			for item in self.getMarked():
 				if item:
 					item = item[0]
@@ -1549,11 +1582,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 							continue
 						else:
 							items.append(item)
+							if audio and ext not in AUDIO_EXTENSIONS:
+								audio = False
 			if items:
-				global playingSelection
-				playingSelection = True
-				self.saveconfig()
-				self.close(items[0])
+				global playingList
+				playingList = True
+				if audio:
+					self.list.moveTo(items[0])
+					self.preview()
+				else:
+					self.saveconfig()
+					self.close(items[0])
 			return
 		current = self.getCurrent()
 		if current is not None:
@@ -2802,12 +2841,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.displayMovieOffStatus()
 
 	def createPlaylist(self):
-		global playlist, playingSelection
+		global playlist, playingList
 		items = playlist
-		if playingSelection:
-			playingSelection = False
+		if playingList:
+			playingList = False
 			self.list.markItems(items)
-			self.marked = len(items)
+			self.marked = self.list.countMarked()
 			del items[:]
 		else:
 			del items[:]
@@ -2823,4 +2862,4 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 							items.append(item)
 
 playlist = []
-playingSelection = False
+playingList = False

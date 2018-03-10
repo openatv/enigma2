@@ -1198,6 +1198,8 @@ class MovieList(GUIComponent):
 			idx = self.findService(service)
 			if idx is not None:
 				marked.append(self.list[idx])
+			else:
+				self.markList.remove(service)
 		return marked
 
 	def countMarked(self):
