@@ -161,6 +161,7 @@ public:
 		: type(type), flags(flags), path(path)
 	{
 		memset(data, 0, sizeof(data));
+		number = 0;
 	}
 	eServiceReference(const std::string &string);
 	std::string toString() const;
