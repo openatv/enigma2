@@ -600,6 +600,7 @@ void eDVBDB::loadServiceListV5(FILE * f)
 	int scount = 0;
 	while (fgets(line, 1024, f)) {
 		int len = strlen(line);
+		if (!len) continue;
 		if (line[len - 1] == '\n')
 			line[len - 1] = '\0';
 		if (!strncmp(line, "t:", 2)) {		// Transponder/Channel data
