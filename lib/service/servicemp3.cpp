@@ -1542,20 +1542,9 @@ int eServiceMP3::getCurrentTrack()
 
 RESULT eServiceMP3::selectTrack(unsigned int i)
 {
-	bool validposition = false;
-	pts_t ppos = 0;
-	if (getPlayPosition(ppos) >= 0)
-	{
-		validposition = true;
-		ppos -= 90000;
-		if (ppos < 0)
-			ppos = 0;
-	}
-	if (validposition)
-	{
-		/* flush */
-		seekTo(ppos);
-	}
+
+	seekRelative(-1, 90000); // flush
+
 	return selectAudioStream(i);
 }
 
