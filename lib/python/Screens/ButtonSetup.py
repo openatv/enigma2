@@ -315,17 +315,16 @@ class ButtonSetup(Screen):
 	def ButtonSetupGlobal(self, key):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
-		else:
-			index = 0
-			for x in self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 10]:
-				if key == x[0][1]:
-					self["list"].moveToIndex(index)
-					if key.endswith("_long"):
-						self.longkeyPressed = True
-					break
-				index += 1
-			self.getFunctions()
-			self.session.open(ButtonSetupSelect, self["list"].l.getCurrentSelection())
+		index = 0
+		for x in self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 16]:
+			if key == x[0][1]:
+				self["list"].moveToIndex(index)
+				if key.endswith("_long"):
+					self.longkeyPressed = True
+				break
+			index += 1
+		self.getFunctions()
+		self.session.open(ButtonSetupSelect, self["list"].l.getCurrentSelection())
 
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]
