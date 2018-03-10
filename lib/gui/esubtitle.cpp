@@ -31,7 +31,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	if (elements)
 	{
 		int width = size().width() - startX * 2;
-		bool original_position = eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position");
+		bool original_position = eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position", true);
 		bool rewrap = eConfigManager::getConfigBoolValue("config.subtitles.subtitle_rewrap");
 		gRGB color;
 		bool original_colors = false;
@@ -52,9 +52,8 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 
 		if (!original_position)
 		{
-			int height = size().height() / 3;
-
-			int lowerborder = eConfigManager::getConfigIntValue("config.subtitles.subtitle_position", 50);
+			int lowerborder = eConfigManager::getConfigIntValue("config.subtitles.ttx_subtitle_position", 50);
+			int height = size().height() - lowerborder;
 			int line = newpage.m_elements[0].m_source_line;
 			/* create a new page with just one text element */
 			m_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(color, "", 0));
@@ -75,14 +74,15 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 			}
 			eRect &area = m_page.m_elements[0].m_area;
 			area.setLeft((size().width() - width) / 2);
-			area.setTop(size().height() - height - lowerborder);
+			area.setTop(0);
 			area.setWidth(width);
 			area.setHeight(height);
 			m_visible_region |= area;
 		}
 		else
 		{
-			int size_per_element = (size().height() - 25) / 24;
+			// Teletext has 24 lines per screen
+			int size_per_element = size().height() / 24;
 			int line = newpage.m_elements[0].m_source_line;
 			int currentelement = 0;
 			m_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(color, "", line));
@@ -284,8 +284,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		else
 			rt_halignment_flag = gPainter::RT_HALIGN_CENTER;
 
-		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2) * getDesktop(0)->size().width()/1280;
-		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34) * getDesktop(0)->size().width()/1280;
+		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 3) * getDesktop(0)->size().width()/1280;
+		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 30) * getDesktop(0)->size().width()/1280;
 
 		if (m_pixmap)
 		{
@@ -305,12 +305,13 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				eDVBTeletextSubtitlePageElement &element = m_page.m_elements[i];
 				if (!element.m_text.empty())
 				{
+					bool original_position = eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position", true);
 					eRect &area = element.m_area;
 					if (eConfigManager::getConfigBoolValue("config.subtitles.showbackground"))
 					{
 						eTextPara *para = new eTextPara(area);
 						para->setFont(subtitleStyles[Subtitle_TTX].font);
-						para->renderString(element.m_text.c_str(), RS_WRAP);
+						para->renderString(element.m_text.c_str(), 0, borderwidth);
 						eRect bbox = para->getBoundBox();
 						int bboxWidth = bbox.width();
 						if (alignmentValue == "right")
@@ -320,7 +321,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 						else
 							bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
 						bbox.setWidth(bboxWidth + borderwidth * 2);
-						if (eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position"))
+						if (original_position)
 							bbox.setHeight(area.height());
 						else
 						{
@@ -338,7 +339,9 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 						painter.setForegroundColor(element.m_color);
 					else
 						painter.setForegroundColor(subtitleStyles[Subtitle_TTX].foreground_color);
-					painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|rt_halignment_flag, subtitleStyles[Subtitle_TTX].border_color, borderwidth);
+					painter.renderText(area, element.m_text,
+						(original_position ? gPainter::RT_VALIGN_CENTER : gPainter::RT_VALIGN_BOTTOM)|rt_halignment_flag,
+						subtitleStyles[Subtitle_TTX].border_color, borderwidth);
 				}
 			}
 		}
@@ -396,7 +399,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				{
 					eTextPara *para = new eTextPara(area);
 					para->setFont(subtitleStyles[face].font);
-					para->renderString(text.c_str(), RS_WRAP);
+					para->renderString(text.c_str(), 0, borderwidth);
 					eRect bbox = para->getBoundBox();
 					int bboxWidth = bbox.width();
 					if (alignmentValue == "right")
@@ -419,7 +422,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					painter.setForegroundColor(element.m_color);
 				else
 					painter.setForegroundColor(subtitleStyles[face].foreground_color);
-				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|rt_halignment_flag, subtitleStyles[face].border_color, borderwidth);
+				painter.renderText(area, text, gPainter::RT_VALIGN_CENTER|rt_halignment_flag, subtitleStyles[face].border_color, borderwidth);
 			}
 		}
 		else if (m_dvb_page_ok)
