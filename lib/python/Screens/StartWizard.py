@@ -92,6 +92,7 @@ def needHDDFormat():
 	if internalHdd.numPartitions() != 1:
 		return True
 
+	fsType = None
 	internalHddName = internalHdd.getDeviceName()
 	hddPathName, hddBaseName = os.path.split(internalHddName)
 	for p in getPartitionNames():

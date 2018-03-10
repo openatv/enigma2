@@ -92,6 +92,12 @@ try:
 except:
 	HAVE_FAN_CONTROL = False
 
+try:
+	from Plugins.SystemPlugins.AutomaticVolumeAdjustment.AutomaticVolumeAdjustmentSetup import AutomaticVolumeAdjustmentConfigScreen
+	HAVE_AUTOMATIC_VOLUME_ADJUSTMENT = True
+except:
+	HAVE_AUTOMATIC_VOLUME_ADJUSTMENT = False
+
 
 def isFileSystemSupported(filesystem):
 	try:
@@ -266,7 +272,11 @@ class GeneralSetup(Screen):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent(_("Channel selection"), _("Channel selection configuration"), _("Set up your channel selection configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Recording settings"), _("Recording setup"), _("Set up your recording configuration")))
+		if SystemInfo["HDMIin"]:
+			self.sublist.append(QuickSubMenuEntryComponent(_("HDMI Recording settings"), _("HDMI Recording setup"), _("Configure recording from HDMI input")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Timeshift settings"), _("Timeshift setup"), _("Set up your timeshift configuration")))
+		if HAVE_AUTOMATIC_VOLUME_ADJUSTMENT:
+			self.sublist.append(QuickSubMenuEntryComponent(_("Automatic volume settings"), _("Automatic volume setup"), _("Set up your automatic volume adjustment configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Auto language"), _("Auto language selection"), _("Select your Language for audio/subtitles")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Subtitle settings"), _("Subtitle setup"), _("Set up subtitle behaviour")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("EPG settings"), _("EPG setup"), _("Set up your EPG configuration")))
@@ -519,6 +529,8 @@ class GeneralSetup(Screen):
 			self.session.open(RCSetupScreen)
 		elif selected == _("Fan settings"):
 			self.session.open(FanSetupScreen)
+		elif selected == _("Automatic volume settings"):
+			self.session.open(AutomaticVolumeAdjustmentConfigScreen)
 		elif selected == _("Factory reset"):
 			from Screens.FactoryReset import FactoryReset
 
@@ -548,6 +560,8 @@ class GeneralSetup(Screen):
 		elif selected == _("Recording settings"):
 			from Screens.Recordings import RecordingSettings
 			self.session.open(RecordingSettings)
+		elif selected == _("HDMI Recording settings"):
+			self.openSetup("hdmirecord")
 		elif selected == _("Timeshift settings"):
 			from Screens.Timeshift import TimeshiftSettings
 			self.session.open(TimeshiftSettings)
