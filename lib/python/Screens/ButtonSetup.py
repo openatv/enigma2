@@ -316,7 +316,7 @@ class ButtonSetup(Screen):
 		if self.longkeyPressed:
 			self.longkeyPressed = False
 		index = 0
-		for x in self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 16]:
+		for x in self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 10]:
 			if key == x[0][1]:
 				self["list"].moveToIndex(index)
 				if key.endswith("_long"):
