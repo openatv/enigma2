@@ -11,7 +11,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_REBOOT
 from Screens.Ipkg import Ipkg
 from Screens.SoftwareUpdate import UpdatePlugin
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -980,7 +980,7 @@ class PluginManager(Screen, PackageInfoHandler):
 
 	def ExecuteReboot(self, result):
 		if result:
-			self.session.open(TryQuitMainloop, retvalue=3)
+			self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
 		else:
 			self.selectedFiles = []
 			self.restartRequired = False
@@ -1372,7 +1372,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 
 	def UpgradeReboot(self, result):
 		if result:
-			self.session.open(TryQuitMainloop, retvalue=3)
+			self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
 		self.close(True)
 
 	def runRemove(self, result):
@@ -1748,7 +1748,7 @@ class PacketManager(Screen, NumericalTextInput):
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
-			self.session.open(TryQuitMainloop, retvalue=3)
+			self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
 
 	def runUpgrade(self, result):
 		if result:
@@ -1770,7 +1770,7 @@ class PacketManager(Screen, NumericalTextInput):
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
-			self.session.open(TryQuitMainloop, retvalue=3)
+			self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
 
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
