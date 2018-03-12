@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
@@ -137,7 +137,7 @@ class SkinSelectorBase:
 			else:
 				config.skin.primary_skin.value = self.skinfile
 				config.skin.primary_skin.save()
-			self.session.open(TryQuitMainloop, 3)
+			self.session.open(TryQuitMainloop, QUIT_RESTART)
 
 class SkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin.xml"

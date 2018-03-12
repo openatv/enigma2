@@ -30,7 +30,7 @@ from random import Random
 from Screens.Screen import Screen
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Screens.MessageBox import MessageBox
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_REBOOT
 from Screens.HelpMenu import HelpableScreen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import ActionMap, HelpableActionMap
@@ -1766,7 +1766,7 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def UninstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
@@ -1788,7 +1788,7 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -1997,7 +1997,7 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def UninstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
@@ -2019,7 +2019,7 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def createSummary(self):
 		return NetworkServicesSummary
@@ -2318,7 +2318,7 @@ class NetworkSamba(Screen):
 		self.Console.ePopen('/usr/bin/opkg install --force-maintainer ' + pkgname, callback)
 
 	def installComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def UninstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
@@ -2340,7 +2340,7 @@ class NetworkSamba(Screen):
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
 	def removeComplete(self, result=None, retval=None, extra_args=None):
-		self.session.open(TryQuitMainloop, 2)
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def createSummary(self):
 		return NetworkServicesSummary
