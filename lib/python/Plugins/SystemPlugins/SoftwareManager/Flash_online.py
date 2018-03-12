@@ -541,6 +541,8 @@ class doFlashImage(Screen):
 					cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
 				elif getMachineBuild() in ("u5","u5pvr"):
 					cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
+				elif getMachineBuild() in ("h9"):
+					cmdlist.append("%s -n -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				else:
 					cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				self.close()
@@ -558,6 +560,8 @@ class doFlashImage(Screen):
 						cmdlist.append("umount -fl /newroot")
 				elif getMachineBuild() in ("u5","u5pvr"):
 					cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
+				elif getMachineBuild() in ("h9"):
+					cmdlist.append("%s -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				else:
 					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				message = "echo -e '\n"
