@@ -150,4 +150,4 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, Screens.Standby.QUIT_SHUTDOWN)

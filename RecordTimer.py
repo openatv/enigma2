@@ -611,7 +611,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 #
 				if not Screens.Standby.inTryQuitMainloop:  # The shutdown messagebox is not open
 					if Screens.Standby.inStandby:  # In standby
-						quitMainloop(1)
+						quitMainloop(Screens.Standby.QUIT_SHUTDOWN)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			return True
@@ -779,7 +779,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, Screens.Standby.QUIT_SHUTDOWN)
 		else:
 			global wasRecTimerWakeup
 			wasRecTimerWakeup = False
