@@ -12,7 +12,7 @@ from Components.ScrollLabel import ScrollLabel
 from Plugins.Plugin import PluginDescriptor
 from Components.Button import Button
 import urllib2
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 import feedparser
 from enigma import eTimer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, getDesktop, loadPNG, loadPic
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -312,7 +312,7 @@ class GmailSetup(Screen, ConfigListScreen):
 
 	def restartenigma(self, result):
 		if result:
-			self.session.open(TryQuitMainloop, 3)
+			self.session.open(TryQuitMainloop, QUIT_RESTART)
 		else:
 			self.close(True)
 

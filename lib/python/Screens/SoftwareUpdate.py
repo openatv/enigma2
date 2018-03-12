@@ -6,7 +6,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_UPGRADE_PROGRAM, QUIT_REBOOT
 from Screens.TextBox import TextBox
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
 from Components.ActionMap import ActionMap
@@ -229,7 +229,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		elif answer[1] == "backup":
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif answer[1] == "cold":
-			self.session.open(TryQuitMainloop, retvalue=42)
+			self.session.open(TryQuitMainloop, retvalue=QUIT_UPGRADE_PROGRAM)
 			self.close()
 		else:
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args={'test_only': False})
@@ -254,7 +254,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 
 	def exitAnswer(self, result):
 		if result is not None and result:
-			self.session.open(TryQuitMainloop, retvalue=2)
+			self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
 		self.close()
 
 	def __close(self):

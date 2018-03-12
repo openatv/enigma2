@@ -3587,7 +3587,7 @@ class InfoBarAudioSelection:
 			def __init__(self, session):
 				self.skin = """
 				<screen position="50,c+20%" size="500,26" flags="wfNoBorder" backgroundColor="#77777777" zPosition="11" >
-					<widget name="content" position="10,2" size="480,24" font="Regular;18" valign="center" halign="center" noWrap="1" foregroundColor="#00EEEEEE" backgroundColor="#AA111111" borderWidth="1" transparent="1" />
+					<widget name="content" position="10,2" size="480,24" font="Regular;18" valign="center" halign="center" noWrap="1" foregroundColor="#00EEEEEE" backgroundColor="#AA111111" borderWidth="2" transparent="1" />
 				</screen>
 				"""
 				Screen.__init__(self, session)
@@ -4411,7 +4411,7 @@ class InfoBarSubtitleSupport(object):
 			def __init__(self, session):
 				self.skin = """
 				<screen position="e-400,c+20%" size="300,26" flags="wfNoBorder" backgroundColor="#77777777" zPosition="11" >
-					<widget name="content" position="10,2" size="280,24" font="Regular;18" valign="center" halign="center" noWrap="1" foregroundColor="#00EEEEEE" backgroundColor="#AA111111" borderWidth="1" transparent="1" />
+					<widget name="content" position="10,2" size="280,24" font="Regular;18" valign="center" halign="center" noWrap="1" foregroundColor="#00EEEEEE" backgroundColor="#AA111111" borderWidth="2" transparent="1" />
 				</screen>
 				"""
 				Screen.__init__(self, session)
