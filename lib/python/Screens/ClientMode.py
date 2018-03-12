@@ -5,7 +5,7 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 
 class ClientModeScreen(ConfigListScreen, Screen):
 	def __init__(self, session, menu_path=""):
@@ -187,7 +187,7 @@ class ClientModeScreen(ConfigListScreen, Screen):
 	def restartGUI(self, answer):
 		if answer is True:
 			self.saveconfig()
-			self.session.open(TryQuitMainloop, 3)
+			self.session.open(TryQuitMainloop, QUIT_RESTART)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)

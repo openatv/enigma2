@@ -17,6 +17,17 @@ from gettext import dgettext
 inStandby = None
 powerKey = None
 
+QUIT_SHUTDOWN = 1
+QUIT_REBOOT = 2
+QUIT_RESTART = 3
+QUIT_UPGRADE_FP = 4
+QUIT_ERROR_RESTART = 5
+QUIT_FACTORY_RESET = 40
+QUIT_RESTORE_BACKUP = 41
+QUIT_UPGRADE_PROGRAM = 42
+QUIT_IMAGE_RESTORE = 43
+QUIT_UPGRADE_MICOM = 44
+
 class Standby2(Screen):
 	def Power(self):
 		print "[Standby] leave standby"
@@ -222,31 +233,31 @@ class QuitMainloopScreen(Screen):
 		from Components.Label import Label
 
 		text = {
-			1: _("Your %s %s is shutting down.") % (getMachineBrand(), getMachineName()),
-			2: _("Your %s %s is rebooting.") % (getMachineBrand(), getMachineName()),
-			3: _("The user interface of your %s %s is restarting.") % (getMachineBrand(), getMachineName()),
-			4: _("Your front processor will be upgraded.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
-			5: _("The user interface of your %s %s is restarting\ndue to an error.") % (getMachineBrand(), getMachineName()),
-			40: _("Resetting settings to factory defaults.\nYour %s %s will restart now.") % (getMachineBrand(), getMachineName()),
-			41: _("Restoring settings from backup.\nYour %s %s will restart now.") % (getMachineBrand(), getMachineName()),
-			42: _("Upgrade in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
-			43: _("Reflash in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
-			44: _("Your front panel will be upgraded.\nThis may take a few minutes.")
+			QUIT_SHUTDOWN: _("Your %s %s is shutting down.") % (getMachineBrand(), getMachineName()),
+			QUIT_REBOOT: _("Your %s %s is rebooting.") % (getMachineBrand(), getMachineName()),
+			QUIT_RESTART: _("The user interface of your %s %s is restarting.") % (getMachineBrand(), getMachineName()),
+			QUIT_UPGRADE_FP: _("Your front processor will be upgraded.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
+			QUIT_ERROR_RESTART: _("The user interface of your %s %s is restarting\ndue to an error.") % (getMachineBrand(), getMachineName()),
+			QUIT_FACTORY_RESET: _("Resetting settings to factory defaults.\nYour %s %s will restart now.") % (getMachineBrand(), getMachineName()),
+			QUIT_RESTORE_BACKUP: _("Restoring settings from backup.\nYour %s %s will restart now.") % (getMachineBrand(), getMachineName()),
+			QUIT_UPGRADE_PROGRAM: _("Upgrade in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
+			QUIT_IMAGE_RESTORE: _("Reflash in progress.\nPlease wait until your %s %s reboots.\nThis may take a few minutes.") % (getMachineBrand(), getMachineName()),
+			QUIT_UPGRADE_MICOM: _("Your front panel will be upgraded.\nThis may take a few minutes.")
 		}.get(retvalue)
 		self["text"] = Label(text)
 
 		import os
 		text2 = {
-			1: _("Shutting down"),
-			2: _("Rebooting"),
-			3: _("GUI restarting"),
-			4: _("Front processor upgrade"),
-			5: _("GUI restarting"),
-			40: _("Factory reset"),
-			41: _("Restoring settings"),
-			42: _("Upgrading"),
-			43: _("Reflashing"),
-			44: _("Front panel upgrade")
+			QUIT_SHUTDOWN: _("Shutting down"),
+			QUIT_REBOOT: _("Rebooting"),
+			QUIT_RESTART: _("GUI restarting"),
+			QUIT_UPGRADE_FP: _("Front processor upgrade"),
+			QUIT_ERROR_RESTART: _("GUI restarting"),
+			QUIT_FACTORY_RESET: _("Factory reset"),
+			QUIT_RESTORE_BACKUP: _("Restoring settings"),
+			QUIT_UPGRADE_PROGRAM: _("Upgrading"),
+			QUIT_IMAGE_RESTORE: _("Reflashing"),
+			QUIT_UPGRADE_MICOM: _("Front panel upgrade")
 		}.get(retvalue)
 		cmd = "echo " + text2 + " > /dev/dbox/oled0"
 		os.system(cmd)
@@ -293,15 +304,15 @@ class TryQuitMainloop(MessageBox):
 			self.skinName = ""
 		elif reason and not inStandby:
 			text = {
-				1: _("Really shutdown now?"),
-				2: _("Really reboot now?"),
-				3: _("Really restart now?"),
-				4: _("Really upgrade the front processor and reboot now?"),
-				40: _("Really do a factory reset and reboot now?"),
-				41: _("Really restore settings and reboot now?"),
-				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				44: _("Really upgrade the front panel and reboot now?")
+				QUIT_SHUTDOWN: _("Really shutdown now?"),
+				QUIT_REBOOT: _("Really reboot now?"),
+				QUIT_RESTART: _("Really restart now?"),
+				QUIT_UPGRADE_FP: _("Really upgrade the front processor and reboot now?"),
+				QUIT_FACTORY_RESET: _("Really do a factory reset and reboot now?"),
+				QUIT_RESTORE_BACKUP: _("Really restore settings and reboot now?"),
+				QUIT_UPGRADE_PROGRAM: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
+				QUIT_IMAGE_RESTORE: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
+				QUIT_UPGRADE_MICOM: _("Really upgrade the front panel and reboot now?")
 			}.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason + text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)

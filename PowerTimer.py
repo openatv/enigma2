@@ -224,7 +224,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop:  # The shutdown messagebox is not open
 					if Screens.Standby.inStandby:  # In standby
-						quitMainloop(1)
+						quitMainloop(Screens.Standby.QUIT_SHUTDOWN)
 						return True
 					else:
 						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryQuitMainloopNotification, "PT_StateChange", MessageBox, _("A power timer wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout=180)
@@ -249,7 +249,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop:  # The shutdown messagebox is not open
 					if Screens.Standby.inStandby:  # In standby
-						quitMainloop(1)
+						quitMainloop(Screens.Standby.QUIT_SHUTDOWN)
 					else:
 						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryQuitMainloopNotification, "PT_StateChange", MessageBox, _("A power timer wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout=180)
 				return True
@@ -264,7 +264,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop:  # The shutdown messagebox is not open
 					if Screens.Standby.inStandby:  # In standby
-						quitMainloop(2)
+						quitMainloop(Screens.Standby.QUIT_REBOOT)
 					else:
 						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryToRebootNotification, "PT_StateChange", MessageBox, _("A power timer wants to reboot your %s %s.\nReboot now?") % (getMachineBrand(), getMachineName()), timeout=180)
 				return True
@@ -279,7 +279,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop:  # The shutdown messagebox is not open
 					if Screens.Standby.inStandby:  # In standby
-						quitMainloop(3)
+						quitMainloop(Screens.Standby.QUIT_RESTART)
 					else:
 						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryToRestartNotification, "PT_StateChange", MessageBox, _("A power timer wants to restart your %s %s user interface.\nRestart user interface now?") % (getMachineBrand(), getMachineName()), timeout=180)
 				return True
@@ -299,7 +299,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return False
 				if not Screens.Standby.inTryQuitMainloop:  # The shutdown messagebox is not open
 					if Screens.Standby.inStandby:  # In standby
-						quitMainloop(1)
+						quitMainloop(Screens.Standby.QUIT_SHUTDOWN)
 					else:
 						Notifications.AddNotificationWithUniqueIDCallback(self.sendTryQuitMainloopNotification, "PT_StateChange", MessageBox, _("A power timer wants to shut down your %s %s.\nShut down now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			return True
@@ -334,15 +334,15 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, Screens.Standby.QUIT_SHUTDOWN)
 
 	def sendTryToRebootNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2)
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, Screens.Standby.QUIT_REBOOT)
 
 	def sendTryToRestartNotification(self, answer):
 		if answer:
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3)
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, Screens.Standby.QUIT_RESTART)
 
 	def keyPressed(self, key, tag):
 		self.begin = time() + int(self.autosleepdelay) * 60
