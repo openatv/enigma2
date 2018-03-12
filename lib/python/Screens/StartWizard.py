@@ -7,7 +7,7 @@ from Screens.VideoWizard import VideoWizard
 from Screens.IniTerrestrialLocation import IniTerrestrialLocation
 from Screens.Rc import Rc
 from Components.Task import job_manager
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_SHUTDOWN, QUIT_REBOOT
 from Screens.MessageBox import MessageBox
 
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName
@@ -220,10 +220,10 @@ class StartHDDFormatWizard(Screen):
 				job_manager.errorCB(False)
 
 	def tryReboot(self, dummy):
-		self.session.openWithCallback(self.shutdownFailed, TryQuitMainloop, 2)
+		self.session.openWithCallback(self.shutdownFailed, TryQuitMainloop, QUIT_REBOOT)
 
 	def tryShutdown(self):
-		self.session.openWithCallback(self.shutdownFailed, TryQuitMainloop, 1)
+		self.session.openWithCallback(self.shutdownFailed, TryQuitMainloop, QUIT_SHUTDOWN)
 
 	def shutdownFailed(self, *args):
 		pass

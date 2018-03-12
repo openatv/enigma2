@@ -5,7 +5,7 @@ from glob import iglob
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_RESTORE_BACKUP
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
@@ -301,7 +301,7 @@ class RestoreMenu(Screen):
 	def startRestore(self, ret=False):
 		if ret:
 			makeBackupSymlink(path.join(self.path, self.sel))
-			self.session.openWithCallback(self.cancelled, TryQuitMainloop, retvalue=41)
+			self.session.openWithCallback(self.cancelled, TryQuitMainloop, retvalue=QUIT_RESTORE_BACKUP)
 
 	def cancelled(self, ret):
 		cleanBackupSymlink()
@@ -355,7 +355,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def startRestore(self):
 		makeBackupSymlink(self.fullbackupfilename)
-		self.session.openWithCallback(self.cancelled, TryQuitMainloop, retvalue=41)
+		self.session.openWithCallback(self.cancelled, TryQuitMainloop, retvalue=QUIT_RESTORE_BACKUP)
 
 	def cancelled(self, ret):
 		cleanBackupSymlink()
