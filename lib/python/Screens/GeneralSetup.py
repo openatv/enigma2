@@ -19,7 +19,7 @@ from Screens.Satconfig import NimSelection
 from Screens.Setup import Setup
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import SkinSelector, LcdSkinSelector
-from Screens.Standby import TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, QUIT_FACTORY_RESET
 from Screens.ButtonSetup import ButtonSetup
 
 from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
@@ -552,7 +552,7 @@ class GeneralSetup(Screen):
 
 			def msgClosed(ret):
 				if ret:
-					self.session.open(TryQuitMainloop, retvalue=40)
+					self.session.open(TryQuitMainloop, retvalue=QUIT_FACTORY_RESET)
 			self.session.openWithCallback(msgClosed, FactoryReset)
 # ####### Select TV Setup Menu ##############################
 		elif selected == _("Channel selection"):
