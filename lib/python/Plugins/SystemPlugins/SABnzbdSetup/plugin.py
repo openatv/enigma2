@@ -75,8 +75,8 @@ class SABnzbdSetupScreen(Screen):
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
-		from Screens.Standby import TryQuitMainloop
-		self.session.open(TryQuitMainloop, 2)
+		from Screens.Standby import TryQuitMainloop, QUIT_REBOOT
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def UninstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
@@ -100,8 +100,8 @@ class SABnzbdSetupScreen(Screen):
 
 	def removeComplete(self,result = None, retval = None, extra_args = None):
 		self["actions"].setEnabled(True)
-		from Screens.Standby import TryQuitMainloop
-		self.session.open(TryQuitMainloop, 2)
+		from Screens.Standby import TryQuitMainloop, QUIT_REBOOT
+		self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def createSummary(self):
 		from Screens.NetworkSetup import NetworkServicesSummary

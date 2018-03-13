@@ -440,10 +440,10 @@ class PowerKey:
 				)
 			else:
 				print "PowerOff - Now!"
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
+				self.session.open(Screens.Standby.TryQuitMainloop, Screens.Standby.QUIT_SHUTDOWN)
 		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			print "PowerOff - Now!"
-			self.session.open(Screens.Standby.TryQuitMainloop, 1)
+			self.session.open(Screens.Standby.TryQuitMainloop, Screens.Standby.QUIT_SHUTDOWN)
 
 	def powerlong(self):
 		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
