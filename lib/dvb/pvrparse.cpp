@@ -102,20 +102,34 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 	if (m_timestamp_deltas.empty())
 		m_timestamp_deltas[m_access_points.begin()->first] = m_access_points.begin()->second;
 
-	pts_t currentDelta = m_timestamp_deltas.begin()->second, lastpts_t = -1;
+	std::map<off_t,pts_t>::const_iterator last2 = m_access_points.begin();
+	std::map<off_t,pts_t>::const_iterator last1 = last2;
+	pts_t currentDelta = m_timestamp_deltas.begin()->second, lastpts = -1;
 	for (std::map<off_t,pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
 		pts_t current = i->second - currentDelta;
-		pts_t diff = current - lastpts_t;
+		pts_t diff = current - lastpts;
 
 		if (diff <= 0 || diff > (90000*10)) // 10sec diff
 		{
-//			eDebug("[eMPEGStreamInformation] %llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
-			currentDelta = i->second - lastpts_t - (90000/25); /* FIXME: should be the extrapolated new timestamp, based on the current rate */
+//			eDebug("[eMPEGStreamInformation] %llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts, i->second, diff);
+			currentDelta = last1->second - last2->second;
+			if (currentDelta > 0 && currentDelta <= (90000*10) &&
+				last2->first < last1->first && last1->first < i->first) /* i.e., not equal or broken */
+			{
+				currentDelta *= i->first - last1->first;
+				currentDelta /= last1->first - last2->first;
+			}
+			else
+				currentDelta = 90000/25;
+			currentDelta = i->second - lastpts - currentDelta;
 //			eDebug("[eMPEGStreamInformation] current delta now %llx, making current to %llx", currentDelta, i->second - currentDelta);
 			m_timestamp_deltas[i->first] = currentDelta;
 		}
-		lastpts_t = i->second - currentDelta;
+		lastpts = i->second - currentDelta;
+
+		last2 = last1;
+		last1 = i;
 	}
 }
 

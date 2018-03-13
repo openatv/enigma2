@@ -37,6 +37,11 @@
 
 
 typedef long long int pts_t;
+struct ap
+{
+  off64_t off;
+  pts_t   pts;
+};
 
 
 inline off_t ltell( int f )
@@ -107,36 +112,48 @@ void truncsc( int fs, off64_t off )
 
 off64_t readoff( int fa, pts_t t )
 {
-  off64_t buf[2], buf1[2];
+  struct ap buf, buf1, buf2;
   pts_t time_offset;
   pts_t tt, lt;
 
-  if (!(readbufinternal( fa, buf ) && readbufinternal( fa, buf1 )))
+  if (!(readbufinternal( fa, &buf.off ) && readbufinternal( fa, &buf1.off )))
   {
     printf( "The corresponding \".ap\"-file is empty.\n" );
     exit( 8 );
   }
   lseek( fa, 0, SEEK_SET );
 
-  time_offset = buf[1];
-  if (buf[0] != 0 && buf[0] < buf1[0])
-    time_offset -= (buf1[1] - buf[1]) * buf[0] / (buf1[0] - buf[0]);
+  time_offset = buf.pts;
+  if (buf.off != 0 && buf.off < buf1.off)
+    time_offset -= (buf1.pts - buf.pts) * buf.off / (buf1.off - buf.off);
 
+  buf1 = buf2 = buf;
   lt = -1;
   do
   {
-    if (!readbufinternal( fa, buf ))
+    if (!readbufinternal( fa, &buf.off ))
       break;
-    tt = buf[1] - time_offset;
+    tt = buf.pts - time_offset;
     if (tt <= lt || tt - lt > 90000*10)
     {
-      time_offset = buf[1] - lt - 90000/25;
-      tt = buf[1] - time_offset;
+      time_offset = buf1.pts - buf2.pts;
+      if (time_offset > 0 && time_offset <= 90000*10 &&
+          buf2.off < buf1.off && buf1.off < buf.off)
+      {
+        time_offset *= buf.off - buf1.off;
+        time_offset /= buf1.off - buf2.off;
+      }
+      else
+        time_offset = 90000/25;
+      time_offset = buf.pts - lt - time_offset;
+      tt = buf.pts - time_offset;
     }
     lt = tt;
+    buf2 = buf1;
+    buf1 = buf;
   } while (tt < t);
 
-  return buf[0];
+  return buf.off;
 }
 
 
