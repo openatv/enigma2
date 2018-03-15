@@ -14,8 +14,9 @@
 #define FBIO_ACCEL  0x23
 
 static unsigned int displaylist[1024];
-static int ptr;
+static int ptr = 0;
 static bool supportblendingflags = true;
+static bool accumulateoperations = false;
 
 #define P(x, y) do { displaylist[ptr++] = x; displaylist[ptr++] = y; } while (0)
 #define C(x) P(x, 0)
@@ -81,6 +82,31 @@ bool bcm_accel_has_alphablending()
 	return supportblendingflags;
 }
 
+int bcm_accel_accumulate()
+{
+#ifdef SUPPORT_ACCUMULATED_ACCELERATION_OPERATIONS
+	accumulateoperations = true;
+	return 0;
+#else
+	return -1;
+#endif
+}
+
+int bcm_accel_sync()
+{
+	int retval = 0;
+	if (accumulateoperations)
+	{
+		if (ptr)
+		{
+			eDebug("bcm_accel_sync: ptr %d", ptr);
+			retval = exec_list();
+		}
+		accumulateoperations = false;
+	}
+	return retval;
+}
+
 void bcm_accel_blit(
 		int src_addr, int src_width, int src_height, int src_stride, int src_format,
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
@@ -88,6 +114,16 @@ void bcm_accel_blit(
 		int dst_x, int dst_y, int dwidth, int dheight,
 		int pal_addr, int flags)
 {
+	if (accumulateoperations)
+	{
+		if (((sizeof(displaylist) / sizeof(displaylist[0]) - ptr) / 2) < 40)
+		{
+			eDebug("bcm_accel_blit: not enough space to accumulate");
+			bcm_accel_sync();
+			bcm_accel_accumulate();
+		}
+	}
+
 	C(0x43); // reset source
 	C(0x53); // reset dest
 	C(0x5b);  // reset pattern
@@ -139,7 +175,7 @@ void bcm_accel_blit(
 
 	C(0x77);  // do it
 
-	exec_list();
+	if (!accumulateoperations) exec_list();
 }
 
 void bcm_accel_fill(
@@ -147,6 +183,16 @@ void bcm_accel_fill(
 		int x, int y, int width, int height,
 		unsigned long color)
 {
+	if (accumulateoperations)
+	{
+		if (((sizeof(displaylist) / sizeof(displaylist[0]) - ptr) / 2) < 40)
+		{
+			eDebug("bcm_accel_fill: not enough space to accumulate");
+			bcm_accel_sync();
+			bcm_accel_accumulate();
+		}
+	}
+
 	C(0x43); // reset source
 	C(0x53); // reset dest
 	C(0x5b); // reset pattern
@@ -192,6 +238,5 @@ void bcm_accel_fill(
 
 	C(0x77);  // do it
 
-	exec_list();
+	if (!accumulateoperations) exec_list();
 }
-
