@@ -214,9 +214,17 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 
 			col^=0xFF000000;
 
-			if (surface->data_phys)
-				if (!gAccel::getInstance()->fill(surface,  area, col))
+#ifdef GPIXMAP_DEBUG
+			Stopwatch s;
+#endif
+			if (surface->data_phys && (area.surface() > 20000))
+				if (!gAccel::getInstance()->fill(surface,  area, col)) {
+#ifdef GPIXMAP_DEBUG
+					s.stop();
+					eDebug("[gPixmap] [BLITBENCH] accel fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+#endif
 					continue;
+				}
 
 			for (int y=area.top(); y<area.bottom(); y++)
 			{
@@ -225,6 +233,10 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				while (x--)
 					*dst++=col;
 			}
+#ifdef GPIXMAP_DEBUG
+			s.stop();
+			eDebug("[gPixmap] [BLITBENCH] cpu fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+#endif
 		}	else
 			eWarning("[gPixmap] couldn't fill %d bpp", surface->bpp);
 	}
