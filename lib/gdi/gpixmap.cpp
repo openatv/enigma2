@@ -9,6 +9,11 @@
 #error "no BYTE_ORDER defined!"
 #endif
 
+/* surface acceleration threshold: do not attempt to accelerate surfaces smaller than the threshold (measured in bytes) */
+#ifndef GFX_SURFACE_ACCELERATION_THRESHOLD
+#define GFX_SURFACE_ACCELERATION_THRESHOLD 48000
+#endif
+
 // #define GPIXMAP_DEBUG
 
 #ifdef GPIXMAP_DEBUG
@@ -123,9 +128,8 @@ static bool is_a_candidate_for_accel(const gUnmanagedSurface* surface)
 	switch (surface->bpp)
 	{
 		case 8:
-			return (surface->y * surface->stride) > 12000;
 		case 32:
-			return (surface->y * surface->stride) > 48000;
+			return (surface->y * surface->stride * surface->bypp) >= GFX_SURFACE_ACCELERATION_THRESHOLD;
 		default:
 			return false;
 	}
