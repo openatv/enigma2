@@ -226,7 +226,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				if (!gAccel::getInstance()->fill(surface,  area, col)) {
 #ifdef GPIXMAP_DEBUG
 					s.stop();
-					eDebug("[gPixmap] [BLITBENCH] accel fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+					eDebug("[gPixmap] [BLITBENCH] accel fill %dx%d (%d bytes) took %u us", area.width(), area.height(), area.surface() * surface->bypp, s.elapsed_us());
 #endif
 					continue;
 				}
@@ -240,7 +240,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[gPixmap] [BLITBENCH] cpu fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+			eDebug("[gPixmap] [BLITBENCH] cpu fill %dx%d (%d bytes) took %u us", area.width(), area.height(), area.surface() * surface->bypp, s.elapsed_us());
 #endif
 		}	else
 			eWarning("[gPixmap] couldn't fill %d bpp", surface->bpp);
@@ -270,7 +270,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 				if (!gAccel::getInstance()->fill(surface,  area, col)) {
 #ifdef GPIXMAP_DEBUG
 					s.stop();
-					eDebug("[gPixmap] [BLITBENCH] accel fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+					eDebug("[gPixmap] [BLITBENCH] accel fill %dx%d (%d bytes) took %u us", area.width(), area.height(), area.surface() * surface->bypp, s.elapsed_us());
 #endif
 					continue;
 				}
@@ -284,7 +284,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[gPixmap] [BLITBENCH] cpu fill %dx%d took %u us", area.width(), area.height(), s.elapsed_us());
+			eDebug("[gPixmap] [BLITBENCH] cpu fill %dx%d (%d bytes) took %u us", area.width(), area.height(), area.surface() * surface->bypp, s.elapsed_us());
 #endif
 		} else if (surface->bpp == 16)
 		{
@@ -477,7 +477,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag)) {
 #ifdef GPIXMAP_DEBUG
 				s.stop();
-				eDebug("[gPixmap] [BLITBENCH] accel blit took %u us", s.elapsed_us());
+				eDebug("[gPixmap] [BLITBENCH] accel blit (%d bytes) took %u us", srcarea.surface() * src.surface->bypp, s.elapsed_us());
 #endif
 				continue;
 			}
@@ -604,7 +604,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			}
 #ifdef GPIXMAP_DEBUG
 			s.stop();
-			eDebug("[gPixmap] [BLITBENCH] CPU scale blit took %u us", s.elapsed_us());
+			eDebug("[gPixmap] [BLITBENCH] CPU scale blit (%d bytes) took %u us", srcarea.surface() * src.surface->bypp, s.elapsed_us());
 #endif
 			continue;
 		}
@@ -847,7 +847,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			eWarning("[gPixmap] cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
 #ifdef GPIXMAP_DEBUG
 		s.stop();
-		eDebug("[gPixmap] [BLITBENCH] cpu blit took %u us", s.elapsed_us());
+		eDebug("[gPixmap] [BLITBENCH] cpu blit (%d bytes) took %u us", srcarea.surface() * src.surface->bypp, s.elapsed_us());
 #endif
 	}
 }
