@@ -66,12 +66,21 @@ class FanControl:
 			fan.vlt = ConfigSlider(default = 15, increment = 5, limits = (0, 255))
 			if getBoxType() == 'tm2t':
 				fan.pwm = ConfigSlider(default = 150, increment = 5, limits = (0, 255))
-			if getBoxType() == 'tmsingle':
+			elif getBoxType() == 'tmsingle':
 				fan.pwm = ConfigSlider(default = 100, increment = 5, limits = (0, 255))
+			elif getBoxType() == 'beyonwizu4':
+				fan.pwm = ConfigSlider(default = 0xcc, increment = 0x11, limits = (0x22, 0xff))
+			elif getBoxType() == 'beyonwizt4':
+				fan.pwm = ConfigSlider(default = 200, increment = 5, limits = (0, 255))
 			else:
 				fan.pwm = ConfigSlider(default = 50, increment = 5, limits = (0, 255))
 			fan.vlt_standby = ConfigSlider(default = 5, increment = 5, limits = (0, 255))
-			fan.pwm_standby = ConfigSlider(default = 0, increment = 5, limits = (0, 255))
+			if getBoxType() == 'beyonwizu4':
+				fan.pwm_standby = ConfigSlider(default = 0x44, increment = 0x11, limits = (0x22, 0xff))
+			elif getBoxType() == 'beyonwizt4':
+				fan.pwm_standby = ConfigSlider(default = 10, increment = 5, limits = (0, 0xff))
+			else:
+				fan.pwm_standby = ConfigSlider(default = 0, increment = 5, limits = (0, 255))
 			fan.vlt.addNotifier(boundFunction(setVlt, self, fanid))
 			fan.pwm.addNotifier(boundFunction(setPWM, self, fanid))
 			config.fans.append(fan)
@@ -95,6 +104,8 @@ class FanControl:
 		return int(open("/proc/stb/fp/fan_vlt", "r").readline().strip(), 16)
 
 	def setVoltage(self, fanid, value):
+		if getBoxType() == 'beyonwizu4':
+			return
 		if value > 255:
 			return
 		open("/proc/stb/fp/fan_vlt", "w").write("%x" % value)
