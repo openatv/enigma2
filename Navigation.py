@@ -123,7 +123,7 @@ class Navigation:
 
 	def wakeupCheck(self):
 		now = time()
-		stbytimer = 5 # original was 15
+		stbytimer = 15 # original was 15
 
 		if self.__wasTimerWakeup or (config.workaround.deeprecord.value and now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus):
 			if self.syncCount > 0:
