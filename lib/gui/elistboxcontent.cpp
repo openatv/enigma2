@@ -834,8 +834,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			start = 0;
 		}
 
-		int size = PyList_Size(items);
-		for (int i = start; i < size; ++i)
+		int items_size = PyList_Size(items);
+		for (int i = start; i < items_size; ++i)
 		{
 			ePyObject item = PyList_GET_ITEM(items, i); // borrowed reference!
 
