@@ -79,6 +79,9 @@ class EPGSelection(Screen, HelpableScreen):
 		self.eventviewDialog = None
 		self.eventviewWasShown = False
 		self.currch = None
+		self.Oldpipshown = False
+		if self.session.pipshown:
+			self.Oldpipshown = True
 		self.session.pipshown = False
 		self.cureventindex = None
 		if plugin_PiPServiceRelation_installed:
@@ -1438,8 +1441,11 @@ class EPGSelection(Screen, HelpableScreen):
 				else:
 					self.zapFunc(None, False)
 		if self.session.pipshown:
+			self.Oldpipshown = False
 			self.session.pipshown = False
 			del self.session.pip
+		if self.Oldpipshown:
+			self.session.pipshown = True
 		self.closeEventViewDialog()
 		self.close(True)
 
