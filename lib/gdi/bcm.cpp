@@ -14,7 +14,7 @@
 #define FBIO_ACCEL  0x23
 
 static unsigned int displaylist[1024];
-static int ptr;
+static int ptr = 0;
 static bool supportblendingflags = true;
 
 #define P(x, y) do { displaylist[ptr++] = x; displaylist[ptr++] = y; } while (0)
