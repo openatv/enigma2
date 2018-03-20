@@ -217,6 +217,18 @@ if test "$with_libvugles2" = "yes"; then
 fi
 AM_CONDITIONAL(HAVE_LIBVUGLES2, test "$with_libvugles2" = "yes")
 
+AC_ARG_WITH(libhiaccel,
+	AS_HELP_STRING([--with-libhiaccel],[use libhiaccel, yes or no]),
+	[with_libhiaccel=$withval],[with_libhiaccel=no])
+if test "$with_libhiaccel" = "yes"; then
+	PKG_CHECK_MODULES(LIBHIACCEL, [libhiaccel])
+	HIACCEL_CFLAGS="-DUSE_LIBHIACCEL"
+fi
+
+if test x"$with_libhiaccel" != xno ; then
+	AC_DEFINE(HAVE_HISILICON_ACCEL, 1,[define add HISILICON ACCEL])
+fi
+
 AC_ARG_WITH(osdanimation,
 	AC_HELP_STRING([--with-osdanimation], [use osd animation, yes or no]),
 	[[withosdanimation=$withval]],
