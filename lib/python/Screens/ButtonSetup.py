@@ -64,6 +64,8 @@ def getButtonSetupKeys():
 		(_("Media long"), "media_long", ""),
 		(_("Open"), "open", ""),
 		(_("Open long"), "open_long", ""),
+		(_("Option"), "option", ""),
+		(_("Option long"), "option_long", ""),
 		(_("Www"), "www", ""),
 		(_("Www long"), "www_long", ""),
 		(_("Directory"), "directory", ""),
