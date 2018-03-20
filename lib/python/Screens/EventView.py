@@ -250,19 +250,35 @@ class EventViewBase:
 
 		if not beginTimeString:
 			return
-		if beginTimeString.find(', ') > -1:
-			begintime = beginTimeString.split(', ')[1].split(':')
-			begindate = beginTimeString.split(', ')[0].split('.')
-		else:
-			if len(beginTimeString.split(' ')) > 1:
-				begintime = beginTimeString.split(' ')[1].split(':')
-			else:
-				return
-			begindate = beginTimeString.split(' ')[0].split('.')
+		begintime = begindate = []
+		for x in beginTimeString.split(' '):
+			x = x.rstrip(',').rstrip('.')
+			if ':' in x:
+				begintime = x.split(':')
+			elif '.' in x:
+				begindate = x.split('.')
+			elif '/' in x:
+				begindate = x.split('/')
+				begindate.reverse()
+		###check
+		fail = False
+		try:
+			if len(begintime) < 2 and len(begindate) < 2 or int(begintime[0]) > 23 or int(begintime[1]) > 59 or int(begindate[0]) > 31 or int(begindate[1]) > 12:
+				fail = True
+		except:
+			fail = True
+
+		if fail:
+			print 'wrong timestamp detected: source = %s ,date = %s ,time = %s' %(beginTimeString,begindate,begintime)
+			return
+		###
+
 		nowt = time()
 		now = localtime(nowt)
+
 		begin = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))))
 		end = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration())
+
 		self["datetime"].setText(strftime(_("%d.%m.   "), begin) + strftime(_("%-H:%M - "), begin) + strftime(_("%-H:%M"), end))
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		if self.SimilarBroadcastTimer is not None:
