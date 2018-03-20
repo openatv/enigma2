@@ -289,7 +289,9 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent(_("Front panel settings"), _("Front panel setup"), _("Set up your front panel")))
 		if SystemInfo["GraphicLCD"]:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Front panel skin"), _("Skin setup"), _("Set up your front panel skin")))
-		if SystemInfo["Fan"] and HAVE_FAN_CONTROL:
+		if SystemInfo["FanPWM"]:
+			self.sublist.append(QuickSubMenuEntryComponent(_("Fan speed"), _("Fan speed control"), _("Configure the speed of the fan")))
+		elif SystemInfo["Fan"] and HAVE_FAN_CONTROL:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Fan settings"), _("Fan setup"), _("Set up your fan")))
 		if HAVE_REMOTE_CONTROL_CODE:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Remote control code settings"), _("Remote control code setup"), _("Set up your remote control")))
@@ -520,6 +522,8 @@ class GeneralSetup(Screen):
 			self.session.open(RCSetupScreen)
 		elif selected == _("Fan settings"):
 			self.session.open(FanSetupScreen)
+		elif selected == _("Fan speed"):
+			self.openSetup("fanspeed")
 		elif selected == _("Automatic volume settings"):
 			self.session.open(AutomaticVolumeAdjustmentConfigScreen)
 		elif selected == _("Factory reset"):
