@@ -458,6 +458,8 @@ static void convert_palette(uint32_t* pal, const gPalette& clut)
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
 {
 	bool accel = (surface->data_phys && src.surface->data_phys);
+	bool accumulate = accel && (gAccel::getInstance()->accumulate() >= 0);
+	int accelerationthreshold = GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD;
 //	eDebug("[gPixmap] blit: -> %d,%d+%d,%d -> %d,%d+%d,%d, flags=0x%x, accel=%d",
 //		_pos.x(), _pos.y(), _pos.width(), _pos.height(),
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
@@ -497,6 +499,36 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		}
 	}
 
+	if (accumulate)
+	{
+		int totalsurface = 0;
+		for (unsigned int i=0; i<clip.rects.size(); ++i)
+		{
+			eRect area = pos; /* pos is the virtual (pre-clipping) area on the dest, which can be larger/smaller than src if scaling is enabled */
+			area&=clip.rects[i];
+			area&=eRect(ePoint(0, 0), size());
+
+			if (area.empty())
+				continue;
+
+			eRect srcarea = area;
+
+			if (flag & blitScale)
+				srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y, srcarea.width() * FIX / scale_x, srcarea.height() * FIX / scale_y);
+
+			totalsurface += srcarea.surface() * src.surface->bypp;
+		}
+		if (totalsurface < accelerationthreshold)
+		{
+			accel = false;
+		}
+		else
+		{
+			/* total surface is larger than the threshold, no longer apply the threshold on individual clip rects */
+			accelerationthreshold = 0;
+		}
+	}
+
 //	eDebug("[gPixmap] SCALE %x %x", scale_x, scale_y);
 
 	for (unsigned int i=0; i<clip.rects.size(); ++i)
@@ -525,7 +557,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 #else
 		if (accel)
 		{
-			if (srcarea.surface() * src.surface->bypp < GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD)
+			if (srcarea.surface() * src.surface->bypp < accelerationthreshold)
 			{
 				accel = false;
 			}
