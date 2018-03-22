@@ -19,6 +19,12 @@
 #define GFX_SURFACE_FILL_ACCELERATION_THRESHOLD 80000
 #endif
 
+/* blit acceleration threshold: do not attempt to accelerate blit operations smaller than the threshold (measured in bytes) */
+#ifndef GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD
+/* by default: accelerate all blit operations on accelerated surfaces */
+#define GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD 0
+#endif
+
 // #define GPIXMAP_DEBUG
 
 #ifdef GPIXMAP_DEBUG
@@ -440,6 +446,13 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 #ifdef FORCE_NO_ACCELNEVER
 		accel = false;
 #else
+		if (accel)
+		{
+			if (srcarea.surface() * src.surface->bypp < GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD)
+			{
+				accel = false;
+			}
+		}
 		if (accel)
 		{
 			/* we have hardware acceleration for this blit operation */
