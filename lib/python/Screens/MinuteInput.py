@@ -34,6 +34,11 @@ class MinuteInput(Screen):
 			"cancel": self.cancel
 		})
 
+	def checkFieldIsEmpty(self):
+		if self["minutes"].getText() == "":
+			self["minutes"].setText("0")
+			self["minutes"].markAll()
+
 	def keyNumberGlobal(self, number):
 		self["minutes"].number(number)
 		pass
@@ -52,9 +57,11 @@ class MinuteInput(Screen):
 
 	def deleteForward(self):
 		self["minutes"].delete()
+		self.checkFieldIsEmpty()
 
 	def deleteBackward(self):
 		self["minutes"].deleteBackward()
+		self.checkFieldIsEmpty()
 
 	def up(self):
 		self["minutes"].up()
@@ -63,15 +70,12 @@ class MinuteInput(Screen):
 		self["minutes"].down()
 
 	def ok(self):
-		if self["minutes"].getText() == "":
+		IntMinutes = int(self["minutes"].getText())
+		if  IntMinutes > self.MaxMinutes:
+			self.session.open(MessageBox, _("Maximum minutes to jump %d !") %self.MaxMinutes, MessageBox.TYPE_WARNING, timeout=5)
 			self.cancel()
 		else:
-			IntMinutes = int(self["minutes"].getText())
-			if  IntMinutes > self.MaxMinutes:
-				self.session.open(MessageBox, _("Maximum minutes to jump %d !") %self.MaxMinutes, MessageBox.TYPE_WARNING, timeout=5)
-				self.cancel()
-			else:
-				self.close(IntMinutes)
+			self.close(IntMinutes)
 
 	def cancel(self):
 		self.close(0)
