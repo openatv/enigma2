@@ -1214,7 +1214,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					cmd.deltaA=0;
 					cmd.steps = +4;
 					cmd.okcount=0;
-					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, mrt) );  // mrt is in seconds... our SLEEP time is 250ms.. so * 4
+					sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, mrt*4) );  // mrt is in seconds... our SLEEP time is 250ms.. so * 4
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 0) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );  // 250msec delay
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_LOCKED_GOTO, cmd ) );
