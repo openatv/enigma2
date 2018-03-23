@@ -773,8 +773,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions", {
 			"leavePlayer": (self.playbackStop, _("Stop")),
-			"moveNext": (self.playNext, _("Play next")),
-			"movePrev": (self.playPrev, _("Play previous")),
+			#"moveNext": (self.playNext, _("Play next")),
+			#"movePrev": (self.playPrev, _("Play previous")),
 			"channelUp": (self.moveToFirstOrFirstFile, _("Go to first movie or top of list")),
 			"channelDown": (self.moveToLastOrFirstFile, _("Go to last movie or last list item")),
 		}, description=_("Recording/media selection"))
@@ -798,8 +798,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			"ok": (self.itemSelected, _("Select movie")),
 			"toggleMark": (self.toggleMark, _("Toggle mark")),
 			"invertMarks": (self.invertMarks, _("Invert marks (of files or directories)")),
-			"toggleMoveUp": (self.toggleMoveUp, _("Toggle mark and move up")),
-			"toggleMoveDown": (self.toggleMoveDown, _("Toggle mark and move down")),
+			"toggleMoveUp": (self.toggleMoveUp, lambda: _("Play previous") if self.list.playInBackground else _("Toggle mark and move up")),
+			"toggleMoveDown": (self.toggleMoveDown, lambda: _("Play next") if self.list.playInBackground else _("Toggle mark and move down")),
 			"markAll": (self.markAll, _("Mark all (files or directories)")),
 			"markNone": (self.markNone, _("Remove marks")),
 		}, description=_("Selection and exit"))
@@ -1538,15 +1538,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		from InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
-			self.marked = self.list.toggleCurrentItem()
-			self.keyUp()
+			if self.list.playInBackground:
+				self.playPrev()
+			else:
+				self.marked = self.list.toggleCurrentItem()
+				self.keyUp()
 
 	def toggleMoveDown(self):
 		from InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
-			self.marked = self.list.toggleCurrentItem()
-			self.keyDown()
+			if self.list.playInBackground:
+				self.playNext()
+			else:
+				self.marked = self.list.toggleCurrentItem()
+				self.keyDown()
 
 	def invertMarks(self):
 		from InfoBar import InfoBar
