@@ -725,6 +725,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.playGoTo = None  # 1 - preview next item / -1 - preview previous
 
 		self.marked = 0
+		self.inMark = False
+		self.markDir = 0
 
 		title = _("Movie selection")
 		self.setTitle(title)
@@ -1037,12 +1039,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self["list"].moveToLast()
 		else:
 			self["list"].moveUp()
+		self.inMark = False
 
 	def keyDown(self):
 		if self["list"].getCurrentIndex() == len(self["list"]) - 1:
 			self["list"].moveToFirst()
 		else:
 			self["list"].moveDown()
+		self.inMark = False
 
 	def directoryUp(self):
 		if self.marked:
@@ -1541,8 +1545,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if self.list.playInBackground:
 				self.playPrev()
 			else:
-				self.marked = self.list.toggleCurrentItem()
-				self.keyUp()
+				if not self.inMark:
+					self.markDir = -1
+				if self.markDir == -1:
+					self.marked = self.list.toggleCurrentItem()
+					self.keyUp()
+				else:
+					self.keyUp()
+					self.marked = self.list.toggleCurrentItem()
+				self.inMark = True
 
 	def toggleMoveDown(self):
 		from InfoBar import InfoBar
@@ -1551,8 +1562,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if self.list.playInBackground:
 				self.playNext()
 			else:
-				self.marked = self.list.toggleCurrentItem()
-				self.keyDown()
+				if not self.inMark:
+					self.markDir = +1
+				if self.markDir == +1:
+					self.marked = self.list.toggleCurrentItem()
+					self.keyDown()
+				else:
+					self.keyDown()
+					self.marked = self.list.toggleCurrentItem()
+				self.inMark = True
 
 	def invertMarks(self):
 		from InfoBar import InfoBar
