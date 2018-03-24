@@ -3929,6 +3929,9 @@ class InfoBarInstantRecord:
 #		print "stopping recording after", int(value), "minutes."
 		entry = self.recording[self.selectedEntry]
 		if value is not None:
+			value = value.replace(" ", "")
+			if value == "":
+				value = "0"
 			if int(value) != 0:
 				entry.autoincrease = False
 			entry.end = int(time()) + 60 * int(value)
