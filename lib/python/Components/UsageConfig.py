@@ -519,6 +519,8 @@ def InitUsageConfig():
 	config.usage.pic_resolution = ConfigSelection(default = None, choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")])
 	config.usage.enable_delivery_system_workaround = ConfigYesNo(default = False)
 
+	config.usage.boolean_graphic = ConfigYesNo(default=False)
+
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)
