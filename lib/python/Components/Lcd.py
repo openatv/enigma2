@@ -551,6 +551,8 @@ def InitLcd():
 			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
 			config.usage.vfd_scroll_repeats = ConfigSelection(default = "3", choices = choicelist)
 			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback = False)
+		else:
+			config.usage.vfd_scroll_repeats = ConfigNothing()
 
 		if SystemInfo["VFD_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
 			def scroll_delay(el):
