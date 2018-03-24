@@ -6,6 +6,7 @@
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key from="KEY_EDIT" to="KEY_TIME"/> <!--VU new RCU have a TIMER Button but send KEY_EDIT  -->
+			<key from="KEY_TV2" to="KEY_TV"/> <!--AXAS RCU use wrong pli key toggle mode remap to default  -->
 		</device>
 	</translate>
 </keymap>

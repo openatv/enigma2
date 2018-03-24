@@ -44,7 +44,7 @@ class HddMount(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Mount Manager"))
-		self['key_red'] = Label(" ")
+		self['key_red'] = StaticText(" ")
 		self['key_green'] = Label(_("Setup Mounts"))
 		self['key_yellow'] = Label("Unmount")
 		self['key_blue'] = Label("Mount")
@@ -104,8 +104,6 @@ class HddMount(Screen):
 			if getMachineBuild() in ('vuzero4k','u5','sf5008','et13000','et1x000','vuuno4k','vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'dags7252', 'vs1500','h7','8100s') and search('mmcblk0p[1-9]',device):
 				continue
 			if getMachineBuild() in ('xc7439') and search('mmcblk1p[1-9]',device):
-				continue
-			if getMachineBuild() in ('u5') and search('mmcblk1p[1]',device):
 				continue
 			if device in list2:
 				continue
@@ -416,8 +414,6 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			if getMachineBuild() in ('vuzero4k','u5','sf5008','et13000','et1x000','vuuno4k','vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'dags7252', 'vs1500','h7','8100s') and search('mmcblk0p[1-9]',device):
 				continue
 			if getMachineBuild() in ('xc7439') and search('mmcblk1p[1-9]',device):
-				continue
-			if getMachineBuild() in ('u5') and search('mmcblk1p[1]',device):
 				continue
 			if device in list2:
 				continue

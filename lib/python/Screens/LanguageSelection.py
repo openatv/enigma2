@@ -1,5 +1,6 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
 from Components.Language import language
 from Components.config import config
@@ -91,14 +92,26 @@ class LanguageSelection(Screen):
 		global inWizzard
 		if inWizzard:
 			inWizzard = False
-			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to delete all other languages?"), default = False)
+			#self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to delete all other languages?"), default = False)
+			if self.oldActiveLanguage != config.osd.language.value:
+				self.session.open(TryQuitMainloop, 3)
+			self.close()
 		else:
-			self.close(self.oldActiveLanguage != config.osd.language.value)
+			if self.oldActiveLanguage != config.osd.language.value:
+				self.session.openWithCallback(self.restartGUI, MessageBox,_("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
+			else:
+				self.close()
 
-	def deletelanguagesCB(self, anwser):
-		if anwser:
-			language.delLanguage()
-		self.close()
+	def restartGUI(self, answer=True):
+		if answer is True:
+			self.session.open(TryQuitMainloop, 3)
+		else:
+			self.close()
+
+	#def deletelanguagesCB(self, anwser):
+		#if anwser:
+			#language.delLanguage()
+		#self.close()
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)

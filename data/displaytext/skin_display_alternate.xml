@@ -81,7 +81,7 @@
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">VFDPosition</convert>
+			<convert type="ServicePosition">Remaining,ShowNoSeconds2,OnlyMinute</convert>
 		</widget>
 	</screen>
 
@@ -150,7 +150,7 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
-			<convert type="ClockToText">Format:   %H:%M</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,4" zPosition="1" size="120,64" text=" ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
@@ -169,7 +169,7 @@
 	</screen>
 	
 <!-- EMC  -->
-	<screen name="EMCSelection_summary" position="0,0" size="132,64">
+	<screen name="EMCSelectionSummary" position="0,0" size="132,64">
 		<widget source="parent.Service" render="Label" position="0,0" size="132,64" font="Regular;18" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -188,7 +188,7 @@
 <!-- mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">VFDPosition</convert>
+			<convert type="ServicePosition">Remaining,ShowNoSeconds2,OnlyMinute</convert>
 		</widget>
 	</screen>
 

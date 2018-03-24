@@ -75,6 +75,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				'HarddiskSetup': (self.HarddiskSetup, _('Select HDD')),	
 				"showWWW": (self.showPORTAL, _("Open MediaPortal...")),
 				"showSetup": (self.showSetup, _("Show setup...")),
+				"showInformation": (self.showInformation, _("Show Information...")),
 				"showFormat": (self.showFormat, _("Show Format Setup...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
@@ -359,6 +360,18 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			if y is not None:
 				id = y.get("val")
 				if id and id == "setup":
+					self.session.infobar = self
+					self.session.open(MainMenu, x)
+					return
+
+	def showInformation(self):
+		from Screens.Menu import MainMenu, mdom
+		root = mdom.getroot()
+		for x in root.findall("menu"):
+			y = x.find("id")
+			if y is not None:
+				id = y.get("val")
+				if id and id == "information":
 					self.session.infobar = self
 					self.session.open(MainMenu, x)
 					return

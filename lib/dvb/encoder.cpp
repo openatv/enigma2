@@ -49,7 +49,7 @@ eEncoder::~eEncoder()
 	instance = NULL;
 }
 
-int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio)
+int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio, const std::string &vcodec, const std::string &acodec)
 {
 	unsigned int i;
 	int encoderfd = -1;
@@ -70,6 +70,24 @@ int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, 
 			CFile::writeInt(filename, interlaced);
 			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/aspectratio", i);
 			CFile::writeInt(filename, aspectratio);
+			if (!vcodec.empty())
+			{
+				snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/vcodec_choices", i);
+				if (CFile::contains_word(filename, vcodec))
+				{
+					snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/vcodec", i);
+					CFile::write(filename, vcodec.c_str());
+				}
+			}
+			if (!acodec.empty())
+			{
+				snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/acodec_choices", i);
+				if (CFile::contains_word(filename, acodec))
+				{
+					snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/acodec", i);
+					CFile::write(filename, acodec.c_str());
+				}
+			}
 			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/apply", i);
 			CFile::writeInt(filename, 1);
 			if (navigationInstances[i]->playService(serviceref) >= 0)

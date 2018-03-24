@@ -258,6 +258,10 @@ msgstr "%02e.%02m, %H:%M"
 msgid "%Y-%m-%d %H-%M"
 msgstr "%d.%m.%Y %H:%M"
 
+# about.py date format
+msgid "%Y-%m-%d"
+msgstr "%d.%m.%Y"
+
 #, python-format
 msgid "%d Gb"
 msgstr "%d GB"
@@ -719,6 +723,10 @@ msgstr "AB"
 #
 msgid "AC3 downmix"
 msgstr "AC3-Downmix"
+
+#
+msgid "AAC downmix"
+msgstr "AAC-Downmix"
 
 #
 msgid "DTS downmix"
@@ -3896,6 +3904,14 @@ msgstr "Typ des FTPD-Dienstes: VSFTPD-Server"
 
 #
 msgid ""
+"GUI needs a restart to apply a new language\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"Zur Übernahme der Sprache muss die GUI\n"
+"neu gestartet werden. Jetzt neu starten?"
+
+#
+msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
@@ -4329,7 +4345,7 @@ msgid ""
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Falls Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, deaktivieren Sie diese. Falls es eine \"Dynamik\"-Einstellung gibt, sollte Sie auf Standard gesetzt werden. Verändern Sie die Intensität der Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie den Kontrast Ihres Fernsehers soweit wie möglich.\n"
+"Falls Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, deaktivieren Sie diese. Falls es eine \"Dynamik\"-Einstellung gibt, sollte sie auf Standard gesetzt werden. Verändern Sie die Intensität der Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie den Kontrast Ihres Fernsehers soweit wie möglich.\n"
 "Verringern Sie anschließend die Helligkeit soweit wie möglich. Stellen Sie dabei sicher, dass die beiden obersten Grauschattierungen erkennbar bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücken Sie OK, wenn Sie mit dem Ergebnis zufrieden sind."
 
@@ -4552,7 +4568,7 @@ msgid "Is this video mode ok?"
 msgstr "Diesen Videomodus beibehalten?"
 
 msgid "Is this setting ok?"
-msgstr "Ist diese Einstellung ist in Ordnung?"
+msgstr "Ist diese Einstellung in Ordnung?"
 
 msgid "Items per Page"
 msgstr "Einträge pro Seite"
@@ -8315,11 +8331,11 @@ msgstr "Timeshift beenden?"
 
 #
 msgid "Stop current event and disable coming events"
-msgstr "Laufenden Aufnahme abbrechen und kommende deaktivieren"
+msgstr "Laufende Aufnahme abbrechen und kommende deaktivieren"
 
 #
 msgid "Stop current event but not coming events"
-msgstr "Laufenden Aufnahme abbrechen, aber kommende ausführen"
+msgstr "Laufende Aufnahme abbrechen, aber kommende ausführen"
 
 #
 msgid "Stop playing this movie?"
@@ -9694,6 +9710,15 @@ msgstr "Nutze Programmnamen des Schnellsuchlaufs"
 msgid "Use fastscan channel numbering"
 msgstr "Nutze Kanalnummerierung des Schnellsuchlaufs"
 
+msgid "Create seperate radio userbouquet"
+msgstr "Erzeuge separates Radiobouquet"
+
+msgid "Enable auto fast scan"
+msgstr "Automatische Schnellsuche aktivieren"
+
+msgid "Enable auto fast scan for %s"
+msgstr "Automatische Schnellsuche aktivieren für %s"
+
 msgid "Use official channel numbering"
 msgstr "Offizielle Kanalnummerierung verwenden"
 
@@ -10727,8 +10752,8 @@ msgid "Default 'Timer type' *"
 msgstr "Standard 'Timer-Art' *"
 
 #: data/setup.xml
-msgid "Default 'After event'"
-msgstr "Standard 'Nach der Aufnahme'"
+msgid "Default 'After event' *"
+msgstr "Standard 'Nach der Aufnahme' *"
 
 #: data/setup.xml
 msgid "Configure default setting for new timers. Need a restart after changing."
@@ -11771,7 +11796,7 @@ msgstr "Bitte geben Sie einen neuen Namen ein:"
 
 #
 msgid "remove from parental protection"
-msgstr "Jugendschutz ausschalten"
+msgstr "Aus Jugendschutz entfernen"
 
 #
 msgid "remove new found flag"
@@ -13239,6 +13264,14 @@ msgstr "Auch bei Skin-Fehlern abstürzen?"
 # data/setup.xml
 msgid "if set to 'no', only an debug message is written to the Debug log "
 msgstr "Wenn die Option auf 'Nein' gesetzt wird, dann gibt es bei Fehlern im Skin nur einen Debug-Log-Eintrag."
+
+# data/setup.xml
+msgid "Log python stack trace on spinner (may have side effects) ?"
+msgstr "Bei Spinner Python Stack Trace loggen (kann Nebeneffekte haben) ?"
+
+# data/setup.xml
+msgid "Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner."
+msgstr "Nur ZEITWEISE auf 'ja' setzen, um die Ursache eines Spinners zu debuggen."
 
 msgid "Space used:"
 msgstr "Speicherplatznutzung:"
@@ -17802,6 +17835,12 @@ msgstr "Entferne MiniTV im Display"
 msgid "Enable MiniTV"
 msgstr "Zeige MiniTV im Display"
 
+msgid "Show PIP in MiniTV"
+msgstr "Zeige PIP im MiniTV"
+
+msgid "Show Live in MiniTV"
+msgstr "Zeige Live im MiniTV"
+
 msgid "Disable FastZapping"
 msgstr "Deaktiviere FastZapping"
 
@@ -18047,6 +18086,9 @@ msgstr "Hier können Sie den Konfigurations-Modus wechseln"
 msgid "Tuning algorithm"
 msgstr "Tuning-Algorithmus"
 
+msgid "Force Legacy Signal Stats"
+msgstr "Erzwinge ursprünglichen Signalstatus"
+
 msgid "reliable"
 msgstr "zuverlässig"
 
@@ -18059,13 +18101,16 @@ msgstr "Dies erlaubt Ihnen die Anzeige von Treibern im Downloadbereich"
 msgid "This allows you to show extensions modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Extensions im Downloadbereich"
 
+msgid "This allows you to show languages in downloads"
+msgstr "Dies erlaubt Ihnen die Anzeige von Sprachen im Downloadbereich"
+
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Systemplugins im Downloadbereich"
 
 msgid "This allows you to show softcams modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Softcams im Downloadbereich"
 
-msgid "This allows you to show skins modules in downloads"
+msgid "This allows you to show skin modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Skins im Downloadbereich"
 
 msgid "This allows you to show lcd skins in downloads"
@@ -18095,8 +18140,8 @@ msgstr "Dies erlaubt Ihnen die Anzeige von Security Erweiterungen im Downloadber
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Kernel Erweiterungen im Downloadbereich"
 
-msgid "Please enter the your personal feed URL"
-msgstr "Hier kann man die persönliche FEED URL eintragen"
+msgid "Please enter your personal feed URL"
+msgstr "Hier können Sie die persönliche FEED URL eintragen"
 
 #: MultiBootStartup.py:29
 msgid "MultiBoot Selector"
@@ -18297,6 +18342,12 @@ msgstr "HDMI Farbtiefe"
 msgid "This option allows you can config the Colordepth for UHD"
 msgstr "Diese Option erlaubt die Umstellung der Farbtiefe im UHD Modus"
 
+msgid "HDMI HDR Type"
+msgstr "HDMI HDR Mode"
+
+msgid "This option allows you can force the HDR Modes for UHD"
+msgstr "Mit dieser Option können Sie die HDR-Modi für UHD erzwingen"
+
 msgid "Recovery Mode"
 msgstr "Wartungsmodus"
 
@@ -18425,6 +18476,18 @@ msgstr "Konfigurieren Sie die Schrittweite für die Lautstärke im Schnellmodus 
 
 msgid "Delivery system workaround"
 msgstr "Tuner System Spezial Funktion"
+
+msgid "Ignore DVB-C namespace sub network"
+msgstr "Ignoriere DVB-C Subnetzwerk"
+
+msgid "Ignore DVB-S namespace sub network"
+msgstr "Ignoriere DVB-S Subnetzwerk"
+
+msgid "Ignore DVB-T namespace sub network"
+msgstr "Ignoriere DVB-T Subnetzwerk"
+
+msgid "On valid ONIDs, ignore frequency sub network part"
+msgstr "Bei gültigen ONIDS, ignoriere Subnetzwerk Frequenzen"
 
 msgid "Workaround for old tuner driver"
 msgstr "Nur aktivieren, wenn es Probleme mit Multituner gibt"

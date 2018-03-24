@@ -247,6 +247,7 @@
 		<key id="KEY_F5" mapto="openTimerList" flags="b" />
 		<key id="KEY_TIME" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
+		<key id="KEY_CALENDAR" mapto="openAutoTimerList" flags="b" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
 		<key id="KEY_SLEEP" mapto="openSleepTimer" flags="b" />
@@ -256,6 +257,7 @@
 		<key id="KEY_CONNECT" mapto="HarddiskSetup" flags="b" />
 		<key id="KEY_WWW" mapto="showWWW" flags="b" />
 		<key id="KEY_SETUP" mapto="showSetup" flags="m" />
+		<key id="KEY_QUESTION" mapto="showInformation" flags="m" />
 		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="b" />
 		<key id="KEY_PVR" mapto="showMovies" flags="b" />
 		<key id="KEY_PROG1" mapto="HarddiskSetup" flags="b" />
@@ -270,7 +272,7 @@
 		<key id="KEY_YELLOW" mapto="yellow_key" flags="l" />
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="b" />
 		<key id="KEY_AUDIO" mapto="audioSelectionLong" flags="l" />
-		<key id="KEY_OPTION" mapto="audioSelection" flags="m" />
+		<key id="KEY_OPTION" mapto="audioSelection" flags="b" />
 	</map>
 
 	<map context="InfobarAspectSelectionActions">
@@ -293,6 +295,7 @@
 
 	<map context="InfobarTimerButtonActions">
 			<key id="KEY_PROGRAM" mapto="timerSelection" flags="b" />
+			<key id="KEY_CALENDAR" mapto="openAutoTimerList" flags="b" />
 	</map>
 
 	<map context="InfobarVmodeButtonActions">
@@ -1013,6 +1016,8 @@
 		<key id="KEY_ARCHIVE" mapto="archive_long" flags="l"/>
 		<key id="KEY_OPEN" mapto="open" flags="b"/>
 		<key id="KEY_OPEN" mapto="open_long" flags="l"/>
+		<key id="KEY_OPTION" mapto="option" flags="b"/>
+		<key id="KEY_OPTION" mapto="option_long" flags="l"/>
 		<key id="KEY_WWW" mapto="www" flags="b"/>
 		<key id="KEY_WWW" mapto="www_long" flags="l"/>
 		<key id="KEY_HOMEPAGE" mapto="homep" flags="b"/>
