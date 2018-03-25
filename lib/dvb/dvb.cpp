@@ -974,7 +974,6 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 	eDVBRegisteredFrontend *fbc_fe = NULL;
 	eDVBRegisteredFrontend *best_fbc_fe = NULL;
 	eFBCTunerManager* fbcmng = m_fbc_mng;
-	c = 0;
 
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
