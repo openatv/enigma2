@@ -434,6 +434,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				const char *atype = (type && PyString_Check(type)) ? PyString_AsString(type) : 0;
 				if (atype)
 				{
+					bool alphaBlend = false;
 					if (!strcmp(atype, "text"))
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
@@ -530,7 +531,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* pvalue is borrowed */
 							/* plist is 0 or borrowed */
 					}
-					else if (!strcmp(atype, "pixmap"))
+					else if (!strcmp(atype, "pixmap") || (alphaBlend = !strcmp(atype, "pixmap_alphablend")))
 					{
 						ePyObject data;
 						ePyObject ppixmap = PyTuple_GET_ITEM(value, 1);
@@ -553,7 +554,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						{
 							eRect rect(ePoint(m_itemsize.width() - pixmap->size().width() - 15, offset.y() + (m_itemsize.height() - pixmap->size().height()) / 2), pixmap->size());
 							painter.clip(rect);
-							painter.blit(pixmap, rect.topLeft(), rect, 0);
+							painter.blit(pixmap, rect.topLeft(), rect, alphaBlend ? gPainter::BT_ALPHABLEND : 0);
 							painter.clippop();
 						}
 					}
