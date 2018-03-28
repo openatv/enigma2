@@ -516,6 +516,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 			}
 			else
 			{
+				if (!simulate)
+					((eDVBFrontend*)&frontend)->setConfigRetuneNoPatEntry(lnb_param.SatCR_RetuneNoPatEntry);
+
 				long curr_frq;
 				long curr_sym;
 				long curr_lof;
@@ -1521,13 +1524,16 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSatCRpositionnumber(int SatCR_positi
 	return 0;
 }
 
-RESULT eDVBSatelliteEquipmentControl::setLNBSatCRTuningAlgo(int SatCR_switch_reliable)
+RESULT eDVBSatelliteEquipmentControl::setLNBSatCRTuningAlgo(int value)
 {
-	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSatCRTuningAlgo(%d)", SatCR_switch_reliable);
-	if(!((SatCR_switch_reliable >= 0) && (SatCR_switch_reliable <= 1)))
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSatCRTuningAlgo(%d)", value);
+	if(!((value >= 0) && (value <= 3)))
 		return -EPERM;
 	if ( currentLNBValid() )
-		m_lnbs[m_lnbidx].SatCR_switch_reliable = SatCR_switch_reliable;
+		{
+			m_lnbs[m_lnbidx].SatCR_switch_reliable = value & 0x1;
+			m_lnbs[m_lnbidx].SatCR_RetuneNoPatEntry = (value >> 1) & 0x1;
+		}
 	else
 		return -ENOENT;
 	return 0;

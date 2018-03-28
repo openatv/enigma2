@@ -578,7 +578,7 @@ int eDVBFrontend::PreferredFrontendIndex = -1;
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
 	:m_simulate(simulate), m_enabled(false), m_fbc(false), m_simulate_fe(simulate_fe), m_type(-1), m_dvbid(fe), m_slotid(fe)
-	,m_fd(-1), m_teakover(0), m_waitteakover(0), m_break_teakover(0), m_break_waitteakover(0), m_dvbversion(0), m_rotor_mode(false)
+	,m_fd(-1), m_teakover(0), m_waitteakover(0), m_break_teakover(0), m_break_waitteakover(0), m_dvbversion(0), m_configRetuneNoPatEntry(0), m_rotor_mode(false)
 	,m_need_rotor_workaround(false), m_need_delivery_system_workaround(false), m_multitype(false), m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
 	m_DebugOptions = (1ULL << static_cast<int>(enumDebugOptions::DEBUG_DELIVERY_SYSTEM));
@@ -1103,10 +1103,33 @@ void eDVBFrontend::timeout()
 	m_tuning = 0;
 	if (m_state == stateTuning)
 	{
-		m_state = stateFailed;
-		m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1; // reset diseqc
-		m_stateChanged(this);
+		retune();
 	}
+}
+
+void eDVBFrontend::setConfigRetuneNoPatEntry(int value)
+{
+	eDebug("[eDVBFrontend::setConfigRetuneNoPatEntry] %d",value);
+	m_configRetuneNoPatEntry = value;
+}
+
+void eDVBFrontend::checkRetune()
+{
+	if (m_configRetuneNoPatEntry)
+	{
+		eDebug("[eDVBFrontend] start retune after tune error 3 (noPatEntry)");
+		retune();
+	}
+	else
+		eDebug("[eDVBFrontend] not retuning after tune error 3 (noPatEntry) - disabled");
+}
+
+void eDVBFrontend::retune()
+{
+	m_timeout->stop();
+	m_state = stateFailed;
+	m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1; // reset diseqc
+	m_stateChanged(this);
 }
 
 #define INRANGE(X,Y,Z) (((X<=Y) && (Y<=Z))||((Z<=Y) && (Y<=X)) ? 1 : 0)

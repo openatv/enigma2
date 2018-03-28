@@ -200,6 +200,13 @@ void eDVBServicePMTHandler::PMTready(int error)
 void eDVBServicePMTHandler::sendEventNoPatEntry()
 {
 	serviceEvent(eventNoPATEntry);
+	
+	ePtr<iDVBFrontend> fe;
+	if (!m_channel->getFrontend(fe))
+	{
+		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
+		frontend->checkRetune();
+	}
 }
 
 void eDVBServicePMTHandler::PATready(int)
