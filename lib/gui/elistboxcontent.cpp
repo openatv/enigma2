@@ -464,21 +464,27 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						int width = (m_itemsize.width() - m_seperation - 7) * value / size;
+						int width = (m_itemsize.width() - m_seperation - 15) * value / size;
 						int height = m_itemsize.height();
 
 						/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
-						//hack - make it customizable
-						ePoint tl(offset.x() + m_seperation, offset.y() + 1);
-						ePoint tr(offset.x() + m_itemsize.width() - 1, tl.y());
-						ePoint bl(tl.x(), offset.y() + m_itemsize.height() - 2);
-						ePoint br(tr.x(), bl.y());
-						painter.line(tl, tr);
-						painter.line(tr, br);
-						painter.line(br, bl);
-						painter.line(bl, tl);
-						painter.fill(eRect(offset.x() + m_seperation + 3, offset.y() + 5, width, height - 10));
+						if (m_slider_space)
+						{
+							ePoint tl(offset.x() + m_seperation, offset.y() + m_slider_yoffset);
+							ePoint tr(offset.x() + m_itemsize.width() - 15 - 1, tl.y());
+							ePoint bl(tl.x(), offset.y() + height - m_slider_yoffset - 1);
+							ePoint br(tr.x(), bl.y());
+							painter.line(tl, tr);
+							painter.line(tr, br);
+							painter.line(br, bl);
+							painter.line(bl, tl);
+							painter.fill(eRect(offset.x() + m_seperation + m_slider_space + 1, offset.y() + m_slider_yoffset + m_slider_space + 1, width - 2*(m_slider_space + 1), height - 2*(m_slider_yoffset + m_slider_space + 1)));
+						}
+						else
+						{
+							painter.fill(eRect(offset.x() + m_seperation, offset.y() + m_slider_yoffset, width, height - 2*m_slider_yoffset));
+						}
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))
