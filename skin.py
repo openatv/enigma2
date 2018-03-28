@@ -385,7 +385,7 @@ class AttributeParser:
 				"blend": 2,
 			}[value])
 		except KeyError:
-			print "alphatest must be one of on, off, blend, not %s." % value
+			print "[Skin] alphatest must be one of on, off or blend, not %s." % value
 
 	def orientation(self, value):  # used by eSlider
 		try:
