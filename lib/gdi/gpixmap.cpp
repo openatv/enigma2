@@ -439,31 +439,13 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 
 		if (accel)
 		{
-			/* we have hardware acceleration for this blit operation */
-			if (flag & (blitAlphaTest | blitAlphaBlend))
+			// blitAlphaTest can not be accelerated because it requires a conditional operation
+			if ((flag & blitAlphaTest) || ((flag & blitAlphaBlend) && !gAccel::getInstance()->hasAlphaBlendingSupport()))
 			{
-				/* alpha blending is requested */
-				if (gAccel::getInstance()->hasAlphaBlendingSupport())
-				{
-					/* Hardware alpha blending is broken on the few
-					 * boxes that support it, so only use it
-					 * when scaling */
+				accel = false;
 #ifdef FORCE_BLENDING_ACCELERATION
-					accel = true;
-#else
-					if (flag & blitScale)
-						accel = true;
-					else if (flag & blitAlphaTest) /* Alpha test only on 8-bit */
-						accel = (src.surface->bpp == 8);
-					else
-						accel = false;
+				accel = true;
 #endif
-				}
-				else
-				{
-					/* our hardware does not support alphablending */
-					accel = false;
-				}
 			}
 		}
 
