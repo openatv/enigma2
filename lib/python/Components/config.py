@@ -474,9 +474,9 @@ class ConfigBoolean(ConfigElement):
 		from config import config
 		if self.graphic and config.usage.boolean_graphic.value:
 			if self.value:
-				return ('pixmap', self.trueIcon)
+				return ('pixmap_alphablend', self.trueIcon)
 			else:
-				return ('pixmap', self.falseIcon)
+				return ('pixmap_alphablend', self.falseIcon)
 		else:
 			return "text", self.getText()
 
@@ -2169,7 +2169,9 @@ class ConfigSubsection(object):
 			value.load()
 
 	def __getattr__(self, name):
-		return self.content.items[name]
+		if name in self.content.items:
+			return self.content.items[name]
+		raise AttributeError(name)
 
 	def getSavedValue(self):
 		res = self.content.stored_values
