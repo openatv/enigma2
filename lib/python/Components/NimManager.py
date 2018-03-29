@@ -419,7 +419,7 @@ class SecConfigure:
 								sec.setLNBLOFL(manufacturer.lofl[product_name][position_idx].value * 1000)
 								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
 								sec.setLNBThreshold(manufacturer.loft[product_name][position_idx].value * 1000)
-								sec.setLNBSatCRTuningAlgo(currLnb.unicableTuningAlgo.value == "reliable" and 1 or 0)
+								sec.setLNBSatCRTuningAlgo(["traditional", "reliable", "traditional_retune", "reliable_retune"].index(currLnb.unicableTuningAlgo.value))
 								sec.setLNBBootupTime(manufacturer.bootuptime[product_name][0].value)
 								configManufacturer.save_forced = True
 								manufacturer.product.save_forced = True
@@ -1923,7 +1923,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
 				AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
 
-			section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")),("traditional", _("traditional (fast)"))], default="reliable")
+			section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")),("traditional", _("traditional (fast)")),("reliable_retune", _("reliable, retune")),("traditional_retune", _("traditional (fast), retune"))], default="reliable")
 
 	def configDiSEqCModeChanged(configElement):
 		section = configElement.section
