@@ -156,13 +156,7 @@ class GeneralSetup(Screen):
 			<widget source="session.VideoPicture" render="Pig" position="771,30" size="398,252" backgroundColor="transparent" zPosition="1" />
 			<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
 			<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-			<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-			<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
-			<widget name="key_blue" position="935,571" size="234,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
 			<eLabel position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
-			<eLabel position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
-			<eLabel position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
-			<eLabel position="935,567" size="234,3" zPosition="3" backgroundColor="blue" />
 		</screen> """
 
 	ALLOW_SUSPEND = True
@@ -172,9 +166,6 @@ class GeneralSetup(Screen):
 		Screen.setTitle(self, _("Setup"))
 
 		self["key_red"] = Label(_("Exit"))
-		self["key_green"] = Label()
-		self["key_yellow"] = Label()
-		self["key_blue"] = Label()
 		self["description"] = Label()
 
 		self.menu = 0
