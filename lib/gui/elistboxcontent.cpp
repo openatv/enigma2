@@ -469,21 +469,26 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 						/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
+						if (m_slider_height % 2 != height % 2)
+							m_slider_height -= 1;
+						if(m_slider_height + 2*m_slider_space >= height) // frame out of selector = without frame
+							m_slider_space = 0;
+						int slider_y_offset = (height - m_slider_height) / 2;
 						if (m_slider_space)
 						{
-							ePoint tl(offset.x() + m_seperation, offset.y() + m_slider_yoffset);
+							ePoint tl(offset.x() + m_seperation, offset.y() + slider_y_offset - m_slider_space - 1);
 							ePoint tr(offset.x() + m_itemsize.width() - 15 - 1, tl.y());
-							ePoint bl(tl.x(), offset.y() + height - m_slider_yoffset - 1);
+							ePoint bl(tl.x(), offset.y() + slider_y_offset + m_slider_height + m_slider_space);
 							ePoint br(tr.x(), bl.y());
 							painter.line(tl, tr);
 							painter.line(tr, br);
 							painter.line(br, bl);
 							painter.line(bl, tl);
-							painter.fill(eRect(offset.x() + m_seperation + m_slider_space + 1, offset.y() + m_slider_yoffset + m_slider_space + 1, width - 2*(m_slider_space + 1), height - 2*(m_slider_yoffset + m_slider_space + 1)));
+							painter.fill(eRect(offset.x() + m_seperation + m_slider_space + 1, offset.y() + slider_y_offset, width - 2*(m_slider_space + 1), m_slider_height));
 						}
 						else
 						{
-							painter.fill(eRect(offset.x() + m_seperation, offset.y() + m_slider_yoffset, width, height - 2*m_slider_yoffset));
+							painter.fill(eRect(offset.x() + m_seperation, offset.y() + slider_y_offset, width, m_slider_height));
 						}
 
 							/* pvalue is borrowed */

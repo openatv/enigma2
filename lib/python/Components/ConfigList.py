@@ -13,8 +13,8 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.l = eListboxPythonConfigContent()
 		seperation, = skin.parameters.get("ConfigListSeperator", (350, ))
 		self.l.setSeperation(seperation)
-		y_offset, space = skin.parameters.get("ConfigListSlider",(4, 0))
-		self.l.setSlider(y_offset, space)
+		height, space = skin.parameters.get("ConfigListSlider",(17, 0))
+		self.l.setSlider(height, space)
 		self.timer = eTimer()
 		self.list = list
 		self.onSelectionChanged = [ ]

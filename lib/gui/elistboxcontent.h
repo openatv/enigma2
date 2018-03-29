@@ -57,9 +57,9 @@ public:
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	void setSeperation(int sep) { m_seperation = sep; }
 	int currentCursorSelectable();
-	void setSlider(int y_offset, int space) { m_slider_yoffset = y_offset; m_slider_space = space; }
+	void setSlider(int height, int space) { m_slider_height = height; m_slider_space = space; }
 private:
-	int m_seperation, m_slider_yoffset, m_slider_space;
+	int m_seperation, m_slider_height, m_slider_space;
 };
 
 class eListboxPythonMultiContent: public eListboxPythonStringContent
