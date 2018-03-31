@@ -2992,7 +2992,7 @@ RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)
 	return 0;
 }
 
-RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
+RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 {
 	unsigned int timeout = 5000;
 	int type;
@@ -3112,7 +3112,16 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	}
 
 
-	where.calcLockTimeout(timeout);
+	m_blindscan = blindscan;
+	if (m_blindscan)
+	{
+		/* blindscan iterations can take a long time, use a long timeout */
+		timeout = 60000;
+	}
+	else
+	{
+		where.calcLockTimeout(timeout);
+	}
 
 	switch (type)
 	{

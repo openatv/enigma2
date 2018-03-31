@@ -46,7 +46,7 @@ public:
 	void addInitial(const eDVBFrontendParametersATSC &p);
 
 		/* please keep the flags in sync with lib/dvb/scan.h ! */
-	enum { scanNetworkSearch=1, scanRemoveServices=4, scanDontRemoveFeeds=8, scanDontRemoveUnscanned=16, clearToScanOnFirstNIT = 32, scanOnlyFree = 64 };
+	enum { scanNetworkSearch=1, scanRemoveServices=4, scanDontRemoveFeeds=8, scanDontRemoveUnscanned=16, clearToScanOnFirstNIT = 32, scanOnlyFree = 64, scanBlindSearch = 128 };
 
 	int start(int feid, int flags=0, int networkid = 0 );
 	SWIG_VOID(RESULT) getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT);

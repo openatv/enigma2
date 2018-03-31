@@ -153,6 +153,88 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 
 	if (state == iDVBChannel::state_ok)
 	{
+		if (m_ch_current && m_channel)
+		{
+			int type;
+			m_ch_current->getSystem(type);
+			if (type == iDVBFrontend::feTerrestrial)
+			{
+				eDVBFrontendParametersTerrestrial parm;
+				m_ch_current->getDVBT(parm);
+				if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2)
+				{
+					/* we have a lock, this is a valid DVB-T transponder, set our system parameter */
+					parm.system = eDVBFrontendParametersTerrestrial::System_DVB_T;
+					m_ch_current->setDVBT(parm);
+				}
+			}
+		}
+		if (!m_ch_blindscan.empty())
+		{
+			/* update current blindscan iteration channel with scanned parameters */
+			if (m_ch_current && m_channel)
+			{
+				ePtr<iDVBFrontend> fe;
+				m_channel->getFrontend(fe);
+				if (fe)
+				{
+					ePtr<iDVBTransponderData> tp;
+					fe->getTransponderData(tp, false);
+					if (tp)
+					{
+						ePtr<eDVBFrontendParameters> feparm = new eDVBFrontendParameters;
+						int type;
+						m_ch_current->getSystem(type);
+						switch (type)
+						{
+						case iDVBFrontend::feSatellite:
+						{
+							eDVBFrontendParametersSatellite parm;
+							m_ch_current->getDVBS(parm);
+							parm.system = tp->getSystem();
+							parm.frequency = tp->getFrequency();
+							parm.symbol_rate = tp->getSymbolRate();
+							parm.modulation = tp->getModulation();
+							feparm->setDVBS(parm);
+							break;
+						}
+						case iDVBFrontend::feCable:
+						{
+							eDVBFrontendParametersCable parm;
+							m_ch_current->getDVBC(parm);
+							parm.system = tp->getSystem();
+							parm.frequency = tp->getFrequency();
+							parm.symbol_rate = tp->getSymbolRate();
+							parm.modulation = tp->getModulation();
+							feparm->setDVBC(parm);
+							break;
+						}
+						case iDVBFrontend::feTerrestrial:
+						{
+							eDVBFrontendParametersTerrestrial parm;
+							m_ch_current->getDVBT(parm);
+							parm.system = tp->getSystem();
+							parm.frequency = tp->getFrequency();
+							parm.bandwidth = tp->getBandwidth();
+							parm.modulation = tp->getConstellation();
+							feparm->setDVBT(parm);
+							break;
+						}
+						case iDVBFrontend::feATSC:
+						{
+							eDVBFrontendParametersATSC parm;
+							m_ch_current->getATSC(parm);
+							parm.system = tp->getSystem();
+							parm.frequency = tp->getFrequency();
+							feparm->setATSC(parm);
+							break;
+						}
+						}
+						m_ch_current = m_ch_blindscan_result = feparm;
+					}
+				}
+			}
+		}
 		startFilter();
 		m_channel_state = state;
 	} else if (state == iDVBChannel::state_failed)
@@ -186,6 +268,12 @@ void eDVBScan::stateChange(iDVBChannel *ch)
 				}
 			}
 		}
+		if (!m_ch_blindscan.empty())
+		{
+			/* tune failure, this means the blindscan channel iteration run has completed */
+			SCAN_eDebug("[eDVBScan] blindscan channel completed");
+			m_ch_blindscan.pop_front();
+		}
 		nextChannel();
 	}
 			/* unavailable will timeout, anyway. */
@@ -213,19 +301,27 @@ RESULT eDVBScan::nextChannel()
 	if (m_usePAT)
 		m_ready_all |= readyPAT;
 
-	if (m_ch_toScan.empty())
+	if (!m_ch_blindscan.empty())
 	{
-		SCAN_eDebug("[eDVBScan] no channels left to scan.");
-		SCAN_eDebug("[eDVBScan] %zd channels scanned, %zd were unavailable.",
-				m_ch_scanned.size(), m_ch_unavailable.size());
-		SCAN_eDebug("[eDVBScan] %zd channels in database.", m_new_channels.size());
-		m_event(evtFinish);
-		return -ENOENT;
+		/* keep iterating with the same 'channel' till we get a tune failure */
+		SCAN_eDebug("[eDVBScan] blindscan channel iteration");
+		m_ch_current = m_ch_blindscan.front();
 	}
+	else
+	{
+		m_ch_blindscan_result = NULL;
+		if (m_ch_toScan.empty())
+		{
+			SCAN_eDebug("[eDVBScan] no channels left: %zd scanned, %zd unavailable, %zd database.",
+				m_ch_scanned.size(), m_ch_unavailable.size(), m_new_channels.size());
+			m_event(evtFinish);
+			return -ENOENT;
+		}
 
-	m_ch_current = m_ch_toScan.front();
+		m_ch_current = m_ch_toScan.front();
 
-	m_ch_toScan.pop_front();
+		m_ch_toScan.pop_front();
+	}
 
 	if (m_channel->getFrontend(fe))
 	{
@@ -237,7 +333,7 @@ RESULT eDVBScan::nextChannel()
 
 	m_channel_state = iDVBChannel::state_idle;
 
-	if (fe->tune(*m_ch_current))
+	if (fe->tune(*m_ch_current, !m_ch_blindscan.empty()))
 		return nextChannel();
 
 	m_event(evtUpdate);
@@ -1040,10 +1136,10 @@ void eDVBScan::channelDone()
 					snprintf(pname, 255, "%s %s %d%c %d.%d°%c",
 						parm.system ? "DVB-S2" : "DVB-S",
 						parm.modulation == eDVBFrontendParametersSatellite::Modulation_Auto ? "AUTO" :
-							eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
-							eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
-							eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
-							eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
+						parm.modulation == eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
+						parm.modulation == eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" :
+						parm.modulation == eDVBFrontendParametersSatellite::Modulation_QAM16 ? "QAM16" :
+						parm.modulation == eDVBFrontendParametersSatellite::Modulation_16APSK ? "16APSK" : "32APSK",
 						parm.frequency/1000,
 						parm.polarisation ? 'V' : 'H',
 						parm.orbital_position/10,
@@ -1152,11 +1248,13 @@ void eDVBScan::channelDone()
 
 void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags, int networkid)
 {
+	std::list<ePtr<iDVBFrontendParameters> > *transponderlist = &m_ch_toScan;
 	m_flags = flags;
 	m_networkid = networkid;
 	m_ch_toScan.clear();
 	m_ch_scanned.clear();
 	m_ch_unavailable.clear();
+	m_ch_blindscan.clear();
 	m_new_channels.clear();
 	m_tuner_data.clear();
 	m_new_services.clear();
@@ -1181,10 +1279,45 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 				eDebug("[eDVBScan] couldn't open file lcndb");
 		}
 	}
+
+	if (m_flags & scanBlindSearch)
+	{
+		/*
+		 * NOTE: for blindscan, the initial list of transponders does not need to contain valid transponders.
+		 * Each of the provided transponders will be iterated (i.e. tuned with blindscan parameter) several times
+		 * until a tune failure occurs. Each time a blindscan tune iteration returns ok,
+		 * a new transponder has been found and will be scanned.
+		 * Each transponder in the initial transponder list causes a full blindscan iteration run.
+		 *
+		 * Some of the parameters of the initial transponders will be used for the blindscan,
+		 * but most will be ignored.
+		 *
+		 * For DVB-S, you need to provide a list of 4 transponders for each orbital position:
+		 * one for each polarity (H/V or L/R), one for each band (hi/lo).
+		 * The frequency defines the starting frequency within the desired band.
+		 * The symbolrate defines the frequency search range, in MHz (frequency / 1000).
+		 * The polarity defines on which polarity the search should run.
+		 * All remaining transponder parameters will be ignored.
+		 * So for each orbital position, 4 blindscan iteration runs will be done, one for each polarity/band 'quadrant'.
+		 *
+		 * For DVB-C, only one initial transponder has to be provided.
+		 * The frequency defines the start of the blindscan.
+		 * The symbolrate defines the frequency search range, in MHz (frequency / 1000000).
+		 *
+		 * For DVB-T, usually only one initial transponder has to be provided.
+		 * The frequency defines the start of the blindscan.
+		 * The bandwidth defines both the search step as well as the search bandwidth.
+		 */
+
+		SCAN_eDebug("[eDVBScan] blind scan requested");
+		transponderlist = &m_ch_blindscan;
+	}
+
+
 	for (eSmartPtrList<iDVBFrontendParameters>::const_iterator i(known_transponders.begin()); i != known_transponders.end(); ++i)
 	{
 		bool exist=false;
-		for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator ii(m_ch_toScan.begin()); ii != m_ch_toScan.end(); ++ii)
+		for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator ii(transponderlist->begin()); ii != transponderlist->end(); ++ii)
 		{
 			if (sameChannel(*i, *ii, true))
 			{
@@ -1193,7 +1326,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 			}
 		}
 		if (!exist)
-			m_ch_toScan.push_back(*i);
+			transponderlist->push_back(*i);
 	}
 
 	nextChannel();
@@ -1685,7 +1818,12 @@ RESULT eDVBScan::getFrontend(ePtr<iDVBFrontend> &fe)
 
 RESULT eDVBScan::getCurrentTransponder(ePtr<iDVBFrontendParameters> &tp)
 {
-	if (m_ch_current)
+	if (m_ch_blindscan_result)
+	{
+		tp = m_ch_blindscan_result;
+		return 0;
+	}
+	else if (m_ch_current)
 	{
 		tp = m_ch_current;
 		return 0;
