@@ -19,52 +19,57 @@ class AVSwitch:
 							"60Hz":		{ 60: "pal60" },
 							"multi":	{ 50: "pal", 60: "pal60" } }
 
-	rates["NTSC"] =		{	"60Hz": 	{ 60: "ntsc" } }
+	rates["NTSC"] =		{	"60Hz":		{ 60: "ntsc" } }
 
 	rates["Multi"] =	{	"multi":	{ 50: "pal", 60: "ntsc" } }
 
-	rates["480i"] =		{	"60Hz": 	{ 60: "480i" } }
+	rates["480i"] =		{	"60Hz":		{ 60: "480i" } }
 
-	rates["576i"] =		{	"50Hz": 	{ 50: "576i" } }
+	rates["576i"] =		{	"50Hz":		{ 50: "576i" } }
 
-	rates["480p"] =		{	"60Hz": 	{ 60: "480p" } }
+	rates["480p"] =		{	"60Hz":		{ 60: "480p" } }
 
-	rates["576p"] =		{	"50Hz": 	{ 50: "576p" } }
+	rates["576p"] =		{	"50Hz":		{ 50: "576p" } }
 
-	rates["720p"] =		{	"50Hz": 	{ 50: "720p50" },
-							"60Hz": 	{ 60: "720p" },
-							"multi": 	{ 50: "720p50", 60: "720p" } }
+	rates["720p"] =		{	"50Hz":		{ 50: "720p50" },
+							"60Hz":		{ 60: "720p" },
+							"multi":	{ 50: "720p50", 60: "720p" },
+							"auto":		{ 50: "720p50", 60: "720p", 24: "720p24" } }
 
 	rates["1080i"] =	{	"50Hz":		{ 50: "1080i50" },
 							"60Hz":		{ 60: "1080i" },
-							"multi":	{ 50: "1080i50", 60: "1080i" } }
+							"multi":	{ 50: "1080i50", 60: "1080i" },
+							"auto":		{ 50: "1080i50", 60: "1080i", 24: "1080p24" } }
 
 	rates["1080p"] =	{ 	"50Hz":		{ 50: "1080p50" },
 							"60Hz":		{ 60: "1080p" },
-							"multi":	{ 50: "1080p50", 60: "1080p" } }
+							"multi":	{ 50: "1080p50", 60: "1080p" },
+							"auto":		{ 50: "1080p50", 60: "1080p", 24: "1080p24" } }
 
 	rates["2160p"] =	{ 	"50Hz":		{ 50: "2160p50" },
 							"60Hz":		{ 60: "2160p" },
-							"multi":	{ 50: "2160p50", 60: "2160p" } }
+							"multi":	{ 50: "2160p50", 60: "2160p" },
+							"auto":		{ 50: "2160p50", 60: "2160p", 24: "2160p24" } }
 							
 	rates["2160p30"] =	{ 	"25Hz":		{ 50: "2160p25" },
 							"30Hz":		{ 60: "2160p30"} ,
-							"multi":	{ 50: "2160p25", 60: "2160p30" } }
+							"multi":	{ 50: "2160p25", 60: "2160p30" },
+							"auto":		{ 50: "2160p25", 60: "2160p30", 24: "2160p24" } }
 
 	rates["PC"] = {
-		"1024x768": { 60: "1024x768" }, # not possible on DM7025
-		"800x600" : { 60: "800x600" },  # also not possible
-		"720x480" : { 60: "720x480" },
-		"720x576" : { 60: "720x576" },
-		"1280x720": { 60: "1280x720" },
-		"1280x720 multi": { 50: "1280x720_50", 60: "1280x720" },
-		"1920x1080": { 60: "1920x1080"},
-		"1920x1080 multi": { 50: "1920x1080", 60: "1920x1080_50" },
-		"1280x1024" : { 60: "1280x1024"},
-		"1366x768" : { 60: "1366x768"},
-		"1366x768 multi" : { 50: "1366x768", 60: "1366x768_50" },
-		"1280x768": { 60: "1280x768" },
-		"640x480" : { 60: "640x480" }
+		"1024x768":						{ 60: "1024x768" }, # not possible on DM7025
+		"800x600" :						{ 60: "800x600" },  # also not possible
+		"720x480" :						{ 60: "720x480" },
+		"720x576" :						{ 60: "720x576" },
+		"1280x720":						{ 60: "1280x720" },
+		"1280x720 multi":				{ 50: "1280x720_50", 60: "1280x720" },
+		"1920x1080":					{ 60: "1920x1080"},
+		"1920x1080 multi":				{ 50: "1920x1080", 60: "1920x1080_50" },
+		"1280x1024":					{ 60: "1280x1024"},
+		"1366x768" :					{ 60: "1366x768"},
+		"1366x768 multi":				{ 50: "1366x768", 60: "1366x768_50" },
+		"1280x768":						{ 60: "1280x768" },
+		"640x480" :						{ 60: "640x480" }
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
@@ -96,7 +101,7 @@ class AVSwitch:
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
-	# 	print "remove DVI-PC because of not existing modes"
+	# 	print "[AVSwitch] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
 	if modes.has_key("YPbPr") and getBoxType() in ('dinobot4kplus','dinobot4kmini','zgemmah9t','zgemmah9s','zgemmah9splus','vuzero4k','vuuno4kse','anadol4k','mediabox4k','dinobot4kl','dinobot4k','dinobot4kse','lunix','purehdse','lunix34k','sf5008','et13000','zgemmah6','vipert2c','vipercombo','vipercombohdd','e4hdultra','evoslimse','evoslimt2c','beyonwizu4','zgemmah4','osnino','osninoplus','axultra','gbue4k','spycat4kcombo','spycat4k','valalinux','formuler4ip','formuler3ip','tm4ksuper','galaxy4k','zgemmah52splus','zgemmah2splus','zgemmah7','zgemmah32tc','zgemmah52tc','alphatriple','gi11000','spycat4kmini','tmtwin4k','tmnanom3','tiviarmin','vimastec1000','vimastec1500', 'gbquad4k','revo4k','force3uhdplus','force3uhd','force2nano','evoslim','zgemmah5ac', 'zgemmah3ac', 'bre2zet2c', 'dm900', 'dm920', 'wetekplay', 'wetekplay2', 'wetekhub', 'bre2ze4k', 'vuuno4k', 'vuultimo4k', 'sf4008', 'e4hdcombo', 'ultrabox', 'osmega', 'tmnano3t', 'novaip', 'novacombo', 'novatwin', 'dm520', 'dm525', 'megaforce2', 'purehd', 'sf128', 'sf138', 'mutant11', 'xpeedlxpro', 'mbtwinplus', 'mutant51', 'ax51', 'twinboxlcdci5' , 'twinboxlcdci', 'singleboxlcd', 'formuler4', 'formuler4turbo', 'zgemmah5', 'zgemmah52s', 'zgemmai55', 'sf98', 'odinplus', 'zgemmaslc', '9900lx', '9910lx', '9911lx', 'vusolo4k', 'et7x00mini', 'evomini', 'evominiplus', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 't2cable', 'xpeedlxcs2', 'xpeedlxcc', 'osmini', 'osminiplus', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'sf3038', 'spycat', 'bwidowx', 'bwidowx2', 'fegasusx3', 'fegasusx5s', 'fegasusx5t', 'force2', 'force2plus', 'force2plushv', 'optimussos', 'tmnanose', 'tmnanosem2', 'tmnanosem2plus', 'tmnanocombo', 'zgemmash1', 'zgemmash2', 'zgemmas2s', 'zgemmass', 'mago', 'enibox', 'sf108', 'x1plus', 'xcombo', 'mutant1100', 'mutant1200', 'mutant1265', 'mutant1500', 'mutant500c', 'mutant530c', 'et4x00', 'et7500', 'et7000', 'et7100', 'et8500', 'et8500s', 'xp1000mk', 'xp1000max', 'xp1000plus', 'sf8', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano', 'iqonios300hd', 'iqonios300hdv2', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'dm500hdv2', 'dm500hd', 'dm800', 'mixosf7', 'mixoslumi', 'mixosf5mini', 'gi9196lite', 'ixusszero', 'optimussos1', 'enfinity', 'marvel1', 'bre2ze', 'sezam1000hd', 'mbmini', 'atemio5x00', 'xpeedlx1', 'xpeedlx2', 'vusolose', 'gbipbox', 'formuler3', 'optimussos3plus', 'force1plus', 'vuzero', 'vizyonvita') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
@@ -115,6 +120,7 @@ class AVSwitch:
 		self.current_port = None
 
 		self.readAvailableModes()
+		self.is24hzAvailable()
 
 		self.createConfig()
 		self.readPreferredModes()
@@ -125,7 +131,7 @@ class AVSwitch:
 			modes = f.read()[:-1]
 			f.close()
 		except IOError:
-			print "couldn't read available videomodes."
+			print "[AVSwitch] couldn't read available videomodes."
 			self.modes_available = [ ]
 			return
 		self.modes_available = modes.split(' ')
@@ -137,12 +143,19 @@ class AVSwitch:
 			f.close()
 			self.modes_preferred = modes.split(' ')
 		except IOError:
-			print "reading preferred modes failed, using all modes"
+			print "[AVSwitch] reading preferred modes failed, using all modes"
 			self.modes_preferred = self.modes_available
 
 		if self.modes_preferred != self.last_modes_preferred:
 			self.last_modes_preferred = self.modes_preferred
 			self.on_hotplug("HDMI") # must be HDMI
+
+	def is24hzAvailable(self):
+		try:
+			self.has24pAvailable = os.access("/proc/stb/video/videomode_24hz", os.W_OK) and True or False
+		except IOError:
+			print "[AVSwitch] failed to read video choices 24hz ."
+			self.has24pAvailable = False
 
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
@@ -151,7 +164,7 @@ class AVSwitch:
 			if port == "DVI":
 				if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime"):
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
-						print "no, not preferred"
+						print "[AVSwitch] no, not preferred"
 						return False
 			if mode not in self.modes_available:
 				return False
@@ -161,7 +174,7 @@ class AVSwitch:
 		return mode in self.widescreen_modes
 
 	def setMode(self, port, mode, rate, force = None):
-		print "[VideoMode] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
+		print "[AVSwitch] setMode - port: %s, mode: %s, rate: %s" % (port, mode, rate)
 
 		# config.av.videoport.setValue(port)
 		# we can ignore "port"
@@ -172,10 +185,16 @@ class AVSwitch:
 
 		mode_50 = modes.get(50)
 		mode_60 = modes.get(60)
+		mode_24 = modes.get(24)
+
 		if mode_50 is None or force == 60:
 			mode_50 = mode_60
 		if mode_60 is None or force == 50:
 			mode_60 = mode_50
+		if mode_24 is None or force:
+			mode_24 = mode_60
+			if force == 50:
+				mode_24 = mode_50
 
 		try:
 			f = open("/proc/stb/video/videomode_50hz", "w")
@@ -192,6 +211,12 @@ class AVSwitch:
 				f.close()
 			except IOError:
 				print "[AVSwitch] setting videomode failed."
+
+		if self.has24pAvailable:
+			try:
+				open("/proc/stb/video/videomode_24hz", "w").write(mode_24)
+			except IOError:
+				print "[VideoHardware] cannot open /proc/stb/video/videomode_24hz"
 
 #		try:
 #			# use 50Hz mode (if available) for booting
@@ -278,11 +303,18 @@ class AVSwitch:
 				config.av.autores_mode_fhd[port] = ConfigSelection(choices = [mode for (mode, rates) in modes])
 				config.av.autores_mode_uhd[port] = ConfigSelection(choices = [mode for (mode, rates) in modes])
 			for (mode, rates) in modes:
-				config.av.videorate[mode] = ConfigSelection(choices = rates)
-				config.av.autores_rate_sd[mode] = ConfigSelection(choices = rates)
-				config.av.autores_rate_hd[mode] = ConfigSelection(choices = rates)
-				config.av.autores_rate_fhd[mode] = ConfigSelection(choices = rates)
-				config.av.autores_rate_uhd[mode] = ConfigSelection(choices = rates)
+				ratelist = []
+				for rate in rates:
+					if rate in ("auto"):
+						if self.has24pAvailable:
+							ratelist.append((rate, rate))
+					else:
+						ratelist.append((rate, rate))
+				config.av.videorate[mode] = ConfigSelection(choices = ratelist)
+				config.av.autores_rate_sd[mode] = ConfigSelection(choices = ratelist)
+				config.av.autores_rate_hd[mode] = ConfigSelection(choices = ratelist)
+				config.av.autores_rate_fhd[mode] = ConfigSelection(choices = ratelist)
+				config.av.autores_rate_uhd[mode] = ConfigSelection(choices = ratelist)
 		config.av.videoport = ConfigSelection(choices = lst)
 
 	def setInput(self, input):
@@ -302,26 +334,26 @@ class AVSwitch:
 	def setConfiguredMode(self):
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
-			print "current port not available, not setting videomode"
+			print "[AVSwitch] current port not available, not setting videomode"
 			return
 
 		mode = config.av.videomode[port].value
 
 		if mode not in config.av.videorate:
-			print "current mode not available, not setting videomode"
+			print "[AVSwitch] current mode not available, not setting videomode"
 			return
 
 		rate = config.av.videorate[mode].value
 		self.setMode(port, mode, rate)
 
 	def setAspect(self, cfgelement):
-		print "[VideoMode] setting aspect: %s" % cfgelement.value
+		print "[AVSwitch] setting aspect: %s" % cfgelement.value
 		try:
 			f = open("/proc/stb/video/aspect", "w")
 			f.write(cfgelement.value)
 			f.close()
 		except IOError:
-			print "setting aspect failed."
+			print "[AVSwitch] setting aspect failed."
 
 	def setWss(self, cfgelement):
 		if not cfgelement.value:
@@ -329,13 +361,13 @@ class AVSwitch:
 		else:
 			wss = "auto"
 		if os.path.exists("/proc/stb/denc/0/wss"):
-			print "[VideoMode] setting wss: %s" % wss
+			print "[AVSwitch] setting wss: %s" % wss
 			f = open("/proc/stb/denc/0/wss", "w")
 			f.write(wss)
 			f.close()
 
 	def setPolicy43(self, cfgelement):
-		print "[VideoMode] setting policy: %s" % cfgelement.value
+		print "[AVSwitch] setting policy: %s" % cfgelement.value
 		arw = "0"
 		try:
 			if about.getChipSetString() in ('meson-6', 'meson-64'):
@@ -348,11 +380,11 @@ class AVSwitch:
 				f.write(cfgelement.value)
 				f.close()
 		except IOError:
-			print "setting policy43 failed."
+			print "[AVSwitch] setting policy43 failed."
 
 	def setPolicy169(self, cfgelement):
 		if os.path.exists("/proc/stb/video/policy2"):
-			print "[VideoMode] setting policy2: %s" % cfgelement.value
+			print "[AVSwitch] setting policy2: %s" % cfgelement.value
 			f = open("/proc/stb/video/policy2", "w")
 			f.write(cfgelement.value)
 			f.close()
@@ -1071,7 +1103,7 @@ def InitAVSwitch():
 		def setScaler_sharpness(config):
 			myval = int(config.value)
 			try:
-				print "[VideoMode] setting scaler_sharpness to: %0.8X" % myval
+				print "[AVSwitch] setting scaler_sharpness to: %0.8X" % myval
 				f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
 				f.write("%0.8X\n" % myval)
 				f.close()
@@ -1079,7 +1111,7 @@ def InitAVSwitch():
 				f.write("1")
 				f.close()
 			except IOError:
-				print "couldn't write pep_scaler_sharpness"
+				print "[AVSwitch] couldn't write pep_scaler_sharpness"
 
 		if getBoxType() in ('gbquad', 'gbquadplus'):
 			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
@@ -1104,20 +1136,20 @@ class VideomodeHotplug:
 		iAVSwitch.on_hotplug.remove(self.hotplug)
 
 	def hotplug(self, what):
-		print "hotplug detected on port '%s'" % what
+		print "[AVSwitch] hotplug detected on port '%s'" % what
 		port = config.av.videoport.value
 		mode = config.av.videomode[port].value
 		rate = config.av.videorate[mode].value
 
 		if not iAVSwitch.isModeAvailable(port, mode, rate):
-			print "mode %s/%s/%s went away!" % (port, mode, rate)
+			print "[AVSwitch] mode %s/%s/%s went away!" % (port, mode, rate)
 			modelist = iAVSwitch.getModeList(port)
 			if not len(modelist):
-				print "sorry, no other mode is available (unplug?). Doing nothing."
+				print "[AVSwitch] sorry, no other mode is available (unplug?). Doing nothing."
 				return
 			mode = modelist[0][0]
 			rate = modelist[0][1]
-			print "setting %s/%s/%s" % (port, mode, rate)
+			print "[AVSwitch] setting %s/%s/%s" % (port, mode, rate)
 			iAVSwitch.setMode(port, mode, rate)
 
 hotplug = None

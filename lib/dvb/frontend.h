@@ -112,6 +112,7 @@ private:
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
 	bool m_need_delivery_system_workaround;
+	bool m_blindscan;
 	bool m_multitype;
 	std::map<fe_delivery_system_t, int> m_modelist;
 	std::map<fe_delivery_system_t, bool> m_delsys, m_delsys_whitelist;
@@ -162,7 +163,7 @@ public:
 	int readInputpower();
 	int getCurrentType(){return m_type;}
 	void overrideType(int type){m_type = type;} //workaraound for dvb api < 5
-	RESULT tune(const iDVBFrontendParameters &where);
+	RESULT tune(const iDVBFrontendParameters &where, bool blindscan = false);
 	RESULT prepare_sat(const eDVBFrontendParametersSatellite &, unsigned int timeout);
 	RESULT prepare_cable(const eDVBFrontendParametersCable &);
 	RESULT prepare_terrestrial(const eDVBFrontendParametersTerrestrial &);
