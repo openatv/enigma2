@@ -1,0 +1,176 @@
+language: cpp
+
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    packages:
+    - linux-libc-dev
+    - git
+    - build-essential
+    - automake
+    - libtool
+    - python-dev
+    - zlib1g-dev
+    - gettext
+    - swig
+    - libgstreamer1.0-dev
+    - libgstreamer-plugins-base1.0-dev
+    - libfreetype6-dev
+    - libsigc++-2.0-dev
+    - libfribidi-dev
+    - libssl-dev
+    - libavahi-client-dev
+    - libjpeg-turbo8-dev
+    - libgif-dev
+
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+         - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+         - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+
+before_install:
+    - eval "${MATRIX_EVAL}"
+
+script:
+- echo installing libdvbsi++
+- pushd .
+- cd /tmp
+- git clone git://git.opendreambox.org/git/obi/libdvbsi++.git
+- cd libdvbsi++
+- autoreconf -i
+- ./configure
+- make
+- sudo make install
+- popd
+- echo installing tuxbox
+- pushd .
+- cd /tmp
+- git clone https://github.com/OpenPLi/tuxtxt.git
+- cd tuxtxt/libtuxtxt
+- autoreconf -i
+- ./configure --with-boxtype=generic DVB_API_VERSION=5
+- make
+- sudo make install
+- cd ../tuxtxt
+- autoreconf -i
+- ./configure --with-boxtype=generic DVB_API_VERSION=5
+- make
+- sudo make install
+- popd
+- echo compiling enigma2
+- autoreconf -i
+- ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
+- make
+- echo done!
+
