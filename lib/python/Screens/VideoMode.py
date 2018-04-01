@@ -249,7 +249,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		if int(res) > int(config_res) or (int(res) == int(config_res) and ((pol == 'p' and config_pol == 'i') or (config_mode == '2160p30' and mode == '2160p'))):
 			setmode[config_port].setValue(config_mode)
-		if config_rate != 'multi' and (rate == 'multi' or int(config_rate) < int(rate)):
+		if config_rate not in ("auto","multi") and (rate == 'multi' or int(config_rate) < int(rate)):
 			setrate[config_mode].setValue(config_rate)
 
 	def keyLeft(self):
