@@ -141,6 +141,13 @@ matrix:
 
 before_install:
     - eval "${MATRIX_EVAL}"
+    - curl -L https://people.freedesktop.org/~slomo/gstreamer.tar.gz | tar xz
+    - sed -i "s;prefix=/root/gstreamer;prefix=$PWD/gstreamer;g" $PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig/*.pc
+    - export PKG_CONFIG_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig
+    - export GST_PLUGIN_SYSTEM_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu/gstreamer-1.0
+    - export GST_PLUGIN_SCANNER=$PWD/gstreamer/libexec/gstreamer-1.0/gst-plugin-scanner
+    - export PATH=$PATH:$PWD/gstreamer/bin
+    - export LD_LIBRARY_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
 script:
 - echo installing libdvbsi++
