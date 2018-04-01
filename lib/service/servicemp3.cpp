@@ -1318,7 +1318,7 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 		return -1;
 
 	//eDebug("[eServiceMP3]  seekRelative direction %d, pts_t to %" G_GINT64_FORMAT, direction, (gint64)to);
-	gint64 ppos = 0;
+	pts_t ppos = 0;
 #if GST_VERSION_MAJOR >= 1
 	//m_seeking_or_paused = true;
 	if (direction > 0)
