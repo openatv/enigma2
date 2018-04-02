@@ -373,8 +373,7 @@ def loadPixmap(path, desktop):
 		cached = "cached" in options
 	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
 	if ptr is None:
-#		raise SkinError("pixmap file %s not found!" % path)
-		print("pixmap file %s not found!" % path)
+		raise SkinError("pixmap file %s not found!" % path)
 	return ptr
 
 pngcache = []
