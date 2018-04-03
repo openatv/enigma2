@@ -61,7 +61,8 @@
 		<menu weight="10" level="1" text="Recordings &amp; Timeshift" entryID="rec_setup">
 			<id val="rec" />
 			<item weight="10" level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
-			<item weight="15" level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
+			<item weight="15" level="0" text="HDMI-IN Recording settings" entryID="hdmirecord_setup" requires="HDMIin"><setup id="HDMIRecord"/></item>
+			<item weight="20" level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
 		</menu>
 
 		<!-- Menu / Settings / GUI -->

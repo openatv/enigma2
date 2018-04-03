@@ -1580,6 +1580,7 @@ class InfoBarMenu:
 				"showNetworkSetup": (self.showNetworkMounts, _("Show network mounts ...")),
 				"showSystemSetup": (self.showSystemMenu, _("Show network mounts ...")),
 				"showRFmod": (self.showRFSetup, _("Show RFmod setup...")),
+				"showHDMIRecord": (self.showHDMiRecordSetup, _("Show HDMIRecord setup...")),
 				"toggleAspectRatio": (self.toggleAspectRatio, _("Toggle aspect ratio...")),
 			})
 		self.session.infobar = None
@@ -1637,6 +1638,10 @@ class InfoBarMenu:
 	def showRFSetup(self):
 		if SystemInfo["RfModulator"]:
 			self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
+
+	def showHDMiRecordSetup(self):
+		if SystemInfo["HDMIin"]:
+			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
