@@ -9,6 +9,7 @@ import os
 from time import sleep
 
 config.av = ConfigSubsection()
+config.av.edid_override = ConfigYesNo(default = False)
 
 class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
@@ -122,8 +123,9 @@ class AVSwitch:
 		self.readAvailableModes()
 		self.is24hzAvailable()
 
-		self.createConfig()
 		self.readPreferredModes()
+		self.createConfig()
+
 
 	def readAvailableModes(self):
 		try:
@@ -137,13 +139,30 @@ class AVSwitch:
 		self.modes_available = modes.split(' ')
 
 	def readPreferredModes(self):
-		try:
-			f = open("/proc/stb/video/videomode_preferred")
-			modes = f.read()[:-1]
-			f.close()
-			self.modes_preferred = modes.split(' ')
-		except IOError:
-			print "[AVSwitch] reading preferred modes failed, using all modes"
+		if config.av.edid_override:
+			try:
+				f = open("/proc/stb/video/videomode_edid")
+				modes = f.read()[:-1]
+				f.close()
+				self.modes_preferred = modes.split(' ')
+				print "[AVSwitch] reading edid modes: ", self.modes_preferred
+			except IOError:
+				print "[AVSwitch] reading edid modes failed, using all modes"
+				try:
+					f = open("/proc/stb/video/videomode_preferred")
+					modes = f.read()[:-1]
+					f.close()
+					self.modes_preferred = modes.split(' ')
+					print "[AVSwitch] reading _preferred modes: ", self.modes_preferred
+				except IOError:
+					print "[AVSwitch] reading preferred modes failed, using all modes"
+					self.modes_preferred = self.modes_available
+		else:
+			self.modes_preferred = self.modes_available
+			print "[AVSwitch] used default modes: ", self.modes_preferred
+			
+		if len(self.modes_preferred) <= 2:
+			print "[AVSwitch] preferend modes not ok, possible driver failer, len=", len(self.modes_preferred)
 			self.modes_preferred = self.modes_available
 
 		if self.modes_preferred != self.last_modes_preferred:
@@ -166,7 +185,7 @@ class AVSwitch:
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
 						print "[AVSwitch] no, not preferred"
 						return False
-			if mode not in self.modes_available:
+			if mode not in self.modes_preferred:
 				return False
 		return True
 
@@ -1120,8 +1139,6 @@ def InitAVSwitch():
 		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
-
-	config.av.edid_override = ConfigYesNo(default = False)
 
 	iAVSwitch.setConfiguredMode()
 
