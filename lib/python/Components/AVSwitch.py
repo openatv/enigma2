@@ -139,7 +139,7 @@ class AVSwitch:
 		self.modes_available = modes.split(' ')
 
 	def readPreferredModes(self):
-		if config.av.edid_override:
+		if config.av.edid_override.value == False:
 			try:
 				f = open("/proc/stb/video/videomode_edid")
 				modes = f.read()[:-1]
