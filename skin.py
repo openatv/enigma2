@@ -371,9 +371,11 @@ def loadPixmap(path, desktop):
 		path = path[:option]
 		cached = "cached" in options
 	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
-	if ptr is None:
-		raise SkinError("pixmap file %s not found!" % path)
-	return ptr
+	if ptr is not None:
+		return ptr
+	print("pixmap file %s not found!" % path)
+
+
 
 pngcache = []
 def cachemenu():
