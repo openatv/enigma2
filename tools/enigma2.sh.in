@@ -8,6 +8,8 @@ sysconfdir=@sysconfdir@
 bindir=@bindir@
 libdir=@libdir@
 
+run_log="/home/root/logs/enigma2_execution.log"
+
 #check if factory mode is present
 if [ -x /home/root/factory/enigma2 -a -e /proc/stb/ft/config -a "$(grep 0 /proc/stb/ft/config)" != "0" ]; then
 	echo "factory test mode"
@@ -43,7 +45,9 @@ fi
 
 # hook to execute scripts always before enigma2 start
 if [ -x ${bindir}/enigma2_pre_start.sh ]; then
+	echo "$(date): executing ${bindir}/enigma2_pre_start.sh" >> ${run_log}
 	${bindir}/enigma2_pre_start.sh
+	echo "$(date): ${bindir}/enigma2_pre_start.sh terminated with code $?" >> ${run_log}
 fi
 
 if [ -d /home/root ]; then
@@ -64,11 +68,14 @@ sync
 # (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
 #         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
+echo "$(date): executing enigma2" >> ${run_log}
+
 if [ -n "${debug_path}" ]; then
 	LD_PRELOAD=$LIBS ${bindir}/enigma2 &> ${debug_path}
 else
 	LD_PRELOAD=$LIBS ${bindir}/enigma2
 fi
+
 
 # enigma2 exit codes:
 #
@@ -85,6 +92,7 @@ fi
 # >128 - signal + 128
 
 ret=$?
+echo "$(date): enigma2 terminated with code $ret" >> ${run_log}
 case $ret in
 	1)
 		/sbin/halt
