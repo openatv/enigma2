@@ -69,8 +69,7 @@ def addSkin(name, scope = SCOPE_SKIN):
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
 		try:
-			file = open(filename, 'r')
-			dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
+			dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
 		except:
 			print "[SKIN ERROR] error in %s" % filename
 			return False
