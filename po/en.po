@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2018-03-21 22:50+0300\n"
-"PO-Revision-Date: 2018-03-21 22:50+0300\n"
+"POT-Creation-Date: 2018-04-03 21:25+0300\n"
+"PO-Revision-Date: 2018-04-03 21:30+0300\n"
 "Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language: en_US\n"
@@ -2285,6 +2285,9 @@ msgstr "better"
 
 msgid "Big PiP"
 msgstr "Big PiP"
+
+msgid "Bitrate"
+msgstr "Bitrate"
 
 msgid "Bitrate:"
 msgstr "Bitrate:"
@@ -6050,6 +6053,9 @@ msgstr "FP Upgrade"
 msgid "FP upgrade required"
 msgstr "FP upgrade required"
 
+msgid "Frame rate"
+msgstr "Frame rate"
+
 msgid "Frame size in full view"
 msgstr "Frame size in full view"
 
@@ -6359,14 +6365,26 @@ msgstr "GStreamer:\t%s"
 msgid "Guard interval"
 msgstr "Guard interval"
 
-msgid "GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"
-msgstr "GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"
+msgid ""
+"GUI needs a restart to apply a new language\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"GUI needs a restart to apply a new language\n"
+"Do you want to restart the GUI now?"
 
-msgid "GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"
-msgstr "GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"
+msgid ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to Restart the GUI now?"
+msgstr ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to Restart the GUI now?"
 
-msgid "GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"
-msgstr "GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"
+msgid ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to restart the GUI now?"
 
 msgid "H"
 msgstr "H"
@@ -6444,6 +6462,12 @@ msgstr "HDMI Colorspace"
 
 msgid "HDMIin"
 msgstr "HDMIin"
+
+msgid "HDMI Recording"
+msgstr "HDMI Recording"
+
+msgid "HDMI-IN Recording settings"
+msgstr "HDMI-IN Recording settings"
 
 msgid "Hebrew"
 msgstr "Hebrew"
@@ -6873,8 +6897,12 @@ msgstr ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
 
-msgid "In the Standby blinking Clock on the LCD Display"
-msgstr "In the Standby blinking Clock on the LCD Display"
+msgid ""
+"In most cases this should be set to No. Only enable if you have a very "
+"specific need."
+msgstr ""
+"In most cases this should be set to No. Only enable if you have a very "
+"specific need."
 
 msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
@@ -6885,6 +6913,9 @@ msgstr ""
 
 msgid "In progress"
 msgstr "In progress"
+
+msgid "In the Standby blinking Clock on the LCD Display"
+msgstr "In the Standby blinking Clock on the LCD Display"
 
 msgid "Inactive"
 msgstr "Inactive"
@@ -7153,6 +7184,9 @@ msgstr "Interface"
 
 msgid "Interface: "
 msgstr "Interface: "
+
+msgid "Interlaced"
+msgstr "Interlaced"
 
 msgid "Intermediate"
 msgstr "Intermediate"
@@ -7803,6 +7837,9 @@ msgstr "Maxdown: "
 
 msgid "Maximum no of days:"
 msgstr "Maximum no of days:"
+
+msgid "Maximum minutes to jump %d !"
+msgstr "Maximum minutes to jump %d !"
 
 msgid "Maximum number of days in EPG"
 msgstr "Maximum number of days in EPG"
@@ -10740,6 +10777,9 @@ msgstr "Release Notes"
 msgid "reliable"
 msgstr "reliable"
 
+msgid "reliable, retune"
+msgstr "reliable, retune"
+
 msgid "religion"
 msgstr "religion"
 
@@ -12699,6 +12739,9 @@ msgstr "Show HDMI Output Resulution"
 msgid "Show HDMI-Output Res"
 msgstr "Show HDMI-Output Res"
 
+msgid "Show HDMIRecord setup.."
+msgstr "Show HDMIRecord setup.."
+
 msgid "Show help"
 msgstr "Show help"
 
@@ -14151,6 +14194,9 @@ msgstr "The %s %s reads the stored EPG data every (hours)."
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "The %s %s stores the EPG data every (hours)."
 
+msgid "The aspect ratio of the recording."
+msgstr "The aspect ratio of the recording."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -14169,6 +14215,13 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "The backup failed. Please choose a different backup location."
+
+msgid ""
+"The bitrate of the video encoder. Larger value improves quality and "
+"increases file size."
+msgstr ""
+"The bitrate of the video encoder. Larger value improves quality and "
+"increases file size."
 
 msgid ""
 "The buffer time for timeshift exceeds the specified limit in the settings.\n"
@@ -14265,6 +14318,20 @@ msgstr ""
 
 msgid "The following files were found..."
 msgstr "The following files were found..."
+
+msgid ""
+"The frame rate of the recording. Ideally, this will match the frame rate of "
+"the source or be an integer multiple. If in doubt, set to 60, which should "
+"work with most sources."
+msgstr ""
+"The frame rate of the recording. Ideally, this will match the frame rate of "
+"the source or be an integer multiple. If in doubt, set to 60, which should "
+"work with most sources."
+
+msgid ""
+"The height of the picture. The input will be scaled to match this value."
+msgstr ""
+"The height of the picture. The input will be scaled to match this value."
 
 msgid "The image or kernel will be flashing and auto booted in few minutes.\n"
 msgstr "The image or kernel will be flashing and auto booted in few minutes.\n"
@@ -14416,6 +14483,10 @@ msgid ""
 msgstr ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
+
+msgid "The width of the picture. The input will be scaled to match this value."
+msgstr ""
+"The width of the picture. The input will be scaled to match this value."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -15262,6 +15333,9 @@ msgstr "Track"
 
 msgid "traditional (fast)"
 msgstr "traditional (fast)"
+
+msgid "traditional (fast), retune"
+msgstr "traditional (fast), retune"
 
 msgid "Traditional Chinese"
 msgstr "Traditional Chinese"

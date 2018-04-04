@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-23 04:10+0300\n"
-"PO-Revision-Date: 2018-03-23 19:14+0200\n"
+"POT-Creation-Date: 2018-04-03 21:25+0300\n"
+"PO-Revision-Date: 2018-04-04 18:08+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -2299,6 +2299,9 @@ msgstr "geriau"
 
 msgid "Big PiP"
 msgstr "Didelis PiP"
+
+msgid "Bitrate"
+msgstr "Sparta bitais"
 
 msgid "Bitrate:"
 msgstr "Sparta bitais:"
@@ -6092,6 +6095,9 @@ msgstr "Priekinio procesoriaus atnaujinimas"
 msgid "FP upgrade required"
 msgstr "Priekinį procesorių reikia atnaujinti"
 
+msgid "Frame rate"
+msgstr "Kadrų dažnis"
+
 msgid "Frame size in full view"
 msgstr "Kadro dydis viso ekrano režimu"
 
@@ -6498,6 +6504,12 @@ msgstr "HDMI spalvų erdvė"
 
 msgid "HDMIin"
 msgstr "HDMI įvestis"
+
+msgid "HDMI Recording"
+msgstr "HDMI įrašymas"
+
+msgid "HDMI-IN Recording settings"
+msgstr "HDMI-IN įrašymo nustatymai"
 
 msgid "Hebrew"
 msgstr "Hebrajų"
@@ -6938,9 +6950,12 @@ msgstr ""
 "Eksperimentiniame režime nustatykite, kuris imtuvas turės įrašymo pirmenybę, "
 "kai galimas daugiau, nei vienas imtuvas."
 
-msgid "In the Standby blinking Clock on the LCD Display"
+msgid ""
+"In most cases this should be set to No. Only enable if you have a very "
+"specific need."
 msgstr ""
-"Čia galite nustatyti, ar budėjimo režime LCD ekrane rodyti mirksintį laikrodį"
+"Daugeliu atvejų tai turėtų būti nustatyta 'Ne'. Įjunkite tik jei turite "
+"labai konkretų poreikį."
 
 msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
@@ -6951,6 +6966,10 @@ msgstr ""
 
 msgid "In progress"
 msgstr "Vykdoma"
+
+msgid "In the Standby blinking Clock on the LCD Display"
+msgstr ""
+"Čia galite nustatyti, ar budėjimo režime LCD ekrane rodyti mirksintį laikrodį"
 
 msgid "Inactive"
 msgstr "Neaktyvus"
@@ -7219,6 +7238,9 @@ msgstr "Sąsaja"
 
 msgid "Interface: "
 msgstr "Sąsaja: "
+
+msgid "Interlaced"
+msgstr "Dvieilio pynimo"
 
 msgid "Intermediate"
 msgstr "Normalus"
@@ -10823,6 +10845,9 @@ msgstr "Išleidimo informacija"
 msgid "reliable"
 msgstr "patikimas"
 
+msgid "reliable, retune"
+msgstr "patikimas, sureguliuokite"
+
 msgid "religion"
 msgstr "religija"
 
@@ -12797,6 +12822,9 @@ msgstr "Rodyti HDMI išvesties rezoliuciją"
 msgid "Show HDMI-Output Res"
 msgstr "Rodyti HDMI išvesties rezoliuciją"
 
+msgid "Show HDMIRecord setup.."
+msgstr "Rodyti HDMI įrašų sąranką.."
+
 msgid "Show help"
 msgstr "Rodyti pagalbą"
 
@@ -14258,6 +14286,9 @@ msgstr "%s %s skaito saugomus EPG duomenis kas (valandos)."
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s išsaugo EPG duomenis kas (val.)."
 
+msgid "The aspect ratio of the recording."
+msgstr "Vaizdo įrašo santykis."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -14276,6 +14307,13 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui."
+
+msgid ""
+"The bitrate of the video encoder. Larger value improves quality and "
+"increases file size."
+msgstr ""
+"Vaizdo kodavimo duomenų srautas. Didesnė reikšmė pagerina kokybę ir padidina "
+"failo dydį."
 
 msgid ""
 "The buffer time for timeshift exceeds the specified limit in the settings.\n"
@@ -14373,6 +14411,19 @@ msgstr ""
 
 msgid "The following files were found..."
 msgstr "Buvo surasti šie failai..."
+
+msgid ""
+"The frame rate of the recording. Ideally, this will match the frame rate of "
+"the source or be an integer multiple. If in doubt, set to 60, which should "
+"work with most sources."
+msgstr ""
+"Kadrų įrašymo dažnis. Geriausia, kad tai atitiktų pradinio kadravimo dažnį "
+"arba būtų sveikasis skaičius. Jei kyla abejonių, nustatykite 60, kuris "
+"turėtų dirbti su daugeliu šaltinių."
+
+msgid ""
+"The height of the picture. The input will be scaled to match this value."
+msgstr "Vaizdo aukštis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 
 msgid "The image or kernel will be flashing and auto booted in few minutes.\n"
 msgstr ""
@@ -14526,6 +14577,9 @@ msgid ""
 msgstr ""
 "Vaizdo režimo priedas neįdiegtas!\n"
 "Įdiekite jį."
+
+msgid "The width of the picture. The input will be scaled to match this value."
+msgstr "Vaizdo plotis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -15398,6 +15452,9 @@ msgstr "Takelis"
 
 msgid "traditional (fast)"
 msgstr "tradicinis (greitas)"
+
+msgid "traditional (fast), retune"
+msgstr "tradicinis (greitas), sureguliuokite"
 
 msgid "Traditional Chinese"
 msgstr "Tradicinė kinų"
