@@ -698,6 +698,13 @@ def InitAVSwitch():
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
+		
+		
+	def setUnsupportModes(configElement):
+		iAVSwitch.readPreferredModes()
+		iAVSwitch.createConfig()
+
+	config.av.edid_override.addNotifier(setUnsupportModes)
 
 	if os.path.exists("/proc/stb/video/hdmi_colorspace"):
 		f = open("/proc/stb/video/hdmi_colorspace", "r")
