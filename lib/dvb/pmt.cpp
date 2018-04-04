@@ -278,7 +278,7 @@ void saveData(int orgid, unsigned char* data, int sectionLength)
 		data[7] = data[6];
 	}
 
-	if((fd = open(fileName, O_RDWR|O_CREAT|O_TRUNC)) < 0)
+	if((fd = open(fileName, O_RDWR|O_CREAT|O_TRUNC, 0644)) < 0)
 	{
 		eDebug("[eDVBServicePMTHandler] Fail to save a AIT Data.");
 		return;

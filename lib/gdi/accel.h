@@ -21,6 +21,8 @@ public:
 	bool hasAlphaBlendingSupport();
 	int blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags);
 	int fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col);
+	int accumulate();
+	int sync();
 
 	int accelAlloc(gUnmanagedSurface* surface);
 	void accelFree(gUnmanagedSurface* surface);

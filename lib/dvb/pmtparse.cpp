@@ -46,7 +46,7 @@ void eDVBPMTParser::processCaDescriptor(program &program, CaDescriptor *descr)
 	pair.databytes.clear();
 	for(std::vector<unsigned char>::const_iterator it = descr->getCaDataBytes()->begin(); it != descr->getCaDataBytes()->end(); ++it)
 	{
-		char t[2];
+		char t[3];
 		sprintf(t, "%02X", *it);
 		pair.databytes += t;
 	}

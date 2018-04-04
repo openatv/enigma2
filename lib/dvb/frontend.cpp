@@ -2146,6 +2146,31 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				break;
 			}
+			case eSecCommand::IF_LOCK_TIMEOUT_GOTO:
+				if (!m_simulate)
+				{
+					bool timeout = false;
+					while (1)
+					{
+						dvb_frontend_event event;
+						int res;
+						res = ::ioctl(m_fd, FE_GET_EVENT, &event);
+
+						if (res && (errno == EAGAIN))
+							break;
+
+						if (event.status & FE_TIMEDOUT)
+						{
+							eDebugNoSimulate("[eDVBFrontend] IF_LOCK_TIMEOUT_GOTO: got FE_TIMEDOUT");
+							setSecSequencePos(m_sec_sequence.current()->steps);
+							timeout = true;
+							break;
+						}
+					}
+					if (timeout) break;
+				}
+				++m_sec_sequence.current();
+				break;
 			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
 				m_runningInputpower = sec_fe->readInputpower();
 				eDebugNoSimulate("[SEC] runningInputpower is %d", m_runningInputpower);
@@ -2967,7 +2992,7 @@ RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)
 	return 0;
 }
 
-RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
+RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 {
 	unsigned int timeout = 5000;
 	int type;
@@ -3087,7 +3112,16 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	}
 
 
-	where.calcLockTimeout(timeout);
+	m_blindscan = blindscan;
+	if (m_blindscan)
+	{
+		/* blindscan iterations can take a long time, use a long timeout */
+		timeout = 60000;
+	}
+	else
+	{
+		where.calcLockTimeout(timeout);
+	}
 
 	switch (type)
 	{

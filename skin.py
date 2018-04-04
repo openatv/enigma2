@@ -69,8 +69,7 @@ def addSkin(name, scope = SCOPE_SKIN):
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
 		try:
-			file = open(filename, 'r')
-			dom_skins.append((mpath, xml.etree.cElementTree.parse(file).getroot()))
+			dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
 		except:
 			print "[SKIN ERROR] error in %s" % filename
 			return False
@@ -372,10 +371,11 @@ def loadPixmap(path, desktop):
 		path = path[:option]
 		cached = "cached" in options
 	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
-	if ptr is None:
-#		raise SkinError("pixmap file %s not found!" % path)
-		print("pixmap file %s not found!" % path)
-	return ptr
+	if ptr is not None:
+		return ptr
+	print("pixmap file %s not found!" % path)
+
+
 
 pngcache = []
 def cachemenu():
