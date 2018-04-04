@@ -494,7 +494,7 @@ void eDVBTSTools::calcBegin()
 			pts_t pts = m_pts_begin;
 			if (m_streaminfo.fixupPTS(begin, pts) == 0)
 			{
-				eDebug("[eDVBTSTools] calcBegin [@ML] m_streaminfo.getLastFrame returned %lld, %lld (%us), fixup to: %lld, %lld (%us)",
+				eDebug("[eDVBTSTools] calcBegin [@ML] m_streaminfo.getFirstFrame returned %lld, %lld (%us), fixup to: %lld, %lld (%us)",
 				       m_offset_begin, m_pts_begin, (unsigned int)(m_pts_begin/90000), begin, pts, (unsigned int)(pts/90000));
 			}
 			m_begin_valid = 1;
@@ -558,12 +558,16 @@ void eDVBTSTools::calcEnd()
 		{
 			m_offset_end = offset;
 			m_pts_length = m_pts_end = pts;
+			if (m_pts_end < m_pts_begin)
+				m_pts_end += 0x200000000LL;
 			end = m_offset_end;
 			if (m_streaminfo.fixupPTS(end, m_pts_length) != 0)
 			{
 				/* Not enough structure info, estimate */
 				m_pts_length = pts_diff(m_pts_begin, m_pts_end);
 			}
+			eDebug("[eDVBTSTools] calcEnd [@ML] m_streaminfo.getLastFrame returned %lld, %lld (%us), fixup to: %lld, %lld (%us)",
+					   offset, pts, (unsigned int)(pts/90000), end, m_pts_length, (unsigned int)(m_pts_length/90000));
 			m_end_valid = 1;
 		}
 		else
