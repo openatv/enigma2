@@ -558,6 +558,8 @@ void eDVBTSTools::calcEnd()
 		{
 			m_offset_end = offset;
 			m_pts_length = m_pts_end = pts;
+			if (m_pts_end < m_pts_begin)
+				m_pts_end += 0x200000000LL;
 			end = m_offset_end;
 			if (m_streaminfo.fixupPTS(end, m_pts_length) != 0)
 			{
