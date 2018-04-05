@@ -2165,14 +2165,14 @@ class InfoBarSeek:
 				self.activityTimer.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
-					pass
+					self.doSeekRelative(0)
 					# print "[InfoBarGenerics] resolved to FAST FORWARD"
 				else:
 					self.seekstate = self.SEEK_STATE_PLAY
 					# print "[InfoBarGenerics] FAST FORWARD not possible: resolved to PLAY"
 			elif self.seekstate[2]:
 				if not pauseable.setSlowMotion(self.seekstate[2]):
-					pass
+					self.doSeekRelative(0)
 					# print "[InfoBarGenerics] resolved to SLOW MOTION"
 				else:
 					self.seekstate = self.SEEK_STATE_PAUSE
