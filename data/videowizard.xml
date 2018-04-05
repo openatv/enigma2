@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <wizard>
-	<step id="inputselection" nextstep="modeselection" timeout="10" timeoutaction="selectnext">
+	<step id="inputselection" nextstep="modesdetection" timeout="10" timeoutaction="selectnext">
 		<condition>
 self.condition = len(self.listInputChannels()) > 1
 if len(self.listInputChannels()) == 1:
@@ -16,6 +16,48 @@ self.clearSelectedKeys()
 self.selectKey("OK")
 		</code>
 	</step>
+
+		<step id="modesdetection" >
+		<condition>
+self.condition = (self.port == "DVI" or self.port == "HDMI")
+		</condition>
+			<text value="Use automatic mode detection.\n This option reads all supported modes from your TV.\n Please disable it only if you want to customize the preferred configuration." />
+			<displaytext value="Use automatic mode detection.\n This option reads all supported modes from your TV.\n Please disable it only if you want to customize the preferred configuration." />
+			<list>
+				<listentry caption="Yes" step="modeauto" />
+				<listentry caption="No" step="modedefault" />
+			</list>
+			<code>
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
+			</code>
+		</step>
+
+		<step id="modedefault" timeoutstep="modeselection" timeout="1" timeoutaction="changestep">
+		<condition>
+self.condition = (self.port == "DVI" or self.port == "HDMI")
+		</condition>
+		<text value="Default Modes Selected." />
+		<displaytext value="Default Modes Selected." />
+			<code>
+config.av.edid_override.setValue(True)
+config.av.edid_override.save()
+			</code>
+		</step>
+
+		<step id="modeauto" timeoutstep="modeselection" timeout="1" timeoutaction="changestep">
+		<condition>
+self.condition = (self.port == "DVI" or self.port == "HDMI")
+		</condition>
+		<text value="Auto Modes Selected." />
+		<displaytext value="Auto Modes Selected." />
+			<code>
+config.av.edid_override.setValue(False)
+config.av.edid_override.save()
+			</code>
+		</step>
+
 	<step id="modeselection" nextstep="rateselection" timeout="10" timeoutaction="selectnext">
 		<text value="Video mode selection." />
 		<displaytext value="Select video mode" />
