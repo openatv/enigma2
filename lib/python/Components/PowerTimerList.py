@@ -67,7 +67,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 			autosleepwindow = ""
 			if timer.autosleepwindow == 'yes':
 				autosleepwindow = _("Time range:") + " " + FuzzyTime(timer.autosleepbegin)[1] + " ... " + FuzzyTime(timer.autosleepend)[1] + ", "
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, width-self.satPosLeft, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, autosleepwindow + _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, width-self.satPosLeft, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, autosleepwindow + _("Delay:") + " " + str(timer.autosleepdelay) + " (" + _("mins") + ")"))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, 0, width - self.satPosLeft, self.rowSplit, 2, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
 			begin = FuzzyTime(timer.begin)

@@ -7,9 +7,11 @@ from Screens.Screen import Screen
 
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
+from Components.SystemInfo import SystemInfo
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 from Tools.HardwareInfo import HardwareInfo
+
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
@@ -175,6 +177,8 @@ class VideoWizard(WizardLanguage, Rc):
 			print mode
 			if mode[0] == querymode:
 				for rate in mode[1]:
+					if rate in ("auto") and not SystemInfo["have24hz"]:
+						continue
 					if self.port == "DVI-PC":
 						print "rate:", rate
 						if rate == "640x480":

@@ -175,6 +175,7 @@ class AVSwitch:
 		except IOError:
 			print "[AVSwitch] failed to read video choices 24hz ."
 			self.has24pAvailable = False
+		SystemInfo["have24hz"] = self.has24pAvailable
 
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
@@ -231,7 +232,7 @@ class AVSwitch:
 			except IOError:
 				print "[AVSwitch] setting videomode failed."
 
-		if self.has24pAvailable:
+		if SystemInfo["have24hz"]:
 			try:
 				open("/proc/stb/video/videomode_24hz", "w").write(mode_24)
 			except IOError:
@@ -324,11 +325,9 @@ class AVSwitch:
 			for (mode, rates) in modes:
 				ratelist = []
 				for rate in rates:
-					if rate in ("auto"):
-						if self.has24pAvailable:
-							ratelist.append((rate, rate))
-					else:
-						ratelist.append((rate, rate))
+					if rate in ("auto") and not SystemInfo["have24hz"]:
+						continue
+					ratelist.append((rate, rate))
 				config.av.videorate[mode] = ConfigSelection(choices = ratelist)
 				config.av.autores_rate_sd[mode] = ConfigSelection(choices = ratelist)
 				config.av.autores_rate_hd[mode] = ConfigSelection(choices = ratelist)
