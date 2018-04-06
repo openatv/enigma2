@@ -4473,10 +4473,10 @@ class InfoBarSubtitleSupport(object):
 			subtitle = self.getCurrentServiceSubtitle()
 			cachedsubtitle = subtitle and subtitle.getCachedSubtitle()
 			if cachedsubtitle:
-				self.enableSubtitle(cachedsubtitle)
+				self.enableSubtitle(cachedsubtitle, seek=False)
 				self.doCenterDVBSubs()
 
-	def enableSubtitle(self, selectedSubtitle):
+	def enableSubtitle(self, selectedSubtitle, seek=True):
 		subtitle = self.getCurrentServiceSubtitle()
 		self.selected_subtitle = selectedSubtitle
 		if subtitle and self.selected_subtitle:
@@ -4484,7 +4484,7 @@ class InfoBarSubtitleSupport(object):
 			self.subtitle_window.show()
 			self.doCenterDVBSubs()
 			ref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-			if ref.getType() < eServiceReference.idUser:
+			if seek and ref.getType() < eServiceReference.idUser:
 				self.subtitleSeekTimer.start(150, True)
 		else:
 			if subtitle:
