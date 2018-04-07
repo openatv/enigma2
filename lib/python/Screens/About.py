@@ -194,6 +194,7 @@ class About(Screen):
 		self.skinName = ["AboutOE","About"]
 		self.populate()
 
+		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Translations"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
@@ -202,6 +203,7 @@ class About(Screen):
 				"log": self.showAboutReleaseNotes,
 				"up": self.pageUp,
 				"down": self.pageDown,
+				"red": self.close,
 				"green": self.showTranslationInfo,
 			})
 
