@@ -4,16 +4,42 @@ import xml.etree.cElementTree
 import os
 
 profile("LOAD:enigma_skin")
-from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
+from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop, BT_ALPHATEST, BT_ALPHABLEND
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
+from collections import namedtuple
 
 colorNames = {}
-switchPixmap = dict()
+_switchPixmapEntry = namedtuple("switchPixmapEntry", ["pixmap", "alphatest"])
+switchPixmapInfo = {}
+
+# Minimal, backwards compatible, deprecated switchPixmap
+class _switchPixmap:
+	__deprecated = False
+
+	def __deprecate(self):
+		if not self.__deprecated:
+			print "[SKIN] use of switchPixmap deprecated, use switchPixmapInfo"
+			self.__deprecated = True
+
+	def __getitem__(self, key):
+		self.__deprecate()
+		return switchPixmapInfo[key].pixmap
+
+	def get(self, key, default=None):
+		self.__deprecate()
+		return switchPixmapInfo[key].pixmap if key in switchPixmapInfo else default
+
+	def __setitem__(self, key, val):
+		global switchPixmapInfo
+		self.__deprecate()
+		switchPixmapInfo[key] = _switchPixmapEntry(val, 0)
+
+switchPixmap = _switchPixmap()
 windowStyles = []
 
 # Predefined fonts, typically used in built-in screens and for components like
@@ -104,6 +130,12 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+
+_alphatestKey = {
+	"off": 0,
+	"on": BT_ALPHATEST,
+	"blend": BT_ALPHABLEND,
+};
 
 profile("LoadSkin")
 res = None
@@ -382,11 +414,7 @@ class AttributeParser:
 
 	def alphatest(self, value):
 		try:
-			self.guiObject.setAlphatest({
-				"on": 1,
-				"off": 0,
-				"blend": 2,
-			}[value])
+			self.guiObject.setAlphatest(_alphatestKey[value])
 		except KeyError:
 			print "[Skin] alphatest must be one of on, off or blend, not %s." % value
 
@@ -640,7 +668,13 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				raise SkinError('pixmap needs filename attribute')
 			resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
 			if fileExists(resolved_png):
-				switchPixmap[name] = resolved_png
+				value = get_attr('alphatest', 'off')
+				try:
+					alphatest = _alphatestKey[value]
+				except KeyError:
+					print "[Skin] alphatest must be one of on, off or blend, not %s." % value
+					alphatest = 0
+				switchPixmapInfo[name] = _switchPixmapEntry(resolved_png, alphatest)
 			else:
 				raise SkinError('switchpixmap pixmap filename="%s" (%s) not found' % (filename, resolved_png))
 
