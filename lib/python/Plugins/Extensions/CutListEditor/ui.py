@@ -142,35 +142,40 @@ class CutListContextMenu(FixedMenu):
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
-	<screen position="0,0" size="720,576" flags="wfNoBorder">
-		<eLabel text="Cutlist editor" position="65,60" size="300,25" font="Regular;20" />
-		<widget source="global.CurrentTime" render="Label" position="268,60" size="394,20" font="Regular;20" halign="right">
-			<convert type="ClockToText">Format:%A %B %d, %H:%M</convert>
+	<screen flags="wfNoBorder" position="0,0" size="1280,720" title="Cutlist editor">
+		<panel name="FullScreenWindow" />
+		<eLabel position="50,86" size="380,520" backgroundColor="grey" zPosition="1"/>
+		<eLabel position="51,87" size="378,518" backgroundColor="black" zPosition="2"/>
+		<widget position="60,96" size="360,450" render="Listbox" scrollbarMode="showOnDemand" source="cutlist" transparent="1" zPosition="3">
+			<convert type="TemplatedMultiContent">
+						{"template": [
+						MultiContentEntryText(pos=(10,2), size=(160, 20), text = 1, backcolor = MultiContentTemplateColor(4)),
+						MultiContentEntryText(pos=(180,2), size=(80, 20), text = 2, flags = RT_HALIGN_CENTER, backcolor = MultiContentTemplateColor(4)),
+						MultiContentEntryText(pos=(270,2), size=(70, 20), text = 3, flags = RT_HALIGN_RIGHT, backcolor = MultiContentTemplateColor(4))
+						],
+
+						"fonts": [gFont("Regular", 20)],
+						"itemHeight": 25
+						}
+					</convert>
 		</widget>
-		<eLabel position="268,98" size="394,304" backgroundColor="#505555" />
-		<widget name="Video" position="270,100" zPosition="1" size="390,300" backgroundColor="transparent" />
-		<widget source="session.CurrentService" render="Label" position="135,405" size="450,50" font="Regular;22" halign="center" valign="center">
+		<eLabel position="240,548" size=" 80,20" text="IN" zPosition="3" halign="center" font="Regular;20" backgroundColor="#004000"/>
+		<widget position="330,548" size=" 70,20" name="InLen" zPosition="3" halign="right" font="Regular;20" backgroundColor="#004000"/>
+		<eLabel position="240,573" size=" 80,20" text="OUT" zPosition="3" halign="center" font="Regular;20" backgroundColor="#400000"/>
+		<widget position="330,573" size=" 70,20" name="OutLen" zPosition="3" halign="right" font="Regular;20" backgroundColor="#400000"/>
+		<eLabel position="462,86" size="768,432" backgroundColor="transparent2" zPosition="3"/>
+		<widget position="462,86" size="768,432" name="Video" zPosition="-10"/>
+		<widget position="462,528" size="768,30" backgroundColor="black" font="Regular; 18" halign="center" render="Label" source="session.CurrentService" transparent="1" valign="center" zPosition="3" foregroundColor="white">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="320,450" zPosition="1" size="420,25" font="Regular;20" halign="left" valign="center">
+		<widget position="462,559" size="768,25" backgroundColor="black" font="Regular; 19" halign="center" render="Label" source="session.CurrentService" transparent="1" valign="center" zPosition="3" foregroundColor="white">
 			<convert type="ServicePosition">Position,Detailed</convert>
 		</widget>
-		<widget name="SeekState" position="210,450" zPosition="1" size="100,25" halign="right" font="Regular;20" valign="center" />
-		<eLabel position="48,98" size="204,274" backgroundColor="#505555" />
-		<eLabel position="50,100" size="200,270" backgroundColor="#000000" />
-		<widget source="cutlist" position="50,100" zPosition="1" size="200,270" scrollbarMode="showOnDemand" transparent="1" render="Listbox" >
-			<convert type="TemplatedMultiContent">
-				{"template": [
-						MultiContentEntryText(size=(125, 20), text = 1, backcolor = MultiContentTemplateColor(3)),
-						MultiContentEntryText(pos=(125,0), size=(50, 20), text = 2, flags = RT_HALIGN_RIGHT, backcolor = MultiContentTemplateColor(3))
-					],
-				 "fonts": [gFont("Regular", 18)],
-				 "itemHeight": 20
-				}
-			</convert>
-		</widget>
-		<widget name="Timeline" position="50,485" size="615,20" backgroundColor="#505555" pointer="position_arrow.png:3,5" foregroundColor="black" />
-		<ePixmap pixmap="icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
+		<widget position="430,584" size=" 65,25" name="SeekState" zPosition="1" halign="right" font="Regular;20" valign="center"/>
+		<widget position="510,586" size="720,20" name="Timeline" backgroundColor="un808888" foregroundColor="black" pointer="position_arrow.png:3,5" zPosition="3"/>
+		<panel name="FullscreenMenuButtonPanel" />
+		<panel name="FullScreenColourPanel" />
+		<panel name="FullscreenHelpButtonPanel" />
 	</screen>"""
 
 	BACK_BACK = 0
