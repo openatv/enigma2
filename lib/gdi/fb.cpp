@@ -97,7 +97,7 @@ fbClass::fbClass(const char *fb)
 		struct ion_handle_data free_data;
 		struct ion_phys_data phys_data;
 		int ret;
-//		unsigned char *lfb;
+		unsigned char *lfb;
 
 		eDebug("[fb] Using ION allocator");
 
