@@ -186,7 +186,10 @@ class AVSwitch:
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
 						print "[AVSwitch] no, not preferred"
 						return False
-			if mode not in self.modes_preferred:
+			if port != "HDMI":
+				if mode not in self.modes_available:
+					return False
+			elif mode not in self.modes_preferred:
 				return False
 		return True
 
