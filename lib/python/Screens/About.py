@@ -143,6 +143,10 @@ class About(AboutBase):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			self.list.append(self.makeInfoEntry(_("Processor temperature:"), tempinfo.replace('\n', '') + mark + "C"))
+		if path.exists('/sys/class/thermal/thermal_zone0/temp'):
+			tempinfo = file('/sys/class/thermal/thermal_zone0/temp').read().replace('\n', '')
+		if tempinfo and int(tempinfo) > 0:
+			self.list.append(self.makeInfoEntry(_("CPU temperature:"), "%d\xc2\xb0C" % ((int(tempinfo) + 500) / 1000)))
 		fp_version = getFPVersion()
 		if fp_version is not None:
 			self.list.append(self.makeInfoEntry(_("Front Panel:"), "%d" % fp_version))

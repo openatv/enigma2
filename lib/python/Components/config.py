@@ -445,15 +445,17 @@ class ConfigBoolean(ConfigElement):
 		self.value = self.last_value = self.default = default
 		self.graphic = False
 		if graphic:
-			from skin import switchPixmap
-			offPath = switchPixmap.get('menu_off')
-			onPath = switchPixmap.get('menu_on')
-			if offPath and onPath:
-				falseIcon = LoadPixmap(offPath, cached=True)
-				trueIcon = LoadPixmap(onPath, cached=True)
+			from skin import switchPixmapInfo
+			offInfo = switchPixmapInfo.get('menu_off')
+			onInfo = switchPixmapInfo.get('menu_on')
+			if offInfo and onInfo:
+				falseIcon = LoadPixmap(offInfo.pixmap, cached=True)
+				trueIcon = LoadPixmap(onInfo.pixmap, cached=True)
 				if falseIcon and trueIcon:
 					self.falseIcon = falseIcon
+					self.falseAlphatest = offInfo.alphatest
 					self.trueIcon = trueIcon
+					self.trueAlphatest = onInfo.alphatest
 					self.graphic = True
 
 	def handleKey(self, key):
@@ -474,9 +476,9 @@ class ConfigBoolean(ConfigElement):
 		from config import config
 		if self.graphic and config.usage.boolean_graphic.value:
 			if self.value:
-				return ('pixmap_alphablend', self.trueIcon)
+				return ('pixmap', self.trueIcon, self.trueAlphatest)
 			else:
-				return ('pixmap_alphablend', self.falseIcon)
+				return ('pixmap', self.falseIcon, self.falseAlphatest)
 		else:
 			return "text", self.getText()
 
