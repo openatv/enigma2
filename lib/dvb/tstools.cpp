@@ -566,13 +566,13 @@ void eDVBTSTools::calcEnd()
 				/* Not enough structure info, estimate */
 				m_pts_length = pts_diff(m_pts_begin, m_pts_end);
 			}
-			eDebug("[eDVBTSTools] calcEnd [@ML] m_streaminfo.getLastFrame returned %lld, %lld (%us), fixup to: %lld, %lld (%us)",
-					   offset, pts, (unsigned int)(pts/90000), end, m_pts_length, (unsigned int)(m_pts_length/90000));
+//			eDebug("[eDVBTSTools] calcEnd [@ML] m_streaminfo.getLastFrame returned %lld, %lld (%us), fixup to: %lld, %lld (%us)",
+//					   offset, pts, (unsigned int)(pts/90000), end, m_pts_length, (unsigned int)(m_pts_length/90000));
 			m_end_valid = 1;
 		}
 		else
 		{
-			eDebug("[eDVBTSTools] calcEnd [@ML] m_streaminfo.getLastFrame failed, fallback");
+//			eDebug("[eDVBTSTools] calcEnd [@ML] m_streaminfo.getLastFrame failed, fallback");
 			while (!(m_end_valid || m_futile))
 			{
 				if (!--maxiter)
