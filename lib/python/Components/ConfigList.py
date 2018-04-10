@@ -69,7 +69,8 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 
 	def selectionChanged(self):
-		self.onDeselect()
+		if isinstance(self.current,tuple) and len(self.current) >= 2:
+			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
 		if isinstance(self.current,tuple) and len(self.current) >= 2:
 			self.current[1].onSelect(self.session)
@@ -84,7 +85,8 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
-		self.onDeselect()
+		if isinstance(self.current,tuple) and len(self.current) >= 2:
+			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 		instance.setContent(None)
 
