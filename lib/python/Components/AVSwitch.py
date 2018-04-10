@@ -47,11 +47,17 @@ class AVSwitch:
 							"multi":	{ 50: "1080p50", 60: "1080p" },
 							"auto":		{ 50: "1080p50", 60: "1080p", 24: "1080p24" } }
 
-	rates["2160p"] =	{ 	"50Hz":		{ 50: "2160p50" },
-							"60Hz":		{ 60: "2160p" },
-							"multi":	{ 50: "2160p50", 60: "2160p" },
-							"auto":		{ 50: "2160p50", 60: "2160p", 24: "2160p24" } }
-							
+	if getBoxType().startswith('dm9'):
+		rates["2160p"] =	{ 	"50Hz":		{ 50: "2160p50" },
+								"60Hz":		{ 60: "2160p60" },
+								"multi":	{ 50: "2160p50", 60: "2160p60" },
+								"auto":		{ 50: "2160p50", 60: "2160p60", 24: "2160p24" } }
+	else:
+		rates["2160p"] =	{ 	"50Hz":		{ 50: "2160p50" },
+								"60Hz":		{ 60: "2160p" },
+								"multi":	{ 50: "2160p50", 60: "2160p" },
+								"auto":		{ 50: "2160p50", 60: "2160p", 24: "2160p24" } }
+
 	rates["2160p30"] =	{ 	"25Hz":		{ 50: "2160p25" },
 							"30Hz":		{ 60: "2160p30"} ,
 							"multi":	{ 50: "2160p25", 60: "2160p30" },
@@ -467,7 +473,7 @@ class AVSwitch:
 iAVSwitch = AVSwitch()
 
 def InitAVSwitch():
-	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):	
+	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):
 		config.av.yuvenabled = ConfigBoolean(default=False)
 	else:
 		config.av.yuvenabled = ConfigBoolean(default=True)
@@ -868,8 +874,39 @@ def InitAVSwitch():
 		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
 	else:
 		config.av.hdmihdrtype = ConfigNothing()
-		
-		
+
+	if os.path.exists("/proc/stb/hdmi/hlg_support_choices"):
+		f = open("/proc/stb/hdmi/hlg_support_choices", "r")
+		have_HDRSupport = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_HDRSupport = False
+
+	SystemInfo["HDRSupport"] = have_HDRSupport
+
+	if have_HDRSupport:
+		def setHlgSupport(configElement):
+			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
+		config.av.hlg_support = ConfigSelection(default = "auto(EDID)", 
+			choices = [ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+		config.av.hlg_support.addNotifier(setHlgSupport)
+
+		def setHdr10Support(configElement):
+			open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
+		config.av.hdr10_support = ConfigSelection(default = "auto(EDID)", 
+			choices = [ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+		config.av.hdr10_support.addNotifier(setHdr10Support)
+
+		def setDisable12Bit(configElement):
+			open("/proc/stb/video/disable_12bit", "w").write(configElement.value)
+		config.av.allow_12bit = ConfigSelection(default = "0", choices = [ ("0", _("yes")), ("1", _("no")) ]);
+		config.av.allow_12bit.addNotifier(setDisable12Bit)
+
+		def setDisable10Bit(configElement):
+			open("/proc/stb/video/disable_10bit", "w").write(configElement.value)
+		config.av.allow_10bit = ConfigSelection(default = "0", choices = [ ("0", _("yes")), ("1", _("no")) ]);
+		config.av.allow_10bit.addNotifier(setDisable10Bit)
+
 
 	if os.path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")

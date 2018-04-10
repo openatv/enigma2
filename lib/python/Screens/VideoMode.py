@@ -235,6 +235,12 @@ class VideoSetup(Screen, ConfigListScreen):
 		if SystemInfo["haveboxmode"]:
 			self.list.append(getConfigListEntry(_("Change Boxmode to control Hardware Chip Modes*"), config.av.boxmode,_("Switch Mode to enable HDR Modes or PIP Functions")))
 
+		if SystemInfo["HDRSupport"]:
+			self.list.append(getConfigListEntry(_("HLG Support"), config.av.hlg_support,_("This option allows you can force the HLG Modes for UHD")))
+			self.list.append(getConfigListEntry(_("HDR10 Support"), config.av.hdr10_support,_("This option allows you can force the HDR10 Modes for UHD")))
+			self.list.append(getConfigListEntry(_("Allow 12bit"), config.av.allow_12bit,_("This option allows you can enable or disable the 12 Bit Color Mode")))
+			self.list.append(getConfigListEntry(_("Allow 10bit"), config.av.allow_10bit,_("This option allows you can enable or disable the 10 Bit Color Mode")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.value:
