@@ -97,7 +97,7 @@ fbClass::fbClass(const char *fb)
 		struct ion_handle_data free_data;
 		struct ion_phys_data phys_data;
 		int ret;
-//		unsigned char *lfb;
+		unsigned char *lion;
 
 		eDebug("[fb] Using ION allocator");
 
@@ -137,17 +137,17 @@ fbClass::fbClass(const char *fb)
 			eDebug("[fb] ION_IOC_FREE failed");
 
 		m_accel_fd = share_data.fd;
-		lfb=(unsigned char*)mmap(0, ACCEL_MEM_SIZE, PROT_WRITE|PROT_READ, MAP_SHARED, share_data.fd, 0);
+		lion=(unsigned char*)mmap(0, ACCEL_MEM_SIZE, PROT_WRITE|PROT_READ, MAP_SHARED, share_data.fd, 0);
 
-		if (lfb)
+		if (lion)
 		{
 			eDebug("[fb] %dkB available for acceleration surfaces (via ION).", ACCEL_MEM_SIZE / 1024);
-			gAccel::getInstance()->setAccelMemorySpace(lfb, phys_data.addr, ACCEL_MEM_SIZE);
+			gAccel::getInstance()->setAccelMemorySpace(lion, phys_data.addr, ACCEL_MEM_SIZE);
 		}
 		else
 		{
 			close(m_accel_fd);
-			eDebug("[fb] mmap lfb failed");
+			eDebug("[fb] mmap lion failed");
 err_ioc_free:
 			eFatal("[fb] failed to allocate accel memory via ION!!!");
 			m_accel_fd = -1;
@@ -167,13 +167,13 @@ err_ioc_free:
 	eDebug("[fb] %dk video mem", available/1024);
 	lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fbFd, 0);
 #endif
-//#ifndef CONFIG_ION
+#ifndef CONFIG_ION
 	if (!lfb)
 	{
 		eDebug("[fb] mmap %m");
 		goto nolfb;
 	}
-//#endif
+#endif
 
 #if not defined(__sh__)
 	showConsole(0);
