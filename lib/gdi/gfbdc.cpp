@@ -16,6 +16,8 @@
 #endif
 
 #ifdef CONFIG_ION
+#include <lib/gdi/grc.h>
+
 extern void bcm_accel_blit(
 		int src_addr, int src_width, int src_height, int src_stride, int src_format,
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
@@ -272,6 +274,10 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 #ifndef CONFIG_ION
 	if (gAccel::getInstance())
 		gAccel::getInstance()->releaseAccelMemorySpace();
+#else
+	gRC *grc = gRC::getInstance();
+	if (grc)
+		grc->lock();
 #endif
 	fb->SetMode(xres, yres, bpp);
 
@@ -326,6 +332,11 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	surface_back.clut = surface.clut;
 
 	m_pixmap = new gPixmap(&surface);
+
+#ifdef CONFIG_ION
+	if (grc)
+		grc->unlock();
+#endif
 }
 
 void gFBDC::saveSettings()
