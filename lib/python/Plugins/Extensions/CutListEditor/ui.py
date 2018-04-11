@@ -15,6 +15,7 @@ from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
 from Components.config import config, ConfigYesNo
+from Screens.MovieSelection import MovieSelection
 
 mtrunc_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/CutListEditor/bin/mtrunc")
 config.usage.cutlisteditor_tutorial_seen = ConfigYesNo(default=False)
@@ -206,6 +207,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		# preserve the original cuts to possibly restore them later
 		self.prev_cuts = self.cut_list[:]
+		self.last_mark = [x for x in self.prev_cuts if x[1] == self.CUT_TYPE_LAST]
+		self.MovieSelection = isinstance(self.session.current_dialog, MovieSelection) and self.session.current_dialog
 
 		self["InLen"] = Label()
 		self["OutLen"] = Label()
@@ -279,6 +282,12 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 					cl.index = 1
 
 	def __onClose(self):
+		if self.MovieSelection:
+			if self.last_mark and not [x for x in self.cut_list if x[1] == self.CUT_TYPE_LAST]:
+				service = self.session.nav.getCurrentlyPlayingServiceReference()
+				from Screens.InfoBarGenerics import delResumePoint
+				delResumePoint(service)
+				self.MovieSelection["list"].invalidateCurrentItem()
 		self.session.nav.playService(self.old_service, forceRestart=True)
 
 	def updateStateLabel(self, state):
