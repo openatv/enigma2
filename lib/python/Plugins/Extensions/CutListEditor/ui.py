@@ -575,8 +575,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_QUICKEXECUTE:
 			menu = [(_("cancel"), 0),
-					(_("punch cuts"), 1),
-					(_("end at this position"), 2),
+					(_("end at this position"), 1),
+					(_("punch cuts"), 2),
 					(_("both"), 3)]
 			self.session.openWithCallback(self.quickCallback, ChoiceBox, title=_("How would you like to modify the movie?\nWarning: This operation cannot be undone!"), list=menu)
 		elif result == CutListContextMenu.RET_ENABLECUTS:
@@ -602,7 +602,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		if not answer:
 			return
 		truncpts = None
-		if answer & 2:
+		if answer & 1:
 			truncpts = self.context_position
 		elif self.cut_list[-1][1] == self.CUT_TYPE_OUT:
 			truncpts = self.cut_list[-1][0]
@@ -622,7 +622,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		if self.loadAP(movie):
 			if truncpts:
 				self.trunc(movie, truncpts)
-			if answer & 1:
+			if answer & 2:
 				self.punch(movie)
 			self.edited = True
 		self.session.nav.playService(service)
