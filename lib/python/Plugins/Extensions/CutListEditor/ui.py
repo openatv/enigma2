@@ -1,6 +1,9 @@
-import bisect, os, time
+import bisect
+from time import sleep
+from struct import Struct
+from ctypes import CDLL, c_longlong
 
-from enigma import getDesktop, iPlayableService, eConsoleAppContainer, eEnv
+from enigma import getDesktop, iPlayableService
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -17,7 +20,8 @@ from Components.Sources.List import List
 from Components.config import config, ConfigYesNo
 from Screens.MovieSelection import MovieSelection
 
-mtrunc_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/CutListEditor/bin/mtrunc")
+apParser = Struct(">qq")    # big-endian, 64-bit offset and 64-bit PTS
+
 config.usage.cutlisteditor_tutorial_seen = ConfigYesNo(default=False)
 
 def SecToMSS(sec):
@@ -51,10 +55,10 @@ class CutListContextMenu(FixedMenu):
 	RET_DELETEMARK = 4
 	RET_REMOVEBEFORE = 5
 	RET_REMOVEAFTER = 6
-	RET_ENDHERE = 7
-	RET_ENABLECUTS = 8
-	RET_DISABLECUTS = 9
-	RET_EXECUTECUTS = 10
+	RET_ENABLECUTS = 7
+	RET_DISABLECUTS = 8
+	RET_EXECUTECUTS = 9
+	RET_QUICKEXECUTE = 10
 	RET_GRABFRAME = 11
 
 	SHOW_STARTCUT = 0
@@ -81,8 +85,6 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("remove before this position"), self.removeBefore))
 		menu.append((_("remove after this position"), self.removeAfter))
-		if os.access(mtrunc_path, os.X_OK):
-			menu.append((_("end at this position"), self.endHere))
 
 		if cut_state == 2:
 			menu.append((_("enable cuts (preview)"), self.enableCuts))
@@ -90,6 +92,7 @@ class CutListContextMenu(FixedMenu):
 			menu.append((_("disable cuts (edit)"), self.disableCuts))
 
 		menu.append((_("execute cuts and exit"), self.executeCuts))
+		menu.append((_("quick execute"), self.quickExecute))
 
 		menu.append((_("insert mark after each in"), self.markIn))
 
@@ -126,9 +129,6 @@ class CutListContextMenu(FixedMenu):
 	def removeAfter(self):
 		self.close(self.RET_REMOVEAFTER)
 
-	def endHere(self):
-		self.close(self.RET_ENDHERE)
-
 	def enableCuts(self):
 		self.close(self.RET_ENABLECUTS)
 
@@ -137,6 +137,9 @@ class CutListContextMenu(FixedMenu):
 
 	def executeCuts(self):
 		self.close(self.RET_EXECUTECUTS)
+
+	def quickExecute(self):
+		self.close(self.RET_QUICKEXECUTE)
 
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
@@ -208,6 +211,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		# preserve the original cuts to possibly restore them later
 		self.prev_cuts = self.cut_list[:]
 		self.last_mark = [x for x in self.prev_cuts if x[1] == self.CUT_TYPE_LAST]
+		self.edited = False
 		self.MovieSelection = isinstance(self.session.current_dialog, MovieSelection) and self.session.current_dialog
 
 		self["InLen"] = Label()
@@ -239,8 +243,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"setMark": (self.setMark, _("Make this mark just a mark")),
 				"addMark": (self.__addMark, _("Add a mark")),
 				"removeMark": (self.__removeMark, _("Remove a mark")),
-				"truncate": (self.truncate, _("End at this position")),
 				"execute": (self.execute, _("Execute cuts and exit")),
+				"quickExecute": (self.quickExecute, _("Quick execute...")),
 				"leave": (self.exit, _("Exit editor")),
 				"showMenu": (self.showMenu, _("Menu")),
 				"backMenu": (self.backMenu, _("Restore previous cuts...")),
@@ -288,6 +292,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				from Screens.InfoBarGenerics import delResumePoint
 				delResumePoint(service)
 				self.MovieSelection["list"].invalidateCurrentItem()
+			if self.edited:
+				self.MovieSelection.diskinfo.update()
 		self.session.nav.playService(self.old_service, forceRestart=True)
 
 	def updateStateLabel(self, state):
@@ -349,10 +355,10 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.menuCallback(CutListContextMenu.RET_REMOVEAFTER)
 		self.inhibit_cut = True
 
-	def truncate(self):
+	def quickExecute(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 		self.context_position = self.cueGetCurrentPosition()
-		self.menuCallback(CutListContextMenu.RET_ENDHERE)
+		self.menuCallback(CutListContextMenu.RET_QUICKEXECUTE)
 
 	def execute(self):
 		self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -436,7 +442,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				i = 0
 				while i < 15:
 					i += 1
-					time.sleep(0.01)
+					sleep(0.01)
 					if seek.getPlayPosition() != curpos:
 						seek.seekRelative(1, 1)
 						break
@@ -567,8 +573,12 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = True
 			self.putCuesheet()
 			self.inhibit_seek = False
-		elif result == CutListContextMenu.RET_ENDHERE:
-			self.session.openWithCallback(self.truncCallback, MessageBox, text=_("Delete everything from this position?"), type=MessageBox.TYPE_YESNO, default=False)
+		elif result == CutListContextMenu.RET_QUICKEXECUTE:
+			menu = [(_("cancel"), 0),
+					(_("punch cuts"), 1),
+					(_("end at this position"), 2),
+					(_("both"), 3)]
+			self.session.openWithCallback(self.quickCallback, ChoiceBox, title=_("How would you like to modify the movie?\nWarning: This operation cannot be undone!"), list=menu)
 		elif result == CutListContextMenu.RET_ENABLECUTS:
 			self.cut_state = 3
 			self.setCutListEnable()
@@ -587,25 +597,35 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
 
-	def truncCallback(self, answer):
-		if answer:
-			# remove marks after current position
+	def quickCallback(self, answer):
+		answer = answer and answer[1]
+		if not answer:
+			return
+		truncpts = None
+		if answer & 2:
+			truncpts = self.context_position
+		elif self.cut_list[-1][1] == self.CUT_TYPE_OUT:
+			truncpts = self.cut_list[-1][0]
+		if truncpts:
+			# remove marks from the truncate position
 			for (where, what) in self.cut_list[:]:
-				if where >= self.context_position:
+				if where >= truncpts:
 					self.cut_list.remove((where, what))
 			self.inhibit_seek = True
 			self.putCuesheet()
 			self.inhibit_seek = False
 			self.prev_cuts = self.cut_list[:]
 			self.last_cuts = self.getCutlist()
-			self.service = self.session.nav.getCurrentlyPlayingServiceReference()
-			self.session.nav.stopService()
-			self.container = eConsoleAppContainer()
-			self.container.appClosed.append(self.truncDone)
-			self.container.execute(mtrunc_path, "mtrunc", self.service.getPath(), "-e", str(self.context_position))
-
-	def truncDone(self, result):
-		self.session.nav.playService(self.service)
+		service = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.session.nav.stopService()
+		movie = service.getPath()
+		if self.loadAP(movie):
+			if truncpts:
+				self.trunc(movie, truncpts)
+			if answer & 1:
+				self.punch(movie)
+			self.edited = True
+		self.session.nav.playService(service)
 		self.pauseService()
 		self.setCutListEnable()
 		self.__onShown(override=True)
@@ -617,7 +637,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				(_("remove marks (preserve cuts)"), self.BACK_REMOVEMARKS),
 				(_("remove cuts (preserve marks)"), self.BACK_REMOVECUTS),
 				(_("remove all"), self.BACK_REMOVEALL)]
-		self.session.openWithCallback(self.backCallback, ChoiceBox, title="Restore cuts", list=menu)
+		self.session.openWithCallback(self.backCallback, ChoiceBox, title=_("Restore cuts"), list=menu)
 
 	def backCallback(self, result):
 		if result and result[1]:
@@ -653,3 +673,98 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		cmd = 'grab -vblpr%d "%s"' % (180, path.rsplit('.',1)[0] + ".png")
 		grabConsole.ePopen(cmd)
 		self.playpauseService()
+
+	def trunc(self, movie, pts):
+		i = self.getAP(pts)
+		if i < len(self.ap):
+			i += 1
+		offset = self.ap[i][1]
+		with open(movie, "r+b") as f:
+			f.truncate(offset)
+
+		def truncapsc(suffix):
+			with open(movie + suffix, "r+b") as f:
+				while True:
+					data = f.read(apParser.size * 8192)
+					if len(data) < apParser.size:
+						break
+					ofs, __ = apParser.unpack_from(data, len(data) - apParser.size)
+					if ofs >= offset:
+						for i in range(0, len(data), apParser.size):
+							ofs, __ = apParser.unpack_from(data, i)
+							if ofs >= offset:
+								f.truncate(f.tell() - len(data) + i)
+								return
+
+		truncapsc(".ap")
+		truncapsc(".sc")
+
+	def punch(self, movie):
+		outpts = [x[0] for x in self.cut_list if x[1] == self.CUT_TYPE_OUT]
+		inpts  = [x[0] for x in self.cut_list if x[1] == self.CUT_TYPE_IN]
+		if not outpts and not inpts:
+			return
+		if not outpts or inpts[0] < outpts[0]:
+			outpts.insert(0, 0)
+		# Final out was removed before being called.
+		try:
+			so = CDLL("libext2fs.so.2")
+			fallocate64 = so.fallocate64
+		except:
+			return
+		with open(movie, "r+b") as f:
+			fd = f.fileno()
+			for c in range(0, len(outpts)):
+				o = self.getAP(outpts[c])
+				if o < len(self.ap):
+					o += 1
+				i = self.getAP(inpts[c])
+				if i:
+					i -= 1
+				# FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE
+				fallocate64(fd, 3, c_longlong(self.ap[o][1]), c_longlong(self.ap[i][1] - self.ap[o][1]))
+
+	# Return the index of the access point at or after PTS.
+	def getAP(self, pts):
+		i = bisect.bisect_left(self.ap, (pts, 0))
+		return i if i < len(self.ap) else i - 1
+
+	def loadAP(self, movie):
+		self.ap = []
+		try:
+			with open(movie + ".ap", "rb") as f:
+				data = f.read()
+		except:
+			return False
+		if len(data) < 2 * apParser.size:
+			return False
+
+		ofs1, currentDelta = apParser.unpack_from(data, 0)
+		if ofs1 != 0:
+			ofs2, pts2 = apParser.unpack_from(data, apParser.size)
+			if ofs1 < ofs2:
+				diff = ofs2 - ofs1
+				tdiff = pts2 - currentDelta
+				tdiff *= ofs1
+				tdiff /= diff
+				currentDelta -= tdiff
+		last1 = last2 = (ofs1, currentDelta)
+		lastpts = -1
+		for o in range(0, len(data), apParser.size):
+			i = apParser.unpack_from(data, o)
+			current = i[1] - currentDelta
+			diff = current - lastpts
+			if diff <= 0 or diff > 90000*10:
+				currentDelta = last1[1] - last2[1]
+				if 0 < currentDelta <= 90000*10 and last2[0] < last1[0] < i[0]:
+					currentDelta *= i[0] - last1[0]
+					currentDelta /= last1[0] - last2[0]
+				else:
+					currentDelta = 90000 / 25
+				currentDelta = i[1] - lastpts - currentDelta
+			last2 = last1
+			last1 = i
+			lastpts = i[1] - currentDelta
+			self.ap.append((lastpts, i[0]))
+
+		return True

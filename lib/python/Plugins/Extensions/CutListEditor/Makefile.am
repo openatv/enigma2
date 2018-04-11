@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/CutListEditor
 
-SUBDIRS = src meta
+SUBDIRS = meta
 
 install_PYTHON =	\
 	__init__.py \
