@@ -8,6 +8,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
+from Components.SystemInfo import SystemInfo
 from enigma import eTimer, getEnigmaVersionString
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
@@ -214,6 +215,7 @@ class About(Screen):
 				"up": self.pageUp,
 				"down": self.pageDown,
 				"green": self.showTranslationInfo,
+				"0": self.showID,
 			})
 
 
@@ -343,6 +345,17 @@ class About(Screen):
 
 	def populate_vti(self):
 		pass
+
+	def showID(self):
+		if SystemInfo["HaveID"]:
+			try:
+				f = open("/etc/.id")
+				id = f.read()[:-1].split('=')
+				f.close()
+				from Screens.MessageBox import MessageBox
+				self.session.open(MessageBox,id[1], type = MessageBox.TYPE_INFO)
+			except:
+				pass
 
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
