@@ -1,6 +1,6 @@
 import bisect
 from time import sleep
-from struct import Struct
+from struct import unpack, Struct
 from ctypes import CDLL, c_longlong
 
 from enigma import getDesktop, iPlayableService
@@ -20,7 +20,7 @@ from Components.Sources.List import List
 from Components.config import config, ConfigYesNo
 from Screens.MovieSelection import MovieSelection
 
-apParser = Struct(">qq")    # big-endian, 64-bit offset and 64-bit PTS
+apscParser = Struct(">qq")    # big-endian, 64-bit offset and 64-bit PTS/data
 
 config.usage.cutlisteditor_tutorial_seen = ConfigYesNo(default=False)
 
@@ -685,15 +685,15 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		def truncapsc(suffix):
 			with open(movie + suffix, "r+b") as f:
 				while True:
-					data = f.read(apParser.size * 8192)
-					if len(data) < apParser.size:
+					data = f.read(8192 * apscParser.size)
+					if len(data) < apscParser.size:
 						break
-					ofs, __ = apParser.unpack_from(data, len(data) - apParser.size)
+					ofs = apscParser.unpack_from(data, len(data) - apscParser.size)[0]
 					if ofs >= offset:
-						for i in range(0, len(data), apParser.size):
-							ofs, __ = apParser.unpack_from(data, i)
+						apsc = unpack(">%dq" % (len(data) / 8), data)
+						for i, ofs in enumerate(apsc[::2]):
 							if ofs >= offset:
-								f.truncate(f.tell() - len(data) + i)
+								f.truncate(f.tell() - len(data) + i * apscParser.size)
 								return
 
 		truncapsc(".ap")
@@ -736,12 +736,14 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				data = f.read()
 		except:
 			return False
-		if len(data) < 2 * apParser.size:
+		if len(data) < 2 * apscParser.size:
 			return False
 
-		ofs1, currentDelta = apParser.unpack_from(data, 0)
+		data = unpack(">%dq" % (len(data) / 8), data)
+
+		ofs1, currentDelta = data[0], data[1]
 		if ofs1 != 0:
-			ofs2, pts2 = apParser.unpack_from(data, apParser.size)
+			ofs2, pts2 = data[2], data[3]
 			if ofs1 < ofs2:
 				diff = ofs2 - ofs1
 				tdiff = pts2 - currentDelta
@@ -750,8 +752,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				currentDelta -= tdiff
 		last1 = last2 = (ofs1, currentDelta)
 		lastpts = -1
-		for o in range(0, len(data), apParser.size):
-			i = apParser.unpack_from(data, o)
+		append = self.ap.append
+		for i in zip(data[0::2], data[1::2]):
 			current = i[1] - currentDelta
 			diff = current - lastpts
 			if diff <= 0 or diff > 90000*10:
@@ -765,6 +767,6 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			last2 = last1
 			last1 = i
 			lastpts = i[1] - currentDelta
-			self.ap.append((lastpts, i[0]))
+			append((lastpts, i[0]))
 
 		return True
