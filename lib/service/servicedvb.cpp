@@ -337,17 +337,6 @@ eStaticServiceDVBPVRInformation::eStaticServiceDVBPVRInformation(const eServiceR
 	m_parser.parseFile(ref.path);
 }
 
-static bool looksLikeRecording(const std::string& n)
-{
-	return
-		(n.size() > 19) &&
-		(n[8] == ' ') &&
-		(n[13] == ' ') &&
-		(n[14] == '-') &&
-		(n[15] == ' ') &&
-		(isdigit(n[0]));
-}
-
 RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	ASSERT(ref == m_ref);
@@ -361,24 +350,60 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 		size_t n = name.rfind('/');
 		if (n != std::string::npos)
 			name = name.substr(n + 1);
-		if (looksLikeRecording(name))
-		{
-			// Parse recording names in 'YYYYMMDD HHMM - ... - name.ts' into name
-			std::size_t dash2 = name.find(" - ", 16, 3);
-			if (dash2 != std::string::npos)
+		if (name.size() >= 3 && name.substr(name.size()-3, 3) == ".ts") {
+			enum { is_unknown, is_short, is_standard, is_long, is_event } name_type = is_unknown;
+
+			std::size_t dash1 = name.find(" - ");
+			std::size_t dash2 = dash1 == std::string::npos
+						? std::string::npos
+						: name.find(" - ", dash1+1);
+			std::size_t dash3 = dash2 == std::string::npos
+						? std::string::npos
+						: name.find(" - ", dash2+1);
+			std::size_t dashlast = name.rfind(" - ");
+
+			struct tm stm = {0};
+			std::string descr = "";
+
+			name.erase(name.size()-3);
+
+			if (dash1 == 8 && strptime(name.substr(0, dash1).c_str(), "%Y%m%d", &stm) != NULL)
 			{
-				struct tm stm = {0};
-				if (strptime(name.c_str(), "%Y%m%d %H%M", &stm) != NULL)
+				name_type = is_short;
+				name = name.substr(dash1+3);
+			} else if (dash1 == 13 && strptime(name.substr(0, dash1).c_str(), "%Y%m%d %H%M", &stm) != NULL)
+			{
+				if (dash3 == std::string::npos)
 				{
+					name_type = is_standard;
+					name = name.substr(dash2+3);
+				}
+				else
+				{
+					name_type = is_long;
+					size_t name_pos = dash2+3;
+					if (name.size() > name_pos)
+						m_parser.m_description = name.substr(dash3+3);
+					name = name.substr(name_pos, dash3-name_pos);
+				}
+			} else if (dashlast != std::string::npos && strptime(name.substr(dashlast+3, dashlast+17).c_str(), "%Y%m%d %H%M_", &stm))
+			{
+				name_type = is_event;
+				name = name.substr(0, dashlast);
+			}
+
+			if(name_type != is_unknown) {
+				if(name_type != is_short || m_parser.m_time_create == 0)
+				{
+					// Force mktime to look up zoneinfo for DST
+					stm.tm_isdst = -1;
 					m_parser.m_time_create = mktime(&stm);
 				}
-				name.erase(0,dash2+3);
 			}
-			if (name[name.size()-3] == '.')
-			{
-				name.erase(name.size()-3);
-			}
+			else
+				name += ".ts";
 		}
+
 		m_parser.m_name = name;
 	}
 	return 0;
@@ -423,6 +448,11 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 
 int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w)
 {
+	if (m_parser.m_name.empty())
+	{
+		std::string name;
+		getName(ref, name); // This also updates m_parser.m_time_create
+	}
 	switch (w)
 	{
 	case iServiceInformation::sDescription:
@@ -443,6 +473,11 @@ int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w
 
 std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReference &ref,int w)
 {
+	if (m_parser.m_name.empty())
+	{
+		std::string name;
+		getName(ref, name); // This also updates m_parser.m_description
+	}
 	switch (w)
 	{
 	case iServiceInformation::sDescription:
