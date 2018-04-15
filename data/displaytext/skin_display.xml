@@ -55,9 +55,7 @@
 
 <!-- movieplayer-->
 	<screen name="MovieSelectionSummary" position="0,0" size="132,64">
-		<widget source="parent.Service" render="Label" position="0,0" size="120,25" font="Regular;14">
-			<convert type="ServiceName">Name</convert>
-		</widget>
+		<widget source="name" render="Label" position="0,0" size="124,32" font="Regular;16" />
 	</screen>
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
