@@ -49,7 +49,7 @@ def setProgressiveRate(vid_rate, new_rate, new_res, config_res, config_rate):
 			new_rate = config.av.autores_30p.value.split(',')[0]
 		else:
 			new_rate = config.av.autores_30p.value.split(',')[1]
-	if int(new_res) >= int(config_res) and config_rate != 'multi' and int(config_rate) < int(new_rate):
+	if int(new_res) >= int(config_res) and config_rate not in ("auto","multi") and int(config_rate) < int(new_rate):
 		new_rate = config_rate
 	return new_rate
 
