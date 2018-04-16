@@ -638,6 +638,12 @@ class MovieSelectionSummary(Screen):
 			if item[0].flags & eServiceReference.mustDescent:
 				if len(name) > 12:
 					name = os.path.split(os.path.normpath(name))[1]
+					if name == ".Trash":
+						name = "Trash"
+				else:
+					path, dir = os.path.split(os.path.normpath(name))
+					if dir == ".Trash":
+						name = os.path.join(path, "Trash/")
 				name = "> " + name
 			self["name"].text = name
 		else:
