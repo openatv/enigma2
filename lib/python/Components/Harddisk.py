@@ -756,7 +756,7 @@ class HarddiskManager:
 		error = False
 		removable = False
 		BLACKLIST=[]
-		if getMachineBuild() in ('u52','u53','u5','u5pvr','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
+		if getMachineBuild() in ('u51','u52','u53','u5','u5pvr','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
 			BLACKLIST=["mmcblk0"]
 		elif getMachineBuild() in ('xc7439'):
 			BLACKLIST=["mmcblk1"]
