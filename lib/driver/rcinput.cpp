@@ -42,7 +42,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (km == eRCInput::kmAscii)
 	{
 		bool ignore = false;
-		bool ascii = (ev->code > 0 && ev->code < 61);
+		bool ascii = ev->code > 0 && ev->code < 59;
 
 		switch (ev->code)
 		{
