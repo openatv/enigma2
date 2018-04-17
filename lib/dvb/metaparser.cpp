@@ -15,12 +15,17 @@ eDVBMetaParser::eDVBMetaParser()
 	m_scrambled = 0;
 }
 
-static time_t getctime(const std::string &basename)
+// For the recording creation time if there is no .ts.meta file
+// or no creation time in the .ts.meta file.
+// It's the time of the last write to the .ts file, but that's
+// as good as it gets.
+
+static time_t getmtime(const std::string &basename)
 {
 	struct stat s;
 	if (::stat(basename.c_str(), &s) == 0)
 	{
-		return s.st_ctime;
+		return s.st_mtime;
 	}
 	return 0;
 }
@@ -58,7 +63,7 @@ int eDVBMetaParser::parseFile(const std::string &basename)
 	if (!parseRecordings(basename))
 		return 0;
 	m_filesize = fileSize(basename);
-	m_time_create = getctime(basename);
+	m_time_create = getmtime(basename);
 	return -1;
 }
 
@@ -107,7 +112,7 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			m_time_create = atol(line);
 			if (m_time_create == 0)
 			{
-				m_time_create = getctime(tsname);
+				m_time_create = getmtime(tsname);
 			}
 			break;
 		case 4:
@@ -192,7 +197,7 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 			m_ref = ref;
 			m_name = description;
 			m_description = "";
-			m_time_create = getctime(filename);
+			m_time_create = getmtime(filename);
 			m_length = 0;
 			m_filesize = fileSize(filename);
 			m_data_ok = 1;
