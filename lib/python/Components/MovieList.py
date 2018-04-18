@@ -1002,7 +1002,7 @@ class MovieList(GUIComponent):
 			except:
 				pass
 		if name.endswith(".Trash"):
-			name = "Trash"
+			name = _("Trash")
 		# print "[MovieList] Sorting for -%s-" % name
 
 		return 1, name, -x[2]
