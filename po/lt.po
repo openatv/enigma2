@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-04 23:53+0300\n"
-"PO-Revision-Date: 2018-04-05 19:13+0300\n"
+"POT-Creation-Date: 2018-04-14 21:15+0300\n"
+"PO-Revision-Date: 2018-04-15 10:25+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -1534,6 +1534,12 @@ msgstr "Paskirti"
 
 msgid "Allocate unused memory index"
 msgstr "Paskirti nenaudojamos atminties indeksą"
+
+msgid "Allow 10bit"
+msgstr "Leisti 10 bitų"
+
+msgid "Allow 12bit"
+msgstr "Leisti 12 bitų"
 
 msgid "Allow quit movieplayer with exit"
 msgstr "Leisti baigti filmų grotuvą su mygtuku exit"
@@ -6062,8 +6068,14 @@ msgstr "Daugiau informacijos rasite http://www.opena.tv"
 msgid "force AC3plus"
 msgstr "priverstinai AC3plus"
 
+msgid "force enabled"
+msgstr "priverstinai įjungtas"
+
 msgid "Force de-interlace"
 msgstr "Priverstinis vaizdo eilučių suliejimas"
+
+msgid "force disabled"
+msgstr "priverstinai išjungtas"
 
 msgid "Force Legacy Signal Stats"
 msgstr "Priverstinė pasenusių signalų statistika"
@@ -6520,6 +6532,9 @@ msgstr "HDMI įrašymas"
 msgid "HDMI-IN Recording settings"
 msgstr "HDMI-IN įrašymo nustatymai"
 
+msgid "HDR10 Support"
+msgstr "HDR10 palaikymas"
+
 msgid "Hebrew"
 msgstr "Hebrajų"
 
@@ -6627,6 +6642,9 @@ msgstr "Istorija pirmyn"
 
 msgid "History zap..."
 msgstr "Perjungimų istorija..."
+
+msgid "HLG Support"
+msgstr "HLG palaikymas"
 
 msgid "Hold screen"
 msgstr "Užlaikytas vaizdas"
@@ -10505,10 +10523,10 @@ msgid "purge deleted userbouquets"
 msgstr "išvalyti ištrintus paketus"
 
 msgid "Put TV in standby"
-msgstr "Perjungti TV į budėjimo būseną"
+msgstr "Jungti TV į budėjimo būseną"
 
 msgid "Put your %s %s in standby"
-msgstr "Perjungti %s %s į budėjimo būseną"
+msgstr "Jungti %s %s į budėjimo būseną"
 
 msgid "Put your AV Receiver in standby"
 msgstr "Išjungti imtuvą į budėjimo būseną"
@@ -11078,10 +11096,10 @@ msgid "Reserved"
 msgstr "Rezervuota"
 
 msgid "Reset"
-msgstr "Perjungti"
+msgstr "Atstatyti"
 
 msgid "Reset and renumerate title names"
-msgstr "Perjungti ir pernumeruoti antraštės pavadinimus"
+msgstr "Nustatyti iš naujo ir pernumeruoti antraščių pavadinimus"
 
 msgid "Reset persistent PIN code"
 msgstr "Išvalyti pastovų PIN kodą"
@@ -11090,11 +11108,12 @@ msgid "Reset playback position"
 msgstr "Išvalyti peržiūros poziciją"
 
 msgid "Reset video enhancement settings to system defaults?"
-msgstr "Perjungti vaizdo stiprinimo nustatymus į sistemos numatytus?"
+msgstr "Iš naujo nustatyti vaizdo stiprinimo nustatymus į sistemos numatytus?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr ""
-"Perjungti vaizdo stiprinimo nustatymus į jūsų paskutinę vaizdo konfigūraciją?"
+"Iš naujo nustatyti vaizdo stiprinimo nustatymus į jūsų paskutinę vaizdo "
+"konfigūraciją?"
 
 msgid "Reshare"
 msgstr "Bendrinti iš naujo"
@@ -13888,6 +13907,9 @@ msgstr "Srauto transliacijų klientai"
 msgid "StreamingClientsInfo"
 msgstr "Srauto klientų informacija"
 
+msgid "Stretch full"
+msgstr "Pilnai ištempti"
+
 msgid "Stretch linear"
 msgstr "Ištempti su juodomis linijomis"
 
@@ -14040,7 +14062,7 @@ msgid "Switch next channel"
 msgstr "Perjungti kitą kanalą"
 
 msgid "switch to bookmarks"
-msgstr "perjungti į žymes"
+msgstr "perjungti į pažymėtus"
 
 msgid "switch to filelist"
 msgstr "perjungti į failų sąrašą"
@@ -14049,7 +14071,7 @@ msgid "Switch to filelist"
 msgstr "Perjungti į failų sąrašą"
 
 msgid "Switch to HDMI in mode"
-msgstr "Perjungti į HDMI režimą"
+msgstr "Perjungti į HDMI in režimą"
 
 msgid "Switch to next channel in history"
 msgstr "Perjungti į kitą kanalą istorijoje"
@@ -14067,7 +14089,7 @@ msgid "Switch to previous channel in history"
 msgstr "Perjungti į ankstesnį kanalą istorijoje"
 
 msgid "Switch to previous sub service"
-msgstr "Perjungti į ankstesnį subkanalą"
+msgstr "Įjungti ankstesnį subkanalą"
 
 msgid "Switch to Radio"
 msgstr "Perjungti į radiją"
@@ -14786,6 +14808,18 @@ msgid "This option allows you can config the Colorspace from Auto to RGB"
 msgstr ""
 "Ši parinktis leidžia pasirinkti spalvų atvaizdavimo erdvę iš 'Auto' į RGB"
 
+msgid "This option allows you can enable or disable the 10 Bit Color Mode"
+msgstr "Ši parinktis leidžia jums įjungti arba išjungti 10 bitų spalvų režimą"
+
+msgid "This option allows you can enable or disable the 12 Bit Color Mode"
+msgstr "Ši parinktis leidžia jums įjungti arba išjungti 12 bitų spalvų režimą"
+
+msgid "This option allows you can force the HDR10 Modes for UHD"
+msgstr "Ši parinktis leidžia priverstinai naudoti HDR10 režimą dėl UHD"
+
+msgid "This option allows you can force the HLG Modes for UHD"
+msgstr "Ši parinktis leidžia priverstinai naudoti HLG režimą dėl UHD"
+
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
 "Ši parinktis leidžia nustatyti, kaip rodyti praėjusį laiką: kaip +, ar -"
@@ -15376,7 +15410,7 @@ msgid "Toggels between tv and radio..."
 msgstr "Perjungia tarp tv ir radijo..."
 
 msgid "Toggle a cut mark at the current position"
-msgstr "Perjungti iškirpimo žymeklį šioje pozicijoje"
+msgstr "Perkelti iškirpimo žymeklį į dabartinę poziciją"
 
 msgid "Toggle aspect ratio..."
 msgstr "Perjungti kraštinių santykį..."
@@ -15388,10 +15422,10 @@ msgid "Toggle Digital downmix..."
 msgstr "Perjungti skaitmeninį suliejimą..."
 
 msgid "Toggle HDMI-In full screen"
-msgstr "Perjungti HDMI per visą ekraną"
+msgstr "Perjungti HDMI-in per visą ekraną"
 
 msgid "Toggle HDMI-In PiP"
-msgstr "Perjungti HDMI į PiP"
+msgstr "Perjungti HDMI-in PiP"
 
 msgid "Toggle LCD LiveTV"
 msgstr "Perjungti transliaciją į LCD"
@@ -15400,7 +15434,7 @@ msgid "Toggle Picture In Graphics"
 msgstr "Perjungti paveikslėlį į grafiką"
 
 msgid "Toggle Pillarbox <> Pan&Scan"
-msgstr "Perjungti įtalpinimą su juostomis <> įtalpinimu, nukerpant šonus"
+msgstr "Perjungti talpinimą su juostomis <> talpinimu, nukerpant šonus"
 
 msgid "Toggle PIPzap"
 msgstr "Perjungti PiP jungimą"
@@ -17701,28 +17735,28 @@ msgstr ""
 "Pasirinkite, ką jūs norėsite daryti toliau."
 
 msgid "zap"
-msgstr "perjungti"
+msgstr "jungti"
 
 msgid "Zap"
-msgstr "Perjungti"
+msgstr "Jungti"
 
 msgid "ZAP"
-msgstr "Perjungti"
+msgstr "JUNGTI"
 
 msgid "Zap + Exit"
-msgstr "Perjungti + uždaryti"
+msgstr "Įjungti + uždaryti"
 
 msgid "zap and record"
-msgstr "perjungti ir įrašyti"
+msgstr "įjungti ir įrašyti"
 
 msgid "Zap back to previously tuned service?"
-msgstr "Perjungti į ankstesnį kanalą?"
+msgstr "Jungti į anksčiau nustatytą kanalą?"
 
 msgid "Zap back to service before positioner setup?"
-msgstr "Perjungti atgal į kanalą prieš pozicionieriaus nustatymą?"
+msgstr "Įjungti prieš pozicionieriaus konfigūravimą naudotą kanalą?"
 
 msgid "Zap back to service before tuner setup?"
-msgstr "Perjungti atgal į kanalą prieš imtuvo nustatymą?"
+msgstr "Įjungti prieš imtuvo sąranką naudotą kanalą?"
 
 msgid "Zap down"
 msgstr "Perjungti žemyn"

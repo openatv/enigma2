@@ -8,6 +8,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
+from Components.SystemInfo import SystemInfo
 from enigma import eTimer, getEnigmaVersionString
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
@@ -82,7 +83,7 @@ def getAboutText():
 		cpuMHz = "   (1,5 GHz)"
 	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
 		cpuMHz = "   (1,3 GHz)"
-	elif getMachineBuild() in ('u5','u53','u52','u5pvr','h9'):
+	elif getMachineBuild() in ('u51','u5','u53','u52','u5pvr','h9'):
 		cpuMHz = "   (1,6 GHz)"
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		cpuMHz = "   (1,7 GHz)"
@@ -149,7 +150,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('h9','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53'):
+	if getMachineBuild() not in ('h9','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51'):
 		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
@@ -205,6 +206,7 @@ class About(Screen):
 		self.skinName = ["AboutOE","About"]
 		self.populate()
 
+		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Translations"))
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
 			{
@@ -213,7 +215,9 @@ class About(Screen):
 				"log": self.showAboutReleaseNotes,
 				"up": self.pageUp,
 				"down": self.pageDown,
+				"red": self.close,
 				"green": self.showTranslationInfo,
+				"0": self.showID,
 			})
 
 
@@ -343,6 +347,17 @@ class About(Screen):
 
 	def populate_vti(self):
 		pass
+
+	def showID(self):
+		if SystemInfo["HaveID"]:
+			try:
+				f = open("/etc/.id")
+				id = f.read()[:-1].split('=')
+				f.close()
+				from Screens.MessageBox import MessageBox
+				self.session.open(MessageBox,id[1], type = MessageBox.TYPE_INFO)
+			except:
+				pass
 
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
