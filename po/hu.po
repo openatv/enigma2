@@ -4,10 +4,10 @@
 # Automatically generated, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: tuxbox-enigma 2.2\n"
+"Project-Id-Version: tuxbox-enigma 2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-04 23:53+0300\n"
-"PO-Revision-Date: 2018-04-09 09:21+0200\n"
+"POT-Creation-Date: 2018-04-14 21:15+0300\n"
+"PO-Revision-Date: 2018-04-19 18:22+0200\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: alec <alex1vagyok@gmail.com>\n"
 "Language: hu_HU\n"
@@ -137,7 +137,7 @@ msgid "%02d.%02d - %02d.%02d"
 msgstr "%02d.%02d - %02d.%02d"
 
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d min)"
+msgstr "%02d.%02d - %02d.%02d (%s%d perc)"
 
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
@@ -974,7 +974,7 @@ msgid ""
 "A background update check is in progress, please wait a few minutes and try "
 "again."
 msgstr ""
-"A frissítés ellenőrzése a háttérben folyamatban van, várjon néhány percet, "
+"A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, "
 "és próbálkozzon újra."
 
 msgid ""
@@ -1534,6 +1534,12 @@ msgstr "Hozzárendelés"
 msgid "Allocate unused memory index"
 msgstr "Használatlan memóriaindex hozzárendelés"
 
+msgid "Allow 10bit"
+msgstr "A 10bit engedélyezése"
+
+msgid "Allow 12bit"
+msgstr "A 12bit engedélyezése"
+
 msgid "Allow quit movieplayer with exit"
 msgstr "Média lejátszó bezárása kilépés gombbal"
 
@@ -1607,16 +1613,16 @@ msgid "Alpha"
 msgstr "Betű"
 
 msgid "alpha then oldest"
-msgstr "alfa mint régebbi"
+msgstr "abc mint régebbi"
 
 msgid "alphabetic"
-msgstr "ábécé szerinti rendezés"
+msgstr "abc szerinti rendezés"
 
 msgid "alphabetical"
 msgstr "abc sorban"
 
 msgid "alphabetic reverse"
-msgstr "fordított ABC"
+msgstr "fordított abc"
 
 msgid "Alphanumeric"
 msgstr "Alfanumerikus"
@@ -2467,7 +2473,7 @@ msgid "Button"
 msgstr "Gomb"
 
 msgid "Button Setup"
-msgstr "Távirányító gomb beállítás"
+msgstr "Távirányító gomb beállítása"
 
 msgid "ButtonSetup"
 msgstr "Távirányító gomb beállítás"
@@ -2837,7 +2843,7 @@ msgid "Channel selection configuration"
 msgstr "Csatorna kiválasztás konfigurálása"
 
 msgid "Channel selection settings"
-msgstr "Csatorna kiválasztási beállítások"
+msgstr "Csatorna kiválasztás beállítása"
 
 msgid "Channel up"
 msgstr "Csatorna léptetés felfelé"
@@ -4261,7 +4267,7 @@ msgstr ""
 "A feszültség váltás utáni késleltetés a kapcsolási parancs kiadása előtt"
 
 msgid "Delay after continuous tone disable before diseqc"
-msgstr "Delay after continuous tone disable before diseqc"
+msgstr "Késleltetés a folyamatos hang némítása után a diseqc parancs előtt"
 
 msgid "Delay after diseqc peripherial poweron command"
 msgstr "Késleltetés a diseqc periféria bekapcsolási parancsa után"
@@ -4273,7 +4279,7 @@ msgid "Delay after enable voltage before motor command"
 msgstr "Késleltetés a motorvezérlés engedélyezése után"
 
 msgid "Delay after enable voltage before switch command"
-msgstr "Delay after enable voltage before switch command"
+msgstr "Késleltetés a feszültség bekapcsolás után a kapcsoló parancs előtt"
 
 msgid "Delay after final continuous tone change"
 msgstr "Delay after final continuous tone change"
@@ -4531,7 +4537,7 @@ msgid "Disable Picture in Picture"
 msgstr "Kép-a-Képben kikapcsolása"
 
 msgid "Disable the HDD Process on VFD"
-msgstr "Tiltsa le a HDD folyamatot a VFD-re"
+msgstr "A folyamatjelző sáv megjelenítése/letiltása"
 
 msgid "Disable timer"
 msgstr "Időzítő letiltása"
@@ -4609,7 +4615,7 @@ msgid "Display message before playing next movie"
 msgstr "A következő fájl lejátszása előtt üzenet megjelenítése"
 
 msgid "Display settings"
-msgstr "Kijelző beállítások"
+msgstr "Kijelző beállítása"
 
 msgid "Display Settings"
 msgstr "Kijelző beállítások"
@@ -4670,7 +4676,7 @@ msgstr ""
 "Ez visszafordíthatatlan lesz!"
 
 msgid "Do you really want to delete %s ?"
-msgstr "Biztos benne, hogy törölni szeretné ezt a tételt: %s?"
+msgstr "Biztos benne, hogy törölni szeretné ezt:  %s?"
 
 msgid "Do you really want to delete %s?"
 msgstr "Biztos benne, hogy törölni szeretné ezt a tételt: %s?"
@@ -5232,7 +5238,7 @@ msgid "Enable EIT EPG"
 msgstr "EIT EPG engedélyezése"
 
 msgid "Enable fallback remote receiver"
-msgstr "Engedélyezi a távvezérelt vevőegységet"
+msgstr "Engedélyezi a tartalék háttér vevőegységet"
 
 msgid "enable favourite edit"
 msgstr "kedvencek módosításának engedélyezése"
@@ -6097,8 +6103,14 @@ msgstr "További információ: http://www.opena.tv"
 msgid "force AC3plus"
 msgstr "a AC3plus kikényszerítése"
 
+msgid "force enabled"
+msgstr "kényszerített engedélyezés"
+
 msgid "Force de-interlace"
 msgstr "Váltottsoros mód kényszerítése"
+
+msgid "force disabled"
+msgstr "kényszerített letiltás"
 
 msgid "Force Legacy Signal Stats"
 msgstr "Hagyományos jelstatisztikák kényszerítése"
@@ -6413,10 +6425,10 @@ msgid "Graphical EPG"
 msgstr "Grafikus EPG"
 
 msgid "Graphical InfobarEPG settings"
-msgstr "Grafikus InfobarEPG beállítás"
+msgstr "Grafikus EPG kinézet beállítása"
 
 msgid "GraphicalEPG settings"
-msgstr "Grafikus EPG beállítás"
+msgstr "Grafikus EPG beállítása"
 
 msgid "Graphics"
 msgstr "Grafika"
@@ -6555,6 +6567,9 @@ msgstr "HDMI felvétel"
 msgid "HDMI-IN Recording settings"
 msgstr "HDMI-IN felvételi beállítások"
 
+msgid "HDR10 Support"
+msgstr "HDR10 támogatás"
+
 msgid "Hebrew"
 msgstr "Héber"
 
@@ -6665,6 +6680,9 @@ msgstr "Előzmények következő"
 msgid "History zap..."
 msgstr "Előzményekhez ugrás..."
 
+msgid "HLG Support"
+msgstr "HLG támogatás"
+
 msgid "Hold screen"
 msgstr "Képernyő megtartás"
 
@@ -6708,7 +6726,7 @@ msgid "Hotkey"
 msgstr "Hotkey"
 
 msgid "Hotkey Setup"
-msgstr "Hotkey beállítás"
+msgstr "Hotkey beállítása"
 
 msgid "Hotkey Setup for"
 msgstr "Hotkey beállítás"
@@ -6964,7 +6982,7 @@ msgid "ImageWizard"
 msgstr "ImageWizard"
 
 msgid "IMDb Details"
-msgstr "IMDb részletek"
+msgstr "IMDb tartalom mutatása"
 
 msgid "IMDB Search"
 msgstr "IMDb Keresés"
@@ -7128,7 +7146,7 @@ msgid "Infobar frontend data source"
 msgstr "Információs sáv adat forrása"
 
 msgid "InfobarEPG settings"
-msgstr "Információs sáv EPG beállítás"
+msgstr "Információs sáv EPG beállítása"
 
 msgid "InfoPanel"
 msgstr "InfoPanel"
@@ -7344,7 +7362,7 @@ msgid "IP:"
 msgstr "IP:"
 
 msgid "IPK Installer"
-msgstr "IPK Telepítés"
+msgstr "IPK Telepítő"
 
 msgid "Ipkg"
 msgstr "Ipkg"
@@ -7620,7 +7638,7 @@ msgid "Letterbox"
 msgstr "Letterbox (fekete csíkok alul/felül)"
 
 msgid "Letterbox zoom"
-msgstr "Letterbox zoom"
+msgstr "Letterbox nagyítás"
 
 msgid "Light Grey"
 msgstr "Világosszürke"
@@ -7781,7 +7799,7 @@ msgid "Logs older then the set no of days will be deleted."
 msgstr "A beállított napok száma után a régebbi naplók törlődnek."
 
 msgid "Logs settings"
-msgstr "Naplók beállításai"
+msgstr "Naplók beállítása"
 
 msgid "Log python stack trace on spinner (may have side effects) ?"
 msgstr "Naplózza a python stack nyomot a spinnerre (mellékhatásai lehetnek)?"
@@ -8066,7 +8084,7 @@ msgid "mins"
 msgstr "perc"
 
 msgid "Mins"
-msgstr "Percek"
+msgstr "Perc"
 
 msgid "Mins Secs"
 msgstr "Perc Másodperc"
@@ -8301,7 +8319,7 @@ msgid "MultiBootStartupOPT"
 msgstr "MultiBootStartupOPT"
 
 msgid "MultiEPG settings"
-msgstr "Multi EPG beállítás"
+msgstr "Multi EPG beállítása"
 
 msgid "Multimedia"
 msgstr "Multimédia"
@@ -8808,7 +8826,7 @@ msgid "No transparency"
 msgstr "Nincs áttetszőség"
 
 msgid "No tuner is available for recording a timer!\n"
-msgstr "Nem érhető el a tuner a felvétel rögzítéséhez!\n"
+msgstr "Nincs szabad tuner a felvétel rögzítéséhez!\n"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -8816,9 +8834,9 @@ msgid ""
 "The following methods of freeing a tuner were tried without success:\n"
 "\n"
 msgstr ""
-"Nem érhető el a tuner a felvétel rögzítéséhez!\n"
+"Nincs szabad tuner a felvétel rögzítéséhez!\n"
 "\n"
-"A tuner felszabadításának alábbi módszereit siker nélkül próbálták ki:\n"
+"Az alábbi eseményt nem sikerült végrehajtani:\n"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Az egyik tuner sincs beállítva DiSEqC forgatómotorra!"
@@ -9061,7 +9079,7 @@ msgid "OE Log"
 msgstr "OE napló"
 
 msgid "OEM Model:\t\t%s\n"
-msgstr "OEM Modell:\t\t%s\n"
+msgstr "OEM Modell:\t%s\n"
 
 msgid "of a DUAL layer medium used."
 msgstr "a kétréteges lemezből felhasználva."
@@ -10236,7 +10254,7 @@ msgid "Power long"
 msgstr "Bekapcsoló hosszan"
 
 msgid "Power On Display"
-msgstr "Bekapcsolt kijelző"
+msgstr "LCD kijelző legyen bekapcsolva"
 
 msgid "Power threshold in mA"
 msgstr "Áram határérték (mA)"
@@ -10804,7 +10822,7 @@ msgid "Recording in progress"
 msgstr "Felvétel folyamatban"
 
 msgid "Recording settings"
-msgstr "Felvétel beállításai"
+msgstr "Felvétel beállítása"
 
 msgid "Recording Setup"
 msgstr "Felvétel beállítás"
@@ -12361,7 +12379,7 @@ msgstr ""
 
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
-msgstr "Állítsa be a folyamatjelzés típusát a csatornaválasztó képernyőn."
+msgstr "Állítsa be a folyamatjelző típusát a csatornaválasztó képernyőn."
 
 msgid "Set time window to 1 hour"
 msgstr "Időablak beállítása 1 órára"
@@ -12864,7 +12882,7 @@ msgid "Show event details"
 msgstr "Esemény részleteinek megjelenítése"
 
 msgid "Show event-progress in channel selection"
-msgstr "Folyamat kijelzés típusa csatornalistában"
+msgstr "A folyamat kijelzésének típusa a csatornalistában"
 
 msgid "Show eventinfo plugins"
 msgstr "Eseménynapló-bővítmények megjelenítése"
@@ -12900,7 +12918,7 @@ msgid "Show graphical multi EPG"
 msgstr "Grafikus multi EPG megjelenítése"
 
 msgid "Show HDD progress"
-msgstr "A merevlemez folyamatának mutatása"
+msgstr "A folyamatjelző sáv mutatása"
 
 msgid "Show HDMI Output Resulution"
 msgstr "A HDMI kimenet felbontásának megjelenítése"
@@ -13338,7 +13356,7 @@ msgid "Single step (GOP)"
 msgstr "Lépés (GOP)"
 
 msgid "SingleEPG settings"
-msgstr "SimpleEPG beállítás"
+msgstr "SimpleEPG beállítása"
 
 msgid "Site latitude"
 msgstr "Földrajzi szélességi fok"
@@ -13359,10 +13377,10 @@ msgid "Skin Setting"
 msgstr "Kinézet beállítása"
 
 msgid "Skin Setup"
-msgstr "Kinézet beállításai (Skin)"
+msgstr "Kinézet beállítása (Skin)"
 
 msgid "Skin setup"
-msgstr "Kinézet beállításai"
+msgstr "Kijelző kinézet választás (Skin)"
 
 msgid "Skins"
 msgstr "Kinézetek"
@@ -13976,6 +13994,9 @@ msgstr "Streamelő kliensek"
 
 msgid "StreamingClientsInfo"
 msgstr "Streamelő kliensek"
+
+msgid "Stretch full"
+msgstr "Teljes nyújtás"
 
 msgid "Stretch linear"
 msgstr "Lineáris nyújtás"
@@ -14646,7 +14667,7 @@ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "A timer fájl (timers.xml) sérült és nem lehet betölteni."
 
 msgid "The TV was switched to the recording service!\n"
-msgstr "A TV át lett kapcsolva a felvételi módra!\n"
+msgstr "Az adás felvételét nem lehetett végrehajtani!\n"
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -14872,6 +14893,22 @@ msgstr "Ez az opció lehetővé teszi a Colorimetry for HDR konfigurálását"
 msgid "This option allows you can config the Colorspace from Auto to RGB"
 msgstr "Ezzel az opcióval beállíthatja a Colorspace módját az Auto-ról RGB-re"
 
+msgid "This option allows you can enable or disable the 10 Bit Color Mode"
+msgstr ""
+"Ezzel az opcióval beállíthatja vagy letilthatja a 10bit-es színes módot"
+
+msgid "This option allows you can enable or disable the 12 Bit Color Mode"
+msgstr ""
+"Ezzel az opcióval beállíthatja vagy letilthatja a 12bit-es színes módot"
+
+msgid "This option allows you can force the HDR10 Modes for UHD"
+msgstr ""
+"Ezzel az opcióval ki tudja kényszeríteni a HDR10 módot az UHD felbontásnál"
+
+msgid "This option allows you can force the HLG Modes for UHD"
+msgstr ""
+"Ezzel az opcióval ki tudja kényszeríteni a HLG módot az UHD felbontásnál"
+
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
 "Ezzel a beállítással megadhatja, hogy hogyan jelenjen meg az eltelt idő, + "
@@ -15032,7 +15069,8 @@ msgstr ""
 "Ez az opció lehetővé teszi a Bővítmény kezelő elrejtését és rendezését."
 
 msgid "This option allows you to Power Off the display."
-msgstr "Ez az opció lehetővé teszi a kijelző kikapcsolását, bekapcsolását."
+msgstr ""
+"Ez az opció lehetővé teszi az LCD kijelző kikapcsolását, bekapcsolását."
 
 msgid "This option allows you to show menu number quick links."
 msgstr "Beállíthatja, hogy a menü számok megjelenjenek-e a menükben."
@@ -15404,7 +15442,7 @@ msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift felvétel mentése a háttértárra!"
 
 msgid "Timeshift settings"
-msgstr "Timeshift beállításai"
+msgstr "Timeshift beállítása"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Az esemény végén lesz a Timeshift mentve!"
@@ -15673,7 +15711,7 @@ msgid "Tuner Configuration"
 msgstr "Tuner beállítás"
 
 msgid "Tuner configuration"
-msgstr "Tuner beállítások"
+msgstr "Tuner beállítása"
 
 msgid "Tuner is not supported"
 msgstr "Tuner nem támogatott"
@@ -16009,7 +16047,7 @@ msgid "Uptime"
 msgstr "Működési idő"
 
 msgid "URL of fallback remote receiver"
-msgstr "Távoli távvezérlő egység elérhetőségének URL címe"
+msgstr "A távoli tartalék háttér vevőegység elérhetőségének URL címe"
 
 msgid "Usage & GUI"
 msgstr "Használat és Kinézet (GUI)"
