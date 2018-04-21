@@ -750,22 +750,13 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				tdiff *= ofs1
 				tdiff /= diff
 				currentDelta -= tdiff
-		last1 = last2 = (ofs1, currentDelta)
 		lastpts = -1
 		append = self.ap.append
 		for i in zip(data[0::2], data[1::2]):
 			current = i[1] - currentDelta
 			diff = current - lastpts
 			if diff <= 0 or diff > 90000*10:
-				currentDelta = last1[1] - last2[1]
-				if 0 < currentDelta <= 90000*10 and last2[0] < last1[0] < i[0]:
-					currentDelta *= i[0] - last1[0]
-					currentDelta /= last1[0] - last2[0]
-				else:
-					currentDelta = 90000 / 25
-				currentDelta = i[1] - lastpts - currentDelta
-			last2 = last1
-			last1 = i
+				currentDelta = i[1] - lastpts - 90000/25
 			lastpts = i[1] - currentDelta
 			append((lastpts, i[0]))
 
