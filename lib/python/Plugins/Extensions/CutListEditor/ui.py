@@ -714,13 +714,14 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			return
 		with open(movie, "r+b") as f:
 			fd = f.fileno()
+			last = len(self.ap) - 1
 			for c in range(0, len(outpts)):
-				o = self.getAP(outpts[c])
-				if o < len(self.ap):
-					o += 1
-				i = self.getAP(inpts[c])
-				if i:
-					i -= 1
+				o = self.getAP(outpts[c]) + 2
+				if o > last:
+					o = last
+				i = self.getAP(inpts[c]) - 1
+				if i < 0:
+					i = 0
 				# FALLOC_FL_PUNCH_HOLE | FALLOC_FL_KEEP_SIZE
 				fallocate64(fd, 3, c_longlong(self.ap[o][1]), c_longlong(self.ap[i][1] - self.ap[o][1]))
 
