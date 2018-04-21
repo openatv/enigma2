@@ -903,7 +903,7 @@ class NimManager:
 	def getTranspondersCable(self, nim):
 		nimConfig = config.Nims[nim].dvbc
 		if nimConfig.configMode.value != "nothing" and nimConfig.scan_type.value == "provider":
-			return self.transponderscable[self.cablesList[nimConfig.dvbc.scan_provider.index][0]]
+			return self.transponderscable[self.cablesList[nimConfig.scan_provider.index][0]]
 		return [ ]
 
 	def getTranspondersTerrestrial(self, region):
