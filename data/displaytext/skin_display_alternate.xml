@@ -114,7 +114,12 @@
 	<screen name="EPGSelection_summary" position="0,0" size="132,64">
 		<panel name="MyEPGPanel" />
 	</screen>
-
+<!-- Servicescan -->
+	<screen name="ServiceScanSummary" position="0,0" size="132,64">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+	</screen>
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="132,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="124,40" font="Regular;16" valign="center" />
