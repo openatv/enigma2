@@ -203,13 +203,13 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 			elif (next_state == self.StateRunning and abs(self.begin - now) > 900) or (next_state == self.StateEnded and abs(self.end - now) > 900):
 				if self.timerType == TIMERTYPE.AUTODEEPSTANDBY or self.timerType == TIMERTYPE.AUTOSTANDBY:
-					print '[Powertimer] time wrap detected - set new begin time for %s timer' %self.__repr__(True)
+					print '[Powertimer] time warp detected - set new begin time for %s timer' %self.__repr__(True)
 					if not self.getAutoSleepWindow():
 						return False
 					else:
 						self.begin = self.end = int(now) + int(self.autosleepdelay)*60
 						return False
-				print '[Powertimer] time wrap detected - timer %s ending without action' %self.__repr__(True)
+				print '[Powertimer] time warp detected - timer %s ending without action' %self.__repr__(True)
 				return True
 
 			if NavigationInstance.instance.isRecordTimerImageStandard:
