@@ -198,6 +198,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		InfoBarBase.__init__(self, steal_current_service = True)
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
+		self.service = service
 		session.nav.playService(service)
 		self.pauseService()
 
@@ -288,9 +289,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def __onClose(self):
 		if self.MovieSelection:
 			if self.last_mark and not [x for x in self.cut_list if x[1] == self.CUT_TYPE_LAST]:
-				service = self.session.nav.getCurrentlyPlayingServiceReference()
 				from Screens.InfoBarGenerics import delResumePoint
-				delResumePoint(service)
+				delResumePoint(self.service)
 				self.MovieSelection["list"].invalidateCurrentItem()
 			if self.edited:
 				self.MovieSelection.diskinfo.update()
@@ -587,15 +587,22 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.setCutListEnable()
 		elif result == CutListContextMenu.RET_EXECUTECUTS:
 			try:
-				from Plugins.Extensions.MovieCut.plugin import main
-				service = self.session.nav.getCurrentlyPlayingServiceReference()
+				from Plugins.Extensions.MovieCut.plugin import MovieCut
 				self.session.nav.stopService()	# need to stop to save the cuts file
-				main(self.session, service)
-				self.close()
+				self.session.openWithCallback(self.executeCallback, MovieCut, self.service)
 			except ImportError:
 				self.session.open(MessageBox, _("The MovieCut plugin is not installed."), type=MessageBox.TYPE_INFO, timeout=10)
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
+
+	def executeCallback(self, answer):
+		if answer:
+			self.close()
+		else:
+			self.session.nav.playService(self.service)
+			self.pauseService()
+			self.setCutListEnable()
+			self.__onShown(override=True)
 
 	def quickCallback(self, answer):
 		answer = answer and answer[1]
@@ -616,16 +623,15 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = False
 			self.prev_cuts = self.cut_list[:]
 			self.last_cuts = self.getCutlist()
-		service = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
-		movie = service.getPath()
+		movie = self.service.getPath()
 		if self.loadAP(movie):
 			if truncpts:
 				self.trunc(movie, truncpts)
 			if answer & 2:
 				self.punch(movie)
 			self.edited = True
-		self.session.nav.playService(service)
+		self.session.nav.playService(self.service)
 		self.pauseService()
 		self.setCutListEnable()
 		self.__onShown(override=True)
@@ -667,7 +673,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.pauseService()
 
 	def grabFrame(self):
-		path = self.session.nav.getCurrentlyPlayingServiceReference().getPath()
+		path = self.service.getPath()
 		from Components.Console import Console
 		grabConsole = Console()
 		cmd = 'grab -vblpr%d "%s"' % (180, path.rsplit('.',1)[0] + ".png")
