@@ -65,7 +65,7 @@ def MyDateConverter(StringDate):
 
 def getAboutText():
 	AboutText = ""
-	AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+	AboutText += _("Model:\t\t%s %s\n") % (getMachineBrand(), getMachineName())
 	AboutText += _("OEM Model:\t\t%s\n") % getMachineBuild()
 
 	bootloader = ""
@@ -76,7 +76,7 @@ def getAboutText():
 		AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
 
 	if path.exists('/proc/stb/info/chipset'):
-		AboutText += _("Chipset:\t%s") % about.getChipSetString() + "\n"
+		AboutText += _("Chipset:\t\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
 	if getMachineBuild() in ('vusolo4k','vuultimo4k','vuzero4k'):
@@ -111,8 +111,8 @@ def getAboutText():
 			except:
 				pass
 
-	AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
-	AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
+	AboutText += _("CPU:\t\t%s") % about.getCPUString() + cpuMHz + "\n"
+	AboutText += _("Cores:\t\t%s") % about.getCpuCoresString() + "\n"
 
 	imagestarted = ""
 	bootname = ''
@@ -127,33 +127,33 @@ def getAboutText():
 		image = f.read(1) 
 		f.close()
 		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
 	elif path.exists('/boot/cmdline.txt'):
 		f = open('/boot/cmdline.txt', 'r')
 		f.seek(38)
 		image = f.read(1) 
 		f.close()
 		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
 
-	AboutText += _("Version:\t%s") % getImageVersion() + "\n"
-	AboutText += _("Build:\t%s") % getImageBuild() + "\n"
-	AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
+	AboutText += _("Version:\t\t%s") % getImageVersion() + "\n"
+	AboutText += _("Build:\t\t%s") % getImageBuild() + "\n"
+	AboutText += _("Kernel:\t\t%s") % about.getKernelVersionString() + "\n"
 
 	string = getDriverDate()
 	year = string[0:4]
 	month = string[4:6]
 	day = string[6:8]
 	driversdate = '-'.join((year, month, day))
-	AboutText += _("Drivers:\t%s") % MyDateConverter(driversdate) + "\n"
+	AboutText += _("Drivers:\t\t%s") % driversdate + "\n"
 
-	AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
-	AboutText += _("Python:\t%s") % about.getPythonVersionString() + "\n"
+	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
+	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
 
 	if getMachineBuild() not in ('h9','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51'):
-		AboutText += _("Installed:\t%s") % about.getFlashDateString() + "\n"
+		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
 
-	AboutText += _("Last update:\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
+	AboutText += _("Last update:\t\t%s") % getEnigmaVersionString() + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:
