@@ -95,6 +95,10 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
 
+		#check autopowertimer
+		if (timerType == TIMERTYPE.AUTOSTANDBY or timerType == TIMERTYPE.AUTODEEPSTANDBY) and not disabled and time() > 3600 and self.begin > time():
+			self.begin = int(time())						#the begin is in the future -> set to current time = no start delay of this timer
+
 		if self.end < self.begin:
 			self.end = self.begin
 
@@ -124,11 +128,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		self.messageBoxAnswerPending = False
 
-		#check autopowertimer
-		if (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY) and not self.disabled and time() > 3600 and self.begin > time():
-			self.begin = int(time())						#the begin is in the future -> set to current time = no start delay of this timer
-
-	def __repr__(self):
+	def __repr__(self, getType = False):
 		timertype = {
 			TIMERTYPE.NONE: "nothing",
 			TIMERTYPE.WAKEUP: "wakeup",
@@ -140,6 +140,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			TIMERTYPE.REBOOT: "reboot",
 			TIMERTYPE.RESTART: "restart"
 			}[self.timerType]
+		if getType: return timertype
 		if not self.disabled:
 			return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
 		else:
@@ -193,16 +194,24 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 				self.getNetworkTraffic(getInitialValue = True)
 
-		if (next_state == self.StateRunning or next_state == self.StateEnded) and NavigationInstance.instance.PowerTimer is None:
-			#TODO: running/ended timer at system start has no nav instance
-			#First fix: crash in getPriorityCheck (NavigationInstance.instance.PowerTimer...)
-			#Second fix: suppress the message (A finished powertimer wants to ...)
-			if debug: print "*****NavigationInstance.instance.PowerTimer is None*****", self.timerType, self.state, ctime(self.begin), ctime(self.end)
-			return True
-		elif next_state == self.StateRunning and abs(self.begin - now) > 900: return True
-		elif next_state == self.StateEnded and abs(self.end - now) > 900: return True
-
 		if next_state == self.StateRunning or next_state == self.StateEnded:
+			if NavigationInstance.instance.PowerTimer is None:
+				#TODO: running/ended timer at system start has no nav instance
+				#First fix: crash in getPriorityCheck (NavigationInstance.instance.PowerTimer...)
+				#Second fix: suppress the message (A finished powertimer wants to ...)
+				if debug: print "*****NavigationInstance.instance.PowerTimer is None*****", self.timerType, self.state, ctime(self.begin), ctime(self.end)
+				return True
+			elif (next_state == self.StateRunning and abs(self.begin - now) > 900) or (next_state == self.StateEnded and abs(self.end - now) > 900):
+				if self.timerType == TIMERTYPE.AUTODEEPSTANDBY or self.timerType == TIMERTYPE.AUTOSTANDBY:
+					print '[Powertimer] time warp detected - set new begin time for %s timer' %self.__repr__(True)
+					if not self.getAutoSleepWindow():
+						return False
+					else:
+						self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+						return False
+				print '[Powertimer] time warp detected - timer %s ending without action' %self.__repr__(True)
+				return True
+
 			if NavigationInstance.instance.isRecordTimerImageStandard:
 				isRecTimerWakeup = NavigationInstance.instance.RecordTimer.isRecTimerWakeup()
 			if isRecTimerWakeup:
