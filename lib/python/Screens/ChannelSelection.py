@@ -763,6 +763,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
 			{
 				"showEPGList": self.showEPGList,
+				"showEventInfo": self.showEventInfo
 			})
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
@@ -956,20 +957,22 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		ref=self.getCurrentSelection()
 		if ref:
 			self.savedService = ref
-			if config.usage.servicelist_infokey.value == 'epg':
-				self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB, EPGtype="single")
-			else:
-				epglist = []
-				epg = eEPGCache.getInstance()
-				ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
+			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB, EPGtype="single")
+
+	def showEventInfo(self):
+		ref=self.getCurrentSelection()
+		if ref:
+			epglist = []
+			epg = eEPGCache.getInstance()
+			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
+			if ptr:
+				epglist.append(ptr)
+				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
 				if ptr:
 					epglist.append(ptr)
-					ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
-					if ptr:
-						epglist.append(ptr)
 				if epglist:
-					self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback)
 					self.epglist = epglist
+					self.session.open(EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback)
 
 	def eventViewCallback(self, setEvent, setService, val):
 		epglist = self.epglist
