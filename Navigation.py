@@ -69,7 +69,7 @@ class Navigation:
 		wasTimerWakeup, wasTimerWakeup_failure = getFPWasTimerWakeup(True)
 		#TODO: verify wakeup-state for boxes where only after shutdown removed the wakeup-state (for boxes where "/proc/stb/fp/was_timer_wakeup" is not writable (clearFPWasTimerWakeup() in StbHardware.py has no effect -> after x hours and restart/reboot is wasTimerWakeup = True)
 		print "="*100
-		if self.getstandby < 2:
+		if self.getstandby < 2 and not self.hasFakeTime:
 			print "[NAVIGATION] time diff from shutdown to now = %is" %(now - self.lastshutdowntime)
 		if self.wakeuptime > 0: 
 			print "[NAVIGATION] wakeup time from deep-standby expected: *** %s ***" %(ctime(self.wakeuptime))
