@@ -960,6 +960,9 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB, EPGtype="single")
 
 	def showEventInfo(self):
+		if config.usage.servicelist_infokey.value == 'epg':
+			self.showEPGList()
+			return
 		ref=self.getCurrentSelection()
 		if ref:
 			epglist = []
