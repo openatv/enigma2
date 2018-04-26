@@ -760,7 +760,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self.currentSavedPath = []
 		self.onExecBegin.append(self.clearLongkeyPressed)
 
-		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
+		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectInfoActions", "ChannelSelectEPGActions"],
 			{
 				"showEPGList": self.showEPGList,
 				"showEventInfo": self.showEventInfo
