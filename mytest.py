@@ -730,7 +730,7 @@ def runScreenTest():
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec (not for plugin-timer, here is no standby), 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d,%d" % (int(nowTime),wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
 	else:
-		config.misc.nextWakeup.value = "-1,-1,-1,0,0,-1,0"
+		config.misc.nextWakeup.value = "%d,-1,-1,0,0,-1,0" % (int(nowTime))
 		if not boxtype.startswith('azboxm'): #skip for Azbox (mini)ME - setting wakeup time to past reboots box 
 			setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
 		print "[mytest.py] no set next wakeup time"
