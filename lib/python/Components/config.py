@@ -423,7 +423,6 @@ class ConfigBoolean(ConfigElement):
 		ConfigElement.__init__(self)
 		self.descriptions = descriptions
 		self.value = self.last_value = self.default = default
-		self.graphic = False
 		self.graphic = graphic
 
 	def handleKey(self, key):
