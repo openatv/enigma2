@@ -3360,8 +3360,8 @@ RESULT eDVBServicePlay::getSubtitleList(std::vector<SubtitleTrack> &subtitlelist
 					}
 					break;
 				}
-				case 0x10 ... 0x13:
-				case 0x20 ... 0x23: // dvb subtitles
+				case 0x10 ... 0x15:
+				case 0x20 ... 0x25: // dvb subtitles
 				{
 					track.type = 0;
 					track.pid = it->pid;
