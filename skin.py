@@ -756,11 +756,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				raise SkinError('[Skin] pixmap needs filename attribute')
 			resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
 			if fileExists(resolved_png):
-				switchPixmap[name] = resolved_png
+				switchPixmap[name] = LoadPixmap(resolved_png, cached=True)
 			else:
 				raise SkinError('[Skin] switchpixmap pixmap filename="%s" (%s) not found' % (filename, resolved_png))
 
- 	for c in skin.findall("colors"):
+	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
 			name = get_attr("name")
