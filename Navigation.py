@@ -130,7 +130,8 @@ class Navigation:
 
 		if runCheck and ((self.__wasTimerWakeup or config.workaround.deeprecord.value) and now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus):
 			if self.syncCount > 0:
-				stbytimer = 0
+				stbytimer = stbytimer - (self.syncCount * 5)
+				if stbytimer < 0: stbytimer = 0
 				if not self.__wasTimerWakeup:
 					self.__wasTimerWakeup = True
 					print "-"*100
@@ -161,9 +162,9 @@ class Navigation:
 				if not self.forcerecord:
 					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
 			#check for standby
-			if not self.getstandby and self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer:
+			if not self.getstandby and ((self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer) or (not config.recording.switchTVon.value and self.wakeuptyp == 0)):
 				self.getstandby = 1
-				print "[NAVIGATION] more than 60 seconds to wakeup - go in standby"
+				print "[NAVIGATION] more than 60 seconds to wakeup or not TV turn on - go in standby"
 			print "="*100
 			#go in standby
 			if self.getstandby == 1:

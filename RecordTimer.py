@@ -1251,7 +1251,6 @@ class RecordTimer(timer.Timer):
 	def getNextRecordingTimeOld(self, getNextStbPowerOn = False):
 		now = time()
 		if getNextStbPowerOn:
-			switchTVon = config.recording.switchTVon.value
 			save_act = -1, 0
 			for timer in self.timer_list:
 				next_act = timer.getNextActivation(getNextStbPowerOn)
@@ -1259,10 +1258,10 @@ class RecordTimer(timer.Timer):
 					continue
 				if debug: print "[recordtimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act))
 				if save_act[0] == -1:
-					save_act = next_act, int(not timer.always_zap or not switchTVon)
+					save_act = next_act, int(not timer.always_zap)
 				else:
 					if next_act < save_act[0]:
-						save_act = next_act, int(not timer.always_zap or not switchTVon)
+						save_act = next_act, int(not timer.always_zap)
 			return save_act
 		else:
 			for timer in self.timer_list:
