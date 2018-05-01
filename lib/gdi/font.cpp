@@ -832,8 +832,10 @@ nprint:				isprintable=0;
 				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 
 			if (index)
+			{
 				nextflags = 0;
-			activate_newcolor = false;
+				activate_newcolor = false;
+			}
 		} else if (nextflags&GS_ISFIRST && !glyphs.empty())
 		{
 			// Newline found, mark the last glyph with the newline flag
