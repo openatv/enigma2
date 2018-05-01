@@ -736,17 +736,6 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 
 		if (!(rflags&RS_DIRECT))
 		{
-			/* detect linefeeds and set flag GS_LF for the last glyph in this line */
-			if ((i + 1) != uc_visual.end())
-			{
-				unsigned long c = *(i + 1);
-				if (c == '\n' || c == 0x8A || c == 0xE08A /* linefeed */
-					|| (c == '\\' && (i + 2) != uc_visual.end() && *(i + 2) == 'n')) /* escaped linefeed */
-				{
-					flags |= GS_LF;
-				}
-			}
-
 			switch (chr)
 			{
 			case '\\':
@@ -844,6 +833,10 @@ nprint:				isprintable=0;
 				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 
 			activate_newcolor = false;
+		} else if (nextflags&GS_ISFIRST && !glyphs.empty())
+		{
+			// Newline found, mark the last glyph with the newline flag
+			glyphs.back().flags |= GS_LF;
 		}
 	}
 	bboxValid=false;
