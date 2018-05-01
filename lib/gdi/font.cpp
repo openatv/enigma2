@@ -781,6 +781,8 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 tab:				isprintable=0;
 				cursor+=ePoint(current_font->tabwidth, 0);
 				cursor-=ePoint(cursor.x()%current_font->tabwidth, 0);
+				if (!(nextflags&GS_ISFIRST))
+					nextflags|=GS_FIXED;
 				break;
 			case 0x8A:
 			case 0xE08A:
@@ -788,6 +790,7 @@ tab:				isprintable=0;
 newline:			isprintable=0;
 				newLine(rflags);
 				nextflags|=GS_ISFIRST;
+				nextflags&=~GS_FIXED;
 				break;
 			case '\r':
 			case 0x86: case 0xE086:
@@ -1159,12 +1162,13 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 	while (c != glyphs.end())
 	{
 		int linelength=0;
+		int linespace=area.width();
 		int numspaces=0, num=0;
 		begin=end;
 
 		ASSERT( end != glyphs.end());
 
-		glyphString::iterator nonspace_end(begin);
+		glyphString::iterator nonspace_end(begin),  last_fixed(begin);
 
 			// zeilenende suchen
 		do {
@@ -1177,6 +1181,14 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 
 		for (c=begin; c!=nonspace_end; ++c)
 		{
+			if (dir == dirBlock && c->flags&GS_FIXED)
+			{
+				numspaces=0;
+				num=0;
+				linespace=area.width()-c->x;
+				linelength=0;
+				begin = c;
+			}
 			if (c->flags&GS_ISSPACE)
 				numspaces++;
 			linelength+=c->w;
@@ -1228,8 +1240,9 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 				continue;
 			}
 
-			int off=(area.width()-linelength)*256/(numspaces?numspaces:(num-1));
+			int off=(linespace-linelength)*256/(numspaces?numspaces:(num-1));
 			int curoff=0;
+
 			while (begin != nonspace_end)
 			{
 				int doadd=0;
