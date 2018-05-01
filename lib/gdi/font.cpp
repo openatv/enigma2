@@ -731,7 +731,6 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	{
 		int isprintable=1;
 		int flags = nextflags;
-		nextflags = 0;
 		unsigned long chr = *i;
 
 		if (!(rflags&RS_DIRECT))
@@ -832,6 +831,8 @@ nprint:				isprintable=0;
 			} else
 				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 
+			if (index)
+				nextflags = 0;
 			activate_newcolor = false;
 		} else if (nextflags&GS_ISFIRST && !glyphs.empty())
 		{
