@@ -1164,24 +1164,25 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 
 		ASSERT( end != glyphs.end());
 
+		glyphString::iterator nonspace_end(begin);
+
 			// zeilenende suchen
 		do {
 			last=end;
 			++end;
+			if(!(last->flags&GS_ISSPACE) && (end != glyphs.end() || end->flags&GS_ISSPACE))
+				nonspace_end = end;
 		} while ((end != glyphs.end()) && (!(end->flags&GS_ISFIRST)));
 			// end zeigt jetzt auf begin der naechsten zeile
 
-		for (c=begin; c!=end; ++c)
+		for (c=begin; c!=nonspace_end; ++c)
 		{
-				// space am zeilenende skippen
-			if ((c==last) && (c->flags&GS_ISSPACE))
-				continue;
-
 			if (c->flags&GS_ISSPACE)
 				numspaces++;
 			linelength+=c->w;
 			num++;
 		}
+		c = end;
 
 		switch (dir)
 		{
@@ -1229,7 +1230,7 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 
 			int off=(area.width()-linelength)*256/(numspaces?numspaces:(num-1));
 			int curoff=0;
-			while (begin != end)
+			while (begin != nonspace_end)
 			{
 				int doadd=0;
 				if (begin->flags & GS_ISSPACE)
