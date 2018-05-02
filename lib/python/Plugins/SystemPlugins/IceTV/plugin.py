@@ -246,7 +246,7 @@ class EPGFetcher(object):
 
         updated = False
         if not showMap:
-             return updated
+            return updated
         for timer in _session.nav.RecordTimer.timer_list:
             if timer.ice_timer_id and timer.service_ref.ref and not getattr(timer, "record_service", None):
                 evt = timer.getEventFromEPGId() or timer.getEventFromEPG()
@@ -496,7 +496,7 @@ class EPGFetcher(object):
                 # print "[IceTV] uploading new timer"
                 if not local_timer.eit:
                     self.addLog("Timer '%s' has no event id; not sent to IceTV" % local_timer.name)
-		    return
+                    return
                 channel_id = self.serviceToIceChannelId(local_timer.service_ref)
                 req = ice.Timers()
                 req.data["eit_id"] = local_timer.eit
