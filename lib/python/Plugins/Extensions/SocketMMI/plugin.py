@@ -12,14 +12,15 @@ def menu(menuid, **kwargs):
 	return [ ]
 
 def sessionstart(reason, session):
+	global socketHandler
+	if socketHandler is None:
+		socketHandler = SocketMMIMessageHandler()
 	socketHandler.setSession(session)
 
 def autostart(reason, **kwargs):
 	global socketHandler
 	if reason == 1:
 		socketHandler = None
-	else:
-		socketHandler = SocketMMIMessageHandler()
 
 def Plugins(**kwargs):
 	return [ PluginDescriptor(name = "SocketMMI", description = _("Python frontend for /tmp/mmi.socket"), where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc = menu),
