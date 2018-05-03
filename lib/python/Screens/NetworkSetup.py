@@ -2215,7 +2215,7 @@ class NetworkOpenvpn(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['labconfig'] = Label(_("Config"))
+		self['labconfig'] = Label(_("Config file name: default (ok to change)"))
 		self.config_file=""
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Remove Service"))
@@ -2347,6 +2347,19 @@ class NetworkOpenvpn(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
+		def inputconfig(self):
+		self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
+
+		def askForWord(self, word):
+			if word is None:
+				pass
+			else:
+				#self.session.open(MessageBox,_(word), MessageBox.TYPE_INFO)
+				self.config_file=_(word)
+				testo_config="Config file name: "+ self.config_file + " (ok to change)"	
+				self['labconfig'].setText(testo_config)
+
+			
 class NetworkVpnLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2522,20 +2535,6 @@ class NetworkSamba(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-		def inputconfig(self):
-			self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
-
-		def askForWord(self, word):
-			if word is None:
-				pass
-			else:
-				#self.session.open(MessageBox,_(word), MessageBox.TYPE_INFO)
-				self.config_file=_(word)
-				testo_config="Config :          "+ self.config_file	
-				self['labconfig'].setText(testo_config)
-
-
-			
 			
 class NetworkSambaLog(Screen):
 	def __init__(self, session):
