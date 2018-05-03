@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-13 10:50+0200\n"
-"PO-Revision-Date: 2017-11-13 17:41+0200\n"
+"POT-Creation-Date: 2018-04-14 21:15+0300\n"
+"PO-Revision-Date: 2018-05-01 11:08+0300\n"
 "Last-Translator: rimas <rimas@meil.com>\n"
 "Language-Team: Digi-tv.ee\n"
 "Language: et_EE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu: Vali Quad PiP kanal"
@@ -923,6 +923,9 @@ msgstr "< Vaikimisi >"
 msgid "< Default with Picon >"
 msgstr "< Vaikimisi, kanalilogoga >"
 
+msgid "< User Skin >"
+msgstr ""
+
 msgid "<Current movielist location>"
 msgstr "<Filmilisti praegune asukoht >"
 
@@ -1499,6 +1502,12 @@ msgstr "Jaota"
 msgid "Allocate unused memory index"
 msgstr "Jaota vaba mäluindeks"
 
+msgid "Allow 10bit"
+msgstr "Luba 10bit"
+
+msgid "Allow 12bit"
+msgstr "Luba 12bit"
+
 #
 msgid "Allow quit movieplayer with exit"
 msgstr "'EXIT' nupp lõpetab taasesituse"
@@ -1511,6 +1520,9 @@ msgstr "Luba vaegkuuljate subtiitrid"
 
 msgid "Allow unstable (untested) updates"
 msgstr "Testimata uuendused lubatud"
+
+msgid "Allow unsupported modes"
+msgstr "Luba toetuseta režiimid"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Võimaldab vastuvõtjal regulaarselt lugeda salvestatud EPG andmeid."
@@ -1969,6 +1981,9 @@ msgstr "Automaatsed keelevalikud"
 msgid "Auto Language Selection"
 msgstr "Automaatsed keelevalikud"
 
+msgid "Auto Modes Selected."
+msgstr ""
+
 msgid "Auto scart switching"
 msgstr "Autom. SCART ümberlülitus"
 
@@ -2287,6 +2302,9 @@ msgstr "parem"
 msgid "Big PiP"
 msgstr "Suur PiP"
 
+msgid "Bitrate"
+msgstr "Bitikiirus"
+
 msgid "Bitrate:"
 msgstr "Bitikiirus:"
 
@@ -2348,8 +2366,8 @@ msgstr "Rohelise võimendus"
 msgid "Boot-up action"
 msgstr "Tegevus alglaadimisel"
 
-msgid "Bootloader:\t\t%s\n"
-msgstr "Alglaadur:\t\t%s\n"
+msgid "Bootloader:\t\t\t%s\n"
+msgstr "Alglaadur:\t\t\t%s\n"
 
 msgid "Bootloader update required!"
 msgstr "Vajalik on alglaaduri uuendus!"
@@ -2405,8 +2423,8 @@ msgstr "Puhvrid:"
 msgid "Build: %s"
 msgstr "Järk: %s"
 
-msgid "Build:\t%s"
-msgstr "Järk:\t%s"
+msgid "Build:\t\t%s"
+msgstr "Järk:\t\t%s"
 
 msgid "Bulgarian"
 msgstr "Bulgaaria"
@@ -2903,8 +2921,8 @@ msgstr "Kiibistik"
 msgid "Chipset: BCM%s"
 msgstr "Kiibistik: BCM%s"
 
-msgid "Chipset:\t%s"
-msgstr "Kiibistik:\t%s"
+msgid "Chipset:\t\t%s"
+msgstr "Kiibistik:\t\t%s"
 
 msgid "Choice Box"
 msgstr "Valikukast"
@@ -3871,8 +3889,8 @@ msgstr "Failide kopeerimine"
 msgid "Cores: %s"
 msgstr "Tuumad: %s"
 
-msgid "Cores:\t%s"
-msgstr "Tuumad:\t%s"
+msgid "Cores:\t\t%s"
+msgstr "Tuumad:\t\t%s"
 
 msgid "Could not connect to server"
 msgstr "Ühenduse loomine serveriga nurjus"
@@ -3911,8 +3929,8 @@ msgstr "CPU"
 msgid "CPU: %s"
 msgstr "CPU: %s"
 
-msgid "CPU:\t%s"
-msgstr "Protsessor:\t%s"
+msgid "CPU:\t\t%s"
+msgstr "CPU:\t\t%s"
 
 msgid "Crash at skin error for debug reasons ?"
 msgstr "Kujunduse vigade eiramine"
@@ -3968,6 +3986,9 @@ msgstr "Cron haldur"
 
 msgid "CronManager"
 msgstr "Cron haldur"
+
+msgid "CronTimer"
+msgstr "Cron taimer"
 
 msgid "CronTimers"
 msgstr "Cron taimerid"
@@ -4123,6 +4144,9 @@ msgstr "'Taimeri tüüp' vaikeväärtus*"
 
 msgid "Default files/folders to backup"
 msgstr "Vaikimisi varundatavad failid/kataloogid"
+
+msgid "Default Modes Selected."
+msgstr ""
 
 msgid "Default movie location"
 msgstr "Salvestuste tavaasukoht"
@@ -4888,8 +4912,8 @@ msgstr "Vastuvõtja vormingus andme DVD (ei tööta muudes DVD-mängijates)"
 msgid "drivers"
 msgstr "Ajurid"
 
-msgid "Drivers:\t%s"
-msgstr "Ajurid:\t%s"
+msgid "Drivers:\t\t%s"
+msgstr "Ajurid:\t\t%s"
 
 msgid "DTS"
 msgstr "DTS"
@@ -6034,8 +6058,17 @@ msgstr "Enama info jaoks vaata http://www.opena.tv"
 msgid "force AC3plus"
 msgstr "Sunnitud AC3+"
 
+msgid "force enabled"
+msgstr "luba jõuga"
+
 msgid "Force de-interlace"
 msgstr "Sunnitud ülerealaotuse eemaldamine (deinterlace)"
+
+msgid "force disabled"
+msgstr "keela jõuga"
+
+msgid "Force Legacy Signal Stats"
+msgstr "Kasuta aegunud signaalistatistikat"
 
 msgid "Force LNB Power"
 msgstr "Sunnitud LNB toide"
@@ -6072,6 +6105,9 @@ msgstr "FP uuendamine"
 
 msgid "FP upgrade required"
 msgstr "Nõutav FP uuendamine"
+
+msgid "Frame rate"
+msgstr "Kaadrisagedus"
 
 msgid "Frame size in full view"
 msgstr "Kaadri suurus täisvaates"
@@ -6382,11 +6418,18 @@ msgstr "Kasvav tilk"
 msgid "Grow from left"
 msgstr "Vasakult kasvav"
 
-msgid "GStreamer:\t%s"
-msgstr "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
+msgstr "GStreamer:\t\t%s"
 
 msgid "Guard interval"
 msgstr "Kaitsevahemik"
+
+msgid ""
+"GUI needs a restart to apply a new language\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"Uue keele jõustamiseks tuleb kasutajaliides taaskäivitada\n"
+"Kas teha seda kohe?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -6449,14 +6492,6 @@ msgstr ""
 msgid "HD list"
 msgstr "HD kanalid"
 
-msgid ""
-"HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/et7000mini"
-msgstr ""
-"HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/et7000mini"
-
-msgid "HD2400"
-msgstr "HD2400"
-
 #
 msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
@@ -6488,6 +6523,15 @@ msgstr "HDMI värviruum"
 
 msgid "HDMIin"
 msgstr "HDMIin"
+
+msgid "HDMI Recording"
+msgstr "HDMI salvestus"
+
+msgid "HDMI-IN Recording settings"
+msgstr "HDMI salvestuse seaded"
+
+msgid "HDR10 Support"
+msgstr "HDR10 tugi"
 
 msgid "Hebrew"
 msgstr "Heebrea"
@@ -6593,6 +6637,9 @@ msgstr "Kanaliajaloos edasi"
 
 msgid "History zap..."
 msgstr "Kanaliajalugu."
+
+msgid "HLG Support"
+msgstr "HLG tugi"
 
 msgid "Hold screen"
 msgstr "Hoia pilti"
@@ -6832,6 +6879,15 @@ msgstr ""
 "Ära hooli praegu heledatest varjunditest, need seame paika järgmisena. \n"
 "Kui oled tulemusega rahul, vajuta OK."
 
+msgid "Ignore DVB-C namespace sub network"
+msgstr "Eira DVB-C nimeruumi alamvõrku"
+
+msgid "Ignore DVB-S namespace sub network"
+msgstr "Eira DVB-S nimeruumi alamvõrku"
+
+msgid "Ignore DVB-T namespace sub network"
+msgstr "Eira DVB-T nimeruumi alamvõrku"
+
 msgid "Image"
 msgstr "Püsivara"
 
@@ -6900,8 +6956,10 @@ msgstr ""
 "Määra, millist tuunerit eelistatakse salvestamisel, kui saadaval on rohkem "
 "kui üks tuuner."
 
-msgid "In the Standby blinking Clock on the LCD Display"
-msgstr "Ooteseisundis vilkuv kell esipaneelil"
+msgid ""
+"In most cases this should be set to No. Only enable if you have a very "
+"specific need."
+msgstr "Enamasti tuleks määrata 'Ei'. Luba ainult erijuhtumil."
 
 # RecordTimer.py
 msgid ""
@@ -6913,6 +6971,9 @@ msgstr ""
 
 msgid "In progress"
 msgstr "Käsil"
+
+msgid "In the Standby blinking Clock on the LCD Display"
+msgstr "Ooteseisundis vilkuv kell esipaneelil"
 
 msgid "Inactive"
 msgstr "Väljas"
@@ -6967,6 +7028,9 @@ msgstr "Indeks"
 
 msgid "Index allocated:"
 msgstr "Indeks jaotatud:"
+
+msgid "Indonesian"
+msgstr "Indoneesia"
 
 msgid "Info"
 msgstr "Info"
@@ -7147,8 +7211,8 @@ msgstr "Paigalda EMU"
 msgid "Installation finished."
 msgstr "Paigaldamine lõppenud."
 
-msgid "Installed:\t%s"
-msgstr "Paigaldatud:\t%s"
+msgid "Installed:\t\t%s"
+msgstr "Paigaldatud:\t\t%s"
 
 msgid "Installing"
 msgstr "Paigaldamine"
@@ -7185,6 +7249,9 @@ msgstr "Liides"
 
 msgid "Interface: "
 msgstr "Liides: "
+
+msgid "Interlaced"
+msgstr "Ülerealaotusega"
 
 msgid "Intermediate"
 msgstr "Keskmine"
@@ -7372,8 +7439,8 @@ msgstr "Kerneli moodulid"
 msgid "Kernel: %s"
 msgstr "Kernel: %s"
 
-msgid "Kernel:\t%s"
-msgstr "Kernel:\t%s"
+msgid "Kernel:\t\t%s"
+msgstr "Kernel:\t\t%s"
 
 msgid "Keyboard"
 msgstr "Klaviatuur"
@@ -7434,8 +7501,8 @@ msgstr "Viimane päring"
 msgid "Last speed"
 msgstr "Eelmine kiirus"
 
-msgid "Last update:\t%s"
-msgstr "Uuendatud:\t%s"
+msgid "Last update:\t\t%s"
+msgstr "Uuendatud:\t\t%s"
 
 msgid "Last used share: "
 msgstr "Viimati kasutatud: "
@@ -7619,7 +7686,7 @@ msgid "Load"
 msgstr "Laadi"
 
 msgid "Load EPG"
-msgstr "EPG laadimine"
+msgstr "Laadi EPG"
 
 msgid "Load playlist"
 msgstr "Laadi pleilist"
@@ -7684,6 +7751,9 @@ msgstr "Logid, mis on määratud päevade arvust vanemad, kustutatakse."
 
 msgid "Logs settings"
 msgstr "Logimise seaded"
+
+msgid "Log python stack trace on spinner (may have side effects) ?"
+msgstr ""
 
 msgid "long"
 msgstr "pikk"
@@ -7850,6 +7920,9 @@ msgstr "Maks.alla: "
 msgid "Maximum no of days:"
 msgstr "Suurim lubatud päevade arv:"
 
+msgid "Maximum minutes to jump %d !"
+msgstr "Suurim arv minutites hüppeks %d !"
+
 msgid "Maximum number of days in EPG"
 msgstr "Suurim EPG kuvatav päevade arv"
 
@@ -8010,8 +8083,8 @@ msgstr "Tüüp: "
 msgid "Model: %s %s\n"
 msgstr "Mudel: %s %s\n"
 
-msgid "Model:\t%s %s\n"
-msgstr "Mudel:\t%s %s\n"
+msgid "Model:\t\t%s %s\n"
+msgstr "Mudel:\t\t%s %s\n"
 
 msgid "Modulation"
 msgstr "Modulatsioon"
@@ -8985,6 +9058,9 @@ msgstr "OE muudatused"
 msgid "OE Log"
 msgstr "OE logi"
 
+msgid "OEM Model:\t\t%s\n"
+msgstr "OEM mudel:\t\t%s\n"
+
 msgid "of a DUAL layer medium used."
 msgstr "kasutatud kahekihilisest kettast."
 
@@ -9115,6 +9191,9 @@ msgstr "Ainult ooteseisundis"
 msgid "Only on startup"
 msgstr "Ainult alglaadimisel"
 
+msgid "On valid ONIDs, ignore frequency sub network part"
+msgstr "Kui ONID kehtib, eiratakse sageduse alamvõrgu osa"
+
 msgid "Open"
 msgstr "Ava"
 
@@ -9187,6 +9266,12 @@ msgstr "OpenVPN seaded"
 
 msgid "OpenVpn Setup"
 msgstr "OpenVpn seaded"
+
+msgid "Option"
+msgstr ""
+
+msgid "Option long"
+msgstr ""
 
 # Menue Anpassungen OSD
 msgid "Option to disable picons on the Infobar"
@@ -9713,8 +9798,8 @@ msgstr "Sisesta õige kood"
 msgid "Please enter the old PIN code"
 msgstr "Sisesta vana PIN kood"
 
-msgid "Please enter the your personal feed URL"
-msgstr "Sisesta oma isikliku hoidla URL"
+msgid "Please enter your personal feed URL"
+msgstr "Sisesta isikliku hoidla URL"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Jälgi ekraanil olevaid juhiseid"
@@ -10347,8 +10432,8 @@ msgstr "Prioriteet"
 msgid "Process"
 msgstr "Toiming"
 
-msgid "Processor temperature:\t%s"
-msgstr "CPU temp:\t%s"
+msgid "Processor temperature:\t\t%s"
+msgstr "CPU temp:\t\t%s"
 
 msgid "Profile"
 msgstr "Profiil"
@@ -10366,10 +10451,10 @@ msgid "Programmlisten from DXAndy"
 msgstr "DXAndy kanalinimekirjad"
 
 msgid "Programmlisten History"
-msgstr ""
+msgstr "Kanalinimekirja uuendaja ajalugu"
 
 msgid "Programmlisten Restore"
-msgstr ""
+msgstr "Kanalinimekirja taastamine"
 
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "DXAndy kanalinimekirja uuendaja"
@@ -10510,8 +10595,8 @@ msgstr "Python käivitaja (vaikimisi)"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python programm /tmp/mmi.socket jaoks"
 
-msgid "Python:\t%s"
-msgstr "Python:\t%s"
+msgid "Python:\t\t%s"
+msgstr "Python:\t\t%s"
 
 msgid "Quad PiP Channel Selection"
 msgstr "Quad PiP kanalivalik"
@@ -10841,6 +10926,9 @@ msgstr "Väljalaske märkused"
 
 msgid "reliable"
 msgstr "töökindel"
+
+msgid "reliable, retune"
+msgstr ""
 
 msgid "religion"
 msgstr "religioon"
@@ -11410,7 +11498,7 @@ msgid "Save and stop"
 msgstr "Talleta ja peata"
 
 msgid "Save EPG"
-msgstr "EPG talletamine"
+msgstr "Talleta EPG"
 
 msgid "Save EPG data"
 msgstr "Talleta EPG andmed"
@@ -11947,8 +12035,8 @@ msgstr "Vali teenusepakkuja ja vajuta otsingu alustamiseks OK"
 msgid "Select Your Skin"
 msgstr "Kujunduse valik"
 
-msgid "Selected Image:\t%s"
-msgstr "Valitud püsivara:\t%s"
+msgid "Selected Image:\t\t%s"
+msgstr "Valitud püsivara:\t\t%s"
 
 msgid ""
 "Selected settingslist: %s\n"
@@ -12323,6 +12411,11 @@ msgid ""
 "Sets the root folder of movie list, to remove the '..' from benign shown in "
 "that folder."
 msgstr "Määrab filmilistile tüvikataloogi, et eemaldada '..' kataloogi nimest."
+
+msgid "Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner."
+msgstr ""
+"Määra 'jah' AINULT AJUTISELT silumiseks, et leida hangumise animatsiooni "
+"algpõhjus."
 
 msgid "Setting Restored "
 msgstr "Kanalinimekiri taastatud "
@@ -12837,6 +12930,9 @@ msgstr "Kuva HDMI väljundi lahutus"
 msgid "Show HDMI-Output Res"
 msgstr "Kuva HDMI väljundi lahutus"
 
+msgid "Show HDMIRecord setup.."
+msgstr "HDMI salvestuse seaded"
+
 msgid "Show help"
 msgstr "Abiekraan"
 
@@ -13271,7 +13367,7 @@ msgid "Site longitude"
 msgstr "Koha pikkuskraad"
 
 msgid "Size: "
-msgstr "Suurus: "
+msgstr "Maht: "
 
 #
 msgid "Skin"
@@ -13293,8 +13389,8 @@ msgstr "Kujunduse valik"
 msgid "Skins"
 msgstr "Kujundused"
 
-msgid "skins"
-msgstr "Kujundused"
+msgid "skin"
+msgstr "kujundus"
 
 msgid "Skinselector"
 msgstr "Kujunduse valik"
@@ -13441,7 +13537,7 @@ msgstr "EMU paneel"
 
 #
 msgid "Softcam-Panel Setup"
-msgstr "EMU paneeli seadistamine"
+msgstr "EMU paneeli seaded"
 
 #
 msgid "Softcam-Panel..."
@@ -13908,6 +14004,15 @@ msgstr "IPTV kliendid"
 msgid "StreamingClientsInfo"
 msgstr "IPTV kliendid"
 
+msgid "Stretch full"
+msgstr "Täielik venitus"
+
+msgid "Stretch linear"
+msgstr "Lineaarne venitus"
+
+msgid "Stretch nonlinear"
+msgstr "Mittelineaarne venitus"
+
 msgid "Strict DLNA"
 msgstr "Puhas DLNA"
 
@@ -14318,6 +14423,9 @@ msgstr "%s %s loeb salvestatud EPG andmeid iga (tund)."
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s salvestab EPG andmed iga (tund)."
 
+msgid "The aspect ratio of the recording."
+msgstr "Salvestuse kuvasuhe."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -14335,6 +14443,13 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varundamine nurjus. Vali varukoopiale uus asukoht."
+
+msgid ""
+"The bitrate of the video encoder. Larger value improves quality and "
+"increases file size."
+msgstr ""
+"Videokooderi bitikiirus. Suurema väärtusega tuleb parema kvaliteediga suurem "
+"fail."
 
 msgid ""
 "The buffer time for timeshift exceeds the specified limit in the settings.\n"
@@ -14431,6 +14546,18 @@ msgstr ""
 
 msgid "The following files were found..."
 msgstr "Leiti järgnevad failid..."
+
+msgid ""
+"The frame rate of the recording. Ideally, this will match the frame rate of "
+"the source or be an integer multiple. If in doubt, set to 60, which should "
+"work with most sources."
+msgstr ""
+"Salvestise kaadrisagedus. Ideaalis võiks see vastata allika "
+"kaadrisagedusele. Kahtluse korral määra 60, mis peaks enamasti sobima."
+
+msgid ""
+"The height of the picture. The input will be scaled to match this value."
+msgstr "Pildi kõrgus. Sisend skaleeritakse selle väärtuse järgi."
 
 msgid "The image or kernel will be flashing and auto booted in few minutes.\n"
 msgstr ""
@@ -14589,6 +14716,9 @@ msgstr ""
 "Plugin VideoMode ei ole paigaldatud!\n"
 "Paigalda see."
 
+msgid "The width of the picture. The input will be scaled to match this value."
+msgstr "Pildi laius. Sisend skaleeritakse selle väärtuse järgi."
+
 msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it and choose what you want to do next."
@@ -14694,6 +14824,9 @@ msgstr "See lubab saadaolevate laienduste kuvamise"
 msgid "This allows you to show kernel modules in downloads"
 msgstr "See lubab saadaolevate kerneli moodulite kuvamise"
 
+msgid "This allows you to show languages in downloads"
+msgstr "See lubab keelefailide kuvamise"
+
 msgid "This allows you to show lcd skins in downloads"
 msgstr "See lubab saadaolevate lcd kujunduste kuvamise"
 
@@ -14712,8 +14845,8 @@ msgstr "See lubab saadaolevate turvamoodulite kuvamise"
 msgid "This allows you to show settings modules in downloads"
 msgstr "See lubab saadaolevate kanalinimekirjade kuvamise"
 
-msgid "This allows you to show skins modules in downloads"
-msgstr "See lubab saadaolevate kujunduste kuvamise"
+msgid "This allows you to show skin modules in downloads"
+msgstr "See lubab kujunduste kuvamise"
 
 msgid "This allows you to show softcams modules in downloads"
 msgstr "See lubab saadaolevate emulaatorite kuvamise"
@@ -14763,6 +14896,18 @@ msgstr "Siin saab seadistada HDR värviprofiili"
 
 msgid "This option allows you can config the Colorspace from Auto to RGB"
 msgstr "See valik võimaldab muuta värviruumi automaatne > RGB"
+
+msgid "This option allows you can enable or disable the 10 Bit Color Mode"
+msgstr "See valik võimaldab 10-bit värvirežiimi lubada või keelata"
+
+msgid "This option allows you can enable or disable the 12 Bit Color Mode"
+msgstr "See valik võimaldab 12-bit värvirežiimi lubada või keelata"
+
+msgid "This option allows you can force the HDR10 Modes for UHD"
+msgstr "See valik võimaldab HDR10 režiimide jõuga kasutamise UHD jaoks"
+
+msgid "This option allows you can force the HLG Modes for UHD"
+msgstr "See valik võimaldab HLG režiimide jõuga kasutamise UHD jaoks"
 
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr "See valik määrab, kas kulunud aega kuvatakse '+' või '-'"
@@ -14925,6 +15070,9 @@ msgid ""
 msgstr ""
 "See valik võimaldab näidata SNR protsentides (kõik vastuvõtjad seda ei "
 "toeta)."
+
+msgid "This option allows you to use all HDMI Modes"
+msgstr "See valik võimaldab kasutada kõiki HDMI režiime"
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "See valik võimaldab vaadelda uusi ja vanu seadistusi kõrvuti."
@@ -15435,6 +15583,9 @@ msgstr "Rada"
 msgid "traditional (fast)"
 msgstr "klassikaline (kiire)"
 
+msgid "traditional (fast), retune"
+msgstr ""
+
 msgid "Traditional Chinese"
 msgstr "Traditsiooniline Hiina"
 
@@ -15934,6 +16085,15 @@ msgstr "Lüüs lubatud"
 msgid "Use as HDD"
 msgstr "Kasuta kõvakettana"
 
+msgid ""
+"Use automatic mode detection.\n"
+" This option reads all supported modes from your TV.\n"
+" Please disable it only if you want to customize the preferred configuration."
+msgstr ""
+"Kasuta automaatset režiimi tuvastamist.\n"
+"See valik loeb telerist kõik toetatud režiimid.\n"
+"Keela see ainult juhul, kui tahad kasutada oma kohandatud seadistusi."
+
 msgid "use best / controlled by HDMI"
 msgstr "kasuta parimat / HDMI juhitav"
 
@@ -16208,8 +16368,8 @@ msgstr "Versioon: "
 msgid "Version: %s"
 msgstr "Versioon: %s"
 
-msgid "Version:\t%s"
-msgstr "Versioon:\t%s"
+msgid "Version:\t\t%s"
+msgstr "Versioon:\t\t%s"
 
 msgid "vertical"
 msgstr "Vertikaalne"
@@ -16337,7 +16497,7 @@ msgid "Videomode"
 msgstr "Videorežiim"
 
 msgid "Videosetup"
-msgstr ""
+msgstr "Videoseaded"
 
 msgid "Videosize"
 msgstr "Lahutus"
@@ -17128,14 +17288,8 @@ msgstr "töös"
 msgid "Would you save the entered PIN %s persistent?"
 msgstr "Kas salvestada sisestatud PIN %s püsivalt?"
 
-msgid "WPA"
-msgstr "WPA"
-
 msgid "WPA or WPA2"
 msgstr "WPA või WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Viga salvestamisel. Kõvaketas täis?\n"
@@ -17167,12 +17321,6 @@ msgstr "Www - pikk"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 tugi"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "Year"
 msgstr "Aasta"
@@ -17647,9 +17795,6 @@ msgstr ""
 "Kas WLAN USB pulk on ühendatud?\n"
 "\n"
 "Otsusta, mida soovid teha edasi."
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "zap"
 msgstr "Kanalivahetus"
@@ -18675,6 +18820,85 @@ msgstr "Zambia"
 
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
+
+#~ msgid "Bootloader:\t\t%s\n"
+#~ msgstr "Alglaadur:\t\t%s\n"
+
+#~ msgid "Build:\t%s"
+#~ msgstr "Järk:\t%s"
+
+#~ msgid "Chipset:\t%s"
+#~ msgstr "Kiibistik:\t%s"
+
+#~ msgid "Cores:\t%s"
+#~ msgstr "Tuumad:\t%s"
+
+#~ msgid "CPU:\t%s"
+#~ msgstr "Protsessor:\t%s"
+
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Ajurid:\t%s"
+
+#~ msgid "GStreamer:\t%s"
+#~ msgstr "GStreamer:\t%s"
+
+#~ msgid ""
+#~ "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/"
+#~ "et7000mini"
+#~ msgstr ""
+#~ "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/"
+#~ "et7000mini"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "Installed:\t%s"
+#~ msgstr "Paigaldatud:\t%s"
+
+#~ msgid "Kernel:\t%s"
+#~ msgstr "Kernel:\t%s"
+
+#~ msgid "Last update:\t%s"
+#~ msgstr "Uuendatud:\t%s"
+
+#~ msgid "Model:\t%s %s\n"
+#~ msgstr "Mudel:\t%s %s\n"
+
+#~ msgid "Please enter the your personal feed URL"
+#~ msgstr "Sisesta oma isikliku hoidla URL"
+
+#~ msgid "Processor temperature:\t%s"
+#~ msgstr "CPU temp:\t%s"
+
+#~ msgid "Python:\t%s"
+#~ msgstr "Python:\t%s"
+
+#~ msgid "Selected Image:\t%s"
+#~ msgstr "Valitud püsivara:\t%s"
+
+#~ msgid "skins"
+#~ msgstr "Kujundused"
+
+#~ msgid "This allows you to show skins modules in downloads"
+#~ msgstr "See lubab saadaolevate kujunduste kuvamise"
+
+#~ msgid "Version:\t%s"
+#~ msgstr "Versioon:\t%s"
+
+#~ msgid "WPA"
+#~ msgstr "WPA"
+
+#~ msgid "WPA2"
+#~ msgstr "WPA2"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "YPbPr"
+#~ msgstr "YPbPr"
 
 #~ msgid "oscam webif blocking localhost (127.0.0.1)"
 #~ msgstr "oscam veebiliides blokib localhost'i (127.0.0.1)"
