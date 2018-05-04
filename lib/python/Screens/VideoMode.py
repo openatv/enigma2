@@ -255,7 +255,7 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		if int(res) > int(config_res) or (int(res) == int(config_res) and ((pol == 'p' and config_pol == 'i') or (config_mode == '2160p30' and mode == '2160p'))):
 			setmode[config_port].setValue(config_mode)
-		if config_rate not in ("auto","multi") and (rate == 'multi' or int(config_rate) < int(rate)):
+		if config_rate not in ("auto","multi") and (rate in ("auto","multi") or int(config_rate) < int(rate)):
 			setrate[config_mode].setValue(config_rate)
 
 	def keyLeft(self):
@@ -778,19 +778,19 @@ class AutoVideoMode(Screen):
 				autorestyp = 'simple'
 				new_rate = (video_rate + 500) / 1000
 				if video_height <= 576 and int(config_res) >= 576: #sd
-					if config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value == 'multi':
+					if config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value in ("auto","multi"):
 						if video_pol == 'i': new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value.replace('Hz','')
 					new_mode = config.av.autores_mode_sd[config_port].value.replace('p30','p')
 				elif video_height <= 720 and int(config_res) >= 720: #hd
-					if config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value].value == 'multi':
+					if config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value].value in ("auto","multi"):
 						if video_pol == 'i': new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value].value.replace('Hz','')
 					new_mode = config.av.autores_mode_hd[config_port].value.replace('p30','p')
 				elif video_height <= 1080 and int(config_res) >= 1080: #fhd
-					if config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value].value == 'multi':
+					if config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value].value in ("auto","multi"):
 						if video_pol == 'i': new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value].value.replace('Hz','')
@@ -798,13 +798,13 @@ class AutoVideoMode(Screen):
 					if new_mode == '1080p' and not config.av.autores_1080i_deinterlace.value and video_height == 1080 and video_pol == 'i':
 						new_mode = '1080i'
 				elif video_height <= 2160 and int(config_res) >= 2160: #uhd
-					if config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value].value == 'multi':
+					if config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value].value in ("auto","multi"):
 						if video_pol == 'i': new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value].value.replace('Hz','')
 					new_mode = config.av.autores_mode_uhd[config_port].value.replace('p30','p')
 				else:
-					if config_rate != 'multi': new_rate = config_rate
+					if config_rate not in ("auto","multi"): new_rate = config_rate
 					new_mode = config_mode
 				new_rate = str(new_rate)
 
@@ -816,7 +816,7 @@ class AutoVideoMode(Screen):
 				elif new_mode in iAVSwitch.modes_available:
 					write_mode = new_mode
 				else:
-					if config_rate != 'multi' and int(new_rate) > int(config_rate): new_rate = config_rate
+					if config_rate not in ("auto","multi") and int(new_rate) > int(config_rate): new_rate = config_rate
 					if config_mode+new_rate in iAVSwitch.modes_available:
 						write_mode = config_mode+new_rate
 					else:
@@ -833,12 +833,12 @@ class AutoVideoMode(Screen):
 
 				if video_height <= int(min_res):
 					if new_pol == 'i' and min_pol == 'p': new_pol = min_pol
-					if min_rate != 'multi' and new_rate < int(min_rate): new_rate = min_rate
+					if min_rate not in ("auto","multi") and new_rate < int(min_rate): new_rate = min_rate
 					new_res = min_res
 				if video_height >= int(config_res) or int(new_res) >= int(config_res):
 					new_res = config_res
 					if video_pol == 'p' and config_pol == 'i': new_pol = config_pol
-					if config_rate != 'multi' and int(config_rate) < new_rate: new_rate = config_rate
+					if config_rate not in ("auto","multi") and int(config_rate) < new_rate: new_rate = config_rate
 				new_rate = str(new_rate)
 
 				if new_pol == 'p':
@@ -875,7 +875,7 @@ class AutoVideoMode(Screen):
 					elif new_res+min_pol in iAVSwitch.modes_available:
 						write_mode = new_res+min_pol
 					else:
-						if config_rate != 'multi' and int(new_rate) > int(config_rate): new_rate = config_rate
+						if config_rate not in ("auto","multi") and int(new_rate) > int(config_rate): new_rate = config_rate
 						if config_mode+new_rate in iAVSwitch.modes_available:
 							write_mode = config_mode+new_rate
 						else:
@@ -925,7 +925,7 @@ class AutoVideoMode(Screen):
 				write_mode = new_mode
 			else:
 				autorestyp = 'no match'
-				if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate == 'multi':
+				if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate in ("auto","multi"):
 					f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
 					multi_videomode = f.read().replace('\n','')
 					f.close()
@@ -959,7 +959,7 @@ class AutoVideoMode(Screen):
 					new_rate = '50'
 				elif (mypath.find('p60.') >= 0) or (mypath.find('60p.') >= 0):
 					new_rate = '60'
-				elif new_rate == 'multi':
+				elif new_rate in ("auto","multi"):
 					new_rate = '' # omit frame rate specifier, e.g. '1080p' instead of '1080p50' if there is no clue
 				if mypath != '':
 					if mypath.endswith('.ts'):
