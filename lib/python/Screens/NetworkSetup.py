@@ -2215,7 +2215,8 @@ class NetworkOpenvpn(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
-		self['labconfig'] = Label(_("Config file name: default (ok to change)"))
+		self['labconfig'] = Label(_("Config file name (ok to change):"))
+		self['labconfigfilename']=Label(_("default"))
 		self.config_file=""
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Remove Service"))
@@ -2354,10 +2355,8 @@ class NetworkOpenvpn(Screen):
 			if word is None:
 				pass
 			else:
-				#self.session.open(MessageBox,_(word), MessageBox.TYPE_INFO)
 				self.config_file=_(word)
-				testo_config="Config file name: "+ self.config_file + " (ok to change)"	
-				self['labconfig'].setText(testo_config)
+				self['labconfigfilename'].setText(self.config_file)
 
 			
 class NetworkVpnLog(Screen):
