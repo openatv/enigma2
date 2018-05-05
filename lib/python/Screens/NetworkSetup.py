@@ -2348,15 +2348,15 @@ class NetworkOpenvpn(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-		def inputconfig(self):
-			self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
+	def inputconfig(self):
+		self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
 
-		def askForWord(self, word):
-			if word is None:
-				pass
-			else:
-				self.config_file=_(word)
-				self['labconfigfilename'].setText(self.config_file)
+	def askForWord(self, word):
+		if word is None:
+			pass
+		else:
+			self.config_file=_(word)
+			self['labconfigfilename'].setText(self.config_file)
 
 			
 class NetworkVpnLog(Screen):
