@@ -2349,7 +2349,7 @@ class NetworkOpenvpn(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 		def inputconfig(self):
-		self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
+			self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
 
 		def askForWord(self, word):
 			if word is None:
