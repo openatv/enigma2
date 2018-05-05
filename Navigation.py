@@ -60,8 +60,6 @@ class Navigation:
 			print "="*100
 			print "[NAVIGATION] ERROR: can't read wakeup data"
 			self.lastshutdowntime, self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = int(now),-1,-1,0,0,-1,0
-		self.wakeupwindow_plus = self.timertime + 300
-		self.wakeupwindow_minus = self.wakeuptime - (config.workaround.wakeupwindow.value * 60)
 		self.syncCount = 0
 		hasFakeTime = (now <= 31536000 or now - self.lastshutdowntime <= 120) and self.getstandby < 2 #set hasFakeTime only if lower than values and was last shutdown to deep standby
 		wasTimerWakeup, wasTimerWakeup_failure = getFPWasTimerWakeup(True)
@@ -89,12 +87,18 @@ class Navigation:
 
 		if config.workaround.deeprecord.value: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
 			print "[NAVIGATION] starting deepstandby-workaround"
+			self.wakeupwindow_plus = self.timertime + 300
+			self.wakeupwindow_minus = self.wakeuptime - (config.workaround.wakeupwindow.value * 60)
 			wasTimerWakeup = False
 			if not hasFakeTime and now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus: # if there is a recording sheduled, set the wasTimerWakeup flag
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
 				file = f.write(str(wasTimerWakeup))
 				f.close()
+		else:
+			#secure wakeup window to prevent a wrong 'wasTimerWakeup' value as timer wakeup detection
+			self.wakeupwindow_plus = self.timertime + 900
+			self.wakeupwindow_minus = self.wakeuptime - 3600
 
 		if self.wakeuptime > 0:
 			print "[NAVIGATION] wakeup time from deep-standby expected: *** %s ***" %(ctime(self.wakeuptime))
@@ -124,9 +128,10 @@ class Navigation:
 		now = time()
 		stbytimer = 15 # original was 15
 
-		if runCheck and (self.__wasTimerWakeup or (config.workaround.deeprecord.value and now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus)):
+		if runCheck and ((self.__wasTimerWakeup or config.workaround.deeprecord.value) and now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus):
 			if self.syncCount > 0:
-				stbytimer = 0
+				stbytimer = stbytimer - (self.syncCount * 5)
+				if stbytimer < 0: stbytimer = 0
 				if not self.__wasTimerWakeup:
 					self.__wasTimerWakeup = True
 					print "-"*100
@@ -157,9 +162,9 @@ class Navigation:
 				if not self.forcerecord:
 					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
 			#check for standby
-			if not self.getstandby and self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer:
+			if not self.getstandby and ((self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer) or (not config.recording.switchTVon.value and self.wakeuptyp == 0)):
 				self.getstandby = 1
-				print "[NAVIGATION] more than 60 seconds to wakeup - go in standby"
+				print "[NAVIGATION] more than 60 seconds to wakeup or not TV turn on - go in standby"
 			print "="*100
 			#go in standby
 			if self.getstandby == 1:
@@ -170,6 +175,11 @@ class Navigation:
 				else:
 					self.gotostandby()
 		else:
+			if self.__wasTimerWakeup:
+				print '+'*100
+				print "[NAVIGATION] wrong signal 'was timer wakeup' detected - please activate the deep standby workaround."
+				print "[NAVIGATION] secure timer wakeup detection window: %s - %s" %(ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
+				print '+'*100
 			if self.timertime > 0:
 				print "[NAVIGATION] next '%s' starts at %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], ctime(self.timertime))
 				if self.recordtime > 0 and self.timertime != self.recordtime:

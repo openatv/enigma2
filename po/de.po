@@ -242,13 +242,9 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
-# EventView.py#L308
-msgid ""
-"\n"
-"%d.%d.%d, %2d:%02d  -  %s"
-msgstr ""
-"\n"
-"%02d.%02d.%d, %02d:%02d  -  %s"
+# EventView.py#L324
+msgid "\n%Y/%m/%d  %H:%M - "
+msgstr "\n%d.%m.%Y  %H:%M - "
 
 # EpgList.py#L686
 msgid "%e/%m, %-H:%M"
@@ -10768,6 +10764,14 @@ msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Legt die Standardeinstellung für neu angelegte Timer fest. Benötigt nach der Änderung einen Neustart."
 
 #: data/setup.xml
+msgid "Turn on the TV from standby with 'zap and record' timer"
+msgstr "TV einschalten durch einen 'Umschalten und Aufnehmen' Timer"
+
+#: data/setup.xml
+msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
+msgstr "Wenn Sie HDMI-CEC aktiviert haben, können Sie hier angeben ob ein 'Umschalten und Aufnehmen' Timer auch den Fernseher mit einschaltet."
+
+#: data/setup.xml
 msgid "Long press emulation with button"
 msgstr "Emulation 'Langer-Druck' mit Taste"
 
@@ -15431,8 +15435,8 @@ msgstr "Die Standardeinstellungen sind 5 Minuten früher aus dem Deep-Standby au
 msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
 msgstr "Die Standardeinstellungen sind Aufwachzeit - 5 Minuten und Timerbeginn + 5 Minuten. Diese Einstellung verändert das Zeitfenster vor der Aufwachzeit. So kann das aufwachen durch einen Timer auch bei sehr früh startenden Receivern erkannt werden."
 
-msgid "If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)"
-msgstr "Wenn aktiviert, wird überprüft ob die Zeit nach dem Start des Receivers innerhalb des Zeitfensters ist und schaltet gegebenenfalls in den Standby-Modus. Wenn deaktiviert, muss zusätzlich noch ein Signal für die erfolgreiche Erkennung zur Verfügung stehen. (manche Receiver senden ein falsches oder kein Signal)"
+msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
+msgstr "Wenn aktiviert, wird ein Zeitfenster verwendet um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen. Standardeinstellung ist deaktiviert und verwendet ein spezielles Signal vom Receiver. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
 
 #
 msgid "Reload Services"

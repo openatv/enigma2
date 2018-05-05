@@ -22,6 +22,7 @@ def InitRecordingConfig():
 	config.recording.offline_decode_delay = ConfigSelectionNumber(min = 1, max = 10000, stepwidth = 10, default = 1000, wraparound = True)
 	config.recording.ecm_data = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = "normal")
 	config.recording.default_timertype = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],default = "record")
+	config.recording.switchTVon = ConfigYesNo(default = True)
 	if SystemInfo["DeepstandbySupport"]:
 		shutdownString = _("go to deep standby")
 	else:

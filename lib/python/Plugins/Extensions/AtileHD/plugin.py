@@ -26,7 +26,7 @@ from Tools.Directories import *
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
 from Tools import Notifications
-from os import listdir, remove, rename, system, path, symlink, chdir, makedirs
+from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
 import shutil
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
@@ -421,7 +421,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			if self.myAtileHD_style.value != 'default':
 				symlink(self.myAtileHD_style.value, self.color_file)
 			if not path.exists("mySkin_off"):
-				touch("mySkin_off")
+				mkdir("mySkin_off")
 				print "makedir mySkin_off"
 			if self.myAtileHD_active.value:
 				if not path.exists("mySkin") and path.exists("mySkin_off"):
