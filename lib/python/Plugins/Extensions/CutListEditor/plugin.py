@@ -217,6 +217,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
+		if self.seekstate != self.SEEK_STATE_PLAY: # fix possible box freeze (e.g. OS1+)
+			self.unPauseService()
 		self.session.nav.playService(self.old_service, forceRestart=True)
 
 	def updateStateLabel(self, state):
