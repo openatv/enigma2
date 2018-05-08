@@ -478,7 +478,7 @@ def InitLcd():
 		config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
 
-		if getBoxType() in ('dm900', 'dm920', 'e4hdultra'):
+		if getBoxType() in ('dm900', 'dm920', 'e4hdultra', 'protek4k'):
 			standby_default = 4
 		elif getBoxType() in ('spycat4kmini', 'osmega'):
 			standby_default = 10
