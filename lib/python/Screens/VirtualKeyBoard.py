@@ -52,6 +52,7 @@ class VirtualKeyBoard(Screen):
 
 		self.keyImages =  {
 				"BACKSPACE": self.key_backspace,
+				"CLEAR": self.key_clr,
 				"ALL": self.key_all,
 				"EXIT": self.key_esc,
 				"OK": self.key_ok,
