@@ -179,7 +179,7 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	return [
-	PluginDescriptor(name = _("Start Kodi"), description = _("WeTek media player"), 	where = PluginDescriptor.WHERE_PLUGINMENU, icon = "kodi.png", needsRestart = False, fnc = main),
+	PluginDescriptor(name = _("Start Kodi"), description = _("Kodi media player"), 	where = PluginDescriptor.WHERE_PLUGINMENU, icon = "kodi.png", needsRestart = False, fnc = main),
 	PluginDescriptor(name = _("Start Kodi"), description = _("Play back media files"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
 ]
 #	PluginDescriptor(name = _("StartKodi"), description = _("Play back media files"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc = menu)
