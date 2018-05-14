@@ -1088,6 +1088,10 @@ void eDVBFrontend::feEvent(int w)
 				state = stateLostLock;
 				if (!m_rotor_mode)
 					sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
+#if HAVE_AMLOGIC
+				if(m_state == state)
+					break; /* I do not see any other way out */
+#endif
 			}
 		}
 		if (m_state != state)
@@ -2177,6 +2181,31 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					{
 						dvb_frontend_event event;
 						int res;
+#if HAVE_AMLOGIC
+						if((res = ::ioctl(m_fd, FE_READ_STATUS, &event.status)) != 0)
+						{
+							break;
+						}
+						else
+						{
+							if(event.status == 0)
+							{
+								break;
+							}
+						}
+						//usleep(10000);
+						if (event.status & FE_TIMEDOUT)
+						{
+							eDebugNoSimulate("[eDVBFrontend] IF_LOCK_TIMEOUT_GOTO: got FE_TIMEDOUT");
+							setSecSequencePos(m_sec_sequence.current()->steps);
+							timeout = true;
+							break;
+						}
+						if (event.status & FE_HAS_LOCK)
+						{
+							break; /* I do not see any other way out */
+						}
+#else
 						res = ::ioctl(m_fd, FE_GET_EVENT, &event);
 
 						if (res && (errno == EAGAIN))
@@ -2189,6 +2218,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 							timeout = true;
 							break;
 						}
+#endif
 					}
 					if (timeout) break;
 				}
