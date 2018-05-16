@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-05 13:12+0200\n"
-"PO-Revision-Date: 2018-05-14 22:50+0200\n"
+"PO-Revision-Date: 2018-05-16 13:54+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -1607,7 +1607,7 @@ msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr "Consente di mostrare/nascondere oscam in pannello (tasto blu)."
 
 msgid "Alpha"
-msgstr "Trasparenza"
+msgstr "Alfabetico"
 
 msgid "alpha then oldest"
 msgstr ""
@@ -2368,7 +2368,7 @@ msgid "blue"
 msgstr "blu"
 
 msgid "Blue"
-msgstr "Blue"
+msgstr "Blu"
 
 msgid "Blue button"
 msgstr "Pulsante blu"
@@ -3084,7 +3084,7 @@ msgid "CI (Common Interface) Setup"
 msgstr "Configurazione CI (Common Interface)"
 
 msgid "CI assignment"
-msgstr "Assegnazione CI"
+msgstr "CI assignment"
 
 msgid "CI Legacy"
 msgstr "CI Legacy"
@@ -3348,7 +3348,9 @@ msgstr ""
 msgid ""
 "Configure if and how crypto icons will be shown in the channel selection "
 "list."
-msgstr "Selezionare se e come verranno visualizzate le icone della cifratura."
+msgstr ""
+"Selezionare se e come le crypto icons verranno visualizzate nella lista di "
+"selezione canali."
 
 msgid ""
 "Configure if and how long the latest service in the PiP will be remembered."
@@ -4481,8 +4483,9 @@ msgstr "Elementi eliminati"
 msgid "Deleting files"
 msgstr "Rimozione files in corso"
 
+#, fuzzy
 msgid "Delivery system workaround"
-msgstr ""
+msgstr "Soluzione di sistema per la spedizione"
 
 msgid "Depth"
 msgstr "Profondità"
@@ -5318,21 +5321,17 @@ msgstr "Abilita CIHelper per la Slot CI0"
 msgid "Enable CIHelper for SLOT CI1"
 msgstr "Abilita CIHelper per la Slot CI1"
 
-#, fuzzy
 msgid "Enable cut file support for audio files"
-msgstr "Abilita il supporto per i file cut per audio file "
+msgstr "Abilita il supporto per i tagli per file audio "
 
-#, fuzzy
 msgid "Enable cut file support for audio files. (e.g. mp3)"
-msgstr "Abilita il supporto per i file cut per audio file (ex. mp3)"
+msgstr "Abilita il supporto per i tagli per file audio (ex. mp3)"
 
-#, fuzzy
 msgid "Enable cut file support for non *.ts files"
-msgstr "Abilita il supporto per i file cut per file non *.ts "
+msgstr "Abilita il supporto per i tagli per file non *.ts "
 
-#, fuzzy
 msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
-msgstr "Abilita il supporto per i file cut per file non *.ts (ex. mp4)"
+msgstr "Abilita il supporto per i tagli per file non *.ts (ex. mp4)"
 
 msgid "Enable debug log *"
 msgstr "Abiita log di debug"
@@ -5343,7 +5342,6 @@ msgstr "Abilita il downmix digitale"
 msgid "Enable EIT EPG"
 msgstr "Abilita EIT EPG"
 
-#, fuzzy
 msgid "Enable fallback remote receiver"
 msgstr "Abilita il fallback remote receiver"
 
@@ -5381,7 +5379,7 @@ msgid "Enable Network Traffic check"
 msgstr "Abilita il controllo del traffico di rete"
 
 msgid "Enable panic button"
-msgstr "Abilita tasto panic"
+msgstr "Abilita tasto \"panico\""
 
 msgid "enable PIP no HDR"
 msgstr "abilita PIP no HDR"
@@ -5745,7 +5743,7 @@ msgid "Eventname only"
 msgstr ""
 
 msgid "Eventview"
-msgstr ""
+msgstr "Vista programma"
 
 msgid "Eventview menu"
 msgstr ""
@@ -5858,7 +5856,7 @@ msgid "Expert"
 msgstr "Esperto"
 
 msgid "Expert mode"
-msgstr ""
+msgstr "Esperto"
 
 msgid "Ext. NumberZap"
 msgstr ""
@@ -5984,7 +5982,7 @@ msgid "Factory reset"
 msgstr "Reset configurazioni di fabbrica"
 
 msgid "Fade the Infobar on hide"
-msgstr "Impostare un effetto dissolvenza, quando l'infobar viene chisa"
+msgstr "Impostare un effetto dissolvenza, quando l'infobar viene chiusa"
 
 msgid "Fahrenheit"
 msgstr ""
@@ -6002,7 +6000,7 @@ msgid "Failed:"
 msgstr ""
 
 msgid "Fallback remote receiver URL"
-msgstr ""
+msgstr "URL del Fallback remote receiver "
 
 msgid "false"
 msgstr "falso"
@@ -6148,7 +6146,7 @@ msgid "Fixed"
 msgstr "Risolto"
 
 msgid "Fixed X11 font (SD)"
-msgstr ""
+msgstr "Font X11 fissa (SD)"
 
 msgid "FLASH"
 msgstr "FLASH"
@@ -6188,7 +6186,7 @@ msgid "Flash Online a new image"
 msgstr "Installa una nuova immagine attraverso internet"
 
 msgid "Flashing"
-msgstr "Flash in corso"
+msgstr "Lampeggio"
 
 msgid "Flashing failed"
 msgstr "Flash fallito!"
@@ -6734,7 +6732,7 @@ msgstr ""
 "aggiornamenti online"
 
 msgid "Here you can set what is called when pressing the 'Info' key."
-msgstr ""
+msgstr "Qui puoi impostare l'effetto della pressione del tasto 'INFO'."
 
 msgid ""
 "Here you can specify additional files that should be added to the backup "
@@ -6805,7 +6803,7 @@ msgid "Hold screen"
 msgstr "Conservare screen"
 
 msgid "Hold till locked"
-msgstr "Premere fino al blocco"
+msgstr "Screen fino al blocco"
 
 msgid "Home"
 msgstr "Home"
@@ -6899,6 +6897,9 @@ msgid ""
 "receiver. But some devices set a wrong or none signal and the wakeup "
 "detection can fails."
 msgstr ""
+"Se abilitato, si usa una finestra a tempo per intercettare il risveglio dal "
+"deep-standby dovuto ad un timer. Di norma è disattivato e si usa un segnale "
+"dal decoder, ma su alcuni modelli questo segnale è errato o non trasmesso."
 
 msgid ""
 "If logs are using the set maximum space used the eldest will be deleted."
@@ -7060,13 +7061,13 @@ msgstr ""
 "Quando il risultato appare soddisfacente, premere OK."
 
 msgid "Ignore DVB-C namespace sub network"
-msgstr ""
+msgstr "Ignora la sotto rete nel namespace DVB-C"
 
 msgid "Ignore DVB-S namespace sub network"
-msgstr ""
+msgstr "Ignora la sotto rete nel namespace DVB-S"
 
 msgid "Ignore DVB-T namespace sub network"
-msgstr ""
+msgstr "Ignora la sotto rete nel namespace DVB-T"
 
 msgid "Image"
 msgstr ""
@@ -7167,7 +7168,7 @@ msgid "Include AIT in recordings"
 msgstr "Includi AIT nelle registrazioni"
 
 msgid "Include CI assignment"
-msgstr ""
+msgstr "Includi il Common Interface Assignment"
 
 msgid "Include ECM in http streams"
 msgstr "Includi ECM nei flussi http"
@@ -9102,7 +9103,7 @@ msgid "Not enough free space to record"
 msgstr ""
 
 msgid "Not Flashing"
-msgstr "Non Flashato"
+msgstr "Non lampeggio"
 
 msgid "not locked"
 msgstr "sbloccato"
@@ -9321,7 +9322,7 @@ msgid "Only on startup"
 msgstr ""
 
 msgid "On valid ONIDs, ignore frequency sub network part"
-msgstr ""
+msgstr "In ONID validi, ignora la parte della frequenza della sotto rete"
 
 msgid "Open"
 msgstr ""
@@ -9403,7 +9404,7 @@ msgid "Option long"
 msgstr ""
 
 msgid "Option to disable picons on the Infobar"
-msgstr ""
+msgstr "Opzione per disabilitare i picons (loghi canali) nell'infobar"
 
 msgid "Option to enable the Hardware Standby Timer"
 msgstr ""
@@ -9587,10 +9588,10 @@ msgid "PANEL-Info2"
 msgstr ""
 
 msgid "Panic channel"
-msgstr ""
+msgstr "Canale \"panico\""
 
 msgid "Panic to"
-msgstr ""
+msgstr "Panico a"
 
 msgid "Parent directory"
 msgstr "Directory padre"
@@ -10460,6 +10461,8 @@ msgid ""
 "Pressing the panic button will zap you to this channelnumber in your first "
 "bouquet."
 msgstr ""
+"Premendo il tasto \"panico\", il decoder cambierà canale verso quello "
+"indicato da questo numero nel primo bouquet."
 
 msgid "Prev quad PiP channel"
 msgstr ""
@@ -10930,7 +10933,7 @@ msgid "Red button..."
 msgstr "Tasto rosso..."
 
 msgid "Red colored"
-msgstr "Rosso colorato"
+msgstr "Colorato di rosso"
 
 msgid "Red long"
 msgstr "Rosso lungo"
@@ -11032,7 +11035,7 @@ msgid "Remote Control Code"
 msgstr ""
 
 msgid "Remote control model shown"
-msgstr ""
+msgstr "Modello di telecomando mostrato"
 
 msgid "Remote control type"
 msgstr "Tipo Telecomando"
@@ -11988,6 +11991,8 @@ msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
 "leaving teletext."
 msgstr ""
+"Seleziona il metodo per ripristinare la risoluzione dello schermo quando si "
+"esce dal televideo."
 
 msgid "Select the movie path"
 msgstr "Selezionare cartella video"
@@ -12268,13 +12273,14 @@ msgstr ""
 "Quando l'opzione è abilitata, è possibile utilizzare più di un bouquet"
 
 msgid "Set action for 'Info' key"
-msgstr ""
+msgstr "Imposta azione per il tasto 'INFO'"
 
 msgid "set as startup service"
 msgstr "configura come canale all'avvio"
 
 msgid "Set CI assignment for detection of available services."
 msgstr ""
+"Imposta il Common Interface Assignment per la ricerca dei canali disponibili."
 
 msgid "Set default"
 msgstr "Imposta predefiniti"
@@ -12381,6 +12387,8 @@ msgid ""
 "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd "
 "infobar Lite or event info."
 msgstr ""
+"Imposta cosa ottieni premendo 'OK' quando l'infobar è mostrata: la seconda "
+"infobar versione Lite oppure le info del programma."
 
 msgid ""
 "Set the scrolling speed of text on the front display, this is used by "
@@ -12402,12 +12410,14 @@ msgid "Set the time the timer must stop."
 msgstr "Impostare l'orario di stop del timer."
 
 msgid "Set the time to hide the infobar."
-msgstr "Impostare l'orario per nascondere la infobar."
+msgstr "Impostare il tempo di visualizzazione della infobar."
 
 msgid ""
 "Set the time to hide the second infobar. The bar also disappears on pressing "
 "'OK'."
 msgstr ""
+"Impostare il tempo di visualizzazione della seconda infobar. La barra "
+"sparisce anche alla pressione del tasto 'OK'"
 
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
@@ -12869,6 +12879,8 @@ msgid ""
 "Show chapter positions for supported video files. (gstreamer version must be "
 "greather than 1)"
 msgstr ""
+"Mostra la posizione dei capitoli per tipi video supportati (versione "
+"GStreamer superiore a 1) "
 
 msgid "Show CI messages"
 msgstr ""
@@ -12896,7 +12908,7 @@ msgid "Show CoolTVGuide"
 msgstr "Mostra guida CoolTV"
 
 msgid "Show crypto icons"
-msgstr "Mostra icone di criptaggio"
+msgstr "Mostra le crypto icons"
 
 msgid "Show crypto info in infobar"
 msgstr "Mostra le info di crittaggio nella infobar"
@@ -13049,7 +13061,7 @@ msgid "Show menu"
 msgstr "Mostrare il menu "
 
 msgid "Show menu numbers"
-msgstr ""
+msgstr "Mostra i numeri nel menu"
 
 msgid "Show Merlin EPG Center"
 msgstr "Mostra Centro EPG Merlin"
@@ -13103,7 +13115,7 @@ msgid "Show picon background colour"
 msgstr "Mostrare il colore di sfondo dei picons"
 
 msgid "show picons in quickzap"
-msgstr ""
+msgstr "Mostra i picons nel quickzap"
 
 msgid "show picons in service list"
 msgstr "Mostra icone (loghi canali) nella lista canali"
@@ -13137,7 +13149,7 @@ msgstr "Mostra reader/proxies"
 
 #
 msgid "Show record indicator"
-msgstr "Mostra indicatore registrazione"
+msgstr "Mostra indicatore di registrazione"
 
 msgid "Show Record Movies"
 msgstr "Mostra film registrati "
@@ -13146,7 +13158,7 @@ msgid "Show recording symbol"
 msgstr "Mostra il simbolo di registrazione"
 
 msgid "Show Restart Network in Extensions list *"
-msgstr "Mostrare 'Riavvio rete ' nell'elenco estensioni *"
+msgstr "Mostrare 'Riavvio rete' nell'elenco estensioni *"
 
 msgid "Show RFmod setup..."
 msgstr "Mostra configurazione RFmod "
@@ -13735,7 +13747,7 @@ msgid "Sort EPG List"
 msgstr "Riordino EPG list"
 
 msgid "Sort Extensions list alphabetically"
-msgstr "Riordino alfabetico lista estensioni\""
+msgstr "Riordino alfabetico lista estensioni"
 
 msgid "Sort list by"
 msgstr "Riordino lista per"
@@ -14327,54 +14339,53 @@ msgstr "team sports"
 msgid "technology/natural science"
 msgstr "tecnologia/scienza naturale"
 
-#, fuzzy
 msgid "Teletext"
 msgstr "Televideo"
 
 msgid "Teletext CleanAlgo (resolution reset algorithm)"
-msgstr ""
+msgstr "Televideo: CleanAlgo (algoritmo di reset della risoluzione)"
 
 msgid "Teletext base visibility"
 msgstr "Visibilità del televideo"
 
 msgid "Teletext EndX (right border)"
-msgstr ""
+msgstr "Televideo: x finale (bordo destro)"
 
 msgid "Teletext EndY (upper border)"
-msgstr ""
+msgstr "Televideo: y finale (bordo superiore)"
 
 msgid "Teletext font and resolution"
-msgstr ""
+msgstr "Tipo e risoluzione del carattere del televideo "
 
 msgid "Teletext StartX (left border)"
-msgstr ""
+msgstr "Televideo: x iniziale (bordo sinistro)"
 
 msgid "Teletext StartY (lower border)"
-msgstr ""
+msgstr "Televideo: y iniziale (bordo inferiore)"
 
 msgid "Teletext subtitle color"
 msgstr "Colore dei sottotitoli televideo"
 
 msgid "Teletext TTFBold (0=normal, 1=bold)"
-msgstr ""
+msgstr "Televideo: grassetto (0=no,1=grassetto)"
 
 msgid "Teletext TTFScreenResX (screen X resolution)"
-msgstr ""
+msgstr "Televideo: risoluzione Schermo"
 
 msgid "Teletext TTFShiftX (horizontal letter position)"
-msgstr ""
+msgstr "Televideo: traslaz x (posizione orizzontale lettera)"
 
 msgid "Teletext TTFShiftY (vertical letter position)"
-msgstr ""
+msgstr "Televideo: traslaz y (posizione verticale lettera)"
 
 msgid "Teletext TTFWidthFactor16 (TrueType letter width)"
-msgstr ""
+msgstr "Televideo: larghezza lettera TrueType"
 
 msgid "Teletext TTFHeightFactor16 (TrueType letter height)"
-msgstr ""
+msgstr "Televideo: altezza della lettera TrueType"
 
 msgid "Teletext UseTTF (0=fixed font, 1=TrueType)"
-msgstr ""
+msgstr "Televideo: usa TTF (0=font fissa,1=TrueType)"
 
 msgid "Telnet"
 msgstr "Telnet"
@@ -14389,7 +14400,7 @@ msgid "Telnet Setup"
 msgstr "Configurazione Telnet"
 
 msgid "Temperature unit:"
-msgstr ""
+msgstr "Unità di temperatura:"
 
 msgid "template file"
 msgstr "File modello"
@@ -15045,6 +15056,9 @@ msgid ""
 "channel list screen, (so pressing '2' jumps to 'A' or '2' first), when "
 "'Quick Actions' preset actions are performed. "
 msgstr ""
+"Questa opzione ti permette di scegliere quale salto avere nella lista canali "
+"alla prima pressione di un pulsante (cioè premendo '2' si passa prima ad 'A' "
+"oppure a '2') ."
 
 msgid ""
 "This option allows you to disable show Restart Network in Extensions list."
@@ -15084,6 +15098,8 @@ msgstr ""
 
 msgid "This option allows you to show menu number quick links."
 msgstr ""
+"Questa opzione ti permette di scegliere se mostrare i numeri di selezione "
+"veloce delle voci dei menu."
 
 msgid ""
 "This option allows you to the SNR as a percentage (not all receivers support "
@@ -15145,8 +15161,8 @@ msgid ""
 "This option moves the PVR status from the seprate window into the "
 "MoviePlayer infobar."
 msgstr ""
-"Questa opzione consente di spostare lo stato PVR dalla finestra seprate in "
-"informazioni MoviePlayer"
+"Questa opzione consente di spostare lo stato PVR dalla finestra seprate "
+"nella barra informazioni del Movie Player"
 
 msgid ""
 "This option set the level of surpression of musquito noise (Musquito Noise "
@@ -15665,13 +15681,13 @@ msgid "true"
 msgstr "vero"
 
 msgid "TrueType font (full-HD)"
-msgstr ""
+msgstr "Font TrueType (full-HD)"
 
 msgid "TrueType font (HD)"
-msgstr ""
+msgstr "Font TrueType (HD)"
 
 msgid "TrueType font (SD)"
-msgstr ""
+msgstr "Font TrueType (SD)"
 
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr "Ricerca transponder utilizzati sulla rete via cavo. Attendere..."
@@ -16051,7 +16067,7 @@ msgid "Uptime"
 msgstr "Uptime"
 
 msgid "URL of fallback remote receiver"
-msgstr "URL del ricevitore"
+msgstr "URL del fallback remote receiver"
 
 msgid "Usage & GUI"
 msgstr "Utilizzo & GUI"
@@ -16264,7 +16280,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr ""
 
 msgid "Use workaround for wakeup from deep-standby?"
-msgstr ""
+msgstr "Usa la soluzione alternativa per il risveglio dal deep-standby?"
 
 msgid "Used service scan type"
 msgstr "Tipo ricerca canali in uso"
@@ -16943,8 +16959,7 @@ msgstr ""
 "http."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr ""
-"Se abilitata, la numerazione dei canali inizia da '1 'per ogni bouquet."
+msgstr "Se abilitata, la numerazione dei canali inizia da 1 per ogni bouquet."
 
 msgid ""
 "When enabled, content with an aspect ratio of 4:3 will be stretched to fit "
@@ -17312,7 +17327,7 @@ msgid "WOL Standby"
 msgstr ""
 
 msgid "Workaround for old tuner driver"
-msgstr ""
+msgstr "Soluzione per driver di vecchi sintonizzatori"
 
 msgid "working"
 msgstr "sto lavorando…"
