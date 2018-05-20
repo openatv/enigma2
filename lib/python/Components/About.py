@@ -43,6 +43,8 @@ def getChipSetString():
 		return "7252S"
 	elif getMachineBuild() in ('hd51','vs1500','h7'):
 		return "7251S"
+	elif getMachineBuild() in ('alien5'):
+		return "S905D"
 	else:
 		try:
 			f = open('/proc/stb/info/chipset', 'r')
@@ -61,6 +63,8 @@ def getCPUSpeedString():
 		return "1,6 GHz"
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		return "1,7 GHz"
+	elif getMachineBuild() in ('alien5'):
+		return "2,0 GHz"
 	elif getMachineBuild() in ('hd51','hd52','sf4008','vs1500','et1x000','h7','et13000','sf5008'):
 		try:
 			import binascii
@@ -94,6 +98,8 @@ def getCPUString():
 		return "Broadcom"
 	elif getMachineBuild() in ('u51','u52','u53','u5','u5pvr','h9'):
 		return "Hisilicon"
+	elif getMachineBuild() in ('alien5'):
+		return "AMlogic"
 	else:
 		try:
 			system="unknown"
@@ -121,7 +127,7 @@ def getCpuCoresString():
 			if len(splitted) > 1:
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("processor"):
-					if getMachineBuild() in ('u51','u52','u53','vuultimo4k','u5','u5pvr','h9'):
+					if getMachineBuild() in ('u51','u52','u53','vuultimo4k','u5','u5pvr','h9','alien5'):
 						cores = 4
 					elif int(splitted[1]) > 0:
 						cores = 2

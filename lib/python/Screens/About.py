@@ -76,6 +76,8 @@ def getAboutText():
 		cpuMHz = "   (1,6 GHz)"
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		cpuMHz = "   (1,7 GHz)"
+	elif getMachineBuild() in ('alien5'):
+		cpuMHz = "   (2,0 GHz)"
 	elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7'):
 		try:
 			import binascii
