@@ -613,20 +613,10 @@ class QuickMenu(Screen, ProtectedScreen):
 					self.session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 
 	def SatfinderMain(self):
-		nims = nimmanager.getNimListOfType("DVB-S")
-
-		nimList = []
-		for x in nims:
-			if not nimmanager.getNimConfig(x).dvbs.configMode.value in ("loopthrough", "satposdepends", "nothing"):
-				nimList.append(x)
-
-		if len(nimList) == 0:
-			self.session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
+		if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
+			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
-				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
-			else:
-				self.session.open(Satfinder)
+			self.session.open(Satfinder)
 		
 ######## SOFTWARE MANAGER TOOLS #######################
 	def backupDone(self,retval = None):
