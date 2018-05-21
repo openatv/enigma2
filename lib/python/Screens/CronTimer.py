@@ -40,7 +40,7 @@ class CronTimers(Screen):
 		self['key_blue'] = Label(_("Autostart"))
 		self.list = []
 		self['list'] = List(self.list)
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {'ok': self.info, 'back': self.UninstallCheck, 'red': self.delcron, 'green': self.addtocron, 'yellow': self.CrondStart, 'blue': self.autostart, "menu": self.closeRecursive})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {'ok': self.info, 'back': self.UninstallCheck, 'red': self.delcron, 'green': self.addtocron, 'yellow': self.CrondStart, 'blue': self.autostart})
 		if not self.selectionChanged in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.service_name = 'cronie'
@@ -258,9 +258,6 @@ class CronTimers(Screen):
 			myline = mysel[1]
 			self.session.open(MessageBox, _(myline), MessageBox.TYPE_INFO)
 
-	def closeRecursive(self):
-		self.close(True)
-
 config.crontimers = ConfigSubsection()
 config.crontimers.commandtype = NoSave(ConfigSelection(choices = [ ('custom',_("Custom")),('predefined',_("Predefined")) ]))
 config.crontimers.cmdtime = NoSave(ConfigClock(default=0))
@@ -280,7 +277,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self['key_red'] = Label(_("Close"))
 		self['key_green'] = Label(_("Save"))
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions', "MenuActions"], {'red': self.close,'green': self.checkentry, 'back': self.close, 'showVirtualKeyboard': self.KeyText, "menu": self.closeRecursive})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions', "MenuActions"], {'red': self.close,'green': self.checkentry, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self['footnote'] = Label()
