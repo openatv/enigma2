@@ -2345,6 +2345,8 @@ class NetworkOpenvpn(Screen):
 		title = _("OpenVpn Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
+		self['labconfig'].show()
+
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
@@ -2529,7 +2531,6 @@ class NetworkSamba(Screen):
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("Samba Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
-		self['labconfig'].show()
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
