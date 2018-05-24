@@ -1088,7 +1088,7 @@ void eDVBFrontend::feEvent(int w)
 				state = stateLostLock;
 				if (!m_rotor_mode)
 					sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
-#if HAVE_AMLOGIC
+#if HAVE_ALIEN5
 				if(m_state == state)
 					break; /* I do not see any other way out */
 #endif
@@ -2158,7 +2158,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					{
 						dvb_frontend_event event;
 						int res;
-#if HAVE_AMLOGIC
+#if HAVE_ALIEN5
 						if((res = ::ioctl(m_fd, FE_READ_STATUS, &event.status)) != 0)
 						{
 							break;
