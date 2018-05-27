@@ -216,11 +216,11 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.list.append(self.set_color)
 		self.list.append(self.set_font)
 		self.list.append(self.set_new_skin)
-		self.list.append(getConfigListEntry(_("---Weather---"), self.myAtileHD_fake_entry))
-		self.list.append(getConfigListEntry(_("Refresh interval in minutes:"), config.plugins.AtileHD.refreshInterval))
-		self.list.append(getConfigListEntry(_("Temperature unit:"), config.plugins.AtileHD.tempUnit))
-		self.list.append(self.find_woeid)
-		self.list.append(getConfigListEntry(_("Location # (http://weather.yahoo.com/):"), config.plugins.AtileHD.woeid))
+#		self.list.append(getConfigListEntry(_("---Weather---"), self.myAtileHD_fake_entry))
+#		self.list.append(getConfigListEntry(_("Refresh interval in minutes:"), config.plugins.AtileHD.refreshInterval))
+#		self.list.append(getConfigListEntry(_("Temperature unit:"), config.plugins.AtileHD.tempUnit))
+#		self.list.append(self.find_woeid)
+#		self.list.append(getConfigListEntry(_("Location # (http://weather.yahoo.com/):"), config.plugins.AtileHD.woeid))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if self.myAtileHD_active.value:
