@@ -22,3 +22,8 @@ class StaticText(Source):
 		self.changed((self.CHANGED_ALL,))
 
 	text = property(getText, setText)
+
+	def getBoolean(self):
+		return bool(self.__text)
+
+	boolean = property(getBoolean)
