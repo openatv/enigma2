@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 21:25+0300\n"
-"PO-Revision-Date: 2018-04-04 18:08+0300\n"
+"POT-Creation-Date: 2018-05-04 02:55+0300\n"
+"PO-Revision-Date: 2018-05-19 17:51+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas: Pasirinkite, keturių kanalų, kanalą"
@@ -1535,6 +1535,12 @@ msgstr "Paskirti"
 msgid "Allocate unused memory index"
 msgstr "Paskirti nenaudojamos atminties indeksą"
 
+msgid "Allow 10bit"
+msgstr "Leisti 10 bitų"
+
+msgid "Allow 12bit"
+msgstr "Leisti 12 bitų"
+
 msgid "Allow quit movieplayer with exit"
 msgstr "Leisti baigti filmų grotuvą su mygtuku exit"
 
@@ -1546,6 +1552,9 @@ msgstr "Leisti subtitrus turintiems klausos sutrikimų"
 
 msgid "Allow unstable (untested) updates"
 msgstr "Leisti nestabilius (neišbandytus) atnaujinimus"
+
+msgid "Allow unsupported modes"
+msgstr "Leisti nepalaikomus režimus"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Leidžia %s %s pastoviai skaityti saugomus EPG duomenis."
@@ -1715,6 +1724,9 @@ msgstr "Jūs tikrai norite paleisti šį scenarijų ?"
 
 msgid "Are you sure to cancel all changes"
 msgstr "Jūs tikrai norite atšaukti visus pakeitimus"
+
+msgid "Are you sure to delete all cuts and marks?"
+msgstr "Jūs tikrai norite ištrinti visus iškirpimus ir žymeklius?"
 
 msgid "Are you sure to purge all deleted userbouquets?"
 msgstr "Jūs tikrai norite išvalyti visus pašalintus vartotojo paketus?"
@@ -1989,6 +2001,9 @@ msgstr "Automatinis kalbos pasirinkimas"
 
 msgid "Auto Language Selection"
 msgstr "Automatinis kalbos pasirinkimas"
+
+msgid "Auto Modes Selected."
+msgstr "Pasirinkti automatiniai režimai."
 
 msgid "Auto scart switching"
 msgstr "Automatinis skarto perjungimas"
@@ -2363,8 +2378,8 @@ msgstr "Pridėti žalios"
 msgid "Boot-up action"
 msgstr "Veiksmas paleidžiant"
 
-msgid "Bootloader:\t\t%s\n"
-msgstr "Užkrovėjas:\t\t%s\n"
+msgid "Bootloader:\t\t\t%s\n"
+msgstr "Įkroviklis:\t\t\t%s\n"
 
 msgid "Bootloader update required!"
 msgstr "Įkrovos tvarkyklę reikia atnaujinti!"
@@ -2420,8 +2435,8 @@ msgstr "Buferiai:"
 msgid "Build: %s"
 msgstr "Sukurta: %s"
 
-msgid "Build:\t%s"
-msgstr "Sukurta: %s"
+msgid "Build:\t\t%s"
+msgstr "Sukurta:\t\t%s"
 
 msgid "Bulgarian"
 msgstr "Bulgarų"
@@ -2918,8 +2933,8 @@ msgstr "Lustų rinkinys"
 msgid "Chipset: BCM%s"
 msgstr "Lustų rinkinys: BCM%s"
 
-msgid "Chipset:\t%s"
-msgstr "Lustų rinkinys:\t%s"
+msgid "Chipset:\t\t%s"
+msgstr "Lustų rinkinys:\t\t%s"
 
 msgid "Choice Box"
 msgstr "Pasirinkimų langas"
@@ -3232,6 +3247,9 @@ msgstr "Kompleksinis (leidžia sumaišyti garso takelius ir formatus)"
 msgid "Composition of the recording filenames"
 msgstr "Įrašo failų sudėtis"
 
+msgid "Config file name: default (ok to change)"
+msgstr "Konfigūracijos failo pavadinimas: numatytasis (ok, kad pakeisti)"
+
 msgid "config menu"
 msgstr "konfigūravimo meniu"
 
@@ -3239,7 +3257,7 @@ msgid "Configfile %s saved."
 msgstr "Konfigūracijos failas %s išsaugotas."
 
 msgid "Configuration mode"
-msgstr "Konfigūruoti"
+msgstr "Konfigūracijos režimas"
 
 msgid "Configuration mode: %s"
 msgstr "Konfigūravimo būdas: %s"
@@ -3926,8 +3944,8 @@ msgstr "Kopijuojami failai"
 msgid "Cores: %s"
 msgstr "Branduoliai: %s"
 
-msgid "Cores:\t%s"
-msgstr "Branduoliai:\t%s"
+msgid "Cores:\t\t%s"
+msgstr "Branduoliai:\t\t%s"
 
 msgid "Could not connect to server"
 msgstr "Prie serverio prisijungti nepavyko"
@@ -3965,8 +3983,8 @@ msgstr "Procesorius"
 msgid "CPU: %s"
 msgstr "Procesorius: %s"
 
-msgid "CPU:\t%s"
-msgstr "Procesorius: %s"
+msgid "CPU:\t\t%s"
+msgstr "Procesorius:\t\t%s"
 
 msgid "Crash at skin error for debug reasons ?"
 msgstr "Temos 'lūžimo' metu derinti klaidų priežastis ?"
@@ -4174,6 +4192,9 @@ msgstr "Numatytasis 'Laikmačio tipas' *"
 
 msgid "Default files/folders to backup"
 msgstr "Numatytoji failų/aplankų atsarginė kopija"
+
+msgid "Default Modes Selected."
+msgstr "Pasirinkti numatytieji režimai."
 
 msgid "Default movie location"
 msgstr "Numatytoji filmų vieta"
@@ -4922,8 +4943,8 @@ msgstr "Dreambox formato duomenų DVD (neveiks kituose DVD grotuvuose)"
 msgid "drivers"
 msgstr "tarkyklės"
 
-msgid "Drivers:\t%s"
-msgstr "Tvarkyklės:\t%s"
+msgid "Drivers:\t\t%s"
+msgstr "Tvarkyklės:\t\t%s"
 
 msgid "DTS"
 msgstr "DTS perkodavimas"
@@ -6053,8 +6074,14 @@ msgstr "Daugiau informacijos rasite http://www.opena.tv"
 msgid "force AC3plus"
 msgstr "priverstinai AC3plus"
 
+msgid "force enabled"
+msgstr "priverstinai įjungtas"
+
 msgid "Force de-interlace"
 msgstr "Priverstinis vaizdo eilučių suliejimas"
+
+msgid "force disabled"
+msgstr "priverstinai išjungtas"
 
 msgid "Force Legacy Signal Stats"
 msgstr "Priverstinė pasenusių signalų statistika"
@@ -6401,8 +6428,8 @@ msgstr "Iškylantis kritimas"
 msgid "Grow from left"
 msgstr "Iškilti iš kairės"
 
-msgid "GStreamer:\t%s"
-msgstr "Duomenų srautų medija:\t%s"
+msgid "GStreamer:\t\t%s"
+msgstr "Duomenų srautų media:\t\t%s"
 
 msgid "Guard interval"
 msgstr "Apsaugos intervalas"
@@ -6511,6 +6538,9 @@ msgstr "HDMI įrašymas"
 msgid "HDMI-IN Recording settings"
 msgstr "HDMI-IN įrašymo nustatymai"
 
+msgid "HDR10 Support"
+msgstr "HDR10 palaikymas"
+
 msgid "Hebrew"
 msgstr "Hebrajų"
 
@@ -6554,6 +6584,9 @@ msgstr ""
 
 msgid "Here you can select which files should be updated with a online update"
 msgstr "Čia galite pasirinkti, kurie failai turės būti atnaujinti internetu"
+
+msgid "Here you can set what is called when pressing the 'Info' key."
+msgstr "Čia galite nustatyti, kam bus naudojama 'Info' mygtuko paspaudimas."
 
 msgid ""
 "Here you can specify additional files that should be added to the backup "
@@ -6618,6 +6651,9 @@ msgstr "Istorija pirmyn"
 
 msgid "History zap..."
 msgstr "Perjungimų istorija..."
+
+msgid "HLG Support"
+msgstr "HLG palaikymas"
 
 msgid "Hold screen"
 msgstr "Užlaikytas vaizdas"
@@ -6713,15 +6749,15 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Jei įjungta, AIT duomenys įtraukiami į įrašus."
 
 msgid ""
-"If enabled, will checks for the time after the start of the receiver is "
-"within the time window and optionally switched to standby. If disabled, must "
-"additional be available a signal for the successful wakeup detection. (some "
-"receiver send a false or none signal)"
+"If enabled, using a time window to detect a wakeup from deep standby by a "
+"timer. Default setting ist disabled and used a special signal from the "
+"receiver. But some devices set a wrong or none signal and the wakeup "
+"detection can fails."
 msgstr ""
-"Jei įjungta, tai tikrina imtuvo startavimo laiką per laiko tarpą ir "
-"pasirinktinai perjungia į laukimą. Jei išjungta, turi būti papildomas "
-"signalas sėkmingam pabudinimo aptikimui. (Kai imtuvas siunčia klaidingą arba "
-"nenaudojamą signalą)"
+"Jei įjungta, naudokite laiko langą, kad nustatytumėte gilaus budėjimo režimo "
+"aktyvinimą laikmačiu. Numatytasis nustatymas yra išjungtas ir naudojamas "
+"specialus signalas iš imtuvo. Tačiau kai kuriuose įrenginiuose nustatytas "
+"netinkamas signalas arba niekas nepadaryta, ir pabudimas gali neveikti."
 
 msgid ""
 "If logs are using the set maximum space used the eldest will be deleted."
@@ -6843,6 +6879,13 @@ msgid ""
 msgstr ""
 "Jei tekstas per ilgas ir netelpa į priekinį imtuvo ekraną, jis bus "
 "kartojamas (kartų):"
+
+msgid ""
+"If you have activated HDMI-CEC, you can specify here whether a 'zap and "
+"record' timer also turns on the TV."
+msgstr ""
+"Jei įjungėte HDMI-CEC, čia galite nurodyti ar \"jungti ir įrašyti\" "
+"laikmatis taip pat įjungia televizorių."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -7140,6 +7183,9 @@ msgstr "Įėjimas"
 msgid "Input channel name."
 msgstr "Įveskite kanalo pavadinimą."
 
+msgid "Input config file name:"
+msgstr "Įrašykite konfigūracijos failo pavadinimą:"
+
 msgid "Input devices"
 msgstr "Įvesties įrenginiai"
 
@@ -7200,8 +7246,8 @@ msgstr "Įdiegti emuliatorius"
 msgid "Installation finished."
 msgstr "Įdiegimas baigtas."
 
-msgid "Installed:\t%s"
-msgstr "Įdiegta:\t%s"
+msgid "Installed:\t\t%s"
+msgstr "Įdiegta:\t\t%s"
 
 msgid "Installing"
 msgstr "Įdiegiama"
@@ -7422,8 +7468,8 @@ msgstr "branduolio moduliai"
 msgid "Kernel: %s"
 msgstr "Branduolys: %s"
 
-msgid "Kernel:\t%s"
-msgstr "Branduolys:\t%s"
+msgid "Kernel:\t\t%s"
+msgstr "Branduolys:\t\t%s"
 
 msgid "Keyboard"
 msgstr "Klaviatūra"
@@ -7443,8 +7489,14 @@ msgstr "Mygtukų išdėstymo pasirinkimas"
 msgid "Kleiner Test"
 msgstr "Mažas testas"
 
+msgid "Kodi"
+msgstr "Kodi"
+
 msgid "Kodi installed:"
 msgstr "Kodi įdiegta:"
+
+msgid "Kodi Launcher"
+msgstr "Kodi paleidiklis"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi medija centras"
@@ -7482,8 +7534,8 @@ msgstr "Paskutinė užklausa."
 msgid "Last speed"
 msgstr "Paskutinis greitis"
 
-msgid "Last update:\t%s"
-msgstr "Paskutinis atnaujinimas:\t%s"
+msgid "Last update:\t\t%s"
+msgstr "Paskutinis atnaujinimas:\t\t%s"
 
 msgid "Last used share: "
 msgstr "Paskutinis naudotas bendrinimas: "
@@ -8054,8 +8106,8 @@ msgstr "Modelis: "
 msgid "Model: %s %s\n"
 msgstr "Modelis: %s %s\n"
 
-msgid "Model:\t%s %s\n"
-msgstr "Modelis:\t%s %s\n"
+msgid "Model:\t\t%s %s\n"
+msgstr "Modelis:\t\t%s %s\n"
 
 msgid "Modulation"
 msgstr "Moduliacija"
@@ -8870,7 +8922,7 @@ msgid "Not associated"
 msgstr "Nesusietas"
 
 msgid "not configured"
-msgstr "nesukonfigūruotas"
+msgstr "nekonfigūruota"
 
 msgid "Not Defined"
 msgstr "Neapibrėžta"
@@ -10360,8 +10412,8 @@ msgstr "Pirmenybė"
 msgid "Process"
 msgstr "Apdorojama"
 
-msgid "Processor temperature:\t%s"
-msgstr "Procesoriaus temperatūra:\t%s"
+msgid "Processor temperature:\t\t%s"
+msgstr "Procesoriaus temperatūra:\t\t%s"
 
 msgid "Profile"
 msgstr "Profilis"
@@ -10496,10 +10548,10 @@ msgid "purge deleted userbouquets"
 msgstr "išvalyti ištrintus paketus"
 
 msgid "Put TV in standby"
-msgstr "Perjungti TV į budėjimo būseną"
+msgstr "Jungti TV į budėjimo būseną"
 
 msgid "Put your %s %s in standby"
-msgstr "Perjungti %s %s į budėjimo būseną"
+msgstr "Jungti %s %s į budėjimo būseną"
 
 msgid "Put your AV Receiver in standby"
 msgstr "Išjungti imtuvą į budėjimo būseną"
@@ -10522,8 +10574,8 @@ msgstr "Python emu paleidėjas (numatytasis)"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python išorinės sąsajos dėl /tmp/mmi.socket"
 
-msgid "Python:\t%s"
-msgstr "Python versija:\t%s"
+msgid "Python:\t\t%s"
+msgstr "Python versija:\t\t%s"
 
 msgid "Quad PiP Channel Selection"
 msgstr "Quad PiP kanalo pasirinkimas"
@@ -10908,6 +10960,9 @@ msgstr "pašalinti po šios vietos"
 msgid "remove all alternatives"
 msgstr "pašalinti visus kitus"
 
+msgid "Remove all cuts and marks"
+msgstr "Pašalinti visus iškirpimus ir žymeklius"
+
 msgid "remove all new found flags"
 msgstr "pašalinti visus žymeklius 'nauji'"
 
@@ -11069,10 +11124,10 @@ msgid "Reserved"
 msgstr "Rezervuota"
 
 msgid "Reset"
-msgstr "Perjungti"
+msgstr "Atstatyti"
 
 msgid "Reset and renumerate title names"
-msgstr "Perjungti ir pernumeruoti antraštės pavadinimus"
+msgstr "Nustatyti iš naujo ir pernumeruoti antraščių pavadinimus"
 
 msgid "Reset persistent PIN code"
 msgstr "Išvalyti pastovų PIN kodą"
@@ -11081,11 +11136,12 @@ msgid "Reset playback position"
 msgstr "Išvalyti peržiūros poziciją"
 
 msgid "Reset video enhancement settings to system defaults?"
-msgstr "Perjungti vaizdo stiprinimo nustatymus į sistemos numatytus?"
+msgstr "Iš naujo nustatyti vaizdo stiprinimo nustatymus į sistemos numatytus?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr ""
-"Perjungti vaizdo stiprinimo nustatymus į jūsų paskutinę vaizdo konfigūraciją?"
+"Iš naujo nustatyti vaizdo stiprinimo nustatymus į jūsų paskutinę vaizdo "
+"konfigūraciją?"
 
 msgid "Reshare"
 msgstr "Bendrinti iš naujo"
@@ -11937,8 +11993,8 @@ msgstr "Pasirinkite tiekėją ir paieškai pradėti, spauskite OK"
 msgid "Select Your Skin"
 msgstr "Pasirinkite norimą temą"
 
-msgid "Selected Image:\t%s"
-msgstr "Pasirinkite atvaizdą:\t%s"
+msgid "Selected Image:\t\t%s"
+msgstr "Pasirinktas atvaizdas:\t\t%s"
 
 msgid ""
 "Selected settingslist: %s\n"
@@ -12134,6 +12190,9 @@ msgid ""
 msgstr ""
 "Kanalai gali būti sugrupuoti į paketus. Kai čia įjungta, tas pats kanalas "
 "gali būti daugiau, nei viename pakete."
+
+msgid "Set action for 'Info' key"
+msgstr "Pasirinkite veiksmą 'info' mygtukui"
 
 msgid "set as startup service"
 msgstr "nustatyti, kaip pradinį kanalą"
@@ -13879,6 +13938,9 @@ msgstr "Srauto transliacijų klientai"
 msgid "StreamingClientsInfo"
 msgstr "Srauto klientų informacija"
 
+msgid "Stretch full"
+msgstr "Pilnai ištempti"
+
 msgid "Stretch linear"
 msgstr "Ištempti su juodomis linijomis"
 
@@ -14031,7 +14093,7 @@ msgid "Switch next channel"
 msgstr "Perjungti kitą kanalą"
 
 msgid "switch to bookmarks"
-msgstr "perjungti į žymes"
+msgstr "perjungti į pažymėtus"
 
 msgid "switch to filelist"
 msgstr "perjungti į failų sąrašą"
@@ -14040,7 +14102,7 @@ msgid "Switch to filelist"
 msgstr "Perjungti į failų sąrašą"
 
 msgid "Switch to HDMI in mode"
-msgstr "Perjungti į HDMI režimą"
+msgstr "Perjungti į HDMI in režimą"
 
 msgid "Switch to next channel in history"
 msgstr "Perjungti į kitą kanalą istorijoje"
@@ -14058,7 +14120,7 @@ msgid "Switch to previous channel in history"
 msgstr "Perjungti į ankstesnį kanalą istorijoje"
 
 msgid "Switch to previous sub service"
-msgstr "Perjungti į ankstesnį subkanalą"
+msgstr "Įjungti ankstesnį subkanalą"
 
 msgid "Switch to Radio"
 msgstr "Perjungti į radiją"
@@ -14768,14 +14830,26 @@ msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Ši parinktis leidžia nustatyti paveikslėlio dinaminio kontrasto lygį."
 
 msgid "This option allows you can config the Colordepth for UHD"
-msgstr "Ši funkcija leidžia galimybę konfigūruoti UHD spalvų erdvę"
+msgstr "Ši parinktis leidžia nustatyti HDMI naudojamą spalvų gylį"
 
 msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "Ši funkcija leidžia galimybę konfigūruoti HDR kolorimetriją"
+msgstr "Ši parinktis leidžia konfigūruoti HDR kolorimetriją"
 
 msgid "This option allows you can config the Colorspace from Auto to RGB"
 msgstr ""
 "Ši parinktis leidžia pasirinkti spalvų atvaizdavimo erdvę iš 'Auto' į RGB"
+
+msgid "This option allows you can enable or disable the 10 Bit Color Mode"
+msgstr "Ši parinktis leidžia jums įjungti arba išjungti 10 bitų spalvų režimą"
+
+msgid "This option allows you can enable or disable the 12 Bit Color Mode"
+msgstr "Ši parinktis leidžia jums įjungti arba išjungti 12 bitų spalvų režimą"
+
+msgid "This option allows you can force the HDR10 Modes for UHD"
+msgstr "Ši parinktis leidžia priverstinai naudoti HDR10 režimą dėl UHD"
+
+msgid "This option allows you can force the HLG Modes for UHD"
+msgstr "Ši parinktis leidžia priverstinai naudoti HLG režimą dėl UHD"
 
 msgid "This option allows you choose how to display elapsed time  as + or -"
 msgstr ""
@@ -14946,6 +15020,9 @@ msgid ""
 msgstr ""
 "Ši parinktis leidžia jums rodyti SNR procentais (ne visi imtuvai tai "
 "palaiko)."
+
+msgid "This option allows you to use all HDMI Modes"
+msgstr "Ši parinktis leidžia naudoti visus HDMI režimus"
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
@@ -15364,7 +15441,7 @@ msgid "Toggels between tv and radio..."
 msgstr "Perjungia tarp tv ir radijo..."
 
 msgid "Toggle a cut mark at the current position"
-msgstr "Perjungti iškirpimo žymeklį šioje pozicijoje"
+msgstr "Perkelti iškirpimo žymeklį į dabartinę poziciją"
 
 msgid "Toggle aspect ratio..."
 msgstr "Perjungti kraštinių santykį..."
@@ -15376,10 +15453,10 @@ msgid "Toggle Digital downmix..."
 msgstr "Perjungti skaitmeninį suliejimą..."
 
 msgid "Toggle HDMI-In full screen"
-msgstr "Perjungti HDMI per visą ekraną"
+msgstr "Perjungti HDMI-in per visą ekraną"
 
 msgid "Toggle HDMI-In PiP"
-msgstr "Perjungti HDMI į PiP"
+msgstr "Perjungti HDMI-in PiP"
 
 msgid "Toggle LCD LiveTV"
 msgstr "Perjungti transliaciją į LCD"
@@ -15388,7 +15465,7 @@ msgid "Toggle Picture In Graphics"
 msgstr "Perjungti paveikslėlį į grafiką"
 
 msgid "Toggle Pillarbox <> Pan&Scan"
-msgstr "Perjungti įtalpinimą su juostomis <> įtalpinimu, nukerpant šonus"
+msgstr "Perjungti talpinimą su juostomis <> talpinimu, nukerpant šonus"
 
 msgid "Toggle PIPzap"
 msgstr "Perjungti PiP jungimą"
@@ -15651,6 +15728,10 @@ msgstr "Įjungti HDMI-IN viso ekrano režimą"
 
 msgid "Turn on HDMI-IN PiP mode"
 msgstr "Įjungti HDMI-IN PiP režimą"
+
+msgid "Turn on the TV from standby with 'zap and record' timer"
+msgstr ""
+"Įjunkite televizorių iš budėjimo režimo su \"jungti ir įrašyti\" laikmačiu"
 
 msgid "Turning step size"
 msgstr "Sukimo žingsnis"
@@ -15950,6 +16031,16 @@ msgstr "Naudoti šliuzą"
 msgid "Use as HDD"
 msgstr "Naudoti kaip HDD"
 
+msgid ""
+"Use automatic mode detection.\n"
+" This option reads all supported modes from your TV.\n"
+" Please disable it only if you want to customize the preferred configuration."
+msgstr ""
+"Naudokite automatinį režimo aptikimą.\n"
+" Ši parinktis parodo visus jūsų televizoriaus palaikomus režimus.\n"
+" Prašome jį išjungti tik tada, jei norite pritaikyti pageidaujamą "
+"konfigūraciją."
+
 msgid "use best / controlled by HDMI"
 msgstr "geriausia naudoti / valdoma HDMI"
 
@@ -16224,8 +16315,8 @@ msgstr "Versija: "
 msgid "Version: %s"
 msgstr "Versija: %s"
 
-msgid "Version:\t%s"
-msgstr "Versija:\t%s"
+msgid "Version:\t\t%s"
+msgstr "Versija:\t\t%s"
 
 msgid "vertical"
 msgstr "vertikali"
@@ -17679,28 +17770,28 @@ msgstr ""
 "Pasirinkite, ką jūs norėsite daryti toliau."
 
 msgid "zap"
-msgstr "perjungti"
+msgstr "jungti"
 
 msgid "Zap"
-msgstr "Perjungti"
+msgstr "Jungti"
 
 msgid "ZAP"
-msgstr "Perjungti"
+msgstr "JUNGTI"
 
 msgid "Zap + Exit"
-msgstr "Perjungti + uždaryti"
+msgstr "Įjungti + uždaryti"
 
 msgid "zap and record"
-msgstr "perjungti ir įrašyti"
+msgstr "įjungti ir įrašyti"
 
 msgid "Zap back to previously tuned service?"
-msgstr "Perjungti į ankstesnį kanalą?"
+msgstr "Jungti į anksčiau nustatytą kanalą?"
 
 msgid "Zap back to service before positioner setup?"
-msgstr "Perjungti atgal į kanalą prieš pozicionieriaus nustatymą?"
+msgstr "Įjungti prieš pozicionieriaus konfigūravimą naudotą kanalą?"
 
 msgid "Zap back to service before tuner setup?"
-msgstr "Perjungti atgal į kanalą prieš imtuvo nustatymą?"
+msgstr "Įjungti prieš imtuvo sąranką naudotą kanalą?"
 
 msgid "Zap down"
 msgstr "Perjungti žemyn"
@@ -17806,10 +17897,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"%d.%d.%d, %2d:%02d  -  %s"
+"%Y/%m/%d  %H:%M - "
 msgstr ""
 "\n"
-"%d.%d.%d, %2d:%02d  -  %s"
+"%Y/%m/%d  %H:%M - "
 
 msgid ""
 "\n"
@@ -17944,7 +18035,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[Mano radijo paketai]\n"
+"[Mano RADIJO paketai]\n"
 
 msgid ""
 "\n"
@@ -18701,6 +18792,24 @@ msgstr "Zambija"
 
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
+
+#~ msgid ""
+#~ "\n"
+#~ "%d.%d.%d, %2d:%02d  -  %s"
+#~ msgstr ""
+#~ "\n"
+#~ "%d.%d.%d, %2d:%02d  -  %s"
+
+#~ msgid ""
+#~ "If enabled, will checks for the time after the start of the receiver is "
+#~ "within the time window and optionally switched to standby. If disabled, "
+#~ "must additional be available a signal for the successful wakeup "
+#~ "detection. (some receiver send a false or none signal)"
+#~ msgstr ""
+#~ "Jei įjungta, tai tikrina imtuvo startavimo laiką per laiko tarpą ir "
+#~ "pasirinktinai perjungia į laukimą. Jei išjungta, turi būti papildomas "
+#~ "signalas sėkmingam pabudinimo aptikimui. (Kai imtuvas siunčia klaidingą "
+#~ "arba nenaudojamą signalą)"
 
 #~ msgid ""
 #~ "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/"

@@ -73,14 +73,14 @@ fi
 
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
-	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
+	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
 else
-	LIBS="/usr/lib/libopen.so.0.0.0"
+	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
 #check for specific pagecache helper lib
-if [ -e /usr/lib/libpagecache.so ]; then
-	LIBS="$LIBS /usr/lib/libpagecache.so"
+if [ -e @libdir@/libpagecache.so ]; then
+	LIBS="$LIBS @libdir@/libpagecache.so"
 fi
 
 #check for receiver specific passthrough helper lib
@@ -192,17 +192,17 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		python /usr/lib/enigma2/python/upgrade.pyo
+		python @libdir@/enigma2/python/upgrade.pyo
 		;;
 	43)
 		init 1
 		;;
 	44)
 		# little hack but it will be fixed soon in drivers
-		/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
-		/usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
+		@libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
+		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
 		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bin of=/dev/mcu
-		/usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
+		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
 		# Wait forever for the user to power off
 		while(true) ; do sleep 60 ; done
 		;;

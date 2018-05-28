@@ -44,6 +44,22 @@ gRC::gRC(): rp(0), wp(0)
 #endif
 }
 
+#ifdef CONFIG_ION
+void gRC::lock()
+{
+#ifndef SYNC_PAINT
+	pthread_mutex_lock(&mutex);
+#endif
+}
+
+void gRC::unlock()
+{
+#ifndef SYNC_PAINT
+	pthread_mutex_unlock(&mutex);
+#endif
+}
+#endif
+
 DEFINE_REF(gRC);
 
 gRC::~gRC()

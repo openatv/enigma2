@@ -242,13 +242,9 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
-# EventView.py#L308
-msgid ""
-"\n"
-"%d.%d.%d, %2d:%02d  -  %s"
-msgstr ""
-"\n"
-"%02d.%02d.%d, %02d:%02d  -  %s"
+# EventView.py#L324
+msgid "\n%Y/%m/%d  %H:%M - "
+msgstr "\n%d.%m.%Y  %H:%M - "
 
 # EpgList.py#L686
 msgid "%e/%m, %-H:%M"
@@ -8658,7 +8654,7 @@ msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Das IMDb-Plugin ist niht installiert.\n"
+"Das IMDb-Plugin ist nicht installiert.\n"
 "Bitte installieren."
 
 msgid ""
@@ -16565,46 +16561,49 @@ msgstr "Benutzer fragen (Standard vorbelegen mit 'Ja')"
 msgid "Ask user (with default as 'no')"
 msgstr "Benutzer fragen (Standard vorbelegen mit 'Nein')"
 
-msgid "Model:\t%s %s\n"
+msgid "Model:\t\t%s %s\n"
 msgstr "Modell:\t\t%s %s\n"
 
-msgid "Chipset:\t%s"
+msgid "OEM Model:\t\t%s\n"
+msgstr "OEM Modell:\t\t%s\n"
+
+msgid "Chipset:\t\t%s"
 msgstr "Chipsatz:\t\t%s"
 
-msgid "CPU:\t%s"
+msgid "CPU:\t\t%s"
 msgstr "Prozessor:\t\t%s"
 
-msgid "Cores:\t%s"
-msgstr "Prozessor-Kerne:     \t%s"
+msgid "Cores:\t\t%s"
+msgstr "Kerne:\t\t%s"
 
-msgid "Selected Image:\t%s"
-msgstr "Ausgewähltes Image:     \t%s"
+msgid "Selected Image:\t\t%s"
+msgstr "Ausgewähltes Image:\t%s"
 
-msgid "Version:\t%s"
+msgid "Version:\t\t%s"
 msgstr "Version:\t\t%s"
 
-msgid "Build:\t%s"
+msgid "Build:\t\t%s"
 msgstr "Build:\t\t%s"
 
-msgid "Kernel:\t%s"
+msgid "Kernel:\t\t%s"
 msgstr "Linux-Kernel:\t\t%s"
 
-msgid "Last update:\t%s"
+msgid "Last update:\t\t%s"
 msgstr "Letztes Update:\t\t%s"
 
-msgid "Drivers:\t%s"
+msgid "Drivers:\t\t%s"
 msgstr "Treiber:\t\t%s"
 
 msgid "Frontprocessor version: %s"
-msgstr "Frontprozessor-Version:\t%s"
+msgstr "Frontprozessor-Version:%s"
 
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr "GStreamer:\t\t%s"
 
-msgid "Python:\t%s"
+msgid "Python:\t\t%s"
 msgstr "Python:\t\t%s"
 
-msgid "Installed:\t%s"
+msgid "Installed:\t\t%s"
 msgstr "Installiert:\t\t%s"
 
 msgid "System temperature:\t%s"
@@ -19513,10 +19512,40 @@ msgid "This option allows you to use all HDMI Modes"
 msgstr "Mit dieser Option können Sie alle HDMI-Modi verwenden"
 
 msgid "Use automatic mode detection.\n This option reads all supported modes from your TV.\n Please disable it only if you want to customize the preferred configuration."
-msgstr "Verwenden Sie die Automatische Modus Erkennung. \n Die Option liest alle unterstützten Modi von Ihrem TV Gerät. \n Bitte deaktivieren Sie es nur, wenn Sie die bevorzugte Konfiguration anpassen möchten."
+msgstr "Verwenden Sie die Automatische Modus Erkennung.\nDie Option liest alle unterstützten Modi von Ihrem TV Gerät.\nBitte deaktivieren Sie es nur, wenn Sie die bevorzugte Konfiguration anpassen möchten."
 
 msgid "Default Modes Selected."
 msgstr "Standardmodi ausgewählt."
 
 msgid "Auto Modes Selected."
 msgstr "Automodus ausgewählt."
+
+msgid "This option allows you can force the HLG Modes for UHD"
+msgstr "Mit dieser Option können Sie die HLG-Modi für UHD erzwingen"
+
+msgid "This option allows you can force the HDR10 Modes for UHD"
+msgstr "Mit dieser Option können Sie die HDR10-Modi für UHD erzwingen"
+
+msgid "This option allows you can enable or disable the 12 Bit Color Mode"
+msgstr "Mit dieser Option können Sie den 12-Bit-Farbmodus aktivieren oder deaktivieren"
+
+msgid "This option allows you can enable or disable the 10 Bit Color Mode"
+msgstr "Mit dieser Option können Sie den 10-Bit-Farbmodus aktivieren oder deaktivieren"
+
+msgid "HLG Support"
+msgstr "HLG-Unterstützung"
+
+msgid "HDR10 Support"
+msgstr "HDR10 Unterstützung"
+
+msgid "Allow 12bit"
+msgstr "Erlaube 12bit"
+
+msgid "Allow 10bit"
+msgstr "Erlaube 10bit"
+
+msgid "force enabled"
+msgstr "erzwinge aktiviert"
+
+msgid "force disabled"
+msgstr "erzwinge deaktiviert"

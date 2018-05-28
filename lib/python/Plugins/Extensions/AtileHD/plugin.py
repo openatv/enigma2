@@ -26,7 +26,7 @@ from Tools.Directories import *
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
 from Tools import Notifications
-from os import listdir, remove, rename, system, path, symlink, chdir, makedirs
+from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
 import shutil
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
@@ -216,11 +216,11 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.list.append(self.set_color)
 		self.list.append(self.set_font)
 		self.list.append(self.set_new_skin)
-		self.list.append(getConfigListEntry(_("---Weather---"), self.myAtileHD_fake_entry))
-		self.list.append(getConfigListEntry(_("Refresh interval in minutes:"), config.plugins.AtileHD.refreshInterval))
-		self.list.append(getConfigListEntry(_("Temperature unit:"), config.plugins.AtileHD.tempUnit))
-		self.list.append(self.find_woeid)
-		self.list.append(getConfigListEntry(_("Location # (http://weather.yahoo.com/):"), config.plugins.AtileHD.woeid))
+#		self.list.append(getConfigListEntry(_("---Weather---"), self.myAtileHD_fake_entry))
+#		self.list.append(getConfigListEntry(_("Refresh interval in minutes:"), config.plugins.AtileHD.refreshInterval))
+#		self.list.append(getConfigListEntry(_("Temperature unit:"), config.plugins.AtileHD.tempUnit))
+#		self.list.append(self.find_woeid)
+#		self.list.append(getConfigListEntry(_("Location # (http://weather.yahoo.com/):"), config.plugins.AtileHD.woeid))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if self.myAtileHD_active.value:
@@ -421,7 +421,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			if self.myAtileHD_style.value != 'default':
 				symlink(self.myAtileHD_style.value, self.color_file)
 			if not path.exists("mySkin_off"):
-				touch("mySkin_off")
+				mkdir("mySkin_off")
 				print "makedir mySkin_off"
 			if self.myAtileHD_active.value:
 				if not path.exists("mySkin") and path.exists("mySkin_off"):
