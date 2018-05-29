@@ -1242,12 +1242,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.list.playInForeground = None
 		self.filePlayingTimer.stop()
 
+		if hasattr(self, "selectedmovie"):
+			self.reloadList(self.selectedmovie, home=True)
+			del self.selectedmovie
+
 	def onFirstTimeShown(self):
 		self.filePlayingTimer.start(100)
 		self.onShown.remove(self.onFirstTimeShown)  # Just once, not after returning etc.
 		self.show()
-		self.reloadList(self.selectedmovie, home=True)
-		del self.selectedmovie
+
 		if config.movielist.show_live_tv_in_movielist.value:
 			self.LivePlayTimer.start(100)
 
