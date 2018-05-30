@@ -319,7 +319,7 @@ void eDVBServicePMTHandler::AITready(int error)
 			eDebug("[eDVBServicePMTHandler] Section Length : %d, Total Section Length : %d", (*it)->getSectionLength(), sectionLength);
 			for (; i != (*it)->getApplicationInformation()->end(); ++i)
 			{
-				std::string hbbtvUrl = "", applicaionName = "";
+				std::string hbbtvUrl = "", applicationName = "";
                                 std::string boundaryExtension = "";
 
 				int controlCode = (*i)->getApplicationControlCode();
@@ -361,8 +361,8 @@ void eDVBServicePMTHandler::AITready(int error)
 							ApplicationNameConstIterator interactionit = nameDescriptor->getApplicationNames()->begin();
 							for(; interactionit != nameDescriptor->getApplicationNames()->end(); ++interactionit)
 							{
-								applicaionName = (*interactionit)->getApplicationName();
-								if(controlCode == 1) m_ApplicationName = applicaionName;
+								applicationName = (*interactionit)->getApplicationName();
+								if(controlCode == 1) m_ApplicationName = applicationName;
 								break;
 							}
 							break;
@@ -413,7 +413,7 @@ void eDVBServicePMTHandler::AITready(int error)
 					const char* uu = hbbtvUrl.c_str();
 					struct aitInfo aitinfo;
 					aitinfo.id = appid;
-					aitinfo.name = applicaionName;
+					aitinfo.name = applicationName;
 					aitinfo.url = hbbtvUrl;
 					m_aitInfoList.push_back(aitinfo);
 					if(!strncmp(uu, "http://", 7) || !strncmp(uu, "dvb://", 6) || !strncmp(uu, "https://", 8))
@@ -423,12 +423,12 @@ void eDVBServicePMTHandler::AITready(int error)
 						{
 							case 65793:
 							case 66049:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo(controlCode, orgid, appid, hbbtvUrl, applicaionName, profilecode));
+								m_HbbTVApplications.push_back(new HbbTVApplicationInfo(controlCode, orgid, appid, hbbtvUrl, applicationName, profilecode));
 								break;
 							case 1280:
 							case 65538:
 							default:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo((-1)*controlCode, orgid, appid, hbbtvUrl, applicaionName, profilecode));
+								m_HbbTVApplications.push_back(new HbbTVApplicationInfo((-1)*controlCode, orgid, appid, hbbtvUrl, applicationName, profilecode));
 								break;
 						}
 					}
@@ -444,12 +444,12 @@ void eDVBServicePMTHandler::AITready(int error)
 						{
 							case 65793:
 							case 66049:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo(controlCode, orgid, appid, boundaryExtension, applicaionName, profilecode));
+								m_HbbTVApplications.push_back(new HbbTVApplicationInfo(controlCode, orgid, appid, boundaryExtension, applicationName, profilecode));
 								break;
 							case 1280:
 							case 65538:
 							default:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo((-1)*controlCode, orgid, appid, boundaryExtension, applicaionName, profilecode));
+								m_HbbTVApplications.push_back(new HbbTVApplicationInfo((-1)*controlCode, orgid, appid, boundaryExtension, applicationName, profilecode));
 								break;
 						}
 					}
