@@ -177,6 +177,11 @@ RESULT eAMLTSMPEGDecoder::setVideoPID(int vpid, int type)
 #endif
 		}
 		eDebug("%s() vpid=%d, type=%d",__PRETTY_FUNCTION__, vpid, type);
+		
+#if HAVE_ALIEN5
+
+		aml_change_vpid(vpid, m_codec.video_type);
+#endif
 	}
 	return 0;
 }
@@ -267,6 +272,7 @@ RESULT eAMLTSMPEGDecoder::setSyncMaster(int who)
 RESULT eAMLTSMPEGDecoder::set()
 {
 	TRACE__
+
 	return 0;
 }
 
