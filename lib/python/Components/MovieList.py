@@ -3,7 +3,7 @@ import struct
 import random
 from time import localtime, strftime
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
@@ -204,7 +204,7 @@ class MovieList(GUIComponent):
 		self.fontName, self.fontSize, height, width = skin.fonts.get("MovieSelectionFont", ("Regular", 20, 25, 18))
 		self.listHeight = None
 		self.listWidth = None
-		# pbarShift, trashShift, dirShift, dateWidth, lenWidth
+		# pbarShift, trashShift, dirShift, markShift, dateWidth, lenWidth
 		# and sizeWidth are properties that return their
 		# calculated size if set to None
 		self.pbarShift = None  # Defaults to being calculated from bar height
@@ -222,10 +222,13 @@ class MovieList(GUIComponent):
 		self.partIconeShift = None  # Defaults to being calculated from icon height
 		self.spaceRight = 2
 		self.spaceIconeText = 2
+		self.listPos = 50
+		self.markWidth = 16
 		self.iconsWidth = 22
 
 		self.trashShift = None  # Defaults to being calculated from trash icon height
 		self.dirShift = None  # Defaults to being calculated from directory icon height
+		self.markShift = None  # Defaults to being calculated from selected icon height
 		self.dateWidth = None  # Defaults to being calculated from font size
 		self.dateWidthScale = 9.0  # Over-ridden by self.dateWidth if set
 		self.lenWidth = None  # Defaults to being calculated from font size
@@ -239,6 +242,8 @@ class MovieList(GUIComponent):
 		self._playInBackground = None
 		self._playInForeground = None
 		self._char = ''
+
+		self.markList = []
 
 		if root is not None:
 			self.reload(root)
@@ -258,6 +263,9 @@ class MovieList(GUIComponent):
 		self.runningTimers = {}
 		self.updateRecordings()
 		self.updatePlayPosCache()
+
+		self.iconMarked = [LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/mark_off.png")),
+						   LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/mark_on.png"))]
 
 	@property
 	def dateWidth(self):
@@ -313,6 +321,22 @@ class MovieList(GUIComponent):
 	@dirShift.setter
 	def dirShift(self, val):
 		self._dirShift = val
+
+	@property
+	def markShift(self):
+		if self._markShift is None:
+			# assume on & off are the same size
+			markHeight = self.iconMarked[0].size().height()
+			# prefer to chop off the top, not the bottom
+			if markHeight >= self.itemHeight:
+				return self.itemHeight - markHeight
+			return max(0, int((self.itemHeight - markHeight + 1.0) / 2))
+		else:
+			return self._markShift
+
+	@markShift.setter
+	def markShift(self, val):
+		self._markShift = val
 
 	@property
 	def pbarShift(self):
@@ -430,6 +454,12 @@ class MovieList(GUIComponent):
 		def spaceIconeText(value):
 			self.spaceIconeText = int(value)
 
+		def listPos(value):
+			self.listPos = int(value)
+
+		def markWidth(value):
+			self.markWidth = int(value)
+
 		def iconsWidth(value):
 			self.iconsWidth = int(value)
 
@@ -438,6 +468,9 @@ class MovieList(GUIComponent):
 
 		def dirShift(value):
 			self.dirShift = int(value)
+
+		def markShift(value):
+			self.markShift = int(value)
 
 		def spaceRight(value):
 			self.spaceRight = int(value)
@@ -480,6 +513,7 @@ class MovieList(GUIComponent):
 			itemHeight = 25  # some default (270/5)
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
+		self.l.setSelectionClip(eRect(self.listPos, 0, self.listWidth - self.listPos, itemHeight), False)
 		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 	def setFontsize(self):
@@ -512,12 +546,17 @@ class MovieList(GUIComponent):
 		lenWidth = self.lenWidth if showLen else 0
 		showSize = self.showCol(config.movielist.showsizes, self.COL_SIZE)
 		sizeWidth = self.sizeWidth if showSize else 0
+		markSize = self.markWidth
 		iconSize = self.iconsWidth
 		space = self.spaceIconeText
 		r = self.spaceRight
 		ih = self.itemHeight
 		pathName = serviceref.getPath()
 		res = [None]
+
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(self.listPos - markSize - space, self.markShift), size=(markSize, self.iconMarked[0].size().height()), png=self.iconMarked[self.getCurrent() in self.markList]))
+		iconPos = self.listPos
+		textPos = iconPos + iconSize + space
 
 		if serviceref.flags & eServiceReference.mustDescent:
 			# Directory
@@ -528,12 +567,12 @@ class MovieList(GUIComponent):
 			else:
 				txt = os.path.basename(os.path.normpath(pathName))
 			if txt == ".Trash":
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, self.trashShift), size=(iconSize, self.iconTrash.size().height()), png=self.iconTrash))
-				res.append(MultiContentEntryText(pos=(iconSize + space, 0), size=(width - iconSize - space - dateWidth - r, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = _("Trash")))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPos, self.trashShift), size=(iconSize, self.iconTrash.size().height()), png=self.iconTrash))
+				res.append(MultiContentEntryText(pos=(textPos, 0), size=(width - textPos - dateWidth - r, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = _("Trash")))
 				res.append(MultiContentEntryText(pos=(width - dateWidth - r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trash")))
 				return res
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, self.dirShift), size=(iconSize, iconSize), png=self.iconFolder))
-			res.append(MultiContentEntryText(pos=(iconSize + space, 0), size=(width - iconSize - space - dateWidth - r, ih), font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPos, self.dirShift), size=(iconSize, iconSize), png=self.iconFolder))
+			res.append(MultiContentEntryText(pos=(textPos, 0), size=(width - textPos - dateWidth - r, ih), font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
 			res.append(MultiContentEntryText(pos=(width - dateWidth - r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
 			return res
 		if data == -1 or data is None:
@@ -596,15 +635,16 @@ class MovieList(GUIComponent):
 					partIconeShift = max(0, int((ih - data.icon.size().height()) / 2))
 				else:
 					partIconeShift = self.partIconeShift
-				pos = (0, partIconeShift)
+				pos = (iconPos, partIconeShift)
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=pos, size=(iconSize, data.icon.size().height()), png=data.icon))
 			elif switch in ('p', 's'):
 				if switch == 'p':
 					iconSize = self.pbarLargeWidth
+					textPos = iconPos + iconSize + space
 				if hasattr(data, 'part') and data.part > 0:
-					res.append(MultiContentEntryProgress(pos=(0, self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(iconPos, self.pbarShift), size=(iconSize, self.pbarHeight), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=data.partcolsel, backColor=None, backColorSelected=None))
 				elif hasattr(data, 'icon') and data.icon is not None:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, self.pbarShift), size=(iconSize, self.pbarHeight), png=data.icon))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPos, self.pbarShift), size=(iconSize, self.pbarHeight), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
@@ -624,7 +664,7 @@ class MovieList(GUIComponent):
 			textItems.insert(0, MultiContentEntryText(pos=(xPos, 0), size=(lenWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=len))
 		xPos -= dateWidth + r
 		textItems.insert(0, MultiContentEntryText(pos=(xPos, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
-		textItems.insert(0, MultiContentEntryText(pos=(iconSize + space, 0), size=(xPos - (iconSize + space), ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
+		textItems.insert(0, MultiContentEntryText(pos=(textPos, 0), size=(xPos - textPos, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
 
 		res += textItems
 		return res
@@ -705,6 +745,10 @@ class MovieList(GUIComponent):
 			elif self.numUserFiles > 0:
 				self.numUserFiles -= 1
 			del self.list[index]
+			try:
+				self.markList.remove(serviceref)
+			except:
+				pass
 			self.refreshDisplay()
 
 	def findService(self, service):
@@ -1104,6 +1148,62 @@ class MovieList(GUIComponent):
 		self._char = ''
 		if self._lbl:
 			self._lbl.visible = False
+
+	def markItems(self, serviceList):
+		self.markList = serviceList[:]
+		self.refreshDisplay()
+
+	def markAll(self):
+		self.markList = []
+		return self.invertMarks()
+
+	def markNone(self):
+		self.markList = []
+		self.refreshDisplay()
+		return 0
+
+	def toggleCurrentItem(self):
+		item = self.l.getCurrentSelection()
+		# don't select special items (e.g. the parent directory)
+		if item and item[0] and item[1]:
+			if item[0] in self.markList:
+				self.markList.remove(item[0])
+			else:
+				self.markList.append(item[0])
+			self.invalidateCurrentItem()
+		return len(self.markList)
+
+	def invertMarks(self):
+		# invert the same type (directory or file) as the current
+		cur = self.getCurrent()
+		cur = 0 if not cur else cur.flags & eServiceReference.mustDescent
+		for item in self.list:
+			if item[0] and item[1] and item[0].flags & eServiceReference.mustDescent == cur:
+				if item[0] in self.markList:
+					self.markList.remove(item[0])
+				else:
+					# don't select the trash
+					if item[0].flags & eServiceReference.mustDescent:
+						pathName = item[0].getPath()
+						name = os.path.basename(os.path.normpath(pathName))
+						if name == '.Trash':
+							continue
+					self.markList.append(item[0])
+		self.refreshDisplay()
+		return len(self.markList)
+
+	def getMarked(self):
+		marked = []
+		for service in self.markList[:]:
+			idx = self.findService(service)
+			if idx is not None:
+				marked.append(self.list[idx])
+			else:
+				self.markList.remove(service)
+		return marked
+
+	def countMarked(self):
+		return len(self.getMarked())
 
 def getShortName(name, serviceref):
 	if serviceref.flags & eServiceReference.mustDescent:  # Directory

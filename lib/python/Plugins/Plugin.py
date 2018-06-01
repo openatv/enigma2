@@ -75,7 +75,7 @@ class PluginDescriptor:
 
 	WHERE_EXTENSIONSINGLE = 21
 
-	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
+	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0, multi=False):
 		if not where: where = []
 		self.name = name
 		self.internal = internal
@@ -95,6 +95,8 @@ class PluginDescriptor:
 			self._icon = icon
 
 		self.weight = weight
+
+		self.multi = multi
 
 		self.wakeupfnc = wakeupfnc
 
