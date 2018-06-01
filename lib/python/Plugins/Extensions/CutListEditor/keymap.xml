@@ -1,12 +1,8 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
 	<map context="CutlistSeekActions">
-		<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
-		<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
-		<key id="KEY_RED" mapto="seekBack" flags="b" />
-		<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
-		<key id="KEY_RED" mapto="seekBackManual" flags="l" />
-		<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
+		<key id="KEY_YELLOW" mapto="seekBack" flags="b" />
+		<key id="KEY_BLUE" mapto="stepFwd" flags="b" />
 		<device name="dreambox advanced remote control (native)">
 			<!--key id="KEY_GREEN" mapto="unPauseService" flags="m" /-->
 			<key id="KEY_PREVIOUSSONG" mapto="seekBack" flags="b" />
@@ -14,16 +10,18 @@
 			<key id="KEY_NEXTSONG" mapto="seekFwd" flags="b" />
 			<key id="KEY_NEXTSONG" mapto="seekFwdManual" flags="l" />
 		</device>
-		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
+		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="b" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
-		<key id="KEY_PLAY" mapto="unPauseService" flags="m" />
+		<key id="KEY_PLAY" mapto="unPauseService" flags="b" />
+		<key id="KEY_PLAYPAUSE" mapto="seekAbsolute" flags="l" />
+		<key id="KEY_PLAY" mapto="seekAbsolute" flags="l" />
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
-		<key id="KEY_REWIND" mapto="seekBackManual" flags="l" />
-		<key id="KEY_FASTFORWARD" mapto="seekFwdManual" flags="l" />
+		<key id="KEY_REWIND" mapto="SeekbarBack" flags="l" />
+		<key id="KEY_FASTFORWARD" mapto="SeekbarFwd" flags="l" />
 
 		<key id="KEY_LEFT" mapto="seek:-1" flags="m" />
-		<key id="KEY_RIGHT" mapto="seek:1" flags="m" />
+		<key id="KEY_RIGHT" mapto="seek:2" flags="m" />
 
 		<key id="KEY_1" mapto="seek:-10" flags="m" />
 		<key id="KEY_3" mapto="seek:10" flags="m" />
@@ -38,6 +36,12 @@
 	<map context="CutListEditorActions">
 <!--		<key id="KEY_NEXT" mapto="setIn" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="setOut" flags="m" /> -->
+		<key id="KEY_GREEN" mapto="setIn" flags="b" />
+		<key id="KEY_RED" mapto="setOut" flags="b" />
+		<key id="KEY_GREEN" mapto="setStart" flags="l" />
+		<key id="KEY_RED" mapto="setEnd" flags="l" />
+		<key id="KEY_YELLOW" mapto="quickExecute" flags="l" />
+		<key id="KEY_BLUE" mapto="execute" flags="l" />
 <!--		<key id="KEY_0" mapto="setMark" flags="m" />  -->
 <!--		<key id="KEY_CHANNELUP" mapto="addMark" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="removeMark" flags="m" /> -->
@@ -47,5 +51,6 @@
 		<key id="KEY_OK" mapto="showMenu" flags="m" />
 		<key id="KEY_ENTER" mapto="showMenu" flags="m" />
 		<key id="KEY_MENU" mapto="showMenu" flags="m" />
+		<key id="KEY_LAST" mapto="backMenu" flags="m" />
 	</map>
 </keymap>
