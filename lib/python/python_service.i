@@ -126,7 +126,6 @@ PyObject *getInfoObject(int w)
 
 PyObject *getAITApplications()
 {
-	ePyObject tuple = PyTuple_New(2);
 	std::map<int, std::string> aitlist;
 	self->getAITApplications(aitlist);
 	if (!aitlist.empty())

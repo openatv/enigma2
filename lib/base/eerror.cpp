@@ -123,7 +123,7 @@ void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsig
 		*p1 = ringbuffer + begin;
 		*s1 = ringbuffer_head - begin;
 		*p2 = NULL;
-		*s2 = NULL;
+		*s2 = 0;
 	}
 	else
 	{

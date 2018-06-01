@@ -2949,6 +2949,7 @@ std::string eDVBFrontend::getCapabilities()
 		case SYS_CMMB:		ss << " CMBB"; break;
 		case SYS_DAB:		ss << " DAB"; break;
 		case SYS_DSS:		ss << " DSS"; break;
+		case SYS_DTMB:		ss << " DTMB"; break;
 		case SYS_DVBC_ANNEX_B:	ss << " DVBC_ANNEX_B"; break;
 		case SYS_DVBH:		ss << " DVBH"; break;
 		case SYS_DVBS:		ss << " DVBS"; break;

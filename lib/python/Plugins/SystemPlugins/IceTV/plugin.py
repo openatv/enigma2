@@ -7,7 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference
+from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService
 from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -22,12 +22,13 @@ from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
 from calendar import timegm
-from time import strptime, gmtime, strftime
+from time import strptime, gmtime, strftime, time
 from datetime import datetime
 from . import config, enableIceTV, disableIceTV
 import API as ice
 import requests
 from collections import deque, defaultdict
+from operator import itemgetter
 from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
 import NavigationInstance
@@ -49,6 +50,41 @@ def _logResponseException(logger, heading, exception):
     return msg
 
 class EPGFetcher(object):
+    START_EVENTS = {
+        iRecordableService.evStart,
+    }
+    END_EVENTS = {
+        iRecordableService.evEnd,
+        iRecordableService.evGstRecordEnded,
+    }
+    ERROR_EVENTS = {
+        iRecordableService.evRecordWriteError,
+    }
+    EVENT_CODES = {
+        iRecordableService.evStart: _("Recording started"),
+        iRecordableService.evEnd: _("Recording finished"),
+        iRecordableService.evTunedIn: _("Tuned for recording"),
+        iRecordableService.evTuneFailed: _("Recording tuning failed"),
+        iRecordableService.evRecordRunning: _("Recording running"),
+        iRecordableService.evRecordStopped: _("Recording stopped"),
+        iRecordableService.evNewProgramInfo: _("New program info"),
+        iRecordableService.evRecordFailed: _("Recording failed"),
+        iRecordableService.evRecordWriteError: _("Record write error (no space on disk?)"),
+        iRecordableService.evNewEventInfo: _("New event info"),
+        iRecordableService.evRecordAborted: _("Recording aborted"),
+        iRecordableService.evGstRecordEnded: _("Streaming recording ended"),
+    }
+    ERROR_CODES = {
+        iRecordableService.NoError: _("No error"),
+        iRecordableService.errOpenRecordFile: _("Error opening recording file"),
+        iRecordableService.errNoDemuxAvailable: _("No demux available"),
+        iRecordableService.errNoTsRecorderAvailable: _("No TS recorder available"),
+        iRecordableService.errDiskFull: _("Disk full"),
+        iRecordableService.errTuneFailed: _("Recording tuning failed"),
+        iRecordableService.errMisconfiguration: _("Misconfiguration in channel allocation"),
+        iRecordableService.errNoResources: _("Can't allocate program source (e.g. tuner)"),
+    }
+
     def __init__(self):
         self.fetch_timer = eTimer()
         self.fetch_timer.callback.append(self.createFetchJob)
@@ -58,9 +94,30 @@ class EPGFetcher(object):
         # TODO: channel_service_map should probably be locked in case the user edits timers at the time of a fetch
         # Then again, the GIL may actually prevent issues here.
         self.channel_service_map = None
+
+        # Status updates for timers that can't be processed at
+        # the time that a status change is flagged (e.g. for instant
+        # timers that don't initially have an IceTV id.
+        self.deferred_status = defaultdict(list)
+
+        # Timers that have failed, but where, when the iRecordableService
+        # issues its evEnd event, the iRecordableService.getError()
+        # returns NoError (for example, evRecordWriteError).
+        self.failed = {}
+
+        # Update status for timers that are already running at startup
+        # Use id(None) for their key to differentiate them from deferred
+        # updates for specific timers
+        message = self.EVENT_CODES[iRecordableService.evStart]
+        state = "running"
+        for entry in _session.nav.RecordTimer.timer_list:
+            if entry.record_service and self.shouldProcessTimer(entry):
+                self.deferred_status[id(None)].append((entry, state, message, int(time())))
+
         _session.nav.RecordTimer.onTimerAdded.append(self.onTimerAdded)
         _session.nav.RecordTimer.onTimerRemoved.append(self.onTimerRemoved)
         _session.nav.RecordTimer.onTimerChanged.append(self.onTimerChanged)
+        _session.nav.record_event.append(self.gotRecordEvent)
         self.addLog("IceTV started")
 
     def shouldProcessTimer(self, entry):
@@ -115,16 +172,86 @@ class EPGFetcher(object):
             d = threads.deferToThread(lambda: self.deleteTimer(ice_timer_id))
             d.addCallback(lambda x: self.deferredPostTimer(entry))
 
+    def gotRecordEvent(self, rec_service, event):
+        if event not in self.START_EVENTS and event not in self.END_EVENTS and event not in self.ERROR_EVENTS:
+            return
+
+        rec_service_id = rec_service.getPtrString()
+        rec_timer = None
+        for entry in _session.nav.RecordTimer.timer_list:
+            if entry.record_service and entry.record_service.getPtrString() == rec_service_id and self.shouldProcessTimer(entry):
+                rec_timer = entry
+                break
+
+        if rec_timer:
+            self.processEvent(rec_timer, event, rec_service.getError())
+
+    def processEvent(self, entry, event, err):
+        state = None
+        message = None
+        if err != iRecordableService.NoError and (event in self.START_EVENTS or event in self.END_EVENTS):
+            state = "failed"
+            message = self.EVENT_CODES[iRecordableService.evRecordFailed]
+        elif event in self.START_EVENTS:
+            state = "running" if err == iRecordableService.NoError else "failed"
+        elif event in self.END_EVENTS:
+            if err == iRecordableService.NoError and id(event) not in self.failed:
+                state = "completed"
+            else:
+                state = "failed"
+                if id(event) in self.failed:
+                    del self.failed[id(event)]
+        elif event in self.ERROR_EVENTS:
+            state = "failed"
+            if event == evRecordWriteError and id(event) not in self.failed:
+                # use same structure as deferred_status to simplify cleanup
+                # Hold otherwise unused reference to entry so
+                # that id(entry) remains valid
+                self.failed[id(event)] = [(event, int(time()))]
+
+        if state:
+            if not message:
+                message = self.EVENT_CODES.get(event, _("Unknown recording event"))
+            if err != iRecordableService.NoError:
+                message += ": %s" % self.ERROR_CODES.get(err, _("Unknown error code"))
+            if entry.ice_timer_id:
+                reactor.callInThread(self.postStatus, entry, state, message)
+            else:
+                # Timer started before IceTV timer is assigned
+                self.deferred_status[id(entry)].append((entry, state, message, int(time())))
+
+    def statusCleanup(self):
+        def doTimeouts(status, timeout):
+            for tid, worklist in status.items():
+                if worklist and min(worklist, key=itemgetter(-1))[-1] < timeout:
+                    status[tid] = [ent for ent in worklist if ent[-1] >= timeout]
+                    if not status[tid]:
+                        del status[tid]
+
+        now = int(time())
+        old24h = now - 24 * 60 * 60  # recordings don't run more tha 24 hours
+        doTimeouts(self.deferred_status, old24h)
+        doTimeouts(self.failed, old24h)
+
     def deferredPostTimer(self, entry):
         # print "[IceTV] Modify timer jobs - add timer job"
         reactor.callInThread(self.postTimer, entry)
+
+    def deferredPostStatus(self, entry):
+        tid = id(entry)
+        if tid in self.deferred_status:
+            reactor.callInThread(self.postStatus, *self.deferred_status[tid].pop(0)[0:3])
+            if not self.deferred_status[tid]:
+                del self.deferred_status[tid]
 
     def freqChanged(self, refresh_interval):
         self.fetch_timer.stop()
         self.fetch_timer.start(int(refresh_interval.value) * 1000)
 
     def addLog(self, msg):
-        self.log.append("%s: %s" % (str(datetime.now()).split(".")[0], msg))
+        logMsg = "%s: %s" % (str(datetime.now()).split(".")[0], msg)
+        self.log.append(logMsg)
+        print "[IceTV]", logMsg
 
     def createFetchJob(self, res=None):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
@@ -169,6 +296,8 @@ class EPGFetcher(object):
             if "timers" in shows:
                 res = self.processTimers(shows["timers"])
             self.addLog("End update")
+            self.deferredPostStatus(None)
+            self.statusCleanup()
             return res
         except (IOError, RuntimeError) as ex:
             if hasattr(ex, "response") and hasattr(ex.response, "status_code") and ex.response.status_code == 404:
@@ -244,7 +373,7 @@ class EPGFetcher(object):
 
         updated = False
         if not showMap:
-             return updated
+            return updated
         for timer in _session.nav.RecordTimer.timer_list:
             if timer.ice_timer_id and timer.service_ref.ref and not getattr(timer, "record_service", None):
                 evt = timer.getEventFromEPGId() or timer.getEventFromEPG()
@@ -494,7 +623,7 @@ class EPGFetcher(object):
                 # print "[IceTV] uploading new timer"
                 if not local_timer.eit:
                     self.addLog("Timer '%s' has no event id; not sent to IceTV" % local_timer.name)
-		    return
+                    return
                 channel_id = self.serviceToIceChannelId(local_timer.service_ref)
                 req = ice.Timers()
                 req.data["eit_id"] = local_timer.eit
@@ -515,6 +644,7 @@ class EPGFetcher(object):
                     self.addLog("Timer '%s' created OK" % local_timer.name)
                     if local_timer.ice_timer_id is not None:
                         NavigationInstance.instance.RecordTimer.saveTimer()
+                        self.deferredPostStatus(local_timer)
                 except:
                     self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
 
@@ -532,6 +662,18 @@ class EPGFetcher(object):
             self.addLog("Timer deleted OK")
         except (IOError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not delete timer"), ex)
+
+    def postStatus(self, timer, state, message):
+        try:
+            channel_id = self.serviceToIceChannelId(timer.service_ref)
+            req = ice.Timer(timer.ice_timer_id)
+            req.data["message"] = message
+            req.data["state"] = state
+            print "[EPGFetcher] postStatus", timer.name, message, state
+            res = req.put()
+        except (IOError, RuntimeError, KeyError) as ex:
+            _logResponseException(self, _("Can not update timer status"), ex)
+        self.deferredPostStatus(timer)
 
 fetcher = None
 

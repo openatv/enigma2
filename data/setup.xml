@@ -108,7 +108,7 @@
 		<item level="2" text="EPG cache save" description="Enable to regularly save EPG data to the cache file.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every hours" requires="config.epg.cachesavesched" description="Number of hours between EPG data saves to the cache file.">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT now/next in infobar" description="Enable to display EIT now/next event data in the infobar.">config.usage.show_eit_nownext</item>
-		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when available.">config.epg.eit</item>
+		<item level="2" text="Enable EIT EPG" requires="!config.plugins.icetv.enable_epg" description="Use EIT EPG information when available.">config.epg.eit</item>
 		<item level="3" text="Enable MHW EPG" description="Use MHW EPG information when available.">config.epg.mhw</item>
 		<item level="3" text="Enable FreeSat EPG" description="Use FreeSat EPG information when available.">config.epg.freesat</item>
 		<item level="3" text="Enable ViaSat EPG" description="Use ViaSat EPG information when available.">config.epg.viasat</item>
