@@ -249,7 +249,9 @@ class EPGFetcher(object):
         self.fetch_timer.start(int(refresh_interval.value) * 1000)
 
     def addLog(self, msg):
-        self.log.append("%s: %s" % (str(datetime.now()).split(".")[0], msg))
+        logMsg = "%s: %s" % (str(datetime.now()).split(".")[0], msg)
+        self.log.append(logMsg)
+        print "[IceTV]", logMsg
 
     def createFetchJob(self, res=None):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
@@ -371,7 +373,7 @@ class EPGFetcher(object):
 
         updated = False
         if not showMap:
-             return updated
+            return updated
         for timer in _session.nav.RecordTimer.timer_list:
             if timer.ice_timer_id and timer.service_ref.ref and not getattr(timer, "record_service", None):
                 evt = timer.getEventFromEPGId() or timer.getEventFromEPG()
