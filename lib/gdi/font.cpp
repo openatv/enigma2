@@ -731,22 +731,10 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	{
 		int isprintable=1;
 		int flags = nextflags;
-		nextflags = 0;
 		unsigned long chr = *i;
 
 		if (!(rflags&RS_DIRECT))
 		{
-			/* detect linefeeds and set flag GS_LF for the last glyph in this line */
-			if ((i + 1) != uc_visual.end())
-			{
-				unsigned long c = *(i + 1);
-				if (c == '\n' || c == 0x8A || c == 0xE08A /* linefeed */
-					|| (c == '\\' && (i + 2) != uc_visual.end() && *(i + 2) == 'n')) /* escaped linefeed */
-				{
-					flags |= GS_LF;
-				}
-			}
-
 			switch (chr)
 			{
 			case '\\':
@@ -793,6 +781,8 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 tab:				isprintable=0;
 				cursor+=ePoint(current_font->tabwidth, 0);
 				cursor-=ePoint(cursor.x()%current_font->tabwidth, 0);
+				if (!(nextflags&GS_ISFIRST))
+					nextflags|=GS_FIXED;
 				break;
 			case 0x8A:
 			case 0xE08A:
@@ -800,6 +790,7 @@ tab:				isprintable=0;
 newline:			isprintable=0;
 				newLine(rflags);
 				nextflags|=GS_ISFIRST;
+				nextflags&=~GS_FIXED;
 				break;
 			case '\r':
 			case 0x86: case 0xE086:
@@ -843,7 +834,15 @@ nprint:				isprintable=0;
 			} else
 				appendGlyph(current_font, current_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 
-			activate_newcolor = false;
+			if (index)
+			{
+				nextflags = 0;
+				activate_newcolor = false;
+			}
+		} else if (nextflags&GS_ISFIRST && !glyphs.empty())
+		{
+			// Newline found, mark the last glyph with the newline flag
+			glyphs.back().flags |= GS_LF;
 		}
 	}
 	bboxValid=false;
@@ -1163,29 +1162,39 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 	while (c != glyphs.end())
 	{
 		int linelength=0;
+		int linespace=area.width();
 		int numspaces=0, num=0;
 		begin=end;
 
 		ASSERT( end != glyphs.end());
 
+		glyphString::iterator nonspace_end(begin),  last_fixed(begin);
+
 			// zeilenende suchen
 		do {
 			last=end;
 			++end;
+			if(!(last->flags&GS_ISSPACE) && (end != glyphs.end() || end->flags&GS_ISSPACE))
+				nonspace_end = end;
 		} while ((end != glyphs.end()) && (!(end->flags&GS_ISFIRST)));
 			// end zeigt jetzt auf begin der naechsten zeile
 
-		for (c=begin; c!=end; ++c)
+		for (c=begin; c!=nonspace_end; ++c)
 		{
-				// space am zeilenende skippen
-			if ((c==last) && (c->flags&GS_ISSPACE))
-				continue;
-
+			if (dir == dirBlock && c->flags&GS_FIXED)
+			{
+				numspaces=0;
+				num=0;
+				linespace=area.width()-c->x;
+				linelength=0;
+				begin = c;
+			}
 			if (c->flags&GS_ISSPACE)
 				numspaces++;
 			linelength+=c->w;
 			num++;
 		}
+		c = end;
 
 		switch (dir)
 		{
@@ -1231,9 +1240,10 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 				continue;
 			}
 
-			int off=(area.width()-linelength)*256/(numspaces?numspaces:(num-1));
+			int off=(linespace-linelength)*256/(numspaces?numspaces:(num-1));
 			int curoff=0;
-			while (begin != end)
+
+			while (begin != nonspace_end)
 			{
 				int doadd=0;
 				if (begin->flags & GS_ISSPACE)
