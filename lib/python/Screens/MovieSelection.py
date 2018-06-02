@@ -2329,17 +2329,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if item:
 			current = item[0]
 			info = item[1]
+			path = os.path.normpath(current.getPath())
 			if len(self.moveList) == 1:
 				name = info and info.getName(current)
 				if name:
-					name = "'" + name + "'"
+					if name == path + '/':
+						name = os.path.basename(path) + '/'
+					else:
+						name = "'" + name + "'"
 				else:
 					name = _("This recording")
 			else:
 				name = _("%d items") % len(self.moveList)
-			path = os.path.normpath(current.getPath())
-			if name == path + '/':
-				name = os.path.basename(path) + '/'
 			self.selectMovieLocation(title=_("Choose move destination: %s") % name, callback=self.gotMoveMovieDest, base=os.path.dirname(path))
 
 	def gotMoveMovieDest(self, choice):
@@ -2367,17 +2368,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if item:
 			current = item[0]
 			info = item[1]
+			path = os.path.normpath(current.getPath())
 			if len(self.copyList) == 1:
 				name = info and info.getName(current)
 				if name:
-					name = "'" + name + "'"
+					if name == path + '/':
+						name = os.path.basename(path) + '/'
+					else:
+						name = "'" + name + "'"
 				else:
 					name = _("This recording")
 			else:
 				name = _("%d items") % len(self.copyList)
-			path = os.path.normpath(current.getPath())
-			if name == path + '/':
-				name = os.path.basename(path) + '/'
 			self.selectMovieLocation(title=_("Choose copy destination: %s") % name, callback=self.gotCopyMovieDest, base=os.path.dirname(path))
 
 	def gotCopyMovieDest(self, choice):
