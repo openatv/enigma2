@@ -804,7 +804,7 @@ void eDVBScan::channelDone()
 				eOriginalNetworkID onid = (*tsinfo)->getOriginalNetworkId();
 				eTransportStreamID tsid = (*tsinfo)->getTransportStreamId();
 				eDVBNamespace ns(0);
-				bool T2 = false;
+				//bool T2 = false;
 				eDVBFrontendParametersTerrestrial t2transponder;
 
 				for (DescriptorConstIterator desc = (*tsinfo)->getDescriptors()->begin();
@@ -919,7 +919,7 @@ void eDVBScan::channelDone()
 						switch (d.getExtensionTag())
 						{
 						case T2_DELIVERY_SYSTEM_DESCRIPTOR:
-							T2 = true;
+							//T2 = true;
 							T2DeliverySystemDescriptor &d = (T2DeliverySystemDescriptor&)**desc;
 							t2transponder.set(d);
 

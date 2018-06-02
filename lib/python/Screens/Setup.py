@@ -206,8 +206,12 @@ class Setup(ConfigListScreen, Screen):
 					if negate:
 						requires = requires[1:]
 					if requires.startswith('config.'):
-						item = eval(requires)
-						SystemInfo[requires] = True if item.value and not item.value == "0" else False
+						try:
+							item = eval(requires)
+							SystemInfo[requires] = True if item.value and not item.value == "0" else False
+						except AttributeError:
+							print '[Setup] unknown "requires" config element:', requires
+
 					if requires:
 						if not SystemInfo.get(requires, False):
 							if not negate:

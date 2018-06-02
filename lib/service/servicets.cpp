@@ -111,6 +111,7 @@ eServiceTS::~eServiceTS()
 
 DEFINE_REF(eServiceTS);
 
+/*
 static size_t crop(char *buf)
 {
 	size_t len = strlen(buf) - 1;
@@ -119,6 +120,7 @@ static size_t crop(char *buf)
 	}
 	return len;
 }
+*/
 
 static int getline(char** pbuffer, size_t* pbufsize, int fd)
 {

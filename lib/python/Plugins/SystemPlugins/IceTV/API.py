@@ -14,9 +14,9 @@ from fcntl import ioctl
 from struct import pack
 from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, error as sockerror
 from . import config, saveConfigFile, getIceTVDeviceType
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getImageBuild
 
-_version_string = "20171208"
+_version_string = "20180601"
 _protocol = "http://"
 _server = "api.icetv.com.au"
 _device_type_id = getIceTVDeviceType()
@@ -74,7 +74,7 @@ class Request(object):
         self.headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "User-Agent": "SystemPlugins.IceTV/%s (%s; %s)" % (_version_string, getMachineBrand(), getMachineName()),
+            "User-Agent": "SystemPlugins.IceTV/%s (%s; %s; %s)" % (_version_string, getMachineBrand(), getMachineName(), getImageBuild()),
         }
         self.url = _protocol + _server + resource
         self.data = {}

@@ -75,11 +75,11 @@ eDBoxLCD::eDBoxLCD()
 	flipped = false;
 	inverted = 0;
 	lcd_type = 0;
+#ifndef NO_LCD
 	FILE *boxtype_file;
 	char boxtype_name[20];
 	FILE *fp_file;
 	char fp_version[20];
-#ifndef NO_LCD
 	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
@@ -271,6 +271,7 @@ int eDBoxLCD::setLED(int value, int option)
 				eDebug("[LED] can't set led blinking time");
 			break;
 	}
+	return(0);
 }
 
 eDBoxLCD::~eDBoxLCD()
