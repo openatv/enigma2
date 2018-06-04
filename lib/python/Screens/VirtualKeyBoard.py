@@ -127,7 +127,7 @@ class VirtualKeyBoard(Screen):
 				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"ü", u"+"],
 				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"ö", u"ä", u"#"],
 				[u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"@", u"ß", u"OK", u"LEFT", u"RIGHT"]]
+				[u"SHIFT", u"SPACE", u"@", u"ß", u"[", u"]", u"OK", u"LEFT", u"RIGHT"]]
 			self.shiftkeys_list = [
 				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
 				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"Ü", u"*"],

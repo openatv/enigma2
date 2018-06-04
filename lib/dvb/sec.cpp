@@ -1221,7 +1221,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 0) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );  // 250msec delay
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_LOCKED_GOTO, cmd ) );
-					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +5 ) );
+					sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +6 ) );
 					sec_sequence.push_back( eSecCommand(eSecCommand::IF_LOCK_TIMEOUT_GOTO, -4) ); /* retune when lock timeout occurred */
 					sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
 					sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );

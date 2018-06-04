@@ -2345,6 +2345,8 @@ class NetworkOpenvpn(Screen):
 		title = _("OpenVpn Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
+		self['labconfig'].show()
+
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
@@ -3952,3 +3954,4 @@ class NetworkServicesSummary(Screen):
 		self["title"].text = title
 		self["status_summary"].text = status_summary
 		self["autostartstatus_summary"].text = autostartstatus_summary
+		

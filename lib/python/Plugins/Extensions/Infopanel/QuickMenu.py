@@ -339,9 +339,9 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsoftware(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update",_("Online software update"),_("Check/Install online updates (you must have a working internet connection)")))
-		if not getBoxType().startswith('az') and not getBoxType() in ('dm500hd','dm500hdv2','dm520','dm800','dm800se','dm800sev2','dm820','dm7020hd','dm7020hdv2','dm7080','dm8000') and not getBrandOEM().startswith('cube'):
+		if not getBoxType().startswith('az') and not getBoxType() in ('dm500hd','dm500hdv2','dm520','dm800','dm800se','dm800sev2','dm820','dm7020hd','dm7020hdv2','dm7080','dm8000') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not getBoxType().startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online",_("Flash Online a new image"),_("Flash on the fly your your Receiver software.")))
-		if not getBoxType().startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek'):
+		if not getBoxType().startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not getBoxType().startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup",_("Backup your current image"),_("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings",_("Backup your current settings"),_("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings",_("Restore settings from a backup"),_("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))
@@ -613,20 +613,10 @@ class QuickMenu(Screen, ProtectedScreen):
 					self.session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 
 	def SatfinderMain(self):
-		nims = nimmanager.getNimListOfType("DVB-S")
-
-		nimList = []
-		for x in nims:
-			if not nimmanager.getNimConfig(x).dvbs.configMode.value in ("loopthrough", "satposdepends", "nothing"):
-				nimList.append(x)
-
-		if len(nimList) == 0:
-			self.session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
+		if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
+			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 		else:
-			if len(NavigationInstance.instance.getRecordings(False,pNavigation.isAnyRecording)) > 0:
-				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
-			else:
-				self.session.open(Satfinder)
+			self.session.open(Satfinder)
 		
 ######## SOFTWARE MANAGER TOOLS #######################
 	def backupDone(self,retval = None):
