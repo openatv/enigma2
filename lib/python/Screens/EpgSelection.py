@@ -1106,11 +1106,12 @@ class EPGSelection(Screen, HelpableScreen):
 				foundtimer = timer
 				break
 		else:
-			eventBegin = event.getBeginTime()
-			eventDuration = event.getDuration()
-			x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr, True)
-			if x and x[1] in (2,7,12):
-				foundtimer = x[3]
+			if self.session.nav.isRecordTimerImageStandard:
+				eventBegin = event.getBeginTime()
+				eventDuration = event.getDuration()
+				x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr, True)
+				if x and x[1] in (2,7,12):
+					foundtimer = x[3]
 
 		if foundtimer:
 			timer = foundtimer
@@ -1379,11 +1380,12 @@ class EPGSelection(Screen, HelpableScreen):
 				isRecordEvent = True
 				break
 		else:
-			eventBegin = event.getBeginTime()
-			eventDuration = event.getDuration()
-			x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
-			if x and x[1] in (2,7,12):
-				isRecordEvent = True
+			if self.session.nav.isRecordTimerImageStandard:
+				eventBegin = event.getBeginTime()
+				eventDuration = event.getDuration()
+				x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
+				if x and x[1] in (2,7,12):
+					isRecordEvent = True
 
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
 			self.setTimerButtonText(_("Change timer"))
