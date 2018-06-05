@@ -1212,7 +1212,7 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 			int offset=area.width()-linelength;
 			if (dir==dirCenter)
 				offset/=2;
-			while (begin != nonspace_end)
+			while (begin != end)
 			{
 				begin->bbox.moveBy(offset,0);
 				begin->x += offset;
@@ -1252,6 +1252,12 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 				begin->bbox.moveBy(curoff>>8,0);
 				if (doadd)
 					curoff+=off;
+				++begin;
+			}
+			curoff = (curoff+255) >> 8;
+			while (begin != end) {
+				begin->x+=curoff;
+				begin->bbox.moveBy(curoff,0);
 				++begin;
 			}
 			break;
