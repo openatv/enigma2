@@ -68,14 +68,18 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 		self.createConfig()
 
-		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "GlobalActions", "PiPSetupActions", "ColorActions"], {
+		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "TimerEntryActions", "ColorActions"], {
 			"ok": (self.keySelect, _("Save the timer and exit")),
 			"save": (self.keyGo, "Save the timer and exit"),
 			"cancel": (self.keyCancel, "Cancel creation of the timer and exit"),
-			"volumeUp": (self.incrementStart, _("Increment start time")),
-			"volumeDown": (self.decrementStart, _("Decrement start time")),
-			"size+": (self.incrementEnd, _("Increment end time")),
-			"size-": (self.decrementEnd, _("Decrement end time"))
+			"incStart": (self.incrementStart, _("Increment start time")),
+			"decStart": (self.decrementStart, _("Decrement start time")),
+			"incEnd": (self.incrementEnd, _("Increment end time")),
+			"decEnd": (self.decrementEnd, _("Decrement end time")),
+			"nextStepStart": (self.nextStepStart, _("Increment start time")),
+			"prevStepStart": (self.prevStepStart, _("Decrement start time")),
+			"nextStepEnd": (self.nextStepEnd, _("Increment end time")),
+			"prevStepEnd": (self.prevStepEnd, _("Decrement end time"))
 		}, -2)
 
 		self.onChangedEntry = []
@@ -610,6 +614,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self["config"].invalidate(self.timerJustplayEntry)
 
 	def incrementStart(self):
+		self.keyRepeat = 0
 		self.timerentry_starttime.increment()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
@@ -617,6 +622,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			self["config"].invalidate(self.entryDate)
 
 	def decrementStart(self):
+		self.keyRepeat = 0
 		self.timerentry_starttime.decrement()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [23, 59]:
@@ -624,13 +630,64 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			self["config"].invalidate(self.entryDate)
 
 	def incrementEnd(self):
+		self.keyRepeat = 0
 		if self.entryEndTime is not None:
 			self.timerentry_endtime.increment()
 			self["config"].invalidate(self.entryEndTime)
 
 	def decrementEnd(self):
+		self.keyRepeat = 0
 		if self.entryEndTime is not None:
 			self.timerentry_endtime.decrement()
+			self["config"].invalidate(self.entryEndTime)
+
+	def nextStepStart(self):
+		self.keyRepeat += 1
+		if self.keyRepeat >= 5:
+			if self.keyRepeat & 1:	# step every second repeat
+				return
+			self.timerentry_starttime.nextStep()
+		else:
+			self.timerentry_starttime.increment()
+		self["config"].invalidate(self.entryStartTime)
+		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
+			self.timerentry_date.value += 24 * 60 * 60
+			self["config"].invalidate(self.entryDate)
+
+	def prevStepStart(self):
+		self.keyRepeat += 1
+		if self.keyRepeat >= 5:
+			if self.keyRepeat & 1:	# step every second repeat
+				return
+		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
+			self.timerentry_date.value -= 24 * 60 * 60
+			self["config"].invalidate(self.entryDate)
+		if self.keyRepeat >= 5:
+			self.timerentry_starttime.prevStep()
+		else:
+			self.timerentry_starttime.decrement()
+		self["config"].invalidate(self.entryStartTime)
+
+	def nextStepEnd(self):
+		if self.entryEndTime is not None:
+			self.keyRepeat += 1
+			if self.keyRepeat >= 5:
+				if self.keyRepeat & 1:	# step every second repeat
+					return
+				self.timerentry_endtime.nextStep()
+			else:
+				self.timerentry_endtime.increment()
+			self["config"].invalidate(self.entryEndTime)
+
+	def prevStepEnd(self):
+		if self.entryEndTime is not None:
+			self.keyRepeat += 1
+			if self.keyRepeat >= 5:
+				if self.keyRepeat & 1:	# step every second repeat
+					return
+				self.timerentry_endtime.prevStep()
+			else:
+				self.timerentry_endtime.decrement()
 			self["config"].invalidate(self.entryEndTime)
 
 	def subserviceSelected(self, service):
