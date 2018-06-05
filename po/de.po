@@ -254,6 +254,10 @@ msgstr "%02e.%02m, %H:%M"
 msgid "%Y-%m-%d %H-%M"
 msgstr "%d.%m.%Y %H:%M"
 
+# about.py date format
+msgid "%Y-%m-%d"
+msgstr "%d.%m.%Y"
+
 #, python-format
 msgid "%d Gb"
 msgstr "%d GB"
@@ -3893,6 +3897,14 @@ msgstr "FTP-Dienst aktiviert"
 
 msgid "Ftpd service type: Vsftpd server"
 msgstr "Typ des FTPD-Dienstes: VSFTPD-Server"
+
+#
+msgid ""
+"GUI needs a restart to apply a new language\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"Zur Übernahme der Sprache muss die GUI\n"
+"neu gestartet werden. Jetzt neu starten?"
 
 #
 msgid ""
@@ -10732,6 +10744,14 @@ msgid "This allows you to set the number of digits to 5, if you have more than 9
 msgstr "Hier können Sie die Anzahl der Stellen auf 5 setzen, wenn Sie mehr als 9999 Kanäle haben."
 
 #: data/setup.xml
+msgid "Set action for 'Info' key"
+msgstr "Aktion der 'Info' Taste einstellen"
+
+#: data/setup.xml
+msgid "Here you can set what is called when pressing the 'Info' key."
+msgstr "Hier können Sie einstellen was beim Betätigen der 'Info' Taste aufgerufen wird."
+
+#: data/setup.xml
 msgid "Default 'Timer type' *"
 msgstr "Standard 'Timer-Art' *"
 
@@ -10742,6 +10762,14 @@ msgstr "Standard 'Nach der Aufnahme' *"
 #: data/setup.xml
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Legt die Standardeinstellung für neu angelegte Timer fest. Benötigt nach der Änderung einen Neustart."
+
+#: data/setup.xml
+msgid "Turn on the TV from standby with 'zap and record' timer"
+msgstr "TV einschalten durch einen 'Umschalten und Aufnehmen' Timer"
+
+#: data/setup.xml
+msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
+msgstr "Wenn Sie HDMI-CEC aktiviert haben, können Sie hier angeben ob ein 'Umschalten und Aufnehmen' Timer auch den Fernseher mit einschaltet."
 
 #: data/setup.xml
 msgid "Long press emulation with button"
@@ -13878,7 +13906,7 @@ msgstr "Manueller Suchlauf"
 
 #: /QuickMenu.py
 msgid "Sat Finder"
-msgstr "Sat-Finder"
+msgstr "Signal-Finder"
 
 #: /QuickMenu.py
 msgid "Search Sats"
@@ -15415,8 +15443,8 @@ msgstr "Die Standardeinstellungen sind 5 Minuten früher aus dem Deep-Standby au
 msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
 msgstr "Die Standardeinstellungen sind Aufwachzeit - 5 Minuten und Timerbeginn + 5 Minuten. Diese Einstellung verändert das Zeitfenster vor der Aufwachzeit. So kann das aufwachen durch einen Timer auch bei sehr früh startenden Receivern erkannt werden."
 
-msgid "If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)"
-msgstr "Wenn aktiviert, wird überprüft ob die Zeit nach dem Start des Receivers innerhalb des Zeitfensters ist und schaltet gegebenenfalls in den Standby-Modus. Wenn deaktiviert, muss zusätzlich noch ein Signal für die erfolgreiche Erkennung zur Verfügung stehen. (manche Receiver senden ein falsches oder kein Signal)"
+msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
+msgstr "Wenn aktiviert, wird ein Zeitfenster verwendet um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen. Standardeinstellung ist deaktiviert und verwendet ein spezielles Signal vom Receiver. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
 
 #
 msgid "Reload Services"
@@ -17931,6 +17959,15 @@ msgstr "Begrüßungsbildschirm aktivieren"
 msgid "Disable intro screen"
 msgstr "Begrüßungsbildschirm abschalten"
 
+#: CutListEditor/plugin.py
+msgid "Remove all cuts and marks"
+msgstr "Alle Markierungen und Schnitte entfernen"
+
+#: CutListEditor/plugin.py
+msgid "Are you sure to delete all cuts and marks?"
+msgstr "Wollen Sie alle Markierungen und Schnitte entfernen?"
+
+#
 msgid "Add bouquet services"
 msgstr "Fav-Sender +"
 
@@ -18090,11 +18127,20 @@ msgstr "zuverlässig"
 msgid "traditional (fast)"
 msgstr "klassisch (schnell)"
 
+msgid "reliable, retune"
+msgstr "zuverlässig, retune"
+
+msgid "traditional (fast), retune"
+msgstr "klassisch (schnell), retune"
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Treibern im Downloadbereich"
 
 msgid "This allows you to show extensions modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Extensions im Downloadbereich"
+
+msgid "This allows you to show languages in downloads"
+msgstr "Dies erlaubt Ihnen die Anzeige von Sprachen im Downloadbereich"
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Systemplugins im Downloadbereich"
@@ -18102,7 +18148,7 @@ msgstr "Dies erlaubt Ihnen die Anzeige von Systemplugins im Downloadbereich"
 msgid "This allows you to show softcams modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Softcams im Downloadbereich"
 
-msgid "This allows you to show skins modules in downloads"
+msgid "This allows you to show skin modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Skins im Downloadbereich"
 
 msgid "This allows you to show lcd skins in downloads"
@@ -18132,8 +18178,8 @@ msgstr "Dies erlaubt Ihnen die Anzeige von Security Erweiterungen im Downloadber
 msgid "This allows you to show kernel modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Kernel Erweiterungen im Downloadbereich"
 
-msgid "Please enter the your personal feed URL"
-msgstr "Hier kann man die persönliche FEED URL eintragen"
+msgid "Please enter your personal feed URL"
+msgstr "Hier können Sie die persönliche FEED URL eintragen"
 
 #: MultiBootStartup.py:29
 msgid "MultiBoot Selector"

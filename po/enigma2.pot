@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2018-04-14 21:15+0300\n"
+"POT-Creation-Date: 2018-06-05 05:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -348,41 +348,10 @@ msgstr ""
 msgid "* Only available if more than one interface is active."
 msgstr ""
 
-msgid ""
-"*** boxmode=1 (Standard) ***\n"
-"\n"
-"+++ Features +++\n"
-"3840x2160p60 10-bit HEVC, 3840x2160p60 8-bit VP9, 1920x1080p60 8-bit AVC,\n"
-"MAIN only (no PIP), Limited display usages, UHD only (no SD),\n"
-"No multi-PIP, No transcoding\n"
-"\n"
-"--- Restrictions ---\n"
-"Decoder 0: 3840x2160p60 10-bit HEVC, 3840x2160p60 8-bit VP9, 1920x1080p60 8-bit AVC\n"
-"OSD Grafic 0: 1080p60 32 bit ARGB\n"
-"Display 0 Encode Restrictions: 3840x2160p60 12-bit 4:2:0 (HDMI),\n"
-"3840x2160p60 12-bit 4:2:2 (HDMI), 3840x2160p60 8-bit 4:4:4 (HDMI),\n"
-"1920x1080p60 (component), Only one display format at a time\n"
-"\n"
-"If you want 1080p60 component, HDMI also needs to be 1080p60."
+msgid "*** boxmode=1 (Standard) ***\n\n+++ Features +++\n3840x2160p60 10-bit HEVC, 3840x2160p60 8-bit VP9, 1920x1080p60 8-bit AVC,\nMAIN only (no PIP), Limited display usages, UHD only (no SD),\nNo multi-PIP, No transcoding\n\n--- Restrictions ---\nDecoder 0: 3840x2160p60 10-bit HEVC, 3840x2160p60 8-bit VP9, 1920x1080p60 8-bit AVC\nOSD Grafic 0: 1080p60 32 bit ARGB\nDisplay 0 Encode Restrictions: 3840x2160p60 12-bit 4:2:0 (HDMI),\n3840x2160p60 12-bit 4:2:2 (HDMI), 3840x2160p60 8-bit 4:4:4 (HDMI),\n1920x1080p60 (component), Only one display format at a time\n\nIf you want 1080p60 component, HDMI also needs to be 1080p60."
 msgstr ""
 
-msgid ""
-"*** boxmode=12 (Experimental) ***\n"
-"\n"
-"+++ Features +++\n"
-"3840x2160p50 10-bit decode for MAIN, 1080p25/50i PIP support, HDMI input (if available),\n"
-" UHD display only, No SD display, No transcoding\n"
-"\n"
-"--- Restrictions ---\n"
-"Decoder 0: 3840x2160p50 10-bit HEVC, 3840x2160p50 8-bit VP9,\n"
-"1920x1080p50 8-bit AVC/MPEG\n"
-"Decoder 1: 1920x1080p25/50i 10-bit HEVC, 1920x1080p25/50i 8-bit VP9/AVC/MPEG2,\n"
-"HDMI In (if available), 3840x2160p50\n"
-"OSD Graphic 0 (UHD): 1080p50 32-bit ARGB\n"
-"Window 0 (MAIN/UHD): Limited display capabilities, 1080i50 10-bit de-interlacing\n"
-"Multi-PIP mode (3x): Enigma2 supported no multi-PIP\n"
-"Window 1 (PIP/UHD) (Enigma2 PIP Mode): Up to 1/2 x 1/2 screen display, 576i50 de-interlacing\n"
-"Display 0 (UHD) Encode Restrictions: 3840x2160p50"
+msgid "*** boxmode=12 (Experimental) ***\n\n+++ Features +++\n3840x2160p50 10-bit decode for MAIN, 1080p25/50i PIP support, HDMI input (if available),\n UHD display only, No SD display, No transcoding\n\n--- Restrictions ---\nDecoder 0: 3840x2160p50 10-bit HEVC, 3840x2160p50 8-bit VP9,\n1920x1080p50 8-bit AVC/MPEG\nDecoder 1: 1920x1080p25/50i 10-bit HEVC, 1920x1080p25/50i 8-bit VP9/AVC/MPEG2,\nHDMI In (if available), 3840x2160p50\nOSD Graphic 0 (UHD): 1080p50 32-bit ARGB\nWindow 0 (MAIN/UHD): Limited display capabilities, 1080i50 10-bit de-interlacing\nMulti-PIP mode (3x): Enigma2 supported no multi-PIP\nWindow 1 (PIP/UHD) (Enigma2 PIP Mode): Up to 1/2 x 1/2 screen display, 576i50 de-interlacing\nDisplay 0 (UHD) Encode Restrictions: 3840x2160p50"
 msgstr ""
 
 msgid "---Weather---"
@@ -1496,6 +1465,9 @@ msgid "Are you ready to run the script ?"
 msgstr ""
 
 msgid "Are you sure to cancel all changes"
+msgstr ""
+
+msgid "Are you sure to delete all cuts and marks?"
 msgstr ""
 
 msgid "Are you sure to purge all deleted userbouquets?"
@@ -2891,6 +2863,9 @@ msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr ""
 
 msgid "Composition of the recording filenames"
+msgstr ""
+
+msgid "Config file name: default (ok to change)"
 msgstr ""
 
 msgid "config menu"
@@ -5840,6 +5815,9 @@ msgstr ""
 msgid "Here you can select which files should be updated with a online update"
 msgstr ""
 
+msgid "Here you can set what is called when pressing the 'Info' key."
+msgstr ""
+
 msgid "Here you can specify additional files that should be added to the backup file."
 msgstr ""
 
@@ -5990,7 +5968,7 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
-msgid "If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)"
+msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
@@ -6059,14 +6037,13 @@ msgstr ""
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr ""
 
+msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
+msgstr ""
+
 msgid "If you see this, something is wrong with\nyour scart connection. Press OK to return."
 msgstr ""
 
-msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next step.\n"
-"If you are happy with the result, press OK."
+msgid "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\nThen turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\nDo not care about the bright shades now. They will be set up in the next step.\nIf you are happy with the result, press OK."
 msgstr ""
 
 msgid "Ignore DVB-C namespace sub network"
@@ -6307,6 +6284,9 @@ msgid "Input"
 msgstr ""
 
 msgid "Input channel name."
+msgstr ""
+
+msgid "Input config file name:"
 msgstr ""
 
 msgid "Input devices"
@@ -6612,7 +6592,13 @@ msgstr ""
 msgid "Kleiner Test"
 msgstr ""
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi installed:"
+msgstr ""
+
+msgid "Kodi Launcher"
 msgstr ""
 
 msgid "Kodi MediaCenter"
@@ -9815,6 +9801,9 @@ msgstr ""
 msgid "remove all alternatives"
 msgstr ""
 
+msgid "Remove all cuts and marks"
+msgstr ""
+
 msgid "remove all new found flags"
 msgstr ""
 
@@ -10894,9 +10883,7 @@ msgstr ""
 msgid "Service Information"
 msgstr ""
 
-msgid ""
-"Service invalid!\n"
-"(Timeout reading PMT)"
+msgid "Service invalid!\n(Timeout reading PMT)"
 msgstr ""
 
 msgid "Service Name"
@@ -10908,12 +10895,16 @@ msgstr ""
 msgid "Service name font size"
 msgstr ""
 
-msgid ""
-"Service not found!\n"
-"(SID not found in PAT)"
+msgid "Service not found!\n(SID not found in PAT)"
 msgstr ""
 
 msgid "Service number font size"
+msgstr ""
+
+msgid "Service Number and Service Name"
+msgstr ""
+
+msgid "Service Number, Picon and Service Name"
 msgstr ""
 
 msgid "Service picons downsize"
@@ -10940,9 +10931,7 @@ msgstr ""
 msgid "Service Title mode"
 msgstr ""
 
-msgid ""
-"Service unavailable!\n"
-"Check tuner configuration!"
+msgid "Service unavailable!\nCheck tuner configuration!"
 msgstr ""
 
 msgid "Service width"
@@ -10961,6 +10950,9 @@ msgid "Services"
 msgstr ""
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
+msgstr ""
+
+msgid "Set action for 'Info' key"
 msgstr ""
 
 msgid "set as startup service"
@@ -14011,6 +14003,9 @@ msgstr ""
 msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
+msgid "Turn on the TV from standby with 'zap and record' timer"
+msgstr ""
+
 msgid "Turning step size"
 msgstr ""
 
@@ -15647,7 +15642,7 @@ msgstr ""
 msgid "\n Kodi not present. Proceed with install?"
 msgstr ""
 
-msgid "\n%d.%d.%d, %2d:%02d  -  %s"
+msgid "\n%Y/%m/%d  %H:%M - "
 msgstr ""
 
 msgid "\n<This tuner is configured automatically>"

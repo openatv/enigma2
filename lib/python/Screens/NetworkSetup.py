@@ -17,6 +17,8 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.SystemInfo import SystemInfo
 from Components.Label import Label, MultiColorLabel
+from Components.Input import Input
+from Screens.InputBox import InputBox
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.MenuList import MenuList
@@ -30,7 +32,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from subprocess import call
 import commands
-
+import os
 
 if float(getVersionString()) >= 4.0:
 	basegroup = "packagegroup-base"
@@ -2213,6 +2215,9 @@ class NetworkOpenvpn(Screen):
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
+		self['labconfig'] = Label(_("Config file name (ok to change):"))
+		self['labconfigfilename']=Label(_("default"))
+		self.config_file=""
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
@@ -2220,7 +2225,7 @@ class NetworkOpenvpn(Screen):
 		self.Console = Console()
 		self.my_vpn_active = False
 		self.my_vpn_run = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.VpnStartStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.inputconfig, 'back': self.close, 'red': self.UninstallCheck, 'green': self.VpnStartStop, 'yellow': self.activateVpn, 'blue': self.Vpnshowlog})
 		self.service_name = 'openvpn'
 		self.onLayoutFinish.append(self.InstallCheck)
 
@@ -2298,7 +2303,7 @@ class NetworkOpenvpn(Screen):
 
 	def VpnStartStop(self):
 		if not self.my_vpn_run:
-			self.Console.ePopen('/etc/init.d/openvpn start', self.StartStopCallback)
+			self.Console.ePopen('/etc/init.d/openvpn start ' + self.config_file, self.StartStopCallback)
 		elif self.my_vpn_run:
 			self.Console.ePopen('/etc/init.d/openvpn stop', self.StartStopCallback)
 
@@ -2340,9 +2345,22 @@ class NetworkOpenvpn(Screen):
 		title = _("OpenVpn Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
+		self['labconfig'].show()
+
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
+	def inputconfig(self):
+		self.session.openWithCallback(self.askForWord, InputBox, title=_("Input config file name:"), text=" " * 20, maxSize=20, type=Input.TEXT)
+
+	def askForWord(self, word):
+		if word is None:
+			pass
+		else:
+			self.config_file=_(word)
+			self['labconfigfilename'].setText(self.config_file)
+
+			
 class NetworkVpnLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2517,6 +2535,7 @@ class NetworkSamba(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
+			
 class NetworkSambaLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3934,3 +3953,4 @@ class NetworkServicesSummary(Screen):
 		self["title"].text = title
 		self["status_summary"].text = status_summary
 		self["autostartstatus_summary"].text = autostartstatus_summary
+		

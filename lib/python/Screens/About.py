@@ -20,6 +20,8 @@ from Tools.StbHardware import getFPVersion
 from os import path
 from re import search
 
+import time
+
 def parse_ipv4(ip):
 	ret = ""
 	idx = 0
@@ -51,6 +53,15 @@ def parseLines(filename):
 	except IOError:
 		print "[ERROR] failed to open file %s" % filename
 	return ret
+
+def MyDateConverter(StringDate):
+	## StringDate must be a string "YYYY-MM-DD"
+	try:
+		StringDate = StringDate.replace("-"," ")
+		StringDate = time.strftime(_("%Y-%m-%d"), time.strptime(StringDate, "%Y %m %d"))
+		return StringDate
+	except:
+		return _("unknown")
 
 def getAboutText():
 	AboutText = ""
@@ -136,7 +147,7 @@ def getAboutText():
 	month = string[4:6]
 	day = string[6:8]
 	driversdate = '-'.join((year, month, day))
-	AboutText += _("Drivers:\t\t%s") % driversdate + "\n"
+	AboutText += _("Drivers:\t\t%s") % MyDateConverter(driversdate) + "\n"
 
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
@@ -144,7 +155,7 @@ def getAboutText():
 	if getMachineBuild() not in ('h9','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51'):
 		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
 
-	AboutText += _("Last update:\t\t%s") % getEnigmaVersionString() + "\n"
+	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:
@@ -173,6 +184,10 @@ def getAboutText():
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
 		f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+		tempinfo = f.read()
+		f.close()
+	elif path.exists('/proc/stb/power/avs'):
+		f = open('/proc/stb/power/avs', 'r')
 		tempinfo = f.read()
 		f.close()
 	elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):

@@ -30,7 +30,7 @@ void eServerSocket::notifier(int)
 	newConnection(clientfd);
 }
 
-eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6)
+eServerSocket::eServerSocket(int port, eMainloop *ml): m_port(port), eSocket(ml, AF_INET6)
 {
 	struct sockaddr_in6 serv_addr;
 	strRemoteHost = "";
@@ -67,12 +67,14 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 {
 	struct sockaddr_un serv_addr;
 	strRemoteHost = "";
+	m_port = 0;
 
 	memset(&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sun_family = AF_LOCAL;
 	strcpy(serv_addr.sun_path, path.c_str());
 
 	okflag=1;
+	m_port = 0;
 
 	unlink(path.c_str());
 #if HAVE_LINUXSOCKADDR

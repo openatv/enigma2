@@ -8,6 +8,7 @@ class MinuteInput(Screen):
 		Screen.__init__(self, session)
 
 		self["minutes"] = Input(str(basemins), type=Input.NUMBER)
+		self.MaxMinutes = 9999
 
 		self["actions"] = NumberActionMap([ "InputActions" , "MinuteInputActions", "TextEntryActions", "KeyboardInputActions" ],
 		{
@@ -33,6 +34,11 @@ class MinuteInput(Screen):
 			"cancel": self.cancel
 		})
 
+	def checkFieldIsEmpty(self):
+		if self["minutes"].getText() == "":
+			self["minutes"].setText("0")
+			self["minutes"].markAll()
+
 	def keyNumberGlobal(self, number):
 		self["minutes"].number(number)
 		pass
@@ -51,9 +57,11 @@ class MinuteInput(Screen):
 
 	def deleteForward(self):
 		self["minutes"].delete()
+		self.checkFieldIsEmpty()
 
 	def deleteBackward(self):
 		self["minutes"].deleteBackward()
+		self.checkFieldIsEmpty()
 
 	def up(self):
 		self["minutes"].up()
@@ -62,11 +70,12 @@ class MinuteInput(Screen):
 		self["minutes"].down()
 
 	def ok(self):
-		try:
-			self.close(int(self["minutes"].getText()))
-		except:
-			self.session.open(MessageBox, _("Incorrect format for skip value: '%s'\nSkip cancelled.") % self["minutes"].getText(), MessageBox.TYPE_WARNING, timeout=5)
+		IntMinutes = int(self["minutes"].getText())
+		if  IntMinutes > self.MaxMinutes:
+			self.session.open(MessageBox, _("Maximum minutes to jump %d !") %self.MaxMinutes, MessageBox.TYPE_WARNING, timeout=5)
 			self.cancel()
+		else:
+			self.close(IntMinutes)
 
 	def cancel(self):
 		self.close(0)
