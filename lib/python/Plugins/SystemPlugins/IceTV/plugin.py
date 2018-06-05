@@ -15,6 +15,7 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.config import getConfigListEntry
+from Components.Converter.genre import getGenreStringSub
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -36,6 +37,69 @@ from twisted.internet import reactor, threads
 
 _session = None
 password_requested = False
+
+genre_remaps = {
+    "AFL": 0xf7,
+    "Action": 0x1f,
+    "American Football": 0xf6,
+    "Baseball": 0xf5,
+    "Basketball": 0xf4,
+    "Boxing": 0x4a,
+    "Business & Finance": 0x84,
+    "Cartoon": 0x51,
+    "Comedy": 0xc0,
+    "Cricket": 0x4f,
+    "Current Affairs": 0x81,
+    "Cycling": 0x0d,
+    "Dance": 0x62,
+    "Documentary": 0xe0,
+    "Drama": 0xd0,
+    "Family": 0x0c,
+    "Fantasy": 0xf2,
+    "Film-Noir": 0x0b,
+    "Finance": 0x0a,
+    "Fishing": 0xa3,
+    "Food/Wine": 0xa4,
+    "Golf": 0x42,
+    "Hockey": 0x4e,
+    "Horror": 0xf1,
+    "Horse Racing": 0x09,
+    "Lifestyle": 0xa2,
+    "MMA": 0x08,
+    "Mini Series": 0x07,
+    "Murder": 0x1c,
+    "Musical": 0x61,
+    "Mystery": 0x1b,
+    "Netball": 0x4d,
+    "Parliament": 0x82,
+    "Renovation": 0x06,
+    "Rowing": 0xf8,
+    "Rugby": 0x4c,
+    "Rugby League": 0x4b,
+    "Sailing": 0x05,
+    "Science": 0x94,
+    "Short Film": 0x04,
+    "Sitcom": 0xf3,
+    "Special": 0xb0,
+    "Thriller": 0x1a,
+    "War": 0x1e,
+    "Western": 0x1d,
+    "Wrestling": 0x03,
+    "Youth": 0x02,
+}
+
+parental_ratings = {
+    "": 0x00,
+    "P": 0x02,
+    "C": 0x04,
+    "G": 0x06,
+    "PG": 0x08,
+    "M": 0x0a,
+    "MA": 0x0c,
+    "AV": 0x0e,
+    "R": 0x0F,
+    "TBA": 0x00,
+}
 
 def _logResponseException(logger, heading, exception):
     msg = heading
@@ -362,7 +426,18 @@ class EPGFetcher(object):
             title = show.get("title", "").encode("utf8")
             short = show.get("subtitle", "").encode("utf8")
             extended = show.get("desc", "").encode("utf8")
-            res[channel_id].append((start, duration, title, short, extended, 0, event_id))
+            genres = []
+            for g in show.get("category", []):
+                name = g['name']
+                eit = int(g["eit"], 0) or 0x01
+                eit_remap = genre_remaps.get(name, eit)
+                mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country="AUS")
+                if mapped_name == name:
+                        genres.append(eit_remap)
+                else:
+                    print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
+            p_rating = (("AUS", parental_ratings.get(show.get("rating", "").encode("utf8"), 0x00)),)
+            res[channel_id].append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
 
     def updateDescriptions(self, showMap):
