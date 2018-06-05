@@ -23,7 +23,7 @@ from Components.UsageConfig import defaultMoviePath
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.MovieSelection import getPreferredTagEditor
-from Screens.LocationBox import MovieLocationBox
+from Screens.LocationBox import MovieLocationBox, friendlyMoviePath
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -194,6 +194,7 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		tmp = config.movielist.videodirs.value
 		if default not in tmp:
 			tmp.append(default)
+		tmp = [(p, friendlyMoviePath(p, trailing=False)) for p in tmp]
 		self.timerentry_dirname = ConfigSelection(default=default, choices=tmp)
 
 		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=24 * 60 * 60)
@@ -646,8 +647,9 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 	def pathSelected(self, res):
 		if res is not None:
-			if config.movielist.videodirs.value != self.timerentry_dirname.choices:
-				self.timerentry_dirname.setChoices(config.movielist.videodirs.value, default=res)
+			tmp = [(p, friendlyMoviePath(p, trailing=False)) for p in config.movielist.videodirs.value]
+			if tmp != self.timerentry_dirname.choices:
+				self.timerentry_dirname.setChoices(tmp, default=res)
 			self.timerentry_dirname.value = res
 
 	def tagEditFinished(self, ret):
