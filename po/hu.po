@@ -4,10 +4,10 @@
 # Automatically generated, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: enigma2 v2.5\n"
+"Project-Id-Version: enigma2 v2.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-14 21:15+0300\n"
-"PO-Revision-Date: 2018-05-12 16:25+0200\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2018-06-09 22:10+0200\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: alec <alex1vagyok@gmail.com>\n"
 "Language: hu_HU\n"
@@ -138,6 +138,15 @@ msgstr "%02d.%02d - %02d.%02d"
 
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr "%02d:%02d - %02d:%02d  (%s%d perc)"
+
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr "%02d:%02d - %02d:%02d  (még %s%s)"
+
+msgid "time_hour"
+msgstr " óra "
+
+msgid "time_min"
+msgstr " perc"
 
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
@@ -1496,7 +1505,7 @@ msgid "Alias"
 msgstr "Más néven"
 
 msgid "Alignment of events"
-msgstr "Események elrendezése"
+msgstr "Műsor adatainak elrendezése"
 
 msgid "Alignment of service names"
 msgstr "Csatorna nevek elrendezése"
@@ -5615,7 +5624,7 @@ msgid "EtPortal"
 msgstr "EtPortal"
 
 msgid "Event font size"
-msgstr "Esemény betűmérete"
+msgstr "Műsor adatainak betűmérete"
 
 msgid "Event Info"
 msgstr "Esemény információ"
@@ -12139,7 +12148,7 @@ msgid "Service cant been added to the favourites."
 msgstr "A csatornát nem lehet hozzáadni a kedvencekhez."
 
 msgid "Service font size"
-msgstr "Csatorna betű méreté"
+msgstr "Csatorna nevek betű méreté"
 
 msgid "Service has been added to the favourites."
 msgstr "A csatornát hozzáadtam a kedvencekhez."
@@ -12214,7 +12223,7 @@ msgstr ""
 "Kérem, ellenőrizze a tuner beállításokat!"
 
 msgid "Service width"
-msgstr "Csatorna szélessége"
+msgstr "Csatorna nevek szélessége"
 
 msgid "Serviceinfo"
 msgstr "Csatorna információ"
@@ -15333,10 +15342,10 @@ msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Időintervalluma az ébresztés észlelésének az Időzítő által [perc]"
 
 msgid "Timeline 24 Hour"
-msgstr "24 órás idővonal"
+msgstr "24 órás idővonal kijelzés"
 
 msgid "Timeline font size"
-msgstr "Idővonal betű méreté"
+msgstr "Idő kijelzésének betű mérete"
 
 msgid "Timer"
 msgstr "Időzítő"
@@ -18866,3 +18875,6 @@ msgstr "Zambia"
 
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
+
+#~ msgid "History Zap..."
+#~ msgstr "Utoljára nézett csatornák..."
