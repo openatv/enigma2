@@ -825,7 +825,7 @@ class InfoBarNumberZap:
 			return 0
 
 		if number != 0:
-			if config.seek.number_skip.value == "always":
+			if config.seek.number_skips.value == "always":
 				if self.timeshiftEnabled():
 					shift = None
 					if config.seek.number_method.value == "abspc":
@@ -841,8 +841,8 @@ class InfoBarNumberZap:
 						return
 				return 0
 			if (self.isSeekable()
-				and (config.seek.number_skip.value == "all"
-					 or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))):
+				and (config.seek.number_skips.value == "True"
+					 or (config.seek.number_skips.value == "media" and not self.timeshiftEnabled()))):
 				return 0
 
 		# if self.save_current_timeshift and self.timeshiftEnabled():
@@ -861,7 +861,7 @@ class InfoBarNumberZap:
 
 	def helpKeyNumberGlobal(self, number):
 		if number != 0:
-			if config.seek.number_skip.value == "always":
+			if config.seek.number_skips.value == "always":
 				if self.timeshiftEnabled():
 					if config.seek.number_method.value == "abspc":
 						return _("Enter timeshift and skip to %d%% position") % (number * 10)
@@ -873,8 +873,8 @@ class InfoBarNumberZap:
 											  _("sec"))
 				return None
 			if (self.isSeekable()
-				and (config.seek.number_skip.value == "all"
-					 or (config.seek.number_skip.value == "media" and not self.timeshiftEnabled()))):
+				and (config.seek.number_skips.value == "True"
+					 or (config.seek.number_skips.value == "media" and not self.timeshiftEnabled()))):
 				return None
 
 		if number == 0:
@@ -2003,12 +2003,12 @@ class InfoBarSeek:
 					if not config.seek.updown_skips.value and action[8:] in ("up", "down"):
 						return None
 					tsEnabled = False
-					if config.seek.number_skip.value == "media":
+					if config.seek.number_skips.value == "media":
 						service = self.session.nav.getCurrentService()
 						ts = service and service.timeshift()
 						tsEnabled = ts and ts.isTimeshiftEnabled()
-					if ((config.seek.number_skip.value == "0" or
-						 (config.seek.number_skip.value == "media" and tsEnabled)) and
+					if ((config.seek.number_skips.value == "False" or
+						 (config.seek.number_skips.value == "media" and tsEnabled)) and
 						action[8:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9")):
 						return None
 					if action[8:] == "up":
