@@ -11,7 +11,7 @@ from Screens.ChoiceBox import ChoiceBox
 
 # Generic
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists, createDir, removeDir
+from Tools.Directories import pathExists, createDir, removeDir, defaultRecordingLocation
 from Components.config import config
 import os
 
@@ -37,7 +37,7 @@ defaultInhibitDirs = [
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
-	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle = None, minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
+	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, userMode=False, windowTitle=None, minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None, homePath=False):
 		# Init parents
 		if not inhibitDirs: inhibitDirs = []
 		if not inhibitMounts: inhibitMounts = []
@@ -71,11 +71,14 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.autoAdd = autoAdd
 		self.editDir = editDir
 		self.inhibitDirs = inhibitDirs
+		self.homePath = homePath
 
 		# Initialize FileList
 		self["filelist"] = FileList(currDir, showDirectories=True, showFiles=False, inhibitMounts=inhibitMounts, inhibitDirs=inhibitDirs)
 
 		# Initialize BookList
+		if self.homePath:
+			self.bookmarks = [self.getHomePath(bm) for bm in self.bookmarks]
 		self["booklist"] = MenuList(self.bookmarks)
 
 		# Buttons
@@ -175,7 +178,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def switchToFileListOnStart(self):
 		if self.realBookmarks and self.realBookmarks.value:
 			self.currList = "booklist"
-			currDir = self["filelist"].current_directory
+			currDir = self.getHomePath(self["filelist"].current_directory)
 			if currDir in self.bookmarks:
 				self["booklist"].moveToIndex(self.bookmarks.index(currDir))
 		else:
@@ -210,7 +213,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def addRemoveBookmark(self):
 		if self.currList == "filelist":
 			# add bookmark
-			folder = self["filelist"].getSelection()[0]
+			folder = self.getHomePath(self["filelist"].getSelection()[0])
 			if folder is not None and not folder in self.bookmarks:
 				self.bookmarks.append(folder)
 				self.bookmarks.sort()
@@ -219,15 +222,20 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			# remove bookmark
 			if not self.userMode:
 				name = self["booklist"].getCurrent()
+				if self.homePath:
+					hname, name = name
+				else:
+					hname = name
 				self.session.openWithCallback(
 					boundFunction(self.removeBookmark, name),
 					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % name,
+					_("Do you really want to remove your bookmark of %s?") % hname,
 				)
 
 	def removeBookmark(self, name, ret):
 		if not ret:
 			return
+		name = self.getHomePath(name)
 		if name in self.bookmarks:
 			self.bookmarks.remove(name)
 			self["booklist"].setList(self.bookmarks)
@@ -264,10 +272,11 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def removeDir(self):
 		sel = self["filelist"].getSelection()
 		if sel and pathExists(sel[0]):
+			name = friendlyMoviePath(sel[0]) if self.homePath else sel[0]
 			self.session.openWithCallback(
 				boundFunction(self.removeDirCallback, sel[0]),
 				MessageBox,
-				_("Do you really want to remove directory %s from the disk?") % (sel[0]),
+				_("Do you really want to remove directory %s from the disk?") % name,
 				type = MessageBox.TYPE_YESNO
 			)
 		else:
@@ -289,6 +298,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				)
 			else:
 				self["filelist"].refresh()
+				self.updateTarget()
 				self.removeBookmark(name, True)
 				val = self.realBookmarks and self.realBookmarks.value
 				if val and name in val:
@@ -328,18 +338,25 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			# XXX: We might want to change this for parent folder...
 			return self["filelist"].getSelection()[0]
 		else:
-			return self["booklist"].getCurrent()
+			bm = self["booklist"].getCurrent()
+			return bm[1] if self.homePath else bm
 
 	def selectConfirmed(self, ret):
 		if ret:
-			ret = ''.join((self.getPreferredFolder(), self.filename))
+			pref = self.getPreferredFolder()
+			ret = ''.join((pref, self.filename))
 			if self.realBookmarks:
-				if self.autoAdd and not ret in self.bookmarks:
-					self.bookmarks.append(self.getPreferredFolder())
+				hret = self.getHomePath(ret)
+				if self.autoAdd and not hret in self.bookmarks:
+					self.bookmarks.append(self.getHomePath(pref))
 					self.bookmarks.sort()
 
-				if self.bookmarks != self.realBookmarks.value:
-					self.realBookmarks.value = self.bookmarks
+				if self.homePath:
+					_, bm = zip(*self.bookmarks)
+				else:
+					bm = self.bookmarks
+				if bm != self.realBookmarks.value:
+					self.realBookmarks.value = bm
 					self.realBookmarks.save()
 			self.close(ret)
 
@@ -396,10 +413,17 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Write Combination of Folder & Filename when Folder is valid
 		currFolder = self.getPreferredFolder()
 		if currFolder is not None:
+			if self.homePath:
+				currFolder = friendlyMoviePath(currFolder)
 			self["target"].setText(''.join((currFolder, self.filename)))
 		# Display a Warning otherwise
 		else:
 			self["target"].setText(_("Invalid location"))
+
+	def getHomePath(self, path):
+		if self.homePath:
+			return (friendlyMoviePath(path, trailing=False), path)
+		return path
 
 	def showMenu(self):
 		if not self.userMode and self.realBookmarks:
@@ -509,7 +533,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		return str(type(self)) + "(" + self.text + ")"
 
 def MovieLocationBox(session, text, dir, minFree=None):
-	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=defaultInhibitDirs, minFree=minFree)
+	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=defaultInhibitDirs, minFree=minFree, homePath=True)
 
 class TimeshiftLocationBox(LocationBox):
 	def __init__(self, session):
@@ -536,3 +560,26 @@ class TimeshiftLocationBox(LocationBox):
 			config.usage.timeshift_path.save()
 			LocationBox.selectConfirmed(self, ret)
 
+
+def defaultMoviePath():
+	result = config.usage.default_path.value
+	if not os.path.isdir(result):
+		return defaultRecordingLocation()
+	return result
+
+def friendlyMoviePath(path, base=None, trailing=True):
+	if path is not None:
+		if base:
+			if not base.endswith('/'):
+				base += '/'
+			if path.startswith(base):
+				path = path[len(base):]
+				if not trailing:
+					return path.rstrip('/')
+				return path
+		home = defaultMoviePath().rstrip('/')
+		if path.startswith(home) and (len(path) == len(home) or path[len(home)] == '/'):
+			path = _("Home") + path[len(home):]
+		if not trailing:
+			return path.rstrip('/')
+	return path
