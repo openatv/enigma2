@@ -379,7 +379,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				self.session.openWithCallback(
 					self.selectConfirmed,
 					MessageBox,
-					_("There might not be enough space on the selected partition..\nDo you really want to continue?"),
+					_("There might not be enough space on the selected partition.\nDo you really want to continue?"),
 					type = MessageBox.TYPE_YESNO
 				)
 			# No minimum free Space means we can safely close
@@ -404,7 +404,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self.session.open(
 					MessageBox,
-					_("An empty filename is illegal."),
+					_("An empty filename is invalid."),
 					type = MessageBox.TYPE_ERROR,
 					timeout = 5
 				)
