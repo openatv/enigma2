@@ -1175,7 +1175,7 @@ void eDVBServicePlay::serviceEvent(int event)
 		updateEpgCacheNowNext();
 
 		/* default behaviour is to start an eit reader, and wait for now/next info, unless this is disabled */
-		if (eConfigManager::getConfigBoolValue("config.usage.show_eit_nownext", true))
+		if (m_dvb_service->useEIT() && eConfigManager::getConfigBoolValue("config.usage.show_eit_nownext", true))
 		{
 			ePtr<iDVBDemux> m_demux;
 			if (!m_service_handler.getDataDemux(m_demux))

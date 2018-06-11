@@ -3095,6 +3095,13 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 		serviceRef->getChannelID(chid);
 		chids.push_back(chid);
 		sids.push_back(serviceRef->getServiceID().get());
+
+		// disable EIT event parsing when using EPG_IMPORT
+		ePtr<eDVBService> service;
+		if (!eDVBDB::getInstance()->getService(*serviceRef, service) && service->useEIT())
+		{
+			service->m_flags |= eDVBService::dxNoEIT;
+		}
 	}
 	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_type, EPG_IMPORT);
 }
