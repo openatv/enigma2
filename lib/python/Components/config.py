@@ -1140,20 +1140,29 @@ class ConfigClock(ConfigSequence):
 		# Trigger change
 		self.changed()
 
-	def decrement(self):
+	def decrement(self, step=1):
 		# Check if Minutes is minimum
 		if self._value[1] == 0:
-			# Decrement Hour, set Minutes to 59
+			# Decrement Hour, set Minutes to 59 or 55
 			if self._value[0] > 0:
 				self._value[0] -= 1
 			else:
 				self._value[0] = 23
-			self._value[1] = 59
+			self._value[1] = 60 - step
 		else:
 			# Decrement Minutes
-			self._value[1] -= 1
+			self._value[1] -= step
 		# Trigger change
 		self.changed()
+
+	def nextStep(self):
+		self._value[1] += 5 - self._value[1] % 5 - 1
+		self.increment()
+
+	def prevStep(self):
+		# Set Minutes to the previous multiple of 5
+		step = (4 + self._value[1]) % 5 + 1
+		self.decrement(step)
 
 	def handleKey(self, key):
 		if self.wideformat is None:
@@ -1600,6 +1609,10 @@ class ConfigSelectionNumber(ConfigSelection):
 
 		ConfigSelection.__init__(self, choices, default)
 
+		# For detecting repeated keys.
+		self.keyTime = 0
+		self.keyLast = None
+
 	def getValue(self):
 		return int(ConfigSelection.getValue(self))
 
@@ -1614,20 +1627,36 @@ class ConfigSelectionNumber(ConfigSelection):
 	index = property(getIndex)
 
 	def handleKey(self, key):
-		if not self.wraparound:
-			if key == KEY_RIGHT:
-				if len(self.choices) == (self.choices.index(str(self.value)) + 1):
-					return
-			if key == KEY_LEFT:
-				if self.choices.index(str(self.value)) == 0:
-					return
+		now = time()
+		if key == self.keyLast and now - self.keyTime < 0.25:
+			self.keyRepeat += 1
+		else:
+			self.keyRepeat = 0
+		self.keyTime = now
+		self.keyLast = key
 		nchoices = len(self.choices)
 		if nchoices > 1:
+			step = 1
+			if self.keyRepeat >= 4:
+				if not self.keyRepeat & 1: # step every second repeat
+					return
+				step = 5
 			i = self.choices.index(str(self.value))
+			if not self.wraparound:
+				if key == KEY_RIGHT:
+					if i == nchoices - 1:
+						return
+					if i + step >= nchoices - 1:
+						key = KEY_END
+				if key == KEY_LEFT:
+					if i == 0:
+						return
+					if i - step <= 0:
+						key = KEY_HOME
 			if key == KEY_LEFT:
-				self.value = self.choices[(i + nchoices - 1) % nchoices]
+				self.value = self.choices[(i + nchoices - step) % nchoices]
 			elif key == KEY_RIGHT:
-				self.value = self.choices[(i + 1) % nchoices]
+				self.value = self.choices[(i + step) % nchoices]
 			elif key == KEY_HOME:
 				self.value = self.choices[0]
 			elif key == KEY_END:

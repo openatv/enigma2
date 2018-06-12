@@ -20,7 +20,7 @@ from Components.Sources.Boolean import Boolean
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox
+from Screens.LocationBox import MovieLocationBox, defaultMoviePath, friendlyMoviePath
 from Screens.HelpMenu import HelpableScreen
 from Screens.InputBox import PinInput
 import Screens.InfoBar
@@ -106,13 +106,6 @@ except Exception as e:
 	print "[MovieSelection] Bluray Player is not installed:", e
 	BlurayPlayer = None
 
-
-def defaultMoviePath():
-	result = config.usage.default_path.value
-	if not os.path.isdir(result):
-		from Tools import Directories
-		return Directories.defaultRecordingLocation()
-	return result
 
 def setPreferredTagEditor(te):
 	global preferredTagEditor
@@ -273,26 +266,46 @@ def copyServiceFiles(serviceref, dest, name=None):
 
 # Appends possible destinations to the bookmarks object. Appends tuples
 # in the form (description, path) to it.
-def buildMovieLocationList(bookmarks):
-	inlist = []
+def buildMovieLocationList(bookmarks, base=None):
+	if base:
+		base = base.rstrip('/')
+		inlist = [base]
+	else:
+		inlist = []
+	# Last favourites
+	for d in last_selected_dest:
+		d = d.rstrip('/')
+		if d not in inlist:
+			bookmarks.append((friendlyMoviePath(d, base), d))
+			inlist.append(d)
+	# Other favourites
 	for d in config.movielist.videodirs.value:
-		d = os.path.normpath(d)
-		bookmarks.append((d, d))
-		inlist.append(d)
+		d = os.path.normpath(d).rstrip('/')
+		if d not in inlist:
+			bookmarks.append((friendlyMoviePath(d, base), d))
+			inlist.append(d)
+	if base:
+		# Subdirs
+		try:
+			for fn in os.listdir(base):
+				if not fn.startswith('.'):  # Skip hidden things
+					d = os.path.join(base, fn)
+					if os.path.isdir(d) and d not in inlist:
+						bookmarks.append((fn, d))
+						inlist.append(d)
+		except Exception, e:
+			print "[MovieSelection]", e
 	for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if d in inlist:
 			# improve shortcuts to mountpoints
 			try:
-				bookmarks[bookmarks.index((d, d))] = (p.tabbedDescription().replace("\t", " - "), d)
+				bookmarks[bookmarks.index((d, d))] = (p.description, d)
 			except:
 				pass  # When already listed as some "friendly" name
 		else:
-			bookmarks.append((p.tabbedDescription().replace("\t", " - "), d))
-		inlist.append(d)
-	for d in last_selected_dest:
-		if d not in inlist:
-			bookmarks.append((d, d))
+			bookmarks.append((p.description, d))
+			inlist.append(d)
 
 class MovieBrowserConfiguration(ConfigListScreen, Screen):
 	def __init__(self, session, args=0):
@@ -1914,7 +1927,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.updateTags()
 		title = ""
 		if config.usage.setup_level.index >= 2:  # expert+
-			title += config.movielist.last_videodir.value
+			title += friendlyMoviePath(config.movielist.last_videodir.value, trailing=False)
 		if self.selected_tags:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
@@ -2066,9 +2079,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		mbox = self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
 		mbox.setTitle(self.getTitle())
 
-	def selectMovieLocation(self, title, callback):
-		bookmarks = [(_("(Other...)"), None)]
-		buildMovieLocationList(bookmarks)
+	def selectMovieLocation(self, title, callback, base=None):
+		bookmarks = []
+		buildMovieLocationList(bookmarks, base)
+		bookmarks.append((_("(Other...)"), None))
 		self.onMovieSelected = callback
 		self.movieSelectTitle = title
 		self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks, skin_name="MovieSelectionLocations")
@@ -2315,48 +2329,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if item:
 			current = item[0]
 			info = item[1]
+			path = os.path.normpath(current.getPath())
 			if len(self.moveList) == 1:
 				name = info and info.getName(current)
 				if name:
-					name = "'" + name + "'"
+					if name == path + '/':
+						name = os.path.basename(path) + '/'
+					else:
+						name = "'" + name + "'"
 				else:
 					name = _("This recording")
 			else:
 				name = _("%d items") % len(self.moveList)
-			path = os.path.normpath(current.getPath())
-			# show a more limited list of destinations, no point
-			# in showing mountpoints.
-			title = _("Choose destination: %s") % name
-			bookmarks = [(_("(Other...)"), None)]
-			inlist = []
-			# Subdirs
-			try:
-				base = os.path.split(path)[0]
-				for fn in os.listdir(base):
-					if not fn.startswith('.'):  # Skip hidden things
-						d = os.path.join(base, fn)
-						if os.path.isdir(d) and (d not in inlist):
-							bookmarks.append((fn, d))
-							inlist.append(d)
-			except Exception, e:
-				print "[MovieSelection]", e
-			# Last favourites
-			for d in last_selected_dest:
-				if d not in inlist:
-					bookmarks.append((d, d))
-			# Other favourites
-			for d in config.movielist.videodirs.value:
-				d = os.path.normpath(d)
-				bookmarks.append((d, d))
-				inlist.append(d)
-			for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
-				d = os.path.normpath(p.mountpoint)
-				if d not in inlist:
-					bookmarks.append((p.description, d))
-					inlist.append(d)
-			self.onMovieSelected = self.gotMoveMovieDest
-			self.movieSelectTitle = title
-			self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks, skin_name="MovieSelectionLocations")
+			self.selectMovieLocation(title=_("Choose move destination: %s") % name, callback=self.gotMoveMovieDest, base=os.path.dirname(path))
 
 	def gotMoveMovieDest(self, choice):
 		if not choice:
@@ -2383,15 +2368,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if item:
 			current = item[0]
 			info = item[1]
+			path = os.path.normpath(current.getPath())
 			if len(self.copyList) == 1:
 				name = info and info.getName(current)
 				if name:
-					name = "'" + name + "'"
+					if name == path + '/':
+						name = os.path.basename(path) + '/'
+					else:
+						name = "'" + name + "'"
 				else:
 					name = _("This recording")
 			else:
 				name = _("%d items") % len(self.copyList)
-			self.selectMovieLocation(title=_("Choose destination: %s") % name, callback=self.gotCopyMovieDest)
+			self.selectMovieLocation(title=_("Choose copy destination: %s") % name, callback=self.gotCopyMovieDest, base=os.path.dirname(path))
 
 	def gotCopyMovieDest(self, choice):
 		if not choice:
