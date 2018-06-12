@@ -17,6 +17,7 @@ class ClockToText(Converter, object):
 	AS_LENGTHHOURS = 11
 	AS_LENGTHSECONDS = 12
 	FULL_DATE = 13
+	HOUR_MIN = 14
 
 	# add: date, date as string, weekday, ...
 	# (whatever you need!)
@@ -55,6 +56,8 @@ class ClockToText(Converter, object):
 		elif "Format" in type:
 			self.type = self.FORMAT
 			self.fmt_string = type[7:]
+		elif type == "HourMin":
+			self.type = self.HOUR_MIN
 		else:
 			self.type = self.DEFAULT
 
@@ -89,6 +92,19 @@ class ClockToText(Converter, object):
 			return "%d:%02d:%02d" % (time / 3600, time / 60 % 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
+		elif self.type == self.HOUR_MIN:
+			mins = time / 60
+			if not isinstance(mins, int):
+				return '{0}{1}'.format(0, _("time_min_ct"))
+			if mins <= 0:
+				return '{0}{1}'.format(0, _("time_min_ct"))
+			vhour, vmins = mins // 60, mins % 60
+			if vhour and vmins:
+				return '{0}{1}{2}{3}'.format(vhour, _("time_hour_ct"), vmins, _("time_min_ct"))
+			elif vhour and not vmins:
+				return '{0}{1}'.format(vhour, _("time_hour_ct"))
+			else:
+				return '{0}{1}'.format(vmins, _("time_min_ct"))
 
 		t = localtime(time)
 
