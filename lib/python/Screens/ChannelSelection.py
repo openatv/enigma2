@@ -3002,9 +3002,7 @@ class HistoryZapSelector(Screen):
 							prefix = "+"
 						local_begin = localtime(begin)
 						local_end = localtime(end)
-						
-						remaining_string = self.hour_min(remaining)
-						durationTime = _("%02d.%02d - %02d.%02d (%s %s)") % (local_begin[3],local_begin[4],local_end[3],local_end[4],prefix,remaining_string)
+						durationTime = _("%02d.%02d - %02d.%02d (%s%d min)") % (local_begin[3],local_begin[4],local_end[3],local_end[4],prefix, remaining)
 
 			png = ""
 			picon = getPiconName(str(ServiceReference(x[1])))
@@ -3048,19 +3046,3 @@ class HistoryZapSelector(Screen):
 
 	def cancelClick(self):
 		self.close(None)
-		
-	def hour_min(self, mins):
-		if not isinstance(mins, int):
-			return '0 _("time_min")'
-    
-		if mins <= 0:
-			return '0 _("time_min")'
-    
-		vhour, vmins = mins // 60, mins % 60
-    
-		if vhour and vmins:
-			return '{0} _("time_hour") {1} _("time_min")'.format(vhour, vmins)
-		elif vhour and not vmins:
-			return '{0} _("time_hour")'.format(vhour)
-		else:
-			return '{0} _("time_min")'.format(vmins)
