@@ -5,7 +5,7 @@
 # GUI (Screens)
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.HelpMenu import HelpableScreen
 from Screens.ChoiceBox import ChoiceBox
 
@@ -244,7 +244,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if self["filelist"].current_directory is not None:
 			self.session.openWithCallback(
 				self.createDirCallback,
-				InputBox,
+				VirtualKeyBoard,
 				title = _("Please enter the name of the new directory"),
 				text = ""
 			)
@@ -391,7 +391,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			# TODO: Add Information that changing extension is bad? disallow?
 			self.session.openWithCallback(
 				self.nameChanged,
-				InputBox,
+				VirtualKeyBoard,
 				title = _("Please enter a new filename"),
 				text = self.filename
 			)
