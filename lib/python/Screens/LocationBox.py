@@ -426,9 +426,12 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Write Combination of Folder & Filename when Folder is valid
 		currFolder = self.getPreferredFolder()
 		if currFolder is not None:
+			name = ''.join((currFolder, self.filename))
 			if self.usingAliases:
-				currFolder = friendlyMoviePath(currFolder)
-			self["target"].setText(''.join((currFolder, self.filename)))
+				alias = friendlyMoviePath(name)
+				if name != alias:
+					name = alias + "\n-->\n" + name
+			self["target"].setText(name)
 		# Display a Warning otherwise
 		else:
 			self["target"].setText(_("Invalid location"))
@@ -450,6 +453,9 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self["booklist"].setList(self.bookmarks)
 		self.updateTarget()
 
+	def removeAlias(self):
+		self.setAliasCallback(None, rm=True)
+
 	def setAlias(self):
 		currentFolder = self.getPreferredFolder()
 		if currentFolder is not None:
@@ -462,9 +468,9 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				text=name
 			)
 
-	def setAliasCallback(self, res):
+	def setAliasCallback(self, res, rm=False):
 		global location_aliases, aliasesFile
-		if res is None:
+		if not res and not rm:
 			return
 		currentFolder = self.getPreferredFolder()
 		if res:
@@ -499,10 +505,15 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				]
 			if self.useAliases:
 				if config.misc.location_aliases.value:
-					menu.extend((
-						(_("disable aliases"), self.enableDisableAliases),
-						(_("set alias"), self.setAlias)
-					))
+					menu.extend(((_("disable aliases"), self.enableDisableAliases),))
+					currentFolder = self.getPreferredFolder()
+					if currentFolder in location_aliases:
+						menu.extend((
+							(_("edit alias"), self.setAlias),
+							(_("remove alias"), self.removeAlias)
+						))
+					else:
+						menu.extend(((_("create alias"), self.setAlias),))
 				else:
 					menu.extend(((_("enable aliases"), self.enableDisableAliases),))
 

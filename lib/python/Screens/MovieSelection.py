@@ -1908,6 +1908,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["numFiles"].text = _("Files: %d") % nFiles
 		self.marked = self.list.countMarked()
 
+	def updateTitle(self):
+		title = ""
+		if config.usage.setup_level.index >= 2:  # expert+
+			title += friendlyMoviePath(config.movielist.last_videodir.value, trailing=False)
+		if self.selected_tags:
+			title += " - " + ','.join(self.selected_tags)
+		self.setTitle(title)
+
 	def reloadList(self, sel=None, home=False):
 		self.reload_sel = sel
 		self.reload_home = home
@@ -1933,12 +1941,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
-		title = ""
-		if config.usage.setup_level.index >= 2:  # expert+
-			title += friendlyMoviePath(config.movielist.last_videodir.value, trailing=False)
-		if self.selected_tags:
-			title += " - " + ','.join(self.selected_tags)
-		self.setTitle(title)
+		self.updateTitle()
 		self.displayMovieOffStatus()
 		self.displaySortStatus()
 		if self.reload_sel:
@@ -1997,6 +2000,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			elif result is False:
 				self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
 		if not res:
+			self.updateTitle()	# alias may have changed
 			return
 		# serviceref must end with /
 		if not res.endswith('/'):
@@ -2030,6 +2034,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					type=MessageBox.TYPE_ERROR,
 					timeout=5)
 				mbox.setTitle(self.getTitle())
+		else:
+			self.updateTitle()	# alias may have changed
 
 	def pinEntered(self, res, selItem, result):
 		if result:
@@ -2100,6 +2106,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			# cancelled
 			self.onMovieSelected(None)
 			del self.onMovieSelected
+			self.updateTitle()	# alias may have changed
 			return
 		if isinstance(choice, tuple):
 			if choice[1] is None:
