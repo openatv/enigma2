@@ -20,7 +20,7 @@ from Components.Sources.Boolean import Boolean
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox, defaultMoviePath, friendlyMoviePath
+from Screens.LocationBox import MovieLocationBox, friendlyMoviePath
 from Screens.HelpMenu import HelpableScreen
 from Screens.InputBox import PinInput
 import Screens.InfoBar
@@ -106,6 +106,13 @@ except Exception as e:
 	print "[MovieSelection] Bluray Player is not installed:", e
 	BlurayPlayer = None
 
+
+def defaultMoviePath():
+	result = config.usage.default_path.value
+	if not os.path.isdir(result):
+		from Tools import Directories
+		return Directories.defaultRecordingLocation()
+	return result
 
 def setPreferredTagEditor(te):
 	global preferredTagEditor
@@ -380,6 +387,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Font size"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.")),
 			getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows on each page.")),
 			getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative slim screen.")),
+			getConfigListEntry(_("Use location aliases"), config.misc.location_aliases, _("Show paths with a custom name.")),
 			getConfigListEntry(_("Use adaptive date display"), config.movielist.use_fuzzy_dates, _("Adaptive date display allows recent dates to be displayed as 'Today' or 'Yesterday'.  It hides the year for recordings made this year.  It hides the day of the week for recordings made in previous years.")),
 			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
 			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
