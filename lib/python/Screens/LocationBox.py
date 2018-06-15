@@ -430,7 +430,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			if self.usingAliases:
 				alias = friendlyMoviePath(name)
 				if name != alias:
-					name = alias + "\n-->\n" + name
+					name = "%s (%s)" % (alias, name)
 			self["target"].setText(name)
 		# Display a Warning otherwise
 		else:
