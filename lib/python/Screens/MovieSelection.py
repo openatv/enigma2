@@ -307,6 +307,25 @@ def buildMovieLocationList(bookmarks, base=None):
 			bookmarks.append((p.description, d))
 			inlist.append(d)
 
+def updateUserDefinedActions():
+	global userDefinedButtons, userDefinedActions, userDefinedDescriptions
+	locations = []
+	buildMovieLocationList(locations)
+	prefix = _("Goto") + ": "
+	for act, val in userDefinedActions.items():
+		if act.startswith(prefix):
+			del userDefinedActions[act]
+			del userDefinedDescriptions[act]
+	for d, p in locations:
+		if p and p.startswith('/'):
+			userDefinedDescriptions[p] = userDefinedActions[p] = prefix + d
+	userDefinedChoices = sorted(userDefinedActions.iteritems(), key=lambda x: x[1].lower())
+	for btn in userDefinedButtons.values():
+		btn.setChoices(userDefinedChoices)
+		if btn.value.startswith('/'):
+			#btn.setValue(btn.value)
+			btn._descr = None
+
 class MovieBrowserConfiguration(ConfigListScreen, Screen):
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
@@ -402,6 +421,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set, return to showing live TV in the background after a movie has stopped playing."))
 		]
 
+		updateUserDefinedActions()
 		for btn in (
 			('red', _('Button Red')),
 			('green', _('Button Green')),
