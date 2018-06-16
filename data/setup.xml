@@ -162,6 +162,7 @@
 		<item level="1" text="EPG language selection 2" description="Set the secondary EPG language.">config.autolanguage.audio_epglanguage_alternative</item>
 	</setup>
 	<setup key="recording" title="Recording and playback">
+		<item level="1" text="Use location aliases" description="Show paths with a custom name.">config.misc.location_aliases</item>
 		<item level="1" text="Recordings always have priority" description="Enable to allow a recording to interrupt live TV when there are no free tuners.">config.recording.asktozap</item>
 		<item level="0" text="Margin before recording (minutes)" description="Set to a non-zero value to begin a recording earlier than the start time shown in the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording (minutes)" description="Set to a non-zero value to stop a recording later than the end time shown in the EPG.">config.recording.margin_after</item>
