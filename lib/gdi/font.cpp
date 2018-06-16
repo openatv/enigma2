@@ -1174,7 +1174,7 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 		do {
 			last=end;
 			++end;
-			if(!(last->flags&GS_ISSPACE) && (end == glyphs.end() || end->flags&GS_ISSPACE))
+			if (!(last->flags&GS_ISSPACE) && (end == glyphs.end() || end->flags&(GS_ISSPACE|GS_ISFIRST)))
 				nonspace_end = end;
 		} while ((end != glyphs.end()) && (!(end->flags&GS_ISFIRST)));
 			// end zeigt jetzt auf begin der naechsten zeile
