@@ -2316,6 +2316,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					info = self.list.list[index]
 					if hasattr(info[3], 'txt'):
 						info[3].txt = name
+						# reparse info to update the name on invalidate
+						serviceHandler = eServiceCenter.getInstance()
+						newinfo = serviceHandler.info(info[0])
+						if newinfo:
+							self.list.list[index] = (info[0], newinfo, info[2], info[3])
 					else:
 						self.list.invalidateCurrentItem()
 					return
