@@ -67,7 +67,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.close, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
+		elif any(x in result for x in ('wget returned 1', 'wget returned 255', '404 Not Found')):
 			self.session.openWithCallback(self.close, MessageBox, _("Can not retrieve data from feed server. Check your Internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif 'Collected errors' in result:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
