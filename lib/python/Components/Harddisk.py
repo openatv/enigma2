@@ -144,7 +144,7 @@ class Harddisk:
 			card = self.device[:2] == "hd" and "host0" not in self.dev_path
 			type_name = " (CF)"
 
-		internal = ("pci" or "ahci") in self.phys_path
+		internal = any(x in self.phys_path for x in ("pci", "ahci"))
 
 		if card:
 			ret += type_name

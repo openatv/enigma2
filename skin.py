@@ -311,7 +311,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 
 def morphRcImagePath(value):
 	if rc_model.rcIsDefault() is False:
-		if ('rc.png' or 'oldrc.png') in value:
+		if 'rc.png' in value:
 			value = rc_model.getRcLocation() + 'rc.png'
 	return value
 
