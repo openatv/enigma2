@@ -430,11 +430,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		if cur_sel:
 			self.findBestEvent()
 
-	def findBestEvent(self):
+	def findBestEvent(self, getnow = False):
 		old_service = self.cur_service  #(service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
 		time_base = self.getTimeBase()
-		last_time = time()
+		now = last_time = time()
 		if old_service and self.cur_event is not None:
 			try:
 				events = old_service[2]
@@ -458,9 +458,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					if best is None or (diff < best_diff):
 						best = idx
 						best_diff = diff
-					if ev_end_time < time():
+					if ev_end_time < now:
 						best = idx+1
-					if best is not None and ev_time > last_time and ev_end_time > time():
+					if best is not None and ev_end_time > now and (ev_time > last_time or (getnow and ev_time < now)):
 						break
 					idx += 1
 			self.cur_event = best
@@ -1273,16 +1273,21 @@ class EPGList(HTMLComponent, GUIComponent):
 				return True
 			elif dir == -24:
 				now = time() - int(config.epg.histminutes.value) * 60
+				roundto = None
 				if self.type == EPG_TYPE_GRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.graph_roundto.value) * 60):
-						self.time_base -= 86400
-						self.fillGraphEPG(None, self.time_base) # refill
-						return True
+					roundto = config.epgselection.graph_roundto
 				elif self.type == EPG_TYPE_INFOBARGRAPH:
-					if (self.time_base - 86400) >= now - now % (int(config.epgselection.infobar_roundto.value) * 60):
+					roundto = config.epgselection.infobar_roundto
+				if roundto is not None:
+					if (self.time_base - 86400) > now - now % (int(roundto.value) * 60):
 						self.time_base -= 86400
-						self.fillGraphEPG(None, self.time_base) # refill
-						return True
+						getnow = False
+					else:
+						self.offs = 0
+						self.time_base = now - now % (int(roundto.value) * 60)
+						getnow = True
+					self.fillGraphEPG(None, self.time_base, getnow) # refill
+					return True
 
 		if cur_service and valid_event and (self.cur_event+1 <= len(entries)):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
@@ -1351,7 +1356,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 		self.selectionChanged()
 
-	def fillGraphEPG(self, services, stime = None):
+	def fillGraphEPG(self, services, stime = None, getnow = False):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:
 				self.nowEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'))
@@ -1422,7 +1427,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			serviceIdx += 1
 
 		self.l.setList(self.list)
-		self.findBestEvent()
+		self.findBestEvent(getnow)
 
 	def sortSingleEPG(self, type):
 		list = self.list
