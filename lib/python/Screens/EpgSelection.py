@@ -619,11 +619,12 @@ class EPGSelection(Screen, HelpableScreen):
 				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
 			self['list'].resetOffset()
 			self['list'].fillGraphEPG(self.services, self.ask_time)
-			self['list'].fillGraphEPG(None, self.ask_time, True)
 			self.moveTimeLines(True)
 		elif self.type == EPG_TYPE_MULTI:
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 		self['list'].instance.moveSelectionTo(0)
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].fillGraphEPG(None, self.ask_time, True)
 		self.setTitle(self['bouquetlist'].getCurrentBouquet())
 		self.BouquetlistHide(False)
 
