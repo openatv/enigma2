@@ -703,11 +703,13 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.close((False,))
 
 	def pathSelected(self, res):
-		if res is not None:
-			tmp = [(p, friendlyMoviePath(p, trailing=False)) for p in config.movielist.videodirs.value]
-			if tmp != self.timerentry_dirname.choices:
-				self.timerentry_dirname.setChoices(tmp, default=res)
-			self.timerentry_dirname.value = res
+		# even if it was cancelled the aliases may have changed
+		if res is None:
+			res = self.timerentry_dirname.value
+		tmp = [(p, friendlyMoviePath(p, trailing=False)) for p in config.movielist.videodirs.value]
+		if tmp != self.timerentry_dirname.choices:
+			self.timerentry_dirname.setChoices(tmp, default=res)
+		self.timerentry_dirname.value = res
 
 	def tagEditFinished(self, ret):
 		if ret is not None:

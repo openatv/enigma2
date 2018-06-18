@@ -20,7 +20,7 @@ from Components.Sources.Boolean import Boolean
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox, defaultMoviePath, friendlyMoviePath
+from Screens.LocationBox import MovieLocationBox, friendlyMoviePath
 from Screens.HelpMenu import HelpableScreen
 from Screens.InputBox import PinInput
 import Screens.InfoBar
@@ -106,6 +106,13 @@ except Exception as e:
 	print "[MovieSelection] Bluray Player is not installed:", e
 	BlurayPlayer = None
 
+
+def defaultMoviePath():
+	result = config.usage.default_path.value
+	if not os.path.isdir(result):
+		from Tools import Directories
+		return Directories.defaultRecordingLocation()
+	return result
 
 def setPreferredTagEditor(te):
 	global preferredTagEditor
@@ -307,6 +314,25 @@ def buildMovieLocationList(bookmarks, base=None):
 			bookmarks.append((p.description, d))
 			inlist.append(d)
 
+def updateUserDefinedActions():
+	global userDefinedButtons, userDefinedActions, userDefinedDescriptions
+	locations = []
+	buildMovieLocationList(locations)
+	prefix = _("Goto") + ": "
+	for act, val in userDefinedActions.items():
+		if act.startswith(prefix):
+			del userDefinedActions[act]
+			del userDefinedDescriptions[act]
+	for d, p in locations:
+		if p and p.startswith('/'):
+			userDefinedDescriptions[p] = userDefinedActions[p] = prefix + d
+	userDefinedChoices = sorted(userDefinedActions.iteritems(), key=lambda x: x[1].lower())
+	for btn in userDefinedButtons.values():
+		btn.setChoices(userDefinedChoices)
+		if btn.value.startswith('/'):
+			#btn.setValue(btn.value)
+			btn._descr = None
+
 class MovieBrowserConfiguration(ConfigListScreen, Screen):
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
@@ -380,6 +406,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Font size"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.")),
 			getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows on each page.")),
 			getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative slim screen.")),
+			getConfigListEntry(_("Use location aliases"), config.misc.location_aliases, _("Show paths with a custom name.")),
 			getConfigListEntry(_("Use adaptive date display"), config.movielist.use_fuzzy_dates, _("Adaptive date display allows recent dates to be displayed as 'Today' or 'Yesterday'.  It hides the year for recordings made this year.  It hides the day of the week for recordings made in previous years.")),
 			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
 			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
@@ -402,6 +429,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Show live TV when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set, return to showing live TV in the background after a movie has stopped playing."))
 		]
 
+		updateUserDefinedActions()
 		for btn in (
 			('red', _('Button Red')),
 			('green', _('Button Green')),
@@ -1900,6 +1928,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["numFiles"].text = _("Files: %d") % nFiles
 		self.marked = self.list.countMarked()
 
+	def updateTitle(self):
+		title = ""
+		if config.usage.setup_level.index >= 2:  # expert+
+			title += friendlyMoviePath(config.movielist.last_videodir.value, trailing=False)
+		if self.selected_tags:
+			title += " - " + ','.join(self.selected_tags)
+		self.setTitle(title)
+
 	def reloadList(self, sel=None, home=False):
 		self.reload_sel = sel
 		self.reload_home = home
@@ -1925,12 +1961,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
-		title = ""
-		if config.usage.setup_level.index >= 2:  # expert+
-			title += friendlyMoviePath(config.movielist.last_videodir.value, trailing=False)
-		if self.selected_tags:
-			title += " - " + ','.join(self.selected_tags)
-		self.setTitle(title)
+		self.updateTitle()
 		self.displayMovieOffStatus()
 		self.displaySortStatus()
 		if self.reload_sel:
@@ -1989,6 +2020,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			elif result is False:
 				self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
 		if not res:
+			self.updateTitle()	# alias may have changed
 			return
 		# serviceref must end with /
 		if not res.endswith('/'):
@@ -2022,6 +2054,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					type=MessageBox.TYPE_ERROR,
 					timeout=5)
 				mbox.setTitle(self.getTitle())
+		else:
+			self.updateTitle()	# alias may have changed
 
 	def pinEntered(self, res, selItem, result):
 		if result:
@@ -2092,6 +2126,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			# cancelled
 			self.onMovieSelected(None)
 			del self.onMovieSelected
+			self.updateTitle()	# alias may have changed
 			return
 		if isinstance(choice, tuple):
 			if choice[1] is None:
@@ -2281,6 +2316,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					info = self.list.list[index]
 					if hasattr(info[3], 'txt'):
 						info[3].txt = name
+						# reparse info to update the name on invalidate
+						serviceHandler = eServiceCenter.getInstance()
+						newinfo = serviceHandler.info(info[0])
+						if newinfo:
+							self.list.list[index] = (info[0], newinfo, info[2], info[3])
 					else:
 						self.list.invalidateCurrentItem()
 					return

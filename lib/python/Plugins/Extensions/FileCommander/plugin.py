@@ -808,6 +808,8 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 # ## move select ###
 	def goGreen(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
+		if targetDir is None:
+			return
 
 		for file in self.selectedFiles:
 			extension = file.split('.')
@@ -825,6 +827,8 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 # ## copy select ###
 	def goYellow(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
+		if targetDir is None:
+			return
 
 		for file in self.selectedFiles:
 			extension = file.split('.')
