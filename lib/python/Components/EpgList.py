@@ -54,9 +54,9 @@ class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
 
 		if sf == 1.5:
-			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (3,13,25,25,3))
+			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,13,25,25,2))
 		else:
-			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,11,21,21,2))
+			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (1,11,23,23,1))
 
 		self.cur_event = None
 		self.cur_service = None
@@ -752,7 +752,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r2 = self.progress_rect
 		r3 = self.descr_rect
 		r4 = self.start_end_rect
-		fact1 = 60 * sf
+		fact1 = 70 * sf
 		fact2 = 90 * sf
 		fact3 = 20 * sf
 		fact4 = 90 * sf
