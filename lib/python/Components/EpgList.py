@@ -24,11 +24,7 @@ EPG_TYPE_INFOBARGRAPH = 7
 
 MAX_TIMELINES = 6
 
-screenwidth = getDesktop(0).size().width()
-if screenwidth and screenwidth == 1920:
-	sf = 1.5
-else:
-	sf = 1
+sf = 1
 
 class Rect:
 	def __init__(self, x, y, width, height):
@@ -52,8 +48,10 @@ class Rect:
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
-
-		if sf == 1.5:
+		global sf
+		screenwidth = getDesktop(0).size().width()
+		if screenwidth and screenwidth == 1920:
+			sf = 1.5
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,13,25,25,2))
 		else:
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (1,11,23,23,1))
