@@ -393,8 +393,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.value, graphic=graphic)
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
-		self.listTimer = eTimer()
-		self.listTimer.callback.append(self.hidewaitingtext)
 		self.onLayoutFinish.append(self.LayoutFinish)
 
 	def createSetup(self):
@@ -434,12 +432,6 @@ class EPGSelection(Screen, HelpableScreen):
 		configfile.save()
 		self.close('reopengraph')
 
-	def hidewaitingtext(self):
-		self.listTimer.stop()
-		if self.type == EPG_TYPE_MULTI:
-			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		self['lab1'].hide()
-
 	def getBouquetServices(self, bouquet):
 		services = []
 		servicelist = eServiceCenter.getInstance().list(bouquet)
@@ -454,9 +446,9 @@ class EPGSelection(Screen, HelpableScreen):
 		return services
 
 	def LayoutFinish(self):
-		self['lab1'].show()
 		self.createTimer = eTimer()
 		self.createTimer.start(500, True)
+		self['lab1'].show()
 		self.onCreate()
 
 	def onCreate(self):
@@ -464,19 +456,23 @@ class EPGSelection(Screen, HelpableScreen):
 		title = None
 		self['list'].recalcEntrySize()
 		self.BouquetRoot = False
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH or self.type == EPG_TYPE_MULTI:
 			if self.StartBouquet.toString().startswith('1:7:0'):
 				self.BouquetRoot = True
 			self.services = self.getBouquetServices(self.StartBouquet)
-			self['list'].fillGraphEPG(self.services, self.ask_time)
-			self['list'].moveToService(serviceref)
-			self['list'].setCurrentlyPlaying(serviceref)
-			self['list'].fillGraphEPG(None, self.ask_time, True)
 			self['bouquetlist'].recalcEntrySize()
 			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self['bouquetlist'].moveToService(self.StartBouquet)
 			self['bouquetlist'].setCurrentBouquet(self.StartBouquet	)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
+			if self.type == EPG_TYPE_MULTI:
+				self['list'].fillMultiEPG(self.services, self.ask_time)
+			else:
+				self['list'].fillGraphEPG(self.services, self.ask_time)
+			self['list'].setCurrentlyPlaying(serviceref)
+			self['list'].moveToService(serviceref)
+			if self.type != EPG_TYPE_MULTI:
+				self['list'].fillGraphEPG(None, self.ask_time, True)
 			if self.type == EPG_TYPE_GRAPH:
 				self['list'].setShowServiceMode(config.epgselection.graph_servicetitle_mode.value)
 				self.moveTimeLines()
@@ -485,15 +481,6 @@ class EPGSelection(Screen, HelpableScreen):
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self['list'].setShowServiceMode(config.epgselection.infobar_servicetitle_mode.value)
 				self.moveTimeLines()
-		elif self.type == EPG_TYPE_MULTI:
-			self['bouquetlist'].recalcEntrySize()
-			self['bouquetlist'].fillBouquetList(self.bouquets)
-			self['bouquetlist'].moveToService(self.StartBouquet)
-			self['bouquetlist'].fillBouquetList(self.bouquets)
-			self.services = self.getBouquetServices(self.StartBouquet)
-			self['list'].fillMultiEPG(self.services, self.ask_time)
-			self['list'].setCurrentlyPlaying(serviceref)
-			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			if self.type == EPG_TYPE_SINGLE:
 				service = self.currentService
@@ -510,7 +497,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 		else:
 			self['list'].fillSimilarList(self.currentService, self.eventid)
-		self.listTimer.start(10)
+		self['lab1'].hide()
 
 	def refreshlist(self):
 		self.refreshTimer.stop()
@@ -636,6 +623,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_MULTI:
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 		self['list'].instance.moveSelectionTo(0)
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].fillGraphEPG(None, self.ask_time, True)
 		self.setTitle(self['bouquetlist'].getCurrentBouquet())
 		self.BouquetlistHide(False)
 
