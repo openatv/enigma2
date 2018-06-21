@@ -3,7 +3,7 @@ import re
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
@@ -32,6 +32,8 @@ LOCAL_EXTENSIONS = {
 EXTENSIONS = BASE_EXTENSIONS.copy()
 EXTENSIONS.update(LOCAL_EXTENSIONS)
 
+imagePath = resolveFilename(SCOPE_PLUGINS, base="Extensions/FileCommander/images/")
+
 def getPNGByExt(name):
 	basename, ext = os.path.splitext(name)
 	if ext.startswith('.'):
@@ -44,17 +46,17 @@ def getPNGByExt(name):
 		ext = "rar"
 
 	if ext in EXTENSIONS:
-		return LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/" + EXTENSIONS[ext] + ".png")
+		return LoadPixmap(path=os.path.join(imagePath, EXTENSIONS[ext]) + ".png")
 	else:
-		return LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/file.png")
+		return LoadPixmap(path=os.path.join(imagePath, "file.png"))
 
 def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	res = [(absolute, isDir, isLink)]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 1175, 25, 0, RT_HALIGN_LEFT, name))
 	if isDir and not isLink:
-		png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/directory.png")
+		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
 	elif isLink:
-		png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/link.png")
+		png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
@@ -183,9 +185,9 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 1175, 25, 0, RT_HALIGN_LEFT, name))
 
 	if isDir and not isLink:
-		png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/directory.png")
+		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
 	elif isLink:
-		png = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/link.png")
+		png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
@@ -193,10 +195,10 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 
 	if not name.startswith('<'):
 		if selected is False:
-			icon = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/lock_off.png")
+			icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 4, 0, 25, 25, icon))
 		else:
-			icon = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/images/lock_on.png")
+			icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 4, 0, 25, 25, icon))
 	return res
 
