@@ -35,32 +35,6 @@ from os import system as os_system
 from os import walk as os_walk
 import os
 
-EXTENSIONS = {
-	".m4a": "music",
-	".mp2": "music",
-	".mp3": "music",
-	".wav": "music",
-	".ogg": "music",
-	".flac": "music",
-	".ts": "movie",
-	".avi": "movie",
-	".divx": "movie",
-	".m4v": "movie",
-	".mpg": "movie",
-	".mpeg": "movie",
-	".mkv": "movie",
-	".mp4": "movie",
-	".mov": "movie",
-	".m2ts": "movie",
-	".wmv": "movie",
-	".jpg": "picture",
-	".jpeg": "picture",
-	".png": "picture",
-	".bmp": "picture",
-	".m3u": "stream",
-	".m3u8": "stream",
-}
-
 ##################################
 
 pname = _("File Commander - Addon Mediaplayer")
