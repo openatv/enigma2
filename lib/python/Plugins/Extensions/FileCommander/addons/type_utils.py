@@ -26,8 +26,7 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 # Various
-from Plugins.Extensions.FileCommander.InputBoxmod import InputBox
-from Plugins.Extensions.FileCommander.InputBoxmod import InputBoxmod
+from Plugins.Extensions.FileCommander.InputBox import InputBoxmod
 from os.path import isdir as os_path_isdir
 from mimetypes import guess_type
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, ePicLoad, getDesktop, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
