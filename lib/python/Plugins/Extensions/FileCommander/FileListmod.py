@@ -1,4 +1,5 @@
-from os import path as os_path, listdir
+import os
+import re
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 
@@ -7,11 +8,7 @@ from Tools.Directories import fileExists
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
 from Tools.LoadPixmap import LoadPixmap
-from os.path import splitext
 
-import re
-
-import os
 
 LOCAL_EXTENSIONS = {
 	"txt": "txt",
@@ -36,11 +33,11 @@ EXTENSIONS = BASE_EXTENSIONS.copy()
 EXTENSIONS.update(LOCAL_EXTENSIONS)
 
 def getPNGByExt(name):
-	basename, ext = splitext(name)
+	basename, ext = os.path.splitext(name)
 	if ext.startswith('.'):
 		ext = ext[1:]
 	if ext == "gz":
-		_, ex = splitext(basename)
+		_, ex = os.path.splitext(basename)
 		if ex == ".tar":
 			ext = "tgz"
 	elif re.match("^r\d+$", ext):
@@ -86,7 +83,7 @@ class FileList(FileListBase):
 
 		if directory is None and self.showMountpoints:  # present available mountpoints
 			for p in harddiskmanager.getMountedPartitions():
-				path = os_path.join(p.mountpoint, "")
+				path = os.path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(FileEntryComponent(name=p.description, absolute=path, isDir=True, isLink=False))
 			files = []
@@ -116,13 +113,13 @@ class FileList(FileListBase):
 		else:
 			if fileExists(directory):
 				try:
-					files = listdir(directory)
+					files = os.listdir(directory)
 				except:
 					files = []
 				files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
-					if os_path.isdir(directory + x):
+					if os.path.isdir(directory + x):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
@@ -139,7 +136,7 @@ class FileList(FileListBase):
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
 					testname = x[:-1]
-					if os_path.islink(testname):
+					if os.path.islink(testname):
 						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=True))
 					else:
 						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=False))
@@ -216,7 +213,6 @@ class MultiFileSelectList(FileList):
 		for f in self.onSelectionChanged:
 			f()
 
-
 	def changeSelectionState(self):
 		idx = self.l.getCurrentSelectionIndex()
 		# os.system('echo %s >> /tmp/test1.log' % ("- xxx - "))
@@ -273,7 +269,7 @@ class MultiFileSelectList(FileList):
 
 		if directory is None and self.showMountpoints:  # present available mountpoints
 			for p in harddiskmanager.getMountedPartitions():
-				path = os_path.join(p.mountpoint, "")
+				path = os.path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(MultiFileSelectEntryComponent(name=p.description, absolute=path, isDir=True))
 			files = []
@@ -303,13 +299,13 @@ class MultiFileSelectList(FileList):
 		else:
 			if fileExists(directory):
 				try:
-					files = listdir(directory)
+					files = os.listdir(directory)
 				except:
 					files = []
 				files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
-					if os_path.isdir(directory + x):
+					if os.path.isdir(directory + x):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
@@ -325,7 +321,7 @@ class MultiFileSelectList(FileList):
 					name = x.split('/')[-2]
 					alreadySelected = False
 					testname = x[:-1]
-					if os_path.islink(testname):
+					if os.path.islink(testname):
 						my_isLink = True
 					else:
 						my_isLink = False
@@ -349,7 +345,7 @@ class MultiFileSelectList(FileList):
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
 					alreadySelected = False
 					for entry in self.selectedFiles:
-						if os_path.basename(entry) == x:
+						if os.path.basename(entry) == x:
 							alreadySelected = True
 					if alreadySelected:
 						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, selected=True))
