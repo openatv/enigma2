@@ -17,7 +17,7 @@ class InputBox(InputBoxBase):
 			"playpauseService": self.keyInsert,
 		}, -1)
 
-class InputBoxmod(InputBox):
+class InputBoxWide(InputBox):
 	skin = """
 		<screen position="center,center" size=" 1100, 95" title="Input">
 			<widget name="text" position="10,10" size="1080,22" font="Regular;18" />
