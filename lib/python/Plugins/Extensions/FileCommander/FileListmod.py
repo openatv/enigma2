@@ -79,7 +79,7 @@ class FileList(FileListBase):
 			else:
 				self.current_mountpoint = None
 		self.current_directory = directory
-		self.parent_directory = False
+		self.parent_directory = None
 		directories = []
 		files = []
 
@@ -314,8 +314,10 @@ class MultiFileSelectList(FileList):
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
 				self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of Storage Devices") + ">", absolute=None, isDir=True))
+				self.parent_directory = None
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent Directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
+				self.parent_directory = '/'.join(directory.split('/')[:-2]) + '/'
+				self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent Directory") + ">", absolute=self.parent_directory, isDir=True))
 
 		if self.showDirectories:
 			for x in directories:
