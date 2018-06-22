@@ -53,10 +53,10 @@ def getPNGByExt(name):
 def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	res = [(absolute, isDir, isLink)]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 1175, 25, 0, RT_HALIGN_LEFT, name))
-	if isDir and not isLink:
-		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
-	elif isLink:
+	if isLink:
 		png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
+	elif isDir:
+		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
@@ -138,10 +138,7 @@ class FileList(FileListBase):
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
 					testname = x[:-1]
-					if os.path.islink(testname):
-						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=True))
-					else:
-						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=False))
+					self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname)))
 
 		if self.showFiles:
 			for x in files:
@@ -184,10 +181,10 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	res = [(absolute, isDir, isLink, selected, name)]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 1175, 25, 0, RT_HALIGN_LEFT, name))
 
-	if isDir and not isLink:
-		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
-	elif isLink:
+	if isLink:
 		png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
+	elif isDir:
+		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
@@ -230,20 +227,13 @@ class MultiFileSelectList(FileList):
 						realPathname = x[0][0]
 					else:
 						realPathname = self.current_directory + x[0][0]
-					if x[0][3] is True:
-						SelectState = False
-						for entry in self.selectedFiles:
-							if entry == realPathname:
-								self.selectedFiles.remove(entry)
-
-					else:
-						SelectState = True
-						alreadyinList = False
-						for entry in self.selectedFiles:
-							if entry == realPathname:
-								alreadyinList = True
-						if not alreadyinList:
+					SelectState = not x[0][3]
+					if SelectState:
+						if realPathname not in self.selectedFiles:
 							self.selectedFiles.append(realPathname)
+					else:
+						if realPathname in self.selectedFiles:
+							self.selectedFiles.remove(realPathname)
 					newList.append(MultiFileSelectEntryComponent(name=x[0][4], absolute=x[0][0], isDir=x[0][1], isLink=x[0][2], selected=SelectState))
 			else:
 				newList.append(x)
@@ -323,19 +313,9 @@ class MultiFileSelectList(FileList):
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
-					alreadySelected = False
 					testname = x[:-1]
-					if os.path.islink(testname):
-						my_isLink = True
-					else:
-						my_isLink = False
-					for entry in self.selectedFiles:
-						if entry == x:
-							alreadySelected = True
-					if alreadySelected:
-						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=True, isLink=my_isLink, selected=True))
-					else:
-						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=True, isLink=my_isLink, selected=False))
+					alreadySelected = x in self.selectedFiles
+					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname), selected=alreadySelected))
 
 		if self.showFiles:
 			for x in files:
@@ -347,14 +327,8 @@ class MultiFileSelectList(FileList):
 					name = x
 
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					alreadySelected = False
-					for entry in self.selectedFiles:
-						if os.path.basename(entry) == x:
-							alreadySelected = True
-					if alreadySelected:
-						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, selected=True))
-					else:
-						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, selected=False))
+					alreadySelected = path in self.selectedFiles
+					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, selected=alreadySelected))
 
 		self.l.setList(self.list)
 
