@@ -350,7 +350,7 @@ class ImageBackup(Screen):
 		if HaveGZkernel:
 			cmdlist.append('echo "Check: kerneldump"')
 		cmdlist.append("sync")
-		if ( SystemInfo["HaveMultiBootHD"] or SystemInfo["HaveMultiBootXC"] or SystemInfo["HaveMultiBootCY"]) and self.list[self.selection] == "Recovery":
+		if ( SystemInfo["HaveMultiBoot"] and getMachineBuild() not in ("gb7252")]) and self.list[self.selection] == "Recovery":
 			BLOCK_SIZE=512
 			BLOCK_SECTOR=2
 			IMAGE_ROOTFS_ALIGNMENT=1024
