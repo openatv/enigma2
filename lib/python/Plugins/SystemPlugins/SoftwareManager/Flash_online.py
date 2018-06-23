@@ -5,6 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Components.FileList import FileList
 from Components.Task import Task, Job, job_manager, Condition
+from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Screens.Console import Console
@@ -15,6 +16,7 @@ from Screens.Console import Console
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
 from Tools.Downloader import downloadWithProgress
+from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode
 from enigma import fbClass
 import urllib2
 import os
@@ -73,50 +75,66 @@ class FlashOnline(Screen):
 		<widget source="key_green" render="Label" position="140,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="key_yellow" render="Label" position="280,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="key_blue" render="Label" position="420,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<widget name="config" position="2,100" size="730,380" halign="center" font="Regular; 22" backgroundColor="#00000000" foregroundColor="#00e5b243" />
 		<widget name="info-online" position="10,30" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
-		<widget name="info-local" position="10,150" zPosition="1" size="450,200" font="Regular;20" halign="left" valign="top" transparent="1" />
+		<widget name="info-local" position="10,60" zPosition="1" size="450,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
-		if getMachineBuild() in ("hd51","vs1500","h7","8100s"):
-			self.devrootfs = "/dev/mmcblk0p3"
-		elif getMachineBuild() in ("gb7252"):
-			self.devrootfs = "/dev/mmcblk0p4"
-		else:
-			self.devrootfs = "/dev/mmcblk1p3"
+		self.list = "None"
 		self.multi = 1
-		self.list = self.list_files("/boot")
-
+		self.devrootfs = " "
 		Screen.setTitle(self, _("Flash On the Fly"))
-		if SystemInfo["HaveMultiBoot"]:
-			self["key_yellow"] = StaticText(_("STARTUP"))
-		else:
-			self["key_yellow"] = StaticText("")
+		self["key_yellow"] = StaticText("")
 		self["key_green"] = StaticText(_("Online"))
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_blue"] = StaticText(_("Local"))
 		self["info-local"] = Label(_("Local = Flash a image from local path /hdd/images"))
 		self["info-online"] = Label(_("Online = Download a image and flash it"))
-		
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
-		{
-			"blue": self.blue,
-			"yellow": self.yellow,
-			"green": self.green,
-			"red": self.quit,
-			"cancel": self.quit,
-		}, -2)
 		if SystemInfo["HaveMultiBoot"]:
-			if getMachineBuild() in ("gb7252"):
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
-				self.multi = self.multi[-1:]
-			else:
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-				self.multi = self.multi[-1:]
+			self["key_yellow"] = StaticText(_("Slot Select"))
+			self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Select slot with yellow button or flash current slot")), "Queued"))])
+			self.multi = GetCurrentImage()
+			self.devrootfs = "dev/%s%s" %(MTDKERNEL[0:8], self.multi*2+SystemInfo["HaveMultiBoot"][0]) 
 			print "[Flash Online] MULTI:",self.multi
+			self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
+			{
+				"blue": self.blue,
+				"yellow": self.yellow,
+				"green": self.green,
+				"red": self.quit,
+				"cancel": self.quit,
+				"up": self.keyUp,
+				"down": self.keyDown,
+				"left": self.keyLeft,
+				"right": self.keyRight,
+				"upRepeated": self.keyUp,
+				"downRepeated": self.keyDown,
+				"leftRepeated": self.keyLeft,
+				"rightRepeated": self.keyRight,
+
+			}, -2)
+		else:
+			self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
+			{
+				"blue": self.blue,
+				"green": self.green,
+				"red": self.quit,
+				"cancel": self.quit,
+				"up": self.keyUp,
+				"down": self.keyDown,
+				"left": self.keyLeft,
+				"right": self.keyRight,
+				"upRepeated": self.keyUp,
+				"downRepeated": self.keyDown,
+				"leftRepeated": self.keyLeft,
+				"rightRepeated": self.keyRight,
+
+			}, -2)
+
 
 	def check_hdd(self):
 		if not os.path.exists("/media/hdd"):
@@ -162,61 +180,36 @@ class FlashOnline(Screen):
 			self.close()
 
 	def yellow(self):
-		if SystemInfo["HaveMultiBoot"]:
-			self.selection = self.selection + 1
-			if self.selection == len(self.list):
-				self.selection = 0
-			self["key_yellow"].setText(_(self.list[self.selection]))
-			if getMachineBuild() in ("gb7252"):
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
-				self.multi = self.multi[-1:]
-			else:
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-				self.multi = self.multi[-1:]
-			print "[Flash Online] MULTI:",self.multi
-			self.devrootfs = self.find_rootfs_dev(self.list[self.selection])
-			print "[Flash Online] MULTI rootfs ", self.devrootfs
+		self.getImageList = GetImagelist(self.ImageList)
 
-	def read_startup(self, FILE):
-		file = FILE
-		with open(file, 'r') as myfile:
-			data=myfile.read().replace('\n', '')
-		myfile.close()
-		return data
+	def ImageList(self, imagedict):
+		list = []
+		mode = GetCurrentImageMode() or 0
+		currentimageslot = GetCurrentImage()
+		for x in sorted(imagedict.keys()):
+			list.append(ChoiceEntryComponent('',((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
+		self["config"].setList(list)
 
-	def find_rootfs_dev(self, file):
-		startup_content = self.read_startup("/boot/" + file)
-		return startup_content[startup_content.find("root=")+5:].split()[0]
+	def selectionChanged(self):
+		self.currentSelected = self["config"].l.getCurrentSelection()
+		if self.currentSelected[0][1] != "Queued":
+			self.multi = self.currentSelected[0][1]
 
-	def list_files(self, PATH):
-		files = []
-		if SystemInfo["HaveMultiBoot"]:
-			path = PATH
-			if getMachineBuild() in ("hd51","vs1500","h7","8100s","gb7252"):
-				for name in os.listdir(path):
-					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
-						try:
-							cmdline = self.find_rootfs_dev(name)
-						except IndexError:
-							continue
-						cmdline_startup = self.find_rootfs_dev("STARTUP")
-						if (cmdline != cmdline_startup) and (name != "STARTUP"):
-							files.append(name)
-				files.insert(0,"STARTUP")
-			else:
-				for name in os.listdir(path):
-					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
-						try:
-							cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-						except IndexError:
-							continue
-						cmdline_startup = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
-						if (cmdline != cmdline_startup) and (name != "cmdline.txt"):
-							files.append(name)
-				files.insert(0,"cmdline.txt")
-		else:
-			files = "None"
-		return files
+	def keyLeft(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveUp)
+		self.selectionChanged()
+
+	def keyRight(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveDown)
+		self.selectionChanged()
+
+	def keyUp(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveUp)
+		self.selectionChanged()
+
+	def keyDown(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveDown)
+		self.selectionChanged()
 
 class doFlashImage(Screen):
 	skin = """
@@ -552,8 +545,6 @@ class doFlashImage(Screen):
 			else:
 				text += _("root and kernel")
 				if SystemInfo["HaveMultiBoot"]:
-					if self.List not in ("STARTUP","cmdline.txt"):
-						os.system('mkfs.ext4 -F ' + self.devrootfs)
 					cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
 				elif getMachineBuild() in ("u51","u52","u53","u5","u5pvr"):
 					cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
