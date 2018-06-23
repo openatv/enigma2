@@ -26,8 +26,7 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 # Various
-from Plugins.Extensions.FileCommander.InputBoxmod import InputBox
-from Plugins.Extensions.FileCommander.InputBoxmod import InputBoxmod
+from Plugins.Extensions.FileCommander.InputBox import InputBoxWide
 from os.path import isdir as os_path_isdir
 from mimetypes import guess_type
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, ePicLoad, getDesktop, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
@@ -35,32 +34,6 @@ from os import listdir, remove, rename, system, path, symlink, chdir
 from os import system as os_system
 from os import walk as os_walk
 import os
-
-EXTENSIONS = {
-	".m4a": "music",
-	".mp2": "music",
-	".mp3": "music",
-	".wav": "music",
-	".ogg": "music",
-	".flac": "music",
-	".ts": "movie",
-	".avi": "movie",
-	".divx": "movie",
-	".m4v": "movie",
-	".mpg": "movie",
-	".mpeg": "movie",
-	".mkv": "movie",
-	".mp4": "movie",
-	".mov": "movie",
-	".m2ts": "movie",
-	".wmv": "movie",
-	".jpg": "picture",
-	".jpeg": "picture",
-	".png": "picture",
-	".bmp": "picture",
-	".m3u": "stream",
-	".m3u8": "stream",
-}
 
 ##################################
 
@@ -185,7 +158,7 @@ class vEditor(Screen):
 			self.findtab = editableText.find("\t", 0, len(editableText))
 			if self.findtab != -1:
 				editableText = editableText.replace("\t", "        ")
-			self.session.openWithCallback(self.callbackEditLine, InputBoxmod, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
+			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
 		except:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
 			msg.setTitle(_("Error..."))

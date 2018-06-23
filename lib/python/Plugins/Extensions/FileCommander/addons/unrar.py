@@ -9,7 +9,7 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from os.path import basename
 import re
 import subprocess
-from Plugins.Extensions.FileCommander.InputBoxmod import InputBox
+from Plugins.Extensions.FileCommander.InputBox import InputBox
 
 pname = _("File Commander - Unrar Addon")
 pdesc = _("unpack Rar Files")
