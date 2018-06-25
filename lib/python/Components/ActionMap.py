@@ -3,9 +3,9 @@ from Tools.KeyBindings import queryKeyBinding
 
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
-		if not actions:
+		if actions is None:
 			actions = {}
-		if not contexts:
+		if contexts is None:
 			contexts = []
 		self.actions = actions
 		self.contexts = contexts
@@ -86,7 +86,7 @@ class HelpableActionMap(ActionMap):
 
 	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
 		self.description = description
-		if not actions:
+		if actions is None:
 			actions = {}
 		if not hasattr(contexts, '__iter__'):
 			contexts = [contexts]
