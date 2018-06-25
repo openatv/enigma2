@@ -1923,7 +1923,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
 				AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
 
-			section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")),("traditional", _("traditional (fast)")),("reliable_retune", _("reliable, retune")),("traditional_retune", _("traditional (fast), retune"))], default="reliable")
+			section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")),("traditional", _("traditional (fast)")),("reliable_retune", _("reliable, retune")),("traditional_retune", _("traditional (fast), retune"))], default="reliable_retune")
 
 	def configDiSEqCModeChanged(configElement):
 		section = configElement.section
