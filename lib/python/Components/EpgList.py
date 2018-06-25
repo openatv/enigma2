@@ -351,8 +351,6 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif str(self.list[x][1]).startswith('1:'):  # check for Multi EPG
 					if CompareWithAlternatives(self.list[x][1], serviceref.toString()):
 						return x
-				else:
-					return None
 		return None
 
 	def getCurrentIndex(self):
@@ -1112,28 +1110,24 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def getSelectionPosition(self, serviceref):
+		indx = self.getIndexFromService(serviceref) or 0
 		if self.type == EPG_TYPE_GRAPH:
-			indx = int(self.getIndexFromService(serviceref))
 			selx = self.select_rect.x + self.select_rect.w
 			while indx + 1 > config.epgselection.graph_itemsperpage.value:
 				indx = indx - config.epgselection.graph_itemsperpage.value
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			indx = int(self.getIndexFromService(serviceref))
 			selx = self.select_rect.x + self.select_rect.w
 			while indx + 1 > config.epgselection.infobar_itemsperpage.value:
 				indx = indx - config.epgselection.infobar_itemsperpage.value
 		elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR):
-			indx = int(self.l.getCurrentSelectionIndex())
 			selx = self.listWidth
 			while indx + 1 > config.epgselection.enhanced_itemsperpage.value:
 				indx = indx - config.epgselection.enhanced_itemsperpage.value
 		elif self.type == EPG_TYPE_MULTI:
-			indx = int(self.l.getCurrentSelectionIndex())
 			selx = self.listWidth
 			while indx + 1 > config.epgselection.multi_itemsperpage.value:
 				indx = indx - config.epgselection.multi_itemsperpage.value
 		elif self.type == EPG_TYPE_INFOBAR:
-			indx = int(self.l.getCurrentSelectionIndex())
 			selx = self.listWidth
 			while indx + 1 > config.epgselection.infobar_itemsperpage.value:
 				indx = indx - config.epgselection.infobar_itemsperpage.value
