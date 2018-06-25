@@ -130,6 +130,14 @@ public:
 };
 #endif
 
+#ifndef SWIG
+
+struct eit_parental_rating {
+	u_char	country_code[3];
+	u_char	rating;
+};
+#endif
+
 class eEPGCache: public eMainloop, private eThread, public sigc::trackable
 {
 public:
@@ -328,6 +336,7 @@ private:
 	void gotMessage(const Message &message);
 	void cleanLoop();
 	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, eit_type_t source, uint16_t eventId=0);
+	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, eit_type_t source, uint16_t eventId=0);
 
 // called from main thread
 	void DVBChannelAdded(eDVBChannel*);
@@ -405,7 +414,7 @@ public:
 	void setEpgSources(unsigned int mask);
 	unsigned int getEpgSources();
 
-	void submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, uint16_t eventId=0);
+	void submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start, long duration, const char* title, const char* short_summary, const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, uint16_t eventId=0);
 
 	void importEvents(SWIG_PYOBJECT(ePyObject) serviceReferences, SWIG_PYOBJECT(ePyObject) list);
 	void importEvent(SWIG_PYOBJECT(ePyObject) serviceReferences, SWIG_PYOBJECT(ePyObject) list);

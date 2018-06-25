@@ -42,7 +42,7 @@ from time import localtime as time_localtime
 
 import os
 # System mods
-from InputBoxmod import InputBox
+from InputBox import InputBox
 from FileListmod import FileList, MultiFileSelectList
 # Addons
 from Plugins.Extensions.FileCommander.addons.key_actions import *
@@ -808,6 +808,8 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 # ## move select ###
 	def goGreen(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
+		if targetDir is None:
+			return
 
 		for file in self.selectedFiles:
 			extension = file.split('.')
@@ -825,6 +827,8 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 # ## copy select ###
 	def goYellow(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
+		if targetDir is None:
+			return
 
 		for file in self.selectedFiles:
 			extension = file.split('.')

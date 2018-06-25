@@ -525,7 +525,7 @@ class PluginDownloadBrowser(Screen):
 					self["text"].setText(_("Can not retrieve data from feed server. Check your internet connection and try again later."))
 
 	def dataAvail(self, str):
-		if self.type == self.DOWNLOAD and ('wget returned 1' or 'wget returned 255' or '404 Not Found') in str:
+		if self.type == self.DOWNLOAD and any(x in str for x in ('wget returned 1', 'wget returned 255', '404 Not Found')):
 			self.run = 3
 			return
 

@@ -41,9 +41,6 @@ from time import strftime as time_strftime
 from time import localtime as time_localtime
 
 import os
-# System mods
-# from InputBoxmod import InputBox
-# from FileListmod import FileList, MultiFileSelectList
 # Addons
 # from unrar import *
 from Plugins.Extensions.FileCommander.addons.unrar import *

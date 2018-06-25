@@ -71,4 +71,4 @@ class MinuteInput(Screen):
 			self.cancel()
 
 	def cancel(self):
-		self.close(0)
+		self.close(None)
