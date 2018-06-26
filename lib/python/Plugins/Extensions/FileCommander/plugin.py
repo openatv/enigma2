@@ -43,7 +43,7 @@ from time import localtime as time_localtime
 import os
 # System mods
 from InputBox import InputBox
-from FileListmod import FileList, MultiFileSelectList
+from FileList import FileList, MultiFileSelectList
 # Addons
 from Plugins.Extensions.FileCommander.addons.key_actions import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
