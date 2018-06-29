@@ -359,6 +359,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			config.usage.movielist_trashcan,
 			config.misc.erase_flags,
 			config.usage.show_icons_in_movielist,
+			config.misc.location_aliases,
 		)
 		self.addNotifiers()
 		self.onClose.append(self.clearNotifiers)
@@ -2004,11 +2005,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			return
 		if self.pathselectEnabled:
 			self.session.openWithCallback(
-				self.gotFilename,
+				self.doPathSelectCB,
 				MovieLocationBox,
 				_("Choose movie path"),
 				config.movielist.last_videodir.value
 			)
+
+	def doPathSelectCB(self, res):
+		updateUserDefinedActions()
+		self._updateButtonTexts()
+		self.gotFilename(res)
 
 	def gotFilename(self, res, selItem=None, pinOk=False):
 		def servicePinEntered(res, selItem, result):
@@ -2132,7 +2138,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if choice[1] is None:
 				# Display full browser, which returns string
 				self.session.openWithCallback(
-					self.gotMovieLocation,
+					self.gotMovieLocationCB,
 					MovieLocationBox,
 					self.movieSelectTitle,
 					config.movielist.last_videodir.value
@@ -2143,6 +2149,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.rememberMovieLocation(choice)
 		self.onMovieSelected(choice)
 		del self.onMovieSelected
+
+	def gotMovieLocationCB(self, choice):
+		updateUserDefinedActions()
+		self._updateButtonTexts()
+		self.gotMovieLocation(choice)
 
 	def rememberMovieLocation(self, where):
 		if where in last_selected_dest:
