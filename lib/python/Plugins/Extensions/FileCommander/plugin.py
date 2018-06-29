@@ -43,7 +43,7 @@ from time import localtime as time_localtime
 import os
 # System mods
 from InputBox import InputBox
-from FileListmod import FileList, MultiFileSelectList
+from FileList import FileList, MultiFileSelectList
 # Addons
 from Plugins.Extensions.FileCommander.addons.key_actions import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
@@ -330,7 +330,7 @@ class FileCommanderScreen(Screen, key_actions):
 		self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
 
 	def goParentfolder(self):
-		if self.SOURCELIST.getParentDirectory() != False:
+		if self.SOURCELIST.getParentDirectory() is not Nome:
 			self.SOURCELIST.changeDir(self.SOURCELIST.getParentDirectory())
 			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
@@ -768,7 +768,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 	def goParentfolder(self):
 		if self.ACTIVELIST == self.SOURCELIST:
 			return
-		if self.ACTIVELIST.getParentDirectory() != False:
+		if self.ACTIVELIST.getParentDirectory() is not None:
 			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
 			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
