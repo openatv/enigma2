@@ -328,7 +328,7 @@ def updateUserDefinedActions():
 			userDefinedDescriptions[p] = userDefinedActions[p] = prefix + d
 	userDefinedChoices = sorted(userDefinedActions.iteritems(), key=lambda x: x[1].lower())
 	for btn in userDefinedButtons.values():
-		btn.setChoices(userDefinedChoices)
+		btn.setChoices(userDefinedChoices[:], default=btn.default)
 		if btn.value.startswith('/'):
 			#btn.setValue(btn.value)
 			btn._descr = None
@@ -359,6 +359,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			config.usage.movielist_trashcan,
 			config.misc.erase_flags,
 			config.usage.show_icons_in_movielist,
+			config.misc.location_aliases,
 		)
 		self.addNotifiers()
 		self.onClose.append(self.clearNotifiers)
@@ -964,17 +965,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				if p and p.startswith('/'):
 					userDefinedActions[p] = prefix + d
 			userDefinedChoices = sorted(userDefinedActions.iteritems(), key=lambda x: x[1].lower())
-			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedChoices)
-			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedChoices)
-			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedChoices)
-			config.movielist.btn_blue = ConfigSelection(default='sortby', choices=userDefinedChoices)
-			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedChoices)
-			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedChoices)
-			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedChoices)
-			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedChoices)
-			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedChoices)
-			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedChoices)
-			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedChoices)
+			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedChoices[:])
+			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedChoices[:])
+			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedChoices[:])
+			config.movielist.btn_blue = ConfigSelection(default='sortby', choices=userDefinedChoices[:])
+			config.movielist.btn_redlong = ConfigSelection(default='rename', choices=userDefinedChoices[:])
+			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedChoices[:])
+			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedChoices[:])
+			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedChoices[:])
+			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedChoices[:])
+			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedChoices[:])
+			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedChoices[:])
 
 			# Fill in descriptions for plugin actions
 			for act, val in userDefinedActions.items():
@@ -2004,11 +2005,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			return
 		if self.pathselectEnabled:
 			self.session.openWithCallback(
-				self.gotFilename,
+				self.doPathSelectCB,
 				MovieLocationBox,
 				_("Choose movie path"),
 				config.movielist.last_videodir.value
 			)
+
+	def doPathSelectCB(self, res):
+		updateUserDefinedActions()
+		self._updateButtonTexts()
+		self.gotFilename(res)
 
 	def gotFilename(self, res, selItem=None, pinOk=False):
 		def servicePinEntered(res, selItem, result):
@@ -2132,7 +2138,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if choice[1] is None:
 				# Display full browser, which returns string
 				self.session.openWithCallback(
-					self.gotMovieLocation,
+					self.gotMovieLocationCB,
 					MovieLocationBox,
 					self.movieSelectTitle,
 					config.movielist.last_videodir.value
@@ -2143,6 +2149,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.rememberMovieLocation(choice)
 		self.onMovieSelected(choice)
 		del self.onMovieSelected
+
+	def gotMovieLocationCB(self, choice):
+		updateUserDefinedActions()
+		self._updateButtonTexts()
+		self.gotMovieLocation(choice)
 
 	def rememberMovieLocation(self, where):
 		if where in last_selected_dest:
