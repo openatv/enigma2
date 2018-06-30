@@ -34,6 +34,15 @@ if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firs
 	rm -rf /etc/enigma2/key.pem &
 fi
 
+if [ -e /proc/stb/info/boxtype ]; then
+	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-3`
+	if [ $stbcheck == "cc1" ]; then
+		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
+		if [ 0 == $count ];then
+			libreader 720P_50
+		fi
+	fi
+fi
 if [ -x @bindir@/showiframe ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
@@ -153,6 +162,9 @@ if [ "$ret" -ne "1" ]; then
 		if [ $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 5
 		fi
+		if [ $stbcheck == "cc" ]; then
+			killall -9 libreader; sleep 5
+		fi
 	fi
 fi
 
@@ -161,6 +173,8 @@ case $ret in
 		if [ -e /proc/stb/info/boxtype ]; then
 			stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
 			if [ $stbcheck == "u5" ]; then
+				/usr/bin/hihalt
+			elif [ $stbcheck == "cc" ];then
 				/usr/bin/hihalt
 			else
 				/sbin/halt
