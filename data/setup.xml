@@ -375,7 +375,7 @@
 		<item level="2" text="Maximum no of days:" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 		<item level="2" text="Crash at skin error for debug reasons ?" description="if set to 'no', only an debug message is written to the Debug log ">config.crash.skin_error_crash</item>
-		<item level="2" text="Log python stack trace on spinner (may have side effects) ?" description="Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner.">config.crash.pystackonspinner</item>
+		<item level="2" text="Log python stack trace on spinner ?" description="Set to yes for debugging the root cause of a spinner.">config.crash.pystackonspinner</item>
 	</setup>
 	<setup level="1" key="timeshift" title="Timeshift settings">
 		<item level="2" text="Enable Autorecord" description="If set to 'yes', enable autorecord for automatically background timeshift">config.timeshift.autorecord</item>

@@ -13278,12 +13278,12 @@ msgid "if set to 'no', only an debug message is written to the Debug log "
 msgstr "Wenn die Option auf 'Nein' gesetzt wird, dann gibt es bei Fehlern im Skin nur einen Debug-Log-Eintrag."
 
 # data/setup.xml
-msgid "Log python stack trace on spinner (may have side effects) ?"
-msgstr "Bei Spinner Python Stack Trace loggen (kann Nebeneffekte haben) ?"
+msgid "Log python stack trace on spinner ?"
+msgstr "Bei Spinner Python Stack Trace loggen ?"
 
 # data/setup.xml
-msgid "Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner."
-msgstr "Nur ZEITWEISE auf 'ja' setzen, um die Ursache eines Spinners zu debuggen."
+msgid "Set to yes for debugging the root cause of a spinner."
+msgstr "Auf 'ja' setzen, um die Ursache eines Spinners zu debuggen."
 
 msgid "Space used:"
 msgstr "Speicherplatznutzung:"
@@ -14026,6 +14026,10 @@ msgstr "Bitte warten, Feed-Status wird überprüft"
 #: Download Netzwerk Dienste
 msgid "Sorry feeds are down for maintenance, please try again later. If this issue persists please check www.opena.tv"
 msgstr "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar, bitte versuchen Sie es später. Für weitere Fragen besuchen Sie bitte www.opena.tv"
+
+#: PluginBrowser.py
+msgid "Sorry feeds are down for maintenance"
+msgstr "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar"
 
 #: Download Netzwerk Dienste
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
