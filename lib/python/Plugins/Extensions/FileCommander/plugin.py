@@ -330,7 +330,7 @@ class FileCommanderScreen(Screen, key_actions):
 		self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
 
 	def goParentfolder(self):
-		if self.SOURCELIST.getParentDirectory() is not Nome:
+		if self.SOURCELIST.getParentDirectory() != False:
 			self.SOURCELIST.changeDir(self.SOURCELIST.getParentDirectory())
 			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
@@ -768,7 +768,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 	def goParentfolder(self):
 		if self.ACTIVELIST == self.SOURCELIST:
 			return
-		if self.ACTIVELIST.getParentDirectory() is not None:
+		if self.ACTIVELIST.getParentDirectory() != False:
 			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
 			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
