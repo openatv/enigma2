@@ -79,7 +79,7 @@ class FileList(FileListBase):
 			else:
 				self.current_mountpoint = None
 		self.current_directory = directory
-		self.parent_directory = None
+		self.parent_directory = False
 		directories = []
 		files = []
 
