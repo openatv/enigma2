@@ -477,16 +477,16 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', 
 				{
-					'1': (self.keyNumberGlobal, _('goto first Service on Bouquest')),
-					'2': (self.keyNumberGlobal, _('all Events up')),
-					'3': (self.keyNumberGlobal, _('goto last Service on Bouquest')),
-					'4': (self.keyNumberGlobal, _('previous page')),
-					'5': (self.keyNumberGlobal, _('goto current Channel and now')),
-					'6': (self.keyNumberGlobal, _('next page')),
+					'1': (self.keyNumberGlobal, _('goto first channel')),
+					'2': (self.keyNumberGlobal, _('all events up')),
+					'3': (self.keyNumberGlobal, _('goto last channel')),
+					'4': (self.keyNumberGlobal, _('previous channel page')),
+					'5': (self.keyNumberGlobal, _('goto current channel and now')),
+					'6': (self.keyNumberGlobal, _('next channel page')),
 					'7': (self.keyNumberGlobal, _('goto now')),
-					'8': (self.keyNumberGlobal, _('all Events down')),
-					'9': (self.keyNumberGlobal, _('goto Primetime)')),
-					'0': (self.keyNumberGlobal, _('set Basetime'))
+					'8': (self.keyNumberGlobal, _('all events down')),
+					'9': (self.keyNumberGlobal, _('Goto Primetime)')),
+					'0': (self.keyNumberGlobal, _('Set Basetime'))
 				}, -1)
 
 			self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
