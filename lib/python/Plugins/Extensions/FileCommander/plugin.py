@@ -116,8 +116,7 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 		self["help"] = Label(_("Keys:\n"
 							   "0: Refresh screen.\n"
 							   "1: New folder.\n"
-							   "2: New symlink with file name.\n"
-							   "3: New symlink with folder name.\n"
+							   "2: New symlink.\n"
 							   "4: Change permissions: chmod 644/755.\n"
 							   "5: Change to default folder.\n"
 							   "BACK: Change to parent folder.\n"
@@ -235,7 +234,6 @@ class FileCommanderScreen(Screen, key_actions):
 			"prevBouquet": self.listLeft,
 			"1": self.gomakeDir,
 			"2": self.gomakeSym,
-			"3": self.gomakeSymlink,
 			"4": self.call_change_mode,
 			"5": self.goDefaultfolder,
 			# "8": self.test,
@@ -503,24 +501,37 @@ class FileCommanderScreen(Screen, key_actions):
 	def gomakeSym(self):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		if (filename is None) or (sourceDir is None):
+		targetDir = self.TARGETLIST.getCurrentDirectory()
+		if targetDir is None or filename is None:
 			return
-		self.session.openWithCallback(self.doMakesym, InputBox, text="", title=_("Please enter name of the new symlink"), windowTitle=_("New symlink"))
+		if filename.startswith("/"):
+			if filename == "/":
+				filename = "root"
+			else:
+				filename = os.path.basename(os.path.normpath(filename))
+		elif sourceDir is None:
+			return
+		self.session.openWithCallback(self.doMakesym, InputBox, text=filename, title=_("Please enter name of the new symlink"), windowTitle=_("New symlink"))
 
 	def doMakesym(self, newname):
 		if newname:
+			oldname = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
-			if (sourceDir is None) or (targetDir is None):
+			if targetDir is None or oldname is None:
 				return
+			if oldname.startswith("/"):
+				oldpath = oldname
+			elif sourceDir is not None:
+				oldpath = os.path.join(sourceDir, oldname)
+			else:
+				return
+			newpath = os.path.join(targetDir, newname)
 			try:
-				symlink(sourceDir, targetDir + newname)
+				symlink(oldpath, newpath)
 			except OSError as oe:
-				self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (sourceDir, targetDir + newname, oe.strerror), type=MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (oldpath, newpath, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.doRefresh()
-
-	def doMakesymCB(self):
-		self.doRefresh()
 
 # ## symlink by folder ###
 	def gomakeSymlink(self):
