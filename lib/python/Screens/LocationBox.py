@@ -640,13 +640,12 @@ class TimeshiftLocationBox(LocationBox):
 def friendlyMoviePath(path, base=None, trailing=True):
 	if path is not None:
 		if base:
-			if not base.endswith('/'):
-				base += '/'
-			if path.startswith(base):
-				path = path[len(base):]
-				if not trailing:
-					return path.rstrip('/')
-				return path
+			base = os.path.normpath(base)
+			head, tail = os.path.split(os.path.normpath(path))
+			if head == base:
+				if trailing and path.endswith('/'):
+					tail += '/'
+				return tail
 		if config.misc.location_aliases.value:
 			global location_aliases
 			llen = 0
@@ -659,5 +658,5 @@ def friendlyMoviePath(path, base=None, trailing=True):
 						apath = alias + path[llen:]
 			path = apath
 		if not trailing:
-			return path.rstrip('/')
+			return path.rstrip('/') or '/'
 	return path
