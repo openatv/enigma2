@@ -1077,7 +1077,7 @@ def InitUsageConfig():
 					('record', _('Record - same as record button')),
 					('gotodatetime', _('Goto Date/Timer')),
 					('gotoprimetime', _('Goto Primetime')),
-					('locktime', _('Lock time')),
+					('setbasetime', _('Set Basetime')),
 					('epgsearch', _('EPG search'))]
 	config.epgselection.vertical_red = ConfigSelection(default='imdb', choices=vertical_colorkeys)
 	config.epgselection.vertical_green = ConfigSelection(default='timer', choices=vertical_colorkeys)

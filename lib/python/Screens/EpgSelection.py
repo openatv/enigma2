@@ -477,18 +477,17 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', 
 				{
-					'1': (self.keyNumberGlobal, _('goto first')),
-					'2': (self.keyNumberGlobal, _('all up')),
-					'3': (self.keyNumberGlobal, _('goto last')),
+					'1': (self.keyNumberGlobal, _('goto first Service on Bouquest')),
+					'2': (self.keyNumberGlobal, _('all Events up')),
+					'3': (self.keyNumberGlobal, _('goto last Service on Bouquest')),
 					'4': (self.keyNumberGlobal, _('previous page')),
-					'5': (self.keyNumberGlobal, _('goto current channel and refresh list')),
+					'5': (self.keyNumberGlobal, _('goto current Channel and now')),
 					'6': (self.keyNumberGlobal, _('next page')),
 					'7': (self.keyNumberGlobal, _('goto now')),
-					'8': (self.keyNumberGlobal, _('all down')),
-					'9': (self.keyNumberGlobal, _('set prime time on top (toggle on/off)')),
-					'0': (self.keyNumberGlobal, _('goto prime time'))
+					'8': (self.keyNumberGlobal, _('all Events down')),
+					'9': (self.keyNumberGlobal, _('goto Primetime)')),
+					'0': (self.keyNumberGlobal, _('set Basetime'))
 				}, -1)
-			self['input_actions'].csel = self
 
 			self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
 				{
@@ -1083,8 +1082,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.vertical_red.value == "gotoprimetime":
 					self.gotoPrimetime()
-				if config.epgselection.vertical_red.value == "locktime":
-					self.lockTime()
+				if config.epgselection.vertical_red.value == "setbasetime":
+					self.setBasetime()
 				if config.epgselection.vertical_red.value == "gotodatetime":
 					self.enterDateTime()
 			else:
@@ -1144,8 +1143,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.vertical_green.value == "gotoprimetime":
 					self.gotoPrimetime()
-				if config.epgselection.vertical_green.value == "locktime":
-					self.lockTime()
+				if config.epgselection.vertical_green.value == "setbasetime":
+					self.setBasetime()
 				if config.epgselection.vertical_green.value == "gotodatetime":
 					self.enterDateTime()
 			else:
@@ -1205,8 +1204,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.vertical_yellow.value == "gotoprimetime":
 					self.gotoPrimetime()
-				if config.epgselection.vertical_yellow.value == "locktime":
-					self.lockTime()
+				if config.epgselection.vertical_yellow.value == "setbasetime":
+					self.setBasetime()
 				if config.epgselection.vertical_yellow.value == "gotodatetime":
 					self.enterDateTime()
 			else:
@@ -1259,8 +1258,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.vertical_blue.value == "gotoprimetime":
 					self.gotoPrimetime()
-				if config.epgselection.vertical_blue.value == "locktime":
-					self.lockTime()
+				if config.epgselection.vertical_blue.value == "setbasetime":
+					self.setBasetime()
 				if config.epgselection.vertical_blue.value == "gotodatetime":
 					self.enterDateTime()
 			else:
@@ -1961,7 +1960,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 9:
 				self.gotoPrimetime()
 			elif number == 0:
-				self.lockTime()
+				self.setBasetime()
 		else:
 			self.zapnumberstarted = True
 			self.NumberZapTimer.start(5000, True)
@@ -2139,8 +2138,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_red'] = Button(_('Record'))
 			elif config.epgselection.vertical_red.value == "gotoprimetime":
 				self['key_red'] = Button(_('Goto Primetime'))
-			elif config.epgselection.vertical_red.value == "locktime":
-				self['key_red'] = Button(_('Lock time'))
+			elif config.epgselection.vertical_red.value == "setbasetime":
+				self['key_red'] = Button(_('Set Basetime'))
 			elif config.epgselection.vertical_red.value == "gotodatetime":
 				self['key_red'] = Button(_('Goto Date/Time'))
 
@@ -2164,8 +2163,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_green'] = Button(_('Record'))
 			elif config.epgselection.vertical_green.value == "gotoprimetime":
 				self['key_green'] = Button(_('Goto Primetime'))
-			elif config.epgselection.vertical_green.value == "locktime":
-				self['key_green'] = Button(_('Lock time'))
+			elif config.epgselection.vertical_green.value == "setbasetime":
+				self['key_green'] = Button(_('Set Basetime'))
 			elif config.epgselection.vertical_green.value == "gotodatetime":
 				self['key_green'] = Button(_('Goto Date/Time'))
 
@@ -2189,8 +2188,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_yellow'] = Button(_('Record'))
 			elif config.epgselection.vertical_yellow.value == "gotoprimetime":
 				self['key_yellow'] = Button(_('Goto Primetime'))
-			elif config.epgselection.vertical_yellow.value == "locktime":
-				self['key_yellow'] = Button(_('Lock time'))
+			elif config.epgselection.vertical_yellow.value == "setbasetime":
+				self['key_yellow'] = Button(_('Set Basetime'))
 			elif config.epgselection.vertical_yellow.value == "gotodatetime":
 				self['key_yellow'] = Button(_('Goto Date/Time'))
 
@@ -2214,8 +2213,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_blue'] = Button(_('Record'))
 			elif config.epgselection.vertical_blue.value == "gotoprimetime":
 				self['key_blue'] = Button(_('Goto Primetime'))
-			elif config.epgselection.vertical_blue.value == "locktime":
-				self['key_blue'] = Button(_('Lock time'))
+			elif config.epgselection.vertical_blue.value == "setbasetime":
+				self['key_blue'] = Button(_('Set Basetime'))
 			elif config.epgselection.vertical_blue.value == "gotodatetime":
 				self['key_blue'] = Button(_('Goto Date/Time'))
 
@@ -2409,20 +2408,26 @@ class EPGSelection(Screen, HelpableScreen):
 		ev_begin, ev_end = self.getEventTime(self.activeList)
 		oneDay =  24*3600
 		now = time()
+		idx = 0
 		if ev_begin is not None:
 			if ev_begin - oneDay < now:
 				self.ask_time = now-config.epg.histminutes.value*60
 			else:
-				self.lastEventTime = ev_begin - oneDay, ev_end - oneDay
-				self.gotoLasttime()
-				return
+				for list in range(1, self.Fields):
+					idx += self['list'+str(list)].getCurrentIndex()
+				if idx:
+					self.lastEventTime = ev_begin - oneDay, ev_end - oneDay
+					self.gotoLasttime()
+					return
+				else:
+					self.ask_time = ev_begin - oneDay
 		elif self.ask_time - oneDay > now:
 			self.ask_time -= oneDay
 		else:
 			self.ask_time = now-config.epg.histminutes.value*60
 		self.updateVerticalEPG()
 
-	def lockTime(self):
+	def setBasetime(self):
 		ev_begin, ev_end = self.getEventTime(self.activeList)
 		if ev_begin is not None:
 			self.ask_time = ev_begin
