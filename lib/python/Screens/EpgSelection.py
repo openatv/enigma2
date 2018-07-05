@@ -485,7 +485,7 @@ class EPGSelection(Screen, HelpableScreen):
 					'6': (self.keyNumberGlobal, _('next channel page')),
 					'7': (self.keyNumberGlobal, _('goto now')),
 					'8': (self.keyNumberGlobal, _('all events down')),
-					'9': (self.keyNumberGlobal, _('Goto Primetime)')),
+					'9': (self.keyNumberGlobal, _('Goto Primetime')),
 					'0': (self.keyNumberGlobal, _('Set Basetime'))
 				}, -1)
 
