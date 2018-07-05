@@ -42,7 +42,7 @@ BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
 
 def InitConfig():
 	# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
-	BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/', '/usr/lib/enigma2/python/Plugins/Extensions/MyMetrixLite/MyMetrixLiteBackup.dat',
+	BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/',
 		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', 
 		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
