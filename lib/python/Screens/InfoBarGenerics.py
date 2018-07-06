@@ -1767,6 +1767,7 @@ class InfoBarEPG:
 		if pluginlist:
 			pluginlist.append((_("Event Info"), self.openEventView))
 			pluginlist.append((_("Graphical EPG"), self.openGraphEPG))
+			pluginlist.append((_("Vertical EPG"), self.openVerticalEPG))
 			pluginlist.append((_("Infobar EPG"), self.openInfoBarEPG))
 			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG))
 			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
@@ -1878,6 +1879,8 @@ class InfoBarEPG:
 				self.openMultiServiceEPG()
 			elif config.plisettings.PLIEPG_mode.value == "single":
 				self.openSingleServiceEPG()
+			elif config.plisettings.PLIEPG_mode.value == "vertical":
+				self.openVerticalEPG()
 			elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
 				self.openMerlinEPGCenter()	
 			elif config.plisettings.PLIEPG_mode.value == "cooltvguide" and COOLTVGUIDE:
@@ -1987,6 +1990,21 @@ class InfoBarEPG:
 		self.EPGtype = "enhanced"
 		self.SingleServiceEPG()
 
+	def openVerticalEPG(self, reopen=False):
+		if self.servicelist is None:
+			return
+		if not reopen:
+			self.StartBouquet = self.servicelist.getRoot()
+			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.EPGtype = "vertical"
+		self.VerticalEPG()
+
+	def VerticalEPG(self):
+		#self.StartBouquet = self.servicelist.getRoot()
+		#self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		bouquets = self.servicelist.getBouquetList()
+		self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, self.servicelist, zapFunc=self.zapToService, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquets = bouquets))
+
 	def openInfoBarEPG(self, reopen=False):
 		if self.servicelist is None:
 			return
@@ -2041,6 +2059,8 @@ class InfoBarEPG:
 	def reopen(self, answer):
 		if answer == 'reopengraph':
 			self.openGraphEPG(True)
+		elif answer == 'reopenvertical':
+			self.openVerticalEPG(True)
 		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
 			self.openInfoBarEPG(True)
 		elif answer == 'close' and isMoviePlayerInfoBar(self):

@@ -944,6 +944,7 @@ def InitUsageConfig():
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
+					("vertical", _("Show Vertical EPG")),
 					("eventview", _("Show Eventview")),
 					("merlinepgcenter", _("Show Merlin EPG Center")),
 					("cooltvguide", _("Show CoolTVGuide"))])
@@ -959,6 +960,7 @@ def InitUsageConfig():
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
+					("vertical", _("Show Vertical EPG")),
 					("eventview", _("Show Eventview")),
 					("merlinepgcenter", _("Show Merlin EPG Center"))])
 		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
@@ -1051,6 +1053,38 @@ def InitUsageConfig():
 	config.epgselection.graph_green = ConfigSelection(default='timer', choices=epg_colorkeys)
 	config.epgselection.graph_yellow = ConfigSelection(default='epgsearch',choices=epg_colorkeys)
 	config.epgselection.graph_blue = ConfigSelection(default='autotimer', choices=epg_colorkeys)
+
+	config.epgselection.vertical_itemsperpage = ConfigSelectionNumber(default = 6, stepwidth = 1, min = 3, max = 12, wraparound = True)
+	config.epgselection.vertical_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -10, max = 10, wraparound = True)
+	config.epgselection.vertical_ok = ConfigSelection(choices = [("Channel Info", _("Channel Info")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Channel Info")
+	config.epgselection.vertical_oklong = ConfigSelection(choices = [("Channel Info", _("Channel Info")),("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
+	config.epgselection.vertical_info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
+	config.epgselection.vertical_infolong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
+	config.epgselection.vertical_channelbtn = ConfigSelection(choices = [("page", _("previous/next Page  ")), ("scroll", _("all up/down")), ("24", _("-24h/+24 Hours"))], default = "page")
+	config.epgselection.vertical_primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
+	config.epgselection.vertical_primetimemins = ConfigSelectionNumber(default = 15, stepwidth = 1, min = 00, max = 59, wraparound = True)
+	config.epgselection.vertical_preview_mode = ConfigYesNo(default = True)
+	config.epgselection.vertical_pig = ConfigYesNo(default = False)
+	config.epgselection.vertical_eventmarker = ConfigYesNo(default = True)
+	config.epgselection.vertical_showlines = ConfigYesNo(default = False)
+	config.epgselection.vertical_startmode = ConfigSelection(default = "standard", choices = [("standard", _("Standard")), ("primetime", _("Primetime")),("channel1", _("Channel 1")), ("channel1+primetime", _("Channel 1 with Primetime")) ])
+	config.epgselection.vertical_prevtime = ConfigClock(default = time())
+	vertical_colorkeys = [('autotimer', _('Auto Timer')),
+					('timer', _('Add/Remove Timer')),
+					('24plus', _('24+ Hours')),
+					('24minus', _('24- Hours')),
+					('imdb', _('IMDB search')),
+					('bouquetlist', _('Bouquet List')),
+					('showmovies', _('Show Movies List')),
+					('record', _('Record - same as record button')),
+					('gotodatetime', _('Goto Date/Timer')),
+					('gotoprimetime', _('Goto Primetime')),
+					('setbasetime', _('Set Basetime')),
+					('epgsearch', _('EPG search'))]
+	config.epgselection.vertical_red = ConfigSelection(default='imdb', choices=vertical_colorkeys)
+	config.epgselection.vertical_green = ConfigSelection(default='timer', choices=vertical_colorkeys)
+	config.epgselection.vertical_yellow = ConfigSelection(default='epgsearch',choices=vertical_colorkeys)
+	config.epgselection.vertical_blue = ConfigSelection(default='autotimer', choices=vertical_colorkeys)
 
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)

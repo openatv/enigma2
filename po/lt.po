@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 05:50+0300\n"
-"PO-Revision-Date: 2018-06-05 13:31+0300\n"
+"POT-Creation-Date: 2018-07-05 23:53+0300\n"
+"PO-Revision-Date: 2018-07-06 10:08+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.1\n"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas: Pasirinkite, keturių kanalų, kanalą"
@@ -123,7 +123,7 @@ msgid "%-H:%M"
 msgstr "%-V:%M -"
 
 msgid "%-H:%M - "
-msgstr "%-V:%M -"
+msgstr "%-V:%M - "
 
 msgid "%.0f GB"
 msgstr "%.0f GB"
@@ -488,6 +488,9 @@ msgstr "+24"
 
 msgid "-24"
 msgstr "-24"
+
+msgid "-24h/+24 Hours"
+msgstr "-24v/+ 24 valandos"
 
 msgid "/s"
 msgstr "/sek."
@@ -1248,7 +1251,7 @@ msgid "Activate network settings"
 msgstr "Aktyvuoti tinklo nustatymus"
 
 msgid "Activate Picture in Picture"
-msgstr "Aktyvuoti paveikslėlį paveikslėlyje"
+msgstr "Įjungti vaizdą vaizde"
 
 msgid "Activate the configured network settings."
 msgstr "Aktyvuoti tinklo nustatymų konfigūraciją."
@@ -1508,6 +1511,12 @@ msgstr "Visi"
 msgid "All ages"
 msgstr "Visi amžiai"
 
+msgid "all events down"
+msgstr "visi įvykiai žemyn"
+
+msgid "all events up"
+msgstr "visi įvykiai iki"
+
 msgid "All resolutions"
 msgstr "Visos raiškos"
 
@@ -1528,6 +1537,9 @@ msgstr "Visi kanalai"
 
 msgid "All services provider"
 msgstr "Visų kanalų tiekėjas"
+
+msgid "all up/down"
+msgstr "visi aukštyn/žemyn"
 
 msgid "Allocate"
 msgstr "Paskirti"
@@ -2786,6 +2798,9 @@ msgstr "Paleidžiant, atverti pirmąjį kanalą"
 msgid "Channel 1 with Primetime"
 msgstr "1 kanalas su žiūrimiausiu laiku"
 
+msgid "Channel buttons"
+msgstr "Kanalo mygtukai"
+
 msgid "Channel down"
 msgstr "Kanalą žemyn"
 
@@ -3475,6 +3490,13 @@ msgstr "Konfigūruokite pagrindinę subtitrų kalbą (didžiausias prioritetas).
 
 msgid "Configure the font size of the subtitles."
 msgstr "Konfigūruokite subtitrų šrifto dydį."
+
+msgid ""
+"Configure the font size relative to default size, so 1 increases by 1 point "
+"size, and -1 decreases by 1 point size."
+msgstr ""
+"Nustatykite šrifto dydį, lyginant su numatytu dydžiu, taigi 1 padidins 1 "
+"dydžio tašku, o -1 sumažins 1 dydžio tašku."
 
 msgid ""
 "Configure the font size relative to skin size, so 1 increases by 1 point "
@@ -6059,6 +6081,12 @@ msgstr "folk/tradicinė muzika"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Šios užduotys bus atliktos, kai paspausite 'OK'!"
 
+msgid "Font size"
+msgstr "Šrifto dydis"
+
+msgid "Font size in list"
+msgstr "Šrifto dydis sąraše"
+
 msgid "Font:"
 msgstr "Šriftas:"
 
@@ -6332,6 +6360,9 @@ msgstr "Eiti į 0"
 msgid "Goto :"
 msgstr "Eiti į :"
 
+msgid "goto current channel and now"
+msgstr "eiti į dabartinį kanalą ir dabar"
+
 msgid "Goto Date/Time"
 msgstr "Į konkrečią datą/laiką"
 
@@ -6341,8 +6372,14 @@ msgstr "Į konkrečią datą/laikmatį"
 msgid "goto deep-standby"
 msgstr "į gilų budėjimą"
 
+msgid "goto first channel"
+msgstr "eiti į kitą kanalą"
+
 msgid "Goto index position"
 msgstr "Į žymės poziciją"
+
+msgid "goto last channel"
+msgstr "eiti į paskutinį kanalą"
 
 msgid "Goto next bouquet"
 msgstr "Į kitą paketą"
@@ -6358,6 +6395,9 @@ msgstr "Į kitą įvykį"
 
 msgid "Goto next page of events"
 msgstr "Į sekančio puslapio įvykius"
+
+msgid "goto now"
+msgstr "eiti dabar"
 
 msgid "Goto position"
 msgstr "Eiti į poziciją"
@@ -6376,6 +6416,9 @@ msgstr "Į ankstesnį įvykį"
 
 msgid "Goto previous page of events"
 msgstr "Į ankstesnį įvykių puslapį"
+
+msgid "Goto Primetime"
+msgstr "Į žiūrimiausią laiką"
 
 msgid "Goto specific data/time"
 msgstr "Į konkrečią datą/laiką"
@@ -7423,8 +7466,14 @@ msgstr "Peršokti į pabaigos sąrašą"
 msgid "Jump to next marked position"
 msgstr "Peršokti į sekančią pažymėtą poziciją"
 
+msgid "jump to next page or all up (setup in menu)"
+msgstr "pereiti į kitą puslapį arba visi iki (sąranka meniu)"
+
 msgid "Jump to previous marked position"
 msgstr "Peršokti į ankstesnę pažymėtą poziciją"
+
+msgid "jump to previous page or all down (setup in menu)"
+msgstr "pereiti į ankstesnį puslapį arba visus žemyn (nustatymas meniu)"
 
 msgid "Jump to prime time"
 msgstr "Peršokti į žiūrimiausią laiką"
@@ -7756,6 +7805,9 @@ msgstr "Vietovių sąrašas"
 msgid "Lock ratio"
 msgstr "Fiksavimo santykis"
 
+msgid "Lock time"
+msgstr "Fiksavimo laikas"
+
 msgid "Lock:"
 msgstr "Fiksuota:"
 
@@ -7783,9 +7835,8 @@ msgstr "Senesni žurnalai, negu (nurodyti dienų) bus ištrinti."
 msgid "Logs settings"
 msgstr "Žurnalų nustatymai"
 
-msgid "Log python stack trace on spinner (may have side effects) ?"
-msgstr ""
-"Prisijungti python dėklo pėdsaką ant suktuko (gali turėti šalutinį poveikį) ?"
+msgid "Log python stack trace on spinner ?"
+msgstr "Prisijungti python steką ant suktuko?"
 
 msgid "long"
 msgstr "ilgas spaudimas"
@@ -8532,6 +8583,9 @@ msgstr "Kitas"
 
 msgid "Next boot will start from Image 1."
 msgstr "Kita įkrova prasidės nuo 1 atvaizdo."
+
+msgid "next channel page"
+msgstr "kito kanalo puslapis"
 
 msgid "next higher Resolution"
 msgstr "kita didesnė rezoliucija"
@@ -9580,6 +9634,9 @@ msgstr "logotipai"
 msgid "picshow"
 msgstr "logotipo rodymas"
 
+msgid "Picture in EPG"
+msgstr "Vaizdas EPG"
+
 msgid "Picture in graphics"
 msgstr "Vaizdas grafikoje"
 
@@ -10384,6 +10441,15 @@ msgstr "Peržiūrėti pasirinktą kanalą"
 
 msgid "Previous"
 msgstr "Ankstesnis"
+
+msgid "previous/next Page  "
+msgstr "ankstesnis/kitas puslapis  "
+
+msgid "previous channel page"
+msgstr "ankstesnis kanalo puslapis"
+
+msgid "previous page"
+msgstr "ankstesnis puslapis"
 
 msgid "Prevsong"
 msgstr "Ankstesnė daina"
@@ -12203,6 +12269,9 @@ msgstr "Pasirinkite veiksmą 'info' mygtukui"
 msgid "set as startup service"
 msgstr "nustatyti, kaip pradinį kanalą"
 
+msgid "Set Basetime"
+msgstr "Nustatykite bazinį laiką"
+
 msgid "Set CI assignment for detection of available services."
 msgstr "Prieinamų kanalų aptikimui, įtraukti ir CI priskyrimą."
 
@@ -12384,9 +12453,8 @@ msgstr ""
 "Nustato šakniniame aplanke filmų sąrašą, norėdami pašalinti į '..' iš rodymo "
 "tame aplanke."
 
-msgid "Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner."
-msgstr ""
-"Nustatykite taip, TIK LAIKINAM pagrindinės sukimosi priežasties derinimui"
+msgid "Set to yes for debugging the root cause of a spinner."
+msgstr "Nustatykite taip, kad būtų pašalinta pagrindinė sukimosi priežastis."
 
 msgid "Setting Restored "
 msgstr "Nustatymai atkurti "
@@ -12809,6 +12877,9 @@ msgstr "Numatytieji atsarginės kopijos failai"
 msgid "Show detailed event info"
 msgstr "Rodyti išsamią įvykio informaciją"
 
+msgid "Show detailed event info (setup in menu)"
+msgstr "Rodyti išsamią informaciją apie įvykį (nustatymas meniu)"
+
 msgid "Show Display Icons"
 msgstr "Rodyti ekrano logotipus"
 
@@ -12941,6 +13012,12 @@ msgstr "Loginis žurnalas"
 msgid "Show Log Manager in extensions list ?"
 msgstr "Rodyti žurnalo tvarkyklę plėtinių sąraše?"
 
+msgid "Show marked events"
+msgstr "Rodyti pažymėtus įvykius"
+
+msgid "Show marked events in all rows."
+msgstr "Rodyti pažymėtus įvykius visose eilutėse."
+
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Rodyti medijos atkūrime liko/praėjo kaip"
 
@@ -13000,6 +13077,12 @@ msgstr "Rodyti OScam tarp plėtinių ?"
 
 msgid "Show OscamInfo in Extensions Menu"
 msgstr "Rodyti OscamInfo tarp plėtinių meniu"
+
+msgid "Show parting lines"
+msgstr "Rodyti atskyrimo linijas"
+
+msgid "Show parting lines between events."
+msgstr "Rodyti atskyrimo linijas tarp įvykių."
 
 msgid "Show picon background colour"
 msgstr "Rodyti piktogramos fono spalvą"
@@ -13081,6 +13164,9 @@ msgstr "Rodyti vieno kanalo EPG"
 
 msgid "Show single epg for current channel"
 msgstr "Rodyti atskirą EPG šiam kanalui"
+
+msgid "Show single epg for current channel (setup in menu)"
+msgstr "Rodyti vienintelį epg dabartiniam kanalui (nustatymas meniu)"
 
 msgid "Show single service EPG"
 msgstr "Rodyti vieno kanalo EPG"
@@ -13183,6 +13269,9 @@ msgstr ""
 
 msgid "Show VCR scart on main menu"
 msgstr "Rodyti VCR skartą pagrindiniame meniu"
+
+msgid "Show Vertical EPG"
+msgstr "Rodyti vertikalųjį EPG"
 
 msgid "Show warning before restart"
 msgstr "Rodyti įspėjimą prieš paleidimą iš naujo"
@@ -16330,8 +16419,14 @@ msgstr "vertikali"
 msgid "Vertical"
 msgstr "Vertikalus"
 
+msgid "Vertical EPG"
+msgstr "Vertikalus EPG"
+
 msgid "Vertical turning speed"
 msgstr "Vertikalaus sukimosi greitis"
+
+msgid "VerticalEPG settings"
+msgstr "Vertikalaus EPG nustatymai"
 
 msgid "Very short filenames"
 msgstr "Labai trumpi failų pavadinimai"

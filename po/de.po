@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2017-11-24 19:53+0100\n"
+"PO-Revision-Date: 2018-07-06 18:17+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Stop recording now"
@@ -219,9 +219,6 @@ msgstr ""
 msgid " ms"
 msgstr " ms"
 
-msgid " packages selected."
-msgstr "Pakete ausgewählt."
-
 #
 msgid "Updates Available:"
 msgstr "Verfügbare Updates:"
@@ -243,8 +240,12 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 # EventView.py#L324
-msgid "\n%Y/%m/%d  %H:%M - "
-msgstr "\n%d.%m.%Y  %H:%M - "
+msgid ""
+"\n"
+"%Y/%m/%d  %H:%M - "
+msgstr ""
+"\n"
+"%d.%m.%Y  %H:%M - "
 
 # EpgList.py#L686
 msgid "%e/%m, %-H:%M"
@@ -14031,6 +14032,10 @@ msgstr "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar, bitte vers
 msgid "Sorry feeds are down for maintenance"
 msgstr "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar"
 
+#: SoftwareManager
+msgid "packages selected."
+msgstr "Pakete ausgewählt."
+
 #: Download Netzwerk Dienste
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr "Ihre %s %s hat keine Internetverbindung, bitte prüfen Sie die Netzwerkeinstellungen."
@@ -19569,8 +19574,14 @@ msgstr "Erlaube nicht unterstützte Modi"
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Mit dieser Option können Sie alle HDMI-Modi verwenden"
 
-msgid "Use automatic mode detection.\n This option reads all supported modes from your TV.\n Please disable it only if you want to customize the preferred configuration."
-msgstr "Verwenden Sie die Automatische Modus Erkennung.\nDie Option liest alle unterstützten Modi von Ihrem TV Gerät.\nBitte deaktivieren Sie es nur, wenn Sie die bevorzugte Konfiguration anpassen möchten."
+msgid ""
+"Use automatic mode detection.\n"
+" This option reads all supported modes from your TV.\n"
+" Please disable it only if you want to customize the preferred configuration."
+msgstr ""
+"Verwenden Sie die Automatische Modus Erkennung.\n"
+"Die Option liest alle unterstützten Modi von Ihrem TV Gerät.\n"
+"Bitte deaktivieren Sie es nur, wenn Sie die bevorzugte Konfiguration anpassen möchten."
 
 msgid "Default Modes Selected."
 msgstr "Standardmodi ausgewählt."
@@ -19607,3 +19618,38 @@ msgstr "erzwinge aktiviert"
 
 msgid "force disabled"
 msgstr "erzwinge deaktiviert"
+
+#: lib/python/Components/UsageConfig
+msgid "Show Vertical EPG"
+msgstr "Zeige vertikales EPG"
+
+#: lib/python/Screens/InfoBarGenerics
+msgid "Vertical EPG"
+msgstr "Vertikales EPG"
+
+#: data/setup.xml
+msgid "Picture in EPG"
+msgstr "Mini-TV im vertikalen EPG anzeigen"
+
+#: data/setup.xml
+msgid "Show parting lines"
+msgstr "Trennlinien anzeigen"
+
+#: data/setup.xml
+msgid "Show marked events"
+msgstr "Markierte Ereignisse anzeigen"
+
+#: data/setup.xml
+msgid "Channel buttons"
+msgstr "Kanaltasten"
+
+#: data/setup.xml
+msgid "Font size"
+msgstr "Schriftgröße"
+
+#: UsageConfig.py
+msgid "-24h/+24 Hours"
+msgstr "-24h/+24 Stunden"
+
+msgid "Goto Primetime"
+msgstr "Gehe zur Primetime"

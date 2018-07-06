@@ -171,6 +171,9 @@ class Picon(Renderer):
 					else:
 						self.instance.hide()
 					self.pngname = pngname
+			elif what[0] == 2:
+				self.pngname = ""
+				self.instance.hide()
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()
