@@ -8,7 +8,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Scanner import openFile
 from Components.Sources.Boolean import Boolean
 from Components.MenuList import MenuList
@@ -160,7 +160,7 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 ###################
 # ## Main Screen ###
 ###################
-class FileCommanderScreen(Screen, key_actions):
+class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
 			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
@@ -205,6 +205,7 @@ class FileCommanderScreen(Screen, key_actions):
 
 		self.session = session
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 
 		# set filter
 		if config.plugins.filecommander.extension.value == "myfilter":
@@ -224,33 +225,33 @@ class FileCommanderScreen(Screen, key_actions):
 		self["key_blue"] = Label(_("Rename"))
 		self["VKeyIcon"] = Boolean(False)
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
-			"ok": self.ok,
-			"back": self.exit,
-			"menu": self.goMenu,
-			"nextMarker": self.listRight,
-			"prevMarker": self.listLeft,
-			"nextBouquet": self.listRight,
-			"prevBouquet": self.listLeft,
-			"1": self.gomakeDir,
-			"2": self.gomakeSym,
-			"4": self.call_change_mode,
-			"5": self.goDefaultfolder,
+		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
+			"ok": (self.ok, _("Play/view/edit/install/extract/run file or enter directory")),
+			"back": (self.exit, _("Leave File Commander")),
+			"menu": (self.goMenu, _("Open configuration screen")),
+			"nextMarker": (self.listRight, _("Activate right-hand file list as source")),
+			"prevMarker": (self.listLeft, _("Activate left-hand file list as source")),
+			"nextBouquet": (self.listRight, _("Activate right-hand file list as source")),
+			"prevBouquet": (self.listLeft, _("Activate left-hand file list as source")),
+			"1": (self.gomakeDir, _("Create directory/folder")),
+			"2": (self.gomakeSym, _("Create user-named symbolic link")),
+			"4": (self.call_change_mode, _("Toggle execute permissions on/off (755/644)")),
+			"5": (self.goDefaultfolder, _("Go to your default folder")),
 			# "8": self.test,
-			"startTeletext": self.file_viewer,
-			"info": self.openTasklist,
-			"directoryUp": self.goParentfolder,
-			"up": self.goUp,
-			"down": self.goDown,
-			"left": self.goLeft,
-			"right": self.goRight,
-			"red": self.goRed,
-			"green": self.goGreen,
-			"yellow": self.goYellow,
-			"blue": self.goBlue,
-			"0": self.doRefresh,
-			"showMovies": self.listSelect,
-			"subtitleSelection": self.downloadSubtitles,
+			"startTeletext": (self.file_viewer, _("View or edit file (if size < 1MB)")),
+			"info": (self.openTasklist, _("Show task list")),
+			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
+			"up": (self.goUp, _("Move up list")),
+			"down": (self.goDown, _("Move down list")),
+			"left": (self.goLeft, _("Page up list")),
+			"right": (self.goRight, _("Page down list")),
+			"red": (self.goRed, _("Delete file or directory (and all its contents)")),
+			"green": (self.goGreen, _("Move file/directory to target directory")),
+			"yellow": (self.goYellow, _("Copy file/directory to target directory")),
+			"blue": (self.goBlue, _("Rename file/directory")),
+			"0": (self.doRefresh, _("Refresh screen")),
+			"showMovies": (self.listSelect, _("Enter multi-file selection mode")),
+			"subtitleSelection": self.downloadSubtitles,  # Unimplemented
 		}, -1)
 
 		if config.plugins.filecommander.path_left_selected:
@@ -661,7 +662,7 @@ class FileCommanderScreen(Screen, key_actions):
 #####################
 # ## Select Screen ###
 #####################
-class FileCommanderScreenFileSelect(Screen, key_actions):
+class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
 			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
@@ -680,6 +681,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 
 	def __init__(self, session, leftactive, selectedid):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 
 		self.selectedFiles = []
 		self.selectedid = selectedid
@@ -715,26 +717,26 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		self["key_yellow"] = Label(_("Copy"))
 		self["key_blue"] = Label(_("Skip selection"))
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions"], {
-			"ok": self.ok,
-			"back": self.exit,
+		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions"], {
+			"ok": (self.ok, _("Select (source list) or enter directory (target list)")),
+			"back": (self.exit, _("Leave multi-select mode")),
 			# "menu": self.goMenu,
-			"nextMarker": self.listRight,
-			"prevMarker": self.listLeft,
-			"nextBouquet": self.listRight,
-			"prevBouquet": self.listLeft,
-			"info": self.openTasklist,
-			"directoryUp": self.goParentfolder,
-			"up": self.goUp,
-			"down": self.goDown,
-			"left": self.goLeft,
-			"right": self.goRight,
-			"red": self.goRed,
-			"green": self.goGreen,
-			"yellow": self.goYellow,
-			"blue": self.goBlue,
-			"0": self.doRefresh,
-			"showMovies": self.changeSelectionState,
+			"nextMarker": (self.listRight, _("Activate right-hand file list as multi-select source")),
+			"prevMarker": (self.listLeft, _("Activate left-hand file list as multi-select source")),
+			"nextBouquet": (self.listRight, _("Activate right-hand file list as multi-select source")),
+			"prevBouquet": (self.listLeft, _("Activate left-hand file list as multi-select source")),
+			"info": (self.openTasklist, _("Show task list")),
+			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
+			"up": (self.goUp, _("Move up list")),
+			"down": (self.goDown, _("Move down list")),
+			"left": (self.goLeft, _("Page up list")),
+			"right": (self.goRight, _("Page down list")),
+			"red": (self.goRed, _("Delete the selected files or directories")),
+			"green": (self.goGreen, _("Move files/directories to target directory")),
+			"yellow": (self.goYellow, _("Copy files/directories to target directory")),
+			"blue": (self.goBlue, _("Leave multi-select mode")),
+			"0": (self.doRefresh, _("Refresh screen")),
+			"showMovies": (self.ok, _("Select")),
 		}, -1)
 		self.onLayoutFinish.append(self.onLayout)
 

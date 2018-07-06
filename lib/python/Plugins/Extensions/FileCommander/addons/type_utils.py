@@ -7,7 +7,7 @@ from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInt
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Task import job_manager
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.Scanner import openFile
 from Components.MenuList import MenuList
 from Components.AVSwitch import AVSwitch
@@ -76,7 +76,7 @@ class MoviePlayer(Movie_Audio_Player):
 
 # ### File viewer/line editor ###
 
-class vEditor(Screen):
+class vEditor(Screen, HelpableScreen):
 
 	skin = """
 		<screen position="40,80" size="1200,600" title="">
@@ -97,18 +97,19 @@ class vEditor(Screen):
 		self.skin = vEditor.skin
 		Screen.__init__(self, session)
 		self.session = session
+		HelpableScreen.__init__(self)
 		self.file_name = file
 		self.list = []
 		self["filedata"] = MenuList(self.list)
-		self["actions"] = ActionMap(["WizardActions", "ColorActions", "InfobarChannelSelection"], {
-			"ok": self.editLine,
-			"green": self.editLine,
-			"back": self.exitEditor,
-			"red": self.exitEditor,
-			"yellow": self.del_Line,
-			"blue": self.ins_Line,
-			"showFavourites": self.posStart,
-			"openServiceList": self.posEnd
+		self["actions"] = HelpableActionMap(self, ["WizardActions", "ColorActions", "InfobarChannelSelection"], {
+			"ok": (self.editLine, _("Edit current line")),
+			"green": (self.editLine, _("Edit current line")),
+			"back": (self.exitEditor, _("Exit editor and write changes (if any)")),
+			"red":  (self.exitEditor, _("Exit editor and write changes (if any)")),
+			"yellow": (self.del_Line, _("Delete current line")),
+			"blue": (self.ins_Line, _("Insert line before current line")),
+			"ChannelPlusPressed": (self.posStart, _("Go to start of file")),
+			"ChannelMinusPressed": (self.posEnd, _("Go to end of file")),
 		}, -1)
 		self["list_head"] = Label(self.file_name)
 		self["key_red"] = Label(_("Exit"))
@@ -231,7 +232,7 @@ class vEditor(Screen):
 		else:
 			self.close()
 
-class ImageViewer(Screen):
+class ImageViewer(Screen, HelpableScreen):
 	s, w, h = 30, getDesktop(0).size().width(), getDesktop(0).size().height()
 	skin = """
 		<screen position="0,0" size="%d,%d" flags="wfNoBorder">
@@ -245,12 +246,13 @@ class ImageViewer(Screen):
 
 	def __init__(self, session, fileList, index, path, filename):
 		Screen.__init__(self, session)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "MovieSelectionActions"], {
-			"cancel": self.keyCancel,
-			"left": self.keyLeft,
-			"right": self.keyRight,
-			"blue": self.keyBlue,
-			"yellow": self.keyYellow,
+		HelpableScreen.__init__(self)
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "DirectionActions", "MovieSelectionActions"], {
+			"cancel": (self.keyCancel, _("Exit picture viewer")),
+			"left": (self.keyLeft, _("Show next picture")),
+			"right": (self.keyRight, _("Show previous picture")),
+			"blue": (self.keyBlue, _("Start/stop slide show")),
+			"yellow": (self.keyYellow, _("Show image information")),
 		}, -1)
 
 		self["icon"] = Pixmap()

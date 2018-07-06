@@ -7,7 +7,6 @@ from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInt
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Task import job_manager
-from Components.ActionMap import ActionMap
 from Components.Scanner import openFile
 from Components.MenuList import MenuList
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS, KNOWN_EXTENSIONS
