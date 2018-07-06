@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2018-07-06 18:17+0200\n"
+"PO-Revision-Date: 2018-07-06 20:14+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -218,6 +218,9 @@ msgstr ""
 
 msgid " ms"
 msgstr " ms"
+
+msgid " packages selected."
+msgstr "Pakete ausgewählt."
 
 #
 msgid "Updates Available:"
@@ -14032,10 +14035,6 @@ msgstr "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar, bitte vers
 msgid "Sorry feeds are down for maintenance"
 msgstr "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar"
 
-#: SoftwareManager
-msgid "packages selected."
-msgstr "Pakete ausgewählt."
-
 #: Download Netzwerk Dienste
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr "Ihre %s %s hat keine Internetverbindung, bitte prüfen Sie die Netzwerkeinstellungen."
@@ -19647,9 +19646,14 @@ msgstr "Kanaltasten"
 msgid "Font size"
 msgstr "Schriftgröße"
 
-#: UsageConfig.py
+#: python\Components\UsageConfig.py
 msgid "-24h/+24 Hours"
 msgstr "-24h/+24 Stunden"
 
+#: python\Screens\EpgSelection
 msgid "Goto Primetime"
 msgstr "Gehe zur Primetime"
+
+#: python\Screens\EpgSelection
+msgid "Set Basetime"
+msgstr "Setze Basiszeit"
