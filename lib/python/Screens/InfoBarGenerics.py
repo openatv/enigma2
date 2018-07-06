@@ -3660,6 +3660,8 @@ class InfoBarINFOpanel:
 			isHBBTV = True
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/QtHbbtv/plugin.pyo"):
 			isHBBTV = True
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Hbbtv/plugin.pyo"):
+			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:
 			service = self.session.nav.getCurrentService()
