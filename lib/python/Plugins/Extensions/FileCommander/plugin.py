@@ -126,7 +126,6 @@ class FileCommanderConfigScreen(Screen, ConfigListScreen):
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["setupActions"] = ActionMap(["SetupActions"], {
-			"green": self.save,
 			"red": self.cancel,
 			"save": self.save,
 			"cancel": self.cancel,
@@ -225,7 +224,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self["key_blue"] = Label(_("Rename"))
 		self["VKeyIcon"] = Boolean(False)
 
-		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
+		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
 			"ok": (self.ok, _("Play/view/edit/install/extract/run file or enter directory")),
 			"back": (self.exit, _("Leave File Commander")),
 			"menu": (self.goMenu, _("Open configuration screen")),
@@ -717,7 +716,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["key_yellow"] = Label(_("Copy"))
 		self["key_blue"] = Label(_("Skip selection"))
 
-		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions"], {
+		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions"], {
 			"ok": (self.ok, _("Select (source list) or enter directory (target list)")),
 			"back": (self.exit, _("Leave multi-select mode")),
 			# "menu": self.goMenu,
