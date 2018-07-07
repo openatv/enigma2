@@ -2407,8 +2407,8 @@ class EPGSelection(Screen, HelpableScreen):
 		idx = 0
 		oneDay = 24*3600
 		ev_begin, ev_end = self.getEventTime(self.activeList)
-		for list in range(1, self.Fields):
-			idx += self['list'+str(list)].getCurrentIndex()
+		#for list in range(1, self.Fields):
+		#	idx += self['list'+str(list)].getCurrentIndex()
 
 		if ev_begin and ev_end and ev_begin+oneDay < self.findMaxEventTime(ev_begin):
 			primetime = self.setPrimetime(ev_begin)
@@ -2511,7 +2511,6 @@ class EPGSelection(Screen, HelpableScreen):
 				self.findLasttime(cnt, list)
 
 	def findLasttime(self, cnt, list, idx = 0):
-		self.ptf = 0
 		last_begin, last_end = self.lastEventTime
 		for events in range(0,idx):
 			self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
