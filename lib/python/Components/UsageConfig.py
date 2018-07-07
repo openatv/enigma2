@@ -1059,6 +1059,7 @@ def InitUsageConfig():
 	config.epgselection.vertical_info = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Channel Info")
 	config.epgselection.vertical_infolong = ConfigSelection(choices = [("Channel Info", _("Channel Info")), ("Single EPG", _("Single EPG"))], default = "Single EPG")
 	config.epgselection.vertical_channelbtn = ConfigSelection(choices = [("page", _("previous/next Page  ")), ("scroll", _("all up/down")), ("24", _("-24h/+24 Hours"))], default = "page")
+	config.epgselection.vertical_channelbtn_invert = ConfigYesNo(default = False)
 	config.epgselection.vertical_primetimehour = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 00, max = 23, wraparound = True)
 	config.epgselection.vertical_primetimemins = ConfigSelectionNumber(default = 15, stepwidth = 1, min = 00, max = 59, wraparound = True)
 	config.epgselection.vertical_preview_mode = ConfigYesNo(default = True)

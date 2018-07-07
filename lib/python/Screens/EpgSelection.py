@@ -713,11 +713,18 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'+str(self.activeList)].moveToEventId(curr)
 
 	def moveUp(self):
-		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveUp)
-		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			self.moveTimeLines(True)
 		if self.type == EPG_TYPE_VERTICAL:
 			self.saveLastEventTime()
+			if not self['list'+str(self.activeList)].getCurrentIndex():
+				tmp = self.lastEventTime
+				self.setMinus24h()
+				self.lastEventTime = tmp
+				self.gotoLasttime()
+		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveUp)
+		if self.type == EPG_TYPE_VERTICAL:
+			self.saveLastEventTime()
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self.moveTimeLines(True)
 
 	def moveDown(self):
 		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveDown)
@@ -733,13 +740,23 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
 
-	def nextPage(self, numberkey=False):
+	def nextPage(self, numberkey=False, reverse = False):
 		if self.type == EPG_TYPE_VERTICAL:
 			if not numberkey and 'scroll' in config.epgselection.vertical_channelbtn.value:
-				self.allUp()
+				if config.epgselection.vertical_channelbtn_invert.value:
+					self.allDown()
+				else:
+					self.allUp()
 			elif not numberkey and '24' in config.epgselection.vertical_channelbtn.value:
-				self.setMinus24h()
+				if config.epgselection.vertical_channelbtn_invert.value:
+					self.setPlus24h()
+				else:
+					self.setMinus24h()
 			else:
+				if not numberkey:
+					if not reverse and config.epgselection.vertical_channelbtn_invert.value:
+						self.prevPage(reverse = True)
+						return
 				if len(self.list) <= self["list"].getSelectionIndex() + self.Fields-1:
 					self.gotoFirst()
 				else:
@@ -750,13 +767,23 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['list'].moveTo(self['list'].instance.pageDown)
 
-	def prevPage(self, numberkey=False):
+	def prevPage(self, numberkey=False, reverse = False):
 		if self.type == EPG_TYPE_VERTICAL:
 			if not numberkey and 'scroll' in config.epgselection.vertical_channelbtn.value:
-				self.allDown()
+				if config.epgselection.vertical_channelbtn_invert.value:
+					self.allUp()
+				else:
+					self.allDown()
 			elif not numberkey and '24' in config.epgselection.vertical_channelbtn.value:
-				self.setPlus24h()
+				if config.epgselection.vertical_channelbtn_invert.value:
+					self.setMinus24h()
+				else:
+					self.setPlus24h()
 			else:
+				if not numberkey:
+					if not reverse and config.epgselection.vertical_channelbtn_invert.value:
+						self.nextPage(reverse = True)
+						return
 				if not self["list"].getSelectionIndex():
 					self.gotoLast()
 				else:
@@ -2359,6 +2386,11 @@ class EPGSelection(Screen, HelpableScreen):
 		return self["list"].getSelectionIndex()+(self.activeList-1)
 
 	def allUp(self):
+		if not self['list'+str(self.activeList)].getCurrentIndex():
+			tmp = self.lastEventTime
+			self.setMinus24h()
+			self.lastEventTime = tmp
+			self.gotoLasttime()
 		for list in range(1,self.Fields):
 			self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
 		self.saveLastEventTime()
