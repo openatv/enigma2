@@ -717,7 +717,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.saveLastEventTime()
 			if not self['list'+str(self.activeList)].getCurrentIndex():
 				tmp = self.lastEventTime
-				self.setMinus24h()
+				self.setMinus24h(True, 6)
 				self.lastEventTime = tmp
 				self.gotoLasttime()
 		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveUp)
@@ -2388,7 +2388,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def allUp(self):
 		if not self['list'+str(self.activeList)].getCurrentIndex():
 			tmp = self.lastEventTime
-			self.setMinus24h()
+			self.setMinus24h(True, 6)
 			self.lastEventTime = tmp
 			self.gotoLasttime()
 		for list in range(1,self.Fields):
@@ -2436,11 +2436,8 @@ class EPGSelection(Screen, HelpableScreen):
 		return maxtime or time or self.lastEventTime[0]
 
 	def setPlus24h(self):
-		idx = 0
 		oneDay = 24*3600
 		ev_begin, ev_end = self.getEventTime(self.activeList)
-		#for list in range(1, self.Fields):
-		#	idx += self['list'+str(list)].getCurrentIndex()
 
 		if ev_begin and ev_end and ev_begin+oneDay < self.findMaxEventTime(ev_begin):
 			primetime = self.setPrimetime(ev_begin)
@@ -2455,10 +2452,10 @@ class EPGSelection(Screen, HelpableScreen):
 			self.saveLastEventTime()
 			self.gotoLasttime()
 
-	def setMinus24h(self):
+	def setMinus24h(self, force = False, daypart = 1):
 		idx = 0
 		now = time()
-		oneDay =  24*3600
+		oneDay =  24*3600/daypart
 		ev_begin, ev_end = self.getEventTime(self.activeList)
 
 		if ev_begin is not None:
@@ -2467,7 +2464,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				for list in range(1, self.Fields):
 					idx += self['list'+str(list)].getCurrentIndex()
-				if idx:
+				if idx and not force:
 					self.lastEventTime = ev_begin - oneDay, ev_end - oneDay
 					self.gotoLasttime()
 					return
@@ -2516,9 +2513,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.gotoNow()
 					return
 				else:
-					self.ask_time = primetime - oneDay
-					self.updateVerticalEPG()
-					primetime = self.setPrimetime(ev_begin)
+					self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveTop)
+					self.setMinus24h(True, 6)
 					for list in range(1, self.Fields):
 						self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveEnd)
 						cnt = self['list'+str(list)].getCurrentIndex()
