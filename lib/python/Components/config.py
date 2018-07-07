@@ -1752,6 +1752,8 @@ class ConfigDirectory(ConfigText):
 			val = ""
 		ConfigText.setValue(self, val)
 
+	value = property(getValue, setValue)
+
 	def getMulti(self, selected):
 		if self.text == "":
 			return "mtext"[1 - selected:], _("List of storage devices"), range(0)
