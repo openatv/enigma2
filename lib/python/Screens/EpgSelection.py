@@ -1823,7 +1823,7 @@ class EPGSelection(Screen, HelpableScreen):
 			del self.eventviewDialog
 			self.eventviewDialog = None
 
-	def closeScreen(self):
+	def closeScreen(self, NOCLOSE = False):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return # stop and do not continue.
@@ -1853,6 +1853,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.Oldpipshown:
 			self.session.pipshown = True
 		self.closeEventViewDialog()
+		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
+			return
 		self.close(True)
 
 	def zap(self):
@@ -1997,6 +1999,8 @@ class EPGSelection(Screen, HelpableScreen):
 			elif number == 4:
 				self.prevPage(True)
 			elif number == 5:
+				if self.zapFunc:
+					self.closeScreen(True)
 				self.onCreate()
 			elif number == 6:
 				self.nextPage(True)
