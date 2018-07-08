@@ -715,11 +715,21 @@ class EPGSelection(Screen, HelpableScreen):
 	def moveUp(self):
 		if self.type == EPG_TYPE_VERTICAL:
 			self.saveLastEventTime()
-			if not self['list'+str(self.activeList)].getCurrentIndex():
+			idx = self['list'+str(self.activeList)].getCurrentIndex()
+			if not idx:
 				tmp = self.lastEventTime
 				self.setMinus24h(True, 6)
 				self.lastEventTime = tmp
 				self.gotoLasttime()
+			elif config.epgselection.vertical_updownbtn.value:
+				curTime = self.getEventTime(self.activeList)[0]
+				if not idx % config.epgselection.vertical_itemsperpage.value:
+					for list in range(1,self.Fields):
+						if list == self.activeList:
+							continue
+						evTime = self.getEventTime(list)[0]
+						if curTime is None or evTime is None or curTime <= evTime:
+							self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
 		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveUp)
 		if self.type == EPG_TYPE_VERTICAL:
 			self.saveLastEventTime()
@@ -727,6 +737,16 @@ class EPGSelection(Screen, HelpableScreen):
 			self.moveTimeLines(True)
 
 	def moveDown(self):
+		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
+			idx = self['list'+str(self.activeList)].getCurrentIndex()
+			curTime = self.getEventTime(self.activeList)[0]
+			if not (idx+1) % config.epgselection.vertical_itemsperpage.value:
+				for list in range(1,self.Fields):
+					if list == self.activeList:
+						continue
+					evTime = self.getEventTime(list)[0]
+					if curTime is None or evTime is None or curTime >= evTime:
+						self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
 		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveDown)
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
