@@ -481,12 +481,12 @@ class EPGSelection(Screen, HelpableScreen):
 					'2': (self.keyNumberGlobal, _('all events up')),
 					'3': (self.keyNumberGlobal, _('goto last channel')),
 					'4': (self.keyNumberGlobal, _('previous channel page')),
-					'5': (self.keyNumberGlobal, _('goto current channel and now')),
+					'0': (self.keyNumberGlobal, _('goto current channel and now')),
 					'6': (self.keyNumberGlobal, _('next channel page')),
 					'7': (self.keyNumberGlobal, _('goto now')),
 					'8': (self.keyNumberGlobal, _('all events down')),
 					'9': (self.keyNumberGlobal, _('Goto Primetime')),
-					'0': (self.keyNumberGlobal, _('Set Basetime'))
+					'5': (self.keyNumberGlobal, _('Set Basetime'))
 				}, -1)
 
 			self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
@@ -1823,7 +1823,7 @@ class EPGSelection(Screen, HelpableScreen):
 			del self.eventviewDialog
 			self.eventviewDialog = None
 
-	def closeScreen(self):
+	def closeScreen(self, NOCLOSE = False):
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
 			return # stop and do not continue.
@@ -1853,6 +1853,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.Oldpipshown:
 			self.session.pipshown = True
 		self.closeEventViewDialog()
+		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
+			return
 		self.close(True)
 
 	def zap(self):
@@ -1996,7 +1998,9 @@ class EPGSelection(Screen, HelpableScreen):
 				self.gotoLast()
 			elif number == 4:
 				self.prevPage(True)
-			elif number == 5:
+			elif number == 0:
+				if self.zapFunc:
+					self.closeScreen(True)
 				self.onCreate()
 			elif number == 6:
 				self.nextPage(True)
@@ -2006,7 +2010,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.allDown()
 			elif number == 9:
 				self.gotoPrimetime()
-			elif number == 0:
+			elif number == 5:
 				self.setBasetime()
 		else:
 			self.zapnumberstarted = True
