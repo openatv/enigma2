@@ -535,8 +535,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					itemHeight = 54*sf # some default (270/5)
 			if self.NumberOfRows:
 				itemHeight = self.listHeight / self.NumberOfRows
+			itemHeight = int(itemHeight)
 			self.l.setItemHeight(itemHeight)
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.instance.resize(eSize(self.listWidth, int(self.listHeight / itemHeight * itemHeight)))
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
@@ -548,8 +549,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 32*sf
 			if itemHeight < 15:
 				itemHeight = 15*sf
+			itemHeight = int(itemHeight)
 			self.l.setItemHeight(itemHeight)
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.instance.resize(eSize(self.listWidth, int(self.listHeight / itemHeight * itemHeight)))
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
@@ -560,8 +562,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 32*sf
 			if itemHeight < 25:
 				itemHeight = 25*sf
+			itemHeight = int(itemHeight)
 			self.l.setItemHeight(itemHeight)
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.instance.resize(eSize(self.listWidth, int(self.listHeight / itemHeight * itemHeight)))
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
@@ -572,8 +575,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = 32*sf
 			if itemHeight < 25:
 				itemHeight = 20*sf
-			self.l.setItemHeight(int(itemHeight))
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			itemHeight = int(itemHeight)
+			self.l.setItemHeight(itemHeight)
+			self.instance.resize(eSize(self.listWidth, int(self.listHeight / itemHeight * itemHeight)))
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
@@ -582,8 +586,9 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = self.listHeight / config.epgselection.vertical_itemsperpage.value
 			else:
 				itemHeight = 90*sf
-			self.l.setItemHeight(int(itemHeight))
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			itemHeight = int(itemHeight)
+			self.l.setItemHeight(itemHeight)
+			self.instance.resize(eSize(self.listWidth, int(self.listHeight / itemHeight * itemHeight)))
 			self.listHeight = self.instance.size().height()
 			self.listWidth = self.instance.size().width()
 			self.itemHeight = itemHeight
