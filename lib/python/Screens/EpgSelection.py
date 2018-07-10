@@ -1882,6 +1882,8 @@ class EPGSelection(Screen, HelpableScreen):
 		count = lst.getCurrentChangeCount()
 		if count == 0:
 			ref = lst.getCurrent()[1]
+			if ref is None and self.type == EPG_TYPE_VERTICAL and self.myServices[0][0]:
+				ref = ServiceReference(self.myServices[self["list"].getSelectionIndex()+self.activeList-1][0])
 			if ref is not None:
 				if (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.value == '2':
 					if not prev:
