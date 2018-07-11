@@ -33,6 +33,7 @@ from Plugins.Plugin import PluginDescriptor
 from subprocess import call
 import commands
 import os
+import glob
 
 if float(getVersionString()) >= 4.0:
 	basegroup = "packagegroup-base"
@@ -2028,21 +2029,23 @@ class NetworkFtp(Screen):
 
 	def activateFtp(self):
 		commands = []
-		if fileExists('/etc/rc2.d/S20vsftpd'):
+		if len(glob.glob('/etc/rc2.d/S*0vsftpd')):
+		#if fileExists('/etc/rc2.d/S20vsftpd'):
 			commands.append('update-rc.d -f vsftpd remove')
 		else:
 			commands.append('update-rc.d -f vsftpd defaults')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
-		import process		
-		p = process.ProcessList()		
+		import process
+		p = process.ProcessList()
 		ftp_process = str(p.named('vsftpd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
 		self.my_ftp_active = False
-		if fileExists('/etc/rc2.d/S20vsftpd'):
+		if len(glob.glob('/etc/rc2.d/S*0vsftpd')):
+		#if fileExists('/etc/rc2.d/S20vsftpd'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_ftp_active = True

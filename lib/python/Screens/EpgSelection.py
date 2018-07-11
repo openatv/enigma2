@@ -110,6 +110,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.bouquetlist_active = False
 			self.firststart = True
 			self.lastEventTime = (time(), time()+3600)
+			self.lastMinus = 0
 			self.activeList = 1
 			self.myServices = []
 			self.list = []
@@ -713,7 +714,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'+str(self.activeList)].moveToEventId(curr)
 
 	def moveUp(self):
-		if self.type == EPG_TYPE_VERTICAL:
+		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
+			if self.getEventTime(self.activeList)[0] is None:
+				return
 			self.saveLastEventTime()
 			idx = self['list'+str(self.activeList)].getCurrentIndex()
 			if not idx:
@@ -722,31 +725,19 @@ class EPGSelection(Screen, HelpableScreen):
 				self.lastEventTime = tmp
 				self.gotoLasttime()
 			elif config.epgselection.vertical_updownbtn.value:
-				curTime = self.getEventTime(self.activeList)[0]
 				if not idx % config.epgselection.vertical_itemsperpage.value:
-					for list in range(1,self.Fields):
-						if list == self.activeList:
-							continue
-						evTime = self.getEventTime(list)[0]
-						if curTime is None or evTime is None or curTime <= evTime:
-							self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
+					self.syncUp(idx)
 		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveUp)
-		if self.type == EPG_TYPE_VERTICAL:
-			self.saveLastEventTime()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
+		if self.type == EPG_TYPE_VERTICAL:
+			self.saveLastEventTime()
 
 	def moveDown(self):
 		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
 			idx = self['list'+str(self.activeList)].getCurrentIndex()
-			curTime = self.getEventTime(self.activeList)[0]
 			if not (idx+1) % config.epgselection.vertical_itemsperpage.value:
-				for list in range(1,self.Fields):
-					if list == self.activeList:
-						continue
-					evTime = self.getEventTime(list)[0]
-					if curTime is None or evTime is None or curTime >= evTime:
-						self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
+				self.syncDown(idx+1)
 		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveDown)
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
@@ -2316,11 +2307,11 @@ class EPGSelection(Screen, HelpableScreen):
 			self.myServices.append(('',''))
 		return self.list
 
-	def updateVerticalEPG(self):
+	def updateVerticalEPG(self, force = False):
 		self.displayActiveEPG()
 		stime = None
 		now = time()
-		if self.ask_time >= now - config.epg.histminutes.value*60:
+		if force or self.ask_time >= now - config.epg.histminutes.value*60:
 			stime = self.ask_time
 		prgIndex = self["list"].getSelectionIndex()
 		CurrentPrg = self.myServices[prgIndex]
@@ -2418,18 +2409,53 @@ class EPGSelection(Screen, HelpableScreen):
 		return self["list"].getSelectionIndex()+(self.activeList-1)
 
 	def allUp(self):
-		if not self['list'+str(self.activeList)].getCurrentIndex():
+		if self.getEventTime(self.activeList)[0] is None:
+			return
+		idx = self['list'+str(self.activeList)].getCurrentIndex()
+		if not idx:
 			tmp = self.lastEventTime
 			self.setMinus24h(True, 6)
 			self.lastEventTime = tmp
 			self.gotoLasttime()
 		for list in range(1,self.Fields):
 			self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
+		self.syncUp(idx)
 		self.saveLastEventTime()
 
+	def syncUp(self, idx):
+		idx = self['list'+str(self.activeList)].getCurrentIndex()
+		curTime = self.getEventTime(self.activeList)[0]
+		for list in range(1,self.Fields):
+			if list == self.activeList:
+				continue
+			for x in range(0,int(idx/config.epgselection.vertical_itemsperpage.value)):
+				evTime = self.getEventTime(list)[0]
+				if curTime is None or evTime is None or curTime <= evTime:
+					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
+				evTime = self.getEventTime(list)[0]
+				if curTime is None or evTime is None or curTime >= evTime:
+					break
+
+	def syncDown(self, idx):
+		curTime = self.getEventTime(self.activeList)[0]
+		for list in range(1,self.Fields):
+			if list == self.activeList:
+				continue
+			for x in range(0,int(idx/config.epgselection.vertical_itemsperpage.value)):
+				evTime = self.getEventTime(list)[0]
+				if curTime is None or evTime is None or curTime >= evTime:
+					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
+				evTime = self.getEventTime(list)[0]
+				if curTime is None or evTime is None or curTime <= evTime:
+					break
+
 	def allDown(self):
+		if self.getEventTime(self.activeList)[0] is None:
+			return
 		for list in range(1,self.Fields):
 			self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
+		idx = self['list'+str(self.activeList)].getCurrentIndex()
+		self.syncDown(idx)
 		self.saveLastEventTime()
 
 	def gotoNow(self):
@@ -2457,55 +2483,73 @@ class EPGSelection(Screen, HelpableScreen):
 		self.updateVerticalEPG()
 
 	def setPrimetime(self, stime):
-		stime = stime or self.lastEventTime[0] or time()
+		if stime is None:
+			stime = time()
 		t = localtime(stime)
-		primetime = mktime((t[0],t[1],t[2],config.epgselection.vertical_primetimehour.value,config.epgselection.vertical_primetimemins.value,t[5],t[6],t[7],t[8]))
+		primetime = mktime((t[0],t[1],t[2],config.epgselection.vertical_primetimehour.value,config.epgselection.vertical_primetimemins.value,0,t[6],t[7],t[8]))
 		return primetime
 
-	def findMaxEventTime(self, time):
+	def findMaxEventTime(self, stime):
+		curr = self['list'+str(self.activeList)].getSelectedEventId()
 		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveEnd)
 		maxtime = self.getEventTime(self.activeList)[0]
-		return maxtime or time or self.lastEventTime[0]
+		self['list'+str(self.activeList)].moveToEventId(curr)
+		return maxtime is not None and maxtime >= stime
+
+	def findMinEventTime(self, stime):
+		curr = self['list'+str(self.activeList)].getSelectedEventId()
+		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveTop)
+		mintime = self.getEventTime(self.activeList)[0]
+		self['list'+str(self.activeList)].moveToEventId(curr)
+		return mintime is not None and mintime <= stime
+
+	def isInTimeRange(self, stime):
+		return self.findMaxEventTime(stime) and self.findMinEventTime(stime)
 
 	def setPlus24h(self):
 		oneDay = 24*3600
 		ev_begin, ev_end = self.getEventTime(self.activeList)
 
-		if ev_begin and ev_end and ev_begin+oneDay < self.findMaxEventTime(ev_begin):
-			primetime = self.setPrimetime(ev_begin)
-			if primetime >= ev_begin and primetime < ev_end:
-				self.ask_time = primetime + oneDay
+		if ev_begin is not None:
+			if self.findMaxEventTime(ev_begin+oneDay):
+				primetime = self.setPrimetime(ev_begin)
+				if primetime >= ev_begin and primetime < ev_end:
+					self.ask_time = primetime + oneDay
+				else:
+					self.ask_time = ev_begin + oneDay
+				self.updateVerticalEPG()
 			else:
-				self.ask_time = ev_begin + oneDay
-			self.updateVerticalEPG()
+				self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveEnd)
 			self.saveLastEventTime()
-		else:
-			self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveEnd)
-			self.saveLastEventTime()
-			self.gotoLasttime()
 
 	def setMinus24h(self, force = False, daypart = 1):
-		idx = 0
 		now = time()
 		oneDay =  24*3600/daypart
+		if not self.lastMinus:
+			self.lastMinus = oneDay
 		ev_begin, ev_end = self.getEventTime(self.activeList)
 
 		if ev_begin is not None:
 			if ev_begin - oneDay < now:
-				self.ask_time = now-config.epg.histminutes.value*60
+				self.ask_time = -1
 			else:
-				for list in range(1, self.Fields):
-					idx += self['list'+str(list)].getCurrentIndex()
-				if idx and not force:
+				if self['list'+str(self.activeList)].getCurrentIndex() and not force and self.findMinEventTime(ev_begin - oneDay):
 					self.lastEventTime = ev_begin - oneDay, ev_end - oneDay
 					self.gotoLasttime()
 					return
 				else:
-					self.ask_time = ev_begin - oneDay
-		else:
-			self.ask_time -= oneDay
-		self.updateVerticalEPG()
-		self.saveLastEventTime()
+					pt = 0
+					if self.ask_time == ev_begin - self.lastMinus:
+						self.lastMinus += self.lastMinus
+					else:
+						primetime = self.setPrimetime(ev_begin)
+						if primetime >= ev_begin and primetime < ev_end:
+							self.ask_time = pt = primetime - oneDay
+						self.lastMinus = oneDay
+					if not pt:
+						self.ask_time = ev_begin - self.lastMinus
+			self.updateVerticalEPG()
+			self.saveLastEventTime()
 
 	def setBasetime(self):
 		ev_begin, ev_end = self.getEventTime(self.activeList)
@@ -2519,13 +2563,17 @@ class EPGSelection(Screen, HelpableScreen):
 		oneDay = 24*3600
 		if self.firststart:
 			self.ask_time = self.setPrimetime(now)
-			if self.ask_time < now:
-				self.ask_time = self.setPrimetime(now + oneDay)
+			self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveTop)
+			ev_begin = self.getEventTime(self.activeList)[0]
+			if ev_begin is not None and ev_begin > self.ask_time:
+				self.ask_time += oneDay
 			self.updateVerticalEPG()
 			self.saveLastEventTime()
 			return
 
 		ev_begin, ev_end = self.getEventTime(self.activeList)
+		if ev_begin is None:
+			return
 		for list in range(1, self.Fields):
 			idx += self['list'+str(list)].getCurrentIndex()
 
@@ -2533,13 +2581,18 @@ class EPGSelection(Screen, HelpableScreen):
 
 		onlyPT = False #key press primetime always sync
 		gotoNow = False #False -> -24h List expanded, True -> got to current event and sync (onlyPT must set to False!)
-		if ev_begin and ev_end and ev_end < self.findMaxEventTime(primetime):
+		rPM = self.isInTimeRange(primetime-oneDay)
+		rPT = self.isInTimeRange(primetime)
+		rPP = self.isInTimeRange(primetime+oneDay)
+		if rPM or rPT or rPP:
 			if onlyPT or idx or not (primetime >= ev_begin and primetime < ev_end): #not sync or not primetime:
-				if primetime < now:
-					self.ask_time = primetime + oneDay
-				else:
+				if rPT:
 					self.ask_time = primetime
-				self.updateVerticalEPG()
+				elif rPP:
+					self.ask_time = primetime + oneDay
+				elif rPM:
+					self.ask_time = primetime - oneDay
+				self.updateVerticalEPG(True)
 			else:
 				if gotoNow:
 					self.gotoNow()
@@ -2552,10 +2605,7 @@ class EPGSelection(Screen, HelpableScreen):
 						cnt = self['list'+str(list)].getCurrentIndex()
 						self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveTop)
 						self.findPrimetime(cnt, list, primetime)
-		else:
-			self.ask_time = primetime - oneDay
-			self.updateVerticalEPG()
-		self.saveLastEventTime()
+			self.saveLastEventTime()
 
 	def gotoLasttime(self, list = 0):
 		if list:
@@ -2577,7 +2627,7 @@ class EPGSelection(Screen, HelpableScreen):
 		for events in range(idx, cnt):
 			ev_begin, ev_end = self.getEventTime(list)
 			if ev_begin is not None:
-				if (ev_begin <= last_begin and ev_end > last_begin) or (ev_begin >= last_begin):
+				if (ev_begin <= last_begin and ev_end > last_begin) or (ev_end >= last_end):
 					break
 				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
 			else:

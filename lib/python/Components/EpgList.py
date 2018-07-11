@@ -1238,7 +1238,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			duration = beginTime + 3600
 
 		t = localtime(beginTime)
-		primetime = mktime((t[0],t[1],t[2],config.epgselection.vertical_primetimehour.value,config.epgselection.vertical_primetimemins.value,t[5],t[6],t[7],t[8]))
+		primetime = mktime((t[0],t[1],t[2],config.epgselection.vertical_primetimehour.value,config.epgselection.vertical_primetimemins.value,0,t[6],t[7],t[8]))
 
 		if (primetime >= beginTime and primetime < beginTime+duration):
 			foreColor = foreColorPrimeTime
