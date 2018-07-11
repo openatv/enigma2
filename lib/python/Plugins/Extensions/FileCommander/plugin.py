@@ -3,22 +3,23 @@
 
 from Plugins.Plugin import PluginDescriptor
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
-from Components.ConfigList import ConfigListScreen
+from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
+# from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
-from Components.ActionMap import ActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Scanner import openFile
 from Components.Sources.Boolean import Boolean
 from Components.MenuList import MenuList
 # Screens
 from Screens.Screen import Screen
+from Screens.Setup import Setup
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox
+from Screens.LocationBox import LocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
@@ -67,7 +68,7 @@ config.plugins.filecommander.savedir_left = ConfigYesNo(default=False)
 config.plugins.filecommander.savedir_right = ConfigYesNo(default=False)
 config.plugins.filecommander.add_mainmenu_entry = ConfigYesNo(default=False)
 config.plugins.filecommander.add_extensionmenu_entry = ConfigYesNo(default=False)
-config.plugins.filecommander.path_default = ConfigText(default="")
+config.plugins.filecommander.path_default = ConfigDirectory(default="")
 config.plugins.filecommander.path_left = ConfigText(default="")
 config.plugins.filecommander.path_right = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
@@ -83,84 +84,24 @@ config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
 # ####################
 # ## Config Screen ###
 # ####################
-class FileCommanderConfigScreen(Screen, ConfigListScreen):
-	skin = """
-		<screen position="40,80" size="1200,600" title="" >
-			<widget name="config" position="10,10" size="700,300" scrollbarMode="showOnDemand"/>
-			<widget name="help" position="10,310" size="700,280" font="Regular;20" foregroundColor="#00fff000"/>
-			<widget name="key_red" position="100,570" size="260,25" transparent="1" font="Regular;20"/>
-			<widget name="key_green" position="395,570" size="260,25"  transparent="1" font="Regular;20"/>
-			<ePixmap position="70,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_red.png" transparent="1" alphatest="on"/>
-			<ePixmap position="365,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_green.png" transparent="1" alphatest="on"/>
-			<ePixmap position="660,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_yellow.png" transparent="1" alphatest="on"/>
-			<ePixmap position="955,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_blue.png" transparent="1" alphatest="on"/>
-		</screen>"""
-
+class FileCommanderConfigScreen(Setup):
 	def __init__(self, session):
-		self.session = session
-		Screen.__init__(self, session)
-		self.list = []
-		# self.list.append(getConfigListEntry(_("Add plugin to Mainmenu"), config.plugins.filecommander.add_mainmenu_entry))
-		# self.list.append(getConfigListEntry(_("Add plugin to Extensionmenu"), config.plugins.filecommander.add_extensionmenu_entry))
-		self.list.append(getConfigListEntry(_("Save left folder on exit (%s)") % config.plugins.filecommander.path_left_tmp.value, config.plugins.filecommander.savedir_left))
-		self.list.append(getConfigListEntry(_("Save right folder on exit (%s)") % config.plugins.filecommander.path_right_tmp.value, config.plugins.filecommander.savedir_right))
-		self.get_folder = getConfigListEntry(_("Default folder"), config.plugins.filecommander.path_default)
-		self.list.append(self.get_folder)
-		self.list.append(getConfigListEntry(_("My extension"), config.plugins.filecommander.my_extension))
-		self.list.append(getConfigListEntry(_("Filter extension, (*) appears in title"), config.plugins.filecommander.extension))
-		self.list.append(getConfigListEntry(_("Input length - Filename"), config.plugins.filecommander.input_length))
-		self.list.append(getConfigListEntry(_("Time for Slideshow"), config.plugins.filecommander.diashow))
+		Setup.__init__(self, session, "filecommander", plugin="Extensions/FileCommander")
 
-		ConfigListScreen.__init__(self, self.list)
-		# self["help"] = Label(_("Help:\nKey [0] refresh screen. Key [1] new folder.\nKey [2] new symlink with name. Key [3] new symlink with foldername.\nKey [4] CHMOD 644/755.\nKey [5] Change to default folder. Key [EPG] shows tasklist. Check copy/move progress in extensions menu.\nKey [R] Select multiple files."))
-		self["help"] = Label(_("Keys:\n"
-							   "0: Refresh screen.\n"
-							   "1: New folder.\n"
-							   "2: New symlink.\n"
-							   "4: Change permissions: chmod 644/755.\n"
-							   "5: Change to default folder.\n"
-							   "BACK: Change to parent folder.\n"
-							   "INFO: Show task list. Check progress of copy/move operations.\n"
-							   "MEDIA: Select multiple files.\n"
-							   "OK: Play movie and music, show pictures, view/edit files, install/extract files, run scripts."))
-		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("Save"))
-		self["setupActions"] = ActionMap(["SetupActions"], {
-			"green": self.save,
-			"red": self.cancel,
-			"save": self.save,
-			"cancel": self.cancel,
-			"ok": self.ok,
-		}, -2)
-		self.onLayoutFinish.append(self.onLayout)
-
-	def onLayout(self):
-		self.setTitle(pname + " " + _("Settings"))
+		self["actions"].actions["ok"] = self.ok
 
 	def ok(self):
-		if self["config"].getCurrent() == self.get_folder:
-			self.session.openWithCallback(self.pathSelected, MovieLocationBox, _("Default Folder"), config.plugins.filecommander.path_default.value, minFree=100)
+		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
+			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default Folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
 
 	def pathSelected(self, res):
 		if res is not None:
 			config.plugins.filecommander.path_default.value = res
 
-	def save(self):
-		print "[FileCommander] Settings saved"
-		for x in self["config"].list:
-			x[1].save()
-		self.close(True)
-
-	def cancel(self):
-		print "[FileCommander] Settings canceled"
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close(False)
-
 ###################
 # ## Main Screen ###
 ###################
-class FileCommanderScreen(Screen, key_actions):
+class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
 			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
@@ -205,6 +146,7 @@ class FileCommanderScreen(Screen, key_actions):
 
 		self.session = session
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 
 		# set filter
 		if config.plugins.filecommander.extension.value == "myfilter":
@@ -224,33 +166,33 @@ class FileCommanderScreen(Screen, key_actions):
 		self["key_blue"] = Label(_("Rename"))
 		self["VKeyIcon"] = Boolean(False)
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
-			"ok": self.ok,
-			"back": self.exit,
-			"menu": self.goMenu,
-			"nextMarker": self.listRight,
-			"prevMarker": self.listLeft,
-			"nextBouquet": self.listRight,
-			"prevBouquet": self.listLeft,
-			"1": self.gomakeDir,
-			"2": self.gomakeSym,
-			"4": self.call_change_mode,
-			"5": self.goDefaultfolder,
+		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
+			"ok": (self.ok, _("Play/view/edit/install/extract/run file or enter directory")),
+			"back": (self.exit, _("Leave File Commander")),
+			"menu": (self.goMenu, _("Open configuration screen")),
+			"nextMarker": (self.listRight, _("Activate right-hand file list as source")),
+			"prevMarker": (self.listLeft, _("Activate left-hand file list as source")),
+			"nextBouquet": (self.listRight, _("Activate right-hand file list as source")),
+			"prevBouquet": (self.listLeft, _("Activate left-hand file list as source")),
+			"1": (self.gomakeDir, _("Create directory/folder")),
+			"2": (self.gomakeSym, _("Create user-named symbolic link")),
+			"4": (self.call_change_mode, _("Toggle execute permissions on/off (755/644)")),
+			"5": (self.goDefaultfolder, _("Go to your default folder")),
 			# "8": self.test,
-			"startTeletext": self.file_viewer,
-			"info": self.openTasklist,
-			"directoryUp": self.goParentfolder,
-			"up": self.goUp,
-			"down": self.goDown,
-			"left": self.goLeft,
-			"right": self.goRight,
-			"red": self.goRed,
-			"green": self.goGreen,
-			"yellow": self.goYellow,
-			"blue": self.goBlue,
-			"0": self.doRefresh,
-			"showMovies": self.listSelect,
-			"subtitleSelection": self.downloadSubtitles,
+			"startTeletext": (self.file_viewer, _("View or edit file (if size < 1MB)")),
+			"info": (self.openTasklist, _("Show task list")),
+			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
+			"up": (self.goUp, _("Move up list")),
+			"down": (self.goDown, _("Move down list")),
+			"left": (self.goLeft, _("Page up list")),
+			"right": (self.goRight, _("Page down list")),
+			"red": (self.goRed, _("Delete file or directory (and all its contents)")),
+			"green": (self.goGreen, _("Move file/directory to target directory")),
+			"yellow": (self.goYellow, _("Copy file/directory to target directory")),
+			"blue": (self.goBlue, _("Rename file/directory")),
+			"0": (self.doRefresh, _("Refresh screen")),
+			"showMovies": (self.listSelect, _("Enter multi-file selection mode")),
+			"subtitleSelection": self.downloadSubtitles,  # Unimplemented
 		}, -1)
 
 		if config.plugins.filecommander.path_left_selected:
@@ -323,7 +265,7 @@ class FileCommanderScreen(Screen, key_actions):
 		self.session.openWithCallback(self.goRestart, FileCommanderConfigScreen)
 
 	def goDefaultfolder(self):
-		self.SOURCELIST.changeDir(config.plugins.filecommander.path_default.value)
+		self.SOURCELIST.changeDir(config.plugins.filecommander.path_default.value or None)
 		self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 		self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
 
@@ -333,7 +275,7 @@ class FileCommanderScreen(Screen, key_actions):
 			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
 			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
 
-	def goRestart(self, answer):
+	def goRestart(self, *answer):
 		config.plugins.filecommander.path_left.value = config.plugins.filecommander.path_left_tmp.value
 		config.plugins.filecommander.path_right.value = config.plugins.filecommander.path_right_tmp.value
 		# self.close(self.session, False)
@@ -661,7 +603,7 @@ class FileCommanderScreen(Screen, key_actions):
 #####################
 # ## Select Screen ###
 #####################
-class FileCommanderScreenFileSelect(Screen, key_actions):
+class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
 			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
@@ -680,6 +622,7 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 
 	def __init__(self, session, leftactive, selectedid):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 
 		self.selectedFiles = []
 		self.selectedid = selectedid
@@ -715,26 +658,26 @@ class FileCommanderScreenFileSelect(Screen, key_actions):
 		self["key_yellow"] = Label(_("Copy"))
 		self["key_blue"] = Label(_("Skip selection"))
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "TimerEditActions", "InfobarActions"], {
-			"ok": self.ok,
-			"back": self.exit,
+		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions"], {
+			"ok": (self.ok, _("Select (source list) or enter directory (target list)")),
+			"back": (self.exit, _("Leave multi-select mode")),
 			# "menu": self.goMenu,
-			"nextMarker": self.listRight,
-			"prevMarker": self.listLeft,
-			"nextBouquet": self.listRight,
-			"prevBouquet": self.listLeft,
-			"info": self.openTasklist,
-			"directoryUp": self.goParentfolder,
-			"up": self.goUp,
-			"down": self.goDown,
-			"left": self.goLeft,
-			"right": self.goRight,
-			"red": self.goRed,
-			"green": self.goGreen,
-			"yellow": self.goYellow,
-			"blue": self.goBlue,
-			"0": self.doRefresh,
-			"showMovies": self.changeSelectionState,
+			"nextMarker": (self.listRight, _("Activate right-hand file list as multi-select source")),
+			"prevMarker": (self.listLeft, _("Activate left-hand file list as multi-select source")),
+			"nextBouquet": (self.listRight, _("Activate right-hand file list as multi-select source")),
+			"prevBouquet": (self.listLeft, _("Activate left-hand file list as multi-select source")),
+			"info": (self.openTasklist, _("Show task list")),
+			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
+			"up": (self.goUp, _("Move up list")),
+			"down": (self.goDown, _("Move down list")),
+			"left": (self.goLeft, _("Page up list")),
+			"right": (self.goRight, _("Page down list")),
+			"red": (self.goRed, _("Delete the selected files or directories")),
+			"green": (self.goGreen, _("Move files/directories to target directory")),
+			"yellow": (self.goYellow, _("Copy files/directories to target directory")),
+			"blue": (self.goBlue, _("Leave multi-select mode")),
+			"0": (self.doRefresh, _("Refresh screen")),
+			"showMovies": (self.ok, _("Select")),
 		}, -1)
 		self.onLayoutFinish.append(self.onLayout)
 
