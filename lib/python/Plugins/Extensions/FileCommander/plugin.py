@@ -88,11 +88,11 @@ class FileCommanderConfigScreen(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "filecommander", plugin="Extensions/FileCommander")
 
-		self["actions"].actions["ok"] = self.ok
-
-	def ok(self):
+	def keyOK(self):
 		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
 			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default Folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
+		else:
+			Setup.keyOK(self)
 
 	def pathSelected(self, res):
 		if res is not None:
