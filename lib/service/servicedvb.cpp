@@ -1377,7 +1377,7 @@ RESULT eDVBServicePlay::start()
 	if(m_is_stream || m_is_pvr)
 	{
 			eDebug("[eDVBServicePlay]start m_is_pvr %d", m_is_pvr);
-			aml_set_demux2_souce();
+			aml_set_demux2_source();
 	}
 #endif
 
