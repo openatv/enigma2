@@ -1239,38 +1239,38 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		t = localtime(beginTime)
 		primetime = mktime((t[0],t[1],t[2],config.epgselection.vertical_primetimehour.value,config.epgselection.vertical_primetimemins.value,0,t[6],t[7],t[8]))
-
-		if (primetime >= beginTime and primetime < beginTime+duration):
+		pt = (primetime >= beginTime and primetime < beginTime+duration)
+		if pt:
 			foreColor = foreColorPrimeTime
 			backColor = backColorPrimeTime
-			res = [
-				None,
-				(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT, ' ', foreColorTime, foreColorSel, backColorTime, backColorSel),
+		res = [
+			None,
+			(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, backColor, backColorSel),			#//background event
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT, ' ', foreColorTime, foreColorSel, backColorTime, backColorSel),	#//background time
+			]
+		if pt:
+			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.x+self.posx, r2.h/2-self.posy, self.picx, self.picy, self.primetimeicon),
 				(eListboxPythonMultiContent.TYPE_TEXT, r2.x+self.posx*3+self.picx, r2.y, r2.w-(self.posx*3+self.picx), r2.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ("%02d.%02d"%(t[2],t[1]) + " " + self.days[t[6]]) + " " + ("%02d:%02d"%(t[3],t[4])), foreColorTime, foreColorSel, backColorTime, backColorSel),
-				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, borderColor, borderColor)
-			]
+			))
 		else:
-			res = [
-				None,
-				(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT, ' ', foreColorTime, foreColorSel, backColorTime, backColorSel),
+			res.extend((
 				(eListboxPythonMultiContent.TYPE_TEXT, r2.x+self.posx, r2.y, r2.w-self.posx, r2.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ("%02d.%02d"%(t[2],t[1]) + " " + self.days[t[6]]) + " " + ("%02d:%02d"%(t[3],t[4])), foreColorTime, foreColorSel, backColorTime, backColorSel),
-				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, borderColor, borderColor)
-			]
+			))
 		if clock_types:
 			if self.wasEntryAutoTimer and clock_types in (2,7,12):
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx*2-self.posx*2, r2.h/2-self.posy, self.picx, self.picy, self.autotimericon),
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx-self.posx, r2.h/2-self.posy, self.picx, self.picy, self.clocks[clock_types]),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x+self.posx, r3.y, r3.w-self.posx, r3.h, 1, RT_HALIGN_LEFT|RT_WRAP, EventName, foreColor, foreColorSel, backColor, backColorSel),
 				))
 			else:
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx-self.posx, r2.h/2-self.posy, self.picx, self.picy, self.clocks[clock_types]),
-					(eListboxPythonMultiContent.TYPE_TEXT, r3.x+self.posx, r3.y, r3.w-self.posx, r3.h, 1, RT_HALIGN_LEFT|RT_WRAP, EventName, foreColor, foreColorSel, backColor, backColorSel),
 				))
-		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x+self.posx, r3.y, r3.w-self.posx, r3.h, 1, RT_HALIGN_LEFT|RT_WRAP, EventName, foreColor, foreColorSel, backColor, backColorSel))
+		res.extend((
+				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, borderColor, borderColor),		#//parting line
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x+self.posx, r3.y, r3.w-self.posx, r3.h, 1, RT_HALIGN_LEFT|RT_WRAP, EventName, foreColor, foreColorSel, backColor, backColorSel)
+				))
 		return res
 
 	def getSelectionPosition(self,serviceref, activeList = 1):
