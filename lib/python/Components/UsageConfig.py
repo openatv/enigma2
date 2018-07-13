@@ -1067,8 +1067,8 @@ def InitUsageConfig():
 	config.epgselection.vertical_primetimemins = ConfigSelectionNumber(default = 15, stepwidth = 1, min = 00, max = 59, wraparound = True)
 	config.epgselection.vertical_preview_mode = ConfigYesNo(default = True)
 	config.epgselection.vertical_pig = ConfigYesNo(default = False)
-	config.epgselection.vertical_eventmarker = ConfigYesNo(default = True)
-	config.epgselection.vertical_showlines = ConfigYesNo(default = False)
+	config.epgselection.vertical_eventmarker = ConfigYesNo(default = False)
+	config.epgselection.vertical_showlines = ConfigYesNo(default = True)
 	config.epgselection.vertical_startmode = ConfigSelection(default = "standard", choices = [("standard", _("Standard")), ("primetime", _("Primetime")),("channel1", _("Channel 1")), ("channel1+primetime", _("Channel 1 with Primetime")) ])
 	config.epgselection.vertical_prevtime = ConfigClock(default = time())
 	vertical_colorkeys = [('autotimer', _('Auto Timer')),
