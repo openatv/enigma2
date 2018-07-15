@@ -151,7 +151,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self["EPGSelectActions"] = LocationBoxActionMap(self, "EPGSelectActions",
 			{
 				"prevService": (self.switchToBookList, _("Switch to bookmarks")),
-				"nextService": (self.switchToFileList, _("Switch to filelist")),
+				"nextService": (self.switchToFileList, _("Switch to directories")),
 			}, prio=-2)
 
 		self["MenuActions"] = LocationBoxActionMap(self, "MenuActions",
@@ -489,6 +489,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def showMenu(self):
 		if not self.userMode and self.realBookmarks:
 			if self.currList == "filelist":
+				title = "Directories"
 				menu = [
 					(_("switch to bookmarks"), self.switchToBookList),
 					(_("add bookmark"), self.addRemoveBookmark)
@@ -499,8 +500,9 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 						(_("remove directory"), self.removeDir)
 					))
 			else:
+				title = "Bookmarks"
 				menu = [
-					(_("switch to filelist"), self.switchToFileList),
+					(_("switch to directories"), self.switchToFileList),
 					(_("remove bookmark"), self.addRemoveBookmark)
 				]
 			if self.useAliases:
@@ -520,8 +522,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			self.session.openWithCallback(
 				self.menuCallback,
 				ChoiceBox,
-				title = "",
-				list = menu
+				title=title,
+				list=menu
 			)
 
 	def menuCallback(self, choice):
@@ -638,13 +640,12 @@ class TimeshiftLocationBox(LocationBox):
 def friendlyMoviePath(path, base=None, trailing=True):
 	if path is not None:
 		if base:
-			if not base.endswith('/'):
-				base += '/'
-			if path.startswith(base):
-				path = path[len(base):]
-				if not trailing:
-					return path.rstrip('/')
-				return path
+			base = os.path.normpath(base)
+			head, tail = os.path.split(os.path.normpath(path))
+			if head == base:
+				if trailing and path.endswith('/'):
+					tail += '/'
+				return tail
 		if config.misc.location_aliases.value:
 			global location_aliases
 			llen = 0
@@ -657,5 +658,5 @@ def friendlyMoviePath(path, base=None, trailing=True):
 						apath = alias + path[llen:]
 			path = apath
 		if not trailing:
-			return path.rstrip('/')
+			return path.rstrip('/') or '/'
 	return path

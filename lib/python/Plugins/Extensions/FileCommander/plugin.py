@@ -11,6 +11,7 @@ from Components.Task import job_manager
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Scanner import openFile
 from Components.Sources.Boolean import Boolean
+from Components.Sources.List import List
 from Components.MenuList import MenuList
 # Screens
 from Screens.Screen import Screen
@@ -27,6 +28,7 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 # from Tools.HardwareInfo import HardwareInfo
+from Tools.UnitConversions import UnitScaler, UnitMultipliers
 # Various
 from os.path import isdir as os_path_isdir
 from mimetypes import guess_type
@@ -42,6 +44,9 @@ from time import strftime as time_strftime
 from time import localtime as time_localtime
 
 import os
+import stat
+import pwd
+import grp
 # System mods
 from InputBox import InputBox
 from FileList import FileList, MultiFileSelectList
@@ -88,11 +93,11 @@ class FileCommanderConfigScreen(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "filecommander", plugin="Extensions/FileCommander")
 
-		self["actions"].actions["ok"] = self.ok
-
-	def ok(self):
+	def keyOK(self):
 		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
 			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default Folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
+		else:
+			Setup.keyOK(self)
 
 	def pathSelected(self, res):
 		if res is not None:
@@ -176,6 +181,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"prevBouquet": (self.listLeft, _("Activate left-hand file list as source")),
 			"1": (self.gomakeDir, _("Create directory/folder")),
 			"2": (self.gomakeSym, _("Create user-named symbolic link")),
+			"3": (self.gofileStatInfo, _("File/directory status information")),
 			"4": (self.call_change_mode, _("Toggle execute permissions on/off (755/644)")),
 			"5": (self.goDefaultfolder, _("Go to your default folder")),
 			# "8": self.test,
@@ -474,6 +480,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			except OSError as oe:
 				self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (oldpath, newpath, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.doRefresh()
+
+# ## File/directory information
+	def gofileStatInfo(self):
+		self.session.open(FileCommanderFileStatInfo, self.SOURCELIST)
 
 # ## symlink by folder ###
 	def gomakeSymlink(self):
@@ -837,6 +847,145 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["list_right"].selectionEnabled(0)
 		self.ACTIVELIST = self["list_left"]
 		self.updateHead()
+
+class FileCommanderFileStatInfo(Screen):
+	skin = """
+		<screen name="FileCommanderFileStatInfo" backgroundColor="un44000000" position="center,center" size="545,345" title="File/Directory Status Information">
+			<widget name="filename" position="10,0" size="525,46" font="Regular;20"/>
+			<widget source="list" render="Listbox" position="10,60" size="525,275" scrollbarMode="showOnDemand" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						# 0   100 200 300 400 500
+						# |   |   |   |   |   |
+						# 00000000 1111111111111
+						MultiContentEntryText(pos = (0, 0), size = (200, 25), font = 0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is a label
+						MultiContentEntryText(pos = (225, 0), size = (300, 25), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the information
+						],
+						"fonts": [gFont("Regular", 20)],
+						"itemHeight": 25,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
+		</screen>
+	"""
+
+	SIZESCALER = UnitScaler(scaleTable=UnitMultipliers.Iec, maxNumLen=3, decimals=1)
+
+	def __init__(self, session, source):
+		Screen.__init__(self, session)
+
+		self.list = []
+
+		self["list"] = List(self.list)
+		self["filename"] = Label()
+
+		self["actions"] = ActionMap(
+			["SetupActions", "DirectionActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"up": self.pageUp,
+				"down": self.pageDown,
+			}, prio=-1)
+
+		filename = source.getFilename()
+		sourceDir = source.getCurrentDirectory()
+
+		if filename.endswith("/"):
+			self.filepath = os.path.normpath(filename)
+			if self.filepath == '/':
+				self.filename = '/'
+			else:
+				self.filename = os.path.normpath(filename)
+		else:
+			self.filepath = os.path.join(sourceDir, filename)
+			self.filename = filename
+		self.onShown.append(self.fillList)
+
+	def pageUp(self):
+		if "list" in self:
+			self["list"].pageUp()
+
+	def pageDown(self):
+		if "list" in self:
+			self["list"].pageDown()
+
+	def fillList(self):
+		self["filename"].text = self.filename
+		self.list = []
+
+		try:
+			st = os.lstat(self.filepath)
+		except OSError as oe:
+			self.session.open(MessageBox, _("%s: %s") % (self.filepath, oe.strerror), type=MessageBox.TYPE_ERROR)
+			self.close()
+			return
+
+		mode = st.st_mode
+		self.list.append((_("Type:"), self.filetype(mode)))
+		self.list.append((_("Owner:"), "%s (%d)" % (self.username(st.st_uid), st.st_uid)))
+		self.list.append((_("Group:"), "%s (%d)" % (self.groupname(st.st_gid), st.st_gid)))
+		self.list.append((_("Permissions:"), self.permissions(mode)))
+		if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
+			self.list.append((_("Size:"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
+		self.list.append((_("Modified:"), self.timeformat(st.st_mtime)))
+		self.list.append((_("Accessed:"), self.timeformat(st.st_atime)))
+		self.list.append((_("Metadata changed:"), self.timeformat(st.st_ctime)))
+		self.list.append((_("Links:"), "%d" % st.st_nlink))
+		self.list.append((_("Inode:"), "%d" % st.st_ino))
+		self.list.append((_("On device:"), "%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff)))
+
+		self["list"].updateList(self.list)
+
+	@staticmethod
+	def filetype(mode):
+		return {
+			stat.S_IFSOCK: _("Socket"),
+			stat.S_IFLNK: _("Symbolic link"),
+			stat.S_IFREG: _("Regular file"),
+			stat.S_IFBLK: _("Block device"),
+			stat.S_IFDIR: _("Directory"),
+			stat.S_IFCHR: _("Character device"),
+			stat.S_IFIFO: _("FIFO"),
+		}.get(stat.S_IFMT(mode), _("Unknown"))
+
+	def permissions(self, mode):
+		perm = self.permissionGroup((mode >> 6) & stat.S_IRWXO, mode & stat.S_ISUID, 's')
+		perm += self.permissionGroup((mode >> 3) & stat.S_IRWXO, mode & stat.S_ISGID, 's')
+		perm += self.permissionGroup(mode & stat.S_IRWXO, mode & stat.S_ISVTX, 't')
+		perm += " (%04o)" % (mode & 07777)
+		return perm
+
+	@staticmethod
+	def permissionGroup(mode, bit4, bit4chr):
+		modestr = mode & stat.S_IROTH and 'r' or "-"
+		modestr += mode & stat.S_IWOTH and 'w' or "-"
+		if bit4:
+			modestr += mode & stat.S_IXOTH and bit4chr or bit4chr.upper()
+		else:
+			modestr += mode & stat.S_IXOTH and "x" or "-"
+		return modestr
+
+	@staticmethod
+	def username(uid):
+		try:
+			pwent = pwd.getpwuid(uid)
+			return pwent.pw_name
+		except KeyError as ke:
+			return _("Unknown user")
+
+	@staticmethod
+	def groupname(gid):
+		try:
+			grent = grp.getgrgid(gid)
+			return grent.gr_name
+		except KeyError as ke:
+			return _("Unknown group")
+
+	@staticmethod
+	def timeformat(t):
+		return time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(t))
 
 # #####################
 # ## Start routines ###
