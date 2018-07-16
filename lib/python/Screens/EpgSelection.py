@@ -490,14 +490,6 @@ class EPGSelection(Screen, HelpableScreen):
 					'5': (self.keyNumberGlobal, _('Set Basetime'))
 				}, -1)
 
-			self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
-				{
-					'cancel': (self.closeScreen, _('Exit EPG')),
-					'OK': (self.OK, _('Zap to channel (setup in menu)')),
-					'OKLong': (self.OKLong, _('Zap to channel and close (setup in menu)'))
-				}, -1)
-			self['okactions'].csel = self
-
 		if self.type == EPG_TYPE_GRAPH:
 			time_epoch=int(config.epgselection.graph_prevtimeperiod.value)
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
@@ -1645,12 +1637,12 @@ class EPGSelection(Screen, HelpableScreen):
 				if self.type == EPG_TYPE_VERTICAL and 'Channel' in config.epgselection.vertical_ok.value:
 					self.infoKeyPressed()
 				elif ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_ok.value == 'Zap') or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_ok.value == 'Zap') or
-				(self.type == EPG_TYPE_INFOBAR and config.epgselection.infobar_ok.value == 'Zap') or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_ok.value == 'Zap') or
-				(self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_ok.value == 'Zap')):
+				((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_ok.value == 'Zap') or
+				(self.type == EPG_TYPE_MULTI and config.epgselection.multi_ok.value == 'Zap') or (self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_ok.value == 'Zap')):
 					self.zapTo()
 				elif ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_ok.value == 'Zap + Exit') or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_ok.value == 'Zap + Exit') or
-				(self.type == EPG_TYPE_INFOBAR and config.epgselection.infobar_ok.value == 'Zap + Exit') or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_ok.value == 'Zap + Exit') or
-				(self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_ok.value == 'Zap + Exit')):
+				((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_ok.value == 'Zap + Exit') or
+				(self.type == EPG_TYPE_MULTI and config.epgselection.multi_ok.value == 'Zap + Exit') or (self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_ok.value == 'Zap + Exit')):
 					self.zap()
 
 	def OKLong(self):
@@ -1663,12 +1655,12 @@ class EPGSelection(Screen, HelpableScreen):
 				if self.type == EPG_TYPE_VERTICAL and 'Channel' in config.epgselection.vertical_oklong.value:
 					self.infoKeyPressed()
 				elif ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_oklong.value == 'Zap') or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_oklong.value == 'Zap') or
-				(self.type == EPG_TYPE_INFOBAR and config.epgselection.infobar_oklong.value == 'Zap') or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_oklong.value == 'Zap') or
-				(self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_oklong.value == 'Zap')):
+				((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_oklong.value == 'Zap') or
+				(self.type == EPG_TYPE_MULTI and config.epgselection.multi_oklong.value == 'Zap') or (self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_oklong.value == 'Zap')):
 					self.zapTo()
 				elif ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_oklong.value == 'Zap + Exit') or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_oklong.value == 'Zap + Exit') or
-				(self.type == EPG_TYPE_INFOBAR and config.epgselection.infobar_oklong.value == 'Zap + Exit') or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_oklong.value == 'Zap + Exit') or
-				(self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_oklong.value == 'Zap + Exit')):
+				((self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_oklong.value == 'Zap + Exit') or
+				(self.type == EPG_TYPE_MULTI and config.epgselection.multi_oklong.value == 'Zap + Exit') or (self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_oklong.value == 'Zap + Exit')):
 					self.zap()
 
 	def epgButtonPressed(self):
