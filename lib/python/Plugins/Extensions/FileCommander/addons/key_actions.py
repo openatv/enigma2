@@ -154,6 +154,20 @@ class key_actions():
 			file_infos = file_infos + _("Mode") + " " + str(mode[-3:])
 			return (file_infos)
 
+	@staticmethod
+	def fileFilter():
+		if config.plugins.filecommander.extension.value == "myfilter":
+			return "^.*\.%s" % config.plugins.filecommander.my_extension.value
+		else:
+			return config.plugins.filecommander.extension.value
+
+	@staticmethod
+	def filterSettings():
+		return(
+			config.plugins.filecommander.extension.value,
+			config.plugins.filecommander.my_extension.value
+		)
+
 	def run_script(self, dirsource):
 		filename = dirsource.getFilename()
 		sourceDir = dirsource.getCurrentDirectory()
