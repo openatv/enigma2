@@ -275,33 +275,24 @@ def copyServiceFiles(serviceref, dest, name=None):
 # in the form (description, path) to it.
 def buildMovieLocationList(bookmarks, base=None):
 	if base:
-		base = base.rstrip('/')
+		base = base.rstrip('/') or '/'
 		inlist = [base]
 	else:
 		inlist = []
 	# Last favourites
 	for d in last_selected_dest:
-		d = d.rstrip('/')
+		d = d.rstrip('/') or '/'
 		if d not in inlist:
 			bookmarks.append((friendlyMoviePath(d, base), d))
 			inlist.append(d)
 	# Other favourites
 	for d in config.movielist.videodirs.value:
-		d = os.path.normpath(d).rstrip('/')
+		d = os.path.normpath(d).rstrip('/') or '/'
 		if d not in inlist:
 			bookmarks.append((friendlyMoviePath(d, base), d))
 			inlist.append(d)
-	if base:
-		# Subdirs
-		try:
-			for fn in os.listdir(base):
-				if not fn.startswith('.'):  # Skip hidden things
-					d = os.path.join(base, fn)
-					if os.path.isdir(d) and d not in inlist:
-						bookmarks.append((fn, d))
-						inlist.append(d)
-		except Exception, e:
-			print "[MovieSelection]", e
+	subpos = len(bookmarks)
+	# Mounts
 	for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
 		if d in inlist:
@@ -313,6 +304,30 @@ def buildMovieLocationList(bookmarks, base=None):
 		else:
 			bookmarks.append((p.description, d))
 			inlist.append(d)
+	if base:
+		# Subdirs - inserted before mounts to fill the page.
+		# If they would create another page, don't add any at all.
+		try:
+			sub_bm = []
+			#sub_in = []
+			items = len(bookmarks) + 1		# one more for Other
+			maxitems = (items + 14) / 15 * 15	# ChoiceBox has 15 items per page
+			for fn in os.listdir(base):
+				if not fn.startswith('.'):  # Skip hidden things
+					d = os.path.join(base, fn)
+					if os.path.isdir(d) and d not in inlist:
+						if items == maxitems:
+							sub_bm = None
+							break
+						items += 1
+						sub_bm.append((fn, d))
+						#sub_in.append(d)
+			if sub_bm:
+				sub_bm.sort()
+				bookmarks[subpos:subpos] = sub_bm
+				#inlist.extend(sub_in)
+		except Exception, e:
+			print "[MovieSelection]", e
 
 def updateUserDefinedActions():
 	global userDefinedButtons, userDefinedActions, userDefinedDescriptions
@@ -1099,8 +1114,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 	def directoryUp(self):
 		if self.marked:
 			return
-		cur = config.movielist.last_videodir.value.rstrip("/")
-		root = config.movielist.root.value.rstrip("/")
+		cur = config.movielist.last_videodir.value.rstrip("/") or "/"
+		root = config.movielist.root.value.rstrip("/") or "/"
 		if cur == root:
 			return
 		parent = os.path.dirname(cur)
@@ -2197,7 +2212,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def do_bookmarks(self):
 		if not self.marked:
-			self.selectMovieLocation(title=_("Choose movie path"), callback=self.gotFilename)
+			self.selectMovieLocation(title=_("Choose movie path"), callback=self.gotFilename, base=config.movielist.last_videodir.value)
 
 	def can_addbookmark(self, item):
 		return True
