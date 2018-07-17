@@ -659,13 +659,13 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			self["list_right"] = FileList(path_right, matchingPattern=filter)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
-			self.listLeft()
+			self.onLayoutFinish.append(self.listLeft)
 		else:
 			self["list_left"] = FileList(path_left, matchingPattern=filter)
 			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
-			self.listRight()
+			self.onLayoutFinish.append(self.listRight)
 
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Move"))
