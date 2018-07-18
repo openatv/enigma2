@@ -3,7 +3,7 @@
 
 from Plugins.Plugin import PluginDescriptor
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
+from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, ConfigSet, NoSave, ConfigNothing
 # from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob
@@ -85,6 +85,7 @@ config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 config.plugins.filecommander.path_left_tmp = ConfigText(default=config.plugins.filecommander.path_left.value)
 config.plugins.filecommander.path_right_tmp = ConfigText(default=config.plugins.filecommander.path_right.value)
 config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
+config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), default=["MD5"])
 
 # ####################
 # ## Config Screen ###
@@ -154,10 +155,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		HelpableScreen.__init__(self)
 
 		# set filter
-		if config.plugins.filecommander.extension.value == "myfilter":
-			filter = "^.*\.%s" % config.plugins.filecommander.my_extension.value
-		else:
-			filter = config.plugins.filecommander.extension.value
+		filter = self.fileFilter()
 
 		# set current folder
 		self["list_left_head"] = Label(path_left)
@@ -184,7 +182,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"3": (self.gofileStatInfo, _("File/directory status information")),
 			"4": (self.call_change_mode, _("Toggle execute permissions on/off (755/644)")),
 			"5": (self.goDefaultfolder, _("Go to your default folder")),
-			# "8": self.test,
+			"6": (self.run_file, self.help_run_file),
+			"7": (self.run_ffprobe, self.help_run_ffprobe),
+			# "8": (self.run_mediainfo, self.help_run_mediainfo),
+			"9": (self.run_hashes, _("Calculate file checksums")),
 			"startTeletext": (self.file_viewer, _("View or edit file (if size < 1MB)")),
 			"info": (self.openTasklist, _("Show task list")),
 			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
@@ -266,8 +267,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.doRefresh()
 
 	def goMenu(self):
-		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
-		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
+		self.oldFilterSettings = self.filterSettings()
 		self.session.openWithCallback(self.goRestart, FileCommanderConfigScreen)
 
 	def goDefaultfolder(self):
@@ -282,9 +282,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
 
 	def goRestart(self, *answer):
-		config.plugins.filecommander.path_left.value = config.plugins.filecommander.path_left_tmp.value
-		config.plugins.filecommander.path_right.value = config.plugins.filecommander.path_right_tmp.value
-		# self.close(self.session, False)
+		if hasattr(self, "oldFilterSettings"):
+			if self.oldFilterSettings != self.filterSettings():
+				filter = self.fileFilter()
+				self["list_left"].matchingPattern = re.compile(filter)
+				self["list_right"].matchingPattern = re.compile(filter)
+			del self.oldFilterSettings
 		self.doRefresh()
 
 	def goLeft(self):
@@ -641,10 +644,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		path_right = config.plugins.filecommander.path_right_tmp.value or None
 
 		# set filter
-		if config.plugins.filecommander.extension.value == "myfilter":
-			filter = "^.*\.%s" % config.plugins.filecommander.my_extension.value
-		else:
-			filter = config.plugins.filecommander.extension.value
+		filter = self.fileFilter()
 
 		# set current folder
 		self["list_left_head"] = Label(path_left)
@@ -655,13 +655,13 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			self["list_right"] = FileList(path_right, matchingPattern=filter)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
-			self.listLeft()
+			self.onLayoutFinish.append(self.listLeft)
 		else:
 			self["list_left"] = FileList(path_left, matchingPattern=filter)
 			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
-			self.listRight()
+			self.onLayoutFinish.append(self.listRight)
 
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Move"))
@@ -671,7 +671,6 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions"], {
 			"ok": (self.ok, _("Select (source list) or enter directory (target list)")),
 			"back": (self.exit, _("Leave multi-select mode")),
-			# "menu": self.goMenu,
 			"nextMarker": (self.listRight, _("Activate right-hand file list as multi-select source")),
 			"prevMarker": (self.listLeft, _("Activate left-hand file list as multi-select source")),
 			"nextBouquet": (self.listRight, _("Activate right-hand file list as multi-select source")),
@@ -725,9 +724,6 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			else:
 				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory())
 				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory())
-
-	def goMenu(self):
-		self.session.open(FileCommanderConfigScreen)
 
 	def goParentfolder(self):
 		if self.ACTIVELIST == self.SOURCELIST:
