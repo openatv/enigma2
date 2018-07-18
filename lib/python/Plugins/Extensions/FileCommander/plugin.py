@@ -3,7 +3,7 @@
 
 from Plugins.Plugin import PluginDescriptor
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
+from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, ConfigSet, NoSave, ConfigNothing
 # from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob
@@ -85,6 +85,7 @@ config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 config.plugins.filecommander.path_left_tmp = ConfigText(default=config.plugins.filecommander.path_left.value)
 config.plugins.filecommander.path_right_tmp = ConfigText(default=config.plugins.filecommander.path_right.value)
 config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
+config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), default=["MD5"])
 
 # ####################
 # ## Config Screen ###
@@ -184,7 +185,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"3": (self.gofileStatInfo, _("File/directory status information")),
 			"4": (self.call_change_mode, _("Toggle execute permissions on/off (755/644)")),
 			"5": (self.goDefaultfolder, _("Go to your default folder")),
-			# "8": self.test,
+			"6": (self.run_file, self.help_run_file),
+			"7": (self.run_ffprobe, self.help_run_ffprobe),
+			# "8": (self.run_mediainfo, self.help_run_mediainfo),
+			"9": (self.run_hashes, _("Calculate file checksums")),
 			"startTeletext": (self.file_viewer, _("View or edit file (if size < 1MB)")),
 			"info": (self.openTasklist, _("Show task list")),
 			"directoryUp": (self.goParentfolder, _("Go to parent directory")),

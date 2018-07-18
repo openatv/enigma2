@@ -63,8 +63,32 @@ pname = _("File Commander - Addon Movieplayer")
 pdesc = _("play Files")
 
 class key_actions():
+	hashes = {
+		"MD5": "md5sum",
+		"SHA1": "sha1sum",
+		"SHA3": "sha3sum",
+		"SHA256": "sha256sum",
+		"SHA512": "sha512sum",
+	}
+
+	progPackages = {
+		"file": "file",
+		"ffprobe": "ffmpeg",
+		#  "mediainfo": "mediainfo",
+	}
+
 	def __init__(self):
 		pass
+
+	@staticmethod
+	def have_program(prog):
+		path = os.environ.get('PATH')
+		if '/' in prog or not path:
+			return os.access(prog, os.X_OK)
+		for dir in path.split(':'):
+			if os.access(os.path.join(dir, prog), os.X_OK):
+				return True
+		return False
 
 	def change_mod(self, dirsource):
 		filename = dirsource.getFilename()
@@ -146,6 +170,80 @@ class key_actions():
 			yfile = os_stat(self.commando[0])
 			if (yfile.st_size < 61440):
 				self.session.open(vEditor, self.commando[0])
+
+	def run_file(self):
+		self.run_prog("file")
+
+	def run_ffprobe(self):
+		self.run_prog("ffprobe")
+
+	def run_mediainfo(self):
+		self.run_prog("mediainfo")
+
+	def run_prog(self, prog):
+		if not self.have_program(prog):
+			pkg = self.progPackages.get(prog)
+			if pkg:
+				how_to = "You need to install the '%s' package." % pkg
+			else:
+				how_to = "The package containing this program isn't known."
+			self.session.open(MessageBox, _("Program '%s' not installed.\n%s") % (prog, how_to), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+			return
+
+		filename = self.SOURCELIST.getFilename()
+		if filename.startswith("/"):
+			if prog != "file":
+				self.session.open(MessageBox, _("You can't usefully run '%s' on a directory.") % prog, type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+				return
+			filepath = filename
+			filename = os.path.basename(os.path.normpath(filepeth)) or '/'
+			filetype = "directory"
+		else:
+			sourceDir = self.SOURCELIST.getCurrentDirectory()
+			__, filetype = os.path.splitext(filename.lower())
+			filepath = os.path.join(sourceDir, filename)
+		if prog == "file" or filetype == ".ts" or filetype in MOVIE_EXTENSIONS:
+			toRun = (prog, filepath)
+			self.session.open(Console, cmdlist=(toRun,))
+		else:
+			self.session.open(MessageBox, _("You can't usefully run '%s' on '%s'.") % (prog, filename), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+
+	def help_run_file(self):
+		return self.help_run_prog("file")
+
+	def help_run_ffprobe(self):
+		return self.help_run_prog("ffprobe")
+
+	def help_run_mediainfo(self):
+		return self.help_run_prog("mediainfo")
+
+	def help_run_prog(self, prog):
+		if self.have_program(prog):
+			return _("Run '%s' command") % prog
+		else:
+			if prog in self.progPackages:
+				return _("You need to install package '%s' to run '%s' command") % (self.progPackages[prog], prog)
+			else:
+				return _("'%s' not installed and no known package") % prog
+
+	def run_hashes(self):
+		if not config.plugins.filecommander.hashes.value:
+			self.session.open(MessageBox, _("No hash calculations configured"), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+			return
+		progs = tuple((h, hashes[h]) for h in config.plugins.filecommander.hashes.value if h in hashes and self.have_program(hashes[h]))
+		if not progs:
+			self.session.open(MessageBox, _("None of the hash programs for the hashes %s are available") % ''.join(config.plugins.filecommander.hashes.value), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+			return
+		filename = self.SOURCELIST.getFilename()
+		if filename.startswith("/"):
+			self.session.open(MessageBox, _("The hash of a directory can't be calculated."), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+			return
+		sourceDir = self.SOURCELIST.getCurrentDirectory()
+		filepath = os.path.join(sourceDir, filename)
+		toRun = []
+		for prog in progs:
+			toRun += [("echo", "-n", prog[0] + ": "), (prog[1], filepath)]
+		self.session.open(Console, cmdlist=toRun)
 
 	def play_music(self, dirsource):
 		self.sourceDir = dirsource
