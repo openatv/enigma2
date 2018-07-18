@@ -217,7 +217,7 @@ class key_actions():
 				self.session.open(MessageBox, _("You can't usefully run '%s' on a directory.") % prog, type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 				return
 			filepath = filename
-			filename = os.path.basename(os.path.normpath(filepeth)) or '/'
+			filename = os.path.basename(os.path.normpath(filepath)) or '/'
 			filetype = "directory"
 		else:
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
