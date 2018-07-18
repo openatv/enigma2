@@ -179,7 +179,14 @@ class key_actions():
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
 		if answer == "YES":
-			self.session.open(Console, cmdlist=((self.commando[0],),))
+			if not os.access(self.commando[0], os.R_OK):
+				self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando[0], type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+				return
+
+			if os.access(self.commando[0], os.X_OK):
+				self.session.open(Console, cmdlist=(self.commando,))
+			else:
+				self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
 		elif answer == "VIEW":
 			yfile = os_stat(self.commando[0])
 			if (yfile.st_size < 61440):
