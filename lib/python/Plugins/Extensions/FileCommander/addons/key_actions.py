@@ -251,7 +251,7 @@ class key_actions():
 		if not config.plugins.filecommander.hashes.value:
 			self.session.open(MessageBox, _("No hash calculations configured"), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 			return
-		progs = tuple((h, hashes[h]) for h in config.plugins.filecommander.hashes.value if h in hashes and self.have_program(hashes[h]))
+		progs = tuple((h, self.hashes[h]) for h in config.plugins.filecommander.hashes.value if h in self.hashes and self.have_program(self.hashes[h]))
 		if not progs:
 			self.session.open(MessageBox, _("None of the hash programs for the hashes %s are available") % ''.join(config.plugins.filecommander.hashes.value), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 			return
