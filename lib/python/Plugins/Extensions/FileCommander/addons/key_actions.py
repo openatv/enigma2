@@ -154,6 +154,20 @@ class key_actions():
 			file_infos = file_infos + _("Mode") + " " + str(mode[-3:])
 			return (file_infos)
 
+	@staticmethod
+	def fileFilter():
+		if config.plugins.filecommander.extension.value == "myfilter":
+			return "^.*\.%s" % config.plugins.filecommander.my_extension.value
+		else:
+			return config.plugins.filecommander.extension.value
+
+	@staticmethod
+	def filterSettings():
+		return(
+			config.plugins.filecommander.extension.value,
+			config.plugins.filecommander.my_extension.value
+		)
+
 	def run_script(self, dirsource):
 		filename = dirsource.getFilename()
 		sourceDir = dirsource.getCurrentDirectory()
@@ -165,7 +179,14 @@ class key_actions():
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
 		if answer == "YES":
-			self.session.open(Console, cmdlist=((self.commando[0],),))
+			if not os.access(self.commando[0], os.R_OK):
+				self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando[0], type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+				return
+
+			if os.access(self.commando[0], os.X_OK):
+				self.session.open(Console, cmdlist=(self.commando,))
+			else:
+				self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
 		elif answer == "VIEW":
 			yfile = os_stat(self.commando[0])
 			if (yfile.st_size < 61440):
@@ -196,7 +217,7 @@ class key_actions():
 				self.session.open(MessageBox, _("You can't usefully run '%s' on a directory.") % prog, type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 				return
 			filepath = filename
-			filename = os.path.basename(os.path.normpath(filepeth)) or '/'
+			filename = os.path.basename(os.path.normpath(filepath)) or '/'
 			filetype = "directory"
 		else:
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -230,7 +251,7 @@ class key_actions():
 		if not config.plugins.filecommander.hashes.value:
 			self.session.open(MessageBox, _("No hash calculations configured"), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 			return
-		progs = tuple((h, hashes[h]) for h in config.plugins.filecommander.hashes.value if h in hashes and self.have_program(hashes[h]))
+		progs = tuple((h, self.hashes[h]) for h in config.plugins.filecommander.hashes.value if h in self.hashes and self.have_program(self.hashes[h]))
 		if not progs:
 			self.session.open(MessageBox, _("None of the hash programs for the hashes %s are available") % ''.join(config.plugins.filecommander.hashes.value), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 			return
