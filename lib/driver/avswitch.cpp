@@ -100,6 +100,17 @@ eAVSwitch *eAVSwitch::getInstance()
 	return instance;
 }
 
+static void reads(int fd, char *buf, size_t size)
+{
+	ASSERT(size > 0);
+	ssize_t len = read(fd, buf, size - 1);
+	if (len < 0)
+		len = 0;
+	if (len > 0 && buf[len-1] == '\n')
+		--len;
+	buf[len] = 0;
+}
+
 bool eAVSwitch::haveScartSwitch()
 {
 	char tmp[255];
@@ -108,7 +119,7 @@ bool eAVSwitch::haveScartSwitch()
 		eDebug("[eAVSwitch] cannot open /proc/stb/avs/0/input_choices: %m");
 		return false;
 	}
-	read(fd, tmp, 255);
+	reads(fd, tmp, 255);
 	close(fd);
 	return !!strstr(tmp, "scart");
 }
