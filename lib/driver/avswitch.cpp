@@ -138,6 +138,13 @@ void eAVSwitch::setInput(int val)
 
 	m_active = val == 0;
 
+	if((fd = open("/proc/stb/avs/0/input", O_RDONLY)) >= 0) {
+		char tmp[16];
+		reads(fd, tmp, sizeof(tmp));
+		close(fd);
+		if (strcmp(tmp, input[val]) == 0)
+			return;
+	}
 	if((fd = open("/proc/stb/avs/0/input", O_WRONLY)) < 0) {
 		eDebug("[eAVSwitch] cannot open /proc/stb/avs/0/input: %m");
 		return;
@@ -174,6 +181,13 @@ void eAVSwitch::setColorFormat(int format)
 	if (*fmt == '\0')
 		return; // invalid format
 
+	if((fd = open("/proc/stb/avs/0/colorformat", O_RDONLY)) >= 0) {
+		char tmp[16];
+		reads(fd, tmp, sizeof(tmp));
+		close(fd);
+		if (strcmp(tmp, fmt) == 0)
+			return;
+	}
 	if ((fd = open("/proc/stb/avs/0/colorformat", O_WRONLY)) < 0) {
 		eDebug("[eAVSwitch] cannot open /proc/stb/avs/0/colorformat: %m");
 		return;
