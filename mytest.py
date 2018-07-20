@@ -748,7 +748,7 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 
-profile("UserInterface")
+profile("UserInterfacePos")
 import Screens.UserInterfacePositioner
 Screens.UserInterfacePositioner.InitOsdPosition()
 
