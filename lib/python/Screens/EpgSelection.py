@@ -490,9 +490,16 @@ class EPGSelection(Screen, HelpableScreen):
 				elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 					service = ServiceReference(self.servicelist.getCurrentSelection())
 				index = self['list'].getCurrentIndex()
+				event = self['list'].getCurrent()[0]
+				event = event and event.getEventId()
 				self['list'].fillSingleEPG(service)
 				self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 				self['list'].setCurrentIndex(index)
+				if index > 0:
+					ev = self['list'].getCurrent()[0]
+					ev = ev and ev.getEventId()
+					if event != ev:
+						self['list'].setCurrentIndex(index - 1)
 			except:
 				pass
 
