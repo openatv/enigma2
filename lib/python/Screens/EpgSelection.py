@@ -76,7 +76,6 @@ class EPGSelection(Screen, HelpableScreen):
 		self.eventviewWasShown = False
 		self.currch = None
 		self.session.pipshown = False
-		self.cureventindex = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
 		else:
@@ -490,11 +489,7 @@ class EPGSelection(Screen, HelpableScreen):
 					service = self.currentService
 				elif self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
 					service = ServiceReference(self.servicelist.getCurrentSelection())
-				if not self.cureventindex:
-					index = self['list'].getCurrentIndex()
-				else:
-					index = self.cureventindex
-					self.cureventindex = None
+				index = self['list'].getCurrentIndex()
 				self['list'].fillSingleEPG(service)
 				self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 				self['list'].setCurrentIndex(index)
