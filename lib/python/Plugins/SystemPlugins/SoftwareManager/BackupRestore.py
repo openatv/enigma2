@@ -60,6 +60,7 @@ def InitConfig():
 		'/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db',
 		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
 		'/etc/rc3.d/S99tuner.sh',
+		'/usr/bin/enigma2_pre_start.sh',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
