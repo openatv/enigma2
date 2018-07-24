@@ -509,6 +509,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.hidePipOnExitCallback(True)
 		else:
 			self.hide()
+			self.hideTimer.stop()
 			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
 		VolumeControl.instance and VolumeControl.instance.volHide()
