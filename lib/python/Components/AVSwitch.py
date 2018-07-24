@@ -906,7 +906,7 @@ def InitAVSwitch():
 	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
 			f = open("/proc/stb/audio/ac3", "w")
-			print "[AVSwitch] setting AC3 to %s" % configElement.value and "downmix" or "passthrough"
+			print "[AVSwitch] setting AC3 to %s" % (configElement.value and "downmix" or "passthrough")
 			f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
 			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
@@ -947,7 +947,7 @@ def InitAVSwitch():
 	if can_downmix_aac:
 		def setAACDownmix(configElement):
 			f = open("/proc/stb/audio/aac", "w")
-			print "[AVSwitch] setting AAC to %s" % configElement.value and "downmix" or "passthrough"
+			print "[AVSwitch] setting AAC to %s" % (configElement.value and "downmix" or "passthrough")
 			f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
 		config.av.downmix_aac = ConfigYesNo(default=True)
