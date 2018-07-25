@@ -196,12 +196,12 @@ class key_actions():
 		self.run_prog("file")
 
 	def run_ffprobe(self):
-		self.run_prog("ffprobe")
+		self.run_prog("ffprobe", "-hide_banner")
 
 	def run_mediainfo(self):
 		self.run_prog("mediainfo")
 
-	def run_prog(self, prog):
+	def run_prog(self, prog, args=None):
 		if not self.have_program(prog):
 			pkg = self.progPackages.get(prog)
 			if pkg:
@@ -224,10 +224,19 @@ class key_actions():
 			__, filetype = os.path.splitext(filename.lower())
 			filepath = os.path.join(sourceDir, filename)
 		if prog == "file" or filetype == ".ts" or filetype in MOVIE_EXTENSIONS:
-			toRun = (prog, filepath)
-			self.session.open(Console, cmdlist=(toRun,))
+			if args is None:
+				args = ()
+			elif not isinstance(args, (tuple, list)):
+				args = (args,)
+			toRun = (prog,) + tuple(args) + (filepath,)
+			self._progConsole = self.session.open(Console, cmdlist=(toRun,), finishedCallback=self.progConsoleCB)
 		else:
 			self.session.open(MessageBox, _("You can't usefully run '%s' on '%s'.") % (prog, filename), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+
+	def progConsoleCB(self):
+		if hasattr(self, "_progConsole") and "text" in self._progConsole:
+			self._progConsole["text"].setPos(0)
+			self._progConsole["text"].updateScrollbar()
 
 	def help_run_file(self):
 		return self.help_run_prog("file")
