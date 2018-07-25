@@ -291,6 +291,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		# Create the menu list with the buttons in the order of
 		# the "buttons" tuple
 		menu = [(button, actions[button]) for button in buttons if button in actions]
+		menu += [
+			("bullet", self.help_uninstall_file, "uninstall+file"),
+			("bullet", self.help_uninstall_ffprobe, "uninstall+ffprobe"),
+			# ("bullet", self.help_uninstall_mediainfo, "uninstall+mediainfo"),
+		]
 
 		self.session.openWithCallback(self.goContextCB, FileCommanderContextMenu, contexts, menu)
 
@@ -298,6 +303,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if action:
 			if action == "menu":
 				self.goMenu()
+			elif action == "uninstall+file":
+				self.uninstall_file()
+			elif action == "uninstall+ffprobe":
+				self.uninstall_ffprobe()
+			elif action == "uninstall+mediainfo":
+				self.uninstall_mediainfo()
 			else:
 				actions = self["actions"].actions
 				if action in actions:

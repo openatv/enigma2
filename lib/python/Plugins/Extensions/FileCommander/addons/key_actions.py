@@ -205,10 +205,10 @@ class key_actions():
 		if not self.have_program(prog):
 			pkg = self.progPackages.get(prog)
 			if pkg:
-				how_to = "You need to install the '%s' package." % pkg
+				self._opkgArgs = ("install", pkg)
+				self.session.openWithCallback(self.doOpkgCB, MessageBox, _("Program '%s' needs to be installed to run this action.\nInstall the '%s' package to install the program?") % (prog, pkg), type=MessageBox.TYPE_YESNO, default=True)
 			else:
-				how_to = "The package containing this program isn't known."
-			self.session.open(MessageBox, _("Program '%s' not installed.\n%s") % (prog, how_to), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+				self.session.open(MessageBox, _("Program '%s' not installed.\nThe package containing this program isn't known.") % (prog, how_to), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 			return
 
 		filename = self.SOURCELIST.getFilename()
@@ -243,9 +243,50 @@ class key_actions():
 			return _("Run '%s' command") % prog
 		else:
 			if prog in self.progPackages:
-				return _("You need to install package '%s' to run '%s' command") % (self.progPackages[prog], prog)
+				return _("Install '%s' and enable this operation") % prog
 			else:
 				return _("'%s' not installed and no known package") % prog
+
+	def uninstall_file(self):
+		self.uninstall_prog("file")
+
+	def uninstall_ffprobe(self):
+		self.uninstall_prog("ffprobe")
+
+	def uninstall_mediainfo(self):
+		self.uninstall_prog("mediainfo")
+
+	def uninstall_prog(self, prog):
+		if self.have_program(prog):
+			pkg = self.progPackages.get(prog)
+			if pkg:
+				self._opkgArgs = ("remove", pkg)
+				self.session.openWithCallback(self.doOpkgCB, MessageBox, _("Program '%s' needs to be installed to run the '%s' action.\nUninstall the '%s' package to uninstall the program?") % (prog, prog, pkg), type=MessageBox.TYPE_YESNO, default=True)
+				return True
+			else:
+				self.session.open(MessageBox, _("Program '%s' is installed.\nThe package containing this program isn't known, so it can't be uninstalled.") % (prog, how_to), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+		return False
+
+	def doOpkgCB(self, ans):
+		if ans and hasattr(self, "_opkgArgs"):
+			self.session.open(Console, cmdlist=((("opkg",) + self._opkgArgs),))
+			del self._opkgArgs
+
+	def help_uninstall_file(self):
+		return self.help_uninstall_prog("file")
+
+	def help_uninstall_ffprobe(self):
+		return self.help_uninstall_prog("ffprobe")
+
+	def help_uninstall_mediainfo(self):
+		return self.help_uninstall_prog("mediainfo")
+
+	def help_uninstall_prog(self, prog):
+		if self.have_program(prog):
+			pkg = self.progPackages.get(prog)
+			if pkg:
+				return _("Uninstall '%s' package and disable '%s'") % (pkg, prog)
+		return None
 
 	def run_hashes(self):
 		if not config.plugins.filecommander.hashes.value:
