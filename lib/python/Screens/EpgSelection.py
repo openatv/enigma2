@@ -668,7 +668,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def refreshlist(self):
 		self.refreshTimer.stop()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			#self.ask_time = self['list'].getTimeBase()
+			self.ask_time = self['list'].getTimeBase()
 			self['list'].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines()
 		elif self.type == EPG_TYPE_MULTI:

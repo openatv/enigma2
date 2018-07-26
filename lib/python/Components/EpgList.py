@@ -1347,6 +1347,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.offs -= 1
 					self.fillGraphEPG(None) # refill
 					return True
+				elif self.time_base > time():
+					self.time_base -= self.time_epoch * 60
+					self.fillGraphEPG(None) # refill
+					return True
 			elif dir == +24:
 				self.time_base += 86400
 				self.fillGraphEPG(None, self.time_base) # refill
@@ -1474,6 +1478,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.time_base = int(stime)
 		if services is None:
 			time_base = self.time_base + self.offs * self.time_epoch * 60
+			#// set new time base without offset
+			self.time_base = time_base
+			self.offs = 0
+			#//
 			test = [ (service[0], 0, time_base, self.time_epoch) for service in self.list ]
 			serviceList = self.list
 			piconIdx = 3
