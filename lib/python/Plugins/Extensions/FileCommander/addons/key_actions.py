@@ -49,7 +49,7 @@ from Plugins.Extensions.FileCommander.addons.gz import *
 from Plugins.Extensions.FileCommander.addons.ipk import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
 
-TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg"))
+TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
 
 try:
 	from Screens import DVD
