@@ -483,6 +483,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		length = config.plugins.filecommander.input_length.value
 		if (filename is None) or (sourceDir is None):
 			return
+		filename = os.path.basename(os.path.normpath(filename))
+		if not filename:
+			self.session.open(MessageBox, _("It's not possible to rename the filesystem root."), type=MessageBox.TYPE_ERROR)
+			return
 		self.session.openWithCallback(self.doRename, InputBox, text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter file/folder name"), windowTitle=_("Rename file"))
 		# overwrite : False = insert mode (not overwrite) when InputBox is created
 		# firstpos_end : True = cursor at end of text on InputBox creation - False = cursor at start of text on InputBox creation
