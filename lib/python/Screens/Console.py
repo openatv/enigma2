@@ -24,7 +24,11 @@ class Console(Screen):
 			"ok": self.cancel,
 			"cancel": self.cancel,
 			"up": self["text"].pageUp,
-			"down": self["text"].pageDown
+			"down": self["text"].pageDown,
+			"left": self["text"].pageUp,
+			"right": self["text"].pageDown,
+			"chplus": self.firstPage,
+			"chminus": self.lastPage,
 		}, -1)
 
 		self.container = eConsoleAppContainer()
@@ -32,6 +36,14 @@ class Console(Screen):
 		self.container.dataAvail.append(self.dataAvail)
 		self.run = -1
 		self.onLayoutFinish.append(self.startRun)	# don't start before gui is finished
+
+	def firstPage(self):
+		self["text"].setPos(0)
+		self["text"].updateScrollbar()
+
+	def lastPage(self):
+		self["text"].lastPage()
+		self["text"].updateScrollbar()
 
 	def doExec(self, cmd):
 		print "[Console] executing command %d/%d:" % (self.run+1, len(self.cmdlist)), cmd
