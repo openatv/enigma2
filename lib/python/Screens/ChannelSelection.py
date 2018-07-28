@@ -1477,8 +1477,10 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
+		self.greenIsFav = isinstance(self, ChannelSelection) and not nimmanager.getNimListOfType("DVB-S")
+
 		self["key_red"] = Button(_("All"))
-		self["key_green"] = Button(_("Satellites"))
+		self["key_green"] = Button(_("Add to Favourites") if self.greenIsFav else _("Satellites"))
 		self["key_yellow"] = Button(_("Providers"))
 		self["key_blue"] = Button(_("Favourites"))
 
@@ -1664,6 +1666,8 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 					nameStr = self.getServiceName(end_ref)
 					titleStr = nameStr + titleStr
 				self.setTitle(titleStr)
+				if self.greenIsFav:
+					self["key_green"].setText(_("Remove entry") if nameStr == _("Favourites") else _("Add to Favourites"))
 
 	def moveUp(self):
 		self.servicelist.moveUp()
@@ -1714,7 +1718,8 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		return False
 
 	def showAllServices(self):
-		self["key_green"].setText(_("Satellites"))
+		if not self.greenIsFav:
+			self["key_green"].setText(_("Satellites"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, 'ORDER BY name')
 			if not self.preEnterPath(ref.toString()):
@@ -1824,7 +1829,8 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 								self.setCurrentSelectionAlternative(ref)
 
 	def showProviders(self):
-		self["key_green"].setText(_("Satellites"))
+		if not self.greenIsFav:
+			self["key_green"].setText(_("Satellites"))
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, ' FROM PROVIDERS ORDER BY name')
 			if not self.preEnterPath(ref.toString()):
@@ -1915,7 +1921,8 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 				self.servicelist.moveDown()
 
 	def showFavourites(self):
-		self["key_green"].setText(_("Satellites"))
+		if not self.greenIsFav:
+			self["key_green"].setText(_("Satellites"))
 		if not self.pathChangeDisabled:
 			if not self.preEnterPath(self.bouquet_root.toString()):
 				if self.isBasePathEqual(self.bouquet_root):
@@ -2116,11 +2123,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		else:
 			self.skinName = "ChannelSelection"
 
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"], {
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions", "ChannelSelectBaseActions"], {
 			"cancel": self.cancel,
 			"ok": self.channelSelected,
 			"keyRadio": self.toogleTvRadio,
 			"keyTV": self.toogleTvRadio,
+			"showSatellites": self.addToFav,
 		})
 
 		self.radioTV = 0
@@ -2223,6 +2231,22 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			config.servicelist.lastmode.value = 'radio'
 			self.setRadioMode()
 			self.setMode()
+
+	def addToFav(self):
+		bouquets = self.getBouquetList()
+		if not bouquets:
+			return
+		cur = self.getCurrentSelection()
+		if not cur or not cur.valid():
+			return
+		if self.inBouquet():
+			nameStr = self.getServiceName(self.servicePath[-1])
+			if nameStr == _("Favourites"):
+				self.removeCurrentService()
+		for x in bouquets:
+			if self.removeModeStr(x[0]) == _("Favourites"):
+				self.addServiceToBouquet(x[1])
+				break
 
 	def __onCreate(self):
 		if config.usage.e1like_radio_mode.value:
@@ -2332,7 +2356,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.movemode and self.toggleMoveMode()
 					self.editMode = False
 					self.protectContextMenu = True
-					self["key_green"].setText(_("Satellites"))
 					self.close(ref)
 
 	def bouquetParentalControlCallback(self, ref):

@@ -185,6 +185,9 @@ class GeneralMenu(Screen):
 		selectedRow = self.selectedRow[self.selectedColumnID]
 		self.selectedColumn = (self.selectedColumn - 1) % self.COLUMNS
 		self.selectedColumnID = self.columns[self.selectedColumn][1]
+		if len(self.subentrys[self.selectedColumnID]) == 0:
+			self.left()
+			return
 		if selectedRow > len(self.subentrys[self.selectedColumnID]) - 1:
 			self.selectedRow[self.selectedColumnID] = len(self.subentrys[self.selectedColumnID]) - 1
 		else:
@@ -199,6 +202,9 @@ class GeneralMenu(Screen):
 		selectedRow = self.selectedRow[self.selectedColumnID]
 		self.selectedColumn = (self.selectedColumn + 1) % self.COLUMNS
 		self.selectedColumnID = self.columns[self.selectedColumn][1]
+		if len(self.subentrys[self.selectedColumnID]) == 0:
+			self.right()
+			return
 		if selectedRow > len(self.subentrys[self.selectedColumnID]) - 1:
 			self.selectedRow[self.selectedColumnID] = len(self.subentrys[self.selectedColumnID]) - 1
 		else:
