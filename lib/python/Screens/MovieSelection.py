@@ -2697,6 +2697,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					return
 				else:
 					try:
+						path = os.path.join(cur_path, ".e2settings.pkl")
+						if os.path.exists(path):
+							os.remove(path)
 						os.rmdir(cur_path)
 					except Exception, e:
 						print "[MovieSelection] Failed delete", e

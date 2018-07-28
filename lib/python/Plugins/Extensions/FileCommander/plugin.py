@@ -13,6 +13,7 @@ from Components.Scanner import openFile
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.MenuList import MenuList
+from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 # Screens
 from Screens.Screen import Screen
 from Screens.Setup import Setup
@@ -47,6 +48,7 @@ import os
 import stat
 import pwd
 import grp
+import string
 # System mods
 from InputBox import InputBox
 from FileList import FileList, MultiFileSelectList
@@ -172,7 +174,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions", "InfobarTeletextActions", "InfobarSubtitleSelectionActions"], {
 			"ok": (self.ok, _("Play/view/edit/install/extract/run file or enter directory")),
 			"back": (self.exit, _("Leave File Commander")),
-			"menu": (self.goMenu, _("Open configuration screen")),
+			"menu": (self.goContext, _("Open settings/actions menu")),
 			"nextMarker": (self.listRight, _("Activate right-hand file list as source")),
 			"prevMarker": (self.listLeft, _("Activate left-hand file list as source")),
 			"nextBouquet": (self.listRight, _("Activate right-hand file list as source")),
@@ -180,7 +182,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"1": (self.gomakeDir, _("Create directory/folder")),
 			"2": (self.gomakeSym, _("Create user-named symbolic link")),
 			"3": (self.gofileStatInfo, _("File/directory status information")),
-			"4": (self.call_change_mode, _("Toggle execute permissions on/off (755/644)")),
+			"4": (self.call_change_mode, _("Change execute permissions (755/644)")),
 			"5": (self.goDefaultfolder, _("Go to your default folder")),
 			"6": (self.run_file, self.help_run_file),
 			"7": (self.run_ffprobe, self.help_run_ffprobe),
@@ -265,6 +267,52 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.onFileAction(self.SOURCELIST, self.TARGETLIST)
 			# self.updateHead()
 			self.doRefresh()
+
+	def goContext(self):
+		buttons = ("menu", "info") + tuple(string.digits) + ("red", "green", "yellow", "blue")
+
+		# Map the listed button actions to their help texts and
+		# build a list of the contexts used by the selected buttons
+		actionMap = self["actions"]
+		actions = {}
+		haveContext = set()
+		contexts = []
+		for contextEntry in (ce for ce in self.helpList if ce[0] is actionMap):
+			for actionEntry in contextEntry[2]:
+				button = actionEntry[0]
+				text = actionEntry[1]
+				if button in buttons and text is not None:
+					context = contextEntry[1]
+					if context not in haveContext:
+						contexts.append(context)
+						haveContext.add(context)
+					actions[button] = _("Settings...") if button == "menu" else text
+
+		# Create the menu list with the buttons in the order of
+		# the "buttons" tuple
+		menu = [(button, actions[button]) for button in buttons if button in actions]
+		menu += [
+			("bullet", self.help_uninstall_file, "uninstall+file"),
+			("bullet", self.help_uninstall_ffprobe, "uninstall+ffprobe"),
+			# ("bullet", self.help_uninstall_mediainfo, "uninstall+mediainfo"),
+		]
+
+		self.session.openWithCallback(self.goContextCB, FileCommanderContextMenu, contexts, menu)
+
+	def goContextCB(self, action):
+		if action:
+			if action == "menu":
+				self.goMenu()
+			elif action == "uninstall+file":
+				self.uninstall_file()
+			elif action == "uninstall+ffprobe":
+				self.uninstall_ffprobe()
+			elif action == "uninstall+mediainfo":
+				self.uninstall_mediainfo()
+			else:
+				actions = self["actions"].actions
+				if action in actions:
+					actions[action]()
 
 	def goMenu(self):
 		self.oldFilterSettings = self.filterSettings()
@@ -612,6 +660,37 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # 	def call_onFileAction(self):
 # 		self.onFileAction(self.SOURCELIST, self.TARGETLIST)
+
+class FileCommanderContextMenu(Screen):
+	def __init__(self, session, contexts, list):
+		Screen.__init__(self, session)
+		actions = {
+			"ok": self.goOk,
+			"cancel": self.goCancel,
+		}
+		menu = []
+		if ["OkCancelActions"] not in contexts:
+			contexts = ["OkCancelActions"] + contexts
+
+		for item in list:
+			button = item[0]
+			text = item[1]
+			if callable(text):
+				text = text()
+			if text:
+				action = item[2] if len(item) > 2 else button
+				if button and button not in ("expandable", "expanded", "verticalline", "bullet"):
+					actions[button] = boundFunction(self.close, button)
+				menu.append(ChoiceEntryComponent(button, (text, action)))
+
+		self["actions"] = ActionMap(contexts, actions)
+		self["menu"] = ChoiceList(menu)
+
+	def goOk(self):
+		self.close(self["menu"].getCurrent()[0][1])
+
+	def goCancel(self):
+		self.close(False)
 
 #####################
 # ## Select Screen ###
