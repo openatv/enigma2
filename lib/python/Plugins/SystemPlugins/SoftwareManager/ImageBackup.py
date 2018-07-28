@@ -118,7 +118,7 @@ class ImageBackup(Screen):
 
 	def show_Errors(self):
 		if self.error_files:
-			self.session.open(MessageBox, _('Index Error in the following files: %s' %self.error_files[:-2]), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _('Index Error in the following files: %s') %self.error_files[:-2], type = MessageBox.TYPE_ERROR)
 			self.error_files = ''
 
 	def check_hdd(self):
