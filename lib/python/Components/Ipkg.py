@@ -153,16 +153,13 @@ class IpkgComponent:
 			elif data.startswith('Installing'):
 				self.callCallbacks(self.EVENT_INSTALL, data.split(' ', 2)[1])
 			elif data.startswith('Removing'):
-				self.callCallbacks(self.EVENT_REMOVE, data.split(' ', 3)[2])
+				self.callCallbacks(self.EVENT_REMOVE, data.split(' ', 2)[1])
 			elif data.startswith('Configuring'):
 				self.callCallbacks(self.EVENT_CONFIGURING, data.split(' ', 2)[1])
-			elif data.startswith('An error occurred'):
-				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.startswith('Collected errors'):
-				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.startswith('Failed to download'):
-				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.startswith('ipkg_download: ERROR:'):
+			elif data.startswith(('An error occurred',
+								  'Collected errors',
+								  'Failed to download',
+								  'ipkg_download: ERROR:')):
 				self.callCallbacks(self.EVENT_ERROR, None)
 			elif data.find('Configuration file \'') >= 0:
 				# Note: the config file update question doesn't end with a newline, so

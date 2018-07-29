@@ -51,7 +51,7 @@ import grp
 import string
 # System mods
 from InputBox import InputBox
-from FileList import FileList, MultiFileSelectList
+from FileList import FileList, MultiFileSelectList, EXTENSIONS
 # Addons
 from Plugins.Extensions.FileCommander.addons.key_actions import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
@@ -59,10 +59,16 @@ from Plugins.Extensions.PicturePlayer.ui import config
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
-movie = "(?i)^.*\.(ts|iso|avi|divx|m4v|mpg|mpeg|mkv|mp4|mov|flv|m2ts|mts|3gp|3g2|wmv)"
-music = "(?i)^.*\.(m4a|mp2|mp3|wav|ogg|flac|wma)"
-pictures = "(?i)^.*\.(jpg|jpeg|jpe|bmp|png|gif)"
-records = "(?i)^.*\.(ts)"
+def _make_filter(media_type):
+	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in EXTENSIONS.iteritems() if type == media_type))) + ")$"
+
+def _make_rec_filter():
+	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext  for ext in MOVIEEXTENSIONS.iterkeys()])) + ")$"
+
+movie = _make_filter("movie")
+music = _make_filter("music")
+pictures = _make_filter("picture")
+records = _make_rec_filter()
 
 dmnapi_py = "/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/addons/dmnapi.py"
 ##################################
@@ -335,6 +341,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				filter = self.fileFilter()
 				self["list_left"].matchingPattern = re.compile(filter)
 				self["list_right"].matchingPattern = re.compile(filter)
+				self.onLayout()
 			del self.oldFilterSettings
 		self.doRefresh()
 
@@ -475,6 +482,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		length = config.plugins.filecommander.input_length.value
 		if (filename is None) or (sourceDir is None):
+			return
+		filename = os.path.basename(os.path.normpath(filename))
+		if not filename:
+			self.session.open(MessageBox, _("It's not possible to rename the filesystem root."), type=MessageBox.TYPE_ERROR)
 			return
 		self.session.openWithCallback(self.doRename, InputBox, text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter file/folder name"), windowTitle=_("Rename file"))
 		# overwrite : False = insert mode (not overwrite) when InputBox is created

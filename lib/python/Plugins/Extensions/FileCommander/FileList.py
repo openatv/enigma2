@@ -8,13 +8,9 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
 from Tools.LoadPixmap import LoadPixmap
-
+from addons.key_actions import TEXT_EXTENSIONS
 
 LOCAL_EXTENSIONS = {
-	"txt": "txt",
-	"conf": "txt",
-	"cfg": "txt",
-	"srt": "txt",
 	"py": "py",
 	"sh": "sh",
 	"html": "html",
@@ -28,6 +24,8 @@ LOCAL_EXTENSIONS = {
 	"gz": "gz",
 	"rar": "rar",
 }
+
+LOCAL_EXTENSIONS.update(((ext[1:], "txt") for ext in TEXT_EXTENSIONS if ext[1:] not in LOCAL_EXTENSIONS))
 
 EXTENSIONS = BASE_EXTENSIONS.copy()
 EXTENSIONS.update(LOCAL_EXTENSIONS)
