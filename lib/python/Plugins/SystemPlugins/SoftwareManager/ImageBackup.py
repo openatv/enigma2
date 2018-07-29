@@ -277,6 +277,7 @@ class ImageBackup(Screen):
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 1-4 minutes for this system\n")
 		else:
+			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("this will take between 2 and 9 minutes\n")
 		self.message += "\n_________________________________________________\n\n"
 		self.message += "'"
