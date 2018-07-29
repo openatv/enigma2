@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-08 00:40+0300\n"
-"PO-Revision-Date: 2018-07-08 11:01+0300\n"
+"POT-Creation-Date: 2018-07-29 02:35+0300\n"
+"PO-Revision-Date: 2018-07-29 10:31+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.1\n"
+"X-Generator: Poedit 2.1.1\n"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas: Pasirinkite, keturių kanalų, kanalą"
@@ -5316,6 +5316,13 @@ msgstr "Įjungti antžeminę LCN:"
 msgid "Enable unlinked bouquets"
 msgstr "Įjungti daugiau paketų"
 
+msgid ""
+"Enable Up / Down buttons for the 'all up / down' function? (at the "
+"beginning / end of the column)"
+msgstr ""
+"Įjungti aukštyn / žemyn mygtukus 'visoms aukštyn / žemyn' funkcijoms? "
+"(stulpelio pradžioje / pabaigoje)"
+
 msgid "Enable ViaSat EPG"
 msgstr "Įjungti ViaSat EPG"
 
@@ -6648,25 +6655,25 @@ msgid "Hidden network"
 msgstr "Paslėptas tinklas"
 
 msgid "hide"
-msgstr "slėpti"
+msgstr "paslėpti"
 
 msgid "Hide any zap error messages."
-msgstr "Slėpti visus perjungimo klaidų pranešimus."
+msgstr "Paslėpti visus perjungimo klaidų pranešimus."
 
 msgid "Hide known extensions"
-msgstr "Slėpti žinomus plėtinius"
+msgstr "Paslėpti žinomus plėtinius"
 
 msgid "Hide parental locked services"
-msgstr "Slėpti tėvų kontrolei priskirtus kanalus"
+msgstr "Paslėpti tėvų kontrolei priskirtus kanalus"
 
 msgid "Hide player"
-msgstr "Slėpti grotuvą"
+msgstr "Paslėpti grotuvą"
 
 msgid "Hide VBI line for this service"
 msgstr "Slėpti VBI liniją šiam kanalui"
 
 msgid "Hide zap errors"
-msgstr "Slėpti perjungimo klaidas"
+msgstr "Paslėpti perjungimo klaidas"
 
 msgid "Hierarchy info"
 msgstr "Informacijos lygis"
@@ -7110,7 +7117,10 @@ msgid "Index"
 msgstr "Indeksas"
 
 msgid "Index allocated:"
-msgstr "Indeksas priskirtas:"
+msgstr "Indeksas skirtas:"
+
+msgid "Index Error in the following files: %s"
+msgstr "Indekso klaida šiuose failuose: %s"
 
 msgid "Indonesian"
 msgstr "Indoneziečių"
@@ -10800,10 +10810,13 @@ msgid "Rebuild LCN bouquet now?"
 msgstr "Atstatyti LCN paketą dabar?"
 
 msgid "REC"
-msgstr "ĮRAŠ"
+msgstr "ĮRAŠ."
 
 msgid "Rec"
 msgstr "Rec"
+
+msgid "REC "
+msgstr "ĮRAŠ. "
 
 msgid "Rec long"
 msgstr "Raudoną, ilgai spausti"
@@ -11036,7 +11049,7 @@ msgid "Remove all cuts and marks"
 msgstr "Pašalinti visus iškirpimus ir žymeklius"
 
 msgid "remove all new found flags"
-msgstr "pašalinti visus žymeklius 'nauji'"
+msgstr "pašalinti visus žymeklius 'naujas'"
 
 msgid "remove before this position"
 msgstr "pašalinti po šios vietos"
@@ -11081,7 +11094,7 @@ msgid "Remove items from trash can after (days)"
 msgstr "Pašalinti elementus iš šiukšlinę gali po (dienų)"
 
 msgid "remove new found flag"
-msgstr "pašalinti naujai rastą žymeklį"
+msgstr "pašalinti žymeklį 'naujas'"
 
 msgid "Remove plugins"
 msgstr "Pašalinti priedus"
@@ -15351,6 +15364,9 @@ msgstr "Laiko šuolio kartojimo intervalas greitam persukimui pirmyn/atgal"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Laiko šuolis: naudoti įprastą greitą prasukimą greičiams"
 
+msgid "Time long"
+msgstr "Laikas ilgai"
+
 msgid "Time range:"
 msgstr "Laiko intervalas:"
 
@@ -15968,6 +15984,9 @@ msgstr "Aukštyn"
 
 msgid "Up/Down button mode"
 msgstr "Aukštyn/žemyn mygtuko režimas"
+
+msgid "Up/Down buttons also for 'all up/down'?"
+msgstr "Aukštyn/žemyn mygtukus, taip pat \"visiems aukštyn/žemyn\"?"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 (keymap.u80)"
