@@ -49,7 +49,7 @@ from Plugins.Extensions.FileCommander.addons.gz import *
 from Plugins.Extensions.FileCommander.addons.ipk import *
 from Plugins.Extensions.FileCommander.addons.type_utils import *
 
-TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg"))
+TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
 
 try:
 	from Screens import DVD
@@ -188,7 +188,11 @@ class key_actions():
 			else:
 				self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
 		elif answer == "VIEW":
-			yfile = os_stat(self.commando[0])
+			try:
+				yfile = os_stat(self.commando[0])
+			except OSError as oe:
+				self.session.open(MessageBox, _("%s: %s") % (self.commando[0], oe.strerror), type=MessageBox.TYPE_ERROR)
+				return
 			if (yfile.st_size < 61440):
 				self.session.open(vEditor, self.commando[0])
 
@@ -390,9 +394,12 @@ class key_actions():
 		if not sourceDir.endswith("/"):
 			sourceDir = sourceDir + "/"
 		testFileName = filename.lower()
-		_, filetype = os_path_splitext(testFileName)
+		filetype = os_path_splitext(testFileName)[1]
 		longname = sourceDir + filename
-		print "[Filebrowser]: " + filename, sourceDir, testFileName
+		print "[Filebrowser]:", filename, sourceDir, testFileName
+		if not fileExists(longname):
+			self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
+			return
 		if filetype == ".ipk":
 			self.session.openWithCallback(self.onFileActionCB, ipkMenuScreen, self.SOURCELIST, self.TARGETLIST)
 		elif filetype == ".ts":
@@ -427,20 +434,22 @@ class key_actions():
 		elif filetype == ".sh":
 			self.run_script(self.SOURCELIST)
 		elif filetype in TEXT_EXTENSIONS:
-			xfile = os_stat(longname)
+			try:
+				xfile = os_stat(longname)
+			except OSError as oe:
+				self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
+				return
 			# if (xfile.st_size < 61440):
 			if (xfile.st_size < 1000000):
 				self.session.open(vEditor, longname)
 				self.onFileActionCB(True)
 		else:
 			try:
-				x = openFile(self.session, guess_type(self.SOURCELIST.getFilename())[0], self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename())
+				found_viewer = openFile(self.session, guess_type(longname)[0], longname)
 			except TypeError, e:
-				self.session.open(MessageBox, _("no Viewer installed for this mimetype!"), type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
-			# try:
-			# 	xfile=os_stat(longname)
-			# 	if (xfile.st_size < 61440):
-			# 		self.session.open(vEditor, longname)
+				found_viewer = False
+			if not found_viewer:
+				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
 
 	def onFileActionCB(self, result):
 		# os.system('echo %s > /tmp/test.log' % (result))
