@@ -673,6 +673,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 # 		self.onFileAction(self.SOURCELIST, self.TARGETLIST)
 
 class FileCommanderContextMenu(Screen):
+	skin = """
+		<screen name="FileCommanderContextMenu" position="center,center" size="560,510" title="File Commander context menu" backgroundColor="background">
+			<widget name="menu" position="0,0" size="580,510" itemHeight="30" foregroundColor="white" backgroundColor="background" transparent="0" scrollbarMode="showOnDemand" />
+		</screen>"""
+
 	def __init__(self, session, contexts, list):
 		Screen.__init__(self, session)
 		actions = {
