@@ -301,7 +301,12 @@ class ServicePosition(Poll, Converter, object):
 							elif self.type == self.TYPE_POSITION:
 								return sign_p + ngettext("%d Min", "%d Mins", (p/60)) % (p/60)
 							elif self.type == self.TYPE_REMAINING and self.OnlyMinute:
-								myRestMinuten = ngettext("%+6d", "%+6d", (r/60)) % (r/60)
+								if config.usage.elapsed_time_positive_vfd.value:
+									myRestMinuten = "%+6d" % (r/60)
+								else:
+									myRestMinuten = "%+6d" % (r/60*-1)
+								if (r/60) == 0:
+									myRestMinuten = " "
 								time = getTime()
 								t = localtime(time)
 								d = _("%-H:%M")
