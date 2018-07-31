@@ -998,6 +998,11 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 
 		self["list"] = List(self.list)
 		self["filename"] = Label()
+		self["link_sep"] = Label()
+		self["link_label"] = Label()
+		self["link_value"] = Label()
+
+		self["link_sep"].hide()
 
 		self["actions"] = ActionMap(
 			["SetupActions", "DirectionActions"],
@@ -1057,6 +1062,18 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 		self.list.append((_("On device:"), "%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff)))
 
 		self["list"].updateList(self.list)
+
+		if stat.S_ISLNK(mode):
+			self["link_sep"].show()
+			self["link_label"].text = _("Link target:")
+			try:
+				self["link_value"].text = os.readlink(self.filename)
+			except OSError as oe:
+				self["link_value"].text = _("Can't read link contents: %s") % oe.strerror
+		else:
+			self["link_sep"].hide()
+			self["link_label"].text = ""
+			self["link_value"].text = ""
 
 # #####################
 # ## Start routines ###
