@@ -5,11 +5,11 @@
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Clock</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink,3000</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -20,11 +20,11 @@
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink,3000</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
