@@ -138,8 +138,13 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				meta.m_name = name;
 			if (descr)
 				meta.m_description = descr;
-			if (tags)
+			if (tags && *tags)
+			{
 				meta.m_tags = tags;
+				meta.m_tags += ' ';
+			}
+			meta.m_tags += "Tuner-";
+			meta.m_tags += 'A' + getFrontendInfo(iFrontendInformation_ENUMS::frontendNumber);
 			meta.m_scrambled = m_record_ecm; /* assume we will record scrambled data, when ecm will be included in the recording */
 			meta.m_packet_size = m_packet_size;
 			ret = meta.updateMeta(filename) ? -255 : 0;
