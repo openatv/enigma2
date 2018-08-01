@@ -23,6 +23,7 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 # Tools
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
+from Tools.UnitConversions import UnitScaler, UnitMultipliers
 # from Tools.HardwareInfo import HardwareInfo
 # Various
 from os.path import isdir as os_path_isdir
@@ -133,7 +134,7 @@ class stat_info:
 	def formatTime(t):
 		return time.strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time.localtime(t))
 
-class key_actions():
+class key_actions(stat_info):
 	hashes = {
 		"MD5": "md5sum",
 		"SHA1": "sha1sum",
@@ -148,8 +149,10 @@ class key_actions():
 		#  "mediainfo": "mediainfo",
 	}
 
+	SIZESCALER = UnitScaler(scaleTable=UnitMultipliers.Si, maxNumLen=3, decimals=1)
+
 	def __init__(self):
-		pass
+		stat_info.__init__(self)
 
 	@staticmethod
 	def have_program(prog):
@@ -191,39 +194,23 @@ class key_actions():
 
 	def Info(self, dirsource):
 		filename = dirsource.getFilename()
-		sourceDir = dirsource.getCurrentDirectory()  # self.SOURCELIST.getCurrentDirectory()
-		mytest = dirsource.canDescent()
+		sourceDir = dirsource.getCurrentDirectory()
 		if dirsource.canDescent():
 			if dirsource.getSelectionIndex() != 0:
 				if (not sourceDir) and (not filename):
 					return pname
 				else:
-					sourceDir = filename
-				if os_path_isdir(sourceDir):
-					mode = os.stat(sourceDir).st_mode
-				else:
-					return ("")
-				mode = oct(mode)
-				curSelDir = sourceDir
-				dir_stats = os_stat(curSelDir)
-				dir_infos = "   " + str(self.Humanizer(dir_stats.st_size)) + "    "
-				dir_infos = dir_infos + time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(dir_stats.st_mtime)) + "    "
-				dir_infos = dir_infos + _("Mode") + " " + str(mode[-3:])
-				return (dir_infos)
-			else:
-				return ("")
+					pathname = filename
 		else:
-			longname = sourceDir + filename
-			if fileExists(longname):
-				mode = os.stat(longname).st_mode
-			else:
-				return ("")
-			mode = oct(mode)
-			file_stats = os_stat(longname)
-			file_infos = filename + "   " + str(self.Humanizer(file_stats.st_size)) + "    "
-			file_infos = file_infos + time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(file_stats.st_mtime)) + "    "
-			file_infos = file_infos + _("Mode") + " " + str(mode[-3:])
-			return (file_infos)
+			pathname = sourceDir + filename
+		try:
+			st = os.lstat(os.path.normpath(pathname))
+		except:
+			return ""
+		info = ' '.join(self.SIZESCALER.scale(st.st_size)) + "B    "
+		info += self.formatTime(st.st_mtime) + "    "
+		info += _("Mode %s (%04o)") % (self.fileModeStr(st.st_mode), stat.S_IMODE(st.st_mode))
+		return info
 
 	@staticmethod
 	def fileFilter():
