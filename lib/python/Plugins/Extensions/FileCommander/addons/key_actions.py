@@ -212,6 +212,56 @@ class key_actions(stat_info):
 		info += _("Mode %s (%04o)") % (self.fileModeStr(st.st_mode), stat.S_IMODE(st.st_mode))
 		return info
 
+	def statInfo(self, dirsource):
+		filename = dirsource.getFilename()
+		sourceDir = dirsource.getCurrentDirectory()
+		if dirsource.canDescent():
+			if dirsource.getSelectionIndex() != 0:
+				if (not sourceDir) and (not filename):
+					return pname
+				else:
+					pathname = filename
+		else:
+			pathname = sourceDir + filename
+		try:
+			st = os.lstat(os.path.normpath(pathname))
+		except:
+			return ()
+
+		# Numbers in trailing comments are the template text indexes
+		symbolicmode = self.fileModeStr(st.st_mode)
+		octalmode = "%04o" % stat.S_IMODE(st.st_mode)
+		modes = (
+			octalmode,  # 0
+			symbolicmode,  # 1
+			_("%s (%s)") % (octalmode, symbolicmode)  # 2
+		)
+
+		if stat.S_ISCHR(st.st_mode) or stat.S_ISBLK(st.st_mode):
+			sizes = ("", "", "")
+		else:
+			bytesize = "%s" % "{:n}".format(st.st_size)
+			scaledsize = ' '.join(self.SIZESCALER.scale(st.st_size))
+			sizes = (
+				bytesize,  # 10
+				_("%sB") % scaledsize,  # 11
+				_("%s (%sB") % (bytesize, scaledsize)  # 12
+			)
+
+		return [modes + (
+			"%d" % st.st_ino, #3
+			"%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff),  #4
+			"%d" % st.st_nlink,  # 5
+			"%d" % st.st_uid,  # 6
+			"%s" % self.username(st.st_uid),  # 7
+			"%d" % st.st_gid,  # 8
+			"%s" % self.groupname(st.st_gid)  # 9
+		) + sizes + (
+			self.formatTime(st.st_mtime),  # 13
+			self.formatTime(st.st_atime),  # 14
+			self.formatTime(st.st_ctime)  # 15
+		)]
+
 	@staticmethod
 	def fileFilter():
 		if config.plugins.filecommander.extension.value == "myfilter":

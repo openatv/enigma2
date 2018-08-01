@@ -49,7 +49,7 @@ import string
 from InputBox import InputBox
 from FileList import FileList, MultiFileSelectList, EXTENSIONS
 # Addons
-from Plugins.Extensions.FileCommander.addons.key_actions import *
+from addons.key_actions import key_actions, stat_info
 from Plugins.Extensions.FileCommander.addons.type_utils import *
 from Plugins.Extensions.PicturePlayer.ui import config
 
@@ -114,8 +114,34 @@ class FileCommanderConfigScreen(Setup):
 class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
-			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
-			<widget name="list_right_head" position="595,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
+			<widget name="list_left_head1" position="10,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_left_head2" render="Listbox" position="10,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
+			<widget name="list_right_head1" position="595,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_right_head2" render="Listbox" position="595,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
 			<widget name="list_left" position="10,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="list_right" position="595,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="key_red" position="100,570" size="260,25" transparent="1" font="Regular;20"/>
@@ -162,8 +188,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filter = self.fileFilter()
 
 		# set current folder
-		self["list_left_head"] = Label(path_left)
-		self["list_right_head"] = Label(path_right)
+		self["list_left_head1"] = Label(path_left)
+		self["list_left_head2"] = List()
+		self["list_right_head1"] = Label(path_right)
+		self["list_right_head2"] = List()
+
 		self["list_left"] = FileList(path_left, matchingPattern=filter)
 		self["list_right"] = FileList(path_right, matchingPattern=filter)
 
@@ -258,12 +287,6 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def ok(self):
 		if self.SOURCELIST.canDescent():  # isDir
 			self.SOURCELIST.descent()
-			if self.SOURCELIST == self["list_right"]:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory())
-			else:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory())
 			self.updateHead()
 		else:
 			self.onFileAction(self.SOURCELIST, self.TARGETLIST)
@@ -322,14 +345,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 	def goDefaultfolder(self):
 		self.SOURCELIST.changeDir(config.plugins.filecommander.path_default.value or None)
-		self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
-		self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
+		self.updateHead()
 
 	def goParentfolder(self):
 		if self.SOURCELIST.getParentDirectory() != False:
 			self.SOURCELIST.changeDir(self.SOURCELIST.getParentDirectory())
-			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
-			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
+			self.updateHead()
 
 	def goRestart(self, *answer):
 		if hasattr(self, "oldFilterSettings"):
@@ -616,20 +637,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## basic functions ###
 	def updateHead(self):
-		text_target = self.Info(self.TARGETLIST)
-		text_source = self.Info(self.SOURCELIST)
-		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if self.SOURCELIST == self["list_right"]:
-			if targetDir is not None:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
-			if sourceDir is not None:
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-		else:
-			if sourceDir is not None:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-			if targetDir is not None:
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
+		for side in ("list_left", "list_right"):
+			dir = self[side].getCurrentDirectory()
+			if dir is not None:
+				pathname = self[side].getFilename()
+				if not self[side].canDescent():
+					pathname = dir + pathname
+				self[side + "_head1"].text = pathname
+				self[side + "_head2"].updateList(self.statInfo(self[side]))
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
 
 	def doRefreshDir(self):
@@ -710,8 +725,34 @@ class FileCommanderContextMenu(Screen):
 class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
-			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
-			<widget name="list_right_head" position="595,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
+			<widget name="list_left_head1" position="10,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_left_head2" render="Listbox" position="10,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
+			<widget name="list_right_head1" position="595,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_right_head2" render="Listbox" position="595,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
 			<widget name="list_left" position="10,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="list_right" position="595,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="key_red" position="100,570" size="260,25" transparent="1" font="Regular;20"/>
@@ -738,8 +779,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		filter = self.fileFilter()
 
 		# set current folder
-		self["list_left_head"] = Label(path_left)
-		self["list_right_head"] = Label(path_right)
+		self["list_left_head1"] = Label(path_left)
+		self["list_left_head2"] = List()
+		self["list_right_head1"] = Label(path_right)
+		self["list_right_head2"] = List()
 
 		if leftactive:
 			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter)
@@ -809,20 +852,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		else:
 			if self.ACTIVELIST.canDescent():  # isDir
 				self.ACTIVELIST.descent()
-			if self.ACTIVELIST == self["list_left"]:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory())
-			else:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory())
+			self.updateHead()
 
 	def goParentfolder(self):
 		if self.ACTIVELIST == self.SOURCELIST:
 			return
 		if self.ACTIVELIST.getParentDirectory() != False:
 			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
-			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
-			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
+			self.updateHead()
 
 	def goLeft(self):
 		self.ACTIVELIST.pageUp()
@@ -902,20 +939,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 
 # ## basic functions ###
 	def updateHead(self):
-		text_target = self.Info(self.TARGETLIST)
-		text_source = self.Info(self.SOURCELIST)
-		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if self.SOURCELIST == self["list_right"]:
-			if targetDir is not None:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
-			if sourceDir is not None:
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-		else:
-			if sourceDir is not None:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-			if targetDir is not None:
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
+		for side in ("list_left", "list_right"):
+			dir = self[side].getCurrentDirectory()
+			if dir is not None:
+				pathname = self[side].getFilename()
+				if not self[side].canDescent():
+					pathname = dir + pathname
+				self[side + "_head1"].text = pathname
+				self[side + "_head2"].updateList(self.statInfo(self[side]))
 
 	def doRefresh(self):
 		print "[FileCommander] selectedFiles:", self.selectedFiles
