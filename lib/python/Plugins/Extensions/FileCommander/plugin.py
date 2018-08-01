@@ -41,13 +41,9 @@ from os import walk as os_walk
 from os import popen as os_popen
 from os import path as os_path
 from os import listdir as os_listdir
-from time import strftime as time_strftime
-from time import localtime as time_localtime
 
 import os
 import stat
-import pwd
-import grp
 import string
 # System mods
 from InputBox import InputBox
@@ -939,7 +935,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.ACTIVELIST = self["list_left"]
 		self.updateHead()
 
-class FileCommanderFileStatInfo(Screen):
+class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """
 		<screen name="FileCommanderFileStatInfo" backgroundColor="un44000000" position="center,center" size="545,345" title="File/Directory Status Information">
 			<widget name="filename" position="10,0" size="525,46" font="Regular;20"/>
@@ -965,6 +961,7 @@ class FileCommanderFileStatInfo(Screen):
 
 	def __init__(self, session, source):
 		Screen.__init__(self, session)
+		stat_info.__init__(self)
 
 		self.list = []
 
@@ -1014,69 +1011,21 @@ class FileCommanderFileStatInfo(Screen):
 			return
 
 		mode = st.st_mode
-		self.list.append((_("Type:"), self.filetype(mode)))
+		perms = stat.S_IMODE(mode)
+		self.list.append((_("Type:"), self.filetypeStr(mode)))
 		self.list.append((_("Owner:"), "%s (%d)" % (self.username(st.st_uid), st.st_uid)))
 		self.list.append((_("Group:"), "%s (%d)" % (self.groupname(st.st_gid), st.st_gid)))
-		self.list.append((_("Permissions:"), self.permissions(mode)))
+		self.list.append((_("Permissions:"), _("%s (%04o)") % ( self.fileModeStr(perms), perms)))
 		if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
 			self.list.append((_("Size:"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
-		self.list.append((_("Modified:"), self.timeformat(st.st_mtime)))
-		self.list.append((_("Accessed:"), self.timeformat(st.st_atime)))
-		self.list.append((_("Metadata changed:"), self.timeformat(st.st_ctime)))
+		self.list.append((_("Modified:"), self.formatTime(st.st_mtime)))
+		self.list.append((_("Accessed:"), self.formatTime(st.st_atime)))
+		self.list.append((_("Metadata changed:"), self.formatTime(st.st_ctime)))
 		self.list.append((_("Links:"), "%d" % st.st_nlink))
 		self.list.append((_("Inode:"), "%d" % st.st_ino))
 		self.list.append((_("On device:"), "%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff)))
 
 		self["list"].updateList(self.list)
-
-	@staticmethod
-	def filetype(mode):
-		return {
-			stat.S_IFSOCK: _("Socket"),
-			stat.S_IFLNK: _("Symbolic link"),
-			stat.S_IFREG: _("Regular file"),
-			stat.S_IFBLK: _("Block device"),
-			stat.S_IFDIR: _("Directory"),
-			stat.S_IFCHR: _("Character device"),
-			stat.S_IFIFO: _("FIFO"),
-		}.get(stat.S_IFMT(mode), _("Unknown"))
-
-	def permissions(self, mode):
-		perm = self.permissionGroup((mode >> 6) & stat.S_IRWXO, mode & stat.S_ISUID, 's')
-		perm += self.permissionGroup((mode >> 3) & stat.S_IRWXO, mode & stat.S_ISGID, 's')
-		perm += self.permissionGroup(mode & stat.S_IRWXO, mode & stat.S_ISVTX, 't')
-		perm += " (%04o)" % (mode & 07777)
-		return perm
-
-	@staticmethod
-	def permissionGroup(mode, bit4, bit4chr):
-		modestr = mode & stat.S_IROTH and 'r' or "-"
-		modestr += mode & stat.S_IWOTH and 'w' or "-"
-		if bit4:
-			modestr += mode & stat.S_IXOTH and bit4chr or bit4chr.upper()
-		else:
-			modestr += mode & stat.S_IXOTH and "x" or "-"
-		return modestr
-
-	@staticmethod
-	def username(uid):
-		try:
-			pwent = pwd.getpwuid(uid)
-			return pwent.pw_name
-		except KeyError as ke:
-			return _("Unknown user")
-
-	@staticmethod
-	def groupname(gid):
-		try:
-			grent = grp.getgrgid(gid)
-			return grent.gr_name
-		except KeyError as ke:
-			return _("Unknown group")
-
-	@staticmethod
-	def timeformat(t):
-		return time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(t))
 
 # #####################
 # ## Start routines ###

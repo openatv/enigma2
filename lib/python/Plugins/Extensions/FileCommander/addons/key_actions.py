@@ -38,8 +38,13 @@ from os import path as os_path
 from os import listdir as os_listdir
 from time import strftime as time_strftime
 from time import localtime as time_localtime
+import stat
+import pwd
+import grp
+import time
 
 import os
+
 # Addons
 # from unrar import *
 from Plugins.Extensions.FileCommander.addons.unrar import *
@@ -61,6 +66,72 @@ except Exception, e:
 
 pname = _("File Commander - Addon Movieplayer")
 pdesc = _("play Files")
+
+class stat_info:
+	def __init__(self):
+		pass
+
+	@staticmethod
+	def filetypeStr(mode):
+		return {
+			stat.S_IFSOCK: _("Socket"),
+			stat.S_IFLNK: _("Symbolic link"),
+			stat.S_IFREG: _("Regular file"),
+			stat.S_IFBLK: _("Block device"),
+			stat.S_IFDIR: _("Directory"),
+			stat.S_IFCHR: _("Character device"),
+			stat.S_IFIFO: _("FIFO"),
+		}.get(stat.S_IFMT(mode), _("Unknown"))
+
+	@staticmethod
+	def filetypeChr(mode):
+		return {
+			stat.S_IFSOCK: 's',
+			stat.S_IFLNK: 'l',
+			stat.S_IFREG: '-',
+			stat.S_IFBLK: 'b',
+			stat.S_IFDIR: 'd',
+			stat.S_IFCHR: 'c',
+			stat.S_IFIFO: 'p',
+		}.get(stat.S_IFMT(mode), _('?'))
+
+	@staticmethod
+	def fileModeStr(mode):
+		modestr = stat.S_IFMT(mode) and stat_info.filetypeChr(mode) or ''
+		modestr += stat_info.permissionGroupStr((mode >> 6) & stat.S_IRWXO, mode & stat.S_ISUID, 's')
+		modestr += stat_info.permissionGroupStr((mode >> 3) & stat.S_IRWXO, mode & stat.S_ISGID, 's')
+		modestr += stat_info.permissionGroupStr(mode & stat.S_IRWXO, mode & stat.S_ISVTX, 't')
+		return modestr
+
+	@staticmethod
+	def permissionGroupStr(mode, bit4, bit4chr):
+		permstr = mode & stat.S_IROTH and 'r' or "-"
+		permstr += mode & stat.S_IWOTH and 'w' or "-"
+		if bit4:
+			permstr += mode & stat.S_IXOTH and bit4chr or bit4chr.upper()
+		else:
+			permstr += mode & stat.S_IXOTH and "x" or "-"
+		return permstr
+
+	@staticmethod
+	def username(uid):
+		try:
+			pwent = pwd.getpwuid(uid)
+			return pwent.pw_name
+		except KeyError as ke:
+			return _("Unknown user: %d") % uid
+
+	@staticmethod
+	def groupname(gid):
+		try:
+			grent = grp.getgrgid(gid)
+			return grent.gr_name
+		except KeyError as ke:
+			return _("Unknown group: %d") % gid
+
+	@staticmethod
+	def formatTime(t):
+		return time.strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time.localtime(t))
 
 class key_actions():
 	hashes = {
