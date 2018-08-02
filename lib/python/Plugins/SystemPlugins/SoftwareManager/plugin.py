@@ -1947,9 +1947,18 @@ class IpkgInstaller(Screen):
 	def install(self):
 		list = self.list.getSelectionsList()
 		cmdList = []
+		plugin = False
 		for item in list:
+			if item[0].startswith("enigma2-plugin-"):
+				plugin = True
 			cmdList.append((IpkgComponent.CMD_INSTALL, {"package": item[1]}))
-		self.session.open(Ipkg, cmdList=cmdList)
+		if plugin:
+			self.session.openWithCallback(self.readPlugins, Ipkg, cmdList=cmdList)
+		else:
+			self.session.open(Ipkg, cmdList=cmdList)
+
+	def readPlugins(self):
+		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 
 def filescan_open(list, session, **kwargs):
