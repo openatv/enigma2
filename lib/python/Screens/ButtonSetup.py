@@ -109,6 +109,7 @@ def getButtonSetupKeys():
 		(_("Search/WEB long"), "search_long", ""),
 		(_("Slow"), "slow", ""),
 		(_("Mark/Portal/Playlist"), "mark", ""),
+		(_("Mark/Portal/Playlist long"), "mark_long", ""),
 		(_("Sleep"), "sleep", ""),
 		(_("Sleep long"), "sleep_long", ""),
 		(_("Power"), "power", ""),
