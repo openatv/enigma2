@@ -676,7 +676,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].fillMultiEPG(self.services, self.ask_time)
 			for i in range(curr):
 				self['list'].updateMultiEPG(1)
-			self['list'].fillMultiEPG(self.services, self.ask_time)
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			try:
 				if self.type == EPG_TYPE_SINGLE:
