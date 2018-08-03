@@ -64,6 +64,8 @@ SystemInfo["LCDMiniTVPiP"] = SystemInfo["LCDMiniTV"] and getBoxType() != 'gb800u
 SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable")
 SystemInfo["LcdLiveTVPiP"] = fileCheck("/proc/stb/lcd/live_decoder")
 SystemInfo["MiniTV"] = fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable")
+SystemInfo["7segment"] = getBoxType() in ('dinobot4k', 'osmini', 'osnino', 'osninoplus', 'osninopro', 'atemio6000', 'atemio6100', 'bwidowx', 'xpeedlx1', 'hd1100', 'hd1200', 'hd1265', 'hd1500', 'hd500c', 'hd530c', 'h3', 'h4', 'h5', 'h6', 'h7', 'formuler3', 'formuler3ip', 'formuler4', 'formuler4ip', 'formuler4turbo', 'spycatmini', 'spycatminiplus', 'xp1000', '9900lx', 'ew7358', 'ew7362', '7220s', '7300s', 'sh1', 'inihde2', 'inihde', 'odinm7', 'jj7362', 'vg2000', 'vg5000', 'vs1000', 'tiviarmin', 'g100', 'g101', 'xc7362', 'et1x000', 'xc7358')
+SystemInfo["textlcd"] = getBoxType() in ('tiviaraplus','formuler1tc','zgemmah7','vimastec1000', 'vimastec1500','et7000', 'et7500', 'et8000', 'triplex', 'formuler1', 'mutant1200', 'solo2', 'mutant1265', 'mutant1100', 'mutant500c', 'mutant530c', 'mutant1500', 'osminiplus', 'ax51', 'mutant51', '9910lx', '9911lx')
 SystemInfo["FastChannelChange"] = False
 SystemInfo["CIHelper"] = fileExists("/usr/bin/cihelper")
 SystemInfo["grautec"] = fileExists("/tmp/usbtft")
@@ -74,7 +76,7 @@ SystemInfo["HaveMultiBoot"] = (fileCheck("/boot/STARTUP") or fileCheck("/boot/cm
 SystemInfo["HaveMultiBootHD"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('hd51','vs1500','h7')
 SystemInfo["HaveMultiBootCY"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('8100s')
 SystemInfo["HaveMultiBootXC"] = fileCheck("/boot/cmdline.txt")
-SystemInfo["HaveMultiBootGB"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('gb7252','cc1')
+SystemInfo["HaveMultiBootGB"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('gb7252', 'cc1')
 SystemInfo["need_dsw"] = getBoxType() not in ('osminiplus','osmega')
 SystemInfo["HaveCISSL"] = fileCheck("/etc/ssl/certs/customer.pem") and fileCheck("/etc/ssl/certs/device.pem")
 SystemInfo["HaveID"] = fileCheck("/etc/.id")
