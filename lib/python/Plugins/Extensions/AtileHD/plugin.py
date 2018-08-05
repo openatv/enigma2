@@ -537,6 +537,7 @@ class AtileHDScreens(Screen):
 		
 		self.skin_base_dir = "/usr/share/enigma2/%s/" % cur_skin
 		self.screen_dir = "allScreens"
+		self.skinparts_dir = "skinparts"
 		self.file_dir = "mySkin_off"
 		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/input_info.png" % cur_skin)
 		if not path.exists(my_path):
@@ -567,26 +568,41 @@ class AtileHDScreens(Screen):
 		dir_path = self.skin_base_dir + self.screen_dir
 		if not path.exists(dir_path):
 			makedirs(dir_path)
+		dir_skinparts_path = self.skin_base_dir + self.skinparts_dir
+		if not path.exists(dir_skinparts_path):
+			makedirs(dir_skinparts_path)
 		file_dir_path = self.skin_base_dir + self.file_dir
 		if not path.exists(file_dir_path):
 			makedirs(file_dir_path)
+		dir_global_skinparts = resolveFilename(SCOPE_SKIN, "skinparts")
+		if path.exists(dir_global_skinparts):
+			for f in listdir(dir_global_skinparts):
+				if path.exists(dir_global_skinparts + "/" + f + "/" + f + "_Atile.xml"):
+					if not path.exists(dir_path + "/skin_" + f + ".xml"):
+						symlink(dir_global_skinparts + "/" + f + "/" + f + "_Atile.xml", dir_path + "/skin_" + f + ".xml")
+					if not path.exists(dir_skinparts_path + "/" + f):
+						symlink(dir_global_skinparts + "/" + f, dir_skinparts_path + "/" + f)
 		list_dir = sorted(listdir(dir_path), key=str.lower)
 		for f in list_dir:
 			if f.endswith('.xml') and f.startswith('skin_'):
-				friendly_name = f.replace("skin_", "")
-				friendly_name = friendly_name.replace(".xml", "")
-				friendly_name = friendly_name.replace("_", " ")
-				linked_file = file_dir_path + "/" + f
-				if path.exists(linked_file):
-					if path.islink(linked_file):
-						pic = self.enabled_pic
+				if (not path.islink(dir_path + "/" + f)) or os.path.exists(os.readlink(dir_path + "/" + f)):
+					friendly_name = f.replace("skin_", "")
+					friendly_name = friendly_name.replace(".xml", "")
+					friendly_name = friendly_name.replace("_", " ")
+					linked_file = file_dir_path + "/" + f
+					if path.exists(linked_file):
+						if path.islink(linked_file):
+							pic = self.enabled_pic
+						else:
+							remove(linked_file)
+							symlink(dir_path + "/" + f, file_dir_path + "/" + f)
+							pic = self.enabled_pic
 					else:
-						remove(linked_file)
-						symlink(dir_path + "/" + f, file_dir_path + "/" + f)
-						pic = self.enabled_pic
+						pic = self.disabled_pic
+					f_list.append((f, friendly_name, pic))
 				else:
-					pic = self.disabled_pic
-				f_list.append((f, friendly_name, pic))
+					if path.islink(dir_path + "/" + f):
+						remove(dir_path + "/" + f)
 		menu_list = [ ]
 		for entry in f_list:
 			menu_list.append((entry[0], entry[1], entry[2]))
