@@ -419,6 +419,20 @@ class AttributeParser:
 			print "[Skin] attribute \"%s\" with wrong (or unknown) value \"%s\" in object of type \"%s\"" % (attrib, value, self.guiObject.__class__.__name__)
 
 	def applyAll(self, attrs):
+		try:
+			#workaround for values from attributes the not be set in the screen
+			#
+			#e.g screen "EPGSelectionMulti"
+			#<widget name="list" position="70,180" size="700,450" itemHeight="30" EventFontMulti="epg_text;20" backgroundColor="layer-a-background" foregroundColor="layer-a-foreground" backgroundColorSelected="layer-a-selection-background" foregroundColorSelected="layer-a-selection-foreground" scrollbarWidth="10" scrollbarSliderForegroundColor="scrollbarSlidercolor" scrollbarSliderBorderColor="scrollbarSliderbordercolor" scrollbarMode="showOnDemand" enableWrapAround="1" transparent="0" />
+			#or
+			#e.g screen "PluginBrowser"
+			#<widget name="list" position="70,100" size="700,500" itemHeight="50" font="screen_text; 20" scrollbarWidth="10" scrollbarSliderForegroundColor="scrollbarSlidercolor" scrollbarSliderBorderColor="scrollbarSliderbordercolor" scrollbarMode="showOnDemand" backgroundColor="layer-a-background" foregroundColor="layer-a-foreground" backgroundColorSelected="layer-a-selection-background" foregroundColorSelected="layer-a-selection-foreground" enableWrapAround="1" transparent="1" />
+			#and many screens more ...
+			#
+			#scrollbarSliderForegroundColor will not set without attrs.sort()
+			attrs.sort()
+		except:
+			pass
 		for attrib, value in attrs:
 			try:
 				getattr(self, attrib)(value)
