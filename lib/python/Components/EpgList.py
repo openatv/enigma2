@@ -55,9 +55,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			sf = 1.5
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,13,25,25,2))
 			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240,180,120,30))
+			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (120,15,1))
 		else:
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (1,11,23,23,1))
 			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (160,120,80,20))
+			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (80,10,1))
 
 		self.cur_event = None
 		self.cur_service = None
@@ -650,9 +652,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			xpos += w + self.column_gap
 			w = self.column_time
 			self.start_end_rect = Rect(xpos, 0, w, height)
-			s = int(0.1*w) #progess size 10% smaller than start end size
-			self.progress_rect = Rect(xpos + s, int(height/4), w-s*2, int(height/2))
-			xpos += w + self.column_gap
+			p =  w-self.progress_width
+			self.progress_rect = Rect(xpos + int(p/2), int((height-self.progress_height)/2), w-p, self.progress_height)
+			xpos += w + int(self.column_gap/2)
 			w = self.column_remaining
 			self.remaining_rect = Rect(xpos, 0, w, height)
 			xpos += w + self.column_gap
@@ -815,7 +817,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r3 = self.descr_rect
 		r4 = self.start_end_rect
 		r5 = self.remaining_rect
-		borderw = 1 * sf
+		borderw = self.progress_borderwidth
 		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)] # no private data needed
 		if beginTime is not None:
 			clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
