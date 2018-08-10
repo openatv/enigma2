@@ -1036,7 +1036,8 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 			self["list"].pageDown()
 
 	def fillList(self):
-		self["filename"].text = self.filename
+		filename = os.path.basename(os.path.normpath(self.filename))
+		self["filename"].text = filename
 		self.list = []
 
 		try:
@@ -1067,7 +1068,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 			self["link_sep"].show()
 			self["link_label"].text = _("Link target:")
 			try:
-				self["link_value"].text = os.readlink(self.filename)
+				self["link_value"].text = os.readlink(self.filepath)
 			except OSError as oe:
 				self["link_value"].text = _("Can't read link contents: %s") % oe.strerror
 		else:
