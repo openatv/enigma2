@@ -26,6 +26,10 @@ extern void bcm_accel_blit(
 		int pal_addr, int flags);
 #endif
 
+#ifdef HAVE_HISILICON_ACCEL
+extern void  dinobot_accel_register(void *p1,void *p2);
+extern void  dinibot_accel_notify(void);
+#endif
 gFBDC::gFBDC()
 {
 	fb=new fbClass;
@@ -195,6 +199,9 @@ void gFBDC::exec(const gOpcode *o)
 				0, 0);
 		}
 #endif
+#ifdef HAVE_HISILICON_ACCEL
+		dinibot_accel_notify();
+#endif
 		break;
 	case gOpcode::sendShow:
 	{
@@ -322,6 +329,9 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
 #endif
 
+#ifdef HAVE_HISILICON_ACCEL
+	dinobot_accel_register(&surface,&surface_back);
+#endif
 	if (!surface.clut.data)
 	{
 		surface.clut.colors = 256;
