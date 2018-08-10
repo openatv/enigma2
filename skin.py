@@ -426,7 +426,8 @@ class AttributeParser:
 			#The order of some attributes is crucial if they are applied. Also, an attribute may be responsible that another does not take effect and occurs at different skins.
 			#It was noticed at 'scrollbarSliderBorderWidth' and 'scrollbarSliderForegroundColor'.
 			#
-			attrs.sort()
+			if config.skin.primary_skin.value.split('/')[0] in ('MetrixHD', 'iFlatFHD'):
+				attrs.sort()
 		except:
 			pass
 		for attrib, value in attrs:
