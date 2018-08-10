@@ -41,19 +41,15 @@ from os import walk as os_walk
 from os import popen as os_popen
 from os import path as os_path
 from os import listdir as os_listdir
-from time import strftime as time_strftime
-from time import localtime as time_localtime
 
 import os
 import stat
-import pwd
-import grp
 import string
 # System mods
 from InputBox import InputBox
 from FileList import FileList, MultiFileSelectList, EXTENSIONS
 # Addons
-from Plugins.Extensions.FileCommander.addons.key_actions import *
+from addons.key_actions import key_actions, stat_info
 from Plugins.Extensions.FileCommander.addons.type_utils import *
 from Plugins.Extensions.PicturePlayer.ui import config
 
@@ -118,8 +114,34 @@ class FileCommanderConfigScreen(Setup):
 class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
-			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
-			<widget name="list_right_head" position="595,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
+			<widget name="list_left_head1" position="10,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_left_head2" render="Listbox" position="10,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
+			<widget name="list_right_head1" position="595,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_right_head2" render="Listbox" position="595,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
 			<widget name="list_left" position="10,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="list_right" position="595,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="key_red" position="100,570" size="260,25" transparent="1" font="Regular;20"/>
@@ -166,8 +188,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filter = self.fileFilter()
 
 		# set current folder
-		self["list_left_head"] = Label(path_left)
-		self["list_right_head"] = Label(path_right)
+		self["list_left_head1"] = Label(path_left)
+		self["list_left_head2"] = List()
+		self["list_right_head1"] = Label(path_right)
+		self["list_right_head2"] = List()
+
 		self["list_left"] = FileList(path_left, matchingPattern=filter)
 		self["list_right"] = FileList(path_right, matchingPattern=filter)
 
@@ -262,12 +287,6 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def ok(self):
 		if self.SOURCELIST.canDescent():  # isDir
 			self.SOURCELIST.descent()
-			if self.SOURCELIST == self["list_right"]:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory())
-			else:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory())
 			self.updateHead()
 		else:
 			self.onFileAction(self.SOURCELIST, self.TARGETLIST)
@@ -326,14 +345,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 	def goDefaultfolder(self):
 		self.SOURCELIST.changeDir(config.plugins.filecommander.path_default.value or None)
-		self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
-		self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
+		self.updateHead()
 
 	def goParentfolder(self):
 		if self.SOURCELIST.getParentDirectory() != False:
 			self.SOURCELIST.changeDir(self.SOURCELIST.getParentDirectory())
-			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
-			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
+			self.updateHead()
 
 	def goRestart(self, *answer):
 		if hasattr(self, "oldFilterSettings"):
@@ -620,20 +637,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## basic functions ###
 	def updateHead(self):
-		text_target = self.Info(self.TARGETLIST)
-		text_source = self.Info(self.SOURCELIST)
-		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if self.SOURCELIST == self["list_right"]:
-			if targetDir is not None:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
-			if sourceDir is not None:
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-		else:
-			if sourceDir is not None:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-			if targetDir is not None:
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
+		for side in ("list_left", "list_right"):
+			dir = self[side].getCurrentDirectory()
+			if dir is not None:
+				pathname = self[side].getFilename()
+				if not self[side].canDescent():
+					pathname = dir + pathname
+				self[side + "_head1"].text = pathname
+				self[side + "_head2"].updateList(self.statInfo(self[side]))
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
 
 	def doRefreshDir(self):
@@ -673,6 +684,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 # 		self.onFileAction(self.SOURCELIST, self.TARGETLIST)
 
 class FileCommanderContextMenu(Screen):
+	skin = """
+		<screen name="FileCommanderContextMenu" position="center,center" size="560,510" title="File Commander context menu" backgroundColor="background">
+			<widget name="menu" position="0,0" size="580,510" itemHeight="30" foregroundColor="white" backgroundColor="background" transparent="0" scrollbarMode="showOnDemand" />
+		</screen>"""
+
 	def __init__(self, session, contexts, list):
 		Screen.__init__(self, session)
 		actions = {
@@ -709,8 +725,34 @@ class FileCommanderContextMenu(Screen):
 class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
-			<widget name="list_left_head" position="10,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
-			<widget name="list_right_head" position="595,10" size="570,65" font="Regular;20" foregroundColor="#00fff000"/>
+			<widget name="list_left_head1" position="10,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_left_head2" render="Listbox" position="10,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
+			<widget name="list_right_head1" position="595,10" size="570,40" font="Regular;18" foregroundColor="#00fff000"/>
+			<widget source="list_right_head2" render="Listbox" position="595,50" size="570,20" foregroundColor="#00fff000" selectionDisabled="1" transparent="1" >
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryText(pos = (0, 0), size = (115, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is a symbolic mode
+						MultiContentEntryText(pos = (130, 0), size = (90, 20), font = 0, flags = RT_HALIGN_RIGHT, text = 11), # index 11 is the scaled size
+						MultiContentEntryText(pos = (235, 0), size = (260, 20), font = 0, flags = RT_HALIGN_LEFT, text = 13), # index 13 is the modification time
+						],
+						"fonts": [gFont("Regular", 18)],
+						"itemHeight": 20,
+						"selectionEnabled": False
+					}
+				</convert>
+			</widget>
 			<widget name="list_left" position="10,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="list_right" position="595,85" size="570,470" scrollbarMode="showOnDemand"/>
 			<widget name="key_red" position="100,570" size="260,25" transparent="1" font="Regular;20"/>
@@ -737,8 +779,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		filter = self.fileFilter()
 
 		# set current folder
-		self["list_left_head"] = Label(path_left)
-		self["list_right_head"] = Label(path_right)
+		self["list_left_head1"] = Label(path_left)
+		self["list_left_head2"] = List()
+		self["list_right_head1"] = Label(path_right)
+		self["list_right_head2"] = List()
 
 		if leftactive:
 			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter)
@@ -808,20 +852,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		else:
 			if self.ACTIVELIST.canDescent():  # isDir
 				self.ACTIVELIST.descent()
-			if self.ACTIVELIST == self["list_left"]:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory())
-			else:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory())
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory())
+			self.updateHead()
 
 	def goParentfolder(self):
 		if self.ACTIVELIST == self.SOURCELIST:
 			return
 		if self.ACTIVELIST.getParentDirectory() != False:
 			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
-			self["list_left_head"].setText(self["list_left"].getCurrentDirectory())
-			self["list_right_head"].setText(self["list_right"].getCurrentDirectory())
+			self.updateHead()
 
 	def goLeft(self):
 		self.ACTIVELIST.pageUp()
@@ -901,20 +939,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 
 # ## basic functions ###
 	def updateHead(self):
-		text_target = self.Info(self.TARGETLIST)
-		text_source = self.Info(self.SOURCELIST)
-		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if self.SOURCELIST == self["list_right"]:
-			if targetDir is not None:
-				self["list_left_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
-			if sourceDir is not None:
-				self["list_right_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-		else:
-			if sourceDir is not None:
-				self["list_left_head"].setText(self.SOURCELIST.getCurrentDirectory() + text_source)
-			if targetDir is not None:
-				self["list_right_head"].setText(self.TARGETLIST.getCurrentDirectory() + text_target)
+		for side in ("list_left", "list_right"):
+			dir = self[side].getCurrentDirectory()
+			if dir is not None:
+				pathname = self[side].getFilename()
+				if not self[side].canDescent():
+					pathname = dir + pathname
+				self[side + "_head1"].text = pathname
+				self[side + "_head2"].updateList(self.statInfo(self[side]))
 
 	def doRefresh(self):
 		print "[FileCommander] selectedFiles:", self.selectedFiles
@@ -934,7 +966,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.ACTIVELIST = self["list_left"]
 		self.updateHead()
 
-class FileCommanderFileStatInfo(Screen):
+class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """
 		<screen name="FileCommanderFileStatInfo" backgroundColor="un44000000" position="center,center" size="545,345" title="File/Directory Status Information">
 			<widget name="filename" position="10,0" size="525,46" font="Regular;20"/>
@@ -960,11 +992,17 @@ class FileCommanderFileStatInfo(Screen):
 
 	def __init__(self, session, source):
 		Screen.__init__(self, session)
+		stat_info.__init__(self)
 
 		self.list = []
 
 		self["list"] = List(self.list)
 		self["filename"] = Label()
+		self["link_sep"] = Label()
+		self["link_label"] = Label()
+		self["link_value"] = Label()
+
+		self["link_sep"].hide()
 
 		self["actions"] = ActionMap(
 			["SetupActions", "DirectionActions"],
@@ -1009,69 +1047,33 @@ class FileCommanderFileStatInfo(Screen):
 			return
 
 		mode = st.st_mode
-		self.list.append((_("Type:"), self.filetype(mode)))
+		perms = stat.S_IMODE(mode)
+		self.list.append((_("Type:"), self.filetypeStr(mode)))
 		self.list.append((_("Owner:"), "%s (%d)" % (self.username(st.st_uid), st.st_uid)))
 		self.list.append((_("Group:"), "%s (%d)" % (self.groupname(st.st_gid), st.st_gid)))
-		self.list.append((_("Permissions:"), self.permissions(mode)))
+		self.list.append((_("Permissions:"), _("%s (%04o)") % ( self.fileModeStr(perms), perms)))
 		if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
 			self.list.append((_("Size:"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
-		self.list.append((_("Modified:"), self.timeformat(st.st_mtime)))
-		self.list.append((_("Accessed:"), self.timeformat(st.st_atime)))
-		self.list.append((_("Metadata changed:"), self.timeformat(st.st_ctime)))
+		self.list.append((_("Modified:"), self.formatTime(st.st_mtime)))
+		self.list.append((_("Accessed:"), self.formatTime(st.st_atime)))
+		self.list.append((_("Metadata changed:"), self.formatTime(st.st_ctime)))
 		self.list.append((_("Links:"), "%d" % st.st_nlink))
 		self.list.append((_("Inode:"), "%d" % st.st_ino))
 		self.list.append((_("On device:"), "%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff)))
 
 		self["list"].updateList(self.list)
 
-	@staticmethod
-	def filetype(mode):
-		return {
-			stat.S_IFSOCK: _("Socket"),
-			stat.S_IFLNK: _("Symbolic link"),
-			stat.S_IFREG: _("Regular file"),
-			stat.S_IFBLK: _("Block device"),
-			stat.S_IFDIR: _("Directory"),
-			stat.S_IFCHR: _("Character device"),
-			stat.S_IFIFO: _("FIFO"),
-		}.get(stat.S_IFMT(mode), _("Unknown"))
-
-	def permissions(self, mode):
-		perm = self.permissionGroup((mode >> 6) & stat.S_IRWXO, mode & stat.S_ISUID, 's')
-		perm += self.permissionGroup((mode >> 3) & stat.S_IRWXO, mode & stat.S_ISGID, 's')
-		perm += self.permissionGroup(mode & stat.S_IRWXO, mode & stat.S_ISVTX, 't')
-		perm += " (%04o)" % (mode & 07777)
-		return perm
-
-	@staticmethod
-	def permissionGroup(mode, bit4, bit4chr):
-		modestr = mode & stat.S_IROTH and 'r' or "-"
-		modestr += mode & stat.S_IWOTH and 'w' or "-"
-		if bit4:
-			modestr += mode & stat.S_IXOTH and bit4chr or bit4chr.upper()
+		if stat.S_ISLNK(mode):
+			self["link_sep"].show()
+			self["link_label"].text = _("Link target:")
+			try:
+				self["link_value"].text = os.readlink(self.filename)
+			except OSError as oe:
+				self["link_value"].text = _("Can't read link contents: %s") % oe.strerror
 		else:
-			modestr += mode & stat.S_IXOTH and "x" or "-"
-		return modestr
-
-	@staticmethod
-	def username(uid):
-		try:
-			pwent = pwd.getpwuid(uid)
-			return pwent.pw_name
-		except KeyError as ke:
-			return _("Unknown user")
-
-	@staticmethod
-	def groupname(gid):
-		try:
-			grent = grp.getgrgid(gid)
-			return grent.gr_name
-		except KeyError as ke:
-			return _("Unknown group")
-
-	@staticmethod
-	def timeformat(t):
-		return time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(t))
+			self["link_sep"].hide()
+			self["link_label"].text = ""
+			self["link_value"].text = ""
 
 # #####################
 # ## Start routines ###

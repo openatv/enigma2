@@ -2,9 +2,10 @@
 # -*- coding: iso-8859-1 -*-
 
 from Components.config import config
+from Components.PluginComponent import plugins
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 from Screens.Console import Console
-from Tools.Directories import shellquote, fileExists
+from Tools.Directories import shellquote, fileExists, resolveFilename, SCOPE_PLUGINS
 import subprocess
 
 pname = _("File Commander - ipk Addon")
@@ -42,6 +43,8 @@ class ipkMenuScreen(ArchiverMenuScreen):
 				self.session.openWithCallback(self.doCallBack, Console, title=_("Installing Plugin ..."), cmdlist=(("opkg", "install", self.sourceDir + self.filename),))
 
 	def doCallBack(self):
+		if self.filename.startswith("enigma2-plugin-"):
+			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		return
 
 class UnpackInfoScreen(ArchiverInfoScreen):
