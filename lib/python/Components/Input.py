@@ -55,7 +55,9 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 				for x in self.Text:
 					self.text += (x == " " and " " or "*")
 			else:
-				self.text = self.Text.encode("utf-8") + " "
+				# Use a non-breaking space, as right alignment removes a space,
+				# causing the cursor to disappear at the end.
+				self.text = self.Text.encode("utf-8") + u"\xA0"
 
 	def setText(self, text):
 		if not len(text):
