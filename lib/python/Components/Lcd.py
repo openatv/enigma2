@@ -545,7 +545,7 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if SystemInfo["VFD_scroll_repeats"] and getBoxType() not in ('ixussone', 'ixusszero'):
+		if SystemInfo["VFD_scroll_repeats"] and getBoxType() not in ('ixussone', 'ixusszero') and not SystemInfo["7segment"]:
 			def scroll_repeats(el):
 				open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
@@ -554,7 +554,7 @@ def InitLcd():
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if SystemInfo["VFD_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
+		if SystemInfo["VFD_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero') and not SystemInfo["7segment"]:
 			def scroll_delay(el):
 				# add workaround for Boxes who need hex code
 				if getBoxType() in ('sf4008', 'beyonwizu4'):
@@ -567,7 +567,7 @@ def InitLcd():
 		else:
 			config.lcd.hdd = ConfigNothing()
 
-		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
+		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero') and not SystemInfo["7segment"]:
 			def initial_scroll_delay(el):
 				if getBoxType() in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
@@ -585,7 +585,7 @@ def InitLcd():
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "10000", choices = choicelist)
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
 
-		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero'):
+		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero') and not SystemInfo["7segment"]:
 			def final_scroll_delay(el):
 				if getBoxType() in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
