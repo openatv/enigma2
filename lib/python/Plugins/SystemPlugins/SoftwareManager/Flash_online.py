@@ -378,7 +378,7 @@ class doFlashImage(Screen):
 
 	def checkTraficLight(self):
 		import time
-		if not time.strftime('%Y%m%d') in self.filename:
+		if not self.Online or not time.strftime('%Y%m%d') in self.filename:
 			return True
 
 		try:
@@ -393,7 +393,7 @@ class doFlashImage(Screen):
 		else:
 			if 'rot.png' in tmpStatus: tmpStatus = _("red")
 			elif 'gelb.png' in tmpStatus: tmpStatus = _("yellow")
-			self.session.open(MessageBox, _("Trafic light state is '%s' - please use a another image.") %tmpStatus.upper(), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Traffic light state is '%s' - please use a another image.") %tmpStatus.upper(), type = MessageBox.TYPE_ERROR)
 			return False
 
 	def startInstallOnline(self, ret = None):
