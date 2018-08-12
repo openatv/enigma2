@@ -36,6 +36,13 @@ class GUIComponent(object):
 		if self.skinAttributes is None:
 			return False
 
+		#//workaround for values from attributes the not be set
+		#
+		#The order of some attributes is crucial if they are applied. Also, an attribute may be responsible that another does not take effect and occurs at different skins.
+		#It was noticed at 'scrollbarSliderBorderWidth' and 'scrollbarSliderForegroundColor'.
+		#
+		self.skinAttributes.sort()
+		#//
 		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes, parent.scale)
 		return True
 
