@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-28 01:05+0300\n"
-"PO-Revision-Date: 2018-07-28 11:27+0300\n"
+"POT-Creation-Date: 2018-08-08 23:30+0300\n"
+"PO-Revision-Date: 2018-08-12 19:45+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -55,7 +55,7 @@ msgid " (Partition %d)"
 msgstr " (Skaidinys %d)"
 
 msgid " (PiP)"
-msgstr " (Paveikslėlis paveikslėlyje)"
+msgstr " (PiP)"
 
 msgid " (Radio)"
 msgstr " (Radijas)"
@@ -2350,6 +2350,9 @@ msgstr "Juodas ekranas iki užrakinimo"
 
 msgid "blacklist"
 msgstr "juodas sąrašas"
+
+msgid "Blinking REC"
+msgstr "Mirksintis REC simbolis"
 
 msgid "Blinking REC Symbol"
 msgstr "Mirksintis REC simbolis"
@@ -6663,6 +6666,9 @@ msgstr "Paslėpti visus perjungimo klaidų pranešimus."
 msgid "Hide known extensions"
 msgstr "Paslėpti žinomus plėtinius"
 
+msgid "Hide mute notification"
+msgstr "Slėpti pranešimą apie nutildymą"
+
 msgid "Hide parental locked services"
 msgstr "Paslėpti tėvų kontrolei priskirtus kanalus"
 
@@ -6817,6 +6823,11 @@ msgid ""
 msgstr ""
 "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, "
 "seniausias bus ištrintas."
+
+msgid "If muted, hide mute icon or mute information after few seconds."
+msgstr ""
+"Jei nutildyta, paslėpti nutildymo piktogramą arba po kelių sekundžių "
+"nutildyti informaciją."
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -7117,7 +7128,10 @@ msgid "Index"
 msgstr "Indeksas"
 
 msgid "Index allocated:"
-msgstr "Indeksas priskirtas:"
+msgstr "Indeksas skirtas:"
+
+msgid "Index Error in the following files: %s"
+msgstr "Indekso klaida šiuose failuose: %s"
 
 msgid "Indonesian"
 msgstr "Indoneziečių"
@@ -7985,6 +7999,9 @@ msgstr "Pažymėti, kaip 'grynai 3D' kanalą"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Žymė/portalas/grojaraštis"
+
+msgid "Mark/Portal/Playlist long"
+msgstr "Žymė/portalas/grojaraštis (ilgai spausti)"
 
 msgid "markername"
 msgstr "žymeklio pavadinimas"
@@ -12986,6 +13003,9 @@ msgstr "Naujus/nežiūrėtus įvykius pažymėti logotipu"
 msgid "Show in extensions list ?"
 msgstr "Rodyti plėtinių sąraše?"
 
+msgid "Show in Standby"
+msgstr "Rodyti budėjimo režime"
+
 msgid "Show info"
 msgstr "Rodyti informaciją"
 
@@ -14996,6 +15016,12 @@ msgid ""
 msgstr ""
 "Ši parinktis leidžia nustatyti, kaip rodyti likusį / praėjusį laiką medija "
 "failų atkūrimo metu."
+
+msgid ""
+"This option allows you choose how to display the Time or nothing in Standby"
+msgstr ""
+"Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėjimo "
+"režime"
 
 msgid ""
 "This option allows you choose the background colour of transparent picons."
@@ -18919,6 +18945,39 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
+#~ msgid "Greek, Modern (1453-)"
+#~ msgstr "Graikų, modernus (1453-)"
+
+#~ msgid "Later"
+#~ msgstr "Vėliau"
+
+#~ msgid "Video:"
+#~ msgstr "Vaizdas:"
+
+#~ msgid "Audio:"
+#~ msgstr "Garsas:"
+
+#~ msgid "CPU-Load: %s"
+#~ msgstr "Procesoriaus apkrova: %s"
+
+#~ msgid "CPU-Temp: %s"
+#~ msgstr "CPU temperatūra: %s"
+
+#~ msgid "SYS-Temp: %s"
+#~ msgstr "SIST. Temp: %s"
+
+#~ msgid "RAM-Free: %s MB"
+#~ msgstr "RAM laisva: %s MB"
+
+#~ msgid "Flash Memory free: %s MByte"
+#~ msgstr "Laisvos vidinės atminties: %s MBaitai"
+
+#~ msgid "CPU-Speed: %s MHz"
+#~ msgstr "CPU greitis: %s MHz"
+
+#~ msgid "Internal Flash"
+#~ msgstr "Vidinė atmintis"
+
 #~ msgid ""
 #~ "\n"
 #~ "%d.%d.%d, %2d:%02d  -  %s"
@@ -18953,36 +19012,6 @@ msgstr "Zimbabvė"
 #~ msgid "This allows you to show skinpacks in downloads"
 #~ msgstr ""
 #~ "Ši parinktis leidžia jums parodyti temų paketus, skirtus atsisiuntimui"
-
-#~ msgid "CPU-Load: %s"
-#~ msgstr "Procesoriaus apkrova: %s"
-
-#~ msgid "CPU-Temp: %s"
-#~ msgstr "CPU temperatūra: %s"
-
-#~ msgid "SYS-Temp: %s"
-#~ msgstr "SIST. Temp: %s"
-
-#~ msgid "RAM-Free: %s MB"
-#~ msgstr "RAM laisva: %s MB"
-
-#~ msgid "Flash Memory free: %s MByte"
-#~ msgstr "Laisvos vidinės atminties: %s MBaitai"
-
-#~ msgid "CPU-Speed: %s MHz"
-#~ msgstr "CPU greitis: %s MHz"
-
-#~ msgid "Video:"
-#~ msgstr "Vaizdas:"
-
-#~ msgid "Audio:"
-#~ msgstr "Garsas:"
-
-#~ msgid "Greek, Modern (1453-)"
-#~ msgstr "Graikų, modernus (1453-)"
-
-#~ msgid "Internal Flash"
-#~ msgstr "Vidinė atmintis"
 
 #~ msgid "Down long"
 #~ msgstr "Žemyn (ilgai spausti)"
@@ -19114,10 +19143,6 @@ msgstr "Zimbabvė"
 
 #~ msgid "Add bouquet services"
 #~ msgstr "Pridėti paketo kanalus"
-
-#~ msgctxt "third event: 'third' event label"
-#~ msgid "Later"
-#~ msgstr "Vėliau"
 
 #~ msgid "Leave DVD Player?"
 #~ msgstr "Išeiti iš DVD grotuvo?"
