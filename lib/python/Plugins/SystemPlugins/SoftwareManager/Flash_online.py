@@ -359,7 +359,7 @@ class doFlashImage(Screen):
 			print"Nothing to select !!"
 			return False
 		self.filename = self.imagePath + "/" + self.sel
-		return self.checkTraficLight()
+		return self.checkTrafficLight()
 
 	def greenCB(self, ret = None):
 		if self.Online:
@@ -376,7 +376,7 @@ class doFlashImage(Screen):
 			self.hide()
 			self.session.openWithCallback(self.greenCB, MessageBox, _("Do you want to backup your settings now?"), default=True)
 
-	def checkTraficLight(self):
+	def checkTrafficLight(self):
 		import time
 		if not self.Online or not time.strftime('%Y%m%d') in self.filename:
 			return True
