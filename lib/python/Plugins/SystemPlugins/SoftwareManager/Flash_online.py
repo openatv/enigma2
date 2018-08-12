@@ -386,14 +386,14 @@ class doFlashImage(Screen):
 			d = urllib2.urlopen(urlopenATV)
 			tmpStatus = d.read()
 		except:
-			tmpStatus = "UNKNOWN"
+			tmpStatus = _("Unknown")
 
 		if 'gruen.png' in tmpStatus:
 			return True
 		else:
-			if 'rot.png' in tmpStatus: tmpStatus = "RED"
-			elif 'gelb.png' in tmpStatus: tmpStatus = "YELLOW"
-			self.session.open(MessageBox, _("Trafic light state is '%s' - please use a another image.") %tmpStatus, type = MessageBox.TYPE_ERROR)
+			if 'rot.png' in tmpStatus: tmpStatus = _("red")
+			elif 'gelb.png' in tmpStatus: tmpStatus = _("yellow")
+			self.session.open(MessageBox, _("Trafic light state is '%s' - please use a another image.") %tmpStatus.upper(), type = MessageBox.TYPE_ERROR)
 			return False
 
 	def startInstallOnline(self, ret = None):
