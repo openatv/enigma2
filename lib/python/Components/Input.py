@@ -42,22 +42,22 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 			self.setMarkedPos(-2)
 		else:
 			self.setMarkedPos(self.currPos - self.offset)
+		# Use non-breaking spaces, as right alignment removes trailing spaces,
+		# causing the cursor to disappear at the end.
 		if self.visible_width:
 			if self.type == self.PIN:
 				self.text = ""
 				for x in self.Text[self.offset:self.offset + self.visible_width]:
-					self.text += (x == " " and " " or "*")
+					self.text += (x == " " and "\xC2\xA0" or "*")
 			else:
-				self.text = self.Text[self.offset:self.offset + self.visible_width].encode("utf-8") + " "
+				self.text = self.Text[self.offset:self.offset + self.visible_width].encode("utf-8") + "\xC2\xA0"
 		else:
 			if self.type == self.PIN:
 				self.text = ""
 				for x in self.Text:
-					self.text += (x == " " and " " or "*")
+					self.text += (x == " " and "\xC2\xA0" or "*")
 			else:
-				# Use a non-breaking space, as right alignment removes a space,
-				# causing the cursor to disappear at the end.
-				self.text = self.Text.encode("utf-8") + u"\xA0"
+				self.text = self.Text.encode("utf-8") + "\xC2\xA0"
 
 	def setText(self, text):
 		if not len(text):
