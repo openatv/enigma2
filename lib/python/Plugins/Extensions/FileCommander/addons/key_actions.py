@@ -23,6 +23,7 @@ from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 # Tools
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
+from Tools.UnitConversions import UnitScaler, UnitMultipliers
 # from Tools.HardwareInfo import HardwareInfo
 # Various
 from os.path import isdir as os_path_isdir
@@ -38,8 +39,13 @@ from os import path as os_path
 from os import listdir as os_listdir
 from time import strftime as time_strftime
 from time import localtime as time_localtime
+import stat
+import pwd
+import grp
+import time
 
 import os
+
 # Addons
 # from unrar import *
 from Plugins.Extensions.FileCommander.addons.unrar import *
@@ -62,7 +68,73 @@ except Exception, e:
 pname = _("File Commander - Addon Movieplayer")
 pdesc = _("play Files")
 
-class key_actions():
+class stat_info:
+	def __init__(self):
+		pass
+
+	@staticmethod
+	def filetypeStr(mode):
+		return {
+			stat.S_IFSOCK: _("Socket"),
+			stat.S_IFLNK: _("Symbolic link"),
+			stat.S_IFREG: _("Regular file"),
+			stat.S_IFBLK: _("Block device"),
+			stat.S_IFDIR: _("Directory"),
+			stat.S_IFCHR: _("Character device"),
+			stat.S_IFIFO: _("FIFO"),
+		}.get(stat.S_IFMT(mode), _("Unknown"))
+
+	@staticmethod
+	def filetypeChr(mode):
+		return {
+			stat.S_IFSOCK: 's',
+			stat.S_IFLNK: 'l',
+			stat.S_IFREG: '-',
+			stat.S_IFBLK: 'b',
+			stat.S_IFDIR: 'd',
+			stat.S_IFCHR: 'c',
+			stat.S_IFIFO: 'p',
+		}.get(stat.S_IFMT(mode), _('?'))
+
+	@staticmethod
+	def fileModeStr(mode):
+		modestr = stat.S_IFMT(mode) and stat_info.filetypeChr(mode) or ''
+		modestr += stat_info.permissionGroupStr((mode >> 6) & stat.S_IRWXO, mode & stat.S_ISUID, 's')
+		modestr += stat_info.permissionGroupStr((mode >> 3) & stat.S_IRWXO, mode & stat.S_ISGID, 's')
+		modestr += stat_info.permissionGroupStr(mode & stat.S_IRWXO, mode & stat.S_ISVTX, 't')
+		return modestr
+
+	@staticmethod
+	def permissionGroupStr(mode, bit4, bit4chr):
+		permstr = mode & stat.S_IROTH and 'r' or "-"
+		permstr += mode & stat.S_IWOTH and 'w' or "-"
+		if bit4:
+			permstr += mode & stat.S_IXOTH and bit4chr or bit4chr.upper()
+		else:
+			permstr += mode & stat.S_IXOTH and "x" or "-"
+		return permstr
+
+	@staticmethod
+	def username(uid):
+		try:
+			pwent = pwd.getpwuid(uid)
+			return pwent.pw_name
+		except KeyError as ke:
+			return _("Unknown user: %d") % uid
+
+	@staticmethod
+	def groupname(gid):
+		try:
+			grent = grp.getgrgid(gid)
+			return grent.gr_name
+		except KeyError as ke:
+			return _("Unknown group: %d") % gid
+
+	@staticmethod
+	def formatTime(t):
+		return time.strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time.localtime(t))
+
+class key_actions(stat_info):
 	hashes = {
 		"MD5": "md5sum",
 		"SHA1": "sha1sum",
@@ -77,8 +149,10 @@ class key_actions():
 		#  "mediainfo": "mediainfo",
 	}
 
+	SIZESCALER = UnitScaler(scaleTable=UnitMultipliers.Si, maxNumLen=3, decimals=1)
+
 	def __init__(self):
-		pass
+		stat_info.__init__(self)
 
 	@staticmethod
 	def have_program(prog):
@@ -120,39 +194,73 @@ class key_actions():
 
 	def Info(self, dirsource):
 		filename = dirsource.getFilename()
-		sourceDir = dirsource.getCurrentDirectory()  # self.SOURCELIST.getCurrentDirectory()
-		mytest = dirsource.canDescent()
+		sourceDir = dirsource.getCurrentDirectory()
 		if dirsource.canDescent():
 			if dirsource.getSelectionIndex() != 0:
 				if (not sourceDir) and (not filename):
 					return pname
 				else:
-					sourceDir = filename
-				if os_path_isdir(sourceDir):
-					mode = os.stat(sourceDir).st_mode
-				else:
-					return ("")
-				mode = oct(mode)
-				curSelDir = sourceDir
-				dir_stats = os_stat(curSelDir)
-				dir_infos = "   " + str(self.Humanizer(dir_stats.st_size)) + "    "
-				dir_infos = dir_infos + time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(dir_stats.st_mtime)) + "    "
-				dir_infos = dir_infos + _("Mode") + " " + str(mode[-3:])
-				return (dir_infos)
-			else:
-				return ("")
+					pathname = filename
 		else:
-			longname = sourceDir + filename
-			if fileExists(longname):
-				mode = os.stat(longname).st_mode
-			else:
-				return ("")
-			mode = oct(mode)
-			file_stats = os_stat(longname)
-			file_infos = filename + "   " + str(self.Humanizer(file_stats.st_size)) + "    "
-			file_infos = file_infos + time_strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time_localtime(file_stats.st_mtime)) + "    "
-			file_infos = file_infos + _("Mode") + " " + str(mode[-3:])
-			return (file_infos)
+			pathname = sourceDir + filename
+		try:
+			st = os.lstat(os.path.normpath(pathname))
+		except:
+			return ""
+		info = ' '.join(self.SIZESCALER.scale(st.st_size)) + "B    "
+		info += self.formatTime(st.st_mtime) + "    "
+		info += _("Mode %s (%04o)") % (self.fileModeStr(st.st_mode), stat.S_IMODE(st.st_mode))
+		return info
+
+	def statInfo(self, dirsource):
+		filename = dirsource.getFilename()
+		sourceDir = dirsource.getCurrentDirectory()
+		if dirsource.canDescent():
+			if dirsource.getSelectionIndex() != 0:
+				if (not sourceDir) and (not filename):
+					return pname
+				else:
+					pathname = filename
+		else:
+			pathname = sourceDir + filename
+		try:
+			st = os.lstat(os.path.normpath(pathname))
+		except:
+			return ()
+
+		# Numbers in trailing comments are the template text indexes
+		symbolicmode = self.fileModeStr(st.st_mode)
+		octalmode = "%04o" % stat.S_IMODE(st.st_mode)
+		modes = (
+			octalmode,  # 0
+			symbolicmode,  # 1
+			_("%s (%s)") % (octalmode, symbolicmode)  # 2
+		)
+
+		if stat.S_ISCHR(st.st_mode) or stat.S_ISBLK(st.st_mode):
+			sizes = ("", "", "")
+		else:
+			bytesize = "%s" % "{:n}".format(st.st_size)
+			scaledsize = ' '.join(self.SIZESCALER.scale(st.st_size))
+			sizes = (
+				bytesize,  # 10
+				_("%sB") % scaledsize,  # 11
+				_("%s (%sB") % (bytesize, scaledsize)  # 12
+			)
+
+		return [modes + (
+			"%d" % st.st_ino, #3
+			"%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff),  #4
+			"%d" % st.st_nlink,  # 5
+			"%d" % st.st_uid,  # 6
+			"%s" % self.username(st.st_uid),  # 7
+			"%d" % st.st_gid,  # 8
+			"%s" % self.groupname(st.st_gid)  # 9
+		) + sizes + (
+			self.formatTime(st.st_mtime),  # 13
+			self.formatTime(st.st_atime),  # 14
+			self.formatTime(st.st_ctime)  # 15
+		)]
 
 	@staticmethod
 	def fileFilter():

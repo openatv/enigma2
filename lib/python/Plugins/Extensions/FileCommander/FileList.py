@@ -52,13 +52,20 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	res = [(absolute, isDir, isLink)]
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 1175, 25, 0, RT_HALIGN_LEFT, name))
 	if isLink:
-		png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
-	elif isDir:
-		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
+		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))
+	else:
+		link_png = None
+	if isDir:
+		if isLink and link_png is None:
+			png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
+		else:
+			png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 10, 4, 20, 20, png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 4, 20, 20, png))
+		if link_png is not None:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 10, 4, 20, 20, link_png))
 
 	return res
 
@@ -148,7 +155,7 @@ class FileList(FileListBase):
 					name = x
 
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					self.list.append(FileEntryComponent(name=name, absolute=x, isDir=False, isLink=False))
+					self.list.append(FileEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path)))
 
 		if self.showMountpoints and len(self.list) == 0:
 			self.list.append(FileEntryComponent(name=_("nothing connected"), absolute=None, isDir=False, isLink=False))
@@ -180,21 +187,28 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 1175, 25, 0, RT_HALIGN_LEFT, name))
 
 	if isLink:
-		png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
-	elif isDir:
-		png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
+		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))
+	else:
+		link_png = None
+	if isDir:
+		if isLink and link_png is None:
+			png = LoadPixmap(path=os.path.join(imagePath, "link.png"))
+		else:
+			png = LoadPixmap(path=os.path.join(imagePath, "directory.png"))
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 30, 4, 20, 20, png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 30, 4, 20, 20, png))
+		if link_png is not None:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 30, 4, 20, 20, link_png))
 
 	if not name.startswith('<'):
 		if selected is False:
 			icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 4, 0, 25, 25, icon))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 4, 0, 25, 25, icon))
 		else:
 			icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 4, 0, 25, 25, icon))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 4, 0, 25, 25, icon))
 	return res
 
 class MultiFileSelectList(FileList):
@@ -326,7 +340,7 @@ class MultiFileSelectList(FileList):
 
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
 					alreadySelected = path in self.selectedFiles
-					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, selected=alreadySelected))
+					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path), selected=alreadySelected))
 
 		self.l.setList(self.list)
 
