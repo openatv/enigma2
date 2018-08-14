@@ -26,7 +26,6 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 # Tools
-from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 # from Tools.HardwareInfo import HardwareInfo
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
@@ -45,12 +44,14 @@ from os import listdir as os_listdir
 import os
 import stat
 import string
+import re
+
 # System mods
 from InputBox import InputBox
 from FileList import FileList, MultiFileSelectList, EXTENSIONS
 # Addons
 from addons.key_actions import key_actions, stat_info
-from Plugins.Extensions.FileCommander.addons.type_utils import *
+from addons.type_utils import vEditor
 from Plugins.Extensions.PicturePlayer.ui import config
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}

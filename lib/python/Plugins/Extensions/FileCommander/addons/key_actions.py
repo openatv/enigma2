@@ -21,7 +21,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 # Tools
-from Tools.Directories import *
+from Tools.Directories import fileExists
 from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
 # from Tools.HardwareInfo import HardwareInfo
@@ -43,17 +43,17 @@ import stat
 import pwd
 import grp
 import time
+import re
 
 import os
 
 # Addons
-# from unrar import *
-from Plugins.Extensions.FileCommander.addons.unrar import *
-from Plugins.Extensions.FileCommander.addons.tar import *
-from Plugins.Extensions.FileCommander.addons.unzip import *
-from Plugins.Extensions.FileCommander.addons.gz import *
-from Plugins.Extensions.FileCommander.addons.ipk import *
-from Plugins.Extensions.FileCommander.addons.type_utils import *
+from unrar import RarMenuScreen
+from tar import TarMenuScreen
+from unzip import UnzipMenuScreen
+from gz import GunzipMenuScreen
+from ipk import ipkMenuScreen
+from type_utils import ImageViewer, MoviePlayer, vEditor
 
 TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
 

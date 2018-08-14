@@ -23,7 +23,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
 # Tools
-from Tools.Directories import *
+from Tools.Directories import fileExists
 from Tools.BoundFunction import boundFunction
 # Various
 from Plugins.Extensions.FileCommander.InputBox import InputBoxWide
