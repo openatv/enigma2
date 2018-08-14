@@ -28,10 +28,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
 
 # Various
-from os.path import isdir as os_path_isdir
 from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
-from os import remove, symlink
-from os import stat as os_stat
 
 import os
 import stat
@@ -150,22 +147,22 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def __init__(self, session, path_left=None):
 		# path_left == "" means device list, whereas path_left == None means saved or default value
 		if path_left is None:
-			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.path_left.value and os_path_isdir(config.plugins.filecommander.path_left.value):
+			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.path_left.value and os.path.isdir(config.plugins.filecommander.path_left.value):
 				path_left = config.plugins.filecommander.path_left.value
-			elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
+			elif config.plugins.filecommander.path_default.value and os.path.isdir(config.plugins.filecommander.path_default.value):
 				path_left = config.plugins.filecommander.path_default.value
 
-		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.path_right.value and os_path_isdir(config.plugins.filecommander.path_right.value):
+		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.path_right.value and os.path.isdir(config.plugins.filecommander.path_right.value):
 			path_right = config.plugins.filecommander.path_right.value
-		elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
+		elif config.plugins.filecommander.path_default.value and os.path.isdir(config.plugins.filecommander.path_default.value):
 			path_right = config.plugins.filecommander.path_default.value
 		else:
 			path_right = None
 
-		if path_left and os_path_isdir(path_left) and path_left[-1] != "/":
+		if path_left and os.path.isdir(path_left) and path_left[-1] != "/":
 			path_left += "/"
 
-		if path_right and os_path_isdir(path_right) and path_right[-1] != "/":
+		if path_right and os.path.isdir(path_right) and path_right[-1] != "/":
 			path_right += "/"
 
 		if path_left == "":
@@ -249,7 +246,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return None
 		longname = sourceDir + filename
 		try:
-			xfile = os_stat(longname)
+			xfile = os.stat(longname)
 			if (xfile.st_size < 1000000):
 				return longname
 		except:
@@ -548,7 +545,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				return
 			newpath = os.path.join(targetDir, newname)
 			try:
-				symlink(oldpath, newpath)
+				os.symlink(oldpath, newpath)
 			except OSError as oe:
 				self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (oldpath, newpath, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.doRefresh()
@@ -879,11 +876,11 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 # ## delete select ###
 	def goRed(self):
 		for file in self.selectedFiles:
-			if os_path_isdir(file):
+			if os.path.isdir(file):
 				container = eConsoleAppContainer()
 				container.execute("rm", "rm", "-rf", file)
 			else:
-				remove(file)
+				os.remove(file)
 		self.exit()
 
 # ## move select ###

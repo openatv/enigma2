@@ -22,7 +22,6 @@ from Tools.Directories import fileExists
 # Various
 from Plugins.Extensions.FileCommander.InputBox import InputBoxWide
 from enigma import eTimer, ePicLoad, getDesktop
-from os import system
 
 import os
 
@@ -211,7 +210,7 @@ class vEditor(Screen, HelpableScreen):
 		if answer is True:
 			try:
 				if fileExists(self.file_name):
-					system("cp " + self.file_name + " " + self.file_name + ".bak")
+					os.system("cp " + self.file_name + " " + self.file_name + ".bak")
 				eFile = open(self.file_name, "w")
 				for x in self.list:
 					my_x = x.partition(": ")[2]

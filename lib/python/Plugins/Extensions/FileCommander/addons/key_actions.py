@@ -16,11 +16,8 @@ from Tools.Directories import fileExists
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
 
 # Various
-from os.path import splitext as os_path_splitext
 from mimetypes import guess_type
 from enigma import eServiceReference
-from os import system as os_system
-from os import stat as os_stat
 
 import stat
 import pwd
@@ -161,9 +158,9 @@ class key_actions(stat_info):
 		answer = answer and answer[1]
 		# sourceDir = dirsource.getCurrentDirectory() #self.SOURCELIST.getCurrentDirectory()
 		if answer == "CHMOD644":
-			os_system("chmod 644 " + self.longname)
+			os.system("chmod 644 " + self.longname)
 		elif answer == "CHMOD755":
-			os_system("chmod 755 " + self.longname)
+			os.system("chmod 755 " + self.longname)
 		self.doRefresh()
 
 	def Humanizer(self, size):
@@ -280,7 +277,7 @@ class key_actions(stat_info):
 				self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
 		elif answer == "VIEW":
 			try:
-				yfile = os_stat(self.commando[0])
+				yfile = os.stat(self.commando[0])
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (self.commando[0], oe.strerror), type=MessageBox.TYPE_ERROR)
 				return
@@ -442,7 +439,7 @@ class key_actions(stat_info):
 			l = len(x)
 			if x[0][0] is not None:
 				testFileName = x[0][0].lower()
-				_, filetype = os_path_splitext(testFileName)
+				_, filetype = os.path.splitext(testFileName)
 			else:
 				testFileName = x[0][0]  # "empty"
 				filetype = None
@@ -455,7 +452,7 @@ class key_actions(stat_info):
 						mp.playlist.addFile(eServiceReference(4097, 0, path + x[0][0]))
 			elif l >= 5:
 				testFileName = x[4].lower()
-				_, filetype = os_path_splitext(testFileName)
+				_, filetype = os.path.splitext(testFileName)
 				if filetype in AUDIO_EXTENSIONS:
 					if filename == x[0][0]:
 						start_song = i
@@ -485,7 +482,7 @@ class key_actions(stat_info):
 		if not sourceDir.endswith("/"):
 			sourceDir = sourceDir + "/"
 		testFileName = filename.lower()
-		filetype = os_path_splitext(testFileName)[1]
+		filetype = os.path.splitext(testFileName)[1]
 		longname = sourceDir + filename
 		print "[Filebrowser]:", filename, sourceDir, testFileName
 		if not fileExists(longname):
@@ -526,7 +523,7 @@ class key_actions(stat_info):
 			self.run_script(self.SOURCELIST)
 		elif filetype in TEXT_EXTENSIONS:
 			try:
-				xfile = os_stat(longname)
+				xfile = os.stat(longname)
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
 				return

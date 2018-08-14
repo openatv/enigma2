@@ -4,7 +4,6 @@
 # napiprojekt.pl API is used with napiproject administration consent
 
 import os
-import os.path
 import re
 import sys
 import time
