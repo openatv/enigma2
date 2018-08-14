@@ -45,7 +45,6 @@ from FileList import FileList, MultiFileSelectList, EXTENSIONS
 # Addons
 from addons.key_actions import key_actions, stat_info
 from addons.type_utils import vEditor
-from Plugins.Extensions.PicturePlayer.ui import config
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 

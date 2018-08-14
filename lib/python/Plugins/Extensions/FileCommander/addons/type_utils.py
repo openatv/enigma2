@@ -238,6 +238,7 @@ class ImageViewer(Screen, HelpableScreen):
 	def __init__(self, session, fileList, index, path, filename):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "DirectionActions"], {
 			"cancel": (self.keyCancel, _("Exit picture viewer")),
 			"left": (self.keyLeft, _("Show next picture")),
@@ -271,9 +272,18 @@ class ImageViewer(Screen, HelpableScreen):
 		self.slideShowTimer = eTimer()
 		self.slideShowTimer.callback.append(self.cbSlideShow)
 
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.onFirstExecBegin.append(self.firstExecBegin)
 
-	def layoutFinished(self):
+	def firstExecBegin(self):
+		# Ensure that Plugins.Extensions.PicturePlayer exists and
+		# that the config.pic config variables have been initialised.
+		try:
+			import Plugins.Extensions.PicturePlayer.ui
+		except:
+			self.session.open(MessageBox, _("The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."), MessageBox.TYPE_ERROR)
+			self.close()
+			return
+
 		if self.fileListLen >= 0:
 			self.setPictureLoadPara()
 
