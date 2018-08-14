@@ -1,44 +1,27 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-from Plugins.Plugin import PluginDescriptor
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
-from Components.ConfigList import ConfigListScreen
-from Components.Label import Label
-from Components.Task import job_manager
+from Components.config import config
 from Components.Scanner import openFile
-from Components.MenuList import MenuList
-from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS, KNOWN_EXTENSIONS
+from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
+
 # Screens
-from Screens.Screen import Screen
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox
-from Screens.HelpMenu import HelpableScreen
-from Screens.TaskList import TaskListScreen
-from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
+
 # Tools
 from Tools.Directories import fileExists
-from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
-# from Tools.HardwareInfo import HardwareInfo
+
 # Various
-from os.path import isdir as os_path_isdir
 from os.path import splitext as os_path_splitext
 from mimetypes import guess_type
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-from os import listdir, remove, rename, system, path, symlink, chdir
+from enigma import eServiceReference
 from os import system as os_system
 from os import stat as os_stat
-from os import walk as os_walk
-from os import popen as os_popen
-from os import path as os_path
-from os import listdir as os_listdir
-from time import strftime as time_strftime
-from time import localtime as time_localtime
+
 import stat
 import pwd
 import grp

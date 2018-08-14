@@ -2,44 +2,36 @@
 # -*- coding: iso-8859-1 -*-
 
 from Plugins.Plugin import PluginDescriptor
+
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, ConfigSet, NoSave, ConfigNothing
-# from Components.ConfigList import ConfigListScreen
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob
 from Components.Task import job_manager
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.Scanner import openFile
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
-from Components.MenuList import MenuList
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
+
 # Screens
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import LocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
-from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
+
 # Tools
 from Tools.BoundFunction import boundFunction
-# from Tools.HardwareInfo import HardwareInfo
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
+
 # Various
 from os.path import isdir as os_path_isdir
-from mimetypes import guess_type
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-from os import listdir, remove, rename, system, path, symlink, chdir
-from os import system as os_system
+from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
+from os import remove, symlink
 from os import stat as os_stat
-from os import walk as os_walk
-from os import popen as os_popen
-from os import path as os_path
-from os import listdir as os_listdir
 
 import os
 import stat
@@ -49,6 +41,7 @@ import re
 # System mods
 from InputBox import InputBox
 from FileList import FileList, MultiFileSelectList, EXTENSIONS
+
 # Addons
 from addons.key_actions import key_actions, stat_info
 from addons.type_utils import vEditor
