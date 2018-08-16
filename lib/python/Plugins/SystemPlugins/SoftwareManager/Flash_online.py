@@ -359,7 +359,7 @@ class doFlashImage(Screen):
 			print"Nothing to select !!"
 			return False
 		self.filename = self.imagePath + "/" + self.sel
-		return True
+		return self.checkTrafficLight()
 
 	def greenCB(self, ret = None):
 		if self.Online:
@@ -375,6 +375,26 @@ class doFlashImage(Screen):
 		if self.getSel():
 			self.hide()
 			self.session.openWithCallback(self.greenCB, MessageBox, _("Do you want to backup your settings now?"), default=True)
+
+	def checkTrafficLight(self):
+		import time
+		if not self.Online or not time.strftime('%Y%m%d') in self.filename:
+			return True
+
+		try:
+			urlopenATV = "http://ampel.mynonpublic.com/Ampel/index.php"
+			d = urllib2.urlopen(urlopenATV)
+			tmpStatus = d.read()
+		except:
+			tmpStatus = _("Unknown")
+
+		if 'gruen.png' in tmpStatus:
+			return True
+		else:
+			if 'rot.png' in tmpStatus: tmpStatus = _("red")
+			elif 'gelb.png' in tmpStatus: tmpStatus = _("yellow")
+			self.session.open(MessageBox, _("Traffic light state is '%s' - please use a another image.") %tmpStatus.upper(), type = MessageBox.TYPE_ERROR)
+			return False
 
 	def startInstallOnline(self, ret = None):
 		box = self.box()
