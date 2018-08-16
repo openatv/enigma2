@@ -410,6 +410,7 @@ class Status:
 		data = { 'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False }
 		for line in result.splitlines():
 			line = line.strip()
+			print "[Wlan.py] line -->",line
 			if "ESSID" in line:
 				if "off/any" in line:
 					ssid = "off"
