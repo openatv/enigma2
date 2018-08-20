@@ -62,7 +62,7 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
-		if (getBrandOEM() in ('fulan')):
+		if (getBrandOEM() in ('fulan','clap')):
 			open("/proc/stb/hdmi/output", "w").write("on")
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
@@ -178,7 +178,7 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
-		if (getBrandOEM() in ('fulan')):
+		if (getBrandOEM() in ('fulan','clap')):
 			open("/proc/stb/hdmi/output", "w").write("off")
 
 		if int(config.usage.hdd_standby_in_standby.value) != -1: # HDD standby timer value (box in standby) / -1 = same as when box is active
