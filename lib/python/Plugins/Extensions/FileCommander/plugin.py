@@ -913,17 +913,12 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if targetDir is None:
 			return
 
+		self.cleanList()
 		for file in self.selectedFiles:
-			extension = file.split('.')
-			extension = extension[-1].lower()
-			if extension in MOVIEEXTENSIONS:
-				print "[FileCommander] skip " + extension
-			else:
-				print "[FileCommander] move " + extension
-				dst_file = targetDir
-				if dst_file.endswith("/"):
-					targetDir = dst_file[:-1]
-				job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
+			dst_file = targetDir
+			if dst_file.endswith("/"):
+				targetDir = dst_file[:-1]
+			job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
 		self.exit()
 
 # ## copy select ###
@@ -932,20 +927,15 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if targetDir is None:
 			return
 
+		self.cleanList()
 		for file in self.selectedFiles:
-			extension = file.split('.')
-			extension = extension[-1].lower()
-			if extension in MOVIEEXTENSIONS:
-				print "[FileCommander] skip " + extension
+			dst_file = targetDir
+			if dst_file.endswith("/"):
+				targetDir = dst_file[:-1]
+			if file.endswith("/"):
+				job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
 			else:
-				print "[FileCommander] copy " + extension
-				dst_file = targetDir
-				if dst_file.endswith("/"):
-					targetDir = dst_file[:-1]
-				if file.endswith("/"):
-					job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
-				else:
-					job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+				job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
 		self.exit()
 
 	def goBlue(self):
@@ -979,6 +969,19 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["list_right"].selectionEnabled(0)
 		self.ACTIVELIST = self["list_left"]
 		self.updateHead()
+
+	# remove movieparts if the movie is present
+	def cleanList(self):
+		for file in self.selectedFiles[:]:
+			movie, extension = os_path.splitext(file)
+			if extension[1:] in MOVIEEXTENSIONS:
+				if extension == ".eit":
+					extension = ".ts"
+					movie += extension
+				else:
+					extension = os_path.splitext(movie)[1]
+				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
+					self.selectedFiles.remove(file)
 
 class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """
