@@ -451,12 +451,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				if sourceDir is None:
 					return
 				if sourceDir not in filename:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting file ..."), cmdlist=(("rm", sourceDir + filename),))
+					remove(sourceDir + filename)
 				else:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting folder ..."), cmdlist=(("rm", "-rf", filename),))
-
-	def doDeleteCB(self):
-		self.doRefresh()
+					container = eConsoleAppContainer()
+					container.execute("rm", "rm", "-rf", filename)
+				self.doRefresh()
 
 # ## move ###
 	def goGreen(self):
@@ -516,10 +515,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			if (filename is None) or (sourceDir is None):
 				return
-			if sourceDir not in filename:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=(("mv", sourceDir + filename, sourceDir + newname),))
-			else:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=(("mv", filename, newname),))
+			try:
+				if sourceDir not in filename:
+					rename(sourceDir + filename, sourceDir + newname)
+				else:
+					rename(filename, sourceDir + newname)
+			except OSError as oe:
+				self.session.open(MessageBox, _("Error renaming %s to %s:\n%s") % (filename, newname, oe.strerror), type=MessageBox.TYPE_ERROR)
+			self.doRefresh()
 
 	def doRenameCB(self):
 		self.doRefresh()
