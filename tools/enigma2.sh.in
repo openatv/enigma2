@@ -42,6 +42,13 @@ if [ -e /proc/stb/info/boxtype ]; then
 			libreader 720P_50
 		fi
 	fi
+	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
+	if [ $stbcheck == "sf8008" ]; then
+		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
+		if [ 0 == $count ];then
+			libreader 720P_50
+		fi
+	fi
 fi
 if [ -x @bindir@/showiframe ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
