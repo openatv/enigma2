@@ -6,7 +6,7 @@ from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, ConfigSet, NoSave, ConfigNothing
 # from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from Components.FileTransfer import FileTransferJob
+from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from Components.Task import job_manager
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Scanner import openFile
@@ -518,6 +518,17 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			try:
 				if sourceDir not in filename:
 					rename(sourceDir + filename, sourceDir + newname)
+					movie, ext = os_path.splitext(filename)
+					newmovie, newext = os_path.splitext(newname)
+					if ext in ALL_MOVIE_EXTENSIONS and newext in ALL_MOVIE_EXTENSIONS:
+						for ext in MOVIEEXTENSIONS:
+							try:
+								if ext == "eit":
+									rename(sourceDir + movie + ".eit", sourceDir + newmovie + ".eit")
+								else:
+									rename(sourceDir + filename + "." + ext, sourceDir + newname + "." + ext)
+							except:
+								pass
 				else:
 					rename(filename, sourceDir + newname)
 			except OSError as oe:
