@@ -848,7 +848,9 @@ eMPEGStreamParserTS::eMPEGStreamParserTS(int packetsize):
 	m_header_offset(packetsize - 188),
 	m_enable_accesspoints(true),
 	m_pts_found(false),
-	m_has_accesspoints(false)
+	m_has_accesspoints(false),
+	m_broken(false),
+	m_packet_errors(0)
 {
 }
 
@@ -1129,6 +1131,16 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 				packet += storelen;
 
 				if (m_pktptr == m_header_offset + 4)
+				{
+					const unsigned char *hdr = m_pkt + m_header_offset;
+					if (hdr[1] & 0x80) /* transport error */
+					{
+						if (++m_packet_errors == 3)
+							m_broken = true;
+					}
+					else
+						m_packet_errors = 0;
+
 					if (!wantPacket(m_pkt))
 					{
 							/* skip packet */
@@ -1137,6 +1149,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 						m_pktptr = 0;
 						continue;
 					}
+				}
 			}
 				/* otherwise we complete up to the full packet */
 			unsigned int storelen = m_packetsize - m_pktptr;
@@ -1154,6 +1167,14 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			}
 		} else if (len >= (unsigned int)m_header_offset + 4)  /* if we have a full header... */
 		{
+			if (packet[m_header_offset + 1] & 0x80) /* transport error */
+			{
+				if (++m_packet_errors == 3)
+					m_broken = true;
+			}
+			else
+				m_packet_errors = 0;
+
 			if (wantPacket(packet))  /* decide wheter we need it ... */
 			{
 				if (len >= (unsigned int)m_packetsize)          /* packet complete? */

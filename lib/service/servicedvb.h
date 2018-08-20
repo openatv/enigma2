@@ -224,6 +224,9 @@ protected:
 	void serviceEventTimeshift(int event);
 	sigc::signal2<void,iPlayableService*,int> m_event;
 
+		/* timeshift events */
+	void recordEvent(int event);
+
 	bool m_is_stream;
 
 		/* pvr */
@@ -241,6 +244,7 @@ protected:
 
 		/* timeshift */
 	ePtr<iDVBTSRecorder> m_record;
+	ePtr<eConnection> m_con_record_event;
 	std::set<int> m_pids_active;
 
 	void updateTimeshiftPids();

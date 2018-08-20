@@ -541,6 +541,20 @@ void eDVBServiceRecord::recordEvent(int event)
 		stop();
 		m_event((iRecordableService*)this, evRecordWriteError);
 		return;
+	case iDVBTSRecorder::eventRetune:
+	{
+		eWarning("[eDVBServiceRecord] record tuner error");
+		eUsePtr<iDVBChannel> channel;
+		if(m_service_handler.getChannel(channel))
+			return;
+		ePtr<iDVBFrontend> fe;
+		if(channel->getFrontend(fe))
+			return;
+		ePtr<iDVBFrontendParameters> param;
+		channel->getCurrentFrontendParameters(param);
+		fe->tune(*param);
+		return;
+	}
 	default:
 		eDebug("[eDVBServiceRecord] unhandled record event %d", event);
 	}
