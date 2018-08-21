@@ -164,7 +164,7 @@ class FileList(FileListBase):
 
 		if select is not None:
 			i = 0
-			self.moveToIndex(0)
+			#self.moveToIndex(0)
 			for x in self.list:
 				p = x[0][0]
 
@@ -346,7 +346,7 @@ class MultiFileSelectList(FileList):
 
 		if select is not None:
 			i = 0
-			self.moveToIndex(0)
+			#self.moveToIndex(0)
 			for x in self.list:
 				p = x[0][0]
 

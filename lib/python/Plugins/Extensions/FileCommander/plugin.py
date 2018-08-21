@@ -6,7 +6,7 @@ from Plugins.Plugin import PluginDescriptor
 # Components
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing
 from Components.Label import Label
-from Components.FileTransfer import FileTransferJob
+from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from Components.Task import job_manager
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Sources.Boolean import Boolean
@@ -441,12 +441,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				if sourceDir is None:
 					return
 				if sourceDir not in filename:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting file ..."), cmdlist=(("rm", sourceDir + filename),))
+					remove(sourceDir + filename)
 				else:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting folder ..."), cmdlist=(("rm", "-rf", filename),))
-
-	def doDeleteCB(self):
-		self.doRefresh()
+					container = eConsoleAppContainer()
+					container.execute("rm", "rm", "-rf", filename)
+				self.doRefresh()
 
 # ## move ###
 	def goGreen(self):
@@ -506,10 +505,25 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			if (filename is None) or (sourceDir is None):
 				return
-			if sourceDir not in filename:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=(("mv", sourceDir + filename, sourceDir + newname),))
-			else:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=(("mv", filename, newname),))
+			try:
+				if sourceDir not in filename:
+					rename(sourceDir + filename, sourceDir + newname)
+					movie, ext = os_path.splitext(filename)
+					newmovie, newext = os_path.splitext(newname)
+					if ext in ALL_MOVIE_EXTENSIONS and newext in ALL_MOVIE_EXTENSIONS:
+						for ext in MOVIEEXTENSIONS:
+							try:
+								if ext == "eit":
+									rename(sourceDir + movie + ".eit", sourceDir + newmovie + ".eit")
+								else:
+									rename(sourceDir + filename + "." + ext, sourceDir + newname + "." + ext)
+							except:
+								pass
+				else:
+					rename(filename, sourceDir + newname)
+			except OSError as oe:
+				self.session.open(MessageBox, _("Error renaming %s to %s:\n%s") % (filename, newname, oe.strerror), type=MessageBox.TYPE_ERROR)
+			self.doRefresh()
 
 	def doRenameCB(self):
 		self.doRefresh()
@@ -889,17 +903,12 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if targetDir is None:
 			return
 
+		self.cleanList()
 		for file in self.selectedFiles:
-			extension = file.split('.')
-			extension = extension[-1].lower()
-			if extension in MOVIEEXTENSIONS:
-				print "[FileCommander] skip " + extension
-			else:
-				print "[FileCommander] move " + extension
-				dst_file = targetDir
-				if dst_file.endswith("/"):
-					targetDir = dst_file[:-1]
-				job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
+			dst_file = targetDir
+			if dst_file.endswith("/"):
+				targetDir = dst_file[:-1]
+			job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
 		self.exit()
 
 # ## copy select ###
@@ -908,20 +917,15 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if targetDir is None:
 			return
 
+		self.cleanList()
 		for file in self.selectedFiles:
-			extension = file.split('.')
-			extension = extension[-1].lower()
-			if extension in MOVIEEXTENSIONS:
-				print "[FileCommander] skip " + extension
+			dst_file = targetDir
+			if dst_file.endswith("/"):
+				targetDir = dst_file[:-1]
+			if file.endswith("/"):
+				job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
 			else:
-				print "[FileCommander] copy " + extension
-				dst_file = targetDir
-				if dst_file.endswith("/"):
-					targetDir = dst_file[:-1]
-				if file.endswith("/"):
-					job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
-				else:
-					job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+				job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
 		self.exit()
 
 	def goBlue(self):
@@ -955,6 +959,19 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["list_right"].selectionEnabled(0)
 		self.ACTIVELIST = self["list_left"]
 		self.updateHead()
+
+	# remove movieparts if the movie is present
+	def cleanList(self):
+		for file in self.selectedFiles[:]:
+			movie, extension = os_path.splitext(file)
+			if extension[1:] in MOVIEEXTENSIONS:
+				if extension == ".eit":
+					extension = ".ts"
+					movie += extension
+				else:
+					extension = os_path.splitext(movie)[1]
+				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
+					self.selectedFiles.remove(file)
 
 class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """
