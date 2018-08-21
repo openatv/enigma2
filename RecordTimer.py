@@ -405,9 +405,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def log_tuner(self, level, state):
 		feinfo = self.record_service and self.record_service.frontendInfo()
 		fedata = feinfo and feinfo.getFrontendData()
-		tn = fedata and fedata.get("tuner_number")
-		tuner_info = tn is not None and chr(ord('A') + tn) or "?"
-		self.log(level, "%s recording on tuner: %s" % (state, tuner_info))
+		tn = fedata.get("tuner_number") if fedata else -1
+		if tn >= 0:
+			tuner_info = "Tuner " + chr(ord('A') + tn)
+		else:
+			tuner_info = SystemInfo["HDMIin"] and "HDMI-IN" or "Unknown source"
+		self.log(level, "%s recording from: %s" % (state, tuner_info))
 
 	def activate(self):
 		next_state = self.state + 1

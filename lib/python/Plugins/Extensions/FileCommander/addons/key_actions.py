@@ -1,59 +1,39 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-from Plugins.Plugin import PluginDescriptor
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
-from Components.ConfigList import ConfigListScreen
-from Components.Label import Label
-from Components.Task import job_manager
+from Components.config import config
 from Components.Scanner import openFile
-from Components.MenuList import MenuList
-from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS, KNOWN_EXTENSIONS
+from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
+
 # Screens
-from Screens.Screen import Screen
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox
-from Screens.HelpMenu import HelpableScreen
-from Screens.TaskList import TaskListScreen
-from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
+
 # Tools
-from Tools.Directories import *
-from Tools.BoundFunction import boundFunction
+from Tools.Directories import fileExists
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
-# from Tools.HardwareInfo import HardwareInfo
+
 # Various
-from os.path import isdir as os_path_isdir
-from os.path import splitext as os_path_splitext
 from mimetypes import guess_type
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-from os import listdir, remove, rename, system, path, symlink, chdir
-from os import system as os_system
-from os import stat as os_stat
-from os import walk as os_walk
-from os import popen as os_popen
-from os import path as os_path
-from os import listdir as os_listdir
-from time import strftime as time_strftime
-from time import localtime as time_localtime
+from enigma import eServiceReference
+
 import stat
 import pwd
 import grp
 import time
+import re
 
 import os
 
 # Addons
-# from unrar import *
-from Plugins.Extensions.FileCommander.addons.unrar import *
-from Plugins.Extensions.FileCommander.addons.tar import *
-from Plugins.Extensions.FileCommander.addons.unzip import *
-from Plugins.Extensions.FileCommander.addons.gz import *
-from Plugins.Extensions.FileCommander.addons.ipk import *
-from Plugins.Extensions.FileCommander.addons.type_utils import *
+from unrar import RarMenuScreen
+from tar import TarMenuScreen
+from unzip import UnzipMenuScreen
+from gz import GunzipMenuScreen
+from ipk import ipkMenuScreen
+from type_utils import ImageViewer, MoviePlayer, vEditor
 
 TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
 
@@ -178,9 +158,9 @@ class key_actions(stat_info):
 		answer = answer and answer[1]
 		# sourceDir = dirsource.getCurrentDirectory() #self.SOURCELIST.getCurrentDirectory()
 		if answer == "CHMOD644":
-			os_system("chmod 644 " + self.longname)
+			os.system("chmod 644 " + self.longname)
 		elif answer == "CHMOD755":
-			os_system("chmod 755 " + self.longname)
+			os.system("chmod 755 " + self.longname)
 		self.doRefresh()
 
 	def Humanizer(self, size):
@@ -297,7 +277,7 @@ class key_actions(stat_info):
 				self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
 		elif answer == "VIEW":
 			try:
-				yfile = os_stat(self.commando[0])
+				yfile = os.stat(self.commando[0])
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (self.commando[0], oe.strerror), type=MessageBox.TYPE_ERROR)
 				return
@@ -459,7 +439,7 @@ class key_actions(stat_info):
 			l = len(x)
 			if x[0][0] is not None:
 				testFileName = x[0][0].lower()
-				_, filetype = os_path_splitext(testFileName)
+				_, filetype = os.path.splitext(testFileName)
 			else:
 				testFileName = x[0][0]  # "empty"
 				filetype = None
@@ -472,7 +452,7 @@ class key_actions(stat_info):
 						mp.playlist.addFile(eServiceReference(4097, 0, path + x[0][0]))
 			elif l >= 5:
 				testFileName = x[4].lower()
-				_, filetype = os_path_splitext(testFileName)
+				_, filetype = os.path.splitext(testFileName)
 				if filetype in AUDIO_EXTENSIONS:
 					if filename == x[0][0]:
 						start_song = i
@@ -502,7 +482,7 @@ class key_actions(stat_info):
 		if not sourceDir.endswith("/"):
 			sourceDir = sourceDir + "/"
 		testFileName = filename.lower()
-		filetype = os_path_splitext(testFileName)[1]
+		filetype = os.path.splitext(testFileName)[1]
 		longname = sourceDir + filename
 		print "[Filebrowser]:", filename, sourceDir, testFileName
 		if not fileExists(longname):
@@ -543,7 +523,7 @@ class key_actions(stat_info):
 			self.run_script(self.SOURCELIST)
 		elif filetype in TEXT_EXTENSIONS:
 			try:
-				xfile = os_stat(longname)
+				xfile = os.stat(longname)
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
 				return

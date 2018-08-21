@@ -295,21 +295,24 @@ def buildMovieLocationList(bookmarks, base=None):
 	# Mounts
 	for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 		d = os.path.normpath(p.mountpoint)
+		desc = friendlyMoviePath(d)
+		if desc == d:
+			desc = p.description
 		if d in inlist:
 			# improve shortcuts to mountpoints
 			try:
-				bookmarks[bookmarks.index((d, d))] = (p.description, d)
+				bookmarks[bookmarks.index((d, d))] = (desc, d)
 			except:
 				pass  # When already listed as some "friendly" name
 		else:
-			bookmarks.append((p.description, d))
+			bookmarks.append((desc, d))
 			inlist.append(d)
 	if base:
 		# Subdirs - inserted before mounts to fill the page.
 		# If they would create another page, don't add any at all.
 		try:
 			sub_bm = []
-			#sub_in = []
+			#sub_in = []					# not necessary, nothing follows
 			items = len(bookmarks) + 1		# one more for Other
 			maxitems = (items + 14) / 15 * 15	# ChoiceBox has 15 items per page
 			for fn in os.listdir(base):
@@ -320,7 +323,7 @@ def buildMovieLocationList(bookmarks, base=None):
 							sub_bm = None
 							break
 						items += 1
-						sub_bm.append((fn, d))
+						sub_bm.append((friendlyMoviePath(d, base), d))
 						#sub_in.append(d)
 			if sub_bm:
 				sub_bm.sort()

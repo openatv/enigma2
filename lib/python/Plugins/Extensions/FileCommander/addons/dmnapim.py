@@ -4,14 +4,11 @@
 # napiprojekt.pl API is used with napiproject administration consent
 
 import os
-import os.path
 import re
-import string
 import sys
 import time
 import urllib2
-import mimetypes
-from hashlib import md5 as md5
+from hashlib import md5
 import struct
 
 class GetFPS(object):
@@ -252,7 +249,6 @@ def read_srt(list):
                     subt.append(int(m.group(5)) * 3600 + int(m.group(6)) * 60 + int(m.group(7)) + int(m.group(8)) / 1000.0)
                     l = list.pop(0)
                     while not re3.match(l, 0):
-                        # subt.append(string.replace(l[:-1], "\r", ""))
                         subt.append(l.strip())
                         l = list.pop(0)
                     subtitles.append(subt)
