@@ -13,7 +13,7 @@ POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
 		global symbolspoller, POLLTIME
-		if getBoxType() in ('alien5','osninopro','osnino','osninoplus','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
+		if getBoxType() in ('sf8008','clap4k','alien5','osninopro','osnino','osninoplus','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
 			POLLTIME = 1
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
@@ -120,7 +120,18 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/symbol_rec", "w").write("0")
-
+		elif getBoxType() in ('sf8008','clap4k'):
+			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+			self.blink = not self.blink
+			if recordings > 0:
+				if self.blink:
+					open("/proc/stb/fp/standbyled", "w").write("on")
+					self.led = "1"
+				else:
+					open("/proc/stb/fp/standbyled", "w").write("off")
+					self.led = "0"
+			else:
+				open("/proc/stb/fp/poweronled", "w").write("on")
 		else:
 			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
 				return
