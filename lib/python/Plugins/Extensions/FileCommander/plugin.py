@@ -441,7 +441,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				if sourceDir is None:
 					return
 				if sourceDir not in filename:
-					remove(sourceDir + filename)
+					os.remove(sourceDir + filename)
 				else:
 					container = eConsoleAppContainer()
 					container.execute("rm", "rm", "-rf", filename)
@@ -508,19 +508,19 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			try:
 				if sourceDir not in filename:
 					rename(sourceDir + filename, sourceDir + newname)
-					movie, ext = os_path.splitext(filename)
-					newmovie, newext = os_path.splitext(newname)
+					movie, ext = os.path.splitext(filename)
+					newmovie, newext = os.path.splitext(newname)
 					if ext in ALL_MOVIE_EXTENSIONS and newext in ALL_MOVIE_EXTENSIONS:
 						for ext in MOVIEEXTENSIONS:
 							try:
 								if ext == "eit":
-									rename(sourceDir + movie + ".eit", sourceDir + newmovie + ".eit")
+									os.rename(sourceDir + movie + ".eit", sourceDir + newmovie + ".eit")
 								else:
-									rename(sourceDir + filename + "." + ext, sourceDir + newname + "." + ext)
+									os.rename(sourceDir + filename + "." + ext, sourceDir + newname + "." + ext)
 							except:
 								pass
 				else:
-					rename(filename, sourceDir + newname)
+					os.rename(filename, sourceDir + newname)
 			except OSError as oe:
 				self.session.open(MessageBox, _("Error renaming %s to %s:\n%s") % (filename, newname, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.doRefresh()
@@ -963,13 +963,13 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	# remove movieparts if the movie is present
 	def cleanList(self):
 		for file in self.selectedFiles[:]:
-			movie, extension = os_path.splitext(file)
+			movie, extension = os.path.splitext(file)
 			if extension[1:] in MOVIEEXTENSIONS:
 				if extension == ".eit":
 					extension = ".ts"
 					movie += extension
 				else:
-					extension = os_path.splitext(movie)[1]
+					extension = os.path.splitext(movie)[1]
 				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
 					self.selectedFiles.remove(file)
 
