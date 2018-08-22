@@ -2,56 +2,46 @@
 # -*- coding: iso-8859-1 -*-
 
 from Plugins.Plugin import PluginDescriptor
+
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, getConfigListEntry, ConfigSelection, ConfigSet, NoSave, ConfigNothing
-# from Components.ConfigList import ConfigListScreen
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing
 from Components.Label import Label
-from Components.FileTransfer import FileTransferJob
+from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from Components.Task import job_manager
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.Scanner import openFile
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
-from Components.MenuList import MenuList
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
+
 # Screens
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import LocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
-from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
+
 # Tools
-from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
-# from Tools.HardwareInfo import HardwareInfo
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
+
 # Various
-from os.path import isdir as os_path_isdir
-from mimetypes import guess_type
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-from os import listdir, remove, rename, system, path, symlink, chdir
-from os import system as os_system
-from os import stat as os_stat
-from os import walk as os_walk
-from os import popen as os_popen
-from os import path as os_path
-from os import listdir as os_listdir
+from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 
 import os
 import stat
 import string
+import re
+
 # System mods
 from InputBox import InputBox
 from FileList import FileList, MultiFileSelectList, EXTENSIONS
+
 # Addons
 from addons.key_actions import key_actions, stat_info
-from Plugins.Extensions.FileCommander.addons.type_utils import *
-from Plugins.Extensions.PicturePlayer.ui import config
+from addons.type_utils import vEditor
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
@@ -157,22 +147,22 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def __init__(self, session, path_left=None):
 		# path_left == "" means device list, whereas path_left == None means saved or default value
 		if path_left is None:
-			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.path_left.value and os_path_isdir(config.plugins.filecommander.path_left.value):
+			if config.plugins.filecommander.savedir_left.value and config.plugins.filecommander.path_left.value and os.path.isdir(config.plugins.filecommander.path_left.value):
 				path_left = config.plugins.filecommander.path_left.value
-			elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
+			elif config.plugins.filecommander.path_default.value and os.path.isdir(config.plugins.filecommander.path_default.value):
 				path_left = config.plugins.filecommander.path_default.value
 
-		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.path_right.value and os_path_isdir(config.plugins.filecommander.path_right.value):
+		if config.plugins.filecommander.savedir_right.value and config.plugins.filecommander.path_right.value and os.path.isdir(config.plugins.filecommander.path_right.value):
 			path_right = config.plugins.filecommander.path_right.value
-		elif config.plugins.filecommander.path_default.value and os_path_isdir(config.plugins.filecommander.path_default.value):
+		elif config.plugins.filecommander.path_default.value and os.path.isdir(config.plugins.filecommander.path_default.value):
 			path_right = config.plugins.filecommander.path_default.value
 		else:
 			path_right = None
 
-		if path_left and os_path_isdir(path_left) and path_left[-1] != "/":
+		if path_left and os.path.isdir(path_left) and path_left[-1] != "/":
 			path_left += "/"
 
-		if path_right and os_path_isdir(path_right) and path_right[-1] != "/":
+		if path_right and os.path.isdir(path_right) and path_right[-1] != "/":
 			path_right += "/"
 
 		if path_left == "":
@@ -256,7 +246,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return None
 		longname = sourceDir + filename
 		try:
-			xfile = os_stat(longname)
+			xfile = os.stat(longname)
 			if (xfile.st_size < 1000000):
 				return longname
 		except:
@@ -451,12 +441,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				if sourceDir is None:
 					return
 				if sourceDir not in filename:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting file ..."), cmdlist=(("rm", sourceDir + filename),))
+					os.remove(sourceDir + filename)
 				else:
-					self.session.openWithCallback(self.doDeleteCB, Console, title=_("deleting folder ..."), cmdlist=(("rm", "-rf", filename),))
-
-	def doDeleteCB(self):
-		self.doRefresh()
+					container = eConsoleAppContainer()
+					container.execute("rm", "rm", "-rf", filename)
+				self.doRefresh()
 
 # ## move ###
 	def goGreen(self):
@@ -516,10 +505,25 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			if (filename is None) or (sourceDir is None):
 				return
-			if sourceDir not in filename:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=(("mv", sourceDir + filename, sourceDir + newname),))
-			else:
-				self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=(("mv", filename, newname),))
+			try:
+				if sourceDir not in filename:
+					rename(sourceDir + filename, sourceDir + newname)
+					movie, ext = os.path.splitext(filename)
+					newmovie, newext = os.path.splitext(newname)
+					if ext in ALL_MOVIE_EXTENSIONS and newext in ALL_MOVIE_EXTENSIONS:
+						for ext in MOVIEEXTENSIONS:
+							try:
+								if ext == "eit":
+									os.rename(sourceDir + movie + ".eit", sourceDir + newmovie + ".eit")
+								else:
+									os.rename(sourceDir + filename + "." + ext, sourceDir + newname + "." + ext)
+							except:
+								pass
+				else:
+					os.rename(filename, sourceDir + newname)
+			except OSError as oe:
+				self.session.open(MessageBox, _("Error renaming %s to %s:\n%s") % (filename, newname, oe.strerror), type=MessageBox.TYPE_ERROR)
+			self.doRefresh()
 
 	def doRenameCB(self):
 		self.doRefresh()
@@ -555,7 +559,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				return
 			newpath = os.path.join(targetDir, newname)
 			try:
-				symlink(oldpath, newpath)
+				os.symlink(oldpath, newpath)
 			except OSError as oe:
 				self.session.open(MessageBox, _("Error linking %s to %s:\n%s") % (oldpath, newpath, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.doRefresh()
@@ -886,11 +890,11 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 # ## delete select ###
 	def goRed(self):
 		for file in self.selectedFiles:
-			if os_path_isdir(file):
+			if os.path.isdir(file):
 				container = eConsoleAppContainer()
 				container.execute("rm", "rm", "-rf", file)
 			else:
-				remove(file)
+				os.remove(file)
 		self.exit()
 
 # ## move select ###
@@ -899,17 +903,12 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if targetDir is None:
 			return
 
+		self.cleanList()
 		for file in self.selectedFiles:
-			extension = file.split('.')
-			extension = extension[-1].lower()
-			if extension in MOVIEEXTENSIONS:
-				print "[FileCommander] skip " + extension
-			else:
-				print "[FileCommander] move " + extension
-				dst_file = targetDir
-				if dst_file.endswith("/"):
-					targetDir = dst_file[:-1]
-				job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
+			dst_file = targetDir
+			if dst_file.endswith("/"):
+				targetDir = dst_file[:-1]
+			job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
 		self.exit()
 
 # ## copy select ###
@@ -918,20 +917,15 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if targetDir is None:
 			return
 
+		self.cleanList()
 		for file in self.selectedFiles:
-			extension = file.split('.')
-			extension = extension[-1].lower()
-			if extension in MOVIEEXTENSIONS:
-				print "[FileCommander] skip " + extension
+			dst_file = targetDir
+			if dst_file.endswith("/"):
+				targetDir = dst_file[:-1]
+			if file.endswith("/"):
+				job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
 			else:
-				print "[FileCommander] copy " + extension
-				dst_file = targetDir
-				if dst_file.endswith("/"):
-					targetDir = dst_file[:-1]
-				if file.endswith("/"):
-					job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
-				else:
-					job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+				job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
 		self.exit()
 
 	def goBlue(self):
@@ -965,6 +959,19 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["list_right"].selectionEnabled(0)
 		self.ACTIVELIST = self["list_left"]
 		self.updateHead()
+
+	# remove movieparts if the movie is present
+	def cleanList(self):
+		for file in self.selectedFiles[:]:
+			movie, extension = os.path.splitext(file)
+			if extension[1:] in MOVIEEXTENSIONS:
+				if extension == ".eit":
+					extension = ".ts"
+					movie += extension
+				else:
+					extension = os.path.splitext(movie)[1]
+				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
+					self.selectedFiles.remove(file)
 
 class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """

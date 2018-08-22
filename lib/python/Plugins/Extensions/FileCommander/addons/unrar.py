@@ -1,12 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-from Plugins.Plugin import PluginDescriptor
 from Components.config import config
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
-from os.path import basename
 import re
 import subprocess
 from Plugins.Extensions.FileCommander.InputBox import InputBox

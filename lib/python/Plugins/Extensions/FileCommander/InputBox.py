@@ -1,4 +1,4 @@
-from Screens.InputBox import InputBox as InputBoxBase, PinInput as PinInputBase
+from Screens.InputBox import InputBox as InputBoxBase
 from Components.ActionMap import ActionMap
 
 class InputBox(InputBoxBase):

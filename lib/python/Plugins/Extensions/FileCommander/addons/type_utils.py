@@ -1,38 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
-from Plugins.Plugin import PluginDescriptor
 # Components
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, getConfigListEntry, ConfigSelection, NoSave, ConfigNothing
-from Components.ConfigList import ConfigListScreen
+from Components.config import config
 from Components.Label import Label
-from Components.Task import job_manager
 from Components.ActionMap import HelpableActionMap
-from Components.Scanner import openFile
 from Components.MenuList import MenuList
 from Components.AVSwitch import AVSwitch
-from Components.Pixmap import Pixmap, MovingPixmap
+from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 
 # Screens
 from Screens.Screen import Screen
-from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
-from Screens.TaskList import TaskListScreen
 from Screens.InfoBar import MoviePlayer as Movie_Audio_Player
+
 # Tools
-from Tools.Directories import *
-from Tools.BoundFunction import boundFunction
+from Tools.Directories import fileExists
+
 # Various
 from Plugins.Extensions.FileCommander.InputBox import InputBoxWide
-from os.path import isdir as os_path_isdir
-from mimetypes import guess_type
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, ePicLoad, getDesktop, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-from os import listdir, remove, rename, system, path, symlink, chdir
-from os import system as os_system
-from os import walk as os_walk
+from enigma import eTimer, ePicLoad, getDesktop
+
 import os
 
 ##################################
@@ -220,7 +210,7 @@ class vEditor(Screen, HelpableScreen):
 		if answer is True:
 			try:
 				if fileExists(self.file_name):
-					system("cp " + self.file_name + " " + self.file_name + ".bak")
+					os.system("cp " + self.file_name + " " + self.file_name + ".bak")
 				eFile = open(self.file_name, "w")
 				for x in self.list:
 					my_x = x.partition(": ")[2]
@@ -247,6 +237,7 @@ class ImageViewer(Screen, HelpableScreen):
 	def __init__(self, session, fileList, index, path, filename):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "DirectionActions"], {
 			"cancel": (self.keyCancel, _("Exit picture viewer")),
 			"left": (self.keyLeft, _("Show next picture")),
@@ -280,9 +271,18 @@ class ImageViewer(Screen, HelpableScreen):
 		self.slideShowTimer = eTimer()
 		self.slideShowTimer.callback.append(self.cbSlideShow)
 
-		self.onLayoutFinish.append(self.layoutFinished)
+		self.onFirstExecBegin.append(self.firstExecBegin)
 
-	def layoutFinished(self):
+	def firstExecBegin(self):
+		# Ensure that Plugins.Extensions.PicturePlayer exists and
+		# that the config.pic config variables have been initialised.
+		try:
+			import Plugins.Extensions.PicturePlayer.ui
+		except:
+			self.session.open(MessageBox, _("The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."), MessageBox.TYPE_ERROR)
+			self.close()
+			return
+
 		if self.fileListLen >= 0:
 			self.setPictureLoadPara()
 
