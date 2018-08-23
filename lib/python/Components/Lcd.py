@@ -566,6 +566,7 @@ def InitLcd():
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 		else:
 			config.lcd.hdd = ConfigNothing()
+			config.usage.vfd_scroll_delay = ConfigNothing()
 
 		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero') and not SystemInfo["7segment"]:
 			def initial_scroll_delay(el):
@@ -584,6 +585,8 @@ def InitLcd():
 			("0", _("no delay"))]
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "10000", choices = choicelist)
 			config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
+		else:
+			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
 		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero') and not SystemInfo["7segment"]:
 			def final_scroll_delay(el):
@@ -602,6 +605,8 @@ def InitLcd():
 			("0", _("no delay"))]
 			config.usage.vfd_final_scroll_delay = ConfigSelection(default = "10000", choices = choicelist)
 			config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
+		else:
+			config.usage.vfd_final_scroll_delay = ConfigNothing()
 
 		if fileExists("/proc/stb/lcd/show_symbols"):
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
