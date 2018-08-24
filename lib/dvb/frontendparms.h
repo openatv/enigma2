@@ -58,6 +58,9 @@ struct eDVBFrontendParametersSatellite
 	enum {
 		PLS_Root, PLS_Gold, PLS_Combo, PLS_Unknown
 	};
+	enum {
+		No_Stream_Id_Filter = NO_STREAM_ID_FILTER
+	};
 
 	bool no_rotor_command_on_tune;
 	int frequency, symbol_rate;

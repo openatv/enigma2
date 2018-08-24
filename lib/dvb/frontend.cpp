@@ -103,17 +103,17 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 
 void eDVBFrontendParametersSatellite::set(const S2SatelliteDeliverySystemDescriptor &descriptor)
 {
-	if(descriptor.getScramblingSequenceSelector())
+	if(descriptor.getScramblingSequenceSelector()) // EN 300 468 table 41
 	{
 		is_id = descriptor.getInputStreamIdentifier();
-		pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
+		pls_mode = eDVBFrontendParametersSatellite::PLS_Gold;
 		pls_code = descriptor.getScramblingSequenceIndex();
 	}
-	else
+	else // default DVB-S2 physical layer scrambling sequence of index n = 0 is used
 	{
-		is_id = 0; //NO_STREAM_ID_FILTER;
-		pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
-		pls_code = 1;
+		is_id = NO_STREAM_ID_FILTER;
+		pls_mode = eDVBFrontendParametersSatellite::PLS_Gold;
+		pls_code = 0;
 	}
 }
 
@@ -141,9 +141,9 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 		modulation = Modulation_QPSK;
 	}
 	rolloff = descriptor.getRollOff();
-	is_id = 0; //NO_STREAM_ID_FILTER;
-	pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
-	pls_code = 1;
+	is_id = NO_STREAM_ID_FILTER;
+	pls_mode = eDVBFrontendParametersSatellite::PLS_Gold;
+	pls_code = 0;
 	if (system == System_DVB_S2)
 	{
 		eDebug("[eDVBFrontendParametersSatellite] SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, rolloff %d, is_id %d, pls_mode %d, pls_code %d",
