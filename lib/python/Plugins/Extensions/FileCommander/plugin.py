@@ -177,6 +177,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		# set filter
 		filter = self.fileFilter()
 
+		self.jobs = 0
+		self.updateDirs = set()
+		self.containers = []
+
 		# set current folder
 		self["list_left_head1"] = Label(path_left)
 		self["list_left_head2"] = List()
@@ -237,7 +241,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			filtered = ""
 		else:
 			filtered = "(*)"
-		self.setTitle(pname + filtered)
+		if self.jobs:
+			jobs = _("(1 job)") if self.jobs == 1 else _("(%d jobs)") % self.jobs
+		else:
+			jobs = ""
+		self.setTitle(pname + filtered + jobs)
 
 	def viewable_file(self):
 		filename = self.SOURCELIST.getFilename()
@@ -389,6 +397,31 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 		self.session.open(TaskListScreen, self.tasklist)
 
+	def addJob(self, job, updateDirs):
+		self.jobs += 1
+		self.onLayout()
+		self.updateDirs.update(updateDirs)
+		if isinstance(job, list):
+			container = eConsoleAppContainer()
+			container.appClosed.append(self.finishedCB)
+			self.containers.append(container)
+			retval = container.execute("rm", "rm", "-rf", *job)
+			if retval:
+				self.finishedCB(retval)
+		else:
+		   job_manager.AddJob(job, onSuccess=self.finishedCB)
+
+	def finishedCB(self, arg):
+		if hasattr(self, "jobs"):
+			self.jobs -= 1
+			self.onLayout()
+			if (self["list_left"].getCurrentDirectory() in self.updateDirs or
+				self["list_right"].getCurrentDirectory() in self.updateDirs):
+				self.doRefresh()
+			if not self.jobs:
+				self.updateDirs.clear()
+				del self.containers[:]
+
 # ## copy ###
 	def goYellow(self):
 		filename = self.SOURCELIST.getFilename()
@@ -408,18 +441,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				targetDir = self.TARGETLIST.getCurrentDirectory()
+				updateDirs = [targetDir]
 				dst_file = targetDir
 				if dst_file.endswith("/") and dst_file != "/":
 					targetDir = dst_file[:-1]
 				if sourceDir not in filename:
-					job_manager.AddJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("copy file"), sourceDir + filename)))
-					self.doCopyCB()
+					self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("copy file"), sourceDir + filename)), updateDirs)
 				else:
-					job_manager.AddJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("copy folder"), filename)))
-					self.doCopyCB()
-
-	def doCopyCB(self):
-		self.doRefresh()
+					self.addJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("copy folder"), filename)), updateDirs)
 
 # ## delete ###
 	def goRed(self):
@@ -442,10 +471,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 					return
 				if sourceDir not in filename:
 					os.remove(sourceDir + filename)
+					self.doRefresh()
 				else:
-					container = eConsoleAppContainer()
-					container.execute("rm", "rm", "-rf", filename)
-				self.doRefresh()
+					self.addJob([filename], [sourceDir])
 
 # ## move ###
 	def goGreen(self):
@@ -468,19 +496,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				targetDir = self.TARGETLIST.getCurrentDirectory()
 				if (filename is None) or (sourceDir is None) or (targetDir is None):
 					return
+				updateDirs = [sourceDir, targetDir]
 				dst_file = targetDir
 				if dst_file.endswith("/") and dst_file != "/":
 					targetDir = dst_file[:-1]
 				if sourceDir not in filename:
-					job_manager.AddJob(FileTransferJob(sourceDir + filename, targetDir, False, False, "%s : %s" % (_("move file"), sourceDir + filename)))
-					self.doMoveCB()
+					self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, False, "%s : %s" % (_("move file"), sourceDir + filename)), updateDirs)
 				else:
-					job_manager.AddJob(FileTransferJob(filename, targetDir, True, False, "%s : %s" % (_("move folder"), filename)))
-					self.doMoveCB()
-
-	def doMoveCB(self):
-		# os.system('echo %s > /tmp/test.log' % ("refresh move"))
-		self.doRefresh()
+					self.addJob(FileTransferJob(filename, targetDir, True, False, "%s : %s" % (_("move folder"), filename)), updateDirs)
 
 # ## rename ###
 	def goBlue(self):
@@ -651,7 +674,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
 
-	def doRefreshDir(self):
+	def doRefreshDir(self, jobs, updateDirs):
+		if jobs:
+			for job in jobs:
+				self.addJob(job, updateDirs)
 		self["list_left"].changeDir(config.plugins.filecommander.path_left_tmp.value or None)
 		self["list_right"].changeDir(config.plugins.filecommander.path_right_tmp.value or None)
 		if self.SOURCELIST == self["list_left"]:
@@ -844,10 +870,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			print "[FileCommander] selectedFiles:", self.selectedFiles
 			self.goDown()
 
-	def exit(self):
+	def exit(self, jobs=None, updateDirs=None):
 		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
 		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
-		self.close()
+		self.close(jobs, updateDirs)
 
 	def ok(self):
 
@@ -889,13 +915,13 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 
 # ## delete select ###
 	def goRed(self):
+		dirs = []
 		for file in self.selectedFiles:
 			if os.path.isdir(file):
-				container = eConsoleAppContainer()
-				container.execute("rm", "rm", "-rf", file)
+				dirs.append(file)
 			else:
 				os.remove(file)
-		self.exit()
+		self.exit([dirs], [self.SOURCELIST.getCurrentDirectory()])
 
 # ## move select ###
 	def goGreen(self):
@@ -904,12 +930,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			return
 
 		self.cleanList()
+		updateDirs = [targetDir, self.SOURCELIST.getCurrentDirectory()]
+		jobs = []
 		for file in self.selectedFiles:
 			dst_file = targetDir
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
-			job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
-		self.exit()
+			jobs.append(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
+		self.exit(jobs, updateDirs)
 
 # ## copy select ###
 	def goYellow(self):
@@ -918,15 +946,17 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			return
 
 		self.cleanList()
+		updateDirs = [targetDir]
+		jobs = []
 		for file in self.selectedFiles:
 			dst_file = targetDir
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			if file.endswith("/"):
-				job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
+				jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
 			else:
-				job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
-		self.exit()
+				jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+		self.exit(jobs, updateDirs)
 
 	def goBlue(self):
 		self.exit()
