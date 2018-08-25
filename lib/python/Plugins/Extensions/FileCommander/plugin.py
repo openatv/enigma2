@@ -409,7 +409,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				targetDir = self.TARGETLIST.getCurrentDirectory()
 				dst_file = targetDir
-				if dst_file.endswith("/"):
+				if dst_file.endswith("/") and dst_file != "/":
 					targetDir = dst_file[:-1]
 				if sourceDir not in filename:
 					job_manager.AddJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("copy file"), sourceDir + filename)))
@@ -469,7 +469,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				if (filename is None) or (sourceDir is None) or (targetDir is None):
 					return
 				dst_file = targetDir
-				if dst_file.endswith("/"):
+				if dst_file.endswith("/") and dst_file != "/":
 					targetDir = dst_file[:-1]
 				if sourceDir not in filename:
 					job_manager.AddJob(FileTransferJob(sourceDir + filename, targetDir, False, False, "%s : %s" % (_("move file"), sourceDir + filename)))
@@ -906,7 +906,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.cleanList()
 		for file in self.selectedFiles:
 			dst_file = targetDir
-			if dst_file.endswith("/"):
+			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
 		self.exit()
@@ -920,7 +920,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.cleanList()
 		for file in self.selectedFiles:
 			dst_file = targetDir
-			if dst_file.endswith("/"):
+			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			if file.endswith("/"):
 				job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
