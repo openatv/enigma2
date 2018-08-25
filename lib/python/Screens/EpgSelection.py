@@ -1615,8 +1615,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def zapToNumber(self, service, bouquet):
 		if self.type in (EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
-			self["number"].hide()
-			self.NumberZapField = None
+			self.stopNumberZap()
 			self.CurrBouquet = bouquet
 			self.CurrService = service
 		if service is not None:
