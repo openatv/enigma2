@@ -649,6 +649,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 					pathname = dir + pathname
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
+			else:
+				self[side + "_head1"].text = ""
+				self[side + "_head2"].updateList(())
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
 
 	def doRefreshDir(self):
@@ -941,6 +944,9 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 					pathname = dir + pathname
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
+			else:
+				self[side + "_head1"].text = ""
+				self[side + "_head2"].updateList(())
 
 	def doRefresh(self):
 		print "[FileCommander] selectedFiles:", self.selectedFiles
