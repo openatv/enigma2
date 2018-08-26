@@ -55,6 +55,8 @@ public:
 		eventReachedBoundary,
 				/* the programmed boundary was reached. you might set a new target fd. you can close the */
 				/* old one. */
+		eventRetune,
+				/* the tuner's gone wonky, retune it to recover. */
 	};
 	virtual RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)=0;
 };

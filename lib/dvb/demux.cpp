@@ -520,6 +520,8 @@ int eDVBRecordFileThread::asyncWrite(int len)
 #endif
 
 	m_ts_parser.parseData(m_current_offset, m_buffer, len);
+	if (m_ts_parser.broken())
+		sendEvent(evtRetune);
 
 #ifdef SHOW_WRITE_TIME
 	gettimeofday(&now, NULL);
@@ -921,6 +923,9 @@ void eDVBTSRecorder::filepushEvent(int event)
 	{
 	case eFilePushThread::evtWriteError:
 		m_event(eventWriteError);
+		break;
+	case eFilePushThreadRecorder::evtRetune:
+		m_event(eventRetune);
 		break;
 	}
 }
