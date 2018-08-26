@@ -2,9 +2,9 @@
 
 > Ubuntu 16.04.1 LTS (GNU/3.14.32-xxxx-grs-ipv6-64)
 
-## openATV 6.1 is build using oe-alliance build-environment and several git repositories: ##
+## openATV 6.2 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.1](https://github.com/oe-alliance/oe-alliance-core/tree/4.1 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.1](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
 > 
 > [https://github.com/openatv/enigma2/tree/DEV](https://github.com/openatv/enigma2/tree/DEV "openATV E2")
 > 
@@ -55,7 +55,7 @@
 ----------
 8 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.1
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.2
 
 ----------
 9 - Switch to folder build-enviroment
