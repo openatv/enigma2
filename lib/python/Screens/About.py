@@ -122,8 +122,28 @@ def getAboutText():
 		f = open('/boot/bootname', 'r')
 		bootname = f.readline().split('=')[1]
 		f.close()
-
-	if path.exists('/boot/STARTUP'):
+	if getMachineBuild() in ('cc1','sf8008'):
+		if path.exists('/boot/STARTUP'):
+			f = open('/boot/STARTUP', 'r')
+			f.seek(5)
+			image = f.read(4)
+			if image == "emmc":
+				image = "1"
+			elif image == "usb0":
+				f.seek(13)
+				image = f.read(1)
+				if image == "1":
+					image = "2"
+				elif image == "3":
+					image = "3"
+				elif image == "5":
+					image = "4"
+				elif image == "7":
+					image = "5"
+			f.close()
+			if bootname: bootname = "   (%s)" %bootname 
+			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+	elif path.exists('/boot/STARTUP'):
 		f = open('/boot/STARTUP', 'r')
 		f.seek(22)
 		image = f.read(1) 

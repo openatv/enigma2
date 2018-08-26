@@ -193,6 +193,11 @@ class FlashOnline(Screen):
 				cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
+		elif self.MACHINEBUILD in ("cc1","sf8008"):
+			if self.list[self.selection] == "Recovery":
+				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+			else:
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
 		else:
 			if self.list[self.selection] == "Recovery":
 				cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
@@ -201,6 +206,8 @@ class FlashOnline(Screen):
 		cmdline = cmdline.lstrip("/dev/")
 		self.MTDROOTFS = cmdline
 		self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
+		print "[Flash Online] kernel device: ",self.MTDKERNEL
+		print "[Flash Online] rootfsdevice: ",self.MTDROOTFS
 
 	def read_startup(self, FILE):
 		file = FILE

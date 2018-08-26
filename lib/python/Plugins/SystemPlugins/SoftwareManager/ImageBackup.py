@@ -72,6 +72,9 @@ class ImageBackup(Screen):
 		elif self.MACHINEBUILD in ("xc7439"):
 			self.MTDBOOT = "mmcblk1p1"
 			self.EMMCIMG = "emmc.img"
+#		elif self.MACHINEBUILD in ("cc1","sf8008"):
+#			self.MTDBOOT = "none"
+#			self.EMMCIMG = "usb_update.bin"
 		else:
 			self.MTDBOOT = "none"
 			self.EMMCIMG = "none"
@@ -174,6 +177,11 @@ class ImageBackup(Screen):
 				cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
+		elif self.MACHINEBUILD in ("cc1","sf8008"):
+			if self.list[self.selection] == "Recovery":
+				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+			else:
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
 		else:
 			if self.list[self.selection] == "Recovery":
 				cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
@@ -210,7 +218,7 @@ class ImageBackup(Screen):
 					except IndexError:
 						print '[ImageBackup] - IndexError in file: %s' %name
 						self.error_files += '/boot/' + name + ', ' 
-			if getMachineBuild() not in ("gb7252"):
+			if getMachineBuild() not in ("gb7252","cc1","sf8008"):
 				files.append("Recovery")
 		return files
 
@@ -348,6 +356,42 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "Create: logo dump"')
 			cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
+#		if self.MACHINEBUILD  in ("cc1","sf8008"):
+#			cmdlist.append('echo " "')
+#			cmdlist.append('echo "Create: fastboot dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
+#			cmdlist.append('echo "Create: bootargs dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p2 of=%s/bootargs.bin" % self.WORKDIR)
+#			cmdlist.append('echo "Create: boot dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/boot.img" % self.WORKDIR)
+#			cmdlist.append('echo "Create: baseparam.dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p4 of=%s/baseparam.img" % self.WORKDIR)
+#			cmdlist.append('echo "Create: pq_param dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p5 of=%s/pq_param.bin" % self.WORKDIR)
+#			cmdlist.append('echo "Create: logo dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p6 of=%s/logo.img" % self.WORKDIR)
+#			cmdlist.append('echo "Create: deviceinfo dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p7 of=%s/deviceinfo.bin" % self.WORKDIR)
+#			cmdlist.append('echo "Create: apploader dump"')
+#			cmdlist.append("dd if=/dev/mmcblk0p8 of=%s/apploader.bin" % self.WORKDIR)
+#			cmdlist.append('echo "Create: rootfs dump"')
+#			cmdlist.append("dd if=/dev/%s of=%s/rootfs.ext4" % (self.MTDROOTFS,self.WORKDIR))
+#			f = open("%s/emmc_partitions.xml" %self.WORKDIR, "w")
+#			f.write('<?xml version="1.0" encoding="GB2312" ?>\n')
+#			f.write('<Partition_Info>\n')
+#			f.write('<Part Sel="1" PartitionName="fastboot" FlashType="emmc" FileSystem="none" Start="0" Length="1M" SelectFile="fastboot.bin"/>\n')
+#			f.write('<Part Sel="1" PartitionName="bootargs" FlashType="emmc" FileSystem="none" Start="1M" Length="1M" SelectFile="bootargs.bin"/>\n')
+#			f.write('<Part Sel="1" PartitionName="bootimg" FlashType="emmc" FileSystem="none" Start="2M" Length="1M" SelectFile="boot.img"/>\n')
+#			f.write('<Part Sel="1" PartitionName="baseparam" FlashType="emmc" FileSystem="none" Start="3M" Length="3M" SelectFile="baseparam.img"/>\n')
+#			f.write('<Part Sel="1" PartitionName="pqparam" FlashType="emmc" FileSystem="none" Start="6M" Length="4M" SelectFile="pq_param.bin"/>\n')
+#			f.write('<Part Sel="1" PartitionName="logo" FlashType="emmc" FileSystem="none" Start="10M" Length="4M" SelectFile="logo.img"/>\n')
+#			f.write('<Part Sel="1" PartitionName="deviceinfo" FlashType="emmc" FileSystem="none" Start="14M" Length="4M" SelectFile="deviceinfo.bin"/>\n')
+#			f.write('<Part Sel="1" PartitionName="loader" FlashType="emmc" FileSystem="none" Start="26M" Length="32M" SelectFile="apploader.bin"/>\n')
+#			f.write('<Part Sel="1" PartitionName="kernel" FlashType="emmc" FileSystem="none" Start="66M" Length="32M" SelectFile="kernel.bin"/>\n')
+#			f.write('<Part Sel="1" PartitionName="rootfs" FlashType="emmc" FileSystem="ext3/4" Start="98M" Length="7000M" SelectFile="rootfs.ext4"/>\n')
+#			f.write('</Partition_Info>\n')
+#			f.close()
+
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "Create: kerneldump"')
 		cmdlist.append('echo " "')
@@ -411,6 +455,11 @@ class ImageBackup(Screen):
 			cmdlist.append('dd if=/dev/%s of=%s seek=%s' % (self.MTDKERNEL, EMMC_IMAGE, KERNAL_IMAGE_SEEK ))
 			ROOTFS_IMAGE_SEEK = int(ROOTFS_PARTITION_OFFSET) * int(BLOCK_SECTOR)
 			cmdlist.append('dd if=/dev/%s of=%s seek=%s ' % (self.MTDROOTFS, EMMC_IMAGE, ROOTFS_IMAGE_SEEK ))
+#		elif SystemInfo["HaveMultiBootDS"] and self.list[self.selection] == "Recovery":
+#			cmdlist.append('echo " "')
+#			cmdlist.append('echo "Create: Recovery Fullbackup %s"'% (self.EMMCIMG))
+#			cmdlist.append('echo " "')
+#			cmdlist.append('mkupdate -s 00000003-00000001-01010101 -f %s/emmc_partitions.xml -d %s/%s' % (self.WORKDIR,self.WORKDIR,self.EMMCIMG))
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
 
 	def doFullBackupCB(self):
