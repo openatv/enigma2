@@ -4,7 +4,7 @@
 
 ## openATV 6.2 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.1](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.2](https://github.com/oe-alliance/oe-alliance-core/tree/4.2 "OE-Alliance")
 > 
 > [https://github.com/openatv/enigma2/tree/DEV](https://github.com/openatv/enigma2/tree/DEV "openATV E2")
 > 
