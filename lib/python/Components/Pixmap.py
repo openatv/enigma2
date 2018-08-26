@@ -63,57 +63,19 @@ class MovingPixmap(Pixmap):
 
 		self.moving = False
 
+		# get actual values after skin applied
+		self.x = 0
+		self.y = 0
+
 		self.clearPath()
 
 		self.moveTimer = eTimer()
 		self.moveTimer.callback.append(self.doMove)
 
-	def bresMove(self, x, y):
-		if self.steep:
-			x, y = y, x
-
-		try:
-			Pixmap.move(self, x, y)
-		except: # moving not possible... widget not there any more... stop moving
-			self.stopMoving()
-
-	def getBresPos(self):
-		x, y = self.getPosition()
-		return (y, x) if self.steep else (x, y)
-
-	def bresSetup(self, x1, y1):
-		# The x and y coords are flipped if needed to
-		# keep the calculations in the octants where
-		# abs(x1 - x0) <= abs(y1 - y0)
-
-		x0, y0 = self.getPosition()
-		dx, dy = abs(x1 - x0), abs(y1 - y0)
-
-		self.steep = dy > dx
-		if self.steep:
-			dx, dy = dy, dx
-			x0, y0 = y0, x0
-			x1, y1 = y1, x1
-		self.dx, self.dy = dx, dy
-
-		self.inc = 1 if x0 < x1 else -1
-		self.ystep = 1 if y0 < y1 else -1
-
-		self.err = dx / 2
-
-	def bresStep(self, tox):
-		# The intermediate points aren't needed, so just
-		# calculate the "y" change, residual error
-		# and final coordinates
-
-		x, y = self.getBresPos()
-		xsteps = abs(tox - x)
-		self.err -= self.dy * xsteps
-		if self.err < 0:
-			ysteps = -self.err / self.dx
-			y += self.ystep * ysteps
-			self.err += self.dx * ysteps
-		self.bresMove(tox, y)
+	def applySkin(self, desktop, screen):
+		ret = Pixmap.applySkin(self, desktop, screen)
+		self.x, self.y = self.getPosition()
+		return ret
 
 	def clearPath(self, repeated = False):
 		if self.moving:
@@ -134,13 +96,14 @@ class MovingPixmap(Pixmap):
 	def startMoving(self):
 		if not self.moving:
 			try:
-				self.bresSetup(*self.path[self.currDest][0:2])
 				self.time = self.path[self.currDest][2]
-				self.stepX = self.inc * (self.dx / self.time)
-				self.stepXRem = self.dx % self.time
+				self.x, self.y = self.getPosition()
+				self.stepX = (self.path[self.currDest][0] - self.x) / float(self.time)
+				self.stepY = (self.path[self.currDest][1] - self.y) / float(self.time)
+
 				self.moving = True
 				self.moveTimer.start(100)
-			except:  # moving not possible... widget not there any more... stop moving
+			except:  # moving not possible... widget not there yet/any more... stop moving
 				self.stopMoving()
 
 	def stopMoving(self):
@@ -148,36 +111,29 @@ class MovingPixmap(Pixmap):
 		self.moveTimer.stop()
 
 	def doMove(self):
+		self.time -= 1
+		if self.time == 0:
+			self.x, self.y = self.path[self.currDest][0:2]
+		else:
+			self.x += self.stepX
+			self.y += self.stepY
 		try:
-			tox = self.getBresPos()[0] + self.stepX
-			if self.stepXRem > 0:
-				tox += self.inc
-				self.stepXRem -= 1
-
-			self.bresStep(tox)
+			self.move(int(self.x), int(self.y))
 		except:  # moving not possible... widget not there any more... stop moving
 			self.stopMoving()
 
-		self.time -= 1
-
 		if self.time == 0:
-			Pixmap.move(self, *self.path[self.currDest][0:2])
 			self.currDest += 1
 			self.moveTimer.stop()
 			self.moving = False
 			if self.currDest >= len(self.path): # end of path
 				if self.repeated:
 					self.currDest = 0
+					self.moving = False
 					self.startMoving()
 			else:
+				self.moving = False
 				self.startMoving()
-
-	def move(self, x, y = None):
-		self.stopMoving()
-		try:
-			Pixmap.move(self, x, y)
-		except:  # moving not possible... widget not there any more... stop moving
-			pass
 
 class MultiPixmap(Pixmap):
 	def __init__(self):

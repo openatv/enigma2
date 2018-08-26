@@ -507,7 +507,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				return
 			try:
 				if sourceDir not in filename:
-					rename(sourceDir + filename, sourceDir + newname)
+					os.rename(sourceDir + filename, sourceDir + newname)
 					movie, ext = os.path.splitext(filename)
 					newmovie, newext = os.path.splitext(newname)
 					if ext in ALL_MOVIE_EXTENSIONS and newext in ALL_MOVIE_EXTENSIONS:
