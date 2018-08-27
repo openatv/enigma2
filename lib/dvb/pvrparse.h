@@ -120,6 +120,7 @@ public:
 	int getLastPTS(pts_t &last_pts);
 	int getFirstPTS(pts_t &first_pts);
 	void enableAccessPoints(bool enable) { m_enable_accesspoints = enable; }
+	bool broken() { bool ret = m_broken; m_broken = false; return ret; }
 private:
 	unsigned char m_pkt[192];
 	int m_pktptr;
@@ -140,6 +141,8 @@ private:
 	bool m_enable_accesspoints; /* set to false to prevent saving .ap files (e.g. timeshift) */
 	bool m_pts_found; /* 'real' mpeg pts has been found, no longer measuring streamtime */
 	bool m_has_accesspoints;
+	bool m_broken;
+	int m_packet_errors;
 };
 
 #endif
