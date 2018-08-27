@@ -2563,6 +2563,7 @@ RESULT eDVBServicePlay::startTimeshift()
 
 	m_record->setTargetFD(m_timeshift_fd);
 	m_record->setTargetFilename(m_timeshift_file);
+	m_record->connectEvent(sigc::mem_fun(*this, &eDVBServicePlay::recordEvent), m_con_record_event);
 	m_record->enableAccessPoints(false); // no need for AP information during shift
 	m_timeshift_enabled = 1;
 
@@ -2570,6 +2571,23 @@ RESULT eDVBServicePlay::startTimeshift()
 	m_record->start();
 
 	return 0;
+}
+
+void eDVBServicePlay::recordEvent(int event)
+{
+	if (event == iDVBTSRecorder::eventRetune)
+	{
+		eWarning("[eDVBServicePlay] record tuner error");
+		eUsePtr<iDVBChannel> channel;
+		if(m_service_handler.getChannel(channel))
+			return;
+		ePtr<iDVBFrontend> fe;
+		if(channel->getFrontend(fe))
+			return;
+		ePtr<iDVBFrontendParameters> param;
+		channel->getCurrentFrontendParameters(param);
+		fe->tune(*param);
+	}
 }
 
 RESULT eDVBServicePlay::stopTimeshift(bool swToLive)

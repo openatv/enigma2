@@ -69,7 +69,7 @@ public:
 	void stop();
 	void start(int sourcefd);
 
-	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
+	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped, evtRetune };
 	sigc::signal1<void,int> m_event;
 
 	void sendEvent(int evt);
