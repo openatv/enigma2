@@ -63,7 +63,7 @@ def InitUsageConfig():
 	config.usage.maxchannelnumlen = ConfigSelection(default = "4", choices = [("1", _("1")), ("2", _("2")),("3", _("3")), ("4", _("4")), ("5", _("5"))])
 	config.usage.numzaptimeoutmode = ConfigSelection(default = "standard", choices = [("standard", _("Standard")), ("userdefined", _("User defined")), ("off", _("off"))])
 	config.usage.numzaptimeout1 = ConfigSlider(default = 3000, increment = 250, limits = (500, 5000))
-	config.usage.numzaptimeout2 = ConfigSlider(default = 1000, increment = 250, limits = (250, 5000))
+	config.usage.numzaptimeout2 = ConfigSlider(default = 1000, increment = 250, limits = (0, 5000))
 	config.usage.numzappicon = ConfigYesNo(default = False)
 	config.usage.use_pig = ConfigYesNo(default = False)
 	config.usage.update_available = NoSave(ConfigYesNo(default = False))
