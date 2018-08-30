@@ -971,11 +971,13 @@ class InfoBarTimeshift:
 
 	def ptsEventCleanTimerSTART(self):
 		if not self.pts_cleanEvent_timer.isActive() and int(config.timeshift.timeshiftCheckEvents.value):
-			self.pts_cleanEvent_timer.start(60000*int(config.timeshift.timeshiftCheckEvents.value), False)
+			#self.pts_cleanEvent_timer.start(60000*int(config.timeshift.timeshiftCheckEvents.value), False)
+			self.pts_cleanEvent_timer.startLongTimer(60*int(config.timeshift.timeshiftCheckEvents.value))
 			print "[TIMESHIFT] - 'cleanEvent_timer' is starting"
 
 	def ptsEventCleanTimeshiftFolder(self):
 		print "[TIMESHIFT] - 'cleanEvent_timer' is running"
+		self.ptsEventCleanTimerSTART()
 		self.ptsCleanTimeshiftFolder(justZapped = False)
 
 	def ptsCleanTimeshiftFolder(self, justZapped = True):
