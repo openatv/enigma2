@@ -1057,8 +1057,8 @@ class NumberZap(Screen):
 			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 
 	def keyNumberGlobal(self, number):
-		if config.usage.numzaptimeoutmode.value is not "off":
-			if config.usage.numzaptimeoutmode.value is "standard":
+		if config.usage.numzaptimeoutmode.value != "off":
+			if config.usage.numzaptimeoutmode.value == "standard":
 				self.Timer.start(1000, True)
 			else:
 				self.Timer.start(config.usage.numzaptimeout2.value, True)
@@ -1074,7 +1074,9 @@ class NumberZap(Screen):
 			self.showPicon()
 
 		if len(self.numberString) >= int(config.usage.maxchannelnumlen.value):
-			self.keyOK()
+			if self.Timer.isActive():
+				self.Timer.stop()
+			self.Timer.start(100, True)
 
 	def showPicon(self):
 		self["Service"].newService(self.service)
@@ -1123,8 +1125,10 @@ class NumberZap(Screen):
 
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
-		if config.usage.numzaptimeoutmode.value is not "off":
-			if config.usage.numzaptimeoutmode.value is "standard":
+		if config.usage.maxchannelnumlen.value == "1":
+			self.Timer.start(100, True)
+		elif config.usage.numzaptimeoutmode.value != "off":
+			if config.usage.numzaptimeoutmode.value == "standard":
 				self.Timer.start(3000, True)
 			else:
 				self.Timer.start(config.usage.numzaptimeout1.value, True)
