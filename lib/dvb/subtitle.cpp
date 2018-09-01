@@ -505,7 +505,7 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 			object->object_horizontal_position |= *segment++;
 			processed_length += 2;
 
-			object->object_vertical_position  = *segment++ << 8;
+			object->object_vertical_position  = (*segment++ & 0xF) << 8;
 			object->object_vertical_position |= *segment++ ;
 			processed_length += 2;
 
