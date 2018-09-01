@@ -309,7 +309,7 @@ def InitLcd():
 
 	if fileExists("/proc/stb/lcd/mode"):
 		f = open("/proc/stb/lcd/mode", "r")
-		can_lcdmodechecking = f.read().strip().split(" ")
+		can_lcdmodechecking = f.read()
 		f.close()
 	else:
 		can_lcdmodechecking = False
@@ -359,24 +359,12 @@ def InitLcd():
 			config.lcd.screenshot = ConfigYesNo(default=False)
  			config.lcd.screenshot.addNotifier(setLCDScreenshot)	
 
-			if getBoxType() in ('gbquad4k', 'gbue4k'):
-				#  (0:normal, 1:video0, 2:fb, 3:vide0+fb, 4:video1, 5:vide0+video1, 6:video1+fb, 7:video0+video1+fb)
-				config.lcd.modeminitv = ConfigSelection(default = "0", choices=[
-						("0", _("normal")),
-						("1", _("MiniTV") + _(" - video0")),
-						("3", _("MiniTV with OSD") + _(" - video0")),
-						("2", _("OSD")),
-						("4", _("MiniTV") + _(" - video1")),
-						("6", _("MiniTV with OSD") + _(" - video1")),
-						("5", _("MiniTV") + _(" - video0+video1")),
-						("7", _("MiniTV with OSD") + _(" - video0+video1"))]) 
-			else:
-				config.lcd.modeminitv = ConfigSelection(choices={
-						"0": _("normal"),
-						"1": _("MiniTV"),
-						"2": _("OSD"),
-						"3": _("MiniTV with OSD")},
-						default = "0")
+			config.lcd.modeminitv = ConfigSelection(choices={
+					"0": _("normal"),
+					"1": _("MiniTV"),
+					"2": _("OSD"),
+					"3": _("MiniTV with OSD")},
+					default = "0")
 			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
