@@ -43,7 +43,7 @@ ENABLE_QPIP_PROCPATH = "/proc/stb/video/decodermode"
 def setDecoderMode(value):
 	if os.access(ENABLE_QPIP_PROCPATH, os.F_OK):
 		open(ENABLE_QPIP_PROCPATH,"w").write(value)
-	return open(ENABLE_QPIP_PROCPATH,"r").read().strip() == value
+		return open(ENABLE_QPIP_PROCPATH,"r").read().strip() == value
 
 class QuadPipChannelEntry:
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
