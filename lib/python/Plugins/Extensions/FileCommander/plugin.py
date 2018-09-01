@@ -377,8 +377,6 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if config.plugins.filecommander.path_default.value:
 				bookmarks.append(config.plugins.filecommander.path_default.value)
 			bookmarks.append('/home/root/')
-			bookmarks.append('/etc/enigma2/')
-			bookmarks.append('/usr/share/enigma2/')
 			bookmarks.append(defaultMoviePath())
 			config.plugins.filecommander.bookmarks.value = bookmarks
 			config.plugins.filecommander.bookmarks.save()
