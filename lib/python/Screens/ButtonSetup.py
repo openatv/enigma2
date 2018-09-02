@@ -13,7 +13,7 @@ from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
-from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD
+from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
 def getButtonSetupKeys():
@@ -228,7 +228,8 @@ def getButtonSetupFunctions():
 		ButtonSetupFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupDS/MultiBootStartup", "InfoBar"))
 	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
-	ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
+	if getHaveCI() == True:
+		ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
 	ButtonSetupFunctions.append((_("Videosetup"), "Module/Screens.VideoMode/VideoSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Tuner Configuration"), "Module/Screens.Satconfig/NimSelection", "Scanning"))
 	ButtonSetupFunctions.append((_("Manual Scan"), "Module/Screens.ScanSetup/ScanSetup", "Scanning"))
