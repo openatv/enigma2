@@ -11,6 +11,7 @@ import enigma
 config.misc.pluginlist = ConfigSubsection()
 config.misc.pluginlist.eventinfo_order = ConfigText(default="")
 config.misc.pluginlist.extension_order = ConfigText(default="")
+config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
 
 class ChoiceBox(Screen):
 	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var="", menu_path=""):

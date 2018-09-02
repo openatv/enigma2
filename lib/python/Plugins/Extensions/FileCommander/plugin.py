@@ -4,7 +4,7 @@
 from Plugins.Plugin import PluginDescriptor
 
 # Components
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing, ConfigLocations
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from Components.Task import job_manager
@@ -22,6 +22,7 @@ from Screens.MessageBox import MessageBox
 from Screens.LocationBox import LocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
+from Screens.MovieSelection import defaultMoviePath
 
 # Tools
 from Tools.BoundFunction import boundFunction
@@ -80,6 +81,7 @@ config.plugins.filecommander.path_left_tmp = ConfigText(default=config.plugins.f
 config.plugins.filecommander.path_right_tmp = ConfigText(default=config.plugins.filecommander.path_right.value)
 config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
 config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), default=["MD5"])
+config.plugins.filecommander.bookmarks = ConfigLocations()
 
 # ####################
 # ## Config Screen ###
@@ -177,6 +179,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		# set filter
 		filter = self.fileFilter()
 
+		self.jobs = 0
+		self.updateDirs = set()
+		self.containers = []
+
 		# set current folder
 		self["list_left_head1"] = Label(path_left)
 		self["list_left_head2"] = List()
@@ -204,7 +210,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"2": (self.gomakeSym, _("Create user-named symbolic link")),
 			"3": (self.gofileStatInfo, _("File/directory status information")),
 			"4": (self.call_change_mode, _("Change execute permissions (755/644)")),
-			"5": (self.goDefaultfolder, _("Go to your default folder")),
+			"5": (self.goDefaultfolder, _("Go to bookmarked folder")),
 			"6": (self.run_file, self.help_run_file),
 			"7": (self.run_ffprobe, self.help_run_ffprobe),
 			# "8": (self.run_mediainfo, self.help_run_mediainfo),
@@ -237,7 +243,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			filtered = ""
 		else:
 			filtered = "(*)"
-		self.setTitle(pname + filtered)
+		if self.jobs:
+			jobs = _("(1 job)") if self.jobs == 1 else _("(%d jobs)") % self.jobs
+		else:
+			jobs = ""
+		self.setTitle(pname + filtered + jobs)
 
 	def viewable_file(self):
 		filename = self.SOURCELIST.getFilename()
@@ -312,6 +322,17 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			# ("bullet", self.help_uninstall_mediainfo, "uninstall+mediainfo"),
 		]
 
+		dirname = self.SOURCELIST.getFilename()
+		if dirname and dirname.endswith("/"):
+			menu += [("bullet", dirname in config.plugins.filecommander.bookmarks.value
+								and _("Remove selected folder from bookmarks")
+								or	_("Add selected folder to bookmarks"), "bookmark+selected")]
+		dirname = self.SOURCELIST.getCurrentDirectory()
+		if dirname:
+			menu += [("bullet", dirname in config.plugins.filecommander.bookmarks.value
+								and _("Remove current folder from bookmarks")
+								or	_("Add current folder to bookmarks"), "bookmark+current")]
+
 		self.session.openWithCallback(self.goContextCB, FileCommanderContextMenu, contexts, menu)
 
 	def goContextCB(self, action):
@@ -324,6 +345,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				self.uninstall_ffprobe()
 			elif action == "uninstall+mediainfo":
 				self.uninstall_mediainfo()
+			elif action.startswith("bookmark"):
+				self.goBookmark(action.endswith("current"))
 			else:
 				actions = self["actions"].actions
 				if action in actions:
@@ -333,9 +356,38 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.oldFilterSettings = self.filterSettings()
 		self.session.openWithCallback(self.goRestart, FileCommanderConfigScreen)
 
+	def goBookmark(self, current):
+		dirname = current and self.SOURCELIST.getCurrentDirectory() or self.SOURCELIST.getFilename()
+		bookmarks = config.plugins.filecommander.bookmarks.value
+		if dirname in bookmarks:
+			bookmarks.remove(dirname)
+		else:
+			bookmarks.insert(0, dirname)
+			order = config.misc.pluginlist.fc_bookmarks_order.value
+			if dirname not in order:
+				order = dirname + "," + order
+				config.misc.pluginlist.fc_bookmarks_order.value = order
+				config.misc.pluginlist.fc_bookmarks_order.save()
+		config.plugins.filecommander.bookmarks.value = bookmarks
+		config.plugins.filecommander.bookmarks.save()
+
 	def goDefaultfolder(self):
-		self.SOURCELIST.changeDir(config.plugins.filecommander.path_default.value or None)
-		self.updateHead()
+		bookmarks = config.plugins.filecommander.bookmarks.value
+		if not bookmarks:
+			if config.plugins.filecommander.path_default.value:
+				bookmarks.append(config.plugins.filecommander.path_default.value)
+			bookmarks.append('/home/root/')
+			bookmarks.append(defaultMoviePath())
+			config.plugins.filecommander.bookmarks.value = bookmarks
+			config.plugins.filecommander.bookmarks.save()
+		bookmarks = [(x, x) for x in bookmarks]
+		bookmarks.append((_("Storage devices"), None))
+		self.session.openWithCallback(self.locationCB, ChoiceBox, title=_("Select a path"), list=bookmarks, reorderConfig="fc_bookmarks_order")
+
+	def locationCB(self, answer):
+		if answer:
+			self.SOURCELIST.changeDir(answer[1])
+			self.updateHead()
 
 	def goParentfolder(self):
 		if self.SOURCELIST.getParentDirectory() != False:
@@ -389,6 +441,31 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 		self.session.open(TaskListScreen, self.tasklist)
 
+	def addJob(self, job, updateDirs):
+		self.jobs += 1
+		self.onLayout()
+		self.updateDirs.update(updateDirs)
+		if isinstance(job, list):
+			container = eConsoleAppContainer()
+			container.appClosed.append(self.finishedCB)
+			self.containers.append(container)
+			retval = container.execute("rm", "rm", "-rf", *job)
+			if retval:
+				self.finishedCB(retval)
+		else:
+		   job_manager.AddJob(job, onSuccess=self.finishedCB)
+
+	def finishedCB(self, arg):
+		if hasattr(self, "jobs"):
+			self.jobs -= 1
+			self.onLayout()
+			if (self["list_left"].getCurrentDirectory() in self.updateDirs or
+				self["list_right"].getCurrentDirectory() in self.updateDirs):
+				self.doRefresh()
+			if not self.jobs:
+				self.updateDirs.clear()
+				del self.containers[:]
+
 # ## copy ###
 	def goYellow(self):
 		filename = self.SOURCELIST.getFilename()
@@ -408,18 +485,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				filename = self.SOURCELIST.getFilename()
 				sourceDir = self.SOURCELIST.getCurrentDirectory()
 				targetDir = self.TARGETLIST.getCurrentDirectory()
+				updateDirs = [targetDir]
 				dst_file = targetDir
-				if dst_file.endswith("/"):
+				if dst_file.endswith("/") and dst_file != "/":
 					targetDir = dst_file[:-1]
 				if sourceDir not in filename:
-					job_manager.AddJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("copy file"), sourceDir + filename)))
-					self.doCopyCB()
+					self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("copy file"), sourceDir + filename)), updateDirs)
 				else:
-					job_manager.AddJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("copy folder"), filename)))
-					self.doCopyCB()
-
-	def doCopyCB(self):
-		self.doRefresh()
+					self.addJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("copy folder"), filename)), updateDirs)
 
 # ## delete ###
 	def goRed(self):
@@ -442,10 +515,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 					return
 				if sourceDir not in filename:
 					os.remove(sourceDir + filename)
+					self.doRefresh()
 				else:
-					container = eConsoleAppContainer()
-					container.execute("rm", "rm", "-rf", filename)
-				self.doRefresh()
+					self.addJob([filename], [sourceDir])
 
 # ## move ###
 	def goGreen(self):
@@ -468,19 +540,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				targetDir = self.TARGETLIST.getCurrentDirectory()
 				if (filename is None) or (sourceDir is None) or (targetDir is None):
 					return
+				updateDirs = [sourceDir, targetDir]
 				dst_file = targetDir
-				if dst_file.endswith("/"):
+				if dst_file.endswith("/") and dst_file != "/":
 					targetDir = dst_file[:-1]
 				if sourceDir not in filename:
-					job_manager.AddJob(FileTransferJob(sourceDir + filename, targetDir, False, False, "%s : %s" % (_("move file"), sourceDir + filename)))
-					self.doMoveCB()
+					self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, False, "%s : %s" % (_("move file"), sourceDir + filename)), updateDirs)
 				else:
-					job_manager.AddJob(FileTransferJob(filename, targetDir, True, False, "%s : %s" % (_("move folder"), filename)))
-					self.doMoveCB()
-
-	def doMoveCB(self):
-		# os.system('echo %s > /tmp/test.log' % ("refresh move"))
-		self.doRefresh()
+					self.addJob(FileTransferJob(filename, targetDir, True, False, "%s : %s" % (_("move folder"), filename)), updateDirs)
 
 # ## rename ###
 	def goBlue(self):
@@ -654,7 +721,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				self[side + "_head2"].updateList(())
 		self["VKeyIcon"].boolean = self.viewable_file() is not None
 
-	def doRefreshDir(self):
+	def doRefreshDir(self, jobs, updateDirs):
+		if jobs:
+			for job in jobs:
+				self.addJob(job, updateDirs)
 		self["list_left"].changeDir(config.plugins.filecommander.path_left_tmp.value or None)
 		self["list_right"].changeDir(config.plugins.filecommander.path_right_tmp.value or None)
 		if self.SOURCELIST == self["list_left"]:
@@ -692,8 +762,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 class FileCommanderContextMenu(Screen):
 	skin = """
-		<screen name="FileCommanderContextMenu" position="center,center" size="560,510" title="File Commander context menu" backgroundColor="background">
-			<widget name="menu" position="0,0" size="580,510" itemHeight="30" foregroundColor="white" backgroundColor="background" transparent="0" scrollbarMode="showOnDemand" />
+		<screen name="FileCommanderContextMenu" position="center,center" size="560,570" title="File Commander context menu" backgroundColor="background">
+			<widget name="menu" position="fill" itemHeight="30" foregroundColor="white" backgroundColor="background" transparent="0" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session, contexts, list):
@@ -847,10 +917,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			print "[FileCommander] selectedFiles:", self.selectedFiles
 			self.goDown()
 
-	def exit(self):
+	def exit(self, jobs=None, updateDirs=None):
 		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
 		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
-		self.close()
+		self.close(jobs, updateDirs)
 
 	def ok(self):
 
@@ -892,13 +962,13 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 
 # ## delete select ###
 	def goRed(self):
+		dirs = []
 		for file in self.selectedFiles:
 			if os.path.isdir(file):
-				container = eConsoleAppContainer()
-				container.execute("rm", "rm", "-rf", file)
+				dirs.append(file)
 			else:
 				os.remove(file)
-		self.exit()
+		self.exit([dirs], [self.SOURCELIST.getCurrentDirectory()])
 
 # ## move select ###
 	def goGreen(self):
@@ -907,12 +977,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			return
 
 		self.cleanList()
+		updateDirs = [targetDir, self.SOURCELIST.getCurrentDirectory()]
+		jobs = []
 		for file in self.selectedFiles:
 			dst_file = targetDir
-			if dst_file.endswith("/"):
+			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
-			job_manager.AddJob(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
-		self.exit()
+			jobs.append(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
+		self.exit(jobs, updateDirs)
 
 # ## copy select ###
 	def goYellow(self):
@@ -921,15 +993,17 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			return
 
 		self.cleanList()
+		updateDirs = [targetDir]
+		jobs = []
 		for file in self.selectedFiles:
 			dst_file = targetDir
-			if dst_file.endswith("/"):
+			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			if file.endswith("/"):
-				job_manager.AddJob(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
+				jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
 			else:
-				job_manager.AddJob(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
-		self.exit()
+				jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+		self.exit(jobs, updateDirs)
 
 	def goBlue(self):
 		self.exit()

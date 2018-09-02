@@ -2081,12 +2081,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		else:
 			self.updateTitle()	# alias may have changed
 
-	def pinEntered(self, res, selItem, result):
-		if result:
-			from Components.ParentalControl import parentalControl
-			parentalControl.setSessionPinCached()
-			self.gotFilename(res, selItem, False)
-
 	def showAll(self):
 		self.selected_tags_ele = None
 		self.selected_tags = None
