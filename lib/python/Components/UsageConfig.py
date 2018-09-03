@@ -733,6 +733,8 @@ def InitUsageConfig():
 
 	config.usage.boolean_graphic = ConfigYesNo(default=True)
 
+	config.usage.cursorscroll = ConfigSelectionNumber(min=0, max=50, stepwidth=5, default=0, wraparound=True)
+
 	if SystemInfo["hasXcoreVFD"]:
 		def set12to8characterVFD(configElement):
 			open(SystemInfo["hasXcoreVFD"], "w").write(not configElement.value and "1" or "0")

@@ -73,6 +73,7 @@
 		<item level="2" text="Close PiP on EXIT" requires="PIPAvailable" description="When enabled: In live TV mode, EXIT closes the PiP window (and infobar). In movie player mode, EXIT closes the infobar or PiP window if shown. If neither the PiP window or infobar are visible, EXIT behaviour operates in accordance with the 'Quit movie player with EXIT button' setting.">config.usage.pip_hideOnExit</item>
 <!-- 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown in the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item> -->
 		<item level="0" text="Show menu numbers" description="Enable to show number short cuts next to menu entries.">config.usage.menu_show_numbers</item>
+		<item level="0" text="Input scroll position" description="When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor.">config.usage.cursorscroll</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection">
