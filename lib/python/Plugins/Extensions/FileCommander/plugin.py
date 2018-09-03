@@ -73,7 +73,7 @@ config.plugins.filecommander.path_left = ConfigText(default="")
 config.plugins.filecommander.path_right = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
 config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My Extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
-config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
+config.plugins.filecommander.input_length = ConfigInteger(default=0, limits=(0, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 
