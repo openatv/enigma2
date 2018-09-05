@@ -143,6 +143,14 @@ def getAboutText():
 			f.close()
 			if bootname: bootname = "   (%s)" %bootname 
 			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+	elif getMachineBuild() in ('osmio4k'):
+		if path.exists('/boot/STARTUP'):
+			f = open('/boot/STARTUP', 'r')
+			f.seek(38)
+			image = f.read(1) 
+			f.close()
+			if bootname: bootname = "   (%s)" %bootname 
+			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
 	elif path.exists('/boot/STARTUP'):
 		f = open('/boot/STARTUP', 'r')
 		f.seek(22)
@@ -172,7 +180,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('h9','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51','cc1','sf8008'):
+	if getMachineBuild() not in ('osmio4k','h9','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51','cc1','sf8008'):
 		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
