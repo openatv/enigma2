@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2018-08-27 00:30+0300\n"
+"POT-Creation-Date: 2018-09-07 18:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -204,10 +204,16 @@ msgid_plural "%d pixels wide"
 msgstr[0] ""
 msgstr[1] ""
 
+msgid "%d sec"
+msgstr ""
+
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid "%d times"
+msgstr ""
 
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
@@ -328,6 +334,9 @@ msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshif
 msgstr ""
 
 msgid "( All readers)"
+msgstr ""
+
+msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr ""
 
 msgid "(empty)"
@@ -2563,6 +2572,9 @@ msgid "Check every (hours)"
 msgstr ""
 
 msgid "Check HDD"
+msgstr ""
+
+msgid "Check power state from TV"
 msgstr ""
 
 msgid "Check the internet connection"
@@ -5759,7 +5771,13 @@ msgstr ""
 msgid "handicraft"
 msgstr ""
 
+msgid "Handle input from TV"
+msgstr ""
+
 msgid "Handle standby from TV"
+msgstr ""
+
+msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
 
 msgid "Handle wakeup from TV"
@@ -6085,7 +6103,16 @@ msgstr ""
 msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
 msgstr ""
 
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+msgstr ""
+
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgstr ""
+
+msgid "If the power state is reached, the repeated messages are stopped."
+msgstr ""
+
+msgid "If the receiver in standby, then switch to deep standby?"
 msgstr ""
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
@@ -9484,6 +9511,9 @@ msgstr ""
 msgid "purge deleted userbouquets"
 msgstr ""
 
+msgid "Put from standby to deep standby"
+msgstr ""
+
 msgid "Put TV in standby"
 msgstr ""
 
@@ -10269,6 +10299,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr ""
 
+msgid "Routing request"
+msgstr ""
+
 msgid "Run"
 msgstr ""
 
@@ -10905,6 +10938,9 @@ msgid "Send DiSEqC"
 msgstr ""
 
 msgid "Send DiSEqC only on satellite change"
+msgstr ""
+
+msgid "Send repeated standby and wakeup messages"
 msgstr ""
 
 msgid "Send yourself a copy ?"
@@ -12500,6 +12536,15 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
+msgid "Start a 'wakeup' power timer"
+msgstr ""
+
+msgid "Start a 'zap and record' recording timer"
+msgstr ""
+
+msgid "Start a 'zap' recording timer"
+msgstr ""
+
 msgid "Start attempts"
 msgstr ""
 
@@ -13651,6 +13696,9 @@ msgstr ""
 msgid "Time between start attempts (sec.)"
 msgstr ""
 
+msgid "Time delay to handle the TV event"
+msgstr ""
+
 msgid "Time for next LCD scrolling"
 msgstr ""
 
@@ -14012,6 +14060,12 @@ msgstr ""
 msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr ""
 
+msgid "Try to send more messages if not all commands are executed.\n"
+msgstr ""
+
+msgid "Try to slow down the send interval if not all commands are executed.\n"
+msgstr ""
+
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr ""
 
@@ -14138,7 +14192,16 @@ msgstr ""
 msgid "TV button mode"
 msgstr ""
 
+msgid "TV has another input active"
+msgstr ""
+
 msgid "TV physical address report"
+msgstr ""
+
+msgid "TV was already on powered"
+msgstr ""
+
+msgid "TV was not in standby mode at startup"
 msgstr ""
 
 msgid "Two"
@@ -14888,6 +14951,9 @@ msgid "W"
 msgstr ""
 
 msgid "wait for mmi..."
+msgstr ""
+
+msgid "Wait for timesync at startup"
 msgstr ""
 
 msgid "Wait please while creating swapfile..."
