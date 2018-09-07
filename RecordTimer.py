@@ -30,11 +30,16 @@ from enigma import pNavigation, eDVBFrontend
 # event data		 (ONLY for time adjustments etc.)
 
 wasRecTimerWakeup = False
-try:
-	from Screens.InfoBar import InfoBar
-except Exception, e:
-	print "[RecordTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
-	InfoBar = False
+InfoBar = False
+
+#//import later (no error message on system start)
+#try:
+#	from Screens.InfoBar import InfoBar
+#except Exception, e:
+#	print "[RecordTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
+#	InfoBar = False
+#//
+
 #+++
 debug = False
 #+++
@@ -386,18 +391,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			if self.always_zap:
+				Screens.Standby.TVinStandby.skipHdmiCecNow('zapandrecordtimer')
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
 					#eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
-					#not wake up tv
-					Screens.Standby.setTVstate('off')
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 					self.log(5, "wakeup and zap to recording service")
 				else:
+					Screens.Standby.TVinStandby.setTVstate('on')
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
 						self.setRecordingPreferredTuner()
@@ -565,7 +570,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			if self.justplay:
-				Screens.Standby.setTVstate('on')
+				Screens.Standby.TVinStandby.skipHdmiCecNow('zaptimer')
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
 					#eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
@@ -576,6 +581,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
+					Screens.Standby.TVinStandby.setTVstate('on')
 					self.log(11, _("zapping"))
 					found = False
 					notFound = False
@@ -609,7 +615,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 								if bouquetcount >= 5:
 									notFound = True
 									break
-
 
 								if bouquet.flags & eServiceReference.isDirectory:
 									ChannelSelectionInstance.clearPath()
@@ -665,26 +670,26 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
-			self.autostate = Screens.Standby.inStandby
-			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
-			if debug: print "[RECORDTIMER] self.autostate=%s" % self.autostate, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent
 
+			box_instandby = Screens.Standby.inStandby
+			tv_instandby = Screens.Standby.TVinStandby.getTVstate('standby')
+			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
+
+			if debug: print "[RECORDTIMER] box_instandby=%s" % box_instandby, "tv_instandby=%s" % tv_instandby, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent
+
+			timeout = 180
+			default = True
+			messageboxtyp = MessageBox.TYPE_YESNO
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and (not wasRecTimerWakeup or (wasRecTimerWakeup and isRecordTime))):
-				if not Screens.Standby.inStandby and not Screens.Standby.TVinStandby:# not already in standby
+				if not box_instandby and not tv_instandby:# not already in standby
 					callback = self.sendStandbyNotification
 					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
-					messageboxtyp = MessageBox.TYPE_YESNO
-					timeout = 180
-					default = True
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
 						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
-				elif Screens.Standby.TVinStandby:
+				else:
 					self.sendStandbyNotification(True)
-
-			if Screens.Standby.inStandby:
-				Screens.Standby.setTVstate('reset')
 
 			if isRecordTime or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 				if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby) or (self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup):
@@ -700,28 +705,21 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
 				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
-					if Screens.Standby.inStandby: # in standby
-						print "[RecordTimer] quitMainloop #1"
-						quitMainloop(1)
-					elif Screens.Standby.TVinStandby:
-						Screens.Standby.setTVstate('reset')
-						self.sendTryQuitMainloopNotification(True)
-					else:
+					if not box_instandby and not tv_instandby: # not already in standby
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName())
-						messageboxtyp = MessageBox.TYPE_YESNO
-						timeout = 180
-						default = True
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
 							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
+					else:
+						print "[RecordTimer] quitMainloop #1"
+						quitMainloop(1)
 			elif self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup:
 				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
 						print "[RecordTimer] quitMainloop #2"
 						quitMainloop(1)
-
 			self.wasInStandby = False
 			resetTimerWakeup()
 			return True

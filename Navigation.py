@@ -36,6 +36,8 @@ class Navigation:
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
 
+		Screens.Standby.TVstate()
+
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
@@ -115,6 +117,8 @@ class Navigation:
 				return
 
 		if hasFakeTime and self.wakeuptime > 0: # check for NTP-time sync, if no sync, wait for transponder time
+			if Screens.Standby.TVinStandby.getTVstandby('waitfortimesync') and not wasTimerWakeup:
+				Screens.Standby.TVinStandby.setTVstate('power')
 			self.savedOldTime = now
 			self.timesynctimer = eTimer()
 			self.timesynctimer.callback.append(self.TimeSynctimer)
@@ -162,9 +166,14 @@ class Navigation:
 				if not self.forcerecord:
 					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
 			#check for standby
-			if not self.getstandby and ((self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer) or (not config.recording.switchTVon.value and self.wakeuptyp == 0)):
+			cec =  ((self.wakeuptyp == 0 and (Screens.Standby.TVinStandby.getTVstandby('zapandrecordtimer'))) or 
+					(self.wakeuptyp == 1 and (Screens.Standby.TVinStandby.getTVstandby('zaptimer'))) or
+					(self.wakeuptyp == 2 and (Screens.Standby.TVinStandby.getTVstandby('wakeuppowertimer'))))
+			if self.getstandby != 1 and ((self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer) or cec):
 				self.getstandby = 1
-				print "[NAVIGATION] more than 60 seconds to wakeup or not TV turn on - go in standby"
+				txt = ""
+				if cec: txt = "... or special hdmi-cec settings"
+				print "[NAVIGATION] more than 60 seconds to wakeup%s - go in standby now" %txt
 			print "="*100
 			#go in standby
 			if self.getstandby == 1:
@@ -222,6 +231,8 @@ class Navigation:
 		self.wakeupCheck()
 
 	def gotopower(self):
+		if not Screens.Standby.TVinStandby.getTVstate('on'):
+			Screens.Standby.TVinStandby.setTVstate('power')
 		if Screens.Standby.inStandby:
 			print '[NAVIGATION] now entering normal operation'
 			Screens.Standby.inStandby.Power()

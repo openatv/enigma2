@@ -16,6 +16,75 @@ msgstr ""
 "X-Generator: Poedit 2.1.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
+msgid "Routing request"
+msgstr "Routinganfrage"
+
+msgid "TV physical address report"
+msgstr "TV Addressbericht"
+
+msgid "Put from standby to deep standby"
+msgstr "Schalte vom Standby in den Deep Standby-Modus"
+
+msgid "If the receiver in standby, then switch to deep standby?"
+msgstr "Wenn der Receiver im Standby-Modus ist, in den Deep-Standby-Modus wechseln?"
+
+msgid "Wait for timesync at startup"
+msgstr "Warte beim Systemstart auf Zeitsyncronisation"
+
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist, wird gewartet bis die Systemzeit syncronisiert wurde bevor der TV angeschaltet. So kann ein Einschalten verhindert werden wenn ein Timer folgt. Die Syncronisierung dauert maximal 2 Minuten."
+
+msgid "TV was not in standby mode at startup"
+msgstr "TV war beim start nicht im Standby"
+
+msgid "TV was already on powered"
+msgstr "TV war bereits eingeschaltet"
+
+msgid "TV has another input active"
+msgstr "TV hat einen anderen Eingang aktiv"
+
+msgid "Start a 'zap' recording timer"
+msgstr "Beim start eines 'Umschalten' Timers"
+
+msgid "Start a 'zap and record' recording timer"
+msgstr "Beim start eines 'Umschalten und Aufnehmen' Timers"
+
+msgid "Start a 'wakeup' power timer"
+msgstr "Beim start eines 'Aufwecken' Power-Timers"
+
+msgid "Try to send more messages if not all commands are executed.\n"
+msgstr "Versuchen Sie mehrere Mitteilungen zu senden wenn nicht alle Kommandos ausgeführt werden.\n"
+
+msgid "(e.g. TV wakeup, but not switched to correct input)"
+msgstr "(z.Bsp. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
+
+msgid "If the power state is reached, the repeated messages are stopped."
+msgstr "Ist der erwartete Betriebszustand erreicht, wird die Wiederholung der Mitteilungen gestoppt."
+
+msgid "Send repeated standby and wakeup messages"
+msgstr "Sende wiederholende Aufwach- und Standby Mitteilungen"
+
+msgid "Check power state from TV"
+msgstr "Überprüfe den Betriebszustand vom TV"
+
+msgid "Handle input from TV"
+msgstr "TV-Eingänge verwalten"
+
+msgid "Try to slow down the send interval if not all commands are executed.\n"
+msgstr "Versuchen Sie das Sendeintervall zu verlangsamen wenn nicht alle Kommandos ausgeführt werden.\n"
+
+msgid "Time delay to handle the TV event"
+msgstr "Zeitverzögerung für die Ausführung des TV-Ereignisses"
+
+msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+msgstr "'TV-Standby verwalten' hat eine höhere Priorität als 'TV-Eingänge verwalten'"
+
+msgid "%d sec"
+msgstr "%d sek"
+
+msgid "%d times"
+msgstr "%d mal"
+
 msgid "Stop recording now"
 msgstr "Aufnahme stoppen"
 
@@ -10773,14 +10842,6 @@ msgstr "Standard 'Nach der Aufnahme' *"
 #: data/setup.xml
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Legt die Standardeinstellung für neu angelegte Timer fest. Benötigt nach der Änderung einen Neustart."
-
-#: data/setup.xml
-msgid "Turn on the TV from standby with 'zap and record' timer"
-msgstr "TV einschalten durch einen 'Umschalten und Aufnehmen' Timer"
-
-#: data/setup.xml
-msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
-msgstr "Wenn Sie HDMI-CEC aktiviert haben, können Sie hier angeben ob ein 'Umschalten und Aufnehmen' Timer auch den Fernseher mit einschaltet."
 
 #: data/setup.xml
 msgid "Long press emulation with button"
