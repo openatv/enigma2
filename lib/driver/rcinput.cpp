@@ -213,6 +213,31 @@ void eRCDeviceInputDev::handleCode(long rccode)
 */
 #endif
 
+#if KEY_F6_TO_KEY_FAVORITES
+	if (ev->code == KEY_F6) {
+		ev->code = KEY_FAVORITES;
+	}
+#endif
+
+#if KEY_HELP_TO_KEY_AUDIO
+	if (ev->code == KEY_HELP) {
+		ev->code = KEY_AUDIO;
+	}
+#endif
+
+
+#if KEY_WWW_TO_KEY_FILE
+	if (ev->code == KEY_WWW) {
+		ev->code = KEY_FILE;
+	}
+#endif
+
+#if KEY_CONTEXT_MENU_TO_KEY_BACK
+	if (ev->code == KEY_CONTEXT_MENU) {
+		ev->code = KEY_BACK;
+	}
+#endif
+
 #if KEY_VIDEO_TO_KEY_ANGLE
 	if (ev->code == KEY_VIDEO) {
 		ev->code = KEY_ANGLE;
