@@ -363,6 +363,8 @@ class HdmiCec:
 
 	def standby(self):
 		if not Screens.Standby.inStandby:
+			import NavigationInstance
+			NavigationInstance.instance.skipWakeup = True
 			from Screens.InfoBar import InfoBar
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(Screens.Standby.Standby)

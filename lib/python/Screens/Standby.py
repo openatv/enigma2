@@ -77,7 +77,7 @@ class TVstate: #load in Navigation
 			self.setTVstate_value = value
 			if self.hdmicec_instance.stateTimer.isActive():
 				self.waitTVstateTimer.start(1000,True)
-			elif value == 'on' or (value == 'power' and config.hdmicec.handle_deepstandby_events.value):
+			elif value == 'on' or (value == 'power' and config.hdmicec.handle_deepstandby_events.value and not self.hdmicec_instance.handleTimer.isActive()):
 				self.hdmicec_instance.wakeupMessages(value != 'power')
 			elif value == 'standby':
 				self.hdmicec_instance.standbyMessages()
