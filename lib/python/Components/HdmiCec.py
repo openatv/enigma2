@@ -56,7 +56,7 @@ for i in (10,30,60,120,300,600,900,1800,3600):
 		choicelist.append(("%d" % i, _("%d min") % (i/60)))
 config.hdmicec.handle_tv_delaytime = ConfigSelection(default = "300", choices = choicelist)
 config.hdmicec.handle_tv_standby_to_deepstandby = ConfigYesNo(default = True)
-config.hdmicec.check_tv_powerstate = ConfigYesNo(default = True)
+config.hdmicec.check_tv_powerstate = ConfigYesNo(default = False)
 config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default = True)
 config.hdmicec.tv_standby_notinstandby = ConfigYesNo(default = True)
 config.hdmicec.tv_standby_notinputactive = ConfigYesNo(default = False)
@@ -266,7 +266,7 @@ class HdmiCec:
 				self.what = 'on'
 				self.repeatCounter = 0
 				powerswitch = False
-				if config.hdmicec.control_tv_wakeup.value and self.what != self.tv_powerstate:
+				if config.hdmicec.control_tv_wakeup.value and not (self.what == self.tv_powerstate and config.hdmicec.check_tv_powerstate.value):
 					powerswitch = True
 					self.messages.append((0,"wakeup"))
 				if config.hdmicec.report_active_source.value and not (self.tv_skip_setinput or self.activesource):
@@ -309,7 +309,7 @@ class HdmiCec:
 				self.what = 'standby'
 				self.repeatCounter = 0
 				powerswitch = False
-				if config.hdmicec.control_tv_standby.value and self.what != self.tv_powerstate:
+				if config.hdmicec.control_tv_standby.value and not (self.what == self.tv_powerstate and config.hdmicec.check_tv_powerstate.value):
 					powerswitch = True
 					self.messages.append((0,"standby"))
 				else:
@@ -516,6 +516,15 @@ class HdmiCec:
 			self.stateCounter = 0
 			if self.stateTimer.isActive():
 				self.stateTimer.stop()
+
+		if not config.hdmicec.check_tv_powerstate.value:
+			self.firststart = False
+			self.activesource = False
+			self.tv_powerstate_on_wakeup = 'standby'
+			if self.recall:
+				self.recall(False)
+				self.recall = None
+			return
 
 		if self.stateCounter < 11:
 			if self.tv_powerstate not in ('on','standby'):
