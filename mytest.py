@@ -444,6 +444,7 @@ class PowerKey:
 
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
+			self.session.nav.skipWakeup = True
 			self.session.open(Screens.Standby.Standby)
 
 	def openSleepTimer(self):

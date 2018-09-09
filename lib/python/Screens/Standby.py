@@ -35,6 +35,8 @@ class TVstate: #load in Navigation
 
 		self.waitTVstateTimer = eTimer()
 		self.waitTVstateTimer.callback.append(self.waitTVstateTimerCB)
+		if not self.hdmicec_ok:
+			print '[Standby] HDMI-CEC is not enabled or unavailable !!!'
 
 	def skipHdmiCecNow(self, value):
 		if self.hdmicec_ok:
@@ -69,19 +71,16 @@ class TVstate: #load in Navigation
 		return False
 
 	def setTVstate(self, value):
-		if self.waitTVstateTimer.isActive():
-			self.waitTVstateTimer.stop()
-
-		self.setTVstate_value = value
-
-		if not self.hdmicec_ok:
-			print '[Standby] HDMI-CEC is not enabled or unavailable !!!'
-		elif self.hdmicec_instance.stateTimer.isActive():
-			self.waitTVstateTimer.start(1000,True)
-		elif value == 'on' or (value == 'power' and config.hdmicec.handle_deepstandby_events.value and not self.hdmicec_instance.handleTimer.isActive()):
-			self.hdmicec_instance.wakeupMessages(value != 'power')
-		elif value == 'standby':
-			self.hdmicec_instance.standbyMessages()
+		if self.hdmicec_ok:
+			if self.waitTVstateTimer.isActive():
+				self.waitTVstateTimer.stop()
+			self.setTVstate_value = value
+			if self.hdmicec_instance.stateTimer.isActive():
+				self.waitTVstateTimer.start(1000,True)
+			elif value == 'on' or (value == 'power' and config.hdmicec.handle_deepstandby_events.value):
+				self.hdmicec_instance.wakeupMessages(value != 'power')
+			elif value == 'standby':
+				self.hdmicec_instance.standbyMessages()
 
 	def waitTVstateTimerCB(self):
 		self.setTVstate(self.setTVstate_value)
