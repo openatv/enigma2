@@ -1,4 +1,3 @@
-from boxbranding import getBoxType, getMachineName, getHaveRCA
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
@@ -15,14 +14,13 @@ from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
-boxtype = getBoxType()
-
 has_rca = False
 has_dvi = False
-if getHaveRCA() != False:
-	has_rca = True
-if boxtype == 'dm8000' or boxtype == 'dm800':
-	has_dvi = True
+
+
+has_rca = SystemInfo["HaveRCA"]
+has_dvi = SystemInfo["HaveDVI"]
+	
 
 class VideoWizardSummary(WizardSummary):
 	skin = (
