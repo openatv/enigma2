@@ -37,6 +37,7 @@ class Navigation:
 		self.currentlyPlayingService = None
 
 		Screens.Standby.TVstate()
+		self.skipWakeup = False
 
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
@@ -201,7 +202,7 @@ class Navigation:
 			self.getstandby = 0
 
 		#workaround for normal operation if no time sync after e2 start - box is in standby
-		if self.getstandby != 1:
+		if self.getstandby != 1 and not self.skipWakeup:
 			self.gotopower()
 
 	def wasTimerWakeup(self):

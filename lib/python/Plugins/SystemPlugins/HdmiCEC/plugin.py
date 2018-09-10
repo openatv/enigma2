@@ -68,9 +68,9 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		if config.hdmicec.enabled.value:
 			tab = ' ' * 10
 			self.list.append(getConfigListEntry(_("Regard deep standby as standby"), config.hdmicec.handle_deepstandby_events, _('helptext'),'refreshlist'))
-			self.list.append(getConfigListEntry(_("Check power state from TV"), config.hdmicec.check_tv_powerstate, _('helptext'), 'refreshlist'))
 			if config.hdmicec.handle_deepstandby_events.value and config.workaround.deeprecord.value:
 				self.list.append(getConfigListEntry(tab + _("Wait for timesync at startup"), config.hdmicec.deepstandby_waitfortimesync, _("If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."), ))
+			self.list.append(getConfigListEntry(_("Check power state from TV"), config.hdmicec.check_tv_powerstate, _('helptext'), 'refreshlist'))
 			self.list.append(getConfigListEntry(_("Put TV in standby"), config.hdmicec.control_tv_standby, _('helptext'),'refreshlist'))
 			if config.hdmicec.control_tv_standby.value:
 				if config.hdmicec.check_tv_powerstate.value:
