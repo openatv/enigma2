@@ -1122,7 +1122,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			(eDVBFrontendParametersSatellite.Pilot_Off, _("Off")),
 			(eDVBFrontendParametersSatellite.Pilot_On, _("On")),
 			(eDVBFrontendParametersSatellite.Pilot_Unknown, _("Auto"))])
-		self.scan_sat.is_id = ConfigInteger(default = defaultSat.get("is_id",eDVBFrontendParametersSatellite.No_Stream_Id_Filter), limits = (eDVBFrontendParametersSatellite.No_Stream_Id_Filter, 255))
+		self.scan_sat.is_id = ConfigInteger(default = defaultSat["is_id"], limits = (eDVBFrontendParametersSatellite.No_Stream_Id_Filter, 255))
 		self.scan_sat.pls_mode = ConfigSelection(default = defaultSat["pls_mode"], choices = [
 			(eDVBFrontendParametersSatellite.PLS_Root, _("Root")),
 			(eDVBFrontendParametersSatellite.PLS_Gold, _("Gold")),
