@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-29 02:35+0300\n"
-"PO-Revision-Date: 2018-07-29 10:31+0300\n"
+"POT-Creation-Date: 2018-09-07 18:50+0300\n"
+"PO-Revision-Date: 2018-09-07 22:07+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -55,7 +55,7 @@ msgid " (Partition %d)"
 msgstr " (Skaidinys %d)"
 
 msgid " (PiP)"
-msgstr " (Paveikslėlis paveikslėlyje)"
+msgstr " (PiP)"
 
 msgid " (Radio)"
 msgstr " (Radijas)"
@@ -239,11 +239,17 @@ msgstr[0] "%d pikselio pločio"
 msgstr[1] "%d pikselių pločio"
 msgstr[2] "%d pikselių pločio"
 
+msgid "%d sec"
+msgstr "%d sek."
+
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekundė"
 msgstr[1] "%d sekundės"
 msgstr[2] "%d sekundžių"
+
+msgid "%d times"
+msgstr "%d kartų"
 
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
@@ -378,6 +384,9 @@ msgstr ""
 
 msgid "( All readers)"
 msgstr "(Visi skaitytojai)"
+
+msgid "(e.g. TV wakeup, but not switched to correct input)"
+msgstr "(pvz., TV budina, bet nepersijungia į teisingą įvestį)"
 
 msgid "(empty)"
 msgstr "(tuščia)"
@@ -1386,7 +1395,7 @@ msgid "Add to favourites"
 msgstr "Įtraukti į mėgstamiausius"
 
 msgid "add to parental protection"
-msgstr "Įtraukti į tėvų kontrolę"
+msgstr "pridėti į tėvų kontrolę"
 
 msgid "Add/remove change timer for current event"
 msgstr "Įtraukti /pašalinti šio įvykio  laikmatį"
@@ -1877,7 +1886,7 @@ msgid "Aspect"
 msgstr "Vaizdo santykis"
 
 msgid "Aspect list..."
-msgstr "Vaizdo formatų sąrašas..."
+msgstr "Formatų sąrašas..."
 
 msgid "Aspect long"
 msgstr "Aspektas (ilgai)"
@@ -2351,6 +2360,9 @@ msgstr "Juodas ekranas iki užrakinimo"
 msgid "blacklist"
 msgstr "juodas sąrašas"
 
+msgid "Blinking REC"
+msgstr "Mirksintis REC simbolis"
+
 msgid "Blinking REC Symbol"
 msgstr "Mirksintis REC simbolis"
 
@@ -2505,7 +2517,7 @@ msgid "C"
 msgstr "C"
 
 msgid "C-Band"
-msgstr "C-juosta"
+msgstr "C juosta"
 
 msgid "Cable"
 msgstr "Kabelinė"
@@ -2905,6 +2917,9 @@ msgstr "Tikrinti kas (val.)"
 
 msgid "Check HDD"
 msgstr "Tikrinti HDD"
+
+msgid "Check power state from TV"
+msgstr "Patikrinkite maitinimo būseną iš TV"
 
 msgid "Check the internet connection"
 msgstr "Tikrinkite interneto ryšį"
@@ -3933,19 +3948,19 @@ msgid "cooking"
 msgstr "maisto gaminimas"
 
 msgid "Cool Channel Guide"
-msgstr "Cool Channel vadovas"
+msgstr "Geras kanalų vedlys"
 
 msgid "Cool Easy Guide"
-msgstr "Cool Easy vadovas"
+msgstr "Geras lengvas vedlys"
 
 msgid "Cool Info Guide"
-msgstr "Cool Info vadovas"
+msgstr "Geras informacinis vedlys"
 
 msgid "Cool Single Guide"
-msgstr "Cool Single vadovas"
+msgstr "Geras pavienis vedlys"
 
 msgid "Cool TV Guide"
-msgstr "Cool TV vadovas"
+msgstr "Geras TV vedlys"
 
 msgid "copy"
 msgstr "kopijuoti"
@@ -5673,7 +5688,7 @@ msgid "Exif"
 msgstr "Exif"
 
 msgid "Exit"
-msgstr "Užverti"
+msgstr "Išeiti"
 
 msgid "exit DVD player or return to file browser"
 msgstr "užverti DVD grotuvą, arba sugrįžti į failų naršyklę"
@@ -6359,7 +6374,7 @@ msgid "Go up the list"
 msgstr "Sąrašu aukštyn"
 
 msgid "Gold"
-msgstr "Auksinė"
+msgstr "Auksinis"
 
 msgid "Goto"
 msgstr "Eiti į"
@@ -6443,7 +6458,7 @@ msgid "GotoX calibration"
 msgstr "Eiti į X kalibraciją"
 
 msgid "grab this frame as bitmap"
-msgstr "užgriebti šį rėmą kaip taškinę grafiką"
+msgstr "užgriebti vaizdą bmp formatu"
 
 msgid "Graphical EPG"
 msgstr "Grafinis EPG"
@@ -6517,8 +6532,17 @@ msgstr "H: = kas valandą / D: = kas dieną / W: = kas savaitę / M: = kas mėne
 msgid "handicraft"
 msgstr "amatai, rankdarbiai"
 
+msgid "Handle input from TV"
+msgstr "Valdyti televizoriaus įvestį"
+
 msgid "Handle standby from TV"
 msgstr "Išjungti imtuvą, išjungiant TV"
+
+msgid ""
+"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+msgstr ""
+"\"Rankinis budėjimo režimas iš televizoriaus\" turi aukštesnį prioritetą, "
+"kaip \"TV valdymas\""
 
 msgid "Handle wakeup from TV"
 msgstr "Įjungti imtuvą, įjungiant TV"
@@ -6663,6 +6687,9 @@ msgstr "Paslėpti visus perjungimo klaidų pranešimus."
 msgid "Hide known extensions"
 msgstr "Paslėpti žinomus plėtinius"
 
+msgid "Hide mute notification"
+msgstr "Slėpti pranešimą apie nutildymą"
+
 msgid "Hide parental locked services"
 msgstr "Paslėpti tėvų kontrolei priskirtus kanalus"
 
@@ -6766,7 +6793,7 @@ msgid "Hours Mins"
 msgstr "Valandos minutės"
 
 msgid "Hours Mins Secs"
-msgstr "Val. Min. Sek."
+msgstr "Val. min. sek."
 
 msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite įrašinėti?"
@@ -6818,6 +6845,11 @@ msgstr ""
 "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, "
 "seniausias bus ištrintas."
 
+msgid "If muted, hide mute icon or mute information after few seconds."
+msgstr ""
+"Jei nutildyta, paslėpti nutildymo piktogramą arba po kelių sekundžių "
+"nutildyti informaciją."
+
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
 "of the timeshift."
@@ -6827,7 +6859,7 @@ msgstr ""
 
 msgid "if set to 'no', only an debug message is written to the Debug log "
 msgstr ""
-"Jei nustatyta \"ne\", tik derinimo pranešimas įrašomas į derinimo žurnalą"
+"jei nustatyta \"ne\", tik derinimo pranešimas įrašomas į derinimo žurnalą"
 
 msgid ""
 "If set to 'no', timeshift used only one buffer file. It's recommend "
@@ -6920,11 +6952,28 @@ msgstr ""
 "(be pertraukos)."
 
 msgid ""
+"If the 'deep standby workaround' is enabled, it waits until the system time "
+"is syncronised before the TV is turned on. This way, switching on can be "
+"prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+msgstr ""
+"Jei įjungtas \"gilus budėjimo režimas\", jis laukia, kol sistemos laikas bus "
+"sinchronizuojamas prieš įjungiant televizorių. Tokiu būdu, jei įjungiamas "
+"laikmatis, galima išvengti įjungimo. Sinchronizavimas trunka ne ilgiau kaip "
+"2 minutes."
+
+msgid ""
 "If the free space is less than setting value, then an attempt is made to "
 "delete the old timeshift files."
 msgstr ""
 "Jei laisvos vietos yra mažiau, nei nustatyta reikšmė, tada bus bandoma "
 "ištrinti senus laiko poslinkio failus."
+
+msgid "If the power state is reached, the repeated messages are stopped."
+msgstr ""
+"Jei pasiekiama maitinimo būsena, pakartotiniai pranešimai yra sustabdyti."
+
+msgid "If the receiver in standby, then switch to deep standby?"
+msgstr "Jei imtuvas budėjimo režime, tada perjungti į gilų budėjimą?"
 
 msgid ""
 "If the text is too long to be displayed on the front panel, it will be "
@@ -7063,9 +7112,8 @@ msgstr ""
 msgid "In progress"
 msgstr "Vykdoma"
 
-msgid "In the Standby blinking Clock on the LCD Display"
-msgstr ""
-"Čia galite nustatyti, ar budėjimo režime LCD ekrane rodyti mirksintį laikrodį"
+msgid "In the Standby Record on the LCD Display"
+msgstr "LCD ekrane rodomas laukimo režimas"
 
 msgid "Inactive"
 msgstr "Neaktyvus"
@@ -7199,6 +7247,9 @@ msgstr "aptinkamas modulis"
 
 msgid "init modules"
 msgstr "aptinkami moduliai"
+
+msgid "Init SDCARD"
+msgstr "aptinkama SDCARD"
 
 msgid "Init.d"
 msgstr "Init.d"
@@ -7438,16 +7489,16 @@ msgid "jazz"
 msgstr "džiazas"
 
 msgid "Job Manager"
-msgstr "Darbų tvarkyklė"
+msgstr "Užduoties valdymas"
 
 msgid "Job overview"
-msgstr "Darbų apžvalga"
+msgstr "Užduoties apžvalga"
 
 msgid "Job View"
-msgstr "Darbo peržiūra"
+msgstr "Užduoties peržiūra"
 
 msgid "JobManager"
-msgstr "Darbų tvarkyklė"
+msgstr "Užduoties valdymas"
 
 msgid "JUMP 24 HOURS"
 msgstr "PERŠOKTI 24 VAL"
@@ -7988,6 +8039,9 @@ msgstr "Pažymėti, kaip 'grynai 3D' kanalą"
 
 msgid "Mark/Portal/Playlist"
 msgstr "Žymė/portalas/grojaraštis"
+
+msgid "Mark/Portal/Playlist long"
+msgstr "Žymė/portalas/grojaraštis (ilgai spausti)"
 
 msgid "markername"
 msgstr "žymeklio pavadinimas"
@@ -10416,7 +10470,7 @@ msgid "Press OK to set the MAC-address."
 msgstr "Nurodyti MAC adresui, spauskite 'OK'."
 
 msgid "Press OK to start the scan"
-msgstr "Kad pradėtumėte paiešką, spauskite 'OK'"
+msgstr "Kad pradėti paiešką, spauskite OK"
 
 msgid "Press OK to toggle the selection"
 msgstr "Paspauskite OK, kad atlikti pasirinkimą"
@@ -10629,6 +10683,9 @@ msgstr "Tiekėjai: "
 msgid "purge deleted userbouquets"
 msgstr "išvalyti ištrintus paketus"
 
+msgid "Put from standby to deep standby"
+msgstr "Įjunkite iš budėjimo režimo į gilų budėjimą"
+
 msgid "Put TV in standby"
 msgstr "Jungti TV į budėjimo būseną"
 
@@ -10823,6 +10880,12 @@ msgstr "Raudoną, ilgai spausti"
 
 msgid "REC Symbol"
 msgstr "Simbolis REC"
+
+msgid "REC Symbol in Standby"
+msgstr "REC simbolis laukimo režime"
+
+msgid "REC Symbol in use"
+msgstr "REC simbolis, naudojamas"
 
 msgid "Reception lists"
 msgstr "Priėmimo sąrašai"
@@ -11049,7 +11112,7 @@ msgid "Remove all cuts and marks"
 msgstr "Pašalinti visus iškirpimus ir žymeklius"
 
 msgid "remove all new found flags"
-msgstr "pašalinti visus žymeklius 'naujas'"
+msgstr "pašalinti visus naujai rastus žymeklius"
 
 msgid "remove before this position"
 msgstr "pašalinti po šios vietos"
@@ -11094,7 +11157,7 @@ msgid "Remove items from trash can after (days)"
 msgstr "Pašalinti elementus iš šiukšlinę gali po (dienų)"
 
 msgid "remove new found flag"
-msgstr "pašalinti žymeklį 'naujas'"
+msgstr "pašalinti naujai rastą žymeklį"
 
 msgid "Remove plugins"
 msgstr "Pašalinti priedus"
@@ -11429,6 +11492,9 @@ msgstr "Rotoriaus žingsnio pozicija:"
 
 msgid "Rotor turning speed"
 msgstr "Rotoriaus sukimosi greitis"
+
+msgid "Routing request"
+msgstr "Maršrutizavimo užklausa"
 
 msgid "Run"
 msgstr "Vykdyti"
@@ -12134,6 +12200,9 @@ msgstr "Siųsti DiSEqC"
 msgid "Send DiSEqC only on satellite change"
 msgstr "Siųsti DiSEqC tik palydovo pakeitimui"
 
+msgid "Send repeated standby and wakeup messages"
+msgstr "Siųsti kartotinius laukimo ir žadinimo pranešimus"
+
 msgid "Send yourself a copy ?"
 msgstr "Siųsti kopiją sau ?"
 
@@ -12790,9 +12859,6 @@ msgstr "Radijo režime rodyti fono paveikslėlį"
 msgid "Show background when tuned to a radio channel."
 msgstr "Perjungus į radijo režimą, rodyti fono paveikslėlį."
 
-msgid "Show blinking Clock in Standby on Display during recording"
-msgstr "Įrašymo metu ir budėjimo režime monitoriuje rodyti mirksintį laikrodį"
-
 msgid "Show blinking Clock on Display during recording"
 msgstr "Įrašymo metu rodyti mirksintį laikrodį"
 
@@ -12989,6 +13055,9 @@ msgstr "Naujus/nežiūrėtus įvykius pažymėti logotipu"
 msgid "Show in extensions list ?"
 msgstr "Rodyti plėtinių sąraše?"
 
+msgid "Show in Standby"
+msgstr "Rodyti budėjimo režime"
+
 msgid "Show info"
 msgstr "Rodyti informaciją"
 
@@ -13107,7 +13176,7 @@ msgid "Show picon background colour"
 msgstr "Rodyti piktogramos fono spalvą"
 
 msgid "show picons in quickzap"
-msgstr "Rodyti logotipus greitame perjungime"
+msgstr "rodyti logotipus greitame jungime"
 
 msgid "show picons in service list"
 msgstr "kanalų pasirinkimo sąraše rodyti kanalų logotipus"
@@ -13843,6 +13912,15 @@ msgstr "Budėjimo režimas be TV išjungimo"
 msgid "Start"
 msgstr "Pradėti"
 
+msgid "Start a 'wakeup' power timer"
+msgstr "Paleisti maitinimo laikmačio 'pabudimą'"
+
+msgid "Start a 'zap and record' recording timer"
+msgstr "Paleisti 'jungti iš įrašyti' įrašymo laikmatį"
+
+msgid "Start a 'zap' recording timer"
+msgstr "Paleisti 'zap' įrašymo laikmatį"
+
 msgid "Start attempts"
 msgstr "Paleisties bandymai"
 
@@ -14506,7 +14584,7 @@ msgid ""
 "The Cool TV Guide plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Cool TV vadovo priedas neįdiegtas!\n"
+"Geras TV vadovo priedas neįdiegtas!\n"
 "Įdiekite jį."
 
 msgid "The current update may be unstable"
@@ -15001,6 +15079,12 @@ msgstr ""
 "failų atkūrimo metu."
 
 msgid ""
+"This option allows you choose how to display the Time or nothing in Standby"
+msgstr ""
+"Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėjimo "
+"režime"
+
+msgid ""
 "This option allows you choose the background colour of transparent picons."
 msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
 
@@ -15346,6 +15430,9 @@ msgstr "Laiką"
 msgid "Time between start attempts (sec.)"
 msgstr "Laikas tarp bandymų paleisti (sek.)"
 
+msgid "Time delay to handle the TV event"
+msgstr "Laiko delsa televizijos įvykiui valdyti"
+
 msgid "Time for next LCD scrolling"
 msgstr "Laikas kito LCD slinkimui"
 
@@ -15656,6 +15743,9 @@ msgstr "tradicinis (greitas), sureguliuokite"
 msgid "Traditional Chinese"
 msgstr "Tradicinė kinų"
 
+msgid "Trafic light state is '%s' - please use a another image."
+msgstr "Šviesos srauto būklė yra '%s' - naudokite kitą atvaizdą."
+
 msgid "Transcode"
 msgstr "Perkoduoti"
 
@@ -15672,7 +15762,10 @@ msgid "Translations"
 msgstr "Vertimai"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Audronis Grincevičius (ADGA) Pasvalys, Lietuva, adga45@gmail.com"
+msgstr ""
+"Audronis Grincevičius (ADGA) Pasvalys, Lietuva, \n"
+"adga45@gmail.com\n"
+"2018-09-07 versija"
 
 msgid "Transmission mode"
 msgstr "Perdavimo būdas"
@@ -15726,6 +15819,14 @@ msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr ""
 "Bandoma rasti veikiančius transponderius antžeminės televizijos tinkle.. "
 "palaukite..."
+
+msgid "Try to send more messages if not all commands are executed.\n"
+msgstr ""
+"Bandyti siųsti daugiau pranešimų, jei ne visos komandos yra vykdomos.\n"
+
+msgid "Try to slow down the send interval if not all commands are executed.\n"
+msgstr ""
+"Bandyti sulėtinti siuntimo intervalą, jei ne visos komandos yra vykdomos.\n"
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
@@ -15862,8 +15963,17 @@ msgstr "Televizija"
 msgid "TV button mode"
 msgstr "TV mygtuko režimas"
 
+msgid "TV has another input active"
+msgstr "TV turi dar vieną aktyvųjį įėjimą"
+
 msgid "TV physical address report"
 msgstr "TV fizinio adreso ataskaita"
+
+msgid "TV was already on powered"
+msgstr "TV jau įjungtas"
+
+msgid "TV was not in standby mode at startup"
+msgstr "Paleisties metu TV nebuvo laukimo režime"
 
 msgid "Two"
 msgstr "Du"
@@ -16478,7 +16588,7 @@ msgid "Video enhancement preview"
 msgstr "Vaizdo gerinimo peržiūra"
 
 msgid "Video enhancement setup"
-msgstr "Vaizdo gerinimo nustatymas"
+msgstr "Vaizdo gerinimo valdymas"
 
 msgid ""
 "Video input selection\n"
@@ -16556,7 +16666,7 @@ msgid "VideoEnhancement"
 msgstr "Vaizdo gerinimas"
 
 msgid "VideoEnhancement Setup"
-msgstr "Vaizdo gerinimo nustatymas"
+msgstr "Vaizdo gerinimo valdymas"
 
 msgid "VideoEnhancementPreview"
 msgstr "Vaizdo gerinimo peržiūra"
@@ -16695,6 +16805,9 @@ msgstr "W"
 
 msgid "wait for mmi..."
 msgstr "laukite atsakymo iš mmi..."
+
+msgid "Wait for timesync at startup"
+msgstr "Laukite laiko sinchronizavimo paleisties metu"
 
 msgid "Wait please while creating swapfile..."
 msgstr "Palaukite, kol kuriamas mainų failas..."
@@ -18922,6 +19035,43 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
+#~ msgid "Greek, Modern (1453-)"
+#~ msgstr "Graikų, modernus (1453-)"
+
+#~ msgid "Video:"
+#~ msgstr "Vaizdas:"
+
+#~ msgid "Audio:"
+#~ msgstr "Garsas:"
+
+#~ msgid "Internal Flash"
+#~ msgstr "Vidinė atmintis"
+
+#~ msgid "Show blinking Clock in Standby on Display during recording"
+#~ msgstr ""
+#~ "Įrašymo metu ir budėjimo režime monitoriuje rodyti mirksintį laikrodį"
+
+#~ msgid "Later"
+#~ msgstr "Vėliau"
+
+#~ msgid "CPU-Load: %s"
+#~ msgstr "Procesoriaus apkrova: %s"
+
+#~ msgid "CPU-Temp: %s"
+#~ msgstr "CPU temperatūra: %s"
+
+#~ msgid "SYS-Temp: %s"
+#~ msgstr "SIST. Temp: %s"
+
+#~ msgid "RAM-Free: %s MB"
+#~ msgstr "RAM laisva: %s MB"
+
+#~ msgid "Flash Memory free: %s MByte"
+#~ msgstr "Laisvos vidinės atminties: %s MBaitai"
+
+#~ msgid "CPU-Speed: %s MHz"
+#~ msgstr "CPU greitis: %s MHz"
+
 #~ msgid ""
 #~ "\n"
 #~ "%d.%d.%d, %2d:%02d  -  %s"
@@ -18956,36 +19106,6 @@ msgstr "Zimbabvė"
 #~ msgid "This allows you to show skinpacks in downloads"
 #~ msgstr ""
 #~ "Ši parinktis leidžia jums parodyti temų paketus, skirtus atsisiuntimui"
-
-#~ msgid "CPU-Load: %s"
-#~ msgstr "Procesoriaus apkrova: %s"
-
-#~ msgid "CPU-Temp: %s"
-#~ msgstr "CPU temperatūra: %s"
-
-#~ msgid "SYS-Temp: %s"
-#~ msgstr "SIST. Temp: %s"
-
-#~ msgid "RAM-Free: %s MB"
-#~ msgstr "RAM laisva: %s MB"
-
-#~ msgid "Flash Memory free: %s MByte"
-#~ msgstr "Laisvos vidinės atminties: %s MBaitai"
-
-#~ msgid "CPU-Speed: %s MHz"
-#~ msgstr "CPU greitis: %s MHz"
-
-#~ msgid "Video:"
-#~ msgstr "Vaizdas:"
-
-#~ msgid "Audio:"
-#~ msgstr "Garsas:"
-
-#~ msgid "Greek, Modern (1453-)"
-#~ msgstr "Graikų, modernus (1453-)"
-
-#~ msgid "Internal Flash"
-#~ msgstr "Vidinė atmintis"
 
 #~ msgid "Down long"
 #~ msgstr "Žemyn (ilgai spausti)"
@@ -19117,10 +19237,6 @@ msgstr "Zimbabvė"
 
 #~ msgid "Add bouquet services"
 #~ msgstr "Pridėti paketo kanalus"
-
-#~ msgctxt "third event: 'third' event label"
-#~ msgid "Later"
-#~ msgstr "Vėliau"
 
 #~ msgid "Leave DVD Player?"
 #~ msgstr "Išeiti iš DVD grotuvo?"

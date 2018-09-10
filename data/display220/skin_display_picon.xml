@@ -29,7 +29,7 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill" >
-		<widget source="session.CurrentService" render="LcdPicon" zPosition="1" position="center,10" size="220,80" alphatest="blend" >
+		<widget source="session.CurrentService" render="LcdPicon" zPosition="1" position="center,10" size="133,80" alphatest="blend" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,90" size="220,55" font="FdLcD;22" halign="center" >
