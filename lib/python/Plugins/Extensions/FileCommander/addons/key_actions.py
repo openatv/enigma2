@@ -147,6 +147,11 @@ class key_actions(stat_info):
 	def change_mod(self, dirsource):
 		filename = dirsource.getFilename()
 		sourceDir = dirsource.getCurrentDirectory()  # self.SOURCELIST.getCurrentDirectory()
+
+		if filename is None:
+			self.session.open(MessageBox, _("It is not possible to change the file mode of <List of Storage Devices>"), type=MessageBox.TYPE_ERROR)
+			return
+
 		self.longname = sourceDir + filename
 		if not dirsource.canDescent():
 			askList = [(_("Set archive mode (644)"), "CHMOD644"), (_("Set executable mode (755)"), "CHMOD755"), (_("Cancel"), "NO")]
@@ -304,6 +309,11 @@ class key_actions(stat_info):
 			return
 
 		filename = self.SOURCELIST.getFilename()
+
+		if filename is None:
+			self.session.open(MessageBox, _("It is not possible to run '%s' on <List of Storage Devices>") % prog, type=MessageBox.TYPE_ERROR)
+			return
+
 		if filename.startswith("/"):
 			if prog != "file":
 				self.session.open(MessageBox, _("You can't usefully run '%s' on a directory.") % prog, type=MessageBox.TYPE_ERROR, close_on_any_key=True)
@@ -398,6 +408,11 @@ class key_actions(stat_info):
 			self.session.open(MessageBox, _("None of the hash programs for the hashes %s are available") % ''.join(config.plugins.filecommander.hashes.value), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 			return
 		filename = self.SOURCELIST.getFilename()
+
+		if filename is None:
+			self.session.open(MessageBox, _("It is not possible to calculate hashes on <List of Storage Devices>"), type=MessageBox.TYPE_ERROR)
+			return
+
 		if filename.startswith("/"):
 			self.session.open(MessageBox, _("The hash of a directory can't be calculated."), type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 			return
