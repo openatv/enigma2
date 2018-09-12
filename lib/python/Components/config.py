@@ -1409,7 +1409,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				else:
 					self.offset = self.marked_pos - self.visible_width + 1
 			if self.offset > 0 and self.offset + self.visible_width > textlen:
-				self.offset = max(0, len - self.visible_width)
+				self.offset = max(0, textlen - self.visible_width)
 
 	def insertChar(self, ch, pos, owr):
 		if owr or self.overwrite:
