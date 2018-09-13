@@ -688,7 +688,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
 						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
-				else:
+				elif not box_instandby:
 					self.sendStandbyNotification(True)
 
 			if isRecordTime or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
