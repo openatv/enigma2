@@ -1100,18 +1100,8 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 				"down": self.pageDown,
 			}, prio=-1)
 
-		filename = source.getFilename()
-		sourceDir = source.getCurrentDirectory()
+		self.source = source
 
-		if filename.endswith("/"):
-			self.filepath = os.path.normpath(filename)
-			if self.filepath == '/':
-				self.filename = '/'
-			else:
-				self.filename = os.path.normpath(filename)
-		else:
-			self.filepath = os.path.join(sourceDir, filename)
-			self.filename = filename
 		self.onShown.append(self.fillList)
 
 	def pageUp(self):
@@ -1123,14 +1113,31 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 			self["list"].pageDown()
 
 	def fillList(self):
-		filename = os.path.basename(os.path.normpath(self.filename))
+		filename = self.source.getFilename()
+		sourceDir = self.source.getCurrentDirectory()
+
+		if filename is None:
+			self.session.open(MessageBox, _("It is not possible to get the file status of <List of Storage Devices>"), type=MessageBox.TYPE_ERROR)
+			self.close()
+			return
+
+		if filename.endswith("/"):
+			filepath = os.path.normpath(filename)
+			if filepath == '/':
+				filename = '/'
+			else:
+				filename = os.path.normpath(filename)
+		else:
+			filepath = os.path.join(sourceDir, filename)
+
+		filename = os.path.basename(os.path.normpath(filename))
 		self["filename"].text = filename
 		self.list = []
 
 		try:
-			st = os.lstat(self.filepath)
+			st = os.lstat(filepath)
 		except OSError as oe:
-			self.session.open(MessageBox, _("%s: %s") % (self.filepath, oe.strerror), type=MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("%s: %s") % (filepath, oe.strerror), type=MessageBox.TYPE_ERROR)
 			self.close()
 			return
 
@@ -1155,7 +1162,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 			self["link_sep"].show()
 			self["link_label"].text = _("Link target:")
 			try:
-				self["link_value"].text = os.readlink(self.filepath)
+				self["link_value"].text = os.readlink(filepath)
 			except OSError as oe:
 				self["link_value"].text = _("Can't read link contents: %s") % oe.strerror
 		else:
