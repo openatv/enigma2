@@ -275,14 +275,14 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 							(k->second.m_flags & (1<<flags)) &&
 						  ((k->second.m_device == device) || (k->second.m_device == "generic"))
 						  )
-						call_list.push_back(call_entry(c->second.m_widget, (void*)c->second.m_id, (void*)k->second.m_action));
+						call_list.push_back(call_entry(c->second.m_widget, reinterpret_cast<void*>(c->second.m_id), reinterpret_cast<void*>(k->second.m_action)));
 				}
 			}
 			else
 			{
 				// wildcard - get any keys.
 				//eDebug("[eActionMap]    native wildcard");
-				if (c->second.m_widget->event(eWidget::evtKey, (void*)key, (void*)flags))
+				if (c->second.m_widget->event(eWidget::evtKey, reinterpret_cast<void*>(key), reinterpret_cast<void*>(flags)))
 					return;
 			}
 		}

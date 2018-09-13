@@ -1024,7 +1024,7 @@ next:
 						i++, (int)it->first, (int)it->second->getStartTime(), (int)it->second->getEventID(), it->second );
 				}
 			}
-			eFatal("[eEPGCache] (1)map sizes not equal :( sid %04x tsid %04x onid %04x size %d size2 %d",
+			eFatal("[eEPGCache] (1)map sizes not equal :( sid %04x tsid %04x onid %04x size %zu size2 %zu",
 				service.sid, service.tsid, service.onid,
 				servicemap.first.size(), servicemap.second.size() );
 		}
@@ -1476,18 +1476,19 @@ void eEPGCache::save()
 			return;
 		}
 	
-		free(buf);
-	
 		// check for enough free space on storage
 		tmp=s.f_bfree;
 		tmp*=s.f_bsize;
 		if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
 		{
-			eDebug("[eEPGCache] not enough free space at '%s' %lld bytes available but %u needed", buf, tmp, (eventData::CacheSize*12)/10);
+			eDebug("[eEPGCache] not enough free space at '%s' %zu bytes available but %u needed", buf, tmp, (eventData::CacheSize*12)/10);
+			free(buf);
 			fclose(f);
 			return;
 		}
-	
+
+		free(buf);
+
 		int cnt=0;
 		unsigned int magic = 0x98765432;
 		fwrite( &magic, sizeof(int), 1, f);
@@ -3094,6 +3095,13 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 		serviceRef->getChannelID(chid);
 		chids.push_back(chid);
 		sids.push_back(serviceRef->getServiceID().get());
+
+		// disable EIT event parsing when using EPG_IMPORT
+		ePtr<eDVBService> service;
+		if (!eDVBDB::getInstance()->getService(*serviceRef, service) && service->useEIT())
+		{
+			service->m_flags |= eDVBService::dxNoEIT;
+		}
 	}
 	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_type, EPG_IMPORT);
 }
@@ -4795,7 +4803,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 		}
 		haveData |= MHW;
 
-		eDebug("[EPGC] mhw %d channels found", m_channels.size());
+		eDebug("[EPGC] mhw %zu channels found", m_channels.size());
 
 		fclose(f);
 		log_open();
@@ -4832,7 +4840,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 
 			m_themes[idx+sub_idx] = *theme;
 		}
-		eDebug("[eEPGCache] mhw %d themes found", m_themes.size());
+		eDebug("[eEPGCache] mhw %zu themes found", m_themes.size());
 		// Themes table has been read, start reading the titles table.
 		startMHWReader(0xD2, 0x90);
 		startMHWTimeout(5000);
@@ -4877,7 +4885,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 			// Titles table has been read, there are summaries to read.
 			// Start reading summaries, store corresponding titles on the fly.
 			startMHWReader(0xD3, 0x90);
-			eDebug("[eEPGCache] mhw %d titles(%d with summary) found",
+			eDebug("[eEPGCache] mhw %zu titles(%zu with summary) found",
 				m_titles.size(),
 				m_program_ids.size());
 			log_add("Titles Nbr.: %d",m_titles.size());
@@ -4914,7 +4922,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 		{
 			std::string the_text = (char *) (data + 11 + summary->nb_replays * 7);
 
-			unsigned int pos=0;
+			size_t pos = 0;
 			while((pos = the_text.find("\r\n")) != std::string::npos)
 				the_text.replace(pos, 2, " ");
 
@@ -4931,7 +4939,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 				return;	// Continue reading of the current table.
 		}
 	}
-	eDebug("[eEPGCache] mhw finished(%ld) %d summaries not found",
+	eDebug("[eEPGCache] mhw finished(%ld) %zu summaries not found",
 		::time(0),
 		m_program_ids.size());
 	log_add("Summaries not found: %d",m_program_ids.size());
@@ -5042,7 +5050,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 		log_add("Equivalences Nbr.: %d",nb_equiv);
 
 		haveData |= MHW;
-		eDebug("[eEPGCache] mhw2 %d channels found", m_channels.size());
+		eDebug("[eEPGCache] mhw2 %zu channels found", m_channels.size());
 	}
 	else if (m_MHWFilterMask2.pid == m_mhw2_channel_pid && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 1)
 	{
@@ -5577,7 +5585,7 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 		}
 		if (finish)
 		{
-			eDebug("[eEPGCache] mhw2 %d titles(%d with summary) found", m_titles.size(), m_program_ids.size());
+			eDebug("[eEPGCache] mhw2 %zu titles(%d with summary) found", m_titles.size(), m_program_ids.size());
 			log_add("Titles Nbr.: %d",m_titles.size());
 			log_add("Titles Nbr. with summary: %d",m_program_ids.size());
 			if (!m_program_ids.empty())
@@ -5753,7 +5761,7 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 			// Now store titles that do not have summaries.
 			for (std::map<uint32_t, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
 				storeMHWTitle( itTitle, "", data );
-			eDebug("[eEPGCache] mhw2 finished(%ld) %d summaries not found",
+			eDebug("[eEPGCache] mhw2 finished(%ld) %zu summaries not found",
 				::time(0),
 				m_program_ids.size());
 			log_add("Summaries not found: %d",m_program_ids.size());

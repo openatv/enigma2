@@ -831,7 +831,7 @@ void ePicLoad::decodeThumb()
 			sprintf(crcstr, "%08lX", crc32);
 
 			cachedir = m_filepara->file;
-			unsigned int pos = cachedir.find_last_of("/");
+			size_t pos = cachedir.find_last_of("/");
 			if (pos != std::string::npos)
 				cachedir = cachedir.substr(0, pos) + "/.Thumbnails";
 

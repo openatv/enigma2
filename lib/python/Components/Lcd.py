@@ -337,7 +337,7 @@ def InitLcd():
 			def setLCDModePiP(configElement):
 				pass
 			def setLCDScreenshot(configElement):
-				ilcd.setScreenShot(configElement.value)
+ 				ilcd.setScreenShot(configElement.value)
 
 			config.lcd.modepip = ConfigSelection(choices={
 					"0": _("off"),
@@ -349,7 +349,7 @@ def InitLcd():
 			else:
 				config.lcd.modepip = ConfigNothing()
 			config.lcd.screenshot = ConfigYesNo(default=False)
-			config.lcd.screenshot.addNotifier(setLCDScreenshot)
+ 			config.lcd.screenshot.addNotifier(setLCDScreenshot)
 
 			config.lcd.modeminitv = ConfigSelection(choices={
 					"0": _("normal"),

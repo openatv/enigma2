@@ -28,7 +28,7 @@ class FontRenderClass;
 class Font;
 class gDC;
 class gFont;
-class gRGB;
+struct gRGB;
 
 #endif
 class fontRenderClass

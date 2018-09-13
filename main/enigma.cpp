@@ -229,6 +229,16 @@ void quitMainloop(int exitCode)
 	eApp->quit(0);
 }
 
+void pauseInit()
+{
+	eInit::pauseInit();
+}
+
+void resumeInit()
+{
+	eInit::resumeInit();
+}
+
 static void sigterm_handler(int num)
 {
 	quitMainloop(128 + num);

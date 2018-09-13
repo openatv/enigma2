@@ -2,6 +2,7 @@ from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
 from Components.Harddisk import harddiskmanager
+from Tools.LoadPixmap import LoadPixmap
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
@@ -418,10 +419,22 @@ class ConfigSelection(ConfigElement):
 # descriptions.
 #
 class ConfigBoolean(ConfigElement):
-	def __init__(self, default = False, descriptions = {False: _("false"), True: _("true")}):
+	def __init__(self, default = False, descriptions = {False: _("false"), True: _("true")}, graphic=True):
 		ConfigElement.__init__(self)
 		self.descriptions = descriptions
 		self.value = self.last_value = self.default = default
+		self.graphic = False
+		if graphic:
+			from skin import switchPixmap
+			offPath = switchPixmap.get('menu_off')
+			onPath = switchPixmap.get('menu_on')
+			if offPath and onPath:
+				falseIcon = LoadPixmap(offPath, cached=True)
+				trueIcon = LoadPixmap(onPath, cached=True)
+				if falseIcon and trueIcon:
+					self.falseIcon = falseIcon
+					self.trueIcon = trueIcon
+					self.graphic = True
 
 	def handleKey(self, key):
 		if key in (KEY_LEFT, KEY_RIGHT):
@@ -435,7 +448,14 @@ class ConfigBoolean(ConfigElement):
 		return self.descriptions[self.value]
 
 	def getMulti(self, selected):
-		return ("text", self.descriptions[self.value])
+		from config import config
+		if self.graphic and config.usage.boolean_graphic.value:
+			if self.value:
+				return ('pixmap', self.trueIcon)
+			else:
+				return ('pixmap', self.falseIcon)
+		else:
+			return ("text", self.descriptions[self.value])
 
 	def tostring(self, value):
 		if not value:

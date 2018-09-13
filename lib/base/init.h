@@ -12,12 +12,15 @@ class eInit
 	static std::list<std::pair<int,eAutoInit*> > *cl;
 	friend class eAutoInit;
 	static int rl;
+	static bool paused;
 public:
 	eInit();
 	~eInit();
 	static void setRunlevel(int rlev);
 	static void add(int trl, eAutoInit *c);
 	static void remove(int trl, eAutoInit *c);
+	static void pauseInit();
+	static void resumeInit();
 };
 
 class eAutoInit
@@ -43,18 +46,23 @@ eAutoInitP1: protected eAutoInit
 	const T2 &arg;
 	void initNow()
 	{
-		t=new T1(arg);
+		if (t == nullptr)
+		{
+			eDebug("[eInit] + (%d) %s", rl, getDescription());
+			t = new T1(arg);
+		}
 	}
 	void closeNow()
 	{
 		delete t;
+		t = nullptr;
 	}
 public:
 	operator T1*()
 	{
 		return t;
 	}
-	eAutoInitP1(const T2 &arg, int runl, const char *description): eAutoInit(runl, description), arg(arg)
+	eAutoInitP1(const T2 &arg, int runl, const char *description): eAutoInit(runl, description), t(nullptr), arg(arg)
 	{
 		eInit::add(rl, this);
 	}
@@ -70,11 +78,16 @@ eAutoInitP0: protected eAutoInit
 	T1 *t;
 	void initNow()
 	{
-		t=new T1();
+		if (t == nullptr)
+		{
+			eDebug("[eInit] + (%d) %s", rl, getDescription());
+			t = new T1();
+		}
 	}
 	void closeNow()
 	{
 		delete t;
+		t = nullptr;
 	}
 public:
 	operator T1*()
@@ -85,7 +98,7 @@ public:
 	{
 		return t;
 	}
-	eAutoInitP0(int runl, const char *description): eAutoInit(runl, description)
+	eAutoInitP0(int runl, const char *description): eAutoInit(runl, description), t(nullptr)
 	{
 		eInit::add(rl, this);
 	}
@@ -101,11 +114,15 @@ eAutoInitPtr: protected eAutoInit
 	ePtr<T1> t;
 	void initNow()
 	{
-		t = new T1();
+		if (t == nullptr)
+		{
+			eDebug("[eInit] + (%d) %s", rl, getDescription());
+			t = new T1();
+		}
 	}
 	void closeNow()
 	{
-		t = 0;
+		t = nullptr;
 	}
 public:
 	operator T1*()
@@ -116,7 +133,7 @@ public:
 	{
 		return t;
 	}
-	eAutoInitPtr(int runl, const char *description): eAutoInit(runl, description)
+	eAutoInitPtr(int runl, const char *description): eAutoInit(runl, description), t(nullptr)
 	{
 		eInit::add(rl, this);
 	}
