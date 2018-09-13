@@ -286,10 +286,8 @@ def parseParameter(s):
 		return float(s)
 	elif s in colorNames:
 		return colorNames[s].argb()
-	elif s.lstrip('-+ ').isdigit():
-		return int(s)
 	else:
-		return s
+		return int(s)
 
 def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"))):
 	# walk all attributes
