@@ -22,49 +22,40 @@ msgstr "Routinganfrage"
 msgid "TV physical address report"
 msgstr "TV Addressbericht"
 
-msgid "Put from standby to deep standby"
-msgstr "Schalte vom Standby in den Deep Standby-Modus"
+msgid "Check state from TV"
+msgstr "Überprüfung des TV Status"
 
-msgid "If the receiver in standby, then switch to deep standby?"
-msgstr "Wenn der Receiver im Standby-Modus ist, in den Deep-Standby-Modus wechseln?"
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
+msgstr "Es wird versucht den aktuellen TV-Status zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren."
 
 msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsyncronisation"
 
-msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
-msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist, wird gewartet bis die Systemzeit syncronisiert wurde bevor der TV angeschaltet. So kann ein Einschalten verhindert werden wenn ein Timer folgt. Die Syncronisierung dauert maximal 2 Minuten."
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. If necessary, the devices wakeup will start after a maximum of 2 minutes."
+msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist wird gewartet bis die Systemzeit syncronisiert wurde. Bei Bedarf wird der Geräte Wakeup nach maximal 2 Minuten gestartet."
 
-msgid "TV was not in standby mode at startup"
-msgstr "TV war beim start nicht im Standby"
+msgid "Even if TV has another input active?"
+msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
 
-msgid "TV was already on powered"
-msgstr "TV war bereits eingeschaltet"
+msgid "Even if a 'zap' recording timer starting?"
+msgstr "Auch wenn ein 'Umschalten' Aufnahme Timer startet?"
 
-msgid "TV has another input active"
-msgstr "TV hat einen anderen Eingang aktiv"
+msgid "Even if a 'zap and record' recording timer starting?"
+msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
 
-msgid "Start a 'zap' recording timer"
-msgstr "Beim start eines 'Umschalten' Timers"
+msgid "Even if a 'wakeup' power timer starting?"
+msgstr "Auch wenn ein 'Aufwecken' Power-Timer startet?"
 
-msgid "Start a 'zap and record' recording timer"
-msgstr "Beim start eines 'Umschalten und Aufnehmen' Timers"
-
-msgid "Start a 'wakeup' power timer"
-msgstr "Beim start eines 'Aufwecken' Power-Timers"
-
-msgid "Try to send more messages if not all commands are executed.\n"
-msgstr "Versuchen Sie mehrere Mitteilungen zu senden wenn nicht alle Kommandos ausgeführt werden.\n"
+msgid "Try to send repeated commands if not all are executed. This is done at a slower send interval.\n"
+msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle ausgeführt werden. Dies erfolgt in einem langsameren Sendeintervall.\n"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(z.Bsp. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
 
-msgid "If the power state is reached, the repeated messages are stopped."
-msgstr "Ist der erwartete Betriebszustand erreicht, wird die Wiederholung der Mitteilungen gestoppt."
+msgid "Repeat the sent standby and wakeup commands"
+msgstr "Sende wiederholende Aufwach- und Standby Kommandos"
 
-msgid "Send repeated standby and wakeup messages"
-msgstr "Sende wiederholende Aufwach- und Standby Mitteilungen"
-
-msgid "Check power state from TV"
+msgid "Check power and input state from TV"
 msgstr "Überprüfe den Betriebszustand vom TV"
 
 msgid "Handle input from TV"
@@ -73,11 +64,11 @@ msgstr "TV-Eingänge verwalten"
 msgid "Try to slow down the send interval if not all commands are executed.\n"
 msgstr "Versuchen Sie das Sendeintervall zu verlangsamen wenn nicht alle Kommandos ausgeführt werden.\n"
 
-msgid "Time delay to handle the TV event"
-msgstr "Zeitverzögerung für die Ausführung des TV-Ereignisses"
+msgid "Time delay until standby or deep standby"
+msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
 
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr "'TV-Standby verwalten' hat eine höhere Priorität als 'TV-Eingänge verwalten'"
+msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'"
 
 msgid "%d sec"
 msgstr "%d sek"
