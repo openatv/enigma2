@@ -117,7 +117,7 @@ config.plugins.CableScan.modulation = ConfigSelection(
 		(str(eDVBFrontendParametersCable.Modulation_QAM128), "QAM128"),
 		(str(eDVBFrontendParametersCable.Modulation_QAM256), "QAM256")],
 	default = str(eDVBFrontendParametersCable.Modulation_QAM64))
-config.plugins.CableScan.auto = ConfigYesNo(default = True)
+config.plugins.CableScan.auto = ConfigYesNo(default = False)
 
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """

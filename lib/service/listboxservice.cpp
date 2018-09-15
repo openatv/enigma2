@@ -878,7 +878,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					tmp.setWidth(((!isPlayable || m_column_width == -1 || (!piconPixmap && !m_column_width)) ? tmp.width() : m_column_width) - xoffs);
 				}
 
-				eTextPara *para = new eTextPara(tmp);
+				ePtr<eTextPara> para = new eTextPara(tmp);
 				para->setFont(m_element_font[e]);
 				para->renderString(text.c_str());
 

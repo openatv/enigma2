@@ -241,8 +241,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				Screens.Standby.TVinStandby.skipHdmiCecNow('wakeuppowertimer')
 				if Screens.Standby.inStandby:
 					Screens.Standby.inStandby.Power()
-				else:
-					Screens.Standby.TVinStandby.setTVstate('on')
 				return True
 
 			elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
@@ -532,8 +530,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				Screens.Standby.TVinStandby.skipHdmiCecNow('wakeuppowertimer')
 				if Screens.Standby.inStandby:
 					Screens.Standby.inStandby.Power()
-				else:
-					Screens.Standby.TVinStandby.setTVstate('on')
 			elif self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby: # not already in standby
 					callback = self.sendStandbyNotification
