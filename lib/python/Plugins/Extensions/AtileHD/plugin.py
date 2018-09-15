@@ -576,12 +576,14 @@ class AtileHDScreens(Screen):
 			makedirs(file_dir_path)
 		dir_global_skinparts = resolveFilename(SCOPE_SKIN, "skinparts")
 		if path.exists(dir_global_skinparts):
-			for f in listdir(dir_global_skinparts):
-				if path.exists(dir_global_skinparts + "/" + f + "/" + f + "_Atile.xml"):
-					if not path.exists(dir_path + "/skin_" + f + ".xml"):
-						symlink(dir_global_skinparts + "/" + f + "/" + f + "_Atile.xml", dir_path + "/skin_" + f + ".xml")
-					if not path.exists(dir_skinparts_path + "/" + f):
-						symlink(dir_global_skinparts + "/" + f, dir_skinparts_path + "/" + f)
+			for pack in listdir(dir_global_skinparts):
+				if path.isdir(dir_global_skinparts + "/" + pack):
+					for f in listdir(dir_global_skinparts + "/" + pack):
+						if path.exists(dir_global_skinparts + "/" + pack + "/" + f + "/" + f + "_Atile.xml"):
+							if not path.exists(dir_path + "/skin_" + f + ".xml"):
+								symlink(dir_global_skinparts + "/" + pack + "/" + f + "/" + f + "_Atile.xml", dir_path + "/skin_" + f + ".xml")
+							if not path.exists(dir_skinparts_path + "/" + f):
+								symlink(dir_global_skinparts + "/" + pack + "/" + f, dir_skinparts_path + "/" + f)
 		list_dir = sorted(listdir(dir_path), key=str.lower)
 		for f in list_dir:
 			if f.endswith('.xml') and f.startswith('skin_'):
