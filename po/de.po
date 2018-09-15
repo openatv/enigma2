@@ -22,17 +22,14 @@ msgstr "Routinganfrage"
 msgid "TV physical address report"
 msgstr "TV Addressbericht"
 
-msgid "Check state from TV"
-msgstr "Überprüfung des TV Status"
-
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
-msgstr "Es wird versucht den aktuellen TV-Status zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren."
+msgstr "Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren."
 
 msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsyncronisation"
 
-msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. If necessary, the devices wakeup will start after a maximum of 2 minutes."
-msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist wird gewartet bis die Systemzeit syncronisiert wurde. Bei Bedarf wird der Geräte Wakeup nach maximal 2 Minuten gestartet."
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."
+msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist wird gewartet bis die Systemzeit syncronisiert wurde. Je nach Erfordernis wird das aufwecken der Geräte in maximal 2 Minuten fortgesetzt."
 
 msgid "Even if TV has another input active?"
 msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
@@ -46,8 +43,8 @@ msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
 msgid "Even if a 'wakeup' power timer starting?"
 msgstr "Auch wenn ein 'Aufwecken' Power-Timer startet?"
 
-msgid "Try to send repeated commands if not all are executed. This is done at a slower send interval.\n"
-msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle ausgeführt werden. Dies erfolgt in einem langsameren Sendeintervall.\n"
+msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
+msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle Kommandos ausgeführt werden. Dies erfolgt in einem langsameren Sendeintervall."
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(z.Bsp. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"

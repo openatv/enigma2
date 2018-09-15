@@ -76,6 +76,16 @@ class HdmiCec:
 			self.queue = []
 			self.messages = []
 
+			self.handleTimer = eTimer()
+			self.repeatTimer = eTimer()
+			self.repeatTimer.callback.append(self.repeatMessages)
+			self.repeatCounter = 0
+			self.what = ''
+			self.tv_lastrequest = ''
+			self.tv_powerstate = ''
+			self.tv_skip_messages = False
+			self.activesource = False
+
 			eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
 			config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
 			config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
@@ -86,16 +96,6 @@ class HdmiCec:
 			eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
 			config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
 			config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
-
-			self.handleTimer = eTimer()
-			self.repeatTimer = eTimer()
-			self.repeatTimer.callback.append(self.repeatMessages)
-			self.repeatCounter = 0
-			self.what = ''
-			self.tv_lastrequest = ''
-			self.tv_powerstate = ''
-			self.tv_skip_messages = False
-			self.activesource = False
 
 			self.sethdmipreemphasis()
 			self.checkTVstate('standby')
@@ -160,6 +160,7 @@ class HdmiCec:
 					self.tv_powerstate = "get_on"
 				elif data[0] == '\x03':
 					self.tv_powerstate = "get_standby"
+				self.checkTVstate('powerstate')
 			elif cmd == 0x36: # handle standby request from the tv
 				if config.hdmicec.handle_tv_standby.value != 'disabled':
 					self.handleTVRequest('tvstandby')
@@ -367,14 +368,23 @@ class HdmiCec:
 				Console().ePopen("/usr/script/TvOff.sh &")
 
 	def checkTVstate(self, state = ''):
-		if state == 'on' and config.hdmicec.control_tv_wakeup.value:
-			self.activesource = False
-			self.tv_powerstate = 'standby'
-			self.sendMessage(0, 'routinginfo')
-		elif state == 'activesource':
-			self.tv_powerstate = 'on'
-		elif state == 'tvstandby' or (state == 'standby' and config.hdmicec.control_tv_standby.value):
-			self.tv_powerstate = 'standby'
+		if config.hdmicec.check_tv_state.value:
+			if state in ('on', 'standby'):
+				self.sendMessage(0, 'powerstate')
+			elif state == 'powerstate' and 'on' in self.tv_powerstate:
+				self.activesource = False
+				self.sendMessage(0, 'routinginfo')
+			elif state == 'tvstandby':
+				self.tv_powerstate = 'standby'
+		else:
+			if state == 'on' and config.hdmicec.control_tv_wakeup.value:
+				self.activesource = False
+				self.tv_powerstate = 'standby'
+				self.sendMessage(0, 'routinginfo')
+			elif state == 'activesource':
+				self.tv_powerstate = 'on'
+			elif state == 'tvstandby' or (state == 'standby' and config.hdmicec.control_tv_standby.value):
+				self.tv_powerstate = 'standby'
 
 	def handleTimerStop(self, reset = False):
 		if reset:
