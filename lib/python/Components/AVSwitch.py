@@ -1060,6 +1060,9 @@ def InitAVSwitch():
 		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
 			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI")), ("force_ddp",  _("force AC3plus"))]
 			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "force_ac3")
+		elif getBoxType() in ('gbquad4k', 'gbue4k'):
+			choice_list = [("downmix", _("downmix")), ("passthrough", _("passthrough")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("force_dts",  _("convert to DTS"))]
+			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "force_ac3")
 		else:
 			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3"))]
 			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "force_ac3")
