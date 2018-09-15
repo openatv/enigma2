@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2018-09-07 18:50+0300\n"
+"POT-Creation-Date: 2018-09-16 00:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -960,6 +960,9 @@ msgstr ""
 msgid "AAC downmix"
 msgstr ""
 
+msgid "AAC plus downmix"
+msgstr ""
+
 msgid "AAC transcoding"
 msgstr ""
 
@@ -1441,6 +1444,9 @@ msgid "Always include ECM messages in recordings. This overrides the individual 
 msgstr ""
 
 msgid "am"
+msgstr ""
+
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
 msgstr ""
 
 msgid "An empty filename is illegal."
@@ -2574,7 +2580,7 @@ msgstr ""
 msgid "Check HDD"
 msgstr ""
 
-msgid "Check power state from TV"
+msgid "Check power and input state from TV"
 msgstr ""
 
 msgid "Check the internet connection"
@@ -3220,6 +3226,9 @@ msgid "Configure whether another tuner from the preferred list is allocated for 
 msgstr ""
 
 msgid "Configure whether another tuner from the preferred list is allocated instead of sharing a tuner that is already active recording the same channel."
+msgstr ""
+
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
@@ -4887,6 +4896,18 @@ msgstr ""
 msgid "EtPortal"
 msgstr ""
 
+msgid "Even if TV has another input active?"
+msgstr ""
+
+msgid "Even if a 'wakeup' power timer starting?"
+msgstr ""
+
+msgid "Even if a 'zap' recording timer starting?"
+msgstr ""
+
+msgid "Even if a 'zap and record' recording timer starting?"
+msgstr ""
+
 msgid "Event font size"
 msgstr ""
 
@@ -5098,6 +5119,9 @@ msgid "Extra motor options"
 msgstr ""
 
 msgid "extra wide"
+msgstr ""
+
+msgid "extrawide"
 msgstr ""
 
 msgid "Extrude from left"
@@ -6103,22 +6127,13 @@ msgstr ""
 msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
 msgstr ""
 
-msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the power state is reached, the repeated messages are stopped."
-msgstr ""
-
-msgid "If the receiver in standby, then switch to deep standby?"
-msgstr ""
-
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr ""
-
-msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
 msgstr ""
 
 msgid "If you see this, something is wrong with\nyour scart connection. Press OK to return."
@@ -9511,9 +9526,6 @@ msgstr ""
 msgid "purge deleted userbouquets"
 msgstr ""
 
-msgid "Put from standby to deep standby"
-msgstr ""
-
 msgid "Put TV in standby"
 msgstr ""
 
@@ -10054,6 +10066,9 @@ msgid "Repeat Display Message"
 msgstr ""
 
 msgid "repeat playlist"
+msgstr ""
+
+msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
 msgid "Repeat type"
@@ -10938,9 +10953,6 @@ msgid "Send DiSEqC"
 msgstr ""
 
 msgid "Send DiSEqC only on satellite change"
-msgstr ""
-
-msgid "Send repeated standby and wakeup messages"
 msgstr ""
 
 msgid "Send yourself a copy ?"
@@ -12536,15 +12548,6 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-msgid "Start a 'wakeup' power timer"
-msgstr ""
-
-msgid "Start a 'zap and record' recording timer"
-msgstr ""
-
-msgid "Start a 'zap' recording timer"
-msgstr ""
-
 msgid "Start attempts"
 msgstr ""
 
@@ -13696,7 +13699,7 @@ msgstr ""
 msgid "Time between start attempts (sec.)"
 msgstr ""
 
-msgid "Time delay to handle the TV event"
+msgid "Time delay until standby or deep standby"
 msgstr ""
 
 msgid "Time for next LCD scrolling"
@@ -14060,7 +14063,7 @@ msgstr ""
 msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr ""
 
-msgid "Try to send more messages if not all commands are executed.\n"
+msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
 msgstr ""
 
 msgid "Try to slow down the send interval if not all commands are executed.\n"
@@ -14180,9 +14183,6 @@ msgstr ""
 msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
-msgid "Turn on the TV from standby with 'zap and record' timer"
-msgstr ""
-
 msgid "Turning step size"
 msgstr ""
 
@@ -14192,16 +14192,7 @@ msgstr ""
 msgid "TV button mode"
 msgstr ""
 
-msgid "TV has another input active"
-msgstr ""
-
 msgid "TV physical address report"
-msgstr ""
-
-msgid "TV was already on powered"
-msgstr ""
-
-msgid "TV was not in standby mode at startup"
 msgstr ""
 
 msgid "Two"
@@ -14453,6 +14444,9 @@ msgid "USB stick wizard"
 msgstr ""
 
 msgid "Use"
+msgstr ""
+
+msgid "use_hdmi_cacenter"
 msgstr ""
 
 msgid "Use a gateway"
