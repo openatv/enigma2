@@ -22,8 +22,8 @@ msgstr "Routinganfrage"
 msgid "TV physical address report"
 msgstr "TV Addressbericht"
 
-msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
-msgstr "Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren."
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions."
+msgstr "Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren.\nAndererseits wird versucht auf verschiedene Betriebszustände besser zu reagieren."
 
 msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsyncronisation"
@@ -66,6 +66,18 @@ msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
 
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'"
+
+msgid "Slowing down for the send interval"
+msgstr "Verlangsamung das Sendeintervalls"
+
+msgid "Repeat the standby commands?"
+msgstr "Auch die Standby Kommandos wiederholen?"
+
+msgid "Is not necessary in most cases."
+msgstr "Ist in den meisten Fällen nicht erforderlich."
+
+msgid "The time is multiplied by the repeat counter and added to the minimum send interval."
+msgstr "Die Zeit wird mit dem Wiederholungszähler multipliziert und zum minimalen Sendeintervall addiert."
 
 msgid "%d sec"
 msgstr "%d sek"
