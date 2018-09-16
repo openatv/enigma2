@@ -22,8 +22,8 @@ msgstr "Routinganfrage"
 msgid "TV physical address report"
 msgstr "TV Addressbericht"
 
-msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions."
-msgstr "Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren.\nAndererseits wird versucht auf verschiedene Betriebszustände besser zu reagieren."
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
+msgstr "Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren."
 
 msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsyncronisation"
@@ -66,18 +66,6 @@ msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
 
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'"
-
-msgid "Slowing down for the send interval"
-msgstr "Verlangsamung das Sendeintervalls"
-
-msgid "Repeat the standby commands?"
-msgstr "Auch die Standby Kommandos wiederholen?"
-
-msgid "Is not necessary in most cases."
-msgstr "Ist in den meisten Fällen nicht erforderlich."
-
-msgid "The time is multiplied by the repeat counter and added to the minimum send interval."
-msgstr "Die Zeit wird mit dem Wiederholungszähler multipliziert und zum minimalen Sendeintervall addiert."
 
 msgid "%d sec"
 msgstr "%d sek"
@@ -791,7 +779,7 @@ msgstr "AB"
 
 #
 msgid "PCM Multichannel"
-msgstr "PCM-Multikanal"
+msgstr "PCM-Mehrkanal"
 
 #
 msgid "AC3 downmix"
@@ -799,11 +787,11 @@ msgstr "AC3-Downmix"
 
 #
 msgid "AC3 plus transcoding"
-msgstr "AC3-Plus Transcoding"
+msgstr "AC3+-Transkoding"
 
 #
 msgid "AC3plus transcoding"
-msgstr "AC3-Plus Transcoding"
+msgstr "AC3+-Transkoding"
 
 #
 msgid "AAC downmix"
@@ -811,15 +799,15 @@ msgstr "AAC-Downmix"
 
 #
 msgid "AAC plus downmix"
-msgstr "AAC-Plus Downmix"
+msgstr "AAC+-Downmix"
 
 #
 msgid "AAC Plus downmix"
-msgstr "AAC-Plus Downmix"
+msgstr "AAC+-Downmix"
 
 #
 msgid "AAC transcoding"
-msgstr "AAC Transcoding"
+msgstr "AAC-Transkoding"
 
 #
 msgid "DTS downmix"
@@ -827,7 +815,7 @@ msgstr "DTS-Downmix"
 
 #
 msgid "DTS HD downmix"
-msgstr "DTS-HD Downmix"
+msgstr "DTS-HD-Downmix"
 
 msgid "AFP Setup"
 msgstr "AFP-Dateiserver"
@@ -837,7 +825,7 @@ msgstr "AFP-Einstellungen"
 
 #, python-format
 msgid "AV aspect is %s."
-msgstr "AV Aspect ist %s."
+msgstr "AV-Seitenverhältnis ist %s."
 
 msgid "SABnzbd Setup"
 msgstr "SABnzbd (Binary News)"
@@ -1929,13 +1917,13 @@ msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Wählen Sie, ob Mehrkanalton als PCM ausgegeben werden soll"
 
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
-msgstr "Heruntermischen von Multi-Kanal-Sound in Stereo."
+msgstr "Heruntermischen von Mehrkanalton zu Stereo."
 
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Wählen Sie, ob Mehrkanalton zu Stereo heruntergerechnet werden soll."
 
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
-msgstr "Wählen Sie, ob AC3-Tonspuren ( Dolby Digital ) zu Stereo heruntergerechnet werden soll."
+msgstr "Wählen Sie, ob AC3-Tonspuren (Dolby Digital) zu Stereo heruntergerechnet werden soll."
 
 msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll."
@@ -1944,13 +1932,13 @@ msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded
 msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
 
 msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
-msgstr "Wählen Sie, ob WMA Pro Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
+msgstr "Wählen Sie, ob WMA-Pro-Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Wählen Sie, ob AAC-Tonspuren transkodiert werden sollen."
 
 msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
-msgstr "Wählen Sie, ob AC3-Plus Tonspuren transkodiert werden sollen nach AC3"
+msgstr "Wählen Sie, ob AC3+-Tonspuren transkodiert werden sollen nach AC3"
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Anzeige eines Icons bei Rotorbewegung."
@@ -4414,7 +4402,7 @@ msgid "If set to 'yes' the infobar will be displayed when changing channels."
 msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar angezeigt, wenn der Sender gewechselt wird."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3 Ton benutzen (wenn verfügbar)."
+msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3-Ton benutzen (wenn verfügbar)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Wenn auf 'Ja' gestellt, wird die %s %s die Tonspur benutzen die zuvor ausgewählt wurde."
@@ -16323,7 +16311,7 @@ msgstr ""
 
 #: automatic audio selection
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3+ Ton benutzen (wenn verfügbar)."
+msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3+-Ton benutzen (wenn verfügbar)."
 
 #: channellist
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
@@ -18529,10 +18517,10 @@ msgid "use best / controlled by HDMI"
 msgstr "Best Mögliches / Steuerung über HDMI"
 
 msgid "convert to AC3"
-msgstr "Konvertieren zu AC3"
+msgstr "Umwandeln zu AC3"
 
 msgid "force AC3plus"
-msgstr "Erzwinge AC3 Plus"
+msgstr "Erzwinge AC3+"
 
 msgid "convert to DTS"
 msgstr "Konvertieren zu DTS"
