@@ -91,8 +91,11 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Put your AV Receiver in standby"), config.hdmicec.control_receiver_standby, _('helptext'),))
 			self.list.append(getConfigListEntry(_("Wakeup your AV Receiver from standby"), config.hdmicec.control_receiver_wakeup, _('helptext'),))
 			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval, _('Try to slow down the send interval if not all commands are executed.\n') + _('(e.g. TV wakeup, but not switched to correct input)'), ))
-			self.list.append(getConfigListEntry(_("Repeat the sent standby and wakeup commands"), config.hdmicec.messages_repeat, _('Try to send repeated commands if not all commands are executed. This is done at a slower send interval.'),))
-			self.list.append(getConfigListEntry(_("Check power and input state from TV"), config.hdmicec.check_tv_state, _('An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.'), ))
+			self.list.append(getConfigListEntry(_("Repeat the sent standby and wakeup commands"), config.hdmicec.messages_repeat, _('Try to send repeated commands if not all commands are executed. This is done at a slower send interval.'),'refreshlist'))
+			if int(config.hdmicec.messages_repeat.value):
+				self.list.append(getConfigListEntry(tab + _("Repeat the standby commands?"), config.hdmicec.messages_repeat_standby, _('Is not necessary in most cases.'), ))
+				self.list.append(getConfigListEntry(tab + _("Slowing down for the send interval"), config.hdmicec.messages_repeat_slowdown, _('The time is multiplied by the repeat counter and added to the minimum send interval.'), ))
+			self.list.append(getConfigListEntry(_("Check power and input state from TV"), config.hdmicec.check_tv_state, _('An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions.'), ))
 			if fileExists("/proc/stb/hdmi/preemphasis"):
 				self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('helptext'),))
 
