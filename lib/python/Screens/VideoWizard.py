@@ -16,11 +16,13 @@ config.misc.showtestcard = ConfigBoolean(default = False)
 
 has_rca = False
 has_dvi = False
+has_jack = False
 
 
 has_rca = SystemInfo["HaveRCA"]
 has_dvi = SystemInfo["HaveDVI"]
-	
+has_jack = SystemInfo["HaveAVJACK"]
+
 
 class VideoWizardSummary(WizardSummary):
 	skin = (
@@ -106,6 +108,8 @@ class VideoWizard(WizardLanguage, Rc):
 					descr = 'DVI'
 				if descr == 'Scart' and has_rca:
 					descr = 'RCA'
+				if descr == 'Scart' and has_jack:
+					descr = 'Jack'
 				if port != "DVI-PC":
 					list.append((descr,port))
 		list.sort(key = lambda x: x[0])
@@ -127,7 +131,9 @@ class VideoWizard(WizardLanguage, Rc):
 			if picname == 'HDMI' and has_dvi:
 				picname = "DVI"
 			if picname == 'Scart' and has_rca:
-				picname = "RCA"	
+				picname = "RCA"
+			if picname == 'Scart' and has_jack:
+				picname = "JACK"
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/" + picname + ".png"))
 
 	def inputSelect(self, port):
