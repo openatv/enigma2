@@ -625,14 +625,14 @@ class FocusShowHide:
 class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 	skin = """
 		<screen position="0,0" size="%d,%d" backgroundColor="transparent" flags="wfNoBorder">
-		    <widget name="ch1" position="240,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" />
-		    <widget name="ch2" position="1200,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" />
-		    <widget name="ch3" position="240,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" />
-		    <widget name="ch4" position="1200,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" />
-			<widget name="text1" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="left" valign="center" alphatest="on" />
-			<widget name="text2" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="left" valign="center" alphatest="on" />
+			<widget name="ch1" position="240,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" borderWidth="2"/>
+			<widget name="ch2" position="1200,240" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" borderWidth="2"/>
+			<widget name="ch3" position="240,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" borderWidth="2"/>
+			<widget name="ch4" position="1200,780" zPosition="1" size="480,60" font="Regular; %d" halign="center" valign="center" foregroundColor="white" backgroundColor="#ffffffff" alphatest="on" borderWidth="2"/>
+			<widget name="text1" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="left" valign="center" alphatest="on" borderWidth="2"/>
+			<widget name="text2" position="%d,%d" zPosition="2" size="%d,%d" font="Regular; %d" halign="left" valign="center" alphatest="on" borderWidth="2"/>
 			<widget name="focus" position="0,0" zPosition="-1" size="960,540" backgroundColor="#ffffffff" borderWidth="5" borderColor="#e61616" alphatest="on" />
-		  </screen>
+		</screen>
 		"""
 	def __init__(self, session):
 		self.session = session
