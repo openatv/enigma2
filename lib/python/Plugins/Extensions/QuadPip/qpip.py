@@ -88,7 +88,7 @@ class QuadPipChannelEntry:
 			chName = ch[0]
 
 		if chName is None:
-			chName = " <No Channel>"
+			chName = _(" <No Channel>")
 
 		return chName
 
@@ -136,7 +136,7 @@ class QuadPipChannelList(QuadPipChannelData):
 	def __init__(self):
 		QuadPipChannelData.__init__(self)
 		self._curIdx = config.plugins.quadpip.lastchannel.value # starting from 1
-		self.defaultEntryPreName = "Quad PiP channel "
+		self.defaultEntryPreName = _("Quad PiP channel ")
 
 	def saveAll(self):
 		self.dataSave()
@@ -258,8 +258,8 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 						576:CreateQuadPipChannelEntry.skin_default_576p}.get(dh, CreateQuadPipChannelEntry.skin_default_1080p)
 
 		self.defaultEntryName = defaultEntryName
-		self["textChannels"] = Label(_(" "))
-		self["description"] = Label(_(" "))
+		self["textChannels"] = Label(" ")
+		self["description"] = Label(" ")
 
 		self.currList = None
 
@@ -286,7 +286,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 	def editEntryNameCB(self, newName):
 		if newName:
 			self.newChannel.setName(newName)
-			self.updateEntryName()		
+			self.updateEntryName()
 
 	def updateDescription(self):
 		if self.currList == "channelList":
@@ -309,7 +309,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 			_isEmpty = False
 			chName = self.newChannel.getChannelName(sIdx)
 			if chName is None:
-				chName = " <empty>"
+				chName = _(" <empty>")
 				_isEmpty = True
 			self.descChannels.append(("%d)  %s" % (idx, chName), sIdx, _isEmpty))	
 
@@ -512,8 +512,14 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 	def keyYellow(self):
 		curChannel = self.getSelectedChannel()
 		if curChannel:
+			self.session.openWithCallback(self.removeCallback, MessageBox, _("Really delete this entry?"))
+
+	def removeCallback(self, answer):
+		curChannel = self.getSelectedChannel()
+		if answer and curChannel:
 			self.oldPosition = self["ChannelList"].getIndex()
 			self.qpipChannelList.removeChannel(curChannel)
+			self.force_exit = True
 			self.updateChannelList()
 
 	def keyBlue(self):
@@ -560,7 +566,7 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 				entryName = "%s%d" % (self.qpipChannelList.getDefaultPreName(), ch.getIndex())
 
 			if self.qpipChannelList.getIdx() == ch.getIndex():
-				entryName += " (current channel)"
+				entryName += _(" (current channel)")
 
 			entry.append(entryName)
 			entry.append("1) " + ch.getChannelName("1"))
@@ -962,7 +968,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 
 	def updateChannelName(self, channel):
 		for idx in range(1,5):
-			self["ch%d" % idx].setText((channel and channel.getChannelName(str(idx))) or "No channel")
+			self["ch%d" % idx].setText((channel and channel.getChannelName(str(idx))) or _("No channel"))
 
 	def disableFCC(self):
 		try:
