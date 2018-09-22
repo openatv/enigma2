@@ -302,10 +302,7 @@ class HdmiCec:
 
 	def sendMessages(self, messages):
 		self.queue = []
-		if self.wait.isActive():
-			self.wait.stop()
-		if self.repeatTimer.isActive():
-			self.repeatTimer.stop()
+		self.sendMessagesIsActive(True)
 		for send in messages:
 			address = send[0]
 			message = send[1]
@@ -359,7 +356,7 @@ class HdmiCec:
 		if self.tv_skip_messages:
 			self.tv_skip_messages = False
 			print "[HdmiCec] Skip turning off TV"
-		elif config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value and not self.activesource and 'on' in self.tv_powerstate:
+		elif config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value and not self.sendMessagesIsActive() and not self.activesource and 'on' in self.tv_powerstate:
 			print "[HdmiCec] Skip turning off TV - config: tv has another input active"
 		else: 
 			if config.hdmicec.enabled.value:
@@ -383,6 +380,22 @@ class HdmiCec:
 
 			if os.path.exists("/usr/script/TvOff.sh"):
 				Console().ePopen("/usr/script/TvOff.sh &")
+
+	def sendMessagesIsActive(self, stopMessages = False):
+		if stopMessages:
+			active = False
+			if self.wait.isActive():
+				self.wait.stop()
+				active = True
+			if self.repeatTimer.isActive():
+				self.repeatTimer.stop()
+				active = True
+			if self.stateTimer.isActive():
+				self.stateTimer.stop()
+				active = True
+			return active
+		else:
+			return self.repeatTimer.isActive() or self.stateTimer.isActive()
 
 	def stateTimeout(self):
 		print '[HdmiCec] timeout for check TV state!'

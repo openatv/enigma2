@@ -60,7 +60,7 @@ class TVstate: #load in Navigation
 
 	def getTVstate(self, value):
 		if self.hdmicec_ok:
-			if not config.hdmicec.check_tv_state.value:
+			if not config.hdmicec.check_tv_state.value or self.hdmicec_instance.sendMessagesIsActive():
 				return False
 			elif value == 'on':
 				return value in self.hdmicec_instance.tv_powerstate and config.hdmicec.control_tv_standby.value
