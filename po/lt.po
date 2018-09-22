@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-07 18:50+0300\n"
-"PO-Revision-Date: 2018-09-07 22:07+0300\n"
+"POT-Creation-Date: 2018-09-21 00:40+0300\n"
+"PO-Revision-Date: 2018-09-21 07:18+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -39,6 +39,9 @@ msgstr " - vaizdas0+vaizdas1"
 msgid " (Channel %s)"
 msgstr " (Kanalas %s)"
 
+msgid " (current channel)"
+msgstr " (dabartinis kanalas)"
+
 msgid " (disabled)"
 msgstr " (išjungta)"
 
@@ -65,6 +68,14 @@ msgstr " (TV)"
 
 msgid " (unknown mode)"
 msgstr " (nežinomas režimas)"
+
+#| msgid "empty"
+msgid " <empty>"
+msgstr " <tuščia>"
+
+#| msgid "Channel"
+msgid " <No Channel>"
+msgstr " <Kanalų nėra>"
 
 msgid " and"
 msgstr " ir"
@@ -502,7 +513,7 @@ msgid "-24h/+24 Hours"
 msgstr "-24v/+ 24 valandos"
 
 msgid "/s"
-msgstr "/sek."
+msgstr "/s"
 
 msgid "/sec]"
 msgstr "/sek.]"
@@ -1184,6 +1195,9 @@ msgstr ""
 msgid "AAC downmix"
 msgstr "AAC kanalų suliejimas"
 
+msgid "AAC plus downmix"
+msgstr "AAC plus kanalų suliejimas"
+
 msgid "AAC transcoding"
 msgstr "AAC perkodavimas"
 
@@ -1700,6 +1714,16 @@ msgstr ""
 
 msgid "am"
 msgstr "priešpiet"
+
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible "
+"due to incorrect or missing status messages, it may cause the receiver to "
+"respond unexpectedly.\n"
+"On the other hand, tries to respond better to different operating conditions."
+msgstr ""
+"Bandoma užfiksuoti dabartinę TV būseną. Jei tai neįmanoma dėl neteisingo "
+"arba trūkstamų būsenos pranešimų, imtuvas gali netikėtai atsakyti.\n"
+"Kita vertus, bando geriau reaguoti į skirtingas eksploatavimo sąlygas."
 
 msgid "An empty filename is illegal."
 msgstr "Tuščias failo pavadinimas negalimas."
@@ -2918,8 +2942,8 @@ msgstr "Tikrinti kas (val.)"
 msgid "Check HDD"
 msgstr "Tikrinti HDD"
 
-msgid "Check power state from TV"
-msgstr "Patikrinkite maitinimo būseną iš TV"
+msgid "Check power and input state from TV"
+msgstr "Patikrinti maitinimo ir įvesties būseną iš TV"
 
 msgid "Check the internet connection"
 msgstr "Tikrinkite interneto ryšį"
@@ -3765,6 +3789,10 @@ msgid ""
 msgstr ""
 "Konfigūruokite ar kitas imtuvas, iš pageidaujamo sąrašo, yra skirtas vietoj "
 "bendrinamo imtuvo, kuris jau aktyviai įrašinėja tą patį kanalą."
+
+msgid ""
+"Configure whether multi channel sound tracks should be downmixed to stereo."
+msgstr "Pasirinkite, ar sulieti daugiakanalio garso takelius į stereo garsą."
 
 msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
@@ -5633,6 +5661,18 @@ msgstr "Vietinio laidinio tinklo sąsaja"
 msgid "EtPortal"
 msgstr "EtPortalas"
 
+msgid "Even if TV has another input active?"
+msgstr "Net jei TV turi kitą aktyvią įvestį?"
+
+msgid "Even if a 'wakeup' power timer starting?"
+msgstr "Net jei prasideda budėjimo laikmatis?"
+
+msgid "Even if a 'zap' recording timer starting?"
+msgstr "Net jei prasideda 'jungti' įrašymo laikmatis?"
+
+msgid "Even if a 'zap and record' recording timer starting?"
+msgstr "Net jei prasideda įrašymo laikmatis 'jungti ir įrašyti'?"
+
 msgid "Event font size"
 msgstr "Įvykio šrifto dydis"
 
@@ -5845,6 +5885,9 @@ msgstr "Papildomos variklio parinktys"
 
 msgid "extra wide"
 msgstr "ypač platus"
+
+msgid "extrawide"
+msgstr "ypač plačiai"
 
 msgid "Extrude from left"
 msgstr "Išstumti iš kairės"
@@ -6953,13 +6996,12 @@ msgstr ""
 
 msgid ""
 "If the 'deep standby workaround' is enabled, it waits until the system time "
-"is syncronised before the TV is turned on. This way, switching on can be "
-"prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+"is syncronised. Depending on the requirement, the devices wake up will "
+"continuing after a maximum of 2 minutes."
 msgstr ""
-"Jei įjungtas \"gilus budėjimo režimas\", jis laukia, kol sistemos laikas bus "
-"sinchronizuojamas prieš įjungiant televizorių. Tokiu būdu, jei įjungiamas "
-"laikmatis, galima išvengti įjungimo. Sinchronizavimas trunka ne ilgiau kaip "
-"2 minutes."
+"Jei įjungtas \"gilus laukimo režimas\", jis laukia, kol bus sinchronizuotas "
+"sistemos laikas. Priklausomai nuo reikalavimo, prietaisai pabunda ne ilgiau "
+"kaip po 2 minučių."
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -6968,26 +7010,12 @@ msgstr ""
 "Jei laisvos vietos yra mažiau, nei nustatyta reikšmė, tada bus bandoma "
 "ištrinti senus laiko poslinkio failus."
 
-msgid "If the power state is reached, the repeated messages are stopped."
-msgstr ""
-"Jei pasiekiama maitinimo būsena, pakartotiniai pranešimai yra sustabdyti."
-
-msgid "If the receiver in standby, then switch to deep standby?"
-msgstr "Jei imtuvas budėjimo režime, tada perjungti į gilų budėjimą?"
-
 msgid ""
 "If the text is too long to be displayed on the front panel, it will be "
 "repeated (number of times):"
 msgstr ""
 "Jei tekstas per ilgas ir netelpa į priekinį imtuvo ekraną, jis bus "
 "kartojamas (kartų):"
-
-msgid ""
-"If you have activated HDMI-CEC, you can specify here whether a 'zap and "
-"record' timer also turns on the TV."
-msgstr ""
-"Jei įjungėte HDMI-CEC, čia galite nurodyti ar \"jungti ir įrašyti\" "
-"laikmatis taip pat įjungia televizorių."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -7460,6 +7488,9 @@ msgstr "IPKG meniu"
 
 msgid "IPKGSource"
 msgstr "IPKG šaltinis"
+
+msgid "Is not necessary in most cases."
+msgstr "Daugeliu atvejų tai nebūtina."
 
 msgid "is strongly advised."
 msgstr "primygtinai rekomenduojama."
@@ -8399,7 +8430,7 @@ msgid "Moving west ..."
 msgstr "Juda į vakarus ..."
 
 msgid "ms"
-msgstr " msek."
+msgstr "ms"
 
 msgid "Mtd"
 msgstr "Mtd"
@@ -8763,6 +8794,9 @@ msgstr ""
 
 msgid "No card inserted!"
 msgstr "Kortelė neįdėta!"
+
+msgid "No channel"
+msgstr "Kanalų nėra"
 
 msgid "no channel list"
 msgstr "nėra kanalų sąrašo"
@@ -10683,9 +10717,6 @@ msgstr "Tiekėjai: "
 msgid "purge deleted userbouquets"
 msgstr "išvalyti ištrintus paketus"
 
-msgid "Put from standby to deep standby"
-msgstr "Įjunkite iš budėjimo režimo į gilų budėjimą"
-
 msgid "Put TV in standby"
 msgstr "Jungti TV į budėjimo būseną"
 
@@ -10823,6 +10854,9 @@ msgstr "Tikrai užverti be nustatymų išsaugojimo ?"
 
 msgid "Really delete done timers?"
 msgstr "Tikrai pašalinti atliktus laikmačius?"
+
+msgid "Really delete this entry?"
+msgstr "Ar tikrai ištrinti šį įrašą?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Tikrai užverti greitą subkanalų perjungimą?"
@@ -11239,6 +11273,12 @@ msgstr "Pakartokite ekrano pranešimą"
 
 msgid "repeat playlist"
 msgstr "pakartoti grojaraštį"
+
+msgid "Repeat the sent standby and wakeup commands"
+msgstr "Pakartokite siunčiamas budėjimo ir pabudimo komandas"
+
+msgid "Repeat the standby commands?"
+msgstr "Ar kartoti laukimo komandas?"
 
 msgid "Repeat type"
 msgstr "Kartojimo tipas"
@@ -12199,9 +12239,6 @@ msgstr "Siųsti DiSEqC"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "Siųsti DiSEqC tik palydovo pakeitimui"
-
-msgid "Send repeated standby and wakeup messages"
-msgstr "Siųsti kartotinius laukimo ir žadinimo pranešimus"
 
 msgid "Send yourself a copy ?"
 msgstr "Siųsti kopiją sau ?"
@@ -13609,6 +13646,9 @@ msgstr "Lėtas"
 msgid "Slow motion speeds"
 msgstr "Sulėtinto judėjimo greitis"
 
+msgid "Slowing down for the send interval"
+msgstr "Siuntimo intervalo lėtėjimas"
+
 msgid "Small progress"
 msgstr "Nedidelė pažanga"
 
@@ -13911,15 +13951,6 @@ msgstr "Budėjimo režimas be TV išjungimo"
 
 msgid "Start"
 msgstr "Pradėti"
-
-msgid "Start a 'wakeup' power timer"
-msgstr "Paleisti maitinimo laikmačio 'pabudimą'"
-
-msgid "Start a 'zap and record' recording timer"
-msgstr "Paleisti 'jungti iš įrašyti' įrašymo laikmatį"
-
-msgid "Start a 'zap' recording timer"
-msgstr "Paleisti 'zap' įrašymo laikmatį"
 
 msgid "Start attempts"
 msgstr "Paleisties bandymai"
@@ -14795,6 +14826,13 @@ msgstr ""
 "Dabartinio atnaujinimo būsenos negalima patikrinti, nes http://www.opena.tv "
 "nepasiekiama dėl kažkokios tai priežasties"
 
+msgid ""
+"The time is multiplied by the repeat counter and added to the minimum send "
+"interval."
+msgstr ""
+"Laikas padauginamas iš kartojimo skaitiklio ir pridedamas prie minimalaus "
+"siuntimo intervalo."
+
 msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
 msgstr "Laikmačio failas (pm_timers.xml) sugadintas, įkelti nepavyko."
 
@@ -15430,8 +15468,8 @@ msgstr "Laiką"
 msgid "Time between start attempts (sec.)"
 msgstr "Laikas tarp bandymų paleisti (sek.)"
 
-msgid "Time delay to handle the TV event"
-msgstr "Laiko delsa televizijos įvykiui valdyti"
+msgid "Time delay until standby or deep standby"
+msgstr "Laiko delsa iki budėjimo arba gilaus budėjimo režimo"
 
 msgid "Time for next LCD scrolling"
 msgstr "Laikas kito LCD slinkimui"
@@ -15763,9 +15801,9 @@ msgstr "Vertimai"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Audronis Grincevičius (ADGA) Pasvalys, Lietuva, \n"
+"Audronis Grincevičius (ADGA) Pasvalys, Lietuva,\n"
 "adga45@gmail.com\n"
-"2018-09-07 versija"
+"2018-09-21 versija"
 
 msgid "Transmission mode"
 msgstr "Perdavimo būdas"
@@ -15820,9 +15858,12 @@ msgstr ""
 "Bandoma rasti veikiančius transponderius antžeminės televizijos tinkle.. "
 "palaukite..."
 
-msgid "Try to send more messages if not all commands are executed.\n"
+msgid ""
+"Try to send repeated commands if not all commands are executed. This is done "
+"at a slower send interval."
 msgstr ""
-"Bandyti siųsti daugiau pranešimų, jei ne visos komandos yra vykdomos.\n"
+"Pabandykite siųsti pakartotines komandas, jei ne visos komandos yra "
+"įvykdytos. Tai atliekama lėtesniu siuntimo intervalu."
 
 msgid "Try to slow down the send interval if not all commands are executed.\n"
 msgstr ""
@@ -15950,10 +15991,6 @@ msgstr "Įjungti HDMI-IN viso ekrano režimą"
 msgid "Turn on HDMI-IN PiP mode"
 msgstr "Įjungti HDMI-IN PiP režimą"
 
-msgid "Turn on the TV from standby with 'zap and record' timer"
-msgstr ""
-"Įjunkite televizorių iš budėjimo režimo su \"jungti ir įrašyti\" laikmačiu"
-
 msgid "Turning step size"
 msgstr "Sukimo žingsnis"
 
@@ -15963,17 +16000,8 @@ msgstr "Televizija"
 msgid "TV button mode"
 msgstr "TV mygtuko režimas"
 
-msgid "TV has another input active"
-msgstr "TV turi dar vieną aktyvųjį įėjimą"
-
 msgid "TV physical address report"
 msgstr "TV fizinio adreso ataskaita"
-
-msgid "TV was already on powered"
-msgstr "TV jau įjungtas"
-
-msgid "TV was not in standby mode at startup"
-msgstr "Paleisties metu TV nebuvo laukimo režime"
 
 msgid "Two"
 msgstr "Du"
@@ -16257,6 +16285,9 @@ msgstr "USB laikmenos vedlys"
 
 msgid "Use"
 msgstr "Naudoti"
+
+msgid "use_hdmi_cacenter"
+msgstr "naudoti_hdmi_cacenter"
 
 msgid "Use a gateway"
 msgstr "Naudoti šliuzą"
@@ -19034,6 +19065,33 @@ msgstr "Zambija"
 
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
+
+#~ msgid "If the power state is reached, the repeated messages are stopped."
+#~ msgstr ""
+#~ "Jei pasiekiama maitinimo būsena, pakartotiniai pranešimai yra sustabdyti."
+
+#~ msgid "If the receiver in standby, then switch to deep standby?"
+#~ msgstr "Jei imtuvas budėjimo režime, tada perjungti į gilų budėjimą?"
+
+#~ msgid ""
+#~ "If you have activated HDMI-CEC, you can specify here whether a 'zap and "
+#~ "record' timer also turns on the TV."
+#~ msgstr ""
+#~ "Jei įjungėte HDMI-CEC, čia galite nurodyti ar \"jungti ir įrašyti\" "
+#~ "laikmatis taip pat įjungia televizorių."
+
+#~ msgid "Time delay to handle the TV event"
+#~ msgstr "Laiko delsa televizijos įvykiui valdyti"
+
+#~ msgid "Turn on the TV from standby with 'zap and record' timer"
+#~ msgstr ""
+#~ "Įjunkite televizorių iš budėjimo režimo su \"jungti ir įrašyti\" laikmačiu"
+
+#~ msgid "TV was already on powered"
+#~ msgstr "TV jau įjungtas"
+
+#~ msgid "TV was not in standby mode at startup"
+#~ msgstr "Paleisties metu TV nebuvo laukimo režime"
 
 #~ msgid "Greek, Modern (1453-)"
 #~ msgstr "Graikų, modernus (1453-)"

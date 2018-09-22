@@ -70,3 +70,13 @@
 11 - Finally you can start building a image
 
     MACHINE=mutant2400 DISTRO=openatv DISTRO_TYPE=release make image
+
+----------
+12 - Optional Infos
+
+    ERROR: No space left on device or exceeds fs.inotify.max_user_watches?
+
+    change value to:
+    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+    sysctl -n -w fs.inotify.max_user_watches=524288
+

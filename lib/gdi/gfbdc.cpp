@@ -200,12 +200,15 @@ void gFBDC::exec(const gOpcode *o)
 		}
 #endif
 #if defined(CONFIG_HISILICON_FB)
-		bcm_accel_blit(
-			surface.data_phys, surface.x, surface.y, surface.stride, 0,
-			surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride,
-			0, 0, surface.x, surface.y,
-			0, 0, surface.x, surface.y,
-			0, 0);
+		if(islocked()==0)
+		{
+			bcm_accel_blit(
+				surface.data_phys, surface.x, surface.y, surface.stride, 0,
+				surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride,
+				0, 0, surface.x, surface.y,
+				0, 0, surface.x, surface.y,
+				0, 0);
+		}
 #endif
 #ifdef HAVE_HISILICON_ACCEL
 		dinibot_accel_notify();
@@ -283,7 +286,11 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 		return;
 	}
 #else
-	if (m_pixmap && (surface.x == xres) && (surface.y == yres) && (surface.bpp == bpp))
+	if (m_pixmap && (surface.x == xres) && (surface.y == yres) && (surface.bpp == bpp)
+	#if defined(CONFIG_HISILICON_FB)
+		&& islocked()==0
+	#endif
+		)
 		return;
 #endif
 #ifndef CONFIG_ION
@@ -350,9 +357,12 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	surface_back.clut = surface.clut;
 
 #if defined(CONFIG_HISILICON_FB)
-	gUnmanagedSurface s(surface);
-	surface = surface_back;
-	surface_back = s;
+	if(islocked()==0)
+	{
+		gUnmanagedSurface s(surface);
+		surface = surface_back;
+		surface_back = s;
+	}
 #endif
 
 	m_pixmap = new gPixmap(&surface);
