@@ -8,7 +8,6 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
 from boxbranding import getBoxType, getMachineBuild
 import Components.RecordingConfig
-from Screens.Standby import Standby, TryQuitMainloop
 
 POLLTIME = 5 # seconds
 
@@ -122,6 +121,7 @@ class SymbolsCheckPoller:
 			elif self.led == "1":
 				open("/proc/stb/lcd/symbol_rec", "w").write("0")
 		elif getBoxType() in ('sf8008','clap4k'):
+			import Screens.Standby
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -129,10 +129,13 @@ class SymbolsCheckPoller:
 					open("/proc/stb/fp/standbyled", "w").write("on")
 					self.led = "1"
 				else:
-					open("/proc/stb/fp/standbyled", "w").write("off")
+					open("/proc/stb/fp/poweronled", "w").write("on")
 					self.led = "0"
-			elif not Screens.Standby.inStandby:
+			elif self.led == "1" and not Screens.Standby.inStandby:
 				open("/proc/stb/fp/poweronled", "w").write("on")
+			elif self.led == "0" and Screens.Standby.inStandby:
+				open("/proc/stb/fp/standbyled", "w").write("on")
+
 		else:
 			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
 				return
