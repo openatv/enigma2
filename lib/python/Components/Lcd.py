@@ -525,7 +525,7 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if SystemInfo["VFD_scroll_repeats"] and getBoxType() not in ('ixussone', 'ixusszero') and getDisplayType() not in ('textlcd7segment'):
+		if SystemInfo["VFD_scroll_repeats"] and getBoxType() not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment'):
 			def scroll_repeats(el):
 				open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
@@ -534,7 +534,7 @@ def InitLcd():
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if SystemInfo["VFD_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero')  and getDisplayType() not in ('textlcd7segment'):
+		if SystemInfo["VFD_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero')  and getDisplayType() not in ('7segment'):
 			def scroll_delay(el):
 				# add workaround for Boxes who need hex code
 				if getBoxType() in ('sf4008', 'beyonwizu4'):
@@ -548,7 +548,7 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()
 
-		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero')  and getDisplayType() not in ('textlcd7segment'):
+		if SystemInfo["VFD_initial_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero')  and getDisplayType() not in ('7segment'):
 			def initial_scroll_delay(el):
 				if getBoxType() in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
@@ -568,7 +568,7 @@ def InitLcd():
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
-		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero')  and getDisplayType() not in ('textlcd7segment'):
+		if SystemInfo["VFD_final_scroll_delay"] and getBoxType() not in ('ixussone', 'ixusszero')  and getDisplayType() not in ('7segment'):
 			def final_scroll_delay(el):
 				if getBoxType() in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
