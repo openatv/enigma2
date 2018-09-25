@@ -35,15 +35,8 @@ if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firs
 fi
 
 if [ -e /proc/stb/info/boxtype ]; then
-	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-3`
-	if [ $stbcheck == "cc1" ]; then
-		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
-		if [ 0 == $count ];then
-			libreader 720P_50
-		fi
-	fi
-	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
-	if [ $stbcheck == "sf8008" ]; then
+	stbcheck=`cat /proc/stb/info/boxtype`
+	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
@@ -169,11 +162,8 @@ if [ "$ret" -ne "1" ]; then
 		if [ $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 5
 		fi
-		if [ $stbcheck == "cc" ]; then
-			killall -9 libreader; sleep 5
-		fi
-		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
-		if [ $stbcheck == "sf8008" ]; then
+		stbcheck=`cat /proc/stb/info/boxtype`
+		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] ; then
 			killall -9 libreader; sleep 5
 		fi
 	fi
