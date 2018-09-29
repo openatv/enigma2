@@ -23,7 +23,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDa
 VERSION = "Version 6.3 openATV"
 
 HaveGZkernel = True
-if getMachineBuild() in ('hd60','i55plus','osmio4k','sf8008','cc1','dags72604', 'u51','u52','u53','h9','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
+if getMachineBuild() in ('ustym4kpro','hd60','i55plus','osmio4k','sf8008','cc1','dags72604', 'u51','u52','u53','h9','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -72,7 +72,7 @@ class ImageBackup(Screen):
 		elif self.MACHINEBUILD in ("xc7439","osmio4k"):
 			self.MTDBOOT = "mmcblk1p1"
 			self.EMMCIMG = "emmc.img"
-#		elif self.MACHINEBUILD in ("cc1","sf8008"):
+#		elif self.MACHINEBUILD in ("cc1","sf8008","ustym4kpr"):
 #			self.MTDBOOT = "none"
 #			self.EMMCIMG = "usb_update.bin"
 		else:
@@ -177,7 +177,7 @@ class ImageBackup(Screen):
 				cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
-		elif self.MACHINEBUILD in ("cc1","sf8008"):
+		elif self.MACHINEBUILD in ("cc1","sf8008","ustym4kpro"):
 			if self.list[self.selection] == "Recovery":
 				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 			else:
@@ -223,7 +223,7 @@ class ImageBackup(Screen):
 					except IndexError:
 						print '[ImageBackup] - IndexError in file: %s' %name
 						self.error_files += '/boot/' + name + ', ' 
-			if getMachineBuild() not in ("gb7252","cc1","sf8008"):
+			if getMachineBuild() not in ("gb7252","cc1","sf8008","ustym4kpro"):
 				files.append("Recovery")
 		return files
 
@@ -246,7 +246,7 @@ class ImageBackup(Screen):
 		self.IMAGEVERSION = self.imageInfo() #strftime("%Y%m%d", localtime(self.START))
 		if "ubi" in self.ROOTFSTYPE.split():
 			self.MKFS = "/usr/sbin/mkfs.ubifs"
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or self.MACHINEBUILD in ("u51","u52","u53","u5","u5pvr","cc1","sf8008"):
+		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or self.MACHINEBUILD in ("u51","u52","u53","u5","u5pvr","cc1","sf8008","ustym4kpro"):
 			self.MKFS = "/bin/tar"
 			self.BZIP2 = "/usr/bin/bzip2"
 		else:
@@ -311,7 +311,7 @@ class ImageBackup(Screen):
 			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 			cmd3 = None
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or self.MACHINEBUILD in ("u51","u52","u53","u5","u5pvr","cc1","sf8008"):
+		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or self.MACHINEBUILD in ("u51","u52","u53","u5","u5pvr","cc1","sf8008","ustym4kpro"):
 			cmd1 = "%s -cf %s/rootfs.tar -C /tmp/bi/root --exclude ./var/nmbd --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
@@ -361,7 +361,7 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "Create: logo dump"')
 			cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
-#		if self.MACHINEBUILD  in ("cc1","sf8008"):
+#		if self.MACHINEBUILD  in ("cc1","sf8008","ustym4kpro"):
 #			cmdlist.append('echo " "')
 #			cmdlist.append('echo "Create: fastboot dump"')
 #			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
