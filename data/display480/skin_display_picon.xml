@@ -341,7 +341,9 @@
 	<screen name="EPGSelectionMulti_summary" position="5,0" size="471,320">
 		<panel name="MyEPGPanel" />
 	</screen>
-
+	<screen name="EPGvertical_summary" position="5,0" size="471,320">
+		<panel name="MyEPGPanel" />
+	</screen>
 	<screen name="EPGSelection_summary" position="5,0" size="471,320">
 		<widget source="parent.Service" render="Label" position="0,0" size="471,51" foregroundColor="#87CEFA" font="FdLcD;34" transparent="1" halign="center" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
