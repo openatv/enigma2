@@ -123,17 +123,11 @@ class SymbolsCheckPoller:
 		elif getBoxType() in ('sf8008','clap4k','ustym4kpro'):
 			import Screens.Standby
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
-			self.blink = not self.blink
 			if recordings > 0:
-				if self.blink:
-					open("/proc/stb/fp/standbyled", "w").write("on")
-					self.led = "1"
-				else:
-					open("/proc/stb/fp/poweronled", "w").write("on")
-					self.led = "0"
-			elif self.led == "1" and not Screens.Standby.inStandby:
+				open("/proc/stb/fp/mixerled", "w").write("on")
+			elif not Screens.Standby.inStandby:
 				open("/proc/stb/fp/poweronled", "w").write("on")
-			elif self.led == "0" and Screens.Standby.inStandby:
+			elif Screens.Standby.inStandby:
 				open("/proc/stb/fp/standbyled", "w").write("on")
 
 		else:
