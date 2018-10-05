@@ -120,8 +120,11 @@ terrestrial_autoscan_nimtype = {
 'SSH108' : 'ssh108_t2_scan',
 'TT3L10' : 'tt3l10_t2_scan',
 'TURBO' : 'vuplus_turbo_t',
-'TT2L08' : 'tt2l08_t2_scan'
+'TT2L08' : 'tt2l08_t2_scan',
+'BCM3466' : 'bcm3466'
 }
+
+dual_tuner_list = ('TT3L10', 'BCM3466')
 
 def GetDeviceId(filter, nim_idx):
 	tuners={}
@@ -507,9 +510,9 @@ class TerrestrialTransponderSearchSupport:
 			if nim_name is not None and nim_name != "":
 				device_id = ""
 				nim_name = nim_name.split(' ')[-1][4:-1]
-				if nim_name == 'TT3L10':
+				if nim_name in dual_tuner_list:
 					try:
-						device_id = GetDeviceId('TT3L10', nim_idx)
+						device_id = GetDeviceId(nim_name, nim_idx)
 						device_id = "--device %s" % (device_id)
 					except Exception, err:
 						print "terrestrialTransponderGetCmd ->", err
