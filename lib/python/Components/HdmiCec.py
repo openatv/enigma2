@@ -341,7 +341,7 @@ class HdmiCec:
 		for send in messages:
 			address = send[0]
 			message = send[1]
-			if self.what == 'on' and (((self.repeatCounter > 0 or self.activesource) and message == 'standby') or (message == 'wakeup' and not config.hdmicec.control_tv_wakeup.value)): # skip active source workaround messages
+			if self.what == 'on' and ((self.repeatCounter > 0 or self.activesource) and (message == 'standby' or (message == 'wakeup' and not config.hdmicec.control_tv_wakeup.value))): # skip active source workaround messages
 				continue
 			self.sendMessage(address, message)
 			sendCnt += 1
