@@ -74,20 +74,22 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(tab + _("Wait for timesync at startup"), config.hdmicec.deepstandby_waitfortimesync, _("If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."), ))
 			self.list.append(getConfigListEntry(_("Put TV in standby"), config.hdmicec.control_tv_standby, _('helptext'),'refreshlist'))
 			if config.hdmicec.control_tv_standby.value:
-				self.list.append(getConfigListEntry(tab + _("Even if TV has another input active?"), config.hdmicec.tv_standby_notinputactive, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Even if TV has another input active?"), config.hdmicec.tv_standby_notinputactive, _('You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby.'), ))
 			self.list.append(getConfigListEntry(_("Wakeup TV from standby"), config.hdmicec.control_tv_wakeup, _('helptext') ,'refreshlist'))
 			if config.hdmicec.control_tv_wakeup.value:
 				self.list.append(getConfigListEntry(tab + _("Even if a 'zap' recording timer starting?"), config.hdmicec.tv_wakeup_zaptimer, _('helptext'), ))
 				self.list.append(getConfigListEntry(tab + _("Even if a 'zap and record' recording timer starting?"), config.hdmicec.tv_wakeup_zapandrecordtimer, _('helptext'), ))
 				self.list.append(getConfigListEntry(tab + _("Even if a 'wakeup' power timer starting?"), config.hdmicec.tv_wakeup_wakeuppowertimer, _('helptext'), ))
-			self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source, _('helptext'),))
-			self.list.append(getConfigListEntry(_("Use TV remote control"), config.hdmicec.report_active_menu, _('helptext'),))
-			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup, _('helptext'),))
+			self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source, _('helptext'),'refreshlist'))
+			if config.hdmicec.report_active_source.value:
+				self.list.append(getConfigListEntry(tab + _("Switch off the TV to correct input"), config.hdmicec.workaround_activesource, _("Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n(If the TV does not turn back on, you may need to turn on 'Repeat the sent standby and wakeup commands'.)"),))
+			self.list.append(getConfigListEntry(_("Use TV remote control"), config.hdmicec.report_active_menu, _('Activation takes place immediately. If it does feature not work, then try again with a slower send interval.'),))
+			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup, _('Choose a setting where your receiver wakes up from standby.'),))
 			self.list.append(getConfigListEntry(_("Handle standby from TV"), config.hdmicec.handle_tv_standby, _('helptext'),'refreshlist'))
 			self.list.append(getConfigListEntry(_("Handle input from TV"), config.hdmicec.handle_tv_input, _('helptext'),'refreshlist'))
 			if config.hdmicec.handle_tv_standby.value != 'disabled' or config.hdmicec.handle_tv_input.value != 'disabled':
 				self.list.append(getConfigListEntry(tab + _("Time delay until standby or deep standby"), config.hdmicec.handle_tv_delaytime, _("'Handle standby from TV' has a higher priority as 'Handle input from TV'"),))
-			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding, _('helptext'),))
+			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding, _('Activation takes place immediately. If this feature is not supported, no function will be changed.'),))
 			self.list.append(getConfigListEntry(_("Put your AV Receiver in standby"), config.hdmicec.control_receiver_standby, _('helptext'),))
 			self.list.append(getConfigListEntry(_("Wakeup your AV Receiver from standby"), config.hdmicec.control_receiver_wakeup, _('helptext'),))
 			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval, _('Try to slow down the send interval if not all commands are executed.\n') + _('(e.g. TV wakeup, but not switched to correct input)'), ))
@@ -97,7 +99,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(tab + _("Slowing down for the send interval"), config.hdmicec.messages_repeat_slowdown, _('The time is multiplied by the repeat counter and added to the minimum send interval.'), ))
 			self.list.append(getConfigListEntry(_("Check power and input state from TV"), config.hdmicec.check_tv_state, _('An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions.'), ))
 			if fileExists("/proc/stb/hdmi/preemphasis"):
-				self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('helptext'),))
+				self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables.'),))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
