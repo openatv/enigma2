@@ -192,8 +192,10 @@ class HdmiCec:
 					self.tv_powerstate = "get_on"
 				elif data[0] == '\x03':
 					self.tv_powerstate = "get_standby"
-				if checkstate:
+				if checkstate and not self.firstrun:
 					self.checkTVstate('powerstate')
+				else:
+					self.checkTVstate()
 			elif cmd == 0x36: # handle standby request from the tv
 				if config.hdmicec.handle_tv_standby.value != 'disabled':
 					self.handleTVRequest('tvstandby')
@@ -291,6 +293,9 @@ class HdmiCec:
 			elif message == "activatesystemaudiomode":
 				cmd = 0x72
 				data = str(struct.pack('B', 0x01))
+			elif message == "deactivatesystemaudiomode":
+				cmd = 0x72
+				data = str(struct.pack('B', 0x00))
 			elif message == "osdname":
 				cmd = 0x47
 				data = os.uname()[1]
@@ -463,10 +468,7 @@ class HdmiCec:
 
 		timeout = 3000
 		need_routinginfo = config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value
-		if 'config' in state:
-			self.sendMessage(0, 'powerstate')
-			self.sendMessage(0, 'routinginfo')
-		elif 'source' in state:
+		if 'source' in state:
 			self.tv_powerstate = 'on'
 			if state == 'activesource' and self.what == 'on' and config.hdmicec.report_active_source.value and not self.activesource and not self.firstrun: # last try for switch to correct input
 				self.sendMessage(0, 'sourceactive')
@@ -481,9 +483,11 @@ class HdmiCec:
 		elif config.hdmicec.check_tv_state.value or 'powerstate' in state:
 			if state == 'getpowerstate' or state in ('on', 'standby'):
 				self.activesource = False
-				self.tv_powerstate = 'getpowerstate'
-				if not self.firstrun:
-					self.stateTimer.start(timeout,True)
+				if state in ('on', 'standby'):
+					self.tv_powerstate = 'unknown'
+				else:
+					self.tv_powerstate = 'getpowerstate'
+				self.stateTimer.start(timeout,True)
 				self.sendMessage(0, 'powerstate')
 			elif state == 'powerstate' and 'on' in self.tv_powerstate:
 				self.stateTimer.start(timeout,True)
@@ -612,7 +616,8 @@ class HdmiCec:
 
 	def configTVstate(self, configElement):
 		if not self.sendMessagesIsActive() and (config.hdmicec.check_tv_state.value or (config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value)):
-			self.checkTVstate('config')
+			self.sendMessage(0, 'powerstate')
+			self.sendMessage(0, 'routinginfo')
 
 	def keyEvent(self, keyCode, keyEvent):
 		if not self.volumeForwardingEnabled: return
