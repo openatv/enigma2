@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 00:40+0300\n"
-"PO-Revision-Date: 2018-09-21 07:18+0300\n"
+"POT-Creation-Date: 2018-10-07 23:00+0300\n"
+"PO-Revision-Date: 2018-10-08 07:23+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -69,11 +69,9 @@ msgstr " (TV)"
 msgid " (unknown mode)"
 msgstr " (nežinomas režimas)"
 
-#| msgid "empty"
 msgid " <empty>"
 msgstr " <tuščia>"
 
-#| msgid "Channel"
 msgid " <No Channel>"
 msgstr " <Kanalų nėra>"
 
@@ -1287,6 +1285,20 @@ msgstr "Įjungti laiko poslinkio pabaigą ir pristabdyti"
 
 msgid "activatePiP"
 msgstr "aktyvuoti PiP"
+
+msgid ""
+"Activation takes place immediately. If it does feature not work, then try "
+"again with a slower send interval."
+msgstr ""
+"Aktyvinimas vyksta iš karto. Jei funkcija neveikia, bandykite dar kartą "
+"naudodami lėtesnį siuntimo intervalą."
+
+msgid ""
+"Activation takes place immediately. If this feature is not supported, no "
+"function will be changed."
+msgstr ""
+"Aktyvinimas vyksta iš karto. Jei ši funkcija nepalaikoma, jokia funkcija "
+"nebus keičiama."
 
 msgid "Active"
 msgstr "Aktyvus"
@@ -3001,6 +3013,9 @@ msgstr "Pasirinkite kur dėti \"%s\""
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Pasirinkite žymeklį, kad būtų lengviau rasti įrašą."
+
+msgid "Choose a setting where your receiver wakes up from standby."
+msgstr "Pasirinkite parametrą, kuriame jūsų imtuvas atsibunda budėjimo režimu."
 
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr ""
@@ -9660,7 +9675,7 @@ msgid "Pause playback"
 msgstr "Pristabdyti atkūrimą"
 
 msgid "Pause/Continue playback"
-msgstr "Pristabdyti/Tęsti atkūrimą"
+msgstr "Pristabdyti/tęsti atkūrimą"
 
 msgid "PCM"
 msgstr "PCM"
@@ -10458,7 +10473,7 @@ msgid "Prepare another USB stick for image flashing"
 msgstr "Paruoškite kitą USB laikmeną atvaizdo diegimui"
 
 msgid "Preparing... Please wait"
-msgstr "Ruošiama... palaukite"
+msgstr "Ruošiama... prašome laukti"
 
 msgid "Press '0' to toggle PiP mode"
 msgstr "PiP langams sukeisti, spauskite '0'"
@@ -10736,7 +10751,7 @@ msgid "PVR"
 msgstr "ĮRAŠAI"
 
 msgid "PVR long"
-msgstr "PVR ilgai"
+msgstr "PVR, ilgai spausti"
 
 msgid "Python Camstarter (default)"
 msgstr "Python emu paleidėjas (numatytasis)"
@@ -13051,7 +13066,7 @@ msgid "Show extension selection"
 msgstr "Rodyti išplėtimų pasirinkimą"
 
 msgid "Show extensions..."
-msgstr "Rodyti plėtinius..."
+msgstr "Rodyti išplėtimus..."
 
 msgid "Show favourites list"
 msgstr "Rodyti mėgstamiausių sąrašą"
@@ -13198,10 +13213,10 @@ msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Rodyti arba slėpti išplėstą aprašymą, (priklauso nuo temos)."
 
 msgid "Show OScam in extensions ?"
-msgstr "Rodyti OScam tarp plėtinių ?"
+msgstr "Rodyti OScam išplėtimuose?"
 
 msgid "Show OscamInfo in Extensions Menu"
-msgstr "Rodyti OscamInfo tarp plėtinių meniu"
+msgstr "Rodyti OscamInfo išplėstiniame meniu"
 
 msgid "Show parting lines"
 msgstr "Rodyti atskyrimo linijas"
@@ -13716,7 +13731,7 @@ msgid "Software management"
 msgstr "Programinės įrangos valdymas"
 
 msgid "Software Manager"
-msgstr "Programinės įrangos valdymas"
+msgstr "Programinės įrangos tvarkyklė"
 
 msgid "Software Manager Setup"
 msgstr "Programinės įrangos valdymas"
@@ -13746,7 +13761,7 @@ msgid "SoftwareManager setup"
 msgstr "Programinės įrangos tvarkyklės valdymas"
 
 msgid "Softwaremanager..."
-msgstr "Programinės įrangos valdymas..."
+msgstr "Programinės įrangos tvarkyklė..."
 
 msgid "SoftwareManagerInfo"
 msgstr "Programinės įrangos informacija"
@@ -13769,6 +13784,17 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Kai kurių priedų nėra:\n"
+
+msgid ""
+"Some TV devices can't swich to correct input if a another hdmi port active. "
+"This setting set the TV to standby before.\n"
+"(If the TV does not turn back on, may require a slower transmission interval "
+"or the repetition of wake-up commands.)"
+msgstr ""
+"Kai kurie TV įrenginiai negali koreguoti įvesties, jei kita HDMI jungtis yra "
+"aktyvi. Šis nustatymas iš anksto nustato televizoriaus budėjimo režimą.\n"
+"(Jei televizorius neatsijungs, gali prireikti lėtesnio perdavimo intervalo "
+"arba pakartotinio budėjimo komandos.)"
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr "Atsiprašome CI padėjėjo konfigūracijos nėra"
@@ -14317,6 +14343,9 @@ msgstr "Perjungimo režimas, kad įjungti HDR režimus arba PIP funkcijas"
 
 msgid "Switch next channel"
 msgstr "Perjungti kitą kanalą"
+
+msgid "Switch off the TV to correct input"
+msgstr "Išjunkite televizorių, kad ištaisytumėte įvestį"
 
 msgid "switch to bookmarks"
 msgstr "perjungti į pažymėtus"
@@ -16727,7 +16756,7 @@ msgid "View details"
 msgstr "Smulkiau"
 
 msgid "view extensions..."
-msgstr "rodyti plėtinius..."
+msgstr "žiūrėti išplėtimus..."
 
 msgid "View list of available "
 msgstr "Peržiūrėti galimą sąrašą "
@@ -17495,6 +17524,13 @@ msgstr ""
 "Naudodami šią parinktį galite paslėpti Darbo užduotis iš išplėsto ekrano "
 "(trumpas mėlyno mygtuko spaudimas)."
 
+msgid ""
+"With this setting, you can probably improve the signal quality or eliminate "
+"problems that can occur with longer HDMI cables."
+msgstr ""
+"Su šiuo nustatymu tikriausiai galite padidinti signalo kokybę arba pašalinti "
+"problemas, kurios gali kilti naudojant ilgesnius HDMI kabelius."
+
 msgid "Without popup"
 msgstr "Be Iššokančio teksto"
 
@@ -17694,6 +17730,13 @@ msgid ""
 msgstr ""
 "Su geltonu mygtuku galite pasirinkti tiesioginį atvaizdo įdiegimą\n"
 "arba pasirinkti atkūrimą, kad sukurti USB disko atvaizdą švariam įdiegimui."
+
+msgid ""
+"You can skip this function and turn off the TV when you wake the receiver "
+"from standby and immediately switch back to standby."
+msgstr ""
+"Galite praleisti šią funkciją ir išjungti televizorių, kai budėsite iš "
+"imtuvo ir iš karto persijungsite į budėjimo režimą."
 
 msgid "You can switch with left and right this tuner types %s"
 msgstr "Galite perjungti su 'kairėn' ir 'dešinėn' šio imtuvo tipus %s"
@@ -19066,77 +19109,6 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
-#~ msgid "If the power state is reached, the repeated messages are stopped."
-#~ msgstr ""
-#~ "Jei pasiekiama maitinimo būsena, pakartotiniai pranešimai yra sustabdyti."
-
-#~ msgid "If the receiver in standby, then switch to deep standby?"
-#~ msgstr "Jei imtuvas budėjimo režime, tada perjungti į gilų budėjimą?"
-
-#~ msgid ""
-#~ "If you have activated HDMI-CEC, you can specify here whether a 'zap and "
-#~ "record' timer also turns on the TV."
-#~ msgstr ""
-#~ "Jei įjungėte HDMI-CEC, čia galite nurodyti ar \"jungti ir įrašyti\" "
-#~ "laikmatis taip pat įjungia televizorių."
-
-#~ msgid "Time delay to handle the TV event"
-#~ msgstr "Laiko delsa televizijos įvykiui valdyti"
-
-#~ msgid "Turn on the TV from standby with 'zap and record' timer"
-#~ msgstr ""
-#~ "Įjunkite televizorių iš budėjimo režimo su \"jungti ir įrašyti\" laikmačiu"
-
-#~ msgid "TV was already on powered"
-#~ msgstr "TV jau įjungtas"
-
-#~ msgid "TV was not in standby mode at startup"
-#~ msgstr "Paleisties metu TV nebuvo laukimo režime"
-
-#~ msgid "Greek, Modern (1453-)"
-#~ msgstr "Graikų, modernus (1453-)"
-
-#~ msgid "Video:"
-#~ msgstr "Vaizdas:"
-
-#~ msgid "Audio:"
-#~ msgstr "Garsas:"
-
-#~ msgid "Internal Flash"
-#~ msgstr "Vidinė atmintis"
-
-#~ msgid "Show blinking Clock in Standby on Display during recording"
-#~ msgstr ""
-#~ "Įrašymo metu ir budėjimo režime monitoriuje rodyti mirksintį laikrodį"
-
-#~ msgid "Later"
-#~ msgstr "Vėliau"
-
-#~ msgid "CPU-Load: %s"
-#~ msgstr "Procesoriaus apkrova: %s"
-
-#~ msgid "CPU-Temp: %s"
-#~ msgstr "CPU temperatūra: %s"
-
-#~ msgid "SYS-Temp: %s"
-#~ msgstr "SIST. Temp: %s"
-
-#~ msgid "RAM-Free: %s MB"
-#~ msgstr "RAM laisva: %s MB"
-
-#~ msgid "Flash Memory free: %s MByte"
-#~ msgstr "Laisvos vidinės atminties: %s MBaitai"
-
-#~ msgid "CPU-Speed: %s MHz"
-#~ msgstr "CPU greitis: %s MHz"
-
-#~ msgid ""
-#~ "\n"
-#~ "%d.%d.%d, %2d:%02d  -  %s"
-#~ msgstr ""
-#~ "\n"
-#~ "%d.%d.%d, %2d:%02d  -  %s"
-
 #~ msgid ""
 #~ "If enabled, will checks for the time after the start of the receiver is "
 #~ "within the time window and optionally switched to standby. If disabled, "
@@ -19148,6 +19120,60 @@ msgstr "Zimbabvė"
 #~ "signalas sėkmingam pabudinimo aptikimui. (Kai imtuvas siunčia klaidingą "
 #~ "arba nenaudojamą signalą)"
 
+#~ msgid "In the Standby blinking Clock on the LCD Display"
+#~ msgstr ""
+#~ "Čia galite nustatyti, ar budėjimo režime LCD ekrane rodyti mirksintį "
+#~ "laikrodį"
+
+#~ msgid "Show blinking Clock in Standby on Display during recording"
+#~ msgstr ""
+#~ "Įrašymo metu ir budėjimo režime monitoriuje rodyti mirksintį laikrodį"
+
+#~ msgid ""
+#~ "\n"
+#~ "%d.%d.%d, %2d:%02d  -  %s"
+#~ msgstr ""
+#~ "\n"
+#~ "%d.%d.%d, %2d:%02d  -  %s"
+
+#~ msgid "bc%s"
+#~ msgstr "ekr%s"
+
+#, fuzzy
+#~| msgid "Bootloader:\t\t\t%s\n"
+#~ msgid "Bootloader:\t\t%s\n"
+#~ msgstr "Įkroviklis:\t\t\t%s\n"
+
+#, fuzzy
+#~| msgid "Build:\t\t%s"
+#~ msgid "Build:\t%s"
+#~ msgstr "Sukurta:\t\t%s"
+
+#, fuzzy
+#~| msgid "Chipset:\t\t%s"
+#~ msgid "Chipset:\t%s"
+#~ msgstr "Lustų rinkinys:\t\t%s"
+
+#, fuzzy
+#~| msgid "Cores:\t\t%s"
+#~ msgid "Cores:\t%s"
+#~ msgstr "Branduoliai:\t\t%s"
+
+#, fuzzy
+#~| msgid "CPU:\t\t%s"
+#~ msgid "CPU:\t%s"
+#~ msgstr "Procesorius:\t\t%s"
+
+#, fuzzy
+#~| msgid "Drivers:\t\t%s"
+#~ msgid "Drivers:\t%s"
+#~ msgstr "Tvarkyklės:\t\t%s"
+
+#, fuzzy
+#~| msgid "GStreamer:\t\t%s"
+#~ msgid "GStreamer:\t%s"
+#~ msgstr "Duomenų srautų media:\t\t%s"
+
 #~ msgid ""
 #~ "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/"
 #~ "et7000mini"
@@ -19158,18 +19184,61 @@ msgstr "Zimbabvė"
 #~ msgid "HD2400"
 #~ msgstr "HD2400"
 
-#~ msgid "skinpacks"
-#~ msgstr "temų paketai"
+#, fuzzy
+#~| msgid "Installed:\t\t%s"
+#~ msgid "Installed:\t%s"
+#~ msgstr "Įdiegta:\t\t%s"
 
-#~ msgid "This allows you to show skinpacks in downloads"
+#, fuzzy
+#~| msgid "Kernel:\t\t%s"
+#~ msgid "Kernel:\t%s"
+#~ msgstr "Branduolys:\t\t%s"
+
+#, fuzzy
+#~| msgid "Last update:\t\t%s"
+#~ msgid "Last update:\t%s"
+#~ msgstr "Paskutinis atnaujinimas:\t\t%s"
+
+#, fuzzy
+#~| msgid "Model:\t\t%s %s\n"
+#~ msgid "Model:\t%s %s\n"
+#~ msgstr "Modelis:\t\t%s %s\n"
+
+#, fuzzy
+#~| msgid "Please enter your personal feed URL"
+#~ msgid "Please enter the your personal feed URL"
+#~ msgstr "Įrašykite savo asmeninių šaltinių internetinį adresą"
+
+#, fuzzy
+#~| msgid "Processor temperature:\t\t%s"
+#~ msgid "Processor temperature:\t%s"
+#~ msgstr "Procesoriaus temperatūra:\t\t%s"
+
+#, fuzzy
+#~| msgid "Python:\t\t%s"
+#~ msgid "Python:\t%s"
+#~ msgstr "Python versija:\t\t%s"
+
+#, fuzzy
+#~| msgid "Selected Image:\t\t%s"
+#~ msgid "Selected Image:\t%s"
+#~ msgstr "Pasirinktas atvaizdas:\t\t%s"
+
+#, fuzzy
+#~| msgid "skin"
+#~ msgid "skins"
+#~ msgstr "tema"
+
+#, fuzzy
+#~| msgid "This allows you to show skin modules in downloads"
+#~ msgid "This allows you to show skins modules in downloads"
 #~ msgstr ""
-#~ "Ši parinktis leidžia jums parodyti temų paketus, skirtus atsisiuntimui"
+#~ "Ši parinktis leidžia jums parodyti temų modulius, skirtus atsisiuntimui"
 
-#~ msgid "Down long"
-#~ msgstr "Žemyn (ilgai spausti)"
-
-#~ msgid "Up long"
-#~ msgstr "Aukštyn (ilgai spausti)"
+#, fuzzy
+#~| msgid "Version:\t\t%s"
+#~ msgid "Version:\t%s"
+#~ msgstr "Versija:\t\t%s"
 
 #~ msgid "WPA"
 #~ msgstr "WPA"
@@ -19216,24 +19285,6 @@ msgstr "Zimbabvė"
 #~ msgid "Volume adjust slow"
 #~ msgstr "Lėtas garsumo reguliavimas"
 
-#~ msgid "et4000"
-#~ msgstr "et4000"
-
-#~ msgid "et5000/6000"
-#~ msgstr "et5000/6000"
-
-#~ msgid "et8000/et10000"
-#~ msgstr "et8000/et10000"
-
-#~ msgid "et9000/et9100"
-#~ msgstr "et9000/et9100"
-
-#~ msgid "et9200/9500/6500"
-#~ msgstr "et9200/9500/6500"
-
-#~ msgid "[a]"
-#~ msgstr "[a]"
-
 #~ msgid ""
 #~ "Configure how recording filenames are constructed.\n"
 #~ "Standard: Date Time - Channel - Title\n"
@@ -19251,6 +19302,41 @@ msgstr "Zimbabvė"
 #~ "Trumpas: data - pavadinimas\n"
 #~ "Ilgas: data laikas - kanalas - pavadinimas - informacija"
 
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000"
+#~ msgstr "et8000/et10000"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#, fuzzy
+#~| msgid ""
+#~| "When enabled, always descramble receiving http streams. This takes up "
+#~| "more resources (descrambling demuxers), only enable if necessary. "
+#~| "Individual streams are always descrambled if 0x100 is added to the "
+#~| "service type, regardless of this setting."
+#~ msgid ""
+#~ "When enabled, always descramble receiving http streams. This takes up "
+#~ "more resources (descrambling demuxers), only enable if necessary. "
+#~ "Individual streams are always descrambled if 0x100 is added to the "
+#~ "service type, regardless of this setting. Default off."
+#~ msgstr ""
+#~ "Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai "
+#~ "pareikalaus gerokai daugiau resursų, todėl įjunkite tik kai būtina. "
+#~ "Atskiri srautai visada iškoduojami nepaisant šio nustatymo, jei prie "
+#~ "kanalo tipo įrašyta 0x100, nepriklausomai nuo šio nustatymo."
+
+#~ msgid "[a]"
+#~ msgstr "[a]"
+
 #~ msgid "Zgemma H.S/H.2S/H.2H/H5"
 #~ msgstr "Zgemma H.S/H.2S/H.2H/H5"
 
@@ -19263,23 +19349,28 @@ msgstr "Zimbabvė"
 #~ msgid "Show recording symbol depending on recording type"
 #~ msgstr "Rodyti įrašymo simbolį priklausomai nuo įrašymo tipo"
 
-#~ msgid ""
-#~ "Configure default setting for timer type. Need a restart after changing."
-#~ msgstr ""
-#~ "Konfigūruoti numatytus nustatymus laikmačių tipams. Reikia paleisti iš "
-#~ "naujo po keitimo."
+#, fuzzy
+#~| msgid "Show warning before restart"
+#~ msgid "Show warning before box restart based on recording type"
+#~ msgstr "Rodyti įspėjimą prieš paleidimą iš naujo"
 
-#~ msgid "%d"
-#~ msgid_plural "%d"
-#~ msgstr[0] "%d"
-#~ msgstr[1] "%d"
-#~ msgstr[2] "%d"
+#, fuzzy
+#~| msgid "Pause/Continue playback"
+#~ msgid "Pauze/Continue playback"
+#~ msgstr "Pristabdyti/Tęsti atkūrimą"
 
-#~ msgid "%d Mins"
-#~ msgstr "%d Min."
+#, fuzzy
+#~| msgid "+/-"
+#~ msgid "/-"
+#~ msgstr "+/-"
 
 #~ msgid "-1"
 #~ msgstr "-1"
+
+#, fuzzy
+#~| msgid "-24"
+#~ msgid "-2"
+#~ msgstr "-24"
 
 #~ msgid "-3"
 #~ msgstr "-3"
@@ -19290,14 +19381,25 @@ msgstr "Zimbabvė"
 #~ msgid "-5"
 #~ msgstr "-5"
 
-#~ msgid "??"
-#~ msgstr "??"
-
-#~ msgid "Add bouquet services"
-#~ msgstr "Pridėti paketo kanalus"
+#, fuzzy
+#~| msgid "Later"
+#~ msgctxt "third event: 'third' event label"
+#~ msgid "Later"
+#~ msgstr "Vėliau"
 
 #~ msgid "Leave DVD Player?"
 #~ msgstr "Išeiti iš DVD grotuvo?"
+
+#, fuzzy
+#~| msgid "Maxdown +"
+#~ msgid "Maxdown "
+#~ msgstr "Maksimaliai žemyn +"
+
+#, fuzzy
+#~| msgid "Mode"
+#~ msgctxt "Satellite configuration mode"
+#~ msgid "Mode"
+#~ msgstr "Režimas"
 
 #~ msgctxt "Video output mode"
 #~ msgid "Mode"
@@ -19317,6 +19419,21 @@ msgstr "Zimbabvė"
 #~ msgid "Play Music..."
 #~ msgstr "Groti Muziką..."
 
+#, fuzzy
+#~| msgid ""
+#~| "Please use direction keys to move the PiP window.\n"
+#~| "Press Bouquet +/- to resize the window.\n"
+#~| "Press OK to go back to the TV mode or EXIT to cancel the moving."
+#~ msgid ""
+#~ "Please use direction keys to move the PiP window.\n"
+#~ "Press Bouquet /- to resize the window.\n"
+#~ "Press OK to go back to the TV mode or EXIT to cancel the moving."
+#~ msgstr ""
+#~ "PiP lango perkėlimui, naudokite krypčių mygtukus.\n"
+#~ "Lango dydžio pakeitimui, spauskite Bouquet +/-.\n"
+#~ "Spauskite 'OK', kad grįžti į TV režimą, arba 'EXIT', kad nutraukti "
+#~ "perkėlimą."
+
 #~ msgid "Remote Tuner Server"
 #~ msgstr "Nuotolinio Imtuvo serveris"
 
@@ -19329,8 +19446,56 @@ msgstr "Zimbabvė"
 #~ msgid "Return to file browser"
 #~ msgstr "Grįžti į failų naršyklę"
 
+#, fuzzy
+#~| msgid ""
+#~| "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-"
+#~| "\" to toggle between the lists. Select an assigned function and click on "
+#~| "\"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the "
+#~| "assigned functions."
+#~ msgid ""
+#~ "Select the desired function and click on \"OK\" to assign it. Use \"CH/-"
+#~ "\" to toggle between the lists. Select an assigned function and click on "
+#~ "\"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the "
+#~ "assigned functions."
+#~ msgstr ""
+#~ "Pasirinkite norimą funkciją ir kad ją priskirti, spauskite 'OK'. "
+#~ "Perjungti tarp sąrašų, naudokite kanalų '+/-' mygtukus. Pasirinkite "
+#~ "priskirtą funkciją ir jai per-priskirti spauskite 'OK'. Pakeisti "
+#~ "priskirtų funkcijų tvarkai, naudokite \"Kitas/Ankstesnis\" ."
+
 #~ msgid "Setup Remote Tuner Server"
 #~ msgstr "Sukonfigūruoti nuotolinio imtuvo serverį"
+
+#, fuzzy
+#~| msgid ""
+#~| "\"\"This plugin creates a USB stick which can be used to update the "
+#~| "firmware of your %s %s without the need for a network or WLAN connection."
+#~| "First, a USB stick needs to be prepared so that it becomes bootable.In "
+#~| "the next step, an NFI image file can be downloaded from the update "
+#~| "server and saved on the USB stick.If you already have a prepared "
+#~| "bootable USB stick, please insert it now. Otherwise plug in a USB stick "
+#~| "with a minimum size of 64 MB!\"\""
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware "
+#~ "of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update "
+#~ "server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. "
+#~ "Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "\"\"Šis priedas sukuria USB laikmeną, kuri gali būti panaudota, kad "
+#~ "atnaujinti jūsų %s %s programinę įrangą be tinklo ryšio. Pirmiausiai USB "
+#~ "laikmena turi būti paruošta, kad taptų naudotina įkrovai. Kitame "
+#~ "žingsnyje NFI atvaizdo failas gali būti parsisiųstas iš atnaujinimo "
+#~ "serverio ir išsaugotas USB laikmenoje. Jei jau turite parengtą įkrovos "
+#~ "USB laikmeną, įdėkite ją dabar. Jei ne, įdėkite mažiausiai 64 MB dydžio "
+#~ "USB laikmeną!\"\""
+
+#, fuzzy
+#~| msgid "Timer is activated: +%d min"
+#~ msgid "Timer is activated: %d min"
+#~ msgstr "Laikmatis yra aktyvuotas: +%d min"
 
 #~ msgid "View Movies..."
 #~ msgstr "Žiūrėti kino filmus..."
@@ -19338,11 +19503,26 @@ msgstr "Zimbabvė"
 #~ msgid "View Video CD..."
 #~ msgstr "Žiūrėti vaizdo CD..."
 
+#, fuzzy
+#~| msgid "Zap + Exit"
+#~ msgid "Zap  Exit"
+#~ msgstr "Įjungti + uždaryti"
+
 #~ msgid "set as startup service from standby"
 #~ msgstr "nustatyti kaip paleisties kanalą budėjimo režimu"
 
 #~ msgid "stop using as startup service from standby"
 #~ msgstr "nustoti naudoti kaip paleisties kanalą"
+
+#, fuzzy
+#~| msgid "Load/Save/Delete"
+#~ msgid "Load/Save"
+#~ msgstr "Įkelti, išsaugoti ir trinti"
+
+#, fuzzy
+#~| msgid "Channel +/- button mode"
+#~ msgid "Channel /- button mode"
+#~ msgstr "Kanalo +/-mygtukų režimas"
 
 #~ msgid ""
 #~ "Check with an alternative method (some boxes gives no signal when starts "
@@ -19356,8 +19536,28 @@ msgstr "Zimbabvė"
 #~ msgid "Configure how recording filenames are constructed."
 #~ msgstr "Konfigūruoti kaip įrašų pavadinimai yra sukonstruoti."
 
+#, fuzzy
+#~| msgid ""
+#~| "Configure the cursor behaviour in the channel selection list. When "
+#~| "opening the channel selection list you can remain on the current service "
+#~| "or already select up/down and you are able to revert the B+/B- buttons."
+#~ msgid ""
+#~ "Configure the cursor behaviour in the channel selection list. When "
+#~ "opening the channel selection list you can remain on the current service "
+#~ "or already select up/down and you are able to revert the B/B- buttons."
+#~ msgstr ""
+#~ "Konfigūruokite žymeklio elgseną (t.y. kur atsistos pasirinkimas) kanalų "
+#~ "pasirinkimo sąrašo lange. Kai atidarote kanalų pasirinkimo sąrašą, galite "
+#~ "palikti dabartinį kanalą, arba pasirinkti aukštyn/žemyn, o grįžti "
+#~ "galėsite B+/B- mygtukais."
+
 #~ msgid "DVD-Player Setup"
 #~ msgstr "DVD grotuvo valdymas"
+
+#, fuzzy
+#~| msgid "Select what you want the Channel +/- button to activate:"
+#~ msgid "Select what you want the Channel /- button to activate:"
+#~ msgstr "Pasirinkite, ką norite, aktyvuoti 'kanalų +/-'  mygtukų paspaudimu:"
 
 #~ msgid "Show DVD-Player in Mainmenu"
 #~ msgstr "Rodyti DVD grotuvą pagrindiniame meniu"
@@ -19377,10 +19577,171 @@ msgstr "Zimbabvė"
 #~ "perjungtas į budėjimo režimą. (atėmus reikšmę = pabudimas su laikmačiu "
 #~ "yra trumpesnis)"
 
+#, fuzzy
+#~| msgid ""
+#~| "This option allows you choose how to display elapsed time  as + or -"
+#~ msgid "This option allows you choose how to display elapsed time  as  or -"
+#~ msgstr ""
+#~ "Ši parinktis leidžia nustatyti, kaip rodyti praėjusį laiką: kaip +, ar -"
+
 #~ msgid "Use individual offset from waking up to starting a timer [min]"
 #~ msgstr ""
 #~ "Naudokite individualius nuokrypius iš pabudimo startuojant laikmačiui "
 #~ "[min]"
+
+#, fuzzy
+#~| msgid "Use workaround for wakeup from deep-standby?"
+#~ msgid "Use work-around for recordings from deep-standby"
+#~ msgstr "Naudoti budinimui iš gilaus budėjimo?"
+
+#, fuzzy
+#~| msgid "Installed:\t\t%s"
+#~ msgid "Image started:\t%s"
+#~ msgstr "Įdiegta:\t\t%s"
+
+#, fuzzy
+#~| msgid "Default 'Timer type' *"
+#~ msgid "Default timer type"
+#~ msgstr "Numatytasis 'Laikmačio tipas' *"
+
+#, fuzzy
+#~| msgid ""
+#~| "Configure default setting for new timers. Need a restart after changing."
+#~ msgid "Configure default type for new timers."
+#~ msgstr ""
+#~ "Konfigūruoti numatytus nustatymus naujiems laikmačiams. Reikia paleisti "
+#~ "iš naujo po keitimo."
+
+#, fuzzy
+#~| msgid "Dolby Digital downmix is now"
+#~ msgid "Dobly Digital downmix is now"
+#~ msgstr "Dolby Digital kanalų suliejimas"
+
+#, fuzzy
+#~| msgid "and never ask again this session again"
+#~ msgid "and never show this message again"
+#~ msgstr "ir niekada neklausti šios sesijos dar kartą"
+
+#~ msgid "Internal Flash"
+#~ msgstr "Vidinė atmintis"
+
+#, fuzzy
+#~| msgid "Bitrate"
+#~ msgid "Bitrate viewer"
+#~ msgstr "Sparta bitais"
+
+#, fuzzy
+#~| msgid "Protect main menu"
+#~ msgid "Sort main menu"
+#~ msgstr "Apsaugoti pagrindinį meniu"
+
+#, fuzzy
+#~| msgid "Eventview menu"
+#~ msgid "enter menu"
+#~ msgstr "Įvykių peržiūros meniu"
+
+#, fuzzy
+#~| msgid "Timer entry"
+#~ msgid "hide entry"
+#~ msgstr "Laikmačio užduotis"
+
+#, fuzzy
+#~| msgid "Movie selection"
+#~ msgid "toggle selection"
+#~ msgstr "Filmo pasirinkimas"
+
+#, fuzzy
+#~| msgid "24+ Hours"
+#~ msgid "24 Hours"
+#~ msgstr "+ 24 valandos"
+
+#~ msgid "If the power state is reached, the repeated messages are stopped."
+#~ msgstr ""
+#~ "Jei pasiekiama maitinimo būsena, pakartotiniai pranešimai yra sustabdyti."
+
+#~ msgid "If the receiver in standby, then switch to deep standby?"
+#~ msgstr "Jei imtuvas budėjimo režime, tada perjungti į gilų budėjimą?"
+
+#~ msgid ""
+#~ "If you have activated HDMI-CEC, you can specify here whether a 'zap and "
+#~ "record' timer also turns on the TV."
+#~ msgstr ""
+#~ "Jei įjungėte HDMI-CEC, čia galite nurodyti ar \"jungti ir įrašyti\" "
+#~ "laikmatis taip pat įjungia televizorių."
+
+#~ msgid "Time delay to handle the TV event"
+#~ msgstr "Laiko delsa televizijos įvykiui valdyti"
+
+#~ msgid "Turn on the TV from standby with 'zap and record' timer"
+#~ msgstr ""
+#~ "Įjunkite televizorių iš budėjimo režimo su \"jungti ir įrašyti\" laikmačiu"
+
+#~ msgid "TV was already on powered"
+#~ msgstr "TV jau įjungtas"
+
+#~ msgid "TV was not in standby mode at startup"
+#~ msgstr "Paleisties metu TV nebuvo laukimo režime"
+
+#~ msgid "Greek, Modern (1453-)"
+#~ msgstr "Graikų, modernus (1453-)"
+
+#~ msgid "Video:"
+#~ msgstr "Vaizdas:"
+
+#~ msgid "Audio:"
+#~ msgstr "Garsas:"
+
+#~ msgid "CPU-Load: %s"
+#~ msgstr "Procesoriaus apkrova: %s"
+
+#~ msgid "CPU-Temp: %s"
+#~ msgstr "CPU temperatūra: %s"
+
+#~ msgid "SYS-Temp: %s"
+#~ msgstr "SIST. Temp: %s"
+
+#~ msgid "RAM-Free: %s MB"
+#~ msgstr "RAM laisva: %s MB"
+
+#~ msgid "Flash Memory free: %s MByte"
+#~ msgstr "Laisvos vidinės atminties: %s MBaitai"
+
+#~ msgid "CPU-Speed: %s MHz"
+#~ msgstr "CPU greitis: %s MHz"
+
+#~ msgid "skinpacks"
+#~ msgstr "temų paketai"
+
+#~ msgid "This allows you to show skinpacks in downloads"
+#~ msgstr ""
+#~ "Ši parinktis leidžia jums parodyti temų paketus, skirtus atsisiuntimui"
+
+#~ msgid "Down long"
+#~ msgstr "Žemyn (ilgai spausti)"
+
+#~ msgid "Up long"
+#~ msgstr "Aukštyn (ilgai spausti)"
+
+#~ msgid ""
+#~ "Configure default setting for timer type. Need a restart after changing."
+#~ msgstr ""
+#~ "Konfigūruoti numatytus nustatymus laikmačių tipams. Reikia paleisti iš "
+#~ "naujo po keitimo."
+
+#~ msgid "%d"
+#~ msgid_plural "%d"
+#~ msgstr[0] "%d"
+#~ msgstr[1] "%d"
+#~ msgstr[2] "%d"
+
+#~ msgid "%d Mins"
+#~ msgstr "%d Min."
+
+#~ msgid "??"
+#~ msgstr "??"
+
+#~ msgid "Add bouquet services"
+#~ msgstr "Pridėti paketo kanalus"
 
 #, fuzzy
 #~ msgid ""
