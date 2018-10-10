@@ -107,8 +107,8 @@ class ImageBackup(Screen):
 		else:
 			self["key_yellow"] = StaticText("")
 			self["info-multi"] = Label(" ")
-		self["info-usb"] = Label(_("USB = Do you want to make a back-up on USB?\nThis will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert an USB flash drive before you select USB."))
-		self["info-hdd"] = Label(_("HDD = Do you want to make an USB-back-up image on HDD? \nThis only takes 2 or 10 minutes and is fully automatic."))
+		self["info-usb"] = Label(_("USB = Do you want to make a back-up on USB?\nThis will take between 3 and 15 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert an USB flash drive before you select USB."))
+		self["info-hdd"] = Label(_("HDD = Do you want to make an USB-back-up image on HDD? \nThis only takes 1 or 10 minutes and is fully automatic."))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
 			"blue": self.quit,
@@ -280,18 +280,11 @@ class ImageBackup(Screen):
 		self.message += VERSION + '\n'
 		self.message += "_________________________________________________\n\n"
 		self.message += _("Please be patient, a backup will now be made,\n")
-		if self.ROOTFSTYPE == "ubi":
-			self.message += _("because of the used filesystem the back-up\n")
-			self.message += _("will take about 3-12 minutes for this system\n")
-		elif SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
-			self.message += _("because of the used filesystem the back-up\n")
+		self.message += _("because of the used filesystem the back-up\n")
+		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			self.message += _("will take about 30 minutes for this system\n")
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"]:
-			self.message += _("because of the used filesystem the back-up\n")
-			self.message += _("will take about 1-4 minutes for this system\n")
 		else:
-			self.message += _("because of the used filesystem the back-up\n")
-			self.message += _("this will take between 2 and 9 minutes\n")
+			self.message += _("will take about 1-15 minutes for this system\n")
 		self.message += "\n_________________________________________________\n\n"
 		self.message += "'"
 

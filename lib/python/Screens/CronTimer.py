@@ -5,6 +5,7 @@ from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
+from Components.Sources.Boolean import Boolean
 from Components.Pixmap import Pixmap
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -278,6 +279,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		self['key_red'] = Label(_("Close"))
 		self['key_green'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions', "MenuActions"], {'red': self.close,'green': self.checkentry, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self['footnote'] = Label()

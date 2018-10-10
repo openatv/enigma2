@@ -296,6 +296,7 @@ class doFlashImage(Screen):
 		self["imageList"] = MenuList(self.imagelist)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
+			"ok": self.green,
 			"green": self.green,
 			"yellow": self.yellow,
 			"red": self.quit,
