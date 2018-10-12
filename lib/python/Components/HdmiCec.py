@@ -460,7 +460,7 @@ class HdmiCec:
 			return self.repeatTimer.isActive() or self.stateTimer.isActive()
 
 	def volumeTimeout(self):
-		print '[HdmiCec] timeout volume forwarding'
+		print '[HdmiCec] timeout for volume forwarding!'
 		self.volumeForwardingCheck = False
 		self.volumeForwardingEnabled = False
 
