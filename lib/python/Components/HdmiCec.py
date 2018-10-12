@@ -165,7 +165,6 @@ class HdmiCec:
 					self.volumeForwardingDestination = 5 # on: send volume keys to receiver
 				else:
 					self.volumeForwardingDestination = 0 # off: send volume keys to tv
-					self.volumeForwardingCheck = False
 				if config.hdmicec.volume_forwarding.value:
 					print 'eHdmiCec: volume forwarding to device %02x enabled'% self.volumeForwardingDestination
 					self.volumeForwardingEnabled = True
@@ -291,9 +290,6 @@ class HdmiCec:
 				data = str(struct.pack('B', 0x01))
 			elif message == "givesystemaudiostatus":
 				cmd = 0x7d
-				if self.volumeTimer.isActive():
-					self.volumeTimer.stop()
-				self.volumeTimer.start(3000,True)
 			elif message == "setsystemaudiomode":
 				cmd = 0x70
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -616,6 +612,12 @@ class HdmiCec:
 		if config.hdmicec.enabled.value and config.hdmicec.volume_forwarding.value:
 			self.volumeForwardingEnabled = True
 			self.sendMessage(5, 'givesystemaudiostatus')
+			if self.volumeTimer.isActive():
+				self.volumeTimer.stop()
+			timeout = 3000
+			if self.firstrun:
+				timeout = 6000
+			self.volumeTimer.start(timeout,True)
 		else:
 			self.volumeForwardingCheck = False
 			self.volumeForwardingEnabled = False
@@ -651,6 +653,9 @@ class HdmiCec:
 			if not self.volumeForwardingCheck and self.volumeForwardingDestination == 0:
 				self.volumeForwardingCheck = True
 				self.sendMessage(0, 'givesystemaudiostatus')
+				if self.volumeTimer.isActive():
+					self.volumeTimer.stop()
+				self.volumeTimer.start(3000,True)
 			#//
 			else:
 				cmd = 0x45
