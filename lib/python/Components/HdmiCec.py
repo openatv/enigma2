@@ -89,6 +89,8 @@ class HdmiCec:
 			self.repeatTimer = eTimer()
 			self.repeatTimer.callback.append(self.repeatMessages)
 			self.repeatCounter = 0
+			self.volumeTimer = eTimer()
+			self.volumeTimer.callback.append(self.volumeTimeout)
 			self.messageCounter = 0
 			self.what = ''
 			self.tv_lastrequest = ''
@@ -157,10 +159,13 @@ class HdmiCec:
 			elif cmd == 0x46: # request name
 				self.sendMessage(address, 'osdname')
 			elif cmd in (0x7e, 0x72): # system audio mode status
+				if self.volumeTimer.isActive():
+					self.volumeTimer.stop()
 				if data[0] == '\x01':
 					self.volumeForwardingDestination = 5 # on: send volume keys to receiver
 				else:
 					self.volumeForwardingDestination = 0 # off: send volume keys to tv
+					self.volumeForwardingCheck = False
 				if config.hdmicec.volume_forwarding.value:
 					print 'eHdmiCec: volume forwarding to device %02x enabled'% self.volumeForwardingDestination
 					self.volumeForwardingEnabled = True
@@ -286,6 +291,9 @@ class HdmiCec:
 				data = str(struct.pack('B', 0x01))
 			elif message == "givesystemaudiostatus":
 				cmd = 0x7d
+				if self.volumeTimer.isActive():
+					self.volumeTimer.stop()
+				self.volumeTimer.start(3000,True)
 			elif message == "setsystemaudiomode":
 				cmd = 0x70
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -454,6 +462,11 @@ class HdmiCec:
 			return active
 		else:
 			return self.repeatTimer.isActive() or self.stateTimer.isActive()
+
+	def volumeTimeout(self):
+		print '[HdmiCec] timeout volume forwarding'
+		self.volumeForwardingCheck = False
+		self.volumeForwardingEnabled = False
 
 	def stateTimeout(self):
 		print '[HdmiCec] timeout for check TV state!'
