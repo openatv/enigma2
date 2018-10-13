@@ -193,6 +193,8 @@ class HdmiCec:
 					self.tv_powerstate = "get_standby"
 				if checkstate and not self.firstrun:
 					self.checkTVstate('powerstate')
+				elif self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
+					self.firstrun = False
 				else:
 					self.checkTVstate()
 			elif cmd == 0x36: # handle standby request from the tv
@@ -460,6 +462,8 @@ class HdmiCec:
 			self.checkTVstate('activesource')
 		elif self.tv_powerstate == 'unknown': # no response from tv - another input active ? -> check if powered on
 			self.checkTVstate('getpowerstate')
+		elif self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
+			self.firstrun = False
 
 	def checkTVstate(self, state = ''):
 		if self.stateTimer.isActive():
@@ -473,6 +477,8 @@ class HdmiCec:
 				self.sendMessage(0, 'sourceactive')
 				if need_routinginfo or config.hdmicec.check_tv_state.value:
 					self.sendMessage(0, 'routinginfo')
+			if self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
+				self.firstrun = False
 		elif state == 'tvstandby':
 			self.activesource = False
 			self.tv_powerstate = 'standby'
