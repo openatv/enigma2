@@ -79,6 +79,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			cmdlist = []
 			cmdlist.append("dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc")
 			cmdlist.append("rm -f /tmp/init.sh")
+			cmdlist.append("echo -e 'umount /dev/sda1' >> /tmp/init.sh")
 			cmdlist.append("echo -e 'sfdisk /dev/sda <<EOF' >> /tmp/init.sh")
 			cmdlist.append("echo -e ',8M' >> /tmp/init.sh")
 			cmdlist.append("echo -e ',2048M' >> /tmp/init.sh")
