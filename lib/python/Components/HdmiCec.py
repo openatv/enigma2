@@ -92,8 +92,6 @@ class HdmiCec:
 			self.repeatTimer = eTimer()
 			self.repeatTimer.callback.append(self.repeatMessages)
 			self.repeatCounter = 0
-			self.volumeTimer = eTimer()
-			self.volumeTimer.callback.append(self.volumeTimeout)
 			self.messageCounter = 0
 			self.what = ''
 			self.tv_lastrequest = ''
@@ -110,7 +108,6 @@ class HdmiCec:
 			config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
 			self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
 
-			self.volumeForwardingCheck = False
 			self.volumeForwardingEnabled = False
 			self.volumeForwardingDestination = 0
 			eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
@@ -156,14 +153,12 @@ class HdmiCec:
 			#//
 
 			if cmd == 0x00: # feature abort
-				if data[0] == '\x44' or (data[0] == '\x7D' and self.volumeForwardingCheck and self.volumeForwardingEnabled and self.volumeForwardingDestination == 0):
+				if data[0] == '\x44':
 					print 'eHdmiCec: volume forwarding not supported by device %02x'%(address)
 					self.volumeForwardingEnabled = False
 			elif cmd == 0x46: # request name
 				self.sendMessage(address, 'osdname')
 			elif cmd in (0x7e, 0x72): # system audio mode status
-				if self.volumeTimer.isActive():
-					self.volumeTimer.stop()
 				if data[0] == '\x01':
 					self.volumeForwardingDestination = 5 # on: send volume keys to receiver
 				else:
@@ -201,6 +196,8 @@ class HdmiCec:
 					self.tv_powerstate = "get_standby"
 				if checkstate and not self.firstrun:
 					self.checkTVstate('powerstate')
+				elif self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
+					self.firstrun = False
 				else:
 					self.checkTVstate()
 			elif cmd == 0x36: # handle standby request from the tv
@@ -462,17 +459,14 @@ class HdmiCec:
 		else:
 			return self.repeatTimer.isActive() or self.stateTimer.isActive()
 
-	def volumeTimeout(self):
-		print '[HdmiCec] timeout for volume forwarding!'
-		self.volumeForwardingCheck = False
-		self.volumeForwardingEnabled = False
-
 	def stateTimeout(self):
 		print '[HdmiCec] timeout for check TV state!'
 		if 'on' in self.tv_powerstate:
 			self.checkTVstate('activesource')
 		elif self.tv_powerstate == 'unknown': # no response from tv - another input active ? -> check if powered on
 			self.checkTVstate('getpowerstate')
+		elif self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
+			self.firstrun = False
 
 	def checkTVstate(self, state = ''):
 		if self.stateTimer.isActive():
@@ -486,12 +480,16 @@ class HdmiCec:
 				self.sendMessage(0, 'sourceactive')
 				if need_routinginfo or config.hdmicec.check_tv_state.value:
 					self.sendMessage(0, 'routinginfo')
+			if self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
+				self.firstrun = False
 		elif state == 'tvstandby':
 			self.activesource = False
 			self.tv_powerstate = 'standby'
 		elif state == 'firstrun' and ((not config.hdmicec.handle_deepstandby_events.value and (need_routinginfo or config.hdmicec.report_active_menu.value)) or config.hdmicec.check_tv_state.value or config.hdmicec.workaround_activesource.value):
 			self.stateTimer.start(timeout,True)
 			self.sendMessage(0, 'routinginfo')
+		elif state == 'firstrun' and not config.hdmicec.handle_deepstandby_events.value:
+			self.firstrun = False
 		elif config.hdmicec.check_tv_state.value or 'powerstate' in state:
 			if state == 'getpowerstate' or state in ('on', 'standby'):
 				self.activesource = False
@@ -615,14 +613,7 @@ class HdmiCec:
 		if config.hdmicec.enabled.value and config.hdmicec.volume_forwarding.value:
 			self.volumeForwardingEnabled = True
 			self.sendMessage(5, 'givesystemaudiostatus')
-			if self.volumeTimer.isActive():
-				self.volumeTimer.stop()
-			timeout = 3000
-			if self.firstrun:
-				timeout = 6000
-			self.volumeTimer.start(timeout,True)
 		else:
-			self.volumeForwardingCheck = False
 			self.volumeForwardingEnabled = False
 
 	def configReportActiveMenu(self, configElement):
@@ -652,16 +643,7 @@ class HdmiCec:
 				cmd = 0x44
 				data = str(struct.pack('B', 0x43))
 		elif keyEvent == 1 and keyCode in (113, 114, 115):
-			#// check volume forwarding status from the tv -> this feature is temporary disabled if not supported
-			if not self.volumeForwardingCheck and self.volumeForwardingDestination == 0:
-				self.volumeForwardingCheck = True
-				self.sendMessage(0, 'givesystemaudiostatus')
-				if self.volumeTimer.isActive():
-					self.volumeTimer.stop()
-				self.volumeTimer.start(3000,True)
-			#//
-			else:
-				cmd = 0x45
+			cmd = 0x45
 		if cmd:
 			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
 			return 1

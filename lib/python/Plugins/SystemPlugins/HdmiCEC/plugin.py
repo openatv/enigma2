@@ -89,7 +89,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Handle input from TV"), config.hdmicec.handle_tv_input, _('helptext'),'refreshlist'))
 			if config.hdmicec.handle_tv_standby.value != 'disabled' or config.hdmicec.handle_tv_input.value != 'disabled':
 				self.list.append(getConfigListEntry(tab + _("Time delay until standby or deep standby"), config.hdmicec.handle_tv_delaytime, _("'Handle standby from TV' has a higher priority as 'Handle input from TV'"),))
-			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding, _('Activation takes place immediately. If this feature is not supported, no function will be changed.'),))
+			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding, _('Activation takes place immediately. If this feature is not supported, the volume keys has no function!'),))
 			self.list.append(getConfigListEntry(_("Put your AV Receiver in standby"), config.hdmicec.control_receiver_standby, _('helptext'),))
 			self.list.append(getConfigListEntry(_("Wakeup your AV Receiver from standby"), config.hdmicec.control_receiver_wakeup, _('helptext'),))
 			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval, _('Try to slow down the send interval if not all commands are executed.\n') + _('(e.g. TV wakeup, but not switched to correct input)'), ))
