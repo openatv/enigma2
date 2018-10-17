@@ -241,9 +241,9 @@ class ServiceName2(Converter, object):
 				else:
 					result += type
 			elif f == 'F':	# %F - frequency (dvb-s/s2/c/t) in KHz
-				if type in ('DVB-S') and self.tpdata.get('frequency', 0) >0 :
-					result += '%d MHz'%(self.tpdata.get('frequency', 0) / 1000) 
-				if type in ('DVB-C','DVB-T'):
+				if type in ('DVB-S','DVB-C') and self.tpdata.get('frequency', 0) >0 :
+					result += '%d MHz'%(self.tpdata.get('frequency', 0) / 1000)
+				if type in ('DVB-T'):
 					result += '%.3f MHz'%(((self.tpdata.get('frequency', 0) +500) / 1000) / 1000.0)
 #					result += '%.3f'%(((self.tpdata.get('frequency', 0) / 1000) +1) / 1000.0) + " MHz " 
 			elif f == 'f':	# %f - fec_inner (dvb-s/s2/c/t)
