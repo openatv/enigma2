@@ -37,7 +37,7 @@ private:
 	ePtr<eSocketNotifier> m_sn;
 	void video_event(int what);
 	sigc::signal1<void, struct iTSMPEGDecoder::videoEvent> m_event;
-	int m_width, m_height, m_framerate, m_aspect, m_progressive;
+	int m_width, m_height, m_framerate, m_aspect, m_progressive, m_gamma;
 	static int readApiSize(int fd, int &xres, int &yres, int &aspect);
 public:
 	enum { MPEG2, MPEG4_H264, MPEG1, MPEG4_Part2, VC1, VC1_SM, H265_HEVC, AVS };
@@ -57,6 +57,7 @@ public:
 	int getProgressive();
 	int getFrameRate();
 	int getAspect();
+	int getGamma();
 };
 
 class eDVBPCR: public iObject
@@ -173,6 +174,7 @@ public:
 	int getVideoProgressive();
 	int getVideoFrameRate();
 	int getVideoAspect();
+	int getVideoGamma();
 	static RESULT setHwPCMDelay(int delay);
 	static RESULT setHwAC3Delay(int delay);
 };

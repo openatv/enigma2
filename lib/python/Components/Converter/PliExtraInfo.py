@@ -300,7 +300,8 @@ class PliExtraInfo(Poll, Converter, object):
 		fps  = str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 		if int(fps) <= 0:
 			fps = ""
-		return str(xres) + "x" + str(yres) + mode + fps
+		gamma = ("SDR", "HDR", "HDR10", "HLG", "")[info.getInfo(iServiceInformation.sGamma)]
+		return str(xres) + "x" + str(yres) + mode + fps + addspace(gamma)
 
 	def createVideoCodec(self, info):
 		return ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "")[info.getInfo(iServiceInformation.sVideoType)]
