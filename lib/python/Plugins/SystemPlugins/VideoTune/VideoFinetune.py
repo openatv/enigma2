@@ -17,6 +17,7 @@ class OverscanTestScreen(Screen):
 
 	def __init__(self, session, xres=1280, yres=720):
 		Screen.__init__(self, session)
+		self.setTitle(_("Overscan Test"))
 
 		self.xres, self.yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
@@ -58,6 +59,7 @@ class FullHDTestScreen(OverscanTestScreen):
 
 	def __init__(self, session):
 		OverscanTestScreen.__init__(self, session, 1920, 1080)
+		self.setTitle(_("FullHD Test"))
 
 		self["actions"] = NumberActionMap(["InputActions", "OkCancelActions"],
 		{
@@ -79,6 +81,7 @@ class VideoFinetune(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.setTitle(_("VideoFinetune"))
 		self.skinAttributes = None
 		self["Canvas"] = CanvasSource()
 
