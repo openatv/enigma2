@@ -14,7 +14,7 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None, windowTitle = None, title = "Message"):
+	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None, windowTitle = None, title = "Message", showYESNO=False):
 		if not windowTitle:
 			windowTitle = title
 		if not list: list = []
@@ -75,7 +75,7 @@ class MessageBox(Screen):
 				self["InfoPixmap"].show()
 
 		self.messtype = type
-		if type == self.TYPE_YESNO:
+		if type == self.TYPE_YESNO or showYESNO:
 			if list:
 				self.list = list
 			elif default:
