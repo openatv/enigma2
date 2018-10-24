@@ -937,7 +937,7 @@ bool ePicLoad::getExif(const char *filename, int Thumb)
 {
 	if (!m_exif) {
 		m_exif = new Cexif;
-		return m_exif->DecodeExif(filename, Thumb);
+		return m_exif->DecodeExif(filename, Thumb, m_filepara ? m_filepara->id : getFileType(filename));
 	}
 	return true;
 }
