@@ -4,9 +4,9 @@
 
 ## openATV 6.3 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.2](https://github.com/oe-alliance/oe-alliance-core/tree/4.3 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.3](https://github.com/oe-alliance/oe-alliance-core/tree/4.3 "OE-Alliance")
 > 
-> [https://github.com/openatv/enigma2/tree/DEV](https://github.com/openatv/enigma2/tree/6.3 "openATV E2")
+> [https://github.com/openatv/enigma2/tree/6.3](https://github.com/openatv/enigma2/tree/6.3 "openATV E2")
 > 
 > [https://github.com/openatv/MetrixHD](https://github.com/openatv/MetrixHD "openATV Skin")
 
