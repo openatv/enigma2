@@ -93,3 +93,4 @@ SystemInfo["HDMIin"] = getMachineBuild() in ('inihdp', 'hd2400', 'et10000', 'dm7
 SystemInfo["HaveRCA"] = getHaveRCA() in ('True')
 SystemInfo["HaveDVI"] = getHaveDVI() in ('True')
 SystemInfo["HaveAVJACK"] = getHaveAVJACK() in ('True')
+SystemInfo["HAVE_SCART"] = getHaveSCART() in ('True')
