@@ -592,3 +592,11 @@ int eAMLTSMPEGDecoder::getVideoAspect()
 
 	return m_aspect == 1 ? 2 : 3;
 }
+int eAMLTSMPEGDecoder::getVideoGamma()
+{
+	//if (m_video)
+	//	return m_video->getGamma();
+	return -1;
+}
+
+
