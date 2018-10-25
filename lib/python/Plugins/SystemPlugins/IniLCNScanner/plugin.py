@@ -48,9 +48,8 @@ class LCN():
 	)
 	sr_radio_bouquet_entry.setPath('FROM BOUQUET "userbouquet.terrestrial_lcn.radio" ORDER BY bouquet')
 
-	def __init__(self, dbfile, rulefile, rulename, bouquetfile):
+	def __init__(self, dbfile, rulefile, rulename):
 		self.dbfile = dbfile
-		self.bouquetfile = bouquetfile
 		self.lcnlist = []
 		self.markers = []
 		self.e2services = []
@@ -262,10 +261,6 @@ class LCN():
 
 class LCNBuildHelper():
 	def __init__(self):
-		self.bouquetlist = []
-		for x in self.readBouquetsTvList():
-			self.bouquetlist.append((x[0], x[1]))
-
 		self.rulelist = []
 		mdom = xml.etree.cElementTree.parse(os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml")
 		for x in mdom.getroot():
@@ -274,57 +269,7 @@ class LCNBuildHelper():
 
 		config.lcn = ConfigSubsection()
 		config.lcn.enabled = ConfigYesNo(True)
-		config.lcn.bouquet = ConfigSelection(default="userbouquet.LastScanned.tv", choices=self.bouquetlist)
 		config.lcn.rules = ConfigSelection(self.rulelist)
-
-	def readBouquetsTvList(self):
-		return self.readBouquetsList("bouquets.tv")
-
-	def readBouquetsRadioList(self):
-		return self.readBouquetsList("bouquets.radio")
-
-	def readBouquetsList(self, bouquetname):
-		try:
-			f = open(resolveFilename(SCOPE_CONFIG, bouquetname))
-		except Exception, e:
-			print "[LCNScanner]", e
-			return
-
-		ret = []
-
-		while True:
-			line = f.readline()
-			if line == "":
-				break
-
-			if line[:8] != "#SERVICE":
-				continue
-
-			filename = None
-			bouquetlistref = eServiceReference(line[8:].strip())
-			bqpath = bouquetlistref.getPath()
-			if bqpath.startswith("FROM BOUQUET"):
-				bqparts = bqpath.split('"', 3)
-				if len(bqparts) == 3:
-					filename = bqparts[1]
-				else:
-					filename = bqpath
-
-			if filename:
-				try:
-					fb = open(pwd + "/" + filename)
-				except Exception, e:
-					print "[LCNScanner]", e
-					continue
-
-				tmp = fb.readline().strip()
-				if tmp.startswith("#NAME "):
-					ret.append([filename, tmp[6:]])
-				else:
-					ret.append([filename, filename])
-				fb.close()
-
-		return ret
 
 	def buildAfterScan(self):
 		if config.lcn.enabled.value:
@@ -337,13 +282,7 @@ class LCNBuildHelper():
 				rule = x[0]
 				break
 
-		bouquet = self.rulelist[0][0]
-		for x in self.bouquetlist:
-			if x[0] == config.lcn.bouquet.value:
-				bouquet = x[0]
-				break
-
-		lcn = LCN(resolveFilename(SCOPE_CONFIG, "lcndb"), os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml", rule, resolveFilename(SCOPE_CONFIG, bouquet))
+		lcn = LCN(resolveFilename(SCOPE_CONFIG, "lcndb"), os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml", rule, resolveFilename(SCOPE_CONFIG))
 		lcn.read("TV")
 		if len(lcn.lcnlist) > 0:
 			lcn.writeTVBouquet()
@@ -378,7 +317,6 @@ class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 
 		self.list = [
 			getConfigListEntry(_("Enable terrestrial LCN:"), config.lcn.enabled),
-			getConfigListEntry(_("Terrestrial bouquet:"), config.lcn.bouquet),
 			getConfigListEntry(_("LCN rules:"), config.lcn.rules),
 		]
 
