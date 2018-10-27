@@ -572,20 +572,21 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		int autoaudio_aache = -1;
 		int autoaudio_aac = -1;
 		int autoaudio_level = 4;
+		int *autoaudio = NULL;
 
 		std::string configvalue;
 		std::vector<std::string> autoaudio_languages;
 		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect1");
-		if (configvalue != "" && configvalue != "None")
+		if (configvalue != "" && configvalue != "---")
 			autoaudio_languages.push_back(configvalue);
 		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect2");
-		if (configvalue != "" && configvalue != "None")
+		if (configvalue != "" && configvalue != "---")
 			autoaudio_languages.push_back(configvalue);
 		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect3");
-		if (configvalue != "" && configvalue != "None")
+		if (configvalue != "" && configvalue != "---")
 			autoaudio_languages.push_back(configvalue);
 		configvalue = eConfigManager::getConfigValue("config.autolanguage.audio_autoselect4");
-		if (configvalue != "" && configvalue != "None")
+		if (configvalue != "" && configvalue != "---")
 			autoaudio_languages.push_back(configvalue);
 
 		int autosub_txt_normal = -1;
@@ -653,18 +654,28 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				int x = 1;
 				for (std::vector<std::string>::iterator it = autoaudio_languages.begin();x <= autoaudio_level && it != autoaudio_languages.end();x++,it++)
 				{
-					if ((*it).find(program.audioStreams[i].language_code) != std::string::npos)
+					if ((*it).find(program.audioStreams[i].language_code.substr(0, program.audioStreams[i].language_code.find('/'))) != std::string::npos)
 					{
-						if (program.audioStreams[i].type == audioStream::atMPEG && (autoaudio_level > x || autoaudio_mpeg == -1))
+						if (program.audioStreams[i].type == audioStream::atMPEG && (autoaudio_level >= x || autoaudio_mpeg == -1)) {
 							autoaudio_mpeg = i;
-						else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level > x || autoaudio_ac3 == -1))
+							autoaudio = &autoaudio_mpeg;
+						}
+						else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level >= x || autoaudio_ac3 == -1)) {
 							autoaudio_ac3 = i;
-						else if (program.audioStreams[i].type == audioStream::atDDP && (autoaudio_level > x || autoaudio_ddp == -1))
+							autoaudio = &autoaudio_ac3;
+						}
+						else if (program.audioStreams[i].type == audioStream::atDDP && (autoaudio_level >= x || autoaudio_ddp == -1)) {
 							autoaudio_ddp = i;
-						else if (program.audioStreams[i].type == audioStream::atAACHE && (autoaudio_level > x || autoaudio_aache == -1))
+							autoaudio = &autoaudio_ddp;
+						}
+						else if (program.audioStreams[i].type == audioStream::atAACHE && (autoaudio_level >= x || autoaudio_aache == -1)) {
 							autoaudio_aache = i;
-						else if (program.audioStreams[i].type == audioStream::atAAC && (autoaudio_level > x || autoaudio_aac == -1))
+							autoaudio = &autoaudio_aache;
+						}
+						else if (program.audioStreams[i].type == audioStream::atAAC && (autoaudio_level >= x || autoaudio_aac == -1)) {
 							autoaudio_aac = i;
+							autoaudio = &autoaudio_aac;
+						}
 						autoaudio_level = x;
 						break;
 					}
@@ -715,16 +726,8 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			program.defaultAudioStream = autoaudio_ddp;
 		else
 		{
-			if (autoaudio_mpeg != -1)
-				program.defaultAudioStream = autoaudio_mpeg;
-			else if (autoaudio_ac3 != -1)
-				program.defaultAudioStream = autoaudio_ac3;
-			else if (autoaudio_ddp != -1)
-				program.defaultAudioStream = autoaudio_ddp;
-			else if (autoaudio_aache != -1)
-				program.defaultAudioStream = autoaudio_aache;
-			else if (autoaudio_aac != -1)
-				program.defaultAudioStream = autoaudio_aac;
+			if (autoaudio != NULL)
+				program.defaultAudioStream = *autoaudio;
 			else if (first_non_mpeg != -1 && (defaultac3 || defaultddp))
 				program.defaultAudioStream = first_non_mpeg;
 		}
