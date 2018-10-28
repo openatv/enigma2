@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-10 04:10+0300\n"
-"PO-Revision-Date: 2018-10-10 15:13+0300\n"
+"POT-Creation-Date: 2018-10-14 21:17+0300\n"
+"PO-Revision-Date: 2018-10-27 14:26+0300\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -1294,11 +1294,11 @@ msgstr ""
 "naudodami lėtesnį siuntimo intervalą."
 
 msgid ""
-"Activation takes place immediately. If this feature is not supported, no "
-"function will be changed."
+"Activation takes place immediately. If this feature is not supported, the "
+"volume keys has no function!"
 msgstr ""
-"Aktyvinimas vyksta iš karto. Jei ši funkcija nepalaikoma, jokia funkcija "
-"nebus keičiama."
+"Aktyvinimas vyksta iš karto. Jei ši funkcija nepalaikoma, garsumo klavišai "
+"neveikia!"
 
 msgid "Active"
 msgstr "Aktyvus"
@@ -2757,7 +2757,7 @@ msgid "CF Drive"
 msgstr "CF Kortelė"
 
 msgid "CH"
-msgstr "KAN"
+msgstr "KAN."
 
 msgid "CH%s"
 msgstr "KAN.%s"
@@ -6335,6 +6335,9 @@ msgstr "Plačios gamos RGB"
 msgid "Full transparency"
 msgstr "Visiškai skaidrus"
 
+msgid "FullHD Test"
+msgstr "Pilno HD testas"
+
 msgid "Fullscreen"
 msgstr "Visas ekranas"
 
@@ -9519,6 +9522,9 @@ msgstr "Kita"
 
 msgid "Overall progress:"
 msgstr "Bendra eiga:"
+
+msgid "Overscan Test"
+msgstr "Patikrinimo testas"
 
 msgid "Overwrite Bootlogo Files ?"
 msgstr "Perrašyti įkrovos logotipus?"
@@ -16728,6 +16734,9 @@ msgstr "Vaizdo gerinimo valdymas"
 msgid "VideoEnhancementPreview"
 msgstr "Vaizdo gerinimo peržiūra"
 
+msgid "VideoFinetune"
+msgstr "Tikslus vaizdo derinimas"
+
 msgid "Videoformat"
 msgstr "Vaizdo formatas"
 
@@ -19105,6 +19114,21 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
+#~ msgid "Greek, Modern (1453-)"
+#~ msgstr "Graikų, modernus (1453-)"
+
+#~ msgid "Video:"
+#~ msgstr "Vaizdas:"
+
+#~ msgid "Audio:"
+#~ msgstr "Garsas:"
+
+#~ msgid "Internal Flash"
+#~ msgstr "Vidinė atmintis"
+
+#~ msgid "Show True/False as graphical switch"
+#~ msgstr "Rodyti teisinga/klaidinga kaip grafinį jungiklį"
+
 #~ msgid "this will take between 2 and 9 minutes\n"
 #~ msgstr "tai užtruks nuo 2 iki 9 minučių\n"
 
@@ -19624,9 +19648,6 @@ msgstr "Zimbabvė"
 #~ msgid "and never show this message again"
 #~ msgstr "ir niekada neklausti šios sesijos dar kartą"
 
-#~ msgid "Internal Flash"
-#~ msgstr "Vidinė atmintis"
-
 #, fuzzy
 #~| msgid "Bitrate"
 #~ msgid "Bitrate viewer"
@@ -19683,15 +19704,6 @@ msgstr "Zimbabvė"
 
 #~ msgid "TV was not in standby mode at startup"
 #~ msgstr "Paleisties metu TV nebuvo laukimo režime"
-
-#~ msgid "Greek, Modern (1453-)"
-#~ msgstr "Graikų, modernus (1453-)"
-
-#~ msgid "Video:"
-#~ msgstr "Vaizdas:"
-
-#~ msgid "Audio:"
-#~ msgstr "Garsas:"
 
 #~ msgid "CPU-Load: %s"
 #~ msgstr "Procesoriaus apkrova: %s"
