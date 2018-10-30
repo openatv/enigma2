@@ -392,6 +392,8 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_INFOBAR:
 				self.close('reopeninfobar')
 		else:
+			if  self.type in (EPG_TYPE_SINGLE, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR):
+				self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 			self['list'].setFontsize()
 			self['list'].setItemsPerPage()
 			self['list'].recalcEntrySize()
