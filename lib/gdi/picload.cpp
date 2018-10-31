@@ -1029,7 +1029,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		gRGB bg(m_conf.background);
 		if (m_filepara->bits == 8) {
 			background = surface->clut.findColor(bg);
-			if (bg != surface->clut.data[background] && surface->clut.colors < 256) {
+			if (surface->clut.data && bg != surface->clut.data[background] && surface->clut.colors < 256) {
 				gRGB* newClut = new gRGB[surface->clut.colors + 1];
 				for (int c = 0; c < surface->clut.colors; c++) {
 					newClut[c] = surface->clut.data[c];
