@@ -1888,8 +1888,8 @@ class InfoBarEPG:
 				self.openSingleServiceEPG()
 			elif config.plisettings.PLIEPG_mode.value == "vertical":
 				self.openVerticalEPG()
-			elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
-				self.openMerlinEPGCenter()	
+			#elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
+			#	self.openMerlinEPGCenter()	
 			elif config.plisettings.PLIEPG_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
