@@ -276,7 +276,10 @@ class ImageBackup(Screen):
 
 
 		self.message = "echo -e '\n"
-		self.message += (_("Back-up Tool for a %s\n" %self.SHOWNAME)).upper()
+		if getMachineBrand().startswith('A') or getMachineBrand().startswith('E') or getMachineBrand().startswith('I') or getMachineBrand().startswith('O') or getMachineBrand().startswith('U') or getMachineBrand().startswith('Xt'):
+			self.message += (_('Back-up Tool for an %s\n') % self.SHOWNAME).upper()
+		else:
+			self.message += (_('Back-up Tool for a %s\n') % self.SHOWNAME).upper()
 		self.message += VERSION + '\n'
 		self.message += "_________________________________________________\n\n"
 		self.message += _("Please be patient, a backup will now be made,\n")
