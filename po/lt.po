@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-10 04:10+0300\n"
-"PO-Revision-Date: 2018-10-10 15:13+0300\n"
+"POT-Creation-Date: 2018-10-29 04:08+0300\n"
+"PO-Revision-Date: 2018-10-29 20:04+0200\n"
 "Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -394,11 +394,22 @@ msgstr ""
 msgid "( All readers)"
 msgstr "(Visi skaitytojai)"
 
+msgid "(Attention: There will be a restart after %d crashes.)\n"
+msgstr "(Dėmesio: Bus paleista iš naujo po %d gedimų.)\n"
+
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(pvz., TV budina, bet nepersijungia į teisingą įvestį)"
 
 msgid "(empty)"
 msgstr "(tuščia)"
+
+msgid ""
+"(It is set that '%s' crash logs are displayed and written.\n"
+"Info: It will always write the first, last but one and lastest crash log.)"
+msgstr ""
+"(Nustatoma, kad '%s' gedimų žurnalai yra rodomi ir parašyti.\n"
+"Info: jis visada parašys pirmąjį, paskutinį, bet vienintelį ir paskutinį "
+"gedimų žurnalą.)"
 
 msgid "(Show only reader:"
 msgstr "(rodyti tik skaitytoją:"
@@ -1024,6 +1035,9 @@ msgstr ""
 "Konfigūracijos failas (%s) įdiegimo metu buvo pakeistas.\n"
 "Ar norite išsaugoti savą (senąją) versiją?"
 
+msgid "A crashlog was %s created in '%s'"
+msgstr "Gedimų žurnalų %s buvo sukurta į '%s'"
+
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
@@ -1294,11 +1308,11 @@ msgstr ""
 "naudodami lėtesnį siuntimo intervalą."
 
 msgid ""
-"Activation takes place immediately. If this feature is not supported, no "
-"function will be changed."
+"Activation takes place immediately. If this feature is not supported, the "
+"volume keys has no function!"
 msgstr ""
-"Aktyvinimas vyksta iš karto. Jei ši funkcija nepalaikoma, jokia funkcija "
-"nebus keičiama."
+"Aktyvinimas vyksta iš karto. Jei ši funkcija nepalaikoma, garsumo klavišai "
+"neveikia!"
 
 msgid "Active"
 msgstr "Aktyvus"
@@ -2757,7 +2771,7 @@ msgid "CF Drive"
 msgstr "CF Kortelė"
 
 msgid "CH"
-msgstr "KAN"
+msgstr "KAN."
 
 msgid "CH%s"
 msgstr "KAN.%s"
@@ -4070,7 +4084,7 @@ msgid "CPU:\t\t%s"
 msgstr "Procesorius:\t\t%s"
 
 msgid "Crash at skin error for debug reasons ?"
-msgstr "Temos 'lūžimo' metu derinti klaidų priežastis ?"
+msgstr "Temos gedimo metu derinti klaidų priežastis ?"
 
 msgid "Crash Logs"
 msgstr "Gedimų žurnalai"
@@ -5371,6 +5385,13 @@ msgstr "Įjungti teleteksto kaupimą"
 msgid "Enable terrestrial LCN:"
 msgstr "Įjungti antžeminę LCN:"
 
+msgid ""
+"Enable to display all true/false, yes/no, on/off and enable/disable set up "
+"options as a graphical switch."
+msgstr ""
+"Įgalinti rodyti visas teisinga/klaidinga, taip/ne, įjungti/išjungti "
+"nustatymo parinktis kaip grafinį jungiklį."
+
 msgid "Enable unlinked bouquets"
 msgstr "Įjungti daugiau paketų"
 
@@ -6335,6 +6356,9 @@ msgstr "Plačios gamos RGB"
 msgid "Full transparency"
 msgstr "Visiškai skaidrus"
 
+msgid "FullHD Test"
+msgstr "Pilno HD testas"
+
 msgid "Fullscreen"
 msgstr "Visas ekranas"
 
@@ -6592,6 +6616,9 @@ msgstr "amatai, rankdarbiai"
 
 msgid "Handle input from TV"
 msgstr "Valdyti televizoriaus įvestį"
+
+msgid "Handle Python crashes"
+msgstr "Tvarkyti Python gedimus"
 
 msgid "Handle standby from TV"
 msgstr "Išjungti imtuvą, išjungiant TV"
@@ -6870,6 +6897,16 @@ msgstr "Logotipai"
 
 msgid "Idle Time: "
 msgstr "Laukimo laikas: "
+
+msgid "If 'never', will force restart despite that after 100 crashes."
+msgstr ""
+"Jei \"niekada\", bus priverstinai paleista iš naujo, nepaisant to, kad po "
+"100 gedimų."
+
+msgid "If 'never', will write crash log despite that for the first crash."
+msgstr ""
+"Jei \"niekada\", įrašys pranešimą apie gedimą, nepaisant to, kad įvyko "
+"pirmasis gedimas."
 
 msgid ""
 "If enabled the output resolution of the box will try to match the resolution "
@@ -9520,6 +9557,9 @@ msgstr "Kita"
 msgid "Overall progress:"
 msgstr "Bendra eiga:"
 
+msgid "Overscan Test"
+msgstr "Patikrinimo testas"
+
 msgid "Overwrite Bootlogo Files ?"
 msgstr "Perrašyti įkrovos logotipus?"
 
@@ -11382,6 +11422,9 @@ msgstr "iš naujo paleiskite grafinę aplinką"
 msgid "Restart Gui"
 msgstr "Paleisti iš naujo grafinę aplinką"
 
+msgid "Restart GUI after x crashes"
+msgstr "Iš naujo paleisti grafinę aplinką po x gedimų"
+
 msgid "Restart GUI now?"
 msgstr "Paleisti iš naujo grafinę aplinką dabar?"
 
@@ -12836,6 +12879,11 @@ msgstr "Trumpi failų pavadinimai"
 msgid "Short filenames with time"
 msgstr "Trumpi failų pavadinimai su laiku"
 
+msgid "Should the crash counter be reset to prevent a restart?"
+msgstr ""
+"Ar reikia iš naujo nustatyti gedimų skaitiklio būseną, kad būtų išvengta "
+"pakartotinio paleidimo?"
+
 msgid "show"
 msgstr "rodyti"
 
@@ -13001,6 +13049,9 @@ msgstr "Rodyti CoolSingle vadovą"
 
 msgid "Show CoolTVGuide"
 msgstr "Rodyti CoolTV vadovą"
+
+msgid "Show crash info on screen and write crash log for x times"
+msgstr "Rodyti gedimų informaciją ekrane ir įrašyti gedimų žurnalą x kartų"
 
 msgid "Show crypto icons"
 msgstr "Rodyti kodavimo piktogramas"
@@ -13397,6 +13448,9 @@ msgstr "Rodyti transponderio liko/praėjo, kaip"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Rodyti transponderio liko/praėjo kaip"
+
+msgid "Show True/False as graphical switch"
+msgstr "Rodyti teisinga/klaidinga kaip grafinį jungiklį"
 
 msgid "Show unknown video format as"
 msgstr "Rodyti nežinomą vaizdo formatą kaip"
@@ -15885,6 +15939,13 @@ msgstr ""
 "palaukite..."
 
 msgid ""
+"Try to prevent reboots for software errors and maintain of the availability "
+"for the receiver."
+msgstr ""
+"Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir išlaikyti "
+"imtuvo prieinamumą."
+
+msgid ""
 "Try to send repeated commands if not all commands are executed. This is done "
 "at a slower send interval."
 msgstr ""
@@ -16728,6 +16789,9 @@ msgstr "Vaizdo gerinimo valdymas"
 msgid "VideoEnhancementPreview"
 msgstr "Vaizdo gerinimo peržiūra"
 
+msgid "VideoFinetune"
+msgstr "Tikslus vaizdo derinimas"
+
 msgid "Videoformat"
 msgstr "Vaizdo formatas"
 
@@ -16931,6 +16995,12 @@ msgstr "Įspėjimas"
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Įspėjimas: LNB nerastas; naudokite gamyklinius nustatymus."
+
+msgid ""
+"Warning: This is the last crash before an automatic restart is performed.\n"
+msgstr ""
+"Įspėjimas: tai paskutinis gedimas prieš atliekant naują automatinį "
+"paleidimą.\n"
 
 msgid "Watch movies..."
 msgstr "Žiūrėti filmus..."
@@ -18064,6 +18134,13 @@ msgstr "Jūsų tinklo konfigūracija įjungta."
 msgid "Your receiver does not have an internet connection"
 msgstr "Jūsų imtuvas neturi interneto ryšio"
 
+msgid ""
+"Your Receiver has a Software problem detected. Since the last reboot it has "
+"occured %d times.\n"
+msgstr ""
+"Aptikta jūsų imtuvo programinės įrangos problema. Nuo paskutinės paleisties "
+"įvyko %d kartus.\n"
+
 msgid "Your STB will freeze during the flashing process.\n"
 msgstr "Diegimo metu jūsų imtuvas nustos reaguoti į komandas.\n"
 
@@ -19105,6 +19182,18 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
+#~ msgid "Greek, Modern (1453-)"
+#~ msgstr "Graikų, modernus (1453-)"
+
+#~ msgid "Video:"
+#~ msgstr "Vaizdas:"
+
+#~ msgid "Audio:"
+#~ msgstr "Garsas:"
+
+#~ msgid "Internal Flash"
+#~ msgstr "Vidinė atmintis"
+
 #~ msgid "this will take between 2 and 9 minutes\n"
 #~ msgstr "tai užtruks nuo 2 iki 9 minučių\n"
 
@@ -19624,9 +19713,6 @@ msgstr "Zimbabvė"
 #~ msgid "and never show this message again"
 #~ msgstr "ir niekada neklausti šios sesijos dar kartą"
 
-#~ msgid "Internal Flash"
-#~ msgstr "Vidinė atmintis"
-
 #, fuzzy
 #~| msgid "Bitrate"
 #~ msgid "Bitrate viewer"
@@ -19683,15 +19769,6 @@ msgstr "Zimbabvė"
 
 #~ msgid "TV was not in standby mode at startup"
 #~ msgstr "Paleisties metu TV nebuvo laukimo režime"
-
-#~ msgid "Greek, Modern (1453-)"
-#~ msgstr "Graikų, modernus (1453-)"
-
-#~ msgid "Video:"
-#~ msgstr "Vaizdas:"
-
-#~ msgid "Audio:"
-#~ msgstr "Garsas:"
 
 #~ msgid "CPU-Load: %s"
 #~ msgstr "Procesoriaus apkrova: %s"

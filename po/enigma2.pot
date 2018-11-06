@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2018-10-14 21:17+0300\n"
+"POT-Creation-Date: 2018-10-29 04:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -345,10 +345,16 @@ msgstr ""
 msgid "( All readers)"
 msgstr ""
 
+msgid "(Attention: There will be a restart after %d crashes.)\n"
+msgstr ""
+
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr ""
 
 msgid "(empty)"
+msgstr ""
+
+msgid "(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)"
 msgstr ""
 
 msgid "(Show only reader:"
@@ -883,6 +889,9 @@ msgid "A configuration file (%s) has been modified since it was installed.\nDo y
 msgstr ""
 
 msgid "A configuration file (%s) was modified since Installation.\nDo you want to keep your version?"
+msgstr ""
+
+msgid "A crashlog was %s created in '%s'"
 msgstr ""
 
 msgid "A finished powertimer wants to reboot your %s %s.\nDo that now?"
@@ -4671,6 +4680,9 @@ msgstr ""
 msgid "Enable terrestrial LCN:"
 msgstr ""
 
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
+msgstr ""
+
 msgid "Enable unlinked bouquets"
 msgstr ""
 
@@ -5819,6 +5831,9 @@ msgstr ""
 msgid "Handle input from TV"
 msgstr ""
 
+msgid "Handle Python crashes"
+msgstr ""
+
 msgid "Handle standby from TV"
 msgstr ""
 
@@ -6071,6 +6086,12 @@ msgid "Icons"
 msgstr ""
 
 msgid "Idle Time: "
+msgstr ""
+
+msgid "If 'never', will force restart despite that after 100 crashes."
+msgstr ""
+
+msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
@@ -10188,6 +10209,9 @@ msgstr ""
 msgid "Restart Gui"
 msgstr ""
 
+msgid "Restart GUI after x crashes"
+msgstr ""
+
 msgid "Restart GUI now?"
 msgstr ""
 
@@ -11495,6 +11519,9 @@ msgstr ""
 msgid "Short filenames with time"
 msgstr ""
 
+msgid "Should the crash counter be reset to prevent a restart?"
+msgstr ""
+
 msgid "show"
 msgstr ""
 
@@ -11649,6 +11676,9 @@ msgid "Show CoolSingleGuide"
 msgstr ""
 
 msgid "Show CoolTVGuide"
+msgstr ""
+
+msgid "Show crash info on screen and write crash log for x times"
 msgstr ""
 
 msgid "Show crypto icons"
@@ -12045,6 +12075,9 @@ msgid "Show Transponder Remaining/Elapsed as"
 msgstr ""
 
 msgid "Show transponder remaining/elapsed as"
+msgstr ""
+
+msgid "Show True/False as graphical switch"
 msgstr ""
 
 msgid "Show unknown video format as"
@@ -14108,6 +14141,9 @@ msgstr ""
 msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr ""
 
+msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
+msgstr ""
+
 msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
 msgstr ""
 
@@ -15064,6 +15100,9 @@ msgstr ""
 msgid "Warning: no LNB; using factory defaults."
 msgstr ""
 
+msgid "Warning: This is the last crash before an automatic restart is performed.\n"
+msgstr ""
+
 msgid "Watch movies..."
 msgstr ""
 
@@ -15766,6 +15805,9 @@ msgid "Your network configuration has been activated."
 msgstr ""
 
 msgid "Your receiver does not have an internet connection"
+msgstr ""
+
+msgid "Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n"
 msgstr ""
 
 msgid "Your STB will freeze during the flashing process.\n"

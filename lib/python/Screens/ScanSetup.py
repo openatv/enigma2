@@ -1899,7 +1899,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						if req_type in ("DVB-S", "DVB-S2") and nim.config.dvbs.configMode.value != "nothing" and not tag_dvbs:
 							if req_network in nimmanager.getSatListForNim(nim.slot):
 								tag_dvbs = True
-								nimconfig = ConfigYesNo(default = True)
+								nimconfig = ConfigYesNo(default = False)
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-S"
@@ -1909,7 +1909,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						elif req_type in ("DVB-C", "DVB-C2") and nim.config.dvbc.configMode.value != "nothing"and not tag_dvbc:
 							if req_network in nimmanager.getCableDescription(nim.slot):
 								tag_dvbc = True
-								nimconfig = ConfigYesNo(default = True)
+								nimconfig = ConfigYesNo(default = False)
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-C"
@@ -1919,7 +1919,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						elif req_type in ("DVB-T", "DVB-T2") and nim.config.dvbt.configMode.value != "nothing" and not tag_dvbt:
 							if req_network in nimmanager.getTerrestrialDescription(nim.slot):
 								tag_dvbt = True
-								nimconfig = ConfigYesNo(default = True)
+								nimconfig = ConfigYesNo(default = False)
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-T"
@@ -1929,7 +1929,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						elif req_type in ("ATSC") and nim.config.atsc.configMode.value != "nothing" and not tag_atsc:
 							if req_network in nimmanager.getATSCDescription(nim.slot):
 								tag_atsc = True
-								nimconfig = ConfigYesNo(default = True)
+								nimconfig = ConfigYesNo(default = False)
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "ATSC"
