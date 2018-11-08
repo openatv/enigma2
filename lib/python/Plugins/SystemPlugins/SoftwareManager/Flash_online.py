@@ -602,7 +602,7 @@ class doFlashImage(Screen):
 						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
 					else:
 						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-				elif getMachineBuild() in ("u51","u52","u53","u5","u5pvr","cc1","sf8008","ustym4kpro",,"hd60","v8plus"):
+				elif getMachineBuild() in ("u51","u52","u53","u5","u5pvr","cc1","sf8008","ustym4kpro","hd60","v8plus"):
 					cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
 				elif getMachineBuild() in ("h9","i55plus"):
 					cmdlist.append("%s -n -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
