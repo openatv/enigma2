@@ -110,7 +110,7 @@ public:
 	PyObject *getComponentDataList() const;
 	PyObject *getComponentData() const
 	{
-		return getGenreDataList();
+		return getComponentDataList();
 	}
 	int getNumOfLinkageServices() const { return m_linkage_services.size(); }
 	SWIG_VOID(RESULT) getLinkageService(eServiceReference &SWIG_OUTPUT, eServiceReference &parent, int num) const;
