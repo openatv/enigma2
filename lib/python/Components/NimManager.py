@@ -2092,10 +2092,8 @@ def InitNimManager(nimmgr, update_slots = []):
 		except:
 			list = [(x[0], x[0]) for x in nimmgr.cablesList]
 			nim.scan_networkid = ConfigInteger(default = 0, limits = (0, 99999))
-			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
-			if list:
-				possible_scan_types.append(("provider", _("Provider")))
-				nim.scan_provider = ConfigSelection(default = "0", choices = list)
+			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps")), ("provider", _("Provider"))]
+			nim.scan_provider = ConfigSelection(default = "0", choices = list)
 			nim.scan_type = ConfigSelection(default = "provider", choices = possible_scan_types)
 			nim.scan_band_EU_VHF_I = ConfigYesNo(default = True)
 			nim.scan_band_EU_MID = ConfigYesNo(default = True)
