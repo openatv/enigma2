@@ -8,8 +8,7 @@ from Tools.Directories import fileExists
 from time import time
 import Screens.Standby
 
-# sys.maxint on 64bit (2**63-1) fails with OverflowError on eActionMap.bindAction use 32bit value (2**31-1)
-maxint = 2147483647
+from sys import maxint
 
 
 config.hdmicec = ConfigSubsection()
