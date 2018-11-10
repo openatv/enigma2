@@ -3,6 +3,7 @@ import xml.etree.cElementTree
 from datetime import datetime
 from time import localtime, strftime, ctime, time
 from bisect import insort
+from sys import maxint
 import os
 from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, eServiceCenter
 
@@ -21,9 +22,6 @@ import NavigationInstance
 from ServiceReference import ServiceReference
 from enigma import pNavigation, eDVBFrontend
 
-# from sys import maxint
-# sys.maxint on 64bit (2**63-1) fails with OverflowError on eActionMap.bindAction use 32bit value (2**31-1)
-maxint = 2147483647
 
 # ok, for descriptions etc we have:
 # service reference	 (to get the service name)
