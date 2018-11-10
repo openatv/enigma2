@@ -53,6 +53,7 @@ from time import time, localtime, strftime
 from bisect import insort
 from keyids import KEYIDS
 from datetime import datetime
+from sys import maxint
 
 import os, cPickle
 
@@ -71,9 +72,6 @@ if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo
 	COOLTVGUIDE = True
 else:
 	COOLTVGUIDE = False
-
-# sys.maxint on 64bit (2**63-1) fails with OverflowError on eActionMap.bindAction use 32bit value (2**31-1)
-maxint = 2147483647
 
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
