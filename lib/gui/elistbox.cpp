@@ -14,7 +14,7 @@ eListbox::eListbox(eWidget *parent) :
 
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
-	ptr->bindAction("ListboxActions", 0, 0, this);
+	ptr->bindAction("ListboxActions", (int64_t)0, 0, this);
 }
 
 eListbox::~eListbox()
