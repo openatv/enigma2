@@ -5332,7 +5332,7 @@ class InfoBarHandleBsod:
 			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n") %bsodcnt
 			txt += _("(Attention: There will be a restart after %d crashes.)\n") %maxbs
 			txt += "-"*80 + "\n"
-			txt += _("A crashlog was %s created in '%s'") %(('not','')[int(writelog)], config.crash.debug_path.value)
+			txt += _("A crashlog was %s created in '%s'") %((_('not'),'')[int(writelog)], config.crash.debug_path.value)
 			if not writelog:
 				txt += "\n" + "-"*80 + "\n"
 				txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _('never'))
