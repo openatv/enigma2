@@ -9,6 +9,8 @@
 #include "big5.h"
 #include "gb18030.h"
 
+extern bool verbose;
+
 std::string buildShortName( const std::string &str )
 {
 	std::string tmp;
@@ -438,9 +440,11 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	}
 
 	int i = 0;
+        int convertedLen=0;
 	std::string output = "";
 	bool no_table_id = false;
 	bool ignore_table_id = false;
+        bool log_verbose = false;
 
 	if (tsidonid)
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
@@ -547,25 +551,21 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			std::string decoded_string = huffmanDecoder.decode(data, len);
 			if (!decoded_string.empty()){
 				output = decoded_string;
-				if (pconvertedLen)
-					*pconvertedLen += len;
+				convertedLen += len;
 			}
 			break;
 		}
 		case UTF8_ENCODING:
 			output = std::string((char*)data + i, len - i);
-			if (pconvertedLen)
-				*pconvertedLen += len;
+			convertedLen += len;
 			break;
 		case GB18030_ENCODING:
-			output = GB18030ToUTF8((const char *)(data + i), len - i, pconvertedLen);
-			if (pconvertedLen)
-				*pconvertedLen += len;
+			output = GB18030ToUTF8((const char *)(data + i), len - i, &convertedLen);
+			convertedLen += len;
 			break;
 		case BIG5_ENCODING:
-			output = Big5ToUTF8((const char *)(data + i), len - i, pconvertedLen);
-			if (pconvertedLen)
-				*pconvertedLen += len;
+			output = Big5ToUTF8((const char *)(data + i), len - i, &convertedLen);
+			convertedLen += len;
 			break;
 		default:
 			char res[4096];
@@ -622,15 +622,21 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 					continue;
 				t += UnicodeToUTF8(code, res + t, sizeof(res) - t);
 			}
-			if (pconvertedLen)
-				*pconvertedLen = i;
+			convertedLen = i;
 			output = std::string((char*)res, t);
 			break;
 	}
 
-	if (pconvertedLen && *pconvertedLen < len)
-		eDebug("[convertDVBUTF8] %d chars converted, and %d chars left..", *pconvertedLen, len-*pconvertedLen);
-	//eDebug("[convertDVBUTF8] table=0x%02X twochar=%d output:%s\n", table, useTwoCharMapping, output.c_str());
+	if (convertedLen < len)
+		eDebug("[convertDVBUTF8] %d chars converted, and %d chars left..", convertedLen, len-convertedLen);
+
+        if (pconvertedLen)
+		*pconvertedLen = convertedLen;
+
+	if (verbose)
+		eDebug("[convertDVBUTF8] data[0]=0x%02X table=0x%02X tsid:onid=0x%X:0x%X output:%s\n",
+			data[0], table, (unsigned int)tsidonid >> 16, tsidonid & 0xFFFFU, output.c_str());
+
 	return output;
 }
 
