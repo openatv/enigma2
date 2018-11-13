@@ -438,7 +438,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	}
 
 	int i = 0;
-	std::string ustr = "", utfid = "\x15";
 	std::string output = "";
 	bool no_table_id = false;
 	bool ignore_table_id = false;
