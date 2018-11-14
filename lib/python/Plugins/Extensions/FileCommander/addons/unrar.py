@@ -14,11 +14,13 @@ pversion = "0.2-r1"
 
 class RarMenuScreen(ArchiverMenuScreen):
 
+	DEFAULT_PW = "2D1U3MP!"
+
 	def __init__(self, session, sourcelist, targetlist):
 		super(RarMenuScreen, self).__init__(session, sourcelist, targetlist)
 
 		self.unrar = "unrar"
-		self.defaultPW = "2D1U3MP!"
+		self.defaultPW = self.DEFAULT_PW
 
 		self.list.append((_("Show contents of rar file"), 1))
 		self.list.append((_("Unpack to current folder"), 2))
@@ -59,16 +61,8 @@ class RarMenuScreen(ArchiverMenuScreen):
 				self.unpackModus(self.selectId)
 
 	def setPW(self, pwd):
-		if pwd is None:
-			self.defaultPW = "2D1U3MP!"
-		elif pwd == "":
-			self.defaultPW = "2D1U3MP!"
-		elif pwd == " ":
-			self.defaultPW = "2D1U3MP!"
-		elif pwd == "  ":
-			self.defaultPW = "2D1U3MP!"
-		elif pwd == "   ":
-			self.defaultPW = "2D1U3MP!"
+		if pwd is None or pwd.strip() == "":
+			self.defaultPW = self.DEFAULT_PW
 		else:
 			self.checkPW(pwd)
 
