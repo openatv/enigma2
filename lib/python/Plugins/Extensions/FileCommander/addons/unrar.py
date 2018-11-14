@@ -32,12 +32,12 @@ class RarMenuScreen(ArchiverMenuScreen):
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
 		self.selectId = self['list_left'].getCurrent()[0][1]
-		print "Select:", selectName, self.selectId
+		print "[RarMenuScreen] Select:", selectName, self.selectId
 		self.checkPW(self.defaultPW)
 
 	def checkPW(self, pwd):
 		self.defaultPW = pwd
-		print "Current pw:", self.defaultPW
+		print "[RarMenuScreen] Current pw:", self.defaultPW
 		cmd = (self.unrar, "t", "-p" + self.defaultPW, self.sourceDir + self.filename)
 		try:
 			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -51,11 +51,11 @@ class RarMenuScreen(ArchiverMenuScreen):
 			print "[RarMenuScreen] checkPW stdout", len(stdlog)
 			print stdlog
 			if 'Corrupt file or wrong password.' in stdlog:
-				print "pw incorrect!"
+				print "[RarMenuScreen] pw incorrect!"
 				length = config.plugins.filecommander.input_length.value
 				self.session.openWithCallback(self.setPW, InputBox, text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
 			else:
-				print "pw correct!"
+				print "[RarMenuScreen] pw correct!"
 				self.unpackModus(self.selectId)
 
 	def setPW(self, pwd):
@@ -88,7 +88,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 			self.unpackEConsoleApp(cmd, exePath=self.unrar, logCallback=self.log)
 
 	def log(self, data):
-		print data
+		print "[RarMenuScreen]", data
 		status = re.findall('(\d+)%', data, re.S)
 		if status:
 			if not status[0] in self.ulist:
