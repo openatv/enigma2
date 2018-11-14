@@ -38,7 +38,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 	def checkPW(self, pwd):
 		self.defaultPW = pwd
 		print "Current pw:", self.defaultPW
-		cmd = (self.unrar, "p", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", self.sourceDir)
+		cmd = (self.unrar, "t", "-p" + self.defaultPW, self.sourceDir + self.filename)
 		try:
 			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 		except OSError as ex:
@@ -50,7 +50,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 		if stdlog:
 			print "[RarMenuScreen] checkPW stdout", len(stdlog)
 			print stdlog
-			if re.search('Corrupt file or wrong password.', stdlog, re.S):
+			if 'Corrupt file or wrong password.' in stdlog:
 				print "pw incorrect!"
 				length = config.plugins.filecommander.input_length.value
 				self.session.openWithCallback(self.setPW, InputBox, text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
