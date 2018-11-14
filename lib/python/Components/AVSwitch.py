@@ -981,9 +981,12 @@ def InitAVSwitch():
 
 	if can_3dsurround_speaker:
 		def set3DSurroundSpeaker(configElement):
-			f = open("/proc/stb/audio/3d_surround_speaker_position", "w")
-			f.write(configElement.value)
-			f.close()
+			try:
+				f = open("/proc/stb/audio/3d_surround_speaker_position", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
 		choice_list = [("center", _("center")), ("wide", _("wide")), ("extrawide", _("extra wide"))]
 		config.av.surround_3d_speaker = ConfigSelection(choices = choice_list, default = "center")
 		config.av.surround_3d_speaker.addNotifier(set3DSurroundSpeaker)
