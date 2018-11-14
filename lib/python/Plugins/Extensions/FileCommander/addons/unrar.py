@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from Screens.MessageBox import MessageBox
 from Components.config import config
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 import re
@@ -38,9 +39,16 @@ class RarMenuScreen(ArchiverMenuScreen):
 		self.defaultPW = pwd
 		print "Current pw:", self.defaultPW
 		cmd = (self.unrar, "p", "-p" + self.defaultPW, self.sourceDir + self.filename, "-o+", self.sourceDir)
-		p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		try:
+			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+		except OSError as ex:
+			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmd[0], ex.strerror, cmd[0])
+			print "[RarMenuScreen]", msg
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
+			return
 		stdlog = p.stdout.read()
 		if stdlog:
+			print "[RarMenuScreen] checkPW stdout", len(stdlog)
 			print stdlog
 			if re.search('Corrupt file or wrong password.', stdlog, re.S):
 				print "pw incorrect!"
