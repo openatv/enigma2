@@ -530,6 +530,9 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		}
 	}
 
+	// try to get provider's encoding mapping.
+	encodingHandler.getEncodingMapping(table, table);
+
 	if (ignore_table_id && table != UTF8_ENCODING) {
 		table = table_preset;
 	}
