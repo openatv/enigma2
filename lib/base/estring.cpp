@@ -530,7 +530,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		}
 	}
 
-	if (ignore_table_id) {
+	if (ignore_table_id && table != UTF8_ENCODING) {
 		table = table_preset;
 	}
 
