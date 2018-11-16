@@ -120,7 +120,15 @@ class ArchiverMenuScreen(Screen):
 		# with ArchiverInfoScreen.
 
 		print "[ArchiverMenuScreen] unpackPopen", cmd
-		p = subprocess.Popen(cmd, shell=type(cmd) not in (tuple, list), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		try:
+			shellcmd = type(cmd) not in (tuple, list)
+			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+		except OSError as ex:
+			cmdname = cmd.split()[0] if shellcmd else cmd[0]
+			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmdname, ex.strerror, cmdname)
+			print "[ArchiverMenuScreen]", msg
+			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
+			return
 		output = map(str.splitlines, p.communicate())
 		if output[0] and output[1]:
 			output[1].append("----------")
@@ -157,6 +165,7 @@ class ArchiverMenuScreen(Screen):
 			self.container.execute(cmd)
 
 	def extractDone(self, filename, data):
+		print "[ArchiverMenuScreen] extractDone", data
 		message = self.session.open(MessageBox, (_("%s successful extracted.") % filename), MessageBox.TYPE_INFO, timeout=8)
 
 	def cancel(self):
