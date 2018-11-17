@@ -444,7 +444,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	std::string output = "";
 	bool no_table_id = false;
 	bool ignore_table_id = false;
-        bool log_verbose = false;
 
 	if (tsidonid)
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
@@ -637,8 +636,10 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		*pconvertedLen = convertedLen;
 
 	if (verbose)
-		eDebug("[convertDVBUTF8] data[0]=0x%02X table=0x%02X tsid:onid=0x%X:0x%X output:%s\n",
-			data[0], table, (unsigned int)tsidonid >> 16, tsidonid & 0xFFFFU, output.c_str());
+		eDebug("[convertDVBUTF8] table=0x%02X tsid:onid=0x%X:0x%X data[0..14]=%s   output:%s\n",
+			table, (unsigned int)tsidonid >> 16, tsidonid & 0xFFFFU,
+			string_to_hex(std::string((char*)data, len < 15 ? len : 15)).c_str(),
+			output.c_str());
 
 	return output;
 }
@@ -906,3 +907,20 @@ std::string urlDecode(const std::string &s)
 	return res;
 }
 
+std::string string_to_hex(const std::string& input)
+{
+    static const char* const lut = "0123456789ABCDEF";
+    size_t len = input.length();
+
+    std::string output;
+    output.reserve(3 * len);
+    for (size_t i = 0; i < len; ++i)
+    {
+        const unsigned char c = input[i];
+        if (i)
+		output.push_back(' ');
+        output.push_back(lut[c >> 4]);
+        output.push_back(lut[c & 15]);
+    }
+    return output;
+}

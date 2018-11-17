@@ -30,5 +30,6 @@ inline std::string convertDVBUTF8(const std::string &string, int table=-1, int t
 }
 
 std::string urlDecode(const std::string &s);
+std::string string_to_hex(const std::string& input);
 
 #endif // __E_STRING__
