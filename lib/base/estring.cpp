@@ -560,15 +560,15 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		}
 		case UTF8_ENCODING:
 			output = std::string((char*)data + i, len - i);
-			convertedLen += len;
+			convertedLen += i;
 			break;
 		case GB18030_ENCODING:
 			output = GB18030ToUTF8((const char *)(data + i), len - i, &convertedLen);
-			convertedLen += len;
+			convertedLen += i;
 			break;
 		case BIG5_ENCODING:
 			output = Big5ToUTF8((const char *)(data + i), len - i, &convertedLen);
-			convertedLen += len;
+			convertedLen += i;
 			break;
 		default:
 			char res[4096];
