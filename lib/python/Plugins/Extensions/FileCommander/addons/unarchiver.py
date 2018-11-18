@@ -87,7 +87,7 @@ class ArchiverMenuScreen(Screen):
 		]
 
 	def UnpackListEntry(self, entry):
-		print entry
+		print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
 		# color2 = 0x00ffffff # White
@@ -101,7 +101,7 @@ class ArchiverMenuScreen(Screen):
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
 		self.selectId = self['list_left'].getCurrent()[0][1]
-		print "Select:", selectName, self.selectId
+		print "[ArchiverMenuScreen] Select:", selectName, self.selectId
 		self.unpackModus(self.selectId)
 
 	def unpackModus(self, id):
