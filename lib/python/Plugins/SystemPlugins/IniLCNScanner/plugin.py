@@ -282,7 +282,7 @@ class LCNBuildHelper():
 				rule = x[0]
 				break
 
-		lcn = LCN(resolveFilename(SCOPE_CONFIG, "lcndb"), os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml", rule, resolveFilename(SCOPE_CONFIG))
+		lcn = LCN(resolveFilename(SCOPE_CONFIG, "lcndb"), os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml", rule)
 		lcn.read("TV")
 		if len(lcn.lcnlist) > 0:
 			lcn.writeTVBouquet()
