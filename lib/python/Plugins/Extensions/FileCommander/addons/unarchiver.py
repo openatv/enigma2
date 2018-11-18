@@ -87,7 +87,7 @@ class ArchiverMenuScreen(Screen):
 		]
 
 	def UnpackListEntry(self, entry):
-		print "[ArchiverMenuScreen] UnpackListEntry", entry
+		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
 		# color2 = 0x00ffffff # White

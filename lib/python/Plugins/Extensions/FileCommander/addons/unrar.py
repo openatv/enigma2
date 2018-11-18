@@ -82,7 +82,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 			self.unpackEConsoleApp(cmd, exePath=self.unrar, logCallback=self.log)
 
 	def log(self, data):
-		print "[RarMenuScreen]", data
+		# print "[RarMenuScreen] log", data
 		status = re.findall('(\d+)%', data, re.S)
 		if status:
 			if not status[0] in self.ulist:
