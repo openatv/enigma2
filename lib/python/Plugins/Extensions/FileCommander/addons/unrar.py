@@ -94,6 +94,26 @@ class RarMenuScreen(ArchiverMenuScreen):
 			self.chooseMenuList2.setList(map(self.UnpackListEntry, ['100']))
 			self['unpacking'].selectionEnabled(0)
 
+	def extractDone(self, filename, data):
+		if data:
+			if self.errlog and not self.errlog.endswith("\n"):
+				self.errlog += "\n"
+			self.errlog += {
+				1: "Non fatal error(s) occurred.",
+				2: "A fatal error occurred.",
+				3: "Invalid checksum. Data is damaged.",
+				4: "Attempt to modify an archive locked by 'k' command.",
+				5: "Write error.",
+				6: "File open error.",
+				7: "Wrong command line option.",
+				8: "Not enough memory.",
+				9: "File create error",
+				10: "No files matching the specified mask and options were found.",
+				11: "Wrong password.",
+				255: "User stopped the process.",
+			}.get(data, "Unknown error")
+		super(RarMenuScreen, self).extractDone(filename, data)
+
 class UnpackInfoScreen(ArchiverInfoScreen):
 
 	def __init__(self, session, list, sourceDir, filename):
