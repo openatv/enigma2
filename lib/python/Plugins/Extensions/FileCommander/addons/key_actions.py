@@ -234,8 +234,8 @@ class key_actions(stat_info):
 			)
 
 		return [modes + (
-			"%d" % st.st_ino, #3
-			"%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff),  #4
+			"%d" % st.st_ino,  # 3
+			"%d, %d" % ((st.st_dev >> 8) & 0xff, st.st_dev & 0xff),   # 4
 			"%d" % st.st_nlink,  # 5
 			"%d" % st.st_uid,  # 6
 			"%s" % self.username(st.st_uid),  # 7

@@ -95,7 +95,7 @@ class vEditor(Screen, HelpableScreen):
 			"ok": (self.editLine, _("Edit current line")),
 			"green": (self.editLine, _("Edit current line")),
 			"back": (self.exitEditor, _("Exit editor and write changes (if any)")),
-			"red":  (self.exitEditor, _("Exit editor and write changes (if any)")),
+			"red": (self.exitEditor, _("Exit editor and write changes (if any)")),
 			"yellow": (self.del_Line, _("Delete current line")),
 			"blue": (self.ins_Line, _("Insert line before current line")),
 			"chplus": (self.posStart, _("Go to start of file")),

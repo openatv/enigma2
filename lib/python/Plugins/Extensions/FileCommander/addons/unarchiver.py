@@ -90,8 +90,8 @@ class ArchiverMenuScreen(Screen):
 		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
-		# color2 = 0x00ffffff # White
-		textColor = 0x00808080 # Grey
+		# color2 = 0x00ffffff  # White
+		textColor = 0x00808080  # Grey
 		return [
 			entry,
 			MultiContentEntryProgress(pos=(10, 0), size=(560, 30), percent=int(currentProgress)),
