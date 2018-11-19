@@ -83,14 +83,14 @@ class RarMenuScreen(ArchiverMenuScreen):
 
 	def log(self, data):
 		# print "[RarMenuScreen] log", data
-		status = re.findall('(\d+)%', data, re.S)
+		status = re.findall('(\d+)%', data)
 		if status:
 			if not status[0] in self.ulist:
 				self.ulist.append((status[0]))
 				self.chooseMenuList2.setList(map(self.UnpackListEntry, status))
 				self['unpacking'].selectionEnabled(0)
 
-		if re.search('All OK', data):
+		if 'All OK' in data:
 			self.chooseMenuList2.setList(map(self.UnpackListEntry, ['100']))
 			self['unpacking'].selectionEnabled(0)
 
