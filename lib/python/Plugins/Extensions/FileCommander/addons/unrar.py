@@ -82,17 +82,37 @@ class RarMenuScreen(ArchiverMenuScreen):
 			self.unpackEConsoleApp(cmd, exePath=self.unrar, logCallback=self.log)
 
 	def log(self, data):
-		print "[RarMenuScreen]", data
-		status = re.findall('(\d+)%', data, re.S)
+		# print "[RarMenuScreen] log", data
+		status = re.findall('(\d+)%', data)
 		if status:
 			if not status[0] in self.ulist:
 				self.ulist.append((status[0]))
 				self.chooseMenuList2.setList(map(self.UnpackListEntry, status))
 				self['unpacking'].selectionEnabled(0)
 
-		if re.search('All OK', data):
+		if 'All OK' in data:
 			self.chooseMenuList2.setList(map(self.UnpackListEntry, ['100']))
 			self['unpacking'].selectionEnabled(0)
+
+	def extractDone(self, filename, data):
+		if data:
+			if self.errlog and not self.errlog.endswith("\n"):
+				self.errlog += "\n"
+			self.errlog += {
+				1: "Non fatal error(s) occurred.",
+				2: "A fatal error occurred.",
+				3: "Invalid checksum. Data is damaged.",
+				4: "Attempt to modify an archive locked by 'k' command.",
+				5: "Write error.",
+				6: "File open error.",
+				7: "Wrong command line option.",
+				8: "Not enough memory.",
+				9: "File create error",
+				10: "No files matching the specified mask and options were found.",
+				11: "Wrong password.",
+				255: "User stopped the process.",
+			}.get(data, "Unknown error")
+		super(RarMenuScreen, self).extractDone(filename, data)
 
 class UnpackInfoScreen(ArchiverInfoScreen):
 

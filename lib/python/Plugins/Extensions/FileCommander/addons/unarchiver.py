@@ -48,6 +48,8 @@ class ArchiverMenuScreen(Screen):
 
 		self.commands = {}
 
+		self.errlog = ""
+
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
 		self.chooseMenuList.l.setFont(0, gFont('Regular', 20))
 		self.chooseMenuList.l.setItemHeight(25)
@@ -85,11 +87,11 @@ class ArchiverMenuScreen(Screen):
 		]
 
 	def UnpackListEntry(self, entry):
-		print entry
+		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
-		# color2 = 0x00ffffff # White
-		textColor = 0x00808080 # Grey
+		# color2 = 0x00ffffff  # White
+		textColor = 0x00808080  # Grey
 		return [
 			entry,
 			MultiContentEntryProgress(pos=(10, 0), size=(560, 30), percent=int(currentProgress)),
@@ -99,7 +101,7 @@ class ArchiverMenuScreen(Screen):
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
 		self.selectId = self['list_left'].getCurrent()[0][1]
-		print "Select:", selectName, self.selectId
+		print "[ArchiverMenuScreen] Select:", selectName, self.selectId
 		self.unpackModus(self.selectId)
 
 	def unpackModus(self, id):
@@ -153,10 +155,12 @@ class ArchiverMenuScreen(Screen):
 		# (see unrar.py)
 
 		print "[ArchiverMenuScreen] unpackEConsoleApp", cmd
+		self.errlog = ""
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
 		if logCallback is not None:
-			self.container.dataAvail.append(self.log)
+			self.container.stdoutAvail.append(self.log)
+		self.container.stderrAvail.append(self.logerrs)
 		self.ulist = []
 		if type(cmd) in (tuple, list):
 			exe = exePath or cmd[0]
@@ -166,7 +170,22 @@ class ArchiverMenuScreen(Screen):
 
 	def extractDone(self, filename, data):
 		print "[ArchiverMenuScreen] extractDone", data
-		message = self.session.open(MessageBox, (_("%s successful extracted.") % filename), MessageBox.TYPE_INFO, timeout=8)
+		if data:
+			type = MessageBox.TYPE_ERROR
+			timeout = 15
+			message = _("%s - extraction errors.") % filename
+			if self.errlog:
+				self.errlog = self.errlog.strip()
+				message += "\n----------\n" + self.errlog
+			self.errlog = ""
+		else:
+			type = MessageBox.TYPE_INFO
+			timeout = 8
+			message = _("%s successfully extracted.") % filename
+		self.session.open(MessageBox, message, type, timeout=timeout)
+
+	def logerrs(self, data):
+		self.errlog += data
 
 	def cancel(self):
 		self.close(False)
