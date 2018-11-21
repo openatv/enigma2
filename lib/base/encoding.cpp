@@ -16,37 +16,40 @@ inline char tolower(char c)
 int mapEncoding(char *s_table)
 {
 	int encoding = -1;
-	int no_table_id = 0;
+	int ex_table_flag = 0;
 
 	//if encoding string has a option 'N' or 'NOID' first split by ':' , it indicates that the string has no
 	//     encoding id char in the first byte, and the bit 0x80 of encoding id will be set.
 	char *colon=strrchr(s_table, ':');
 	if(colon != NULL){
 		if(strncmp(s_table,"n:",2) == 0 || strncmp(s_table,"noid:",5) == 0 )
-			no_table_id = NOTABLEID;
+			ex_table_flag |= NO_TABLEID;
+                else if(strncmp(s_table,"e:",2) == 0 || strncmp(s_table,"enforce:",8) == 0 )
+			ex_table_flag |= IGNORE_TABLEID;
 		s_table = colon + 1;
 	}
 
 	// table name will be in lowercase!
 	if (sscanf(s_table, "iso8859-%d", &encoding) == 1)
-		return no_table_id | encoding;
+		return ex_table_flag | encoding;
 	if (sscanf(s_table, "iso%d", &encoding) == 1 and encoding == 6937)
-		return no_table_id;
+		return ex_table_flag;
 	if (strcmp(s_table, "gb2312") == 0 || strcmp(s_table, "gbk") == 0
 		|| strcmp(s_table, "gb18030") == 0 || strcmp(s_table, "cp936") == 0)
-		return no_table_id | GB18030_ENCODING;
+		return ex_table_flag | GB18030_ENCODING;
 	if (strcmp(s_table, "big5") == 0 || strcmp(s_table, "cp950") == 0)
-		return no_table_id | BIG5_ENCODING;
+		return ex_table_flag | BIG5_ENCODING;
 	if (strcmp(s_table, "utf8") == 0 || strcmp(s_table, "utf-8") == 0)
-		return no_table_id | UTF8_ENCODING;
+		return ex_table_flag | UTF8_ENCODING;
 	if (strcmp(s_table, "unicode") == 0)
-		return no_table_id | UNICODE_ENCODING;
+		return ex_table_flag | UNICODE_ENCODING;
 	if (strcmp(s_table, "utf16be") == 0)
-		return no_table_id | UTF16BE_ENCODING;
+		return ex_table_flag | UTF16BE_ENCODING;
 	if (strcmp(s_table, "utf16le") == 0)
-		return no_table_id | UTF16LE_ENCODING;
+		return ex_table_flag | UTF16LE_ENCODING;
 	else
 		eDebug("[eDVBTextEncodingHandler] unsupported table in encoding.conf: %s. ", s_table);
+
 	return -1;
 }
 
@@ -80,7 +83,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				continue;       // skip 'empty' lines
 			line[j] = 0;
 
-			int tsid, onid, encoding = -1;
+			int tsid, onid, itable, encoding = -1;
 			if (sscanf(line, "0x%x 0x%x %s", &tsid, &onid, s_table) == 3
 				  || sscanf(line, "%d %d %s", &tsid, &onid, s_table) == 3 ) {
 				encoding = mapEncoding(s_table);
@@ -91,6 +94,13 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 					|| sscanf(line, "%d %d", &tsid, &onid) == 2 ) {
 				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
 				encoding = 0; // avoid spurious error message
+			}
+			else if (sscanf(line, "0x%x %s", &itable, s_table) == 2
+					|| sscanf(line, "%d %s", &itable, s_table) == 2 ) {
+				encoding = mapEncoding(s_table);
+				if (encoding != -1) {
+					m_EncodingMapping[itable] = encoding;
+				}
 			}
 			else if (sscanf(line, "%s %s", countrycode, s_table) == 2 ) {
 				encoding = mapEncoding(s_table);
@@ -117,6 +127,14 @@ void eDVBTextEncodingHandler::getTransponderDefaultMapping(int tsidonid, int &ta
 	std::map<int, int>::iterator it =
 		m_TransponderDefaultMapping.find(tsidonid);
 	if ( it != m_TransponderDefaultMapping.end() )
+		table = it->second;
+}
+
+void eDVBTextEncodingHandler::getEncodingMapping(int itable, int &table)
+{
+	std::map<int, int>::iterator it =
+		m_EncodingMapping.find(itable);
+	if ( it != m_EncodingMapping.end() )
 		table = it->second;
 }
 
