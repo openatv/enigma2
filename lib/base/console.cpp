@@ -41,10 +41,23 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 		if (cwd)
 			chdir(cwd);
 
+		/*
+		   The vfork will actually suspend the parent thread until
+		   execvp is called.
+		   Thus it's ok to use the shared arg/cmdline pointers here.
+		 */
+
 		execvp(cmd, (char * const *)argv);
-				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
-		eDebug("[eConsoleAppContainer] Finished %s", cmd);
-		_exit(0);
+
+		/*
+		   Use fprintf() rather than eDebug(), because this goes
+		   to the child's stderr.
+		*/
+
+		fprintf(stderr, "Failed to run %s - %m", cmd);
+
+		// Follow the convention for the return value in system(3)
+		_exit(127);
 	}
 	if (close(pfdout[0]) == -1 || close(pfdin[1]) == -1 || close(pfderr[1]) == -1)
 			return(-1);
@@ -252,7 +265,7 @@ void eConsoleAppContainer::readyRead(int what)
 	if (hungup)
 	{
 		int childstatus;
-		int retval = killstate;
+		int retval;
 		/*
 		 * We have to call 'wait' on the child process, in order to avoid zombies.
 		 * Also, this gives us the chance to provide better exit status info to appClosed.
@@ -262,6 +275,15 @@ void eConsoleAppContainer::readyRead(int what)
 			if (WIFEXITED(childstatus))
 			{
 				retval = WEXITSTATUS(childstatus);
+			}
+			else if (WIFSIGNALED(childstatus))
+			{
+				retval = -1;
+			}
+			else
+			{
+				// Hasn't terminated yet (e.g. some sort of stop signal)
+				return;
 			}
 		}
 		closePipes();
