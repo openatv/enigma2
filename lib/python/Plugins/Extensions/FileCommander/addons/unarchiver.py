@@ -174,6 +174,9 @@ class ArchiverMenuScreen(Screen):
 			type = MessageBox.TYPE_ERROR
 			timeout = 15
 			message = _("%s - extraction errors.") % filename
+			if data == -1:
+				self.errlog = self.errlog.rstrip()
+				self.errlog += "\nTerminated by a signal"
 			if self.errlog:
 				self.errlog = self.errlog.strip()
 				message += "\n----------\n" + self.errlog
