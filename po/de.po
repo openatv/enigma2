@@ -142,8 +142,16 @@ msgstr "Videomodus: 1080p nicht verfügbar"
 msgid "Video mode: %s"
 msgstr "Videomodus: %s"
 
+#: \python\Components\UsageConfig.py
 msgid "Eventname only"
-msgstr "nur Sendungsname"
+msgstr "Nur Sendungsname"
+
+#: \python\Components\UsageConfig.py
+#, python-format
+msgid "%d pixel wide"
+msgid_plural "%d pixels wide"
+msgstr[0] "%d Pixelbreit"
+msgstr[1] "%d Pixelbreite"
 
 msgid ""
 "\n"
@@ -1166,6 +1174,9 @@ msgstr "Crashlog anonymisieren?"
 
 msgid "Any activity"
 msgstr "Jede Aktivität"
+
+msgid "Undetermined"
+msgstr "Unbestimmt"
 
 msgid "Arabic"
 msgstr "Arabisch"
@@ -13622,16 +13633,16 @@ msgid "Use HDMI-preemphasis"
 msgstr "HDMI-Preemphasis benutzen"
 
 msgid "center"
-msgstr "zentriert"
+msgstr "Zentriert"
 
 msgid "Use DVB subtitles position"
 msgstr "DVB Untertitel Position"
 
 msgid "Fixed"
-msgstr "fixiert"
+msgstr "Fixiert"
 
 msgid "Relative"
-msgstr "relativ"
+msgstr "Relativ"
 
 msgid "DVD-Player Setup"
 msgstr "DVD-Player"
@@ -13655,10 +13666,10 @@ msgid "Recording type"
 msgstr "Aufnahmeart"
 
 msgid "descramble and record ecm"
-msgstr "entschlüsseln und ECM aufnehmen"
+msgstr "Entschlüsseln und ECM aufnehmen"
 
 msgid "don't descramble, record ecm"
-msgstr "nicht entschlüsseln, ECM aufnehmen"
+msgstr "Nicht entschlüsseln, ECM aufnehmen"
 
 msgid "The user interface of your %s %s is restarting"
 msgstr "Die Bedienoberfläche Ihrer %s %s wird neu gestartet"
@@ -15477,7 +15488,7 @@ msgid "Default recording type"
 msgstr "Standard-Aufnahmetyp"
 
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'entschlüsseln und ECM aufnehmen' ermöglicht es Ihnen die Aufnahme beim Abspielen zu entschlüsseln, wenn bei der Aufnahme die Entschlüsselung fehlschlägt. 'nicht entschlüsseln, ECM aufnehmen' speichert eine verschlüsselte Aufnahme, die beim Abspielen entschlüsselt werden kann. 'normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
+msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es Ihnen die Aufnahme beim Abspielen zu entschlüsseln, wenn bei der Aufnahme die Entschlüsselung fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' speichert eine verschlüsselte Aufnahme, die beim Abspielen entschlüsselt werden kann. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Zeige Warnung wenn Timeshift gestoppt wird"
@@ -17261,7 +17272,7 @@ msgstr "Wenn Sie diese Option aktivieren, werden alle vorhandenen Favoritenliste
 
 # Record neu 5.1
 msgid "never abort"
-msgstr "nie abbrechen"
+msgstr "Nie abbrechen"
 
 # Record neu 5.1
 msgid "ask user"
@@ -17269,11 +17280,11 @@ msgstr "Benutzer fragen"
 
 # Record neu 5.1
 msgid "just abort, no message"
-msgstr "abbrechen, ohne Hinweis"
+msgstr "Abbrechen, ohne Hinweis"
 
 # Record neu 5.1
 msgid "just abort, show message"
-msgstr "abbrechen, zeige Hinweis"
+msgstr "Abbrechen, zeige Hinweis"
 
 # Record neu 5.1
 msgid "Recordings abort pseudo recordings"
@@ -17309,19 +17320,19 @@ msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur b
 
 # Record neu 5.1
 msgid "any recordings"
-msgstr "alle Aufnahmen"
+msgstr "Alle Aufnahmen"
 
 # Record neu 5.1
 msgid "real recordings"
-msgstr "echte Aufnahmen"
+msgstr "Echte Aufnahmen"
 
 # Record neu 5.1
 msgid "real recordings or streaming"
-msgstr "echte Aufnahmen / Streaming"
+msgstr "Echte Aufnahmen / Streaming"
 
 # Record neu 5.1
 msgid "real or pseudo recordings"
-msgstr "echte/Pseudo-Aufnahmen"
+msgstr "Echte / Pseudo-Aufnahmen"
 
 # Display neu 5.1
 msgid "Initial scroll delay"
@@ -17697,7 +17708,7 @@ msgstr "Sind Sie sicher, alle gelöschten Userbouquets zu entfernen?"
 
 #: TimerEntry.py
 msgid "normal"
-msgstr "normal"
+msgstr "Normal"
 
 #: TimerEntry.py
 msgid "%d %B %Y"
