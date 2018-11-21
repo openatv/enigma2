@@ -781,7 +781,7 @@ int eDVBScan::sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *c
 	int diff;
 	if (ch1->calculateDifference(ch2, diff, exact))
 		return 0;
-	if (diff < 4000) // more than 4mhz difference?
+	if (diff < 2000) // more than 2mhz difference?
 		return 1;
 	return 0;
 }
@@ -1180,9 +1180,9 @@ void eDVBScan::channelDone()
 			if( m_chid_current )
 				tsonid = ( m_chid_current.transport_stream_id.get() << 16 )
 					| m_chid_current.original_network_id.get();
-			service->m_service_name = convertDVBUTF8(sname,0,tsonid,0);
+			service->m_service_name = convertDVBUTF8(sname,-1,tsonid,0);
 			service->genSortName();
-			service->m_provider_name = convertDVBUTF8(pname,0,tsonid,0);
+			service->m_provider_name = convertDVBUTF8(pname,-1,tsonid,0);
 		}
 
 		if (!(m_flags & scanOnlyFree) || !m_pmt_in_progress->second.scrambled) {
@@ -1625,11 +1625,11 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 
 					ref.setServiceType(servicetype);
 					int tsonid=(sdt.getTransportStreamId() << 16) | sdt.getOriginalNetworkId();
-					service->m_service_name = convertDVBUTF8(d.getServiceName(),0,tsonid,0);
+					service->m_service_name = convertDVBUTF8(d.getServiceName(),-1,tsonid,0);
 					service->genSortName();
 
-					service->m_provider_name = convertDVBUTF8(d.getServiceProviderName(),0,tsonid,0);
-					SCAN_eDebug("[eDVBScan] name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
+					service->m_provider_name = convertDVBUTF8(d.getServiceProviderName(),-1,tsonid,0);
+					SCAN_eDebug("[eDVBScan]   name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
 					break;
 				}
 				case CA_IDENTIFIER_DESCRIPTOR:

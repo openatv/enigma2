@@ -13414,6 +13414,24 @@ msgstr "Speicherplatznutzung:"
 msgid "Logs location"
 msgstr "Logs Speicherort"
 
+msgid "Handle Python crashes"
+msgstr "Python-Abstürze beeinflussen"
+
+msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
+msgstr "Bei Softwarefehlern wird versucht, die GUI nicht neu starten zulassen."
+
+msgid "Show crash info on screen and write crash log for x times"
+msgstr "Wie oft soll die Absturz-Info anzeigt und das Crash-Log erstellt werden?"
+
+msgid "If 'never', will write crash log despite that for the first crash."
+msgstr "Wenn 'niemals' eingestellt ist, wird trotzdem beim ersten Absturz ein Crash-Log geschrieben."
+
+msgid "Restart GUI after x crashes"
+msgstr "Nach wieviel Abstürzen soll die GUI neu starten?"
+
+msgid "If 'never', will force restart despite that after 100 crashes."
+msgstr "Wenn 'niemals' eingestellt ist, wird trotzdem nach 100 Abstürzen ein GUI-Neustart erzwungen."
+
 msgid "Use arrows Up/Down to select"
 msgstr "Auswahl mit Pfeiltasten Hoch/Runter"
 
@@ -20004,3 +20022,31 @@ msgstr "Sendergruppe wirklich löschen?"
 #: python\Plugins\SystemPlugins\VideoTune
 msgid "VideoFinetune"
 msgstr "Bild Feinabstimmung"
+
+#: python\Screens\InfoBarGenerics
+msgid "Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n"
+msgstr "Ihr Receiver hat ein Softwareproblem erkannt. Seit dem letzten Neustart ist es %d Mal aufgetreten.\n"
+
+#: python\Screens\InfoBarGenerics
+msgid "(Attention: There will be a restart after %d crashes.)"
+msgstr "(ACHTUNG: Nach %d Abstürzen wird neu gestartet.)"
+
+#: python\Screens\InfoBarGenerics
+msgid "A crashlog was %s created in '%s'"
+msgstr "Ein Crash-Log wurde %s in '%s' erstellt"
+
+#: python\Screens\InfoBarGenerics
+msgid "not"
+msgstr "nicht"
+
+#: python\Screens\InfoBarGenerics
+msgid "(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)"
+msgstr "(Es wurde eingestellt, das '%s' Crash-Logs angezeigt und erstellt werden.\nINFO: Es wird immer das erste, vorletzte und letzte Crash-Log geschrieben.)"
+
+#: python\Screens\InfoBarGenerics
+msgid "Warning: This is the last crash before an automatic restart is performed.\n"
+msgstr "WARNUNG: Dies ist der letzte Absturz, bevor ein automatischer Neustart ausgeführt wird.\n"
+
+#: python\Screens\InfoBarGenerics
+msgid "Should the crash counter be reset to prevent a restart?"
+msgstr "Soll der Crash-Zähler zurückgesetzt werden, um einen Neustart zu verhindern?"

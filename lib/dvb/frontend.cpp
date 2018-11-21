@@ -1425,18 +1425,24 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		|| !strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")
 		|| !strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")
 		|| !strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")
-		) // Gigablue
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS2M08)")
+		)
 	{
-		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1800) - 1.0000) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1710) - 1.0000) * 100);
 	}
-	else if (!strcmp(m_description, "DVB-S2 NIM(45208 FBC)"))
+	else if (!strcmp(m_description, "DVB-S2 NIM(45208 FBC)")
+		|| !strcmp(m_description, "DVB-S2 NIM(45308 FBC)")
+		)
 	{
 		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1950) - 1.0000) * 100);
 	}
-	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")
-		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")
-		|| strstr(m_description, "GIGA DVB-C/T NIM (SI41652)")
-		|| strstr(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
+	else if (!strcmp(m_description, "GIGA DVB-C/T NIM (SP8221L)")
+		|| !strcmp(m_description, "GIGA DVB-C/T NIM (SI4765)")
+		|| !strcmp(m_description, "GIGA DVB-C/T NIM (SI41652)")
+		|| !strcmp(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
+		|| !strcmp(m_description, "GIGA DVB-C/T2 NIM (SI41682)")
+		|| !strcmp(m_description, "GIGA DVB-T2/C NIM (TT2L10)")
+		|| !strcmp(m_description, "GIGA DVB-T2/C NIM (TT3L10)")
 		)
 	{
 		int type = -1;

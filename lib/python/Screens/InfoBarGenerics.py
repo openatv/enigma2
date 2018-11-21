@@ -53,6 +53,7 @@ from time import time, localtime, strftime
 from bisect import insort
 from keyids import KEYIDS
 from datetime import datetime
+from sys import maxint
 
 import os, cPickle
 
@@ -71,9 +72,6 @@ if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo
 	COOLTVGUIDE = True
 else:
 	COOLTVGUIDE = False
-
-# sys.maxint on 64bit (2**63-1) fails with OverflowError on eActionMap.bindAction use 32bit value (2**31-1)
-maxint = 2147483647
 
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
@@ -1888,8 +1886,8 @@ class InfoBarEPG:
 				self.openSingleServiceEPG()
 			elif config.plisettings.PLIEPG_mode.value == "vertical":
 				self.openVerticalEPG()
-			elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
-				self.openMerlinEPGCenter()	
+			#elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
+			#	self.openMerlinEPGCenter()	
 			elif config.plisettings.PLIEPG_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
@@ -5332,12 +5330,13 @@ class InfoBarHandleBsod:
 			maxbs = int(config.crash.bsodmax.value) or 100
 			writelog = bsodcnt == 1 or not bsodcnt > int(config.crash.bsodhide.value) or bsodcnt == maxbs
 			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n") %bsodcnt
-			txt += _("(Attention: There will be a restart after %d crashes.)\n") %maxbs
-			txt += "-"*80 + "\n"
-			txt += _("A crashlog was %s created in '%s'") %(('not','')[int(writelog)], config.crash.debug_path.value)
-			if not writelog:
+			txt += _("(Attention: There will be a restart after %d crashes.)") %maxbs
+			if writelog:
 				txt += "\n" + "-"*80 + "\n"
-				txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _('never'))
+				txt += _("A crashlog was %s created in '%s'") %((_('not'),'')[int(writelog)], config.crash.debug_path.value)
+			#if not writelog:
+			#	txt += "\n" + "-"*80 + "\n"
+			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _('never'))
 			if bsodcnt == maxbs:
 				txt += "\n" + "-"*80 + "\n"
 				txt += _("Warning: This is the last crash before an automatic restart is performed.\n")

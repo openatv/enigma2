@@ -23,7 +23,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDa
 VERSION = "Version 6.3 openATV"
 
 HaveGZkernel = True
-if getMachineBuild() in ('ustym4kpro','hd60','i55plus','osmio4k','sf8008','cc1','dags72604', 'u51','u52','u53','h9','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
+if getMachineBuild() in ('vuduo4k','v8plus','ustym4kpro','hd60','i55plus','osmio4k','sf8008','cc1','dags72604', 'u51','u52','u53','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -276,7 +276,10 @@ class ImageBackup(Screen):
 
 
 		self.message = "echo -e '\n"
-		self.message += (_("Back-up Tool for a %s\n" %self.SHOWNAME)).upper()
+		if getMachineBrand().startswith('A') or getMachineBrand().startswith('E') or getMachineBrand().startswith('I') or getMachineBrand().startswith('O') or getMachineBrand().startswith('U') or getMachineBrand().startswith('Xt'):
+			self.message += (_('Back-up Tool for an %s\n') % self.SHOWNAME).upper()
+		else:
+			self.message += (_('Back-up Tool for a %s\n') % self.SHOWNAME).upper()
 		self.message += VERSION + '\n'
 		self.message += "_________________________________________________\n\n"
 		self.message += _("Please be patient, a backup will now be made,\n")

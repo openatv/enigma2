@@ -316,6 +316,10 @@ int eDVBPMTParser::getProgramInfo(program &program)
 									isaudio = 1;
 									audio.type = audioStream::atLPCM;
 									break;
+								case 0x44524131: /*DRA is "DRA1"*/
+									isaudio = 1;
+									audio.type = audioStream::atDRA;
+									break;
 								case 0x56432d31: // == 'VC-1'
 								{
 									const AdditionalIdentificationInfoVector *vec = d->getAdditionalIdentificationInfo();
@@ -388,6 +392,13 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						prev_audio->rdsPid = (*es)->getPid();
 						eDebug("[eDVBPMTParser] Rds PID %04x detected ? ! ?", prev_audio->rdsPid);
 					}
+					//HEVC 4K for Topway
+					if (!num_descriptors && streamtype == 0xEA && !isvideo && !isaudio)
+					{
+						isvideo = 1;
+						video.type = videoStream::vtH265_HEVC;
+					}		
+					
 					prev_audio = 0;
 					break;
 				}
