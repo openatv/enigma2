@@ -83,7 +83,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				continue;       // skip 'empty' lines
 			line[j] = 0;
 
-			int tsid, onid, itable, encoding = -1;
+			int tsid, onid, encoding = -1;
 			if (sscanf(line, "0x%x 0x%x %s", &tsid, &onid, s_table) == 3
 				  || sscanf(line, "%d %d %s", &tsid, &onid, s_table) == 3 ) {
 				encoding = mapEncoding(s_table);
@@ -94,13 +94,6 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 					|| sscanf(line, "%d %d", &tsid, &onid) == 2 ) {
 				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
 				encoding = 0; // avoid spurious error message
-			}
-			else if (sscanf(line, "0x%x %s", &itable, s_table) == 2
-					|| sscanf(line, "%d %s", &itable, s_table) == 2 ) {
-				encoding = mapEncoding(s_table);
-				if (encoding != -1) {
-					m_EncodingMapping[itable] = encoding;
-				}
 			}
 			else if (sscanf(line, "%s %s", countrycode, s_table) == 2 ) {
 				encoding = mapEncoding(s_table);
@@ -127,14 +120,6 @@ void eDVBTextEncodingHandler::getTransponderDefaultMapping(int tsidonid, int &ta
 	std::map<int, int>::iterator it =
 		m_TransponderDefaultMapping.find(tsidonid);
 	if ( it != m_TransponderDefaultMapping.end() )
-		table = it->second;
-}
-
-void eDVBTextEncodingHandler::getEncodingMapping(int itable, int &table)
-{
-	std::map<int, int>::iterator it =
-		m_EncodingMapping.find(itable);
-	if ( it != m_EncodingMapping.end() )
 		table = it->second;
 }
 
