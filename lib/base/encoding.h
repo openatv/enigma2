@@ -24,19 +24,23 @@
 #define UTF8_ENCODING			0x15	// ISO10646 Basic Multilingual Plane in UTF8 encoding
 #define UTF16BE_ENCODING		0x16
 #define UTF16LE_ENCODING		0x17
+#define HUFFMAN_ENCODING		0x1F
 
-#define NOTABLEID			0x80
+#define NO_TABLEID			0x0800
+#define IGNORE_TABLEID			0x0100
 
 class eDVBTextEncodingHandler
 {
 	std::map<std::string, int> m_CountryCodeDefaultMapping;
 	std::map<int, int> m_TransponderDefaultMapping;
+	std::map<int, int> m_EncodingMapping;
 	std::set<int> m_TransponderUseTwoCharMapping;
 public:
 	eDVBTextEncodingHandler();
 	void getTransponderDefaultMapping(int tsidonid, int &table);
 	bool getTransponderUseTwoCharMapping(int tsidonid);
 	int getCountryCodeDefaultMapping( const std::string &country_code );
+	void getEncodingMapping(int itable, int &table);
 };
 
 extern eDVBTextEncodingHandler encodingHandler;
