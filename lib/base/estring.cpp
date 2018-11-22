@@ -518,7 +518,17 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 				table = UTF16LE_ENCODING;
 				break;
 			case HUFFMAN_ENCODING:
-				table = HUFFMAN_ENCODING;
+				{
+					// Attempt to decode Freesat Huffman encoded string
+					std::string decoded_string = huffmanDecoder.decode(data, len);
+					if (!decoded_string.empty()){
+						table = HUFFMAN_ENCODING;
+						output = decoded_string;
+						break;
+					}
+				}
+				++i;
+				eDebug("[convertDVBUTF8] failed to decode bbc freesat huffman");
 				break;
 			case 0x0:
 			case 0xC ... 0xF:
@@ -545,15 +555,17 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	switch(table)
 	{
 		case HUFFMAN_ENCODING:
-		{
-			// Attempt to decode Freesat Huffman encoded string
-			std::string decoded_string = huffmanDecoder.decode(data, len);
-			if (!decoded_string.empty()){
-				output = decoded_string;
-				convertedLen += len;
+			{
+				if (output.empty()){
+					// Attempt to decode Freesat Huffman encoded string
+					std::string decoded_string = huffmanDecoder.decode(data, len);
+					if (!decoded_string.empty())
+						output = decoded_string;
+				}
+				if (!output.empty())
+					convertedLen += len;
 			}
 			break;
-		}
 		case UTF8_ENCODING:
 			output = std::string((char*)data + i, len - i);
 			convertedLen += i;
