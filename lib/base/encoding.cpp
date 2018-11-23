@@ -23,9 +23,9 @@ int mapEncoding(char *s_table)
 	char *colon=strrchr(s_table, ':');
 	if(colon != NULL){
 		if(strncmp(s_table,"n:",2) == 0 || strncmp(s_table,"noid:",5) == 0 )
-			ex_table_flag |= NO_TABLEID;
+			ex_table_flag |= MASK_NO_TABLEID;
                 else if(strncmp(s_table,"e:",2) == 0 || strncmp(s_table,"enforce:",8) == 0 )
-			ex_table_flag |= IGNORE_TABLEID;
+			ex_table_flag |= MASK_IGNORE_TABLEID;
 		s_table = colon + 1;
 	}
 
