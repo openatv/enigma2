@@ -1438,7 +1438,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (!strcmp(m_description, "DVB-C NIM(3128 FBC)"))
 	{
-		ret = (int)(snr / 25);
+		ret = (int)(snr / 17);
 	}
 	else if (!strcmp(m_description, "GIGA DVB-C/T NIM (SP8221L)")
 		|| !strcmp(m_description, "GIGA DVB-C/T NIM (SI4765)")
@@ -1458,7 +1458,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				cab_max = 4200;
 				break;
 			case feTerrestrial:
-				ret = (int)(snr / 40);
+				ret = (int)(snr / 32);
 				ter_max = 1700;
 				break;
 		}
