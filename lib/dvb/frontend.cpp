@@ -1458,7 +1458,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				cab_max = 4200;
 				break;
 			case feTerrestrial:
-				ret = (int)(snr / 32);
+				ret = (int)(snr / 30);
 				ter_max = 1700;
 				break;
 		}
