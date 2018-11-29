@@ -11,7 +11,12 @@ dist_install_DATA = \
 	LiberationSans-Bold.ttf \
 	LiberationSans-BoldItalic.ttf \
 	LiberationSans-Italic.ttf \
-	LiberationSans-Regular.ttf
+	LiberationSans-Regular.ttf \
+	wqy-microhei.ttc
+
+install-exec-hook:
+	cd $(DESTDIR)$(datadir)/fonts && \
+	$(LN_S) wqy-microhei.ttc fallback.font
 
 if VUULTIMO
 dist_install_DATA += analog.ttf MyriadPro-Regular.otf MyriadPro-Semibold.otf MyriadPro-SemiboldIt.otf

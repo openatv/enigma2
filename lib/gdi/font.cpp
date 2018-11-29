@@ -288,8 +288,11 @@ int fontRenderClass::getFont(ePtr<Font> &font, const std::string &face, int size
 void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags)
 {
 	fontRenderClass::getInstance()->AddFont(filename, alias, scale_factor, renderflags);
-	if (is_replacement)
+	if (is_replacement == 1)
 		eTextPara::setReplacementFont(alias);
+	else if (is_replacement == -1)
+		eTextPara::setFallbackFont(alias);
+
 }
 
 DEFINE_REF(Font);
@@ -574,23 +577,26 @@ eTextPara::~eTextPara()
 
 void eTextPara::setFont(const gFont *font)
 {
-	ePtr<Font> fnt, replacement;
+	ePtr<Font> fnt, replacement, fallback;
 	fontRenderClass::getInstance()->getFont(fnt, font->family.c_str(), font->pointSize);
 	if (!fnt)
 		eWarning("[eTextPara] FONT '%s' MISSING!", font->family.c_str());
 	fontRenderClass::getInstance()->getFont(replacement, replacement_facename.c_str(), font->pointSize);
-	setFont(fnt, replacement);
+	fontRenderClass::getInstance()->getFont(fallback, fallback_facename.c_str(), font->pointSize);
+	setFont(fnt, replacement, fallback);
 }
 
 std::string eTextPara::replacement_facename;
+std::string eTextPara::fallback_facename;
 std::set<int> eTextPara::forced_replaces;
 
-void eTextPara::setFont(Font *fnt, Font *replacement)
+void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 {
 	if (!fnt)
 		return;
 	current_font=fnt;
 	replacement_font=replacement;
+	fallback_font=fallback;
 	singleLock s(ftlock);
 
 			// we ask for replacment_font first becauseof the cache
@@ -615,6 +621,19 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
 					    &current_font->scaler,
 					    &current_font->size) < 0))
+		{
+			eDebug("[eTextPara] FTC_Manager_Lookup_Size failed!");
+			return;
+		}
+	}
+	if (fallback_font)
+	{
+		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+					    fallback_font->scaler.face_id,
+					    &fallback_face) < 0) ||
+		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+					    &fallback_font->scaler,
+					    &fallback_font->size) < 0))
 		{
 			eDebug("[eTextPara] FTC_Manager_Lookup_Size failed!");
 			return;
@@ -852,7 +871,14 @@ nprint:				isprintable=0;
 					index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(replacement_face, chr);
 
 				if (!index)
-					eDebug("[eTextPara] unicode U+%4lx not present", chr);
+				{
+					if (fallback_face)
+						index=(rflags&RS_DIRECT)? chr : FT_Get_Char_Index(fallback_face, chr);
+					if (!index)
+						eDebug("[eTextPara] unicode U+%4lx not present", chr);
+					else
+						appendGlyph(fallback_font, fallback_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
+				}
 				else
 					appendGlyph(replacement_font, replacement_face, index, flags, rflags, border, i == uc_visual.end() - 1, activate_newcolor, newcolor);
 			} else
