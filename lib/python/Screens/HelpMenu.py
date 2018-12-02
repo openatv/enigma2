@@ -3,6 +3,7 @@ from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.Sources.HelpMenuList import HelpMenuList
+from Components.Sources.StaticText import StaticText
 from Screens.Rc import Rc
 from enigma import eActionMap
 from sys import maxint
@@ -105,6 +106,7 @@ class HelpableScreen:
 		self["helpActions"] = ActionMap(["HelpActions"], {
 			"displayHelp": self.showHelp,
 		})
+		self["key_help"] = StaticText(_("HELP"))
 
 	def showHelp(self):
 		try:
