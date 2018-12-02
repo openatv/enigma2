@@ -20,7 +20,7 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = "Version 6.3 openATV"
+VERSION = _("Version") + " 6.2 openATV"
 
 HaveGZkernel = True
 if getMachineBuild() in ('vuduo4k','v8plus','ustym4kpro','hd60','i55plus','osmio4k','sf8008','cc1','dags72604', 'u51','u52','u53','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
@@ -107,8 +107,8 @@ class ImageBackup(Screen):
 		else:
 			self["key_yellow"] = StaticText("")
 			self["info-multi"] = Label(" ")
-		self["info-usb"] = Label(_("USB = Do you want to make a back-up on USB?\nThis will take between 3 and 15 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert an USB flash drive before you select USB."))
-		self["info-hdd"] = Label(_("HDD = Do you want to make an USB-back-up image on HDD? \nThis only takes 1 or 10 minutes and is fully automatic."))
+		self["info-usb"] = Label(_("USB = Do you want to make a back-up on USB?\nThis will take between 3 and 15 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert a USB flash drive before you select USB."))
+		self["info-hdd"] = Label(_("HDD = Do you want to make a USB-back-up image on HDD? \nThis only takes 1 or 10 minutes and is fully automatic."))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
 			"blue": self.quit,
@@ -288,7 +288,7 @@ class ImageBackup(Screen):
 			self.message += _("will take about 30 minutes for this system\n")
 		else:
 			self.message += _("will take about 1-15 minutes for this system\n")
-		self.message += "\n_________________________________________________\n\n"
+		self.message += "_________________________________________________\n"
 		self.message += "'"
 
 		## PREPARING THE BUILDING ENVIRONMENT
@@ -329,7 +329,7 @@ class ImageBackup(Screen):
 
 		cmdlist = []
 		cmdlist.append(self.message)
-		cmdlist.append('echo "Create: %s\n"' %self.ROOTFSBIN)
+		cmdlist.append('echo "' + _("Create:") + ' %s\n"' %self.ROOTFSBIN)
 		cmdlist.append(cmd1)
 		if cmd2:
 			cmdlist.append(cmd2)
@@ -339,48 +339,48 @@ class ImageBackup(Screen):
 
 		if self.MODEL in ("gbquad4k","gbue4k"):
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "Create: boot dump"')
+			cmdlist.append('echo "' + _("Create:") + " boot dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/boot.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: rescue dump"')
+			cmdlist.append('echo "' + _("Create:") + " rescue dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/rescue.bin" % self.WORKDIR)
 
 		if self.MACHINEBUILD  in ("h9","i55plus"):
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "Create: fastboot dump"')
+			cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 			cmdlist.append("dd if=/dev/mtd0 of=%s/fastboot.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: bootargs dump"')
+			cmdlist.append('echo "' + _("Create:") + " bootargs dump" + '"')
 			cmdlist.append("dd if=/dev/mtd1 of=%s/bootargs.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: baseparam dump"')
+			cmdlist.append('echo "' + _("Create:") + " baseparam dump" + '"')
 			cmdlist.append("dd if=/dev/mtd2 of=%s/baseparam.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: pq_param dump"')
+			cmdlist.append('echo "' + _("Create:") + " pq_param dump" + '"')
 			cmdlist.append("dd if=/dev/mtd3 of=%s/pq_param.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: logo dump"')
+			cmdlist.append('echo "' + _("Create:") + " logo dump" + '"')
 			cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
 		if self.MACHINEBUILD  in ("cc1","sf8008","ustym4kpro"):
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "Create: fastboot dump"')
+			cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: bootargs dump"')
+			cmdlist.append('echo "' + _("Create:") + " bootargs dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p2 of=%s/bootargs.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: boot dump"')
+			cmdlist.append('echo "' + _("Create:") + " boot dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/boot.img" % self.WORKDIR)
-			cmdlist.append('echo "Create: baseparam.dump"')
+			cmdlist.append('echo "' + _("Create:") + " baseparam dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p4 of=%s/baseparam.img" % self.WORKDIR)
-			cmdlist.append('echo "Create: pq_param dump"')
+			cmdlist.append('echo "' + _("Create:") + " pq_param dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p5 of=%s/pq_param.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: logo dump"')
+			cmdlist.append('echo "' + _("Create:") + " logo dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p6 of=%s/logo.img" % self.WORKDIR)
-			cmdlist.append('echo "Create: deviceinfo dump"')
+			cmdlist.append('echo "' + _("Create:") + " deviceinfo dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p7 of=%s/deviceinfo.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: apploader dump"')
+			cmdlist.append('echo "' + _("Create:") + " apploader dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p8 of=%s/apploader.bin" % self.WORKDIR)
-			cmdlist.append('echo "Create: rootfs dump"')
+			cmdlist.append('echo "' + _("Create:") + " rootfs dump" + '"')
 			cmdlist.append("dd if=/dev/zero of=%s/rootfs.ext4 seek=524288 count=0 bs=1024" % (self.WORKDIR))
 			cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d /tmp/bi/root" % (self.WORKDIR))
 
 		cmdlist.append('echo " "')
-		cmdlist.append('echo "Create: kerneldump"')
+		cmdlist.append('echo "' + _("Create:") + " kerneldump" + '"')
 		cmdlist.append('echo " "')
 		if SystemInfo["HaveMultiBoot"]:
 			cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
@@ -388,11 +388,10 @@ class ImageBackup(Screen):
 			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 		else:
 			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
-			#cmdlist.append("dd if=/dev/%s %s/vmlinux.gz" % (self.MTDKERNEL ,self.WORKDIR))
 		cmdlist.append('echo " "')
 
 		if HaveGZkernel:
-			cmdlist.append('echo "Check: kerneldump"')
+			cmdlist.append('echo "' + _("Check:") + " kerneldump\n" + '"')
 		cmdlist.append("sync")
 		if ( SystemInfo["HaveMultiBootHD"] or SystemInfo["HaveMultiBootXC"] or SystemInfo["HaveMultiBootCY"] or SystemInfo["HaveMultiBootOS"]) and self.list[self.selection] == "Recovery":
 			BLOCK_SIZE=512
@@ -414,7 +413,7 @@ class ImageBackup(Screen):
 			EMMC_IMAGE_SIZE=3817472
 			EMMC_IMAGE_SEEK = int(EMMC_IMAGE_SIZE) * int(BLOCK_SECTOR)
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "Create: Recovery Fullbackup %s"'% (self.EMMCIMG))
+			cmdlist.append('echo "' + _("Create: Recovery Fullbackup %s")% (self.EMMCIMG) + '"')
 			cmdlist.append('echo " "')
 			cmdlist.append('dd if=/dev/zero of=%s bs=%s count=0 seek=%s' % (EMMC_IMAGE, BLOCK_SIZE , EMMC_IMAGE_SEEK))
 			cmdlist.append('parted -s %s mklabel gpt' %EMMC_IMAGE)
@@ -445,7 +444,7 @@ class ImageBackup(Screen):
 			cmdlist.append('dd if=/dev/%s of=%s seek=%s ' % (self.MTDROOTFS, EMMC_IMAGE, ROOTFS_IMAGE_SEEK ))
 		elif SystemInfo["HaveMultiBootDS"] and self.list[self.selection] == "Recovery":
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "Create: Recovery Fullbackup %s"'% (self.EMMCIMG))
+			cmdlist.append('echo "' + _("Create: Recovery Fullbackup %s")% (self.EMMCIMG) + '"')
 			cmdlist.append('echo " "')
 			f = open("%s/emmc_partitions.xml" %self.WORKDIR, "w")
 			f.write('<?xml version="1.0" encoding="GB2312" ?>\n')
@@ -469,8 +468,8 @@ class ImageBackup(Screen):
 		if HaveGZkernel:
 			ret = commands.getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
 			if ret:
-				text = "Kernel dump error\n"
-				text += "Please Flash your Kernel new and Backup again"
+				text = _("Kernel dump error\n")
+				text += _("Please Flash your Kernel new and Backup again")
 				system('rm -rf /tmp/vmlinux.bin')
 				self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
 				return
@@ -478,11 +477,11 @@ class ImageBackup(Screen):
 		cmdlist = []
 		cmdlist.append(self.message)
 		if HaveGZkernel:
-			cmdlist.append('echo "Kernel dump OK"')
+			cmdlist.append('echo "' + _("Kernel dump OK") + '"')
 			cmdlist.append("rm -rf /tmp/vmlinux.bin")
-		cmdlist.append('echo "_________________________________________________"')
-		cmdlist.append('echo "Almost there... "')
-		cmdlist.append('echo "Now building the USB-Image"')
+			cmdlist.append('echo "_________________________________________________\n"')
+		cmdlist.append('echo "' + _("Almost there... ") + '"')
+		cmdlist.append('echo "' + _("Now building the USB-Image") + '"')
 
 		system('rm -rf %s' %self.MAINDEST)
 		if not path.exists(self.MAINDEST):
@@ -571,34 +570,34 @@ class ImageBackup(Screen):
 
 		if SystemInfo["HaveMultiBoot"] and not self.list[self.selection] == "Recovery":
 			cmdlist.append('echo "_________________________________________________\n"')
-			cmdlist.append('echo "Multiboot Image created on:" %s' %self.MAINDEST)
-			cmdlist.append('echo "and there is made an extra copy on:"')
+			cmdlist.append('echo "' + _("Multiboot Image created on: %s") %self.MAINDEST + '"')
+			cmdlist.append('echo "' + _("and there is made an extra copy on:") + '"')
 			cmdlist.append('echo %s' %self.EXTRA)
-			cmdlist.append('echo "_________________________________________________\n"')
+			cmdlist.append('echo "_________________________________________________"')
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "\nPlease wait...almost ready! "')
+			cmdlist.append('echo "' + _("Please wait...almost ready! ") + '"')
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "To restore the image:"')
-			cmdlist.append('echo "Use OnlineFlash in SoftwareManager"')
+			cmdlist.append('echo "' + _("To restore the image:") + '"')
+			cmdlist.append('echo "' + _("Use OnlineFlash in SoftwareManager") + '"')
 		elif file_found:
 			cmdlist.append('echo "_________________________________________________\n"')
-			cmdlist.append('echo "USB Image created on:" %s' %self.MAINDEST)
-			cmdlist.append('echo "and there is made an extra copy on:"')
+			cmdlist.append('echo "' + _("USB Image created on: %s") %self.MAINDEST + '"')
+			cmdlist.append('echo "' + _("and there is made an extra copy on:") + '"')
 			cmdlist.append('echo %s' %self.EXTRA)
-			cmdlist.append('echo "_________________________________________________\n"')
+			cmdlist.append('echo "_________________________________________________"')
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "\nPlease wait...almost ready! "')
+			cmdlist.append('echo "' + _("Please wait...almost ready! ") + '"')
 			cmdlist.append('echo " "')
-			cmdlist.append('echo "To restore the image:"')
-			cmdlist.append('echo "Please check the manual of the receiver"')
-			cmdlist.append('echo "on how to restore the image"')
+			cmdlist.append('echo "' + _("To restore the image:") + '"')
+			cmdlist.append('echo "' + _("Please check the manual of the receiver") + '"')
+			cmdlist.append('echo "' + _("on how to restore the image") + '"')
 		else:
 			cmdlist.append('echo "_________________________________________________\n"')
-			cmdlist.append('echo "Image creation failed - "')
-			cmdlist.append('echo "Probable causes could be"')
-			cmdlist.append('echo "     wrong back-up destination "')
-			cmdlist.append('echo "     no space left on back-up device"')
-			cmdlist.append('echo "     no writing permission on back-up device"')
+			cmdlist.append('echo "' + _("Image creation failed - ") + '"')
+			cmdlist.append('echo "' + _("Probable causes could be") + ':"')
+			cmdlist.append('echo "' + _("     wrong back-up destination ") + '"')
+			cmdlist.append('echo "' + _("     no space left on back-up device") + '"')
+			cmdlist.append('echo "' + _("     no writing permission on back-up device") + '"')
 			cmdlist.append('echo " "')
 
 		if self.DIRECTORY == "/hdd":
@@ -609,11 +608,11 @@ class ImageBackup(Screen):
 			else:
 				cmdlist.append('echo "_________________________________________________\n"')
 				cmdlist.append('echo " "')
-				cmdlist.append('echo "There is a valid USB-flash drive detected in one "')
-				cmdlist.append('echo "of the USB-ports, therefor an extra copy of the "')
-				cmdlist.append('echo "back-up image will now be copied to that USB- "')
-				cmdlist.append('echo "flash drive. "')
-				cmdlist.append('echo "This only takes about 1 or 2 minutes"')
+				cmdlist.append('echo "' + _("There is a valid USB-flash drive detected in one ") + '"')
+				cmdlist.append('echo "' + _("of the USB-ports, therefore an extra copy of the ") + '"')
+				cmdlist.append('echo "' + _("back-up image will now be copied to that USB- ") + '"')
+				cmdlist.append('echo "' + _("flash drive. ") + '"')
+				cmdlist.append('echo "' + _("This only takes about 1 or 2 minutes") + '"')
 				cmdlist.append('echo " "')
 
 				cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.IMAGEFOLDER))
@@ -623,7 +622,7 @@ class ImageBackup(Screen):
 					cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.TARGET))
 
 				cmdlist.append("sync")
-				cmdlist.append('echo "Backup finished and copied to your USB-flash drive"')
+				cmdlist.append('echo "' + _("Backup finished and copied to your USB-flash drive") + '"')
 			
 		cmdlist.append("umount /tmp/bi/root")
 		cmdlist.append("rmdir /tmp/bi/root")
@@ -633,7 +632,7 @@ class ImageBackup(Screen):
 		END = time()
 		DIFF = int(END - self.START)
 		TIMELAP = str(datetime.timedelta(seconds=DIFF))
-		cmdlist.append('echo "Time required for this process: %s"' %TIMELAP)
+		cmdlist.append('echo "' + _("Time required for this process: %s") %TIMELAP + '\n"')
 
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = False)
 
@@ -681,7 +680,7 @@ class ImageBackup(Screen):
 						AboutText += userbouqet.replace('#NAME ','')
 						f.close()
 		except:
-			AboutText += "Error reading bouquets.tv"
+			AboutText += _("Error reading bouquets.tv")
 			
 		AboutText += _("\n[User - bouquets (RADIO)]\n")
 		try:
@@ -698,7 +697,7 @@ class ImageBackup(Screen):
 						AboutText += userbouqet.replace('#NAME ','')
 						f.close()
 		except:
-			AboutText += "Error reading bouquets.radio"
+			AboutText += _("Error reading bouquets.radio")
 
 		AboutText += _("\n[Installed Plugins]\n")
 		AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
