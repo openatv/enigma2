@@ -1582,7 +1582,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strncmp(m_description, "Si2166D", 7)) // SF8008 S2
 	{
 		ret = snr;
-		sat_max = 2000;
+		sat_max = 1620;
 	}
 	else if (!strncmp(m_description, "Si216", 5)) // all new Models with SI Tuners
 	{
