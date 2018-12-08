@@ -41,7 +41,7 @@ msgid "Routing request"
 msgstr "Routinganfrage"
 
 msgid "TV physical address report"
-msgstr "TV Addressbericht"
+msgstr "TV Adressbericht"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions."
 msgstr "Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren.\nAndererseits wird versucht auf verschiedene Betriebszustände besser zu reagieren."
@@ -142,8 +142,16 @@ msgstr "Videomodus: 1080p nicht verfügbar"
 msgid "Video mode: %s"
 msgstr "Videomodus: %s"
 
+#: \python\Components\UsageConfig.py
 msgid "Eventname only"
-msgstr "nur Sendungsname"
+msgstr "Nur Sendungsname"
+
+#: \python\Components\UsageConfig.py
+#, python-format
+msgid "%d pixel wide"
+msgid_plural "%d pixels wide"
+msgstr[0] "%d Pixelbreit"
+msgstr[1] "%d Pixelbreite"
 
 msgid ""
 "\n"
@@ -1166,6 +1174,9 @@ msgstr "Crashlog anonymisieren?"
 
 msgid "Any activity"
 msgstr "Jede Aktivität"
+
+msgid "Undetermined"
+msgstr "Unbestimmt"
 
 msgid "Arabic"
 msgstr "Arabisch"
@@ -11704,7 +11715,7 @@ msgstr "Multinorm"
 
 #: ParentalControl.py
 msgid "never"
-msgstr "niemals"
+msgstr "Niemals"
 
 #: ParentalControl.py
 msgid "5 minutes"
@@ -12710,7 +12721,7 @@ msgstr "Seitenverhältnis"
 
 #
 msgid ""
-"HDD = Do you want to make an USB-back-up image on HDD? \n"
+"HDD = Do you want to make a USB-back-up image on HDD? \n"
 "This only takes 1 or 10 minutes and is fully automatic."
 msgstr ""
 "HDD = Wollen Sie ein Backup auf der HDD erstellen? \n"
@@ -12719,7 +12730,7 @@ msgstr ""
 msgid ""
 "USB = Do you want to make a back-up on USB?\n"
 "This will take between 3 and 15 minutes depending on the used filesystem and is fully automatic.\n"
-"Make sure you first insert an USB flash drive before you select USB."
+"Make sure you first insert a USB flash drive before you select USB."
 msgstr ""
 "USB = Wollen Sie ein Backup auf USB erstellen? \n"
 "Das dauert 3 - 15 Minuten und geht vollautomatisch.\n"
@@ -12789,6 +12800,102 @@ msgstr "%s nicht gefunden!!"
 #
 msgid "Back-up Tool for a %s\n"
 msgstr "Back-up Tool für %s\n"
+
+# ImageBackup.py
+msgid "Create:"
+msgstr "Erstelle:"
+
+# ImageBackup.py
+msgid "Create: Recovery Fullbackup %s"
+msgstr "Erstelle: Recovery Fullbackup %s"
+
+# ImageBackup.py
+msgid "Almost there... "
+msgstr "Fast geschafft.. "
+
+# ImageBackup.py
+msgid "Now building the USB-Image"
+msgstr "Baue jetzt das USB-Image"
+
+# ImageBackup.py
+msgid "Multiboot Image created on: %s"
+msgstr "Multiboot Image erstellt auf: %s"
+
+# ImageBackup.py
+msgid "and there is made an extra copy on:"
+msgstr "es gibt eine zusätzliche Kopie auf:"
+
+# ImageBackup.py
+msgid "Please wait...almost ready! "
+msgstr "Bitte warten... fast fertig!"
+
+# ImageBackup.py
+msgid "To restore the image:"
+msgstr "Um das Image wiederherzustellen,"
+
+# ImageBackup.py
+msgid "Use OnlineFlash in SoftwareManager"
+msgstr "verwenden Sie OnlineFlash im SoftwareManager"
+
+# ImageBackup.py
+msgid "USB Image created on: %s"
+msgstr "USB Image erstellt auf: %s"
+
+# ImageBackup.py
+msgid "Please check the manual of the receiver"
+msgstr "schauen Sie in die Bedienungsanleitung des Empfängers,"
+
+# ImageBackup.py
+msgid "on how to restore the image"
+msgstr "wie das Image wiederhergestellt werden kann"
+
+# ImageBackup.py
+msgid "Image creation failed - "
+msgstr "Image-Erstellung fehlgeschlagen -"
+
+# ImageBackup.py
+msgid "Probable causes could be"
+msgstr "Mögliche Ursachen könnten sein"
+
+# ImageBackup.py
+msgid "     wrong back-up destination "
+msgstr "     falsches Backup-Ziel "
+
+# ImageBackup.py
+msgid "     no space left on back-up device"
+msgstr "     kein Platz mehr auf dem Backup-Gerät"
+
+# ImageBackup.py
+msgid "     no writing permission on back-up device"
+msgstr "     keine Schreibrechte für das Backup-Gerät"
+
+# ImageBackup.py
+msgid "There is a valid USB-flash drive detected in one "
+msgstr "Es wurde ein gültiges USB-Flashlaufwerk am "
+
+# ImageBackup.py
+msgid "of the USB-ports, therefore an extra copy of the "
+msgstr "USB-Port erkannt, daher wird eine zusätzliche Kopie des "
+
+# ImageBackup.py
+msgid "back-up image will now be copied to that USB- "
+msgstr "Backup-Image auf das USB- "
+
+# ImageBackup.py
+msgid "flash drive. "
+msgstr "Flashlaufwerk kopiert."
+
+# ImageBackup.py
+msgid "This only takes about 1 or 2 minutes"
+msgstr "Das dauert ca. 1 oder 2 Minuten"
+
+# ImageBackup.py
+msgid "Backup finished and copied to your USB-flash drive"
+msgstr "Sicherung abgeschlossen und auf USB-Flashlaufwerk kopiert"
+
+# ImageBackup.py
+msgid "Time required for this process: %s"
+msgstr "Zeit für den gesamten Vorgang: %s"
 
 #
 msgid "Please be patient, a backup will now be made,\n"
@@ -13133,6 +13240,9 @@ msgstr "Mounts einstellen"
 msgid "Wait please while scanning for devices..."
 msgstr "Bitte warten während Suchlauf nach Geräten..."
 
+msgid "No Devices Found !!"
+msgstr "Keine Geräte gefunden !!"
+
 msgid "Wait please while scanning your box devices..."
 msgstr "Bitte warten während Suchlauf nach angeschlossenen Geräten..."
 
@@ -13414,6 +13524,24 @@ msgstr "Speicherplatznutzung:"
 msgid "Logs location"
 msgstr "Logs Speicherort"
 
+msgid "Handle Python crashes"
+msgstr "Python-Abstürze beeinflussen"
+
+msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
+msgstr "Bei Softwarefehlern wird versucht, die GUI nicht neu starten zulassen."
+
+msgid "Show crash info on screen and write crash log for x times"
+msgstr "Wie oft soll die Absturz-Info anzeigt und das Crash-Log erstellt werden?"
+
+msgid "If 'never', will write crash log despite that for the first crash."
+msgstr "Wenn 'niemals' eingestellt ist, wird trotzdem beim ersten Absturz ein Crash-Log geschrieben."
+
+msgid "Restart GUI after x crashes"
+msgstr "Nach wieviel Abstürzen soll die GUI neu starten?"
+
+msgid "If 'never', will force restart despite that after 100 crashes."
+msgstr "Wenn 'niemals' eingestellt ist, wird trotzdem nach 100 Abstürzen ein GUI-Neustart erzwungen."
+
 msgid "Use arrows Up/Down to select"
 msgstr "Auswahl mit Pfeiltasten Hoch/Runter"
 
@@ -13628,16 +13756,16 @@ msgid "Use HDMI-preemphasis"
 msgstr "HDMI-Preemphasis benutzen"
 
 msgid "center"
-msgstr "zentriert"
+msgstr "Zentriert"
 
 msgid "Use DVB subtitles position"
 msgstr "DVB Untertitel Position"
 
 msgid "Fixed"
-msgstr "fixiert"
+msgstr "Fixiert"
 
 msgid "Relative"
-msgstr "relativ"
+msgstr "Relativ"
 
 msgid "DVD-Player Setup"
 msgstr "DVD-Player"
@@ -13661,10 +13789,10 @@ msgid "Recording type"
 msgstr "Aufnahmeart"
 
 msgid "descramble and record ecm"
-msgstr "entschlüsseln und ECM aufnehmen"
+msgstr "Entschlüsseln und ECM aufnehmen"
 
 msgid "don't descramble, record ecm"
-msgstr "nicht entschlüsseln, ECM aufnehmen"
+msgstr "Nicht entschlüsseln, ECM aufnehmen"
 
 msgid "The user interface of your %s %s is restarting"
 msgstr "Die Bedienoberfläche Ihrer %s %s wird neu gestartet"
@@ -14770,11 +14898,11 @@ msgstr "Wenn aktiviert, wird der Movieplayer mit Exit beendet."
 
 #
 msgid "With popup"
-msgstr "mit Meldung"
+msgstr "Mit Meldung"
 
 #
 msgid "Without popup"
-msgstr "ohne Meldung"
+msgstr "Ohne Meldung"
 
 #
 msgid "Configure the behavior when reaching the end of a movie, during movie playback."
@@ -15483,7 +15611,7 @@ msgid "Default recording type"
 msgstr "Standard-Aufnahmetyp"
 
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'entschlüsseln und ECM aufnehmen' ermöglicht es Ihnen die Aufnahme beim Abspielen zu entschlüsseln, wenn bei der Aufnahme die Entschlüsselung fehlschlägt. 'nicht entschlüsseln, ECM aufnehmen' speichert eine verschlüsselte Aufnahme, die beim Abspielen entschlüsselt werden kann. 'normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
+msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es Ihnen die Aufnahme beim Abspielen zu entschlüsseln, wenn bei der Aufnahme die Entschlüsselung fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' speichert eine verschlüsselte Aufnahme, die beim Abspielen entschlüsselt werden kann. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
 
 msgid "Show warning when timeshift is stopped"
 msgstr "Zeige Warnung wenn Timeshift gestoppt wird"
@@ -15635,11 +15763,17 @@ msgstr "Senderlogos anzeigen"
 msgid "Service picons downsize"
 msgstr "Senderlogos verkleinern"
 
+msgid "Service picons aspect ratio"
+msgstr "Senderlogos Seitenverhältnis"
+
+msgid "Set the aspect ratio of the service picons."
+msgstr "Einstellung des Seitenverhältnisses der Senderlogos."
+
 msgid "show picons in quickzap"
 msgstr "Senderlogos beim Quickzap anzeigen"
 
 msgid "Reduce the size of the service picons for more line spacing between them."
-msgstr "Reduzieren Sie die Größe der Senderlogos für mehr Zeilenabstand zwischen ihnen."
+msgstr "Reduzieren Sie die Größe der Senderlogos für einen größeren Zeilenabstand."
 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Wenn aktiviert, werden die Picons in der Kanalliste angezeigt."
@@ -16021,10 +16155,10 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Setzen Sie die Verzögerungszeit zwischen Scrolldurchläufen. Wird vom Software-Renderer in einigen Skins genutzt."
 
 msgid "fast"
-msgstr "schnell"
+msgstr "Schnell"
 
 msgid "slow"
-msgstr "langsam"
+msgstr "Langsam"
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
@@ -17267,7 +17401,7 @@ msgstr "Wenn Sie diese Option aktivieren, werden alle vorhandenen Favoritenliste
 
 # Record neu 5.1
 msgid "never abort"
-msgstr "nie abbrechen"
+msgstr "Nie abbrechen"
 
 # Record neu 5.1
 msgid "ask user"
@@ -17275,11 +17409,11 @@ msgstr "Benutzer fragen"
 
 # Record neu 5.1
 msgid "just abort, no message"
-msgstr "abbrechen, ohne Hinweis"
+msgstr "Abbrechen, ohne Hinweis"
 
 # Record neu 5.1
 msgid "just abort, show message"
-msgstr "abbrechen, zeige Hinweis"
+msgstr "Abbrechen, zeige Hinweis"
 
 # Record neu 5.1
 msgid "Recordings abort pseudo recordings"
@@ -17315,19 +17449,19 @@ msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur b
 
 # Record neu 5.1
 msgid "any recordings"
-msgstr "alle Aufnahmen"
+msgstr "Alle Aufnahmen"
 
 # Record neu 5.1
 msgid "real recordings"
-msgstr "echte Aufnahmen"
+msgstr "Echte Aufnahmen"
 
 # Record neu 5.1
 msgid "real recordings or streaming"
-msgstr "echte Aufnahmen / Streaming"
+msgstr "Echte Aufnahmen / Streaming"
 
 # Record neu 5.1
 msgid "real or pseudo recordings"
-msgstr "echte/Pseudo-Aufnahmen"
+msgstr "Echte / Pseudo-Aufnahmen"
 
 # Display neu 5.1
 msgid "Initial scroll delay"
@@ -17703,7 +17837,7 @@ msgstr "Sind Sie sicher, alle gelöschten Userbouquets zu entfernen?"
 
 #: TimerEntry.py
 msgid "normal"
-msgstr "normal"
+msgstr "Normal"
 
 #: TimerEntry.py
 msgid "%d %B %Y"
@@ -17735,7 +17869,7 @@ msgstr "Hier können Sie das Startdatum der Aufnahme ändern."
 
 #: TimerEntry.py
 msgid "Rename name and description for new events"
-msgstr "Ändere für neue Timer den Namen und die Beschreibung"
+msgstr "Ändere für neue Aufnahmen den Namen und die Beschreibung"
 
 #: TimerEntry.py
 msgid "Set the time the timer must start."
@@ -18279,16 +18413,16 @@ msgid "Force Legacy Signal Stats"
 msgstr "Erzwinge ursprünglichen Signalstatus"
 
 msgid "reliable"
-msgstr "zuverlässig"
+msgstr "Zuverlässig"
 
 msgid "traditional (fast)"
-msgstr "klassisch (schnell)"
+msgstr "Klassisch (schnell)"
 
 msgid "reliable, retune"
-msgstr "zuverlässig, retune"
+msgstr "Zuverlässig, retune"
 
 msgid "traditional (fast), retune"
-msgstr "klassisch (schnell), retune"
+msgstr "Klassisch (schnell), retune"
 
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Dies erlaubt Ihnen die Anzeige von Treibern im Downloadbereich"
@@ -20004,3 +20138,31 @@ msgstr "Sendergruppe wirklich löschen?"
 #: python\Plugins\SystemPlugins\VideoTune
 msgid "VideoFinetune"
 msgstr "Bild Feinabstimmung"
+
+#: python\Screens\InfoBarGenerics
+msgid "Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n"
+msgstr "Ihr Receiver hat ein Softwareproblem erkannt. Seit dem letzten Neustart ist es %d Mal aufgetreten.\n"
+
+#: python\Screens\InfoBarGenerics
+msgid "(Attention: There will be a restart after %d crashes.)"
+msgstr "(ACHTUNG: Nach %d Abstürzen wird neu gestartet.)"
+
+#: python\Screens\InfoBarGenerics
+msgid "A crashlog was %s created in '%s'"
+msgstr "Ein Crash-Log wurde %s in '%s' erstellt"
+
+#: python\Screens\InfoBarGenerics
+msgid "not"
+msgstr "nicht"
+
+#: python\Screens\InfoBarGenerics
+msgid "(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)"
+msgstr "(Es wurde eingestellt, das '%s' Crash-Logs angezeigt und erstellt werden.\nINFO: Es wird immer das erste, vorletzte und letzte Crash-Log geschrieben.)"
+
+#: python\Screens\InfoBarGenerics
+msgid "Warning: This is the last crash before an automatic restart is performed.\n"
+msgstr "WARNUNG: Dies ist der letzte Absturz, bevor ein automatischer Neustart ausgeführt wird.\n"
+
+#: python\Screens\InfoBarGenerics
+msgid "Should the crash counter be reset to prevent a restart?"
+msgstr "Soll der Crash-Zähler zurückgesetzt werden, um einen Neustart zu verhindern?"

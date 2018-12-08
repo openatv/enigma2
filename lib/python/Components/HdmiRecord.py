@@ -3,7 +3,7 @@ from boxbranding import getBoxType, getMachineBuild
 
 
 def InitHdmiRecord():
-    full_hd = getMachineBuild() in ('et10000','dm900', 'dm920', 'et13000', 'sf5008', 'vuuno4kse') or getBoxType() in ('spycat4k','spycat4kcombo','gbquad4k')
+    full_hd = getMachineBuild() in ('et10000','dm900', 'dm920', 'et13000', 'sf5008', 'vuuno4kse', 'vuduo4k') or getBoxType() in ('spycat4k','spycat4kcombo','gbquad4k')
 
     config.hdmirecord = ConfigSubsection()
 

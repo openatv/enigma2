@@ -376,6 +376,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setItemHeight(self.ItemHeight)
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
 		self.l.setServicePiconDownsize(int(config.usage.servicelist_picon_downsize.value))
+		self.l.setServicePiconRatio(int(config.usage.servicelist_picon_ratio.value))
 
 		if config.usage.service_icon_enable.value:
 			self.l.setGetPiconNameFunc(getPiconName)

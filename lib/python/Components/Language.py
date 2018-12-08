@@ -34,7 +34,7 @@ class Language:
 		self.addLanguage("Català", "ca", "AD", "ISO-8859-15")
 		self.addLanguage("Česky", "cs", "CZ", "ISO-8859-15")
 		self.addLanguage("SChinese", "zh", "CN", "UTF-8")
-		self.addLanguage("TChinese", "hk", "HK", "UTF-8")
+		self.addLanguage("TChinese", "zh", "HK", "UTF-8")
 		self.addLanguage("Dansk", "da", "DK", "ISO-8859-15")
 		self.addLanguage("Ελληνικά", "el", "GR", "ISO-8859-7")
 		self.addLanguage("English (UK)", "en", "GB", "ISO-8859-15")
@@ -71,14 +71,9 @@ class Language:
 
 	def addLanguage(self, name, lang, country, encoding):
 		try:
-			if lang in self.ll:
-				if country == "GB" or country == "BR":
-					if (lang + "_" + country) in self.ll:
-						self.lang[str(lang + "_" + country)] = ((name, lang, country, encoding))
-						self.langlist.append(str(lang + "_" + country))
-				else:
-					self.lang[str(lang + "_" + country)] = ((name, lang, country, encoding))
-					self.langlist.append(str(lang + "_" + country))
+			if lang in self.ll or (lang + "_" + country) in self.ll:
+				self.lang[str(lang + "_" + country)] = ((name, lang, country, encoding))
+				self.langlist.append(str(lang + "_" + country))
 
 		except:
 			print "Language " + str(name) + " not found"

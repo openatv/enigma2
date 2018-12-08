@@ -245,29 +245,30 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.log(0, "Found enough free space to record")
 			return True
 
-	def calculateFilename(self):
+	def calculateFilename(self, name = None):
 		service_name = self.service_ref.getServiceName()
 		begin_date = strftime("%Y%m%d %H%M", localtime(self.begin))
+		name = name or self.name
+		filename = begin_date + " - " + service_name
 
 #		print "begin_date: ", begin_date
 #		print "service_name: ", service_name
-#		print "name:", self.name
+#		print "name:", name
 #		print "description: ", self.description
 #
-		filename = begin_date + " - " + service_name
-		if self.name:
+		if name:
 			if config.recording.filename_composition.value == "veryveryshort":
-				filename = self.name
+				filename = name
 			elif config.recording.filename_composition.value == "veryshort":
-				filename = self.name + " - " + begin_date
+				filename = name + " - " + begin_date
 			elif config.recording.filename_composition.value == "short":
-				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + self.name
+				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + name
 			elif config.recording.filename_composition.value == "shortwithtime":
-				filename = strftime("%Y%m%d %H%M", localtime(self.begin)) + " - " + self.name
+				filename = strftime("%Y%m%d %H%M", localtime(self.begin)) + " - " + name
 			elif config.recording.filename_composition.value == "long":
-				filename += " - " + self.name + " - " + self.description
+				filename += " - " + name + " - " + self.description
 			else:
-				filename += " - " + self.name # standard
+				filename += " - " + name # standard
 
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
@@ -304,14 +305,26 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.setRecordingPreferredTuner(setdefault=True)
 				return False
 
+			name = self.name
+			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
 				queryTime=self.begin+(self.end-self.begin)/2
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
-					self.description = evt.getShortDescription()
-					if self.description == "":
-						self.description = evt.getExtendedDescription()
+					if self.rename_repeat:
+						event_description = evt.getShortDescription()
+						if not event_description:
+							event_description = evt.getExtendedDescription()
+						if event_description and event_description != description:
+							description = event_description
+						event_name = evt.getEventName()
+						if event_name and event_name != name:
+							name = event_name
+							if not self.calculateFilename(event_name):
+								self.do_backoff()
+								self.start_prepare = time() + self.backoff
+								return False
 					event_id = evt.getEventId()
 				else:
 					event_id = -1
@@ -320,7 +333,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + self.record_service.getFilenameExtension(), self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags), bool(self.descramble), bool(self.record_ecm))
+			prep_res=self.record_service.prepare(self.Filename + self.record_service.getFilenameExtension(), self.begin, self.end, event_id, name.replace("\n", ""), description.replace("\n", ""), ' '.join(self.tags), bool(self.descramble), bool(self.record_ecm))
 			if prep_res:
 				if prep_res == -255:
 					self.log(4, "failed to write meta information")
@@ -1025,6 +1038,7 @@ def createTimer(xml):
 	serviceref = ServiceReference(xml.get("serviceref").encode("utf-8"))
 	description = xml.get("description").encode("utf-8")
 	repeated = xml.get("repeated").encode("utf-8")
+	rename_repeat = long(xml.get("rename_repeat") or "1")
 	disabled = long(xml.get("disabled") or "0")
 	justplay = long(xml.get("justplay") or "0")
 	always_zap = long(xml.get("always_zap") or "0")
@@ -1056,7 +1070,7 @@ def createTimer(xml):
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap, rename_repeat = rename_repeat)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -1181,6 +1195,7 @@ class RecordTimer(timer.Timer):
 			list.append(' end="' + str(int(timer.end)) + '"')
 			list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
+			list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
 			list.append(' name="' + str(stringToXML(timer.name)) + '"')
 			list.append(' description="' + str(stringToXML(timer.description)) + '"')
 			list.append(' afterevent="' + str(stringToXML({

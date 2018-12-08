@@ -2007,8 +2007,8 @@ class ConfigFile:
 		names = key.split('.')
 		if len(names) > 1:
 			if names[0] == "config":
-				ret=self.__resolveValue(names[1:], config.content.items)
-				if ret and len(ret):
+				ret = self.__resolveValue(names[1:], config.content.items)
+				if ret and len(ret) or ret == "":
 					return ret
 		print "getResolvedKey", key, "failed !! (Typo??)"
 		return ""

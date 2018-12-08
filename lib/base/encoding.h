@@ -24,8 +24,10 @@
 #define UTF8_ENCODING			0x15	// ISO10646 Basic Multilingual Plane in UTF8 encoding
 #define UTF16BE_ENCODING		0x16
 #define UTF16LE_ENCODING		0x17
+#define HUFFMAN_ENCODING		0x1F
 
-#define NOTABLEID			0x80
+#define MASK_NO_TABLEID			0x0800
+#define MASK_IGNORE_TABLEID		0x0100
 
 class eDVBTextEncodingHandler
 {

@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-29 04:08+0300\n"
-"PO-Revision-Date: 2018-10-29 20:04+0200\n"
-"Last-Translator: Audronis Grincevičius <adga45@gmail.com>\n"
+"POT-Creation-Date: 2018-12-03 03:23+0300\n"
+"PO-Revision-Date: 2018-12-03 18:13+0200\n"
+"Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 2.2\n"
 
 msgid "  Menu key : Select quad channel"
-msgstr "  Menu mygtukas: Pasirinkite, keturių kanalų, kanalą"
+msgstr "  Menu mygtukas : pasirinkite 4 PIP kanalą"
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Raudonas mygtukas: rodyti / slėpti kanalo pavadinimą"
@@ -73,7 +73,7 @@ msgid " <empty>"
 msgstr " <tuščia>"
 
 msgid " <No Channel>"
-msgstr " <Kanalų nėra>"
+msgstr " <Nėra kanalo>"
 
 msgid " and"
 msgstr " ir"
@@ -83,7 +83,7 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr ""
-" galimi !!\n"
+" prieinama !!\n"
 "\n"
 "Ar norite įdiegti naują nustatymų sąrašą?"
 
@@ -335,9 +335,9 @@ msgstr ""
 
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] "galimas %s atnaujinimo paketas"
-msgstr[1] "galimi %s atnaujinimo paketai"
-msgstr[2] "galimybė %s atnaujinimo paketų"
+msgstr[0] "prieinamas %s atnaujinimo paketas"
+msgstr[1] "prieinami %s atnaujinimo paketai"
+msgstr[2] "prieinama %s atnaujinimo paketų"
 
 msgid "%s%d min"
 msgstr "%s%d min."
@@ -394,22 +394,11 @@ msgstr ""
 msgid "( All readers)"
 msgstr "(Visi skaitytojai)"
 
-msgid "(Attention: There will be a restart after %d crashes.)\n"
-msgstr "(Dėmesio: Bus paleista iš naujo po %d gedimų.)\n"
-
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(pvz., TV budina, bet nepersijungia į teisingą įvestį)"
 
 msgid "(empty)"
 msgstr "(tuščia)"
-
-msgid ""
-"(It is set that '%s' crash logs are displayed and written.\n"
-"Info: It will always write the first, last but one and lastest crash log.)"
-msgstr ""
-"(Nustatoma, kad '%s' gedimų žurnalai yra rodomi ir parašyti.\n"
-"Info: jis visada parašys pirmąjį, paskutinį, bet vienintelį ir paskutinį "
-"gedimų žurnalą.)"
 
 msgid "(Show only reader:"
 msgstr "(rodyti tik skaitytoją:"
@@ -1035,9 +1024,6 @@ msgstr ""
 "Konfigūracijos failas (%s) įdiegimo metu buvo pakeistas.\n"
 "Ar norite išsaugoti savą (senąją) versiją?"
 
-msgid "A crashlog was %s created in '%s'"
-msgstr "Gedimų žurnalų %s buvo sukurta į '%s'"
-
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
@@ -1420,37 +1406,37 @@ msgid "add service to favourites"
 msgstr "pridėti kanalą į mėgstamiausius"
 
 msgid "Add Timer"
-msgstr "Laikmatis"
+msgstr "Pridėti laikmatį"
 
 msgid "Add timer"
-msgstr "Laikmatis"
+msgstr "Pridėti laikmatį"
 
 msgid "Add title"
-msgstr "Įtraukti pavadinimą"
+msgstr "Pridėti pavadinimą"
 
 msgid "Add to bouquet"
-msgstr "Įtraukti į paketą"
+msgstr "Pridėti į paketą"
 
 msgid "Add to favourites"
-msgstr "Įtraukti į mėgstamiausius"
+msgstr "Pridėti prie mėgstamų"
 
 msgid "add to parental protection"
-msgstr "pridėti į tėvų kontrolę"
+msgstr "Pridėti į tėvų kontrolę"
 
 msgid "Add/remove change timer for current event"
-msgstr "Įtraukti /pašalinti šio įvykio  laikmatį"
+msgstr "Pridėti/pašalinti šio įvykio laikmatį"
 
 msgid "Add/Remove Timer"
-msgstr "Įtraukti/pašalinti laikmatį"
+msgstr "Pridėti/pašalinti laikmatį"
 
 msgid "Add/Remove timer for current event"
-msgstr "Įtraukti /pašalinti šio įvykio  laikmatį"
+msgstr "Pridėti/pašalinti šio įvykio laikmatį"
 
 msgid "Adding schedule..."
-msgstr "Kuriama užduotis..."
+msgstr "Pridedamas tvarkaraštis..."
 
 msgid "Additional files/folders to backup"
-msgstr "Papildomi failai/katalogai į atsarginę kopiją"
+msgstr "Papildomai įtraukti failus/katalogus atsarginei kopijai"
 
 msgid "Additional Info"
 msgstr "Papildoma info"
@@ -1667,6 +1653,9 @@ msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr ""
 "Leidžia rodyti/slėpti OScam informaciją plėtinių lange ('MĖLYNAS' mygtukas)."
 
+msgid "Almost there... "
+msgstr "Beveik viskas!.. "
+
 msgid "Alpha"
 msgstr "Permatoma"
 
@@ -1768,6 +1757,9 @@ msgstr "Įvyko nežinoma klaida!"
 
 msgid "and never ask again this session again"
 msgstr "ir niekada neklausti šios sesijos dar kartą"
+
+msgid "and there is made an extra copy on:"
+msgstr "ir pateikiama papildoma kopija:"
 
 msgid "Animation Setup"
 msgstr "Animacijos nustatymas"
@@ -2203,6 +2195,9 @@ msgstr "Galinis viršutinis USB lizdas"
 msgid "Back USB"
 msgstr "Galinis USB"
 
+msgid "back-up image will now be copied to that USB- "
+msgstr "atsarginis atvaizdas bus nukopijuotas į tą USB- "
+
 msgid "Back-up Tool for a %s\n"
 msgstr "Atsarginio kopijavimo įrankis %s\n"
 
@@ -2250,6 +2245,9 @@ msgstr "Atsarginė kopija padaryta."
 
 msgid "Backup failed."
 msgstr "Atsarginė kopija nepavyko."
+
+msgid "Backup finished and copied to your USB-flash drive"
+msgstr "Atsarginis kopijavimas baigtas, kopija įkelta į USB laikmeną"
 
 msgid "Backup Image"
 msgstr "Atvaizdo atsarginė kopija"
@@ -2961,6 +2959,9 @@ msgstr "Skyriaus jungimas"
 
 msgid "Check"
 msgstr "Tikrinti"
+
+msgid "Check:"
+msgstr "Patikrinti"
 
 msgid "Check every (hours)"
 msgstr "Tikrinti kas (val.)"
@@ -4109,6 +4110,12 @@ msgstr "Sukurti ISO"
 
 msgid "Create seperate radio userbouquet"
 msgstr "Sukurti atskirą radijo vartotojo paketą"
+
+msgid "Create:"
+msgstr "Sukurti:"
+
+msgid "Create: Recovery Fullbackup %s"
+msgstr "Sukurti: atkūrimo pilną atsarginę kopiją %s"
 
 msgid "Creating AP and SC Files"
 msgstr "Kuriami AP ir SC failai"
@@ -5385,13 +5392,6 @@ msgstr "Įjungti teleteksto kaupimą"
 msgid "Enable terrestrial LCN:"
 msgstr "Įjungti antžeminę LCN:"
 
-msgid ""
-"Enable to display all true/false, yes/no, on/off and enable/disable set up "
-"options as a graphical switch."
-msgstr ""
-"Įgalinti rodyti visas teisinga/klaidinga, taip/ne, įjungti/išjungti "
-"nustatymo parinktis kaip grafinį jungiklį."
-
 msgid "Enable unlinked bouquets"
 msgstr "Įjungti daugiau paketų"
 
@@ -5661,6 +5661,12 @@ msgstr "Klaida paleidžiant priedą"
 
 msgid "Error in file %s"
 msgstr "Failo %s klaida"
+
+msgid "Error reading bouquets.radio"
+msgstr "Klaida skaitant bouquets.radio"
+
+msgid "Error reading bouquets.tv"
+msgstr "Klaida skaitant bouquets.tv"
 
 msgid "Error reading webpage!"
 msgstr "Įvyko klaida nuskaitant svetainę!"
@@ -6149,6 +6155,9 @@ msgstr ""
 msgid "Flash and start installation wizard"
 msgstr "Įdiegti ir paleisti diegimo vedlį"
 
+msgid "flash drive. "
+msgstr "USB atmintinė. "
+
 msgid "Flash On the Fly"
 msgstr "Įdiegti iškart"
 
@@ -6617,9 +6626,6 @@ msgstr "amatai, rankdarbiai"
 msgid "Handle input from TV"
 msgstr "Valdyti televizoriaus įvestį"
 
-msgid "Handle Python crashes"
-msgstr "Tvarkyti Python gedimus"
-
 msgid "Handle standby from TV"
 msgstr "Išjungti imtuvą, išjungiant TV"
 
@@ -6898,16 +6904,6 @@ msgstr "Logotipai"
 msgid "Idle Time: "
 msgstr "Laukimo laikas: "
 
-msgid "If 'never', will force restart despite that after 100 crashes."
-msgstr ""
-"Jei \"niekada\", bus priverstinai paleista iš naujo, nepaisant to, kad po "
-"100 gedimų."
-
-msgid "If 'never', will write crash log despite that for the first crash."
-msgstr ""
-"Jei \"niekada\", įrašys pranešimą apie gedimą, nepaisant to, kad įvyko "
-"pirmasis gedimas."
-
 msgid ""
 "If enabled the output resolution of the box will try to match the resolution "
 "of the video contents resolution"
@@ -7112,6 +7108,9 @@ msgstr "Atvaizdas"
 
 msgid "Image Backup"
 msgstr "Atsarginė atvaizdo kopija"
+
+msgid "Image creation failed - "
+msgstr "Atvaizdo sukurti nepavyko - "
 
 msgid "Image flash utility"
 msgstr "Atvaizdo įdiegimo programėlė"
@@ -7660,6 +7659,12 @@ msgstr "Išlaikys filmų sąrašą atvertą ir grojant garsinius failus."
 
 msgid "Kernel"
 msgstr "Branduolys"
+
+msgid "Kernel dump error\n"
+msgstr "Branduolio iškrovimo klaida\n"
+
+msgid "Kernel dump OK"
+msgstr "Branduolio kopija"
 
 msgid "kernel modules"
 msgstr "branduolio moduliai"
@@ -8496,6 +8501,9 @@ msgstr "Kelių kanalų EPG"
 msgid "MultiBoot"
 msgstr "Daugiafunkcinė įkrova"
 
+msgid "Multiboot Image created on: %s"
+msgstr "Alternatyvus atvaizdas sukurtas: %s"
+
 msgid "MultiBoot Selector"
 msgstr "Daugiafunkcinis paleidimo pasirinkimas"
 
@@ -9231,6 +9239,9 @@ msgstr "Nieko, tiesiog užverti šį meniu"
 msgid "NOW"
 msgstr "DABAR"
 
+msgid "Now building the USB-Image"
+msgstr "Dabar kuriamas USB atvaizdas"
+
 msgid "Now save timeshift as movie and continues recording"
 msgstr "Dabar išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
 
@@ -9278,6 +9289,9 @@ msgstr "naudojama DVISLUOKSNĖ laikmena."
 
 msgid "of a SINGLE layer medium used."
 msgstr "naudojama VIENASLUOKSNĖ laikmena."
+
+msgid "of the USB-ports, therefore an extra copy of the "
+msgstr "USB jungtys, todėl papildoma kopija "
 
 msgid "Off"
 msgstr "Išjungta"
@@ -9349,6 +9363,9 @@ msgstr "Filmo pabaigoje"
 
 msgid "On end of movie (as menu)"
 msgstr "Dėl filmo pabaigos (kaip meniu)"
+
+msgid "on how to restore the image"
+msgstr "kaip atkurti vaizdą"
 
 msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
@@ -9929,6 +9946,9 @@ msgstr "Būkite kantrūs, atsarginė kopija tuojau bus padaryta,\n"
 msgid "Please change recording endtime"
 msgstr "Pakeiskite įrašymo pabaigos laiką"
 
+msgid "Please check the manual of the receiver"
+msgstr "Prašome patikrinti imtuvo vadovą"
+
 msgid "Please check your network settings!"
 msgstr "Patikrinkite tinklo nustatymus!"
 
@@ -10001,6 +10021,9 @@ msgstr "Įrašykite seną PIN kodą"
 
 msgid "Please enter your personal feed URL"
 msgstr "Įrašykite savo asmeninių šaltinių internetinį adresą"
+
+msgid "Please Flash your Kernel new and Backup again"
+msgstr "Prašome įdiegti savo branduolio naują ir atsarginę kopiją dar kartą"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Vadovaukitės instrukcijomis TV ekrane"
@@ -10298,6 +10321,9 @@ msgstr "palaukite..."
 
 msgid "Please wait... Loading list..."
 msgstr "Palaukite... užkraunamas sąrašas..."
+
+msgid "Please wait...almost ready! "
+msgstr "Palaukite... Beveik baigta! "
 
 msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 msgstr "NEPALEIDINĖKITE iš naujo ir NEIŠJUNKITE maitinimo įtampos.\n"
@@ -10633,6 +10659,9 @@ msgstr "Žiūrimiausio laiko minutė"
 
 msgid "Priority"
 msgstr "Pirmenybė"
+
+msgid "Probable causes could be"
+msgstr "Tikėtinos priežastys gali būti"
 
 msgid "Process"
 msgstr "Apdorojama"
@@ -11421,9 +11450,6 @@ msgstr "iš naujo paleiskite grafinę aplinką"
 
 msgid "Restart Gui"
 msgstr "Paleisti iš naujo grafinę aplinką"
-
-msgid "Restart GUI after x crashes"
-msgstr "Iš naujo paleisti grafinę aplinką po x gedimų"
 
 msgid "Restart GUI now?"
 msgstr "Paleisti iš naujo grafinę aplinką dabar?"
@@ -12879,11 +12905,6 @@ msgstr "Trumpi failų pavadinimai"
 msgid "Short filenames with time"
 msgstr "Trumpi failų pavadinimai su laiku"
 
-msgid "Should the crash counter be reset to prevent a restart?"
-msgstr ""
-"Ar reikia iš naujo nustatyti gedimų skaitiklio būseną, kad būtų išvengta "
-"pakartotinio paleidimo?"
-
 msgid "show"
 msgstr "rodyti"
 
@@ -13049,9 +13070,6 @@ msgstr "Rodyti CoolSingle vadovą"
 
 msgid "Show CoolTVGuide"
 msgstr "Rodyti CoolTV vadovą"
-
-msgid "Show crash info on screen and write crash log for x times"
-msgstr "Rodyti gedimų informaciją ekrane ir įrašyti gedimų žurnalą x kartų"
 
 msgid "Show crypto icons"
 msgstr "Rodyti kodavimo piktogramas"
@@ -13264,10 +13282,10 @@ msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Rodyti arba slėpti išplėstą aprašymą, (priklauso nuo temos)."
 
 msgid "Show OScam in extensions ?"
-msgstr "Rodyti OScam išplėtimuose?"
+msgstr "Rodyti OScam tarp plėtinių ?"
 
 msgid "Show OscamInfo in Extensions Menu"
-msgstr "Rodyti OscamInfo išplėstiniame meniu"
+msgstr "Rodyti OscamInfo plėtinių meniu"
 
 msgid "Show parting lines"
 msgstr "Rodyti atskyrimo linijas"
@@ -13448,9 +13466,6 @@ msgstr "Rodyti transponderio liko/praėjo, kaip"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Rodyti transponderio liko/praėjo kaip"
-
-msgid "Show True/False as graphical switch"
-msgstr "Rodyti teisinga/klaidinga kaip grafinį jungiklį"
 
 msgid "Show unknown video format as"
 msgstr "Rodyti nežinomą vaizdo formatą kaip"
@@ -15020,6 +15035,9 @@ msgstr ""
 "\n"
 "Ar norite įdiegti internetu?"
 
+msgid "There is a valid USB-flash drive detected in one "
+msgstr "Viename iš USB lizdų aptikta tinkama USB "
+
 msgid "There is no signal to lock on !"
 msgstr "Nėra signalo fiksavimui !"
 
@@ -15134,6 +15152,9 @@ msgid ""
 msgstr ""
 "ši kompensacija bus naudojama tik tada, jei kanalas neturi savos "
 "kompensacijos"
+
+msgid "This only takes about 1 or 2 minutes"
+msgstr "Tai užtruks maždaug 1 ar 2 minutes"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -15575,6 +15596,9 @@ msgstr "Laikas ilgai"
 msgid "Time range:"
 msgstr "Laiko intervalas:"
 
+msgid "Time required for this process: %s"
+msgstr "Laikas, reikalingas šiam procesui: %s"
+
 msgid "Time scale"
 msgstr "Laiko skalė"
 
@@ -15744,6 +15768,9 @@ msgstr ""
 "Kad daryti atsarginę kopiją tiesiai į USB atmintinę, USB laikmenoje TURI "
 "BŪTI failas su pavadinimu\n"
 
+msgid "To restore the image:"
+msgstr "Kad atkurti atvaizdą:"
+
 msgid ""
 "To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable "
@@ -15881,9 +15908,8 @@ msgstr "Vertimai"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Audronis Grincevičius (ADGA) Pasvalys, Lietuva,\n"
-"adga45@gmail.com\n"
-"2018-09-21 versija"
+"Audronis Grincevičius (ADGA) Lietuva,\n"
+"adga45@gmail.com, 2018-12-03"
 
 msgid "Transmission mode"
 msgstr "Perdavimo būdas"
@@ -15937,13 +15963,6 @@ msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr ""
 "Bandoma rasti veikiančius transponderius antžeminės televizijos tinkle.. "
 "palaukite..."
-
-msgid ""
-"Try to prevent reboots for software errors and maintain of the availability "
-"for the receiver."
-msgstr ""
-"Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir išlaikyti "
-"imtuvo prieinamumą."
 
 msgid ""
 "Try to send repeated commands if not all commands are executed. This is done "
@@ -16364,6 +16383,9 @@ msgstr ""
 "Įsitikinkite, kad jūs pirmiausiai įdėjote USB laikmeną prieš pasirinkdami "
 "USB."
 
+msgid "USB Image created on: %s"
+msgstr "USB atvaizdas sukurtas: %s"
+
 msgid "USB Stick"
 msgstr "USB laikmena"
 
@@ -16454,6 +16476,9 @@ msgstr "Naudokite Netmed EPG informaciją, jei ji yra prieinama."
 
 msgid "Use official channel numbering"
 msgstr "Naudokite oficialų kanalų numeravimą"
+
+msgid "Use OnlineFlash in SoftwareManager"
+msgstr "Naudokite internetinį diegimą programinės įrangos valdyme"
 
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Naudokite tik dėl paleidimo WLan tinkle (WoW)"
@@ -16995,12 +17020,6 @@ msgstr "Įspėjimas"
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Įspėjimas: LNB nerastas; naudokite gamyklinius nustatymus."
-
-msgid ""
-"Warning: This is the last crash before an automatic restart is performed.\n"
-msgstr ""
-"Įspėjimas: tai paskutinis gedimas prieš atliekant naują automatinį "
-"paleidimą.\n"
 
 msgid "Watch movies..."
 msgstr "Žiūrėti filmus..."
@@ -18134,13 +18153,6 @@ msgstr "Jūsų tinklo konfigūracija įjungta."
 msgid "Your receiver does not have an internet connection"
 msgstr "Jūsų imtuvas neturi interneto ryšio"
 
-msgid ""
-"Your Receiver has a Software problem detected. Since the last reboot it has "
-"occured %d times.\n"
-msgstr ""
-"Aptikta jūsų imtuvo programinės įrangos problema. Nuo paskutinės paleisties "
-"įvyko %d kartus.\n"
-
 msgid "Your STB will freeze during the flashing process.\n"
 msgstr "Diegimo metu jūsų imtuvas nustos reaguoti į komandas.\n"
 
@@ -19182,6 +19194,78 @@ msgstr "Zambija"
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
 
+#~ msgid "(Attention: There will be a restart after %d crashes.)"
+#~ msgstr "(Dėmesio: Bus paleista iš naujo po %d gedimų.)"
+
+#~ msgid ""
+#~ "(It is set that '%s' crash logs are displayed and written.\n"
+#~ "Info: It will always write the first, last but one and lastest crash log.)"
+#~ msgstr ""
+#~ "(Nustatoma, kad '%s' gedimų žurnalai yra rodomi ir parašyti.\n"
+#~ "Info: jis visada parašys pirmąjį, paskutinį, bet vienintelį ir paskutinį "
+#~ "gedimų žurnalą.)"
+
+#~ msgid "A crashlog was %s created in '%s'"
+#~ msgstr "Gedimų žurnalų %s buvo sukurta į '%s'"
+
+#~ msgid ""
+#~ "Enable to display all true/false, yes/no, on/off and enable/disable set "
+#~ "up options as a graphical switch."
+#~ msgstr ""
+#~ "Įgalinti rodyti visas teisinga/klaidinga, taip/ne, įjungti/išjungti "
+#~ "nustatymo parinktis kaip grafinį jungiklį."
+
+#~ msgid "Handle Python crashes"
+#~ msgstr "Tvarkyti Python gedimus"
+
+#~ msgid "If 'never', will force restart despite that after 100 crashes."
+#~ msgstr ""
+#~ "Jei \"niekada\", bus priverstinai paleista iš naujo, nepaisant to, kad po "
+#~ "100 gedimų."
+
+#~ msgid "If 'never', will write crash log despite that for the first crash."
+#~ msgstr ""
+#~ "Jei \"niekada\", įrašys pranešimą apie gedimą, nepaisant to, kad įvyko "
+#~ "pirmasis gedimas."
+
+#~ msgid "not"
+#~ msgstr "ne"
+
+#~ msgid "Restart GUI after x crashes"
+#~ msgstr "Iš naujo paleisti grafinę aplinką po x gedimų"
+
+#~ msgid "Should the crash counter be reset to prevent a restart?"
+#~ msgstr ""
+#~ "Ar reikia iš naujo nustatyti gedimų skaitiklio būseną, kad būtų išvengta "
+#~ "pakartotinio paleidimo?"
+
+#~ msgid "Show crash info on screen and write crash log for x times"
+#~ msgstr "Rodyti gedimų informaciją ekrane ir įrašyti gedimų žurnalą x kartų"
+
+#~ msgid "Show True/False as graphical switch"
+#~ msgstr "Rodyti teisinga/klaidinga kaip grafinį jungiklį"
+
+#~ msgid ""
+#~ "Try to prevent reboots for software errors and maintain of the "
+#~ "availability for the receiver."
+#~ msgstr ""
+#~ "Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir išlaikyti "
+#~ "imtuvo prieinamumą."
+
+#~ msgid ""
+#~ "Warning: This is the last crash before an automatic restart is "
+#~ "performed.\n"
+#~ msgstr ""
+#~ "Įspėjimas: tai paskutinis gedimas prieš atliekant naują automatinį "
+#~ "paleidimą.\n"
+
+#~ msgid ""
+#~ "Your Receiver has a Software problem detected. Since the last reboot it "
+#~ "has occured %d times.\n"
+#~ msgstr ""
+#~ "Aptikta jūsų imtuvo programinės įrangos problema. Nuo paskutinės "
+#~ "paleisties įvyko %d kartus.\n"
+
 #~ msgid "Greek, Modern (1453-)"
 #~ msgstr "Graikų, modernus (1453-)"
 
@@ -19193,9 +19277,6 @@ msgstr "Zimbabvė"
 
 #~ msgid "Internal Flash"
 #~ msgstr "Vidinė atmintis"
-
-#~ msgid "this will take between 2 and 9 minutes\n"
-#~ msgstr "tai užtruks nuo 2 iki 9 minučių\n"
 
 #~ msgid "will take about 3-12 minutes for this system\n"
 #~ msgstr "šioje sistemoje užtruks apie 3-12 minučių\n"
@@ -19684,11 +19765,6 @@ msgstr "Zimbabvė"
 #~| msgid "Use workaround for wakeup from deep-standby?"
 #~ msgid "Use work-around for recordings from deep-standby"
 #~ msgstr "Naudoti budinimui iš gilaus budėjimo?"
-
-#, fuzzy
-#~| msgid "Installed:\t\t%s"
-#~ msgid "Image started:\t%s"
-#~ msgstr "Įdiegta:\t\t%s"
 
 #, fuzzy
 #~| msgid "Default 'Timer type' *"

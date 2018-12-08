@@ -157,8 +157,8 @@ int eInput::event(int event, void *data, void *data2)
 		eDebug("[eInput] focus got in %p", this);
 		ePtr<eActionMap> ptr;
 		eActionMap::getInstance(ptr);
-		ptr->bindAction("InputActions", 0, INPUT_ACTIONS, this);
-		ptr->bindAction("AsciiActions", 0, ASCII_ACTIONS, this);
+		ptr->bindAction("InputActions", (int64_t)0, INPUT_ACTIONS, this);
+		ptr->bindAction("AsciiActions", (int64_t)0, ASCII_ACTIONS, this);
 		m_have_focus = 1;
 		eRCInput::getInstance()->setKeyboardMode(eRCInput::kmAscii);
 			// fixme. we should use a style for this.

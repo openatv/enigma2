@@ -600,6 +600,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		m_sourceinfo.containertype = ctMP4;
 		m_sourceinfo.audiotype = atAAC;
 	}
+	else if ( strcasecmp(ext, ".dra") == 0 )
+	{
+		m_sourceinfo.containertype = ctDRA;
+		m_sourceinfo.audiotype = atDRA;
+	}
 	else if ( strcasecmp(ext, ".m3u8") == 0 )
 		m_sourceinfo.is_hls = TRUE;
 	else if ( strcasecmp(ext, ".mp3") == 0 )

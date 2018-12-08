@@ -147,6 +147,7 @@ is usually caused by not marking PSignals as immutable.
 typedef long time_t;
 %include "typemaps.i"
 %include "std_string.i"
+%include "stdint.i"
 %include <lib/python/swig.h>
 %include <lib/base/object.h>
 %include <lib/base/eenv.h>
