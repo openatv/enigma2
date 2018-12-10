@@ -497,20 +497,20 @@ class Devices(Screen):
 				free = Harddisk(device).free()
 
 				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
 				elif size >= 1:
-					sizeline = _("Size: ") + str(size) + _("MB")
+					sizeline = _("Size: ") + str(size) +  " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + str(free) + _("MB")
+					freeline = _("Free: ") + str(free) +  " " + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
@@ -613,11 +613,24 @@ class SystemMemoryInfo(Screen):
 		self.Console = Console()
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
+	def MySize(self, RamText):
+		RamText_End = RamText[len(RamText)-1]
+		RamText_End2 = RamText_End
+		if RamText_End == "G":
+			RamText_End = _("GB")
+		elif RamText_End == "M":
+			RamText_End = _("MB")
+		elif RamText_End == "K":
+			RamText_End = _("KB")
+		if RamText_End != RamText_End2:
+			RamText = RamText[0:len(RamText)-1] + " " + RamText_End
+		return RamText
+
 	def Stage1Complete(self, result, retval, extra_args=None):
 		flash = str(result).replace('\n', '')
 		flash = flash.split()
-		RamTotal = flash[1]
-		RamFree = flash[3]
+		RamTotal = self.MySize(flash[1])
+		RamFree = self.MySize(flash[3])
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
