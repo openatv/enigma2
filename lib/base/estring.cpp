@@ -636,10 +636,10 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 	}
 
-	if (convertedLen < len)
-		eDebug("[convertDVBUTF8] %d chars converted, and %d chars left..", convertedLen, len-convertedLen);
+//	if (convertedLen < len)
+//		eDebug("[convertDVBUTF8] %d chars converted, and %d chars left..", convertedLen, len-convertedLen);
 
-        if (pconvertedLen)
+	if (pconvertedLen)
 		*pconvertedLen = convertedLen;
 
 	if (verbose)
