@@ -41,6 +41,8 @@ def getButtonSetupKeys():
 		(_("PageDown long"), "pagedown_long", ""),
 		(_("Channel up"), "channelup", ""),
 		(_("Channel down"), "channeldown", ""),
+		(_("EJECTCD"), "ejectcd", ""),
+		(_("EJECTCD long"), "ejectcd_long", ""),
 		(_("TV"), "showTv", ""),
 		(_("Radio"), "radio", ""),
 		(_("Radio long"), "radio_long", ""),
