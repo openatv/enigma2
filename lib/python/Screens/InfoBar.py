@@ -79,6 +79,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showFormat": (self.showFormat, _("Show Format Setup...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
+				"openSimpleUnmount": (self.openSimpleUnmount, _("Simple umounter mass storage device.")),
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -310,6 +311,15 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 					break
 		except Exception, e:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def openSimpleUnmount(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("SimpleUmount"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The SimpleUmount plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def ZoomInOut(self):
 		zoomval = 0
