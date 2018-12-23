@@ -88,6 +88,8 @@ class OscamInfo:
 
 	def getUserData(self):
 		[webif, port, conf, ipcompiled] = self.confPath()
+		if conf == None:
+			conf = ""
 		conf += "/oscam.conf"
 
 		# Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in,
