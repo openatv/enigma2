@@ -934,20 +934,20 @@
 		<key id="KEY_MENU" mapto="mainMenu" flags="b"/>
 		<key id="KEY_INFO" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="info_long" flags="l"/>
+		<key id="KEY_OK" mapto="ok_long" flags="l"/>
 		<key id="KEY_VIDEO" mapto="list" flags="b"/>
 		<key id="KEY_VIDEO" mapto="list_long" flags="l"/>
 		<key id="KEY_BACK" mapto="back" flags="b"/>
 		<key id="KEY_BACK" mapto="back_long" flags="l"/>
 		<key id="KEY_END" mapto="end" flags="b"/>
-		<key id="KEY_END" mapto="end_long" flags="l"/>
 		<key id="KEY_EPG" mapto="epg" flags="b"/>
 		<key id="KEY_EPG" mapto="epg_long" flags="l"/>
 		<key id="KEY_LEFT" mapto="cross_left" flags="b"/>
 		<key id="KEY_RIGHT" mapto="cross_right" flags="b"/>
 		<key id="KEY_LEFT" mapto="cross_left_long" flags="l"/>
 		<key id="KEY_RIGHT" mapto="cross_right_long" flags="l"/>
-		<key id="KEY_UP" mapto="cross_up" flags="b"/>
-		<key id="KEY_DOWN" mapto="cross_down" flags="b"/>
+		<key id="KEY_UP" mapto="cross_up" flags="m"/>
+		<key id="KEY_DOWN" mapto="cross_down" flags="m"/>
 		<key id="KEY_PAGEUP" mapto="pageup" flags="b"/>
 		<key id="KEY_PAGEUP" mapto="pageup_long" flags="l"/>
 		<key id="KEY_PAGEDOWN" mapto="pagedown" flags="b"/>
@@ -955,10 +955,6 @@
 		<key id="KEY_CHANNELUP" mapto="channelup" flags="b"/>
 		<key id="KEY_CHANNELDOWN" mapto="channeldown" flags="b"/>
 		<key id="KEY_NEXT" mapto="next" flags="mr"/>
-		<key id="KEY_MODE" mapto="mode" flags="b"/>
-		<key id="KEY_MODE" mapto="mode_long" flags="l"/>
-		<key id="KEY_ARCHIVE" mapto="archive" flags="b"/>
-		<key id="KEY_ARCHIVE" mapto="archive_long" flags="l"/>
 		<key id="KEY_PREVIOUS" mapto="previous" flags="mr"/>
 		<key id="KEY_AUDIO" mapto="audio" flags="b"/>
 		<key id="KEY_AUDIO" mapto="audio_long" flags="l"/>
@@ -985,6 +981,10 @@
 		<key id="KEY_FAVORITES" mapto="favorites_long" flags="l"/>
 		<key id="KEY_MEDIA" mapto="media" flags="b"/>
 		<key id="KEY_MEDIA" mapto="media_long" flags="l"/>
+		<key id="KEY_MODE" mapto="mode" flags="b"/>
+		<key id="KEY_MODE" mapto="mode_long" flags="l"/>
+		<key id="KEY_ARCHIVE" mapto="archive" flags="b"/>
+		<key id="KEY_ARCHIVE" mapto="archive_long" flags="l"/>
 		<key id="KEY_OPEN" mapto="open" flags="b"/>
 		<key id="KEY_OPEN" mapto="open_long" flags="l"/>
 		<key id="KEY_OPTION" mapto="option" flags="b"/>
@@ -1032,6 +1032,8 @@
 		<key id="KEY_AUX" mapto="HDMIin_long" flags="l"/>
 		<key id="KEY_ZOOM" mapto="zoom" flags="b"/>
 		<key id="KEY_ZOOM" mapto="zoom_long" flags="l"/>
+		<key id="KEY_EJECTCD" mapto="ejectcd" flags="b"/>
+		<key id="KEY_EJECTCD" mapto="ejectcd_long" flags="l"/>
 	</map>
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />

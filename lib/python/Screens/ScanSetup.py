@@ -1889,6 +1889,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 			self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 
 			#assign nims
+			tag_dvbc_default = tag_dvbt_default = tag_dvbs_default = tag_atsc_default = True
 			for item in networks.iteritems():
 				req_type = item[0]
 				for req_network in item[1]:
@@ -1899,7 +1900,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						if req_type in ("DVB-S", "DVB-S2") and nim.config.dvbs.configMode.value != "nothing" and not tag_dvbs:
 							if req_network in nimmanager.getSatListForNim(nim.slot):
 								tag_dvbs = True
-								nimconfig = ConfigYesNo(default = False)
+								nimconfig = ConfigYesNo(default = tag_dvbs_default)
+								if tag_dvbs_default == True:
+									tag_dvbs_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-S"
@@ -1909,7 +1912,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						elif req_type in ("DVB-C", "DVB-C2") and nim.config.dvbc.configMode.value != "nothing"and not tag_dvbc:
 							if req_network in nimmanager.getCableDescription(nim.slot):
 								tag_dvbc = True
-								nimconfig = ConfigYesNo(default = False)
+								nimconfig = ConfigYesNo(default = tag_dvbc_default)
+								if tag_dvbc_default == True:
+									tag_dvbc_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-C"
@@ -1919,7 +1924,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						elif req_type in ("DVB-T", "DVB-T2") and nim.config.dvbt.configMode.value != "nothing" and not tag_dvbt:
 							if req_network in nimmanager.getTerrestrialDescription(nim.slot):
 								tag_dvbt = True
-								nimconfig = ConfigYesNo(default = False)
+								nimconfig = ConfigYesNo(default = tag_dvbt_default)
+								if tag_dvbt_default == True:
+									tag_dvbt_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-T"
@@ -1929,7 +1936,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						elif req_type in ("ATSC") and nim.config.atsc.configMode.value != "nothing" and not tag_atsc:
 							if req_network in nimmanager.getATSCDescription(nim.slot):
 								tag_atsc = True
-								nimconfig = ConfigYesNo(default = False)
+								nimconfig = ConfigYesNo(default = tag_atsc_default)
+								if tag_atsc_default == True:
+									tag_atsc_default = False
 								nimconfig.nim_index = nim.slot
 								nimconfig.network = req_network
 								nimconfig.nim_type = "ATSC"

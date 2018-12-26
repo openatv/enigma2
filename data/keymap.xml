@@ -248,6 +248,7 @@
 		<key id="KEY_TIME" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_CALENDAR" mapto="openAutoTimerList" flags="b" />
+		<key id="KEY_EJECTCD" mapto="openSimpleUnmount" flags="b" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
 		<key id="KEY_SLEEP" mapto="openSleepTimer" flags="b" />
@@ -300,6 +301,7 @@
 
 	<map context="InfobarVmodeButtonActions">
 			<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
+			<key id="KEY_ANGLE" mapto="vmodeSelection" flags="m" />
 	</map>
 
 	<map context="InfobarPiPActions">
@@ -1065,6 +1067,8 @@
 		<key id="KEY_AUX" mapto="HDMIin_long" flags="l"/>
 		<key id="KEY_ZOOM" mapto="zoom" flags="b"/>
 		<key id="KEY_ZOOM" mapto="zoom_long" flags="l"/>
+		<key id="KEY_EJECTCD" mapto="ejectcd" flags="b"/>
+		<key id="KEY_EJECTCD" mapto="ejectcd_long" flags="l"/>
 	</map>
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />

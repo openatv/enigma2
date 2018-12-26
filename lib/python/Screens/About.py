@@ -83,7 +83,7 @@ def getAboutText():
 		cpuMHz = "   (1,5 GHz)"
 	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
 		cpuMHz = "   (1,3 GHz)"
-	elif getMachineBuild() in ('u51','u5','u53','u52','u5pvr','h9','h9combo','cc1','sf8008','hd60','i55plus','ustym4kpro','v8plus'):
+	elif getMachineBuild() in ('u51','u5','u53','u52','u54','u5pvr','h9','h9combo','cc1','sf8008','sf8008s','hd60','i55plus','ustym4kpro','v8plus'):
 		cpuMHz = "   (1,6 GHz)"
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		cpuMHz = "   (1,7 GHz)"
@@ -124,7 +124,7 @@ def getAboutText():
 		f = open('/boot/bootname', 'r')
 		bootname = f.readline().split('=')[1]
 		f.close()
-	if getMachineBuild() in ('cc1','sf8008','ustym4kpro'):
+	if getMachineBuild() in ('cc1','sf8008','sf8008s','ustym4kpro'):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(5)
@@ -182,7 +182,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('vuduo4k','v8plus','ustym4kpro','hd60','i55plus','osmio4k','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51','cc1','sf8008'):
+	if getMachineBuild() not in ('vuduo4k','v8plus','ustym4kpro','hd60','i55plus','osmio4k','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u54','u51','cc1','sf8008','sf8008s'):
 		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
@@ -497,20 +497,20 @@ class Devices(Screen):
 				free = Harddisk(device).free()
 
 				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
+					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
 				elif size >= 1:
-					sizeline = _("Size: ") + str(size) + _("MB")
+					sizeline = _("Size: ") + str(size) +  " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + str(free) + _("MB")
+					freeline = _("Free: ") + str(free) +  " " + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
@@ -613,11 +613,24 @@ class SystemMemoryInfo(Screen):
 		self.Console = Console()
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
+	def MySize(self, RamText):
+		RamText_End = RamText[len(RamText)-1]
+		RamText_End2 = RamText_End
+		if RamText_End == "G":
+			RamText_End = _("GB")
+		elif RamText_End == "M":
+			RamText_End = _("MB")
+		elif RamText_End == "K":
+			RamText_End = _("KB")
+		if RamText_End != RamText_End2:
+			RamText = RamText[0:len(RamText)-1] + " " + RamText_End
+		return RamText
+
 	def Stage1Complete(self, result, retval, extra_args=None):
 		flash = str(result).replace('\n', '')
 		flash = flash.split()
-		RamTotal = flash[1]
-		RamFree = flash[3]
+		RamTotal = self.MySize(flash[1])
+		RamFree = self.MySize(flash[3])
 
 		self.AboutText += _("FLASH") + '\n\n'
 		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"

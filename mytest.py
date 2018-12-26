@@ -596,7 +596,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype in ('ustym4kpro','sf8008','clap4k','alien5','osninopro','osnino','osninoplus','alphatriple','spycat4kmini','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx', '9920lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
+	if boxtype in ('ustym4kpro','sf8008','sf8008s','clap4k','alien5','osninopro','osnino','osninoplus','alphatriple','spycat4kmini','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx', '9920lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
