@@ -477,7 +477,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						if (m_slider_space)
 						{
 							ePoint tl(offset.x() + m_seperation, offset.y() + slider_y_offset - m_slider_space - 1);
-							ePoint tr(offset.x() + m_itemsize.width() - 15 - 1, tl.y());
+							ePoint tr(offset.x() + m_itemsize.width() - 115 - 1, tl.y());
 							ePoint bl(tl.x(), offset.y() + slider_y_offset + m_slider_height + m_slider_space);
 							ePoint br(tr.x(), bl.y());
 							painter.line(tl, tr);
