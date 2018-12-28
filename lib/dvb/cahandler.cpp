@@ -847,6 +847,7 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 	pidtype[eDVBService::cTPID]      = 0x06; // Data-/Audiostream (Subtitles/VBI and AC-3)
 	pidtype[eDVBService::cPCRPID]    = 0x06;
 	pidtype[eDVBService::cAC3PID]    = 0x06;
+	pidtype[eDVBService::cAC4PID]    = 0x06;
 	pidtype[eDVBService::cSUBTITLE]  = 0x06;
 	pidtype[eDVBService::cAACHEAPID] = 0x06;
 	pidtype[eDVBService::cDDPPID]    = 0x06;
