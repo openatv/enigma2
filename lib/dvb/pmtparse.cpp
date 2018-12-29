@@ -350,6 +350,24 @@ int eDVBPMTParser::getProgramInfo(program &program)
 								isvideo = 1;
 								video.type = videoStream::vtMPEG4_Part2;
 								break;
+							case EXTENSION_DESCRIPTOR:
+							{
+								ExtensionDescriptor &d = (ExtensionDescriptor&)*desc;
+								switch (d.getExtensionTag())
+								{
+								case 0x15: /* AC-4 descriptor */
+									if (!isvideo && !isaudio)
+									{
+										isaudio = 1;
+										audio.type = audioStream::atAC4;
+									}
+									break;
+								default:
+									eDebug("[eDVBPMTParser] TODO: Fix parsing for Extension descriptor with tag: %d", d.getExtensionTag());
+									break;
+								}
+								break;
+							}
 							default:
 								break;
 							}

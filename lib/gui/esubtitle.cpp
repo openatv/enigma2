@@ -1,5 +1,6 @@
 #include <lib/gui/esubtitle.h>
 #include <lib/gdi/grc.h>
+#include <lib/gdi/font.h>
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
 #include <lib/gui/ewidgetdesktop.h>
@@ -306,6 +307,34 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				if (!element.m_text.empty())
 				{
 					eRect &area = element.m_area;
+					if (eConfigManager::getConfigBoolValue("config.subtitles.showbackground"))
+					{
+						ePtr<eTextPara> para = new eTextPara(area);
+						para->setFont(subtitleStyles[Subtitle_TTX].font);
+						para->renderString(element.m_text.c_str(), RS_WRAP);
+						eRect bbox = para->getBoundBox();
+						int bboxWidth = bbox.width();
+						if (configvalue == "right")
+							bbox.setLeft(area.left() + area.width() - bboxWidth - borderwidth);
+						else if (configvalue == "left")
+							bbox.setLeft(area.left() - borderwidth);
+						else
+							bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
+						bbox.setWidth(bboxWidth + borderwidth * 2);
+						if (eConfigManager::getConfigBoolValue("config.subtitles.ttx_subtitle_original_position"))
+							bbox.setHeight(area.height());
+						else
+						{
+							int bboxTop = area.top() + area.height() - bbox.height() - 2 * borderwidth;
+							int bboxHeight = bbox.height() + borderwidth * 2;
+							bbox.setTop(bboxTop);
+							bbox.setHeight(bboxHeight);
+							area.setTop(area.top() - borderwidth);
+						}
+						painter.setForegroundColor(gRGB(0,0,0,64));
+						painter.fill(bbox);
+						borderwidth = 0;
+					}
 					if (!subtitleStyles[Subtitle_TTX].have_foreground_color)
 						painter.setForegroundColor(element.m_color);
 					else
@@ -369,6 +398,29 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				painter.setFont(subtitleStyles[face].font);
 
 				eRect &area = element.m_area;
+				if (eConfigManager::getConfigBoolValue("config.subtitles.showbackground"))
+				{
+					ePtr<eTextPara> para = new eTextPara(area);
+					para->setFont(subtitleStyles[face].font);
+					para->renderString(text.c_str(), RS_WRAP);
+					eRect bbox = para->getBoundBox();
+					int bboxWidth = bbox.width();
+					if (configvalue == "right")
+						bbox.setLeft(area.left() + area.width() - bboxWidth - borderwidth);
+					else if (configvalue == "left")
+						bbox.setLeft(area.left() - borderwidth);
+					else
+						bbox.setLeft(area.left() + area.width() / 2 - bboxWidth / 2 - borderwidth);
+					bbox.setWidth(bboxWidth + borderwidth * 2);
+					int bboxTop = area.top() + area.height() - bbox.height() - 2 * borderwidth;
+					int bboxHeight = bbox.height() + borderwidth * 2;
+					bbox.setTop(bboxTop);
+					bbox.setHeight(bboxHeight);
+					area.setTop(area.top() - borderwidth);
+					painter.setForegroundColor(gRGB(0,0,0,64));
+					painter.fill(bbox);
+					borderwidth = 0;
+				}
 				if ( !subtitleStyles[face].have_foreground_color && element.m_have_color )
 					painter.setForegroundColor(element.m_color);
 				else

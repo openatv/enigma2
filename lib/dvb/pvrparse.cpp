@@ -1,4 +1,5 @@
 #include <lib/dvb/pvrparse.h>
+#include <lib/dvb/decoder.h>
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <sys/types.h>
@@ -943,85 +944,104 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 //			eDebug("[eMPEGStreamParserTS] SC %02x %02x %02x %02x, %02x", pkt[0], pkt[1], pkt[2], pkt[3], pkt[4]);
 			unsigned int sc = pkt[3];
 
-			if (m_streamtype < 0) /* unknown */
+			if (m_streamtype < eDVBVideo::MPEG2) /* unknown */
 			{
 				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8))
 				{
 					eDebug("[eMPEGStreamParserTS] - detected MPEG2 stream");
-					m_streamtype = 0;
+					m_streamtype = eDVBVideo::MPEG2;
 				}
 				else if (sc == 0x09)
 				{
 					eDebug("[eMPEGStreamParserTS] - detected H264 stream");
-					m_streamtype =  1;
+					m_streamtype =  eDVBVideo::MPEG4_H264;
 				}
-				else
+				else /* TODO: detect H265 */
 					continue;
 			}
 
-			if (m_streamtype == 0) /* mpeg2 */
+
+			switch(m_streamtype)
 			{
-				if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
+				case(eDVBVideo::MPEG2): // mpeg2
 				{
-					if ((sc == 0xb3) && m_enable_accesspoints) /* sequence header */
+					if ((sc == 0x00) || (sc == 0xb3) || (sc == 0xb8)) /* picture, sequence, group start code */
 					{
-						if (ptsvalid)
+						if ((sc == 0xb3) && m_enable_accesspoints) /* sequence header */
 						{
-							addAccessPoint(offset, pts);
-							//eDebug("[eMPEGStreamParserTS] Sequence header at %llx, pts %llx", offset, pts);
+							if (ptsvalid)
+							{
+								addAccessPoint(offset, pts);
+								//eDebug("[eMPEGStreamParserTS] Sequence header at %llx, pts %llx", offset, pts);
+							}
+						}
+						if (pkt <= (end - 6))
+						{
+							unsigned long long data = sc | ((unsigned)pkt[4] << 8) | ((unsigned)pkt[5] << 16);
+							if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
+								data |= (pts << 31) | 0x1000000;
+							writeStructureEntry(offset + pkt_offset, data);
+						}
+						else
+						{
+							// Returning non-zero suggests we need more data. This does not
+							// work, and never has, so we should make this a void function
+							// or fix that...
+							return 1;
 						}
 					}
-					if (pkt <= (end - 6))
+
+					break;
+				}
+
+				case(eDVBVideo::MPEG4_H264): // h.264 */
+				{
+					if (sc == 0x09)
 					{
-						unsigned long long data = sc | ((unsigned)pkt[4] << 8) | ((unsigned)pkt[5] << 16);
+						/* store image type */
+						unsigned long long data = sc | (pkt[4] << 8);
 						if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
 							data |= (pts << 31) | 0x1000000;
 						writeStructureEntry(offset + pkt_offset, data);
+						if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
+							(pkt[4] >> 5) == 0) /* and I-frame */
+						{
+							if (ptsvalid && m_enable_accesspoints)
+							{
+								addAccessPoint(offset, pts);
+								// eDebug("[eMPEGStreamParserTS] MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
+							}
+						}
 					}
-					else
-					{
-						// Returning non-zero suggests we need more data. This does not
-						// work, and never has, so we should make this a void function
-						// or fix that...
-						return 1;
-					}
-				}
-			}
-			else if (m_streamtype == 6) /* H.265 */
-			{
-				int nal_unit_type = (sc >> 1);
-				if (nal_unit_type == 35) /* H265 NAL unit access delimiter */
-				{
-					unsigned long long data = sc | (pkt[5] << 8);
-					writeStructureEntry(offset + pkt_offset, data);
 
-					if ((pkt[5] >> 5) == 0) /* check pic_type for I-frame */
-					{
-						if (ptsvalid)
-						{
-							addAccessPoint(offset, pts);
-						}
-					}
+					break;
 				}
-			}
-			else /* (m_streamtype == 1) means H.264 */
-			{
-				if (sc == 0x09)
+
+				case(eDVBVideo::H265_HEVC): // h.265
 				{
-					/* store image type */
-					unsigned long long data = sc | (pkt[4] << 8);
-					if (ptsvalid) // If available, add timestamp data as well. PTS = 33 bits
-						data |= (pts << 31) | 0x1000000;
-					writeStructureEntry(offset + pkt_offset, data);
-					if ( //pkt[3] == 0x09 &&   /* MPEG4 AVC NAL unit access delimiter */
-						 (pkt[4] >> 5) == 0) /* and I-frame */
+					int nal_unit_type = (sc >> 1);
+					if (nal_unit_type == 35) /* H265 NAL unit access delimiter */
 					{
-						if (ptsvalid && m_enable_accesspoints)
+						unsigned long long data = sc | (pkt[5] << 8);
+						writeStructureEntry(offset + pkt_offset, data);
+
+						if ((pkt[5] >> 5) == 0) /* check pic_type for I-frame */
 						{
-							addAccessPoint(offset, pts);
-							// eDebug("[eMPEGStreamParserTS] MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
+							if (ptsvalid)
+							{
+								addAccessPoint(offset, pts);
+							}
 						}
 					}
+
+					break;
+				}
+
+				default:
+				{
+					eDebug("[eMPEGStreamParserTS]: unknown streamtype: %d ", m_streamtype);
+
+					break;
 				}
 			}
 		}
@@ -1048,7 +1068,7 @@ inline int eMPEGStreamParserTS::wantPacket(const unsigned char *pkt) const
 	if (hdr[1] & 0x40)	 /* pusi set: yes. */
 		return 1;
 
-	return m_streamtype == 0; /* we need all packets for MPEG2, but only PUSI packets for H.264 */
+	return m_streamtype == eDVBVideo::MPEG2; /* we need all packets for MPEG2, but only PUSI packets for H.264 */
 }
 
 void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int len)
@@ -1182,12 +1202,13 @@ void eMPEGStreamParserTS::setPid(int _pid, iDVBTSRecorder::timing_pid_type pidty
 {
 	m_pktptr = 0;
 	/*
-	 * Currently, eMPEGStreamParserTS can only parse video, mpeg2 (streamtype 0), h264 (streamtype 1) and h265 (streamtype 6).
+	 * Currently, eMPEGStreamParserTS can only parse video, mpeg2, h264 and h265.
 	 * Also, streamtype -1 should be accepted, which will cause the streamtype to be autodetected.
 	 * Do not try to parse audio pids, which might lead to false hits,
 	 * and waste cpu time.
 	 */
-	if (pidtype == iDVBTSRecorder::video_pid && (streamtype < 2 || streamtype == 6))
+		if (pidtype == iDVBTSRecorder::video_pid && (streamtype == eDVBVideo::MPEG2 ||
+		streamtype == eDVBVideo::MPEG4_H264 || streamtype == eDVBVideo::H265_HEVC))
 	{
 		m_pid = _pid;
 		m_streamtype = streamtype;

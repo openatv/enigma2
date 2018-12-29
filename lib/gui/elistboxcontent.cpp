@@ -464,7 +464,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						int width = (m_itemsize.width() - m_seperation - 15) * value / size;
+						int width = (m_itemsize.width() - m_seperation - 115) * value / size;
 						int height = m_itemsize.height();
 
 						/* draw slider */
@@ -477,7 +477,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						if (m_slider_space)
 						{
 							ePoint tl(offset.x() + m_seperation, offset.y() + slider_y_offset - m_slider_space - 1);
-							ePoint tr(offset.x() + m_itemsize.width() - 15 - 1, tl.y());
+							ePoint tr(offset.x() + m_itemsize.width() - 115 - 1, tl.y());
 							ePoint bl(tl.x(), offset.y() + slider_y_offset + m_slider_height + m_slider_space);
 							ePoint br(tr.x(), bl.y());
 							painter.line(tl, tr);
@@ -490,6 +490,10 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						{
 							painter.fill(eRect(offset.x() + m_seperation, offset.y() + slider_y_offset, width, m_slider_height));
 						}
+
+						/* draw value at the end of the slider */
+						painter.setFont(fnt2);
+						painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), std::to_string(value), gPainter::RT_HALIGN_RIGHT| gPainter::RT_VALIGN_CENTER, border_color, border_size);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))

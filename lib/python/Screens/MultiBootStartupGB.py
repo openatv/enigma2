@@ -7,8 +7,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components import Harddisk
-from os import path, listdir, system, makedirs
-import re
+from os import path, listdir, system
 
 class MultiBootStartup(ConfigListScreen, Screen):
 
@@ -35,7 +34,6 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self["config"] = StaticText(_("Select Image: STARTUP_1"))
 		self.selection = 0
 		self.list = self.list_files("/boot")
-		self.getImageInformation()
 
 		self.startup()
 
@@ -51,26 +49,6 @@ class MultiBootStartup(ConfigListScreen, Screen):
 
 		self.onLayoutFinish.append(self.layoutFinished)
 
-	def getImageInformation(self):
-		self.friendlylist = []
-		makedirs("/tmp/boot")
-		for name in self.list:
-			device = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-			system("mount %s /tmp/boot" % device)
-			version = self.searchString("/tmp/boot/etc/image-version", "^version=")
-			creator = self.searchString("/tmp/boot/etc/image-version", "^creator=")
-			build = self.searchString("/tmp/boot/etc/image-version", "^build=")
-			system("umount /tmp/boot && ls /tmp/boot")
-			self.friendlylist.append("%s %s %s" % (creator,version,build))
-		system("rmdir /tmp/boot && ls /tmp")
-
-	def searchString(self, file, search):
-		f = open(file)
-		for line in f:
-			if re.match(search, line):
-				return line.split("=")[1].replace('\n', '')
-		f.close()
-
 	def layoutFinished(self):
 		self.setTitle(self.title)
 
@@ -79,7 +57,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		return SimpleSummary
 
 	def startup(self):
-		self["config"].setText(_("Select Image: %s %s") % (self.list[self.selection],self.friendlylist[self.selection] ))
+		self["config"].setText(_("Select Image: %s") %self.list[self.selection])
 
 	def save(self):
 		print "[MultiBootStartup] select new startup: ", self.list[self.selection]
