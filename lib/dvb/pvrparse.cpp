@@ -1206,12 +1206,13 @@ void eMPEGStreamParserTS::setPid(int _pid, iDVBTSRecorder::timing_pid_type pidty
 	m_pktptr = 0;
 	/*
 	 * Currently, eMPEGStreamParserTS can only parse video, mpeg2, h264 and h265.
-	 * Also, streamtype -1 should be accepted, which will cause the streamtype to be autodetected.
+	 * Also, streamtype UNKNOWN should be accepted, which will cause the streamtype to be autodetected.
 	 * Do not try to parse audio pids, which might lead to false hits,
 	 * and waste cpu time.
 	 */
-		if (pidtype == iDVBTSRecorder::video_pid && (streamtype == eDVBVideo::MPEG2 ||
-		streamtype == eDVBVideo::MPEG4_H264 || streamtype == eDVBVideo::H265_HEVC))
+	if (pidtype == iDVBTSRecorder::video_pid && (streamtype == eDVBVideo::UNKNOWN ||
+		streamtype == eDVBVideo::MPEG2 || streamtype == eDVBVideo::MPEG4_H264 ||
+		streamtype == eDVBVideo::H265_HEVC))
 	{
 		m_pid = _pid;
 		m_streamtype = streamtype;
@@ -1220,7 +1221,7 @@ void eMPEGStreamParserTS::setPid(int _pid, iDVBTSRecorder::timing_pid_type pidty
 	{
 		/* invalidate pid */
 		m_pid = -1;
-		m_streamtype = -1;
+		m_streamtype = eDVBVideo::UNKNOWN;
 	}
 }
 
