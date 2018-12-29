@@ -1041,7 +1041,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				case eDVBVideo::VC1:
 				case eDVBVideo::MPEG4_Part2:
 				case eDVBVideo::VC1_SM:
-				case eDVBVideo::MPEG1
+				case eDVBVideo::MPEG1:
 				case eDVBVideo::AVS:
 				{
 					break; /* TODO: add parser for above codecs */
