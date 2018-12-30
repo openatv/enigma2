@@ -41,6 +41,18 @@
 		<panel name="MyRecPanel" />
 	</screen>
 
+<!-- setup -->
+	<screen name="SetupSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- Blindscan -->
+	<screen name="SetupSummary2" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
 <!-- Numberzap -->    
 	<screen name="NumberZap_summary" position="0,0" size="1,1">
 		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
