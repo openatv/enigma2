@@ -101,6 +101,7 @@
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
+		<item level="2" text="Show additional slider value" description="Enable the current value of the slider at end of the slider bar.">config.usage.show_slider_value</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>

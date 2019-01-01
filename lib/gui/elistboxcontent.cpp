@@ -4,6 +4,7 @@
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
 #include <lib/gdi/epng.h>
+#include <lib/base/nconfig.h>
 #include <sstream>
 
 using namespace std;
@@ -462,9 +463,17 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* convert value to Long. fallback to -1 on error. */
 						int value = (pvalue && PyInt_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
+						int value_area = 0;
 
+							/* draw value at the end of the slider */
+						if (eConfigManager::getConfigBoolValue("config.usage.show_slider_value", true))
+						{
+							value_area = 100;
+							painter.setFont(fnt2);
+							painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), std::to_string(value), gPainter::RT_HALIGN_RIGHT| gPainter::RT_VALIGN_CENTER, border_color, border_size);
+						}
 							/* calc. slider length */
-						int width = (m_itemsize.width() - m_seperation - 115) * value / size;
+						int width = (m_itemsize.width() - m_seperation - 15 - value_area) * value / size;
 						int height = m_itemsize.height();
 
 						/* draw slider */
@@ -477,7 +486,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						if (m_slider_space)
 						{
 							ePoint tl(offset.x() + m_seperation, offset.y() + slider_y_offset - m_slider_space - 1);
-							ePoint tr(offset.x() + m_itemsize.width() - 115 - 1, tl.y());
+							ePoint tr(offset.x() + m_itemsize.width() - 15 - value_area - 1, tl.y());
 							ePoint bl(tl.x(), offset.y() + slider_y_offset + m_slider_height + m_slider_space);
 							ePoint br(tr.x(), bl.y());
 							painter.line(tl, tr);
@@ -490,10 +499,6 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						{
 							painter.fill(eRect(offset.x() + m_seperation, offset.y() + slider_y_offset, width, m_slider_height));
 						}
-
-						/* draw value at the end of the slider */
-						painter.setFont(fnt2);
-						painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), std::to_string(value), gPainter::RT_HALIGN_RIGHT| gPainter::RT_VALIGN_CENTER, border_color, border_size);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))

@@ -540,6 +540,7 @@ def InitUsageConfig():
 	config.usage.enable_delivery_system_workaround = ConfigYesNo(default = False)
 
 	config.usage.boolean_graphic = ConfigYesNo(default=False)
+	config.usage.show_slider_value = ConfigYesNo(default=True)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
