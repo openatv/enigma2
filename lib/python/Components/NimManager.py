@@ -2051,6 +2051,14 @@ def InitNimManager(nimmgr, update_slots = []):
 			f.write(configElement.value)
 			f.close()
 
+	def t2miRawModeChanged(configElement):
+		fe_id = configElement.fe_id
+		slot_id = configElement.slot_id
+		if path.exists("/proc/stb/frontend/%d/t2mirawmode" % fe_id):
+			f = open("/proc/stb/frontend/%d/t2mirawmode" % fe_id, "w")
+			f.write(configElement.value)
+			f.close()
+
 	def connectedToChanged(slot_id, nimmgr, configElement):
 		configMode = nimmgr.getNimConfig(slot_id).dvbs.configMode
 		if configMode.value == 'loopthrough':
@@ -2073,6 +2081,10 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.scpcSearchRange.fe_id = x - empty_slots
 			nim.scpcSearchRange.slot_id = x
 			nim.scpcSearchRange.addNotifier(scpcSearchRangeChanged)
+			nim.t2miRawMode = ConfigSelection([("disable", _("disabled")), ("enable", _("enabled"))], "disable")
+			nim.t2miRawMode.fe_id = x - empty_slots
+			nim.t2miRawMode.slot_id = x
+			nim.t2miRawMode.addNotifier(t2miRawModeChanged)
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "single")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
