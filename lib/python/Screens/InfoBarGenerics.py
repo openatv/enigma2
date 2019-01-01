@@ -5319,16 +5319,17 @@ class InfoBarHandleBsod:
 		self.lastestBsodWarning = False
 		self.checkBsodTimer = eTimer()
 		self.checkBsodTimer.callback.append(self.checkBsodCallback)
-		self.checkBsodTimer.start(1000,False)
+		self.checkBsodTimer.start(1000, True)
 		config.crash.bsodpython_ready.setValue(True)
 
 	def checkBsodCallback(self):
+		self.checkBsodTimer.start(1000, True)
 		if Screens.Standby.inStandby or self.infoBsodIsShown:
 			return
 		bsodcnt = getBsodCounter()
 		if config.crash.bsodpython.value and self.lastBsod < bsodcnt:
 			maxbs = int(config.crash.bsodmax.value) or 100
-			writelog = bsodcnt == 1 or not bsodcnt > int(config.crash.bsodhide.value) or bsodcnt == maxbs
+			writelog = bsodcnt == 1 or not bsodcnt > int(config.crash.bsodhide.value) or bsodcnt >= maxbs
 			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n") %bsodcnt
 			txt += _("(Attention: There will be a restart after %d crashes.)") %maxbs
 			if writelog:
@@ -5337,17 +5338,20 @@ class InfoBarHandleBsod:
 			#if not writelog:
 			#	txt += "\n" + "-"*80 + "\n"
 			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _('never'))
-			if bsodcnt == maxbs:
+			if bsodcnt >= maxbs:
 				txt += "\n" + "-"*80 + "\n"
 				txt += _("Warning: This is the last crash before an automatic restart is performed.\n")
 				txt += _("Should the crash counter be reset to prevent a restart?")
 				self.lastestBsodWarning = True
 			try:
-				self.infoBsodIsShown = True
 				self.session.openWithCallback(self.infoBsodCallback, MessageBox, txt, type=MessageBox.TYPE_ERROR, default = False, close_on_any_key=not self.lastestBsodWarning, showYESNO = self.lastestBsodWarning)
+				self.infoBsodIsShown = True
 			except Exception, e:
-				print "[InfoBarHandleBsod] Exception:", e
+				#print "[InfoBarHandleBsod] Exception:", e
+				self.checkBsodTimer.stop()
+				self.checkBsodTimer.start(5000, True)
 				self.infoBsodCallback(False)
+				raise
 		self.lastBsod = bsodcnt
 
 	def infoBsodCallback(self, ret):
