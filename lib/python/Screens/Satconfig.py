@@ -309,6 +309,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Tone amplitude"), nimConfig.toneAmplitude))
 			if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
 				self.list.append(getConfigListEntry(_("SCPC optimized search range"), nimConfig.scpcSearchRange))
+			if path.exists("/proc/stb/frontend/%d/t2mirawmode" % self.nim.slot) and config.usage.setup_level.index >= 2: # expert
+				self.list.append(getConfigListEntry(_("T2MI RAW Mode"), nimConfig.t2miRawMode))
 
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.dvbc.configMode)
