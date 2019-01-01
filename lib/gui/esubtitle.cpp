@@ -287,6 +287,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 
 		int borderwidth = eConfigManager::getConfigIntValue("config.subtitles.subtitle_borderwidth", 2) * getDesktop(0)->size().width()/1280;
 		int fontsize = eConfigManager::getConfigIntValue("config.subtitles.subtitle_fontsize", 34) * getDesktop(0)->size().width()/1280;
+		int bcktrans = eConfigManager::getConfigIntValue("config.subtitles.subtitles_backtrans", 255);
 
 		if (m_pixmap)
 		{
@@ -307,7 +308,6 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				if (!element.m_text.empty())
 				{
 					eRect &area = element.m_area;
-					int bcktrans = eConfigManager::getConfigIntValue("config.subtitles.subtitles_backtrans", 255);
 					if (bcktrans != 255)
 					{
 						ePtr<eTextPara> para = new eTextPara(area);
@@ -399,7 +399,6 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				painter.setFont(subtitleStyles[face].font);
 
 				eRect &area = element.m_area;
-				int bcktrans = eConfigManager::getConfigIntValue("config.subtitles.subtitles_backtrans", 255);
 				if (bcktrans != 255)
 				{
 					ePtr<eTextPara> para = new eTextPara(area);
