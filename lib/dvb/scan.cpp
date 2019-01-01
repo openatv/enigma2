@@ -1180,9 +1180,9 @@ void eDVBScan::channelDone()
 			if( m_chid_current )
 				tsonid = ( m_chid_current.transport_stream_id.get() << 16 )
 					| m_chid_current.original_network_id.get();
-			service->m_service_name = convertDVBUTF8(sname,-1,tsonid,0);
+			service->m_service_name = replace_all(replace_all(convertDVBUTF8(sname,-1,tsonid,0), "\r", ""), "\n", "");
 			service->genSortName();
-			service->m_provider_name = convertDVBUTF8(pname,-1,tsonid,0);
+			service->m_provider_name = replace_all(replace_all(convertDVBUTF8(pname,-1,tsonid,0), "\r", ""), "\n", "");
 		}
 
 		if (!(m_flags & scanOnlyFree) || !m_pmt_in_progress->second.scrambled) {
@@ -1625,10 +1625,10 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 
 					ref.setServiceType(servicetype);
 					int tsonid=(sdt.getTransportStreamId() << 16) | sdt.getOriginalNetworkId();
-					service->m_service_name = convertDVBUTF8(d.getServiceName(),-1,tsonid,0);
+					service->m_service_name = replace_all(replace_all(convertDVBUTF8(d.getServiceName(),-1,tsonid,0), "\r", ""), "\n", "");
 					service->genSortName();
 
-					service->m_provider_name = convertDVBUTF8(d.getServiceProviderName(),-1,tsonid,0);
+					service->m_provider_name = replace_all(replace_all(convertDVBUTF8(d.getServiceProviderName(),-1,tsonid,0), "\r", ""), "\n", "");
 					SCAN_eDebug("[eDVBScan]   name '%s', provider_name '%s'", service->m_service_name.c_str(), service->m_provider_name.c_str());
 					break;
 				}
