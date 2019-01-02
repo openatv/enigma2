@@ -1919,7 +1919,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-C"
 								self.nim_enable.append(nimconfig)
-								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-C) " + req_network, nimconfig))
+								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-C) " + req_network[:45], nimconfig))
 								break;
 						elif req_type in ("DVB-T", "DVB-T2") and nim.config.dvbt.configMode.value != "nothing" and not tag_dvbt:
 							if req_network in nimmanager.getTerrestrialDescription(nim.slot):
@@ -1931,7 +1931,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								nimconfig.network = req_network
 								nimconfig.nim_type = "DVB-T"
 								self.nim_enable.append(nimconfig)
-								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-T) " + req_network, nimconfig))
+								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-T) " + req_network[:45], nimconfig))
 								break;
 						elif req_type in ("ATSC") and nim.config.atsc.configMode.value != "nothing" and not tag_atsc:
 							if req_network in nimmanager.getATSCDescription(nim.slot):
@@ -1943,7 +1943,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								nimconfig.network = req_network
 								nimconfig.nim_type = "ATSC"
 								self.nim_enable.append(nimconfig)
-								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (ATSC) " + req_network, nimconfig))
+								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (ATSC) " + req_network[:45], nimconfig))
 								break;
 		self.list.sort()
 		ConfigListScreen.__init__(self, self.list)
