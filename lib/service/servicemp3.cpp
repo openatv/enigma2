@@ -525,6 +525,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_aspect = m_width = m_height = m_framerate = m_progressive = -1;
 
 	m_state = stIdle;
+	m_coverart = false;
 	m_subtitles_paused = false;
 	// eDebug("[eServiceMP3] construct!");
 
@@ -2364,39 +2365,43 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				m_stream_tags = result;
 			}
 
-			const GValue *gv_image = gst_tag_list_get_value_index(tags, GST_TAG_IMAGE, 0);
-			if ( gv_image )
+			if (!m_coverart)
 			{
-				GstBuffer *buf_image;
-#if GST_VERSION_MAJOR < 1
-				buf_image = gst_value_get_buffer(gv_image);
-#else
-				GstSample *sample;
-				sample = (GstSample *)g_value_get_boxed(gv_image);
-				buf_image = gst_sample_get_buffer(sample);
-#endif
-				int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
-				if (fd >= 0)
+				const GValue *gv_image = gst_tag_list_get_value_index(tags, GST_TAG_IMAGE, 0);
+				if ( gv_image )
 				{
-					guint8 *data;
-					gsize size;
+					GstBuffer *buf_image;
 #if GST_VERSION_MAJOR < 1
-					data = GST_BUFFER_DATA(buf_image);
-					size = GST_BUFFER_SIZE(buf_image);
+					buf_image = gst_value_get_buffer(gv_image);
 #else
-					GstMapInfo map;
-					gst_buffer_map(buf_image, &map, GST_MAP_READ);
-					data = map.data;
-					size = map.size;
+					GstSample *sample;
+					sample = (GstSample *)g_value_get_boxed(gv_image);
+					buf_image = gst_sample_get_buffer(sample);
 #endif
-					int ret = write(fd, data, size);
+					int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
+					if (fd >= 0)
+					{
+						guint8 *data;
+						gsize size;
+#if GST_VERSION_MAJOR < 1
+						data = GST_BUFFER_DATA(buf_image);
+						size = GST_BUFFER_SIZE(buf_image);
+#else
+						GstMapInfo map;
+						gst_buffer_map(buf_image, &map, GST_MAP_READ);
+						data = map.data;
+						size = map.size;
+#endif
+						int ret = write(fd, data, size);
 #if GST_VERSION_MAJOR >= 1
-					gst_buffer_unmap(buf_image, &map);
+						gst_buffer_unmap(buf_image, &map);
 #endif
-					close(fd);
-					// eDebug("[eServiceMP3] /tmp/.id3coverart %d bytes written ", ret);
+						close(fd);
+						m_coverart = true;
+						m_event((iPlayableService*)this, evUser+13);
+						eDebug("[eServiceMP3] /tmp/.id3coverart %d bytes written ", ret);
+					}
 				}
-				m_event((iPlayableService*)this, evUser+13);
 			}
 			gst_tag_list_free(tags);
 			m_event((iPlayableService*)this, evUpdatedInfo);
