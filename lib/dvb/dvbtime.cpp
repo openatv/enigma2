@@ -111,6 +111,15 @@ static void parseDVBdate(tm& t, int mjd)
 {
 	int k;
 
+	/*
+	 * When MJD epoch is before Unix epoch use Unix epoch
+	 * The value 40587 is the number of days between the MJD epoch (1858-11-17) and the Unix epoch (1970-01-01)
+	 */
+	if (mjd < 40587)
+	{
+		mjd = 40587;
+	}
+
 	t.tm_year = (int) ((mjd - 15078.2) / 365.25);
 	t.tm_mon = (int) ((mjd - 14956.1 - (int)(t.tm_year * 365.25)) / 30.6001);
 	t.tm_mday = (int) (mjd - 14956 - (int)(t.tm_year * 365.25) - (int)(t.tm_mon * 30.6001));
