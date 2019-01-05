@@ -516,6 +516,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	m_errorInfo.missing_codec = "";
+	m_decoder = NULL;
 	m_subs_to_pull_handler_id = m_notify_source_handler_id = m_notify_element_added_handler_id = 0;
 
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
@@ -847,6 +848,11 @@ eServiceMP3::~eServiceMP3()
 	}
 
 	stop();
+
+	if (m_decoder)
+	{
+		m_decoder = NULL;
+	}
 
 	if (m_stream_tags)
 		gst_tag_list_free(m_stream_tags);
@@ -2240,6 +2246,15 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						m_is_live = true;
 					m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					updateEpgCacheNowNext();
+
+					if (!dvb_videosink || m_ref.getData(0) == 2) // show radio pic
+					{
+						bool showRadioBackground = eConfigManager::getConfigBoolValue("config.misc.showradiopic", true);
+						std::string radio_pic = eConfigManager::getConfigValue(showRadioBackground ? "config.misc.radiopic" : "config.misc.blackradiopic");
+						m_decoder = new eTSMPEGDecoder(NULL, 0);
+						m_decoder->showSinglePic(radio_pic.c_str());
+					}
+
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
