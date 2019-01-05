@@ -390,7 +390,7 @@ private:
 
 	RESULT seekToImpl(pts_t to);
 
-	gint m_aspect, m_width, m_height, m_framerate, m_progressive;
+	gint m_aspect, m_width, m_height, m_framerate, m_progressive, m_gamma;
 	std::string m_useragent;
 	std::string m_extra_headers;
 	RESULT trickSeek(gdouble ratio);

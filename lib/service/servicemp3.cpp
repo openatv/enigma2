@@ -522,7 +522,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	CONNECT(m_nownext_timer->timeout, eServiceMP3::updateEpgCacheNowNext);
-	m_aspect = m_width = m_height = m_framerate = m_progressive = -1;
+	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
 
 	m_state = stIdle;
 	m_coverart = false;
@@ -1655,6 +1655,7 @@ int eServiceMP3::getInfo(int w)
 	case sVideoWidth: return m_width;
 	case sFrameRate: return m_framerate;
 	case sProgressive: return m_progressive;
+	case sGamma: return m_gamma;
 	case sAspect: return m_aspect;
 	case sTagTitle:
 	case sTagArtist:
@@ -1739,6 +1740,7 @@ int eServiceMP3::getInfo(int w)
 		return (int) v;
 		break;
 	}
+	case sSID: return m_ref.getData(1);
 	default:
 		return resNA;
 	}
@@ -2605,6 +2607,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 							gst_structure_get_int (msgstruct, "progressive", &m_progressive);
 							if (strstr(eventname, "Changed"))
 								m_event((iPlayableService*)this, evVideoProgressiveChanged);
+						}
+						else if (!strcmp(eventname, "eventGammaChanged"))
+						{
+							gst_structure_get_int (msgstruct, "gamma", &m_gamma);
+							if (strstr(eventname, "Changed"))
+								m_event((iPlayableService*)this, evVideoGammaChanged);
 						}
 						else if (!strcmp(eventname, "redirect"))
 						{
