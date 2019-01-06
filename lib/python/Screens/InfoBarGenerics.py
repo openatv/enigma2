@@ -4287,6 +4287,9 @@ class InfoBarSubserviceSelection:
 		except:
 			pass
 
+	def openTimerList(self):
+		self.session.open(TimerEditList)
+
 from Components.Sources.HbbtvApplication import HbbtvApplication
 gHbbtvApplication = HbbtvApplication()
 class InfoBarRedButton:
