@@ -43,6 +43,7 @@ class ServiceInfo(Converter, object):
 	IS_HDR = 34
 	IS_HDR10 = 35
 	IS_HLG = 36
+	IS_HDHDR = 37
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -72,17 +73,18 @@ class ServiceInfo(Converter, object):
 				"Editmode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
 				"IsStream": (self.IS_STREAM, (iPlayableService.evUpdatedInfo,)),
 				"IsSD": (self.IS_SD, (iPlayableService.evVideoSizeChanged,)),
-				"IsHD": (self.IS_HD, (iPlayableService.evVideoSizeChanged,)),
+				"IsHD": (self.IS_HD, (iPlayableService.evVideoSizeChanged,iPlayableService.evVideoGammaChanged,)),
 				"Is1080": (self.IS_1080, (iPlayableService.evVideoSizeChanged,)),
 				"Is720": (self.IS_720, (iPlayableService.evVideoSizeChanged,)),
 				"Is576": (self.IS_576, (iPlayableService.evVideoSizeChanged,)),
 				"Is480": (self.IS_480, (iPlayableService.evVideoSizeChanged,)),
-				"Is4K": (self.IS_4K, (iPlayableService.evVideoSizeChanged,)),
+				"Is4K": (self.IS_4K, (iPlayableService.evVideoSizeChanged,iPlayableService.evVideoGammaChanged,)),
 				"IsIPStream": (self.IS_IPSTREAM, (iPlayableService.evUpdatedInfo,)),
-				"IsSDR": (self.IS_SDR, (iPlayableService.evVideoGammaChanged,)),
-				"IsHDR": (self.IS_HDR, (iPlayableService.evVideoGammaChanged,)),
-				"IsHDR10": (self.IS_HDR10, (iPlayableService.evVideoGammaChanged,)),
-				"IsHLG": (self.IS_HLG, (iPlayableService.evVideoGammaChanged,)),
+				"IsSDR": (self.IS_SDR, (iPlayableService.evVideoSizeChanged,iPlayableService.evVideoGammaChanged,)),
+				"IsHDR": (self.IS_HDR, (iPlayableService.evVideoSizeChanged,iPlayableService.evVideoGammaChanged,)),
+				"IsHDR10": (self.IS_HDR10, (iPlayableService.evVideoSizeChanged,iPlayableService.evVideoGammaChanged,)),
+				"IsHLG": (self.IS_HLG, (iPlayableService.evVideoSizeChanged,iPlayableService.evVideoGammaChanged,)),
+				"IsHDHDR": (self.IS_HDHDR, (iPlayableService.evVideoSizeChanged,iPlayableService.evVideoGammaChanged,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -109,11 +111,20 @@ class ServiceInfo(Converter, object):
 			return False
 
 		video_height = None
+		video_width = None
 		video_aspect = None
 		if path.exists("/proc/stb/vmpeg/0/yres"):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			try:
 				video_height = int(f.read(),16)
+			except:
+				pass
+			f.close()
+
+		if path.exists("/proc/stb/vmpeg/0/xres"):
+			f = open("/proc/stb/vmpeg/0/xres", "r")
+			try:
+				video_width = int(f.read(),16)
 			except:
 				pass
 			f.close()
@@ -125,6 +136,7 @@ class ServiceInfo(Converter, object):
 			except:
 				pass
 			f.close()
+
 		if not video_height:
 			video_height = int(info.getInfo(iServiceInformation.sVideoHeight))
 		if not video_aspect:
@@ -181,7 +193,10 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.IS_SD:
 			return video_height < 720
 		elif self.type == self.IS_HD:
-			return video_height >= 720 and video_height < 2151
+			if info.getInfo(iServiceInformation.sGamma) > 0:
+				return False
+			else:
+				return video_width >= 721 and video_width < 1980
 		elif self.type == self.IS_1080:
 			return video_height > 1000 and video_height <= 1080
 		elif self.type == self.IS_720:
@@ -190,18 +205,23 @@ class ServiceInfo(Converter, object):
 			return video_height > 500 and video_height <= 576
 		elif self.type == self.IS_480:
 			return video_height > 0 and video_height <= 480
-		elif self.type == self.IS_4K:
-			return video_height > 2152 and video_height <= 2160
+		elif self.type == self.IS_4K: 
+			if info.getInfo(iServiceInformation.sGamma) > 0:
+				return False
+			else:
+				return video_width > 2160 and video_width <= 3840
 		elif self.type == self.IS_IPSTREAM:
 			return service.streamed() is not None
 		elif self.type == self.IS_SDR:
-			return info.getInfo(iServiceInformation.sGamma) == 0
+			return video_width > 2160 and video_width <= 3840 and info.getInfo(iServiceInformation.sGamma) == 0
 		elif self.type == self.IS_HDR:
-			return info.getInfo(iServiceInformation.sGamma) == 1
+			return video_width > 2160 and video_width <= 3840 and info.getInfo(iServiceInformation.sGamma) == 1
 		elif self.type == self.IS_HDR10:
-			return info.getInfo(iServiceInformation.sGamma) == 2
+			return video_width > 2160 and video_width <= 3840 and info.getInfo(iServiceInformation.sGamma) == 2
 		elif self.type == self.IS_HLG:
-			return info.getInfo(iServiceInformation.sGamma) == 3
+			return video_width > 2160 and video_width <= 3840 and info.getInfo(iServiceInformation.sGamma) == 3
+		elif self.type == self.IS_HDHDR:
+			return video_width >= 721 and video_width < 1980 and info.getInfo(iServiceInformation.sGamma) > 0
 		return False
 
 	boolean = property(getBoolean)
