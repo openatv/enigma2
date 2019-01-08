@@ -155,9 +155,11 @@ class ServiceInfo(Screen):
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 					aspect = aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ) and "4:3" or "16:9"
 					resolution += " - ["+aspect+"]"
-					gamma = ("SDR", "HDR", "HDR10", "HLG", "")[self.info.getInfo(iServiceInformation.sGamma)]
-					if gamma:
-						resolution += " - " + gamma
+					gammas = ("SDR", "HDR", "HDR10", "HLG", "")
+					if self.info.getInfo(iServiceInformation.sGamma) < len(gammas):
+						gamma = gammas[self.info.getInfo(iServiceInformation.sGamma)]
+						if gamma:
+							resolution += " - " + gamma
 				f = open("/proc/stb/video/videomode")
 				videomode = f.read()[:-1].replace('\n','')
 				f.close()
