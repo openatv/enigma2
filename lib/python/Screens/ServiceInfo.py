@@ -145,9 +145,8 @@ class ServiceInfo(Screen):
 			videomode = "-"
 			resolution = "-"
 			if self.info:
-				videocodecs =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "HEVC", "H265", "CAVS", "-" )
-				if self.info.getInfo(iServiceInformation.sVideoType) < len(videocodecs):
-					videocodec = videocodecs[self.info.getInfo(iServiceInformation.sVideoType)]
+				from Components.Converter.PliExtraInfo import codec_data
+				videocodec = codec_data.get(self.info.getInfo(iServiceInformation.sVideoType), "N/A")
 				width = self.info.getInfo(iServiceInformation.sVideoWidth)
 				height = self.info.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
