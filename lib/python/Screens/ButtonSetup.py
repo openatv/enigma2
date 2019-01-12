@@ -139,6 +139,10 @@ def getButtonSetupKeys():
 		(_("F4 long"), "f4_long", ""),
 		(_("PIP"), "f6", ""),
 		(_("PIP long"), "f6_long", ""),
+		(_("MOUSE"), "mouse", ""),
+		(_("MOUSE long"), "mouse_long", ""),
+		(_("VOD"), "vod", ""),
+		(_("VOD long"), "vod_long", ""),
 		(_("ZOOM"), "zoom", ""),
 		(_("ZOOM long"), "zoom_long", "")]
 
