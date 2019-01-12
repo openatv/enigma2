@@ -94,7 +94,7 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
-		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','sf8008s','ustym4kpro')):
+		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','sf8008s','sf8008t','ustym4kpro')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
 			except:
@@ -210,7 +210,7 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
-		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','sf8008s','ustym4kpro')):
+		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','sf8008s','sf8008t','ustym4kpro')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
 			except:
