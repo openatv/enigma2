@@ -7,6 +7,13 @@
 #define KEY_VMODE        0x1a2
 #endif
 
+#if !defined(KEY_VOD)
+#define KEY_VOD          0x1a3
+#endif
+
+#if !defined(KEY_MOUSE)
+#define KEY_MOUSE        0x1a4
+#endif
 
 #if !defined(KEY_OK)
 

@@ -118,6 +118,7 @@
 		<key id="KEY_F4" mapto="extensions" flags="b" />
 		<key id="KEY_BLUE" mapto="extensions" flags="l" />
 		<key id="KEY_BLUE" mapto="quickmenu" flags="b" />
+		<key id="KEY_MOUSE" mapto="extensions" flags="b" />
 	</map>
 
 	<map context="InfoBarQuickMenu">
@@ -234,6 +235,7 @@
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="showWWW" flags="b" />
 		<key id="KEY_BOOKMARKS" mapto="showWWW" flags="b" />
+		<key id="KEY_VOD" mapto="showWWW" flags="b" />
 		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
@@ -1069,6 +1071,10 @@
 		<key id="KEY_ZOOM" mapto="zoom_long" flags="l"/>
 		<key id="KEY_EJECTCD" mapto="ejectcd" flags="b"/>
 		<key id="KEY_EJECTCD" mapto="ejectcd_long" flags="l"/>
+		<key id="KEY_MOUSE" mapto="mouse" flags="b"/>
+		<key id="KEY_MOUSE" mapto="mouse_long" flags="l"/>
+		<key id="KEY_VOD" mapto="vod" flags="b"/>
+		<key id="KEY_VOD" mapto="vod_long" flags="l"/>
 	</map>
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />
