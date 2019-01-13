@@ -132,7 +132,7 @@ void streamingDataToDict(ePyObject &dest, ePtr<iStreamData> data)
 {
 	if (dest && PyDict_Check(dest))
 	{
-		int pmt, pcr, txt, adapter, demux;
+		int pmt, pcr, txt, adapter, demux, default_audio_pid;
 		std::vector<int> video, audio, subtitle;
 		unsigned int i;
 		ePyObject l = PyList_New(0);
@@ -171,5 +171,7 @@ void streamingDataToDict(ePyObject &dest, ePtr<iStreamData> data)
 		PutToDict(dest, "adapter", adapter);
 		data->getDemuxId(demux);
 		PutToDict(dest, "demux", demux);
+		data->getDefaultAudioPid(default_audio_pid);
+		PutToDict(dest, "default_audio_pid", default_audio_pid);
 	}
 }

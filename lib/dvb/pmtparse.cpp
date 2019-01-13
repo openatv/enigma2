@@ -498,6 +498,7 @@ eDVBPMTParser::eStreamData::eStreamData(eDVBPMTParser::program &program)
 	pmtPid = program.pmtPid;
 	textPid = program.textPid;
 	aitPid = program.aitPid;
+	defaultAudioPid = program.defaultAudioStream;
 	adapterId = program.adapterId;
 	demuxId = program.demuxId;
 	serviceId = program.serviceId;
@@ -606,5 +607,11 @@ RESULT eDVBPMTParser::eStreamData::getCaIds(std::vector<int> &caids, std::vector
 		ecmpids.push_back(ecmPids[i]);
 		ecmdatabytes.push_back(ecmDataBytes[i]);
 	}
+	return 0;
+}
+
+RESULT eDVBPMTParser::eStreamData::getDefaultAudioPid(int &result) const
+{
+	result = audioStreams[defaultAudioPid];
 	return 0;
 }
