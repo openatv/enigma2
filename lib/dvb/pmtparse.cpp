@@ -612,6 +612,13 @@ RESULT eDVBPMTParser::eStreamData::getCaIds(std::vector<int> &caids, std::vector
 
 RESULT eDVBPMTParser::eStreamData::getDefaultAudioPid(int &result) const
 {
-	result = audioStreams[defaultAudioPid];
+	if (audioStreams.size() > defaultAudioPid)
+	{
+		result = audioStreams[defaultAudioPid];
+	}
+	else
+	{
+		result = -1;
+	}
 	return 0;
 }
