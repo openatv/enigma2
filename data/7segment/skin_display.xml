@@ -83,9 +83,8 @@
 		<panel name="MyRecPanel" />
 	</screen>
 	<screen name="JobView_summary" position="0,0" size="1,1">
-		<widget source="parent.summary_job_progress" render="Label" position="0,0" size="1,1" >
-			<convert type="ProgressToText">InPercent</convert>
-		</widget>
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
 	</screen>
 
 <!-- DVD -->
