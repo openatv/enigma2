@@ -3,7 +3,7 @@ import os
 from fcntl import ioctl
 from sys import maxint
 from enigma import eTimer, eHdmiCEC, eActionMap
-from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText
+from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
 from Components.Console import Console
 from Tools.Directories import fileExists
 from time import time
@@ -38,22 +38,21 @@ config.hdmicec.fixed_physical_address = ConfigText(default = "0.0.0.0")
 config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
-config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = False)
+config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = True)
 config.hdmicec.preemphasis = ConfigYesNo(default = False)
 choicelist = []
-for i in (10, 50, 100, 150, 250, 500, 750, 1000, 1500, 2000, 3000):
+for i in (10, 50, 100, 150, 250, 500, 750, 1000):
 	choicelist.append(("%d" % i, "%d ms" % i))
-config.hdmicec.minimum_send_interval = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
+config.hdmicec.minimum_send_interval = ConfigSelection(default = "250", choices = [("0", _("Disabled"))] + choicelist)
 choicelist = []
-for i in range(1,4):
+for i in range(1,6):
 	choicelist.append(("%d" % i, _("%d times") % i))
 config.hdmicec.messages_repeat = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 config.hdmicec.messages_repeat_standby = ConfigYesNo(default = False)
 choicelist = []
-for i in (10, 50, 100, 150, 250, 500, 750, 1000):
+for i in (500, 1000, 2000, 3000, 4000, 5000):
 	choicelist.append(("%d" % i, "%d ms" % i))
-config.hdmicec.messages_repeat_slowdown = ConfigSelection(default = "250", choices = [("0", _("None"))] + choicelist)
-choicelist = []
+config.hdmicec.messages_repeat_slowdown = ConfigSelection(default = "1000", choices = [("0", _("None"))] + choicelist)
 for i in (10,30,60,120,300,600,900,1800,3600):
 	if i/60<1:
 		choicelist.append(("%d" % i, _("%d sec") % i))
@@ -67,6 +66,8 @@ config.hdmicec.tv_wakeup_wakeuppowertimer = ConfigYesNo(default = True)
 config.hdmicec.tv_standby_notinputactive = ConfigYesNo(default = True)
 config.hdmicec.check_tv_state = ConfigYesNo(default = False)
 config.hdmicec.workaround_activesource = ConfigYesNo(default = False)
+config.hdmicec.advanced_settings = NoSave(ConfigYesNo(default = False))
+config.hdmicec.default_settings = NoSave(ConfigYesNo(default = False))
 
 #nice cec info site: http://www.cec-o-matic.com/
 
@@ -89,7 +90,6 @@ class HdmiCec:
 			self.repeatTimer = eTimer()
 			self.repeatTimer.callback.append(self.repeatMessages)
 			self.repeatCounter = 0
-			self.messageCounter = 0
 			self.what = ''
 			self.tv_lastrequest = ''
 			self.tv_powerstate = 'unknown'
@@ -111,6 +111,10 @@ class HdmiCec:
 			config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding, initial_call = False)
 			config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 
+			#workaround for needless messages after cancel settings
+			self.old_configReportActiveMenu = config.hdmicec.report_active_menu.value
+			self.old_configTVstate = config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)
+			#
 			config.hdmicec.report_active_menu.addNotifier(self.configReportActiveMenu, initial_call = False)
 			config.hdmicec.check_tv_state.addNotifier(self.configTVstate, initial_call = False)
 			config.hdmicec.tv_standby_notinputactive.addNotifier(self.configTVstate, initial_call = False)
@@ -137,16 +141,11 @@ class HdmiCec:
 			cmd = message.getCommand()
 			length = message.getData(data, len(data))
 			address = message.getAddress()
-			#print '[HdmiCec] messageReceived from address: %s (0x%02x)' %(address, address)
 
 			#// workaround for wrong address vom driver (e.g. hd51, message comes from tv -> address is only sometimes 0, dm920, same tv -> address is always 0)
-			if cmd != 0x8f or address == 0:
-				self.messageCounter = 0
-			elif cmd == 0x8f:
-				self.messageCounter += 1
-				if self.messageCounter > 3:
-					self.messageCounter = 0
-					address = 0
+			if address > 15:
+				address = 0
+				print "[HdmiCec] workaround for wrong received address data enabled"
 			#//
 
 			if cmd == 0x00: # feature abort
@@ -182,7 +181,7 @@ class HdmiCec:
 						self.sendMessage(address, 'menuinactive')
 					else:
 						self.sendMessage(address, 'menuactive')
-			elif cmd == 0x90: # report power state
+			elif address == 0 and cmd == 0x90: # report power state from the tv
 				if data[0] == '\x00':
 					self.tv_powerstate = "on"
 				elif data[0] == '\x01':
@@ -197,7 +196,7 @@ class HdmiCec:
 					self.firstrun = False
 				else:
 					self.checkTVstate()
-			elif cmd == 0x36: # handle standby request from the tv
+			elif address == 0 and cmd == 0x36: # handle standby request from the tv
 				if config.hdmicec.handle_tv_standby.value != 'disabled':
 					self.handleTVRequest('tvstandby')
 				self.checkTVstate('tvstandby')
@@ -236,26 +235,21 @@ class HdmiCec:
 					self.checkTVstate('activesource')
 
 			# handle wakeup requests from the tv
-			if cmd == 0x44 and data[0] in ('\x40', '\x6D'): # handle wakeup from tv hdmi-cec menu (e.g. panasonic tv apps, viera link)
+			if address == 0 and cmd == 0x44 and data[0] in ('\x40', '\x6D'): # handle wakeup from tv hdmi-cec menu (e.g. panasonic tv apps, viera link)
 				self.wakeup()
 			elif not checkstate and config.hdmicec.handle_tv_wakeup.value != 'disabled':
-				if cmd == 0x04 and config.hdmicec.handle_tv_wakeup.value == "wakeup":
-					self.wakeup()
-				elif cmd == 0x80 and config.hdmicec.handle_tv_wakeup.value == "routingrequest":
+				if address == 0:
+					if ((cmd == 0x04 and config.hdmicec.handle_tv_wakeup.value == "wakeup") or 
+						(cmd == 0x85 and config.hdmicec.handle_tv_wakeup.value == "sourcerequest") or
+						(cmd == 0x46 and config.hdmicec.handle_tv_wakeup.value == "osdnamerequest") or 
+						(cmd != 0x36 and config.hdmicec.handle_tv_wakeup.value == "activity")):
+						self.wakeup()
+					elif cmd == 0x84 and config.hdmicec.handle_tv_wakeup.value == "tvreportphysicaladdress":
+						if (ord(data[0]) * 256 + ord(data[1])) == 0 and ord(data[2]) == 0:
+							self.wakeup()
+				elif (cmd == 0x80 and config.hdmicec.handle_tv_wakeup.value == "routingrequest") or (cmd == 0x86 and config.hdmicec.handle_tv_wakeup.value == "streamrequest"):
 					if active:
 						self.wakeup()
-				elif cmd == 0x84 and config.hdmicec.handle_tv_wakeup.value == "tvreportphysicaladdress":
-					if (ord(data[0]) * 256 + ord(data[1])) == 0 and ord(data[2]) == 0:
-						self.wakeup()
-				elif cmd == 0x85 and config.hdmicec.handle_tv_wakeup.value == "sourcerequest":
-					self.wakeup()
-				elif cmd == 0x86 and config.hdmicec.handle_tv_wakeup.value == "streamrequest":
-					if active:
-						self.wakeup()
-				elif cmd == 0x46 and config.hdmicec.handle_tv_wakeup.value == "osdnamerequest":
-					self.wakeup()
-				elif cmd != 0x36 and config.hdmicec.handle_tv_wakeup.value == "activity":
-					self.wakeup()
 
 	def sendMessage(self, address, message):
 		if config.hdmicec.enabled.value:
@@ -325,19 +319,18 @@ class HdmiCec:
 			elif message == "powerstate":
 				cmd = 0x8f
 			if cmd:
-				sendSlower = self.sendSlower()
-				if int(config.hdmicec.minimum_send_interval.value) + sendSlower != 0 and (message != "standby" or (config.hdmicec.workaround_activesource.value and self.what == 'on')): # Use no interval time when message is standby. usefull for Panasonic TV
+				if config.misc.DeepStandby.value: # no delay for messages before go in to deep-standby
+					eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
+				else:
 					self.queue.append((address, cmd, data))
 					if not self.wait.isActive():
-						self.wait.start(int(config.hdmicec.minimum_send_interval.value) + sendSlower, True)
-				else:
-					eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
+						self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
 
 	def sendCmd(self):
 		if len(self.queue):
 			(address, cmd, data) = self.queue.pop(0)
 			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
-			self.wait.start(int(config.hdmicec.minimum_send_interval.value) + self.sendSlower(), True)
+			self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
 
 	def sendMessages(self, messages):
 		self.firstrun = False
@@ -352,7 +345,7 @@ class HdmiCec:
 			self.sendMessage(address, message)
 			sendCnt += 1
 		if sendCnt:
-			self.repeatTimer.start((int(config.hdmicec.minimum_send_interval.value)+self.sendSlower())*len(messages)+1000, True)
+			self.repeatTimer.start((int(config.hdmicec.minimum_send_interval.value)*(len(messages)+1)+self.sendSlower()), True)
 
 	def repeatMessages(self):
 		if len(self.queue):
@@ -370,7 +363,9 @@ class HdmiCec:
 			self.checkTVstate(self.what)
 
 	def sendSlower(self):
-		return int(config.hdmicec.messages_repeat_slowdown.value) * self.repeatCounter
+		if int(config.hdmicec.messages_repeat.value) and self.repeatCounter != int(config.hdmicec.messages_repeat.value):
+			return int(config.hdmicec.messages_repeat_slowdown.value) * (self.repeatCounter or 1)
+		return 0
 
 	def wakeupMessages(self):
 		self.handleTimerStop()
@@ -433,7 +428,7 @@ class HdmiCec:
 
 				if config.hdmicec.control_receiver_standby.value:
 					self.messages.append((5, "keypoweroff"))
-					self.messages.append((5, "standby"))
+					#self.messages.append((5, "standby"))
 
 				self.sendMessages(self.messages)
 
@@ -614,6 +609,8 @@ class HdmiCec:
 			self.volumeForwardingEnabled = False
 
 	def configReportActiveMenu(self, configElement):
+		if self.old_configReportActiveMenu == config.hdmicec.report_active_menu.value: return
+		self.old_configReportActiveMenu = config.hdmicec.report_active_menu.value
 		if config.hdmicec.report_active_menu.value:
 			self.sendMessage(0, 'sourceactive')
 			self.sendMessage(0, 'menuactive')
@@ -621,7 +618,9 @@ class HdmiCec:
 			self.sendMessage(0, 'menuinactive')
 
 	def configTVstate(self, configElement):
-		if not self.sendMessagesIsActive() and (config.hdmicec.check_tv_state.value or (config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value)):
+		if self.old_configTVstate == (config.hdmicec.check_tv_state.value or config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)): return
+		self.old_configTVstate = config.hdmicec.check_tv_state.value or config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)
+		if not self.sendMessagesIsActive() and self.old_configTVstate:
 			self.sendMessage(0, 'powerstate')
 			self.sendMessage(0, 'routinginfo')
 
