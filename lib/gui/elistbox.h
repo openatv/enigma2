@@ -196,6 +196,9 @@ private:
 	eListboxStyle m_style;
 	ePtr<gPixmap> m_scrollbarpixmap, m_scrollbarbackgroundpixmap;
 	ePtr<gPixmap> m_scrollbarsliderpixmap;
+#ifdef USE_LIBVUGLES2
+	long m_dir;
+#endif
 #endif
 };
 
