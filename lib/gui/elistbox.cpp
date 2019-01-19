@@ -2,6 +2,9 @@
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gui/eslider.h>
 #include <lib/actions/action.h>
+#ifdef USE_LIBVUGLES2
+#include "vuplus_gles.h"
+#endif
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
@@ -110,7 +113,9 @@ void eListbox::moveSelection(long dir)
 	int oldsel = m_selected;
 	int prevsel = oldsel;
 	int newsel;
-
+#ifdef USE_LIBVUGLES2
+	m_dir = dir;
+#endif
 	switch (dir)
 	{
 	case moveEnd:
@@ -385,7 +390,14 @@ int eListbox::event(int event, void *data, void *data2)
 
 			if (!entry_clip_rect.empty())
 				m_content->paint(painter, *style, ePoint(xoffset, y), m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
-
+#ifdef USE_LIBVUGLES2
+			if (m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled) {
+				ePoint pos = getAbsolutePosition();
+				painter.sendShowItem(m_dir, ePoint(pos.x(), pos.y() + y), eSize(m_scrollbar && m_scrollbar->isVisible() ? size().width() - m_scrollbar->size().width() : size().width(), m_itemheight));
+				gles_set_animation_listbox_current(pos.x(), pos.y() + y, m_scrollbar && m_scrollbar->isVisible() ? size().width() - m_scrollbar->size().width() : size().width(), m_itemheight);
+				m_dir = justCheck;
+			}
+#endif
 				/* (we could clip with entry_clip_rect, but
 				   this shouldn't change the behavior of any
 				   well behaving content, so it would just
