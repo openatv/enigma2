@@ -666,6 +666,30 @@ void gPainter::sendHide(ePoint point, eSize size)
 }
 
 #ifdef USE_LIBVUGLES2
+void gPainter::sendShowItem(long dir, ePoint point, eSize size)
+{
+       if ( m_dc->islocked() )
+               return;
+       gOpcode o;
+       o.opcode=gOpcode::sendShowItem;
+       o.dc = m_dc.grabRef();
+       o.parm.setShowItemInfo = new gOpcode::para::psetShowItemInfo;
+       o.parm.setShowItemInfo->dir = dir;
+       o.parm.setShowItemInfo->point = point;
+       o.parm.setShowItemInfo->size = size;
+       m_rc->submit(o);
+}
+void gPainter::setFlush(bool val)
+{
+       if ( m_dc->islocked() )
+               return;
+       gOpcode o;
+       o.opcode=gOpcode::setFlush;
+       o.dc = m_dc.grabRef();
+       o.parm.setFlush = new gOpcode::para::psetFlush;
+       o.parm.setFlush->enable = val;
+       m_rc->submit(o);
+}
 void gPainter::setView(eSize size)
 {
 	if ( m_dc->islocked() )
@@ -895,6 +919,10 @@ void gDC::exec(const gOpcode *o)
 	case gOpcode::sendHide:
 		break;
 #ifdef USE_LIBVUGLES2
+	case gOpcode::sendShowItem:
+		break;
+	case gOpcode::setFlush:
+		break;
 	case gOpcode::setView:
 		break;
 #endif
