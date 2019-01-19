@@ -64,8 +64,8 @@ msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
 msgid "Even if a 'wakeup' power timer starting?"
 msgstr "Auch wenn ein 'Aufwecken' Power-Timer startet?"
 
-msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
-msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle Kommandos ausgeführt werden. Dies erfolgt in einem langsameren Sendeintervall."
+msgid "Try to send repeated commands if not all commands are executed.\n"
+msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle Kommandos ausgeführt werden.\n"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(z.Bsp. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
@@ -79,8 +79,8 @@ msgstr "Überprüfe den Betriebszustand vom TV"
 msgid "Handle input from TV"
 msgstr "TV-Eingänge verwalten"
 
-msgid "Try to slow down the send interval if not all commands are executed.\n"
-msgstr "Versuchen Sie das Sendeintervall zu verlangsamen wenn nicht alle Kommandos ausgeführt werden.\n"
+msgid "Try to slow down the send interval if not all commands are executed."
+msgstr "Versuchen Sie das Sendeintervall zu verlangsamen wenn nicht alle Kommandos ausgeführt werden."
 
 msgid "Time delay until standby or deep standby"
 msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
@@ -88,8 +88,8 @@ msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'"
 
-msgid "Slowing down for the send interval"
-msgstr "Verlangsamung des Sendeintervalles"
+msgid "Time delay for the repeated transmission"
+msgstr "Zeitverzögerung für die wiederholte Übertragung"
 
 msgid "Repeat the standby commands?"
 msgstr "Auch die Standby-Kommandos wiederholen?"
@@ -97,8 +97,14 @@ msgstr "Auch die Standby-Kommandos wiederholen?"
 msgid "Is not necessary in most cases."
 msgstr "Ist in den meisten Fällen nicht erforderlich."
 
-msgid "The time is multiplied by the repeat counter and added to the minimum send interval."
-msgstr "Die Zeit wird mit dem Wiederholungszähler multipliziert und zum minimalen Sendeintervall addiert."
+msgid "The time is multiplied by the current repeat counter."
+msgstr "Die Zeit wird mit dem aktuellen Wiederholungszähler multipliziert."
+
+msgid "Advanced Settings"
+msgstr "Erweiterte Einstellungen"
+
+msgid "Load Default Settings"
+msgstr "Standardeinstellungen laden"
 
 msgid "%d sec"
 msgstr "%d sek"
