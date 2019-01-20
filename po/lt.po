@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-16 23:30+0300\n"
-"PO-Revision-Date: 2019-01-17 19:26+0200\n"
+"POT-Creation-Date: 2019-01-19 22:10+0300\n"
+"PO-Revision-Date: 2019-01-20 13:36+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -21,7 +21,7 @@ msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas : pasirinkite 4 PIP kanalą"
 
 msgid "  Red key : Show/Hide channel name"
-msgstr "  Raudonas mygtukas: rodyti / slėpti kanalo pavadinimą"
+msgstr "  Raudonas mygtukas: rodyti/slėpti kanalo pavadinimą"
 
 msgid "  REC  "
 msgstr "  ĮRAŠ.  "
@@ -1432,6 +1432,9 @@ msgstr "Išplėstiniai nustatymai"
 
 msgid "Advanced restore"
 msgstr "Išplėstinis atkūrimas"
+
+msgid "Advanced Settings"
+msgstr "Papildomi nustatymai"
 
 msgid "Advanced software"
 msgstr "Išplėstinė programinė įranga"
@@ -4968,6 +4971,9 @@ msgstr "Įjungti atsarginį nuotolinį imtuvą"
 msgid "enable favourite edit"
 msgstr "įjungti mėgstamiausių redagavimą"
 
+msgid "Enable Focus Animation"
+msgstr "Įjungti fokusavimo animaciją"
+
 msgid "Enable freesat EPG"
 msgstr "Įjungti freesat EPG"
 
@@ -7437,6 +7443,9 @@ msgstr "LNB/Perjungimo pasikrovimo laikas [msek.]"
 msgid "Load"
 msgstr "Įkėlimas"
 
+msgid "Load Default Settings"
+msgstr "Įkelkite numatytuosius nustatymus"
+
 msgid "Load EPG"
 msgstr "Įkelti EPG"
 
@@ -7803,6 +7812,9 @@ msgstr "minutė"
 msgid "minutes"
 msgstr "minučių"
 
+msgid "Miscellaneous languages"
+msgstr "Įvairios kalbos"
+
 msgid ""
 "Misconfigured unicable connection from tuner %s to tuner %s!\n"
 "Tuner %s option \"connected to\" are disabled now"
@@ -8037,6 +8049,9 @@ msgstr "Daugialypė terpė"
 
 msgid "multinorm"
 msgstr "multinorminis"
+
+msgid "Multiple languages"
+msgstr "Kelios kalbos"
 
 msgid "Multiple service support"
 msgstr "Kelių kanalų palaikymas"
@@ -11084,6 +11099,9 @@ msgstr "Samba valdymas"
 msgid "Same as in active"
 msgstr "Kaip ir aktyvus"
 
+msgid "Same behavior as current animation"
+msgstr "Tokia pati elgsena kaip ir dabartinė animacija"
+
 msgid "Same resolution as skin"
 msgstr "Rezoliucija, kaip ir temoje"
 
@@ -13059,9 +13077,6 @@ msgstr "Lėtas"
 msgid "Slow motion speeds"
 msgstr "Sulėtinto judėjimo greitis"
 
-msgid "Slowing down for the send interval"
-msgstr "Siuntimo intervalo lėtėjimas"
-
 msgid "Small progress"
 msgstr "Nedidelė pažanga"
 
@@ -14194,6 +14209,9 @@ msgstr ""
 msgid "The status of the current update could not be checked because http://www.opena.tv could not be reached for some reason"
 msgstr "Dabartinio atnaujinimo būsenos negalima patikrinti, nes http://www.opena.tv nepasiekiama dėl kažkokios tai priežasties"
 
+msgid "The time is multiplied by the current repeat counter."
+msgstr "Laikas padauginamas iš dabartinio pakartojimo skaitiklio."
+
 msgid "The time is multiplied by the repeat counter and added to the minimum send interval."
 msgstr "Laikas padauginamas iš kartojimo skaitiklio ir pridedamas prie minimalaus siuntimo intervalo."
 
@@ -14682,6 +14700,9 @@ msgstr "Laiką"
 msgid "Time between start attempts (sec.)"
 msgstr "Laikas tarp bandymų paleisti (sek.)"
 
+msgid "Time delay for the repeated transmission"
+msgstr "Laiko delsa pakartotiniam perdavimui"
+
 msgid "Time delay until standby or deep standby"
 msgstr "Laiko delsa iki budėjimo arba gilaus budėjimo režimo"
 
@@ -15014,9 +15035,7 @@ msgid "Translations"
 msgstr "Vertimai"
 
 msgid "TRANSLATOR_INFO"
-msgstr ""
-"Audronis Grincevičius (ADGA) Lietuva,\n"
-"adga45@gmail.com, 2019-01-17"
+msgstr "Adga P&C 2019-01-20, Lietuva"
 
 msgid "Transmission mode"
 msgstr "Perdavimo būdas"
@@ -15069,11 +15088,11 @@ msgstr "Bandoma rasti veikiančius transponderius antžeminės televizijos tinkl
 msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
 msgstr "Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir išlaikyti imtuvo prieinamumą."
 
-msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
-msgstr "Pabandykite siųsti pakartotines komandas, jei ne visos komandos yra įvykdytos. Tai atliekama lėtesniu siuntimo intervalu."
+msgid "Try to send repeated commands if not all commands are executed.\n"
+msgstr "Pabandykite siųsti pakartotines komandas, jei ne visos komandos vykdomos.\n"
 
-msgid "Try to slow down the send interval if not all commands are executed.\n"
-msgstr "Bandyti sulėtinti siuntimo intervalą, jei ne visos komandos yra vykdomos.\n"
+msgid "Try to slow down the send interval if not all commands are executed."
+msgstr "Pabandykite sulėtinti siuntimo intervalą, jei ne visos komandos vykdomos."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
@@ -18016,6 +18035,9 @@ msgstr "Zambija"
 
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
+
+#~ msgid "Slowing down for the send interval"
+#~ msgstr "Siuntimo intervalo lėtėjimas"
 
 #~ msgid "Configure if behind the subtitles a background is shown."
 #~ msgstr "Konfigūruokite, ar už subtitrų bus rodomas fonas."
