@@ -46,7 +46,7 @@ fi
 if [ -x @bindir@/showiframe ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ ! $stbcheck == "u5" ]; then
+		if [ ! $stbcheck == "u5" ] && [ ! $stbcheck == "u4" ]; then
 			killall -9 showiframe; sleep 1
 		fi
 	else
@@ -164,7 +164,7 @@ ret=$?
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ $stbcheck == "u5" ]; then
+		if [ $stbcheck == "u5" ] || [ $stbcheck == "u4" ]; then
 			killall -9 showiframe; sleep 5
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`
