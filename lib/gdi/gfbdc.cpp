@@ -460,4 +460,6 @@ void setAnimation_current(int a) {
 void setAnimation_speed(int speed) {
 	CFile::writeInt("/proc/stb/fb/animation_speed", speed);
 }
+
+void setAnimation_current_listbox(int a) {}
 #endif
