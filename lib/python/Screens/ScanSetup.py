@@ -459,7 +459,7 @@ class TerrestrialTransponderSearchSupport:
 						parm.plp_id = int(plp_id)
 						self.__tlist.append(parm)
 
-			tmpstr = _("Try to find used Transponders in terrestrial network.. please wait...")
+			tmpstr = _("Try to find used transponders in terrestrial network.. please wait...")
 			tmpstr += "\n\n"
 			tmpstr += data[1][:-3]
 			tmpstr += " kHz "
