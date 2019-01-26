@@ -118,8 +118,10 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		if cur and (len(cur) > 2 and cur[2] == 'refreshlist' or len(cur) > 3 and cur[3] == 'refreshlist'):
 			if config.hdmicec.default_settings.value:
 				for x in self["config"].list:
+					if x[0] == _("Enabled"):
+						continue
 					x[1].setValue(x[1].default)
-				config.hdmicec.enabled.setValue(True)
+					x[1].save()
 				self.keyUp()
 			self.createSetup()
 		for x in self.onChangedEntry:
