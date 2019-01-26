@@ -28,7 +28,7 @@
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,30" zPosition="1" size="120,34">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,30" zPosition="1" size="120,34">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,False,CheckSourceBoolean</convert>
@@ -36,7 +36,7 @@
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="120,25" text="  REC  ">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,RecBlink,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="120,25" text="  REC  ">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,Rec,CheckSourceBoolean</convert>
@@ -133,7 +133,15 @@
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,4" zPosition="1" size="120,64" text=" ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide">Blink</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="120,25" text="  REC  ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,RecBlink,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="120,25" text="  REC  ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Rec,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
 
