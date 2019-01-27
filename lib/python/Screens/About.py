@@ -17,7 +17,7 @@ from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
 
-from os import path
+from os import path,popen
 from re import search
 
 import time
@@ -85,7 +85,7 @@ def getAboutText():
 		cpuMHz = "   (1,5 GHz)"
 	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
 		cpuMHz = "   (1,3 GHz)"
-	elif getMachineBuild() in ('u51','u5','u53','u52','u54','u55','u5pvr','h9','h9combo','cc1','sf8008','sf8008s','sf8008t','hd60','hd61','i55plus','ustym4kpro','v8plus','multibox'):
+	elif getMachineBuild() in ('gbmv200','u51','u5','u53','u52','u54','u55','u5pvr','h9','h9combo','cc1','sf8008','hd60','hd61','i55plus','ustym4kpro','v8plus','multibox'):
 		cpuMHz = "   (1,6 GHz)"
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		cpuMHz = "   (1,7 GHz)"
@@ -126,7 +126,7 @@ def getAboutText():
 		f = open('/boot/bootname', 'r')
 		bootname = f.readline().split('=')[1]
 		f.close()
-	if getMachineBuild() in ('cc1','sf8008','sf8008s','sf8008t','ustym4kpro'):
+	if getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro'):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(5)
@@ -184,7 +184,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('multibox','vuduo4k','v8plus','ustym4kpro','hd60','hd61','i55plus','osmio4k','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u54','u55','u51','cc1','sf8008','sf8008s','sf8008t'):
+	if getMachineBuild() not in ('gbmv200','vuduo4k','v8plus','ustym4kpro','hd60','hd61','i55plus','osmio4k','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u54','u55','u51','cc1','sf8008'):
 		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
@@ -694,6 +694,22 @@ class SystemNetworkInfo(Screen):
 			})
 
 	def createscreen(self):
+		def netspeed():
+			netspeed=""
+			for line in popen('ethtool eth0 |grep Speed','r'):
+				line = line.strip().split(":")
+				line =line[1].replace(' ','')
+				netspeed += line
+				return str(netspeed)
+
+		def netspeed_eth1():
+			netspeed=""
+			for line in popen('ethtool eth1 |grep Speed','r'):
+				line = line.strip().split(":")
+				line =line[1].replace(' ','')
+				netspeed += line
+				return str(netspeed)
+
 		self.AboutText = ""
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
@@ -703,6 +719,7 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('hwaddr'):
 				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
+			self.AboutText += _("Network Speed:") + "\t" + netspeed() + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
@@ -712,6 +729,7 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
 			if eth1.has_key('hwaddr'):
 				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
+			self.AboutText += _("Network Speed:") + "\t" + netspeed_eth1() + "\n"
 			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
