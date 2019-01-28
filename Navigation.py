@@ -258,6 +258,9 @@ class Navigation:
 			x(rec_service, event)
 
 	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True):
+		if Screens.Standby.inStandby:
+			print "ignore request to play service when in standby"
+			return 1
 		oldref = self.currentlyPlayingServiceOrGroup
 		if ref and oldref and ref == oldref and not forceRestart:
 			print "ignore request to play already running service(1)"
