@@ -192,6 +192,7 @@ class ServiceInfo(Screen):
 						 "is_id"                : _("Input Stream ID"),
 						 "pls_mode"             : _("PLS Mode"),
 						 "pls_code"             : _("PLS Code"),
+						 "t2mi_plp_id"             : _("T2MI PID-PLP ID"),
 						 "fec_inner"		: _("FEC"),
 						 "code_rate_lp"		: _("Coderate LP"),
 						 "code_rate_hp"		: _("Coderate HP"),
@@ -232,6 +233,7 @@ class ServiceInfo(Screen):
 		if frontendDataOrg and len(frontendDataOrg):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
 			if frontendDataOrg["tuner_type"] == "DVB-S":
+				t2mi = lambda x: None if x == -1 else str(x)
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
 						(_("System"), frontendData["system"], TYPE_TEXT),
@@ -246,7 +248,8 @@ class ServiceInfo(Screen):
 						(_("Roll-off"), frontendData.get("rolloff", None), TYPE_TEXT),
 						(_("Input Stream ID"), frontendData.get("is_id", 0), TYPE_VALUE_DEC),
 						(_("PLS Mode"), frontendData.get("pls_mode", None), TYPE_TEXT),
-						(_("PLS Code"), frontendData.get("pls_code", 0), TYPE_VALUE_DEC))
+						(_("PLS Code"), frontendData.get("pls_code", 0), TYPE_VALUE_DEC),
+						(_("T2MI PLP ID"), t2mi(frontendData.get("t2mi_plp_id", -1)), TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-C":
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
