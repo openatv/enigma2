@@ -66,6 +66,10 @@ config.hdmicec.tv_wakeup_wakeuppowertimer = ConfigYesNo(default = True)
 config.hdmicec.tv_standby_notinputactive = ConfigYesNo(default = True)
 config.hdmicec.check_tv_state = ConfigYesNo(default = False)
 config.hdmicec.workaround_activesource = ConfigYesNo(default = False)
+choicelist = []
+for i in (5,10,15,30,45,60):
+	choicelist.append(("%d" % i, _("%d sec") % i))
+config.hdmicec.workaround_turnbackon = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 config.hdmicec.advanced_settings = NoSave(ConfigYesNo(default = False))
 config.hdmicec.default_settings = NoSave(ConfigYesNo(default = False))
 
@@ -96,6 +100,7 @@ class HdmiCec:
 			self.tv_skip_messages = False
 			self.activesource = False
 			self.firstrun = True
+			self.standbytime = 0
 
 			self.sethdmipreemphasis()
 			self.checkifPowerupWithoutWakingTv() # initially write 'False' to file, see below
@@ -235,21 +240,24 @@ class HdmiCec:
 					self.checkTVstate('activesource')
 
 			# handle wakeup requests from the tv
+			wakeup = False
 			if address == 0 and cmd == 0x44 and data[0] in ('\x40', '\x6D'): # handle wakeup from tv hdmi-cec menu (e.g. panasonic tv apps, viera link)
-				self.wakeup()
+				wakeup = True
 			elif not checkstate and config.hdmicec.handle_tv_wakeup.value != 'disabled':
 				if address == 0:
 					if ((cmd == 0x04 and config.hdmicec.handle_tv_wakeup.value == "wakeup") or 
 						(cmd == 0x85 and config.hdmicec.handle_tv_wakeup.value == "sourcerequest") or
 						(cmd == 0x46 and config.hdmicec.handle_tv_wakeup.value == "osdnamerequest") or 
 						(cmd != 0x36 and config.hdmicec.handle_tv_wakeup.value == "activity")):
-						self.wakeup()
+						wakeup = True
 					elif cmd == 0x84 and config.hdmicec.handle_tv_wakeup.value == "tvreportphysicaladdress":
 						if (ord(data[0]) * 256 + ord(data[1])) == 0 and ord(data[2]) == 0:
-							self.wakeup()
-				elif (cmd == 0x80 and config.hdmicec.handle_tv_wakeup.value == "routingrequest") or (cmd == 0x86 and config.hdmicec.handle_tv_wakeup.value == "streamrequest"):
+							wakeup = True
+				if (cmd == 0x80 and config.hdmicec.handle_tv_wakeup.value == "routingrequest") or (cmd == 0x86 and config.hdmicec.handle_tv_wakeup.value == "streamrequest"):
 					if active:
-						self.wakeup()
+						wakeup = True
+			if wakeup:
+				self.wakeup()
 
 	def sendMessage(self, address, message):
 		if config.hdmicec.enabled.value:
@@ -585,6 +593,10 @@ class HdmiCec:
 				InfoBar.instance.openInfoBarSession(Screens.Standby.Standby)
 
 	def wakeup(self):
+		if int(config.hdmicec.workaround_turnbackon.value) and self.standbytime > time():
+			print '[HdmiCec] ignore wakeup for %d seconds ...' %int(self.standbytime - time())
+			return
+		self.standbytime = 0
 		self.handleTimerStop(True)
 		if Screens.Standby.inStandby:
 			print '[HdmiCec] wake up...'
@@ -594,6 +606,7 @@ class HdmiCec:
 		self.wakeupMessages()
 
 	def onEnterStandby(self, configElement):
+		self.standbytime = time() + int(config.hdmicec.workaround_turnbackon.value)
 		Screens.Standby.inStandby.onClose.append(self.onLeaveStandby)
 		self.standbyMessages()
 
