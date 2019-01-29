@@ -86,7 +86,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source, _('helptext'),'refreshlist'))
 			if config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value:
 				self.list.append(getConfigListEntry(tab + _("Switch off the TV to correct input"), config.hdmicec.workaround_activesource, _("Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"),))
-			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup, _('Choose a setting where your receiver wakes up from standby.'),'refreshlist'))
+			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup, _('Choose a setting where your receiver wakes up from standby.'),))
 			self.list.append(getConfigListEntry(_("Handle standby from TV"), config.hdmicec.handle_tv_standby, _('helptext'),'refreshlist'))
 			if config.hdmicec.advanced_settings.value: 
 				self.list.append(getConfigListEntry(_("Handle input from TV"), config.hdmicec.handle_tv_input, _('helptext'),'refreshlist'))
@@ -103,6 +103,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(tab + _("Time delay for the repeated transmission"), config.hdmicec.messages_repeat_slowdown, _('The time is multiplied by the current repeat counter.'), ))
 					self.list.append(getConfigListEntry(tab + _("Repeat the standby commands?"), config.hdmicec.messages_repeat_standby, _('Is not necessary in most cases.'),'refreshlist'))
 				self.list.append(getConfigListEntry(_("Check power and input state from TV"), config.hdmicec.check_tv_state, _('An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions.'), ))
+				self.list.append(getConfigListEntry(_("Ignore unexpectedly wakeup and stay in standby"), config.hdmicec.workaround_turnbackon, _("This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."),))
 				if fileExists("/proc/stb/hdmi/preemphasis"):
 					self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables.'),))
 
