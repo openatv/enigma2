@@ -964,7 +964,12 @@ def InitUsageConfig():
 	config.logmanager.sentfiles = ConfigLocations(default='')
 
 	config.plisettings = ConfigSubsection()
-	config.plisettings.Subservice = ConfigYesNo(default = True)
+	#config.plisettings.Subservice = ConfigYesNo(default = True)
+	config.plisettings.Subservice = ConfigSelection(default="3", choices = [
+					("0", _("No, show always the timer list")),
+					("1", _("No, show always the plugin browser")),
+					("2", _("Yes, but if not available show the timer list")),
+					("3", _("Yes, but if not available show the plugin browser"))])
 	config.plisettings.ColouredButtons = ConfigYesNo(default = False)
 	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="3", choices = [
 					("0", _("as plugin in extended bar")),

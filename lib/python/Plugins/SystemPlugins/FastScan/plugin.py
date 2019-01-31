@@ -237,6 +237,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		transponderParameters.is_id = eDVBFrontendParametersSatellite.No_Stream_Id_Filter
 		transponderParameters.pls_mode = eDVBFrontendParametersSatellite.PLS_Gold
 		transponderParameters.pls_code = 0
+		transponderParameters.t2mi_plp_id = eDVBFrontendParametersSatellite.No_T2MI_PLP_Id
 		return transponderParameters
 
 	def startScan(self):

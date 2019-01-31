@@ -504,6 +504,7 @@ public:
 	virtual int getIsId() const = 0;
 	virtual int getPLSMode() const = 0;
 	virtual int getPLSCode() const = 0;
+	virtual int getT2MIPlpId() const = 0;
 	virtual int getBandwidth() const = 0;
 	virtual int getCodeRateLp() const = 0;
 	virtual int getCodeRateHp() const = 0;
