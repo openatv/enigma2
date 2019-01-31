@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-28 01:00+0300\n"
-"PO-Revision-Date: 2019-01-28 14:58+0200\n"
+"POT-Creation-Date: 2019-01-31 13:00+0300\n"
+"PO-Revision-Date: 2019-01-31 15:36+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -6646,6 +6646,9 @@ msgstr "Ignoruoti DVB-S pavadinimų srities potinklį"
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignoruoti DVB-T pavadinimų srities potinklį"
 
+msgid "Ignore unexpectedly wakeup and stay in standby"
+msgstr "Ignoruokite netikėtą pabudimą ir likite budėjimo režime"
+
 msgid "Image"
 msgstr "Atvaizdas"
 
@@ -8617,6 +8620,12 @@ msgstr "Ne, niekada"
 
 msgid "No, scan later manually"
 msgstr "Ne, ieškoti vėliau rankiniu būdu"
+
+msgid "No, show always the plugin browser"
+msgstr "Ne, visada parodyti priedų naršyklę"
+
+msgid "No, show always the timer list"
+msgstr "Ne, visada parodykite laikmačio sąrašą"
 
 msgid "NodeID"
 msgstr "Mazgo ID"
@@ -13605,8 +13614,8 @@ msgstr "Stilius:"
 msgid "Subservice list..."
 msgstr "Subkanalų sąrašas..."
 
-msgid "Subservice mode"
-msgstr "Subkanalo režimas"
+msgid "Subservice mode (green Button)"
+msgstr "Subkanalo režimas (žalias mygtukas)"
 
 msgid "Subservices"
 msgstr "Subkanalai"
@@ -14398,6 +14407,9 @@ msgstr "Šis įrenginys jau yra prijungtas kaip HDD."
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Šis DVD RW diskas jau formatuotas - performatavimas ištrins visą šio disko turinį."
+
+msgid "This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."
+msgstr "Tai yra kai kurių įrenginių problema, kurie po persijungimo į budėjimo režimą pabunda. Kitų įrenginių pabudimo komandos bus ignoruojamos kelias sekundes."
 
 msgid "this offset will only be used if the channel has not its own volume offset"
 msgstr "ši kompensacija bus naudojama tik tada, jei kanalas neturi savos kompensacijos"
@@ -16615,6 +16627,12 @@ msgstr "Taip, padarykite atsarginę kopiją mano nustatymų!"
 
 msgid "Yes, but don't save timeshift as movie"
 msgstr "Taip, bet neišsaugoti laiko poslinkio, kaip įrašo"
+
+msgid "Yes, but if not available show the plugin browser"
+msgstr "Taip, bet jei nėra, parodyti priedų naršyklę"
+
+msgid "Yes, but if not available show the timer list"
+msgstr "Taip, bet jei nėra, parodyti laikmačio sąrašą"
 
 msgid "Yes, but save timeshift as movie and continue recording"
 msgstr "Taip, bet išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą toliau"
