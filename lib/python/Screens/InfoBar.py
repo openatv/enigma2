@@ -135,8 +135,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			else:
 				self["key_red"].setText(_("ViX EPG"))
 
-			if not config.plisettings.Subservice.value:
+			if config.plisettings.Subservice.value == "0":
 				self["key_green"].setText(_("Timers"))
+			elif config.plisettings.Subservice.value == "1":
+				self["key_green"].setText(_("Plugins"))
 			else:
 				self["key_green"].setText(_("Subservices"))
 		self["key_blue"].setText(_("Extensions"))
