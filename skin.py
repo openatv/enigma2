@@ -146,7 +146,9 @@ def skinExists(skin = False):
 skinExists()
 
 def getSkinPath():
-	primary_skin_path = config.skin.primary_skin.value.replace('skin.xml', '')
+	#primary_skin_path = config.skin.primary_skin.value.replace('skin.xml', '')
+	p = config.skin.primary_skin.value
+	primary_skin_path = p[:p.rfind('/')+1]
 	if not primary_skin_path.endswith('/'):
 		primary_skin_path = primary_skin_path + '/'
 	return primary_skin_path
