@@ -7,16 +7,26 @@ from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigNumber, ConfigSelection, ConfigSelectionNumber, getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
 
-from enigma import setAnimation_current, setAnimation_speed, setAnimation_current_listbox
+from enigma import setAnimation_current, setAnimation_speed
 
 from boxbranding import getBrandOEM
 
+if not getBrandOEM() == 'gigablue':
+	from enigma import setAnimation_current_listbox
+	
 # default = disabled
-g_default = {
-        "current": 0,
-        "speed"  : 20,
-	"listbox": "0",
-}
+if getBrandOEM() == 'gigablue':
+	g_default = {
+		"current": 0,
+		"speed"  : 20,
+		}
+else:
+	g_default = {
+		"current": 0,
+		"speed"  : 20,
+		"listbox": "0",
+		}
+
 g_max_speed = 30
 
 g_animation_paused = False
@@ -25,7 +35,8 @@ g_orig_doClose = None
 
 config.misc.window_animation_default = ConfigNumber(default=g_default["current"])
 config.misc.window_animation_speed = ConfigSelectionNumber(15, g_max_speed, 1, default=g_default["speed"])
-config.misc.listbox_animation_default = ConfigSelection(default = g_default["listbox"], choices = [ ("0", _("Disable")), ("1", _("Enable")), ("2", _("Same behavior as current animation")) ])
+if not getBrandOEM() == 'gigablue':
+	config.misc.listbox_animation_default = ConfigSelection(default = g_default["listbox"], choices = [ ("0", _("Disable")), ("1", _("Enable")), ("2", _("Same behavior as current animation")) ])
 
 class AnimationSetupConfig(ConfigListScreen, Screen):
 	skin="""
@@ -68,7 +79,8 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 		config.misc.window_animation_speed.save()
 		setAnimation_speed(int(config.misc.window_animation_speed.value))
 		config.misc.listbox_animation_default.save()
-		setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
+		if not getBrandOEM() == 'gigablue':
+			setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
 		self.close()
 
 	def keyRed(self):
@@ -79,7 +91,8 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 	def keyYellow(self):
 		global g_default
 		config.misc.window_animation_speed.value = g_default["speed"]
-		config.misc.listbox_animation_default.value = g_default["listbox"]
+		if not getBrandOEM() == 'gigablue':
+			config.misc.listbox_animation_default.value = g_default["listbox"]
 		self.makeConfigList()
 
 	def keyLeft(self):
@@ -93,8 +106,9 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 
 		entrySpeed = getConfigListEntry(_("Animation Speed"), config.misc.window_animation_speed)
 		self.entrylist.append(entrySpeed)
-		entryMoveSelection = getConfigListEntry(_("Enable Focus Animation"), config.misc.listbox_animation_default)
-		self.entrylist.append(entryMoveSelection)
+		if not getBrandOEM() == 'gigablue':
+			entryMoveSelection = getConfigListEntry(_("Enable Focus Animation"), config.misc.listbox_animation_default)
+			self.entrylist.append(entryMoveSelection)
 		self["config"].list = self.entrylist
 		self["config"].l.setList(self.entrylist)
 
@@ -191,13 +205,15 @@ class AnimationSetupScreen(Screen):
 			config.misc.window_animation_default.value = key
 			config.misc.window_animation_default.save()
 			setAnimation_current(key)
-			setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
+			if not getBrandOEM() == 'gigablue':
+				setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
 		self.close()
 
 	def keyclose(self):
 		setAnimation_current(config.misc.window_animation_default.value)
 		setAnimation_speed(int(config.misc.window_animation_speed.value))
-		setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
+		if not getBrandOEM() == 'gigablue':
+			setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
 		self.close()
 
 	def config(self):
@@ -251,7 +267,8 @@ def startAnimationSetup(menuid):
 def sessionAnimationSetup(session, reason, **kwargs):
 	setAnimation_current(config.misc.window_animation_default.value)
 	setAnimation_speed(int(config.misc.window_animation_speed.value))
-	setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
+	if not getBrandOEM() == 'gigablue':
+		setAnimation_current_listbox(int(config.misc.listbox_animation_default.value))
 
 	global g_orig_show, g_orig_doClose
 	if g_orig_show is None:

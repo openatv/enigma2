@@ -297,6 +297,7 @@
 		<item level="0" text="LED Normal" description="LED brightness during normal operations.">config.lcd.ledbrightness</item>
 		<item level="0" text="LED Standby" description="LED brightness during standby.">config.lcd.ledbrightnessstandby</item>
 		<item level="0" text="LED Deep Standby" description="LED brightness during deep standby.">config.lcd.ledbrightnessdeepstandby</item>
+		<item level="0" requires="PowerLed" text="Turn on the power LED." description="Power LED can be turned on or off here.">config.usage.lcd_powerled</item>
 		<item level="0" requires="StandbyPowerLed" text="Power LED State in Standby" description="Power LED state during standby.">config.usage.lcd_standbypowerled</item>
 		<item level="0" requires="SuspendPowerLed" text="Power LED State in Deep-Standby" description="Power LED state during deep-standby.">config.usage.lcd_deepstandbypowerled</item>
 		<item level="0" requires="7segment" text="Show in Standby" description="This option allows you choose how to display the Time or nothing in Standby">config.usage.show_in_standby</item>
