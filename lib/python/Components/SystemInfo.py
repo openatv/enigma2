@@ -44,6 +44,7 @@ SystemInfo["FBLCDDisplay"] = fileCheck("/proc/stb/fb/sd_detach")
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
 SystemInfo["Fan"] = fileCheck("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileCheck("/proc/stb/fp/fan_pwm")
+SystemInfo["PowerLed"] = fileExists("/proc/stb/power/powerled")
 SystemInfo["StandbyPowerLed"] = fileExists("/proc/stb/power/standbyled")
 SystemInfo["SuspendPowerLed"] = fileExists("/proc/stb/power/suspendled")
 SystemInfo["LEDButtons"] = getBoxType() == 'vuultimo'
