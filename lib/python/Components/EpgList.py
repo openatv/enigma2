@@ -56,12 +56,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,13,25,25,2))
 			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240,180,120,30))
 			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (120,15,1))
-			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (60,190))
+			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (75,225))
 		else:
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (1,11,23,23,1))
 			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (160,120,80,20))
 			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (80,10,1))
-			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (40,130))
+			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (50,150))
 
 		self.cur_event = None
 		self.cur_service = None
