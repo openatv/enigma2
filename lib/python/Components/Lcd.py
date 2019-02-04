@@ -428,6 +428,12 @@ def InitLcd():
 		def setLEDblinkingtime(configElement):
 			ilcd.setLEDBlinkingTime(configElement.value);
 
+		def setPowerLEDstate(configElement):
+			if fileExists("/proc/stb/power/powerled"):
+				f = open("/proc/stb/power/powerled", "w")
+				f.write(configElement.value)
+				f.close()
+
 		def setPowerLEDstanbystate(configElement):
 			if fileExists("/proc/stb/power/standbyled"):
 				f = open("/proc/stb/power/standbyled", "w")
@@ -460,6 +466,9 @@ def InitLcd():
 
 		config.usage.vfd_xcorevfd = ConfigSelection(default = "0", choices = [("0", _("12 character")), ("1", _("8 character"))])
 		config.usage.vfd_xcorevfd.addNotifier(setXcoreVFD)
+
+		config.usage.lcd_powerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_powerled.addNotifier(setPowerLEDstate)
 
 		config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)

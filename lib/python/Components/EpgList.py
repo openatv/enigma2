@@ -56,10 +56,12 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,13,25,25,2))
 			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240,180,120,30))
 			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (120,15,1))
+			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (75,225))
 		else:
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (1,11,23,23,1))
 			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (160,120,80,20))
 			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (80,10,1))
+			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (50,150))
 
 		self.cur_event = None
 		self.cur_service = None
@@ -693,9 +695,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.datetime_rect = Rect(0, 0, width, dh)
 			self.descr_rect = Rect(0, dh, width, height-dh)
 		else:
-			self.weekday_rect = Rect(0, 0, float(width * 10) / 100, height)
-			self.datetime_rect = Rect(self.weekday_rect.width(), 0, float(width * 24) / 100, height)
-			self.descr_rect = Rect(self.datetime_rect.left() + self.datetime_rect.width(), 0, float(width * 66) / 100, height)
+			self.weekday_rect = Rect(0, 0, self.column_weekday, height)
+			self.datetime_rect = Rect(self.column_weekday, 0, self.column_datetime, height)
+			self.descr_rect = Rect(self.column_weekday + self.column_datetime, 0, width - (self.column_weekday + self.column_datetime), height)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
