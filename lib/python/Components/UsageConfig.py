@@ -369,29 +369,14 @@ def InitUsageConfig():
 	nims_multi = [("-1", _("auto"))]
 	rec_nims_multi = [("-2", _("Disabled")), ("-1", _("auto"))]
 
-	for i in range(0,len(nimmanager.nim_slots)):
-		a = 2**i
-		slot_name = nimmanager.nim_slots[i].getSlotName()
-		nims_multi.append((str(a), slot_name))
-		rec_nims_multi.append((str(a), slot_name))
-		b = 0
-		for x in range(i+1,len(nimmanager.nim_slots)):
-			b += 2**x
-			name = nimmanager.nim_slots[x].getSlotName()
-			if len(name.split()) == 2:
-				name = name.split()[1]
-			slot_name += ("+" + name)
-			nims_multi.append((str(a+b), slot_name))
-			rec_nims_multi.append((str(a+b), slot_name))
-
-	#for i in xrange(1,2**min(12,len(nimmanager.nim_slots))):
-	#	slot_names = ""
-	#	for x in xrange(min(12,len(nimmanager.nim_slots))):
-	#		if (i & 2**x):
-	#			if slot_names != "": slot_names = slot_names + "+"
-	#			slot_names = slot_names + nimmanager.nim_slots[x].getSlotName()
-	#	nims_multi.append((str(i), slot_names))
-	#	rec_nims_multi.append((str(i), slot_names))
+	for i in xrange(1,2**min(12,len(nimmanager.nim_slots))):
+		slot_names = ""
+		for x in xrange(min(12,len(nimmanager.nim_slots))):
+			if (i & 2**x):
+				if slot_names != "": slot_names = slot_names + "+"
+				slot_names = slot_names + nimmanager.nim_slots[x].getSlotName()
+		nims_multi.append((str(i), slot_names))
+		rec_nims_multi.append((str(i), slot_names))
 
 	priority_strictly_choices = [("no", _("No")), ("yes", _("Yes")), ("while_available", _("While available"))]
 	config.usage.frontend_priority                       = ConfigSelection(default = "-1", choices = nims)
