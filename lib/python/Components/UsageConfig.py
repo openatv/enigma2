@@ -370,21 +370,19 @@ def InitUsageConfig():
 	rec_nims_multi = [("-2", _("Disabled")), ("-1", _("auto"))]
 
 	for i in range(0,len(nimmanager.nim_slots)):
-		a = str(2**i)
+		a = 2**i
 		slot_name = nimmanager.nim_slots[i].getSlotName()
-		nims_multi.append((a, slot_name))
-		rec_nims_multi.append((a, slot_name))
-		b = str(bin(int(a)))[2:]
-		c = ''
+		nims_multi.append((str(a), slot_name))
+		rec_nims_multi.append((str(a), slot_name))
+		b = 0
 		for x in range(i+1,len(nimmanager.nim_slots)):
-			c += '1'
-			d = str(int(c+b, base=2))
+			b += 2**x
 			name = nimmanager.nim_slots[x].getSlotName()
-			if len(name.split(' ')) > 1:
-				name = name.split(' ')[1]
-			slot_name = slot_name + "+" + name
-			nims_multi.append((d, slot_name))
-			rec_nims_multi.append((d, slot_name))
+			if len(name.split()) == 2:
+				name = name.split()[1]
+			slot_name += ("+" + name)
+			nims_multi.append((str(a+b), slot_name))
+			rec_nims_multi.append((str(a+b), slot_name))
 
 	#for i in xrange(1,2**min(12,len(nimmanager.nim_slots))):
 	#	slot_names = ""
