@@ -139,6 +139,34 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+
 before_install:
     - eval "${MATRIX_EVAL}"
     - curl -L https://people.freedesktop.org/~slomo/gstreamer.tar.gz | tar xz
