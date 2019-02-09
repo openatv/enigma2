@@ -140,9 +140,9 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
 
 		self.timerentry_repeated = ConfigSelection(default=repeated, choices=[("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-		self.timerrntry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits=(10, 300))
+		self.timerentry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits=(10, 300))
 		self.timerentry_autosleeprepeat = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=autosleeprepeat)
-		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=autosleepinstandbyonly)
+		self.timerentry_autosleepinstandbyonly = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=autosleepinstandbyonly)
 
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
@@ -164,8 +164,8 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 
 		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
 			if self.timerentry_timertype.value == "autodeepstandby":
-				self.list.append(getConfigListEntry(_("Auto deep standby timers only active when in standby."), self.timerrntry_autosleepinstandbyonly, _("If enabled, the timer will only be active when your %s %s is in standby mode.") % (getMachineBrand(), getMachineName())))
-			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerrntry_autosleepdelay, _("\"Auto\" timers will try to shut down your %s %s when the remote control hasn't been used for longer than this time. In minutes.") % (getMachineBrand(), getMachineName())))
+				self.list.append(getConfigListEntry(_("Auto deep standby timers only active when in standby."), self.timerentry_autosleepinstandbyonly, _("If enabled, the timer will only be active when your %s %s is in standby mode.") % (getMachineBrand(), getMachineName())))
+			self.list.append(getConfigListEntry(_("Sleep delay"), self.timerentry_autosleepdelay, _("\"Auto\" timers will try to shut down your %s %s when the remote control hasn't been used for longer than this time. In minutes.") % (getMachineBrand(), getMachineName())))
 			self.list.append(getConfigListEntry(_("Repeat type"), self.timerentry_autosleeprepeat, _("A repeating timer or just once?")))
 			self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))
 			self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Allow the timer to perform a later completion action. Otherwise the \"After event\" action is performed immediately after the \"Timer type\" action."))
@@ -278,8 +278,8 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
 			self.timer.begin = int(time()) + 10
 			self.timer.end = self.timer.begin
-			self.timer.autosleepinstandbyonly = self.timerrntry_autosleepinstandbyonly.value
-			self.timer.autosleepdelay = self.timerrntry_autosleepdelay.value
+			self.timer.autosleepinstandbyonly = self.timerentry_autosleepinstandbyonly.value
+			self.timer.autosleepdelay = self.timerentry_autosleepdelay.value
 			self.timer.autosleeprepeat = self.timerentry_autosleeprepeat.value
 		if self.timerentry_type.value == "repeated":
 			if self.timerentry_repeated.value == "daily":
