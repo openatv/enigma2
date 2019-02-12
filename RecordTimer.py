@@ -172,6 +172,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.messageStringShow = False
 		self.messageBoxAnswerPending = False
 		self.justTriedFreeingTuner = False
+		self.MountPathRetryCounter = 0
+		self.MountPathErrorNumber = 0
 
 		if descramble == 'notset' and record_ecm == 'notset':
 			if config.recording.ecm_data.value == 'descrambled+ecm':
@@ -228,21 +230,30 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				dirname = findSafeRecordPath(defaultMoviePath())
 				self.dirnameHadToFallback = True
 		if not dirname:
+			dirname = self.dirname
+			if not dirname:
+				dirname = defaultMoviePath() or '-'
+			self.log(0, ("Mount '%s' is not available." % dirname))
+			self.MountPathErrorNumber = 1
 			return False
 
-		self.MountPath = dirname
 		mountwriteable = os.access(dirname, os.W_OK)
 		if not mountwriteable:
 			self.log(0, ("Mount '%s' is not writeable." % dirname))
+			self.MountPathErrorNumber = 2
 			return False
 
 		s = os.statvfs(dirname)
 		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 			self.log(0, _("Not enough free space to record"))
+			self.MountPathErrorNumber = 3
 			return False
 		else:
 			if debug:
 				self.log(0, "Found enough free space to record")
+			self.MountPathRetryCounter = 0
+			self.MountPathErrorNumber = 0
+			self.MountPath = dirname
 			return True
 
 	def calculateFilename(self, name = None):
@@ -389,9 +400,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return False
 
 			if not self.justplay and not self.freespace():
-				message = _("Write error while recording. Disk full?\n%s") % self.name
+				if self.MountPathRetryCounter < 12:
+					self.MountPathRetryCounter += 1
+					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
+					self.log(0, ("(%d/12) ... next try in 5 seconds." % self.MountPathRetryCounter))
+					return False
+				message = _("Write error while recording. Disk %s\n%s") % ((_("not found!"), _("not writable!"), _("full?"))[self.MountPathErrorNumber-1],self.name)
 				messageboxtyp = MessageBox.TYPE_ERROR
-				timeout = 5
+				timeout = 20
 				id = "DiskFullMessage"
 				if InfoBar and InfoBar.instance:
 					InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
