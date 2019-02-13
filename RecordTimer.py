@@ -220,7 +220,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log_entries.append((int(time()), code, msg))
 		print "[TIMER]", msg
 
-	def freespace(self):
+	def freespace(self, WRITEERROR = False):
+		if WRITEERROR:
+			if findSafeRecordPath(self.MountPath) is None:
+				return ("mount '%s' is not available." % self.MountPath)
+			elif not os.access(self.MountPath, os.W_OK):
+				return ("mount '%s' is not writeable." % self.MountPath)
+			s = os.statvfs(self.MountPath)
+			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+				return ("mount '%s' has not enough free space to record." % self.MountPath)
+			else:
+				return ("unknown error.")
+
 		self.MountPath = None
 		if not self.dirname:
 			dirname = findSafeRecordPath(defaultMoviePath())
@@ -245,7 +256,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		s = os.statvfs(dirname)
 		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
-			self.log(0, _("Not enough free space to record"))
+			self.log(0, _("Mount '%s' has not enough free space to record.") % dirname)
 			self.MountPathErrorNumber = 3
 			return False
 		else:
@@ -405,7 +416,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
 					self.log(0, ("(%d/12) ... next try in 5 seconds." % self.MountPathRetryCounter))
 					return False
-				message = _("Write error while recording. Disk %s\n%s") % ((_("not found!"), _("not writable!"), _("full?"))[self.MountPathErrorNumber-1],self.name)
+				message = _("Write error at start of recording. Disk %s\n%s") % ((_("not found!"), _("not writable!"), _("full?"))[self.MountPathErrorNumber-1],self.name)
 				messageboxtyp = MessageBox.TYPE_ERROR
 				timeout = 20
 				id = "DiskFullMessage"
@@ -1012,6 +1023,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		# self.log(16, "record event %d" % event)
 		if event == iRecordableService.evRecordWriteError:
 			print "WRITE ERROR on recording, disk full?"
+			self.log(16, "WRITE ERROR while recording, %s" % self.freespace(True))
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
