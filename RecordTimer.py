@@ -1028,7 +1028,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
-			Notifications.AddPopup(text = _("Write error while recording. Disk %s") %(_("unkown error"), _("not found!"), _("not writable!"), _("full?"))[err], type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
+			Notifications.AddPopup(text = _("Write error while recording. Disk %s") %(_("unknown error!"), _("not found!"), _("not writable!"), _("full?"))[err], type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
 			# ok, the recording has been stopped. we need to properly note
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
