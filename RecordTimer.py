@@ -254,6 +254,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.MountPathErrorNumber = 2
 			return False
 
+		if not os.system('touch %s/drive.awake' % dirname):
+			os.system('rm %s/drive.awake' % dirname)
+		else:
+			self.log(0, ("Mount '%s' is not writeable." % dirname))
+			self.MountPathErrorNumber = 2
+			return False
+
 		s = os.statvfs(dirname)
 		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 			self.log(0, _("Mount '%s' has not enough free space to record.") % dirname)
@@ -1024,7 +1031,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if event == iRecordableService.evRecordWriteError:
 			msg, err = self.freespace(True)
 			self.log(16, "WRITE ERROR while recording, %s" % msg)
-			print "WRITE ERROR on recording, disk %s" % msg
+			print "WRITE ERROR on recording, %s" % msg
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
