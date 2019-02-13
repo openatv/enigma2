@@ -223,14 +223,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def freespace(self, WRITEERROR = False):
 		if WRITEERROR:
 			if findSafeRecordPath(self.MountPath) is None:
-				return ("mount '%s' is not available." % self.MountPath)
+				return ("mount '%s' is not available." % self.MountPath), 1
 			elif not os.access(self.MountPath, os.W_OK):
-				return ("mount '%s' is not writeable." % self.MountPath)
+				return ("mount '%s' is not writeable." % self.MountPath), 2
 			s = os.statvfs(self.MountPath)
 			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
-				return ("mount '%s' has not enough free space to record." % self.MountPath)
+				return ("mount '%s' has not enough free space to record." % self.MountPath), 3
 			else:
-				return ("unknown error.")
+				return ("unknown error."), 0
 
 		self.MountPath = None
 		if not self.dirname:
@@ -1022,12 +1022,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return
 		# self.log(16, "record event %d" % event)
 		if event == iRecordableService.evRecordWriteError:
-			print "WRITE ERROR on recording, disk full?"
-			self.log(16, "WRITE ERROR while recording, %s" % self.freespace(True))
+			msg, err = self.freespace(True)
+			self.log(16, "WRITE ERROR while recording, %s" % msg)
+			print "WRITE ERROR on recording, disk %s" % msg
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
-			Notifications.AddPopup(text = _("Write error while recording. Disk full?\n"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
+			Notifications.AddPopup(text = _("Write error while recording. Disk %s") %(_("unkown error"), _("not found!"), _("not writable!"), _("full?"))[err], type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
 			# ok, the recording has been stopped. we need to properly note
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
