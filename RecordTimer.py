@@ -249,12 +249,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		mountwriteable = os.access(dirname, os.W_OK)
-		if not mountwriteable:
-			self.log(0, ("Mount '%s' is not writeable." % dirname))
-			self.MountPathErrorNumber = 2
-			return False
-
-		if not os.system('touch %s/drive.awake' % dirname):
+		if mountwriteable and not os.system('touch %s/drive.awake' % dirname):
+			#info - drives (e.g. nas) it wake up not with 'os.access(dirname, os.W_OK)' or 'os.statvfs(dirname)', that's why the file is written and deleted and is thus ready to record...
 			os.system('rm %s/drive.awake' % dirname)
 		else:
 			self.log(0, ("Mount '%s' is not writeable." % dirname))
@@ -418,7 +414,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return False
 
 			if not self.justplay and not self.freespace():
-				if self.MountPathRetryCounter < 12:
+				if self.MountPathErrorNumber < 3 and self.MountPathRetryCounter < 12: # no retry if drive full
 					self.MountPathRetryCounter += 1
 					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
 					self.log(0, ("(%d/12) ... next try in 5 seconds." % self.MountPathRetryCounter))
@@ -1013,7 +1009,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def timeChanged(self):
 		old_prepare = self.start_prepare
-		self.start_prepare = self.begin - self.prepare_time
+		self.start_prepare = self.begin - config.recording.prepare_time.value #self.prepare_time
 		self.backoff = 0
 
 		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
