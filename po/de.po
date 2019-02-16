@@ -5687,7 +5687,7 @@ msgid ""
 "Please verify that you have attached a compatible WLAN device and your network is configured correctly."
 msgstr ""
 "Keinen funktionierenden WLAN-Adapter gefunden.\n"
-"Sicherstellen, dass ein kompatiblerAdapter angeschlossen und das Netzwerk richtig konfiguriert ist."
+"Sicherstellen, dass ein kompatibler Adapter angeschlossen und das Netzwerk richtig konfiguriert ist."
 
 #
 msgid ""
@@ -5695,7 +5695,7 @@ msgid ""
 " Please verify that you have attached a compatible WLAN device or enable your local network interface."
 msgstr ""
 "Keine funktionierende WLAN-Verbindung gefunden.\n"
-"Sicherstellen, dass ein kompatiblerAdapter angeschlossen und das Netzwerk richtig konfiguriert ist."
+"Sicherstellen, dass ein kompatibler Adapter angeschlossen und das Netzwerk richtig konfiguriert ist."
 
 #
 msgid "No, but restart from begin"
@@ -6576,10 +6576,10 @@ msgid "Experimental mode"
 msgstr "Experimenteller Modus"
 
 msgid "Preferred tuners, multiple selection allowed"
-msgstr "Bevorzugte Tuner, Mehrfachauswahl möglich"
+msgstr "Bevorzugte Tuner"
 
 msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Experimentell: strikte Beschränkung auf bevorzugte Tuner"
+msgstr "Experimentell: Beschränkung auf bevorzugte Tuner"
 
 msgid "While available"
 msgstr "Solange verfügbar"
@@ -6588,10 +6588,10 @@ msgid "Preferred tuner for recordings"
 msgstr "Bevorzugter Tuner bei Aufnahmen"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr "Bevorzugte Tuner bei Aufnahmen, Mehrfachauswahl möglich"
+msgstr "Bevorzugte Tuner bei Aufnahmen"
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
-msgstr "Experimentell: strikte Beschränkung auf bevorzugte Tuner bei Aufnahmen"
+msgstr "Experimentell: Beschränkung auf bevorzugte Tuner bei Aufnahmen"
 
 msgid "Prepare another USB stick for image flashing"
 msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
@@ -10480,16 +10480,23 @@ msgstr ""
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Mit dieser Option können Sie Jobs in Erweiterungen verstecken (kurzer Druck auf Blau)."
 
-msgid "Write error while recording. Disk full?\n"
-msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
+msgid "Write error while recording. Disk %s"
+msgstr "Schreibfehler bei der Aufnahme. Festplatte %s"
 
-#, python-format
-msgid ""
-"Write error while recording. Disk full?\n"
-"%s"
-msgstr ""
-"Schreibfehler bei Aufnahme. Festplatte voll?\n"
-"%s"
+msgid "Write error at start of recording. Disk %s\n%s"
+msgstr "Schreibfehler beim Start der Aufnahme. Festplatte %s\n%s"
+
+msgid "unknown error!"
+msgstr "unbekannter Fehler!"
+
+msgid "not found!"
+msgstr "nicht gefunden!"
+
+msgid "not writable!"
+msgstr "nicht beschreibbar!"
+
+msgid "full?"
+msgstr "voll?"
 
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
@@ -12821,7 +12828,7 @@ msgid ""
 " or select Recovery to create a USB Disk Image for clean Install."
 msgstr ""
 "Sie können mit 'Gelb' das OnlineFlash Image auswählen\n"
-"oder wählen sie 'Recovery', um ein USB-Image für eine saubere Installation zu erstellen."
+"oder wählen Sie 'Recovery', um ein USB-Image für eine saubere Installation zu erstellen."
 
 #
 msgid "Full back-up on %s"
@@ -14639,6 +14646,12 @@ msgstr "Zeige OE Log"
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
 msgstr "Wenn aktiviert, darf eine Aufnahme das live TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
+msgid "Preparation time for recording (seconds)"
+msgstr "Vorbereitungszeit für die Aufnahme (in Sekunden)"
+
+msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
+msgstr "In dieser Zeit wird der Sender und das Aufnahmeziel überprüft. Ist das Aufnahmeziel (z.B. NAS) nicht rechtzeitig zur Aufnahme bereit, kann diese Zeit vergrößert werden."
+
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Wenn ausgewählt, wird eine Info angezeigt, sobald ein Film beendet ist und der nächste beginnt."
 
@@ -16284,7 +16297,7 @@ msgid "Do you want to backup your settings now?"
 msgstr "Wollen Sie Ihre Einstellungen sichern?"
 
 msgid "Traffic light state is '%s' - please use a another image."
-msgstr "Der Ampelstatus ist '%s' - bitte nutzen sie ein anderes Image."
+msgstr "Der Ampelstatus ist '%s' - bitte nutzen Sie ein anderes Image."
 
 #: Flash_online.py
 msgid ""
@@ -17609,8 +17622,8 @@ msgid "record time changed, start prepare is now: %s"
 msgstr "Aufnahmezeit geändert, startet: %s"
 
 #: RecordTimer.py
-msgid "Not enough free space to record"
-msgstr "Nicht genügend freier Speicher"
+msgid "Mount '%s' has not enough free space to record."
+msgstr "Zielort '%s' hat nicht genügend freien Speicher."
 
 #: RecordTimer.py
 msgid "zapping"
@@ -20221,18 +20234,3 @@ msgstr "Power-LED Mode"
 
 msgid "Power LED can be turned on or off here."
 msgstr "Power-LED kann hier an oder ausgeschaltet werden.."
-
-msgid "Select Your Location"
-msgstr "Wähle deinen Standort"
-
-msgid "MetrixWeather City Name"
-msgstr "Metrix Wetter Stadtname"
-
-msgid "MetrixWeather APIKEY"
-msgstr "Metrix Wetter APIKEY"
-
-msgid "MetrixWeather Service"
-msgstr "Metrix Wetter Dienst"
-
-msgid "Your place for weather determination. Press TEXT or OK to enter the city name"
-msgstr "Dein Ort für die Wetterbestimmung. Drücke TEXT oder OK, um den Namen der Stadt einzugeben"

@@ -203,9 +203,9 @@ public:
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
 #endif
 	static const int preferredFrontendScore = 100000;
-	static const int preferredFrontendBinaryMode = 0x4000;
-	static const int preferredFrontendPrioForced = 0x2000;
-	static const int preferredFrontendPrioHigh   = 0x1000;
+	static const int preferredFrontendBinaryMode = 0x40000000;
+	static const int preferredFrontendPrioForced = 0x20000000;
+	static const int preferredFrontendPrioHigh   = 0x10000000;
 #ifndef SWIG
 	bool supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist);
 	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist, bool append=false);
