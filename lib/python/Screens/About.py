@@ -714,6 +714,8 @@ class SystemNetworkInfo(Screen):
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
+			if eth0.has_key('ifname'):
+				self.AboutText += _('Interface:') + "\t/dev/" + eth0['ifname'] + "\n"
 			self.AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
@@ -724,6 +726,8 @@ class SystemNetworkInfo(Screen):
 
 		eth1 = about.getIfConfig('eth1')
 		if eth1.has_key('addr'):
+			if eth1.has_key('ifname'):
+				self.AboutText += _('Interface:') + "\t/dev/" + eth1['ifname'] + "\n"
 			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
 			if eth1.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
@@ -734,6 +738,8 @@ class SystemNetworkInfo(Screen):
 
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
+			if ra0.has_key('ifname'):
+				self.AboutText += _('Interface:') + "\t/dev/" + ra0['ifname'] + "\n"
 			self.AboutText += _("IP:") + "\t" + ra0['addr'] + "\n"
 			if ra0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + ra0['netmask'] + "\n"
@@ -743,6 +749,8 @@ class SystemNetworkInfo(Screen):
 
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
+			if wlan0.has_key('ifname'):
+				self.AboutText += _('Interface:') + "\t/dev/" + wlan0['ifname'] + "\n"
 			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
@@ -752,6 +760,8 @@ class SystemNetworkInfo(Screen):
 
 		wlan1 = about.getIfConfig('wlan1')
 		if wlan1.has_key('addr'):
+			if wlan1.has_key('ifname'):
+				self.AboutText += _('Interface:') + "\t/dev/" + wlan1['ifname'] + "\n"
 			self.AboutText += _("IP:") + "\t" + wlan1['addr'] + "\n"
 			if wlan1.has_key('netmask'):
 				self.AboutText += _("Netmask:") + "\t" + wlan1['netmask'] + "\n"

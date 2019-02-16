@@ -21,6 +21,7 @@ import timer
 import NavigationInstance
 from ServiceReference import ServiceReference
 from enigma import pNavigation, eDVBFrontend
+import subprocess, threading
 
 
 # ok, for descriptions etc we have:
@@ -174,6 +175,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.justTriedFreeingTuner = False
 		self.MountPathRetryCounter = 0
 		self.MountPathErrorNumber = 0
+		self.lastend = 0
 
 		if descramble == 'notset' and record_ecm == 'notset':
 			if config.recording.ecm_data.value == 'descrambled+ecm':
@@ -220,17 +222,43 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log_entries.append((int(time()), code, msg))
 		print "[TIMER]", msg
 
-	def freespace(self, WRITEERROR = False):
+	def MountTest(self, dirname, cmd):
+		if cmd == 'writeable':
+			if not os.access(dirname, os.W_OK):
+				self.stop_MountTest(None, cmd)
+		elif cmd == 'freespace':
+			s = os.statvfs(dirname)
+			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+				self.stop_MountTest(None, cmd)
+		elif cmd == 'driveawake':
+			if not subprocess.call('touch %s/drive.awake' % dirname, shell=True):
+				subprocess.call('rm -f %s/drive.awake' % dirname, shell=True)
+			else:
+				self.stop_MountTest(None, cmd)
+
+	def stop_MountTest(self, thread, cmd):
+		if thread and thread.isAlive():
+			print 'timeout thread : %s' %cmd
+			thread._Thread__stop()
+
+		if cmd == 'writeable':
+			self.MountPathErrorNumber = 2
+		elif cmd == 'freespace':
+			self.MountPathErrorNumber = 3
+		elif cmd == 'driveawake':
+			self.MountPathErrorNumber = 4
+
+	def freespace_old(self, WRITEERROR = False):
 		if WRITEERROR:
 			if findSafeRecordPath(self.MountPath) is None:
-				return ("mount '%s' is not available." % self.MountPath), 1
+				return ("mount '%s' is not available." % self.MountPath, 1)
 			elif not os.access(self.MountPath, os.W_OK):
-				return ("mount '%s' is not writeable." % self.MountPath), 2
+				return ("mount '%s' is not writeable." % self.MountPath, 2)
 			s = os.statvfs(self.MountPath)
 			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
-				return ("mount '%s' has not enough free space to record." % self.MountPath), 3
+				return ("mount '%s' has not enough free space to record." % self.MountPath, 3)
 			else:
-				return ("unknown error."), 0
+				return ("unknown error.", 0)
 
 		self.MountPath = None
 		if not self.dirname:
@@ -249,10 +277,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		mountwriteable = os.access(dirname, os.W_OK)
-		if mountwriteable and not os.system('touch %s/drive.awake' % dirname):
-			#info - drives (e.g. nas) it wake up not with 'os.access(dirname, os.W_OK)' or 'os.statvfs(dirname)', that's why the file is written and deleted and is thus ready to record...
-			os.system('rm %s/drive.awake' % dirname)
-		else:
+		if not mountwriteable:
 			self.log(0, ("Mount '%s' is not writeable." % dirname))
 			self.MountPathErrorNumber = 2
 			return False
@@ -261,6 +286,71 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 			self.log(0, _("Mount '%s' has not enough free space to record.") % dirname)
 			self.MountPathErrorNumber = 3
+			return False
+		else:
+			if debug:
+				self.log(0, "Found enough free space to record")
+			self.MountPathRetryCounter = 0
+			self.MountPathErrorNumber = 0
+			self.MountPath = dirname
+			return True
+
+	def freespace(self, WRITEERROR = False):
+		if WRITEERROR:
+			dirname = self.MountPath
+			if findSafeRecordPath(dirname) is None:
+				return ("mount '%s' is not available." % dirname, 1)
+		else:
+			self.MountPath = None
+			if not self.dirname:
+				dirname = findSafeRecordPath(defaultMoviePath())
+			else:
+				dirname = findSafeRecordPath(self.dirname)
+				if dirname is None:
+					dirname = findSafeRecordPath(defaultMoviePath())
+					self.dirnameHadToFallback = True
+			if not dirname:
+				dirname = self.dirname
+				if not dirname:
+					dirname = defaultMoviePath() or '-'
+				self.log(0, "Mount '%s' is not available." % dirname)
+				self.MountPathErrorNumber = 1
+				return False
+
+		self.MountPathErrorNumber = 0
+		#for cmd in ('writeable', 'freespace', 'driveawake'): #driveawake is not needed
+		for cmd in ('writeable', 'freespace'):
+			print 'starting thread :%s' %cmd
+			p = threading.Thread(target=self.MountTest, args=(dirname, cmd))
+			t = threading.Timer(3, self.stop_MountTest, args=(p, cmd))
+			t.start()
+			p.start()
+			p.join()
+			t.cancel()
+			if self.MountPathErrorNumber:
+				print 'break - error number: %d' %self.MountPathErrorNumber
+				break
+			print 'finished thread :%s' %cmd
+
+		if WRITEERROR:
+			if self.MountPathErrorNumber == 2:
+				return ("mount '%s' is not writeable." % dirname, 2)
+			elif self.MountPathErrorNumber == 3:
+				return ("mount '%s' has not enough free space to record." % dirname, 3)
+			elif self.MountPathErrorNumber == 4:
+				return ("mount '%s' has failed to write file." % dirname, 2)
+			else:
+				return ("unknown error.", 0)
+
+		if self.MountPathErrorNumber == 2:
+			self.log(0, "Mount '%s' is not writeable." % dirname)
+			return False
+		elif self.MountPathErrorNumber == 3:
+			self.log(0, _("Mount '%s' has not enough free space to record.") % dirname)
+			return False
+		elif self.MountPathErrorNumber == 4:
+			self.MountPathErrorNumber = 2
+			self.log(0, _("Mount '%s' has failed to write file.") % dirname)
 			return False
 		else:
 			if debug:
@@ -414,10 +504,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return False
 
 			if not self.justplay and not self.freespace():
-				if self.MountPathErrorNumber < 3 and self.MountPathRetryCounter < 12: # no retry if drive full
+				if self.MountPathErrorNumber < 3 and self.MountPathRetryCounter < 3:
 					self.MountPathRetryCounter += 1
 					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
-					self.log(0, ("(%d/12) ... next try in 5 seconds." % self.MountPathRetryCounter))
+					self.log(0, "next try in 5 seconds ...(%d/3)" % self.MountPathRetryCounter)
 					return False
 				message = _("Write error at start of recording. Disk %s\n%s") % ((_("not found!"), _("not writable!"), _("full?"))[self.MountPathErrorNumber-1],self.name)
 				messageboxtyp = MessageBox.TYPE_ERROR
@@ -429,6 +519,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					Notifications.AddPopup(message, messageboxtyp, timeout = timeout, id = id)
 				self.failed = True
 				self.next_activation = time()
+				self.lastend = self.end
 				self.end = time() + 5
 				self.backoff = 0
 				return True
@@ -709,6 +800,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if self.record_service:
 					NavigationInstance.instance.stopRecordService(self.record_service)
 					self.record_service = None
+			if self.lastend and self.failed:
+				self.end = self.lastend
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
 
@@ -1025,6 +1118,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return
 		# self.log(16, "record event %d" % event)
 		if event == iRecordableService.evRecordWriteError:
+			if self.record_service:
+				NavigationInstance.instance.stopRecordService(self.record_service)
+				self.record_service = None
+			self.failed = True
+			self.lastend = self.end
+			self.end = time() + 5
+			self.backoff = 0
 			msg, err = self.freespace(True)
 			self.log(16, "WRITE ERROR while recording, %s" % msg)
 			print "WRITE ERROR on recording, %s" % msg
