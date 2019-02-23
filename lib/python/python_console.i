@@ -124,7 +124,7 @@ eConsolePy_dealloc(eConsolePy* self)
 		PyObject_ClearWeakRefs((PyObject *) self);
 	eConsolePy_clear(self);
 	self->cont->Release();
-	self->ob_type->tp_free((PyObject*)self);
+	Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
 static PyObject *
@@ -335,8 +335,7 @@ static PyMethodDef eConsolePy_methods[] = {
 };
 
 static PyTypeObject eConsolePyType = {
-	PyObject_HEAD_INIT(NULL)
-	0, /*ob_size*/
+	PyVarObject_HEAD_INIT(NULL, 0)
 	"eConsoleImpl.eConsoleAppContainer", /*tp_name*/
 	sizeof(eConsolePy), /*tp_basicsize*/
 	0, /*tp_itemsize*/
