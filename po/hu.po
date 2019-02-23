@@ -4,10 +4,10 @@
 # Automatically generated, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: enigma2 v2.8\n"
+"Project-Id-Version: enigma2 v2.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-14 21:17+0300\n"
-"PO-Revision-Date: 2018-10-24 09:51+0200\n"
+"POT-Creation-Date: 2019-01-16 23:30+0300\n"
+"PO-Revision-Date: 2019-02-23 20:19+0100\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: alec <alex1vagyok@gmail.com>\n"
 "Language: hu_HU\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menü gomb: Válassza ki a Quad csatorna üzemmódot"
@@ -148,9 +148,6 @@ msgstr "%02d.%02d - %02d.%02d"
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr "%02d:%02d - %02d:%02d  (%s%d perc)"
 
-msgid "%02d.%02d - %02d.%02d (%s%s)"
-msgstr "%02d:%02d - %02d:%02d  (még %s%s)"
-
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
 
@@ -236,15 +233,6 @@ msgstr[1] "%d perc"
 
 msgid "%d minutes"
 msgstr "%d perc"
-
-msgid "%dhour"
-msgstr "%d óra"
-
-msgid "%dmin"
-msgstr "%d perc"
-
-msgid "%dhour %dmin"
-msgstr "%d óra %d perc"
 
 msgid "%d of %d kBytes"
 msgstr "%d %d kByte"
@@ -1668,6 +1656,9 @@ msgstr ""
 "Engedélyezi a OScam megjelenítését/elrejtését a bővítmények között (kék "
 "gomb)."
 
+msgid "Almost there... "
+msgstr "Majdnem ott... "
+
 msgid "Alpha"
 msgstr "Betű"
 
@@ -1772,6 +1763,9 @@ msgstr "Ismeretlen hiba keletkezett!"
 
 msgid "and never ask again this session again"
 msgstr "és ne kérdezze újra ebben a munkamenetben"
+
+msgid "and there is made an extra copy on:"
+msgstr "és van egy további példány:"
 
 msgid "Animation Setup"
 msgstr "Animáció beállítás"
@@ -2210,6 +2204,9 @@ msgstr "Vissza, fentebbi USB"
 msgid "Back USB"
 msgstr "Vissza USB"
 
+msgid "back-up image will now be copied to that USB- "
+msgstr "a biztonsági másolat most átmásolódik az USB- "
+
 msgid "Back-up Tool for a %s\n"
 msgstr "Mentési eszköz egy %s\n"
 
@@ -2257,6 +2254,9 @@ msgstr "Mentés kész."
 
 msgid "Backup failed."
 msgstr "Mentés sikertelen."
+
+msgid "Backup finished and copied to your USB-flash drive"
+msgstr "A biztonsági mentés befejeződött, és az USB-meghajtóra átmásolva"
 
 msgid "Backup Image"
 msgstr "Mentési lemezkép"
@@ -2973,6 +2973,9 @@ msgstr "ChapterZap"
 
 msgid "Check"
 msgstr "Ellenőrzés"
+
+msgid "Check:"
+msgstr "Ellenőrizve:"
 
 msgid "Check every (hours)"
 msgstr "Minden ellenőrzésé (óránként)"
@@ -4132,6 +4135,12 @@ msgstr "ISO készítés"
 
 msgid "Create seperate radio userbouquet"
 msgstr "Különálló rádió csatornacsomag létrehozása"
+
+msgid "Create:"
+msgstr "Létrehozva:"
+
+msgid "Create: Recovery Fullbackup %s"
+msgstr "Létrehozva: a(z) %s Fullbackup helyreállítva"
 
 msgid "Creating AP and SC Files"
 msgstr "AP és SC fájlok létrehozása"
@@ -5690,6 +5699,12 @@ msgstr "Bővítmény indítási hiba"
 msgid "Error in file %s"
 msgstr "Hiba a(z) %s fájlban"
 
+msgid "Error reading bouquets.radio"
+msgstr "Hiba történt a bouquets.radio olvasásakor"
+
+msgid "Error reading bouquets.tv"
+msgstr "Hiba történt a bouquets.tv olvasásakor"
+
 msgid "Error reading webpage!"
 msgstr "Hiba történt a weboldal olvasásakor!"
 
@@ -6179,6 +6194,9 @@ msgstr ""
 msgid "Flash and start installation wizard"
 msgstr "Flash és a telepítő varázsló indítása"
 
+msgid "flash drive. "
+msgstr "cserélhető eszköz. "
+
 msgid "Flash On the Fly"
 msgstr "Közvetlen Flash"
 
@@ -6192,7 +6210,7 @@ msgid "Flash Online"
 msgstr "Flash Online"
 
 msgid "Flash Online a new image"
-msgstr "Egy új lemezkép Online Flash-elése"
+msgstr "Egy új lemezkép Online Flashelése"
 
 msgid "Flashing"
 msgstr "Flashelés"
@@ -6844,7 +6862,7 @@ msgstr "Előzmények hosszan"
 msgid "History next"
 msgstr "Előzmények következő"
 
-msgid "History Zap..."
+msgid "History zap..."
 msgstr "Utoljára nézett csatornák..."
 
 msgid "HLG Support"
@@ -7143,6 +7161,9 @@ msgstr "Lemezkép"
 
 msgid "Image Backup"
 msgstr "Lemezkép Mentés"
+
+msgid "Image creation failed - "
+msgstr "A lemezkép létrehozása nem sikerült- "
 
 msgid "Image flash utility"
 msgstr "Lemezkép flash utility"
@@ -7692,6 +7713,12 @@ msgstr "A Film listát nyitva tartja mialatt az audió fájlt játssza le."
 msgid "Kernel"
 msgstr "Rendszermag"
 
+msgid "Kernel dump error\n"
+msgstr "Kernel dump hiba\n"
+
+msgid "Kernel dump OK"
+msgstr "Kernel dump OK"
+
 msgid "kernel modules"
 msgstr "kernel modulok"
 
@@ -7965,7 +7992,7 @@ msgid "Local"
 msgstr "Helyi"
 
 msgid "Local = Flash a image from local path /hdd/images"
-msgstr "Helyi = egy lemezkép flash-elése a helyi útvonalról  /hdd/images"
+msgstr "Helyi = egy lemezkép flashelése a helyi útvonalról /hdd/images"
 
 msgid "Local box"
 msgstr "Helyi box"
@@ -8526,6 +8553,9 @@ msgstr "Multi EPG"
 msgid "MultiBoot"
 msgstr "Multiboot"
 
+msgid "Multiboot Image created on: %s"
+msgstr "Többrendszeres lemezkép létrehozva: %s"
+
 msgid "MultiBoot Selector"
 msgstr "Multiboot kiválasztó"
 
@@ -8787,7 +8817,7 @@ msgid "nfi"
 msgstr "nfi"
 
 msgid "NFI image flashing"
-msgstr "NFI Image Flash-elés"
+msgstr "NFI Image Flashelés"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -9261,6 +9291,9 @@ msgstr "Semmi, hagyja el ezt a menüt"
 msgid "NOW"
 msgstr "MOST"
 
+msgid "Now building the USB-Image"
+msgstr "Most készíti az USB lemezképet"
+
 msgid "Now save timeshift as movie and continues recording"
 msgstr "Timeshift mentése most és a felvétel folytatása"
 
@@ -9309,6 +9342,9 @@ msgstr "a kétréteges lemezből felhasználva."
 
 msgid "of a SINGLE layer medium used."
 msgstr "egyoldalas (single layer) medium felhasználva."
+
+msgid "of the USB-ports, therefore an extra copy of the "
+msgstr "USB portoknak, ebből adódóan egy extra másolat"
 
 msgid "Off"
 msgstr "Ki"
@@ -9380,6 +9416,9 @@ msgstr "Film végén"
 
 msgid "On end of movie (as menu)"
 msgstr "Film végén (menü)"
+
+msgid "on how to restore the image"
+msgstr "a lemezkép visszaállításának módjáról"
 
 msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
@@ -9967,6 +10006,9 @@ msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
 msgid "Please change recording endtime"
 msgstr "Befejezés ideje"
 
+msgid "Please check the manual of the receiver"
+msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
+
 msgid "Please check your network settings!"
 msgstr "Kérem, ellenőrizze a hálózati beállításokat!"
 
@@ -10038,6 +10080,10 @@ msgstr "Régi PIN kód"
 
 msgid "Please enter your personal feed URL"
 msgstr "Kérjük, adja meg személyes feed URL-jét"
+
+msgid "Please Flash your Kernel new and Backup again"
+msgstr ""
+"Kérjük, Flashalje újból a Kernelt, és készítsen újra biztonsági másolatot"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Kérem, kövesse a képernyőn megjelenő instrukciókat"
@@ -10339,6 +10385,9 @@ msgstr "kérem, várjon ..."
 msgid "Please wait... Loading list..."
 msgstr "Kérem, várjon... Lista betöltése..."
 
+msgid "Please wait...almost ready! "
+msgstr "Kérem, várjon... majdnem kész! "
+
 msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 msgstr ""
 "Kérjük: Ne indítsa újra a Set-top-boxát és ne kapcsolja ki a készüléket.\n"
@@ -10469,15 +10518,17 @@ msgstr "Forgatómotor beállítás napló"
 msgid "Power"
 msgstr "Bekapcsoló"
 
-msgid "Power LED state during deep-standby/standby."
-msgstr ""
-"A bekapcsolást jelző LED állapota a készülék Kikapcsolt/Készenléti "
-"állapotában."
+msgid "Power LED state during deep-standby."
+msgstr "A Power LED állapota a készülék Kikapcsolt állapotában."
 
-msgid "Power LED State in Deep-Standby/Standby"
-msgstr ""
-"A bekapcsolást jelző LED állapota a készülék Kikapcsolt/Készenléti "
-"állapotában"
+msgid "Power LED state during standby."
+msgstr "A Power LED állapota a készülék Készenléti állapotában."
+
+msgid "Power LED State in Deep-Standby"
+msgstr "A Power LED állapota a készülék Kikapcsolt állapotában"
+
+msgid "Power LED State in Standby"
+msgstr "A Power LED állapota a készülék Készenléti állapotában"
 
 msgid "Power long"
 msgstr "Bekapcsoló hosszan"
@@ -10682,6 +10733,9 @@ msgstr "Fő műsoridő (perc)"
 
 msgid "Priority"
 msgstr "Prioritás"
+
+msgid "Probable causes could be"
+msgstr "Lehetséges okok lehetnek"
 
 msgid "Process"
 msgstr "Futtatás"
@@ -13624,8 +13678,14 @@ msgstr "egyszerű"
 msgid "Simple"
 msgstr "Egyszerű"
 
+msgid "SimpleUmount"
+msgstr "SimpleUmount"
+
 msgid "Simple fade"
 msgstr "Egyszerű fade"
+
+msgid "Simple umounter mass storage device."
+msgstr "Egyszerű umounter háttértároló eszköz."
 
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Egyszerű tétellista (kompatibilis régebbi lejátszókal)"
@@ -14330,6 +14390,9 @@ msgstr "Legerősebb pozíció"
 msgid "Style:"
 msgstr "Stílus:"
 
+msgid "Subservice list..."
+msgstr "Alcsatornák listája..."
+
 msgid "Subservice mode"
 msgstr "Alcsatorna mód"
 
@@ -14957,6 +15020,13 @@ msgstr ""
 "A 'query nélkül' lekérdezés ugyanaz, mint a 'standard' lekérdezés. Az összes "
 "többi függőség (például felvételek, időtartomány) továbbra is fennmarad."
 
+msgid ""
+"The SimpleUmount plugin is not installed!\n"
+"Please install it."
+msgstr ""
+"A SimpleUmoun bővítmény nincs telepítve!\n"
+"Kérem, telepítse."
+
 msgid "The sleep timer has been activated."
 msgstr "Az elalvás időzítő aktiválva lett."
 
@@ -15089,6 +15159,9 @@ msgstr ""
 "\n"
 "Flashelni szeretne Online?"
 
+msgid "There is a valid USB-flash drive detected in one "
+msgstr "Van egy érvényes USB-flash meghajtó észlelve "
+
 msgid "There is no signal to lock on !"
 msgstr "Nincs jel!"
 
@@ -15197,6 +15270,9 @@ msgstr ""
 msgid ""
 "this offset will only be used if the channel has not its own volume offset"
 msgstr "saját Hangerő eltolást tud használni az alábbi beállításokkal"
+
+msgid "This only takes about 1 or 2 minutes"
+msgstr "Ez csak 1 vagy 2 percet vesz igénybe"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -15640,6 +15716,9 @@ msgstr "Idő hosszan"
 msgid "Time range:"
 msgstr "Időskála:"
 
+msgid "Time required for this process: %s"
+msgstr "A folyamathoz szükséges idő: %s"
+
 msgid "Time scale"
 msgstr "Időskála"
 
@@ -15807,6 +15886,9 @@ msgstr "TiVo támogatás"
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 "Az USB pendrive-hoz való biztonsági mentéshez csak USB pendrive használható\n"
+
+msgid "To restore the image:"
+msgstr "A lemezkép visszaállítása:"
 
 msgid ""
 "To update your %s %s firmware, please follow these steps:\n"
@@ -16425,6 +16507,9 @@ msgstr ""
 "Először győződjen meg arról, hogy az USB meghajtó be van helyezve, mielőtt "
 "kiválasztja az USB-t."
 
+msgid "USB Image created on: %s"
+msgstr "USB lemezkép létrehozva: %s"
+
 msgid "USB Stick"
 msgstr "USB-stick"
 
@@ -16515,6 +16600,9 @@ msgstr "Netmed EPG információk beolvasása a jelforrásból."
 
 msgid "Use official channel numbering"
 msgstr "Hivatalos csatornaszámozás használata"
+
+msgid "Use OnlineFlash in SoftwareManager"
+msgstr "OnlineFlash használva a Szoftver kezelőben"
 
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Csak Wake on WLan (WoW)"
@@ -18690,6 +18778,12 @@ msgstr "Ecuador"
 msgid "Egypt"
 msgstr "Egyiptom"
 
+msgid "EJECTCD"
+msgstr "EJECTCD"
+
+msgid "EJECTCD long"
+msgstr "EJECTCD hosszan"
+
 msgid "El Salvador"
 msgstr "Salvador"
 
@@ -19238,3 +19332,15 @@ msgstr "Zambia"
 
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
+
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr "%02d:%02d - %02d:%02d  (még %s%s)"
+
+msgid "%dhour"
+msgstr "%d óra"
+
+msgid "%dmin"
+msgstr "%d perc"
+
+msgid "%dhour %dmin"
+msgstr "%d óra %d perc"
