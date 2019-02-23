@@ -22,7 +22,7 @@ MAX_NUM_CI = 4
 relevantPidsRoutingChoices = None
 
 def setCIBitrate(configElement):
-	if configElement.value == "no":
+	if not configElement.value:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal)
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
