@@ -2,7 +2,6 @@
                 /* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-extern "C" void init_enigma();
 extern "C" void eBaseInit(void);
 extern "C" void eConsoleInit(void);
 extern void quitMainloop(int exitCode);
@@ -117,6 +116,13 @@ void ePyObject::decref(const char *file, int line)
 #define SKIP_PART1
 #include <lib/python/python.h>
 #undef SKIP_PART1
+
+#if PY_MAJOR_VERSION >= 3
+extern "C" PyObject* PyInit__enigma(void);
+#define init_enigma PyInit__enigma
+#else
+extern "C" void init_enigma(void);
+#endif
 
 ePython::ePython()
 {
