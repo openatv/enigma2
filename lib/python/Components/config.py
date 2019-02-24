@@ -319,9 +319,10 @@ class descriptionList(choicesList): # XXX: we might want a better name for this
 # all ids MUST be plain strings.
 #
 class ConfigSelection(ConfigElement):
-	def __init__(self, choices, default = None):
+	def __init__(self, choices, default = None, graphic=True):
 		ConfigElement.__init__(self)
 		self.choices = choicesList(choices)
+		self.graphic = graphic
 
 		if default is None:
 			default = self.choices.default()
@@ -391,8 +392,14 @@ class ConfigSelection(ConfigElement):
 		return self._descr
 
 	def getMulti(self, selected):
+		from config import config
+		from skin import switchPixmap
 		if self._descr is None:
 			self._descr = self.description[self.value]
+		keywords_true = ('true','yes','enabled','on', _('True'),_('Yes'),_('Enabled'),_('On'))
+		keywords_false = ('false','no','disabled','off', _('False'),_('No'),_('Disabled'),_('Off'))
+		if self._descr in (keywords_true + keywords_false) and self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
+			return ('pixmap', self._descr in keywords_true and switchPixmap["menu_on"] or switchPixmap["menu_off"])
 		return ("text", self._descr)
 
 	# HTML
