@@ -1,6 +1,6 @@
 # takes a header file, outputs action ids
 
-import tokenize, sys, string
+import tokenize, sys
 
 def filter(g):
 	while 1:
@@ -96,7 +96,7 @@ def do_file(f, mode):
 						firsthit = 0
 
 					if mode == "parse":
-						print "{\"" + actionname + "\", \"" + t + "\", " + string.join((classname, t), "::") + "},"
+						print "{\"" + actionname + "\", \"" + t + "\", " + "::".join((classname, t)) + "},"
 
 					counter += 1
 
