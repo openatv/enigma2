@@ -393,14 +393,11 @@ static PyMethodDef console_module_methods[] = {
 	};
 #endif
 
+#if PY_MAJOR_VERSION < 3
 void eConsoleInit(void)
 {
-#if PY_MAJOR_VERSION >= 3
-	PyObject* m = PyModule_Create(&eConsole_moduledef);
-#else
 	PyObject* m = Py_InitModule3("eConsoleImpl", console_module_methods,
 		"Module that implements eConsoleAppContainer with working cyclic garbage collection.");
-#endif
 
 	if (m == NULL)
 		return;
@@ -411,5 +408,23 @@ void eConsoleInit(void)
 		PyModule_AddObject(m, "eConsoleAppContainer", (PyObject*)&eConsolePyType);
 	}
 }
+#endif
+
+#if PY_MAJOR_VERSION >= 3
+PyObject* PyInit_eConsoleImpl(void)
+{
+	PyObject* m = PyModule_Create(&eConsole_moduledef);
+
+	if (m == NULL)
+		return NULL;
+
+	if (!PyType_Ready(&eConsolePyType))
+	{
+		Org_Py_INCREF((PyObject*)&eConsolePyType);
+		PyModule_AddObject(m, "eConsoleAppContainer", (PyObject*)&eConsolePyType);
+	}
+	return m;
+}
+#endif
 }
 %}
