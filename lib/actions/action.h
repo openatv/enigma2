@@ -2,13 +2,12 @@
 #define __lib_driver_action_h
 
 #include <lib/base/object.h>
+#include <lib/gui/ewidget.h>
 
 #include <lib/python/python.h>
 #include <string>
 #include <map>    
 #include <vector>
-
-class eWidget;
 
 SWIG_IGNORE(eActionMap);
 class eActionMap: public iObject
