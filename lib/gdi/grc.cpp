@@ -433,7 +433,13 @@ void gPainter::clear()
 
 void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
-	blitScale(pixmap, eRect(pos, eSize()), clip, flags, 0);
+	blitScale(pixmap, eRect(pos, eSize()), clip, flags, 0); // 0 to prevent automatic adding of scaling flag
+}
+
+void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags)
+{
+	// support aligned blitting within a specific rectangle
+	blitScale(pixmap, pos, clip, flags, 0); // 0 to prevent automatic adding of scaling flag
 }
 
 void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &clip, int flags, int aflags)

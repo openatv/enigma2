@@ -216,7 +216,11 @@ public:
 		blitAlphaTest=1,
 		blitAlphaBlend=2,
 		blitScale=4,
-		blitKeepAspectRatio=8
+		blitKeepAspectRatio=8,
+		blitHAlignCenter = 16,
+		blitHAlignRight = 32,
+		blitVAlignCenter = 64,
+		blitVAlignBottom = 128
 	};
 
 	enum {

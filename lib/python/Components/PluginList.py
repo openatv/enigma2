@@ -3,7 +3,7 @@ from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 
-from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO
+from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_HALIGN_CENTER, BT_VALIGN_CENTER
 from Tools.LoadPixmap import LoadPixmap
 import skin
 
@@ -19,7 +19,7 @@ def PluginEntryComponent(plugin, width=440):
 		plugin,
 		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), font=0, text=plugin.name),
 		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO)
+		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png = png, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)	]
 	]
 
 def PluginEntryComponentSelected(plugin, width=440):
@@ -36,7 +36,7 @@ def PluginEntryComponentSelected(plugin, width=440):
 		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), backcolor_sel = 0xDC143C),
 		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), font=0, text=plugin.name),
 		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO)
+		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png = png, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
 	]
 
 def PluginCategoryComponent(name, png, width=440):
