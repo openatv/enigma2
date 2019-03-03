@@ -193,7 +193,7 @@
 		<item level="1" text="Subtitle language selection 2" description="Configure the second subtitle language.">config.autolanguage.subtitle_autoselect2</item>
 		<item level="1" text="Subtitle language selection 3" description="Configure the third subtitle language.">config.autolanguage.subtitle_autoselect3</item>
 		<item level="1" text="Subtitle language selection 4" description="Configure the fourth subtitle language.">config.autolanguage.subtitle_autoselect4</item>
-		<item level="1" text="Allow subtitle language to equal audio language" description="Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used.">config.autolanguage.equal_languages</item>
+		<item level="1" text="Allow subtitle language to equal audio language" conditional="config.autolanguage.subtitle_autoselect1.value" description="Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used.">config.autolanguage.equal_languages</item>
 		<item level="1" text="Allow subtitles for hearing impaired" description="When enabled, subtitles for the hearing impaired can be used.">config.autolanguage.subtitle_hearingimpaired</item>
 		<item level="1" text="Prefer subtitles for hearing impaired" description="When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available.">config.autolanguage.subtitle_defaultimpaired</item>
 		<item level="1" text="Prefer graphical DVB subtitles" description="When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available.">config.autolanguage.subtitle_defaultdvb</item>

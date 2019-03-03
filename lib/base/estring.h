@@ -1,6 +1,7 @@
 #ifndef __E_STRING__
 #define __E_STRING__
 
+#include <vector>
 #include <string>
 #include <stdarg.h>
 #include <stdio.h>
@@ -32,5 +33,7 @@ inline std::string convertDVBUTF8(const std::string &string, int table=-1, int t
 std::string urlDecode(const std::string &s);
 std::string string_to_hex(const std::string& input);
 std::string strip_non_graph(std::string s);
+std::vector<std::string> split(std::string s, const std::string& separator);
+int strcasecmp(const std::string& s1, const std::string& s2);
 
 #endif // __E_STRING__
