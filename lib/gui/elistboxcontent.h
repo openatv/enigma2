@@ -109,6 +109,7 @@ private:
 #define BT_VALIGN_TOP 0
 #define BT_VALIGN_CENTER 64
 #define BT_VALIGN_BOTTOM 128
+#define BT_ALIGN_CENTER BT_HALIGN_CENTER | BT_VALIGN_CENTER
 #endif // SWIG
 
 #endif

@@ -472,17 +472,23 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 
 	if (!(flag & blitScale))
 	{
-		 /* pos' size is ignored if left or top aligning */
-		if (flag & blitHAlignCenter)
-			pos.setLeft(_pos.left() + (_pos.width() - src.size().width()) / 2);
-		else if (flag & blitHAlignRight)
-			pos.setLeft(_pos.right() - src.size().width());
-		pos.setWidth(src.size().width());
+		// pos' size is ignored if left or top aligning.
+		// if its size isn't set, centre and right/bottom aligning is ignored
 		
-		if (flag & blitVAlignCenter)
-			pos.setTop(_pos.top() + (_pos.height() - src.size().height()) / 2);
-		else if (flag & blitVAlignBottom)
-			pos.setTop(_pos.bottom() - src.size().height());
+		if (_pos.size().isValid())
+		{
+			if (flag & blitHAlignCenter)
+				pos.setLeft(_pos.left() + (_pos.width() - src.size().width()) / 2);
+			else if (flag & blitHAlignRight)
+				pos.setLeft(_pos.right() - src.size().width());
+
+			if (flag & blitVAlignCenter)
+				pos.setTop(_pos.top() + (_pos.height() - src.size().height()) / 2);
+			else if (flag & blitVAlignBottom)
+				pos.setTop(_pos.bottom() - src.size().height());
+		}
+
+		pos.setWidth(src.size().width());
 		pos.setHeight(src.size().height());
 	}
 	else if (pos.size() == src.size()) /* no scaling required */

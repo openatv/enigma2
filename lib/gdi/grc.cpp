@@ -431,21 +431,18 @@ void gPainter::clear()
 	m_rc->submit(o);
 }
 
+void gPainter::blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags, int aflags)
+{
+	blit(pixmap, pos, clip, flags | aflags);
+}
+
 void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
-	blitScale(pixmap, eRect(pos, eSize()), clip, flags, 0); // 0 to prevent automatic adding of scaling flag
+	blit(pixmap, eRect(pos, eSize()), clip, flags);
 }
 
 void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags)
 {
-	// support aligned blitting within a specific rectangle
-	blitScale(pixmap, pos, clip, flags, 0); // 0 to prevent automatic adding of scaling flag
-}
-
-void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &clip, int flags, int aflags)
-{
-	flags |= aflags;
-
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
@@ -459,7 +456,7 @@ void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &cl
 	o.parm.blit->pixmap = pixmap;
 	o.parm.blit->clip = clip;
 	o.parm.blit->flags = flags;
-	o.parm.blit->position = position;
+	o.parm.blit->position = pos;
 	m_rc->submit(o);
 }
 
