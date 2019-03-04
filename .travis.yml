@@ -167,6 +167,9 @@ matrix:
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
+git:
+  depth: 10
+
 before_install:
     - eval "${MATRIX_EVAL}"
     - curl -L https://people.freedesktop.org/~slomo/gstreamer.tar.gz | tar xz
@@ -181,7 +184,7 @@ script:
 - echo installing libdvbsi++
 - pushd .
 - cd /tmp
-- git clone git://git.opendreambox.org/git/obi/libdvbsi++.git
+- git clone --depth 1 git://git.opendreambox.org/git/obi/libdvbsi++.git
 - cd libdvbsi++
 - autoreconf -i
 - ./configure
@@ -191,7 +194,7 @@ script:
 - echo installing tuxbox
 - pushd .
 - cd /tmp
-- git clone https://github.com/OpenPLi/tuxtxt.git
+- git clone --depth 1 https://github.com/OpenPLi/tuxtxt.git
 - cd tuxtxt/libtuxtxt
 - autoreconf -i
 - ./configure --with-boxtype=generic DVB_API_VERSION=5
