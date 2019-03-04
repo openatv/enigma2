@@ -969,11 +969,11 @@ def InitUsageConfig():
 		config.autolanguage.subtitle_autoselect2.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1,3,4)) or not x[0] and not config.autolanguage.subtitle_autoselect3.value])
 		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1,2,4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
 		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1,2,3)) or not x[0]])
-		choicelist = [('0', None)]
+		choicelist = [('0', _("None"))]
 		for y in range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0)))):
 			choicelist.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
-			choicelist.append((str(y+1), "All"))
+			choicelist.append((str(y+1), _("All")))
 		config.autolanguage.equal_languages.setChoices(choicelist, default="0")
 	config.autolanguage.equal_languages = ConfigSelection(default = "0", choices = [])
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="")
