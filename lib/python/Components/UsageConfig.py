@@ -367,20 +367,44 @@ def InitUsageConfig():
 	rec_nims_multi = [("-2", _("Disabled")), ("-1", _("auto"))]
 
 	slots = len(nimmanager.nim_slots)
+	multi = []
+	slots_x = []
 	for i in range(0,slots):
 		slotname = nimmanager.nim_slots[i].getSlotName()
 		nims.append((str(i), slotname))
 		rec_nims.append((str(i), slotname))
 		slotx = 2**i
-		nims_multi.append((str(slotx), slotname))
-		rec_nims_multi.append((str(slotx), slotname))
+		slots_x.append(slotx)
+		multi.append((str(slotx), slotname))
 		for x in range(i+1,slots):
 			slotx += 2**x
 			name = nimmanager.nim_slots[x].getSlotName()
-			if len(name.split()) == 2: name = name.split()[1]
+			if len(name.split()) == 2:
+				name = name.split()[1]
 			slotname += '+' + name
-			nims_multi.append((str(slotx), slotname))
-			rec_nims_multi.append((str(slotx), slotname))
+			slots_x.append(slotx)
+			multi.append((str(slotx), slotname))
+
+	#//advanced tuner combination up to 10 tuners
+	for slotx in range(1,2**min(10,slots)):
+		if slotx in slots_x:
+			continue
+		slotname = ''
+		for x in range(0,slots):
+			if (slotx & 2**x):
+				name = nimmanager.nim_slots[x].getSlotName()
+				if not slotname:
+					slotname = name
+				else:
+					if len(name.split()) == 2:
+						name = name.split()[1]
+					slotname += '+' + name
+		multi.append((str(slotx), slotname))
+	#//
+
+	multi = sorted(multi, key=lambda x: x[1])
+	nims_multi.extend(multi)
+	rec_nims_multi.extend(multi)
 
 	priority_strictly_choices = [("no", _("No")), ("yes", _("Yes")), ("while_available", _("While available"))]
 	config.usage.frontend_priority                       = ConfigSelection(default = "-1", choices = nims)
