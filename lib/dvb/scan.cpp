@@ -551,7 +551,7 @@ void eDVBScan::addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParame
 	SCAN_eDebug("[eDVBScan] addKnownGoodChannel %08x:%04x:%04x, tparm.freq=%d, tunerstate.freq=%d",
 			chid.dvbnamespace.get(), chid.original_network_id.get(), chid.transport_stream_id.get(),
 			tparm.frequency, newstate.freq);
-	if (abs(tparm.frequency - newstate.freq) > 120000)
+	if (absdiff(tparm.frequency, newstate.freq) > 120000)
 	{
 		SCAN_eDebug("[eDVBScan] locked frequency is not the same as requested frequency - ignoring");
 		return;
