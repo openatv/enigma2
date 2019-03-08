@@ -382,6 +382,9 @@ class EPGFetcher(object):
             password_requested = True
             self.addLog("No token, requesting password...")
             _session.open(IceTVNeedPassword)
+        self.addLog("End update")
+        self.deferredPostStatus(None)
+        self.statusCleanup()
         return res
 
     def makeChanServMap(self, channels):
