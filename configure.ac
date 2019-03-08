@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[17.5],[support@beyonwiz.com.au])
+AC_INIT([enigma2],[19.3],[support@beyonwiz.com.au])
 AM_INIT_AUTOMAKE([foreign dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
