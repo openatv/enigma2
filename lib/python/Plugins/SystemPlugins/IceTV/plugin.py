@@ -623,7 +623,7 @@ class EPGFetcher(object):
             if simulTimerList is not None:
                 for x in simulTimerList:
                     if x.setAutoincreaseEnd(timer):
-                        self.session.nav.RecordTimer.timeChanged(x)
+                        _session.nav.RecordTimer.timeChanged(x)
                 if timersanitycheck.check():
                     success = True
         else:
