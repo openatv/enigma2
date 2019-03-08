@@ -85,19 +85,20 @@ class BootLoaderVersionFetcher:
 	def searchBootVerFinished(self, result, retval, extra_args):
 		callback = extra_args
 		latest_date = (0, 0, 0, "Unknown")
-		for line in result.splitlines():
-			line = line.strip()
-			match = self.dateMatchRe.search(line)
-			groups = match.groups()
-			if len(groups) == 4:
-				month = self.monMap[groups[1]]
-				day = groups[2]
-				if day[0] == ' ':
-					day = '0' + day[1:]
-				year = groups[3]
-				d = (year, month, day, line)
-				if latest_date < d:
-					latest_date = d
+		if retval == 0:
+			for line in result.splitlines():
+				line = line.strip()
+				match = self.dateMatchRe.search(line)
+				groups = match and match.groups()
+				if groups and len(groups) == 4:
+					month = self.monMap[groups[1]]
+					day = groups[2]
+					if day[0] == ' ':
+						day = '0' + day[1:]
+					year = groups[3]
+					d = (year, month, day, line)
+					if latest_date < d:
+						latest_date = d
 		if callback:
 			callback(latest_date[3])
 
