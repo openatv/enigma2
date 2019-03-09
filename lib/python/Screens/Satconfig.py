@@ -27,21 +27,27 @@ from  Tools.BugHunting import printCallSequence
 
 def setForceLNBPowerChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
-	f.write(configElement.value)
+	if configElement.value:
+		f.write("on")
+	else:
+		f.write("off")
 	f.close()
 
 def setForceToneBurstChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
-	f.write(configElement.value)
+	if configElement.value:
+		f.write("enable")
+	else:
+		f.write("disable")
 	f.close()
 
 config.tunermisc = ConfigSubsection()
 if SystemInfo["ForceLNBPowerChanged"]:
-	config.tunermisc.forceLnbPower = ConfigSelection(default = "off", choices = [ ("on", _("Yes")), ("off", _("No"))] )
+	config.tunermisc.forceLnbPower = ConfigYesNo(default=False)
 	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
 
 if SystemInfo["ForceToneBurstChanged"]:
-	config.tunermisc.forceToneBurst = ConfigSelection(default = "disable", choices = [ ("enable", _("Yes")), ("disable", _("No"))] )
+	config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
 	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
 
 class TunerSetup(Screen, ConfigListScreen):
@@ -892,8 +898,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		for x in self["config"].list:
 			x[1].cancel()
 		if hasattr(self, "originalTerrestrialRegion"):
-			self.nimConfig.terrestrial.value = self.originalTerrestrialRegion
-			self.nimConfig.terrestrial.save()
+			self.nimConfig.dvbt.terrestrial.value = self.originalTerrestrialRegion
+			self.nimConfig.dvbt.terrestrial.save()
 		if hasattr(self, "originalCableRegion"):
 			self.nimConfig.dvbc.scan_provider.value = self.originalCableRegion
 			self.nimConfig.dvbc.scan_provider.save()

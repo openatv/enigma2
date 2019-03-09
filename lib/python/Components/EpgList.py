@@ -492,7 +492,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					if best is None or (diff < best_diff):
 						best = idx
 						best_diff = diff
-					if ev_end_time < now:
+					if ev_end_time < now and getnow:
 						best = idx+1
 					if best is not None and ev_end_time > now and (ev_time > last_time or (getnow and ev_time < now)):
 						break
@@ -1318,6 +1318,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		cur_service = self.cur_service    #(service, service_name, events, picon)
 		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
+		now = time() - int(config.epg.histminutes.value) * 60
 		if cur_service:
 			update = True
 			entries = cur_service[2]
@@ -1341,6 +1342,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.time_base -= self.time_epoch * 60
 					self.fillGraphEPG(None) # refill
 					return True
+				elif self.time_base > now and valid_event and cur_service[2][0][2] <= self.time_base:
+					self.time_base -= self.time_epoch * 60
+					self.fillGraphEPG(None, self.time_base) # refill
+					return True
 			elif dir == +2: #next page
 				self.offs += 1
 				self.fillGraphEPG(None) # refill
@@ -1354,12 +1359,15 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.time_base -= self.time_epoch * 60
 					self.fillGraphEPG(None) # refill
 					return True
+				elif self.time_base > now and valid_event and cur_service[2][0][2] <= self.time_base:
+					self.time_base -= self.time_epoch * 60
+					self.fillGraphEPG(None, self.time_base) # refill
+					return True
 			elif dir == +24:
 				self.time_base += 86400
 				self.fillGraphEPG(None, self.time_base) # refill
 				return True
 			elif dir == -24:
-				now = time() - int(config.epg.histminutes.value) * 60
 				roundto = None
 				if self.type == EPG_TYPE_GRAPH:
 					roundto = config.epgselection.graph_roundto

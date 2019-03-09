@@ -139,6 +139,12 @@ class Network:
 		fp.write("auto lo\n")
 		fp.write("iface lo inet loopback\n\n")
 		for ifacename, iface in self.ifaces.items():
+			if iface.has_key('dns-nameservers') and iface['dns-nameservers']:
+				dns = []
+				for s in iface['dns-nameservers'].split()[1:]:
+					dns.append((self.convertIP(s)))
+				if dns:
+					self.nameservers = dns
 			WoW = False
 			if self.onlyWoWifaces.has_key(ifacename):
 				WoW = self.onlyWoWifaces[ifacename]

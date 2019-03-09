@@ -940,3 +940,32 @@ std::string strip_non_graph(std::string s)
 	s = std::regex_replace(s, std::regex("^\\s+|\\s+$"), "");
 	return s;
 }
+
+std::vector<std::string> split(std::string s, const std::string& separator)
+{
+	std::vector<std::string> tokens;
+	std::string token;
+	size_t pos, sep_len = separator.length();
+
+	while ((pos = s.find(separator)) != std::string::npos)
+	{
+		token = s.substr(0, pos);
+		if (!token.empty())
+		{
+			tokens.push_back(token);
+		}
+		s.erase(0, pos + sep_len);
+	}
+
+	if (!s.empty())
+	{
+		tokens.push_back(s);
+	}
+
+	return tokens;
+}
+
+int strcasecmp(const std::string& s1, const std::string& s2)
+{
+	return ::strcasecmp(s1.c_str(), s2.c_str());
+}

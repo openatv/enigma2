@@ -22,7 +22,7 @@ MAX_NUM_CI = 4
 relevantPidsRoutingChoices = None
 
 def setCIBitrate(configElement):
-	if configElement.value == "no":
+	if not configElement.value:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal)
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
@@ -50,9 +50,9 @@ def InitCiConfig():
 		config.ci[slot].show_ci_messages = ConfigYesNo(default = True)
 		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
 			if getBrandOEM() in ('dags', 'blackbox'):
-				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "yes")
+				config.ci[slot].canHandleHighBitrates = ConfigYesNo(default = True)
 			else: 
-				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "no")
+				config.ci[slot].canHandleHighBitrates = ConfigYesNo(default = False)
 			config.ci[slot].canHandleHighBitrates.slotid = slot
 			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
 		if SystemInfo["RelevantPidsRoutingSupport"]:
