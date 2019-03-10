@@ -61,7 +61,7 @@ class ClientsStreaming(Converter, Poll, object):
 		ips = []
 		names = []
 		encoders = []
-		extrainfo = _("ClientIP") + "\t\t" + _("Transcode")  + "\t" + _("Channel")  + "\n"
+		extrainfo = _("ClientIP") + "\t\t" + _("Transcode")  + "\t" + _("Channel")  + "\n\n"
 		info = ""
 
 		for x in self.streamServer.getConnectedClients():
@@ -75,10 +75,10 @@ class ClientsStreaming(Converter, Poll, object):
 
 			if int(x[2]) == 0:
 				strtype = "S"
-				encoder = _('NO')
+				encoder = _('No')
 			else:
 				strtype = "T"
-				encoder = _('YES')
+				encoder = _('Yes')
 
 			encoders.append((encoder))
 
