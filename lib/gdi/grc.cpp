@@ -431,15 +431,18 @@ void gPainter::clear()
 	m_rc->submit(o);
 }
 
-void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
+void gPainter::blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags, int aflags)
 {
-	blitScale(pixmap, eRect(pos, eSize()), clip, flags, 0);
+	blit(pixmap, pos, clip, flags | aflags);
 }
 
-void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &clip, int flags, int aflags)
+void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
-	flags |= aflags;
+	blit(pixmap, eRect(pos, eSize()), clip, flags);
+}
 
+void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags)
+{
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
@@ -453,7 +456,7 @@ void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &cl
 	o.parm.blit->pixmap = pixmap;
 	o.parm.blit->clip = clip;
 	o.parm.blit->flags = flags;
-	o.parm.blit->position = position;
+	o.parm.blit->position = pos;
 	m_rc->submit(o);
 }
 

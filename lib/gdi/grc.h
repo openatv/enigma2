@@ -283,11 +283,16 @@ public:
 		BT_ALPHABLEND = 2,
 		BT_SCALE = 4, /* will be automatically set by blitScale */
 		BT_KEEP_ASPECT_RATIO = 8,
-		BT_FIXRATIO = 8
+		BT_FIXRATIO = 8,
+		BT_HALIGN_CENTER = 16,
+		BT_HALIGN_RIGHT = 32,
+		BT_VALIGN_CENTER = 64,
+		BT_VALIGN_BOTTOM = 128
 	};
 
-	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
 	void blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0, int aflags = BT_SCALE);
+	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
+	void blit(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0);
 
 	void setPalette(gRGB *colors, int start=0, int len=256);
 	void setPalette(gPixmap *source);
