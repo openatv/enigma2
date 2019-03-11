@@ -66,10 +66,6 @@ self.selectKey("DOWN")
 		</step>
 
 		<step id="timezone">
-			<condition>
-from boxbranding import getMachineBrand
-self.condition = getMachineBrand() == "Beyonwiz"
-			</condition>
 			<text value="Please set your time zone" />
 			<displaytext value="Please set your time zone" />
 			<config screen="Setup" module="Setup" args="'timezone'" type="ConfigList" />
