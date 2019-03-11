@@ -24,12 +24,13 @@ def InitSetupDevices():
 		language.activateLanguage(configElement.value)
 
 	config.osd = ConfigSubsection()
-	if getMachineBrand() in ('Vimastec'):
-		config.osd.language = ConfigText(default = "fr_FR")
-	elif getMachineBrand() in ('Zgemma','Beyonwiz') or getBrandOEM() in ('airdigital'):
-		config.osd.language = ConfigText(default = "en_US")
+	if getMachineBrand() == 'Zgemma' or getBrandOEM() == 'airdigital':
+		defaultLanguage = "en_US"
+	elif getMachineBrand() == 'Beyonwiz':
+		defaultLanguage = "en_GB"
 	else:
-		config.osd.language = ConfigText(default = "de_DE")
+		defaultLanguage = "de_DE"
+	config.osd.language = ConfigText(default = defaultLanguage)
 	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection()
