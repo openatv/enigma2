@@ -6,6 +6,9 @@
 		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
 	</setup>
+	<setup key="timezone" title="Time zone settings">
+		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
+	</setup>
 	<setup key="audio_setup">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
 	</setup>

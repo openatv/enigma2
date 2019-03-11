@@ -14,7 +14,7 @@ self.selectKey("OK")
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<displaytext value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use the wizard to set up basic features" step="nima" />
+				<listentry caption="Use the wizard to set up basic features" step="timezone" />
 				<listentry caption="Exit the wizard" step="end" />
 			</list>
 			<code>
@@ -29,7 +29,7 @@ self.selectKey("DOWN")
 			<displaytext value="Please connect your %s %s to the internet" />
 			<list>
 				<listentry caption="Check the internet connection" step="update" />
-				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
+				<listentry caption="Skip internet connection check (disables automatic package installation)" step="timezone" />
 			</list>
 			<code>
 self.clearSelectedKeys()
@@ -56,12 +56,27 @@ self.condition = not config.misc.installwizard.ipkgloaded.value
 			<displaytext value="Your %s %s is not connected to the internet" />
 			<list>
 				<listentry caption="Check the internet connection again" step="update" />
-				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
+				<listentry caption="Skip internet connection check (disables automatic package installation)" step="timezone" />
 			</list>
 			<code>
 self.clearSelectedKeys()
 self.selectKey("UP")
 self.selectKey("DOWN")
+			</code>
+		</step>
+
+		<step id="timezone">
+			<condition>
+from boxbranding import getMachineBrand
+self.condition = getMachineBrand() == "Beyonwiz"
+			</condition>
+			<text value="Please set your time zone" />
+			<displaytext value="Please set your time zone" />
+			<config screen="Setup" module="Setup" args="'timezone'" type="ConfigList" />
+			<code>
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
 			</code>
 		</step>
 
