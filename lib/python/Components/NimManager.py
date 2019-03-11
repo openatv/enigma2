@@ -1,4 +1,4 @@
-from boxbranding import getBoxType, getBrandOEM
+from boxbranding import getBoxType, getBrandOEM, getMachineBrand
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
@@ -2214,12 +2214,13 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.connectedTo.addNotifier(boundFunction(connectedToChanged, x, nimmgr), initial_call = False)
 		if slot.canBeCompatible("DVB-C"):
 			nim = config.Nims[x].dvbc
+			default = getMachineBrand() == "Beyonwiz" and "nothing" or "enabled"
 			nim.configMode = ConfigSelection(
 				choices = {
 					"enabled": _("enabled"),
 					"nothing": _("nothing connected"),
 					},
-				default = "enabled")
+				default = default)
 			createCableConfig(nim, x)
 		if slot.canBeCompatible("DVB-T"):
 			nim = config.Nims[x].dvbt
@@ -2329,10 +2330,13 @@ def InitNimManager(nimmgr, update_slots = []):
 				addMultiType = True
 		if slot.isMultiType() and addMultiType:
 			typeList = []
+			default = "0"
 			for id in slot.getMultiTypeList().keys():
 				type = slot.getMultiTypeList()[id]
 				typeList.append((id, type))
-			nim.multiType = ConfigSelection(typeList, "0")
+				if getMachineBrand() == "Beyonwiz" and type.startswith("DVB-T"):
+					default = id
+			nim.multiType = ConfigSelection(typeList, default)
 
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
