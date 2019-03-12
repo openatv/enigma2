@@ -87,7 +87,7 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if about.getChipSetString() in ('5272s', '7251', '7251S', '7251s', '7252', '7252S', '7252s', '7366', '7376', '7444s'):
+	if about.getChipSetString() in ('5272s', '7251', '7251S', '7251s', '7252', '7252S', '7252s', '7366', '7376', '7444s', '3798mv200', '3798cv200', 'hi3798mv200', 'hi3798cv200'):
 		supports2160p = True
 		supports1080p = True
 		modes["HDMI"] = ["1080p", "1080i", "720p", "576p", "576i", "480p", "480i", "2160p"]
