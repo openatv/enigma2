@@ -46,7 +46,7 @@ class Keyboard:
 		elif getMachineBrand() == 'Beyonwiz':
 			defaultKeyboardMap = "eng.kmap"
 		else:
-			defaultLanguage = "de.kmap"
+			defaultKeyboardMap = "de.kmap"
 		return defaultKeyboardMap
 
 keyboard = Keyboard()
