@@ -20,7 +20,11 @@ dist_pkgdata_DATA = \
 	picon_default.png 
 
 if HAVE_TEXTLCD
-SUBDIRS += displaytext
+if HAVE_7SEGMENT
+SUBDIRS += 7segment
+else
+ SUBDIRS += displaytext
+endif
 endif
 
 if HAVE_COLORLCD

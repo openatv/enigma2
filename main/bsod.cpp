@@ -1,3 +1,5 @@
+#include <sys/klog.h>
+#include <vector>
 #include <csignal>
 #include <fstream>
 #include <sstream>
@@ -55,6 +57,35 @@ static const std::string getConfigString(const std::string &key, const std::stri
 	}
 
 	return value;
+}
+
+/* get the kernel log aka dmesg */
+static void getKlog(FILE* f)
+{
+	fprintf(f, "\n\ndmesg\n\n");
+
+	ssize_t len = klogctl(10, NULL, 0); /* read ring buffer size */
+	if (len == -1)
+	{
+		fprintf(f, "Error reading klog %d - %m\n", errno);
+		return;
+	}
+	else if(len == 0)
+	{
+		return;
+	}
+
+	std::vector<char> buf(len, 0);
+
+	len = klogctl(4, &buf[0], len); /* read and clear ring buffer */
+	if (len == -1)
+	{
+		fprintf(f, "Error reading klog %d - %m\n", errno);
+		return;
+	}
+
+	buf.resize(len);
+	fprintf(f, "%s\n", &buf[0]);
 }
 
 static const std::string stringFromFile(const char* filename)
@@ -161,6 +192,10 @@ void bsodFatal(const char *component)
 		if (logp2)
 			fwrite(logp2, 1, logs2, f);
 
+		/* dump the kernel log */
+		getKlog(f);
+
+		fsync(fileno(f));
 		fclose(f);
 	}
 

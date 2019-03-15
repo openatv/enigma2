@@ -28,6 +28,7 @@ class eDVBRegisteredFrontend: public iObject, public sigc::trackable
 	DECLARE_REF(eDVBRegisteredFrontend);
 	ePtr<eTimer> disable;
 	void closeFrontend();
+
 public:
 	sigc::signal0<void> stateChanged;
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)

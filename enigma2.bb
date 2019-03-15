@@ -38,15 +38,25 @@ bindir = "/usr/bin"
 sbindir = "/usr/sbin"
 
 EXTRA_OECONF = "\
-    --enable-maintainer-mode --with-target=native --with-libsdl=no --with-boxtype=${MACHINE} \
-    --enable-dependency-tracking \
-    ${@base_contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
-    ${@base_contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
     BUILD_SYS=${BUILD_SYS} \
     HOST_SYS=${HOST_SYS} \
     STAGING_INCDIR=${STAGING_INCDIR} \
     STAGING_LIBDIR=${STAGING_LIBDIR} \
+    --enable-maintainer-mode \
+    --enable-dependency-tracking \
+    --with-target=native \
+    --with-libsdl=no \
+    --with-boxtype=${MACHINE} \
+    --with-machinebuild=${MACHINEBUILD} \
+    ${@bb.utils.contains("GST_VERSION", "1.0", "--with-gstversion=1.0", "", d)} \
+    ${@base_contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
+    ${@base_contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "nolcd", "--with-nolcd" , "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "uianimation", "--with-libvugles2" , "", d)} \
+    ${@bb.utils.contains("MACHINE_FEATURES", "osdanimation", "--with-osdanimation" , "", d)} \
     "
+
+LDFLAGS_prepend = "${@bb.utils.contains('GST_VERSION', '1.0', ' -lxml2 ', '', d)}"
 
 do_install_append() {
     install -d ${D}/usr/share/keymaps
