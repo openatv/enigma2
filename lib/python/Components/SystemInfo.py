@@ -1,5 +1,5 @@
 from enigma import eDVBResourceManager, Misc_Options
-from Tools.Directories import fileExists, fileCheck
+from Tools.Directories import fileExists, fileCheck, pathExists
 from Tools.HardwareInfo import HardwareInfo
 
 from boxbranding import getMachineBuild, getMachineName, getBoxType, getImageDistro
@@ -63,6 +63,7 @@ SystemInfo["Blindscan_t2_available"] = fileCheck("/proc/stb/info/vumodel")
 SystemInfo["HasForceLNBOn"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
 SystemInfo["HasForceToneburst"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["HasMMC"] = getMachineBuild() == 'et13000' or getBoxType() in ('mutant51', 'mutant52', 'sf4008', 'tmtwin4k', 'vusolo4k', 'vuultimo4k', 'vuuno4k')
+SystemInfo["HasHiSi"] = pathExists('/proc/hisi')
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
 SystemInfo["CanDoTranscodeAndPIP"] = getBoxType() in ('vusolo4k',)
 SystemInfo["hasXcoreVFD"] = fileCheck("/sys/module/brcmstb_%s/parameters/pt6302_cgram" % getBoxType())
