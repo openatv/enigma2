@@ -1,0 +1,16 @@
+<setupxml>
+        <setup key="filecommander" title="File Commander Settings">
+		<!--
+		<item level="0" text="Add plugin to main menu" description="Make File Commander accessible from the main menu.">config.plugins.filecommander.add_mainmenu_entry</item>
+		<item level="0" text="Add plugin to Extensions menu" description="Make File Commander accessible from the Extensions menu.">config.plugins.filecommander.add_extensionmenu_entry</item>
+		-->
+		<item level="0" text="Save left folder on exit" description="Save the left folder list location on exit.">config.plugins.filecommander.savedir_left</item>
+		<item level="0" text="Save right folder on exit" description="Save the right folder list location on exit.">config.plugins.filecommander.savedir_right</item>
+		<item level="0" text="Default folder" description="Default folder if the left or right folder isn't saved, and target folder for button 5.">config.plugins.filecommander.path_default</item>
+		<item level="0" text="My extension" description="Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'.">config.plugins.filecommander.my_extension</item>
+		<item level="0" text="Filter extension, (*) appears in title" description="Filter visible file classes by extension.">config.plugins.filecommander.extension</item>
+		<item level="0" text="Input length - Filename" description="Number of characters visible in filename entry popup windows.">config.plugins.filecommander.input_length</item>
+		<item level="0" text="File checksums/hashes" description="File checksums to calculate for button 9">config.plugins.filecommander.hashes</item>
+		<item level="0" text="Time for Slideshow" description="Time between slides in image viewer slideshow.">config.plugins.filecommander.diashow</item>
+	</setup>
+</setupxml>

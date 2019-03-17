@@ -606,9 +606,9 @@ class MovieList(GUIComponent):
 					parent += '/'
 			ref = eServiceReference(eServiceReference.idFile, eServiceReference.flagDirectory, eServiceReferenceFS.directory)
 			ref.setPath(parent)
-				ref.flags = eServiceReference.flagDirectory
-				self.list.append((ref, None, 0, -1))
-				numberOfDirs += 1
+			ref.flags = eServiceReference.flagDirectory
+			self.list.append((ref, None, 0, -1))
+			numberOfDirs += 1
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
