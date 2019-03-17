@@ -5,4 +5,4 @@ SUBDIRS = addons images pic
 
 install_PYTHON = *.py
 
-dist_install_DATA = setup.xml filecommander.png
+dist_install_DATA = setup.xml FileCommander.png
