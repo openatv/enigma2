@@ -358,6 +358,7 @@ def InitLcd():
 		def setLCDminitvfps(configElement):
 			ilcd.setLCDMiniTVFPS(configElement.value)
 
+		brightness_default = ilcd.oled_brightness_scale
 		standby_default = ilcd.oled_brightness_scale * 2 / 3
 
 		if not ilcd.isOled():
@@ -394,7 +395,7 @@ def InitLcd():
 		config.lcd.standby.apply = lambda: setLCDbright(config.lcd.standby)
 		config.lcd.standby.callNotifiersOnSaveAndCancel = True
 
-		config.lcd.bright = BrightnessSlider(default=ilcd.oled_brightness_scale, limits=(0, ilcd.oled_brightness_scale))
+		config.lcd.bright = BrightnessSlider(default=brightness_default, limits=(0, ilcd.oled_brightness_scale))
 		config.lcd.bright.addNotifier(setLCDbright)
 		config.lcd.bright.apply = lambda: setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
