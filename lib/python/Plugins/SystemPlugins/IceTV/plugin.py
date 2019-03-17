@@ -521,7 +521,9 @@ class EPGFetcher(object):
                                         update_queue.append(iceTimer)
                                         self.addLog("Failed to update timer '%s" % name)
                                 else:
-                                    self.onTimerChanged(timer)
+                                    iceTimer["state"] = "pending"
+                                    iceTimer["message"] = "Timer already up to date '%s'" % name
+                                    update_queue.append(iceTimer)
                                 updated = True
                     created = False
                     if not completed and not updated:
