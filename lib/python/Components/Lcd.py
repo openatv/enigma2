@@ -368,6 +368,10 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			standby_default = 1
 
+		if getMachineBuild() in ('beyonwizv2', ):
+			brightness_default = 1
+			standby_default = 1
+
 		class BrightnessSlider(ConfigSlider):
 			def __init__(self, **kwargs):
 				self._value = None
