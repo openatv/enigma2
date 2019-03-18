@@ -358,6 +358,7 @@ def InitLcd():
 		def setLCDminitvfps(configElement):
 			ilcd.setLCDMiniTVFPS(configElement.value)
 
+		brightness_default = ilcd.oled_brightness_scale
 		standby_default = ilcd.oled_brightness_scale * 2 / 3
 
 		if not ilcd.isOled():
@@ -365,6 +366,10 @@ def InitLcd():
 			config.lcd.contrast.addNotifier(setLCDcontrast)
 		else:
 			config.lcd.contrast = ConfigNothing()
+			standby_default = 1
+
+		if getMachineBuild() in ('beyonwizv2', ):
+			brightness_default = 1
 			standby_default = 1
 
 		class BrightnessSlider(ConfigSlider):
@@ -394,12 +399,12 @@ def InitLcd():
 		config.lcd.standby.apply = lambda: setLCDbright(config.lcd.standby)
 		config.lcd.standby.callNotifiersOnSaveAndCancel = True
 
-		config.lcd.bright = BrightnessSlider(default=ilcd.oled_brightness_scale, limits=(0, ilcd.oled_brightness_scale))
+		config.lcd.bright = BrightnessSlider(default=brightness_default, limits=(0, ilcd.oled_brightness_scale))
 		config.lcd.bright.addNotifier(setLCDbright)
 		config.lcd.bright.apply = lambda: setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
 
-		config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
+		config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, ilcd.oled_brightness_scale))
 		config.lcd.dimbright.addNotifier(setLCDdimbright)
 		config.lcd.dimbright.apply = lambda: setLCDdimbright(config.lcd.dimbright)
 		config.lcd.dimdelay = ConfigSelection(default="0", choices=[

@@ -404,6 +404,8 @@ public:
 		sHideVBI,
 		sCenterDVBSubs,
 
+		sGamma,
+
 		sUser = 0x100
 	};
 	enum {
@@ -942,6 +944,8 @@ public:
 		evStopped,
 
 		evHBBTVInfo,
+
+		evVideoGammaChanged,
 
 		evUser = 0x100
 	};

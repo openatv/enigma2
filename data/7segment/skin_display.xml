@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+<!-- MyClockPanel -->	
+	<screen name="MyClockPanel">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay">Clock</convert>
+		</widget>
+	</screen>
+	
+<!-- MyRecPanel -->
+	<screen name="MyRecPanel">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,RecBlink,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,Rec,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
+<!-- main-->
+	<screen name="InfoBarSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- movieplayer-->
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- menus-->
+	<screen name="MenuSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="QuickMenu_summary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- setup -->
+	<screen name="SetupSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- About -->
+	<screen name="AboutSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- Blindscan -->
+	<screen name="SetupSummary2" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- Numberzap -->    
+	<screen name="NumberZap_summary" position="0,0" size="1,1">
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+	</screen> 
+	<screen name="NumberZapPicon_summary" position="0,0" size="1,1">
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+	</screen>
+
+<!-- misc-->
+	<screen name="ServiceScanSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="SimpleSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="ChoiceBox_summary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="MessageBox_summary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="MessageBoxSimple_summary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="JobView_summary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- DVD -->
+	<screen name="DVDSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- MediaPlayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- AutoTimer -->
+	<screen name="AutoTimerOverviewSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- EMC  -->
+	<screen name="EMCSelection_summary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="EMCSelectionSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,time,CheckSourceBoolean</convert>
+			<convert type="VfdDisplay">Clock</convert>
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,RecBlink,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Rec,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
+<!-- webradioFS  -->
+	<screen name="webradioFSdisplay13" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+</skin>

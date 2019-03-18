@@ -248,10 +248,10 @@ class ButtonSetup(Screen):
 		key = self["list"].l.getCurrentSelection()[0][1]
 		if key:
 			selected = []
-			for x in eval("config.misc.ButtonSetup." + key + ".value.split(',')"):
-				function = list(function for function in self.ButtonSetupFunctions if function[1] == x )
+			for x in getattr(config.misc.ButtonSetup, key).value.split(','):
+				function = next((function for function in self.ButtonSetupFunctions if function[1] == x), None)
 				if function:
-					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+					selected.append(ChoiceEntryComponent('',((function[0]), function[1])))
 			self["choosen"].setList(selected)
 
 class ButtonSetupSelect(Screen):
@@ -266,13 +266,13 @@ class ButtonSetupSelect(Screen):
 		self["key_green"] = Button(_("Save"))
 		self.mode = "list"
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
-		self.config = eval("config.misc.ButtonSetup." + key[0][1])
+		self.config = getattr(config.misc.ButtonSetup, key[0][1])
 		self.expanded = []
 		self.selected = []
 		for x in self.config.value.split(','):
-			function = list(function for function in self.ButtonSetupFunctions if function[1] == x )
+			function = next((function for function in self.ButtonSetupFunctions if function[1] == x), None)
 			if function:
-				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+				self.selected.append(ChoiceEntryComponent('',((function[0]), function[1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
@@ -436,17 +436,17 @@ class InfoBarButtonSetup():
 	def getKeyFunctions(self, key):
 		if key in ("play", "playpause", "Stop", "stop", "pause", "rewind", "next", "previous", "fastforward", "skip_back", "skip_forward") and (self.__class__.__name__ == "MoviePlayer" or hasattr(self, "timeshiftActivated") and self.timeshiftActivated()):
 			return False
-		selection = eval("config.misc.ButtonSetup." + key + ".value.split(',')")
+		selection = getattr(config.misc.ButtonSetup, key).value.split(',')
 		selected = []
 		for x in selection:
 			if x.startswith("ZapPanic"):
 				selected.append(((_("Panic to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			elif x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
-			else:
-				function = list(function for function in getButtonSetupFunctions() if function[1] == x )
+			elif x:
+				function = next((function for function in getButtonSetupFunctions() if function[1] == x), None)
 				if function:
-					selected.append(function[0])
+					selected.append(function)
 		return selected
 
 	def getHelpText(self, key):

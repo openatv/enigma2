@@ -1976,6 +1976,9 @@ int eDVBServicePlay::getInfo(int w)
 			return aspect;
 		break;
 	}
+	case sGamma:
+		if (m_decoder) return m_decoder->getVideoGamma();
+		break;
 	case sIsCrypted:
 		if (no_program_info) return false;
 		return program.isCrypted();
@@ -2242,7 +2245,11 @@ int eDVBServicePlay::selectAudioStream(int i)
 		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
 		if (different_pid)
 			rdsPid = program.audioStreams[stream].rdsPid;
+#if HAVE_HISILICON
+		if (different_pid && (!m_rds_decoder || m_rds_decoder->getPid() != rdsPid))
+#else
 		if (!m_rds_decoder || m_rds_decoder->getPid() != rdsPid)
+#endif
 		{
 			m_rds_decoder = 0;
 			ePtr<iDVBDemux> data_demux;
@@ -3636,6 +3643,9 @@ void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 			break;
 		case iTSMPEGDecoder::videoEvent::eventProgressiveChanged:
 			m_event((iPlayableService*)this, evVideoProgressiveChanged);
+			break;
+		case iTSMPEGDecoder::videoEvent::eventGammaChanged:
+			m_event((iPlayableService*)this, evVideoGammaChanged);
 			break;
 		default:
 			break;

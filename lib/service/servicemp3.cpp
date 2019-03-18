@@ -1194,6 +1194,7 @@ int eServiceMP3::getInfo(int w)
 	case sVideoWidth: return m_width;
 	case sFrameRate: return m_framerate;
 	case sProgressive: return m_progressive;
+	case sGamma: return m_gamma;
 	case sAspect: return m_aspect;
 	case sTagTitle:
 	case sTagArtist:
@@ -2136,6 +2137,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 							gst_structure_get_int (msgstruct, "progressive", &m_progressive);
 							if (strstr(eventname, "Changed"))
 								m_event((iPlayableService*)this, evVideoProgressiveChanged);
+						}
+						else if (!strcmp(eventname, "eventGammaChanged"))
+						{
+							gst_structure_get_int (msgstruct, "gamma", &m_gamma);
+							if (strstr(eventname, "Changed"))
+								m_event((iPlayableService*)this, evVideoGammaChanged);
 						}
 						else if (!strcmp(eventname, "redirect"))
 						{

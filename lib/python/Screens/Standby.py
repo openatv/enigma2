@@ -63,9 +63,15 @@ class Standby2(Screen):
 		else:
 			self.avswitch.setInput("AUX")
 
+		if path.exists("/proc/stb/hdmi/output"):
+			open("/proc/stb/hdmi/output", "w").write("off")
+
 	def videoOn(self):
 		# set input to encoder
 		self.avswitch.setInput("ENCODER")
+
+		if path.exists("/proc/stb/hdmi/output"):
+			open("/proc/stb/hdmi/output", "w").write("on")
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
