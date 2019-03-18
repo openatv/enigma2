@@ -382,6 +382,9 @@ class EPGFetcher(object):
             password_requested = True
             self.addLog("No token, requesting password...")
             _session.open(IceTVNeedPassword)
+        self.addLog("End update")
+        self.deferredPostStatus(None)
+        self.statusCleanup()
         return res
 
     def makeChanServMap(self, channels):
@@ -518,7 +521,9 @@ class EPGFetcher(object):
                                         update_queue.append(iceTimer)
                                         self.addLog("Failed to update timer '%s" % name)
                                 else:
-                                    self.onTimerChanged(timer)
+                                    iceTimer["state"] = "pending"
+                                    iceTimer["message"] = "Timer already up to date '%s'" % name
+                                    update_queue.append(iceTimer)
                                 updated = True
                     created = False
                     if not completed and not updated:
@@ -623,7 +628,7 @@ class EPGFetcher(object):
             if simulTimerList is not None:
                 for x in simulTimerList:
                     if x.setAutoincreaseEnd(timer):
-                        self.session.nav.RecordTimer.timeChanged(x)
+                        _session.nav.RecordTimer.timeChanged(x)
                 if timersanitycheck.check():
                     success = True
         else:
