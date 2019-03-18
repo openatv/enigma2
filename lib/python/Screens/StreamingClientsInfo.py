@@ -47,7 +47,7 @@ class StreamingClientsInfo(Screen):
 
 	def update_info(self):
 		clients = ClientsStreaming("SHORT_ALL")
-		clients2 = ClientsStreaming("EXTRA_INFO")
+		clients2 = ClientsStreaming("INFO")
 		text = clients.getText()
 		text2 = clients2.getText()
 		self["ScrollLabel"].setText(text or _("No clients streaming"))
