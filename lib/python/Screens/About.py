@@ -148,7 +148,7 @@ class About(AboutBase):
 		if tempinfo and int(tempinfo) > 0:
 			self.list.append(self.makeInfoEntry(_("CPU temperature:"), "%d\xc2\xb0C" % ((int(tempinfo) + 500) / 1000)))
 		fp_version = getFPVersion()
-		if fp_version is not None:
+		if fp_version:
 			self.list.append(self.makeInfoEntry(_("Front Panel:"), "%d" % fp_version))
 		self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo))
 		self.list.append(self.makeInfoEntry(_("Kernel:"), about.getKernelVersionString()))
