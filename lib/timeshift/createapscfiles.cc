@@ -87,7 +87,7 @@ off64_t framepts(unsigned char* buf, int pos)
   return pts;
 }
 
-int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& retpos2, off64_t& retdat, int filesize)
+int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& retpos2, off64_t& retdat, unsigned long long filesize)
 {
   static unsigned char buf[LEN];
   static int ind;
@@ -157,7 +157,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
     }
 
     progress = bytecount/filesize*100;
-    cout << "\rcreating ap&sc files: ";
+    cout << "\rcreating ap&sc files:  ";
     cout.width(2);
     cout << (int)progress << "%";
 
@@ -183,7 +183,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
   }
 }
 
-int do_one(int fts, int fap, int fsc, int filesize)
+int do_one(int fts, int fap, int fsc, unsigned long long filesize)
 {
   off64_t pos;
   off64_t pos2;
@@ -205,8 +205,8 @@ int do_movie(char* inname)
 {
   int f_ts=-1, f_sc=-1, f_ap=-1, f_tmp=-1;
   char* tmpname;
-  long filesize;
-  FILE *fp;
+  unsigned long long filesize;
+  struct stat fp;
   tmpname = makefilename(0, inname, ".ts", 0);
   f_ts = open(tmpname, O_RDONLY | O_LARGEFILE);
 
@@ -236,10 +236,8 @@ int do_movie(char* inname)
 
   //printf("  Processing .ap and .sc of \"%s\" ... ", inname);
 
-  fp=fopen(inname,"rb");
-  fseek(fp,0L,SEEK_END);
-  filesize=ftell(fp);
-  fclose(fp);
+  stat(inname, &fp);
+  filesize = fp.st_size;
 
   fflush(stdout);
   if (do_one(f_ts, f_ap, f_sc, filesize)) {
