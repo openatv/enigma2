@@ -3,10 +3,10 @@ import time
 from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
-from boxbranding import getMachineBuild
+from boxbranding import getMachineName, getMachineBuild
 import Task
 from About import getModelString
-from boxbranding import getMachineName
+import re
 
 def readFile(filename):
 	file = open(filename)
@@ -121,7 +121,10 @@ class Harddisk:
 
 	def partitionPath(self, n):
 		if self.type == DEVTYPE_UDEV:
-			return self.dev_path + n
+			if self.dev_path.startswith('/dev/mmcblk'):
+				return self.dev_path + "p" + n
+			else:
+				return self.dev_path + n
 		elif self.type == DEVTYPE_DEVFS:
 			return self.dev_path + '/part' + n
 
@@ -183,7 +186,7 @@ class Harddisk:
 				vendor = readFile(self.phys_path + '/vendor')
 				model = readFile(self.phys_path + '/model')
 				return vendor + '(' + model + ')'
-			elif self.device.startswith('mmcblk0'):
+			elif self.device.startswith('mmcblk'):
 				return readFile(self.sysfsPath('device/name'))
 			else:
 				raise Exception("no hdX or sdX or mmcX")
@@ -762,7 +765,17 @@ class HarddiskManager:
 		devpath = "/sys/block/" + blockdev
 		error = False
 		removable = False
+		BLACKLIST=[]
+		if getMachineBuild() in ('gbmv200','multibox','h9combo','v8plus','hd60','hd61','vuduo4k','ustym4kpro','beyonwizv2','dags72604','u51','u52','u53','u54','u5','u5pvr','cc1','sf8008','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
+			BLACKLIST=["mmcblk0"]
+		elif getMachineBuild() in ('xc7439','osmio4k'):
+			BLACKLIST=["mmcblk1"]
+
 		blacklisted = False
+		if blockdev[:7] in BLACKLIST:
+			blacklisted = True
+		if blockdev.startswith("mmcblk") and (re.search(r"mmcblk\dboot", blockdev) or re.search(r"mmcblk\drpmb", blockdev)):
+			blacklisted = True
 		is_cdrom = False
 		partitions = []
 		try:
@@ -772,7 +785,9 @@ class HarddiskManager:
 				dev = int(readFile(devpath + "/dev").split(':')[0])
 			else:
 				dev = None
-			blacklisted = dev in [1, 7, 31, 253, 254] + (SystemInfo["HasMMC"] and [179] or []) #ram, loop, mtdblock, romblock, ramzswap, mmc
+			devlist = [1, 7, 31, 253, 254] # ram, loop, mtdblock, romblock, ramzswap
+			if dev in devlist:
+				blacklisted = True
 			if blockdev[0:2] == 'sr':
 				is_cdrom = True
 			if blockdev[0:2] == 'hd':
@@ -786,6 +801,8 @@ class HarddiskManager:
 			if not is_cdrom and os.path.exists(devpath):
 				for partition in os.listdir(devpath):
 					if partition[0:len(blockdev)] != blockdev:
+						continue
+					if dev == 179 and not re.search(r"mmcblk\dp\d+", partition):
 						continue
 					partitions.append(partition)
 			else:
@@ -868,7 +885,7 @@ class HarddiskManager:
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
-			if l and (not device[l - 1].isdigit() or device == 'mmcblk0'):
+			if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
 				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = True
@@ -900,7 +917,7 @@ class HarddiskManager:
 				if x.mountpoint:  # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
 		l = len(device)
-		if l and not device[l - 1].isdigit():
+		if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
 			for hdd in self.hdd:
 				if hdd.device == device:
 					hdd.stop()
@@ -944,13 +961,20 @@ class HarddiskManager:
 		return [x for x in parts if not x.device or x.device in devs]
 
 	def splitDeviceName(self, devname):
-		# this works for: sdaX, hdaX, sr0 (which is in fact dev="sr0", part=""). It doesn't work for other names like mtdblock3, but they are blacklisted anyway.
-		dev = devname[:3]
-		part = devname[3:]
-		for p in part:
-			if (not p.isdigit()) or dev == "ram":
+		if re.search(r"^mmcblk\d(?:p\d+$|$)", devname):
+			m = re.search(r"(?P<dev>mmcblk\d)p(?P<part>\d+)$", devname)
+			if m:
+				return m.group('dev'), m.group('part') and int(m.group('part')) or 0
+			else:
 				return devname, 0
-		return dev, part and int(part) or 0
+		else:
+			# this works for: sdaX, hdaX, sr0 (which is in fact dev="sr0", part=""). It doesn't work for other names like mtdblock3, but they are blacklisted anyway.
+			dev = devname[:3]
+			part = devname[3:]
+			for p in part:
+				if (not p.isdigit()) or dev == "ram":
+					return devname, 0
+			return dev, part and int(part) or 0
 
 	def getPhysicalDeviceLocation(self, phys):
 		from Tools.HardwareInfo import HardwareInfo
