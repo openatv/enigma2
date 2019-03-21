@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-11 23:55+0300\n"
-"PO-Revision-Date: 2019-03-12 13:47+0200\n"
+"POT-Creation-Date: 2019-03-20 23:55+0300\n"
+"PO-Revision-Date: 2019-03-21 00:08+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -1566,7 +1566,7 @@ msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Leidžia %s %s pastoviai išsaugoti EPG duomenis."
 
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
-msgstr "Leidžia nustatyti, kiek laiko rodyti raiškos informaciją ekrane, pasikeitus vaizdui."
+msgstr "Leidžia koreguoti ekrano raiškos informacijos rodymo laiką."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Leidžia įjungti klaidų žurnalus. Juose yra labai išsami informacija apie visos sistemos darbą."
@@ -12031,7 +12031,7 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Nustatykite teksto slinkties greitį priekiniame monitoriuje."
 
 msgid "Set the time before checking video source for resolution information."
-msgstr "Nustatykite laiką, iki bus tikrinama vaizdo šaltinio rezoliucijos informacija."
+msgstr "Nustatykite laiką prieš tikrindami vaizdo šaltinį, skirtą raiškos informacijai."
 
 msgid "Set the time the timer must start."
 msgstr "Nustatykite laikmačio pradžios datą."
@@ -12329,6 +12329,15 @@ msgstr "Rodyti 1080p 25 fps kaip"
 
 msgid "Show 1080p 30fps as"
 msgstr "Rodyti 1080p 30 fps kaip"
+
+msgid "Show 2160p 24fps as"
+msgstr "Rodyti 2160p 24fps, kaip"
+
+msgid "Show 2160p 25fps as"
+msgstr "Rodyti 2160p 25fps kaip"
+
+msgid "Show 2160p 30fps as"
+msgstr "Rodyti 2160p 30fps kaip"
 
 msgid "Show 24p up to 720p / higher than 720p as"
 msgstr "Rodyti 24p iki 720p / didesnis nei kaip 720p"
@@ -14549,6 +14558,15 @@ msgstr "Ši parinktis leidžia jums pasirinkti, kad rodyti 1080p 25Hz TV. (ne vi
 msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Ši parinktis leidžia jums pasirinkti, kad rodyti 1080p 30Hz TV. (ne visi TV palaiko šią rezoliuciją)"
 
+msgid "This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti 2160p 24Hz vaizdą jūsų televizoriuje (kadangi ne visi TV palaiko šias rezoliucijas)"
+
+msgid "This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti 2160p 25Hz vaizdą jūsų televizoriuje (kadangi ne visi TV palaiko šias rezoliucijas)"
+
+msgid "This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)"
+msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti 2160p 30Hz vaizdą jūsų televizoriuje (kadangi ne visi TV palaiko šias rezoliucijas)"
+
 msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Ši parinktis leidžia jums pasirinkti, kad rodyti 720p 24Hz TV. (ne visi TV palaiko šią rezoliuciją)"
 
@@ -14556,7 +14574,7 @@ msgid "This option allows you to choose how to display SD progressive 24Hz on yo
 msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti SD progr. 24Hz vaizdą jūsų televizoriuje (nes ne visi TV palaiko šią rezoliuciją)"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
-msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti standartinės raiškos vaizdą jūsų televizoriuje."
+msgstr "Ši parinktis leidžia pasirinkti, kaip televizoriuje rodyti standartinės raiškos vaizdo įrašus."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
 msgstr "Ši parinktis leidžia pasirinkti, kur pirmu mygtuko paspaudimu peršokama kanalų pasirinkimo sąrašo lange (taip, paspaudus '2', pirma peršoka į 'A', ar pirma į '2'), kai vykdomi \"skubių veiksmų\" iš anksto nustatyti veiksmai. "
@@ -15104,7 +15122,7 @@ msgid "Translations"
 msgstr "Vertimai"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Adga P&C 2019-03-12, Lietuva"
+msgstr "Adga P&C 2019-03-21, Lietuva"
 
 msgid "Transmission mode"
 msgstr "Perdavimo būdas"
