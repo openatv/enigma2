@@ -183,6 +183,12 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.wmapro.addNotifier(self.setWMAPro, initial_call = False)
 				conflist.append(getConfigListEntry(_("WMA Pro downmix"), self.settings.wmapro, None))
 
+			if SystemInfo["CanBTAudio"]:
+				choice_list = [("off", _("off")), ("on", _("on"))]
+				self.settings.btaudio = ConfigSelection(choices = choice_list, default = config.av.btaudio.value)
+				self.settings.btaudio.addNotifier(self.changeBTAudio, initial_call = False)
+				conflist.append(getConfigListEntry(_("Enable BT Audio"), self.settings.btaudio, None))
+
 			if n > 0:
 				self.audioChannel = service.audioChannel()
 				if self.audioChannel:
@@ -371,6 +377,11 @@ class AudioSelection(Screen, ConfigListScreen):
 		if SystemInfo["supportPcmMultichannel"]:
 			config.av.pcm_multichannel.save()
 		self.fillList()
+
+	def changeBTAudio(self, btaudio):
+		if btaudio.value:
+			config.av.btaudio.value = btaudio.value
+		config.av.btaudio.save()
 
 	def changePCMMultichannel(self, multichan):
 		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
