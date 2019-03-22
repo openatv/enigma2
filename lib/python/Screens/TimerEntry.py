@@ -673,7 +673,8 @@ class InstantRecordTimerEntry(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timer.end = self.timer.begin + (config.recording.margin_before.value * 60) + 1
+			self.timer.begin = self.timer.begin + (config.recording.margin_before.value * 60)
+			self.timer.end = self.timer.begin + 1
 		self.timer.resetRepeated()
 		self.saveTimer()
 
