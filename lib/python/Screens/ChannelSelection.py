@@ -812,7 +812,6 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			sely = int(sely) - int(self.listHeight)
 		menu1 = _("Record now")
 		menu2 = _("Record next")
-		menu3 = _("Zap next")
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				menu1 = _("Stop recording now")
@@ -824,10 +823,12 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 					(menu2, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)
 					]
 			if menu2 == _("Record next"):
-				menu.append((menu3, 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer))
+				menu.append((_("Zap next"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer))
+				if not TIMERTYPE.ALWAYS_ZAP:
+					menu.append((_("Zap+Record next"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapRecordTimer))
 		else:
 			menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer)]
-		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green', 'yellow'], skin_name="RecordTimerQuestion")
+		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green', 'yellow', 'blue'], skin_name="RecordTimerQuestion")
 		self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
 		self.showChoiceBoxDialog()
 
@@ -864,18 +865,21 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self["ChannelSelectBaseActions"].setEnabled(True)
 
 	def doRecordCurrentTimer(self):
-		self.doInstantTimer(TIMERTYPE.JUSTPLAY, parseCurentEvent)
+		self.doInstantTimer(0, TIMERTYPE.ALWAYS_ZAP, parseCurentEvent)
 
 	def doRecordNextTimer(self):
-		self.doInstantTimer(TIMERTYPE.JUSTPLAY, parseNextEvent, True)
+		self.doInstantTimer(0, TIMERTYPE.ALWAYS_ZAP, parseNextEvent, True)
 
 	def doZapTimer(self):
-		self.doInstantTimer(1, parseNextEvent)
+		self.doInstantTimer(1, 0, parseNextEvent, True)
+
+	def doZapRecordTimer(self):
+		self.doInstantTimer(0, 1, parseNextEvent, True)
 
 	def editTimer(self, timer):
 		self.session.open(TimerEntry, timer)
 
-	def doInstantTimer(self, zap, parseEvent, next=False):
+	def doInstantTimer(self, zap, zaprecord, parseEvent, next=False):
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
@@ -920,7 +924,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
 			if not newEntry:
 				return
-			self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
+			self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap, zaprecord)
 			retval = [True, self.InstantRecordDialog.retval()]
 			self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
 

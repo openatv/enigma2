@@ -1501,9 +1501,10 @@ class EPGSelection(Screen, HelpableScreen):
 			title = _("Select action for timer %s:") % event.getEventName()
 		else:
 			if not manual:
-				menu = [(_("Add Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), 
-						(_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent),
-						(_("Add Zap Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer)
+				menu = [(_("Add Record Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), 
+						(_("Add Zap Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer),
+						(_("Add Zap+Record Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapRecordTimer),
+						(_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)
 						]
 				title = "%s?" % event.getEventName()
 			else:
@@ -1511,7 +1512,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 		if title:
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['green', 'blue', 'yellow'], skin_name="RecordTimerQuestion")
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green', 'yellow', 'blue'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'+str(self.activeList)].getCurrent()[1]))
 			pos = self['list'+str(self.activeList)].getSelectionPosition(serviceref, self.activeList)
 			posx = pos[0]
@@ -1574,12 +1575,15 @@ class EPGSelection(Screen, HelpableScreen):
 			self['input_actions'].setEnabled(True)
 
 	def doRecordTimer(self):
-		self.doInstantTimer(TIMERTYPE.JUSTPLAY)
+		self.doInstantTimer(0, 0)
 
 	def doZapTimer(self):
-		self.doInstantTimer(1)
+		self.doInstantTimer(1, 0)
 
-	def doInstantTimer(self, zap):
+	def doZapRecordTimer(self):
+		self.doInstantTimer(0, 1)
+
+	def doInstantTimer(self, zap, zaprecord):
 		cur = self['list'+str(self.activeList)].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -1588,7 +1592,7 @@ class EPGSelection(Screen, HelpableScreen):
 		eventid = event.getEventId()
 		refstr = serviceref.ref.toString()
 		newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, *parseEvent(event))
-		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
+		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap, zaprecord)
 		retval = [True, self.InstantRecordDialog.retval()]
 		self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
 

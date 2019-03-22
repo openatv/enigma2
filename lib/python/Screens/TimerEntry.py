@@ -662,11 +662,12 @@ class TimerLog(Screen):
 			self["logentry"].setText("")
 
 class InstantRecordTimerEntry(TimerEntry):
-	def __init__(self, session, timer, zap):
+	def __init__(self, session, timer, zap, zaprecord):
 		Screen.__init__(self, session)
 		self.setup_title = ""
 		self.timer = timer
 		self.timer.justplay = zap
+		self.timer.always_zap = zaprecord
 		self.entryDate = None
 		self.entryService = None
 		self.keyGo()
