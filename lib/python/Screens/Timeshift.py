@@ -111,7 +111,7 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 	def getCurrentDescription(self):
 		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
-	def checkReadWriteDir(self, configele):
+	def checkTSFS(self, path, showError=True):
 		import os.path
 		import Components.Harddisk
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
@@ -123,38 +123,30 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 		if candidates:
 			locations = []
 			for validdevice in candidates:
-				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(configele.value)) + '/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.value)) in locations:
-				if fileExists(configele.value, "w"):
-					configele.last_value = configele.value
-					return True
-				else:
-					dir = configele.value
-					configele.value = configele.last_value
-					self.session.open(
-						MessageBox,
-						_("The directory %s is not writable.\nMake sure you select a writable directory instead.") % dir,
-						type=MessageBox.TYPE_ERROR
-					)
-					return False
-			else:
-				dir = configele.value
-				configele.value = configele.last_value
-				self.session.open(
-					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % dir,
-					type=MessageBox.TYPE_ERROR
-				)
-				return False
-		else:
-			dir = configele.value
-			configele.value = configele.last_value
+				locations.append(validdevice[1].rstrip('/'))
+			if Components.Harddisk.findMountPoint(os.path.realpath(path)).rstrip('/') in locations:
+				return True
+		if showError:
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % dir,
+				_("The directory %s is not an EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % path,
 				type=MessageBox.TYPE_ERROR
 			)
-			return False
+		return False
+
+	def checkReadWriteDir(self, configele):
+		if self.checkTSFS(configele.value):
+			if fileExists(configele.value, "w"):
+				configele.last_value = configele.value
+				return True
+
+			self.session.open(
+				MessageBox,
+				_("The directory %s is not writable.\nMake sure you select a writable directory instead.") % configele.value,
+				type=MessageBox.TYPE_ERROR
+			)
+		configele.value = configele.last_value
+		return False
 
 	def createSetup(self):
 		default = config.usage.timeshift_path.value
@@ -201,40 +193,16 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 
 	def dirnameSelected(self, res):
 		if res is not None:
-			import os.path
-			import Components.Harddisk
-			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
-			candidates = []
-			mounts = Components.Harddisk.getProcMounts()
-			for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
-				if partition.filesystem(mounts) in supported_filesystems:
-					candidates.append((partition.description, partition.mountpoint))
-			if candidates:
-				locations = []
-				for validdevice in candidates:
-					locations.append(validdevice[1])
-				if Components.Harddisk.findMountPoint(os.path.realpath(res)) + '/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(res)) in locations:
+			if self.checkTSFS(res):
+				self.entrydirname.value = res
+				if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
+					tmp = config.usage.allowed_timeshift_paths.value
+					default = self.timeshift_dirname.value
+					if default not in tmp:
+						tmp = tmp[:]
+						tmp.append(default)
+					self.timeshift_dirname.setChoices(tmp, default=default)
 					self.entrydirname.value = res
-					if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
-						tmp = config.usage.allowed_timeshift_paths.value
-						default = self.timeshift_dirname.value
-						if default not in tmp:
-							tmp = tmp[:]
-							tmp.append(default)
-						self.timeshift_dirname.setChoices(tmp, default=default)
-						self.entrydirname.value = res
-				else:
-					self.session.open(
-						MessageBox,
-						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % res,
-						type=MessageBox.TYPE_ERROR
-					)
-			else:
-				self.session.open(
-					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % res,
-					type=MessageBox.TYPE_ERROR
-				)
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -244,42 +212,14 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
 	def keySave(self):
-		import os.path
-		import Components.Harddisk
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
-		candidates = []
-		mounts = Components.Harddisk.getProcMounts()
-		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
-			if partition.filesystem(mounts) in supported_filesystems:
-				candidates.append((partition.description, partition.mountpoint))
-		if candidates:
-			locations = []
-			for validdevice in candidates:
-				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) + '/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) in locations:
-				config.usage.timeshift_path.value = self.timeshift_dirname.value
-				config.usage.timeshift_path.save()
-				self.saveAll()
-				self.close()
-			else:
-				if int(config.timeshift.startdelay.value) > 0:
-					self.session.open(
-						MessageBox,
-						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % config.usage.timeshift_path.value,
-						type=MessageBox.TYPE_ERROR
-					)
-				else:
-					config.timeshift.startdelay.value = "0"
-					self.saveAll()
-					self.close()
+		ts_enabled = int(config.timeshift.startdelay.value) > 0
+		if self.checkTSFS(config.usage.timeshift_path.value, ts_enabled):
+			config.usage.timeshift_path.value = self.timeshift_dirname.value
+			config.usage.timeshift_path.save()
+			self.saveAll()
+			self.close()
 		else:
-			if int(config.timeshift.startdelay.value) > 0:
-				self.session.open(
-					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % config.usage.timeshift_path.value,
-					type=MessageBox.TYPE_ERROR
-				)
-			else:
+			if not ts_enabled:
 				config.timeshift.startdelay.value = "0"
 				self.saveAll()
 				self.close()
