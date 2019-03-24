@@ -1284,12 +1284,12 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getSelectionPosition(self,serviceref, activeList = 1):
 		if self.type == EPG_TYPE_GRAPH:
 			indx = int(self.getIndexFromService(serviceref))
-			selx = self.select_rect.x+self.select_rect.w
+			selx = self.instance.position().x() + self.select_rect.x+self.select_rect.w
 			while indx+1 > config.epgselection.graph_itemsperpage.value:
 				indx = indx - config.epgselection.graph_itemsperpage.value
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
 			indx = int(self.getIndexFromService(serviceref))
-			selx = self.select_rect.x+self.select_rect.w
+			selx = self.instance.position().x() + self.select_rect.x+self.select_rect.w
 			while indx+1 > config.epgselection.infobar_itemsperpage.value:
 				indx = indx - config.epgselection.infobar_itemsperpage.value
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
