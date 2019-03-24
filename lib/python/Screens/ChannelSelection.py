@@ -918,11 +918,11 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		sf = getScreenFactor()
 		selx = min(self.servicelist.instance.size().width() + self.servicelist.instance.position().x(), 1280*sf)
 		sely = min(self.servicelist.instance.position().y() + (self.servicelist.ItemHeight * indx), 720*sf)
-		posx = max(self.instance.position().x() + selx - (self.ChoiceBoxDialog.instance.size().width()*1.04), 0)
+		posx = max(self.instance.position().x() + selx - self.ChoiceBoxDialog.instance.size().width() - 20*sf, 0)
 		posy = self.instance.position().y() + sely
-		posy += self.servicelist.ItemHeight*0.8
+		posy += self.servicelist.ItemHeight - 4*sf
 		if posy + self.ChoiceBoxDialog.instance.size().height() > 720*sf:
-			posy -= self.servicelist.ItemHeight*0.6 + self.ChoiceBoxDialog.instance.size().height()
+			posy -= self.servicelist.ItemHeight - 8*sf + self.ChoiceBoxDialog.instance.size().height()
 		self.ChoiceBoxDialog.instance.move(ePoint(int(posx), int(posy)))
 
 	def finishedAdd(self, answer):

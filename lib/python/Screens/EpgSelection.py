@@ -1516,11 +1516,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green', 'yellow', 'blue'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'+str(self.activeList)].getCurrent()[1]))
 			pos = self['list'+str(self.activeList)].getSelectionPosition(serviceref, self.activeList)
-			posx = max(self.instance.position().x() + pos[0] - (self.ChoiceBoxDialog.instance.size().width()*1.04), 0)
+			sf = getScreenFactor()
+			posx = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width() - 20*sf, 0)
 			posy = self.instance.position().y() + pos[1]
-			posy += self['list'+str(self.activeList)].itemHeight*0.8
-			if posy + self.ChoiceBoxDialog.instance.size().height() > 720*getScreenFactor():
-				posy -= self['list'+str(self.activeList)].itemHeight*0.6 + self.ChoiceBoxDialog.instance.size().height()
+			posy += self['list'+str(self.activeList)].itemHeight - 4*sf
+			if posy + self.ChoiceBoxDialog.instance.size().height() > 720*sf:
+				posy -= self['list'+str(self.activeList)].itemHeight - 8*sf + self.ChoiceBoxDialog.instance.size().height()
 			self.ChoiceBoxDialog.instance.move(ePoint(int(posx), int(posy)))
 			self.showChoiceBoxDialog()
 
