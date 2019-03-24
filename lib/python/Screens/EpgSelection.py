@@ -8,7 +8,7 @@ from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock
-from Components.EpgList import EPGList, EPGBouquetList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_GRAPH, EPG_TYPE_VERTICAL, MAX_TIMELINES
+from Components.EpgList import EPGList, EPGBouquetList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_GRAPH, EPG_TYPE_VERTICAL, MAX_TIMELINES, getScreenFactor
 from Components.MenuList import MenuList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -1515,11 +1515,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green', 'yellow', 'blue'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'+str(self.activeList)].getCurrent()[1]))
 			pos = self['list'+str(self.activeList)].getSelectionPosition(serviceref, self.activeList)
-			posx = pos[0]
-			dialogwidth = self.ChoiceBoxDialog.instance.size().width()
-			if posx - dialogwidth < 0:
-				posx = dialogwidth
-			self.ChoiceBoxDialog.instance.move(ePoint(posx-dialogwidth,self.instance.position().y()+pos[1]))
+			posx = max(self.instance.position().x() + pos[0] - (self.ChoiceBoxDialog.instance.size().width()*1.04), 0)
+			posy = self.instance.position().y() + pos[1]
+			posy += self['list'+str(self.activeList)].itemHeight*0.8
+			if posy + self.ChoiceBoxDialog.instance.size().height() > 720*getScreenFactor():
+				posy -= self['list'+str(self.activeList)].itemHeight*0.6 + self.ChoiceBoxDialog.instance.size().height()
+			self.ChoiceBoxDialog.instance.move(ePoint(int(posx), int(posy)))
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):
