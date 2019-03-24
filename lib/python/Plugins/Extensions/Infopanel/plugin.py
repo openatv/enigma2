@@ -279,7 +279,7 @@ def MenuEntryItem(entry):
 	res = [entry]
 	screenwidth = getDesktop(0).size().width()
 	if screenwidth and screenwidth == 1920:
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), png=entry[0]))  # png vorn
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), flags = BT_SCALE, png=entry[0]))  # png vorn
 		res.append(MultiContentEntryText(pos=(90, 15), size=(810, 60), font=0, text=entry[1]))  # menupunkt
 	else:
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png=entry[0]))  # png vorn
