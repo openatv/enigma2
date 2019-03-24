@@ -1501,7 +1501,8 @@ class EPGSelection(Screen, HelpableScreen):
 			title = _("Select action for timer %s:") % event.getEventName()
 		else:
 			if not manual:
-				menu = [(_("Add Record Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), 
+				cb_func1 = lambda ret: self.doRecordTimer(True)
+				menu = [(_("Add Record Timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), 
 						(_("Add Zap Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer),
 						(_("Add Zap+Record Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapRecordTimer),
 						(_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)
@@ -1575,8 +1576,11 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.has_key('input_actions'):
 			self['input_actions'].setEnabled(True)
 
-	def doRecordTimer(self):
-		self.doInstantTimer(0, 0)
+	def doRecordTimer(self, rec=False):
+		if not rec and 'Plugins.Extensions.EPGSearch.EPGSearch.EPGSearch' in `self`:
+			self.RecordTimerQuestion()
+		else:
+			self.doInstantTimer(0, 0)
 
 	def doZapTimer(self):
 		self.doInstantTimer(1, 0)
