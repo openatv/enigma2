@@ -15,6 +15,7 @@ from Components.Sources.StaticText import StaticText
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, ConfigSelection, ConfigYesNo
 from Components.Harddisk import harddiskmanager
+from Components.Sources.FrontendStatus import FrontendStatus
 
 
 # always use:
@@ -210,7 +211,6 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.loopsfailed = loopsfailed
 		self.loopssuccessful = loopssuccessful
 		self.log = log
-
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.select,
@@ -218,7 +218,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		}, -2)
 
 		TuneTest.__init__(self, feid, stopOnSuccess = self.loopssuccessful, stopOnError = self.loopsfailed)
-		#self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
+		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
 		self["overall_progress"] = Progress()
 		self["sub_progress"] = Progress()
 
@@ -545,11 +545,11 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		print "selectedIndex:", self["progress_list"].getCurrent()[0]
 		if not self.running:
 			index = self["progress_list"].getCurrent()[0]
-			#self.setResultType(ResultParser.TYPE_BYORBPOS)
-			#self.setResultParameter(index[2])
+			self.setResultType(ResultParser.TYPE_BYORBPOS)
+			self.setResultParameter(index[2])
 			self.setResultType(ResultParser.TYPE_BYINDEX)
 			self.setResultParameter(index)
-			#self.setResultType(ResultParser.TYPE_ALL)
+			self.setResultType(ResultParser.TYPE_ALL)
 			self.session.open(TextBox, self.getTextualResult())
 
 	def selectionChanged(self):
