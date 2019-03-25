@@ -112,24 +112,26 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
 
 	def checkTSFS(self, path, showError=True):
-		import os.path
-		import Components.Harddisk
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
-		candidates = []
-		mounts = Components.Harddisk.getProcMounts()
-		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
-			if partition.filesystem(mounts) in supported_filesystems:
-				candidates.append((partition.description, partition.mountpoint))
-		if candidates:
-			locations = []
-			for validdevice in candidates:
-				locations.append(validdevice[1].rstrip('/'))
-			if Components.Harddisk.findMountPoint(os.path.realpath(path)).rstrip('/') in locations:
+		from os import link, unlink, tempnam
+		temp = tempnam(path, 'ts')
+		try:
+			open(temp, 'w').close()
+			try:
+				link(temp, temp + '.link')
+				unlink(temp + '.link')
+				linkable = True
+			except:
+				linkable = False
+			finally:
+				unlink(temp)
+			if linkable:
 				return True
+		except:
+			pass
 		if showError:
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not an EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % path,
+				_("The directory %s does not support hard links.\nMake sure you select a valid partition type.") % path,
 				type=MessageBox.TYPE_ERROR
 			)
 		return False
