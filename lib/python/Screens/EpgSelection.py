@@ -1519,9 +1519,9 @@ class EPGSelection(Screen, HelpableScreen):
 			sf = getScreenFactor()
 			posx = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width() - 20*sf, 0)
 			posy = self.instance.position().y() + pos[1]
-			posy += self['list'+str(self.activeList)].itemHeight - 4*sf
+			posy += self['list'+str(self.activeList)].itemHeight - 2*sf
 			if posy + self.ChoiceBoxDialog.instance.size().height() > 720*sf:
-				posy -= self['list'+str(self.activeList)].itemHeight - 8*sf + self.ChoiceBoxDialog.instance.size().height()
+				posy -= self['list'+str(self.activeList)].itemHeight - 4*sf + self.ChoiceBoxDialog.instance.size().height()
 			self.ChoiceBoxDialog.instance.move(ePoint(int(posx), int(posy)))
 			self.showChoiceBoxDialog()
 

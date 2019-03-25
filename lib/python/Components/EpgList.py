@@ -1282,39 +1282,24 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def getSelectionPosition(self,serviceref, activeList = 1):
-		if self.type == EPG_TYPE_GRAPH:
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			indx = int(self.getIndexFromService(serviceref))
-			selx = self.instance.position().x() + self.select_rect.x+self.select_rect.w
-			while indx+1 > config.epgselection.graph_itemsperpage.value:
-				indx = indx - config.epgselection.graph_itemsperpage.value
-		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			indx = int(self.getIndexFromService(serviceref))
-			selx = self.instance.position().x() + self.select_rect.x+self.select_rect.w
-			while indx+1 > config.epgselection.infobar_itemsperpage.value:
-				indx = indx - config.epgselection.infobar_itemsperpage.value
-		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
+			selx = self.select_rect.x + self.select_rect.w
+		elif (self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR or
+				self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_VERTICAL):
 			indx = int(self.l.getCurrentSelectionIndex())
-			selx = self.listWidth + self.instance.position().x()
-			while indx+1 > config.epgselection.enhanced_itemsperpage.value:
-				indx = indx - config.epgselection.enhanced_itemsperpage.value
-		elif self.type == EPG_TYPE_MULTI:
-			indx = int(self.l.getCurrentSelectionIndex())
-			selx = self.listWidth + self.instance.position().x()
-			while indx+1 > config.epgselection.multi_itemsperpage.value:
-				indx = indx - config.epgselection.multi_itemsperpage.value
-		elif self.type == EPG_TYPE_INFOBAR:
-			indx = int(self.l.getCurrentSelectionIndex())
-			selx = self.listWidth + self.instance.position().x()
-			while indx+1 > config.epgselection.infobar_itemsperpage.value:
-				indx = indx - config.epgselection.infobar_itemsperpage.value
-		elif self.type == EPG_TYPE_VERTICAL:
-			indx = int(self.l.getCurrentSelectionIndex())
-			selx = self.listWidth * activeList + self.instance.position().x() - self.listWidth * (activeList-1)
-			while indx+1 > config.epgselection.vertical_itemsperpage.value:
-				indx = indx - config.epgselection.vertical_itemsperpage.value
-
-		sely = min(self.instance.position().y() + (self.itemHeight * indx), 720*sf)
-		selx = min(selx, 1280*sf)
+			if self.type == EPG_TYPE_VERTICAL:
+				selx = self.listWidth * activeList - self.listWidth * (activeList-1)
+			else:
+				selx = self.listWidth
+		else:
+			indx = 1
+			selx = self.listWidth
+		ipp = self.listHeight / self.itemHeight
+		while indx+1 > ipp:
+			indx -= ipp
+		sely = min(self.instance.position().y() + self.itemHeight * indx, 720*sf)
+		selx = min(self.instance.position().x() + selx, 1280*sf)
 		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible = True):
