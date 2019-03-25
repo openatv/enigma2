@@ -6,7 +6,13 @@
 	        <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
+self.selectKey("UP")
+self.selectKey("DOWN")
                 </code>
+                <list>
+                        <listentry caption="Configure your network" />
+                        <listentry caption="Skip network configuration" step="end" />
+                </list>
 		<code pos="after" async="yes">
 self.verifyFirstRun()
 		</code>
