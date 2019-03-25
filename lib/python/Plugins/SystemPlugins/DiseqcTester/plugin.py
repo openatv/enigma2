@@ -9,6 +9,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.NimManager import nimmanager
 from Components.ResourceManager import resourcemanager
 from Components.TuneTest import TuneTest
+from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.Progress import Progress
 from Components.Sources.StaticText import StaticText
@@ -181,21 +182,22 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 				}
 			</convert>
 		</widget>
-		<eLabel name="overall_progress" text="Overall progress:" position="20,162" size="480,22" font="Regular;21" halign="center" transparent="1" />
+		<widget name="Overall_progress" position="20,162" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="overall_progress" render="Progress" position="20,192" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
-		<eLabel name="overall_progress" text="Progress:" position="20,222" size="480,22" font="Regular;21" halign="center" transparent="1" />
+		
+		<widget name="Progress" position="20,222" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="sub_progress" render="Progress" position="20,252" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
 
-		<eLabel name="" text="Failed:" position="20,282" size="140,22" font="Regular;21" halign="left" transparent="1" />
+		<widget name="Failed" position="20,282" size="140,22" font="Regular;21" halign="left" transparent="1" />
 		<widget source="failed_counter" render="Label" position="160,282" size="100,20" font="Regular;21" />
 
-		<eLabel name="" text="Succeeded:" position="20,312" size="140,22" font="Regular;21" halign="left" transparent="1" />
+		<widget name="Succeeded" position="20,312" size="140,22" font="Regular;21" halign="left" transparent="1" />
 		<widget source="succeeded_counter" render="Label" position="160,312" size="100,20" font="Regular;21" />
 
-		<eLabel name="" text="With errors:" position="20,342" size="140,22" font="Regular;21" halign="left" transparent="1" />
+		<widget name="With_errors" position="20,342" size="140,22" font="Regular;21" halign="left" transparent="1" />
 		<widget source="witherrors_counter" render="Label" position="160,342" size="100,20" font="Regular;21" />
 
-		<eLabel name="" text="Not tested:" position="20,372" size="140,22" font="Regular;21" halign="left" transparent="1" />
+		<widget name="Not_tested" position="20,372" size="140,22" font="Regular;21" halign="left" transparent="1" />
 		<widget source="untestable_counter" render="Label" position="160,372" size="100,20" font="Regular;21" />
 
 		<widget source="CmdText" render="Label" position="300,282" size="180,200" font="Regular;21" />
@@ -206,11 +208,18 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	TEST_TYPE_COMPLETE = 2
 	def __init__(self, session, feid, test_type = TEST_TYPE_QUICK, loopsfailed = 3, loopssuccessful = 1, log = False):
 		Screen.__init__(self, session)
+		self.setup_title = _("DiSEqC Tester")
 		self.feid = feid
 		self.test_type = test_type
 		self.loopsfailed = loopsfailed
 		self.loopssuccessful = loopssuccessful
 		self.log = log
+		self["Overall_progress"] = Label(_("Overall progress:"))
+		self["Progress"] = Label(_("Progress:"))
+		self["Failed"] = Label(_("Failed:"))
+		self["Succeeded"] = Label(_("Succeeded:"))
+		self["Not_tested"] = Label(_("Not tested:"))
+		self["With_errors"] = Label (_("With errors:"))
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.select,
@@ -254,7 +263,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if index in self.indexlist:
 			for entry in self.list:
 				if entry[0] == index:
-					self.changeProgressListStatus(index, "working")
+					self.changeProgressListStatus(index, _("working"))
 					return
 			self.list.append(self.getProgressListComponent(index, _("working")))
 			self["progress_list"].list = self.list
@@ -439,37 +448,37 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		oldstatus = self.results[index]["internalstatus"]
 		if oldstatus is None:
 			self.results[index]["status"] = status
-		elif oldstatus == "successful":
-			if status == "failed":
-				self.results[index]["status"] = "with_errors"
-			elif status == "successful":
+		elif oldstatus == _("successful"):
+			if status == _("failed"):
+				self.results[index]["status"] = _("with_errors")
+			elif status == _("successful"):
 				self.results[index]["status"] = oldstatus
-			elif status == "with_errors":
-				self.results[index]["status"] = "with_errors"
-			elif status == "not_tested":
+			elif status == _("with_errors"):
+				self.results[index]["status"] = _("with_errors")
+			elif status == _("not_tested"):
 				self.results[index]["status"] = oldstatus
-		elif oldstatus == "failed":
-			if status == "failed":
+		elif oldstatus == _("failed"):
+			if status == _("failed"):
 				self.results[index]["status"] = oldstatus
-			elif status == "successful":
-				self.results[index]["status"] = "with_errors"
-			elif status == "with_errors":
-				self.results[index]["status"] = "with_errors"
-			elif status == "not_tested":
+			elif status == _("successful"):
+				self.results[index]["status"] = _("with_errors")
+			elif status == _("with_errors"):
+				self.results[index]["status"] = _("with_errors")
+			elif status == _("not_tested"):
 				self.results[index]["status"] = oldstatus
-		elif oldstatus == "with_errors":
-			if status == "failed":
+		elif oldstatus == _("with_errors"):
+			if status == _("failed"):
 				self.results[index]["status"] = oldstatus
-			elif status == "successful":
+			elif status == _("successful"):
 				self.results[index]["status"] = oldstatus
-			elif status == "with_errors":
+			elif status == _("with_errors"):
 				self.results[index]["status"] = oldstatus
-			elif status == "not_tested":
+			elif status == _("not_tested"):
 				self.results[index]["status"] = oldstatus
-		elif oldstatus == "not_tested":
+		elif oldstatus == _("not_tested"):
 			self.results[index]["status"] = status
 
-		if self.results[index]["status"] != "working":
+		if self.results[index]["status"] != _("working"):
 			self.results[index]["internalstatus"] = self.results[index]["status"]
 		self.results[index]["failed"] = failedTune + self.results[index]["failed"]
 		self.results[index]["successful"] = successfullyTune + self.results[index]["successful"]
@@ -484,23 +493,23 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self.results[self.currentlyTestedIndex] = {"failed": [], "successful": [], "status": None, "internalstatus": None}
 
 		if len(self.failedTune) > 0 and len(self.successfullyTune) > 0:
-			self.changeProgressListStatus(self.currentlyTestedIndex, "with errors")
+			self.changeProgressListStatus(self.currentlyTestedIndex, _("with errors"))
 			self["witherrors_counter"].setText(str(int(self["witherrors_counter"].getText()) + 1))
-			self.addResult(self.currentlyTestedIndex, "with_errors", self.failedTune, self.successfullyTune)
+			self.addResult(self.currentlyTestedIndex, _("with_errors"), self.failedTune, self.successfullyTune)
 		elif len(self.failedTune) == 0 and len(self.successfullyTune) == 0:
-			self.changeProgressListStatus(self.currentlyTestedIndex, "not tested")
+			self.changeProgressListStatus(self.currentlyTestedIndex, _("not tested"))
 			self["untestable_counter"].setText(str(int(self["untestable_counter"].getText()) + 1))
-			self.addResult(self.currentlyTestedIndex, "untestable", self.failedTune, self.successfullyTune)
+			self.addResult(self.currentlyTestedIndex, _("untestable"), self.failedTune, self.successfullyTune)
 		elif len(self.failedTune) > 0:
-			self.changeProgressListStatus(self.currentlyTestedIndex, "failed")
+			self.changeProgressListStatus(self.currentlyTestedIndex, _("failed"))
 			#self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
 			self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + 1))
-			self.addResult(self.currentlyTestedIndex, "failed", self.failedTune, self.successfullyTune)
+			self.addResult(self.currentlyTestedIndex, _("failed"), self.failedTune, self.successfullyTune)
 		else:
-			self.changeProgressListStatus(self.currentlyTestedIndex, "successful")
+			self.changeProgressListStatus(self.currentlyTestedIndex, _("successful"))
 			#self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
 			self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + 1))
-			self.addResult(self.currentlyTestedIndex, "successful", self.failedTune, self.successfullyTune)
+			self.addResult(self.currentlyTestedIndex, _("successful"), self.failedTune, self.successfullyTune)
 
 
 		#self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
