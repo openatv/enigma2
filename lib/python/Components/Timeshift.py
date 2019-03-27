@@ -693,6 +693,16 @@ class InfoBarTimeshift:
 		self.activatePermanentTimeshift()
 		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
+	@staticmethod
+	def getPendingSaveTimeshiftJobs():
+		# Assumes that all timeshift save-related jobs
+		# are in Tools.TimeShift
+		return [j for j in JobManager.getPendingJobs() if j.__module__ == "Tools.TimeShift"]
+
+	@staticmethod
+	def hasPendingSaveTimeshiftJobs():
+		return len(InfoBarTimeshift.getPendingSaveTimeshiftJobs()) > 0
+
 	def saveTimeshiftEventPopup(self):
 		dprint("saveTimeshiftEventPopup")
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
@@ -1210,7 +1220,7 @@ class InfoBarTimeshift:
 
 	def ptsMergeFilefinished(self, srcfile, destfile):
 		dprint("ptsMergeFilefinished")
-		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:
+		if self.session.nav.RecordTimer.isRecording() or self.hasPendingSaveTimeshiftJobs():
 			# Rename files and delete them later ...
 			self.pts_mergeCleanUp_timer.start(120000, True)
 			os.system("echo \"\" > \"%s.pts.del\"" % (srcfile[0:-3]))
@@ -1242,7 +1252,7 @@ class InfoBarTimeshift:
 
 	def ptsMergePostCleanUp(self):
 		dprint("ptsMergePostCleanUp")
-		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:
+		if self.session.nav.RecordTimer.isRecording() or self.hasPendingSaveTimeshiftJobs():
 			config.timeshift.isRecording.value = True
 			self.pts_mergeCleanUp_timer.start(120000, True)
 			return
@@ -1268,7 +1278,7 @@ class InfoBarTimeshift:
 
 	def ptsTryQuitMainloop(self):
 		dprint("ptsTryQuitMainloop")
-		if Screens.Standby.inTryQuitMainloop and (len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeCleanUp_timer.isActive()):
+		if Screens.Standby.inTryQuitMainloop and (self.hasPendingSaveTimeshiftJobs() or self.pts_mergeCleanUp_timer.isActive()):
 			self.pts_QuitMainloop_timer.start(60000, True)
 			return
 
@@ -1480,7 +1490,7 @@ class InfoBarTimeshift:
 
 		# Restart FrontPanel LED when still copying or merging files
 		# ToDo: Only do this on PTS Events and not events from other jobs
-		if timer.state == TimerEntry.StateEnded and (len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeRecords_timer.isActive()):
+		if timer.state == TimerEntry.StateEnded and (self.hasPendingSaveTimeshiftJobs() or self.pts_mergeRecords_timer.isActive()):
 			self.ptsFrontpanelActions("start")
 			config.timeshift.isRecording.value = True
 

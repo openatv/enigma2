@@ -294,7 +294,7 @@ sync:
 				eDebugNoNewLine("\n");
 				x=0;
 #else
-				eDebug("[eM2TSFile] m2ts out of sync at pos %lld, real %lld", offset + m_sync_offset, m_current_offset);
+				// eDebug("[eM2TSFile] m2ts out of sync at pos %lld, real %lld", offset + m_sync_offset, m_current_offset);
 #endif
 				for (; x < 192; ++x)
 				{

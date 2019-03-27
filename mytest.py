@@ -578,7 +578,7 @@ def runScreenTest():
 	profile("Init:VideoResolutionKey")
 	resolution = VideoResolutionKey(session)
 
-	if getBoxType() in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone') or getMachineBuild() in ('inihde', 'inihdx'):
+	if getBoxType() in ('mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone') or getMachineBuild() in ('beyonwizv2', 'inihde', 'inihdx'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)

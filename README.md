@@ -36,6 +36,7 @@ Build enigma2 for Beyonwiz V2 using the SDK:
 
 To build for other models, adjust the --with arguments.
 For example, T4 needs:
+
       --with-gstversion=1.0 \
       --with-bwlcd255 \
       --with-boxtype=inihdp \
