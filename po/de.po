@@ -6219,10 +6219,6 @@ msgstr ""
 "OK drücken zum Fortfahren"
 
 #
-msgid "Please do not change any values unless you know what you are doing!"
-msgstr "Die Werte nur ändern wenn Sie wissen was Sie tun!"
-
-#
 msgid "Please enter a name for the new bouquet"
 msgstr "Namen für das neue Bouquet eingeben"
 
@@ -7233,10 +7229,6 @@ msgstr "Sat-/Schüssel-Einstellungen"
 #
 msgid "Satellite"
 msgstr "Satellit"
-
-#
-msgid "Satellite Equipment Setup"
-msgstr "Einstellungen der Sat-Ausrüstung"
 
 #
 msgid "Satellite equipment"
@@ -20315,3 +20307,87 @@ msgstr "Power-LED Mode"
 
 msgid "Power LED can be turned on or off here."
 msgstr "Power-LED kann hier an oder ausgeschaltet werden.."
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after diseqc reset command"
+msgstr "Pause nach Diseqc Reset-Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after diseqc peripherial poweron command"
+msgstr "Pause nach An-Signal für Diseqc Peripherie"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after continuous tone disable before diseqc"
+msgstr "Pause nach Ausschalten vom kontinuierlichen Tonsignal vor Diseqc-Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after final continuous tone change"
+msgstr "Pause nach letzter kontinuierlichen Tonänderung"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after last voltage change"
+msgstr "Pause nach letzter Spannungsänderung"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay between diseqc commands"
+msgstr "Pause zwischen Diseqc-Kommandos"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after last diseqc command"
+msgstr "Pause nach letztem Diseqc-Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after toneburst"
+msgstr "Pause nach Schallimpuls"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after change voltage before switch command"
+msgstr "Pause nach Spannungsänderung vor Switch-Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after enable voltage before switch command"
+msgstr "Pause nachdem Spannung anliegt bevor Switch-Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay between switch and motor command"
+msgstr "Pause zwischen Switch- und Motor-Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after set voltage before measure motor power"
+msgstr "Pause nachdem Spannung anliegt vor Messung der Motorkraft"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after enable voltage before motor command"
+msgstr "Pause nachmdem Spannung anliegt bevor Motor-Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after motor stop command"
+msgstr "Pause nach Motor Stopp Kommando"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay after voltage change before motor command"
+msgstr "Pause nach Spannungsänderung vor Motor-Kommandos"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Delay before sequence repeat"
+msgstr "Verzögerung bevor Sequenz wiederholt wird"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Motor running timeout"
+msgstr "Motorlaufzeit-Timeout"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Motor command retries"
+msgstr "Motorbefehl wiederholt sich"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Please do not change any values unless you know what you are doing!"
+msgstr "Bitte ändern Sie keine Werte, falls Sie nicht wissen, was Sie tun!"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Satellite equipment setup"
+msgstr "Einstellungen der Sat-Ausrüstung"
+
+#: python\Plugins\SystemPlugins\SatelliteEquipmentControl
+msgid "Setup your satellite equipment"
+msgstr "Satelliten-Ausrüstung"
