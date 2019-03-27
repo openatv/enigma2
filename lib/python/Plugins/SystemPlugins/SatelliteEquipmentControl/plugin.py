@@ -23,6 +23,8 @@ class SecParameterSetup(Screen, ConfigListScreen):
 		}, -2)
 
 		Screen.__init__(self, session)
+		self.setTitle(_("Satellite equipment setup"))
+
 		list = [
 			(_("Delay after diseqc reset command"), config.sec.delay_after_diseqc_reset_cmd),
 			(_("Delay after diseqc peripherial poweron command"), config.sec.delay_after_diseqc_peripherial_poweron_cmd),
