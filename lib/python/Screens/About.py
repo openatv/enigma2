@@ -127,6 +127,7 @@ class About(AboutBase):
 		self.list.append(self.makeInfoEntry(_("Architecture:"), about.getCPUArch()))
 		self.list.append(self.makeInfoEntry(_("Speed:"), about.getCPUSpeedString()))
 		self.list.append(self.makeInfoEntry(_("Cores:"), str(about.getCpuCoresString())))
+
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
 			tempinfo = file('/proc/stb/sensors/temp0/value').read()
@@ -137,16 +138,34 @@ class About(AboutBase):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			self.list.append(self.makeInfoEntry(_("System temperature:"), tempinfo.replace('\n', '') + mark + "C"))
+
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
 			tempinfo = file('/proc/stb/fp/temp_sensor_avs').read()
+		elif path.exists('/proc/stb/power/avs'):
+			tempinfo = file('/proc/stb/power/avs').read()
+		elif path.exists('/sys/class/thermal/thermal_zone0/temp'):
+			tempinfo = file('/sys/class/thermal/thermal_zone0/temp').read().replace('\n', '')
+			tempinfo = (int(tempinfo) + 500) / 1000
+		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+			try:
+				tempinfo = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r').read()
+				tempinfo = tempinfo[:-4]
+			except:
+				tempinfo = ""
+		elif path.exists('/proc/hisi/msp/pm_cpu'):
+			try:
+				for line in open('/proc/hisi/msp/pm_cpu').readlines():
+					line = [x.strip() for x in line.strip().split(":")]
+					if line[0] == "Tsensor":
+						temp = line[1].split("=")
+						tempinfo = temp[1].strip().split(" ")[0]
+			except:
+				tempinfo = ""
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			self.list.append(self.makeInfoEntry(_("Processor temperature:"), tempinfo.replace('\n', '') + mark + "C"))
-		if path.exists('/sys/class/thermal/thermal_zone0/temp'):
-			tempinfo = file('/sys/class/thermal/thermal_zone0/temp').read().replace('\n', '')
-		if tempinfo and int(tempinfo) > 0:
-			self.list.append(self.makeInfoEntry(_("CPU temperature:"), "%d\xc2\xb0C" % ((int(tempinfo) + 500) / 1000)))
+			self.list.append(self.makeInfoEntry(_("SoC temperature:"), tempinfo.replace('\n', '') + mark + "C"))
+
 		fp_version = getFPVersion()
 		if fp_version:
 			self.list.append(self.makeInfoEntry(_("Front Panel:"), "%d" % fp_version))
