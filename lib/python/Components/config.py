@@ -1929,6 +1929,7 @@ class Config(ConfigSubsection):
 			(name, val) = result
 			val = val.strip()
 
+			'''
 			#convert old settings
 			if l.startswith("config.Nims."):
 				tmp = name.split('.')
@@ -1942,6 +1943,7 @@ class Config(ConfigSubsection):
 				#	if tmp[3] not in ('dvbs', 'dvbc', 'dvbt', 'multiType'):
 				#		tmp[3] = "dvbs." + tmp[3]
 				name =".".join(tmp)
+			'''
 
 			names = name.split('.')
 
