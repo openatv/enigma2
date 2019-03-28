@@ -150,7 +150,8 @@ class About(AboutBase):
 		fp_version = getFPVersion()
 		if fp_version:
 			self.list.append(self.makeInfoEntry(_("Front Panel:"), "%d" % fp_version))
-		self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo))
+		if bootLoaderInfo and bootLoaderInfo != "Unknown":
+			self.list.append(self.makeInfoEntry(_("Bootloader:"), bootLoaderInfo))
 		self.list.append(self.makeInfoEntry(_("Kernel:"), about.getKernelVersionString()))
 		self.list.append(self.makeInfoEntry(_("Drivers:"), getDriverDate()))
 
