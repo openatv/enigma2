@@ -1938,9 +1938,9 @@ class Config(ConfigSubsection):
 					tmp[3] = "dvbc." + tmp[3]
 				elif tmp[3].startswith("terrestrial"):
 					tmp[3] = "dvbt." + tmp[3]
-				else:
-					if tmp[3] not in ('dvbs', 'dvbc', 'dvbt', 'multiType'):
-						tmp[3] = "dvbs." + tmp[3]
+				#else:
+				#	if tmp[3] not in ('dvbs', 'dvbc', 'dvbt', 'multiType'):
+				#		tmp[3] = "dvbs." + tmp[3]
 				name =".".join(tmp)
 
 			names = name.split('.')
