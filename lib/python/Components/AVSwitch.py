@@ -503,7 +503,7 @@ def InitAVSwitch():
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.av.autores_label_timeout = ConfigSelection(default="5", choices=[("0", _("Not Shown"))] + choicelist)
-	config.av.autores_delay = ConfigSelectionNumber(min=0, max=15000, stepwidth=500, default=500, wraparound=True)
+	config.av.autores_delay = ConfigSelectionNumber(min=500, max=15000, stepwidth=500, default=1000, wraparound=True)
 
 	# SD - 480 / 576, standard definition
 	# ED - 720, enhanced definition
