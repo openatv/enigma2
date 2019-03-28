@@ -157,7 +157,7 @@ class About(AboutBase):
 		self.list.append(self.makeEmptyEntry())
 
 		self.list.append(self.makeInfoEntry(_("WWW:"), about.getImageUrlString()))
-		self.list.append(self.makeInfoEntry(_("Version:"), about.getImageVersionString()))
+		self.list.append(self.makeInfoEntry(_("Release:"), about.getImageVersionString()))
 		self.list.append(self.makeInfoEntry(_("Build:"), about.getBuildString()))
 		self.list.append(self.makeInfoEntry(_("Revision:"), getImageBuild()))
 		self.list.append(self.makeInfoEntry(_("Enigma2:"), about.getEnigmaVersionString()))
