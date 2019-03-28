@@ -884,10 +884,11 @@ void eDVBFrontend::calculateSignalPercentage(int signalqualitydb, int &signalqua
 
 void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb)
 {
-	int sat_max = 1600; // for stv0288 / bsbe2
 	int ret = 0x12345678;
-	int ter_max = 2900;
-	int atsc_max = 4200;
+	int sat_max = 1600; // we assume a max of 16db here
+	int ter_max = 2900; // we assume a max of 29db here
+	int cab_max = 4200; // we assume a max of 42db here
+	int atsc_max = 4200; // we assume a max of 42db here
 
 	if (!strcmp(m_description, "AVL2108")) // ET9000
 	{
@@ -1138,9 +1139,30 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (snr * 2000) / 0xFFFF;
 		sat_max = 2000;
 	}
-	else if(!strcmp(m_description, "WinTV HVR-850") || !strcmp(m_description, "Hauppauge"))
+	else if (!strcmp(m_description, "Si21662")) // SF4008 S2
 	{
-		eDVBFrontendParametersATSC parm;
+		ret = (int)(snr / 46.8);
+		sat_max = 1620;
+	}
+	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 17);
+				cab_max = 3800;
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 22.3);
+				ter_max = 2900;
+				break;
+		}
+	}
+	else if(!strcmp(m_description, "WinTV HVR-850") || !strcmp(m_description, "Hauppauge") || !strcmp(m_description, "LG Electronics LGDT3306A VSB/QAM Frontend"))
+	{
+		eDVBFrontendParametersATSC parm = {0};
 		oparm.getATSC(parm);
 		switch (parm.modulation)
 		{
@@ -1163,6 +1185,15 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				break;
 		}
 	}
+	else if (!strncmp(m_description, "Si2166D", 7)) // SF8008 S2
+	{
+		ret = snr;
+		sat_max = 1620;
+	}
+	else if (!strncmp(m_description, "Si216", 5)) // all new Models with SI Tuners
+	{
+		ret = snr;
+	}
 
 	signalqualitydb = ret;
 	if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
@@ -1178,13 +1209,13 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		case feSatellite:
 			signalquality = (ret >= sat_max ? 65535 : ret * 65535 / sat_max);
 			break;
-		case feCable: // we assume a max of 42db here
-			signalquality = (ret >= 4200 ? 65535 : ret * 65535 / 4200);
+		case feCable:
+			signalquality = (ret >= cab_max ? 65535 : ret * 65535 / cab_max);
 			break;
-		case feTerrestrial: // we assume a max of 29db here
+		case feTerrestrial:
 			signalquality = (ret >= ter_max ? 65535 : ret * 65535 / ter_max);
 			break;
-		case feATSC: // we assume a max of 42db here
+		case feATSC:
 			signalquality = (ret >= atsc_max ? 65535 : ret * 65535 / atsc_max);
 			break;
 		}
@@ -2405,9 +2436,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (res)
 			goto tune_error;
 
+		m_sec_sequence.push_back(eSecCommand(eSecCommand::CHANGE_TUNER_TYPE, type));
+		m_sec_sequence.push_back(eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
 		char configStr[255];
 		snprintf(configStr, 255, "config.Nims.%d.terrestrial_5V", m_slotid);
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
 		if (eConfigManager::getConfigBoolValue(configStr))
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
