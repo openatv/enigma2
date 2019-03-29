@@ -146,7 +146,7 @@ class About(AboutBase):
 			tempinfo = file('/proc/stb/power/avs').read()
 		elif path.exists('/sys/class/thermal/thermal_zone0/temp'):
 			tempinfo = file('/sys/class/thermal/thermal_zone0/temp').read().replace('\n', '')
-			tempinfo = (int(tempinfo) + 500) / 1000
+			tempinfo = str((int(tempinfo) + 500) / 1000)
 		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
 			try:
 				tempinfo = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r').read()
@@ -155,11 +155,10 @@ class About(AboutBase):
 				tempinfo = ""
 		elif path.exists('/proc/hisi/msp/pm_cpu'):
 			try:
-				for line in open('/proc/hisi/msp/pm_cpu').readlines():
-					line = [x.strip() for x in line.strip().split(":")]
-					if line[0] == "Tsensor":
-						temp = line[1].split("=")
-						tempinfo = temp[1].strip().split(" ")[0]
+				for line in file('/proc/hisi/msp/pm_cpu').readlines():
+					line = line.split()
+					if line[0] == "Tsensor:":
+						tempinfo = line[3]
 			except:
 				tempinfo = ""
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
