@@ -549,6 +549,11 @@ def InitAVSwitch():
 	config.av.autores_hd30 = ConfigSelection(choices=conv_30)
 	config.av.autores_hd50 = ConfigSelection(choices=conv_50)
 	config.av.autores_hd60 = ConfigSelection(choices=conv_60)
+	config.av.autores_uhd24 = ConfigSelection(choices=conv_24)
+	config.av.autores_uhd25 = ConfigSelection(choices=conv_50)
+	config.av.autores_uhd30 = ConfigSelection(choices=conv_30)
+	config.av.autores_uhd50 = ConfigSelection(choices=conv_50)
+	config.av.autores_uhd60 = ConfigSelection(choices=conv_60)
 
 	# some boxes do not support YPbPr
 	try:
