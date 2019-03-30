@@ -910,11 +910,17 @@ class ConfigPosition(ConfigSequence):
 	def __init__(self, default, args):
 		ConfigSequence.__init__(self, seperator = ",", limits = [(0,args[0]),(0,args[1]),(0,args[2]),(0,args[3])], default = default)
 
-clock_limits = [(0,23),(0,59)]
+clock_limits = [(0, 23), (0, 59)]
 class ConfigClock(ConfigSequence):
-	def __init__(self, default):
-		t = localtime(default)
-		ConfigSequence.__init__(self, seperator = ":", limits = clock_limits, default = [t.tm_hour, t.tm_min])
+	def __init__(self, default, timeconv=localtime, durationmode=False):
+		self.t = timeconv(default)
+		ConfigSequence.__init__(self, seperator=":", limits=clock_limits, default=[self.t.tm_hour, self.t.tm_min])
+		if durationmode:
+			self.wideformat = False
+			self.timeformat = "%_H:%M"
+		else:
+			self.wideformat = None  # Defer until later
+			self.timeformat = None  # Defer until later
 
 	def increment(self):
 		# Check if Minutes maxed out
@@ -931,20 +937,107 @@ class ConfigClock(ConfigSequence):
 		# Trigger change
 		self.changed()
 
-	def decrement(self):
+	def decrement(self, step=1):
 		# Check if Minutes is minimum
 		if self._value[1] == 0:
-			# Decrement Hour, set Minutes to 59
+			# Decrement Hour, set Minutes to 59 or 55
 			if self._value[0] > 0:
 				self._value[0] -= 1
 			else:
 				self._value[0] = 23
-			self._value[1] = 59
+			self._value[1] = 60 - step
 		else:
 			# Decrement Minutes
-			self._value[1] -= 1
+			self._value[1] -= step
 		# Trigger change
 		self.changed()
+
+	def nextStep(self):
+		self._value[1] += 5 - self._value[1] % 5 - 1
+		self.increment()
+
+	def prevStep(self):
+		# Set Minutes to the previous multiple of 5
+		step = (4 + self._value[1]) % 5 + 1
+		self.decrement(step)
+
+	def handleKey(self, key):
+		if self.wideformat is None:
+			self.wideformat = config.usage.time.wide.value
+		if key == KEY_DELETE and self.wideformat:
+			if self._value[0] < 12:
+				self._value[0] += 12
+				self.validate()
+				self.changed()
+		elif key == KEY_BACKSPACE and self.wideformat:
+			if self._value[0] >= 12:
+				self._value[0] -= 12
+				self.validate()
+				self.changed()
+		elif key in KEY_NUMBERS or key == KEY_ASCII:
+			if key == KEY_ASCII:
+				code = getPrevAsciiCode()
+				if code < 48 or code > 57:
+					return
+				digit = code - 48
+			else:
+				digit = getKeyNumber(key)
+
+			hour = self._value[0]
+			pmadjust = 0
+			if self.wideformat:
+				if hour > 11:  # All the PM times
+					hour -= 12
+					pmadjust = 12
+				if hour == 0:  # 12AM & 12PM map to 12
+					hour = 12
+				if self.marked_pos == 0 and digit >= 2:  # Only 0, 1 allowed (12 hour clock)
+					return
+				if self.marked_pos == 1 and hour > 9 and digit >= 3:  # Only 10, 11, 12 allowed
+					return
+				if self.marked_pos == 1 and hour < 10 and digit == 0:  # Only 01, 02, ..., 09 allowed
+					return
+			else:
+				if self.marked_pos == 0 and digit >= 3:  # Only 0, 1, 2 allowed (24 hour clock)
+					return
+				if self.marked_pos == 1 and hour > 19 and digit >= 4:  # Only 20, 21, 22, 23 allowed
+					return
+			if self.marked_pos == 2 and digit >= 6:  # Only 0, 1, ..., 5 allowed (tens digit of minutes)
+				return
+
+			value = bytearray(b"%02d%02d" % (hour, self._value[1]))  # Must be ASCII!
+			value[self.marked_pos] = digit + ord(b'0')
+			hour = int(value[:2])
+			minute = int(value[2:])
+
+			if self.wideformat:
+				if hour == 12:  # 12AM & 12PM map to back to 00
+					hour = 0
+				elif hour > 12:
+					hour = 10
+				hour += pmadjust
+			elif hour > 23:
+				hour = 20
+
+			self._value[0] = hour
+			self._value[1] = minute
+			self.marked_pos += 1
+			self.validate()
+			self.changed()
+		else:
+			ConfigSequence.handleKey(self, key)
+
+	def genText(self):
+		if self.timeformat is None:
+			self.timeformat = config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H")
+		mPos = self.marked_pos
+		if mPos >= 2:
+			mPos += 1  # Skip over the separator
+		newtime = list(self.t)
+		newtime[3] = self._value[0]
+		newtime[4] = self._value[1]
+		value = strftime(self.timeformat, newtime)
+		return value, mPos
 
 integer_limits = (0, 9999999999)
 class ConfigInteger(ConfigSequence):
