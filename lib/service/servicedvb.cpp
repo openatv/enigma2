@@ -2148,11 +2148,12 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 	};
 	static const int nAudioMap = sizeof audioMap / sizeof audioMap[0];
 	info.m_description = "???";
+	int audioType = program.audioStreams[i].type;
 	for(int m = 0; m < nAudioMap; m++)
 	{
-		if (program.audioStreams[m].type == audioMap[m].streamType)
+		if (audioType == audioMap[m].streamType)
 		{
-			info.m_description = audioMap[i].typeName;
+			info.m_description = audioMap[m].typeName;
 			break;
 		}
 	}
