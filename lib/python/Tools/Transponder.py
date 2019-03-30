@@ -13,7 +13,7 @@ def getTunerDescription(nim):
 
 def getMHz(frequency):
 	if str(frequency).endswith('MHz'):
-		return frequency.split()[0]
+		return float(frequency.split()[0])
 	return (frequency+50000)/100000/10.
 
 def getChannelNumber(frequency, nim):
@@ -22,7 +22,7 @@ def getChannelNumber(frequency, nim):
 			if n.isCompatible("DVB-T"):
 				nim = n.slot
 				break
-	f = int(getMHz(frequency))
+	f = getMHz(frequency)
 	descr = getTunerDescription(nim)
 	if "DVB-T" in descr:
 		if "Europe" in descr:
@@ -104,7 +104,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		ret["system"] = {
 			eDVBFrontendParametersSatellite.System_DVB_S : "DVB-S",
 			eDVBFrontendParametersSatellite.System_DVB_S2 : "DVB-S2"}.get(tp.get("system"))
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
+		ret["frequency"] = (tp.get("frequency") and ('%s MHz' % str(tp.get("frequency")/1000.))) or '0 MHz'
 		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
 		if ret["system"] == "DVB-S2":
 			ret["rolloff"] = {
@@ -230,7 +230,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
 #		print 'system:',tp.get("system")
-		ret["frequency"] = (tp.get("frequency") and ('%i MHz' % int(round(tp.get("frequency"), -6)/1000000))) or '0 MHz'
+		ret["frequency"] = (tp.get("frequency") and ('%s MHz' % str(tp.get("frequency")/1000000.))) or '0 MHz'
 #		print 'frequency:',tp.get("frequency")
 		ret["channel"] = _("CH%s") % getChannelNumber(tp.get("frequency"), "DVB-T")
 	elif tunertype == "ATSC":
