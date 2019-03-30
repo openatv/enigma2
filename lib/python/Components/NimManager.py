@@ -662,7 +662,7 @@ class SecConfigure:
 			tmp.positions[PN].append(ConfigInteger(default=positions, limits = (positions, positions)))
 
 			tmp.bootuptime[PN] = ConfigSubList()
-			tmpbootuptime[PN].append(ConfigInteger(default=0, limits = (0, 0)))
+			tmp.bootuptime[PN].append(ConfigInteger(default=0, limits = (0, 0)))
 
 			positionsoffsetlist=[0,]	##adenin_todo
 			positionsoffset = int(positionsoffsetlist[0])
