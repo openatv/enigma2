@@ -327,6 +327,19 @@ def parseColor(s):
 			raise SkinError("color '%s' must be #aarrggbb or valid named color" % s)
 	return gRGB(int(s[1:], 0x10))
 
+def parseParameter(s):
+	"""This function is responsible for parsing parameters in the skin, it can parse integers, floats, hex colors, hex integers, named colors and strings."""
+	if s[0] == '#':
+		return int(s[1:], 16)
+	elif s[:2] == '0x':
+		return int(s, 16)
+	elif '.' in s:
+		return float(s)
+	elif s in colorNames:
+		return colorNames[s].argb()
+	else:
+		return int(s)
+
 def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"))):
 	# walk all attributes
 	size = None
@@ -837,7 +850,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					if isinstance(font, list) and len(font) == 2:
 						parameters[name] = (str(font[0]), int(font[1]))
 				else:
-					parameters[name] = map(int, value.split(","))
+					parameters[name] = map(parseParameter, value.split(","))
 			except Exception, ex:
 				print "[SKIN] bad parameter", ex
 
