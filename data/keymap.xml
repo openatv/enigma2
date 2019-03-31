@@ -538,6 +538,17 @@
 		<key id="KEY_NEXT" mapto="markAll" flags="l"/>
 	</map>
 
+	<map context="MovieSelectionUserActions">
+		<key id="KEY_PVR" mapto="showMovies" flags="m" />
+		<key id="KEY_FILE" mapto="showMovies" flags="m" />
+		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
+		<key id="KEY_RADIO" mapto="showRadio" flags="m" />
+		<key id="KEY_TV" mapto="showTv" flags="m" />
+		<key id="KEY_TEXT" mapto="showText" flags="m" />
+		<key id="KEY_SUBTITLE" mapto="showSubtitle" flags="m"/>
+		<key id="KEY_AUDIO" mapto="showAudio" flags="m"/>
+	</map>
+
 	<map context="FileNavigateActions">
 		<key id="KEY_LAST" mapto="directoryUp" flags="m" />
 	</map>
