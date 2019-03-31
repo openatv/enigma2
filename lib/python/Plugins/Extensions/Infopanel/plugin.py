@@ -526,6 +526,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(ShowSoftcamPanelExtensions)
 		elif menu == "KeymapSel":
 			self.session.open(KeymapSel)
+		elif menu == "Edid":
+			self.session.open(Info, "Edid")
 		else:
 			pass
 
@@ -563,6 +565,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Network'), _("Network"), 'Network')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Ram'), _("Ram"), 'Ram')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SystemInfo'), _("SystemInfo"), 'SystemInfo')))
+		if SystemInfo["HAVEEDIDDECODE"]:
+			self.tlist.append(MenuEntryItem((InfoEntryComponent('Edid'), _("EDID decode"), 'Edid')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 		self.oldmlist1 = self.tlist
@@ -903,6 +907,8 @@ class Info(Screen):
 			self.Partitions()
 		elif info == "Swap":
 			self.Swap()
+		elif info == "Edid":
+			self.Edid()
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"],
 		{
@@ -1086,6 +1092,15 @@ class Info(Screen):
 				info1 = info1 + "Prio: " + l1[4] + '\n\n'
 			if info1[-1:] == '\n': info1 = info1[:-1]
 			if info1[-1:] == '\n': info1 = info1[:-1]
+			info1 = self.Do_cut(info1)
+			self["label1"].setText(info1)
+		except:
+			self["label1"].setText(_("an internal error has occur"))
+
+	def Edid(self):
+		try:
+			self["label2"].setText(_("EDID decode"))
+			info1 = self.Do_cmd("cat /proc/stb/hdmi/raw_edid | edid-decode", None, None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
 		except:
