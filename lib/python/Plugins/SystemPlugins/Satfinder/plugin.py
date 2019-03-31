@@ -35,6 +35,8 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.pilotEntry = None
 		self.fecEntry = None
 		self.transponder = None
+		self.is_id_boolEntry = None
+		self.t2mi_plp_id_boolEntry = None
 
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Signal Finder"))
@@ -97,6 +99,31 @@ class Satfinder(ScanSetup, ServiceScan):
 				msg = _("%s not available.") % slot.getSlotName()
 				msg += _("\nRecording in progress.")
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
+		elif cur == self.is_id_boolEntry:
+			if self.is_id_boolEntry[1].value:
+				self.scan_sat.is_id.value = 0 if self.is_id_memory < 0 else self.is_id_memory
+				self.scan_sat.pls_mode.value = self.pls_mode_memory
+				self.scan_sat.pls_code.value = self.pls_code_memory
+			else:
+				self.is_id_memory = self.scan_sat.is_id.value
+				self.pls_mode_memory = self.scan_sat.pls_mode.value
+				self.pls_code_memory = self.scan_sat.pls_code.value
+				self.scan_sat.is_id.value = eDVBFrontendParametersSatellite.No_Stream_Id_Filter
+				self.scan_sat.pls_mode.value = eDVBFrontendParametersSatellite.PLS_Gold
+				self.scan_sat.pls_code.value = eDVBFrontendParametersSatellite.PLS_Default_Gold_Code
+			self.createSetup()
+			self.retune()
+		elif cur == self.t2mi_plp_id_boolEntry:
+			if self.t2mi_plp_id_boolEntry[1].value:
+				self.scan_sat.t2mi_plp_id.value = 0 if self.t2mi_plp_id_memory < 0 else self.t2mi_plp_id_memory
+				self.scan_sat.t2mi_pid.value = self.t2mi_pid_memory
+			else:
+				self.t2mi_plp_id_memory = self.scan_sat.t2mi_plp_id.value
+				self.t2mi_pid_memory = self.scan_sat.t2mi_pid.value
+				self.scan_sat.t2mi_plp_id.value = eDVBFrontendParametersSatellite.No_T2MI_PLP_Id
+				self.scan_sat.t2mi_pid.value = eDVBFrontendParametersSatellite.T2MI_Default_Pid
+			self.createSetup()
+			self.retune()
 		else:
 			ScanSetup.newConfig(self)
 		if cur[1].value == "single_transponder":
@@ -193,8 +220,8 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.scan_sat.is_id,
 			self.scan_sat.pls_mode,
 			self.scan_sat.pls_code,
+			self.scan_sat.t2mi_plp_id,
 			self.scan_sat.t2mi_pid,
-			self.scan_sat.t2mi_plp,
 			self.scan_ter.channel,
 			self.scan_ter.frequency,
 			self.scan_ter.inversion,
@@ -296,11 +323,6 @@ class Satfinder(ScanSetup, ServiceScan):
 					else:
 						fec = self.scan_sat.fec.value
 
-					if self.scan_sat.t2mi_pid.value > 0 and self.scan_sat.t2mi_plp.value >= 0:
-						t2mi_plp_id = (self.scan_sat.t2mi_pid.value<<16)|self.scan_sat.t2mi_plp.value
-					else:
-						t2mi_plp_id = eDVBFrontendParametersSatellite.No_T2MI_PLP_Id
-						
 					transponder = (
 						self.scan_sat.frequency.value,
 						self.scan_sat.symbolrate.value,
@@ -315,7 +337,8 @@ class Satfinder(ScanSetup, ServiceScan):
 						self.scan_sat.is_id.value,
 						self.scan_sat.pls_mode.value,
 						self.scan_sat.pls_code.value,
-						t2mi_plp_id)
+						self.scan_sat.t2mi_plp_id.value,
+						self.scan_sat.t2mi_pid.value)
 					self.tuner.tune(transponder)
 					self.transponder = transponder
 				elif self.scan_type.value == "predefined_transponder":
@@ -323,7 +346,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					if len(tps) > self.preDefTransponders.index:
 						tp = tps[self.preDefTransponders.index]
 						transponder = (tp[1] / 1000, tp[2] / 1000,
-							tp[3], tp[4], 2, orbpos, tp[5], tp[6], tp[8], tp[9], tp[10], tp[11], tp[12], tp[13])
+							tp[3], tp[4], 2, orbpos, tp[5], tp[6], tp[8], tp[9], tp[10], tp[11], tp[12], tp[13], tp[14])
 						self.tuner.tune(transponder)
 						self.transponder = transponder
 
@@ -377,7 +400,8 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.transponder[10],# input stream id
 					self.transponder[11],# pls mode
 					self.transponder[12], # pls code
-					self.transponder[13] # t2mi_plp_id
+					self.transponder[13], # t2mi_plp_id
+					self.transponder[14] # t2mi_pid
 				)
 		elif nim.isCompatible("DVB-T"):
 			parm = buildTerTransponder(

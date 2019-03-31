@@ -61,13 +61,15 @@ struct eDVBFrontendParametersSatellite
 	enum {
 		No_Stream_Id_Filter = NO_STREAM_ID_FILTER
 	};
-
 	enum {
-		No_T2MI_PLP_Id = eDVBFrontendParametersSatellite::No_Stream_Id_Filter
+		PLS_Default_Gold_Code, PLS_Default_Root_Code
+	};
+	enum {
+		No_T2MI_PLP_Id = eDVBFrontendParametersSatellite::No_Stream_Id_Filter, T2MI_Default_Pid = 4096
 	};
 	bool no_rotor_command_on_tune;
 	int frequency, symbol_rate;
-	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot, is_id, pls_mode, pls_code, t2mi_plp_id;
+	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot, is_id, pls_mode, pls_code, t2mi_plp_id, t2mi_pid;
 	int plp_id;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersSatellite);
@@ -225,6 +227,7 @@ public:
 	int getPLSMode() const;
 	int getPLSCode() const;
 	int getT2MIPlpId() const;
+	int getT2MIPid() const;
 	int getBandwidth() const;
 	int getCodeRateLp() const;
 	int getCodeRateHp() const;
@@ -262,6 +265,7 @@ public:
 	int getPLSMode() const;
 	int getPLSCode() const;
 	int getT2MIPlpId() const;
+	int getT2MIPid() const;
 };
 
 class eDVBCableTransponderData : public eDVBTransponderData
