@@ -137,7 +137,11 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def verifyFirstRun(self):
 		#check if we have already a working network connection after flashing/factory reset
-		if firstRun and checkNetwork:
+		if self["list"].current[-1] == 'end':
+			self.afterAsyncCode()
+			self.markDone()
+			self.close()
+		elif firstRun and checkNetwork:
 			self.notification = self.session.instantiateDialog(NotificationBox, _("Please wait while we test your network connection..."))
 			self.notification.show()			
 			iNetwork.checkNetworkState(self.firstRunNetworkCheck)
