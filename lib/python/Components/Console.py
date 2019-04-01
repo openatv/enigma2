@@ -38,9 +38,10 @@ class ConsoleItem:
 
 class Console(object):
 	def __init__(self):
-		# Still called appContainers because Network.py accesses it to
+		# Still called appContainers and appResults because Network.py accesses it to
 		# know if there's still stuff running
 		self.appContainers = {}
+		self.appResults = {}
 
 	def ePopen(self, cmd, callback=None, extra_args=None):
 		extra_args = [] if extra_args is None else extra_args
