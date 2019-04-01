@@ -932,12 +932,17 @@ def InitAVSwitch():
 
 	can_downmix_dts = hasDownmix("dts")
 
-	SystemInfo["CanDownmixDTS"] = can_downmix_dts
+	defective_dts_downmix = getBoxType() == "beyonwizu4"
+
+	SystemInfo["CanDownmixDTS"] = can_downmix_dts and not defective_dts_downmix
 	if can_downmix_dts:
-		def setDTSDownmix(configElement):
-			setDownmix("dts", configElement.value)
-		config.av.downmix_dts = ConfigYesNo(default = True)
-		config.av.downmix_dts.addNotifier(setDTSDownmix)
+		if not defective_dts_downmix:
+			def setDTSDownmix(configElement):
+				setDownmix("dts", configElement.value)
+			config.av.downmix_dts = ConfigYesNo(default = True)
+			config.av.downmix_dts.addNotifier(setDTSDownmix)
+		else:
+			setDownmix("dts", False)
 
 	can_downmix_aac = hasDownmix("aac")
 
