@@ -899,21 +899,28 @@ def InitAVSwitch():
 		config.av.pcm_multichannel = ConfigYesNo(default=False)
 		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
 
-	try:
-		f = open("/proc/stb/audio/ac3_choices", "r")
-		choices = f.read().strip()
+	def hasDownmix(target):
+		try:
+			f = open(os.path.join("/proc/stb/audio", target + "_choices"), "r")
+			choices = f.read().strip()
+			f.close()
+			return "downmix" in choices
+		except:
+			return False
+
+	def setDownmix(target, value):
+		f = open(os.path.join("/proc/stb/audio", target), "w")
+		textval = value and "downmix" or "passthrough"
+		print "[AVSwitch] setting %s to %s" % (target.upper(), textval)
+		f.write(textval)
 		f.close()
-		can_downmix_ac3 = "downmix" in choices
-	except:
-		can_downmix_ac3 = False
+
+	can_downmix_ac3 = hasDownmix("ac3")
 
 	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
 	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
-			f = open("/proc/stb/audio/ac3", "w")
-			print "[AVSwitch] setting AC3 to %s" % (configElement.value and "downmix" or "passthrough")
-			f.write(configElement.value and "downmix" or "passthrough")
-			f.close()
+			setDownmix("ac3", configElement.value)
 			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
 				SystemInfo["CanPcmMultichannel"] = True
 			else:
@@ -923,38 +930,21 @@ def InitAVSwitch():
 		config.av.downmix_ac3 = ConfigYesNo(default=True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
-	try:
-		f = open("/proc/stb/audio/dts_choices", "r")
-		file = f.read()[:-1]
-		f.close()
-		can_downmix_dts = "downmix" in file
-	except:
-		can_downmix_dts = False
+	can_downmix_dts = hasDownmix("dts")
 
 	SystemInfo["CanDownmixDTS"] = can_downmix_dts
 	if can_downmix_dts:
 		def setDTSDownmix(configElement):
-			f = open("/proc/stb/audio/dts", "w")
-			f.write(configElement.value and "downmix" or "passthrough")
-			f.close()
+			setDownmix("dts", configElement.value)
 		config.av.downmix_dts = ConfigYesNo(default = True)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
-	try:
-		f = open("/proc/stb/audio/aac_choices", "r")
-		choices = f.read().strip()
-		f.close()
-		can_downmix_aac = "downmix" in choices
-	except:
-		can_downmix_aac = False
+	can_downmix_aac = hasDownmix("aac")
 
 	SystemInfo["CanDownmixAAC"] = can_downmix_aac
 	if can_downmix_aac:
 		def setAACDownmix(configElement):
-			f = open("/proc/stb/audio/aac", "w")
-			print "[AVSwitch] setting AAC to %s" % (configElement.value and "downmix" or "passthrough")
-			f.write(configElement.value and "downmix" or "passthrough")
-			f.close()
+			setDownmix("aac", configElement.value)
 		config.av.downmix_aac = ConfigYesNo(default=True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
 
