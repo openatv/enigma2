@@ -10,6 +10,7 @@ from Tools.BoundFunction import boundFunction
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryProgress
 from enigma import eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 import subprocess
+import skin
 
 pname = _("File Commander - generalised archive handler")
 pdesc = _("unpack archives")
@@ -51,13 +52,15 @@ class ArchiverMenuScreen(Screen):
 		self.errlog = ""
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
-		self.chooseMenuList.l.setFont(0, gFont('Regular', 20))
-		self.chooseMenuList.l.setItemHeight(25)
+		font = skin.fonts.get("FileList", ("Regular", 20, 25))
+		self.chooseMenuList.l.setFont(0, gFont(font[0], font[1]))
+		self.chooseMenuList.l.setItemHeight(font[2])
 		self['list_left'] = self.chooseMenuList
 
 		self.chooseMenuList2 = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
-		self.chooseMenuList2.l.setFont(0, gFont('Regular', 25))
-		self.chooseMenuList2.l.setItemHeight(30)
+		font = skin.fonts.get("FileList", ("Regular", 25, 30))
+		self.chooseMenuList2.l.setFont(0, gFont(font[0], font[1]))
+		self.chooseMenuList2.l.setItemHeight(font[2])
 		self['unpacking'] = self.chooseMenuList2
 		self['unpacking'].selectionEnabled(0)
 
@@ -81,9 +84,12 @@ class ArchiverMenuScreen(Screen):
 		self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
+		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x = 10
+		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryText(pos=(10, 0), size=(1180, 25), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=entry[0])
+			MultiContentEntryText(pos=(x, y), size=(w-x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
 		]
 
 	def UnpackListEntry(self, entry):
@@ -95,7 +101,7 @@ class ArchiverMenuScreen(Screen):
 		return [
 			entry,
 			MultiContentEntryProgress(pos=(10, 0), size=(560, 30), percent=int(currentProgress)),
-			MultiContentEntryText(pos=(10, 3), size=(560, 30), font=0, flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER, text=str(progpercent), color=textColor)
+			MultiContentEntryText(pos=(10, 3), size=(560, 30), font=0, flags=RT_HALIGN_CENTER, text=str(progpercent), color=textColor)
 		]
 
 	def ok(self):
@@ -221,8 +227,9 @@ class ArchiverInfoScreen(Screen):
 		Screen.__init__(self, session)
 
 		self.chooseMenuList = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
-		self.chooseMenuList.l.setFont(0, gFont('Regular', 20))
-		self.chooseMenuList.l.setItemHeight(25)
+		font = skin.fonts.get("FileList", ("Regular", 20, 25))
+		self.chooseMenuList.l.setFont(0, gFont(font[0], font[1]))
+		self.chooseMenuList.l.setItemHeight(font[2])
 		self['list_left'] = self.chooseMenuList
 
 		self["list_left_head"] = Label("%s%s" % (self.sourceDir, self.filename))
@@ -246,9 +253,12 @@ class ArchiverInfoScreen(Screen):
 			self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
+		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x = 10
+		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryText(pos=(10, 0), size=(1180, 25), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=entry[0])
+			MultiContentEntryText(pos=(x, y), size=(w-x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
 		]
 
 	def cancel(self):

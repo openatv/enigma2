@@ -109,6 +109,7 @@ class vEditor(Screen, HelpableScreen):
 		self.selLine = None
 		self.oldLine = None
 		self.isChanged = False
+		self.skinName = "vEditorScreen"
 		self.GetFileData(file)
 		self.setTitle(pname)
 
