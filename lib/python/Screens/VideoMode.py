@@ -146,6 +146,22 @@ class VideoSetup(Screen, ConfigListScreen):
 					_("Show 1080 60Hz as"), config.av.autores_hd60,
 					_("This option allows you to choose how to display 1080 60Hz content.")))
 
+				self.list.append(getConfigListEntry(
+					_("Show 2160 24Hz as"), config.av.autores_uhd24,
+					_("This option allows you to choose how to display 2160 24Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 2160 25Hz as"), config.av.autores_uhd25,
+					_("This option allows you to choose how to display 2160 25Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 2160 30Hz as"), config.av.autores_uhd30,
+					_("This option allows you to choose how to display 2160 30Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 2160 50Hz as"), config.av.autores_uhd50,
+					_("This option allows you to choose how to display 2160 50Hz content.")))
+				self.list.append(getConfigListEntry(
+					_("Show 2160 60Hz as"), config.av.autores_uhd60,
+					_("This option allows you to choose how to display 2160 60Hz content.")))
+
 		# if we have modes for this port:
 		if (config.av.videoport.value in config.av.videomode and not config.av.autores.value) or config.av.videoport.value == 'Scart':
 			# add mode- and rate-selection:
@@ -523,6 +539,16 @@ class AutoVideoMode(Screen):
 				new_mode = config.av.autores_hd50.value
 			elif new_res == "1080" and new_rate == "60":
 				new_mode = config.av.autores_hd60.value
+			elif new_res == "2160" and new_rate == "24":
+				new_mode = config.av.autores_uhd24.value
+			elif new_res == "2160" and new_rate == "25":
+				new_mode = config.av.autores_uhd25.value
+			elif new_res == "2160" and new_rate == "30":
+				new_mode = config.av.autores_uhd30.value
+			elif new_res == "2160" and new_rate == "50":
+				new_mode = config.av.autores_uhd50.value
+			elif new_res == "2160" and new_rate == "60":
+				new_mode = config.av.autores_uhd60.value
 			else:
 				print "[VideoMode] autores could not find a mode for res=%s, rate=%s" % (new_res, new_rate)
 		elif config_rate == 'multi' and path.exists('/proc/stb/video/videomode_%shz' % new_rate):

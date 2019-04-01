@@ -31,6 +31,7 @@ import Tools.CopyFiles
 import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
+from boxbranding import getBoxType
 
 from enigma import eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
 import os
@@ -449,7 +450,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		]
 
 		updateUserDefinedActions()
-		for btn in (
+		user_buttons = [
 			('red', _('Button Red')),
 			('green', _('Button Green')),
 			('yellow', _('Button Yellow')),
@@ -458,10 +459,23 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			('greenlong', _('Button Green long')),
 			('yellowlong', _('Button Yellow long')),
 			('bluelong', _('Button Blue long')),
-			('TV', _('Button TV')),
-			('Radio', _('Button Radio')),
-			('Text', _('Button Text'))
-		):
+		];
+		if getBoxType() in ('beyonwizu4', 'beyonwizv2'):
+			user_buttons += [
+				('TV', _('Button TV/Radio')),
+				('Subtitle', _('Button Subtitle')),
+				('Audio', _('Button Audio')),
+				('Text', _('Button Text')),
+			]
+		else:
+			user_buttons += [
+				('Audio', _('Button Audio')),
+				('Subtitle', _('Button Subtitle')),
+				('Text', _('Button Text')),
+				('TV', _('Button TV')),
+				('Radio', _('Button Radio')),
+			]
+		for btn in user_buttons:
 			configList.append(getConfigListEntry(btn[1], userDefinedButtons[btn[0]], _("Allows you to set the button to do what you choose.")))
 		self["config"].setList(configList)
 		if config.usage.sort_settings.value:
@@ -818,11 +832,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["numFolders"] = Label()
 		self["numFiles"] = Label()
 
-		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", {
+		self["InfobarActions"] = HelpableActionMap(self, "MovieSelectionUserActions", {
 			"showMovies": (self.doPathSelect, _("Select the movie path...")),
 			"showRadio": (self.btn_radio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_radio")),
 			"showTv": (self.btn_tv, boundFunction(self.getinitUserDefinedActionsDescription, "btn_tv")),
 			"showText": (self.btn_text, boundFunction(self.getinitUserDefinedActionsDescription, "btn_text")),
+			"showSubtitle": (self.btn_subtitle, boundFunction(self.getinitUserDefinedActionsDescription, "btn_subtitle")),
+			"showAudio": (self.btn_audio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_audio")),
 		}, description=_("Basic functions"))
 
 		keyNumberHelp = _("Search movie list, SMS style ABC2")
@@ -991,9 +1007,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			config.movielist.btn_greenlong = ConfigSelection(default='copy', choices=userDefinedChoices[:])
 			config.movielist.btn_yellowlong = ConfigSelection(default='tags', choices=userDefinedChoices[:])
 			config.movielist.btn_bluelong = ConfigSelection(default='sortdefault', choices=userDefinedChoices[:])
-			config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedChoices[:])
-			config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedChoices[:])
-			config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedChoices[:])
+			if getBoxType() in ('beyonwizu4', 'beyonwizv2'):
+				config.movielist.btn_tv = ConfigSelection(default='createdir', choices=userDefinedChoices[:])
+				config.movielist.btn_subtitle = ConfigSelection(default='movieoff_menu', choices=userDefinedChoices[:])
+				config.movielist.btn_audio = ConfigSelection(default='gohome', choices=userDefinedChoices[:])
+				config.movielist.btn_text = ConfigSelection(default='tags', choices=userDefinedChoices[:])
+			else:
+				config.movielist.btn_audio = ConfigSelection(default='reset', choices=userDefinedChoices[:])
+				config.movielist.btn_subtitle = ConfigSelection(default='createdir', choices=userDefinedChoices[:])
+				config.movielist.btn_text = ConfigSelection(default='movieoff_menu', choices=userDefinedChoices[:])
+				config.movielist.btn_tv = ConfigSelection(default='gohome', choices=userDefinedChoices[:])
+				config.movielist.btn_radio = ConfigSelection(default='tags', choices=userDefinedChoices[:])
 
 			# Fill in descriptions for plugin actions
 			for act, val in userDefinedActions.items():
@@ -1008,10 +1032,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				'greenlong': config.movielist.btn_greenlong,
 				'yellowlong': config.movielist.btn_yellowlong,
 				'bluelong': config.movielist.btn_bluelong,
-				'Radio': config.movielist.btn_radio,
 				'TV': config.movielist.btn_tv,
 				'Text': config.movielist.btn_text,
+				'Audio': config.movielist.btn_audio,
+				'Subtitle': config.movielist.btn_subtitle,
 			}
+			if getBoxType() not in ('beyonwizu4', 'beyonwizv2'):
+				userDefinedButtons['Radio'] = config.movielist.btn_radio
 
 	def getinitUserDefinedActionsDescription(self, key):
 		return _(userDefinedActions.get(eval("config.movielist." + key + ".value"), _("Not Defined")))
@@ -1099,6 +1126,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def btn_text(self):
 		self._callButton(config.movielist.btn_text.value)
+
+	def btn_audio(self):
+		self._callButton(config.movielist.btn_audio.value)
+
+	def btn_subtitle(self):
+		self._callButton(config.movielist.btn_subtitle.value)
 
 	def keyUp(self):
 		if self["list"].getCurrentIndex() < 1:
