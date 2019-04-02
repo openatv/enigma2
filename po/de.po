@@ -2264,7 +2264,7 @@ msgid "Configure your network again"
 msgstr "Netzwerk erneut konfigurieren"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr "Netzwerkeinstellungen konfigurieren und OK drücken um den Suchlauf zu starten"
+msgstr "Netzwerkeinstellungen konfigurieren und OK drücken um den Suchlauf zu starten."
 
 #
 msgid "Configure your wireless LAN again"
@@ -3348,7 +3348,7 @@ msgid "EPG button mode"
 msgstr "Funktion der EPG-Taste"
 
 msgid "INFO button mode"
-msgstr "Funktion der Info-Taste"
+msgstr "Funktion der INFO-Taste"
 
 msgid "EPG filename"
 msgstr "EPG Dateiname"
@@ -5436,7 +5436,7 @@ msgid "Network Configuration..."
 msgstr "Netzwerkeinstellungen"
 
 msgid "Network ID"
-msgstr "Netzwerk-ID"
+msgstr "Netzwerk-ID (0 - alle Netzwerke)"
 
 msgid "Network Servers:"
 msgstr "Netzwerk-Server:"
@@ -6637,7 +6637,7 @@ msgstr "OK drücken um eine CAID aus- / abzuwählen"
 
 #
 msgid "Press OK to start the scan"
-msgstr "OK drücken zum Starten des Suchlaufs"
+msgstr "Zum Starten des Suchlaufs OK drücken."
 
 #
 msgid "Press OK to toggle the selection."
@@ -6745,7 +6745,7 @@ msgid "Quick"
 msgstr "Schnell"
 
 msgid "QuickEPG mode"
-msgstr "Grafischer InfobarEPG aufrufen"
+msgstr "Grafischen InfobarEPG aufrufen"
 
 #
 msgid "Quickzap"
@@ -7565,26 +7565,26 @@ msgid "Select folders"
 msgstr "Ordner auswählen"
 
 msgid "Select how to activate the Quick EPG mode:"
-msgstr "Wählen Sie die Taste die QuickEPG aktivieren soll:"
+msgstr "Wählen Sie die Taste, die den grafischen InfobarEPG aktivieren soll."
 
 msgid "Select what you want the EPG button to activate:"
-msgstr "Wählen Sie, was die EPG-Taste, öffnen soll:"
+msgstr "Wählen Sie, was die EPG-Taste öffnen soll."
 
 msgid "Select what you want the INFO button to activate:"
-msgstr "Wählen Sie, was die INFO-Taste, öffnen soll:"
+msgstr "Wählen Sie, was die INFO-Taste öffnen soll."
 
 msgid "Select how you want recording names to be populated."
-msgstr "Wählen Sie wie die Filmliste sortiert werden soll."
+msgstr "Wählen Sie, wie die Filmliste sortiert werden soll."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wählen Sie, wie sich Timeshift verhalten bzw. was mit der Timeshift-Datei geschehen soll, nach dem Umschalten."
 
 msgid "Select if you want the Subservice mode to be activated."
-msgstr "Wählen Sie ob Unterkanäle aktiviert werden sollen."
+msgstr "Wählen Sie ob, Unterkanäle aktiviert werden sollen."
 
 msgid "Select if you want to use the image coloured Buttons (set to 'no' if you want to use (Multi) Quick Button)."
 msgstr ""
-"Wählen Sie ob die Image Farbtasten benutzt werden sollen\n"
+"Wählen Sie ob, die Image Farbtasten benutzt werden sollen\n"
 "('Nein' wenn Sie (Multi-)QuickButton benutzen möchten)."
 
 msgid "Select input device"
@@ -7626,7 +7626,7 @@ msgid "Select what you want the Channel +/- button to activate:"
 msgstr "Wählen Sie, was die Programm +/- Tasten bewirken sollen:"
 
 msgid "Select what you want the TV button to activate:"
-msgstr "Wählen Sie, was die TV Taste bewirken soll:"
+msgstr "Wählen Sie, was die TV Taste bewirken soll."
 
 msgid "Select wireless network"
 msgstr "WLAN-Netzwerk auswählen"
@@ -8176,6 +8176,38 @@ msgstr "Zum vorherigen Sender wechseln"
 #
 msgid "Open bouquetlist..."
 msgstr "Öffne Favoritenliste"
+
+#
+msgid "Show the Power Timer..."
+msgstr "Zeige PowerTimer"
+
+#
+msgid "Open Timerlist..."
+msgstr "Zeige Timer"
+
+#
+msgid "Open MediaPortal..."
+msgstr "Öffne MediaPortal"
+
+#
+msgid "Show the Sleep Timer..."
+msgstr "Zeige Ausschalt-Timer"
+
+#
+msgid "Open AutoTimerlist..."
+msgstr "Zeige AutoTimer"
+
+#
+msgid "Toggle aspect ratio..."
+msgstr "Seitenverhältnis ändern"
+
+#
+msgid "show EPG..."
+msgstr "Zeige Standard-EPG"
+
+#
+msgid "Timer selection..."
+msgstr "Timerauswahl"
 
 #
 msgid "List EPG functions..."
@@ -15694,7 +15726,7 @@ msgid "OK button mode"
 msgstr "Funktion der OK-Taste"
 
 msgid "Select what you want the OK button to activate:"
-msgstr "Wählen Sie, was die OK-Taste bewirken soll:"
+msgstr "Wählen Sie, was die OK-Taste bewirken soll."
 
 msgid "Select what you want the Up/Down button to activate:"
 msgstr "Wählen Sie, was die Hoch/Runter-Tasten bewirken sollen:"
@@ -17744,7 +17776,7 @@ msgstr "Erweitertes GUI"
 
 # cablescan
 msgid "Enable auto cable scan"
-msgstr "Automatischer Kabel-Suchlauf"
+msgstr "Täglich automatisch suchen"
 
 #: MovieSelection.py:1827
 msgid "Do you really want to move to trashcan ?"
@@ -18706,8 +18738,11 @@ msgstr "12bit 4:2:0/4:2:2 ohne PIP"
 msgid "This option allows you can config the Colorimetry for HDR"
 msgstr "Diese Option erlaubt die Farbprofile Steuerung im HDR Modus"
 
+msgid "CI Operation Mode"
+msgstr "CI Betriebs-Modus"
+
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr "Wählen Sie das CI Protokoll für CI Normal oder CIPlus Module."
+msgstr "Wählen Sie das CI Protokoll, für CI Normal oder CIPlus Module."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Hardware erkennt das CI Protokoll selber oder Hardware arbeitet nur im Legacy Mode."
@@ -18817,7 +18852,7 @@ msgstr "12, zeigt latin-1 Zeichensatz außer griechisch und kyrillisch, umschalt
 msgid "Descramble receiving http streams"
 msgstr "Empfangene HTTP-Streams entschlüsseln"
 
-msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting. Default off."
+msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Wenn aktiviert, dann werden empfangene HTTP-Streams immer entschlüsselt. Dies verbraucht mehr Ressourcen (Demuxer). Aktivieren Sie diese Option nur, wenn es notwendig ist. Individuelle Streams sind immer entschlüsselt, wenn 0x100 zum Servicetyp hinzugefügt wurde, unabhängig von dieser Einstellung."
 
 msgid "Always include ECM in recordings"
@@ -18869,7 +18904,7 @@ msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignoriere DVB-T Subnetzwerk"
 
 msgid "On valid ONIDs, ignore frequency sub network part"
-msgstr "Bei gültigen ONIDS, ignoriere Subnetzwerk Frequenzen"
+msgstr "Ignoriere Subnetzwerk Frequenzen bei gültigen ONIDs"
 
 msgid "Workaround for old tuner driver"
 msgstr "Nur aktivieren, wenn es Probleme mit Multituner gibt"
