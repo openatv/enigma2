@@ -4,6 +4,7 @@
 from Components.config import config
 from enigma import gFont
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
+import skin
 
 pname = _("File Commander - unzip Addon")
 pdesc = _("unpack zip Files")
@@ -46,4 +47,5 @@ class UnpackInfoScreen(ArchiverInfoScreen):
 		self.pdesc = pdesc
 		self.pversion = pversion
 
-		self.chooseMenuList.l.setFont(0, gFont('Console', 20))
+		font = skin.fonts.get("FileList", ("Console", 20, 30))
+		self.chooseMenuList.l.setFont(0, gFont('Console', int(font[1]*0.85)))

@@ -260,9 +260,13 @@ class ArchiverInfoScreen(Screen):
 		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
+		flags = RT_HALIGN_LEFT
+		if 'Plugins.Extensions.FileCommander.addons.unzip.UnpackInfoScreen' in `self`:
+			flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+			y *= 2
 		return [
 			entry,
-			MultiContentEntryText(pos=(x, y), size=(w-x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
+			MultiContentEntryText(pos=(x, int(y)), size=(w-x, h), font=0, flags=flags, text=entry[0])
 		]
 
 	def cancel(self):
