@@ -63,11 +63,13 @@ class TaskListScreen(Screen):
 		self.rebuildTaskList()
 
 	def rebuildTaskList(self):
+		idx = self['tasklist'].getIndex()
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
 			self.tasklist.append((job,job.name,job.getStatustext(),int(100*job.progress/float(job.end)) ,str(100*job.progress/float(job.end)) + "%" ))
 		self['tasklist'].setList(self.tasklist)
 		self['tasklist'].updateList(self.tasklist)
+		self['tasklist'].setIndex(idx)
 		self.Timer.startLongTimer(2)
 
 	def setWindowTitle(self):
