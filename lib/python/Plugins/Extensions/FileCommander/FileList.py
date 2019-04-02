@@ -52,7 +52,6 @@ def getPNGByExt(name):
 def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	res = [(absolute, isDir, isLink)]
 	x, y, w, h = skin.parameters.get("FileListName",(55, 1, 1175, 25))
-	#w = self.l.getItemSize().width()
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w-x, h, 0, RT_HALIGN_LEFT, name))
 	if isLink:
 		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))

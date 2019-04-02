@@ -98,10 +98,14 @@ class ArchiverMenuScreen(Screen):
 		progpercent = str(currentProgress) + "%"
 		# color2 = 0x00ffffff  # White
 		textColor = 0x00808080  # Grey
+		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x = 10
+		x2 = x*10
+		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryProgress(pos=(10, 0), size=(560, 30), percent=int(currentProgress)),
-			MultiContentEntryText(pos=(10, 3), size=(560, 30), font=0, flags=RT_HALIGN_CENTER, text=str(progpercent), color=textColor)
+			MultiContentEntryProgress(pos=(x2, y+int(h/3)), size=(w-x2, int(h/3)), percent=int(currentProgress)),
+			MultiContentEntryText(pos=(x, y), size=(x2, h), font=0, flags=RT_HALIGN_LEFT, text=str(progpercent))#, color=textColor)
 		]
 
 	def ok(self):
