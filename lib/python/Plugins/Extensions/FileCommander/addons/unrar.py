@@ -8,7 +8,7 @@ import re
 import subprocess
 from Plugins.Extensions.FileCommander.InputBox import InputBox
 
-pname = _("File Commander - Unrar Addon")
+pname = _("File Commander - unrar Addon")
 pdesc = _("unpack Rar Files")
 pversion = "0.2-r1"
 

@@ -4,7 +4,7 @@
 from Components.config import config
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
 
-pname = _("File Commander - tar/compressed tar Addon")
+pname = _("File Commander - tar Addon")
 pdesc = _("unpack tar/compressed tar Files")
 pversion = "0.2-r1"
 
