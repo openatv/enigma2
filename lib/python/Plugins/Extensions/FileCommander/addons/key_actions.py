@@ -536,7 +536,7 @@ class key_actions(stat_info):
 				)
 		elif filetype == ".sh":
 			self.run_script(self.SOURCELIST)
-		elif filetype in TEXT_EXTENSIONS:
+		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
 			except OSError as oe:

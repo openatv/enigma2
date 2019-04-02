@@ -76,6 +76,7 @@ config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
+config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=False)
 
 config.plugins.filecommander.path_left_tmp = ConfigText(default=config.plugins.filecommander.path_left.value)
 config.plugins.filecommander.path_right_tmp = ConfigText(default=config.plugins.filecommander.path_right.value)
@@ -247,7 +248,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			jobs = _("(1 job)") if self.jobs == 1 else _("(%d jobs)") % self.jobs
 		else:
 			jobs = ""
-		self.setTitle(pname + filtered + jobs)
+		self.setTitle(pname + " " + filtered + " " + jobs)
 
 	def viewable_file(self):
 		filename = self.SOURCELIST.getFilename()
@@ -906,7 +907,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			filtered = ""
 		else:
 			filtered = "(*)"
-		self.setTitle(pname + filtered + _("(Selectmode)"))
+		self.setTitle(pname + " " + filtered + " " + _("(Selectmode)"))
 		self.SOURCELIST.moveToIndex(self.selectedid)
 		self.updateHead()
 
