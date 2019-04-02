@@ -832,14 +832,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["numFolders"] = Label()
 		self["numFiles"] = Label()
 
-		self["InfobarActions"] = HelpableActionMap(self, "MovieSelectionUserActions", {
+		user_actions = {
 			"showMovies": (self.doPathSelect, _("Select the movie path...")),
-			"showRadio": (self.btn_radio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_radio")),
 			"showTv": (self.btn_tv, boundFunction(self.getinitUserDefinedActionsDescription, "btn_tv")),
 			"showText": (self.btn_text, boundFunction(self.getinitUserDefinedActionsDescription, "btn_text")),
 			"showSubtitle": (self.btn_subtitle, boundFunction(self.getinitUserDefinedActionsDescription, "btn_subtitle")),
 			"showAudio": (self.btn_audio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_audio")),
-		}, description=_("Basic functions"))
+		}
+		if getBoxType() not in ('beyonwizu4', 'beyonwizv2'):
+			user_actions["showRadio"] = (self.btn_radio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_radio"))
+		self["InfobarActions"] = HelpableActionMap(self, "MovieSelectionUserActions", user_actions, description=_("Basic functions"))
 
 		keyNumberHelp = _("Search movie list, SMS style ABC2")
 		self["NumberActions"] = HelpableNumberActionMap(self, ["NumberActions", "InputAsciiActions"], {
