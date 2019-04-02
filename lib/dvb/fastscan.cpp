@@ -508,10 +508,11 @@ void eFastScan::parseResult()
 			fesat.modulation = (*it)->getModulation();
 			fesat.rolloff = (*it)->getRollOff();
 			fesat.pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
-			fesat.is_id = NO_STREAM_ID_FILTER;
+			fesat.is_id = eDVBFrontendParametersSatellite::No_Stream_Id_Filter;
 			fesat.pls_mode = eDVBFrontendParametersSatellite::PLS_Gold;
-			fesat.pls_code = 0;
+			fesat.pls_code = eDVBFrontendParametersSatellite::PLS_Default_Gold_Code;
 			fesat.t2mi_plp_id = eDVBFrontendParametersSatellite::No_T2MI_PLP_Id;
+			fesat.t2mi_pid = eDVBFrontendParametersSatellite::T2MI_Default_Pid;
 
 			parm->setDVBS(fesat);
 			db->addChannelToList(chid, parm);

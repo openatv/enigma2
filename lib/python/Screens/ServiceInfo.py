@@ -4,7 +4,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from ServiceReference import ServiceReference
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop, RT_HALIGN_LEFT, RT_VALIGN_CENTER
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, getDesktop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eDVBFrontendParametersSatellite
 from Tools.Transponder import ConvertToHumanReadable
 from Components.Converter.ChannelNumbers import channelnumbers
 import skin
@@ -178,28 +178,29 @@ class ServiceInfo(Screen):
 		else:
 			if self.transponder_info:
 				tp_info = ConvertToHumanReadable(self.transponder_info)
-				conv = { "tuner_type" 			: _("Transponder type"),
-						 "system"		: _("System"),
-						 "modulation"		: _("Modulation"),
-						 "orbital_position"	: _("Orbital position"),
-						 "frequency"		: _("Frequency"),
-						 "symbol_rate"		: _("Symbol rate"),
-						 "bandwidth"		: _("Bandwidth"),
-						 "polarization"		: _("Polarization"),
-						 "inversion"		: _("Inversion"),
-						 "pilot"		: _("Pilot"),
-						 "rolloff"		: _("Roll-off"),
-						 "is_id"                : _("Input Stream ID"),
-						 "pls_mode"             : _("PLS Mode"),
-						 "pls_code"             : _("PLS Code"),
-						 "t2mi_plp_id"             : _("T2MI PID-PLP ID"),
-						 "fec_inner"		: _("FEC"),
-						 "code_rate_lp"		: _("Coderate LP"),
-						 "code_rate_hp"		: _("Coderate HP"),
-						 "constellation"	: _("Constellation"),
-						 "transmission_mode"	: _("Transmission mode"),
-						 "guard_interval" 	: _("Guard interval"),
-						 "hierarchy_information": _("Hierarchy information")}
+				conv = { "tuner_type" 				: _("Transponder type"),
+						 "system"					: _("System"),
+						 "modulation"				: _("Modulation"),
+						 "orbital_position"			: _("Orbital position"),
+						 "frequency"				: _("Frequency"),
+						 "symbol_rate"				: _("Symbol rate"),
+						 "bandwidth"				: _("Bandwidth"),
+						 "polarization"				: _("Polarization"),
+						 "inversion"				: _("Inversion"),
+						 "pilot"					: _("Pilot"),
+						 "rolloff"					: _("Roll-off"),
+						 "is_id"					: _("Input Stream ID"),
+						 "pls_mode"					: _("PLS Mode"),
+						 "pls_code"					: _("PLS Code"),
+						 "t2mi_plp_id"				: _("T2MI PLP ID"),
+						 "t2mi_pip"					: _("T2MI PID"),
+						 "fec_inner"				: _("FEC"),
+						 "code_rate_lp"				: _("Coderate LP"),
+						 "code_rate_hp"				: _("Coderate HP"),
+						 "constellation"			: _("Constellation"),
+						 "transmission_mode"		: _("Transmission mode"),
+						 "guard_interval"			: _("Guard interval"),
+						 "hierarchy_information"	: _("Hierarchy information")}
 				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys() if i in conv]
 				self.fillList(Labels)
 
@@ -249,7 +250,8 @@ class ServiceInfo(Screen):
 						(_("Input Stream ID"), frontendData.get("is_id", 0), TYPE_VALUE_DEC),
 						(_("PLS Mode"), frontendData.get("pls_mode", None), TYPE_TEXT),
 						(_("PLS Code"), frontendData.get("pls_code", 0), TYPE_VALUE_DEC),
-						(_("T2MI PLP ID"), t2mi(frontendData.get("t2mi_plp_id", -1)), TYPE_TEXT))
+					(_("T2MI PLP ID"), t2mi(frontendData.get("t2mi_plp_id", -1)), TYPE_TEXT),
+					(_("T2MI PID"), None if frontendData.get("t2mi_plp_id", -1) == -1 else str(frontendData.get("t2mi_pid", eDVBFrontendParametersSatellite.T2MI_Default_Pid)), TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-C":
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
