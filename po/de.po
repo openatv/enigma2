@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2018-09-06 22:16+0200\n"
+"PO-Revision-Date: 2019-04-03 19:21+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Ignore unexpectedly wakeup and stay in standby"
@@ -28,8 +28,12 @@ msgstr "Sie können diese Funktion überspringen und den TV ausschalten, wenn Si
 msgid "Switch off the TV to correct input"
 msgstr "Schalte den TV aus um den Eingang zu korrigieren"
 
-msgid "Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"
-msgstr "Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv ist. Diese Einstellung schaltet den TV zuvor in den Standby.\n(Schaltet der TV nicht wieder an, kann ein langsameres Sendeintervall oder auch die Wiederholung der Aufwachkommandos erforderlich sein.)"
+msgid ""
+"Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
+"(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"
+msgstr ""
+"Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv ist. Diese Einstellung schaltet den TV zuvor in den Standby.\n"
+"(Schaltet der TV nicht wieder an, kann ein langsameres Sendeintervall oder auch die Wiederholung der Aufwachkommandos erforderlich sein.)"
 
 msgid "Activation takes place immediately. If this feature is not supported, the volume keys has no function!"
 msgstr "Die Aktivierung erfolgt sofort. Wenn diese Funktion nicht unterstützt wird sind die Lautstärketasten ohne Funktion!"
@@ -49,8 +53,12 @@ msgstr "Routinganfrage"
 msgid "TV physical address report"
 msgstr "TV Adressbericht"
 
-msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\nOn the other hand, tries to respond better to different operating conditions."
-msgstr "Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren.\nAndererseits wird versucht auf verschiedene Betriebszustände besser zu reagieren."
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\n"
+"On the other hand, tries to respond better to different operating conditions."
+msgstr ""
+"Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren.\n"
+"Andererseits wird versucht auf verschiedene Betriebszustände besser zu reagieren."
 
 msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsyncronisation"
@@ -10587,8 +10595,12 @@ msgstr "Mit dieser Option können Sie Jobs in Erweiterungen verstecken (kurzer D
 msgid "Write error while recording. Disk %s"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte %s"
 
-msgid "Write error at start of recording. Disk %s\n%s"
-msgstr "Schreibfehler beim Start der Aufnahme. Festplatte %s\n%s"
+msgid ""
+"Write error at start of recording. Disk %s\n"
+"%s"
+msgstr ""
+"Schreibfehler beim Start der Aufnahme. Festplatte %s\n"
+"%s"
 
 msgid "unknown error!"
 msgstr "unbekannter Fehler!"
@@ -20354,12 +20366,28 @@ msgid "Input channel name."
 msgstr "Gebe einen Sendergruppennamen ein:"
 
 #: python\Plugins\Extensions\QuadPip
-msgid "EPG key : Switch to quad PiP entry\nOk key : Add to new entry\nPVR key : Input channel name\nExit key : Finish channel edit"
-msgstr "EPG: Wechsel zum Quad-PiP-Eintrag\nOK: Füge Sender hinzu\nPVR: Ändere Sendergruppennamen\nExit: Beenden"
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG: Wechsel zum Quad-PiP-Eintrag\n"
+"OK: Füge Sender hinzu\n"
+"PVR: Ändere Sendergruppennamen\n"
+"Exit: Beenden"
 
 #: python\Plugins\Extensions\QuadPip
-msgid "EPG key : Switch to channel list\nOk key : Remove selected channel\nPVR key : Input channel name\nExit key : Finish channel edit"
-msgstr "EPG: Wechsel zur Senderauswahl\n OK: Ausgewählten Sender entfernen\nPVR: Ändere Sendergruppennamen\nExit: Beenden"
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG: Wechsel zur Senderauswahl\n"
+" OK: Ausgewählten Sender entfernen\n"
+"PVR: Ändere Sendergruppennamen\n"
+"Exit: Beenden"
 
 #: python\Plugins\Extensions\QuadPip
 msgid "Quad PiP Channel Selection"
@@ -20466,8 +20494,12 @@ msgid "not"
 msgstr "nicht"
 
 #: python\Screens\InfoBarGenerics
-msgid "(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)"
-msgstr "(Es wurde eingestellt, das '%s' Crash-Logs angezeigt und erstellt werden.\nINFO: Es wird immer das erste, vorletzte und letzte Crash-Log geschrieben.)"
+msgid ""
+"(It is set that '%s' crash logs are displayed and written.\n"
+"Info: It will always write the first, last but one and lastest crash log.)"
+msgstr ""
+"(Es wurde eingestellt, das '%s' Crash-Logs angezeigt und erstellt werden.\n"
+"INFO: Es wird immer das erste, vorletzte und letzte Crash-Log geschrieben.)"
 
 #: python\Screens\InfoBarGenerics
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -20482,7 +20514,6 @@ msgstr "Power-LED Mode"
 
 msgid "Power LED can be turned on or off here."
 msgstr "Power-LED kann hier an oder ausgeschaltet werden.."
-
 
 #: python\Plugins\SystemPlugins\SatelliteEquipmentControl
 msgid "Delay after diseqc reset command"
@@ -20596,3 +20627,83 @@ msgstr "Standard Astra (13e-19e)"
 
 msgid "scan new"
 msgstr "Selber suchen"
+
+#: FileCommander\plugin.py
+msgid "manage local Files"
+msgstr "Lokale Dateien verwalten"
+
+msgid "Music"
+msgstr "Musik"
+
+#: FileCommander\plugin.py
+msgid "Play/view/edit/install/extract/run file or enter directory"
+msgstr "Datei abspielen/anzeigen/bearbeiten/installieren/extrahieren/ausführen oder Verzeichnis eingeben"
+
+#: FileCommander\plugin.py
+msgid "Leave File Commander"
+msgstr "Verlassen Sie den File Commander"
+
+#: FileCommander\plugin.py
+msgid "Open settings/actions menu"
+msgstr "Menü Einstellungen / Aktionen öffnen"
+
+#: FileCommander\plugin.py
+msgid "Activate right-hand file list as source"
+msgstr "Rechte Dateiliste als Quelle aktivieren"
+
+#: FileCommander\plugin.py
+msgid "Activate left-hand file list as source"
+msgstr "Linke Dateiliste als Quelle aktivieren"
+
+#: FileCommander\plugin.py
+msgid "Create user-named symbolic link"
+msgstr "Symbolischen Link mit Benutzernamen erstellen"
+
+#: FileCommander\plugin.py
+msgid "File/directory status information"
+msgstr "Datei / Verzeichnisstatusinformationen"
+
+#: FileCommander\plugin.py
+msgid "Change execute permissions (755/644)"
+msgstr "Ausführungsberechtigungen ändern"
+
+#: FileCommander\plugin.py
+msgid "Calculate file checksums"
+msgstr "Dateiprüfsummen berechnen"
+
+#: FileCommander\plugin.py
+msgid "View or edit file (if size < 1MB)"
+msgstr "Datei anzeigen oder bearbeiten (bei Größen <1 MB)"
+
+#: FileCommander\plugin.py
+msgid "Delete file or directory (and all its contents)"
+msgstr "Datei oder Verzeichnis (mit Inhalt) löschen"
+
+#: FileCommander\plugin.py
+msgid "(1 job)"
+msgstr ""
+
+#: FileCommander\plugin.py
+msgid "(%d jobs)"
+msgstr ""
+
+#: FileCommander\plugin.py
+msgid "Remove selected folder from bookmarks"
+msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
+
+#: FileCommander\plugin.py
+msgid "Remove current folder from bookmarks"
+msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
+
+#: FileCommander\plugin.py
+msgid "Add current folder to bookmarks"
+msgstr "Aktuellen Ordner zu Lesezeichen hinzufügen"
+
+msgid "Create directory/folder"
+msgstr "Verzeichnis / Ordner erstellen"
+
+msgid "Refresh screen"
+msgstr "Bildschirm aktualisieren"
+
+msgid "Rename file/directory"
+msgstr "Datei / Verzeichnis umbenennen"
