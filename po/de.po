@@ -20596,7 +20596,6 @@ msgstr "Einstellungen der Sat-Ausrüstung"
 msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung"
 
-<<<<<<< HEAD
 #: StreamingClientsInfo.py
 msgid "Streaming clients info"
 msgstr "Stream Client Informationen"
@@ -20670,6 +20669,14 @@ msgid "Calculate file checksums"
 msgstr "Dateiprüfsummen berechnen"
 
 #: FileCommander\plugin.py
+msgid "Move file/directory to target directory"
+msgstr "Datei/Verzeichnis in Zielverzeichnis verschieben"
+
+#: FileCommander\plugin.py
+msgid "Copy file/directory to target directory"
+msgstr "Datei/Verzeichnis in Zielverzeichnis kopieren"
+
+#: FileCommander\plugin.py
 msgid "View or edit file (if size < 1MB)"
 msgstr "Datei anzeigen oder bearbeiten (bei Größen <1 MB)"
 
@@ -20705,7 +20712,13 @@ msgstr "Bildschirm aktualisieren"
 
 msgid "Rename file/directory"
 msgstr "Datei / Verzeichnis umbenennen"
-=======
+
+msgid "Show task list"
+msgstr "Aufgabeeliste anzeigen"
+
+msgid "Go to bookmarked folder" 
+msgstr "Zum Ordner Lesezeichen gehen"
+
 #: python\Screens\Satconfig.py
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
 msgstr "Wählen Sie den Satelliten, von dem Ihr Gerät empfängt. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln."
@@ -21009,4 +21022,3 @@ msgstr "Geben Sie die Nummer ein, die im Stellungsregler für diesen Satelliten 
 #: python\Screens\Satconfig.py
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
 msgstr "Mit zusätzlichen Motoroptionen können Sie Details aus dem Datenblatt Ihres Motors eingeben, sodass Sie herausfinden können, wie lange es dauern wird, um zu einem anderen Satelliten zu wechseln."
->>>>>>> 6.2
