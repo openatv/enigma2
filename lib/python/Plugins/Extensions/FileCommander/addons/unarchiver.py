@@ -44,7 +44,7 @@ class ArchiverMenuScreen(Screen):
 		Screen.__init__(self, session)
 		self.filename = self.SOURCELIST.getFilename()
 		self.sourceDir = self.SOURCELIST.getCurrentDirectory()
-		self.targetDir = self.TARGETLIST.getCurrentDirectory()
+		self.targetDir = self.TARGETLIST.getCurrentDirectory() or '/tmp/'
 		self.list = []
 
 		self.commands = {}
@@ -58,7 +58,6 @@ class ArchiverMenuScreen(Screen):
 		self['list_left'] = self.chooseMenuList
 
 		self.chooseMenuList2 = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
-		font = skin.fonts.get("FileList", ("Regular", 25, 30))
 		self.chooseMenuList2.l.setFont(0, gFont(font[0], font[1]))
 		self.chooseMenuList2.l.setItemHeight(font[2])
 		self['unpacking'] = self.chooseMenuList2
