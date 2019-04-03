@@ -95,16 +95,14 @@ class ArchiverMenuScreen(Screen):
 		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
-		# color2 = 0x00ffffff  # White
-		textColor = 0x00808080  # Grey
-		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListMultiName",(60, 0, 1180, 25))
+		x2 = x
 		x = 10
-		x2 = x*10
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryProgress(pos=(x2, y+int(h/3)), size=(w-x2, int(h/3)), percent=int(currentProgress)),
-			MultiContentEntryText(pos=(x, y), size=(x2, h), font=0, flags=RT_HALIGN_LEFT, text=str(progpercent))#, color=textColor)
+			MultiContentEntryProgress(pos=(x+x2, y+int(h/3)), size=(w-(x+x2), int(h/3)), percent=int(currentProgress), borderWidth=1),
+			MultiContentEntryText(pos=(x, y), size=(x2, h), font=0, flags=RT_HALIGN_LEFT, text=str(progpercent))
 		]
 
 	def ok(self):
