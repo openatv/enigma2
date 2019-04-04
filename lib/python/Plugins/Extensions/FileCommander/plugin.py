@@ -295,6 +295,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.doRefresh()
 
 	def goContext(self):
+		dummy_to_translate_in_skin = _("File Commander menu")
 		buttons = ("menu", "info") + tuple(string.digits) + ("red", "green", "yellow", "blue")
 
 		# Map the listed button actions to their help texts and
