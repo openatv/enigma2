@@ -20722,3 +20722,307 @@ msgstr "Zum Ordner Lesezeichen gehen"
 #: FileCommander\plugin.py:881
 msgid "Skip selection"
 msgstr "Auswahl überspringen"
+
+#: python\Screens\Satconfig.py
+msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
+msgstr "Wählen Sie den Satelliten, von dem Ihr Gerät empfängt. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln."
+
+#: python\Screens\Satconfig.py
+msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
+msgstr "Wenn Sie einen zirkular polarisierten LNB verwenden, wählen Sie 'Ja', andernfalls wählen Sie 'Nein'."
+
+#: python\Screens\Satconfig.py
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
+msgstr "Wählen Sie nur 'Ja', wenn Sie einen Multiswitch verwenden, der ein DiSEqC Port-A-Befehlssignal benötigt. Für alle anderen Setups wählen Sie 'Nein'."
+
+#: python\Screens\Satconfig.py
+msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr "Wählen Sie den Satelliten aus, der mit Port A Ihres Switches verbunden ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln. Wenn an diesem Port nichts angeschlossen ist, wählen Sie 'nichts verbunden'."
+
+#: python\Screens\Satconfig.py
+msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr "Wählen Sie den Satelliten aus, der an Port-B Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln. Wenn an diesem Port nichts angeschlossen ist, wählen Sie 'nichts verbunden'."
+
+#: python\Screens\Satconfig.py
+msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr "Wählen Sie den Satelliten aus, der an Port-C Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln. Wenn an diesem Port nichts angeschlossen ist, wählen Sie 'nichts verbunden'."
+
+#: python\Screens\Satconfig.py
+msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
+msgstr "Wählen Sie den Satelliten aus, der an Port-D Ihres Switches angeschlossen ist. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln. Wenn an diesem Port nichts angeschlossen ist, wählen Sie 'nichts verbunden'."
+
+#: python\Screens\Satconfig.py
+msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
+msgstr "Lassen Sie diese Einstellung auf 'Ja', es sei denn, Sie verstehen vollständig, warum Sie sie anpassen."
+
+#: python\Screens\Satconfig.py
+msgid "Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap."
+msgstr "Wählen Sie 'Ja', um nur den DiSEqC-Befehl zu senden, wenn Sie von einem Satelliten zu einem anderen wechseln, oder wählen Sie 'Nein', damit der DiSEqC-Befehl bei jedem Zappen erneut gesendet wird."
+
+#: python\Screens\Satconfig.py
+msgid "Press OK to select a group of satellites to configure in one block."
+msgstr "Drücken Sie OK, um eine Gruppe von Satelliten auszuwählen, die in einem Block konfiguriert werden sollen."
+
+#: python\Screens\Satconfig.py
+msgid "Enter your current longitude. This is the number of degrees you are from zero meridian as a decimal."
+msgstr "Geben Sie Ihren aktuellen Längengrad ein. Dies ist die Anzahl der Grade, die Sie vom Nullmeridian als Dezimalzahl haben."
+
+#: python\Screens\Satconfig.py
+msgid "Enter if you are in the east or west hemisphere."
+msgstr "Geben Sie ein, wenn Sie sich in der östlichen oder westlichen Hemisphäre befinden."
+
+#: python\Screens\Satconfig.py
+msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
+msgstr "Geben Sie Ihren aktuellen Breitengrad ein. Dies ist die Anzahl der Grade, die Sie vom Äquator als Dezimalzahl haben."
+
+#: python\Screens\Satconfig.py
+msgid "Enter if you are north or south of the equator."
+msgstr "Geben Sie ein, wenn Sie sich nördlich oder südlich des Äquators befinden."
+
+#: python\Screens\Satconfig.py
+msgid "Power management. Consult your receiver's manual for more information."
+msgstr "Energieverwaltung. Weitere Informationen finden Sie in der Bedienungsanleitung Ihres Receivers."
+
+#: python\Screens\Satconfig.py
+msgid "Power threshold. Consult your receiver's manual for more information."
+msgstr "Leistungsschwelle. Weitere Informationen finden Sie in der Bedienungsanleitung Ihres Receivers."
+
+#: python\Screens\Satconfig.py
+msgid "Select how quickly the dish should move between satellites."
+msgstr "Wählen Sie, wie schnell sich die Antenne zwischen den Satelliten bewegen soll."
+
+#: python\Screens\Satconfig.py
+msgid "Only move the dish quickly after this hour."
+msgstr "Bewegen Sie die Satellitenschüssel erst nach dieser Stunde."
+
+#: python\Screens\Satconfig.py
+msgid "Only move the dish quickly before this hour."
+msgstr "Bewegen Sie die Satellitenschüssel erst kurz vor dieser Stunde."
+
+#: python\Screens\Satconfig.py
+msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
+msgstr "Mit zusätzlichen Motoroptionen können Sie Details aus dem Datenblatt Ihres Motors eingeben, sodass Sie herausfinden können, wie lange es dauert, die Antenne von einem Satelliten auf einen anderen zu bringen."
+
+#: python\Screens\Satconfig.py
+msgid "Consult your motor's spec sheet for this information, or leave the default setting."
+msgstr "Konsultieren Sie das Datenblatt Ihres Motors für diese Information oder belassen Sie die Standardeinstellung."
+
+#: python\Screens\Satconfig.py
+msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
+msgstr "Konfigurieren Sie diesen Tuner mit einfachen oder erweiterten Optionen oder führen Sie ihn zu einem anderen Tuner durch oder kopieren Sie eine Konfiguration von einem anderen Tuner oder deaktivieren Sie sie."
+
+#: python\Screens\Satconfig.py
+msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
+msgstr "Wählen Sie, wie die Satellitenschüssel eingerichtet wird. d.h. feste Schüssel, einzelner LNB, DiSEqC-Schalter, Positionierer usw."
+
+#: python\Screens\Satconfig.py
+msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
+msgstr "Diese Einstellung ermöglicht es Ihnen, die Tuner-Konfiguration zu duplizieren, so wie ein anderer Tuner bereits konfiguriert ist."
+
+#: python\Screens\Satconfig.py
+msgid "Select the tuner that controls the motorised dish."
+msgstr "Wählen Sie den Tuner, der die motorisierte Schüssel steuert."
+
+#: python\Screens\Satconfig.py
+msgid "Select the tuner that this loopthrough depends on."
+msgstr "Wählen Sie den Tuner, von dem diese Durchschleifung abhängt."
+
+#: python\Screens\Satconfig.py
+msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
+msgstr "Wählen Sie den Satelliten aus, den Sie konfigurieren wollen. Sobald dieser Satellit konfiguriert ist, können Sie andere Satelliten auswählen und konfigurieren, auf die mit demselben Tuner zugegriffen wird."
+
+#: python\Screens\Satconfig.py
+msgid "Selecting this option allows you to configure a group of satellites in one block."
+msgstr "Wenn Sie diese Option auswählen, können Sie eine Gruppe von Satelliten in einem Block konfigurieren."
+
+#: python\Screens\Satconfig.py
+msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
+msgstr "Ihr Empfänger kann die Tonamplitude verwenden. Weitere Informationen finden Sie im Bedienungsanleitung Ihres Receivers."
+
+#: python\Screens\Satconfig.py
+msgid "Your receiver can use SCPC optimized search range. Consult your receiver's manual for more information."
+msgstr "Ihr Empfänger kann SCPC-optimierten Suchbereich verwenden. Weitere Informationen finden Sie in der Bedienungsanleitung Ihres Receivers."
+
+#: python\Screens\Satconfig.py
+msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
+msgstr ""
+
+#: python\Screens\Satconfig.py
+msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
+msgstr "Wählen Sie 'aktiviert', wenn an diesem Tuner ein Signalkabel angeschlossen ist, andernfalls wählen Sie 'nichts verbunden'."
+
+#: python\Screens\Satconfig.py
+msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via internet forum."
+msgstr "Diese Einstellung hängt von Ihrem Kabelanbieter und Standort ab. Wenn Sie die richtige Einstellung nicht kennen, beziehen Sie sich auf das Menü im offiziellen Kabelempfänger, oder holen Sie es von Ihrem Kabelanbieter, oder suchen Sie Hilfe über das Internetforum."
+
+#: python\Screens\Satconfig.py
+msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
+msgstr "Wählen Sie 'Provider', um aus der vordefinierten Liste von Kabelmultiplexen zu scannen. Wählen Sie 'Bänder', um nur bestimmte Teile des Spektrums zu scannen. Wählen Sie 'Schritte', um in Schritten einer bestimmten Frequenzbandbreite zu scannen."
+
+#: python\Screens\Satconfig.py
+msgid "Select your country. If not available select 'all'."
+msgstr "Wähle Sie Ihr Land. Wenn nicht verfügbar, wählen Sie 'Alle'."
+
+#: python\Screens\Satconfig.py
+msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
+msgstr "Wählen Sie Ihren Anbieter und die Region aus. Wenn Sie in dieser Liste nicht vorhanden sind, müssen Sie einen der anderen Service-Scan-Typen auswählen."
+
+#: python\Screens\Satconfig.py
+msgid "Select 'yes' to include the %s band in your search."
+msgstr "Wählen Sie 'Ja', um das %s-Band in Ihrer Suche einzubeziehen."
+
+#: python\Screens\Satconfig.py
+msgid "Enter the frequency step size for the tuner to use when searching for cable multiplexes. For more information consult your cable provider's documentation."
+msgstr "Geben Sie die Frequenzschrittgröße ein, die der Tuner bei der Suche nach Kabelmultiplexen verwenden soll. Weitere Informationen finden Sie in der Dokumentation Ihres Kabelanbieters."
+
+#: python\Screens\Satconfig.py
+msgid "Select 'yes' to include %s multiplexes in your search."
+msgstr "Wählen Sie 'Ja', um %s Multiplexe in Ihrer Suche einzubeziehen."
+
+#: python\Screens\Satconfig.py
+msgid "Select 'yes' to include symbol rate %s in your search."
+msgstr "Wählen Sie 'Ja', um die Symbolrate %s in Ihrer Suche aufzunehmen."
+
+#: python\Screens\Satconfig.py
+msgid "This field allows you to search an additional symbol rate up to %s."
+msgstr "In diesem Feld können Sie eine zusätzliche Symbolrate bis zu %s suchen."
+
+#: python\Screens\Satconfig.py
+msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgstr "Wählen Sie Ihre Region. Wenn nicht verfügbar, ändern Sie 'Land' in 'alle' und wählen Sie eine der Standardalternativen."
+
+#: python\Screens\Satconfig.py
+msgid "Enable this setting if your aerial system needs power"
+msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötigt"
+
+#: python\Screens\Satconfig.py
+msgid "Select your ATSC provider."
+msgstr "Wählen Sie Ihren ATSC-Anbieter aus."
+
+#: python\Screens\Satconfig.py
+msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
+
+#: python\Screens\Satconfig.py
+msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
+msgstr "Weisen Sie dem physikalischen LNB, den Sie konfigurieren, eine Nummer zu. Sie können diesen LNB erneut für andere Satelliten (z. B. motorisierte Satelliten) auswählen, um die Einrichtung desselben LNB mehrere Male zu speichern."
+
+#: python\Screens\Satconfig.py
+msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
+msgstr "Diese Einstellung gilt nur für spezielle Setups. Es gibt diesem LNB eine höhere Priorität als anderen LNBs mit niedrigeren Werten. Der freie LNB mit der höchsten Priorität ist der erste für Tuning-Dienste ausgewählte LNB."
+
+#: python\Screens\Satconfig.py
+msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."
+msgstr "Wählen Sie den Typ des verwendeten LNB / Geräts (normalerweise 'Universal'). Wenn Ihr LNB-Typ nicht verfügbar ist, wählen Sie 'benutzerdefiniert'."
+
+#: python\Screens\Satconfig.py
+msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr "Geben Sie Ihre lokale Niedrig-Oszillatorfrequenz ein. Weitere Informationen finden Sie im Datenblatt Ihres LNB."
+
+#: python\Screens\Satconfig.py
+msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr "Geben Sie Ihre lokale Frequenz Ihres lokalen Oszillators ein. Weitere Informationen finden Sie im Datenblatt Ihres LNB."
+
+#: python\Screens\Satconfig.py
+msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
+msgstr "Geben Sie die Frequenz ein, mit der Ihr LNB zwischen Low- und High-Band wechselt. Weitere Informationen finden Sie im Datenblatt Ihres LNB."
+
+#: python\Screens\Satconfig.py
+msgid "Select the type of Single Cable Reception device you are using."
+msgstr "Wählen Sie den Typ des Unicable/SCR-Geräts aus, das Sie verwenden."
+
+#: python\Screens\Satconfig.py
+msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
+msgstr "Wählen Sie das Format Ihres Unicable/SCR-Geräts. Zur Auswahl stehen 'SCR Unicable' (Unicable I-Format) oder 'SCR JESS' (Unicable II-Format)."
+
+#: python\Screens\Satconfig.py
+msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
+msgstr ""
+
+#: python\Screens\Satconfig.py
+msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
+msgstr ""
+
+#: python\Screens\Satconfig.py
+msgid "Consult your SCR device spec sheet for this information."
+msgstr "Weitere Informationen finden Sie in Ihrem Unicable/SCR-Gerätespezifikationsblatt."
+
+#: python\Screens\Satconfig.py
+msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgstr "Wählen Sie den Hersteller Ihres Unicable/SCR-Geräts aus. Wenn der Hersteller nicht aufgeführt ist, setzen Sie 'SCR' auf 'Benutzerdefiniert' und geben Sie die Geräteparameter gemäß dem zugehörigen Datenblatt manuell ein."
+
+#: python\Screens\Satconfig.py
+msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
+msgstr "Wählen Sie das Modell Ihres Unicable/SCR-Geräts aus. Wenn der Hersteller nicht aufgeführt ist, setzen Sie 'SCR' auf 'Benutzerdefiniert' und geben Sie die Geräteparameter gemäß dem zugehörigen Datenblatt manuell ein."
+
+#: python\Screens\Satconfig.py
+msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
+msgstr "Wählen Sie die User-Band-Frequenz aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-Schalter verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
+
+#: python\Screens\Satconfig.py
+msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
+msgstr ""
+
+#: python\Screens\Satconfig.py
+msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
+msgstr "Wählen Sie 'Ja', wenn dieser Tuner über einen anderen Tuner mit dem Unicable/SCR-Gerät verbunden ist, andernfalls wählen Sie 'Nein'."
+
+#: python\Screens\Satconfig.py
+msgid "Select the tuner to which the signal cable of the SCR device is connected."
+msgstr "Wählen Sie den Tuner, an dem das Signalkabel des Unicable/SCR-Geräts angeschlossen ist."
+
+#: python\Screens\Satconfig.py
+msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgstr ""
+
+#: python\Screens\Satconfig.py
+msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
+msgstr ""
+
+#: python\Screens\Satconfig.py
+msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
+msgstr "Wählen Sie 'Band', wenn Sie ein 'universelles' LNB verwenden, andernfalls konsultieren Sie Ihr LNB-Datenblatt."
+
+#: python\Screens\Satconfig.py
+msgid "Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."
+msgstr "Wählen Sie '1.0' für Standard-Commit-Switches, '1.1' für nicht festgeschriebene Switches und '1.2' für Systeme, die einen Positioner verwenden."
+
+#: python\Screens\Satconfig.py
+msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
+msgstr "Wählen Sie Fast DiSEqC, wenn Ihr Antennensystem dies unterstützt. Wenn Sie unsicher sind, wählen Sie 'Nein'."
+
+#: python\Screens\Satconfig.py
+msgid "Select 'A' or 'B' if your aerial system requires this, otherwise select 'none'. If you are unsure select 'none'."
+msgstr "Wählen Sie 'A' oder 'B', wenn Ihr Antennensystem dies erfordert, andernfalls wählen Sie 'keine'. Wenn Sie unsicher sind, wählen Sie 'keine'."
+
+#: python\Screens\Satconfig.py
+msgid "If you are using a DiSEqC committed switch enter the port letter required to access the LNB used for this satellite."
+msgstr "Wenn Sie einen DiSEqC-Commit-Switch verwenden, geben Sie den Port-Buchstaben ein, der für den Zugriff auf das für diesen Satelliten verwendete LNB erforderlich ist."
+
+#: python\Screens\Satconfig.py
+msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
+msgstr "In dieser Reihenfolge werden DiSEqC-Befehle an das Antennensystem gesendet. Die Reihenfolge muss genau der Reihenfolge entsprechen, in der die physikalischen Geräte entlang des Signalkabels angeordnet sind (ausgehend vom Empfängerende)."
+
+#: python\Screens\Satconfig.py
+msgid "If you are using a DiSEqC uncommitted switch enter the port number required to access the LNB used for this satellite."
+msgstr "Wenn Sie einen nicht zugewiesenen DiSEqC-Switch verwenden, geben Sie die Portnummer ein, die für den Zugriff auf das für diesen Satelliten verwendete LNB erforderlich ist."
+
+#: python\Screens\Satconfig.py
+msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
+msgstr "Wenn mehrere nicht festgeschriebene Switches verwendet werden, müssen die DiSEqC-Befehle mehrmals gesendet werden. Legen Sie die Anzahl der nicht festgeschriebenen Switches in der Kette minus eins fest."
+
+#: python\Screens\Satconfig.py
+msgid "Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly."
+msgstr "Die Sequenzeinstellung wird wiederholt, wenn Ihr Antennensystem dies erfordert. Normalerweise, wenn das Antennensystem korrekt konfiguriert wurde, sind Sequenzwiederholungen nicht notwendig. Wenn dies der Fall ist, überprüfen Sie erneut, ob die Befehlsreihenfolge richtig eingestellt ist."
+
+#: python\Screens\Satconfig.py
+msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
+msgstr "USALS bewegt automatisch eine motorisierte Schüssel auf den richtigen Satelliten, basierend auf den vom Benutzer eingegebenen Koordinaten. Ohne USALS muss jeder Satellit individuell eingerichtet und gespeichert werden."
+
+#: python\Screens\Satconfig.py
+msgid "Enter the number stored in the positioner that corresponds to this satellite."
+msgstr "Geben Sie die Nummer ein, die im Stellungsregler für diesen Satelliten gespeichert ist."
+
+#: python\Screens\Satconfig.py
+msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
+msgstr "Mit zusätzlichen Motoroptionen können Sie Details aus dem Datenblatt Ihres Motors eingeben, sodass Sie herausfinden können, wie lange es dauern wird, um zu einem anderen Satelliten zu wechseln."
