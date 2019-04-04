@@ -10,13 +10,16 @@ from Tools import Notifications
 from Screens.MessageBox import MessageBox
 from Screens.SoftwareUpdate import UpdatePlugin
 
+
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
 	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 	onlineupdatecheckpoller.start()
 
+
 class SuspendableMessageBox(MessageBox):
 		ALLOW_SUSPEND = True
+
 
 class OnlineUpdateCheckPoller:
 	def __init__(self):
@@ -68,10 +71,10 @@ class OnlineUpdateCheckPoller:
 					if not versioncheck.user_notified:
 						versioncheck.user_notified = True
 						msg = _("Online update available.\n")
-						if self.total_packages > 100:
+						if self.total_packages > 198:
 							msg += _("\nThis is a large update. Consider a full USB update instead.\n")
 						msg += _("\nInstall now?\n")
-						default = self.total_packages <= 100
+						default = self.total_packages <= 198
 						Notifications.AddNotificationWithUniqueIDCallback(self.updateNotificationAnswer, "OnlineUpdateAvailable", SuspendableMessageBox, msg, default=default)
 				else:
 					config.softwareupdate.updatefound.setValue(False)
@@ -81,6 +84,7 @@ class OnlineUpdateCheckPoller:
 	def updateNotificationAnswer(self, answer):
 		if answer:
 			Notifications.AddNotification(UpdatePlugin)
+
 
 class VersionCheck:
 	def __init__(self):
@@ -107,5 +111,6 @@ class VersionCheck:
 				return False
 		else:
 			return False
+
 
 versioncheck = VersionCheck()
