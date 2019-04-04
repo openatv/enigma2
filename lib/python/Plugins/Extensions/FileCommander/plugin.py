@@ -476,10 +476,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if (filename is None) or (sourceDir is None) or (targetDir is None):
 			return
 		if sourceDir not in filename:
-			copytext = _("Copy file - existing file will be overwritten !")
+			copytext = _("Copy file - existing file will be overwritten")
 		else:
-			copytext = _("Copy folder - existing folders/files will be overwritten !")
-		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\nfrom\n%s\n%s" % (filename, sourceDir, targetDir), list=[(_("Yes"), True), (_("No"), False)])
+			copytext = _("Copy folder - existing folders/files will be overwritten")
+		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
 	def doCopy(self, result):
 		if result is not None:
@@ -506,7 +506,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			deltext = _("Delete file")
 		else:
 			deltext = _("Delete folder")
-		self.session.openWithCallback(self.doDelete, ChoiceBox, title=deltext + "?\n%s\nfrom dir\n%s" % (filename, sourceDir), list=[(_("Yes"), True), (_("No"), False)])
+		self.session.openWithCallback(self.doDelete, ChoiceBox, title=deltext + "?\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir), list=[(_("Yes"), True), (_("No"), False)])
 
 	def doDelete(self, result):
 		if result is not None:
@@ -532,7 +532,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			movetext = _("Move file")
 		else:
 			movetext = _("Move folder")
-		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\nfrom dir\n%s\nto dir\n%s" % (filename, sourceDir, targetDir), list=[(_("Yes"), True), (_("No"), False)])
+		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
 	def doMove(self, result):
 		if result is not None:
