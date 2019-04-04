@@ -6278,10 +6278,6 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 
 #
-msgid "Please enter name of the new directory"
-msgstr "Namen des neuen Verzeichnisses eingeben"
-
-#
 msgid "Please enter the correct pin code"
 msgstr "Korrekten PIN-Code eingeben"
 
@@ -20663,7 +20659,7 @@ msgstr "Zielordner"
 
 #: FileCommander
 msgid "copy file"
-msgstr "Datei verschieben"
+msgstr "Datei kopieren"
 
 #: FileCommander
 msgid "copy folder"
@@ -20671,11 +20667,55 @@ msgstr "Ordner verschieben"
 
 #: FileCommander
 msgid "Copy file - existing file will be overwritten"
-msgstr "Datei kopieren und vorhandene überschreiben"
+msgstr "Datei kopieren - eine vorhandene überschreiben"
 
 #: FileCommander
 msgid "Copy folder - existing folders/files will be overwritten"
-msgstr "Datei kopieren und vorhandene überschreiben"
+msgstr "Ordner kopieren - einen vorhandenen überschreiben"
+
+#: FileCommander
+msgid "It's not possible to rename the filesystem root."
+msgstr "Das Stammverzeichnis kann nicht umbenannt werden."
+
+#: FileCommander
+msgid "renaming folder ..."
+msgstr "Ordner umbenennen ..."
+
+#: FileCommander
+msgid "New folder"
+msgstr "Neuer Ordner"
+
+#: FileCommander
+msgid "Please enter name of the new directory"
+msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
+
+#: FileCommander
+msgid "Error creating directory %s:\n%s"
+msgstr "Fehler beim erstellen des Verzeichnis %s:\n%s"
+
+#: FileCommander
+msgid "Rename file"
+msgstr "Umbenennen Ordner/Datei"
+
+#: FileCommander
+msgid "Please enter file/folder name"
+msgstr "Bitte den Namen des Ordners/Datei eingeben"
+
+#: FileCommander
+msgid "Error renaming %s to %s:\n%s"
+msgstr "Fehler beim umbenennen von %s nach %s:\n%s"
+
+#: FileCommander
+msgid "New symlink"
+msgstr "Neuer Symlink"
+
+#: FileCommander
+msgid "Please enter name of the new symlink"
+msgstr "Bitte den Namen des neuen Symlinks eingeben"
+
+#: FileCommander
+msgid "Error linking %s to %s:\n%s"
+msgstr "Fehler beim erstellen des links von %s nach %s:\n%s"
 
 #: FileCommander
 msgid "Show contents of zip file"
