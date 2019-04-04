@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2019-04-04 00:07+0200\n"
+"PO-Revision-Date: 2019-04-04 17:48+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -20722,6 +20722,110 @@ msgstr "Zum Ordner Lesezeichen gehen"
 #: FileCommander\plugin.py:881
 msgid "Skip selection"
 msgstr "Auswahl überspringen"
+
+#: FileCommander/plugin.py
+msgid "My Extension"
+msgstr "Meine Erweiterung"
+
+#: FileCommander/addons/key_actions.py
+msgid "Run '%s' command"
+msgstr "Befehl '%s' ausführen"
+
+#: FileCommander/addons/key_actions.py
+msgid "Install '%s' and enable this operation"
+msgstr "'%s' installieren und aktivieren"
+
+#: FileCommander/setup.xml
+msgid "File Commander Settings"
+msgstr "File-Commander Einstellungen"
+
+#: FileCommander/setup.xml
+msgid "Add plugin to main menu"
+msgstr "Plugin zum Hauptmenü hinzufügen"
+
+#: FileCommander/setup.xml
+msgid "Make File Commander accessible from the main menu."
+msgstr "File Commander vom Hauptmenü aus zugänglich machen."
+
+#: FileCommander/setup.xml
+msgid "Add plugin to Extensions menu"
+msgstr "Plugin zum Erweiterungsmenü hinzufügen"
+
+#: FileCommander/setup.xml
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr "File Commander über das Erweiterungsmenü zugänglich machen."
+
+#: FileCommander/setup.xml
+msgid "Save left folder on exit"
+msgstr "Linken Ordner beim Beenden speichern"
+
+#: FileCommander/setup.xml
+msgid "Save the left folder list location on exit."
+msgstr "Speichern Sie den linken Ordner in der Liste."
+
+#: FileCommander/setup.xml
+msgid "Save right folder on exit"
+msgstr "Rechten Ordner beim Beenden speichern"
+
+#: FileCommander/setup.xml
+msgid "Save the right folder list location on exit."
+msgstr "Speichern Sie den rechten Ordner in der Liste."
+
+#: FileCommander/setup.xml
+msgid "Default folder"
+msgstr "Standardordner"
+
+#: FileCommander/setup.xml
+msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+msgstr "Standardordner, wenn der linke oder rechte Ordner nicht gespeichert ist, und Zielordner für Schaltfläche 5."
+
+#: FileCommander/setup.xml
+msgid "My extension"
+msgstr "Meine Erweiterung"
+
+#: FileCommander/setup.xml
+msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
+msgstr "Filtererweiterung für 'meine Erweiterung' Einstellung von 'Filtererweiterung'. Verwenden Sie den Erweiterungsnamen ohne '.' ein."
+
+#: FileCommander/setup.xml
+msgid "Show unknown extension as text"
+msgstr "Unbekannte Erweiterungen als Text anzeigen"
+
+#: FileCommander/setup.xml
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr "Zeige unbekannte Dateierweiterungen mit 'Addon File-Viewer'."
+
+#: FileCommander/setup.xml
+msgid "Filter extension, (*) appears in title"
+msgstr "Filtererweiterung (*) erscheint im Titel"
+
+#: FileCommander/setup.xml
+msgid "Filter visible file classes by extension."
+msgstr "Sichtbare Dateiklassen nach Erweiterung filtern."
+
+#: FileCommander/setup.xml
+msgid "Input length - Filename"
+msgstr "Eingabelänge - Dateiname"
+
+#: FileCommander/setup.xml
+msgid "Number of characters visible in filename entry popup windows."
+msgstr "Anzahl der Zeichen, die in den Popup-Fenstern des Dateinameneintrags sichtbar sind."
+
+#: FileCommander/setup.xml
+msgid "File checksums/hashes"
+msgstr "Datei Prüfsummen / Hash"
+
+#: FileCommander/setup.xml
+msgid "File checksums to calculate for button 9"
+msgstr "Datei-Prüfsummen für Button 9 berechnen."
+
+#: FileCommander/setup.xml
+msgid "Time for Slideshow"
+msgstr "Zeit für die Diashow"
+
+#: FileCommander/setup.xml
+msgid "Time between slides in image viewer slideshow."
+msgstr "Zeit zwischen den Dias in der Bildbetrachter - Diashow."
 
 #: python\Screens\Satconfig.py
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
