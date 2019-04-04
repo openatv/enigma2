@@ -21,7 +21,10 @@ from Tools.Directories import fileExists
 
 # Various
 from Plugins.Extensions.FileCommander.InputBox import InputBoxWide
-from enigma import eTimer, ePicLoad, getDesktop
+from enigma import eTimer, ePicLoad, getDesktop, gFont, eSize
+
+from Tools.TextBoundary import getTextBoundarySize
+import skin
 
 import os
 
@@ -150,7 +153,25 @@ class vEditor(Screen, HelpableScreen):
 			self.findtab = editableText.find("\t", 0, len(editableText))
 			if self.findtab != -1:
 				editableText = editableText.replace("\t", "        ")
-			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
+			firstpos_end = True
+			if 'MetrixHD/' in config.skin.primary_skin.value:
+				# screen: ... size="1140,30" font="screen_text; 20"
+				# font:   ... <alias name="FileList" font="screen_text" size="20" height="30" />
+				font = skin.fonts.get("FileList", ("Regular", 20, 30))
+				fieldwidth = int(1140*font[1]/(20*1.0)) #fhd?
+				length=1
+				if firstpos_end:
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText)-length:], True).width() <= fieldwidth:
+						length+=1
+						if length > len(editableText):
+							break
+				else:
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[:length], True).width() <= fieldwidth:
+						length+=1
+						if length > len(editableText):
+							break
+				length-=1
+			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=firstpos_end, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
 		except:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
 			msg.setTitle(_("Error..."))
