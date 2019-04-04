@@ -226,7 +226,7 @@
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
 	<setup key="display" title="Front Panel Settings" requires="FrontpanelDisplay">
-		<item level="0" text="Use separate Picon pack for Front Display *" description="Use picon_lcd directory for picons on color LCD">config.lcd.picon_pack</item>
+		<item level="0" requires="GraphicLCD" text="Use separate Picon pack for Front Display *" description="Use picon_lcd directory for picons on color LCD">config.lcd.picon_pack</item>
 		<item level="0" text="Show MiniTV in the front display" description="Enable to display MiniTV with or without OSD menu." requires="LCDMiniTV">config.lcd.minitvmode</item>
 		<item level="0" text="Show PiP in the front display" description="Enable to display PiP with or without OSD menu." requires="LCDMiniTVPiP">config.lcd.minitvpipmode</item>
 		<item level="0" text="Power LCD Display" description="This option allows you to power on or off the display.">config.lcd.power</item>
