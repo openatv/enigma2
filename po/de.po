@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2019-04-04 17:48+0200\n"
+"PO-Revision-Date: 2019-04-05 22:20+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Ignore unexpectedly wakeup and stay in standby"
@@ -8236,7 +8236,7 @@ msgstr "Zeige Ausschalt-Timer"
 msgid "Open AutoTimerlist..."
 msgstr "Zeige AutoTimer"
 
-#: TANSLATOR: must be the same translation as in the po of the AutoTimer
+#: TANSLATOR: must be the same translation as in po of AutoTimer
 msgid "Auto Timers"
 msgstr "Auto Timer"
 
@@ -20710,8 +20710,12 @@ msgid "Please enter name of the new directory"
 msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
 
 #: FileCommander
-msgid "Error creating directory %s:\n%s"
-msgstr "Fehler beim erstellen des Verzeichnis %s:\n%s"
+msgid ""
+"Error creating directory %s:\n"
+"%s"
+msgstr ""
+"Fehler beim erstellen des Verzeichnis %s:\n"
+"%s"
 
 #: FileCommander
 msgid "Rename file"
@@ -20722,8 +20726,12 @@ msgid "Please enter file/folder name"
 msgstr "Bitte den Namen des Ordners/Datei eingeben"
 
 #: FileCommander
-msgid "Error renaming %s to %s:\n%s"
-msgstr "Fehler beim umbenennen von %s nach %s:\n%s"
+msgid ""
+"Error renaming %s to %s:\n"
+"%s"
+msgstr ""
+"Fehler beim umbenennen von %s nach %s:\n"
+"%s"
 
 #: FileCommander
 msgid "New symlink"
@@ -20734,8 +20742,12 @@ msgid "Please enter name of the new symlink"
 msgstr "Bitte den Namen des neuen Symlinks eingeben"
 
 #: FileCommander
-msgid "Error linking %s to %s:\n%s"
-msgstr "Fehler beim erstellen des links von %s nach %s:\n%s"
+msgid ""
+"Error linking %s to %s:\n"
+"%s"
+msgstr ""
+"Fehler beim erstellen des links von %s nach %s:\n"
+"%s"
 
 #: FileCommander
 msgid "Show contents of zip file"
@@ -20868,6 +20880,30 @@ msgstr "Befehl '%s' ausführen"
 #: FileCommander/addons/key_actions.py
 msgid "Install '%s' and enable this operation"
 msgstr "'%s' installieren und aktivieren"
+
+#: FileCommander/addons/key_actions.py
+msgid ""
+"Program '%s' needs to be installed to run this action.\n"
+"Install the '%s' package to install the program?"
+msgstr ""
+"Programm '%s' muss installiert sein, um diese Aktion auszuführen. \n"
+"Installieren Sie das Paket '%s', um das Programm zu installieren?"
+
+#: FileCommander/addons/key_actions.py
+msgid ""
+"Program '%s' not installed.\n"
+"The package containing this program isn't known."
+msgstr ""
+"Programm '%s' nicht installiert. \n"
+"Das Paket, das dieses Programm enthält, ist nicht bekannt."
+
+#: FileCommander/addons/key_actions.py
+msgid "It is not possible to run '%s' on <List of Storage Devices>"
+msgstr "%s \"kann nicht unter <Liste der Speichergeräte> ausgeführt werden."
+
+#: FileCommander/addons/key_actions.py
+msgid "You can't usefully run '%s' on a directory."
+msgstr "%s kann für ein Verzeichnis nicht sinnvoll ausgeführt werden."
 
 #: FileCommander/setup.xml
 msgid "File Commander Settings"
