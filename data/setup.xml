@@ -241,6 +241,9 @@
 		<item level="0" requires="LEDButtons" text="LED (Standby)" description="Set LED brightness level in standby mode.">config.lcd.ledbrightnessstandby</item>
 		<item level="0" requires="LEDButtons" text="LED (Deep Standby)" description="Set LED brightness level in deep standby mode.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" text="StandbyLED" description="Turn on the power LED during standby." requires="StandbyLED">config.usage.standbyLED</item>
+		<item level="0" requires="7segment" text="Show in standby" description="Choose to display the time or nothing in standby">config.usage.show_in_standby</item>
+		<item level="1" requires="7segment" text="Show REC in use" description="Choose what to display during recording when in use">config.usage.blinking_rec_symbol_during_recording</item>
+		<item level="1" requires="7segment" text="Show REC in standby" description="Choose what to display during recording when in standby">config.usage.blinking_display_clock_during_recording</item>
 		<item level="1" requires="LcdDisplay" text="Repeat display message" description="If the text is too long to be displayed on the front panel, it is repeated the specified (number of times).">config.lcd.repeat</item>
 		<item level="1" requires="LcdDisplay" text="Scrolling speed" description="Set the scrolling speed of text on the front panel display.">config.lcd.scrollspeed</item>
 		<item level="1" requires="LcdDisplay" text="Show display icons" description="Enable/disable the display of icons on the front panel.">config.lcd.mode</item>
