@@ -1,35 +1,33 @@
-== TS FILES ==
+Recordings consist of several files, recorded at various points in time.
 
-TS files are plain recordings, including PMT and PAT.
+Here is a sample listing of the files use to record one event:
 
-They don't have a private header. 
+Name                                 Date    Time   Size
+-----------------------------------  ------  -----  ----------
+20140814 2122 - ABC3 - rage.eit      Aug 14  21:21         418
+20140814 2122 - ABC3 - rage.ts       Aug 14  22:35  2131650032
+20140814 2122 - ABC3 - rage.ts.ap    Aug 14  22:35      146016
+20140814 2122 - ABC3 - rage.ts.cuts  Aug 14  22:35          36
+20140814 2122 - ABC3 - rage.ts.meta  Aug 29  23:46         164
+20140814 2122 - ABC3 - rage.ts.sc    Aug 14  22:35     2010320
 
-== .meta FILES ==
 
-.meta files have currently up to 7 lines:
+==== .eit FILES ====
 
-<service reference>
-<name>
-<description>
-<recording time>
-[<tags>]
-[<length>]
-[<filesize>]
+.eit files are optional. If available, they contain the event data from
+the EPG cache, for the event recorded. The payload contains a dump of an
+EIT extended event descriptor
 
-The service reference contains the Service-ID of the recorded service. With
-that ID, you can find the PMT and the elementary streams.
 
-As a backup method, just find the first available PMT and use that.
+==== .ts FILES ====
 
-Strings are always UTF-8 encoded.
+.ts files contain a subset of transport stream packets that are relevant to
+the recorded service, including PMT and PAT.
 
-tags is a space-delimited list of tags assigned to this movie.
+They don't have a private header.
 
-length is the length of the recording, in PTS-units (1/90000s). filesize was
-the filesize at the time the length was calculated, so you can validate if
-this is still up-to-date or must be recalculated.
 
-== .ap FILES ==
+==== .ap FILES ====
 
 Stored offsets and PTS values. They are collected while recording. Only 
 GOP starts are stored.
@@ -38,10 +36,10 @@ File format is network-ordered (i.e. big endian), each entry contains
 two 64 bit values (PTS, offset).
 
 PTS values are not corrected (i.e. they aren't zero-based), offsets are
-relative to the beginning of the file (or first file, when we implement
-splitting)
+relative to the beginning of the file.
 
-== .cut FILES ==
+
+==== .cuts FILES ====
 
 Also network ordered, they contain a 64bit value (PTS) and 32bit value
 (type) for each cut. (If you want file offsets, use the .ap file to look up
@@ -52,15 +50,62 @@ Type is:
 0 - 'in' point
 1 - 'out' point
 2 - mark
+3 - last play position
 
-If the first 'out'-point is not preceeded by an 'in'-point, there is an 
+If the first 'out'-point is not preceded by an 'in'-point, there is an 
 implicit 'in' point at zero.
 
-If the there is no final 'out' point, the end-of-file is an implicit
+If there is no final 'out' point, then the end-of-file is an implicit
 'out'-point.
 
-Note that the PTS values are zero-based and continouus. If you want absolute
+Note that the PTS values are zero-based and continuous. If you want absolute
 PTS values, you can either:
  - use the .ap file, find discontinuities, and interpolate between the APs
  - or just use the first PTS value as an offset, and work around PTS
    wraparounds. (simple method)
+
+
+==== .meta FILES ====
+
+.meta files have currently up to 10 lines:
+
+<service reference>
+<name>
+<description>
+<recording time>
+[<tags>]
+[<length>]
+[<filesize>]
+[<service data>]
+[<packet size>]
+[<scrambled>]
+
+The <service reference> contains the Service-ID of the recorded service. With
+that ID, you can find the PMT and the elementary streams. As a backup method,
+just find the first available PMT and use that.
+
+Strings are always UTF-8 encoded.
+
+<name> and <description> contain the event name and short description of the
+recorded event.
+
+<recording time> contains the start time of the recording as UNIX integer time.
+
+<tags> is a space-delimited list of tags assigned to this recording.
+
+<length> is the length of the recording, in PTS-units (1/90000s).
+
+<filesize> was the filesize at the time the length was calculated, so you can
+validate if this is still up-to-date or must be recalculated.
+
+<service data> is a private service data cache string that identifies various
+aspects of the stream, including audio and video PIDs.
+
+<packet size> is the size of the transport stream packets
+
+<scrambled> is used to indicate whether the service is scrambled
+
+
+==== .sc FILES ====
+
+.sc files contain an undocumented internal mmapped structure cache.

@@ -1,0 +1,197 @@
+Structure and interpretation of servicerefs
+===========================================
+
+REFTYPE:FLAGS:STYPE:SID:TSID:ONID:NS:PARENT_SID:PARENT_TSID:UNUSED:PATH:NAME
+
+"Printf" format of the string format of a serviceref:
+    %d:%d:%x:%x:%x:%x:%x:%x:%x:%x:%d:%s:%s
+
+=== REFTYPE ===
+
+idServiceIsScrambled  =  256/0x0100  Added to normal id to indicate scrambling
+idInvalid             =   -1
+idStructure           =    0         service_id == 0 is root
+idDVB                 =    1
+idFile                =    2
+idServiceM2TS         =    3
+idDVBScrambled        =  257/0x0101  idDVB + idServiceIsScrambled
+idUser                = 4096/0x1000
+idServiceMP3          = 4097/0x1001
+idServiceAirPlay      = 4105/0x1009
+idServiceXINE         = 4112/0x1010
+idServiceDVD          = 4369/0x1111
+idServiceAzBox        = 4370/0x1112
+idServiceHDMIIn       = 8192/0x2000
+
+Defined in class eServiceReference in enigma2/lib/service/iservice.h.
+
+=== FLAGS ===
+
+noFlags          = 0x000   0
+isDirectory      = 0x001   1  SHOULD enter  (implies mustDescent)
+mustDescent      = 0x002   2  cannot be played directly
+canDescent       = 0x004   4  supports enterDirectory/leaveDirectory
+flagDirectory    = 0x007   7  (isDirectory|mustDescent|canDescent)
+shouldSort       = 0x008   8  should be ASCII-sorted according to service_name.
+                              great for directories.
+hasSortKey       = 0x010  16  has a sort key in data[3]. not having a sort key
+                              implies 0.
+sort1            = 0x020  32  sort key is 1 instead of 0
+isMarker         = 0x040  64  Marker
+isGroup          = 0x080 128  is a group of services
+isNumberedMarker = 0x100 256  use together with isMarker,
+                              to force the marker to be numbered
+isInvisible      = 0x200 512  use together with isMarker and isNumberedMarker,
+                              to force an empty number
+
+Defined in class eServiceReference in enigma2/lib/service/iservice.h.
+
+=== STYPE ===
+
+From:
+Digital Video Broadcasting (DVB);
+Specification for Service Information (SI) in DVB systems
+DVB Document  A038 July 2014
+
+DVB BlueBook A038 97
+Table 87: Service type coding
+
+invalid		       -1
+		     0x00/  0             reserved for future use
+dTv		     0x01/  1             digital television service (see note 1)
+dRadio	             0x02/  2             digital radio sound service (see note 2)
+tText		     0x03/  3             Teletext service
+nvod		     0x04/  4             NVOD reference service (see note 1)
+nvodTs	             0x05/  5             NVOD time - shifted service (see note 1)
+mosaic	             0x06/  6             mosaic service
+radioFm	             0x07/  7             FM radio service
+dvbSrm	             0x08/  8             DVB SRM service
+		     0x09/  9             reserved for future use
+dRadioAvc	     0x0A/ 10             advanced codec digital radio sound service
+mosaicAvc	     0x0B/ 11             H.264/AVC mosaic service
+datacast	     0x0C/ 12             data broadcast service
+ci		     0x0D/ 13             reserved for Common Interface Usage (EN 50221)
+rcsMap	            0x0E/ 14             RCS Map (see EN 301 790)
+rcsFls	             0x0F/ 15             RCS FLS (see EN 301 790)
+dvbMhp	             0x10/ 16             DVB MHP service
+mpeg2HdTv	     0x11/ 17             MPEG-2 HD digital television service
+		     0x12/ 18 to 0x15/ 21 reserved for future use
+avcSdTv	             0x16/ 22             H.264/AVC SD digital television service
+nvodAvcSdTs	     0x17/ 23             H.264/AVC SD NVOD time - shifted service
+nvodAvcSdRef	     0x18/ 24             H.264/AVC SD NVOD reference service
+avcHdTv	             0x19/ 25             H.264/AVC HD digital television service
+nvodAvcHdTs	     0x1A/ 26             H.264/AVC HD NVOD time - shifted service
+nvodAvcHdRef	     0x1B/ 27             H.264/AVC HD NVOD reference service
+avcHdStereo	     0x1C/ 28             H.264/AVC frame compatible plano - stereoscopic HD digital television service (see note 3)
+nvodAvcHdStereoTs    0x1D/ 29             H.264/AVC frame compatible plano - stereoscopic HD NVOD time - shifted service (see note 3)
+nvodAvcHdStereoRef   0x1E/ 30             H.264/AVC frame compatible plano - stereoscopic HD NVOD reference service (see note 3)
+hvecTv		     0x1F/ 31             HEVC digital television service
+		     0x20/ 32 to 0x7F/127 reserved for future use
+		     0x80/128 to 0xFE/254 user defined
+user134	 	     0x86/134             ???
+user195	 	     0xC3/195             ???
+		     0xFF/255             reserved for future use
+
+NOTE 1: MPEG-2 SD material should use this type.
+NOTE 2: MPEG-1 Layer 2 audio material should use this type.
+NOTE 3: For discussion of the use of these values, see clause I.2.3 and TS 101 547-2 (3D Guidelines of Frame Compatible 3D-TV).
+
+Defined in class eServiceID in enigma2/lib/dvb/idvb.h.
+
+Service types 0x01, 0x02, 0x04, 0x0A (10), 0x11 (17), 0x13 (19), 0x16 (22),
+0x18 (24), 0x19 (25) and 0x1B (27) are documented as being used
+in enigma2/RecordTimer.py.
+
+Service types 0x86 (134) and 0xC3 (195) are used without further
+explanation in query paths in servicerefs for bouquets, eg:
+1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)
+
+Service type 0x0D (13) in combination with
+flags 0x340 (832) (isInvisible | isNumberedMarker | isMarker) is used
+as a filler in /etc/enigma2/userbouquet.terrestrial_lcn.tv
+and /etc/enigma2/userbouquet.terrestrial_lcn.radio. This appears to
+be a non-standard use.
+
+This field is also used as a marker count when REFTYPE == iDVB
+and FLAGS & isNumberedMarker.
+
+=== DVB fields ===
+
+SID         - Stream ID
+
+TSID        - Transport stream ID
+
+ONID        - Originating network ID
+
+NS          - DVB namespace
+
+PARENT_SID  - Service parent Stream ID
+
+PARENT_TSID - Service parent Transport stream ID
+
+=== "UNUSED" field ===
+
+Is in fact used for servicerefs with idServiceMP3
+
+0    no buffering
+1    buffering enabled
+3    progressive download and buffering enabled
+
+
+Documented in enigma2/lib/service/servicemp3.cpp.
+
+=== PATH ===
+
+Path specifying the source of the service data. E.g. filesystem
+path name for files being played, URL for streaming services,
+directory pathname for isDirectory/mustDescent/canDescent services
+in a file system or a search expression for broarcast service
+directories (bouquets). Empty for broadcast services and HDMI IN.
+
+--- idDVB search expression ---
+
+Used to select the services contained in an idDVB service marked
+as a directory (any of isDirectory|mustDescent|canDescent).
+
+search_path ::= sel_expr bouquet_expr | bouquet_expr sel_expr
+
+sel_expr ::= [ compar | paren_compar ( ( "&&" | "||" ) paren_compar )+ ]
+
+paren_compar ::= "(" compar ")"
+
+compar ::= type ( "==" | "!=" ) <val>
+
+type ::= "name" | "provider" | "type" | "bouquet" | "satellitePosition"
+                | "channelID" | "flags"
+
+bouquet_expr ::= [ from ] [ order_by ] | [ order_by ] [ from ]
+
+order_by ::= "ORDER" "BY" type
+
+from ::= "FROM" ( "BOUQUET" '"' <name> '"' | "SATELLITES" | "PROVIDERS" )
+
+A <name> may contain any character except '"'.
+
+Type "name" cannot be used in comparisons. Otherwise in comparisons, <val>
+is an decimal integer, except for channelID where it is a 16-digit hexadecimal
+in the form NNNNNNNNTTTTOOOO where NNNNNNNN is the namespace id, TTTT
+is the transport stream id and OOOO is the originating network id.
+
+The selection expression form is simple. If there is only one comparison,
+parentheses may not be used. If there is more than one, each comparison
+muse be enclosed in parentheses. Evaluation is strictly left-to-right.
+Evaluation order cannot be modified by the use of parentheses.
+
+(type == 1) && (provider == 3) || (type == 2) && (provider == 4)
+
+is evaluated as
+
+(((type == 1) && (provider == 3)) || (type == 2)) && (provider == 4)
+
+=== NAME ===
+
+REFTYPE-dependent text data associated with the service ref. Used,
+for example, to store additional filename extension mappings in
+idFile servicerefs where any flagDirectory bits are set, to store
+the playlist name in idServiceMP3 servicerefs, and to store service
+name information in idDVB servicerefs.

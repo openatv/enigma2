@@ -1,0 +1,236 @@
+Proposal for Standardised and Uniform Buttons in Enigma2
+--------------------------------------------------------
+
+Written by IanSav - 12-Feb-2018
+Updated by IanSav - 14-Feb-2018
+
+INTRODUCTION:
+=============
+
+Enigma2 is a massive open source project that has many contributors and 
+add-ons.  Over time a number of approaches to performing common tasks have 
+evolved.  This document proposes to nominate some conventions that can be 
+adopted by all developers, contributors and skin authors to ensure that 
+everyone can work independently but still achieve results that work together 
+interchangeably.
+
+The purpose of this document is to propose some standard variable names 
+together with code and skin coding conventions to make the task of creating 
+code that works more universally with skins easier.
+
+Button names should be drawn from the current button definitions in 
+"keyids.py".  The names used should be the lower-case version of the button 
+names in this file.  For example, if you wish to define a button for the RED 
+button on the remote control then use a variable name of "key_red".  In 
+Enigma2 the four colour buttons should be named "key_red", "key_green", 
+"key_yellow" and "key_blue".
+
+As an example, let us look at how the red button should be defined in the 
+Python code and how it can be rendered in a skin.
+
+COLOUR BUTTONS:
+===============
+
+In the Python code to define a RED button to be available in the skin simply 
+add the following to your code:
+
+	from Components.Sources.StaticText import StaticText
+
+	self["key_red"] = StaticText(_("Cancel"))
+
+The text should be language translated with the _("text") syntax.  The text 
+itself should be as short as practical but clear enough to convey the 
+meaning of the button.
+
+During the execution of the code the meaning of the button can easily be 
+changed by using the .setText() method.  For example:
+
+	self["key_red"].setText(_("Close"))
+or
+	self["key_red"].text = _("Close")
+
+If you want to temporarily suppress the display of the button use the 
+following syntax:
+
+	self["key_red"].setText("")
+or
+	self["key_red"].text = ""
+
+NOTE: Never translate an empty string, _(""), as this causes the translation 
+system to output translation engine information and NOT a blank string as 
+some may expect.
+
+Now that the code is RED button enabled we need to code the skin to match.  
+Here is a skin fragment that supports the code above:
+
+	<screen name="TemplateButtonRed">
+		<widget source="key_red" render="Pixmap" \
+			pixmap="buttons/button_red.png" position="10,10" \
+			size="200,30" alphatest="blend" conditional="key_red" \
+			transparent="1">
+ 			<convert type="ConditionalShowHide" />
+ 		</widget>
+		<widget source="key_red" render="Label" position="10,10" \
+			size="200,30" backgroundColor="ButtonRed" \
+			font="ButtonFont;20" foregroundColor="ButtonText" \
+			halign="center" conditional="key_red" transparent="1" \
+			valign="center" zPosition="+1" />
+	</screen>
+
+The first widget checks if the variable "key_red" is defined in this screen 
+via the "conditional" attribute.  If "key_red" is defined and not blank the 
+image "buttons/button_red.png" is displayed on the screen.  The next widget 
+also checks for the existence of "key_red" and then displays the button text 
+over the image background.  Please note that a button image background is 
+common but it is NOT required.  This is a design choice available to the 
+skin author.
+
+This sample would work well if all the code in Enigma2 was uniform and 
+co-ordinated.  Unfortunately, we aren't there yet.  A more real-world example 
+of how to define the button in a skin would be:
+
+	<screen name="TemplateButtonRed">
+		<ePixmap pixmap="buttons/button_red.png" position="10,10" \
+			size="200,30" alphatest="blend" \
+			objectTypes="key_red,Button,Label" transparent="1" />
+		<widget source="key_red" render="Pixmap" \
+			pixmap="buttons/button_red.png" position="10,10" \
+			size="200,30" alphatest="blend" \
+			objectTypes="key_red,StaticText" transparent="1">
+ 			<convert type="ConditionalShowHide" />
+ 		</widget>
+		<widget name="key_red" position="10,10" size="200,30" \
+			backgroundColor="ButtonRed" font="ButtonFont;20" \
+			foregroundColor="ButtonText" halign="center" \
+			objectTypes="key_red,Button,Label" transparent="1" \
+			valign="center" zPosition="+1" />
+		<widget source="key_red" render="Label" position="10,10" \
+			size="200,30" backgroundColor="ButtonRed" \
+			font="ButtonFont;20" foregroundColor="ButtonText" \
+			halign="center" objectTypes="key_red,StaticText" \
+			transparent="1" valign="center" zPosition="+1" />
+	</screen>
+
+The difference here is that the button background image and the button 
+text is defined twice.  This allows all legacy code that uses either 
+Button(), Label() or StaticText() objects to define the code will still 
+work in this proposed skin fragment.  The data from each of the object 
+types is displayed overlapped on the screen.  To make this work without 
+actually overlapping the data recent builds of OpenViX, OpenPLi and 
+Beyonwiz firmware have added a new attribute to the skin parser.  This 
+new attribute is "objectTypes".
+
+The "objectTypes" attribute has a value consisting of a comma separated list 
+of keywords.  Note that spaces around the comma(s) are NOT permitted.  The 
+first value in the list must be the variable being checked, in this case 
+"key_red".  This item is mandatory.  The following values are object type 
+definitions of which this variable can be defined for this widget to be 
+used.  The list can have zero or more object types listed.
+
+The first value, the variable name, is processed in the same way as the 
+conditional attribute.  If the variable is defined in the code then this 
+screen widget is enabled and available for use.  If the variable is not 
+defined in the code then this widget is ignored.
+
+The following values arguments are a list of object types, like Button, 
+Label or StaticText, the variable name's definition type is checked against 
+the supplied list.  If the variable is not defined by one of the types in 
+the list then that widget is ignored.  If there is a type match then the 
+widget is enabled and available for use.  If no object types are listed then 
+the "objectTypes" attribute works exactly the same as the "conditional" 
+attribute.
+
+IMPORTANT NOTE: The latter form of the skin XML code should be used to 
+maintain backward compatibility with all existing Python code.  At some 
+point in the future when all code is updated to support and comply with 
+this proposal then the former, and simpler, version of the skin definition 
+can be used as backward compatibility would no longer be an issue.
+
+ACTION BUTTONS:
+===============
+
+Just like the colour buttons there are a number of standard action or 
+functional buttons used.  For example, MENU, INFO, TEXT, HELP etc. 
+Typically, these buttons are manually added / defined by skin writers 
+in the various screens for which they are used.  This requirement places 
+a heavy burden on skin writers who have to explore the Python code to 
+determine when the various action buttons are defined and available for 
+use.  If the buttons are defined then there should be definitions for those 
+buttons in their skin.
+
+As with the colour buttons it is quite easy to automate the inclusion of 
+these standard action buttons in both the Python code and skin.
+
+Let us use the example of the MENU button on the remote control let us look 
+at how the red button should be defined in the Python code and how it can be 
+rendered in a skin.
+
+The Python code is exactly the same as that used by the colour button 
+example above.  In the Python code to define a MENU button to be available 
+in the skin simply add the following to your code:
+
+	from Components.Sources.StaticText import StaticText
+
+	self["key_menu"] = StaticText(_("MENU"))
+
+The text for each action button should be language translated with the 
+_("text") syntax.  The text itself should be as short as practical but clear 
+enough to convey the meaning of the button.
+
+If you want to temporarily suppress the display of the button use the 
+following syntax:
+
+	self["key_menu"].setText("")
+or
+	self["key_menu"].text = ""
+
+NOTE: Never translate an empty string, _(""), as this causes the translation 
+system to output translation engine information and NOT a blank string as 
+some may expect.
+
+Now that the code is MENU button enabled we need to code the skin to match.  
+There are two ways a skin designer may choose to display the action buttons.  
+They may wish to use a graphical image or they may choose to use a text 
+based representation.
+
+Here is a skin fragment that supports the code above to display a graphical 
+MENU button:
+
+	<screen name="TemplateButtonMenu">
+		<widget source="key_menu" render="Pixmap" \
+			pixmap="buttons/button_menu.png" position="0,0" \
+			size="50,30" alphatest="blend" conditional="key_menu" \
+			transparent="1">
+ 			<convert type="ConditionalShowHide" />
+ 		</widget>
+	</screen>
+
+In this example the widget checks if the variable "key_menu" is defined in 
+this screen via the "conditional" attribute.  If "key_menu" is defined and 
+not blank the image "buttons/button_menu.png" is displayed on the screen.
+
+Here is a skin fragment that supports the code above to display a textural 
+MENU button:
+
+	<screen name="TemplateButtonMenu">
+		<widget source="key_menu" render="Label" position="0,0" \
+			size="50,30" backgroundColor="ButtonBackground" \
+			font="ButtonFont;20" foregroundColor="ButtonText" \
+			halign="center" conditional="key_menu" transparent="1" \
+			valign="center" zPosition="+1" />
+	</screen>
+
+This works the same way as the previous example except that instead of an 
+image being displayed on the screen the translated text defined in the Python 
+code is displayed on the screen.
+
+CONCLUSION:
+===========
+
+For all the Enigma2 builds there is a significant legacy of code and skins 
+that needs to be preserved and protected. The proposal outlined what I 
+believe to be a conservative approach to making a significant but beneficial 
+change in unifying and standardising the display of action and colour buttons 
+across the Enigma2 UI.
+
+---END---

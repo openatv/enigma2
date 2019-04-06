@@ -1,6 +1,10 @@
 #ifndef __dvb_frontend_h
 #define __dvb_frontend_h
 
+#ifndef DTV_SCRAMBLING_SEQUENCE_INDEX
+#define DTV_SCRAMBLING_SEQUENCE_INDEX 70
+#endif
+
 #include <map>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/frontendparms.h>

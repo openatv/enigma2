@@ -2,7 +2,7 @@ import os
 import struct
 import random
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
@@ -604,10 +604,11 @@ class MovieList(GUIComponent):
 				# enigma wants an extra '/' appended
 				if not parent.endswith('/'):
 					parent += '/'
-				ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent)
-				ref.flags = eServiceReference.flagDirectory
-				self.list.append((ref, None, 0, -1))
-				numberOfDirs += 1
+			ref = eServiceReference(eServiceReference.idFile, eServiceReference.flagDirectory, eServiceReferenceFS.directory)
+			ref.setPath(parent)
+			ref.flags = eServiceReference.flagDirectory
+			self.list.append((ref, None, 0, -1))
+			numberOfDirs += 1
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():

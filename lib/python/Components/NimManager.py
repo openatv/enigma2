@@ -1,3 +1,4 @@
+import os
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand
 from time import localtime, mktime
 from datetime import datetime
@@ -850,6 +851,9 @@ class NIM(object):
 			multistream = True
 		return multistream
 
+	def isT2MI(self):
+		return os.path.exists("/proc/stb/frontend/%d/t2mi" % self.frontend_id)
+
 	def supportsBlindScan(self):
 		return self.supports_blind_scan
 
@@ -1621,7 +1625,8 @@ jess_alias = ("JESS","UNICABLE2","SCD2","EN50607","EN 50607")
 
 lscr = [("scr%d" % i) for i in range(1,33)]
 
-def InitNimManager(nimmgr, update_slots = []):
+def InitNimManager(nimmgr, update_slots=None):
+	update_slots = [] if update_slots is None else update_slots
 	hw = HardwareInfo()
 	addNimConfig = False
 	try:

@@ -7,10 +7,10 @@ LANGPO = $(LANGS:=.po)
 EXTRA_DIST = $(LANGPO)
 
 # the TRANSLATORS: allows putting translation comments before the to-be-translated line.
-enigma2-py.pot: $(top_srcdir)/*.py $(top_srcdir)/lib/python/*/*.py $(top_srcdir)/lib/python/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*.py
+enigma2-py.pot: $(top_srcdir)/*.py $(top_srcdir)/lib/python/*/*.py $(top_srcdir)/lib/python/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*/*.py
 	$(XGETTEXT) --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
 
-enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/python/Plugins/SystemPlugins/*/*.xml
+enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/python/Plugins/SystemPlugins/*/*.xml $(top_srcdir)/lib/python/Plugins/Extensions/*/*.xml
 	$(PYTHON) $^ > $@
 
 enigma2.pot: enigma2-py.pot enigma2-xml.pot

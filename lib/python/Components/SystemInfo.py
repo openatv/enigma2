@@ -99,3 +99,5 @@ SystemInfo["HAVESCART"] = getHaveSCART() in ('True')
 SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() in ('True')
 SystemInfo["HAVEYUV"] = getHaveYUV() in ('True')
 SystemInfo["HAVEHDMI"] = getHaveHDMI() in ('True')
+SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode")
+

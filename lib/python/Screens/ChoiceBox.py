@@ -1,13 +1,20 @@
 from Screens.Screen import Screen
-from Components.ActionMap import NumberActionMap
+from Screens.MessageBox import MessageBox
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import config, ConfigSubsection, ConfigText
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 import enigma
 
+config.misc.pluginlist = ConfigSubsection()
+config.misc.pluginlist.eventinfo_order = ConfigText(default="")
+config.misc.pluginlist.extension_order = ConfigText(default="")
+config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
+
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var="", menu_path="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
 		if not windowTitle: #for compatibility
 			windowTitle = titlebartext
 		if not list: list = []
@@ -19,6 +26,8 @@ class ChoiceBox(Screen):
 		if isinstance(skin_name, str):
 			skin_name = [skin_name]
 		self.skinName = skin_name + ["ChoiceBox"]
+
+		self.reorderConfig = reorderConfig
 		self["text"] = Label()
 		self.var = ""
 		if skin_name and 'SoftwareUpdateChoices' in skin_name and var and var in ('unstable', 'updating', 'stable', 'unknown'):
@@ -28,6 +37,8 @@ class ChoiceBox(Screen):
 			self['tl_red'] = Pixmap()
 			self['tl_yellow'] = Pixmap()
 			self['tl_green'] = Pixmap()
+		if skin_name and 'SoftwareUpdateChoices' in skin_name:
+			self["menu_path_compressed"] = StaticText(menu_path)
 
 		if title:
 			title = _(title)
@@ -44,7 +55,7 @@ class ChoiceBox(Screen):
 							labeltext += '\n'
 						labeltext = labeltext + temptext[count-1]
 						count += 1
-						print 'count',count
+						print '[Choicebox] count', count
 					self["text"].setText(labeltext)
 				else:
 					self["text"] = Label(title)
@@ -55,26 +66,47 @@ class ChoiceBox(Screen):
 		self.list = []
 		self.summarylist = []
 		if keys is None:
-			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text" ] + (len(list) - 10) * [""]
+			self.__keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text"] + (len(list) - 14) * [""]
 		else:
 			self.__keys = keys + (len(list) - len(keys)) * [""]
 
 		self.keymap = {}
 		pos = 0
+		if self.reorderConfig:
+			self.config_type = eval("config.misc.pluginlist." + self.reorderConfig)
+			if self.config_type.value:
+				prev_list = zip(list, self.__keys)
+				new_list = []
+				for x in self.config_type.value.split(","):
+					for entry in prev_list:
+						if entry[0][0] == x:
+							new_list.append(entry)
+							prev_list.remove(entry)
+				list = zip(*(new_list + prev_list))
+				list, self.__keys = list[0], list[1]
+				number = 1
+				new_keys = []
+				for x in self.__keys:
+					if (not x or x.isdigit()) and number <= 10:
+						new_keys.append(str(number % 10))
+						number+=1
+					else:
+						new_keys.append(not x.isdigit() and x or "")
+				self.__keys = new_keys
 		for x in list:
 			strpos = str(self.__keys[pos])
-			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
+			self.list.append(ChoiceEntryComponent(key=strpos, text=x))
 			if self.__keys[pos] != "":
 				self.keymap[self.__keys[pos]] = list[pos]
 			self.summarylist.append((self.__keys[pos], x[0]))
 			pos += 1
 		self["windowtitle"] = Label(_(windowTitle))
-		self["list"] = ChoiceList(list = self.list, selection = selection)
+		self["list"] = ChoiceList(list=self.list, selection=selection)
 		self["summary_list"] = StaticText()
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions", "MenuActions"],
 		{
 			"ok": self.go,
 			"1": self.keyNumberGlobal,
@@ -95,19 +127,27 @@ class ChoiceBox(Screen):
 			"up": self.up,
 			"down": self.down,
 			"left": self.left,
-			"right": self.right
-		}, -1)
+			"right": self.right,
+			"shiftUp": self.additionalMoveUp,
+			"shiftDown": self.additionalMoveDown,
+			"menu": self.setDefaultChoiceList,
+			"back": lambda: 0,  # drop through to self["cancelaction"]
+		}, prio=-2)
 
-		self["cancelaction"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"],
+		self["cancelaction"] = ActionMap(["WizardActions"],
 		{
 			"back": self.cancel,
-		}, -1)
+		}, prio=-1)
 		self.onShown.append(self.onshow)
 
 	def onshow(self):
-		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var and self.var in ('unstable', 'updating', 'stable', 'unknown'):
-			status_msgs = {'stable': _('Feeds status:   Stable'), 'unstable': _('Feeds status:   Unstable'), 'updating': _('Feeds status:   Updating'), 'unknown': _('No connection')}
-			self['feedStatusMSG'].setText(status_msgs[self.var])
+		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var:
+			from Components.OnlineUpdateCheck import feedsstatuscheck
+			if self.var in feedsstatuscheck.feed_status_msgs:
+				status_text = feedsstatuscheck.feed_status_msgs[self.var]
+			else:
+				status_text = _('Feeds status: Unexpected')
+			self['feedStatusMSG'].setText(status_text)
 			self['tl_off'].hide()
 			self['tl_red'].hide()
 			self['tl_yellow'].hide()
@@ -124,25 +164,28 @@ class ChoiceBox(Screen):
 	def autoResize(self):
 		desktop_w = enigma.getDesktop(0).size().width()
 		desktop_h = enigma.getDesktop(0).size().height()
-		count = len(self.list)
 		itemheight = self["list"].getItemHeight()
+		count = len(self.list)
 		if count > 15:
 			count = 15
+		width = self["list"].instance.size().width()
+		if width < 0 or width > desktop_w:
+			width = 520
 		if not self["text"].text:
 			# move list
-			textsize = (520, 0)
-			listsize = (520, itemheight*count)
+			textsize = (width, 0)
+			listsize = (width, itemheight * count)
 			self["list"].instance.move(enigma.ePoint(0, 0))
 			self["list"].instance.resize(enigma.eSize(*listsize))
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
-				textsize = (textsize[1],textsize[0]+10)
-			if textsize[0] > 520:
-				textsize = (textsize[0], textsize[1]+itemheight)
+				textsize = (textsize[1], textsize[0] + 10)
+			if textsize[0] > width:
+				textsize = (textsize[0], textsize[1] + itemheight)
 			else:
-				textsize = (520, textsize[1]+itemheight)
-			listsize = (textsize[0], itemheight*count)
+				textsize = (width, textsize[1] + itemheight)
+			listsize = (textsize[0], itemheight * count)
 			# resize label
 			self["text"].instance.resize(enigma.eSize(*textsize))
 			self["text"].instance.move(enigma.ePoint(10, 10))
@@ -214,7 +257,7 @@ class ChoiceBox(Screen):
 
 	# lookups a key in the keymap, then runs it
 	def goKey(self, key):
-		if self.keymap.has_key(key):
+		if key in self.keymap:
 			entry = self.keymap[key]
 			self.goEntry(entry)
 
@@ -233,6 +276,7 @@ class ChoiceBox(Screen):
 
 	def keyText(self):
 		self.goKey("text")
+
 	def updateSummary(self, curpos=0):
 		pos = 0
 		summarytext = ""
@@ -250,3 +294,42 @@ class ChoiceBox(Screen):
 	def cancel(self):
 		if self.allow_cancel:
 			self.close(None)
+
+	def setDefaultChoiceList(self):
+		if self.reorderConfig:
+			if len(self.list) > 0 and self.config_type.value != "":
+				self.session.openWithCallback(self.setDefaultChoiceListCallback, MessageBox, _("Sort list to default and exit?"), MessageBox.TYPE_YESNO)
+		else:
+			self.cancel()
+
+	def setDefaultChoiceListCallback(self, answer):
+		if answer:
+			self.config_type.value = ""
+			self.config_type.save()
+			self.cancel()
+
+	def additionalMoveUp(self):
+		if self.reorderConfig:
+			self.additionalMove(-1)
+
+	def additionalMoveDown(self):
+		if self.reorderConfig:
+			self.additionalMove(1)
+
+	def additionalMove(self, direction):
+		if len(self.list) > 1:
+			currentIndex = self["list"].getSelectionIndex()
+			swapIndex = (currentIndex + direction) % len(self.list)
+			if currentIndex == 0 and swapIndex != 1:
+				self.list = self.list[1:] + [self.list[0]]
+			elif swapIndex == 0 and currentIndex != 1:
+				self.list = [self.list[-1]] + self.list[:-1]
+			else:
+				self.list[currentIndex], self.list[swapIndex] = self.list[swapIndex], self.list[currentIndex]
+			self["list"].l.setList(self.list)
+			if direction == 1:
+				self["list"].down()
+			else:
+				self["list"].up()
+			self.config_type.value = ",".join(x[0][0] for x in self.list)
+			self.config_type.save()

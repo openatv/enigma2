@@ -10,13 +10,18 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 boxtype = getBoxType()
+
+if getImageArch() in ("aarch64"):
+	import usb.core
+	import usb.backend.libusb1
+	usb.backend.libusb1.get_backend(find_library=lambda x: "/lib64/libusb-1.0.so.0")
 
 #if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo") and boxtype in ('dm7080','dm820','dm520','dm525','dm900','dm920'):
 #	import pyo_patcher

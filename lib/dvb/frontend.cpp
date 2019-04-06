@@ -109,13 +109,15 @@ void eDVBFrontendParametersSatellite::set(const S2SatelliteDeliverySystemDescrip
 		pls_mode = eDVBFrontendParametersSatellite::PLS_Gold;
 		pls_code = descriptor.getScramblingSequenceIndex();
 		t2mi_plp_id = eDVBFrontendParametersSatellite::No_T2MI_PLP_Id;
+		t2mi_pid = eDVBFrontendParametersSatellite::T2MI_Default_Pid;
 	}
 	else // default DVB-S2 physical layer scrambling sequence of index n = 0 is used
 	{
-		is_id = NO_STREAM_ID_FILTER;
+		is_id = eDVBFrontendParametersSatellite::No_Stream_Id_Filter;
 		pls_mode = eDVBFrontendParametersSatellite::PLS_Gold;
-		pls_code = 0;
+		pls_code = eDVBFrontendParametersSatellite::PLS_Default_Gold_Code;
 		t2mi_plp_id = eDVBFrontendParametersSatellite::No_T2MI_PLP_Id;
+		t2mi_pid = eDVBFrontendParametersSatellite::T2MI_Default_Pid;
 	}
 }
 
@@ -143,10 +145,11 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 		modulation = Modulation_QPSK;
 	}
 	rolloff = descriptor.getRollOff();
-	is_id = NO_STREAM_ID_FILTER;
+	is_id = eDVBFrontendParametersSatellite::No_Stream_Id_Filter;
 	pls_mode = eDVBFrontendParametersSatellite::PLS_Gold;
-	pls_code = 0;
+	pls_code = eDVBFrontendParametersSatellite::PLS_Default_Gold_Code;
 	t2mi_plp_id = eDVBFrontendParametersSatellite::No_T2MI_PLP_Id;
+	t2mi_pid = eDVBFrontendParametersSatellite::T2MI_Default_Pid;
 	if (system == System_DVB_S2)
 	{
 		eDebug("[eDVBFrontendParametersSatellite] SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, rolloff %d, is_id %d, pls_mode %d, pls_code %d t2mi_plp_id %d",
@@ -159,7 +162,8 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 			is_id,
 			pls_mode,
 			pls_code,
-			t2mi_plp_id);
+			t2mi_plp_id,
+			t2mi_pid);
 	}
 	else
 	{
@@ -395,6 +399,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			eDVBFrontendParametersSatellite osat = {0};
 			if (parm->getDVBS(osat))
 				return -2;
+
 			if (sat.orbital_position != osat.orbital_position)
 				diff = 1<<29;
 			else if (sat.polarisation != osat.polarisation)
@@ -407,7 +412,9 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 				diff = 1<<27;
 			else if (sat.t2mi_plp_id != osat.t2mi_plp_id)
 				diff = 1<<27;
- 			else if (exact && sat.fec != osat.fec && sat.fec != eDVBFrontendParametersSatellite::FEC_Auto && osat.fec != eDVBFrontendParametersSatellite::FEC_Auto)
+			else if (sat.t2mi_pid != osat.t2mi_pid)
+				diff = 1<<27;
+			else if (exact && sat.fec != osat.fec && sat.fec != eDVBFrontendParametersSatellite::FEC_Auto && osat.fec != eDVBFrontendParametersSatellite::FEC_Auto)
 				diff = 1<<27;
 			else if (exact && sat.modulation != osat.modulation && sat.modulation != eDVBFrontendParametersSatellite::Modulation_Auto && osat.modulation != eDVBFrontendParametersSatellite::Modulation_Auto)
 				diff = 1<<27;
@@ -1184,19 +1191,27 @@ static inline uint32_t fe_udiv(uint32_t a, uint32_t b)
 
 int eDVBFrontend::calculateSignalPercentage(int signalqualitydb)
 {
-	int maxdb; // assume 100% as 2/3 of maximum dB
+/*
+		When using new API, signalqualitydb is Carrier-to-Noise-Ratio (CNR) - i.e. SNR at a specific point in the receiver chain
+		Minimum CNR for lock is ~20 dB, not 0 dB as previously assumed
+		Maximum expected CNR is an estimate of typical value of CNR at which limiting could occur in the absence of interference etc
+		Percentage is now of maximum expected CNR to approximately match the figures provided by any drivers that supply this data, not 2/3 of maximum expected signal as previously assumed. 
+		Using 2/3 for DVB-T gives 100% at ~33 dB, which less than half way up the scale from just acheiving lock at 20 dB and expected maximum at 50 dB
+*/
+
+	int maxdb; // Maximum expected CNR in units of 0.01 dB
 	int type = -1;
 	oparm.getSystem(type);
 	switch (type)
 	{
 		case feSatellite:
-			maxdb = 1500;
+			maxdb = 4200;
 			break;
 		case feCable:
-			maxdb = 2800;
+			maxdb = 6200;
 			break;
 		case feTerrestrial:
-			maxdb = 1900;
+			maxdb = 5000;
 			break;
 		case feATSC:
 		{
@@ -1205,10 +1220,10 @@ int eDVBFrontend::calculateSignalPercentage(int signalqualitydb)
 			switch (parm.modulation)
 			{
 				case eDVBFrontendParametersATSC::Modulation_VSB_8:
-					maxdb = 1900;
+					maxdb = 5000;
 					break;
 				default:
-					maxdb = 2800;
+					maxdb = 6200;
 					break;
 			}
 			break;
@@ -1629,7 +1644,7 @@ int eDVBFrontend::readFrontendData(int type)
 	sprintf(force_legacy_signal_stats, "config.Nims.%d.force_legacy_signal_stats", m_slotid);
 	switch(type)
 	{
-		case iFrontendInformation_ENUMS::bitErrorRate:
+		case iFrontendInformation_ENUMS::bitErrorRate:  // N.B. This uses the legacy API. The DVB API 5.10 defines two different error rates which currently cannot be accessed from here
 			if (m_state == stateLock)
 			{
 				uint32_t ber=0;
@@ -1642,6 +1657,11 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			break;
 		case iFrontendInformation_ENUMS::snrValue:
+/* 	N.B. This uses the legacy API, defined at https://linuxtv.org/downloads/v4l-dvb-apis/uapi/dvb
+	"snrValue" is not supported by the new API, nor is it generated by all tuners/drivers, and its use is deprecated.
+	Neither the scaling nor the point at which the SNR is measured is defined in the API, leading to inconsistencies between tuners and need for tuner-specific code above  to get values for signalQualitydB and signalQuality from the legacy API
+	Where such code does not exist, those parameters have a high probability of being wrong.
+*/
 			if (m_state == stateLock)
 			{
 				uint16_t snr = 0;
@@ -1656,7 +1676,26 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			break;
 		case iFrontendInformation_ENUMS::signalQuality:
-		case iFrontendInformation_ENUMS::signalQualitydB: /* this moved into the driver on DVB API 5.10 */
+/*	The signalQuality is a percentage figure representing signalQualitydB divided by its expected maximum value 
+	A value of 0 represents 0% and 65535 represents 100%.
+	A value of zero is returned when not locked on. 
+	A minimum value of 30-40% (depending on DVB type) can be expected when locked on when using DVB API 5.10 or later.
+	It is not a reliable indicator of closeness to limiting as:
+		(a) A generic value for the upper limit of signalQualitydB is used unless % data is provided by the driver, so the assumed upper limit may be significantly different to that of any actual tuner 
+		(b) Signal levels close to limiting may be accompanied by high noise (e.g. interference) levels, thus leading to moderate or low signalQualitydB values
+	Values derived from the legacy API are likely to be unreliable, with 100% being returned for a wide range of signalQualitydB values - comparison between muxes is probably safer using signalQualitydB.	
+*/
+		case iFrontendInformation_ENUMS::signalQualitydB:
+/* 	This moved into the driver on DVB API 5.10 
+	When using new API:
+		(a) signalQualitydB is Carrier-to-Noise-Ratio (CNR) measured in dB - i.e. SNR at a specific point in the receiver chain
+		(b) Minimum CNR for lock is ~20 dB (exact figure depending on DVB and modulation types)
+		(c) Maximum CNR will depend on the particular tuner and DVB type, but is likely to be in the range 40-70 dB. Figures much above 70 dB are almost certainly erroneous
+		(d) Comparisons between different tuner models should be valid - i.e. differ by no more than a couple of dB + any differences in input signal
+	A value of zero is returned when not locked on. 
+	LSB = 0.01 dB.
+	Values derived from the legacy API are likely to be unreliable. 
+*/
 			if (m_state == stateLock)
 			{
 				int signalquality = 0;
@@ -1686,6 +1725,11 @@ int eDVBFrontend::readFrontendData(int type)
 							{
 								signalquality = prop[0].u.st.stat[i].svalue;
 							}
+						}
+						if ((!strcmp(m_description, "Si2169")) && (signalqualitydb == 0))	// Fix for Si2169 problem on Xtrend models where dB figure is returned in the % slot and the dB slot is empty
+						{
+							signalqualitydb = signalquality / 10;
+							signalquality = 0;
 						}
 						if (signalqualitydb)
 						{
@@ -1843,6 +1887,7 @@ void eDVBFrontend::getTransponderData(ePtr<iDVBTransponderData> &dest, bool orig
 		p[cmdseq.num++].cmd = DTV_FREQUENCY;
 		p[cmdseq.num++].cmd = DTV_INVERSION;
 		p[cmdseq.num++].cmd = DTV_MODULATION;
+		p[cmdseq.num++].cmd = DTV_API_VERSION;
 		if (type == feSatellite)
 		{
 			p[cmdseq.num++].cmd = DTV_SYMBOL_RATE;
@@ -1850,6 +1895,10 @@ void eDVBFrontend::getTransponderData(ePtr<iDVBTransponderData> &dest, bool orig
 			p[cmdseq.num++].cmd = DTV_ROLLOFF;
 			p[cmdseq.num++].cmd = DTV_PILOT;
 			p[cmdseq.num++].cmd = DTV_STREAM_ID;
+			if (m_dvbversion >= DVB_VERSION(5, 11))
+			{
+				p[cmdseq.num++].cmd = DTV_SCRAMBLING_SEQUENCE_INDEX;
+			}
 			p[cmdseq.num++].cmd = DTV_ISDBT_SB_SEGMENT_IDX; /* FIXME HACK ALERT use unused by enigma2 ISDBT SEGMENT IDX to pass T2MI PLP ID */
 		}
 		else if (type == feCable)
@@ -2420,7 +2469,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					}
 					else if (sec_fe->m_need_rotor_workaround)
 					{
-						char dev[16];
+						char dev[32];
 						int slotid = sec_fe->m_slotid;
 						// FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
 						if (slotid < 2)
@@ -2701,14 +2750,19 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			{
 				p[cmdseq.num].cmd = DTV_ROLLOFF, p[cmdseq.num].u.data = rolloff, cmdseq.num++;
 				p[cmdseq.num].cmd = DTV_PILOT, p[cmdseq.num].u.data = pilot, cmdseq.num++;
-				if (m_dvbversion >= DVB_VERSION(5, 3))
+				if (m_dvbversion >= DVB_VERSION(5, 11))
+				{
+					p[cmdseq.num].cmd = DTV_STREAM_ID, p[cmdseq.num].u.data = parm.is_id, cmdseq.num++;
+					p[cmdseq.num].cmd = DTV_SCRAMBLING_SEQUENCE_INDEX, p[cmdseq.num].u.data = parm.pls_code, cmdseq.num++;
+				}
+				else
 				{
 #if defined DTV_STREAM_ID
 					p[cmdseq.num].cmd = DTV_STREAM_ID, p[cmdseq.num].u.data = parm.is_id | (parm.pls_code << 8) | (parm.pls_mode << 26), cmdseq.num++;
 #endif
 				}
-				/* FIXME HACK ALERT use unused by enigma2 ISDBT SEGMENT IDX to pass T2MI PLP ID */
-				p[cmdseq.num].cmd = DTV_ISDBT_SB_SEGMENT_IDX, p[cmdseq.num].u.data = (parm.t2mi_plp_id == eDVBFrontendParametersSatellite::No_T2MI_PLP_Id ? 0 : parm.t2mi_plp_id), cmdseq.num++;
+				/* FIXME HACK ALERT use unused by enigma2 ISDBT SEGMENT IDX to pass T2MI PLP ID and T2MI PID */
+				p[cmdseq.num].cmd = DTV_ISDBT_SB_SEGMENT_IDX, p[cmdseq.num].u.data = (parm.t2mi_plp_id == eDVBFrontendParametersSatellite::No_T2MI_PLP_Id ? 0 : (0x80000000 | (parm.t2mi_pid << 16) | parm.t2mi_plp_id)), cmdseq.num++;
 			}
 		}
 		else if (type == iDVBFrontend::feCable)
@@ -3054,7 +3108,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 	res = m_sec->prepare(*this, feparm, satfrequency, 1 << m_slotid, tunetimeout);
 	if (!res)
 	{
-		eDebugNoSimulate("frontend %d prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d system %d modulation %d pilot %d, rolloff %d, is_id %d, pls_mode %d, pls_code %d, t2mi_plp_id %d",
+		eDebugNoSimulate("[eDVBFrontend%d] prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d system %d modulation %d pilot %d, rolloff %d, is_id %d, pls_mode %d, pls_code %d, t2mi_plp_id %d t2mi_pid %d",
 			m_dvbid,
 			feparm.system,
 			feparm.frequency,
@@ -3070,7 +3124,8 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 			feparm.is_id,
 			feparm.pls_mode,
 			feparm.pls_code,
-			feparm.t2mi_plp_id);
+			feparm.t2mi_plp_id,
+			feparm.t2mi_pid);
 		if ((unsigned int)satfrequency < m_fe_info[SYS_DVBS].frequency_min || (unsigned int)satfrequency > m_fe_info[SYS_DVBS].frequency_max)
 		{
 			eDebugNoSimulate("%d MHz out of tuner range.. dont tune (min: %d MHz max: %d MHz)", satfrequency / 1000, m_fe_info[SYS_DVBS].frequency_min/1000, m_fe_info[SYS_DVBS].frequency_max/1000);
