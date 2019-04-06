@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-05 14:38+0000\n"
-"PO-Revision-Date: 2019-04-05 22:20+0200\n"
+"PO-Revision-Date: 2019-04-06 16:22+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -20626,6 +20626,10 @@ msgid "scan new"
 msgstr "Selber suchen"
 
 #: FileCommander\plugin.py
+msgid "Select a path"
+msgstr "Pfad auswählen:"
+
+#: FileCommander\plugin.py
 msgid "manage local Files"
 msgstr "Lokale Dateien verwalten"
 
@@ -20904,6 +20908,18 @@ msgstr "%s kann nicht unter <Liste der Speichergeräte> ausgeführt werden."
 #: FileCommander/addons/key_actions.py
 msgid "You can't usefully run '%s' on a directory."
 msgstr "%s kann für ein Verzeichnis nicht sinnvoll ausgeführt werden."
+
+#: FileCommander/addons/key_actions.py
+msgid "It is not possible to change the file mode of <List of Storage Devices>"
+msgstr "Es ist nicht möglich, den Dateimodus von <Liste der Speichergeräte> zu ändern."
+
+#: FileCommander/addons/key_actions.py
+msgid "Script '%s' must have read permission to be able to run it"
+msgstr "Skript '% s' muss über Leseberechtigung verfügen, um es ausführen zu können."
+
+#: FileCommander/addons/key_actions.py
+msgid "The hash of a directory can't be calculated."
+msgstr "Der Hash eines Verzeichnisses kann nicht berechnet werden."
 
 #: FileCommander/setup.xml
 msgid "File Commander Settings"
