@@ -10,6 +10,11 @@
 <!-- MyRecPanel -->
 	<screen name="MyRecPanel">
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,RecBlink,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,Rec,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
