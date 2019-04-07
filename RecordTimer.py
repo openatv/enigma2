@@ -542,12 +542,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 # Also, could just call failureCB(True) after closing MoviePlayer...
 #
 						from Screens.InfoBar import MoviePlayer
-						if MoviePlayer.instance is not None:
+						if MoviePlayer.instance is not None and MoviePlayer.instance.execing:
 							# This is one of the more wierdly named functions, it actually
 							# functions as setMoviePlayerInactive
 							NavigationInstance.instance.isMovieplayerActive()
-# Since next_state is StateRunning we set self.begin
-							self.begin = time() + 1
+# next_state is StateRunning but we can leave self.begin unchanged
 							return False
 
 						self._zapToTimerService()
