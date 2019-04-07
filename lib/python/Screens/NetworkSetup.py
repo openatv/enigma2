@@ -2442,7 +2442,7 @@ class NetworkSambaLog(Screen):
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
 
-SAMBA_CONFIG_FILE = "/etc/samba/smb_host.conf"
+SAMBA_CONFIG_FILE = "/etc/samba/smb-user.conf"
 
 class NetworkSambaSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
