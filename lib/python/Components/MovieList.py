@@ -154,13 +154,12 @@ class MovieList(GUIComponent):
 	def __init__(self, root, sort_type=None, descr_state=None):
 		GUIComponent.__init__(self)
 		self.list = []
-		self.screenwidth = getDesktop(0).size().width()
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
 		self.sort_type = sort_type or self.SORT_GROUPWISE
 		self.firstFileEntry = 0
 		self.parentDirectory = 0
 		self.fontName = "Regular"
-		if self.screenwidth and self.screenwidth == 1920:
+		if skin.getSkinFactor() == 1.5:
 			self.fontSize = 28
 		else:
 			self.fontSize = 20
@@ -313,7 +312,7 @@ class MovieList(GUIComponent):
 		else:
 			ih = self.itemHeight
 
-		if self.screenwidth and self.screenwidth == 1920:
+		if skin.getSkinFactor() == 1.5:
 			listBeginX = 3
 			listEndX = 3
 			listMarginX = 12
