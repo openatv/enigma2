@@ -2510,6 +2510,8 @@ class NetworkSambaSetup(Screen, ConfigListScreen):
 			lines = infile.readlines()
 			infile.close()
 		out = open(SAMBA_CONFIG_FILE + '.tmp', 'w')
+		if lines and lines[0].strip() != "[global]":
+			out.write("[global]\n")
 		if self.smb_server_string.value.strip():
 			out.write("server string = %s\n" % self.smb_server_string.value.strip())
 		if self.smb_workgroup.value.strip():
