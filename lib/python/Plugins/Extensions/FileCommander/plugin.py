@@ -478,11 +478,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		wartxt = ""
 		if sourceDir not in filename:
 			if os.path.exists(targetDir + filename):
-				wartxt = _(" - file exist! Overwritten")
+				wartxt = _(" - file exist! Overwrite")
 			copytext = _("Copy file") + wartxt
 		else:
 			if os.path.exists(targetDir + filename.split('/')[-2]):
-				wartxt = _(" - folder exist! Overwritten")
+				wartxt = _(" - folder exist! Overwrite")
 			copytext = _("Copy folder") + wartxt
 		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
@@ -536,11 +536,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		wartxt = ""
 		if sourceDir not in filename:
 			if os.path.exists(targetDir + filename):
-				wartxt = _(" - file exist! Overwritten")
+				wartxt = _(" - file exist! Overwrite")
 			movetext = _("Move file") + wartxt
 		else:
 			if os.path.exists(targetDir + filename.split('/')[-2]):
-				wartxt = _(" - folder exist! Overwritten")
+				wartxt = _(" - folder exist! Overwrite")
 			movetext = _("Move folder") + wartxt
 		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
