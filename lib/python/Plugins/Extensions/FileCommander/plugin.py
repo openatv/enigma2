@@ -1102,6 +1102,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 				"down": self.pageDown,
 			}, prio=-1)
 
+		self.setTitle(_("File/Directory Status Information"))
 		self.source = source
 
 		self.onShown.append(self.fillList)
