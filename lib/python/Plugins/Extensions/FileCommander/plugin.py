@@ -455,7 +455,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if retval:
 				self.finishedCB(retval)
 		else:
-		   job_manager.AddJob(job, onSuccess=self.finishedCB)
+			job_manager.AddJob(job, onSuccess=self.finishedCB)
 
 	def finishedCB(self, arg):
 		if hasattr(self, "jobs"):
@@ -475,10 +475,15 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None) or (targetDir is None):
 			return
+		wartxt = ""
 		if sourceDir not in filename:
-			copytext = _("Copy file - existing file will be overwritten")
+			if os.path.exists(targetDir + filename):
+				wartxt = _(" - file exist! Overwritten")
+			copytext = _("Copy file") + wartxt
 		else:
-			copytext = _("Copy folder - existing folders/files will be overwritten")
+			if os.path.exists(targetDir + filename.split('/')[-2]):
+				wartxt = _(" - folder exist! Overwritten")
+			copytext = _("Copy folder") + wartxt
 		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
 	def doCopy(self, result):
@@ -528,10 +533,15 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None) or (targetDir is None):
 			return
+		wartxt = ""
 		if sourceDir not in filename:
-			movetext = _("Move file")
+			if os.path.exists(targetDir + filename):
+				wartxt = _(" - file exist! Overwritten")
+			movetext = _("Move file") + wartxt
 		else:
-			movetext = _("Move folder")
+			if os.path.exists(targetDir + filename.split('/')[-2]):
+				wartxt = _(" - folder exist! Overwritten")
+			movetext = _("Move folder") + wartxt
 		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
 	def doMove(self, result):
