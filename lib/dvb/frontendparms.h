@@ -120,7 +120,7 @@ struct eDVBFrontendParametersTerrestrial
 	 * (and it's too late to fix this now, we would break backward compatibility)
 	 */
 	enum {
-		FEC_1_2=0, FEC_2_3=1, FEC_3_4=2, FEC_5_6=3, FEC_7_8=4, FEC_Auto=5, FEC_6_7=6, FEC_8_9=7
+		FEC_1_2=0, FEC_2_3=1, FEC_3_4=2, FEC_5_6=3, FEC_7_8=4, FEC_Auto=5, FEC_6_7=6, FEC_8_9=7, FEC_3_5=8, FEC_4_5=9
 	};
 
 	enum {
