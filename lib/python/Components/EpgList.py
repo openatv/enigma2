@@ -6,7 +6,7 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
 from Components.Renderer.Picon import getPiconName
-from skin import parseColor, parseFont, parameters as skinparameter
+from skin import parseColor, parseFont, parameters as skinparameter, getSkinFactor
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 from Components.config import config
@@ -24,16 +24,6 @@ EPG_TYPE_INFOBARGRAPH = 7
 EPG_TYPE_VERTICAL = 8
 
 MAX_TIMELINES = 6
-
-sf = 1
-
-def getScreenFactor():
-	if sf == 1:
-		screenwidth = getDesktop(0).size().width()
-		if screenwidth and screenwidth == 1920:
-			global sf
-			sf = 1.5
-	return sf
 
 class Rect:
 	def __init__(self, x, y, width, height):
@@ -57,7 +47,8 @@ class Rect:
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
-		self.screenwidth = int(1280 * getScreenFactor()) # important for compatibility to other plugins (e.g. partnerbox)
+		sf = getSkinFactor()
+		self.screenwidth = int(1280 * sf) # important for compatibility to other plugins (e.g. partnerbox)
 		if sf == 1.5:
 			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,13,25,25,2))
 			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240,180,120,30))
@@ -514,6 +505,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def setItemsPerPage(self):
+		sf = getSkinFactor()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
 				if self.listHeight > 0:
@@ -1299,6 +1291,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		ipp = self.listHeight / self.itemHeight
 		while indx+1 > ipp:
 			indx -= ipp
+		sf = getSkinFactor()
 		sely = min(self.instance.position().y() + self.itemHeight * indx, 720*sf)
 		selx = min(self.instance.position().x() + selx, 1280*sf)
 		return int(selx), int(sely)
@@ -1595,7 +1588,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.time_base = 0
 		self.time_epoch = 0
 		self.timelineFontName = "Regular"
-		self.timelineFontSize = int(20 * getScreenFactor())
+		self.timelineFontSize = int(20 * getSkinFactor())
 		self.timelineAlign = 'left'
 		self.datefmt = ""
 
@@ -1796,7 +1789,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.graphicsloaded = False
 
 		self.bouquetFontName = "Regular"
-		self.bouquetFontSize = int(20 * getScreenFactor())
+		self.bouquetFontSize = int(20 * getSkinFactor())
 
 		self.itemHeight = 31
 		self.listHeight = None

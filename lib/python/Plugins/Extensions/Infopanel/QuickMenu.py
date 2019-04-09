@@ -42,6 +42,7 @@ from Tools.LoadPixmap import LoadPixmap
 from os import path, listdir
 from time import sleep
 from re import search
+from skin import getSkinFactor
 
 import NavigationInstance
 
@@ -638,68 +639,39 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 	if png is None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 
-	screenwidth = getDesktop(0).size().width()
-	if screenwidth and screenwidth == 1920:
-		width *= 1.5
-		return [
-			_(name),
-			MultiContentEntryText(pos=(90, 5), size=(width-90, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(90, 38), size=(width-90, 30), font=1, text = _(description)),
-			MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), flags = BT_SCALE, png = png),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
-		]
-	else:
-		return [
-			_(name),
-			MultiContentEntryText(pos=(60, 3), size=(width-60, 25), font=0, text = _(name)),
-			MultiContentEntryText(pos=(60, 25), size=(width-60, 20), font=1, text = _(description)),
-			MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png = png),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
-		]
+	sf = getSkinFactor()
+	return [
+		_(name),
+		MultiContentEntryText(pos=(60*sf, 3*sf), size=((width-60)*sf, 25*sf), font=0, text = _(name)),
+		MultiContentEntryText(pos=(60*sf, 25*sf), size=((width-60)*sf, 20*sf), font=1, text = _(description)),
+		MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags = BT_SCALE, png = png),
+		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+	]
 
 def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
-	screenwidth = getDesktop(0).size().width()
-	if screenwidth and screenwidth == 1920:
-		width *= 1.5
-		return [
-			_(name),
-			MultiContentEntryText(pos=(15, 5), size=(width-15, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(15, 38), size=(width-15, 30), font=1, text = _(description)),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
-		]
-	else:
-		return [
-			_(name),
-			MultiContentEntryText(pos=(10, 3), size=(width-10, 25), font=0, text = _(name)),
-			MultiContentEntryText(pos=(10, 25), size=(width-10, 20), font=1, text = _(description)),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
-		]
+	sf = getSkinFactor()
+	return [
+		_(name),
+		MultiContentEntryText(pos=(10*sf, 3*sf), size=((width-10*sf), 25*sf), font=0, text = _(name)),
+		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10*sf), 20*sf), font=1, text = _(description)),
+		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+	]
 
 class QuickMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		screenwidth = getDesktop(0).size().width()
-		if screenwidth and screenwidth == 1920:
-			self.l.setFont(0, gFont("Regular", 30))
-			self.l.setFont(1, gFont("Regular", 24))
-			self.l.setItemHeight(75)
-		else:
-			self.l.setFont(0, gFont("Regular", 20))
-			self.l.setFont(1, gFont("Regular", 16))
-			self.l.setItemHeight(50)
+		sf = getSkinFactor()
+		self.l.setFont(0, gFont("Regular", int(20*sf)))
+		self.l.setFont(1, gFont("Regular", int(16*sf)))
+		self.l.setItemHeight(int(50*sf))
 
 class QuickMenuSubList(MenuList):
 	def __init__(self, sublist, enableWrapAround=True):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
-		screenwidth = getDesktop(0).size().width()
-		if screenwidth and screenwidth == 1920:
-			self.l.setFont(0, gFont("Regular", 30))
-			self.l.setFont(1, gFont("Regular", 24))
-			self.l.setItemHeight(75)
-		else:
-			self.l.setFont(0, gFont("Regular", 20))
-			self.l.setFont(1, gFont("Regular", 16))
-			self.l.setItemHeight(50)
+		sf = getSkinFactor()
+		self.l.setFont(0, gFont("Regular", int(20*sf)))
+		self.l.setFont(1, gFont("Regular", int(16*sf)))
+		self.l.setItemHeight(int(50*sf))
 
 class QuickMenuDevices(Screen):
 	skin = """

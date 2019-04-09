@@ -8,7 +8,7 @@ from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock
-from Components.EpgList import EPGList, EPGBouquetList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_GRAPH, EPG_TYPE_VERTICAL, MAX_TIMELINES, getScreenFactor
+from Components.EpgList import EPGList, EPGBouquetList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_GRAPH, EPG_TYPE_VERTICAL, MAX_TIMELINES
 from Components.MenuList import MenuList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -27,6 +27,7 @@ from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
 from RecordTimer import TIMERTYPE
+from skin import getSkinFactor
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
@@ -1516,7 +1517,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green', 'yellow', 'blue'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'+str(self.activeList)].getCurrent()[1]))
 			pos = self['list'+str(self.activeList)].getSelectionPosition(serviceref, self.activeList)
-			sf = getScreenFactor()
+			sf = getSkinFactor()
 			posx = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width() - 20*sf, 0)
 			posy = self.instance.position().y() + pos[1]
 			posy += self['list'+str(self.activeList)].itemHeight - 2*sf

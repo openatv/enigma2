@@ -72,10 +72,56 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 
 	return res
 
+def getSortedList(list, sortBy, dir=''):
+	sort, reverse = [int(x) for x in sortBy.split('.')]
+	tmplist = []
+
+	for x in list:
+		dx = dir + x
+		if False and os.path.isdir(dx): #experimental - performance slowly!!!
+			size = 0
+			for (path, dirs, files) in os.walk(dx):
+			  for file in files:
+				filename = os.path.join(path, file)
+				try:
+					size += os.path.getsize(filename)
+				except:
+					pass
+			date = os.path.getctime(dx)
+		else:
+			date = os.path.getctime(dx)
+			size = os.path.getsize(dx)
+		tmplist.append((x, date, size))
+
+	tmplist = sorted(tmplist, key=lambda x: x[sort], reverse=reverse)
+	list = []
+	for x in tmplist:
+		list.append(x[0])
+	return list
+
 class FileList(FileListBase):
-	def __init__(self, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=True, additionalExtensions=None):
+	def __init__(self, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=True, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True):
 		self.parent_directory = None
+		self.sortDirs = sortDirs
+		self.sortFiles = sortFiles
+		self.firstDirs = firstDirs
+
 		FileListBase.__init__(self, directory, showDirectories=showDirectories, showFiles=showFiles, showMountpoints=showMountpoints, matchingPattern=matchingPattern, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
+
+	def setSortBy(self, sortBy, setDir = False):
+		#0.0
+		#| 0 - normal
+		#| 1 - reverse
+		#0 - name
+		#1 - date
+		#2 - size (files only)
+		if setDir:
+			self.sortDirs = sortBy
+		else:
+			self.sortFiles = sortBy
+
+	def getSortBy(self):
+		return '%s,%s' %(self.sortDirs, self.sortFiles)
 
 	def changeDir(self, directory, select=None):
 		self.list = []
@@ -108,7 +154,6 @@ class FileList(FileListBase):
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
-
 			while 1:
 				s = list.getNext()
 				if not s.valid():
@@ -118,20 +163,23 @@ class FileList(FileListBase):
 					directories.append(s.getPath())
 				else:
 					files.append(s)
-			directories.sort()
-			files.sort()
+			#directories.sort()
+			#files.sort()
 		else:
 			if fileExists(directory):
 				try:
 					files = os.listdir(directory)
 				except:
 					files = []
-				files.sort()
+				#files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
 					if os.path.isdir(directory + x):
 						directories.append(directory + x + "/")
 						files.remove(x)
+
+		directories = getSortedList(directories, self.sortDirs)
+		files = getSortedList(files, self.sortFiles, directory or '')
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
@@ -141,24 +189,44 @@ class FileList(FileListBase):
 				self.parent_directory = '/'.join(directory.split('/')[:-2]) + '/'
 				self.list.append(FileEntryComponent(name="<" + _("Parent Directory") + ">", absolute=self.parent_directory, isDir=True, isLink=False))
 
-		if self.showDirectories:
-			for x in directories:
-				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
-					name = x.split('/')[-2]
-					testname = x[:-1]
-					self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname)))
+		if self.firstDirs:
+			if self.showDirectories:
+				for x in directories:
+					if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
+						name = x.split('/')[-2]
+						testname = x[:-1]
+						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname)))
 
-		if self.showFiles:
-			for x in files:
-				if self.useServiceRef:
-					path = x.getPath()
-					name = path.split('/')[-1]
-				else:
-					path = directory + x
-					name = x
+			if self.showFiles:
+				for x in files:
+					if self.useServiceRef:
+						path = x.getPath()
+						name = path.split('/')[-1]
+					else:
+						path = directory + x
+						name = x
 
-				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					self.list.append(FileEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path)))
+					if (self.matchingPattern is None) or self.matchingPattern.search(path):
+						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path)))
+		else:
+			if self.showFiles:
+				for x in files:
+					if self.useServiceRef:
+						path = x.getPath()
+						name = path.split('/')[-1]
+					else:
+						path = directory + x
+						name = x
+
+					if (self.matchingPattern is None) or self.matchingPattern.search(path):
+						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path)))
+
+			if self.showDirectories:
+				for x in directories:
+					if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
+						name = x.split('/')[-2]
+						testname = x[:-1]
+						self.list.append(FileEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname)))
 
 		if self.showMountpoints and len(self.list) == 0:
 			self.list.append(FileEntryComponent(name=_("nothing connected"), absolute=None, isDir=False, isLink=False))
@@ -218,11 +286,12 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	return res
 
 class MultiFileSelectList(FileList):
-	def __init__(self, preselectedFiles, directory, showMountpoints=False, matchingPattern=None, showDirectories=True, showFiles=True, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=True, additionalExtensions=None):
+	def __init__(self, preselectedFiles, directory, showMountpoints=False, matchingPattern=None, showDirectories=True, showFiles=True, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=True, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True):
 		self.selectedFiles = preselectedFiles
 		if self.selectedFiles is None:
 			self.selectedFiles = []
-		FileList.__init__(self, directory, showMountpoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
+
+		FileList.__init__(self, directory, showMountpoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions, sortDirs=sortDirs, sortFiles=sortFiles, firstDirs=firstDirs)
 		self.changeDir(directory)
 		self.onSelectionChanged = []
 
@@ -304,20 +373,23 @@ class MultiFileSelectList(FileList):
 					directories.append(s.getPath())
 				else:
 					files.append(s)
-			directories.sort()
-			files.sort()
+			#directories.sort()
+			#files.sort()
 		else:
 			if fileExists(directory):
 				try:
 					files = os.listdir(directory)
 				except:
 					files = []
-				files.sort()
+				#files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
 					if os.path.isdir(directory + x):
 						directories.append(directory + x + "/")
 						files.remove(x)
+
+		directories = getSortedList(directories, self.sortDirs)
+		files = getSortedList(files, self.sortFiles, directory or '')
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
@@ -327,26 +399,48 @@ class MultiFileSelectList(FileList):
 				self.parent_directory = '/'.join(directory.split('/')[:-2]) + '/'
 				self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent Directory") + ">", absolute=self.parent_directory, isDir=True))
 
-		if self.showDirectories:
-			for x in directories:
-				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
-					name = x.split('/')[-2]
-					testname = x[:-1]
-					alreadySelected = x in self.selectedFiles
-					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname), selected=alreadySelected))
+		if self.firstDirs:
+			if self.showDirectories:
+				for x in directories:
+					if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
+						name = x.split('/')[-2]
+						testname = x[:-1]
+						alreadySelected = x in self.selectedFiles
+						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname), selected=alreadySelected))
 
-		if self.showFiles:
-			for x in files:
-				if self.useServiceRef:
-					path = x.getPath()
-					name = path.split('/')[-1]
-				else:
-					path = directory + x
-					name = x
+			if self.showFiles:
+				for x in files:
+					if self.useServiceRef:
+						path = x.getPath()
+						name = path.split('/')[-1]
+					else:
+						path = directory + x
+						name = x
 
-				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					alreadySelected = path in self.selectedFiles
-					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path), selected=alreadySelected))
+					if (self.matchingPattern is None) or self.matchingPattern.search(path):
+						alreadySelected = path in self.selectedFiles
+						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path), selected=alreadySelected))
+		else:
+			if self.showFiles:
+				for x in files:
+					if self.useServiceRef:
+						path = x.getPath()
+						name = path.split('/')[-1]
+					else:
+						path = directory + x
+						name = x
+
+					if (self.matchingPattern is None) or self.matchingPattern.search(path):
+						alreadySelected = path in self.selectedFiles
+						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, isLink=os.path.islink(path), selected=alreadySelected))
+
+			if self.showDirectories:
+				for x in directories:
+					if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
+						name = x.split('/')[-2]
+						testname = x[:-1]
+						alreadySelected = x in self.selectedFiles
+						self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=True, isLink=os.path.islink(testname), selected=alreadySelected))
 
 		self.l.setList(self.list)
 

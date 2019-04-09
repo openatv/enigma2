@@ -52,7 +52,7 @@ from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from RecordTimer import TIMERTYPE
-from Components.EpgList import getScreenFactor
+from skin import getSkinFactor
 
 from time import localtime, time
 try:
@@ -917,7 +917,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		ipp = self.servicelist.instance.size().height() / self.servicelist.ItemHeight
 		while indx+1 > ipp:
 			indx -= ipp
-		sf = getScreenFactor()
+		sf = getSkinFactor()
 		selx = min(self.servicelist.instance.size().width() + self.servicelist.instance.position().x(), 1280*sf)
 		sely = min(self.servicelist.instance.position().y() + (self.servicelist.ItemHeight * indx), 720*sf)
 		posx = max(self.instance.position().x() + selx - self.ChoiceBoxDialog.instance.size().width() - 20*sf, 0)

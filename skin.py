@@ -47,6 +47,20 @@ def dump(x, i=0):
 	except:
 		None
 
+skinfactor = 0
+def getSkinFactor(refresh = False):
+	global skinfactor
+	if refresh or not skinfactor:
+		try:
+			skinfactor = getDesktop(0).size().width() / 1280.0
+			if not skinfactor in [1, 1.5, 3]:
+				print '[SKIN] getSkinFactor unknown result (%s) -> set skinfactor to 1' %skinfactor
+				skinfactor = 1
+		except Exception, err:
+			skinfactor = 1
+			print '[SKIN] getSkinFactor failed: ', err
+	return skinfactor
+
 class SkinError(Exception):
 	def __init__(self, message):
 		self.msg = message

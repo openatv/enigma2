@@ -845,8 +845,9 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 	}
 	off_t start = offset;
 
-	/* let's find the next frame after the given offset */
+	/* calculate length of I-frame -> search next frame -> length = offset - start */
 	unsigned int data;
+	int count_passes = 0;
 	do
 	{
 		if (m_streaminfo.getStructureEntryNext(offset, longdata, 1))
@@ -855,12 +856,28 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 			return -1;
 		}
 		data = ((unsigned int)longdata);
+		count_passes++;
 	}
 	while (((data & 0xff) != 0x09) && ((data & 0xff) != 0x00) && ((data & 0x7E) != 0x46)); /* next frame */
 
 	if (is_mpeg2)
 	{
 		// Seek back to sequence start (appears to be needed for e.g. a few TCM streams)
+		// length calculation changes m_streaminfo -> reset it to start offset
+		while (count_passes)
+		{
+			off_t dummy;
+			if (m_streaminfo.getStructureEntryNext(dummy, longdata, -1))
+			{
+				eDebug("[eDVBTSTools] findFrame get previous frame failed");
+				return -1;
+			}
+			count_passes--;
+		}
+		// In case of fast forward seek back max to start offset
+		// In case of rewind there is no limit
+		if (direction < 0)
+			nr_frames *= -1;
 		while (nr_frames)
 		{
 			if (m_streaminfo.getStructureEntryNext(start, longdata, -1))
@@ -870,12 +887,15 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 			}
 			if ((((unsigned int)longdata) & 0xFF) == 0xB3) /* sequence start or previous frame */
 				break;
-			--nr_frames;
+			if ((((unsigned int)longdata) & 0xFF) == 0x00) /* see above count only 0x00 frames */
+				--nr_frames;
 		}
+		if (direction < 0)
+			nr_frames *= -1;
 	}
 
 	/* make sure we've ended up in the right direction, ignore the result if we didn't */
-	if ((direction >= 0 && start < _offset) || (direction < 0 && start > _offset)) return -1;
+	if ((direction >= 0 && start <= _offset) || (direction < 0 && start >= _offset)) return -1;
 
 	len = offset - start;
 	_offset = start;
@@ -933,6 +953,9 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 			len = new_len;
 			nr_frames += abs(dir) + distance; // never jump forward during rewind
 		}
+
+		if (direction == 0)
+			new_offset += new_len;
 	}
 
 	distance = (direction < 0) ? -nr_frames : nr_frames;
