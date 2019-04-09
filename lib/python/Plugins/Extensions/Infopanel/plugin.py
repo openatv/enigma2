@@ -28,6 +28,7 @@ from Components.SystemInfo import SystemInfo
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from boxbranding import getBoxType, getMachineName, getMachineBrand, getBrandOEM
+from skin import getSkinFactor
 
 import os
 import sys
@@ -265,25 +266,16 @@ INFO_SKIN2 =  """<screen name="PANEL-Info2"  position="center,center" size="530,
 class PanelList(MenuList):
 	def __init__(self, list, font0 = 24, font1 = 16, itemHeight = 50, enableWrapAround = True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		screenwidth = getDesktop(0).size().width()
-		if screenwidth and screenwidth == 1920:
-			self.l.setFont(0, gFont("Regular", int(font0 * 1.5)))
-			self.l.setFont(1, gFont("Regular", int(font1 * 1.5)))
-			self.l.setItemHeight(int(itemHeight*1.5))
-		else:
-			self.l.setFont(0, gFont("Regular", font0))
-			self.l.setFont(1, gFont("Regular", font1))
-			self.l.setItemHeight(itemHeight)
+		sf = getSkinFactor()
+		self.l.setFont(0, gFont("Regular", int(font0 * sf)))
+		self.l.setFont(1, gFont("Regular", int(font1 * sf)))
+		self.l.setItemHeight(int(itemHeight*sf))
 
 def MenuEntryItem(entry):
 	res = [entry]
-	screenwidth = getDesktop(0).size().width()
-	if screenwidth and screenwidth == 1920:
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(15, 8), size=(60, 60), flags = BT_SCALE, png=entry[0]))  # png vorn
-		res.append(MultiContentEntryText(pos=(90, 15), size=(810, 60), font=0, text=entry[1]))  # menupunkt
-	else:
-		res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(40, 40), png=entry[0]))  # png vorn
-		res.append(MultiContentEntryText(pos=(60, 10), size=(540, 40), font=0, text=entry[1]))  # menupunkt
+	sf = getSkinFactor()
+	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags = BT_SCALE, png=entry[0]))  # png vorn
+	res.append(MultiContentEntryText(pos=(60*sf, 10*sf), size=(540*sf, 40*sf), font=0, text=entry[1]))  # menupunkt
 	return res
 ###################  Max Test ###################
 
@@ -358,7 +350,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Infos"), 'Infos')))
 		self.onChangedEntry = []
-		if (getDesktop(0).size().width() == 1280):
+		if getSkinFactor() == 1:
 			self["Mlist"] = PanelList([])
 		else:
 			self["Mlist"] = PanelList([], font0=24, font1=15, itemHeight=50)

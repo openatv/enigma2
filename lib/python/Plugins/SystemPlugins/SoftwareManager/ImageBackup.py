@@ -648,13 +648,17 @@ class ImageBackup(Screen):
 				cmdlist.append('echo "' + _("This only takes about 1 or 2 minutes") + '"')
 				cmdlist.append('echo " "')
 
-				cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.IMAGEFOLDER))
-				cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+				imagefolder = self.IMAGEFOLDER.split('/')[0]
+				target = self.TARGET
+				if '/' in self.IMAGEFOLDER:
+					target +='/%s' %imagefolder 
+				cmdlist.append('mkdir -p %s/%s' % (self.TARGET, imagefolder))
+				cmdlist.append('cp -r %s %s/' % (self.MAINDEST, target))
 				if self.MACHINEBUILD in ("h9","i55plus","hd60","hd61"):
-					cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.TARGET))
-					cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.TARGET))
+					cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(target))
+					cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(target))
 				if self.MACHINEBUILD in ("multibox","v8plus","h9combo"):
-					cmdlist.append('cp -f /usr/share/update_bootargs_%s.bin %s/update_bootargs_%s.bin' %(self.MACHINEBUILD,self.TARGET,self.MACHINEBUILD))
+					cmdlist.append('cp -f /usr/share/update_bootargs_%s.bin %s/update_bootargs_%s.bin' %(self.MACHINEBUILD,target,self.MACHINEBUILD))
 
 				cmdlist.append("sync")
 				cmdlist.append('echo "' + _("Backup finished and copied to your USB-flash drive") + '"')

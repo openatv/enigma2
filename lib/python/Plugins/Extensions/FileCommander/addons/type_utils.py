@@ -158,7 +158,7 @@ class vEditor(Screen, HelpableScreen):
 				# screen: ... size="1140,30" font="screen_text; 20"
 				# font:   ... <alias name="FileList" font="screen_text" size="20" height="30" />
 				font = skin.fonts.get("FileList", ("Regular", 20, 30))
-				fieldwidth = int(1140*font[1]/(20*1.0)) #fhd?
+				fieldwidth = int(1140*skin.getSkinFactor()) #fhd?
 				length=1
 				if firstpos_end:
 					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText)-length:], True).width() <= fieldwidth:

@@ -23,6 +23,7 @@ from Screens.LocationBox import LocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
 from Screens.MovieSelection import defaultMoviePath
+from Screens.InfoBar import InfoBar
 
 # Tools
 from Tools.BoundFunction import boundFunction
@@ -77,6 +78,22 @@ config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1,
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=False)
+config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices = [
+				("0.0", _("Name")),
+				("0.1", _("Name reverse")),
+				("1.0", _("Datum")),
+				("1.1", _("Datum reverse"))])
+config.plugins.filecommander.sortFiles = ConfigSelection(default = "0.0", choices = [
+				("0.0", _("Name")),
+				("0.1", _("Name reverse")),
+				("1.0", _("Datum")),
+				("1.1", _("Datum reverse")),
+				("2.0", _("Size")), 
+				("2.1", _("Size reverse"))])
+config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
+tmp = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles.value)
+config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmp))
+config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmp))
 
 config.plugins.filecommander.path_left_tmp = ConfigText(default=config.plugins.filecommander.path_left.value)
 config.plugins.filecommander.path_right_tmp = ConfigText(default=config.plugins.filecommander.path_right.value)
@@ -100,6 +117,15 @@ class FileCommanderConfigScreen(Setup):
 	def pathSelected(self, res):
 		if res is not None:
 			config.plugins.filecommander.path_default.value = res
+
+def formatSortingTyp(sortDirs, sortFiles):
+	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
+	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
+	sD = ('n','d','s')[sortDirs] #name, date, size
+	sF = ('n','d','s')[sortFiles]
+	rD = ('+','-')[reverseDirs] #normal, reverse
+	rF = ('+','-')[reverseFiles]
+	return '[D]%s%s[F]%s%s' %(sD,rD,sF,rF)
 
 ###################
 # ## Main Screen ###
@@ -135,8 +161,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 					}
 				</convert>
 			</widget>
-			<widget name="list_left" position="10,85" size="570,470" scrollbarMode="showOnDemand"/>
-			<widget name="list_right" position="595,85" size="570,470" scrollbarMode="showOnDemand"/>
+			<widget name="list_left" position="10,85" size="570,460" scrollbarMode="showOnDemand"/>
+			<widget name="list_right" position="595,85" size="570,460" scrollbarMode="showOnDemand"/>
+			<widget name="sort_left" position="10,550" size="570,15" halign="center" font="Regular;15" foregroundColor="#00fff000"/>
+			<widget name="sort_right" position="595,550" size="570,15" halign="center" font="Regular;15" foregroundColor="#00fff000"/>
 			<widget name="key_red" position="100,570" size="260,25" transparent="1" font="Regular;20"/>
 			<widget name="key_green" position="395,570" size="260,25"  transparent="1" font="Regular;20"/>
 			<widget name="key_yellow" position="690,570" size="260,25" transparent="1" font="Regular;20"/>
@@ -190,8 +218,17 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self["list_right_head1"] = Label(path_right)
 		self["list_right_head2"] = List()
 
-		self["list_left"] = FileList(path_left, matchingPattern=filter)
-		self["list_right"] = FileList(path_right, matchingPattern=filter)
+		# set sorting
+		sortDirs = config.plugins.filecommander.sortDirs.value
+		sortFiles = config.plugins.filecommander.sortFiles.value
+		firstDirs = config.plugins.filecommander.firstDirs.value
+
+		self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFiles, firstDirs=firstDirs)
+		self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFiles, firstDirs=firstDirs)
+
+		sort = formatSortingTyp(sortDirs,sortFiles)
+		self["sort_left"] = Label(sort)
+		self["sort_right"] = Label(sort)
 
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Move"))
@@ -230,6 +267,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"0": (self.doRefresh, _("Refresh screen")),
 			"showMovies": (self.listSelect, _("Enter multi-file selection mode")),
 			"subtitleSelection": self.downloadSubtitles,  # Unimplemented
+			"redlong": (self.goRedLong, _("Sorting directorys by name, size, date")),
+			"greenlong": (self.goGreenLong, _("Reverse directory sorting")),
+			"yellowlong": (self.goYellowLong, _("Sorting files by name, size, date")),
+			"bluelong": (self.goBlueLong, _("Reverse file sorting")),
 		}, -1)
 
 		if config.plugins.filecommander.path_left_selected:
@@ -404,6 +445,20 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				self["list_right"].matchingPattern = re.compile(filter)
 				self.onLayout()
 			del self.oldFilterSettings
+
+		sortDirs = config.plugins.filecommander.sortDirs.value
+		sortFiles = config.plugins.filecommander.sortFiles.value
+		firstDirs = config.plugins.filecommander.firstDirs.value
+
+		sort = formatSortingTyp(sortDirs, sortFiles)
+		self["sort_left"].setText(sort)
+		self["sort_right"].setText(sort)
+
+		self.SOURCELIST.setSortBy(sortDirs, True)
+		self.TARGETLIST.setSortBy(sortDirs, True)
+		self.SOURCELIST.setSortBy(sortFiles)
+		self.TARGETLIST.setSortBy(sortFiles)
+
 		self.doRefresh()
 
 	def goLeft(self):
@@ -429,6 +484,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		selectedid = self.SOURCELIST.getSelectionID()
 		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
 		config.plugins.filecommander.path_right_tmp.value = self["list_right"].getCurrentDirectory() or ""
+		config.plugins.filecommander.sortingLeft_tmp.value = self["list_left"].getSortBy()
+		config.plugins.filecommander.sortingRight_tmp.value = self["list_right"].getSortBy()
 		if self.SOURCELIST == self["list_left"]:
 			leftactive = True
 		else:
@@ -455,7 +512,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if retval:
 				self.finishedCB(retval)
 		else:
-		   job_manager.AddJob(job, onSuccess=self.finishedCB)
+			job_manager.AddJob(job, onSuccess=self.finishedCB)
 
 	def finishedCB(self, arg):
 		if hasattr(self, "jobs"):
@@ -468,17 +525,69 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				self.updateDirs.clear()
 				del self.containers[:]
 
+	def setSort(self, setDirs = False):
+		sortDirs, sortFiles = self.SOURCELIST.getSortBy().split(',')
+		if setDirs:
+			sort, reverse = [int(x) for x in sortDirs.split('.')]
+			sort += 1
+			if sort > 1:
+				sort = 0
+		else:
+			sort, reverse = [int(x) for x in sortFiles.split('.')]
+			sort += 1
+			if sort > 2:
+				sort = 0
+		return '%d.%d' %(sort, reverse)
+
+	def setReverse(self, setDirs = False):
+		sortDirs, sortFiles = self.SOURCELIST.getSortBy().split(',')
+		if setDirs:
+			sort, reverse = [int(x) for x in sortDirs.split('.')]
+		else:
+			sort, reverse = [int(x) for x in sortFiles.split('.')]
+		reverse += 1
+		if reverse > 1:
+			reverse = 0
+		return '%d.%d' %(sort, reverse)
+
+# ## sorting directorys ###
+	def goRedLong(self):
+		self.SOURCELIST.setSortBy(self.setSort(True), True)
+		self.doRefresh()
+
+# ## reverse sorting directorys ###
+	def goGreenLong(self):
+		self.SOURCELIST.setSortBy(self.setReverse(True), True)
+		self.doRefresh()
+
+# ## sorting files ###
+	def goYellowLong(self):
+		self.SOURCELIST.setSortBy(self.setSort())
+		self.doRefresh()
+
+# ## reverse sorting files ###
+	def goBlueLong(self):
+		self.SOURCELIST.setSortBy(self.setReverse())
+		self.doRefresh()
+
 # ## copy ###
 	def goYellow(self):
+		if InfoBar.instance.LongButtonPressed:
+			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None) or (targetDir is None):
 			return
+		warntxt = ""
 		if sourceDir not in filename:
-			copytext = _("Copy file - existing file will be overwritten")
+			if os.path.exists(targetDir + filename):
+				warntxt = _(" - file exist! Overwrite")
+			copytext = _("Copy file") + warntxt
 		else:
-			copytext = _("Copy folder - existing folders/files will be overwritten")
+			if os.path.exists(targetDir + filename.split('/')[-2]):
+				warntxt = _(" - folder exist! Overwrite")
+			copytext = _("Copy folder") + warntxt
 		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
 	def doCopy(self, result):
@@ -498,6 +607,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## delete ###
 	def goRed(self):
+		if InfoBar.instance.LongButtonPressed:
+			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None):
@@ -523,15 +634,22 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## move ###
 	def goGreen(self):
+		if InfoBar.instance.LongButtonPressed:
+			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None) or (targetDir is None):
 			return
+		warntxt = ""
 		if sourceDir not in filename:
-			movetext = _("Move file")
+			if os.path.exists(targetDir + filename):
+				warntxt = _(" - file exist! Overwrite")
+			movetext = _("Move file") + warntxt
 		else:
-			movetext = _("Move folder")
+			if os.path.exists(targetDir + filename.split('/')[-2]):
+				warntxt = _(" - folder exist! Overwrite")
+			movetext = _("Move folder") + warntxt
 		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
 
 	def doMove(self, result):
@@ -553,6 +671,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## rename ###
 	def goBlue(self):
+		if InfoBar.instance.LongButtonPressed:
+			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		length = config.plugins.filecommander.input_length.value
@@ -738,6 +858,13 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def doRefresh(self):
+		sortDirs, sortFiles = self.SOURCELIST.getSortBy().split(',')
+		sort = formatSortingTyp(sortDirs, sortFiles)
+		if self.SOURCELIST == self["list_left"]:
+			self["sort_left"].setText(sort)
+		else:
+			self["sort_right"].setText(sort)
+
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 		self.updateHead()
@@ -832,8 +959,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 					}
 				</convert>
 			</widget>
-			<widget name="list_left" position="10,85" size="570,470" scrollbarMode="showOnDemand"/>
-			<widget name="list_right" position="595,85" size="570,470" scrollbarMode="showOnDemand"/>
+			<widget name="list_left" position="10,85" size="570,460" scrollbarMode="showOnDemand"/>
+			<widget name="list_right" position="595,85" size="570,460" scrollbarMode="showOnDemand"/>
+			<widget name="sort_left" position="10,550" size="570,15" halign="center" font="Regular;15" foregroundColor="#00fff000"/>
+			<widget name="sort_right" position="595,550" size="570,15" halign="center" font="Regular;15" foregroundColor="#00fff000"/>
 			<widget name="key_red" position="100,570" size="260,25" transparent="1" font="Regular;20"/>
 			<widget name="key_green" position="395,570" size="260,25"  transparent="1" font="Regular;20"/>
 			<widget name="key_yellow" position="690,570" size="260,25" transparent="1" font="Regular;20"/>
@@ -854,6 +983,16 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		path_left = config.plugins.filecommander.path_left_tmp.value or None
 		path_right = config.plugins.filecommander.path_right_tmp.value or None
 
+		# set sorting
+		sortDirsLeft, sortFilesLeft = config.plugins.filecommander.sortingLeft_tmp.value.split(',')
+		sortDirsRight, sortFilesRight = config.plugins.filecommander.sortingRight_tmp.value.split(',')
+		firstDirs = config.plugins.filecommander.firstDirs.value
+
+		sortleft = formatSortingTyp(sortDirsLeft,sortFilesLeft)
+		sortright = formatSortingTyp(sortDirsRight,sortFilesRight)
+		self["sort_left"] = Label(sortleft)
+		self["sort_right"] = Label(sortright)
+
 		# set filter
 		filter = self.fileFilter()
 
@@ -864,14 +1003,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["list_right_head2"] = List()
 
 		if leftactive:
-			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter)
-			self["list_right"] = FileList(path_right, matchingPattern=filter)
+			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+			self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
 			self.onLayoutFinish.append(self.listLeft)
 		else:
-			self["list_left"] = FileList(path_left, matchingPattern=filter)
-			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter)
+			self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
 			self.onLayoutFinish.append(self.listRight)
@@ -925,7 +1064,6 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.close(jobs, updateDirs)
 
 	def ok(self):
-
 		if self.ACTIVELIST == self.SOURCELIST:
 			self.changeSelectionState()
 		else:
@@ -1102,6 +1240,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 				"down": self.pageDown,
 			}, prio=-1)
 
+		self.setTitle(_("File/Directory Status Information"))
 		self.source = source
 
 		self.onShown.append(self.fillList)

@@ -155,7 +155,7 @@ class key_actions(stat_info):
 		self.longname = sourceDir + filename
 		if not dirsource.canDescent():
 			askList = [(_("Set archive mode (644)"), "CHMOD644"), (_("Set executable mode (755)"), "CHMOD755"), (_("Cancel"), "NO")]
-			self.session.openWithCallback(self.do_change_mod, ChoiceBox, title=_("Do you want change rights?\\n" + filename), list=askList)
+			self.session.openWithCallback(self.do_change_mod, ChoiceBox, title=(_("Do you want change rights?\\n") + filename), list=askList)
 		else:
 			self.session.open(MessageBox, _("Not allowed with folders"), type=MessageBox.TYPE_INFO, close_on_any_key=True)
 
@@ -261,25 +261,38 @@ class key_actions(stat_info):
 			config.plugins.filecommander.my_extension.value
 		)
 
-	def run_script(self, dirsource):
+	def run_script(self, dirsource, dirtarget):
 		filename = dirsource.getFilename()
 		sourceDir = dirsource.getCurrentDirectory()
 		longname = sourceDir + filename
 		self.commando = (longname,)
-		askList = [(_("Cancel"), "NO"), (_("View or edit this shell script"), "VIEW"), (_("Run script"), "YES")]
+		self.parameter = ''
+		if dirtarget is not None:
+			self.parameter  = dirtarget.getFilename()
+		stxt = 'shell'
+		if self.commando[0].endswith('.py'):
+			stxt = 'python'
+		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES")]
+		if self.parameter:
+			askList.append((_("Run script with optional parameter"), "PAR"))
+			filename += _('\noptional parameter:\n%s') %self.parameter
 		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n" + filename), list=askList)
 
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
-		if answer == "YES":
+		if answer in ("YES", "PAR"):
 			if not os.access(self.commando[0], os.R_OK):
 				self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando[0], type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 				return
-
-			if os.access(self.commando[0], os.X_OK):
-				self.session.open(Console, cmdlist=(self.commando,))
+			if answer == "PAR":
+				self.commando = (self.commando[0], self.parameter)
+			if self.commando[0].endswith('.sh'):
+				if os.access(self.commando[0], os.X_OK):
+					self.session.open(Console, cmdlist=(self.commando,))
+				else:
+					self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
 			else:
-				self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
+				self.session.open(Console, cmdlist=((("/usr/bin/python",) + self.commando),))
 		elif answer == "VIEW":
 			try:
 				yfile = os.stat(self.commando[0])
@@ -488,8 +501,6 @@ class key_actions(stat_info):
 			self.SOURCELIST.moveToIndex(idx)
 
 	def onFileAction(self, dirsource, dirtarget):
-		self.SOURCELIST = dirsource
-		self.TARGETLIST = dirtarget
 		filename = dirsource.getFilename()
 		self.SOURCELIST = dirsource
 		self.TARGETLIST = dirtarget
@@ -534,8 +545,8 @@ class key_actions(stat_info):
 					self.SOURCELIST.getCurrentDirectory(),
 					filename
 				)
-		elif filetype == ".sh":
-			self.run_script(self.SOURCELIST)
+		elif filetype in (".sh", ".py"):
+			self.run_script(self.SOURCELIST, self.TARGETLIST)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
