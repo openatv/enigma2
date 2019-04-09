@@ -23,7 +23,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDa
 VERSION = _("Version") + " 6.2 openATV"
 
 HaveGZkernel = True
-if getMachineBuild() in ('gbmv200','multibox','vuduo4k','v8plus','ustym4kpro','beyonwizv2','hd60','hd61','i55plus','osmio4k','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
+if getMachineBuild() in ('gbmv200','multibox','vuduo4k','v8plus','ustym4kpro','beyonwizv2','hd60','hd61','i55plus','osmio4k','osmio4kplus','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -69,7 +69,7 @@ class ImageBackup(Screen):
 		if self.MACHINEBUILD in ("hd51","vs1500","h7","8100s"):
 			self.MTDBOOT = "mmcblk0p1"
 			self.EMMCIMG = "disk.img"
-		elif self.MACHINEBUILD in ("xc7439","osmio4k"):
+		elif self.MACHINEBUILD in ("xc7439","osmio4k","osmio4kplus"):
 			self.MTDBOOT = "mmcblk1p1"
 			self.EMMCIMG = "emmc.img"
 		elif self.MACHINEBUILD in ("gbmv200","cc1","sf8008","ustym4kpr"):
@@ -185,7 +185,7 @@ class ImageBackup(Screen):
 				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		elif self.MACHINEBUILD in ("osmio4k"):
+		elif self.MACHINEBUILD in ("osmio4k","osmio4kplus"):
 			if self.list[self.selection] == "Recovery":
 				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 			else:
