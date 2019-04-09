@@ -75,11 +75,11 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersSatellite.FEC_1_2 : "1/2",
 			eDVBFrontendParametersSatellite.FEC_2_3 : "2/3",
 			eDVBFrontendParametersSatellite.FEC_3_4 : "3/4",
+			eDVBFrontendParametersSatellite.FEC_3_5 : "3/5",
+			eDVBFrontendParametersSatellite.FEC_4_5 : "4/5",
 			eDVBFrontendParametersSatellite.FEC_5_6 : "5/6",
 			eDVBFrontendParametersSatellite.FEC_6_7 : "6/7",
 			eDVBFrontendParametersSatellite.FEC_7_8 : "7/8",
-			eDVBFrontendParametersSatellite.FEC_3_5 : "3/5",
-			eDVBFrontendParametersSatellite.FEC_4_5 : "4/5",
 			eDVBFrontendParametersSatellite.FEC_8_9 : "8/9",
 			eDVBFrontendParametersSatellite.FEC_9_10 : "9/10"}.get(tp.get("fec_inner"))
 		ret["modulation"] = {
@@ -125,9 +125,6 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			ret["pls_mode"] = None
 			ret["is_id"] = None
 			ret["pls_code"] = None
-			ret["t2mi_plp_id"] = None
-			ret["t2mi_pid"] = None
-			
 	elif tunertype == "DVB-C":
 		ret["tuner_type"] = _("Cable")
 		ret["modulation"] = {
@@ -147,11 +144,12 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersCable.FEC_1_2 : "1/2",
 			eDVBFrontendParametersCable.FEC_2_3 : "2/3",
 			eDVBFrontendParametersCable.FEC_3_4 : "3/4",
-			eDVBFrontendParametersCable.FEC_5_6 : "5/6",
-			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
-			eDVBFrontendParametersCable.FEC_8_9 : "8/9",
 			eDVBFrontendParametersCable.FEC_3_5 : "3/5",
 			eDVBFrontendParametersCable.FEC_4_5 : "4/5",
+			eDVBFrontendParametersCable.FEC_5_6 : "5/6",
+			eDVBFrontendParametersCable.FEC_6_7 : "6/7",
+			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
+			eDVBFrontendParametersCable.FEC_8_9 : "8/9",
 			eDVBFrontendParametersCable.FEC_9_10 : "9/10"}.get(tp.get("fec_inner"))
 		ret["system"] = {
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
@@ -173,6 +171,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
 			eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
 			eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
+			eDVBFrontendParametersTerrestrial.FEC_3_5 : "3/5",
+			eDVBFrontendParametersTerrestrial.FEC_4_5 : "4/5",
 			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
@@ -183,6 +183,8 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
 			eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
 			eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
+			eDVBFrontendParametersTerrestrial.FEC_3_5 : "3/5",
+			eDVBFrontendParametersTerrestrial.FEC_4_5 : "4/5",
 			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",

@@ -76,13 +76,14 @@ class ServiceScan:
 								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, ' '),
 							tp.symbol_rate/1000,
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
-								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
-								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
-								tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec, ""))
-						if tp.is_id > -1 and tp.system == tp.System_DVB_S2:
-							tp_text = ("%s IS %d") % (tp_text, tp.is_id)
+								tp.FEC_3_4 : "3/4", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
+								tp.FEC_5_6 : "5/6", tp.FEC_6_7 : "6/7", tp.FEC_7_8 : "7/8",
+								tp.FEC_8_9 : "8/9", tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec, ""))
+						if tp.system == tp.System_DVB_S2:
+							if tp.is_id > tp.No_Stream_Id_Filter:
+								tp_text = ("%s MIS %d") % (tp_text, tp.is_id)
 							if tp.pls_code > 0:
- 								tp_text = ("%s Gold %d") % (tp_text, tp.pls_code)
+								tp_text = ("%s Gold %d") % (tp_text, tp.pls_code)
 							if tp.t2mi_plp_id > tp.No_T2MI_PLP_Id:
 								tp_text = ("%s T2MI %d PID %d") % (tp_text, tp.t2mi_plp_id, tp.t2mi_pid)
 					elif tp_type == iDVBFrontend.feCable:
@@ -95,8 +96,9 @@ class ServiceScan:
 							tp.frequency,
 							tp.symbol_rate/1000,
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
-								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
-								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5", tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec_inner, ""))
+								tp.FEC_3_4 : "3/4", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
+								tp.FEC_5_6 : "5/6", tp.FEC_6_7 : "6/7", tp.FEC_7_8 : "7/8",
+								tp.FEC_8_9 : "8/9", tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec_inner, ""))
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
