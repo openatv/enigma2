@@ -278,7 +278,7 @@ class key_actions(stat_info):
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))
 			filename += _('\noptional parameter:\n%s') %self.parameter
-		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n" + filename), list=askList)
+		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n") + filename, list=askList)
 
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
