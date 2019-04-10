@@ -897,6 +897,7 @@ class FileCommanderContextMenu(Screen):
 
 	def __init__(self, session, contexts, list):
 		Screen.__init__(self, session)
+		self.setTitle(_("File Commander context menu"))
 		actions = {
 			"ok": self.goOk,
 			"cancel": self.goCancel,
