@@ -269,10 +269,12 @@ class key_actions(stat_info):
 		self.parameter = ''
 		if dirtarget is not None:
 			self.parameter  = dirtarget.getFilename()
-		stxt = 'shell'
-		if self.commando[0].endswith('.py'):
-			stxt = 'python'
+		stxt = _('python')
+		if self.commando[0].endswith('.sh'):
+			stxt = _('shell')
 		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES")]
+		if self.commando[0].endswith('.pyo'):
+			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))
 			filename += _('\noptional parameter:\n%s') %self.parameter
@@ -545,7 +547,7 @@ class key_actions(stat_info):
 					self.SOURCELIST.getCurrentDirectory(),
 					filename
 				)
-		elif filetype in (".sh", ".py"):
+		elif filetype in (".sh", ".py", ".pyo"):
 			self.run_script(self.SOURCELIST, self.TARGETLIST)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:

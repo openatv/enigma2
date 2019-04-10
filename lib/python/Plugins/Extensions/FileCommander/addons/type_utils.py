@@ -153,7 +153,7 @@ class vEditor(Screen, HelpableScreen):
 			self.findtab = editableText.find("\t", 0, len(editableText))
 			if self.findtab != -1:
 				editableText = editableText.replace("\t", "        ")
-			firstpos_end = True
+			firstpos_end = config.plugins.filecommander.editposition_lineend.value
 			if 'MetrixHD/' in config.skin.primary_skin.value:
 				# screen: ... size="1140,30" font="screen_text; 20"
 				# font:   ... <alias name="FileList" font="screen_text" size="20" height="30" />
@@ -166,7 +166,7 @@ class vEditor(Screen, HelpableScreen):
 						if length > len(editableText):
 							break
 				else:
-					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[:length], True).width() <= fieldwidth:
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText.replace(' ','')[:length], True).width() <= fieldwidth:
 						length+=1
 						if length > len(editableText):
 							break

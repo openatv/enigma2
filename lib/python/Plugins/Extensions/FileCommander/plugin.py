@@ -69,6 +69,7 @@ config.plugins.filecommander.savedir_left = ConfigYesNo(default=False)
 config.plugins.filecommander.savedir_right = ConfigYesNo(default=False)
 config.plugins.filecommander.add_mainmenu_entry = ConfigYesNo(default=False)
 config.plugins.filecommander.add_extensionmenu_entry = ConfigYesNo(default=False)
+config.plugins.filecommander.editposition_lineend = ConfigYesNo(default=False)
 config.plugins.filecommander.path_default = ConfigDirectory(default="")
 config.plugins.filecommander.path_left = ConfigText(default="")
 config.plugins.filecommander.path_right = ConfigText(default="")
@@ -83,17 +84,20 @@ config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices
 				("0.1", _("Name reverse")),
 				("1.0", _("Datum")),
 				("1.1", _("Datum reverse"))])
-config.plugins.filecommander.sortFiles = ConfigSelection(default = "0.0", choices = [
+choicelist = [
 				("0.0", _("Name")),
 				("0.1", _("Name reverse")),
 				("1.0", _("Datum")),
 				("1.1", _("Datum reverse")),
 				("2.0", _("Size")), 
-				("2.1", _("Size reverse"))])
+				("2.1", _("Size reverse"))]
+config.plugins.filecommander.sortFiles_left = ConfigSelection(default = "1.1", choices = choicelist)
+config.plugins.filecommander.sortFiles_right = ConfigSelection(default = "1.1", choices = choicelist)
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
-tmp = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles.value)
-config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmp))
-config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmp))
+tmpLeft = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
+tmpRight = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_right.value)
+config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmpLeft))
+config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmpRight))
 
 config.plugins.filecommander.path_left_tmp = ConfigText(default=config.plugins.filecommander.path_left.value)
 config.plugins.filecommander.path_right_tmp = ConfigText(default=config.plugins.filecommander.path_right.value)
@@ -220,15 +224,17 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 		# set sorting
 		sortDirs = config.plugins.filecommander.sortDirs.value
-		sortFiles = config.plugins.filecommander.sortFiles.value
+		sortFilesLeft = config.plugins.filecommander.sortFiles_left.value
+		sortFilesRight = config.plugins.filecommander.sortFiles_right.value
 		firstDirs = config.plugins.filecommander.firstDirs.value
 
-		self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFiles, firstDirs=firstDirs)
-		self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFiles, firstDirs=firstDirs)
+		self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+		self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
 
-		sort = formatSortingTyp(sortDirs,sortFiles)
-		self["sort_left"] = Label(sort)
-		self["sort_right"] = Label(sort)
+		sortLeft = formatSortingTyp(sortDirs,sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirs,sortFilesRight)
+		self["sort_left"] = Label(sortLeft)
+		self["sort_right"] = Label(sortRight)
 
 		self["key_red"] = Label(_("Delete"))
 		self["key_green"] = Label(_("Move"))
@@ -267,10 +273,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"0": (self.doRefresh, _("Refresh screen")),
 			"showMovies": (self.listSelect, _("Enter multi-file selection mode")),
 			"subtitleSelection": self.downloadSubtitles,  # Unimplemented
-			"redlong": (self.goRedLong, _("Sorting directorys by name, size, date")),
-			"greenlong": (self.goGreenLong, _("Reverse directory sorting")),
-			"yellowlong": (self.goYellowLong, _("Sorting files by name, size, date")),
-			"bluelong": (self.goBlueLong, _("Reverse file sorting")),
+			"redlong": (self.goRedLong, _("Sorting left files by name, date or size")),
+			"greenlong": (self.goGreenLong, _("Reverse left file sorting")),
+			"yellowlong": (self.goYellowLong, _("Reverse right file sorting")),
+			"bluelong": (self.goBlueLong, _("Sorting right files by name, date or size")),
 		}, -1)
 
 		if config.plugins.filecommander.path_left_selected:
@@ -447,17 +453,13 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			del self.oldFilterSettings
 
 		sortDirs = config.plugins.filecommander.sortDirs.value
-		sortFiles = config.plugins.filecommander.sortFiles.value
-		firstDirs = config.plugins.filecommander.firstDirs.value
+		sortFilesLeft = config.plugins.filecommander.sortFiles_left.value
+		sortFilesRight = config.plugins.filecommander.sortFiles_right.value
 
-		sort = formatSortingTyp(sortDirs, sortFiles)
-		self["sort_left"].setText(sort)
-		self["sort_right"].setText(sort)
-
-		self.SOURCELIST.setSortBy(sortDirs, True)
-		self.TARGETLIST.setSortBy(sortDirs, True)
-		self.SOURCELIST.setSortBy(sortFiles)
-		self.TARGETLIST.setSortBy(sortFiles)
+		self["list_left"].setSortBy(sortDirs, True)
+		self["list_right"].setSortBy(sortDirs, True)
+		self["list_left"].setSortBy(sortFilesLeft)
+		self["list_right"].setSortBy(sortFilesRight)
 
 		self.doRefresh()
 
@@ -525,8 +527,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				self.updateDirs.clear()
 				del self.containers[:]
 
-	def setSort(self, setDirs = False):
-		sortDirs, sortFiles = self.SOURCELIST.getSortBy().split(',')
+	def setSort(self, list, setDirs = False):
+		sortDirs, sortFiles = list.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]
 			sort += 1
@@ -539,8 +541,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				sort = 0
 		return '%d.%d' %(sort, reverse)
 
-	def setReverse(self, setDirs = False):
-		sortDirs, sortFiles = self.SOURCELIST.getSortBy().split(',')
+	def setReverse(self, list, setDirs = False):
+		sortDirs, sortFiles = list.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]
 		else:
@@ -550,24 +552,24 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			reverse = 0
 		return '%d.%d' %(sort, reverse)
 
-# ## sorting directorys ###
+# ## sorting files left ###
 	def goRedLong(self):
-		self.SOURCELIST.setSortBy(self.setSort(True), True)
+		self["list_left"].setSortBy(self.setSort(self["list_left"]))
 		self.doRefresh()
 
-# ## reverse sorting directorys ###
+# ## reverse sorting files left ###
 	def goGreenLong(self):
-		self.SOURCELIST.setSortBy(self.setReverse(True), True)
+		self["list_left"].setSortBy(self.setReverse(self["list_left"]))
 		self.doRefresh()
 
-# ## sorting files ###
+# ## reverse sorting files right ###
 	def goYellowLong(self):
-		self.SOURCELIST.setSortBy(self.setSort())
+		self["list_right"].setSortBy(self.setReverse(self["list_right"]))
 		self.doRefresh()
 
-# ## reverse sorting files ###
+# ## sorting files right ###
 	def goBlueLong(self):
-		self.SOURCELIST.setSortBy(self.setReverse())
+		self["list_right"].setSortBy(self.setSort(self["list_right"]))
 		self.doRefresh()
 
 # ## copy ###
@@ -858,12 +860,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def doRefresh(self):
-		sortDirs, sortFiles = self.SOURCELIST.getSortBy().split(',')
-		sort = formatSortingTyp(sortDirs, sortFiles)
-		if self.SOURCELIST == self["list_left"]:
-			self["sort_left"].setText(sort)
-		else:
-			self["sort_right"].setText(sort)
+		sortDirsLeft, sortFilesLeft = self["list_left"].getSortBy().split(',')
+		sortDirsRight, sortFilesRight = self["list_right"].getSortBy().split(',')
+		sortLeft = formatSortingTyp(sortDirsLeft, sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirsRight, sortFilesRight)
+		self["sort_left"].setText(sortLeft)
+		self["sort_right"].setText(sortRight)
 
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
@@ -989,10 +991,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		sortDirsRight, sortFilesRight = config.plugins.filecommander.sortingRight_tmp.value.split(',')
 		firstDirs = config.plugins.filecommander.firstDirs.value
 
-		sortleft = formatSortingTyp(sortDirsLeft,sortFilesLeft)
-		sortright = formatSortingTyp(sortDirsRight,sortFilesRight)
-		self["sort_left"] = Label(sortleft)
-		self["sort_right"] = Label(sortright)
+		sortLeft = formatSortingTyp(sortDirsLeft,sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirsRight,sortFilesRight)
+		self["sort_left"] = Label(sortLeft)
+		self["sort_right"] = Label(sortRight)
 
 		# set filter
 		filter = self.fileFilter()
