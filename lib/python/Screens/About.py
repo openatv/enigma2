@@ -93,7 +93,7 @@ def getAboutText():
 		cpuMHz = "   (2,0 GHz)"
 	elif getMachineBuild() in ('vuduo4k'):
 		cpuMHz = "   (2,1 GHz)"
-	elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k'):
+	elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k','osmio4kplus'):
 		try:
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
@@ -147,7 +147,7 @@ def getAboutText():
 			f.close()
 			if bootname: bootname = "   (%s)" %bootname 
 			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
-	elif getMachineBuild() in ('osmio4k'):
+	elif getMachineBuild() in ('osmio4k','osmio4kplus'):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(38)
@@ -184,7 +184,7 @@ def getAboutText():
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
 
-	if getMachineBuild() not in ('gbmv200','vuduo4k','v8plus','ustym4kpro','beyonwizv2','hd60','hd61','i55plus','osmio4k','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u54','u55','u56','u51','cc1','sf8008'):
+	if getMachineBuild() not in ('gbmv200','vuduo4k','v8plus','ustym4kpro','beyonwizv2','hd60','hd61','i55plus','osmio4k','osmio4kplus','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u54','u55','u56','u51','cc1','sf8008'):
 		AboutText += _("Installed:\t\t%s") % about.getFlashDateString() + "\n"
 
 	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
