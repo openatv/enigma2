@@ -46,7 +46,7 @@ def InitOsd():
 	config.osd.show3dextensions = ConfigYesNo(default = False)
 
 	def set3DMode(configElement):
-		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat', ):
 			# print '[UserInterfacePositioner] Setting 3D mode:',configElement.value
 			file3d = fileCheck('/proc/stb/fb/3dmode') or fileCheck('/proc/stb/fb/primary/3d')
 			f = open(file3d, "w")
@@ -55,7 +55,7 @@ def InitOsd():
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
-		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat'):
+		if SystemInfo["CanChange3DOsd"] and getBoxType() not in ('spycat', ):
 			# print '[UserInterfacePositioner] Setting 3D depth:',configElement.value
 			f = open("/proc/stb/fb/znorm", "w")
 			f.write('%d' % int(configElement.value))

@@ -26,7 +26,7 @@ def InitUsageConfig():
 		("1440", "24 " + _("hours")),
 		])
 
-	if getBrandOEM() in ('vuplus'):
+	if getBrandOEM() in ('vuplus', ):
 		config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 	else:
 		config.misc.remotecontrol_text_support = ConfigYesNo(default=False)

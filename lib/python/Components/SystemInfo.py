@@ -28,11 +28,11 @@ def countFrontpanelLEDs():
 		leds += 1
 	return leds
 
-SystemInfo["IPTVSTB"] = getMachineName() in ('T-pod')
+SystemInfo["IPTVSTB"] = getMachineName() in ('T-pod', )
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
-SystemInfo["7segment"] = getDisplayType() in ('7segment')
-SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and getDisplayType() not in ('7segment')
-SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('7segment')
+SystemInfo["7segment"] = getDisplayType() in ('7segment', )
+SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and not SystemInfo["7segment"]
+SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and not SystemInfo["7segment"]
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 SystemInfo["ZapMode"] = getImageDistro() != "beyonwiz" and (fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
@@ -71,13 +71,13 @@ SystemInfo["3DMode"] = fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/
 SystemInfo["3DZNorm"] = fileCheck("/proc/stb/fb/znorm") or fileCheck("/proc/stb/fb/primary/zoffset")
 SystemInfo["CanUse3DModeChoices"] = fileExists('/proc/stb/fb/3dmode_choices') and True or False
 SystemInfo["HaveMultiBoot"] = (fileCheck("/boot/STARTUP") or fileCheck("/boot/cmdline.txt"))
-SystemInfo["HaveMultiBootHD"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('hd51','vs1500','h7')
-SystemInfo["HaveMultiBootCY"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('8100s')
-SystemInfo["HaveMultiBootOS"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('osmio4k')
+SystemInfo["HaveMultiBootHD"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('hd51', 'vs1500', 'h7')
+SystemInfo["HaveMultiBootCY"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('8100s', )
+SystemInfo["HaveMultiBootOS"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('osmio4k', )
 SystemInfo["HaveMultiBootXC"] = fileCheck("/boot/cmdline.txt")
-SystemInfo["HaveMultiBootGB"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('gb7252')
-SystemInfo["HaveMultiBootDS"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2') and fileCheck("/dev/sda")
-SystemInfo["need_dsw"] = getBoxType() not in ('osminiplus','osmega')
+SystemInfo["HaveMultiBootGB"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('gb7252', )
+SystemInfo["HaveMultiBootDS"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('gbmv200', 'cc1','sf8008', 'ustym4kpro', 'beyonwizv2') and fileCheck("/dev/sda")
+SystemInfo["need_dsw"] = getBoxType() not in ('osminiplus', 'osmega')
 SystemInfo["RecoveryMode"] = fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["Blindscan_t2_available"] = fileCheck("/proc/stb/info/vumodel")
 SystemInfo["HasForceLNBOn"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
@@ -85,13 +85,13 @@ SystemInfo["HasForceToneburst"] = fileCheck("/proc/stb/frontend/fbc/force_tonebu
 SystemInfo["HasMMC"] = getMachineBuild() == 'et13000' or getBoxType() in ('mutant51', 'mutant52', 'sf4008', 'tmtwin4k', 'vusolo4k', 'vuultimo4k', 'vuuno4k')
 SystemInfo["HasHiSi"] = path.exists('/proc/hisi')
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
-SystemInfo["CanDoTranscodeAndPIP"] = getBoxType() in ('vusolo4k',)
+SystemInfo["CanDoTranscodeAndPIP"] = getBoxType() in ('vusolo4k', )
 SystemInfo["hasXcoreVFD"] = fileCheck("/sys/module/brcmstb_%s/parameters/pt6302_cgram" % getBoxType())
 SystemInfo["HDMIin"] = getMachineBuild() in ('inihdp', 'hd2400', 'et10000', 'et13000', 'dm7080', 'dm820', 'dm900', 'gb7252', 'vuultimo4k')
-SystemInfo["HaveRCA"] = getHaveRCA() in ('True')
-SystemInfo["HaveDVI"] = getHaveDVI() in ('True')
-SystemInfo["HaveAVJACK"] = getHaveAVJACK() in ('True')
-SystemInfo["HAVESCART"] = getHaveSCART() in ('True')
-SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() in ('True')
-SystemInfo["HAVEYUV"] = getHaveYUV() in ('True')
-SystemInfo["HAVEHDMI"] = getHaveHDMI() in ('True')
+SystemInfo["HaveRCA"] = getHaveRCA() == 'True'
+SystemInfo["HaveDVI"] = getHaveDVI() == 'True'
+SystemInfo["HaveAVJACK"] = getHaveAVJACK() == 'True'
+SystemInfo["HAVESCART"] = getHaveSCART() == 'True'
+SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() == 'True'
+SystemInfo["HAVEYUV"] = getHaveYUV() == 'True'
+SystemInfo["HAVEHDMI"] = getHaveHDMI() == 'True'
