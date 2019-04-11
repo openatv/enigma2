@@ -83,7 +83,7 @@ config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices
 				("0.0", _("Name")),
 				("0.1", _("Name reverse")),
 				("1.0", _("Date")),
-				("1.1", _("Datum reverse"))])
+				("1.1", _("Date reverse"))])
 choicelist = [
 				("0.0", _("Name")),
 				("0.1", _("Name reverse")),
@@ -246,10 +246,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"ok": (self.ok, _("Play/view/edit/install/extract/run file or enter directory")),
 			"back": (self.exit, _("Leave File Commander")),
 			"menu": (self.goContext, _("Open settings/actions menu")),
-			"nextMarker": (self.listRight, _("Activate right-hand file list as source")),
-			"prevMarker": (self.listLeft, _("Activate left-hand file list as source")),
-			"nextBouquet": (self.listRight, _("Activate right-hand file list as source")),
-			"prevBouquet": (self.listLeft, _("Activate left-hand file list as source")),
+			"nextMarker": (self.changeList, _("Activate right-hand file list as source")),
+			"prevMarker": (self.changeList, _("Activate left-hand file list as source")),
+			"nextBouquet": (self.changeList, _("Activate right-hand file list as source")),
+			"prevBouquet": (self.changeList, _("Activate left-hand file list as source")),
 			"1": (self.gomakeDir, _("Create directory/folder")),
 			"2": (self.gomakeSym, _("Create user-named symbolic link")),
 			"3": (self.gofileStatInfo, _("File/Directory Status Information")),
@@ -871,6 +871,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.TARGETLIST.refresh()
 		self.updateHead()
 
+	def changeList(self):
+		if self.SOURCELIST == self["list_left"]:
+			self.listRight()
+		else:
+			self.listLeft()
+
 	def listRight(self):
 		self["list_left"].selectionEnabled(0)
 		self["list_right"].selectionEnabled(1)
@@ -1026,10 +1032,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["actions"] = HelpableActionMap(self, ["ChannelSelectBaseActions", "WizardActions", "FileNavigateActions", "MenuActions", "NumberActions", "ColorActions", "InfobarActions"], {
 			"ok": (self.ok, _("Select (source list) or enter directory (target list)")),
 			"back": (self.exit, _("Leave multi-select mode")),
-			"nextMarker": (self.listRight, _("Activate right-hand file list as multi-select source")),
-			"prevMarker": (self.listLeft, _("Activate left-hand file list as multi-select source")),
-			"nextBouquet": (self.listRight, _("Activate right-hand file list as multi-select source")),
-			"prevBouquet": (self.listLeft, _("Activate left-hand file list as multi-select source")),
+			"nextMarker": (self.changeList, _("Activate right-hand file list as multi-select source")),
+			"prevMarker": (self.changeList, _("Activate left-hand file list as multi-select source")),
+			"nextBouquet": (self.changeList, _("Activate right-hand file list as multi-select source")),
+			"prevBouquet": (self.changeList, _("Activate left-hand file list as multi-select source")),
 			"info": (self.openTasklist, _("Show task list")),
 			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
 			"up": (self.goUp, _("Move up list")),
@@ -1170,6 +1176,12 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 		self.updateHead()
+
+	def changeList(self):
+		if self.SOURCELIST == self["list_left"]:
+			self.listRight()
+		else:
+			self.listLeft()
 
 	def listRight(self):
 		self["list_left"].selectionEnabled(0)
