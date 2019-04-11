@@ -82,13 +82,13 @@ config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=Fal
 config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices = [
 				("0.0", _("Name")),
 				("0.1", _("Name reverse")),
-				("1.0", _("Datum")),
+				("1.0", _("Date")),
 				("1.1", _("Datum reverse"))])
 choicelist = [
 				("0.0", _("Name")),
 				("0.1", _("Name reverse")),
-				("1.0", _("Datum")),
-				("1.1", _("Datum reverse")),
+				("1.0", _("Date")),
+				("1.1", _("Date reverse")),
 				("2.0", _("Size")), 
 				("2.1", _("Size reverse"))]
 config.plugins.filecommander.sortFiles_left = ConfigSelection(default = "1.1", choices = choicelist)
