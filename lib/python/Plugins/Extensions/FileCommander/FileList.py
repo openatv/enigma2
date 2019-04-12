@@ -75,24 +75,13 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 def getSortedList(list, sortBy, dir=''):
 	sort, reverse = [int(x) for x in sortBy.split('.')]
 	tmplist = []
-
 	for x in list:
 		dx = dir + x
-		if False and os.path.isdir(dx): #experimental - performance slowly!!!
-			size = 0
-			for (path, dirs, files) in os.walk(dx):
-			  for file in files:
-				filename = os.path.join(path, file)
-				try:
-					size += os.path.getsize(filename)
-				except:
-					pass
-			date = os.path.getctime(dx)
-		else:
-			date = os.path.getctime(dx)
-			size = os.path.getsize(dx)
+		date = size = 0
+		if os.access(dx, os.R_OK):
+			stat = os.lstat(dx)
+			date, size = stat.st_ctime, stat.st_size
 		tmplist.append((x, date, size))
-
 	tmplist = sorted(tmplist, key=lambda x: x[sort], reverse=reverse)
 	list = []
 	for x in tmplist:

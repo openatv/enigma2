@@ -266,17 +266,19 @@ class key_actions(stat_info):
 		sourceDir = dirsource.getCurrentDirectory()
 		longname = sourceDir + filename
 		self.commando = (longname,)
-		self.parameter = ''
-		if dirtarget is not None:
-			self.parameter  = dirtarget.getFilename()
-		stxt = 'shell'
-		if self.commando[0].endswith('.py'):
-			stxt = 'python'
+		self.parameter = dirtarget.getFilename() or ''
+		if not os.access(self.parameter, os.R_OK):
+			self.parameter = (dirtarget.getCurrentDirectory() or '') + self.parameter
+		stxt = _('python')
+		if self.commando[0].endswith('.sh'):
+			stxt = _('shell')
 		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES")]
+		if self.commando[0].endswith('.pyo'):
+			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))
 			filename += _('\noptional parameter:\n%s') %self.parameter
-		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n" + filename), list=askList)
+		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n") + filename, list=askList)
 
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
@@ -545,7 +547,7 @@ class key_actions(stat_info):
 					self.SOURCELIST.getCurrentDirectory(),
 					filename
 				)
-		elif filetype in (".sh", ".py"):
+		elif filetype in (".sh", ".py", ".pyo"):
 			self.run_script(self.SOURCELIST, self.TARGETLIST)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
