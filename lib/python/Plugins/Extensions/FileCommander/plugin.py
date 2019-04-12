@@ -75,6 +75,7 @@ config.plugins.filecommander.path_left = ConfigText(default="")
 config.plugins.filecommander.path_right = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
 config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My Extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
+config.plugins.filecommander.change_navbutton = ConfigSelection(default="no", choices=[("no", _("No")), ("always", _("Channel button always changes sides")), ("yes", _("Yes"))])
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
@@ -248,8 +249,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"menu": (self.goContext, _("Open settings/actions menu")),
 			"nextMarker": (self.listRight, _("Activate right-hand file list as source")),
 			"prevMarker": (self.listLeft, _("Activate left-hand file list as source")),
-			"nextBouquet": (self.changeList, _("Activate right-hand file list as source")),
-			"prevBouquet": (self.changeList, _("Activate left-hand file list as source")),
+			"nextBouquet": (self.listRightB, _("Activate right-hand file list as source")),
+			"prevBouquet": (self.listLeftB, _("Activate left-hand file list as source")),
 			"1": (self.gomakeDir, _("Create directory/folder")),
 			"2": (self.gomakeSym, _("Create user-named symbolic link")),
 			"3": (self.gofileStatInfo, _("File/Directory Status Information")),
@@ -264,8 +265,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
 			"up": (self.goUp, _("Move up list")),
 			"down": (self.goDown, _("Move down list")),
-			"left": (self.goLeft, _("Page up list")),
-			"right": (self.goRight, _("Page down list")),
+			"left": (self.goLeftB, _("Page up list")),
+			"right": (self.goRightB, _("Page down list")),
 			"red": (self.goRed, _("Delete file or directory (and all its contents)")),
 			"green": (self.goGreen, _("Move file/directory to target directory")),
 			"yellow": (self.goYellow, _("Copy file/directory to target directory")),
@@ -462,6 +463,18 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self["list_right"].setSortBy(sortFilesRight)
 
 		self.doRefresh()
+
+	def goLeftB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.listLeft()
+		else:
+			self.goLeft()
+
+	def goRightB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.listRight()
+		else:
+			self.goRight()
 
 	def goLeft(self):
 		self.SOURCELIST.pageUp()
@@ -871,8 +884,18 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.TARGETLIST.refresh()
 		self.updateHead()
 
-	def changeList(self):
-		if self.SOURCELIST == self["list_left"]:
+	def listRightB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.goLeft()
+		elif config.plugins.filecommander.change_navbutton.value == 'always' and self.SOURCELIST == self["list_right"]:
+			self.listLeft()
+		else:
+			self.listRight()
+
+	def listLeftB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.goRight()
+		elif config.plugins.filecommander.change_navbutton.value == 'always' and self.SOURCELIST == self["list_left"]:
 			self.listRight()
 		else:
 			self.listLeft()
@@ -1034,14 +1057,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			"back": (self.exit, _("Leave multi-select mode")),
 			"nextMarker": (self.listRight, _("Activate right-hand file list as multi-select source")),
 			"prevMarker": (self.listLeft, _("Activate left-hand file list as multi-select source")),
-			"nextBouquet": (self.changeList, _("Activate right-hand file list as multi-select source")),
-			"prevBouquet": (self.changeList, _("Activate left-hand file list as multi-select source")),
+			"nextBouquet": (self.listRightB, _("Activate right-hand file list as multi-select source")),
+			"prevBouquet": (self.listLeftB, _("Activate left-hand file list as multi-select source")),
 			"info": (self.openTasklist, _("Show task list")),
 			"directoryUp": (self.goParentfolder, _("Go to parent directory")),
 			"up": (self.goUp, _("Move up list")),
 			"down": (self.goDown, _("Move down list")),
-			"left": (self.goLeft, _("Page up list")),
-			"right": (self.goRight, _("Page down list")),
+			"left": (self.goLeftB, _("Page up list")),
+			"right": (self.goRightB, _("Page down list")),
 			"red": (self.goRed, _("Delete the selected files or directories")),
 			"green": (self.goGreen, _("Move files/directories to target directory")),
 			"yellow": (self.goYellow, _("Copy files/directories to target directory")),
@@ -1086,6 +1109,18 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if self.ACTIVELIST.getParentDirectory() != False:
 			self.ACTIVELIST.changeDir(self.ACTIVELIST.getParentDirectory())
 			self.updateHead()
+
+	def goLeftB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.listLeft()
+		else:
+			self.goLeft()
+
+	def goRightB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.listRight()
+		else:
+			self.goRight()
 
 	def goLeft(self):
 		self.ACTIVELIST.pageUp()
@@ -1177,8 +1212,18 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.TARGETLIST.refresh()
 		self.updateHead()
 
-	def changeList(self):
-		if self.SOURCELIST == self["list_left"]:
+	def listRightB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.goLeft()
+		elif config.plugins.filecommander.change_navbutton.value == 'always' and self.ACTIVELIST == self["list_right"]:
+			self.listLeft()
+		else:
+			self.listRight()
+
+	def listLeftB(self):
+		if config.plugins.filecommander.change_navbutton.value == 'yes':
+			self.goRight()
+		elif config.plugins.filecommander.change_navbutton.value == 'always' and self.ACTIVELIST == self["list_left"]:
 			self.listRight()
 		else:
 			self.listLeft()

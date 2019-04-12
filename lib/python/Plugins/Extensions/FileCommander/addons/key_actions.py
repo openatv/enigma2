@@ -266,11 +266,9 @@ class key_actions(stat_info):
 		sourceDir = dirsource.getCurrentDirectory()
 		longname = sourceDir + filename
 		self.commando = (longname,)
-		self.parameter = ''
-		if dirtarget is not None:
-			self.parameter = dirtarget.getFilename()
-			if not os.access(self.parameter, os.R_OK): #is file
-				self.parameter = dirtarget.getCurrentDirectory() + self.parameter
+		self.parameter = dirtarget.getFilename() or ''
+		if not os.access(self.parameter, os.R_OK):
+			self.parameter = (dirtarget.getCurrentDirectory() or '') + self.parameter
 		stxt = _('python')
 		if self.commando[0].endswith('.sh'):
 			stxt = _('shell')
