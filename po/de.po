@@ -20658,7 +20658,15 @@ msgstr "Wählen Sie das Modell Ihres Unicable/SCR-Geräts aus. Wenn der Herstell
 
 #: python\Screens\Satconfig.py
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
-msgstr "Wählen Sie die User-Band-Frequenz aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-Schalter verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
+msgstr "Wählen Sie den User-Band-Kanal aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die der SCR-Schalter verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
+
+#: python\Screens\Satconfig.py
+msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."
+msgstr "Wählen Sie den User-Band-Kanal aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die das SCR-LNB verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
+
+#: python\Screens\Satconfig.py
+msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR LNB uses to pass the requested transponder to the tuner."
+msgstr "Wählen Sie die User-Band-Frequenz aus, die diesem Tuner zugewiesen werden soll. Dies ist die Frequenz, die das SCR-LNB verwendet, um den angeforderten Transponder an den Tuner zu übergeben."
 
 #: python\Screens\Satconfig.py
 msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
