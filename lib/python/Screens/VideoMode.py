@@ -500,6 +500,8 @@ class AutoVideoMode(Screen):
 		if new_rate == "multi":
 			if video_framerate in (25000, 50000):
 				new_rate = "50"
+			elif SystemInfo["have24hz"] and video_framerate in (23976, 24000):
+				new_rate = "24"
 			else:
 				new_rate = "60"
 
