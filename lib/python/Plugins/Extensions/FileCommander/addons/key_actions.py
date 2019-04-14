@@ -266,9 +266,16 @@ class key_actions(stat_info):
 		sourceDir = dirsource.getCurrentDirectory()
 		longname = sourceDir + filename
 		self.commando = (longname,)
-		self.parameter = dirtarget.getFilename() or ''
-		if not os.access(self.parameter, os.R_OK):
-			self.parameter = (dirtarget.getCurrentDirectory() or '') + self.parameter
+		self.parameter = ''
+		targetdir = dirtarget.getCurrentDirectory()
+		if targetdir is not None:
+			file = dirtarget.getFilename() or ''
+			if file.startswith(targetdir):		# parent folder
+				self.parameter = file
+			elif not targetdir.startswith(file):# filepath
+				self.parameter = targetdir + file
+			else:								# mainfolder
+				self.parameter = targetdir
 		stxt = _('python')
 		if self.commando[0].endswith('.sh'):
 			stxt = _('shell')
@@ -301,7 +308,8 @@ class key_actions(stat_info):
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (self.commando[0], oe.strerror), type=MessageBox.TYPE_ERROR)
 				return
-			if (yfile.st_size < 61440):
+			#if (yfile.st_size < 61440):
+			if (yfile.st_size < 1000000):
 				self.session.open(vEditor, self.commando[0])
 
 	def run_file(self):
@@ -436,6 +444,7 @@ class key_actions(stat_info):
 		toRun = []
 		for prog in progs:
 			toRun += [("echo", "-n", prog[0] + ": "), (prog[1], filepath)]
+		toRun += [("echo", ""),] # add blanc line
 		self.session.open(Console, cmdlist=toRun)
 
 	def play_music(self, dirsource):

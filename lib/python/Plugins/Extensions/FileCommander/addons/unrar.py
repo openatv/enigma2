@@ -7,6 +7,7 @@ from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScree
 import re
 import subprocess
 from Plugins.Extensions.FileCommander.InputBox import InputBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 
 pname = _("File Commander - unrar Addon")
 pdesc = _("unpack Rar Files")
@@ -54,8 +55,9 @@ class RarMenuScreen(ArchiverMenuScreen):
 			print stdlog
 			if 'Corrupt file or wrong password.' in stdlog:
 				print "[RarMenuScreen] pw incorrect!"
-				length = config.plugins.filecommander.input_length.value
-				self.session.openWithCallback(self.setPW, InputBox, text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
+				#length = config.plugins.filecommander.input_length.value
+				#self.session.openWithCallback(self.setPW, InputBox, text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
+				self.session.openWithCallback(self.setPW, VirtualKeyBoard, title=_("%s is password protected.")% self.filename + " " + _("Please enter password"), text="")
 			else:
 				print "[RarMenuScreen] pw correct!"
 				self.unpackModus(self.selectId)
