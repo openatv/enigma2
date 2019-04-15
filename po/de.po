@@ -219,7 +219,7 @@ msgid ""
 "Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Verwalten der %s %s-Erweiterungen und -Plugins"
+"Verwalten der %s %s-Erweiterungen und -Plugins."
 
 #
 msgid ""
@@ -20866,8 +20866,56 @@ msgid "Rename file"
 msgstr "Umbenennen Ordner/Datei"
 
 #: FileCommander
-msgid "Please enter file/folder name"
-msgstr "Bitte den Namen des Ordners/Datei eingeben"
+msgid "Please enter the new file name"
+msgstr "Bitte geben Sie den neuen Dateinamen ein"
+
+#: FileCommander
+msgid "Please enter the new directory name"
+msgstr "Bitte geben Sie den neuen Verzeichnisnamen ein"
+
+#: FileCommander
+msgid "create symlink ..."
+msgstr "erzeuge Symlink ..."
+
+#: FileCommander
+msgid "%s is password protected."
+msgstr "%s ist Passwortgeschützt."
+
+#: FileCommander
+msgid "Please enter password"
+msgstr "Bitte Passwort eingeben"
+
+#: FileCommander
+msgid "Delete 1 element"
+msgstr "1 Element löschen"
+
+#: FileCommander
+msgid "Delete %d elements"
+msgstr "%d Elemente löschen"
+
+#: FileCommander
+msgid "Move 1 element"
+msgstr "1 Element verschieben"
+
+#: FileCommander
+msgid "Move %d elements"
+msgstr "%d Elemente verschieben"
+
+#: FileCommander
+msgid "Copy 1 element"
+msgstr "1 Element kopieren"
+
+#: FileCommander
+msgid "Copy %d elements"
+msgstr "%d Elemente kopieren"
+
+#: FileCommander
+msgid " - 1 element exist! Overwrite"
+msgstr " - 1 Element vorhanden! Überschreiben"
+
+#: FileCommander
+msgid " - %d elements exist! Overwrite"
+msgstr " - %d Elemente vorhanden! Überschreiben"
 
 #: FileCommander
 msgid ""
@@ -20939,7 +20987,7 @@ msgstr "Linke Dateiliste als Quelle aktivieren"
 
 #: FileCommander\plugin.py
 msgid "Create user-named symbolic link"
-msgstr "Sym-Link mit Benutzernamen erstellen"
+msgstr "Symbolischen Link erstellen"
 
 #: FileCommander\plugin.py
 msgid "File/Directory Status Information"
@@ -20995,7 +21043,7 @@ msgstr "Ausgewählten Ordner zu Lesezeichen hinzufügen"
 
 #: FileCommander\plugin.py
 msgid "Create directory/folder"
-msgstr "Verzeichnis/Ordner erstellen"
+msgstr "Verzeichnis erstellen"
 
 #: FileCommander\plugin.py
 msgid "Refresh screen"
@@ -21020,6 +21068,10 @@ msgstr "Auswahl überspringen"
 #: FileCommander/plugin.py
 msgid "My Extension"
 msgstr "Meine Erweiterung"
+
+#: FileCommander/plugin.py
+msgid "File Commander context menu"
+msgstr "File Commander Menü"
 
 #: FileCommander/addons/key_actions.py
 msgid "Run '%s' command"
@@ -21183,7 +21235,7 @@ msgstr "Standardordner"
 
 #: FileCommander/setup.xml
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr "Left den Standardordner fest wenn der linke oder rechte Ordner nicht gespeichert wird, sowie den Zielordner für die Taste 5."
+msgstr "Legt den Standardordner fest, wenn der linke oder rechte Ordner nicht gespeichert wird, sowie den Zielordner für die Taste 5."
 
 #: FileCommander/setup.xml
 msgid "My extension"
@@ -21223,7 +21275,7 @@ msgstr "Datei Prüfsummen / Hash"
 
 #: FileCommander/setup.xml
 msgid "File checksums to calculate for button 9"
-msgstr "Datei-Prüfsummen für Button 9 berechnen."
+msgstr "Datei-Prüfsummen für Taste 9 berechnen."
 
 #: FileCommander/setup.xml
 msgid "Time for Slideshow"
@@ -21232,6 +21284,14 @@ msgstr "Zeit für die Diashow"
 #: FileCommander/setup.xml
 msgid "Time between slides in image viewer slideshow."
 msgstr "Zeit zwischen den Dias in der Bildbetrachter - Diashow."
+
+#: FileCommander/unarchiver.py
+msgid "%s - extraction errors."
+msgstr "%s - Extraktionsfehler."
+
+#: FileCommander/unarchiver.py
+msgid "%s successfully extracted."
+msgstr "%s wurde erfolgreich extrahiert."
 
 #: python\Screens\Satconfig.py
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."

@@ -24,6 +24,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.TaskList import TaskListScreen
 from Screens.MovieSelection import defaultMoviePath
 from Screens.InfoBar import InfoBar
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 
 # Tools
 from Tools.BoundFunction import boundFunction
@@ -78,7 +79,6 @@ config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=
 config.plugins.filecommander.change_navbutton = ConfigSelection(default="no", choices=[("no", _("No")), ("always", _("Channel button always changes sides")), ("yes", _("Yes"))])
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
-config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=False)
 config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices = [
 				("0.0", _("Name")),
@@ -95,16 +95,17 @@ choicelist = [
 config.plugins.filecommander.sortFiles_left = ConfigSelection(default = "1.1", choices = choicelist)
 config.plugins.filecommander.sortFiles_right = ConfigSelection(default = "1.1", choices = choicelist)
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
+config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
+config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), default=["MD5"])
+config.plugins.filecommander.bookmarks = ConfigLocations()
+config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
+
 tmpLeft = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
 tmpRight = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_right.value)
 config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmpLeft))
 config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmpRight))
-
-config.plugins.filecommander.path_left_tmp = ConfigText(default=config.plugins.filecommander.path_left.value)
-config.plugins.filecommander.path_right_tmp = ConfigText(default=config.plugins.filecommander.path_right.value)
-config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
-config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), default=["MD5"])
-config.plugins.filecommander.bookmarks = ConfigLocations()
+config.plugins.filecommander.path_left_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_left.value))
+config.plugins.filecommander.path_right_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_right.value))
 
 # ####################
 # ## Config Screen ###
@@ -592,7 +593,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if (filename is None) or (sourceDir is None) or (targetDir is None):
+		if (filename is None) or (sourceDir is None) or (targetDir is None) or not self.SOURCELIST.getSelectionID():
 			return
 		warntxt = ""
 		if sourceDir not in filename:
@@ -626,7 +627,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		if (filename is None) or (sourceDir is None):
+		if (filename is None) or (sourceDir is None) or not self.SOURCELIST.getSelectionID():
 			return
 		if sourceDir not in filename:
 			deltext = _("Delete file")
@@ -654,7 +655,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if (filename is None) or (sourceDir is None) or (targetDir is None):
+		if (filename is None) or (sourceDir is None) or (targetDir is None) or not self.SOURCELIST.getSelectionID():
 			return
 		warntxt = ""
 		if sourceDir not in filename:
@@ -690,24 +691,28 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
-		length = config.plugins.filecommander.input_length.value
-		if (filename is None) or (sourceDir is None):
+		if (filename is None) or (sourceDir is None) or not self.SOURCELIST.getSelectionID():
 			return
 		filename = os.path.basename(os.path.normpath(filename))
 		if not filename:
 			self.session.open(MessageBox, _("It's not possible to rename the filesystem root."), type=MessageBox.TYPE_ERROR)
 			return
-		self.session.openWithCallback(self.doRename, InputBox, text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter file/folder name"), windowTitle=_("Rename file"))
+		fname = _("Please enter the new file name")
+		if sourceDir in filename:
+			fname = _("Please enter the new directory name")
+		#length = config.plugins.filecommander.input_length.value
+		#self.session.openWithCallback(self.doRename, InputBox, text=filename, visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter file/folder name"), windowTitle=_("Rename file"))
 		# overwrite : False = insert mode (not overwrite) when InputBox is created
 		# firstpos_end : True = cursor at end of text on InputBox creation - False = cursor at start of text on InputBox creation
 		# visible_width : if this width is smaller than the skin width, the text will be scrolled if it is too long
 		# allmarked : text all selected at InputBox creation or not
+		self.session.openWithCallback(self.doRename, VirtualKeyBoard, title=fname, text=filename)
 
 	def doRename(self, newname):
 		if newname:
 			filename = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
-			if (filename is None) or (sourceDir is None):
+			if (filename is None) or (sourceDir is None) or newname == filename:
 				return
 			try:
 				if sourceDir not in filename:
@@ -737,7 +742,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if targetDir is None or filename is None:
+		if targetDir is None or filename is None or not self.SOURCELIST.getSelectionID():
 			return
 		if filename.startswith("/"):
 			if filename == "/":
@@ -746,7 +751,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				filename = os.path.basename(os.path.normpath(filename))
 		elif sourceDir is None:
 			return
-		self.session.openWithCallback(self.doMakesym, InputBox, text=filename, title=_("Please enter name of the new symlink"), windowTitle=_("New symlink"))
+		#self.session.openWithCallback(self.doMakesym, InputBox, text=filename, title=_("Please enter name of the new symlink"), windowTitle=_("New symlink"))
+		self.session.openWithCallback(self.doMakesym, VirtualKeyBoard, title=_("Please enter name of the new symlink"), text=filename)
 
 	def doMakesym(self, newname):
 		if newname:
@@ -798,13 +804,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				targetDir = self.TARGETLIST.getCurrentDirectory()
 				if (filename is None) or (sourceDir is None) or (targetDir is None):
 					return
-				if sourceDir not in filename:
-					return
-					# self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming file ..."), cmdlist=["mv \"" + sourceDir + filename + "\" \"" + sourceDir + newname + "\""])
-					# symlink(sourceDir, targetDir + newname)
-				else:
-					self.session.openWithCallback(self.doRenameCB, Console, title=_("renaming folder ..."), cmdlist=(("ln", "-s", filename, targetDir),))
-				self.doRefresh()
+				if sourceDir in filename:
+					self.session.openWithCallback(self.doRenameCB, Console, title=_("create symlink ..."), cmdlist=(("ln", "-s", filename, targetDir),))
 
 # ## new folder ###
 	def gomakeDir(self):
@@ -812,7 +813,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None):
 			return
-		self.session.openWithCallback(self.doMakedir, InputBox, text="", title=_("Please enter name of the new directory"), windowTitle=_("New folder"))
+		#self.session.openWithCallback(self.doMakedir, InputBox, text="", title=_("Please enter name of the new directory"), windowTitle=_("New folder"))
+		self.session.openWithCallback(self.doMakedir, VirtualKeyBoard, title=_("Please enter name of the new directory"), text=_('New folder'))
 
 	def doMakedir(self, newname):
 		if newname:
@@ -848,9 +850,13 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		for side in ("list_left", "list_right"):
 			dir = self[side].getCurrentDirectory()
 			if dir is not None:
-				pathname = self[side].getFilename()
-				if not self[side].canDescent():
-					pathname = dir + pathname
+				file = self[side].getFilename() or ''
+				if file.startswith(dir):
+					pathname = file # subfolder
+				elif not dir.startswith(file):
+					pathname = dir + file # filepath
+				else:
+					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:
@@ -1146,48 +1152,130 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 
 # ## delete select ###
 	def goRed(self):
-		dirs = []
+		if not len(self.selectedFiles):
+			return
+		sourceDir = self.SOURCELIST.getCurrentDirectory()
+
+		cnt = 0
+		filename = ""
+		self.delete_dirs = []
+		self.delete_files = []
+		self.delete_updateDirs = [self.SOURCELIST.getCurrentDirectory()]
 		for file in self.selectedFiles:
+			print 'delete: %s' %file
+			if not cnt:
+				filename += '%s' %file
+			elif cnt < 5:
+				filename += ', %s' %file
+			elif cnt < 6:
+				filename += ', ...'
+			cnt += 1
 			if os.path.isdir(file):
-				dirs.append(file)
+				self.delete_dirs.append(file)
 			else:
-				os.remove(file)
-		self.exit([dirs], [self.SOURCELIST.getCurrentDirectory()])
+				self.delete_files.append(file)
+		if cnt > 1:
+			deltext = _("Delete %d elements") %len(self.selectedFiles)
+		else:
+			deltext = _("Delete 1 element")
+		self.session.openWithCallback(self.doDelete, ChoiceBox, title=deltext + "?\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir), list=[(_("Yes"), True), (_("No"), False)])
+
+	def doDelete(self, result):
+		if result is not None:
+			if result[1]:
+				for file in self.delete_files:
+					print 'delete:', file
+					os.remove(file)
+				self.exit([self.delete_dirs], self.delete_updateDirs)
 
 # ## move select ###
 	def goGreen(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if targetDir is None:
+		if targetDir is None or not len(self.selectedFiles):
 			return
+		sourceDir = self.SOURCELIST.getCurrentDirectory()
 
+		cnt = 0
+		warncnt = 0
+		warntxt = ""
+		filename = ""
 		self.cleanList()
-		updateDirs = [targetDir, self.SOURCELIST.getCurrentDirectory()]
-		jobs = []
+		self.move_updateDirs = [targetDir, self.SOURCELIST.getCurrentDirectory()]
+		self.move_jobs = []
 		for file in self.selectedFiles:
+			if not cnt:
+				filename += '%s' %file
+			elif cnt < 3:
+				filename += ', %s' %file
+			elif cnt < 4:
+				filename += ', ...'
+			cnt += 1
+			if os.path.exists(targetDir + '/' + file.rstrip('/').split('/')[-1]):
+				warncnt += 1
+				if warncnt > 1:
+					warntxt = _(" - %d elements exist! Overwrite") %warncnt
+				else:
+					warntxt = _(" - 1 element exist! Overwrite")
 			dst_file = targetDir
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
-			jobs.append(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
-		self.exit(jobs, updateDirs)
+			self.move_jobs.append(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
+		if cnt > 1:
+			movetext = (_("Move %d elements") %len(self.selectedFiles)) + warntxt
+		else:
+			movetext = _("Move 1 element") + warntxt
+		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
+
+	def doMove(self, result):
+		if result is not None:
+			if result[1]:
+				self.exit(self.move_jobs, self.move_updateDirs)
 
 # ## copy select ###
 	def goYellow(self):
 		targetDir = self.TARGETLIST.getCurrentDirectory()
-		if targetDir is None:
+		if targetDir is None or not len(self.selectedFiles):
 			return
+		sourceDir = self.SOURCELIST.getCurrentDirectory()
 
+		cnt = 0
+		warncnt = 0
+		warntxt = ""
+		filename = ""
 		self.cleanList()
-		updateDirs = [targetDir]
-		jobs = []
+		self.copy_updateDirs = [targetDir]
+		self.copy_jobs = []
 		for file in self.selectedFiles:
+			if not cnt:
+				filename += '%s' %file
+			elif cnt < 3:
+				filename += ', %s' %file
+			elif cnt < 4:
+				filename += ', ...'
+			cnt += 1
+			if os.path.exists(targetDir + '/' + file.rstrip('/').split('/')[-1]):
+				warncnt += 1
+				if warncnt > 1:
+					warntxt = _(" - %d elements exist! Overwrite") %warncnt
+				else:
+					warntxt = _(" - 1 element exist! Overwrite")
 			dst_file = targetDir
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			if file.endswith("/"):
-				jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
+				self.copy_jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
 			else:
-				jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
-		self.exit(jobs, updateDirs)
+				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+		if cnt > 1:
+			copytext = (_("Copy %d elements") %len(self.selectedFiles)) + warntxt
+		else:
+			copytext = _("Copy 1 element") + warntxt
+		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
+
+	def doCopy(self, result):
+		if result is not None:
+			if result[1]:
+				self.exit(self.copy_jobs, self.copy_updateDirs)
 
 	def goBlue(self):
 		self.exit()
@@ -1197,9 +1285,13 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		for side in ("list_left", "list_right"):
 			dir = self[side].getCurrentDirectory()
 			if dir is not None:
-				pathname = self[side].getFilename()
-				if not self[side].canDescent():
-					pathname = dir + pathname
+				file = self[side].getFilename() or ''
+				if file.startswith(dir):
+					pathname = file # subfolder
+				elif not dir.startswith(file):
+					pathname = dir + file # filepath
+				else:
+					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:

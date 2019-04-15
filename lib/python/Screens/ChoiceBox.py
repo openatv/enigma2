@@ -40,13 +40,16 @@ class ChoiceBox(Screen):
 		if skin_name and 'SoftwareUpdateChoices' in skin_name:
 			self["menu_path_compressed"] = StaticText(menu_path)
 
+		title_max = 55
+		if 'MetrixHD/' in config.skin.primary_skin.value:
+			title_max += 10
 		if title:
 			title = _(title)
-			if len(title) < 55 and title.find('\n') == -1:
+			if len(title) < title_max and title.find('\n') == -1:
 				Screen.setTitle(self, title)
 			elif title.find('\n') != -1:
 				temptext = title.split('\n')
-				if len(temptext[0]) < 55:
+				if len(temptext[0]) < title_max:
 					Screen.setTitle(self, temptext[0])
 					count = 2
 					labeltext = ""

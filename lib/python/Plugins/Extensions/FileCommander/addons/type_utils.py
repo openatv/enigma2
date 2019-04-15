@@ -122,7 +122,7 @@ class vEditor(Screen, HelpableScreen):
 			warningtext = warningtext + "\n\n" + (_("WARNING!"))
 			warningtext = warningtext + "\n" + (_("The authors are NOT RESPONSIBLE"))
 			warningtext = warningtext + "\n" + (_("for DATA LOSS OR DAMAGE !!!"))
-			msg = self.session.openWithCallback(self.SaveFile, MessageBox, _(self.file_name + self.file_name + warningtext), MessageBox.TYPE_YESNO)
+			msg = self.session.openWithCallback(self.SaveFile, MessageBox, _(self.file_name + warningtext), MessageBox.TYPE_YESNO)
 			msg.setTitle(_("File Commander"))
 		else:
 			self.close()
