@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-12 22:30+0300\n"
-"PO-Revision-Date: 2019-04-12 22:50+0300\n"
+"POT-Creation-Date: 2019-04-14 23:30+0300\n"
+"PO-Revision-Date: 2019-04-15 16:06+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -25,6 +25,12 @@ msgstr "  Raudonas mygtukas: rodyti/slėpti kanalo pavadinimą"
 
 msgid "  REC  "
 msgstr "  ĮRAŠ.  "
+
+msgid " - 1 element exist! Overwrite"
+msgstr " - 1 elementas egzistuoja! Perrašyti"
+
+msgid " - %d elements exist! Overwrite"
+msgstr " - egzistuoja %d elementai! Perrašyti"
 
 msgid " - file exist! Overwrite"
 msgstr " - failas egzistuoja! Perrašyti"
@@ -1983,7 +1989,7 @@ msgid "Add to favourites"
 msgstr "Pridėti prie mėgstamų"
 
 msgid "add to parental protection"
-msgstr "Pridėti į tėvų kontrolę"
+msgstr "pridėti į tėvų kontrolę"
 
 msgid "Add Zap Timer"
 msgstr "Pridėti jungimo laikmatį"
@@ -4388,6 +4394,12 @@ msgstr "kopijuoti"
 msgid "Copy"
 msgstr "Kopijuoti"
 
+msgid "Copy 1 element"
+msgstr "Kopijuoti 1 elementą"
+
+msgid "Copy %d elements"
+msgstr "Kopijuoti %d elementus"
+
 msgid "Copy file"
 msgstr "Kopijuoti failą"
 
@@ -4496,6 +4508,9 @@ msgstr "Sukurti ISO"
 
 msgid "Create seperate radio userbouquet"
 msgstr "Sukurti atskirą radijo vartotojo paketą"
+
+msgid "create symlink ..."
+msgstr "sukurti nuorodą ..."
 
 msgid "Create symlink to file"
 msgstr "Sukurti nuorodą į failą"
@@ -4952,6 +4967,12 @@ msgstr "Trinti"
 
 msgid "Delete %s?"
 msgstr "Trinti %s?"
+
+msgid "Delete 1 element"
+msgstr "Ištrinti 1 elementą"
+
+msgid "Delete %d elements"
+msgstr "Ištrinti %d elementus"
 
 msgid "Delete and unstall Plugins. This will remove the Plugin from your box"
 msgstr "Trinti ir išdiegti priedus. Priedas bus pašalintas iš sistemos"
@@ -6684,7 +6705,7 @@ msgid "File Commander"
 msgstr "Failų valdytojas"
 
 msgid "File Commander - Addon File-Viewer"
-msgstr "Failų valdytojas - Pridėtų failų peržiūra."
+msgstr "Failų valdytojas - Pridėtų failų peržiūra"
 
 msgid "File Commander - Addon Mediaplayer"
 msgstr "Failų valdytojas - Pridėtų medijų grotuvas"
@@ -6739,7 +6760,7 @@ msgstr ""
 "Įrašykite vartotojo vardą ir slaptažodį rankiniu būdu."
 
 msgid "File transfer was cancelled by user"
-msgstr "Failo perkėlimas atšauktas vartotojo."
+msgstr "Failo perkėlimas atšauktas vartotojo"
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "failų formatai (BMP, PNG, JPG, GIF)"
@@ -8044,9 +8065,6 @@ msgstr "Įrašykite konfigūracijos failo pavadinimą:"
 msgid "Input devices"
 msgstr "Įvesties įrenginiai"
 
-msgid "Input length - Filename"
-msgstr "Įvesties ilgis - failo vardas"
-
 msgid "Input Stream ID"
 msgstr "Srauto įvesties ID"
 
@@ -9140,6 +9158,12 @@ msgstr "perkelti"
 msgid "Move"
 msgstr "Perkelti"
 
+msgid "Move 1 element"
+msgstr "Perkelti 1 elementą"
+
+msgid "Move %d elements"
+msgstr "Perkelti %d elementus"
+
 msgid "Move down a page"
 msgstr "Perkelti žemyn puslapį"
 
@@ -9505,9 +9529,6 @@ msgstr "Naujas profilis: "
 
 msgid "New Setting DXAndy "
 msgstr "Naujas nustatymas DXAndy "
-
-msgid "New symlink"
-msgstr "Nauja simbolinė nuoroda"
 
 msgid "New timers location"
 msgstr "Naujų laikmačių vieta"
@@ -10058,9 +10079,6 @@ msgstr "NTSC"
 
 msgid "Number"
 msgstr "Skaičius"
-
-msgid "Number of characters visible in filename entry popup windows."
-msgstr "Ženklų, matomų failo pavadinimo įrašų languose, skaičius."
 
 msgid "Number of digits in channel number"
 msgstr "Kanalo numerio skaitmenų skaičius"
@@ -10828,9 +10846,6 @@ msgstr "Įrašykite naujo failo pavadinimą"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Įrašykite failo pavadinimą (tuščias = šios dienos data)"
 
-msgid "Please enter file/folder name"
-msgstr "Įrašykite failo/aplanko pavadinimą"
-
 msgid "Please enter name of the new directory"
 msgstr "Įrašykite naujojo katalogo pavadinimą"
 
@@ -10844,13 +10859,19 @@ msgid "Please enter new name:"
 msgstr "Įrašykite naują pavadinimą:"
 
 msgid "Please enter password"
-msgstr "Prašome įrašyti slaptažodį:"
+msgstr "Prašome įrašyti slaptažodį"
 
 msgid "Please enter search string for your location"
 msgstr "Įrašykite savo vietovės paieškos eilutę"
 
 msgid "Please enter the correct pin code"
 msgstr "Įrašykite teisingą PIN kodą"
+
+msgid "Please enter the new directory name"
+msgstr "Įrašykite naują katalogo pavadinimą"
+
+msgid "Please enter the new file name"
+msgstr "Įrašykite naują failo pavadinimą"
 
 msgid "Please enter the old PIN code"
 msgstr "Įrašykite seną PIN kodą"
@@ -12208,17 +12229,8 @@ msgstr "pervardinti įrašą"
 msgid "Rename failed!"
 msgstr "Pervadinti nepavyko!"
 
-msgid "Rename file"
-msgstr "Pervadinti failą"
-
 msgid "Rename file/directory"
 msgstr "Pervardyti failą / katalogą"
-
-msgid "renaming file ..."
-msgstr "pervadinamas failas..."
-
-msgid "renaming folder ..."
-msgstr "pervadinamas aplankas ..."
 
 msgid "Rename name and description for new events"
 msgstr "Naujų įvykių pervardijimo pavadinimas ir apibūdinimas"
@@ -19884,6 +19896,27 @@ msgstr "Zambija"
 
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
+
+#~ msgid "Input length - Filename"
+#~ msgstr "Įvesties ilgis - failo vardas"
+
+#~ msgid "New symlink"
+#~ msgstr "Nauja simbolinė nuoroda"
+
+#~ msgid "Number of characters visible in filename entry popup windows."
+#~ msgstr "Ženklų, matomų failo pavadinimo įrašų languose, skaičius."
+
+#~ msgid "Please enter file/folder name"
+#~ msgstr "Įrašykite failo/aplanko pavadinimą"
+
+#~ msgid "Rename file"
+#~ msgstr "Pervadinti failą"
+
+#~ msgid "renaming file ..."
+#~ msgstr "pervadinamas failas..."
+
+#~ msgid "renaming folder ..."
+#~ msgstr "pervadinamas aplankas ..."
 
 #~ msgid "Datum"
 #~ msgstr "Data"
