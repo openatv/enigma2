@@ -759,7 +759,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			oldname = self.SOURCELIST.getFilename()
 			sourceDir = self.SOURCELIST.getCurrentDirectory()
 			targetDir = self.TARGETLIST.getCurrentDirectory()
-			if targetDir is None or oldname is None or newname == oldname:
+			if targetDir is None or oldname is None:
 				return
 			if oldname.startswith("/"):
 				oldpath = oldname
@@ -851,12 +851,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			dir = self[side].getCurrentDirectory()
 			if dir is not None:
 				file = self[side].getFilename() or ''
-				if file.startswith(dir):		# parent folder
-					pathname = file
-				elif not dir.startswith(file):	# filepath
-					pathname = dir + file
-				else:							# mainfolder
-					pathname = dir
+				if file.startswith(dir):
+					pathname = file # subfolder
+				elif not dir.startswith(file):
+					pathname = dir + file # filepath
+				else:
+					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:
@@ -1286,12 +1286,12 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			dir = self[side].getCurrentDirectory()
 			if dir is not None:
 				file = self[side].getFilename() or ''
-				if file.startswith(dir):		# parent folder
-					pathname = file
-				elif not dir.startswith(file):	# filepath
-					pathname = dir + file
-				else:							# mainfolder
-					pathname = dir
+				if file.startswith(dir):
+					pathname = file # subfolder
+				elif not dir.startswith(file):
+					pathname = dir + file # filepath
+				else:
+					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:

@@ -270,11 +270,11 @@ class key_actions(stat_info):
 		targetdir = dirtarget.getCurrentDirectory()
 		if targetdir is not None:
 			file = dirtarget.getFilename() or ''
-			if file.startswith(targetdir):		# parent folder
+			if file.startswith(targetdir):
 				self.parameter = file
-			elif not targetdir.startswith(file):# filepath
+			elif not targetdir.startswith(file):
 				self.parameter = targetdir + file
-			else:								# mainfolder
+			else:
 				self.parameter = targetdir
 		stxt = _('python')
 		if self.commando[0].endswith('.sh'):
