@@ -131,7 +131,7 @@ class WlanStatus(Screen):
 					if status[self.iface]["bitrate"] == '0':
 						bitrate = _("Unsupported")
 					else:
-						bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
+						bitrate = str(status[self.iface]["bitrate"])
 					if "bitrate" in self:
 						self["bitrate"].setText(bitrate)
 
