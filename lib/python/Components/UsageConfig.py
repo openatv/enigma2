@@ -355,7 +355,22 @@ def InitUsageConfig():
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
-	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default=False)
+	if SystemInfo["7segment"]:
+		# standby
+		config.usage.blinking_display_clock_during_recording = ConfigSelection(default="Rec", choices=[
+			("Rec", _("REC")),
+			("RecBlink", _("Blinking REC")),
+			("Nothing", _("Nothing"))])
+		config.usage.show_in_standby = ConfigSelection(default="time", choices=[
+			("time", _("Time")),
+			("nothing", _("Nothing"))])
+		# in use
+		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Rec", choices=[
+			("Rec", _("REC")),
+			("RecBlink", _("Blinking REC")),
+			("Time", _("Time"))])
+	else:
+		config.usage.blinking_display_clock_during_recording = ConfigYesNo(default=False)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default=False)
 	config.usage.on_short_recpress = ConfigSelection(default="menu", choices=[])
