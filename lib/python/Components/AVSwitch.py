@@ -277,9 +277,9 @@ class AVSwitch:
 		mode_60 = modes.get(60)
 		mode_24 = modes.get(24)
 		if mode_50 is None or force == 60:
-			mode_50 = mode24 = mode_60
+			mode_50 = mode_24 = mode_60
 		if mode_60 is None or force == 50:
-			mode_60 = mode24 = mode_50
+			mode_60 = mode_24 = mode_50
 		if mode_24 is None:
 			mode_24 = mode_50
 
