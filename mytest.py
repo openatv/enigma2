@@ -382,6 +382,7 @@ profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
+from operator import attrgetter
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -413,13 +414,16 @@ class PowerKey:
 				wasRecTimerWakeup = int(wakeup) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup or self.session.nav.RecordTimer.isRecording():
 				print "PowerOff (timer wakeup) - Recording in progress or a timer about to activate, entering standby!"
-				lastrecordEnd = 0
-				for timer in self.session.nav.RecordTimer.timer_list:
-					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
-						print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
-						timer.afterEvent = RecordTimer.AFTEREVENT.DEEPSTANDBY
-						if timer.end > lastrecordEnd:
+				lastrecordTimer = None
+				lastrecordEnd = int(time())
+				for timer in sorted(self.session.nav.RecordTimer.timer_list, key=attrgetter("begin")):
+					if lastrecordEnd >= timer.begin:
+						if timer.end + 900 > lastrecordEnd:
 							lastrecordEnd = timer.end + 900
+							lastrecordTimer = timer
+				if lastrecordTimer:
+					print "Set after-event for recording %s to DEEP-STANDBY." % lastrecordTimer.name
+					lastrecordTimer.afterEvent = RecordTimer.AFTEREVENT.DEEPSTANDBY
 
 				if Screens.Standby.inStandby:
 					msg = _(
