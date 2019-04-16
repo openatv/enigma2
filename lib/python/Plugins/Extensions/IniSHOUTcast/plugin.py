@@ -301,6 +301,8 @@ class SHOUTcastWidget(Screen):
 			args.append(config.plugins.shoutcast.dirname.value)
 			args.append('-r')
 			args.append('9191')
+			args.append('-u')
+			args.append('IniSHOUTcast/1.0')
 			if recordingLength != 0:
 				args.append('-l')
 				args.append("%d" % int(recordingLength))
