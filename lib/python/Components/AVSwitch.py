@@ -281,7 +281,7 @@ class AVSwitch:
 		if mode_60 is None or force == 50:
 			mode_60 = mode_24 = mode_50
 		if mode_24 is None:
-			mode_24 = mode_50
+			mode_24 = mode_60
 
 		if os.path.exists('/proc/stb/video/videomode_50hz') and getBoxType() not in ('gbquadplus', 'gb800solo', 'gb800se', 'gb800ue', 'gb800ueplus'):
 			try:
