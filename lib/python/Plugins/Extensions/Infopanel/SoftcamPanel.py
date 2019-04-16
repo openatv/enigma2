@@ -627,52 +627,49 @@ class SoftcamPanel(ConfigListScreen, Screen):
 				print "[CHECKBINNAME] ERROR"
 				return True
 
-	def createInitdscript(self, camname, emubin, start, stop, wait=None):
+	def createInitdscript(self, camname, emubin, start, stop, wait=0.01):
 		Adir = "/etc/init.d/softcam." + camname
-		softcamfile = []
-		softcamfile.append('#!/bin/sh')
-		softcamfile.append('DAEMON=%s' % emubin)
-		softcamfile.append('STARTCAM="%s"' % start)
-		softcamfile.append('STOPCAM="%s"' % stop)
-		softcamfile.append('DESC="Softcam"')
-		softcamfile.append('')
-		softcamfile.append('test -f $DAEMON || exit 0')
-		softcamfile.append('set -e')
-		softcamfile.append('')
-		softcamfile.append('case "$1" in')
-		softcamfile.append('	start)')
-		softcamfile.append('		echo -n "starting $DESC: $DAEMON... "')
-		if wait:
-			softcamfile.append('		sleep ' + wait)
-		softcamfile.append('		$STARTCAM')
-		softcamfile.append('		echo "done."')
-		softcamfile.append('		;;')
-		softcamfile.append('	stop)')
-		softcamfile.append('		echo -n "stopping $DESC: $DAEMON... "')
-		softcamfile.append('		$STOPCAM')
-		softcamfile.append('		echo "done."')
-		softcamfile.append('		;;')
-		softcamfile.append('	restart)')
-		softcamfile.append('		echo "restarting $DESC: $DAEMON... "')
-		softcamfile.append('		$0 stop')
-		softcamfile.append('		echo "wait..."')
-		softcamfile.append('		sleep 5')
-		softcamfile.append('		$0 start')
-		softcamfile.append('		echo "done."')
-		softcamfile.append('		;;')
-		softcamfile.append('	*)')
-		softcamfile.append('		echo "Usage: $0 {start|stop|restart}"')
-		softcamfile.append('		exit 1')
-		softcamfile.append('		;;')
-		softcamfile.append('esac')
-		softcamfile.append('')
-		softcamfile.append('exit 0')
+		softcamfile = '''#!/bin/sh
+DAEMON={0}
+STARTCAM="{1}"
+STOPCAM="{2}"
+DESC="Softcam"
 
-		f = open( Adir, "w" )
-		for x in softcamfile:
-			f.writelines(x + '\n')
-		f.close()
+test -f $DAEMON || exit 0
+set -e
 
+case "$1" in
+	start)
+		echo -n "starting $DESC: $DAEMON... "
+		sleep {3}
+		$STARTCAM
+		echo "done."
+		;;
+	stop)
+		echo -n "stopping $DESC: $DAEMON... "
+		$STOPCAM
+		echo "done."
+		;;
+	restart)
+		echo "restarting $DESC: $DAEMON... "
+		$0 stop
+		echo "wait..."
+		sleep 5
+		$0 start
+		echo "done."
+		;;
+	*)
+		echo "Usage: $0 {{start|stop|restart}}"
+		exit 1
+		;;
+esac
+
+exit 0
+'''.format(emubin, start, stop, wait)
+		
+		with open(Adir, "w") as f:
+			f.write(softcamfile)
+		
 		self.container = eConsoleAppContainer()
 		# Set execute rights
 		os.chmod(Adir,0755)
