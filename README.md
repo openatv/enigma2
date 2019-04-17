@@ -23,7 +23,6 @@ Build enigma2 for Beyonwiz V2 using the SDK:
       --enable-silent-rules \
       --enable-dependency-tracking \
       --with-gstversion=1.0 \
-      --with-textlcd   \
       --with-7segment \
       --with-lcddev=/dev/null \
       --with-libsdl=no \
