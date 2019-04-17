@@ -31,7 +31,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
 
 # Various
-from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
+from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eTimer
 
 import os
 import stat
@@ -215,6 +215,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		filter = self.fileFilter()
 
 		self.jobs = 0
+		self.jobs_old = 0
+
 		self.updateDirs = set()
 		self.containers = []
 
@@ -286,18 +288,33 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		else:
 			self.onLayoutFinish.append(self.listRight)
 
-		self.onLayoutFinish.append(self.onLayout)
+		self.checkJobs_Timer = eTimer()
+		self.checkJobs_Timer.callback.append(self.checkJobs_TimerCB)
+		#self.onLayoutFinish.append(self.onLayout)
+		self.onLayoutFinish.append(self.checkJobs_TimerCB)
 
 	def onLayout(self):
+		if self.jobs_old:
+			self.checkJobs_Timer.startLongTimer(5)
+
 		if config.plugins.filecommander.extension.value == "^.*":
 			filtered = ""
 		else:
 			filtered = "(*)"
-		if self.jobs:
-			jobs = _("(1 job)") if self.jobs == 1 else _("(%d jobs)") % self.jobs
+
+		if self.jobs or self.jobs_old:
+			jobs = _("(1 job)") if (self.jobs+self.jobs_old) == 1 else _("(%d jobs)") % (self.jobs+self.jobs_old)
 		else:
 			jobs = ""
 		self.setTitle(pname + " " + filtered + " " + jobs)
+
+	def checkJobs_TimerCB(self):
+		self.jobs_old = 0
+		for job in job_manager.getPendingJobs():
+			if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))):
+				self.jobs_old += 1
+		self.jobs_old -= self.jobs
+		self.onLayout()
 
 	def viewable_file(self):
 		filename = self.SOURCELIST.getFilename()
@@ -513,7 +530,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def openTasklist(self):
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
-			self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
+			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
+			progress = job.getProgress()
+			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
 		self.session.open(TaskListScreen, self.tasklist)
 
 	def addJob(self, job, updateDirs):
@@ -1147,7 +1166,9 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	def openTasklist(self):
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
-			self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
+			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
+			progress = job.getProgress()
+			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
 		self.session.open(TaskListScreen, self.tasklist)
 
 # ## delete select ###
