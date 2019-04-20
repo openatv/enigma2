@@ -197,7 +197,13 @@ case $ret in
 		/sbin/reboot
 		;;
 	16)
-		echo "rescue" > /proc/stb/fp/boot_mode
+		if [ -e /dev/block/by-name/bootoptions ]; then
+			mkdir -p /tmp/bootoptions
+			mount /dev/block/by-name/bootoptions /tmp/bootoptions
+			cp -f /tmp/bootoptions/STARTUP_RECOVERY /tmp/bootoptions/STARTUP_ONCE
+		else
+			echo "rescue" > /proc/stb/fp/boot_mode
+		fi
 		/sbin/reboot
 		;;
 	42)
