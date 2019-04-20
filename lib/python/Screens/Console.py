@@ -64,8 +64,8 @@ class Console(Screen):
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
 			lastpage = self["text"].isAtLastPage()
-			self["text"].appendText(_("Execution finished!!"))
-			self["summary_description"].setText(_("Execution finished!!"))
+			self["text"].appendText('\n' + _("Execution finished!!"))
+			self["summary_description"].setText('\n' + _("Execution finished!!"))
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
