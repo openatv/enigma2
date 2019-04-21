@@ -91,6 +91,7 @@ class FlashOnline(Screen):
 		self.list = self.list_files("/boot")
 		self.MTDKERNEL = getMachineMtdKernel()
 		self.MTDROOTFS = getMachineMtdRoot()
+		self.ROOTFSSUBDIR = "linuxrootfs1"
 
 		Screen.setTitle(self, _("Flash On the Fly"))
 		if SystemInfo["HaveMultiBoot"]:
