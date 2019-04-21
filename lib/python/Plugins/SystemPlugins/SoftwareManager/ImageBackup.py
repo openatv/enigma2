@@ -620,7 +620,7 @@ class ImageBackup(Screen):
 			print 'NOFORCE bin file not found'
 			file_found = False
 
-		if SystemInfo["HaveMultiBoot"] and not self.list[self.selection] == "Recovery":
+		if SystemInfo["HaveMultiBoot"] and not self.list[self.selection] == "Recovery" and not SystemInfo["HasRootSubdir"]:
 			cmdlist.append('echo "_________________________________________________\n"')
 			cmdlist.append('echo "' + _("Multiboot Image created on: %s") %self.MAINDEST + '"')
 			cmdlist.append('echo "_________________________________________________"')
