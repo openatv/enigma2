@@ -97,6 +97,7 @@ config.plugins.filecommander.sortFiles_left = ConfigSelection(default = "1.1", c
 config.plugins.filecommander.sortFiles_right = ConfigSelection(default = "1.1", choices = choicelist)
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
 config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
+config.plugins.filecommander.showTaskCompleted_message = ConfigYesNo(default=True)
 config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), default=["MD5"])
 config.plugins.filecommander.bookmarks = ConfigLocations()
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
@@ -137,6 +138,9 @@ def formatSortingTyp(sortDirs, sortFiles):
 ###################
 # ## Main Screen ###
 ###################
+
+glob_running = False
+
 class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
@@ -284,6 +288,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"bluelong": (self.goBlueLong, _("Sorting right files by name, date or size")),
 		}, -1)
 
+		global glob_running
+		glob_running = True
+
 		if config.plugins.filecommander.path_left_selected:
 			self.onLayoutFinish.append(self.listLeft)
 		else:
@@ -349,6 +356,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			config.plugins.filecommander.path_right.save()
 		else:
 			config.plugins.filecommander.path_right.value = config.plugins.filecommander.path_default.value
+
+		global glob_running
+		glob_running = False
 
 		self.close(self.session, True)
 
@@ -551,12 +561,15 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			job_manager.AddJob(job, onSuccess=self.finishedCB)
 
 	def failCB(self, job, task, problems):
-		if problems[0].RECOVERABLE:
-			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
-			return True
+		task.setProgress(100)
+		from Screens.Standby import inStandby
+		message = job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task))
+		messageboxtyp = MessageBox.TYPE_ERROR
+		timeout = 30
+		if InfoBar.instance and not inStandby:
+			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		else:
-			task.setProgress(100)
-			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+			Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 		if hasattr(self, "jobs"):
 			self.finishedCB(None)
 		return False
@@ -571,6 +584,18 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if not self.jobs:
 				self.updateDirs.clear()
 				del self.containers[:]
+		if not glob_running and config.plugins.filecommander.showTaskCompleted_message.value:
+			for job in job_manager.getPendingJobs():
+				if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
+					return
+			from Screens.Standby import inStandby
+			message = _("File Commander - all Task's are completed!")
+			messageboxtyp = MessageBox.TYPE_INFO
+			timeout = 30
+			if InfoBar.instance and not inStandby:
+				InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
+			else:
+				Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
 	def setSort(self, list, setDirs = False):
 		sortDirs, sortFiles = list.getSortBy().split(',')
@@ -619,7 +644,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## copy ###
 	def goYellow(self):
-		if InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -654,7 +679,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## delete ###
 	def goRed(self):
-		if InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -681,7 +706,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## move ###
 	def goGreen(self):
-		if InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -718,7 +743,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## rename ###
 	def goBlue(self):
-		if InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
