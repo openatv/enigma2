@@ -29,6 +29,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 # Tools
 from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
+from Tools import Notifications
 
 # Various
 from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eTimer
@@ -311,7 +312,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def checkJobs_TimerCB(self):
 		self.jobs_old = 0
 		for job in job_manager.getPendingJobs():
-			if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))):
+			if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
 				self.jobs_old += 1
 		self.jobs_old -= self.jobs
 		self.onLayout()
@@ -548,6 +549,17 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				self.finishedCB(retval)
 		else:
 			job_manager.AddJob(job, onSuccess=self.finishedCB)
+
+	def failCB(self, job, task, problems):
+		if problems[0].RECOVERABLE:
+			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
+			return True
+		else:
+			task.setProgress(100)
+			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+		if hasattr(self, "jobs"):
+			self.finishedCB(None)
+		return False
 
 	def finishedCB(self, arg):
 		if hasattr(self, "jobs"):

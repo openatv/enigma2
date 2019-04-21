@@ -207,7 +207,18 @@ except:
 
 addSkin('skin_subtitles.xml')
 
+if config.skin.primary_skin.value != DEFAULT_SKIN:
+	skinpath = resolveFilename(SCOPE_SKIN, primary_skin_path)
+	if os.path.isdir(skinpath):
+		for file in sorted(os.listdir(skinpath)):
+			if file.startswith('skin_user_') and file.endswith('.xml'):
+				try:
+					addSkin(primary_skin_path + file, SCOPE_SKIN)
+					print "[SKIN] loading user defined %s skin file: %s" %(file.replace('skin_user_','')[:-4], primary_skin_path + file)
+				except (SkinError, IOError, OSError, AssertionError), err:
+					print "[SKIN] not loading user defined %s skin file: %s - error: %s" %(file.replace('skin_user_','')[:-4], primary_skin_path + file, err)
 
+'''
 try:
 	if config.skin.primary_skin.value != DEFAULT_SKIN:
 		addSkin(primary_skin_path + 'skin_user_colors.xml', SCOPE_SKIN)
@@ -221,6 +232,7 @@ try:
 		print "[SKIN] loading user defined header file for skin", (primary_skin_path + 'skin_user_header.xml')
 except (SkinError, IOError, AssertionError), err:
 	print "[SKIN] not loading user defined header file for skin"
+'''
 
 def load_modular_files():
 	modular_files = get_modular_files(primary_skin_path, SCOPE_SKIN)

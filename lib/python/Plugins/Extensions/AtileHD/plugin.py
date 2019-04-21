@@ -180,34 +180,93 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		else:
 			self.default_font_file = "font_Original.xml"
 			self.default_color_file = "colors_Original.xml"
+
+		self.default_infobar_file = "infobar_Original.xml"
+		self.default_sib_file = "sib_Original.xml"
+		self.default_ch_se_file = "ch_se_Original.xml"
+		self.default_ev_file = "ev_Original.xml"
+
 		self.color_file = "skin_user_colors.xml"
 		self.font_file = "skin_user_header.xml"
-		current_color = self.getCurrentColor()
-		color_choices = self.getPossibleColor()
-		default_color = ("default", _("Default"))
-		if current_color is None:
-			current_color = default_color
-		if default_color not in color_choices:
-			color_choices.append(default_color)
-		current_color = current_color[0]
-		current_font = self.getCurrentFont() 
-		font_choices = self.getPossibleFont()
-		default_font = ("default", _("Default"))
-		if current_font is None:
-			current_font = default_font
-		if default_font not in font_choices:
-			font_choices.append(default_font)
-		current_font = current_font[0]
+		self.infobar_file = "skin_user_infobar.xml"
+		self.sib_file = "skin_user_sib.xml"
+		self.ch_se_file = "skin_user_ch_se.xml"
+		self.ev_file = "skin_user_ev.xml"
+
+		# color
+		current, choices = self.getSettings(self.default_color_file, self.color_file)
+		self.myAtileHD_color = NoSave(ConfigSelection(default=current, choices = choices))
+		# font
+		current, choices = self.getSettings(self.default_font_file, self.font_file)
+		self.myAtileHD_font = NoSave(ConfigSelection(default=current, choices = choices))
+		# infobar
+		current, choices = self.getSettings(self.default_infobar_file, self.infobar_file)
+		self.myAtileHD_infobar = NoSave(ConfigSelection(default=current, choices = choices))
+		# sib
+		current, choices = self.getSettings(self.default_sib_file, self.sib_file)
+		self.myAtileHD_sib = NoSave(ConfigSelection(default=current, choices = choices))
+		# ch_se
+		current, choices = self.getSettings(self.default_ch_se_file, self.ch_se_file)
+		self.myAtileHD_ch_se = NoSave(ConfigSelection(default=current, choices = choices))
+		# ev
+		current, choices = self.getSettings(self.default_ev_file, self.ev_file)
+		self.myAtileHD_ev = NoSave(ConfigSelection(default=current, choices = choices))
+		# myatile
 		myatile_active = self.getmyAtileState()
 		self.myAtileHD_active = NoSave(ConfigYesNo(default=myatile_active))
-		choices = self.getPossibleFont()
-		self.myAtileHD_font = NoSave(ConfigSelection(default=current_font, choices = font_choices))
-		self.myAtileHD_style = NoSave(ConfigSelection(default=current_color, choices = color_choices))
 		self.myAtileHD_fake_entry = NoSave(ConfigNothing())
 
+	def getSettings(self, default_file, user_file):
+		# default setting
+		default = ("default", _("Default"))
+
+		# search typ
+		styp = default_file.replace('_Original.xml','')
+		if self.is_atile:
+			search_str = '%s_atile_' %styp
+		else:
+			search_str = '%s_' %styp
+
+		# possible setting
+		choices = []
+		for f in sorted(listdir(self.skin_base_dir), key=str.lower):
+			if f.endswith('.xml') and f.startswith(search_str):
+				friendly_name = f.replace(search_str, "")
+				friendly_name = friendly_name.replace(".xml", "")
+				friendly_name = friendly_name.replace("_", " ")
+				choices.append((f, friendly_name))
+		choices.append(default)
+
+		# current setting
+		myfile = self.skin_base_dir + user_file
+		current = ''
+		if not path.exists(myfile):
+			if path.exists(self.skin_base_dir + default_file):
+				if path.islink(myfile):
+					remove(myfile)
+				chdir(self.skin_base_dir)
+				symlink(default_file, user_file)
+			else:
+				current = None
+		if current is None:
+			current = default
+		else:
+			filename = path.realpath(myfile)
+			filename = path.basename(filename)
+			friendly_name = filename.replace(search_str, "")
+			friendly_name = friendly_name.replace(".xml", "")
+			friendly_name = friendly_name.replace("_", " ")
+			current = (filename, friendly_name)
+
+		return current[0], choices
+
 	def createConfigList(self):
-		self.set_color = getConfigListEntry(_("Style:"), self.myAtileHD_style)
+		self.set_color = getConfigListEntry(_("Style:"), self.myAtileHD_color)
 		self.set_font = getConfigListEntry(_("Font:"), self.myAtileHD_font)
+		self.set_infobar = getConfigListEntry(_("Infobar:"), self.myAtileHD_infobar)
+		self.set_sib = getConfigListEntry(_("Secondinfobar:"), self.myAtileHD_sib)
+		self.set_ch_se = getConfigListEntry(_("Channelselection:"), self.myAtileHD_ch_se)
+		self.set_ev = getConfigListEntry(_("Eventview:"), self.myAtileHD_ev)
 		self.set_myatile = getConfigListEntry(_("Enable %s pro:") % cur_skin, self.myAtileHD_active)
 		self.set_new_skin = getConfigListEntry(_("Change skin"), ConfigNothing())
 		self.find_woeid = getConfigListEntry(_("Search weather location ID"), ConfigNothing())
@@ -215,6 +274,10 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.list.append(self.set_myatile)
 		self.list.append(self.set_color)
 		self.list.append(self.set_font)
+		self.list.append(self.set_infobar)
+		self.list.append(self.set_sib)
+		self.list.append(self.set_ch_se)
+		self.list.append(self.set_ev)
 		self.list.append(self.set_new_skin)
 		if not config.skin.primary_skin.value == "iFlatFHD/skin.xml":
 			self.list.append(getConfigListEntry(_("---Weather---"), self.myAtileHD_fake_entry))
@@ -231,9 +294,17 @@ class AtileHD_Config(Screen, ConfigListScreen):
 
 	def changedEntry(self):
 		if self["config"].getCurrent() == self.set_color:
-			self.setPicture(self.myAtileHD_style.value)
+			self.setPicture(self.myAtileHD_color.value)
 		elif self["config"].getCurrent() == self.set_font:
 			self.setPicture(self.myAtileHD_font.value)
+		elif self["config"].getCurrent() == self.set_infobar:
+			self.setPicture(self.myAtileHD_infobar.value)
+		elif self["config"].getCurrent() == self.set_sib:
+			self.setPicture(self.myAtileHD_sib.value)
+		elif self["config"].getCurrent() == self.set_ch_se:
+			self.setPicture(self.myAtileHD_ch_se.value)
+		elif self["config"].getCurrent() == self.set_ev:
+			self.setPicture(self.myAtileHD_ev.value)
 		elif self["config"].getCurrent() == self.set_myatile:
 			if self.myAtileHD_active.value:
 				self["key_yellow"].setText("%s pro" % cur_skin)
@@ -242,9 +313,17 @@ class AtileHD_Config(Screen, ConfigListScreen):
 
 	def selectionChanged(self):
 		if self["config"].getCurrent() == self.set_color:
-			self.setPicture(self.myAtileHD_style.value)
+			self.setPicture(self.myAtileHD_color.value)
 		elif self["config"].getCurrent() == self.set_font:
 			self.setPicture(self.myAtileHD_font.value)
+		elif self["config"].getCurrent() == self.set_infobar:
+			self.setPicture(self.myAtileHD_infobar.value)
+		elif self["config"].getCurrent() == self.set_sib:
+			self.setPicture(self.myAtileHD_sib.value)
+		elif self["config"].getCurrent() == self.set_ch_se:
+			self.setPicture(self.myAtileHD_ch_se.value)
+		elif self["config"].getCurrent() == self.set_ev:
+			self.setPicture(self.myAtileHD_ev.value)
 		else:
 			self["Picture"].hide()
 
@@ -268,82 +347,12 @@ class AtileHD_Config(Screen, ConfigListScreen):
 				x[1].cancel()
 			self.close()
 
-	def getPossibleColor(self):
-		color_list = []
-		for f in sorted(listdir(self.skin_base_dir), key=str.lower):
-			if self.is_atile:
-				search_str = 'colors_atile_'
-			else:
-				search_str = 'colors_'
-			if f.endswith('.xml') and f.startswith(search_str):
-				friendly_name = f.replace(search_str, "")
-				friendly_name = friendly_name.replace(".xml", "")
-				friendly_name = friendly_name.replace("_", " ")
-				color_list.append((f, friendly_name))
-		return color_list
-
-	def getPossibleFont(self):
-		font_list = []
-		for f in sorted(listdir(self.skin_base_dir), key=str.lower):
-			if self.is_atile:
-				search_str = 'font_atile_'
-			else:
-				search_str = 'font_'
-			if f.endswith('.xml') and f.startswith(search_str):
-				friendly_name = f.replace(search_str, "")
-				friendly_name = friendly_name.replace(".xml", "")
-				friendly_name = friendly_name.replace("_", " ")
-				font_list.append((f, friendly_name))
-		return font_list
-
 	def getmyAtileState(self):
 		chdir(self.skin_base_dir)
 		if path.exists("mySkin"):
 			return True
 		else:
 			return False
-
-	def getCurrentColor(self):
-		myfile = self.skin_base_dir + self.color_file
-		if not path.exists(myfile):
-			if path.exists(self.skin_base_dir + self.default_color_file):
-				if path.islink(myfile):
-					remove(myfile)
-				chdir(self.skin_base_dir)
-				symlink(self.default_color_file, self.color_file)
-			else:
-				return None
-		filename = path.realpath(myfile)
-		filename = path.basename(filename)
-		if self.is_atile:
-			search_str = 'colors_atile_'
-		else:
-			search_str = 'colors_'
-		friendly_name = filename.replace(search_str, "")
-		friendly_name = friendly_name.replace(".xml", "")
-		friendly_name = friendly_name.replace("_", " ")
-		return (filename, friendly_name)
-
-	def getCurrentFont(self):
-		myfile = self.skin_base_dir + self.font_file
-		if not path.exists(myfile):
-			if path.exists(self.skin_base_dir + self.default_font_file):
-				if path.islink(myfile):
-					remove(myfile)
-				chdir(self.skin_base_dir)
-				symlink(self.default_font_file, self.font_file)
-			else:
-				return None
-		filename = path.realpath(myfile)
-		filename = path.basename(filename)
-		if self.is_atile:
-			search_str = 'font_atile_'
-		else:
-			search_str = 'font_'
-		friendly_name = filename.replace(search_str, "")
-		friendly_name = friendly_name.replace(".xml", "")
-		friendly_name = friendly_name.replace("_", " ")
-		return (filename, friendly_name)
 
 	def setPicture(self, f):
 		pic = f.replace(".xml", ".png")
@@ -409,18 +418,20 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			for x in self["config"].list:
 				x[1].save()
 			chdir(self.skin_base_dir)
-			if path.exists(self.font_file):
-				remove(self.font_file)
-			elif path.islink(self.font_file):
-				remove(self.font_file)
-			if self.myAtileHD_font.value != 'default':
-				symlink(self.myAtileHD_font.value, self.font_file)
-			if path.exists(self.color_file):
-				remove(self.color_file)
-			elif path.islink(self.color_file):
-				remove(self.color_file)
-			if self.myAtileHD_style.value != 'default':
-				symlink(self.myAtileHD_style.value, self.color_file)
+
+			# color
+			self.makeSettings(self.myAtileHD_color, self.color_file)
+			# font
+			self.makeSettings(self.myAtileHD_font, self.font_file)
+			# infobar
+			self.makeSettings(self.myAtileHD_infobar, self.infobar_file)
+			# sib
+			self.makeSettings(self.myAtileHD_sib, self.sib_file)
+			# ch_se
+			self.makeSettings(self.myAtileHD_ch_se, self.ch_se_file)
+			# ev
+			self.makeSettings(self.myAtileHD_ev, self.ev_file)
+
 			if not path.exists("mySkin_off"):
 				mkdir("mySkin_off")
 				print "makedir mySkin_off"
@@ -444,6 +455,12 @@ class AtileHD_Config(Screen, ConfigListScreen):
 				self.restartGUI()
 			else:
 				self.close()
+
+	def makeSettings(self, config_entry, user_file):
+		if path.exists(user_file) or path.islink(user_file):
+			remove(user_file)
+		if config_entry.value != 'default':
+			symlink(config_entry.value,  user_file)
 
 	def AtileHDScreenCB(self):
 		self.changed_screens = True

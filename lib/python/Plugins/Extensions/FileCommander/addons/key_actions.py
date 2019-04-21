@@ -5,6 +5,7 @@
 from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
+from Components.Task import Task, Job, job_manager
 
 # Screens
 from Screens.Console import Console
@@ -279,29 +280,54 @@ class key_actions(stat_info):
 		stxt = _('python')
 		if self.commando[0].endswith('.sh'):
 			stxt = _('shell')
-		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES")]
+		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
 		if self.commando[0].endswith('.pyo'):
 			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
 		if self.parameter:
-			askList.append((_("Run script with optional parameter"), "PAR"))
+			askList.insert(3,(_("Run script with optional parameter"), "PAR"))
+			askList.append((_("Run script with optional parameter in background"), "PAR_BG"))
 			filename += _('\noptional parameter:\n%s') %self.parameter
 		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n") + filename, list=askList)
 
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
-		if answer in ("YES", "PAR"):
+		if answer in ("YES", "PAR", "YES_BG", "PAR_BG"):
 			if not os.access(self.commando[0], os.R_OK):
 				self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando[0], type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 				return
-			if answer == "PAR":
+			if answer in ("PAR", "PAR_BG"):
 				self.commando = (self.commando[0], self.parameter)
+			if answer.endswith('_BG'):
+				if 'PAR' in answer:
+					job = Job(_("Run script") + " ('%s %s')" %(self.commando[0], self.commando[1]))
+				else:
+					job = Job(_("Run script") + " ('%s')"%self.commando[0])
+				task = Task(job, self.commando[0])
 			if self.commando[0].endswith('.sh'):
 				if os.access(self.commando[0], os.X_OK):
-					self.session.open(Console, cmdlist=(self.commando,))
+					if answer.endswith('_BG'):
+						if 'PAR' in answer:
+							task.setCmdline("'%s' '%s'" %(self.commando[0], self.commando[1]))
+						else:
+							task.setCmdline("'%s'" %self.commando[0])
+					else:
+						self.session.open(Console, cmdlist=(self.commando,))
 				else:
-					self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
+					if answer.endswith('_BG'):
+						if 'PAR' in answer:
+							task.setCmdline("/bin/sh '%s' '%s'" %(self.commando[0], self.commando[1]))
+						else:
+							task.setCmdline("/bin/sh '%s'" %self.commando[0])
+					else:
+						self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
 			else:
-				self.session.open(Console, cmdlist=((("/usr/bin/python",) + self.commando),))
+				if answer.endswith('_BG'):
+					if 'PAR' in answer:
+						task.setCmdline("/usr/bin/python '%s' '%s'" %(self.commando[0], self.commando[1]))
+					else:
+						task.setCmdline("/usr/bin/python '%s'" %self.commando[0])
+				else:
+					self.session.open(Console, cmdlist=((("/usr/bin/python",) + self.commando),))
 		elif answer == "VIEW":
 			try:
 				yfile = os.stat(self.commando[0])
@@ -311,6 +337,11 @@ class key_actions(stat_info):
 			#if (yfile.st_size < 61440):
 			if (yfile.st_size < 1000000):
 				self.session.open(vEditor, self.commando[0])
+
+		if answer and answer.endswith('_BG'):
+			job_manager.AddJob(job, onSuccess=self.finishedCB, onFail=self.failCB)
+			self.jobs += 1
+			self.onLayout()
 
 	def run_file(self):
 		self.run_prog("file")
@@ -444,7 +475,6 @@ class key_actions(stat_info):
 		toRun = []
 		for prog in progs:
 			toRun += [("echo", "-n", prog[0] + ": "), (prog[1], filepath)]
-		toRun += [("echo", ""),] # add blanc line
 		self.session.open(Console, cmdlist=toRun)
 
 	def play_music(self, dirsource):
