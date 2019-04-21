@@ -113,12 +113,13 @@ class FlashOnline(Screen):
 			"cancel": self.quit,
 		}, -2)
 		if SystemInfo["HaveMultiBoot"]:
-			if getMachineBuild() in ("gb7252"):
+			if SystemInfo["HasRootSubdir"]:
+				self.multi = self.find_rootfssubdir(self.list[self.selection])
+			elif getMachineBuild() in ("gb7252"):
 				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
-				self.multi = self.multi[-1:]
 			else:
 				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-				self.multi = self.multi[-1:]
+			self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
 
 	def check_hdd(self):
@@ -170,12 +171,13 @@ class FlashOnline(Screen):
 			if self.selection == len(self.list):
 				self.selection = 0
 			self["key_yellow"].setText(_(self.list[self.selection]))
-			if getMachineBuild() in ("gb7252"):
+			if SystemInfo["HasRootSubdir"]:
+				self.multi = self.find_rootfssubdir(self.list[self.selection])
+			elif getMachineBuild() in ("gb7252"):
 				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
-				self.multi = self.multi[-1:]
 			else:
 				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-				self.multi = self.multi[-1:]
+			self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
 			self.devrootfs = self.find_rootfs_dev(self.list[self.selection])
 			print "[Flash Online] MULTI rootfs ", self.devrootfs
@@ -183,36 +185,42 @@ class FlashOnline(Screen):
 			self.read_current_multiboot()
 
 	def read_current_multiboot(self):
-		if getMachineBuild() in ("hd51","vs1500","h7"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
-		elif getMachineBuild() in ("8100s"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
-		elif getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		elif getMachineBuild() in ("osmio4k","osmio4kplus"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+		if SystemInfo["HasRootSubdir"]:
+			self.MTDROOTFS = self.find_rootfs_dev("STARTUP")
+			self.MTDKERNEL = self.find_kernel_dev("STARTUP")
+			self.ROOTFSSUBDIR = self.find_rootfssubdir("STARTUP")
 		else:
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
+			if getMachineBuild() in ("hd51","vs1500","h7"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
+			elif getMachineBuild() in ("8100s"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
+			elif getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+			elif getMachineBuild() in ("osmio4k","osmio4kplus"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
 			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		cmdline = cmdline.lstrip("/dev/")
-		self.MTDROOTFS = cmdline
-		self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+			cmdline = cmdline.lstrip("/dev/")
+			self.MTDROOTFS = cmdline
+			self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
 		print "[Flash Online] kernel device: ",self.MTDKERNEL
 		print "[Flash Online] rootfsdevice: ",self.MTDROOTFS
+		print "[Flash Online] rootfssubdir: ",self.ROOTFSSUBDIR
 
 	def read_startup(self, FILE):
 		file = FILE
@@ -225,11 +233,35 @@ class FlashOnline(Screen):
 		startup_content = self.read_startup("/boot/" + file)
 		return startup_content[startup_content.find("root=")+5:].split()[0]
 
+	def find_kernel_dev(self, file):
+		startup_content = self.read_startup("/boot/" + file)
+		return startup_content[startup_content.find("kernel=")+7:].split()[0]
+
+	def find_rootfssubdir(self, file):
+		startup_content = self.read_startup("/boot/" + file)
+		rootsubdir = startup_content[startup_content.find("rootsubdir=")+11:].split()[0]
+		if rootsubdir.startswith("linuxrootfs"):
+			return rootsubdir
+		return
+
 	def list_files(self, PATH):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("gbmv200","ustym4kpro","hd51","vs1500","h7","8100s","gb7252","cc1","sf8008","osmio4k","osmio4kplus","beyonwizv2","viper4k"):
+			if SystemInfo["HasRootSubdir"]:
+				for name in os.listdir(path):
+					if os.path.isfile(os.path.join(path, name)):
+						try:
+							cmdline = self.find_rootfssubdir(name)
+							if cmdline == None:
+								continue
+						except IndexError:
+							continue
+						cmdline_startup = self.find_rootfssubdir("STARTUP")
+						if (cmdline != cmdline_startup) and (name != "STARTUP"):
+							files.append(name)
+				files.insert(0,"STARTUP")
+			elif getMachineBuild() in ("gbmv200","ustym4kpro","hd51","vs1500","h7","8100s","gb7252","cc1","sf8008","osmio4k","osmio4kplus","beyonwizv2","viper4k"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
@@ -600,6 +632,8 @@ class doFlashImage(Screen):
 				if SystemInfo["HaveMultiBoot"]:
 					if getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
 						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
+					elif SystemInfo["HasRootSubdir"]:
+						cmdlist.append("%s -n -f -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
 					else:
 						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
 				elif getMachineBuild() in ("gbmv200","h9combo","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k","hd60","hd61","v8plus","multibox"):
@@ -615,10 +649,12 @@ class doFlashImage(Screen):
 			else:
 				text += _("root and kernel")
 				if SystemInfo["HaveMultiBoot"]:
-					if self.List not in ("STARTUP","cmdline.txt"):
+					if self.List not in ("STARTUP","cmdline.txt") and not SystemInfo["HasRootSubdir"]:
 						os.system('mkfs.ext4 -F ' + self.devrootfs)
 					if getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
 						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
+					elif SystemInfo["HasRootSubdir"]:
+						cmdlist.append("%s -f -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
 					else:
 						cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
 				elif getMachineBuild() in ("gbmv200","h9combo","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k","hd60","hd61","v8plus","multibox"):
@@ -628,7 +664,7 @@ class doFlashImage(Screen):
 				else:
 					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				message = "echo -e '\n"
-				if self.List not in ("STARTUP","cmdline.txt") and SystemInfo["HaveMultiBoot"]:
+				if self.List not in ("STARTUP","cmdline.txt") and SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
 					message += _('ofgwrite flashing ready.\n')
 					message += _('please press exit to go back to the menu.\n')
 				else:
@@ -775,7 +811,8 @@ class doFlashImage(Screen):
 				if line.find("<a href='%s/" % box) > -1:
 					t = line.find("<a href='%s/" % box)
 					if self.feed == "atv" or self.feed == "atv2":
-						self.imagelist.append(line[t+tt+10:t+tt+tt+39])
+						if line[t+tt+10:t+tt+tt+39].endswith(".zip"):
+							self.imagelist.append(line[t+tt+10:t+tt+tt+39])
 					else:
 						self.imagelist.append(line[t+tt+10:t+tt+tt+40])
 		else:
