@@ -62,6 +62,7 @@ class ImageBackup(Screen):
 		self.MKUBIFS_ARGS = getMachineMKUBIFS()
 		self.MTDKERNEL = getMachineMtdKernel()
 		self.MTDROOTFS = getMachineMtdRoot()
+		self.ROOTFSSUBDIR = "linuxrootfs1"
 		self.ROOTFSBIN = getMachineRootFile()
 		self.KERNELBIN = getMachineKernelFile()
 		self.ROOTFSTYPE = getImageFileSystem().strip()
@@ -171,36 +172,42 @@ class ImageBackup(Screen):
 			self.read_current_multiboot()
 
 	def read_current_multiboot(self):
-		if self.MACHINEBUILD in ("hd51","vs1500","h7"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
-		elif self.MACHINEBUILD in ("8100s"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
-		elif self.MACHINEBUILD in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		elif self.MACHINEBUILD in ("osmio4k","osmio4kplus"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+		if SystemInfo["HasRootSubdir"]:
+			self.MTDROOTFS = self.find_rootfs_dev(self.list[self.selection])
+			self.MTDKERNEL = self.find_kernel_dev(self.list[self.selection])
+			self.ROOTFSSUBDIR = self.find_rootfssubdir(self.list[self.selection])
 		else:
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
+			if self.MACHINEBUILD in ("hd51","vs1500","h7"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
+			elif self.MACHINEBUILD in ("8100s"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
+			elif self.MACHINEBUILD in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+			elif self.MACHINEBUILD in ("osmio4k","osmio4kplus"):
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
 			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		cmdline = cmdline.lstrip("/dev/")
-		self.MTDROOTFS = cmdline
-		self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
+				if self.list[self.selection] == "Recovery":
+					cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
+				else:
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+			cmdline = cmdline.lstrip("/dev/")
+			self.MTDROOTFS = cmdline
+			self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
 		print "[FULL BACKUP] Multiboot rootfs ", self.MTDROOTFS
 		print "[FULL BACKUP] Multiboot kernel ", self.MTDKERNEL
+		print "[FULL BACKUP] rootfssubdir: ",self.ROOTFSSUBDIR
 
 	def read_startup(self, FILE):
 		self.file = FILE
@@ -209,26 +216,57 @@ class ImageBackup(Screen):
 		myfile.close()
 		return data
 
+	def find_rootfs_dev(self, file):
+		startup_content = self.read_startup("/boot/" + file)
+		return startup_content[startup_content.find("root=")+5:].split()[0]
+
+	def find_kernel_dev(self, file):
+		startup_content = self.read_startup("/boot/" + file)
+		return startup_content[startup_content.find("kernel=")+7:].split()[0]
+
+	def find_rootfssubdir(self, file):
+		startup_content = self.read_startup("/boot/" + file)
+		rootsubdir = startup_content[startup_content.find("rootsubdir=")+11:].split()[0]
+		if rootsubdir.startswith("linuxrootfs"):
+			return rootsubdir
+		return
+
 	def list_files(self, PATH):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			self.path = PATH
-			for name in listdir(self.path):
-				if path.isfile(path.join(self.path, name)):
-					try:
-						if self.MACHINEBUILD in ("hd51","vs1500","h7"):
-							cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
-						elif self.MACHINEBUILD in ("8100s"):
-							cmdline = self.read_startup("/boot/" + name).split("=",4)[4].split(" ",1)[0]
-						else:
-							cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-						if cmdline in Harddisk.getextdevices("ext4"):
+			if SystemInfo["HasRootSubdir"]:
+				for name in listdir(self.path):
+					if path.isfile(path.join(self.path, name)):
+						try:
+							cmdline = self.find_rootfssubdir(name)
+							if cmdline == None:
+								continue
+						except IndexError:
+							continue
+						cmdline_startup = self.find_rootfssubdir("STARTUP")
+						if (cmdline != cmdline_startup) and (name != "STARTUP"):
 							files.append(name)
-					except IndexError:
-						print '[ImageBackup] - IndexError in file: %s' %name
-						self.error_files += '/boot/' + name + ', ' 
-			if getMachineBuild() not in ("gb7252"):
-				files.append("Recovery")
+				files.insert(0,"STARTUP")
+			else:
+				for name in listdir(self.path):
+					if path.isfile(path.join(self.path, name)):
+						try:
+							if self.MACHINEBUILD in ("hd51","vs1500","h7"):
+								cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
+							elif self.MACHINEBUILD in ("8100s"):
+								cmdline = self.read_startup("/boot/" + name).split("=",4)[4].split(" ",1)[0]
+							else:
+								cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+							if cmdline in Harddisk.getextdevices("ext4"):
+								files.append(name)
+						except IndexError:
+							print '[ImageBackup] - IndexError in file: %s' %name
+							self.error_files += '/boot/' + name + ', ' 
+				if getMachineBuild() not in ("gb7252"):
+					files.append("Recovery")
+		else:
+			files = "None"
 		return files
 
 	def SearchUSBcanidate(self):
@@ -294,22 +332,29 @@ class ImageBackup(Screen):
 
 		## PREPARING THE BUILDING ENVIRONMENT
 		system("rm -rf %s" %self.WORKDIR)
+		self.backuproot = "/tmp/bi/root"
+		if SystemInfo["HaveMultiBoot"]:
+			self.backuproot = "/tmp/bi/RootSubdir/"
 		if not path.exists(self.WORKDIR):
 			makedirs(self.WORKDIR)
-		if not path.exists("/tmp/bi/root"):
-			makedirs("/tmp/bi/root")
+		if not path.exists(self.backuproot):
+			makedirs(self.backuproot)
 		system("sync")
 		if SystemInfo["HaveMultiBoot"]:
-			system("mount /dev/%s /tmp/bi/root" %self.MTDROOTFS)
+			if SystemInfo["HasRootSubdir"]:
+				system("mount %s /tmp/bi/RootSubdir" %self.MTDROOTFS)
+				self.backuproot = self.backuproot + self.ROOTFSSUBDIR
+			else:
+				system("mount /dev/%s %s" %(self.MTDROOTFS, self.backuproot))
 		else:
-			system("mount --bind / /tmp/bi/root")
+			system("mount --bind / %s" %(self.backuproot))
 
 		if "jffs2" in self.ROOTFSTYPE.split():
-			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
+			cmd1 = "%s --root=%s --faketime --output=%s/root.jffs2 %s" % (self.MKFS,  self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 			cmd3 = None
 		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
-			cmd1 = "%s -cf %s/rootfs.tar -C /tmp/bi/root --exclude ./var/nmbd --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR)
+			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
 		else:
@@ -324,7 +369,7 @@ class ImageBackup(Screen):
 			f.close()
 			ff = open("%s/root.ubi" %self.WORKDIR, "w")
 			ff.close()
-			cmd1 = "%s -r /tmp/bi/root -o %s/root.ubi %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
+			cmd1 = "%s -r %s -o %s/root.ubi %s" % (self.MKFS,  self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
 			cmd3 = "mv %s/root.ubifs %s/root.%s" %(self.WORKDIR, self.WORKDIR, self.ROOTFSTYPE)
 
@@ -384,7 +429,10 @@ class ImageBackup(Screen):
 		cmdlist.append('echo "' + _("Create:") + " kerneldump" + '"')
 		cmdlist.append('echo " "')
 		if SystemInfo["HaveMultiBoot"]:
-			cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
+			if SystemInfo["HasRootSubdir"]:
+				cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+			else:
+				cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
 		elif self.MTDKERNEL.startswith('mmcblk0'):
 			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 		else:
@@ -605,8 +653,12 @@ class ImageBackup(Screen):
 
 		if SystemInfo["HasRootSubdir"]:
 			cmdlist.append("rm -rf %s/fullbackup_%s" %(self.DIRECTORY, self.MODEL))
-		cmdlist.append("umount /tmp/bi/root")
-		cmdlist.append("rmdir /tmp/bi/root")
+		if SystemInfo["HasRootSubdir"]:
+			cmdlist.append("umount /tmp/bi/RootSubdir")
+			cmdlist.append("rmdir /tmp/bi/RootSubdir")
+		else:
+			cmdlist.append("umount /tmp/bi/root")
+			cmdlist.append("rmdir /tmp/bi/root")
 		cmdlist.append("rmdir /tmp/bi")
 		cmdlist.append("rm -rf %s" % self.WORKDIR)
 		cmdlist.append("sleep 5")

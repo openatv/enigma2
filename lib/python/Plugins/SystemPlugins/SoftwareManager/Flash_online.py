@@ -91,6 +91,7 @@ class FlashOnline(Screen):
 		self.list = self.list_files("/boot")
 		self.MTDKERNEL = getMachineMtdKernel()
 		self.MTDROOTFS = getMachineMtdRoot()
+		self.ROOTFSSUBDIR = "linuxrootfs1"
 
 		Screen.setTitle(self, _("Flash On the Fly"))
 		if SystemInfo["HaveMultiBoot"]:
@@ -186,9 +187,9 @@ class FlashOnline(Screen):
 
 	def read_current_multiboot(self):
 		if SystemInfo["HasRootSubdir"]:
-			self.MTDROOTFS = self.find_rootfs_dev("STARTUP")
-			self.MTDKERNEL = self.find_kernel_dev("STARTUP")
-			self.ROOTFSSUBDIR = self.find_rootfssubdir("STARTUP")
+			self.MTDROOTFS = self.find_rootfs_dev(self.list[self.selection])
+			self.MTDKERNEL = self.find_kernel_dev(self.list[self.selection])
+			self.ROOTFSSUBDIR = self.find_rootfssubdir(self.list[self.selection])
 		else:
 			if getMachineBuild() in ("hd51","vs1500","h7"):
 				if self.list[self.selection] == "Recovery":
