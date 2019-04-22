@@ -13,6 +13,7 @@ import skin
 
 LOCAL_EXTENSIONS = {
 	"py": "py",
+	"pyo": "py",
 	"sh": "sh",
 	"html": "html",
 	"xml": "xml",
@@ -24,6 +25,7 @@ LOCAL_EXTENSIONS = {
 	"tgz": "tar",
 	"gz": "gz",
 	"rar": "rar",
+	"mvi": "picture",
 }
 
 LOCAL_EXTENSIONS.update(((ext[1:], "txt") for ext in TEXT_EXTENSIONS if ext[1:] not in LOCAL_EXTENSIONS))

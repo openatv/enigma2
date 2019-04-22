@@ -588,6 +588,10 @@ class key_actions(stat_info):
 				)
 		elif filetype in (".sh", ".py", ".pyo"):
 			self.run_script(self.SOURCELIST, self.TARGETLIST)
+		elif filetype == ".mvi":
+			self.file_name = longname
+			self.tmp_file = '/tmp/grab_%s_mvi.png' %filename[:-4]
+			self.session.openWithCallback(self.show_mviFileCB, MessageBox, _("Show '%s' as picture?\n(File will saved in '%s')\n\n!!! The current service must shortly interrupted !!!") %(longname,self.tmp_file), type=MessageBox.TYPE_YESNO, default=True)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
@@ -605,6 +609,26 @@ class key_actions(stat_info):
 				found_viewer = False
 			if not found_viewer:
 				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
+
+	def show_mviFileCB(self, ret):
+		if ret:
+			self.cur_service = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.session.nav.stopService()
+			if os.path.isfile(self.tmp_file):
+				os.remove(self.tmp_file)
+			from Components.Console import Console as console
+			self.console = console()
+			cmd = ["/usr/bin/showiframe '%s'" %self.file_name, "grab -v -d -p %s" %self.tmp_file]
+			self.console.eBatch(cmd, self.consoleCB, debug=True)
+
+	def consoleCB(self, extra_args):
+		self.session.nav.playService(self.cur_service)
+		if os.path.isfile(self.tmp_file):
+			filename = self.tmp_file.split('/')[-1]
+			self.session.open(ImageViewer, [[(filename,'',''),'']],0, self.tmp_file.replace(filename,''), filename)
+		else:
+			self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
+
 
 	def onFileActionCB(self, result):
 		# os.system('echo %s > /tmp/test.log' % (result))
