@@ -61,3 +61,7 @@ endif
 if ET8500S
 dist_install_DATA += verdana.ttf
 endif
+
+if OSMIO4KPLUS
+dist_install_DATA += analog.ttf MyriadPro-Regular.otf MyriadPro-Semibold.otf MyriadPro-SemiboldIt.otf
+endif
