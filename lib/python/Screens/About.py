@@ -259,9 +259,13 @@ def find_rootfssubdir(file):
 
 def read_startup(FILE):
 	file = FILE
-	with open(file, 'r') as myfile:
-		data=myfile.read().replace('\n', '')
-	myfile.close()
+	try:
+		with open(file, 'r') as myfile:
+			data=myfile.read().replace('\n', '')
+		myfile.close()
+	except IOError:
+		print "[ERROR] failed to open file %s" % file
+		data = " "
 	return data
 
 class About(Screen):
