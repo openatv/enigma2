@@ -209,6 +209,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		if SystemInfo["havehdmicolordepth"]:
 			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth,_("This option allows you to change the Colordepth for UHD")))
 
+		if SystemInfo["havehdmihdrtype"]:
+			self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype,_("This option allows you to change the HDR mode for UHD")))
+
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
 				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3, _("Choose whether multi channel AC3 (Dolby Digital) sound tracks should be downmixed to stereo.")))
@@ -500,6 +503,8 @@ class AutoVideoMode(Screen):
 		if new_rate == "multi":
 			if video_framerate in (25000, 50000):
 				new_rate = "50"
+			elif SystemInfo["have24hz"] and video_framerate in (23976, 24000):
+				new_rate = "24"
 			else:
 				new_rate = "60"
 

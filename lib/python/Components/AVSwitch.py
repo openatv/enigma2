@@ -84,6 +84,12 @@ class AVSwitch:
 					"640x480": {60: "640x480"}
 	}
 
+	SystemInfo["have24hz"] = os.path.exists("/proc/stb/video/videomode_24hz")
+	if SystemInfo["have24hz"]:
+		for mode, rate in rates.iteritems():
+			if mode[0].isdigit() and "multi" in rate:
+				rate["multi"][24] = mode[:-1] + "p24"
+
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
@@ -269,10 +275,13 @@ class AVSwitch:
 
 		mode_50 = modes.get(50)
 		mode_60 = modes.get(60)
+		mode_24 = modes.get(24)
 		if mode_50 is None or force == 60:
-			mode_50 = mode_60
+			mode_50 = mode_24 = mode_60
 		if mode_60 is None or force == 50:
-			mode_60 = mode_50
+			mode_60 = mode_24 = mode_50
+		if mode_24 is None:
+			mode_24 = mode_60
 
 		if os.path.exists('/proc/stb/video/videomode_50hz') and getBoxType() not in ('gbquadplus', 'gb800solo', 'gb800se', 'gb800ue', 'gb800ueplus'):
 			try:
@@ -289,6 +298,14 @@ class AVSwitch:
 				f.close()
 			except:
 				print "[AVSwitch] failed to set videomode_60hz to", mode_60
+
+		if SystemInfo["have24hz"]:
+			try:
+				f = open("/proc/stb/video/videomode_24hz", "w")
+				f.write(mode_24)
+				f.close()
+			except:
+				print "[AVSwitch] failed to set videomode_24hz to", mode_24
 
 		try:
 			if rate == "multi":
@@ -801,6 +818,34 @@ def InitAVSwitch():
 		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
+
+	if os.path.exists("/proc/stb/video/hdmi_hdrtype"):
+		f = open("/proc/stb/video/hdmi_hdrtype", "r")
+		have_HdmiHdrType = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_HdmiHdrType = False
+
+	SystemInfo["havehdmihdrtype"] = have_HdmiHdrType
+
+	if have_HdmiHdrType:
+		def setHdmiHdrType(configElement):
+			try:
+				f = open("/proc/stb/video/hdmi_hdrtype", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.hdmihdrtype = ConfigSelection(choices={
+				"auto": _("Auto"),
+				"dolby": _("Dolby Vision"),
+				"hdr10": _("HDR10"),
+				"hlg": _("HLG"),
+				"none": _("Off")},
+				default = "auto")
+		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
+	else:
+		config.av.hdmihdrtype = ConfigNothing()
 
 	if os.path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")
