@@ -211,9 +211,13 @@ class ImageBackup(Screen):
 
 	def read_startup(self, FILE):
 		self.file = FILE
-		with open(self.file, 'r') as myfile:
-			data=myfile.read().replace('\n', '')
-		myfile.close()
+		try:
+			with open(self.file, 'r') as myfile:
+				data=myfile.read().replace('\n', '')
+			myfile.close()
+		except IOError:
+			print "[ERROR] failed to open file %s" % file
+			data = " "
 		return data
 
 	def find_rootfs_dev(self, file):
