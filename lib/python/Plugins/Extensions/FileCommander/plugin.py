@@ -1425,7 +1425,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 		</screen>
 	"""
 
-	SIZESCALER = UnitScaler(scaleTable=UnitMultipliers.Iec, maxNumLen=3, decimals=1)
+	SIZESCALER = UnitScaler(scaleTable=UnitMultipliers.Jedec, maxNumLen=3, decimals=1)
 
 	def __init__(self, session, source):
 		Screen.__init__(self, session)

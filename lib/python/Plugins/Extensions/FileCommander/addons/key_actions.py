@@ -130,7 +130,7 @@ class key_actions(stat_info):
 		#  "mediainfo": "mediainfo",
 	}
 
-	SIZESCALER = UnitScaler(scaleTable=UnitMultipliers.Si, maxNumLen=3, decimals=1)
+	SIZESCALER = UnitScaler(scaleTable=UnitMultipliers.Jedec, maxNumLen=3, decimals=1)
 
 	def __init__(self):
 		stat_info.__init__(self)
@@ -284,7 +284,7 @@ class key_actions(stat_info):
 		if self.commando[0].endswith('.pyo'):
 			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
 		if self.parameter:
-			askList.insert(3,(_("Run script with optional parameter"), "PAR"))
+			askList.append((_("Run script with optional parameter"), "PAR"))
 			askList.append((_("Run script with optional parameter in background"), "PAR_BG"))
 			filename += _('\noptional parameter:\n%s') %self.parameter
 		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n") + filename, list=askList)
@@ -618,17 +618,16 @@ class key_actions(stat_info):
 				os.remove(self.tmp_file)
 			from Components.Console import Console as console
 			self.console = console()
-			cmd = ["/usr/bin/showiframe '%s'" %self.file_name, "grab -v -d -p %s" %self.tmp_file]
+			cmd = ["/usr/bin/showiframe '%s'" %self.file_name, "/usr/bin/grab -v -d -p %s" %self.tmp_file]
 			self.console.eBatch(cmd, self.consoleCB, debug=True)
 
 	def consoleCB(self, extra_args):
 		self.session.nav.playService(self.cur_service)
 		if os.path.isfile(self.tmp_file):
 			filename = self.tmp_file.split('/')[-1]
-			self.session.open(ImageViewer, [[(filename,'',''),'']],0, self.tmp_file.replace(filename,''), filename)
+			self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
 		else:
 			self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
-
 
 	def onFileActionCB(self, result):
 		# os.system('echo %s > /tmp/test.log' % (result))
