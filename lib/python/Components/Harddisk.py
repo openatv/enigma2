@@ -700,6 +700,13 @@ DEVICEDB = {
 		"/devices/platform/rdb/f0470500.ehci_v2/usb4/4-1/4-1.4/": "Back, lower USB2 Slot", # With USB-2 or USB-1 device
 		"/devices/platform/rdb/f0470500.ehci_v2/usb4/4-1/4-1.1/": "Front USB2 Slot", # With USB-2 or USB-1 device
 	},
+	"beyonwizv2":
+	{
+		"/devices/platform/soc/f98a0000.xhci/usb4/4-1/": "Back USB3 Slot", # With USB-3 device
+		"/devices/platform/soc/f98a0000.xhci/usb3/3-1/": "Back USB3 Slot", # With USB-2 or USB-1 device
+		"/devices/platform/soc/f9890000.ehci/usb1/1-1/1-1.2/": "Back USB2 Slot", # With USB-2 or USB-1 device
+		"/devices/platform/soc/f9890000.ehci/usb1/1-1/1-1.3": "Back SD Slot",
+	},
 }
 
 def addInstallTask(job, package):
