@@ -27,15 +27,15 @@ def findFile(serviceName):
 	#			if fileExists(pngname):
 	#				return pngname
 	for searchpath in searchPaths:
-		piconpath = path
+		#piconpath = path
 		#if piconsize == 50:
 		#	piconpath = path + "_50x30"
 		#elif piconsize == 100:
 		#	piconpath = path + "_100x60"
 		#if piconsize > 0:
-		pngname = (searchpath % piconpath) + serviceName + ".png"
-		if fileExists(pngname):
-			return pngname
+		#	pngname = (searchpath % piconpath) + serviceName + ".png"
+		#	if fileExists(pngname):
+		#		return pngname
 		pngname = (searchpath % path) + serviceName + ".png"
 		if fileExists(pngname):
 			return pngname
