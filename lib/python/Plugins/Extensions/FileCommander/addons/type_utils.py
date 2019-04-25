@@ -262,8 +262,8 @@ class ImageViewer(Screen, HelpableScreen):
 
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "DirectionActions"], {
 			"cancel": (self.keyCancel, _("Exit picture viewer")),
-			"left": (self.keyLeft, _("Show next picture")),
-			"right": (self.keyRight, _("Show previous picture")),
+			"left": (self.keyLeft, _("Show previous picture")),
+			"right": (self.keyRight, _("Show next picture")),
 			"blue": (self.keyBlue, _("Start/stop slide show")),
 			"yellow": (self.keyYellow, _("Show image information")),
 		}, -1)
