@@ -4,6 +4,7 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
+from Components.Label import Label
 
 class Console(Screen):
 
@@ -19,21 +20,27 @@ class Console(Screen):
 		self.closeOnSuccess = closeOnSuccess
 		self.errorOcurred = False
 
+		self["key_red"] = Label(_("Cancel"))
+		self["key_green"] = Label(_("hide"))
+
 		self["text"] = ScrollLabel("")
 		self["summary_description"] = StaticText("")
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions", "ColorActions"],
 		{
-			"ok": self.ok,
+			"ok": self.cancel,
 			"back": self.cancel,
-			"up": self["text"].pageUp,
-			"down": self["text"].pageDown
+			"up": self.key_up,
+			"down": self.key_down,
+			"green": self.key_green,
+			"red": self.key_red
 		}, -1)
 
 		self.cmdlist = cmdlist
 		self.newtitle = title
 
-		self.cancel_cnt = 0
+		self.screen_hide = False
 		self.cancel_msg = None
+		self.output_file = ''
 
 		self.onShown.append(self.updateTitle)
 
@@ -62,11 +69,15 @@ class Console(Screen):
 	def runFinished(self, retval):
 		if retval:
 			self.errorOcurred = True
+			self.toggleScreenHide(True)
 		self.run += 1
 		if self.run != len(self.cmdlist):
 			if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
+			self["key_red"].setText(_("Close"))
+			self["key_green"].setText(_("Save"))
+			self.toggleScreenHide(True)
 			if self.cancel_msg:
 				self.cancel_msg.close()
 			lastpage = self["text"].isAtLastPage()
@@ -77,26 +88,125 @@ class Console(Screen):
 			if not self.errorOcurred and self.closeOnSuccess:
 				self.cancel()
 
-	def ok(self):
+	def key_up(self):
+		if self.screen_hide:
+			self.toggleScreenHide()
+			return
+		self["text"].pageUp()
+
+	def key_down(self):
+		if self.screen_hide:
+			self.toggleScreenHide()
+			return
+		self["text"].pageDown()
+
+	def key_green(self):
+		if self.screen_hide:
+			self.toggleScreenHide()
+			return
+		if self.output_file == 'end':
+			pass
+		elif self.output_file.startswith('/tmp/'):
+			self["text"].setText(self.readFile(self.output_file))
+			self["key_green"].setText(_(" "))
+			self.output_file = 'end'
+		elif self.run == len(self.cmdlist):
+			self.saveOutputText()
+		else:
+			self.toggleScreenHide()
+
+	def key_red(self):
+		if self.screen_hide:
+			self.toggleScreenHide()
+			return
 		if self.run == len(self.cmdlist):
 			self.cancel()
+		else:
+			self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _("Cancel the Script?"), type=MessageBox.TYPE_YESNO, default=False)
+
+	def cancelCB(self, ret = None):
+		self.cancel_msg = None
+		if ret:
+			self.cancel(True)
+
+	def saveOutputText(self):
+		from time import time, localtime
+		lt = localtime(time())
+		self.output_file = '/tmp/%02d%02d%02d_console.txt' %(lt[3],lt[4],lt[5])
+		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save script commands and output to file?\n('%s')") %self.output_file, type=MessageBox.TYPE_YESNO, default=True)
+
+	def saveOutputTextCB(self, ret = None):
+		if ret:
+			from os import path
+			failtext = _("Path to save not exist: '/tmp/'")
+			if path.exists('/tmp/'):
+				text = 'commands ...\n\n'
+				try:
+					cmd = self.cmdlist[0]
+					if type(cmd) is str:
+						if path.isfile(cmd) and cmd[-3:] in ('.py', '.sh'):
+							text += 'commands from file: %s\n\n' %cmd
+							text += '%s\n' %self.readFile(cmd)
+							if len(self.cmdlist)>1:
+								text += 'next commands:\n\n'
+								text += '\n'.join(self.cmdlist[1:]) + '\n'
+						else:
+							text += '\n'.join(self.cmdlist) + '\n'
+					else:
+						isfile = False
+						if path.isfile(cmd[0]) and cmd[0][-3:] in ('.py', '.sh'):
+							text += 'commands from file: %s\n\n' %('  '.join(cmd))
+							text += '%s\n' %self.readFile(cmd[0])
+							if len(cmd)>1:
+								text += 'command line parameter: %s\n' %(' '.join(cmd[1:]))
+						else:
+							text += '\n'.join(cmd) + '\n'
+				except:
+					text += 'error read commands!!!\n'
+				try:
+					text += '\n' + '-'*50 + '\n\n'
+					text += 'outputs ...\n\n'
+					text += self["text"].getText()
+					f = open('%s' %self.output_file, 'w')
+					f.write(text)
+					f.close()
+					self["key_green"].setText(_("Load"))
+					return
+				except:
+					failtext = _("File write error: '%s'") %self.output_file
+			self.output_file = 'end'
+			self["key_green"].setText(_(" "))
+			self.session.open(MessageBox, failtext, type=MessageBox.TYPE_ERROR)
+
+	def toggleScreenHide(self, setshow = False):
+		if self.screen_hide or setshow:
+			self.show()
+		else:
+			self.hide()
+		self.screen_hide = not (self.screen_hide or setshow)
+
+	def readFile(self, file):
+		try:
+			with open(file, 'r') as rdfile:
+				rd = rdfile.read()
+			rdfile.close()
+		except:
+			if file == self.output_file:
+				rd = self["text"].getText()
+			else:
+				rd = "File read error: '%s'\n" %file
+		return rd
 
 	def cancel(self, force = False):
-		if self.cancel_msg is not None:
-			self.cancel_cnt = 0
-			self.cancel_msg = None
-			if not force:
-				return
-		self.cancel_cnt += 1
+		if self.screen_hide:
+			self.toggleScreenHide()
+			return
 		if force or self.run == len(self.cmdlist):
 			self.close()
 			self.container.appClosed.remove(self.runFinished)
 			self.container.dataAvail.remove(self.dataAvail)
 			if self.run != len(self.cmdlist):
 				self.container.kill()
-		elif self.cancel_cnt >= 3:
-			self.cancel_msg = self.session.openWithCallback(self.cancel, MessageBox, _("Cancel the Script?"), type=MessageBox.TYPE_YESNO, default=False)
-			self.cancel_msg.show()
 
 	def dataAvail(self, str):
 		self["text"].appendText(str)
