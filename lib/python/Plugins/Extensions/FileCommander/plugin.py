@@ -1412,8 +1412,6 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				self[side + "_head2"].updateList(())
 
 	def doRefresh(self):
-		if self.disableActions_Timer.isActive():
-			return
 		print "[FileCommander] selectedFiles:", self.selectedFiles
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
