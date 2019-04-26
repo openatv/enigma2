@@ -344,12 +344,18 @@ class key_actions(stat_info):
 			self.onLayout()
 
 	def run_file(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.run_prog("file")
 
 	def run_ffprobe(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.run_prog("ffprobe", "-hide_banner")
 
 	def run_mediainfo(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.run_prog("mediainfo")
 
 	def run_prog(self, prog, args=None):
@@ -395,12 +401,18 @@ class key_actions(stat_info):
 			self._progConsole["text"].updateScrollbar()
 
 	def help_run_file(self):
+		if self.disableActions_Timer.isActive():
+			return
 		return self.help_run_prog("file")
 
 	def help_run_ffprobe(self):
+		if self.disableActions_Timer.isActive():
+			return
 		return self.help_run_prog("ffprobe")
 
 	def help_run_mediainfo(self):
+		if self.disableActions_Timer.isActive():
+			return
 		return self.help_run_prog("mediainfo")
 
 	def help_run_prog(self, prog):

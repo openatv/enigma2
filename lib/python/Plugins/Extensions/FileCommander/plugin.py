@@ -342,6 +342,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		return None
 
 	def file_viewer(self):
+		if self.disableActions_Timer.isActive():
+			return
 		longname = self.viewable_file()
 		if longname is not None:
 			self.session.open(vEditor, longname)
@@ -460,7 +462,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		config.plugins.filecommander.bookmarks.save()
 
 	def goDefaultfolder(self):
-		if self.disableActions_Timer.isActive(): return
+		if self.disableActions_Timer.isActive():
+			return
 		bookmarks = config.plugins.filecommander.bookmarks.value
 		if not bookmarks:
 			if config.plugins.filecommander.path_default.value:
@@ -1009,6 +1012,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.listLeft()
 
 	def listRight(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self["list_left"].selectionEnabled(0)
 		self["list_right"].selectionEnabled(1)
 		self.SOURCELIST = self["list_right"]
@@ -1016,6 +1021,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def listLeft(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self["list_left"].selectionEnabled(1)
 		self["list_right"].selectionEnabled(0)
 		self.SOURCELIST = self["list_left"]
@@ -1023,6 +1030,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def call_change_mode(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.change_mod(self.SOURCELIST)
 
 # 	def call_onFileAction(self):
@@ -1403,6 +1412,8 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				self[side + "_head2"].updateList(())
 
 	def doRefresh(self):
+		if self.disableActions_Timer.isActive():
+			return
 		print "[FileCommander] selectedFiles:", self.selectedFiles
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
