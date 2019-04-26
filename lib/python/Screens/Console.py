@@ -86,6 +86,7 @@ class Console(Screen):
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
+				self.output_file = 'end'
 				self.cancel()
 
 	def key_up(self):
@@ -122,7 +123,7 @@ class Console(Screen):
 		if self.run == len(self.cmdlist):
 			self.cancel()
 		else:
-			self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _("Cancel the Script?"), type=MessageBox.TYPE_YESNO, default=False)
+			self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _("Cancel execution?"), type=MessageBox.TYPE_YESNO, default=False)
 
 	def cancelCB(self, ret = None):
 		self.cancel_msg = None
@@ -133,7 +134,7 @@ class Console(Screen):
 		from time import time, localtime
 		lt = localtime(time())
 		self.output_file = '/tmp/%02d%02d%02d_console.txt' %(lt[3],lt[4],lt[5])
-		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save script commands and output to file?\n('%s')") %self.output_file, type=MessageBox.TYPE_YESNO, default=True)
+		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save the commands and the output to a file?\n('%s')") %self.output_file, type=MessageBox.TYPE_YESNO, default=True)
 
 	def saveOutputTextCB(self, ret = None):
 		if ret:
@@ -167,7 +168,7 @@ class Console(Screen):
 					text += '\n' + '-'*50 + '\n\n'
 					text += 'outputs ...\n\n'
 					text += self["text"].getText()
-					f = open('%s' %self.output_file, 'w')
+					f = open(self.output_file, 'w')
 					f.write(text)
 					f.close()
 					self["key_green"].setText(_("Load"))
@@ -177,6 +178,8 @@ class Console(Screen):
 			self.output_file = 'end'
 			self["key_green"].setText(_(" "))
 			self.session.open(MessageBox, failtext, type=MessageBox.TYPE_ERROR)
+		else:
+			self.output_file = ''
 
 	def toggleScreenHide(self, setshow = False):
 		if self.screen_hide or setshow:
