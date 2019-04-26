@@ -650,12 +650,13 @@ class key_actions(stat_info):
 		self.disableActions_Timer.start(100,True)
 
 	def saveCB(self, extra_args):
-		self.session.nav.playService(self.cur_service)
-		if os.path.isfile(self.tmp_file):
-			filename = self.tmp_file.split('/')[-1]
-			self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
-		else:
-			self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
+		if hasattr(self, 'session'):
+			self.session.nav.playService(self.cur_service)
+			if os.path.isfile(self.tmp_file):
+				filename = self.tmp_file.split('/')[-1]
+				self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
+			else:
+				self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
 
 	def onFileActionCB(self, result):
 		# os.system('echo %s > /tmp/test.log' % (result))
