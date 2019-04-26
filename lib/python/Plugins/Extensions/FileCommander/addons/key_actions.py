@@ -18,7 +18,7 @@ from Tools.UnitConversions import UnitScaler, UnitMultipliers
 
 # Various
 from mimetypes import guess_type
-from enigma import eServiceReference
+from enigma import eServiceReference, eActionMap
 
 import stat
 import pwd
@@ -591,7 +591,10 @@ class key_actions(stat_info):
 		elif filetype == ".mvi":
 			self.file_name = longname
 			self.tmp_file = '/tmp/grab_%s_mvi.png' %filename[:-4]
-			self.session.openWithCallback(self.show_mviFileCB, MessageBox, _("Show '%s' as picture?\n(File will saved in '%s')\n\n!!! The current service must shortly interrupted !!!") %(longname,self.tmp_file), type=MessageBox.TYPE_YESNO, default=True)
+			choice = [(_("No"), "no"),
+					(_("Show as Picture (press any key to close)"), "show"),
+					(_("Show as Picture and save as file ('%s')")%self.tmp_file , "save")]
+			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture or save additional the picture to a file?\nThe current service must interrupted!") %(longname), simple=True, list=choice)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
@@ -610,18 +613,31 @@ class key_actions(stat_info):
 			if not found_viewer:
 				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
 
-	def show_mviFileCB(self, ret):
-		if ret:
+	def mviFileCB(self, ret = None):
+		if ret and ret != 'no':
+			from Components.Console import Console as console
+			from sys import maxint
+			self.console = console()
 			self.cur_service = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.session.nav.stopService()
+		if ret == 'show':
+			self.hide()
+			eActionMap.getInstance().bindAction('', -maxint - 1, self.showCB)
+			cmd = "/usr/bin/showiframe '%s'" %self.file_name
+			self.console.ePopen(cmd)
+		elif ret == 'save':
 			if os.path.isfile(self.tmp_file):
 				os.remove(self.tmp_file)
-			from Components.Console import Console as console
-			self.console = console()
 			cmd = ["/usr/bin/showiframe '%s'" %self.file_name, "/usr/bin/grab -v -d -p %s" %self.tmp_file]
-			self.console.eBatch(cmd, self.consoleCB, debug=True)
+			self.console.eBatch(cmd, self.saveCB, debug=True)
 
-	def consoleCB(self, extra_args):
+	def showCB(self, key=None, flag=1):
+		self.show()
+		self.session.nav.playService(self.cur_service)
+		eActionMap.getInstance().unbindAction('', self.showCB)
+		self.disableActions_Timer.start(100,True)
+
+	def saveCB(self, extra_args):
 		self.session.nav.playService(self.cur_service)
 		if os.path.isfile(self.tmp_file):
 			filename = self.tmp_file.split('/')[-1]

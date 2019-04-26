@@ -219,6 +219,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		# set filter
 		filter = self.fileFilter()
 
+		# disable actions
+		self.disableActions_Timer = eTimer()
+
 		self.jobs = 0
 		self.jobs_old = 0
 
@@ -345,6 +348,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.onFileActionCB(True)
 
 	def exit(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if self["list_left"].getCurrentDirectory() and config.plugins.filecommander.savedir_left.value:
 			config.plugins.filecommander.path_left.value = self["list_left"].getCurrentDirectory()
 			config.plugins.filecommander.path_left.save()
@@ -363,6 +368,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.close(self.session, True)
 
 	def ok(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if self.SOURCELIST.canDescent():  # isDir
 			self.SOURCELIST.descent()
 			self.updateHead()
@@ -372,6 +379,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.doRefresh()
 
 	def goContext(self):
+		if self.disableActions_Timer.isActive():
+			return
 		dummy_to_translate_in_skin = _("File Commander menu")
 		buttons = ("menu", "info") + tuple(string.digits) + ("red", "green", "yellow", "blue")
 
@@ -451,6 +460,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		config.plugins.filecommander.bookmarks.save()
 
 	def goDefaultfolder(self):
+		if self.disableActions_Timer.isActive(): return
 		bookmarks = config.plugins.filecommander.bookmarks.value
 		if not bookmarks:
 			if config.plugins.filecommander.path_default.value:
@@ -469,6 +479,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.updateHead()
 
 	def goParentfolder(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if self.SOURCELIST.getParentDirectory() != False:
 			self.SOURCELIST.changeDir(self.SOURCELIST.getParentDirectory())
 			self.updateHead()
@@ -494,12 +506,16 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.doRefresh()
 
 	def goLeftB(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if config.plugins.filecommander.change_navbutton.value == 'yes':
 			self.listLeft()
 		else:
 			self.goLeft()
 
 	def goRightB(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if config.plugins.filecommander.change_navbutton.value == 'yes':
 			self.listRight()
 		else:
@@ -514,15 +530,21 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def goUp(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.SOURCELIST.up()
 		self.updateHead()
 
 	def goDown(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.SOURCELIST.down()
 		self.updateHead()
 
 # ## Multiselect ###
 	def listSelect(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if not self.SOURCELIST.getCurrentDirectory():
 			return
 		selectedid = self.SOURCELIST.getSelectionID()
@@ -539,6 +561,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def openTasklist(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
@@ -624,27 +648,35 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## sorting files left ###
 	def goRedLong(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self["list_left"].setSortBy(self.setSort(self["list_left"]))
 		self.doRefresh()
 
 # ## reverse sorting files left ###
 	def goGreenLong(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self["list_left"].setSortBy(self.setReverse(self["list_left"]))
 		self.doRefresh()
 
 # ## reverse sorting files right ###
 	def goYellowLong(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self["list_right"].setSortBy(self.setReverse(self["list_right"]))
 		self.doRefresh()
 
 # ## sorting files right ###
 	def goBlueLong(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self["list_right"].setSortBy(self.setSort(self["list_right"]))
 		self.doRefresh()
 
 # ## copy ###
 	def goYellow(self):
-		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed or self.disableActions_Timer.isActive():
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -679,7 +711,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## delete ###
 	def goRed(self):
-		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed or self.disableActions_Timer.isActive():
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -706,7 +738,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## move ###
 	def goGreen(self):
-		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed or self.disableActions_Timer.isActive():
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -743,7 +775,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## rename ###
 	def goBlue(self):
-		if InfoBar.instance and InfoBar.instance.LongButtonPressed:
+		if InfoBar.instance and InfoBar.instance.LongButtonPressed or self.disableActions_Timer.isActive():
 			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
@@ -795,6 +827,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## symlink by name ###
 	def gomakeSym(self):
+		if self.disableActions_Timer.isActive():
+			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
@@ -832,10 +866,14 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## File/directory information
 	def gofileStatInfo(self):
+		if self.disableActions_Timer.isActive():
+			return
 		self.session.open(FileCommanderFileStatInfo, self.SOURCELIST)
 
 # ## symlink by folder ###
 	def gomakeSymlink(self):
+		if self.disableActions_Timer.isActive():
+			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		targetDir = self.TARGETLIST.getCurrentDirectory()
@@ -865,6 +903,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## new folder ###
 	def gomakeDir(self):
+		if self.disableActions_Timer.isActive():
+			return
 		filename = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (filename is None) or (sourceDir is None):
@@ -889,6 +929,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## download subtitles ###
 	def downloadSubtitles(self):
+		if self.disableActions_Timer.isActive():
+			return
 		testFileName = self.SOURCELIST.getFilename()
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		if (testFileName is None) or (sourceDir is None):
@@ -947,6 +989,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def listRightB(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if config.plugins.filecommander.change_navbutton.value == 'yes':
 			self.goLeft()
 		elif config.plugins.filecommander.change_navbutton.value == 'always' and self.SOURCELIST == self["list_right"]:
@@ -955,6 +999,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.listRight()
 
 	def listLeftB(self):
+		if self.disableActions_Timer.isActive():
+			return
 		if config.plugins.filecommander.change_navbutton.value == 'yes':
 			self.goRight()
 		elif config.plugins.filecommander.change_navbutton.value == 'always' and self.SOURCELIST == self["list_left"]:
