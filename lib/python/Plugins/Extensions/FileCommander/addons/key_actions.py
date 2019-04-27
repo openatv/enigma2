@@ -674,7 +674,7 @@ class key_actions(stat_info):
 			from Tools import Notifications
 			import NavigationInstance
 			global last_service
-			if last_service:
+			if last_service and NavigationInstance.instance:
 				NavigationInstance.instance.playService(last_service)
 				last_service = None
 			Notifications.AddNotification(MessageBox, _("The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
