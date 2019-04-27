@@ -1,4 +1,4 @@
-from os import path
+from os import path, listdir
 
 from enigma import eDVBResourceManager, Misc_Options
 
@@ -31,7 +31,18 @@ def countFrontpanelLEDs():
 
 	return leds
 
+def haveInitCam():
+	for cam in listdir("/etc/init.d"):
+		if cam.startswith('softcam.') and not cam.endswith('None'):
+			return True
+		elif cam.startswith('cardserver.') and not cam.endswith('None'):
+			return True
+		else:
+			pass
+	return False
+
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
+SystemInfo["HAVEINITCAM"] = haveInitCam()
 SystemInfo["7segment"] = getDisplayType() in ('7segment')
 SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and getDisplayType() not in ('7segment')
 SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('7segment')
@@ -101,3 +112,4 @@ SystemInfo["HAVESCART"] = getHaveSCART() in ('True')
 SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() in ('True')
 SystemInfo["HAVEYUV"] = getHaveYUV() in ('True')
 SystemInfo["HAVEHDMI"] = getHaveHDMI() in ('True')
+
