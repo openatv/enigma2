@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2019-04-26 22:45+0300\n"
+"POT-Creation-Date: 2019-04-27 23:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -93,6 +93,9 @@ msgid " Not Started !!\n\nCam binname must be in the start command line\nCheck y
 msgstr ""
 
 msgid " of "
+msgstr ""
+
+msgid " or save additional the picture to a file"
 msgstr ""
 
 msgid " updated"
@@ -4206,6 +4209,9 @@ msgstr ""
 msgid "CPU:\t\t%s"
 msgstr ""
 
+msgid "CPU priority for script execution"
+msgstr ""
+
 msgid "Crash at skin error for debug reasons ?"
 msgstr ""
 
@@ -4560,6 +4566,9 @@ msgstr ""
 msgid "default Astra (13e-19e)"
 msgstr ""
 
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
+
 msgid "Default directory sorting"
 msgstr ""
 
@@ -4579,6 +4588,9 @@ msgid "Default folder"
 msgstr ""
 
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+msgstr ""
+
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
 
 msgid "Default Modes Selected."
@@ -7257,6 +7269,9 @@ msgid "Hungarian"
 msgstr ""
 
 msgid "I"
+msgstr ""
+
+msgid "I/O priority for script execution"
 msgstr ""
 
 msgid "Icons"
@@ -10552,6 +10567,15 @@ msgstr ""
 msgid "please wait, loading picture..."
 msgstr ""
 
+msgid "Please wait, restarting cardserver."
+msgstr ""
+
+msgid "Please wait, restarting softcam."
+msgstr ""
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
 msgid "Please wait."
 msgstr ""
 
@@ -11701,6 +11725,12 @@ msgstr ""
 msgid "Restart %s %s."
 msgstr ""
 
+msgid "Restart both"
+msgstr ""
+
+msgid "Restart cardserver"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -11738,6 +11768,9 @@ msgid "Restart network and remount connections"
 msgstr ""
 
 msgid "Restart network to with current setup"
+msgstr ""
+
+msgid "Restart softcam"
 msgstr ""
 
 msgid "Restart test"
@@ -12365,6 +12398,9 @@ msgstr ""
 msgid "Select Cam 2"
 msgstr ""
 
+msgid "Select Card Server"
+msgstr ""
+
 msgid "Select channel audio"
 msgstr ""
 
@@ -12495,6 +12531,9 @@ msgid "Select service to add..."
 msgstr ""
 
 msgid "select Slot"
+msgstr ""
+
+msgid "Select Softcam"
 msgstr ""
 
 msgid "Select Software Update"
@@ -13226,7 +13265,7 @@ msgstr ""
 msgid "Show /tmp/ecm.info"
 msgstr ""
 
-msgid "Show '%s' as picture or save additional the picture to a file?\nThe current service must interrupted!"
+msgid "Show '%s' as picture%s?\nThe current service must interrupted!"
 msgstr ""
 
 msgid "Show 1080p 24fps as"
@@ -14171,10 +14210,16 @@ msgstr ""
 msgid "Softcam-Panel..."
 msgstr ""
 
+msgid "Softcam-Setup"
+msgstr ""
+
 msgid "SoftcamPanel"
 msgstr ""
 
 msgid "softcams"
+msgstr ""
+
+msgid "SoftcamSetup"
 msgstr ""
 
 msgid "Software"
@@ -15096,6 +15141,9 @@ msgid "The following files were found..."
 msgstr ""
 
 msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
+msgstr ""
+
+msgid "The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"
 msgstr ""
 
 msgid "The hash of a directory can't be calculated."
