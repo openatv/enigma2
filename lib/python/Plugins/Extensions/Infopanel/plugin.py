@@ -6,6 +6,7 @@ from Screens.NetworkSetup import *
 from enigma import *
 from Screens.Standby import *
 from Screens.MessageBox import MessageBox
+from Screens.SoftcamSetup import *
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap 
 from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -56,27 +57,35 @@ def Check_Softcam():
 	return found
 
 def Check_SysSoftcam():
+	syscam="none"
+	for cam in os.listdir("/etc/init.d"):
+		if cam.startswith('softcam.') and not cam.endswith('None'):
+			syscam="installed"
+		elif cam.startswith('cardserver.') and not cam.endswith('None'):
+			syscam="installed"
+		else:
+			pass
+
 	if os.path.isfile('/etc/init.d/softcam'):
 		if (os.path.islink('/etc/init.d/softcam') and not os.readlink('/etc/init.d/softcam').lower().endswith('none')):
 			try:
-				syscam = None
 				syscam = os.readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
 				if syscam.lower().startswith('oscam'):
-					return "oscam"
+					syscam="oscam"
+				if syscam.lower().startswith('cccam'):
+					syscam="cccam"
 			except:
 				pass
-		if pathExists('/usr/bin/'):
-			softcams = os.listdir('/usr/bin/')
-			for softcam in softcams:
-				if softcam.lower().startswith('oscam'):
-					return "oscam"
-	return None
+	return syscam
 
 
 if Check_Softcam():
 	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("Softcam Panel"))]
 else:
-	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))]
+	if Check_SysSoftcam() == "none":
+		redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))]
+	else:
+		redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("SoftcamSetup"))]
 
 def timerEvent():
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
@@ -350,6 +359,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanelSetup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
+		if Check_SysSoftcam() is not "none":
+			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamSetup'), _("Softcam-Setup"), 'SoftcamSetup')))
 		if Check_SysSoftcam() is "oscam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
@@ -489,6 +500,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.System()
 		elif menu == "CronTimer":
 			self.session.open(CronTimers)
+		elif menu == "SoftcamSetup":
+			self.session.open(SoftcamSetup)
 		elif menu == "JobManager":
 			self.session.open(ScriptRunner)
 		elif menu == "OScamInfo":
@@ -1125,4 +1138,5 @@ class Info(Screen):
 		except:
 			o = ''
 			return o
+
 
