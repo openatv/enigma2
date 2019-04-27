@@ -390,6 +390,7 @@ class ImageViewer(Screen, HelpableScreen):
 		if self.displayNow and len(self.currentImage):
 			self.displayNow = False
 			self["message"].setText(self.currentImage[0])
+			self.setTitle(self.currentImage[0])
 			self.lsatIndex = self.currentImage[1]
 			self["image"].instance.setPixmap(self.currentImage[2].__deref__())
 			self.currentImage = []
