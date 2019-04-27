@@ -6,6 +6,7 @@ from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
 from Components.Task import Task, Job, job_manager
+from Components.Console import Console as console
 
 # Screens
 from Screens.Console import Console
@@ -19,6 +20,7 @@ from Tools.UnitConversions import UnitScaler, UnitMultipliers
 # Various
 from mimetypes import guess_type
 from enigma import eServiceReference, eActionMap
+from sys import maxint
 
 import stat
 import pwd
@@ -48,6 +50,7 @@ except Exception, e:
 
 pname = _("File Commander - Addon Movieplayer")
 pdesc = _("play Files")
+last_service = None
 
 class stat_info:
 	def __init__(self):
@@ -265,8 +268,7 @@ class key_actions(stat_info):
 	def run_script(self, dirsource, dirtarget):
 		filename = dirsource.getFilename()
 		sourceDir = dirsource.getCurrentDirectory()
-		longname = sourceDir + filename
-		self.commando = (longname,)
+		self.commando = sourceDir + filename
 		self.parameter = ''
 		targetdir = dirtarget.getCurrentDirectory()
 		if targetdir is not None:
@@ -278,10 +280,10 @@ class key_actions(stat_info):
 			else:
 				self.parameter = targetdir
 		stxt = _('python')
-		if self.commando[0].endswith('.sh'):
+		if self.commando.endswith('.sh'):
 			stxt = _('shell')
 		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
-		if self.commando[0].endswith('.pyo'):
+		if self.commando.endswith('.pyo'):
 			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))
@@ -292,51 +294,58 @@ class key_actions(stat_info):
 	def do_run_script(self, answer):
 		answer = answer and answer[1]
 		if answer in ("YES", "PAR", "YES_BG", "PAR_BG"):
-			if not os.access(self.commando[0], os.R_OK):
-				self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando[0], type=MessageBox.TYPE_ERROR, close_on_any_key=True)
+			if not os.access(self.commando, os.R_OK):
+				self.session.open(MessageBox, _("Script '%s' must have read permission to be able to run it") % self.commando, type=MessageBox.TYPE_ERROR, close_on_any_key=True)
 				return
-			if answer in ("PAR", "PAR_BG"):
-				self.commando = (self.commando[0], self.parameter)
+			nice = config.plugins.filecommander.script_priority_nice.value or ''
+			ionice = config.plugins.filecommander.script_priority_ionice.value or ''
+			if nice:
+				nice = 'nice -n %d ' %nice
+			if ionice:
+				ionice = 'ionice -c %d ' %ionice
+			priority = '%s%s' %(nice,ionice)
 			if answer.endswith('_BG'):
 				if 'PAR' in answer:
-					job = Job(_("Run script") + " ('%s %s')" %(self.commando[0], self.commando[1]))
+					job = Job(_("Run script") + " ('%s%s %s')" %(priority, self.commando, self.parameter))
 				else:
-					job = Job(_("Run script") + " ('%s')"%self.commando[0])
-				task = Task(job, self.commando[0])
-			if self.commando[0].endswith('.sh'):
-				if os.access(self.commando[0], os.X_OK):
-					if answer.endswith('_BG'):
-						if 'PAR' in answer:
-							task.setCmdline("'%s' '%s'" %(self.commando[0], self.commando[1]))
-						else:
-							task.setCmdline("'%s'" %self.commando[0])
-					else:
-						self.session.open(Console, cmdlist=(self.commando,))
-				else:
-					if answer.endswith('_BG'):
-						if 'PAR' in answer:
-							task.setCmdline("/bin/sh '%s' '%s'" %(self.commando[0], self.commando[1]))
-						else:
-							task.setCmdline("/bin/sh '%s'" %self.commando[0])
-					else:
-						self.session.open(Console, cmdlist=((("/bin/sh",) + self.commando),))
-			else:
-				if answer.endswith('_BG'):
+					job = Job(_("Run script") + " ('%s%s')" %(priority, self.commando))
+				task = Task(job, self.commando)
+			if self.commando.endswith('.sh'):
+				if os.access(self.commando, os.X_OK):
 					if 'PAR' in answer:
-						task.setCmdline("/usr/bin/python '%s' '%s'" %(self.commando[0], self.commando[1]))
+						cmdline = "%s%s '%s'" %(priority, self.commando, self.parameter)
 					else:
-						task.setCmdline("/usr/bin/python '%s'" %self.commando[0])
+						cmdline = "%s%s" %(priority, self.commando)
+					if answer.endswith('_BG'):
+						task.setCmdline(cmdline)
+					else:
+						self.session.open(Console, cmdlist=(cmdline,))
 				else:
-					self.session.open(Console, cmdlist=((("/usr/bin/python",) + self.commando),))
+					if 'PAR' in answer:
+						cmdline = "%s/bin/sh %s '%s'" %(priority, self.commando, self.parameter)
+					else:
+						cmdline = "%s/bin/sh %s" %(priority, self.commando)
+					if answer.endswith('_BG'):
+						task.setCmdline(cmdline)
+					else:
+						self.session.open(Console, cmdlist=(cmdline,))
+			else:
+				if 'PAR' in answer:
+					cmdline = "%s/usr/bin/python %s '%s'" %(priority, self.commando, self.parameter)
+				else:
+					cmdline = "%s/usr/bin/python %s" %(priority, self.commando)
+				if answer.endswith('_BG'):
+					task.setCmdline(cmdline)
+				else:
+					self.session.open(Console, cmdlist=(cmdline,))
 		elif answer == "VIEW":
 			try:
-				yfile = os.stat(self.commando[0])
+				yfile = os.stat(self.commando)
 			except OSError as oe:
-				self.session.open(MessageBox, _("%s: %s") % (self.commando[0], oe.strerror), type=MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("%s: %s") % (self.commando, oe.strerror), type=MessageBox.TYPE_ERROR)
 				return
-			#if (yfile.st_size < 61440):
 			if (yfile.st_size < 1000000):
-				self.session.open(vEditor, self.commando[0])
+				self.session.open(vEditor, self.commando)
 
 		if answer and answer.endswith('_BG'):
 			job_manager.AddJob(job, onSuccess=self.finishedCB, onFail=self.failCB)
@@ -604,16 +613,19 @@ class key_actions(stat_info):
 			self.file_name = longname
 			self.tmp_file = '/tmp/grab_%s_mvi.png' %filename[:-4]
 			choice = [(_("No"), "no"),
-					(_("Show as Picture (press any key to close)"), "show"),
-					(_("Show as Picture and save as file ('%s')")%self.tmp_file , "save")]
-			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture or save additional the picture to a file?\nThe current service must interrupted!") %(longname), simple=True, list=choice)
+					(_("Show as Picture (press any key to close)"), "show")]
+			savetext = ''
+			stat = os.statvfs('/tmp/')
+			if stat.f_bavail * stat.f_bsize > 1000000:
+				choice.append((_("Show as Picture and save as file ('%s')")%self.tmp_file , "save"))
+				savetext = _(" or save additional the picture to a file")
+			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") %(longname,savetext), simple=True, list=choice)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
 			except OSError as oe:
 				self.session.open(MessageBox, _("%s: %s") % (longname, oe.strerror), type=MessageBox.TYPE_ERROR)
 				return
-			# if (xfile.st_size < 61440):
 			if (xfile.st_size < 1000000):
 				self.session.open(vEditor, longname)
 				self.onFileActionCB(True)
@@ -627,36 +639,45 @@ class key_actions(stat_info):
 
 	def mviFileCB(self, ret = None):
 		if ret and ret != 'no':
-			from Components.Console import Console as console
-			from sys import maxint
-			self.console = console()
-			self.cur_service = self.session.nav.getCurrentlyPlayingServiceReference()
-			self.session.nav.stopService()
-		if ret == 'show':
-			self.hide()
-			eActionMap.getInstance().bindAction('', -maxint - 1, self.showCB)
+			global last_service
+			last_service = self.session.nav.getCurrentlyPlayingServiceReference()
 			cmd = "/usr/bin/showiframe '%s'" %self.file_name
-			self.console.ePopen(cmd)
+			self.session.nav.stopService()
+			self.hide()
+		if ret == 'show':
+			eActionMap.getInstance().bindAction('', -maxint - 1, self.showCB)
+			console().ePopen(cmd)
 		elif ret == 'save':
 			if os.path.isfile(self.tmp_file):
 				os.remove(self.tmp_file)
-			cmd = ["/usr/bin/showiframe '%s'" %self.file_name, "/usr/bin/grab -v -d -p %s" %self.tmp_file]
-			self.console.eBatch(cmd, self.saveCB, debug=True)
+			cmd = [cmd, "/usr/bin/grab -v -p %s" %self.tmp_file]
+			console().eBatch(cmd, self.saveCB)
+			self.disableActions_Timer.startLongTimer(10)
 
 	def showCB(self, key=None, flag=1):
 		self.show()
-		self.session.nav.playService(self.cur_service)
+		self.session.nav.playService(last_service)
 		eActionMap.getInstance().unbindAction('', self.showCB)
 		self.disableActions_Timer.start(100,True)
 
 	def saveCB(self, extra_args):
 		if hasattr(self, 'session'):
-			self.session.nav.playService(self.cur_service)
+			self.session.nav.playService(last_service)
+			self.show()
 			if os.path.isfile(self.tmp_file):
+				self.disableActions_Timer.startLongTimer(1)
 				filename = self.tmp_file.split('/')[-1]
 				self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
 			else:
 				self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
+		else:
+			from Tools import Notifications
+			import NavigationInstance
+			global last_service
+			if last_service:
+				NavigationInstance.instance.playService(last_service)
+				last_service = None
+			Notifications.AddNotification(MessageBox, _("The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
 
 	def onFileActionCB(self, result):
 		# os.system('echo %s > /tmp/test.log' % (result))

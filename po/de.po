@@ -20678,8 +20678,16 @@ msgid "File not found: %s"
 msgstr "Datei nicht gefunden: %s"
 
 #: FileCommander
-msgid "Show '%s' as picture or save additional the picture to a file?\nThe current service must interrupted!"
-msgstr "Die Datei '%s' als Bild anzeigen oder zusätzlich als Bild speichern?\nDas aktuelle Programm muss dabei unterbrochen werden!"
+msgid "Show '%s' as picture%s?\nThe current service must interrupted!"
+msgstr "Die Datei '%s' als Bild anzeigen%s?\nDas aktuelle Programm muss dabei unterbrochen werden!"
+
+#: FileCommander
+msgid " or save additional the picture to a file"
+msgstr " oder zusätzlich als Bild speichern"
+
+#: FileCommander
+msgid "The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"
+msgstr "Die Funktion wurde unterbrochen.\nDrücken Sie beim nächsten Mal keine Taste bis das Bild aus der mvi-Datei angezeigt wird!"
 
 #: FileCommander
 msgid "Show as Picture (press any key to close)"
@@ -20760,6 +20768,22 @@ msgstr "Standardsortierung für Verzeichnisse auf beiden Seiten."
 #: FileCommander
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Zeige Verzeichnisse am Anfang oder am Ende der Liste. (Neustart File Commander notwendig)"
+
+#: FileCommander
+msgid "CPU priority for script execution"
+msgstr "CPU-Priorität für die Skriptausführung"
+
+#: FileCommander
+msgid "I/O priority for script execution"
+msgstr "I/O-Priorität für die Skriptausführung"
+
+#: FileCommander
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr "Standard CPU-Priorität (nice) für ausgeführte Skripts. Dies kann die Last reduzieren, so dass Skripts den Rest des Systems nicht beeinträchtigen. (höhere Werte = niedrigere Priorität)"
+
+#: FileCommander
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr "Standard I/O-Priorität (ionice) für ausgeführte Skripts. Dies kann die Last reduzieren, so dass Skripts den Rest des Systems nicht beeinträchtigen. (höhere Werte = niedrigere Priorität)"
 
 #: FileCommander
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."

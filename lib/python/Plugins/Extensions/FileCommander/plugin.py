@@ -4,7 +4,7 @@
 from Plugins.Plugin import PluginDescriptor
 
 # Components
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing, ConfigLocations
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing, ConfigLocations, ConfigSelectionNumber
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from Components.Task import job_manager
@@ -80,6 +80,8 @@ config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=
 config.plugins.filecommander.change_navbutton = ConfigSelection(default="no", choices=[("no", _("No")), ("always", _("Channel button always changes sides")), ("yes", _("Yes"))])
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
+config.plugins.filecommander.script_priority_nice = ConfigSelectionNumber(default=0, stepwidth=1, min=0, max=19, wraparound=True)
+config.plugins.filecommander.script_priority_ionice = ConfigSelectionNumber(default=0, stepwidth=3, min=0, max=3, wraparound=True)
 config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=False)
 config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices = [
 				("0.0", _("Name")),
@@ -546,9 +548,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 # ## Multiselect ###
 	def listSelect(self):
-		if self.disableActions_Timer.isActive():
-			return
-		if not self.SOURCELIST.getCurrentDirectory():
+		if not self.SOURCELIST.getCurrentDirectory() or self.disableActions_Timer.isActive():
 			return
 		selectedid = self.SOURCELIST.getSelectionID()
 		config.plugins.filecommander.path_left_tmp.value = self["list_left"].getCurrentDirectory() or ""
@@ -980,6 +980,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.updateHead()
 
 	def doRefresh(self):
+		if self.disableActions_Timer.isActive():
+			return
 		sortDirsLeft, sortFilesLeft = self["list_left"].getSortBy().split(',')
 		sortDirsRight, sortFilesRight = self["list_right"].getSortBy().split(',')
 		sortLeft = formatSortingTyp(sortDirsLeft, sortFilesLeft)
