@@ -136,6 +136,14 @@ class Console(Screen):
 		self.output_file = '/tmp/%02d%02d%02d_console.txt' %(lt[3],lt[4],lt[5])
 		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save the commands and the output to a file?\n('%s')") %self.output_file, type=MessageBox.TYPE_YESNO, default=True)
 
+	def formatCmdList(self, source):
+		if isinstance(source, (list, tuple)):
+			for x in source:
+				for y in self.formatCmdList(x):
+					yield y
+		else:
+			yield source
+
 	def saveOutputTextCB(self, ret = None):
 		if ret:
 			from os import path
@@ -143,31 +151,22 @@ class Console(Screen):
 			if path.exists('/tmp/'):
 				text = 'commands ...\n\n'
 				try:
-					cmd = self.cmdlist[0]
-					if type(cmd) is str:
-						if path.isfile(cmd) and cmd[-3:] in ('.py', '.sh'):
-							text += 'commands from file: %s\n\n' %cmd
-							text += '%s\n' %self.readFile(cmd)
-							if len(self.cmdlist)>1:
-								text += 'next commands:\n\n'
-								text += '\n'.join(self.cmdlist[1:]) + '\n'
-						else:
-							text += '\n'.join(self.cmdlist) + '\n'
-					else:
-						isfile = False
-						if path.isfile(cmd[0]) and cmd[0][-3:] in ('.py', '.sh'):
-							text += 'commands from file: %s\n\n' %('  '.join(cmd))
-							text += '%s\n' %self.readFile(cmd[0])
-							if len(cmd)>1:
-								text += 'command line parameter: %s\n' %(' '.join(cmd[1:]))
-						else:
-							text += '\n'.join(cmd) + '\n'
+					cmdlist = list(self.formatCmdList(self.cmdlist))
+					text += 'command line: %s\n\n' %cmdlist[0]
+					script = ''
+					for cmd in cmdlist[0].split():
+						if '.' in cmd:
+							if cmd[-3:] in ('.py', '.sh'):
+								script = cmd
+							break
+					if script and path.isfile(script):
+						text += 'script listing: %s\n\n%s\n\n' %(script, self.readFile(script))
+					if len(cmdlist) > 1:
+						text += 'next commands:\n\n' + '\n'.join(cmdlist[1:]) + '\n\n'
 				except:
-					text += 'error read commands!!!\n'
+					text += 'error read commands!!!\n\n'
+				text += '-'*50 + '\n\noutputs ...\n\n%s' %self["text"].getText()
 				try:
-					text += '\n' + '-'*50 + '\n\n'
-					text += 'outputs ...\n\n'
-					text += self["text"].getText()
 					f = open(self.output_file, 'w')
 					f.write(text)
 					f.close()
