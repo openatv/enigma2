@@ -6,6 +6,8 @@
 		<item level="0" text="Save right folder on exit" description="Save the right folder list location on exit.">config.plugins.filecommander.savedir_right</item>
 		<item level="0" text="Show directories first" description="Show directories on first or last in list.(must restart File Commander)">config.plugins.filecommander.firstDirs</item>
 		<item level="0" text="Show Task's completed message" description="Show message if File Commander is not running and all Task's are completed.">config.plugins.filecommander.showTaskCompleted_message</item>
+		<item level="0" text="Show Script completed message" description="Show message if a background script ends successefully. Has 'stout', then this is displayed as additional info.">config.plugins.filecommander.showScriptCompleted_message</item>
+		<item level="0" text="Number of lines in script messages" description="Set for 'stout' and 'sterr' the number of lines in script info or script error messages.">config.plugins.filecommander.script_messagelen</item>
 		<item level="0" text="Show unknown extension as text" description="Show unknown file extensions with 'Addon File-Viewer'.">config.plugins.filecommander.unknown_extension_as_text</item>
 		<item level="0" text="Edit position is the line end" description="If editing a file, can you set the cursor start position at end or begin of the line.">config.plugins.filecommander.editposition_lineend</item>
 		<item level="0" text="Change buttons for list navigation" description="Swap buttons right/left with channel plus/minus or the channel button changed always the side.">config.plugins.filecommander.change_navbutton</item>
@@ -15,7 +17,6 @@
 		<item level="0" text="Default folder" description="Default folder if the left or right folder isn't saved, and target folder for button 5.">config.plugins.filecommander.path_default</item>
 		<item level="0" text="My extension" description="Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'.">config.plugins.filecommander.my_extension</item>
 		<item level="0" text="Filter extension, (*) appears in title" description="Filter visible file classes by extension.">config.plugins.filecommander.extension</item>
-		<item level="0" text="Number of lines in script error messages" description="Set for 'stout' and 'sterr' the number of lines in script error messages.">config.plugins.filecommander.script_messagelen</item>
 		<item level="0" text="CPU priority for script execution" description="Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.filecommander.script_priority_nice</item>
 		<item level="0" text="I/O priority for script execution" description="Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)">config.plugins.filecommander.script_priority_ionice</item>
 		<!--item level="0" text="Input length - Filename" description="Number of characters visible in filename entry popup windows.">config.plugins.filecommander.input_length</item-->

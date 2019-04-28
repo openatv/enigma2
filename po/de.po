@@ -20698,6 +20698,18 @@ msgid " ('%s') ends with error messages."
 msgstr " ('%s') endet mit Fehlermeldungen."
 
 #: FileCommander
+msgid " ('%s') ends successefully."
+msgstr " ('%s') endet erfolgreich."
+
+#: FileCommander
+msgid "Show Script completed message"
+msgstr "Benachrichtige wenn Skripts fertig sind"
+
+#: FileCommander
+msgid "Show message if a background script ends successefully. Has 'stout', then this is displayed as additional info."
+msgstr "Zeige eine Nachricht wenn ein Hintergrundskript erfolgreich beendet wurde. Ist 'stout' vorhanden wird es als Zusatzinformation angezeigt."
+
+#: FileCommander
 msgid "script 'stout':"
 msgstr "Skript 'stout':"
 
@@ -20706,12 +20718,12 @@ msgid "script 'sterr':"
 msgstr "Skript 'sterr':"
 
 #: FileCommander
-msgid "Number of lines in script error messages"
-msgstr "Anzahl der Zeilen in Skriptfehlermeldungen"
+msgid "Number of lines in script messages"
+msgstr "Anzahl der Zeilen in Skriptmeldungen"
 
 #: FileCommander
-msgid "Set for 'stout' and 'sterr' the number of lines in script error messages."
-msgstr "Legen Sie für 'stout' und 'sterr' die Anzahl der Zeilen in Skriptfehlermeldungen fest."
+msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
+msgstr "Legen Sie für 'stout' und 'sterr' die Anzahl der Zeilen fest, die in Skriptinformationen oder Skriptfehlermeldungen angezeigt werden."
 
 #: FileCommander
 msgid "File not found: %s"

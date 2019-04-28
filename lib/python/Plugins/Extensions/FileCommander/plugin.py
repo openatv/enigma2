@@ -101,6 +101,7 @@ config.plugins.filecommander.sortFiles_right = ConfigSelection(default = "1.1", 
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
 config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
 config.plugins.filecommander.showTaskCompleted_message = ConfigYesNo(default=True)
+config.plugins.filecommander.showScriptCompleted_message = ConfigYesNo(default=True)
 config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), default=["MD5"])
 config.plugins.filecommander.bookmarks = ConfigLocations()
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())

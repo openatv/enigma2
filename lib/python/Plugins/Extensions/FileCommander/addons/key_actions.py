@@ -128,6 +128,7 @@ class task_postconditions(Condition):
 		global task_Stout, task_Sterr
 		message = ''
 		lines = config.plugins.filecommander.script_messagelen.value*-1
+		msg_out = ''
 		if task_Stout:
 			msg_out = '\n\n' + _("script 'stout':") + '\n' + '\n'.join(task_Stout[lines:])
 		if task_Sterr:
@@ -145,18 +146,21 @@ class task_postconditions(Condition):
 				message += msg_err
 			else:
 				message += msg_msg + msg_err
+		timeout = 0
+		if not message and task.returncode == 0 and config.plugins.filecommander.showScriptCompleted_message.value:
+			timeout = 30
+			message += _("Run script") + _(" ('%s') ends successefully.") %task.name + msg_out
 
 		task_Stout = []
 		task_Sterr = []
 
 		if message:
-			self.showMessage(message, messageboxtyp)
+			self.showMessage(message, messageboxtyp, timeout)
 			return True
 		return task.returncode == 0
 
-	def showMessage(self, message, messageboxtyp):
+	def showMessage(self, message, messageboxtyp, timeout):
 		from Screens.Standby import inStandby
-		timeout = 0
 		if InfoBar.instance and not inStandby:
 			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		else:
