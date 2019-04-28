@@ -5,17 +5,19 @@
 from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
-from Components.Task import Task, Job, job_manager
+from Components.Task import Task, Job, job_manager, Condition
 from Components.Console import Console as console
 
 # Screens
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.InfoBar import InfoBar
 
 # Tools
 from Tools.Directories import fileExists
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
+from Tools import Notifications
 
 # Various
 from mimetypes import guess_type
@@ -117,6 +119,64 @@ class stat_info:
 	@staticmethod
 	def formatTime(t):
 		return time.strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time.localtime(t))
+
+task_Stout = []
+task_Sterr = []
+
+class task_postconditions(Condition):
+	def check(self, task):
+		global task_Stout, task_Sterr
+		message = ''
+		lines = config.plugins.filecommander.script_messagelen.value*-1
+		if task_Stout:
+			msg_out = '\n\n' + _("script 'stout':") + '\n' + '\n'.join(task_Stout[lines:])
+		if task_Sterr:
+			msg_err = '\n\n' + _("script 'sterr':") + '\n' + '\n'.join(task_Sterr[lines:])
+		if task.returncode != 0:
+			messageboxtyp = MessageBox.TYPE_ERROR
+			msg_msg = _("Run script") + _(" ('%s') ends with error number [%d].") %(task.name, task.returncode)
+		else:
+			messageboxtyp = MessageBox.TYPE_INFO
+			msg_msg = _("Run script") + _(" ('%s') ends with error messages.") %task.name
+		if task_Stout and (task.returncode != 0 or task_Sterr):
+			message += msg_msg + msg_out
+		if task_Sterr:
+			if message:
+				message += msg_err
+			else:
+				message += msg_msg + msg_err
+
+		task_Stout = []
+		task_Sterr = []
+
+		if message:
+			self.showMessage(message, messageboxtyp)
+			return True
+		return task.returncode == 0
+
+	def showMessage(self, message, messageboxtyp):
+		from Screens.Standby import inStandby
+		timeout = 0
+		if InfoBar.instance and not inStandby:
+			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
+		else:
+			Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+
+def task_processStdout(data):
+	global task_Stout
+	for line in data.split('\n'):
+		if line:
+			task_Stout.append(line)
+	while len(task_Stout) > 10:
+		task_Stout.pop(0)
+
+def task_processSterr(data):
+	global task_Sterr
+	for line in data.split('\n'):
+		if line:
+			task_Sterr.append(line)
+	while len(task_Sterr) > 10:
+		task_Stout.pop(0)
 
 class key_actions(stat_info):
 	hashes = {
@@ -304,40 +364,22 @@ class key_actions(stat_info):
 			if ionice:
 				ionice = 'ionice -c %d ' %ionice
 			priority = '%s%s' %(nice,ionice)
-			if answer.endswith('_BG'):
-				if 'PAR' in answer:
-					job = Job(_("Run script") + " ('%s%s %s')" %(priority, self.commando, self.parameter))
-				else:
-					job = Job(_("Run script") + " ('%s%s')" %(priority, self.commando))
-				task = Task(job, self.commando)
 			if self.commando.endswith('.sh'):
 				if os.access(self.commando, os.X_OK):
 					if 'PAR' in answer:
 						cmdline = "%s%s '%s'" %(priority, self.commando, self.parameter)
 					else:
 						cmdline = "%s%s" %(priority, self.commando)
-					if answer.endswith('_BG'):
-						task.setCmdline(cmdline)
-					else:
-						self.session.open(Console, cmdlist=(cmdline,))
 				else:
 					if 'PAR' in answer:
 						cmdline = "%s/bin/sh %s '%s'" %(priority, self.commando, self.parameter)
 					else:
 						cmdline = "%s/bin/sh %s" %(priority, self.commando)
-					if answer.endswith('_BG'):
-						task.setCmdline(cmdline)
-					else:
-						self.session.open(Console, cmdlist=(cmdline,))
 			else:
 				if 'PAR' in answer:
 					cmdline = "%s/usr/bin/python %s '%s'" %(priority, self.commando, self.parameter)
 				else:
 					cmdline = "%s/usr/bin/python %s" %(priority, self.commando)
-				if answer.endswith('_BG'):
-					task.setCmdline(cmdline)
-				else:
-					self.session.open(Console, cmdlist=(cmdline,))
 		elif answer == "VIEW":
 			try:
 				yfile = os.stat(self.commando)
@@ -347,10 +389,26 @@ class key_actions(stat_info):
 			if (yfile.st_size < 1000000):
 				self.session.open(vEditor, self.commando)
 
-		if answer and answer.endswith('_BG'):
-			job_manager.AddJob(job, onSuccess=self.finishedCB, onFail=self.failCB)
-			self.jobs += 1
-			self.onLayout()
+		if answer and answer != "VIEW":
+			if answer.endswith('_BG'):
+				global task_Stout, task_Sterr
+				task_Stout = []
+				task_Sterr = []
+				if 'PAR' in answer:
+					name = '%s%s %s' %(priority, self.commando, self.parameter)
+				else:
+					name = '%s%s' %(priority, self.commando)
+				job = Job(_("Run script") + " ('%s')" %name)
+				task = Task(job, name)
+				task.postconditions.append(task_postconditions())
+				task.processStdout = task_processStdout
+				task.processStderr = task_processSterr
+				task.setCmdline(cmdline)
+				job_manager.AddJob(job, onSuccess=self.finishedCB, onFail=self.failCB)
+				self.jobs += 1
+				self.onLayout()
+			else:
+				self.session.open(Console, cmdlist=(cmdline,))
 
 	def run_file(self):
 		if self.disableActions_Timer.isActive():
@@ -662,20 +720,19 @@ class key_actions(stat_info):
 
 	def saveCB(self, extra_args):
 		if hasattr(self, 'session'):
+			self.disableActions_Timer.startLongTimer(1)
 			self.session.nav.playService(last_service)
 			self.show()
 			if os.path.isfile(self.tmp_file):
-				self.disableActions_Timer.startLongTimer(1)
 				filename = self.tmp_file.split('/')[-1]
 				self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
 			else:
 				self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
 		else:
-			from Tools import Notifications
 			import NavigationInstance
-			global last_service
 			if last_service and NavigationInstance.instance:
 				NavigationInstance.instance.playService(last_service)
+				global last_service
 				last_service = None
 			Notifications.AddNotification(MessageBox, _("The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
 

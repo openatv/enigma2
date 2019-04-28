@@ -20673,6 +20673,10 @@ msgstr "Pfad zum Speichern nicht vorhanden: '/tmp/'"
 msgid "Cancelled upon user request"
 msgstr "Aufgabe durch den Benutzer abgebrochen!"
 
+#: Task
+msgid "An unknown error occurred!"
+msgstr "Ein unbekannter Fehler ist aufgetreten!"
+
 #: TaskList
 msgid "Task list"
 msgstr "Aufgabenliste"
@@ -20684,6 +20688,30 @@ msgstr "Dateiübertragung durch den Benutzer abgebrochen!"
 #: FileCommander
 msgid "File Commander - all Task's are completed!"
 msgstr "File Commander - alle Aufgaben wurden beendet!"
+
+#: FileCommander
+msgid " ('%s') ends with error number [%d]."
+msgstr " ('%s') endet mit Fehlernummer [%d]."
+
+#: FileCommander
+msgid " ('%s') ends with error messages."
+msgstr " ('%s') endet mit Fehlermeldungen."
+
+#: FileCommander
+msgid "script 'stout':"
+msgstr "Skript 'stout':"
+
+#: FileCommander
+msgid "script 'sterr':"
+msgstr "Skript 'sterr':"
+
+#: FileCommander
+msgid "Number of lines in script error messages"
+msgstr "Anzahl der Zeilen in Skriptfehlermeldungen"
+
+#: FileCommander
+msgid "Set for 'stout' and 'sterr' the number of lines in script error messages."
+msgstr "Legen Sie für 'stout' und 'sterr' die Anzahl der Zeilen in Skriptfehlermeldungen fest."
 
 #: FileCommander
 msgid "File not found: %s"

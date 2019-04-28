@@ -80,6 +80,7 @@ config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=
 config.plugins.filecommander.change_navbutton = ConfigSelection(default="no", choices=[("no", _("No")), ("always", _("Channel button always changes sides")), ("yes", _("Yes"))])
 config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
+config.plugins.filecommander.script_messagelen = ConfigSelectionNumber(default=3, stepwidth=1, min=1, max=10, wraparound=True)
 config.plugins.filecommander.script_priority_nice = ConfigSelectionNumber(default=0, stepwidth=1, min=0, max=19, wraparound=True)
 config.plugins.filecommander.script_priority_ionice = ConfigSelectionNumber(default=0, stepwidth=3, min=0, max=3, wraparound=True)
 config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=False)
@@ -592,7 +593,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		from Screens.Standby import inStandby
 		message = job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task))
 		messageboxtyp = MessageBox.TYPE_ERROR
-		timeout = 30
+		timeout = 0
 		if InfoBar.instance and not inStandby:
 			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		else:
