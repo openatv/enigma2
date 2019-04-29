@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-20 21:20+0300\n"
-"PO-Revision-Date: 2019-04-21 19:31+0300\n"
+"POT-Creation-Date: 2019-04-11 03:30+0300\n"
+"PO-Revision-Date: 2019-04-11 19:54+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -25,12 +25,6 @@ msgstr "  Raudonas mygtukas: rodyti/slėpti kanalo pavadinimą"
 
 msgid "  REC  "
 msgstr "  ĮRAŠ.  "
-
-msgid " - 1 element exist! Overwrite"
-msgstr " - 1 elementas egzistuoja! Perrašyti"
-
-msgid " - %d elements exist! Overwrite"
-msgstr " - egzistuoja %d elementai! Perrašyti"
 
 msgid " - file exist! Overwrite"
 msgstr " - failas egzistuoja! Perrašyti"
@@ -172,6 +166,7 @@ msgstr "%-V:%M"
 msgid "%-H:%M - "
 msgstr "%-V:%M - "
 
+#| msgid "%-H:%M"
 msgid "%-H:%M:%S"
 msgstr "%-H:%M:%S"
 
@@ -244,6 +239,7 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %-d %b %Y"
 msgstr "%a %-d %b %Y"
 
@@ -271,18 +267,21 @@ msgstr "%b-%-d %a"
 msgid "%A %-d-%B"
 msgstr "%B %-d, %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %-d-%b-%Y"
 msgstr "%a %-d-%b-%Y"
 
 msgid "%A %-d-%B-%Y"
 msgstr "%Y-%B-%-d, %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %-d-%B-%Y"
 msgstr "%a %-d-%B-%Y"
 
 msgid "%A %-d/%-m"
 msgstr "%-m/%-d %A"
 
+#| msgid "%a %e/%m"
 msgid "%a %-d/%-m"
 msgstr "%a %-d/%-m"
 
@@ -292,6 +291,7 @@ msgstr "%Y/%-m/%-d %A"
 msgid "%a %-d/%-m/%Y"
 msgstr "%Y/%-m/%-d %a"
 
+#| msgid "%a %e/%m"
 msgid "%a %-d/%m"
 msgstr "%a %-d/%m"
 
@@ -328,6 +328,7 @@ msgstr "%Y/%-m/%d %a"
 msgid "%A %-m/%d/%Y"
 msgstr "%Y/%-m/%d %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %b %-d %Y"
 msgstr "%a %b %-d %Y"
 
@@ -343,6 +344,7 @@ msgstr "%B %-d %A"
 msgid "%a %b %-d"
 msgstr "%b %-d %a"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %b %d %Y"
 msgstr "%a %b %d %Y"
 
@@ -367,9 +369,11 @@ msgstr "%a %b-%-d"
 msgid "%A %B-%-d-%Y"
 msgstr "%Y-%B-%-d %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %b-%-d-%Y"
 msgstr "%a %b-%-d-%Y"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %B-%-d-%Y"
 msgstr "%a %B-%-d-%Y"
 
@@ -379,9 +383,11 @@ msgstr "%B-%d %A"
 msgid "%a %b-%d"
 msgstr "%b-%d %a"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %b-%d-%Y"
 msgstr "%a %b-%d-%Y"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %B-%d-%Y"
 msgstr "%a %B-%d-%Y"
 
@@ -391,15 +397,18 @@ msgstr "%Y-%B-%d %A"
 msgid "%a %d"
 msgstr "%d %a"
 
+#| msgid "%A %d %B"
 msgid "%a %d %b"
 msgstr "%a %d %b"
 
 msgid "%A %d %B"
 msgstr "%B %e, %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %d %B %Y"
 msgstr "%a %d %B %Y"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %d %b %Y"
 msgstr "%a %d %b %Y"
 
@@ -409,18 +418,22 @@ msgstr "%Y %B %d %A"
 msgid "%A %d-%B"
 msgstr "%B-%d %A"
 
+#| msgid "%a %e/%m"
 msgid "%a %d-%b"
 msgstr "%a %d-%b"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %d-%B-%Y"
 msgstr "%a %d-%B-%Y"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %d-%b-%Y"
 msgstr "%a %d-%b-%Y"
 
 msgid "%A %d-%B-%Y"
 msgstr "%Y-%B-%d, %A"
 
+#| msgid "%a %e/%m"
 msgid "%a %d/%-m"
 msgstr "%a %d/%-m"
 
@@ -436,12 +449,14 @@ msgstr "%Y/%-m/%d %A"
 msgid "%A %d/%m"
 msgstr "%m/%d %A"
 
+#| msgid "%a %e/%m"
 msgid "%a %d/%m"
 msgstr "%a %d/%m"
 
 msgid "%A %d/%m/%Y"
 msgstr "%Y/%m/%d %A"
 
+#| msgid "%a %e/%m"
 msgid "%a %d/%m/%Y"
 msgstr "%a %d/%m/%Y"
 
@@ -463,6 +478,7 @@ msgstr "%m/%e, %a"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%m/%e, %a  %-H:%M"
 
+#| msgid "%a %e/%m"
 msgid "%a %m/%-d"
 msgstr "%a %m/%-d"
 
@@ -475,6 +491,7 @@ msgstr "%Y/%m/%-d %A"
 msgid "%a %m/%-d/%Y"
 msgstr "%Y/%m/%-d, %a"
 
+#| msgid "%a %e/%m"
 msgid "%a %m/%d"
 msgstr "%a %m/%d"
 
@@ -484,42 +501,51 @@ msgstr "%m/%d %A"
 msgid "%A %m/%d/%Y"
 msgstr "%Y/%m/%d %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %m/%d/%Y"
 msgstr "%a %m/%d/%Y"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %Y %b %-d"
 msgstr "%a %Y %b %-d"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %Y %B %-d"
 msgstr "%a %Y %B %-d"
 
 msgid "%A %Y %B %-d"
 msgstr "%Y %B %-d %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %Y %b %d"
 msgstr "%a %Y %b %d"
 
 msgid "%A %Y %B %d"
 msgstr "%Y %B %d %A"
 
+#| msgid "%a %e %B %Y"
 msgid "%a %Y %B %d"
 msgstr "%a %Y %B %d"
 
 msgid "%A %Y-%B-%-d"
 msgstr "%Y-%B-%-d %A"
 
+#| msgid "%Y-%m-%d"
 msgid "%a %Y-%b-%-d"
 msgstr "%a %Y-%b-%-d"
 
+#| msgid "%Y-%m-%d"
 msgid "%a %Y-%B-%-d"
 msgstr "%a %Y-%B-%-d"
 
 msgid "%A %Y-%B-%d"
 msgstr "%Y-%B-%d %A"
 
+#| msgid "%Y-%m-%d"
 msgid "%a %Y-%B-%d"
 msgstr "%a %Y-%B-%d"
 
+#| msgid "%Y-%m-%d"
 msgid "%a %Y-%b-%d"
 msgstr "%a %Y-%b-%d"
 
@@ -538,12 +564,14 @@ msgstr "%Y/%-m/%d %a"
 msgid "%A %Y/%m/%-d"
 msgstr "%Y/%m/%-d %A"
 
+#| msgid "%a %e/%m"
 msgid "%a %Y/%m/%-d"
 msgstr "%a %Y/%m/%-d"
 
 msgid "%A %Y/%m/%d"
 msgstr "%Y/%m/%d %A"
 
+#| msgid "%a %e/%m"
 msgid "%a %Y/%m/%d"
 msgstr "%a %Y/%m/%d"
 
@@ -559,6 +587,7 @@ msgstr "%b %-d"
 msgid "%B %d %Y"
 msgstr "%Y %B %d"
 
+#| msgid "%A %d %B"
 msgid "%b %d %Y"
 msgstr "%b %d %Y"
 
@@ -583,6 +612,7 @@ msgstr "%b-%-d-%Y"
 msgid "%b-%d"
 msgstr "%b-%d"
 
+#| msgid "%d-%m"
 msgid "%b-%d-%Y"
 msgstr "%b-%d-%Y"
 
@@ -682,21 +712,25 @@ msgstr "%Y %B %e"
 msgid "%d.%m.   "
 msgstr "%m.%d."
 
+#| msgid "%d %B %Y"
 msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
+#| msgid "%A %d %B"
 msgid "%d %b"
 msgstr "%d %b"
 
 msgid "%d+%b_"
 msgstr "%d+%b_"
 
+#| msgid "%d-%m"
 msgid "%d-%b"
 msgstr "%d-%b"
 
 msgid "%d-%b-%Y"
 msgstr "%Y-%b-%d"
 
+#| msgid "%d-%m"
 msgid "%d-%B-%Y"
 msgstr "%d-%B-%Y"
 
@@ -796,9 +830,11 @@ msgstr "%s (%s)"
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
+#| msgid "%s (%s)\n"
 msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
+#| msgid "%s (%s)\n"
 msgid "%s (%sB"
 msgstr "%s (%sB"
 
@@ -890,21 +926,26 @@ msgstr "%Y %b %-d"
 msgid "%Y %B %-d"
 msgstr "%Y %B %-d"
 
+#| msgid "%d %B %Y"
 msgid "%Y %B %d"
 msgstr "%Y %B %d"
 
 msgid "%Y %b %d"
 msgstr "%Y %b %d"
 
+#| msgid "%Y-%m-%d"
 msgid "%Y-%B-%-d"
 msgstr "%Y-%B-%-d"
 
+#| msgid "%Y-%m-%d"
 msgid "%Y-%b-%-d"
 msgstr "%Y-%b-%-d"
 
+#| msgid "%Y-%m-%d"
 msgid "%Y-%b-%d"
 msgstr "%Y-%b-%d"
 
+#| msgid "%Y-%m-%d"
 msgid "%Y-%B-%d"
 msgstr "%Y-%B-%d"
 
@@ -1989,7 +2030,7 @@ msgid "Add to favourites"
 msgstr "Pridėti prie mėgstamų"
 
 msgid "add to parental protection"
-msgstr "pridėti į tėvų kontrolę"
+msgstr "Pridėti į tėvų kontrolę"
 
 msgid "Add Zap Timer"
 msgstr "Pridėti jungimo laikmatį"
@@ -2309,6 +2350,9 @@ msgstr "Įvyko nežinoma klaida!"
 
 msgid "and never ask again this session again"
 msgstr "ir niekada neklausti šios sesijos dar kartą"
+
+msgid "and there is made an extra copy on:"
+msgstr "ir pateikiama papildoma kopija:"
 
 msgid "Animation Setup"
 msgstr "Animacijos nustatymas"
@@ -2743,6 +2787,9 @@ msgstr "Galinis viršutinis USB lizdas"
 msgid "Back USB"
 msgstr "Galinis USB"
 
+msgid "back-up image will now be copied to that USB- "
+msgstr "atsarginis atvaizdas bus nukopijuotas į tą USB- "
+
 msgid "Back-up Tool for a %s\n"
 msgstr "Atsarginio kopijavimo įrankis %s\n"
 
@@ -2790,6 +2837,9 @@ msgstr "Atsarginė kopija padaryta."
 
 msgid "Backup failed."
 msgstr "Atsarginė kopija nepavyko."
+
+msgid "Backup finished and copied to your USB-flash drive"
+msgstr "Atsarginis kopijavimas baigtas, kopija įkelta į USB laikmeną"
 
 msgid "Backup Image"
 msgstr "Atvaizdo atsarginė kopija"
@@ -3141,7 +3191,7 @@ msgid "Calculate all positions"
 msgstr "Apskaičiuoti visas pozicijas"
 
 msgid "Calculate file checksums"
-msgstr "Apskaičiuoti failo kontrolines sumas"
+msgstr "Apskaičiuokite failo kontrolines sumas"
 
 msgid "Calculation complete"
 msgstr "Apskaičiavimas baigtas"
@@ -3193,9 +3243,6 @@ msgstr "Atšaukti"
 
 msgid "Cancel save timeshift as movie"
 msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
-
-msgid "Cancelled upon user request"
-msgstr "Atšauktas vartotojo"
 
 msgid "Cannot delete file"
 msgstr "Failo ištrinti nepavyko"
@@ -3337,9 +3384,6 @@ msgstr "Keisti paketus greitai perjungiant"
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Pakeiskite imtuvo režimą, kad kontroliuoti techninės įrangos lusto režimus*"
 
-msgid "Change buttons for list navigation"
-msgstr "Keisti sąrašo navigacijos mygtukus"
-
 msgid "Change execute permissions (755/644)"
 msgstr "Pakeisti vykdymo leidimus (755/644)"
 
@@ -3406,9 +3450,6 @@ msgstr "Paleidžiant, atverti pirmąjį kanalą"
 
 msgid "Channel 1 with Primetime"
 msgstr "1 kanalas su žiūrimiausiu laiku"
-
-msgid "Channel button always changes sides"
-msgstr "Kanalo mygtukas visada keičia puses"
 
 msgid "Channel buttons"
 msgstr "Kanalo mygtukai"
@@ -3493,9 +3534,6 @@ msgstr "Kanalų sąrašo meniu"
 
 msgid "Channelname"
 msgstr "Kanalo pavadinimas"
-
-msgid "Channelselection:"
-msgstr "Kanalo pasirinkimas"
 
 msgid "Chap."
 msgstr "Skyr."
@@ -4391,12 +4429,6 @@ msgstr "kopijuoti"
 msgid "Copy"
 msgstr "Kopijuoti"
 
-msgid "Copy 1 element"
-msgstr "Kopijuoti 1 elementą"
-
-msgid "Copy %d elements"
-msgstr "Kopijuoti %d elementus"
-
 msgid "Copy file"
 msgstr "Kopijuoti failą"
 
@@ -4404,7 +4436,7 @@ msgid "copy file"
 msgstr "kopijuoti failą"
 
 msgid "Copy file/directory to target directory"
-msgstr "Nukopijuoti failą/katalogą į taikomą katalogą"
+msgstr "Nukopijuokite failą/katalogą į nukreiptą katalogą"
 
 msgid "Copy files/directories to target directory"
 msgstr "Nukopijuokite failus/katalogus į nukreiptą katalogą"
@@ -4506,14 +4538,11 @@ msgstr "Sukurti ISO"
 msgid "Create seperate radio userbouquet"
 msgstr "Sukurti atskirą radijo vartotojo paketą"
 
-msgid "create symlink ..."
-msgstr "sukurti nuorodą ..."
-
 msgid "Create symlink to file"
 msgstr "Sukurti nuorodą į failą"
 
 msgid "Create user-named symbolic link"
-msgstr "Sukurti vartotojo pavadintą simbolinę nuorodą"
+msgstr "Sukurkite vartotojo pavadintą simbolinę nuorodą"
 
 msgid "Create:"
 msgstr "Sukurti:"
@@ -4656,14 +4685,17 @@ msgstr "Danų"
 msgid "Date"
 msgstr "Data"
 
-msgid "Date reverse"
-msgstr "Atvirkštinė data"
-
 msgid "Date style"
 msgstr "Datos stilius"
 
 msgid "Date/time input"
 msgstr "Datos/laiko įvestis"
+
+msgid "Datum"
+msgstr "Data"
+
+msgid "Datum reverse"
+msgstr "Atvirkštinis pagal datą"
 
 msgid "day"
 msgstr "diena"
@@ -4863,8 +4895,8 @@ msgstr "Numatytoji kanalų paieška"
 msgid "Default settings"
 msgstr "Numatytieji nustatymai"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Numatytasis abiejų pusių katalogų rūšiavimo metodas."
+msgid "Default sorting method for directories."
+msgstr "Numatytasis katalogų rūšiavimo metodas."
 
 msgid "Default sorting method for files on the left side."
 msgstr "Numatytasis failų rūšiavimo būdas kairėje pusėje."
@@ -4964,12 +4996,6 @@ msgstr "Trinti"
 
 msgid "Delete %s?"
 msgstr "Trinti %s?"
-
-msgid "Delete 1 element"
-msgstr "Ištrinti 1 elementą"
-
-msgid "Delete %d elements"
-msgstr "Ištrinti %d elementus"
 
 msgid "Delete and unstall Plugins. This will remove the Plugin from your box"
 msgstr "Trinti ir išdiegti priedus. Priedas bus pašalintas iš sistemos"
@@ -6353,9 +6379,6 @@ msgstr "Tik įvykio pavadinimas"
 msgid "Eventview"
 msgstr "Įvykių peržiūra"
 
-msgid "Eventview:"
-msgstr "Įvykio peržiūra:"
-
 msgid "Eventview menu"
 msgstr "Įvykių peržiūros meniu"
 
@@ -6705,7 +6728,7 @@ msgid "File Commander"
 msgstr "Failų valdytojas"
 
 msgid "File Commander - Addon File-Viewer"
-msgstr "Failų valdytojas - Pridėtų failų peržiūra"
+msgstr "Failų valdytojas - Pridėtų failų peržiūra."
 
 msgid "File Commander - Addon Mediaplayer"
 msgstr "Failų valdytojas - Pridėtų medijų grotuvas"
@@ -6760,7 +6783,7 @@ msgstr ""
 "Įrašykite vartotojo vardą ir slaptažodį rankiniu būdu."
 
 msgid "File transfer was cancelled by user"
-msgstr "Failo perkėlimas atšauktas vartotojo"
+msgstr "Failo perkėlimas atšauktas vartotojo."
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "failų formatai (BMP, PNG, JPG, GIF)"
@@ -6854,6 +6877,9 @@ msgstr "Įdiegti ir atkurti nustatymus ir pasirinktus priedus (klausti vartotojo
 
 msgid "Flash and start installation wizard"
 msgstr "Įdiegti ir paleisti diegimo vedlį"
+
+msgid "flash drive. "
+msgstr "usb atmintinė. "
 
 msgid "Flash On the Fly"
 msgstr "Įdiegti iškart"
@@ -7141,7 +7167,7 @@ msgid "Go down the list"
 msgstr "Sąrašu žemyn"
 
 msgid "Go to bookmarked folder"
-msgstr "Eiti į aplanką su žymėmis"
+msgstr "Eikite į aplanką su žymėmis"
 
 msgid "go to deep standby"
 msgstr "eiti į visišką išjungimą"
@@ -7811,9 +7837,6 @@ msgstr "Atvaizdas"
 msgid "Image Backup"
 msgstr "Atsarginė atvaizdo kopija"
 
-msgid "Image created on: %s"
-msgstr "Atvaizdas sukurtas: %s"
-
 msgid "Image creation failed - "
 msgstr "Atvaizdo sukurti nepavyko - "
 
@@ -7975,9 +7998,6 @@ msgstr "INFO-skydas..."
 msgid "InfoBar"
 msgstr "Info juosta"
 
-msgid "Infobar:"
-msgstr "Info juosta"
-
 msgid "Infobar EPG"
 msgstr "EPG infojuosta"
 
@@ -8068,6 +8088,9 @@ msgstr "Įrašykite konfigūracijos failo pavadinimą:"
 msgid "Input devices"
 msgstr "Įvesties įrenginiai"
 
+msgid "Input length - Filename"
+msgstr "Įvesties ilgis - failo vardas"
+
 msgid "Input Stream ID"
 msgstr "Srauto įvesties ID"
 
@@ -8084,7 +8107,7 @@ msgid "Install"
 msgstr "Įdiegti"
 
 msgid "Install '%s' and enable this operation"
-msgstr "Įdiegti '%s' ir įjungti šią operaciją"
+msgstr "Įdiekite '%s' ir įjunkite šią operaciją"
 
 msgid "Install a new image with a USB stick"
 msgstr "Įdiekite naują atvaizdą su USB raktu"
@@ -8273,16 +8296,16 @@ msgid "It follows:"
 msgstr "Tai reiškia:"
 
 msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-msgstr "Negalima apskaičiuoti maišų <Saugojimo įrenginių sąrašas>"
+msgstr "Negalima apskaičiuoti maišų <List of Storage Devices>"
 
 msgid "It is not possible to change the file mode of <List of Storage Devices>"
-msgstr "Negalima pakeisti failo režimo <Saugojimo įrenginių sąrašas>"
+msgstr "Negalima pakeisti failo režimo <List of Storage Devices>"
 
 msgid "It is not possible to get the file status of <List of Storage Devices>"
-msgstr "Negalima gauti failo būsenos <Saugojimo įrenginių sąrašas>"
+msgstr "Negalima gauti failo būsenos <List of Storage Devices>"
 
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
-msgstr "'%s' neįmanoma paleisti <Saugojimo įrenginių sąrašas>"
+msgstr "'%s' neįmanoma paleisti <List of Storage Devices>"
 
 msgid "It's not possible to rename the filesystem root."
 msgstr "Negalima pervardyti failų sistemos šaknies."
@@ -9161,12 +9184,6 @@ msgstr "perkelti"
 msgid "Move"
 msgstr "Perkelti"
 
-msgid "Move 1 element"
-msgstr "Perkelti 1 elementą"
-
-msgid "Move %d elements"
-msgstr "Perkelti %d elementus"
-
 msgid "Move down a page"
 msgstr "Perkelti žemyn puslapį"
 
@@ -9189,7 +9206,7 @@ msgid "Move file"
 msgstr "Perkelti failą"
 
 msgid "Move file/directory to target directory"
-msgstr "Perkelti failą/katalogą į taikomą katalogą"
+msgstr "Perkelkite failą/katalogą į taikomą katalogą"
 
 msgid "Move files/directories to target directory"
 msgstr "Perkelkite failus/katalogus į taikomą katalogą"
@@ -9532,6 +9549,9 @@ msgstr "Naujas profilis: "
 
 msgid "New Setting DXAndy "
 msgstr "Naujas nustatymas DXAndy "
+
+msgid "New symlink"
+msgstr "Nauja simbolinė nuoroda"
 
 msgid "New timers location"
 msgstr "Naujų laikmačių vieta"
@@ -9928,13 +9948,13 @@ msgid "NodeID: "
 msgstr "Mazgo ID: "
 
 msgid "None"
-msgstr "Nė viena"
+msgstr "Joks"
 
 msgid "none"
-msgstr "nė viena"
+msgstr "jokio"
 
 msgid "None of the hash programs for the hashes %s are available"
-msgstr "Nėra nė vienos iš hashes %s raiškos programų"
+msgstr "Nėra nė vienos iš hass% raiškos programų"
 
 msgid "normal"
 msgstr "įprastas"
@@ -10083,6 +10103,9 @@ msgstr "NTSC"
 msgid "Number"
 msgstr "Skaičius"
 
+msgid "Number of characters visible in filename entry popup windows."
+msgstr "Ženklų, matomų failo pavadinimo įrašų languose, skaičius."
+
 msgid "Number of digits in channel number"
 msgstr "Kanalo numerio skaitmenų skaičius"
 
@@ -10106,6 +10129,9 @@ msgstr "naudojama DVISLUOKSNĖ laikmena."
 
 msgid "of a SINGLE layer medium used."
 msgstr "naudojama VIENASLUOKSNĖ laikmena."
+
+msgid "of the USB-ports, therefore an extra copy of the "
+msgstr "usb jungtys, todėl papildoma kopija "
 
 msgid "Off"
 msgstr "Išjungta"
@@ -10335,10 +10361,10 @@ msgid "Orbital position"
 msgstr "Padėtis orbitoje"
 
 msgid "original"
-msgstr "originali"
+msgstr "originalus"
 
 msgid "Original"
-msgstr "Originali"
+msgstr "Originalus"
 
 msgid "original language"
 msgstr "originalo kalba"
@@ -10846,6 +10872,9 @@ msgstr "Įrašykite naujo failo pavadinimą"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Įrašykite failo pavadinimą (tuščias = šios dienos data)"
 
+msgid "Please enter file/folder name"
+msgstr "Įrašykite failo/aplanko pavadinimą"
+
 msgid "Please enter name of the new directory"
 msgstr "Įrašykite naujojo katalogo pavadinimą"
 
@@ -10859,19 +10888,13 @@ msgid "Please enter new name:"
 msgstr "Įrašykite naują pavadinimą:"
 
 msgid "Please enter password"
-msgstr "Prašome įrašyti slaptažodį"
+msgstr "Prašome įrašyti slaptažodį:"
 
 msgid "Please enter search string for your location"
 msgstr "Įrašykite savo vietovės paieškos eilutę"
 
 msgid "Please enter the correct pin code"
 msgstr "Įrašykite teisingą PIN kodą"
-
-msgid "Please enter the new directory name"
-msgstr "Įrašykite naują katalogo pavadinimą"
-
-msgid "Please enter the new file name"
-msgstr "Įrašykite naują failo pavadinimą"
 
 msgid "Please enter the old PIN code"
 msgstr "Įrašykite seną PIN kodą"
@@ -12229,8 +12252,17 @@ msgstr "pervardinti įrašą"
 msgid "Rename failed!"
 msgstr "Pervadinti nepavyko!"
 
+msgid "Rename file"
+msgstr "Pervadinti failą"
+
 msgid "Rename file/directory"
 msgstr "Pervardyti failą / katalogą"
+
+msgid "renaming file ..."
+msgstr "pervadinamas failas..."
+
+msgid "renaming folder ..."
+msgstr "pervadinamas aplankas ..."
 
 msgid "Rename name and description for new events"
 msgstr "Naujų įvykių pervardijimo pavadinimas ir apibūdinimas"
@@ -12515,7 +12547,7 @@ msgid "Run"
 msgstr "Vykdyti"
 
 msgid "Run '%s' command"
-msgstr "Paleisti '%s' komandą"
+msgstr "Paleiskite komandą '%s'"
 
 msgid "Run Confirmation"
 msgstr "Vykdyti patvirtinimą"
@@ -12526,14 +12558,8 @@ msgstr "Kaip dažnai vykdyti ?"
 msgid "Run script"
 msgstr "Paleiskite scenarijų"
 
-msgid "Run script in background"
-msgstr "Paleiskite scenarijų fone"
-
 msgid "Run script with optional parameter"
 msgstr "Paleiskite scenarijų su pasirinktiniu parametru"
-
-msgid "Run script with optional parameter in background"
-msgstr "Paleiskite scenarijų su pasirinktu parametru fone"
 
 msgid "Running"
 msgstr "Veikiantis"
@@ -12658,7 +12684,7 @@ msgid "save last directory on exit"
 msgstr "uždarant, išsaugoti paskutinį katalogą"
 
 msgid "Save left folder on exit"
-msgstr "Išsaugoti kairįjį aplanką"
+msgstr "Išsaugokite kairįjį aplanką"
 
 msgid "Save playlist"
 msgstr "Išsaugoti grojaraštį"
@@ -12854,9 +12880,6 @@ msgstr "Antrinis DNS"
 
 msgid "SecondInfoBar"
 msgstr "Antroji infojuosta"
-
-msgid "Secondinfobar:"
-msgstr "Antroji info juosta"
 
 msgid "seconds"
 msgstr "sekundžių"
@@ -14076,7 +14099,7 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Rodyti išsamią informaciją apie įvykį (nustatymas meniu)"
 
 msgid "Show directories first"
-msgstr "Pirmiausia parodyti katalogus"
+msgstr "Pirmiausia parodykite katalogus"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Rodyk katalogus pirmajame arba paskutiniame sąraše.(reikia paleisti iš naujo)"
@@ -15380,9 +15403,6 @@ msgstr "Palaikymas"
 msgid "Swap"
 msgstr "Mainai"
 
-msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr "Mygtukais plius/minus pakeiskite kairįjį/dešinįjį mygtuką arba visada pakeiskite kanalo mygtuko šoninį mygtuką."
-
 msgid "Swap File Manager"
 msgstr "Mainų failo valdymas"
 
@@ -16032,6 +16052,9 @@ msgstr ""
 "\n"
 "Ar norite įdiegti internetu?"
 
+msgid "There is a valid USB-flash drive detected in one "
+msgstr "Viename iš USB lizdų aptikta tinkama USB "
+
 msgid "There is no signal to lock on !"
 msgstr "Nėra signalo fiksavimui !"
 
@@ -16128,6 +16151,9 @@ msgstr "Ši eilutė yra neredaguojama!"
 
 msgid "this offset will only be used if the channel has not its own volume offset"
 msgstr "ši kompensacija bus naudojama tik tada, jei kanalas neturi savos kompensacijos"
+
+msgid "This only takes about 1 or 2 minutes"
+msgstr "Tai užtruks maždaug 1 ar 2 minutes"
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Ši parinktis leidžia sumažinti matomo vaizdo \"kvadratavimosi\" triukšmus. Žinoma, tai pasiekiama bendro vaizdo ryškumo sumažėjimo kaina."
@@ -16804,7 +16830,7 @@ msgid "Translations"
 msgstr "Vertimai"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Adga P&C 2019-04-12, Lietuva"
+msgstr "Adga P&C 2019-03-26, Lietuva"
 
 msgid "Transmission mode"
 msgstr "Perdavimo būdas"
@@ -17303,6 +17329,9 @@ msgstr ""
 "Tai užtrunka 3-15 minučių, priklausomai nuo failų sistemos ir atliekama pilnai automatiškai.\n"
 "Įsitikinkite, kad jūs pirmiausiai įdėjote USB laikmeną prieš pasirinkdami USB."
 
+msgid "USB Image created on: %s"
+msgstr "USB atvaizdas sukurtas: %s"
+
 msgid "USB Stick"
 msgstr "USB laikmena"
 
@@ -17578,9 +17607,6 @@ msgstr "Versija: "
 
 msgid "Version: %s"
 msgstr "Versija: %s"
-
-msgid "Version %s %s"
-msgstr "Versija %s %s"
 
 msgid "Version:\t\t%s"
 msgstr "Versija:\t\t%s"
@@ -19899,51 +19925,6 @@ msgstr "Zambija"
 
 msgid "Zimbabwe"
 msgstr "Zimbabvė"
-
-#~ msgid "and there is made an extra copy on:"
-#~ msgstr "ir pateikiama papildoma kopija:"
-
-#~ msgid "back-up image will now be copied to that USB- "
-#~ msgstr "atsarginis atvaizdas bus nukopijuotas į tą USB- "
-
-#~ msgid "Backup finished and copied to your USB-flash drive"
-#~ msgstr "Atsarginis kopijavimas baigtas, kopija įkelta į USB laikmeną"
-
-#~ msgid "flash drive. "
-#~ msgstr "usb atmintinė. "
-
-#~ msgid "of the USB-ports, therefore an extra copy of the "
-#~ msgstr "usb jungtys, todėl papildoma kopija "
-
-#~ msgid "There is a valid USB-flash drive detected in one "
-#~ msgstr "Viename iš USB lizdų aptikta tinkama USB "
-
-#~ msgid "This only takes about 1 or 2 minutes"
-#~ msgstr "Tai užtruks maždaug 1 ar 2 minutes"
-
-#~ msgid "Input length - Filename"
-#~ msgstr "Įvesties ilgis - failo vardas"
-
-#~ msgid "New symlink"
-#~ msgstr "Nauja simbolinė nuoroda"
-
-#~ msgid "Number of characters visible in filename entry popup windows."
-#~ msgstr "Ženklų, matomų failo pavadinimo įrašų languose, skaičius."
-
-#~ msgid "Please enter file/folder name"
-#~ msgstr "Įrašykite failo/aplanko pavadinimą"
-
-#~ msgid "Rename file"
-#~ msgstr "Pervadinti failą"
-
-#~ msgid "renaming file ..."
-#~ msgstr "pervadinamas failas..."
-
-#~ msgid "renaming folder ..."
-#~ msgstr "pervadinamas aplankas ..."
-
-#~ msgid "Datum"
-#~ msgstr "Data"
 
 #~ msgid "Change Configuration mode simple to advanced"
 #~ msgstr "Pakeisti konfigūracijos režimą iš paprasto į išplėstinį"
