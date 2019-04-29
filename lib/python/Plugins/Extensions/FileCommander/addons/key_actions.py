@@ -128,7 +128,6 @@ class task_postconditions(Condition):
 		global task_Stout, task_Sterr
 		message = ''
 		lines = config.plugins.filecommander.script_messagelen.value*-1
-		msg_out = ''
 		if task_Stout:
 			msg_out = '\n\n' + _("script 'stout':") + '\n' + '\n'.join(task_Stout[lines:])
 		if task_Sterr:
@@ -149,6 +148,9 @@ class task_postconditions(Condition):
 		timeout = 0
 		if not message and task.returncode == 0 and config.plugins.filecommander.showScriptCompleted_message.value:
 			timeout = 30
+			msg_out = ''
+			if task_Stout:
+				msg_out = '\n\n' + '\n'.join(task_Stout[lines:])
 			message += _("Run script") + _(" ('%s') ends successefully.") %task.name + msg_out
 
 		task_Stout = []
