@@ -197,6 +197,6 @@ class LcdSkinSelector(Screen, SkinSelectorBase):
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		SkinSelectorBase.__init__(self, args)
-		Screen.setTitle(self, _("Skin setup"))
+		Screen.setTitle(self, _("LCD Skin Setup"))
 		self.skinName = "SkinSelector"
 		self.config = config.skin.display_skin

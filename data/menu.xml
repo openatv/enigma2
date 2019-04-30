@@ -80,7 +80,7 @@
 			<menu weight="30" level="0" text="Display" entryID="display_selection" requires="Display">
 				<id val="display" />
 				<item weight="0" level="0" entryID="display_setup"><setup id="display" /></item>
-				<item weight="5" level="0" text="Skin setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
+				<item weight="5" level="0" text="LCD Skin Setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 			</menu>
 			<item weight="35" level="2" text="Hotkey Setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup"/></item>
 			<!-- Menu / Settings / System / Extended System / OSD settings -->
