@@ -182,7 +182,7 @@ def task_processSterr(data):
 		if line:
 			task_Sterr.append(line)
 	while len(task_Sterr) > 10:
-		task_Stout.pop(0)
+		task_Sterr.pop(0)
 
 class key_actions(stat_info):
 	hashes = {
