@@ -2585,10 +2585,22 @@ msgid "Setup - %s"
 msgstr "Setup - %s"
 
 msgid "Style:"
-msgstr "Style:"
+msgstr "Farbe:"
 
 msgid "Font:"
 msgstr "Schrift:"
+
+msgid "Infobar:"
+msgstr "Infoleiste:"
+
+msgid "Secondinfobar:"
+msgstr "Zweite Infoleiste:"
+
+msgid "Channelselection:"
+msgstr "Kanalliste:"
+
+msgid "Eventview:"
+msgstr "Sendungsinformation:"
 
 msgid "Enable %s pro:"
 msgstr "Aktiviere %s pro"
@@ -8790,9 +8802,6 @@ msgstr "Zeit-Synchronisierung mit"
 msgid "System"
 msgstr "System"
 
-msgid "System Infomation"
-msgstr "Syteminformation"
-
 msgid "System Information"
 msgstr "System-Info"
 
@@ -9523,6 +9532,14 @@ msgstr "PowerTimer-Liste"
 #
 msgid "PowerTimer Overview"
 msgstr "PowerTimer-Übersicht"
+
+#
+msgid "PowerManager entry"
+msgstr "PowerTimer-Eintrag"
+
+#
+msgid "PowerManager log"
+msgstr "PowerTimer-Log"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 msgid ""
@@ -10518,10 +10535,10 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Wenn aktiviert, wird Live-TV gezeigt wenn der Film beendet wurde."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 16:9 hat, wählen Sie, ob das Bild skaliert/gestreckt werden soll."
+msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 16:9 hat, wählen Sie, ob das Bild skaliert oder gestreckt werden soll."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 4:3 hat, wählen Sie, ob das Bild skaliert/gestreckt werden soll."
+msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 4:3 hat, wählen Sie, ob das Bild skaliert oder gestreckt werden soll."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to stretch the picture to fill the screen."
 msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 4:3 hat, wählen Sie, ob das Bild gestreckt werden soll um den ganzen Bildschirm zu füllen."
@@ -12674,7 +12691,7 @@ msgstr "Dateien und Ordner auswählen..."
 
 #
 msgid "Keymap Selection"
-msgstr "Keymap Auswahl"
+msgstr "Keymap-Auswahl"
 
 #
 msgid "Remote_setup"
@@ -12958,6 +12975,9 @@ msgstr "%s nicht gefunden!!"
 msgid "Back-up Tool for a %s\n"
 msgstr "Back-up Tool für %s\n"
 
+msgid "Back-up Tool for an %s\n"
+msgstr "Back-up Tool für eine %s\n"
+
 # ImageBackup.py
 msgid "Create:"
 msgstr "Erstelle:"
@@ -12971,8 +12991,8 @@ msgid "Almost there... "
 msgstr "Fast geschafft.. "
 
 # ImageBackup.py
-msgid "Now building the USB-Image"
-msgstr "Baue jetzt das USB-Image"
+msgid "Now building the Backup Image"
+msgstr "Baue jetzt das Backup Image"
 
 # ImageBackup.py
 msgid "Multiboot Image created on: %s"
@@ -12997,6 +13017,10 @@ msgstr "verwenden Sie OnlineFlash im SoftwareManager"
 # ImageBackup.py
 msgid "USB Image created on: %s"
 msgstr "USB Image erstellt auf: %s"
+
+# ImageBackup.py
+msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
+msgstr "USB Image erstellt auf: %s/%s-%s-%s-backup-%s_mmc.zip"
 
 # ImageBackup.py
 msgid "Please check the manual of the receiver"
@@ -15611,7 +15635,7 @@ msgid "LCD Skin Setup"
 msgstr "Display-Skinauswahl"
 
 msgid "Skin setup"
-msgstr "LCD-Skinauswahl"
+msgstr "Skinauswahl"
 
 #: QuickMenu.py
 msgid "Select LCD Skin"
@@ -16256,7 +16280,7 @@ msgid "Automatic resolution"
 msgstr "Automatische Auflösung"
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
-msgstr "Hiermit können Sie einstellen, ob die auszugebende Videoauflösung an die Auflösung des Videomaterials angepasst werden soll."
+msgstr "Hiermit können Sie einstellen, wie die auszugebende Videoauflösung an die Auflösung des Videomaterials angepasst werden soll."
 
 msgid "Automatic resolution label"
 msgstr "Bildschirmmeldung der Auflösung"
@@ -16274,7 +16298,7 @@ msgid "Not Shown"
 msgstr "Keine Anzeige"
 
 msgid "Delay time"
-msgstr "Verzögerungs Zeit"
+msgstr "Verzögerungszeit"
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Hiermit können Sie eine Verzögerungszeit einstellen, bevor die automatische Auflösung die Video Quelle prüft."
@@ -16292,25 +16316,25 @@ msgid "This option allows you to choose how to display standard definition video
 msgstr "Hiermit können Sie einstellen, mit welcher Auflösung SD-Video angezeigt werden soll."
 
 msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Hiermit können Sie einstellen, wie 720p 24 Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+msgstr "Hiermit können Sie einstellen, wie 720p 24 Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
 
 msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Hiermit können Sie einstellen, wie 1080p 24Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+msgstr "Hiermit können Sie einstellen, wie 1080p 24Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
 
 msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Hiermit können Sie einstellen, wie 1080p 25Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+msgstr "Hiermit können Sie einstellen, wie 1080p 25Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
 
 msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Hiermit können Sie einstellen, wie 1080p 30Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+msgstr "Hiermit können Sie einstellen, wie 1080p 30Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
 
 msgid "This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Hiermit können Sie einstellen, wie 2160p 24Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+msgstr "Hiermit können Sie einstellen, wie 2160p 24Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
 
 msgid "This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Hiermit können Sie einstellen, wie 2160p 25Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+msgstr "Hiermit können Sie einstellen, wie 2160p 25Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
 
 msgid "This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Hiermit können Sie einstellen, wie 2160p 30Hz angezeigt werden soll. (einige TVs unterstützen diese Auflösung nicht)"
+msgstr "Hiermit können Sie einstellen, wie 2160p 30Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
 
 msgid "Show 720p 24fps as"
 msgstr "Zeige 720p 24fps als"
@@ -17152,10 +17176,10 @@ msgid "Shows live tv or informations on LCD."
 msgstr "Zeige aktuelles TV oder Information auf den LCD."
 
 msgid "Show 480/576p 24fps as"
-msgstr "Zeige 480/576p 24FPS als"
+msgstr "Zeige 480/576p 24fps als"
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Diese Option erlaubt es, einzustellen wie ein 480/576p 24Hz Video angezeigt wird. (Nicht alle Fernseher unterstützen alle Formate)"
+msgstr "Diese Option erlaubt es, einzustellen wie ein 480/576p 24Hz Video angezeigt wird (einige Fernseher unterstützen nicht alle Formate)."
 
 msgid "Protect InfoPanel"
 msgstr "InfoPanel schützen"
@@ -19009,6 +19033,18 @@ msgstr "Konfigurieren Sie die Schrittweite für die Lautstärke im Schnellmodus 
 msgid "Hide mute notification"
 msgstr "Ausblenden der Stummschaltungsanzeige"
 
+msgid "Enable BT Audio"
+msgstr "BT-Audio aktivieren"
+
+msgid "This Option allows you to switch Audio to BT Speakers."
+msgstr "Diese Option leitet den Ton auf Ihre Bluetooth-Lautsprecher um."
+
+msgid "General BT Audio delay"
+msgstr "Allgemeine BT-Audio-Verzögerung"
+
+msgid "This option configures the general audio delay for BT Speakers."
+msgstr "Diese Option konfiguriert die allgemeine Audio-Verzögerung für Ihre Bluetooth-Lautsprecher."
+
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Legt fest ob das Anzeigesymbol oder die Information der Stummschaltung nach wenigen Sekunden ausgeblendet wird."
 
@@ -20625,6 +20661,110 @@ msgstr "Standard Astra (13e-19e)"
 msgid "scan new"
 msgstr "Selber suchen"
 
+#: Console
+msgid "Cancel execution?"
+msgstr "Ausführung abbrechen?"
+
+#: Console
+msgid "Save the commands and the output to a file?\n('%s')"
+msgstr "Speichere die Kommandos und die Ausgaben als Datei?\n('%s')"
+
+#: Console
+msgid "File write error: '%s'"
+msgstr "Fehler beim Schreiben der Datei: '%s'"
+
+#: Console
+msgid "Path to save not exist: '/tmp/'"
+msgstr "Pfad zum Speichern nicht vorhanden: '/tmp/'"
+
+#: Task
+msgid "Cancelled upon user request"
+msgstr "Aufgabe durch den Benutzer abgebrochen!"
+
+#: Task
+msgid "An unknown error occurred!"
+msgstr "Ein unbekannter Fehler ist aufgetreten!"
+
+#: TaskList
+msgid "Task list"
+msgstr "Aufgabenliste"
+
+#: FileTransfer
+msgid "File transfer was cancelled by user"
+msgstr "Dateiübertragung durch den Benutzer abgebrochen!"
+
+#: FileCommander
+msgid "File Commander - all Task's are completed!"
+msgstr "File Commander - alle Aufgaben wurden beendet!"
+
+#: FileCommander
+msgid " ('%s') ends with error number [%d]."
+msgstr " ('%s') endet mit Fehlernummer [%d]."
+
+#: FileCommander
+msgid " ('%s') ends with error messages."
+msgstr " ('%s') endet mit Fehlermeldungen."
+
+#: FileCommander
+msgid " ('%s') ends successefully."
+msgstr " ('%s') endet erfolgreich."
+
+#: FileCommander
+msgid "Show Script completed message"
+msgstr "Benachrichtige wenn Skripts fertig sind"
+
+#: FileCommander
+msgid "Show message if a background script ends successefully. Has 'stout', then this is displayed as additional info."
+msgstr "Zeige eine Nachricht wenn ein Hintergrundskript erfolgreich beendet wurde. Ist 'stout' vorhanden wird es als Zusatzinformation angezeigt."
+
+#: FileCommander
+msgid "script 'stout':"
+msgstr "Skript 'stout':"
+
+#: FileCommander
+msgid "script 'sterr':"
+msgstr "Skript 'sterr':"
+
+#: FileCommander
+msgid "Number of lines in script messages"
+msgstr "Anzahl der Zeilen in Skriptmeldungen"
+
+#: FileCommander
+msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
+msgstr "Legen Sie für 'stout' und 'sterr' die Anzahl der Zeilen fest, die in Skriptinformationen oder Skriptfehlermeldungen angezeigt werden."
+
+#: FileCommander
+msgid "File not found: %s"
+msgstr "Datei nicht gefunden: %s"
+
+#: FileCommander
+msgid "Show '%s' as picture%s?\nThe current service must interrupted!"
+msgstr "Die Datei '%s' als Bild anzeigen%s?\nDas aktuelle Programm muss dabei unterbrochen werden!"
+
+#: FileCommander
+msgid " or save additional the picture to a file"
+msgstr " oder zusätzlich als Bild speichern"
+
+#: FileCommander
+msgid "The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"
+msgstr "Die Funktion wurde unterbrochen.\nDrücken Sie beim nächsten Mal keine Taste bis das Bild aus der mvi-Datei angezeigt wird!"
+
+#: FileCommander
+msgid "Show as Picture (press any key to close)"
+msgstr "Zeige als Bild (beliebige Taste um die Anzeige zu schließen)"
+
+#: FileCommander
+msgid "Show as Picture and save as file ('%s')"
+msgstr "Zeige als Bild und speichere in Datei ('%s'))"
+
+#: FileCommander
+msgid "Show Task's completed message"
+msgstr "Benachrichtige wenn Aufgaben fertig sind"
+
+#: FileCommander
+msgid "Show message if File Commander is not running and all Task's are completed."
+msgstr "Zeige eine Nachricht wenn der File Commander nicht läuft und alle Aufgaben beendet sind."
+
 #: FileCommander\plugin.py
 msgid "Select a path"
 msgstr "Pfad auswählen:"
@@ -20690,6 +20830,22 @@ msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Zeige Verzeichnisse am Anfang oder am Ende der Liste. (Neustart File Commander notwendig)"
 
 #: FileCommander
+msgid "CPU priority for script execution"
+msgstr "CPU-Priorität für die Skriptausführung"
+
+#: FileCommander
+msgid "I/O priority for script execution"
+msgstr "I/O-Priorität für die Skriptausführung"
+
+#: FileCommander
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr "Standard CPU-Priorität (nice) für ausgeführte Skripts. Dies kann die Last reduzieren, so dass Skripts den Rest des Systems nicht beeinträchtigen. (höhere Werte = niedrigere Priorität)"
+
+#: FileCommander
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr "Standard I/O-Priorität (ionice) für ausgeführte Skripts. Dies kann die Last reduzieren, so dass Skripts den Rest des Systems nicht beeinträchtigen. (höhere Werte = niedrigere Priorität)"
+
+#: FileCommander
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Wenn eine Datei bearbeitet wird, kann man hier festlegen ob sich die Cursorposition am Anfang oder am Ende der Zeile befindet."
 
@@ -20738,6 +20894,14 @@ msgid "Run script with optional parameter"
 msgstr "Skript mit einem optionalen Parameter ausführen"
 
 #: FileCommander
+msgid "Run script with optional parameter in background"
+msgstr "Skript mit einem optionalen Parameter im Hintergrund ausführen"
+
+#: FileCommander
+msgid "Run script in background"
+msgstr "Skript im Hintergrund ausführen"
+
+#: FileCommander
 msgid "Run script"
 msgstr "Skript ausführen"
 
@@ -20783,7 +20947,7 @@ msgstr "Rechte Seite Sortierung umkehren"
 
 #: FileCommander
 msgid "Enter multi-file selection mode"
-msgstr "Multi-Datei Selektionsmodus aktivieren"
+msgstr "Mehrfachauswahlmodus aktivieren"
 
 #: FileCommander
 msgid "move file"
@@ -21073,6 +21237,42 @@ msgstr "Meine Erweiterung"
 msgid "File Commander context menu"
 msgstr "File Commander Menü"
 
+#: FileCommander/plugin.py
+msgid "Select (source list) or enter directory (target list)"
+msgstr "Wählen Sie (Quellenliste) oder betreten Sie das Verzeichnis (Zielliste)"
+
+#: FileCommander/plugin.py
+msgid "Leave multi-select mode"
+msgstr "Mehrfachauswahlmodus beenden"
+
+#: FileCommander/plugin.py
+msgid "Activate right-hand file list as multi-select source"
+msgstr "Aktivieren Sie die rechte Dateiliste als Mehrfachauswahlquelle"
+
+#: FileCommander/plugin.py
+msgid "Activate left-hand file list as multi-select source"
+msgstr "Aktivieren Sie die linke Dateiliste als Mehrfachauswahlquelle"
+
+#: FileCommander/plugin.py
+msgid "Delete the selected files or directories"
+msgstr "Ausgewählte Dateien oder Verzeichnisse löschen"
+
+#: FileCommander/plugin.py
+msgid "Move files/directories to target directory"
+msgstr "Dateien/Verzeichnisse in das Zielverzeichnis verschieben"
+
+#: FileCommander/plugin.py
+msgid "Copy files/directories to target directory"
+msgstr "Dateien/Verzeichnisse in das Zielverzeichnis kopieren"
+
+#: FileCommander/plugin.py
+msgid "(Selectmode)"
+msgstr "(Auswahlmodus)"
+
+#: FileCommander/addons/key_actions.py
+msgid "No viewer installed for this file type: %s"
+msgstr "Kein Viewer für diesen Dateityp installiert: %s"
+
 #: FileCommander/addons/key_actions.py
 msgid "Run '%s' command"
 msgstr "Befehl '%s' ausführen"
@@ -21188,6 +21388,34 @@ msgstr "Original"
 #: FileCommander/addons/type_utils.py
 msgid "Edit line "
 msgstr "Bearbeite Zeile "
+
+#: FileCommander/addons/type_utils.py
+msgid "Exit picture viewer"
+msgstr "Bildbetrachter beenden"
+
+#: FileCommander/addons/type_utils.py
+msgid "Show next picture"
+msgstr "Nächstes Bild anzeigen"
+
+#: FileCommander/addons/type_utils.py
+msgid "Show previous picture"
+msgstr "Vorheriges Bild anzeigen"
+
+#: FileCommander/addons/type_utils.py
+msgid "Start/stop slide show"
+msgstr "Diashow starten / stoppen"
+
+#: FileCommander/addons/type_utils.py
+msgid "Show image information"
+msgstr "Bildinformationen anzeigen"
+
+#: FileCommander/addons/type_utils.py
+msgid "Please wait, Loading image."
+msgstr "Bitte warten Sie, Bild wird geladen."
+
+#: FileCommander/addons/type_utils.py
+msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
+msgstr "Der Bildbetrachter des File Commander erfordert die Erweiterung PicturePlayer. Bitte installieren Sie den PicturePlayer, um die Funktion nutzen zu können."
 
 #: FileCommander/setup.xml
 msgid "File Commander Settings"

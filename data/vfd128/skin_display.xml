@@ -22,25 +22,25 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="78,0" size="50,15" font="FdLcD;16" halign="right" valign="bottom" >
+		<widget source="global.CurrentTime" render="Label" position="78,0" size="50,14" font="FdLcD;14" halign="right" valign="bottom" >
 			<convert type="ClockToText"/>
 		</widget>
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<widget source="session.CurrentService" render="Pixmap" pixmap="hd.png" position="0,0" size="18,10">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="hdklein.png" position="0,0" size="13,7">
 			<convert type="ServiceInfo">IsHD</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="dolby.png" position="22,0" size="14,10">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="dolbyklein.png" position="15,0" size="10,7">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="40,0" size="19,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="recklein.png" position="29,0" size="13,7" >
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="40,0" size="19,10" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="recklein.png" position="29,0" size="13,7" >
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -89,35 +89,21 @@
 	</screen>
 
 	<screen name="SummaryEpgPanel">
-		<widget source="parent.Service" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1">
+		<widget source="parent.Service" render="Label" position="0,0" size="128,18" font="FdLcD;18" halign="center" valign="bottom" zPosition="1" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="0,13" size="128,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" >
+		<widget source="parent.Event" render="Label" position="0,19" size="128,12" font="FdLcD;12" halign="center" valign="top" zPosition="1" noWrap="1" >
 			<convert type="EventName">Name</convert>
-		</widget>
-		<widget source="parent.Event" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
-			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="parent.Event" render="Label" position="58,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
-			<convert type="EventTime">VFDRemaining</convert>
-			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
 	</screen>
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="128,32" >
-		<widget source="session.CurrentService" render="Label" position="0,10" size="128,16" font="FdLcD;16" halign="center" valign="top" zPosition="1" noWrap="1" >
+		<widget source="session.CurrentService" render="Label" position="0,10" size="128,16" font="FdLcD;18" halign="center" valign="top" zPosition="1" noWrap="1" >
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
-			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="session.Event_Now" render="Label" position="58,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
-			<convert type="EventTime">VFDRemaining</convert>
-			<convert type="RemainingToText">VFDNoSeconds</convert>
-		</widget>
 		<panel name="SummaryIconsPanel" />
-		<!-- <panel name="SummaryTunerStatusPanel" /> -->
+		<!--panel name="SummaryTunerStatusPanel" /-->
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -172,18 +158,11 @@
 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="128,32">
-		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1">
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="128,18" font="FdLcD;18" halign="center" valign="bottom" zPosition="1" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,13" size="128,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1">
+		<widget source="parent.ServiceEvent" render="Label" position="0,19" size="128,12" font="FdLcD;12" halign="center" valign="top" zPosition="1" noWrap="1">
 			<convert type="EventName">Name</convert>
-		</widget>
-		<widget source="parent.ServiceEvent" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
-			<convert type="EventTime">Progress</convert>
-		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="58,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
-			<convert type="EventTime">VFDRemaining</convert>
-			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
 	</screen>
 
@@ -373,7 +352,15 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-
+	
+	<screen name="UpdatePlugin_summary" position="0,0" size="128,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
+		<widget source="parent.package" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" noWrap="1" />
+	</screen>
+	<screen name="SoftwareUpdateChanges_summary" position="fill">
+		<!--<widget source="parent.title_summary" render="Label" position="top" size="*,14" font="FdLcD;16" halign="left" valign="top" noWrap="1" />-->
+		<widget source="parent.text_summary" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="left" valign="top" />
+	</screen>
 <!-- AutoTimerOverview -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="128,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="left" valign="bottom" />
@@ -466,11 +453,5 @@
 	<screen name="RestorePlugins_summary" position="0,0" size="132,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
-	</screen>
-	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="128,32">
-		<widget source="SetupTitle" render="Label" position="0,0" size="160,16" font="FdLcD;16" halign="left" noWrap="1"  />
-		<widget source="SetupEntry" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="left" noWrap="1" />
-		<!--<widget source="SetupValue" render="Label" position="0,50" size="128,14" font="FdLcD;12" halign="left" transparent="1" />-->
-		<!-- <panel name="SummaryTunerStatusPanel" /> -->
 	</screen>
 </skin>

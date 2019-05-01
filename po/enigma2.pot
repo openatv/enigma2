@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
-"POT-Creation-Date: 2019-04-14 23:30+0300\n"
+"POT-Creation-Date: 2019-04-28 21:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -39,6 +39,15 @@ msgid " - video1"
 msgstr ""
 
 msgid " - video0+video1"
+msgstr ""
+
+msgid " ('%s') ends successefully."
+msgstr ""
+
+msgid " ('%s') ends with error messages."
+msgstr ""
+
+msgid " ('%s') ends with error number [%d]."
 msgstr ""
 
 msgid " (Channel %s)"
@@ -93,6 +102,9 @@ msgid " Not Started !!\n\nCam binname must be in the start command line\nCheck y
 msgstr ""
 
 msgid " of "
+msgstr ""
+
+msgid " or save additional the picture to a file"
 msgstr ""
 
 msgid " updated"
@@ -2127,9 +2139,6 @@ msgstr ""
 msgid "and never ask again this session again"
 msgstr ""
 
-msgid "and there is made an extra copy on:"
-msgstr ""
-
 msgid "Animation Setup"
 msgstr ""
 
@@ -2523,9 +2532,6 @@ msgstr ""
 msgid "Back USB"
 msgstr ""
 
-msgid "back-up image will now be copied to that USB- "
-msgstr ""
-
 msgid "Back-up Tool for a %s\n"
 msgstr ""
 
@@ -2572,9 +2578,6 @@ msgid "Backup done."
 msgstr ""
 
 msgid "Backup failed."
-msgstr ""
-
-msgid "Backup finished and copied to your USB-flash drive"
 msgstr ""
 
 msgid "Backup Image"
@@ -2961,7 +2964,13 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+msgid "Cancel execution?"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
+msgstr ""
+
+msgid "Cancelled upon user request"
 msgstr ""
 
 msgid "Cannot delete file"
@@ -3247,6 +3256,9 @@ msgid "Channellist menu"
 msgstr ""
 
 msgid "Channelname"
+msgstr ""
+
+msgid "Channelselection:"
 msgstr ""
 
 msgid "Chap."
@@ -4206,6 +4218,9 @@ msgstr ""
 msgid "CPU:\t\t%s"
 msgstr ""
 
+msgid "CPU priority for script execution"
+msgstr ""
+
 msgid "Crash at skin error for debug reasons ?"
 msgstr ""
 
@@ -4560,6 +4575,9 @@ msgstr ""
 msgid "default Astra (13e-19e)"
 msgstr ""
 
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
+
 msgid "Default directory sorting"
 msgstr ""
 
@@ -4579,6 +4597,9 @@ msgid "Default folder"
 msgstr ""
 
 msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+msgstr ""
+
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr ""
 
 msgid "Default Modes Selected."
@@ -5022,9 +5043,7 @@ msgstr ""
 msgid "Do you really want to check the filesystem?\nThis could take a long time!"
 msgstr ""
 
-msgid ""
-"Do you really want to convert the filesystem?\n"
-"You cannot go back!"
+msgid "Do you really want to convert the filesystem?\nYou cannot go back!"
 msgstr ""
 
 msgid "Do you really want to delete %s ?"
@@ -5042,9 +5061,7 @@ msgstr ""
 msgid "Do you really want to delete this timer ?"
 msgstr ""
 
-msgid ""
-"Do you really want to delete\n"
-"%s ?"
+msgid "Do you really want to delete\n%s ?"
 msgstr ""
 
 msgid "Do you really want to download the plugin \"%s\"?"
@@ -5973,6 +5990,9 @@ msgstr ""
 msgid "Eventview"
 msgstr ""
 
+msgid "Eventview:"
+msgstr ""
+
 msgid "Eventview menu"
 msgstr ""
 
@@ -6330,6 +6350,9 @@ msgstr ""
 msgid "File Commander - Addon Movieplayer"
 msgstr ""
 
+msgid "File Commander - all Task's are completed!"
+msgstr ""
+
 msgid "File Commander - generalised archive handler"
 msgstr ""
 
@@ -6373,6 +6396,9 @@ msgid "File oscam.conf not found.\nPlease enter username/password manually."
 msgstr ""
 
 msgid "File transfer was cancelled by user"
+msgstr ""
+
+msgid "File write error: '%s'"
 msgstr ""
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -6466,9 +6492,6 @@ msgid "Flash and restore settings and selected plugins (ask user)"
 msgstr ""
 
 msgid "Flash and start installation wizard"
-msgstr ""
-
-msgid "flash drive. "
 msgstr ""
 
 msgid "Flash On the Fly"
@@ -7257,6 +7280,9 @@ msgstr ""
 msgid "I"
 msgstr ""
 
+msgid "I/O priority for script execution"
+msgstr ""
+
 msgid "Icons"
 msgstr ""
 
@@ -7393,6 +7419,12 @@ msgid "Image"
 msgstr ""
 
 msgid "Image Backup"
+msgstr ""
+
+msgid "Image created on: %s"
+msgstr ""
+
+msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -7546,6 +7578,9 @@ msgid "INFO-Panel..."
 msgstr ""
 
 msgid "InfoBar"
+msgstr ""
+
+msgid "Infobar:"
 msgstr ""
 
 msgid "Infobar EPG"
@@ -9539,7 +9574,7 @@ msgstr ""
 msgid "NOW"
 msgstr ""
 
-msgid "Now building the USB-Image"
+msgid "Now building the Backup Image"
 msgstr ""
 
 msgid "Now save timeshift as movie and continues recording"
@@ -9563,6 +9598,9 @@ msgstr ""
 msgid "Number of digits in channel number"
 msgstr ""
 
+msgid "Number of lines in script messages"
+msgstr ""
+
 msgid "Number of rows"
 msgstr ""
 
@@ -9582,9 +9620,6 @@ msgid "of a DUAL layer medium used."
 msgstr ""
 
 msgid "of a SINGLE layer medium used."
-msgstr ""
-
-msgid "of the USB-ports, therefore an extra copy of the "
 msgstr ""
 
 msgid "Off"
@@ -10029,6 +10064,9 @@ msgid "Password:"
 msgstr ""
 
 msgid "Passthrough"
+msgstr ""
+
+msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
 msgid "Pause"
@@ -10539,6 +10577,15 @@ msgid "Please wait, Loading image."
 msgstr ""
 
 msgid "please wait, loading picture..."
+msgstr ""
+
+msgid "Please wait, restarting cardserver."
+msgstr ""
+
+msgid "Please wait, restarting softcam."
+msgstr ""
+
+msgid "Please wait, restarting softcam and cardserver."
 msgstr ""
 
 msgid "Please wait."
@@ -11321,9 +11368,7 @@ msgstr ""
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds!\n"
-"Entering standby, after recording the box will shutdown."
+msgid "Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."
 msgstr ""
 
 msgid "recording..."
@@ -11692,6 +11737,12 @@ msgstr ""
 msgid "Restart %s %s."
 msgstr ""
 
+msgid "Restart both"
+msgstr ""
+
+msgid "Restart cardserver"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -11729,6 +11780,9 @@ msgid "Restart network and remount connections"
 msgstr ""
 
 msgid "Restart network to with current setup"
+msgstr ""
+
+msgid "Restart softcam"
 msgstr ""
 
 msgid "Restart test"
@@ -11896,7 +11950,13 @@ msgstr ""
 msgid "Run script"
 msgstr ""
 
+msgid "Run script in background"
+msgstr ""
+
 msgid "Run script with optional parameter"
+msgstr ""
+
+msgid "Run script with optional parameter in background"
 msgstr ""
 
 msgid "Running"
@@ -11974,11 +12034,7 @@ msgstr ""
 msgid "Satellites"
 msgstr ""
 
-msgid ""
-"satellites.xml not found or corrupted!\n"
-"It is possible to watch TV,\n"
-"but it's not possible to search for new TV channels\n"
-"or to configure tuner settings"
+msgid "satellites.xml not found or corrupted!\nIt is possible to watch TV,\nbut it's not possible to search for new TV channels\nor to configure tuner settings"
 msgstr ""
 
 msgid "Satfinder"
@@ -12027,6 +12083,9 @@ msgid "save playlist on exit"
 msgstr ""
 
 msgid "Save right folder on exit"
+msgstr ""
+
+msgid "Save the commands and the output to a file?\n('%s')"
 msgstr ""
 
 msgid "Save the left folder list location on exit."
@@ -12129,6 +12188,12 @@ msgstr ""
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 
+msgid "script 'sterr':"
+msgstr ""
+
+msgid "script 'stout':"
+msgstr ""
+
 msgid "Script Runner"
 msgstr ""
 
@@ -12211,6 +12276,9 @@ msgid "Secondary DNS"
 msgstr ""
 
 msgid "SecondInfoBar"
+msgstr ""
+
+msgid "Secondinfobar:"
 msgstr ""
 
 msgid "seconds"
@@ -12348,6 +12416,9 @@ msgstr ""
 msgid "Select Cam 2"
 msgstr ""
 
+msgid "Select Card Server"
+msgstr ""
+
 msgid "Select channel audio"
 msgstr ""
 
@@ -12414,6 +12485,9 @@ msgstr ""
 msgid "Select Image: %s"
 msgstr ""
 
+msgid "Select Image: STARTUP"
+msgstr ""
+
 msgid "Select Image: STARTUP_1"
 msgstr ""
 
@@ -12475,6 +12549,9 @@ msgid "Select service to add..."
 msgstr ""
 
 msgid "select Slot"
+msgstr ""
+
+msgid "Select Softcam"
 msgstr ""
 
 msgid "Select Software Update"
@@ -12832,6 +12909,9 @@ msgid "Set executable mode (755)"
 msgstr ""
 
 msgid "Set fixed"
+msgstr ""
+
+msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
 msgstr ""
 
 msgid "Set fps for external subtitles"
@@ -13206,6 +13286,9 @@ msgstr ""
 msgid "Show /tmp/ecm.info"
 msgstr ""
 
+msgid "Show '%s' as picture%s?\nThe current service must interrupted!"
+msgstr ""
+
 msgid "Show 1080p 24fps as"
 msgstr ""
 
@@ -13264,6 +13347,12 @@ msgid "show alternatives"
 msgstr ""
 
 msgid "Show animation while busy"
+msgstr ""
+
+msgid "Show as Picture (press any key to close)"
+msgstr ""
+
+msgid "Show as Picture and save as file ('%s')"
 msgstr ""
 
 msgid "Show Audioselection"
@@ -13560,6 +13649,12 @@ msgstr ""
 msgid "Show Merlin EPG Center"
 msgstr ""
 
+msgid "Show message if a background script ends successefully. Has 'stout', then this is displayed as additional info."
+msgstr ""
+
+msgid "Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+
 msgid "Show message when recording starts"
 msgstr ""
 
@@ -13674,6 +13769,9 @@ msgstr ""
 msgid "Show screensaver"
 msgstr ""
 
+msgid "Show Script completed message"
+msgstr ""
+
 msgid "Show SD as"
 msgstr ""
 
@@ -13729,6 +13827,9 @@ msgid "Show subtitle selection"
 msgstr ""
 
 msgid "Show task list"
+msgstr ""
+
+msgid "Show Task's completed message"
 msgstr ""
 
 msgid "Show the DreamPlex player..."
@@ -14136,10 +14237,16 @@ msgstr ""
 msgid "Softcam-Panel..."
 msgstr ""
 
+msgid "Softcam-Setup"
+msgstr ""
+
 msgid "SoftcamPanel"
 msgstr ""
 
 msgid "softcams"
+msgstr ""
+
+msgid "SoftcamSetup"
 msgstr ""
 
 msgid "Software"
@@ -15063,6 +15170,9 @@ msgstr ""
 msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
 msgstr ""
 
+msgid "The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"
+msgstr ""
+
 msgid "The hash of a directory can't be calculated."
 msgstr ""
 
@@ -15207,9 +15317,6 @@ msgstr ""
 msgid "There are to many update packages !!\n\nThere is a risk that your %s %s will not\nboot after online-update, or will show disfunction in running Image.\n\nYou need to flash new !!\n\nDo you want to flash-online ?"
 msgstr ""
 
-msgid "There is a valid USB-flash drive detected in one "
-msgstr ""
-
 msgid "There is no signal to lock on !"
 msgstr ""
 
@@ -15301,9 +15408,6 @@ msgid "This line is not editable!"
 msgstr ""
 
 msgid "this offset will only be used if the channel has not its own volume offset"
-msgstr ""
-
-msgid "This only takes about 1 or 2 minutes"
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -15801,11 +15905,7 @@ msgstr ""
 msgid "To restore the image:"
 msgstr ""
 
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
+msgid "To update your %s %s firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
 msgid "Today"
@@ -16401,9 +16501,6 @@ msgstr ""
 msgid "USB = Do you want to make a back-up on USB?\nThis will take between 3 and 15 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert a USB flash drive before you select USB."
 msgstr ""
 
-msgid "USB Image created on: %s"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -16672,6 +16769,9 @@ msgid "Version: "
 msgstr ""
 
 msgid "Version: %s"
+msgstr ""
+
+msgid "Version %s %s"
 msgstr ""
 
 msgid "Version:\t\t%s"

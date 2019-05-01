@@ -1,346 +1,192 @@
-from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
-from Components.FileList import FileList
+from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Task import Task, Job, job_manager, Condition
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-from Screens.Console import Console
+from Components.ProgressBar import ProgressBar
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
-from Screens.Console import Console
-from Screens.HelpMenu import HelpableScreen
-from Screens.TaskView import JobView
-from Tools.Downloader import downloadWithProgress
-from enigma import fbClass
-import urllib2
-import os
-import shutil
-import math
-from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getImageVersion, getMachineKernelFile, getMachineRootFile, getMachineBuild, getMachineMtdKernel, getMachineMtdRoot
-distro =  getImageDistro()
-ImageVersion = getImageVersion()
-ROOTFSBIN = getMachineRootFile()
-KERNELBIN = getMachineKernelFile()
-MTDKERNEL = getMachineMtdKernel()
-MTDROOTFS = getMachineMtdRoot()
+from Components.Console import Console
+from Tools.BoundFunction import boundFunction
+from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot
+from enigma import eTimer
+import os, urllib2, shutil, math, time, zipfile, shutil
 
-#############################################################################################################
-image = 0 # 0=openATV / 1=openMips
-if distro.lower() == "openmips":
-	image = 1
-elif distro.lower() == "openatv":
-	image = 0
-feedurl_atv = 'http://images.mynonpublic.com/openatv/%s' %ImageVersion
+from boxbranding import getBoxType,  getImageDistro, getMachineName,  getMachineBuild
 
-if ImageVersion == '6.2':
-	ImageVersion2= '6.3'
-else:
-	ImageVersion2= '6.2'
-feedurl_atv2= 'http://images.mynonpublic.com/openatv/%s' %ImageVersion2
-feedurl_om = 'http://image.openmips.com/5.3'
-imagePath = '/media/hdd/images'
-flashPath = '/media/hdd/images/flash'
-flashTmp = '/media/hdd/images/tmp'
-ofgwritePath = '/usr/bin/ofgwrite'
-#############################################################################################################
+feedurl = 'http://images.mynonpublic.com/%s' %(getImageDistro())
+imagecat = [3.0,4.0,4.1,4.2,5.0,5.1,5.2,5.3,6.0,6.1,6.2,6.3]
 
-
-
-def Freespace(dev):
-	statdev = os.statvfs(dev)
-	space = (statdev.f_bavail * statdev.f_frsize) / 1024
-	print "[Flash Online] Free space on %s = %i kilobytes" %(dev, space)
-	return space
-
-def ReadNewfeed():
-	f = open('/etc/enigma2/newfeed', 'r')
-	newfeed = f.readlines()
-	f.close()
-	return newfeed
+def checkimagefiles(files):
+	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) == 2
 
 class FlashOnline(Screen):
 	skin = """
-	<screen position="center,center" size="560,400" title="Flash On the Fly">
-		<ePixmap position="0,360"   zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap position="140,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap position="280,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<ePixmap position="420,360" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_green" render="Label" position="140,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_yellow" render="Label" position="280,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_blue" render="Label" position="420,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="info-online" position="10,30" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
-		<widget name="info-local" position="10,150" zPosition="1" size="450,200" font="Regular;20" halign="left" valign="top" transparent="1" />
+	<screen name="SelectImage" position="center,center" size="550,400">
+		<widget name="list" position="fill" scrollbarMode="showOnDemand"/>
 	</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
-		if getMachineBuild() in ("hd51","vs1500","h7","8100s"):
-			self.devrootfs = "/dev/mmcblk0p3"
-		elif getMachineBuild() in ("gb7252"):
-			self.devrootfs = "/dev/mmcblk0p4"
-		else:
-			self.devrootfs = "/dev/mmcblk1p3"
-		self.multi = 1
-		self.list = self.list_files("/boot")
-		self.MTDKERNEL = getMachineMtdKernel()
-		self.MTDROOTFS = getMachineMtdRoot()
-
+		self.imagesList = {}
+		self.setIndex = 0
+		self.expanded = []
 		Screen.setTitle(self, _("Flash On the Fly"))
-		if SystemInfo["HaveMultiBoot"]:
-			self["key_yellow"] = StaticText(_("STARTUP"))
-			self.read_current_multiboot()
-		else:
-			self["key_yellow"] = StaticText("")
-		self["key_green"] = StaticText(_("Online"))
-		self["key_red"] = StaticText(_("Exit"))
-		self["key_blue"] = StaticText(_("Local"))
-		self["info-local"] = Label(_("Local = Flash a image from local path /hdd/images"))
-		self["info-online"] = Label(_("Online = Download a image and flash it"))
-		
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
+		self["description"] = StaticText()
+		self["list"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image list - Please wait...")), "Waiter"))])
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
 		{
-			"blue": self.blue,
-			"yellow": self.yellow,
-			"green": self.green,
-			"red": self.quit,
-			"cancel": self.quit,
-		}, -2)
-		if SystemInfo["HaveMultiBoot"]:
-			if getMachineBuild() in ("gb7252"):
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
-				self.multi = self.multi[-1:]
+			"ok": self.keyOk,
+			"cancel": boundFunction(self.close, None),
+			"red": boundFunction(self.close, None),
+			"green": self.keyOk,
+			"yellow": self.keyDelete,
+			"up": self.keyUp,
+			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+			"upRepeated": self.keyUp,
+			"downRepeated": self.keyDown,
+			"leftRepeated": self.keyLeft,
+			"rightRepeated": self.keyRight,
+			"menu": boundFunction(self.close, True),
+		}, -1)
+
+		self.delay = eTimer()
+		self.delay.callback.append(self.getImagesList)
+		self.delay.start(0, True)
+
+	def getImagesList(self):
+
+		def getImages(path, files):
+			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
+				try:
+					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
+						if "Downloaded Images" not in self.imagesList:
+							self.imagesList["Downloaded Images"] = {}
+						self.imagesList["Downloaded Images"][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+				except:
+					pass
+
+		if not self.imagesList:
+			box = self.box()
+			for version in reversed(sorted(imagecat)):
+				newversion = _("Image Version %s") %version
+				the_page =""
+				url = '%s/%s/index.php?open=%s' % (feedurl,version,box)
+				try:
+					req = urllib2.Request(url)
+					response = urllib2.urlopen(req)
+				except urllib2.URLError as e:
+					print "URL ERROR: %s\n%s" % (e,url)
+					continue
+
+				try:
+					the_page = response.read()
+				except urllib2.HTTPError as e:
+					print "HTTP download ERROR: %s" % e.code
+					continue
+
+				lines = the_page.split('\n')
+				tt = len(box)
+				countimage = []
+				for line in lines:
+					if line.find("<a href='%s/" % box) > -1:
+						t = line.find("<a href='%s/" % box)
+						if line[t+tt+10:t+tt+tt+39].endswith(".zip"):
+							countimage.append(line[t+tt+10:t+tt+tt+39])
+				if len(countimage) >= 1:
+					self.imagesList[newversion] = {}
+					for image in countimage:
+						self.imagesList[newversion][image] = {}
+						self.imagesList[newversion][image]["name"] = image
+						self.imagesList[newversion][image]["link"] = '%s/%s/%s/%s' % (feedurl,version,box,image)
+
+			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
+				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
+					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
+					if "downloaded_images" in os.listdir(media):
+						media = os.path.join(media, "downloaded_images")
+						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
+							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
+							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
+								shutil.rmtree(dir)
+
+		list = []
+		for catagorie in reversed(sorted(self.imagesList.keys())):
+			if catagorie in self.expanded:
+				list.append(ChoiceEntryComponent('expanded',((str(catagorie)), "Expander")))
+				for image in reversed(sorted(self.imagesList[catagorie].keys())):
+					list.append(ChoiceEntryComponent('verticalline',((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-				self.multi = self.multi[-1:]
-			print "[Flash Online] MULTI:",self.multi
+				for image in self.imagesList[catagorie].keys():
+					list.append(ChoiceEntryComponent('expandable',((str(catagorie)), "Expander")))
+					break
+		if list:
+			self["list"].setList(list)
+			if self.setIndex:
+				self["list"].moveToIndex(self.setIndex if self.setIndex < len(list) else len(list) - 1)
+				if self["list"].l.getCurrentSelection()[0][1] == "Expander":
+					self.setIndex -= 1
+					if self.setIndex:
+						self["list"].moveToIndex(self.setIndex if self.setIndex < len(list) else len(list) - 1)
+				self.setIndex = 0
+			self.selectionChanged()
+		else:
+			self.session.openWithCallback(self.close, MessageBox, _("Cannot find images - please try later"), type=MessageBox.TYPE_ERROR, timeout=3)
 
-	def check_hdd(self):
-		if not os.path.exists("/media/hdd"):
-			self.session.open(MessageBox, _("No /hdd found !!\nPlease make sure you have a HDD mounted.\n\nExit plugin."), type = MessageBox.TYPE_ERROR)
-			return False
-		if Freespace('/media/hdd') < 300000:
-			self.session.open(MessageBox, _("Not enough free space on /hdd !!\nYou need at least 300Mb free space.\n\nExit plugin."), type = MessageBox.TYPE_ERROR)
-			return False
-		if not os.path.exists(ofgwritePath):
-			self.session.open(MessageBox, _('ofgwrite not found !!\nPlease make sure you have ofgwrite installed in /usr/bin/ofgwrite.\n\nExit plugin.'), type = MessageBox.TYPE_ERROR)
-			return False
 
-		if not os.path.exists(imagePath):
+	def keyOk(self):
+		currentSelected = self["list"].l.getCurrentSelection()
+		if currentSelected[0][1] == "Expander":
+			if currentSelected[0][0] in self.expanded:
+				self.expanded.remove(currentSelected[0][0])
+			else:
+				self.expanded.append(currentSelected[0][0])
+			self.getImagesList()
+		elif currentSelected[0][1] != "Waiter":
+			self.session.openWithCallback(self.getImagesList, FlashImage, currentSelected[0][0], currentSelected[0][1])
+
+	def keyDelete(self):
+		currentSelected= self["list"].l.getCurrentSelection()[0][1]
+		if not("://" in currentSelected or currentSelected in ["Expander", "Waiter"]):
 			try:
-				os.mkdir(imagePath)
+				os.remove(currentSelected)
+				currentSelected = ".".join([currentSelected[:-4], "unzipped"])
+				if os.path.isdir(currentSelected):
+					shutil.rmtree(currentSelected)
+				self.setIndex = self["list"].getSelectedIndex()
+				self.imagesList = {}
+				self.getImagesList()
 			except:
-				pass
-		
-		if os.path.exists(flashPath):
-			try:
-				os.system('rm -rf ' + flashPath)
-			except:
-				pass
-		try:
-			os.mkdir(flashPath)
-		except:
-			pass
-		return True
+				self.session.open(MessageBox, _("Cannot delete downloaded image"), MessageBox.TYPE_ERROR, timeout=3)
 
-	def quit(self):
-		self.close()
-		
-	def blue(self):
-		if self.check_hdd():
-			self.session.open(doFlashImage, online = False, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs, mtdkernel=self.MTDKERNEL, mtdrootfs=self.MTDROOTFS)
+	def selectionChanged(self):
+		currentSelected = self["list"].l.getCurrentSelection()
+		if "://" in currentSelected[0][1] or currentSelected[0][1] in ["Expander", "Waiter"]:
+			self["key_yellow"].setText("")
 		else:
-			self.close()
-
-	def green(self):
-		if self.check_hdd():
-			self.session.open(doFlashImage, online = True, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs, mtdkernel=self.MTDKERNEL, mtdrootfs=self.MTDROOTFS)
+			self["key_yellow"].setText(_("Delete image"))
+		if currentSelected[0][1] == "Waiter":
+			self["key_green"].setText("")
 		else:
-			self.close()
-
-	def yellow(self):
-		if SystemInfo["HaveMultiBoot"]:
-			self.selection = self.selection + 1
-			if self.selection == len(self.list):
-				self.selection = 0
-			self["key_yellow"].setText(_(self.list[self.selection]))
-			if getMachineBuild() in ("gb7252"):
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
-				self.multi = self.multi[-1:]
+			if currentSelected[0][1] == "Expander":
+				self["key_green"].setText(_("Compress") if currentSelected[0][0] in self.expanded else _("Expand"))
+				self["description"].setText("")
 			else:
-				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-				self.multi = self.multi[-1:]
-			print "[Flash Online] MULTI:",self.multi
-			self.devrootfs = self.find_rootfs_dev(self.list[self.selection])
-			print "[Flash Online] MULTI rootfs ", self.devrootfs
+				self["key_green"].setText(_("Flash Image"))
+				self["description"].setText(currentSelected[0][1])
 
-			self.read_current_multiboot()
-
-	def read_current_multiboot(self):
-		if getMachineBuild() in ("hd51","vs1500","h7"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
-		elif getMachineBuild() in ("8100s"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
-		elif getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		elif getMachineBuild() in ("osmio4k","osmio4kplus"):
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		else:
-			if self.list[self.selection] == "Recovery":
-				cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-		cmdline = cmdline.lstrip("/dev/")
-		self.MTDROOTFS = cmdline
-		self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
-		print "[Flash Online] kernel device: ",self.MTDKERNEL
-		print "[Flash Online] rootfsdevice: ",self.MTDROOTFS
-
-	def read_startup(self, FILE):
-		file = FILE
-		with open(file, 'r') as myfile:
-			data=myfile.read().replace('\n', '')
-		myfile.close()
-		return data
-
-	def find_rootfs_dev(self, file):
-		startup_content = self.read_startup("/boot/" + file)
-		return startup_content[startup_content.find("root=")+5:].split()[0]
-
-	def list_files(self, PATH):
-		files = []
-		if SystemInfo["HaveMultiBoot"]:
-			path = PATH
-			if getMachineBuild() in ("gbmv200","ustym4kpro","hd51","vs1500","h7","8100s","gb7252","cc1","sf8008","osmio4k","osmio4kplus","beyonwizv2","viper4k"):
-				for name in os.listdir(path):
-					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
-						try:
-							cmdline = self.find_rootfs_dev(name)
-						except IndexError:
-							continue
-						cmdline_startup = self.find_rootfs_dev("STARTUP")
-						if (cmdline != cmdline_startup) and (name != "STARTUP"):
-							files.append(name)
-				files.insert(0,"STARTUP")
-			else:
-				for name in os.listdir(path):
-					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
-						try:
-							cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-						except IndexError:
-							continue
-						cmdline_startup = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
-						if (cmdline != cmdline_startup) and (name != "cmdline.txt"):
-							files.append(name)
-				files.insert(0,"cmdline.txt")
-		else:
-			files = "None"
-		return files
-
-class doFlashImage(Screen):
-	skin = """
-	<screen position="center,center" size="560,500" title="Flash On the fly (select a image)">
-		<ePixmap position="0,460"   zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap position="140,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<ePixmap position="280,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<ePixmap position="420,460" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_green" render="Label" position="140,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_yellow" render="Label" position="280,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget source="key_blue" render="Label" position="420,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="imageList" position="10,10" zPosition="1" size="450,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
-	</screen>"""
-		
-	def __init__(self, session, online, list=None, multi=None, devrootfs=None, mtdkernel=None, mtdrootfs=None ):
-		Screen.__init__(self, session)
-		self.session = session
-
-		Screen.setTitle(self, _("Flash On the fly (select a image)"))
-		self["key_green"] = StaticText(_("Flash"))
-		self["key_red"] = StaticText(_("Exit"))
-		self["key_blue"] = StaticText("")
-		self["key_yellow"] = StaticText("")
-		self.filename = None
-		self.imagelist = []
-		self.simulate = False
-		self.Online = online
-		self.List = list
-		self.multi=multi
-		self.devrootfs=devrootfs
-		self.MTDKERNEL = mtdkernel
-		self.MTDROOTFS = mtdrootfs
-		self.imagePath = imagePath
-		self.feedurl = feedurl_atv
-		if image == 0:
-			self.feed = "atv"
-		else:
-			self.feed = "om"
-		self["imageList"] = MenuList(self.imagelist)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
-		{
-			"ok": self.green,
-			"green": self.green,
-			"yellow": self.yellow,
-			"red": self.quit,
-			"blue": self.blue,
-			"cancel": self.quit,
-		}, -2)
-		self.onLayoutFinish.append(self.layoutFinished)
-		self.newfeed = None
-		if os.path.exists('/etc/enigma2/newfeed'):
-			self.newfeed = ReadNewfeed()
-
-	def quit(self):
-		if self.simulate or self.List not in ("STARTUP","cmdline.txt"):
-			fbClass.getInstance().unlock()
-		self.close()
-		
-	def blue(self):
-		if self.Online:
-			if image == 1:
-				if self.feed == "atv":
-					self.feed = "om"
-				else:
-					self.feed = "atv"
-			else:
-				if self.feed == "atv":
-					self.feed = "atv2"
-				else:
-					self.feed = "atv"
-			self.layoutFinished()
-			return
-		sel = self["imageList"].l.getCurrentSelection()
-		if sel == None:
-			print"Nothing to select !!"
-			return
-		self.filename = sel
-		self.session.openWithCallback(self.RemoveCB, MessageBox, _("Do you really want to delete\n%s ?") % (sel), MessageBox.TYPE_YESNO)
-
-	def RemoveCB(self, ret):
-		if ret:
-			if os.path.exists(self.imagePath + "/" + self.filename):
-				os.remove(self.imagePath + "/" + self.filename)
-			self.imagelist.remove(self.filename)
-			self["imageList"].l.setList(self.imagelist)
-		
 	def box(self):
 		box = getBoxType()
 		machinename = getMachineName()
@@ -362,142 +208,185 @@ class doFlashImage(Screen):
 			box = "sf8"
 		elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
 			box = box[0:3] + 'x00'
-		elif box == 'odinm9' and self.feed == "atv":
+		elif box == 'odinm9':
 			box = 'maram9'
 		return box
 
-	def getSel(self):
-		self.sel = self["imageList"].l.getCurrentSelection()
-		if self.sel == None:
-			print"Nothing to select !!"
-			return False
-		self.filename = self.imagePath + "/" + self.sel
-		return self.checkTrafficLight()
+	def keyLeft(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageUp)
+		self.selectionChanged()
 
-	def greenCB(self, ret = None):
-		if self.Online:
-			if ret:
-				from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
-				self.session.openWithCallback(self.startInstallOnline,BackupScreen, runBackup = True)
+	def keyRight(self):
+		self["list"].instance.moveSelection(self["list"].instance.pageDown)
+		self.selectionChanged()
+
+	def keyUp(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveUp)
+		self.selectionChanged()
+
+	def keyDown(self):
+		self["list"].instance.moveSelection(self["list"].instance.moveDown)
+		self.selectionChanged()
+		
+class FlashImage(Screen):
+	skin = """<screen position="center,center" size="640,150" flags="wfNoBorder" backgroundColor="#54242424">
+		<widget name="header" position="5,10" size="e-10,50" font="Regular;40" backgroundColor="#54242424"/>
+		<widget name="info" position="5,60" size="e-10,130" font="Regular;24" backgroundColor="#54242424"/>
+		<widget name="progress" position="5,e-39" size="e-10,24" backgroundColor="#54242424"/>
+	</screen>"""
+
+	def __init__(self, session,  imagename, source):
+		Screen.__init__(self, session)
+		self.containerbackup = None
+		self.containerofgwrite = None
+		self.getImageList = None
+		self.saveImageList = None
+		self.downloader = None
+		self.source = source
+		self.imagename = imagename
+
+		self["header"] = Label(_("Backup settings"))
+		self["info"] = Label(_("Save settings and EPG data"))
+		self["progress"] = ProgressBar()
+		self["progress"].setRange((0, 100))
+		self["progress"].setValue(0)
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		{
+			"cancel": self.abort,
+			"red": self.abort,
+			"ok": self.ok,
+			"green": self.ok,
+		}, -1)
+
+		self.delay = eTimer()
+		self.delay.callback.append(self.confirmation)
+		self.delay.start(0, True)
+		self.hide()
+
+	def confirmation(self):
+		self.message = _("Do you want to flash image\n%s") % self.imagename
+		if SystemInfo["canMultiBoot"]:
+			self.getImageList = GetImagelist(self.getImagelistCallback)
+		else:
+			choices = [(_("Yes, with backup"), "with backup"), (_("Yes, without backup"), "without backup"), (_("No, do not flash image"), False)]
+			self.session.openWithCallback(self.checkMedia, MessageBox, self.message , list=choices, default=False, simple=True)
+
+	def getImagelistCallback(self, imagedict):
+		self.saveImageList = imagedict
+		self.getImageList = None
+		choices = []
+		currentimageslot = GetCurrentImage()
+		if SystemInfo["HasSDmmc"]:
+			currentimageslot += 1			#allow for mmc as 1st slot, then SDCard slots
+		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
+			choices.append(((_("slot%s - %s (current image) with, backup") if x == currentimageslot else _("slot%s - %s, with backup")) % (x, imagedict[x]['imagename']), (x, "with backup")))
+		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
+			choices.append(((_("slot%s - %s (current image), without backup") if x == currentimageslot else _("slot%s - %s, without backup")) % (x, imagedict[x]['imagename']), (x, "without backup")))
+		choices.append((_("No, do not flash image"), False))
+		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
+
+	def checkMedia(self, retval):
+		if retval:
+			if SystemInfo["canMultiBoot"]:
+				self.multibootslot = retval[0]
+				doBackup = retval[1] == "with backup"
 			else:
-				self.startInstallOnline()
+				doBackup = retval == "with backup"
+
+			def findmedia(path):
+				def avail(path):
+					if not '/mmc' in path and os.path.isdir(path) and os.access(path, os.W_OK):
+						try:
+							statvfs = os.statvfs(path)
+							return (statvfs.f_bavail * statvfs.f_frsize) / (1 << 20)
+						except:
+							pass
+
+				def checkIfDevice(path, diskstats):
+					st_dev = os.stat(path).st_dev
+					return (os.major(st_dev), os.minor(st_dev)) in diskstats
+
+				diskstats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open('/proc/diskstats').readlines()] if x[2].startswith("sd")]
+				if os.path.isdir(path) and checkIfDevice(path, diskstats) and avail(path) > 500:
+					return (path, True)
+				mounts = []
+				devices = []
+				for path in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
+					if checkIfDevice(path, diskstats):
+						devices.append((path, avail(path)))
+					else:
+						mounts.append((path, avail(path)))
+				devices.sort(key=lambda x: x[1], reverse=True)
+				mounts.sort(key=lambda x: x[1], reverse=True)
+				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
+
+			self.destination, isDevice = findmedia("/media/hdd" or "/media/usb")
+
+			if self.destination:
+
+				destination = os.path.join(self.destination, 'downloaded_images')
+				self.zippedimage = "://" in self.source and os.path.join(destination, self.imagename) or self.source
+				self.unzippedimage = os.path.join(destination, '%s.unzipped' % self.imagename[:-4])
+
+				try:
+					if os.path.isfile(destination):
+						os.remove(destination)
+					if not os.path.isdir(destination):
+						os.mkdir(destination)
+					if doBackup:
+						if isDevice:
+							self.startBackupsettings(True)
+						else:
+							self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
+					else:
+						self.startDownload()
+				except:
+					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
+			else:
+				self.session.openWithCallback(self.abort, MessageBox, _("Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 		else:
-			self.startInstallLocal(ret)
+			self.abort()
 
-	def green(self):
-		if self.getSel():
-			self.hide()
-			self.session.openWithCallback(self.greenCB, MessageBox, _("Do you want to backup your settings now?"), default=True)
-
-	def checkTrafficLight(self):
-		import time
-		if not self.Online or not time.strftime('%Y%m%d') in self.filename:
-			return True
-
-		try:
-			urlopenATV = "http://ampel.mynonpublic.com/Ampel/index.php"
-			d = urllib2.urlopen(urlopenATV)
-			tmpStatus = d.read()
-		except:
-			tmpStatus = _("Unknown")
-
-		if 'gruen.png' in tmpStatus:
-			return True
+	def startBackupsettings(self, retval):
+		if retval:
+			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+			self.session.openWithCallback(self.flashPostAction,BackupScreen, runBackup = True)
 		else:
-			if 'rot.png' in tmpStatus: tmpStatus = _("red")
-			elif 'gelb.png' in tmpStatus: tmpStatus = _("yellow")
-			self.session.open(MessageBox, _("Traffic light state is '%s' - please use a another image.") %tmpStatus.upper(), type = MessageBox.TYPE_ERROR)
-			return False
+			self.abort()
 
-	def startInstallOnline(self, ret = None):
-		box = self.box()
-		url = self.feedurl + "/" + box + "/" + self.sel
-		print "[Flash Online] Download image: >%s<" % url
-		if self.newfeed:
-			self.feedurl = self.newfeed[0][:-1]
-			url = self.feedurl + "/" + box + "/" + self.sel
-			authinfo = urllib2.HTTPPasswordMgrWithDefaultRealm()
-			authinfo.add_password(None, self.feedurl, self.newfeed[1][:-1], self.newfeed[2][:-1])
-			handler = urllib2.HTTPBasicAuthHandler(authinfo)
-			myopener = urllib2.build_opener(handler)
-			opened = urllib2.install_opener(myopener)
-			u = urllib2.urlopen(url)
-			total_size = int(u.info().getheaders("Content-Length")[0])
-			downloaded = 0
-			CHUNK = 256 * 1024
-			with open(self.filename, 'wb') as fp:
-				while True:
-					chunk = u.read(CHUNK)
-					downloaded += len(chunk)
-					print "Downloading: %s Bytes of %s" % (downloaded, total_size)
-					if not chunk: break
-					fp.write(chunk)
-			self.ImageDownloadCB(False)
-		else:
-			try:
-				u = urllib2.urlopen(url)
-				f = open(self.filename, 'wb')
-				f.close()
-				job = ImageDownloadJob(url, self.filename, self.sel)
-				job.afterEvent = "close"
-				job_manager.AddJob(job)
-				job_manager.failed_jobs = []
-				self.session.openWithCallback(self.ImageDownloadCB, JobView, job, backgroundable = False, afterEventChangeable = False)
-			except urllib2.URLError as e:
-				print "[Flash Online] Download failed !!\n%s" % e
-				self.session.openWithCallback(self.ImageDownloadCB, MessageBox, _("Download Failed !!" + "\n%s" % e), type = MessageBox.TYPE_ERROR)
-				self.close()
-
-	def ImageDownloadCB(self, ret):
-		if ret:
-			return
-		if job_manager.active_job:
-			job_manager.active_job = None
-			self.close()
-			return
-		if len(job_manager.failed_jobs) == 0:
-			self.flashWithPostFlashActionMode = 'online'
-			self.flashWithPostFlashAction()
-		else:
-			self.session.open(MessageBox, _("Download Failed !!"), type = MessageBox.TYPE_ERROR)
-
-	def flashWithPostFlashAction(self, ret = True):
-		if ret:
-			print "flashWithPostFlashAction"
+	def flashPostAction(self, retval = True):
+		if retval:
 			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
-			list = ((_("Flash and start installation wizard"), "wizard"),
+			choices = ((_("Flash and start installation wizard"), "wizard"),
 			(_("Flash and restore settings and no plugins"), "restoresettingsnoplugin"),
 			(_("Flash and restore settings and selected plugins (ask user)"), "restoresettings"),
 			(_("Flash and restore settings and all saved plugins"), "restoresettingsandallplugins"),
 			(_("Do not flash image"), "abort"))
-			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=list,selection=self.SelectPrevPostFashAction())
+			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=choices,selection=self.SelectPrevPostFashAction())
 		else:
-			self.show()
+			self.abort()
 
 	def SelectPrevPostFashAction(self):
 		index = 0
 		Settings = False
 		AllPlugins = False
 		noPlugins = False
-		
 		if os.path.exists('/media/hdd/images/config/settings'):
 			Settings = True
 		if os.path.exists('/media/hdd/images/config/plugins'):
 			AllPlugins = True
 		if os.path.exists('/media/hdd/images/config/noplugins'):
 			noPlugins = True
-
 		if 	Settings and noPlugins:
 			index = 1
 		elif Settings and not AllPlugins and not noPlugins:
 			index = 2
 		elif Settings and AllPlugins:
 			index = 3
-
 		return index
 
 	def postFlashActionCallback(self, answer):
-		print "postFlashActionCallback"
 		restoreSettings   = False
 		restoreAllPlugins = False
 		restoreSettingsnoPlugin = False
@@ -543,7 +432,6 @@ class doFlashImage(Screen):
 				else:
 					if os.path.exists('/media/hdd/images/config/noplugins'):
 						os.unlink('/media/hdd/images/config/noplugins')
-
 				if restoreSettings or restoreAllPlugins or restoreSettingsnoPlugin:
 					if config.plugins.softwaremanager.restoremode.value is not None:
 						try:
@@ -572,356 +460,111 @@ class doFlashImage(Screen):
 									os.unlink('/media/hdd/images/config/fast')
 						except:
 							print "postFlashActionCallback: failed to create restore mode flagfile"
-
-				if self.flashWithPostFlashActionMode == 'online':
-					self.unzip_image(self.filename, flashPath)
-				else:
-					self.startInstallLocalCB()
+				self.startDownload()
 			else:
-				self.show()
+				self.abort()
 		else:
-			self.show()
-
-	def unzip_image(self, filename, path):
-		print "Unzip %s to %s" %(filename,path)
-		self.session.openWithCallback(self.cmdFinished, Console, title = _("Unzipping files, Please wait ..."), cmdlist = ['unzip ' + filename + ' -o -d ' + path, "sleep 3"], closeOnSuccess = True)
-
-	def cmdFinished(self):
-		self.prepair_flashtmp(flashPath)
-		self.Start_Flashing()
-
-	def Start_Flashing(self):
-		print "Start Flashing"
-		cmdlist = []
-		if os.path.exists(ofgwritePath):
-			text = _("Flashing: ")
-			if self.simulate:
-				text += _("Simulate (no write)")
-				if SystemInfo["HaveMultiBoot"]:
-					if getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
-						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
-					else:
-						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-				elif getMachineBuild() in ("gbmv200","h9combo","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k","hd60","hd61","v8plus","multibox"):
-					cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
-				elif getMachineBuild() in ("h9","i55plus","u55","u41"):
-					cmdlist.append("%s -n -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-				else:
-					cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-				self.close()
-				message = "echo -e '\n"
-				message += _('Show only found image and mtd partitions.\n')
-				message += "'"
-			else:
-				text += _("root and kernel")
-				if SystemInfo["HaveMultiBoot"]:
-					if self.List not in ("STARTUP","cmdline.txt"):
-						os.system('mkfs.ext4 -F ' + self.devrootfs)
-					if getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
-						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
-					else:
-						cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-				elif getMachineBuild() in ("gbmv200","h9combo","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k","hd60","hd61","v8plus","multibox"):
-					cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
-				elif getMachineBuild() in ("h9","i55plus","u55","u41"):
-					cmdlist.append("%s -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-				else:
-					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-				message = "echo -e '\n"
-				if self.List not in ("STARTUP","cmdline.txt") and SystemInfo["HaveMultiBoot"]:
-					message += _('ofgwrite flashing ready.\n')
-					message += _('please press exit to go back to the menu.\n')
-				else:
-					message += _('ofgwrite will stop enigma2 now to run the flash.\n')
-					message += _('Your STB will freeze during the flashing process.\n')
-					message += _('Please: DO NOT reboot your STB and turn off the power.\n')
-					message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
-					if self.box() == 'gb800solo':
-						message += _('GB800SOLO takes about 20 mins !!\n')
-				message += "'"
-				cmdlist.append(message)
-				self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
-				if not self.simulate:
-					fbClass.getInstance().lock()
-				if self.List not in ("STARTUP","cmdline.txt"):
-					self.close()
-
-	def prepair_flashtmp(self, tmpPath):
-		if os.path.exists(flashTmp):
-			flashTmpold = flashTmp + 'old'
-			os.system('mv %s %s' %(flashTmp, flashTmpold))
-			os.system('rm -rf %s' %flashTmpold)
-		if not os.path.exists(flashTmp):
-			os.mkdir(flashTmp)
-		kernel = True
-		rootfs = True
-		
-		for path, subdirs, files in os.walk(tmpPath):
-			for name in files:
-				if name.find('kernel') > -1 and name.endswith('.bin') and kernel:
-					binfile = os.path.join(path, name)
-					dest = flashTmp + '/%s' %KERNELBIN
-					shutil.copyfile(binfile, dest)
-					kernel = False
-				elif name.find('root') > -1 and (name.endswith('.bin') or name.endswith('.ubi') or name.endswith('.jffs2') or name.endswith('.bz2')) and rootfs:
-					binfile = os.path.join(path, name)
-					dest = flashTmp + '/%s' %ROOTFSBIN
-					shutil.copyfile(binfile, dest)
-					rootfs = False
-				elif name.find('uImage') > -1 and kernel:
-					binfile = os.path.join(path, name)
-					dest = flashTmp + '/uImage'
-					shutil.copyfile(binfile, dest)
-					kernel = False
-				elif name.find('e2jffs2') > -1 and name.endswith('.img') and rootfs:
-					binfile = os.path.join(path, name)
-					dest = flashTmp + '/e2jffs2.img'
-					shutil.copyfile(binfile, dest)
-					rootfs = False
-					
-	def yellow(self):
-		if not self.Online:
-			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, matchingPattern="^.*\.(zip|bin|jffs2|img)", showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
-		elif self.getSel():
-			self.greenCB(True)
-
-	def startInstallLocal(self, ret = None):
-		if ret:
-			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
-			self.flashWithPostFlashActionMode = 'local'
-			self.session.openWithCallback(self.flashWithPostFlashAction,BackupScreen, runBackup = True)
-		else:
-			self.flashWithPostFlashActionMode = 'local'
-			self.flashWithPostFlashAction()
-
-	def startInstallLocalCB(self, ret = None):
-		if self.sel == str(flashTmp):
-			self.Start_Flashing()
-		else:
-			self.unzip_image(self.filename, flashPath)
-
-	def DeviceBrowserClosed(self, path, filename, binorzip):
-		if path:
-			print path, filename, binorzip
-			strPath = str(path)
-			if strPath[-1] == '/':
-				strPath = strPath[:-1]
-			self.imagePath = strPath
-			if os.path.exists(flashTmp):
-				os.system('rm -rf ' + flashTmp)
-			os.mkdir(flashTmp)
-			if binorzip == 0:
-				for files in os.listdir(self.imagePath):
-					if files.endswith(".ubi") or files.endswith(".bin") or files.endswith('.jffs2') or files.endswith('.img'):
-						self.prepair_flashtmp(strPath)
-						break
-				self.Start_Flashing()
-			elif binorzip == 1:
-				self.unzip_image(strPath + '/' + filename, flashPath)
-			else:
-				self.layoutFinished()
-	
-		else:
-			self.imagePath = imagePath
-
-	def layoutFinished(self):
-		box = self.box()
-		self.imagelist = []
-		if self.Online:
-			self["key_yellow"].setText(_("Backup&Flash"))
-			if image == 1:
-				if self.feed == "atv":
-					self.feedurl = feedurl_atv
-					self["key_blue"].setText("openMIPS")
-				else:
-					self.feedurl = feedurl_om
-					self["key_blue"].setText("openATV")
-			else:
-				if self.feed == "atv":
-					self.feedurl = feedurl_atv
-					self["key_blue"].setText("ATV %s" %ImageVersion2)
-				else:
-					self.feedurl = feedurl_atv2
-					self["key_blue"].setText("ATV %s" %ImageVersion)
-			url = '%s/index.php?open=%s' % (self.feedurl,box)
-			try:
-				req = urllib2.Request(url)
-				if self.newfeed:
-					self.feedurl = self.newfeed[0][:-1]
-					url = '%s/index.php?open=%s' % (self.feedurl,box)
-					authinfo = urllib2.HTTPPasswordMgrWithDefaultRealm()
-					authinfo.add_password(None, self.feedurl, self.newfeed[1][:-1], self.newfeed[2][:-1])
-					handler = urllib2.HTTPBasicAuthHandler(authinfo)
-					myopener = urllib2.build_opener(handler)
-					opened = urllib2.install_opener(myopener)
-					response = urllib2.urlopen(url)
-				else:
-					response = urllib2.urlopen(req)
-			except urllib2.URLError as e:
-				print "URL ERROR: %s\n%s" % (e,url)
-				self["imageList"].l.setList(self.imagelist)
-				return
-
-			try:
-				the_page = response.read()
-
-			except urllib2.HTTPError as e:
-				print "HTTP download ERROR: %s" % e.code
-				return
-
-			lines = the_page.split('\n')
-			tt = len(box)
-			for line in lines:
-				if line.find("<a href='%s/" % box) > -1:
-					t = line.find("<a href='%s/" % box)
-					if self.feed == "atv" or self.feed == "atv2":
-						self.imagelist.append(line[t+tt+10:t+tt+tt+39])
-					else:
-						self.imagelist.append(line[t+tt+10:t+tt+tt+40])
-		else:
-			self["key_blue"].setText(_("Delete"))
-			self["key_yellow"].setText(_("Devices"))
-			for name in os.listdir(self.imagePath):
-				if name.endswith(".zip"): # and name.find(box) > 1:
-					self.imagelist.append(name)
-			self.imagelist.sort()
-			if os.path.exists(flashTmp):
-				for file in os.listdir(flashTmp):
-					if file.find(".bin")> -1 or file.find(".ubi")> -1:
-						self.imagelist.insert( 0, str(flashTmp))
-						break
-
-		self["imageList"].l.setList(self.imagelist)
+			self.abort()
 
 	def SaveEPG(self):
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
 
-
-class ImageDownloadJob(Job):
-	def __init__(self, url, filename, file):
-		Job.__init__(self, _("Downloading %s") %file)
-		ImageDownloadTask(self, url, filename)
-
-class DownloaderPostcondition(Condition):
-	def check(self, task):
-		return task.returncode == 0
-
-	def getErrorMessage(self, task):
-		return self.error_message
-
-class ImageDownloadTask(Task):
-	def __init__(self, job, url, path):
-		Task.__init__(self, job, _("Downloading"))
-		self.postconditions.append(DownloaderPostcondition())
-		self.job = job
-		self.url = url
-		self.path = path
-		self.error_message = ""
-		self.last_recvbytes = 0
-		self.error_message = None
-		self.download = None
-		self.aborted = False
-
-	def run(self, callback):
-		self.callback = callback
-		self.download = downloadWithProgress(self.url,self.path)
-		self.download.addProgress(self.download_progress)
-		self.download.start().addCallback(self.download_finished).addErrback(self.download_failed)
-		print "[ImageDownloadTask] downloading", self.url, "to", self.path
-
-	def abort(self):
-		print "[ImageDownloadTask] aborting", self.url
-		if self.download:
-			self.download.stop()
-		self.aborted = True
-
-	def download_progress(self, recvbytes, totalbytes):
-		if ( recvbytes - self.last_recvbytes  ) > 100000: # anti-flicker
-			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
-			self.name = _("Downloading") + ' ' + _("%d of %d kBytes") % (recvbytes/1024, totalbytes/1024)
-			self.last_recvbytes = recvbytes
-
-	def download_failed(self, failure_instance=None, error_message=""):
-		self.error_message = error_message
-		if error_message == "" and failure_instance is not None:
-			self.error_message = failure_instance.getErrorMessage()
-		Task.processFinished(self, 1)
-
-	def download_finished(self, string=""):
-		if self.aborted:
-			self.finish(aborted = True)
+	def startDownload(self, reply=True):
+		self.show()
+		if reply:
+			if "://" in self.source:
+				from Tools.Downloader import downloadWithProgress
+				self["header"].setText(_("Downloading Image"))
+				self["info"].setText(self.imagename)
+				self.downloader = downloadWithProgress(self.source, self.zippedimage)
+				self.downloader.addProgress(self.downloadProgress)
+				self.downloader.addEnd(self.downloadEnd)
+				self.downloader.addError(self.downloadError)
+				self.downloader.start()
+			else:
+				self.unzip()
 		else:
-			Task.processFinished(self, 0)
+			self.abort()
 
-class DeviceBrowser(Screen, HelpableScreen):
-	skin = """
-		<screen name="DeviceBrowser" position="center,center" size="520,430" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="message" render="Label" position="5,50" size="510,150" font="Regular;16" />
-			<widget name="filelist" position="5,210" size="510,220" scrollbarMode="showOnDemand" />
-		</screen>"""
+	def downloadProgress(self, current, total):
+		self["progress"].setValue(int(100 * current / total))
 
-	def __init__(self, session, startdir, message="", showDirectories = True, showFiles = True, showMountpoints = True, matchingPattern = "", useServiceRef = False, inhibitDirs = False, inhibitMounts = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
-		Screen.__init__(self, session)
+	def downloadError(self, reason, status):
+		self.downloader.stop()
+		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR, simple=True)
 
-		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Please select medium"))
+	def downloadEnd(self):
+		self.downloader.stop()
+		self.unzip()
 
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText()
-		self["message"] = StaticText(message)
+	def unzip(self):
+		self["header"].setText(_("Unzipping Image"))
+		self["info"].setText("%s\n%s"% (self.imagename, _("Please wait")))
+		self["progress"].hide()
+		self.delay.callback.remove(self.confirmation)
+		self.delay.callback.append(self.doUnzip)
+		self.delay.start(0, True)
 
-		self.filelist = FileList(startdir, showDirectories = showDirectories, showFiles = showFiles, showMountpoints = showMountpoints, matchingPattern = matchingPattern, useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
-		self["filelist"] = self.filelist
+	def doUnzip(self):
+		try:
+			zipfile.ZipFile(self.zippedimage, 'r').extractall(self.unzippedimage)
+			self.flashimage()
+		except:
+			self.session.openWithCallback(self.abort, MessageBox, _("Error during unzipping image\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
-		self["FilelistActions"] = ActionMap(["SetupActions", "ColorActions"],
-			{
-				"green": self.use,
-				"red": self.exit,
-				"ok": self.ok,
-				"cancel": self.exit
-			})
-
-		hotplugNotifier.append(self.hotplugCB)
-		self.onShown.append(self.updateButton)
-		self.onClose.append(self.removeHotplug)
-
-	def hotplugCB(self, dev, action):
-		print "[hotplugCB]", dev, action
-		self.updateButton()
-
-	def updateButton(self):
-
-		if self["filelist"].getFilename() or self["filelist"].getCurrentDirectory():
-			self["key_green"].text = _("Flash")
+	def flashimage(self):
+		self["header"].setText(_("Flashing Image"))
+		def findimagefiles(path):
+			for path, subdirs, files in os.walk(path):
+				if not subdirs and files:
+					return checkimagefiles(files) and path
+		imagefiles = findimagefiles(self.unzippedimage)
+		if imagefiles:
+			self.getImageList = self.saveImageList
+			self.MTDKERNEL = GetCurrentKern()
+			self.MTDROOTFS = GetCurrentRoot()
+			if SystemInfo["canMultiBoot"]:
+				if "sd" in self.getImageList[self.multibootslot]['part']:
+					self.MTDKERNEL = "%s%s" %(SystemInfo["canMultiBoot"][2], int(self.getImageList[self.multibootslot]['part'][3])-1)
+					self.MTDROOTFS = "%s" %(self.getImageList[self.multibootslot]['part'])
+			if SystemInfo["canMultiBoot"]:
+				if getMachineBuild() in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"): # issue detect kernel device and rootfs on sda
+					print "[FlashImage] detect Kernel:",self.MTDKERNEL
+					print "[FlashImage] detect rootfs:",self.MTDROOTFS
+					command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
+				elif getMachineBuild() in ("hd60","hd61","h9combo","multibox"): # issue with framebuffer force reboot after flashing
+					command = "/usr/bin/ofgwrite -f -r -k -m%s %s" % (self.multibootslot, imagefiles)
+				else:
+					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
+			elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u54","u56"): # issue detect kernel device
+				print "[FlashImage] detect Kernel:",self.MTDKERNEL
+				print "[FlashImage] detect rootfs:",self.MTDROOTFS
+				command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
+			else:
+				command = "/usr/bin/ofgwrite -r -k %s" % imagefiles
+			self.containerofgwrite = Console()
+			self.containerofgwrite.ePopen(command, self.FlashimageDone)
 		else:
-			self["key_green"].text = ""
+			self.session.openWithCallback(self.abort, MessageBox, _("Image to install is invalid\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
-	def removeHotplug(self):
-		print "[removeHotplug]"
-		hotplugNotifier.remove(self.hotplugCB)
+	def FlashimageDone(self, data, retval, extra_args):
+		self.containerofgwrite = None
+		if retval == 0:
+			self["header"].setText(_("Flashing image successful"))
+			self["info"].setText(_("%s\nPress exit to close") % self.imagename)
+		else:
+			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
+
+	def abort(self, reply=None):
+		if self.getImageList or self.containerofgwrite:
+			return 0
+		if self.downloader:
+			self.downloader.stop()
+		if self.containerbackup:
+			self.containerbackup.killAll()
+		self.close()
 
 	def ok(self):
-		if self.filelist.canDescent():
-			if self["filelist"].showMountpoints == True and self["filelist"].showDirectories == False:
-				self.use()
-			else:
-				self.filelist.descent()
-
-	def use(self):
-		print "[use]", self["filelist"].getCurrentDirectory(), self["filelist"].getFilename()
-		if self["filelist"].getFilename() is not None and self["filelist"].getCurrentDirectory() is not None:
-			if self["filelist"].getFilename().endswith(".bin") or self["filelist"].getFilename().endswith(".ubi") or self["filelist"].getFilename().endswith(".jffs2"):
-				self.close(self["filelist"].getCurrentDirectory(), self["filelist"].getFilename(), 0)
-			elif self["filelist"].getFilename().endswith(".zip"):
-				self.close(self["filelist"].getCurrentDirectory(), self["filelist"].getFilename(), 1)
-			else:
-				return
-
-	def exit(self):
-		self.close(False, False, -1)
+		return 0

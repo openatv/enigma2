@@ -51,7 +51,7 @@ class FileTransferTask(Task):
 			dst_size = float(os.path.getsize(self.dst_file))
 		progress = dst_size / self.src_size * 100.0
 		self.setProgress(progress)
-		self.progressTimer.start(15000, True)
+		self.progressTimer.start(self.updateTime, True)
 
 	def prepare(self):
 		if fileExists(self.src_file, 'r'):
@@ -59,7 +59,8 @@ class FileTransferTask(Task):
 				self.src_size = float(self.dirSize(self.src_file))
 			else:
 				self.src_size = float(os.path.getsize(self.src_file))
-			self.progressTimer.start(15000, True)
+			self.updateTime = max(1000, int(self.src_size * 0.000001 * 0.5)) # based on 20Mb/s transfer rate
+			self.progressTimer.start(self.updateTime, True)
 
 	def afterRun(self):
 		self.progressTimer.stop()

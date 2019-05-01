@@ -6,36 +6,36 @@ from Tools.Alternatives import GetWithAlternative
 from Components.config import config
 from enigma import eServiceCenter, eServiceReference
 
-searchPaths = ('/usr/share/enigma2/%s/', '/media/usb/%s/')
+searchPaths = ('/usr/share/enigma2/%s/', '/media/usb/%s/', '/media/mmc/%s/', '/media/hdd/%s/')
 path = "picon"
 nameCache = { }
 pngname = ""
 
 def findFile(serviceName):
 	path = "picon"
-	piconsize = int(config.usage.servicelist_show_picon.value)
-	if path == "picon":
-		normal_path = config.usage.servicelist_picon_dir.value + "/"
-		opt_path = None
-		if piconsize == 50:
-			opt_path = config.usage.servicelist_picon_dir.value + "_50x30/"
-		elif piconsize == 100:
-			opt_path = config.usage.servicelist_picon_dir.value + "_100x60/"
-		for path in (opt_path, normal_path):
-			if path and serviceName:
-				pngname = path + serviceName + ".png"
-				if fileExists(pngname):
-					return pngname
+	#piconsize = int(config.usage.servicelist_show_picon.value)
+	#if path == "picon":
+	#	normal_path = config.usage.servicelist_picon_dir.value + "/"
+	#	opt_path = None
+	#	if piconsize == 50:
+	#		opt_path = config.usage.servicelist_picon_dir.value + "_50x30/"
+	#	elif piconsize == 100:
+	#		opt_path = config.usage.servicelist_picon_dir.value + "_100x60/"
+	#	for path in (opt_path, normal_path):
+	#		if path and serviceName:
+	#			pngname = path + serviceName + ".png"
+	#			if fileExists(pngname):
+	#				return pngname
 	for searchpath in searchPaths:
-		piconpath = path
-		if piconsize == 50:
-			piconpath = path + "_50x30"
-		elif piconsize == 100:
-			piconpath = path + "_100x60"
-		if piconsize > 0:
-			pngname = (searchpath % piconpath) + serviceName + ".png"
-			if fileExists(pngname):
-				return pngname
+		#piconpath = path
+		#if piconsize == 50:
+		#	piconpath = path + "_50x30"
+		#elif piconsize == 100:
+		#	piconpath = path + "_100x60"
+		#if piconsize > 0:
+		#	pngname = (searchpath % piconpath) + serviceName + ".png"
+		#	if fileExists(pngname):
+		#		return pngname
 		pngname = (searchpath % path) + serviceName + ".png"
 		if fileExists(pngname):
 			return pngname

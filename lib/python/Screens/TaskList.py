@@ -56,7 +56,7 @@ class TaskListScreen(Screen):
 		del self.Timer
 
 	def layoutFinished(self):
-		self.Timer.startLongTimer(2)
+		self.Timer.startLongTimer(1)
 
 	def TimerFire(self):
 		self.Timer.stop()
@@ -66,11 +66,18 @@ class TaskListScreen(Screen):
 		idx = self['tasklist'].getIndex()
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
-			self.tasklist.append((job,job.name,job.getStatustext(),int(100*job.progress/float(job.end)) ,str(100*job.progress/float(job.end)) + "%" ))
+			#self.tasklist.append((job,job.name,job.getStatustext(),int(100*job.progress/float(job.end)) ,str(100*job.progress/float(job.end)) + "%" ))
+			progress = job.getProgress()
+			if job.name.startswith(_('Run script')) and job.status == job.IN_PROGRESS: #fake progress for scripts
+				if progress >= 99:
+					job.tasks[job.current_task].setProgress(51)
+				else:
+					job.tasks[job.current_task].setProgress(progress + 1)
+			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
 		self['tasklist'].setList(self.tasklist)
 		self['tasklist'].updateList(self.tasklist)
 		self['tasklist'].setIndex(idx)
-		self.Timer.startLongTimer(2)
+		self.Timer.startLongTimer(1)
 
 	def setWindowTitle(self):
 		self.setTitle(_("Task list"))
