@@ -15,6 +15,7 @@ from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, 
 from enigma import eTimer
 import os, urllib2, shutil, math, time, zipfile, shutil
 
+
 from boxbranding import getBoxType,  getImageDistro, getMachineName,  getMachineBuild
 
 feedurl = 'http://images.mynonpublic.com/%s' %(getImageDistro())
@@ -553,18 +554,19 @@ class FlashImage(Screen):
 		self.containerofgwrite = None
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
-			self["info"].setText(_("%s\nPress exit to close") % self.imagename)
+			self["info"].setText(_("%s\nPress ok to close") % self.imagename)
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
 	def abort(self, reply=None):
-		if self.getImageList or self.containerofgwrite:
+		if self.getImageList:
 			return 0
 		if self.downloader:
 			self.downloader.stop()
-		if self.containerbackup:
-			self.containerbackup.killAll()
 		self.close()
 
 	def ok(self):
-		return 0
+		if self["header"].text == _("Flashing image successful"):
+			self.close()
+		else:
+			return 0
