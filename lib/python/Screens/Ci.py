@@ -18,7 +18,10 @@ from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM, getBoxType
 import time
 
-MAX_NUM_CI = 4
+if getBoxType() in ('zgemmah9combo'):
+	MAX_NUM_CI = 1
+else:
+	MAX_NUM_CI = 4
 relevantPidsRoutingChoices = None
 
 def setCIBitrate(configElement):
