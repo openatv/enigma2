@@ -21832,3 +21832,203 @@ msgstr "Geben Sie die Nummer ein, die im Stellungsregler für diesen Satelliten 
 #: python\Screens\Satconfig.py
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move to another satellite."
 msgstr "Mit zusätzlichen Motoroptionen können Sie Details aus dem Datenblatt Ihres Motors eingeben, sodass Sie herausfinden können, wie lange es dauern wird, um zu einem anderen Satelliten zu wechseln."
+
+#: python\Screens\MultiBootSelector.py
+msgid "Multiboot Image Selector"
+msgstr "MultiBoot-Auswahl"
+
+#: python\Screens\MultiBootSelector.py
+msgid "Use the cursor keys to select an installed image and then Reboot button."
+msgstr "Wähle ein installiertes Image aus und dann die Neustart-Taste."
+
+#: python\Screens\MultiBootSelector.py
+msgid "SDcard is not initialised for multiboot - Exit and use ViX MultiBoot Manager to initialise"
+msgstr "SD-Karte ist nicht für Multiboot initialisiert. Benutze Multiboot Verwaltung zur Initialisierung."
+
+#: python\Screens\MultiBootSelector.py
+msgid ""
+"Mode 1 suppports Kodi, PiP may not work.\n"
+"Mode 12 supports PiP, Kodi may not work."
+msgstr ""
+"Mode 1 unterstützt Kodi, PiP könnte nicht funktionieren.\n"
+"Mode 12 unterstützt Pip, Kodi könnte nicht funktionieren."
+
+#: python\Screens\MultiBootSelector.py
+msgid "Empty slot"
+msgstr "Leerer Slot"
+
+#, python-format
+msgid "slot%s -%s - %s (current image)"
+msgstr "Slot %s - %s - %s (aktuelles Image)"
+
+#, python-format
+msgid "slot%s -%s- %s "
+msgstr "Slot %s - %s - %s"
+
+#, python-format
+msgid "slot%s - %s mode 1 (current image)"
+msgstr "Slot %s - %s Mode 1 (aktuelles Image)"
+
+#, python-format
+msgid "slot%s - %s mode 1"
+msgstr "Slot %s - %s Mode 1"
+
+#, python-format
+msgid "slot%s - %s mode 12 (current image)"
+msgstr "Slot %s - %s Mode 12 (aktuelles Image)"
+
+#, python-format
+msgid "slot%s - %s mode 12"
+msgstr "Slot %s - %s Mode 12"
+
+#: python\Screens\MultiBootSelector.py
+msgid "Multiboot ERROR! - no %s in boot partition."
+msgstr "Multiboot Fehler! - kein %s in boot partition."
+
+#: python\Screens\MultiBootSelector.py
+msgid "No images found"
+msgstr "Keine Images gefunden"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "MultiBoot image manager"
+msgstr "MultiBoot-Image-Manager"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Press Init to format SDcard."
+msgstr "Drücken Sie Init, um die SD-Karte zu formatieren."
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Init SDcard"
+msgstr "Init SDcard"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Use the cursor keys to select an installed image and then Erase button."
+msgstr "Wähle ein installiertes Image aus und danach die Löschen-Taste."
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Note: slot list does not show current image or empty slots."
+msgstr "Hinweis: Die Slotliste zeigt kein aktuelles Image oder leere Slot an."
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Erase"
+msgstr "Löschen"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Retrieving image slots - Please wait..."
+msgstr "Image-Slots abrufen - Bitte warten Sie ..."
+
+#, python-format
+msgid "slot%s - %s "
+msgstr "Slot %s - %s "
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+msgstr "Das Entfernen dieses Slots wird nicht in %s GUI angezeigt. Möchten Sie den Image-Slot %s wirklich löschen?"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Remove confirmation"
+msgstr "Entfernen bestätigen"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Are you sure you want to delete image slot %s ?"
+msgstr "Möchten Sie den Image-Slot %s wirklich löschen?"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
+msgstr "Multiboot-Manager - SD-Karte kann nicht initialisiert werden, wenn das Image auf der SD-Karte ausgeführt wird."
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Multiboot manager - The SDcard must be at least 8MB."
+msgstr "Multiboot-Manager - Die SD-Karte muss mindestens 8 MB groß sein."
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Multibootmgr.py
+msgid "Multiboot manager - SDcard initialization run, please restart OpenViX."
+msgstr "Multiboot-Manager - Initialisierung der SD-Karte. Bitte starten Sie die Box neu."
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Retrieving image list - Please wait..."
+msgstr "Image-Liste abrufen - Bitte warten Sie ..."
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Cannot find images - please try later"
+msgstr "Images können nicht gefunden werden. Versuchen Sie es später noch einmal"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Cannot delete downloaded image"
+msgstr "Das heruntergeladene Image kann nicht gelöscht werden"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Delete image"
+msgstr "Image löschen"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Compress"
+msgstr "Einklappen"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Expand"
+msgstr "Ausklappen"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Backup settings"
+msgstr "Einstellungen sichern"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Save settings and EPG data"
+msgstr "Einstellungen und EPG-Daten speichern"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Do you want to flash image\n%s"
+msgstr "Möchten Sie das folgende Image flashen?\n%s"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Yes, with backup"
+msgstr "Ja, mit Backup"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Yes, without backup"
+msgstr "Ja, ohne Backup"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "No, do not flash image"
+msgstr "Nein, kein Image flashen"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "slot%s - %s (current image) with, backup"
+msgstr "Slot %s - %s (aktuelles Image), mit Backup"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "slot%s - %s, with backup"
+msgstr "Slot %s - %s, mit Backup"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "slot%s - %s (current image), without backup"
+msgstr "Slot %s - %s (aktuelles Image), ohne Backup"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "slot%s - %s, without backup"
+msgstr "Slot %s - %s, ohne Backup"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Error during downloading image\n%s\n%s"
+msgstr "Fehler beim Herunterladen vom Image\n%s\n%s"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Please wait"
+msgstr "Bitte warten"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Error during unzipping image\n%s"
+msgstr "Fehler beim Entpacken vom Image\n%s"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Image to install is invalid\n%s"
+msgstr "Image zum Installieren ist fehlerhaft\n%s"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Flashing image was not successful\n%s"
+msgstr "Flashen vom Image war nicht erfolgreich\n%s"
+
+#: python\Plugins\SystemPlugins\SoftwareManager\Flash_online.py
+msgid "Flashing image successful"
+msgstr "Flashen vom Image war erfolgreich"
