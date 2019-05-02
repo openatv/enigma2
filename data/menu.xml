@@ -250,7 +250,7 @@ else:
 </code>
 		</item>
 		<item weight="5" level="0" text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
-		<item weight="6" level="0" text="Multiboot Selector" entryID="restart" requires="canMultiBoot"><screen module="MultiBootSelector" screen="MultiBootSelector">1</screen></item>
+		<item weight="6" level="0" text="Multiboot Image Selector" entryID="restart" requires="canMultiBoot"><screen module="MultiBootSelector" screen="MultiBootSelector">1</screen></item>
 		<!--item weight="7" level="0" text="SDroot" entryID="SDswap" requires="HasSDswap"><screen module="SDswap" screen="SDswap">1</screen></item-->
 		<item weight="10" level="0" text="WOL Standby" requires="GBWOL" entryID="deep_standby">
 			<code>
