@@ -16,7 +16,7 @@ from Tools.CIHelper import cihelper
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 
 from os import system, path as os_path
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
 
 class CIselectMainMenu(Screen):
@@ -44,7 +44,10 @@ class CIselectMainMenu(Screen):
 				"cancel": self.close
 			}, -1)
 
-		NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
+		if getBoxType() in ('zgemmah9combo'):
+			NUM_CI = 1
+		else:
+			NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
 
 		print "[CI_Wizzard] FOUND %d CI Slots " % NUM_CI
 
