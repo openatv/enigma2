@@ -152,7 +152,7 @@ class MultiBootSelector(Screen):
 
 			self.session.open(TryQuitMainloop, 2)
 		else:
-			self.session.open(MessageBox, _("Multiboot ERROR! - no %s in boot partition." %GetSTARTUPFile()), MessageBox.TYPE_INFO, timeout=20)
+			self.session.open(MessageBox, _("Multiboot ERROR! - no %s in boot partition.") %GetSTARTUPFile(), MessageBox.TYPE_INFO, timeout=20)
 
 	def selectionChanged(self):
 		currentSelected = self["config"].l.getCurrentSelection()
