@@ -260,7 +260,13 @@ class EmptySlot():
 		self.run()
 
 	def run(self):
-		self.container.ePopen('mount /dev/%s /tmp/testmount' %self.part if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+		if SystemInfo["HasRootSubdir"]:
+			if self.slot == 1 and os.path.islink("/dev/block/by-name/linuxrootfs"):
+				self.container.ePopen('mount /dev/block/by-name/linuxrootfs /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+			else:
+				self.container.ePopen('mount /dev/block/by-name/userdata /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+		else:
+			self.container.ePopen('mount /dev/%s /tmp/testmount' %self.part if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
 
 	
 	def appClosed(self, data, retval, extra_args):
