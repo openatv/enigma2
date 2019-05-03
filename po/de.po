@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-03 09:22+0000\n"
-"PO-Revision-Date: 2019-05-03 13:04+0200\n"
+"PO-Revision-Date: 2019-05-03 13:33+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -125,7 +125,7 @@ msgid ""
 "Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Verwalten der %s %s-Erweiterungen und -Plugins."
+"Verwalten der %s %s-Erweiterungen und -Plugins"
 
 #
 #, python-format
@@ -261,26 +261,26 @@ msgstr " ('%s') endet mit Fehlernummer [%d]."
 
 #, python-format
 msgid " (Channel %s)"
-msgstr "(Kanal %s)"
+msgstr " (Kanal %s)"
 
 #, python-format
 msgid " (Partition %d)"
 msgstr " (Partition %d)"
 
 msgid " (PiP)"
-msgstr "(PiP)"
+msgstr " (PiP)"
 
 msgid " (Radio)"
-msgstr "(Radio)"
+msgstr " (Radio)"
 
 msgid " (TV)"
-msgstr "(TV)"
+msgstr " (TV)"
 
 msgid " (current channel)"
 msgstr " (Aktuelle Sendergruppe)"
 
 msgid " (disabled)"
-msgstr "(deaktiviert)"
+msgstr " (deaktiviert)"
 
 msgid " (higher than any auto)"
 msgstr ""
@@ -313,7 +313,7 @@ msgstr " <leer>"
 # python\Screens\LanguageSelection.py
 #, python-format
 msgid " Except %s"
-msgstr " bis auf %s?"
+msgstr " Bis auf %s"
 
 msgid ""
 " Not Started !!\n"
@@ -323,11 +323,11 @@ msgid ""
 msgstr ""
 " nicht gestartet!!\n"
 "\n"
-"Der Dateiname der Cam muss in der Startzeile enthalten sein\n"
-"Prüfen Sie Ihre EMU Start Datei!"
+"Der Dateiname der CAM muß in der Startzeile enthalten sein\n"
+"Prüfen Sie Ihre EMU-Startdatei"
 
 msgid " and"
-msgstr "und"
+msgstr " und"
 
 msgid ""
 " available !!\n"
@@ -2745,7 +2745,7 @@ msgstr ""
 "sollen?\n"
 "\n"
 "Ihr Receiver wird neu gestartet, nachdem die Einstellungen wiederhergestellt "
-"wurden!"
+"wurden"
 
 #
 msgid ""
@@ -3073,7 +3073,7 @@ msgid "Background color"
 msgstr "Hintergrundfarbe"
 
 msgid "Background delete option"
-msgstr "Optionen zum Löschen im Hintergrund "
+msgstr "Optionen zum Löschen im Hintergrund"
 
 msgid "Background delete speed"
 msgstr "Geschwindigkeit beim Löschen im Hintergrund"
@@ -3135,7 +3135,9 @@ msgstr "Backup vom ganzen Image"
 msgid ""
 "Backup your current image to HDD or USB. This will make a 1:1 copy of your "
 "box"
-msgstr "Backup vom ganzen Image auf HDD oder USB."
+msgstr ""
+"Backup vom ganzen Image auf HDD oder USB. Dies erzeugt eine 1:1-Kopie Ihrer "
+"Box"
 
 msgid "Backup your current settings"
 msgstr "Einstellungen sichern"
@@ -3144,7 +3146,7 @@ msgid ""
 "Backup your current settings. This includes E2-setup, channels, network and "
 "all selected files"
 msgstr ""
-"Sichern der E2-Einstellungen, Kanäle, Netzwerk und alle ausgewählten Dateien."
+"Sichern der E2-Einstellungen, Kanäle, Netzwerk und alle ausgewählten Dateien"
 
 msgid "Bahamas"
 msgstr "Bahamas"
@@ -3167,7 +3169,7 @@ msgstr "Barbados"
 
 # UserInterfacePositioner
 msgid "Base transparency for OpenOpera web browser"
-msgstr "Grund Transparenz für den OpenOpera Webbrowser."
+msgstr "Grund Transparenz für den OpenOpera Webbrowser"
 
 # UserInterfacePositioner
 msgid ""
@@ -3309,7 +3311,7 @@ msgid "Buffering %d%%"
 msgstr ""
 
 msgid "Buffers:"
-msgstr "Puffer:\t"
+msgstr "Puffer:"
 
 #, python-format
 msgid "Build:\t\t%s"
@@ -3370,7 +3372,7 @@ msgstr "Bytes empfangen:"
 
 #
 msgid "Bytes sent:"
-msgstr "Bytes gesendet:\t"
+msgstr "Bytes gesendet:"
 
 #
 msgid "C-Band"
@@ -3407,7 +3409,7 @@ msgstr ""
 "Dieses Plugin zeigt den Status von CCcam an."
 
 msgid "CCcam Info Config"
-msgstr "Konfiguration von CCcam-Info "
+msgstr "Konfiguration von CCcam-Info"
 
 msgid "CCcam Info Setup"
 msgstr "CCcam-Info"
@@ -3595,7 +3597,7 @@ msgid "Cancel save timeshift as movie"
 msgstr "Timeshift nicht als Film speichern"
 
 msgid "Cancelled upon user request"
-msgstr "Aufgabe durch den Benutzer abgebrochen!"
+msgstr "Aufgabe durch den Benutzer abgebrochen"
 
 msgid "Cannot delete downloaded image"
 msgstr "Das heruntergeladene Image kann nicht gelöscht werden"
@@ -3663,7 +3665,7 @@ msgid "Change PIN"
 msgstr "PIN ändern"
 
 msgid "Change Volume offset"
-msgstr "Lautstärke Offset ändern..."
+msgstr "Lautstärken-Offset ändern"
 
 msgid "Change execute permissions (755/644)"
 msgstr "Berechtigungen ändern (755/644)"
@@ -3844,7 +3846,7 @@ msgid "Chipset: BCM%s"
 msgstr "Chipsatz: BCM%s"
 
 msgid "Choice Box"
-msgstr "Bitte treffen Sie eine Auswahl ..."
+msgstr "Bitte treffen Sie eine Auswahl"
 
 #, python-format
 msgid "Choice where to put \"%s\""
@@ -3985,7 +3987,7 @@ msgid "Close bouquet list."
 msgstr "Schließe Bouquet-Liste."
 
 msgid "Close dialog"
-msgstr "Dialog schließen "
+msgstr "Dialog schließen"
 
 #
 msgid "Close title selection"
@@ -4514,7 +4516,7 @@ msgid "Cutlist editor"
 msgstr "Schnitt-Editor"
 
 msgid "Cutlist editor..."
-msgstr "Schnitt-Editor"
+msgstr "Schnitt-Editor..."
 
 msgid "Cyprus"
 msgstr "Zypern"
@@ -4880,7 +4882,7 @@ msgstr "Eintrag löschen"
 
 #
 msgid "Delete failed!"
-msgstr "Löschen fehlgeschlagen."
+msgstr "Löschen fehlgeschlagen!"
 
 # Mediaplayer Filelist Menue
 msgid "Delete file"
@@ -5350,7 +5352,7 @@ msgid "Don't add this recording"
 msgstr ""
 
 msgid "Don't ask again!"
-msgstr "Nicht mehr nachfragen"
+msgstr "Nicht mehr nachfragen!"
 
 msgid "Don't save"
 msgstr "Nicht speichern"
@@ -5911,7 +5913,7 @@ msgstr ""
 "%s"
 
 msgid "Error downloading change log."
-msgstr ""
+msgstr "Fehler beim Herunterladen der Versionshinweise."
 
 #, python-format
 msgid ""
@@ -5944,10 +5946,10 @@ msgstr ""
 "%s"
 
 msgid "Error reading bouquets.radio"
-msgstr ""
+msgstr "Fehler beim Lesen der Bouquets.radio"
 
 msgid "Error reading bouquets.tv"
-msgstr ""
+msgstr "Fehler beim Lesen der Bouquets.tv"
 
 msgid "Error reading webpage!"
 msgstr "Fehler beim Lesen der Webseite!"
@@ -5964,7 +5966,7 @@ msgid "Error, unknown Result!"
 msgstr "Fehler, unbekanntes Ergebnis!"
 
 msgid "Error..."
-msgstr ""
+msgstr "Fehler..."
 
 #, python-format
 msgid ""
@@ -6096,7 +6098,7 @@ msgid "Exit movie player?"
 msgstr "MoviePlayer verlassen?"
 
 msgid "Exit nameserver configuration"
-msgstr ""
+msgstr "Namensserver-Konfiguration verlassen"
 
 # HelpMenu
 msgid "Exit network interface list"
@@ -6151,14 +6153,14 @@ msgid "Extended Software Plugin"
 msgstr "Plugin für erweiterte Software"
 
 msgid "Extended network setup plugin..."
-msgstr ""
+msgstr "Erweitertes Netzwerksetup-Plugin..."
 
 #
 msgid "Extended settings"
 msgstr "Erweiterte Einstellungen"
 
 msgid "Extended setup..."
-msgstr ""
+msgstr "Erweitertes Setup..."
 
 #
 msgid "Extensions"
@@ -6172,7 +6174,7 @@ msgid "Extensions/QuickMenu"
 msgstr "Erweiterungen/Schnellstartmenü"
 
 msgid "External"
-msgstr ""
+msgstr "Extern"
 
 msgid "External PiP"
 msgstr ""
@@ -6986,7 +6988,7 @@ msgid "Handle wakeup from TV"
 msgstr "TV-Wakeup verwalten"
 
 msgid "Harddisk"
-msgstr "Festplatte "
+msgstr "Festplatte"
 
 msgid "Harddisk Setup"
 msgstr "Festplatten Einstellungen"
@@ -7125,7 +7127,7 @@ msgid "Horizontal turning speed"
 msgstr "Horizontale Drehgeschwindigkeit"
 
 msgid "Hostname:"
-msgstr "Hostname:\t"
+msgstr "Hostname:"
 
 msgid "Hostname: "
 msgstr "Host-Name: "
@@ -7181,7 +7183,7 @@ msgstr "IMDb Suche"
 
 #
 msgid "INFO-Panel..."
-msgstr "Info-Panel"
+msgstr "Info-Panel..."
 
 msgid "IP"
 msgstr ""
@@ -7191,7 +7193,7 @@ msgid "IP address"
 msgstr "IP-Adresse"
 
 msgid "IP:"
-msgstr "IP:\t"
+msgstr "IP:"
 
 msgid "IPK Installer"
 msgstr "IPK-Installer"
@@ -7340,7 +7342,7 @@ msgstr "USB Image erstellt auf: %s/%s-%s-%s-backup-%s_mmc.zip"
 
 # ImageBackup.py
 msgid "Image creation failed - "
-msgstr "Image-Erstellung fehlgeschlagen -"
+msgstr "Image-Erstellung fehlgeschlagen - "
 
 #, python-format
 msgid ""
@@ -7594,7 +7596,7 @@ msgid "Interface"
 msgstr "Schnittstelle"
 
 msgid "Interface:"
-msgstr "Interface:\t"
+msgstr "Schnittstelle:"
 
 #
 msgid "Interface: "
@@ -8055,7 +8057,7 @@ msgstr "List/Fav lang"
 
 #
 msgid "Listen to the radio..."
-msgstr "Radio Favoriten"
+msgstr "Radio hören..."
 
 msgid "Lists reloaded!"
 msgstr ""
@@ -8161,7 +8163,7 @@ msgid "MAC-address settings"
 msgstr "MAC-Adresse einstellen"
 
 msgid "MAC:"
-msgstr "MAC:\t"
+msgstr "MAC:"
 
 msgid "MB"
 msgstr ""
@@ -8403,7 +8405,7 @@ msgid ""
 msgstr ""
 
 msgid "Missing "
-msgstr "Fehlen"
+msgstr "Fehlend "
 
 #
 msgid "Mode"
@@ -8801,7 +8803,7 @@ msgid "Netmask"
 msgstr "Netzmaske"
 
 msgid "Netmask:"
-msgstr "Netmask:\t"
+msgstr "Netzwerkmaske:"
 
 #
 msgid "Network"
@@ -8979,7 +8981,7 @@ msgid ""
 msgstr ""
 "Keine Cam gestartet!!\n"
 "\n"
-"Cam 1 und Cam 2 müssen unterschiedlich sein!"
+"Cam 1 und Cam 2 müssen unterschiedlich sein"
 
 #
 msgid "No Connection"
@@ -9290,7 +9292,7 @@ msgid "Not Shown"
 msgstr "Keine Anzeige"
 
 msgid "Not allowed with folders"
-msgstr "Bei Ordnern nicht zulässig."
+msgstr "Bei Ordnern nicht zulässig"
 
 msgid "Not associated"
 msgstr "Nicht verknüpft"
@@ -9390,7 +9392,7 @@ msgid "Number of rows"
 msgstr "Anzahl der Zeilen"
 
 msgid "Number of rows to display"
-msgstr "Hier können Sie einstellen, wie viele Zeilen angezeigt werden sollen."
+msgstr "Wie viele Zeilen angezeigt werden sollen"
 
 msgid "OCTAGON SF5008"
 msgstr ""
@@ -9528,7 +9530,7 @@ msgstr "AutoTimer"
 
 #
 msgid "Open AutoTimerlist..."
-msgstr "Zeige AutoTimer"
+msgstr "Zeige AutoTimer-Liste..."
 
 msgid "Open EPGSearch..."
 msgstr "Öffne EPG-Suche..."
@@ -9538,15 +9540,15 @@ msgstr "Öffne IMDB..."
 
 #
 msgid "Open MediaPortal..."
-msgstr "Öffne MediaPortal"
+msgstr "Öffne MediaPortal..."
 
 #
 msgid "Open Timerlist..."
-msgstr "Zeige Timer"
+msgstr "Zeige Timer..."
 
 #
 msgid "Open bouquetlist..."
-msgstr "Öffne Favoritenliste"
+msgstr "Öffne Favoritenliste..."
 
 msgid "Open favourites list"
 msgstr "Öffne Favoritenliste"
@@ -9993,7 +9995,7 @@ msgstr "Wiedergabe ab der letzten Markierung/Listeneintrag"
 
 # hinzu 04.01.13
 msgid "Play music..."
-msgstr "Musik abspielen"
+msgstr "Musik abspielen..."
 
 # kann wahrscheinlich gelöscht werden
 # msgid "Available Devices"
@@ -10012,7 +10014,7 @@ msgstr "Vorherigen abspielen"
 
 #
 msgid "Play recorded movies..."
-msgstr "Aufgenommene Filme abspielen"
+msgstr "Aufgenommene Filme abspielen..."
 
 msgid "Play title"
 msgstr "Titel abspielen"
@@ -10155,7 +10157,7 @@ msgstr "Wiedergabeliste wählen..."
 
 #
 msgid "Please select a resolution..."
-msgstr "Bitte die Auflösung wählen"
+msgstr "Bitte die Auflösung wählen..."
 
 msgid "Please select a sub service..."
 msgstr "Subservice auswählen..."
@@ -10177,7 +10179,7 @@ msgstr "Bitte Bild-Seitenverhältnis auswählen..."
 
 #
 msgid "Please select device to use as swapfile location"
-msgstr "Ein Gerät wählen als Speicher Ort."
+msgstr "Ein Gerät als Speicherort auswählen"
 
 #
 msgid "Please select medium to be scanned"
@@ -10263,13 +10265,13 @@ msgstr "Bitte warten während Überprüfung des Netzwerks."
 
 #
 msgid "Please wait while your network is restarting..."
-msgstr "Bitte warten, das Netzwerk wird neu gestartet"
+msgstr "Bitte warten, das Netzwerk wird neu gestartet..."
 
 msgid "Please wait while your skin setting is restoring..."
-msgstr "Bitte warten, Ihre Einstellungen werden wiederhergestellt"
+msgstr "Bitte warten, Ihre Einstellungen werden wiederhergestellt..."
 
 msgid "Please wait whilst feeds state is checked."
-msgstr "Bitte warten, Feed-Status wird überprüft"
+msgstr "Bitte warten, Feed-Status wird überprüft..."
 
 msgid "Please wait, Loading image."
 msgstr "Bitte warten Sie, Bild wird geladen."
@@ -10296,7 +10298,7 @@ msgstr "Bitte warten... Liste wird geladen..."
 
 # ImageBackup.py
 msgid "Please wait...almost ready! "
-msgstr "Bitte warten... fast fertig!"
+msgstr "Bitte warten... fast fertig! "
 
 msgid "Plugin Browser"
 msgstr "Erweiterungsmenü"
@@ -10444,11 +10446,11 @@ msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
 
 #
 msgid "Preparing... Please wait"
-msgstr "Vorbereitung läuft... Bitte warten!"
+msgstr "Vorbereitung läuft... Bitte warten"
 
 # PiPSetup.py
 msgid "Press '0' to toggle PiP mode"
-msgstr "Drücke '0' zum Wechseln des 'Bild-in-Bild' Modus."
+msgstr "Drücke '0' zum Wechseln des 'Bild-in-Bild' Modus"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "INFO drücken für zusätzliche Informationen."
@@ -10478,14 +10480,11 @@ msgstr "OK drücken zum Editieren der Einstellungen."
 #
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr "OK drücken um weitere Details zu %s zu erhalten."
+msgstr "OK drücken um weitere Details über %s zu erhalten"
 
 #
 msgid "Press OK to scan"
-msgstr ""
-"OK drücken zum Starten des Suchlaufs.\n"
-"Bei mehreren Tunern bitte Suchlauf\n"
-"für jeden Tuner einzeln starten."
+msgstr "OK drücken zum Starten des Suchlauf"
 
 msgid "Press OK to select a group of satellites to configure in one block."
 msgstr ""
@@ -10505,7 +10504,7 @@ msgstr "Drücken Sie OK, um den Satelliten auszuwählen"
 
 #
 msgid "Press OK to select/deselect a CAId."
-msgstr "OK drücken um eine CAID aus- / abzuwählen"
+msgstr "OK drücken um eine CAID aus-/abzuwählen."
 
 # NetworkSetup.py
 msgid "Press OK to set the MAC-address."
@@ -10759,7 +10758,7 @@ msgstr "Schnellstartmenü"
 
 #
 msgid "Quick Menu..."
-msgstr "Schnellstart-Menü"
+msgstr "Schnellstart-Menü..."
 
 msgid "Quick zap"
 msgstr ""
@@ -10970,7 +10969,7 @@ msgstr "Rot"
 
 #
 msgid "Red button..."
-msgstr "Rote Taste"
+msgstr "Rote Taste..."
 
 msgid "Red colored"
 msgstr "Roter Servicename"
