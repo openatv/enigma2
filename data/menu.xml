@@ -76,7 +76,7 @@
 			<item weight="15" level="0" entryID="usage_setup"><setup id="usage" /></item>
 			<!--item weight="20" level="0" entryID="specialfeatures_menu"><setup id="specialfeatures" /></item-->
 			<item weight="25" level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
-			<menu weight="30" level="0" text="LCD Display" entryID="display_selection" requires="Display">
+			<menu weight="30" level="0" text="STB Display" entryID="display_selection" requires="Display">
 				<id val="display" />
 				<item weight="0" level="0" entryID="display_setup"><setup id="display" /></item>
 				<item weight="5" level="0" text="LCD Skin Setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
