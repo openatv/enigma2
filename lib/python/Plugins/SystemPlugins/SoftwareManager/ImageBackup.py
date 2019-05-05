@@ -259,7 +259,7 @@ class ImageBackup(Screen):
 				cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
 				cmd3 = "mv %s/root.ubifs %s/root.%s" %(self.WORKDIR, self.WORKDIR, self.ROOTFSTYPE)
 			else:
-				cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
+				cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
 				cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 				cmd3 = None
 
