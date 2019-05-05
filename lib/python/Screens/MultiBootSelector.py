@@ -140,9 +140,16 @@ class MultiBootSelector(Screen):
 			elif fileExists("/tmp/startupmount/STARTUP_LINUX_4"):
 				copyfile("/tmp/startupmount/STARTUP_LINUX_%s" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
 
-			self.session.open(TryQuitMainloop, 2)
+			message = _("Do you want to reboot now the image in slot %s?") %slot
+			self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 		else:
 			self.session.open(MessageBox, _("Multiboot ERROR! - no %s in boot partition.") %GetSTARTUPFile(), MessageBox.TYPE_INFO, timeout=20)
+
+	def restartImage(self, answer):
+		if answer is True:
+			self.session.open(TryQuitMainloop, 2)
+		else:
+			self.close()
 
 	def selectionChanged(self):
 		currentSelected = self["config"].l.getCurrentSelection()
