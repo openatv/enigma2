@@ -615,22 +615,22 @@ class SystemMemoryInfo(Screen):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Memory:") + "\t" + MemTotal[1] + "\n"
+				self.AboutText += '{:<35}'.format(_("Total Memory:")) + "\t" + MemTotal[1] + "\n"
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
-				self.AboutText += _("Free Memory:") + "\t" + MemFree[1] + "\n"
+				self.AboutText += '{:<35}'.format(_("Free Memory:")) + "\t" + MemFree[1] + "\n"
 			if "Buffers:" in tstLine:
 				Buffers = out_lines[lidx].split()
-				self.AboutText += _("Buffers:") + "\t" + Buffers[1] + "\n"
+				self.AboutText += '{:<35}'.format(_("Buffers:")) + "\t" + Buffers[1] + "\n"
 			if "Cached:" in tstLine:
 				Cached = out_lines[lidx].split()
-				self.AboutText += _("Cached:") + "\t" + Cached[1] + "\n"
+				self.AboutText += '{:<35}'.format(_("Cached:")) + "\t" + Cached[1] + "\n"
 			if "SwapTotal:" in tstLine:
 				SwapTotal = out_lines[lidx].split()
-				self.AboutText += _("Total Swap:") + "\t" + SwapTotal[1] + "\n"
+				self.AboutText += '{:<35}'.format(_("Total Swap:")) + "\t" + SwapTotal[1] + "\n"
 			if "SwapFree:" in tstLine:
 				SwapFree = out_lines[lidx].split()
-				self.AboutText += _("Free Swap:") + "\t" + SwapFree[1] + "\n\n"
+				self.AboutText += '{:<35}'.format(_("Free Swap:")) + "\t" + SwapFree[1] + "\n\n"
 
 		self["actions"].setEnabled(False)
 		self.Console = Console()
@@ -736,66 +736,69 @@ class SystemNetworkInfo(Screen):
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
 			if eth0.has_key('ifname'):
-				self.AboutText += _('Interface:') + "\t/dev/" + eth0['ifname'] + "\n"
-			self.AboutText += _("IP:") + "\t" + eth0['addr'] + "\n"
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth0['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + eth0['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + eth0['hwaddr'] + "\n"
-			self.AboutText += _("Network Speed:") + "\t" + netspeed() + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth0['hwaddr'] + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
 		if eth1.has_key('addr'):
 			if eth1.has_key('ifname'):
-				self.AboutText += _('Interface:') + "\t/dev/" + eth1['ifname'] + "\n"
-			self.AboutText += _("IP:") + "\t" + eth1['addr'] + "\n"
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth1['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth1['addr'] + "\n"
 			if eth1.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + eth1['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth1['netmask'] + "\n"
 			if eth1.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + eth1['hwaddr'] + "\n"
-			self.AboutText += _("Network Speed:") + "\t" + netspeed_eth1() + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth1['hwaddr'] + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
 			if ra0.has_key('ifname'):
-				self.AboutText += _('Interface:') + "\t/dev/" + ra0['ifname'] + "\n"
-			self.AboutText += _("IP:") + "\t" + ra0['addr'] + "\n"
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + ra0['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + ra0['addr'] + "\n"
 			if ra0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + ra0['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + ra0['netmask'] + "\n"
 			if ra0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + ra0['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + ra0['hwaddr'] + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'ra0'
 
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
 			if wlan0.has_key('ifname'):
-				self.AboutText += _('Interface:') + "\t/dev/" + wlan0['ifname'] + "\n"
-			self.AboutText += _("IP:") + "\t" + wlan0['addr'] + "\n"
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan0['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + wlan0['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan0['netmask'] + "\n"
 			if wlan0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + wlan0['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan0['hwaddr'] + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'wlan0'
 
 		wlan1 = about.getIfConfig('wlan1')
 		if wlan1.has_key('addr'):
 			if wlan1.has_key('ifname'):
-				self.AboutText += _('Interface:') + "\t/dev/" + wlan1['ifname'] + "\n"
-			self.AboutText += _("IP:") + "\t" + wlan1['addr'] + "\n"
+				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan1['ifname'] + "\n"
+			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan1['addr'] + "\n"
 			if wlan1.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + wlan1['netmask'] + "\n"
+				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan1['netmask'] + "\n"
 			if wlan1.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + wlan1['hwaddr'] + "\n"
+				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan1['hwaddr'] + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'wlan1'
 
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
-		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
-		self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + "\n"
+		self.AboutText += "\n" + '{:<35}'.format(_("Bytes received:")) + "\t" + rx_bytes + "\n"
+		self.AboutText += '{:<35}'.format(_("Bytes sent:")) + "\t" + tx_bytes + "\n"
 
 		hostname = file('/proc/sys/kernel/hostname').read()
-		self.AboutText += "\n" + _("Hostname:") + "\t" + hostname + "\n"
+		self.AboutText += "\n" + '{:<35}'.format(_("Hostname:")) + "\t" + hostname + "\n"
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 
 	def cleanup(self):

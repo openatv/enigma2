@@ -77,7 +77,7 @@
 			<item weight="15" level="0" entryID="usage_setup"><setup id="usage" /></item>
 			<!--item weight="20" level="0" entryID="specialfeatures_menu"><setup id="specialfeatures" /></item-->
 			<item weight="25" level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
-			<menu weight="30" level="0" text="Display" entryID="display_selection" requires="Display">
+			<menu weight="30" level="0" text="STB Display" entryID="display_selection" requires="Display">
 				<id val="display" />
 				<item weight="0" level="0" entryID="display_setup"><setup id="display" /></item>
 				<item weight="5" level="0" text="LCD Skin Setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
@@ -163,15 +163,15 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 		</menu>
 
 		<!-- Menu / Settings / Common interface -->
-		<menu weight="30" level="1" text="Common interface" entryID="cam_setup" requires="CommonInterface">
+		<menu weight="30" level="1" text="Decryption &amp; Parental Control" entryID="cam_setup">
 			<id val="cam" />
-			<item weight="0" level="1" text="Basic settings" entryID="ci_setup"><screen module="Ci" screen="CISetup" /></item>
-			<item weight="1" level="0" text="Softcam Setup" entryID="softcam_setup" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup"/></item>
-			<item weight="3" level="1" text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
-			<item weight="5" level="1" text="CIHelper Setup" entryID="ci_setup" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
+			<item weight="50" level="0" text="Softcam Setup" entryID="softcam_setup" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup"/></item>
+			<item weight="80" level="1" text="CI Basic settings" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CISetup" /></item>
+			<item weight="90" level="1" text="CIHelper Setup" entryID="ci_setup" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
+			<item weight="100" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+			<item weight="200" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 		</menu>
 
-		<item weight="35" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 
 
 		<!-- Menu / Settings / System -->

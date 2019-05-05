@@ -17,7 +17,7 @@ from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, 
 class MultiBootWizard(Screen):
 
 	skin = """
-	<screen name="MultiBoot maintenance" position="center,center" size="750,900" flags="wfNoBorder" backgroundColor="transparent">
+	<screen name="MultiBoot Image Manager" position="center,center" size="750,900" flags="wfNoBorder" backgroundColor="transparent">
 		<eLabel name="b" position="0,0" size="750,700" backgroundColor="#00ffffff" zPosition="-2" />
 		<eLabel name="a" position="1,1" size="748,698" backgroundColor="#00000000" zPosition="-1" />
 		<widget source="Title" render="Label" position="60,10" foregroundColor="#00ffffff" size="480,50" halign="left" font="Regular; 28" backgroundColor="#00000000" />
@@ -28,14 +28,16 @@ class MultiBootWizard(Screen):
 		<widget source="options" render="Label" position="2,130" size="730,60" halign="center" font="Regular; 22" backgroundColor="#00000000" foregroundColor="#00ffffff" />
 		<widget source="key_red" render="Label" position="30,200" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
 		<widget source="key_green" render="Label" position="200,200" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
-		<eLabel position="20,200" size="6,40" backgroundColor="#00e61700" /> <!-- Should be a pixmap -->
-		<eLabel position="190,200" size="6,40" backgroundColor="#0061e500" /> <!-- Should be a pixmap -->
+		<widget source="key_yellow" render="Label" position="370,200" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
+		<eLabel position="20,200" size="6,40" backgroundColor="#00e61700" /> <!-- Should be a pixmap red  -->
+		<eLabel position="190,200" size="6,40" backgroundColor="#0061e500" /> <!-- Should be a pixmap green  -->
+		<eLabel position="360,200" size="6,40" backgroundColor="#ffff00" /> <!-- Should be a pixmap  yellow-->
 	</screen>
 	"""
 
 	def __init__(self, session,menu_path=""):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("MultiBoot image manager"))
+		Screen.setTitle(self, _("MultiBoot Image Manager"))
 		if SystemInfo["HasSDmmc"] and not pathExists('/dev/sda4'):
 			self["key_red"] = StaticText(_("Cancel"))
 			self["description"] = StaticText(_("Press Init to format SDcard."))
@@ -112,11 +114,11 @@ class MultiBootWizard(Screen):
 		self.currentSelected = self["config"].l.getCurrentSelection()
 		if self.currentSelected[0][1] != "Queued":
 			if SystemInfo["HasRootSubdir"]:
-				message = _("Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?" %(getMachineBuild(), self.currentSelected[0][1]))
+				message = _("Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?") %(getMachineBuild(), self.currentSelected[0][1])
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 			else:
-				message = _("Are you sure you want to delete image slot %s ?" %self.currentSelected[0][1])
+				message = _("Are you sure you want to delete image slot %s ?") %self.currentSelected[0][1]
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 
@@ -146,8 +148,28 @@ class MultiBootWizard(Screen):
 						self.session.open(MessageBox, _("Multiboot manager - The SDcard must be at least 8MB."), MessageBox.TYPE_INFO, timeout=10)
 						self.close
 					else:
-						self.session.open(MessageBox, _("Multiboot manager - SDcard initialization run, please restart OpenViX."), MessageBox.TYPE_INFO, timeout=10)
+						#IMAGE_ALIGNMENT=1024
+						#KERNEL_PARTITION_SIZE=8192
+						#ROOTFS_PARTITION_SIZE=2097152
+						#PARTED_START_KERNEL2 = IMAGE_ALIGNMENT
+						#PARTED_END_KERNEL2 = int(PARTED_START_KERNEL2) + int(KERNEL_PARTITION_SIZE)
+						#PARTED_START_ROOTFS2 = PARTED_END_KERNEL2
+						#PARTED_END_ROOTFS2 = int(PARTED_END_KERNEL2) + int(ROOTFS_PARTITION_SIZE)
+						#PARTED_START_KERNEL3 = PARTED_END_ROOTFS2
+						#PARTED_END_KERNEL3 = int(PARTED_END_ROOTFS2) + int(KERNEL_PARTITION_SIZE)
+						#PARTED_START_ROOTFS3 = PARTED_END_KERNEL3
+						#PARTED_END_ROOTFS3 = int(PARTED_END_KERNEL3) + int(ROOTFS_PARTITION_SIZE)
+
+						self.session.open(MessageBox, _("Multiboot manager - SDcard initialization run, please restart your Image."), MessageBox.TYPE_INFO, timeout=10)
 						cmdlist = []
+						cmdlist.append("for n in /dev/%s* ; do umount $n ; done"%sda)
+						cmdlist.append("for n in /dev/%s* ; do parted -s /dev/%s rm  ${n:13} ; done"%(sda,sda))
+ 						#cmdlist.append("parted -s /dev/%s mklabel gpt"%sda)
+						#cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel2 ext4 %s %s"%(sda,PARTED_START_KERNEL2,PARTED_END_KERNEL2))
+						#cmdlist.append("parted -s /dev/%s unit KiB mkpart rootfs2 ext4 %s %s "%(sda,PARTED_START_ROOTFS2,PARTED_END_ROOTFS2))
+						#cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel3 ext4 %s %s"%(sda,PARTED_START_KERNEL3,PARTED_END_KERNEL3))
+						#cmdlist.append("parted -s /dev/%s unit KiB mkpart rootfs3 ext4 %s %s "%(sda,PARTED_START_ROOTFS3,PARTED_END_ROOTFS3))
+						#cmdlist.append("parted -s /dev/%s print free"%sda)
 						cmdlist.append("dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc")
 						cmdlist.append("rm -f /tmp/init.sh")
 						cmdlist.append("echo -e 'sfdisk /dev/sda <<EOF' >> /tmp/init.sh")

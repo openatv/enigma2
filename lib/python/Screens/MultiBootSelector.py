@@ -40,7 +40,7 @@ class MultiBootSelector(Screen):
 		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' %(SystemInfo["canMultiBoot"][2])):
 			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
 		else:
-			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use ViX MultiBoot Manager to initialise"))
+			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"))
 		self["options"] = StaticText(_(" "))
 		self["key_green"] = StaticText(_("Reboot"))
 		if SystemInfo["canMode12"]:
@@ -83,12 +83,7 @@ class MultiBootSelector(Screen):
 		list = []
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage() or 1
-		print "[MultiBoot Restart] reboot1 slot:\n", currentimageslot 
-		if SystemInfo["HasSDmmc"]:
-			currentimageslot += 1			#allow for mmc as 1st slot, then SDCard slots
-			print "[MultiBoot Restart] reboot2 slot:\n", currentimageslot 
 		if imagedict:
-			print imagedict
 			if not SystemInfo["canMode12"]:
 				for x in sorted(imagedict.keys()):
 					if imagedict[x]["imagename"] != _("Empty slot"):
@@ -116,13 +111,10 @@ class MultiBootSelector(Screen):
 				mkdir('/tmp/startupmount')
 				if SystemInfo["HasRootSubdir"]:
 					if fileExists("/dev/block/by-name/bootoptions"):
-						print "[MultiBoot Restart] bootoptions"
 						self.container.ePopen('mount /dev/block/by-name/bootoptions /tmp/startupmount', self.ContainterFallback)
 					elif fileExists("/dev/block/by-name/boot"):
-						print "[MultiBoot Restart] by-name/boot"
 						self.container.ePopen('mount /dev/block/by-name/boot /tmp/startupmount', self.ContainterFallback)
 				else:
-					print "[MultiBoot Restart] mtdboot"
 					self.container.ePopen('mount /dev/%s /tmp/startupmount' % self.mtdboot, self.ContainterFallback)
 
 	def ContainterFallback(self, data=None, retval=None, extra_args=None):
@@ -130,15 +122,13 @@ class MultiBootSelector(Screen):
 		slot = self.currentSelected[0][1]
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage() or 1
-		print "[MultiBoot Restart] reboot3 slot:", slot
 		if pathExists("/tmp/startupmount/%s" %GetSTARTUPFile()):
 			if currentimageslot == slot and SystemInfo["canMode12"]:
-				print "[MultiBoot Restart] reboot4 mode:", mode
 				if mode == 12:
-					startupFileContents = ReadSTARTUP().replace("boxmode=12","boxmode=1").replace(SystemInfo["canMode12"][1],SystemInfo["canMode12"][0])
+					startupFileContents = ReadSTARTUP().replace("boxmode=12'","boxmode=1'").replace(SystemInfo["canMode12"][1],SystemInfo["canMode12"][0])
 					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
 				else:
-					startupFileContents = ReadSTARTUP().replace("boxmode=1","boxmode=12").replace(SystemInfo["canMode12"][0],SystemInfo["canMode12"][1])
+					startupFileContents = ReadSTARTUP().replace("boxmode=1'","boxmode=12'").replace(SystemInfo["canMode12"][0],SystemInfo["canMode12"][1])
 					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
 			elif  fileExists("/tmp/startupmount/STARTUP_1"):
 				copyfile("/tmp/startupmount/STARTUP_%s" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())

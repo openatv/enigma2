@@ -1,20 +1,22 @@
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
-from boxbranding import getMachineMtdRoot,getMachineMtdKernel
+from boxbranding import getMachineMtdRoot,getMachineMtdKernel,getBoxType,getMachineName
 from Tools.Directories import pathExists
 import os, time
 import shutil
 import subprocess
 
 def GetCurrentImage():
-	if SystemInfo["HasRootSubdir"]:
-		return SystemInfo["HasRootSubdir"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("rootsubdir=linuxrootfs")[1].split(' ')[0]))
-	else:
-		f = open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()
-		if "%s" %(SystemInfo["canMultiBoot"][2]) in f:
-			return SystemInfo["canMultiBoot"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("%s" % SystemInfo["canMultiBoot"][2])[1].split(' ')[0])-SystemInfo["canMultiBoot"][0])/2
+	if SystemInfo["canMultiBoot"]:
+		if SystemInfo["HasRootSubdir"]:
+			return SystemInfo["HasRootSubdir"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("rootsubdir=linuxrootfs")[1].split(' ')[0]))
 		else:
-			return 0	# if media not in SystemInfo["canMultiBoot"], then using SDcard and Image is in eMMC (1st slot) so tell caller with 0 return
+			f = open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()
+			if "%s" %(SystemInfo["canMultiBoot"][2]) in f:
+				return SystemInfo["canMultiBoot"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("%s" % SystemInfo["canMultiBoot"][2])[1].split(' ')[0])-SystemInfo["canMultiBoot"][0])/2
+			else:
+				return 0	# if media not in SystemInfo["canMultiBoot"], then using SDcard and Image is in eMMC (1st slot) so tell caller with 0 return
+
 def GetCurrentKern():
 	if SystemInfo["HasRootSubdir"]:
 		return SystemInfo["HasRootSubdir"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(' ')[0]))
@@ -36,6 +38,33 @@ def GetSTARTUPFile():
 
 def ReadSTARTUP():
 	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' %GetSTARTUPFile(), 'r').read()
+
+def GetBoxName():
+	box = getBoxType()
+	machinename = getMachineName()
+	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
+		box = "ventonhdx"
+	elif box == 'odinm6':
+		box = getMachineName().lower()
+	elif box == "inihde" and machinename.lower() == "xpeedlx":
+		box = "xpeedlx"
+	elif box in ('xpeedlx1', 'xpeedlx2'):
+		box = "xpeedlx"
+	elif box == "inihde" and machinename.lower() == "hd-1000":
+		box = "sezam-1000hd"
+	elif box == "ventonhdx" and machinename.lower() == "hd-5000":
+		box = "sezam-5000hd"
+	elif box == "ventonhdx" and machinename.lower() == "premium twin":
+		box = "miraclebox-twin"
+	elif box == "xp1000" and machinename.lower() == "sf8 hd":
+		box = "sf8"
+	elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
+		box = box[0:3] + 'x00'
+	elif box == 'odinm9':
+		box = 'maram9'
+	elif box.startswith('sf8008'):
+		box = "sf8008"
+	return box
 
 class GetImagelist():
 	MOUNT = 0
@@ -68,13 +97,14 @@ class GetImagelist():
 
 	def run(self):
 		if SystemInfo["HasRootSubdir"]:
-			if self.phase == self.MOUNT:
-				self.part2 = getMachineMtdRoot()
-				self.imagelist[self.slot2] = { 'imagename': _("Empty slot"), 'part': '%s' %self.part2 }
 			if self.slot == 1 and os.path.islink("/dev/block/by-name/linuxrootfs"):
+				self.part2 = os.readlink("/dev/block/by-name/linuxrootfs")[5:]
 				self.container.ePopen('mount /dev/block/by-name/linuxrootfs /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
 			else:
+				self.part2 = os.readlink("/dev/block/by-name/userdata")[5:]
 				self.container.ePopen('mount /dev/block/by-name/userdata /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+			if self.phase == self.MOUNT:
+				self.imagelist[self.slot2] = { 'imagename': _("Empty slot"), 'part': '%s' %self.part2 }
 		else:
 			if self.SDmmc == self.LastRun:
 				self.part2 = getMachineMtdRoot()	# process mmc slot
@@ -260,7 +290,13 @@ class EmptySlot():
 		self.run()
 
 	def run(self):
-		self.container.ePopen('mount /dev/%s /tmp/testmount' %self.part if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+		if SystemInfo["HasRootSubdir"]:
+			if self.slot == 1 and os.path.islink("/dev/block/by-name/linuxrootfs"):
+				self.container.ePopen('mount /dev/block/by-name/linuxrootfs /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+			else:
+				self.container.ePopen('mount /dev/block/by-name/userdata /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+		else:
+			self.container.ePopen('mount /dev/%s /tmp/testmount' %self.part if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
 
 	
 	def appClosed(self, data, retval, extra_args):

@@ -11,18 +11,18 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot
+from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
 from enigma import eTimer
 import os, urllib2, shutil, math, time, zipfile, shutil
 
 
-from boxbranding import getBoxType,  getImageDistro, getMachineName,  getMachineBuild
+from boxbranding import getImageDistro, getMachineBuild
 
 feedurl = 'http://images.mynonpublic.com/%s' %(getImageDistro())
 imagecat = [3.0,4.0,4.1,4.2,5.0,5.1,5.2,5.3,6.0,6.1,6.2,6.3]
 
 def checkimagefiles(files):
-	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) == 2
+	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) == 2
 
 class FlashOnline(Screen):
 	skin = """
@@ -80,7 +80,7 @@ class FlashOnline(Screen):
 					pass
 
 		if not self.imagesList:
-			box = self.box()
+			box = GetBoxName()
 			for version in reversed(sorted(imagecat)):
 				newversion = _("Image Version %s") %version
 				the_page =""
@@ -188,31 +188,6 @@ class FlashOnline(Screen):
 				self["key_green"].setText(_("Flash Image"))
 				self["description"].setText(currentSelected[0][1])
 
-	def box(self):
-		box = getBoxType()
-		machinename = getMachineName()
-		if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
-			box = "ventonhdx"
-		elif box == 'odinm6':
-			box = getMachineName().lower()
-		elif box == "inihde" and machinename.lower() == "xpeedlx":
-			box = "xpeedlx"
-		elif box in ('xpeedlx1', 'xpeedlx2'):
-			box = "xpeedlx"
-		elif box == "inihde" and machinename.lower() == "hd-1000":
-			box = "sezam-1000hd"
-		elif box == "ventonhdx" and machinename.lower() == "hd-5000":
-			box = "sezam-5000hd"
-		elif box == "ventonhdx" and machinename.lower() == "premium twin":
-			box = "miraclebox-twin"
-		elif box == "xp1000" and machinename.lower() == "sf8 hd":
-			box = "sf8"
-		elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
-			box = box[0:3] + 'x00'
-		elif box == 'odinm9':
-			box = 'maram9'
-		return box
-
 	def keyLeft(self):
 		self["list"].instance.moveSelection(self["list"].instance.pageUp)
 		self.selectionChanged()
@@ -278,8 +253,6 @@ class FlashImage(Screen):
 		self.getImageList = None
 		choices = []
 		currentimageslot = GetCurrentImage()
-		if SystemInfo["HasSDmmc"]:
-			currentimageslot += 1			#allow for mmc as 1st slot, then SDCard slots
 		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
 			choices.append(((_("slot%s - %s (current image) with, backup") if x == currentimageslot else _("slot%s - %s, with backup")) % (x, imagedict[x]['imagename']), (x, "with backup")))
 		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
