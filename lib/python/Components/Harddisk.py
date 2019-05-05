@@ -57,6 +57,34 @@ def findMountPoint(path):
 		path = os.path.dirname(path)
 	return path
 
+def getFolderSize(path):
+	if os.path.islink(path):
+		return (os.lstat(path).st_size, 0)
+	if os.path.isfile(path):
+		st = os.lstat(path)
+		return (st.st_size, st.st_blocks * 512)
+	total_bytes = 0
+	have = []
+	for dirpath, dirnames, filenames in os.walk(path):
+		total_bytes += os.lstat(dirpath).st_blocks * 512
+		for f in filenames:
+			fp = os.path.join(dirpath, f)
+			if os.path.islink(fp):
+				continue
+			st = os.lstat(fp)
+			if st.st_ino in have:
+				continue  # skip hardlinks which were already counted
+			have.append(st.st_ino)
+			total_bytes += st.st_blocks * 512
+		for d in dirnames:
+			dp = os.path.join(dirpath, d)
+	return total_bytes
+
+def Freespace(dev):
+	statdev = os.statvfs(dev)
+	space = (statdev.f_bavail * statdev.f_frsize) / 1024
+	return space
+
 
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
