@@ -223,7 +223,7 @@ class ImageBackup(Screen):
 			## PREPARING THE BUILDING ENVIRONMENT
 			os.system("rm -rf %s" %self.WORKDIR)
 			self.backuproot = "/tmp/bi/root"
-			if SystemInfo["canMultiBoot"]:
+			if SystemInfo["HasRootSubdir"]:
 				self.backuproot = "/tmp/bi/RootSubdir/"
 			if not os.path.exists(self.WORKDIR):
 				os.makedirs(self.WORKDIR)
