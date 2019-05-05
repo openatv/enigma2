@@ -533,7 +533,7 @@ class ImageBackup(Screen):
 
 		if SystemInfo["canMultiBoot"] and not self.RECOVERY and not SystemInfo["HasRootSubdir"]:
 			cmdlist.append('echo "_________________________________________________\n"')
-			cmdlist.append('echo "' + _("Multiboot Image created on: %s/%s-%s-%s-backup-%s_mmc.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
+			cmdlist.append('echo "' + _("Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo "_________________________________________________"')
 			cmdlist.append('echo " "')
 			cmdlist.append('echo "' + _("Please wait...almost ready! ") + '"')
@@ -544,6 +544,8 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "_________________________________________________\n"')
 			if SystemInfo["canRecovery"]:
 				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_recovery.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
+			if SystemInfo["HasRootSubdir"]:
+				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_mmc.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
 			else:
 				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_usb.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo "_________________________________________________"')
