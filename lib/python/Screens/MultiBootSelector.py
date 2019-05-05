@@ -125,10 +125,10 @@ class MultiBootSelector(Screen):
 		if pathExists("/tmp/startupmount/%s" %GetSTARTUPFile()):
 			if currentimageslot == slot and SystemInfo["canMode12"]:
 				if mode == 12:
-					startupFileContents = ReadSTARTUP().replace("boxmode=12","boxmode=1").replace(SystemInfo["canMode12"][1],SystemInfo["canMode12"][0])
+					startupFileContents = ReadSTARTUP().replace("boxmode=12'","boxmode=1'").replace(SystemInfo["canMode12"][1],SystemInfo["canMode12"][0])
 					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
 				else:
-					startupFileContents = ReadSTARTUP().replace("boxmode=1","boxmode=12").replace(SystemInfo["canMode12"][0],SystemInfo["canMode12"][1])
+					startupFileContents = ReadSTARTUP().replace("boxmode=1'","boxmode=12'").replace(SystemInfo["canMode12"][0],SystemInfo["canMode12"][1])
 					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
 			elif  fileExists("/tmp/startupmount/STARTUP_1"):
 				copyfile("/tmp/startupmount/STARTUP_%s" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
