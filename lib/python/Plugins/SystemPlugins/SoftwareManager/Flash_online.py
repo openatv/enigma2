@@ -116,8 +116,8 @@ class FlashOnline(Screen):
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
 					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-					if "downloaded_images" in os.listdir(media):
-						media = os.path.join(media, "downloaded_images")
+					if "images" in os.listdir(media):
+						media = os.path.join(media, "images")
 						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
 							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
 							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
@@ -299,7 +299,7 @@ class FlashImage(Screen):
 
 			if self.destination:
 
-				destination = os.path.join(self.destination, 'downloaded_images')
+				destination = os.path.join(self.destination, 'images')
 				self.zippedimage = "://" in self.source and os.path.join(destination, self.imagename) or self.source
 				self.unzippedimage = os.path.join(destination, '%s.unzipped' % self.imagename[:-4])
 
