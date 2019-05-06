@@ -5423,7 +5423,7 @@ msgid "Flash"
 msgstr "Flashen"
 
 msgid "Flash Image"
-msgstr ""
+msgstr "Flashe Image"
 
 # /SoftwareManager/plugin.py
 msgid "Flash On the Fly"
@@ -6293,8 +6293,12 @@ msgid "Image Version %s"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s"
-msgstr ""
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_recovery.zip"
+
+#, python-format
+msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_usb.zip"
 
 # ImageBackup.py
 #, python-format
@@ -7538,11 +7542,12 @@ msgstr "MultiBoot-Auswahl"
 
 # ImageBackup.py
 #, python-format
-msgid "Multiboot Image created on: %s"
-msgstr "Multiboot Image erstellt auf: %s"
+msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
+msgstr "Multiboot Image erstellt auf: %s/%s-%s-%s-backup-%s_mmc.zip"
+
 
 msgid "Multiboot Manager"
-msgstr ""
+msgstr "Multiboot-Manager"
 
 msgid ""
 "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
@@ -10213,7 +10218,7 @@ msgid "SD"
 msgstr ""
 
 msgid ""
-"SDcard is not initialised for multiboot - Exit and use ViX MultiBoot Manager "
+"SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager "
 "to initialise"
 msgstr ""
 "SD-Karte ist nicht für Multiboot initialisiert. Benutze Multiboot Verwaltung "
@@ -14610,7 +14615,7 @@ msgid "Use the alternative screen"
 msgstr "Legen Sie fest, ob ein alternative Anzeige benutzt werden soll."
 
 msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr "Wähle ein installiertes Image aus und danach die Löschen-Taste."
+msgstr "Wähle ein installiertes Image aus und danach GRÜN um es zu löschen."
 
 msgid ""
 "Use the cursor keys to select an installed image and then Reboot button."
@@ -21584,6 +21589,27 @@ msgid ""
 msgstr ""
 "Ihre Sicherung ist geglückt. Die %s %s wird nun den weiteren Aktualisierungs-"
 "Prozess erklären."
+
+# ImageBackup.py
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr "Wähle ein installiertes Image aus und danach GRÜN/OK um das Fullbackup zu starten."
+
+#, python-format
+msgid "slot%s -%s - %s USB Recovery"
+msgstr "Slot %s -%s - %s USB Recovery"
+
+# ImageBackup.py
+msgid "Flash Image USB Recovery"
+msgstr "Flashe Image USB Recovery"
+
+msgid "Please select a backup destination"
+msgstr "Bitte wählen Sie ein Sicherungsziel aus"
+
+msgid "Backup to destination: %s"
+msgstr "Backup nach: %s"
+
+msgid "No, do not backup a image"
+msgstr "Nein, kein Backup sichern"
 
 #~ msgid ""
 #~ "\n"
