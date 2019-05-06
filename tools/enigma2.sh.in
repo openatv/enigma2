@@ -113,9 +113,9 @@ if [ -e /proc/stb/info/boxtype ] && [ -e /proc/stb/info/chipset ]; then
        stbcheck=01
    fi
 fi
-if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ] && [ ! $stbcheck == "1" ]; then
-	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
-fi
+#if [ -e /etc/defaultsat.tar.gz ] && [ ! -e /etc/enigma2/lamedb ] && [ ! $stbcheck == "01" ] && [ ! $stbcheck == "1" ]; then
+#	tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2
+#fi
 
 sync
 
