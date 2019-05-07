@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-04 09:14+0000\n"
+"POT-Creation-Date: 2019-05-06 18:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2775,6 +2775,10 @@ msgstr ""
 msgid "Backup system settings"
 msgstr ""
 
+#, python-format
+msgid "Backup to destination: %s"
+msgstr ""
+
 msgid "Backup your current image"
 msgstr ""
 
@@ -3378,9 +3382,6 @@ msgid "Check power and input state from TV"
 msgstr ""
 
 msgid "Check/Install online updates (you must have a working internet connection)"
-msgstr ""
-
-msgid "Check:"
 msgstr ""
 
 msgid "Checking Feeds"
@@ -4677,6 +4678,10 @@ msgid "Do you want to produce this collection?"
 msgstr ""
 
 #, python-format
+msgid "Do you want to reboot now the image in slot %s?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr ""
 
@@ -5075,7 +5080,7 @@ msgid ""
 "If you experience any problems please contact\n"
 "stephan@reichholf.net\n"
 "\n"
-"© 2006 - Stephan Reichholf"
+"Â© 2006 - Stephan Reichholf"
 msgstr ""
 
 msgid "Enigma2 skin selector"
@@ -5663,6 +5668,9 @@ msgstr ""
 msgid "Flash Image"
 msgstr ""
 
+msgid "Flash Image USB Recovery"
+msgstr ""
+
 msgid "Flash On the Fly"
 msgstr ""
 
@@ -6120,11 +6128,6 @@ msgstr ""
 msgid "HD60/HD61"
 msgstr ""
 
-msgid ""
-"HDD = Do you want to make a USB-back-up image on HDD? \n"
-"This only takes 1 or 10 minutes and is fully automatic."
-msgstr ""
-
 msgid "HDMI"
 msgstr ""
 
@@ -6422,6 +6425,9 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
+msgid "Image Backup"
+msgstr ""
+
 msgid "Image Info"
 msgstr ""
 
@@ -6439,11 +6445,15 @@ msgid "Image Version %s"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgstr ""
+
+#, python-format
+msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 msgid "Image creation failed - "
@@ -6491,10 +6501,6 @@ msgid "Increase time scale"
 msgstr ""
 
 msgid "Increased voltage"
-msgstr ""
-
-#, python-format
-msgid "Index Error in the following files: %s"
 msgstr ""
 
 msgid "Index allocated:"
@@ -6850,12 +6856,6 @@ msgid "Kenya"
 msgstr ""
 
 msgid "Kernel"
-msgstr ""
-
-msgid "Kernel dump OK"
-msgstr ""
-
-msgid "Kernel dump error\n"
 msgstr ""
 
 #, python-format
@@ -7652,7 +7652,7 @@ msgstr ""
 msgid "Multi EPG"
 msgstr ""
 
-msgid "MultiBoot image manager"
+msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBootSelector"
@@ -7669,7 +7669,7 @@ msgid "Multiboot Image Selector"
 msgstr ""
 
 #, python-format
-msgid "Multiboot Image created on: %s"
+msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 msgid "Multiboot Manager"
@@ -7678,7 +7678,7 @@ msgstr ""
 msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
 msgstr ""
 
-msgid "Multiboot manager - SDcard initialization run, please restart OpenViX."
+msgid "Multiboot manager - SDcard initialization run, please restart your Image."
 msgstr ""
 
 msgid "Multiboot manager - The SDcard must be at least 8MB."
@@ -7924,11 +7924,6 @@ msgid "No (supported) DVDROM found!"
 msgstr ""
 
 msgid ""
-"No /hdd found !!\n"
-"Please make sure you have a HDD mounted.\n"
-msgstr ""
-
-msgid ""
 "No Cam started !!\n"
 "\n"
 "Cam 1 must be different from Cam 2"
@@ -7953,12 +7948,6 @@ msgid ""
 msgstr ""
 
 msgid "No Timeshift found to save as recording!"
-msgstr ""
-
-msgid ""
-"No USB-Device found for fullbackup !!\n"
-"\n"
-"\n"
 msgstr ""
 
 msgid "No active channel found."
@@ -8123,6 +8112,9 @@ msgstr ""
 msgid "No, but restart from begin"
 msgstr ""
 
+msgid "No, do not backup a image"
+msgstr ""
+
 msgid "No, do not flash image"
 msgstr ""
 
@@ -8192,17 +8184,6 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
-msgstr ""
-
-#, python-format
-msgid ""
-"Not enough free space on %s !!\n"
-"You need at least 300Mb free space.\n"
-msgstr ""
-
-msgid ""
-"Not enough free space on /hdd !!\n"
-"You need at least 300Mb free space.\n"
 msgstr ""
 
 msgid "Not mounted"
@@ -8825,9 +8806,6 @@ msgstr ""
 msgid "Playpause"
 msgstr ""
 
-msgid "Please Flash your Kernel new and Backup again"
-msgstr ""
-
 msgid "Please add titles to the compilation."
 msgstr ""
 
@@ -8913,6 +8891,9 @@ msgid "Please press OK to continue."
 msgstr ""
 
 msgid "Please press OK to start Kodi..."
+msgstr ""
+
+msgid "Please select a backup destination"
 msgstr ""
 
 msgid "Please select a default EPG type..."
@@ -10082,7 +10063,7 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
-msgid "SDcard is not initialised for multiboot - Exit and use ViX MultiBoot Manager to initialise"
+msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
 msgstr ""
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
@@ -10104,9 +10085,6 @@ msgid "SPDIF"
 msgstr ""
 
 msgid "SSID:"
-msgstr ""
-
-msgid "STARTUP"
 msgstr ""
 
 msgid "Saint Barthelemy"
@@ -13112,9 +13090,6 @@ msgstr ""
 msgid "Titleset mode"
 msgstr ""
 
-msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
-msgstr ""
-
 msgid "To restore the image:"
 msgstr ""
 
@@ -13431,12 +13406,6 @@ msgstr ""
 msgid "USALS calibration"
 msgstr ""
 
-msgid ""
-"USB = Do you want to make a back-up on USB?\n"
-"This will take between 3 and 15 minutes depending on the used filesystem and is fully automatic.\n"
-"Make sure you first insert a USB flash drive before you select USB."
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -13748,6 +13717,9 @@ msgid "Use the cursor keys to select an installed image and then Erase button."
 msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Reboot button."
+msgstr ""
+
+msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
 msgid "Use the extended List"
@@ -14458,11 +14430,6 @@ msgstr ""
 msgid "You can remove this plugin."
 msgstr ""
 
-msgid ""
-"You can select with yellow the OnlineFlash Image\n"
-" or select Recovery to create a USB Disk Image for clean Install."
-msgstr ""
-
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr ""
 
@@ -14957,9 +14924,6 @@ msgstr ""
 msgid "background image"
 msgstr ""
 
-msgid "backupstick or backupstick.txt"
-msgstr ""
-
 msgid "ballet"
 msgstr ""
 
@@ -15053,11 +15017,6 @@ msgid "confirmed"
 msgstr ""
 
 msgid "connected"
-msgstr ""
-
-msgid ""
-"contain a file with the name: \n"
-"\n"
 msgstr ""
 
 msgid "continue"
@@ -16231,6 +16190,10 @@ msgstr ""
 
 #, python-format
 msgid "slot%s -%s - %s (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s -%s - %s USB Recovery"
 msgstr ""
 
 #, python-format
@@ -19269,6 +19232,62 @@ msgstr ""
 msgid "userdefined"
 msgstr ""
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "No backup needed"
+msgstr ""
+
+msgid "No, do nothing."
+msgstr ""
+
+msgid "No, just start my %s %s"
+msgstr ""
+
+msgid "OK, guide me through the upgrade process"
+msgstr ""
+
+msgid "The backup failed. Please choose a different backup location."
+msgstr ""
+
+msgid "The wizard is finished now."
+msgstr ""
+
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+
+msgid "Where do you want to backup your settings?"
+msgstr ""
+
+msgid "Yes, backup my settings!"
+msgstr ""
+
+msgid "Yes, restore the settings now"
+msgstr ""
+
+msgid "Yes, shut down now."
+msgstr ""
+
+msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgstr ""
+
+msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgstr ""
+
+msgid ""
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.opena.tv.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+msgstr ""
+
+msgid "Your %s %s is shutting down. Please wait..."
+msgstr ""
+
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr ""
+
 msgid "Configure nameservers"
 msgstr ""
 
@@ -19351,62 +19370,6 @@ msgid ""
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
-msgstr ""
-
-msgid "Install a new image with a USB stick"
-msgstr ""
-
-msgid "Install a new image with your web browser"
-msgstr ""
-
-msgid "No backup needed"
-msgstr ""
-
-msgid "No, do nothing."
-msgstr ""
-
-msgid "No, just start my %s %s"
-msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr ""
-
-msgid "The backup failed. Please choose a different backup location."
-msgstr ""
-
-msgid "The wizard is finished now."
-msgstr ""
-
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-
-msgid "Where do you want to backup your settings?"
-msgstr ""
-
-msgid "Yes, backup my settings!"
-msgstr ""
-
-msgid "Yes, restore the settings now"
-msgstr ""
-
-msgid "Yes, shut down now."
-msgstr ""
-
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr ""
-
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr ""
-
-msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
-msgstr ""
-
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr ""
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr ""
 
 msgid "Add plugin to Extensions menu*"
