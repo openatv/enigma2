@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 10:20+0200\n"
+"POT-Creation-Date: 2019-05-07 21:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1074,6 +1074,10 @@ msgstr ""
 
 #, python-format
 msgid "%s additional screens"
+msgstr ""
+
+#, python-format
+msgid "%s build date %s"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -3562,6 +3566,9 @@ msgstr ""
 msgid "Coderate LP"
 msgstr ""
 
+msgid "Collapse"
+msgstr ""
+
 msgid "Collection name"
 msgstr ""
 
@@ -3614,9 +3621,6 @@ msgid "Complete Backup"
 msgstr ""
 
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr ""
-
-msgid "Compress"
 msgstr ""
 
 msgid "Config file name (ok to change):"
@@ -5666,9 +5670,6 @@ msgid "Flash"
 msgstr ""
 
 msgid "Flash Image"
-msgstr ""
-
-msgid "Flash Image USB Recovery"
 msgstr ""
 
 msgid "Flash On the Fly"
@@ -15478,6 +15479,14 @@ msgstr ""
 msgid "install/unpack ipk Files"
 msgstr ""
 
+#, python-format
+msgid "internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr ""
+
 msgid "internally loopthrough to"
 msgstr ""
 
@@ -16193,7 +16202,7 @@ msgid "slot%s -%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s -%s - %s USB Recovery"
+msgid "slot%s -%s - %s as USB Recovery"
 msgstr ""
 
 #, python-format
@@ -16534,14 +16543,6 @@ msgstr ""
 msgid "zapping"
 msgstr ""
 
-msgid "Configure interface"
-msgstr ""
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
 msgid "Basic settings"
 msgstr ""
 
@@ -16645,6 +16646,14 @@ msgid "Video"
 msgstr ""
 
 msgid "WOL Standby"
+msgstr ""
+
+msgid "Configure interface"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
 msgstr ""
 
 msgid "0"
@@ -19232,62 +19241,6 @@ msgstr ""
 msgid "userdefined"
 msgstr ""
 
-msgid "Install a new image with a USB stick"
-msgstr ""
-
-msgid "Install a new image with your web browser"
-msgstr ""
-
-msgid "No backup needed"
-msgstr ""
-
-msgid "No, do nothing."
-msgstr ""
-
-msgid "No, just start my %s %s"
-msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr ""
-
-msgid "The backup failed. Please choose a different backup location."
-msgstr ""
-
-msgid "The wizard is finished now."
-msgstr ""
-
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-
-msgid "Where do you want to backup your settings?"
-msgstr ""
-
-msgid "Yes, backup my settings!"
-msgstr ""
-
-msgid "Yes, restore the settings now"
-msgstr ""
-
-msgid "Yes, shut down now."
-msgstr ""
-
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr ""
-
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr ""
-
-msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
-msgstr ""
-
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr ""
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr ""
-
 msgid "Configure nameservers"
 msgstr ""
 
@@ -19370,6 +19323,62 @@ msgid ""
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
+msgstr ""
+
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "No backup needed"
+msgstr ""
+
+msgid "No, do nothing."
+msgstr ""
+
+msgid "No, just start my %s %s"
+msgstr ""
+
+msgid "OK, guide me through the upgrade process"
+msgstr ""
+
+msgid "The backup failed. Please choose a different backup location."
+msgstr ""
+
+msgid "The wizard is finished now."
+msgstr ""
+
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+
+msgid "Where do you want to backup your settings?"
+msgstr ""
+
+msgid "Yes, backup my settings!"
+msgstr ""
+
+msgid "Yes, restore the settings now"
+msgstr ""
+
+msgid "Yes, shut down now."
+msgstr ""
+
+msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgstr ""
+
+msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
+msgstr ""
+
+msgid ""
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.opena.tv.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+msgstr ""
+
+msgid "Your %s %s is shutting down. Please wait..."
+msgstr ""
+
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr ""
 
 msgid "Add plugin to Extensions menu*"
