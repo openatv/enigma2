@@ -182,7 +182,7 @@ class FlashOnline(Screen):
 			self["key_green"].setText("")
 		else:
 			if currentSelected[0][1] == "Expander":
-				self["key_green"].setText(_("Compress") if currentSelected[0][0] in self.expanded else _("Expand"))
+				self["key_green"].setText(_("Collapse") if currentSelected[0][0] in self.expanded else _("Expand"))
 				self["description"].setText("")
 			else:
 				self["key_green"].setText(_("Flash Image"))
