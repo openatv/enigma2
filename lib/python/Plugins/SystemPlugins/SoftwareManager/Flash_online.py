@@ -12,7 +12,7 @@ from Screens.Screen import Screen
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
-from enigma import eTimer
+from enigma import eTimer, fbClass
 import os, urllib2, shutil, math, time, zipfile, shutil
 
 
@@ -520,10 +520,12 @@ class FlashImage(Screen):
 				command = "/usr/bin/ofgwrite -r -k %s" % imagefiles
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(command, self.FlashimageDone)
+			fbClass.getInstance().lock()
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Image to install is invalid\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
 	def FlashimageDone(self, data, retval, extra_args):
+		fbClass.getInstance().unlock()
 		self.containerofgwrite = None
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
@@ -539,6 +541,7 @@ class FlashImage(Screen):
 		self.close()
 
 	def ok(self):
+		fbClass.getInstance().unlock()
 		if self["header"].text == _("Flashing image successful"):
 			self.close()
 		else:
