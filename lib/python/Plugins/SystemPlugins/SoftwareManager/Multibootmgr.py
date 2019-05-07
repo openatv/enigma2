@@ -164,7 +164,8 @@ class MultiBootWizard(Screen):
 						cmdlist = []
 						cmdlist.append("for n in /dev/%s* ; do umount $n ; done"%sda)
 						cmdlist.append("for n in /dev/%s* ; do parted -s /dev/%s rm  ${n:13} ; done"%(sda,sda))
- 						#cmdlist.append("parted -s /dev/%s mklabel gpt"%sda)
+						cmdlist.append("partprobe")
+						#cmdlist.append("parted -s /dev/%s mklabel gpt"%sda)
 						#cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel2 ext4 %s %s"%(sda,PARTED_START_KERNEL2,PARTED_END_KERNEL2))
 						#cmdlist.append("parted -s /dev/%s unit KiB mkpart rootfs2 ext4 %s %s "%(sda,PARTED_START_ROOTFS2,PARTED_END_ROOTFS2))
 						#cmdlist.append("parted -s /dev/%s unit KiB mkpart kernel3 ext4 %s %s"%(sda,PARTED_START_KERNEL3,PARTED_END_KERNEL3))
@@ -180,6 +181,7 @@ class MultiBootWizard(Screen):
 						cmdlist.append("echo -e 'EOF' >> /tmp/init.sh")
 						cmdlist.append("chmod +x /tmp/init.sh")
 						cmdlist.append("/tmp/init.sh")
+						cmdlist.append("partprobe")
 						self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = True)
 		else:
 			self.close()

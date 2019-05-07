@@ -766,7 +766,6 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + ra0['netmask'] + "\n"
 			if ra0.has_key('hwaddr'):
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + ra0['hwaddr'] + "\n"
-			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'ra0'
 
 		wlan0 = about.getIfConfig('wlan0')
@@ -778,7 +777,6 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan0['netmask'] + "\n"
 			if wlan0.has_key('hwaddr'):
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan0['hwaddr'] + "\n"
-			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'wlan0'
 
 		wlan1 = about.getIfConfig('wlan1')
@@ -790,7 +788,6 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan1['netmask'] + "\n"
 			if wlan1.has_key('hwaddr'):
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan1['hwaddr'] + "\n"
-			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'wlan1'
 
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)

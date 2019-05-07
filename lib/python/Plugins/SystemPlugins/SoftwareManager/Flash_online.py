@@ -12,7 +12,7 @@ from Screens.Screen import Screen
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
-from enigma import eTimer
+from enigma import eTimer, fbClass
 import os, urllib2, shutil, math, time, zipfile, shutil
 
 
@@ -116,8 +116,8 @@ class FlashOnline(Screen):
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
 					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-					if "downloaded_images" in os.listdir(media):
-						media = os.path.join(media, "downloaded_images")
+					if "images" in os.listdir(media):
+						media = os.path.join(media, "images")
 						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
 							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
 							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
@@ -182,7 +182,7 @@ class FlashOnline(Screen):
 			self["key_green"].setText("")
 		else:
 			if currentSelected[0][1] == "Expander":
-				self["key_green"].setText(_("Compress") if currentSelected[0][0] in self.expanded else _("Expand"))
+				self["key_green"].setText(_("Collapse") if currentSelected[0][0] in self.expanded else _("Expand"))
 				self["description"].setText("")
 			else:
 				self["key_green"].setText(_("Flash Image"))
@@ -299,7 +299,7 @@ class FlashImage(Screen):
 
 			if self.destination:
 
-				destination = os.path.join(self.destination, 'downloaded_images')
+				destination = os.path.join(self.destination, 'images')
 				self.zippedimage = "://" in self.source and os.path.join(destination, self.imagename) or self.source
 				self.unzippedimage = os.path.join(destination, '%s.unzipped' % self.imagename[:-4])
 
@@ -520,10 +520,12 @@ class FlashImage(Screen):
 				command = "/usr/bin/ofgwrite -r -k %s" % imagefiles
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(command, self.FlashimageDone)
+			fbClass.getInstance().lock()
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Image to install is invalid\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
 	def FlashimageDone(self, data, retval, extra_args):
+		fbClass.getInstance().unlock()
 		self.containerofgwrite = None
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
@@ -539,6 +541,7 @@ class FlashImage(Screen):
 		self.close()
 
 	def ok(self):
+		fbClass.getInstance().unlock()
 		if self["header"].text == _("Flashing image successful"):
 			self.close()
 		else:
