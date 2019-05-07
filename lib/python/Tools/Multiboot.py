@@ -120,11 +120,11 @@ class GetImagelist():
 	def appClosed(self, data, retval, extra_args):
 		if retval == 0 and self.phase == self.MOUNT:
 			BuildVersion = "  "	
-			Build = " "	#ViX Build No.#
-			Dev = " "	#ViX Dev No.#
-			Creator = " " 	#Openpli Openvix Openatv etc #
+			Build = " "
+			Dev = " "
+			Creator = " "
 			Date = " "	
-			BuildType = " "	#release etc #
+			BuildType = " "
 			self.OsPath = "NoPath"
 			if SystemInfo["HasRootSubdir"]:
 				if self.slot == 1 and os.path.isfile("/tmp/testmount/linuxrootfs1/usr/bin/enigma2"):
@@ -156,8 +156,8 @@ class GetImagelist():
 					st = os.stat('%s/var/lib/opkg/status' %self.OsPath)
 					tm = time.localtime(st.st_mtime)
 					if tm.tm_year >= 2011:
-						Date = time.strftime("%d-%m-%Y", tm).replace("-20", "-")
-					BuildVersion = "%s rel %s" % (Creator, Date)
+						Date = time.strftime("%d-%m-%Y", tm)
+					BuildVersion = _("%s build date %s") % (Creator, Date)
 				self.imagelist[self.slot2] =  { 'imagename': '%s' %BuildVersion, 'part': '%s' %self.part2 }
 			self.phase = self.UNMOUNT
 			self.run()

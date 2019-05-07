@@ -88,12 +88,12 @@ class ImageBackup(Screen):
 			for x in sorted(imagedict.keys()):
 				if imagedict[x]["imagename"] != _("Empty slot"):
 					if x == 1 and currentimageslot == 1 and SystemInfo["canRecovery"]:
-						list.append(ChoiceEntryComponent('',(_("slot%s -%s - %s USB Recovery") % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, True)))
+						list.append(ChoiceEntryComponent('',(_("slot%s -%s - %s as USB Recovery") % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, True)))
 					list.append(ChoiceEntryComponent('',((_("slot%s -%s - %s (current image)") if x == currentimageslot else _("slot%s -%s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, False)))
 		else:
 			if SystemInfo["canRecovery"]:
-				list.append(ChoiceEntryComponent('',(_("Flash Image USB Recovery"),"1","1",True)))
-			list.append(ChoiceEntryComponent('',(_("Flash Image"),"1","1",False)))
+				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery" %(getImageDistro(), getImageVersion())),"1","1",True)))
+			list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s " %(getImageDistro(), getImageVersion())),"1","1",False)))
 		self["config"].setList(list)
 
 	def start(self):
@@ -131,7 +131,9 @@ class ImageBackup(Screen):
 		if answer is not None:
 			if answer[1]:
 				self.RECOVERY = answer[3]
-				self.DIRECTORY = answer[2]
+				self.DIRECTORY = "%s/images" %answer[2]
+				if not os.path.exists(self.DIRECTORY):
+					os.makedirs(self.DIRECTORY)
 				self.SLOT = answer[1]
 				self.MODEL = GetBoxName()
 				self.OEM = getBrandOEM()
@@ -161,8 +163,11 @@ class ImageBackup(Screen):
 				if SystemInfo["canMultiBoot"]:
 					if SystemInfo["HasRootSubdir"]:
 						self.MTDROOTFS = "%s" %(self.getImageList[self.SLOT]['part'])
-					if self.SLOT >= 2 and os.path.islink("/dev/block/by-name/userdata"):
-						self.MTDKERNEL = os.readlink("/dev/block/by-name/linuxkernel%s" %self.SLOT)[5:]
+						if self.SLOT >= 2 and os.path.islink("/dev/block/by-name/userdata"):
+							self.MTDKERNEL = os.readlink("/dev/block/by-name/linuxkernel%s" %self.SLOT)[5:]
+					else:
+						self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs%s" %self.SLOT)[5:]
+						self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel%s" %self.SLOT)[5:]
 
 				print "[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
 				print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
@@ -177,7 +182,7 @@ class ImageBackup(Screen):
 				print "[FULL BACKUP] MTDROOTFS = >%s<" %self.MTDROOTFS
 				print "[FULL BACKUP] ROOTFSBIN = >%s<" %self.ROOTFSBIN
 				print "[FULL BACKUP] KERNELBIN = >%s<" %self.KERNELBIN
-				print "[FULL BACKUP] KERNELBIN = >%s<" %self.ROOTFSSUBDIR
+				print "[FULL BACKUP] ROOTFSSUBDIR = >%s<" %self.ROOTFSSUBDIR
 				print "[FULL BACKUP] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE
 				print "[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG
 				print "[FULL BACKUP] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO
