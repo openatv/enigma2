@@ -21285,8 +21285,16 @@ msgid "slot%s -%s - %s (current image)"
 msgstr "Slot %s - %s - %s (aktuelles Image)"
 
 #, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr "Slot %s -%s - %s USB Recovery"
+msgid "slot%s -%s - %s as USB Recovery"
+msgstr "Slot %s -%s - %s als USB Recovery"
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr "Interner Flash: %s %s als USB Recovery"
+
+#, python-format
+msgid "internal flash:  %s %s "
+msgstr "Interner Flash: %s %s "
 
 #, python-format
 msgid "slot%s -%s- %s "
@@ -21668,6 +21676,10 @@ msgstr "Umgeschaltet"
 
 msgid "zapping"
 msgstr "Umschalten"
+
+# ImageBackup.py
+msgid "Cannot create backup directory"
+msgstr "Sicherungsverzeichnis kann nicht erstellt werden"
 
 #
 #~ msgid ""
