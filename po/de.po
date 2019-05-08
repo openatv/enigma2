@@ -21595,8 +21595,16 @@ msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Wähle ein installiertes Image aus und danach GRÜN/OK um das Fullbackup zu starten."
 
 #, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr "Slot %s -%s - %s USB Recovery"
+msgid "slot%s -%s - %s as USB Recovery"
+msgstr "Slot %s -%s - %s als USB Recovery"
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr "Interner Flash: %s %s als USB Recovery"
+
+#, python-format
+msgid "internal flash:  %s %s "
+msgstr "Interner Flash: %s %s "
 
 # ImageBackup.py
 msgid "Flash Image USB Recovery"
@@ -21617,6 +21625,10 @@ msgstr "Nein, kein Backup sichern"
 # ImageBackup.py
 msgid "Do you want to reboot now the image in slot %s?"
 msgstr "Möchten Sie das Image in Slot %s jetzt starten?"
+
+# ImageBackup.py
+msgid "Cannot create backup directory"
+msgstr "Sicherungsverzeichnis kann nicht erstellt werden"
 
 #~ msgid ""
 #~ "\n"
