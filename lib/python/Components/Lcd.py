@@ -152,7 +152,7 @@ class LCD:
 
 	def setStandbyBright(self, value):
 		value *= 255
-		value /= 10
+		value /= self.oled_brightness_scale
 		if value > 255:
 			value = 255
 		self.autoDimDownLCDTimer.stop()
@@ -166,7 +166,7 @@ class LCD:
 
 	def setDimBright(self, value):
 		value *= 255
-		value /= 10
+		value /= self.oled_brightness_scale
 		if value > 255:
 			value = 255
 		self.dimBrightness = value
