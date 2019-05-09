@@ -302,7 +302,7 @@ class SHOUTcastWidget(Screen):
 			args.append('-r')
 			args.append('9191')
 			args.append('-u')
-			args.append('IniSHOUTcast/1.0')
+			args.append('Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;Beyonwiz;;;)')
 			if recordingLength != 0:
 				args.append('-l')
 				args.append("%d" % int(recordingLength))
