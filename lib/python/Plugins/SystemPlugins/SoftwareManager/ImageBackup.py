@@ -92,8 +92,8 @@ class ImageBackup(Screen):
 					list.append(ChoiceEntryComponent('',((_("slot%s -%s - %s (current image)") if x == currentimageslot else _("slot%s -%s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, False)))
 		else:
 			if SystemInfo["canRecovery"]:
-				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery" %(getImageDistro(), getImageVersion())),"1","1",True)))
-			list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s " %(getImageDistro(), getImageVersion())),"1","1",False)))
+				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery") %(getImageDistro(), getImageVersion()),"1","1",True)))
+			list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"1","1",False)))
 		self["config"].setList(list)
 
 	def start(self):
