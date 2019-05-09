@@ -238,8 +238,14 @@ def bestRecordingLocation(candidates):
 	return path
 
 def defaultRecordingLocation(candidate=None):
-	if candidate and os.path.exists(candidate):
-		return candidate
+	if candidate:
+		if os.path.exists(candidate):
+			return candidate
+		try:
+			os.makedirs(candidate)
+			return candidate
+		except:
+			pass
 	# First, try whatever /hdd points to, or /media/hdd
 	try:
 		path = os.readlink('/hdd')
@@ -317,6 +323,11 @@ def getRecordingFilename(basename, dirname=None):
 	if dirname is not None:
 		if not dirname.startswith('/'):
 			dirname = os.path.join(defaultRecordingLocation(), dirname)
+		if not os.path.exists(dirname):
+			try:
+				os.makedirs(dirname)
+			except:
+				pass
 	else:
 		dirname = defaultRecordingLocation()
 	filename = os.path.join(dirname, filename)
