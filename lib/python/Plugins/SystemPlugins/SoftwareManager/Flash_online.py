@@ -253,7 +253,7 @@ class FlashImage(Screen):
 		choices = []
 		currentimageslot = GetCurrentImage()
 		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
-			choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x)))
+			choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x,True)))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
 
 	def checkMedia(self, retval):
