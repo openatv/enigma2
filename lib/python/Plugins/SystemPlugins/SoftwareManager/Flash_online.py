@@ -245,8 +245,7 @@ class FlashImage(Screen):
 		if SystemInfo["canMultiBoot"]:
 			self.getImageList = GetImagelist(self.getImagelistCallback)
 		else:
-			choices = [(_("Yes, with backup"), "with backup"), (_("Yes, without backup"), "without backup"), (_("No, do not flash image"), False)]
-			self.session.openWithCallback(self.checkMedia, MessageBox, self.message , list=choices, default=False, simple=True)
+			self.checkMedia(True)
 
 	def getImagelistCallback(self, imagedict):
 		self.saveImageList = imagedict
@@ -254,19 +253,13 @@ class FlashImage(Screen):
 		choices = []
 		currentimageslot = GetCurrentImage()
 		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
-			choices.append(((_("slot%s - %s (current image) with, backup") if x == currentimageslot else _("slot%s - %s, with backup")) % (x, imagedict[x]['imagename']), (x, "with backup")))
-		for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
-			choices.append(((_("slot%s - %s (current image), without backup") if x == currentimageslot else _("slot%s - %s, without backup")) % (x, imagedict[x]['imagename']), (x, "without backup")))
-		choices.append((_("No, do not flash image"), False))
+			choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x)))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
 
 	def checkMedia(self, retval):
 		if retval:
 			if SystemInfo["canMultiBoot"]:
 				self.multibootslot = retval[0]
-				doBackup = retval[1] == "with backup"
-			else:
-				doBackup = retval == "with backup"
 
 			def findmedia(path):
 				def avail(path):
@@ -308,13 +301,10 @@ class FlashImage(Screen):
 						os.remove(destination)
 					if not os.path.isdir(destination):
 						os.mkdir(destination)
-					if doBackup:
-						if isDevice:
-							self.startBackupsettings(True)
-						else:
-							self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
+					if isDevice:
+						self.startBackupsettings(True)
 					else:
-						self.startDownload()
+						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
 				except:
 					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 			else:
@@ -332,10 +322,10 @@ class FlashImage(Screen):
 	def flashPostAction(self, retval = True):
 		if retval:
 			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
-			choices = ((_("Flash and start installation wizard"), "wizard"),
-			(_("Flash and restore settings and no plugins"), "restoresettingsnoplugin"),
-			(_("Flash and restore settings and selected plugins (ask user)"), "restoresettings"),
-			(_("Flash and restore settings and all saved plugins"), "restoresettingsandallplugins"),
+			choices = ((_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
+			(_("Clean (Just flash and start clean)"), "wizard"),
+			(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
+			(_("Backup, flash and restore settings and selected plugins (ask user)"), "restoresettings"),
 			(_("Do not flash image"), "abort"))
 			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=choices,selection=self.SelectPrevPostFashAction())
 		else:
