@@ -174,8 +174,8 @@ class ImageBackup(Screen):
 							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs%s" %self.SLOT)[5:]
 							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel%s" %self.SLOT)[5:]
 						except:
-							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs")
-							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel")
+							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs")[5:]
+							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel")[5:]
 
 				print "[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
 				print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
