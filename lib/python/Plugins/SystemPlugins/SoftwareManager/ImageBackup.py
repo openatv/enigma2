@@ -88,12 +88,12 @@ class ImageBackup(Screen):
 			for x in sorted(imagedict.keys()):
 				if imagedict[x]["imagename"] != _("Empty slot"):
 					if x == 1 and currentimageslot == 1 and SystemInfo["canRecovery"]:
-						list.append(ChoiceEntryComponent('',(_("slot%s -%s - %s as USB Recovery") % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, True)))
-					list.append(ChoiceEntryComponent('',((_("slot%s -%s - %s (current image)") if x == currentimageslot else _("slot%s -%s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, False)))
+						list.append(ChoiceEntryComponent('',(_("slot%s - %s - %s as USB Recovery") % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, True)))
+					list.append(ChoiceEntryComponent('',((_("slot%s - %s - %s (current image)") if x == currentimageslot else _("slot%s - %s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x, False)))
 		else:
 			if SystemInfo["canRecovery"]:
-				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery" %(getImageDistro(), getImageVersion())),"1","1",True)))
-			list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s " %(getImageDistro(), getImageVersion())),"1","1",False)))
+				list.append(ChoiceEntryComponent('',(_("internal flash: %s %s as USB Recovery") %(getImageDistro(), getImageVersion()),"1","1",True)))
+			list.append(ChoiceEntryComponent('',(_("internal flash:  %s %s ") %(getImageDistro(), getImageVersion()),"1","1",False)))
 		self["config"].setList(list)
 
 	def start(self):
@@ -174,8 +174,8 @@ class ImageBackup(Screen):
 							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs%s" %self.SLOT)[5:]
 							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel%s" %self.SLOT)[5:]
 						except:
-							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs")
-							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel")
+							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs")[5:]
+							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel")[5:]
 
 				print "[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
 				print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
@@ -369,7 +369,7 @@ class ImageBackup(Screen):
 					cmdlist.append('parted -s %s unit KiB mkpart linuxkernel3 %s %s' % (EMMC_IMAGE, THRID_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL3 ))
 					PARTED_END_KERNEL4 = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 					cmdlist.append('parted -s %s unit KiB mkpart linuxkernel4 %s %s' % (EMMC_IMAGE, FOURTH_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL4 ))
-					rd = open("/proc/swap", "r").read()
+					rd = open("/proc/swaps", "r").read()
 					if "mmcblk0p7" in rd: 
 						SWAP_PARTITION_OFFSET = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 						SWAP_PARTITION_SIZE = int(262144)

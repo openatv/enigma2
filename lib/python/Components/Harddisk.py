@@ -81,8 +81,11 @@ def getFolderSize(path):
 	return total_bytes
 
 def Freespace(dev):
-	statdev = os.statvfs(dev)
-	space = (statdev.f_bavail * statdev.f_frsize) / 1024
+	try:
+		statdev = os.statvfs(dev)
+		space = (statdev.f_bavail * statdev.f_frsize) / 1024
+	except:
+		space = 0
 	return space
 
 
