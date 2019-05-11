@@ -328,11 +328,11 @@ class FlashImage(Screen):
 			(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
 			(_("Backup, flash and restore settings and selected plugins (ask user)"), "restoresettings"),
 			(_("Do not flash image"), "abort"))
-			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=choices,selection=self.SelectPrevPostFashAction())
+			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=choices,selection=self.SelectPrevPostFlashAction())
 		else:
 			self.abort()
 
-	def SelectPrevPostFashAction(self):
+	def SelectPrevPostFlashAction(self):
 		index = 0
 		Settings = False
 		AllPlugins = False
@@ -343,15 +343,12 @@ class FlashImage(Screen):
 			AllPlugins = True
 		if os.path.exists('/media/hdd/images/config/noplugins'):
 			noPlugins = True
-
-		if Settings and noPlugins:
-			index = 2
-		elif Settings and not AllPlugins and not noPlugins:
-			index = 3
-		elif Settings and AllPlugins:
-			index = 0
-		else:
+		if 	Settings and noPlugins:
 			index = 1
+		elif Settings and not AllPlugins and not noPlugins:
+			index = 2
+		elif Settings and AllPlugins:
+			index = 3
 		return index
 
 	def postFlashActionCallback(self, answer):
