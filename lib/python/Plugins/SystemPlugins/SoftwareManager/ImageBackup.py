@@ -484,6 +484,7 @@ class ImageBackup(Screen):
 				os.system('mv %s/%s %s/%s' %(self.WORKDIR,self.EMMCIMG, self.MAINDESTROOT,self.EMMCIMG))
 				cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.MAINDESTROOT))
 				cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.MAINDESTROOT))
+				cmdlist.append('cp -f /usr/share/apploader.bin %s/apploader.bin' %(self.MAINDESTROOT))
 			else:
 				os.system('mv %s/%s %s/%s' %(self.WORKDIR,self.EMMCIMG, self.MAINDEST,self.EMMCIMG))
 		elif self.MODEL in ("vuultimo4k","vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno"):
