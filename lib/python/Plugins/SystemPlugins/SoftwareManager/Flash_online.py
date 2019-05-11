@@ -343,12 +343,15 @@ class FlashImage(Screen):
 			AllPlugins = True
 		if os.path.exists('/media/hdd/images/config/noplugins'):
 			noPlugins = True
-		if 	Settings and noPlugins:
-			index = 1
-		elif Settings and not AllPlugins and not noPlugins:
+
+		if Settings and noPlugins:
 			index = 2
-		elif Settings and AllPlugins:
+		elif Settings and not AllPlugins and not noPlugins:
 			index = 3
+		elif Settings and AllPlugins:
+			index = 0
+		else:
+			index = 1
 		return index
 
 	def postFlashActionCallback(self, answer):
