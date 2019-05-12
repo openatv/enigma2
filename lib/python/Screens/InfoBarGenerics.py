@@ -3121,7 +3121,7 @@ class InfoBarExtensions:
 					"extensions": (self.bluekey_ex, _("Show extensions...")),
 					"quickmenu": (self.bluekey_qm, _("Show quickmenu...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
+					"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
 					"openTimerList": (self.showTimerList, _("Show the list of timers.")),
 					"openAutoTimerList": (self.showAutoTimerList, _("Show the list of AutoTimers.")),
 					"openEPGSearch": (self.showEPGSearch, _("Search the epg for current event.")),
@@ -3136,7 +3136,7 @@ class InfoBarExtensions:
 					"quickmenu": (self.bluekey_qm, _("Show quickmenu...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
 					"showDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
-					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
+					"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				}, 1) # lower priority
 
