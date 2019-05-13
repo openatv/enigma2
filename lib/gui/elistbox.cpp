@@ -102,7 +102,7 @@ void eListbox::moveSelection(long dir)
 	if (!m_content)
 		return;
 	/* if our list does not have one entry, don't do anything. */
-	if (!m_items_per_page)
+	if (!m_items_per_page || !m_content->size())
 		return;
 	/* we need the old top/sel to see what we have to redraw */
 	int oldtop = m_top;
