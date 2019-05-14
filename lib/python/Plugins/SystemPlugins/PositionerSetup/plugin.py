@@ -67,6 +67,7 @@ class PositionerSetup(Screen):
 	def __init__(self, session, feid):
 		self.session = session
 		Screen.__init__(self, session)
+		self.setTitle(_("Positioner setup"))
 		self.feid = feid
 		self.oldref = None
 		log.open(self.LOG_SIZE)
