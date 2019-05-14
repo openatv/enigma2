@@ -1069,6 +1069,7 @@ class TunerScreen(ConfigListScreen, Screen):
 		self.fe_data = fe_data
 		Screen.__init__(self, session)
 		ConfigListScreen.__init__(self, None)
+		self.setTitle(_("Tune"))
 		self.createConfig(fe_data)
 		self.initialSetup()
 		self.createSetup()
