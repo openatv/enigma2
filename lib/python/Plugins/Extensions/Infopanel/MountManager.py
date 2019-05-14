@@ -201,11 +201,17 @@ class HddMount(Screen):
 		name = 'USB: '
 		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
 		if device2.startswith('mmcblk'):
-			model = file('/sys/block/' + device2 + '/device/name').read()
+			try:
+				model = file('/sys/block/' + device2 + '/device/name').read()
+			except:
+				model = ''
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_mmc.png'
 			name = 'MMC: '
 		else:
-			model = file('/sys/block/' + device2 + '/device/model').read()
+			try:
+				model = file('/sys/block/' + device2 + '/device/model').read()
+			except:
+				model = ''
 		model = str(model).replace('\n', '')
 		des = ''
 		if devicetype.find('/devices/pci') != -1 or devicetype.find('ahci') != -1:
