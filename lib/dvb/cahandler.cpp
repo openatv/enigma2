@@ -556,7 +556,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	int pmtpid = table_spec.pid,
 		pmt_version = table_spec.version;
 
-	uint8_t demux_mask = 0;
+	uint32_t demux_mask = 0;
 	int data_demux = -1;
 	uint32_t crc = 0;
 
@@ -586,7 +586,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	build_hash <<= 16;
 	build_hash |= pmtpid;
 	build_hash <<= 8;
-	build_hash |= demux_mask;
+	build_hash |= (demux_mask & 0xff);
 	build_hash <<= 8;
 	build_hash |= (pmt_version & 0xff);
 	build_hash <<= 16;
@@ -651,7 +651,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 
 		tmp[0] = 0x82; // demux
 		tmp[1] = 0x02;
-		tmp[2] = demux_mask;	// descramble bitmask
+		tmp[2] = demux_mask&0xFF; // descramble bitmask
 		tmp[3] = data_demux&0xFF; // read section data from demux number
 		capmt.injectDescriptor(tmp, false);
 
@@ -673,6 +673,11 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 		tmp[3] = (m_service_type_mask >> 16) & 0xff;
 		tmp[4] = (m_service_type_mask >> 8) & 0xff;
 		tmp[5] = m_service_type_mask & 0xff;
+		capmt.injectDescriptor(tmp, true);
+
+		tmp[0] = 0x86; // demux only
+		tmp[1] = 0x01;
+		tmp[2] = data_demux&0xFF; // read section data from demux number
 		capmt.injectDescriptor(tmp, true);
 
 		ePtr<eDVBService> dvbservice;
@@ -718,7 +723,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 {
 	int pmt_version = 0;
-	uint8_t demux_mask = 0;
+	uint32_t demux_mask = 0;
 	int data_demux = -1;
 	uint32_t crc = 0;
 
@@ -754,7 +759,7 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 	build_hash <<= 16;
 	build_hash |= pmtpid;
 	build_hash <<= 8;
-	build_hash |= demux_mask;
+	build_hash |= (demux_mask & 0xff);
 	build_hash <<= 8;
 	build_hash |= (pmt_version & 0xff);
 	build_hash <<= 16;
@@ -796,7 +801,7 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 
 	m_capmt[pos++] = 0x82; // demux
 	m_capmt[pos++] = 0x02;
-	m_capmt[pos++] = demux_mask;	// descramble bitmask
+	m_capmt[pos++] = demux_mask&0xFF; // descramble bitmask
 	m_capmt[pos++] = data_demux&0xFF; // read section data from demux number
 
 	programInfoLength += 4;
@@ -839,6 +844,12 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 	m_capmt[pos++] = m_service_type_mask & 0xff;
 
 	programInfoLength += 6;
+
+	m_capmt[pos++] = 0x86; // demux
+	m_capmt[pos++] = 0x01;
+	m_capmt[pos++] = data_demux&0xFF; // read section data from demux number
+
+	programInfoLength += 3;
 
 	std::map<int,int> pidtype;
 
