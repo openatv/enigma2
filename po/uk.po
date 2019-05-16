@@ -48,7 +48,9 @@ msgstr ""
 msgid ""
 "\n"
 "%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
+msgstr ""
+"\n"
+"%Y/%m/%d  %H:%M - "
 
 msgid ""
 "\n"
@@ -100,7 +102,7 @@ msgid ""
 "Flash on the fly your %s %s."
 msgstr ""
 "\n"
-"Прошити %s %s онлайн або локально."
+"Прошити онлайн Ваш %s %s."
 
 msgid ""
 "\n"
@@ -143,7 +145,7 @@ msgid ""
 "Restore your %s %s settings."
 msgstr ""
 "\n"
-"Відновити ваші %s %s налаштування."
+"Відновити Ваші %s %s налаштування."
 
 #, python-format
 msgid ""
@@ -208,13 +210,13 @@ msgid " "
 msgstr ""
 
 msgid "     no space left on back-up device"
-msgstr ""
+msgstr "     на пристрої не залишилося місця"
 
 msgid "     no writing permission on back-up device"
-msgstr ""
+msgstr "     відсутність дозволу на створення резервної копії"
 
 msgid "     wrong back-up destination "
-msgstr ""
+msgstr "     неправильне місце призначення"
 
 msgid "  Menu key : Select quad channel"
 msgstr ""
@@ -228,7 +230,7 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid " ('%s') ends with error messages."
-msgstr "Приховати повідомлення про помилки при перемиканні каналів."
+msgstr " ('%s') закінчується повідомленнями про помилки."
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
@@ -240,10 +242,10 @@ msgstr " (Канал %s)"
 
 #, fuzzy, python-format
 msgid " (Partition %d)"
-msgstr "Розділи"
+msgstr " (Розділ %d)"
 
 msgid " (PiP)"
-msgstr ""
+msgstr "ПіП"
 
 msgid " (Radio)"
 msgstr " (Радіо)"
@@ -253,7 +255,7 @@ msgstr " (ТБ)"
 
 #, fuzzy
 msgid " (current channel)"
-msgstr "Показати ЕПГ поточного каналу..."
+msgstr " (поточний канал)"
 
 msgid " (disabled)"
 msgstr " (вимкнуто)"
@@ -269,24 +271,24 @@ msgstr " (нище будь-якого авто)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
-msgstr ""
+msgstr " - %d елементи існують! Перезаписати"
 
 msgid " - 1 element exist! Overwrite"
-msgstr ""
+msgstr " - 1 елемент існує! Перезаписати"
 
 msgid " - file exist! Overwrite"
-msgstr ""
+msgstr " - файл існує! Перезаписати"
 
 msgid " - folder exist! Overwrite"
-msgstr ""
+msgstr " - папка існує! Перезаписати"
 
 #, fuzzy
 msgid " <No Channel>"
-msgstr "Канал"
+msgstr " <Немає каналу>"
 
 #, fuzzy
 msgid " <empty>"
-msgstr "відсутній"
+msgstr " <відсутній>"
 
 #, python-format
 msgid " Except %s"
@@ -301,7 +303,7 @@ msgstr ""
 " Не запущений !!\n"
 "\n"
 "Назва емулятора не знайдена у команді запуску\n"
-"Перевірте конфіги емулятора"
+"Перевірте конфігурацію емулятора"
 
 msgid " and"
 msgstr " і"
@@ -331,95 +333,95 @@ msgstr "%-H:%M"
 
 #, fuzzy
 msgid "%-H:%M - "
-msgstr "%-H:%M"
+msgstr "%-H:%M - "
 
 #, fuzzy
 msgid "%-H:%M:%S"
-msgstr "%-H:%M"
+msgstr "%-H:%M:%S"
 
 msgid "%-I:%M"
-msgstr ""
+msgstr "%-I:%M"
 
 msgid "%-I:%M%P"
-msgstr ""
+msgstr "%-I:%M%P"
 
 msgid "%-I:%M%^p"
-msgstr ""
+msgstr "%-I:%M%^p"
 
 msgid "%-I:%M:%S"
-msgstr ""
+msgstr "%-I:%M:%S"
 
 msgid "%-I:%M:%S%P"
-msgstr ""
+msgstr "%-I:%M:%S%P"
 
 msgid "%-I:%M:%S%^p"
-msgstr ""
+msgstr "%-I:%M:%S%^p"
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%-d %B %Y"
-msgstr "%d %B %Y"
+msgstr "%-d %B %Y"
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%-d %b"
-msgstr "%a %d %b"
+msgstr "%-d %b"
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
 msgid "%-d %b %Y"
-msgstr ""
+msgstr "%-d %b %Y"
 
 msgid "%-d+%b_"
-msgstr ""
+msgstr "%-d+%b_"
 
 msgid "%-d-%B-%Y"
-msgstr ""
+msgstr "%-d-%B-%Y"
 
 msgid "%-d-%b"
-msgstr ""
+msgstr "%-d-%b"
 
 msgid "%-d-%b-%Y"
-msgstr ""
+msgstr "%-d-%b-%Y"
 
 msgid "%-d/%-m"
-msgstr ""
+msgstr "%-d/%-m"
 
 msgid "%-d/%-m "
-msgstr ""
+msgstr "%-d/%-m "
 
 msgid "%-d/%-m/%Y"
-msgstr ""
+msgstr "%-d/%-m/%Y"
 
 msgid "%-d/%m"
-msgstr ""
+msgstr "%-d/%m"
 
 msgid "%-d/%m "
-msgstr ""
+msgstr "%-d/%m "
 
 msgid "%-d/%m/%Y"
-msgstr ""
+msgstr "%-d/%m/%Y"
 
 msgid "%-d=%b_"
-msgstr ""
+msgstr "%-d=%b_"
 
 msgid "%-m/%-d"
-msgstr ""
+msgstr "%-m/%-d"
 
 msgid "%-m/%-d "
-msgstr ""
+msgstr "%-m/%-d "
 
 msgid "%-m/%-d/%Y"
-msgstr ""
+msgstr "%-m/%-d/%Y"
 
 msgid "%-m/%d"
-msgstr ""
+msgstr "%-m/%d"
 
 msgid "%-m/%d "
-msgstr ""
+msgstr "%-m/%d "
 
 msgid "%-m/%d/%Y"
-msgstr ""
+msgstr "%-m/%d/%Y"
 
 #, python-format
 msgid "%.0f GB"
@@ -427,7 +429,7 @@ msgstr "%.0f ГБ"
 
 #, fuzzy, python-format
 msgid "%.0f MB"
-msgstr "%.0f ГБ"
+msgstr "%.0f МБ"
 
 #, python-format
 msgid "%.2f GB"
@@ -439,23 +441,23 @@ msgstr "%02d.%02d - %02d.%02d"
 
 #, fuzzy, python-format
 msgid "%02d.%02d."
-msgstr "%2d:%02d"
+msgstr "%02d.%02d."
 
 #, fuzzy, python-format
 msgid "%02d.%02d.%d"
-msgstr "%02d.%02d - %02d.%02d"
+msgstr "%02d.%02d.%d"
 
 #, fuzzy, python-format
 msgid "%02d:%02d"
-msgstr "%2d:%02d"
+msgstr "%02d:%02d"
 
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
-msgstr "%02d.%02d - %02d.%02d"
+msgstr "%02d:%02d - %02d:%02d"
 
 #, python-format
 msgid "%2.1f sec"
-msgstr ""
+msgstr "%2.1f сек"
 
 msgid "%A"
 msgstr "%A"
@@ -463,250 +465,250 @@ msgstr "%A"
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%A %-d %B"
-msgstr "%A %d %B"
+msgstr "%A %-d %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%A %-d %B %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-d %B %Y"
 
 #, fuzzy
 msgid "%A %-d-%B"
-msgstr "%A %d %B"
+msgstr "%A %-d-%B"
 
 #, fuzzy
 msgid "%A %-d-%B-%Y"
-msgstr "%A %d %B"
+msgstr "%A %-d-%B-%Y"
 
 #, fuzzy
 msgid "%A %-d/%-m"
-msgstr "%A %d %B"
+msgstr "%A %-d/%-m"
 
 msgid "%A %-d/%-m/%Y"
-msgstr ""
+msgstr "%A %-d/%-m/%Y"
 
 #, fuzzy
 msgid "%A %-d/%m"
-msgstr "%A %d %B"
+msgstr "%A %-d/%m"
 
 #, fuzzy
 msgid "%A %-d/%m/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-d/%m/%Y"
 
 msgid "%A %-m/%-d"
-msgstr ""
+msgstr "%A %-m/%-d"
 
 msgid "%A %-m/%-d/%Y"
-msgstr ""
+msgstr "%A %-m/%-d/%Y"
 
 msgid "%A %-m/%d"
-msgstr ""
+msgstr "%A %-m/%d"
 
 #, fuzzy
 msgid "%A %-m/%d/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-m/%d/%Y"
 
 #, fuzzy
 msgid "%A %B %-d"
-msgstr "%d %B %Y"
+msgstr "%A %B %-d"
 
 #, fuzzy
 msgid "%A %B %-d %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B %-d %Y"
 
 #, fuzzy
 msgid "%A %B %d"
-msgstr "%d %B %Y"
+msgstr "%A %B %d"
 
 #, fuzzy
 msgid "%A %B %d %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B %d %Y"
 
 #, fuzzy
 msgid "%A %B-%-d"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%-d"
 
 #, fuzzy
 msgid "%A %B-%-d-%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%-d-%Y"
 
 #, fuzzy
 msgid "%A %B-%d"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%d"
 
 #, fuzzy
 msgid "%A %B-%d-%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%d-%Y"
 
 #, fuzzy
 msgid "%A %Y %B %-d"
-msgstr "%A %e %B %Y"
+msgstr "%A %Y %B %-d"
 
 #, fuzzy
 msgid "%A %Y %B %d"
-msgstr "%A %e %B %Y"
+msgstr "%A %Y %B %d"
 
 #, fuzzy
 msgid "%A %Y-%B-%-d"
-msgstr "%Y-%m-%d"
+msgstr "%A %Y-%B-%-d"
 
 #, fuzzy
 msgid "%A %Y-%B-%d"
-msgstr "%Y-%m-%d"
+msgstr "%A %Y-%B-%d"
 
 msgid "%A %Y/%-m/%-d"
-msgstr ""
+msgstr "%A %Y/%-m/%-d"
 
 msgid "%A %Y/%-m/%d"
-msgstr ""
+msgstr "%A %Y/%-m/%d"
 
 msgid "%A %Y/%m/%-d"
-msgstr ""
+msgstr "%A %Y/%m/%-d"
 
 msgid "%A %Y/%m/%d"
-msgstr ""
+msgstr "%A %Y/%m/%d"
 
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
 #, fuzzy
 msgid "%A %d %B %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %d %B %Y"
 
 #, fuzzy
 msgid "%A %d-%B"
-msgstr "%A %d %B"
+msgstr "%A %d-%B"
 
 #, fuzzy
 msgid "%A %d-%B-%Y"
-msgstr "%A %d %B"
+msgstr "%A %d-%B-%Y"
 
 #, fuzzy
 msgid "%A %d/%-m"
-msgstr "%A %d %B"
+msgstr "%A %d/%-m"
 
 #, fuzzy
 msgid "%A %d/%-m/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %d/%-m/%Y"
 
 #, fuzzy
 msgid "%A %d/%m"
-msgstr "%A %d %B"
+msgstr "%A %d/%m"
 
 #, fuzzy
 msgid "%A %d/%m/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %d/%m/%Y"
 
 msgid "%A %e %b"
 msgstr "%A %e %b"
 
 msgid "%A %m/%-d"
-msgstr ""
+msgstr "%A %m/%-d"
 
 #, fuzzy
 msgid "%A %m/%-d/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %m/%-d/%Y"
 
 #, fuzzy
 msgid "%A %m/%d"
-msgstr "%A %d %B"
+msgstr "%A %m/%d"
 
 #, fuzzy
 msgid "%A %m/%d/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %m/%d/%Y"
 
 #, fuzzy
 msgid "%B %-d %Y"
-msgstr "%d %B %Y"
+msgstr "%B %-d %Y"
 
 #, fuzzy
 msgid "%B %d %Y"
-msgstr "%A %d %B"
+msgstr "%B %d %Y"
 
 msgid "%B-%-d-%Y"
-msgstr ""
+msgstr "%B-%-d-%Y"
 
 #, fuzzy
 msgid "%B-%d-%Y"
-msgstr "%d-%m"
+msgstr "%B-%d-%Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
 
 msgid "%I:%M"
-msgstr ""
+msgstr "%I:%M"
 
 msgid "%I:%M%P"
-msgstr ""
+msgstr "%I:%M%P"
 
 msgid "%I:%M%^p"
-msgstr ""
+msgstr "%I:%M%^p"
 
 msgid "%I:%M:%S"
-msgstr ""
+msgstr "%I:%M:%S"
 
 msgid "%I:%M:%S%P"
-msgstr ""
+msgstr "%I:%M:%S%P"
 
 msgid "%I:%M:%S%^p"
-msgstr ""
+msgstr "%I:%M:%S%^p"
 
 #. TRANSLATORS: short time representation hour:minute (Same as "Default")
 msgid "%R"
-msgstr ""
+msgstr "%R"
 
 #. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
 msgid "%T"
-msgstr ""
+msgstr "%T"
 
 #, fuzzy
 msgid "%Y %B %-d"
-msgstr "%d %B %Y"
+msgstr "%Y %B %-d"
 
 #, fuzzy
 msgid "%Y %B %d"
-msgstr "%d %B %Y"
+msgstr "%Y %B %d"
 
 msgid "%Y %b %-d"
-msgstr ""
+msgstr "%Y %b %-d"
 
 msgid "%Y %b %d"
-msgstr ""
+msgstr "%Y %b %d"
 
 #, fuzzy
 msgid "%Y-%B-%-d"
-msgstr "%Y-%m-%d"
+msgstr "%Y-%B-%-d"
 
 #, fuzzy
 msgid "%Y-%B-%d"
-msgstr "%Y-%m-%d"
+msgstr "%Y-%B-%d"
 
 #, fuzzy
 msgid "%Y-%b-%-d"
-msgstr "%Y-%m-%d"
+msgstr "%Y-%b-%-d"
 
 #, fuzzy
 msgid "%Y-%b-%d"
-msgstr "%Y-%m-%d"
+msgstr "%Y-%b-%d"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
 #, fuzzy
 msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d"
+msgstr "%Y-%m-%d %H-%M"
 
 msgid "%Y/%-m/%-d"
-msgstr ""
+msgstr "%Y/%-m/%-d"
 
 msgid "%Y/%-m/%d"
-msgstr ""
+msgstr "%Y/%-m/%d"
 
 msgid "%Y/%m/%-d"
-msgstr ""
+msgstr "%Y/%m/%-d"
 
 msgid "%Y/%m/%d"
-msgstr ""
+msgstr "%Y/%m/%d"
 
 msgid "%a"
 msgstr "%a"
@@ -714,38 +716,38 @@ msgstr "%a"
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%a %-d"
-msgstr "%a %d"
+msgstr "%a %-d"
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%a %-d %B %Y"
-msgstr "%a %e %B %Y"
+msgstr "%a %-d %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%a %-d %b"
-msgstr "%a %d %b"
+msgstr "%a %-d %b"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%a %-d %b %Y"
-msgstr "%a %d %b"
+msgstr "%a %-d %b %Y"
 
 #, fuzzy
 msgid "%a %-d+%b_"
-msgstr "%a %d %b"
+msgstr "%a %-d+%b_"
 
 #, fuzzy
 msgid "%a %-d-%B-%Y"
-msgstr "%a %d %B"
+msgstr "%a %-d-%B-%Y"
 
 #, fuzzy
 msgid "%a %-d-%b"
-msgstr "%a %d %b"
+msgstr "%a %-d-%b"
 
 #, fuzzy
 msgid "%a %-d-%b-%Y"
-msgstr "%a %d %b"
+msgstr "%a %-d-%b-%Y"
 
 #, fuzzy
 msgid "%a %-d/%-m"
@@ -1033,7 +1035,7 @@ msgstr[2] "%d хв"
 
 #, python-format
 msgid "%d Mins"
-msgstr "%d Хв"
+msgstr "%d Хв."
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
