@@ -87,7 +87,7 @@ class MultiBootSelector(Screen):
 			if not SystemInfo["canMode12"]:
 				for x in sorted(imagedict.keys()):
 					if imagedict[x]["imagename"] != _("Empty slot"):
-						list.append(ChoiceEntryComponent('',((_("slot%s -%s - %s (current image)") if x == currentimageslot else _("slot%s -%s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x)))
+						list.append(ChoiceEntryComponent('',((_("slot%s - %s - %s (current image)") if x == currentimageslot else _("slot%s - %s - %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x)))
 			else:
 				for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
 					if imagedict[x]["imagename"] != _("Empty slot"):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 21:54+0000\n"
+"POT-Creation-Date: 2019-05-15 20:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2351,7 +2351,7 @@ msgstr ""
 msgid "Are you ready to run the script ?"
 msgstr ""
 
-msgid "Are you sure to cancel all changes"
+msgid "Are you sure to cancel all changes?"
 msgstr ""
 
 msgid "Are you sure to delete all cuts and marks?"
@@ -2795,6 +2795,12 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
+msgid "Backup, flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr ""
+
 msgid "Bahamas"
 msgstr ""
 
@@ -3205,6 +3211,9 @@ msgstr ""
 msgid "Cancelled upon user request"
 msgstr ""
 
+msgid "Cannot create backup directory"
+msgstr ""
+
 msgid "Cannot delete downloaded image"
 msgstr ""
 
@@ -3497,6 +3506,9 @@ msgid "Circular left"
 msgstr ""
 
 msgid "Circular right"
+msgstr ""
+
+msgid "Clean (Just flash and start clean)"
 msgstr ""
 
 msgid "Clean network trash cans"
@@ -5681,18 +5693,6 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
-msgid "Flash and restore settings and all saved plugins"
-msgstr ""
-
-msgid "Flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr ""
-
-msgid "Flash and start installation wizard"
-msgstr ""
-
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7656,9 +7656,6 @@ msgstr ""
 msgid "MultiBoot Image Manager"
 msgstr ""
 
-msgid "MultiBootSelector"
-msgstr ""
-
 msgid "MultiQuickButton"
 msgstr ""
 
@@ -8116,7 +8113,7 @@ msgstr ""
 msgid "No, do not backup a image"
 msgstr ""
 
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr ""
 
 msgid "No, never"
@@ -11433,7 +11430,7 @@ msgstr ""
 msgid "Show the Sleep Timer..."
 msgstr ""
 
-msgid "Show the infomation on current event."
+msgid "Show the information on current event."
 msgstr ""
 
 msgid "Show the list of AutoTimers."
@@ -13590,6 +13587,9 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr ""
+
 msgid "Upgrade and reboot system"
 msgstr ""
 
@@ -14388,12 +14388,6 @@ msgid "Yes, delete this movie and return to movie list"
 msgstr ""
 
 msgid "Yes, returning to movie list"
-msgstr ""
-
-msgid "Yes, with backup"
-msgstr ""
-
-msgid "Yes, without backup"
 msgstr ""
 
 msgid "Yesterday"
@@ -16162,15 +16156,27 @@ msgid "skip forward (enter time)"
 msgstr ""
 
 #, python-format
+msgid "slot%s - %s"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s "
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image) with, backup"
+msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image), without backup"
+msgid "slot%s - %s - %s "
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s as USB Recovery"
 msgstr ""
 
 #, python-format
@@ -16190,23 +16196,7 @@ msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s, with backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s, without backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s as USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s- %s "
+msgid "slot%s - %s- %s "
 msgstr ""
 
 msgid "slow"

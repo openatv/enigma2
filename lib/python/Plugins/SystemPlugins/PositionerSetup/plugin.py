@@ -67,6 +67,7 @@ class PositionerSetup(Screen):
 	def __init__(self, session, feid):
 		self.session = session
 		Screen.__init__(self, session)
+		self.setTitle(_("Positioner setup"))
 		self.feid = feid
 		self.oldref = None
 		log.open(self.LOG_SIZE)
@@ -1021,7 +1022,7 @@ class PositionerSetupLog(Screen):
 		self["key_green"] = Button()
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button(_("Save"))
-		self["list"] = ScrollLabel(log.value)
+		self["list"] = ScrollLabel(log.getvalue())
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ColorActions"],
 		{
 			"red": self.clear,
@@ -1068,6 +1069,7 @@ class TunerScreen(ConfigListScreen, Screen):
 		self.fe_data = fe_data
 		Screen.__init__(self, session)
 		ConfigListScreen.__init__(self, None)
+		self.setTitle(_("Tune"))
 		self.createConfig(fe_data)
 		self.initialSetup()
 		self.createSetup()

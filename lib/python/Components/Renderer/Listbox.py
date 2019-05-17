@@ -96,6 +96,8 @@ class Listbox(Renderer, object):
 			self.scrollbarMode = self.source.scrollbarMode
 		if len(what) > 1 and isinstance(what[1], str) and what[1] == "style":
 			return
+		if self.content:
+			return
 		self.content = self.source.content
 
 	def entry_changed(self, index):
