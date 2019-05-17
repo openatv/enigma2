@@ -205,9 +205,12 @@ msgid ""
 "optional parameter:\n"
 "%s"
 msgstr ""
+"\n"
+"необов’язковий параметр:\n"
+"%s"
 
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid "     no space left on back-up device"
 msgstr "     на пристрої не залишилося місця"
@@ -219,14 +222,14 @@ msgid "     wrong back-up destination "
 msgstr "     неправильне місце призначення"
 
 msgid "  Menu key : Select quad channel"
-msgstr ""
+msgstr "  Клавіша Меню: Вибір чотириканального каналу"
 
 msgid "  Red key : Show/Hide channel name"
-msgstr ""
+msgstr "  Червона клавіша: Показати/приховати назву каналу"
 
 #, python-format
 msgid " ('%s') ends successefully."
-msgstr ""
+msgstr " ('%s') закінчено успішно."
 
 #, fuzzy, python-format
 msgid " ('%s') ends with error messages."
@@ -234,7 +237,7 @@ msgstr " ('%s') закінчується повідомленнями про п�
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
-msgstr ""
+msgstr " ('%s') закінчується номером помилки [%d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -245,7 +248,7 @@ msgid " (Partition %d)"
 msgstr " (Розділ %d)"
 
 msgid " (PiP)"
-msgstr "ПіП"
+msgstr " (ПіП)"
 
 msgid " (Radio)"
 msgstr " (Радіо)"
@@ -284,7 +287,7 @@ msgstr " - папка існує! Перезаписати"
 
 #, fuzzy
 msgid " <No Channel>"
-msgstr " <Немає каналу>"
+msgstr " <Немає Каналу>"
 
 #, fuzzy
 msgid " <empty>"
@@ -313,20 +316,23 @@ msgid ""
 " available !!\n"
 "\n"
 "Do you want to install the new settingslist?"
-msgstr "Ви хочете відновити свої налаштування?"
+msgstr ""
+" доступні !!\n"
+"\n"
+"Установити новий список налаштувань?"
 
 msgid " of "
-msgstr ""
+msgstr " з"
 
 msgid " or save additional the picture to a file"
-msgstr ""
+msgstr " або зберегти додаткове зображення до файлу"
 
 #, fuzzy
 msgid " updated"
-msgstr "Оновлення"
+msgstr " оновлення"
 
 msgid "!! Bootloader Upgrade !!"
-msgstr ""
+msgstr "!! Оновлення завантажувача !!"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -437,7 +443,7 @@ msgstr "%.2f ГБ"
 
 #, fuzzy, python-format
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d"
+msgstr "%02d.%02d - %02d.%02d (%s%d хв.)"
 
 #, fuzzy, python-format
 msgid "%02d.%02d."
@@ -751,46 +757,46 @@ msgstr "%a %-d-%b-%Y"
 
 #, fuzzy
 msgid "%a %-d/%-m"
-msgstr "%a %e/%m"
+msgstr "%a %-d/%-m"
 
 #, fuzzy
 msgid "%a %-d/%-m/%Y"
-msgstr "%a %e/%m"
+msgstr ""%a %-d/%-m/%Y"
 
 #, fuzzy
 msgid "%a %-d/%m"
-msgstr "%a %e/%m"
+msgstr "%a %-d/%m"
 
 #, fuzzy
 msgid "%a %-d/%m/%Y"
-msgstr "%a %e/%m"
+msgstr "%a %-d/%m/%Y"
 
 #, fuzzy
 msgid "%a %-m/%-d"
-msgstr "%a %d"
+msgstr "%a %-m/%-d"
 
 msgid "%a %-m/%-d/%Y"
-msgstr ""
+msgstr "%a %-m/%-d/%Y"
 
 #, fuzzy
 msgid "%a %-m/%d"
-msgstr "%a %d"
+msgstr "%a %-m/%d"
 
 #, fuzzy
 msgid "%a %-m/%d/%Y"
-msgstr "%a %e %B %Y"
+msgstr "%a %-m/%d/%Y"
 
 #, fuzzy
 msgid "%a %B %-d %Y"
-msgstr "%a %e %B %Y"
+msgstr "%a %B %-d %Y"
 
 #, fuzzy
 msgid "%a %B %d %Y"
-msgstr "%a %e %B %Y"
+msgstr "%a %B %d %Y"
 
 #, fuzzy
 msgid "%a %B-%-d-%Y"
-msgstr "%a %e %B %Y"
+msgstr "%a %B-%-d-%Y"
 
 #, fuzzy
 msgid "%a %B-%d-%Y"
