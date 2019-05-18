@@ -1,0 +1,134 @@
+A Guide to the Updated NumericalTextInput
+-----------------------------------------
+
+Written by IanSav -  4-Sep-2018
+
+This document explains the changes and updates to the NumericalTextInput 
+of Enigma2.  The code is located in:
+	/usr/lib/enigma2/python/Tools/NumericalTextInput.py
+
+The revision has been designed to be a drop in replacement for the previous 
+versions.
+
+The revised NumericalTextInput is now heavly driven by laguage based data 
+tables.  English is no longer the only fully supported language.  The 
+design of the tables is to allow symmetry of features for ALL the supported 
+languages.
+
+One of the changes is to offer all ASCII printable characters for selection 
+via the SMS style data entry in all available locales.  The new characters 
+have been added to the "0" and "1" buttons.
+
+The original calling parameters "nextFunc=", "handleTimeout=" and "mapping=" 
+are unchanged.  The function parameter "nextFunc=" defines a call-back 
+function that is called when a character has been selected.  The Boolean 
+parameter "handleTimeout=" specifies if NumericalTextInput should set its 
+own timers to handle the character recognition task.  The tuple parameter 
+"mapping=" allows a programmer to supply tupple of the characters to be 
+used in the NumericalTextInput UI and processing.
+
+The original Boolean "search=" calling parameter is still offered but is 
+now deprecated.  In its original use the Boolean parameter allowed a 
+programmer to nominate that the NumericalTextInput is to be used to enter 
+a search string.  Selecting this option now simply selects the "Search" 
+mode.  It is suggested, and recommended, that all code that refers to 
+NumericalTextInput should change any "search=" parameters to an appropriate 
+"mode=" parameter.
+
+A new calling parameter "mode=" has been added to more selectively control 
+the available data entry configurations of the new NumericalTextInput.  The 
+"mode=" options are as follows:
+
+	"Default"
+		This option offers digits and the entire alphabet in both 
+		upper and lower case for the current locale.
+
+	"DefaultUpper"
+		This option offers digits and the entire alphabet in upper 
+		case only for the current locale.
+
+	"DefaultLower"
+		This option offers digits and the entire alphabet in lower 
+		case only for the current locale.
+
+	"Hex"
+		This option offers hex digits "0" to "F" in both upper and 
+		lower case.  The letters "abcABC" are associated with the 
+		digit "2" and the letters "defDEF" are associated with the 
+		digit "3".
+
+	"HexUpper"
+		This option offers hex digits "0" to "F" in upper case. 
+		The letters "ABC" are associated with the digit "2" and 
+		the letters "DEF" are associated with the digit "3".
+
+	"HexLower"
+		This option offers hex digits "0" to "f" in lower case. 
+		The letters "abc" are associated with the digit "2" and 
+		the letters "def" are associated with the digit "3".
+
+	"HexFast"
+		This option offers hex digits "0" to "F" in both upper and 
+		lower case.  For faster data entry the letters "aA", "bB", 
+		"cC", "dD", "eE" and "fF" are associated with the digits 
+		"1", "2", "3", "4", "5" and "6" respectively.
+
+	"HexFastUpper"
+		This option offers hex digits "0" to "F" in upper case. 
+		For faster data entry the letters "A", "B", "C", "D", 
+		"E" and "F" are associated with the digits "1", "2", "3", 
+		"4", "5" and "6" respectively.
+
+	"HexFastLower"
+		This option offers hex digits "0" to "f" in lower case. 
+		For faster data entry the letters "a", "b", "c", "d", 
+		"e" and "f" are associated with the digits "1", "2", "3", 
+		"4", "5" and "6" respectively.
+
+	"HexFastLogical"
+		This option offers hex digits "0" to "F" in both upper and 
+		lower case.  For faster data entry the letters "aA", "bB", 
+		"cC", "dD", "eE" and "fF" are associated with the digits 
+		"0", "1", "2", "3", "4" and "5" respectively.
+
+	"HexFastLogicalUpper"
+		This option offers hex digits "0" to "F" in upper case. 
+		For faster data entry the letters "A", "B", "C", "D", 
+		"E" and "F" are associated with the digits "0", "1", "2", 
+		"3", "4" and "5" respectively.
+
+	"HexFastLogicalLower"
+		This option offers hex digits "0" to "f" in lower case. 
+		For faster data entry the letters "a", "b", "c", "d", 
+		"e" and "f" are associated with the digits "0", "1", "2", 
+		"3", "4" and "5" respectively.
+
+	"Search"
+		By default this option offers digits and the entire alphabet 
+		in both upper and lower case for the current locale.
+
+	"SearchUpper"
+		By default this option offers digits and the entire alphabet 
+		in upper case only for the current locale.
+
+	"SearchLower"
+		By default this option offers digits and the entire alphabet 
+		in lower case only for the current locale.
+
+The "Default" and "Search" range of modes should be self explanatory.  The 
+different hex options are provided to allow the coder to offer users 
+alternative modes of hex character entry.
+
+1) The "Hex" range of modes offer a more conventional data entry model 
+   where the hex characters are offerd associated with the text printed on 
+   the remote control buttons.
+
+2) The "HexFast" range of modes offer hex data entry with fewer button 
+   presses required.
+
+3) The HexFastLogical" range of modes offer hex data entry with a more 
+   accurate / logical sequence to the letter locations.  These modes are 
+   offered for completeness but while logically more appropriate this 
+   option should be used with care as it may confuse non technical users.
+
+---END---
