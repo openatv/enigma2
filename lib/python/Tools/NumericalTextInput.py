@@ -111,6 +111,18 @@ MAP_PL = (
 	u"tuv8TUV",
 	u"wxyzźż9WXYZŹŻ",
 	)
+MAP_UK = (
+	u"0,?'+\"()@$!=&*%#",
+	u" 1.:;/-_",
+	u"abcабвг2ABCАБВГ",
+	u"defдеєжз3DEFДЕЄЖЗ",
+	u"ghiиіїйкл4GHIИІЇЙКЛ",
+	u"jklмноп5JKLМНОП",
+	u"mnoрсту6MNOРСТУ",
+	u"pqrsфхцч7PQRSФХЦЧ",
+	u"tuvшщь8TUVШЩЬ",
+	u"wxyzюя9WXYZЮЯ",
+	)
 MAP_RU = (
 	u"0,?'+\"()@$!=&*%#",
 	u" 1.:;/-_",
