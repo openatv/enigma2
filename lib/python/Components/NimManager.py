@@ -851,6 +851,18 @@ class NIM(object):
 			multistream = True
 		return multistream
 
+	def isFBCTuner(self):
+		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
+
+	def isFBCRoot(self):
+		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isFBCLink(self):
+		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isNotFirstFBCTuner(self):
+		return self.isFBCTuner() and self.slot % 8 and True
+
 	def isT2MI(self):
 		return os.path.exists("/proc/stb/frontend/%d/t2mi" % self.frontend_id)
 
@@ -1791,7 +1803,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 	advanced_lnb_csw_choices = [("none", _("None")), ("AA", _("Port A")), ("AB", _("Port B")), ("BA", _("Port C")), ("BB", _("Port D"))]
 
-	advanced_lnb_ucsw_choices = [("0", _("None"))] + [(str(y), "Input " + str(y)) for y in range(1, 17)]
+	advanced_lnb_ucsw_choices = [("0", _("None"))] + [(str(y), _("Input ") + str(y)) for y in range(1, 17)]
 
 	diseqc_mode_choices = [
 		("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")),
