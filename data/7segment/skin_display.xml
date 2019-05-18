@@ -97,6 +97,10 @@
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
+	<screen name="PluginBrowserSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
 	<screen name="JobView_summary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
@@ -140,8 +144,8 @@
 			<convert type="ConfigEntryTest">config.usage.show_in_standby,time</convert>
 			<convert type="VfdDisplay">Clock</convert>
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
-			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing</convert>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="    ">
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckInvertSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
@@ -152,8 +156,8 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Rec,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
-			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing</convert>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="    ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
