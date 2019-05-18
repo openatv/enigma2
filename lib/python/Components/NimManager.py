@@ -851,6 +851,18 @@ class NIM(object):
 			multistream = True
 		return multistream
 
+	def isFBCTuner(self):
+		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
+
+	def isFBCRoot(self):
+		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isFBCLink(self):
+		return self.isFBCTuner() and not (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
+
+	def isNotFirstFBCTuner(self):
+		return self.isFBCTuner() and self.slot % 8 and True
+
 	def isT2MI(self):
 		return os.path.exists("/proc/stb/frontend/%d/t2mi" % self.frontend_id)
 
