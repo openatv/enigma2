@@ -193,6 +193,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<id val="network" />
 				<item weight="0" level="0" text="Device Setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 				<item weight="5" level="1" text="Mounts Setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
+				<item weight="8"  level="2" text="Password Setup" entryID="password_setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
 				<item weight="10" level="2" text="AFP Setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
 				<item weight="15" level="2" text="CIFS/Samba Setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 				<item weight="20" level="2" text="FTP Setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>

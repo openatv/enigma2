@@ -1615,7 +1615,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 				removeAll = False
 			elif self.scan_typeterrestrial.value == "complete":
 				skip_t2 = False
-				if getMachineBrand() in ('Vu+'):
+				if getMachineBrand() in ('Vu+',):
 					skip_t2 = True
 					if nim.canBeCompatible("DVB-T2"):
 						scan_util = len(self.terrestrialTransponderGetCmd(nim.slot)) and True or False
@@ -2091,7 +2091,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 						networkid = config.Nims[nim.slot].dvbc.scan_networkid.value
 				elif n.nim_type == "DVB-T":
 					skip_t2 = False
-					if getMachineBrand() in ('Vu+'):
+					if getMachineBrand() in ('Vu+',):
 						skip_t2 = True
 						if nim.canBeCompatible("DVB-T2"):
 							scan_util = len(self.terrestrialTransponderGetCmd(nim.slot)) and True or False

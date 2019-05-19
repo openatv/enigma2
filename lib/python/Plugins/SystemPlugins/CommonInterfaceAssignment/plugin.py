@@ -44,7 +44,7 @@ class CIselectMainMenu(Screen):
 				"cancel": self.close
 			}, -1)
 
-		if getBoxType() in ('zgemmah9combo'):
+		if getBoxType() in ('zgemmah9combo',):
 			NUM_CI = 1
 		else:
 			NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
