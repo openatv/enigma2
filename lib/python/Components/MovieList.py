@@ -849,9 +849,12 @@ class MovieList(GUIComponent):
 			if name[:2] == "._":
 				continue
 
-			if this_tags == ['']:
-				# No tags? Auto tag!
-				this_tags = name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
+			if len(this_tags) == 1 and (not this_tags[0] or this_tags[0].startswith("Tuner-")):
+				# No tags or only a tuner tag? Auto tag!
+
+				if not this_tags[0]:
+					this_tags = []
+				this_tags += name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
 				# For auto tags, we are keeping a (tag, movies) dictionary.
 				# It will be used later to check if movies have a complete sentence in common.
 				for tag in this_tags:
