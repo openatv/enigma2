@@ -43,14 +43,14 @@ def haveInitCam():
 
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["HAVEINITCAM"] = haveInitCam()
-SystemInfo["7segment"] = getDisplayType() in ('7segment')
+SystemInfo["7segment"] = getDisplayType() in ('7segment',)
 SystemInfo["7segmentORtextlcd7segment"] = getDisplayType() in ('7segment','textlcd7segment')
-SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and getDisplayType() not in ('7segment')
-SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('7segment')
+SystemInfo["ConfigDisplay"] = SystemInfo["FrontpanelDisplay"] and getDisplayType() not in ('7segment',)
+SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('7segment',)
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
-SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0") or getBoxType() in ('osminiplus')
+SystemInfo["OledDisplay"] = fileExists("/dev/dbox/oled0") or getBoxType() in ('osminiplus',)
 SystemInfo["LcdDisplay"] = fileExists("/dev/dbox/lcd0")
 SystemInfo["FBLCDDisplay"] = fileCheck("/proc/stb/fb/sd_detach")
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
@@ -98,14 +98,14 @@ SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_to
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
 SystemInfo["XcoreVFD"] = getMachineBuild() in ('xc7346','xc7439') 
 SystemInfo["HDMIin"] = getMachineBuild() in ('inihdp', 'hd2400', 'et10000', 'dm7080', 'dm820', 'dm900', 'dm920', 'vuultimo4k', 'et13000', 'sf5008', 'vuuno4kse', 'vuduo4k') or getBoxType() in ('spycat4k','spycat4kcombo','gbquad4k')
-SystemInfo["HaveRCA"] = getHaveRCA() in ('True')
-SystemInfo["HaveDVI"] = getHaveDVI() in ('True')
-SystemInfo["HaveAVJACK"] = getHaveAVJACK() in ('True')
-SystemInfo["HAVESCART"] = getHaveSCART() in ('True')
-SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() in ('True')
-SystemInfo["HAVEYUV"] = getHaveYUV() in ('True')
-SystemInfo["HAVEHDMI"] = getHaveHDMI() in ('True')
-SystemInfo["canMultiBoot"] = getMachineBuild() in ('hd51','vs1500','h7','h9combo','hd60','hd61','multibox','8100s') and (1, 4, 'mmcblk0p') or getMachineBuild() in ('gb7252') and (3, 3, 'mmcblk0p') or getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2','viper4k') and fileCheck("/dev/sda") and (0, 3, 'sda') or getMachineBuild() in ('osmio4k','osmio4kplus','xc7439') and (1, 4, 'mmcblk1p')
+SystemInfo["HaveRCA"] = getHaveRCA() == 'True'
+SystemInfo["HaveDVI"] = getHaveDVI() == 'True'
+SystemInfo["HaveAVJACK"] = getHaveAVJACK() == 'True'
+SystemInfo["HAVESCART"] = getHaveSCART() == 'True'
+SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() == 'True'
+SystemInfo["HAVEYUV"] = getHaveYUV() == 'True'
+SystemInfo["HAVEHDMI"] = getHaveHDMI() == 'True'
+SystemInfo["canMultiBoot"] = getMachineBuild() in ('hd51','vs1500','h7','h9combo','hd60','hd61','multibox','8100s') and (1, 4, 'mmcblk0p') or getMachineBuild() in ('gb7252',) and (3, 3, 'mmcblk0p') or getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2','viper4k') and fileCheck("/dev/sda") and (0, 3, 'sda') or getMachineBuild() in ('osmio4k','osmio4kplus','xc7439') and (1, 4, 'mmcblk1p')
 SystemInfo["canMode12"] = getMachineBuild() in ('hd51','vs1500','h7') and ('brcm_cma=440M@328M brcm_cma=192M@768M', 'brcm_cma=520M@248M brcm_cma=200M@768M')
 SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")

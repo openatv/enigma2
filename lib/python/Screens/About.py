@@ -79,7 +79,7 @@ def getAboutText():
 		AboutText += _("Chipset:\t\t%s") % about.getChipSetString() + "\n"
 
 	cpuMHz = ""
-	if getMachineBuild() in ('u41'):
+	if getMachineBuild() in ('u41',):
 		cpuMHz = "   (1,0 GHz)"
 	elif getMachineBuild() in ('vusolo4k','vuultimo4k','vuzero4k'):
 		cpuMHz = "   (1,5 GHz)"
@@ -89,9 +89,9 @@ def getAboutText():
 		cpuMHz = "   (1,6 GHz)"
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		cpuMHz = "   (1,7 GHz)"
-	elif getMachineBuild() in ('alien5'):
+	elif getMachineBuild() in ('alien5',):
 		cpuMHz = "   (2,0 GHz)"
-	elif getMachineBuild() in ('vuduo4k'):
+	elif getMachineBuild() in ('vuduo4k',):
 		cpuMHz = "   (2,1 GHz)"
 	elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k','osmio4kplus'):
 		try:

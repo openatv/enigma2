@@ -18,7 +18,7 @@ from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM, getBoxType
 import time
 
-if getBoxType() in ('zgemmah9combo'):
+if getBoxType() in ('zgemmah9combo',):
 	MAX_NUM_CI = 1
 else:
 	MAX_NUM_CI = 4
@@ -411,7 +411,7 @@ class CiMessageHandler:
 		self.dlgs = { }
 		self.auto_close = False
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
-		if getBoxType() in ('vuzero'):
+		if getBoxType() in ('vuzero',):
 			SystemInfo["CommonInterface"] = False
 		else:
 			SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
