@@ -25,7 +25,7 @@ has_rca = SystemInfo["HaveRCA"]
 has_avjack = SystemInfo["HaveAVJACK"]
 
 config.av = ConfigSubsection()
-if getBrandOEM() in ('azbox'):
+if getBrandOEM() in ('azbox',):
 	config.av.edid_override = ConfigYesNo(default = True)
 else:
 	config.av.edid_override = ConfigYesNo(default = False)
@@ -110,7 +110,7 @@ class AVSwitch:
 	elif (about.getChipSetString() in ('7241', '7358', '7362', '73625', '7346', '7356', '73565', '7424', '7425', '7435', '7552', '7581', '7584', '75845', '7585', 'pnx8493', '7162', '7111', '3716mv410', 'hi3716mv410')) or (getBrandOEM() in ('azbox')):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
-	elif about.getChipSetString() in ('meson-6'):
+	elif about.getChipSetString() in ('meson-6',):
 		modes["HDMI"] = ["720p", "1080p", "1080i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	elif about.getChipSetString() in ('meson-64','S905D'):
@@ -132,7 +132,7 @@ class AVSwitch:
 	if modes.has_key("Scart") and not has_scart and not has_rca and not has_avjack:
 			del modes["Scart"]
 		
-	if getBoxType() in ('mutant2400'):
+	if getBoxType() in ('mutant2400',):
 		f = open("/proc/stb/info/board_revision", "r").read()
 		if f >= "2":
 			del modes["YPbPr"]
@@ -205,7 +205,7 @@ class AVSwitch:
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
 			if port == "DVI":
-				if getBrandOEM() in ('azbox'):
+				if getBrandOEM() in ('azbox',):
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
 						print "[AVSwitch] no, not preferred"
 						return False
@@ -264,7 +264,7 @@ class AVSwitch:
 			except IOError:
 				print "[VideoHardware] cannot open /proc/stb/video/videomode_24hz"
 
-		if getBrandOEM() in ('gigablue'):
+		if getBrandOEM() in ('gigablue',):
 			try:
 				# use 50Hz mode (if available) for booting
 				f = open("/etc/videomode", "w")

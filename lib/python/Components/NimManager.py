@@ -2266,7 +2266,7 @@ def InitNimManager(nimmgr, update_slots=None):
 	nimmgr.sec = SecConfigure(nimmgr)
 
 	def tunerTypeChanged(nimmgr, configElement):
-		if int(iDVBFrontend.dvb_api_version) < 5 or getBrandOEM() in ('vuplus'):
+		if int(iDVBFrontend.dvb_api_version) < 5 or getBrandOEM() in ('vuplus',):
 			print "dvb_api_version ",iDVBFrontend.dvb_api_version
 			print "api <5 or old style tuner driver"
 			fe_id = configElement.fe_id
