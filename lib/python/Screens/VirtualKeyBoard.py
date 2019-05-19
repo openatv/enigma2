@@ -509,7 +509,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self["text"] = Input(text=text, maxSize=maxSize, visible_width=visible_width, type=type, currPos=len(text.decode("utf-8", "ignore")), allMarked=allMarked)
 		self["list"] = VirtualKeyBoardList([])
 		self["mode"] = Label(_("INS"))
-		self["locale"] = Label(_("Language") + ": " + self.lang)
+		self["locale"] = Label(_("Locale") + ": " + self.lang)
 		self["language"] = Label(_("Language") + ": " + self.lang)
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_red"] = StaticText(_("Exit"))
