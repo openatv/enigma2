@@ -114,6 +114,6 @@ def Plugins(**kwargs):
 	from os import path
 	if path.exists("/proc/stb/fb/3dmode") or path.exists("/proc/stb/fb/primary/3d"):
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(name = "UI 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
-					PluginDescriptor(name = "UI 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
+		return [PluginDescriptor(name = _("UI 3D setup"), description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main),
+					PluginDescriptor(name = _("UI 3D setup"), description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup)]
 	return []
