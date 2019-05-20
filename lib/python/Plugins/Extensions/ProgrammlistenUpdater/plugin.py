@@ -180,7 +180,7 @@ def Main(session, **kwargs):
 def Plugins(**kwargs):
     if nimmanager.hasNimType("DVB-S"):
         return [
-            PluginDescriptor(name="Programmlisten-Updater V" + Version, description=_("Programmlisten-Updater from DXAndy"), icon="plugin.png", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=Main),
+            PluginDescriptor(name=_("Programmlisten-Updater V") + Version, description=_("Programmlisten-Updater from DXAndy"), icon="plugin.png", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=Main),
             PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=SessionStart),
             PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, fnc=AutoStart)]
     else:
