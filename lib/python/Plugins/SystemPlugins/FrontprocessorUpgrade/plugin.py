@@ -75,11 +75,11 @@ def Plugins(**kwargs):
 	newversion = getUpgradeVersion() or 0
 	list = []
 	if version is not None and version < newversion:
-		list.append(PluginDescriptor(name="FP Upgrade", where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(8, FPUpgrade)))
+		list.append(PluginDescriptor(name=_("FP Upgrade"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(8, FPUpgrade)))
 
 	try:
 		msg = open("/proc/stb/message").read()
-		list.append(PluginDescriptor(name="System Message Check", where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(9, SystemMessage, msg)))
+		list.append(PluginDescriptor(name=_("System Message Check"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = True, fnc=(9, SystemMessage, msg)))
 	except:
 		pass
 
