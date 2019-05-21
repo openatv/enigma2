@@ -96,4 +96,4 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
-		PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)]
+		PluginDescriptor(name = _("DVDPlayer"), description = _("Play DVDs"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)]

@@ -3964,7 +3964,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
-		Screen.setTitle(self, _("Password setup"))
+		Screen.setTitle(self, _("Password Setup"))
 
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("Save"))
