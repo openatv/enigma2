@@ -54,7 +54,7 @@ msgid ""
 "%Y/%m/%d  %H:%M - "
 msgstr ""
 "\n"
-"%Y/%m/%d  %H:%M - "
+"%d.%m.%Y  %H:%M - "
 
 msgid ""
 "\n"
@@ -237,9 +237,9 @@ msgstr "  Червона кнопка : Показати/сховати назв
 msgid " ('%s') ends successefully."
 msgstr " ('%s') закінчено успішно."
 
-#, fuzzy, python-format
+#, python-format
 msgid " ('%s') ends with error messages."
-msgstr " ('%s') закінчується повідомленнями про помилки."
+msgstr " ('%s') закінчено з повідомленням про помилку."
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
@@ -249,9 +249,9 @@ msgstr " ('%s') закінчено з помилкою номер [%d]."
 msgid " (Channel %s)"
 msgstr " (Канал %s)"
 
-#, fuzzy, python-format
+#, python-format
 msgid " (Partition %d)"
-msgstr " (Розділ диску %d)"
+msgstr " (Розділ %d)"
 
 msgid " (PiP)"
 msgstr " (ПіП)"
@@ -262,9 +262,8 @@ msgstr " (Радіо)"
 msgid " (TV)"
 msgstr " (ТБ)"
 
-#, fuzzy
 msgid " (current channel)"
-msgstr " (даний канал)"
+msgstr " (поточний канал)"
 
 msgid " (disabled)"
 msgstr " (вимкнуто)"
@@ -291,9 +290,8 @@ msgstr " - файл існує! Перезаписати"
 msgid " - folder exist! Overwrite"
 msgstr " - папка існує! Перезаписати"
 
-#, fuzzy
 msgid " <No Channel>"
-msgstr " <Канал відсутній>"
+msgstr " <Немає Каналу>"
 
 #, fuzzy
 msgid " <empty>"
@@ -5025,7 +5023,7 @@ msgid "Customise enigma2 personal settings"
 msgstr "Персональні налаштування користувача enigma2"
 
 msgid "Customize"
-msgstr "Налаштувати"
+msgstr "Додаткові Налаштування"
 
 msgid "Cut"
 msgstr "Вирізати"
@@ -5040,11 +5038,10 @@ msgid "Cyprus"
 msgstr "Кіпр"
 
 msgid "Czech"
-msgstr "Чехія"
+msgstr "Чешська"
 
-#, fuzzy
 msgid "Czechia"
-msgstr "Чеська"
+msgstr "Чехія"
 
 msgid "DAC"
 msgstr "DAC"
@@ -5275,9 +5272,8 @@ msgstr "Зупинити"
 msgid "Debug Logs"
 msgstr "Логи налагодження"
 
-#, fuzzy
 msgid "Decryption & Parental Control"
-msgstr "Модуль доступу і Батьківський контроль"
+msgstr "Декодування і Батьківський контроль"
 
 msgid "Deep Standby"
 msgstr "Вимкнути приймач"
@@ -9671,11 +9667,9 @@ msgstr "Mtd"
 msgid "Multi EPG"
 msgstr "Мульти ЕПГ"
 
-#, fuzzy
 msgid "MultiBoot Image Manager"
-msgstr "MultiBoot Мененджер Іміджів"
+msgstr "Мененджер Іміджів MultiBoot"
 
-#, fuzzy
 msgid "MultiBootSelector"
 msgstr "Селектор MultiBoot"
 
@@ -9689,17 +9683,15 @@ msgstr "Зміна функцій кнопок"
 msgid "Multiboot ERROR! - no %s in boot partition."
 msgstr "Multiboot ПОМИЛКА! - немає %s в розділі загрузки."
 
-#, fuzzy
 msgid "Multiboot Image Selector"
-msgstr "MultiBoot Селектор Іміджів"
+msgstr "Селектор Іміджів MultiBoot"
 
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Імідж Multiboot створено: %s/%s-%s-%s-backup-%s_usb.zip"
 
-#, fuzzy
 msgid "Multiboot Manager"
-msgstr "MultiBoot Мененджер"
+msgstr "Мененджер MultiBoot"
 
 msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
 msgstr "Мененджер Multiboot - Неможливо ініціалізувати SD-карту під час запуску іміджу на SD-карті."
