@@ -402,7 +402,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 
 	nx+=xadvance;
 
-	if ((rflags & RS_WRAP) && (nx >= area.right()))
+	if ((rflags & RS_WRAP) && (nx > area.right()))
 	{
 		int cnt = 0, maycnt = -1;
 		glyphString::reverse_iterator i(glyphs.rbegin()), mayi(glyphs.rend());
