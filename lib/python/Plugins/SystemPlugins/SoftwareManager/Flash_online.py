@@ -311,7 +311,7 @@ class FlashImage(Screen):
 						os.remove(destination)
 					if not os.path.isdir(destination):
 						os.mkdir(destination)
-					if isDevice:
+					if isDevice or 'no_backup' == retval:
 						self.startBackupsettings(retval)
 					else:
 						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
@@ -324,7 +324,7 @@ class FlashImage(Screen):
 
 	def startBackupsettings(self, retval):
 		if retval:
-			if 'backup' == retval:
+			if 'backup' == retval or True == retval:
 				from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
 				self.session.openWithCallback(self.flashPostAction,BackupScreen, runBackup = True)
 			else:
