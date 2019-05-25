@@ -293,9 +293,8 @@ msgstr " - папка існує! Перезаписати"
 msgid " <No Channel>"
 msgstr " <Немає Каналу>"
 
-#, fuzzy
 msgid " <empty>"
-msgstr " <порожній>"
+msgstr " <порожньо>"
 
 #, python-format
 msgid " Except %s"
@@ -321,7 +320,7 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr ""
-" доступний !!\n"
+" доступно!!\n"
 "\n"
 "Ви хочете встановити новий список налаштувань?"
 
@@ -331,7 +330,6 @@ msgstr " з"
 msgid " or save additional the picture to a file"
 msgstr " або зберегти додаткове зображення до файлу"
 
-#, fuzzy
 msgid " updated"
 msgstr " оновлено"
 
@@ -341,13 +339,11 @@ msgstr " !! Завантажувач Оновлено !!"
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
-#, fuzzy
 msgid "%-H:%M - "
-msgstr "%-H:%M - "
+msgstr "%-H:%M-"
 
-#, fuzzy
 msgid "%-H:%M:%S"
-msgstr "%-H:%M:%S"
+msgstr "% - H:%M:%S"
 
 msgid "%-I:%M"
 msgstr "%-I:%M"
@@ -437,7 +433,7 @@ msgstr "%-m/%d/%Y"
 msgid "%.0f GB"
 msgstr "%.0f ГБ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%.0f MB"
 msgstr "%.0f МБ"
 
@@ -445,23 +441,23 @@ msgstr "%.0f МБ"
 msgid "%.2f GB"
 msgstr "%.2f ГБ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d хв)"
+msgstr "%02d.%02d - %02d.%02d (%s%d хв.)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%02d.%02d.%d"
 msgstr "%02d.%02d.%d"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%02d:%02d"
 msgstr "%02d:%02d"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
 
@@ -1360,9 +1356,8 @@ msgstr "(1 завдання)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Увага: Відбудеться перезавантаження після %d збоїв.)"
 
-#, fuzzy
 msgid "(Selectmode)"
-msgstr "(Вибір режиму)"
+msgstr "(Вибрати режим)"
 
 msgid "(Show only reader:"
 msgstr "(Показати тільки рідер:"
@@ -1543,9 +1538,8 @@ msgstr "12, покажіть латинські символи, крім гре�
 msgid "120"
 msgstr "120"
 
-#, fuzzy
 msgid "128"
-msgstr "128"
+msgstr ""
 
 msgid "128 Mb"
 msgstr "128 Мб"
@@ -1553,7 +1547,6 @@ msgstr "128 Мб"
 msgid "12V output"
 msgstr "12В вихід"
 
-#, fuzzy
 msgid "12V output."
 msgstr "12В вихід."
 
@@ -1629,9 +1622,8 @@ msgstr "1с"
 msgid "1st Infobar timeout"
 msgstr "Затримка першого Інфобару"
 
-#, fuzzy
 msgid "2"
-msgstr "2"
+msgstr ""
 
 msgid "2 GB"
 msgstr "2 ГБ"
@@ -1702,9 +1694,8 @@ msgstr "24p/60p"
 msgid "25"
 msgstr "25"
 
-#, fuzzy
 msgid "256"
-msgstr "256"
+msgstr ""
 
 msgid "256 Mb"
 msgstr "256 Мб"
@@ -1757,9 +1748,8 @@ msgstr "2x, 4x, 6x"
 msgid "2x, 4x, 6x, 8x"
 msgstr "2x, 4x, 6x, 8x"
 
-#, fuzzy
 msgid "3"
-msgstr "3"
+msgstr ""
 
 msgid "3.5s"
 msgstr "3.5с"
@@ -1803,7 +1793,6 @@ msgstr "3:2"
 msgid "3D Mode"
 msgstr "3D Режим"
 
-#, fuzzy
 msgid "3D Surround"
 msgstr "3D Звук"
 
@@ -1980,9 +1969,8 @@ msgstr "< Типово >"
 msgid "< Default with Picon >"
 msgstr "< Пікон за умовчанням >"
 
-#, fuzzy
 msgid "< User Skin >"
-msgstr "< Скін Користувача >"
+msgstr "< - Скін Користувача - >"
 
 msgid "<Current movielist location>"
 msgstr "<Розташування поточного списку фільмів>"
@@ -2005,9 +1993,8 @@ msgstr "?"
 msgid "??"
 msgstr "??"
 
-#, fuzzy
 msgid "A"
-msgstr "A"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -11700,22 +11687,19 @@ msgid "Python:\t\t%s"
 msgstr ""
 
 msgid "Qatar"
-msgstr ""
+msgstr "Катар"
 
-#, fuzzy
 msgid "Quad PiP Channel Selection"
-msgstr "Вибір радіо каналів"
+msgstr "Вибір каналу для ПіП"
 
 msgid "Quad PiP Screen"
-msgstr ""
+msgstr "Чотирьохекранний ПіП"
 
-#, fuzzy
 msgid "Quad PiP channel "
-msgstr "Канал на тривожній кнопці"
+msgstr "Канал чотирьохекранного ПіП "
 
-#, fuzzy
 msgid "Quad PiP is not available."
-msgstr "%s недоступний."
+msgstr "Чотирьохекранний ПіП недоступний."
 
 msgid "Question"
 msgstr "Запит"
@@ -11747,20 +11731,17 @@ msgstr "Швидке меню/Розширення"
 msgid "RAM"
 msgstr ""
 
-#, fuzzy
 msgid "REC"
-msgstr "ФЕК"
+msgstr "REC"
 
 msgid "REC Symbol"
 msgstr "Значок запису"
 
-#, fuzzy
 msgid "REC Symbol in Standby"
-msgstr "тільки в режимі очікування"
+msgstr "REC в Режимі очікування"
 
-#, fuzzy
 msgid "REC Symbol in use"
-msgstr "Значок запису"
+msgstr "Використовується символ REC"
 
 msgid "RF output"
 msgstr "RF вихід"
@@ -11777,9 +11758,8 @@ msgstr "Вибір радіо каналів"
 msgid "Radio long"
 msgstr "Радіо довге натискання"
 
-#, fuzzy
 msgid "Ram"
-msgstr "до обіду"
+msgstr "Рам"
 
 msgid "Random"
 msgstr "Випадково"
@@ -11868,10 +11848,10 @@ msgid "Reboot"
 msgstr "Перезавантажити"
 
 msgid "Rebuild"
-msgstr ""
+msgstr "Перебудувати"
 
 msgid "Rebuild LCN bouquet now?"
-msgstr ""
+msgstr "Перебудувати LCN фаворит заново?"
 
 msgid "Rec"
 msgstr "Запис"
@@ -11953,9 +11933,8 @@ msgstr "Записи скасовують потокову передачу"
 msgid "Recordings always have priority"
 msgstr "Запис завжди має перевагу"
 
-#, fuzzy
 msgid "Records"
-msgstr "Запис"
+msgstr "Записи"
 
 #, fuzzy
 msgid "Recovery Mode"
@@ -12013,9 +11992,8 @@ msgstr "Частота оновлення для 'Найнижчий Режим'
 msgid "Refresh rate selection."
 msgstr "Вибір частоти оновлення."
 
-#, fuzzy
 msgid "Refresh screen"
-msgstr "Частота оновлення"
+msgstr "Оновити екран"
 
 msgid "Regard deep standby as standby"
 msgstr "Вважати вимкнення як режим очікування"
@@ -12023,9 +12001,8 @@ msgstr "Вважати вимкнення як режим очікування"
 msgid "Region"
 msgstr "Регіон"
 
-#, fuzzy
 msgid "Regular file"
-msgstr "файл шаблону"
+msgstr "Звичайний файл"
 
 msgid "Relative"
 msgstr "Відносний"
@@ -12034,7 +12011,7 @@ msgid "Release Notes"
 msgstr ""
 
 msgid "Relevant PIDs Routing"
-msgstr ""
+msgstr "Релевантні ПІДи Маршрутизатора"
 
 msgid "Reload"
 msgstr "Оновити"
@@ -12069,16 +12046,15 @@ msgstr "Код дистанційного керування"
 msgid "Remote box"
 msgstr "Віддалений приймач"
 
-#, fuzzy
 msgid "Remote control model shown"
-msgstr "Код дистанційного керування"
+msgstr "Модель дистанційного пульта"
 
 msgid "Remote control type"
 msgstr "Тип пульта управління"
 
 #, python-format
 msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
+msgstr "Видалення цього слота не відображатиметься в %s . Ви дійсно бажаєте видалити слот іміджа %s "
 
 msgid "Remove"
 msgstr "Видалити"
@@ -12089,9 +12065,8 @@ msgstr "Підтвердіть видалення"
 msgid "Remove Plugins"
 msgstr "Видалити Плагіни"
 
-#, fuzzy
 msgid "Remove Quad Channel Entry"
-msgstr "Видалити запис DNS"
+msgstr "Видалити ввід чотирьохекранних каналу"
 
 msgid "Remove Service"
 msgstr "Видалити канал"
@@ -12102,9 +12077,8 @@ msgstr "Видалити закладку"
 msgid "Remove a nameserver entry"
 msgstr "Видалити запис DNS"
 
-#, fuzzy
 msgid "Remove all cuts and marks"
-msgstr "Видалити закладку"
+msgstr "Видалити всі нарізи і закладки"
 
 msgid "Remove bookmark"
 msgstr "Видалити закладку"
@@ -12112,12 +12086,11 @@ msgstr "Видалити закладку"
 msgid "Remove completed timers after (days)"
 msgstr "Видалення завершених таймерів через (в днях)"
 
-#, fuzzy
 msgid "Remove confirmation"
 msgstr "Підтвердіть видалення"
 
 msgid "Remove current folder from bookmarks"
-msgstr ""
+msgstr "Видалити поточну папку з закладок"
 
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
@@ -12135,7 +12108,7 @@ msgid "Remove plugins"
 msgstr "Видалити плагіни"
 
 msgid "Remove selected folder from bookmarks"
-msgstr ""
+msgstr "Видалити вибрану папку з закладок"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Видалити тексти для слабочуючих із зовнішніх субтитрів (інструментальна музика чи звуки навколишнього середовища, наприклад, коли лунає дзвінок у дверіа бо постріл)."
@@ -12165,9 +12138,8 @@ msgstr "Перейменувати"
 msgid "Rename failed!"
 msgstr "Не вдалося перейменувати!"
 
-#, fuzzy
 msgid "Rename file/directory"
-msgstr "Створити папку"
+msgstr "Перейменувати файл/папку"
 
 msgid "Rename name and description for new events"
 msgstr "Перейменувати ім'я та опис для нових подій"
@@ -12186,10 +12158,10 @@ msgid "Repeat Display Message"
 msgstr "Повторювати повідомлення дисплея"
 
 msgid "Repeat the sent standby and wakeup commands"
-msgstr ""
+msgstr "Повторити відправлені команди виключення та пробудження"
 
 msgid "Repeat the standby commands?"
-msgstr ""
+msgstr "Повторити команди виключення"
 
 msgid "Repeat type"
 msgstr "Тип повторення"
@@ -12214,7 +12186,7 @@ msgstr "Перечитати таблицю розділів"
 
 #, fuzzy
 msgid "Reserved"
-msgstr "Nameserver"
+msgstr "Зарезервований"
 
 msgid "Reset"
 msgstr "Скидання"
@@ -12234,9 +12206,8 @@ msgstr "Скинути налаштування покращення відео 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Скинути налаштування покращення відео до Вашої останньої конфігурації?"
 
-#, fuzzy
 msgid "Reshare"
-msgstr "Розшарювання:"
+msgstr "Розшарювання"
 
 msgid "Reshare:"
 msgstr "Розшарювання:"
@@ -12252,13 +12223,13 @@ msgid "Restart %s %s."
 msgstr "Перезапуск %s %s."
 
 msgid "Restart Enigma2 to apply the changes?"
-msgstr ""
+msgstr "Перезавантажте Enigma2, щоб застосувати зміни?"
 
 msgid "Restart GUI"
 msgstr "Перезавантаження GUI"
 
 msgid "Restart GUI after x crashes"
-msgstr ""
+msgstr "Перезавантажте графічний інтерфейс після х збоїв"
 
 msgid "Restart GUI now?"
 msgstr "Перезавантажити Графічний інтерфейс зараз?"
@@ -12272,13 +12243,11 @@ msgstr "Перезавантажити Мережу"
 msgid "Restart Network Adapter"
 msgstr "Перезапуск мережевого адаптера"
 
-#, fuzzy
 msgid "Restart both"
-msgstr "Повторити тест"
+msgstr "Перезавантажити оба"
 
-#, fuzzy
 msgid "Restart cardserver"
-msgstr "отримати картки сервера"
+msgstr "Перезавантажити кардсервера"
 
 msgid "Restart enigma"
 msgstr "Перезавантаження Enigma"
@@ -12295,9 +12264,8 @@ msgstr "Перезапуск мережі і перемонтуваня підк
 msgid "Restart network to with current setup"
 msgstr "Перезапустити мережу з поточними налаштуваннями"
 
-#, fuzzy
 msgid "Restart softcam"
-msgstr "Повторити тест"
+msgstr "Повторити softcam"
 
 msgid "Restart test"
 msgstr "Повторити тест"
@@ -12348,13 +12316,11 @@ msgstr "Продовжити з останньої позиції на %s"
 msgid "Resuming playback"
 msgstr "Продовжити програвання"
 
-#, fuzzy
 msgid "Retrieving image list - Please wait..."
-msgstr "Отримання списку емуляторів. Прохання зачекати..."
+msgstr "Отримання списку іміджів. Прохання зачекати..."
 
-#, fuzzy
 msgid "Retrieving image slots - Please wait..."
-msgstr "Отримання списку емуляторів. Прохання зачекати..."
+msgstr "Отримання списку слотів. Прохання зачекати..."
 
 msgid "Return to movie list"
 msgstr "Повернутись до списку фільмів"
@@ -12363,21 +12329,19 @@ msgid "Return to previous service"
 msgstr "Повернутись до попереднього каналу"
 
 msgid "Reunion"
-msgstr ""
+msgstr "Реюньйон"
 
 msgid "Reverse bouquet buttons"
 msgstr "Звернути кнопки CH +/-"
 
-#, fuzzy
 msgid "Reverse left file sorting"
-msgstr "Зворотній список"
+msgstr "Зворотнє сортування файлів зліва"
 
 msgid "Reverse list"
 msgstr "Зворотній список"
 
-#, fuzzy
 msgid "Reverse right file sorting"
-msgstr "Ніколи не розшифровувати під час запису"
+msgstr "Зворотнє сортування файлів зліва"
 
 msgid "Rewind"
 msgstr "Перемотка назад"
@@ -12394,16 +12358,14 @@ msgstr "Вправо"
 msgid "Right from servicename"
 msgstr "Після назви каналу"
 
-#, fuzzy
 msgid "Right long"
-msgstr "Радіо довге натискання"
+msgstr "Вправо довге натискання"
 
 msgid "Roll-off"
 msgstr "Roll-off фактор"
 
-#, fuzzy
 msgid "Romania"
-msgstr "Румунська"
+msgstr "Румунія"
 
 msgid "Romanian"
 msgstr "Румунська"
@@ -12420,16 +12382,15 @@ msgstr "Двигун на позицію:"
 msgid "Rotor turning speed"
 msgstr "Швидкість обертання двигуна"
 
-#, fuzzy
 msgid "Routing request"
-msgstr "Вихідний запит"
+msgstr "Запит маршрутизації"
 
 msgid "Run"
 msgstr "Запустити"
 
 #, python-format
 msgid "Run '%s' command"
-msgstr ""
+msgstr "Запустити '%s' команду"
 
 msgid "Run Confirmation"
 msgstr "Запуск з підтвердженням"
@@ -12438,17 +12399,16 @@ msgid "Run how often ?"
 msgstr "Як часто запускати?"
 
 msgid "Run script"
-msgstr ""
+msgstr "Запустити скрипт"
 
-#, fuzzy
 msgid "Run script in background"
-msgstr "Фоновий режим"
+msgstr "Запустити скрипт у фоні"
 
 msgid "Run script with optional parameter"
-msgstr ""
+msgstr "Запустити скрипт із додатковим параметром"
 
 msgid "Run script with optional parameter in background"
-msgstr ""
+msgstr "Запустити скрипт із додатковим параметром у фоні"
 
 msgid "Running"
 msgstr "В дії"
@@ -12460,17 +12420,16 @@ msgid "Russian"
 msgstr "Російська"
 
 msgid "Russian Federation"
-msgstr ""
+msgstr "Росія"
 
 msgid "Rwanda"
-msgstr ""
+msgstr "Rwanda"
 
 msgid "S-Video"
 msgstr "S-Відео"
 
-#, fuzzy
 msgid "SABnzbd"
-msgstr "SABnzbd"
+msgstr ""
 
 msgid "SABnzbd Setup"
 msgstr "Налаштування SABnzbd"
@@ -12520,9 +12479,8 @@ msgstr "SPDIF"
 msgid "SSID:"
 msgstr "SSID:"
 
-#, fuzzy
 msgid "STB Display"
-msgstr "STB Дисплей"
+msgstr "Налаштування Дисплею"
 
 msgid "Saint Barthelemy"
 msgstr "Сен-Бартельмі"
@@ -12557,9 +12515,8 @@ msgstr "Налаштування Samba"
 msgid "Same as in active"
 msgstr "Те ж, що при активності"
 
-#, fuzzy
 msgid "Same behavior as current animation"
-msgstr "Така ж поведінка, як і поточна анімація"
+msgstr "Так як і поточна анімація"
 
 msgid "Same resolution as skin"
 msgstr "Роздільність така ж як в скіні"
@@ -12570,9 +12527,8 @@ msgstr "Самоа"
 msgid "San Marino"
 msgstr "Сан-Марино"
 
-#, fuzzy
 msgid "Sao Tome and Principe"
-msgstr "Сан-Томе і Прінсіпі"
+msgstr "Сан Томе і Прінсіпі"
 
 msgid "Sat Finder"
 msgstr "Пошук Супутника"
@@ -12606,6 +12562,9 @@ msgstr "Супутники"
 
 msgid "Saturation"
 msgstr "Насичення"
+
+msgid "Saturday"
+msgstr "Субота"
 
 msgid "Saudi Arabia"
 msgstr "Саудівська Аравія"
@@ -12815,9 +12774,8 @@ msgstr "Друга ІнфоПанель"
 msgid "Secondary DNS"
 msgstr "Вторинний DNS"
 
-#, fuzzy
 msgid "Secondinfobar:"
-msgstr "Друга інфопанель:"
+msgstr "Другий інфобар:"
 
 msgid "Seek"
 msgstr "Шукати"
@@ -12915,9 +12873,8 @@ msgstr "Вибір Lan/Wi-Fi"
 msgid "Select Location"
 msgstr "Вибрати місце розташування"
 
-#, fuzzy
 msgid "Select Quad Channels"
-msgstr "Вибір квад каналів"
+msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Red-key action"
 msgstr "Вибір дії для червоної кнопки"
@@ -13422,9 +13379,8 @@ msgstr "Частота кадрів для PiG-вікна"
 msgid "Set System"
 msgstr "Налаштування Системи"
 
-#, fuzzy
 msgid "Set action for 'Info' key"
-msgstr "Вибір дії для кнопки 'Info'"
+msgstr "Вибір дії для кнопки 'Інфо'"
 
 msgid "Set archive mode (644)"
 msgstr "Встановити атрибут архіву (644)"
@@ -13466,9 +13422,8 @@ msgstr "Призначити стартовим каналом"
 msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Встановити MAC-адресу Вашого %s %s.\n"
 
-#, fuzzy
 msgid "Set the aspect ratio of the service picons."
-msgstr "Встановити співвідношення сторін піконів каналів."
+msgstr "Встановити співвідношення сторін піконів каналу."
 
 msgid "Set the channel for this timer."
 msgstr "Встановити канал для цього таймера."
@@ -14655,9 +14610,8 @@ msgstr "Налаштування Емуляторів"
 msgid "SoftcamPanel"
 msgstr "Панель Емуляторів"
 
-#, fuzzy
 msgid "SoftcamSetup"
-msgstr "Налаштування емуляторів"
+msgstr "Налаштування Softcam"
 
 msgid "Software"
 msgstr "Програмне забезпечення"
@@ -14864,9 +14818,8 @@ msgstr "Розділений режим попереднього перегля�
 msgid "Splitscreen"
 msgstr "Розділені зображення"
 
-#, fuzzy
 msgid "Sports"
-msgstr "Спорт"
+msgstr "Спортивні передачі"
 
 msgid "Sri Lanka"
 msgstr "Шрі Ланка"
@@ -14949,9 +14902,8 @@ msgstr "Запуск Ему 1: "
 msgid "Starting Cam 2: "
 msgstr "Запуск Ему 2: "
 
-#, fuzzy
 msgid "Starting Softcam"
-msgstr "Запуск Ему"
+msgstr "Запуск Softcam"
 
 msgid "Starting on"
 msgstr "Почати на"
@@ -15169,6 +15121,9 @@ msgstr "Успішно:"
 
 msgid "Sudan"
 msgstr "Судан"
+
+msgid "Sunday"
+msgstr "Неділя"
 
 msgid "Support at"
 msgstr "Підтримка на"
@@ -16483,9 +16438,8 @@ msgstr "Властивості заголовка"
 msgid "Titleset mode"
 msgstr "Режим встановлення заголовку"
 
-#, fuzzy
 msgid "To restore the image:"
-msgstr "Для відновлення іміджу:"
+msgstr "Щоб відновити імідж:"
 
 #, python-format
 msgid ""
@@ -16677,6 +16631,12 @@ msgstr "Спроба завантажити новий список пакеті
 msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Спроба завантаження нового списку оновлень. Зачекайте..."
 
+msgid "Tue"
+msgstr "Вів"
+
+msgid "Tuesday"
+msgstr "Вівторок"
+
 msgid "Tune"
 msgstr "Налагодження"
 
@@ -16782,6 +16742,12 @@ msgstr "Включення індикатора LED."
 
 msgid "Turning step size"
 msgstr "Величина кроку"
+
+msgid "Thu"
+msgstr "Чет"
+
+msgid "Thursday"
+msgstr "Четвер"
 
 msgid "Tuvalu"
 msgstr "Тувалу"
@@ -17713,6 +17679,12 @@ msgstr "Веб Інтерфейс"
 msgid "Web browser base visibility"
 msgstr "Видимість інтернет браузера"
 
+msgid "Wed"
+msgstr "Сер"
+
+msgid "Wednesday"
+msgstr "Середа"
+
 msgid "Weekday"
 msgstr "Будній день"
 
@@ -18100,9 +18072,8 @@ msgstr "Жовта кнопка"
 msgid "Yellow long"
 msgstr "Жовта довге натискання"
 
-#, fuzzy
 msgid "Yemen"
-msgstr "Ємен"
+msgstr "Йємен"
 
 msgid "Yes"
 msgstr "Так"
@@ -19666,9 +19637,8 @@ msgstr "включено"
 msgid "on READ ONLY medium."
 msgstr "на READ ONLY носії."
 
-#, fuzzy
 msgid "on how to restore the image"
-msgstr "про те, як відновити імідж"
+msgstr "що робити для відновлення іміджа"
 
 msgid "once"
 msgstr "один раз"
@@ -19691,9 +19661,8 @@ msgstr "мова оригіналу"
 msgid "oscam webif disabled"
 msgstr "oscam webif відключено"
 
-#, fuzzy
 msgid "packages selected."
-msgstr "обрані пакети."
+msgstr "виділені пакети."
 
 msgid "page left"
 msgstr "сторінка вліво"
@@ -19746,7 +19715,6 @@ msgstr "дитяча програма дошкільного віку"
 msgid "press the menu button to set a general AC3/Dolby offset"
 msgstr "натисніть кнопку меню, щоб встановити загальний зсув AC3/Dolby"
 
-#, fuzzy
 msgid "previous channel page"
 msgstr "попередня сторінка каналів"
 
@@ -20236,9 +20204,8 @@ msgstr ""
 msgid "traditional (fast)"
 msgstr "звичайний (швидко)"
 
-#, fuzzy
 msgid "traditional (fast), retune"
-msgstr "звичайний (швидко)"
+msgstr "звичайний (швидкий), переналаштування"
 
 msgid "true"
 msgstr "правдивий"
@@ -20246,9 +20213,8 @@ msgstr "правдивий"
 msgid "turbo"
 msgstr ""
 
-#, fuzzy
 msgid "uShare"
-msgstr "Мережеві диски"
+msgstr "uShare"
 
 msgid "uShare Log"
 msgstr "uShare Лог"
@@ -20268,9 +20234,8 @@ msgstr "недоступно"
 msgid "unconfirmed"
 msgstr "непідтверджений"
 
-#, fuzzy
 msgid "unknow"
-msgstr "невідомий"
+msgstr "невідомо"
 
 msgid "unknown"
 msgstr "невідомий"
@@ -20278,7 +20243,6 @@ msgstr "невідомий"
 msgid "unknown error"
 msgstr "невідома помилка"
 
-#, fuzzy
 msgid "unknown error!"
 msgstr "невідома помилка!"
 
@@ -20286,13 +20250,13 @@ msgid "unknown service"
 msgstr "невідомий канал"
 
 msgid "unpack Rar Files"
-msgstr ""
+msgstr "розпакувати Rar файли"
 
 msgid "unpack archives"
-msgstr ""
+msgstr "розпакувати архіви"
 
 msgid "unpack gzip Files"
-msgstr ""
+msgstr "розпакувати gzip файли"
 
 msgid "unpack tar/compressed tar Files"
 msgstr "розпакувати/запакувати tar файли"
@@ -20300,27 +20264,23 @@ msgstr "розпакувати/запакувати tar файли"
 msgid "unpack zip Files"
 msgstr "розпакувати zip файли"
 
-#, fuzzy
 msgid "unpublished"
-msgstr "не опубліковано"
+msgstr "неоприлюднений"
 
-#, fuzzy
 msgid "untestable"
-msgstr "неперевірена"
+msgstr "нестабільний"
 
 msgid "until standby/restart"
 msgstr "до режиму очікування/перезавантаження"
 
-#, fuzzy
 msgid "update"
-msgstr "оновлення"
+msgstr "оновлено"
 
 msgid "updates available."
 msgstr "оновлень доступно."
 
-#, fuzzy
 msgid "use best / controlled by HDMI"
-msgstr "використовувати краще/управляється HDMI"
+msgstr "використовувати краще / контролюється HDMI"
 
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
 msgstr "використовуйте збільшену напругу '14/18В ', якщо виникають проблеми при перемиканні конверторів"
@@ -20334,7 +20294,6 @@ msgstr "на вибір користувача"
 msgid "user feed url"
 msgstr "фід користувача"
 
-#, fuzzy
 msgid "userdefined"
 msgstr "на вибір користувача"
 
@@ -20398,16 +20357,14 @@ msgstr "широкий"
 msgid "width"
 msgstr "ширина"
 
-#, fuzzy
 msgid "will take about 1-15 minutes for this system\n"
 msgstr "для цієї системи займе близько 1-15 хвилин\n"
 
 msgid "will take about 30 minutes for this system\n"
 msgstr "для цієї системи займе близько 30 хвилин\n"
 
-#, fuzzy
 msgid "winter sport"
-msgstr "зимовий вид спорту"
+msgstr "зимовий спорт"
 
 msgid "wireless network interface"
 msgstr "безпровідний мережевий інтерфейс"
@@ -20419,7 +20376,6 @@ msgstr[0] "з %d помилкою"
 msgstr[1] "з %d помилками"
 msgstr[2] "з %d помилками"
 
-#, fuzzy
 msgid "with errors"
 msgstr "з помилками"
 
@@ -20436,9 +20392,8 @@ msgstr "довгим натисканням кнопки OK"
 msgid "with_errors"
 msgstr "з_помилками"
 
-#, fuzzy
 msgid "without"
-msgstr "без"
+msgstr "крім"
 
 msgid "without Query"
 msgstr "без Запиту"
