@@ -642,8 +642,8 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 	sf = getSkinFactor()
 	return [
 		_(name),
-		MultiContentEntryText(pos=(60*sf, 3*sf), size=((width-60)*sf, 25*sf), font=0, text = _(name)),
-		MultiContentEntryText(pos=(60*sf, 25*sf), size=((width-60)*sf, 20*sf), font=1, text = _(description)),
+		MultiContentEntryText(pos=(60*sf, 2*sf), size=((width-60)*sf, 28*sf), font=0, text = _(name)),
+		MultiContentEntryText(pos=(60*sf, 25*sf), size=((width-60)*sf, 22*sf), font=1, text = _(description)),
 		MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags = BT_SCALE, png = png),
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 	]
@@ -652,8 +652,8 @@ def QuickSubMenuEntryComponent(name, description, long_description = None, width
 	sf = getSkinFactor()
 	return [
 		_(name),
-		MultiContentEntryText(pos=(10*sf, 3*sf), size=((width-10*sf), 25*sf), font=0, text = _(name)),
-		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10*sf), 20*sf), font=1, text = _(description)),
+		MultiContentEntryText(pos=(10*sf, 2*sf), size=((width-10*sf), 28*sf), font=0, text = _(name)),
+		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10*sf), 22*sf), font=1, text = _(description)),
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 	]
 
