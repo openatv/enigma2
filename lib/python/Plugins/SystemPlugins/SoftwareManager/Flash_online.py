@@ -73,9 +73,14 @@ class FlashOnline(Screen):
 			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
 				try:
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
-						if "Downloaded Images" not in self.imagesList:
-							self.imagesList["Downloaded Images"] = {}
-						self.imagesList["Downloaded Images"][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+						if '-backup-' in file.split(os.sep)[-1]:
+							if _("Fullbackup Images") not in self.imagesList:
+								self.imagesList[_("Fullbackup Images")] = {}
+							self.imagesList[_("Fullbackup Images")][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+						else:
+							if _("Downloaded Images") not in self.imagesList:
+								self.imagesList[_("Downloaded Images")] = {}
+							self.imagesList[_("Downloaded Images")][file] = {'link': file, 'name': file.split(os.sep)[-1]}
 				except:
 					pass
 
@@ -257,10 +262,19 @@ class FlashImage(Screen):
 		choices.append((_("No, do not flash an image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
 
+	def backupQuestionCB(self, retval = True):
+		if retval:
+			self.checkMedia('backup')
+		else:
+			self.checkMedia('no_backup')
+
 	def checkMedia(self, retval):
 		if retval:
-			if SystemInfo["canMultiBoot"]:
-				self.multibootslot = retval[0]
+			if not 'backup' in str(retval):
+				if SystemInfo["canMultiBoot"]:
+					self.multibootslot = retval[0]
+				self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Backup Settings') + '?', default=True, timeout=10)
+				return
 
 			def findmedia(path):
 				def avail(path):
@@ -302,8 +316,8 @@ class FlashImage(Screen):
 						os.remove(destination)
 					if not os.path.isdir(destination):
 						os.mkdir(destination)
-					if isDevice:
-						self.startBackupsettings(True)
+					if isDevice or 'no_backup' == retval:
+						self.startBackupsettings(retval)
 					else:
 						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
 				except:
@@ -315,8 +329,11 @@ class FlashImage(Screen):
 
 	def startBackupsettings(self, retval):
 		if retval:
-			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
-			self.session.openWithCallback(self.flashPostAction,BackupScreen, runBackup = True)
+			if 'backup' == retval or True == retval:
+				from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+				self.session.openWithCallback(self.flashPostAction,BackupScreen, runBackup = True)
+			else:
+				self.flashPostAction()
 		else:
 			self.abort()
 
