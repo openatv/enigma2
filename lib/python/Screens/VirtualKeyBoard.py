@@ -854,11 +854,13 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def ukranian(self, base):
 		keyList = copy.deepcopy(base)
+		keyList[0][0][0] = u"\u0027"
 		keyList[0][1][12] = u"\u0457"
 		keyList[0][1][13] = u"\\"
 		keyList[0][2][11] = u"\u0454"
 		keyList[0][2][2] = u"\u0456"
 		keyList[0][3][1] = u"\u0491"
+		keyList[1][0][0] = u"\u0027"
 		keyList[1][1][12] = u"\u0407"
 		keyList[1][1][13] = u"/"
 		keyList[1][2][11] = u"\u0404"
