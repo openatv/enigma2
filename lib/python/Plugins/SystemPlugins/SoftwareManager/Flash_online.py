@@ -73,14 +73,12 @@ class FlashOnline(Screen):
 			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
 				try:
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
+						imagetyp = _("Downloaded Images")
 						if '-backup-' in file.split(os.sep)[-1]:
-							if _("Fullbackup Images") not in self.imagesList:
-								self.imagesList[_("Fullbackup Images")] = {}
-							self.imagesList[_("Fullbackup Images")][file] = {'link': file, 'name': file.split(os.sep)[-1]}
-						else:
-							if _("Downloaded Images") not in self.imagesList:
-								self.imagesList[_("Downloaded Images")] = {}
-							self.imagesList[_("Downloaded Images")][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+							imagetyp = _("Fullbackup Images")
+						if imagetyp not in self.imagesList:
+							self.imagesList[imagetyp] = {}
+						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1]}
 				except:
 					pass
 
@@ -132,7 +130,8 @@ class FlashOnline(Screen):
 		for catagorie in reversed(sorted(self.imagesList.keys())):
 			if catagorie in self.expanded:
 				list.append(ChoiceEntryComponent('expanded',((str(catagorie)), "Expander")))
-				for image in reversed(sorted(self.imagesList[catagorie].keys())):
+				#for image in reversed(sorted(self.imagesList[catagorie].keys())):
+				for image in reversed(sorted(self.imagesList[catagorie].keys(), key=lambda x: x.split(os.sep)[-1])):
 					list.append(ChoiceEntryComponent('verticalline',((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
 				for image in self.imagesList[catagorie].keys():
