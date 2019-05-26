@@ -618,11 +618,11 @@ class AtileHDScreens(Screen):
 		self.screen_dir = "allScreens"
 		self.skinparts_dir = "skinparts"
 		self.file_dir = "mySkin_off"
-		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/input_info.png" % cur_skin)
+		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_on.png" % cur_skin)
 		if not path.exists(my_path):
 			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_on.png")
 		self.enabled_pic = LoadPixmap(cached = True, path = my_path)
-		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/input_error.png" % cur_skin)
+		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_off.png" % cur_skin)
 		if not path.exists(my_path):
 			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_off.png")
 		self.disabled_pic = LoadPixmap(cached = True, path = my_path)
