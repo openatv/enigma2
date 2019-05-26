@@ -46,7 +46,7 @@ def InitConfig():
 		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local', 
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/etc/vtuner.conf',
 		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
-		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/opkg/secret-feed.conf',
+		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
 		'/etc/wpa_supplicant.wlan0.conf', '/etc/wpa_supplicant.wlan1.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
 		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
 		'/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/',
@@ -63,6 +63,7 @@ def InitConfig():
 		'/usr/bin/enigma2_pre_start.sh',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
+		+eEnv_resolve_multi("${datadir}/opkg/*-secret-feed.conf")\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
