@@ -48,13 +48,12 @@ msgstr ""
 "\n"
 " Kodi немає. Продовжити інсталяцію?"
 
-#, fuzzy
 msgid ""
 "\n"
 "%Y/%m/%d  %H:%M - "
 msgstr ""
 "\n"
-"%d.%m.%Y  %M:%H - "
+"%d.%m.%Y  %M:%H -"
 
 msgid ""
 "\n"
@@ -314,13 +313,12 @@ msgstr ""
 msgid " and"
 msgstr " і"
 
-#, fuzzy
 msgid ""
 " available !!\n"
 "\n"
 "Do you want to install the new settingslist?"
 msgstr ""
-" наявний!!\n"
+" доступні!!\n"
 "\n"
 "Ви хочете встановити новий список налаштувань?"
 
@@ -1216,9 +1214,9 @@ msgstr "%s %s пульт ДУ (рідний)"
 msgid "%s %s software because updates are available."
 msgstr "%s %s ПЗ, оновлення доступні."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s ( %s Cards )"
-msgstr "%s ( %s Картка )"
+msgstr "%s (%s Картки)"
 
 #, fuzzy, python-format
 msgid "%s (%04o)"
@@ -1389,9 +1387,8 @@ msgstr "+24"
 msgid "-24"
 msgstr "-24"
 
-#, fuzzy
 msgid "-24h/+24 Hours"
-msgstr "-24/+24 Години"
+msgstr "-24/+24 Години "
 
 msgid "-NO SERVICE\n"
 msgstr "-НЕМАЄ КАНАЛІВ\n"
@@ -1589,9 +1586,8 @@ msgstr "16:9 Поштова скринька"
 msgid "16:9 always"
 msgstr "16:9 завжди"
 
-#, fuzzy
 msgid "16_10_letterbox"
-msgstr "16_10_поштова_скринька"
+msgstr "16_10_поштова скринька"
 
 msgid "16_10_panscan"
 msgstr "16_10_панорама"
@@ -1603,9 +1599,8 @@ msgstr "16_9"
 msgid "16_9_always"
 msgstr "16_9_завжди"
 
-#, fuzzy
 msgid "16_9_letterbox"
-msgstr "16_9_поштова_скринька"
+msgstr "16_9_поштова скринька"
 
 msgid "18 V"
 msgstr "18 В"
@@ -2209,9 +2204,8 @@ msgstr "AC3/Dolby зсув"
 msgid "AC3plus transcoding"
 msgstr "AC3+ транскодування"
 
-#, fuzzy
 msgid "AFP"
-msgstr "AFP"
+msgstr ""
 
 msgid "AFP Setup"
 msgstr "Налаштування AFP"
@@ -2229,9 +2223,8 @@ msgstr "Налаштування Аудіо-Відео"
 msgid "AV aspect is %s."
 msgstr "А/В співвідношення %s."
 
-#, fuzzy
 msgid "AZPlay"
-msgstr "А-Я Відтворення"
+msgstr "Відтворення А-Я"
 
 msgid "Abort"
 msgstr "Скасувати"
@@ -2239,9 +2232,8 @@ msgstr "Скасувати"
 msgid "Aborted a pseudo recording.\n"
 msgstr "Псевдо запис перервано.\n"
 
-#, fuzzy
 msgid "Aborted a streaming service.\n"
-msgstr "Відтворення потокового каналу перервано.\n"
+msgstr "Відтворення стрім-каналу перервано.\n"
 
 msgid "Aborting updateprogress"
 msgstr "Переривання процесу оновлення"
@@ -2401,9 +2393,8 @@ msgstr "Почати запис (на невизначений час)"
 msgid "Add recording (stop after current event)"
 msgstr "Почати запис (зупинити після цієї передачі)"
 
-#, fuzzy
 msgid "Add selected folder to bookmarks"
-msgstr "Додати вибрану папку у закладоки"
+msgstr "Додати вибрану папку у закладки"
 
 msgid "Add service"
 msgstr "Додати канал"
@@ -3847,9 +3838,8 @@ msgstr "Назва Каналу"
 msgid "Channel button always changes sides"
 msgstr "Кнопки CH+/CH- завжди змінює сторони"
 
-#, fuzzy
 msgid "Channel buttons"
-msgstr "Кнопки зміни каналу"
+msgstr "Кнопки каналу"
 
 msgid "Channel buttons invert"
 msgstr "Інверсія дії кнопок каналів"
@@ -4905,9 +4895,8 @@ msgstr "Поточний Статус:"
 msgid "Current device: "
 msgstr "Поточний пристрій: "
 
-#, fuzzy
 msgid "Current installed"
-msgstr "Встановити поточний"
+msgstr "Встановлено поточний"
 
 msgid "Current location"
 msgstr "Поточне розташування"
@@ -5532,9 +5521,8 @@ msgstr "DiSEqC порт %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "Налаштування DiSEqC-тестер"
 
-#, fuzzy
 msgid "Diction"
-msgstr "Дикція"
+msgstr "Диктор"
 
 #, python-format
 msgid ""
@@ -5626,9 +5614,8 @@ msgstr "Налаштування дисплея"
 msgid "Display Setup"
 msgstr "Налаштування LCD"
 
-#, fuzzy
 msgid "Display and user interface"
-msgstr "Дисплей та інтерфейс користувача"
+msgstr "Дисплей і графічний інтерфейс користувача"
 
 msgid "Display message before playing next movie"
 msgstr "Показати повідомлення перед відтворенням наступного фільму"
@@ -6087,9 +6074,8 @@ msgstr "Редагувати назву"
 msgid "Edit chapters of current title"
 msgstr "Редагувати глави поточного заголовку"
 
-#, fuzzy
 msgid "Edit current line"
-msgstr "Редагувати поточний рядок"
+msgstr "Редагувати даний рядок"
 
 msgid "Edit line "
 msgstr "Редагувати рядок "
@@ -6805,9 +6791,8 @@ msgstr "Перевірка Оновлення FSBL"
 msgid "FTA"
 msgstr "Не кодований"
 
-#, fuzzy
 msgid "FTP"
-msgstr "FTP"
+msgstr ""
 
 msgid "FTP Setup"
 msgstr "Налаштування FTP"
@@ -6891,9 +6876,8 @@ msgstr "Фіджі"
 msgid "File"
 msgstr "Файл"
 
-#, fuzzy
 msgid "File Commander"
-msgstr "File Commander"
+msgstr ""
 
 msgid "File Commander - Addon File-Viewer"
 msgstr "File Commander - Аддон перегляду файлів"
@@ -7699,9 +7683,8 @@ msgstr "Зберігати екран"
 msgid "Hold till locked"
 msgstr "Тримати до блокування"
 
-#, fuzzy
 msgid "Holy See"
-msgstr "Святий Престол"
+msgstr ""
 
 msgid "Home"
 msgstr "Додому"
@@ -8377,9 +8360,8 @@ msgstr "Чи це налаштування є нормальним?"
 msgid "Is this video mode ok?"
 msgstr "Встановити даний відеорежим?"
 
-#, fuzzy
 msgid "Isle of Man"
-msgstr "Острів Мен"
+msgstr "Острів Ман"
 
 msgid "Israel"
 msgstr "Ізраїль"
@@ -8828,7 +8810,7 @@ msgid "Lock ratio"
 msgstr "Блокування Співвідношення"
 
 msgid "Lock:"
-msgstr "Захоплення:"
+msgstr "З’єднання:"
 
 msgid "Log"
 msgstr "ЛОГ"
@@ -11414,9 +11396,8 @@ msgstr "Попередній"
 msgid "Prevsong"
 msgstr "Попер. пісня"
 
-#, fuzzy
 msgid "Prevsong long"
-msgstr "Попередня пісня довге натискання"
+msgstr "Поп. пісня довге натискання"
 
 msgid "Primary DNS"
 msgstr "Первинний DNS"
@@ -11727,9 +11708,8 @@ msgstr "Вийти без збереження налаштувань?"
 msgid "Really delete done timers?"
 msgstr "Видалити виконане завдання?"
 
-#, fuzzy
 msgid "Really delete this entry?"
-msgstr "Видалити виконане завдання?"
+msgstr "Видалити це завдання?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Вийти з підканалів?"
@@ -11852,9 +11832,8 @@ msgstr "Запис завжди має перевагу"
 msgid "Records"
 msgstr "Записи"
 
-#, fuzzy
 msgid "Recovery Mode"
-msgstr "Відновлення"
+msgstr "Режим Відновлення"
 
 msgid "Red"
 msgstr "Червоний"
@@ -11924,7 +11903,7 @@ msgid "Relative"
 msgstr "Відносний"
 
 msgid "Release Notes"
-msgstr ""
+msgstr "Примітки до випуску"
 
 msgid "Relevant PIDs Routing"
 msgstr "Релевантні ПІДи Маршрутизатора"
@@ -15241,7 +15220,9 @@ msgstr "ТБ"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Дом. Сторінка: sat-ukraine.info"
+msgstr "Переклад - kvinto\n"
+"Сторінка: sat-ukraine.info\n"
+"          https://gisclub.tv"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 level 1!"
