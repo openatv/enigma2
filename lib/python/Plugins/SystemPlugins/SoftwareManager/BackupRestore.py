@@ -63,16 +63,16 @@ def InitConfig():
 		'/usr/bin/enigma2_pre_start.sh',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
-		+eEnv_resolve_multi("/etc/opkg/*-secret-feed.conf")\
-		+eEnv_resolve_multi("/etc/enigma2/*/mySkin_off/*.xml")\
-		+eEnv_resolve_multi("/etc/enigma2/*/mySkin/*.xml")\
-		+eEnv_resolve_multi("/etc/enigma2/*/skin_user_*.xml")\
+		+eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
 		+eEnv_resolve_multi('/usr/bin/*cam*')\
 		+eEnv_resolve_multi('/etc/*.emu')\
-		+eEnv_resolve_multi('/etc/cron*')\
-		+eEnv_resolve_multi('/etc/init.d/softcam*')\
-		+eEnv_resolve_multi('/etc/init.d/cardserver*')\
-		+eEnv_resolve_multi('/etc/sundtek.*')\
+		+eEnv_resolve_multi('${sysconfdir}/cron*')\
+		+eEnv_resolve_multi('${sysconfdir}/init.d/softcam*')\
+		+eEnv_resolve_multi('${sysconfdir}/init.d/cardserver*')\
+		+eEnv_resolve_multi('${sysconfdir}/sundtek.*')\
 		+eEnv_resolve_multi('/usr/sundtek/*')\
 		+eEnv_resolve_multi('/opt/bin/*')\
 		+eEnv_resolve_multi('/usr/script/*')
