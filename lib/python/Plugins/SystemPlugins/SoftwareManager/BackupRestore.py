@@ -67,15 +67,15 @@ def InitConfig():
 		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
-		+eEnv_resolve_multi('/usr/bin/*cam*')\
-		+eEnv_resolve_multi('/etc/*.emu')\
-		+eEnv_resolve_multi('${sysconfdir}/cron*')\
-		+eEnv_resolve_multi('${sysconfdir}/init.d/softcam*')\
-		+eEnv_resolve_multi('${sysconfdir}/init.d/cardserver*')\
-		+eEnv_resolve_multi('${sysconfdir}/sundtek.*')\
-		+eEnv_resolve_multi('/usr/sundtek/*')\
-		+eEnv_resolve_multi('/opt/bin/*')\
-		+eEnv_resolve_multi('/usr/script/*')
+		+eEnv_resolve_multi("/usr/bin/*cam*")\
+		+eEnv_resolve_multi("/etc/*.emu")\
+		+eEnv_resolve_multi("${sysconfdir}/cron*")\
+		+eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
+		+eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
+		+eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
+		+eEnv_resolve_multi("/usr/sundtek/*")\
+		+eEnv_resolve_multi("/opt/bin/*")\
+		+eEnv_resolve_multi("/usr/script/*")
 
 	# Drop non existant paths from list
 	tmpfiles=[]
