@@ -190,6 +190,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.default_color_file = "colors_Original.xml"
 
 		self.default_background_file = "background_Original.xml"
+		self.default_sb_file = "sb_Original.xml"
 		self.default_infobar_file = "infobar_Original.xml"
 		self.default_sib_file = "sib_Original.xml"
 		self.default_ch_se_file = "ch_se_Original.xml"
@@ -200,6 +201,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.color_file = "skin_user_colors.xml"
 		self.font_file = "skin_user_header.xml"
 		self.background_file = "skin_user_background.xml"
+		self.sb_file = "skin_user_sb.xml"
 		self.infobar_file = "skin_user_infobar.xml"
 		self.sib_file = "skin_user_sib.xml"
 		self.ch_se_file = "skin_user_ch_se.xml"
@@ -216,6 +218,9 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		# background
 		current, choices = self.getSettings(self.default_background_file, self.background_file)
 		self.myAtileHD_background = NoSave(ConfigSelection(default=current, choices = choices))
+		# sb
+		current, choices = self.getSettings(self.default_sb_file, self.sb_file)
+		self.myAtileHD_sb = NoSave(ConfigSelection(default=current, choices = choices))
 		# infobar
 		current, choices = self.getSettings(self.default_infobar_file, self.infobar_file)
 		self.myAtileHD_infobar = NoSave(ConfigSelection(default=current, choices = choices))
@@ -293,12 +298,13 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.set_color = getConfigListEntry(_("Style:"), self.myAtileHD_color)
 		self.set_font = getConfigListEntry(_("Font:"), self.myAtileHD_font)
 		self.set_background = getConfigListEntry(_("Background:"), self.myAtileHD_background)
+		self.set_sb = getConfigListEntry(_("Backgroundselected:"), self.myAtileHD_sb)
 		self.set_infobar = getConfigListEntry(_("Infobar:"), self.myAtileHD_infobar)
 		self.set_sib = getConfigListEntry(_("Secondinfobar:"), self.myAtileHD_sib)
 		self.set_ch_se = getConfigListEntry(_("Channelselection:"), self.myAtileHD_ch_se)
 		self.set_ev = getConfigListEntry(_("Eventview:"), self.myAtileHD_ev)
 		self.set_clock = getConfigListEntry(_("Clock:"), self.myAtileHD_clock)
-		self.set_ul = getConfigListEntry(_("UserLogo:"), self.myAtileHD_ul)
+		self.set_ul = getConfigListEntry(_("Userlogo:"), self.myAtileHD_ul)
 		self.set_myatile = getConfigListEntry(_("Enable %s pro:") % cur_skin, self.myAtileHD_active)
 		self.set_new_skin = getConfigListEntry(_("Change skin"), ConfigNothing())
 		self.find_woeid = getConfigListEntry(_("Search weather location ID"), ConfigNothing())
@@ -310,6 +316,8 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.list.append(self.set_font)
 		if len(self.myAtileHD_background.choices)>1:
 			self.list.append(self.set_background)
+		if len(self.myAtileHD_sb.choices)>1:
+			self.list.append(self.set_sb)
 		if len(self.myAtileHD_infobar.choices)>1:
 			self.list.append(self.set_infobar)
 		if len(self.myAtileHD_sib.choices)>1:
