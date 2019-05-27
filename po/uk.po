@@ -29,8 +29,9 @@ msgstr ""
 msgid ""
 "\n"
 "   Please press OK to start Kodi..."
-msgstr "\n"
-"   Будь ласка, натисніть OK для старту Kodi..."
+msgstr ""
+"\n"
+"   Запуск Kodi. Будь ласка, натисніть OK."
 
 msgid ""
 "\n"
@@ -54,7 +55,7 @@ msgid ""
 "%Y/%m/%d  %H:%M - "
 msgstr ""
 "\n"
-"%d.%m.%Y  %H:%M - "
+"%d.%m.%Y  %M:%H - "
 
 msgid ""
 "\n"
@@ -320,7 +321,7 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr ""
-" доступно!!\n"
+" наявний!!\n"
 "\n"
 "Ви хочете встановити новий список налаштувань?"
 
@@ -471,12 +472,12 @@ msgstr "%A"
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%A %-d %B"
-msgstr "%A %-d %B"
+msgstr "%A %d. %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%A %-d %B %Y"
-msgstr "%A %-d %B %Y"
+msgstr "%A %d. %B %Y"
 
 #, fuzzy
 msgid "%A %-d-%B"
@@ -613,11 +614,11 @@ msgstr "%A %m/%-d"
 
 #, fuzzy
 msgid "%A %m/%-d/%Y"
-msgstr "%A %m/%-d/%Y"
+msgstr "%A %m.%-d.%Y"
 
 #, fuzzy
 msgid "%A %m/%d"
-msgstr "%A %m/%d"
+msgstr "%A %m. %d."
 
 #, fuzzy
 msgid "%A %m/%d/%Y"
@@ -1391,7 +1392,7 @@ msgstr "-24"
 
 #, fuzzy
 msgid "-24h/+24 Hours"
-msgstr "-24/+24 Годин"
+msgstr "-24/+24 Години"
 
 msgid "-NO SERVICE\n"
 msgstr "-НЕМАЄ КАНАЛІВ\n"
@@ -2184,14 +2185,14 @@ msgstr ""
 
 #, fuzzy
 msgid "AAC Plus downmix"
-msgstr "AAC+ мікшування"
+msgstr "AAC мікшування"
 
 msgid "AAC downmix"
-msgstr "AAC мікшування"
+msgstr "AAC Plus мікшування"
 
 #, fuzzy
 msgid "AAC plus downmix"
-msgstr "AAC+ мікшування"
+msgstr "AAC plus мікшування"
 
 msgid "AAC transcoding"
 msgstr "AAC транскодування"
@@ -2233,7 +2234,7 @@ msgstr "А/В співвідношення %s."
 
 #, fuzzy
 msgid "AZPlay"
-msgstr "AZВідтворення"
+msgstr "А-Я Відтворення"
 
 msgid "Abort"
 msgstr "Скасувати"
@@ -2243,7 +2244,7 @@ msgstr "Псевдо запис перервано.\n"
 
 #, fuzzy
 msgid "Aborted a streaming service.\n"
-msgstr "Потоковий канал перервано.\n"
+msgstr "Відтворення потокового каналу перервано.\n"
 
 msgid "Aborting updateprogress"
 msgstr "Переривання процесу оновлення"
@@ -2256,7 +2257,7 @@ msgstr "Інформація приймача..."
 
 #, fuzzy
 msgid "Accessed:"
-msgstr "Доступ:"
+msgstr "Доступ: "
 
 msgid "Accesspoint:"
 msgstr "Точка доступу:"
@@ -2299,7 +2300,7 @@ msgstr "Активувати правий список файлів як дже�
 
 #, fuzzy
 msgid "Activate the configured network settings."
-msgstr "Активувати налаштування мережі."
+msgstr "Активувати налаштовані параметри мережі."
 
 msgid "Activate timeshift End"
 msgstr "Вказати закінчення таймшифта"
@@ -2333,18 +2334,18 @@ msgstr "Додати новий чотирьохканальний вхід"
 
 #, fuzzy
 msgid "Add Record Timer"
-msgstr "Додати таймер запису"
+msgstr "Додати Таймер запису"
 
 msgid "Add Timer"
 msgstr "Додати Таймер"
 
 #, fuzzy
 msgid "Add Zap Timer"
-msgstr "Додати таймер переключення"
+msgstr "Додати Таймер переключення"
 
 #, fuzzy
 msgid "Add Zap+Record Timer"
-msgstr "Додати таймер переключення+запису"
+msgstr "Додати Таймер переключення+запису"
 
 msgid "Add a auto timer for current event"
 msgstr "Додати авто таймер для поточного події"
@@ -2408,7 +2409,7 @@ msgstr "Почати запис (зупинити після цієї перед
 
 #, fuzzy
 msgid "Add selected folder to bookmarks"
-msgstr "Додати вибрану папку до закладок"
+msgstr "Додати вибрану папку у закладоки"
 
 msgid "Add service"
 msgstr "Додати канал"
@@ -2427,7 +2428,7 @@ msgstr "Додати/Видалити таймер поточної події"
 
 #, fuzzy
 msgid "Add/remove change timer for current event"
-msgstr "Додати/видалити таймер зміни поточної події"
+msgstr "Додати/видалити змінити таймер для поточної передачі"
 
 msgid "Adding schedule..."
 msgstr "Додавання завдання..."
@@ -3587,7 +3588,7 @@ msgstr "CI слот: "
 
 #, fuzzy
 msgid "CIFS/Samba Setup"
-msgstr "Налаштування CIFS/Samba"
+msgstr "CIFS/Samba Налаштування"
 
 msgid "CIHelper Setup"
 msgstr "Помічник налаштування CI"
@@ -3855,7 +3856,7 @@ msgstr "Кнопки CH+/CH- завжди змінює сторони"
 
 #, fuzzy
 msgid "Channel buttons"
-msgstr "Кнопки каналів"
+msgstr "Кнопки зміни каналу"
 
 msgid "Channel buttons invert"
 msgstr "Інверсія дії кнопок каналів"
@@ -4549,7 +4550,7 @@ msgstr "Налаштування прозорості для чорного фо
 
 #, fuzzy
 msgid "Configure the tuner mode."
-msgstr "Налаштування режиму тюнера."
+msgstr "Налаштуйте режим тюнера."
 
 msgid "Configure the type of status indication icons shown in the movielist."
 msgstr "Налаштування типів значків індикації стану, при показі в списку фільмів."
@@ -4852,7 +4853,7 @@ msgstr "Створити лінк користувач-назва"
 
 #, fuzzy
 msgid "Create:"
-msgstr "Створити:"
+msgstr "Створити: "
 
 #, python-format
 msgid "Create: Recovery Fullbackup %s"
@@ -4913,7 +4914,7 @@ msgstr "Поточний пристрій: "
 
 #, fuzzy
 msgid "Current installed"
-msgstr "Встановлено поточний"
+msgstr "Встановити поточний"
 
 msgid "Current location"
 msgstr "Поточне розташування"
