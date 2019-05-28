@@ -2799,7 +2799,7 @@ msgid ""
 "Are you sure you want to restore your STB backup?\n"
 "STB will restart after the restore"
 msgstr ""
-"Ви дійсно бажаєте відновити бекап приймача?\n"
+"Ви дійсно бажаєте відновити бекап налаштувань приймача?\n"
 "Після відновлення приймач перезавантажиться"
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
@@ -3177,7 +3177,7 @@ msgid "Backup Mode"
 msgstr "Режим збереження"
 
 msgid "Backup Settings"
-msgstr "Налаштування резервної копії"
+msgstr "Збереження Налаштувань"
 
 msgid "Backup completed."
 msgstr "Бекап успішно створений."
@@ -3266,13 +3266,13 @@ msgid "Behavior of 0 key in PiP-mode"
 msgstr "Дія при натискання на кнопку 0 в ПІП-режимі"
 
 msgid "Behavior when a movie is started"
-msgstr "Дія коли фільм розпочався"
+msgstr "Дія, коли запис розпочався"
 
 msgid "Behavior when a movie is stopped"
-msgstr "Дія коли фільм закінчився"
+msgstr "Дія, коли запис закінчився"
 
 msgid "Behavior when a movie reaches the end"
-msgstr "Дія коли фільм доходить до кінця"
+msgstr "Дія, коли запис доходить до кінця"
 
 msgid "Belarus"
 msgstr "Білорусія"
@@ -3366,7 +3366,7 @@ msgstr "Потрібне оновлення завантажувача!"
 
 #, python-format
 msgid "Bootloader:\t\t%s\n"
-msgstr "Завантажувач:\t%s\n"
+msgstr "Завантажувач: \t\t%s\n"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Босня і Герцеговина"
@@ -4230,7 +4230,7 @@ msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Комплексно (дозволяє змішувати аудіо-доріжки і аспекти)"
 
 msgid "Composition of the recording filenames"
-msgstr "Склад назви файлів запису"
+msgstr "Величина назви файлів запису"
 
 msgid "Compress"
 msgstr "Стискати"
@@ -5201,7 +5201,7 @@ msgid "Default  (keymap.xml)"
 msgstr "За замовчуванням (keymap.xml)"
 
 msgid "Default 'After event' *"
-msgstr "За замовчуванням 'Після події' *"
+msgstr "За замовчуванням 'Після запису' *"
 
 msgid "Default 'Timer type' *"
 msgstr "За замовчуванням 'Тип таймера' *"
@@ -5618,7 +5618,7 @@ msgid "Display and user interface"
 msgstr "Дисплей і графічний інтерфейс користувача"
 
 msgid "Display message before playing next movie"
-msgstr "Показати повідомлення перед відтворенням наступного фільму"
+msgstr "Показати повідомлення перед початком наступного запису"
 
 msgid "Display settings"
 msgstr "Налаштування дисплея"
@@ -8148,7 +8148,7 @@ msgid "Initial lock ratio"
 msgstr "Початкове захоплення сигналу"
 
 msgid "Initial rewind speed"
-msgstr "Початкова швидкість перемотування"
+msgstr "Початкова швидкість перемотування назад"
 
 msgid "Initial scroll delay"
 msgstr "Початкова затримка прокрутки"
@@ -13350,7 +13350,7 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Встановіть час затримки між повтореннями, використовується програмний рендеринг в деяких скінах."
 
 msgid "Set the description of the recording."
-msgstr "Призначення опису для запису."
+msgstr "Зробіть опис для запису."
 
 msgid "Set the jump-size of the seekbar."
 msgstr "Встановити крок переходу для Seekbar."
@@ -14060,7 +14060,7 @@ msgid "Show message when recording starts"
 msgstr "Показати повідомлення при початку запису"
 
 msgid "Show movie lengths in movielist"
-msgstr "Показувати тривалість фільмів у списку фільмів"
+msgstr "Показувати тривалість записів у списку записів"
 
 msgid "Show movies"
 msgstr "Показати записи"
@@ -14147,7 +14147,7 @@ msgid "Show status icons in movielist"
 msgstr "Показати статус іконок у списку записів"
 
 msgid "Show status messages when switch to live TV"
-msgstr "Показати повідомлення при переході на прямий ефір"
+msgstr "Показати повідомлення при переключені на канал ТВ"
 
 msgid "Show subservice selection"
 msgstr "Показати вибір підканалів"
@@ -14803,7 +14803,7 @@ msgid "Starting Softcam"
 msgstr "Запуск Softcam"
 
 msgid "Starting on"
-msgstr "Почати на"
+msgstr "Почати з"
 
 msgid "Status"
 msgstr "Статус"
@@ -15523,7 +15523,7 @@ msgid ""
 "Please use the 'additional' and 'excluded' backup selection."
 msgstr ""
 "Вибір резервного копіювання за замовчуванням не може бути змінений.\n"
-"Використовуйте 'додатковий' і 'виключений' вибір резервних копій."
+"Використовуйте 'додатково' і 'вилучений' вибір для резервних копій."
 
 msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
 msgstr "Налаштування за замовчуванням - за 5 хвилин до включення. Це може бути необхідним, наприклад, фактичний час включення неточний, очікування мережевого диску, тощо."
@@ -16160,7 +16160,7 @@ msgid "Time history"
 msgstr "Часова історія"
 
 msgid "Time jump avoid zero step size"
-msgstr "Інтервал збільшення часу уникає нульового розміру кроку"
+msgstr "Інтервал збільшення часу, уникає нульового розміру кроку"
 
 msgid "Time jump multiplier for fast backward"
 msgstr "Інтервал збільшення для швидкого перемотування назад"
@@ -19724,7 +19724,7 @@ msgid "repeat playlist"
 msgstr "повторне відтворення плейлиста"
 
 msgid "repeated"
-msgstr "повторно"
+msgstr "декілька раз"
 
 msgid "resoring satellites.xml not posibel!"
 msgstr "відновлення satellites.xml неможливе!"
