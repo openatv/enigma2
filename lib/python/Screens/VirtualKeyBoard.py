@@ -460,18 +460,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"hu_HU": [_("Hungarian"), _("Hungary"), self.hungarian(self.german)],
 			"lv_01": [_("Latvian"), _("Alternative 1"), self.latvianStandard(self.english)],
 			"lv_02": [_("Latvian"), _("Alternative 2"), self.latvian],
-			"lv_LV": [_("Latvian"), _("Latvia"), self.latvianDefault(self.english)],
+			"lv_LV": [_("Latvian"), _("Latvia"), self.latvianQWERTY(self.english)],
 			"lt_LT": [_("Lithuanian"), _("Lithuania"), self.lithuanian(self.english)],
 			"nb_NO": [_("Norwegian"), _("Norway"), self.norwegian(self.scandinavian)],
 			"fa_IR": [_("Persian"), _("Iran, Islamic Republic"), self.persian(self.english)],
-			"pl_01": [_("Polish"), _("Alternative"), self.polishAlternative(self.german)],
-			"pl_PL": [_("Polish"), _("Poland"), self.polish(self.english)],
+			"pl_01": [_("Polish"), _("Alternative"), self.polish(self.german)],
+			"pl_PL": [_("Polish"), _("Poland"), self.polishProgrammers(self.english)],
 			"ru_RU": [_("Russian"), _("Russian Federation"), self.russian],
 			"sk_SK": [_("Slovak"), _("Slovakia"), self.slovak(self.german)],
 			"es_ES": [_("Spanish"), _("Spain"), self.spanish],
 			"sv_SE": [_("Swedish"), _("Sweden"), self.scandinavian],
 			"th_TH": [_("Thai"), _("Thailand"), self.thai],
-			"uk_UA": [_("Ukrainian"), _("Ukraine"), self.ukranian(self.russian)]
+			"uk_01": [_("Ukrainian"), _("Russian"), self.ukranian(self.russian)],
+			"uk_UA": [_("Ukrainian"), _("Ukraine"), self.ukranianEnhanced(self.russian)]
 		}
 
 		self["actions"] = HelpableNumberActionMap(self, "VirtualKeyBoardActions", {
@@ -710,7 +711,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		])
 		return keyList
 
-	def latvianDefault(self, base):
+	def latvianQWERTY(self, base):
 		keyList = self.latvianStandard(base)
 		keyList[0][1][13] = u"\u00B0"
 		keyList[2][1][9] = u"\u00F5"
@@ -786,19 +787,6 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def polish(self, base):
 		keyList = copy.deepcopy(base)
-		keyList[0][3][1] = u"\\"
-		keyList[1][3][1] = u"|"
-		keyList.append([
-			[u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
-			[u"FIRSTICON", u"", u"", u"\u0119", u"\u0118", u"", u"", u"\u20AC", u"", u"\u00F3", u"\u00D3", u"", u"", u""],
-			[u"LASTICON", u"\u0105", u"\u0104", u"\u015B", u"\u015A", u"", u"", u"", u"", u"\u0142", u"\u0141", u"", self.green, self.green],
-			[u"SHIFTICON", u"\u017C", u"\u017B", u"\u017A", u"\u0179", u"\u0107", u"\u0106", u"\u0144", u"\u0143", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
-			self.footer
-		])
-		return keyList
-
-	def polishAlternative(self, base):
-		keyList = copy.deepcopy(base)
 		keyList[0][0][0] = u"\u02DB"
 		keyList[0][0][11] = u"+"
 		keyList[0][1][11] = u"\u017C"
@@ -821,6 +809,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"FIRSTICON", u"\\", u"\u00A6", u"", u"\u017B", u"\u015A", u"\u00D3", u"\u20AC", u"\u0143", u"\u0106", u"\u0179", u"\u00F7", u"\u00D7", u""],
 			[u"LASTICON", u"", u"\u0111", u"\u0110", u"", u"", u"", u"", u"\u0104", u"\u0118", u"$", u"\u00DF", self.green, self.green],
 			[u"SHIFTICON", u"", u"", u"", u"", u"@", u"{", u"}", u"\u00A7", u"<", u">", u"", u"SHIFTICON", u"SHIFTICON"],
+			self.footer
+		])
+		return keyList
+
+	def polishProgrammers(self, base):
+		keyList = copy.deepcopy(base)
+		keyList[0][3][1] = u"\\"
+		keyList[1][3][1] = u"|"
+		keyList.append([
+			[u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
+			[u"FIRSTICON", u"", u"", u"\u0119", u"\u0118", u"", u"", u"\u20AC", u"", u"\u00F3", u"\u00D3", u"", u"", u""],
+			[u"LASTICON", u"\u0105", u"\u0104", u"\u015B", u"\u015A", u"", u"", u"", u"", u"\u0142", u"\u0141", u"", self.green, self.green],
+			[u"SHIFTICON", u"\u017C", u"\u017B", u"\u017A", u"\u0179", u"\u0107", u"\u0106", u"\u0144", u"\u0143", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
 			self.footer
 		])
 		return keyList
@@ -864,6 +865,12 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		keyList[1][2][11] = u"\u0404"
 		keyList[1][2][2] = u"\u0406"
 		keyList[1][3][1] = u"\u0490"
+		return keyList
+
+	def ukranianEnhanced(self, base):
+		keyList = self.ukranian(base)
+		keyList[0][0][0] = u"\u0027"
+		keyList[1][0][0] = u"\u20B4"
 		return keyList
 
 	def unitedKingdom(self, base):
