@@ -74,7 +74,7 @@ class FlashOnline(Screen):
 				try:
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
 						imagetyp = _("Downloaded Images")
-						if '-backup-' in file.split(os.sep)[-1]:
+						if 'backup' in file.split(os.sep)[-1]:
 							imagetyp = _("Fullbackup Images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
@@ -90,7 +90,7 @@ class FlashOnline(Screen):
 				url = '%s/%s/index.php?open=%s' % (feedurl,version,box)
 				try:
 					req = urllib2.Request(url)
-					response = urllib2.urlopen(req)
+					response = urllib2.urlopen(req, timeout=1)
 				except urllib2.URLError as e:
 					print "URL ERROR: %s\n%s" % (e,url)
 					continue
@@ -130,7 +130,6 @@ class FlashOnline(Screen):
 		for catagorie in reversed(sorted(self.imagesList.keys())):
 			if catagorie in self.expanded:
 				list.append(ChoiceEntryComponent('expanded',((str(catagorie)), "Expander")))
-				#for image in reversed(sorted(self.imagesList[catagorie].keys())):
 				for image in reversed(sorted(self.imagesList[catagorie].keys(), key=lambda x: x.split(os.sep)[-1])):
 					list.append(ChoiceEntryComponent('verticalline',((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
