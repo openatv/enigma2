@@ -320,6 +320,8 @@ class Network:
 				name = 'Realtek'
 			elif name  == 'brcm-systemport':
 				name = 'Broadcom'
+			elif name  == 'wlan':
+				name = name.upper()
 		else:
 			name = _('Unknown')
 

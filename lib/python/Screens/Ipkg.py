@@ -10,6 +10,7 @@ class Ipkg(Screen):
 	def __init__(self, session, cmdList=None):
 		if not cmdList: cmdList = []
 		Screen.__init__(self, session)
+		self.setTitle(_("Installing Software..."))
 
 		self.cmdList = cmdList
 

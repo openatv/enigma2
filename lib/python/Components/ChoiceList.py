@@ -33,6 +33,9 @@ def ChoiceEntryComponent(key = None, text=None):
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
 				x, y, w, h = skin.parameters.get("ChoicelistIcon",(5, 0, 35, 25))
+				if key == "verticalline":
+					y = 0
+					h = 100
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	return res
 
