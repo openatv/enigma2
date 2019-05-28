@@ -376,6 +376,8 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.setPicture(self.myAtileHD_font.value)
 		elif self["config"].getCurrent() == self.set_background:
 			self.setPicture(self.myAtileHD_background.value)
+		elif self["config"].getCurrent() == self.set_sb:
+			self.setPicture(self.myAtileHD_sb.value)
 		elif self["config"].getCurrent() == self.set_infobar:
 			self.setPicture(self.myAtileHD_infobar.value)
 		elif self["config"].getCurrent() == self.set_sib:
@@ -489,6 +491,8 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.makeSettings(self.myAtileHD_font, self.font_file)
 			# background
 			self.makeSettings(self.myAtileHD_background, self.background_file)
+			# sb
+			self.makeSettings(self.myAtileHD_sb, self.sb_file)
 			# infobar
 			self.makeSettings(self.myAtileHD_infobar, self.infobar_file)
 			# sib
