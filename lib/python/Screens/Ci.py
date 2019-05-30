@@ -91,7 +91,7 @@ class CISetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = ["Setup" ]
-		self.setup_title = _("CI settings")
+		self.setup_title = _("CI Basic settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
