@@ -956,6 +956,7 @@ def InitUsageConfig():
 			os.mkdir(config.crash.debug_path.value, 0755)
 
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
+	config.crash.debug_path.callNotifiersOnSaveAndCancel = True
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("at beginning")), ("end", _("at end"))])
 

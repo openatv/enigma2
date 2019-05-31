@@ -295,6 +295,7 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent(_("Fan settings"), _("Fan setup"), _("Set up your fan")))
 		if HAVE_REMOTE_CONTROL_CODE:
 			self.sublist.append(QuickSubMenuEntryComponent(_("Remote control code settings"), _("Remote control code setup"), _("Set up your remote control")))
+		self.sublist.append(QuickSubMenuEntryComponent(_("Log settings"), _("Log settings"), _("Configure debug logging")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Factory reset"), _("Load default"), _("Reset all settings to defaults")))
 		self["sublist"].list = self.sublist
 
@@ -526,6 +527,8 @@ class GeneralSetup(Screen):
 			self.openSetup("fanspeed")
 		elif selected == _("Automatic volume settings"):
 			self.session.open(AutomaticVolumeAdjustmentConfigScreen)
+		elif selected == _("Log settings"):
+			self.openSetup("logs")
 		elif selected == _("Factory reset"):
 			from Screens.FactoryReset import FactoryReset
 
