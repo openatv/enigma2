@@ -2102,7 +2102,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEdit.__init__(self)
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
-		if config.usage.servicelist_mode.value == 'simple':
+		if config.usage.use_pig.value:
+			self.skinName = ["ChannelSelection_PIG","ChannelSelection"]
+		elif config.usage.servicelist_mode.value == 'simple':
 			self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
 		else:
 			self.skinName = "ChannelSelection"

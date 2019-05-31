@@ -251,12 +251,12 @@ class Setup(ConfigListScreen, Screen):
 				value = x.get("value")
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "")
-					if item.value and not item.value == "0":
+					if value and str(item.value) == value or not value and item.value and not item.value == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False
 
-				if requires and not SystemInfo.get(requires, False) or value and not item.value==value:
+				if requires and not SystemInfo.get(requires, False):
 					continue
 
 				if self.PluginLanguageDomain:
