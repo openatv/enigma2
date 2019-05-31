@@ -1082,9 +1082,9 @@ msgstr[0] "%d піксель в ширину"
 msgstr[1] "%d пікселі в ширину"
 msgstr[2] "%d пікселів в ширину"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d sec"
-msgstr "%d сек"
+msgstr "%d сек."
 
 #, python-format
 msgid "%d second"
@@ -1093,7 +1093,7 @@ msgstr[0] "%d секунда"
 msgstr[1] "%d секунди"
 msgstr[2] "%d секунд"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d times"
 msgstr "%d рази"
 
@@ -1178,13 +1178,13 @@ msgstr ""
 "%s\n"
 "(%s, %d MБ вільно)"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%s\n"
 "Press ok to close"
 msgstr ""
 "%s\n"
-"Натисніть ОК щоб закрити"
+"Натисніть ОК, щоб закрити"
 
 #, fuzzy, python-format
 msgid "%s %02d.%02d."
@@ -2244,9 +2244,8 @@ msgstr "Про приймач"
 msgid "About..."
 msgstr "Інформація приймача..."
 
-#, fuzzy
 msgid "Accessed:"
-msgstr "Доступ: "
+msgstr "Доступ:"
 
 msgid "Accesspoint:"
 msgstr "Точка доступу:"
@@ -3570,9 +3569,8 @@ msgstr "Налаштування CI"
 msgid "CI slot: "
 msgstr "CI слот: "
 
-#, fuzzy
 msgid "CIFS/Samba Setup"
-msgstr "Налаштування Samba/CIFS"
+msgstr "Налаштування CIFS/Samba "
 
 msgid "CIHelper Setup"
 msgstr "Помічник налаштування CI"
@@ -4180,9 +4178,8 @@ msgstr "Назва проекту"
 msgid "Collection settings"
 msgstr "Налаштування проекту"
 
-#, fuzzy
 msgid "Colombia"
-msgstr "Колумбія"
+msgstr ""
 
 msgid "Color"
 msgstr "Колір"
@@ -4534,9 +4531,8 @@ msgstr "Налаштування прозорості чорного фону г
 msgid "Configure the transparency of the black background of subtitles."
 msgstr "Налаштування прозорості для чорного фону субтитрів."
 
-#, fuzzy
 msgid "Configure the tuner mode."
-msgstr "Налаштуйте режим тюнера."
+msgstr "Налаштвання режиму тюнера."
 
 msgid "Configure the type of status indication icons shown in the movielist."
 msgstr "Налаштування типів значків індикації стану, при показі в списку фільмів."
@@ -4837,9 +4833,8 @@ msgstr "Створити посилання на файл"
 msgid "Create user-named symbolic link"
 msgstr "Створити лінк користувач-назва"
 
-#, fuzzy
 msgid "Create:"
-msgstr "Створити: "
+msgstr "Створити:"
 
 #, python-format
 msgid "Create: Recovery Fullbackup %s"
@@ -4864,9 +4859,8 @@ msgstr "Створення розділу"
 msgid "Creating start scripts and starting the cam"
 msgstr "Створення сценаріїв запуску і запуск емулятора"
 
-#, fuzzy
 msgid "Croatia"
-msgstr "Хорватія"
+msgstr ""
 
 msgid "Croatian"
 msgstr "Хорватська"
@@ -6410,9 +6404,8 @@ msgstr "Екваторіальна Гвінея"
 msgid "Erase"
 msgstr "Видалити"
 
-#, fuzzy
 msgid "Eritrea"
-msgstr "Еритрея"
+msgstr "Ерітрея"
 
 msgid "Error"
 msgstr "Помилка"
@@ -6534,9 +6527,8 @@ msgstr ""
 msgid "Es folgt:"
 msgstr "Звідси слідує:"
 
-#, fuzzy
 msgid "Estonia"
-msgstr "Естонія"
+msgstr ""
 
 msgid "Estonian"
 msgstr "Естонська"
@@ -7166,6 +7158,9 @@ msgstr "Розмір кроку пошуку (кГц)"
 msgid "Frequency steps"
 msgstr "Кроки частоти"
 
+msgid "Fri"
+msgstr "П'ят."
+
 msgid "Friday"
 msgstr "П'ятниця"
 
@@ -7275,9 +7270,8 @@ msgstr "Грузія"
 msgid "German"
 msgstr "Німецька"
 
-#, fuzzy
 msgid "Germany"
-msgstr "Німеччина"
+msgstr ""
 
 msgid "Get latest experimental image"
 msgstr "Отримати останній експериментальний імідж"
@@ -7421,9 +7415,8 @@ msgstr "Налаштування Графічного ЕПГ"
 msgid "Graphics"
 msgstr "Графічний"
 
-#, fuzzy
 msgid "Greece"
-msgstr "Греція"
+msgstr ""
 
 msgid "Greek"
 msgstr "Грецька"
@@ -7440,13 +7433,11 @@ msgstr "Зелена кнопка"
 msgid "Green long"
 msgstr "Зелений довге натискання"
 
-#, fuzzy
 msgid "Greenland"
-msgstr "Гренландія"
+msgstr ""
 
-#, fuzzy
 msgid "Grenada"
-msgstr "Гренада"
+msgstr ""
 
 msgid "Grey"
 msgstr "Сірий"
@@ -9515,9 +9506,6 @@ msgstr "М'янма"
 msgid "N/A"
 msgstr "Не визначено"
 
-msgid "NEXT"
-msgstr "ДАЛІ"
-
 msgid "NFI image flashing"
 msgstr "Програмування NFI іміджа"
 
@@ -9532,9 +9520,6 @@ msgstr "Налаштування NFS"
 
 msgid "NIM"
 msgstr "Тюнер"
-
-msgid "NOW"
-msgstr "ЗАРАЗ"
 
 msgid "NTP"
 msgstr "NTP"
@@ -9718,7 +9703,7 @@ msgid "News Current Affairs"
 msgstr "Новини Поточні справи"
 
 msgid "Next"
-msgstr "Наступний"
+msgstr "Наступна"
 
 msgctxt "now/next: 'next' event label"
 msgid "Next"
@@ -10086,6 +10071,9 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Зараз"
 
+msgid "Now"
+msgstr "Зараз"
+
 msgid "Now building the Backup Image"
 msgstr "Тепер створюємо резервну копію іміджу"
 
@@ -10437,9 +10425,8 @@ msgstr "PCM багатоканальний"
 msgid "PCR PID"
 msgstr "ПІД PCR"
 
-#, fuzzy
 msgid "PID"
-msgstr "ПІД"
+msgstr "ПІД "
 
 msgid "PIDs"
 msgstr "ПІДи"
@@ -10561,9 +10548,8 @@ msgstr "Головна директорія"
 msgid "Parental control"
 msgstr "Батьківський контроль"
 
-#, fuzzy
 msgid "Parental control services editor"
-msgstr "Редактор каналів батькіського контролю"
+msgstr "Редактор каналів чорного списку"
 
 msgid "Parental control setup"
 msgstr "Налаштування батьківського контролю"
@@ -10848,9 +10834,8 @@ msgstr "Будь ласка, введіть правильний пін-код"
 msgid "Please enter the new directory name"
 msgstr "Будь ласка, введіть назву нового каталогу"
 
-#, fuzzy
 msgid "Please enter the new file name"
-msgstr "Будь ласка, введіть нову назву файла"
+msgstr "Будь ласка, введіть нову назву файлу"
 
 msgid "Please enter the old PIN code"
 msgstr "Будь ласка, введіть старий Пін-код"
