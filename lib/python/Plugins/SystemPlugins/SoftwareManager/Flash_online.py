@@ -87,7 +87,7 @@ class FlashOnline(Screen):
 			box = GetBoxName()
 			try:
 				import socket
-				socket.gethostbyname(feedserver)
+				socket.getaddrinfo(feedserver, None)
 
 				for version in reversed(sorted(imagecat)):
 					newversion = _("Image Version %s") %version
