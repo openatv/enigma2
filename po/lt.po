@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-19 17:26+0000\n"
-"PO-Revision-Date: 2019-05-19 21:22+0300\n"
+"POT-Creation-Date: 2019-06-01 17:49+0000\n"
+"PO-Revision-Date: 2019-06-01 21:19+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.2\n"
+"X-Generator: Poedit 2.2.3\n"
 
 msgid ""
 "\n"
@@ -1243,6 +1243,9 @@ msgstr "'%s' neįdiegta ir nėra žinomo paketo"
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "\"Rankinis budėjimo režimas iš televizoriaus\" turi aukštesnį prioritetą, kaip \"TV valdymas\""
 
+msgid "'weatherplugin' is not installed!"
+msgstr "Orų prognozės programa nėra įdiegta!"
+
 msgid "( All readers)"
 msgstr "(Visi skaitytojai)"
 
@@ -1286,9 +1289,6 @@ msgstr "+/-"
 
 msgid "+24"
 msgstr "+24"
-
-msgid "---Weather---"
-msgstr "---Orai---"
 
 msgid "-24"
 msgstr "-24"
@@ -2883,6 +2883,12 @@ msgstr "Šalinimo fone parinktis"
 msgid "Background delete speed"
 msgstr "Šalinimo fone greitis"
 
+msgid "Background:"
+msgstr "Fonas:"
+
+msgid "Backgroundselected:"
+msgstr "Pažymėtas fonas:"
+
 msgid "Backup"
 msgstr "Atsarginė kopija"
 
@@ -3239,6 +3245,9 @@ msgstr "KEISTI PAKETĄ"
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Įstatomo modulio) nustatymas"
 
+msgid "CI Basic settings"
+msgstr "CI pagrindiniai nustatymai"
+
 msgid "CI Legacy"
 msgstr "CI palikimas"
 
@@ -3253,9 +3262,6 @@ msgstr "CI Plus 1.3"
 
 msgid "CI assignment"
 msgstr "CI priskyrimas"
-
-msgid "CI settings"
-msgstr "CI nustatymai"
 
 msgid "CI slot: "
 msgstr "CI lizdas: "
@@ -3722,6 +3728,9 @@ msgstr "Klientai"
 msgid "Clock"
 msgstr "Laikrodis"
 
+msgid "Clock:"
+msgstr "Laikrodis:"
+
 msgid "Close"
 msgstr "Užverti"
 
@@ -3796,6 +3805,9 @@ msgstr "Bendravimas, ryšiai"
 
 msgid "Comoros"
 msgstr "Komorai"
+
+msgid "Compensate for overscan"
+msgstr "Rodomos vaizdo kraštinės kompensavimas"
 
 msgid "Complete"
 msgstr "Pilnas"
@@ -4179,6 +4191,9 @@ msgstr "Suasmeninti enigma2 nustatymus"
 msgid "Cut"
 msgstr "Iškirpti"
 
+msgid "Cutlist Editor"
+msgstr "Iškirpimo redaktorius"
+
 msgid "Cutlist editor"
 msgstr "Iškirpimo redaktorius"
 
@@ -4255,6 +4270,9 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+msgid "DVD Burn"
+msgstr "DVD įrašymas"
+
 msgid "DVD File Browser"
 msgstr "DVD failų naršyklė"
 
@@ -4265,6 +4283,9 @@ msgid "DVD Titlelist"
 msgstr "DVD pavadinimų sąrašas"
 
 msgid "DVD player"
+msgstr "DVD grotuvas"
+
+msgid "DVDPlayer"
 msgstr "DVD grotuvas"
 
 msgid "Daily"
@@ -5013,6 +5034,9 @@ msgstr "Parsisiųsti priedus"
 msgid "Downloadable plugins"
 msgstr "Galimi parsisiųsti priedai"
 
+msgid "Downloaded Images"
+msgstr "Atsisiųsti atvaizdai"
+
 msgid "Downloading"
 msgstr "Parsisiunčiama"
 
@@ -5738,6 +5762,9 @@ msgstr "FIFO"
 msgid "FLASH"
 msgstr "VIDINĖ ATMINTIS"
 
+msgid "FP Upgrade"
+msgstr "Priekinio procesoriaus atnaujinimas"
+
 msgid "FSBL Update Check"
 msgstr "FSBL atnaujinimo tikrinimas"
 
@@ -6100,6 +6127,9 @@ msgstr "Visiškai skaidrus"
 
 msgid "FullHD Test"
 msgstr "Pilno HD testas"
+
+msgid "Fullbackup Images"
+msgstr "Pilnos atsarginės kopijos atvaizdai"
 
 msgid "Fullscreen"
 msgstr "Visas ekranas"
@@ -6945,8 +6975,20 @@ msgstr "Įdiegiamas priedas ..."
 msgid "Installing Service"
 msgstr "Įdiegiama paslauga"
 
-msgid "Installing plugins..."
-msgstr "Įdiegiami priedai..."
+msgid "Installing Software..."
+msgstr "Programinės įrangos diegimas ..."
+
+msgid "Installing feeds from IPK ..."
+msgstr "Šaltinių diegimas iš IPK ..."
+
+msgid "Installing feeds from feed ..."
+msgstr "Šaltinių diegimas iš šaltinių ..."
+
+msgid "Installing plugins from IPK ..."
+msgstr "Priedų diegimas iš IPK ..."
+
+msgid "Installing plugins from feed ..."
+msgstr "Priedų diegimas iš šaltinių ..."
 
 msgid "Instant record"
 msgstr "Momentinis įrašymas"
@@ -7415,9 +7457,6 @@ msgstr "Vieta"
 
 msgid "Location"
 msgstr "Vieta"
-
-msgid "Location # (http://weather.yahoo.com/):"
-msgstr "Vietovė # (http://weather.yahoo.com/):"
 
 msgid "Location list"
 msgstr "Vietovių sąrašas"
@@ -8635,6 +8674,9 @@ msgstr "OSD valdymas"
 msgid "OSD name request"
 msgstr "OSD pavadinimo užklausa"
 
+msgid "OSD position setup"
+msgstr "OSD pozicijos nustatymas"
+
 msgid "OSD settings"
 msgstr "OSD nustatymai"
 
@@ -9010,11 +9052,11 @@ msgstr "Slaptažodis"
 msgid "Password (httpwd)"
 msgstr "Slaptažodis (httpwd)"
 
+msgid "Password Setup"
+msgstr "Slaptažodžio valdymas"
+
 msgid "Password changed"
 msgstr "Slaptažodis pakeistas"
-
-msgid "Password setup"
-msgstr "Slaptažodžio valdymas"
 
 msgid "Password:"
 msgstr "Slaptažodis:"
@@ -9115,6 +9157,9 @@ msgstr "Pradėti"
 
 msgid "Play DVD"
 msgstr "Žiūrėti DVD"
+
+msgid "Play DVDs"
+msgstr "Leisti DVD"
 
 msgid "Play audio in background"
 msgstr "Leisti garso įrašą fone"
@@ -9668,6 +9713,9 @@ msgstr "Programų sąrašo atkūrimas"
 msgid "Programmlisten from DXAndy"
 msgstr "Programų sąrašo-atnaujinimas iš DXAndy"
 
+msgid "Programmlisten-Updater V"
+msgstr "Klausymo programa-atnaujintojas V"
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "Klausymo programa-atnaujinimas iš DXAndy"
 
@@ -10023,9 +10071,6 @@ msgstr ""
 
 msgid "Refresh"
 msgstr "Atnaujinti"
-
-msgid "Refresh interval in minutes:"
-msgstr "Atnaujinimo intervalas (minutėmis)"
 
 msgid "Refresh rate"
 msgstr "Atnaujinimo dažnis"
@@ -10829,11 +10874,17 @@ msgstr "Pasirinkite vietą"
 msgid "Select Quad Channels"
 msgstr "Pasirinkite 4 PIP kanalus"
 
+msgid "Select Sats Entry"
+msgstr "Pasirinkite iš palydovų"
+
 msgid "Select Softcam"
 msgstr "Pasirinkite emuliatorių"
 
 msgid "Select Software Update"
 msgstr "Pasirinkite programinės įrangos atnaujinimą"
+
+msgid "Select Your Skin"
+msgstr "Pasirinkite norimą temą"
 
 msgid "Select a path"
 msgstr "Pasirinkite kelią"
@@ -10856,9 +10907,6 @@ msgstr "Papildomi atsarginės kopijos failai"
 
 msgid "Select additional files to backup"
 msgstr "Papildomi failai atsarginei kopijai"
-
-msgid "Select all"
-msgstr "Pasirinkti viską"
 
 msgid "Select an image to be downloaded"
 msgstr "Pasirinkite atvaizdą, kurį norite atsisiųsti"
@@ -12035,6 +12083,9 @@ msgstr "Temos parinkėjas"
 msgid "Skins"
 msgstr "Temos"
 
+msgid "Skinselector"
+msgstr "Temos parinkėjas"
+
 msgid "Skip back"
 msgstr "Praleisti atgal"
 
@@ -12722,6 +12773,9 @@ msgstr "Sistema"
 msgid "System Info"
 msgstr "Sistemos info"
 
+msgid "System Message Check"
+msgstr "Sistemos pranešimų tikrinimas"
+
 msgid "System Setup"
 msgstr "Sistemos nustatymai"
 
@@ -12755,7 +12809,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-05-19"
+msgstr "Adga, v. 2019-06-01"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -12807,9 +12861,6 @@ msgstr "Telnet jungtis"
 
 msgid "Telnet Setup"
 msgstr "Telnet nustatymas"
-
-msgid "Temperature unit:"
-msgstr "Temperatūros vienetai:"
 
 msgid "Terrestrial"
 msgstr "Antžeminė TV"
@@ -13939,6 +13990,9 @@ msgstr "Tipas:"
 msgid "Type: "
 msgstr "Tipas: "
 
+msgid "UI 3D setup"
+msgstr "3D vaizdo sąranka"
+
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 (keymap.u80)"
 
@@ -14331,6 +14385,9 @@ msgstr "Vartotojo sąsajos nustatymai"
 
 msgid "User interface visibility"
 msgstr "Vartotojo sąsajos matomumas"
+
+msgid "Userlogo:"
+msgstr "Vartotojo logotipas:"
 
 msgid "Username"
 msgstr "Vartotojas"
@@ -17069,6 +17126,9 @@ msgstr "vertikali"
 msgid "view extensions..."
 msgstr "žiūrėti išplėtimus..."
 
+msgid "violet"
+msgstr "violetinė"
+
 msgid "vix"
 msgstr "vix"
 
@@ -17186,11 +17246,18 @@ msgstr "įjungta"
 msgid "zapping"
 msgstr "perjungimas"
 
+msgid "Configure interface"
+msgstr "Konfigūruokite sąsają"
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Susiderinkite ekrane matomą vaizdą, koreguodami reikšmes pagal tai, kiek raudonojo rėmo kraštai liečia jūsų TV ekrano kraštus.\n"
+"Kai tai atliksite, spauskite 'OK', kad tęsti."
+
 msgid "Basic settings"
 msgstr "Pagrindiniai nustatymai"
-
-msgid "CI Basic settings"
-msgstr "CI pagrindiniai nustatymai"
 
 msgid "CIFS/Samba Setup"
 msgstr "CIFS/Samba nustatymas"
@@ -17246,9 +17313,6 @@ msgstr "OSD pozicija"
 msgid "OpenVPN Setup"
 msgstr "OpenVPN nustatymas"
 
-msgid "Password Setup"
-msgstr "Slaptažodžio valdymas"
-
 msgid "PowerTimers"
 msgstr "Įjungimo laikmačiai"
 
@@ -17293,16 +17357,6 @@ msgstr "Vaizdas"
 
 msgid "WOL Standby"
 msgstr "WOL budėjimas"
-
-msgid "Configure interface"
-msgstr "Konfigūruokite sąsają"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Susiderinkite ekrane matomą vaizdą, koreguodami reikšmes pagal tai, kiek raudonojo rėmo kraštai liečia jūsų TV ekrano kraštus.\n"
-"Kai tai atliksite, spauskite 'OK', kad tęsti."
 
 msgid "0"
 msgstr "0"
@@ -17914,11 +17968,11 @@ msgstr "Kanalų sąrašo peržiūra"
 msgid "Channel list service mode*"
 msgstr "Kanalų sąrašo paslaugų režimas*"
 
-msgid "Channel list show MiniTV"
-msgstr "Kanalų sąraše rodyti MiniTV"
-
 msgid "Channel list show MiniTV when Skin use."
 msgstr "Kanalų sąraše rodyti MiniTV, kai tą naudoja vartotojo aplinkos tema."
+
+msgid "Channel list show MiniTV*"
+msgstr "Kanalų sąraše rodyti MiniTV*"
 
 msgid "Channel preview mode"
 msgstr "Kanalo peržiūros režimas"
@@ -18836,6 +18890,15 @@ msgstr "Senesni failai iš laiko poslinkio katalogo pašalinami kiekvienam įvyk
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Esant galiojantiems ONID, ignoruokite dažnio potinklio dalį"
 
+msgid "Operating LED status in deep standby mode"
+msgstr "LED būsenos veikimas gilaus laukimo režimu"
+
+msgid "Operating LED status in standby mode"
+msgstr "LED būsenos veikimas laukimo režimu"
+
+msgid "Operating LED status while running."
+msgstr "LED būsena veikimo metu."
+
 msgid "Option to disable picons on the Infobar"
 msgstr "Ši parinktis leidžia išjungti logotipų rodymą info juostoje"
 
@@ -19463,6 +19526,15 @@ msgstr "Sukeisti SNR į '%' su SNR į 'db'"
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
 msgstr "Perjungti mėlyną: mėlynas-trumpai (greitas meniu)/ mėlynas-ilgai (plėtiniai)"
 
+msgid "Switch off the display during Standby Mode"
+msgstr "Budėjimo režimu išjunkite ekraną"
+
+msgid "Switch off the display during Suspend Mode"
+msgstr "Laukimo režimu išjunkite ekraną"
+
+msgid "Switch off the display during operation."
+msgstr "Veikimo metu išjunkite ekraną."
+
 msgid "Sync NTP every (minutes)"
 msgstr "Sinchronizuoti su NTP kas (min.)"
 
@@ -19895,6 +19967,18 @@ msgstr "Jei čia pasirinkta 'taip', kanalų sąrašas visada pirmiausiai atsidar
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Naudodami šią parinktį galite paslėpti Darbo užduotis iš išplėsto ekrano (trumpas mėlyno mygtuko spaudimas)."
 
+msgid "With this option you can switch off the display during operation."
+msgstr "Naudodami šią parinktį, galite išjungti ekraną veikimo metu."
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr "Naudodami šią parinktį galite išjungti ekraną gilaus budėjimo režimu."
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr "Naudodami šią parinktį galite išjungti ekraną budėjimo režimu."
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr "Naudodami šią parinktį galite įjungti LED spalvą arba išjungti LED."
+
 msgid "Workaround for old tuner driver"
 msgstr "Problemos dėl senų imtuvo tvarkyklių"
 
@@ -20231,6 +20315,27 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#~ msgid "---Weather---"
+#~ msgstr "---Orai---"
+
+#~ msgid "CI settings"
+#~ msgstr "CI nustatymai"
+
+#~ msgid "Location # (http://weather.yahoo.com/):"
+#~ msgstr "Vietovė # (http://weather.yahoo.com/):"
+
+#~ msgid "Password setup"
+#~ msgstr "Slaptažodžio valdymas"
+
+#~ msgid "Refresh interval in minutes:"
+#~ msgstr "Atnaujinimo intervalas (minutėmis)"
+
+#~ msgid "Select all"
+#~ msgstr "Pasirinkti viską"
+
+#~ msgid "Temperature unit:"
+#~ msgstr "Temperatūros vienetai:"
 
 #~ msgid "Flash and restore settings and all saved plugins"
 #~ msgstr "Įdiegti, atkurti nustatymus ir visus išsaugotus priedus"
@@ -20617,9 +20722,6 @@ msgstr "Skaidrių rodymo laikas"
 #~ msgid "Current Bootsettings: %s (%s)%s"
 #~ msgstr "Dabartiniai užkrovimo nustatymai: %s (%s)%s"
 
-#~ msgid "Cutlist Editor"
-#~ msgstr "Iškirpimo redaktorius"
-
 #~ msgid "D"
 #~ msgstr "D"
 
@@ -20673,14 +20775,8 @@ msgstr "Skaidrių rodymo laikas"
 #~ msgid "Dreambox DVD record"
 #~ msgstr "Dreambox DVD įrašas"
 
-#~ msgid "DVD Burn"
-#~ msgstr "DVD įrašymas"
-
 #~ msgid "DVDOverlay"
 #~ msgstr "DVD apdangalas"
-
-#~ msgid "DVDPlayer"
-#~ msgstr "DVD grotuvas"
 
 #~ msgid "e-Mail address"
 #~ msgstr "el. pašto adresas"
@@ -20753,9 +20849,6 @@ msgstr "Skaidrių rodymo laikas"
 
 #~ msgid "Font size in list"
 #~ msgstr "Šrifto dydis sąraše"
-
-#~ msgid "FP Upgrade"
-#~ msgstr "Priekinio procesoriaus atnaujinimas"
 
 #~ msgid "FP upgrade required"
 #~ msgstr "Priekinį procesorių reikia atnaujinti"
@@ -20965,9 +21058,6 @@ msgstr "Skaidrių rodymo laikas"
 #~ msgid "open nameserver configuration"
 #~ msgstr "atverti DNS serverio konfigūraciją"
 
-#~ msgid "OSD position setup"
-#~ msgstr "OSD pozicijos nustatymas"
-
 #~ msgid "PacketManager"
 #~ msgstr "Paketo tvarkyklė"
 
@@ -21061,9 +21151,6 @@ msgstr "Skaidrių rodymo laikas"
 #~ msgid "Programmlisten-Updater Restore"
 #~ msgstr "Klausymo programa-atnaujinimo atkūrimas"
 
-#~ msgid "Programmlisten-Updater V"
-#~ msgstr "Klausymo programa-atnaujintojas V"
-
 #~ msgid "Programmlisten_Updater"
 #~ msgstr "Klausymo programa_atnaujintojas"
 
@@ -21139,14 +21226,8 @@ msgstr "Skaidrių rodymo laikas"
 #~ msgid "Select Image: STARTUP_1"
 #~ msgstr "Pasirinkite atvaizdą: PRADĖTI 1"
 
-#~ msgid "Select Sats Entry"
-#~ msgstr "Pasirinkite iš palydovų"
-
 #~ msgid "select Slot"
 #~ msgstr "pasirinkite lizdą"
-
-#~ msgid "Select Your Skin"
-#~ msgstr "Pasirinkite norimą temą"
 
 #~ msgid "SelectSatsEntryScreen"
 #~ msgstr "Pasirinkite palydovų įvedimo ekraną"
@@ -21177,9 +21258,6 @@ msgstr "Skaidrių rodymo laikas"
 
 #~ msgid "Simulate (no write)"
 #~ msgstr "Imituoti (ne rašyti)"
-
-#~ msgid "Skinselector"
-#~ msgstr "Temos parinkėjas"
 
 #~ msgid "SleepTimerEdit"
 #~ msgstr "Miego režimo redagavimas"
@@ -21216,9 +21294,6 @@ msgstr "Skaidrių rodymo laikas"
 
 #~ msgid "System Message"
 #~ msgstr "Sistemos pranešimas"
-
-#~ msgid "System Message Check"
-#~ msgstr "Sistemos pranešimų tikrinimas"
 
 #~ msgid "Terrestrial provider"
 #~ msgstr "Antžeminės TV tiekėjas"
@@ -21267,9 +21342,6 @@ msgstr "Skaidrių rodymo laikas"
 
 #~ msgid "TUNER:"
 #~ msgstr "IMTUVAS:"
-
-#~ msgid "UI 3D setup"
-#~ msgstr "3D vaizdo sąranka"
 
 #~ msgid "Unable to read image number"
 #~ msgstr "Neįmanoma perskaityti atvaizdo skaičiaus"
