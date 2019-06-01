@@ -529,7 +529,7 @@ class FlashImage(Screen):
 					print "[FlashImage] detect Kernel:",self.MTDKERNEL
 					print "[FlashImage] detect rootfs:",self.MTDROOTFS
 					command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
-				elif getMachineBuild() in ("hd60","hd61","h9combo","multibox"): # issue with framebuffer force reboot after flashing
+				elif getMachineBuild() in ("hd60","hd61","h9combo","h10","multibox"): # issue with framebuffer force reboot after flashing
 					command = "/usr/bin/ofgwrite -f -r -k -m%s %s" % (self.multibootslot, imagefiles)
 				else:
 					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
