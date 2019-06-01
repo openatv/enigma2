@@ -117,7 +117,7 @@ def SettingsEntry(name, checked):
 		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"));
 	else:
 		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"));
-		
+
 	return (name, picture, checked)
 
 class BackupScreen(Screen, ConfigListScreen):
@@ -510,12 +510,12 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.userRestoreScript()
 
 	def userRestoreScript(self, ret = None):
-		
 		SH_List = []
 		SH_List.append('/media/hdd/images/config/myrestore.sh')
 		SH_List.append('/media/usb/images/config/myrestore.sh')
+		SH_List.append('/media/mmc/images/config/myrestore.sh')
 		SH_List.append('/media/cf/images/config/myrestore.sh')
-		
+
 		startSH = None
 		for SH in SH_List:
 			if path.exists(SH):
@@ -569,14 +569,14 @@ class RestoreMyMetrixHD(Screen):
 		self.session = session
 		self["label"] = Label(_("Please wait while your skin setting is restoring..."))
 		self["summary_description"] = StaticText(_("Please wait while your skin setting is restoring..."))
-		self.onShown.append(self.setWindowTitle) 
+		self.onShown.append(self.setWindowTitle)
 
 		# if not waiting is bsod possible (RuntimeError: modal open are allowed only from a screen which is modal!)
 		self.restoreSkinTimer = eTimer()
 		self.restoreSkinTimer.callback.append(self.restoreSkin)
 		self.restoreSkinTimer.start(1000, True)
 
-	def setWindowTitle(self): 
+	def setWindowTitle(self):
 		self.setTitle(_("Restore MetrixHD Settings"))
 
 	def restoreSkin(self):
@@ -621,7 +621,7 @@ class RestartNetwork(Screen):
 	def restartLan(self):
 		print"[SOFTWARE MANAGER] Restart Network"
 		iNetwork.restartNetwork(self.restartLanDataAvail)
-		
+
 	def restartLanDataAvail(self, data):
 		if data is True:
 			iNetwork.getInterfaces(self.getInterfacesDataAvail)
@@ -725,7 +725,7 @@ class RestorePlugins(Screen):
 		self["key_green"] = Button(_("Install"))
 		self["key_red"] = Button(_("Cancel"))
 		self["summary_description"] = StaticText("")
-				
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
 					"red": self.exit,
@@ -766,8 +766,8 @@ class RestorePlugins(Screen):
 			self.installLocalIPK()
 
 	def installLocalIPK(self):
-		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
-	
+		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
+
 	def ok(self):
 		index = self["menu"].getIndex()
 		item = self["menu"].getCurrent()[0]
@@ -787,7 +787,7 @@ class RestorePlugins(Screen):
 		else:
 			self["summary_description"].text = self["menu"].getCurrent()[0]
 		self.index = index
-			
+
 	def drawList(self):
 		self["menu"].setList(self.Menulist)
 		self["menu"].setIndex(self.index)
@@ -797,7 +797,7 @@ class RestorePlugins(Screen):
 
 	def SearchIPK(self, ipkname):
 		ipkname = ipkname + "*"
-		search_dirs = [ "/media/hdd", "/media/usb" ]
+		search_dirs = [ "/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk" ]
 		sdirs = " ".join(search_dirs)
 		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()
