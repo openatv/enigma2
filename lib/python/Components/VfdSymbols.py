@@ -120,16 +120,25 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/symbol_rec", "w").write("0")
-		elif getMachineBuild() in ('sf8008','cc1','ustym4kpro','beyonwizv2','viper4k'):
+		elif getMachineBuild() in ('sf8008','cc1','ustym4kpro','beyonwizv2','viper4k') and fileExists("/proc/stb/fp/ledpowercolor"):
 			import Screens.Standby
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+			self.blink = not self.blink
 			if recordings > 0:
-				open("/proc/stb/fp/mixerled", "w").write("on")
-			elif not Screens.Standby.inStandby:
-				open("/proc/stb/fp/poweronled", "w").write("on")
-			elif Screens.Standby.inStandby:
-				open("/proc/stb/fp/standbyled", "w").write("on")
-
+				if self.blink:
+					open("/proc/stb/fp/ledpowercolor", "w").write("0")
+					self.led = "1"
+				else:
+					if Screens.Standby.inStandby:
+						open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledstandbycolor.value)
+					else:
+						open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledpowercolor.value)
+					self.led = "0"
+			elif self.led == "1":
+				if Screens.Standby.inStandby:
+					open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledstandbycolor.value)
+				else:
+					open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledpowercolor.value)
 		else:
 			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
 				return
