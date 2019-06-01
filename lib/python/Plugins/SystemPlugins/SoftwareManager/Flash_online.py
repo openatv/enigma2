@@ -234,6 +234,7 @@ class FlashImage(Screen):
 
 		self["header"] = Label(_("Backup settings"))
 		self["info"] = Label(_("Save settings and EPG data"))
+		self["summary_header"] = StaticText(self["header"].getText())
 		self["progress"] = ProgressBar()
 		self["progress"].setRange((0, 100))
 		self["progress"].setValue(0)
@@ -469,6 +470,7 @@ class FlashImage(Screen):
 				from Tools.Downloader import downloadWithProgress
 				self["header"].setText(_("Downloading Image"))
 				self["info"].setText(self.imagename)
+				self["summary_header"].setText(self["header"].getText())
 				self.downloader = downloadWithProgress(self.source, self.zippedimage)
 				self.downloader.addProgress(self.downloadProgress)
 				self.downloader.addEnd(self.downloadEnd)
@@ -492,6 +494,7 @@ class FlashImage(Screen):
 
 	def unzip(self):
 		self["header"].setText(_("Unzipping Image"))
+		self["summary_header"].setText(self["header"].getText())
 		self["info"].setText("%s\n%s"% (self.imagename, _("Please wait")))
 		self["progress"].hide()
 		self.delay.callback.remove(self.confirmation)
@@ -507,6 +510,7 @@ class FlashImage(Screen):
 
 	def flashimage(self):
 		self["header"].setText(_("Flashing Image"))
+		self["summary_header"].setText(self["header"].getText())
 		def findimagefiles(path):
 			for path, subdirs, files in os.walk(path):
 				if not subdirs and files:
@@ -546,6 +550,7 @@ class FlashImage(Screen):
 		self.containerofgwrite = None
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
+			self["summary_header"].setText(self["header"].getText())
 			self["info"].setText(_("%s\nPress ok to close") % self.imagename)
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
