@@ -749,25 +749,45 @@ class RestorePlugins(Screen):
 		self.close()
 
 	def green(self):
-		pluginlist = []
+		self.pluginlist = []
+		self.pluginlistfirst = []
 		self.myipklist = []
+		self.myipklistfirst = []
 		for x in self.list:
 			if x[2]:
 				myipk = self.SearchIPK(x[0])
 				if myipk:
-					self.myipklist.append(myipk)
+					if "-feed-" in myipk:
+						self.myipklistfirst.append(myipk)
+					else:
+						self.myipklist.append(myipk)
 				else:
-					pluginlist.append(x[0])
-		if len(pluginlist) > 0:
-			if len(self.myipklist) > 0:
-				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
-			else:
-				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
-		elif len(self.myipklist) > 0:
-			self.installLocalIPK()
+					if "-feed-" in x[0]:
+						self.pluginlistfirst.append(x[0])
+					else:
+						self.pluginlist.append(x[0])
+
+		# Install previously installed feeds first, they might be required for the other packages to install ...
+		if len(self.pluginlistfirst) > 0:
+			self.session.open(Console, title = _("Installing feeds from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlistfirst)], finishedCallback = self.installLocalIPKFeeds, closeOnSuccess = True)
+		else:
+			self.installLocalIPKFeeds()
+
+	def installLocalIPKFeeds(self):
+		if len(self.myipklistfirst) > 0:
+			self.session.open(Console, title = _("Installing feeds from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklistfirst)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+		else:
+			self.installPlugins()
 
 	def installLocalIPK(self):
-		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
+		if len(self.myipklist) > 0:
+			self.session.open(Console, title = _("Installing plugins from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklist)], finishedCallback = self.installPlugins, closeOnSuccess = True)
+		else:
+			self.installPlugins()
+
+	def installPlugins(self):
+		if len(self.pluginlist) > 0:
+			self.session.open(Console, title = _("Installing plugins from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
 
 	def ok(self):
 		index = self["menu"].getIndex()
