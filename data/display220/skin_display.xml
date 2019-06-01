@@ -203,6 +203,10 @@
 		</widget>
 		<panel name="SummaryIconsPanel" />
 	</screen>
+<!-- FlashImage Summary -->
+	<screen name="FlashImage_summary" position="0,0" size="220,176">
+		<widget source="parent.summary_header" render="Label" position="0,0" size="220,176" font="FdLcD;35" halign="center" valign="center" />
+	</screen>
 
 	<screen name="EventView_summary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />

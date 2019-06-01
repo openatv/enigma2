@@ -1082,9 +1082,9 @@ msgstr[0] "%d піксель в ширину"
 msgstr[1] "%d пікселі в ширину"
 msgstr[2] "%d пікселів в ширину"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d sec"
-msgstr "%d сек"
+msgstr "%d сек."
 
 #, python-format
 msgid "%d second"
@@ -1093,7 +1093,7 @@ msgstr[0] "%d секунда"
 msgstr[1] "%d секунди"
 msgstr[2] "%d секунд"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d times"
 msgstr "%d рази"
 
@@ -1178,17 +1178,33 @@ msgstr ""
 "%s\n"
 "(%s, %d MБ вільно)"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%s\n"
 "Press ok to close"
 msgstr ""
 "%s\n"
-"Натисніть ОК щоб закрити"
+"Натисніть ОК, щоб закрити"
 
 #, fuzzy, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
+
+#, python-format
+msgid "%s: Not Available"
+msgstr "%s: Не доступно"
+
+#, python-format
+msgid "%s: %s in use: %s%%"
+msgstr "%s: %s використано: %s%%"
+
+#, python-format
+msgid "%s: %s Free: %s Used: %s (%s%%)"
+msgstr "%s: %s Вільно: %s Використано: %s (%s%%)"
+
+#, python-format
+msgid "%s: %s Used: %s Free: %s"
+msgstr "%s: %s Використано: %s Вільно: %s"
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
@@ -1481,6 +1497,9 @@ msgstr "10 MБ/с"
 msgid "10 min."
 msgstr "10 хв."
 
+msgid "10 ms"
+msgstr "10 мс"
+
 msgid "10 seconds"
 msgstr "10 секунд"
 
@@ -1526,6 +1545,12 @@ msgstr "1080p50: 24p/50p/60p"
 msgid "10bit"
 msgstr "10біт"
 
+msgid "100 ms"
+msgstr "100 мс"
+
+msgid "1000 ms"
+msgstr "1000 мс"
+
 msgid "12 character"
 msgstr "12 символів"
 
@@ -1561,6 +1586,9 @@ msgstr "15 хв."
 
 msgid "15 seconds"
 msgstr "15 секунд"
+
+msgid "150 ms"
+msgstr "150 мс"
 
 msgid "1536 Mb"
 msgstr "1536 Мб"
@@ -1688,6 +1716,12 @@ msgstr "24p/60p"
 
 msgid "25"
 msgstr "25"
+
+msgid "25 ms"
+msgstr "25 мс"
+
+msgid "250 ms"
+msgstr "250 мс"
 
 msgid "256"
 msgstr ""
@@ -1856,6 +1890,9 @@ msgstr "5 хв."
 msgid "5 minutes"
 msgstr "5 хвилин"
 
+msgid "50 ms"
+msgstr "50 мс"
+
 msgid "5 seconds"
 msgstr "5 секунд"
 
@@ -1876,6 +1913,9 @@ msgstr "50p/50p"
 
 msgid "50p/60p"
 msgstr "50p/60p"
+
+msgid "500 ms"
+msgstr "500 мс"
 
 msgid "512 Mb"
 msgstr "512 Мб"
@@ -1933,6 +1973,9 @@ msgstr "720p50"
 
 msgid "720p50: 24p/50p/60p"
 msgstr "720p50: 24p/50p/60p"
+
+msgid "750 ms"
+msgstr "750 мс"
 
 msgid "7:3"
 msgstr "7:3"
@@ -2244,9 +2287,8 @@ msgstr "Про приймач"
 msgid "About..."
 msgstr "Інформація приймача..."
 
-#, fuzzy
 msgid "Accessed:"
-msgstr "Доступ: "
+msgstr "Доступ:"
 
 msgid "Accesspoint:"
 msgstr "Точка доступу:"
@@ -3220,6 +3262,12 @@ msgstr "Резервне копіювання поточних налаштув�
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Резервне копіювання поточних налаштувань. У тому числі настройки Енігми2, списку каналів, налаштування мережі і всі вибрані файли"
 
+msgid "Backup, flash and restore settings and no plugins"
+msgstr "Копіювання, прошивка та відновлення налаштувань без плагінів"
+
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr "Копіювання, прошивка та відновлення налаштувань і плагінів (запитати користувача)"
+
 msgid "Bahamas"
 msgstr "Багами"
 
@@ -3570,9 +3618,8 @@ msgstr "Налаштування CI"
 msgid "CI slot: "
 msgstr "CI слот: "
 
-#, fuzzy
 msgid "CIFS/Samba Setup"
-msgstr "Налаштування Samba/CIFS"
+msgstr "Налаштування CIFS/Samba "
 
 msgid "CIHelper Setup"
 msgstr "Помічник налаштування CI"
@@ -3862,11 +3909,11 @@ msgstr "Прев'ю в списку каналів"
 msgid "Channel list service mode*"
 msgstr "Режим списку каналів *"
 
-msgid "Channel list show MiniTV"
-msgstr "Показати міні-екран в списку каналів"
+msgid "Channel list show MiniTV*"
+msgstr "Показати Міні-ТВ в списку каналів*"
 
 msgid "Channel list show MiniTV when Skin use."
-msgstr "В списку каналів показувати міні-екран при використанні скіну."
+msgstr "В списку каналів показувати Міні-ТВ при використанні скіну."
 
 msgid "Channel list type"
 msgstr "Тип списку каналів"
@@ -4098,6 +4145,9 @@ msgstr "Кругова ліва"
 msgid "Circular right"
 msgstr "Кругова права"
 
+msgid "Clean (Just flash and start clean)"
+msgstr "Очистити (Просто прошити і не відновлювати)"
+
 msgid "Clean network trash cans"
 msgstr "Видалити мережеві дані з кошика"
 
@@ -4180,9 +4230,8 @@ msgstr "Назва проекту"
 msgid "Collection settings"
 msgstr "Налаштування проекту"
 
-#, fuzzy
 msgid "Colombia"
-msgstr "Колумбія"
+msgstr ""
 
 msgid "Color"
 msgstr "Колір"
@@ -4534,9 +4583,8 @@ msgstr "Налаштування прозорості чорного фону г
 msgid "Configure the transparency of the black background of subtitles."
 msgstr "Налаштування прозорості для чорного фону субтитрів."
 
-#, fuzzy
 msgid "Configure the tuner mode."
-msgstr "Налаштуйте режим тюнера."
+msgstr "Налаштвання режиму тюнера."
 
 msgid "Configure the type of status indication icons shown in the movielist."
 msgstr "Налаштування типів значків індикації стану, при показі в списку фільмів."
@@ -4837,9 +4885,8 @@ msgstr "Створити посилання на файл"
 msgid "Create user-named symbolic link"
 msgstr "Створити лінк користувач-назва"
 
-#, fuzzy
 msgid "Create:"
-msgstr "Створити: "
+msgstr "Створити:"
 
 #, python-format
 msgid "Create: Recovery Fullbackup %s"
@@ -4864,9 +4911,8 @@ msgstr "Створення розділу"
 msgid "Creating start scripts and starting the cam"
 msgstr "Створення сценаріїв запуску і запуск емулятора"
 
-#, fuzzy
 msgid "Croatia"
-msgstr "Хорватія"
+msgstr ""
 
 msgid "Croatian"
 msgstr "Хорватська"
@@ -6410,9 +6456,8 @@ msgstr "Екваторіальна Гвінея"
 msgid "Erase"
 msgstr "Видалити"
 
-#, fuzzy
 msgid "Eritrea"
-msgstr "Еритрея"
+msgstr "Ерітрея"
 
 msgid "Error"
 msgstr "Помилка"
@@ -6534,9 +6579,8 @@ msgstr ""
 msgid "Es folgt:"
 msgstr "Звідси слідує:"
 
-#, fuzzy
 msgid "Estonia"
-msgstr "Естонія"
+msgstr ""
 
 msgid "Estonian"
 msgstr "Естонська"
@@ -7054,6 +7098,9 @@ msgstr "Прошивка Іміджа"
 msgid "Flashing failed"
 msgstr "Прошивка невдала"
 
+msgid "Flashing image"
+msgstr "Прошивка іміджа"
+
 msgid "Flashing image successful"
 msgstr "Вдалий запис іміджу"
 
@@ -7166,6 +7213,9 @@ msgstr "Розмір кроку пошуку (кГц)"
 msgid "Frequency steps"
 msgstr "Кроки частоти"
 
+msgid "Fri"
+msgstr "П'ят."
+
 msgid "Friday"
 msgstr "П'ятниця"
 
@@ -7275,9 +7325,8 @@ msgstr "Грузія"
 msgid "German"
 msgstr "Німецька"
 
-#, fuzzy
 msgid "Germany"
-msgstr "Німеччина"
+msgstr ""
 
 msgid "Get latest experimental image"
 msgstr "Отримати останній експериментальний імідж"
@@ -7421,9 +7470,8 @@ msgstr "Налаштування Графічного ЕПГ"
 msgid "Graphics"
 msgstr "Графічний"
 
-#, fuzzy
 msgid "Greece"
-msgstr "Греція"
+msgstr ""
 
 msgid "Greek"
 msgstr "Грецька"
@@ -7440,13 +7488,11 @@ msgstr "Зелена кнопка"
 msgid "Green long"
 msgstr "Зелений довге натискання"
 
-#, fuzzy
 msgid "Greenland"
-msgstr "Гренландія"
+msgstr ""
 
-#, fuzzy
 msgid "Grenada"
-msgstr "Гренада"
+msgstr ""
 
 msgid "Grey"
 msgstr "Сірий"
@@ -8270,8 +8316,11 @@ msgstr "Встановлення Плагіну..."
 msgid "Installing Service"
 msgstr "Встановлення каналів"
 
-msgid "Installing plugins..."
-msgstr "Встановлення плагінів..."
+msgid "Installing plugins from IPK ..."
+msgstr "Встановлення плагінів з IPK..."
+
+msgid "Installing plugins from feed ..."
+msgstr "Встановлення плагінів з фіду..."
 
 msgid "Installing software..."
 msgstr "Встановлення пз..."
@@ -9515,9 +9564,6 @@ msgstr "М'янма"
 msgid "N/A"
 msgstr "Не визначено"
 
-msgid "NEXT"
-msgstr "ДАЛІ"
-
 msgid "NFI image flashing"
 msgstr "Програмування NFI іміджа"
 
@@ -9532,9 +9578,6 @@ msgstr "Налаштування NFS"
 
 msgid "NIM"
 msgstr "Тюнер"
-
-msgid "NOW"
-msgstr "ЗАРАЗ"
 
 msgid "NTP"
 msgstr "NTP"
@@ -9718,7 +9761,7 @@ msgid "News Current Affairs"
 msgstr "Новини Поточні справи"
 
 msgid "Next"
-msgstr "Наступний"
+msgstr "Наступна"
 
 msgctxt "now/next: 'next' event label"
 msgid "Next"
@@ -9968,7 +10011,7 @@ msgstr "Ні, але відтворити фільм з початку"
 msgid "No, do not backup a image"
 msgstr "Ні, не створювати резервну копію іміджу"
 
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr "Ні, не прошивати імідж"
 
 msgid "No, do nothing."
@@ -10083,6 +10126,9 @@ msgid "Nothing, just leave this menu"
 msgstr "Нічого не робити, вийти з цього меню"
 
 msgctxt "now/next: 'now' event label"
+msgid "Now"
+msgstr "Зараз"
+
 msgid "Now"
 msgstr "Зараз"
 
@@ -10437,9 +10483,8 @@ msgstr "PCM багатоканальний"
 msgid "PCR PID"
 msgstr "ПІД PCR"
 
-#, fuzzy
 msgid "PID"
-msgstr "ПІД"
+msgstr "ПІД "
 
 msgid "PIDs"
 msgstr "ПІДи"
@@ -10561,9 +10606,8 @@ msgstr "Головна директорія"
 msgid "Parental control"
 msgstr "Батьківський контроль"
 
-#, fuzzy
 msgid "Parental control services editor"
-msgstr "Редактор каналів батькіського контролю"
+msgstr "Редактор каналів чорного списку"
 
 msgid "Parental control setup"
 msgstr "Налаштування батьківського контролю"
@@ -10848,9 +10892,8 @@ msgstr "Будь ласка, введіть правильний пін-код"
 msgid "Please enter the new directory name"
 msgstr "Будь ласка, введіть назву нового каталогу"
 
-#, fuzzy
 msgid "Please enter the new file name"
-msgstr "Будь ласка, введіть нову назву файла"
+msgstr "Будь ласка, введіть нову назву файлу"
 
 msgid "Please enter the old PIN code"
 msgstr "Будь ласка, введіть старий Пін-код"
@@ -16887,6 +16930,9 @@ msgstr "Оновлення параметрів підключення."
 
 msgid "Updating software catalog"
 msgstr "Каталог оновлення ПЗ"
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr "Оновити (Резервна копія, Прошивка і повне відновлення)"
 
 msgid "Upgrade and reboot system"
 msgstr "Оновлення і перезавантаження системи"

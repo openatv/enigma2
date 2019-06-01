@@ -112,7 +112,7 @@ class PluginDescriptor:
 
 	@property
 	def icon(self):
-		if self.iconstr:
+		if self.iconstr and self.path:
 			from Tools.LoadPixmap import LoadPixmap
 			return LoadPixmap(os.path.join(self.path, self.iconstr))
 		else:

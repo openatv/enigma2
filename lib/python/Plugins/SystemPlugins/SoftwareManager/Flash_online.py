@@ -18,7 +18,8 @@ import os, urllib2, shutil, math, time, zipfile, shutil
 
 from boxbranding import getImageDistro, getMachineBuild
 
-feedurl = 'http://images.mynonpublic.com/%s' %(getImageDistro())
+feedserver = 'images.mynonpublic.com'
+feedurl = 'http://%s/%s' %(feedserver, getImageDistro())
 imagecat = [3.0,4.0,4.1,4.2,5.0,5.1,5.2,5.3,6.0,6.1,6.2,6.3]
 
 def checkimagefiles(files):
@@ -84,37 +85,44 @@ class FlashOnline(Screen):
 
 		if not self.imagesList:
 			box = GetBoxName()
-			for version in reversed(sorted(imagecat)):
-				newversion = _("Image Version %s") %version
-				the_page =""
-				url = '%s/%s/index.php?open=%s' % (feedurl,version,box)
-				try:
-					req = urllib2.Request(url)
-					response = urllib2.urlopen(req, timeout=1)
-				except urllib2.URLError as e:
-					print "URL ERROR: %s\n%s" % (e,url)
-					continue
+			try:
+				import socket
+				socket.getaddrinfo(feedserver, None)
 
-				try:
-					the_page = response.read()
-				except urllib2.HTTPError as e:
-					print "HTTP download ERROR: %s" % e.code
-					continue
+				for version in reversed(sorted(imagecat)):
+					newversion = _("Image Version %s") %version
+					the_page =""
+					url = '%s/%s/index.php?open=%s' % (feedurl,version,box)
+					try:
+						req = urllib2.Request(url)
+						response = urllib2.urlopen(req)
+					except urllib2.URLError as e:
+						print "URL ERROR: %s\n%s" % (e,url)
+						continue
 
-				lines = the_page.split('\n')
-				tt = len(box)
-				countimage = []
-				for line in lines:
-					if line.find("<a href='%s/" % box) > -1:
-						t = line.find("<a href='%s/" % box)
-						if line[t+tt+10:t+tt+tt+39].endswith(".zip"):
-							countimage.append(line[t+tt+10:t+tt+tt+39])
-				if len(countimage) >= 1:
-					self.imagesList[newversion] = {}
-					for image in countimage:
-						self.imagesList[newversion][image] = {}
-						self.imagesList[newversion][image]["name"] = image
-						self.imagesList[newversion][image]["link"] = '%s/%s/%s/%s' % (feedurl,version,box,image)
+					try:
+						the_page = response.read()
+					except urllib2.HTTPError as e:
+						print "HTTP download ERROR: %s" % e.code
+						continue
+
+					lines = the_page.split('\n')
+					tt = len(box)
+					countimage = []
+					for line in lines:
+						if line.find("<a href='%s/" % box) > -1:
+							t = line.find("<a href='%s/" % box)
+							if line[t+tt+10:t+tt+tt+39].endswith(".zip"):
+								countimage.append(line[t+tt+10:t+tt+tt+39])
+					if len(countimage) >= 1:
+						self.imagesList[newversion] = {}
+						for image in countimage:
+							self.imagesList[newversion][image] = {}
+							self.imagesList[newversion][image]["name"] = image
+							self.imagesList[newversion][image]["link"] = '%s/%s/%s/%s' % (feedurl,version,box,image)
+
+			except socket.error as e:
+				print "FEEDSERVER ERROR: %s" %e
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
@@ -226,6 +234,7 @@ class FlashImage(Screen):
 
 		self["header"] = Label(_("Backup settings"))
 		self["info"] = Label(_("Save settings and EPG data"))
+		self["summary_header"] = StaticText(self["header"].getText())
 		self["progress"] = ProgressBar()
 		self["progress"].setRange((0, 100))
 		self["progress"].setValue(0)
@@ -461,6 +470,7 @@ class FlashImage(Screen):
 				from Tools.Downloader import downloadWithProgress
 				self["header"].setText(_("Downloading Image"))
 				self["info"].setText(self.imagename)
+				self["summary_header"].setText(self["header"].getText())
 				self.downloader = downloadWithProgress(self.source, self.zippedimage)
 				self.downloader.addProgress(self.downloadProgress)
 				self.downloader.addEnd(self.downloadEnd)
@@ -484,6 +494,7 @@ class FlashImage(Screen):
 
 	def unzip(self):
 		self["header"].setText(_("Unzipping Image"))
+		self["summary_header"].setText(self["header"].getText())
 		self["info"].setText("%s\n%s"% (self.imagename, _("Please wait")))
 		self["progress"].hide()
 		self.delay.callback.remove(self.confirmation)
@@ -499,6 +510,7 @@ class FlashImage(Screen):
 
 	def flashimage(self):
 		self["header"].setText(_("Flashing Image"))
+		self["summary_header"].setText(self["header"].getText())
 		def findimagefiles(path):
 			for path, subdirs, files in os.walk(path):
 				if not subdirs and files:
@@ -517,7 +529,7 @@ class FlashImage(Screen):
 					print "[FlashImage] detect Kernel:",self.MTDKERNEL
 					print "[FlashImage] detect rootfs:",self.MTDROOTFS
 					command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
-				elif getMachineBuild() in ("hd60","hd61","h9combo","multibox"): # issue with framebuffer force reboot after flashing
+				elif getMachineBuild() in ("hd60","hd61","h9combo","h10","multibox"): # issue with framebuffer force reboot after flashing
 					command = "/usr/bin/ofgwrite -f -r -k -m%s %s" % (self.multibootslot, imagefiles)
 				else:
 					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
@@ -538,6 +550,7 @@ class FlashImage(Screen):
 		self.containerofgwrite = None
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
+			self["summary_header"].setText(self["header"].getText())
 			self["info"].setText(_("%s\nPress ok to close") % self.imagename)
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
