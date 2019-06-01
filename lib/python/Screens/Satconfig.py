@@ -1163,7 +1163,7 @@ class SelectSatsEntryScreen(Screen):
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Button(_("Sort by"))
-		self["key_blue"] = Button(_("Select all"))
+		self["key_blue"] = Button(_("Invert"))
 		self["hint"] = Label(_("Press OK to toggle the selection"))
 		SatList = []
 		for sat in nimmanager.getSatList():
