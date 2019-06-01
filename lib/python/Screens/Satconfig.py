@@ -1159,6 +1159,7 @@ class SelectSatsEntryScreen(Screen):
 		</screen>"""
 	def __init__(self, session, userSatlist=[]):
 		Screen.__init__(self, session)
+		self.setTitle(_("Select Sats Entry"))
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self["key_yellow"] = Button(_("Sort by"))
