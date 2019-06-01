@@ -1191,6 +1191,26 @@ msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
 #, python-format
+msgid "%s: Not Available"
+msgstr "%s: Не доступно"
+
+#, python-format
+msgid "%s: %s in use: %s%%"
+msgstr "%s: %s використано: %s%%"
+
+#, python-format
+msgid "%s: %s Free: %s Used: %s (%s%%)"
+msgstr "%s: %s Вільно: %s Використано: %s (%s%%)"
+
+#, python-format
+msgid "%s: %s Used: %s Free: %s"
+msgstr "%s: %s Використано: %s Вільно: %s"
+
+#, fuzzy, python-format
+msgid "%s: %s in use: %s%%"
+msgstr "%s: %s використано: %s%%"
+
+#, python-format
 msgid "%s %s advanced remote control (native)"
 msgstr "%s %s розширений пульт ДУ (рідний)"
 
@@ -8300,8 +8320,11 @@ msgstr "Встановлення Плагіну..."
 msgid "Installing Service"
 msgstr "Встановлення каналів"
 
-msgid "Installing plugins..."
-msgstr "Встановлення плагінів..."
+msgid "Installing plugins from IPK ..."
+msgstr "Встановлення плагінів з IPK..."
+
+msgid "Installing plugins from feed ..."
+msgstr "Встановлення плагінів з фіду..."
 
 msgid "Installing software..."
 msgstr "Встановлення пз..."
