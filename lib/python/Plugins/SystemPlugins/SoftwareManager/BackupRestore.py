@@ -768,13 +768,13 @@ class RestorePlugins(Screen):
 
 		# Install previously installed feeds first, they might be required for the other packages to install ...
 		if len(self.pluginlistfirst) > 0:
-			self.session.open(Console, title = _("Installing feeds from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlistfirst)], finishedCallback = self.installLocalIPKFeeds, closeOnSuccess = True)
+			self.session.open(Console, title = _("Installing feeds from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPKFeeds, closeOnSuccess = True)
 		else:
 			self.installLocalIPKFeeds()
 
 	def installLocalIPKFeeds(self):
 		if len(self.myipklistfirst) > 0:
-			self.session.open(Console, title = _("Installing feeds from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklistfirst)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+			self.session.open(Console, title = _("Installing feeds from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
 		else:
 			self.installPlugins()
 
