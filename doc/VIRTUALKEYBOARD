@@ -5,7 +5,8 @@ Written by IanSav - 18-Aug-2018
 Updated by IanSav -  4-Sep-2018
 Updated by IanSav - 12-Nov-2018
 Updated by IanSav - 25-Mar-2019
-Updated by IanSav -  8-Apr-2019 *
+Updated by IanSav -  8-Apr-2019
+Updated by IanSav -  2-Jun-2019 *
 
 This document explains the changes and updates to the VirtualKeyBoard of 
 Enigma2.  The code is located in:
@@ -37,13 +38,13 @@ Any sequence of identical button definitions on any single row of a
 "keyList" entry will be used to generate a single wide button on the 
 screen occupying all the defined positions.
 
-* New languages and locales can be added by adding an appropriate entry 
+New languages and locales can be added by adding an appropriate entry 
 into the "self.locales" dictionary.  The primary or default keyboard 
 for the language should use the locale key as provided by Enigma2.  
 Alternates can be provided with other keys to allow selection of the 
 alternate by users.
 
-* If a keyboard is fundamentally similar to an existing keyboard then the 
+If a keyboard is fundamentally similar to an existing keyboard then the 
 existing keyboard can be used as a template for the new keyboard.  The 
 method specified in the dictionary should duplicate the existing definition 
 and then proceed to change the keyboard cells as required.  If the new 
@@ -66,7 +67,7 @@ images.  These colours can be overridden by a skin author via the
 "VirtualKeyBoardShiftColors" skin parameter.  (The number of shift levels 
 can be increased if required.)
 
-* The updated VirtualKeyBoard has a new and optional calling parameter 
+The updated VirtualKeyBoard has a new and optional calling parameter 
 "style=".  This calling parameter can be used to adjust the text of the 
 GREEN button and the optional text on the keypad button for the "Enter" 
 key.  The values that can be used are:
@@ -135,13 +136,25 @@ Internet address entry easier.  To ensure that longer key text can fit in
 the screen space available any text longer than one character will be drawn 
 at 56% of the "VirtualKeyBoard" skin font parameter assigned font size.
 
-* As mentioned in the previous paragraph buttons can be assigned short text 
+As mentioned in the previous paragraph buttons can be assigned short text 
 messages to ease user data entry.  Please note that text will now be used 
 exactly as entered in all locales.  If translation is required please ensure 
 that the text is enclosed in the the standard "_(" ")" tokens.
 
 This revision also adds HELP button text to assist users with using the 
 updated VirtualKeyBoard interface.
+
+* This update includes a change to colour button assignments.  The Locales 
+selection list functionality has now been moved from the YELLOW button to 
+the TEXT button.  A new feature has been added where pressing the YELLOW 
+button changes the shift level, like the BLUE button, but the shift is 
+temporary and only applies to the next button pressed on the virtual 
+keyboard.  Once a button is selected the previous shift level is immediately 
+restored.  (This change requires matching changes to the keymap.xml file.)  
+To clarify the functional differences the previous use of u"SHIFT" and 
+u"SHIFTICON" buttons have been renamed to u"CAPSLOCK" and u"CAPSLOCKICON" 
+to maintain the correlations with physical keyboards.  The buttons u"SHIFT" 
+and "u"SHIFTICON" now associate with the temporary shift function.
 
 If the VirtualKeyBoard interface is to be re-skinned then the following
 "name=" screen widgets should be defined:
@@ -152,13 +165,13 @@ If the VirtualKeyBoard interface is to be re-skinned then the following
 		   language.
 	language - This widget displays the current language.
 
-The standard colour and action buttons "source=" screen widgets can also 
+* The standard colour and action buttons "source=" screen widgets can also 
 be defined:
 	key_red    - This widget displays the RED button exit text prompt.
 	key_green  - This widget displays the GREEN button save text prompt.
-	key_yellow - This widget displays the YELLOW button locale menu
-		     prompt.
-	key_blue   - This widget displays the BLUE button shift text prompt.
+	key_yellow - This widget displays the YELLOW button shift prompt.
+	key_blue   - This widget displays the BLUE button and the next 
+		     caps lock text prompt.
 	key_info   - This widget triggers the INFO button.
 	key_help   - This widget triggers the HELP button.
 
@@ -270,7 +283,7 @@ Removing legacy VirtualKeyBoard support:
 	"VirtualKeyboard" entries are used by the old code while 
 	"VirtualKeyBoard" entries are used by the new code.
 
-	From the buttons directory in the skin delete:
+	* From the buttons directory in the skin delete:
 		vkey_all.png
 		vkey_blue.png
 		vkey_clr.png
@@ -279,7 +292,6 @@ Removing legacy VirtualKeyBoard support:
 		vkey_ok.png
 		vkey_red.png
 		vkey_sel.png
-		vkey_shift.png
 		vkey_shift_sel.png
 		vkey_yellow.png
 	Please do not delete any of these images if they are shared by other 
