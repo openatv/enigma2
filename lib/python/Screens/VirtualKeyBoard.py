@@ -43,6 +43,8 @@ VKB_OK_TEXT = 7
 VKB_SAVE_TEXT = 8
 VKB_SEARCH_TEXT = 9
 
+SPACE = u"SPACEICON"  # Symbol to be used for a SPACE on the keyboard.  Must be u"SPACE" (any case), u"SPACEICON" or u"SPACEICONALT".
+
 # For more information about using VirtualKeyBoard see /doc/VIRTUALKEYBOARD
 #
 class VirtualKeyBoard(Screen, HelpableScreen):
@@ -227,7 +229,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"SPACEICON": "self['text'].char(' '.encode('UTF-8'))",
 			u"SPACEICONALT": "self['text'].char(' '.encode('UTF-8'))"
 		}
-		self.footer = [u"EXITICON", u"LEFTICON", u"RIGHTICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SHIFTICON", u"LOCALEICON", u"CLEARICON", u"DELETEICON"]
+		self.footer = [u"EXITICON", u"LEFTICON", u"RIGHTICON", SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, u"SHIFTICON", u"LOCALEICON", u"CLEARICON", u"DELETEICON"]
 		self.czech = [
 			[
 				[u";", u"+", u"\u011B", u"\u0161", u"\u010D", u"\u0159", u"\u017E", u"\u00FD", u"\u00E1", u"\u00ED", u"\u00E9", u"=", u"\u00B4", u"BACKSPACEICON"],
@@ -1188,7 +1190,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def selectAsciiKey(self, char):
 		if char == u" ":
-			char = u"SPACE"
+			char = SPACE
 		self.shiftLevel = -1
 		for keyList in (self.keyList):
 			self.shiftLevel = (self.shiftLevel + 1) % self.shiftLevels
