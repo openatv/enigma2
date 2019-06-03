@@ -92,6 +92,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		key_left = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_left.png"))
 		key_locale = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_locale.png"))
 		key_right = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_right.png"))
+		key_shift = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_shift.png"))
 		key_shift0 = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_shift0.png"))
 		key_shift1 = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_shift1.png"))
 		key_shift2 = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_shift2.png"))
@@ -106,11 +107,15 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"ENTERICON": (key_green_l, key_green_m, key_green_r),
 			u"OK": (key_green_l, key_green_m, key_green_r),
 			u"SAVE": (key_green_l, key_green_m, key_green_r),
-			u"LOC": (key_yellow_l, key_yellow_m, key_yellow_r),
-			u"LOCALE": (key_yellow_l, key_yellow_m, key_yellow_r),
-			u"LOCALEICON": (key_yellow_l, key_yellow_m, key_yellow_r),
-			u"SHIFT": (key_blue_l, key_blue_m, key_blue_r),
-			u"SHIFTICON": (key_blue_l, key_blue_m, key_blue_r)
+			# u"LOC": (key_yellow_l, key_yellow_m, key_yellow_r),
+			# u"LOCALE": (key_yellow_l, key_yellow_m, key_yellow_r),
+			# u"LOCALEICON": (key_yellow_l, key_yellow_m, key_yellow_r),
+			u"SHIFT": (key_yellow_l, key_yellow_m, key_yellow_r),
+			u"SHIFTICON": (key_yellow_l, key_yellow_m, key_yellow_r),
+			u"CAPS": (key_blue_l, key_blue_m, key_blue_r),
+			u"LOCK": (key_blue_l, key_blue_m, key_blue_r),
+			u"CAPSLOCK": (key_blue_l, key_blue_m, key_blue_r),
+			u"CAPSLOCKICON": (key_blue_l, key_blue_m, key_blue_r)
 		}
 		self.shiftMsgs = [
 			_("Lower case"),
@@ -120,6 +125,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		]
 		self.keyImages = [{
 			u"BACKSPACEICON": key_backspace,
+			u"CAPSLOCKICON": key_shift0,
 			u"CLEARICON": key_clear,
 			u"DELETEICON": key_delete,
 			u"ENTERICON": key_enter,
@@ -129,11 +135,12 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"LOCALEICON": key_locale,
 			u"LEFTICON": key_left,
 			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift0,
+			u"SHIFTICON": key_shift,
 			u"SPACEICON": key_space,
 			u"SPACEICONALT": key_space_alt
 		}, {
 			u"BACKSPACEICON": key_backspace,
+			u"CAPSLOCKICON": key_shift1,
 			u"CLEARICON": key_clear,
 			u"DELETEICON": key_delete,
 			u"ENTERICON": key_enter,
@@ -143,11 +150,12 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"LEFTICON": key_left,
 			u"LOCALEICON": key_locale,
 			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift1,
+			u"SHIFTICON": key_shift,
 			u"SPACEICON": key_space,
 			u"SPACEICONALT": key_space_alt
 		}, {
 			u"BACKSPACEICON": key_backspace,
+			u"CAPSLOCKICON": key_shift2,
 			u"CLEARICON": key_clear,
 			u"DELETEICON": key_delete,
 			u"ENTERICON": key_enter,
@@ -157,11 +165,12 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"LEFTICON": key_left,
 			u"LOCALEICON": key_locale,
 			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift2,
+			u"SHIFTICON": key_shift,
 			u"SPACEICON": key_space,
 			u"SPACEICONALT": key_space_alt
 		}, {
 			u"BACKSPACEICON": key_backspace,
+			u"CAPSLOCKICON": key_shift3,
 			u"CLEARICON": key_clear,
 			u"DELETEICON": key_delete,
 			u"ENTERICON": key_enter,
@@ -171,7 +180,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"LEFTICON": key_left,
 			u"LOCALEICON": key_locale,
 			u"RIGHTICON": key_right,
-			u"SHIFTICON": key_shift3,
+			u"SHIFTICON": key_shift,
 			u"SPACEICON": key_space,
 			u"SPACEICONALT": key_space_alt
 		}]
@@ -183,6 +192,9 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"BACKSPACE": "self['text'].deleteBackward()",
 			u"BACKSPACEICON": "self['text'].deleteBackward()",
 			u"BLANK": "pass",
+			u"CAPS": "self.capsLockSelected()",
+			u"CAPSLOCK": "self.capsLockSelected()",
+			u"CAPSLOCKICON": "self.capsLockSelected()",
 			u"CLEAR": "self['text'].deleteAllChars()\nself['text'].update()",
 			u"CLEARICON": "self['text'].deleteAllChars()\nself['text'].update()",
 			u"CLR": "self['text'].deleteAllChars()\nself['text'].update()",
@@ -204,35 +216,36 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"LOC": "self.localeMenu()",
 			u"LOCALE": "self.localeMenu()",
 			u"LOCALEICON": "self.localeMenu()",
+			u"LOCK": "self.capsLockSelected()",
 			u"OK": "self.save()",
 			u"RIGHT": "self['text'].right()",
 			u"RIGHTICON": "self['text'].right()",
 			u"SAVE": "self.save()",
-			u"SHIFT": "self.shiftClicked()",
-			u"SHIFTICON": "self.shiftClicked()",
+			u"SHIFT": "self.shiftSelected()",
+			u"SHIFTICON": "self.shiftSelected()",
 			u"SPACE": "self['text'].char(' '.encode('UTF-8'))",
 			u"SPACEICON": "self['text'].char(' '.encode('UTF-8'))",
 			u"SPACEICONALT": "self['text'].char(' '.encode('UTF-8'))"
 		}
-		self.footer = [u"EXITICON", u"LEFTICON", u"RIGHTICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"LOCALEICON", u"CLEARICON", u"DELETEICON"]
+		self.footer = [u"EXITICON", u"LEFTICON", u"RIGHTICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SHIFTICON", u"LOCALEICON", u"CLEARICON", u"DELETEICON"]
 		self.czech = [
 			[
 				[u";", u"+", u"\u011B", u"\u0161", u"\u010D", u"\u0159", u"\u017E", u"\u00FD", u"\u00E1", u"\u00ED", u"\u00E9", u"=", u"\u00B4", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"\u00FA", u")", u"\u00A8"],
 				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u016F", u"\u00A7", self.green, self.green],
-				[u"SHIFTICON", u"\\", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"\\", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"\u00B0", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"%", u"\u02C7", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"/", u"(", u"'"],
 				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\"", u"!", self.green, self.green],
-				[u"SHIFTICON", u"|", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u"?", u":", u"_", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"|", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u"?", u":", u"_", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"~", u"\u011A", u"\u0160", u"\u010C", u"\u0158", u"\u017D", u"\u00DD", u"\u00C1", u"\u00CD", u"\u00C9", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\\", u"|", u"\u20AC", u"\u0165", u"\u0164", u"\u0148", u"\u0147", u"\u00F3", u"\u00D3", u"\u00DA", u"\u00F7", u"\u00D7", u"\u00A4"],
 				[u"LASTICON", u"", u"\u0111", u"\u00D0", u"[", u"]", u"\u010F", u"\u010E", u"\u0142", u"\u0141", u"\u016E", u"\u00DF", self.green, self.green],
-				[u"SHIFTICON", u"", u"", u"#", u"&", u"@", u"{", u"}", u"$", u"<", u">", u"*", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"", u"", u"#", u"&", u"@", u"{", u"}", u"$", u"<", u">", u"*", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -241,13 +254,13 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"`", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"=", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"[", u"]", u"\\"],
 				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", self.green, self.green],
-				[u"SHIFTICON", u"SHIFTICON", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"/", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"~", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"{", u"}", u"|"],
 				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u":", u"\"", self.green, self.green],
-				[u"SHIFTICON", u"SHIFTICON", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -256,25 +269,25 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"\u00B2", u"&", u"\u00E9", u"\"", u"'", u"(", u"-", u"\u00E8", u"_", u"\u00E7", u"\u00E0", u")", u"=", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"a", u"z", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"^", u"$", u"*"],
 				[u"LASTICON", u"q", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"m", u"\u00F9", self.green, self.green],
-				[u"SHIFTICON", u"<", u"w", u"x", u"c", u"v", u"b", u"n", u",", u";", u":", u"!", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"<", u"w", u"x", u"c", u"v", u"b", u"n", u",", u";", u":", u"!", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"\u00B0", u"+", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"A", u"Z", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"\u00A8", u"\u00A3", u"\u00B5"],
 				[u"LASTICON", u"Q", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"M", u"%", self.green, self.green],
-				[u"SHIFTICON", u">", u"W", u"X", u"C", u"V", u"B", u"N", u"?", u".", u"/", u"\u00A7", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u">", u"W", u"X", u"C", u"V", u"B", u"N", u"?", u".", u"/", u"\u00A7", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"~", u"#", u"{", u"[", u"|", u"`", u"\\", u"^", u"@", u"]", u"}", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", u"\u00A4", u""],
 				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-				[u"SHIFTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"\u00E2", u"\u00EA", u"\u00EE", u"\u00F4", u"\u00FB", u"\u00E4", u"\u00EB", u"\u00EF", u"\u00F6", u"\u00FC", u"", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"", u"\u00E0", u"\u00E8", u"\u00EC", u"\u00F2", u"\u00F9", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"", u""],
 				[u"LASTICON", u"", u"\u00C2", u"\u00CA", u"\u00CE", u"\u00D4", u"\u00DB", u"\u00C4", u"\u00CB", u"\u00CF", u"\u00D6", u"\u00DC", self.green, self.green],
-				[u"SHIFTICON", u"", u"\u00C0", u"\u00C8", u"\u00CC", u"\u00D2", u"\u00D9", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"", u"\u00C0", u"\u00C8", u"\u00CC", u"\u00D2", u"\u00D9", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -283,19 +296,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"^", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"\u00DF", u"'", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"\u00FC", u"+", u"#"],
 				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u00F6", u"\u00E4", self.green, self.green],
-				[u"SHIFTICON", u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"\u00B0", u"!", u"\"", u"\u00A7", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"?", u"`", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"\u00DC", u"*", u"'"],
 				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\u00D6", u"\u00C4", self.green, self.green],
-				[u"SHIFTICON", u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"SHIFTICON", U"SHIFTICON"],
+				[u"CAPSLOCKICON", u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CAPSLOCKICON", U"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"\u00B2", u"\u00B3", u"", u"", u"", u"{", u"[", u"]", u"}", u"\\", u"\u1E9E", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"@", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", u"~", u""],
 				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-				[u"SHIFTICON", u"|", u"", u"", u"", u"", u"", u"", u"\u00B5", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"|", u"", u"", u"", u"", u"", u"", u"\u00B5", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -304,19 +317,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"`", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"=", u"BACKSPACEICON"],
 				[u"FIRSTICON", u";", u"\u03C2", u"\u03B5", u"\u03C1", u"\u03C4", u"\u03C5", u"\u03B8", u"\u03B9", u"\u03BF", u"\u03C0", u"[", u"]", u"\\"],
 				[u"LASTICON", u"\u03B1", u"\u03C3", u"\u03B4", u"\u03C6", u"\u03B3", u"\u03B7", u"\u03BE", u"\u03BA", u"\u03BB", u"\u0384", u"'", self.green, self.green],
-				[u"SHIFTICON", u"<", u"\u03B6", u"\u03C7", u"\u03C8", u"\u03C9", u"\u03B2", u"\u03BD", u"\u03BC", u",", ".", u"/", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"<", u"\u03B6", u"\u03C7", u"\u03C8", u"\u03C9", u"\u03B2", u"\u03BD", u"\u03BC", u",", ".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"~", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
 				[u"FIRSTICON", u":", u"\u0385", u"\u0395", u"\u03A1", u"\u03A4", u"\u03A5", u"\u0398", u"\u0399", u"\u039F", u"\u03A0", u"{", u"}", u"|"],
 				[u"LASTICON", u"\u0391", u"\u03A3", u"\u0394", u"\u03A6", u"\u0393", u"\u0397", u"\u039E", u"\u039A", u"\u039B", u"\u00A8", u"\"", self.green, self.green],
-				[u"SHIFTICON", u">", u"\u0396", u"\u03A7", u"\u03A8", u"\u03A9", u"\u0392", u"\u039D", u"\u039C", u"<", u">", u"?", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u">", u"\u0396", u"\u03A7", u"\u03A8", u"\u03A9", u"\u0392", u"\u039D", u"\u039C", u"<", u">", u"?", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"\u00B2", u"\u00B3", u"\u00A3", u"\u00A7", u"\u00B6", u"", u"\u00A4", u"\u00A6", u"\u00B0", u"\u00B1", u"\u00BD", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"", u"\u03AC", u"\u03AD", u"\u03AE", u"\u03AF", u"\u03CC", u"\u03CD", u"\u03CE", u"\u03CA", u"\u03CB", u"\u00AB", u"\u00BB", u"\u00AC"],
 				[u"LASTICON", u"", u"\u0386", u"\u0388", u"\u0389", u"\u038A", u"\u038C", u"\u038E", u"\u038F", u"\u03AA", u"\u03AB", u"\u0385", self.green, self.green],
-				[u"SHIFTICON", u"SHIFTICON", u"", u"", u"", u"\u00A9", u"\u00AE", u"\u20AC", u"\u00A5", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"", u"", u"", u"\u00A9", u"\u00AE", u"\u20AC", u"\u00A5", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -325,25 +338,25 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"f", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\u016B", u"g", u"j", u"r", u"m", u"v", u"n", u"z", u"\u0113", u"\u010D", u"\u017E", u"h", u"\u0137"],
 				[u"LASTICON", u"\u0161", u"u", u"s", u"i", u"l", u"d", u"a", u"t", u"e", u"c", u"\u00B4", self.green, self.green],
-				[u"SHIFTICON", u"\u0123", u"\u0146", u"b", u"\u012B", u"k", u"p", u"o", u"\u0101", u",", u".", u"\u013C", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"\u0123", u"\u0146", u"b", u"\u012B", u"k", u"p", u"o", u"\u0101", u",", u".", u"\u013C", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"?", u"!", u"\u00AB", u"\u00BB", u"$", u"%", u"/", u"&", u"\u00D7", u"(", u")", u"_", u"F", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\u016A", u"G", u"J", u"R", u"M", u"V", u"N", u"Z", u"\u0112", u"\u010C", u"\u017D", u"H", u"\u0136"],
 				[u"LASTICON", u"\u0160", u"U", u"S", u"I", u"L", u"D", u"A", u"T", u"E", u"C", u"\u00B0", self.green, self.green],
-				[u"SHIFTICON", u"\u0122", u"\u0145", u"B", u"\u012A", u"K", u"P", u"O", u"\u0100", u";", u":", u"\u013B", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"\u0122", u"\u0145", u"B", u"\u012A", u"K", u"P", u"O", u"\u0100", u";", u":", u"\u013B", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"\u00AB", u"", u"", u"\u20AC", u"\"", u"'", u"", u":", u"", u"", u"\u2013", u"=", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"q", u"\u0123", u"", u"\u0157", u"w", u"y", u"", u"", u"", u"", u"[", u"]", u""],
 				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"\u20AC", u"", u"\u00B4", self.green, self.green],
-				[u"SHIFTICON", u"\\", u"", u"x", u"", u"\u0137", u"", u"\u00F5", u"", u"<", u">", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"\\", u"", u"x", u"", u"\u0137", u"", u"\u00F5", u"", u"<", u">", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"@", u"#", u"$", u"~", u"^", u"\u00B1", u"", u"", u"", u"\u2014", u";", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"Q", u"\u0122", u"", u"\u0156", u"W", u"Y", u"", u"", u"", u"", u"{", u"}", u""],
 				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"\u00A8", self.green, self.green],
-				[u"SHIFTICON", u"|", u"", u"X", u"", u"\u0136", u"", u"\u00D5", u"", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"|", u"", u"X", u"", u"\u0136", u"", u"\u00D5", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -352,19 +365,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"\u0451", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"-", u"=", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\u0439", u"\u0446", u"\u0443", u"\u043A", u"\u0435", u"\u043D", u"\u0433", u"\u0448", u"\u0449", u"\u0437", u"\u0445", u"\u044A", u"\\"],
 				[u"LASTICON", u"\u0444", u"\u044B", u"\u0432", u"\u0430", u"\u043F", u"\u0440", u"\u043E", u"\u043B", u"\u0434", u"\u0436", u"\u044D", self.green, self.green],
-				[u"SHIFTICON", u"\\", u"\u044F", u"\u0447", u"\u0441", u"\u043C", u"\u0438", u"\u0442", u"\u044C", u"\u0431", u"\u044E", u".", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"\\", u"\u044F", u"\u0447", u"\u0441", u"\u043C", u"\u0438", u"\u0442", u"\u044C", u"\u0431", u"\u044E", u".", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"\u0401", u"!", u"\"", u"\u2116", u";", u"%", u":", u"?", u"*", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\u0419", u"\u0426", u"\u0423", u"\u041A", u"\u0415", u"\u041D", u"\u0413", u"\u0428", u"\u0429", u"\u0417", u"\u0425", u"\u042A", u"/"],
 				[u"LASTICON", u"\u0424", u"\u042B", u"\u0412", u"\u0410", u"\u041F", u"\u0420", u"\u041E", u"\u041B", u"\u0414", u"\u0416", u"\u042D", self.green, self.green],
-				[u"SHIFTICON", u"/", u"\u042F", u"\u0427", u"\u0421", u"\u041C", u"\u0418", u"\u0422", u"\u042C", u"\u0411", u"\u042E", u",", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"/", u"\u042F", u"\u0427", u"\u0421", u"\u041C", u"\u0418", u"\u0422", u"\u042C", u"\u0411", u"\u042E", u",", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"", u"\u00A7", u"@", u"#", u"&", u"$", u"\u20BD", u"\u20AC", u"", u"", u"", u"", u""],
 				[u"LASTICON", u"", u"<", u">", u"[", u"]", u"{", u"}", u"", u"", u"", u"", self.green, self.green],
-				[u"SHIFTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -373,25 +386,25 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"\u00A7", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"+", u"\u00B4", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"\u00E5", u"\u00A8", u"'"],
 				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u00F6", u"\u00E4", self.green, self.green],
-				[u"SHIFTICON", u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"\u00BD", u"!", u"\"", u"#", u"\u00A4", u"%", u"&", u"/", u"(", u")", u"=", u"?", u"`", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"\u00C5", u"^", u"*"],
 				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\u00D6", u"\u00C4", self.green, self.green],
-				[u"SHIFTICON", u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"@", u"\u00A3", u"$", u"\u20AC", u"", u"{", u"[", u"]", u"}", u"\\", u"", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", u"~", u""],
 				[u"LASTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-				[u"SHIFTICON", u"|", u"", u"", u"", u"", u"", u"", u"\u00B5", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"|", u"", u"", u"", u"", u"", u"", u"\u00B5", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"\u00E2", u"\u00EA", u"\u00EE", u"\u00F4", u"\u00FB", u"\u00E4", u"\u00EB", u"\u00EF", u"\u00F6", u"\u00FC", u"\u00E3", u"", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\u00E0", u"\u00E8", u"\u00EC", u"\u00F2", u"\u00F9", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"\u00F5", u"", u""],
 				[u"LASTICON", u"\u00C2", u"\u00CA", u"\u00CE", u"\u00D4", u"\u00DB", u"\u00C4", u"\u00CB", u"\u00CF", u"\u00D6", u"\u00DC", u"\u00C3", self.green, self.green],
-				[u"SHIFTICON", u"\u00C0", u"\u00C8", u"\u00CC", u"\u00D2", u"\u00D9", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"\u00D5", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"\u00C0", u"\u00C8", u"\u00CC", u"\u00D2", u"\u00D9", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"\u00D5", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -400,19 +413,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"\u00BA", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"'", u"\u00A1", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"`", u"+", u"\u00E7"],
 				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u00F1", u"\u00B4", self.green, self.green],  # [, ]
-				[u"SHIFTICON", u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"\u00AA", u"!", u"\"", u"\u00B7", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"?", u"\u00BF", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"^", u"*", u"\u00C7"],
 				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\u00D1", u"\u00A8", self.green, self.green],  # {, }
-				[u"SHIFTICON", u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"\\", u"|", u"@", u"#", u"~", u"\u20AC", u"\u00AC", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"\u00FC", u"", u"", u"[", u"]", u"", u""],
 				[u"LASTICON", u"", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"\u00DC", u"", u"", u"{", u"}", self.green, self.green],
-				[u"SHIFTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -421,13 +434,13 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 				[u"", u"", u"\u0E45", u"\u0E20", u"\u0E16", u"\u0E38", u"\u0E36", u"\u0E04", u"\u0E15", u"\u0E08", u"\u0E02", u"\u0E0A", u"", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\u0E46", u"\u0E44", u"\u0E33", u"\u0E1E", u"\u0E30", u"\u0E31", u"\u0E35", u"\u0E23", u"\u0E19", u"\u0E22", u"\u0E1A", u"\u0E25", u""],
 				[u"LASTICON", u"\u0E1F", u"\u0E2B", u"\u0E01", u"\u0E14", u"\u0E40", u"\u0E49", u"\u0E48", u"\u0E32", u"\u0E2A", u"\u0E27", u"\u0E07", u"\u0E03", self.green],
-				[u"SHIFTICON", u"SHIFTICON", u"\u0E1C", u"\u0E1B", u"\u0E41", u"\u0E2D", u"\u0E34", u"\u0E37", u"\u0E17", u"\u0E21", u"\u0E43", u"\u0E1D", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"\u0E1C", u"\u0E1B", u"\u0E41", u"\u0E2D", u"\u0E34", u"\u0E37", u"\u0E17", u"\u0E21", u"\u0E43", u"\u0E1D", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
 				[u"", u"", u"\u0E51", u"\u0E52", u"\u0E53", u"\u0E54", u"\u0E39", u"\u0E55", u"\u0E56", u"\u0E57", u"\u0E58", u"\u0E59", u"", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\u0E50", u"", u"\u0E0E", u"\u0E11", u"\u0E18", u"\u0E4D", u"\u0E4A", u"\u0E13", u"\u0E2F", u"\u0E0D", u"\u0E10", u"\u0E05", u""],
 				[u"LASTICON", u"\u0E24", u"\u0E06", u"\u0E0F", u"\u0E42", u"\u0E0C", u"\u0E47", u"\u0E4B", u"\u0E29", u"\u0E28", u"\u0E0B", u"", u"\u0E3F", self.green],
-				[u"SHIFTICON", u"SHIFTICON", u"", u"\u0E09", u"\u0E2E", u"\u0E3A", u"\u0E4C", u"", u"\u0E12", u"\u0E2C", u"\u0E26", u"", u"SHIFTICON", u"SHIFTICON"],
+				[u"CAPSLOCKICON", u"CAPSLOCKICON", u"", u"\u0E09", u"\u0E2E", u"\u0E3A", u"\u0E4C", u"", u"\u0E12", u"\u0E2C", u"\u0E26", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			]
 		]
@@ -478,9 +491,10 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self["actions"] = HelpableNumberActionMap(self, "VirtualKeyBoardActions", {
 			"cancel": (self.cancel, _("Cancel any text changes and exit")),
 			"save": (self.save, _("Save / Enter text and exit")),
-			"locale": (self.localeMenu, _("Select the virtual keyboard locale from a menu")),
-			"shift": (self.shiftClicked, _("Select the virtual keyboard shifted character set")),
+			"shift": (self.shiftSelected, _("Select the virtual keyboard shifted character set for the next character only")),
+			"capsLock": (self.capsLockSelected, _("Select the virtual keyboard shifted character set")),
 			"select": (self.processSelect, _("Select the character or action under the virtual keyboard cursor")),
+			"locale": (self.localeMenu, _("Select the virtual keyboard locale from a menu")),
 			"up": (self.up, _("Move the virtual keyboard cursor up")),
 			"left": (self.left, _("Move the virtual keyboard cursor left")),
 			"right": (self.right, _("Move the virtual keyboard cursor right")),
@@ -515,7 +529,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_(greenLabel))
-		self["key_yellow"] = StaticText(_("Select locale"))
+		self["key_yellow"] = StaticText(_("Shift"))
 		self["key_blue"] = StaticText(self.shiftMsgs[1])
 		self["key_help"] = StaticText(_("HELP"))
 
@@ -539,6 +553,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.keyList = []
 		self.shiftLevels = 0
 		self.shiftLevel = 0
+		self.shiftHold = -1
 		self.keyboardWidth = 0
 		self.keyboardHeight = 0
 		self.maxKey = 0
@@ -557,13 +572,13 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"\u0630", u"\u0661", u"\u0662", u"\u0663", u"\u0664", u"\u0665", u"\u0666", u"\u0667", u"\u0668", u"\u0669", u"\u0660", u"-", u"=", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"\u0636", u"\u0635", u"\u062B", u"\u0642", u"\u0641", u"\u063A", u"\u0639", u"\u0647", u"\u062E", u"\u062D", u"\u062C", u"\u062F", u"\\"],
 			[u"LASTICON", u"\u0634", u"\u0633", u"\u064A", u"\u0628", u"\u0644", u"\u0627", u"\u062A", u"\u0646", u"\u0645", u"\u0643", u"\u0637", self.green, self.green],
-			[u"SHIFTICON", u"SHIFTICON", u"\u0626", u"\u0621", u"\u0624", u"\u0631", u"\uFEFB", u"\u0649", u"\u0629", u"\u0648", u"\u0632", u"\u0638", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"CAPSLOCKICON", u"\u0626", u"\u0621", u"\u0624", u"\u0631", u"\uFEFB", u"\u0649", u"\u0629", u"\u0648", u"\u0632", u"\u0638", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		], [
 			[u"\u0651", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"\u066D", u"(", u")", u"_", u"+", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"\u0636", u"\u0635", u"\u062B", u"\u0642", u"\u0641", u"\u063A", u"\u0639", u"\u00F7", u"\u00D7", u"\u061B", u">", u"<", u"|"],
 			[u"LASTICON", u"\u0634", u"\u0633", u"\u064A", u"\u0628", u"\u0644", u"\u0623", u"\u0640", u"\u060C", u"/", u":", u"\"", self.green, self.green],
-			[u"SHIFTICON", u"SHIFTICON", u"\u0626", u"\u0621", u"\u0624", u"\u0631", u"\uFEF5", u"\u0622", u"\u0629", u",", u".", u"\u061F", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"CAPSLOCKICON", u"\u0626", u"\u0621", u"\u0624", u"\u0631", u"\uFEF5", u"\u0622", u"\u0629", u",", u".", u"\u061F", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		]])
 		return keyList
@@ -600,19 +615,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		keyList[0][1][13] = u"<"
 		keyList[0][2][10] = u"+"
 		keyList[0][2][11] = u"\u00B4"
-		keyList[0][3] = [u"SHIFTICON", u"]", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"-", u"SHIFTICON", u"SHIFTICON"]
+		keyList[0][3] = [u"CAPSLOCKICON", u"]", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"]
 		keyList[1][0] = [u"\u00A7", u"!", u"\"", u"#", u"$", u"%", u"&", u"_", u"(", u")", u"'", u"?", u"~", u"BACKSPACEICON"]
 		keyList[1][1][11] = u"^"
 		keyList[1][1][12] = u"|"
 		keyList[1][1][13] = u">"
 		keyList[1][2][10] = u"\u00B1"
 		keyList[1][2][11] = u"`"
-		keyList[1][3] = [u"SHIFTICON", u"[", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"=", u"SHIFTICON", u"SHIFTICON"]
+		keyList[1][3] = [u"CAPSLOCKICON", u"[", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"=", u"CAPSLOCKICON", u"CAPSLOCKICON"]
 		keyList.append([
 			[u"\u00AC", u"\u00B9", u"\u00B2", u"\u00B3", u"\u00BC", u"\u00BD", u"\u00BE", u"\u00A3", u"{", u"}", u"", u"\\", u"\u00B8", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"", u"", u"\u20AC", u"\u00B6", u"", u"\u00E1", u"\u00E9", u"\u00ED", u"\u00F3", u"\u00FA", u"", u"", u""],
 			[u"LASTICON", u"", u"\u00DF", u"", u"", u"", u"\u00C1", u"\u00C9", u"\u00CD", u"\u00D3", u"\u00DA", u"", self.green, self.green],
-			[u"SHIFTICON", u"\u00A6", u"\u00AB", u"\u00BB", u"\u00A2", u"", u"", u"", u"\u00B5", u"", u"\u00B7", u"", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"\u00A6", u"\u00AB", u"\u00BB", u"\u00A2", u"", u"", u"", u"\u00B5", u"", u"\u00B7", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -706,7 +721,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"", u"~", u"\u02C7", u"^", u"\u02D8", u"\u00B0", u"\u02DB", u"`", u"\u02D9", u"\u00B4", u"\u02DD", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"\\", u"|", u"\u00C4", u"", u"", u"", u"\u20AC", u"\u00CD", u"", u"", u"\u00F7", u"\u00D7", u"\u00A4"],
 			[u"LASTICON", u"\u00E4", u"\u0111", u"\u0110", u"[", u"]", u"", u"\u00ED", u"\u0142", u"\u0141", u"$", u"\u00DF", self.green, self.green],
-			[u"SHIFTICON", u"<", u">", u"#", u"&", u"@", u"{", u"}", u"<", u";", u">", u"*", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"<", u">", u"#", u"&", u"@", u"{", u"}", u"<", u";", u">", u"*", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -726,14 +741,14 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"", u"", u"\u00AB", u"\u00BB", u"\u20AC", u"", u"\u2019", u"", u"", u"", u"", u"\u2013", u"", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"", u"", u"\u0113", u"\u0157", u"", u"", u"\u016B", u"\u012B", u"\u014D", u"", u"", u"", u""],
 			[u"LASTICON", u"\u0101", u"\u0161", u"", u"", u"\u0123", u"", u"", u"\u0137", u"\u013C", u"", u"\u00B4", self.green, self.green],
-			[u"SHIFTICON", u"", u"\u017E", u"", u"\u010D", u"", u"", u"\u0146", u"", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"", u"\u017E", u"", u"\u010D", u"", u"", u"\u0146", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		keyList.append([
 			[u"", u"", u"", u"", u"\u00A7", u"\u00B0", u"", u"\u00B1", u"\u00D7", u"", u"", u"\u2014", u"", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"", u"", u"\u0112", u"\u0156", u"", u"", u"\u016A", u"\u012A", u"\u014C", u"", u"", u"", u""],
 			[u"LASTICON", u"\u0100", u"\u0160", u"", u"", u"\u0122", u"", u"", u"\u0136", u"\u013B", u"", u"\u00A8", self.green, self.green],
-			[u"SHIFTICON", u"", u"\u017D", u"", u"\u010C", u"", u"", u"\u0145", u"", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"", u"\u017D", u"", u"\u010C", u"", u"", u"\u0145", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -748,7 +763,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"", u"=", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u"", u"", u"", u"+", u""],
 			[u"LASTICON", u"", u"", u"\u20AC", u"", u"", u"", u"", u"", u"", u"", u"", self.green, self.green],
-			[u"SHIFTICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -773,14 +788,14 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"\u00F7", u"\u06F1", u"\u06F2", u"\u06F3", u"\u06F4", u"\u06F5", u"\u06F6", u"\u06F7", u"\u06F8", u"\u06F9", u"\u06F0", u"-", u"=", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"\u0636", u"\u0635", u"\u062B", u"\u0642", u"\u0641", u"\u063A", u"\u0639", u"\u0647", u"\u062E", u"\u062D", u"\u062C", u"\u0686", u"\u067E"],
 			[u"LASTICON", u"\u0634", u"\u0633", u"\u06CC", u"\u0628", u"\u0644", u"\u0627", u"\u062A", u"\u0646", u"\u0645", u"\u06A9", u"\u06AF", self.green, self.green],
-			[u"SHIFTICON", u"\u0649", u"\u0638", u"\u0637", u"\u0632", u"\u0631", u"\u0630", u"\u062F", u"\u0626", u"\u0648", u".", u"/", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"\u0649", u"\u0638", u"\u0637", u"\u0632", u"\u0631", u"\u0630", u"\u062F", u"\u0626", u"\u0648", u".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		keyList.append([
 			[u"\u00D7", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u")", u"(", u"_", u"+", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"\u064B", u"\u064C", u"\u064D", u"\u0631", u"\u060C", u"\u061B", u",", u"]", u"[", u"\\", u"}", u"{", u"|"],
 			[u"LASTICON", u"\u064E", u"\u064F", u"\u0650", u"\u0651", u"\u06C0", u"\u0622", u"\u0640", u"\u00AB", u"\u00BB", u":", u"\"", self.green, self.green],
-			[u"SHIFTICON", u"|", u"\u0629", u"\u064A", u"\u0698", u"\u0624", u"\u0625", u"\u0623", u"\u0621", u"<", u">", u"\u061F", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"|", u"\u0629", u"\u064A", u"\u0698", u"\u0624", u"\u0625", u"\u0623", u"\u0621", u"<", u">", u"\u061F", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -808,7 +823,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"", u"~", u"\u02C7", u"^", u"\u02D8", u"\u00B0", u"\u02DB", u"`", u"\u00B7", u"\u00B4", u"\u02DD", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"\\", u"\u00A6", u"", u"\u017B", u"\u015A", u"\u00D3", u"\u20AC", u"\u0143", u"\u0106", u"\u0179", u"\u00F7", u"\u00D7", u""],
 			[u"LASTICON", u"", u"\u0111", u"\u0110", u"", u"", u"", u"", u"\u0104", u"\u0118", u"$", u"\u00DF", self.green, self.green],
-			[u"SHIFTICON", u"", u"", u"", u"", u"@", u"{", u"}", u"\u00A7", u"<", u">", u"", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"", u"", u"", u"", u"@", u"{", u"}", u"\u00A7", u"<", u">", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -821,7 +836,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"", u"", u"\u0119", u"\u0118", u"", u"", u"\u20AC", u"", u"\u00F3", u"\u00D3", u"", u"", u""],
 			[u"LASTICON", u"\u0105", u"\u0104", u"\u015B", u"\u015A", u"", u"", u"", u"", u"\u0142", u"\u0141", u"", self.green, self.green],
-			[u"SHIFTICON", u"\u017C", u"\u017B", u"\u017A", u"\u0179", u"\u0107", u"\u0106", u"\u0144", u"\u0143", u"", u"", u"", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"\u017C", u"\u017B", u"\u017A", u"\u0179", u"\u0107", u"\u0106", u"\u0144", u"\u0143", u"", u"", u"", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -848,7 +863,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			[u"", u"~", u"\u02C7", u"^", u"\u02D8", u"\u00B0", u"\u02DB", u"`", u"\u02D9", u"\u00B4", u"\u02DD", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
 			[u"FIRSTICON", u"\\", u"|", u"\u20AC", u"", u"", u"", u"", u"", u"", u"'", u"\u00F7", u"\u00D7", u"\u00A4"],
 			[u"LASTICON", u"", u"\u0111", u"\u0110", u"[", u"]", u"", u"", u"\u0142", u"\u0141", u"$", u"\u00DF", self.green, self.green],
-			[u"SHIFTICON", u"<", u">", u"#", u"&", u"@", u"{", u"}", u"", u"<", u">", u"*", u"SHIFTICON", u"SHIFTICON"],
+			[u"CAPSLOCKICON", u"<", u">", u"#", u"&", u"@", u"{", u"}", u"", u"<", u">", u"*", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 			self.footer
 		])
 		return keyList
@@ -876,7 +891,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 	def unitedKingdom(self, base):
 		keyList = copy.deepcopy(base)
 		keyList[0][1][13] = u"#"
-		keyList[0][3] = [u"SHIFTICON", u"\\", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"/", u"SHIFTICON", u"SHIFTICON"]
+		keyList[0][3] = [u"CAPSLOCKICON", u"\\", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"/", u"CAPSLOCKICON", u"CAPSLOCKICON"]
 		keyList[0][4] = copy.copy(self.footer)
 		keyList[0][4][10] = u"\u00A6"
 		keyList[1][0][0] = u"\u00AC"
@@ -884,7 +899,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		keyList[1][0][3] = u"\u00A3"
 		keyList[1][1][13] = u"~"
 		keyList[1][2][11] = u"@"
-		keyList[1][3] = [u"SHIFTICON", u"|", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"SHIFTICON", u"SHIFTICON"]
+		keyList[1][3] = [u"CAPSLOCKICON", u"|", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"<", u">", u"?", u"CAPSLOCKICON", u"CAPSLOCKICON"]
 		keyList[1][4] = copy.copy(self.footer)
 		keyList[1][4][10] = u"\u20AC"
 		return keyList
@@ -1051,6 +1066,8 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			self['text'].char(text.encode('UTF-8'))
 		else:
 			exec(cmd)
+		if text not in (u"SHIFT", u"SHIFTICON") and self.shiftHold != -1:
+			self.shiftRestore()
 
 	def cancel(self):
 		self.close(None)
@@ -1078,12 +1095,25 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			self.setLocale()
 			self.buildVirtualKeyBoard()
 
-	def shiftClicked(self):
-		self.smsChar = None
+	def shiftSelected(self):
+		if self.shiftHold == -1:
+			self.shiftHold = self.shiftLevel
+		self.capsLockSelected()
+
+	def capsLockSelected(self):
 		self.shiftLevel = (self.shiftLevel + 1) % self.shiftLevels
+		self.shiftCommon()
+
+	def shiftCommon(self):
+		self.smsChar = None
 		nextLevel = (self.shiftLevel + 1) % self.shiftLevels
 		self["key_blue"].setText(self.shiftMsgs[nextLevel])
 		self.buildVirtualKeyBoard()
+
+	def shiftRestore(self):
+		self.shiftLevel = self.shiftHold
+		self.shiftHold = -1
+		self.shiftCommon()
 
 	def keyToggleOW(self):
 		self["text"].toggleOverwrite()
