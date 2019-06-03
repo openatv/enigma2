@@ -505,9 +505,9 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"prev": (self.cursorLeft, _("Move the text buffer cursor left")),
 			"next": (self.cursorRight, _("Move the text buffer cursor right")),
 			"last": (self.cursorLast, _("Move the text buffer cursor to the last character")),
+			"backspace": (self.backSelected, _("Delete the character to the left of text buffer cursor")),
+			"delete": (self.forwardSelected, _("Delete the character under the text buffer cursor")),
 			"toggleOverwrite": (self.keyToggleOW, _("Toggle new text inserts before or overwrites existing text")),
-			"backspace": (self.backClicked, _("Delete the character to the left of text buffer cursor")),
-			"delete": (self.forwardClicked, _("Delete the character under the text buffer cursor")),
 			"1": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"2": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"3": (self.keyNumberGlobal, _("Number or SMS style data entry")),
@@ -1125,10 +1125,10 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		else:
 			self["mode"].setText(_("INS"))
 
-	def backClicked(self):
+	def backSelected(self):
 		self["text"].deleteBackward()
 
-	def forwardClicked(self):
+	def forwardSelected(self):
 		self["text"].deleteForward()
 
 	def cursorFirst(self):
