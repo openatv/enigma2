@@ -61,6 +61,12 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/p
 else:
 	VIDEOENH = False
 
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoTune/plugin.pyo"):
+	from Plugins.SystemPlugins.VideoTune.VideoFinetune import VideoFinetune
+	VIDEOTUNE = True
+else:
+	VIDEOTUNE = False
+
 if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo"):
 	from Plugins.SystemPlugins.Blindscan.plugin import Blindscan
 	BLINDSCAN = True
@@ -345,6 +351,8 @@ class GeneralSetup(Screen):
 			self.sublist.append(QuickSubMenuEntryComponent(_("Audio sync"), _("Set up audio sync"), _("Set up audio sync settings")))
 		if VIDEOENH and os_path.exists("/proc/stb/vmpeg/0/pep_apply"):
 			self.sublist.append(QuickSubMenuEntryComponent(_("Video enhancement"), _("Video enhancement setup"), _("Video enhancement setup")))
+		if VIDEOTUNE:
+			self.sublist.append(QuickSubMenuEntryComponent(_("Test screens"), _("Test screens"), _("Test screens that are helpful to fine-tune your display")))
 		if config.usage.setup_level.getValue() == "expert":
 			self.sublist.append(QuickSubMenuEntryComponent(_("OSD position"), _("Adjust OSD Size"), _("Adjust OSD (on screen display) size")))
 		if SystemInfo["CanChange3DOsd"]:
@@ -593,6 +601,8 @@ class GeneralSetup(Screen):
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
 		elif selected == _("Video enhancement"):
 			self.session.open(VideoEnhancementSetup)
+		elif selected == _("Test screens"):
+			self.session.open(VideoFinetune)
 		elif selected == _("OSD position"):
 			from Screens.UserInterfacePositioner import UserInterfacePositioner
 			self.session.open(UserInterfacePositioner)
