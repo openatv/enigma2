@@ -230,19 +230,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.footer = [u"EXITICON", u"LEFTICON", u"RIGHTICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SPACEICON", u"SHIFTICON", u"LOCALEICON", u"CLEARICON", u"DELETEICON"]
 		self.czech = [
 			[
-				[u";", u"+", u"\u011B", u"\u0161", u"\u010D", u"\u0159", u"\u017E", u"\u00FD", u"\u00E1", u"\u00ED", u"\u00E9", u"=", u"\u00B4", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"\u00FA", u")", u"\u00A8"],
+				[u";", u"+", u"\u011B", u"\u0161", u"\u010D", u"\u0159", u"\u017E", u"\u00FD", u"\u00E1", u"\u00ED", u"\u00E9", u"=", u"", u"BACKSPACEICON"],
+				[u"FIRSTICON", u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"\u00FA", u"(", u")"],
 				[u"LASTICON", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u016F", u"\u00A7", self.green, self.green],
 				[u"CAPSLOCKICON", u"\\", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"\u00B0", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"%", u"\u02C7", u"BACKSPACEICON"],
-				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"/", u"(", u"'"],
+				[u".", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"%", u"'", u"BACKSPACEICON"],
+				[u"FIRSTICON", u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"/", u"(", u")"],
 				[u"LASTICON", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\"", u"!", self.green, self.green],
 				[u"CAPSLOCKICON", u"|", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u"?", u":", u"_", u"CAPSLOCKICON", u"CAPSLOCKICON"],
 				self.footer
 			], [
-				[u"", u"~", u"\u011A", u"\u0160", u"\u010C", u"\u0158", u"\u017D", u"\u00DD", u"\u00C1", u"\u00CD", u"\u00C9", u"\u00A8", u"\u00B8", u"BACKSPACEICON"],
+				[u"\u00B0", u"~", u"\u011A", u"\u0160", u"\u010C", u"\u0158", u"\u017D", u"\u00DD", u"\u00C1", u"\u00CD", u"\u00C9", u"`", u"'", u"BACKSPACEICON"],
 				[u"FIRSTICON", u"\\", u"|", u"\u20AC", u"\u0165", u"\u0164", u"\u0148", u"\u0147", u"\u00F3", u"\u00D3", u"\u00DA", u"\u00F7", u"\u00D7", u"\u00A4"],
 				[u"LASTICON", u"", u"\u0111", u"\u00D0", u"[", u"]", u"\u010F", u"\u010E", u"\u0142", u"\u0141", u"\u016E", u"\u00DF", self.green, self.green],
 				[u"CAPSLOCKICON", u"", u"", u"#", u"&", u"@", u"{", u"}", u"$", u"<", u">", u"*", u"CAPSLOCKICON", u"CAPSLOCKICON"],
