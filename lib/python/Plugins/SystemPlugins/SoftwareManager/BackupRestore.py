@@ -186,11 +186,12 @@ class BackupScreen(Screen, ConfigListScreen):
 			installed.write('\n'.join(pkgs))
 			installed.close()
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
-			cmd3 = "tar -C / -czvf " + self.fullbackupfilename + " " + self.backupdirs
+			cmd3 = "tar -C / -czvf " + self.fullbackupfilename
 			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
 			for f in BLACKLISTED:
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
+			cmd3 = cmd3 + " " + self.backupdirs
 			cmd = [cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
@@ -769,13 +770,13 @@ class RestorePlugins(Screen):
 
 		# Install previously installed feeds first, they might be required for the other packages to install ...
 		if len(self.pluginlistfirst) > 0:
-			self.session.open(Console, title = _("Installing feeds from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlistfirst)], finishedCallback = self.installLocalIPKFeeds, closeOnSuccess = True)
+			self.session.open(Console, title = _("Installing feeds from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPKFeeds, closeOnSuccess = True)
 		else:
 			self.installLocalIPKFeeds()
 
 	def installLocalIPKFeeds(self):
 		if len(self.myipklistfirst) > 0:
-			self.session.open(Console, title = _("Installing feeds from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklistfirst)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+			self.session.open(Console, title = _("Installing feeds from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
 		else:
 			self.installPlugins()
 
