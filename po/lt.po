@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-01 17:49+0000\n"
-"PO-Revision-Date: 2019-06-01 21:19+0300\n"
+"POT-Creation-Date: 2019-06-02 16:52+0000\n"
+"PO-Revision-Date: 2019-06-02 22:46+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -9720,7 +9720,7 @@ msgid "Programmlisten-Updater from DXAndy"
 msgstr "Klausymo programa-atnaujinimas iš DXAndy"
 
 msgid "Progress"
-msgstr "Eiga"
+msgstr "Progresas"
 
 msgid "Progress bar left"
 msgstr "Įvykių eigos juosta kairėje"
@@ -10874,9 +10874,6 @@ msgstr "Pasirinkite vietą"
 msgid "Select Quad Channels"
 msgstr "Pasirinkite 4 PIP kanalus"
 
-msgid "Select Sats Entry"
-msgstr "Pasirinkite iš palydovų"
-
 msgid "Select Softcam"
 msgstr "Pasirinkite emuliatorių"
 
@@ -11462,7 +11459,7 @@ msgid "Setup menu"
 msgstr "Nustatymų meniu"
 
 msgid "Setup mode"
-msgstr "Nustatymo būdas"
+msgstr "Valdymo režimas"
 
 msgid "Setup network. Here you can setup DHCP, IP, DNS"
 msgstr "Čia galite nustatyti savojo tinklo modulio DHCP, IP, DNS"
@@ -12151,7 +12148,7 @@ msgid "Slow"
 msgstr "Lėtas"
 
 msgid "Small progress"
-msgstr "Nedidelė pažanga"
+msgstr "Maža eigos juosta"
 
 msgid "Smartcard PIN"
 msgstr "Intelektualiosios kortelės PIN"
@@ -16210,13 +16207,13 @@ msgid "jump to previous page or all down (setup in menu)"
 msgstr "pereiti į ankstesnį puslapį arba visus žemyn (nustatymas meniu)"
 
 msgid "just abort, no message"
-msgstr "nutraukti, be žinutės"
+msgstr "nutraukti, be pranešimo"
 
 msgid "just abort, show message"
-msgstr "tiesiog nutraukti, parodyti pranešimą"
+msgstr "nutraukti, rodyti pranešimą"
 
 msgid "just boot"
-msgstr "tiesiog paleisti"
+msgstr "tiesiog įkrova"
 
 msgid "kernel modules"
 msgstr "branduolio moduliai"
@@ -17246,16 +17243,6 @@ msgstr "įjungta"
 msgid "zapping"
 msgstr "perjungimas"
 
-msgid "Configure interface"
-msgstr "Konfigūruokite sąsają"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Susiderinkite ekrane matomą vaizdą, koreguodami reikšmes pagal tai, kiek raudonojo rėmo kraštai liečia jūsų TV ekrano kraštus.\n"
-"Kai tai atliksite, spauskite 'OK', kad tęsti."
-
 msgid "Basic settings"
 msgstr "Pagrindiniai nustatymai"
 
@@ -17329,7 +17316,7 @@ msgid "Restart Gui"
 msgstr "Paleisti iš naujo grafinę aplinką"
 
 msgid "STB Display"
-msgstr "STB ekranas"
+msgstr "Imtuvo ekranas"
 
 msgid "Save EPG"
 msgstr "Išsaugoti EPG"
@@ -17357,6 +17344,16 @@ msgstr "Vaizdas"
 
 msgid "WOL Standby"
 msgstr "WOL budėjimas"
+
+msgid "Configure interface"
+msgstr "Konfigūruokite sąsają"
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Susiderinkite ekrane matomą vaizdą, koreguodami reikšmes pagal tai, kiek raudonojo rėmo kraštai liečia jūsų TV ekrano kraštus.\n"
+"Kai tai atliksite, spauskite 'OK', kad tęsti."
 
 msgid "0"
 msgstr "0"
@@ -17810,7 +17807,7 @@ msgid "Alignment of service names"
 msgstr "Kanalų pavadinimų lygiavimas"
 
 msgid "Allow quit movieplayer with exit"
-msgstr "Leisti baigti filmų grotuvą su mygtuku exit"
+msgstr "Leisti užverti filmų grotuvą su exit"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Leisti tos pačios kalbos, kaip garso takelis, subtitrus"
@@ -18432,7 +18429,7 @@ msgid "Display message before playing next movie"
 msgstr "Prieš sekantį filmą, parodyti žinutę"
 
 msgid "Display settings"
-msgstr "Monitoriaus nustatymai"
+msgstr "Ekrano nustatymai"
 
 msgid "Display the EIT now/next eventdata in infobar."
 msgstr "Info juostoje rodyti EIT dabar/sekantis įvykių duomenis."
@@ -18896,8 +18893,8 @@ msgstr "LED būsenos veikimas gilaus laukimo režimu"
 msgid "Operating LED status in standby mode"
 msgstr "LED būsenos veikimas laukimo režimu"
 
-msgid "Operating LED status while running."
-msgstr "LED būsena veikimo metu."
+msgid "Operating LED status while running"
+msgstr "LED būsena veikimo metu"
 
 msgid "Option to disable picons on the Infobar"
 msgstr "Ši parinktis leidžia išjungti logotipų rodymą info juostoje"
@@ -19011,16 +19008,16 @@ msgid "RF output"
 msgstr "RF išėjimas"
 
 msgid "Recordings abort PIP"
-msgstr "Įrašai nutraukti PIP"
+msgstr "Įrašai nutraukia PIP"
 
 msgid "Recordings abort pseudo recordings"
-msgstr "Įrašai nutraukė pseudo įrašus"
+msgstr "Įrašai nutraukia pseudo įrašus"
 
 msgid "Recordings abort streaming"
 msgstr "Įrašai nutraukia transliaciją"
 
 msgid "Recordings always have priority"
-msgstr "Įrašai visada turi pirmenybę"
+msgstr "Pirmenybę skirti vaizdo įrašymui"
 
 msgid "Red button"
 msgstr "Raudonas mygtukas"
@@ -19478,6 +19475,15 @@ msgstr "Ypatingi požymiai"
 msgid "Start mode"
 msgstr "Paleidimo režimas"
 
+msgid "Status of the display during operation"
+msgstr "Ekrano būsena veikimo metu"
+
+msgid "Status of the display in deep standby"
+msgstr "Ekrano būsena gilaus budėjimo režime"
+
+msgid "Status of the display in standby mode"
+msgstr "Ekrano būsena laukimo režime"
+
 msgid "Stop timeshift while recording?"
 msgstr "Stabdyti laiko poslinkį įrašinėjant?"
 
@@ -19525,15 +19531,6 @@ msgstr "Sukeisti SNR į '%' su SNR į 'db'"
 
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
 msgstr "Perjungti mėlyną: mėlynas-trumpai (greitas meniu)/ mėlynas-ilgai (plėtiniai)"
-
-msgid "Switch off the display during Standby Mode"
-msgstr "Budėjimo režimu išjunkite ekraną"
-
-msgid "Switch off the display during Suspend Mode"
-msgstr "Laukimo režimu išjunkite ekraną"
-
-msgid "Switch off the display during operation."
-msgstr "Veikimo metu išjunkite ekraną."
 
 msgid "Sync NTP every (minutes)"
 msgstr "Sinchronizuoti su NTP kas (min.)"
@@ -20315,6 +20312,12 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#~ msgid "Select Sats Entry"
+#~ msgstr "Pasirinkite iš palydovų"
+
+#~ msgid "Switch off the display during Suspend Mode"
+#~ msgstr "Laukimo režimu išjunkite ekraną"
 
 #~ msgid "---Weather---"
 #~ msgstr "---Orai---"
