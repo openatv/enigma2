@@ -589,8 +589,8 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	build_hash |= (demux_mask & 0xff);
 	build_hash <<= 8;
 	build_hash |= (pmt_version & 0xff);
-	build_hash <<= 16;
-	build_hash |= (m_service_type_mask & 0xffff);
+	//build_hash <<= 16;
+	//build_hash |= (m_service_type_mask & 0xffff); // don't include in build_hash
 
 	bool scrambled = false;
 	for (std::vector<ProgramMapSection*>::const_iterator pmt = ptr->getSections().begin();
@@ -762,8 +762,8 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 	build_hash |= (demux_mask & 0xff);
 	build_hash <<= 8;
 	build_hash |= (pmt_version & 0xff);
-	build_hash <<= 16;
-	build_hash |= (m_service_type_mask & 0xffff);
+	//build_hash <<= 16;
+	//build_hash |= (m_service_type_mask & 0xffff); // don't include in build_hash
 
 	int pos = 0;
 	int programInfoLength = 0;
