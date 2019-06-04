@@ -308,7 +308,7 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 	return 0;
 }
 
-int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], eTable<ProgramMapSection> *ptr)
+int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], int servicetype, eTable<ProgramMapSection> *ptr)
 {
 	CAServiceMap::iterator it = services.find(ref);
 	if (it == services.end())
@@ -319,6 +319,8 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 	else
 	{
 		eDVBCAService *caservice = it->second;
+		caservice->removeServiceType(servicetype);
+
 		int loops = demux_nums[0] != demux_nums[1] ? 2 : 1;
 		for (int i = 0; i < loops; ++i)
 		{
@@ -537,6 +539,11 @@ void eDVBCAService::setAdapter(uint8_t value)
 void eDVBCAService::addServiceType(int type)
 {
 	m_service_type_mask |= (1 << type);
+}
+
+void eDVBCAService::removeServiceType(int type)
+{
+	m_service_type_mask ^= (1 << type);
 }
 
 void eDVBCAService::connectionLost()
