@@ -177,6 +177,7 @@ public:
 #ifndef SWIG
 	~eDVBCAHandler();
 
+	int getNumberOfCAServices();
 	int registerService(const eServiceReferenceDVB &service, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice);
 	int unregisterService(const eServiceReferenceDVB &service, int adapter, int demux_nums[2], int servicetype, eTable<ProgramMapSection> *ptr);
 	void handlePMT(const eServiceReferenceDVB &service, ePtr<eTable<ProgramMapSection> > &ptr);

@@ -253,6 +253,11 @@ void eDVBCAHandler::connectionLost(ePMTClient *client)
 	}
 }
 
+int eDVBCAHandler::getNumberOfCAServices()
+{
+	return services.size();
+}
+
 int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice)
 {
 	CAServiceMap::iterator it = services.find(ref);
@@ -354,6 +359,12 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 				{
 					delete it->second;
 					services.erase(it);
+
+					/*
+					 * this service is completely removed, so we distribute
+					 * a new list of CAPMT objects to all our clients
+					 */
+					distributeCAPMT();
 				}
 				else
 				{
@@ -376,8 +387,7 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 	serviceLeft->startLongTimer(2);
 
 	usedcaid(0);
-	/* our servicelist has changed, distribute the list of CAPMT objects to all our clients */
-	distributeCAPMT();
+
 	return 0;
 }
 
@@ -434,7 +444,10 @@ void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramM
 
 	if (isUpdate)
 	{
-		/* this is a PMT update, we should distribute the new CAPMT object to all our connected clients */
+		/*
+		 * this is a PMT update for an existing service, so we should
+		 * send the updated CAPMT object to all our connected clients
+		 */
 		for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
 		{
 			if (client_it->state() == eSocket::Connection)
@@ -446,10 +459,18 @@ void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramM
 	else
 	{
 		/*
-		 * this is PMT information for a new service, so we can now distribute
-		 * the CAPMT objects to all our connected clients
+		 * this is PMT information for a new service, so we should
+		 * send the new CAPMT object to all our connected clients
 		 */
-		distributeCAPMT();
+		int list_management = (getNumberOfCAServices() == 1) ? LIST_ONLY : LIST_ADD;
+
+		for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
+		{
+			if (client_it->state() == eSocket::Connection)
+			{
+				service->writeCAPMTObject(*client_it, list_management);
+			}
+		}
 	}
 }
 
