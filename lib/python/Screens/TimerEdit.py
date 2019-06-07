@@ -326,7 +326,7 @@ class TimerEditList(Screen, TimerListButtons):
 	def fillTimerList(self):
 		# helper function to move finished timers to end of list
 		def eol_compare(x, y):
-			if x[0].state != y[0].state and x[0].state == RealTimerEntry.StateEnded or y[0].state == RealTimerEntry.StateEnded:
+			if x[0].state != y[0].state and (x[0].state == RealTimerEntry.StateEnded or y[0].state == RealTimerEntry.StateEnded):
 				return cmp(x[0].state, y[0].state)
 			return cmp(x[0].begin, y[0].begin)
 
