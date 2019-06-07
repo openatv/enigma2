@@ -727,9 +727,9 @@ if not os.path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/IceTV")):
 		config.plugins.icetv.save()
 		configfile.save()
 
-# profile("Init:DebugLogCheck")
-# import Screens.LogManager
-# Screens.LogManager.AutoLogManager()
+profile("Init:DebugLogCheck")
+import Screens.LogManager
+Screens.LogManager.AutoLogManager()
 
 profile("Init:OnlineCheckState")
 import Components.OnlineUpdateCheck
