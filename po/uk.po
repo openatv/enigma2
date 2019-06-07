@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-07 10:20+0200\n"
-"PO-Revision-Date: 2019-06-02 20:39+0200\n"
+"PO-Revision-Date: 2019-06-07 20:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -467,14 +467,13 @@ msgid "%A"
 msgstr "%A"
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
-#, fuzzy
 msgid "%A %-d %B"
-msgstr "%A %d. %B"
+msgstr "%A %d %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%A %-d %B %Y"
-msgstr "%A %d. %B %Y"
+msgstr "%A %d %B %Y"
 
 #, fuzzy
 msgid "%A %-d-%B"
@@ -1107,17 +1106,14 @@ msgstr[2] "%d бездротових мереж знайдено!"
 msgid "%d+%b_"
 msgstr "%d+%b_"
 
-#, fuzzy
 msgid "%d-%B-%Y"
-msgstr "%d-%B-%Y"
+msgstr "%d %B %Y"
 
-#, fuzzy
 msgid "%d-%b"
-msgstr "%d-%b"
+msgstr "%d %b"
 
-#, fuzzy
 msgid "%d-%b-%Y"
-msgstr "%d-%b-%Y"
+msgstr "%d %b %Y"
 
 msgid "%d-%m"
 msgstr "%d-%m"
@@ -1186,9 +1182,9 @@ msgstr ""
 "%s\n"
 "Натисніть ОК, щоб закрити"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s %02d.%02d."
-msgstr "%s %02d.%02d."
+msgstr "%s %02d. %02d."
 
 #, python-format
 msgid "%s: Not Available"
@@ -1623,9 +1619,8 @@ msgstr "16_10_панорама"
 msgid "16_9"
 msgstr "16_9"
 
-#, fuzzy
 msgid "16_9_always"
-msgstr "16_9_завжди"
+msgstr "16_9 завжди"
 
 msgid "16_9_letterbox"
 msgstr "16_9_поштова скринька"
@@ -1867,13 +1862,11 @@ msgstr "4:3 Панорама"
 msgid "4X"
 msgstr "4X"
 
-#, fuzzy
 msgid "4_3_letterbox"
-msgstr "4_3_поштова скринька"
+msgstr "4_3 поштова скринька"
 
-#, fuzzy
 msgid "4_3_panscan"
-msgstr "4_3_панорама"
+msgstr "4_3 панорама"
 
 msgid "4s"
 msgstr "4с"
@@ -2329,9 +2322,8 @@ msgstr "Активувати список справа як багаторазо
 msgid "Activate right-hand file list as source"
 msgstr "Активувати правий список файлів як джерело"
 
-#, fuzzy
 msgid "Activate the configured network settings."
-msgstr "Активувати налаштовані параметри мережі."
+msgstr "Активуйте налаштовані параметри мережі."
 
 msgid "Activate timeshift End"
 msgstr "Вказати закінчення таймшифта"
@@ -5125,9 +5117,8 @@ msgstr ""
 msgid "Day DD-Mon"
 msgstr ""
 
-#, fuzzy
 msgid "Day DD/M"
-msgstr ""
+msgstr "День ДД/М"
 
 msgid "Day DD/MM"
 msgstr ""
@@ -5535,7 +5526,6 @@ msgstr "Назва пристрою:"
 msgid "Devices"
 msgstr "Пристрої"
 
-#, fuzzy
 msgid "DiSEqC"
 msgstr ""
 
@@ -5548,7 +5538,6 @@ msgstr "Команда DiSEqC 1.1"
 msgid "DiSEqC 1.1 repeats"
 msgstr "Повторення DiSEqC 1.1"
 
-#, fuzzy
 msgid "DiSEqC A/B"
 msgstr ""
 
@@ -7090,7 +7079,7 @@ msgid "Flash on the fly your your Receiver software."
 msgstr "Прошити приймач Вашим ПЗ."
 
 msgid "Flashing"
-msgstr "Прошивка"
+msgstr "Іконка"
 
 msgid "Flashing Image"
 msgstr "Прошивка Іміджа"
@@ -7403,9 +7392,8 @@ msgstr "Перейти до 0"
 msgid "Goto :"
 msgstr "Перейти :"
 
-#, fuzzy
 msgid "Goto Date/Time"
-msgstr "Перейти Дата/Час"
+msgstr "Перехід Дата/Час"
 
 msgid "Goto Date/Timer"
 msgstr "Перейти Дата/Таймер"
@@ -7710,9 +7698,8 @@ msgstr "Підтримка високого бітрейту"
 msgid "Hispasat 30.0w"
 msgstr "Hispasat 30.0w"
 
-#, fuzzy
 msgid "History"
-msgstr "Історія"
+msgstr "Історiя"
 
 msgid "History back"
 msgstr "Назад в історії"
@@ -9371,9 +9358,8 @@ msgstr "Перемістити Вгору/Вниз"
 msgid "Move down a page"
 msgstr "Переміститися на сторінку вниз"
 
-#, fuzzy
 msgid "Move down list"
-msgstr "Перемістити вниз список"
+msgstr "Перемістити список вниз"
 
 msgid "Move east"
 msgstr "Перемістити на схід"
@@ -10130,7 +10116,7 @@ msgid "Now"
 msgstr "Зараз"
 
 msgid "Now"
-msgstr "Зараз"
+msgstr "Тепер"
 
 msgid "Now building the Backup Image"
 msgstr "Тепер створюємо резервну копію іміджу"
@@ -10402,7 +10388,7 @@ msgstr "Інформація Oscam - Головне меню"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam Лог ( Oscam-Version: %s )"
+msgstr "Oscam Лог ( Oscam-Версія: %s )"
 
 msgid "OscamInfo"
 msgstr "Oscam Інфо"
@@ -20352,9 +20338,8 @@ msgstr "кнопками вліво/вправо"
 msgid "with long OK press"
 msgstr "довгим натисканням кнопки OK"
 
-#, fuzzy
 msgid "with_errors"
-msgstr "з_помилками"
+msgstr "з помилками"
 
 msgid "without"
 msgstr "крім"
