@@ -473,6 +473,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.resetAlpha()
 		for x in self.onShowHideNotifiers:
 			x(False)
+		self.hideTimer.stop()
 
 	def resetAlpha(self):
 		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
@@ -509,7 +510,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.hidePipOnExitCallback(True)
 		else:
 			self.hide()
-			self.hideTimer.stop()
 			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
 		VolumeControl.instance and VolumeControl.instance.volHide()
