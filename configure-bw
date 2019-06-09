@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+BASEDIR=$(dirname "$0")
+
+case "$1" in
+	t2)
+		EXTRA_PARAMS="--with-boxtype=inihde2 --with-nolcd"
+		;;
+	t3)
+		EXTRA_PARAMS="--with-boxtype=inihdx --with-textlcd"
+		;;
+	t4)
+		EXTRA_PARAMS="--with-boxtype=inihdp --with-bwlcd255"
+		;;
+	u4)
+		EXTRA_PARAMS="--with-boxtype=et1300 --with-textlcd"
+		;;
+	*)
+		echo "Usage: $0 t2|t3|t4|u4"
+		exit 1
+		;;
+esac
+
+$BASEDIR/configure $CONFIGURE_FLAGS \
+  BUILD_SYS=x86_64-linux \
+  HOST_SYS=mipsel-oe-linux \
+  STAGING_INCDIR=${SDKTARGETSYSROOT}/usr/include \
+  STAGING_LIBDIR=${SDKTARGETSYSROOT}/usr/lib \
+  PYTHON_VERSION=2.7 \
+  PYTHON_CPPFLAGS=-I${SDKTARGETSYSROOT}/usr/include/python2.7 \
+  PYTHON_LDFLAGS="-L${SDKTARGETSYSROOT}/usr/lib -lpython2.7" \
+  PYTHON_SITE_PKG=${SDKTARGETSYSROOT}/usr/lib/python2.7/site-packages \
+  --prefix=/usr \
+  --libexecdir=/usr/lib/enigma2 \
+  --sysconfdir=/etc \
+  --localstatedir=/var \
+  --enable-silent-rules \
+  --enable-dependency-tracking \
+  --with-gstversion=1.0 \
+  $EXTRA_PARAMS
