@@ -15,15 +15,19 @@ case "$1" in
 	u4)
 		EXTRA_PARAMS="--with-boxtype=et1300 --with-textlcd"
 		;;
+	v2)
+		EXTRA_PARAMS="--with-7segment --with-lcddev=/dev/null --with-libsdl=no --with-machinebuild=beyonwizv2 --with-boxtype=beyonwizv2"
+		EXTRA_PARAMS="${EXTRA_PARAMS} --with-alphablendingacceleration=always --with-blitaccelerationthreshold=250 --with-fillaccelerationthreshold=190000"
+		;;
 	*)
-		echo "Usage: $0 t2|t3|t4|u4"
+		echo "Usage: $0 t2|t3|t4|u4|v2"
 		exit 1
 		;;
 esac
 
 $BASEDIR/configure $CONFIGURE_FLAGS \
   BUILD_SYS=x86_64-linux \
-  HOST_SYS=mipsel-oe-linux \
+  HOST_SYS=${TARGET_PREFIX%-} \
   STAGING_INCDIR=${SDKTARGETSYSROOT}/usr/include \
   STAGING_LIBDIR=${SDKTARGETSYSROOT}/usr/lib \
   PYTHON_VERSION=2.7 \
