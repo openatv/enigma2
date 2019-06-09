@@ -763,18 +763,18 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 	def __init__(self):
 		self.ChoiceBoxDialog = None
 		self.RemoveTimerDialog = None
-		self.hotkeys = [
-			("Info (EPG)", "info", "Infobar/openEventView"),
-			("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
-			("Epg/Guide", "epg", "Infobar/EPGPressed/1"),
-			("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")
-		]
-		self["ChannelSelectEPGActions"] = ButtonSetupActionMap(["ChannelSelectEPGActions"], dict((x[1], self.ButtonSetupGlobal) for x in self.hotkeys))
+		# self.hotkeys = [
+		#	("Info (EPG)", "info", "Infobar/openEventView"),
+		#	("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
+		#	("Epg/Guide", "epg", "Infobar/EPGPressed/1"),
+		#	("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")
+		# ]
+		# self["ChannelSelectEPGActions"] = ButtonSetupActionMap(["ChannelSelectEPGActions"], dict((x[1], self.ButtonSetupGlobal) for x in self.hotkeys))
 		self.currentSavedPath = []
 		self.onExecBegin.append(self.clearLongkeyPressed)
 
 		self["ChannelSelectEPGActions"] = HelpableActionMap(self, "ChannelSelectEPGActions", {
-			"showEPGList": (self.showEPGList, _("Show single-channel EPG...")),
+			"showEPGList": (self.showEPGList, _("Show single channel EPG...")),
 		}, description=_("Show EPG"))
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord", {
 			"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),
