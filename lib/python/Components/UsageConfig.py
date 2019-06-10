@@ -946,7 +946,7 @@ def InitUsageConfig():
 	choiceoptions = [("mode1", _("Mode 1")), ("mode2", _("Mode 2"))]
 	config.osd.threeDsetmode = ConfigSelection(default = 'mode1' , choices = choiceoptions )
 
-	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
+	hddchoises = [('/etc/enigma2/', _('Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
 		if os.path.exists(p.mountpoint):
 			d = os.path.normpath(p.mountpoint)
