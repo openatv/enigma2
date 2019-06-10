@@ -226,11 +226,11 @@ class EPGSelection(Screen, HelpableScreen):
 					self.skinName = 'GraphicalEPGPIG'
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self.skinName = 'GraphicalInfoBarEPG'
-			now = time() - int(config.epg.histminutes.value) * 60
+			now = time()
 			if self.type == EPG_TYPE_GRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
 			self.closeRecursive = False
 			self.bouquetlist_active = False
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
@@ -576,13 +576,13 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def BouquetOK(self):
 		self.BouquetRoot = False
-		now = time() - int(config.epg.histminutes.value) * 60
+		now = time()
 		self.services = self.getBouquetServices(self.getCurrentBouquet())
 		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.type == EPG_TYPE_GRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
 			self['list'].fillGraphEPG(self.services, self.ask_time)
 			self.moveTimeLines(True)
 		elif self.type == EPG_TYPE_MULTI:
