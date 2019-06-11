@@ -3,6 +3,7 @@
 #include <lib/gdi/font.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/base/nconfig.h>
 #ifdef USE_LIBVUGLES2
 #include <vuplus_gles.h>
 #endif
@@ -382,7 +383,7 @@ void gPainter::setFont(gFont *font)
 	m_rc->submit(o);
 }
 
-void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border)
+void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border, int markedpos)
 {
 	if (string.empty()) return;
 	if ( m_dc->islocked() ) {
@@ -398,6 +399,9 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.parm.renderText->flags = flags;
 	o.parm.renderText->border = border;
 	o.parm.renderText->bordercolor = bordercolor;
+	o.parm.renderText->markedpos = markedpos;
+	if (markedpos >= 0)
+		o.parm.renderText->scrollpos = eConfigManager::getConfigIntValue("config.usage.cursorscroll");
 	m_rc->submit(o);
 }
 
@@ -791,21 +795,28 @@ void gDC::exec(const gOpcode *o)
 	{
 		ePtr<eTextPara> para = new eTextPara(o->parm.renderText->area);
 		int flags = o->parm.renderText->flags;
+		int border = o->parm.renderText->border;
+		int markedpos = o->parm.renderText->markedpos;
+		int scrollpos = o->parm.renderText->scrollpos;
+		if (markedpos != -1)
+			border = 0;
 		ASSERT(m_current_font);
 		para->setFont(m_current_font);
-		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0, o->parm.renderText->border);
+		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0, border, markedpos);
 		if (o->parm.renderText->text)
 			free(o->parm.renderText->text);
+		para->setTextOffset(m_text_offset);
 		if (flags & gPainter::RT_HALIGN_LEFT)
-			para->realign(eTextPara::dirLeft);
+			para->realign(eTextPara::dirLeft, markedpos, scrollpos);
 		else if (flags & gPainter::RT_HALIGN_RIGHT)
-			para->realign(eTextPara::dirRight);
+			para->realign(eTextPara::dirRight, markedpos, scrollpos);
 		else if (flags & gPainter::RT_HALIGN_CENTER)
-			para->realign((flags & gPainter::RT_WRAP) ? eTextPara::dirCenter : eTextPara::dirCenterIfFits);
+			para->realign((flags & gPainter::RT_WRAP) ? eTextPara::dirCenter : eTextPara::dirCenterIfFits, markedpos, scrollpos);
 		else if (flags & gPainter::RT_HALIGN_BLOCK)
-			para->realign(eTextPara::dirBlock);
+			para->realign(eTextPara::dirBlock, markedpos, scrollpos);
 		else
-			para->realign(eTextPara::dirBidi);
+			para->realign(eTextPara::dirBidi, markedpos, scrollpos);
+		m_text_offset = para->getTextOffset();
 
 		ePoint offset = m_current_offset;
 
@@ -826,7 +837,47 @@ void gDC::exec(const gOpcode *o)
 			int correction = o->parm.renderText->area.height() - bbox.height() - 2;
 			offset += ePoint(0, correction);
 		}
-		if (o->parm.renderText->border)
+		if (markedpos != -1)
+		{
+			int glyphs = para->size();
+			int left, width = 0;
+			int top = o->parm.renderText->area.top();
+			int height = fontRenderClass::getInstance()->getLineHeight(*m_current_font);
+			eRect bbox;
+			if (markedpos == -2)
+			{
+				if (glyphs > 0)
+				{
+					// FIXME: Mark each line of text, not the whole rectangle.
+					// (Currently no multiline text is all marked.)
+					bbox = para->getBoundBox();
+					left = bbox.left();
+					width = bbox.width();
+					if (height < bbox.height())
+						height = bbox.height();
+				}
+			}
+			else if (markedpos >= 0 && markedpos < glyphs)
+			{
+				bbox = para->getGlyphBBox(markedpos);
+				left = bbox.left();
+				width = bbox.width();
+				int btop = bbox.top();
+				while (top + height <= btop)
+					top += height;
+			}
+			if (width)
+			{
+				bbox = eRect(left, top, width, height);
+				bbox.moveBy(offset);
+				gRegion clip = m_current_clip & bbox;
+				if (m_pixmap->needClut())
+					m_pixmap->fill(clip, m_foreground_color);
+				else
+					m_pixmap->fill(clip, m_foreground_color_rgb);
+			}
+		}
+		if (border)
 		{
 			para->blit(*this, offset, m_background_color_rgb, o->parm.renderText->bordercolor, true);
 			para->blit(*this, offset, o->parm.renderText->bordercolor, m_foreground_color_rgb);
