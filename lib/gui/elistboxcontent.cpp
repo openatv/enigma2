@@ -399,8 +399,9 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			text = PyTuple_GET_ITEM(item, 0);
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
-			painter.renderText(eRect(ePoint(offset.x()+15, offset.y()), m_itemsize), string,
-			gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
+			eRect labelrect(ePoint(offset.x()+15, offset.y()), m_itemsize);
+			painter.renderText(labelrect, string,
+				gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
 			Py_XDECREF(text);
 
 				/* when we have no label, align value to the left. (FIXME:
@@ -463,7 +464,20 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 								/* plist is 0 or borrowed */
 							}
 						}
-						painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), text, flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos);
+							/* find the width of the label, to prevent the value overwriting it. */
+						ePoint valueoffset = offset;
+						eSize valuesize = m_itemsize;
+						int labelwidth = 0;
+						if (*string)
+						{
+							ePtr<eTextPara> para = new eTextPara(labelrect);
+							para->setFont(fnt);
+							para->renderString(string, 0);
+							labelwidth = para->getBoundBox().width() + 15;
+						}
+						valueoffset.setX(valueoffset.x() + 15 + labelwidth);
+						valuesize.setWidth(valuesize.width() - 15 - labelwidth - 15);
+						painter.renderText(eRect(valueoffset, valuesize), text, flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos);
 					/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
 					{
