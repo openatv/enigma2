@@ -962,6 +962,19 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 					w = self.bg_r.size().width()
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.bg_r))
 					x += w
+				highlight = self.keyHighlights.get(key.upper(), (None, None, None))  # Check if the cell needs to be highlighted.
+				if highlight[0] is None or highlight[1] is None or highlight[2] is None:  # If available display the cell highlight.
+					xHighlight += self.width * width
+				else:
+					w = highlight[0].size().width()
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[0]))
+					xHighlight += w
+					w = highlight[1].size().width() + (self.width * (width - 1))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[1], flags = BT_SCALE))
+					xHighlight += w
+					w = highlight[2].size().width()
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[2]))
+					xHighlight += w
 				if self.alignment[0] == 1:  # Determine the cell alignment.
 					alignH = RT_HALIGN_LEFT
 				elif self.alignment[0] == 2:
@@ -1004,19 +1017,6 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=1, flags=alignH | alignV, text=key.encode("utf-8"), color=self.shiftColors[self.shiftLevel]))
 					else:
 						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=0, flags=alignH | alignV, text=key.encode("utf-8"), color=self.shiftColors[self.shiftLevel]))
-				highlight = self.keyHighlights.get(key.upper(), (None, None, None))  # Check if the cell needs to be highlighted.
-				if highlight[0] is None or highlight[1] is None or highlight[2] is None:  # If available display the cell highlight.
-					xHighlight += self.width * width
-				else:
-					w = highlight[0].size().width()
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[0]))
-					xHighlight += w
-					w = highlight[1].size().width() + (self.width * (width - 1))
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[1], flags = BT_SCALE))
-					xHighlight += w
-					w = highlight[2].size().width()
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(xHighlight, 0), size=(w, self.height), png=highlight[2]))
-					xHighlight += w
 			prevKey = key
 			self.index += 1
 		return res + text
