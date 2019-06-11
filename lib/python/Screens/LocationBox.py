@@ -348,8 +348,17 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def getPreferredFolder(self):
 		if self.currList == "filelist":
-			# XXX: We might want to change this for parent folder...
-			return self["filelist"].getSelection()[0]
+			selection = self["filelist"].getSelection()[0]
+			currentDir = self["filelist"].getCurrentDirectory()
+
+			# If the user enters a directory, the first entry highlighted is "<Parent directory>", but selecting that
+			# will counter-intuitively return, well, the parent directory, rather than the directory just entered. Here
+			# we detect that state (the selected directory will be a parent of the current directory), and instead
+			# return the current directory.
+			if selection is not None and currentDir is not None:
+				if os.path.realpath(currentDir).startswith(os.path.realpath(selection)):
+					return currentDir
+			return selection
 		else:
 			bm = self["booklist"].getCurrent()
 			return bm[1] if self.usingAliases else bm
