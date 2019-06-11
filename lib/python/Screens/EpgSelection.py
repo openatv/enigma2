@@ -232,9 +232,9 @@ class EPGSelection(Screen, HelpableScreen):
 				self.skinName = 'GraphicalInfoBarEPG'
 			now = time() - int(config.epg.histminutes.value) * 60
 			if self.type == EPG_TYPE_GRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
+				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
 			self.closeRecursive = False
 			self.bouquetlist_active = False
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
