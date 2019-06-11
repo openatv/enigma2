@@ -1710,6 +1710,10 @@ class InfoBarEPG:
 		self.reopen(ret)
 
 	def reopen(self, answer):
+		if isinstance(answer, tuple):
+			answer, new_screen = answer
+		else:
+			new_screen = None
 		if answer == 'reopengraph':
 			self.openGraphEPG(True)
 		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
@@ -1722,6 +1726,10 @@ class InfoBarEPG:
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService()
 			self.close()
+		elif new_screen == 'timer':
+			self.openTimerList()
+		elif new_screen == 'media':
+			self.showMovies()
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
@@ -3878,7 +3886,16 @@ class InfoBarTimerButton:
 		}, description=_("Timer control"))
 
 	def timerSelection(self):
-		self.session.open(TimerEditList)
+		self.session.openWithCallback(self.closeTimerList, TimerEditList)
+
+	def openTimerList(self):
+		self.timerSelection()
+
+	def closeTimerList(self, answer=None):
+		if answer == "media":
+			self.showMovies()
+		elif answer == "epg":
+			self.showDefaultEPG()
 
 	@staticmethod
 	def _getAutoTimerPluginFunc():

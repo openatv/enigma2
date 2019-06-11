@@ -130,9 +130,11 @@ class TimerEditList(Screen, TimerListButtons):
 
 		self["description"] = Label()
 
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], {
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions", "TimerMediaEPGActions"], {
 			"ok": self.openEdit,
 			"cancel": self.leave,
+			"media": self.leaveToMedia,
+			"epg": self.leaveToEPG,
 			"log": self.showLog,
 			"left": self.left,
 			"right": self.right,
@@ -466,9 +468,15 @@ class TimerEditList(Screen, TimerListButtons):
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
-	def leave(self):
+	def leave(self, new_screen=None):
 		self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
-		self.close()
+		self.close(new_screen)
+
+	def leaveToMedia(self):
+		self.leave("media")
+
+	def leaveToEPG(self):
+		self.leave("epg")
 
 	def onStateChange(self, entry):
 		self.refill()

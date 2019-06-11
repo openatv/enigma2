@@ -890,8 +890,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			"yellowlong": (self.btn_yellowlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellowlong")),
 			"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
 		}, description=_("User-selectable functions"))
-		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "MovieSelectionActions"], {
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "MovieSelectionActions", "TimerMediaEPGActions"], {
 			"cancel": (self.abort, _("Exit movie list")),
+			"timer": (self.abortToTimer, _("Exit, show timer list")),
+			"epg": (self.abortToEPG, _("Exit, show EPG")),
 			"ok": (self.itemSelected, _("Select movie")),
 			"toggleMark": (self.toggleMark, _("Toggle mark")),
 			"invertMarks": (self.invertMarks, _("Invert marks (of files or directories)")),
@@ -1888,7 +1890,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.setDescriptionState(newType)
 		self.updateDescription()
 
-	def abort(self):
+	def abort(self, new_screen=None):
 		global playlist
 		del playlist[:]
 		if self.list.playInBackground:
@@ -1909,7 +1911,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if self.session.nav.getCurrentlyPlayingServiceReference():
 			if not infobar.timeshiftEnabled() and ':0:/' not in self.session.nav.getCurrentlyPlayingServiceReference().toString():
 				self.session.nav.stopService()
-		self.close(None)
+		self.close(new_screen)
+
+	def abortToTimer(self):
+		self.abort("timer")
+
+	def abortToEPG(self):
+		self.abort("epg")
 
 	def saveconfig(self):
 		config.movielist.last_selected_tags.value = self.selected_tags
