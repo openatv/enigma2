@@ -40,10 +40,6 @@ import time
 import datetime
 inINFOPanel = None
 
-config.softcam = ConfigSubsection()
-config.softcam.actCam = ConfigText(visible_width = 200)
-config.softcam.actCam2 = ConfigText(visible_width = 200)
-config.softcam.waittime = ConfigSelection([('0',_("dont wait")),('1',_("1 second")), ('5',_("5 seconds")),('10',_("10 seconds")),('15',_("15 seconds")),('20',_("20 seconds")),('30',_("30 seconds"))], default='15')
 config.plugins.infopanel_redpanel = ConfigSubsection()
 
 def Check_Softcam():
@@ -51,22 +47,17 @@ def Check_Softcam():
 	if fileExists("/etc/enigma2/noemu"):
 		found = False
 	else:
-		for x in os.listdir('/etc'):
-			if x.find('.emu') > -1:
+		for cam in os.listdir("/etc/init.d"):
+			if cam.startswith('softcam.') and not cam.endswith('None'):
 				found = True
-				break;
+				break
+			elif cam.startswith('cardserver.') and not cam.endswith('None'):
+				found = True
+				break
 	return found
 
 def Check_SysSoftcam():
 	syscam="none"
-	for cam in os.listdir("/etc/init.d"):
-		if cam.startswith('softcam.') and not cam.endswith('None'):
-			syscam="installed"
-		elif cam.startswith('cardserver.') and not cam.endswith('None'):
-			syscam="installed"
-		else:
-			pass
-
 	if os.path.isfile('/etc/init.d/softcam'):
 		if (os.path.islink('/etc/init.d/softcam') and not os.readlink('/etc/init.d/softcam').lower().endswith('none')):
 			try:
@@ -81,12 +72,9 @@ def Check_SysSoftcam():
 
 
 if Check_Softcam():
-	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("Softcam Panel"))]
+	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("SoftcamSetup"))]
 else:
-	if Check_SysSoftcam() == "none":
-		redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))]
-	else:
-		redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("SoftcamSetup"))]
+	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))]
 
 def timerEvent():
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
@@ -124,8 +112,6 @@ from Screens.CronTimer import *
 from Plugins.Extensions.Infopanel.ScriptRunner import *
 from Plugins.Extensions.Infopanel.MountManager import *
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
-from Plugins.Extensions.Infopanel.CamStart import *
-from Plugins.Extensions.Infopanel.CamCheck import *
 from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
@@ -212,32 +198,11 @@ def Apanel(menuid, **kwargs):
 	else:
 		return []
 
-def camstart(reason, **kwargs):
-	if not config.plugins.infopanel_frozencheck.list.value == '0':
-		CamCheck()
-	try:
-		f = open("/proc/stb/video/alpha", "w")
-		f.write(str(config.osd.alpha.value))
-		f.close()
-	except:
-		print "[Info-Panel] failed to write /proc/stb/video/alpha"
-
-	try:
-		if config.softcam.camstartMode.value == "0":
-			global timerInstance
-			if timerInstance is None:
-				timerInstance = CamStart(None)
-			timerInstance.startTimer()
-	except:
-		print "[Info-Panel] failed to run CamStart"
-
 def Plugins(**kwargs):
 	return [
 
 	#// show Infopanel in Main Menu
 	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
-	#// autostart
-	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = camstart),
 	#// SwapAutostart
 	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
@@ -349,9 +314,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 
 		self.Mlist = []
 		if Check_Softcam():
-			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanel'), _("SoftcamPanel"), 'SoftcamPanel')))
-			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamPanelSetup'), _("Softcam-Panel Setup"), 'Softcam-Panel Setup')))
-		if Check_SysSoftcam() is not "none":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamSetup'), _("Softcam-Setup"), 'SoftcamSetup')))
 		if Check_SysSoftcam() is "oscam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))
@@ -499,8 +461,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		elif menu == "OScamInfo":
 			from Screens.OScamInfo import OscamInfoMenu
 			self.session.open(OscamInfoMenu)
-		elif menu == "SoftcamPanel":
-			self.session.open(SoftcamPanel)
 		elif menu == "software-manager":
 			self.Software_Manager()
 		elif menu == "software-update":
@@ -527,8 +487,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(HddMount)
 		elif menu == "SwapManager":
 			self.session.open(Swap)
-		elif menu == "Softcam-Panel Setup":
-			self.session.open(ShowSoftcamPanelExtensions)
 		elif menu == "KeymapSel":
 			self.session.open(KeymapSel)
 		elif menu == "Edid":
@@ -752,126 +710,6 @@ class KeymapSel(ConfigListScreen, Screen):
 			quitMainloop(3)
 		else:
 			self.close()
-
-class ShowSoftcamPanelExtensions(ConfigListScreen, Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.session = session
-		self.skinName = "Setup"
-		Screen.setTitle(self, _("Softcam-Panel Setup") + "...")
-		self.setup_title = _("Softcam-Panel Setup") + "..."
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["status"] = StaticText()
-		self["footnote"] = Label()
-		self["description"] = Label("")
-		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
-		CamCheckStop()
-
-		self.onChangedEntry = [ ]
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
-		self.createSetup()
-
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
-		{
-			"ok": self.keySave,
-			"cancel": self.keyCancel,
-			"red": self.keyCancel,
-			"green": self.keySave,
-			"menu": self.keyCancel,
-		}, -2)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def createSetup(self):
-		self.editListEntry = None
-		self.list = []
-		self.list.append(getConfigListEntry(_("Show Softcam-Panel in Extensions Menu"), config.plugins.showinfopanelextensions))
-		self.list.append(getConfigListEntry(_("Start Mode"), config.softcam.camstartMode))
-		if config.softcam.camstartMode.value == "0":
-			self.list.append(getConfigListEntry(_("Start attempts"), config.softcam.restartAttempts))
-			self.list.append(getConfigListEntry(_("Time between start attempts (sec.)"), config.softcam.restartTime))
-			self.list.append(getConfigListEntry(_("Stop check when cam is running"), config.softcam.restartRunning))
-		self.list.append(getConfigListEntry(_("Show CCcamInfo in Extensions Menu"), config.cccaminfo.showInExtensions))
-		self.list.append(getConfigListEntry(_("Show OscamInfo in Extensions Menu"), config.oscaminfo.showInExtensions))
-		self.list.append(getConfigListEntry(_("Frozen Cam Check"), config.plugins.infopanel_frozencheck.list))
-		self.list.append(getConfigListEntry(_("Wait time before start Cam 2"), config.softcam.waittime))
-		
-		self["config"].list = self.list
-		self["config"].setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-	def selectionChanged(self):
-		self["status"].setText(self["config"].getCurrent()[0])
-
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
-		self.createSetup()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-	
-	def saveAll(self):
-		if config.softcam.camstartMode.value == "0":
-			if os.path.exists("/etc/rc2.d/S20softcam.cam1"):
-				print"Delete Symbolink link"
-				self.container = eConsoleAppContainer()
-				self.container.execute('update-rc.d -f softcam.cam1 defaults')
-			if os.path.exists("/etc/init.d/softcam.cam1"):
-				print"Delete softcam init script cam1"
-				os.system("rm /etc/init.d/softcam.cam1")
-				
-			if os.path.exists("/etc/rc2.d/S20softcam.cam2"):
-				print"Delete Symbolink link"
-				self.container = eConsoleAppContainer()
-				self.container.execute('update-rc.d -f softcam.cam2 defaults')
-			if os.path.exists("/etc/init.d/softcam.cam2"):
-				print"Delete softcam init script cam2"
-				os.system("rm /etc/init.d/softcam.cam2")
-			
-		for x in self["config"].list:
-			x[1].save()
-		configfile.save()
-
-	def keySave(self):
-		self.saveAll()
-		self.doClose()
-
-	def cancelConfirm(self, result):
-		if not result:
-			return
-		for x in self["config"].list:
-			x[1].cancel()
-		self.doClose()
-
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.doClose()
-
-	def doClose(self):
-		if not config.plugins.infopanel_frozencheck.list.value == '0':
-			CamCheck()
-		self.close()
 
 class Info(Screen):
 	def __init__(self, session, info):

@@ -12,6 +12,7 @@ from Components.NimManager import nimmanager
 from Components.SystemInfo import SystemInfo
 
 from Screens.Screen import Screen
+from Screens.SoftcamSetup import *
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.NetworkSetup import *
 from Screens.About import About
@@ -30,7 +31,6 @@ from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
-from Plugins.Extensions.Infopanel.plugin import ShowSoftcamPanelExtensions
 from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
@@ -91,6 +91,20 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.p
 else:
 	SATFINDER = False
 
+def Check_Softcam():
+	found = False
+	if fileExists("/etc/enigma2/noemu"):
+		found = False
+	else:
+		for cam in os.listdir("/etc/init.d"):
+			if cam.startswith('softcam.') and not cam.endswith('None'):
+				found = True
+				break
+			elif cam.startswith('cardserver.') and not cam.endswith('None'):
+				found = True
+				break
+	return found
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -99,17 +113,6 @@ def isFileSystemSupported(filesystem):
 		return False
 	except Exception, ex:
 		print "[Harddisk] Failed to read /proc/filesystems:", ex
-
-def Check_Softcam():
-	found = False
-	if fileExists("/etc/enigma2/noemu"):
-		found = False
-	else:
-		for x in os.listdir('/etc'):
-			if x.find('.emu') > -1:
-				found = True
-				break;
-	return found
 
 class QuickMenu(Screen, ProtectedScreen):
 	skin = """
@@ -306,8 +309,7 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsoftcam(self):
 		self.sublist = []
 		if Check_Softcam(): # show only when there is a softcam installed
-			self.sublist.append(QuickSubMenuEntryComponent("Softcam Panel",_("Control your Softcams"),_("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
-			self.sublist.append(QuickSubMenuEntryComponent(_("Softcam-Panel Setup"),_("Softcam-Panel Setup"),_('Softcam-Panel Setup')))
+			self.sublist.append(QuickSubMenuEntryComponent("Softcam Setup",_("Control your Softcams"),_("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams",_("Download and install cam"),_("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -483,10 +485,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Device Manager"):
 			self.session.open(HddMount)
 ######## Select Softcam Menu ##############################
-		elif item[0] == _("Softcam Panel"):
-			self.session.open(SoftcamPanel)
-		elif item[0] == _("Softcam-Panel Setup"):
-			self.session.open(ShowSoftcamPanelExtensions)
+		elif item[0] == _("Softcam Setup"):
+			self.session.open(SoftcamSetup)
 		elif item[0] == _("Download Softcams"):
 			self.session.open(ShowSoftcamPackages)
 ######## Select AV Setup Menu ##############################
