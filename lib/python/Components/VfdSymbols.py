@@ -10,16 +10,16 @@ from Components.ServiceEventTracker import ServiceEventTracker
 POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
-		global symbolspoller
-		symbolspoller = SymbolsCheckPoller(session)
-		symbolspoller.start()
+	global symbolspoller
+	symbolspoller = SymbolsCheckPoller(session)
+	symbolspoller.start()
 
 class SymbolsCheckPoller:
 	def __init__(self, session):
 		self.session = session
 		self.timer = eTimer()
 		self.onClose = []
-		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				#iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 				iPlayableService.evVideoSizeChanged: self.__evUpdatedInfo,
@@ -230,4 +230,3 @@ class SymbolsCheckPoller:
 		f = open("/proc/stb/lcd/symbol_dolby_audio", "w")
 		f.write("0")
 		f.close()
-		
