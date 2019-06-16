@@ -64,6 +64,8 @@ def Check_SysSoftcam():
 				syscam = os.readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
 				if syscam.lower().startswith('oscam'):
 					syscam="oscam"
+				if syscam.lower().startswith('ncam'):
+					syscam="ncam"
 				if syscam.lower().startswith('cccam'):
 					syscam="cccam"
 			except:
@@ -317,6 +319,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamSetup'), _("Softcam-Setup"), 'SoftcamSetup')))
 		if Check_SysSoftcam() is "oscam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))
+		if Check_SysSoftcam() is "ncam":
+			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
