@@ -34,6 +34,45 @@ try:
 except:
 	plugin_PiPServiceRelation_installed = False
 
+def calculateEpgStartTime(snapToConfig, prevTimePeriodConfig, visibleHistoryConfig):
+	"""
+	Calculates the EPG start time (i.e. the time at the very left edge of the EPG) for the graphical EPGs.
+
+	:param snapToConfig: the config object containing the snap resolution, otherwise called "base time" or "roundto" (in minutes)
+	:param prevTimePeriodConfig: the config object containing the total time shown on the EPG (in minutes)
+	:param visibleHistoryConfig: the config object containing the amount of history to show (as a percentage)
+	:return: the start time for the EPG, in seconds
+	"""
+
+	snapToSecs = int(snapToConfig.value) * 60
+	prevTimePeriodSecs = int(prevTimePeriodConfig.value) * 60
+	visibleHistoryPercent = int(visibleHistoryConfig.value) / 100.0
+	epgHistorySecs = int(config.epg.histminutes.value) * 60
+
+	now = time()
+	maxStartOffset = epgHistorySecs + (now % snapToSecs)
+
+	# By moving the start time back, we scroll the EPG to the right, revealing historic EPG data. This also effectively
+	# positions the "current time" marker at the percentage offset (e.g. 50% places the marker in the middle of the EPG).
+	startTime = time() - min(int(prevTimePeriodSecs * visibleHistoryPercent), maxStartOffset)
+
+	if visibleHistoryPercent > 0:
+		# We need to account for the user-specified snap resolution, while trying to keep the "current time" marker as close to
+		# its current position as possible (to keep the required amount of history visible) by either rounding up or down
+		# depending on which snap-to value is closest
+		snapOffset = startTime % snapToSecs
+		if snapOffset < snapToSecs / 2:
+			# We're just ahead of the closest snap point, so round down
+			startTime = startTime - snapOffset
+		else:
+			# We're just behind the closest snap point, so round up
+			startTime = startTime + snapToSecs - snapOffset
+	else:
+		# Just round down to the nearest snap point
+		startTime = startTime - (startTime % snapToSecs)
+
+	return startTime
+
 class EPGSelection(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
@@ -226,11 +265,10 @@ class EPGSelection(Screen, HelpableScreen):
 					self.skinName = 'GraphicalEPGPIG'
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self.skinName = 'GraphicalInfoBarEPG'
-			now = time()
 			if self.type == EPG_TYPE_GRAPH:
-				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				self.ask_time = calculateEpgStartTime(config.epgselection.graph_roundto, config.epgselection.graph_prevtimeperiod, config.epgselection.graph_visiblehistory)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
+				self.ask_time = calculateEpgStartTime(config.epgselection.infobar_roundto, config.epgselection.infobar_prevtimeperiod, config.epgselection.infobar_visiblehistory)
 			self.closeRecursive = False
 			self.bouquetlist_active = False
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
@@ -576,13 +614,12 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def BouquetOK(self):
 		self.BouquetRoot = False
-		now = time()
 		self.services = self.getBouquetServices(self.getCurrentBouquet())
 		if self.type in (EPG_TYPE_GRAPH, EPG_TYPE_INFOBARGRAPH):
 			if self.type == EPG_TYPE_GRAPH:
-				self.ask_time = now - now % (int(config.epgselection.graph_roundto.value) * 60)
+				self.ask_time = calculateEpgStartTime(config.epgselection.graph_roundto, config.epgselection.graph_prevtimeperiod, config.epgselection.graph_visiblehistory)
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.value) * 60)
+				self.ask_time = calculateEpgStartTime(config.epgselection.infobar_roundto, config.epgselection.infobar_prevtimeperiod, config.epgselection.infobar_visiblehistory)
 			self['list'].fillGraphEPG(self.services, self.ask_time)
 			self.moveTimeLines(True)
 		elif self.type == EPG_TYPE_MULTI:
