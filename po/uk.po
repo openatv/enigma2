@@ -299,17 +299,6 @@ msgstr " <порожньо>"
 msgid " Except %s"
 msgstr " За винятком %s"
 
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
-" Не запущений !!\n"
-"\n"
-"Назва емулятора не знайдена у команді запуску\n"
-"Перевірте конфігурацію емулятора"
-
 msgid " and"
 msgstr " і"
 
@@ -471,9 +460,8 @@ msgid "%A %-d %B"
 msgstr "%A %d %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-#, fuzzy
 msgid "%A %-d %B %Y"
-msgstr "%A %d %B %Y"
+msgstr "%A %-d %B %Y"
 
 #, fuzzy
 msgid "%A %-d-%B"
@@ -722,7 +710,6 @@ msgid "%a %-d"
 msgstr "%a %-d"
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
-#, fuzzy
 msgid "%a %-d %B %Y"
 msgstr "%a %-d %B %Y"
 
@@ -978,7 +965,7 @@ msgstr "%b=%-d "
 msgid "%b=%d "
 msgstr "%b=%d "
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d"
 msgid_plural "%d"
 msgstr[0] "%d"
@@ -1428,9 +1415,6 @@ msgstr "/var каталог"
 msgid "0"
 msgstr "0"
 
-msgid "0 (disabled)"
-msgstr "0 (вимкнуто)"
-
 msgid "0.2s"
 msgstr "0.2с"
 
@@ -1464,9 +1448,6 @@ msgstr "1 ГБ"
 msgid "1 min."
 msgstr "1 хв."
 
-msgid "1 second"
-msgstr "1 секунда"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1485,20 +1466,11 @@ msgstr "1.5с"
 msgid "1.7s"
 msgstr "1.7с"
 
-msgid "10"
-msgstr "10"
-
-msgid "10 (default)"
-msgstr "10 (типово)"
-
 msgid "10 MB/s"
 msgstr "10 MБ/с"
 
 msgid "10 min."
 msgstr "10 хв."
-
-msgid "10 seconds"
-msgstr "10 секунд"
 
 msgid "100 MB/s"
 msgstr "100 MБ/с"
@@ -1548,11 +1520,8 @@ msgstr "12 символів"
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, покажіть латинські символи, крім грецької та кирилиці, перейдіть до 8, якщо це необхідно."
 
-msgid "120"
-msgstr "120"
-
 msgid "128"
-msgstr ""
+msgstr "128"
 
 msgid "128 Mb"
 msgstr "128 Мб"
@@ -1574,9 +1543,6 @@ msgstr "13 В"
 
 msgid "15 min."
 msgstr "15 хв."
-
-msgid "15 seconds"
-msgstr "15 секунд"
 
 msgid "1536 Mb"
 msgstr "1536 Мб"
@@ -1633,7 +1599,7 @@ msgid "1st Infobar timeout"
 msgstr "Затримка першого Інфобару"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid "2 GB"
 msgstr "2 ГБ"
@@ -1641,14 +1607,8 @@ msgstr "2 ГБ"
 msgid "2.5s"
 msgstr "2.5с"
 
-msgid "20"
-msgstr "20"
-
 msgid "20 MB/s"
 msgstr "20 MБ/с"
-
-msgid "20 seconds"
-msgstr "20 секунд"
 
 msgid "2048 Mb"
 msgstr "2048 Мб"
@@ -1682,9 +1642,6 @@ msgstr "24+ Годин"
 
 msgid "24- Hours"
 msgstr "24- Годин"
-
-msgid "240"
-msgstr "240"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1762,7 +1719,7 @@ msgid "2x, 4x, 6x, 8x"
 msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
-msgstr ""
+msgstr "3"
 
 msgid "3.5s"
 msgstr "3.5с"
@@ -1775,9 +1732,6 @@ msgstr "30 хв."
 
 msgid "30 minutes"
 msgstr "30 хвилин"
-
-msgid "30 seconds"
-msgstr "30 секунд"
 
 msgid "30p/24p"
 msgstr "30p/24p"
@@ -1863,17 +1817,11 @@ msgstr "4с"
 msgid "5"
 msgstr "5"
 
-msgid "5 (default)"
-msgstr "5 (типово)"
-
 msgid "5 min."
 msgstr "5 хв."
 
 msgid "5 minutes"
 msgstr "5 хвилин"
-
-msgid "5 seconds"
-msgstr "5 секунд"
 
 msgid "50 MB/s"
 msgstr "50 МБ/с"
@@ -1907,9 +1855,6 @@ msgstr "5с"
 
 msgid "6"
 msgstr "6"
-
-msgid "60"
-msgstr "60"
 
 msgid "60 minutes"
 msgstr "60 хвилин"
@@ -3544,9 +3489,6 @@ msgstr "CCcam Ресурс Інфо"
 msgid "CCcam Shares Info"
 msgstr "CCcam Шаринг Інфо"
 
-msgid "CCcamInfo"
-msgstr "CCcam Інформація"
-
 msgid "CCcamInfo Mainmenu"
 msgstr "Головне меню CCcamInfo"
 
@@ -4880,9 +4822,6 @@ msgstr "Створення файлової системи"
 msgid "Creating partition"
 msgstr "Створення розділу"
 
-msgid "Creating start scripts and starting the cam"
-msgstr "Створення сценаріїв запуску і запуск емулятора"
-
 msgid "Croatia"
 msgstr ""
 
@@ -5958,6 +5897,9 @@ msgstr "Драйвери:\t\t%s"
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Драйвера:\t%s"
+
+msgid "Duration"
+msgstr "Тривалість"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Протягом даного часу йде перевірка передавача і пристрою запису. Якщо пристрій запису (наприклад, NAS) не готовий до запису, цей час можна збільшити."
@@ -7205,9 +7147,6 @@ msgstr "Версія інтерфейсного процесора: %d"
 msgid "Frontprocessor version: %s"
 msgstr "Версія процесора: %s"
 
-msgid "Frozen Cam Check"
-msgstr "Перевірка відключення Cam-модуля"
-
 msgid "Full Image Backup "
 msgstr "Повна копія Іміджу "
 
@@ -8157,9 +8096,6 @@ msgstr "Ініціалізувати SDCARD"
 
 msgid "Init SDcard"
 msgstr "Ініціалізувати SDcard"
-
-msgid "Init.d"
-msgstr ""
 
 msgid "Initial fast forward speed"
 msgstr "Початкова швидкість перемотування вперед"
@@ -9739,9 +9675,8 @@ msgstr "Наступна"
 msgid "Next quad PiP channel"
 msgstr "Наступний 4-ч какнальний ПіП"
 
-#, fuzzy
 msgid "Nextsong"
-msgstr "Наступна пісня"
+msgstr "Наступна пісня "
 
 #, fuzzy
 msgid "Nextsong long"
@@ -9765,23 +9700,11 @@ msgstr "Ні"
 msgid "No (supported) DVDROM found!"
 msgstr "Ніякого (сумісного) DVDROM привода не знайдено!"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-"ЕМУ не запущено!\n"
-"\n"
-"Ему 1 має відрізнятися від Ему 2"
-
 msgid "No Connection"
 msgstr "З'єднання відсутнє"
 
 msgid "No Devices Found !!"
 msgstr "Пристроїв не виявлено!!"
-
-msgid "No ECM info"
-msgstr "Інформація ECM відсутня"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Не знайдено жодного HDD, або HDD не ініціалізовано!"
@@ -9873,9 +9796,6 @@ msgstr "Немає доступного мережевого підключен�
 
 msgid "No networks found"
 msgstr "Мереж не знайдено"
-
-msgid "No new ECM info"
-msgstr "Нова інформація ECM відсутня"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Немає даних про перемикання (збільшення або зменшення)"
@@ -10094,6 +10014,9 @@ msgstr "Оновлень немає"
 msgid "Nothing, just leave this menu"
 msgstr "Нічого не робити, вийти з цього меню"
 
+msgid "NOW"
+msgstr "Тепер"
+
 msgid "Now"
 msgstr "Зараз"
 
@@ -10187,9 +10110,6 @@ msgstr "Запит OSD імені"
 
 msgid "OSD settings"
 msgstr "Налаштування OSD"
-
-msgid "OScam Info"
-msgstr "Oscam Інфо"
 
 msgid "OScamInfo"
 msgstr "Oscam Інфо"
@@ -11588,15 +11508,12 @@ msgstr "Перевести ТВ в режим очікування"
 msgid "Put your AV Receiver in standby"
 msgstr "Перевести Ваш приймач в режим очікування"
 
-msgid "Python Camstarter (default)"
-msgstr "Python Camstarter (типовий)"
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python інтерфейс для /tmp/mmi.socket"
 
 #, python-format
 msgid "Python:\t\t%s"
-msgstr ""
+msgstr "Python версія:\t\t%s"
 
 msgid "Qatar"
 msgstr "Катар"
@@ -11688,9 +11605,6 @@ msgstr "Рейтинг не визначений"
 
 msgid "Re-enter new PIN"
 msgstr "Повторно введіть новий ПІН"
-
-msgid "ReStart"
-msgstr "Перезавантажити"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Дані користувача з oscam.conf"
@@ -11802,7 +11716,7 @@ msgid "Record time limited due to conflicting timer %s"
 msgstr "Час запису обмежено через конфлікт таймера %s"
 
 msgid "Recordable media toolbox"
-msgstr ""
+msgstr "Панель інструментів для запису"
 
 msgid "Recording"
 msgstr "Запис"
@@ -11886,9 +11800,6 @@ msgstr ""
 "Оновлення в процесі\n"
 "Будь ласка, зачекайте, поки Ваш %s %s перезавантажується\n"
 "Це може зайняти кілька хвилин"
-
-msgid "Refresh"
-msgstr "Оновити"
 
 msgid "Refresh every (in hours)"
 msgstr "Інтервал оновлення (в годинах)"
@@ -12757,12 +12668,6 @@ msgstr "Виберіть (список джерел) або введіть ка�
 
 msgid "Select CAId"
 msgstr "Вибрати CAID"
-
-msgid "Select Cam 1"
-msgstr "Вибір Ему 1"
-
-msgid "Select Cam 2"
-msgstr "Вибір Ему 2"
 
 msgid "Select Card Server"
 msgstr "Виберіть Card Server"
@@ -13735,10 +13640,7 @@ msgid "Show Box Portal..."
 msgstr "Показати портали тюнера..."
 
 msgid "Show CCcam in extensions ?"
-msgstr "Показати CCcam в меню розширень ?"
-
-msgid "Show CCcamInfo in Extensions Menu"
-msgstr "Показати CCcamInfo iв меню розширень"
+msgstr "Показати CCcam в меню розширень?"
 
 msgid "Show CI messages"
 msgstr "Показати повідомлення СІ"
@@ -13838,9 +13740,6 @@ msgstr "Див. лог OE"
 
 msgid "Show OScam in extensions ?"
 msgstr "Показати OScam у розширеннях?"
-
-msgid "Show OscamInfo in Extensions Menu"
-msgstr "Показати OscamInfo в Меню розширень"
 
 msgid "Show PIP"
 msgstr "Показати ПІП"
@@ -14498,12 +14397,6 @@ msgstr "Сокет"
 msgid "Softcam"
 msgstr "Емулятор"
 
-msgid "Softcam Panel"
-msgstr "Панель Емуляторів"
-
-msgid "Softcam Panel V2.0"
-msgstr "Панель Емуляторів V2.0"
-
 msgid "Softcam Setup"
 msgstr "Налаштування Ему"
 
@@ -14515,9 +14408,6 @@ msgstr "Налаштування Ему"
 
 msgid "Softcam-Panel"
 msgstr "Панель Емуляторів"
-
-msgid "Softcam-Panel Setup"
-msgstr "Налаштування Панелі емуляторів"
 
 msgid "Softcam-Panel..."
 msgstr "Панель Емуляторів ..."
@@ -14769,12 +14659,6 @@ msgstr "Старт"
 msgid "Start Kodi"
 msgstr "Запуск Kodi"
 
-msgid "Start Mode"
-msgstr "Режим запуску"
-
-msgid "Start attempts"
-msgstr "Почати спроби"
-
 msgid "Start from the beginning"
 msgstr "Почати з початку"
 
@@ -14813,12 +14697,6 @@ msgstr "Запуск/Зупинка/Вибір емулятора, спочат�
 
 msgid "StartWizard"
 msgstr "Майстер запуску"
-
-msgid "Starting Cam 1: "
-msgstr "Запуск Ему 1: "
-
-msgid "Starting Cam 2: "
-msgstr "Запуск Ему 2: "
 
 msgid "Starting Softcam"
 msgstr "Запуск Softcam"
@@ -14861,9 +14739,6 @@ msgstr "Відключити ПІП"
 
 msgid "Stop Streams"
 msgstr "Зупинити Стрім"
-
-msgid "Stop check when cam is running"
-msgstr "Не перевіряти, якщо ЕМУ працює"
 
 msgid "Stop current event and disable coming events"
 msgstr "Зупинити активне завдання і відмінити наступне"
@@ -15250,9 +15125,10 @@ msgstr "ТБ"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад - kvinto\n"
-"Сторінка: sat-ukraine.info\n"
-"          https://gisclub.tv"
+msgstr "Переклад: kvinto\n"
+"                  17.06.2019\n"
+"Сторінка:    sat-ukraine.info\n"
+"               https://gisclub.tv"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 level 1!"
@@ -16170,9 +16046,6 @@ msgstr "Час Оновлення в хвилинах:"
 
 msgid "Time between slides in image viewer slideshow."
 msgstr "Час між слайдами у слайд-шоу програмі."
-
-msgid "Time between start attempts (sec.)"
-msgstr "Інтервал між спробами запуску (сек.)"
 
 msgid "Time delay for the repeated transmission"
 msgstr "Час затримки для повторної передачі"
@@ -17545,9 +17418,6 @@ msgstr "Зачекайте, виконується пошук %s %s пристр
 msgid "Wait please while scanning..."
 msgstr "Зачекайте, виконується сканування..."
 
-msgid "Wait time before start Cam 2"
-msgstr "Час очікування перед запуском Ему 2"
-
 msgid "Waiting"
 msgstr "Очікування"
 
@@ -17556,9 +17426,6 @@ msgstr "Очікування монтування"
 
 msgid "Waiting for partition"
 msgstr "Очікування розділу"
-
-msgid "Waiting..."
-msgstr "Чекайте..."
 
 msgid "Wake Up"
 msgstr "Включення"
@@ -18572,12 +18439,6 @@ msgstr "активувати налаштування мережевого ад�
 msgid "activatePiP"
 msgstr "включити ПІП"
 
-msgid "active CAM 1: "
-msgstr "активний ЕМУ 1: "
-
-msgid "active CAM 2: "
-msgstr "активний ЕМУ 2: "
-
 msgid "add Current"
 msgstr "додати поточний"
 
@@ -18916,9 +18777,6 @@ msgstr "не розкодовувати, запис ecm"
 
 msgid "done!"
 msgstr "виконано!"
-
-msgid "dont wait"
-msgstr "не чекати"
 
 msgid "drivers"
 msgstr "драйвера"
@@ -19482,17 +19340,8 @@ msgstr "ні"
 msgid "no CAId selected"
 msgstr "не вибрано CAId"
 
-msgid "no CAM 1 active"
-msgstr "ЕМУ 1 неактивний"
-
-msgid "no CAM 2 active"
-msgstr "ЕМУ 2 неактивний"
-
 msgid "no CI slots found"
 msgstr "CI слот не знайдено"
-
-msgid "no cam"
-msgstr "емулятор не вибрано"
 
 msgid "no channel list"
 msgstr "немає списку каналів"
