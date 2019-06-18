@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-16 23:42+0000\n"
+"POT-Creation-Date: 2019-06-18 21:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,10 +239,6 @@ msgid " <No Channel>"
 msgstr ""
 
 msgid " <empty>"
-msgstr ""
-
-#, python-format
-msgid " Except %s"
 msgstr ""
 
 msgid " and"
@@ -995,6 +991,10 @@ msgid "%m/%d "
 msgstr ""
 
 msgid "%m/%d/%Y"
+msgstr ""
+
+#, python-format
+msgid "%s"
 msgstr ""
 
 #, python-format
@@ -4657,7 +4657,10 @@ msgstr ""
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid "Do you want to delete all other languages?"
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr ""
 
 msgid ""
