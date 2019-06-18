@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-07 10:20+0200\n"
-"PO-Revision-Date: 2019-06-09 20:39+0200\n"
+"PO-Revision-Date: 2019-06-18 20:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -1177,19 +1177,15 @@ msgstr ""
 msgid "%s %02d.%02d."
 msgstr "%s %02d. %02d."
 
-#, python-format
 msgid "%s: Not Available"
 msgstr "%s: Не доступно"
 
-#, python-format
 msgid "%s: %s in use: %s%%"
 msgstr "%s: %s використано: %s%%"
 
-#, python-format
 msgid "%s: %s Free: %s Used: %s (%s%%)"
 msgstr "%s: %s Вільно: %s Використано: %s (%s%%)"
 
-#, python-format
 msgid "%s: %s Used: %s Free: %s"
 msgstr "%s: %s Використано: %s Вільно: %s"
 
@@ -1233,9 +1229,9 @@ msgstr "%s (%s)"
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s (%sB"
-msgstr "%s (%sB"
+msgstr "%s (%sB "
 
 #, python-format
 msgid "%s - Setup"
@@ -5703,8 +5699,12 @@ msgstr "Ви хочете записати цю колекцію на DVD дис
 msgid "Do you want to continue?"
 msgstr "Ви хочете продовжити?"
 
-msgid "Do you want to delete all other languages?"
-msgstr "Видалити всі інші мови?"
+msgid "Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
+msgstr "Ви хочете видалити всі інші мови?\n"
+"Крім англійської, французької, німецької та вашого вибору:\n"
+"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -5897,9 +5897,6 @@ msgstr "Драйвери:\t\t%s"
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Драйвера:\t%s"
-
-msgid "Duration"
-msgstr "Тривалість"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Протягом даного часу йде перевірка передавача і пристрою запису. Якщо пристрій запису (наприклад, NAS) не готовий до запису, цей час можна збільшити."
@@ -6980,7 +6977,7 @@ msgid "Flash On the Fly"
 msgstr "Прошити приймач з інтернету"
 
 msgid "Flash Online"
-msgstr "Прошити приймач з інтернету"
+msgstr "Прошити приймач он-лайн"
 
 msgid "Flash Online a new image"
 msgstr "Прошити приймач новим іміджем"
@@ -8623,6 +8620,9 @@ msgstr "Вліво довге натискання"
 msgid "Leisure hobbies"
 msgstr "Відпочинок хобі"
 
+msgid "Length"
+msgstr "Тривалість"
+
 msgid "Lesotho"
 msgstr "Лесото"
 
@@ -10109,7 +10109,7 @@ msgid "OSD name request"
 msgstr "Запит OSD імені"
 
 msgid "OSD settings"
-msgstr "Налаштування OSD"
+msgstr "OSD Налаштування"
 
 msgid "OScamInfo"
 msgstr "Oscam Інфо"
@@ -12085,10 +12085,10 @@ msgid "Restart network and remount connections"
 msgstr "Перезапуск мережі і перемонтуваня підключення"
 
 msgid "Restart network to with current setup"
-msgstr "Перезапустити мережу з поточними налаштуваннями"
+msgstr "Перезавантажити мережу з поточними налаштуваннями"
 
 msgid "Restart softcam"
-msgstr "Повторити softcam"
+msgstr "Перезавантажити softcam"
 
 msgid "Restart test"
 msgstr "Повторити тест"
@@ -15125,10 +15125,9 @@ msgstr "ТБ"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto\n"
-"                  17.06.2019\n"
+msgstr "Переклад: kvinto - 18.06.2019\n"
 "Сторінка:    sat-ukraine.info\n"
-"               https://gisclub.tv"
+"                 https://gisclub.tv"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 level 1!"
