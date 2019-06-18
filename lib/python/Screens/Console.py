@@ -4,10 +4,14 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
+from Tools.Directories import shellquote
+from time import strftime
 from sys import maxint
 from keyids import KEYIDS
 
 class Console(Screen):
+
+	OUTPUT = "/home/root/logs/console.txt"
 
 	# cmdlist may be a mixed list or tuple of strings
 	# or lists/tuples.
@@ -42,6 +46,11 @@ class Console(Screen):
 		self.run = -1
 		self.stop_msg = None
 		self.hidden = False
+		self.green = "hide"
+		try:
+			self.output = open(self.OUTPUT, "w")
+		except:
+			self.output = None
 
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
@@ -58,6 +67,19 @@ class Console(Screen):
 
 	def doExec(self, cmd):
 		print "[Console] executing command %d/%d:" % (self.run+1, len(self.cmdlist)), cmd
+
+		if self.output:
+			if isinstance(cmd, (list, tuple)):
+				def quoteifneeded(s):
+					return any(c in s for c in " '!()$*?[]<>|&;\\\"") and shellquote(s) or s
+				cmdline = " ".join(map(quoteifneeded, cmd))
+			else:
+				cmdline = cmd
+			cmdline = "%d/%d: %s" % (self.run+1, len(self.cmdlist), cmdline)
+			started = strftime(_("Started: %T"))
+			separator = "-" * max(len(cmdline), len(started))
+			print >>self.output, "%s\n%s\n%s\n%s\n" % (separator, cmdline, started, separator)
+
 		if isinstance(cmd, (list, tuple)):
 			return self.container.execute(cmd[0], *cmd)
 		else:
@@ -74,6 +96,10 @@ class Console(Screen):
 			self.errorOccurred = True
 		self.run += 1
 		if self.run != len(self.cmdlist):
+			if self.output and self.run:
+				print >>self.output
+				if not self["text"].getText().endswith("\n"):
+					print >>self.output
 			if self.doExec(self.cmdlist[self.run]): 	# start of container application failed...
 				self.runFinished(-1)					# so we must call runFinished manually
 		else:
@@ -86,21 +112,35 @@ class Console(Screen):
 				end = "\n\n"
 			self["text"].appendText(end + (retval == "stop" and _("Execution stopped!") or _("Execution finished!")))
 			self["key_red"].text = _("Close")
-			self["key_green"].text = ""
+			if self.output:
+				finish = strftime(retval == "stop" and _("Stopped: %T") or _("Finished: %T"))
+				print >>self.output, "%s%s\n%s" % (end, "-" * len(finish), finish)
+				self.output.close()
+				self.output = None
+				self["key_green"].text = _("Details")
+				self.green = "details"
+			else:
+				self["key_green"].text = ""
+				self.green = None
 			if self.stop_msg:
 				self.stop_msg.close()
 			self.unhide()
-			self.hidden = None
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not self.errorOccurred and self.closeOnSuccess:
 				self.cancel()
 
 	def key_green(self):
-		if self.hidden is False:
-			self.hidden = True
-			self.hide()
-			eActionMap.getInstance().bindAction("", -maxint - 1, self.key_any)
+		if self.green == "details":
+			with open(self.OUTPUT) as f:
+				self["text"].setText(f.read())
+			self["key_green"].text = ""     # save/copy/move/rename?
+			self.green = ""
+		elif self.green == "hide":
+			if not self.hidden:
+				self.hidden = True
+				self.hide()
+				eActionMap.getInstance().bindAction("", -maxint - 1, self.key_any)
 
 	def key_any(self, key, flag):
 		if key not in (KEYIDS["KEY_MUTE"], KEYIDS["KEY_VOLUMEUP"], KEYIDS["KEY_VOLUMEDOWN"]):
@@ -136,3 +176,5 @@ class Console(Screen):
 
 	def dataAvail(self, str):
 		self["text"].appendText(str)
+		if self.output:
+			self.output.write(str)
