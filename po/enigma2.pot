@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-02 16:52+0000\n"
+"POT-Creation-Date: 2019-06-18 21:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,17 +239,6 @@ msgid " <No Channel>"
 msgstr ""
 
 msgid " <empty>"
-msgstr ""
-
-#, python-format
-msgid " Except %s"
-msgstr ""
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
 msgstr ""
 
 msgid " and"
@@ -912,6 +901,10 @@ msgid "%d minutes"
 msgstr ""
 
 #, python-format
+msgid "%d ms"
+msgstr ""
+
+#, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
 msgstr[0] ""
@@ -998,6 +991,10 @@ msgid "%m/%d "
 msgstr ""
 
 msgid "%m/%d/%Y"
+msgstr ""
+
+#, python-format
+msgid "%s"
 msgstr ""
 
 #, python-format
@@ -1238,9 +1235,6 @@ msgstr ""
 msgid "/var directory"
 msgstr ""
 
-msgid "0 (disabled)"
-msgstr ""
-
 msgid "0.2s"
 msgstr ""
 
@@ -1274,9 +1268,6 @@ msgstr ""
 msgid "1 min."
 msgstr ""
 
-msgid "1 second"
-msgstr ""
-
 msgid "1.0"
 msgstr ""
 
@@ -1295,19 +1286,10 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10"
-msgstr ""
-
-msgid "10 (default)"
-msgstr ""
-
 msgid "10 MB/s"
 msgstr ""
 
 msgid "10 min."
-msgstr ""
-
-msgid "10 seconds"
 msgstr ""
 
 msgid "100 MB/s"
@@ -1355,9 +1337,6 @@ msgstr ""
 msgid "12 character"
 msgstr ""
 
-msgid "120"
-msgstr ""
-
 msgid "128"
 msgstr ""
 
@@ -1374,9 +1353,6 @@ msgid "13 V"
 msgstr ""
 
 msgid "15 min."
-msgstr ""
-
-msgid "15 seconds"
 msgstr ""
 
 msgid "1536 Mb"
@@ -1439,13 +1415,7 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20"
-msgstr ""
-
 msgid "20 MB/s"
-msgstr ""
-
-msgid "20 seconds"
 msgstr ""
 
 msgid "2048 Mb"
@@ -1479,9 +1449,6 @@ msgid "24+ Hours"
 msgstr ""
 
 msgid "24- Hours"
-msgstr ""
-
-msgid "240"
 msgstr ""
 
 msgid "24p/24p"
@@ -1563,9 +1530,6 @@ msgid "30 min."
 msgstr ""
 
 msgid "30 minutes"
-msgstr ""
-
-msgid "30 seconds"
 msgstr ""
 
 msgid "30p/24p"
@@ -1652,16 +1616,10 @@ msgstr ""
 msgid "5"
 msgstr ""
 
-msgid "5 (default)"
-msgstr ""
-
 msgid "5 min."
 msgstr ""
 
 msgid "5 minutes"
-msgstr ""
-
-msgid "5 seconds"
 msgstr ""
 
 msgid "50 MB/s"
@@ -1692,9 +1650,6 @@ msgid "5:3"
 msgstr ""
 
 msgid "5s"
-msgstr ""
-
-msgid "60"
 msgstr ""
 
 msgid "60 minutes"
@@ -3080,9 +3035,6 @@ msgstr ""
 msgid "CCcam Shares Info"
 msgstr ""
 
-msgid "CCcamInfo"
-msgstr ""
-
 msgid "CCcamInfo Mainmenu"
 msgstr ""
 
@@ -3965,9 +3917,6 @@ msgstr ""
 msgid "Creating partition"
 msgstr ""
 
-msgid "Creating start scripts and starting the cam"
-msgstr ""
-
 msgid "Croatia"
 msgstr ""
 
@@ -4708,7 +4657,10 @@ msgstr ""
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid "Do you want to delete all other languages?"
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr ""
 
 msgid ""
@@ -5890,9 +5842,6 @@ msgstr ""
 msgid "Frontprocessor version: %s"
 msgstr ""
 
-msgid "Frozen Cam Check"
-msgstr ""
-
 msgid "Full Image Backup "
 msgstr ""
 
@@ -6633,9 +6582,6 @@ msgstr ""
 msgid "Init SDcard"
 msgstr ""
 
-msgid "Init.d"
-msgstr ""
-
 msgid "Initial lock ratio"
 msgstr ""
 
@@ -6783,6 +6729,9 @@ msgid "Intermediate"
 msgstr ""
 
 msgid "Internal"
+msgstr ""
+
+msgid "Internal Flash"
 msgstr ""
 
 msgid "Internal USB"
@@ -7890,6 +7839,9 @@ msgstr ""
 msgid "Nauru"
 msgstr ""
 
+msgid "NcamInfo"
+msgstr ""
+
 msgid "Nepal"
 msgstr ""
 
@@ -8047,19 +7999,10 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr ""
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-
 msgid "No Connection"
 msgstr ""
 
 msgid "No Devices Found !!"
-msgstr ""
-
-msgid "No ECM info"
 msgstr ""
 
 msgid "No HDD found or HDD not initialized!"
@@ -8143,9 +8086,6 @@ msgid "No network connection available."
 msgstr ""
 
 msgid "No networks found"
-msgstr ""
-
-msgid "No new ECM info"
 msgstr ""
 
 msgid "No of items switch (increase or reduced)"
@@ -8571,9 +8511,6 @@ msgstr ""
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr ""
-
-msgid "OscamInfo"
 msgstr ""
 
 msgid "OscamInfo Mainmenu"
@@ -9527,9 +9464,6 @@ msgstr ""
 msgid "Put your AV Receiver in standby"
 msgstr ""
 
-msgid "Python Camstarter (default)"
-msgstr ""
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
 
@@ -9614,9 +9548,6 @@ msgid "Rating undefined"
 msgstr ""
 
 msgid "Re-enter new PIN"
-msgstr ""
-
-msgid "ReStart"
 msgstr ""
 
 msgid "Read Userdata from oscam.conf"
@@ -9780,9 +9711,6 @@ msgid ""
 "Reflash in progress\n"
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
-msgstr ""
-
-msgid "Refresh"
 msgstr ""
 
 msgid "Refresh rate"
@@ -10553,12 +10481,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr ""
 
-msgid "Select Cam 1"
-msgstr ""
-
-msgid "Select Cam 2"
-msgstr ""
-
 msgid "Select Card Server"
 msgstr ""
 
@@ -10671,9 +10593,6 @@ msgstr ""
 msgid "Select interface"
 msgstr ""
 
-msgid "Select locale"
-msgstr ""
-
 msgid "Select location"
 msgstr ""
 
@@ -10777,6 +10696,9 @@ msgid "Select the virtual keyboard locale from a menu"
 msgstr ""
 
 msgid "Select the virtual keyboard shifted character set"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 msgid "Select upgrade source"
@@ -11252,6 +11174,9 @@ msgstr ""
 msgid "Shellscript"
 msgstr ""
 
+msgid "Shift"
+msgstr ""
+
 msgid "Short filenames"
 msgstr ""
 
@@ -11319,9 +11244,6 @@ msgid "Show AutoTimer List"
 msgstr ""
 
 msgid "Show Box Portal..."
-msgstr ""
-
-msgid "Show CCcamInfo in Extensions Menu"
 msgstr ""
 
 msgid "Show CI messages"
@@ -11396,9 +11318,6 @@ msgstr ""
 msgid "Show OE Log"
 msgstr ""
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr ""
-
 msgid "Show PIP"
 msgstr ""
 
@@ -11418,9 +11337,6 @@ msgid "Show SD as"
 msgstr ""
 
 msgid "Show Single EPG"
-msgstr ""
-
-msgid "Show Softcam-Panel in Extensions Menu"
 msgstr ""
 
 msgid "Show Timer List"
@@ -11860,12 +11776,6 @@ msgstr ""
 msgid "Softcam"
 msgstr ""
 
-msgid "Softcam Panel"
-msgstr ""
-
-msgid "Softcam Panel V2.0"
-msgstr ""
-
 msgid "Softcam Setup"
 msgstr ""
 
@@ -11875,16 +11785,10 @@ msgstr ""
 msgid "Softcam-Panel"
 msgstr ""
 
-msgid "Softcam-Panel Setup"
-msgstr ""
-
 msgid "Softcam-Panel..."
 msgstr ""
 
 msgid "Softcam-Setup"
-msgstr ""
-
-msgid "SoftcamPanel"
 msgstr ""
 
 msgid "SoftcamSetup"
@@ -12086,12 +11990,6 @@ msgstr ""
 msgid "Start Kodi"
 msgstr ""
 
-msgid "Start Mode"
-msgstr ""
-
-msgid "Start attempts"
-msgstr ""
-
 msgid "Start from the beginning"
 msgstr ""
 
@@ -12128,12 +12026,6 @@ msgstr ""
 msgid "StartWizard"
 msgstr ""
 
-msgid "Starting Cam 1: "
-msgstr ""
-
-msgid "Starting Cam 2: "
-msgstr ""
-
 msgid "Starting on"
 msgstr ""
 
@@ -12162,9 +12054,6 @@ msgid "Stop PiP"
 msgstr ""
 
 msgid "Stop Streams"
-msgstr ""
-
-msgid "Stop check when cam is running"
 msgstr ""
 
 msgid "Stop current event and disable coming events"
@@ -13149,9 +13038,6 @@ msgid "Time Update in Minutes"
 msgstr ""
 
 msgid "Time Update in Minutes:"
-msgstr ""
-
-msgid "Time between start attempts (sec.)"
 msgstr ""
 
 msgid "Time delay for the repeated transmission"
@@ -14301,9 +14187,6 @@ msgstr ""
 msgid "Wait please while scanning..."
 msgstr ""
 
-msgid "Wait time before start Cam 2"
-msgstr ""
-
 msgid "Waiting"
 msgstr ""
 
@@ -14311,9 +14194,6 @@ msgid "Waiting for mount"
 msgstr ""
 
 msgid "Waiting for partition"
-msgstr ""
-
-msgid "Waiting..."
 msgstr ""
 
 msgid "Wake Up"
@@ -14981,12 +14861,6 @@ msgstr ""
 msgid "activatePiP"
 msgstr ""
 
-msgid "active CAM 1: "
-msgstr ""
-
-msgid "active CAM 2: "
-msgstr ""
-
 msgid "add Current"
 msgstr ""
 
@@ -15319,9 +15193,6 @@ msgid "don't descramble, record ecm"
 msgstr ""
 
 msgid "done!"
-msgstr ""
-
-msgid "dont wait"
 msgstr ""
 
 msgid "drivers"
@@ -15886,16 +15757,7 @@ msgstr ""
 msgid "no CAId selected"
 msgstr ""
 
-msgid "no CAM 1 active"
-msgstr ""
-
-msgid "no CAM 2 active"
-msgstr ""
-
 msgid "no CI slots found"
-msgstr ""
-
-msgid "no cam"
 msgstr ""
 
 msgid "no channel list"

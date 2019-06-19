@@ -475,8 +475,9 @@ def InitUsageConfig():
 	#standby
 	if getDisplayType() in ('textlcd7segment',):
 		config.usage.blinking_display_clock_during_recording = ConfigSelection(default = "Rec", choices = [
-						("Rec", _("REC")), 
-						("RecBlink", _("Blinking REC")), 
+						("Rec", _("REC")),
+						("RecBlink", _("Blinking REC")),
+						("Time", _("Time")),
 						("Nothing", _("Nothing"))])
 	else:
 		config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
@@ -945,7 +946,7 @@ def InitUsageConfig():
 	choiceoptions = [("mode1", _("Mode 1")), ("mode2", _("Mode 2"))]
 	config.osd.threeDsetmode = ConfigSelection(default = 'mode1' , choices = choiceoptions )
 
-	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
+	hddchoises = [('/etc/enigma2/', _('Internal Flash'))]
 	for p in harddiskmanager.getMountedPartitions():
 		if os.path.exists(p.mountpoint):
 			d = os.path.normpath(p.mountpoint)

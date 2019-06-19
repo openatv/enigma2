@@ -57,38 +57,42 @@ class OscamInfo:
 		oport = None
 		opath = None
 		ipcompiled = False
+		conffile = None
 
 		# Find and parse running oscam
-		if fileExists("/tmp/.oscam/oscam.version"):
-			with open('/tmp/.oscam/oscam.version', 'r') as data:
-				for i in data:
-					if "web interface support:" in i.lower():
-						owebif = i.split(":")[1].strip()
-						if owebif == "no":
-							owebif = False
-						elif owebif == "yes":
-							owebif = True
-					elif "webifport:" in i.lower():
-						oport = i.split(":")[1].strip()
-						if oport == "0":
-							oport = None
-					elif "configdir:" in i.lower():
-						opath = i.split(":")[1].strip()
-					elif "ipv6 support:" in i.lower():
-						ipcompiled = i.split(":")[1].strip()
-						if ipcompiled == "no":
-							ipcompiled = False
-						elif ipcompiled == "yes":
-							ipcompiled = True
-					else:
-						continue
-		return owebif, oport, opath, ipcompiled
+		for file in ["/tmp/.oscam/oscam.version", "/tmp/.ncam/ncam.version"]:
+			if fileExists(file):
+				with open(file, 'r') as data:
+					conffile = file.split('/')[-1].replace("version","conf")
+					for i in data:
+						if "web interface support:" in i.lower():
+							owebif = i.split(":")[1].strip()
+							if owebif == "no":
+								owebif = False
+							elif owebif == "yes":
+								owebif = True
+						elif "webifport:" in i.lower():
+							oport = i.split(":")[1].strip()
+							if oport == "0":
+								oport = None
+						elif "configdir:" in i.lower():
+							opath = i.split(":")[1].strip()
+						elif "ipv6 support:" in i.lower():
+							ipcompiled = i.split(":")[1].strip()
+							if ipcompiled == "no":
+								ipcompiled = False
+							elif ipcompiled == "yes":
+								ipcompiled = True
+						else:
+							continue
+		return owebif, oport, opath, ipcompiled, conffile
 
 	def getUserData(self):
-		[webif, port, conf, ipcompiled] = self.confPath()
+		[webif, port, conf, ipcompiled, conffile] = self.confPath()
 		if conf == None:
 			conf = ""
-		conf += "/oscam.conf"
+		conf += "/" + conffile
+		api = conffile.replace(".conf","api")
 
 		# Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in,
 		# and no user and password are required
@@ -121,12 +125,14 @@ class OscamInfo:
 								ipconfigured = False
 
 			if not blocked:
-				ret = [user, pwd, port, ipconfigured]
+				ret = [user, pwd, port, ipconfigured, api]
 
 		return ret
 
 	def openWebIF(self, part = None, reader = None):
 		self.proto = "http"
+		self.api = "oscamapi"
+
 		if config.oscaminfo.userdatafromconf.value:
 			udata = self.getUserData()
 			if isinstance(udata, str):
@@ -136,6 +142,7 @@ class OscamInfo:
 				self.username = udata[0]
 				self.password = udata[1]
 				self.ipaccess = udata[3]
+				self.api = udata[4]
 
 			if self.ipaccess == "yes":
 				self.ip = "::1"
@@ -152,11 +159,11 @@ class OscamInfo:
 			self.port.replace("+","")
 
 		if part is None:
-			self.url = "%s://%s:%s/oscamapi.html?part=status" % ( self.proto, self.ip, self.port )
+			self.url = "%s://%s:%s/%s.html?part=status" % ( self.proto, self.ip, self.port, self.api )
 		else:
-			self.url = "%s://%s:%s/oscamapi.html?part=%s" % ( self.proto, self.ip, self.port, part )
+			self.url = "%s://%s:%s/%s.html?part=%s" % ( self.proto, self.ip, self.port, part )
 		if part is not None and reader is not None:
-			self.url = "%s://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, part, reader )
+			self.url = "%s://%s:%s/%s.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, part, reader )
 
 		opener = urllib2.build_opener( urllib2.HTTPHandler )
 		if not self.username == "":

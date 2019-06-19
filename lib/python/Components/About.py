@@ -10,7 +10,11 @@ def getVersionString():
 
 def getFlashDateString():
 	try:
-		return time.strftime(_("%Y-%m-%d"), time.localtime(os.stat("/boot").st_ctime))
+		tm = time.localtime(os.stat("/boot").st_ctime)
+		if tm.tm_year >= 2011:
+			return time.strftime(_("%Y-%m-%d"),tm)
+		else:
+			return _("unknown")
 	except:
 		return _("unknown")
 

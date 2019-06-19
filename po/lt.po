@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-02 16:52+0000\n"
-"PO-Revision-Date: 2019-06-02 22:46+0300\n"
+"POT-Creation-Date: 2019-06-18 21:50+0000\n"
+"PO-Revision-Date: 2019-06-19 07:31+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -295,21 +295,6 @@ msgstr " <Nėra kanalo>"
 
 msgid " <empty>"
 msgstr " <tuščia>"
-
-#, python-format
-msgid " Except %s"
-msgstr " Išskyrus %s"
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
-" Nestartavo !!\n"
-"\n"
-"Emuliatorius turi būti pradinėje komandinėje eilutėje\n"
-"Tikrinkite emuliatoriaus konfigūracijos failą"
 
 msgid " and"
 msgstr " ir"
@@ -979,6 +964,10 @@ msgid "%d minutes"
 msgstr "%d min."
 
 #, python-format
+msgid "%d ms"
+msgstr "%d msek."
+
+#, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
 msgstr[0] "%d pikselio pločio"
@@ -1069,6 +1058,10 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
+
+#, python-format
+msgid "%s"
+msgstr "%s"
 
 #, python-format
 msgid ""
@@ -1315,9 +1308,6 @@ msgstr "/usr/share/enigma2 katalogas"
 msgid "/var directory"
 msgstr "/var katalogas"
 
-msgid "0 (disabled)"
-msgstr "0 (išjungta)"
-
 msgid "0.2s"
 msgstr "0.2 sek."
 
@@ -1351,9 +1341,6 @@ msgstr "1 GB"
 msgid "1 min."
 msgstr "1 min."
 
-msgid "1 second"
-msgstr "1 sek."
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1372,20 +1359,11 @@ msgstr "1.5 sek."
 msgid "1.7s"
 msgstr "1.7 sek."
 
-msgid "10"
-msgstr "10"
-
-msgid "10 (default)"
-msgstr "10 (numatytoji reikšmė)"
-
 msgid "10 MB/s"
 msgstr "10 MB/s"
 
 msgid "10 min."
 msgstr "10 min."
-
-msgid "10 seconds"
-msgstr "10 sekundžių"
 
 msgid "100 MB/s"
 msgstr "100 MB/s"
@@ -1432,9 +1410,6 @@ msgstr "10 bitų"
 msgid "12 character"
 msgstr "12 simbolių"
 
-msgid "120"
-msgstr "120"
-
 msgid "128"
 msgstr "128"
 
@@ -1452,9 +1427,6 @@ msgstr "13 V"
 
 msgid "15 min."
 msgstr "15 min."
-
-msgid "15 seconds"
-msgstr "15 sekundžių"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
@@ -1516,14 +1488,8 @@ msgstr "2 GB"
 msgid "2.5s"
 msgstr "2.5 sek."
 
-msgid "20"
-msgstr "20"
-
 msgid "20 MB/s"
 msgstr "20 MB/s"
-
-msgid "20 seconds"
-msgstr "20 sekundžių"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1557,9 +1523,6 @@ msgstr "+ 24 valandos"
 
 msgid "24- Hours"
 msgstr "- 24 valandos"
-
-msgid "240"
-msgstr "240"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1641,9 +1604,6 @@ msgstr "30 min."
 
 msgid "30 minutes"
 msgstr "30 minučių"
-
-msgid "30 seconds"
-msgstr "30 sekundžių"
 
 msgid "30p/24p"
 msgstr "30p/24p"
@@ -1729,17 +1689,11 @@ msgstr "4 sek."
 msgid "5"
 msgstr "5"
 
-msgid "5 (default)"
-msgstr "5 (numatytoji reikšmė)"
-
 msgid "5 min."
 msgstr "5 min."
 
 msgid "5 minutes"
 msgstr "5 minučių"
-
-msgid "5 seconds"
-msgstr "5 sekundės"
 
 msgid "50 MB/s"
 msgstr "50 MB/s"
@@ -1770,9 +1724,6 @@ msgstr "5:3"
 
 msgid "5s"
 msgstr "5 sek."
-
-msgid "60"
-msgstr "60"
 
 msgid "60 minutes"
 msgstr "60 minučių"
@@ -3223,9 +3174,6 @@ msgstr "CCcam bendrinimo informacija"
 msgid "CCcam Shares Info"
 msgstr "CCcam bendrinimų informacija"
 
-msgid "CCcamInfo"
-msgstr "CCcam Info"
-
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo pagrindinis meniu"
 
@@ -4118,9 +4066,6 @@ msgstr "Kuriama failų sistema"
 msgid "Creating partition"
 msgstr "Kuriamas skaidinys"
 
-msgid "Creating start scripts and starting the cam"
-msgstr "Kuriami paleidimo scenarijai ir paleidžiamas emu"
-
 msgid "Croatia"
 msgstr "Kroatija"
 
@@ -4877,8 +4822,14 @@ msgstr "Jūs norite įrašyti šį rinkinį į DVD laikmeną?"
 msgid "Do you want to continue?"
 msgstr "Ar norite tęsti?"
 
-msgid "Do you want to delete all other languages?"
-msgstr "Ar norite pašalinti visas kitas kalbas?"
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
+msgstr ""
+"Ar norite ištrinti visas kitas kalbas?\n"
+"Išskyrus anglų, prancūzų, vokiečių ir jūsų pasirinktą:\n"
+"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -6109,9 +6060,6 @@ msgstr "Priekinio procesoriaus versija: %d"
 msgid "Frontprocessor version: %s"
 msgstr "Priekinio procesoriaus versija: %s"
 
-msgid "Frozen Cam Check"
-msgstr "Tikrinti emuliatoriaus problemas"
-
 msgid "Full Image Backup "
 msgstr "Pilna atvaizdo atsarginė kopija "
 
@@ -6868,9 +6816,6 @@ msgstr "Aptinkama SDCARD"
 msgid "Init SDcard"
 msgstr "Aptinkama SDcard"
 
-msgid "Init.d"
-msgstr "Init.d"
-
 msgid "Initial lock ratio"
 msgstr "Pradinis fiksuotas santykis"
 
@@ -7019,6 +6964,9 @@ msgstr "Normalus"
 
 msgid "Internal"
 msgstr "Vidinis"
+
+msgid "Internal Flash"
+msgstr "Vidinė atmintis"
 
 msgid "Internal USB"
 msgstr "Vidinis USB"
@@ -8130,6 +8078,9 @@ msgstr "Gimtasis"
 msgid "Nauru"
 msgstr "Nauriečių"
 
+msgid "NcamInfo"
+msgstr "Ncam Info"
+
 msgid "Nepal"
 msgstr "Nepalas"
 
@@ -8287,23 +8238,11 @@ msgstr "Ne"
 msgid "No (supported) DVDROM found!"
 msgstr "Palaikomo DVD ROM nerasta!"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-"Nestartavo joks emuliatorius !!\n"
-"\n"
-"Emuliatorius 1 negali būt tas pats, kaip emuliatorius 2"
-
 msgid "No Connection"
 msgstr "Nėra prisijungimo"
 
 msgid "No Devices Found !!"
 msgstr "Įrenginių nerasta !!"
-
-msgid "No ECM info"
-msgstr "ECM informacijos nėra"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kietas diskas nerastas arba neinicializuotas!"
@@ -8392,9 +8331,6 @@ msgstr "Nėra prieinamo tinklo ryšio."
 
 msgid "No networks found"
 msgstr "Jokių tinklų nerasta"
-
-msgid "No new ECM info"
-msgstr "Naujos ECM informacijos nėra"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nėra perjungimo elementų (padidinti arba sumažinti)"
@@ -8839,9 +8775,6 @@ msgstr "Oscam Info - pagrindinis meniu"
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
 msgstr "Oscam žurnalas (Oscam-versija: %s)"
-
-msgid "OscamInfo"
-msgstr "Oscam Informacija"
 
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam Informacijos pagrindinis meniu"
@@ -9809,9 +9742,6 @@ msgstr "Jungti TV į budėjimo būseną"
 msgid "Put your AV Receiver in standby"
 msgstr "Išjungti imtuvą į budėjimo būseną"
 
-msgid "Python Camstarter (default)"
-msgstr "Python emu paleidėjas (numatytasis)"
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python išorinės sąsajos dėl /tmp/mmi.socket"
 
@@ -9897,9 +9827,6 @@ msgstr "Vertinimas nenurodytas"
 
 msgid "Re-enter new PIN"
 msgstr "Pakartokite naują PIN"
-
-msgid "ReStart"
-msgstr "Paleisti iš naujo"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Vartotojo duomenis imti iš oscam.conf"
@@ -10068,9 +9995,6 @@ msgstr ""
 "Vyksta perdiegimas\n"
 "Palaukite, kol %s %s pasileis iš naujo\n"
 "Tai gali užtrukti kelias minutes"
-
-msgid "Refresh"
-msgstr "Atnaujinti"
 
 msgid "Refresh rate"
 msgstr "Atnaujinimo dažnis"
@@ -10844,12 +10768,6 @@ msgstr "Pasirinkite (šaltinių sąrašą) arba įveskite katalogą (tikslinį s
 msgid "Select CAId"
 msgstr "Pasirinkite CAId"
 
-msgid "Select Cam 1"
-msgstr "Pasirinkite pirmą emuliatorių"
-
-msgid "Select Cam 2"
-msgstr "Pasirinkite antrą emuliatorių"
-
 msgid "Select Card Server"
 msgstr "Pasirinkite kortelių serverį"
 
@@ -10962,9 +10880,6 @@ msgstr "Pasirinkite įvesties įrenginį."
 msgid "Select interface"
 msgstr "Pasrinkite sąsają"
 
-msgid "Select locale"
-msgstr "Pasirinkite vietą"
-
 msgid "Select location"
 msgstr "Pasirinkite vietą"
 
@@ -11069,6 +10984,9 @@ msgstr "Pasirinkite virtualiosios klaviatūros vietą iš meniu"
 
 msgid "Select the virtual keyboard shifted character set"
 msgstr "Pasirinkite simbolių rinkinį su virtualia klaviatūra"
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
+msgstr "Pasirinkite tik pakeistą virtualios klaviatūros simbolių rinkinį"
 
 msgid "Select upgrade source"
 msgstr "Pasirinkite atnaujinimo šaltinį"
@@ -11561,6 +11479,9 @@ msgstr "Aštrumas"
 msgid "Shellscript"
 msgstr "Grafinės aplinkos scenarijus"
 
+msgid "Shift"
+msgstr "Pakeisti"
+
 msgid "Short filenames"
 msgstr "Trumpi failų pavadinimai"
 
@@ -11631,9 +11552,6 @@ msgstr "Rodyti auto laikmačio sąrašą"
 
 msgid "Show Box Portal..."
 msgstr "Rodyti imtuvo portalą..."
-
-msgid "Show CCcamInfo in Extensions Menu"
-msgstr "Rodyti CCcamInfo plėtinių meniu"
 
 msgid "Show CI messages"
 msgstr "Rodyti CI pranešimus"
@@ -11707,9 +11625,6 @@ msgstr "Rodyti daugiakanalį EPG"
 msgid "Show OE Log"
 msgstr "Rodyti OE žurnalą"
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr "Rodyti OscamInfo plėtinių meniu"
-
 msgid "Show PIP"
 msgstr "Paveikslėlis paveikslėlyje"
 
@@ -11730,9 +11645,6 @@ msgstr "Rodyti SD kaip"
 
 msgid "Show Single EPG"
 msgstr "Rodyti vieno kanalo EPG"
-
-msgid "Show Softcam-Panel in Extensions Menu"
-msgstr "Rodyti emuliatorių skydelį plėtinių meniu"
 
 msgid "Show Timer List"
 msgstr "Rodyti laikmačių sąrašą"
@@ -12171,12 +12083,6 @@ msgstr "Lizdas"
 msgid "Softcam"
 msgstr "Emuliatorius"
 
-msgid "Softcam Panel"
-msgstr "Emuliatoriaus skydelis"
-
-msgid "Softcam Panel V2.0"
-msgstr "Emuliatoriaus skydelis V2.0"
-
 msgid "Softcam Setup"
 msgstr "Emuliatoriaus valdymas"
 
@@ -12186,17 +12092,11 @@ msgstr "Emuliatoriaus sąranka"
 msgid "Softcam-Panel"
 msgstr "Emuliatoriaus skydelis"
 
-msgid "Softcam-Panel Setup"
-msgstr "Emuliatoriaus skydelio nustatymas"
-
 msgid "Softcam-Panel..."
 msgstr "Emuliatoriaus skydelis..."
 
 msgid "Softcam-Setup"
 msgstr "Emuliatoriaus sąranka"
-
-msgid "SoftcamPanel"
-msgstr "Emuliatoriaus skydelis"
 
 msgid "SoftcamSetup"
 msgstr "Emuliatoriaus sąranka"
@@ -12406,12 +12306,6 @@ msgstr "Pradėti"
 msgid "Start Kodi"
 msgstr "Pradėti Kodi"
 
-msgid "Start Mode"
-msgstr "Paleidimo režimas"
-
-msgid "Start attempts"
-msgstr "Paleisties bandymai"
-
 msgid "Start from the beginning"
 msgstr "Pradėti iš pradžių"
 
@@ -12448,12 +12342,6 @@ msgstr "Pasirinkti/stabdyti/paleisti emuliatorių. Pirmiausiai reikia įdiegti e
 msgid "StartWizard"
 msgstr "Paleiskite vedlį"
 
-msgid "Starting Cam 1: "
-msgstr "Paleidžiamas Emu 1: "
-
-msgid "Starting Cam 2: "
-msgstr "Paleidžiamas Emu 2: "
-
 msgid "Starting on"
 msgstr "Paleidžiama"
 
@@ -12483,9 +12371,6 @@ msgstr "Stabdyti PiP"
 
 msgid "Stop Streams"
 msgstr "Sustabdyti srautus"
-
-msgid "Stop check when cam is running"
-msgstr "Stabdyti patikrinimą, kai veikia emuliatorius"
 
 msgid "Stop current event and disable coming events"
 msgstr "Stabdyti dabartinę užduotį ir išjungti sekančią užduotį"
@@ -12806,7 +12691,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-06-01"
+msgstr "Adga, v. 2019-06-17"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -13554,9 +13439,6 @@ msgstr "Laiko atnaujinimas minutėmis"
 
 msgid "Time Update in Minutes:"
 msgstr "Laiko atnaujinimas minutėmis:"
-
-msgid "Time between start attempts (sec.)"
-msgstr "Laikas tarp bandymų paleisti (sek.)"
 
 msgid "Time delay for the repeated transmission"
 msgstr "Laiko delsa pakartotiniam perdavimui"
@@ -14724,9 +14606,6 @@ msgstr "Palaukite, kol skenuojama jūsų %s %s įranga..."
 msgid "Wait please while scanning..."
 msgstr "Palaukite, kol skenuojama..."
 
-msgid "Wait time before start Cam 2"
-msgstr "Laukimo laikas prieš startuojant antram emuliatoriui"
-
 msgid "Waiting"
 msgstr "Laukiama"
 
@@ -14735,9 +14614,6 @@ msgstr "Laukiama pajungimo"
 
 msgid "Waiting for partition"
 msgstr "Laukiama skaidinio"
-
-msgid "Waiting..."
-msgstr "Laukiama..."
 
 msgid "Wake Up"
 msgstr "Pabusti"
@@ -15468,12 +15344,6 @@ msgstr "aktyvuokite tinklo adapterio konfigūraciją"
 msgid "activatePiP"
 msgstr "aktyvuoti PiP"
 
-msgid "active CAM 1: "
-msgstr "aktyvus EMU 1: "
-
-msgid "active CAM 2: "
-msgstr "aktyvus EMU 2: "
-
 msgid "add Current"
 msgstr "įtraukti šį"
 
@@ -15809,9 +15679,6 @@ msgstr "nereikia dekoduoti, įrašyti ecm"
 
 msgid "done!"
 msgstr "baigta!"
-
-msgid "dont wait"
-msgstr "nelaukti"
 
 msgid "drivers"
 msgstr "tarkyklės"
@@ -16377,17 +16244,8 @@ msgstr "ne"
 msgid "no CAId selected"
 msgstr "joks CAId neišsirinktas"
 
-msgid "no CAM 1 active"
-msgstr "nėra 1 aktyvaus EMULIATORIAUS"
-
-msgid "no CAM 2 active"
-msgstr "nėra 2 aktyvaus EMULIATORIAUS"
-
 msgid "no CI slots found"
 msgstr "jokie CI skaitytuvai nesurasti"
-
-msgid "no cam"
-msgstr "emulatoriaus nėra"
 
 msgid "no channel list"
 msgstr "nėra kanalų sąrašo"
@@ -20313,6 +20171,170 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
 
+#~ msgid " Except %s"
+#~ msgstr " Išskyrus %s"
+
+#~ msgid ""
+#~ " Not Started !!\n"
+#~ "\n"
+#~ "Cam binname must be in the start command line\n"
+#~ "Check your emu config file"
+#~ msgstr ""
+#~ " Nestartavo !!\n"
+#~ "\n"
+#~ "Emuliatorius turi būti pradinėje komandinėje eilutėje\n"
+#~ "Tikrinkite emuliatoriaus konfigūracijos failą"
+
+#~ msgid "0 (disabled)"
+#~ msgstr "0 (išjungta)"
+
+#~ msgid "1 second"
+#~ msgstr "1 sek."
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "10 (default)"
+#~ msgstr "10 (numatytoji reikšmė)"
+
+#~ msgid "10 seconds"
+#~ msgstr "10 sekundžių"
+
+#~ msgid "120"
+#~ msgstr "120"
+
+#~ msgid "15 seconds"
+#~ msgstr "15 sekundžių"
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "20 seconds"
+#~ msgstr "20 sekundžių"
+
+#~ msgid "240"
+#~ msgstr "240"
+
+#~ msgid "30 seconds"
+#~ msgstr "30 sekundžių"
+
+#~ msgid "5 (default)"
+#~ msgstr "5 (numatytoji reikšmė)"
+
+#~ msgid "5 seconds"
+#~ msgstr "5 sekundės"
+
+#~ msgid "60"
+#~ msgstr "60"
+
+#~ msgid "Creating start scripts and starting the cam"
+#~ msgstr "Kuriami paleidimo scenarijai ir paleidžiamas emu"
+
+#~ msgid "Frozen Cam Check"
+#~ msgstr "Tikrinti emuliatoriaus problemas"
+
+#~ msgid "Init.d"
+#~ msgstr "Init.d"
+
+#~ msgid ""
+#~ "No Cam started !!\n"
+#~ "\n"
+#~ "Cam 1 must be different from Cam 2"
+#~ msgstr ""
+#~ "Nestartavo joks emuliatorius !!\n"
+#~ "\n"
+#~ "Emuliatorius 1 negali būt tas pats, kaip emuliatorius 2"
+
+#~ msgid "No ECM info"
+#~ msgstr "ECM informacijos nėra"
+
+#~ msgid "No new ECM info"
+#~ msgstr "Naujos ECM informacijos nėra"
+
+#~ msgid "OscamInfo"
+#~ msgstr "Oscam Informacija"
+
+#~ msgid "Python Camstarter (default)"
+#~ msgstr "Python emu paleidėjas (numatytasis)"
+
+#~ msgid "ReStart"
+#~ msgstr "Paleisti iš naujo"
+
+#~ msgid "Refresh"
+#~ msgstr "Atnaujinti"
+
+#~ msgid "Select Cam 1"
+#~ msgstr "Pasirinkite pirmą emuliatorių"
+
+#~ msgid "Select Cam 2"
+#~ msgstr "Pasirinkite antrą emuliatorių"
+
+#~ msgid "Show CCcamInfo in Extensions Menu"
+#~ msgstr "Rodyti CCcamInfo plėtinių meniu"
+
+#~ msgid "Show OscamInfo in Extensions Menu"
+#~ msgstr "Rodyti OscamInfo plėtinių meniu"
+
+#~ msgid "Show Softcam-Panel in Extensions Menu"
+#~ msgstr "Rodyti emuliatorių skydelį plėtinių meniu"
+
+#~ msgid "Softcam Panel"
+#~ msgstr "Emuliatoriaus skydelis"
+
+#~ msgid "Softcam Panel V2.0"
+#~ msgstr "Emuliatoriaus skydelis V2.0"
+
+#~ msgid "Softcam-Panel Setup"
+#~ msgstr "Emuliatoriaus skydelio nustatymas"
+
+#~ msgid "SoftcamPanel"
+#~ msgstr "Emuliatoriaus skydelis"
+
+#~ msgid "Start Mode"
+#~ msgstr "Paleidimo režimas"
+
+#~ msgid "Start attempts"
+#~ msgstr "Paleisties bandymai"
+
+#~ msgid "Starting Cam 1: "
+#~ msgstr "Paleidžiamas Emu 1: "
+
+#~ msgid "Starting Cam 2: "
+#~ msgstr "Paleidžiamas Emu 2: "
+
+#~ msgid "Stop check when cam is running"
+#~ msgstr "Stabdyti patikrinimą, kai veikia emuliatorius"
+
+#~ msgid "Time between start attempts (sec.)"
+#~ msgstr "Laikas tarp bandymų paleisti (sek.)"
+
+#~ msgid "Wait time before start Cam 2"
+#~ msgstr "Laukimo laikas prieš startuojant antram emuliatoriui"
+
+#~ msgid "Waiting..."
+#~ msgstr "Laukiama..."
+
+#~ msgid "active CAM 1: "
+#~ msgstr "aktyvus EMU 1: "
+
+#~ msgid "active CAM 2: "
+#~ msgstr "aktyvus EMU 2: "
+
+#~ msgid "dont wait"
+#~ msgstr "nelaukti"
+
+#~ msgid "no CAM 1 active"
+#~ msgstr "nėra 1 aktyvaus EMULIATORIAUS"
+
+#~ msgid "no CAM 2 active"
+#~ msgstr "nėra 2 aktyvaus EMULIATORIAUS"
+
+#~ msgid "no cam"
+#~ msgstr "emulatoriaus nėra"
+
+#~ msgid "Select locale"
+#~ msgstr "Pasirinkite vietą"
+
 #~ msgid "Select Sats Entry"
 #~ msgstr "Pasirinkite iš palydovų"
 
@@ -21511,9 +21533,6 @@ msgstr "Skaidrių rodymo laikas"
 
 #~ msgid "Audio:"
 #~ msgstr "Garsas:"
-
-#~ msgid "Internal Flash"
-#~ msgstr "Vidinė atmintis"
 
 #~ msgid "will take about 3-12 minutes for this system\n"
 #~ msgstr "šioje sistemoje užtruks apie 3-12 minučių\n"

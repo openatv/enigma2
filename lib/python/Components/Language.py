@@ -81,6 +81,9 @@ class Language:
 
 	def activateLanguage(self, index):
 		try:
+			if index not in self.lang:
+				print "Selected language %s is not installed, fallback to en_US!" % index
+				index = "en_US"
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
 			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
