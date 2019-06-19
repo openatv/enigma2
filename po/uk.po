@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-07 10:20+0200\n"
-"PO-Revision-Date: 2019-06-18 20:39+0200\n"
+"PO-Revision-Date: 2019-06-19 20:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -295,10 +295,6 @@ msgstr " <Немає Каналу>"
 msgid " <empty>"
 msgstr " <порожньо>"
 
-#, python-format
-msgid " Except %s"
-msgstr " За винятком %s"
-
 msgid " and"
 msgstr " і"
 
@@ -351,15 +347,13 @@ msgid "%-I:%M:%S%^p"
 msgstr "%-I:%M:%S%^p"
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
-#, fuzzy
 msgid "%-d %B %Y"
-msgstr "%-d %B %Y"
+msgstr "% - d %B %Y"
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
-#, fuzzy
 msgid "%-d %b"
-msgstr "%-d %b"
+msgstr "% - d %b"
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
 msgid "%-d %b %Y"
@@ -478,13 +472,11 @@ msgstr "%A %-d/%-m"
 msgid "%A %-d/%-m/%Y"
 msgstr "%A %-d/%-m/%Y"
 
-#, fuzzy
 msgid "%A %-d/%m"
-msgstr "%A %-d/%m"
+msgstr "%A %-d /%m"
 
-#, fuzzy
 msgid "%A %-d/%m/%Y"
-msgstr "%A %-d/%m/%Y"
+msgstr "%A %-d /%m /%Y"
 
 msgid "%A %-m/%-d"
 msgstr "%A %-m/%-d"
@@ -495,9 +487,8 @@ msgstr "%A %-m/%-d/%Y"
 msgid "%A %-m/%d"
 msgstr "%A %-m/%d"
 
-#, fuzzy
 msgid "%A %-m/%d/%Y"
-msgstr "%A %-m/%d/%Y"
+msgstr "%A %-m /%d /%Y"
 
 #, fuzzy
 msgid "%A %B %-d"
@@ -562,9 +553,8 @@ msgstr "%A %Y/%m/%d"
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
-#, fuzzy
 msgid "%A %d %B %Y"
-msgstr "%A %d %B %Y"
+msgstr "%A %d %B %Y "
 
 #, fuzzy
 msgid "%A %d-%B"
@@ -983,7 +973,7 @@ msgstr "%d %b"
 msgid "%d %b %Y"
 msgstr "%d %b %Y"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d GB"
 msgstr "%d ГБ"
 
@@ -1156,6 +1146,9 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
+
+msgid "%s"
+msgstr "%s"
 
 #, python-format
 msgid ""
@@ -5699,10 +5692,12 @@ msgstr "Ви хочете записати цю колекцію на DVD дис
 msgid "Do you want to continue?"
 msgstr "Ви хочете продовжити?"
 
-msgid "Do you want to delete all other languages?\n"
+msgid ""
+"Do you want to delete all other languages?\n"
 "Except English, French, German and your selection:\n"
 "\n"
-msgstr "Ви хочете видалити всі інші мови?\n"
+msgstr ""
+"Ви хочете видалити всі інші мови?\n"
 "Крім англійської, французької, німецької та вашого вибору:\n"
 "\n"
 
@@ -15125,7 +15120,7 @@ msgstr "ТБ"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 18.06.2019\n"
+msgstr "Переклад: kvinto - 19.06.2019\n"
 "Сторінка:    sat-ukraine.info\n"
 "                 https://gisclub.tv"
 
@@ -19307,7 +19302,7 @@ msgid "n/a"
 msgstr "не визначено"
 
 msgid "nature/animals/environment"
-msgstr ""
+msgstr "природа/тварини/навколишнє середовище"
 
 msgid "never"
 msgstr "ніколи"
@@ -19400,10 +19395,10 @@ msgid "nothing connected"
 msgstr "нічого не під'єднано"
 
 msgid "of a DUAL layer medium used."
-msgstr "DUAL-Layer диску використано."
+msgstr "на Двошаровому диску використано."
 
 msgid "of a SINGLE layer medium used."
-msgstr "SINGLE-Layer диску використано."
+msgstr "на Одношаровому диску використано."
 
 msgid "off"
 msgstr "вимкн"
@@ -19460,7 +19455,7 @@ msgid "picons"
 msgstr "пікони"
 
 msgid "pid:"
-msgstr "пад:"
+msgstr "під:"
 
 msgid "play Files"
 msgstr "відтворення файлів"
@@ -19949,16 +19944,16 @@ msgid "talk show"
 msgstr "розмовне шоу"
 
 msgid "team sports"
-msgstr ""
+msgstr "командні види спорту"
 
 msgid "technology/natural science"
-msgstr ""
+msgstr "технології/природознавство"
 
 msgid "template file"
 msgstr "файл шаблону"
 
 msgid "tennis/squash"
-msgstr ""
+msgstr "теніс/сквош"
 
 msgid "this bouquet is protected by a parental control pin"
 msgstr "цей фаворит захищений батьківським контролем"
