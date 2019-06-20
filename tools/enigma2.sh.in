@@ -95,7 +95,11 @@ ret=$?
 echo "$(date): enigma2 terminated with code $ret" >> ${run_log}
 case $ret in
 	1)
-		/sbin/halt
+		if [ -e /proc/stb/info/boxtype -a "beyonwizv2" == "$(cat /proc/stb/info/boxtype)" -a -x /usr/bin/hihalt ]; then
+			/usr/bin/hihalt
+		else
+			/sbin/halt
+		fi
 		;;
 	2)
 		/sbin/reboot
