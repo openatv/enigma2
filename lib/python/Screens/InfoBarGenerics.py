@@ -261,6 +261,7 @@ class InfoBarUnhandledKey:
 
 		if flag != 4:
 			if self.flags & (1 << 1):
+				self.checkUnusedTimer.stop()
 				self.flags = self.uflags = 0
 			self.flags |= (1 << flag)
 			if flag == 1:  # break
