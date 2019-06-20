@@ -138,7 +138,6 @@ class vEditor(Screen, HelpableScreen):
 	def editLine(self):
 		try:
 			self.findtab = -1
-			length = 95
 			self.selLine = self["filedata"].getSelectionIndex()
 			self.oldLine = self.list[self.selLine]
 			my_editableText = self.list[self.selLine][:-1]
@@ -149,7 +148,7 @@ class vEditor(Screen, HelpableScreen):
 			self.findtab = editableText.find("\t", 0, len(editableText))
 			if self.findtab != -1:
 				editableText = editableText.replace("\t", "        ")
-			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
+			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
 		except:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
 			msg.setTitle(_("Error..."))

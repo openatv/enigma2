@@ -399,8 +399,9 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			text = PyTuple_GET_ITEM(item, 0);
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
-			painter.renderText(eRect(ePoint(offset.x()+15, offset.y()), m_itemsize), string,
-			gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
+			eRect labelrect(ePoint(offset.x()+15, offset.y()), m_itemsize);
+			painter.renderText(labelrect, string,
+				gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
 			Py_XDECREF(text);
 
 				/* when we have no label, align value to the left. (FIXME:
@@ -434,15 +435,49 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				const char *atype = (type && PyString_Check(type)) ? PyString_AsString(type) : 0;
 				if (atype)
 				{
-					if (!strcmp(atype, "text"))
+					if (!strcmp(atype, "text") || !strcmp(atype, "mtext"))
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
-						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
+						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
-						if (value_alignment_left)
-							painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), value, gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
-						else
-							painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), value, gPainter::RT_HALIGN_RIGHT| gPainter::RT_VALIGN_CENTER, border_color, border_size);
+						int flags = value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT;
+						int markedpos = -1;
+
+						if (!strcmp(atype, "mtext"))
+						{
+							if (PyTuple_Size(value) >= 3)
+							{
+								// FIXME: only one or all is supported
+								ePyObject plist = PyTuple_GET_ITEM(value, 2);
+								if (plist && PyList_Check(plist))
+								{
+									if (PyList_Size(plist) == 1)
+									{
+										ePyObject entry = PyList_GET_ITEM(plist, 0);
+										if (PyInt_Check(entry))
+											markedpos = PyInt_AsLong(entry);
+									}
+									else
+										markedpos = -2;
+								}
+								/* entry is borrowed */
+								/* plist is 0 or borrowed */
+							}
+						}
+							/* find the width of the label, to prevent the value overwriting it. */
+						ePoint valueoffset = offset;
+						eSize valuesize = m_itemsize;
+						int labelwidth = 0;
+						if (*string)
+						{
+							ePtr<eTextPara> para = new eTextPara(labelrect);
+							para->setFont(fnt);
+							para->renderString(string, 0);
+							labelwidth = para->getBoundBox().width() + 15;
+						}
+						valueoffset.setX(valueoffset.x() + 15 + labelwidth);
+						valuesize.setWidth(valuesize.width() - 15 - labelwidth - 15);
+						painter.renderText(eRect(valueoffset, valuesize), text, flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos);
 					/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
 					{
@@ -472,63 +507,6 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						painter.fill(eRect(offset.x() + m_seperation + 3, offset.y() + 5, width, height - 10));
 
 					/* pvalue is borrowed */
-					} else if (!strcmp(atype, "mtext"))
-					{
-						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
-						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
-						ePtr<eTextPara> para = new eTextPara(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize));
-						para->setFont(fnt2);
-						para->renderString(text, 0);
-
-						if (value_alignment_left)
-							para->realign(eTextPara::dirLeft);
-						else
-							para->realign(eTextPara::dirRight);
-
-						int glyphs = para->size();
-
-						ePyObject plist;
-
-						if (PyTuple_Size(value) >= 3)
-							plist = PyTuple_GET_ITEM(value, 2);
-
-						int entries = 0;
-
-						if (plist && PyList_Check(plist))
-							entries = PyList_Size(plist);
-
-						int left=0, right=0, last=-1;
-						eRect bbox;
-						eRect pbox = para->getBoundBox();
-						for (int i = 0; i < entries; ++i)
-						{
-							ePyObject entry = PyList_GET_ITEM(plist, i);
-							int num = PyInt_Check(entry) ? PyInt_AsLong(entry) : -1;
-
-							if ((num < 0) || (num >= glyphs))
-								eWarning("[eListboxPythonMultiContent] glyph index %d in PythonConfigList out of bounds!", num);
-							else
-							{
-								if (last+1 != num && last != -1) {
-									bbox = eRect(left, offset.y(), right-left, (m_itemsize.height() - pbox.height()) / 2);
-									painter.fill(bbox);
-								}
-								para->setGlyphFlag(num, GS_INVERT);
-								bbox = para->getGlyphBBox(num);
-								if (last+1 != num || last == -1)
-									left = bbox.left();
-								right = bbox.left() + bbox.width();
-								last = num;
-							}
-								/* entry is borrowed */
-						}
-						if (last != -1) {
-							bbox = eRect(left, offset.y() + (m_itemsize.height() - pbox.height()) / 2, right - left, pbox.height());
-							painter.fill(bbox);
-						}
-						painter.renderPara(para, ePoint(0, m_itemsize.height() - pbox.height()) / 2);
-							/* pvalue is borrowed */
-							/* plist is 0 or borrowed */
 					}
 					else if (!strcmp(atype, "pixmap"))
 					{

@@ -164,11 +164,18 @@ class EPGSelection(Screen, HelpableScreen):
 		self['dialogactions'].csel = self
 		self["dialogactions"].setEnabled(False)
 
-		self['okactions'] = HelpableActionMap(self, 'OkCancelActions', {
+		okmap = {
 			'cancel': (self.closeScreen, _('Exit EPG')),
 			'OK': (self.OK, self._helpOK),
 			'OKLong': (self.OKLong, self._helpOKLong)
-		}, prio=-1, description=_('Channel zap and exit'))
+		}
+		if self.type != EPG_TYPE_SINGLE:
+			okmap.update({
+				'media': (self.closeToMedia, _('Exit, show movie list')),
+				'timer': (self.closeToTimer, _('Exit, show timer list'))
+			})
+		self['okactions'] = HelpableActionMap(self, ['OkCancelActions', 'TimerMediaEPGActions'],
+			okmap, prio=-1, description=_('Channel zap and exit'))
 		self['okactions'].csel = self
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', {
 			'red': (self.redButtonPressed, _('IMDB search for current event')),
@@ -191,7 +198,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', {
 				'info': (self.Info, self._helpInfo),
 				'infolong': (self.InfoLong, self._helpInfoLong),
-				'timer': (self.showTimerList, _('Show timer list')),
 				'timerlong': (self.showAutoTimerList, _('Show Autotimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Detailed event information and setup'))
@@ -225,7 +231,6 @@ class EPGSelection(Screen, HelpableScreen):
 					'epg': (self.epgButtonPressed, _('Open single channel EPG')),
 					'info': (self.Info, self._helpInfo),
 					'infolong': (self.InfoLong, self._helpInfoLong),
-					'timer': (self.showTimerList, _('Show timer list')),
 					'timerlong': (self.showAutoTimerList, _('Show Autotimer list')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
@@ -257,7 +262,6 @@ class EPGSelection(Screen, HelpableScreen):
 					'prevService': (self.prevService, _('Go to previous channel')),
 					'info': (self.Info, self._helpInfo),
 					'infolong': (self.InfoLong, self._helpInfoLong),
-					'timer': (self.showTimerList, _('Show timer list')),
 					'timerlong': (self.showAutoTimerList, _('Show Autotimer list')),
 					'menu': (self.createSetup, _('Setup menu'))
 				}, prio=-1, description=_('Bouquets and services, information and setup'))
@@ -344,7 +348,6 @@ class EPGSelection(Screen, HelpableScreen):
 				'infolong': (self.InfoLong, self._helpInfoLong),
 				'tv': (self.Bouquetlist, _('Toggle between bouquet/EPG lists')),
 				'tvlong': (self.togglePIG, _('Toggle picture in graphics')),
-				'timer': (self.showTimerList, _('Show timer list')),
 				'timerlong': (self.showAutoTimerList, _('Show Autotimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Bouquets and services, information and setup'))
@@ -412,6 +415,7 @@ class EPGSelection(Screen, HelpableScreen):
 				'info': (self.Info, self._helpInfo),
 				'infolong': (self.InfoLong, self._helpInfoLong),
 				'tv': (self.Bouquetlist, _('Toggle between bouquet/EPG lists')),
+				'timerlong': (self.showAutoTimerList, _('Show Autotimer list')),
 				'menu': (self.createSetup, _('Setup menu'))
 			}, prio=-1, description=_('Bouquets and services, information and setup'))
 			self['epgactions'].csel = self
@@ -986,7 +990,11 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
-		self.session.open(TimerEditList)
+		self.session.openWithCallback(self.closeTimerList, TimerEditList)
+
+	def closeTimerList(self, new_screen=None):
+		if new_screen == 'media':
+			self.closeScreen(new_screen)
 
 	def showAutoTimerList(self):
 		global autopoller
@@ -1436,7 +1444,7 @@ class EPGSelection(Screen, HelpableScreen):
 			del self.eventviewDialog
 			self.eventviewDialog = None
 
-	def closeScreen(self):
+	def closeScreen(self, new_screen=None):
 		if self.zapnumberstarted:
 			self.stopNumberZap()
 			return
@@ -1469,7 +1477,13 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.pipshown = False
 			del self.session.pip
 		self.closeEventViewDialog()
-		self.close(closeParam)
+		self.close((closeParam, new_screen))
+
+	def closeToMedia(self):
+		self.closeScreen('media')
+
+	def closeToTimer(self):
+		self.closeScreen('timer')
 
 	def zap(self):
 		if self.zapFunc:
