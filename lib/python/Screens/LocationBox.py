@@ -235,15 +235,16 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			# remove bookmark
 			if not self.userMode:
 				name = self["booklist"].getCurrent()
-				if self.usingAliases:
-					bm, name = name
-				else:
-					bm = name
-				self.session.openWithCallback(
-					boundFunction(self.removeBookmark, name),
-					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % bm
-				)
+				if name:
+					if self.usingAliases:
+						bm, name = name
+					else:
+						bm = name
+					self.session.openWithCallback(
+						boundFunction(self.removeBookmark, name),
+						MessageBox,
+						_("Do you really want to remove your bookmark of %s?") % bm
+					)
 
 	def removeBookmark(self, name, ret):
 		if not ret:
@@ -361,7 +362,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			return selection
 		else:
 			bm = self["booklist"].getCurrent()
-			return bm[1] if self.usingAliases else bm
+			return bm[1] if bm and self.usingAliases else bm
 
 	def selectConfirmed(self, ret):
 		if ret:
