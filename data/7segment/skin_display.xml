@@ -70,10 +70,14 @@
 
 <!-- Numberzap -->    
 	<screen name="NumberZap_summary" position="0,0" size="1,1">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay">Number;nozero</convert>
+		</widget>
 	</screen> 
 	<screen name="NumberZapPicon_summary" position="0,0" size="1,1">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay">Number;nozero</convert>
+		</widget>
 	</screen>
 
 <!-- misc-->
