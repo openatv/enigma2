@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-05-07 10:20+0200\n"
-"PO-Revision-Date: 2019-06-19 20:39+0200\n"
+"PO-Revision-Date: 2019-06-22 20:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -457,17 +457,14 @@ msgstr "%A %d %B"
 msgid "%A %-d %B %Y"
 msgstr "%A %-d %B %Y"
 
-#, fuzzy
 msgid "%A %-d-%B"
-msgstr "%A %-d-%B"
+msgstr "%A % -d- %B"
 
-#, fuzzy
 msgid "%A %-d-%B-%Y"
-msgstr "%A %-d-%B-%Y"
+msgstr "%A % -d- %B-%Y"
 
-#, fuzzy
 msgid "%A %-d/%-m"
-msgstr "%A %-d/%-m"
+msgstr "%A % -d/% -m"
 
 msgid "%A %-d/%-m/%Y"
 msgstr "%A %-d/%-m/%Y"
@@ -590,9 +587,8 @@ msgstr "%A %m/%-d"
 msgid "%A %m/%-d/%Y"
 msgstr "%A %m.%-d.%Y"
 
-#, fuzzy
 msgid "%A %m/%d"
-msgstr "%A %m. %d."
+msgstr "%A %m %d"
 
 #, fuzzy
 msgid "%A %m/%d/%Y"
@@ -4080,7 +4076,7 @@ msgstr "Натисніть на пульті ту кнопку, дію якої 
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Інформація Client(Оскам-Версія: %s )"
+msgstr "Інформація Client(Оскам-Версія: %s)"
 
 msgid "ClientIP"
 msgstr "АПКлієнт"
@@ -7618,7 +7614,6 @@ msgstr "Назад в історії"
 msgid "History buttons mode"
 msgstr "Режим кнопок <>"
 
-
 msgid "History long"
 msgstr "Історія довге натискання"
 
@@ -7706,9 +7701,8 @@ msgstr "Відтінок"
 msgid "Hungarian"
 msgstr "Венгерська"
 
-#, fuzzy
 msgid "Hungary"
-msgstr "Венгрія"
+msgstr ""
 
 msgid "I/O priority for script execution"
 msgstr "I/O пріоритет для виконання скриптів"
@@ -8339,9 +8333,8 @@ msgstr "Неможливо перейменувати корінь файлов�
 msgid "Italian"
 msgstr "Італійська"
 
-#, fuzzy
 msgid "Italy"
-msgstr "Італія"
+msgstr ""
 
 msgid "JUMP 24 HOURS"
 msgstr "ПЕРЕЙТИ НА 24 ГОДИН"
@@ -8474,9 +8467,8 @@ msgstr "Корея (Народно-Демократична Республіка
 msgid "Korea (Republic of)"
 msgstr "Корея (Республіка)"
 
-#, fuzzy
 msgid "Kuwait"
-msgstr "Кувейт"
+msgstr ""
 
 msgid "Kyrgyzstan"
 msgstr "Киргистан"
@@ -8581,9 +8573,8 @@ msgstr "Пізніше"
 msgid "Latitude"
 msgstr "Широта"
 
-#, fuzzy
 msgid "Latvia"
-msgstr "Латвія"
+msgstr ""
 
 msgid "Latvian"
 msgstr "Латвійська"
@@ -8634,9 +8625,8 @@ msgstr "Ліберія"
 msgid "Libya"
 msgstr "Лівія"
 
-#, fuzzy
 msgid "Liechtenstein"
-msgstr "Ліхтенштейн"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "Світло-сірий"
@@ -8720,9 +8710,8 @@ msgstr "Слухати радіо..."
 msgid "Lists reloaded!"
 msgstr "Списки перезавантажуються!"
 
-#, fuzzy
 msgid "Lithuania"
-msgstr "Литва"
+msgstr ""
 
 msgid "Lithuanian"
 msgstr "Литовська"
@@ -8832,7 +8821,6 @@ msgstr "Найнижчий режим"
 msgid "Lowest Video output mode"
 msgstr "Найнижчий режим виведення відео"
 
-#, fuzzy
 msgid "Luxembourg"
 msgstr "Люксембург"
 
@@ -9089,7 +9077,7 @@ msgid "Micronesia (Federated States of)"
 msgstr "Мікронезія (Федеративні Штати)"
 
 msgid "MiniDLNA"
-msgstr ""
+msgstr "Міні-DLNA"
 
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA Лог"
@@ -9101,7 +9089,7 @@ msgid "MiniTV"
 msgstr "МініТВ"
 
 msgid "MiniTV with OSD"
-msgstr "МініТВ з OSD"
+msgstr "Міні-ТВ з OSD"
 
 #, python-format
 msgid "Minimum age %d years"
@@ -9521,6 +9509,9 @@ msgstr "Власний"
 
 msgid "Nauru"
 msgstr "Науру"
+
+msgid "NcamInfo"
+msgstr "Ncam-Інфо"
 
 msgid "Nepal"
 msgstr "Непал"
@@ -10083,7 +10074,7 @@ msgid "ONID"
 msgstr "ONID"
 
 msgid "OSD"
-msgstr ""
+msgstr "OSD"
 
 msgid "OSD 3D Setup"
 msgstr "OSD Налаштування 3D"
@@ -11111,9 +11102,8 @@ msgstr "Порт D"
 msgid "Port:"
 msgstr "Порт:"
 
-#, fuzzy
 msgid "Portugal"
-msgstr "Португалія"
+msgstr ""
 
 msgid "Portuguese"
 msgstr "Португальська"
@@ -11255,6 +11245,9 @@ msgstr "Натисніть Init для форматування SDcard."
 
 msgid "Press MENU on your remote control for additional options."
 msgstr "Натисніть MENU на пульті ду для отримання додаткових опцій."
+
+msgid "Press MENU to install additional language(s)."
+msgstr "Натисніть MENU, щоб встановити додаткові мови."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Натисніть ОК для продовження."
@@ -13152,9 +13145,6 @@ msgid "Service reference"
 msgstr "Референс Каналу"
 
 msgid "Service scan"
-msgstr "Пошук каналів"
-
-msgid "Tuners & scanning"
 msgstr "Пошук каналів"
 
 msgid ""
@@ -15120,7 +15110,7 @@ msgstr "ТБ"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 19.06.2019\n"
+msgstr "Переклад: kvinto - 22.06.2019\n"
 "Сторінка:    sat-ukraine.info\n"
 "                 https://gisclub.tv"
 
@@ -16494,6 +16484,9 @@ msgstr "Статус тюнера НЕВІДОМО"
 msgid "Tuner type %s"
 msgstr "Тип тюнера %s"
 
+msgid "Tuners & scanning"
+msgstr "Тюнер & пошук"
+
 msgid "Tuning algorithm"
 msgstr "Алгоритм налаштування"
 
@@ -16768,6 +16761,9 @@ msgstr "Канал Оновленя не доступний."
 
 msgid "Updates Available:"
 msgstr "Доступні оновлення:"
+
+msgid "Updating cache"
+msgstr "Оновлення кешу"
 
 msgid "Updating cache, please wait..."
 msgstr "Оновлення кешу, будь ласка, зачекайте..."
