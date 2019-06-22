@@ -979,9 +979,9 @@ msgid "%d minutes"
 msgstr "%d Minuten"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "%d ms"
-msgstr "%d min"
+msgstr "%d ms"
 
 #, python-format
 msgid "%d pixel wide"
@@ -1075,8 +1075,8 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "%s"
+#, python-format
+msgid "%s B"
 msgstr "%s B"
 
 #, python-format
@@ -1252,10 +1252,8 @@ msgstr "'Puffer in Stunden' oder 'Anzahl der letzten Ereignisse'. Priorität hat
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'"
 
-#
-#, fuzzy
 msgid "'weatherplugin' is not installed!"
-msgstr "Dieses Plugin ist nicht installiert."
+msgstr "'weatherplugin' ist nicht installiert!"
 
 msgid "( All readers)"
 msgstr "(Alle Lesegeräte)"
@@ -2576,13 +2574,11 @@ msgstr "Auch im Standby"
 msgid "Alternative"
 msgstr "Alternative"
 
-#, fuzzy
 msgid "Alternative 1"
-msgstr "Alternative"
+msgstr "Alternative 1"
 
-#, fuzzy
 msgid "Alternative 2"
-msgstr "Alternative"
+msgstr "Alternative 2"
 
 msgid "Alternative numbering mode"
 msgstr "Alternative Nummerierung"
@@ -3312,9 +3308,8 @@ msgstr "Verhalten bei Filmende"
 msgid "Belarus"
 msgstr "Weißrussland"
 
-#, fuzzy
 msgid "Belgian"
-msgstr "Belgien"
+msgstr "Belgisch"
 
 msgid "Belgium"
 msgstr "Belgien"
@@ -4313,9 +4308,8 @@ msgstr "Kommunikation"
 msgid "Comoros"
 msgstr "Komoren"
 
-#, fuzzy
 msgid "Compensate for overscan"
-msgstr "Vor dem Suchlauf löschen"
+msgstr "Overscan ausgleichen"
 
 #
 msgid "Complete"
@@ -5093,7 +5087,6 @@ msgstr "Extras"
 msgid "Cut"
 msgstr "Schneiden"
 
-#, fuzzy
 msgid "Cutlist Editor"
 msgstr "Schnitt-Editor"
 
@@ -5181,9 +5174,8 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
-#, fuzzy
 msgid "DVD Burn"
-msgstr "DVD-Menü"
+msgstr "DVD brennen"
 
 msgid "DVD File Browser"
 msgstr "DVD-Dateimanager"
@@ -5201,8 +5193,6 @@ msgstr "DVD-Dateibrowser"
 msgid "DVD player"
 msgstr "DVD-Player"
 
-#
-#, fuzzy
 msgid "DVDPlayer"
 msgstr "DVD-Player"
 
@@ -5393,10 +5383,8 @@ msgstr "Standard I/O-Priorität (ionice) für ausgeführte Skripts. Dies kann di
 msgid "Default Modes Selected."
 msgstr "Standardmodi ausgewählt."
 
-#
-#, fuzzy
 msgid "Default Services Scanner"
-msgstr "Kanalsuchlauf"
+msgstr "Standardsender-Suchlauf"
 
 msgid "Default directory sorting"
 msgstr "Standardsortierung für Verzeichnisse"
@@ -6163,9 +6151,8 @@ msgstr "Plugins herunterladen"
 msgid "Downloadable plugins"
 msgstr "Herunterladbare Plugins"
 
-#, fuzzy
 msgid "Downloaded Images"
-msgstr "Heruntergeladen"
+msgstr "Heruntergeladene Images"
 
 #
 msgid "Downloading"
@@ -7099,9 +7086,8 @@ msgstr ""
 msgid "FLASH"
 msgstr ""
 
-#, fuzzy
 msgid "FP Upgrade"
-msgstr "FPGA-Upgrade"
+msgstr "FP-Upgrade"
 
 msgid "FSBL Update Check"
 msgstr ""
@@ -7533,9 +7519,8 @@ msgstr "Volle Transparenz"
 msgid "FullHD Test"
 msgstr ""
 
-#, fuzzy
 msgid "Fullbackup Images"
-msgstr "Image-Sicherung"
+msgstr "Image-Komplettsicherung"
 
 #
 msgid "Fullscreen"
@@ -8302,10 +8287,8 @@ msgstr "Unerwartetes Aufwachen ignorieren und im Standby bleiben"
 msgid "Image"
 msgstr ""
 
-#
-#, fuzzy
 msgid "Image Backup"
-msgstr "Vollständige Sicherung"
+msgstr "Image-Sicherung"
 
 msgid "Image Info"
 msgstr ""
@@ -8548,10 +8531,8 @@ msgstr ""
 msgid "Input"
 msgstr "Eingabe"
 
-#
-#, fuzzy
 msgid "Input "
-msgstr "Eingabe"
+msgstr "Eingabe "
 
 msgid "Input Stream ID"
 msgstr ""
@@ -8660,7 +8641,6 @@ msgstr "Installiere Plugins aus IPK..."
 msgid "Installing plugins from feed ..."
 msgstr "Installiere Plugins vom Feed..."
 
-#, fuzzy
 msgid "Installing software..."
 msgstr "Installiere Software..."
 
@@ -8753,7 +8733,6 @@ msgstr "Ipkg"
 msgid "Iran (Islamic Republic of)"
 msgstr "Iran (Islamische Republik)"
 
-#, fuzzy
 msgid "Iran, Islamic Republic"
 msgstr "Iran (Islamische Republik)"
 
@@ -9949,9 +9928,9 @@ msgid "Multiboot Image Selector"
 msgstr "MultiBoot-Auswahl"
 
 # ImageBackup.py
-#, fuzzy, python-format
+#, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Multiboot Image erstellt auf: %s/%s-%s-%s-backup-%s_mmc.zip"
+msgstr "Multiboot-Image erstellt als: %s/%s-%s-%s-backup-%s_mmc.zip"
 
 msgid "Multiboot Manager"
 msgstr "Multiboot-Manager"
@@ -9959,7 +9938,6 @@ msgstr "Multiboot-Manager"
 msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
 msgstr "Multiboot-Manager - SD-Karte kann nicht initialisiert werden, wenn das Image auf der SD-Karte ausgeführt wird."
 
-#, fuzzy
 msgid "Multiboot manager - SDcard initialization run, please restart your Image."
 msgstr "Multiboot-Manager - Initialisierung der SD-Karte. Bitte starten Sie die Box neu."
 
@@ -10085,9 +10063,8 @@ msgstr ""
 msgid "Nauru"
 msgstr "Nauru"
 
-#, fuzzy
 msgid "NcamInfo"
-msgstr "CCcamInfo"
+msgstr "NcamInfo"
 
 msgid "Nepal"
 msgstr "Nepal"
@@ -10736,9 +10713,8 @@ msgstr "Bedienoberfläche anpassen"
 msgid "OSD name request"
 msgstr "OSD-Sprache"
 
-#, fuzzy
 msgid "OSD position setup"
-msgstr "OSD Einstellungen"
+msgstr "OSD-Positionseinstellungen"
 
 msgid "OSD settings"
 msgstr "OSD"
@@ -11191,9 +11167,8 @@ msgstr "Passwort (httpwd)"
 msgid "Password Setup"
 msgstr "Passwort einrichten"
 
-#, fuzzy
 msgid "Password changed"
-msgstr "Passwort (httpwd)"
+msgstr "Passwort geändert"
 
 msgid "Password:"
 msgstr "Passwort:"
@@ -11330,14 +11305,11 @@ msgstr "Pitcairn"
 msgid "Play"
 msgstr "Abspielen"
 
-#
 msgid "Play DVD"
 msgstr "DVD abspielen"
 
-#
-#, fuzzy
 msgid "Play DVDs"
-msgstr "DVD abspielen"
+msgstr "DVDs abspielen"
 
 msgid "Play audio in background"
 msgstr "Audio im Hintergrund abspielen"
@@ -12213,9 +12185,8 @@ msgstr "Programmlisten wiederherstellen"
 msgid "Programmlisten from DXAndy"
 msgstr "Programmlisten von DXAndy"
 
-#, fuzzy
 msgid "Programmlisten-Updater V"
-msgstr "Programmlisten-Updater von DXAndy"
+msgstr "Programmlisten-Updater V"
 
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "Programmlisten-Updater von DXAndy"
@@ -13633,9 +13604,8 @@ msgstr "Funktion der gelben Taste"
 msgid "Select Yellow Key Action long"
 msgstr "Funktion der gelben Taste - lang"
 
-#, fuzzy
 msgid "Select Your Skin"
-msgstr "LCD Skin auswählen"
+msgstr "Skin auswählen"
 
 msgid "Select a bouquet"
 msgstr "Bouquet auswählen"
@@ -15351,7 +15321,6 @@ msgstr "Skinauswahl"
 msgid "Skins"
 msgstr "Skins"
 
-#, fuzzy
 msgid "Skinselector"
 msgstr "Skinauswahl"
 
@@ -16207,10 +16176,8 @@ msgstr "System"
 msgid "System Info"
 msgstr "System-Info"
 
-#
-#, fuzzy
 msgid "System Message Check"
-msgstr "Dateisystemüberprüfung"
+msgstr "Überprüfung der Systemnachrichten"
 
 # Quick Menue
 msgid "System Setup"
@@ -17801,7 +17768,6 @@ msgstr "Typ:"
 msgid "Type: "
 msgstr "Typ: "
 
-#, fuzzy
 msgid "UI 3D setup"
 msgstr "3D-Einstellungen"
 
@@ -17843,9 +17809,8 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainisch"
 
-#, fuzzy
 msgid "Unable to change password"
-msgstr "Bitte Passwort eingeben"
+msgstr "Passwortänderung nicht möglich"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -17905,7 +17870,6 @@ msgstr "Vereinigte Arabische Emirate"
 msgid "United Kingdom"
 msgstr "England"
 
-#, fuzzy
 msgid "United States"
 msgstr "Vereinigte Staaten"
 
@@ -18381,9 +18345,8 @@ msgstr "Vu+"
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#, fuzzy
 msgid "Various"
-msgstr "Vorheriges"
+msgstr "Diverses"
 
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr "Venezuela (Bolivarische Republik)"
@@ -18655,10 +18618,8 @@ msgstr "Jungferninseln (Britisch)"
 msgid "Virgin Islands (U.S.)"
 msgstr "Jungferninseln (US)"
 
-#
-#, fuzzy
 msgid "Virtual KeyBoard Functions"
-msgstr "Virtuelle Tastatur"
+msgstr "Funktionen der virtuellen Tastatur"
 
 #
 #, fuzzy
