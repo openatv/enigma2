@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 10:20+0200\n"
+"POT-Creation-Date: 2019-06-22 11:29+0000\n"
 "PO-Revision-Date: 2016-04-02 23:11+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: No-Team\n"
@@ -266,17 +266,6 @@ msgstr "Canal"
 #, fuzzy
 msgid " <empty>"
 msgstr "vazio"
-
-#, python-format
-msgid " Except %s"
-msgstr ""
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
 
 msgid " and"
 msgstr "e"
@@ -1024,6 +1013,10 @@ msgstr[1] "%d minutos"
 msgid "%d minutes"
 msgstr "%d minutos"
 
+#, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d min"
+
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
@@ -1114,6 +1107,10 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s"
+msgstr "bc%s"
+
 #, python-format
 msgid ""
 "%s\n"
@@ -1189,6 +1186,10 @@ msgstr "Definições"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Scan additional SR"
+
+#, fuzzy, python-format
+msgid "%s build date %s"
+msgstr "Última atualização:"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1280,6 +1281,10 @@ msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
 
 #, fuzzy
+msgid "'weatherplugin' is not installed!"
+msgstr "Este plugin não está instalado."
+
+#, fuzzy
 msgid "( All readers)"
 msgstr "Todas as idades"
 
@@ -1326,9 +1331,6 @@ msgstr ""
 msgid "+24"
 msgstr "2"
 
-msgid "---Weather---"
-msgstr ""
-
 #, fuzzy
 msgid "-24"
 msgstr "2"
@@ -1357,9 +1359,6 @@ msgstr ""
 
 msgid "0"
 msgstr ""
-
-msgid "0 (disabled)"
-msgstr "0 (desabilitado)"
 
 msgid "0.2s"
 msgstr ""
@@ -1394,9 +1393,6 @@ msgstr ""
 msgid "1 min."
 msgstr ""
 
-msgid "1 second"
-msgstr ""
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1415,20 +1411,11 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10"
-msgstr ""
-
-msgid "10 (default)"
-msgstr "10 (padrão)"
-
 msgid "10 MB/s"
 msgstr ""
 
 msgid "10 min."
 msgstr ""
-
-msgid "10 seconds"
-msgstr "10 segundos"
 
 msgid "100 MB/s"
 msgstr ""
@@ -1479,9 +1466,6 @@ msgstr "caracteres especiais"
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
-msgid "120"
-msgstr ""
-
 #, fuzzy
 msgid "128"
 msgstr "1.2"
@@ -1506,9 +1490,6 @@ msgid "13 V"
 msgstr "13 V"
 
 msgid "15 min."
-msgstr ""
-
-msgid "15 seconds"
 msgstr ""
 
 msgid "1536 Mb"
@@ -1581,13 +1562,7 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20"
-msgstr ""
-
 msgid "20 MB/s"
-msgstr ""
-
-msgid "20 seconds"
 msgstr ""
 
 msgid "2048 Mb"
@@ -1622,9 +1597,6 @@ msgid "24+ Hours"
 msgstr ""
 
 msgid "24- Hours"
-msgstr ""
-
-msgid "240"
 msgstr ""
 
 msgid "24p/24p"
@@ -1718,9 +1690,6 @@ msgstr ""
 msgid "30 minutes"
 msgstr ""
 
-msgid "30 seconds"
-msgstr ""
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1811,16 +1780,10 @@ msgstr ""
 msgid "5"
 msgstr ""
 
-msgid "5 (default)"
-msgstr ""
-
 msgid "5 min."
 msgstr ""
 
 msgid "5 minutes"
-msgstr ""
-
-msgid "5 seconds"
 msgstr ""
 
 msgid "50 MB/s"
@@ -1855,9 +1818,6 @@ msgid "5s"
 msgstr ""
 
 msgid "6"
-msgstr ""
-
-msgid "60"
 msgstr ""
 
 msgid "60 minutes"
@@ -2603,6 +2563,14 @@ msgstr ""
 msgid "Alternative"
 msgstr "Adicionar alternativas"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "Adicionar alternativas"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "Adicionar alternativas"
+
 msgid "Alternative numbering mode"
 msgstr "Modo rádio alternativo"
 
@@ -2929,6 +2897,10 @@ msgid "Australia"
 msgstr "Italiano"
 
 #, fuzzy
+msgid "Australian"
+msgstr "Italiano"
+
+#, fuzzy
 msgid "Austria"
 msgstr "terrestre"
 
@@ -3064,6 +3036,10 @@ msgid "Available format variables"
 msgstr "Formato de variáveis disponíveis"
 
 #, fuzzy
+msgid "Available locales are:"
+msgstr "Formato de variáveis disponíveis"
+
+#, fuzzy
 msgid "Available shares:"
 msgstr "Formato de variáveis disponíveis"
 
@@ -3171,6 +3147,14 @@ msgstr "Apagar em segundo plano"
 msgid "Background delete speed"
 msgstr "Velocidade ao apagar em segundo plano"
 
+#, fuzzy
+msgid "Background:"
+msgstr "Background"
+
+#, fuzzy
+msgid "Backgroundselected:"
+msgstr "Velocidade ao apagar em segundo plano"
+
 msgid "Backup"
 msgstr ""
 
@@ -3237,6 +3221,12 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
+msgid "Backup, flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr ""
+
 msgid "Bahamas"
 msgstr ""
 
@@ -3294,6 +3284,10 @@ msgstr "Comportamento ao terminar o filme"
 
 msgid "Belarus"
 msgstr ""
+
+#, fuzzy
+msgid "Belgian"
+msgstr "Norueguês"
 
 msgid "Belgium"
 msgstr ""
@@ -3548,9 +3542,6 @@ msgstr ""
 msgid "CCcam Shares Info"
 msgstr ""
 
-msgid "CCcamInfo"
-msgstr ""
-
 msgid "CCcamInfo Mainmenu"
 msgstr ""
 
@@ -3589,10 +3580,6 @@ msgstr ""
 
 msgid "CI assignment"
 msgstr "Escolha de CI"
-
-#, fuzzy
-msgid "CI settings"
-msgstr "Editar definições"
 
 msgid "CI slot: "
 msgstr ""
@@ -3709,6 +3696,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancelar"
 
+msgid "Cancel any text changes and exit"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel execution?"
 msgstr "Seleção de canal"
@@ -3718,6 +3708,10 @@ msgstr ""
 
 msgid "Cancelled upon user request"
 msgstr ""
+
+#, fuzzy
+msgid "Cannot create backup directory"
+msgstr "criar pasta"
 
 #, fuzzy
 msgid "Cannot delete downloaded image"
@@ -3905,11 +3899,11 @@ msgid "Channel list service mode*"
 msgstr "O canal não está na lista de serviços"
 
 #, fuzzy
-msgid "Channel list show MiniTV"
+msgid "Channel list show MiniTV when Skin use."
 msgstr "Menu da lista de canais"
 
 #, fuzzy
-msgid "Channel list show MiniTV when Skin use."
+msgid "Channel list show MiniTV*"
 msgstr "Menu da lista de canais"
 
 msgid "Channel list type"
@@ -4157,6 +4151,9 @@ msgstr "Circular esquerda"
 msgid "Circular right"
 msgstr "Circular direita"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 #, fuzzy
 msgid "Clean network trash cans"
 msgstr "Impossível apagar"
@@ -4200,6 +4197,10 @@ msgstr ""
 msgid "Clock"
 msgstr ""
 
+#, fuzzy
+msgid "Clock:"
+msgstr "sintonizado"
+
 msgid "Clone TV screen to LCD"
 msgstr ""
 
@@ -4234,6 +4235,9 @@ msgstr "Coderate HP"
 
 msgid "Coderate LP"
 msgstr "Coderate LP"
+
+msgid "Collapse"
+msgstr ""
 
 msgid "Collection name"
 msgstr "Nome da coleção"
@@ -4289,6 +4293,10 @@ msgstr "Comunicação"
 msgid "Comoros"
 msgstr ""
 
+#, fuzzy
+msgid "Compensate for overscan"
+msgstr "Eliminar antes da busca"
+
 msgid "Complete"
 msgstr "Completo"
 
@@ -4300,10 +4308,6 @@ msgstr "Complexo (permite misturar faixas de áudio e aspectos)"
 
 msgid "Composition of the recording filenames"
 msgstr "Composição do nome das gravações"
-
-#, fuzzy
-msgid "Compress"
-msgstr "Completo"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -4963,9 +4967,6 @@ msgstr "Criando sistema de arquivos"
 msgid "Creating partition"
 msgstr "Criando partição"
 
-msgid "Creating start scripts and starting the cam"
-msgstr ""
-
 #, fuzzy
 msgid "Croatia"
 msgstr "Croata"
@@ -5059,6 +5060,10 @@ msgid "Cut"
 msgstr "Cortar"
 
 #, fuzzy
+msgid "Cutlist Editor"
+msgstr "Editor de corte das listas"
+
+#, fuzzy
 msgid "Cutlist editor"
 msgstr "Editor de corte das listas"
 
@@ -5141,6 +5146,10 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+#, fuzzy
+msgid "DVD Burn"
+msgstr "Menu"
+
 msgid "DVD File Browser"
 msgstr ""
 
@@ -5155,6 +5164,10 @@ msgid "DVD file browser"
 msgstr "Explorador de arquivos do DVD"
 
 msgid "DVD player"
+msgstr "Reprodutor de DVD"
+
+#, fuzzy
+msgid "DVDPlayer"
 msgstr "Reprodutor de DVD"
 
 #, fuzzy
@@ -5350,6 +5363,10 @@ msgid "Default Modes Selected."
 msgstr "Localização padrão das gravações"
 
 #, fuzzy
+msgid "Default Services Scanner"
+msgstr "Localização padrão das gravações"
+
+#, fuzzy
 msgid "Default directory sorting"
 msgstr "Configurações padrão"
 
@@ -5539,6 +5556,12 @@ msgstr "Apagar entradads na lista"
 
 msgid "Delete saved playlist"
 msgstr "Apagar lista gravada"
+
+msgid "Delete the character to the left of text buffer cursor"
+msgstr ""
+
+msgid "Delete the character under the text buffer cursor"
+msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr ""
@@ -5891,7 +5914,10 @@ msgstr "Deseja gravar esta colecão para DVD?"
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid "Do you want to delete all other languages?"
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr ""
 
 msgid ""
@@ -6006,6 +6032,9 @@ msgid ""
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
 
+msgid "Done"
+msgstr ""
+
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr ""
@@ -6046,6 +6075,10 @@ msgstr "Descarregar plugins"
 
 msgid "Downloadable plugins"
 msgstr ""
+
+#, fuzzy
+msgid "Downloaded Images"
+msgstr "Fazendo o download de plugins"
 
 msgid "Downloading"
 msgstr "Fazendo o download de plugins"
@@ -6479,6 +6512,10 @@ msgstr ""
 
 msgid "Enigma2 skin selector"
 msgstr "Selecionador de skin Enigma2"
+
+#, fuzzy
+msgid "Enter"
+msgstr "centro"
 
 msgid "Enter PIN"
 msgstr ""
@@ -6920,6 +6957,10 @@ msgstr ""
 msgid "FLASH"
 msgstr ""
 
+#, fuzzy
+msgid "FP Upgrade"
+msgstr "Atualizando..."
+
 msgid "FSBL Update Check"
 msgstr ""
 
@@ -7159,9 +7200,6 @@ msgstr "Flash"
 msgid "Flash Image"
 msgstr "Flash"
 
-msgid "Flash Image USB Recovery"
-msgstr ""
-
 msgid "Flash On the Fly"
 msgstr ""
 
@@ -7169,18 +7207,6 @@ msgid "Flash Online"
 msgstr ""
 
 msgid "Flash Online a new image"
-msgstr ""
-
-msgid "Flash and restore settings and all saved plugins"
-msgstr ""
-
-msgid "Flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr ""
-
-msgid "Flash and start installation wizard"
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -7338,9 +7364,6 @@ msgstr "Versão do processador: %d"
 msgid "Frontprocessor version: %s"
 msgstr ""
 
-msgid "Frozen Cam Check"
-msgstr ""
-
 msgid "Full Image Backup "
 msgstr ""
 
@@ -7356,6 +7379,10 @@ msgstr "Transparência total"
 
 msgid "FullHD Test"
 msgstr ""
+
+#, fuzzy
+msgid "Fullbackup Images"
+msgstr "Flash"
 
 msgid "Fullscreen"
 msgstr ""
@@ -7592,6 +7619,9 @@ msgstr "Grego"
 msgid "Greek"
 msgstr "Grego"
 
+msgid "Greek (Modern)"
+msgstr ""
+
 msgid "Green"
 msgstr ""
 
@@ -7707,6 +7737,9 @@ msgstr ""
 #, fuzzy
 msgid "HDR10 Support"
 msgstr "não suportado"
+
+msgid "HELP"
+msgstr ""
 
 msgid "HH:mm"
 msgstr ""
@@ -7954,10 +7987,16 @@ msgstr ""
 msgid "IMDb Search"
 msgstr "Procurando..."
 
+msgid "INFO"
+msgstr ""
+
 msgid "INFO button mode"
 msgstr ""
 
 msgid "INFO-Panel..."
+msgstr ""
+
+msgid "INS"
 msgstr ""
 
 msgid "IP"
@@ -8319,9 +8358,6 @@ msgstr ""
 msgid "Init SDcard"
 msgstr ""
 
-msgid "Init.d"
-msgstr ""
-
 msgid "Initial fast forward speed"
 msgstr "Velocidade inicial de avançar"
 
@@ -8358,6 +8394,10 @@ msgid "Inotify Monitoring"
 msgstr ""
 
 msgid "Input"
+msgstr "Entrada"
+
+#, fuzzy
+msgid "Input "
 msgstr "Entrada"
 
 msgid "Input Stream ID"
@@ -8451,8 +8491,24 @@ msgstr "Instalar picons em"
 msgid "Installing Service"
 msgstr "Instalando..."
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing Software..."
+msgstr "Instalando..."
+
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "Instalar picons em"
+
+msgid "Installing feeds from feed ..."
 msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Instalar picons em"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
+msgstr "Instalar picons em"
 
 msgid "Installing software..."
 msgstr ""
@@ -8494,6 +8550,10 @@ msgstr "Intermediário"
 
 #, fuzzy
 msgid "Internal"
+msgstr "Flash interna"
+
+#, fuzzy
+msgid "Internal Flash"
 msgstr "Flash interna"
 
 msgid "Internal USB"
@@ -8539,6 +8599,9 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Iran (Islamic Republic of)"
+msgstr ""
+
+msgid "Iran, Islamic Republic"
 msgstr ""
 
 msgid "Iraq"
@@ -8690,6 +8753,10 @@ msgstr "Versão do Kernel:"
 
 msgid "Keyboard"
 msgstr "Teclado"
+
+#, fuzzy
+msgid "Keyboard data entry"
+msgstr "Configuração do teclado"
 
 msgid "Keyboard map"
 msgstr "Mapa do teclado"
@@ -9016,11 +9083,12 @@ msgstr "Rede Local"
 msgid "Local network"
 msgstr "Rede Local"
 
+#, fuzzy
+msgid "Locale"
+msgstr "Rede Local"
+
 msgid "Location"
 msgstr "Localização"
-
-msgid "Location # (http://weather.yahoo.com/):"
-msgstr ""
 
 #, fuzzy
 msgid "Location list"
@@ -9084,6 +9152,9 @@ msgid "Lower Framerate save CPU Time"
 msgstr ""
 
 msgid "Lower USB"
+msgstr ""
+
+msgid "Lower case"
 msgstr ""
 
 msgid "Lower limit in kilobits per seconds [kbit/s]"
@@ -9581,6 +9652,30 @@ msgstr "[modo deslocar]"
 msgid "Move mode on"
 msgstr "Mover 'leste'"
 
+msgid "Move the text buffer cursor left"
+msgstr ""
+
+msgid "Move the text buffer cursor right"
+msgstr ""
+
+msgid "Move the text buffer cursor to the first character"
+msgstr ""
+
+msgid "Move the text buffer cursor to the last character"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor down"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor left"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor right"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor up"
+msgstr ""
+
 #, fuzzy
 msgid "Move to home of list"
 msgstr "Saltar parea o fim da lista"
@@ -9668,9 +9763,6 @@ msgstr "EPG Multi"
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "Gestor de pacotes"
-
-msgid "MultiBootSelector"
-msgstr ""
 
 #, fuzzy
 msgid "MultiEPG settings"
@@ -9813,6 +9905,10 @@ msgstr "Relativo"
 msgid "Nauru"
 msgstr ""
 
+#, fuzzy
+msgid "NcamInfo"
+msgstr "Informações do canal"
+
 msgid "Nepal"
 msgstr ""
 
@@ -9945,6 +10041,10 @@ msgstr ""
 msgid "New folder"
 msgstr "Selecione a pasta"
 
+#, fuzzy
+msgid "New password"
+msgstr "Password"
+
 msgid "New profile: "
 msgstr ""
 
@@ -9993,19 +10093,10 @@ msgstr "Não"
 msgid "No (supported) DVDROM found!"
 msgstr "Nenhum DVD (suportado) encontrado!"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-
 msgid "No Connection"
 msgstr "Sem conexão!"
 
 msgid "No Devices Found !!"
-msgstr ""
-
-msgid "No ECM info"
 msgstr ""
 
 msgid "No HDD found or HDD not initialized!"
@@ -10100,9 +10191,6 @@ msgstr "Não existe nenhuma ligação de rede disponível."
 
 msgid "No networks found"
 msgstr "Não foram encontradas redes"
-
-msgid "No new ECM info"
-msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr ""
@@ -10207,7 +10295,7 @@ msgid "No, do not backup a image"
 msgstr "Não fazer nada."
 
 #, fuzzy
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr "Não fazer nada."
 
 msgid "No, do nothing."
@@ -10353,6 +10441,9 @@ msgstr ""
 msgid "Number of rows to display"
 msgstr ""
 
+msgid "Number or SMS style data entry"
+msgstr ""
+
 msgid "OCTAGON SF5008"
 msgstr ""
 
@@ -10417,6 +10508,10 @@ msgstr "Definições Sat / Antena"
 msgid "OSD name request"
 msgstr "Solicitação do nome de OSD"
 
+#, fuzzy
+msgid "OSD position setup"
+msgstr "Definições do posicionador"
+
 msgid "OSD settings"
 msgstr "Definições OSD"
 
@@ -10426,6 +10521,9 @@ msgstr ""
 #, fuzzy
 msgid "OScamInfo"
 msgstr "Informações do canal"
+
+msgid "OVR"
+msgstr ""
 
 msgid "Off"
 msgstr "Desligado"
@@ -10568,6 +10666,17 @@ msgid "OpenVpn Setup"
 msgstr ""
 
 #, fuzzy
+msgid "Operating LED status in deep standby mode"
+msgstr "Desligar"
+
+#, fuzzy
+msgid "Operating LED status in standby mode"
+msgstr "Colocar TV em standby"
+
+msgid "Operating LED status while running"
+msgstr ""
+
+#, fuzzy
 msgid "Option"
 msgstr "Encriptação"
 
@@ -10598,9 +10707,6 @@ msgstr ""
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr ""
-
-msgid "OscamInfo"
 msgstr ""
 
 msgid "OscamInfo Mainmenu"
@@ -10832,6 +10938,14 @@ msgid "Password (httpwd)"
 msgstr "Password"
 
 #, fuzzy
+msgid "Password Setup"
+msgstr "Password"
+
+#, fuzzy
+msgid "Password changed"
+msgstr "Password"
+
+#, fuzzy
 msgid "Password:"
 msgstr "Password"
 
@@ -10965,6 +11079,10 @@ msgid "Play"
 msgstr "Play"
 
 msgid "Play DVD"
+msgstr "Reproduzir DVD"
+
+#, fuzzy
+msgid "Play DVDs"
 msgstr "Reproduzir DVD"
 
 msgid "Play audio in background"
@@ -11467,6 +11585,10 @@ msgstr ""
 msgid "Positioner Setup"
 msgstr ""
 
+#, fuzzy
+msgid "Positioner Setup Log"
+msgstr "Definições do posicionador"
+
 msgid "Positioner setup"
 msgstr "Definições do posicionador"
 
@@ -11591,6 +11713,10 @@ msgid "Press Init to format SDcard."
 msgstr ""
 
 msgid "Press MENU on your remote control for additional options."
+msgstr "Pressione 'MENU' no controle remoto para opções adicionais."
+
+#, fuzzy
+msgid "Press MENU to install additional language(s)."
 msgstr "Pressione 'MENU' no controle remoto para opções adicionais."
 
 msgid "Press OK on your remote control to continue."
@@ -11743,6 +11869,9 @@ msgstr ""
 msgid "Programmlisten from DXAndy"
 msgstr ""
 
+msgid "Programmlisten-Updater V"
+msgstr ""
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr ""
 
@@ -11842,9 +11971,6 @@ msgstr "Colocar TV em standby"
 msgid "Put your AV Receiver in standby"
 msgstr "Colocar TV em standby"
 
-msgid "Python Camstarter (default)"
-msgstr ""
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Interface Python para /tmp/mmi.socket"
 
@@ -11935,6 +12061,10 @@ msgstr ""
 msgid "Random"
 msgstr "Aleatória"
 
+#, fuzzy
+msgid "Random password"
+msgstr "Introduza um nome novo para o arquivo"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Classificação definida pelo broadcaster - %d"
@@ -11944,10 +12074,6 @@ msgstr "Classificação indefinida"
 
 msgid "Re-enter new PIN"
 msgstr ""
-
-#, fuzzy
-msgid "ReStart"
-msgstr "Reiniciar"
 
 msgid "Read Userdata from oscam.conf"
 msgstr ""
@@ -12152,15 +12278,8 @@ msgstr ""
 "Por favor aguarde até o receptor reiniciar.\n"
 "Isto poderá demorar alguns minutos."
 
-msgid "Refresh"
-msgstr ""
-
 msgid "Refresh every (in hours)"
 msgstr ""
-
-#, fuzzy
-msgid "Refresh interval in minutes:"
-msgstr "Refresh Rate"
 
 msgid "Refresh rate"
 msgstr "Refresh Rate"
@@ -12788,6 +12907,10 @@ msgid "Save"
 msgstr "Guardar"
 
 #, fuzzy
+msgid "Save / Enter text and exit"
+msgstr "memorizar última pasta ao sair"
+
+#, fuzzy
 msgid "Save EPG"
 msgstr "EPG único"
 
@@ -13075,12 +13198,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Selecione o CAId"
 
-msgid "Select Cam 1"
-msgstr ""
-
-msgid "Select Cam 2"
-msgstr ""
-
 #, fuzzy
 msgid "Select Card Server"
 msgstr "Selecione o refresh rate"
@@ -13126,6 +13243,10 @@ msgstr ""
 msgid "Select Yellow Key Action long"
 msgstr ""
 
+#, fuzzy
+msgid "Select Your Skin"
+msgstr "Selecione o CAId"
+
 msgid "Select a bouquet"
 msgstr ""
 
@@ -13160,9 +13281,6 @@ msgid "Select additional backup files"
 msgstr ""
 
 msgid "Select additional files to backup"
-msgstr ""
-
-msgid "Select all"
 msgstr ""
 
 msgid "Select an image to be downloaded"
@@ -13284,6 +13402,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the character or action under the virtual keyboard cursor"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
@@ -13336,6 +13457,15 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the virtual keyboard locale from a menu"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 msgid "Select upgrade source"
@@ -13583,9 +13713,6 @@ msgstr "Referência"
 
 msgid "Service scan"
 msgstr "Busca de canais"
-
-msgid "Tuners & scanning"
-msgstr "Buscar canais"
 
 msgid ""
 "Service unavailable!\n"
@@ -14008,6 +14135,9 @@ msgstr "Nitidez"
 msgid "Shellscript"
 msgstr ""
 
+msgid "Shift"
+msgstr ""
+
 msgid "Short filenames"
 msgstr "Nomes curtos de arquivos"
 
@@ -14080,9 +14210,6 @@ msgid "Show Box Portal..."
 msgstr ""
 
 msgid "Show CCcam in extensions ?"
-msgstr ""
-
-msgid "Show CCcamInfo in Extensions Menu"
 msgstr ""
 
 msgid "Show CI messages"
@@ -14193,9 +14320,6 @@ msgstr "Mostrar 'info'"
 msgid "Show OScam in extensions ?"
 msgstr ""
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr ""
-
 msgid "Show PIP"
 msgstr ""
 
@@ -14229,9 +14353,6 @@ msgid "Show Script completed message"
 msgstr ""
 
 msgid "Show Single EPG"
-msgstr ""
-
-msgid "Show Softcam-Panel in Extensions Menu"
 msgstr ""
 
 msgid "Show Task's completed message"
@@ -14580,7 +14701,7 @@ msgid "Show the Sleep Timer..."
 msgstr ""
 
 #, fuzzy
-msgid "Show the infomation on current event."
+msgid "Show the information on current event."
 msgstr "Adic./Remov. gravação do evento atual"
 
 msgid "Show the list of AutoTimers."
@@ -14811,6 +14932,10 @@ msgstr ""
 msgid "Skins"
 msgstr "Skins"
 
+#, fuzzy
+msgid "Skinselector"
+msgstr "Seleção de gravação"
+
 msgid "Skip back"
 msgstr ""
 
@@ -14914,12 +15039,6 @@ msgstr "sintonizado"
 msgid "Softcam"
 msgstr ""
 
-msgid "Softcam Panel"
-msgstr ""
-
-msgid "Softcam Panel V2.0"
-msgstr ""
-
 msgid "Softcam Setup"
 msgstr ""
 
@@ -14934,18 +15053,12 @@ msgstr "Tipo de Softcam"
 msgid "Softcam-Panel"
 msgstr ""
 
-msgid "Softcam-Panel Setup"
-msgstr ""
-
 msgid "Softcam-Panel..."
 msgstr ""
 
 #, fuzzy
 msgid "Softcam-Setup"
 msgstr "Tipo de Softcam"
-
-msgid "SoftcamPanel"
-msgstr ""
 
 #, fuzzy
 msgid "SoftcamSetup"
@@ -15139,6 +15252,14 @@ msgstr ""
 msgid "Spanish"
 msgstr "Catalão"
 
+#, fuzzy
+msgid "Special 1"
+msgstr "eventos especiais"
+
+#, fuzzy
+msgid "Special 2"
+msgstr "eventos especiais"
+
 msgid "Special Features"
 msgstr ""
 
@@ -15183,12 +15304,6 @@ msgstr "Iniciar teste"
 msgid "Start Kodi"
 msgstr "Tempo de início"
 
-msgid "Start Mode"
-msgstr ""
-
-msgid "Start attempts"
-msgstr ""
-
 msgid "Start from the beginning"
 msgstr "Começar no início"
 
@@ -15229,12 +15344,6 @@ msgstr ""
 msgid "StartWizard"
 msgstr ""
 
-msgid "Starting Cam 1: "
-msgstr ""
-
-msgid "Starting Cam 2: "
-msgstr ""
-
 msgid "Starting Softcam"
 msgstr ""
 
@@ -15242,6 +15351,15 @@ msgid "Starting on"
 msgstr "Iniciar em"
 
 msgid "Status"
+msgstr ""
+
+msgid "Status of the display during operation"
+msgstr ""
+
+msgid "Status of the display in deep standby"
+msgstr ""
+
+msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status:"
@@ -15270,9 +15388,6 @@ msgstr "Parar PiP"
 #, fuzzy
 msgid "Stop Streams"
 msgstr "Parar teste"
-
-msgid "Stop check when cam is running"
-msgstr ""
 
 msgid "Stop current event and disable coming events"
 msgstr "Parar programa atual e desabilitar novos programas"
@@ -15644,6 +15759,10 @@ msgstr "Sistema"
 msgid "System Info"
 msgstr ""
 
+#, fuzzy
+msgid "System Message Check"
+msgstr "Verificação do sistema de arquivos"
+
 msgid "System Setup"
 msgstr ""
 
@@ -15786,9 +15905,6 @@ msgstr ""
 #, fuzzy
 msgid "Telnet Setup"
 msgstr "Config. de rede"
-
-msgid "Temperature unit:"
-msgstr ""
 
 msgid "Terrestrial"
 msgstr "Terrestre"
@@ -16051,6 +16167,9 @@ msgid ""
 msgstr ""
 "A extensão assistente de rede não está instalada!\n"
 "Por favor instale-a."
+
+msgid "The password can not be blank."
+msgstr ""
 
 #, python-format
 msgid "The path %s already exists."
@@ -16608,9 +16727,6 @@ msgstr ""
 msgid "Time between slides in image viewer slideshow."
 msgstr ""
 
-msgid "Time between start attempts (sec.)"
-msgstr ""
-
 msgid "Time delay for the repeated transmission"
 msgstr ""
 
@@ -16877,6 +16993,9 @@ msgstr "Aspect ratio"
 msgid "Toggle between bouquet/epg lists"
 msgstr "terminar edição de bouquets"
 
+msgid "Toggle new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -17102,6 +17221,9 @@ msgstr "Estado do tuner"
 msgid "Tuner type %s"
 msgstr "Tipo de tuner"
 
+msgid "Tuners & scanning"
+msgstr "Buscar canais"
+
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -17170,6 +17292,10 @@ msgstr "Tipo"
 msgid "Type: "
 msgstr "Tipo"
 
+#, fuzzy
+msgid "UI 3D setup"
+msgstr "Configurar PiP"
+
 msgid "UP80  (keymap.u80)"
 msgstr ""
 
@@ -17205,6 +17331,10 @@ msgstr ""
 
 msgid "Ukrainian"
 msgstr ""
+
+#, fuzzy
+msgid "Unable to change password"
+msgstr "Introduza um nome novo para o arquivo"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -17259,6 +17389,9 @@ msgid "United Arab Emirates"
 msgstr ""
 
 msgid "United Kingdom"
+msgstr ""
+
+msgid "United States"
 msgstr ""
 
 msgid "United States Minor Outlying Islands"
@@ -17376,6 +17509,10 @@ msgid "Updates Available:"
 msgstr ""
 
 #, fuzzy
+msgid "Updating cache"
+msgstr "Por favor aguarde..."
+
+#, fuzzy
 msgid "Updating cache, please wait..."
 msgstr "Por favor aguarde..."
 
@@ -17384,6 +17521,9 @@ msgstr ""
 
 msgid "Updating software catalog"
 msgstr "Atualizando o catálogo de software..."
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr ""
 
 #, fuzzy
 msgid "Upgrade and reboot system"
@@ -17418,6 +17558,9 @@ msgid "Uphops: "
 msgstr ""
 
 msgid "Upper USB"
+msgstr ""
+
+msgid "Upper case"
 msgstr ""
 
 msgid "Uptime"
@@ -17639,6 +17782,9 @@ msgstr ""
 msgid "User interface visibility"
 msgstr "Interface visual"
 
+msgid "Userlogo:"
+msgstr ""
+
 msgid "Username"
 msgstr "Utilizador"
 
@@ -17693,6 +17839,10 @@ msgstr ""
 #, fuzzy
 msgid "Vanuatu"
 msgstr "manual"
+
+#, fuzzy
+msgid "Various"
+msgstr "Reproduzir anterior"
 
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr ""
@@ -17952,7 +18102,10 @@ msgstr ""
 msgid "Virgin Islands (U.S.)"
 msgstr ""
 
-msgid "Virtual KeyBoard"
+msgid "Virtual KeyBoard Functions"
+msgstr ""
+
+msgid "Virtual KeyBoard Text:"
 msgstr ""
 
 msgid "Virtual keyboard"
@@ -18036,9 +18189,6 @@ msgstr ""
 msgid "Wait please while scanning..."
 msgstr ""
 
-msgid "Wait time before start Cam 2"
-msgstr ""
-
 msgid "Waiting"
 msgstr "Aguardando..."
 
@@ -18047,9 +18197,6 @@ msgstr "Esperar pela montagem"
 
 msgid "Waiting for partition"
 msgstr "Esperar por partição"
-
-msgid "Waiting..."
-msgstr ""
 
 #, fuzzy
 msgid "Wake Up"
@@ -18435,6 +18582,18 @@ msgstr ""
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr ""
 
+msgid "With this option you can switch off the display during operation."
+msgstr ""
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr ""
+
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
@@ -18567,14 +18726,6 @@ msgstr "Sim, voltar à lista de filmes"
 msgid "Yes, shut down now."
 msgstr "Sim, desligar agora"
 
-#, fuzzy
-msgid "Yes, with backup"
-msgstr "Restauração de backups"
-
-#, fuzzy
-msgid "Yes, without backup"
-msgstr "Restauração de backups"
-
 msgid "Yesterday"
 msgstr "Ontem"
 
@@ -18687,6 +18838,9 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Espere por favor %s!"
+
+msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""
@@ -19048,12 +19202,6 @@ msgstr "ativar configuração do adaptador de rede"
 msgid "activatePiP"
 msgstr ""
 
-msgid "active CAM 1: "
-msgstr ""
-
-msgid "active CAM 2: "
-msgstr ""
-
 msgid "add Current"
 msgstr ""
 
@@ -19404,9 +19552,6 @@ msgstr "não desencriptar, gravar ecm"
 
 msgid "done!"
 msgstr "concluído!"
-
-msgid "dont wait"
-msgstr ""
 
 msgid "drivers"
 msgstr ""
@@ -19785,6 +19930,14 @@ msgstr "inserir marca"
 msgid "install/unpack ipk Files"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "internal flash:  %s %s "
+msgstr "Flash interna"
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr ""
+
 msgid "internally loopthrough to"
 msgstr ""
 
@@ -19992,17 +20145,8 @@ msgstr "não"
 msgid "no CAId selected"
 msgstr "CAID não selecionado"
 
-msgid "no CAM 1 active"
-msgstr ""
-
-msgid "no CAM 2 active"
-msgstr ""
-
 msgid "no CI slots found"
 msgstr "slots CI não encontrados"
-
-msgid "no cam"
-msgstr ""
 
 msgid "no channel list"
 msgstr ""
@@ -20502,15 +20646,27 @@ msgid "skip forward (enter time)"
 msgstr "Avançar (inserir tempo)"
 
 #, python-format
+msgid "slot%s - %s"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s "
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image) with, backup"
+msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image), without backup"
+msgid "slot%s - %s - %s "
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s as USB Recovery"
 msgstr ""
 
 #, python-format
@@ -20530,23 +20686,7 @@ msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s, with backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s, without backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s- %s "
+msgid "slot%s - %s- %s "
 msgstr ""
 
 msgid "slow"
@@ -20789,6 +20929,9 @@ msgstr "vertical"
 msgid "view extensions..."
 msgstr "Ver extensões..."
 
+msgid "violet"
+msgstr ""
+
 msgid "vix"
 msgstr ""
 
@@ -20928,9 +21071,14 @@ msgstr "zapped"
 #~ msgid "(ZAP)"
 #~ msgstr "(ZAP)"
 
-#, fuzzy
-#~ msgid "3D setup"
-#~ msgstr "Configurar PiP"
+#~ msgid "0 (disabled)"
+#~ msgstr "0 (desabilitado)"
+
+#~ msgid "10 (default)"
+#~ msgstr "10 (padrão)"
+
+#~ msgid "10 seconds"
+#~ msgstr "10 segundos"
 
 #, fuzzy
 #~ msgid ""
@@ -21009,6 +21157,10 @@ msgstr "zapped"
 #~ msgid "Button setup"
 #~ msgstr "Definições do posicionador"
 
+#, fuzzy
+#~ msgid "CI settings"
+#~ msgstr "Editar definições"
+
 #~ msgid "Center DVB subtitles"
 #~ msgstr "Legendas DVB centralizadas"
 
@@ -21039,6 +21191,10 @@ msgstr "zapped"
 #, fuzzy
 #~ msgid "Common interface"
 #~ msgstr "Interface comum"
+
+#, fuzzy
+#~ msgid "Compress"
+#~ msgstr "Completo"
 
 #~ msgid "Configure how recording filenames are constructed."
 #~ msgstr "Configurar como os nomes de arquivos de gravação são construídos."
@@ -21207,10 +21363,6 @@ msgstr "zapped"
 #~ msgstr "Modo escala"
 
 #, fuzzy
-#~ msgid "Last update: %s"
-#~ msgstr "Última atualização:"
-
-#, fuzzy
 #~ msgid "Logs manager"
 #~ msgstr "Gestor de pacotes"
 
@@ -21298,10 +21450,6 @@ msgstr "zapped"
 #~ msgid "Position of finished Timers in the Timer list"
 #~ msgstr "Posição das gravações terminadas na agenda de gravações"
 
-#, fuzzy
-#~ msgid "Position setup"
-#~ msgstr "Definições do posicionador"
-
 #~ msgid "Press '0' to toggle internal/external PiP."
 #~ msgstr "Pressione '0' para trocar entre PiP interno/externo."
 
@@ -21314,8 +21462,16 @@ msgstr "zapped"
 #~ msgid "Provider to scan"
 #~ msgstr "Operador para procurar"
 
+#, fuzzy
+#~ msgid "ReStart"
+#~ msgstr "Reiniciar"
+
 #~ msgid "Reenter new PIN"
 #~ msgstr "Repetir novo PIN"
+
+#, fuzzy
+#~ msgid "Refresh interval in minutes:"
+#~ msgstr "Refresh Rate"
 
 #~ msgid "Reload black-/white lists"
 #~ msgstr "Recarregar listas negras-/brancas"
@@ -21498,6 +21654,14 @@ msgstr "zapped"
 #~ msgstr "Erro ao gravar. Disco cheio?\n"
 
 #, fuzzy
+#~ msgid "Yes, with backup"
+#~ msgstr "Restauração de backups"
+
+#, fuzzy
+#~ msgid "Yes, without backup"
+#~ msgstr "Restauração de backups"
+
+#, fuzzy
 #~ msgid "You can only burn %s %s recordings!"
 #~ msgstr "Você só pode fazer gravações!"
 
@@ -21518,9 +21682,6 @@ msgstr "zapped"
 #, fuzzy
 #~ msgid "Your receiver is not connected to the internet"
 #~ msgstr "Seu receptor não está conectado à internet"
-
-#~ msgid "bc%s"
-#~ msgstr "bc%s"
 
 #~ msgid "complex"
 #~ msgstr "complexo"

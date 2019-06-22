@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 10:20+0200\n"
+"POT-Creation-Date: 2019-06-22 11:29+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: rx\n"
 "Language-Team: Image OpenATV\n"
@@ -283,21 +283,6 @@ msgstr "Канал"
 #, fuzzy
 msgid " <empty>"
 msgstr "Пустой"
-
-#, python-format
-msgid " Except %s"
-msgstr " За исключением %s?"
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
-" Не запущен!\n"
-"\n"
-"Название эмулятора не найдено в команде запуска\n"
-"Проверьте файл настроек эмулятора"
 
 msgid " and"
 msgstr " и"
@@ -1064,6 +1049,10 @@ msgstr[2] "%d минут"
 msgid "%d minutes"
 msgstr "%d минут"
 
+#, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d минут"
+
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
@@ -1159,6 +1148,10 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s"
+msgstr "К. %s"
+
 #, python-format
 msgid ""
 "%s\n"
@@ -1236,6 +1229,10 @@ msgstr "Установки"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Поиск в доп. SR"
+
+#, python-format
+msgid "%s build date %s"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1327,6 +1324,10 @@ msgstr "Предыдущая настройка ограничивала буф�
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
 
+#, fuzzy
+msgid "'weatherplugin' is not installed!"
+msgstr "Плагин не установлен"
+
 msgid "( All readers)"
 msgstr "(Все ридеры)"
 
@@ -1372,9 +1373,6 @@ msgstr "+/-"
 msgid "+24"
 msgstr "+24"
 
-msgid "---Weather---"
-msgstr "---Погода---"
-
 msgid "-24"
 msgstr "-24"
 
@@ -1403,9 +1401,6 @@ msgstr "Каталог /var"
 
 msgid "0"
 msgstr "0"
-
-msgid "0 (disabled)"
-msgstr "0 (Отключено)"
 
 msgid "0.2s"
 msgstr "0.2с"
@@ -1440,9 +1435,6 @@ msgstr "1 Гб"
 msgid "1 min."
 msgstr "1 мин"
 
-msgid "1 second"
-msgstr "1 секунда"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1461,20 +1453,11 @@ msgstr "1.5с"
 msgid "1.7s"
 msgstr "1.7с"
 
-msgid "10"
-msgstr "10"
-
-msgid "10 (default)"
-msgstr "10 (по умолчанию)"
-
 msgid "10 MB/s"
 msgstr ""
 
 msgid "10 min."
 msgstr "10 мин"
-
-msgid "10 seconds"
-msgstr "10 секунд"
 
 msgid "100 MB/s"
 msgstr ""
@@ -1524,9 +1507,6 @@ msgstr "12 символов"
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12 - показать набор символов Latin-1, кроме греческого и кириллицы, переключитесь на 8, если это необходимо."
 
-msgid "120"
-msgstr "120"
-
 msgid "128"
 msgstr "128"
 
@@ -1550,9 +1530,6 @@ msgstr "13 В"
 
 msgid "15 min."
 msgstr "15 мин"
-
-msgid "15 seconds"
-msgstr "15 секунд"
 
 msgid "1536 Mb"
 msgstr "1536 Мб"
@@ -1618,14 +1595,8 @@ msgstr "2 Гб"
 msgid "2.5s"
 msgstr "2.5с"
 
-msgid "20"
-msgstr "20"
-
 msgid "20 MB/s"
 msgstr ""
-
-msgid "20 seconds"
-msgstr "20 секунд"
 
 msgid "2048 Mb"
 msgstr "2048 Мб"
@@ -1664,9 +1635,6 @@ msgstr "+24 часа"
 
 msgid "24- Hours"
 msgstr "-24 часа"
-
-msgid "240"
-msgstr "240"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1755,9 +1723,6 @@ msgstr "30 мин"
 msgid "30 minutes"
 msgstr "30 минут"
 
-msgid "30 seconds"
-msgstr "30 секунд"
-
 msgid "30p/24p"
 msgstr "50p/24p"
 
@@ -1843,17 +1808,11 @@ msgstr "4с"
 msgid "5"
 msgstr "5"
 
-msgid "5 (default)"
-msgstr "5 (по умолчанию)"
-
 msgid "5 min."
 msgstr "5 мин"
 
 msgid "5 minutes"
 msgstr "5 минут"
-
-msgid "5 seconds"
-msgstr "5 секунд"
 
 msgid "50 MB/s"
 msgstr ""
@@ -1888,9 +1847,6 @@ msgstr "5с"
 
 msgid "6"
 msgstr "6"
-
-msgid "60"
-msgstr "60"
 
 msgid "60 minutes"
 msgstr "60 минут"
@@ -2625,6 +2581,14 @@ msgstr "Также и в режиме ожидания"
 msgid "Alternative"
 msgstr "Альтернатива"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "Альтернатива"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "Альтернатива"
+
 msgid "Alternative numbering mode"
 msgstr "Альтернативный режим нумерации"
 
@@ -2937,6 +2901,10 @@ msgstr "Шаг громкости звука"
 msgid "Australia"
 msgstr "Австралия"
 
+#, fuzzy
+msgid "Australian"
+msgstr "Австралия"
+
 msgid "Austria"
 msgstr "Австрия"
 
@@ -3055,6 +3023,10 @@ msgstr "Автозапуск"
 msgid "Available format variables"
 msgstr "Доступные форматы переменных"
 
+#, fuzzy
+msgid "Available locales are:"
+msgstr "Доступные сетевые диски"
+
 msgid "Available shares:"
 msgstr "Доступные сетевые диски"
 
@@ -3160,6 +3132,14 @@ msgstr "Удаление в фоновом режиме"
 msgid "Background delete speed"
 msgstr "Скорость удаления в фоновом режиме"
 
+#, fuzzy
+msgid "Background:"
+msgstr "Фон"
+
+#, fuzzy
+msgid "Backgroundselected:"
+msgstr "Скорость удаления в фоновом режиме"
+
 msgid "Backup"
 msgstr "Рез.копирование"
 
@@ -3227,6 +3207,14 @@ msgstr "Сохранение текущих настроек"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Сохранение текущих настроек, в том числе настроек Enigma2, списка каналов, настроек сети и выбранных файлов"
 
+#, fuzzy
+msgid "Backup, flash and restore settings and no plugins"
+msgstr "Прошивка + Настройки - Плагины"
+
+#, fuzzy
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr "Прошивка + Настройки ~ Плагины"
+
 msgid "Bahamas"
 msgstr "Багамские о-ва"
 
@@ -3283,6 +3271,10 @@ msgstr "Действие при окончании фильма"
 
 msgid "Belarus"
 msgstr "Беларусь"
+
+#, fuzzy
+msgid "Belgian"
+msgstr "Бельгия"
 
 msgid "Belgium"
 msgstr "Бельгия"
@@ -3531,9 +3523,6 @@ msgstr "CCcam ресурс инфо"
 msgid "CCcam Shares Info"
 msgstr "CCcam шаринг инфо"
 
-msgid "CCcamInfo"
-msgstr "Информация CCcam"
-
 msgid "CCcamInfo Mainmenu"
 msgstr "Меню CCcam"
 
@@ -3571,9 +3560,6 @@ msgstr "CI Plus 1.3"
 
 msgid "CI assignment"
 msgstr "Назначение CI"
-
-msgid "CI settings"
-msgstr "Настройки CI"
 
 msgid "CI slot: "
 msgstr "Слот CI: "
@@ -3692,6 +3678,9 @@ msgstr "Канада"
 msgid "Cancel"
 msgstr "Отмена"
 
+msgid "Cancel any text changes and exit"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel execution?"
 msgstr "Выбор канала"
@@ -3701,6 +3690,10 @@ msgstr "Отменить сохранение таймшифта в виде з�
 
 msgid "Cancelled upon user request"
 msgstr ""
+
+#, fuzzy
+msgid "Cannot create backup directory"
+msgstr "Создать каталог"
 
 #, fuzzy
 msgid "Cannot delete downloaded image"
@@ -3870,11 +3863,12 @@ msgstr "Предосмотр в списке каналов"
 msgid "Channel list service mode*"
 msgstr "Режим списка каналов*"
 
-msgid "Channel list show MiniTV"
-msgstr "Показать PiG в списке каналов"
-
 msgid "Channel list show MiniTV when Skin use."
 msgstr "Показать PiG в списке каналов, если позволяет скин."
+
+#, fuzzy
+msgid "Channel list show MiniTV*"
+msgstr "Показать PiG в списке каналов"
 
 msgid "Channel list type"
 msgstr "Тип списка каналов"
@@ -4108,6 +4102,9 @@ msgstr "Круговая левая"
 msgid "Circular right"
 msgstr "Круговая правая"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 msgid "Clean network trash cans"
 msgstr "Очистить сетевую корзину"
 
@@ -4148,6 +4145,10 @@ msgstr "Клиенты"
 msgid "Clock"
 msgstr "Часы"
 
+#, fuzzy
+msgid "Clock:"
+msgstr "Часы"
+
 msgid "Clone TV screen to LCD"
 msgstr "Дублировать изображение экрана на LCD"
 
@@ -4180,6 +4181,10 @@ msgstr "Скорость кодирования HP"
 
 msgid "Coderate LP"
 msgstr "Скорость кодирования LP"
+
+#, fuzzy
+msgid "Collapse"
+msgstr "Прошедшее"
 
 msgid "Collection name"
 msgstr "Название коллекции"
@@ -4229,6 +4234,10 @@ msgstr "Связь"
 msgid "Comoros"
 msgstr "Коморские острова"
 
+#, fuzzy
+msgid "Compensate for overscan"
+msgstr "Очистить перед поиском"
+
 msgid "Complete"
 msgstr "Полное"
 
@@ -4240,10 +4249,6 @@ msgstr "Комплекс (микширование звуковых дороже
 
 msgid "Composition of the recording filenames"
 msgstr "Тип наименования для записей"
-
-#, fuzzy
-msgid "Compress"
-msgstr "Полное"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -4875,9 +4880,6 @@ msgstr "Создание файловой системы"
 msgid "Creating partition"
 msgstr "Создание раздела"
 
-msgid "Creating start scripts and starting the cam"
-msgstr "Создание скриптов для запуска и запуск эмулятора"
-
 msgid "Croatia"
 msgstr "Хорватия"
 
@@ -4963,6 +4965,10 @@ msgstr "Доп. настройки"
 msgid "Cut"
 msgstr "Нарезка"
 
+#, fuzzy
+msgid "Cutlist Editor"
+msgstr "Видео редактор"
+
 msgid "Cutlist editor"
 msgstr "Видео редактор"
 
@@ -5043,6 +5049,10 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+#, fuzzy
+msgid "DVD Burn"
+msgstr "Меню DVD"
+
 msgid "DVD File Browser"
 msgstr "Обозреватель файлов DVD"
 
@@ -5056,6 +5066,10 @@ msgid "DVD file browser"
 msgstr "DVD обозреватель файлов"
 
 msgid "DVD player"
+msgstr "Плеер DVD"
+
+#, fuzzy
+msgid "DVDPlayer"
 msgstr "Плеер DVD"
 
 msgid "Daily"
@@ -5247,6 +5261,10 @@ msgid "Default Modes Selected."
 msgstr "Место сохранения записей по умолчанию"
 
 #, fuzzy
+msgid "Default Services Scanner"
+msgstr "Поиск каналов"
+
+#, fuzzy
 msgid "Default directory sorting"
 msgstr "Настройки по умолчанию"
 
@@ -5431,6 +5449,12 @@ msgstr "Удалить запись из плейлиста"
 
 msgid "Delete saved playlist"
 msgstr "Удалить сохранённый плейлист"
+
+msgid "Delete the character to the left of text buffer cursor"
+msgstr ""
+
+msgid "Delete the character under the text buffer cursor"
+msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Удалить файл текущег таймшифта и перезапустить таймшифт"
@@ -5772,7 +5796,11 @@ msgstr "Хотите записать эту коллекцию на DVD нос�
 msgid "Do you want to continue?"
 msgstr "Хотите продолжить?"
 
-msgid "Do you want to delete all other languages?"
+#, fuzzy
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr "Хотите удалить все остальные языковые пакеты?"
 
 msgid ""
@@ -5893,6 +5921,9 @@ msgstr ""
 "Не волнуйтесь, аппарат по-прежнему в порядке! Существуют различные механизмы защиты!\n"
 "Ваш аппарат работает так же, как и до обновления!"
 
+msgid "Done"
+msgstr ""
+
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Готово - Установлено или обновлено %d пакетов"
@@ -5934,6 +5965,10 @@ msgstr "Установка плагинов"
 
 msgid "Downloadable plugins"
 msgstr "Доступные плагины"
+
+#, fuzzy
+msgid "Downloaded Images"
+msgstr "Загрузка"
 
 msgid "Downloading"
 msgstr "Загрузка"
@@ -6369,6 +6404,10 @@ msgstr ""
 
 msgid "Enigma2 skin selector"
 msgstr "Селектор скинов Enigma2"
+
+#, fuzzy
+msgid "Enter"
+msgstr "Центр"
 
 msgid "Enter PIN"
 msgstr "Введите пин-код"
@@ -6814,6 +6853,10 @@ msgid "FLASH"
 msgstr "Флеш-память"
 
 #, fuzzy
+msgid "FP Upgrade"
+msgstr "Обновление прошивки"
+
+#, fuzzy
 msgid "FSBL Update Check"
 msgstr "Обновление кэша"
 
@@ -7053,10 +7096,6 @@ msgstr "Прошивка"
 msgid "Flash Image"
 msgstr "Прошить ресивер онлайн"
 
-#, fuzzy
-msgid "Flash Image USB Recovery"
-msgstr "Прошить ресивер онлайн"
-
 msgid "Flash On the Fly"
 msgstr "Прошивка на лету"
 
@@ -7065,18 +7104,6 @@ msgstr "Прошивка онлайн"
 
 msgid "Flash Online a new image"
 msgstr "Прошить ресивер новым имиджем"
-
-msgid "Flash and restore settings and all saved plugins"
-msgstr "Прошивка + Настройки + Плагины"
-
-msgid "Flash and restore settings and no plugins"
-msgstr "Прошивка + Настройки - Плагины"
-
-msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr "Прошивка + Настройки ~ Плагины"
-
-msgid "Flash and start installation wizard"
-msgstr "Прошить и открыть мастер установки"
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Прошить ресивер из Интернета или вашим ПО"
@@ -7224,9 +7251,6 @@ msgstr "Версия фронтпроцессора: %d"
 msgid "Frontprocessor version: %s"
 msgstr "Версия процессора %s"
 
-msgid "Frozen Cam Check"
-msgstr "Проверка не запущенных CAM"
-
 msgid "Full Image Backup "
 msgstr "Полное копирование имиджа "
 
@@ -7242,6 +7266,10 @@ msgstr "Полная прозрачность"
 
 msgid "FullHD Test"
 msgstr ""
+
+#, fuzzy
+msgid "Fullbackup Images"
+msgstr "Резервное копирование"
 
 msgid "Fullscreen"
 msgstr "Полноэкранный"
@@ -7466,6 +7494,9 @@ msgstr "Греция"
 msgid "Greek"
 msgstr "Греческий"
 
+msgid "Greek (Modern)"
+msgstr ""
+
 msgid "Green"
 msgstr "Зеленый"
 
@@ -7579,6 +7610,9 @@ msgstr "Вход HDMI"
 #, fuzzy
 msgid "HDR10 Support"
 msgstr "Поддержка DLNA"
+
+msgid "HELP"
+msgstr ""
 
 msgid "HH:mm"
 msgstr ""
@@ -7815,11 +7849,18 @@ msgstr "Подробности IMDb"
 msgid "IMDb Search"
 msgstr "Поиск IMDb"
 
+msgid "INFO"
+msgstr "Инфо"
+
 msgid "INFO button mode"
 msgstr "Кнопка INFO"
 
 msgid "INFO-Panel..."
 msgstr "Инфопанель"
+
+#, fuzzy
+msgid "INS"
+msgstr "NFS"
 
 msgid "IP"
 msgstr "IP"
@@ -8174,9 +8215,6 @@ msgstr ""
 msgid "Init SDcard"
 msgstr ""
 
-msgid "Init.d"
-msgstr "Init.d"
-
 msgid "Initial fast forward speed"
 msgstr "Первоначальная скорость перемотки вперёд"
 
@@ -8212,6 +8250,10 @@ msgstr "Мониторинг Inotify"
 
 msgid "Input"
 msgstr "Ввод данных"
+
+#, fuzzy
+msgid "Input "
+msgstr "Вход 1"
 
 msgid "Input Stream ID"
 msgstr "ID входящего потока"
@@ -8299,7 +8341,23 @@ msgstr "Установка плагинов"
 msgid "Installing Service"
 msgstr "Установка сервиса"
 
-msgid "Installing plugins..."
+msgid "Installing Software..."
+msgstr "Выполнение операции"
+
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "Идёт установка дополнений"
+
+#, fuzzy
+msgid "Installing feeds from feed ..."
+msgstr "Установка расширений"
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Установка плагинов"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Установка плагинов"
 
 msgid "Installing software..."
@@ -8339,6 +8397,10 @@ msgstr "Промежуточный"
 
 msgid "Internal"
 msgstr "Внутренный"
+
+#, fuzzy
+msgid "Internal Flash"
+msgstr "Внутренняя флешь"
 
 msgid "Internal USB"
 msgstr "Задний разьем USB"
@@ -8382,6 +8444,10 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Iran (Islamic Republic of)"
+msgstr "Иран"
+
+#, fuzzy
+msgid "Iran, Islamic Republic"
 msgstr "Иран"
 
 msgid "Iraq"
@@ -8525,6 +8591,10 @@ msgstr "Ядро %s"
 
 msgid "Keyboard"
 msgstr "Клавиатура"
+
+#, fuzzy
+msgid "Keyboard data entry"
+msgstr "Настройки клавиатуры"
 
 msgid "Keyboard map"
 msgstr "Раскладка клавиатуры"
@@ -8837,11 +8907,12 @@ msgstr "Локальный ресивер"
 msgid "Local network"
 msgstr "Локальная сеть"
 
+#, fuzzy
+msgid "Locale"
+msgstr "Локально"
+
 msgid "Location"
 msgstr "Расположение"
-
-msgid "Location # (http://weather.yahoo.com/):"
-msgstr "Расположение # (http://weather.yahoo.com/):"
 
 #, fuzzy
 msgid "Location list"
@@ -8902,6 +8973,10 @@ msgid "Lower Framerate save CPU Time"
 msgstr "Низкая частота кадров снижает нагрузку на процессор"
 
 msgid "Lower USB"
+msgstr "Нижний USB"
+
+#, fuzzy
+msgid "Lower case"
 msgstr "Нижний USB"
 
 msgid "Lower limit in kilobits per seconds [kbit/s]"
@@ -9380,6 +9455,30 @@ msgstr "Перемещение выкл."
 msgid "Move mode on"
 msgstr "Перемещение вкл."
 
+msgid "Move the text buffer cursor left"
+msgstr ""
+
+msgid "Move the text buffer cursor right"
+msgstr ""
+
+msgid "Move the text buffer cursor to the first character"
+msgstr ""
+
+msgid "Move the text buffer cursor to the last character"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor down"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor left"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor right"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor up"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "Переместиться на домашнюю страницу"
 
@@ -9454,10 +9553,6 @@ msgstr "Мульти-ТВ-гид"
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "Менеджер OpenMultiboot"
-
-#, fuzzy
-msgid "MultiBootSelector"
-msgstr "Выбор мультизагрузки"
 
 msgid "MultiEPG settings"
 msgstr "Настройки мульти-ТВ-гида"
@@ -9597,6 +9692,10 @@ msgstr "Оригинальный"
 msgid "Nauru"
 msgstr "Науру"
 
+#, fuzzy
+msgid "NcamInfo"
+msgstr "Информация CCcam"
+
 msgid "Nepal"
 msgstr "Непал"
 
@@ -9722,6 +9821,10 @@ msgstr "Новая Зеландия"
 msgid "New folder"
 msgstr "Выбор каталогов"
 
+#, fuzzy
+msgid "New password"
+msgstr "Пароль"
+
 msgid "New profile: "
 msgstr "Новый профиль "
 
@@ -9770,23 +9873,11 @@ msgstr "Нет"
 msgid "No (supported) DVDROM found!"
 msgstr "Не найден (Поддерживаемый) DVDROM!"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-"Карта не запущена!\n"
-"\n"
-"Cam 1 и Cam 2 должны отличаться!"
-
 msgid "No Connection"
 msgstr "Нет подключения"
 
 msgid "No Devices Found !!"
 msgstr "Устройств не найдено!"
-
-msgid "No ECM info"
-msgstr "Информация ECM отсутствует"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Жёсткий диск не найден или не форматирован!"
@@ -9881,9 +9972,6 @@ msgstr "Работающее Интернет-соединение отсутс�
 
 msgid "No networks found"
 msgstr "Сети не найдены"
-
-msgid "No new ECM info"
-msgstr "Новая информация ECM отсутствует"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Нет элементов переключения (Увеличение или уменьшение)"
@@ -9990,7 +10078,7 @@ msgid "No, do not backup a image"
 msgstr "Не прошивать ресивер"
 
 #, fuzzy
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr "Не прошивать ресивер"
 
 msgid "No, do nothing."
@@ -10133,6 +10221,9 @@ msgstr "Количество рядов"
 msgid "Number of rows to display"
 msgstr "Количество строк для отображения"
 
+msgid "Number or SMS style data entry"
+msgstr ""
+
 #, fuzzy
 msgid "OCTAGON SF5008"
 msgstr "OCTAGON_SFXXX8"
@@ -10196,6 +10287,10 @@ msgstr "Настройка интерфейса"
 msgid "OSD name request"
 msgstr "Запрос OSD имени"
 
+#, fuzzy
+msgid "OSD position setup"
+msgstr "Настройка экрана"
+
 msgid "OSD settings"
 msgstr "Общие настройки"
 
@@ -10204,6 +10299,10 @@ msgstr "Информация OScam"
 
 msgid "OScamInfo"
 msgstr "Информация OScam"
+
+#, fuzzy
+msgid "OVR"
+msgstr "PVR"
 
 msgid "Off"
 msgstr "Выкл"
@@ -10345,6 +10444,17 @@ msgid "OpenVpn Setup"
 msgstr "Настройки OpenVPN"
 
 #, fuzzy
+msgid "Operating LED status in deep standby mode"
+msgstr "Индикатор питания при выключении ресивера"
+
+#, fuzzy
+msgid "Operating LED status in standby mode"
+msgstr "Индикатор питания при выключении ресивера"
+
+msgid "Operating LED status while running"
+msgstr ""
+
+#, fuzzy
 msgid "Option"
 msgstr "Меню"
 
@@ -10376,9 +10486,6 @@ msgstr "Главное меню"
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
 msgstr "Журнал Oscam ( Версия Oscam : %s )"
-
-msgid "OscamInfo"
-msgstr "Информация Oscam"
 
 msgid "OscamInfo Mainmenu"
 msgstr "Меню OScam"
@@ -10605,6 +10712,14 @@ msgstr "Пароль"
 msgid "Password (httpwd)"
 msgstr "Пароль (httpwd)"
 
+#, fuzzy
+msgid "Password Setup"
+msgstr "Пароль"
+
+#, fuzzy
+msgid "Password changed"
+msgstr "Пароль (httpwd)"
+
 msgid "Password:"
 msgstr "Пароль"
 
@@ -10733,6 +10848,10 @@ msgid "Play"
 msgstr "Воспроизведение"
 
 msgid "Play DVD"
+msgstr "Воспроизведение DVD"
+
+#, fuzzy
+msgid "Play DVDs"
 msgstr "Воспроизведение DVD"
 
 msgid "Play audio in background"
@@ -11251,6 +11370,10 @@ msgstr "Позиционер (Выбор спутников)"
 msgid "Positioner Setup"
 msgstr "Настройка позиционера"
 
+#, fuzzy
+msgid "Positioner Setup Log"
+msgstr "Настройка позиционера"
+
 msgid "Positioner setup"
 msgstr "Настройка позиционера"
 
@@ -11371,6 +11494,10 @@ msgid "Press Init to format SDcard."
 msgstr ""
 
 msgid "Press MENU on your remote control for additional options."
+msgstr "Нажмите кнопку Меню на пульте для дополнительных опций"
+
+#, fuzzy
+msgid "Press MENU to install additional language(s)."
 msgstr "Нажмите кнопку Меню на пульте для дополнительных опций"
 
 msgid "Press OK on your remote control to continue."
@@ -11522,6 +11649,10 @@ msgstr "\"Список каналов\". Восстановление"
 msgid "Programmlisten from DXAndy"
 msgstr "\"Список каналов\" от DXAndy"
 
+#, fuzzy
+msgid "Programmlisten-Updater V"
+msgstr "\"Список каналов\". Изменения"
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "\"Обновление списка каналов\" от DXAndy"
 
@@ -11616,9 +11747,6 @@ msgstr "Перевести ТВ в режим ожидания"
 msgid "Put your AV Receiver in standby"
 msgstr "Перевести ресивер в режим ожидания"
 
-msgid "Python Camstarter (default)"
-msgstr "Питоновский Cam стартер (По умолчанию)"
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Питоновский интерфейс для /tmp/mmi.socket"
 
@@ -11708,6 +11836,10 @@ msgstr "Оперативная память"
 msgid "Random"
 msgstr "Случайно"
 
+#, fuzzy
+msgid "Random password"
+msgstr "Введите новое имя для сервиса"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Оценка от провайдера - %d"
@@ -11717,9 +11849,6 @@ msgstr "Оценки нет"
 
 msgid "Re-enter new PIN"
 msgstr "Повторный ввод пин-кода"
-
-msgid "ReStart"
-msgstr "Перезагрузить"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Данные пользователя из oscam.conf"
@@ -11919,14 +12048,8 @@ msgstr ""
 "Подождите пока ваш %s %s будет перезагружен\n"
 "Это может занять несколько минут"
 
-msgid "Refresh"
-msgstr "Обновить"
-
 msgid "Refresh every (in hours)"
 msgstr "Интервал обновления (Час)"
-
-msgid "Refresh interval in minutes:"
-msgstr "Интервал обновления в минутах"
 
 msgid "Refresh rate"
 msgstr "Частота обновления"
@@ -12538,6 +12661,10 @@ msgstr "Саудовская Аравия"
 msgid "Save"
 msgstr "Сохранить"
 
+#, fuzzy
+msgid "Save / Enter text and exit"
+msgstr "Сохранить последний каталог при выходе"
+
 msgid "Save EPG"
 msgstr "Сохранить ТВ-гид"
 
@@ -12815,12 +12942,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Выбрать CAID"
 
-msgid "Select Cam 1"
-msgstr "Выбор Cam 1"
-
-msgid "Select Cam 2"
-msgstr "Выбор Cam 2"
-
 #, fuzzy
 msgid "Select Card Server"
 msgstr "Выберите эмулятор или кардсервер"
@@ -12865,6 +12986,10 @@ msgstr "Жёлтая кнопка"
 msgid "Select Yellow Key Action long"
 msgstr "Жёлтая кнопка (долгое нажатие)"
 
+#, fuzzy
+msgid "Select Your Skin"
+msgstr "Выбор скина LCD-дисплея"
+
 msgid "Select a bouquet"
 msgstr "Выберите фаворит"
 
@@ -12899,9 +13024,6 @@ msgstr "Добавить файлы в резервную копию"
 
 msgid "Select additional files to backup"
 msgstr "Выбор дополнительных файлов резервных копий"
-
-msgid "Select all"
-msgstr "Выбрать все"
 
 msgid "Select an image to be downloaded"
 msgstr "Выберите прошивку для загрузки"
@@ -13020,6 +13142,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the character or action under the virtual keyboard cursor"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Выберите нужную функцию и нажмите на \"OK\", чтобы назначить. Используйте \"CH+/-\" для переключения между списками. Выберите назначенную функцию и нажмите на \"OK\" чтобы отменить назначение"
 
@@ -13072,6 +13197,15 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the virtual keyboard locale from a menu"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 msgid "Select upgrade source"
@@ -13315,9 +13449,6 @@ msgid "Service reference"
 msgstr "Референс канала"
 
 msgid "Service scan"
-msgstr "Поиск каналов"
-
-msgid "Tuners & scanning"
 msgstr "Поиск каналов"
 
 msgid ""
@@ -13726,6 +13857,9 @@ msgstr "Резкость"
 msgid "Shellscript"
 msgstr "Скрипт"
 
+msgid "Shift"
+msgstr ""
+
 msgid "Short filenames"
 msgstr "Короткие названия файлов"
 
@@ -13800,9 +13934,6 @@ msgstr "Показать бокспортал"
 
 msgid "Show CCcam in extensions ?"
 msgstr "Показать CCcam в меню дополнений"
-
-msgid "Show CCcamInfo in Extensions Menu"
-msgstr "Показать CCcamInfo в меню дополнений"
 
 msgid "Show CI messages"
 msgstr "Показать сообщения CI"
@@ -13906,9 +14037,6 @@ msgstr "Показать журнал OE"
 msgid "Show OScam in extensions ?"
 msgstr "Показать OScam в меню дополнений"
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr "Показать OscamInfo в меню дополнений"
-
 msgid "Show PIP"
 msgstr "Показать PiP"
 
@@ -13942,9 +14070,6 @@ msgstr ""
 
 msgid "Show Single EPG"
 msgstr "Показать одиночный ТВ-гид"
-
-msgid "Show Softcam-Panel in Extensions Menu"
-msgstr "Показать панель эмуляторов в меню дополнений"
 
 msgid "Show Task's completed message"
 msgstr ""
@@ -14273,7 +14398,7 @@ msgid "Show the Sleep Timer..."
 msgstr "Показать таймер засыпания"
 
 #, fuzzy
-msgid "Show the infomation on current event."
+msgid "Show the information on current event."
 msgstr "Показать информацию по текущей передаче"
 
 msgid "Show the list of AutoTimers."
@@ -14490,6 +14615,10 @@ msgstr "Плагин SkinSelector"
 msgid "Skins"
 msgstr "Скины"
 
+#, fuzzy
+msgid "Skinselector"
+msgstr "Плагин SkinSelector"
+
 msgid "Skip back"
 msgstr "Перейти назад"
 
@@ -14589,12 +14718,6 @@ msgstr "Захвачено"
 msgid "Softcam"
 msgstr "Панель эмуляторов"
 
-msgid "Softcam Panel"
-msgstr "Панель эмуляторов"
-
-msgid "Softcam Panel V2.0"
-msgstr "Панель эмуляторов"
-
 msgid "Softcam Setup"
 msgstr "Панель эмуляторов"
 
@@ -14608,17 +14731,11 @@ msgstr "Панель эмуляторов"
 msgid "Softcam-Panel"
 msgstr "Панель эмуляторов"
 
-msgid "Softcam-Panel Setup"
-msgstr "Настройки панели эмуляторов"
-
 msgid "Softcam-Panel..."
 msgstr "Панель эмуляторов"
 
 #, fuzzy
 msgid "Softcam-Setup"
-msgstr "Панель эмуляторов"
-
-msgid "SoftcamPanel"
 msgstr "Панель эмуляторов"
 
 #, fuzzy
@@ -14813,6 +14930,14 @@ msgstr "Испания"
 msgid "Spanish"
 msgstr "Испанский"
 
+#, fuzzy
+msgid "Special 1"
+msgstr "Сериал номер"
+
+#, fuzzy
+msgid "Special 2"
+msgstr "Сериал номер"
+
 msgid "Special Features"
 msgstr "Особые настройки"
 
@@ -14856,12 +14981,6 @@ msgstr "Запустить"
 msgid "Start Kodi"
 msgstr "Режим запуска"
 
-msgid "Start Mode"
-msgstr "Режим запуска"
-
-msgid "Start attempts"
-msgstr "Количество попыток запуска"
-
 msgid "Start from the beginning"
 msgstr "Начать с самого начала"
 
@@ -14902,12 +15021,6 @@ msgstr "Запуск/Остановка/Выбор эмулятора, снач�
 msgid "StartWizard"
 msgstr "Мастер запуска"
 
-msgid "Starting Cam 1: "
-msgstr "Запуск Cam 1 "
-
-msgid "Starting Cam 2: "
-msgstr "Запуск Cam 2 "
-
 msgid "Starting Softcam"
 msgstr "Запускается эмулятор"
 
@@ -14916,6 +15029,15 @@ msgstr "Начиная с"
 
 msgid "Status"
 msgstr "Состояние"
+
+msgid "Status of the display during operation"
+msgstr ""
+
+msgid "Status of the display in deep standby"
+msgstr ""
+
+msgid "Status of the display in standby mode"
+msgstr ""
 
 msgid "Status:"
 msgstr "Статус"
@@ -14940,9 +15062,6 @@ msgstr "Отключить PiP"
 
 msgid "Stop Streams"
 msgstr "Остановить потоки"
-
-msgid "Stop check when cam is running"
-msgstr "Не проверять, если CAM работает"
 
 msgid "Stop current event and disable coming events"
 msgstr "Остановить текущее событие и отключить ближайшие"
@@ -15301,6 +15420,10 @@ msgstr "Система"
 msgid "System Info"
 msgstr "Системная информация"
 
+#, fuzzy
+msgid "System Message Check"
+msgstr "Проверка файловой системы"
+
 msgid "System Setup"
 msgstr "Настройки системы"
 
@@ -15440,9 +15563,6 @@ msgstr "Telnet-Порт"
 
 msgid "Telnet Setup"
 msgstr "Настройки Telnet"
-
-msgid "Temperature unit:"
-msgstr "Единица измерения температуры"
 
 msgid "Terrestrial"
 msgstr "Наземный"
@@ -15720,6 +15840,9 @@ msgid ""
 msgstr ""
 "Мастер сети не установлен!\n"
 "Пожалуйста, сначала установите его"
+
+msgid "The password can not be blank."
+msgstr ""
 
 #, python-format
 msgid "The path %s already exists."
@@ -16283,9 +16406,6 @@ msgstr "Время обновления в минутах"
 msgid "Time between slides in image viewer slideshow."
 msgstr ""
 
-msgid "Time between start attempts (sec.)"
-msgstr "Интервал между попытками запуска (Сек)"
-
 msgid "Time delay for the repeated transmission"
 msgstr ""
 
@@ -16537,6 +16657,9 @@ msgstr "Переключение соотношения сторон"
 msgid "Toggle between bouquet/epg lists"
 msgstr "Переключение между списками фаворитов/ТВ-гида"
 
+msgid "Toggle new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Togo"
 msgstr "Того"
 
@@ -16744,6 +16867,9 @@ msgstr "Состояние тюнера: НЕИЗВЕСТНО"
 msgid "Tuner type %s"
 msgstr "Тип тюнера %s"
 
+msgid "Tuners & scanning"
+msgstr "Поиск каналов"
+
 msgid "Tuning algorithm"
 msgstr "Алгоритм настройки"
 
@@ -16808,6 +16934,10 @@ msgstr "Тип "
 msgid "Type: "
 msgstr "Тип "
 
+#, fuzzy
+msgid "UI 3D setup"
+msgstr "Настройки 3D"
+
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
@@ -16843,6 +16973,10 @@ msgstr "Украина"
 
 msgid "Ukrainian"
 msgstr "Украинский"
+
+#, fuzzy
+msgid "Unable to change password"
+msgstr "Введите новое имя для сервиса"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -16895,6 +17029,10 @@ msgstr "ОАЭ"
 
 msgid "United Kingdom"
 msgstr "Великобритания"
+
+#, fuzzy
+msgid "United States"
+msgstr "Соединенные Штаты Америки"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Малые отдаленные острова Соединенных Штатов"
@@ -17012,6 +17150,10 @@ msgstr "Фид обновлений не доступен"
 msgid "Updates Available:"
 msgstr "Доступны обновления "
 
+#, fuzzy
+msgid "Updating cache"
+msgstr "Обновление кэша"
+
 msgid "Updating cache, please wait..."
 msgstr "Обновление кэша, ждите"
 
@@ -17020,6 +17162,9 @@ msgstr "Обновление параметров монтирования"
 
 msgid "Updating software catalog"
 msgstr "Каталог обновления ПО"
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr ""
 
 msgid "Upgrade and reboot system"
 msgstr "Обновить и перезагрузить ресивер"
@@ -17054,6 +17199,10 @@ msgstr "Uphops: "
 
 msgid "Upper USB"
 msgstr "USB сверху"
+
+#, fuzzy
+msgid "Upper case"
+msgstr "Нажмите ОК для загрузки информации"
 
 msgid "Uptime"
 msgstr "Время работы"
@@ -17266,6 +17415,9 @@ msgstr "Настройки пользовательского интерфейс
 msgid "User interface visibility"
 msgstr "Видимость интерфейса"
 
+msgid "Userlogo:"
+msgstr ""
+
 msgid "Username"
 msgstr "Имя пользователя"
 
@@ -17321,6 +17473,10 @@ msgstr "VU+"
 
 msgid "Vanuatu"
 msgstr "Вануату"
+
+#, fuzzy
+msgid "Various"
+msgstr "Предыдущий"
 
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr "Венесуэла (Боливарианская Республика)"
@@ -17566,7 +17722,12 @@ msgstr "Виргинские острова (англ.)"
 msgid "Virgin Islands (U.S.)"
 msgstr "Виргинские острова (США)"
 
-msgid "Virtual KeyBoard"
+#, fuzzy
+msgid "Virtual KeyBoard Functions"
+msgstr "Клавиатура"
+
+#, fuzzy
+msgid "Virtual KeyBoard Text:"
 msgstr "Клавиатура"
 
 msgid "Virtual keyboard"
@@ -17649,9 +17810,6 @@ msgstr "Ждите, пока сканируются устройства %s %s"
 msgid "Wait please while scanning..."
 msgstr "Ждите, идёт поиск"
 
-msgid "Wait time before start Cam 2"
-msgstr "Время ожидания перед запуском Cam 2"
-
 msgid "Waiting"
 msgstr "Ожидание"
 
@@ -17660,9 +17818,6 @@ msgstr "Ожидание монтирования"
 
 msgid "Waiting for partition"
 msgstr "Ожидание раздела"
-
-msgid "Waiting..."
-msgstr "Ждите"
 
 msgid "Wake Up"
 msgstr "Пробуждение"
@@ -18042,6 +18197,18 @@ msgstr "Если выбрано 'Да', список каналов будет �
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Эта опция позволяет скрыть задачи из списка дополнений (Вызываемым коротким нажатием синей кнопки)"
 
+msgid "With this option you can switch off the display during operation."
+msgstr ""
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr ""
+
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
@@ -18175,14 +18342,6 @@ msgstr "Да, вернуться к списку записей"
 msgid "Yes, shut down now."
 msgstr "Да, выключить сейчас"
 
-#, fuzzy
-msgid "Yes, with backup"
-msgstr "Востановление резервных копий"
-
-#, fuzzy
-msgid "Yes, without backup"
-msgstr "Востановление резервных копий"
-
 msgid "Yesterday"
 msgstr "Вчера"
 
@@ -18298,6 +18457,9 @@ msgstr "Перед активацией автозапуска сначала н
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Необходимо подождать %s!"
+
+msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+msgstr ""
 
 msgid "You must set at least one Command"
 msgstr "Вы должны задать как минимум одну команду"
@@ -18685,12 +18847,6 @@ msgstr "Активировать конфигурацию сетевого ад�
 msgid "activatePiP"
 msgstr "Включение PIP"
 
-msgid "active CAM 1: "
-msgstr "Активный CAM 1 "
-
-msgid "active CAM 2: "
-msgstr "Активный CAM 2 "
-
 msgid "add Current"
 msgstr "Добавить текущий"
 
@@ -19035,9 +19191,6 @@ msgstr "Не раскодировать, запись ECM"
 
 msgid "done!"
 msgstr "Выполнено!"
-
-msgid "dont wait"
-msgstr "Не ждать"
 
 msgid "drivers"
 msgstr "Драйверы"
@@ -19419,6 +19572,14 @@ msgstr "Вставить метку"
 msgid "install/unpack ipk Files"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "internal flash:  %s %s "
+msgstr "Внутренняя флешь"
+
+#, fuzzy, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr "Прошить ресивер онлайн"
+
 msgid "internally loopthrough to"
 msgstr "Внутренняя петля к"
 
@@ -19622,17 +19783,8 @@ msgstr "Нет"
 msgid "no CAId selected"
 msgstr "Не выбран CAID"
 
-msgid "no CAM 1 active"
-msgstr "CAM 1 неактивен"
-
-msgid "no CAM 2 active"
-msgstr "CAM 2 неактивен"
-
 msgid "no CI slots found"
 msgstr "Слоты CI не найдены"
-
-msgid "no cam"
-msgstr "Эмулятор отсутствует"
 
 msgid "no channel list"
 msgstr "Список каналов отсутствует"
@@ -20119,17 +20271,29 @@ msgstr "Перемотка вперёд"
 msgid "skip forward (enter time)"
 msgstr "Перейти вперёд (Введите время)"
 
+#, fuzzy, python-format
+msgid "slot%s - %s"
+msgstr "Выбор папки с копией"
+
 #, python-format
 msgid "slot%s - %s "
 msgstr ""
 
-#, python-format
-msgid "slot%s - %s (current image) with, backup"
-msgstr ""
+#, fuzzy, python-format
+msgid "slot%s - %s (current image)"
+msgstr "Секторов %s (Макс) %s (Текущее)"
 
-#, python-format
-msgid "slot%s - %s (current image), without backup"
-msgstr ""
+#, fuzzy, python-format
+msgid "slot%s - %s - %s "
+msgstr "Секторов %s (Макс) %s (Текущее)"
+
+#, fuzzy, python-format
+msgid "slot%s - %s - %s (current image)"
+msgstr "Секторов %s (Макс) %s (Текущее)"
+
+#, fuzzy, python-format
+msgid "slot%s - %s - %s as USB Recovery"
+msgstr "Прошить ресивер онлайн"
 
 #, python-format
 msgid "slot%s - %s mode 1"
@@ -20148,24 +20312,8 @@ msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "slot%s - %s, with backup"
+msgid "slot%s - %s- %s "
 msgstr "Выбор папки с копией"
-
-#, python-format
-msgid "slot%s - %s, without backup"
-msgstr ""
-
-#, fuzzy, python-format
-msgid "slot%s -%s - %s (current image)"
-msgstr "Секторов %s (Макс) %s (Текущее)"
-
-#, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s- %s "
-msgstr ""
 
 msgid "slow"
 msgstr "Медленно"
@@ -20400,6 +20548,9 @@ msgstr "Вертикальная"
 
 msgid "view extensions..."
 msgstr "Просмотр дополнений"
+
+msgid "violet"
+msgstr ""
 
 msgid "vix"
 msgstr "vix"
@@ -20641,8 +20792,22 @@ msgstr "Переключение"
 #~ msgid " - video1"
 #~ msgstr " - видео1"
 
+#~ msgid " Except %s"
+#~ msgstr " За исключением %s?"
+
 #~ msgid " Media-filter"
 #~ msgstr " медиа-фильтр"
+
+#~ msgid ""
+#~ " Not Started !!\n"
+#~ "\n"
+#~ "Cam binname must be in the start command line\n"
+#~ "Check your emu config file"
+#~ msgstr ""
+#~ " Не запущен!\n"
+#~ "\n"
+#~ "Название эмулятора не найдено в команде запуска\n"
+#~ "Проверьте файл настроек эмулятора"
 
 #~ msgid ""
 #~ " is already installed.\n"
@@ -20765,20 +20930,41 @@ msgstr "Переключение"
 #~ msgid "--- Feed Status"
 #~ msgstr "Статус фида"
 
+#~ msgid "---Weather---"
+#~ msgstr "---Погода---"
+
 #~ msgid "/etc/hosts editor"
 #~ msgstr "Правка /etc/hosts"
+
+#~ msgid "0 (disabled)"
+#~ msgstr "0 (Отключено)"
 
 #~ msgid "1 (lower than any auto)"
 #~ msgstr "1 (Приоритет ниже, чем авто)"
 
+#~ msgid "1 second"
+#~ msgstr "1 секунда"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "10 (default)"
+#~ msgstr "10 (по умолчанию)"
+
 #~ msgid "10 (lower than any auto)"
 #~ msgstr "10 (Приоритет ниже, чем авто)"
+
+#~ msgid "10 seconds"
+#~ msgstr "10 секунд"
 
 #~ msgid "11 (lower than any auto)"
 #~ msgstr "11 (Приоритет ниже, чем авто)"
 
 #~ msgid "12 (lower than any auto)"
 #~ msgstr "12 (Приоритет ниже, чем авто)"
+
+#~ msgid "120"
+#~ msgstr "120"
 
 #~ msgid "13 (lower than any auto)"
 #~ msgstr "13 (Приоритет ниже, чем авто)"
@@ -20983,6 +21169,9 @@ msgstr "Переключение"
 
 #~ msgid "15 (lower than any auto)"
 #~ msgstr "15 (Приоритет ниже, чем авто)"
+
+#~ msgid "15 seconds"
+#~ msgstr "15 секунд"
 
 #~ msgid "16 (lower than any auto)"
 #~ msgstr "16 (Приоритет ниже, чем авто)"
@@ -21197,8 +21386,14 @@ msgstr "Переключение"
 #~ msgid "2 InfoBar"
 #~ msgstr "2 Инфо-Бар"
 
+#~ msgid "20"
+#~ msgstr "20"
+
 #~ msgid "20 (lower than any auto)"
 #~ msgstr "20 (Приоритет ниже, чем авто)"
+
+#~ msgid "20 seconds"
+#~ msgstr "20 секунд"
 
 #~ msgid "21 (lower than any auto)"
 #~ msgstr "21 (Приоритет ниже, чем авто)"
@@ -21217,6 +21412,9 @@ msgstr "Переключение"
 
 #~ msgid "24 (lower than any auto)"
 #~ msgstr "24 (Приоритет ниже, чем авто)"
+
+#~ msgid "240"
+#~ msgstr "240"
 
 #~ msgid "25 (lower than any auto)"
 #~ msgstr "25 (Приоритет ниже, чем авто)"
@@ -21247,6 +21445,9 @@ msgstr "Переключение"
 
 #~ msgid "30 (lower than any auto)"
 #~ msgstr "30 (Приоритет ниже, чем авто)"
+
+#~ msgid "30 seconds"
+#~ msgstr "30 секунд"
 
 #~ msgid "31 (lower than any auto)"
 #~ msgstr "31 (Приоритет ниже, чем авто)"
@@ -21284,9 +21485,6 @@ msgstr "Переключение"
 #~ msgid "3D ON/OFF (Top and Bottom)"
 #~ msgstr "3D Вкл/Выкл (Вертикально)"
 
-#~ msgid "3D setup"
-#~ msgstr "Настройки 3D"
-
 #~ msgid "3D toggle ON/OFF"
 #~ msgstr "Вкл/Выкл 3D"
 
@@ -21323,8 +21521,14 @@ msgstr "Переключение"
 #~ msgid "49 (lower than any auto)"
 #~ msgstr "49 (Приоритет ниже, чем авто)"
 
+#~ msgid "5 (default)"
+#~ msgstr "5 (по умолчанию)"
+
 #~ msgid "5 (lower than any auto)"
 #~ msgstr "5 (Приоритет ниже, чем авто)"
+
+#~ msgid "5 seconds"
+#~ msgstr "5 секунд"
 
 #~ msgid "50 (lower than any auto)"
 #~ msgstr "50 (Приоритет ниже, чем авто)"
@@ -21358,6 +21562,9 @@ msgstr "Переключение"
 
 #~ msgid "6 (lower than any auto)"
 #~ msgstr "6 (Приоритет ниже, чем авто)"
+
+#~ msgid "60"
+#~ msgstr "60"
 
 #~ msgid "60 (lower than any auto)"
 #~ msgstr "60 (Приоритет ниже, чем авто)"
@@ -21598,6 +21805,9 @@ msgstr "Переключение"
 #~ msgid "CI Assignment"
 #~ msgstr "Назначение CI"
 
+#~ msgid "CI settings"
+#~ msgstr "Настройки CI"
+
 #~ msgid "COPY"
 #~ msgstr "Копировать"
 
@@ -21778,6 +21988,10 @@ msgstr "Переключение"
 #~ msgid "Common interface PIN Setup"
 #~ msgstr "Установки пин-кода"
 
+#, fuzzy
+#~ msgid "Compress"
+#~ msgstr "Полное"
+
 #~ msgid "Config"
 #~ msgstr "Опции"
 
@@ -21848,6 +22062,9 @@ msgstr "Переключение"
 #~ msgid "Create new file in..."
 #~ msgstr "Создать новый файл в"
 
+#~ msgid "Creating start scripts and starting the cam"
+#~ msgstr "Создание скриптов для запуска и запуск эмулятора"
+
 #~ msgid "Crypt Info:"
 #~ msgstr "Информация кодирования"
 
@@ -21883,9 +22100,6 @@ msgstr "Переключение"
 
 #~ msgid "DVB Transmission Way"
 #~ msgstr "DVB передача"
-
-#~ msgid "DVD Player"
-#~ msgstr "Плеер DVD"
 
 #~ msgid "DVD-Player Setup"
 #~ msgstr "Настройки DVD плеера"
@@ -22394,9 +22608,6 @@ msgstr "Переключение"
 #~ msgid "Filesystem check"
 #~ msgstr "Проверка файловой системы"
 
-#~ msgid "Firmware Upgrade"
-#~ msgstr "Обновление прошивки"
-
 #~ msgid "Firmware: %s"
 #~ msgstr "Прошивка %s"
 
@@ -22414,6 +22625,12 @@ msgstr "Переключение"
 
 #~ msgid "Flash On the fly (select a image)"
 #~ msgstr "Выбор имиджа для прошивки"
+
+#~ msgid "Flash and restore settings and all saved plugins"
+#~ msgstr "Прошивка + Настройки + Плагины"
+
+#~ msgid "Flash and start installation wizard"
+#~ msgstr "Прошить и открыть мастер установки"
 
 #~ msgid "Flashed:\t%s"
 #~ msgstr "Прошит\t%s"
@@ -22471,6 +22688,9 @@ msgstr "Переключение"
 
 #~ msgid "Frontpanel"
 #~ msgstr "Дисплей"
+
+#~ msgid "Frozen Cam Check"
+#~ msgstr "Проверка не запущенных CAM"
 
 #~ msgid "FullBackup Configuration"
 #~ msgstr "Параметры копирования"
@@ -22636,9 +22856,6 @@ msgstr "Переключение"
 #~ msgid "INDB Ipk_creator"
 #~ msgstr "Создание *.ipk пакетов"
 
-#~ msgid "INFO"
-#~ msgstr "Инфо"
-
 #~ msgid "IPK Tools"
 #~ msgstr "Установка и удаление пакетов"
 
@@ -22733,11 +22950,11 @@ msgstr "Переключение"
 #~ msgid "InfoBarEventView"
 #~ msgstr "Просмотр передачи в инфобаре"
 
+#~ msgid "Init.d"
+#~ msgstr "Init.d"
+
 #~ msgid "Initialize disk"
 #~ msgstr "Инициализация диска"
-
-#~ msgid "Input 1"
-#~ msgstr "Вход 1"
 
 #~ msgid "Input 10"
 #~ msgstr "Вход 10"
@@ -22787,9 +23004,6 @@ msgstr "Переключение"
 #~ msgid "Input device setup"
 #~ msgstr "Настройки устройства"
 
-#~ msgid "Insatall extensions from feed"
-#~ msgstr "Установка расширений"
-
 #~ msgid "Insert mount point:"
 #~ msgstr "Точка монтирования"
 
@@ -22819,9 +23033,6 @@ msgstr "Переключение"
 
 #~ msgid "Installation aborted !"
 #~ msgstr "Установка прервана!"
-
-#~ msgid "Installing Software..."
-#~ msgstr "Выполнение операции"
 
 #~ msgid "Instant Record"
 #~ msgstr "Немедленная запись"
@@ -22934,11 +23145,11 @@ msgstr "Переключение"
 #~ msgid "Loading information..."
 #~ msgstr "Загрузка информации"
 
-#~ msgid "Local"
-#~ msgstr "Локально"
-
 #~ msgid "Local = Flash a image from local path /hdd/images"
 #~ msgstr "Локально = Прошить ресивер из локального устройства /hdd/images"
+
+#~ msgid "Location # (http://weather.yahoo.com/):"
+#~ msgstr "Расположение # (http://weather.yahoo.com/):"
 
 #~ msgid "Location Box"
 #~ msgstr "Местоположение"
@@ -23155,6 +23366,10 @@ msgstr "Переключение"
 #~ msgid "MultiBoot STARTUP switcher"
 #~ msgstr "Выбор имиджа для загрузки"
 
+#, fuzzy
+#~ msgid "MultiBootSelector"
+#~ msgstr "Выбор мультизагрузки"
+
 #~ msgid "Music Playlist"
 #~ msgstr "Плейлист"
 
@@ -23297,6 +23512,18 @@ msgstr "Переключение"
 #~ "\n"
 #~ "Выход из плагина"
 
+#~ msgid ""
+#~ "No Cam started !!\n"
+#~ "\n"
+#~ "Cam 1 must be different from Cam 2"
+#~ msgstr ""
+#~ "Карта не запущена!\n"
+#~ "\n"
+#~ "Cam 1 и Cam 2 должны отличаться!"
+
+#~ msgid "No ECM info"
+#~ msgstr "Информация ECM отсутствует"
+
 #~ msgid "No IPTV media server found"
 #~ msgstr "IPTV сервер не найден"
 
@@ -23333,6 +23560,9 @@ msgstr "Переключение"
 
 #~ msgid "No more playable files."
 #~ msgstr "Нет больше воспроизводимых файлов"
+
+#~ msgid "No new ECM info"
+#~ msgstr "Новая информация ECM отсутствует"
 
 #~ msgid "No new plugins found"
 #~ msgstr "Новых плагинов не найдено"
@@ -23471,6 +23701,9 @@ msgstr "Переключение"
 
 #~ msgid "Options:\n"
 #~ msgstr "Параметры\n"
+
+#~ msgid "OscamInfo"
+#~ msgstr "Информация Oscam"
 
 #~ msgid "P l a y l i s t"
 #~ msgstr "Плейлист"
@@ -23638,9 +23871,6 @@ msgstr "Переключение"
 #~ msgid "Polarization:"
 #~ msgstr "Поляризация"
 
-#~ msgid "Position setup"
-#~ msgstr "Настройка экрана"
-
 #~ msgid "Position:"
 #~ msgstr "Позиция"
 
@@ -23690,9 +23920,6 @@ msgstr "Переключение"
 #~ msgid "Processor Temp:\t%s"
 #~ msgstr "Темп ЦП\t%s"
 
-#~ msgid "Programmlisten-Updater History"
-#~ msgstr "\"Список каналов\". Изменения"
-
 #~ msgid "Programmlisten-Updater Restore"
 #~ msgstr "\"Список каналов\". Восстановление"
 
@@ -23717,6 +23944,9 @@ msgstr "Переключение"
 #~ msgid "Pyc-Script:\n"
 #~ msgstr "Скрипт Pyc\n"
 
+#~ msgid "Python Camstarter (default)"
+#~ msgstr "Питоновский Cam стартер (По умолчанию)"
+
 #~ msgid "Python Ver:\t%s"
 #~ msgstr "Python вер\t%s"
 
@@ -23734,6 +23964,9 @@ msgstr "Переключение"
 
 #~ msgid "RSS Reader"
 #~ msgstr "Чтение RSS"
+
+#~ msgid "ReStart"
+#~ msgstr "Перезагрузить"
 
 #~ msgid "Read cache speed: %s"
 #~ msgstr "Скорость чтения кэша %s"
@@ -23770,6 +24003,12 @@ msgstr "Переключение"
 
 #~ msgid "Reference:"
 #~ msgstr "Референс"
+
+#~ msgid "Refresh"
+#~ msgstr "Обновить"
+
+#~ msgid "Refresh interval in minutes:"
+#~ msgstr "Интервал обновления в минутах"
 
 #~ msgid "Region    :"
 #~ msgstr "Регион    "
@@ -23928,6 +24167,12 @@ msgstr "Переключение"
 #~ msgid "Select Bootoption: not supported - see info"
 #~ msgstr "Этот вариант загрузки не поддерживается - смотрите информацию"
 
+#~ msgid "Select Cam 1"
+#~ msgstr "Выбор Cam 1"
+
+#~ msgid "Select Cam 2"
+#~ msgstr "Выбор Cam 2"
+
 #~ msgid "Select Copy/Move location..."
 #~ msgstr "Выберите местоположение"
 
@@ -23945,6 +24190,9 @@ msgstr "Переключение"
 
 #~ msgid "Select Sats Entry"
 #~ msgstr "Выбор спутников"
+
+#~ msgid "Select all"
+#~ msgstr "Выбрать все"
 
 #~ msgid "Select backup files"
 #~ msgstr "Выбор файлов копий"
@@ -23993,9 +24241,6 @@ msgstr "Переключение"
 
 #~ msgid "Service Manager"
 #~ msgstr "Управление сервисами"
-
-#~ msgid "Service Scan"
-#~ msgstr "Поиск каналов"
 
 #~ msgid "Service Tools"
 #~ msgstr "Сервисные утилиты"
@@ -24054,6 +24299,9 @@ msgstr "Переключение"
 #~ msgid "Should the plugin turn on 3D mode automatically judging on the playing media title (3D in service or file name)?"
 #~ msgstr "Следует ли включать плагин 3D в режим авто судя по названию медиа файла (Имя канала или файла)?"
 
+#~ msgid "Show CCcamInfo in Extensions Menu"
+#~ msgstr "Показать CCcamInfo в меню дополнений"
+
 #~ msgid "Show DVD-Player in Mainmenu"
 #~ msgstr "Показать DVD плеер в главном меню"
 
@@ -24093,6 +24341,9 @@ msgstr "Переключение"
 #~ msgid "Show Multi Service EPG"
 #~ msgstr "Показать мульти-ТВ-гид канала"
 
+#~ msgid "Show OscamInfo in Extensions Menu"
+#~ msgstr "Показать OscamInfo в меню дополнений"
+
 #~ msgid "Show Plugin Selection"
 #~ msgstr "Показать плагины"
 
@@ -24107,6 +24358,9 @@ msgstr "Переключение"
 
 #~ msgid "Show Single Service EPG"
 #~ msgstr "Показать одиночный ТВ-гид канала"
+
+#~ msgid "Show Softcam-Panel in Extensions Menu"
+#~ msgstr "Показать панель эмуляторов в меню дополнений"
 
 #~ msgid "Show Subservice Selection"
 #~ msgstr "Показать выбор подсервисов"
@@ -24189,8 +24443,20 @@ msgstr "Переключение"
 #~ msgid "Softcam Manager"
 #~ msgstr "Панель эмуляторов"
 
+#~ msgid "Softcam Panel"
+#~ msgstr "Панель эмуляторов"
+
+#~ msgid "Softcam Panel V2.0"
+#~ msgstr "Панель эмуляторов"
+
 #~ msgid "Softcam Selection:"
 #~ msgstr "Выбор эмулятора"
+
+#~ msgid "Softcam-Panel Setup"
+#~ msgstr "Настройки панели эмуляторов"
+
+#~ msgid "SoftcamPanel"
+#~ msgstr "Панель эмуляторов"
 
 #~ msgid "Softcams"
 #~ msgstr "Эмуляторы"
@@ -24283,6 +24549,9 @@ msgstr "Переключение"
 #~ msgid "Sources"
 #~ msgstr "Источники"
 
+#~ msgid "Start Mode"
+#~ msgstr "Режим запуска"
+
 #~ msgid "Start Teletext"
 #~ msgstr "Запуск телетекста"
 
@@ -24295,6 +24564,9 @@ msgstr "Переключение"
 #~ msgid "Start Tuner"
 #~ msgstr "Запуск ресивера"
 
+#~ msgid "Start attempts"
+#~ msgstr "Количество попыток запуска"
+
 #~ msgid "Start execution"
 #~ msgstr "Выполнить скрипт"
 
@@ -24306,6 +24578,12 @@ msgstr "Переключение"
 
 #~ msgid "Start:"
 #~ msgstr "Старт"
+
+#~ msgid "Starting Cam 1: "
+#~ msgstr "Запуск Cam 1 "
+
+#~ msgid "Starting Cam 2: "
+#~ msgstr "Запуск Cam 2 "
 
 #~ msgid "Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
 #~ msgstr ""
@@ -24322,6 +24600,9 @@ msgstr "Переключение"
 
 #~ msgid "Stop Tuner"
 #~ msgstr "Остановка ресивера"
+
+#~ msgid "Stop check when cam is running"
+#~ msgstr "Не проверять, если CAM работает"
 
 #~ msgid "Subtitles downloader"
 #~ msgstr "Загрузка простых субтитров"
@@ -24420,6 +24701,9 @@ msgstr "Переключение"
 #~ msgid "Temperatur:"
 #~ msgstr "Температура"
 
+#~ msgid "Temperature unit:"
+#~ msgstr "Единица измерения температуры"
+
 #~ msgid "Temperature:"
 #~ msgstr "Температура"
 
@@ -24510,6 +24794,9 @@ msgstr "Переключение"
 
 #~ msgid "Time :"
 #~ msgstr "Время "
+
+#~ msgid "Time between start attempts (sec.)"
+#~ msgstr "Интервал между попытками запуска (Сек)"
 
 #~ msgid "Time/Date Input"
 #~ msgstr "Ввод Дата/Время"
@@ -24655,9 +24942,6 @@ msgstr "Переключение"
 #~ msgid "Upgrade and ask to reboot"
 #~ msgstr "Обновить и спросить об перезагрузке"
 
-#~ msgid "Upper"
-#~ msgstr "Нажмите ОК для загрузки информации"
-
 #~ msgid "Use Bootmanager by Booting"
 #~ msgstr "Использовать мультизагрузчик для загрузки"
 
@@ -24769,6 +25053,12 @@ msgstr "Переключение"
 #~ msgid "WARNING! they make now a softlink from\n"
 #~ msgstr "ВНИМАНИЕ! Будет добавлена ссылка на\n"
 
+#~ msgid "Wait time before start Cam 2"
+#~ msgstr "Время ожидания перед запуском Cam 2"
+
+#~ msgid "Waiting..."
+#~ msgstr "Ждите"
+
 #~ msgid "Wakeup signal from TV"
 #~ msgstr "Сигнал просыпания от телевизора"
 
@@ -24874,6 +25164,14 @@ msgstr "Переключение"
 
 #~ msgid "Yes, and no network traffic"
 #~ msgstr "Да и без сетевого трафика"
+
+#, fuzzy
+#~ msgid "Yes, with backup"
+#~ msgstr "Востановление резервных копий"
+
+#, fuzzy
+#~ msgid "Yes, without backup"
+#~ msgstr "Востановление резервных копий"
 
 #~ msgid "You are not running NFR Image. You must mount devices Your self."
 #~ msgstr "Вам необходимо подключить устройство самостоятельно."
@@ -24985,6 +25283,12 @@ msgstr "Переключение"
 #~ msgid "[sort by Name] "
 #~ msgstr "[Сортировка по имени] "
 
+#~ msgid "active CAM 1: "
+#~ msgstr "Активный CAM 1 "
+
+#~ msgid "active CAM 2: "
+#~ msgstr "Активный CAM 2 "
+
 #~ msgid "add all files in directory to playlist"
 #~ msgstr "Добавить все файлы в каталоге в плейлист"
 
@@ -25065,6 +25369,9 @@ msgstr "Переключение"
 #~ msgid "delete saved playlist"
 #~ msgstr "Удалить сохранённый плейлист"
 
+#~ msgid "dont wait"
+#~ msgstr "Не ждать"
+
 #~ msgid "dreambox advanced remote control (native)"
 #~ msgstr "Оригинальный пульт ДУ dreambox"
 
@@ -25103,6 +25410,15 @@ msgstr "Переключение"
 
 #~ msgid "name"
 #~ msgstr "Имя"
+
+#~ msgid "no CAM 1 active"
+#~ msgstr "CAM 1 неактивен"
+
+#~ msgid "no CAM 2 active"
+#~ msgstr "CAM 2 неактивен"
+
+#~ msgid "no cam"
+#~ msgstr "Эмулятор отсутствует"
 
 #~ msgid "ofgwrite flashing ready.\n"
 #~ msgstr "Процесс прошивки завершен.\n"
