@@ -54,6 +54,7 @@ class LanguageSelection(Screen):
 		self["key_green"] = Label(_("Save"))
 		self["key_yellow"] = Label(_("Update Cache"))
 		self["key_blue"] = Label(_("Delete Language"))
+		self["description"] = Label(_("Press MENU to install additional language(s)."))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -63,6 +64,7 @@ class LanguageSelection(Screen):
 			"green": self.save,
 			"yellow": self.updateCache,
 			"blue": self.delLang,
+			"menu": self.installLanguage,
 		}, -1)
 
 	def updateCache(self):
@@ -141,8 +143,8 @@ class LanguageSelection(Screen):
 		lang = self["languages"].getCurrent()[0]
 
 		if lang == 'update cache':
-			self.setTitle("Updating cache")
-			self["summarylangname"].setText("Updating cache")
+			self.setTitle(_("Updating cache"))
+			self["summarylangname"].setText(_("Updating cache"))
 			return
 
 		if lang != config.osd.language.value:
@@ -174,6 +176,16 @@ class LanguageSelection(Screen):
 			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
 		self.list = list
 		self["languages"].list = list
+
+	def installLanguage(self):
+		from Screens.PluginBrowser import PluginDownloadBrowser
+		self.session.openWithCallback(self.update_after_installLanguage, PluginDownloadBrowser, 0)
+
+
+	def update_after_installLanguage(self):
+		language.InitLang()
+		self.updateList()
+		self.selectActiveLanguage()
 
 	def changed(self):
 		self.run(justlocal = True)
