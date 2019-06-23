@@ -4,6 +4,7 @@ from boxbranding import getMachineProcModel
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.SystemInfo import SystemInfo
 
 def SymbolsCheck(session, **kwargs):
 	global symbolspoller
@@ -24,10 +25,12 @@ class SymbolsCheckPoller:
 	def start(self):
 		self.recordings = len(self.session.nav.getRecordings())
 		self.session.nav.record_event.append(self.gotRecordEvent)
+		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call=False)
 		self.Recording()
 
 	def stop(self):
 		self.session.nav.record_event.remove(self.gotRecordEvent)
+		config.misc.standbyCounter.removeNotifier(self.standbyCounterChanged)
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
@@ -45,6 +48,11 @@ class SymbolsCheckPoller:
 			if self.recordings != prev_recordings:
 				self.Recording()
 
+	def standbyCounterChanged(self, dummy):
+		if config.usage.lcd_ledpowerrec:
+			from Screens.Standby import inStandby
+			inStandby.onClose.append(self.Recording)
+
 	def Recording(self):
 		if fileExists("/proc/stb/lcd/symbol_circle") or fileExists("/proc/stb/lcd/symbol_record"):
 			if self.recordings > 0:
@@ -61,10 +69,7 @@ class SymbolsCheckPoller:
 				f =open("/proc/stb/lcd/symbol_record", "w")
 				f.write("0")
 				f.close()
-		else:
-			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
-				return
-	
+		elif fileExists("/proc/stb/lcd/symbol_recording") and fileExists("/proc/stb/lcd/symbol_record_1") and fileExists("/proc/stb/lcd/symbol_record_2"):
 			if self.recordings > 0:
 				f = open("/proc/stb/lcd/symbol_recording", "w")
 				f.write("1")
@@ -93,6 +98,17 @@ class SymbolsCheckPoller:
 				f = open("/proc/stb/lcd/symbol_record_2", "w")
 				f.write("0")
 				f.close()
+		elif config.usage.lcd_ledpowerrec:
+			led = self.recordings and 2 or 0
+			if SystemInfo["LedStandbyColor"]:
+				f = open("/proc/stb/fp/ledstandbycolor", "w")
+				f.write(str(led))
+				f.close()
+			if not self.session.screen["Standby"].boolean:
+				led |= 1
+			f = open("/proc/stb/fp/ledpowercolor", "w")
+			f.write(str(led))
+			f.close()
 
 	def Subtitle(self):
 		if not fileExists("/proc/stb/lcd/symbol_smartcard") or not fileExists("/proc/stb/lcd/symbol_subtitle"):

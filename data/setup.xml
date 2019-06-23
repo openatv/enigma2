@@ -242,8 +242,9 @@
 		<item level="0" requires="LEDButtons" text="LED (Standby)" description="Set LED brightness level in standby mode.">config.lcd.ledbrightnessstandby</item>
 		<item level="0" requires="LEDButtons" text="LED (Deep Standby)" description="Set LED brightness level in deep standby mode.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" text="StandbyLED" description="Turn on the power LED during standby." requires="StandbyLED">config.usage.standbyLED</item>
-		<item level="0" requires="LedPowerColor" text="LED state while running" description="Choose the running LED colour or turn it off.">config.usage.lcd_ledpowercolor</item>
-		<item level="0" requires="LedStandbyColor" text="LED state in standby" description="Choose the standby LED colour or turn it off.">config.usage.lcd_ledstandbycolor</item>
+		<item level="0" requires="LedPowerColor" text="Use LED for power &amp; recording" description="The LED indicates both power and recording states:\noff - standby, not recording;\nred - standby, recording;\nblue - running, not recording;\nviolet - running, recording.">config.usage.lcd_ledpowerrec</item>
+		<item level="0" requires="LedPowerColor;!config.usage.lcd_ledpowerrec" text="LED state while running" description="Choose the running LED colour or turn it off.">config.usage.lcd_ledpowercolor</item>
+		<item level="0" requires="LedStandbyColor;!config.usage.lcd_ledpowerrec" text="LED state in standby" description="Choose the standby LED colour or turn it off.">config.usage.lcd_ledstandbycolor</item>
 		<item level="0" requires="LedSuspendColor" text="LED state in shutdown" description="Choose the shutdown LED colour or turn it off.">config.usage.lcd_ledsuspendcolor</item>
 		<item level="0" requires="Power4x7On" text="Display state while running" description="Choose to have no display while running.">config.usage.lcd_power4x7on</item>
 		<item level="0" requires="Power4x7Standby" text="Display state in standby" description="Choose to have no display in standby.">config.usage.lcd_power4x7standby</item>
