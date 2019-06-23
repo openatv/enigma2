@@ -1,13 +1,9 @@
-from twisted.internet import threads
 from config import config
-from enigma import eDBoxLCD, eTimer, iPlayableService, iServiceInformation
+from enigma import iPlayableService, iRecordableService, iServiceInformation
 from boxbranding import getMachineProcModel
-import NavigationInstance
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
-
-POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
 	global symbolspoller
@@ -17,31 +13,21 @@ def SymbolsCheck(session, **kwargs):
 class SymbolsCheckPoller:
 	def __init__(self, session):
 		self.session = session
-		self.timer = eTimer()
 		self.onClose = []
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				#iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 				iPlayableService.evVideoSizeChanged: self.__evUpdatedInfo,
 			})
+		self.recordings = 0
 
 	def start(self):
-		if self.symbolscheck not in self.timer.callback:
-			self.timer.callback.append(self.symbolscheck)
-		self.timer.startLongTimer(0)
+		self.recordings = len(self.session.nav.getRecordings())
+		self.session.nav.record_event.append(self.gotRecordEvent)
+		self.Recording()
 
 	def stop(self):
-		if self.symbolscheck in self.timer.callback:
-			self.timer.callback.remove(self.symbolscheck)
-		self.timer.stop()
-
-	def symbolscheck(self):
-		threads.deferToThread(self.JobTask)
-		self.timer.startLongTimer(POLLTIME)
-
-	def JobTask(self):
-		self.Recording()
-		self.timer.startLongTimer(POLLTIME)
+		self.session.nav.record_event.remove(self.gotRecordEvent)
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
@@ -52,10 +38,16 @@ class SymbolsCheckPoller:
 		self.ParentalControl()
 		del self.service
 
+	def gotRecordEvent(self, service, event):
+		if event in (iRecordableService.evEnd, iRecordableService.evStart):
+			prev_recordings = self.recordings
+			self.recordings = len(self.session.nav.getRecordings())
+			if self.recordings != prev_recordings:
+				self.Recording()
+
 	def Recording(self):
 		if fileExists("/proc/stb/lcd/symbol_circle") or fileExists("/proc/stb/lcd/symbol_record"):
-			recordings = len(NavigationInstance.instance.getRecordings())
-			if recordings > 0:
+			if self.recordings > 0:
 				f = open("/proc/stb/lcd/symbol_circle", "w")
 				f.write("3")
 				f.close()
@@ -73,20 +65,18 @@ class SymbolsCheckPoller:
 			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
 				return
 	
-			recordings = len(NavigationInstance.instance.getRecordings())
-		
-			if recordings > 0:
+			if self.recordings > 0:
 				f = open("/proc/stb/lcd/symbol_recording", "w")
 				f.write("1")
 				f.close()
-				if recordings == 1:
+				if self.recordings == 1:
 					f = open("/proc/stb/lcd/symbol_record_1", "w")
 					f.write("1")
 					f.close()
 					f = open("/proc/stb/lcd/symbol_record_2", "w")
 					f.write("0")
 					f.close()
-				elif recordings >= 2:
+				elif self.recordings >= 2:
 					f = open("/proc/stb/lcd/symbol_record_1", "w")
 					f.write("1")
 					f.close()
