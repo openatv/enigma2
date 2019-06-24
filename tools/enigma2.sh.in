@@ -173,12 +173,14 @@ fi
 
 case $ret in
 	1)
+		touch /etc/enigma2/.deep
 		/sbin/halt
 		;;
 	2)
 		if [ -f /proc/stb/fp/force_restart ]; then
 			echo 1 > /proc/stb/fp/force_restart
 		fi
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
 		;;
 	3)
@@ -191,6 +193,7 @@ case $ret in
 		sleep 1;
 		/sbin/rmmod fp
 		/sbin/modprobe fp
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
 		;;
 	16)
@@ -201,6 +204,7 @@ case $ret in
 		else
 			echo "rescue" > /proc/stb/fp/boot_mode
 		fi
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
 		;;
 	42)
@@ -215,6 +219,7 @@ case $ret in
 		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
 		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bin of=/dev/mcu
 		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
+		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		# Wait forever for the user to power off
 		while(true) ; do sleep 60 ; done
 		;;

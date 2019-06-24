@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 10:20+0200\n"
+"POT-Creation-Date: 2019-06-22 11:29+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -262,17 +262,6 @@ msgstr "ช่อง"
 #, fuzzy
 msgid " <empty>"
 msgstr "ว่าง"
-
-#, python-format
-msgid " Except %s"
-msgstr ""
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
 
 msgid " and"
 msgstr ""
@@ -950,6 +939,10 @@ msgstr[1] ""
 msgid "%d minutes"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d นาที"
+
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
@@ -1041,6 +1034,10 @@ msgid "%m/%d/%Y"
 msgstr ""
 
 #, python-format
+msgid "%s"
+msgstr ""
+
+#, python-format
 msgid ""
 "%s\n"
 "(%s, %d MB free)"
@@ -1115,6 +1112,10 @@ msgstr "ตั้งค่า"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "ค้นหา additional SR"
+
+#, fuzzy, python-format
+msgid "%s build date %s"
+msgstr "ปรับปรุงรายการของส่วนประกอบ"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1205,6 +1206,10 @@ msgstr ""
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
 
+#, fuzzy
+msgid "'weatherplugin' is not installed!"
+msgstr "ปลั๊กอินตัวนี้ยังไม่ได้ติดตั้ง"
+
 msgid "( All readers)"
 msgstr ""
 
@@ -1251,9 +1256,6 @@ msgstr ""
 msgid "+24"
 msgstr "2"
 
-msgid "---Weather---"
-msgstr ""
-
 #, fuzzy
 msgid "-24"
 msgstr "2"
@@ -1281,9 +1283,6 @@ msgid "/var directory"
 msgstr ""
 
 msgid "0"
-msgstr ""
-
-msgid "0 (disabled)"
 msgstr ""
 
 msgid "0.2s"
@@ -1319,9 +1318,6 @@ msgstr ""
 msgid "1 min."
 msgstr ""
 
-msgid "1 second"
-msgstr ""
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1340,19 +1336,10 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10"
-msgstr ""
-
-msgid "10 (default)"
-msgstr ""
-
 msgid "10 MB/s"
 msgstr ""
 
 msgid "10 min."
-msgstr ""
-
-msgid "10 seconds"
 msgstr ""
 
 msgid "100 MB/s"
@@ -1403,9 +1390,6 @@ msgstr ""
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
-msgid "120"
-msgstr ""
-
 #, fuzzy
 msgid "128"
 msgstr "1.2"
@@ -1430,9 +1414,6 @@ msgid "13 V"
 msgstr "13 V"
 
 msgid "15 min."
-msgstr ""
-
-msgid "15 seconds"
 msgstr ""
 
 msgid "1536 Mb"
@@ -1503,13 +1484,7 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20"
-msgstr ""
-
 msgid "20 MB/s"
-msgstr ""
-
-msgid "20 seconds"
 msgstr ""
 
 msgid "2048 Mb"
@@ -1544,9 +1519,6 @@ msgid "24+ Hours"
 msgstr ""
 
 msgid "24- Hours"
-msgstr ""
-
-msgid "240"
 msgstr ""
 
 msgid "24p/24p"
@@ -1639,9 +1611,6 @@ msgstr ""
 msgid "30 minutes"
 msgstr ""
 
-msgid "30 seconds"
-msgstr ""
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1729,16 +1698,10 @@ msgstr ""
 msgid "5"
 msgstr ""
 
-msgid "5 (default)"
-msgstr ""
-
 msgid "5 min."
 msgstr ""
 
 msgid "5 minutes"
-msgstr ""
-
-msgid "5 seconds"
 msgstr ""
 
 msgid "50 MB/s"
@@ -1773,9 +1736,6 @@ msgid "5s"
 msgstr ""
 
 msgid "6"
-msgstr ""
-
-msgid "60"
 msgstr ""
 
 msgid "60 minutes"
@@ -2507,6 +2467,14 @@ msgstr ""
 msgid "Alternative"
 msgstr "เพิ่มทางเลือกอื่น"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "เพิ่มทางเลือกอื่น"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "เพิ่มทางเลือกอื่น"
+
 msgid "Alternative numbering mode"
 msgstr ""
 
@@ -2808,6 +2776,10 @@ msgstr ""
 msgid "Australia"
 msgstr "ภาษาอิตาลี่"
 
+#, fuzzy
+msgid "Australian"
+msgstr "ภาษาอิตาลี่"
+
 msgid "Austria"
 msgstr ""
 
@@ -2935,6 +2907,10 @@ msgstr ""
 msgid "Available format variables"
 msgstr "รูปแบบที่ใช้งานได้"
 
+#, fuzzy
+msgid "Available locales are:"
+msgstr "รูปแบบที่ใช้งานได้"
+
 msgid "Available shares:"
 msgstr ""
 
@@ -3042,6 +3018,14 @@ msgstr ""
 msgid "Background delete speed"
 msgstr ""
 
+#, fuzzy
+msgid "Background:"
+msgstr "ฉากหลัง"
+
+#, fuzzy
+msgid "Backgroundselected:"
+msgstr "ฉากหลัง"
+
 msgid "Backup"
 msgstr ""
 
@@ -3107,6 +3091,12 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
+msgid "Backup, flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr ""
+
 msgid "Bahamas"
 msgstr ""
 
@@ -3164,6 +3154,10 @@ msgstr "เมื่อเมื่อภาพยนต์จบ ให้"
 
 msgid "Belarus"
 msgstr ""
+
+#, fuzzy
+msgid "Belgian"
+msgstr "ภาษานอร์เว"
 
 msgid "Belgium"
 msgstr ""
@@ -3410,9 +3404,6 @@ msgstr ""
 msgid "CCcam Shares Info"
 msgstr ""
 
-msgid "CCcamInfo"
-msgstr ""
-
 msgid "CCcamInfo Mainmenu"
 msgstr ""
 
@@ -3450,10 +3441,6 @@ msgstr ""
 
 msgid "CI assignment"
 msgstr "CI assignment"
-
-#, fuzzy
-msgid "CI settings"
-msgstr "แก้ไขการตั้งค่า"
 
 msgid "CI slot: "
 msgstr ""
@@ -3568,6 +3555,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "ยกเลิก"
 
+msgid "Cancel any text changes and exit"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel execution?"
 msgstr "เลือกช่องรายการ"
@@ -3577,6 +3567,10 @@ msgstr ""
 
 msgid "Cancelled upon user request"
 msgstr ""
+
+#, fuzzy
+msgid "Cannot create backup directory"
+msgstr "สร้างโฟล์เดอร์"
 
 #, fuzzy
 msgid "Cannot delete downloaded image"
@@ -3749,10 +3743,10 @@ msgstr ""
 msgid "Channel list service mode*"
 msgstr ""
 
-msgid "Channel list show MiniTV"
+msgid "Channel list show MiniTV when Skin use."
 msgstr ""
 
-msgid "Channel list show MiniTV when Skin use."
+msgid "Channel list show MiniTV*"
 msgstr ""
 
 msgid "Channel list type"
@@ -3989,6 +3983,9 @@ msgstr "วนซ้าย"
 msgid "Circular right"
 msgstr "วนขวา"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 #, fuzzy
 msgid "Clean network trash cans"
 msgstr "ลบข้อมูลเดิมก่อนค้นหา"
@@ -4032,6 +4029,10 @@ msgstr ""
 msgid "Clock"
 msgstr ""
 
+#, fuzzy
+msgid "Clock:"
+msgstr "ล๊อคแล้ว"
+
 msgid "Clone TV screen to LCD"
 msgstr ""
 
@@ -4066,6 +4067,9 @@ msgstr "Coderate HP"
 
 msgid "Coderate LP"
 msgstr "Coderate LP"
+
+msgid "Collapse"
+msgstr ""
 
 msgid "Collection name"
 msgstr "ชื่อคอลเลคชั่น"
@@ -4120,6 +4124,10 @@ msgstr "ติดต่อสื่อสาร"
 msgid "Comoros"
 msgstr ""
 
+#, fuzzy
+msgid "Compensate for overscan"
+msgstr "ลบข้อมูลเดิมก่อนค้นหา"
+
 msgid "Complete"
 msgstr "สำเร็จ"
 
@@ -4131,10 +4139,6 @@ msgstr "ซับซ้อน (ยอมให้มีเสียงและ�
 
 msgid "Composition of the recording filenames"
 msgstr ""
-
-#, fuzzy
-msgid "Compress"
-msgstr "สำเร็จ"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -4769,9 +4773,6 @@ msgstr "กำลังตรวจสอบระบบไฟล์..."
 msgid "Creating partition"
 msgstr ""
 
-msgid "Creating start scripts and starting the cam"
-msgstr ""
-
 #, fuzzy
 msgid "Croatia"
 msgstr "ภาษาโคเอเชีย"
@@ -4863,6 +4864,10 @@ msgstr "ปรับแต่ง"
 msgid "Cut"
 msgstr "ตัด"
 
+#, fuzzy
+msgid "Cutlist Editor"
+msgstr "ตัดต่อรายการ..."
+
 msgid "Cutlist editor"
 msgstr ""
 
@@ -4941,6 +4946,10 @@ msgstr ""
 msgid "DVB-T2"
 msgstr ""
 
+#, fuzzy
+msgid "DVD Burn"
+msgstr "เมนู"
+
 msgid "DVD File Browser"
 msgstr ""
 
@@ -4957,6 +4966,10 @@ msgstr "ดูแฟ้มในดีวีดี"
 
 #, fuzzy
 msgid "DVD player"
+msgstr "ซ่อนตัวเล่น"
+
+#, fuzzy
+msgid "DVDPlayer"
 msgstr "ซ่อนตัวเล่น"
 
 #, fuzzy
@@ -5149,6 +5162,10 @@ msgid "Default Modes Selected."
 msgstr ""
 
 #, fuzzy
+msgid "Default Services Scanner"
+msgstr "ค้นหาเอง"
+
+#, fuzzy
 msgid "Default directory sorting"
 msgstr "ตั้งค่าเริ่มต้น"
 
@@ -5339,6 +5356,12 @@ msgstr "ลบรายการนี้"
 #, fuzzy
 msgid "Delete saved playlist"
 msgstr "ลบรายการสารบัญ"
+
+msgid "Delete the character to the left of text buffer cursor"
+msgstr ""
+
+msgid "Delete the character under the text buffer cursor"
+msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr ""
@@ -5676,7 +5699,10 @@ msgstr "ท่านต้องการที่จะเขียนคอล
 msgid "Do you want to continue?"
 msgstr ""
 
-msgid "Do you want to delete all other languages?"
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr ""
 
 msgid ""
@@ -5791,6 +5817,9 @@ msgid ""
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
 
+msgid "Done"
+msgstr ""
+
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr ""
@@ -5832,6 +5861,10 @@ msgstr ""
 
 msgid "Downloadable plugins"
 msgstr ""
+
+#, fuzzy
+msgid "Downloaded Images"
+msgstr "กำลังดาวน์โหลด"
 
 msgid "Downloading"
 msgstr "กำลังดาวน์โหลด"
@@ -6255,6 +6288,10 @@ msgstr ""
 
 msgid "Enigma2 skin selector"
 msgstr ""
+
+#, fuzzy
+msgid "Enter"
+msgstr "หน่วยความจำภายใน"
 
 msgid "Enter PIN"
 msgstr ""
@@ -6692,6 +6729,10 @@ msgstr ""
 msgid "FLASH"
 msgstr ""
 
+#, fuzzy
+msgid "FP Upgrade"
+msgstr "กำลังอัพเกรด"
+
 msgid "FSBL Update Check"
 msgstr ""
 
@@ -6924,9 +6965,6 @@ msgstr "แฟรช"
 msgid "Flash Image"
 msgstr "แฟรช"
 
-msgid "Flash Image USB Recovery"
-msgstr ""
-
 msgid "Flash On the Fly"
 msgstr ""
 
@@ -6934,18 +6972,6 @@ msgid "Flash Online"
 msgstr ""
 
 msgid "Flash Online a new image"
-msgstr ""
-
-msgid "Flash and restore settings and all saved plugins"
-msgstr ""
-
-msgid "Flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr ""
-
-msgid "Flash and start installation wizard"
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -7097,9 +7123,6 @@ msgstr "Frontprocessor version: %d"
 msgid "Frontprocessor version: %s"
 msgstr ""
 
-msgid "Frozen Cam Check"
-msgstr ""
-
 msgid "Full Image Backup "
 msgstr ""
 
@@ -7115,6 +7138,10 @@ msgstr ""
 
 msgid "FullHD Test"
 msgstr ""
+
+#, fuzzy
+msgid "Fullbackup Images"
+msgstr "แฟรช"
 
 msgid "Fullscreen"
 msgstr ""
@@ -7342,6 +7369,9 @@ msgstr "ภาษากรีก"
 msgid "Greek"
 msgstr "ภาษากรีก"
 
+msgid "Greek (Modern)"
+msgstr ""
+
 msgid "Green"
 msgstr ""
 
@@ -7452,6 +7482,9 @@ msgid "HDMIin"
 msgstr ""
 
 msgid "HDR10 Support"
+msgstr ""
+
+msgid "HELP"
 msgstr ""
 
 msgid "HH:mm"
@@ -7692,10 +7725,16 @@ msgstr ""
 msgid "IMDb Search"
 msgstr ""
 
+msgid "INFO"
+msgstr ""
+
 msgid "INFO button mode"
 msgstr ""
 
 msgid "INFO-Panel..."
+msgstr ""
+
+msgid "INS"
 msgstr ""
 
 msgid "IP"
@@ -8052,9 +8091,6 @@ msgstr ""
 msgid "Init SDcard"
 msgstr ""
 
-msgid "Init.d"
-msgstr ""
-
 msgid "Initial fast forward speed"
 msgstr ""
 
@@ -8091,6 +8127,10 @@ msgid "Inotify Monitoring"
 msgstr ""
 
 msgid "Input"
+msgstr "นำเข้า (Input)"
+
+#, fuzzy
+msgid "Input "
 msgstr "นำเข้า (Input)"
 
 msgid "Input Stream ID"
@@ -8178,8 +8218,24 @@ msgstr "กำลังติดตั้ง"
 msgid "Installing Service"
 msgstr ""
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing Software..."
+msgstr "กำลังติดตั้ง"
+
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "กำลังติดตั้ง"
+
+msgid "Installing feeds from feed ..."
 msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "กำลังติดตั้ง"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
+msgstr "กำลังติดตั้ง"
 
 msgid "Installing software..."
 msgstr ""
@@ -8220,6 +8276,10 @@ msgstr "ปานกลาง"
 
 #, fuzzy
 msgid "Internal"
+msgstr "หน่วยความจำภายใน"
+
+#, fuzzy
+msgid "Internal Flash"
 msgstr "หน่วยความจำภายใน"
 
 msgid "Internal USB"
@@ -8267,6 +8327,9 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Iran (Islamic Republic of)"
+msgstr ""
+
+msgid "Iran, Islamic Republic"
 msgstr ""
 
 msgid "Iraq"
@@ -8415,6 +8478,10 @@ msgstr ""
 
 msgid "Keyboard"
 msgstr "แป้นพิมพ์"
+
+#, fuzzy
+msgid "Keyboard data entry"
+msgstr "การวางแป้นพิมพ์"
 
 #, fuzzy
 msgid "Keyboard map"
@@ -8739,11 +8806,12 @@ msgstr ""
 msgid "Local network"
 msgstr "Local Network"
 
+#, fuzzy
+msgid "Locale"
+msgstr "Local Network"
+
 msgid "Location"
 msgstr "สถานที่"
-
-msgid "Location # (http://weather.yahoo.com/):"
-msgstr ""
 
 #, fuzzy
 msgid "Location list"
@@ -8806,6 +8874,9 @@ msgid "Lower Framerate save CPU Time"
 msgstr ""
 
 msgid "Lower USB"
+msgstr ""
+
+msgid "Lower case"
 msgstr ""
 
 msgid "Lower limit in kilobits per seconds [kbit/s]"
@@ -9296,6 +9367,30 @@ msgstr "[โหมดย้าย]"
 msgid "Move mode on"
 msgstr "เคลื่อนไปทางทิศตะวันออก"
 
+msgid "Move the text buffer cursor left"
+msgstr ""
+
+msgid "Move the text buffer cursor right"
+msgstr ""
+
+msgid "Move the text buffer cursor to the first character"
+msgstr ""
+
+msgid "Move the text buffer cursor to the last character"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor down"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor left"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor right"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor up"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr ""
 
@@ -9378,9 +9473,6 @@ msgid "Multi EPG"
 msgstr "ผังรายการแบบหลากหลาย"
 
 msgid "MultiBoot Image Manager"
-msgstr ""
-
-msgid "MultiBootSelector"
 msgstr ""
 
 #, fuzzy
@@ -9521,6 +9613,10 @@ msgstr ""
 msgid "Nauru"
 msgstr ""
 
+#, fuzzy
+msgid "NcamInfo"
+msgstr "ข้อมูล"
+
 msgid "Nepal"
 msgstr ""
 
@@ -9649,6 +9745,10 @@ msgstr ""
 msgid "New folder"
 msgstr ""
 
+#, fuzzy
+msgid "New password"
+msgstr "รหัสผ่าน"
+
 msgid "New profile: "
 msgstr ""
 
@@ -9695,19 +9795,10 @@ msgstr "ไม่"
 msgid "No (supported) DVDROM found!"
 msgstr "ไม่พบดีวีดีรอมที่ใช้งานได้!"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-
 msgid "No Connection"
 msgstr "ไม่พบการเชื่อมต่อ"
 
 msgid "No Devices Found !!"
-msgstr ""
-
-msgid "No ECM info"
 msgstr ""
 
 msgid "No HDD found or HDD not initialized!"
@@ -9802,9 +9893,6 @@ msgstr ""
 
 msgid "No networks found"
 msgstr "ไม่พบเครือข่าย"
-
-msgid "No new ECM info"
-msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr ""
@@ -9911,7 +9999,7 @@ msgid "No, do not backup a image"
 msgstr "ไม่ - ไม่ต้องการทำ"
 
 #, fuzzy
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr "ไม่ - ไม่ต้องการทำ"
 
 msgid "No, do nothing."
@@ -10051,6 +10139,9 @@ msgstr ""
 msgid "Number of rows to display"
 msgstr ""
 
+msgid "Number or SMS style data entry"
+msgstr ""
+
 msgid "OCTAGON SF5008"
 msgstr ""
 
@@ -10113,6 +10204,10 @@ msgstr "ตั้งค่า"
 msgid "OSD name request"
 msgstr ""
 
+#, fuzzy
+msgid "OSD position setup"
+msgstr "ตั้งค่าตัวขับจาน"
+
 msgid "OSD settings"
 msgstr ""
 
@@ -10122,6 +10217,9 @@ msgstr ""
 #, fuzzy
 msgid "OScamInfo"
 msgstr "ข้อมูล"
+
+msgid "OVR"
+msgstr ""
 
 msgid "Off"
 msgstr "ปิด"
@@ -10263,6 +10361,15 @@ msgstr ""
 msgid "OpenVpn Setup"
 msgstr ""
 
+msgid "Operating LED status in deep standby mode"
+msgstr ""
+
+msgid "Operating LED status in standby mode"
+msgstr ""
+
+msgid "Operating LED status while running"
+msgstr ""
+
 #, fuzzy
 msgid "Option"
 msgstr "การเข้ารหัส"
@@ -10293,9 +10400,6 @@ msgstr ""
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr ""
-
-msgid "OscamInfo"
 msgstr ""
 
 msgid "OscamInfo Mainmenu"
@@ -10524,6 +10628,14 @@ msgstr "รหัสผ่าน"
 msgid "Password (httpwd)"
 msgstr ""
 
+#, fuzzy
+msgid "Password Setup"
+msgstr "รหัสผ่าน"
+
+#, fuzzy
+msgid "Password changed"
+msgstr "รหัสผ่าน"
+
 msgid "Password:"
 msgstr ""
 
@@ -10656,6 +10768,10 @@ msgid "Play"
 msgstr "เล่น"
 
 msgid "Play DVD"
+msgstr "เล่นดีวีดี"
+
+#, fuzzy
+msgid "Play DVDs"
 msgstr "เล่นดีวีดี"
 
 msgid "Play audio in background"
@@ -11158,6 +11274,10 @@ msgstr ""
 msgid "Positioner Setup"
 msgstr ""
 
+#, fuzzy
+msgid "Positioner Setup Log"
+msgstr "ตั้งค่าตัวขับจาน"
+
 msgid "Positioner setup"
 msgstr "ตั้งค่าตัวขับจาน"
 
@@ -11277,6 +11397,9 @@ msgid "Press Init to format SDcard."
 msgstr ""
 
 msgid "Press MENU on your remote control for additional options."
+msgstr ""
+
+msgid "Press MENU to install additional language(s)."
 msgstr ""
 
 msgid "Press OK on your remote control to continue."
@@ -11427,6 +11550,9 @@ msgstr ""
 msgid "Programmlisten from DXAndy"
 msgstr ""
 
+msgid "Programmlisten-Updater V"
+msgstr ""
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr ""
 
@@ -11521,9 +11647,6 @@ msgstr ""
 msgid "Put your AV Receiver in standby"
 msgstr ""
 
-msgid "Python Camstarter (default)"
-msgstr ""
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend for /tmp/mmi.socket"
 
@@ -11615,6 +11738,10 @@ msgstr ""
 msgid "Random"
 msgstr "แบบสุ่ม"
 
+#, fuzzy
+msgid "Random password"
+msgstr "กรุณป้อนชื่อไฟล์ใหม่"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr ""
@@ -11624,10 +11751,6 @@ msgstr ""
 
 msgid "Re-enter new PIN"
 msgstr ""
-
-#, fuzzy
-msgid "ReStart"
-msgstr "เริ่มระบบใหม่"
 
 msgid "Read Userdata from oscam.conf"
 msgstr ""
@@ -11825,13 +11948,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 
-msgid "Refresh"
-msgstr ""
-
 msgid "Refresh every (in hours)"
-msgstr ""
-
-msgid "Refresh interval in minutes:"
 msgstr ""
 
 msgid "Refresh rate"
@@ -12452,6 +12569,10 @@ msgstr ""
 msgid "Save"
 msgstr "บันทึก"
 
+#, fuzzy
+msgid "Save / Enter text and exit"
+msgstr "บันทึกโฟล์เดอร์ปัจจุบันเมื่อออก"
+
 msgid "Save EPG"
 msgstr ""
 
@@ -12735,12 +12856,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "เลือก CAId"
 
-msgid "Select Cam 1"
-msgstr ""
-
-msgid "Select Cam 2"
-msgstr ""
-
 #, fuzzy
 msgid "Select Card Server"
 msgstr "เลือกอัตราการปรับหน้าจอ"
@@ -12786,6 +12901,10 @@ msgstr ""
 msgid "Select Yellow Key Action long"
 msgstr ""
 
+#, fuzzy
+msgid "Select Your Skin"
+msgstr "เลือก CAId"
+
 msgid "Select a bouquet"
 msgstr ""
 
@@ -12821,9 +12940,6 @@ msgid "Select additional backup files"
 msgstr ""
 
 msgid "Select additional files to backup"
-msgstr ""
-
-msgid "Select all"
 msgstr ""
 
 msgid "Select an image to be downloaded"
@@ -12948,6 +13064,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the character or action under the virtual keyboard cursor"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
@@ -13001,6 +13120,15 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the virtual keyboard locale from a menu"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 #, fuzzy
@@ -13234,9 +13362,6 @@ msgstr ""
 
 msgid "Service scan"
 msgstr "ค้นหาบริการ"
-
-msgid "Service searching"
-msgstr ""
 
 msgid ""
 "Service unavailable!\n"
@@ -13648,6 +13773,9 @@ msgstr "ความคม"
 msgid "Shellscript"
 msgstr ""
 
+msgid "Shift"
+msgstr ""
+
 msgid "Short filenames"
 msgstr ""
 
@@ -13718,9 +13846,6 @@ msgid "Show Box Portal..."
 msgstr ""
 
 msgid "Show CCcam in extensions ?"
-msgstr ""
-
-msgid "Show CCcamInfo in Extensions Menu"
 msgstr ""
 
 msgid "Show CI messages"
@@ -13825,9 +13950,6 @@ msgstr ""
 msgid "Show OScam in extensions ?"
 msgstr ""
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr ""
-
 msgid "Show PIP"
 msgstr ""
 
@@ -13861,9 +13983,6 @@ msgid "Show Script completed message"
 msgstr ""
 
 msgid "Show Single EPG"
-msgstr ""
-
-msgid "Show Softcam-Panel in Extensions Menu"
 msgstr ""
 
 msgid "Show Task's completed message"
@@ -14201,8 +14320,9 @@ msgstr "แสดงเครื่องเล่นโทรทัศน์...
 msgid "Show the Sleep Timer..."
 msgstr ""
 
-msgid "Show the infomation on current event."
-msgstr ""
+#, fuzzy
+msgid "Show the information on current event."
+msgstr "ข้อมูลลำดับชั้น"
 
 msgid "Show the list of AutoTimers."
 msgstr ""
@@ -14424,6 +14544,10 @@ msgstr ""
 msgid "Skins"
 msgstr "สกิน"
 
+#, fuzzy
+msgid "Skinselector"
+msgstr "เลือกการตั้งเวลา"
+
 msgid "Skip back"
 msgstr ""
 
@@ -14531,12 +14655,6 @@ msgstr "ล๊อคแล้ว"
 msgid "Softcam"
 msgstr ""
 
-msgid "Softcam Panel"
-msgstr ""
-
-msgid "Softcam Panel V2.0"
-msgstr ""
-
 msgid "Softcam Setup"
 msgstr ""
 
@@ -14550,18 +14668,12 @@ msgstr "ป้องกันการตั้งค่า"
 msgid "Softcam-Panel"
 msgstr ""
 
-msgid "Softcam-Panel Setup"
-msgstr ""
-
 msgid "Softcam-Panel..."
 msgstr ""
 
 #, fuzzy
 msgid "Softcam-Setup"
 msgstr "ซอพท์แวร์"
-
-msgid "SoftcamPanel"
-msgstr ""
 
 #, fuzzy
 msgid "SoftcamSetup"
@@ -14750,6 +14862,12 @@ msgstr ""
 msgid "Spanish"
 msgstr "ภาษาสเปน"
 
+msgid "Special 1"
+msgstr ""
+
+msgid "Special 2"
+msgstr ""
+
 msgid "Special Features"
 msgstr ""
 
@@ -14794,12 +14912,6 @@ msgstr ""
 msgid "Start Kodi"
 msgstr "เวลาเริ่ม"
 
-msgid "Start Mode"
-msgstr ""
-
-msgid "Start attempts"
-msgstr ""
-
 msgid "Start from the beginning"
 msgstr "เริ่มตั้งแต่ต้น"
 
@@ -14842,12 +14954,6 @@ msgstr ""
 msgid "StartWizard"
 msgstr ""
 
-msgid "Starting Cam 1: "
-msgstr ""
-
-msgid "Starting Cam 2: "
-msgstr ""
-
 msgid "Starting Softcam"
 msgstr ""
 
@@ -14855,6 +14961,15 @@ msgid "Starting on"
 msgstr "เริ่มตอน"
 
 msgid "Status"
+msgstr ""
+
+msgid "Status of the display during operation"
+msgstr ""
+
+msgid "Status of the display in deep standby"
+msgstr ""
+
+msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status:"
@@ -14884,9 +14999,6 @@ msgstr "ยกเลิกภาพซ้อนภาพ"
 #, fuzzy
 msgid "Stop Streams"
 msgstr "หยุดทดสอบ"
-
-msgid "Stop check when cam is running"
-msgstr ""
 
 msgid "Stop current event and disable coming events"
 msgstr "หยุดรายการปัจจุบัน และไม่ให้รายการต่อไปทำงาน"
@@ -15256,6 +15368,9 @@ msgstr "ระบบ"
 msgid "System Info"
 msgstr ""
 
+msgid "System Message Check"
+msgstr ""
+
 msgid "System Setup"
 msgstr ""
 
@@ -15389,9 +15504,6 @@ msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
-msgstr ""
-
-msgid "Temperature unit:"
 msgstr ""
 
 msgid "Terrestrial"
@@ -15629,6 +15741,9 @@ msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr "ยังไม่ได้ติดตั้งปลั๊กอินสำหรับเครือข่ายไร้สาย กรุณาติดตั้งก่อน"
+
+msgid "The password can not be blank."
+msgstr ""
 
 #, python-format
 msgid "The path %s already exists."
@@ -16161,9 +16276,6 @@ msgstr ""
 msgid "Time between slides in image viewer slideshow."
 msgstr ""
 
-msgid "Time between start attempts (sec.)"
-msgstr ""
-
 msgid "Time delay for the repeated transmission"
 msgstr ""
 
@@ -16416,6 +16528,9 @@ msgstr ""
 msgid "Toggle between bouquet/epg lists"
 msgstr ""
 
+msgid "Toggle new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -16636,6 +16751,9 @@ msgstr "สถานะของ Tuner"
 msgid "Tuner type %s"
 msgstr "ประเภทการตั้งเวลา"
 
+msgid "Tuners & scanning"
+msgstr ""
+
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -16702,6 +16820,10 @@ msgstr "ประเภท"
 msgid "Type: "
 msgstr ""
 
+#, fuzzy
+msgid "UI 3D setup"
+msgstr "ตั้งค่า"
+
 msgid "UP80  (keymap.u80)"
 msgstr ""
 
@@ -16737,6 +16859,10 @@ msgstr ""
 
 msgid "Ukrainian"
 msgstr ""
+
+#, fuzzy
+msgid "Unable to change password"
+msgstr "กรุณป้อนชื่อไฟล์ใหม่"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -16789,6 +16915,9 @@ msgid "United Arab Emirates"
 msgstr ""
 
 msgid "United Kingdom"
+msgstr ""
+
+msgid "United States"
 msgstr ""
 
 msgid "United States Minor Outlying Islands"
@@ -16903,6 +17032,10 @@ msgstr ""
 msgid "Updates Available:"
 msgstr ""
 
+#, fuzzy
+msgid "Updating cache"
+msgstr "ปรุบปรุง"
+
 msgid "Updating cache, please wait..."
 msgstr ""
 
@@ -16910,6 +17043,9 @@ msgid "Updating mount locations."
 msgstr ""
 
 msgid "Updating software catalog"
+msgstr ""
+
+msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr ""
 
 msgid "Upgrade and reboot system"
@@ -16941,6 +17077,9 @@ msgid "Uphops: "
 msgstr ""
 
 msgid "Upper USB"
+msgstr ""
+
+msgid "Upper case"
 msgstr ""
 
 msgid "Uptime"
@@ -17158,6 +17297,9 @@ msgstr ""
 msgid "User interface visibility"
 msgstr "เลือกใช้อินเตอร์เฟซนี้"
 
+msgid "Userlogo:"
+msgstr ""
+
 msgid "Username"
 msgstr "ชื่อผู้ใช้"
 
@@ -17211,6 +17353,9 @@ msgstr ""
 #, fuzzy
 msgid "Vanuatu"
 msgstr "ทำเอง"
+
+msgid "Various"
+msgstr ""
 
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr ""
@@ -17459,7 +17604,10 @@ msgstr ""
 msgid "Virgin Islands (U.S.)"
 msgstr ""
 
-msgid "Virtual KeyBoard"
+msgid "Virtual KeyBoard Functions"
+msgstr ""
+
+msgid "Virtual KeyBoard Text:"
 msgstr ""
 
 msgid "Virtual keyboard"
@@ -17541,9 +17689,6 @@ msgstr ""
 msgid "Wait please while scanning..."
 msgstr ""
 
-msgid "Wait time before start Cam 2"
-msgstr ""
-
 msgid "Waiting"
 msgstr "กำลังคอย..."
 
@@ -17551,9 +17696,6 @@ msgid "Waiting for mount"
 msgstr ""
 
 msgid "Waiting for partition"
-msgstr ""
-
-msgid "Waiting..."
 msgstr ""
 
 msgid "Wake Up"
@@ -17938,6 +18080,18 @@ msgstr ""
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr ""
 
+msgid "With this option you can switch off the display during operation."
+msgstr ""
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr ""
+
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
@@ -18068,14 +18222,6 @@ msgstr "ใช่ - กลับไปที่สารบัญ Movie"
 msgid "Yes, shut down now."
 msgstr "ใช่ - ปิดเครื่องตอนนี้เลย (Shutdonw)"
 
-#, fuzzy
-msgid "Yes, with backup"
-msgstr "นำสำรองกลับมาใช้"
-
-#, fuzzy
-msgid "Yes, without backup"
-msgstr "นำสำรองกลับมาใช้"
-
 msgid "Yesterday"
 msgstr ""
 
@@ -18181,6 +18327,9 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "ต้องรอประมาณ %s!"
+
+msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""
@@ -18534,12 +18683,6 @@ msgstr ""
 msgid "activatePiP"
 msgstr ""
 
-msgid "active CAM 1: "
-msgstr ""
-
-msgid "active CAM 2: "
-msgstr ""
-
 msgid "add Current"
 msgstr ""
 
@@ -18881,9 +19024,6 @@ msgstr ""
 
 msgid "done!"
 msgstr "เสร็จแล้ว!!"
-
-msgid "dont wait"
-msgstr ""
 
 msgid "drivers"
 msgstr ""
@@ -19253,6 +19393,14 @@ msgstr "แทรกตรงตำแหน่งนี้"
 msgid "install/unpack ipk Files"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "internal flash:  %s %s "
+msgstr "หน่วยความจำภายใน"
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr ""
+
 msgid "internally loopthrough to"
 msgstr ""
 
@@ -19458,17 +19606,8 @@ msgstr "ไม่"
 msgid "no CAId selected"
 msgstr "ไม่มี CAId ใดๆ ถูกเลือก"
 
-msgid "no CAM 1 active"
-msgstr ""
-
-msgid "no CAM 2 active"
-msgstr ""
-
 msgid "no CI slots found"
 msgstr "ไม่พบ CI"
-
-msgid "no cam"
-msgstr ""
 
 msgid "no channel list"
 msgstr ""
@@ -19954,15 +20093,27 @@ msgid "skip forward (enter time)"
 msgstr "ข้ามไปข้างหน้า (ป้อนเวลา)"
 
 #, python-format
+msgid "slot%s - %s"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s "
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image) with, backup"
+msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image), without backup"
+msgid "slot%s - %s - %s "
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s as USB Recovery"
 msgstr ""
 
 #, python-format
@@ -19982,23 +20133,7 @@ msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s, with backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s, without backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s- %s "
+msgid "slot%s - %s- %s "
 msgstr ""
 
 msgid "slow"
@@ -20237,6 +20372,9 @@ msgstr "แนวตั้ง (V)"
 msgid "view extensions..."
 msgstr "ดูส่วนเพิ่มเติม..."
 
+msgid "violet"
+msgstr ""
+
 msgid "vix"
 msgstr ""
 
@@ -20404,8 +20542,16 @@ msgstr "เปลี่ยนช่องแล้ว"
 #~ msgid "Burn existing image to DVD"
 #~ msgstr "เขียนอิมเมจลงแผ่นดีวีดี"
 
+#, fuzzy
+#~ msgid "CI settings"
+#~ msgstr "แก้ไขการตั้งค่า"
+
 #~ msgid "Committed DiSEqC command"
 #~ msgstr "คำสั่ง Committed DiSEqC"
+
+#, fuzzy
+#~ msgid "Compress"
+#~ msgstr "สำเร็จ"
 
 #, fuzzy
 #~ msgid "Configure the skip time interval for the 1 and 3 buttons."
@@ -20479,10 +20625,6 @@ msgstr "เปลี่ยนช่องแล้ว"
 #~ msgstr "ขยายเต็มจอ"
 
 #, fuzzy
-#~ msgid "Last update: %s"
-#~ msgstr "ปรับปรุงรายการของส่วนประกอบ"
-
-#, fuzzy
 #~ msgid "Memory positions"
 #~ msgstr "บันทึกตำแหน่ง"
 
@@ -20532,6 +20674,10 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 #~ msgid "Provider to scan"
 #~ msgstr "ผู้ให้บริการที่จะค้น"
+
+#, fuzzy
+#~ msgid "ReStart"
+#~ msgstr "เริ่มระบบใหม่"
 
 #, fuzzy
 #~ msgid "Select backup files"
@@ -20609,6 +20755,14 @@ msgstr "เปลี่ยนช่องแล้ว"
 #, fuzzy
 #~ msgid "Vix forum user name"
 #~ msgstr "ค้นหาบริการ"
+
+#, fuzzy
+#~ msgid "Yes, with backup"
+#~ msgstr "นำสำรองกลับมาใช้"
+
+#, fuzzy
+#~ msgid "Yes, without backup"
+#~ msgstr "นำสำรองกลับมาใช้"
 
 #~ msgid "complex"
 #~ msgstr "ซับซ้อน"

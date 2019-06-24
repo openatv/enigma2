@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 v2.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 10:20+0200\n"
+"POT-Creation-Date: 2019-06-22 11:29+0000\n"
 "PO-Revision-Date: 2019-02-23 20:19+0100\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: alec <alex1vagyok@gmail.com>\n"
@@ -289,20 +289,6 @@ msgstr " <Nincs Csatorna>"
 
 msgid " <empty>"
 msgstr " <üres>"
-
-#, python-format
-msgid " Except %s"
-msgstr " Kivéve %s"
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
-" Nem kezdődött !!\n"
-"A cam binname-nek a parancssor elején kell lennie.\n"
-"Ellenőrizze az emu konfigurációs fájlját"
 
 msgid " and"
 msgstr " és"
@@ -1063,6 +1049,10 @@ msgstr[1] "%d perc"
 msgid "%d minutes"
 msgstr "%d perc"
 
+#, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d perc"
+
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
@@ -1155,6 +1145,10 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s"
+msgstr "CH%s"
+
 #, python-format
 msgid ""
 "%s\n"
@@ -1232,6 +1226,10 @@ msgstr "%s - beállítás"
 #, python-format
 msgid "%s additional screens"
 msgstr "%s további képernyők"
+
+#, python-format
+msgid "%s build date %s"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1322,6 +1320,10 @@ msgstr "Itt lehet megadni, hogy mennyi Timeshitt felvétel után kezdjen el a re
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "A 'Készenlét fogadása a TV-től' nagyobb prioritást élvez mint a 'Kezelje a bemenetet a TV-ből'"
 
+#, fuzzy
+msgid "'weatherplugin' is not installed!"
+msgstr "A bővítmény nincs telepítve."
+
 msgid "( All readers)"
 msgstr "(Az összes olvasó)"
 
@@ -1367,9 +1369,6 @@ msgstr "+/-"
 msgid "+24"
 msgstr "+1 nap"
 
-msgid "---Weather---"
-msgstr "---Időjárás---"
-
 msgid "-24"
 msgstr "-1 nap"
 
@@ -1397,9 +1396,6 @@ msgstr "/var mappa"
 
 msgid "0"
 msgstr "0"
-
-msgid "0 (disabled)"
-msgstr "0 (kikapcsolva)"
 
 msgid "0.2s"
 msgstr "0.2s"
@@ -1434,9 +1430,6 @@ msgstr "1 GB"
 msgid "1 min."
 msgstr "1 perc"
 
-msgid "1 second"
-msgstr "1 másodperc"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1455,20 +1448,11 @@ msgstr "1.5s"
 msgid "1.7s"
 msgstr "1.7s"
 
-msgid "10"
-msgstr "10"
-
-msgid "10 (default)"
-msgstr "10 (alapértelmezett)"
-
 msgid "10 MB/s"
 msgstr ""
 
 msgid "10 min."
 msgstr "10 perc"
-
-msgid "10 seconds"
-msgstr "10 másodperc"
 
 msgid "100 MB/s"
 msgstr ""
@@ -1519,9 +1503,6 @@ msgstr "12 karakter"
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr "12, latin-1 karaktereket jelenít meg a görög és a cirillikus kivételével, ha szükséges 8-ra vált."
 
-msgid "120"
-msgstr "120"
-
 msgid "128"
 msgstr "128"
 
@@ -1546,9 +1527,6 @@ msgstr "13 V"
 
 msgid "15 min."
 msgstr "15 perc"
-
-msgid "15 seconds"
-msgstr "15 másodpercenként"
 
 msgid "1536 Mb"
 msgstr "1536 MB"
@@ -1614,14 +1592,8 @@ msgstr "2 GB"
 msgid "2.5s"
 msgstr "2.5s"
 
-msgid "20"
-msgstr "20"
-
 msgid "20 MB/s"
 msgstr ""
-
-msgid "20 seconds"
-msgstr "20 másodperc"
 
 msgid "2048 Mb"
 msgstr "2048 MB"
@@ -1660,9 +1632,6 @@ msgstr "+1 nap"
 
 msgid "24- Hours"
 msgstr "-1 nap"
-
-msgid "240"
-msgstr "240"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1756,9 +1725,6 @@ msgstr "30 perc"
 msgid "30 minutes"
 msgstr "30 perc"
 
-msgid "30 seconds"
-msgstr "30 másodpercenként"
-
 #, fuzzy
 msgid "30p/24p"
 msgstr "50p/24p"
@@ -1848,17 +1814,11 @@ msgstr "4s"
 msgid "5"
 msgstr "5"
 
-msgid "5 (default)"
-msgstr "5 (Alapértelmezett)"
-
 msgid "5 min."
 msgstr "5 perc"
 
 msgid "5 minutes"
 msgstr "5 perc"
-
-msgid "5 seconds"
-msgstr "5 másodperc"
 
 msgid "50 MB/s"
 msgstr ""
@@ -1895,9 +1855,6 @@ msgstr "5s"
 
 msgid "6"
 msgstr "6"
-
-msgid "60"
-msgstr "60"
 
 msgid "60 minutes"
 msgstr "60 perc"
@@ -2625,6 +2582,14 @@ msgstr "Készenlét alatt is"
 msgid "Alternative"
 msgstr "Alternatív"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "Alternatív"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "Alternatív"
+
 msgid "Alternative numbering mode"
 msgstr "Alternatív számozás"
 
@@ -2939,6 +2904,10 @@ msgstr "Audió hangerő léptetés mértékének gyors módja"
 msgid "Australia"
 msgstr "Ausztrália"
 
+#, fuzzy
+msgid "Australian"
+msgstr "Ausztrália"
+
 msgid "Austria"
 msgstr "Ausztria"
 
@@ -3056,6 +3025,10 @@ msgstr "Automatikus indítás:"
 msgid "Available format variables"
 msgstr "Lehetséges formátum variációk"
 
+#, fuzzy
+msgid "Available locales are:"
+msgstr "Elérhető megosztások:"
+
 msgid "Available shares:"
 msgstr "Elérhető megosztások:"
 
@@ -3163,6 +3136,14 @@ msgstr "Törlés a háttérben"
 msgid "Background delete speed"
 msgstr "Törlés sebessége"
 
+#, fuzzy
+msgid "Background:"
+msgstr "Háttér"
+
+#, fuzzy
+msgid "Backgroundselected:"
+msgstr "Törlés sebessége"
+
 msgid "Backup"
 msgstr "Mentés"
 
@@ -3230,6 +3211,14 @@ msgstr "A jelenlegi beállítások mentése"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Az aktuális beállítások mentése. Ez tartalmazza az E2 beállítást, csatornákat, hálózatokat és a kiválasztott fájlokat"
 
+#, fuzzy
+msgid "Backup, flash and restore settings and no plugins"
+msgstr "Flash és beállítások visszaállítása és nincsenek bővítmények"
+
+#, fuzzy
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr "Flash és beállítások visszaállítása és bővítmények kiválasztva (felhasználó megkérdezése)"
+
 msgid "Bahamas"
 msgstr "Bahamák"
 
@@ -3286,6 +3275,10 @@ msgstr "Amikor egy lejátszás a végére ér"
 
 msgid "Belarus"
 msgstr "Fehéroroszország"
+
+#, fuzzy
+msgid "Belgian"
+msgstr "Belgium"
 
 msgid "Belgium"
 msgstr "Belgium"
@@ -3534,9 +3527,6 @@ msgstr "CCcam Share Info"
 msgid "CCcam Shares Info"
 msgstr "CCcam Shares Info"
 
-msgid "CCcamInfo"
-msgstr "CCcamInfo"
-
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcamInfo Főmenü"
 
@@ -3574,9 +3564,6 @@ msgstr "CI Plus 1.3"
 
 msgid "CI assignment"
 msgstr "CI hozzárendelés"
-
-msgid "CI settings"
-msgstr "CI beállítások"
 
 msgid "CI slot: "
 msgstr "CI foglalat: "
@@ -3695,6 +3682,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Mégse"
 
+msgid "Cancel any text changes and exit"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel execution?"
 msgstr "Csatorna választás"
@@ -3704,6 +3694,10 @@ msgstr "Timeshift felvételének megszakítása"
 
 msgid "Cancelled upon user request"
 msgstr ""
+
+#, fuzzy
+msgid "Cannot create backup directory"
+msgstr "mappa létrehozása"
 
 #, fuzzy
 msgid "Cannot delete downloaded image"
@@ -3872,11 +3866,12 @@ msgstr "Csatornalista előnézete"
 msgid "Channel list service mode*"
 msgstr "Csatorna lista szolgáltató üzemmód *"
 
-msgid "Channel list show MiniTV"
-msgstr "A csatornalista a MiniTV-t mutatja"
-
 msgid "Channel list show MiniTV when Skin use."
 msgstr "A csatorna lista a MiniTV-t mutatja, amikor a kinézetet használja."
+
+#, fuzzy
+msgid "Channel list show MiniTV*"
+msgstr "A csatornalista a MiniTV-t mutatja"
 
 msgid "Channel list type"
 msgstr "Csatornalista típusa"
@@ -4110,6 +4105,9 @@ msgstr "Balraforgó"
 msgid "Circular right"
 msgstr "Jobbraforgó"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 msgid "Clean network trash cans"
 msgstr "Ürítse ki a hálózati kukát"
 
@@ -4150,6 +4148,10 @@ msgstr "Kliensek"
 msgid "Clock"
 msgstr "Óra"
 
+#, fuzzy
+msgid "Clock:"
+msgstr "Óra"
+
 msgid "Clone TV screen to LCD"
 msgstr "TV kijelző klónozása LCD kijelzőre"
 
@@ -4182,6 +4184,10 @@ msgstr "HP kódarány"
 
 msgid "Coderate LP"
 msgstr "LP kódarány"
+
+#, fuzzy
+msgid "Collapse"
+msgstr "Eltelt"
 
 msgid "Collection name"
 msgstr "Gyűjtemény neve"
@@ -4231,6 +4237,10 @@ msgstr "Kommunikáció"
 msgid "Comoros"
 msgstr "Comore-szigetek"
 
+#, fuzzy
+msgid "Compensate for overscan"
+msgstr "Keresés előtt törlés"
+
 msgid "Complete"
 msgstr "Kész"
 
@@ -4242,10 +4252,6 @@ msgstr "Komplex (engedélyezi a hangfolyamok és méretarányok keverését)"
 
 msgid "Composition of the recording filenames"
 msgstr "A felvételi fájlnevek összeállítása"
-
-#, fuzzy
-msgid "Compress"
-msgstr "Kész"
 
 #, fuzzy
 msgid "Config file name (ok to change):"
@@ -4875,9 +4881,6 @@ msgstr "Fájlrendszer létrehozása"
 msgid "Creating partition"
 msgstr "Partíció létrehozása"
 
-msgid "Creating start scripts and starting the cam"
-msgstr "Indító szkriptek létrehozása és a cam indítása"
-
 msgid "Croatia"
 msgstr "Horvátország"
 
@@ -4963,6 +4966,9 @@ msgstr "Testreszabás"
 msgid "Cut"
 msgstr "Vágás"
 
+msgid "Cutlist Editor"
+msgstr "Vágószerkesztő"
+
 msgid "Cutlist editor"
 msgstr "Vágószerkesztő"
 
@@ -5044,6 +5050,9 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+msgid "DVD Burn"
+msgstr "DVD Írás"
+
 msgid "DVD File Browser"
 msgstr "DVD Fájlkezelő"
 
@@ -5057,6 +5066,9 @@ msgid "DVD file browser"
 msgstr "DVD Fájlkezelő"
 
 msgid "DVD player"
+msgstr "DVD lejátszó"
+
+msgid "DVDPlayer"
 msgstr "DVD lejátszó"
 
 msgid "Daily"
@@ -5246,6 +5258,9 @@ msgstr ""
 msgid "Default Modes Selected."
 msgstr "Alapértelmezett módok kiválasztva."
 
+msgid "Default Services Scanner"
+msgstr "Alapértelmezett csatorna keresés"
+
 #, fuzzy
 msgid "Default directory sorting"
 msgstr "Alapértelmezett beállítások"
@@ -5430,6 +5445,12 @@ msgstr "Lejátszási lista bejegyzés törlése"
 
 msgid "Delete saved playlist"
 msgstr "Mentett lejátszási lista törlése"
+
+msgid "Delete the character to the left of text buffer cursor"
+msgstr ""
+
+msgid "Delete the character under the text buffer cursor"
+msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Törölje az aktuális Timeshift puffert, és indítsa újra a Timeshift-et"
@@ -5770,7 +5791,11 @@ msgstr "Fel szeretné írni ezt a gyűjteményt a DVD lemezre?"
 msgid "Do you want to continue?"
 msgstr "Szeretné folytatni?"
 
-msgid "Do you want to delete all other languages?"
+#, fuzzy
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr "Szeretne eltávolítani az összes egyéb nyelvet?"
 
 msgid ""
@@ -5890,6 +5915,9 @@ msgstr ""
 "Ne aggódjon, hogy a készülék még mindig rendben van! Több biztonsági mechanizmus létezik!\n"
 "A készülék még mindig olyan jól működik, mint az eljárás előtt!"
 
+msgid "Done"
+msgstr ""
+
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "%d szoftvercsomag telepítése, frissítése elkészült"
@@ -5930,6 +5958,10 @@ msgstr "Bővítmények letöltése"
 
 msgid "Downloadable plugins"
 msgstr "Letölthető bővítmények"
+
+#, fuzzy
+msgid "Downloaded Images"
+msgstr "Letöltés"
 
 msgid "Downloading"
 msgstr "Letöltés"
@@ -6363,6 +6395,10 @@ msgstr ""
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 kinézet választó"
+
+#, fuzzy
+msgid "Enter"
+msgstr "középre"
 
 msgid "Enter PIN"
 msgstr "Adja meg a PIN kódot"
@@ -6798,6 +6834,9 @@ msgstr ""
 msgid "FLASH"
 msgstr "FLASH"
 
+msgid "FP Upgrade"
+msgstr "FP frissítés"
+
 msgid "FSBL Update Check"
 msgstr "FSBL frissítés ellenőrzése"
 
@@ -7035,9 +7074,6 @@ msgstr "Flash"
 msgid "Flash Image"
 msgstr "Flashelés"
 
-msgid "Flash Image USB Recovery"
-msgstr ""
-
 msgid "Flash On the Fly"
 msgstr "Közvetlen Flash"
 
@@ -7046,18 +7082,6 @@ msgstr "Flash Online"
 
 msgid "Flash Online a new image"
 msgstr "Egy új lemezkép Online Flashelése"
-
-msgid "Flash and restore settings and all saved plugins"
-msgstr "Flash és beállítások visszaállítása és az összes mentett bővítmény"
-
-msgid "Flash and restore settings and no plugins"
-msgstr "Flash és beállítások visszaállítása és nincsenek bővítmények"
-
-msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr "Flash és beállítások visszaállítása és bővítmények kiválasztva (felhasználó megkérdezése)"
-
-msgid "Flash and start installation wizard"
-msgstr "Flash és a telepítő varázsló indítása"
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "A készülék szoftverének Flashelése."
@@ -7204,9 +7228,6 @@ msgstr "Processzor verziója: %d"
 msgid "Frontprocessor version: %s"
 msgstr "Processzor verzió: %s"
 
-msgid "Frozen Cam Check"
-msgstr "Cam ellenőrzés befagyasztása"
-
 msgid "Full Image Backup "
 msgstr "Teljes Lemezkép Mentés "
 
@@ -7222,6 +7243,10 @@ msgstr "Teljesen áttetsző"
 
 msgid "FullHD Test"
 msgstr "FullHD teszt"
+
+#, fuzzy
+msgid "Fullbackup Images"
+msgstr "Mentési lemezkép"
 
 msgid "Fullscreen"
 msgstr "Teljes képernyős"
@@ -7444,6 +7469,9 @@ msgstr "Görögország"
 msgid "Greek"
 msgstr "Görög"
 
+msgid "Greek (Modern)"
+msgstr ""
+
 msgid "Green"
 msgstr "Zöld"
 
@@ -7554,6 +7582,9 @@ msgstr "HDMI bemenet"
 
 msgid "HDR10 Support"
 msgstr "HDR10 támogatás"
+
+msgid "HELP"
+msgstr ""
 
 msgid "HH:mm"
 msgstr ""
@@ -7788,11 +7819,18 @@ msgstr "IMDb tartalom mutatása"
 msgid "IMDb Search"
 msgstr "IMDb Keresés"
 
+msgid "INFO"
+msgstr ""
+
 msgid "INFO button mode"
 msgstr "INFO gomb mód"
 
 msgid "INFO-Panel..."
 msgstr "INFO panel..."
+
+#, fuzzy
+msgid "INS"
+msgstr "NFS"
 
 #, fuzzy
 msgid "IP"
@@ -8147,9 +8185,6 @@ msgstr "SDCARD inicializálása"
 msgid "Init SDcard"
 msgstr "SDCARD inicializálása"
 
-msgid "Init.d"
-msgstr "Init.d"
-
 msgid "Initial fast forward speed"
 msgstr "Kezdeti előre tekerési sebesség"
 
@@ -8184,6 +8219,10 @@ msgid "Inotify Monitoring"
 msgstr "Inotify Monitoring"
 
 msgid "Input"
+msgstr "Bevitel"
+
+#, fuzzy
+msgid "Input "
 msgstr "Bevitel"
 
 msgid "Input Stream ID"
@@ -8271,7 +8310,24 @@ msgstr "Bővítmény telepítése..."
 msgid "Installing Service"
 msgstr "Csatorna telepítés"
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing Software..."
+msgstr "Szoftver telepítése..."
+
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "Szoftver telepítése..."
+
+#, fuzzy
+msgid "Installing feeds from feed ..."
+msgstr "Szoftver telepítése..."
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Bővítmény telepítése..."
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Bővítmény telepítése..."
 
 msgid "Installing software..."
@@ -8310,6 +8366,10 @@ msgstr "Középfokú"
 
 msgid "Internal"
 msgstr "Belső"
+
+#, fuzzy
+msgid "Internal Flash"
+msgstr "Belső Flash"
 
 msgid "Internal USB"
 msgstr "Belső USB"
@@ -8353,6 +8413,10 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Iran (Islamic Republic of)"
+msgstr "Iran"
+
+#, fuzzy
+msgid "Iran, Islamic Republic"
 msgstr "Iran"
 
 msgid "Iraq"
@@ -8496,6 +8560,10 @@ msgstr "Kernel: %s"
 
 msgid "Keyboard"
 msgstr "Billentyűzet"
+
+#, fuzzy
+msgid "Keyboard data entry"
+msgstr "Billentyűzet beállítása"
 
 msgid "Keyboard map"
 msgstr "Billentyűkiosztás"
@@ -8806,11 +8874,12 @@ msgstr "Helyi box"
 msgid "Local network"
 msgstr "Helyi hálózat"
 
+#, fuzzy
+msgid "Locale"
+msgstr "Helyi"
+
 msgid "Location"
 msgstr "Hely"
-
-msgid "Location # (http://weather.yahoo.com/):"
-msgstr "Helyszín # (http://weather.yahoo.com/):"
 
 msgid "Location list"
 msgstr "Helylista"
@@ -8870,6 +8939,10 @@ msgid "Lower Framerate save CPU Time"
 msgstr "Lower Framerate save CPU Time"
 
 msgid "Lower USB"
+msgstr "Alsó USB"
+
+#, fuzzy
+msgid "Lower case"
 msgstr "Alsó USB"
 
 msgid "Lower limit in kilobits per seconds [kbit/s]"
@@ -9347,6 +9420,30 @@ msgstr "Mozgatási mód ki"
 msgid "Move mode on"
 msgstr "Mozgatási mód be"
 
+msgid "Move the text buffer cursor left"
+msgstr ""
+
+msgid "Move the text buffer cursor right"
+msgstr ""
+
+msgid "Move the text buffer cursor to the first character"
+msgstr ""
+
+msgid "Move the text buffer cursor to the last character"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor down"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor left"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor right"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor up"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "A lista elejére"
 
@@ -9421,10 +9518,6 @@ msgstr "Multi EPG"
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "Lemezkép kezelő"
-
-#, fuzzy
-msgid "MultiBootSelector"
-msgstr "Multiboot kiválasztó"
 
 msgid "MultiEPG settings"
 msgstr "Multi EPG beállítása"
@@ -9564,6 +9657,10 @@ msgstr "Natív"
 msgid "Nauru"
 msgstr "Nauru"
 
+#, fuzzy
+msgid "NcamInfo"
+msgstr "CCcamInfo"
+
 msgid "Nepal"
 msgstr "Nepál"
 
@@ -9689,6 +9786,10 @@ msgstr "Új-Zéland"
 msgid "New folder"
 msgstr "Válasszon mappákat"
 
+#, fuzzy
+msgid "New password"
+msgstr "Jelszó"
+
 msgid "New profile: "
 msgstr "Új profil: "
 
@@ -9736,23 +9837,11 @@ msgstr "Nem"
 msgid "No (supported) DVDROM found!"
 msgstr "Nincs (támogatott) DVD ROM!"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-"Nincs indított Cam!\n"
-"\n"
-"A Cam 1-nek különböznie kell a Cam 2-től"
-
 msgid "No Connection"
 msgstr "Nincs kapcsolat"
 
 msgid "No Devices Found !!"
 msgstr "Nem található eszköz !!"
-
-msgid "No ECM info"
-msgstr "Nincs ECM információ"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nem észlelhető háttértár, vagy az nem lett inicializálva!"
@@ -9846,9 +9935,6 @@ msgstr "Nincs elérhető hálózati kapcsolat."
 
 msgid "No networks found"
 msgstr "Nem észlelhető hálózat"
-
-msgid "No new ECM info"
-msgstr "Nincs új ECM információ"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "Nincs kapcsoló (növelés vagy csökkentés)"
@@ -9954,7 +10040,7 @@ msgid "No, do not backup a image"
 msgstr "Ne flash-elje a lemezképet"
 
 #, fuzzy
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr "Ne flash-elje a lemezképet"
 
 msgid "No, do nothing."
@@ -10098,6 +10184,9 @@ msgstr "Sorok száma"
 msgid "Number of rows to display"
 msgstr "A megjeleníteni kívánt sorok száma"
 
+msgid "Number or SMS style data entry"
+msgstr ""
+
 msgid "OCTAGON SF5008"
 msgstr ""
 
@@ -10159,6 +10248,9 @@ msgstr "OSD beállítás"
 msgid "OSD name request"
 msgstr "OSD név kérés"
 
+msgid "OSD position setup"
+msgstr "OSD pozíció beállítás"
+
 msgid "OSD settings"
 msgstr "OSD beállítások"
 
@@ -10167,6 +10259,10 @@ msgstr "OScam Info"
 
 msgid "OScamInfo"
 msgstr "OScamInfo"
+
+#, fuzzy
+msgid "OVR"
+msgstr "PVR"
 
 msgid "Off"
 msgstr "Ki"
@@ -10307,6 +10403,17 @@ msgstr "OpenVpn Napló"
 msgid "OpenVpn Setup"
 msgstr "OpenVPN beállítása"
 
+#, fuzzy
+msgid "Operating LED status in deep standby mode"
+msgstr "A Power LED állapota a készülék Kikapcsolt állapotában."
+
+#, fuzzy
+msgid "Operating LED status in standby mode"
+msgstr "A Power LED állapota a készülék Készenléti állapotában."
+
+msgid "Operating LED status while running"
+msgstr ""
+
 msgid "Option"
 msgstr "Opciók"
 
@@ -10337,9 +10444,6 @@ msgstr "Oscam Info - Főmenü"
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
 msgstr "Oscam napló (Oscam verzió: %s)"
-
-msgid "OscamInfo"
-msgstr "OscamInfo"
 
 msgid "OscamInfo Mainmenu"
 msgstr "OscamInfo Főmenü"
@@ -10564,6 +10668,14 @@ msgstr "Jelszó"
 msgid "Password (httpwd)"
 msgstr "Jelszó (httpwd)"
 
+#, fuzzy
+msgid "Password Setup"
+msgstr "Jelszó"
+
+#, fuzzy
+msgid "Password changed"
+msgstr "Jelszó (httpwd)"
+
 msgid "Password:"
 msgstr "Jelszó:"
 
@@ -10691,6 +10803,10 @@ msgid "Play"
 msgstr "Lejátszás"
 
 msgid "Play DVD"
+msgstr "DVD lejátszás"
+
+#, fuzzy
+msgid "Play DVDs"
 msgstr "DVD lejátszás"
 
 msgid "Play audio in background"
@@ -11207,6 +11323,9 @@ msgstr "Forgatómotor (műholdak választása)"
 msgid "Positioner Setup"
 msgstr "Forgatómotor Beálltások"
 
+msgid "Positioner Setup Log"
+msgstr "Forgatómotor beállítás napló"
+
 msgid "Positioner setup"
 msgstr "Forgatómotor beállítás"
 
@@ -11323,6 +11442,10 @@ msgid "Press Init to format SDcard."
 msgstr ""
 
 msgid "Press MENU on your remote control for additional options."
+msgstr "Nyomja le a MENÜ gombot a távírányítón további opciókért."
+
+#, fuzzy
+msgid "Press MENU to install additional language(s)."
 msgstr "Nyomja le a MENÜ gombot a távírányítón további opciókért."
 
 msgid "Press OK on your remote control to continue."
@@ -11472,6 +11595,9 @@ msgstr "Programmlisten Restore"
 msgid "Programmlisten from DXAndy"
 msgstr "Programmlisten from DXAndy"
 
+msgid "Programmlisten-Updater V"
+msgstr "Programmlisten-Updater V"
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "Programmlisten-Updater from DXAndy"
 
@@ -11565,9 +11691,6 @@ msgstr "TV kikapcsolása"
 msgid "Put your AV Receiver in standby"
 msgstr "Helyezze az AV-vevőt készenléti állapotába"
 
-msgid "Python Camstarter (default)"
-msgstr "Python Camstarter (alapértelmezett)"
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python felület a /tmp/mmi.socket-hez"
 
@@ -11654,6 +11777,10 @@ msgstr "Memória"
 msgid "Random"
 msgstr "Véletlenszerű"
 
+#, fuzzy
+msgid "Random password"
+msgstr "Kérem, adja meg az új nevet:"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Adás besorolása - %d"
@@ -11663,9 +11790,6 @@ msgstr "Nincs besorolás"
 
 msgid "Re-enter new PIN"
 msgstr "Írja be újra az új PIN-kód"
-
-msgid "ReStart"
-msgstr "Újraindítás"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Az Oscam.conf felhasználói adatainak olvasása"
@@ -11863,14 +11987,8 @@ msgstr ""
 "Várjon, amíg a(z) %s %s készülék újraindul\n"
 "Ez néhány percet vesz igénybe"
 
-msgid "Refresh"
-msgstr "Frissítés"
-
 msgid "Refresh every (in hours)"
 msgstr "Ennyi óránként frissít mindent"
-
-msgid "Refresh interval in minutes:"
-msgstr "Frissítési idő percben:"
 
 msgid "Refresh rate"
 msgstr "Képernyő-frissítés"
@@ -12477,6 +12595,10 @@ msgstr "Szaúd-Arábia"
 msgid "Save"
 msgstr "Mentés"
 
+#, fuzzy
+msgid "Save / Enter text and exit"
+msgstr "az utolsó mappa mentése kilépéskor"
+
 msgid "Save EPG"
 msgstr "EPG mentése"
 
@@ -12751,12 +12873,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "CAId kiválasztása"
 
-msgid "Select Cam 1"
-msgstr "Cam 1 kiválasztása"
-
-msgid "Select Cam 2"
-msgstr "Cam 2 kiválasztása"
-
 #, fuzzy
 msgid "Select Card Server"
 msgstr "Felvétel kiválasztása"
@@ -12801,6 +12917,9 @@ msgstr "Sárga gomb művelete"
 msgid "Select Yellow Key Action long"
 msgstr "Sárga gomb művelete (hosszan)"
 
+msgid "Select Your Skin"
+msgstr "Válassza ki a kinézetet (Skin)"
+
 msgid "Select a bouquet"
 msgstr "Csatornacsomag kiválasztása"
 
@@ -12835,9 +12954,6 @@ msgstr "További mentési fájlok kiválasztása"
 
 msgid "Select additional files to backup"
 msgstr "Biztonsági mentésbe helyezendő fájlok"
-
-msgid "Select all"
-msgstr "Összes kiválasztása"
 
 msgid "Select an image to be downloaded"
 msgstr "Válasszon egy letöltendő image-t"
@@ -12956,6 +13072,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the character or action under the virtual keyboard cursor"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Válassza ki a kívánt funkciót, és kattintson rá az \"OK\" gombra. Használja a \"CH +/-\" billentyűt a listák közötti váltáshoz. Válasszon ki egy hozzárendelt függvényt, és kattintson az \"OK\" gombra annak hozzárendeléséhez. Használja a \"Next / Previous\" gombot a hozzárendelt funkciók sorrendjének megváltoztatásához."
 
@@ -13008,6 +13127,15 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the virtual keyboard locale from a menu"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 msgid "Select upgrade source"
@@ -13250,9 +13378,6 @@ msgstr "Referencia szám"
 
 msgid "Service scan"
 msgstr "Csatornakeresés"
-
-msgid "Service searching"
-msgstr "Csatorna keresése"
 
 msgid ""
 "Service unavailable!\n"
@@ -13658,6 +13783,9 @@ msgstr "Élesség"
 msgid "Shellscript"
 msgstr "Shell script"
 
+msgid "Shift"
+msgstr ""
+
 msgid "Short filenames"
 msgstr "Rövid fájlnevek"
 
@@ -13732,9 +13860,6 @@ msgstr "Box Portal megnyitása..."
 
 msgid "Show CCcam in extensions ?"
 msgstr "Mutassa a CCcam-t a bővítmények között?"
-
-msgid "Show CCcamInfo in Extensions Menu"
-msgstr "CCcaInfo mutatása a bővítmények menüben"
 
 msgid "Show CI messages"
 msgstr "CI üzenetek mutatása"
@@ -13837,9 +13962,6 @@ msgstr "OE napló megjelenítése"
 msgid "Show OScam in extensions ?"
 msgstr "Megjeleníti az OScam-t a bővítmények között?"
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr "Az OscamInfo megjelenítése a Bővítmények menüben"
-
 msgid "Show PIP"
 msgstr "Kép a képben megjelenítése"
 
@@ -13872,9 +13994,6 @@ msgstr ""
 
 msgid "Show Single EPG"
 msgstr "EPG műsorújság megjelenítése"
-
-msgid "Show Softcam-Panel in Extensions Menu"
-msgstr "A Softcam Panel megjelenítése a Bővítmények menüben"
 
 msgid "Show Task's completed message"
 msgstr ""
@@ -14195,7 +14314,7 @@ msgid "Show the Sleep Timer..."
 msgstr "Az Elalvás időzítő mutatása..."
 
 #, fuzzy
-msgid "Show the infomation on current event."
+msgid "Show the information on current event."
 msgstr "Az aktuális esemény információinak megjelenítése."
 
 msgid "Show the list of AutoTimers."
@@ -14409,6 +14528,10 @@ msgstr "Kinézet választó (Skin)"
 msgid "Skins"
 msgstr "Kinézetek"
 
+#, fuzzy
+msgid "Skinselector"
+msgstr "Kinézet választó (Skin)"
+
 msgid "Skip back"
 msgstr "Vissza kihagyása"
 
@@ -14508,12 +14631,6 @@ msgstr "hangolva"
 msgid "Softcam"
 msgstr "Softcam"
 
-msgid "Softcam Panel"
-msgstr "Softcam Panel"
-
-msgid "Softcam Panel V2.0"
-msgstr "Softcam Panel V2.0"
-
 msgid "Softcam Setup"
 msgstr "Softcam beállítások"
 
@@ -14527,18 +14644,12 @@ msgstr "Softcam beállítások"
 msgid "Softcam-Panel"
 msgstr "Softcam Panel"
 
-msgid "Softcam-Panel Setup"
-msgstr "Softcam Panel beállítás"
-
 msgid "Softcam-Panel..."
 msgstr "Softcam Panel..."
 
 #, fuzzy
 msgid "Softcam-Setup"
 msgstr "Softcam beállítások"
-
-msgid "SoftcamPanel"
-msgstr "Softcam Panel"
 
 #, fuzzy
 msgid "SoftcamSetup"
@@ -14734,6 +14845,14 @@ msgstr "Spanyolország"
 msgid "Spanish"
 msgstr "Spanyol"
 
+#, fuzzy
+msgid "Special 1"
+msgstr "Sorozatszám"
+
+#, fuzzy
+msgid "Special 2"
+msgstr "Sorozatszám"
+
 msgid "Special Features"
 msgstr "Speciális tulajdonságok"
 
@@ -14776,12 +14895,6 @@ msgstr "Kezdés"
 msgid "Start Kodi"
 msgstr "Kodi indítása"
 
-msgid "Start Mode"
-msgstr "Kezdési mód"
-
-msgid "Start attempts"
-msgstr "Indítsa el a kísérleteket"
-
 msgid "Start from the beginning"
 msgstr "Indítsa az elejétől"
 
@@ -14822,12 +14935,6 @@ msgstr "Cam Indítása/Megállítása/Kiválasztása, Először a Softcam-ot tel
 msgid "StartWizard"
 msgstr "Indítás varázsló"
 
-msgid "Starting Cam 1: "
-msgstr "Cam 1 indítása:  "
-
-msgid "Starting Cam 2: "
-msgstr "Cam 2 indítása:  "
-
 msgid "Starting Softcam"
 msgstr "Softcam elindítása"
 
@@ -14836,6 +14943,15 @@ msgstr "Kezdve"
 
 msgid "Status"
 msgstr "Állapot"
+
+msgid "Status of the display during operation"
+msgstr ""
+
+msgid "Status of the display in deep standby"
+msgstr ""
+
+msgid "Status of the display in standby mode"
+msgstr ""
 
 msgid "Status:"
 msgstr "Állapot:"
@@ -14860,9 +14976,6 @@ msgstr "Kép-a-Képben leállítása"
 
 msgid "Stop Streams"
 msgstr "Streams leállítása"
-
-msgid "Stop check when cam is running"
-msgstr "Állítsa le az ellenőrzést mikor a Cam fut"
 
 msgid "Stop current event and disable coming events"
 msgstr "Futó időzítés és a soron következők leállítása"
@@ -15220,6 +15333,9 @@ msgstr "Rendszer"
 msgid "System Info"
 msgstr "Rendszer Információ"
 
+msgid "System Message Check"
+msgstr "Rendszerüzenet ellenőrzése"
+
 msgid "System Setup"
 msgstr "Rendszerbeállítás"
 
@@ -15362,9 +15478,6 @@ msgstr "Telnet port"
 
 msgid "Telnet Setup"
 msgstr "Telnet beállítás"
-
-msgid "Temperature unit:"
-msgstr "Hőmérséklet mértékegysége:"
 
 msgid "Terrestrial"
 msgstr "Földi"
@@ -15637,6 +15750,9 @@ msgid ""
 msgstr ""
 "A NetworkWizard bővítmémy nincs feltelepítve!\n"
 "Kérem, telepítse fel."
+
+msgid "The password can not be blank."
+msgstr ""
 
 #, python-format
 msgid "The path %s already exists."
@@ -16190,9 +16306,6 @@ msgstr "Az idő frissítése percekben:"
 msgid "Time between slides in image viewer slideshow."
 msgstr ""
 
-msgid "Time between start attempts (sec.)"
-msgstr "Az indítási kísérletek között eltelt idő (másodperc)"
-
 msgid "Time delay for the repeated transmission"
 msgstr ""
 
@@ -16441,6 +16554,9 @@ msgstr "A képarány módosítása..."
 msgid "Toggle between bouquet/epg lists"
 msgstr "Váltás a Csatornacsomag/EPG lista között"
 
+msgid "Toggle new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Togo"
 msgstr "Togo"
 
@@ -16650,6 +16766,9 @@ msgstr "Tuner állapota ISMERETLEN"
 msgid "Tuner type %s"
 msgstr "Tuner típusa: %s"
 
+msgid "Tuners & scanning"
+msgstr "Csatorna keresése"
+
 msgid "Tuning algorithm"
 msgstr "Tuningolási algoritmus"
 
@@ -16717,6 +16836,9 @@ msgstr "Típus: "
 msgid "Type: "
 msgstr "Típus: "
 
+msgid "UI 3D setup"
+msgstr "UI 3D beállítás"
+
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
@@ -16752,6 +16874,10 @@ msgstr "Ukrajna"
 
 msgid "Ukrainian"
 msgstr "Ukrán"
+
+#, fuzzy
+msgid "Unable to change password"
+msgstr "Kérem, adja meg az új nevet:"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -16804,6 +16930,10 @@ msgstr "Egyesült Arab Emírségek"
 
 msgid "United Kingdom"
 msgstr "Egyesült Királyság"
+
+#, fuzzy
+msgid "United States"
+msgstr "Amerikai Egyesült Államok"
 
 msgid "United States Minor Outlying Islands"
 msgstr "Az Amerikai Egyesült Államok lakatlan külbirtokai"
@@ -16920,6 +17050,10 @@ msgstr "Frissítő szerver nem elérhető."
 msgid "Updates Available:"
 msgstr "Elérhető frissítések:"
 
+#, fuzzy
+msgid "Updating cache"
+msgstr "Cache frissítése"
+
 msgid "Updating cache, please wait..."
 msgstr "Cache frissítése, kérem várjon..."
 
@@ -16928,6 +17062,9 @@ msgstr "Csatlakozási helyek frissítése."
 
 msgid "Updating software catalog"
 msgstr "Szoftver katalógus frissítése"
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr ""
 
 msgid "Upgrade and reboot system"
 msgstr "Frissítés, majd újraindítás"
@@ -16961,6 +17098,10 @@ msgid "Uphops: "
 msgstr "Uphops: "
 
 msgid "Upper USB"
+msgstr "Felső USB"
+
+#, fuzzy
+msgid "Upper case"
 msgstr "Felső USB"
 
 msgid "Uptime"
@@ -17176,6 +17317,9 @@ msgstr "A felhasználói felület beállításai"
 msgid "User interface visibility"
 msgstr "Felhasználói felület láthatósága"
 
+msgid "Userlogo:"
+msgstr ""
+
 msgid "Username"
 msgstr "Felhasználónév"
 
@@ -17231,6 +17375,10 @@ msgstr "VU+"
 
 msgid "Vanuatu"
 msgstr "Vanuatu"
+
+#, fuzzy
+msgid "Various"
+msgstr "Előző"
 
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr "Venezuela"
@@ -17471,7 +17619,12 @@ msgstr "Virgin-szigetek (Angol)"
 msgid "Virgin Islands (U.S.)"
 msgstr "Virgin-szigetek (Amerikai)"
 
-msgid "Virtual KeyBoard"
+#, fuzzy
+msgid "Virtual KeyBoard Functions"
+msgstr "Virtuális Billentyűzet"
+
+#, fuzzy
+msgid "Virtual KeyBoard Text:"
 msgstr "Virtuális Billentyűzet"
 
 msgid "Virtual keyboard"
@@ -17555,9 +17708,6 @@ msgstr "Kérem várjon, ameddig a keresi a(z) %s %s készüléket..."
 msgid "Wait please while scanning..."
 msgstr "Kérem várjon, mialatt a keresés folyik..."
 
-msgid "Wait time before start Cam 2"
-msgstr "Várokozási idő a Cam 2 indítása előtt"
-
 msgid "Waiting"
 msgstr "Várakozás"
 
@@ -17566,9 +17716,6 @@ msgstr "Várakozás a megosztás csatlakozására"
 
 msgid "Waiting for partition"
 msgstr "Várakozás a partícióra"
-
-msgid "Waiting..."
-msgstr "Várakozás..."
 
 msgid "Wake Up"
 msgstr "Felébresztés"
@@ -17947,6 +18094,18 @@ msgstr "Ha az érték 'igen'-re van állítva, akkor a csatornacsomag lista fog 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Ezzel az opcióval elrejtheti a Job Tasks-t a bővítmények képernyőn (rövid kék gombnyomás)."
 
+msgid "With this option you can switch off the display during operation."
+msgstr ""
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr ""
+
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Ezzel a beállítással valószínűleg javíthatja a jel minőségét vagy kiküszöbölheti a hosszabb HDMI kábellel előforduló problémákat."
 
@@ -18080,14 +18239,6 @@ msgstr "Igen, térjen vissza a felvételek listájához"
 msgid "Yes, shut down now."
 msgstr "Igen, leállítás most."
 
-#, fuzzy
-msgid "Yes, with backup"
-msgstr "Mentések visszaállítása"
-
-#, fuzzy
-msgid "Yes, without backup"
-msgstr "Mentések visszaállítása"
-
 msgid "Yesterday"
 msgstr "Tegnap"
 
@@ -18203,6 +18354,9 @@ msgstr "Az automatikus indítás aktiválásához létre kell hoznia egy Swap f�
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Várnia kell (%s)!"
+
+msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+msgstr ""
 
 msgid "You must set at least one Command"
 msgstr "Meg kell adnia legalább egy parancsot"
@@ -18589,12 +18743,6 @@ msgstr "hálózati adapter konfiguráció aktiválása"
 msgid "activatePiP"
 msgstr "aktív Kép-a-Képben"
 
-msgid "active CAM 1: "
-msgstr "a CAM 1 aktív:  "
-
-msgid "active CAM 2: "
-msgstr "a CAM 2 aktív:  "
-
 msgid "add Current"
 msgstr "aktuális hozzáadása"
 
@@ -18935,9 +19083,6 @@ msgstr "ecm felvétel dekódolás nélkül"
 
 msgid "done!"
 msgstr "kész!"
-
-msgid "dont wait"
-msgstr "ne várj"
 
 msgid "drivers"
 msgstr "illesztőprogramok"
@@ -19307,6 +19452,14 @@ msgstr "jelző elhelyezése ide"
 msgid "install/unpack ipk Files"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "internal flash:  %s %s "
+msgstr "Belső Flash"
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr ""
+
 msgid "internally loopthrough to"
 msgstr "belső átfűzés ide"
 
@@ -19507,17 +19660,8 @@ msgstr "nem"
 msgid "no CAId selected"
 msgstr "nincs kijelölt CAId"
 
-msgid "no CAM 1 active"
-msgstr "nincs aktiválva a CAM 1"
-
-msgid "no CAM 2 active"
-msgstr "nincs aktiválva a CAM 2"
-
 msgid "no CI slots found"
 msgstr "nem található CI foglalat"
-
-msgid "no cam"
-msgstr "nincs cam"
 
 msgid "no channel list"
 msgstr "nincs csatornalista"
@@ -20001,15 +20145,27 @@ msgid "skip forward (enter time)"
 msgstr "előre kihagyása (adja meg az időt)"
 
 #, python-format
+msgid "slot%s - %s"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s "
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image) with, backup"
+msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image), without backup"
+msgid "slot%s - %s - %s "
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s as USB Recovery"
 msgstr ""
 
 #, python-format
@@ -20029,23 +20185,7 @@ msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s, with backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s, without backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s- %s "
+msgid "slot%s - %s- %s "
 msgstr ""
 
 msgid "slow"
@@ -20280,6 +20420,9 @@ msgstr "függőleges"
 msgid "view extensions..."
 msgstr "bővítmények megtekintése..."
 
+msgid "violet"
+msgstr ""
+
 msgid "vix"
 msgstr "vix"
 
@@ -20413,6 +20556,19 @@ msgstr "ugrás folyamatban"
 #~ msgid " - video1"
 #~ msgstr " - videó1"
 
+#~ msgid " Except %s"
+#~ msgstr " Kivéve %s"
+
+#~ msgid ""
+#~ " Not Started !!\n"
+#~ "\n"
+#~ "Cam binname must be in the start command line\n"
+#~ "Check your emu config file"
+#~ msgstr ""
+#~ " Nem kezdődött !!\n"
+#~ "A cam binname-nek a parancssor elején kell lennie.\n"
+#~ "Ellenőrizze az emu konfigurációs fájlját"
+
 #~ msgid "%02d.%02d - %02d.%02d (%s%s)"
 #~ msgstr "%02d:%02d - %02d:%02d  (még %s%s)"
 
@@ -20514,11 +20670,56 @@ msgstr "ugrás folyamatban"
 #~ "Window 1 (PIP/UHD) (Enigma2 PIP Mode): Up to 1/2 x 1/2 screen display, 576i50 de-interlacing\n"
 #~ "Display 0 (UHD) Kódolási korlátozások: 3840x2160p50"
 
+#~ msgid "---Weather---"
+#~ msgstr "---Időjárás---"
+
+#~ msgid "0 (disabled)"
+#~ msgstr "0 (kikapcsolva)"
+
+#~ msgid "1 second"
+#~ msgstr "1 másodperc"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "10 (default)"
+#~ msgstr "10 (alapértelmezett)"
+
+#~ msgid "10 seconds"
+#~ msgstr "10 másodperc"
+
+#~ msgid "120"
+#~ msgstr "120"
+
+#~ msgid "15 seconds"
+#~ msgstr "15 másodpercenként"
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "20 seconds"
+#~ msgstr "20 másodperc"
+
 #~ msgid "2160p50 with PiP (Experimental)"
 #~ msgstr "2160p50 Kép-a-Képben fúnkcióval (Kísérleti)"
 
 #~ msgid "2160p60 without PiP (Standard)"
 #~ msgstr "2160p60 Kép-a-Kép nélkül (Alapértelmezett)"
+
+#~ msgid "240"
+#~ msgstr "240"
+
+#~ msgid "30 seconds"
+#~ msgstr "30 másodpercenként"
+
+#~ msgid "5 (default)"
+#~ msgstr "5 (Alapértelmezett)"
+
+#~ msgid "5 seconds"
+#~ msgstr "5 másodperc"
+
+#~ msgid "60"
+#~ msgstr "60"
 
 #~ msgid "AGC:"
 #~ msgstr "AGC:"
@@ -20580,6 +20781,9 @@ msgstr "ugrás folyamatban"
 #~ msgid "CAidSelect"
 #~ msgstr "CAidSelect"
 
+#~ msgid "CI settings"
+#~ msgstr "CI beállítások"
+
 #~ msgid "CIconfigMenu"
 #~ msgstr "CI konfigurációs menü"
 
@@ -20622,10 +20826,17 @@ msgstr "ugrás folyamatban"
 #~ msgid "Common interface"
 #~ msgstr "CI modulfogadó"
 
+#, fuzzy
+#~ msgid "Compress"
+#~ msgstr "Kész"
+
 #~ msgid ""
 #~ "Copy your keymap to\n"
 #~ "/usr/share/enigma2/keymap.usr"
 #~ msgstr "A billentyűzetkiosztás másolása /usr/share/enigma2/keymap.usr"
+
+#~ msgid "Creating start scripts and starting the cam"
+#~ msgstr "Indító szkriptek létrehozása és a cam indítása"
 
 #~ msgid "CronTimer"
 #~ msgstr "CronTimer"
@@ -20633,23 +20844,11 @@ msgstr "ugrás folyamatban"
 #~ msgid "Current Bootsettings: %s (%s)%s"
 #~ msgstr "Aktuális indítási beállítások: %s (%s)%s"
 
-#~ msgid "Cutlist Editor"
-#~ msgstr "Vágószerkesztő"
-
 #~ msgid "D"
 #~ msgstr "D"
 
-#~ msgid "DVD Burn"
-#~ msgstr "DVD Írás"
-
 #~ msgid "DVDOverlay"
 #~ msgstr "DVDOverlay"
-
-#~ msgid "DVDPlayer"
-#~ msgstr "DVD lejátszó"
-
-#~ msgid "Default Services Scanner"
-#~ msgstr "Alapértelmezett csatorna keresés"
 
 #~ msgid "DeviceBrowser"
 #~ msgstr "Eszköz nézegető"
@@ -20740,9 +20939,6 @@ msgstr "ugrás folyamatban"
 #~ msgid "F1/LAN"
 #~ msgstr "F1/LAN"
 
-#~ msgid "FP Upgrade"
-#~ msgstr "FP frissítés"
-
 #~ msgid "FP upgrade required"
 #~ msgstr "FP frissítés szükséges"
 
@@ -20755,6 +20951,12 @@ msgstr "ugrás folyamatban"
 #~ msgid "Flash On the fly (select a image)"
 #~ msgstr "Közvetlen Flash (Lemezkép kiválasztás)"
 
+#~ msgid "Flash and restore settings and all saved plugins"
+#~ msgstr "Flash és beállítások visszaállítása és az összes mentett bővítmény"
+
+#~ msgid "Flash and start installation wizard"
+#~ msgstr "Flash és a telepítő varázsló indítása"
+
 #~ msgid "Flashing: "
 #~ msgstr "Flashelés: "
 
@@ -20763,6 +20965,9 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "Free To Air"
 #~ msgstr "Szabadon fogható"
+
+#~ msgid "Frozen Cam Check"
+#~ msgstr "Cam ellenőrzés befagyasztása"
 
 #~ msgid "G"
 #~ msgstr "G"
@@ -20814,6 +21019,9 @@ msgstr "ugrás folyamatban"
 #~ msgid "Index Error in the following files: %s"
 #~ msgstr "Index hiba az alábbi fájlokban: %s"
 
+#~ msgid "Init.d"
+#~ msgstr "Init.d"
+
 #~ msgid "Install channel list"
 #~ msgstr "Köv. csatorna az előzményekben"
 
@@ -20844,11 +21052,11 @@ msgstr "ugrás folyamatban"
 #~ msgid "LCN Scanner"
 #~ msgstr "LCN szkenner"
 
-#~ msgid "Local"
-#~ msgstr "Helyi"
-
 #~ msgid "Local = Flash a image from local path /hdd/images"
 #~ msgstr "Helyi = egy lemezkép flashelése a helyi útvonalról /hdd/images"
+
+#~ msgid "Location # (http://weather.yahoo.com/):"
+#~ msgstr "Helyszín # (http://weather.yahoo.com/):"
 
 #~ msgid "Lock time"
 #~ msgstr "Zárolási idő"
@@ -20867,6 +21075,10 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "MultiBoot STARTUP Selector"
 #~ msgstr "MultiBoot STARTUP Selector"
+
+#, fuzzy
+#~ msgid "MultiBootSelector"
+#~ msgstr "Multiboot kiválasztó"
 
 #~ msgid "MultiBootStartupOPT"
 #~ msgstr "MultiBootStartupOPT"
@@ -20908,6 +21120,18 @@ msgstr "ugrás folyamatban"
 #~ "Kilépés a bővítményből."
 
 #~ msgid ""
+#~ "No Cam started !!\n"
+#~ "\n"
+#~ "Cam 1 must be different from Cam 2"
+#~ msgstr ""
+#~ "Nincs indított Cam!\n"
+#~ "\n"
+#~ "A Cam 1-nek különböznie kell a Cam 2-től"
+
+#~ msgid "No ECM info"
+#~ msgstr "Nincs ECM információ"
+
+#~ msgid ""
 #~ "No USB-Device found for fullbackup !!\n"
 #~ "\n"
 #~ "\n"
@@ -20924,6 +21148,9 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "No httpuser defined in oscam.conf"
 #~ msgstr "Nincs definiált httpuser az oscam.conf fájlban"
+
+#~ msgid "No new ECM info"
+#~ msgstr "Nincs új ECM információ"
 
 #~ msgid "No new plugins found"
 #~ msgstr "Nem található új bővítmény"
@@ -20959,14 +21186,14 @@ msgstr "ugrás folyamatban"
 #~ "\n"
 #~ "Kilépés a bővítményből."
 
-#~ msgid "OSD position setup"
-#~ msgstr "OSD pozíció beállítás"
-
 #~ msgid "Online"
 #~ msgstr "Elérhető"
 
 #~ msgid "Online = Download a image and flash it"
 #~ msgstr "Online = Egy lemezkép letöltése és flash-elése"
+
+#~ msgid "OscamInfo"
+#~ msgstr "OscamInfo"
 
 #~ msgid "PANEL Config"
 #~ msgstr "PANEL konfiguráció"
@@ -21043,17 +21270,11 @@ msgstr "ugrás folyamatban"
 #~ msgid "PluginManagerInfo"
 #~ msgstr "PluginManagerInfo"
 
-#~ msgid "Positioner Setup Log"
-#~ msgstr "Forgatómotor beállítás napló"
-
 #~ msgid "Programmlisten-Updater History"
 #~ msgstr "Programmlisten-Updater History"
 
 #~ msgid "Programmlisten-Updater Restore"
 #~ msgstr "Programmlisten-Updater Restore"
-
-#~ msgid "Programmlisten-Updater V"
-#~ msgstr "Programmlisten-Updater V"
 
 #~ msgid "Programmlisten_Updater"
 #~ msgstr "Programmlisten_Updater"
@@ -21070,6 +21291,9 @@ msgstr "ugrás folyamatban"
 #~ msgid "Put your %s %s in standby"
 #~ msgstr "Helyezze a(z) %s %s készüléket készenléti állapotába"
 
+#~ msgid "Python Camstarter (default)"
+#~ msgstr "Python Camstarter (alapértelmezett)"
+
 #~ msgid "Quick EPG"
 #~ msgstr "Gyors EPG"
 
@@ -21082,8 +21306,17 @@ msgstr "ugrás folyamatban"
 #~ msgid "REC "
 #~ msgstr "FELV "
 
+#~ msgid "ReStart"
+#~ msgstr "Újraindítás"
+
 #~ msgid "RecordTimerQuestion\")"
 #~ msgstr "RecordTimerQuestion\")"
+
+#~ msgid "Refresh"
+#~ msgstr "Frissítés"
+
+#~ msgid "Refresh interval in minutes:"
+#~ msgstr "Frissítési idő percben:"
 
 #~ msgid "RemoveTimerQuestion"
 #~ msgstr "RemoveTimerQuestion"
@@ -21112,6 +21345,12 @@ msgstr "ugrás folyamatban"
 #~ msgid "Select Bootoption: not supported - see info"
 #~ msgstr "Válassza ki a Bootoption: nem támogatott - lásd az info"
 
+#~ msgid "Select Cam 1"
+#~ msgstr "Cam 1 kiválasztása"
+
+#~ msgid "Select Cam 2"
+#~ msgstr "Cam 2 kiválasztása"
+
 #~ msgid "Select Image: %s"
 #~ msgstr "Lemezkép kiválasztása: %s"
 
@@ -21121,8 +21360,8 @@ msgstr "ugrás folyamatban"
 #~ msgid "Select Sats Entry"
 #~ msgstr "Select Sats Entry"
 
-#~ msgid "Select Your Skin"
-#~ msgstr "Válassza ki a kinézetet (Skin)"
+#~ msgid "Select all"
+#~ msgstr "Összes kiválasztása"
 
 #~ msgid "Select if you want to use the image coloured Buttons (set to 'no' if you want to use (Multi) Quick Button)."
 #~ msgstr "Válassza ki, ha a Lemezkép színes gombjait szeretné használni."
@@ -21136,8 +21375,14 @@ msgstr "ugrás folyamatban"
 #~ msgid "Service Scan"
 #~ msgstr "Csatornakeresés"
 
-#~ msgid "Service Searching"
-#~ msgstr "Csatorna keresése"
+#~ msgid "Show CCcamInfo in Extensions Menu"
+#~ msgstr "CCcaInfo mutatása a bővítmények menüben"
+
+#~ msgid "Show OscamInfo in Extensions Menu"
+#~ msgstr "Az OscamInfo megjelenítése a Bővítmények menüben"
+
+#~ msgid "Show Softcam-Panel in Extensions Menu"
+#~ msgstr "A Softcam Panel megjelenítése a Bővítmények menüben"
 
 #~ msgid "Show blinking Clock on Display during recording"
 #~ msgstr "A felvétel közben villogó Óra jelenik meg a kijelzőn"
@@ -21166,8 +21411,20 @@ msgstr "ugrás folyamatban"
 #~ msgid "Small Test"
 #~ msgstr "Rövid teszt"
 
+#~ msgid "Softcam Panel"
+#~ msgstr "Softcam Panel"
+
+#~ msgid "Softcam Panel V2.0"
+#~ msgstr "Softcam Panel V2.0"
+
 #~ msgid "Softcam Selection:"
 #~ msgstr "Softcam kiválasztása:"
+
+#~ msgid "Softcam-Panel Setup"
+#~ msgstr "Softcam Panel beállítás"
+
+#~ msgid "SoftcamPanel"
+#~ msgstr "Softcam Panel"
 
 #~ msgid "SoftwareManager information"
 #~ msgstr "Szoftver kezelő információ"
@@ -21190,17 +21447,32 @@ msgstr "ugrás folyamatban"
 #~ msgid "Sort plug-in browser alphabetically"
 #~ msgstr "Bővítmény kezelő rendezése betűrendben"
 
+#~ msgid "Start Mode"
+#~ msgstr "Kezdési mód"
+
+#~ msgid "Start attempts"
+#~ msgstr "Indítsa el a kísérleteket"
+
+#~ msgid "Starting Cam 1: "
+#~ msgstr "Cam 1 indítása:  "
+
+#~ msgid "Starting Cam 2: "
+#~ msgstr "Cam 2 indítása:  "
+
+#~ msgid "Stop check when cam is running"
+#~ msgstr "Állítsa le az ellenőrzést mikor a Cam fut"
+
 #~ msgid "StreamingClientsInfo"
 #~ msgstr "Streamelő kliensek"
 
 #~ msgid "System Message"
 #~ msgstr "Rendszerüzenet"
 
-#~ msgid "System Message Check"
-#~ msgstr "Rendszerüzenet ellenőrzése"
-
 #~ msgid "TUNER:"
 #~ msgstr "TUNER:"
+
+#~ msgid "Temperature unit:"
+#~ msgstr "Hőmérséklet mértékegysége:"
 
 #~ msgid "Terrestrial provider"
 #~ msgstr "Földi szolgáltató"
@@ -21219,6 +21491,9 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "This option allows you to disable sorting of the menus"
 #~ msgstr "Ezzel az opcióval letilthatja a menük rendezését"
+
+#~ msgid "Time between start attempts (sec.)"
+#~ msgstr "Az indítási kísérletek között eltelt idő (másodperc)"
 
 #~ msgid "Timer+"
 #~ msgstr "Timer+"
@@ -21252,9 +21527,6 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "Tuner type"
 #~ msgstr "Tuner típus"
-
-#~ msgid "UI 3D setup"
-#~ msgstr "UI 3D beállítás"
 
 #~ msgid ""
 #~ "USB = Do you want to make a back-up on USB?\n"
@@ -21292,6 +21564,12 @@ msgstr "ugrás folyamatban"
 #~ msgid "VideoWizardSummary"
 #~ msgstr "VideoWizardSummary"
 
+#~ msgid "Wait time before start Cam 2"
+#~ msgstr "Várokozási idő a Cam 2 indítása előtt"
+
+#~ msgid "Waiting..."
+#~ msgstr "Várakozás..."
+
 #~ msgid "Wakeup signal from TV"
 #~ msgstr "Bekapcsolási jelzés a TV-től"
 
@@ -21324,6 +21602,14 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "YES"
 #~ msgstr "IGEN"
+
+#, fuzzy
+#~ msgid "Yes, with backup"
+#~ msgstr "Mentések visszaállítása"
+
+#, fuzzy
+#~ msgid "Yes, without backup"
+#~ msgstr "Mentések visszaállítása"
 
 #~ msgid "You can Enable or Disable the Startup Bootvideo."
 #~ msgstr "Engedélyezni vagy Letiltani tudja az induláskori Bootvideót."
@@ -21366,6 +21652,12 @@ msgstr "ugrás folyamatban"
 #~ msgid "Your receiver does not have an internet connection"
 #~ msgstr "A készüléknek nincs kapcsolata az internettel"
 
+#~ msgid "active CAM 1: "
+#~ msgstr "a CAM 1 aktív:  "
+
+#~ msgid "active CAM 2: "
+#~ msgstr "a CAM 2 aktív:  "
+
 #~ msgid "always"
 #~ msgstr "mindig"
 
@@ -21390,6 +21682,9 @@ msgstr "ugrás folyamatban"
 #~ msgstr ""
 #~ "tartalmaz egy fájlt a névvel: \n"
 #~ "\n"
+
+#~ msgid "dont wait"
+#~ msgstr "ne várj"
 
 #~ msgid "e-Mail address"
 #~ msgstr "e-mail cím"
@@ -21420,6 +21715,15 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "nfi"
 #~ msgstr "nfi"
+
+#~ msgid "no CAM 1 active"
+#~ msgstr "nincs aktiválva a CAM 1"
+
+#~ msgid "no CAM 2 active"
+#~ msgstr "nincs aktiválva a CAM 2"
+
+#~ msgid "no cam"
+#~ msgstr "nincs cam"
 
 #~ msgid "of the USB-ports, therefore an extra copy of the "
 #~ msgstr "USB portoknak, ebből adódóan egy extra másolat"

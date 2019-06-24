@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 10:20+0200\n"
+"POT-Creation-Date: 2019-06-22 11:29+0000\n"
 "PO-Revision-Date: 2018-11-29 20:58+0800\n"
 "Last-Translator: touch时代 2017-2-9 ATV-Full Version: 1.5\n"
 "Language-Team: nobody  2017-3-10 Version: 1.8\n"
@@ -285,21 +285,6 @@ msgstr "频道"
 #, fuzzy
 msgid " <empty>"
 msgstr "空白"
-
-#, python-format
-msgid " Except %s"
-msgstr " 除了%s"
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
-"未启动 !!\n"
-"\n"
-"Cam 必须在开机启动命令中\n"
-"请检查 EMU 配置文件"
 
 msgid " and"
 msgstr "和"
@@ -1056,6 +1041,10 @@ msgstr[0] "%d 分钟"
 msgid "%d minutes"
 msgstr "%d 分钟"
 
+#, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d 分"
+
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
@@ -1146,6 +1135,10 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s"
+msgstr "CH%s"
+
 #, python-format
 msgid ""
 "%s\n"
@@ -1221,6 +1214,10 @@ msgstr "设置"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "扫描附加SR"
+
+#, python-format
+msgid "%s build date %s"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1310,6 +1307,10 @@ msgstr "“缓冲区以小时为单位”或“最后事件数”.对于要删�
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
 
+#, fuzzy
+msgid "'weatherplugin' is not installed!"
+msgstr "此插件没有安装."
+
 msgid "( All readers)"
 msgstr "(所有读卡器)"
 
@@ -1355,9 +1356,6 @@ msgstr "+/-"
 msgid "+24"
 msgstr "+24"
 
-msgid "---Weather---"
-msgstr ""
-
 msgid "-24"
 msgstr "-24"
 
@@ -1386,9 +1384,6 @@ msgstr "/var 目录"
 
 msgid "0"
 msgstr "0"
-
-msgid "0 (disabled)"
-msgstr "0 (已禁用)"
 
 msgid "0.2s"
 msgstr "0.2s"
@@ -1423,9 +1418,6 @@ msgstr "1 GB"
 msgid "1 min."
 msgstr "1 分"
 
-msgid "1 second"
-msgstr "1 秒"
-
 msgid "1.0"
 msgstr "1.0"
 
@@ -1444,20 +1436,11 @@ msgstr "1.5s"
 msgid "1.7s"
 msgstr "1.7s"
 
-msgid "10"
-msgstr "10"
-
-msgid "10 (default)"
-msgstr "10(默认)"
-
 msgid "10 MB/s"
 msgstr ""
 
 msgid "10 min."
 msgstr "10 分"
-
-msgid "10 seconds"
-msgstr "10 秒钟"
 
 msgid "100 MB/s"
 msgstr ""
@@ -1507,9 +1490,6 @@ msgstr ""
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
-msgid "120"
-msgstr "120"
-
 msgid "128"
 msgstr "128"
 
@@ -1533,9 +1513,6 @@ msgstr "13 V"
 
 msgid "15 min."
 msgstr "15 分"
-
-msgid "15 seconds"
-msgstr "15 秒钟"
 
 msgid "1536 Mb"
 msgstr "1536 Mb"
@@ -1601,14 +1578,8 @@ msgstr "2 GB"
 msgid "2.5s"
 msgstr "2.5s"
 
-msgid "20"
-msgstr "20"
-
 msgid "20 MB/s"
 msgstr ""
-
-msgid "20 seconds"
-msgstr "20 秒钟"
 
 msgid "2048 Mb"
 msgstr "2048 Mb"
@@ -1647,9 +1618,6 @@ msgstr "24+ 小时"
 
 msgid "24- Hours"
 msgstr "24- 小时"
-
-msgid "240"
-msgstr "240"
 
 msgid "24p/24p"
 msgstr "24p/24p"
@@ -1743,9 +1711,6 @@ msgstr "30 分"
 msgid "30 minutes"
 msgstr "30 分钟"
 
-msgid "30 seconds"
-msgstr "30 秒钟"
-
 #, fuzzy
 msgid "30p/24p"
 msgstr "50p/24p"
@@ -1835,17 +1800,11 @@ msgstr "4s"
 msgid "5"
 msgstr "5"
 
-msgid "5 (default)"
-msgstr "5 (默认)"
-
 msgid "5 min."
 msgstr "5 分"
 
 msgid "5 minutes"
 msgstr "5 分钟"
-
-msgid "5 seconds"
-msgstr "5 秒钟"
 
 msgid "50 MB/s"
 msgstr ""
@@ -1882,9 +1841,6 @@ msgstr "5s"
 
 msgid "6"
 msgstr "6"
-
-msgid "60"
-msgstr "60"
 
 msgid "60 minutes"
 msgstr "60 分钟"
@@ -2621,6 +2577,14 @@ msgstr "也在待机"
 msgid "Alternative"
 msgstr "可选"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "可选"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "可选"
+
 msgid "Alternative numbering mode"
 msgstr "可选编号模式"
 
@@ -2935,6 +2899,10 @@ msgid "Australia"
 msgstr "意大利语"
 
 #, fuzzy
+msgid "Australian"
+msgstr "意大利语"
+
+#, fuzzy
 msgid "Austria"
 msgstr "马术"
 
@@ -3054,6 +3022,10 @@ msgstr "自动启动:"
 msgid "Available format variables"
 msgstr "格式化后容量"
 
+#, fuzzy
+msgid "Available locales are:"
+msgstr "可用的共享:"
+
 msgid "Available shares:"
 msgstr "可用的共享:"
 
@@ -3164,6 +3136,14 @@ msgstr "后台删除选项"
 msgid "Background delete speed"
 msgstr "后台删除速度"
 
+#, fuzzy
+msgid "Background:"
+msgstr "后台"
+
+#, fuzzy
+msgid "Backgroundselected:"
+msgstr "后台删除速度"
+
 msgid "Backup"
 msgstr "备份"
 
@@ -3231,6 +3211,14 @@ msgstr "备份您的当前设置"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "备份当前设置.包括E2设置，频道，网络和所有已选择的文件."
 
+#, fuzzy
+msgid "Backup, flash and restore settings and no plugins"
+msgstr "刷写并恢复设置无插件"
+
+#, fuzzy
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr "刷写并恢复设置和已选择的插件（询问用户）"
+
 msgid "Bahamas"
 msgstr ""
 
@@ -3287,6 +3275,10 @@ msgstr "影片即将结束时的动作"
 
 msgid "Belarus"
 msgstr ""
+
+#, fuzzy
+msgid "Belgian"
+msgstr "挪威语"
 
 msgid "Belgium"
 msgstr ""
@@ -3538,9 +3530,6 @@ msgstr "CCcam 共享信息"
 msgid "CCcam Shares Info"
 msgstr "CCcam 共享信息"
 
-msgid "CCcamInfo"
-msgstr "CCcam 信息"
-
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcam 信息 主菜单"
 
@@ -3578,9 +3567,6 @@ msgstr "CI Plus 1.3"
 
 msgid "CI assignment"
 msgstr "接口分配（CI）"
-
-msgid "CI settings"
-msgstr "CI 设置"
 
 msgid "CI slot: "
 msgstr "CI 插槽:"
@@ -3699,6 +3685,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "取消"
 
+msgid "Cancel any text changes and exit"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel execution?"
 msgstr "频道选择"
@@ -3708,6 +3697,10 @@ msgstr "取消保存时移为电影"
 
 msgid "Cancelled upon user request"
 msgstr ""
+
+#, fuzzy
+msgid "Cannot create backup directory"
+msgstr "创建目录"
 
 #, fuzzy
 msgid "Cannot delete downloaded image"
@@ -3881,12 +3874,12 @@ msgid "Channel list service mode*"
 msgstr "频道列表频道模式*"
 
 #, fuzzy
-msgid "Channel list show MiniTV"
-msgstr "频道列表光标行为"
-
-#, fuzzy
 msgid "Channel list show MiniTV when Skin use."
 msgstr "频道列表模式更改"
+
+#, fuzzy
+msgid "Channel list show MiniTV*"
+msgstr "频道列表光标行为"
 
 msgid "Channel list type"
 msgstr "频道列表类型"
@@ -4126,6 +4119,9 @@ msgstr "左圆极化"
 msgid "Circular right"
 msgstr "右圆极化"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 msgid "Clean network trash cans"
 msgstr "清理网络垃圾桶"
 
@@ -4166,6 +4162,10 @@ msgstr "客户端"
 msgid "Clock"
 msgstr "时钟"
 
+#, fuzzy
+msgid "Clock:"
+msgstr "时钟"
+
 msgid "Clone TV screen to LCD"
 msgstr "克隆电视屏幕到LCD"
 
@@ -4198,6 +4198,10 @@ msgstr "高编码率HP"
 
 msgid "Coderate LP"
 msgstr "低编码率LP"
+
+#, fuzzy
+msgid "Collapse"
+msgstr "已播放"
 
 msgid "Collection name"
 msgstr "集合名称"
@@ -4248,6 +4252,10 @@ msgstr "通信"
 msgid "Comoros"
 msgstr ""
 
+#, fuzzy
+msgid "Compensate for overscan"
+msgstr "扫描前清理"
+
 msgid "Complete"
 msgstr "完成"
 
@@ -4259,10 +4267,6 @@ msgstr "综合（允许混合音轨和相位）"
 
 msgid "Composition of the recording filenames"
 msgstr "录像文件名的组成"
-
-#, fuzzy
-msgid "Compress"
-msgstr "完成"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -4905,9 +4909,6 @@ msgstr "正在创建文件系统"
 msgid "Creating partition"
 msgstr "正在创建分区"
 
-msgid "Creating start scripts and starting the cam"
-msgstr "正在创建启动脚本并启动 CAM"
-
 #, fuzzy
 msgid "Croatia"
 msgstr "克罗地亚语"
@@ -4994,6 +4995,10 @@ msgstr "自定设置"
 msgid "Cut"
 msgstr "剪切"
 
+#, fuzzy
+msgid "Cutlist Editor"
+msgstr "Cutlist编辑器"
+
 msgid "Cutlist editor"
 msgstr "Cutlist编辑器"
 
@@ -5075,6 +5080,10 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+#, fuzzy
+msgid "DVD Burn"
+msgstr "DVD 菜单"
+
 msgid "DVD File Browser"
 msgstr "DVD 文件浏览器"
 
@@ -5088,6 +5097,10 @@ msgid "DVD file browser"
 msgstr "DVD 文件浏览器"
 
 msgid "DVD player"
+msgstr "DVD 播放器"
+
+#, fuzzy
+msgid "DVDPlayer"
 msgstr "DVD 播放器"
 
 msgid "Daily"
@@ -5281,6 +5294,10 @@ msgid "Default Modes Selected."
 msgstr "默认录像位置"
 
 #, fuzzy
+msgid "Default Services Scanner"
+msgstr "默认录像位置"
+
+#, fuzzy
 msgid "Default directory sorting"
 msgstr "默认设置"
 
@@ -5464,6 +5481,12 @@ msgstr "删除播放列表条目"
 
 msgid "Delete saved playlist"
 msgstr "删除已保存的播放列表"
+
+msgid "Delete the character to the left of text buffer cursor"
+msgstr ""
+
+msgid "Delete the character under the text buffer cursor"
+msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "删除当前的时移缓冲区并重新开始时移"
@@ -5809,7 +5832,11 @@ msgstr "是否要将这个合集刻录到 DVD 介质中？"
 msgid "Do you want to continue?"
 msgstr "你确定要继续吗？"
 
-msgid "Do you want to delete all other languages?"
+#, fuzzy
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr "是否要删除所有其他语言？"
 
 msgid ""
@@ -5929,6 +5956,9 @@ msgid ""
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
 
+msgid "Done"
+msgstr ""
+
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "完成 - 安装或升级了%d个软件包"
@@ -5968,6 +5998,10 @@ msgstr "下载插件"
 
 msgid "Downloadable plugins"
 msgstr "可下载的插件"
+
+#, fuzzy
+msgid "Downloaded Images"
+msgstr "下载中"
 
 msgid "Downloading"
 msgstr "下载中"
@@ -6401,6 +6435,10 @@ msgstr ""
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 皮肤选择器"
+
+#, fuzzy
+msgid "Enter"
+msgstr "中央"
 
 msgid "Enter PIN"
 msgstr "输入 PIN"
@@ -6847,6 +6885,10 @@ msgid "FLASH"
 msgstr "闪存"
 
 #, fuzzy
+msgid "FP Upgrade"
+msgstr "正在升级"
+
+#, fuzzy
 msgid "FSBL Update Check"
 msgstr "更新缓存"
 
@@ -7085,9 +7127,6 @@ msgstr "刷入"
 msgid "Flash Image"
 msgstr "闪烁"
 
-msgid "Flash Image USB Recovery"
-msgstr ""
-
 msgid "Flash On the Fly"
 msgstr "直接刷写"
 
@@ -7096,18 +7135,6 @@ msgstr "在线刷机"
 
 msgid "Flash Online a new image"
 msgstr "在线刷写新固件"
-
-msgid "Flash and restore settings and all saved plugins"
-msgstr "刷写并恢复设置和所有保存的插件"
-
-msgid "Flash and restore settings and no plugins"
-msgstr "刷写并恢复设置无插件"
-
-msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr "刷写并恢复设置和已选择的插件（询问用户）"
-
-msgid "Flash and start installation wizard"
-msgstr "刷写并启动安装向导"
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "直接刷写接收机中的固件."
@@ -7260,9 +7287,6 @@ msgstr "前端处理器版本：%s"
 msgid "Frontprocessor version: %s"
 msgstr "前端处理器版本：%s"
 
-msgid "Frozen Cam Check"
-msgstr "Frozen Cam 检查"
-
 msgid "Full Image Backup "
 msgstr "完整固件备份"
 
@@ -7279,6 +7303,10 @@ msgstr "完全透明"
 
 msgid "FullHD Test"
 msgstr ""
+
+#, fuzzy
+msgid "Fullbackup Images"
+msgstr "备份固件"
 
 msgid "Fullscreen"
 msgstr "全屏显示"
@@ -7505,6 +7533,9 @@ msgstr "希腊语"
 msgid "Greek"
 msgstr "希腊语"
 
+msgid "Greek (Modern)"
+msgstr ""
+
 msgid "Green"
 msgstr "绿"
 
@@ -7620,6 +7651,9 @@ msgstr "HDMI 输入"
 #, fuzzy
 msgid "HDR10 Support"
 msgstr "DLNA 支持"
+
+msgid "HELP"
+msgstr ""
 
 msgid "HH:mm"
 msgstr ""
@@ -7862,11 +7896,18 @@ msgstr "IMDb 详情"
 msgid "IMDb Search"
 msgstr "搜索 IMDb"
 
+msgid "INFO"
+msgstr ""
+
 msgid "INFO button mode"
 msgstr "INFO 键模式"
 
 msgid "INFO-Panel..."
 msgstr "信息面板..."
+
+#, fuzzy
+msgid "INS"
+msgstr "NFS"
 
 #, fuzzy
 msgid "IP"
@@ -8226,9 +8267,6 @@ msgstr ""
 msgid "Init SDcard"
 msgstr ""
 
-msgid "Init.d"
-msgstr "Init.d"
-
 msgid "Initial fast forward speed"
 msgstr "初始快进速度"
 
@@ -8263,6 +8301,10 @@ msgid "Inotify Monitoring"
 msgstr "Inotify监控"
 
 msgid "Input"
+msgstr "输入"
+
+#, fuzzy
+msgid "Input "
 msgstr "输入"
 
 msgid "Input Stream ID"
@@ -8352,7 +8394,24 @@ msgstr "正在安装插件..."
 msgid "Installing Service"
 msgstr "正在安装服务"
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing Software..."
+msgstr "正在安装软件..."
+
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "正在安装软件..."
+
+#, fuzzy
+msgid "Installing feeds from feed ..."
+msgstr "正在安装软件..."
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "正在安装插件..."
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "正在安装插件..."
 
 msgid "Installing software..."
@@ -8392,6 +8451,10 @@ msgstr "中级"
 
 msgid "Internal"
 msgstr "内置"
+
+#, fuzzy
+msgid "Internal Flash"
+msgstr "内部闪存"
 
 msgid "Internal USB"
 msgstr "内部 USB"
@@ -8435,6 +8498,9 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Iran (Islamic Republic of)"
+msgstr ""
+
+msgid "Iran, Islamic Republic"
 msgstr ""
 
 msgid "Iraq"
@@ -8579,6 +8645,10 @@ msgid "Kernel: %s"
 msgstr "内核: %s"
 
 msgid "Keyboard"
+msgstr "键盘设置"
+
+#, fuzzy
+msgid "Keyboard data entry"
 msgstr "键盘设置"
 
 msgid "Keyboard map"
@@ -8895,11 +8965,12 @@ msgstr "本地盒子"
 msgid "Local network"
 msgstr "局域网"
 
+#, fuzzy
+msgid "Locale"
+msgstr "本地"
+
 msgid "Location"
 msgstr "位置"
-
-msgid "Location # (http://weather.yahoo.com/):"
-msgstr ""
 
 #, fuzzy
 msgid "Location list"
@@ -8961,6 +9032,10 @@ msgid "Lower Framerate save CPU Time"
 msgstr "较低的帧率节省 CPU 时间"
 
 msgid "Lower USB"
+msgstr "背面下方 USB 插槽"
+
+#, fuzzy
+msgid "Lower case"
 msgstr "背面下方 USB 插槽"
 
 msgid "Lower limit in kilobits per seconds [kbit/s]"
@@ -9448,6 +9523,30 @@ msgstr "[移动模式]"
 msgid "Move mode on"
 msgstr "运动"
 
+msgid "Move the text buffer cursor left"
+msgstr ""
+
+msgid "Move the text buffer cursor right"
+msgstr ""
+
+msgid "Move the text buffer cursor to the first character"
+msgstr ""
+
+msgid "Move the text buffer cursor to the last character"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor down"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor left"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor right"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor up"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "移动到主列表"
 
@@ -9522,10 +9621,6 @@ msgstr "多路 EPG"
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "固件管理器"
-
-#, fuzzy
-msgid "MultiBootSelector"
-msgstr "MultiBoot 选择"
 
 msgid "MultiEPG settings"
 msgstr "多路EPG设置"
@@ -9665,6 +9760,10 @@ msgstr "本机"
 msgid "Nauru"
 msgstr ""
 
+#, fuzzy
+msgid "NcamInfo"
+msgstr "CCcam 信息"
+
 msgid "Nepal"
 msgstr ""
 
@@ -9791,6 +9890,10 @@ msgstr ""
 msgid "New folder"
 msgstr "选择文件夹"
 
+#, fuzzy
+msgid "New password"
+msgstr "密码"
+
 msgid "New profile: "
 msgstr "新的配置文件:"
 
@@ -9840,23 +9943,11 @@ msgstr "否"
 msgid "No (supported) DVDROM found!"
 msgstr "没有找到（支持的）DVDROM！"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-"没有启动Cam!!\n"
-"\n"
-"Cam 1 必须不同于 Cam 2"
-
 msgid "No Connection"
 msgstr "未连接"
 
 msgid "No Devices Found !!"
 msgstr "没有找到设备."
-
-msgid "No ECM info"
-msgstr "没有 ECM 信息"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "没有找到硬盘或硬盘没有初始化！"
@@ -9953,9 +10044,6 @@ msgstr "无可用的网络连接."
 
 msgid "No networks found"
 msgstr "找不到网络"
-
-msgid "No new ECM info"
-msgstr "没有新的ECM信息"
 
 msgid "No of items switch (increase or reduced)"
 msgstr "项目数量切换（增加或减少）"
@@ -10062,7 +10150,7 @@ msgid "No, do not backup a image"
 msgstr "不要刷机"
 
 #, fuzzy
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr "不要刷机"
 
 msgid "No, do nothing."
@@ -10207,6 +10295,9 @@ msgstr "行数"
 msgid "Number of rows to display"
 msgstr "要显示的行数"
 
+msgid "Number or SMS style data entry"
+msgstr ""
+
 msgid "OCTAGON SF5008"
 msgstr ""
 
@@ -10268,6 +10359,10 @@ msgstr "OSD 设置"
 msgid "OSD name request"
 msgstr "OSD 名称请求"
 
+#, fuzzy
+msgid "OSD position setup"
+msgstr "极轴设置"
+
 msgid "OSD settings"
 msgstr "OSD选项"
 
@@ -10276,6 +10371,10 @@ msgstr "OScam 信息"
 
 msgid "OScamInfo"
 msgstr "Oscam 信息"
+
+#, fuzzy
+msgid "OVR"
+msgstr "PVR"
 
 msgid "Off"
 msgstr "关"
@@ -10417,6 +10516,17 @@ msgid "OpenVpn Setup"
 msgstr "OpenVPN 设置"
 
 #, fuzzy
+msgid "Operating LED status in deep standby mode"
+msgstr "深度待机/待机期间的电源 LED 状态."
+
+#, fuzzy
+msgid "Operating LED status in standby mode"
+msgstr "深度待机/待机期间的电源 LED 状态."
+
+msgid "Operating LED status while running"
+msgstr ""
+
+#, fuzzy
 msgid "Option"
 msgstr "加密系统"
 
@@ -10448,9 +10558,6 @@ msgstr "Oscam 信息 - 主菜单"
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
 msgstr ""
-
-msgid "OscamInfo"
-msgstr "Oscam 信息"
 
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam 信息主菜单"
@@ -10679,6 +10786,14 @@ msgstr "密码"
 msgid "Password (httpwd)"
 msgstr "密码 (httpwd)"
 
+#, fuzzy
+msgid "Password Setup"
+msgstr "密码"
+
+#, fuzzy
+msgid "Password changed"
+msgstr "密码 (httpwd)"
+
 msgid "Password:"
 msgstr "密码:"
 
@@ -10809,6 +10924,10 @@ msgid "Play"
 msgstr "播放"
 
 msgid "Play DVD"
+msgstr "播放 DVD"
+
+#, fuzzy
+msgid "Play DVDs"
 msgstr "播放 DVD"
 
 msgid "Play audio in background"
@@ -11305,6 +11424,10 @@ msgstr "极轴（选择卫星）"
 msgid "Positioner Setup"
 msgstr "极轴设置"
 
+#, fuzzy
+msgid "Positioner Setup Log"
+msgstr "极轴设置"
+
 msgid "Positioner setup"
 msgstr "极轴设置"
 
@@ -11426,6 +11549,10 @@ msgid "Press Init to format SDcard."
 msgstr ""
 
 msgid "Press MENU on your remote control for additional options."
+msgstr "按遥控器的 [MENU] 键获得更多信息"
+
+#, fuzzy
+msgid "Press MENU to install additional language(s)."
 msgstr "按遥控器的 [MENU] 键获得更多信息"
 
 msgid "Press OK on your remote control to continue."
@@ -11583,6 +11710,10 @@ msgstr ""
 msgid "Programmlisten from DXAndy"
 msgstr "来自DXAndy的Programmlisten-更新器"
 
+#, fuzzy
+msgid "Programmlisten-Updater V"
+msgstr "来自DXAndy的Programmlisten-更新器"
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr "来自DXAndy的Programmlisten-更新器"
 
@@ -11678,9 +11809,6 @@ msgstr "将电视转为待机"
 msgid "Put your AV Receiver in standby"
 msgstr "将 %s %s 转为待机状态"
 
-msgid "Python Camstarter (default)"
-msgstr "Python Cam 启动器 （默认值）"
-
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend for /tmp/mmi.socket"
 
@@ -11772,6 +11900,10 @@ msgstr "内存"
 msgid "Random"
 msgstr "随机"
 
+#, fuzzy
+msgid "Random password"
+msgstr "请输入新名称:"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "通过广播定义级别 - %d"
@@ -11781,10 +11913,6 @@ msgstr "评分未定义"
 
 msgid "Re-enter new PIN"
 msgstr "重新输入新的 PIN 码"
-
-#, fuzzy
-msgid "ReStart"
-msgstr "重新启动"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "从oscam.conf读取用户数据"
@@ -11985,14 +12113,7 @@ msgstr ""
 "请等待直到你的 %s %s 重新启动\n"
 "这可能需要几分钟"
 
-msgid "Refresh"
-msgstr "刷新"
-
 msgid "Refresh every (in hours)"
-msgstr "刷新每（小时）"
-
-#, fuzzy
-msgid "Refresh interval in minutes:"
 msgstr "刷新每（小时）"
 
 msgid "Refresh rate"
@@ -12609,6 +12730,10 @@ msgstr ""
 msgid "Save"
 msgstr "保存"
 
+#, fuzzy
+msgid "Save / Enter text and exit"
+msgstr "退出时保存最后目录"
+
 msgid "Save EPG"
 msgstr "保存EPG"
 
@@ -12883,12 +13008,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "选择 CAId"
 
-msgid "Select Cam 1"
-msgstr "选择 Cam 1"
-
-msgid "Select Cam 2"
-msgstr "选择 Cam 2"
-
 #, fuzzy
 msgid "Select Card Server"
 msgstr "选择一个影片"
@@ -12934,6 +13053,10 @@ msgstr "选择黄键功能"
 msgid "Select Yellow Key Action long"
 msgstr "选择黄键功能  长按"
 
+#, fuzzy
+msgid "Select Your Skin"
+msgstr "选择LCD皮肤"
+
 msgid "Select a bouquet"
 msgstr "选择自定义组"
 
@@ -12968,9 +13091,6 @@ msgstr "选择额外的备份文件"
 
 msgid "Select additional files to backup"
 msgstr "选择额外的文件来备份"
-
-msgid "Select all"
-msgstr "全选"
 
 msgid "Select an image to be downloaded"
 msgstr "选择一个镜像下载"
@@ -13090,6 +13210,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the character or action under the virtual keyboard cursor"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "选择所需的功能,然后点击OK键分配它.使用 \"CH+/-\" 在列表之间切换.选择一个指定的函数,然后单击OK键去分配它.使用 \"下一个/以前的\" 更改指定功能的顺序."
 
@@ -13142,6 +13265,15 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the virtual keyboard locale from a menu"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 msgid "Select upgrade source"
@@ -13386,9 +13518,6 @@ msgid "Service reference"
 msgstr "频道参数"
 
 msgid "Service scan"
-msgstr "频道扫描"
-
-msgid "Service searching"
 msgstr "频道扫描"
 
 msgid ""
@@ -13797,6 +13926,9 @@ msgstr "锐度"
 msgid "Shellscript"
 msgstr "Shell 脚本"
 
+msgid "Shift"
+msgstr ""
+
 msgid "Short filenames"
 msgstr "短文件名"
 
@@ -13871,9 +14003,6 @@ msgstr "显示机顶盒端口..."
 
 msgid "Show CCcam in extensions ?"
 msgstr "在附件中显示 CCcam ？"
-
-msgid "Show CCcamInfo in Extensions Menu"
-msgstr "在附件菜单中显示CCcam信息"
 
 msgid "Show CI messages"
 msgstr "显示 CI 消息"
@@ -13977,9 +14106,6 @@ msgstr "显示 OE 日志"
 msgid "Show OScam in extensions ?"
 msgstr "在附件中显示Oscam？"
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr "在附件菜单中显示Oscam信息"
-
 msgid "Show PIP"
 msgstr "显示画中画"
 
@@ -14013,9 +14139,6 @@ msgstr ""
 
 msgid "Show Single EPG"
 msgstr "显示单EPG"
-
-msgid "Show Softcam-Panel in Extensions Menu"
-msgstr "显示SoftCam-面板在附件菜单"
 
 msgid "Show Task's completed message"
 msgstr ""
@@ -14347,7 +14470,7 @@ msgid "Show the Sleep Timer..."
 msgstr "显示休眠定时器..."
 
 #, fuzzy
-msgid "Show the infomation on current event."
+msgid "Show the information on current event."
 msgstr "显示当前事件信息"
 
 msgid "Show the list of AutoTimers."
@@ -14567,6 +14690,10 @@ msgstr "皮肤选择器"
 msgid "Skins"
 msgstr "皮肤"
 
+#, fuzzy
+msgid "Skinselector"
+msgstr "皮肤选择器"
+
 msgid "Skip back"
 msgstr "往后跳"
 
@@ -14668,12 +14795,6 @@ msgstr "锁定"
 msgid "Softcam"
 msgstr "Softcam"
 
-msgid "Softcam Panel"
-msgstr "SoftCam面板"
-
-msgid "Softcam Panel V2.0"
-msgstr "Softcam 面板V2.0"
-
 msgid "Softcam Setup"
 msgstr "Softcam设置"
 
@@ -14687,18 +14808,12 @@ msgstr "Softcam设置"
 msgid "Softcam-Panel"
 msgstr "SoftCam-面板"
 
-msgid "Softcam-Panel Setup"
-msgstr "SoftCam-面板设置"
-
 msgid "Softcam-Panel..."
 msgstr "SoftCam-面板..."
 
 #, fuzzy
 msgid "Softcam-Setup"
 msgstr "Softcam设置"
-
-msgid "SoftcamPanel"
-msgstr "Softcam面板"
 
 #, fuzzy
 msgid "SoftcamSetup"
@@ -14893,6 +15008,14 @@ msgstr ""
 msgid "Spanish"
 msgstr "西班牙语"
 
+#, fuzzy
+msgid "Special 1"
+msgstr "序列号"
+
+#, fuzzy
+msgid "Special 2"
+msgstr "序列号"
+
 msgid "Special Features"
 msgstr "特定特色"
 
@@ -14936,12 +15059,6 @@ msgstr "开始"
 msgid "Start Kodi"
 msgstr "启动模式"
 
-msgid "Start Mode"
-msgstr "启动模式"
-
-msgid "Start attempts"
-msgstr "启动尝试"
-
 msgid "Start from the beginning"
 msgstr "从头开始"
 
@@ -14983,12 +15100,6 @@ msgstr "启动/停止/选择 CAM，你首先需要安装一个softcam"
 msgid "StartWizard"
 msgstr "开始向导"
 
-msgid "Starting Cam 1: "
-msgstr "正在启动 Cam 1:"
-
-msgid "Starting Cam 2: "
-msgstr "正在启动 Cam 2:"
-
 msgid "Starting Softcam"
 msgstr "正在启动 Softcam"
 
@@ -14997,6 +15108,15 @@ msgstr "开始于"
 
 msgid "Status"
 msgstr "状态"
+
+msgid "Status of the display during operation"
+msgstr ""
+
+msgid "Status of the display in deep standby"
+msgstr ""
+
+msgid "Status of the display in standby mode"
+msgstr ""
 
 msgid "Status:"
 msgstr "状态:"
@@ -15022,9 +15142,6 @@ msgstr "停止 画中画"
 #, fuzzy
 msgid "Stop Streams"
 msgstr "停止测试"
-
-msgid "Stop check when cam is running"
-msgstr "当CAM运行时停止检查"
 
 msgid "Stop current event and disable coming events"
 msgstr "停止当前事件并禁用下一个事件"
@@ -15385,6 +15502,10 @@ msgstr "系统设置"
 msgid "System Info"
 msgstr "系统信息"
 
+#, fuzzy
+msgid "System Message Check"
+msgstr "检查文件系统"
+
 msgid "System Setup"
 msgstr "系统设置"
 
@@ -15524,9 +15645,6 @@ msgstr "Telnet 端口"
 
 msgid "Telnet Setup"
 msgstr "Telnet 设置"
-
-msgid "Temperature unit:"
-msgstr ""
 
 msgid "Terrestrial"
 msgstr "地面波"
@@ -15802,6 +15920,9 @@ msgid ""
 msgstr ""
 "网络向导附件插件未安装！\n"
 "请先安装它."
+
+msgid "The password can not be blank."
+msgstr ""
 
 #, python-format
 msgid "The path %s already exists."
@@ -16364,9 +16485,6 @@ msgstr "以分钟为单位更新:"
 msgid "Time between slides in image viewer slideshow."
 msgstr ""
 
-msgid "Time between start attempts (sec.)"
-msgstr "开始尝试之间的时间(秒)"
-
 msgid "Time delay for the repeated transmission"
 msgstr ""
 
@@ -16618,6 +16736,9 @@ msgstr "切换宽高比..."
 msgid "Toggle between bouquet/epg lists"
 msgstr "在 频道组/EPG列表 之间切换"
 
+msgid "Toggle new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -16832,6 +16953,9 @@ msgstr "调谐器状态"
 msgid "Tuner type %s"
 msgstr "调谐器类型"
 
+msgid "Tuners & scanning"
+msgstr "频道扫描"
+
 msgid "Tuning algorithm"
 msgstr "调整算法"
 
@@ -16898,6 +17022,10 @@ msgstr "类型："
 msgid "Type: "
 msgstr "类型："
 
+#, fuzzy
+msgid "UI 3D setup"
+msgstr "3D 设置"
+
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
@@ -16934,6 +17062,10 @@ msgstr "乌克兰语"
 
 msgid "Ukrainian"
 msgstr "乌克兰语"
+
+#, fuzzy
+msgid "Unable to change password"
+msgstr "请输入新名称:"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -16986,6 +17118,9 @@ msgid "United Arab Emirates"
 msgstr ""
 
 msgid "United Kingdom"
+msgstr ""
+
+msgid "United States"
 msgstr ""
 
 msgid "United States Minor Outlying Islands"
@@ -17103,6 +17238,10 @@ msgid "Updates Available:"
 msgstr "可用更新:"
 
 #, fuzzy
+msgid "Updating cache"
+msgstr "更新缓存"
+
+#, fuzzy
 msgid "Updating cache, please wait..."
 msgstr "正在解压缩文件，请稍等…"
 
@@ -17111,6 +17250,9 @@ msgstr "正在更新挂载位置."
 
 msgid "Updating software catalog"
 msgstr "更新软件目录"
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr ""
 
 msgid "Upgrade and reboot system"
 msgstr "升级并重启系统"
@@ -17144,6 +17286,10 @@ msgid "Uphops: "
 msgstr "Uphops:"
 
 msgid "Upper USB"
+msgstr "上面的USB"
+
+#, fuzzy
+msgid "Upper case"
 msgstr "上面的USB"
 
 msgid "Uptime"
@@ -17357,6 +17503,9 @@ msgstr "用户界面设置"
 msgid "User interface visibility"
 msgstr "用户界面透明度"
 
+msgid "Userlogo:"
+msgstr ""
+
 msgid "Username"
 msgstr "用户名"
 
@@ -17413,6 +17562,10 @@ msgstr "VU+"
 #, fuzzy
 msgid "Vanuatu"
 msgstr "手动"
+
+#, fuzzy
+msgid "Various"
+msgstr "前一个"
 
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr ""
@@ -17660,7 +17813,12 @@ msgstr ""
 msgid "Virgin Islands (U.S.)"
 msgstr ""
 
-msgid "Virtual KeyBoard"
+#, fuzzy
+msgid "Virtual KeyBoard Functions"
+msgstr "虚拟键盘"
+
+#, fuzzy
+msgid "Virtual KeyBoard Text:"
 msgstr "虚拟键盘"
 
 msgid "Virtual keyboard"
@@ -17743,9 +17901,6 @@ msgstr "正在扫描 %s %s 设备，请等待..."
 msgid "Wait please while scanning..."
 msgstr "正在扫描，请等待..."
 
-msgid "Wait time before start Cam 2"
-msgstr "启动Cam2前的等待时间"
-
 msgid "Waiting"
 msgstr "等待"
 
@@ -17754,9 +17909,6 @@ msgstr "正在等待挂载"
 
 msgid "Waiting for partition"
 msgstr "正在等待分区"
-
-msgid "Waiting..."
-msgstr "正在等待..."
 
 msgid "Wake Up"
 msgstr "唤醒"
@@ -18140,6 +18292,18 @@ msgstr "该选项设为“是”，频道列表总是在频道群屏幕上首先
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "使用此选项，您可以从扩展屏幕隐藏工作任务 （短按蓝色按钮）."
 
+msgid "With this option you can switch off the display during operation."
+msgstr ""
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr ""
+
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
@@ -18274,14 +18438,6 @@ msgstr "是，返回到影片列表"
 msgid "Yes, shut down now."
 msgstr "是，马上关机."
 
-#, fuzzy
-msgid "Yes, with backup"
-msgstr "恢复备份"
-
-#, fuzzy
-msgid "Yes, without backup"
-msgstr "恢复备份"
-
 msgid "Yesterday"
 msgstr "昨天"
 
@@ -18397,6 +18553,9 @@ msgstr "激活自动开始前必须创建一个交换文件."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "您必须等待 %s!"
+
+msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+msgstr ""
 
 msgid "You must set at least one Command"
 msgstr "您必须至少设置一条命令"
@@ -18782,12 +18941,6 @@ msgstr "激活网卡配置"
 msgid "activatePiP"
 msgstr "激活画中画"
 
-msgid "active CAM 1: "
-msgstr "CAM 1 激活:"
-
-msgid "active CAM 2: "
-msgstr "CAM 2 激活:"
-
 msgid "add Current"
 msgstr "添加当前"
 
@@ -19134,9 +19287,6 @@ msgstr "不解扰，录制ECM"
 
 msgid "done!"
 msgstr "完成!"
-
-msgid "dont wait"
-msgstr "不等待"
 
 msgid "drivers"
 msgstr "驱动器"
@@ -19515,6 +19665,14 @@ msgstr "在这里插入标记"
 msgid "install/unpack ipk Files"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "internal flash:  %s %s "
+msgstr "内部闪存"
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr ""
+
 msgid "internally loopthrough to"
 msgstr "内循环到"
 
@@ -19720,17 +19878,8 @@ msgstr "否"
 msgid "no CAId selected"
 msgstr "未选择 CAID"
 
-msgid "no CAM 1 active"
-msgstr "CAM 1 未激活"
-
-msgid "no CAM 2 active"
-msgstr "CAM 2 未激活"
-
 msgid "no CI slots found"
 msgstr "没有发现 CI 插槽"
-
-msgid "no cam"
-msgstr "没有 CAM"
 
 msgid "no channel list"
 msgstr "没有频道列表"
@@ -20220,15 +20369,27 @@ msgid "skip forward (enter time)"
 msgstr "快进（输入时间）"
 
 #, python-format
+msgid "slot%s - %s"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s "
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image) with, backup"
+msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image), without backup"
+msgid "slot%s - %s - %s "
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s as USB Recovery"
 msgstr ""
 
 #, python-format
@@ -20248,23 +20409,7 @@ msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s, with backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s, without backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s- %s "
+msgid "slot%s - %s- %s "
 msgstr ""
 
 msgid "slow"
@@ -20502,6 +20647,9 @@ msgstr "垂直"
 msgid "view extensions..."
 msgstr "查看附件..."
 
+msgid "violet"
+msgstr ""
+
 msgid "vix"
 msgstr "vix"
 
@@ -20630,6 +20778,20 @@ msgstr "切换中"
 #~ msgid " (unknown mode)"
 #~ msgstr " (未知模式)"
 
+#~ msgid " Except %s"
+#~ msgstr " 除了%s"
+
+#~ msgid ""
+#~ " Not Started !!\n"
+#~ "\n"
+#~ "Cam binname must be in the start command line\n"
+#~ "Check your emu config file"
+#~ msgstr ""
+#~ "未启动 !!\n"
+#~ "\n"
+#~ "Cam 必须在开机启动命令中\n"
+#~ "请检查 EMU 配置文件"
+
 #~ msgid "%2d:%02d"
 #~ msgstr "%2d:%02d"
 
@@ -20713,11 +20875,53 @@ msgstr "切换中"
 #~ "Window 1 (PIP/UHD) (Enigma2 PIP Mode): Up to 1/2 x 1/2 screen display, 576i50 de-interlacing\n"
 #~ "Display 0 (UHD) Encode Restrictions: 3840x2160p50"
 
+#~ msgid "0 (disabled)"
+#~ msgstr "0 (已禁用)"
+
+#~ msgid "1 second"
+#~ msgstr "1 秒"
+
+#~ msgid "10"
+#~ msgstr "10"
+
+#~ msgid "10 (default)"
+#~ msgstr "10(默认)"
+
+#~ msgid "10 seconds"
+#~ msgstr "10 秒钟"
+
+#~ msgid "120"
+#~ msgstr "120"
+
+#~ msgid "15 seconds"
+#~ msgstr "15 秒钟"
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "20 seconds"
+#~ msgstr "20 秒钟"
+
 #~ msgid "2160p50 with PiP (Experimental)"
 #~ msgstr "2160p50 带画中画（实验）"
 
 #~ msgid "2160p60 without PiP (Standard)"
 #~ msgstr "2160p60 无画中画（标准）"
+
+#~ msgid "240"
+#~ msgstr "240"
+
+#~ msgid "30 seconds"
+#~ msgstr "30 秒钟"
+
+#~ msgid "5 (default)"
+#~ msgstr "5 (默认)"
+
+#~ msgid "5 seconds"
+#~ msgstr "5 秒钟"
+
+#~ msgid "60"
+#~ msgstr "60"
 
 #~ msgid "AGC:"
 #~ msgstr "质量:"
@@ -20764,6 +20968,9 @@ msgstr "切换中"
 #~ msgid "Box Info"
 #~ msgstr "接收机信息"
 
+#~ msgid "CI settings"
+#~ msgstr "CI 设置"
+
 #~ msgid "Can not repair file %s"
 #~ msgstr "无法修复文件 %s"
 
@@ -20794,10 +21001,17 @@ msgstr "切换中"
 #~ msgid "Common interface"
 #~ msgstr "CI 模块"
 
+#, fuzzy
+#~ msgid "Compress"
+#~ msgstr "完成"
+
 #~ msgid ""
 #~ "Copy your keymap to\n"
 #~ "/usr/share/enigma2/keymap.usr"
 #~ msgstr "复制你的键盘布局到usr/share/enigma2/keymap.usr"
+
+#~ msgid "Creating start scripts and starting the cam"
+#~ msgstr "正在创建启动脚本并启动 CAM"
 
 #~ msgid "Current"
 #~ msgstr "当前"
@@ -20882,11 +21096,20 @@ msgstr "切换中"
 #~ msgid "Flash On the fly (select a image)"
 #~ msgstr "直接刷写（选择固件）"
 
+#~ msgid "Flash and restore settings and all saved plugins"
+#~ msgstr "刷写并恢复设置和所有保存的插件"
+
+#~ msgid "Flash and start installation wizard"
+#~ msgstr "刷写并启动安装向导"
+
 #~ msgid "Flashing: "
 #~ msgstr "正在刷写:"
 
 #~ msgid "Free To Air"
 #~ msgstr "免费节目"
+
+#~ msgid "Frozen Cam Check"
+#~ msgstr "Frozen Cam 检查"
 
 #~ msgid "GB800SOLO takes about 20 mins !!\n"
 #~ msgstr "GB800SOLO 需要大约 20 分钟!!\n"
@@ -20907,6 +21130,9 @@ msgstr "切换中"
 
 #~ msgid "If set to 'yes' the EPG will alway open at the first channel. If set to 'no' the EPG will open on the present channel."
 #~ msgstr "如果设为“是”，EPG 将总是打开第一个频道.如果设为“否”，EPG 将打开当前频道."
+
+#~ msgid "Init.d"
+#~ msgstr "Init.d"
 
 #~ msgid "Install channel list"
 #~ msgstr "安装频道列表"
@@ -20932,9 +21158,6 @@ msgstr "切换中"
 #~ msgid "Just scale"
 #~ msgstr "左右拉伸"
 
-#~ msgid "Local"
-#~ msgstr "本地"
-
 #~ msgid "Local = Flash a image from local path /hdd/images"
 #~ msgstr "本地＝从本地 /hdd/images 路径刷写固件"
 
@@ -20952,6 +21175,10 @@ msgstr "切换中"
 
 #~ msgid "MultiBoot"
 #~ msgstr "MultiBoot"
+
+#, fuzzy
+#~ msgid "MultiBootSelector"
+#~ msgstr "MultiBoot 选择"
 
 #~ msgid "NO"
 #~ msgstr "NO"
@@ -20981,6 +21208,18 @@ msgstr "切换中"
 #~ "退出插件"
 
 #~ msgid ""
+#~ "No Cam started !!\n"
+#~ "\n"
+#~ "Cam 1 must be different from Cam 2"
+#~ msgstr ""
+#~ "没有启动Cam!!\n"
+#~ "\n"
+#~ "Cam 1 必须不同于 Cam 2"
+
+#~ msgid "No ECM info"
+#~ msgstr "没有 ECM 信息"
+
+#~ msgid ""
 #~ "No USB-Device found for fullbackup !!\n"
 #~ "\n"
 #~ "\n"
@@ -20988,6 +21227,9 @@ msgstr "切换中"
 #~ "找不到可供完整备份用的usb存储设备!!\n"
 #~ "\n"
 #~ "\n"
+
+#~ msgid "No new ECM info"
+#~ msgstr "没有新的ECM信息"
 
 #~ msgid "No satellite frontend found!!"
 #~ msgstr "没有发现卫星前端！"
@@ -21047,6 +21289,9 @@ msgstr "切换中"
 #~ msgid "Orbital Position"
 #~ msgstr "卫星位置"
 
+#~ msgid "OscamInfo"
+#~ msgstr "Oscam 信息"
+
 #~ msgid "Please set up tuner E"
 #~ msgstr "请设置调谐器 E"
 
@@ -21077,17 +21322,31 @@ msgstr "切换中"
 #~ msgid "Provider to scan"
 #~ msgstr "扫描提供商"
 
+#~ msgid "Python Camstarter (default)"
+#~ msgstr "Python Cam 启动器 （默认值）"
+
+#, fuzzy
+#~ msgid "ReStart"
+#~ msgstr "重新启动"
+
 #~ msgid "Reboot Box"
 #~ msgstr "重启接收机"
 
 #~ msgid "Recording Status"
 #~ msgstr "录像状态"
 
+#~ msgid "Refresh"
+#~ msgstr "刷新"
+
 #~ msgid "Refresh Timer"
 #~ msgstr "刷新定时器"
 
 #~ msgid "Refresh automatically every"
 #~ msgstr "自动刷新间隔"
+
+#, fuzzy
+#~ msgid "Refresh interval in minutes:"
+#~ msgstr "刷新每（小时）"
 
 #~ msgid "Remote"
 #~ msgstr "遥控器"
@@ -21101,8 +21360,17 @@ msgstr "切换中"
 #~ msgid "Select Bootoption: not supported - see info"
 #~ msgstr "选择启动选项:不支持的－查看信息"
 
+#~ msgid "Select Cam 1"
+#~ msgstr "选择 Cam 1"
+
+#~ msgid "Select Cam 2"
+#~ msgstr "选择 Cam 2"
+
 #~ msgid "Select Image: %s"
 #~ msgstr "选择固件: %s"
+
+#~ msgid "Select all"
+#~ msgstr "全选"
 
 #~ msgid "Sep"
 #~ msgstr "九月"
@@ -21110,8 +21378,17 @@ msgstr "切换中"
 #~ msgid "September"
 #~ msgstr "九月"
 
+#~ msgid "Show CCcamInfo in Extensions Menu"
+#~ msgstr "在附件菜单中显示CCcam信息"
+
+#~ msgid "Show OscamInfo in Extensions Menu"
+#~ msgstr "在附件菜单中显示Oscam信息"
+
 #~ msgid "Show Picons in channel list"
 #~ msgstr "在频道列表中显示 Picons"
+
+#~ msgid "Show Softcam-Panel in Extensions Menu"
+#~ msgstr "显示SoftCam-面板在附件菜单"
 
 #~ msgid "Show blinking Clock in Standby on Display during recording"
 #~ msgstr "在待机模式录制时钟显示为闪烁"
@@ -21128,6 +21405,18 @@ msgstr "切换中"
 #~ msgid "Simulate (no write)"
 #~ msgstr "模拟（不写入）"
 
+#~ msgid "Softcam Panel"
+#~ msgstr "SoftCam面板"
+
+#~ msgid "Softcam Panel V2.0"
+#~ msgstr "Softcam 面板V2.0"
+
+#~ msgid "Softcam-Panel Setup"
+#~ msgstr "SoftCam-面板设置"
+
+#~ msgid "SoftcamPanel"
+#~ msgstr "Softcam面板"
+
 #~ msgid "Sort menu screen's alphabetically"
 #~ msgstr "按字母顺序排序屏幕菜单"
 
@@ -21137,11 +21426,26 @@ msgstr "切换中"
 #~ msgid "Standby Toggle"
 #~ msgstr "待机触发"
 
+#~ msgid "Start Mode"
+#~ msgstr "启动模式"
+
+#~ msgid "Start attempts"
+#~ msgstr "启动尝试"
+
+#~ msgid "Starting Cam 1: "
+#~ msgstr "正在启动 Cam 1:"
+
+#~ msgid "Starting Cam 2: "
+#~ msgstr "正在启动 Cam 2:"
+
 #~ msgid "Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
 #~ msgstr "快速切换的步长值或长按音量按钮. 根据设置（如果更大）和当前音量（如果更小）将调整步进. （30〜4,18〜3,9〜2和3〜1）"
 
 #~ msgid "Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
 #~ msgstr "单击按下音量按钮的步长值. 根据设置（如果更大）和当前音量（如果更小）将调整步长. （30〜4,18〜3,9〜2和3〜1）"
+
+#~ msgid "Stop check when cam is running"
+#~ msgstr "当CAM运行时停止检查"
 
 #~ msgid "Television"
 #~ msgstr "电视"
@@ -21154,6 +21458,9 @@ msgstr "切换中"
 
 #~ msgid "Theme"
 #~ msgstr "主题"
+
+#~ msgid "Time between start attempts (sec.)"
+#~ msgstr "开始尝试之间的时间(秒)"
 
 #~ msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 #~ msgstr "要备份目录到 U 盘，必须要插上U 盘.\n"
@@ -21215,6 +21522,12 @@ msgstr "切换中"
 #~ msgid "Volume adjust slow"
 #~ msgstr "音量调节 慢"
 
+#~ msgid "Wait time before start Cam 2"
+#~ msgstr "启动Cam2前的等待时间"
+
+#~ msgid "Waiting..."
+#~ msgstr "正在等待..."
+
 #~ msgid "Wakeup signal from TV"
 #~ msgstr "从电视机发送唤醒信号"
 
@@ -21232,6 +21545,14 @@ msgstr "切换中"
 
 #~ msgid "YES"
 #~ msgstr "确定"
+
+#, fuzzy
+#~ msgid "Yes, with backup"
+#~ msgstr "恢复备份"
+
+#, fuzzy
+#~ msgid "Yes, without backup"
+#~ msgstr "恢复备份"
 
 #~ msgid ""
 #~ "You can select with yellow the OnlineFlash Image\n"
@@ -21262,6 +21583,12 @@ msgstr "切换中"
 #~ msgid "Your receiver does not have an internet connection"
 #~ msgstr "机顶盒没有连接到互联网."
 
+#~ msgid "active CAM 1: "
+#~ msgstr "CAM 1 激活:"
+
+#~ msgid "active CAM 2: "
+#~ msgstr "CAM 2 激活:"
+
 #~ msgid "backupstick or backupstick.txt"
 #~ msgstr "backupstick or backupstick.txt"
 
@@ -21272,8 +21599,20 @@ msgstr "切换中"
 #~ "创建一个文件用名称:\n"
 #~ "\n"
 
+#~ msgid "dont wait"
+#~ msgstr "不等待"
+
 #~ msgid "file oscam.conf could not be found"
 #~ msgstr "找不到 oscam.conf 文件"
+
+#~ msgid "no CAM 1 active"
+#~ msgstr "CAM 1 未激活"
+
+#~ msgid "no CAM 2 active"
+#~ msgstr "CAM 2 未激活"
+
+#~ msgid "no cam"
+#~ msgstr "没有 CAM"
 
 #~ msgid "ofgwrite flashing ready.\n"
 #~ msgstr "已准备好刷机.\n"

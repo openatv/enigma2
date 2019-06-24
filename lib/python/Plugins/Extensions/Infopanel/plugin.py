@@ -408,7 +408,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self["Mlist"].moveToIndex(0)
 			self["Mlist"].l.setList(self.oldmlist1)
 			menu = 1
-			self["label1"].setText("Infos")
+			self["label1"].setText(_("Infos"))
 		else:
 			pass
 
@@ -779,7 +779,7 @@ class Info(Screen):
 
 	def InfoPanel(self):
 		try:
-			self["label2"].setText("INFO")
+			self["label2"].setText(_("INFO"))
 			info1 = self.Do_cmd("cat", "/etc/motd", None)
 			if info1.find('wElc0me') > -1:
 				info1 = info1[info1.find('wElc0me'):len(info1)] + "\n"

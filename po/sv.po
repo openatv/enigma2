@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-07 10:20+0200\n"
+"POT-Creation-Date: 2019-06-22 11:29+0000\n"
 "PO-Revision-Date: 2016-04-02 23:12+0200\n"
 "Last-Translator: Robert Johansson\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -287,17 +287,6 @@ msgstr "Kanal"
 #, fuzzy
 msgid " <empty>"
 msgstr "tom"
-
-#, python-format
-msgid " Except %s"
-msgstr ""
-
-msgid ""
-" Not Started !!\n"
-"\n"
-"Cam binname must be in the start command line\n"
-"Check your emu config file"
-msgstr ""
 
 msgid " and"
 msgstr "och"
@@ -1053,6 +1042,10 @@ msgstr[1] "%d minuter"
 msgid "%d minutes"
 msgstr "%d minuter"
 
+#, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d min"
+
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
@@ -1145,6 +1138,10 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s"
+msgstr "bc%s"
+
 #, python-format
 msgid ""
 "%s\n"
@@ -1225,6 +1222,11 @@ msgstr "Inställningar"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Sök ytterligare SR"
+
+#
+#, fuzzy, python-format
+msgid "%s build date %s"
+msgstr "Senast Uppdaterad:%s"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1316,6 +1318,11 @@ msgstr ""
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
 
+#
+#, fuzzy
+msgid "'weatherplugin' is not installed!"
+msgstr "Det här pluginet är inte installerat."
+
 msgid "( All readers)"
 msgstr "(Alla läsare)"
 
@@ -1367,9 +1374,6 @@ msgstr ""
 msgid "+24"
 msgstr "24"
 
-msgid "---Weather---"
-msgstr ""
-
 #
 #, fuzzy
 msgid "-24"
@@ -1398,9 +1402,6 @@ msgid "/var directory"
 msgstr ""
 
 msgid "0"
-msgstr ""
-
-msgid "0 (disabled)"
 msgstr ""
 
 msgid "0.2s"
@@ -1436,9 +1437,6 @@ msgstr ""
 msgid "1 min."
 msgstr ""
 
-msgid "1 second"
-msgstr ""
-
 #
 msgid "1.0"
 msgstr "1.0"
@@ -1460,19 +1458,10 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10"
-msgstr ""
-
-msgid "10 (default)"
-msgstr ""
-
 msgid "10 MB/s"
 msgstr ""
 
 msgid "10 min."
-msgstr ""
-
-msgid "10 seconds"
 msgstr ""
 
 msgid "100 MB/s"
@@ -1524,9 +1513,6 @@ msgstr "speciella tecken"
 msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
-msgid "120"
-msgstr ""
-
 #
 #, fuzzy
 msgid "128"
@@ -1554,9 +1540,6 @@ msgid "13 V"
 msgstr "13 V"
 
 msgid "15 min."
-msgstr ""
-
-msgid "15 seconds"
 msgstr ""
 
 msgid "1536 Mb"
@@ -1634,13 +1617,7 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20"
-msgstr ""
-
 msgid "20 MB/s"
-msgstr ""
-
-msgid "20 seconds"
 msgstr ""
 
 msgid "2048 Mb"
@@ -1683,9 +1660,6 @@ msgstr "Timme"
 #, fuzzy
 msgid "24- Hours"
 msgstr "Timme"
-
-msgid "240"
-msgstr ""
 
 msgid "24p/24p"
 msgstr ""
@@ -1776,9 +1750,6 @@ msgid "30 min."
 msgstr ""
 
 msgid "30 minutes"
-msgstr ""
-
-msgid "30 seconds"
 msgstr ""
 
 msgid "30p/24p"
@@ -1873,16 +1844,10 @@ msgstr ""
 msgid "5"
 msgstr ""
 
-msgid "5 (default)"
-msgstr ""
-
 msgid "5 min."
 msgstr ""
 
 msgid "5 minutes"
-msgstr ""
-
-msgid "5 seconds"
 msgstr ""
 
 msgid "50 MB/s"
@@ -1918,9 +1883,6 @@ msgid "5s"
 msgstr ""
 
 msgid "6"
-msgstr ""
-
-msgid "60"
 msgstr ""
 
 msgid "60 minutes"
@@ -2720,6 +2682,16 @@ msgstr ""
 msgid "Alternative"
 msgstr "Lägg till alternativ"
 
+#
+#, fuzzy
+msgid "Alternative 1"
+msgstr "Lägg till alternativ"
+
+#
+#, fuzzy
+msgid "Alternative 2"
+msgstr "Lägg till alternativ"
+
 msgid "Alternative numbering mode"
 msgstr "Alternativt numreringsläge"
 
@@ -3046,6 +3018,11 @@ msgstr ""
 msgid "Australia"
 msgstr "Italienska"
 
+#
+#, fuzzy
+msgid "Australian"
+msgstr "Italienska"
+
 #, fuzzy
 msgid "Austria"
 msgstr "ridsport"
@@ -3183,6 +3160,10 @@ msgstr "Autostart:"
 msgid "Available format variables"
 msgstr "Tillgängliga format variabler"
 
+#, fuzzy
+msgid "Available locales are:"
+msgstr "Tillgängliga delningar:"
+
 msgid "Available shares:"
 msgstr "Tillgängliga delningar:"
 
@@ -3294,6 +3275,15 @@ msgstr "Alternativ för radering i bakgrunden"
 msgid "Background delete speed"
 msgstr "Hastighet för radering i bakgrunden"
 
+#
+#, fuzzy
+msgid "Background:"
+msgstr "Bakgrund"
+
+#, fuzzy
+msgid "Backgroundselected:"
+msgstr "Hastighet för radering i bakgrunden"
+
 msgid "Backup"
 msgstr ""
 
@@ -3364,6 +3354,12 @@ msgstr ""
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
 
+msgid "Backup, flash and restore settings and no plugins"
+msgstr ""
+
+msgid "Backup, flash and restore settings and selected plugins (ask user)"
+msgstr ""
+
 msgid "Bahamas"
 msgstr ""
 
@@ -3429,6 +3425,11 @@ msgstr "Beteende när en uppspelning slutar"
 
 msgid "Belarus"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Belgian"
+msgstr "Norska"
 
 msgid "Belgium"
 msgstr ""
@@ -3689,9 +3690,6 @@ msgstr ""
 msgid "CCcam Shares Info"
 msgstr ""
 
-msgid "CCcamInfo"
-msgstr ""
-
 msgid "CCcamInfo Mainmenu"
 msgstr ""
 
@@ -3733,10 +3731,6 @@ msgstr ""
 #
 msgid "CI assignment"
 msgstr "CI tilldelning"
-
-#, fuzzy
-msgid "CI settings"
-msgstr "EPG inställningar"
 
 msgid "CI slot: "
 msgstr ""
@@ -3854,6 +3848,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Avbryt"
 
+msgid "Cancel any text changes and exit"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel execution?"
@@ -3864,6 +3861,11 @@ msgstr "Spara inte timeshift som film"
 
 msgid "Cancelled upon user request"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Cannot create backup directory"
+msgstr "skapa bibliotek"
 
 #, fuzzy
 msgid "Cannot delete downloaded image"
@@ -4046,12 +4048,12 @@ msgid "Channel list service mode*"
 msgstr "Välj typ av kanallista*"
 
 #, fuzzy
-msgid "Channel list show MiniTV"
-msgstr "Markörbeteende i kanallista"
-
-#, fuzzy
 msgid "Channel list show MiniTV when Skin use."
 msgstr "Visa kanallista vid byte av inställning"
+
+#, fuzzy
+msgid "Channel list show MiniTV*"
+msgstr "Markörbeteende i kanallista"
 
 msgid "Channel list type"
 msgstr "Typ av kanallista"
@@ -4308,6 +4310,9 @@ msgstr "Cirkulär vänster"
 msgid "Circular right"
 msgstr "Cirkulär höger"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 msgid "Clean network trash cans"
 msgstr "Töm nätverks papperskorgar"
 
@@ -4354,6 +4359,11 @@ msgstr "Klienter"
 msgid "Clock"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Clock:"
+msgstr "låst"
+
 msgid "Clone TV screen to LCD"
 msgstr ""
 
@@ -4391,6 +4401,10 @@ msgstr ""
 #
 msgid "Coderate LP"
 msgstr ""
+
+#, fuzzy
+msgid "Collapse"
+msgstr "Förfluten"
 
 #
 msgid "Collection name"
@@ -4454,6 +4468,11 @@ msgid "Comoros"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Compensate for overscan"
+msgstr "Rensa före sökning"
+
+#
 msgid "Complete"
 msgstr "Komplett"
 
@@ -4466,11 +4485,6 @@ msgstr "Komplex (tillåter mixning av ljudspår och aspekt)"
 
 msgid "Composition of the recording filenames"
 msgstr "Sammansättning av inspelningars filnamn"
-
-#
-#, fuzzy
-msgid "Compress"
-msgstr "Komplett"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -5145,9 +5159,6 @@ msgstr "Skapar filsystem"
 msgid "Creating partition"
 msgstr "Skapar partition"
 
-msgid "Creating start scripts and starting the cam"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Croatia"
@@ -5246,6 +5257,10 @@ msgstr "Anpassningar"
 msgid "Cut"
 msgstr "Klipp"
 
+#, fuzzy
+msgid "Cutlist Editor"
+msgstr "Klipplisteditor"
+
 msgid "Cutlist editor"
 msgstr "Klipplisteditor"
 
@@ -5334,6 +5349,11 @@ msgstr "DVB-T"
 msgid "DVB-T2"
 msgstr "DVB-T2"
 
+#
+#, fuzzy
+msgid "DVD Burn"
+msgstr "Meny"
+
 msgid "DVD File Browser"
 msgstr ""
 
@@ -5351,6 +5371,11 @@ msgstr "DVD filhanterare"
 
 #
 msgid "DVD player"
+msgstr "DVD-spelare"
+
+#
+#, fuzzy
+msgid "DVDPlayer"
 msgstr "DVD-spelare"
 
 #
@@ -5555,6 +5580,11 @@ msgstr "Förvald sökväg "
 
 #
 #, fuzzy
+msgid "Default Services Scanner"
+msgstr "Förvald sökväg "
+
+#
+#, fuzzy
 msgid "Default directory sorting"
 msgstr "Standardinställningar"
 
@@ -5755,6 +5785,12 @@ msgstr "Ta bort post i spellista"
 #
 msgid "Delete saved playlist"
 msgstr "Ta bort sparad spellista"
+
+msgid "Delete the character to the left of text buffer cursor"
+msgstr ""
+
+msgid "Delete the character under the text buffer cursor"
+msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr ""
@@ -6133,7 +6169,10 @@ msgstr "Vill du bränna denna samlig till ett DVD media?"
 msgid "Do you want to continue?"
 msgstr "Vill du fortsätta?"
 
-msgid "Do you want to delete all other languages?"
+msgid ""
+"Do you want to delete all other languages?\n"
+"Except English, French, German and your selection:\n"
+"\n"
 msgstr ""
 
 msgid ""
@@ -6265,6 +6304,9 @@ msgid ""
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
 
+msgid "Done"
+msgstr ""
+
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr ""
@@ -6309,6 +6351,11 @@ msgstr "Ladda ner plugins"
 
 msgid "Downloadable plugins"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Downloaded Images"
+msgstr "Laddar ner"
 
 #
 msgid "Downloading"
@@ -6776,6 +6823,10 @@ msgstr ""
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2  'skin' väljare"
+
+#, fuzzy
+msgid "Enter"
+msgstr "centrera"
 
 msgid "Enter PIN"
 msgstr ""
@@ -7252,6 +7303,11 @@ msgstr ""
 msgid "FLASH"
 msgstr "FLASH"
 
+#
+#, fuzzy
+msgid "FP Upgrade"
+msgstr "Uppgradering"
+
 msgid "FSBL Update Check"
 msgstr ""
 
@@ -7505,9 +7561,6 @@ msgstr "Flash"
 msgid "Flash Image"
 msgstr "Blinkande"
 
-msgid "Flash Image USB Recovery"
-msgstr ""
-
 msgid "Flash On the Fly"
 msgstr ""
 
@@ -7515,18 +7568,6 @@ msgid "Flash Online"
 msgstr ""
 
 msgid "Flash Online a new image"
-msgstr ""
-
-msgid "Flash and restore settings and all saved plugins"
-msgstr ""
-
-msgid "Flash and restore settings and no plugins"
-msgstr ""
-
-msgid "Flash and restore settings and selected plugins (ask user)"
-msgstr ""
-
-msgid "Flash and start installation wizard"
 msgstr ""
 
 msgid "Flash on the fly your your Receiver software."
@@ -7697,9 +7738,6 @@ msgstr "Frontprocessor version: %d"
 msgid "Frontprocessor version: %s"
 msgstr ""
 
-msgid "Frozen Cam Check"
-msgstr ""
-
 msgid "Full Image Backup "
 msgstr ""
 
@@ -7715,6 +7753,10 @@ msgstr "Full transparens"
 
 msgid "FullHD Test"
 msgstr ""
+
+#, fuzzy
+msgid "Fullbackup Images"
+msgstr "Blinkande"
 
 msgid "Fullscreen"
 msgstr ""
@@ -7959,6 +8001,9 @@ msgstr "Grekiska"
 msgid "Greek"
 msgstr "Grekiska"
 
+msgid "Greek (Modern)"
+msgstr ""
+
 #
 msgid "Green"
 msgstr "Grön"
@@ -8077,6 +8122,9 @@ msgstr ""
 #, fuzzy
 msgid "HDR10 Support"
 msgstr "DLNA support"
+
+msgid "HELP"
+msgstr ""
 
 msgid "HH:mm"
 msgstr ""
@@ -8332,10 +8380,16 @@ msgstr ""
 msgid "IMDb Search"
 msgstr "IMDb Sökning"
 
+msgid "INFO"
+msgstr ""
+
 msgid "INFO button mode"
 msgstr ""
 
 msgid "INFO-Panel..."
+msgstr ""
+
+msgid "INS"
 msgstr ""
 
 #
@@ -8712,9 +8766,6 @@ msgstr ""
 msgid "Init SDcard"
 msgstr ""
 
-msgid "Init.d"
-msgstr ""
-
 msgid "Initial fast forward speed"
 msgstr "Initial snabbspolningshastighet  framåt"
 
@@ -8754,6 +8805,11 @@ msgstr "Inotify övervakning"
 
 #
 msgid "Input"
+msgstr "Ingång"
+
+#
+#, fuzzy
+msgid "Input "
 msgstr "Ingång"
 
 msgid "Input Stream ID"
@@ -8854,8 +8910,24 @@ msgstr "Installera plugins"
 msgid "Installing Service"
 msgstr "Installerar Tjänst"
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing Software..."
+msgstr "Installerar Tjänst"
+
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "Installera plugins"
+
+msgid "Installing feeds from feed ..."
 msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Installera plugins"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
+msgstr "Installera plugins"
 
 msgid "Installing software..."
 msgstr ""
@@ -8902,6 +8974,11 @@ msgstr "Normal"
 #
 msgid "Internal"
 msgstr "Intern "
+
+#
+#, fuzzy
+msgid "Internal Flash"
+msgstr "Internt flashminne"
 
 msgid "Internal USB"
 msgstr ""
@@ -8952,6 +9029,9 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Iran (Islamic Republic of)"
+msgstr ""
+
+msgid "Iran, Islamic Republic"
 msgstr ""
 
 msgid "Iraq"
@@ -9108,6 +9188,10 @@ msgstr "Kernel: %s"
 #
 msgid "Keyboard"
 msgstr "Tangentbord"
+
+#, fuzzy
+msgid "Keyboard data entry"
+msgstr "Tangentbordskonfiguration"
 
 #
 msgid "Keyboard map"
@@ -9466,12 +9550,13 @@ msgstr "Lokal box"
 msgid "Local network"
 msgstr "Lokalt nätverk"
 
+#, fuzzy
+msgid "Locale"
+msgstr "Lokal box"
+
 #
 msgid "Location"
 msgstr "Sökväg"
-
-msgid "Location # (http://weather.yahoo.com/):"
-msgstr ""
 
 #
 #, fuzzy
@@ -9540,6 +9625,9 @@ msgid "Lower Framerate save CPU Time"
 msgstr ""
 
 msgid "Lower USB"
+msgstr ""
+
+msgid "Lower case"
 msgstr ""
 
 msgid "Lower limit in kilobits per seconds [kbit/s]"
@@ -10073,6 +10161,30 @@ msgstr "[flyttläge]"
 msgid "Move mode on"
 msgstr "Förflyttning"
 
+msgid "Move the text buffer cursor left"
+msgstr ""
+
+msgid "Move the text buffer cursor right"
+msgstr ""
+
+msgid "Move the text buffer cursor to the first character"
+msgstr ""
+
+msgid "Move the text buffer cursor to the last character"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor down"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor left"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor right"
+msgstr ""
+
+msgid "Move the virtual keyboard cursor up"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr "Flytta till början av listan"
 
@@ -10162,11 +10274,6 @@ msgstr "Multi EPG"
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "Image Hanterare"
-
-#
-#, fuzzy
-msgid "MultiBootSelector"
-msgstr "Textningsval"
 
 #
 msgid "MultiEPG settings"
@@ -10326,6 +10433,10 @@ msgstr "Relativ"
 msgid "Nauru"
 msgstr ""
 
+#, fuzzy
+msgid "NcamInfo"
+msgstr "OScam Info"
+
 msgid "Nepal"
 msgstr ""
 
@@ -10465,6 +10576,11 @@ msgstr ""
 msgid "New folder"
 msgstr "Välj mappar"
 
+#
+#, fuzzy
+msgid "New password"
+msgstr "Lösenord"
+
 msgid "New profile: "
 msgstr "Ny profil:"
 
@@ -10516,20 +10632,11 @@ msgstr "Nej"
 msgid "No (supported) DVDROM found!"
 msgstr "Ingen DVDROM (som stöds) hittad!"
 
-msgid ""
-"No Cam started !!\n"
-"\n"
-"Cam 1 must be different from Cam 2"
-msgstr ""
-
 #
 msgid "No Connection"
 msgstr "Ingen anslutning"
 
 msgid "No Devices Found !!"
-msgstr ""
-
-msgid "No ECM info"
 msgstr ""
 
 msgid "No HDD found or HDD not initialized!"
@@ -10639,9 +10746,6 @@ msgstr "Ingen nätverksanslutning tillgänglig."
 #
 msgid "No networks found"
 msgstr "Inget nätverk hittat"
-
-msgid "No new ECM info"
-msgstr ""
 
 msgid "No of items switch (increase or reduced)"
 msgstr ""
@@ -10759,7 +10863,7 @@ msgstr "Nej, gör inget."
 
 #
 #, fuzzy
-msgid "No, do not flash image"
+msgid "No, do not flash an image"
 msgstr "Nej, gör inget."
 
 #
@@ -10914,6 +11018,9 @@ msgstr "Antal rader"
 msgid "Number of rows to display"
 msgstr "Antal rader att visa"
 
+msgid "Number or SMS style data entry"
+msgstr ""
+
 msgid "OCTAGON SF5008"
 msgstr ""
 
@@ -10979,6 +11086,10 @@ msgstr "OSD 3D Inställning"
 msgid "OSD name request"
 msgstr "OSD namnförfrågan"
 
+#, fuzzy
+msgid "OSD position setup"
+msgstr "Inställning av Position"
+
 msgid "OSD settings"
 msgstr "OSD inställningar"
 
@@ -10988,6 +11099,9 @@ msgstr "OScam Info"
 #, fuzzy
 msgid "OScamInfo"
 msgstr "OScam Info"
+
+msgid "OVR"
+msgstr ""
 
 #
 msgid "Off"
@@ -11136,6 +11250,17 @@ msgstr "OpenVpn Logg"
 msgid "OpenVpn Setup"
 msgstr "OpenVPN-Konfiguration"
 
+#, fuzzy
+msgid "Operating LED status in deep standby mode"
+msgstr "LED ljustyrka när mottagaren är avstängd."
+
+#, fuzzy
+msgid "Operating LED status in standby mode"
+msgstr "LED ljustyrka under viloläge"
+
+msgid "Operating LED status while running"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Option"
@@ -11168,9 +11293,6 @@ msgstr "Oscam Info - Huvudmeny"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr ""
-
-msgid "OscamInfo"
 msgstr ""
 
 msgid "OscamInfo Mainmenu"
@@ -11421,6 +11543,15 @@ msgstr "Lösenord"
 msgid "Password (httpwd)"
 msgstr "Lösenord (httpwd)"
 
+#
+#, fuzzy
+msgid "Password Setup"
+msgstr "Lösenord"
+
+#, fuzzy
+msgid "Password changed"
+msgstr "Lösenord (httpwd)"
+
 msgid "Password:"
 msgstr "Lösenord:"
 
@@ -11561,6 +11692,11 @@ msgstr "Spela upp"
 
 #
 msgid "Play DVD"
+msgstr "Spela DVD"
+
+#
+#, fuzzy
+msgid "Play DVDs"
 msgstr "Spela DVD"
 
 msgid "Play audio in background"
@@ -12130,6 +12266,11 @@ msgid "Positioner Setup"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Positioner Setup Log"
+msgstr "Motorinställning"
+
+#
 msgid "Positioner setup"
 msgstr "Motorinställning"
 
@@ -12261,6 +12402,10 @@ msgid "Press Init to format SDcard."
 msgstr ""
 
 msgid "Press MENU on your remote control for additional options."
+msgstr "Tryck MENU på din fjärrkontroll för ytterligare valmöjligheter."
+
+#, fuzzy
+msgid "Press MENU to install additional language(s)."
 msgstr "Tryck MENU på din fjärrkontroll för ytterligare valmöjligheter."
 
 #
@@ -12435,6 +12580,9 @@ msgstr ""
 msgid "Programmlisten from DXAndy"
 msgstr ""
 
+msgid "Programmlisten-Updater V"
+msgstr ""
+
 msgid "Programmlisten-Updater from DXAndy"
 msgstr ""
 
@@ -12533,9 +12681,6 @@ msgstr "Sätt TV:n i viloläge"
 #, fuzzy
 msgid "Put your AV Receiver in standby"
 msgstr "Sätt din %s %s i viloläge"
-
-msgid "Python Camstarter (default)"
-msgstr ""
 
 #
 msgid "Python frontend for /tmp/mmi.socket"
@@ -12638,6 +12783,11 @@ msgstr ""
 msgid "Random"
 msgstr "Slumpmässig"
 
+#
+#, fuzzy
+msgid "Random password"
+msgstr "Vänligen ange nytt namn"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Gradering definierad av kanalbolag - %d"
@@ -12647,11 +12797,6 @@ msgstr "Gradering odefinierad"
 
 msgid "Re-enter new PIN"
 msgstr ""
-
-#
-#, fuzzy
-msgid "ReStart"
-msgstr "Omstart"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Läs användardata från oscam.conf"
@@ -12874,14 +13019,7 @@ msgstr ""
 "Var vänlig vänta till din %s %s startar om\n"
 "Detta kan ta några minuter"
 
-msgid "Refresh"
-msgstr ""
-
 msgid "Refresh every (in hours)"
-msgstr "Uppdatera varje (i timmar)"
-
-#, fuzzy
-msgid "Refresh interval in minutes:"
 msgstr "Uppdatera varje (i timmar)"
 
 msgid "Refresh rate"
@@ -13572,6 +13710,11 @@ msgstr ""
 msgid "Save"
 msgstr "Spara"
 
+#
+#, fuzzy
+msgid "Save / Enter text and exit"
+msgstr "spara sista biblioteket vid avslut"
+
 msgid "Save EPG"
 msgstr "Spara EPG"
 
@@ -13871,12 +14014,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Välj CAId"
 
-msgid "Select Cam 1"
-msgstr ""
-
-msgid "Select Cam 2"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Select Card Server"
@@ -13927,6 +14064,11 @@ msgstr ""
 msgid "Select Yellow Key Action long"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Select Your Skin"
+msgstr "Välj CAId"
+
 msgid "Select a bouquet"
 msgstr ""
 
@@ -13965,10 +14107,6 @@ msgstr ""
 
 msgid "Select additional files to backup"
 msgstr ""
-
-#
-msgid "Select all"
-msgstr "Välj allt"
 
 msgid "Select an image to be downloaded"
 msgstr "Välj en 'Image' för nedladdning"
@@ -14102,6 +14240,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the character or action under the virtual keyboard cursor"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
@@ -14155,6 +14296,15 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the virtual keyboard locale from a menu"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set"
+msgstr ""
+
+msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 #
@@ -14415,9 +14565,6 @@ msgstr "Kanalreferens"
 #
 msgid "Service scan"
 msgstr "Kanalsökning"
-
-msgid "Service searching"
-msgstr "Kanalsökningar"
 
 msgid ""
 "Service unavailable!\n"
@@ -14845,6 +14992,9 @@ msgstr "Skärpa"
 msgid "Shellscript"
 msgstr ""
 
+msgid "Shift"
+msgstr ""
+
 msgid "Short filenames"
 msgstr "Korta filnamn"
 
@@ -14920,9 +15070,6 @@ msgid "Show Box Portal..."
 msgstr ""
 
 msgid "Show CCcam in extensions ?"
-msgstr ""
-
-msgid "Show CCcamInfo in Extensions Menu"
 msgstr ""
 
 msgid "Show CI messages"
@@ -15030,9 +15177,6 @@ msgstr "Visa OE Logg"
 msgid "Show OScam in extensions ?"
 msgstr ""
 
-msgid "Show OscamInfo in Extensions Menu"
-msgstr ""
-
 msgid "Show PIP"
 msgstr "Visa BiB"
 
@@ -15069,9 +15213,6 @@ msgid "Show Script completed message"
 msgstr ""
 
 msgid "Show Single EPG"
-msgstr ""
-
-msgid "Show Softcam-Panel in Extensions Menu"
 msgstr ""
 
 msgid "Show Task's completed message"
@@ -15440,7 +15581,7 @@ msgid "Show the Sleep Timer..."
 msgstr ""
 
 #, fuzzy
-msgid "Show the infomation on current event."
+msgid "Show the information on current event."
 msgstr "Sök i IMDB efter information om aktuell film."
 
 msgid "Show the list of AutoTimers."
@@ -15683,6 +15824,11 @@ msgid "Skins"
 msgstr "Utseenden ('Skins')"
 
 #
+#, fuzzy
+msgid "Skinselector"
+msgstr "Filmval"
+
+#
 msgid "Skip back"
 msgstr "Hoppa bakåt"
 
@@ -15799,12 +15945,6 @@ msgstr "låst"
 msgid "Softcam"
 msgstr ""
 
-msgid "Softcam Panel"
-msgstr ""
-
-msgid "Softcam Panel V2.0"
-msgstr ""
-
 msgid "Softcam Setup"
 msgstr ""
 
@@ -15818,18 +15958,12 @@ msgstr "Softcaminställningar"
 msgid "Softcam-Panel"
 msgstr ""
 
-msgid "Softcam-Panel Setup"
-msgstr ""
-
 msgid "Softcam-Panel..."
 msgstr ""
 
 #, fuzzy
 msgid "Softcam-Setup"
 msgstr "Softcaminställningar"
-
-msgid "SoftcamPanel"
-msgstr ""
 
 #, fuzzy
 msgid "SoftcamSetup"
@@ -16032,6 +16166,14 @@ msgstr ""
 msgid "Spanish"
 msgstr "Spanska"
 
+#, fuzzy
+msgid "Special 1"
+msgstr "Serienr."
+
+#, fuzzy
+msgid "Special 2"
+msgstr "Serienr."
+
 msgid "Special Features"
 msgstr ""
 
@@ -16083,12 +16225,6 @@ msgstr "Start"
 msgid "Start Kodi"
 msgstr "Starttid"
 
-msgid "Start Mode"
-msgstr ""
-
-msgid "Start attempts"
-msgstr ""
-
 #
 msgid "Start from the beginning"
 msgstr "Spela upp från början"
@@ -16137,12 +16273,6 @@ msgstr ""
 msgid "StartWizard"
 msgstr ""
 
-msgid "Starting Cam 1: "
-msgstr ""
-
-msgid "Starting Cam 2: "
-msgstr ""
-
 msgid "Starting Softcam"
 msgstr ""
 
@@ -16152,6 +16282,15 @@ msgstr "Startar den"
 
 msgid "Status"
 msgstr "Status"
+
+msgid "Status of the display during operation"
+msgstr ""
+
+msgid "Status of the display in deep standby"
+msgstr ""
+
+msgid "Status of the display in standby mode"
+msgstr ""
 
 msgid "Status:"
 msgstr ""
@@ -16184,9 +16323,6 @@ msgstr "Avsluta  BiB"
 #, fuzzy
 msgid "Stop Streams"
 msgstr "Stoppa test"
-
-msgid "Stop check when cam is running"
-msgstr ""
 
 #
 msgid "Stop current event and disable coming events"
@@ -16584,6 +16720,11 @@ msgstr "System"
 msgid "System Info"
 msgstr ""
 
+#
+#, fuzzy
+msgid "System Message Check"
+msgstr "Filsystemskontroll"
+
 msgid "System Setup"
 msgstr ""
 
@@ -16725,9 +16866,6 @@ msgstr "Telnet Port"
 
 msgid "Telnet Setup"
 msgstr "Telnetkonfiguration"
-
-msgid "Temperature unit:"
-msgstr ""
 
 #
 msgid "Terrestrial"
@@ -16996,6 +17134,9 @@ msgid ""
 msgstr ""
 "Utökningen Nätverksguiden är inte installerad!\n"
 "Vänligen installera den."
+
+msgid "The password can not be blank."
+msgstr ""
 
 #
 #, python-format
@@ -17596,9 +17737,6 @@ msgstr "Uppdateringsintervall i Minuter:"
 msgid "Time between slides in image viewer slideshow."
 msgstr ""
 
-msgid "Time between start attempts (sec.)"
-msgstr ""
-
 msgid "Time delay for the repeated transmission"
 msgstr ""
 
@@ -17875,6 +18013,9 @@ msgstr "Växla bildförhållande..."
 msgid "Toggle between bouquet/epg lists"
 msgstr "Växla mellan kanallista/epglista"
 
+msgid "Toggle new text inserts before or overwrites existing text"
+msgstr ""
+
 msgid "Togo"
 msgstr ""
 
@@ -18123,6 +18264,9 @@ msgstr "Mottagarstatus"
 msgid "Tuner type %s"
 msgstr "Mottagartyp"
 
+msgid "Tuners & scanning"
+msgstr "Kanalsökningar"
+
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -18196,6 +18340,10 @@ msgstr "Typ:"
 msgid "Type: "
 msgstr "Typ:"
 
+#, fuzzy
+msgid "UI 3D setup"
+msgstr "3D inställningar"
+
 msgid "UP80  (keymap.u80)"
 msgstr ""
 
@@ -18234,6 +18382,11 @@ msgstr "Ukrainsk"
 
 msgid "Ukrainian"
 msgstr "Ukrainsk"
+
+#
+#, fuzzy
+msgid "Unable to change password"
+msgstr "Vänligen ange nytt namn"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -18291,6 +18444,9 @@ msgid "United Arab Emirates"
 msgstr ""
 
 msgid "United Kingdom"
+msgstr ""
+
+msgid "United States"
 msgstr ""
 
 msgid "United States Minor Outlying Islands"
@@ -18415,6 +18571,10 @@ msgid "Updates Available:"
 msgstr ""
 
 #, fuzzy
+msgid "Updating cache"
+msgstr "vänligen vänta..."
+
+#, fuzzy
 msgid "Updating cache, please wait..."
 msgstr "vänligen vänta..."
 
@@ -18424,6 +18584,9 @@ msgstr ""
 #
 msgid "Updating software catalog"
 msgstr "Uppdaterar mjukvarukatalogen"
+
+msgid "Upgrade (Backup, Flash & Restore All)"
+msgstr ""
 
 msgid "Upgrade and reboot system"
 msgstr "Uppgradera och starta om systemet"
@@ -18459,6 +18622,9 @@ msgid "Uphops: "
 msgstr ""
 
 msgid "Upper USB"
+msgstr ""
+
+msgid "Upper case"
 msgstr ""
 
 msgid "Uptime"
@@ -18689,6 +18855,9 @@ msgstr "Använda dessa inställningar?"
 msgid "User interface visibility"
 msgstr "Användargränssnittets synlighet"
 
+msgid "Userlogo:"
+msgstr ""
+
 #
 msgid "Username"
 msgstr "Användarnamn"
@@ -18748,6 +18917,10 @@ msgstr "VU+"
 #, fuzzy
 msgid "Vanuatu"
 msgstr "Manuell"
+
+#, fuzzy
+msgid "Various"
+msgstr "Föregående"
 
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr ""
@@ -19030,7 +19203,10 @@ msgstr ""
 msgid "Virgin Islands (U.S.)"
 msgstr ""
 
-msgid "Virtual KeyBoard"
+msgid "Virtual KeyBoard Functions"
+msgstr ""
+
+msgid "Virtual KeyBoard Text:"
 msgstr ""
 
 msgid "Virtual keyboard"
@@ -19120,9 +19296,6 @@ msgstr ""
 msgid "Wait please while scanning..."
 msgstr ""
 
-msgid "Wait time before start Cam 2"
-msgstr ""
-
 #
 msgid "Waiting"
 msgstr "Väntar"
@@ -19132,9 +19305,6 @@ msgstr "Väntar på montering"
 
 msgid "Waiting for partition"
 msgstr "Väntar på partitionering"
-
-msgid "Waiting..."
-msgstr ""
 
 msgid "Wake Up"
 msgstr "Starta Upp"
@@ -19529,6 +19699,18 @@ msgstr ""
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Med detta alternativ kan du dölja arbetsuppgifter i vyn utökningar (kort tryck på blå knapp)."
 
+msgid "With this option you can switch off the display during operation."
+msgstr ""
+
+msgid "With this option you can switch off the display in Deep Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch off the display in Standby Mode."
+msgstr ""
+
+msgid "With this option you can switch the LED color or deactivate the LED."
+msgstr ""
+
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
@@ -19679,16 +19861,6 @@ msgstr "Ja, återgå till filmlistan"
 msgid "Yes, shut down now."
 msgstr "Ja, utför avstängning nu."
 
-#
-#, fuzzy
-msgid "Yes, with backup"
-msgstr "Återställ backuper"
-
-#
-#, fuzzy
-msgid "Yes, without backup"
-msgstr "Återställ backuper"
-
 msgid "Yesterday"
 msgstr "Igår"
 
@@ -19811,6 +19983,9 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Du måste vänta %s!"
+
+msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""
@@ -20204,12 +20379,6 @@ msgstr "aktivera nätverkskorts konfiguration"
 msgid "activatePiP"
 msgstr "Aktivera BiB"
 
-msgid "active CAM 1: "
-msgstr ""
-
-msgid "active CAM 2: "
-msgstr ""
-
 msgid "add Current"
 msgstr ""
 
@@ -20596,9 +20765,6 @@ msgstr "avkoda inte, spela in ecm"
 #
 msgid "done!"
 msgstr "klar!"
-
-msgid "dont wait"
-msgstr ""
 
 msgid "drivers"
 msgstr ""
@@ -21009,6 +21175,15 @@ msgstr "infoga markör här"
 msgid "install/unpack ipk Files"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "internal flash:  %s %s "
+msgstr "Internt flashminne"
+
+#, python-format
+msgid "internal flash: %s %s as USB Recovery"
+msgstr ""
+
 msgid "internally loopthrough to"
 msgstr ""
 
@@ -21240,18 +21415,9 @@ msgstr "nej"
 msgid "no CAId selected"
 msgstr "ingen CAId vald"
 
-msgid "no CAM 1 active"
-msgstr ""
-
-msgid "no CAM 2 active"
-msgstr ""
-
 #
 msgid "no CI slots found"
 msgstr "ingen CI slot hittad"
-
-msgid "no cam"
-msgstr ""
 
 msgid "no channel list"
 msgstr ""
@@ -21798,15 +21964,27 @@ msgid "skip forward (enter time)"
 msgstr "hoppa framåt (ange tid)"
 
 #, python-format
+msgid "slot%s - %s"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s "
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image) with, backup"
+msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s (current image), without backup"
+msgid "slot%s - %s - %s "
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s - %s as USB Recovery"
 msgstr ""
 
 #, python-format
@@ -21826,23 +22004,7 @@ msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s, with backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s, without backup"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s - %s USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s -%s- %s "
+msgid "slot%s - %s- %s "
 msgstr ""
 
 msgid "slow"
@@ -22111,6 +22273,9 @@ msgstr "vertikal"
 msgid "view extensions..."
 msgstr "visa utökningar..."
 
+msgid "violet"
+msgstr ""
+
 msgid "vix"
 msgstr ""
 
@@ -22264,9 +22429,6 @@ msgstr "zappad"
 #~ msgid "(ZAP)"
 #~ msgstr "(ZAP)"
 
-#~ msgid "3D setup"
-#~ msgstr "3D inställningar"
-
 #
 #~ msgid ""
 #~ "A finished power timer wants to shut down\n"
@@ -22377,6 +22539,10 @@ msgstr "zappad"
 #~ msgid "CCcam info"
 #~ msgstr "CCcam info"
 
+#, fuzzy
+#~ msgid "CI settings"
+#~ msgstr "EPG inställningar"
+
 #~ msgid "CPU Speed:\t%s\n"
 #~ msgstr "CPU Speed:\t%s\n"
 
@@ -22412,6 +22578,11 @@ msgstr "zappad"
 
 #~ msgid "Common interface"
 #~ msgstr "Common Interface"
+
+#
+#, fuzzy
+#~ msgid "Compress"
+#~ msgstr "Komplett"
 
 #~ msgid "Configure duration of inactivity before the hard disk drive goes to standby"
 #~ msgstr "Konfigurera tid för inaktivitet innan hårddisk försätts i standby"
@@ -22619,10 +22790,6 @@ msgstr "zappad"
 #~ msgid "Just scale"
 #~ msgstr "Endast skalning"
 
-#
-#~ msgid "Last update: %s"
-#~ msgstr "Senast Uppdaterad:%s"
-
 #~ msgid "Logs manager"
 #~ msgstr "Logghanterare"
 
@@ -22645,6 +22812,11 @@ msgstr "zappad"
 #
 #~ msgid "Move Picture in Picture"
 #~ msgstr "Flytta Bild i Bild"
+
+#
+#, fuzzy
+#~ msgid "MultiBootSelector"
+#~ msgstr "Textningsval"
 
 #~ msgid "NFS setup"
 #~ msgstr "NFS-konfiguration"
@@ -22740,9 +22912,6 @@ msgstr "zappad"
 #~ msgid "Position of finished Timers in the Timer list"
 #~ msgstr "Placering av avslutade timerinspelningar i Timerlistan"
 
-#~ msgid "Position setup"
-#~ msgstr "Inställning av Position"
-
 #
 #~ msgid "Protect setup"
 #~ msgstr "Skydda inställningar"
@@ -22757,8 +22926,17 @@ msgstr "zappad"
 #~ msgid "Quit Movie Player with EXIT button"
 #~ msgstr "Avsluta filmspelaren med EXIT knappen"
 
+#
+#, fuzzy
+#~ msgid "ReStart"
+#~ msgstr "Omstart"
+
 #~ msgid "Reenter new PIN"
 #~ msgstr "Ange den nya PIN-koden igen"
+
+#, fuzzy
+#~ msgid "Refresh interval in minutes:"
+#~ msgstr "Uppdatera varje (i timmar)"
 
 #
 #~ msgid "Reload black-/white lists"
@@ -22780,6 +22958,10 @@ msgstr "zappad"
 #, fuzzy
 #~ msgid "Scrolling Speed (software render)"
 #~ msgstr "Skrollhastighet"
+
+#
+#~ msgid "Select all"
+#~ msgstr "Välj allt"
 
 #
 #~ msgid "Select backup files"
@@ -23076,6 +23258,16 @@ msgstr "zappad"
 #~ msgid "Write error while recording. Disk full?\n"
 #~ msgstr "Skrivfel under inspelning. Disken full?\n"
 
+#
+#, fuzzy
+#~ msgid "Yes, with backup"
+#~ msgstr "Återställ backuper"
+
+#
+#, fuzzy
+#~ msgid "Yes, without backup"
+#~ msgstr "Återställ backuper"
+
 #~ msgid "You can disable Telnet Server and use ssh to login."
 #~ msgstr "Du kan inaktivera Telnet Server och använda ssh för att logga in."
 
@@ -23108,9 +23300,6 @@ msgstr "zappad"
 
 #~ msgid "Your receiver is not connected to the internet"
 #~ msgstr "Din mottagare är inte ansluten till internet"
-
-#~ msgid "bc%s"
-#~ msgstr "bc%s"
 
 #
 #~ msgid "complex"
