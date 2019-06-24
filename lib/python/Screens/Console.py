@@ -13,7 +13,7 @@ class Console(Screen):
 	# Strings are executed by sh -c strng
 	# lists/tuples are executed by execvp(lst[0], lst)
 
-	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None, closeOnSuccess = False):
+	def __init__(self, session, title = _("Console"), cmdlist = None, finishedCallback = None, closeOnSuccess = False):
 		Screen.__init__(self, session)
 
 		self.finishedCallback = finishedCallback
