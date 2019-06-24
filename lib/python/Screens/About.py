@@ -99,9 +99,9 @@ def getAboutText():
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			cpuMHz = "   (%s MHz)" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			cpuMHz = _("   (%s MHz)") % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
 		except:
-			cpuMHz = "   (1,7 GHz)"
+			cpuMHz = _("   (1,7 GHz)")
 	else:
 		if path.exists('/proc/cpuinfo'):
 			f = open('/proc/cpuinfo', 'r')
@@ -128,7 +128,7 @@ def getAboutText():
 		f.close()
 	if SystemInfo["HasRootSubdir"]:
 		image = find_rootfssubdir("STARTUP")
-		AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image[-1:] + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image[-1:] + bootname + "\n"
 	elif getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2',"viper4k"):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
@@ -149,7 +149,7 @@ def getAboutText():
 					image = "5"
 			f.close()
 			if bootname: bootname = "   (%s)" %bootname 
-			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+			AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
 	elif getMachineBuild() in ('osmio4k','osmio4kplus'):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
@@ -157,21 +157,21 @@ def getAboutText():
 			image = f.read(1) 
 			f.close()
 			if bootname: bootname = "   (%s)" %bootname 
-			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+			AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
 	elif path.exists('/boot/STARTUP'):
 		f = open('/boot/STARTUP', 'r')
 		f.seek(22)
 		image = f.read(1) 
 		f.close()
 		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
 	elif path.exists('/boot/cmdline.txt'):
 		f = open('/boot/cmdline.txt', 'r')
 		f.seek(38)
 		image = f.read(1) 
 		f.close()
 		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
 
 	AboutText += _("Version:\t\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t\t%s") % getImageBuild() + "\n"
@@ -215,7 +215,7 @@ def getAboutText():
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("System temperature:\t\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -246,7 +246,7 @@ def getAboutText():
 			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("Processor temperature:\t\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 	AboutLcdText = AboutText.replace('\t', ' ')
 
 	return AboutText, AboutLcdText
@@ -616,10 +616,10 @@ class SystemMemoryInfo(Screen):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()
-				self.AboutText += '{:<35}'.format(_("Total Memory:")) + "\t" + MemTotal[1] + "\n"
+				self.AboutText += '{:<35}'.format(_("Total Memory:")) + "\t\t" + MemTotal[1] + "\n"
 			if "MemFree:" in tstLine:
 				MemFree = out_lines[lidx].split()
-				self.AboutText += '{:<35}'.format(_("Free Memory:")) + "\t" + MemFree[1] + "\n"
+				self.AboutText += '{:<35}'.format(_("Free Memory:")) + "\t\t" + MemFree[1] + "\n"
 			if "Buffers:" in tstLine:
 				Buffers = out_lines[lidx].split()
 				self.AboutText += '{:<35}'.format(_("Buffers:")) + "\t" + Buffers[1] + "\n"
@@ -631,7 +631,7 @@ class SystemMemoryInfo(Screen):
 				self.AboutText += '{:<35}'.format(_("Total Swap:")) + "\t" + SwapTotal[1] + "\n"
 			if "SwapFree:" in tstLine:
 				SwapFree = out_lines[lidx].split()
-				self.AboutText += '{:<35}'.format(_("Free Swap:")) + "\t" + SwapFree[1] + "\n\n"
+				self.AboutText += '{:<35}'.format(_("Free Swap:")) + "\t\t" + SwapFree[1] + "\n\n"
 
 		self["actions"].setEnabled(False)
 		self.Console = Console()
@@ -657,8 +657,8 @@ class SystemMemoryInfo(Screen):
 		RamFree = self.MySize(flash[3])
 
 		self.AboutText += _("FLASH") + '\n\n'
-		self.AboutText += _("Total:") + "\t" + RamTotal + "\n"
-		self.AboutText += _("Free:") + "\t" + RamFree + "\n\n"
+		self.AboutText += _("Total:") + "\t\t" + RamTotal + "\n"
+		self.AboutText += _("Free:") + "\t\t" + RamFree + "\n\n"
 
 		self["AboutScrollLabel"].setText(self.AboutText)
 		self["actions"].setEnabled(True)
@@ -792,8 +792,8 @@ class SystemNetworkInfo(Screen):
 			self.iface = 'wlan1'
 
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
-		self.AboutText += "\n" + '{:<35}'.format(_("Bytes received:")) + "\t" + rx_bytes + "\n"
-		self.AboutText += '{:<35}'.format(_("Bytes sent:")) + "\t" + tx_bytes + "\n"
+		self.AboutText += "\n" + '{:<35}'.format(_("Bytes received:")) + "\t\t" + rx_bytes + "\n"
+		self.AboutText += '{:<35}'.format(_("Bytes sent:")) + "\t\t" + tx_bytes + "\n"
 
 		hostname = file('/proc/sys/kernel/hostname').read()
 		self.AboutText += "\n" + '{:<35}'.format(_("Hostname:")) + "\t" + hostname + "\n"
