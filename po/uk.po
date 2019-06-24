@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-22 11:29+0000\n"
-"PO-Revision-Date: 2019-06-22 20:39+0200\n"
+"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"PO-Revision-Date: 2019-06-24 14:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -225,6 +225,13 @@ msgstr "     відсутність дозволу на створення ре�
 
 msgid "     wrong back-up destination "
 msgstr "     неправильне місце призначення"
+
+#, python-format
+msgid "   (%s MHz)"
+msgstr ""
+
+msgid "   (1,7 GHz)"
+msgstr ""
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Кнопка Меню : Вибір 4 канальної доріжки"
@@ -965,9 +972,8 @@ msgstr "%d %B %Y"
 msgid "%d %b"
 msgstr "%d %b"
 
-#, fuzzy
 msgid "%d %b %Y"
-msgstr "%d %b %Y"
+msgstr "%d %b  %Y"
 
 #, python-format
 msgid "%d GB"
@@ -1195,13 +1201,13 @@ msgstr "%s %s ПЗ, оновлення доступні."
 msgid "%s ( %s Cards )"
 msgstr "%s (%s Картки)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s (%04o)"
-msgstr "%s (%04o)"
+msgstr " %s (%04o)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s (%s)"
-msgstr "%s (%s)"
+msgstr " %s (%s)"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -1263,9 +1269,9 @@ msgstr "%s%d хв"
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s: %s"
-msgstr "%s: %s"
+msgstr "%s: %s "
 
 #, python-format
 msgid "%sB"
@@ -4594,6 +4600,9 @@ msgstr "Під'єднано до"
 msgid "Connected: "
 msgstr "Під'єднано: "
 
+msgid "Console"
+msgstr "Консоль"
+
 msgid "Constellation"
 msgstr "Сукупність"
 
@@ -4812,7 +4821,7 @@ msgid "Creating partition"
 msgstr "Створення розділу"
 
 msgid "Croatia"
-msgstr ""
+msgstr "Хорватія"
 
 msgid "Croatian"
 msgstr "Хорватська"
@@ -6055,9 +6064,8 @@ msgstr "Режим редагування вкл"
 msgid "Edit new entry"
 msgstr "Редагувати новий запис"
 
-#, fuzzy
 msgid "Edit position is the line end"
-msgstr "Змінити позицію у кінець рядка"
+msgstr "Позиція курсору у кінці рядка"
 
 msgid "Edit settings"
 msgstr "Редагування налаштувань"
@@ -8864,9 +8872,8 @@ msgstr "БІЛЬШЕ"
 msgid "MOUSE"
 msgstr "МИША"
 
-#, fuzzy
 msgid "MOUSE long"
-msgstr "МИША довге натискання"
+msgstr ""
 
 msgid "Macao"
 msgstr "Макао"
@@ -9288,9 +9295,8 @@ msgstr "Перемістити файл/каталог до цільового �
 msgid "Move files/directories to target directory"
 msgstr "Перемістити файли/каталоги до цільового каталогу"
 
-#, fuzzy
 msgid "Move folder"
-msgstr "Перемістити папку"
+msgstr "Переміщення папки"
 
 msgid "Move mode off"
 msgstr "Режим переміщення викл"
@@ -9463,7 +9469,7 @@ msgid "N/A"
 msgstr "Не визначено"
 
 msgid "NEXT"
-msgstr "Наступна"
+msgstr "НАСТУПНА"
 
 msgid "NFI image flashing"
 msgstr "Програмування NFI іміджа"
@@ -9481,7 +9487,7 @@ msgid "NIM"
 msgstr "Тюнер"
 
 msgid "NOW"
-msgstr "Тепер"
+msgstr "ЗАРАЗ"
 
 msgid "NTP"
 msgstr "NTP"
@@ -9680,9 +9686,8 @@ msgstr "Наступний 4-ч какнальний ПіП"
 msgid "Nextsong"
 msgstr "Наступна пісня "
 
-#, fuzzy
 msgid "Nextsong long"
-msgstr "Наступна пісня довге натискання"
+msgstr ""
 
 msgid "Nicaragua"
 msgstr "Нікарагуа"
@@ -12320,6 +12325,9 @@ msgstr "SPDIF"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "STARTUP_"
+msgstr ""
 
 msgid "STB Display"
 msgstr "Налаштування Дисплею"
@@ -18851,7 +18859,7 @@ msgid "ecm time:"
 msgstr "час ecm:"
 
 msgid "ecm.info"
-msgstr "ecm.info"
+msgstr "ecm.інформація"
 
 msgid "economics/social advisory"
 msgstr "економіка/соціальне консультування"
@@ -20155,7 +20163,7 @@ msgid "view extensions..."
 msgstr "переглянути розширення..."
 
 msgid "violet"
-msgstr ""
+msgstr "фіолетовий"
 
 msgid "vix"
 msgstr "vix"

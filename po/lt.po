@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-22 11:29+0000\n"
-"PO-Revision-Date: 2019-06-19 07:31+0300\n"
+"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"PO-Revision-Date: 2019-06-24 16:04+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -226,6 +226,13 @@ msgstr "      įrenginyje, į kurį kopijavote, neturite rašymo teisių"
 
 msgid "     wrong back-up destination "
 msgstr "      neteisinga atsarginės kopijos paskirties vieta "
+
+#, python-format
+msgid "   (%s MHz)"
+msgstr ""
+
+msgid "   (1,7 GHz)"
+msgstr ""
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas : pasirinkite 4 PIP kanalą"
@@ -4515,6 +4522,9 @@ msgstr "Prisijungta prie"
 
 msgid "Connected: "
 msgstr "Prisijungta: "
+
+msgid "Console"
+msgstr "Konsolė"
 
 msgid "Constellation"
 msgstr "Konsteliacija"
@@ -11188,9 +11198,8 @@ msgstr "Norėdami formatuoti SDcard, paspauskite Init."
 msgid "Press MENU on your remote control for additional options."
 msgstr "Paspauskite MENU ant savo distancinio valdymo pulto papildomam pasirinkimui."
 
-#, fuzzy
 msgid "Press MENU to install additional language(s)."
-msgstr "Paspauskite MENU ant savo distancinio valdymo pulto papildomam pasirinkimui."
+msgstr "Norėdami įdiegti papildomą (-as) kalbą (-as), paspauskite MENU."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Paspauskite OK savo valdymo pulte ir tęskite."
@@ -12232,6 +12241,10 @@ msgstr "SPDIF"
 
 msgid "SSID:"
 msgstr "Tinklo pavadinimas (SSID):"
+
+#, fuzzy
+msgid "STARTUP_"
+msgstr "PALEIDIMAS"
 
 msgid "STB Display"
 msgstr "Imtuvo ekranas"
@@ -15072,7 +15085,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-06-17"
+msgstr "Adga, v. 2019-06-24"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -16446,7 +16459,7 @@ msgid "Tuner type %s"
 msgstr "Imtuvo tipas %s"
 
 msgid "Tuners & scanning"
-msgstr "Kanalų paieška"
+msgstr "Imtuvai ir paieška"
 
 msgid "Tuning algorithm"
 msgstr "Derinimo algoritmas"
@@ -16726,9 +16739,8 @@ msgstr "Atnaujinimo šaltinis nepasiekiamas."
 msgid "Updates Available:"
 msgstr "Galimi atnaujinimai:"
 
-#, fuzzy
 msgid "Updating cache"
-msgstr "Atnaujinti talpyklą"
+msgstr "Atnaujinama talpykla"
 
 msgid "Updating cache, please wait..."
 msgstr "Atnaujinamas podėlis, palaukite..."
@@ -21390,9 +21402,6 @@ msgstr "perjungimas"
 #~ msgid "Return to file browser"
 #~ msgstr "Grįžti į failų naršyklę"
 
-#~ msgid "STARTUP"
-#~ msgstr "PALEIDIMAS"
-
 #~ msgid "SYS-Temp: %s"
 #~ msgstr "SIST. Temp: %s"
 
@@ -21454,6 +21463,12 @@ msgstr "perjungimas"
 #~ msgstr "Siųsti kopiją sau ?"
 
 #~ msgid "Service Scan"
+#~ msgstr "Kanalų paieška"
+
+#~ msgid "Service Searching"
+#~ msgstr "Kanalų paieška"
+
+#~ msgid "Service searching"
 #~ msgstr "Kanalų paieška"
 
 #~ msgid "Setup Remote Tuner Server"

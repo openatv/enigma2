@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-22 11:29+0000\n"
+"POT-Creation-Date: 2019-06-24 17:04+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -240,6 +240,13 @@ msgstr "     keine Schreibrechte für das Backup-Gerät"
 # ImageBackup.py
 msgid "     wrong back-up destination "
 msgstr "     falsches Backup-Ziel "
+
+#, python-format
+msgid "   (%s MHz)"
+msgstr ""
+
+msgid "   (1,7 GHz)"
+msgstr ""
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menü: Wähle Sendergruppe"
@@ -1075,8 +1082,8 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
-#, python-format
-msgid "%s B"
+#, fuzzy, python-format
+msgid "%s"
 msgstr "%s B"
 
 #, python-format
@@ -4760,6 +4767,9 @@ msgstr "Verbunden mit"
 
 msgid "Connected: "
 msgstr "Verbunden: "
+
+msgid "Console"
+msgstr ""
 
 #
 msgid "Constellation"
@@ -13155,6 +13165,10 @@ msgstr "S/PDIF"
 #
 msgid "SSID:"
 msgstr "SSID:\t"
+
+#, fuzzy
+msgid "STARTUP_"
+msgstr "Image"
 
 msgid "STB Display"
 msgstr "Geräteanzeige"
@@ -21895,6 +21909,9 @@ msgstr "Umschalten"
 #~ msgid "%s %s format data DVD (HDTV compatible)"
 #~ msgstr "Daten-DVD im %s-%s-Format (HDTV-kompatibel)"
 
+#~ msgid "%s B"
+#~ msgstr "%s B"
+
 #
 #~ msgid "%s not found !!"
 #~ msgstr "%s nicht gefunden!!"
@@ -24115,9 +24132,6 @@ msgstr "Umschalten"
 #
 #~ msgid "SNR"
 #~ msgstr "SNR"
-
-#~ msgid "STARTUP"
-#~ msgstr "Image"
 
 #
 #~ msgid "Sat / Dish Setup"
