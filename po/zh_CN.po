@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-22 11:29+0000\n"
+"POT-Creation-Date: 2019-06-24 17:04+0000\n"
 "PO-Revision-Date: 2018-11-29 20:58+0800\n"
 "Last-Translator: touch时代 2017-2-9 ATV-Full Version: 1.5\n"
 "Language-Team: nobody  2017-3-10 Version: 1.8\n"
@@ -211,6 +211,13 @@ msgid "     no writing permission on back-up device"
 msgstr ""
 
 msgid "     wrong back-up destination "
+msgstr ""
+
+#, python-format
+msgid "   (%s MHz)"
+msgstr ""
+
+msgid "   (1,7 GHz)"
 msgstr ""
 
 #, fuzzy
@@ -4683,6 +4690,9 @@ msgstr "已连接到"
 
 msgid "Connected: "
 msgstr "已连接"
+
+msgid "Console"
+msgstr ""
 
 msgid "Constellation"
 msgstr "卫星位置"
@@ -12629,6 +12639,10 @@ msgstr "SPDIF"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+#, fuzzy
+msgid "STARTUP_"
+msgstr "STARTUP"
 
 #, fuzzy
 msgid "STB Display"
@@ -21350,9 +21364,6 @@ msgstr "切换中"
 
 #~ msgid "Remote"
 #~ msgstr "遥控器"
-
-#~ msgid "STARTUP"
-#~ msgstr "STARTUP"
 
 #~ msgid "Select Bootoption: %s"
 #~ msgstr "选择启动选项: %s"
