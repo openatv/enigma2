@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-24 17:04+0000\n"
-"PO-Revision-Date: 2019-06-24 14:39+0200\n"
+"PO-Revision-Date: 2019-06-24 21:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -228,10 +228,10 @@ msgstr "     неправильне місце призначення"
 
 #, python-format
 msgid "   (%s MHz)"
-msgstr ""
+msgstr "   (%s MГц)"
 
 msgid "   (1,7 GHz)"
-msgstr ""
+msgstr "   (1,7 ГГц)"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Кнопка Меню : Вибір 4 канальної доріжки"
@@ -518,9 +518,8 @@ msgstr "%A %B-%-d"
 msgid "%A %B-%-d-%Y"
 msgstr "%A %B-%-d-%Y"
 
-#, fuzzy
 msgid "%A %B-%d"
-msgstr "%A %B-%d"
+msgstr "%A %B -%d"
 
 #, fuzzy
 msgid "%A %B-%d-%Y"
@@ -560,9 +559,8 @@ msgstr "%A %d %B"
 msgid "%A %d %B %Y"
 msgstr "%A %d %B %Y "
 
-#, fuzzy
 msgid "%A %d-%B"
-msgstr "%A %d-%B"
+msgstr "%A %d -%B"
 
 #, fuzzy
 msgid "%A %d-%B-%Y"
@@ -612,9 +610,8 @@ msgstr "%B %d %Y"
 msgid "%B-%-d-%Y"
 msgstr "%B-%-d-%Y"
 
-#, fuzzy
 msgid "%B-%d-%Y"
-msgstr "%B-%d-%Y"
+msgstr "%B - %d - %Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
@@ -678,9 +675,8 @@ msgstr "%Y-%b-%d"
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
-#, fuzzy
 msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d %H-%M"
+msgstr "%Y %m %d %H-%M"
 
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
@@ -3422,10 +3418,10 @@ msgid "Bypass HDMI EDID Check"
 msgstr "Відключити перевірку HDMI EDID"
 
 msgid "Bytes received:"
-msgstr "Отримано байтів:"
+msgstr "Отримано байтів:\t"
 
 msgid "Bytes sent:"
-msgstr "Надіслано байтів:"
+msgstr "Надіслано байтів:\t"
 
 msgid "C-Band"
 msgstr "С-Діапазон"
@@ -7180,7 +7176,7 @@ msgstr "GIGABLUE Black"
 
 #, python-format
 msgid "GStreamer:\t\t%s"
-msgstr "GStreamer вер.: \t\t%s"
+msgstr "Версія GStreamer: \t\t%s"
 
 msgid ""
 "GUI needs a restart to apply a new language\n"
@@ -12327,7 +12323,7 @@ msgid "SSID:"
 msgstr "SSID:"
 
 msgid "STARTUP_"
-msgstr ""
+msgstr "ІМІДЖ_"
 
 msgid "STB Display"
 msgstr "Налаштування Дисплею"
@@ -15170,9 +15166,9 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад: kvinto - 22.06.2019\n"
-"Сторінка:    sat-ukraine.info\n"
-"                 https://gisclub.tv"
+"Переклад: kvinto - 24.06.2019\n"
+"Сторінка:   https://gisclub.tv\n"
+"              kvinto@rambler.ru"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 level 1!"
@@ -15672,7 +15668,7 @@ msgstr ""
 "Хочете виконати онлайн-прошивку?"
 
 msgid "There is no signal to lock on !"
-msgstr "Немає сигналу!"
+msgstr "Немає сигналу для захоплення!"
 
 msgid ""
 "There might not be enough space on the selected partition..\n"
@@ -16549,7 +16545,7 @@ msgid "Tuner type %s"
 msgstr "Тип тюнера %s"
 
 msgid "Tuners & scanning"
-msgstr "Тюнер & пошук"
+msgstr "Тюнер & Пошук"
 
 msgid "Tuning algorithm"
 msgstr "Алгоритм налаштування"
@@ -17095,16 +17091,16 @@ msgid "User interface visibility"
 msgstr "Видимість інтерфейсу користувача"
 
 msgid "Userlogo:"
-msgstr ""
+msgstr "Логін користувача:"
 
 msgid "Username"
-msgstr "Логін"
+msgstr "Ім'я користувача"
 
 msgid "Username (httpuser)"
-msgstr "Логін (httpuser)"
+msgstr "Ім'я користувача (httpuser)"
 
 msgid "Username:"
-msgstr "Логін:"
+msgstr "Ім'я користувача:"
 
 #, python-format
 msgid "Using LNB %d"
