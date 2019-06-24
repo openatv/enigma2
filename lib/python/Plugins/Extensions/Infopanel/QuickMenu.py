@@ -97,10 +97,10 @@ def Check_Softcam():
 		found = False
 	else:
 		for cam in os.listdir("/etc/init.d"):
-			if cam.startswith('softcam.') and not cam.endswith('None'):
+			if cam.startswith('softcam.') and not cam.endswith(_('None')):
 				found = True
 				break
-			elif cam.startswith('cardserver.') and not cam.endswith('None'):
+			elif cam.startswith('cardserver.') and not cam.endswith(_('None')):
 				found = True
 				break
 	return found
