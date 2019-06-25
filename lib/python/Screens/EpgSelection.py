@@ -1511,7 +1511,7 @@ class EPGSelection(Screen, HelpableScreen):
 				title = "%s?" % event.getEventName()
 			else:
 				newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event))
-				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry, True)
 
 		if title:
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green', 'yellow', 'blue'], skin_name="RecordTimerQuestion")
