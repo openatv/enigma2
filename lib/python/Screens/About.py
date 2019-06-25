@@ -16,6 +16,7 @@ from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
 from Tools.StbHardware import getFPVersion
+from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode
 
 from os import path,popen
 from re import search
@@ -126,52 +127,21 @@ def getAboutText():
 		f = open('/boot/bootname', 'r')
 		bootname = f.readline().split('=')[1]
 		f.close()
-	if SystemInfo["HasRootSubdir"]:
-		image = find_rootfssubdir("STARTUP")
-		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image[-1:] + bootname + "\n"
-	elif getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2',"viper4k"):
-		if path.exists('/boot/STARTUP'):
-			f = open('/boot/STARTUP', 'r')
-			f.seek(5)
-			image = f.read(4)
-			if image == "emmc":
-				image = "1"
-			elif image == "usb0":
-				f.seek(13)
-				image = f.read(1)
-				if image == "1":
-					image = "2"
-				elif image == "3":
-					image = "3"
-				elif image == "5":
-					image = "4"
-				elif image == "7":
-					image = "5"
-			f.close()
-			if bootname: bootname = "   (%s)" %bootname 
-			AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
-	elif getMachineBuild() in ('osmio4k','osmio4kplus'):
-		if path.exists('/boot/STARTUP'):
-			f = open('/boot/STARTUP', 'r')
-			f.seek(38)
-			image = f.read(1) 
-			f.close()
-			if bootname: bootname = "   (%s)" %bootname 
-			AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
-	elif path.exists('/boot/STARTUP'):
-		f = open('/boot/STARTUP', 'r')
-		f.seek(22)
-		image = f.read(1) 
-		f.close()
+	if SystemInfo["canMultiBoot"]:
+		slot = image = GetCurrentImage()
+		part = "eMMC slot %s" %slot
+		bootmode = ""
+		if SystemInfo["canMode12"]:
+			bootmode = "bootmode = %s" %GetCurrentImageMode()
+		if SystemInfo["HasSDmmc"]:
+			if image != 0:
+				image -= 1
+				part = "SDcard slot %s (%s%s) " %(image, SystemInfo["canMultiBoot"][2], image*2)
+			else:
+				slot += 1
+				part = "eMMC slot %s" %slot
 		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
-	elif path.exists('/boot/cmdline.txt'):
-		f = open('/boot/cmdline.txt', 'r')
-		f.seek(38)
-		image = f.read(1) 
-		f.close()
-		if bootname: bootname = "   (%s)" %bootname 
-		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + image + bootname + "\n"
+		AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + str(slot) + "  " + part + " " + bootmode + bootname + "\n"
 
 	AboutText += _("Version:\t\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t\t%s") % getImageBuild() + "\n"
@@ -250,24 +220,6 @@ def getAboutText():
 	AboutLcdText = AboutText.replace('\t', ' ')
 
 	return AboutText, AboutLcdText
-
-def find_rootfssubdir(file):
-	startup_content = read_startup("/boot/" + file)
-	rootsubdir = startup_content[startup_content.find("rootsubdir=")+11:].split()[0]
-	if rootsubdir.startswith("linuxrootfs"):
-		return rootsubdir
-	return
-
-def read_startup(FILE):
-	file = FILE
-	try:
-		with open(file, 'r') as myfile:
-			data=myfile.read().replace('\n', '')
-		myfile.close()
-	except IOError:
-		print "[ERROR] failed to open file %s" % file
-		data = " "
-	return data
 
 class About(Screen):
 	def __init__(self, session):
