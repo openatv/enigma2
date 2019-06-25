@@ -439,7 +439,7 @@ def InitUsageConfig():
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
 	#standby
-	if getDisplayType() in ('textlcd7segment',):
+	if getDisplayType() in ('7segment',):
 		config.usage.blinking_display_clock_during_recording = ConfigSelection(default = "Rec", choices = [
 						("Rec", _("REC")), 
 						("RecBlink", _("Blinking REC")), 
@@ -453,7 +453,7 @@ def InitUsageConfig():
 						("Rec", _("REC Symbol")), 
 						("RecBlink", _("Blinking REC Symbol")), 
 						("Channel", _("Channelname"))])
-	if getDisplayType() in ('textlcd7segment',):
+	if getDisplayType() in ('7segment',):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default = "Rec", choices = [
 						("Rec", _("REC")), 
 						("RecBlink", _("Blinking REC")), 
