@@ -804,7 +804,7 @@ class Info(Screen):
 	def ImageVersion(self):
 		try:
 			self["label2"].setText(_("Image Version"))
-			now = datetime.now()
+			now = datetime.datetime.now()
 			info1 = 'Date = ' + now.strftime("%d-%B-%Y") + "\n"
 			info2 = 'Time = ' + now.strftime("%H:%M:%S") + "\n"
 			info3 = self.Do_cmd("uptime", None, None)

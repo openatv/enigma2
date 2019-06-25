@@ -28,10 +28,11 @@ from RecordTimer import AFTEREVENT
 from os import statvfs
 
 class TimerEntry(Screen, ConfigListScreen):
-	def __init__(self, session, timer):
+	def __init__(self, session, timer, isnewtimer = False):
 		Screen.__init__(self, session)
 		self.setup_title = _("Timer entry")
 		self.timer = timer
+		self.isnewtimer = isnewtimer
 
 		self.entryDate = None
 		self.entryService = None
@@ -134,6 +135,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_justplay = ConfigSelection(choices = [
 			("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
 			default = {0: "record", 1: "zap", 2: "zap+record"}[justplay + 2*always_zap])
+		self.timertyp = self.timerentry_justplay.value
+
 		if SystemInfo["DeepstandbySupport"]:
 			shutdownString = _("go to deep standby")
 		else:
@@ -186,6 +189,19 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_service = ConfigSelection([servicename])
 
 	def createSetup(self, widget):
+		if self.isnewtimer:
+			newtime = None
+			if self.timerentry_justplay.value == 'zap' and self.timertyp != 'zap':
+				newtime = self.getTimestamp(self.timerentry_date.value, self.timerentry_starttime.value) + config.recording.margin_before.value * 60
+				newbegin = localtime(newtime)
+			elif self.timerentry_justplay.value != 'zap' and self.timertyp == 'zap':
+				newtime = self.getTimestamp(self.timerentry_date.value, self.timerentry_starttime.value) - config.recording.margin_before.value * 60
+				newbegin = localtime(newtime)
+			if newtime:
+				self.timerentry_date.value = newtime
+				self.timerentry_starttime.value = [newbegin.tm_hour, newbegin.tm_min]
+			self.timertyp = self.timerentry_justplay.value
+
 		self.list = []
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
 		self.list.append(self.timerJustplayEntry)
@@ -674,7 +690,7 @@ class InstantRecordTimerEntry(TimerEntry):
 
 	def keyGo(self, result = None):
 		if self.timer.justplay:
-			self.timer.begin = self.timer.begin + (config.recording.margin_before.value * 60)
+			self.timer.begin += config.recording.margin_before.value * 60
 			self.timer.end = self.timer.begin + 1
 		self.timer.resetRepeated()
 		self.saveTimer()
