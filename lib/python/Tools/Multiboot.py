@@ -67,6 +67,8 @@ def GetBoxName():
 		box = 'maram9'
 	elif box.startswith('sf8008'):
 		box = "sf8008"
+	elif box.startswith('twinboxlcdci'):
+		box = "twinboxlcd"
 	return box
 
 class GetImagelist():
