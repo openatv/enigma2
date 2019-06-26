@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-24 17:04+0000\n"
-"PO-Revision-Date: 2019-06-25 10:39+0200\n"
+"PO-Revision-Date: 2019-06-26 19:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -448,6 +448,10 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
+
+#, python-format
+msgid "%03d MB"
+msgstr "%03d MБ"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1100,6 +1104,9 @@ msgstr "%d %b %Y"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+msgid "%d.%03d GB"
+msgstr "%d.%03d ГБ"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -12327,7 +12334,7 @@ msgid "SSID:"
 msgstr "SSID:"
 
 msgid "STARTUP_"
-msgstr "ІМІДЖ"
+msgstr "ІМІДЖ_"
 
 msgid "STB Display"
 msgstr "Налаштування Дисплею"
@@ -15170,9 +15177,9 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад: kvinto - 25.06.2019\n"
-"Сторінка:   https://gisclub.tv\n"
-"              kvinto@rambler.ru"
+"Переклад:  kvinto - 26.06.2019\n"
+"Сторінка:    https://gisclub.tv\n"
+"                 kvinto@rambler.ru"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 level 1!"
@@ -19652,7 +19659,7 @@ msgid "remove directory"
 msgstr "видалити директорію"
 
 msgid "remove entry"
-msgstr "видалити запис"
+msgstr "видалити канал"
 
 msgid "remove from parental protection"
 msgstr "видалити з батьківського контролю"
@@ -19673,7 +19680,7 @@ msgid "rename"
 msgstr "перейменувати"
 
 msgid "rename entry"
-msgstr "перейменувати запис"
+msgstr "перейменувати канал"
 
 msgid "repeat playlist"
 msgstr "повторне відтворення плейлиста"
