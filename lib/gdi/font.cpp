@@ -472,7 +472,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		kern=delta.x>>6;
 	}
 
-	ng.bbox.setLeft(((flags&GS_ISFIRST)|cursor.x()) + left + xborder);
+	ng.bbox.setLeft(cursor.x() + left + xborder);
 	ng.bbox.setTop( cursor.y() - top );
 	ng.bbox.setHeight( height );
 
