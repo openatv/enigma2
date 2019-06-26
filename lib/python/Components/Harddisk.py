@@ -203,8 +203,8 @@ class Harddisk:
 		if cap == 0:
 			return ""
 		if cap < 1000:
-			return "%03d MB" % cap
-		return "%d.%03d GB" % (cap/1000, cap%1000)
+			return _("%03d MB") % cap
+		return _("%d.%03d GB") % (cap/1000, cap%1000)
 
 	def model(self):
 		try:
