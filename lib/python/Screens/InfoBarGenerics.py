@@ -2504,23 +2504,24 @@ class InfoBarSeek:
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
-			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
-				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-					if config.lcd.hdd.value == "1":
-						file = open("/proc/stb/lcd/symbol_hdd", "w")
-						file.write('%d' % int(hdd))
-						file.close()
-				if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-					if config.lcd.hdd.value == "1":
-						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-						file.write('%d' % int(self.activity))
-						file.close() 
+			SystemInfo["SeekStatePlay"] = True
+			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+				if config.lcd.hdd.value == "1":
+					file = open("/proc/stb/lcd/symbol_hdd", "w")
+					file.write('%d' % int(hdd))
+					file.close()
+			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+				if config.lcd.hdd.value == "1":
+					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+					file.write('%d' % int(self.activity))
+					file.close() 
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
 			hdd = 0
 			self.seekAction = 0
 
+		SystemInfo["SeekStatePlay"] = True
 		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
 			if config.lcd.hdd.value == "1":
 				file = open("/proc/stb/lcd/symbol_hdd", "w")
@@ -2624,6 +2625,7 @@ class InfoBarSeek:
 				self.unPauseService()
 
 	def pauseService(self):
+		SystemInfo["StatePlayPause"] = True
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -2637,6 +2639,7 @@ class InfoBarSeek:
 			self.playpauseService()
 
 	def unPauseService(self):
+		SystemInfo["StatePlayPause"] = False
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction <> 0: self.playpauseService()
 			#return 0 # if 'return 0', plays timeshift again from the beginning
