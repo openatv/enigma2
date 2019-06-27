@@ -3,7 +3,7 @@
 <!-- MyClockPanel -->	
 	<screen name="MyClockPanel">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="VfdDisplay">Clock</convert>
+			<convert type="VfdDisplay">nozero</convert>
 		</widget>
 	</screen>
 	
@@ -19,6 +19,11 @@
 		</widget>
 	</screen>
 
+<!-- Wizard -->
+	<screen name="WizardSummary" position="0,0" size="1,1">
+		<eLabel position="0,0" size="1,1" text=" HI " />
+	</screen>
+
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
@@ -27,12 +32,17 @@
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="1,1">
-		<panel name="MyClockPanel" />
-		<panel name="MyRecPanel" />
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
+		</widget>
 	</screen>
 
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
+	<screen name="GeneralMenuSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
@@ -61,10 +71,14 @@
 
 <!-- Numberzap -->    
 	<screen name="NumberZap_summary" position="0,0" size="1,1">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay">Number;nozero</convert>
+		</widget>
 	</screen> 
 	<screen name="NumberZapPicon_summary" position="0,0" size="1,1">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1" />
+		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
+			<convert type="VfdDisplay">Number;nozero</convert>
+		</widget>
 	</screen>
 
 <!-- misc-->
@@ -88,6 +102,10 @@
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
+	<screen name="PluginBrowserSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
+	</screen>
 	<screen name="JobView_summary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
@@ -95,14 +113,16 @@
 
 <!-- DVD -->
 	<screen name="DVDSummary" position="0,0" size="1,1">
-		<panel name="MyClockPanel" />
-		<panel name="MyRecPanel" />
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
+		</widget>
 	</screen>
 
 <!-- MediaPlayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="1,1">
-		<panel name="MyClockPanel" />
-		<panel name="MyRecPanel" />
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
+		</widget>
 	</screen>
 
 <!-- AutoTimer -->
@@ -121,8 +141,9 @@
 		<panel name="MyRecPanel" />
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="1,1">
-		<panel name="MyClockPanel" />
-		<panel name="MyRecPanel" />
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
+		</widget>
 	</screen>
 
 <!-- standby -->

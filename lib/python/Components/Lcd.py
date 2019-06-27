@@ -72,16 +72,16 @@ class IconCheckPoller:
 		for bus in busses:
 			devices = bus.devices
 			for dev in devices:
-				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
+				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor != 3034 and dev.idVendor > 0:
 					USBState = 1
-		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
+		if fileExists("/proc/stb/lcd/symbol_usb"):
 			f = open("/proc/stb/lcd/symbol_usb", "w")
 			f.write(str(USBState))
 			f.close()
-		elif fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '0':
-			f = open("/proc/stb/lcd/symbol_usb", "w")
-			f.write('0')
-			f.close()
+		#else fileExists("/proc/stb/lcd/symbol_usb"):
+		#	f = open("/proc/stb/lcd/symbol_usb", "w")
+		#	f.write('0')
+		#	f.close()
 
 		self.timer.startLongTimer(30)
 
@@ -196,6 +196,8 @@ class LCD:
 			f.write(value)
 			f.close()
 		if config.lcd.mode.value == "0":
+			SystemInfo["SeekStatePlay"] = False
+			SystemInfo["StatePlayPause"] = False
 			if fileExists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")

@@ -1,12 +1,13 @@
 from twisted.internet import threads
 from config import config
-from enigma import eDBoxLCD, eTimer, iPlayableService, pNavigation
+from enigma import eDBoxLCD, eTimer, iPlayableService, pNavigation, iServiceInformation
 import NavigationInstance
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
 from boxbranding import getBoxType, getMachineBuild
+from time import time
 import Components.RecordingConfig
 
 POLLTIME = 5 # seconds
@@ -54,9 +55,18 @@ class SymbolsCheckPoller:
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
+		if getMachineBuild() == 'u41':
+			self.Resolution()
+			self.Audio()
+			self.Crypted()
+			self.Teletext()
+			self.Hbbtv()
+			self.PauseSymbol()
+			self.PlaySymbol()
+			self.PowerSymbol()
+			self.Timer()
 		self.Subtitle()
 		self.ParentalControl()
-		self.PlaySymbol()
 		del self.service
 
 	def Recording(self):
@@ -72,6 +82,12 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
 			else:
 				open("/proc/stb/lcd/symbol_recording", "w").write("0")
+		elif getMachineBuild() == 'u41' and fileExists("/proc/stb/lcd/symbol_pvr2"):
+			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+			if recordings > 0:
+				open("/proc/stb/lcd/symbol_pvr2", "w").write("1")
+			else:
+				open("/proc/stb/lcd/symbol_pvr2", "w").write("0")
 		elif getBoxType() in ('alien5','osninopro','wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and fileExists("/proc/stb/lcd/powerled"):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
@@ -159,7 +175,7 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_record_2", "w").write("0")
 
 	def Subtitle(self):
-		if not fileExists("/proc/stb/lcd/symbol_smartcard"):
+		if not fileExists("/proc/stb/lcd/symbol_smartcard") and not fileExists("/proc/stb/lcd/symbol_subtitle"):
 			return
 
 		subtitle = self.service and self.service.subtitle()
@@ -167,12 +183,29 @@ class SymbolsCheckPoller:
 
 		if subtitlelist:
 			subtitles = len(subtitlelist)
-			if subtitles > 0:
-				open("/proc/stb/lcd/symbol_smartcard", "w").write("1")
+			if fileExists("/proc/stb/lcd/symbol_subtitle"):
+				if subtitles > 0:
+					f = open("/proc/stb/lcd/symbol_subtitle", "w")
+					f.write("1")
+					f.close()
+				else:
+					f = open("/proc/stb/lcd/symbol_subtitle", "w")
+					f.write("0")
+					f.close()
 			else:
-				open("/proc/stb/lcd/symbol_smartcard", "w").write("0")
+				if subtitles > 0:
+					f = open("/proc/stb/lcd/symbol_smartcard", "w")
+					f.write("1")
+					f.close()
+				else:
+					f = open("/proc/stb/lcd/symbol_smartcard", "w")
+					f.write("0")
+					f.close()
 		else:
-			open("/proc/stb/lcd/symbol_smartcard", "w").write("0")
+			if fileExists("/proc/stb/lcd/symbol_smartcard"):
+				f = open("/proc/stb/lcd/symbol_smartcard", "w")
+				f.write("0")
+				f.close()
 
 	def ParentalControl(self):
 		if not fileExists("/proc/stb/lcd/symbol_parent_rating"):
@@ -189,10 +222,145 @@ class SymbolsCheckPoller:
 			open("/proc/stb/lcd/symbol_parent_rating", "w").write("0")
 
 	def PlaySymbol(self):
-		if not fileExists("/proc/stb/lcd/symbol_play "):
+		if not fileExists("/proc/stb/lcd/symbol_play"):
 			return
 
 		if SystemInfo["SeekStatePlay"]:
-			open("/proc/stb/lcd/symbol_play ", "w").write("1")
+			file = open("/proc/stb/lcd/symbol_play", "w")
+			file.write('1')
+			file.close()
 		else:
-			open("/proc/stb/lcd/symbol_play ", "w").write("0")
+			file = open("/proc/stb/lcd/symbol_play", "w")
+			file.write('0')
+			file.close() 
+
+	def PauseSymbol(self):
+		if not fileExists("/proc/stb/lcd/symbol_pause"):
+			return
+
+		if SystemInfo["StatePlayPause"]:
+			file = open("/proc/stb/lcd/symbol_pause", "w")
+			file.write('1')
+			file.close()
+		else:
+			file = open("/proc/stb/lcd/symbol_pause", "w")
+			file.write('0')
+			file.close()
+
+	def PowerSymbol(self):
+		if not fileExists("/proc/stb/lcd/symbol_power"):
+			return
+
+		if SystemInfo["StandbyState"]:
+			file = open("/proc/stb/lcd/symbol_power", "w")
+			file.write('0')
+			file.close()
+		else:
+			file = open("/proc/stb/lcd/symbol_power", "w")
+			file.write('1')
+			file.close()
+
+	def Resolution(self):
+		if not fileExists("/proc/stb/lcd/symbol_hd"):
+			return
+
+		info = self.service and self.service.info()
+		if not info:
+			return ""
+
+		videosize = int(info.getInfo(iServiceInformation.sVideoWidth))
+
+		if videosize >= 1280:
+			f = open("/proc/stb/lcd/symbol_hd", "w")
+			f.write("1")
+			f.close()
+		else:
+			f = open("/proc/stb/lcd/symbol_hd", "w")
+			f.write("0")
+			f.close()
+
+	def Crypted(self):
+		if not fileExists("/proc/stb/lcd/symbol_scramled"):
+			return
+
+		info = self.service and self.service.info()
+		if not info:
+			return ""
+
+		crypted = int(info.getInfo(iServiceInformation.sIsCrypted))
+
+		if crypted == 1:
+			f = open("/proc/stb/lcd/symbol_scramled", "w")
+			f.write("1")
+			f.close()
+		else:
+			f = open("/proc/stb/lcd/symbol_scramled", "w")
+			f.write("0")
+			f.close()
+
+	def Teletext(self):
+		if not fileExists("/proc/stb/lcd/symbol_teletext"):
+			return
+
+		info = self.service and self.service.info()
+		if not info:
+			return ""
+
+		tpid = int(info.getInfo(iServiceInformation.sTXTPID))
+
+		if tpid != -1:
+			f = open("/proc/stb/lcd/symbol_teletext", "w")
+			f.write("1")
+			f.close()
+		else:
+			f = open("/proc/stb/lcd/symbol_teletext", "w")
+			f.write("0")
+			f.close()
+
+	def Hbbtv(self):
+		if not fileExists("/proc/stb/lcd/symbol_epg"):
+			return
+
+		info = self.service and self.service.info()
+		if not info:
+			return ""
+
+		hbbtv = int(info.getInfo(iServiceInformation.sHBBTVUrl))
+
+		if hbbtv != -1:
+			f = open("/proc/stb/lcd/symbol_epg", "w")
+			f.write("0")
+			f.close()
+		else:
+			f = open("/proc/stb/lcd/symbol_epg", "w")
+			f.write("1")
+			f.close()
+
+	def Audio(self):
+		if not fileExists("/proc/stb/lcd/symbol_dolby_audio"):
+			return
+		      
+		audio = self.service.audioTracks()
+		if audio:
+			n = audio.getNumberOfTracks()
+			idx = 0
+			while idx < n:
+				i = audio.getTrackInfo(idx)
+				description = i.getDescription();
+				if "AC3" in description or "AC-3" in description or "DTS" in description:
+					f = open("/proc/stb/lcd/symbol_dolby_audio", "w")
+					f.write("1")
+					f.close()
+					return
+				idx += 1
+		f = open("/proc/stb/lcd/symbol_dolby_audio", "w")
+		f.write("0")
+		f.close()
+
+	def Timer(self):
+		if fileExists("/proc/stb/lcd/symbol_timer"):
+			timer = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
+			if timer > 0:
+				open("/proc/stb/lcd/symbol_timer", "w").write("1")
+			else:
+				open("/proc/stb/lcd/symbol_timer", "w").write("0")

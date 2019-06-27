@@ -48,7 +48,7 @@ from Tools.Directories import pathExists, fileExists, getRecordingFilename, copy
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
 from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService, eEPGCache, eServiceReference
-from boxbranding import getBoxType, getBrandOEM
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 
 from time import time, localtime, strftime
 from random import randint
@@ -617,6 +617,11 @@ class InfoBarTimeshift:
 			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
 					f = open("/proc/stb/lcd/symbol_timeshift", "w")
+					f.write("0")
+					f.close()
+			elif getMachineBuild() == 'u41' and os.path.exists("/proc/stb/lcd/symbol_record"):
+				if self.session.nav.RecordTimer.isRecording():
+					f = open("/proc/stb/lcd/symbol_record", "w")
 					f.write("0")
 					f.close()
 			self.pts_starttime = time()
