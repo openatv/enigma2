@@ -376,6 +376,7 @@
 		<item level="2" text="Timeline font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.infobar_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.infobar_prevtimeperiod</item>
+		<item level="1" text="Visible history" description="Specify how much history to show when the EPG opens. This may have limited effect depending on the visible time period, base time and available history." requires="config.epg.histminutes">config.epgselection.infobar_visiblehistory</item>
 	</setup>
 	<setup key="epggraphical" title="GraphicalEPG">
 		<item level="0" text="View mode" description="Choose the layout view mode (Text or Graphics).">config.epgselection.graph_type_mode</item>
@@ -407,6 +408,7 @@
 		<item level="2" text="Timeline font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.graph_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.graph_prevtimeperiod</item>
+		<item level="1" text="Visible history" description="Specify how much history to show when the EPG opens. This may have limited effect depending on the visible time period, base time and available history." requires="config.epg.histminutes">config.epgselection.graph_visiblehistory</item>
 	</setup>
 	<setup key="pluginbrowsersetup" title="Plugin browser settings">
 		<item level="2" text="Show translation packages" description="Enable to show 'PO' packages in the browser.">config.pluginbrowser.po</item>
