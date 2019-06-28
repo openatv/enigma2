@@ -202,7 +202,11 @@ class SymbolsCheckPoller:
 					f.write("0")
 					f.close()
 		else:
-			if fileExists("/proc/stb/lcd/symbol_smartcard"):
+			if fileExists("/proc/stb/lcd/symbol_subtitle"):
+				f = open("/proc/stb/lcd/symbol_subtitle", "w")
+				f.write("0")
+				f.close()
+			else:
 				f = open("/proc/stb/lcd/symbol_smartcard", "w")
 				f.write("0")
 				f.close()
@@ -280,21 +284,21 @@ class SymbolsCheckPoller:
 			f.close()
 
 	def Crypted(self):
-		if not fileExists("/proc/stb/lcd/symbol_scramled"):
+		if not fileExists("/proc/stb/lcd/symbol_scrambled"):
 			return
 
 		info = self.service and self.service.info()
 		if not info:
 			return ""
 
-		crypted = int(info.getInfo(iServiceInformation.sIsCrypted))
+		crypted = info.getInfo(iServiceInformation.sIsCrypted)
 
 		if crypted == 1:
-			f = open("/proc/stb/lcd/symbol_scramled", "w")
+			f = open("/proc/stb/lcd/symbol_scrambled", "w")
 			f.write("1")
 			f.close()
 		else:
-			f = open("/proc/stb/lcd/symbol_scramled", "w")
+			f = open("/proc/stb/lcd/symbol_scrambled", "w")
 			f.write("0")
 			f.close()
 
@@ -325,15 +329,15 @@ class SymbolsCheckPoller:
 		if not info:
 			return ""
 
-		hbbtv = int(info.getInfo(iServiceInformation.sHBBTVUrl))
+		hbbtv = info.getInfoString(iServiceInformation.sHBBTVUrl)
 
-		if hbbtv != -1:
+		if hbbtv != "":
 			f = open("/proc/stb/lcd/symbol_epg", "w")
-			f.write("0")
+			f.write("1")
 			f.close()
 		else:
 			f = open("/proc/stb/lcd/symbol_epg", "w")
-			f.write("1")
+			f.write("0")
 			f.close()
 
 	def Audio(self):
