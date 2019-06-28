@@ -1,47 +1,36 @@
-from twisted.internet import threads
 from config import config
-from enigma import eDBoxLCD, eTimer, iPlayableService, iServiceInformation
+from enigma import iPlayableService, iRecordableService, iServiceInformation
 from boxbranding import getMachineProcModel
-import NavigationInstance
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
-
-POLLTIME = 5 # seconds
+from Components.SystemInfo import SystemInfo
 
 def SymbolsCheck(session, **kwargs):
-		global symbolspoller
-		symbolspoller = SymbolsCheckPoller(session)
-		symbolspoller.start()
+	global symbolspoller
+	symbolspoller = SymbolsCheckPoller(session)
+	symbolspoller.start()
 
 class SymbolsCheckPoller:
 	def __init__(self, session):
 		self.session = session
-		self.timer = eTimer()
 		self.onClose = []
-		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				#iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 				iPlayableService.evVideoSizeChanged: self.__evUpdatedInfo,
 			})
+		self.recordings = 0
 
 	def start(self):
-		if self.symbolscheck not in self.timer.callback:
-			self.timer.callback.append(self.symbolscheck)
-		self.timer.startLongTimer(0)
+		self.recordings = len(self.session.nav.getRecordings())
+		self.session.nav.record_event.append(self.gotRecordEvent)
+		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call=False)
+		self.Recording()
 
 	def stop(self):
-		if self.symbolscheck in self.timer.callback:
-			self.timer.callback.remove(self.symbolscheck)
-		self.timer.stop()
-
-	def symbolscheck(self):
-		threads.deferToThread(self.JobTask)
-		self.timer.startLongTimer(POLLTIME)
-
-	def JobTask(self):
-		self.Recording()
-		self.timer.startLongTimer(POLLTIME)
+		self.session.nav.record_event.remove(self.gotRecordEvent)
+		config.misc.standbyCounter.removeNotifier(self.standbyCounterChanged)
 
 	def __evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
@@ -52,10 +41,21 @@ class SymbolsCheckPoller:
 		self.ParentalControl()
 		del self.service
 
+	def gotRecordEvent(self, service, event):
+		if event in (iRecordableService.evEnd, iRecordableService.evStart):
+			prev_recordings = self.recordings
+			self.recordings = len(self.session.nav.getRecordings())
+			if self.recordings != prev_recordings:
+				self.Recording()
+
+	def standbyCounterChanged(self, dummy):
+		if config.usage.lcd_ledpowerrec:
+			from Screens.Standby import inStandby
+			inStandby.onClose.append(self.Recording)
+
 	def Recording(self):
 		if fileExists("/proc/stb/lcd/symbol_circle") or fileExists("/proc/stb/lcd/symbol_record"):
-			recordings = len(NavigationInstance.instance.getRecordings())
-			if recordings > 0:
+			if self.recordings > 0:
 				f = open("/proc/stb/lcd/symbol_circle", "w")
 				f.write("3")
 				f.close()
@@ -69,24 +69,19 @@ class SymbolsCheckPoller:
 				f =open("/proc/stb/lcd/symbol_record", "w")
 				f.write("0")
 				f.close()
-		else:
-			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
-				return
-	
-			recordings = len(NavigationInstance.instance.getRecordings())
-		
-			if recordings > 0:
+		elif fileExists("/proc/stb/lcd/symbol_recording") and fileExists("/proc/stb/lcd/symbol_record_1") and fileExists("/proc/stb/lcd/symbol_record_2"):
+			if self.recordings > 0:
 				f = open("/proc/stb/lcd/symbol_recording", "w")
 				f.write("1")
 				f.close()
-				if recordings == 1:
+				if self.recordings == 1:
 					f = open("/proc/stb/lcd/symbol_record_1", "w")
 					f.write("1")
 					f.close()
 					f = open("/proc/stb/lcd/symbol_record_2", "w")
 					f.write("0")
 					f.close()
-				elif recordings >= 2:
+				elif self.recordings >= 2:
 					f = open("/proc/stb/lcd/symbol_record_1", "w")
 					f.write("1")
 					f.close()
@@ -103,6 +98,17 @@ class SymbolsCheckPoller:
 				f = open("/proc/stb/lcd/symbol_record_2", "w")
 				f.write("0")
 				f.close()
+		elif config.usage.lcd_ledpowerrec:
+			led = self.recordings and 2 or 0
+			if SystemInfo["LedStandbyColor"]:
+				f = open("/proc/stb/fp/ledstandbycolor", "w")
+				f.write(str(led))
+				f.close()
+			if not self.session.screen["Standby"].boolean:
+				led |= 1
+			f = open("/proc/stb/fp/ledpowercolor", "w")
+			f.write(str(led))
+			f.close()
 
 	def Subtitle(self):
 		if not fileExists("/proc/stb/lcd/symbol_smartcard") or not fileExists("/proc/stb/lcd/symbol_subtitle"):
@@ -230,4 +236,3 @@ class SymbolsCheckPoller:
 		f = open("/proc/stb/lcd/symbol_dolby_audio", "w")
 		f.write("0")
 		f.close()
-		

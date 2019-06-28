@@ -242,15 +242,16 @@
 		<item level="0" requires="LEDButtons" text="LED (Standby)" description="Set LED brightness level in standby mode.">config.lcd.ledbrightnessstandby</item>
 		<item level="0" requires="LEDButtons" text="LED (Deep Standby)" description="Set LED brightness level in deep standby mode.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" text="StandbyLED" description="Turn on the power LED during standby." requires="StandbyLED">config.usage.standbyLED</item>
-		<item level="0" requires="LedPowerColor" text="LED state while running" description="Choose the running LED colour or turn it off.">config.usage.lcd_ledpowercolor</item>
-		<item level="0" requires="LedStandbyColor" text="LED state in standby" description="Choose the standby LED colour or turn it off.">config.usage.lcd_ledstandbycolor</item>
+		<item level="0" requires="LedPowerColor" text="Use LED for power &amp; recording" description="The LED indicates both power and recording states:\noff - standby, not recording;\nred - standby, recording;\nblue - running, not recording;\nviolet - running, recording.">config.usage.lcd_ledpowerrec</item>
+		<item level="0" requires="LedPowerColor;!config.usage.lcd_ledpowerrec" text="LED state while running" description="Choose the running LED colour or turn it off.">config.usage.lcd_ledpowercolor</item>
+		<item level="0" requires="LedStandbyColor;!config.usage.lcd_ledpowerrec" text="LED state in standby" description="Choose the standby LED colour or turn it off.">config.usage.lcd_ledstandbycolor</item>
 		<item level="0" requires="LedSuspendColor" text="LED state in shutdown" description="Choose the shutdown LED colour or turn it off.">config.usage.lcd_ledsuspendcolor</item>
 		<item level="0" requires="Power4x7On" text="Display state while running" description="Choose to have no display while running.">config.usage.lcd_power4x7on</item>
 		<item level="0" requires="Power4x7Standby" text="Display state in standby" description="Choose to have no display in standby.">config.usage.lcd_power4x7standby</item>
 		<item level="0" requires="Power4x7Suspend" text="Display state in shutdown" description="Choose to have no display in shutdown.">config.usage.lcd_power4x7suspend</item>
-		<item level="0" requires="7segment" text="Show in standby" description="Choose to display the time or nothing in standby">config.usage.show_in_standby</item>
-		<item level="1" requires="7segment" text="Show REC in use" description="Choose what to display during recording when in use">config.usage.blinking_rec_symbol_during_recording</item>
-		<item level="1" requires="7segment" text="Show REC in standby" description="Choose what to display during recording when in standby">config.usage.blinking_display_clock_during_recording</item>
+		<item level="0" requires="7segment;config.usage.lcd_power4x7standby" text="Show in standby" description="Choose to display the time or nothing in standby">config.usage.show_in_standby</item>
+		<item level="1" requires="7segment;config.usage.lcd_power4x7on" text="Show REC while running" description="Choose what to display during recording while running">config.usage.blinking_rec_symbol_during_recording</item>
+		<item level="1" requires="7segment;config.usage.lcd_power4x7standby" text="Show REC in standby" description="Choose what to display during recording when in standby">config.usage.blinking_display_clock_during_recording</item>
 		<item level="1" requires="LcdDisplay" text="Repeat display message" description="If the text is too long to be displayed on the front panel, it is repeated the specified (number of times).">config.lcd.repeat</item>
 		<item level="1" requires="LcdDisplay" text="Scrolling speed" description="Set the scrolling speed of text on the front panel display.">config.lcd.scrollspeed</item>
 		<item level="1" requires="LcdDisplay" text="Show display icons" description="Enable/disable the display of icons on the front panel.">config.lcd.mode</item>

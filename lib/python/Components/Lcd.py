@@ -366,7 +366,10 @@ def InitLcd():
 				f.close()
 
 		def setLedPowerColor(configElement):
-			writeFp("ledpowercolor", configElement)
+			# This is set briefly on restart (before symbolspoller is created),
+			# so ignore it just in case it's not blue.
+			if not config.usage.lcd_ledpowerrec.value:
+				writeFp("ledpowercolor", configElement)
 
 		def setLedStandbyColor(configElement):
 			writeFp("ledstandbycolor", configElement)
@@ -383,12 +386,27 @@ def InitLcd():
 		def setPower4x7Suspend(configElement):
 			writeFp("power4x7suspend", configElement)
 
+		config.usage.lcd_ledpowerrec = ConfigYesNo(default=False)
+
 		ledchoices = [("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))]
 		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=ledchoices[:])
 		config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
 
 		config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=ledchoices[:])
 		config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
+
+		def doLedPowerRec(configElement):
+			if configElement.value:
+				try:
+					from Components.VfdSymbols import symbolspoller
+					symbolspoller.Recording()
+				except:
+					pass
+			else:
+				setLedPowerColor(config.usage.lcd_ledpowercolor)
+				setLedStandbyColor(config.usage.lcd_ledstandbycolor)
+
+		config.usage.lcd_ledpowerrec.addNotifier(doLedPowerRec)
 
 		config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=ledchoices[:])
 		config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
