@@ -472,7 +472,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		kern=delta.x>>6;
 	}
 
-	ng.bbox.setLeft(((flags&GS_ISFIRST)|cursor.x()) + left + xborder);
+	ng.bbox.setLeft(cursor.x() + left + xborder);
 	ng.bbox.setTop( cursor.y() - top );
 	ng.bbox.setHeight( height );
 
@@ -516,15 +516,15 @@ void eTextPara::calc_bbox()
 
 	glyphString::iterator i(glyphs.begin());
 
-	boundBox = i->bbox;
-	++i;
+	boundBox.setLeft(i->x);
+	boundBox.setRight(i->bbox.right());
 
-	for (; i != glyphs.end(); ++i)
+	while (++i != glyphs.end())
 	{
 		if (i->flags & (GS_ISSPACE|GS_SOFTHYPHEN))
 			continue;
-		if ( i->bbox.left() < boundBox.left() )
-			boundBox.setLeft( i->bbox.left() );
+		if ( i->x < boundBox.left() )
+			boundBox.setLeft( i->x );
 		if ( i->bbox.right() > boundBox.right() )
 			boundBox.setRight( i->bbox.right() );
 	}
