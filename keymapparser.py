@@ -4,65 +4,92 @@ import xml.etree.cElementTree
 from keyids import KEYIDS
 
 # these are only informational (for help)...
-from Tools.KeyBindings import addKeyBinding
+from Tools.KeyBindings import addKeyBinding, removeKeyBinding
 
-class KeymapError(Exception):
-	def __init__(self, message):
-		self.msg = message
-
-	def __str__(self):
-		return self.msg
+unmapDict = {}
 
 def parseKeys(context, filename, actionmap, device, keys):
 	for x in keys.findall("key"):
 		get_attr = x.attrib.get
+		kid = get_attr("id")
+		unmapto = get_attr("unmapto")
+		unmap = get_attr("unmap")
 		mapto = get_attr("mapto")
-		id = get_attr("id")
 		flags = get_attr("flags")
 
-		flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
+		if not kid:
+			print "[keymapparser] %s: must specify id in context %s, %s '%s'" % (filename, context, mapto and "mapto" or unmap and "unmap" or unmapto and "unmapto" or "<none>", mapto or unmap or unmapto or "<none>")
+			continue
 
-		flags = sum(map(flag_ascii_to_id, flags))
+		if unmapto:
+			if mapto or unmap:
+				print "[keymapparser] %s: unmapto must not specify mapto or unmap in context %s, id '%s'" % (filename, context, kid)
+				continue
+			unmap = '*'
+			mapto = unmapto
+		elif not mapto and not unmap:
+			print "[keymapparser] %s: must specify mapto and/or unmap in context %s, id '%s'" % (filename, context, kid)
+			continue
 
-		assert mapto, "%s: must specify mapto in context %s, id '%s'" % (filename, context, id)
-		assert id, "%s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
-		assert flags, "%s: must specify at least one flag in context %s, id '%s'" % (filename, context, id)
+		if mapto:
+			def flag_ascii_to_id(x):
+				try:
+					return {'m': 1, 'b': 2, 'r': 4, 'l': 8}[x]
+				except:
+					print "[keymapparser] %s: ignoring unknown flag '%s' in context %s, id '%s'" % (filename, x, context, kid)
+					return 0
 
-		if len(id) == 1:
-			keyid = ord(id) | 0x8000
-		elif id[0] == '\\':
-			if id[1] == 'x':
-				keyid = int(id[2:], 0x10) | 0x8000
-			elif id[1] == 'd':
-				keyid = int(id[2:]) | 0x8000
-			else:
-				raise KeymapError("[Keymapparser] key id '" + str(id) + "' is neither hex nor dec")
+			flags = flags and sum(map(flag_ascii_to_id, flags))
+			if not flags:
+				print "[keymapparser] %s: must specify at least one flag in context %s, id '%s'" % (filename, context, kid)
+				continue
+		elif flags:
+			print "[keymapparser] %s: ignoring flags in context %s, id '%s'" % (filename, context, kid)
+
+		if len(kid) == 1:
+			keyid = ord(kid) | 0x8000
+		elif kid[0] == '\\':
+			try:
+				if kid[1] == 'x':
+					keyid = int(kid[2:], 0x10) | 0x8000
+				elif kid[1] == 'd':
+					keyid = int(kid[2:]) | 0x8000
+				else:
+					raise ValueError
+			except:
+				print "[keymapparser] %s: key id '%s' is neither hex nor dec" % (filename, kid)
+				continue
 		else:
 			try:
-				keyid = KEYIDS[id]
+				keyid = KEYIDS[kid]
 			except:
-				raise KeymapError("[Keymapparser] key id '" + str(id) + "' is illegal")
-#				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
-		actionmap.bindKey(filename, device, keyid, flags, context, mapto)
-		addKeyBinding(filename, keyid, context, mapto, flags)
+				print "[keymapparser] %s: unknown key id '%s'" % (filename, kid)
+				continue
+
+		if unmap:
+			actionmap.unbindPythonKey(context, keyid, unmap)
+			removeKeyBinding(keyid, context, unmap)
+			unmapDict.update({(context, kid, unmap): filename})
+		if mapto and unmapDict.get((context, kid, mapto), unmapDict.get((context, kid, '*'))) in (filename, None):
+			actionmap.bindKey(filename, device, keyid, flags, context, mapto)
+			addKeyBinding(filename, keyid, context, mapto, flags)
 
 def readKeymap(filename):
 	p = enigma.eActionMap.getInstance()
-	assert p
-
-	source = open(filename)
 
 	try:
-		dom = xml.etree.cElementTree.parse(source)
+		dom = xml.etree.cElementTree.parse(filename)
 	except:
-		raise KeymapError("[Keymapparser] keymap %s not well-formed." % filename)
+		print "[keymapparser] %s: keymap not well-formed." % filename
+		return
 
-	source.close()
 	keymap = dom.getroot()
 
 	for cmap in keymap.findall("map"):
 		context = cmap.attrib.get("context")
-		assert context, "map must have context"
+		if not context:
+			print "[keymapparser] %s: map must have context" % filename
+			continue
 
 		parseKeys(context, filename, p, "generic", cmap)
 

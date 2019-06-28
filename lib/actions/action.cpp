@@ -135,6 +135,19 @@ void eActionMap::unbindNativeKey(const std::string &context, int action)
 	}
 }
 
+void eActionMap::unbindPythonKey(const std::string &context, int key, const std::string &action)
+{
+	for (std::multimap<std::string, ePythonKeyBinding>::iterator i(m_python_keys.begin()); i != m_python_keys.end(); ++i)
+	{
+		if (i->first == context && i->second.m_key == key && (action == "*" || i->second.m_action == action))
+		{
+			//eDebug("[eActionMap] unbindPythonKey %d context %s action %s.", key, context.c_str(), i->second.m_action.c_str());
+			m_python_keys.erase(i);
+			i = m_python_keys.begin();
+		}
+	}
+}
+
 void eActionMap::unbindKeyDomain(const std::string &domain)
 {
 	//eDebug("[eActionMap] unbindDomain %s", domain.c_str());
