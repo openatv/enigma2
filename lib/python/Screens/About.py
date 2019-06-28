@@ -754,7 +754,7 @@ class SystemNetworkInfo(Screen):
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth1['netmask'] + "\n"
 			if eth1.has_key('hwaddr'):
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth1['hwaddr'] + "\n"
-			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
+			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed_eth1() + "\n"
 			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
