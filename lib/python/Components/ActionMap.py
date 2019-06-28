@@ -15,6 +15,15 @@ class ActionMap:
 		self.exec_active = False
 		self.enabled = True
 
+		unknown = actions.keys()
+		for action in unknown[:]:
+			for ctx in contexts:
+				if queryKeyBinding(ctx, action):
+					unknown.remove(action)
+					break
+		if unknown:
+			print "[ActionMap] action(s) '%s' not in context(s) '%s'" % (", ".join(unknown), ", ".join(contexts))
+
 	def setEnabled(self, enabled):
 		self.enabled = enabled
 		self.checkBind()
@@ -46,14 +55,14 @@ class ActionMap:
 		self.checkBind()
 
 	def action(self, context, action):
-		print " ".join(("[ActionMap]", context, action))
 		if action in self.actions:
+			print "[ActionMap] calling %s (%s)" % (action, context)
 			res = self.actions[action]()
 			if res is not None:
 				return res
 			return 1
 		else:
-			print "[ActionMap] unknown action %s/%s! typo in keymap?" % (context, action)
+			print "[ActionMap] skipping %s (%s)" % (action, context)
 			return 0
 
 	def destroy(self):
