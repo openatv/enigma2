@@ -7,9 +7,6 @@ from re import compile
 pathExists = os.path.exists
 isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
 
-screenResolution = getDesktop(0).size().height()
-lcdResolution = getDesktop(1).size().height()
-
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
 SCOPE_FONTS = 2
@@ -102,15 +99,15 @@ def resolveFilename(scope, base="", path_prefix=None):
 	elif scope in (SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN):
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
-		pos = config.skin.primary_skin.value.rfind("/")
-		if pos == -1:
-			skin = ""
-		else:
-			skin = config.skin.primary_skin.value[:pos + 1]
+		skin = ""
+		if hasattr(config.skin, "primary_skin"):
+			pos = config.skin.primary_skin.value.rfind("/")
+			if pos != -1:
+				skin = config.skin.primary_skin.value[:pos + 1]
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_%d" % screenResolution),
+			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_%d" % getDesktop(0).size().height()),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
 			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
 			defaultPaths[SCOPE_SKIN][0]  # Deprecated top level of SCOPE_SKIN directory.
@@ -123,15 +120,15 @@ def resolveFilename(scope, base="", path_prefix=None):
 	elif scope == SCOPE_CURRENT_LCDSKIN:
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
-		pos = config.skin.display_skin.value.rfind("/")
-		if pos == -1:
-			skin = ""
-		else:
-			skin = config.skin.display_skin.value[:pos + 1]
+		skin = ""
+		if hasattr(config.skin, "display_skin"):
+			pos = config.skin.display_skin.value.rfind("/")
+			if pos != -1:
+				skin = config.skin.display_skin.value[:pos + 1]
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", skin),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_%s" % lcdResolution),
+			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_%s" % getDesktop(1).size().height()),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
 			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
 			defaultPaths[SCOPE_LCDSKIN][0]  # Deprecated top level of SCOPE_LCDSKIN directory.
@@ -144,16 +141,16 @@ def resolveFilename(scope, base="", path_prefix=None):
 	elif scope == SCOPE_FONTS:
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
-		pos = config.skin.primary_skin.value.rfind("/")
-		if pos == -1:
-			skin = ""
-		else:
-			skin = config.skin.primary_skin.value[:pos + 1]
-		pos = config.skin.display_skin.value.rfind("/")
-		if pos == -1:
-			display = ""
-		else:
-			display = config.skin.display_skin.value[:pos + 1]
+		skin = ""
+		display = ""
+		if hasattr(config.skin, "primary_skin"):
+			pos = config.skin.primary_skin.value.rfind("/")
+			if pos != -1:
+				skin = config.skin.primary_skin.value[:pos + 1]
+		if hasattr(config.skin, "display_skin"):
+			pos = config.skin.display_skin.value.rfind("/")
+			if pos != -1:
+				display = config.skin.display_skin.value[:pos + 1]
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "fonts"),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
