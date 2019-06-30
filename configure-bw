@@ -4,19 +4,19 @@ BASEDIR=$(dirname "$0")
 
 case "$1" in
 	t2)
-		EXTRA_PARAMS="--with-boxtype=inihde2 --with-nolcd"
+		EXTRA_PARAMS="--with-boxtype=inihde2 --with-machinebuild=beyonwizt2 --with-textlcd"
 		;;
 	t3)
-		EXTRA_PARAMS="--with-boxtype=inihdx --with-textlcd"
+		EXTRA_PARAMS="--with-boxtype=inihdx --with-machinebuild=beyonwizt3 --with-textlcd"
 		;;
 	t4)
-		EXTRA_PARAMS="--with-boxtype=inihdp --with-bwlcd255"
+		EXTRA_PARAMS="--with-boxtype=inihdp --with-machinebuild=beyonwizt4 --with-bwlcd255"
 		;;
 	u4)
-		EXTRA_PARAMS="--with-boxtype=et1300 --with-textlcd"
+		EXTRA_PARAMS="--with-boxtype=et1300 --with-machinebuild=beyonwizu4 --with-textlcd"
 		;;
 	v2)
-		EXTRA_PARAMS="--with-7segment --with-lcddev=/dev/null --with-libsdl=no --with-machinebuild=beyonwizv2 --with-boxtype=beyonwizv2"
+		EXTRA_PARAMS="--with-machinebuild=beyonwizv2 --with-boxtype=beyonwizv2 --with-7segment --with-lcddev=/dev/null"
 		EXTRA_PARAMS="${EXTRA_PARAMS} --with-alphablendingacceleration=always --with-blitaccelerationthreshold=250 --with-fillaccelerationthreshold=190000"
 		;;
 	*)
@@ -41,4 +41,5 @@ $BASEDIR/configure $CONFIGURE_FLAGS \
   --enable-silent-rules \
   --enable-dependency-tracking \
   --with-gstversion=1.0 \
+  --with-libsdl=no \
   $EXTRA_PARAMS
