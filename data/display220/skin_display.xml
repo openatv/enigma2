@@ -275,7 +275,8 @@
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="220,176">
-		<widget source="AboutText" render="Label" position="0,0" size="220,176" font="FdLcD;11" />
+		<widget source="parent.Title" render="Label" position="top" size="*,100" font="FdLcD;30" halign="center" valign="center" />
+		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
 
 	<screen name="TimerEditListSummary" position="0,0" size="220,176">
