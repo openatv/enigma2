@@ -633,7 +633,7 @@ class QuickMenu(Screen, ProtectedScreen):
 
 
 ######## Create MENULIST format #######################
-def QuickMenuEntryComponent(name, description, long_description = None, width=540):
+def QuickMenuEntryComponent(name, description, long_description = None, width=680):
 	pngname = name.replace(" ","_") 
 	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + pngname + ".png")
 	if png is None:
@@ -648,7 +648,7 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 	]
 
-def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
+def QuickSubMenuEntryComponent(name, description, long_description = None, width=700):
 	sf = getSkinFactor()
 	return [
 		_(name),
