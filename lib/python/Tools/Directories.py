@@ -96,14 +96,16 @@ def resolveFilename(scope, base="", path_prefix=None):
 	if base is "":
 		path, flags = defaultPaths.get(scope)
 		path = os.path.normpath(path)
+		# If the scope is SCOPE_CURRENT_SKIN or SCOPE_ACTIVE_SKIN append the current skin to the scope path.
+		if scope in (SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN):
+			# This import must be here as this module finds the config file as part of the config initialisation.
+			from Components.config import config
+			skin = os.path.dirname(config.skin.primary_skin.value)
+			path = os.path.normpath(os.path.join(path, skin))
 	elif scope in (SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN):
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
-		skin = ""
-		if hasattr(config.skin, "primary_skin"):
-			pos = config.skin.primary_skin.value.rfind("/")
-			if pos != -1:
-				skin = config.skin.primary_skin.value[:pos + 1]
+		skin = os.path.dirname(config.skin.primary_skin.value)
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
@@ -120,11 +122,10 @@ def resolveFilename(scope, base="", path_prefix=None):
 	elif scope == SCOPE_CURRENT_LCDSKIN:
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
-		skin = ""
 		if hasattr(config.skin, "display_skin"):
-			pos = config.skin.display_skin.value.rfind("/")
-			if pos != -1:
-				skin = config.skin.display_skin.value[:pos + 1]
+			skin = os.path.dirname(config.skin.display_skin.value)
+		else:
+			skin = ""
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", skin),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], skin),
@@ -141,16 +142,11 @@ def resolveFilename(scope, base="", path_prefix=None):
 	elif scope == SCOPE_FONTS:
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
-		skin = ""
-		display = ""
-		if hasattr(config.skin, "primary_skin"):
-			pos = config.skin.primary_skin.value.rfind("/")
-			if pos != -1:
-				skin = config.skin.primary_skin.value[:pos + 1]
+		skin = os.path.dirname(config.skin.primary_skin.value)
 		if hasattr(config.skin, "display_skin"):
-			pos = config.skin.display_skin.value.rfind("/")
-			if pos != -1:
-				display = config.skin.display_skin.value[:pos + 1]
+			display = os.path.dirname(config.skin.display_skin.value)
+		else:
+			display = ""
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "fonts"),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),

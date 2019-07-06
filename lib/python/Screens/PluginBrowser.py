@@ -815,7 +815,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skinName = "Setup"
-		Screen.setTitle(self, _("Plugin Filter..."))
+		Screen.setTitle(self, _("Plugin Filter"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
