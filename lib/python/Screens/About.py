@@ -301,7 +301,7 @@ class About(Screen):
 			if fp_version is None:
 				fp_version = ""
 			else:
-				fp_version = _("Frontprocessor version: %d") % fp_version
+				fp_version = _("Frontprocessor version: %s") % str(fp_version)
 
 			self["FPVersion"] = StaticText(fp_version)
 
