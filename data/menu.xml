@@ -153,7 +153,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 		</menu>
 
 		<!-- Menu / Settings / Service Searching -->
-		<menu weight="25" level="0" text="Tuners &amp; scanning" entryID="service_searching_selection">
+		<menu weight="25" level="0" text="Reception" entryID="service_searching_selection">
 			<id val="scan" />
 			<item weight="0" level="1" text="Basic settings" requires="USETunersetup" entryID="tuner_setup"><screen module="Satconfig" screen="TunerSetup" /></item>
 			<item weight="1" level="0" text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
