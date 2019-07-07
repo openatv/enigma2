@@ -371,9 +371,12 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		menu = [(_("Settings") + "...", csel.configure),
 				(_("Device mounts") + "...", csel.showDeviceMounts),
 				(_("Network mounts") + "...", csel.showNetworkMounts),
-				(_("Add bookmark"), csel.do_addbookmark),
 				(_("Create directory"), csel.do_createdir),
 				(_("Sort by") + "...", csel.selectSortby)]
+		if csel.exist_bookmark():
+			menu.append((_("Remove bookmark"), csel.do_addbookmark))
+		else:
+			menu.append((_("Add bookmark"), csel.do_addbookmark))
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
