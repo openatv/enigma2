@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2016-04-02 23:07+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -433,6 +433,10 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
+msgstr ""
+
+#, python-format
+msgid "%03d MB"
 msgstr ""
 
 #, python-format
@@ -1022,6 +1026,10 @@ msgid "%d-%b-%Y"
 msgstr ""
 
 msgid "%d-%m"
+msgstr ""
+
+#, python-format
+msgid "%d.%03d GB"
 msgstr ""
 
 #
@@ -4632,6 +4640,9 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 
@@ -5718,7 +5729,7 @@ msgstr "Fjarlægja stafrænt contour"
 msgid "Dim delay"
 msgstr ""
 
-msgid "Dim the LCD after specified time."
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr ""
 
 #
@@ -7457,11 +7468,6 @@ msgstr ""
 
 msgid "Front USB 3.0"
 msgstr ""
-
-#
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Útgáfa framheila: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11881,9 +11887,6 @@ msgstr ""
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin Filter..."
-msgstr ""
-
 msgid "Plugin browser"
 msgstr ""
 
@@ -12589,6 +12592,11 @@ msgstr ""
 
 msgid "Rec long"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Reception"
+msgstr "Lýsing"
 
 msgid "Reception Settings"
 msgstr ""
@@ -17893,9 +17901,6 @@ msgstr "Móttakari"
 msgid "Tuner type %s"
 msgstr "Gerð móttakara"
 
-msgid "Tuners & scanning"
-msgstr ""
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -18101,6 +18106,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "óþekkt rás"
+
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr ""
 
 msgid "Unmark service as dedicated 3D service"
 msgstr ""
@@ -22110,6 +22118,10 @@ msgstr "stokkið"
 #
 #~ msgid "Enable parental control"
 #~ msgstr "Virkja foreldra stýringu"
+
+#
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Útgáfa framheila: %d"
 
 #, fuzzy
 #~ msgid "Fullview resolution"

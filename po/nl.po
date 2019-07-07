@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2019-05-22 13:14+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
@@ -451,6 +451,10 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1011,6 +1015,10 @@ msgstr "%d-%b-%Y"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4552,6 +4560,10 @@ msgstr "Configureer de breedte van de TrueType-lettertype letters gebruikt voor 
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr "Configureer deze tuner in de eenvoudige of de geavanceerde modus, of lus hem door naar een andere tuner, of kopieer de configuratie, of schakel hem uit."
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Selecteer of de zendernamen, de picons of beide vertoond moeten worden in de EPG."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Selecteer of de zendernamen, de picons of beide vertoond moeten worden in de EPG."
 
@@ -5552,7 +5564,8 @@ msgstr "Digitale contour verwijderen"
 msgid "Dim delay"
 msgstr "Dim vertraging"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Dim het LCD-scherm na ingestelde tijd."
 
 msgid "Direct playback of linked titles without menu"
@@ -7186,10 +7199,6 @@ msgstr "USB Voorzijde"
 
 msgid "Front USB 3.0"
 msgstr "Voorzijde USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Frontprocessor versie: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11157,9 +11166,6 @@ msgstr "Applicatie overzicht"
 msgid "Plugin Filter"
 msgstr "Plugin filter"
 
-msgid "Plugin Filter..."
-msgstr "Plugin filter..."
-
 msgid "Plugin browser"
 msgstr "Applicatie overzicht"
 
@@ -11791,6 +11797,10 @@ msgstr "Rec"
 
 msgid "Rec long"
 msgstr "Rec lang"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Satellieten"
 
 msgid "Reception Settings"
 msgstr "Ontvangstinstellingen"
@@ -16638,9 +16648,6 @@ msgstr "Tuner status UNKNOWN"
 msgid "Tuner type %s"
 msgstr "Tuner type %s"
 
-msgid "Tuners & scanning"
-msgstr "Zenders zoeken"
-
 msgid "Tuning algorithm"
 msgstr "Afstemalgoritme"
 
@@ -16832,6 +16839,10 @@ msgstr "Onbekende groep: %d"
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Onbekende gebruiker: %d"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Als u hier voor 'ja' kiest, ziet u de zender in een klein schermpje in de EPG."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Déselecteer deze zender als 3D zender"
@@ -23122,6 +23133,9 @@ msgstr "zappen"
 #~ msgid "Frontpanel"
 #~ msgstr "Frontpaneel"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Frontprocessor versie: %d"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Vastgelopen Cam controle"
 
@@ -24841,6 +24855,9 @@ msgstr "zappen"
 
 #~ msgid "Plugin"
 #~ msgstr "Plugin"
+
+#~ msgid "Plugin Filter..."
+#~ msgstr "Plugin filter..."
 
 #~ msgid "Plugin manager"
 #~ msgstr "Plugin beheer"
@@ -26951,6 +26968,9 @@ msgstr "zappen"
 
 #~ msgid "Tuner type"
 #~ msgstr "Tunertype"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Zenders zoeken"
 
 #~ msgid "Turn off the media-filter first."
 #~ msgstr "Eerst de media-filter uitschakelen"

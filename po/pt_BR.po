@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2016-04-02 23:11+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: No-Team\n"
@@ -422,6 +422,10 @@ msgstr "%2d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%2d:%02d:%02d"
+
+#, python-format
+msgid "%03d MB"
+msgstr ""
 
 #, python-format
 msgid "%2.1f sec"
@@ -1064,6 +1068,10 @@ msgstr ""
 
 msgid "%d-%m"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%2d:%02d"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4653,6 +4661,9 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 
@@ -5706,7 +5717,7 @@ msgstr "Remoção de contorno digital"
 msgid "Dim delay"
 msgstr ""
 
-msgid "Dim the LCD after specified time."
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr ""
 
 msgid "Direct playback of linked titles without menu"
@@ -7365,10 +7376,6 @@ msgstr ""
 
 msgid "Front USB 3.0"
 msgstr ""
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Versão do processador: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11506,9 +11513,6 @@ msgstr "Plugins instalados"
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin Filter..."
-msgstr ""
-
 msgid "Plugin browser"
 msgstr ""
 
@@ -12167,6 +12171,10 @@ msgstr ""
 
 msgid "Rec long"
 msgstr ""
+
+#, fuzzy
+msgid "Reception"
+msgstr "Descrição"
 
 msgid "Reception Settings"
 msgstr ""
@@ -17234,9 +17242,6 @@ msgstr "Estado do tuner"
 msgid "Tuner type %s"
 msgstr "Tipo de tuner"
 
-msgid "Tuners & scanning"
-msgstr "Buscar canais"
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -17431,6 +17436,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "serviço desconhecido"
+
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr ""
 
 msgid "Unmark service as dedicated 3D service"
 msgstr ""
@@ -21324,6 +21332,9 @@ msgstr "zapped"
 #~ msgid "Filesystem check"
 #~ msgstr "Verificação do sistema de arquivos"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Versão do processador: %d"
+
 #, fuzzy
 #~ msgid "Full screen"
 #~ msgstr "Manter tela"
@@ -21598,6 +21609,9 @@ msgstr "zapped"
 #, fuzzy
 #~ msgid "Tuner status:"
 #~ msgstr "Estado do tuner"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Buscar canais"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Instrução de DiSEqC não permitida"

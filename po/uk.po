@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2019-07-02 10:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
@@ -614,7 +614,6 @@ msgstr "%B %d %Y"
 msgid "%B-%-d-%Y"
 msgstr "%B-%-d-%Y"
 
-
 msgid "%B-%d-%Y"
 msgstr "%B-%d -%Y"
 
@@ -1098,6 +1097,7 @@ msgstr "%d %b %Y"
 msgid "%d-%m"
 msgstr "%d-%m"
 
+#, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d ГБ"
 
@@ -4513,6 +4513,10 @@ msgstr "Налаштування ширини букв шрифту TrueType д�
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr "Налаштуйте тюнер, використовуючи прості або розширені параметри, використайте параметри іншого тюнер, або скопіюйте їх на другий тюнер, або вимкніть його."
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Налаштування відображення назви каналів, піконів, або як в ЕПГ."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Налаштування відображення назви каналів, піконів, або як в ЕПГ."
 
@@ -5504,7 +5508,8 @@ msgstr "Видалення цифрового контуру"
 msgid "Dim delay"
 msgstr "Затримка затемнення"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Затемнення дисплею після вказаного часу."
 
 msgid "Direct playback of linked titles without menu"
@@ -7137,10 +7142,6 @@ msgstr "Передня USB"
 
 msgid "Front USB 3.0"
 msgstr "Передня USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Версія інтерфейсного процесора: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11076,9 +11077,6 @@ msgstr "Провідник плагінів"
 msgid "Plugin Filter"
 msgstr "Фільтр плагінів"
 
-msgid "Plugin Filter..."
-msgstr "Фільтр плагінів..."
-
 msgid "Plugin browser"
 msgstr "Провідник плагінів"
 
@@ -11708,6 +11706,10 @@ msgstr "Запис"
 
 msgid "Rec long"
 msgstr "Запис довге натискання"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Список прийому"
 
 msgid "Reception Settings"
 msgstr "Параметри прийому"
@@ -16542,9 +16544,6 @@ msgstr "Статус тюнера НЕВІДОМО"
 msgid "Tuner type %s"
 msgstr "Тип тюнера %s"
 
-msgid "Tuners & scanning"
-msgstr "Тюнер & Пошук"
-
 msgid "Tuning algorithm"
 msgstr "Алгоритм налаштування"
 
@@ -16734,6 +16733,10 @@ msgstr "Невідома група: %d"
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Невідомий користувач: %d"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Якщо вибрано 'так', в телегід буде включений перегляд каналів."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Зняти мітку з каналу позначеного, як 3D канал"
@@ -20274,3 +20277,12 @@ msgstr "переключений"
 
 msgid "zapping"
 msgstr "переключення"
+
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Версія інтерфейсного процесора: %d"
+
+#~ msgid "Plugin Filter..."
+#~ msgstr "Фільтр плагінів..."
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Тюнер & Пошук"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -427,6 +427,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "匹配時間跨度: %02d:%02d - %02d:%02d"
+
+#, python-format
+msgid "%03d MB"
+msgstr ""
 
 #, python-format
 msgid "%2.1f sec"
@@ -999,6 +1003,10 @@ msgid "%d-%b-%Y"
 msgstr ""
 
 msgid "%d-%m"
+msgstr ""
+
+#, python-format
+msgid "%d.%03d GB"
 msgstr ""
 
 msgid "%d.%B %Y"
@@ -4650,6 +4658,9 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 
@@ -5723,7 +5734,7 @@ msgstr "數字等高線消除"
 msgid "Dim delay"
 msgstr "延遲"
 
-msgid "Dim the LCD after specified time."
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr ""
 
 msgid "Direct playback of linked titles without menu"
@@ -7441,10 +7452,6 @@ msgstr ""
 
 msgid "Front USB 3.0"
 msgstr ""
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "前端版本: %d"
 
 #, fuzzy, python-format
 msgid "Frontprocessor version: %s"
@@ -11708,10 +11715,6 @@ msgstr "流覽插件"
 msgid "Plugin Filter"
 msgstr "流覽插件"
 
-#, fuzzy
-msgid "Plugin Filter..."
-msgstr "流覽插件"
-
 msgid "Plugin browser"
 msgstr "流覽插件"
 
@@ -12403,6 +12406,10 @@ msgstr ""
 
 msgid "Rec long"
 msgstr ""
+
+#, fuzzy
+msgid "Reception"
+msgstr "接收設定"
 
 msgid "Reception Settings"
 msgstr "接收設定"
@@ -17614,9 +17621,6 @@ msgstr "調諧器資訊"
 msgid "Tuner type %s"
 msgstr "定時類型"
 
-msgid "Tuners & scanning"
-msgstr ""
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -17816,6 +17820,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "未知頻道"
+
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr ""
 
 msgid "Unmark service as dedicated 3D service"
 msgstr ""
@@ -22819,6 +22826,9 @@ msgstr "轉自"
 #~ msgid "From"
 #~ msgstr "從"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "前端版本: %d"
+
 #~ msgid "Fsck failed"
 #~ msgstr "Fsck檢視失敗"
 
@@ -23752,6 +23762,10 @@ msgstr "轉自"
 
 #~ msgid "Please wait while searching for removable packages..."
 #~ msgstr "請稍候,正在搜尋可移除的套裝軟體..."
+
+#, fuzzy
+#~ msgid "Plugin Filter..."
+#~ msgstr "流覽插件"
 
 #~ msgid "Plugin: %(plugin)s , Version: %(version)s"
 #~ msgstr "插件: %(插件)s , 版本: %(版本)s"

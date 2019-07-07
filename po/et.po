@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2019-05-26 15:04+0300\n"
 "Last-Translator: rimas <rimas@domeen.ee>\n"
 "Language-Team: Digi-tv.ee\n"
@@ -447,6 +447,10 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1007,6 +1011,10 @@ msgstr "%d-%b-%Y"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4475,6 +4483,10 @@ msgstr "Kohanda teletekstis kasutatava TrueType kirjatüübi tähemärkide laius
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr "Seadista see tuuner kasutades lihtsat või täpsemaid valikuid. Võimalik on ka läbiviik teisele tuunerile, teise tuuneri seadete kopeerimine või tuuneri keelamine."
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Määra, kas saatekavas näidatakse kanalinimesi, pikoneid või mõlemaid."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Määra, kas saatekavas näidatakse kanalinimesi, pikoneid või mõlemaid."
 
@@ -5481,7 +5493,8 @@ msgstr "Digitaalse kontuuri kõrvaldamine"
 msgid "Dim delay"
 msgstr "Tuhmistamise viiteaeg"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "LCD tuhmistamine pärast määratud aega."
 
 msgid "Direct playback of linked titles without menu"
@@ -7140,10 +7153,6 @@ msgstr "Esikülje USB port"
 
 msgid "Front USB 3.0"
 msgstr "Esikülje USB 3.0 port"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Esiprotsessori versioon: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11175,9 +11184,6 @@ msgstr "Pluginad"
 msgid "Plugin Filter"
 msgstr "Pluginate filter"
 
-msgid "Plugin Filter..."
-msgstr "Pluginate filter"
-
 msgid "Plugin browser"
 msgstr "Pluginad"
 
@@ -11814,6 +11820,10 @@ msgstr "Rec"
 
 msgid "Rec long"
 msgstr "REC - pikk"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Üldnimekirjad"
 
 msgid "Reception Settings"
 msgstr "Vastuvõtu sätted"
@@ -16761,9 +16771,6 @@ msgstr "Tuuneri olek TEADMATA"
 msgid "Tuner type %s"
 msgstr "Tuuneri tüüp %s"
 
-msgid "Tuners & scanning"
-msgstr "Kanaliotsing"
-
 msgid "Tuning algorithm"
 msgstr "Häälestumise algorütm"
 
@@ -16957,6 +16964,10 @@ msgstr "Tundmatu grupp: %d"
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Tundmatu kasutaja: %d"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Kui lubatud, saab saatekavas kanaleid eelvaadelda."
 
 #
 msgid "Unmark service as dedicated 3D service"
@@ -21024,6 +21035,9 @@ msgstr "Kanalivahetus"
 #~ msgid "Free To Air"
 #~ msgstr "FTA"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Esiprotsessori versioon: %d"
+
 # Softcam Setup
 #~ msgid "Frozen Cam Check"
 #~ msgstr "EMU hangumise kontroll"
@@ -21410,6 +21424,9 @@ msgstr "Kanalivahetus"
 #~ msgid "Plugin"
 #~ msgstr "Plugin"
 
+#~ msgid "Plugin Filter..."
+#~ msgstr "Pluginate filter"
+
 #~ msgid "PluginDetails"
 #~ msgstr "Plugina andmed"
 
@@ -21744,6 +21761,9 @@ msgstr "Kanalivahetus"
 
 #~ msgid "Tuner type"
 #~ msgstr "Tuuneri tüüp"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Kanaliotsing"
 
 #~ msgid ""
 #~ "USB = Do you want to make a back-up on USB?\n"

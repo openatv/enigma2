@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -462,6 +462,10 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
+msgstr ""
+
+#, python-format
+msgid "%03d MB"
 msgstr ""
 
 # UsageConfig.py
@@ -1031,6 +1035,10 @@ msgstr ""
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, python-format
+msgid "%d.%03d GB"
+msgstr ""
 
 #
 msgid "%d.%B %Y"
@@ -4673,6 +4681,11 @@ msgid "Configure this tuner using simple or advanced options, or loop it through
 msgstr "Konfigurieren Sie diesen Tuner mit einfachen oder erweiterten Optionen oder führen Sie ihn zu einem anderen Tuner durch oder kopieren Sie eine Konfiguration von einem anderen Tuner oder deaktivieren Sie sie."
 
 #
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Einstellung, um die Sendernamen, Kanalnummern, Picons oder alle drei im EPG anzuzeigen."
+
+#
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Einstellung, um die Sendernamen, Kanalnummern, Picons oder alle drei im EPG anzuzeigen."
 
@@ -5727,7 +5740,8 @@ msgstr "Entferne digitale Konturen"
 msgid "Dim delay"
 msgstr "Ausblendungs-Verzögerung"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Das Display wird nach der angegebenen Zeit auf den Wert 'Helligkeit (gedimmt)' runtergeregelt."
 
 #
@@ -7502,11 +7516,6 @@ msgstr ""
 
 msgid "Front USB 3.0"
 msgstr ""
-
-#
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Version Frontprozessor: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11799,9 +11808,6 @@ msgstr "Erweiterungsmenü"
 msgid "Plugin Filter"
 msgstr "Plugin-Filter"
 
-msgid "Plugin Filter..."
-msgstr "Plugin-Filter..."
-
 # löschen?
 # msgid "Plugin Browser"
 # msgstr "Plugin Manager"
@@ -12488,6 +12494,10 @@ msgstr "Aufnahme"
 
 msgid "Rec long"
 msgstr "Aufnahme lang"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Empfangslisten"
 
 msgid "Reception Settings"
 msgstr "Empfangseinstellungen"
@@ -17704,10 +17714,6 @@ msgstr "Tuner-Status UNBEKANNT"
 msgid "Tuner type %s"
 msgstr "Tuner-Art %s"
 
-#
-msgid "Tuners & scanning"
-msgstr "Empfang"
-
 msgid "Tuning algorithm"
 msgstr "Tuning-Algorithmus"
 
@@ -17914,6 +17920,10 @@ msgstr ""
 #, python-format
 msgid "Unknown user: %d"
 msgstr ""
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Außer bei 'Deaktiviert' erhalten Sie eine Programmvorschau im EPG."
 
 #
 msgid "Unmark service as dedicated 3D service"
@@ -23054,6 +23064,10 @@ msgstr "Umschalten"
 #~ msgid "Free to Air"
 #~ msgstr "FreeTV (FTA)"
 
+#
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Version Frontprozessor: %d"
+
 # Softcam Setup
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Auf eingefrorene CAM prüfen"
@@ -23935,6 +23949,9 @@ msgstr "Umschalten"
 
 #~ msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 #~ msgstr "Bitte: Den Receiver keinesfalls neustarten oder ausschalten!\n"
+
+#~ msgid "Plugin Filter..."
+#~ msgstr "Plugin-Filter..."
 
 #
 #~ msgid "Polarity"
@@ -24931,6 +24948,10 @@ msgstr "Umschalten"
 #
 #~ msgid "Tuner type"
 #~ msgstr "Tuner-Typ"
+
+#
+#~ msgid "Tuners & scanning"
+#~ msgstr "Empfang"
 
 #
 #~ msgid "Two partitions (50% - 50%)"

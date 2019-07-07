@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 v2.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2019-02-23 20:19+0100\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: alec <alex1vagyok@gmail.com>\n"
@@ -445,6 +445,10 @@ msgstr "%02d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d.%02d - %02d.%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1103,6 +1107,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 msgid "%d.%B %Y"
 msgstr "%Y. %B %d."
@@ -4580,6 +4588,10 @@ msgstr "A teletexthez használt TrueType betű készletek szélességének beál
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Állítsa be a csatorna név és a 'picon'-okat vagy mindkettő láthatóságát az EPG műsorújságban."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Állítsa be a csatorna név és a 'picon'-okat vagy mindkettő láthatóságát az EPG műsorújságban."
 
@@ -5590,7 +5602,8 @@ msgstr "Digitális körvonal-eltávolítás"
 msgid "Dim delay"
 msgstr "Elhalványodási késleltetés"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Zárja be az LCD-t meghatározott idő elteltével."
 
 msgid "Direct playback of linked titles without menu"
@@ -7229,10 +7242,6 @@ msgstr "Elülső USB"
 
 msgid "Front USB 3.0"
 msgstr "Elülső USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Processzor verziója: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11252,9 +11261,6 @@ msgstr "Bővítménykezelő"
 msgid "Plugin Filter"
 msgstr "Bővítmények szűrése"
 
-msgid "Plugin Filter..."
-msgstr "Bővítmények szűrése..."
-
 msgid "Plugin browser"
 msgstr "Bővítménykezelő"
 
@@ -11881,6 +11887,10 @@ msgstr "Felvétel"
 
 msgid "Rec long"
 msgstr "Felvétel hosszan"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Vételi listák"
 
 msgid "Reception Settings"
 msgstr "Vételi beállítások"
@@ -16780,9 +16790,6 @@ msgstr "Tuner állapota ISMERETLEN"
 msgid "Tuner type %s"
 msgstr "Tuner típusa: %s"
 
-msgid "Tuners & scanning"
-msgstr "Csatorna keresése"
-
 msgid "Tuning algorithm"
 msgstr "Tuningolási algoritmus"
 
@@ -16975,6 +16982,10 @@ msgstr "ismeretlen hiba"
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "ismeretlen csatorna"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Ha az 'igen'-t választja, megtekintheti az adott csatorna előnézeti képét."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "A csatorna megjelölés 'dedikált 3D csatorna' eltávolítása"
@@ -20980,6 +20991,9 @@ msgstr "ugrás folyamatban"
 #~ msgid "Free To Air"
 #~ msgstr "Szabadon fogható"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Processzor verziója: %d"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Cam ellenőrzés befagyasztása"
 
@@ -21272,6 +21286,9 @@ msgstr "ugrás folyamatban"
 #~ msgid "Plugin"
 #~ msgstr "Bővítmény"
 
+#~ msgid "Plugin Filter..."
+#~ msgstr "Bővítmények szűrése..."
+
 #~ msgid "PluginDetails"
 #~ msgstr "PluginDetails"
 
@@ -21538,6 +21555,9 @@ msgstr "ugrás folyamatban"
 
 #~ msgid "Tuner type"
 #~ msgstr "Tuner típus"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Csatorna keresése"
 
 #~ msgid ""
 #~ "USB = Do you want to make a back-up on USB?\n"

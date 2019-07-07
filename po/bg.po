@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2017-11-21 13:26+0200\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -440,6 +440,10 @@ msgstr "%02d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%2d:%02d:%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1099,6 +1103,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4603,6 +4611,10 @@ msgstr "Конфигуриране на ширина на TrueType шрифт н
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Конфигурирайте за да покажете имената на каналите, пиконите или и двете в EPG."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Конфигурирайте за да покажете имената на каналите, пиконите или и двете в EPG."
 
@@ -5624,7 +5636,8 @@ msgstr "Отстраняване на цифровия контур"
 msgid "Dim delay"
 msgstr "Dim закъснение"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Затъмняване на дисплея след определено време."
 
 msgid "Direct playback of linked titles without menu"
@@ -7270,10 +7283,6 @@ msgstr "Предно USB"
 
 msgid "Front USB 3.0"
 msgstr "Предно USB 3.0"
-
-#, fuzzy, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Версия на предния процесор: %s"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11328,9 +11337,6 @@ msgstr "Браузър за плъгини"
 msgid "Plugin Filter"
 msgstr "Филтър за плъгини"
 
-msgid "Plugin Filter..."
-msgstr "Филтър за плъгини..."
-
 msgid "Plugin browser"
 msgstr "Браузър за плъгини"
 
@@ -11976,6 +11982,10 @@ msgstr "Запис"
 
 msgid "Rec long"
 msgstr "Продължителен запис"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Рецепция списъци"
 
 msgid "Reception Settings"
 msgstr "Настройки на рецепцията"
@@ -16935,9 +16945,6 @@ msgstr "Състояние на тунера"
 msgid "Tuner type %s"
 msgstr "Тип тунер"
 
-msgid "Tuners & scanning"
-msgstr "Търсене на сервизи"
-
 msgid "Tuning algorithm"
 msgstr "Настройване алгоритъм"
 
@@ -17129,6 +17136,10 @@ msgstr "неизвестна грешка"
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "неизвестен сервиз"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Ако е зададено 'да', можете да прегледате каналите в  EPG списъка."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Размаркиране на сервизи като посветен 3D сервиз"
@@ -21141,6 +21152,10 @@ msgstr "превключено на"
 #~ msgid "Frequency values must be between 10701 MHz and 12750 MHz"
 #~ msgstr "Стойностите на честотата трябва да бъдат между 10701 MHz и 12750 MHz"
 
+#, fuzzy
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Версия на предния процесор: %s"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Проверка замръзнал емулатор"
 
@@ -21414,6 +21429,9 @@ msgstr "превключено на"
 #~ msgid "Plugin"
 #~ msgstr "Плъгин"
 
+#~ msgid "Plugin Filter..."
+#~ msgstr "Филтър за плъгини..."
+
 #~ msgid "PluginDetails"
 #~ msgstr "Детайли на плъгините"
 
@@ -21684,6 +21702,9 @@ msgstr "превключено на"
 
 #~ msgid "Tuner status %s"
 #~ msgstr "Състояние на тунера %s"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Търсене на сервизи"
 
 #~ msgid ""
 #~ "USB = Do you want to make a back-up on USB?\n"

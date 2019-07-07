@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2019-03-04 19:16+0100\n"
 "Last-Translator: Apachi70 <apachi70000@gmail.com>\n"
 "Language-Team: Turkish <apachi70000@gmail.com>Apachi70\n"
@@ -463,6 +463,10 @@ msgstr "%2d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%2d:%02d:%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1121,6 +1125,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 #
 msgid "%d.%B %Y"
@@ -4871,6 +4879,10 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Kanal isimleri, pikonlar veya her ikisinin EPG de gösterilmesini belirleyin."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Kanal isimleri, pikonlar veya her ikisinin EPG de gösterilmesini belirleyin."
 
@@ -5978,7 +5990,8 @@ msgstr "Sayısal çerçeve kaldırma"
 msgid "Dim delay"
 msgstr "Loş gecikme"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Belirtilen süreden sonra LCD'yi kısın."
 
 #
@@ -7774,10 +7787,6 @@ msgstr "Ön USB"
 
 msgid "Front USB 3.0"
 msgstr "Ön USB 3.0"
-
-#, fuzzy, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Önişlemci sürümü: %s"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -12176,9 +12185,6 @@ msgstr "Eklentiler Listesi"
 msgid "Plugin Filter"
 msgstr "Eklenti Filtresi"
 
-msgid "Plugin Filter..."
-msgstr "Eklenti Filtresi ..."
-
 msgid "Plugin browser"
 msgstr "Eklenti tarayıcısı"
 
@@ -12888,6 +12894,10 @@ msgstr "Kayıt"
 #, fuzzy
 msgid "Rec long"
 msgstr "Kırmızı uzun"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Resepsiyon listeleri"
 
 msgid "Reception Settings"
 msgstr "Resepsiyon Ayarları"
@@ -18201,9 +18211,6 @@ msgstr "Tuner durumu"
 msgid "Tuner type %s"
 msgstr "Tuner tipi"
 
-msgid "Tuners & scanning"
-msgstr "Kanal arama"
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -18413,6 +18420,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "bilinmeyen kanal"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "'evet' EPG listesinde kanal önizlemesi görüntülenir."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Hizmet adanmış 3D hizmeti olarak işaretini kaldırın"
@@ -22541,6 +22552,10 @@ msgstr "zapped"
 #~ msgid "Free To Air"
 #~ msgstr "Şifresiz"
 
+#, fuzzy
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Önişlemci sürümü: %s"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Dondurulmuş Cam Kontrolü"
 
@@ -22698,6 +22713,9 @@ msgstr "zapped"
 #~ msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 #~ msgstr "Lütfen: STB'nizi yeniden SÖKMEYİN ve gücü kapatmayın.\n"
 
+#~ msgid "Plugin Filter..."
+#~ msgstr "Eklenti Filtresi ..."
+
 #~ msgid "Protocol:"
 #~ msgstr "Protokol:"
 
@@ -22825,6 +22843,9 @@ msgstr "zapped"
 
 #~ msgid "Tuner status %s"
 #~ msgstr "Tuner durumu %s"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Kanal arama"
 
 #~ msgid ""
 #~ "USB = Do you want to make a back-up on USB?\n"

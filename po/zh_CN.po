@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2018-11-29 20:58+0800\n"
 "Last-Translator: touch时代 2017-2-9 ATV-Full Version: 1.5\n"
 "Language-Team: nobody  2017-3-10 Version: 1.8\n"
@@ -441,6 +441,10 @@ msgstr "%02d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%2d:%02d:%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1092,6 +1096,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4602,6 +4610,10 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "配置显示频道名称，picons，或两者在EPG中."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "配置显示频道名称，picons，或两者在EPG中."
 
@@ -5629,7 +5641,8 @@ msgstr "数字等高线消除"
 msgid "Dim delay"
 msgstr "渐暗延迟"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "在指定的时间后使液晶屏渐暗."
 
 msgid "Direct playback of linked titles without menu"
@@ -7288,10 +7301,6 @@ msgstr "前置USB"
 
 msgid "Front USB 3.0"
 msgstr "前置USB 3.0"
-
-#, fuzzy, python-format
-msgid "Frontprocessor version: %d"
-msgstr "前端处理器版本：%s"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11352,9 +11361,6 @@ msgstr "插件浏览器"
 msgid "Plugin Filter"
 msgstr "插件筛选"
 
-msgid "Plugin Filter..."
-msgstr "插件筛选..."
-
 msgid "Plugin browser"
 msgstr "插件浏览器"
 
@@ -12006,6 +12012,10 @@ msgstr "录像"
 
 msgid "Rec long"
 msgstr "录像 长按"
+
+#, fuzzy
+msgid "Reception"
+msgstr "接收列表"
 
 msgid "Reception Settings"
 msgstr "接收设置"
@@ -16967,9 +16977,6 @@ msgstr "调谐器状态"
 msgid "Tuner type %s"
 msgstr "调谐器类型"
 
-msgid "Tuners & scanning"
-msgstr "频道扫描"
-
 msgid "Tuning algorithm"
 msgstr "调整算法"
 
@@ -17163,6 +17170,10 @@ msgstr "未知错误"
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "未知频道"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "如果设置为“是”你可以预览频道列表的EPG."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "取消专用3D频道标记"
@@ -21122,6 +21133,10 @@ msgstr "切换中"
 #~ msgid "Free To Air"
 #~ msgstr "免费节目"
 
+#, fuzzy
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "前端处理器版本：%s"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Frozen Cam 检查"
 
@@ -21330,6 +21345,9 @@ msgstr "切换中"
 #~ msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 #~ msgstr "请不要重启机顶盒和关闭电源.\n"
 
+#~ msgid "Plugin Filter..."
+#~ msgstr "插件筛选..."
+
 #~ msgid "Protocol:"
 #~ msgstr "协议:"
 
@@ -21505,6 +21523,9 @@ msgstr "切换中"
 
 #~ msgid "Tuner status %s"
 #~ msgstr "调谐器状态%s"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "频道扫描"
 
 #~ msgid ""
 #~ "USB = Do you want to make a back-up on USB?\n"

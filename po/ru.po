@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: rx\n"
 "Language-Team: Image OpenATV\n"
@@ -440,6 +440,10 @@ msgstr "%02d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d.%02d - %02d.%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d Мб"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1106,6 +1110,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d Гб"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4577,6 +4585,10 @@ msgstr "Установите ширину шрифта TrueType, использ�
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Настройка отображения названий каналов и/или пиконов в ТВ-гиде"
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Настройка отображения названий каналов и/или пиконов в ТВ-гиде"
 
@@ -5595,7 +5607,8 @@ msgstr "Удалить цифровые контуры"
 msgid "Dim delay"
 msgstr "Задержка затемнения"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Яркость LCD дисплея после определенного времени"
 
 msgid "Direct playback of linked titles without menu"
@@ -7252,10 +7265,6 @@ msgstr "USB передний"
 
 msgid "Front USB 3.0"
 msgstr "Передний USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Версия фронтпроцессора: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11299,9 +11308,6 @@ msgstr "Плагины"
 msgid "Plugin Filter"
 msgstr "Фильтрация плагинов"
 
-msgid "Plugin Filter..."
-msgstr "Фильтрация плагинов"
-
 msgid "Plugin browser"
 msgstr "Установленные плагины"
 
@@ -11941,6 +11947,10 @@ msgstr "Запись"
 
 msgid "Rec long"
 msgstr "Запись, долгая"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Вид списка"
 
 msgid "Reception Settings"
 msgstr "Параметры приёма"
@@ -16881,9 +16891,6 @@ msgstr "Состояние тюнера: НЕИЗВЕСТНО"
 msgid "Tuner type %s"
 msgstr "Тип тюнера %s"
 
-msgid "Tuners & scanning"
-msgstr "Поиск каналов"
-
 msgid "Tuning algorithm"
 msgstr "Алгоритм настройки"
 
@@ -17074,6 +17081,10 @@ msgstr "неизвестная ошибка"
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "Неизвестный канал"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Если выберите 'Да', в ТВ-гиде будет включен предпросмотр каналов"
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Убрать режим 3D сервиса"
@@ -22703,6 +22714,9 @@ msgstr "Переключение"
 #~ msgid "Frontpanel"
 #~ msgstr "Дисплей"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Версия фронтпроцессора: %d"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Проверка не запущенных CAM"
 
@@ -23867,6 +23881,9 @@ msgstr "Переключение"
 #~ msgid "Please: DO NOT reboot your Vu+ and turn off the power.\n"
 #~ msgstr "Не перезагружайте ваш ресивер и не выключите питание!\n"
 
+#~ msgid "Plugin Filter..."
+#~ msgstr "Фильтрация плагинов"
+
 #~ msgid "Plugin History"
 #~ msgstr "История плагина"
 
@@ -24874,6 +24891,9 @@ msgstr "Переключение"
 
 #~ msgid "Tuner type"
 #~ msgstr "Тип тюнера"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Поиск каналов"
 
 #~ msgid "Turn off the media-filter first."
 #~ msgstr "Сначала выключите фильтр"

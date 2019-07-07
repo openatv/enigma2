@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2017-12-30 18:08+0100\n"
 "Last-Translator: Lorenzo <djmesias@yahoo.es>\n"
 "Language-Team: Team SFTEAM<angelo2807@hotmail.com>\n"
@@ -459,6 +459,10 @@ msgstr "%2d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d/%02d, %02d:%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1125,6 +1129,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 #
 msgid "%d.%B %Y"
@@ -4893,6 +4901,11 @@ msgid "Configure this tuner using simple or advanced options, or loop it through
 msgstr ""
 
 #
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Elige si mostrar nombres de canal, picon o ambos en el EPG."
+
+#
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Elige si mostrar nombres de canal, picon o ambos en el EPG."
 
@@ -5997,7 +6010,8 @@ msgstr "Borrar contorno digital"
 msgid "Dim delay"
 msgstr "Retraso de la atenuación"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Atenuar el LCD tras un tiempo específico."
 
 #
@@ -7815,11 +7829,6 @@ msgstr "USB frontal"
 
 msgid "Front USB 3.0"
 msgstr "USB 3.0 frontal"
-
-#
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Versión frontprocessor: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -12278,9 +12287,6 @@ msgstr "Buscador de complementos"
 msgid "Plugin Filter"
 msgstr "Filtrar complementos"
 
-msgid "Plugin Filter..."
-msgstr "Filtrar complementos..."
-
 # löschen?
 # msgid "Plugin Browser"
 # msgstr "Plugin Manager"
@@ -12998,6 +13004,10 @@ msgstr "Grabar"
 #, fuzzy
 msgid "Rec long"
 msgstr "Rojo largo"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Listas de recepción"
 
 msgid "Reception Settings"
 msgstr "Ajustes de recepción"
@@ -18404,10 +18414,6 @@ msgstr "Estado del sintonizador"
 msgid "Tuner type %s"
 msgstr "Tipo de sintonizador"
 
-#
-msgid "Tuners & scanning"
-msgstr "Búsqueda de canales"
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -18623,6 +18629,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "Canal desconocido"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Si se ajusta a 'sí', podrás previsualizar canales en la lista de EPG."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Desmarca el servicio como servicio 3D dedicado"
@@ -23851,6 +23861,10 @@ msgstr "Zapping"
 #~ msgid "Frequency values must be between 10700 and 12750 (or 3000 and 4200 in the case of C-band satellites)"
 #~ msgstr "Los valores de la frecuencia deben estar entre 10700 y 12750 (o 3000 y 4000 en el caso de satélites de Banda-C)"
 
+#
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Versión frontprocessor: %d"
+
 # Softcam Setup
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Comprobación de CAM"
@@ -24819,6 +24833,9 @@ msgstr "Zapping"
 
 #~ msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 #~ msgstr "Por favor: NO reinicies ni apagues tu receptor.\n"
+
+#~ msgid "Plugin Filter..."
+#~ msgstr "Filtrar complementos..."
 
 #
 #~ msgid "Polarity"
@@ -25899,6 +25916,10 @@ msgstr "Zapping"
 
 #~ msgid "Tuner status %s"
 #~ msgstr "Estado del sintonizador% s"
+
+#
+#~ msgid "Tuners & scanning"
+#~ msgstr "Búsqueda de canales"
 
 #
 #~ msgid "Two partitions (50% - 50%)"
