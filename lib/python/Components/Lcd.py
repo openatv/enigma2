@@ -358,6 +358,68 @@ def InitLcd():
 		def setLCDminitvfps(configElement):
 			ilcd.setLCDMiniTVFPS(configElement.value)
 
+		def writeFp(fp, configElement):
+			fp = "/proc/stb/fp/" + fp
+			if fileExists(fp):
+				f = open(fp, "w")
+				f.write(configElement.value)
+				f.close()
+
+		def setLedPowerColor(configElement):
+			# This is set briefly on restart (before symbolspoller is created),
+			# so ignore it just in case it's not blue.
+			if not config.usage.lcd_ledpowerrec.value:
+				writeFp("ledpowercolor", configElement)
+
+		def setLedStandbyColor(configElement):
+			writeFp("ledstandbycolor", configElement)
+
+		def setLedSuspendColor(configElement):
+			writeFp("ledsuspendledcolor", configElement)
+
+		def setPower4x7On(configElement):
+			writeFp("power4x7on", configElement)
+
+		def setPower4x7Standby(configElement):
+			writeFp("power4x7standby", configElement)
+
+		def setPower4x7Suspend(configElement):
+			writeFp("power4x7suspend", configElement)
+
+		config.usage.lcd_ledpowerrec = ConfigYesNo(default=False)
+
+		ledchoices = [("0", _("off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))]
+		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=ledchoices[:])
+		config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
+
+		config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=ledchoices[:])
+		config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
+
+		def doLedPowerRec(configElement):
+			if configElement.value:
+				try:
+					from Components.VfdSymbols import symbolspoller
+					symbolspoller.Recording()
+				except:
+					pass
+			else:
+				setLedPowerColor(config.usage.lcd_ledpowercolor)
+				setLedStandbyColor(config.usage.lcd_ledstandbycolor)
+
+		config.usage.lcd_ledpowerrec.addNotifier(doLedPowerRec)
+
+		config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=ledchoices[:])
+		config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
+
+		config.usage.lcd_power4x7on = ConfigSelection(default="on", choices=[("off", _("off")), ("on", _("on"))])
+		config.usage.lcd_power4x7on.addNotifier(setPower4x7On)
+
+		config.usage.lcd_power4x7standby = ConfigSelection(default="off", choices=[("off", _("off")), ("on", _("on"))])
+		config.usage.lcd_power4x7standby.addNotifier(setPower4x7Standby)
+
+		config.usage.lcd_power4x7suspend = ConfigSelection(default="off", choices=[("off", _("off")), ("on", _("on"))])
+		config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
+
 		brightness_default = ilcd.oled_brightness_scale
 		standby_default = ilcd.oled_brightness_scale * 2 / 3
 

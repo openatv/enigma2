@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap, HelpableNumberActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, moviePlayState
+from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, moviePlayState, is_counted
 from Components.DiskInfo import DiskInfo
 from Tools.Trashcan import TrashInfo
 from Components.Pixmap import Pixmap, MultiPixmap
@@ -58,6 +58,9 @@ config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
 config.movielist.use_last_videodirpos = ConfigYesNo(default=True)
+config.movielist.subdir_count = ConfigYesNo(default=False)
+config.movielist.counteddirs = ConfigLocations()
+config.movielist.uncounteddirs = ConfigLocations()
 config.movielist.stop_service = ConfigYesNo(default=True)  # Unused - implementation removed
 
 # Clear config.movielist.stop_service from the settings file.
@@ -428,6 +431,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 			getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative slim screen.")),
 			getConfigListEntry(_("Use location aliases"), config.misc.location_aliases, _("Show paths with a custom name.")),
 			getConfigListEntry(_("Use adaptive date display"), config.movielist.use_fuzzy_dates, _("Adaptive date display allows recent dates to be displayed as 'Today' or 'Yesterday'.  It hides the year for recordings made this year.  It hides the day of the week for recordings made in previous years.")),
+			getConfigListEntry(_("Show directory counts"), config.movielist.subdir_count, _("Show the count of files and directories within each subdirectory. Individual subdirectories can be set independently of this option.")),
 			getConfigListEntry(_("Show movie durations"), config.movielist.showlengths, _("Show movie durations in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
 			getConfigListEntry(_("Show movie file sizes"), config.movielist.showsizes, _("Show movie file sizes in the movie list. When the setting is 'auto', the column is only shown when it is used as a sort key.")),
 			getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
@@ -610,8 +614,15 @@ class MovieContextMenu(Screen, ProtectedScreen):
 						menu += [(csel.do_reset, _("Reset playback position"))]
 					if service.getPath().endswith('.ts'):
 						menu += [(csel.do_decode, _("Start offline decode"))]
-				elif BlurayPlayer is None and csel.isBlurayFolderAndFile(service):
-					menu += [(csel.playBlurayFile, _("Auto play blu-ray file"))]
+				else:
+					if BlurayPlayer is None and csel.isBlurayFolderAndFile(service):
+						menu += [(csel.playBlurayFile, _("Auto play blu-ray file"))]
+					count = is_counted(service.getPath())
+					if count is not None:
+						if count:
+							menu += [(csel.do_counted, _("Disable counting"))]
+						else:
+							menu += [(csel.do_counted, _("Enable counting"))]
 				if config.ParentalControl.hideBlacklist.value and config.ParentalControl.storeservicepin.value != "never":
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
@@ -879,8 +890,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			"yellowlong": (self.btn_yellowlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellowlong")),
 			"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
 		}, description=_("User-selectable functions"))
-		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "MovieSelectionActions"], {
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "MovieSelectionActions", "TimerMediaEPGActions"], {
 			"cancel": (self.abort, _("Exit movie list")),
+			"timer": (self.abortToTimer, _("Exit, show timer list")),
+			"epg": (self.abortToEPG, _("Exit, show EPG")),
 			"ok": (self.itemSelected, _("Select movie")),
 			"toggleMark": (self.toggleMark, _("Toggle mark")),
 			"invertMarks": (self.invertMarks, _("Invert marks (of files or directories)")),
@@ -1877,7 +1890,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.setDescriptionState(newType)
 		self.updateDescription()
 
-	def abort(self):
+	def abort(self, new_screen=None):
 		global playlist
 		del playlist[:]
 		if self.list.playInBackground:
@@ -1898,7 +1911,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if self.session.nav.getCurrentlyPlayingServiceReference():
 			if not infobar.timeshiftEnabled() and ':0:/' not in self.session.nav.getCurrentlyPlayingServiceReference().toString():
 				self.session.nav.stopService()
-		self.close(None)
+		self.close(new_screen)
+
+	def abortToTimer(self):
+		self.abort("timer")
+
+	def abortToEPG(self):
+		self.abort("epg")
 
 	def saveconfig(self):
 		config.movielist.last_selected_tags.value = self.selected_tags
@@ -2275,6 +2294,29 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		config.movielist.videodirs.value = bookmarks
 		config.movielist.videodirs.save()
 
+	def do_counted(self):
+		item = self.getCurrentSelection()
+		if not isFolder(item):
+			return
+		path = item[0].getPath().rstrip('/')
+		counted = config.movielist.counteddirs.value
+		uncounted = config.movielist.uncounteddirs.value
+		if is_counted(item[0].getPath()):
+			if config.movielist.subdir_count.value and path.startswith(defaultMoviePath()):
+				uncounted += [path]
+			if path in counted:
+				counted.remove(path)
+		else:
+			if not config.movielist.subdir_count.value or not path.startswith(defaultMoviePath()):
+				counted += [path]
+			if path in uncounted:
+				uncounted.remove(path)
+		config.movielist.counteddirs.value = counted
+		config.movielist.uncounteddirs.value = uncounted
+		config.movielist.counteddirs.save()
+		config.movielist.uncounteddirs.save()
+		self["list"].invalidateCurrentItem()
+
 	def can_createdir(self, item):
 		return True
 
@@ -2452,6 +2494,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				moveServiceFiles(current, dest, name)
 				self["list"].removeService(current)
 			self.updateFileFolderCounts()
+			self["list"].invalidatePathItem(dest)
 		except Exception, e:
 			mbox = self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
@@ -2489,6 +2532,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				current = item[0]
 				name = item[1] and item[1].getName(current) or None
 				copyServiceFiles(current, dest, name)
+			self["list"].invalidatePathItem(dest)
 		except Exception, e:
 			mbox = self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())

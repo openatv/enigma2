@@ -2,6 +2,8 @@ from Components.ActionMap import ActionMap
 from Components.config import config, configfile, getConfigListEntry, ConfigSubList, ConfigSubsection
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
+from Components.Pixmap import Pixmap
+from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -25,6 +27,10 @@ class ClientModeScreen(ConfigListScreen, Screen):
 		except: # for start wizard
 			title = screentitle
 			self["menu_path_compressed"] = StaticText("")
+		self['footnote'] = Label()
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
 		Screen.setTitle(self, title)
 		self.skinName = ["ClientModeScreen", "Setup"]
 		self.initial_state = config.clientmode.enabled.value

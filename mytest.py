@@ -727,9 +727,9 @@ if not os.path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/IceTV")):
 		config.plugins.icetv.save()
 		configfile.save()
 
-# profile("Init:DebugLogCheck")
-# import Screens.LogManager
-# Screens.LogManager.AutoLogManager()
+profile("Init:DebugLogCheck")
+import Screens.LogManager
+Screens.LogManager.AutoLogManager()
 
 profile("Init:OnlineCheckState")
 import Components.OnlineUpdateCheck
@@ -742,6 +742,9 @@ Components.NetworkTime.AutoNTPSync()
 profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
+keymap_user = resolveFilename(SCOPE_CONFIG, "keymap_user.xml")
+if os.path.isfile(keymap_user):
+	keymapparser.readKeymap(keymap_user)
 
 profile("Network")
 import Components.Network

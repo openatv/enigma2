@@ -75,9 +75,11 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 
 	def createWidget(self, parent):
 		if self.allmarked:
-			return eLabel(parent, -2)
+			widget = eLabel(parent, -2)
 		else:
-			return eLabel(parent, self.currPos - self.offset)
+			widget = eLabel(parent, self.currPos - self.offset)
+		widget.setNoWrap(True)
+		return widget
 
 	def getSize(self):
 		s = self.instance.calculateSize()

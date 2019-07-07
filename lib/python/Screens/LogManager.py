@@ -37,9 +37,10 @@ def get_size(start_path=None):
 	return 0
 
 def AutoLogManager(session=None, **kwargs):
-	global debuglogcheckpoller
-	debuglogcheckpoller = LogManagerPoller()
-	debuglogcheckpoller.start()
+	if config.crash.enabledebug:
+		global debuglogcheckpoller
+		debuglogcheckpoller = LogManagerPoller()
+		debuglogcheckpoller.start()
 
 class LogManagerPoller:
 	"""Automatically Poll LogManager"""

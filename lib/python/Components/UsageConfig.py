@@ -733,6 +733,8 @@ def InitUsageConfig():
 
 	config.usage.boolean_graphic = ConfigYesNo(default=True)
 
+	config.usage.cursorscroll = ConfigSelectionNumber(min=0, max=50, stepwidth=5, default=0, wraparound=True)
+
 	if SystemInfo["hasXcoreVFD"]:
 		def set12to8characterVFD(configElement):
 			open(SystemInfo["hasXcoreVFD"], "w").write(not configElement.value and "1" or "0")
@@ -956,6 +958,7 @@ def InitUsageConfig():
 			os.mkdir(config.crash.debug_path.value, 0755)
 
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
+	config.crash.debug_path.callNotifiersOnSaveAndCancel = True
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("at beginning")), ("end", _("at end"))])
 
@@ -1160,6 +1163,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_roundto = ConfigSelection(default="15", choices=[("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	config.epgselection.infobar_prevtime = ConfigClock(default=time())
 	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[("60", _("%d minutes") % 60), ("90", _("%d minutes") % 90), ("120", _("%d minutes") % 120), ("150", _("%d minutes") % 150), ("180", _("%d minutes") % 180), ("210", _("%d minutes") % 210), ("240", _("%d minutes") % 240), ("270", _("%d minutes") % 270), ("300", _("%d minutes") % 300)])
+	config.epgselection.infobar_visiblehistory = ConfigSelection(default="0", choices=[("0", _("None")), ("25", _("Minimal")), ("50", _("Balanced")), ("75", _("Maximum"))])
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=00, stepwidth=1, min=00, max=59, wraparound=True)
 	config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="picon+servicename", choices=[("servicename", _("Service Name")), ("picon", _("Picon")), ("picon+servicename", _("Picon and Service Name"))])
@@ -1192,6 +1196,7 @@ def InitUsageConfig():
 	config.epgselection.graph_roundto = ConfigSelection(default="15", choices=[("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	config.epgselection.graph_prevtime = ConfigClock(default=time())
 	config.epgselection.graph_prevtimeperiod = ConfigSelection(default="180", choices=[("60", _("%d minutes") % 60), ("90", _("%d minutes") % 90), ("120", _("%d minutes") % 120), ("150", _("%d minutes") % 150), ("180", _("%d minutes") % 180), ("210", _("%d minutes") % 210), ("240", _("%d minutes") % 240), ("270", _("%d minutes") % 270), ("300", _("%d minutes") % 300)])
+	config.epgselection.graph_visiblehistory = ConfigSelection(default="0", choices=[("0", _("None")), ("25", _("Minimal")), ("50", _("Balanced")), ("75", _("Maximum"))])
 	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default=00, stepwidth=1, min=00, max=59, wraparound=True)
 	config.epgselection.graph_servicetitle_mode = ConfigSelection(default = "picon+servicename", choices = [("servicename", _("Service Name")), ("picon", _("Picon")), ("picon+servicename", _("Picon and Service Name")), ("servicenumber+servicename", _("Service Number and Service Name")), ("servicenumber+picon+servicename", _("Service Number, Picon and Service Name"))])

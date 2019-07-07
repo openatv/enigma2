@@ -73,6 +73,7 @@
 		<item level="2" text="Close PiP on EXIT" requires="PIPAvailable" description="When enabled: In live TV mode, EXIT closes the PiP window (and infobar). In movie player mode, EXIT closes the infobar or PiP window if shown. If neither the PiP window or infobar are visible, EXIT behaviour operates in accordance with the 'Quit movie player with EXIT button' setting.">config.usage.pip_hideOnExit</item>
 <!-- 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown in the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item> -->
 		<item level="0" text="Show menu numbers" description="Enable to show number short cuts next to menu entries.">config.usage.menu_show_numbers</item>
+		<item level="0" text="Input scroll position" description="When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor.">config.usage.cursorscroll</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection">
@@ -241,9 +242,16 @@
 		<item level="0" requires="LEDButtons" text="LED (Standby)" description="Set LED brightness level in standby mode.">config.lcd.ledbrightnessstandby</item>
 		<item level="0" requires="LEDButtons" text="LED (Deep Standby)" description="Set LED brightness level in deep standby mode.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" text="StandbyLED" description="Turn on the power LED during standby." requires="StandbyLED">config.usage.standbyLED</item>
-		<item level="0" requires="7segment" text="Show in standby" description="Choose to display the time or nothing in standby">config.usage.show_in_standby</item>
-		<item level="1" requires="7segment" text="Show REC in use" description="Choose what to display during recording when in use">config.usage.blinking_rec_symbol_during_recording</item>
-		<item level="1" requires="7segment" text="Show REC in standby" description="Choose what to display during recording when in standby">config.usage.blinking_display_clock_during_recording</item>
+		<item level="0" requires="LedPowerColor" text="Use LED for power &amp; recording" description="The LED indicates both power and recording states:\noff - standby, not recording;\nred - standby, recording;\nblue - running, not recording;\nviolet - running, recording.">config.usage.lcd_ledpowerrec</item>
+		<item level="0" requires="LedPowerColor;!config.usage.lcd_ledpowerrec" text="LED state while running" description="Choose the running LED colour or turn it off.">config.usage.lcd_ledpowercolor</item>
+		<item level="0" requires="LedStandbyColor;!config.usage.lcd_ledpowerrec" text="LED state in standby" description="Choose the standby LED colour or turn it off.">config.usage.lcd_ledstandbycolor</item>
+		<item level="0" requires="LedSuspendColor" text="LED state in shutdown" description="Choose the shutdown LED colour or turn it off.">config.usage.lcd_ledsuspendcolor</item>
+		<item level="0" requires="Power4x7On" text="Display state while running" description="Choose to have no display while running.">config.usage.lcd_power4x7on</item>
+		<item level="0" requires="Power4x7Standby" text="Display state in standby" description="Choose to have no display in standby.">config.usage.lcd_power4x7standby</item>
+		<item level="0" requires="Power4x7Suspend" text="Display state in shutdown" description="Choose to have no display in shutdown.">config.usage.lcd_power4x7suspend</item>
+		<item level="0" requires="7segment;config.usage.lcd_power4x7standby" text="Show in standby" description="Choose to display the time or nothing in standby">config.usage.show_in_standby</item>
+		<item level="1" requires="7segment;config.usage.lcd_power4x7on" text="Show REC while running" description="Choose what to display during recording while running">config.usage.blinking_rec_symbol_during_recording</item>
+		<item level="1" requires="7segment;config.usage.lcd_power4x7standby" text="Show REC in standby" description="Choose what to display during recording when in standby">config.usage.blinking_display_clock_during_recording</item>
 		<item level="1" requires="LcdDisplay" text="Repeat display message" description="If the text is too long to be displayed on the front panel, it is repeated the specified (number of times).">config.lcd.repeat</item>
 		<item level="1" requires="LcdDisplay" text="Scrolling speed" description="Set the scrolling speed of text on the front panel display.">config.lcd.scrollspeed</item>
 		<item level="1" requires="LcdDisplay" text="Show display icons" description="Enable/disable the display of icons on the front panel.">config.lcd.mode</item>
@@ -368,6 +376,7 @@
 		<item level="2" text="Timeline font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.infobar_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.infobar_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.infobar_prevtimeperiod</item>
+		<item level="1" text="Visible history" description="Specify how much history to show when the EPG opens. This may have limited effect depending on the visible time period, base time and available history." requires="config.epg.histminutes">config.epgselection.infobar_visiblehistory</item>
 	</setup>
 	<setup key="epggraphical" title="GraphicalEPG">
 		<item level="0" text="View mode" description="Choose the layout view mode (Text or Graphics).">config.epgselection.graph_type_mode</item>
@@ -399,6 +408,7 @@
 		<item level="2" text="Timeline font size" description="Set the font size relative to skin size. A value of 1 increases by 1 point size, and a value of -1 decreases by 1 point size.">config.epgselection.graph_timelinefs</item>
 		<item level="2" text="Timeline 24 Hour" description="Show time in 24 hour clock format." requires="config.usage.time.disabled">config.epgselection.graph_timeline24h</item>
 		<item level="1" text="Visible time period" description="Specify the timespan shown in the EPG.">config.epgselection.graph_prevtimeperiod</item>
+		<item level="1" text="Visible history" description="Specify how much history to show when the EPG opens. This may have limited effect depending on the visible time period, base time and available history." requires="config.epg.histminutes">config.epgselection.graph_visiblehistory</item>
 	</setup>
 	<setup key="pluginbrowsersetup" title="Plugin browser settings">
 		<item level="2" text="Show translation packages" description="Enable to show 'PO' packages in the browser.">config.pluginbrowser.po</item>

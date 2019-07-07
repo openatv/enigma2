@@ -12,6 +12,7 @@ def InitRecordingConfig():
 	config.recording.filename_composition = ConfigSelection(default="standard", choices=[
 		("standard", _("standard")),
 		("event", _("Event name first")),
+		("name", _("Name and time")),
 		("short", _("Short filenames")),
 		("long", _("Long filenames"))
 	])

@@ -261,6 +261,7 @@ class InfoBarUnhandledKey:
 
 		if flag != 4:
 			if self.flags & (1 << 1):
+				self.checkUnusedTimer.stop()
 				self.flags = self.uflags = 0
 			self.flags |= (1 << flag)
 			if flag == 1:  # break
@@ -473,6 +474,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.resetAlpha()
 		for x in self.onShowHideNotifiers:
 			x(False)
+		self.hideTimer.stop()
 
 	def resetAlpha(self):
 		if config.usage.show_infobar_do_dimming.value and self.lastResetAlpha is False:
@@ -509,7 +511,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.hidePipOnExitCallback(True)
 		else:
 			self.hide()
-			self.hideTimer.stop()
 			if hasattr(self, "pvrStateDialog"):
 				self.pvrStateDialog.hide()
 		VolumeControl.instance and VolumeControl.instance.volHide()
@@ -1428,7 +1429,7 @@ class InfoBarEPG:
 			"InfoPressed": (self.InfoPressed, self._helpShowDefaultInfoEPG),
 			"showEventInfoPlugin": (self.showEventInfoPlugins, _("Select INFO key event info or EPG...")),
 			"EPGPressed": (self.showDefaultEPG, self._helpShowDefaultEPG),
-			"showSingleEPG": (self.openSingleServiceEPG, _("Show single-channel EPG...")),
+			"showSingleEPG": (self.openSingleServiceEPG, _("Show single channel EPG...")),
 			"showEventGuidePlugin": (self.showEventGuidePlugins, _("Select EPG key EPG or event info...")),
 			"showInfobarOrEpgWhenInfobarAlreadyVisible": (self.showEventInfoWhenNotVisible, _("Show infobar or infobar EPG")),
 		}, description=_("EPG access"))
@@ -1440,7 +1441,7 @@ class InfoBarEPG:
 			pluginlist.append((_("Graphical EPG"), self.openGraphEPG))
 			pluginlist.append((_("Infobar EPG"), self.openInfoBarEPG))
 			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG))
-			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
+			pluginlist.append((_("Single EPG"), self.openSingleServiceEPG))
 		return pluginlist
 
 	def setPluginlistConfigChoices(self, configEntry, pluginList):
@@ -1710,6 +1711,10 @@ class InfoBarEPG:
 		self.reopen(ret)
 
 	def reopen(self, answer):
+		if isinstance(answer, tuple):
+			answer, new_screen = answer
+		else:
+			new_screen = None
 		if answer == 'reopengraph':
 			self.openGraphEPG(True)
 		elif answer == 'reopeninfobargraph' or answer == 'reopeninfobar':
@@ -1722,6 +1727,10 @@ class InfoBarEPG:
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService()
 			self.close()
+		elif new_screen == 'timer':
+			self.openTimerList()
+		elif new_screen == 'media':
+			self.showMovies()
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
@@ -3878,7 +3887,16 @@ class InfoBarTimerButton:
 		}, description=_("Timer control"))
 
 	def timerSelection(self):
-		self.session.open(TimerEditList)
+		self.session.openWithCallback(self.closeTimerList, TimerEditList)
+
+	def openTimerList(self):
+		self.timerSelection()
+
+	def closeTimerList(self, answer=None):
+		if answer == "media":
+			self.showMovies()
+		elif answer == "epg":
+			self.showDefaultEPG()
 
 	@staticmethod
 	def _getAutoTimerPluginFunc():

@@ -113,9 +113,10 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		return self.TotalTextHeight <= self.pageHeight or self.curPos == self.TotalTextHeight - self.pageHeight
 
 	def updateScrollbar(self):
-		vis = max(100 * self.pageHeight / self.TotalTextHeight, 3)
-		start = (100 - vis) * self.curPos / (self.TotalTextHeight - self.pageHeight)
-		self.scrollbar.setStartEnd(start, start + vis)
+		if self.TotalTextHeight > self.pageHeight:
+			vis = max(100 * self.pageHeight / self.TotalTextHeight, 3)
+			start = (100 - vis) * self.curPos / (self.TotalTextHeight - self.pageHeight)
+			self.scrollbar.setStartEnd(start, start + vis)
 
 	def GUIcreate(self, parent):
 		self.instance = eWidget(parent)

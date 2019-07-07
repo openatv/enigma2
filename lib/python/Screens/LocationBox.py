@@ -235,15 +235,16 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			# remove bookmark
 			if not self.userMode:
 				name = self["booklist"].getCurrent()
-				if self.usingAliases:
-					bm, name = name
-				else:
-					bm = name
-				self.session.openWithCallback(
-					boundFunction(self.removeBookmark, name),
-					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % bm
-				)
+				if name:
+					if self.usingAliases:
+						bm, name = name
+					else:
+						bm = name
+					self.session.openWithCallback(
+						boundFunction(self.removeBookmark, name),
+						MessageBox,
+						_("Do you really want to remove your bookmark of %s?") % bm
+					)
 
 	def removeBookmark(self, name, ret):
 		if not ret:
@@ -348,11 +349,20 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def getPreferredFolder(self):
 		if self.currList == "filelist":
-			# XXX: We might want to change this for parent folder...
-			return self["filelist"].getSelection()[0]
+			selection = self["filelist"].getSelection()[0]
+			currentDir = self["filelist"].getCurrentDirectory()
+
+			# If the user enters a directory, the first entry highlighted is "<Parent directory>", but selecting that
+			# will counter-intuitively return, well, the parent directory, rather than the directory just entered. Here
+			# we detect that state (the selected directory will be a parent of the current directory), and instead
+			# return the current directory.
+			if selection is not None and currentDir is not None:
+				if os.path.realpath(currentDir).startswith(os.path.realpath(selection)):
+					return currentDir
+			return selection
 		else:
 			bm = self["booklist"].getCurrent()
-			return bm[1] if self.usingAliases else bm
+			return bm[1] if bm and self.usingAliases else bm
 
 	def selectConfirmed(self, ret):
 		if ret:

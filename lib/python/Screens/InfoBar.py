@@ -225,11 +225,20 @@ class InfoBar(
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled=self.timeshiftEnabled())
 
 	def movieSelected(self, service):
+		if isinstance(service, str):
+			new_screen = service
+			service = None
+		else:
+			new_screen = None
 		ref = self.lastservice
 		del self.lastservice
 		if service is None:
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
+			if new_screen == "timer":
+				self.openTimerList()
+			elif new_screen == "epg":
+				self.showDefaultEPG()
 		else:
 			from Components.ParentalControl import parentalControl
 			if parentalControl.isServicePlayable(service, self.openMoviePlayer):
@@ -238,11 +247,19 @@ class InfoBar(
 	def openMoviePlayer(self, ref, LastService=None):
 		if not LastService:
 			LastService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.session.open(MoviePlayer, ref, slist=self.servicelist, lastservice=LastService)
+		self.session.openWithCallback(self.switchScreen, MoviePlayer, ref, slist=self.servicelist, lastservice=LastService)
 
 	def openTimerList(self):
 		from Screens.TimerEdit import TimerEditList
-		self.session.open(TimerEditList)
+		self.session.openWithCallback(self.switchScreen, TimerEditList)
+
+	def switchScreen(self, new_screen=None):
+		if new_screen == "timer":
+			self.openTimerList()
+		elif new_screen == "media":
+			self.showMovies()
+		elif new_screen == "epg":
+			self.showDefaultEPG()
 
 	def openSleepTimer(self):
 		from Screens.PowerTimerEdit import PowerTimerEditList
@@ -642,6 +659,11 @@ class MoviePlayer(
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 
 	def movieSelected(self, service):
+		if isinstance(service, str):
+			new_screen = service
+			service = None
+		else:
+			new_screen = None
 		if service is not None:
 			self.cur_service = service
 			self.is_closing = False
@@ -651,7 +673,11 @@ class MoviePlayer(
 			self.session.nav.playService(service)
 			self.returning = False
 		elif self.returning:
-			self.close()
+			self.close(new_screen)
+		elif new_screen == "timer":
+			self.timerSelection()
+		elif new_screen == "epg":
+			self.showDefaultEPG()
 		else:
 			self.is_closing = False
 			ref = self.playingservice

@@ -143,6 +143,37 @@ def resetMoviePlayState(cutsFileName, ref=None):
 		# import sys
 		# print "[MovieList] Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
 
+def is_counted(path):
+	# Don't count by default outside of home.
+	from Screens.MovieSelection import defaultMoviePath
+	home = defaultMoviePath()
+	if path in (home, '/', '/media', '/media/') or os.path.dirname(path.rstrip('/')) in ('/', '/media'):
+		return None
+	inhome = path.startswith(home)
+	counted = config.movielist.counteddirs.value
+	uncounted = config.movielist.uncounteddirs.value
+	if not counted and not uncounted:
+		return inhome and config.movielist.subdir_count.value
+	path = path.rstrip('/')
+	if path in uncounted:
+		return False
+	if path in counted:
+		return True
+	home = home.rstrip('/')
+	# Check each parent directory.
+	while True:
+		path = os.path.dirname(path)
+		if inhome:
+			if path == home:
+				return config.movielist.subdir_count.value
+		else:
+			if path in ('/', '/media'):
+				return False
+		if path in uncounted:
+			return False
+		if path in counted:
+			return True
+
 class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = SORT_ALPHA_DATE_NEWEST_FIRST = 1
 	SORT_RECORDED = SORT_DATE_NEWEST_FIRST_ALPHA = 2
@@ -201,6 +232,7 @@ class MovieList(GUIComponent):
 		self.parentDirectory = 0
 		self.numUserDirs = 0  # does not include parent or Trashcan
 		self.numUserFiles = 0
+		self.filter_tags = None
 		self.fontName, self.fontSize, height, width = skin.fonts.get("MovieSelectionFont", ("Regular", 20, 25, 18))
 		self.listHeight = None
 		self.listWidth = None
@@ -528,6 +560,12 @@ class MovieList(GUIComponent):
 	def invalidateCurrentItem(self):
 		self.invalidateItem(self.getCurrentIndex())
 
+	def invalidatePathItem(self, path):
+		if config.movielist.subdir_count.value:
+			index = self.findPath(path)
+			if index is not None:
+				self.invalidateItem(index)
+
 	def userItemCount(self):
 		return (self.numUserDirs, self.numUserFiles)
 
@@ -573,7 +611,23 @@ class MovieList(GUIComponent):
 				return res
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPos, self.dirShift), size=(iconSize, iconSize), png=self.iconFolder))
 			res.append(MultiContentEntryText(pos=(textPos, 0), size=(width - textPos - dateWidth - r, ih), font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
-			res.append(MultiContentEntryText(pos=(width - dateWidth - r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
+			txt = _("Directory")
+			if data is None:
+				data = -1
+				if is_counted(pathName):
+					data = self.count(serviceref)
+			if data != -1:
+				if data[0] and data[1]:
+					txt = _("%s; %s") % (_("Dirs: %d") % data[0], _("Files: %d") % data[1])
+				elif data[0]:
+					txt = _("Directories: %d") % data[0]
+				elif data[1]:
+					txt = _("Files: %d") % data[1]
+				elif self.filter_tags:
+					txt = _("No matches")
+				else:
+					txt = _("Empty")
+			res.append(MultiContentEntryText(pos=(width - dateWidth - r, 0), size=(dateWidth, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=txt))
 			return res
 		if data == -1 or data is None:
 			data = MovieListData()
@@ -759,6 +813,17 @@ class MovieList(GUIComponent):
 				return index
 		return None
 
+	def findPath(self, path):
+		if path is None:
+			return None
+		if not path.endswith('/'):
+			path += '/'
+		for index, l in enumerate(self.list):
+			if l[1] and l[0].flags & eServiceReference.mustDescent:
+				if l[0].getPath() == path:
+					return index
+		return None
+
 	def __len__(self):
 		return len(self.list)
 
@@ -768,6 +833,65 @@ class MovieList(GUIComponent):
 	def __iter__(self):
 		return self.list.__iter__()
 
+	def count(self, root):
+		# Count the files and directories in root.
+		serviceHandler = eServiceCenter.getInstance()
+		numUserDirs = 0  # does not include parent or Trashcan
+		numUserFiles = 0
+
+		reflist = root and serviceHandler.list(root)
+		if reflist is None:
+			print "[MovieList] count of movies failed"
+			return
+
+		while 1:
+			serviceref = reflist.getNext()
+			if not serviceref.valid():
+				break
+			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never":
+				from Components.ParentalControl import parentalControl
+				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
+					continue
+
+			info = serviceHandler.info(serviceref)
+			if info is None:
+				info = justStubInfo
+			name = info.getName(serviceref)
+
+			if serviceref.flags & eServiceReference.mustDescent:
+				normdirname = os.path.normpath(name)
+				normname = os.path.basename(normdirname)
+				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
+					if normname != ".Trash":
+						numUserDirs += 1
+				continue
+
+			# OSX put a lot of stupid files ._* everywhere... we need to skip them
+			if name[:2] == "._":
+				continue
+
+			# filter_tags is either None (which means no filter at all), or
+			# a set. In this case, all elements of filter_tags must be present,
+			# otherwise the entry will be dropped.
+			if self.filter_tags is not None:
+				# convert space-separated list of tags into a set
+				this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
+				if len(this_tags) == 1 and (not this_tags[0] or this_tags[0].startswith("Tuner-")):
+					# No tags or only a tuner tag? Auto tag!
+					if not this_tags[0]:
+						this_tags = []
+					this_tags += name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
+				this_tags_fullname = [" ".join(this_tags)]
+				this_tags_fullname = set(this_tags_fullname)
+				this_tags = set(this_tags)
+				if not this_tags.issuperset(self.filter_tags) and not this_tags_fullname.issuperset(self.filter_tags):
+					# print "[MovieList] Skipping", name, "tags=", this_tags, " filter=", self.filter_tags
+					continue
+
+			numUserFiles += 1
+
+		return numUserDirs, numUserFiles
+
 	def load(self, root, filter_tags):
 		# this lists our root service, then building a
 		# nice list
@@ -776,6 +900,7 @@ class MovieList(GUIComponent):
 		numberOfDirs = 0
 		self.numUserDirs = 0  # does not include parent or Trashcan
 		self.numUserFiles = 0
+		self.filter_tags = filter_tags	# store for subdirectory counting
 
 		reflist = root and serviceHandler.list(root)
 		if reflist is None:
@@ -836,10 +961,13 @@ class MovieList(GUIComponent):
 				normdirname = os.path.normpath(dirname)
 				normname = os.path.basename(normdirname)
 				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
-					self.list.insert(0, (serviceref, info, begin, -1))
+					data = -1
 					numberOfDirs += 1
 					if normname != ".Trash":
 						self.numUserDirs += 1
+						if is_counted(dirname):
+							data = self.count(serviceref)
+					self.list.insert(0, (serviceref, info, begin, data))
 				continue
 			# convert space-separated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
@@ -849,9 +977,12 @@ class MovieList(GUIComponent):
 			if name[:2] == "._":
 				continue
 
-			if this_tags == ['']:
-				# No tags? Auto tag!
-				this_tags = name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
+			if len(this_tags) == 1 and (not this_tags[0] or this_tags[0].startswith("Tuner-")):
+				# No tags or only a tuner tag? Auto tag!
+
+				if not this_tags[0]:
+					this_tags = []
+				this_tags += name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
 				# For auto tags, we are keeping a (tag, movies) dictionary.
 				# It will be used later to check if movies have a complete sentence in common.
 				for tag in this_tags:

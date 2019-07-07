@@ -402,7 +402,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 
 	nx+=xadvance;
 
-	if ((rflags & RS_WRAP) && (nx >= area.right()))
+	if ((rflags & RS_WRAP) && (nx > area.right()))
 	{
 		int cnt = 0, maycnt = -1;
 		glyphString::reverse_iterator i(glyphs.rbegin()), mayi(glyphs.rend());
@@ -472,7 +472,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		kern=delta.x>>6;
 	}
 
-	ng.bbox.setLeft(((flags&GS_ISFIRST)|cursor.x()) + left + xborder);
+	ng.bbox.setLeft(cursor.x() + left + xborder);
 	ng.bbox.setTop( cursor.y() - top );
 	ng.bbox.setHeight( height );
 
@@ -516,15 +516,15 @@ void eTextPara::calc_bbox()
 
 	glyphString::iterator i(glyphs.begin());
 
-	boundBox = i->bbox;
-	++i;
+	boundBox.setLeft(i->x);
+	boundBox.setRight(i->bbox.right());
 
-	for (; i != glyphs.end(); ++i)
+	while (++i != glyphs.end())
 	{
 		if (i->flags & (GS_ISSPACE|GS_SOFTHYPHEN))
 			continue;
-		if ( i->bbox.left() < boundBox.left() )
-			boundBox.setLeft( i->bbox.left() );
+		if ( i->x < boundBox.left() )
+			boundBox.setLeft( i->x );
 		if ( i->bbox.right() > boundBox.right() )
 			boundBox.setRight( i->bbox.right() );
 	}
@@ -618,7 +618,7 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 void
 shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
 
-int eTextPara::renderString(const char *string, int rflags, int border)
+int eTextPara::renderString(const char *string, int rflags, int border, int markedpos)
 {
 	singleLock s(ftlock);
 
@@ -735,6 +735,7 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	unsigned long newcolor = 0;
 	bool activate_newcolor = false;
 	int nextflags = 0;
+	int pos = 0;
 
 	for (std::vector<unsigned long>::const_iterator i(uc_visual.begin());
 		i != uc_visual.end(); ++i)
@@ -826,6 +827,9 @@ nprint:				isprintable=0;
 		}
 		if (isprintable)
 		{
+			if (markedpos == -2 || markedpos == pos++)
+				flags |= GS_INVERT;
+
 			FT_UInt index = 0;
 
 				/* FIXME: our font doesn't seem to have a hyphen, so use hyphen-minus for it. */
@@ -1167,10 +1171,10 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	}
 }
 
-void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
+void eTextPara::realign(int dir, int markedpos, int scrollpos)	// der code hier ist ein wenig merkwuerdig.
 {
 	glyphString::iterator begin(glyphs.begin()), c(glyphs.begin()), end(glyphs.begin()), last;
-	if (dir==dirLeft || (dir==dirBidi && !doTopBottomReordering))
+	if ((dir==dirLeft || (dir==dirBidi && !doTopBottomReordering)) && markedpos < 0)
 		return;
 	while (c != glyphs.end())
 	{
@@ -1209,6 +1213,62 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 		}
 		c = end;
 
+		// Ensure the marked position is visible.
+		bool offset_set = false;
+		if (markedpos >= 0)
+		{
+			if (linelength > area.width())
+			{
+				if (markedpos >= (int)glyphs.size())
+					markedpos = glyphs.size() - 1;
+				eRect bbox = glyphs[markedpos].bbox;
+				if (scrollpos == 50)
+				{
+					int mark_center = bbox.left() + bbox.width() / 2 - area.left();
+					int area_center = area.width() / 2;
+					// The mark is near the start, leave left aligned.
+					if (mark_center < area_center)
+						return;
+					// The mark is near the end, set right aligned.
+					if (mark_center > linelength - area_center)
+						dir = dirRight;
+					// Center on the mark.
+					else
+					{
+						dir = dirCenter;
+						m_offset = area_center - mark_center;
+						offset_set = true;
+					}
+				}
+				else
+				{
+					dir = dirRight;
+					offset_set = true;
+					int scroll_offset = area.width() * scrollpos / 100;
+					if (bbox.left() + m_offset < area.left() + scroll_offset)
+					{
+						m_offset = area.left() + scroll_offset - bbox.left();
+						// The mark is near the start, leave left aligned.
+						if (m_offset >= 0)
+						{
+							m_offset = 0;
+							return;
+						}
+					}
+					else if (bbox.right() + m_offset >= area.right() - scroll_offset)
+					{
+						m_offset = area.right() - scroll_offset - bbox.right();
+						// The mark is near the end, set right aligned.
+						if (m_offset < area.width() - linelength)
+							offset_set = false;
+					}
+					// else mark is visible, keep current offset
+				}
+			}
+			else if (dir == dirLeft || (dir == dirBidi && !doTopBottomReordering))
+				return;
+		}
+
 		switch (dir)
 		{
 		case dirCenterIfFits:
@@ -1222,13 +1282,16 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 		case dirCenter:
 		case dirBidi:
 		{
-			int offset=area.width()-linelength;
-			if (dir==dirCenter)
-				offset/=2;
+			if (!offset_set)
+			{
+				m_offset=area.width()-linelength;
+				if (dir==dirCenter)
+					m_offset/=2;
+			}
 			while (begin != end)
 			{
-				begin->bbox.moveBy(offset,0);
-				begin->x += offset;
+				begin->bbox.moveBy(m_offset,0);
+				begin->x += m_offset;
 				++begin;
 			}
 			break;

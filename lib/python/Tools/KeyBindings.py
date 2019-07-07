@@ -283,6 +283,21 @@ keyDescriptions = [
 def addKeyBinding(domain, key, context, action, flags):
 	keyBindings.setdefault((context, action), []).append((key, domain, flags))
 
+def removeKeyBinding(key, context, action, wild=True):
+	if wild and action == "*":
+		for ctx, action in keyBindings.keys():
+			if ctx == context:
+				removeKeyBinding(key, context, action, False)
+		return
+
+	ctx_act = (context, action)
+	if ctx_act in keyBindings:
+		bind = [x for x in keyBindings[ctx_act] if x[0] != key]
+		if bind:
+			keyBindings[ctx_act] = bind
+		else:
+			del keyBindings[ctx_act]
+
 # returns a list of (key, flags) for a specified action
 def queryKeyBinding(context, action):
 	if (context, action) in keyBindings:
