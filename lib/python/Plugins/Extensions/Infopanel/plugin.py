@@ -251,7 +251,7 @@ def MenuEntryItem(entry):
 	res = [entry]
 	sf = getSkinFactor()
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags = BT_SCALE, png=entry[0]))  # png vorn
-	res.append(MultiContentEntryText(pos=(60*sf, 10*sf), size=(540*sf, 40*sf), font=0, text=entry[1]))  # menupunkt
+	res.append(MultiContentEntryText(pos=(60*sf, 10*sf), size=(575*sf, 40*sf), font=0, text=entry[1]))  # menupunkt
 	return res
 ###################  Max Test ###################
 
