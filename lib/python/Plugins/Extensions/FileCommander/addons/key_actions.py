@@ -296,11 +296,11 @@ class key_actions(stat_info):
 			sizes = ("", "", "")
 		else:
 			bytesize = "%s" % "{:n}".format(st.st_size)
-			scaledsize = ' '.join(self.SIZESCALER.scale(st.st_size))
+			scaledsize = ' '.join(self.SIZESCALER.scale(st.st_size)) + 'B'
 			sizes = (
 				bytesize,  # 10
-				_("%sB") % scaledsize,  # 11
-				_("%s (%sB") % (bytesize, scaledsize)  # 12
+				_("%s") % scaledsize,  # 11
+				_("%s (%s") % (bytesize, scaledsize)  # 12
 			)
 
 		return [modes + (
