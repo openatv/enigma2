@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-07 10:53+0000\n"
-"PO-Revision-Date: 2019-07-07 10:39+0200\n"
+"PO-Revision-Date: 2019-10-07 10:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -593,14 +593,12 @@ msgstr "%A %m.%-d/%Y"
 msgid "%A %m/%d"
 msgstr "%A %m %d"
 
-#, fuzzy
 msgid "%A %m/%d/%Y"
-msgstr "%A %m/%d/%Y"
+msgstr "%A %m/ %d/ %Y"
 
 msgid "%B %-d %Y"
 msgstr "%B % -d %Y"
 
-#, fuzzy
 msgid "%B %d %Y"
 msgstr "%B %d %Y"
 
@@ -642,7 +640,6 @@ msgstr "%T"
 msgid "%Y %B %-d"
 msgstr "%Y %B % -d"
 
-#, fuzzy
 msgid "%Y %B %d"
 msgstr "%Y %B %d"
 
@@ -671,9 +668,8 @@ msgstr "%Y-%b-%d"
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
-#, fuzzy
 msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d %H-%M"
+msgstr "%Y-%m-%d %H:%M"
 
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
@@ -691,9 +687,8 @@ msgid "%a"
 msgstr "%a"
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
-#, fuzzy
 msgid "%a %-d"
-msgstr "%a %-d"
+msgstr "%a % d"
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%a %-d %B %Y"
@@ -956,9 +951,8 @@ msgstr[2] "%d"
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
-#, fuzzy
 msgid "%d %b"
-msgstr "%d %b"
+msgstr ""
 
 msgid "%d %b %Y"
 msgstr "%d %b  %Y"
@@ -1206,8 +1200,8 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%sB"
-msgstr "%s (%sB "
+msgid "%s (%s"
+msgstr "%s (%s "
 
 #, python-format
 msgid "%s - Setup"
@@ -1264,10 +1258,6 @@ msgstr "%s/%s: %s"
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s "
-
-#, python-format
-msgid "%sB"
-msgstr "%sB"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -10626,7 +10616,7 @@ msgid "PicturePlayer"
 msgstr "Перегляд зображень"
 
 msgid "Pictures"
-msgstr "Кінуматографія"
+msgstr "Кіноматографія"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -15154,7 +15144,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 07.07.2019\n"
+"Переклад:  kvinto - 10.07.2019\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -20232,7 +20222,7 @@ msgid "with_errors"
 msgstr "з помилками"
 
 msgid "without"
-msgstr "крім"
+msgstr "без"
 
 msgid "without Query"
 msgstr "без Запиту"
