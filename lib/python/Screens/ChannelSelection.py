@@ -1407,6 +1407,10 @@ class ChannelSelectionEdit:
 					self.servicelist.addService(service)
 				self.servicelist.resetRoot()
 
+				if self.favBouquet and dest == self.favBouquet:
+					self.favourites.append(service)
+					self["key_green"].setText('')
+
 	def toggleMoveMode(self, select=False):
 		self.editMode = True
 		if self.movemode:
@@ -1486,6 +1490,10 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 
 		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]
+		self.servicelist.connectSelChanged(self.__selectionChanged)
+		self.inFav = False
+		self.favourites = []
+		self.favBouquet = None
 
 		self.jumpSearchChar = ""
 		self.numericalTextInput = NumericalTextInput(nextFunc=self.doJumpSearch)
@@ -1613,6 +1621,9 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self.servicelist.setRoot(root, justSet)
 		self.rootChanged = True
 		self.buildTitleString()
+		if self.greenIsFav and not self.inFav:
+			self.setFavourites()
+			self.__selectionChanged()
 
 	def removeModeStr(self, str):
 		if self.mode == MODE_TV:
@@ -1638,6 +1649,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		return str
 
 	def buildTitleString(self):
+		self.inFav = False
 		titleStr = self.getTitle()
 		nameStr = ''
 		pos = titleStr.find(']')
@@ -1667,7 +1679,35 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 					titleStr = nameStr + titleStr
 				self.setTitle(titleStr)
 				if self.greenIsFav:
-					self["key_green"].setText(_("Remove entry") if nameStr == _("Favourites") else _("Add to Favourites"))
+					if nameStr == _("Favourites"):
+						self.inFav = True
+						self["key_green"].setText(_("Remove entry"))
+
+	def setFavourites(self):
+		self.favourites = []
+		self.favBouquet = None
+		bouquets = self.getBouquetList()
+		if not bouquets:
+			return
+		for x in bouquets:
+			if self.removeModeStr(x[0]) == _("Favourites"):
+				self.favBouquet = x[1]
+				serviceHandler = eServiceCenter.getInstance()
+				list = serviceHandler.list(x[1])
+				if list:
+					while True:
+						s = list.getNext()
+						if not s.valid():
+							break
+						if not s.flags & eServiceReference.isDirectory and not s.flags & eServiceReference.isInvisible:
+							self.favourites.append(s)
+				return
+
+	def __selectionChanged(self):
+		if self.greenIsFav and not self.inFav:
+			cur = self.getCurrentSelection()
+			text = '' if cur.flags & eServiceReference.isDirectory or cur in self.favourites else _("Add to Favourites")
+			self["key_green"].setText(text)
 
 	def moveUp(self):
 		self.servicelist.moveUp()
@@ -2233,21 +2273,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setMode()
 
 	def addToFav(self):
-		bouquets = self.getBouquetList()
-		if not bouquets:
-			return
 		cur = self.getCurrentSelection()
 		if not cur or not cur.valid() or cur.flags & eServiceReference.isDirectory:
 			return
-		if self.inBouquet():
-			nameStr = self.getServiceName(self.servicePath[-1])
-			if nameStr == _("Favourites"):
-				self.removeCurrentEntry()
-				return
-		for x in bouquets:
-			if self.removeModeStr(x[0]) == _("Favourites"):
-				self.addServiceToBouquet(x[1])
-				break
+		if self.inFav:
+			self.removeCurrentEntry()
+		elif cur not in self.favourites and self.favBouquet:
+			self.addServiceToBouquet(self.favBouquet)
 
 	def __onCreate(self):
 		if config.usage.e1like_radio_mode.value:
