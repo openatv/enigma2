@@ -2237,7 +2237,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if not bouquets:
 			return
 		cur = self.getCurrentSelection()
-		if not cur or not cur.valid():
+		if not cur or not cur.valid() or cur.flags & eServiceReference.isDirectory:
 			return
 		if self.inBouquet():
 			nameStr = self.getServiceName(self.servicePath[-1])
