@@ -1388,7 +1388,7 @@ class ChannelSelectionEdit:
 				self.servicelist.resetRoot()
 				curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 				if not bouquet and curref and ref == curref:
-					self.zap(enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None)
+					self.zap(enable_pipzap=False, preview_zap=True, checkParentalControl=True, ref=None)
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
