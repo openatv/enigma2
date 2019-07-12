@@ -2242,7 +2242,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if self.inBouquet():
 			nameStr = self.getServiceName(self.servicePath[-1])
 			if nameStr == _("Favourites"):
-				self.removeCurrentService()
+				self.removeCurrentEntry()
 		for x in bouquets:
 			if self.removeModeStr(x[0]) == _("Favourites"):
 				self.addServiceToBouquet(x[1])
