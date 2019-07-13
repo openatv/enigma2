@@ -243,20 +243,20 @@ class ChannelContextMenu(Screen):
 							else:
 								_append_when_current_valid(current, menu, actions, (_("Center DVB subs on this service"), self.addCenterDVBSubsFlag), level=0, key="bullet")
 
+					self.bouquets = self.getBouquetListWithoutService(current)
 					if haveBouquets:
-						bouquets = self.csel.getBouquetList()
-						if bouquets is None:
+						if self.bouquets is None:
 							bouquetCnt = 0
 						else:
-							bouquetCnt = len(bouquets)
-						if not self.inBouquet or bouquetCnt > 1:
-							_append_when_current_valid(current, menu, actions, (_("Add service to bouquet"), self.addServiceToBouquetSelected), level=0, key="7")
+							bouquetCnt = len(self.bouquets)
+						if bouquetCnt:
+							_append_when_current_valid(current, menu, actions, (_("Add service to %s") % (_("bouquet") if bouquetCnt > 1 else self.bouquets[0][0]), self.addServiceToBouquetSelected), level=0, key="7")
 							self.addFunction = self.addServiceToBouquetSelected
 						if not self.inBouquet:
 							_append_when_current_valid(current, menu, actions, (_("Remove entry"), self.removeEntry), level=0, key="9")
 							self.removeFunction = self.removeSatelliteService
 					else:
-						if not self.inBouquet:
+						if not self.inBouquet and self.bouquets:
 							_append_when_current_valid(current, menu, actions, (_("Add service to favourites"), self.addServiceToBouquetSelected), level=0, key="7")
 							self.addFunction = self.addServiceToBouquetSelected
 					if SystemInfo["PIPAvailable"]:
@@ -598,8 +598,29 @@ class ChannelContextMenu(Screen):
 					f.close()
 				self.session.openWithCallback(self.close, MessageBox, _("Could not open picture in picture"), MessageBox.TYPE_ERROR)
 
-	def addServiceToBouquetSelected(self):
+	def getBouquetListWithoutService(self, service):
+
+		def findService(bouquet):
+			services = serviceHandler.list(bouquet)
+			if services:
+				while True:
+					s = services.getNext()
+					if not s.valid():
+						return False
+					if s == service:
+						return True
+
 		bouquets = self.csel.getBouquetList()
+		if not bouquets:
+			return
+		serviceHandler = eServiceCenter.getInstance()
+		for x in bouquets[:]:
+			if findService(x[1]):
+				bouquets.remove(x)
+		return bouquets
+
+	def addServiceToBouquetSelected(self):
+		bouquets = self.bouquets
 		if bouquets is None:
 			cnt = 0
 		else:
