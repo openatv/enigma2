@@ -1035,8 +1035,8 @@ void eDVBDB::loadBouquet(const char *path)
 		{
 			int len;
 			if ((len = getline(&line, &linesize, fp)) < 2) break;
-			/* strip newline */
-			line[--len] = 0;
+			/* strip newline (when found) */
+			if (line[len - 1] == '\n') line[--len] = 0;
 			/* strip carriage return (when found) */
 			if (line[len - 1] == '\r') line[--len] = 0;
 			if (!strncmp(line, "#SERVICE", 8))
