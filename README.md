@@ -1,5 +1,5 @@
-Beyonwiz enigma2 fork
----------------------
+# Beyonwiz enigma2 fork
+
 
 Build enigma2 for Beyonwiz V2 using the SDK:
 
@@ -10,4 +10,5 @@ Build enigma2 for Beyonwiz V2 using the SDK:
     ../configure-bw v2
     make
 
-To build for other models, supply a different argument to `configure-bw` (i.e. t2, t3, t4, u4).
+To build for other models, ensure that you source the correct SDK file in a new shell
+and supply the corresponding model argument to `configure-bw` (i.e. t2, t3, t4, u4).
