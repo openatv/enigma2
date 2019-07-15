@@ -107,16 +107,16 @@ RESULT eBouquet::flushChanges()
 		CFile f((filename + ".writing").c_str(), "w");
 		if (!f)
 			goto err;
-		if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
+		if ( fprintf(f, "#NAME %s\n", m_bouquet_name.c_str()) < 0 )
 			goto err;
 		for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
 		{
 			eServiceReference tmp = *i;
 			std::string str = tmp.path;
-			if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
+			if ( fprintf(f, "#SERVICE %s\n", tmp.toString().c_str()) < 0 )
 				goto err;
 			if ( i->name.length() )
-				if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
+				if ( fprintf(f, "#DESCRIPTION %s\n", i->name.c_str()) < 0 )
 					goto err;
 		}
 		f.sync();
