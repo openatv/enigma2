@@ -1657,15 +1657,15 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 
 	def getServiceName(self, ref):
 		str = self.removeModeStr(ServiceReference(ref).getServiceName())
-		if 'User - bouquets' in str:
-			return _('User - bouquets')
+		if str == 'Bouquets':
+			return _('Bouquets')
 		if not str:
 			pathstr = ref.getPath()
 			if 'FROM PROVIDERS' in pathstr:
-				return _('Provider')
+				return _('Providers')
 			if 'FROM SATELLITES' in pathstr:
 				return _('Satellites')
-			if ') ORDER BY name' in pathstr:
+			if ')ORDER BY name' in pathstr:
 				return _('All')
 		return str
 
@@ -1684,20 +1684,9 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 				titleStr = titleStr[-8:]
 			Len = len(self.servicePath)
 			if Len > 0:
-				base_ref = self.servicePath[0]
-				if Len > 1:
-					end_ref = self.servicePath[Len - 1]
-				else:
-					end_ref = None
-				nameStr = self.getServiceName(base_ref)
-# 				titleStr += ' - ' + nameStr
-				if end_ref is not None:
-					#  if Len > 2:
-					# 	 titleStr += '/../'
-					#  else:
-					#  	titleStr += '/'
-					nameStr = self.getServiceName(end_ref)
-					titleStr = nameStr + titleStr
+				ref = self.servicePath[-1]
+				nameStr = self.getServiceName(ref)
+				titleStr = nameStr + titleStr
 				self.setTitle(titleStr)
 				if self.greenIsFav:
 					if nameStr == _("Favourites"):
