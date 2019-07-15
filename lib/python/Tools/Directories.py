@@ -108,7 +108,10 @@ def resolveFilename(scope, base="", path_prefix=None):
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_%d" % getDesktop(0).size().height()),
+			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_fallback_%d" % getDesktop(0).size().height()),
+			# NOTE: "skin_<resolution>" has been replace by the "skin_fallback_<resolution>" to reduce confusion!
+			#       The previous name is now deprecated and will be removed when the repositories are updated.
+			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_%d" % getDesktop(0).size().height()),  # Deprecated!
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
 			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
 			defaultPaths[SCOPE_SKIN][0]  # Deprecated top level of SCOPE_SKIN directory.
@@ -128,7 +131,10 @@ def resolveFilename(scope, base="", path_prefix=None):
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", skin),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_%s" % getDesktop(1).size().height()),
+			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_fallback_%s" % getDesktop(1).size().height()),
+			# NOTE: "skin_<resolution>" has been replace by the "skin_fallback_<resolution>" to reduce confusion!
+			#       The previous name is now deprecated and will be removed when the repositories are updated.
+			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_%d" % getDesktop(0).size().height()),  # Deprecated!
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
 			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
 			defaultPaths[SCOPE_LCDSKIN][0]  # Deprecated top level of SCOPE_LCDSKIN directory.
