@@ -47,6 +47,8 @@ def profile(id):
 		dev_fmt = ("/dev/mcu", "%d  \n")
 	elif box_type == "ebox5000":
 		dev_fmt = ("/proc/progress", "%d")
+	elif box_type == "beyonwizu4":
+		dev_fmt = ("/dev/dbox/oled0", "Loading %d%%\n")
 	elif getMachineBuild() in ("inihdp", "inihdx"):
 		dev_fmt = ("/proc/vfd", "Loading %d%%\n")
 	else:
