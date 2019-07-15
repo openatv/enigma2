@@ -228,23 +228,43 @@ class LCN():
 		self.addInTVBouquets()
 
 	def addInBouquets(self, bouquets_filename, bouquet_filename, bouquet_entry):
-		f = open(resolveFilename(SCOPE_CONFIG, bouquets_filename), 'r')
-		ret = f.read().split("\n")
-		f.close()
+		bouquets_path = resolveFilename(SCOPE_CONFIG, bouquets_filename)
+		try:
+			with open(bouquets_path, 'r') as f:
+				ents = [line.strip() for line in f]
+		except IOError as e:
+			print "[LCN]", e
+			ents = []
 
-		i = 0
-		while i < len(ret):
-			if ret[i].find(bouquet_filename) >= 0:
-				return
-			i += 1
+		new_ent = "#SERVICE " + bouquet_entry.toString()
 
-		f = open(resolveFilename(SCOPE_CONFIG, bouquets_filename), 'w')
-		f.write(ret[0] + "\n")
-		f.write("#SERVICE " + bouquet_entry.toString() + "\n")
-		i = 1
-		while i < len(ret):
-			f.write(ret[i] + "\n")
-			i += 1
+		# If there's exactly one copy of the new entry already
+		# in the bouquet, there's nothing to do.
+
+		if ents.count(new_ent) == 1:
+			return
+
+		# If the bouquet filename is already in the list, replace its
+		# first occurence and remove any other occurences,
+		# otherwise make it the first service entry.
+
+		bouqet_filenamestr = 'FROM BOUQUET "' + bouquet_filename + '"'
+		no_bouquet = not any(bouqet_filenamestr in ent for ent in ents)
+		try:
+			with open(bouquets_path, 'w') as f:
+				for ent in ents:
+					if ent.startswith("#SERVICE"):
+						is_target = bouqet_filenamestr in ent
+						if new_ent and (no_bouquet or is_target):
+							print >>f, new_ent
+							new_ent = None
+						if is_target:
+							continue
+					print >>f, ent
+				if new_ent:
+					print >>f, new_ent
+		except IOError as e:
+			print "[LCN]", e
 
 	def addInTVBouquets(self):
 		self.addInBouquets("bouquets.tv", "userbouquet.terrestrial_lcn.tv", self.sr_tv_bouquet_entry)
