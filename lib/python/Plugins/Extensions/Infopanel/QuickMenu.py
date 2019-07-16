@@ -652,8 +652,8 @@ def QuickSubMenuEntryComponent(name, description, long_description = None, width
 	sf = getSkinFactor()
 	return [
 		_(name),
-		MultiContentEntryText(pos=(10*sf, 2*sf), size=((width-10*sf), 28*sf), font=0, text = _(name)),
-		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10*sf), 22*sf), font=1, text = _(description)),
+		MultiContentEntryText(pos=(10*sf, 2*sf), size=((width-10)*sf, 28*sf), font=0, text = _(name)),
+		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10)*sf, 22*sf), font=1, text = _(description)),
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
 	]
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -428,6 +428,10 @@ msgstr "%2d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%2d:%02d:%02d"
+
+#, python-format
+msgid "%03d MB"
+msgstr ""
 
 #, python-format
 msgid "%2.1f sec"
@@ -1070,6 +1074,10 @@ msgstr ""
 
 msgid "%d-%m"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%2d:%02d"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4654,6 +4662,9 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 
@@ -5707,7 +5718,7 @@ msgstr "Digital contour removal"
 msgid "Dim delay"
 msgstr ""
 
-msgid "Dim the LCD after specified time."
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr ""
 
 msgid "Direct playback of linked titles without menu"
@@ -7362,10 +7373,6 @@ msgstr ""
 
 msgid "Front USB 3.0"
 msgstr ""
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Frontprocessor version: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11484,9 +11491,6 @@ msgstr "Plugin browser"
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin Filter..."
-msgstr ""
-
 msgid "Plugin browser"
 msgstr ""
 
@@ -12143,6 +12147,10 @@ msgstr ""
 
 msgid "Rec long"
 msgstr ""
+
+#, fuzzy
+msgid "Reception"
+msgstr "Description"
 
 msgid "Reception Settings"
 msgstr ""
@@ -17184,9 +17192,6 @@ msgstr "Tuner status"
 msgid "Tuner type %s"
 msgstr "Tuner type"
 
-msgid "Tuners & scanning"
-msgstr "Çékirina Anten"
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -17381,6 +17386,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "unknown service"
+
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr ""
 
 msgid "Unmark service as dedicated 3D service"
 msgstr ""
@@ -21246,6 +21254,9 @@ msgstr "zapped"
 #~ msgid "Filesystem check"
 #~ msgstr "Filesystem check"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Frontprocessor version: %d"
+
 #, fuzzy
 #~ msgid "Full screen"
 #~ msgstr "Hold screen"
@@ -21516,6 +21527,9 @@ msgstr "zapped"
 #, fuzzy
 #~ msgid "Tuner status:"
 #~ msgstr "Tuner status"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Çékirina Anten"
 
 #~ msgid "Uncommitted DiSEqC command"
 #~ msgstr "Uncommitted DiSEqC command"

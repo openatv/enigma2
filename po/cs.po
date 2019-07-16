@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -435,6 +435,10 @@ msgstr ""
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d minuta"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1074,6 +1078,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, python-format
+msgid "%d.%03d GB"
+msgstr ""
 
 msgid "%d.%B %Y"
 msgstr "%d. %B %Y"
@@ -4662,6 +4670,10 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Nastavuje zobrazení názvů kanálů, piconů, nebo jako v EPG."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Nastavuje zobrazení názvů kanálů, piconů, nebo jako v EPG."
 
@@ -5708,7 +5720,8 @@ msgstr "Odstranění digitálních kontur"
 msgid "Dim delay"
 msgstr "Aktivovat ztlumení displeje za"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Ztlumení LCD displeje po stanovené době."
 
 msgid "Direct playback of linked titles without menu"
@@ -7393,10 +7406,6 @@ msgstr ""
 
 msgid "Front USB 3.0"
 msgstr ""
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Cpu verze: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11540,10 +11549,6 @@ msgstr "Prohlížeč pluginů"
 msgid "Plugin Filter"
 msgstr "Filtrování pluginů"
 
-#, fuzzy
-msgid "Plugin Filter..."
-msgstr "Filtrování pluginů"
-
 msgid "Plugin browser"
 msgstr "Prohlížeč pluginů"
 
@@ -12203,6 +12208,10 @@ msgstr "Rec"
 #, fuzzy
 msgid "Rec long"
 msgstr "Červené - dlouhý stisk"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Satelity"
 
 msgid "Reception Settings"
 msgstr "Nastavení příjmu"
@@ -17278,9 +17287,6 @@ msgstr "Stav tuneru"
 msgid "Tuner type %s"
 msgstr "Typ tuneru"
 
-msgid "Tuners & scanning"
-msgstr "Hledání programů"
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -17482,6 +17488,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "Neznámý program"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Pokud nastavíte 'ano' můžete nahlédnout kanál v seznamu EPG."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Odebrat značku 3D programu"
@@ -22606,6 +22616,9 @@ msgstr "Přepnutý"
 #~ msgid "Frontpanel"
 #~ msgstr "Přední panel"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Cpu verze: %d"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Kontrolovat zatuhlý Cam"
 
@@ -23526,6 +23539,10 @@ msgstr "Přepnutý"
 
 #~ msgid "PlugLoad"
 #~ msgstr "Nahrání pluginu"
+
+#, fuzzy
+#~ msgid "Plugin Filter..."
+#~ msgstr "Filtrování pluginů"
 
 #~ msgid "Plugin manager"
 #~ msgstr "Správa pluginů"
@@ -24793,6 +24810,9 @@ msgstr "Přepnutý"
 
 #~ msgid "Tuner status:"
 #~ msgstr "Stav tuneru:"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Hledání programů"
 
 #~ msgid "Turn off the media-filter first."
 #~ msgstr "Nejdříve vypněte mediální filtr."

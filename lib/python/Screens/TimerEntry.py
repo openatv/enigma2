@@ -28,11 +28,10 @@ from RecordTimer import AFTEREVENT
 from os import statvfs
 
 class TimerEntry(Screen, ConfigListScreen):
-	def __init__(self, session, timer, isnewtimer = False):
+	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.setup_title = _("Timer entry")
 		self.timer = timer
-		self.isnewtimer = isnewtimer
 
 		self.entryDate = None
 		self.entryService = None
@@ -189,7 +188,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_service = ConfigSelection([servicename])
 
 	def createSetup(self, widget):
-		if self.isnewtimer:
+		if not self.timer in self.session.nav.RecordTimer.timer_list:
 			newtime = None
 			if self.timerentry_justplay.value == 'zap' and self.timertyp != 'zap':
 				newtime = self.getTimestamp(self.timerentry_date.value, self.timerentry_starttime.value) + config.recording.margin_before.value * 60
@@ -678,7 +677,7 @@ class TimerLog(Screen):
 			self["logentry"].setText("")
 
 class InstantRecordTimerEntry(TimerEntry):
-	def __init__(self, session, timer, zap, zaprecord):
+	def __init__(self, session, timer, zap = 0, zaprecord = 0):
 		Screen.__init__(self, session)
 		self.setup_title = ""
 		self.timer = timer

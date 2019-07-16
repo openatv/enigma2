@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
-"PO-Revision-Date: 2019-06-29 13:09+0300\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
+"PO-Revision-Date: 2019-07-07 15:44+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -212,7 +212,7 @@ msgid ""
 "%s"
 msgstr ""
 "\n"
-"neprivalomas parametras:\n"
+"pasirenkamas parametras:\n"
 "%s"
 
 msgid " "
@@ -267,7 +267,7 @@ msgid " (Radio)"
 msgstr " (Radijas)"
 
 msgid " (TV)"
-msgstr " (TV)"
+msgstr " (Televizija)"
 
 msgid " (current channel)"
 msgstr " (dabartinis kanalas)"
@@ -286,13 +286,13 @@ msgstr " (žemiau, nei auto)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
-msgstr " - egzistuoja %d elementai! Perrašyti"
+msgstr " - yra %d elementai! Perrašyti"
 
 msgid " - 1 element exist! Overwrite"
-msgstr " - 1 elementas egzistuoja! Perrašyti"
+msgstr " - yra 1 elementas! Perrašyti"
 
 msgid " - file exist! Overwrite"
-msgstr " - failas egzistuoja! Perrašyti"
+msgstr " - failas yra! Perrašyti"
 
 msgid " - folder exist! Overwrite"
 msgstr " - aplankas yra! Perrašyti"
@@ -449,6 +449,11 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
+
+#, python-format
+#| msgid "%d MB"
+msgid "%03d MB"
+msgstr "%03d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1018,6 +1023,11 @@ msgstr "%Y-%b-%d"
 msgid "%d-%m"
 msgstr "%m.%d"
 
+#, python-format
+#| msgid "%d GB"
+msgid "%d.%03d GB"
+msgstr "%d.%03d GB"
+
 msgid "%d.%B %Y"
 msgstr "%Y %B %e"
 
@@ -1460,19 +1470,19 @@ msgid "16:9 always"
 msgstr "16:9 visada"
 
 msgid "16_10_letterbox"
-msgstr "16x10 įterpiant juodas juostas"
+msgstr "16_10 įterpiant juodas juostas"
 
 msgid "16_10_panscan"
-msgstr "16x10_nukerpant šonus"
+msgstr "16_10_nukerpant šonus"
 
 msgid "16_9"
-msgstr "16x9"
+msgstr "16_9"
 
 msgid "16_9_always"
-msgstr "16x9 visada"
+msgstr "16_9 visada"
 
 msgid "16_9_letterbox"
-msgstr "16x9 įterpiant juodas juostas"
+msgstr "16_9 įterpiant juodas juostas"
 
 msgid "18 V"
 msgstr "18 V"
@@ -2635,7 +2645,7 @@ msgid "Audio long"
 msgstr "Ilgas Audio paspaudimas"
 
 msgid "Audio options..."
-msgstr "Garso parinktys"
+msgstr "Garso parinktys..."
 
 msgid "Audio settings"
 msgstr "Garso nustatymai"
@@ -4992,9 +5002,6 @@ msgstr "Parsisiųsti ir įdiegti emuliatorius"
 msgid "Download plugins"
 msgstr "Parsisiųsti priedus"
 
-msgid "Downloadable plugins"
-msgstr "Galimi parsisiųsti priedai"
-
 msgid "Downloaded Images"
 msgstr "Atsisiųsti atvaizdai"
 
@@ -6061,10 +6068,6 @@ msgstr "Priekinis USB lizdas"
 
 msgid "Front USB 3.0"
 msgstr "Priekinis USB 3.0 lizdas"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Priekinio procesoriaus versija: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -9378,9 +9381,6 @@ msgstr "Priedų naršyklė"
 
 msgid "Plugin Filter"
 msgstr "Priedų filtras"
-
-msgid "Plugin Filter..."
-msgstr "Priedų filtras..."
 
 msgid "Plugin details"
 msgstr "Priedo informacija"
@@ -12707,7 +12707,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-06-29"
+msgstr "Adga, v. 2019-07-07"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -17190,6 +17190,9 @@ msgstr "OpenVPN nustatymas"
 msgid "PowerTimers"
 msgstr "Įjungimo laikmačiai"
 
+msgid "Reception"
+msgstr "Priėmimas"
+
 msgid "Recordings & Timeshift"
 msgstr "Įrašai ir laiko poslinkis"
 
@@ -17216,9 +17219,6 @@ msgstr "Išjungimo meniu"
 
 msgid "Timeshift settings"
 msgstr "Laiko poslinkio nustatymai"
-
-msgid "Tuners & scanning"
-msgstr "Imtuvai ir paieška"
 
 msgid "Usage & GUI"
 msgstr "Valdymas ir grafinė aplinka"
@@ -17273,6 +17273,9 @@ msgstr "Datos/laiko įvestis"
 
 msgid "Dish"
 msgstr "Lėkštė"
+
+msgid "Downloadable plugins"
+msgstr "Galimi parsisiųsti priedai"
 
 msgid "EPG selection"
 msgstr "EPG pasirinkimas"
@@ -18185,6 +18188,9 @@ msgstr "Konfigūruokite plotį, skirta kanalų pavadinimui."
 msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr "Konfigūruokite TrueType šrifto raidžių plotį, naudojamą teletekstui."
 
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Konfigūruokite, kad būtų rodomi kanalų pavadinimai, numeriai, logotipai arba visi trys EPG."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Konfigūruokite EPG, kad rodyti kanalų pavadinimus, logotipus, ar abu kartu."
 
@@ -18290,8 +18296,8 @@ msgstr "DiSEqC"
 msgid "Dim delay"
 msgstr "Pritemdymo delsa"
 
-msgid "Dim the LCD after specified time."
-msgstr "Pritemdyti LCD po tam tikro laiko."
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
+msgstr "Po nustatyto laiko sumažinkite LCD ekrano ryškumą (pritemdymą)."
 
 msgid "Disable all VFD Symbols"
 msgstr "Išjungti visus simbolius VFD ekrane"
@@ -19637,6 +19643,9 @@ msgstr "Įjunkite maitinimo LED indikatorių."
 msgid "URL of fallback remote receiver"
 msgstr "Nuotolinio imtuvo internetinis adresas"
 
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Jei nenustatyta 'išjungta', galite gauti EPG sąraše esančių kanalų peržiūrą."
+
 msgid "Up/Down button mode"
 msgstr "Aukštyn/žemyn mygtuko režimas"
 
@@ -20189,6 +20198,15 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Priekinio procesoriaus versija: %d"
+
+#~ msgid "Plugin Filter..."
+#~ msgstr "Priedų filtras..."
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Imtuvai ir paieška"
 
 #~ msgid "Service searching"
 #~ msgstr "Kanalų paieška"

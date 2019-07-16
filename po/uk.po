@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
-"PO-Revision-Date: 2019-07-02 10:39+0200\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
+"PO-Revision-Date: 2019-14-07 10:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -230,8 +230,26 @@ msgstr "     неправильне місце призначення"
 msgid "   (%s MHz)"
 msgstr "   (%s MГц)"
 
-msgid "   (1,7 GHz)"
-msgstr "   (1,7 ГГц)"
+msgid "   (1.0 GHz)"
+msgstr "   (1.0 ГГц)"
+
+msgid "   (1.3 GHz)"
+msgstr "   (1.3 ГГц)"
+
+msgid "   (1.5 GHz)"
+msgstr "   (1.5 ГГц)"
+
+msgid "   (1.6 GHz)"
+msgstr "   (1.6 ГГц)"
+
+msgid "   (1.7 GHz)"
+msgstr "   (1.7 ГГц)"
+
+msgid "   (2.0 GHz)"
+msgstr "   (2.0 ГГц)"
+
+msgid "   (2.1 GHz)"
+msgstr "   (2.1 ГГц)"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Кнопка Меню : Вибір 4 канальної доріжки"
@@ -498,33 +516,26 @@ msgstr "%A %-m/%d"
 msgid "%A %-m/%d/%Y"
 msgstr "%A %-m /%d /%Y"
 
-#, fuzzy
 msgid "%A %B %-d"
-msgstr "%A %B %-d"
+msgstr ""
 
-#, fuzzy
 msgid "%A %B %-d %Y"
-msgstr "%A %B %-d %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%A %B %d"
-msgstr "%A %B %d"
+msgstr ""
 
-#, fuzzy
 msgid "%A %B %d %Y"
-msgstr "%A %B %d %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%A %B-%-d"
-msgstr "%A %B-%-d"
+msgstr ""
 
-#, fuzzy
 msgid "%A %B-%-d-%Y"
-msgstr "%A %B-%-d-%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%A %B-%d"
-msgstr "%A %B-%d"
+msgstr ""
 
 #, fuzzy
 msgid "%A %B-%d-%Y"
@@ -600,20 +611,17 @@ msgstr "%A %m.%-d/%Y"
 msgid "%A %m/%d"
 msgstr "%A %m %d"
 
-#, fuzzy
 msgid "%A %m/%d/%Y"
-msgstr "%A %m/%d/%Y"
+msgstr "%A %m/ %d/ %Y"
 
 msgid "%B %-d %Y"
 msgstr "%B % -d %Y"
 
-#, fuzzy
 msgid "%B %d %Y"
 msgstr "%B %d %Y"
 
 msgid "%B-%-d-%Y"
 msgstr "%B-%-d-%Y"
-
 
 msgid "%B-%d-%Y"
 msgstr "%B-%d -%Y"
@@ -650,7 +658,6 @@ msgstr "%T"
 msgid "%Y %B %-d"
 msgstr "%Y %B % -d"
 
-#, fuzzy
 msgid "%Y %B %d"
 msgstr "%Y %B %d"
 
@@ -679,9 +686,8 @@ msgstr "%Y-%b-%d"
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
-#, fuzzy
 msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d %H-%M"
+msgstr "%Y-%m-%d %H:%M"
 
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
@@ -699,9 +705,8 @@ msgid "%a"
 msgstr "%a"
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
-#, fuzzy
 msgid "%a %-d"
-msgstr "%a %-d"
+msgstr "%a % d"
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%a %-d %B %Y"
@@ -927,9 +932,8 @@ msgstr "%b %-d %Y"
 msgid "%b %d"
 msgstr "%b %d"
 
-#, fuzzy
 msgid "%b %d %Y"
-msgstr "%b %d %Y"
+msgstr "%b %d, %Y"
 
 msgid "%b+%-d "
 msgstr "%b+%-d "
@@ -965,9 +969,8 @@ msgstr[2] "%d"
 msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
-#, fuzzy
 msgid "%d %b"
-msgstr "%d %b"
+msgstr ""
 
 msgid "%d %b %Y"
 msgstr "%d %b  %Y"
@@ -1098,6 +1101,7 @@ msgstr "%d %b %Y"
 msgid "%d-%m"
 msgstr "%d-%m"
 
+#, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d ГБ"
 
@@ -1214,8 +1218,8 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%sB"
-msgstr "%s (%sB "
+msgid "%s (%s"
+msgstr "%s (%s "
 
 #, python-format
 msgid "%s - Setup"
@@ -1272,10 +1276,6 @@ msgstr "%s/%s: %s"
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s "
-
-#, python-format
-msgid "%sB"
-msgstr "%sB"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -3007,7 +3007,7 @@ msgid "Azerbaijan"
 msgstr "Азербайджан"
 
 msgid "B"
-msgstr "В"
+msgstr "Б"
 
 #, python-format
 msgid "BC%d"
@@ -4513,6 +4513,9 @@ msgstr "Налаштування ширини букв шрифту TrueType д�
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr "Налаштуйте тюнер, використовуючи прості або розширені параметри, використайте параметри іншого тюнер, або скопіюйте їх на другий тюнер, або вимкніть його."
 
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Налаштуйте відображення назв каналів, чисел, піконів, або всіх трьох у EPG."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Налаштування відображення назви каналів, піконів, або як в ЕПГ."
 
@@ -5033,7 +5036,7 @@ msgid "Day D-Mon"
 msgstr ""
 
 msgid "Day D/M"
-msgstr ""
+msgstr "День Д/М"
 
 msgid "Day D/MM"
 msgstr ""
@@ -5504,7 +5507,8 @@ msgstr "Видалення цифрового контуру"
 msgid "Dim delay"
 msgstr "Затримка затемнення"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Затемнення дисплею після вказаного часу."
 
 msgid "Direct playback of linked titles without menu"
@@ -6181,7 +6185,6 @@ msgstr "Включити автосканування кабельного ТБ"
 msgid "Enable auto fast scan"
 msgstr "Включити швидке автосканування"
 
-# python-format
 #, python-format
 msgid "Enable auto fast scan for %s"
 msgstr "Включити швидке автосканування для %s"
@@ -7068,9 +7071,8 @@ msgstr "Форматування Вашого жорсткого диска"
 msgid "Forward volume keys"
 msgstr "Кнопки збільшення звуку"
 
-#, fuzzy
 msgid "Frame rate"
-msgstr "Частота кадрів"
+msgstr "Частота оновлення кадрів"
 
 msgid "Frame size in full view"
 msgstr "Повний розмір кадру"
@@ -7137,10 +7139,6 @@ msgstr "Передня USB"
 
 msgid "Front USB 3.0"
 msgstr "Передня USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Версія інтерфейсного процесора: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -10636,7 +10634,7 @@ msgid "PicturePlayer"
 msgstr "Перегляд зображень"
 
 msgid "Pictures"
-msgstr "Кінуматографія"
+msgstr "Кіноматографія"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -11075,9 +11073,6 @@ msgstr "Провідник плагінів"
 
 msgid "Plugin Filter"
 msgstr "Фільтр плагінів"
-
-msgid "Plugin Filter..."
-msgstr "Фільтр плагінів..."
 
 msgid "Plugin browser"
 msgstr "Провідник плагінів"
@@ -11535,7 +11530,7 @@ msgstr "Python інтерфейс для /tmp/mmi.socket"
 
 #, python-format
 msgid "Python:\t\t%s"
-msgstr "Python версія:\t\t%s"
+msgstr "Версія Python:\t\t%s"
 
 msgid "Qatar"
 msgstr "Катар"
@@ -11708,6 +11703,9 @@ msgstr "Запис"
 
 msgid "Rec long"
 msgstr "Запис довге натискання"
+
+msgid "Reception"
+msgstr "Пошук Каналів"
 
 msgid "Reception Settings"
 msgstr "Параметри прийому"
@@ -12086,10 +12084,10 @@ msgid "Restart Network Adapter"
 msgstr "Перезапуск мережевого адаптера"
 
 msgid "Restart both"
-msgstr "Перезавантажити оба"
+msgstr "Перезавантажити обидва"
 
 msgid "Restart cardserver"
-msgstr "Перезавантажити кардсервера"
+msgstr "Перезавантажити cardserver"
 
 msgid "Restart enigma"
 msgstr "Перезавантаження Enigma"
@@ -12107,7 +12105,7 @@ msgid "Restart network to with current setup"
 msgstr "Перезавантажити мережу з поточними налаштуваннями"
 
 msgid "Restart softcam"
-msgstr "Перезавантажити softcam"
+msgstr "Перезавантажити емулятор"
 
 msgid "Restart test"
 msgstr "Повторити тест"
@@ -12698,7 +12696,7 @@ msgid "Select CAId"
 msgstr "Вибрати CAID"
 
 msgid "Select Card Server"
-msgstr "Виберіть Card Server"
+msgstr "Вибір Card Server"
 
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
@@ -12728,7 +12726,7 @@ msgid "Select Red-key action long"
 msgstr "Дія для червоної кнопки довге натискання"
 
 msgid "Select Softcam"
-msgstr "Вибір Softcam"
+msgstr "Вибір Емулятора"
 
 msgid "Select Software Update"
 msgstr "Вибір оновлення ПЗ"
@@ -13601,7 +13599,7 @@ msgid "Shellscript"
 msgstr "Скрипт Shell"
 
 msgid "Shift"
-msgstr "Shift"
+msgstr "Шифт"
 
 msgid "Short filenames"
 msgstr "Короткі назви файлів"
@@ -13898,7 +13896,7 @@ msgid "Show crypto info in infobar"
 msgstr "Показати інфо кодування в Інфобарі"
 
 msgid "Show default backup files"
-msgstr "Показати файли резервного копіювання за замовчуванням"
+msgstr "Показати файли резервної копії за замовчуванням"
 
 msgid "Show detailed event info"
 msgstr "Показати докладну інформацію події"
@@ -15164,7 +15162,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 02.07.2019\n"
+"Переклад:  kvinto - 14.07.2019\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -16542,9 +16540,6 @@ msgstr "Статус тюнера НЕВІДОМО"
 msgid "Tuner type %s"
 msgstr "Тип тюнера %s"
 
-msgid "Tuners & scanning"
-msgstr "Тюнер & Пошук"
-
 msgid "Tuning algorithm"
 msgstr "Алгоритм налаштування"
 
@@ -16734,6 +16729,9 @@ msgstr "Невідома група: %d"
 #, python-format
 msgid "Unknown user: %d"
 msgstr "Невідомий користувач: %d"
+
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Якщо не встановлено значення 'вимкнено', ви отримуєте попередній перегляд каналів у списку EPG."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Зняти мітку з каналу позначеного, як 3D канал"
@@ -20242,7 +20240,7 @@ msgid "with_errors"
 msgstr "з помилками"
 
 msgid "without"
-msgstr "крім"
+msgstr "без"
 
 msgid "without Query"
 msgstr "без Запиту"

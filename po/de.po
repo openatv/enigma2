@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -462,6 +462,10 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
+msgstr ""
+
+#, python-format
+msgid "%03d MB"
 msgstr ""
 
 # UsageConfig.py
@@ -1032,6 +1036,10 @@ msgstr ""
 msgid "%d-%m"
 msgstr "%d-%m"
 
+#, python-format
+msgid "%d.%03d GB"
+msgstr ""
+
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -1082,9 +1090,9 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s"
-msgstr "%s B"
+msgstr "%s"
 
 #, python-format
 msgid ""
@@ -2544,7 +2552,7 @@ msgid "Allows you to enable the twisted log. They contain very detailed informat
 msgstr "Twisted-Log erlauben. Das Twisted-Log enthält detaillierte Informationen über alles was das Twisted macht. ('/tmp/twisted.log')"
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
-msgstr "Anzeige von Icons auf dem Geräte-Display erlauben."
+msgstr "Anzeige von Icons auf dem Gerätedisplay erlauben."
 
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Hier können Sie einstellen, ob die Dateiendungen von bekannten Dateiformaten ausgeblendet werden sollen."
@@ -2922,9 +2930,8 @@ msgstr "Lautstärke Schrittweite im Schnellmodus"
 msgid "Australia"
 msgstr "Australien"
 
-#, fuzzy
 msgid "Australian"
-msgstr "Australien"
+msgstr "Australisch"
 
 msgid "Austria"
 msgstr "Österreich"
@@ -4410,7 +4417,7 @@ msgid "Configure nameservers"
 msgstr "DNS-Server konfigurieren"
 
 msgid "Configure on which devices the background delete option should be used."
-msgstr "Konfigurieren Sie auf welchen Geräten die Hintergrund Löschoption verwendet werden darf."
+msgstr "Konfigurieren Sie, auf welchen Geräten die Hintergrund-Löschoption verwendet werden darf."
 
 msgid "Configure remote control type"
 msgstr "Fernbedienungstyp einstellen"
@@ -4453,7 +4460,7 @@ msgid "Configure the border width of the subtitles. The dark border makes the su
 msgstr "Konfigurieren Sie die Rahmenbreite für die Untertitel. Der dunkle Rand verbessert die Lesbarkeit bei hellerem Hintergrund."
 
 msgid "Configure the brightness level of the front panel display for dimmed operation."
-msgstr "Konfigurieren Sie die Helligkeit des Displays für den gedimmten Zustand."
+msgstr "Einstellung der Helligkeit für das Gerätedisplay im gedimmten Zustand."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Einstellung der Helligkeit für das Gerätedisplay im Normalbetrieb."
@@ -4671,6 +4678,9 @@ msgstr "Bestimmt die Breite der Zeichen des TrueType-Zeichensatzes für die Vide
 
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr "Konfigurieren Sie diesen Tuner mit einfachen oder erweiterten Optionen oder führen Sie ihn zu einem anderen Tuner durch oder kopieren Sie eine Konfiguration von einem anderen Tuner oder deaktivieren Sie sie."
+
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Einstellung, um die Sendernamen, Kanalnummern, Picons oder alle drei im EPG anzuzeigen."
 
 #
 msgid "Configure to show the channel names, picons, or both in the EPG."
@@ -5727,8 +5737,8 @@ msgstr "Entferne digitale Konturen"
 msgid "Dim delay"
 msgstr "Ausblendungs-Verzögerung"
 
-msgid "Dim the LCD after specified time."
-msgstr "Das Display wird nach der angegebenen Zeit gedimmt."
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
+msgstr "Das Display wird nach der angegebenen Zeit auf den Wert 'Helligkeit (gedimmt)' runtergeregelt."
 
 #
 msgid "Direct playback of linked titles without menu"
@@ -5828,7 +5838,7 @@ msgstr "Zeige Info bevor der nächste Film abgespielt wird"
 
 #
 msgid "Display settings"
-msgstr "Geräte-Display"
+msgstr "Gerätedisplay"
 
 # EPG Setup
 msgid "Display the EIT now/next eventdata in infobar."
@@ -6159,7 +6169,7 @@ msgstr "Plugins herunterladen"
 
 #
 msgid "Downloadable plugins"
-msgstr "Herunterladbare Plugins"
+msgstr "Plugins herunterladen"
 
 msgid "Downloaded Images"
 msgstr "Heruntergeladene Images"
@@ -6485,7 +6495,7 @@ msgid "Enable auto fast scan for %s"
 msgstr "Automatische Schnellsuche aktivieren für %s"
 
 msgid "Enable blinking rec symbol on the LCD Display"
-msgstr "Hier können Sie das blinkende Record-Symbol in dem Display aktivieren."
+msgstr "Hier können Sie das blinkende Record-Symbol im Gerätedisplay aktivieren."
 
 msgid "Enable chapter support for video files"
 msgstr "Kapitelunterstützung für Videodateien aktivieren"
@@ -7503,11 +7513,6 @@ msgstr ""
 msgid "Front USB 3.0"
 msgstr ""
 
-#
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Version Frontprozessor: %d"
-
 #, python-format
 msgid "Frontprocessor version: %s"
 msgstr "Frontprozessor-Version:%s"
@@ -8376,10 +8381,10 @@ msgid "In progress"
 msgstr "In Arbeit"
 
 msgid "In the Standby Record on the LCD Display"
-msgstr "Display bei Aufnahmen im Standby"
+msgstr "Gerätedisplay bei Aufnahmen im Standby"
 
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktiv"
 
 msgid "Inadyn"
 msgstr ""
@@ -8874,7 +8879,7 @@ msgid "Keep service"
 msgstr "Laufender Kanal"
 
 msgid "Keeps MovieList open whilst playing audio files."
-msgstr "Movielist offen lassen wenn Musikdateien abgespielt werden."
+msgstr "Filmliste offen lassen, wenn Musikdateien abgespielt werden?"
 
 msgid "Kenya"
 msgstr "Kenia"
@@ -8954,7 +8959,7 @@ msgid "LAN long"
 msgstr ""
 
 msgid "LCD Skin Setup"
-msgstr "Display-Skinauswahl"
+msgstr "Gerätedisplay-Skinauswahl"
 
 msgid "LCD SkinSelector"
 msgstr "LCD-Skinauswahl"
@@ -9880,7 +9885,7 @@ msgid "Movie List"
 msgstr "Filmliste"
 
 msgid "Movie List Setup"
-msgstr ""
+msgstr "Filmliste-Einstellungen"
 
 #
 msgid "Movie location"
@@ -10765,7 +10770,7 @@ msgid "On device:"
 msgstr ""
 
 msgid "On end of movie"
-msgstr "Am Ende eines Films"
+msgstr "Am Ende des Films"
 
 msgid "On end of movie (as menu)"
 msgstr "Am Ende des Films (als Menü)"
@@ -11799,9 +11804,6 @@ msgstr "Erweiterungsmenü"
 msgid "Plugin Filter"
 msgstr "Plugin-Filter"
 
-msgid "Plugin Filter..."
-msgstr "Plugin-Filter..."
-
 # löschen?
 # msgid "Plugin Browser"
 # msgstr "Plugin Manager"
@@ -12358,10 +12360,10 @@ msgid "REC Symbol"
 msgstr "REC Zeichen"
 
 msgid "REC Symbol in Standby"
-msgstr ""
+msgstr "REC Symbol im Standby"
 
 msgid "REC Symbol in use"
-msgstr "REC Symbol in Betrieb"
+msgstr "REC Symbol im Betrieb"
 
 #
 msgid "RF output"
@@ -12488,6 +12490,9 @@ msgstr "Aufnahme"
 
 msgid "Rec long"
 msgstr "Aufnahme lang"
+
+msgid "Reception"
+msgstr "Empfang"
 
 msgid "Reception Settings"
 msgstr "Empfangseinstellungen"
@@ -13166,9 +13171,8 @@ msgstr "S/PDIF"
 msgid "SSID:"
 msgstr "SSID:\t"
 
-#, fuzzy
 msgid "STARTUP_"
-msgstr "Image"
+msgstr "STARTUP_"
 
 msgid "STB Display"
 msgstr "Geräteanzeige"
@@ -14316,7 +14320,7 @@ msgid "Set voltage and 22KHz"
 msgstr "Setze Spannung und 22kHz"
 
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
-msgstr "Wählen Sie die Basis der Aufnahmeliste um die \"..\" in der Ansicht zu unterdrücken."
+msgstr "Wählen Sie das Root-Verzeichnis der Aufnahmeliste um \"..\" in der Ansicht zu unterdrücken."
 
 msgid "Setting Restored "
 msgstr "Wiederhergestellte Programmliste "
@@ -15607,7 +15611,7 @@ msgid "Sort by"
 msgstr "Sortieren nach"
 
 msgid "Sort by default"
-msgstr "Sortiere nach Standard"
+msgstr "Sortieren nach Standard"
 
 msgid "Sort list by"
 msgstr "Liste sortieren nach"
@@ -17704,10 +17708,6 @@ msgstr "Tuner-Status UNBEKANNT"
 msgid "Tuner type %s"
 msgstr "Tuner-Art %s"
 
-#
-msgid "Tuners & scanning"
-msgstr "Empfang"
-
 msgid "Tuning algorithm"
 msgstr "Tuning-Algorithmus"
 
@@ -17915,6 +17915,9 @@ msgstr ""
 msgid "Unknown user: %d"
 msgstr ""
 
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Außer bei 'Deaktiviert' erhalten Sie eine Programmvorschau im EPG."
+
 #
 msgid "Unmark service as dedicated 3D service"
 msgstr "3D Markierung entfernen"
@@ -17968,7 +17971,7 @@ msgid "Update delay for Events in List"
 msgstr "Aktualisierungs-Verzögerung für Events in der Liste"
 
 msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, specialy on big Lists !"
-msgstr "Updateverzögerung für Events in der Liste. Das Scrollverhalten wird schneller mit einer höheren Verzögerung, speziell bei größeren Listen !"
+msgstr "Aktualisierungs-Verzögerung für Events in der Liste. Das Scrollverhalten wird schneller mit einer höheren Verzögerung, speziell bei größeren Listen!"
 
 msgid "Update failed!"
 msgstr "Update Fehlerhaft!"
@@ -18208,7 +18211,7 @@ msgid "Use the alternative or the conventional radio mode."
 msgstr "Hiermit wird eingestellt, ob der normale oder der alternative Radiomodus genutzt werden sollen."
 
 msgid "Use the alternative screen"
-msgstr "Legen Sie fest, ob ein alternative Anzeige benutzt werden soll."
+msgstr "Legen Sie fest, ob eine alternative Anzeige benutzt werden soll."
 
 msgid "Use the cursor keys to select an installed image and then Erase button."
 msgstr "Wähle ein installiertes Image aus und danach GRÜN um es zu löschen."
@@ -18635,10 +18638,8 @@ msgstr "Jungferninseln (US)"
 msgid "Virtual KeyBoard Functions"
 msgstr "Funktionen der virtuellen Tastatur"
 
-#
-#, fuzzy
 msgid "Virtual KeyBoard Text:"
-msgstr "Virtuelle Tastatur"
+msgstr "Text der virtuellen Tastatur:"
 
 msgid "Virtual keyboard"
 msgstr "Virtuelle Tastatur"
@@ -18990,7 +18991,7 @@ msgid "When enabled, network trash can's are probed for cleaning."
 msgstr "Wenn aktiviert, werden die Netzwerk-Papierkörbe geleert."
 
 msgid "When enabled, network trash cans are probed for cleaning."
-msgstr "Hier können Sie festlegen, ob Netzwerk-Papierkörbe überprüft werden zum Löschen."
+msgstr "Hier können Sie festlegen, ob Netzwerk-Papierkörbe auch geleert werden."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Wenn aktiviert, wird mit '0' zum ersten Sender Ihrer ersten Favoritenliste umgeschaltet und die Umschalthistorie wird gelöscht."
@@ -19900,7 +19901,7 @@ msgid "all up/down"
 msgstr "alle hoch/runter"
 
 msgid "alpha then oldest"
-msgstr ""
+msgstr "Alphabetisch, dann Älteste"
 
 msgid "alphabetic"
 msgstr "Alphabetisch"
@@ -19912,7 +19913,7 @@ msgid "alphabetical"
 msgstr "Alphabetisch"
 
 msgid "alpharev then newest"
-msgstr ""
+msgstr "Alphabetisch umgekehrt, dann Neueste"
 
 msgid "alternative"
 msgstr "Alternativ"
@@ -20161,7 +20162,7 @@ msgid "decrease uphop by 1"
 msgstr "Uphop um 1 reduzieren"
 
 msgid "default"
-msgstr ""
+msgstr "Standard"
 
 msgid "default Astra (13e-19e)"
 msgstr "Standard Astra (13e-19e)"
@@ -23054,6 +23055,10 @@ msgstr "Umschalten"
 #~ msgid "Free to Air"
 #~ msgstr "FreeTV (FTA)"
 
+#
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Version Frontprozessor: %d"
+
 # Softcam Setup
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Auf eingefrorene CAM prüfen"
@@ -23935,6 +23940,9 @@ msgstr "Umschalten"
 
 #~ msgid "Please: DO NOT reboot your STB and turn off the power.\n"
 #~ msgstr "Bitte: Den Receiver keinesfalls neustarten oder ausschalten!\n"
+
+#~ msgid "Plugin Filter..."
+#~ msgstr "Plugin-Filter..."
 
 #
 #~ msgid "Polarity"
@@ -24931,6 +24939,10 @@ msgstr "Umschalten"
 #
 #~ msgid "Tuner type"
 #~ msgstr "Tuner-Typ"
+
+#
+#~ msgid "Tuners & scanning"
+#~ msgstr "Empfang"
 
 #
 #~ msgid "Two partitions (50% - 50%)"

@@ -82,14 +82,12 @@ class Menu(Screen, ProtectedScreen):
 	def runScreen(self, arg):
 		# arg[0] is the module (as string)
 		# arg[1] is Screen inside this module
-		#        plus possible arguments, as
-		#        string (as we want to reference
-		#        stuff which is just imported)
-		# FIXME. somehow
+		#	plus possible arguments, as
+		#	string (as we want to reference
+		#	stuff which is just imported)
 		if arg[0] != "":
-			exec "from " + arg[0] + " import *"
-
-		self.openDialog(*eval(arg[1]))
+			exec "from %s import %s" % (arg[0], arg[1].split(",")[0])
+			self.openDialog(*eval(arg[1]))
 
 	def nothing(self): #dummy
 		pass

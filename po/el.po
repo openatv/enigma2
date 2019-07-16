@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliot_g <mcelliotg@gmail.com>\n"
@@ -446,6 +446,11 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
+
+#, python-format
+#| msgid "%d MB"
+msgid "%03d MB"
+msgstr "%03d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1007,6 +1012,11 @@ msgstr "%d-%b-%Y"
 msgid "%d-%m"
 msgstr "%d-%m"
 
+#, python-format
+#| msgid "%d GB"
+msgid "%d.%03d GB"
+msgstr "%d.%03d GB"
+
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -1056,7 +1066,6 @@ msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
 #, python-format
-#| msgid "%sB"
 msgid "%s"
 msgstr "%s"
 
@@ -5146,9 +5155,6 @@ msgstr "Λήψη και εγκατάσταση cam"
 msgid "Download plugins"
 msgstr "Λήψη προσθέτων"
 
-msgid "Downloadable plugins"
-msgstr "Πρόσθετα για λήψη"
-
 msgid "Downloaded Images"
 msgstr "Images που λήφθηκαν"
 
@@ -6247,10 +6253,6 @@ msgstr "Εμπρόσθιο USB"
 
 msgid "Front USB 3.0"
 msgstr "Εμπρόσθιο USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Έκδοση μετωπιαίου επεξεργαστή: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -8362,7 +8364,6 @@ msgstr "Αυθεντική"
 msgid "Nauru"
 msgstr "Ναουρού"
 
-#| msgid "CCcamInfo"
 msgid "NcamInfo"
 msgstr "Ncam πληροφορίες"
 
@@ -9717,9 +9718,6 @@ msgstr "Πλοηγός προσθέτων"
 
 msgid "Plugin Filter"
 msgstr "Φίλτρο προσθέτων"
-
-msgid "Plugin Filter..."
-msgstr "Φίλτρο προσθέτων..."
 
 msgid "Plugin details"
 msgstr "Πληροφορίες πρόσθετου"
@@ -18199,6 +18197,9 @@ msgstr "Ρυθμίσεις OpenVPN"
 msgid "PowerTimers"
 msgstr "Χρονοδιακόπτες ενέργειας"
 
+msgid "Reception"
+msgstr "Ρυθμίσεις λήψης"
+
 msgid "Recordings & Timeshift"
 msgstr "Εγγραφές & Χρονομετατόπιση"
 
@@ -18225,9 +18226,6 @@ msgstr "Αναμονή / Επανεκκίνηση"
 
 msgid "Timeshift settings"
 msgstr "Ρυθμίσεις χρονομετατόπισης"
-
-msgid "Tuners & scanning"
-msgstr "Tuners & ανίχνευση"
 
 msgid "Usage & GUI"
 msgstr "Χρήση & Επιφάνεια χρήστη"
@@ -18282,6 +18280,9 @@ msgstr "Εισαγωγή ημερομηνίας/ώρας"
 
 msgid "Dish"
 msgstr "Κάτοπτρο"
+
+msgid "Downloadable plugins"
+msgstr "Πρόσθετα για λήψη"
 
 msgid "EPG selection"
 msgstr "Επιλογή EPG"
@@ -19441,6 +19442,12 @@ msgstr "Ρύθμιση του πλάτους εμφάνισης του ονόμ�
 msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr "Ρύθμιση του πλάτους της γραμματοσειράς του τηλεκειμένου."
 
+msgid ""
+"Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr ""
+"Ρύθμίστε εάν θα εμφανίζονται τα ονόματα καναλιών, τα λογότυπα ή και τα δύο "
+"στο EPG."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 "Ρύθμίστε εάν θα εμφανίζονται τα ονόματα καναλιών, τα λογότυπα ή και τα δύο "
@@ -19615,8 +19622,11 @@ msgstr "DiSEqC"
 msgid "Dim delay"
 msgstr "Καθυστέρηση ξεθωριάσματος"
 
-msgid "Dim the LCD after specified time."
-msgstr "Ξεθώριασμα της LCD μετά ορισμένο χρόνο."
+msgid ""
+"Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
+msgstr ""
+"Ξεθώριασμα της LCD στο επίπεδο \"Φωτεινότητα (Μειωμένη)\" μετά ορισμένο "
+"χρόνο."
 
 msgid "Disable all VFD Symbols"
 msgstr "Απενεργοποίηση όλων των συμβόλων VFD"
@@ -21270,6 +21280,12 @@ msgstr "Ενεργοποίηση LED κατά την εκκίνηση."
 
 msgid "URL of fallback remote receiver"
 msgstr "Διεύθυνση URL του εφεδρικού απομακρυσμένου δέκτη"
+
+msgid ""
+"Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr ""
+"Εκτός και αν ρυθμιστεί στο 'ανενεργό', θα γίνεται προεπισκόπηση των καναλιών "
+"στη λίστα EPG."
 
 msgid "Up/Down button mode"
 msgstr "Λειτουργία πλήκτρου επάνω/κάτω"

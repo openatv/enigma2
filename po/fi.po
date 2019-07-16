@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2017-03-01 18:26+0200\n"
 "Last-Translator: Samzam <http://www.world-of-satellite.com/>\n"
 "Language-Team: TimoJ/Samzam/Habbe\n"
@@ -456,6 +456,10 @@ msgstr "%02d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%2d:%02d:%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1128,6 +1132,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 #
 msgid "%d.%B %Y"
@@ -4833,6 +4841,10 @@ msgstr ""
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Määrittää, näytetäänkö ohjelmaluettelossa kanavan nimi, logo vai molemmat."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Määrittää, näytetäänkö ohjelmaluettelossa kanavan nimi, logo vai molemmat."
 
@@ -5935,7 +5947,8 @@ msgstr "Ääriviivakorostumien poisto"
 msgid "Dim delay"
 msgstr "Himmennyksen viive"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Määrittää viiveen, jonka jälkeen VFD-näyttö himmennetään."
 
 #
@@ -7717,10 +7730,6 @@ msgstr "Etupaneelin USB"
 
 msgid "Front USB 3.0"
 msgstr "Etupaneelin USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Edustaprosessorin versio: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -12110,9 +12119,6 @@ msgstr "Lisäosien selaus"
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin Filter..."
-msgstr ""
-
 msgid "Plugin browser"
 msgstr "Lisäosien selaus"
 
@@ -12820,6 +12826,10 @@ msgstr "Tallennus"
 
 msgid "Rec long"
 msgstr ""
+
+#, fuzzy
+msgid "Reception"
+msgstr "Kanavalistat"
 
 #
 msgid "Reception Settings"
@@ -18112,9 +18122,6 @@ msgstr "Virittimen tila"
 msgid "Tuner type %s"
 msgstr "Virittimen tyyppi"
 
-msgid "Tuners & scanning"
-msgstr "Kanavahaku"
-
 msgid "Tuning algorithm"
 msgstr ""
 
@@ -18320,6 +18327,10 @@ msgstr "tuntematon virhe"
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "tuntematon kanava"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "'Kyllä' valinnalla EPG-listassa voi esikatsella kanavia."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr ""
@@ -22677,6 +22688,9 @@ msgstr ""
 #~ msgid "Front Display Panel"
 #~ msgstr "Näyttöpaneeli"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Edustaprosessorin versio: %d"
+
 #~ msgid "Ftpd service type: Vsftpd server"
 #~ msgstr "Ftpd-palvelun tyyppi: Vsftpd-palvelin"
 
@@ -23294,6 +23308,9 @@ msgstr ""
 #
 #~ msgid "Tuner status:"
 #~ msgstr "Virittimen tila:"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Kanavahaku"
 
 #~ msgid "Unicable"
 #~ msgstr "Unicable"

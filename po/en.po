@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2018-04-03 21:30+0300\n"
 "Last-Translator: TM2TURK | by thawtes <thawtes@gmail.com>\n"
 "Language-Team: TM2TURK | by thawtes <thawtes@gmail.com>\n"
@@ -447,6 +447,10 @@ msgstr "%02d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d.%02d - %02d.%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1105,6 +1109,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4581,6 +4589,10 @@ msgstr "Configure the width of the TrueType font letters used for teletext."
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Configure to show the channel names, picons, or both in the EPG."
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Configure to show the channel names, picons, or both in the EPG."
 
@@ -5594,7 +5606,8 @@ msgstr "Digital contour removal"
 msgid "Dim delay"
 msgstr "Dim delay"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Dim the LCD after specified time."
 
 msgid "Direct playback of linked titles without menu"
@@ -7238,10 +7251,6 @@ msgstr "Front USB"
 
 msgid "Front USB 3.0"
 msgstr "Front USB 3.0"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Frontprocessor version: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11274,9 +11283,6 @@ msgstr "Plugin Browser"
 msgid "Plugin Filter"
 msgstr "Plugin Filter"
 
-msgid "Plugin Filter..."
-msgstr "Plugin Filter..."
-
 msgid "Plugin browser"
 msgstr "Plugin browser"
 
@@ -11910,6 +11916,10 @@ msgstr "Rec"
 
 msgid "Rec long"
 msgstr "Rec long"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Reception lists"
 
 msgid "Reception Settings"
 msgstr "Reception Settings"
@@ -16827,9 +16837,6 @@ msgstr "Tuner status UNKNOWN"
 msgid "Tuner type %s"
 msgstr "Tuner type %s"
 
-msgid "Tuners & scanning"
-msgstr "Service searching"
-
 msgid "Tuning algorithm"
 msgstr "Tuning algorithm"
 
@@ -17022,6 +17029,10 @@ msgstr "unknown error"
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "unknown service"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "If set to 'yes' you can preview channels in the EPG list."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Unmark service as dedicated 3D service"
@@ -21031,6 +21042,9 @@ msgstr "zapping"
 #~ msgid "Free To Air"
 #~ msgstr "Free To Air"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Frontprocessor version: %d"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Frozen Cam Check"
 
@@ -21305,6 +21319,9 @@ msgstr "zapping"
 #~ msgid "Plugin"
 #~ msgstr "Plugin"
 
+#~ msgid "Plugin Filter..."
+#~ msgstr "Plugin Filter..."
+
 #~ msgid "PluginDetails"
 #~ msgstr "PluginDetails"
 
@@ -21556,6 +21573,9 @@ msgstr "zapping"
 
 #~ msgid "Tuner type"
 #~ msgstr "Tuner type"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Service searching"
 
 #~ msgid ""
 #~ "USB = Do you want to make a back-up on USB?\n"

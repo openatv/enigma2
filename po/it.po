@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-24 17:04+0000\n"
+"POT-Creation-Date: 2019-07-07 10:53+0000\n"
 "PO-Revision-Date: 2018-08-03 11:13+0200\n"
 "Last-Translator: Massimo Bambi <maxbambi@libero.it>\n"
 "Language-Team: \n"
@@ -449,6 +449,10 @@ msgstr "%02d:%02d"
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d.%02d - %02d.%02d"
+
+#, fuzzy, python-format
+msgid "%03d MB"
+msgstr "%d MB"
 
 #, python-format
 msgid "%2.1f sec"
@@ -1107,6 +1111,10 @@ msgstr "%d-%m"
 
 msgid "%d-%m"
 msgstr "%d-%m"
+
+#, fuzzy, python-format
+msgid "%d.%03d GB"
+msgstr "%d GB"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -4611,6 +4619,10 @@ msgstr "Configura la larghezza del carattere True Type usato per il televideo."
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
 msgstr ""
 
+#, fuzzy
+msgid "Configure to show channel names, numbers, picons or all three inside EPG."
+msgstr "Configurare per mostrare i nomi dei canali, picons, o  nella EPG"
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Configurare per mostrare i nomi dei canali, picons, o  nella EPG"
 
@@ -5632,7 +5644,8 @@ msgstr "Digital contour removal"
 msgid "Dim delay"
 msgstr "Ritardo attenuazione"
 
-msgid "Dim the LCD after specified time."
+#, fuzzy
+msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Attenua l'LCD dopo un tempo specifico"
 
 msgid "Direct playback of linked titles without menu"
@@ -7285,10 +7298,6 @@ msgstr "USB frontale"
 
 msgid "Front USB 3.0"
 msgstr "USB 3.0 frontale"
-
-#, python-format
-msgid "Frontprocessor version: %d"
-msgstr "Versione frontprocessor: %d"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -11331,9 +11340,6 @@ msgstr "Lista Plugin"
 msgid "Plugin Filter"
 msgstr "Filtra plugin"
 
-msgid "Plugin Filter..."
-msgstr "Filtro plugin..."
-
 msgid "Plugin browser"
 msgstr "Navigatore plugin"
 
@@ -11967,6 +11973,10 @@ msgstr "Rec"
 
 msgid "Rec long"
 msgstr "Rec lungo"
+
+#, fuzzy
+msgid "Reception"
+msgstr "Liste di ricezione"
 
 msgid "Reception Settings"
 msgstr "Impostazioni di ricezione"
@@ -16931,9 +16941,6 @@ msgstr "Stato tuner UNKNOWN"
 msgid "Tuner type %s"
 msgstr "Tipo tuner %s"
 
-msgid "Tuners & scanning"
-msgstr "Ricerca canali"
-
 msgid "Tuning algorithm"
 msgstr "Algoritmo di sintonizzazione"
 
@@ -17126,6 +17133,10 @@ msgstr "errore sconosciuto"
 #, fuzzy, python-format
 msgid "Unknown user: %d"
 msgstr "Canale sconosciuto"
+
+#, fuzzy
+msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
+msgstr "Settando su 'sì' è possibile visualizzare in anteprima i canali della lista EPG."
 
 msgid "Unmark service as dedicated 3D service"
 msgstr "Togli il segno di canale dedicato al 3D"
@@ -21485,6 +21496,9 @@ msgstr "zapping"
 #~ msgid "Free To Air"
 #~ msgstr "Non criptato"
 
+#~ msgid "Frontprocessor version: %d"
+#~ msgstr "Versione frontprocessor: %d"
+
 #~ msgid "Frozen Cam Check"
 #~ msgstr "Controllo CAM bloccata"
 
@@ -21937,6 +21951,9 @@ msgstr "zapping"
 
 #~ msgid "Plugin"
 #~ msgstr "Plugin"
+
+#~ msgid "Plugin Filter..."
+#~ msgstr "Filtro plugin..."
 
 #~ msgid "PluginDetails"
 #~ msgstr "PluginDetails"
@@ -22393,6 +22410,9 @@ msgstr "zapping"
 
 #~ msgid "Tuner type"
 #~ msgstr "Tipo tuner"
+
+#~ msgid "Tuners & scanning"
+#~ msgstr "Ricerca canali"
 
 #~ msgid "Tuning step size"
 #~ msgstr "Ottimizzazione del passo"
