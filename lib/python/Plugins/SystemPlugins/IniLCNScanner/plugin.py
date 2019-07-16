@@ -37,13 +37,13 @@ class LCN():
 	)
 	sr_tv_bouquet_entry = eServiceReference(
 		eServiceReference.idDVB,
-		eServiceReference.isDirectory | eServiceReference.mustDescent | eServiceReference.canDescent,
+		eServiceReference.flagDirectory,
 		eServiceReferenceDVB.dTv
 	)
 	sr_tv_bouquet_entry.setPath('FROM BOUQUET "userbouquet.terrestrial_lcn.tv" ORDER BY bouquet')
 	sr_radio_bouquet_entry = eServiceReference(
 		eServiceReference.idDVB,
-		eServiceReference.isDirectory | eServiceReference.mustDescent | eServiceReference.canDescent,
+		eServiceReference.flagDirectory,
 		eServiceReferenceDVB.dRadio
 	)
 	sr_radio_bouquet_entry.setPath('FROM BOUQUET "userbouquet.terrestrial_lcn.radio" ORDER BY bouquet')
