@@ -529,7 +529,7 @@ class FlashImage(Screen):
 					command = "/usr/bin/ofgwrite -f -r -k -m%s %s" % (self.multibootslot, imagefiles)
 				else:
 					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
-			elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u54","u56"): # issue detect kernel device
+			elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u532","u533","u54","u56"): # issue detect kernel device
 				print "[FlashImage] detect Kernel:",self.MTDKERNEL
 				print "[FlashImage] detect rootfs:",self.MTDROOTFS
 				command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
