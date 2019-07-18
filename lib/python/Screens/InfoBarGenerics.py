@@ -4130,6 +4130,8 @@ class InfoBarCueSheetSupport:
 		# print "new service started! trying to download cuts!"
 		self.downloadCuesheet()
 
+		force_resume = self.force_next_resume
+		self.forceNextResume(False)
 		self.resume_point = None
 		if self.ENABLE_RESUME_SUPPORT:
 			last = start = end = None
@@ -4161,13 +4163,12 @@ class InfoBarCueSheetSupport:
 			if (last > start + 900000) and (not length[1] or (last < length[1] - 900000)):
 				self.resume_point = last
 				l = last / 90000
-				if self.force_next_resume:
+				if force_resume:
 					self.playLastCB(True)
 				elif "ask" in config.usage.on_movie_start.value or not length[1]:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
-		self.forceNextResume(False)
 
 	def __findRecording(self):
 		if isMoviePlayerInfoBar(self):
