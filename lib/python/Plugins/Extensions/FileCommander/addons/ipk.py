@@ -32,9 +32,9 @@ class ipkMenuScreen(ArchiverMenuScreen):
 			fname = shellquote(self.sourceDir + self.filename)
 			p = subprocess.Popen("ar -t %s > /dev/null 2>&1" % fname, shell=True)
 			if p.wait():
-				cmd = "tar -xOf %s ./data.tar.gz | tar -tzf -" % fname
+				cmd = "tar -xOf %s --wildcards './data.tar.?z' | bsdcat | tar -tf -" % fname
 			else:
-				cmd = "ar -p %s data.tar.gz | tar -tzf -" % fname
+				cmd = "ar -p %s 'data.tar.?z' | bsdcat | tar -tf -" % fname
 			self.unpackPopen(cmd, UnpackInfoScreen)
 		elif id == 4:
 			self.ulist = []
