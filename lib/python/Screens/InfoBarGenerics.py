@@ -4133,7 +4133,7 @@ class InfoBarCueSheetSupport:
 		force_resume = self.force_next_resume
 		self.forceNextResume(False)
 		self.resume_point = None
-		if self.ENABLE_RESUME_SUPPORT:
+		if self.ENABLE_RESUME_SUPPORT and config.usage.on_movie_start.value != "beginning":
 			last = start = end = None
 			for (pts, what) in self.cut_list:
 				if what == self.CUT_TYPE_LAST:
@@ -4159,14 +4159,13 @@ class InfoBarCueSheetSupport:
 				return  # Should not happen?
 			length = (None, end) if end is not None else seekable.getLength() or (None, 0)
 			# print "seekable.getLength() returns:", length
-			# Hmm, this implies we don't resume if the length is unknown...
 			if (last > start + 900000) and (not length[1] or (last < length[1] - 900000)):
 				self.resume_point = last
 				l = last / 90000
 				if force_resume:
 					self.playLastCB(True)
 				elif "ask" in config.usage.on_movie_start.value or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=30, default="no" not in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
