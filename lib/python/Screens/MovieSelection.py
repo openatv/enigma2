@@ -958,7 +958,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def unhideParentalServices(self):
 		if self.protectContextMenu:
-			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
+			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service PIN"), windowTitle=_("Enter PIN code"))
 		else:
 			self.unhideParentalServicesCallback(True)
 
@@ -969,7 +969,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			parentalControl.hideBlacklist()
 			self.reloadList()
 		elif answer is not None:
-			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.close, MessageBox, _("The PIN code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -2096,7 +2096,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				parentalControl.hideBlacklist()
 				self.gotFilename(res, selItem, pinOk=True)
 			elif result is False:
-				self.session.open(MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
+				self.session.open(MessageBox, _("The PIN code you entered is wrong."), MessageBox.TYPE_INFO, timeout=3)
 		if not res:
 			self.updateTitle()	# alias may have changed
 			return
@@ -2110,7 +2110,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				if not pinOk and config.ParentalControl.servicepinactive.value and baseName.startswith(".") and baseName not in (".Trash", ".trash", ".Trashcan"):
 					from Components.ParentalControl import parentalControl
 					if not parentalControl.sessionPinCached:
-						self.session.openWithCallback(boundFunction(servicePinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+						self.session.openWithCallback(boundFunction(servicePinEntered, res, selItem), PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct PIN code"), windowTitle=_("Enter PIN code"))
 						return
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
