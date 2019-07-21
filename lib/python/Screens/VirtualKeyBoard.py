@@ -65,7 +65,6 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			VKB_SAVE_TEXT: ("Save", _("Save")),
 			VKB_SEARCH_TEXT: ("Search", _("Search"))
 		}.get(style, ("Enter", u"ENTERICON"))
-		self.bg = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "buttons/vkey_bg.png"))  # Legacy support only!
 		self.bg_l = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "buttons/vkey_bg_l.png"))
 		self.bg_m = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "buttons/vkey_bg_m.png"))
 		self.bg_r = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "buttons/vkey_bg_r.png"))
