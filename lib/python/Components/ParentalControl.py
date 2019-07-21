@@ -133,7 +133,7 @@ class ParentalControl:
 				return True
 			self.callback = callback
 			service = ref.toCompareString()
-			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control pin") or _("this service is protected by a parental control pin")
+			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control PIN") or _("this service is protected by a parental control PIN")
 			if session:
 				Notifications.RemovePopup("Parental control")
 				if self.PinDlg:
@@ -210,7 +210,7 @@ class ParentalControl:
 			self.hideBlacklist()
 			self.callback(ref=service)
 		elif result is False:
-			messageText = _("The pin code you entered is wrong.")
+			messageText = _("The PIN code you entered is wrong.")
 			if self.session:
 				self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
 			else:
