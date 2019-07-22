@@ -446,7 +446,7 @@ class CiSelection(Screen):
 		elif self.state[slot] == 2: #module ready
 			appname = eDVBCI_UI.getInstance().getAppName(slot)
 			self.list.append((appname, ConfigNothing(), 2, slot))
-		self.list.append(getConfigListEntry(_("Set pin code persistent"), config.ci[slot].use_static_pin))
+		self.list.append(getConfigListEntry(_("Set PIN code persistent"), config.ci[slot].use_static_pin))
 		self.list.append((_("Enter persistent PIN code"), ConfigNothing(), 5, slot))
 		self.list.append((_("Reset persistent PIN code"), ConfigNothing(), 6, slot))
 		self.list.append(getConfigListEntry(_("Show CI messages"), config.ci[slot].show_ci_messages))
@@ -523,7 +523,7 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 	def __init__(self, session, pin, pin_slot):
 		Screen.__init__(self, session)
 		self.skinName = ["ParentalControlChangePin", "Setup" ]
-		self.setup_title = _("Enter pin code")
+		self.setup_title = _("Enter PIN code")
 		self.onChangedEntry = [ ]
 
 		self.slot = pin_slot
