@@ -368,7 +368,7 @@ def copytree(src, dst, symlinks=False):
 			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (e.errno, srcname, dstname, os.strerror(e.error))
 	try:
 		st = os.stat(src)
-		mode = os.stat.S_IMODE(st.st_mode)
+		mode = stat.S_IMODE(st.st_mode)
 		os.chmod(dst, mode)
 		os.utime(dst, (st.st_atime, st.st_mtime))
 	except OSError, e:

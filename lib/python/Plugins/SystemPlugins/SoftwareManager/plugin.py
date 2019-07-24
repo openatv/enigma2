@@ -1565,7 +1565,6 @@ class UpdatePlugin(Screen):
 		self.activityTimer.start(100, False)
 
 	def CheckDate(self):
-		from boxbranding import getMachineBrand, getMachineName
 		# Check if image is not to old for update (max 30days)
 		self.CheckDateDone = True
 		tmpdate = getEnigmaVersionString()
