@@ -29,7 +29,9 @@
 ----------
 
 3 - modify max_user_watches
+
     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+
     sysctl -n -w fs.inotify.max_user_watches=524288
 
 ----------
