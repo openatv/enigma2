@@ -85,7 +85,8 @@
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="E" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center" >
+		<!--text="E" results "O" -> text="E " results "E"-->
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="E " foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">4,4</convert>
 			<convert type="ConditionalShowHide" />
@@ -166,7 +167,8 @@
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="E" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center" >
+		<!--text="E" results "O" -> text="E " results "E"-->
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="E " foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">4,4</convert>
 			<convert type="ConditionalShowHide" />
