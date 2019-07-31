@@ -7,6 +7,7 @@
 #define ENABLE_NETMED 1
 #define ENABLE_VIRGIN 1
 #define ENABLE_ATSC 1
+#define ENABLE_OPENTV 1
 
 #ifndef SWIG
 
@@ -19,6 +20,10 @@
 #include <lib/dvb/eit.h>
 #ifdef ENABLE_MHW_EPG
 #include <lib/dvb/lowlevel/mhw.h>
+#endif
+#ifdef ENABLE_OPENTV
+#include <lib/dvb/opentv.h>
+#include <lib/base/huffman.h>
 #endif
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/demux.h>
@@ -278,6 +283,39 @@ class eEPGCache: public eMainloop, private eThread, public sigc::trackable
 		void ATSC_ETTsection(const uint8_t *d);
 		void cleanupATSC();
 #endif
+#ifdef ENABLE_OPENTV
+		typedef std::tr1::unordered_map<uint32_t, std::string> OpenTvDescriptorMap;
+		int m_OPENTV_EIT_index;
+		uint16_t m_OPENTV_pid;
+		uint32_t m_OPENTV_crc32;
+		uint32_t opentv_title_crc32;
+		bool huffman_dictionary_read;
+		struct opentv_channel
+		{
+			uint16_t originalNetworkId;
+			uint16_t transportStreamId;
+			uint16_t serviceId;
+			uint8_t serviceType;
+		};
+		struct opentv_event
+		{
+			uint16_t eventId;
+			uint32_t startTime;
+			uint32_t duration;
+			uint32_t title_crc;
+		};
+		OpenTvDescriptorMap m_OPENTV_descriptors_map;
+		std::map<uint16_t, struct opentv_channel> m_OPENTV_channels_map;
+		std::map<uint32_t, struct opentv_event> m_OPENTV_EIT_map;
+		ePtr<eTimer> m_OPENTV_Timer;
+		ePtr<iDVBSectionReader> m_OPENTV_ChannelsReader, m_OPENTV_TitlesReader, m_OPENTV_SummariesReader;
+		ePtr<eConnection> m_OPENTV_ChannelsConn, m_OPENTV_TitlesConn, m_OPENTV_SummariesConn;
+		void OPENTV_checkCompletion(const uint32_t data_crc);
+		void OPENTV_ChannelsSection(const uint8_t *d);
+		void OPENTV_TitlesSection(const uint8_t *d);
+		void OPENTV_SummariesSection(const uint8_t *d);
+		void cleanupOPENTV();
+#endif
 		void readData(const uint8_t *data, int source);
 		void startChannel();
 		void startEPG();
@@ -455,6 +493,9 @@ public:
 #endif
 #ifdef ENABLE_ATSC
 	,ATSC_EIT=8192
+#endif
+#ifdef ENABLE_OPENTV
+	,OPENTV=16384
 #endif
 	,EPG_IMPORT=0x80000000
 	};
