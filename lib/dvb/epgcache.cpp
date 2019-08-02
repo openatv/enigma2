@@ -2074,7 +2074,7 @@ void eEPGCache::channel_data::OPENTV_checkCompletion(uint32_t data_crc)
 				chid.original_network_id = m_OPENTV_channels_map[channelid].originalNetworkId;
 				chids.push_back(chid);
 				sids.push_back(m_OPENTV_channels_map[channelid].serviceId);
-				cache->submitEventData(sids, chids, it->second.startTime, it->second.duration, m_OPENTV_descriptors_map[it->second.title_crc].c_str(), "", "", m_OPENTV_channels_map[channelid].serviceType, eEPGCache::OPENTV);
+				cache->submitEventData(sids, chids, it->second.startTime, it->second.duration, m_OPENTV_descriptors_map[it->second.title_crc].c_str(), "", "", 0, eEPGCache::OPENTV);
 			}
 			m_OPENTV_EIT_map.erase(it);
 		}
@@ -2178,7 +2178,7 @@ void eEPGCache::channel_data::OPENTV_SummariesSection(const uint8_t *d)
 					chid.original_network_id = m_OPENTV_channels_map[channelid].originalNetworkId;
 					chids.push_back(chid);
 					sids.push_back(m_OPENTV_channels_map[channelid].serviceId);
-					cache->submitEventData(sids, chids, ote.startTime, ote.duration, m_OPENTV_descriptors_map[ote.title_crc].c_str(), "", (*summary)->getSummary().c_str(), m_OPENTV_channels_map[channelid].serviceType, eEPGCache::OPENTV);
+					cache->submitEventData(sids, chids, ote.startTime, ote.duration, m_OPENTV_descriptors_map[ote.title_crc].c_str(), "", (*summary)->getSummary().c_str(), 0, eEPGCache::OPENTV);
 				}
 				m_OPENTV_EIT_map.erase(otce);
 			}
