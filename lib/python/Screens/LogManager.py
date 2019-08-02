@@ -99,7 +99,7 @@ class LogManagerPoller:
 				fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
 				data = fh.read()
 				fh.seek(0) # rewind
-				fh.write(data)
+				fh.write(data[data.find('\n')+1:]) # skip partial line
 				fh.truncate()
 				fh.close()
 		self.TrimTimer.startLongTimer(3600) #once an hour
