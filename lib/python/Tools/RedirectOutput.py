@@ -1,4 +1,6 @@
 import sys
+import fcntl
+import os
 from enigma import ePythonOutput
 
 class EnigmaLogDebug:
@@ -43,5 +45,7 @@ class EnigmaLogFatal:
 	def isatty(self):
 		return True
 
+fcntl.fcntl(sys.stdout, fcntl.F_SETFL, os.O_APPEND)
+fcntl.fcntl(sys.stderr, fcntl.F_SETFL, os.O_APPEND)
 sys.stdout = EnigmaLogDebug()
 sys.stderr = EnigmaLogFatal()
