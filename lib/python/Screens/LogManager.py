@@ -139,7 +139,7 @@ class LogManagerPoller:
 								print "[LogManager] " + str(fn) + ": Too old:", name, st.st_ctime
 								eBackgroundFileEraser.getInstance().erase(fn)
 								bytesToRemove -= st.st_size
-							else:
+							elif allowedBytes:
 								candidates.append((st.st_ctime, fn, st.st_size))
 								size += st.st_size
 						except Exception, e:

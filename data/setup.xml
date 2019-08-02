@@ -314,7 +314,7 @@
 		<item level="2" text="Enable debug logs *" description="Allows you to enable the debug logs. They contain very detailed information about everything the system does. Reboot required to enable this!">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size (MB) of the individual debug logs. When that size is exceeded, the earliest entries are discarded.">config.crash.debugloglimit</item>
 		<item level="2" text="Maximum number of days" description="Logs older than the specified number of days will be deleted.">config.crash.daysloglimit</item>
-		<item level="2" text="Maximum total space used (MB)" description="When maximum space for all logs is reached, the oldest logs will be deleted.">config.crash.sizeloglimit</item>
+		<item level="2" text="Maximum total space used (MB)" description="When maximum space for all logs is reached, the oldest logs will be deleted. Use 0 to only delete by age.">config.crash.sizeloglimit</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift">
 		<item level="1" text="Automatically start timeshift after" description="Enable to automatically start timeshifting in the background after the specified time.">config.timeshift.startdelay</item>
