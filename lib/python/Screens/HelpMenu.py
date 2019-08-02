@@ -3,6 +3,7 @@ from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.Sources.HelpMenuList import HelpMenuList
+from Components.Sources.StaticText import StaticText
 from Screens.Rc import Rc
 from enigma import eActionMap
 from sys import maxint
@@ -32,6 +33,7 @@ The order and grouping of the help information list can be controlled using MENU
 		self["list"] = HelpMenuList(list, self.close, rcPos=self.getRcPositions())
 		self["longshift_key0"] = Label("")
 		self["longshift_key1"] = Label("")
+		self["key_help"] = StaticText(_("HELP"))
 
 		self["actions"] = ActionMap(["WizardActions"], {
 			"ok": self["list"].ok,
@@ -105,6 +107,7 @@ class HelpableScreen:
 		self["helpActions"] = ActionMap(["HelpActions"], {
 			"displayHelp": self.showHelp,
 		})
+		self["key_help"] = StaticText(_("HELP"))
 
 	def showHelp(self):
 		try:
