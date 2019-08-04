@@ -250,8 +250,8 @@ class ImageViewer(Screen, HelpableScreen):
 		<screen position="0,0" size="%d,%d" flags="wfNoBorder">
 			<eLabel position="0,0" zPosition="0" size="%d,%d" backgroundColor="#00000000" />
 			<widget name="image" position="%d,%d" size="%d,%d" zPosition="1" alphatest="on" />
-			<widget name="status" position="%d,%d" size="20,20" zPosition="2" pixmap="skin_default/icons/record.png" alphatest="on" />
-			<widget name="icon" position="%d,%d" size="20,20" zPosition="2" pixmap="skin_default/icons/ico_mp_play.png"  alphatest="on" />
+			<widget name="status" position="%d,%d" size="20,20" zPosition="2" pixmap="icons/record.png" alphatest="on" />
+			<widget name="icon" position="%d,%d" size="20,20" zPosition="2" pixmap="icons/ico_mp_play.png"  alphatest="on" />
 			<widget source="message" render="Label" position="%d,%d" size="%d,25" font="Regular;20" halign="left" foregroundColor="#0038FF48" zPosition="2" noWrap="1" transparent="1" />
 		</screen>
 		""" % (w, h, w, h, s, s, w - (s * 2), h - (s * 2), s + 5, s + 2, s + 25, s + 2, s + 45, s, w - (s * 2) - 50)

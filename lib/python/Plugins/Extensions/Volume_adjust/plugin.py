@@ -33,8 +33,8 @@ class Volume_adjust(Screen):
 		<screen position="center,center" size="595,456" title="Volume Adjust" >
 			<widget name="ServiceList.desc" position="10,30" size="575,22" font="Regular;20" />
 			<widget name="ServiceList" position="10,70" size="575,250" scrollbarMode="showOnDemand" />
-			<ePixmap position="10,330" size="575,2" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
-			<ePixmap position="10,400" size="575,2" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,330" size="575,2" pixmap="div-h.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,400" size="575,2" pixmap="div-h.png" transparent="1" alphatest="on" />
 			<widget source="press_menu" render="Label" position="10,330" zPosition="1" size="575,70" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<eLabel backgroundColor="red" position="10,447" size="140,3" zPosition="0" />
 			<eLabel backgroundColor="green" position="155,447" size="140,3" zPosition="0" />
@@ -243,7 +243,7 @@ class Change_volume(ConfigListScreen, Screen):
 	skin = """
 		<screen position="center,center" size="310,190"  title="Change Volume offset" >
 			<widget name="config" position="10,10" size="290,210" scrollbarMode="showOnDemand" />
-			<ePixmap position="10,130" size="290,2" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,130" size="290,2" pixmap="div-h.png" transparent="1" alphatest="on" />
 			<eLabel backgroundColor="red" position="10,181" size="90,3" zPosition="0" />
 			<eLabel backgroundColor="green" position="110,181" size="90,3" zPosition="0" />
 			<eLabel backgroundColor="yellow" position="210,181" size="90,3" zPosition="0" />
@@ -299,10 +299,10 @@ class mySmallChannelSelection(ChannelSelectionBase):
 
 	skin = """
 		<screen position="center,center" size="560,430" title="Select service to add...">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" />
+			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" />
+			<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" />
 			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" />
 			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" />
 			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" />
@@ -365,9 +365,9 @@ class Volume_Config(ConfigListScreen, Screen):
 	skin = """
 		<screen position="center,center" size="360,210"  title="Volume Config" >
 			<widget name="config" position="10,10" size="340,75" scrollbarMode="showOnDemand" />
-			<ePixmap position="10,80" size="340,2" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,80" size="340,2" pixmap="div-h.png" transparent="1" alphatest="on" />
 			<widget source="infotext" render="Label" position="10,80" zPosition="1" size="340,70" font="Regular;19" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<ePixmap position="10,150" size="340,2" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,150" size="340,2" pixmap="div-h.png" transparent="1" alphatest="on" />
 			<eLabel backgroundColor="red" position="20,201" size="100,3" zPosition="0" />
 			<eLabel backgroundColor="green" position="130,201" size="100,3" zPosition="0" />
 			<eLabel backgroundColor="yellow" position="240,201" size="100,3" zPosition="0" />

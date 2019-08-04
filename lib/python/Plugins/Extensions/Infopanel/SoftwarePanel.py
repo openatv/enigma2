@@ -44,8 +44,8 @@ class SoftwarePanel(Screen):
 					}
 				</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/buttons/red.png" position=" 30,570" size="35,27" alphatest="blend" />
-			<widget name="key_green_pic" pixmap="skin_default/buttons/green.png" position="290,570" size="35,27" alphatest="blend" />
+			<ePixmap pixmap="buttons/red.png" position=" 30,570" size="35,27" alphatest="blend" />
+			<widget name="key_green_pic" pixmap="buttons/green.png" position="290,570" size="35,27" alphatest="blend" />
 			<widget name="key_red" position=" 80,573" size="200,26" zPosition="1" font="Regular;22" halign="left" transparent="1" />
 			<widget name="key_green" position="340,573" size="200,26" zPosition="1" font="Regular;22" halign="left" transparent="1" />
 		</screen> """
@@ -158,7 +158,7 @@ class SoftwarePanel(Screen):
 	def setStatus(self,status = None):
 		if status:
 			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
 			if status == 'update':
 				if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/upgrade.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/upgrade.png"))
@@ -196,7 +196,7 @@ class SoftwarePanel(Screen):
 		pass
 	
 	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
 		if not description:
 			description = "No description available."
 		if state == 'installed':

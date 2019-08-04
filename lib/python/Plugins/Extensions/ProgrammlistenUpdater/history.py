@@ -26,7 +26,7 @@ class PU_History(Screen):
 
     skin =  """
         <screen name="PU_History" position="center,center" size="600,470">
-            <ePixmap pixmap="skin_default/buttons/red.png" position="5,0" size="140,40" alphatest="on" />
+            <ePixmap pixmap="buttons/red.png" position="5,0" size="140,40" alphatest="on" />
             <widget source="key_red" render="Label" position="5,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" foregroundColor="#ffffff" transparent="1" />
             <widget name="History" position="25,70" size="560,350" scrollbarMode="showOnDemand" />
         </screen>

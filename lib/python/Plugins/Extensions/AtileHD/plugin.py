@@ -632,11 +632,11 @@ class AtileHDScreens(Screen):
 		self.file_dir = "mySkin_off"
 		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_on.png" % cur_skin)
 		if not path.exists(my_path):
-			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_on.png")
+			my_path = resolveFilename(SCOPE_SKIN, "icons/lock_on.png")
 		self.enabled_pic = LoadPixmap(cached = True, path = my_path)
 		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_off.png" % cur_skin)
 		if not path.exists(my_path):
-			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_off.png")
+			my_path = resolveFilename(SCOPE_SKIN, "icons/lock_off.png")
 		self.disabled_pic = LoadPixmap(cached = True, path = my_path)
 		
 		if not self.selectionChanged in self["menu"].onSelectionChanged:

@@ -14,8 +14,8 @@ config.plugins.UI3DSetup.setmode = ConfigSelection(choices = setmodelist, defaul
 class UI3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="440,300" title="UI 3D setup" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="10,10" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="290,10" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/red.png" position="10,10" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="290,10" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="10,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" transparent="1" />
 			<widget source="key_green" render="Label" position="290,10" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" transparent="1" />
 			<widget name="config" zPosition="2" position="10,70" size="410,200" scrollbarMode="showOnDemand" transparent="1" />

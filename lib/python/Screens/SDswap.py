@@ -27,9 +27,9 @@ class SDswap(Screen):
 		<widget source="key_red" render="Label" position="30,200" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
 		<widget source="key_green" render="Label" position="230,200" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
 		<widget source="key_yellow" render="Label" position="430,200" size="150,30" noWrap="1" zPosition="1" valign="center" font="Regular; 20" halign="left" backgroundColor="#00000000" foregroundColor="#00ffffff" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="30,200" size="40,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="230,200" size="40,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="430,200" size="40,40" alphatest="on" />
+		<ePixmap pixmap="buttons/red.png" position="30,200" size="40,40" alphatest="on" />
+		<ePixmap pixmap="buttons/green.png" position="230,200" size="40,40" alphatest="on" />
+		<ePixmap pixmap="buttons/yellow.png" position="430,200" size="40,40" alphatest="on" />
 	</screen>
 	"""
 

@@ -269,12 +269,12 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	if not name.startswith('<'):
 		x, y, w, h = skin.parameters.get("FileListMultiLock",(4, 0, 25, 25))
 		if selected is False:
-			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"))
+			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_off.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))
 		else:
-			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
+			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_on.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))

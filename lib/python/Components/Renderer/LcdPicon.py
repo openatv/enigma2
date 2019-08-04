@@ -123,9 +123,9 @@ class LcdPicon(Renderer):
 				pngname = tmp
 			else:
 				if getDisplayType() in ('bwlcd255', 'bwlcd140') and not SystemInfo["grautec"]:
-					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "lcd_picon_default.png")
+					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "skin_default/lcd_picon_default.png")
 				else:
-					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
+					pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "skin_default/picon_default.png")
 		if os.path.getsize(pngname):
 			self.defaultpngname = pngname
 

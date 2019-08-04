@@ -593,9 +593,9 @@ class oscInfo(Screen, OscamInfo):
 		button_width = int(sizeH / 4)
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
 			xpos = k * button_width
-			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="/usr/share/enigma2/skin_default/buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
+			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
 			self.skin += """<widget source="key_%s" render="Label" position="%d,%d" size="%d,%d" font="Regular;18" zPosition="1" valign="center" transparent="1" />""" % (v, xpos + 40, ypos, button_width, 22)
-		self.skin +="""<ePixmap name="divh" position="0,37" size="%d,2" pixmap="/usr/share/enigma2/skin_default/div-h.png" transparent="1" alphatest="on" />""" % sizeH
+		self.skin +="""<ePixmap name="divh" position="0,37" size="%d,2" pixmap="div-h.png" transparent="1" alphatest="on" />""" % sizeH
 		self.skin +="""<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % ( self.sizeLH, ysize - 50)
 		self.skin += """</screen>"""
 		Screen.__init__(self, session)

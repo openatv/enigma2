@@ -474,7 +474,7 @@
 <!--TeletextransponderSummary-->
 <screen name="TeleTextTransponderSummary" position="0,0" size="400,240">
     <widget name="c_service" position="4,5"   size="300,60" font="LCD1;56" halign="left"/>
-    <ePixmap pixmap="skin_default/div-h.png" position="144,86" size="120,6" zPosition="1"/>
+    <ePixmap pixmap="div-h.png" position="144,86" size="120,6" zPosition="1"/>
     <widget name="n_service" position="96,107" size="300,60" font="LCD1;56" halign="right"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>

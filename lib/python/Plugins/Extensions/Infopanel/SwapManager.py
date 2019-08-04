@@ -67,14 +67,14 @@ class StartSwap:
 class Swap(Screen):
 	skin = """
 	<screen name="Swap" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="autostart_off" position="10,50" zPosition="1" pixmap="skin_default/icons/lock_off.png" size="32,32" alphatest="on" />
-		<widget name="autostart_on" position="10,50" zPosition="2" pixmap="skin_default/icons/lock_on.png" size="32,32" alphatest="on" />
+		<widget name="autostart_off" position="10,50" zPosition="1" pixmap="icons/lock_off.png" size="32,32" alphatest="on" />
+		<widget name="autostart_on" position="10,50" zPosition="2" pixmap="icons/lock_on.png" size="32,32" alphatest="on" />
 		<widget name="lab1" position="50,50" size="360,30" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="lab2" position="10,100" size="150,30" font="Regular;20" valign="center" transparent="1"/>
 		<widget name="lab3" position="10,150" size="150,30" font="Regular;20" valign="center" transparent="1"/>

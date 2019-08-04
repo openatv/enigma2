@@ -204,12 +204,12 @@ menu_list = [
 if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png")):
 	lock_on = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
 else:
-	lock_on = loadPNG("/usr/share/enigma2/skin_default/icons/lock_on.png")
+	lock_on = loadPNG("icons/lock_on.png")
 	
 if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png")):
 	lock_off = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
 else:
-	lock_off = loadPNG("/usr/share/enigma2/skin_default/icons/lock_off.png")
+	lock_off = loadPNG("icons/lock_off.png")
 
 def getConfigNameAndContent(fileName):
 	try:
@@ -272,7 +272,7 @@ def CCcamListEntry(name, idx):
 	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))):
 		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))
 	else:
-		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
+		png = "buttons/key_%s.png" % str(idx)
 	if fileExists(png):
 		x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
@@ -285,7 +285,7 @@ def CCcamServerListEntry(name, color):
 	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" %  color)):
 		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" %  color)
 	else:
-		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
+		png = "buttons/key_%s.png" % color
 	if fileExists(png):
 		x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))

@@ -16,12 +16,12 @@ class SoftcamSetup(Screen, ConfigListScreen):
 	<screen name="SoftcamSetup" position="center,center" size="560,550" >
 		<widget name="config" position="5,10" size="550,180" />
 		<widget name="info" position="5,200" size="550,340" font="Fixed;18" />
-		<ePixmap name="red" position="0,510" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<ePixmap name="green" position="140,510" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<ePixmap name="red" position="0,510" zPosition="1" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
+		<ePixmap name="green" position="140,510" zPosition="1" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
 		<widget objectTypes="key_red,StaticText" source="key_red" render="Label" position="0,510" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget objectTypes="key_green,StaticText" source="key_green" render="Label" position="140,510" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Label"  position="420,510" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1"/>
-		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Pixmap" pixmap="skin_default/buttons/blue.png"  position="420,510" zPosition="1" size="140,40" transparent="1" alphatest="on">
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Pixmap" pixmap="buttons/blue.png"  position="420,510" zPosition="1" size="140,40" transparent="1" alphatest="on">
 			<convert type="ConditionalShowHide"/>
 		</widget>
 	</screen>"""

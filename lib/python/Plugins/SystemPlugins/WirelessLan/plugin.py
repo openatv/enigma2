@@ -33,7 +33,7 @@ config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False
 class WlanStatus(Screen):
 	skin = """
 		<screen name="WlanStatus" position="center,center" size="560,400" title="Wireless network status" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 
 			<widget source="LabelBSSID" render="Label" position="10,60" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
@@ -49,11 +49,11 @@ class WlanStatus(Screen):
 			<widget source="bitrate" render="Label" position="220,220" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 			<widget source="enc" render="Label" position="220,260" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 
-			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
+			<ePixmap pixmap="div-h.png" position="0,350" zPosition="1" size="560,2" />
 			<widget source="IFtext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
 			<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
 			<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1"/>
-			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+			<widget name="statuspic" pixmaps="buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 		</screen>"""
 
 	def __init__(self, session, iface):
@@ -178,9 +178,9 @@ class WlanStatus(Screen):
 class WlanScan(Screen):
 	skin = """
 		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
@@ -199,7 +199,7 @@ class WlanScan(Screen):
 					}
 				</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/div-h.png" position="0,340" zPosition="1" size="560,2" />
+			<ePixmap pixmap="div-h.png" position="0,340" zPosition="1" size="560,2" />
 			<widget source="info" render="Label" position="0,350" size="560,50" font="Regular;24" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 

@@ -12,7 +12,7 @@ def RGB(r,g,b):
 class OverscanTestScreen(Screen):
 	skin = """
 		<screen position="fill">
-			<ePixmap pixmap="skin_default/overscan.png" position="0,0" size="1920,1080" zPosition="1" alphatest="on" />
+			<ePixmap pixmap="overscan.png" position="0,0" size="1920,1080" zPosition="1" alphatest="on" />
 		</screen>"""
 
 	def __init__(self, session, xres=1280, yres=720):
@@ -54,7 +54,7 @@ class OverscanTestScreen(Screen):
 class FullHDTestScreen(OverscanTestScreen):
 	skin = """
 		<screen position="fill">
-			<ePixmap pixmap="skin_default/testscreen.png" position="0,0" size="1920,1080" zPosition="1" alphatest="on" />
+			<ePixmap pixmap="testscreen.png" position="0,0" size="1920,1080" zPosition="1" alphatest="on" />
 		</screen>"""
 
 	def __init__(self, session):

@@ -37,8 +37,8 @@ def command(comandline, strip=1):
 class ShowSoftcamPackages(Screen):
 	skin = """
 		<screen name="ShowSoftcamPackages" position="center,center" size="630,500" title="Install Softcams" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 			<widget source="key_ok" render="Label" position="240,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
@@ -120,7 +120,7 @@ class ShowSoftcamPackages(Screen):
 	def setStatus(self,status = None):
 		if status:
 			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new updatelist. Please wait..." ),'', statuspng, divpng ))
@@ -163,7 +163,7 @@ class ShowSoftcamPackages(Screen):
 			self.setStatus('error')
 
 	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
 		if not description:
 			description = ""
 		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/installed.png"))

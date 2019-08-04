@@ -115,9 +115,9 @@ def getBackupFilename():
 
 def SettingsEntry(name, checked):
 	if checked:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"));
+		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_on.png"));
 	else:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"));
+		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_off.png"));
 
 	return (name, picture, checked)
 

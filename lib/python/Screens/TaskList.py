@@ -27,7 +27,7 @@ class TaskListScreen(Screen):
 					}
 				</convert>
 			</widget>
-			<ePixmap position="10,530" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,530" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
 			<widget name="key_red" position="10,530" zPosition="5" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1"/>
 		</screen>"""
 
