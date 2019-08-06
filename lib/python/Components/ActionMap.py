@@ -5,18 +5,16 @@ from Tools.KeyBindings import queryKeyBinding
 
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
-		contexts = contexts or []
-		actions = actions or {}
-		self.contexts = contexts
-		self.actions = actions
+		self.contexts = contexts or []
+		self.actions = actions or {}
 		self.prio = prio
 		self.p = eActionMap.getInstance()
 		self.bound = False
 		self.exec_active = False
 		self.enabled = True
-		unknown = actions.keys()
+		unknown = self.actions.keys()
 		for action in unknown[:]:
-			for context in contexts:
+			for context in self.contexts:
 				if queryKeyBinding(context, action):
 					unknown.remove(action)
 					break
