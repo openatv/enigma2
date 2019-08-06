@@ -4,7 +4,9 @@ from Tools.KeyBindings import queryKeyBinding
 
 
 class ActionMap:
-	def __init__(self, contexts=[], actions={}, prio=0):
+	def __init__(self, contexts=None, actions=None, prio=0):
+		contexts = contexts or []
+		actions = actions or {}
 		self.contexts = contexts
 		self.actions = actions
 		self.prio = prio
@@ -12,6 +14,14 @@ class ActionMap:
 		self.bound = False
 		self.exec_active = False
 		self.enabled = True
+		unknown = actions.keys()
+		for action in unknown[:]:
+			for context in contexts:
+				if queryKeyBinding(context, action):
+					unknown.remove(action)
+					break
+		if unknown:
+			print "[ActionMap] Keymap(s) '%s' -> Undefined action(s) '%s'." % (", ".join(contexts), ", ".join(unknown))
 
 	def setEnabled(self, enabled):
 		self.enabled = enabled
@@ -19,14 +29,14 @@ class ActionMap:
 
 	def doBind(self):
 		if not self.bound:
-			for ctx in self.contexts:
-				self.p.bindAction(ctx, self.prio, self.action)
+			for context in self.contexts:
+				self.p.bindAction(context, self.prio, self.action)
 			self.bound = True
 
 	def doUnbind(self):
 		if self.bound:
-			for ctx in self.contexts:
-				self.p.unbindAction(ctx, self.action)
+			for context in self.contexts:
+				self.p.unbindAction(context, self.action)
 			self.bound = False
 
 	def checkBind(self):
@@ -45,7 +55,7 @@ class ActionMap:
 
 	def action(self, context, action):
 		if action in self.actions:
-			print "[ActionMap] Keymap '%s' -> Action = '%s'" % (context, action)
+			print "[ActionMap] Keymap '%s' -> Action = '%s'." % (context, action)
 			res = self.actions[action]()
 			if res is not None:
 				return res
@@ -82,10 +92,10 @@ class HelpableActionMap(ActionMap):
 	# ActionMapconstructor,	the collected helpstrings (with correct
 	# context, action) is added to the screen's "helpList", which will
 	# be picked up by the "HelpableScreen".
-	#
-	def __init__(self, parent, contexts, actions={}, prio=0, description=None):
+	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
 		if not hasattr(contexts, '__iter__'):
 			contexts = [contexts]
+		actions = actions or {}
 		self.description = description
 		adict = {}
 		for context in contexts:
@@ -109,6 +119,5 @@ class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
 		# Initialise NumberActionMap with empty context and actions
 		# so that the underlying ActionMap is only initialised with
 		# these once, via the HelpableActionMap.
-		#
 		NumberActionMap.__init__(self, [], {})
 		HelpableActionMap.__init__(self, parent, contexts, actions, prio, description)
