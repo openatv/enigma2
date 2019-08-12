@@ -16,7 +16,7 @@ from enigma import eTimer, fbClass
 import os, urllib2, shutil, math, time, zipfile, shutil
 
 
-from boxbranding import getImageDistro, getMachineBuild
+from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName
 
 feedserver = 'images.mynonpublic.com'
 feedurl = 'http://%s/%s' %(feedserver, getImageDistro())
@@ -346,6 +346,7 @@ class FlashImage(Screen):
 
 	def flashPostAction(self, retval = True):
 		if retval:
+			self.recordcheck = False
 			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
 			choices = ((_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
 			(_("Clean (Just flash and start clean)"), "wizard"),
@@ -378,11 +379,25 @@ class FlashImage(Screen):
 			index = 1
 		return index
 
+	def recordWarning(self, answer):
+		if answer:
+			self.postFlashActionCallback(self.answer)
+		else:
+			self.abort()
+
 	def postFlashActionCallback(self, answer):
 		restoreSettings   = False
 		restoreAllPlugins = False
 		restoreSettingsnoPlugin = False
 		if answer is not None:
+			if answer[1] != "abort" and not self.recordcheck:
+				self.recordcheck = True
+				rec = self.session.nav.RecordTimer.isRecording()
+				next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
+				if rec or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+					self.answer = answer
+					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + '\n' + _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()), default=False)
+					return
 			if answer[1] == "restoresettings":
 				restoreSettings   = True
 			if answer[1] == "restoresettingsnoplugin":
