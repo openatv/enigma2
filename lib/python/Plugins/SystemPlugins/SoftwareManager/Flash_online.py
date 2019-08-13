@@ -394,7 +394,7 @@ class FlashImage(Screen):
 				self.recordcheck = True
 				rec = self.session.nav.RecordTimer.isRecording()
 				next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
-				if rec or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+				if rec or (next_rec_time > 0 and (next_rec_time - time.time()) < 360):
 					self.answer = answer
 					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + '\n' + _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()), default=False)
 					return
