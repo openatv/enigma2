@@ -278,11 +278,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			s = os.statvfs(dirname)
 			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 				self.stop_MountTest(None, cmd)
-		elif cmd == 'driveawake':
-			if not subprocess.call('touch %s/drive.awake' % dirname, shell=True):
-				subprocess.call('rm -f %s/drive.awake' % dirname, shell=True)
-			else:
-				self.stop_MountTest(None, cmd)
 
 	def stop_MountTest(self, thread, cmd):
 		if thread and thread.isAlive():
@@ -293,20 +288,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.MountPathErrorNumber = 2
 		elif cmd == 'freespace':
 			self.MountPathErrorNumber = 3
-		elif cmd == 'driveawake':
-			self.MountPathErrorNumber = 4
-
-	def freespace_old(self, WRITEERROR = False):
-		if WRITEERROR:
-			if findSafeRecordPath(self.MountPath) is None:
-				return ("mount '%s' is not available." % self.MountPath, 1)
-			elif not os.access(self.MountPath, os.W_OK):
-				return ("mount '%s' is not writeable." % self.MountPath, 2)
-			s = os.statvfs(self.MountPath)
-			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
-				return ("mount '%s' has not enough free space to record." % self.MountPath, 3)
-			else:
-				return ("unknown error.", 0)
 
 	def freespace(self, WRITEERROR=False):
 		if WRITEERROR:
@@ -331,7 +312,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return False
 
 		self.MountPathErrorNumber = 0
-		#for cmd in ('writeable', 'freespace', 'driveawake'): #driveawake is not needed
 		for cmd in ('writeable', 'freespace'):
 			print 'starting thread :%s' %cmd
 			p = threading.Thread(target=self.MountTest, args=(dirname, cmd))
@@ -350,8 +330,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return ("mount '%s' is not writeable." % dirname, 2)
 			elif self.MountPathErrorNumber == 3:
 				return ("mount '%s' has not enough free space to record." % dirname, 3)
-			elif self.MountPathErrorNumber == 4:
-				return ("mount '%s' has failed to write file." % dirname, 2)
 			else:
 				return ("unknown error.", 0)
 
@@ -360,10 +338,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 		elif self.MountPathErrorNumber == 3:
 			self.log(0, _("Mount '%s' has not enough free space to record.") % dirname)
-			return False
-		elif self.MountPathErrorNumber == 4:
-			self.MountPathErrorNumber = 2
-			self.log(0, _("Mount '%s' has failed to write file.") % dirname)
 			return False
 		else:
 			self.log(0, "Found enough free space to record")
@@ -510,14 +484,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
 					self.log(0, "next try in 5 seconds ...(%d/3)" % self.MountPathRetryCounter)
 					return False
-				message = _("Write error at start of recording. Disk %s\n%s") % ((_("not found!"), _("not writable!"), _("full?"))[self.MountPathErrorNumber-1],self.name)
-				messageboxtyp = MessageBox.TYPE_ERROR
-				timeout = 20
-				id = "DiskFullMessage"
-				if InfoBar and InfoBar.instance:
-					InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
-				else:
-					Notifications.AddPopup(message, messageboxtyp, timeout = timeout, id = id)
+				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber-1],self.name)
+				Notifications.AddPopup(message, MessageBox.TYPE_ERROR, timeout=20, id="DiskFullMessage")
 				self.failed = True
 				self.next_activation = time()
 				self.lastend = self.end
@@ -573,6 +541,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if eStreamServer.getInstance().getConnectedClients():
 				eStreamServer.getInstance().stopStream()
 				return False
+
 			if self.first_try_prepare or (self.ts_dialog is not None and not self.checkingTimeshiftRunning()):
 				self.first_try_prepare = False
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
@@ -945,7 +914,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
-			Notifications.AddPopup(text = _("Write error while recording. Disk %s") %(_("unknown error!"), _("not found!"), _("not writable!"), _("full?"))[err], type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
+			Notifications.AddPopup(text = _("Write error while recording. %s") %(_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
 			# ok, the recording has been stopped. we need to properly note
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
