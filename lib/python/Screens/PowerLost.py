@@ -13,7 +13,7 @@ class PowerLost(Screen):
 		if config.usage.boot_action.value == 'normal':
 			message = _("Your %s %s was not shutdown properly.\n\n"
 					"Do you want to put it in %s?") % (getMachineBrand(), getMachineName(), config.usage.shutdownNOK_action.value)
-			self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout = 60, default = True)
+			self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout = int(config.usage.shutdown_msgbox_timeout.value), default = True)
 		else:
 			self.MsgBoxClosed(True)
 
