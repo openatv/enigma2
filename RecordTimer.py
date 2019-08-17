@@ -753,7 +753,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					callback = self.sendStandbyNotification
 					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
 					messageboxtyp = MessageBox.TYPE_YESNO
-					timeout = 180
+					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					default = True
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -780,7 +780,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName())
 						messageboxtyp = MessageBox.TYPE_YESNO
-						timeout = 180
+						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						default = True
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)

@@ -124,6 +124,11 @@ def InitUsageConfig():
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
 	choicelist = []
+	for i in range(10, 310,10):
+		choicelist.append(("%d" % i, "%d " % i  + _("seconds")))
+	config.usage.shutdown_msgbox_timeout = ConfigSelection(default = "180", choices = choicelist)
+
+	choicelist = []
 	for i in range(1, 21):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("No timeout"))] + choicelist)

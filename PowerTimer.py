@@ -256,7 +256,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					callback = self.sendStandbyNotification
 					message = _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
 					messageboxtyp = MessageBox.TYPE_YESNO
-					timeout = 180
+					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					default = True
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -273,7 +273,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					callback = self.sendStandbyNotification
 					message = _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
 					messageboxtyp = MessageBox.TYPE_YESNO
-					timeout = 180
+					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					default = True
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -310,7 +310,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
 						messageboxtyp = MessageBox.TYPE_YESNO
-						timeout = 180
+						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						default = True
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -380,7 +380,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						callback = self.sendTryToRestartNotification
 						message = _("A finished powertimer wants to restart the user interface.\nDo that now?")
 						messageboxtyp = MessageBox.TYPE_YESNO
-						timeout = 180
+						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						default = True
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -448,7 +448,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						callback = self.sendTryToRebootNotification
 						message = _("A finished powertimer wants to reboot your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
 						messageboxtyp = MessageBox.TYPE_YESNO
-						timeout = 180
+						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						default = True
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -516,7 +516,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
 						messageboxtyp = MessageBox.TYPE_YESNO
-						timeout = 180
+						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						default = True
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -535,7 +535,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					callback = self.sendStandbyNotification
 					message = _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
 					messageboxtyp = MessageBox.TYPE_YESNO
-					timeout = 180
+					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					default = True
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
@@ -594,7 +594,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished powertimer wants to shutdown your %s %s.\nDo that now?") % (getMachineBrand(), getMachineName())
 						messageboxtyp = MessageBox.TYPE_YESNO
-						timeout = 180
+						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						default = True
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
