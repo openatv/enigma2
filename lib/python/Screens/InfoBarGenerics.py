@@ -5366,7 +5366,7 @@ class InfoBarHandleBsod:
 		if config.crash.bsodpython.value and self.lastBsod < bsodcnt:
 			maxbs = int(config.crash.bsodmax.value) or 100
 			writelog = bsodcnt == 1 or not bsodcnt > int(config.crash.bsodhide.value) or bsodcnt >= maxbs
-			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n") %bsodcnt
+			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n") %bsodcnt
 			txt += _("(Attention: There will be a restart after %d crashes.)") %maxbs
 			if writelog:
 				txt += "\n" + "-"*80 + "\n"
