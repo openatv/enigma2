@@ -2179,7 +2179,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			"keyRadio": self.toogleTvRadio,
 			"keyTV": self.toogleTvRadio,
 			"showSatellites": self.addToFav,
-		})
+		}, -1)
 
 		self.radioTV = 0
 
