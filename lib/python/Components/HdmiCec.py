@@ -55,7 +55,8 @@ choicelist = []
 for i in (500, 1000, 2000, 3000, 4000, 5000):
 	choicelist.append(("%d" % i, _("%d ms") % i))
 config.hdmicec.messages_repeat_slowdown = ConfigSelection(default = "1000", choices = [("0", _("None"))] + choicelist)
-for i in (10,30,60,120,300,600,900,1800,3600):
+choicelist = []
+for i in (5,10,30,60,120,300,600,900,1800,3600):
 	if i/60<1:
 		choicelist.append(("%d" % i, _("%d sec") % i))
 	else:
