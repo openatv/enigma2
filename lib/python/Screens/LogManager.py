@@ -413,7 +413,7 @@ class LogManager(Screen):
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
-			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = 'Additonal Info')
+			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = _('Additonal Info'))
 
 	def doSendlog(self, additonalinfo = None):
 		ref = str(time())
@@ -637,11 +637,11 @@ class LogInfo(VariableText, GUIComponent):
 		if self.type == self.USED:
 			try:
 				if total_size < 10000000:
-					total_size = "%d kB" % (total_size >> 10)
+					total_size = _("%d kB") % (total_size >> 10)
 				elif total_size < 10000000000:
-					total_size = "%d MB" % (total_size >> 20)
+					total_size = _("%d MB") % (total_size >> 20)
 				else:
-					total_size = "%d GB" % (total_size >> 30)
+					total_size = _("%d GB") % (total_size >> 30)
 				self.setText(_("Space used:") + " " + total_size)
 			except:
 				# occurs when f_blocks is 0 or a similar error
