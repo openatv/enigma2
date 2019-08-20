@@ -413,7 +413,7 @@ class LogManager(Screen):
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
-			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = _('Additonal Info'))
+			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = _("Additional Info"))
 
 	def doSendlog(self, additonalinfo = None):
 		ref = str(time())
