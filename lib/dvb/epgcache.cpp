@@ -2178,7 +2178,26 @@ void eEPGCache::channel_data::OPENTV_SummariesSection(const uint8_t *d)
 					chid.original_network_id = m_OPENTV_channels_map[channelid].originalNetworkId;
 					chids.push_back(chid);
 					sids.push_back(m_OPENTV_channels_map[channelid].serviceId);
-					cache->submitEventData(sids, chids, ote.startTime, ote.duration, m_OPENTV_descriptors_map[ote.title_crc].c_str(), "", (*summary)->getSummary().c_str(), 0, eEPGCache::OPENTV);
+
+					// hack to fix split titles
+					std::string sTitle = m_OPENTV_descriptors_map[ote.title_crc];
+					std::string sSummary = (*summary)->getSummary();
+
+					if (sTitle.length() > 3 && sSummary.length() > 3)
+					{
+						if (sTitle.substr(sTitle.length() - 3) == "..." && sSummary.substr(0, 3) == "...")
+						{
+							std::size_t found = sSummary.find_first_of(".:!?", 4) + 2;
+
+							if (found < sSummary.length())
+							{
+								std::size_t start = ((sSummary.substr(3, 1) == " ") ? 4 : 3);
+								sTitle = sTitle.substr(0, sTitle.length()-3) + " " + sSummary.substr(start, found-5);
+								sSummary = sSummary.substr(found);
+							}
+						}
+					}
+					cache->submitEventData(sids, chids, ote.startTime, ote.duration, sTitle.c_str(), "", sSummary.c_str(), 0, eEPGCache::OPENTV);
 				}
 				m_OPENTV_EIT_map.erase(otce);
 			}
