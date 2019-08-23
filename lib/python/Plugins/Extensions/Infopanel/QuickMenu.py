@@ -249,7 +249,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.list.append(QuickMenuEntryComponent("Network",_("Setup your local network"),_("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
 		self.list.append(QuickMenuEntryComponent("AV Setup",_("Setup Video/Audio"),_("Setup your Video Mode, Video Output and other Video Settings")))
 		self.list.append(QuickMenuEntryComponent("Tuner Setup",_("Setup Tuner"),_("Setup your Tuner and search for channels")))
-		self.list.append(QuickMenuEntryComponent("Plugins",_("Setup Plugins"),_("Shows available pluigns. Here you can download and install them")))
+		self.list.append(QuickMenuEntryComponent("Plugins",_("Setup Plugins"),_("Shows available plugins. Here you can download and install them")))
 		self.list.append(QuickMenuEntryComponent("Harddisk",_("Harddisk Setup"),_("Setup your Harddisk")))
 		self["list"].l.setList(self.list)
 
