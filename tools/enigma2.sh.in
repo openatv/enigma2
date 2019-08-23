@@ -52,7 +52,13 @@ if [ -x @bindir@/showiframe ]; then
 	else
 		killall -9 showiframe; sleep 1
 	fi
-	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+	skin=`sed -En 's|config\.skin\.primary_skin=(.+)/skin\.xml|\1|p' @sysconfdir@/enigma2/settings`
+	if [ -z $skin ]; then
+		skin=`strings -n 10 @prefix@/lib/enigma2/python/skin.pyo | egrep -o -m 1 ".+/skin.xml" | sed 's|/skin.xml.*||'`
+	fi
+	if [ -n $skin -a -f @datarootdir@/enigma2/$skin/backdrop.mvi ]; then
+		@bindir@/showiframe @datarootdir@/enigma2/$skin/backdrop.mvi
+	elif [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
 	elif [ -f @datadir@/backdrop.mvi ]; then
 		@bindir@/showiframe @datadir@/backdrop.mvi
