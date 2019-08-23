@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 10:53+0000\n"
+"POT-Creation-Date: 2019-08-23 15:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,7 +176,25 @@ msgstr ""
 msgid "   (%s MHz)"
 msgstr ""
 
-msgid "   (1,7 GHz)"
+msgid "   (1.0 GHz)"
+msgstr ""
+
+msgid "   (1.3 GHz)"
+msgstr ""
+
+msgid "   (1.5 GHz)"
+msgstr ""
+
+msgid "   (1.6 GHz)"
+msgstr ""
+
+msgid "   (1.7 GHz)"
+msgstr ""
+
+msgid "   (2.0 GHz)"
+msgstr ""
+
+msgid "   (2.1 GHz)"
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -1061,15 +1079,15 @@ msgid "%s (%04o)"
 msgstr ""
 
 #, python-format
+msgid "%s (%s"
+msgstr ""
+
+#, python-format
 msgid "%s (%s)"
 msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
-msgstr ""
-
-#, python-format
-msgid "%s (%sB"
 msgstr ""
 
 #, python-format
@@ -1125,10 +1143,6 @@ msgstr ""
 
 #, python-format
 msgid "%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%sB"
 msgstr ""
 
 #, python-format
@@ -2286,9 +2300,6 @@ msgid "An empty filename is illegal."
 msgstr ""
 
 msgid "An error occurred while downloading the packetlist. Please try again."
-msgstr ""
-
-msgid "An unknown error occured!"
 msgstr ""
 
 msgid "An unknown error occurred!"
@@ -4544,7 +4555,16 @@ msgstr ""
 msgid "Disabled PIP.\n"
 msgstr ""
 
+msgid "Disk full?"
+msgstr ""
+
+msgid "Disk is not writable!"
+msgstr ""
+
 msgid "Disk space to reserve for recordings (in GB)"
+msgstr ""
+
+msgid "Disk was not found!"
 msgstr ""
 
 msgid "Display 16:9 content as"
@@ -7560,10 +7580,6 @@ msgid "Motor running timeout"
 msgstr ""
 
 msgid "Mount"
-msgstr ""
-
-#, python-format
-msgid "Mount '%s' has failed to write file."
 msgstr ""
 
 #, python-format
@@ -11570,9 +11586,6 @@ msgstr ""
 msgid "Shows available plugins. Here you can download and install them"
 msgstr ""
 
-msgid "Shows available pluigns. Here you can download and install them"
-msgstr ""
-
 msgid "Shows available softcams. Here you can download and install them"
 msgstr ""
 
@@ -14402,12 +14415,12 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Write error at start of recording. Disk %s\n"
+"Write error at start of recording. %s\n"
 "%s"
 msgstr ""
 
 #, python-format
-msgid "Write error while recording. Disk %s"
+msgid "Write error while recording. %s"
 msgstr ""
 
 msgid "Write failed!"
@@ -14678,7 +14691,7 @@ msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
 #, python-format
-msgid "Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n"
+msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr ""
 
 msgid "Your STB will restart after pressing OK on your remote control."
@@ -15431,9 +15444,6 @@ msgstr ""
 msgid "full"
 msgstr ""
 
-msgid "full?"
-msgstr ""
-
 msgid "further education"
 msgstr ""
 
@@ -15810,9 +15820,6 @@ msgstr ""
 msgid "not configured"
 msgstr ""
 
-msgid "not found!"
-msgstr ""
-
 msgid "not locked"
 msgstr ""
 
@@ -15823,9 +15830,6 @@ msgid "not tested"
 msgstr ""
 
 msgid "not used"
-msgstr ""
-
-msgid "not writable!"
 msgstr ""
 
 msgid "not_tested"
@@ -16444,9 +16448,6 @@ msgstr ""
 msgid "unknown error"
 msgstr ""
 
-msgid "unknown error!"
-msgstr ""
-
 msgid "unknown service"
 msgstr ""
 
@@ -16620,14 +16621,6 @@ msgid "zapped"
 msgstr ""
 
 msgid "zapping"
-msgstr ""
-
-msgid "Configure interface"
-msgstr ""
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
 msgstr ""
 
 msgid "Basic settings"
@@ -18552,6 +18545,9 @@ msgstr ""
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr ""
 
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgstr ""
+
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr ""
 
@@ -19020,6 +19016,9 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr ""
 
+msgid "Time delay of the shutdown messages"
+msgstr ""
+
 msgid "Time for next LCD scrolling"
 msgstr ""
 
@@ -19351,6 +19350,14 @@ msgid "switch 12 to 8 character display mode"
 msgstr ""
 
 msgid "userdefined"
+msgstr ""
+
+msgid "Configure interface"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
 msgstr ""
 
 msgid "Configure nameservers"

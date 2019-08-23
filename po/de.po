@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 10:53+0000\n"
+"POT-Creation-Date: 2019-08-23 15:51+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -245,7 +245,25 @@ msgstr "     falsches Backup-Ziel "
 msgid "   (%s MHz)"
 msgstr ""
 
-msgid "   (1,7 GHz)"
+msgid "   (1.0 GHz)"
+msgstr ""
+
+msgid "   (1.3 GHz)"
+msgstr ""
+
+msgid "   (1.5 GHz)"
+msgstr ""
+
+msgid "   (1.6 GHz)"
+msgstr ""
+
+msgid "   (1.7 GHz)"
+msgstr ""
+
+msgid "   (2.0 GHz)"
+msgstr ""
+
+msgid "   (2.1 GHz)"
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -1146,6 +1164,10 @@ msgstr "%s ( %s Karten)"
 msgid "%s (%04o)"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s (%s"
+msgstr "%s (%s)\n"
+
 #, python-format
 msgid "%s (%s)"
 msgstr ""
@@ -1153,10 +1175,6 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
-
-#, python-format
-msgid "%s (%sB"
-msgstr ""
 
 #, python-format
 msgid "%s - Setup"
@@ -1212,10 +1230,6 @@ msgstr "%s/%s: %s"
 #, python-format
 msgid "%s: %s"
 msgstr ""
-
-#, python-format
-msgid "%sB"
-msgstr "%s B"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -5802,8 +5816,17 @@ msgstr "PiP wurde deaktiviert.\n"
 msgid "Dish"
 msgstr "Spiegel"
 
+msgid "Disk full?"
+msgstr "Festplatte voll?"
+
+msgid "Disk is not writable!"
+msgstr "Festplatte ist nicht beschreibbar!"
+
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Für Aufnahmen reservierter Speicher (in GB)"
+
+msgid "Disk was not found!"
+msgstr "Festplatte wurde nicht gefunden!"
 
 #
 msgid "Display 16:9 content as"
@@ -8464,12 +8487,6 @@ msgstr "Infoleiste"
 msgid "InfoBar EPG mode"
 msgstr "EPG-Modus der Infoleiste"
 
-msgid "Time delay of the shutdown messages"
-msgstr "Zeitverzögerung der Abschaltmeldungen"
-
-msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
-msgstr "Legen Sie die Wartezeit für die Ausführung der Standardaktion in den Meldungen Ausschalten, Standby oder Neustart fest. (z.B. verwendet in Timer, PowerTimer, Ausschalt-Timer, ...)"
-
 msgid "InfoPanel"
 msgstr "Info-Panel"
 
@@ -9738,10 +9755,6 @@ msgstr "Motorlaufzeit-Timeout"
 
 msgid "Mount"
 msgstr "Mount"
-
-#, python-format
-msgid "Mount '%s' has failed to write file."
-msgstr ""
 
 #, python-format
 msgid "Mount '%s' has not enough free space to record."
@@ -14285,6 +14298,9 @@ msgstr "Bestimmt die Anzeigedauer der Infoleiste."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Bestimmt die Anzeigedauer der 2. Infoleiste. Sie verschwindet auch bei Druck auf OK."
 
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgstr "Legen Sie die Wartezeit für die Ausführung der Standardaktion in den Meldungen Ausschalten, Standby oder Neustart fest. (z.B. verwendet in Timer, PowerTimer, Ausschalt-Timer, ...)"
+
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Wählen Sie die Art der Fortschrittsanzeige in der Kanalliste."
 
@@ -17206,6 +17222,9 @@ msgstr "Zeit zwischen den Dias in der Bildbetrachter - Diashow."
 msgid "Time delay for the repeated transmission"
 msgstr "Zeitverzögerung für die wiederholte Übertragung"
 
+msgid "Time delay of the shutdown messages"
+msgstr "Zeitverzögerung der Abschaltmeldungen"
+
 msgid "Time delay until standby or deep standby"
 msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
 
@@ -19389,7 +19408,10 @@ msgstr "Sie möchten einen bootfähigen USB-Stick zum Flashen von NFI-Images ers
 
 #
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Sie haben sich entschlossen, Ihre Einstellungen wiederherzustellen.\nEnigma2 wird nach der Wiederherstellung neu starten.\nBitte drücken Sie OK um mit der Wiederherstellung zu beginnen."
+msgstr ""
+"Sie haben sich entschlossen, Ihre Einstellungen wiederherzustellen.\n"
+"Enigma2 wird nach der Wiederherstellung neu starten.\n"
+"Bitte drücken Sie OK um mit der Wiederherstellung zu beginnen."
 
 msgid "You have chosen to save the current timeshift"
 msgstr ""
@@ -20460,9 +20482,6 @@ msgstr "Quellordner"
 msgid "full"
 msgstr ""
 
-msgid "Disk full?"
-msgstr "Festplatte voll?"
-
 msgid "further education"
 msgstr ""
 
@@ -20884,9 +20903,6 @@ msgstr "nicht aktiviert"
 msgid "not configured"
 msgstr "Nicht konfiguriert"
 
-msgid "Disk was not found!"
-msgstr "Festplatte wurde nicht gefunden!"
-
 #
 msgid "not locked"
 msgstr "Kein Signal"
@@ -20900,9 +20916,6 @@ msgstr "Nicht getestet"
 #
 msgid "not used"
 msgstr "Nicht verwendet"
-
-msgid "Disk is not writable!"
-msgstr "Festplatte ist nicht beschreibbar!"
 
 msgid "not_tested"
 msgstr "Nicht_getestet"
@@ -21600,9 +21613,6 @@ msgstr "Unbekannt"
 msgid "unknown error"
 msgstr "unbekannter Fehler"
 
-msgid "unknown error!"
-msgstr "unbekannter Fehler!"
-
 #
 msgid "unknown service"
 msgstr "Unbekannter Kanal"
@@ -21916,6 +21926,9 @@ msgstr "Umschalten"
 #
 #~ msgid "%s not found !!"
 #~ msgstr "%s nicht gefunden!!"
+
+#~ msgid "%sB"
+#~ msgstr "%s B"
 
 #~ msgid ""
 #~ "(It is set that '%s' crash logs are displayed and written.\n"
@@ -25774,6 +25787,9 @@ msgstr "Umschalten"
 
 #~ msgid "tuner is not supported"
 #~ msgstr "Nicht unterstützter Tuner"
+
+#~ msgid "unknown error!"
+#~ msgstr "unbekannter Fehler!"
 
 #
 #~ msgid "use as HDD replacement"
