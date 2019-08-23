@@ -55,7 +55,7 @@ if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
 		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
 	elif [ -f @datadir@/backdrop.mvi ]; then
-		@bindir@/showiframe $datarootdir/backdrop.mvi
+		@bindir@/showiframe @datadir@/backdrop.mvi
 	fi
 fi
 
