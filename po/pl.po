@@ -223,7 +223,25 @@ msgstr ""
 msgid "   (%s MHz)"
 msgstr ""
 
-msgid "   (1,7 GHz)"
+msgid "   (1.0 GHz)"
+msgstr ""
+
+msgid "   (1.3 GHz)"
+msgstr ""
+
+msgid "   (1.5 GHz)"
+msgstr ""
+
+msgid "   (1.6 GHz)"
+msgstr ""
+
+msgid "   (1.7 GHz)"
+msgstr ""
+
+msgid "   (2.0 GHz)"
+msgstr ""
+
+msgid "   (2.1 GHz)"
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -1121,15 +1139,15 @@ msgid "%s (%04o)"
 msgstr ""
 
 #, python-format
+msgid "%s (%s"
+msgstr ""
+
+#, python-format
 msgid "%s (%s)"
 msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
-msgstr ""
-
-#, python-format
-msgid "%s (%sB"
 msgstr ""
 
 #, python-format
@@ -1187,10 +1205,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%s: %s"
 msgstr "Rdzenie: %s"
-
-#, python-format
-msgid "%sB"
-msgstr ""
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -2527,9 +2541,6 @@ msgstr "Pusta nazwa pliku jest niedozwolona."
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Wystąpił błąd podczas pobierania listy pakietów. Prosimy spróbować ponownie."
-
-msgid "An unknown error occured!"
-msgstr "Wystąpił nieznany błąd!"
 
 msgid "An unknown error occurred!"
 msgstr "Wystąpił nieznany błąd!"
@@ -4199,9 +4210,6 @@ msgstr "Skonfiguruj jeśli pikony mają być wyświetlane w liście kanałów."
 msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
 msgstr ""
 
-msgid "Configure interface"
-msgstr "Konfiguracja interfejsu"
-
 msgid "Configure nameservers"
 msgstr "Konfiguracja serwerów nazw (DNS)"
 
@@ -5529,14 +5537,23 @@ msgstr "Wyłączone"
 msgid "Disabled PIP.\n"
 msgstr "Wyłączone PIP.\n"
 
+msgid "Disk full?"
+msgstr "Dysk jest pełny?"
+
+msgid "Disk is not writable!"
+msgstr "Dysk nie jest zapisywalny!"
+
 msgid "Dish"
 msgstr "Antena"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Miejsce na dysku zarezerwowane do nagrań (w GB)"
 
+msgid "Disk was not found!"
+msgstr "Nie znaleziono dysku!"
+
 msgid "Display 16:9 content as"
-msgstr "Wyświetlać zawartość 16: 9 jako"
+msgstr "Wyświetlać zawartość 16:9 jako"
 
 msgid "Display 4:3 content as"
 msgstr "Wyświetlaj zawartość 4:3 jako"
@@ -9217,12 +9234,8 @@ msgid "Mount"
 msgstr "Montowanie"
 
 #, python-format
-msgid "Mount '%s' has failed to write file."
-msgstr ""
-
-#, fuzzy, python-format
 msgid "Mount '%s' has not enough free space to record."
-msgstr "Za mało wolnego miejsca do nagrania"
+msgstr "Montowanie '%s' nie ma wystarczającej ilości wolnego miejsca do nagrywania."
 
 msgid "Mount Manager"
 msgstr "Menadżer Montowania"
@@ -10996,14 +11009,6 @@ msgstr ""
 #, fuzzy
 msgid "Please set your time zone"
 msgstr "Ustaw strefę czasową."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Ustaw pozycję interfejsu użytkownika.Krawędzie w czerwonej strefie powinny dotykać krawędzi ekranu telewizora.\n"
-"\n"
-"Następnie naciśnij 'OK'."
 
 msgid ""
 "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
@@ -13359,6 +13364,9 @@ msgstr "Ustaw czas,po jakim ma być ukryty pasek informacyjny."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Ustaw czas,aby ukryć drugi pasek info.Pasek znika również po naciśnięciu 'OK'."
 
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgstr "Ustaw czas oczekiwania na wykonanie domyślnej akcji w komunikatach zamknięcia, gotowości lub ponownego uruchomienia. (np. używane w Timer, PowerTimer, Sleeptimer, ...)"
+
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Ustaw typ oznaczenia postępu na ekranie wyboru kanału."
 
@@ -14218,9 +14226,6 @@ msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Pokazuje przeglądarkę rozszerzeń. Tutaj można skonfigurować zainstalowaną Wtyczkę"
 
 msgid "Shows available plugins. Here you can download and install them"
-msgstr "Pokazuje dostępne wtyczki. Tutaj możesz je pobrać i zainstalować"
-
-msgid "Shows available pluigns. Here you can download and install them"
 msgstr "Pokazuje dostępne wtyczki. Tutaj możesz je pobrać i zainstalować"
 
 msgid "Shows available softcams. Here you can download and install them"
@@ -16136,6 +16141,9 @@ msgstr "Opóźnienie czasowe do stanu gotowości lub głębokiego czuwania"
 msgid "Time for Slideshow"
 msgstr "Czas na pokaz slajdów"
 
+msgid "Time delay of the shutdown messages"
+msgstr "Opóźnienie czasowe komunikatów wyłączania"
+
 msgid "Time for next LCD scrolling"
 msgstr "Czas następnego przewijania wyświetlacza LCD"
 
@@ -17934,11 +17942,9 @@ msgstr ""
 "Błąd zapisu podczas nagrywania. Dysk zapełniony?\n"
 "%s"
 
-#, fuzzy, python-format
-msgid "Write error while recording. Disk %s"
-msgstr ""
-"Błąd zapisu podczas nagrywania. Dysk zapełniony?\n"
-"%s"
+#, python-format
+msgid "Write error while recording. %s"
+msgstr "Błąd zapisu podczas nagrywania. %s"
 
 msgid "Write failed!"
 msgstr "Błąd zapisu!"
@@ -18300,7 +18306,7 @@ msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
 
 #, python-format
-msgid "Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n"
+msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
 msgstr "Twój odbiornik wykrył problem z oprogramowaniem. Od ostatniego restartu wystąpił %d razy.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
@@ -19108,10 +19114,6 @@ msgstr "z"
 msgid "full"
 msgstr "pełny"
 
-#, fuzzy
-msgid "full?"
-msgstr "pełny"
-
 msgid "further education"
 msgstr "dalsze kształcenie"
 
@@ -19499,10 +19501,6 @@ msgstr ""
 msgid "not configured"
 msgstr "nie skonfigurowano"
 
-#, fuzzy
-msgid "not found!"
-msgstr "%s Nie znaleziono!!"
-
 msgid "not locked"
 msgstr "nie zablokowany"
 
@@ -19515,10 +19513,6 @@ msgstr "Nie testowane:"
 
 msgid "not used"
 msgstr "nie używany"
-
-#, fuzzy
-msgid "not writable!"
-msgstr " xml nie jest napisany"
 
 #, fuzzy
 msgid "not_tested"
@@ -20154,10 +20148,6 @@ msgstr "nieznany"
 msgid "unknown error"
 msgstr "nieznany błąd"
 
-#, fuzzy
-msgid "unknown error!"
-msgstr "nieznany błąd"
-
 msgid "unknown service"
 msgstr "nieznany serwis"
 
@@ -20207,9 +20197,18 @@ msgstr "zdefiniowany przez użytkownika"
 msgid "user feed url"
 msgstr "adres URL feeda użytkownika"
 
-#, fuzzy
 msgid "userdefined"
 msgstr "zdefiniowany przez użytkownika"
+
+msgid "Configure interface"
+msgstr "Skonfiguruj interfejs"
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Skonfiguruj interfejs użytkownika, dostosowując wartości, tak aby krawędzie czerwonego pola dotykały krawędzi telewizora.\n"
+"Gdy będziesz gotowy, naciśnij OK, aby kontynuować."
 
 msgid "using:"
 msgstr "za pomocą:"
