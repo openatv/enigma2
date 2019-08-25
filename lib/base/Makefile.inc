@@ -16,6 +16,7 @@ base_libenigma_base_a_SOURCES = \
 	base/estring.cpp \
 	base/etpm.cpp \
 	base/freesatv2.cpp \
+	base/huffman.cpp \
 	base/init.cpp \
 	base/ioprio.cpp \
 	base/message.cpp \
@@ -48,6 +49,7 @@ baseinclude_HEADERS = \
 	base/estring.h \
 	base/etpm.h \
 	base/freesatv2.h \
+	base/huffman.h \
 	base/i18n.h \
 	base/itssource.h \
 	base/init.h \

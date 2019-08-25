@@ -17,6 +17,7 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/frontend.cpp \
 	dvb/frontendparms.cpp \
 	dvb/metaparser.cpp \
+	dvb/opentv.cpp \
 	dvb/pesparse.cpp \
 	dvb/pmt.cpp \
 	dvb/pvrparse.cpp \
@@ -61,6 +62,7 @@ dvbinclude_HEADERS = \
 	dvb/isection.h \
 	dvb/list.h \
 	dvb/metaparser.h \
+	dvb/opentv.h \
 	dvb/pesparse.h \
 	dvb/pmt.h \
 	dvb/pvrparse.h \
