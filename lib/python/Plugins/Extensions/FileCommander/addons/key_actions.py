@@ -151,7 +151,7 @@ class task_postconditions(Condition):
 			msg_out = ''
 			if task_Stout:
 				msg_out = '\n\n' + '\n'.join(task_Stout[lines:])
-			message += _("Run script") + _(" ('%s') ends successfully.") %task.name + msg_out
+			message += _("Run script") + _(" ('%s') ends successefully.") %task.name + msg_out
 
 		task_Stout = []
 		task_Sterr = []
