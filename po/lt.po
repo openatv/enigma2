@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 10:53+0000\n"
-"PO-Revision-Date: 2019-07-07 15:44+0300\n"
+"POT-Creation-Date: 2019-08-23 15:51+0000\n"
+"PO-Revision-Date: 2019-08-25 19:08+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -31,7 +31,7 @@ msgid ""
 "   Please press OK to start Kodi..."
 msgstr ""
 "\n"
-"   Prašome spausti OK, kad paleisti Kodi..."
+"   Norėdami paleisti Kodi, spauskite OK..."
 
 msgid ""
 "\n"
@@ -231,8 +231,26 @@ msgstr "      neteisinga atsarginės kopijos paskirties vieta "
 msgid "   (%s MHz)"
 msgstr "   (%s MHz)"
 
-msgid "   (1,7 GHz)"
-msgstr "   (1,7 GHz)"
+msgid "   (1.0 GHz)"
+msgstr "   (1.0 GHz)"
+
+msgid "   (1.3 GHz)"
+msgstr "   (1.3 GHz)"
+
+msgid "   (1.5 GHz)"
+msgstr "   (1.5 GHz)"
+
+msgid "   (1.6 GHz)"
+msgstr "   (1.6 GHz)"
+
+msgid "   (1.7 GHz)"
+msgstr "   (1.7 GHz)"
+
+msgid "   (2.0 GHz)"
+msgstr "   (2.0 GHz)"
+
+msgid "   (2.1 GHz)"
+msgstr "   (2.1 GHz)"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas : pasirinkite 4 PIP kanalą"
@@ -241,7 +259,7 @@ msgid "  Red key : Show/Hide channel name"
 msgstr "  Raudonas mygtukas: rodyti/slėpti kanalo pavadinimą"
 
 #, python-format
-msgid " ('%s') ends successfully."
+msgid " ('%s') ends successefully."
 msgstr " ('%s') sėkmingai baigėsi."
 
 #, python-format
@@ -451,7 +469,6 @@ msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
 
 #, python-format
-#| msgid "%d MB"
 msgid "%03d MB"
 msgstr "%03d MB"
 
@@ -939,7 +956,7 @@ msgstr[2] "%d min."
 
 #, python-format
 msgid "%d Mins"
-msgstr "%d Min."
+msgstr "%d min."
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1024,7 +1041,6 @@ msgid "%d-%m"
 msgstr "%m.%d"
 
 #, python-format
-#| msgid "%d GB"
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
@@ -1133,16 +1149,17 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
+#| msgid "%s (%s)"
+msgid "%s (%s"
+msgstr "%s (%s"
+
+#, python-format
 msgid "%s (%s)"
 msgstr "%s (%s)"
 
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
-
-#, python-format
-msgid "%s (%sB"
-msgstr "%s (%sB"
 
 #, python-format
 msgid "%s - Setup"
@@ -1199,10 +1216,6 @@ msgstr "%s/%s: %s"
 #, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
-
-#, python-format
-msgid "%sB"
-msgstr "%sB"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -2405,9 +2418,6 @@ msgstr "Tuščias failo pavadinimas negalimas."
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr "Parsisiunčiant paketų sąrašą, įvyko klaida. Pabandykite dar kartą."
 
-msgid "An unknown error occured!"
-msgstr "Įvyko nežinoma klaida!"
-
 msgid "An unknown error occurred!"
 msgstr "Įvyko nežinoma klaida!"
 
@@ -2672,10 +2682,10 @@ msgid "Authoring mode"
 msgstr "Kūrimas"
 
 msgid "Auto"
-msgstr "Automatinis"
+msgstr "Auto"
 
 msgid "Auto Deep Standby"
-msgstr "Automatinis išjungimas"
+msgstr "Automatinis gilaus budėjimo režimas"
 
 msgid "Auto Language"
 msgstr "Automatinė kalba"
@@ -4401,7 +4411,7 @@ msgid "Default"
 msgstr "Numatytasis"
 
 msgid "Default  (keymap.xml)"
-msgstr "Numatytasis (keymap.xml)"
+msgstr "Numatytąjį  (keymap.xml)"
 
 msgid "Default (Instant Record)"
 msgstr "Numatytasis (momentinis įrašymas)"
@@ -4699,8 +4709,17 @@ msgstr "Išjungta"
 msgid "Disabled PIP.\n"
 msgstr "PiP išjungtas.\n"
 
+msgid "Disk full?"
+msgstr "Diskas pilnas?"
+
+msgid "Disk is not writable!"
+msgstr "Disko negalima rašyti!"
+
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Įrašams rezervuota disko apimtis (GB)"
+
+msgid "Disk was not found!"
+msgstr "Diskas nerastas!"
 
 msgid "Display 16:9 content as"
 msgstr "16:9 turinį rodyti, kaip"
@@ -6013,7 +6032,7 @@ msgid "Free Memory:"
 msgstr "Laisva atmintis:"
 
 msgid "Free Swap:"
-msgstr "Laisva mainų atmintis:"
+msgstr "Laisva virtuali atmintis:"
 
 msgid "Free memory"
 msgstr "Laisva atmintis"
@@ -6736,7 +6755,7 @@ msgstr ""
 "%s"
 
 msgid "Image-Version"
-msgstr "Atvaizdo-versija"
+msgstr "Atvaizdo versija"
 
 msgid "ImageWizard"
 msgstr "Atvaizdo vedlys"
@@ -6857,7 +6876,7 @@ msgid "Input"
 msgstr "Įėjimas"
 
 msgid "Input "
-msgstr "Įvestis"
+msgstr "Įvestis "
 
 msgid "Input Stream ID"
 msgstr "Srauto įvesties ID"
@@ -7804,10 +7823,6 @@ msgid "Mount"
 msgstr "Pajungti"
 
 #, python-format
-msgid "Mount '%s' has failed to write file."
-msgstr "Pajungiant '%s' nepavyko įrašyti failo."
-
-#, python-format
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Pajungtas '%s' neturi pakankamai vietos įrašymui."
 
@@ -8080,7 +8095,7 @@ msgid "Nameserver settings"
 msgstr "DNS serverio nustatymai"
 
 msgid "Namespace"
-msgstr "Pavadinimų erdvė"
+msgstr "Identifikatorius"
 
 msgid "Namibia"
 msgstr "Namibija"
@@ -10834,7 +10849,7 @@ msgid "Select action for timer %s:"
 msgstr "Pasirinkite veiksmą %s laikmačiui:"
 
 msgid "Select additional backup files"
-msgstr "Papildomi atsarginės kopijos failai"
+msgstr "Pasirinkite papildomus failus atsarginei kopijai"
 
 msgid "Select additional files to backup"
 msgstr "Papildomi failai atsarginei kopijai"
@@ -10867,7 +10882,7 @@ msgid "Select destination for:"
 msgstr "Pasirinkite vietą:"
 
 msgid "Select excluded backup files"
-msgstr "Failai neįtraukti į atsarginę kopiją"
+msgstr "Pasirinkite failus, neįtrauktus į atsarginę kopiją"
 
 msgid "Select files to exclude from backup"
 msgstr "Pasirinkite failus, kurių neįtraukti į atsarginę kopiją"
@@ -11700,7 +11715,7 @@ msgid "Show contents of zip file"
 msgstr "Rodyti zip failo turinį"
 
 msgid "Show default backup files"
-msgstr "Numatytieji atsarginės kopijos failai"
+msgstr "Rodyti numatytuosius atsarginių kopijų failus"
 
 msgid "Show detailed event info"
 msgstr "Rodyti išsamią įvykio informaciją"
@@ -11878,9 +11893,6 @@ msgstr "Rodyti priedų naršyklę. Čia galite tvarkyti įdiegtus priedus"
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Rodyti galimus priedus. Čia galite atsisiųsti ir įdiegti priedus"
-
-msgid "Shows available pluigns. Here you can download and install them"
-msgstr "Rodyti galimus priedus. Čia galite atsisiųsti ir įdiegti juos"
 
 msgid "Shows available softcams. Here you can download and install them"
 msgstr "Rodyti galimus emuliatorius. Čia galite atsisiųsti ir įdiegti juos"
@@ -12546,7 +12558,7 @@ msgid "Swap File not found. You have to create the file before to activate."
 msgstr "Mainų failas nerastas. Sukurkite šį failą, prieš jį aktyvuodami."
 
 msgid "Swap Manager"
-msgstr "Mainų failo tvarkyklė"
+msgstr "Mainų failo valdymas"
 
 msgid "Swap PIP"
 msgstr "Sukeisti PiP"
@@ -12555,16 +12567,16 @@ msgid "Swap PiP and main picture"
 msgstr "Sukeisti PiP ir pagrindinį vaizdą"
 
 msgid "Swap Place:"
-msgstr "Mainų failo vieta:"
+msgstr "Failo vieta:"
 
 msgid "Swap Size:"
-msgstr "Mainų failo dydis:"
+msgstr "Failo dydis:"
 
 msgid "Swap services"
 msgstr "Sukeisti kanalus"
 
 msgid "SwapManager"
-msgstr "Mainų failo tvarkytuvas"
+msgstr "Mainų failo valdymas"
 
 msgid "SwaptoNand"
 msgstr "Sukeisti Nand"
@@ -12669,7 +12681,7 @@ msgid "System"
 msgstr "Sistema"
 
 msgid "System Info"
-msgstr "Sistemos info"
+msgstr "Informacija apie sistemą"
 
 msgid "System Message Check"
 msgstr "Sistemos pranešimų tikrinimas"
@@ -12707,7 +12719,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-07-07"
+msgstr "Adga, v. 2019-08-25"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -13647,7 +13659,7 @@ msgid "Tonga"
 msgstr "Tongų"
 
 msgid "Top"
-msgstr "Viršus"
+msgstr "Pagrindiniai (procesai)"
 
 msgid "Top and Bottom"
 msgstr "Viršuje ir apačioje"
@@ -14159,7 +14171,7 @@ msgid "Use HDMI-preemphasis"
 msgstr "Naudokite HDMI išankstinį dėmesį"
 
 msgid "Use Keymap"
-msgstr "Naudokite mygtukų išdėstymą"
+msgstr "Naudoti mygtukų išdėstymą"
 
 msgid "Use Manual dns-nameserver"
 msgstr "Naudokite rankinį DNS serverio pavadinimą"
@@ -14613,7 +14625,7 @@ msgid "Wait for timesync at startup"
 msgstr "Laukite laiko sinchronizavimo paleisties metu"
 
 msgid "Wait please while creating swapfile..."
-msgstr "Palaukite, kol kuriamas mainų failas..."
+msgstr "Prašome palaukti kuriamas mainų failas..."
 
 msgid "Wait please while scanning for devices..."
 msgstr "Palaukite, kol skenuojama jūsų įranga..."
@@ -14842,15 +14854,15 @@ msgstr "Išsaugoti įvestą PIN %s pastoviai?"
 
 #, python-format
 msgid ""
-"Write error at start of recording. Disk %s\n"
+"Write error at start of recording. %s\n"
 "%s"
 msgstr ""
-"Pradėjus įrašymą įvyko klaida. Diskas %s\n"
+"Rašymo klaida įrašymo pradžioje. %s\n"
 "%s"
 
 #, python-format
-msgid "Write error while recording. Disk %s"
-msgstr "Rašant įrašą įvyko klaida. Diskas %s"
+msgid "Write error while recording. %s"
+msgstr "Rašymo klaida įrašymo metu. %s"
 
 msgid "Write failed!"
 msgstr "Įrašymas klaidingas!"
@@ -15144,8 +15156,8 @@ msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Jūsų techninė įranga gali aptikti ci režimą savarankiškai arba dirbti tik standartiniame režime."
 
 #, python-format
-msgid "Your Receiver has a Software problem detected. Since the last reboot it has occured %d times.\n"
-msgstr "Aptikta jūsų imtuvo programinės įrangos problema. Nuo paskutinės paleisties įvyko %d kartus.\n"
+msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
+msgstr "Jūsų imtuve aptikta programinės įrangos problema. Nuo paskutinio perkrovimo tai įvyko %d kartus.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Paspaudus 'OK', jūsų imtuvas bus paleistas iš naujo."
@@ -15487,7 +15499,7 @@ msgid "audio tracks"
 msgstr "garso takeliai"
 
 msgid "auto"
-msgstr "automatinis"
+msgstr "auto"
 
 msgid "auto deepstandby"
 msgstr "automatinis budėjimo režimas"
@@ -15918,9 +15930,6 @@ msgstr "nuo rež"
 msgid "full"
 msgstr "visas"
 
-msgid "full?"
-msgstr "pilnas?"
-
 msgid "further education"
 msgstr "aukštasis mokslas"
 
@@ -16299,9 +16308,6 @@ msgstr "neaktyvuotas"
 msgid "not configured"
 msgstr "nekonfigūruota"
 
-msgid "not found!"
-msgstr "nerastas!"
-
 msgid "not locked"
 msgstr "nefiksuota"
 
@@ -16313,9 +16319,6 @@ msgstr "netikrinta"
 
 msgid "not used"
 msgstr "nenaudojamas"
-
-msgid "not writable!"
-msgstr "neįrašomas!"
 
 msgid "not_tested"
 msgstr "nėra išbandyta"
@@ -16937,9 +16940,6 @@ msgstr "nežinoma"
 msgid "unknown error"
 msgstr "nežinoma klaida"
 
-msgid "unknown error!"
-msgstr "nežinoma klaida!"
-
 msgid "unknown service"
 msgstr "nežinomas kanalas"
 
@@ -16974,7 +16974,7 @@ msgid "updates available."
 msgstr "galimi atnaujinimai."
 
 msgid "use best / controlled by HDMI"
-msgstr "geriausia naudoti / valdoma HDMI"
+msgstr "naudoti geriausią / valdoma HDMI"
 
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
 msgstr "naudokite padidintą įtampą 14/18V, jei kyla problemų perjungiant lnb"
@@ -17120,16 +17120,6 @@ msgstr "įjungta"
 msgid "zapping"
 msgstr "perjungimas"
 
-msgid "Configure interface"
-msgstr "Konfigūruokite sąsają"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Susiderinkite ekrane matomą vaizdą, koreguodami reikšmes pagal tai, kiek raudonojo rėmo kraštai liečia jūsų TV ekrano kraštus.\n"
-"Kai tai atliksite, spauskite 'OK', kad tęsti."
-
 msgid "Basic settings"
 msgstr "Pagrindiniai nustatymai"
 
@@ -17143,7 +17133,7 @@ msgid "CronTimers"
 msgstr "Kron laikmačiai"
 
 msgid "Decryption & Parental Control"
-msgstr "Iššifravimas ir tėvų kontrolė"
+msgstr "Dekodavimas ir tėvų kontrolė"
 
 msgid "Delete EPG"
 msgstr "Trinti EPG"
@@ -17248,7 +17238,7 @@ msgid "9"
 msgstr "9"
 
 msgid "AutoMountManager"
-msgstr "Auto pajungimo vadovas"
+msgstr "Automatinių pajungimų valdymas"
 
 msgid "BER:"
 msgstr "BER:"
@@ -17272,7 +17262,7 @@ msgid "Date/time input"
 msgstr "Datos/laiko įvestis"
 
 msgid "Dish"
-msgstr "Lėkštė"
+msgstr "Palydovinė lėkštė"
 
 msgid "Downloadable plugins"
 msgstr "Galimi parsisiųsti priedai"
@@ -19097,6 +19087,9 @@ msgstr "Nustatykite laiką, kad paslėpti info juostą."
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
 msgstr "Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat dingsta ir paspaudus 'OK'."
 
+msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
+msgstr "Nustatykite laiką, per kurį laukiama numatytojo veiksmo vykdant išjungimo, budėjimo režimą ar iš naujo paleidžiant pranešimus. (pvz., naudojami laikmatį, įtampos laikmatį, miego laikmatį ir kt.)"
+
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Nustatykite pasirinkto kanalo veiksmo eigos indikaciją kanalų pasirinkimo lange."
 
@@ -19565,6 +19558,9 @@ msgstr "Ši parinktis perkelia PVR būseną iš atskiro lango į filmų grotuvo 
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr "Tai leis pereiti greitai pirmyn/atgal su laiko momentais, x secs"
 
+msgid "Time delay of the shutdown messages"
+msgstr "Išjungimo pranešimų delsa"
+
 msgid "Time for next LCD scrolling"
 msgstr "Laikas kito LCD slinkimui"
 
@@ -19811,7 +19807,7 @@ msgstr "Kai čia įjungta, teleteksto subtitrai bus rodomi jų numatytojoje viet
 msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Kai čia įjungta, pagrindiniame meniu bus rodomos VCR scart parinktys"
 
-msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
+msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Kai čia įjungta, filmų sąraše bus rodoma kiekvieno įrašo trukmė (tai gali kažkiek prailginti paleidimo laiką)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -19897,6 +19893,16 @@ msgstr "perjunkite rodymo režimą nuo 12 iki 8 simbolių"
 
 msgid "userdefined"
 msgstr "vartotojo nustatytas"
+
+msgid "Configure interface"
+msgstr "Konfigūruokite sąsają"
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Susiderinkite ekrane matomą vaizdą, koreguodami reikšmes pagal tai, kiek raudonojo rėmo kraštai liečia jūsų TV ekrano kraštus.\n"
+"Kai tai atliksite, spauskite 'OK', kad tęsti."
 
 msgid "Configure nameservers"
 msgstr "Konfigūruokite serverių pavadinimus"
@@ -20181,7 +20187,7 @@ msgstr "Rodyk katalogus pirmajame arba paskutiniame sąraše.(reikia Failų vald
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Rodyti pranešimą, jei Failų valdytojas neveikia ir visos užduotys yra baigtos."
 
-msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
+msgid "Show message if a background script ends successefully. Has 'stout', then this is displayed as additional info."
 msgstr "Rodyti pranešimą, jei fono scenarijus baigiasi sėkmingai. Turi 'stout', tai rodoma kaip papildoma informacija."
 
 msgid "Show unknown extension as text"
@@ -20198,6 +20204,24 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#~ msgid "%s (%sB"
+#~ msgstr "%s (%sB"
+
+#~ msgid "%sB"
+#~ msgstr "%sB"
+
+#~ msgid "An unknown error occured!"
+#~ msgstr "Įvyko nežinoma klaida!"
+
+#~ msgid "Mount '%s' has failed to write file."
+#~ msgstr "Pajungiant '%s' nepavyko įrašyti failo."
+
+#~ msgid "Shows available pluigns. Here you can download and install them"
+#~ msgstr "Rodyti galimus priedus. Čia galite atsisiųsti ir įdiegti juos"
+
+#~ msgid "unknown error!"
+#~ msgstr "nežinoma klaida!"
 
 #~ msgid "Frontprocessor version: %d"
 #~ msgstr "Priekinio procesoriaus versija: %d"
