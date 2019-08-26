@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-23 15:51+0000\n"
-"PO-Revision-Date: 2019-08-25 19:08+0300\n"
+"POT-Creation-Date: 2019-08-26 11:32+0000\n"
+"PO-Revision-Date: 2019-08-26 18:32+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -1149,7 +1149,6 @@ msgid "%s (%04o)"
 msgstr "%s (%04o)"
 
 #, python-format
-#| msgid "%s (%s)"
 msgid "%s (%s"
 msgstr "%s (%s"
 
@@ -12719,7 +12718,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-08-25"
+msgstr "Adga, v. 2019-08-26"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -18337,6 +18336,9 @@ msgstr "Įjungti MHW EPG"
 msgid "Enable Netmed EPG"
 msgstr "Įjungti Netmed EPG"
 
+msgid "Enable OpenTV EPG"
+msgstr "Įjungti OpenTV EPG"
+
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "Įjungti aukštyn / žemyn mygtukus 'visoms aukštyn / žemyn' funkcijoms? (stulpelio pradžioje / pabaigoje)"
 
@@ -19130,7 +19132,7 @@ msgid "Show HDD progress"
 msgstr "Rodyti HDD eigą"
 
 msgid "Show HDMI Output Resolution"
-msgstr "Rodyti HDMI išvesties rezoliuciją"
+msgstr "Rodyti HDMI išvesties skiriamąją gebą"
 
 msgid "Show HDMI-Output Res"
 msgstr "Rodyti HDMI išvesties rezoliuciją"
@@ -19660,6 +19662,9 @@ msgstr "Naudokite MHW EPG informaciją, jei ji yra prieinama."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Naudokite Netmed EPG informaciją, jei ji yra prieinama."
 
+msgid "Use OpenTV EPG information when it is available."
+msgstr "Naudokite OpenTV EPG informaciją, kai ji galima."
+
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Naudokite ViaSat EPG informaciją, jei ji yra prieinama."
 
@@ -19804,8 +19809,8 @@ msgstr "Kai čia įjungta, teleteksto subtitrai bus rodomi jų numatytojoje viet
 msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Kai čia įjungta, pagrindiniame meniu bus rodomos VCR scart parinktys"
 
-msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
-msgstr "Kai čia įjungta, filmų sąraše bus rodoma kiekvieno įrašo trukmė (tai gali kažkiek prailginti paleidimo laiką)."
+msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
+msgstr "Įjungus kiekvieno įrašo ilgį, jis bus rodomas sąraše (tai gali sukelti papildomą įkėlimo laiką)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Kai čia įjungta, imtuvas automatiškai pasirinks anksčiau jūsų naudotą garso takelį."
@@ -20184,7 +20189,7 @@ msgstr "Rodyk katalogus pirmajame arba paskutiniame sąraše.(reikia Failų vald
 msgid "Show message if File Commander is not running and all Task's are completed."
 msgstr "Rodyti pranešimą, jei Failų valdytojas neveikia ir visos užduotys yra baigtos."
 
-msgid "Show message if a background script ends successefully. Has 'stout', then this is displayed as additional info."
+msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
 msgstr "Rodyti pranešimą, jei fono scenarijus baigiasi sėkmingai. Turi 'stout', tai rodoma kaip papildoma informacija."
 
 msgid "Show unknown extension as text"
@@ -20201,6 +20206,9 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#~ msgid "Configure the number of days after which items are automaticaly removed from the trash can."
+#~ msgstr "Konfigūruokite dienų skaičių, po kurio ištrinti failai bus automatiškai pašalinti iš šiukšlinės."
 
 #~ msgid "%s (%sB"
 #~ msgstr "%s (%sB"
