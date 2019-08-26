@@ -35,7 +35,7 @@ MAPPINGS = (
 	(u"ghi4GHI", u"GHI4", u"ghi4", u"ghi4GHI", u"GHI4", u"ghi4", u"4", u"4", u"4", u"4Dd", u"4D", u"4d", u"4Ee", u"4E", u"4e"),
 	(u"jkl5JKL", u"JKL5", u"jkl5", u"jkl5JKL", u"JKL5", u"jkl5", u"5", u"5", u"5", u"5Ee", u"5E", u"5e", u"5Ff", u"5F", u"5f"),
 	(u"mno6MNO", u"MNO6", u"mno6", u"mno6MNO", u"MNO6", u"mno6", u"6", u"6", u"6", u"6Ff", u"6F", u"6f", u"6", u"6", u"6"),
-	(u"pqrs7PQRS", u"PQRS7", u"pqrs7", u"pqrs6PQRS", u"PQRS7", u"pqrs7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7"),
+	(u"pqrs7PQRS", u"PQRS7", u"pqrs7", u"pqrs7PQRS", u"PQRS7", u"pqrs7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7"),
 	(u"tuv8TUV", u"TUV8", u"tuv8", u"tuv8TUV", u"TUV8", u"tuv8", u"8", u"8", u"8", u"8", u"8", u"8", u"8", u"8", u"8"),
 	(u"wxyz9WXYZ", u"WXYZ9", u"wxyz9", u"wxyz9WXYZ", u"WXYZ9", u"wxyz9", u"9", u"9", u"9", u"9", u"9", u"9", u"9", u"9", u"9")
 )
