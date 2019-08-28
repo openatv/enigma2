@@ -2243,8 +2243,9 @@ void eEPGCache::channel_data::OPENTV_SummariesSection(const uint8_t *d)
 
 							if (found < sSummary.length())
 							{
+								std::size_t end = (sTitle.substr(sTitle.length()-4, 1) == " " ? 4 : 3);
 								std::size_t start = ((sSummary.substr(3, 1) == " ") ? 4 : 3);
-								sTitle = sTitle.substr(0, sTitle.length()-3) + " " + sSummary.substr(start, found-5);
+								sTitle = sTitle.substr(0, sTitle.length() - end) + " " + sSummary.substr(start, found-5);
 								sSummary = sSummary.substr(found);
 							}
 						}
