@@ -93,13 +93,14 @@ public:
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
 	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
+	void setShowTwoLines(bool twoLines) { m_show_two_lines = twoLines; }
 	void setServicePiconDownsize(int value) { m_service_picon_downsize = value; }
 	void setServicePiconRatio(int value) { m_service_picon_ratio = value; }
 	void setServiceTypeIconMode(int mode) { m_servicetype_icon_mode = mode; }
 	void setCryptoIconMode(int mode) { m_crypto_icon_mode = mode; }
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
 	void setColumnWidth(int value) { m_column_width = value; }
-	void setProgressbarHeight(int value) {	m_progressbar_height = value; }
+	void setProgressbarHeight(int value) { m_progressbar_height = value; }
 	void setProgressbarBorderWidth(int value) { m_progressbar_border_width = value; }
 	void setNonplayableMargins(int value) { m_nonplayable_margins = value; }
 	void setItemsDistances(int value) { m_items_distances = value; }
@@ -190,6 +191,7 @@ private:
 
 	int m_itemheight;
 	bool m_hide_number_marker;
+	bool m_show_two_lines;
 	int m_service_picon_downsize;
 	int m_service_picon_ratio;
 	int m_servicetype_icon_mode;

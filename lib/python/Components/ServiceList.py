@@ -274,7 +274,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = self.listHeight / config.usage.serviceitems_per_page.value
+			itemHeight = int(self.listHeight / (config.usage.serviceitems_per_page.value / (1 + float(config.usage.servicelist_twolines.value))))
 		else:
 			itemHeight = 28
 		self.ItemHeight = itemHeight
@@ -377,6 +377,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
 		self.l.setServicePiconDownsize(int(config.usage.servicelist_picon_downsize.value))
 		self.l.setServicePiconRatio(int(config.usage.servicelist_picon_ratio.value))
+		self.l.setShowTwoLines(config.usage.servicelist_twolines.value)
 
 		if config.usage.service_icon_enable.value:
 			self.l.setGetPiconNameFunc(getPiconName)
@@ -412,8 +413,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
 		self.l.setRecordIndicatorMode(int(config.usage.record_indicator_mode.value))
-		self.l.setColumnWidth(int(config.usage.servicelist_column.value))
-		
+		self.l.setColumnWidth(-1 if config.usage.servicelist_twolines.value else int(config.usage.servicelist_column.value))
+
 	def selectionEnabled(self, enabled):
 		if self.instance is not None:
 			self.instance.setSelectionEnable(enabled)

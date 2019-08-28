@@ -97,6 +97,8 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
+	config.usage.servicelist_twolines = ConfigYesNo(default = False)
+	config.usage.servicelist_twolines.addNotifier(refreshServiceList)
 	config.usage.servicelist_infokey = ConfigSelection(default = "event", choices = [("epg", _("Single EPG")), ("event", _("Eventview"))])
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)

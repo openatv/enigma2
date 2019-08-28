@@ -753,6 +753,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
+		int nameLeft=0, nameWidth=0, nameXoffs=0, nameYoffs=0; // used as temporary values for 'show two lines' option
+
 		time_t now = time(0);
 
 		for (int e = 0; e != celServiceTypePixmap; ++e)
@@ -894,6 +896,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					m_element_position[celServiceInfo].setTop(area.top());
 					m_element_position[celServiceInfo].setWidth(area.width() - (servicenameWidth + m_items_distances + xoffs));
 					m_element_position[celServiceInfo].setHeight(area.height());
+					nameLeft = area.left();
+					nameWidth = area.width();
 
 					if (isPlayable)
 					{
@@ -920,6 +924,32 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									gPainter::BT_ALPHABLEND | gPainter::BT_KEEP_ASPECT_RATIO | gPainter::BT_HALIGN_CENTER | gPainter::BT_VALIGN_CENTER);
 								painter.clippop();
 							}
+						}
+
+						//record icon stuff
+						if (isRecorded && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
+						{
+							eSize pixmap_size = m_pixmaps[picRecord]->size();
+							eRect area = m_element_position[celServiceInfo];
+							int offs = 0;
+							if (m_record_indicator_mode == 1)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+								area = m_element_position[celServiceName];
+								offs = xoffs;
+								xoffs += pixmap_size.width() + m_items_distances;
+							}
+							int correction = (area.height() - pixmap_size.height()) / 2;
+							area.moveBy(offset);
+							if (m_record_indicator_mode == 2)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+							}
+							painter.clip(area);
+							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
+							painter.clippop();
 						}
 
 						//service type marker stuff
@@ -983,31 +1013,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								painter.clippop();
 							}
 						}
-
-						//record icon stuff
-						if (isRecorded && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
+						if (m_show_two_lines)
 						{
-							eSize pixmap_size = m_pixmaps[picRecord]->size();
-							eRect area = m_element_position[celServiceInfo];
-							int offs = 0;
-							if (m_record_indicator_mode == 1)
-							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
-								area = m_element_position[celServiceName];
-								offs = xoffs;
-								xoffs += pixmap_size.width() + m_items_distances;
-							}
-							int correction = (area.height() - pixmap_size.height()) / 2;
-							area.moveBy(offset);
-							if (m_record_indicator_mode == 2)
-							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
-							}
-							painter.clip(area);
-							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
-							painter.clippop();
+							m_element_position[celServiceInfo].setLeft(nameLeft+xoffs);
+							m_element_position[celServiceInfo].setWidth(nameWidth-xoffs);
 						}
 					}
 				}
@@ -1022,7 +1031,17 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (flags & gPainter::RT_VALIGN_CENTER)
 				{
 					eRect bbox = para->getBoundBox();
-					yoffs = (area.height() - bbox.height()) / 2 - bbox.top();
+					if (m_show_two_lines && e == celServiceName && isPlayable)
+					{
+						yoffs = ((area.height()/2) - bbox.height()) / 2 - bbox.top();
+						nameYoffs = yoffs/2;
+					}
+					else if (m_show_two_lines && e == celServiceInfo)
+					{
+						yoffs = (area.height()/2) + (((area.height()/2) - bbox.height()) / 2) - (bbox.top() - nameYoffs);
+					}
+					else
+						yoffs = (area.height() - bbox.height()) / 2 - bbox.top();
 				}
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
