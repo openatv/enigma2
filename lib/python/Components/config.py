@@ -397,7 +397,7 @@ class ConfigSelection(ConfigElement):
 		if self._descr is None:
 			self._descr = self.description[self.value]
 		keywords_true = (_('True'),_('Yes'),_('Enabled'),_('On'))
-		keywords_false = (_('False'),_('No'),_('Disabled'),_('Off'))
+		keywords_false = (_('False'),_('No'),_("Disable"),_('Disabled'),_('Off'), _("None"))
 		if self._descr in (keywords_true + keywords_false) and self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
 			return ('pixmap', self._descr in keywords_true and switchPixmap["menu_on"] or switchPixmap["menu_off"])
 		return ("text", self._descr)
