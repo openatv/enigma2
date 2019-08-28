@@ -2237,16 +2237,56 @@ void eEPGCache::channel_data::OPENTV_SummariesSection(const uint8_t *d)
 
 					if (sTitle.length() > 3 && sSummary.length() > 3)
 					{
+						// check if the title is split
 						if (sTitle.substr(sTitle.length() - 3) == "..." && sSummary.substr(0, 3) == "...")
 						{
-							std::size_t found = sSummary.find_first_of(".:!?", 4) + 2;
+							// find the end of the title in the sumarry
+							std::size_t found = sSummary.find_first_of(".:!?", 4);
 
 							if (found < sSummary.length())
 							{
-								std::size_t end = (sTitle.substr(sTitle.length()-4, 1) == " " ? 4 : 3);
-								std::size_t start = ((sSummary.substr(3, 1) == " ") ? 4 : 3);
-								sTitle = sTitle.substr(0, sTitle.length() - end) + " " + sSummary.substr(start, found-5);
-								sSummary = sSummary.substr(found);
+								std::string sTmpTitle;
+								std::string sTmpSummary;
+
+								// strip off the ellipsis and any leading/trailing space
+								if (sTitle.substr(sTitle.length() - 4, 1) == " ")
+								{
+									sTmpTitle  = sTitle.substr(0, sTitle.length() - 4);
+								}
+								else
+								{
+									sTmpTitle = sTitle.substr(0, sTitle.length() - 3);
+								}
+
+								if (sSummary.substr(3, 1) == " ")
+								{
+									sTmpSummary  = sSummary.substr(4);
+								}
+								else
+								{
+									sTmpSummary = sSummary.substr(3);
+								}
+
+								// construct the new title and summary
+								found = sTmpSummary.find_first_of(".:!?");
+								if (found < sTmpSummary.length())
+								{
+									sTitle = sTmpTitle + " " + sTmpSummary.substr(0, found);
+									if (sTmpSummary.length() - found > 2)
+									{
+										sSummary = sTmpSummary.substr(found + 2);
+									}
+									else
+									{
+										sSummary = "";
+									}
+								}
+								else
+								{
+									// shouldn't happen, but you never know...
+									sTitle + sTmpTitle;
+									sSummary = sTmpSummary;
+								}
 							}
 						}
 					}
