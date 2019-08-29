@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-23 15:51+0000\n"
+"POT-Creation-Date: 2019-08-29 20:44+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -6478,6 +6478,9 @@ msgstr "Überprüfung von IP-Adressen aktivieren"
 msgid "Enable Network Traffic check"
 msgstr "Überprüfung der Netzwerkdatenübertragung aktivieren"
 
+msgid "Enable OpenTV EPG"
+msgstr "OpenTV EPG aktivieren"
+
 msgid "Enable Quad PIP"
 msgstr "Aktiviere Quad-PiP"
 
@@ -6487,9 +6490,6 @@ msgstr "Aktiviere Swap Start"
 
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
 msgstr "Aktivieren Sie die Hoch/Runter-Tasten für die Funktion \"Alle hoch/runter\" (am Anfang/Ende der Spalte)."
-
-msgid "Enable OpenTV EPG"
-msgstr "OpenTV EPG aktivieren"
 
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat EPG aktivieren"
@@ -7999,6 +7999,9 @@ msgstr "Bekannte Dateiendungen ausblenden"
 
 msgid "Hide mute notification"
 msgstr "Ausblenden der Stummschaltungsanzeige"
+
+msgid "Hide number markers"
+msgstr "Marker verstecken"
 
 msgid "Hide parental locked services"
 msgstr "Jugendschutz geschützte Kanäle verbergen"
@@ -10668,18 +10671,6 @@ msgstr "Anzahl der Zeilen in Skriptmeldungen"
 
 msgid "Number of rows"
 msgstr "Anzahl der Zeilen"
-
-msgid "Show two lines per entry"
-msgstr "Zeige zwei Zeilen pro Eintrag"
-
-msgid "Show service name and event description among each other instead of side by side."
-msgstr "Zeigt den Namen des Senders und die Sendungsbeschreibung untereinander statt nebeneinander an."
-
-msgid "Hide number markers"
-msgstr "Marker verstecken"
-
-msgid "When enabled, number markers will be hidden."
-msgstr "Wenn diese Option aktiviert ist, werden die Marker ausgeblendet."
 
 msgid "Number of rows to display"
 msgstr "Wie viele Zeilen angezeigt werden sollen"
@@ -15084,6 +15075,9 @@ msgstr "Zeige Bildschirmschoner"
 msgid "Show service list"
 msgstr "Zeige Kanal-Liste"
 
+msgid "Show service name and event description among each other instead of side by side."
+msgstr "Zeigt den Namen des Senders und die Sendungsbeschreibung untereinander statt nebeneinander an."
+
 msgid "Show service type icons"
 msgstr "Anzeige des Servicetyps"
 
@@ -15185,6 +15179,9 @@ msgstr "Zeige Sprachpakete"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Zeige Transponder verbleibende/verstrichene Zeit in"
+
+msgid "Show two lines per entry"
+msgstr "Zeige zwei Zeilen pro Eintrag"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zeige unbekannte Videoauflösungen mit der nächsthöheren oder höchsten Auflösung."
@@ -18143,12 +18140,12 @@ msgstr "DNS-Server manuell einstellen"
 msgid "Use Netmed EPG information when it is available."
 msgstr "Verwende Netmed EPG Informationen, wenn sie verfügbar ist."
 
-msgid "Use OpenTV EPG information when it is available."
-msgstr "Verwende OpenTV EPG Information, wenn sie verfügbar ist."
-
 # ImageBackup.py
 msgid "Use OnlineFlash in SoftwareManager"
 msgstr "verwenden Sie OnlineFlash im SoftwareManager"
+
+msgid "Use OpenTV EPG information when it is available."
+msgstr "Verwende OpenTV EPG Information, wenn sie verfügbar ist."
 
 msgid "Use TV remote control"
 msgstr "Nutze TV-Fernbedienung"
@@ -19026,6 +19023,9 @@ msgstr "Wenn aktiviert, werden die Netzwerk-Papierkörbe geleert."
 
 msgid "When enabled, network trash cans are probed for cleaning."
 msgstr "Hier können Sie festlegen, ob Netzwerk-Papierkörbe auch geleert werden."
+
+msgid "When enabled, number markers will be hidden."
+msgstr "Wenn diese Option aktiviert ist, werden die Marker ausgeblendet."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Wenn aktiviert, wird mit '0' zum ersten Sender Ihrer ersten Favoritenliste umgeschaltet und die Umschalthistorie wird gelöscht."
@@ -21178,15 +21178,15 @@ msgstr "Wiederholung der Wiedergabeliste"
 msgid "repeated"
 msgstr "Wiederholend"
 
-msgid "restoring satellites.xml not possible!"
-msgstr ""
-
 msgid "restart GUI"
 msgstr "GUI neustarten"
 
 # ChannelSelection.py
 msgid "restore deleted userbouquets"
 msgstr "Gelöschte Userbouquets wiederherstellen"
+
+msgid "restoring satellites.xml not possible!"
+msgstr ""
 
 msgid "reverse by date"
 msgstr "Umgekehrt nach Datum"
