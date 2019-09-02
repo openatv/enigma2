@@ -94,7 +94,6 @@ public:
 	void setItemHeight(int height);
 	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
 	void setShowTwoLines(bool twoLines) { m_show_two_lines = twoLines; }
-	void setProgressMinutesMode(bool mode) { m_progress_minutes_mode = mode; }
 	void setServiceInfoAddWidth(bool mode) { m_serviceinfo_add_width = mode; }
 	void setServicePiconDownsize(int value) { m_service_picon_downsize = value; }
 	void setServicePiconRatio(int value) { m_service_picon_ratio = value; }
@@ -106,6 +105,8 @@ public:
 	void setProgressbarBorderWidth(int value) { m_progressbar_border_width = value; }
 	void setNonplayableMargins(int value) { m_nonplayable_margins = value; }
 	void setItemsDistances(int value) { m_items_distances = value; }
+
+	void setProgressUnit(const std::string &string) { m_progress_unit = string; }
 
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
 
@@ -195,7 +196,6 @@ private:
 	bool m_hide_number_marker;
 	bool m_show_two_lines;
 	bool m_serviceinfo_add_width;
-	bool m_progress_minutes_mode;
 	int m_service_picon_downsize;
 	int m_service_picon_ratio;
 	int m_servicetype_icon_mode;
@@ -206,6 +206,8 @@ private:
 	int m_progressbar_border_width;
 	int m_nonplayable_margins;
 	int m_items_distances;
+
+	std::string m_progress_unit;
 };
 
 #endif

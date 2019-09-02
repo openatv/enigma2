@@ -8,7 +8,6 @@
 #include <lib/nav/core.h>
 #include <lib/python/connections.h>
 #include <lib/python/python.h>
-#include <lib/base/nconfig.h>
 #include <ctype.h>
 
 ePyObject eListboxServiceContent::m_GetPiconNameFunc;
@@ -314,10 +313,10 @@ DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
 	:m_visual_mode(visModeSimple),m_cursor_number(0), m_saved_cursor_number(0), m_size(0), m_current_marked(false),
-	m_itemheight(25), m_hide_number_marker(false), m_show_two_lines(false), m_serviceinfo_add_width(false), m_progress_minutes_mode(false),
+	m_itemheight(25), m_hide_number_marker(false), m_show_two_lines(false), m_serviceinfo_add_width(false),
 	m_service_picon_downsize(0), m_service_picon_ratio(167),m_servicetype_icon_mode(0), m_crypto_icon_mode(0),
 	m_record_indicator_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2),
-	m_nonplayable_margins(10), m_items_distances(8)
+	m_nonplayable_margins(10), m_items_distances(8), m_progress_unit("%")
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
 	cursorHome();
@@ -756,7 +755,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
 		int nameLeft=0, nameWidth=0, nameYoffs=0, serviceTypeXoffs=0; // used as temporary values for 'show two lines' option
-		std::string minuteText = eConfigManager::getConfigValue("config.usage.servicelist_minutetext");
 
 		time_t now = time(0);
 
@@ -849,10 +847,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (area.width() > 0 && isPlayable && service_info && !service_info->getEvent(*m_cursor, evt))
 					{
 						char buffer[15];
-						if (m_progress_minutes_mode)
-							snprintf(buffer, sizeof(buffer), "+%d %s", (int)((evt->getBeginTime() + evt->getDuration() - now)/60), minuteText.c_str());
-						else
+						if (m_progress_unit == "%")
 							snprintf(buffer, sizeof(buffer), "%d %%", (int)(100 * (now - evt->getBeginTime()) / evt->getDuration()));
+						else
+							snprintf(buffer, sizeof(buffer), "+%d %s", (int)((evt->getBeginTime() + evt->getDuration() - now)/60), m_progress_unit.c_str());
 						text = buffer;
 						flags|=gPainter::RT_HALIGN_RIGHT;
 						break;
@@ -932,31 +930,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 						}
 
-						//record icon stuff
-						if (isRecorded && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
-						{
-							eSize pixmap_size = m_pixmaps[picRecord]->size();
-							eRect area = m_element_position[celServiceInfo];
-							int offs = 0;
-							if (m_record_indicator_mode == 1)
-							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
-								area = m_element_position[celServiceName];
-								offs = xoffs;
-								xoffs += pixmap_size.width() + m_items_distances;
-							}
-							int correction = (m_show_two_lines && m_record_indicator_mode == 2) ? correction = (((area.height()/2) - pixmap_size.height()) / 2) + 2 : (area.height() - pixmap_size.height()) / 2;
-							area.moveBy(offset);
-							if (m_record_indicator_mode == 2)
-							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
-							}
-							painter.clip(area);
-							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
-							painter.clippop();
-						}
+						//record icon stuff part1
+						int rec_pixmap_xoffs = 0;
+						if (isRecorded && m_record_indicator_mode == 1 && m_pixmaps[picRecord])
+							rec_pixmap_xoffs = m_pixmaps[picRecord]->size().width() + m_items_distances;
 
 						//service type marker stuff
 						if (m_servicetype_icon_mode)
@@ -974,7 +951,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								eRect area = m_element_position[celServiceInfo];
 								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
 								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
-								int offs = 0;
+								int offs = rec_pixmap_xoffs;
 								if (m_servicetype_icon_mode == 1)
 								{
 									area = m_element_position[celServiceName];
@@ -997,7 +974,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						{
 							eSize pixmap_size = m_pixmaps[picCrypto]->size();
 							eRect area = m_element_position[celServiceInfo];
-							int offs = 0;
+							int offs = rec_pixmap_xoffs;
 							if (m_crypto_icon_mode == 1)
 							{
 								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
@@ -1026,6 +1003,33 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								painter.clippop();
 							}
 						}
+
+						//record icon stuff part2
+						if (isRecorded && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
+						{
+							eSize pixmap_size = m_pixmaps[picRecord]->size();
+							eRect area = m_element_position[celServiceInfo];
+							int offs = 0;
+							if (m_record_indicator_mode == 1)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+								area = m_element_position[celServiceName];
+								offs = xoffs;
+								xoffs += pixmap_size.width() + m_items_distances;
+							}
+							int correction = (m_show_two_lines && m_record_indicator_mode == 2) ? (((area.height()/2) - pixmap_size.height()) / 2) + 2 : (area.height() - pixmap_size.height()) / 2;
+							area.moveBy(offset);
+							if (m_record_indicator_mode == 2)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+							}
+							painter.clip(area);
+							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
+							painter.clippop();
+						}
+
 						if (m_show_two_lines)
 						{
 							m_element_position[celServiceInfo].setLeft(nameLeft+xoffs);
@@ -1068,7 +1072,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					eSize pixmap_size = pixmap->size();
 					eRect area = m_element_position[e == celFolderPixmap ? celServiceName: celServiceNumber];
 					if (m_show_two_lines)
-						area.setHeight(m_itemsize.height()); // fix clipped marker icon
+						area.setHeight(m_itemsize.height());
 					int correction = (m_itemsize.height() - pixmap_size.height()) / 2;
 					if (e == celFolderPixmap)
 						if (m_element_position[celServiceEventProgressbar].left() == 0)

@@ -129,9 +129,6 @@ def InitUsageConfig():
 	config.usage.numberzap_show_servicename = ConfigYesNo(default = False)
 #####################################################
 
-	#used to translating for the minute unit in the servicelist
-	config.usage.servicelist_minutetext = NoSave(ConfigText(default = _("min")))
-
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.panicchannel = ConfigInteger(default = 1, limits=(1,5000) )
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
