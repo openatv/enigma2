@@ -378,37 +378,43 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setServicePiconDownsize(int(config.usage.servicelist_picon_downsize.value))
 		self.l.setServicePiconRatio(int(config.usage.servicelist_picon_ratio.value))
 		self.l.setShowTwoLines(config.usage.servicelist_twolines.value)
+		self.l.setServiceInfoAddWidth(config.usage.servicelist_eventprogress_valign.value == "1" and "right" in config.usage.show_event_progress_in_servicelist.value)
+		self.l.setProgressMinutesMode("mins" in config.usage.show_event_progress_in_servicelist.value)
 
 		if config.usage.service_icon_enable.value:
 			self.l.setGetPiconNameFunc(getPiconName)
 		else:
 			self.l.setGetPiconNameFunc(None)
 
-		rowWidth = self.instance.size().width() - 30 #scrollbar is fixed 20 + 10 Extra marge
+		rowWidth = self.instance.size().width() - 25 #scrollbar is fixed 20 + 5 Extra marge
 
 		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
 			channelNumberWidth = 0
-			channelNumberSpace = 0
+			channelNumberSpace = self.fieldMargins
 		else:
-			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0000").width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
+			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0"*int(config.usage.maxchannelnumlen.value)).width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
 			channelNumberSpace = self.fieldMargins
 
-		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, self.ItemHeight))
+		numberHeight = self.ItemHeight/2 if config.usage.servicelist_twolines.value and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
+		self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, channelNumberWidth, numberHeight))
 
+		progressFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.serviceinfo_fontsize.value - 4)
+		progressHeight = self.ItemHeight/2 if config.usage.servicelist_twolines.value and config.usage.servicelist_eventprogress_valign.value == "1" else self.ItemHeight
+		progressWidth = getTextBoundarySize(self.instance, progressFont, self.instance.size(), "+000 %s" %config.usage.servicelist_minutetext.value).width() if "mins" in config.usage.show_event_progress_in_servicelist.value else getTextBoundarySize(self.instance, self.ServiceInfoFont, self.instance.size(), "100 %").width() #self.progressBarWidth
 		if "left" in config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, self.progressBarWidth , self.ItemHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace + self.progressBarWidth + self.fieldMargins, 0, rowWidth - (channelNumberWidth+channelNumberSpace + self.progressBarWidth + self.fieldMargins), self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, progressWidth, progressHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins, 0, rowWidth - (channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins), self.ItemHeight))
 		elif "right" in config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth - self.progressBarWidth, 0, self.progressBarWidth, self.ItemHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace + self.progressBarWidth + self.fieldMargins), self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth - progressWidth, 0, progressWidth, progressHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins), self.ItemHeight))
 		else:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
 			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
-		if "perc" in config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
+		if "perc" in config.usage.show_event_progress_in_servicelist.value or "mins" in config.usage.show_event_progress_in_servicelist.value:
+			self.l.setElementFont(self.l.celServiceEventProgressbar, progressFont)
 		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))

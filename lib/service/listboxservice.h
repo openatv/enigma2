@@ -94,6 +94,8 @@ public:
 	void setItemHeight(int height);
 	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
 	void setShowTwoLines(bool twoLines) { m_show_two_lines = twoLines; }
+	void setProgressMinutesMode(bool mode) { m_progress_minutes_mode = mode; }
+	void setServiceInfoAddWidth(bool mode) { m_serviceinfo_add_width = mode; }
 	void setServicePiconDownsize(int value) { m_service_picon_downsize = value; }
 	void setServicePiconRatio(int value) { m_service_picon_ratio = value; }
 	void setServiceTypeIconMode(int mode) { m_servicetype_icon_mode = mode; }
@@ -192,6 +194,8 @@ private:
 	int m_itemheight;
 	bool m_hide_number_marker;
 	bool m_show_two_lines;
+	bool m_serviceinfo_add_width;
+	bool m_progress_minutes_mode;
 	int m_service_picon_downsize;
 	int m_service_picon_ratio;
 	int m_servicetype_icon_mode;

@@ -97,14 +97,20 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
+	#two lines options
 	config.usage.servicelist_twolines = ConfigYesNo(default = False)
 	config.usage.servicelist_twolines.addNotifier(refreshServiceList)
+	config.usage.servicelist_servicenumber_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
+	config.usage.servicelist_servicenumber_valign.addNotifier(refreshServiceList)
+	config.usage.servicelist_eventprogress_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
+	config.usage.servicelist_eventprogress_valign.addNotifier(refreshServiceList)
+	################
 	config.usage.servicelist_infokey = ConfigSelection(default = "event", choices = [("epg", _("Single EPG")), ("event", _("Eventview"))])
 
 	config.usage.service_icon_enable = ConfigYesNo(default = False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
-	config.usage.servicelist_picon_downsize = ConfigSelectionNumber(default = -2, stepwidth = 1, min = -8, max = 0, wraparound = True)
-	config.usage.servicelist_picon_ratio = ConfigSelection(default = "167", choices = [("100", _("1:1")), ("150", _("3:2")), ("133", _("4:3")), ("250", _("5:2")), ("167", _("5:3")), ("233", _("7:3"))])
+	config.usage.servicelist_picon_downsize = ConfigSelectionNumber(default = -2, stepwidth = 1, min = -10, max = 0, wraparound = True)
+	config.usage.servicelist_picon_ratio = ConfigSelection(default = "167", choices = [("167", _("XPicon, ZZZPicon")), ("235", _("ZZPicon")), ("250", _("ZPicon"))])
 	config.usage.servicelist_cursor_behavior = ConfigSelection(default = "keep", choices = [
 		("standard", _("Standard")),
 		("keep", _("Keep service")),
@@ -122,6 +128,9 @@ def InitUsageConfig():
 	config.usage.numberzap_show_picon = ConfigYesNo(default = False)
 	config.usage.numberzap_show_servicename = ConfigYesNo(default = False)
 #####################################################
+
+	#used to translating for the minute unit in the servicelist
+	config.usage.servicelist_minutetext = NoSave(ConfigText(default = _("min")))
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.panicchannel = ConfigInteger(default = 1, limits=(1,5000) )
@@ -432,9 +441,9 @@ def InitUsageConfig():
 
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
 
-	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.usage.servicenum_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -10, max = 10, wraparound = True)
+	config.usage.servicename_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -10, max = 10, wraparound = True)
+	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -10, max = 10, wraparound = True)
 	config.usage.serviceitems_per_page = ConfigSelectionNumber(default = 18, stepwidth = 1, min = 8, max = 40, wraparound = True)
 	config.usage.show_servicelist = ConfigYesNo(default = True)
 	config.usage.servicelist_mode = ConfigSelection(default = "standard", choices = [
@@ -472,6 +481,8 @@ def InitUsageConfig():
 		('barright', _("Progress bar right")),
 		('percleft', _("Percentage left")),
 		('percright', _("Percentage right")),
+		('minsleft', _("Remaining minutes left")),
+		('minsright', _("Remaining minutes right")),
 		('no', _("No")) ])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
 	config.usage.show_channel_jump_in_servicelist = ConfigSelection(default="quick", choices = [
