@@ -54,7 +54,7 @@ class Language:
 		self.addLanguage("Lietuvių", "lt", "LT", "ISO-8859-15")
 		self.addLanguage("Latviešu", "lv", "LV", "ISO-8859-15")
 		self.addLanguage("Nederlands", "nl", "NL", "ISO-8859-15")
-		self.addLanguage("Norsk Bokmål","nb", "NO", "ISO-8859-15")
+		self.addLanguage("Norsk Bokmål", "nb", "NO", "ISO-8859-15")
 		self.addLanguage("Norsk", "no", "NO", "ISO-8859-15")
 		self.addLanguage("Polski", "pl", "PL", "ISO-8859-15")
 		self.addLanguage("Português", "pt", "PT", "ISO-8859-15")
