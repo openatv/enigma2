@@ -65,11 +65,12 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.ServiceNameFontSize = 22
 		self.ServiceInfoFontName = "Regular"
 		self.ServiceInfoFontSize = 18
+		self.progressInfoFontName = "Regular"
+		self.progressInfoFontSize = -1
 		self.progressBarWidth = 52
 		self.fieldMargins = 10
 		self.listMarginRight = 25 #scrollbar is fixed 20 + 5 Extra marge
 		self.listMarginLeft = 5
-		self.progressFontOffset = -2
 
 		self.onSelectionChanged = [ ]
 
@@ -139,6 +140,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 			font = parseFont(value, ((1,1),(1,1)) )
 			self.ServiceNumberFontName = font.family
 			self.ServiceNumberFontSize = font.pointSize
+		def progressInfoFont(value):
+			font = parseFont(value, ((1,1),(1,1)) )
+			self.progressInfoFontName = font.family
+			self.progressInfoFontSize = font.pointSize
 		def progressbarHeight(value):
 			self.l.setProgressbarHeight(int(value))
 		def progressbarBorderWidth(value):
@@ -151,8 +156,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.listMarginRight = int(value)
 		def listMarginLeft(value):
 			self.listMarginLeft = int(value)
-		def progressFontOffset(value):
-			self.progressFontOffset = int(value)
 		def nonplayableMargins(value):
 			self.l.setNonplayableMargins(int(value))
 		def itemsDistances(value):
@@ -292,9 +295,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 
 	def setFontsize(self):
-		self.ServiceNumberFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicenum_fontsize.value)
+		self.ServiceNumberFont = gFont(self.ServiceNumberFontName, self.ServiceNumberFontSize + config.usage.servicenum_fontsize.value)
 		self.ServiceNameFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicename_fontsize.value)
 		self.ServiceInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.serviceinfo_fontsize.value)
+		if self.progressInfoFontSize == -1: # font in skin not defined
+			self.ProgressInfoFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.progressinfo_fontsize.value)
+		else:
+			self.ProgressInfoFont = gFont(self.progressInfoFontName, self.progressInfoFontSize + config.usage.progressinfo_fontsize.value)
+
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
@@ -409,9 +417,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 		numberHeight = self.ItemHeight/2 if config.usage.servicelist_twolines.value and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
 		self.l.setElementPosition(self.l.celServiceNumber, eRect(self.listMarginLeft, 0, channelNumberWidth, numberHeight))
 
-		progressFont = gFont(self.ServiceInfoFontName, self.ServiceInfoFontSize + config.usage.serviceinfo_fontsize.value + self.progressFontOffset)
 		progressHeight = self.ItemHeight/2 if config.usage.servicelist_twolines.value and config.usage.servicelist_eventprogress_valign.value == "1" else self.ItemHeight
-		progressWidth = getTextBoundarySize(self.instance, progressFont, self.instance.size(), "+000 %s" %minuteUnit).width() if "mins" in config.usage.show_event_progress_in_servicelist.value else getTextBoundarySize(self.instance, self.ServiceInfoFont, self.instance.size(), "100 %").width()
+		progressWidth = getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "+000 %s" %minuteUnit).width() if "mins" in config.usage.show_event_progress_in_servicelist.value else getTextBoundarySize(self.instance, self.ServiceInfoFont, self.instance.size(), "100 %").width()
 		if "bar" in config.usage.show_event_progress_in_servicelist.value:
 			progressWidth = self.progressBarWidth
 		if "left" in config.usage.show_event_progress_in_servicelist.value:
@@ -427,7 +434,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		if "perc" in config.usage.show_event_progress_in_servicelist.value or "mins" in config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementFont(self.l.celServiceEventProgressbar, progressFont)
+			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ProgressInfoFont)
 		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
