@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-29 20:44+0000\n"
+"POT-Creation-Date: 2019-09-04 16:50+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -1544,9 +1544,6 @@ msgstr "16:9 Letterbox"
 msgid "18 V"
 msgstr "18V"
 
-msgid "1:1"
-msgstr "1:1"
-
 msgid "1X"
 msgstr "1x"
 
@@ -1711,9 +1708,6 @@ msgstr "32"
 msgid "32 Mb"
 msgstr "32 MB"
 
-msgid "3:2"
-msgstr "3:2"
-
 msgid "3D Mode"
 msgstr "3D-Modus"
 
@@ -1807,12 +1801,6 @@ msgstr "50p/60p"
 msgid "512 Mb"
 msgstr "512 MB"
 
-msgid "5:2"
-msgstr "5:2"
-
-msgid "5:3"
-msgstr "5:3"
-
 msgid "5s"
 msgstr "5 s"
 
@@ -1859,9 +1847,6 @@ msgstr "720p50"
 
 msgid "720p50: 24p/50p/60p"
 msgstr "720p50: 24p/50p/60p"
-
-msgid "7:3"
-msgstr "7:3"
 
 #
 msgid "8"
@@ -2484,6 +2469,12 @@ msgstr "Algerien"
 
 msgid "Alias"
 msgstr "Alias"
+
+msgid "Alignment channel number"
+msgstr "Ausrichtung Kanalnummer"
+
+msgid "Alignment event-progress"
+msgstr "Ausrichtung Sendungsfortschritt"
 
 msgid "Alignment of events"
 msgstr "Ausrichtung der Sendungsnamen"
@@ -11237,12 +11228,6 @@ msgstr "Prozent Links"
 msgid "Percentage right"
 msgstr "Prozent Rechts"
 
-msgid "Remaining minutes left"
-msgstr "verbleibende Minuten Links"
-
-msgid "Remaining minutes right"
-msgstr "verbleibende Minuten Rechts"
-
 msgid "Perform a full image backup"
 msgstr "Komplettsicherung des Images durchführen."
 
@@ -12237,6 +12222,9 @@ msgstr "Links"
 msgid "Progress bar right"
 msgstr "Rechts"
 
+msgid "Progress info font size"
+msgstr "Schriftgröße für Fortschrittsinformationen"
+
 msgid "Progress:"
 msgstr "Fortschritt:"
 
@@ -12697,6 +12685,12 @@ msgstr "Verbleibende"
 
 msgid "Remaining & Elapsed"
 msgstr "Verbleibende & Verstrichene"
+
+msgid "Remaining minutes left"
+msgstr "verbleibende Minuten Links"
+
+msgid "Remaining minutes right"
+msgstr "verbleibende Minuten Rechts"
 
 # /data/setup.xml
 msgid "Remember last service in PiP"
@@ -14107,9 +14101,6 @@ msgstr "Sender-Infos"
 msgid "Service info font size"
 msgstr "Schriftgröße für Sendungsinformationen"
 
-msgid "Progress info font size"
-msgstr "Schriftgröße für Fortschrittsinformationen"
-
 #
 msgid ""
 "Service invalid!\n"
@@ -15194,21 +15185,6 @@ msgstr "Zeige zwei Zeilen pro Eintrag"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zeige unbekannte Videoauflösungen mit der nächsthöheren oder höchsten Auflösung."
-
-msgid "Alignment channel number"
-msgstr "Ausrichtung Kanalnummer"
-
-msgid "Vertical alignement for the service number."
-msgstr "Vertikale Ausrichtung der Kanalnummer."
-
-msgid "Alignment event-progress"
-msgstr "Ausrichtung Sendungsfortschritt"
-
-msgid "Vertical alignement for the event-progress."
-msgstr "Vertikale Ausrichtung des Sendungsfortschritt."
-
-msgid "upper line"
-msgstr "obere Zeile"
 
 msgid "Show unknown extension as text"
 msgstr "Unbekannte Erweiterungen als Text anzeigen"
@@ -18448,6 +18424,12 @@ msgstr "Vertikal"
 msgid "Vertical EPG"
 msgstr "Vertikaler EPG"
 
+msgid "Vertical alignement for the event-progress."
+msgstr "Vertikale Ausrichtung des Sendungsfortschritt."
+
+msgid "Vertical alignement for the service number."
+msgstr "Vertikale Ausrichtung der Kanalnummer."
+
 # satconfig.py
 msgid "Vertical turning speed"
 msgstr "Vertikale Drehgeschwindigkeit"
@@ -19258,6 +19240,9 @@ msgstr ""
 msgid "XP3000"
 msgstr ""
 
+msgid "XPicon, ZZZPicon"
+msgstr ""
+
 msgid "YCbCr420"
 msgstr ""
 
@@ -19752,6 +19737,12 @@ msgstr "ZOOM"
 
 msgid "ZOOM long"
 msgstr "ZOOM lang"
+
+msgid "ZPicon"
+msgstr ""
+
+msgid "ZZPicon"
+msgstr ""
 
 msgid "Zambia"
 msgstr "Sambia"
@@ -20796,6 +20787,11 @@ msgid "middle"
 msgstr "Mitte"
 
 #
+#, fuzzy
+msgid "min"
+msgstr "Minuten"
+
+#
 msgid "mins"
 msgstr "Minuten"
 
@@ -21688,6 +21684,9 @@ msgstr ""
 msgid "updates available."
 msgstr "Updates verfügbar."
 
+msgid "upper line"
+msgstr "obere Zeile"
+
 msgid "use best / controlled by HDMI"
 msgstr "Best Mögliches / Steuerung über HDMI"
 
@@ -22025,6 +22024,9 @@ msgstr "Umschalten"
 #~ msgid "15 seconds"
 #~ msgstr "15 Sekunden"
 
+#~ msgid "1:1"
+#~ msgstr "1:1"
+
 #~ msgid "2 hours"
 #~ msgstr "2 Stunden"
 
@@ -22067,6 +22069,9 @@ msgstr "Umschalten"
 #~ msgid "30 seconds"
 #~ msgstr "30 Sekunden"
 
+#~ msgid "3:2"
+#~ msgstr "3:2"
+
 #~ msgid "4 hours"
 #~ msgstr "4 Stunden"
 
@@ -22079,6 +22084,12 @@ msgstr "Umschalten"
 #~ msgid "5 seconds"
 #~ msgstr "5 Sekunden"
 
+#~ msgid "5:2"
+#~ msgstr "5:2"
+
+#~ msgid "5:3"
+#~ msgstr "5:3"
+
 #~ msgid "6 seconds"
 #~ msgstr "6 Sekunden"
 
@@ -22090,6 +22101,9 @@ msgstr "Umschalten"
 
 #~ msgid "7-8"
 #~ msgstr "7-8"
+
+#~ msgid "7:3"
+#~ msgstr "7:3"
 
 #~ msgid "8 seconds"
 #~ msgstr "8 Sekunden"
