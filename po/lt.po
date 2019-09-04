@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-26 11:32+0000\n"
-"PO-Revision-Date: 2019-08-26 18:32+0300\n"
+"POT-Creation-Date: 2019-09-04 16:50+0000\n"
+"PO-Revision-Date: 2019-09-04 21:00+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -259,7 +259,7 @@ msgid "  Red key : Show/Hide channel name"
 msgstr "  Raudonas mygtukas: rodyti/slėpti kanalo pavadinimą"
 
 #, python-format
-msgid " ('%s') ends successefully."
+msgid " ('%s') ends successfully."
 msgstr " ('%s') sėkmingai baigėsi."
 
 #, python-format
@@ -1499,9 +1499,6 @@ msgstr "16_9 įterpiant juodas juostas"
 msgid "18 V"
 msgstr "18 V"
 
-msgid "1:1"
-msgstr "1:1"
-
 msgid "1X"
 msgstr "1X"
 
@@ -1655,9 +1652,6 @@ msgstr "32"
 msgid "32 Mb"
 msgstr "32 Mb"
 
-msgid "3:2"
-msgstr "3:2"
-
 msgid "3D Mode"
 msgstr "3D režimas"
 
@@ -1745,12 +1739,6 @@ msgstr "50p/60p"
 msgid "512 Mb"
 msgstr "512 Mb"
 
-msgid "5:2"
-msgstr "5:2"
-
-msgid "5:3"
-msgstr "5:3"
-
 msgid "5s"
 msgstr "5 sek."
 
@@ -1789,9 +1777,6 @@ msgstr "720p50"
 
 msgid "720p50: 24p/50p/60p"
 msgstr "720p50: 24p/50p/60p"
-
-msgid "7:3"
-msgstr "7:3"
 
 msgid "8 GB"
 msgstr "8 GB"
@@ -4064,7 +4049,7 @@ msgid "Create directory/folder"
 msgstr "Sukurti katalogą/aplanką"
 
 msgid "Create separate radio userbouquet"
-msgstr "Sukurti atskirą radijo vartotojo paketą"
+msgstr "Sukurti atskirą vartotojo radijo paketą"
 
 msgid "Create symlink to file"
 msgstr "Sukurti nuorodą į failą"
@@ -4521,7 +4506,7 @@ msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
-msgstr "Trinti ir išdiegti priedus. Priedas bus pašalintas iš sistemos"
+msgstr "Trinti ir išdiegti priedus. Priedas bus pašalintas iš jūsų imtuvo"
 
 msgid "Delete current line"
 msgstr "Ištrinti dabartinę eilutę"
@@ -10068,6 +10053,12 @@ msgstr "Liko laiko"
 msgid "Remaining & Elapsed"
 msgstr "Liko ir praėjo"
 
+msgid "Remaining minutes left"
+msgstr "Liko minučių"
+
+msgid "Remaining minutes right"
+msgstr "Praėjo minučių"
+
 msgid "Remember service PIN"
 msgstr "Atsiminti kanalo PIN"
 
@@ -12718,7 +12709,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-08-26"
+msgstr "Adga, v. 2019-09-04"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -14881,6 +14872,9 @@ msgstr "XP1000"
 msgid "XP3000"
 msgstr "XP3000"
 
+msgid "XPicon, ZZZPicon"
+msgstr "XPicon, ZZZPicon"
+
 msgid "YCbCr420"
 msgstr "YCbCr420"
 
@@ -15244,6 +15238,14 @@ msgstr "ZOOM"
 
 msgid "ZOOM long"
 msgstr "ZOOM (ilgai spausti)"
+
+#| msgid "Picon"
+msgid "ZPicon"
+msgstr "ZPicon"
+
+#| msgid "Picon"
+msgid "ZZPicon"
+msgstr "ZZPicon"
 
 msgid "Zambia"
 msgstr "Zambija"
@@ -16175,6 +16177,9 @@ msgstr "meniu"
 msgid "middle"
 msgstr "vidutinis"
 
+msgid "min"
+msgstr "min"
+
 msgid "mins"
 msgstr "min."
 
@@ -16533,14 +16538,14 @@ msgstr "pakartoti grojaraštį"
 msgid "repeated"
 msgstr "pakartotinis"
 
-msgid "restoring satellites.xml not possible!"
-msgstr "atkurti satellites.xml neįmanoma!"
-
 msgid "restart GUI"
 msgstr "iš naujo paleiskite grafinę aplinką"
 
 msgid "restore deleted userbouquets"
 msgstr "atkurti ištrintus mėgiamų kanalų paketus"
+
+msgid "restoring satellites.xml not possible!"
+msgstr "atkurti satellites.xml neįmanoma!"
 
 msgid "reverse by date"
 msgstr "atvirkštinis pagal datą"
@@ -16971,6 +16976,9 @@ msgstr "atnaujinimas"
 
 msgid "updates available."
 msgstr "galimi atnaujinimai."
+
+msgid "upper line"
+msgstr "viršutinė eilutė"
 
 msgid "use best / controlled by HDMI"
 msgstr "naudoti geriausią / valdoma HDMI"
@@ -17668,6 +17676,12 @@ msgstr "Koreguokite vertikalią raidžių poziciją, naudojamą teletekstui."
 
 msgid "After PowerLost"
 msgstr "Po įtampos dingimo"
+
+msgid "Alignment channel number"
+msgstr "Kanalo numerio lygiavimas"
+
+msgid "Alignment event-progress"
+msgstr "Įvykio eigos lygiavimas"
 
 msgid "Alignment of events"
 msgstr "Įvykių lygiavimas"
@@ -18486,6 +18500,9 @@ msgstr "Čia galite nustatyti, kam bus naudojama 'Info' mygtuko paspaudimas."
 msgid "Hide any zap error messages."
 msgstr "Paslėpti visus perjungimo klaidų pranešimus."
 
+msgid "Hide number markers"
+msgstr "Slėpti numerių žymeklius"
+
 msgid "Hide zap errors"
 msgstr "Paslėpti perjungimo klaidas"
 
@@ -18866,6 +18883,9 @@ msgstr "Žiūrimiausio laiko valanda"
 
 msgid "Primetime minute"
 msgstr "Žiūrimiausio laiko minutė"
+
+msgid "Progress info font size"
+msgstr "Informacijos eigos šrifto dydis"
 
 msgid "QuickEPG mode"
 msgstr "Greitas EPG režimas"
@@ -19272,6 +19292,9 @@ msgstr "Rodyti įrašymo simbolį"
 msgid "Show screensaver"
 msgstr "Rodyti ekrano užsklandą"
 
+msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
+msgstr "Rodyti kanalo pavadinimą ir įvykio aprašą tarpusavyje, o ne vienas šalia kito. Po pakeitimo reikia pakoreguoti eilučių skaičių."
+
 msgid "Show service type icons"
 msgstr "Rodyti kanalo tipo piktogramas"
 
@@ -19298,6 +19321,9 @@ msgstr "Rodyti vertimų paketus"
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Rodyti transponderio liko/praėjo kaip"
+
+msgid "Show two lines per entry"
+msgstr "Rodyti dvi eilutes viename įraše"
 
 msgid "Show warning before restart"
 msgstr "Rodyti įspėjimą prieš paleidimą iš naujo"
@@ -19701,11 +19727,17 @@ msgstr "Vartotojo apibrėžta delsa, paspaudus pirmą mygtuką jungiant į kanal
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Paprastai, kai subtitrų kalba yra ta pati kaip garso kalbą, nebus naudojami subtitruose. Įjunkite šią funkciją, kad šie subtitrai būtų naudojami."
 
+msgid "Vertical alignement for the event-progress."
+msgstr "Vertikalus įvykio eigos lygiavimas."
+
+msgid "Vertical alignement for the service number."
+msgstr "Vertikalus kanalo numerio lygiavimas."
+
 msgid "VerticalEPG settings"
 msgstr "Vertikalaus EPG nustatymai"
 
 msgid "View mode"
-msgstr "Rodymo režimas"
+msgstr "Peržiūros režimas"
 
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Žadinimo laikas prieš laikmatį prasideda [min]"
@@ -19781,6 +19813,9 @@ msgstr "Kai čia įjungta, bus matuojama variklio suvartojama galia, kad nustaty
 
 msgid "When enabled, network trash can's are probed for cleaning."
 msgstr "Kai čia įjungta, bus bandoma išvalyti ir tinklo šiukšliadėžes."
+
+msgid "When enabled, number markers will be hidden."
+msgstr "Kai įjungta, numerių žymekliai bus paslėpti."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
 msgstr "Kai čia įjungta, '0' paspaudimas perjungs į pirmą pirmojo paketo kanalą ir išvalys perjungimų istoriją."
@@ -20206,6 +20241,21 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#~ msgid "1:1"
+#~ msgstr "1:1"
+
+#~ msgid "3:2"
+#~ msgstr "3:2"
+
+#~ msgid "5:2"
+#~ msgstr "5:2"
+
+#~ msgid "5:3"
+#~ msgstr "5:3"
+
+#~ msgid "7:3"
+#~ msgstr "7:3"
 
 #~ msgid "Configure the number of days after which items are automaticaly removed from the trash can."
 #~ msgstr "Konfigūruokite dienų skaičių, po kurio ištrinti failai bus automatiškai pašalinti iš šiukšlinės."
