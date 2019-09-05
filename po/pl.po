@@ -1504,9 +1504,6 @@ msgstr ""
 msgid "18 V"
 msgstr ""
 
-msgid "1:1"
-msgstr ""
-
 msgid "1X"
 msgstr ""
 
@@ -1669,9 +1666,6 @@ msgstr ""
 msgid "32 Mb"
 msgstr ""
 
-msgid "3:2"
-msgstr ""
-
 msgid "3D Mode"
 msgstr "Tryb 3D"
 
@@ -1759,12 +1753,6 @@ msgstr ""
 msgid "512 Mb"
 msgstr ""
 
-msgid "5:2"
-msgstr ""
-
-msgid "5:3"
-msgstr ""
-
 msgid "5s"
 msgstr ""
 
@@ -1808,9 +1796,6 @@ msgid "720p50"
 msgstr ""
 
 msgid "720p50: 24p/50p/60p"
-msgstr ""
-
-msgid "7:3"
 msgstr ""
 
 msgid "8"
@@ -2353,6 +2338,12 @@ msgstr "Afganistan"
 
 msgid "After PowerLost"
 msgstr "Po wyłączeniu z prądu"
+
+msgid "Alignment channel number"
+msgstr "Wyrównanie numeru kanału"
+
+msgid "Alignment event-progress"
+msgstr "Wyrównanie postępu zdarzenia"
 
 msgid "After Recording"
 msgstr "Po nagrywaniu"
@@ -11379,6 +11370,9 @@ msgstr "Podstawowa godzina czasu"
 msgid "Primetime minute"
 msgstr "Podstawowe minuty czasu"
 
+msgid "Progress info font size"
+msgstr "Rozmiar czcionki informacji o postępie"
+
 msgid "Priority"
 msgstr "Priorytet konwertera"
 
@@ -11885,6 +11879,12 @@ msgstr "Pozostały"
 
 msgid "Remaining & Elapsed"
 msgstr "Pozostały & Upływający"
+
+msgid "Remaining minutes left"
+msgstr "Pozostałe minuty z lewej"
+
+msgid "Remaining minutes right"
+msgstr "Pozostałe minuty z prawej"
 
 msgid "Remember last service in PiP"
 msgstr "Pamiętaj ostatni kanał w PiP"
@@ -14090,8 +14090,8 @@ msgstr "Pokaż listę satelit"
 msgid "Show screensaver"
 msgstr "Pokaż wygaszacz ekranu"
 
-msgid "Show service name and event description among each other instead of side by side."
-msgstr "Pokaż obok siebie nazwę usługi i opis zdarzenia."
+msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
+msgstr "Pokaż obok siebie nazwę usługi i opis zdarzenia. Po zmianie wymagana jest korekta liczby linii."
 
 msgid "Show service list"
 msgstr "Pokaż listę kanałów"
@@ -17167,6 +17167,12 @@ msgstr "Użyj tunera %s"
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Normalnie gdy język napisów jest taki sam jak ścieżka audio napisy nie są wyświetlane. Włączenie tej opcji pozwala wyświetlić napisy w takiej sytuacji."
 
+msgid "Vertical alignement for the event-progress."
+msgstr "Wyrównanie w pionie dla postępu zdarzenia."
+
+msgid "Vertical alignement for the service number."
+msgstr "Wyrównanie w pionie dla numeru kanału."
+
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
@@ -17969,6 +17975,9 @@ msgstr ""
 msgid "XP3000"
 msgstr ""
 
+msgid "XPicon, ZZZPicon"
+msgstr "XPicon, ZZZPicon"
+
 msgid "YCbCr420"
 msgstr ""
 
@@ -18423,6 +18432,12 @@ msgstr ""
 msgid "ZOOM long"
 msgstr "ZOOM (długo)"
 
+msgid "ZPicon"
+msgstr "ZPicon"
+
+msgid "ZZPicon"
+msgstr "ZZPicon"
+
 msgid "Zambia"
 msgstr "Zambia"
 
@@ -18570,7 +18585,7 @@ msgid "add bookmark"
 msgstr "dodaj zakładkę"
 
 msgid "add bouquet"
-msgstr "dodaj bukiet"
+msgstr "Dodaj bukiet"
 
 msgid "add bouquet to parental protection"
 msgstr "dodaj bukiet do ochrony rodzicielskiej"
@@ -19371,6 +19386,9 @@ msgstr "menu"
 msgid "middle"
 msgstr "środek"
 
+msgid "min"
+msgstr "min"
+
 msgid "mins"
 msgstr "minut"
 
@@ -19639,10 +19657,10 @@ msgid "provider:"
 msgstr "nadawca:"
 
 msgid "purge deleted userbouquets"
-msgstr ""
+msgstr "Wyczyść usunięte bukiety użytkowników"
 
 msgid "python"
-msgstr "wyczyść usunięte bukiety użytkowników"
+msgstr "python"
 
 msgid "real or pseudo recordings"
 msgstr "prawdziwe lub pseudo nagrania"
@@ -19742,7 +19760,7 @@ msgid "restart GUI"
 msgstr ""
 
 msgid "restore deleted userbouquets"
-msgstr "przywróć usunięte bukiety użytkowników"
+msgstr "Przywróć usunięte bukiety użytkowników"
 
 msgid "reverse by date"
 msgstr "wg. daty (od najstarszego)"
@@ -19788,9 +19806,8 @@ msgstr "zapisz ostatni katalog przy wyjściu"
 msgid "save playlist on exit"
 msgstr "zapisać listę odtwarzania przy wyjściu"
 
-#, fuzzy
 msgid "scan new"
-msgstr "Wyszukiwanie jest zakończone!"
+msgstr "skanuj nowy"
 
 msgid "scan state"
 msgstr "status skanowania"
@@ -20174,9 +20191,8 @@ msgstr "rozpakuj pliki zip"
 msgid "unpublished"
 msgstr "niepublikowane"
 
-#, fuzzy
 msgid "untestable"
-msgstr "włącz"
+msgstr "nietestowalny"
 
 msgid "until standby/restart"
 msgstr "do standby/restartu"
@@ -20187,14 +20203,17 @@ msgstr "aktualizacja"
 msgid "updates available."
 msgstr "aktualizacje dostępne."
 
+msgid "upper line"
+msgstr "górna linia"
+
 msgid "use best / controlled by HDMI"
-msgstr ""
+msgstr "używaj najlepszej / kontrolowanego przez HDMI"
 
 msgid "use increased voltage '14/18V' if there are problems when switching the lnb"
-msgstr ""
+msgstr "użyj podwyższonego napięcia „14 / 18V”, jeśli występują problemy podczas przełączania LNB"
 
 msgid "use_hdmi_cacenter"
-msgstr ""
+msgstr "użyj_hdmi_cacenter"
 
 msgid "user defined"
 msgstr "zdefiniowany przez użytkownika"
