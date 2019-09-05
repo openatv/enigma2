@@ -152,7 +152,10 @@ int eListboxServiceContent::getNextBeginningWithChar(char c)
 	{
 		std::string text;
 		ePtr<iStaticServiceInformation> service_info;
-		m_service_center->info(*i, service_info);
+		if (m_service_center->info(*i, service_info))
+		{
+			continue; // failed to find service handler
+		}
 		service_info->getName(*i, text);
 //		printf("%c\n", text.c_str()[0]);
 		int idx=0;
@@ -451,7 +454,7 @@ int eListboxServiceContent::cursorMove(int count)
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			++m_cursor_number;
-			if (!(m_cursor->flags & eServiceReference::isInvisible))
+			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker) && !(m_cursor->flags & eServiceReference::isInvisible))
 				--count;
 		}
 	}
@@ -467,7 +470,7 @@ int eListboxServiceContent::cursorMove(int count)
 					m_listbox->entryChanged(cursorResolve(m_cursor_number));
 			}
 			--m_cursor_number;
-			if (!(m_cursor->flags & eServiceReference::isInvisible))
+			if (!(m_hide_number_marker && m_cursor->flags & eServiceReference::isNumberedMarker) && !(m_cursor->flags & eServiceReference::isInvisible))
 				++count;
 		}
 		while (m_cursor != m_list.end())
@@ -504,7 +507,7 @@ int eListboxServiceContent::cursorResolve(int cursor_position)
 
 		count++;
 
-		if (i->flags & eServiceReference::isInvisible)
+		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
 			continue;
 		m_stripped_cursor++;
 	}
@@ -548,7 +551,7 @@ int eListboxServiceContent::size()
 	int size = 0;
 	for (list::iterator i(m_list.begin()); i != m_list.end(); ++i)
 	{
-		if (i->flags & eServiceReference::isInvisible)
+		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
 			continue;
 		size++;
 	}
@@ -794,8 +797,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (!isPlayable)
 					{
 						area.setWidth(area.width() + m_element_position[celServiceEventProgressbar].width() +  m_nonplayable_margins);
-						if (m_element_position[celServiceEventProgressbar].left() == 0)
-							area.setLeft(0);
+						if (m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].left())
+							area.setLeft(m_element_position[celServiceNumber].left());
 						if (m_element_position[celServiceNumber].width() && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].width() +  m_nonplayable_margins)
 							area.setLeft(m_element_position[celServiceNumber].width() +  m_nonplayable_margins);
 					}
@@ -989,6 +992,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								correction = (((area.height()/2) - pixmap_size.height()) + area.height()) / 2 + 2;
 								xoffs -= pixmap_size.width() + m_items_distances;
 								offs = serviceTypeXoffs + (xoffs - serviceTypeXoffs - pixmap_size.width() - m_items_distances) / 2;
+								serviceTypeXoffs = pixmap_size.width() + m_items_distances;
 							}
 							area.moveBy(offset);
 							if (service_info && service_info->isCrypted())
@@ -1025,6 +1029,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
 								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
 							}
+							if (m_show_two_lines && m_servicetype_icon_mode == 1 && m_crypto_icon_mode == 1)
+								area.setLeft(area.left() - serviceTypeXoffs);
 							painter.clip(area);
 							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 							painter.clippop();
@@ -1074,9 +1080,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (m_show_two_lines)
 						area.setHeight(m_itemsize.height());
 					int correction = (m_itemsize.height() - pixmap_size.height()) / 2;
-					if (e == celFolderPixmap)
-						if (m_element_position[celServiceEventProgressbar].left() == 0)
-							area.setLeft(0);
+					if (e == celFolderPixmap && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].left())
+						area.setLeft(m_element_position[celServiceNumber].left());
 					xoffset = pixmap_size.width() + m_items_distances;
 					area.moveBy(offset);
 					painter.clip(area);
@@ -1128,10 +1133,15 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			}
 			painter.setForegroundColor(ProgressbarBorderColor);
 
-			painter.fill(eRect(pb_xpos, pb_ypos, pb_width + 2 * m_progressbar_border_width,  m_progressbar_border_width));
-			painter.fill(eRect(pb_xpos, pb_ypos + m_progressbar_border_width + m_progressbar_height, pb_width + 2 * m_progressbar_border_width,  m_progressbar_border_width));
-			painter.fill(eRect(pb_xpos, pb_ypos + m_progressbar_border_width, m_progressbar_border_width, m_progressbar_height));
-			painter.fill(eRect(pb_xpos + m_progressbar_border_width + pb_width, pb_ypos + m_progressbar_border_width, m_progressbar_border_width, m_progressbar_height));
+			if (m_progressbar_border_width)
+			{
+				painter.fill(eRect(pb_xpos, pb_ypos, pb_width + 2 * m_progressbar_border_width,  m_progressbar_border_width));
+				painter.fill(eRect(pb_xpos, pb_ypos + m_progressbar_border_width + m_progressbar_height, pb_width + 2 * m_progressbar_border_width,  m_progressbar_border_width));
+				painter.fill(eRect(pb_xpos, pb_ypos + m_progressbar_border_width, m_progressbar_border_width, m_progressbar_height));
+				painter.fill(eRect(pb_xpos + m_progressbar_border_width + pb_width, pb_ypos + m_progressbar_border_width, m_progressbar_border_width, m_progressbar_height));
+			}
+			else
+				painter.fill(eRect(pb_xpos + evt_done, pb_ypos, pb_width - evt_done,  m_progressbar_height));
 		}
 	}
 	painter.clippop();
