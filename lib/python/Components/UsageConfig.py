@@ -104,6 +104,27 @@ def InitUsageConfig():
 	config.usage.servicelist_servicenumber_valign.addNotifier(refreshServiceList)
 	config.usage.servicelist_eventprogress_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
 	config.usage.servicelist_eventprogress_valign.addNotifier(refreshServiceList)
+	config.usage.servicelist_eventprogress_view_mode = ConfigSelection(default = "0_barright", choices = [
+#		single
+		('0_no', _("No")),
+		('0_barleft', _("Progress bar left")),
+		('0_barright', _("Progress bar right")),
+		('0_percleft', _("Percentage left")),
+		('0_percright', _("Percentage right")),
+		('0_minsleft', _("Remaining minutes left")),
+		('0_minsright', _("Remaining minutes right")),
+#		bar value
+		('1_barpercleft', _("Progress bar/Percentage left")),
+		('1_barpercright', _("Progress bar/Percentage right")),
+		('1_barminsleft', _("Progress bar/Remaining minutes left")),
+		('1_barminsright', _("Progress bar/Remaining minutes right")),
+#		value bar
+		('2_percbarleft', _("Percentage/Progress bar left")),
+		('2_percbarright', _("Percentage/Progress bar right")),
+		('2_minsbarleft', _("Remaining minutes/Progress bar left")),
+		('2_minsbarright', _("Remaining minutes/Progress bar right"))
+		])
+	config.usage.servicelist_eventprogress_view_mode.addNotifier(refreshServiceList)
 	################
 	config.usage.servicelist_infokey = ConfigSelection(default = "event", choices = [("epg", _("Single EPG")), ("event", _("Eventview"))])
 

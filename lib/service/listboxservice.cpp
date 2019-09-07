@@ -316,7 +316,7 @@ DEFINE_REF(eListboxServiceContent);
 
 eListboxServiceContent::eListboxServiceContent()
 	:m_visual_mode(visModeSimple),m_cursor_number(0), m_saved_cursor_number(0), m_size(0), m_current_marked(false),
-	m_itemheight(25), m_hide_number_marker(false), m_show_two_lines(false), m_serviceinfo_add_width(false),
+	m_itemheight(25), m_hide_number_marker(false), m_show_two_lines(false), m_progress_view_mode(0), m_progress_text_width(0),
 	m_service_picon_downsize(0), m_service_picon_ratio(167),m_servicetype_icon_mode(0), m_crypto_icon_mode(0),
 	m_record_indicator_mode(0), m_column_width(0), m_progressbar_height(6), m_progressbar_border_width(2),
 	m_nonplayable_margins(10), m_items_distances(8), m_progress_unit("%")
@@ -1039,7 +1039,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (m_show_two_lines)
 						{
 							m_element_position[celServiceInfo].setLeft(nameLeft+xoffs);
-							m_element_position[celServiceInfo].setWidth((m_serviceinfo_add_width) ? nameWidth-xoffs + m_items_distances + m_element_position[celServiceEventProgressbar].width() : nameWidth-xoffs);
+							if (!m_progress_view_mode || m_progress_view_mode == 2 || m_element_position[celServiceEventProgressbar].left() <= m_element_position[celServiceName].right())
+								m_element_position[celServiceInfo].setWidth(nameWidth - xoffs);
+							else if (m_progress_view_mode == 1)
+								m_element_position[celServiceInfo].setWidth(nameWidth - xoffs + m_element_position[celServiceEventProgressbar].width() - m_progress_text_width);
+							else
+								m_element_position[celServiceInfo].setWidth(nameWidth - xoffs + m_element_position[celServiceEventProgressbar].width() + m_items_distances);
 						}
 					}
 				}
@@ -1061,6 +1066,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					}
 					else if (m_show_two_lines && e == celServiceInfo)
 						yoffs = (area.height() + ((area.height()/2) - bbox.height())) / 2 - (bbox.top() - nameYoffs);
+					else if (m_show_two_lines && e == celServiceEventProgressbar && m_progress_view_mode == 1)
+						yoffs = area.height() + (area.height() - bbox.height()) / 2 - bbox.top();
+					else if (m_show_two_lines && e == celServiceEventProgressbar && m_progress_view_mode == 12)
+					{
+						yoffs = (area.height() - bbox.height()) / 2 - bbox.top();
+						xoffs -= (m_element_position[celServiceEventProgressbar].width() - m_progress_text_width);
+					}
 					else
 						yoffs = (area.height() - bbox.height()) / 2 - bbox.top();
 				}
@@ -1094,11 +1106,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
 		eRect area = m_element_position[celServiceEventProgressbar];
-		if (area.width() > 0 && evt && !m_element_font[celServiceEventProgressbar])
+		if (area.width() > 0 && evt && (!m_element_font[celServiceEventProgressbar] || (m_show_two_lines && m_progress_view_mode%10)))
 		{
-			int pb_xpos = area.left();
-			int pb_ypos = offset.y() + (area.height() - m_progressbar_height - 2 * m_progressbar_border_width) / 2;
-			int pb_width = area.width()- 2 * m_progressbar_border_width;
+			int correction = (m_show_two_lines && m_progress_view_mode == 2) ? area.height() : 0;
+			int pb_xpos = (m_show_two_lines && m_progress_view_mode == 12) ? area.left() + m_progress_text_width + m_items_distances : area.left();
+			int pb_ypos = offset.y() + correction + (area.height() - m_progressbar_height - 2 * m_progressbar_border_width) / 2;
+			int pb_width = (m_show_two_lines && m_progress_view_mode > 10) ? area.width() - m_progress_text_width - m_items_distances - 2 * m_progressbar_border_width : area.width()- 2 * m_progressbar_border_width;
 			gRGB ProgressbarBorderColor = 0xdfdfdf;
 			int evt_done = pb_width * (now - evt->getBeginTime()) / evt->getDuration();
 
