@@ -288,7 +288,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = int(self.listHeight / (config.usage.serviceitems_per_page.value / (1 + float(config.usage.servicelist_twolines.value))))
+			itemHeight = self.listHeight / (config.usage.serviceitems_per_page_twolines.value if config.usage.servicelist_twolines.value else config.usage.serviceitems_per_page.value)
 		else:
 			itemHeight = 28
 		self.ItemHeight = itemHeight

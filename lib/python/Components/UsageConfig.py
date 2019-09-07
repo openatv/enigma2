@@ -100,6 +100,7 @@ def InitUsageConfig():
 	#two lines options
 	config.usage.servicelist_twolines = ConfigYesNo(default = False)
 	config.usage.servicelist_twolines.addNotifier(refreshServiceList)
+	config.usage.serviceitems_per_page_twolines = ConfigSelectionNumber(default = 12, stepwidth = 1, min = 4, max = 20, wraparound = True)
 	config.usage.servicelist_servicenumber_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
 	config.usage.servicelist_servicenumber_valign.addNotifier(refreshServiceList)
 	config.usage.servicelist_eventprogress_valign = ConfigSelection(default = "0", choices = [("0", _("centered")), ("1", _("upper line"))])
