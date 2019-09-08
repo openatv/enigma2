@@ -1185,7 +1185,7 @@ msgstr "%s nie dostępne."
 
 #, fuzzy, python-format
 msgid "%s successfully extracted."
-msgstr "Plik wymiany został stworzony."
+msgstr "%s pomyślnie wyodrębniono."
 
 #, python-format
 msgid "%s updated package available"
@@ -1202,25 +1202,25 @@ msgstr ""
 msgid "%s/%s: %s"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s: %s"
-msgstr "Rdzenie: %s"
+msgstr "%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
-msgstr ""
+msgstr "%sTryb dla FHD (do 1080p)"
 
 #, python-format
 msgid "%sMode for HD (up to 720p)"
-msgstr ""
+msgstr "%sTryb HD (do 720p)"
 
 #, python-format
 msgid "%sMode for SD (up to 576p)"
-msgstr ""
+msgstr "%sTryb dla SD (do 576p)"
 
 #, python-format
 msgid "%sMode for UHD (up to 2160p)"
-msgstr ""
+msgstr "%sTryb dla UHD (do 2160p)"
 
 #, python-format
 msgid "%sRefresh rate for FHD"
@@ -1248,17 +1248,16 @@ msgstr "'%s' zawiera %d plik(ów) i %d podkatalogów.\n"
 
 #, python-format
 msgid "'%s' not installed and no known package"
-msgstr ""
+msgstr "'%s' niezainstalowany i brak znanego pakietu"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
 msgstr "'Bufor w godzinach' lub 'liczba ostatnich wydarzeń'. Usuwanie plików starszych timeshiftu, stan który wystąpił jako pierwszy ma priorytet."
 
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
+msgstr "Obsługa trybu gotowości z telewizora ma wyższy priorytet niż 'Obsługa wejścia z telewizora'"
 
-#, fuzzy
 msgid "'weatherplugin' is not installed!"
-msgstr "Wtyczka nie jest zainstalowana."
+msgstr "'Weatherplugin' nie jest zainstalowany!"
 
 msgid "( All readers)"
 msgstr "(Wszystkie czytniki)"
@@ -1274,9 +1273,8 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Uwaga: Nastąpi ponowne uruchomienie po %d awariach.)"
 
-#, fuzzy
 msgid "(Selectmode)"
-msgstr "Wybierz film"
+msgstr "(Wybierz tryb)"
 
 msgid "(Show only reader:"
 msgstr "(Pokaż tylko czytnik):"
@@ -13670,35 +13668,32 @@ msgstr "Pokaż 1080p 25fps jako"
 msgid "Show 1080p 30fps as"
 msgstr "Pokaż 1080p 30fps jako"
 
-#, fuzzy
 msgid "Show 2160p 24fps as"
-msgstr "Pokaż 720p 24fps jako"
+msgstr "Pokaż 2160p 24fps jako"
 
-#, fuzzy
 msgid "Show 2160p 25fps as"
-msgstr "Pokaż 1080p 25fps jako"
+msgstr "Pokaż 2160p 25fps jako"
 
-#, fuzzy
 msgid "Show 2160p 30fps as"
-msgstr "Pokaż 1080p 30fps jako"
+msgstr "Pokaż 2160p 30fps jako"
 
 msgid "Show 24p up to 720p / higher than 720p as"
-msgstr ""
+msgstr "Pokaż 24p do 720p / więcej niż 720p jako"
 
 msgid "Show 24p up to resolution 720p or higher than 720p as a different Framerate."
-msgstr ""
+msgstr "Pokaż 24p do rozdzielczości 720p lub wyższej niż 720p jako inny Framerate."
 
 msgid "Show 25p up to 720p / higher than 720p as"
-msgstr ""
+msgstr "Pokaż 25p do 720p / więcej niż 720p jako"
 
 msgid "Show 25p up to resolution 720p or higher than 720p as a different Framerate."
-msgstr ""
+msgstr "Pokaż 25p do rozdzielczości 720p lub wyższej niż 720p jako inny Framerate."
 
 msgid "Show 30p up to 720p / higher than 720p as"
-msgstr ""
+msgstr "Pokaż 30p do 720p / więcej niż 720p jako"
 
 msgid "Show 30p up to resolution 720p or higher than 720p as a different Framerate."
-msgstr ""
+msgstr "Pokaż 30p do rozdzielczości 720p lub wyższej niż 720p jako inny Framerate."
 
 msgid "Show 480/576p 24fps as"
 msgstr "Pokaż 480/576p jako"
@@ -14217,7 +14212,7 @@ msgid "Show transponder remaining/elapsed as"
 msgstr "Pokaż transponder pozostały/upływający jako"
 
 msgid "Show two lines per entry"
-msgstr "Pokaż dwie linie dla każdego wpisu"
+msgstr "Pokaż dwie linie na liście kanałów"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Pokaż nieznaną rozdzielczość wideo jako następną wyższą lub najwyższą rozdzielczość ekranu."
@@ -14241,7 +14236,7 @@ msgid "Show warning when timeshift is stopped"
 msgstr "Pokaż ostrzeżenie gdy Timeshift jest zatrzymany"
 
 msgid "Show/Hide focus bar"
-msgstr ""
+msgstr "Pokaż/Ukryj pasek ostrości"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Pokazuje przeglądarkę rozszerzeń. Tutaj można skonfigurować zainstalowaną Wtyczkę"
@@ -14351,17 +14346,14 @@ msgstr "Szerokość strony"
 msgid "Site longitude"
 msgstr "Długość strony"
 
-#, fuzzy
 msgid "Size"
-msgstr "Rozmiar: "
+msgstr "Rozmiar"
 
-#, fuzzy
 msgid "Size reverse"
-msgstr "Serwery"
+msgstr "Rozmiar odwrotny"
 
-#, fuzzy
 msgid "Size:"
-msgstr "Rozmiar: "
+msgstr "Rozmiar:"
 
 msgid "Size: "
 msgstr "Rozmiar: "
@@ -14403,9 +14395,8 @@ msgstr "Przeskocz do przodu"
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr "Pomiń sprawdzenie połączenia internetowego (wyłącza automatyczną instalację pakietów)"
 
-#, fuzzy
 msgid "Skip selection"
-msgstr "Selektor Skór"
+msgstr "Pomiń wybór"
 
 msgid "Sleep"
 msgstr "Uśpienie"
@@ -19501,7 +19492,7 @@ msgid "next channel page"
 msgstr "następna strona z kanałami"
 
 msgid "next higher Resolution"
-msgstr ""
+msgstr "następna wyższa rozdzielczość"
 
 msgid "no"
 msgstr "nie"
