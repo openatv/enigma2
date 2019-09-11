@@ -3029,13 +3029,11 @@ msgstr "Opcja usuwania tła"
 msgid "Background delete speed"
 msgstr "Szybkość usuwania tła"
 
-#, fuzzy
 msgid "Background:"
-msgstr "Tło"
+msgstr "Tło:"
 
-#, fuzzy
 msgid "Backgroundselected:"
-msgstr "Szybkość usuwania tła"
+msgstr "Wybrane w tle:"
 
 msgid "Backup"
 msgstr "Kopia Zapasowa"
@@ -3051,7 +3049,7 @@ msgid "Backup Location"
 msgstr "Lokalizacja Kopii Zapasowej"
 
 msgid "Backup Log"
-msgstr ""
+msgstr "Log kopii zapasowych"
 
 msgid "Backup Manager"
 msgstr "Zarządzanie kopiami zapasowymi"
@@ -3081,9 +3079,8 @@ msgstr ""
 "Znaleziono kopię wtyczek!\n"
 "Czy chcesz teraz zainstalować?"
 
-#, fuzzy
 msgid "Backup settings"
-msgstr "Kopia Ustawień"
+msgstr "Ustawienia kopii zapasowej"
 
 msgid "Backup system settings"
 msgstr "Kopia Ustawień Systemowych"
@@ -3104,13 +3101,11 @@ msgstr "Kopia zapasowa bieżących ustawień"
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr "Kopia zapasowa aktualnych ustawień. Obejmuje E2-ustawienia, kanały, sieć i wszystkie zaznaczone pliki"
 
-#, fuzzy
 msgid "Backup, flash and restore settings and no plugins"
-msgstr "Flaszowanie/przywracanie ustawień i bez wtyczek"
+msgstr "Tworzenie kopii zapasowych, flashowanie i przywracanie ustawień bez wtyczek"
 
-#, fuzzy
 msgid "Backup, flash and restore settings and selected plugins (ask user)"
-msgstr "Flaszowanie/przywracanie ustawień i wybranych wtyczek (zapytaj użytkownika)"
+msgstr "Tworzenie kopii zapasowych, flashowanie i przywracanie ustawień oraz wybranych wtyczek (zapytaj użytkownika)"
 
 msgid "Bahamas"
 msgstr "Bahamy"
@@ -5694,11 +5689,13 @@ msgstr "Chcesz wykonać kolejne ręczne skanowanie kanałów?"
 msgid "Do you want to download the image to %s ?"
 msgstr "Chcesz pobrać img. do %s ?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
-msgstr "Chcesz pobrać img. do %s ?"
+msgstr ""
+"Czy chcesz flashować obraz\n"
+"%s"
 
 msgid "Do you want to install a channel list?"
 msgstr "Czy chcesz zainstalować listę kanałów?"
@@ -5715,9 +5712,9 @@ msgstr "Chcesz obejrzeć to DVD przed nagraniem?"
 msgid "Do you want to produce this collection?"
 msgstr "Czy chcesz tworzyć tę kolekcję?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to reboot now the image in slot %s?"
-msgstr "Czy chcesz ponownie uruchomić odbiornik z wybranym obrazem img?"
+msgstr "Czy chcesz teraz zrestartować obraz w gnieździe %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -5759,12 +5756,11 @@ msgstr "Czy chcesz zaktualizować odbiornik?"
 msgid "Do you want to upgrade the package:\n"
 msgstr "Chcesz zaktualizować pakiet:\n"
 
-#, fuzzy
 msgid "Do you want to view or run the script?\n"
-msgstr "Czy chcesz przejrzeć samouczek?"
+msgstr "Czy chcesz wyświetlić lub uruchomić skrypt?\n"
 
 msgid "Dolby Digital downmix is now"
-msgstr ""
+msgstr "Dolby Digital downmix jest teraz"
 
 msgid "Dominica"
 msgstr "Dominika"
@@ -5791,9 +5787,8 @@ msgstr ""
 "Nie martw się, twoje urządzenie jest nadal w porządku! Istnieje kilka mechanizmów bezpieczeństwa!\n"
 "Urządzenie jest wciąż sprawne tak jak było przed rozpoczęciem tej procedury!"
 
-#, fuzzy
 msgid "Done"
-msgstr "Sporządzono: %s"
+msgstr "Gotowe"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -5837,16 +5832,14 @@ msgstr "Wtyczki do pobrania"
 msgid "Downloadable plugins"
 msgstr "Wtyczki do pobrania"
 
-#, fuzzy
 msgid "Downloaded Images"
-msgstr "Pobieranie"
+msgstr "Pobrane Obrazy"
 
 msgid "Downloading"
 msgstr "Pobieranie"
 
-#, fuzzy
 msgid "Downloading Image"
-msgstr "Pobieranie"
+msgstr "Pobieranie Obrazu"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Pobieranie informacji o wtyczkach. Proszę czekać..."
@@ -5864,12 +5857,12 @@ msgstr ""
 msgid "Drivers:\t\t%s"
 msgstr "Sterowniki:\t\t%s"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Drivers:\t%s"
-msgstr "Sterowniki:\t\t%s"
+msgstr "Sterowniki:\t%s"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
-msgstr ""
+msgstr "W tym czasie sprawdzany jest nadajnik i miejsce docelowe nagrywania. Jeśli miejsce docelowe nagrywania (np. NAS) nie jest gotowe na czas do nagrywania, czas ten można wydłużyć."
 
 msgid "Dutch"
 msgstr "Holenderski"
@@ -10898,7 +10891,7 @@ msgid ""
 "Please select what to do after flashing the image:\n"
 "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
 msgstr ""
-"Proszę wybrać, co robić po wgraniu img.:\n"
+"Proszę wybrać, co robić po wgraniu obrazu:\n"
 "(Dodatkowo, jeśli istnieje lokalny skrypt zostanie wykonany /media/hdd/images/config/myrestore.sh)"
 
 msgid "Please set up tuner A"
@@ -16688,12 +16681,11 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraiński"
 
-#, fuzzy
 msgid "Unable to change password"
-msgstr "Proszę wprowadzić nową nazwę:"
+msgstr "Nie można zmienić hasła"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
-msgstr ""
+msgstr "Nie można utworzyć wymaganych katalogów na nośniku (np. Pamięć USB lub dysk twardy) - Sprawdź nośnik i spróbuj ponownie!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"
@@ -16744,7 +16736,6 @@ msgstr "Zjednoczone Emiraty Arabskie"
 msgid "United Kingdom"
 msgstr "Wielka Brytania"
 
-#, fuzzy
 msgid "United States"
 msgstr "Stany Zjednoczone"
 
@@ -16767,13 +16758,13 @@ msgstr ""
 "Nieznany Błąd podczas tworzenia Skórki.\n"
 "Sprawdź po ponownym uruchomieniu pluginu MyMetrixLite i zastosuj swoje ustawienia."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown group: %d"
-msgstr "nieznany błąd"
+msgstr "Nieznana grupa: %d"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown user: %d"
-msgstr "nieznany serwis"
+msgstr "Nieznany użytkownik: %d"
 
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Jeśli nie ustawiono opcji „wyłączona”, otrzymasz podgląd kanałów znajdujących się na liście EPG."
@@ -16788,15 +16779,14 @@ msgstr "Odmontowanie"
 msgid "Unpack to %s"
 msgstr "Rozpakuj do %s"
 
-#, fuzzy
 msgid "Unpack to current folder"
-msgstr "Skocz do aktualnego czasu"
+msgstr "Rozpakuj do bieżącego folderu"
 
 msgid "Unsupported"
 msgstr "Nieobsługiwany"
 
 msgid "Unzipping Image"
-msgstr "Rozpakowanie Image"
+msgstr "Rozpakowywanie Obrazu"
 
 msgid "Up"
 msgstr "w górę"
@@ -16833,7 +16823,7 @@ msgid "Update delay for Events in List. Scrolling in List is faster with higher 
 msgstr "Update delay for Events in List. Scrolling in List is faster with higher delay, especially on big Lists !"
 
 msgid "Update failed!"
-msgstr ""
+msgstr "Aktualizacja nieudana!"
 
 #, python-format
 msgid "Update failed. Your %s %s does not have a working internet connection."
@@ -16852,6 +16842,8 @@ msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
 msgstr ""
+"Aktualizacja powiodła się!\n"
+"Twój Bootloader jest teraz aktualny!"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aktualizacja/Kopia zapasowa oprogramowania,tworzenie kopii zapasowych/przywracania ustawień"
