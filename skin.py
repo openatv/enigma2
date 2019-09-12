@@ -358,7 +358,7 @@ def parseParameter(s):
 	if s[0] == '#':
 		return int(s[1:], 16)
 	elif s[:2] == '0x':
-		return int(s, 16)
+		return int(s[2:], 16)
 	elif '.' in s:
 		return float(s)
 	elif s in colorNames:
