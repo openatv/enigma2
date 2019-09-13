@@ -103,7 +103,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="5,0" size="471,320">
-		<widget source="session.CurrentService" render="LcdPicon" position="118,0" zPosition="2" size="236,160" alphatest="on">
+		<widget source="session.CurrentService" render="LcdPicon" position="118,0" zPosition="2" size="236,142" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,111" size="115,51" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
