@@ -943,7 +943,7 @@ def InitUsageConfig():
 	config.crash.enabledebug = ConfigYesNo(default=False)
 	config.crash.debugloglimit = ConfigSelectionNumber(default=4, min=1, max=10, stepwidth=1, wraparound=True)
 	config.crash.daysloglimit = ConfigSelectionNumber(default=8, min=1, max=30, stepwidth=1, wraparound=True)
-	config.crash.sizeloglimit = ConfigSelectionNumber(default=10, min=1, max=20, stepwidth=1, wraparound=True)
+	config.crash.sizeloglimit = ConfigSelectionNumber(default=10, min=0, max=100, stepwidth=5, wraparound=True)
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():

@@ -37,7 +37,7 @@ def get_size(start_path=None):
 	return 0
 
 def AutoLogManager(session=None, **kwargs):
-	if config.crash.enabledebug:
+	if config.crash.enabledebug.value:
 		global debuglogcheckpoller
 		debuglogcheckpoller = LogManagerPoller()
 		debuglogcheckpoller.start()
@@ -99,7 +99,7 @@ class LogManagerPoller:
 				fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
 				data = fh.read()
 				fh.seek(0) # rewind
-				fh.write(data)
+				fh.write(data[data.find('\n')+1:]) # skip partial line
 				fh.truncate()
 				fh.close()
 		self.TrimTimer.startLongTimer(3600) #once an hour
@@ -139,7 +139,7 @@ class LogManagerPoller:
 								print "[LogManager] " + str(fn) + ": Too old:", name, st.st_ctime
 								eBackgroundFileEraser.getInstance().erase(fn)
 								bytesToRemove -= st.st_size
-							else:
+							elif allowedBytes:
 								candidates.append((st.st_ctime, fn, st.st_size))
 								size += st.st_size
 						except Exception, e:

@@ -609,10 +609,17 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		if not answer:
 			return
 		truncpts = None
+		endpts = None
+		for cut in reversed(self.cut_list):
+			if cut[1] == self.CUT_TYPE_OUT:
+				endpts = cut[0]
+				break
+			if cut[1] == self.CUT_TYPE_IN:
+				break
 		if answer & 1:
-			truncpts = self.context_position
-		elif self.cut_list[-1][1] == self.CUT_TYPE_OUT:
-			truncpts = self.cut_list[-1][0]
+			truncpts = endpts and min(endpts, self.context_position) or self.context_position
+		elif endpts:
+			truncpts = endpts
 		if truncpts:
 			# remove marks from the truncate position
 			for (where, what) in self.cut_list[:]:
