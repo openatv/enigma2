@@ -404,16 +404,12 @@
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
 	</screen>
 
-
-
 	<screen name="ChoiceBox_summary" position="0,0" size="480,320">
 		<widget source="parent.summary_list" render="Label" position="0,0" size="480,320" font="FdLcD;18" noWrap="1" />
 	</screen>
 
-	
-
 	<screen name="AboutSummary" position="0,0" size="480,320">
-		<widget source="AboutText" render="Label" position="0,0" size="480,320" font="FdLcD;11" />
+		<widget source="parent.Title" render="Label" position="0,0" size="480,320" font="FdLcD;34" halign="center" valign="center" />
 	</screen>
 
 	<screen name="TimerEditListSummary" position="0,0" size="480,320">
