@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-07 10:53+0000\n"
-"PO-Revision-Date: 2019-09-10 10:19+0100\n"
+"PO-Revision-Date: 2019-09-19 11:28+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland <Mariusz1970@onet.eu>\n"
 "Language: pl\n"
@@ -10554,6 +10554,12 @@ msgstr "Pozostało w procentach"
 msgid "Percentage right"
 msgstr "Procenty po prawej"
 
+msgid "Percentage/Progress bar left"
+msgstr "Pasek procentowy/Pasek postępu w lewo"
+
+msgid "Percentage/Progress bar right"
+msgstr "Pasek procentowy/Pasek postępu w prawo"
+
 msgid "Perform a full image backup"
 msgstr "Wykonaj pełną kopię zapasową"
 
@@ -10578,9 +10584,8 @@ msgstr "Trwale usunąć wszystkie nagrania z 'Kosza'?"
 msgid "Permanently remove all deleted items"
 msgstr "Usuń trwale wszystkie usunięte elementy"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Wersja: "
+msgstr "Uprawnienia:"
 
 msgid "Persian"
 msgstr "Perski"
@@ -11421,6 +11426,18 @@ msgstr "Pasek postępu z lewej"
 msgid "Progress bar right"
 msgstr "Pasek postępu z prawej"
 
+msgid "Progress bar/Remaining minutes left"
+msgstr "Pasek postępu/Pozostałe minuty w lewo"
+
+msgid "Progress bar/Remaining minutes right"
+msgstr "Pasek postępu/Pozostałe minuty w prawo"
+
+msgid "Progress bar/Percentage left"
+msgstr "Pasek postępu/Pasek procentowy w lewo"
+
+msgid "Progress bar/Percentage right"
+msgstr "Pasek postępu/Pasek procentowy w prawo"
+
 msgid "Progress:"
 msgstr "Postęp:"
 
@@ -11861,29 +11878,11 @@ msgstr "Pozostałe minuty w lewo"
 msgid "Remaining minutes right"
 msgstr "Pozostałe minuty w prawo"
 
-msgid "Progress bar/Remaining minutes left"
-msgstr "Pasek postępu/Pozostałe minuty w lewo"
-
-msgid "Progress bar/Remaining minutes right"
-msgstr "Pasek postępu/Pozostałe minuty w prawo"
-
 msgid "Remaining minutes/Progress bar left"
 msgstr "Pozostałe minuty/Pasek postępu w lewo"
 
 msgid "Remaining minutes/Progress bar right"
 msgstr "Pozostałe minuty/Pasek postępu w prawo"
-
-msgid "Progress bar/Percentage left"
-msgstr "Pasek postępu/Pasek procentowy w lewo"
-
-msgid "Progress bar/Percentage right"
-msgstr "Pasek postępu/Pasek procentowy w prawo"
-
-msgid "Percentage/Progress bar left"
-msgstr "Pasek procentowy/Pasek postępu w lewo"
-
-msgid "Percentage/Progress bar right"
-msgstr "Pasek procentowy/Pasek postępu w prawo"
 
 msgid "Remember last service in PiP"
 msgstr "Pamiętaj ostatni kanał w PiP"
@@ -12096,10 +12095,10 @@ msgid "Restart Network Adapter"
 msgstr "Ponowne uruchomienie karty sieciowej"
 
 msgid "Restart both"
-msgstr "Zrestartuj wszystko"
+msgstr "Zrestartuj Wszystko"
 
 msgid "Restart cardserver"
-msgstr "Zrestartuj cardserver"
+msgstr "Zrestartuj Cardserver"
 
 msgid "Restart enigma"
 msgstr "Ponownie Uruchomić enigmę"
@@ -12640,9 +12639,8 @@ msgstr "Drugi Pasek Info"
 msgid "Secondary DNS"
 msgstr "Drugi DNS"
 
-#, fuzzy
 msgid "Secondinfobar:"
-msgstr "Drugi Pasek Info"
+msgstr "Drugi Pasek Info:"
 
 msgid "Seek"
 msgstr "Przewiń"
@@ -12833,10 +12831,10 @@ msgid "Select folders"
 msgstr "Wybierz foldery"
 
 msgid "Select how quickly the dish should move between satellites."
-msgstr ""
+msgstr "Wybierz, jak szybko antena ma poruszać się między satelitami."
 
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
-msgstr ""
+msgstr "Wybierz sposób konfiguracji anteny satelitarnej. tj. stała antena, pojedynczy LNB, przełącznik DiSEqC, pozycjoner itp."
 
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Wybierz sposób,aby włączyć tryb szybkiego EPG:"
@@ -12893,89 +12891,88 @@ msgid "Select the Swap File Size:"
 msgstr "Wybierz rozmiar pliku wymiany:"
 
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
-msgstr ""
+msgstr "Wybierz kanał Unicable, który ma zostać przypisany do tego tunera. To wyjątkowa wartość. Upewnij się, że żadne inne urządzenie podłączone do tego samego systemu Unicable nie jest przypisane do tego samego kanału Unicable."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Wybierz kanał pasma użytkownika, który ma zostać przypisany do tego tunera. Jest to indeks tabeli częstotliwości, z której korzysta konwerter SCR, aby przekazać żądany transponder do tunera."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Wybierz kanał pasma użytkownika, który ma zostać przypisany do tego tunera. Jest to indeks w tabeli częstotliwości, których przełącznik SCR używa do przekazania żądanego transpondera do tunera."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Wybierz częstotliwość pasma użytkownika, która ma zostać przypisana do tego tunera. Jest to częstotliwość używana przez SCR LNB do przekazania żądanego transpondera do tunera."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Wybierz częstotliwość pasma użytkownika, która ma zostać przypisana do tego tunera. Jest to częstotliwość, której przełącznik SCR lub konwerter SCR LNB przekazuje żądany transponder do tunera."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
-msgstr ""
+msgstr "Wybierz częstotliwość pasma użytkownika, która ma zostać przypisana do tego tunera. Jest to częstotliwość używana przez przełącznik SCR do przekazania żądanego transpondera do tunera."
 
 msgid "Select the character or action under the virtual keyboard cursor"
-msgstr ""
+msgstr "Wybierz znak lub akcję pod wirtualnym kursorem klawiatury"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ',aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
-msgstr ""
+msgstr "Wybierz producenta swojego urządzenia SCR. Jeśli producenta nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z jego specyfikacją."
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
-msgstr ""
+msgstr "Wybierz metodę przywracania rozdzielczości ekranu i bufora ramki po opuszczeniu telegazety."
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
-msgstr ""
+msgstr "Wybierz numer modelu swojego urządzenia Unicable. Jeśli numeru modelu nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z arkuszem specyfikacji."
 
 msgid "Select the movie path"
 msgstr "Wybierz ścieżkę do filmu"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
-msgstr ""
+msgstr "Wybierz protokół używany przez urządzenie SCR. Dostępne opcje to „SCR Unicable” (Unicable) lub „SCR JESS” (JESS, znany również jako Unicable II)."
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr ""
+msgstr "Wybierz satelitę podłączonego do portu A przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
 
 msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr ""
+msgstr "Wybierz satelitę podłączonego do portu B przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
 
 msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr ""
+msgstr "Wybierz satelitę podłączonego do portu C przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
 
 msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr ""
+msgstr "Wybierz satelitę podłączonego do portu D przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
 
 msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
-msgstr ""
+msgstr "Wybierz satelitę, którą chcesz skonfigurować. Po skonfigurowaniu tego satelity możesz wybrać i skonfigurować inne satelity, które będą dostępne za pomocą tego samego tunera."
 
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
-msgstr ""
+msgstr "Wybierz satelitę, z którego odbierana jest antena. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić."
 
 msgid "Select the sleep timer action."
 msgstr "Wybierz działanie wyłącznika czasowego."
 
-#, fuzzy
 msgid "Select the tuner that controls the motorised dish."
-msgstr "Wybierz tuner,który jest skonfigurowany do satelity,którego chcesz wyszukać"
+msgstr "Wybierz tuner sterujący zmotoryzowaną anteną."
 
 msgid "Select the tuner that this loopthrough depends on."
-msgstr ""
+msgstr "Wybierz tuner, od którego zależy ta pętla."
 
 msgid "Select the tuner to which the signal cable of the SCR device is connected."
-msgstr ""
+msgstr "Wybierz tuner, do którego podłączony jest kabel sygnałowy urządzenia SCR."
 
 msgid "Select the type of LNB/device being used (normally 'Universal'). If your LNB type is not available select 'user defined'."
-msgstr ""
+msgstr "Wybierz typ używanego LNB / urządzenia (zwykle „Uniwersalny”). Jeśli twój typ LNB nie jest dostępny, wybierz „zdefiniowane przez użytkownika”."
 
 msgid "Select the type of Single Cable Reception device you are using."
-msgstr ""
+msgstr "Wybierz typ używanego urządzenia do odbioru pojedynczego kabla."
 
 msgid "Select the virtual keyboard locale from a menu"
-msgstr ""
+msgstr "Wybierz ustawienia regionalne wirtualnej klawiatury z menu"
 
 msgid "Select the virtual keyboard shifted character set"
-msgstr ""
+msgstr "Wybierz zestaw znaków z przesuniętą klawiaturą wirtualną"
 
 msgid "Select the virtual keyboard shifted character set for the next character only"
-msgstr ""
+msgstr "Wybierz zestaw znaków przesunięty na klawiaturze wirtualnej tylko dla następnego znaku"
 
 msgid "Select upgrade source"
 msgstr "Wybierz źródło aktualizacji"
@@ -13028,24 +13025,23 @@ msgstr "Wybierz co chcesz aktywować przytrzymując długo przycisk 'Żółty':"
 msgid "Select wireless network"
 msgstr "Wybierz sieć bezprzewodową"
 
-#, fuzzy
 msgid "Select your ATSC provider."
-msgstr "ATSC dostawca"
+msgstr "Wybierz dostawcę ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Wybierz język dla audio/napisów"
 
 msgid "Select your country. If not available select 'all'."
-msgstr ""
+msgstr "Wybierz swój kraj. Jeśli nie jest dostępny, wybierz „wszystkie”."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
-msgstr ""
+msgstr "Wybierz dostawcę i region. Jeśli nie ma go na tej liście, musisz wybrać jeden z pozostałych „typów skanowania usługi”."
 
 msgid "Select your provider, and press OK to start the scan"
 msgstr "Wybierz dostawcę i wciśnij 'OK' aby rozpocząć skanowanie"
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
-msgstr ""
+msgstr "Wybierz swój region. Jeśli nie jest dostępny, zmień „Kraj” na „wszystkie” i wybierz jedną z domyślnych opcji."
 
 #, python-format
 msgid "Selected Image:\t\t%s"
@@ -13060,6 +13056,12 @@ msgid ""
 "\n"
 "Do you want to install this settinglist?"
 msgstr ""
+"Wybrana lista ustawień:\n"
+"\n"
+"Ustawienie: %s\n"
+"Data: %s\n"
+"\n"
+"Czy chcesz zainstalować tę listę ustawień?"
 
 #, python-format
 msgid ""
@@ -13067,6 +13069,9 @@ msgid ""
 "\n"
 "Do you want to delete this settinglist?"
 msgstr ""
+"Wybrana lista ustawień: %s\n"
+"\n"
+"Czy chcesz usunąć tę listę ustawień?"
 
 #, python-format
 msgid ""
@@ -13079,14 +13084,13 @@ msgstr ""
 "Czy chcesz przywrócić tę listę ustawień?"
 
 msgid "Selecting satellites 1 (USALS)"
-msgstr ""
+msgstr "Wybieranie satelitów 1 (USALS)"
 
 msgid "Selecting satellites 2 (USALS)"
-msgstr ""
+msgstr "Wybieranie satelitów 2 (USALS)"
 
-#, fuzzy
 msgid "Selecting this option allows you to configure a group of satellites in one block."
-msgstr "Ta opcja pozwala na wyłączenie sortowania listy rozszerzeń."
+msgstr "Wybranie tej opcji pozwala skonfigurować grupę satelitów w jednym bloku."
 
 msgid "Send"
 msgstr "Wyślij"
@@ -13748,16 +13752,14 @@ msgstr "Pokaż rozdzielczość wyjścia HDMI"
 msgid "Show HDMI-Output Res"
 msgstr "Pokaż rozdzielczość HDMI"
 
-#, fuzzy
 msgid "Show HDMIRecord setup..."
-msgstr "Pokaż ustawienia HDMIRecord.."
+msgstr "Pokaż konfigurację HDMIRecord ..."
 
 msgid "Show Infobar"
 msgstr "Pokaż Infobar"
 
-#, fuzzy
 msgid "Show Information..."
-msgstr "pokaż informacje o programie..."
+msgstr "Pokaż Informacje..."
 
 msgid "Show Live in MiniTV"
 msgstr "Pokaż Na żywo w MiniTV"
@@ -13819,16 +13821,14 @@ msgstr "Pokaż Restart Sieci na Liście Rozszerzeń *"
 msgid "Show SD as"
 msgstr "Pokaż SD jako"
 
-#, fuzzy
 msgid "Show Script completed message"
-msgstr "Pokazać Wiadomość \"Pobranie Kompletne\":"
+msgstr "Pokaż komunikat o zakończeniu skryptu"
 
 msgid "Show Single EPG"
 msgstr "Pokaż Pojedyncze EPG"
 
-#, fuzzy
 msgid "Show Task's completed message"
-msgstr "Pokazać Wiadomość \"Pobranie Kompletne\":"
+msgstr "Pokaż komunikat o zakończeniu zadania"
 
 msgid "Show Time Remaining/Elapsed"
 msgstr "Pokaż czas Pozostały/Upływający"
@@ -13924,12 +13924,11 @@ msgstr "Pokaż szczegółowy opis wydarzenia"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Pokaż szczegółowy opis wydarzenia (konfiguracja w menu)"
 
-#, fuzzy
 msgid "Show directories first"
-msgstr "Pokaż Listę Filmów"
+msgstr "Pokaż najpierw katalogi"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
+msgstr "Pokaż katalogi na pierwszej lub ostatniej liście. (Należy ponownie uruchomić File Commander)"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr "Pokaż informacje o kodowaniu na infobarze (jeśli posiada wsparcie w skórce)."
@@ -13970,9 +13969,8 @@ msgstr "Pokaż pomoc"
 msgid "Show icon for new/unseen items"
 msgstr "Pokaż ikony dla nowych/niewidzianych elementów"
 
-#, fuzzy
 msgid "Show image information"
-msgstr "Informacje menadżera oprogramowania"
+msgstr "Pokaż informacje o obrazie"
 
 msgid "Show in Standby"
 msgstr "Pokazać w stanie gotowości"
@@ -14014,7 +14012,7 @@ msgid "Show marked events"
 msgstr "Pokaż zaznaczone wydarzenia"
 
 msgid "Show marked events in all rows."
-msgstr ""
+msgstr "Pokaż zaznaczone wydarzenia we wszystkich wierszach."
 
 msgid "Show menu"
 msgstr "Pokaż menu"
@@ -14023,10 +14021,10 @@ msgid "Show menu numbers"
 msgstr "Pokaż numery w menu"
 
 msgid "Show message if File Commander is not running and all Task's are completed."
-msgstr ""
+msgstr "Pokaż komunikat, jeśli File Commander nie działa i wszystkie zadania są zakończone."
 
 msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-msgstr ""
+msgstr "Pokaż wiadomość, jeśli skrypt w tle zakończy się pomyślnie. Ma „gruby”, wówczas jest wyświetlany jako dodatkowe informacje."
 
 msgid "Show message when recording starts"
 msgstr "Pokaż wiadomość po rozpoczęciu nagrywania"
@@ -14133,9 +14131,8 @@ msgstr "Menu Podręczne Napisów"
 msgid "Show subtitle selection"
 msgstr "Pokaż wybór napisów"
 
-#, fuzzy
 msgid "Show task list"
-msgstr "Pokaż listę kanałów"
+msgstr "Pokaż listę zadań"
 
 msgid "Show the DreamPlex player..."
 msgstr "Pokaż odtwarzacz DreamPlex..."
@@ -14146,9 +14143,8 @@ msgstr "Pokaż Timer Wyłączania..."
 msgid "Show the Sleep Timer..."
 msgstr "Pokaż Timer Uśpienia..."
 
-#, fuzzy
 msgid "Show the information on current event."
-msgstr "Pokaż informacje o następnym wydarzeniu."
+msgstr "Pokaż informacje o bieżącym wydarzeniu."
 
 msgid "Show the list of AutoTimers."
 msgstr "Pokaż listę AutoTimerów."
@@ -14295,7 +14291,7 @@ msgid "SimpleUmount"
 msgstr "ProsteOdmontowanie"
 
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Chiński Uproszczony"
 
 msgid "Singapore"
 msgstr "Singapur"
@@ -14357,7 +14353,6 @@ msgstr "Selektor Skór"
 msgid "Skins"
 msgstr "Skóry"
 
-#, fuzzy
 msgid "Skinselector"
 msgstr "Selektor Skór"
 
@@ -14525,12 +14520,16 @@ msgstr "Somalia"
 msgid ""
 "Some FullHD-Icons are missing.\n"
 "Using HD-Icons!"
-msgstr "Niektóre Ikony-FullHD są niedostępne. Używam Ikon-HD!"
+msgstr ""
+"Brakuje niektórych ikon FullHD.\n"
+"Korzystanie z ikon HD!"
 
 msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"
 msgstr ""
+"Niektóre urządzenia telewizyjne nie mogą ustawić poprawnego wejścia, jeśli aktywny jest inny port HDMI. To ustawienie wcześniej ustawiało telewizor w tryb gotowości.\n"
+"(Jeśli telewizor się nie włącza, może wymagać wolniejszej przerwy w transmisji lub powtarzania poleceń budzenia)."
 
 msgid "Some plugins are not available:\n"
 msgstr "Niektóre wtyczki są niedostępne:\n"
@@ -14666,13 +14665,11 @@ msgstr "Chiszpania"
 msgid "Spanish"
 msgstr "Hiszpański"
 
-#, fuzzy
 msgid "Special 1"
-msgstr "Nr seryjny"
+msgstr "Specjalne 1"
 
-#, fuzzy
 msgid "Special 2"
-msgstr "Nr seryjny"
+msgstr "Specjalne 2"
 
 msgid "Special Features"
 msgstr "Funkcje Specjalne"
@@ -14743,9 +14740,8 @@ msgstr "Czas rozpoczęcia"
 msgid "Start timeshift"
 msgstr "Rozpocząć zapis timeshiftu"
 
-#, fuzzy
 msgid "Start/stop slide show"
-msgstr "Start/stop/wybierz cam"
+msgstr "Start/stop pokaz slajdów"
 
 msgid "Start/stop/select cam"
 msgstr "Start/stop/wybierz cam"
@@ -14766,13 +14762,13 @@ msgid "Status"
 msgstr "Stan"
 
 msgid "Status of the display during operation"
-msgstr ""
+msgstr "Status wyświetlacza podczas pracy"
 
 msgid "Status of the display in deep standby"
-msgstr ""
+msgstr "Status wyświetlacza w głębokim trybie gotowości"
 
 msgid "Status of the display in standby mode"
-msgstr ""
+msgstr "Status wyświetlacza w trybie gotowości"
 
 msgid "Status:"
 msgstr ""
