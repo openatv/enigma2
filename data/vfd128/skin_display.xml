@@ -124,17 +124,32 @@
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="128,32">
 		<widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" />
-		<widget source="session.CurrentService" render="Label" position="12,10" size="129,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" >
+		<widget source="session.CurrentService" render="Label" position="0,09" size="129,20" font="FdLcD;16" halign="left" valign="top" noWrap="1" zPosition="1" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="58,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="session.CurrentService" render="Label" position="58,22" size="70,12" font="FdLcD;10" halign="right" valign="bottom" noWrap="1" zPosition="1" transparent="1" >
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
+	</screen>
+	<screen name="EMCSelectionSummary" position="0,0" size="128,32">
+		<widget source="parent.Service" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1">
+			<convert type="MovieInfo">RecordServiceName</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="0,11" size="128,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="0,22" size="70,12" font="FdLcD;10" halign="left" valign="bottom" noWrap="1" zPosition="1" >
+			<convert type="ServiceTime">Duration</convert>
+			<convert type="ClockToText">AsLength</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="58,22" size="70,12" font="FdLcD;10" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		  <convert type="MovieInfo">FileSize</convert>
+		</widget>
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="128,32">
 		<widget source="parent.title" render="Label" position="0,10" size="128,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
@@ -290,6 +305,9 @@
 	<screen name="GraphicalEPGPIG_summary" position="0,0" size="128,32">
 		<panel name="SummaryEpgPanel" />
 	</screen>
+	<screen name="EPGvertical_summary" position="0,0" size="128,32">
+		<panel name="SummaryEpgPanel" />
+	</screen>
 
 	<screen name="ChoiceBox_summary" position="0,0" size="128,32">
 		<widget source="parent.summary_list" render="Label" position="0,0" size="128,30" font="FdLcD;11" valign="top" noWrap="1" />
@@ -305,13 +323,18 @@
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="128,32">
-		<widget source="AboutText" render="Label" position="0,0" size="128,32" font="FdLcD;11" />
+		<widget source="parent.Title" render="Label" position="0,0" size="128,32" font="FdLcD;16" halign="center" valign="center" />
 	</screen>
 
 	<screen name="TimerEditListSummary" position="0,0" size="128,32">
-		<widget source="service" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="left" valign="bottom" />
-		<widget source="name" render="Label" position="0,11" size="128,18" font="FdLcD;15" halign="left" noWrap="1" />
-		<widget source="time" render="Label" position="0,23" size="110,12" font="FdLcD;12" halign="left" transparent="1" />
+		<widget source="service" render="Label" position="0,0" size="128,16" font="FdLcD;15" halign="left" valign="bottom" transparent="1" />
+		<widget source="name" render="Label" position="0,10" size="128,18" font="FdLcD;12" halign="left" noWrap="1" transparent="1" />
+		<widget source="time" render="Label" position="0,20" size="110,12" font="FdLcD;12" halign="left" transparent="1" />
+	</screen>
+
+	<screen name="PowerTimerEditListSummary" position="0,0" size="128,32">
+		<widget source="name" render="Label" position="0,0" size="128,19" font="FdLcD;13" halign="left" noWrap="0" transparent="1" />
+		<widget source="time" render="Label" position="0,20" size="110,12" font="FdLcD;12" halign="left" transparent="1" />
 	</screen>
 
 	<screen name="WizardSummary" position="0,0" size="128,32">
@@ -348,7 +371,12 @@
 	</screen>
 
 	<screen name="NumberZap_summary" position="0,0" size="128,32">
-		<widget source="parent.number_summary" render="Label" position="0,10" size="128,30" font="FdLcD;26" halign="left" noWrap="1" />
+		<widget source="parent.number_summary" render="Label" position="0,10" size="128,30" font="FdLcD;26" halign="center" noWrap="1" />
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>
+	<screen name="NumberZapPicon_summary" position="0,0" size="128,32">
+		<widget source="parent.number_summary" render="Label" position="0,10" size="128,30" font="FdLcD;26" halign="center" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
@@ -358,12 +386,11 @@
 		<widget source="parent.package" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" noWrap="1" />
 	</screen>
 	<screen name="SoftwareUpdateChanges_summary" position="fill">
-		<!--<widget source="parent.title_summary" render="Label" position="top" size="*,14" font="FdLcD;16" halign="left" valign="top" noWrap="1" />-->
-		<widget source="parent.text_summary" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="left" valign="top" />
+		<widget source="parent.Title" render="Label" position="0,0" size="128,32" font="FdLcD;16" halign="center" valign="center" />
 	</screen>
 <!-- AutoTimerOverview -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="left" valign="bottom" />
+		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="left" valign="top" />
 		<widget source="entry" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="left" noWrap="1" />
 	</screen>
 	<screen name="NetworkServicesSummary" position="0,0" size="128,32">
@@ -409,6 +436,14 @@
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="128,18" font="FdLcD;16" halign="left" noWrap="1" />-->
 	</screen>
 <!-- ATV -->
+	<!-- Metrix-Menu -->
+	<screen name="MainSettingsView_summary" position="0,0" size="128,32">
+		<widget source="parent.titleText" render="Label" position="0,0" size="128,32" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
+	</screen>
+	<!-- FlashImage Summary -->
+	<screen name="FlashImage_summary" position="0,0" size="128,32">
+		<widget source="parent.summary_header" render="Label" position="0,0" size="128,32" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
+	</screen>
 	<!-- Quickmenü -->
 	<screen name="QuickMenu_summary" position="0,0" size="128,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
