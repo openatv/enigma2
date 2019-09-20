@@ -124,7 +124,7 @@
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="128,32">
 		<widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" />
-		<widget source="session.CurrentService" render="Label" position="0,09" size="129,20" font="FdLcD;16" halign="left" valign="top" noWrap="1" zPosition="1" transparent="1" >
+		<widget source="session.CurrentService" render="Label" position="0,9" size="129,20" font="FdLcD;16" halign="left" valign="top" noWrap="1" zPosition="1" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
@@ -170,6 +170,20 @@
 		  <convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
+
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="128,32">
+		<widget source="session.CurrentService" render="Label" position="0,9" size="132,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" noWrap="1" transparent="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="58,22" size="70,12" font="FdLcD;10" halign="right" valign="bottom" noWrap="1" zPosition="1" transparent="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>	
 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="128,32">
@@ -261,9 +275,8 @@
 	</screen>
 
 <!-- Plugin browser -->
-	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;15" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<widget source="entry" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="center" valign="top" zPosition="1" />
+	<screen name="PluginBrowserSummary" position="0,0" size="128,32">
+		<widget source="parent.Title" render="Label" position="top" size="128,32" font="FdLcD;16" halign="center" valign="center" zPosition="1" noWrap="1" />
 	</screen>
 
 <!-- JobView Summary -->
@@ -436,6 +449,9 @@
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="128,18" font="FdLcD;16" halign="left" noWrap="1" />-->
 	</screen>
 <!-- ATV -->
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="128,32">
+		<widget source="message" render="RunningText" position="0,0"  size="128,32" options="movetype=running,direction=top,startpoint=0,startdelay=2000,repeat=3,always=0,wrap=1,oneshot=1" font="FdLcD;16" halign="center" valign="center" />
+	</screen>
 	<!-- Metrix-Menu -->
 	<screen name="MainSettingsView_summary" position="0,0" size="128,32">
 		<widget source="parent.titleText" render="Label" position="0,0" size="128,32" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
