@@ -243,16 +243,17 @@ class GenresAUSIceTV:
 			_("Cult"),  # 0x01
 			_("Youth"),  # 0x02 remapped from 0x01
 			_("Wrestling"),  # 0x03 remapped from 0x01
-			_("Short Film"),  # 0x04 remapped from 0x01
-			_("Sailing"),  # 0x05 remapped from 0x01
-			_("Renovation"),  # 0x06 remapped from 0x01
-			_("Mini Series"),  # 0x07 remapped from 0x01
-			_("MMA"),  # 0x08 remapped from 0x01
-			_("Horse Racing"),  # 0x09 remapped from 0x01
-			_("Finance"),  # 0x0a remapped from 0x01
-			_("Film-Noir"),  # 0x0b remapped from 0x01
-			_("Family"),  # 0x0c remapped from 0x01
-			_("Cycling"),  # 0x0d remapped from 0x01
+			_("Violence"),  # 0x04 remapped from 0x01
+			_("Short Film"),  # 0x05 remapped from 0x01
+			_("Sailing"),  # 0x06 remapped from 0x01
+			_("Renovation"),  # 0x07 remapped from 0x01
+			_("Mini Series"),  # 0x08 remapped from 0x01
+			_("MMA"),  # 0x09 remapped from 0x01
+			_("Horse Racing"),  # 0x0a remapped from 0x01
+			_("Finance"),  # 0x0b remapped from 0x01
+			_("Film-Noir"),  # 0x0c remapped from 0x01
+			_("Family"),  # 0x0d remapped from 0x01
+			_("Cycling"),  # 0x0e remapped from 0x01
 		),
 		# Movie/Drama
 		1: (
