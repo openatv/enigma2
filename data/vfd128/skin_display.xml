@@ -449,6 +449,12 @@
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="128,18" font="FdLcD;16" halign="left" noWrap="1" />-->
 	</screen>
 <!-- ATV -->
+<!-- Servicescan -->
+	<screen name="ServiceScanSummary" position="0,0" size="128,32">
+		<widget source="parent.Title" render="Label" position="0,0" size="128,26" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
+		<widget name="scan_progress" render="Progress" position="0,26" size="128,6"  borderWidth="1" />
+	</screen>
+
 	<screen name="RdsInfoDisplaySummary" position="0,0" size="128,32">
 		<widget source="message" render="RunningText" position="0,0"  size="128,32" options="movetype=running,direction=top,startpoint=0,startdelay=2000,repeat=3,always=0,wrap=1,oneshot=1" font="FdLcD;16" halign="center" valign="center" />
 	</screen>
