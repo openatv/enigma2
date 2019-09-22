@@ -213,7 +213,7 @@
 
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,10" size="128,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
+		<widget source="parent.Title" render="Label" position="0,0" size="128,32" font="FdLcD;16" halign="center" valign="center" zPosition="1" />
 	</screen>
 
 <!-- standby -->
@@ -323,7 +323,7 @@
 	</screen>
 
 	<screen name="ChoiceBox_summary" position="0,0" size="128,32">
-		<widget source="parent.summary_list" render="Label" position="0,0" size="128,30" font="FdLcD;11" valign="top" noWrap="1" />
+		<widget source="parent.summary_selection" render="Label" position="0,0" size="128,32" font="FdLcD;16" halign="center" valign="center" />
 	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="128,32">
