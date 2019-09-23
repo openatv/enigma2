@@ -9,7 +9,7 @@ from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo,
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
 from Components.SystemInfo import SystemInfo
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CURRENT_LCDSKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
@@ -218,22 +218,6 @@ if config.skin.primary_skin.value != DEFAULT_SKIN:
 				except (SkinError, IOError, OSError, AssertionError), err:
 					print "[SKIN] not loading user defined %s skin file: %s - error: %s" %(file.replace('skin_user_','')[:-4], primary_skin_path + file, err)
 
-'''
-try:
-	if config.skin.primary_skin.value != DEFAULT_SKIN:
-		addSkin(primary_skin_path + 'skin_user_colors.xml', SCOPE_SKIN)
-		print "[SKIN] loading user defined colors for skin", (primary_skin_path + 'skin_user_colors.xml')
-except (SkinError, IOError, AssertionError), err:
-	print "[SKIN] not loading user defined colors for skin"
-
-try:
-	if config.skin.primary_skin.value != DEFAULT_SKIN:
-		addSkin(primary_skin_path + 'skin_user_header.xml', SCOPE_SKIN)
-		print "[SKIN] loading user defined header file for skin", (primary_skin_path + 'skin_user_header.xml')
-except (SkinError, IOError, AssertionError), err:
-	print "[SKIN] not loading user defined header file for skin"
-'''
-
 def load_modular_files():
 	modular_files = get_modular_files(primary_skin_path, SCOPE_SKIN)
 	if len(modular_files):
@@ -374,9 +358,9 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 	for attrib, value in node.items():
 		if attrib not in ignore:
 			if attrib in filenames:
-				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)
-				if fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)):
-					pngfile = resolveFilename(SCOPE_ACTIVE_LCDSKIN, value, path_prefix=skin_path_prefix)
+				pngfile = resolveFilename(SCOPE_CURRENT_SKIN, value, path_prefix=skin_path_prefix)
+				if not fileExists(pngfile) and fileExists(resolveFilename(SCOPE_CURRENT_LCDSKIN, value, path_prefix=skin_path_prefix)):
+					pngfile = resolveFilename(SCOPE_CURRENT_LCDSKIN, value, path_prefix=skin_path_prefix)
 				value = pngfile
 			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
@@ -781,9 +765,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 	for skininclude in skin.findall("include"):
 		filename = skininclude.attrib.get("filename")
 		if filename:
-			skinfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-			if not fileExists(skinfile):
-				skinfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+			skinfile = resolveFilename(SCOPE_CURRENT_SKIN, filename, path_prefix=path_prefix)
 			if fileExists(skinfile):
 				print "[SKIN] loading include:", skinfile
 				loadSkin(skinfile)
@@ -797,7 +779,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			filename = get_attr('filename')
 			if not filename:
 				raise SkinError('[Skin] pixmap needs filename attribute')
-			resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
+			resolved_png = resolveFilename(SCOPE_CURRENT_SKIN, filename, path_prefix=path_prefix)
 			if fileExists(resolved_png):
 				switchPixmap[name] = LoadPixmap(resolved_png, cached=True)
 			else:
@@ -840,11 +822,9 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				render = 0
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
-				resolved_font = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
-				if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, filename)):
-					resolved_font = resolveFilename(SCOPE_CURRENT_SKIN, filename)
-				elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)):
-					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
+				resolved_font = resolveFilename(SCOPE_CURRENT_SKIN, filename)
+				if not fileExists(resolved_font) and fileExists(resolveFilename(SCOPE_CURRENT_LCDSKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_CURRENT_LCDSKIN, filename)
 			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 
@@ -948,9 +928,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				bpName = get_attr("pos")
 				filename = get_attr("filename")
 				if filename and bpName:
-					pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
-					if fileExists(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)):
-						pngfile = resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix)
+					pngfile = resolveFilename(SCOPE_CURRENT_SKIN, filename, path_prefix=path_prefix)
 					png = loadPixmap(pngfile, desktop)
 					try:
 						style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
