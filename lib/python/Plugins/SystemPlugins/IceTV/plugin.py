@@ -427,9 +427,9 @@ class EPGFetcher(object):
                 start = int(timegm(strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = stop - start
-            title = show.get("title", "").encode("utf8")
-            short = show.get("subtitle", "").encode("utf8")
-            extended = show.get("desc", "").encode("utf8")
+            title = show.get("title", "").encode("utf-8")
+            short = show.get("subtitle", "").encode("utf-8")
+            extended = show.get("desc", "").encode("utf-8")
             genres = []
             for g in show.get("category", []):
                 name = g['name']
@@ -440,7 +440,7 @@ class EPGFetcher(object):
                         genres.append(eit_remap)
                 else:
                     print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
-            p_rating = (("AUS", parental_ratings.get(show.get("rating", "").encode("utf8"), 0x00)),)
+            p_rating = (("AUS", parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
             res[channel_id].append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
 
@@ -481,13 +481,13 @@ class EPGFetcher(object):
         for iceTimer in timers:
             # print "[IceTV] iceTimer:", iceTimer
             try:
-                action = iceTimer.get("action", "").encode("utf8")
-                state = iceTimer.get("state", "").encode("utf8")
-                name = iceTimer.get("name", "").encode("utf8")
+                action = iceTimer.get("action", "").encode("utf-8")
+                state = iceTimer.get("state", "").encode("utf-8")
+                name = iceTimer.get("name", "").encode("utf-8")
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
                 channel_id = long(iceTimer["channel_id"])
-                ice_timer_id = iceTimer["id"].encode("utf8")
+                ice_timer_id = iceTimer["id"].encode("utf-8")
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
                         if timer.ice_timer_id == ice_timer_id:
@@ -578,14 +578,14 @@ class EPGFetcher(object):
         return res
 
     def isIceTimerInUpdateQueue(self, iceTimer, update_queue):
-        ice_timer_id = iceTimer["id"].encode("utf8")
+        ice_timer_id = iceTimer["id"].encode("utf-8")
         for timer in update_queue:
-            if ice_timer_id == timer["id"].encode("utf8"):
+            if ice_timer_id == timer["id"].encode("utf-8"):
                 return True
         return False
 
     def isIceTimerInLocalTimerList(self, iceTimer, ignoreCompleted=False):
-        ice_timer_id = iceTimer["id"].encode("utf8")
+        ice_timer_id = iceTimer["id"].encode("utf-8")
         for timer in _session.nav.RecordTimer.timer_list:
             if timer.ice_timer_id == ice_timer_id:
                 return True
@@ -721,7 +721,7 @@ class EPGFetcher(object):
                 req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
                 res = req.post()
                 try:
-                    local_timer.ice_timer_id = res.json()["timers"][0]["id"].encode("utf8")
+                    local_timer.ice_timer_id = res.json()["timers"][0]["id"].encode("utf-8")
                     self.addLog(_("Timer '%s' created OK") % local_timer.name)
                     if local_timer.ice_timer_id is not None:
                         NavigationInstance.instance.RecordTimer.saveTimer()
