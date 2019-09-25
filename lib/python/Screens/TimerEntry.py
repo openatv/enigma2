@@ -144,7 +144,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_recordingtype = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = recordingtype)
 		self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 		self.timerentry_name = ConfigText(default = self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width = 50, fixed_size = False)
-		self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
+		self.timerentry_description_replaced = self.timer.description.replace('\xc2\x8a', ' ').encode("utf-8")
+		self.timerentry_description = ConfigText(default = self.timerentry_description_replaced, visible_width = 50, fixed_size = False)
 		self.timerentry_tags = self.timer.tags[:]
 		# if no tags found, make name of event default tag set.
 		if not self.timerentry_tags:
@@ -329,7 +330,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def KeyText(self):
 		if self['config'].getCurrent()[0] in (_('Name'), _("Description")):
-			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=self["config"].getCurrent()[2], text = self["config"].getCurrent()[1].value)
+			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=self["config"].getCurrent()[2], text = self["config"].getCurrent()[1].value, visible_width=50, currPos=0)
 
 	def keyLeft(self):
 		cur = self["config"].getCurrent()
@@ -450,7 +451,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.selectChannelSelector, MessageBox, _("You didn't select a channel to record from."), MessageBox.TYPE_ERROR)
 			return
 		self.timer.name = self.timerentry_name.value
-		self.timer.description = self.timerentry_description.value
+		self.timer.description = self.timerentry_description.value if self.timerentry_description_replaced != self.timerentry_description.value else self.timer.description
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
 		self.timer.always_zap = self.timerentry_justplay.value == "zap+record"
 		self.timer.rename_repeat = self.timerentry_renamerepeat.value
