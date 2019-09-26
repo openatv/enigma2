@@ -625,7 +625,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				messageboxtyp = MessageBox.TYPE_INFO
 				timeout = 20
 				if InfoBar and InfoBar.instance:
-					InfoBar.instance.openInfoBarMessage(callback, message, messageboxtyp, timeout)
+					InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 				else:
 					Notifications.AddNotification(MessageBox, message, messageboxtyp, timeout = timeout)
 
