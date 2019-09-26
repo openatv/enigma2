@@ -284,7 +284,7 @@
 		<widget source="parent.summary_job_name" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
 		<widget source="parent.summary_job_task" render="Label" position="0,13" size="128,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" />
 		<widget source="parent.summary_job_progress" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="58,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="parent.summary_job_progress" render="Label" position="58,22" size="70,12" font="FdLcD;10" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
