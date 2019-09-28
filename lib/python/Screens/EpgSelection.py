@@ -758,9 +758,11 @@ class EPGSelection(Screen, HelpableScreen):
 		if not reltime:
 			reltime = int(time())
 		else:
-			cur = self['list'].getCurrent()
-			event = cur[0]
-			reltime += event.getBeginTime() + 60
+			cur = self['list'].l.getCurrentSelection()
+			if not cur:
+				return
+			begintime = cur[2]
+			reltime += begintime + 60
 		self['list'].moveToTime(reltime)
 
 	def jumpNow(self):
