@@ -189,6 +189,7 @@ class MovieList(GUIComponent):
 	SORT_DURATIONREV_ALPHA = 12
 	SORT_SIZE_ALPHA = 13
 	SORT_SIZEREV_ALPHA = 14
+	SORT_DESCRIPTION_ALPHA = 15
 
 	HIDE_DESCRIPTION = 1
 	SHOW_DESCRIPTION = 2
@@ -218,8 +219,8 @@ class MovieList(GUIComponent):
 # The numbering starts after SORT_* values above.
 # in MovieSelection.py (that has no SORT_GROUPWISE)
 #
-	TRASHSORT_SHOWRECORD = 15
-	TRASHSORT_SHOWDELETE = 16
+	TRASHSORT_SHOWRECORD = 16
+	TRASHSORT_SHOWDELETE = 17
 	UsingTrashSort = False
 	InTrashFolder = False
 
@@ -1059,6 +1060,9 @@ class MovieList(GUIComponent):
 		elif self.sort_type == MovieList.SORT_DURATIONREV_ALPHA:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) \
 				+ sorted(self.list[numberOfDirs:], key=self.buildLengthRevAlphaSortKey)
+		elif self.sort_type == MovieList.SORT_DESCRIPTION_ALPHA:
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildDescrAlphaSortKey) \
+				+ sorted(self.list[numberOfDirs:], key=self.buildDescrAlphaSortKey)
 		else:
 			self.list.sort(key=self.buildGroupwiseSortkey)
 
@@ -1222,6 +1226,13 @@ class MovieList(GUIComponent):
 	def buildLengthRevAlphaSortKey(self, x):
 		x = self.buildLengthAlphaSortKey(x)
 		return (x[0], -x[1], x[2], x[3])
+
+	def buildDescrAlphaSortKey(self, x):
+		ref = x[0]
+		info = x[1]
+		name = self.getNameKey(ref, info)
+		descr = info and info.getInfoString(ref, iServiceInformation.sDescription)
+		return 1, descr, name, -x[2]
 
 	def moveTo(self, serviceref):
 		index = self.findService(serviceref)

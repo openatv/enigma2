@@ -95,6 +95,7 @@ l_moviesort = [
 	(str(MovieList.SORT_DURATIONREV_ALPHA), _("By reverse duration, then by name"), 'Long->Short A->Z'),
 	(str(MovieList.SORT_SIZE_ALPHA), _("By file size, then by name"), 'Small->Large A->Z'),
 	(str(MovieList.SORT_SIZEREV_ALPHA), _("By reverse file size, then by name"), 'Large->Small A->Z'),
+	(str(MovieList.SORT_DESCRIPTION_ALPHA), _("By description, then by name"), 'Descr A->Z'),
 	(str(MovieList.SHUFFLE), _("Shuffle"), 'Shuffle'),
 ]
 
