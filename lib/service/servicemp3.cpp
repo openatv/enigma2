@@ -383,6 +383,22 @@ RESULT eStaticServiceMP3Info::getEvent(const eServiceReference &ref, ePtr<eServi
 		equivalentref.path.clear();
 		return eEPGCache::getInstance()->lookupEventTime(equivalentref, start_time, evt);
 	}
+	else // try to read .eit file
+	{
+		size_t pos;
+		ePtr<eServiceEvent> event = new eServiceEvent;
+		std::string filename = ref.path;
+		if ( (pos = filename.rfind('.')) != std::string::npos)
+		{
+			filename.erase(pos + 1);
+			filename += "eit";
+			if (!event->parseFrom(filename, 0))
+			{
+				evt = event;
+				return 0;
+			}
+		}
+	}
 	evt = 0;
 	return -1;
 }
@@ -958,6 +974,25 @@ RESULT eServiceMP3::start()
 			break;
 		default:
 			break;
+		}
+	}
+
+	if (m_ref.path.find("://") == std::string::npos)
+	{
+		/* read event from .eit file */
+		size_t pos;
+		ePtr<eServiceEvent> event = new eServiceEvent;
+		std::string filename = m_ref.path;
+		if ( (pos = filename.rfind('.')) != std::string::npos)
+		{
+			filename.erase(pos + 1);
+			filename += "eit";
+			if (!event->parseFrom(filename, 0))
+			{
+				ePtr<eServiceEvent> empty;
+				m_event_now = event;
+				m_event_next = empty;
+			}
 		}
 	}
 
