@@ -512,7 +512,7 @@ class LogManagerViewLog(Screen):
 			font = gFont("Regular", int(16*sf))
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
-		listwidth = int(self["list"].instance.size().width() / fontwidth) - 2
+		listwidth = int(self["list"].instance.size().width() / fontwidth)
 		if path.exists(self.logfile):
 			for line in file(self.logfile ).readlines():
 				line = line.replace('\t',' '*9)
@@ -525,7 +525,7 @@ class LogManagerViewLog(Screen):
 						self.log.append(a)
 						if len(line[pos+listwidth-offset:]):
 							pos += listwidth-offset
-							offset = 19
+							offset = 20
 						else:
 							readyline = False
 				else:
