@@ -103,9 +103,9 @@ CECcmd = {
 	0x04:"<Image View On>",
 	0x05:"<Tuner Step Increment>",
 	0x06:"<Tuner Step Decrement>",
-	0x07:"<Tuner Device Status>",					# not implemented yet
+	0x07:"<Tuner Device Status>",
 	0x08:"<Give Tuner Device Status>",
-	0x09:"<Record On>",								# not implemented yet
+	0x09:"<Record On>",
 	0x0A:"<Record Status>",
 	0x0B:"<Record Off>",
 	0x0D:"<Text View On>",
@@ -113,9 +113,9 @@ CECcmd = {
 	0x1A:"<Give Deck Status>",
 	0x1B:"<Deck Status>",
 	0x32:"<Set Menu Language>",
-	0x33:"<Clear Analogue Timer>",					# not implemented yet
-	0x34:"<Set Analogue Timer>",					# not implemented yet
-	0x35:"<Timer Status>",							# not implemented yet
+	0x33:"<Clear Analogue Timer>",
+	0x34:"<Set Analogue Timer>",
+	0x35:"<Timer Status>",
 	0x36:"<Standby>",
 	0x41:"<Play>",
 	0x42:"<Deck Control>",
@@ -149,17 +149,17 @@ CECcmd = {
 	0x8F:"<Give Device Power Status>",
 	0x90:"<Report Power Status>",
 	0x91:"<Get Menu Language>",
-	0x92:"<Select Analogue Service>",				# not implemented yet
-	0x93:"<Select Digital Service>",				# not implemented yet
-	0x97:"<Set Digital Timer>",						# not implemented yet
-	0x99:"<Clear Digital Timer>",					# not implemented yet
+	0x92:"<Select Analogue Service>",
+	0x93:"<Select Digital Service>",
+	0x97:"<Set Digital Timer>",
+	0x99:"<Clear Digital Timer>",
 	0x9A:"<Set Audio Rate>",
 	0x9D:"<Inactive Source>",
 	0x9E:"<CEC Version>",
 	0x9F:"<Get CEC Version>",
 	0xA0:"<Vendor Command With ID>",
-	0xA1:"<Clear External Timer>",					# not implemented yet
-	0xA2:"<Set External Timer>",					# not implemented yet
+	0xA1:"<Clear External Timer>",
+	0xA2:"<Set External Timer>",
 	0xFF:"<Abort>",
 	}
 
@@ -1041,7 +1041,9 @@ class HdmiCec:
 		txt += "%s " %(tmp.rstrip() + (47-len(tmp.rstrip())) * " ")
 		txt += CECaddr.get(address,"<unknown>")
 		txt += CECcmd.get(cmd,"<Polling Message>")
-		if cmd == 0x00:
+		if cmd in (0x07, 0x09, 0x33, 0x34, 0x35, 0x92, 0x93, 0x97, 0x99, 0xA1, 0xA2):
+			txt += "<unknown (not implemented yet)>"
+		elif cmd == 0x00:
 			txt += CECcmd.get(ord(data[0]),"<unknown>")
 			txt += CECdat.get(cmd,"").get(ord(data[1]),"<unknown>")
 		elif cmd in (0x70, 0x80, 0x81, 0x82, 0x84, 0x86, 0x9D):
