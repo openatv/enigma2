@@ -1,15 +1,15 @@
 import struct
 import os
+import datetime
 from fcntl import ioctl
 from enigma import eTimer, eHdmiCEC, eActionMap
 from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
 from Components.Console import Console
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, pathExists
 from time import time
 import Screens.Standby
 
 from sys import maxint
-
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False) # query from this value in hdmi_cec.cpp
@@ -75,8 +75,336 @@ for i in (5,10,15,30,45,60):
 config.hdmicec.workaround_turnbackon = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 config.hdmicec.advanced_settings = NoSave(ConfigYesNo(default = False))
 config.hdmicec.default_settings = NoSave(ConfigYesNo(default = False))
+config.hdmicec.debug = ConfigYesNo(default = False)
 
 #nice cec info site: http://www.cec-o-matic.com/
+
+CECaddr = {
+	0x00:"<TV>",
+	0x01:"<Recording 1>",
+	0x02:"<Recording 2>",
+	0x03:"<Tuner 1>",
+	0x04:"<Playback 1>",
+	0x05:"<Audio System>",
+	0x06:"<Tuner 2>",
+	0x07:"<Tuner 3>",
+	0x08:"<Playback 2>",
+	0x09:"<Playback 3>",
+	0x0A:"<Tuner 4>",
+	0x0B:"<Playback 2>",
+	0x0C:"<Reserved>",
+	0x0D:"<Reserved>",
+	0x0E:"<Specific>",
+	0x0F:"<Broadcast>",
+	}
+
+CECcmd = {
+	0x00:"<Feature Abort>",
+	0x04:"<Image View On>",
+	0x05:"<Tuner Step Increment>",
+	0x06:"<Tuner Step Decrement>",
+	0x07:"<Tuner Device Status>",					# not implemented yet
+	0x08:"<Give Tuner Device Status>",
+	0x09:"<Record On>",								# not implemented yet
+	0x0A:"<Record Status>",
+	0x0B:"<Record Off>",
+	0x0D:"<Text View On>",
+	0x0F:"<Record TV Screen>",
+	0x1A:"<Give Deck Status>",
+	0x1B:"<Deck Status>",
+	0x32:"<Set Menu Language>",
+	0x33:"<Clear Analogue Timer>",					# not implemented yet
+	0x34:"<Set Analogue Timer>",					# not implemented yet
+	0x35:"<Timer Status>",							# not implemented yet
+	0x36:"<Standby>",
+	0x41:"<Play>",
+	0x42:"<Deck Control>",
+	0x43:"<Timer Cleared Status>",
+	0x44:"<User Control Pressed>",
+	0x45:"<User Control Released>",
+	0x46:"<Give OSD Name>",
+	0x47:"<Set OSD Name>",
+	0x64:"<Set OSD String>",
+	0x67:"<Set Timer Program Title>",
+	0x70:"<System Audio Mode Request>",
+	0x71:"<Give Audio Status>",
+	0x72:"<Set System Audio Mode>",
+	0x7A:"<Report Audio Status>",
+	0x7D:"<Give System Audio Mode Status>",
+	0x7E:"<System Audio Mode Status>",
+	0x80:"<Routing Change>",
+	0x81:"<Routing Information>",
+	0x82:"<Active Source>",
+	0x83:"<Give Physical Address>",
+	0x84:"<Report Physical Address>",
+	0x85:"<Request Active Source>",
+	0x86:"<Set Stream Path>",
+	0x87:"<Device Vendor ID>",
+	0x89:"<Vendor Command><Vendor Specific Data>",
+	0x8A:"<Vendor Remote Button Down><Vendor Specific RC Code>",
+	0x8B:"<Vendor Remote Button Up>",
+	0x8C:"<Give Device Vendor ID>",
+	0x8D:"<Menu Request>",
+	0x8E:"<Menu Status>",
+	0x8F:"<Give Device Power Status>",
+	0x90:"<Report Power Status>",
+	0x91:"<Get Menu Language>",
+	0x92:"<Select Analogue Service>",				# not implemented yet
+	0x93:"<Select Digital Service>",				# not implemented yet
+	0x97:"<Set Digital Timer>",						# not implemented yet
+	0x99:"<Clear Digital Timer>",					# not implemented yet
+	0x9A:"<Set Audio Rate>",
+	0x9D:"<Inactive Source>",
+	0x9E:"<CEC Version>",
+	0x9F:"<Get CEC Version>",
+	0xA0:"<Vendor Command With ID>",
+	0xA1:"<Clear External Timer>",					# not implemented yet
+	0xA2:"<Set External Timer>",					# not implemented yet
+	0xFF:"<Abort>",
+	}
+
+CECdat = {
+	0x00:{	0x00:"<Unrecognized opcode>",
+			0x01:"<Not in correct mode to respond>",
+			0x02:"<Cannot provide source>",
+			0x03:"<Invalid operand>",
+			0x04:"<Refused>"},
+	0x08:{	0x01:"<On>",
+			0x02:"<Off>",
+			0x03:"<Once>"},
+	0x0A:{	0x01:"<Recording currently selected source>",
+			0x02:"<Recording Digital Service>",
+			0x03:"<Recording Analogue Service>",
+			0x04:"<Recording External Input>",
+			0x05:"<No recording - unable to record Digital Service>",
+			0x06:"<No recording - unable to record Analogue Service>",
+			0x07:"<No recording - unable to select required Service>",
+			0x09:"<No recording - unable External plug number>",
+			0x0A:"<No recording - unable External plug number>",
+			0x0B:"<No recording - CA system not supported>",
+			0x0C:"<No recording - No or Insufficent CA Entitlements>",
+			0x0D:"<No recording - No allowed to copy source>",
+			0x0E:"<No recording - No futher copies allowed>",
+			0x10:"<No recording - no media>",
+			0x11:"<No recording - playing>",
+			0x12:"<No recording - already recording>",
+			0x13:"<No recording - media protected>",
+			0x14:"<No recording - no source signa>",
+			0x15:"<No recording - media problem>",
+			0x16:"<No recording - no enough space available>",
+			0x17:"<No recording - Parental Lock On>",
+			0x1A:"<Recording terminated normally>",
+			0x1B:"<Recording has already terminated>",
+			0x1F:"<No recording - other reason>"},
+	0x1B:{	0x11:"<Play>",
+			0x12:"<Record",
+			0x13:"<Play Reverse>",
+			0x14:"<Still>",
+			0x15:"<Slow>",
+			0x16:"<Slow Reverse>",
+			0x17:"<Fast Forward>",
+			0x18:"<Fast Reverse>",
+			0x19:"<No Media>",
+			0x1A:"<Stop>",
+			0x1B:"<Skip Forward / Wind>",
+			0x1C:"<Skip Reverse / Rewind>",
+			0x1D:"<Index Search Forward>",
+			0x1E:"<Index Search Reverse>",
+			0x1F:"<Other Status>"},
+	0x1A:{	0x01:"<On>",
+			0x02:"<Off>",
+			0x03:"<Once>"},
+	0x41:{	0x05:"<Play Forward Min Speed>",
+			0x06:"<Play Forward Medium Speed>",
+			0x07:"<Play Forward Max Speed>",
+			0x09:"<Play Reverse Min Speed>",
+			0x0A:"<Play Reverse Medium Speed>",
+			0x0B:"<Play Reverse Max Speed>",
+			0x15:"<Slow Forward Min Speed>",
+			0x16:"<Slow Forward Medium Speed>",
+			0x17:"<Slow Forward Max Speed>",
+			0x19:"<Slow Reverse Min Speed>",
+			0x1A:"<Slow Reverse Medium Speed>",
+			0x1B:"<Slow Reverse Max Speed>",
+			0x20:"<Play Reverse>",
+			0x24:"<Play Forward>",
+			0x25:"<Play Still>"},
+	0x42:{	0x01:"<Skip Forward / Wind>",
+			0x02:"<Skip Reverse / Rewind",
+			0x03:"<Stop>",
+			0x04:"<Eject>"},
+	0x43:{	0x00:"<Timer not cleared - recording>",
+			0x01:"<Timer not cleared - no matching>",
+			0x02:"<Timer not cleared - no info available>",
+			0x80:"<Timer cleared>"},
+	0x44:{	0x00:"<Select>",
+			0x01:"<Up>",
+			0x02:"<Down>",
+			0x03:"<Left>",
+			0x04:"<Right>",
+			0x05:"<Right-Up>",
+			0x06:"<Right-Down>",
+			0x07:"<Left-Up>",
+			0x08:"<Left-Down>",
+			0x09:"<Root Menu>",
+			0x0A:"<Setup Menu>",
+			0x0B:"<Contents Menu>",
+			0x0C:"<Favorite Menu>",
+			0x0D:"<Exit>",
+			0x0E:"<Reserved 0x0E>",
+			0x0F:"<Reserved 0x0F>",
+			0x10:"<Media Top Menu>",
+			0x11:"<Media Context-sensitive Menu>",
+			0x12:"<Reserved 0x12>",
+			0x13:"<Reserved 0x13>",
+			0x14:"<Reserved 0x14>",
+			0x15:"<Reserved 0x15>",
+			0x16:"<Reserved 0x16>",
+			0x17:"<Reserved 0x17>",
+			0x18:"<Reserved 0x18>",
+			0x19:"<Reserved 0x19>",
+			0x1A:"<Reserved 0x1A>",
+			0x1B:"<Reserved 0x1B>",
+			0x1C:"<Reserved 0x1C>",
+			0x1D:"<Number Entry Mode>",
+			0x1E:"<Number 11>",
+			0x1F:"<Number 12>",
+			0x20:"<Number 0 or Number 10>",
+			0x21:"<Number 1>",
+			0x22:"<Number 2>",
+			0x23:"<Number 3>",
+			0x24:"<Number 4>",
+			0x25:"<Number 5>",
+			0x26:"<Number 6>",
+			0x27:"<Number 7>",
+			0x28:"<Number 8>",
+			0x29:"<Number 9>",
+			0x2A:"<Dot>",
+			0x2B:"<Enter>",
+			0x2C:"<Clear>",
+			0x2D:"<Reserved 0x2D>",
+			0x2E:"<Reserved 0x2E>",
+			0x2F:"<Next Favorite>",
+			0x30:"<Channel Up>",
+			0x31:"<Channel Down>",
+			0x32:"<Previous Channel>",
+			0x33:"<Sound Select>",
+			0x34:"<Input Select>",
+			0x35:"<Display Informationen>",
+			0x36:"<Help>",
+			0x37:"<Page Up>",
+			0x38:"<Page Down>",
+			0x39:"<Reserved 0x39>",
+			0x3A:"<Reserved 0x3A>",
+			0x3B:"<Reserved 0x3B>",
+			0x3C:"<Reserved 0x3C>",
+			0x3D:"<Reserved 0x3D>",
+			0x3E:"<Reserved 0x3E>",
+			0x3F:"<Reserved 0x3F>",
+			0x40:"<Power>",
+			0x41:"<Volume Up>",
+			0x42:"<Volume Down>",
+			0x43:"<Mute>",
+			0x44:"<Play>",
+			0x45:"<Stop>",
+			0x46:"<Pause>",
+			0x47:"<Record>",
+			0x48:"<Rewind>",
+			0x49:"<Fast Forward>",
+			0x4A:"<Eject>",
+			0x4B:"<Forward>",
+			0x4C:"<Backward>",
+			0x4D:"<Stop-Record>",
+			0x4E:"<Pause-Record>",
+			0x4F:"<Reserved 0x4F>",
+			0x50:"<Angle>",
+			0x51:"<Sub Picture>",
+			0x52:"<Video On Demand>",
+			0x53:"<Electronic Program Guide>",
+			0x54:"<Timer programming>",
+			0x55:"<Initial Configuration>",
+			0x56:"<Reserved 0x56>",
+			0x57:"<Reserved 0x57>",
+			0x58:"<Reserved 0x58>",
+			0x59:"<Reserved 0x59>",
+			0x5A:"<Reserved 0x5A>",
+			0x5B:"<Reserved 0x5B>",
+			0x5C:"<Reserved 0x5C>",
+			0x5D:"<Reserved 0x5D>",
+			0x5E:"<Reserved 0x5E>",
+			0x5F:"<Reserved 0x5F>",
+			0x60:"<Play Function>",
+			0x61:"<Pause-Play Function>",
+			0x62:"<Record Function>",
+			0x63:"<Pause-Record Function>",
+			0x64:"<Stop Function>",
+			0x65:"<Mute Function>",
+			0x66:"<Restore Volume Function>",
+			0x67:"<Tune Function>",
+			0x68:"<Select Media Function>",
+			0x69:"<Select A/V Input Function>",
+			0x6A:"<Select Audio Input Function>",
+			0x6B:"<Power Toggle Function>",
+			0x6C:"<Power Off Function>",
+			0x6D:"<Power On Function>",
+			0x6E:"<Reserved 0x6E>",
+			0x6F:"<Reserved 0x6E>",
+			0x70:"<Reserved 0x70>",
+			0x71:"<F1 (Blue)>",
+			0x72:"<F2 (Red)>",
+			0x73:"<F3 (Green)>",
+			0x74:"<F4 (Yellow)>",
+			0x75:"<F5>",
+			0x76:"<Data>",
+			0x77:"<Reserved 0x77>",
+			0x78:"<Reserved 0x78>",
+			0x79:"<Reserved 0x79>",
+			0x7A:"<Reserved 0x7A>",
+			0x7B:"<Reserved 0x7B>",
+			0x7C:"<Reserved 0x7C>",
+			0x7D:"<Reserved 0x7D>",
+			0x7E:"<Reserved 0x7E>",
+			0x7F:"<Reserved 0x7F>"},
+	0x64:{	0x00:"<Display for default time>",
+			0x40:"<Display until cleared>",
+			0x80:"<Clear previous message>",
+			0xC0:"<Reserved for future use>"},
+	0x72:{	0x00:"<Off>",
+			0x01:"<On>"},
+	0x7E:{	0x00:"<Off>",
+			0x01:"<On>"},
+	0x84:{	0x00:"<TV>",
+			0x01:"<Recording Device>",
+			0x02:"<Reserved>",
+			0x03:"<Tuner>",
+			0x04:"<Playback Devive>",
+			0x05:"<Audio System>",
+			0x06:"<Pure CEC Switch>",
+			0x07:"<Video Processor>"},
+	0x8D:{	0x00:"<Activate>",
+			0x01:"<Deactivate>",
+			0x02:"<Query>"},
+	0x8E:{	0x00:"<Activated>",
+			0x01:"<Deactivated>"},
+	0x90:{	0x00:"<On>",
+			0x01:"<Standby>",
+			0x02:"<In transition Standby to On>",
+			0x03:"<In transition On to Standby>"},
+	0x9A:{	0x00:"<Rate Control Off>",
+			0x01:"<WRC Standard Rate: 100% rate>",
+			0x02:"<WRC Fast Rate: Max 101% rate>",
+			0x03:"<WRC Slow Rate: Min 99% rate",
+			0x04:"<NRC Standard Rate: 100% rate>",
+			0x05:"<NRC Fast Rate: Max 100.1% rate>",
+			0x06:"<NRC Slow Rate: Min 99.9% rate"},
+	0x9E:{	0x00:"<1.1>",
+			0x01:"<1.2>",
+			0x02:"<1.2a>",
+			0x03:"<1.3>",
+			0x04:"<1.3a>",
+			0x05:"<1.4>",
+			0x06:"<2.0>"},
+	}
 
 class HdmiCec:
 	instance = None
@@ -104,6 +432,8 @@ class HdmiCec:
 			self.activesource = False
 			self.firstrun = True
 			self.standbytime = 0
+			self.disk_full = False
+			self.start_log = True
 
 			self.sethdmipreemphasis()
 			self.checkifPowerupWithoutWakingTv() # initially write 'False' to file, see below
@@ -149,16 +479,18 @@ class HdmiCec:
 			cmd = message.getCommand()
 			length = message.getData(data, len(data))
 			address = message.getAddress()
+			if config.hdmicec.debug.value:
+				self.CECdebug('Rx', address, cmd, data, length-1)
 
 			#// workaround for wrong address vom driver (e.g. hd51, message comes from tv -> address is only sometimes 0, dm920, same tv -> address is always 0)
 			if address > 15:
+				self.CECwritedebug("[HdmiCec] workaround for wrong address active", True)
 				address = 0
-				print "[HdmiCec] workaround for wrong received address data enabled"
 			#//
 
 			if cmd == 0x00: # feature abort
 				if data[0] == '\x44':
-					print 'eHdmiCec: volume forwarding not supported by device %02x'%(address)
+					self.CECwritedebug('[HdmiCec] volume forwarding not supported by device %02x'%(address), True)
 					self.volumeForwardingEnabled = False
 			elif cmd == 0x46: # request name
 				self.sendMessage(address, 'osdname')
@@ -168,7 +500,7 @@ class HdmiCec:
 				else:
 					self.volumeForwardingDestination = 0 # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.value:
-					print 'eHdmiCec: volume forwarding to device %02x enabled'% self.volumeForwardingDestination
+					self.CECwritedebug('[HdmiCec] volume forwarding to device %02x enabled'% self.volumeForwardingDestination, True)
 					self.volumeForwardingEnabled = True
 			elif cmd == 0x8f: # request power status
 				if Screens.Standby.inStandby:
@@ -217,7 +549,7 @@ class HdmiCec:
 				oldaddress = hexstring[0] + '.' + hexstring[1] + '.' + hexstring[2] + '.' + hexstring[3]
 				hexstring = '%04x' % newaddress
 				newaddress = hexstring[0] + '.' + hexstring[1] + '.' + hexstring[2] + '.' + hexstring[3]
-				print "[HdmiCec] routing has changed... from '%s' to '%s' (to our address: %s)" %(oldaddress, newaddress, active)
+				self.CECwritedebug("[HdmiCec] routing has changed... from '%s' to '%s' (to our address: %s)" %(oldaddress, newaddress, active), True)
 			elif cmd in (0x86, 0x82): # set streaming path, active source changed
 				newaddress = ord(data[0]) * 256 + ord(data[1])
 				ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -229,7 +561,7 @@ class HdmiCec:
 						txt = 'active source'
 						if cmd == 0x86: txt = 'streaming path'
 						txt += ' has changed... to our address'
-					print '[HdmiCec] %s: %s' %(txt, active)
+					self.CECwritedebug('[HdmiCec] %s: %s' %(txt, active), True)
 				self.activesource = active
 				if not checkstate:
 					if cmd == 0x86 and not Screens.Standby.inStandby and self.activesource:
@@ -331,6 +663,8 @@ class HdmiCec:
 				cmd = 0x8f
 			if cmd:
 				if config.misc.DeepStandby.value: # no delay for messages before go in to deep-standby
+					if config.hdmicec.debug.value:
+						self.CECdebug('Tx', address, cmd, data, len(data))
 					eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 				else:
 					self.queue.append((address, cmd, data))
@@ -340,6 +674,8 @@ class HdmiCec:
 	def sendCmd(self):
 		if len(self.queue):
 			(address, cmd, data) = self.queue.pop(0)
+			if config.hdmicec.debug.value:
+				self.CECdebug('Tx', address, cmd, data, len(data))
 			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 			self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
 
@@ -382,9 +718,9 @@ class HdmiCec:
 		self.handleTimerStop()
 		if self.tv_skip_messages:
 			self.tv_skip_messages = False
-			print "[HdmiCec] Skip turning on TV"
+			self.CECwritedebug("[HdmiCec] Skip turning on TV", True)
 		elif self.checkifPowerupWithoutWakingTv() == 'True':
-			print "[HdmiCec] Skip waking TV, found 'True' in '/tmp/powerup_without_waking_tv.txt' (usually written by openWebif)"
+			self.CECwritedebug("[HdmiCec] Skip waking TV, found 'True' in '/tmp/powerup_without_waking_tv.txt' (usually written by openWebif)", True)
 		else:
 			if config.hdmicec.enabled.value:
 				self.messages = []
@@ -421,9 +757,9 @@ class HdmiCec:
 		self.handleTimerStop()
 		if self.tv_skip_messages:
 			self.tv_skip_messages = False
-			print "[HdmiCec] Skip turning off TV"
+			self.CECwritedebug("[HdmiCec] Skip turning off TV", True)
 		elif config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value and not self.sendMessagesIsActive() and not self.activesource and 'on' in self.tv_powerstate:
-			print "[HdmiCec] Skip turning off TV - config: tv has another input active"
+			self.CECwritedebug("[HdmiCec] Skip turning off TV - config: tv has another input active", True)
 		else: 
 			if config.hdmicec.enabled.value:
 				self.messages = []
@@ -463,7 +799,7 @@ class HdmiCec:
 			return self.repeatTimer.isActive() or self.stateTimer.isActive()
 
 	def stateTimeout(self):
-		print '[HdmiCec] timeout for check TV state!'
+		self.CECwritedebug('[HdmiCec] timeout for check TV state!', True)
 		if 'on' in self.tv_powerstate:
 			self.checkTVstate('activesource')
 		elif self.tv_powerstate == 'unknown': # no response from tv - another input active ? -> check if powered on
@@ -524,7 +860,7 @@ class HdmiCec:
 				target = 'standby'
 				if 'deep' in str(self.handleTimer.callback[0]):
 					target = 'deep ' + target
-				print '[HdmiCec] stopping Timer to %s' %target
+				self.CECwritedebug('[HdmiCec] stopping Timer to %s' %target, True)
 
 	def handleTVRequest(self, request):
 		if (request == 'activesource' and self.activesource) or (self.tv_lastrequest == 'tvstandby' and request == 'activesource' and self.handleTimer.isActive()):
@@ -560,14 +896,14 @@ class HdmiCec:
 				if int(config.hdmicec.handle_tv_delaytime.value):
 					self.handleTimer.callback.append(self.standby)
 					self.handleTimer.startLongTimer(int(config.hdmicec.handle_tv_delaytime.value))
-					print '[HdmiCec] starting Timer to standby in %s s' %config.hdmicec.handle_tv_delaytime.value
+					self.CECwritedebug('[HdmiCec] starting Timer to standby in %s s' %config.hdmicec.handle_tv_delaytime.value, True)
 				else:
 					self.standby()
 			elif deepstandby:
 				if int(config.hdmicec.handle_tv_delaytime.value):
 					self.handleTimer.callback.append(self.deepstandby)
 					self.handleTimer.startLongTimer(int(config.hdmicec.handle_tv_delaytime.value))
-					print '[HdmiCec] starting Timer to deep standby in %s s' %config.hdmicec.handle_tv_delaytime.value
+					self.CECwritedebug('[HdmiCec] starting Timer to deep standby in %s s' %config.hdmicec.handle_tv_delaytime.value, True)
 				else:
 					self.deepstandby()
 
@@ -578,12 +914,12 @@ class HdmiCec:
 		rectimer = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording() or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900
 		pwrtimer = abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer = 0) or not NavigationInstance.instance.PowerTimer.isAutoDeepstandbyEnabled()
 		if recording or rectimer or pwrtimer:
-			print '[HdmiCec] go not into deepstandby... recording=%s, rectimer=%s, pwrtimer=%s' %(recording, rectimer, pwrtimer)
+			self.CECwritedebug('[HdmiCec] go not into deepstandby... recording=%s, rectimer=%s, pwrtimer=%s' %(recording, rectimer, pwrtimer), True)
 			self.standby()
 		else:
 			from Screens.InfoBar import InfoBar
 			if InfoBar and InfoBar.instance:
-				print '[HdmiCec] go into deepstandby...'
+				self.CECwritedebug('[HdmiCec] go into deepstandby...', True)
 				InfoBar.instance.openInfoBarSession(Screens.Standby.TryQuitMainloop, 1)
 
 	def standby(self):
@@ -592,17 +928,17 @@ class HdmiCec:
 			NavigationInstance.instance.skipWakeup = True
 			from Screens.InfoBar import InfoBar
 			if InfoBar and InfoBar.instance:
-				print '[HdmiCec] go into standby...'
+				self.CECwritedebug('[HdmiCec] go into standby...', True)
 				InfoBar.instance.openInfoBarSession(Screens.Standby.Standby)
 
 	def wakeup(self):
-		if int(config.hdmicec.workaround_turnbackon.value) and self.standbytime > time():
-			print '[HdmiCec] ignore wakeup for %d seconds ...' %int(self.standbytime - time())
+		if int(config.hdmicec.workaround_turnbackon.value) and self.standbytime> time():
+			self.CECwritedebug('[HdmiCec] ignore wakeup for %d seconds ...' %int(self.standbytime - time()), True)
 			return
 		self.standbytime = 0
 		self.handleTimerStop(True)
 		if Screens.Standby.inStandby:
-			print '[HdmiCec] wake up...'
+			self.CECwritedebug('[HdmiCec] wake up...', True)
 			Screens.Standby.inStandby.Power()
 
 	def onLeaveStandby(self):
@@ -657,6 +993,8 @@ class HdmiCec:
 		elif keyEvent == 1 and keyCode in (113, 114, 115):
 			cmd = 0x45
 		if cmd:
+			if config.hdmicec.debug.value:
+				self.CECdebug('Tx', address, cmd, data, len(data))
 			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
 			return 1
 		else:
@@ -684,7 +1022,6 @@ class HdmiCec:
 			f.close()
 		except:
 			powerupWithoutWakingTv = 'False'
-
 		try:
 			#write 'False' to the file so that turning on the TV is only suppressed once
 			#(and initially, so that openWebif knows that the image supports this feature)
@@ -692,8 +1029,87 @@ class HdmiCec:
 			f.write('False')
 			f.close()
 		except:
-			print "[HdmiCec] failed writing /tmp/powerup_without_waking_tv.txt"
-
+			self.CECwritedebug("[HdmiCec] failed writing /tmp/powerup_without_waking_tv.txt", True)
 		return powerupWithoutWakingTv
+
+	def CECdebug(self, type, address, cmd, data, length):
+		txt = "<%s:> " %type
+		tmp = "%02X " %address
+		tmp += "%02X " %cmd
+		for i in range(length):
+			tmp += "%02X " % ord(data[i])
+		txt += "%s " %(tmp.rstrip() + (47-len(tmp.rstrip())) * " ")
+		txt += CECaddr.get(address,"<unknown>")
+		txt += CECcmd.get(cmd,"<Polling Message>")
+		if cmd == 0x00:
+			txt += CECcmd.get(ord(data[0]),"<unknown>")
+			txt += CECdat.get(cmd,"").get(ord(data[1]),"<unknown>")
+		elif cmd in (0x70, 0x80, 0x81, 0x82, 0x84, 0x86, 0x9D):
+			hexstring = "%04x" %(ord(data[0]) * 256 + ord(data[1]))
+			txt += "<%s.%s.%s.%s>" %(hexstring[0], hexstring[1], hexstring[2], hexstring[3])
+			if cmd == 0x80:
+				hexstring = "%04x" %(ord(data[2]) * 256 + ord(data[3]))
+				txt += "<%s.%s.%s.%s>" %(hexstring[0], hexstring[1], hexstring[2], hexstring[3])
+			elif cmd == 0x84:
+				txt += CECdat.get(cmd,"").get(ord(data[2]),"<unknown>")
+		elif cmd in (0x87, 0xA0):
+			txt += "<%d>" %(ord(data[0]) * 256 * 256 + ord(data[1]) * 256 + ord(data[2]))
+			if cmd == 0xA0:
+				txt += "<Vendor Specific Data>"
+		elif cmd in (0x32, 0x47, 0x64, 0x67):
+			s = 0
+			if cmd == 0x64:
+				s = 1
+				txt += CECdat.get(cmd,"").get(ord(data[0]),"<unknown>")
+			txt += "<"
+			for i in range(s, length):
+				txt += "%s" %data[i]
+			txt += ">"
+		elif cmd == 0x7A:
+			value = ord(data[0])
+			txt += "<Audio Mute On>" if value >= 0x80 else "<Audio Mute Off>"
+			txt += "<Volume %d>" %(value-0x80) if value >= 0x80 else "<Volume %d>" %value
+		else:
+			txt += CECdat.get(cmd,"").get(ord(data[0]),"<unknown>") if CECdat.has_key(cmd) else ""
+		self.CECwritedebug(txt)
+
+	def CECwritedebug(self, debugtext, debugprint = False):
+		if debugprint and not config.hdmicec.debug.value:
+			print debugtext
+			return
+		log_path = config.crash.debug_path.value
+		if pathExists(log_path):
+			stat = os.statvfs(log_path)
+			disk_free = stat.f_bavail * stat.f_bsize / 1024
+			if self.disk_full:
+				self.start_log = True
+			if not self.disk_full and disk_free < 500:
+				print "[HdmiCec] write debug file failed - disk full!"
+				self.disk_full = True
+				return
+			elif not self.disk_full and disk_free < 1000:
+				self.disk_full = True
+			elif disk_free >= 1000:
+				self.disk_full = False
+			else:
+				return
+			now = datetime.datetime.now()
+			file_path = os.path.join(log_path, now.strftime("Enigma2-hdmicec-%Y%m%d.log"))
+			timestamp = now.strftime("%H:%M:%S.%f")[:-2]
+			debugtext = "%s %s%s\n" %(timestamp, ("[   ] " if debugprint else ""), debugtext.replace("[HdmiCec] ", ""))
+			if self.start_log:
+				self.start_log = False
+				la = eHdmiCEC.getInstance().getLogicalAddress()
+				debugtext = "%s  +++  start logging  +++  physical address: %s  -  logical address: %d  -  device type: %s\n%s" %(timestamp, self.getPhysicalAddress(), la, CECaddr.get(la, "<unknown>"), debugtext)
+			if self.disk_full:
+				debugtext += "%s  +++  stop logging  +++  disk full!\n" % timestamp
+			try:
+				f = file(file_path,'a')
+				f.write(debugtext)
+				f.close()
+			except Exception, e:
+				print "[HdmiCec] write debug file failed - %s" %e
+		else:
+			print "[HdmiCec] write debug file failed - log path (%s) not found!" %log_path
 
 hdmi_cec = HdmiCec()
