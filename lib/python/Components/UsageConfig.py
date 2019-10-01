@@ -457,6 +457,8 @@ def InitUsageConfig():
 	config.usage.recording_frontend_priority_strictly    = ConfigSelection(default = "no", choices = priority_strictly_choices)
 	config.usage.recording_frontend_priority_intval      = NoSave(ConfigInteger(default = 0, limits = (-99, maxint)))
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
+	
+	config.usage.menutype = ConfigSelection(default='standard', choices=[('horzanim', _('Horizontal menu')), ('horzicon', _('Horizontal icons')), ('standard', _('Standard menu'))])
 
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
 
