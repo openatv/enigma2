@@ -19,7 +19,7 @@
 
 1 - Install packages on your buildserver
 
-    sudo apt-get install -y gcc-8 psmisc git-core diffstat iputils-ping build-essential cpio debianutils socat unzip gcc-multilib libegl1-mesa xz-utils texinfo autoconf automake bison bzip2 curl cvs diffstat flex g++ gawk gcc gettext git gzip help2man ncurses-bin libncurses5-dev libc6-dev libtool make texinfo patch perl pkg-config subversion tar texi2html wget zlib1g-dev chrpath libxml2-utils xsltproc libglib2.0-dev python-setuptools python3 python3-pip python3-pexpect python3-git python3-jinja2 zip info coreutils diffstat libproc-processtable-perl libperl4-corelibs-perl sshpass default-jre default-jre-headless java-common libserf-dev qemu quilt libsdl1.2-dev xterm
+    sudo apt-get install -y gcc-8 psmisc git-core diffstat iputils-ping cpio debianutils socat unzip gcc-multilib libegl1-mesa xz-utils texinfo autoconf automake bison bzip2 curl cvs diffstat flex g++ gawk gcc gettext git gzip help2man ncurses-bin libncurses5-dev libc6-dev libtool make texinfo patch perl pkg-config subversion tar texi2html wget zlib1g-dev chrpath libxml2-utils xsltproc libglib2.0-dev python-setuptools python3 python3-pip python3-pexpect python3-git python3-jinja2 zip info coreutils diffstat libproc-processtable-perl libperl4-corelibs-perl sshpass default-jre default-jre-headless java-common libserf-dev qemu quilt libsdl1.2-dev xterm
 2 - Set your shell to /bin/bash.
 
     sudo dpkg-reconfigure dash
