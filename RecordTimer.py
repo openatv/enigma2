@@ -128,7 +128,7 @@ def getBqRootStr(ref):
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = TIMERTYPE.JUSTPLAY, afterEvent = AFTEREVENT.DEFAULT, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', rename_repeat = True, isAutoTimer = False, always_zap = TIMERTYPE.ALWAYS_ZAP, MountPath = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = TIMERTYPE.JUSTPLAY, afterEvent = AFTEREVENT.DEFAULT, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', rename_repeat = True, isAutoTimer = False, ice_timer_id = None, always_zap = TIMERTYPE.ALWAYS_ZAP, MountPath = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
 			if self.begin < time() - 1209600:
@@ -143,8 +143,20 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.service_ref = serviceref
 		else:
 			self.service_ref = ServiceReference(None)
-		self.eit = eit
 		self.dontSave = False
+		self.eit = None
+		if not description or not name or not eit:
+			evt = self.getEventFromEPGId(eit) or self.getEventFromEPG()
+			if evt:
+				if not description:
+					description = evt.getShortDescription()
+				if not description:
+					description = evt.getExtendedDescription()
+				if not name:
+					name = evt.getEventName()
+				if not eit:
+					eit = evt.getEventId()
+		self.eit = eit
 		self.name = name
 		self.description = description
 		self.disabled = disabled
@@ -188,6 +200,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.change_frontend = False
 		self.rename_repeat = rename_repeat
 		self.isAutoTimer = isAutoTimer
+		self.ice_timer_id = ice_timer_id
 		self.wasInStandby = False
 
 		#workaround for vmc crash - only a dummy entry!!!
@@ -204,10 +217,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.resetState()
 
 	def __repr__(self):
-		if not self.disabled:
-			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer)
-		else:
-			return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s, Disabled)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer)
+		ice = ""
+		if self.ice_timer_id:
+			ice = ", ice_timer_id=%s" % self.ice_timer_id
+		disabled = ""
+		if self.disabled:
+			disabled = ", Disabled"
+		return "RecordTimerEntry(name=%s, begin=%s, end=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s%s)" % (self.name, ctime(self.begin), ctime(self.end), self.service_ref, self.justplay, self.isAutoTimer, ice, disabled)
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -322,6 +338,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if debug:
 			self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
+
+	def getEventFromEPGId(self, id=None):
+		id = id or self.eit
+		epgcache = eEPGCache.getInstance()
+		ref = self.service_ref and self.service_ref.ref
+		return id and epgcache.lookupEventId(ref, id) or None
+
+	def getEventFromEPG(self):
+		epgcache = eEPGCache.getInstance()
+		queryTime = self.begin + (self.end - self.begin) / 2
+		ref = self.service_ref and self.service_ref.ref
+		return epgcache.lookupEventTime(ref, queryTime)
 
 	def tryPrepare(self):
 		if self.justplay:
@@ -811,7 +839,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		else:
 			new_end = entry.begin -30
 
-		dummyentry = RecordTimerEntry(self.service_ref, self.begin, new_end, self.name, self.description, self.eit, disabled=True, justplay = self.justplay, afterEvent = self.afterEvent, dirname = self.dirname, tags = self.tags)
+		dummyentry = RecordTimerEntry(self.service_ref, self.begin, new_end, self.name, self.description, self.eit,
+		disabled=True, justplay = self.justplay, afterEvent = self.afterEvent,
+		dirname = self.dirname, tags = self.tags)
 		dummyentry.disabled = self.disabled
 		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.RecordTimer.timer_list, dummyentry)
 		if not timersanitycheck.check():
@@ -1139,10 +1169,15 @@ def createTimer(xml):
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
 	isAutoTimer = int(xml.get("isAutoTimer") or "0")
+	ice_timer_id = xml.get("ice_timer_id")
+	if ice_timer_id:
+		ice_timer_id = ice_timer_id.encode("utf-8")
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap, rename_repeat = rename_repeat)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent,
+	dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm,
+	isAutoTimer = isAutoTimer, ice_timer_id=ice_timer_id, always_zap = always_zap, rename_repeat = rename_repeat)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -1157,12 +1192,27 @@ class RecordTimer(timer.Timer):
 	def __init__(self):
 		timer.Timer.__init__(self)
 
+		self.onTimerAdded = []
+		self.onTimerRemoved = []
+		self.onTimerChanged = []
 		self.Filename = Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers.xml")
 
 		try:
 			self.loadTimer()
 		except IOError:
 			print "unable to load timers from file!"
+	def timeChanged(self, entry):
+		timer.Timer.timeChanged(self, entry)
+		for f in self.onTimerChanged:
+			f(entry)
+
+	def cleanup(self):
+		for entry in self.processed_timers[:]:
+			if not entry.disabled:
+				self.processed_timers.remove(entry)
+				for f in self.onTimerRemoved:
+					f(entry)
+		self.saveTimer()
 
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
@@ -1288,6 +1338,8 @@ class RecordTimer(timer.Timer):
 			list.append(' descramble="' + str(int(timer.descramble)) + '"')
 			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
+			if timer.ice_timer_id is not None:
+				list.append(' ice_timer_id="' + str(timer.ice_timer_id) + '"')
 			list.append('>\n')
 
 			for time, code, msg in timer.log_entries:
@@ -1402,6 +1454,10 @@ class RecordTimer(timer.Timer):
 		print "[Timer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
+		# Trigger onTimerAdded callbacks
+		for f in self.onTimerAdded:
+			f(entry)
+
 		if dosave:
 			self.saveTimer()
 		return None
@@ -1411,16 +1467,17 @@ class RecordTimer(timer.Timer):
 		type = 0
 		time_match = 0
 
-		isAutoTimer = False
+		isAutoTimer = 0
 		bt = None
 		check_offset_time = not config.recording.margin_before.value and not config.recording.margin_after.value
 		end = begin + duration
 		refstr = ':'.join(service.split(':')[:11])
 		for x in self.timer_list:
+			isAutoTimer = 0
 			if x.isAutoTimer == 1:
-				isAutoTimer = True
-			else:
-				isAutoTimer = False
+				isAutoTimer |= 1
+			if x.ice_timer_id is not None:
+				isAutoTimer |= 2
 			check = ':'.join(x.service_ref.ref.toString().split(':')[:11]) == refstr
 			if check:
 				timer_end = x.end
@@ -1571,6 +1628,10 @@ class RecordTimer(timer.Timer):
 					self.timeChanged(x)
 		# now the timer should be in the processed_timers list. remove it from there.
 		self.processed_timers.remove(entry)
+		# Trigger onTimerRemoved callbacks
+		for f in self.onTimerRemoved:
+			f(entry)
+
 		self.saveTimer()
 
 	def shutdown(self):

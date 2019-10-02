@@ -66,6 +66,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				state = _("waiting")
 				if timer.isAutoTimer:
 					icon = self.iconAutoTimer
+				elif timer.ice_timer_id is not None:
+					icon = self.iconIceTVTimer
 				else:
 					icon = self.iconWait
 			elif timer.state == TimerEntry.StatePrepared:
@@ -131,6 +133,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_off.png"))
 		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_failed.png"))
 		self.iconAutoTimer = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_autotimer.png"))
+		self.iconIceTVTimer = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_icetv.png"))
 
 	def applySkin(self, desktop, parent):
 		def itemHeight(value):

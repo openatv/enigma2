@@ -773,7 +773,7 @@ class ConfigMAC(ConfigSequence):
 		ConfigSequence.__init__(self, seperator = ":", limits = mac_limits, default = default)
 
 class ConfigMacText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", visible_width = False):
+	def __init__(self, default = "", visible_width = False, show_help=True):
 		ConfigElement.__init__(self)
 		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
 
@@ -784,6 +784,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		self.offset = 0
 		self.overwrite = 17
 		self.help_window = None
+		self.show_help = show_help
 		self.value = self.last_value = self.default = default
 		self.useableChars = '0123456789ABCDEF'
 
@@ -888,7 +889,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
 			self.help_window.setAnimationMode(0)
-			self.help_window.show()
+			if self.show_help:
+				self.help_window.show()
 
 	def onDeselect(self, session):
 		self.marked_pos = 0
@@ -1089,7 +1091,7 @@ class ConfigFloat(ConfigSequence):
 
 # an editable text...
 class ConfigText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", fixed_size = True, visible_width = False):
+	def __init__(self, default = "", fixed_size = True, visible_width = False, show_help=True):
 		ConfigElement.__init__(self)
 		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
 
@@ -1100,6 +1102,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.offset = 0
 		self.overwrite = fixed_size
 		self.help_window = None
+		self.show_help = show_help
 		self.value = self.last_value = self.default = default
 
 	def validateMarker(self):
@@ -1265,7 +1268,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
 			self.help_window.setAnimationMode(0)
-			self.help_window.show()
+			if self.show_help:
+				self.help_window.show()
 
 	def onDeselect(self, session):
 		self.marked_pos = 0
@@ -1284,8 +1288,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.value = str(value)
 
 class ConfigPassword(ConfigText):
-	def __init__(self, default = "", fixed_size = False, visible_width = False, censor = "*"):
-		ConfigText.__init__(self, default = default, fixed_size = fixed_size, visible_width = visible_width)
+	def __init__(self, default = "", fixed_size = False, visible_width = False, censor = "*", show_help=True):
+		ConfigText.__init__(self, default = default, fixed_size = fixed_size, visible_width = visible_width, show_help=show_help)
 		self.censor_char = censor
 		self.hidden = True
 
