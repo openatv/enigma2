@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-12 13:02+0000\n"
+"POT-Creation-Date: 2019-10-02 14:32+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -55,6 +55,13 @@ msgid ""
 msgstr ""
 "\n"
 "%d.%m.%Y  %H:%M - "
+
+msgid ""
+"\n"
+"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+msgstr ""
+"\n"
+"* Logs Speicherort: Log Einstellungen, Dateiname: Enigma2-hdmicec-[Datum].log"
 
 msgid ""
 "\n"
@@ -4094,6 +4101,9 @@ msgstr "Wählen Sie zwischen täglich, wöchentlich oder benutzerdefinierte Tage
 msgid "Choose dvb wait delay for ci response."
 msgstr ""
 
+msgid "Choose style of main menus"
+msgstr "Wählen Sie die Ansicht für das Hauptmenü."
+
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Wählen Sie das CI Protokoll, für CI Normal oder CIPlus Module."
 
@@ -4341,6 +4351,11 @@ msgstr "Komplex (Erlaubt das Mischen von Tonspuren und Formaten)"
 
 msgid "Composition of the recording filenames"
 msgstr "Dateinamen für Aufnahmen"
+
+#
+#, fuzzy
+msgid "Config"
+msgstr "Konfiguriere"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -8071,6 +8086,12 @@ msgstr "Hops:"
 
 #
 msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Horizontal icons"
+msgstr "Horizontal-Icons"
+
+msgid "Horizontal menu"
 msgstr "Horizontal"
 
 # satconfig.py
@@ -14478,22 +14499,6 @@ msgstr "Einstellungen Netzwerk"
 msgid "Setup menu"
 msgstr "Konfiguration"
 
-#
-msgid "Show Main Menu as"
-msgstr "Haupmenü-Ansicht"
-
-msgid "Choose style of main menus"
-msgstr "Wählen Sie die Ansicht für das Hauptmenü."
-
-msgid "Standard menu"
-msgstr "Standard"
-
-msgid "Horizontal menu"
-msgstr "Horizontal"
-
-msgid "Horizontal icons"
-msgstr "Horizontal-Icons"
-
 msgid "Setup mode"
 msgstr "Einstellungs-Ansicht"
 
@@ -14775,6 +14780,10 @@ msgstr "Zeige Log"
 # crashlog
 msgid "Show Log Manager in extensions list ?"
 msgstr "Zeige Log-Verwaltung in Erweiterungen?"
+
+#
+msgid "Show Main Menu as"
+msgstr "Haupmenü-Ansicht"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Medien Wiedergabe als verbleibende/verstrichene Zeit in"
@@ -15765,6 +15774,9 @@ msgstr "Standard (immer)"
 
 msgid "Standard list"
 msgstr ""
+
+msgid "Standard menu"
+msgstr "Standard"
 
 msgid "Standby"
 msgstr "Standby"
@@ -17055,9 +17067,7 @@ msgid "This option allows you to show menu number quick links."
 msgstr "Diese Option erlaubt es Ihnen, Nummern vor den Menüeinträgen für die Schnellanwahl anzuzeigen."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
-msgstr ""
-"Diese Option erlaubt es Ihnen, den Signalwert SNR in dB anzeigen zu lassen"
-" (nicht alle Receiver unterstützen diese Funktion)."
+msgstr "Diese Option erlaubt es Ihnen, den Signalwert SNR in dB anzeigen zu lassen (nicht alle Receiver unterstützen diese Funktion)."
 
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Mit dieser Option können Sie alle HDMI-Modi verwenden."
@@ -19237,9 +19247,6 @@ msgstr "Mit dieser Option können Sie die LED-Farbe einstellen oder die LED deak
 
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Mit dieser Einstellung kann man wahrscheinlich die Signalqualität verbessern oder Probleme beseitigen, die bei längeren HDMI Kabeln auftreten können."
-
-msgid "\n* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
-msgstr "\n* Logs Speicherort: Log Einstellungen, Dateiname: Enigma2-hdmicec-[Datum].log"
 
 #
 msgid "Without popup"
