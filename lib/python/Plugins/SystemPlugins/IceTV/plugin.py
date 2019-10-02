@@ -7,7 +7,8 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService
+from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
+from Tools.ServiceReference import service_types_tv_ref
 from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -487,8 +488,23 @@ class EPGFetcher(object):
         self.statusCleanup()
         return res
 
+    def getScanChanNameMap(self):
+        name_map = defaultdict(list)
+
+        serviceHandler = eServiceCenter.getInstance()
+        servicelist = serviceHandler.list(service_types_tv_ref)
+        if servicelist is not None:
+            serviceRef = servicelist.getNext()
+            while serviceRef.valid():
+                name = ServiceReference(serviceRef).getServiceName().decode("utf-8").strip()
+                name_map[name].append(tuple(serviceRef.getUnsignedData(i) for i in (3, 2, 1)))
+                serviceRef = servicelist.getNext()
+        return name_map
+
     def makeChanServMap(self, channels):
         res = defaultdict(list)
+        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().iteritems())
+
         for channel in channels:
             channel_id = long(channel["id"])
             triplets = []
@@ -501,6 +517,20 @@ class EPGFetcher(object):
                     (int(triplet["original_network_id"]),
                      int(triplet["transport_stream_id"]),
                      int(triplet["service_id"])))
+
+            names = [channel["name"].strip().upper()]
+            if "name_short" in channel:
+                name = channel["name_short"].strip().upper()
+                if name not in names:
+                    names.append(name)
+            for n in channel.get("known_names", []):
+                name = n.strip().upper()
+                if name not in names:
+                    names.append(name)
+
+            for triplets in (name_map[n] for n in names if n in name_map):
+                for triplet in (t for t in triplets if t not in res[channel_id]):
+                    res[channel_id].append(triplet)
         return res
 
     def serviceToIceChannelId(self, serviceref):
