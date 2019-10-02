@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-12 13:02+0000\n"
-"PO-Revision-Date: 2019-09-14 18:44+0300\n"
+"POT-Creation-Date: 2019-10-02 14:32+0000\n"
+"PO-Revision-Date: 2019-10-02 21:08+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.2.4\n"
 
 msgid ""
 "\n"
@@ -55,6 +55,13 @@ msgid ""
 msgstr ""
 "\n"
 "%Y/%m/%d  %H:%M - "
+
+msgid ""
+"\n"
+"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+msgstr ""
+"\n"
+"* Žurnalai: žurnalo nustatymai, failo vardas: Enigma2-hdmicec-[data].log"
 
 msgid ""
 "\n"
@@ -2350,6 +2357,9 @@ msgstr "Leisti nepalaikomus režimus"
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Leidžia koreguoti ekrano raiškos informacijos rodymo laiką."
 
+msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
+msgstr "Leidžia įjungti klaidų žurnalus. Juose yra labai išsami informacija apie visos sistemos darbą."
+
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Leidžia paslėpti žinomų failų tipų plėtinius."
 
@@ -3776,6 +3786,9 @@ msgstr "Pilna atsarginė kopija"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Kompleksinis (leidžia sumaišyti garso takelius ir formatus)"
+
+msgid "Config"
+msgstr "Konfigūravimas"
 
 msgid "Config file name (ok to change):"
 msgstr "Konfigūruoti failo pavadinimą (ok, kad keisti):"
@@ -5250,6 +5263,9 @@ msgstr "Įjungti automatinę greitą paiešką"
 msgid "Enable auto fast scan for %s"
 msgstr "Įjungti automatinę greitą paiešką %s"
 
+msgid "Enable debug log *"
+msgstr "Įjungti klaidų žurnalą *"
+
 msgid "Enable digital downmix"
 msgstr "Įjungti skaitmeninį suliejimą"
 
@@ -6551,6 +6567,12 @@ msgstr "Žingsniai:"
 
 msgid "Horizontal"
 msgstr "Horizontalus"
+
+msgid "Horizontal icons"
+msgstr "Horizontalūs logotipai"
+
+msgid "Horizontal menu"
+msgstr "Horizontalus meniu"
 
 msgid "Horizontal turning speed"
 msgstr "Horizontalus sukimosi greitis"
@@ -12333,6 +12355,9 @@ msgstr "Standartas (visada)"
 msgid "Standard list"
 msgstr "Standartinis sąrašas"
 
+msgid "Standard menu"
+msgstr "Standartinis meniu"
+
 msgid "Standby"
 msgstr "Budėjimo režimas"
 
@@ -12733,7 +12758,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-09-14"
+msgstr "Adga, v. 2019-10-02"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -17729,9 +17754,6 @@ msgstr "Leidžia %s %s pastoviai skaityti saugomus EPG duomenis."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Leidžia %s %s pastoviai išsaugoti EPG duomenis."
 
-msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
-msgstr "Leidžia įjungti klaidų žurnalus. Juose yra labai išsami informacija apie visos sistemos darbą."
-
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does. ('/tmp/twisted.log')"
 msgstr "Leidžia įjungti susukamą žurnalą. Juose yra labai išsami informacija apie viską, kas susukta. ('/tmp/twisted.log')"
 
@@ -17896,6 +17918,9 @@ msgstr "Kanalo EPG nustatymai"
 
 msgid "Check every (hours)"
 msgstr "Tikrinti kas (val.)"
+
+msgid "Choose style of main menus"
+msgstr "Pasirinkite pagrindinio meniu stilių"
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Pasirinkite rodomą datos formavimo stilių. 'D' / 'DD' yra data ir 'M' / 'MM' yra mėnuo skaitmenimis.  ('DD' ir 'MM' prieš vieno skaitmens skaičius įrašomi nuliai.) Bus rodoma taip, kaip pasirinksite, bet gali būti įtakojamas ir naudojamos aplinkos temos."
@@ -18404,9 +18429,6 @@ msgstr "Įjungti failų karpymo palaikymą ne*.ts failams"
 
 msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
 msgstr "Įjungti failų karpymo palaikymą ne*.ts failams (pvz.: mp4)"
-
-msgid "Enable debug log *"
-msgstr "Įjungti klaidų žurnalą *"
 
 msgid "Enable fallback remote receiver"
 msgstr "Įjungti atsarginį nuotolinį imtuvą"
@@ -19181,6 +19203,9 @@ msgstr "Rodyti HDMI išvesties rezoliuciją"
 
 msgid "Show Log Manager in extensions list ?"
 msgstr "Rodyti žurnalo tvarkyklę plėtinių sąraše?"
+
+msgid "Show Main Menu as"
+msgstr "Rodyti pagrindinį meniu kaip"
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Rodyti medijos atkūrime liko/praėjo kaip"
@@ -22162,10 +22187,6 @@ msgstr "Skaidrių rodymo laikas"
 
 #~ msgid "Show services beginning with"
 #~ msgstr "Rodyti kanalus, prasidedančius su"
-
-#, fuzzy
-#~ msgid "Show tag menu"
-#~ msgstr "rodyti etiketės meniu"
 
 #~ msgid "Single transponder"
 #~ msgstr "Vienintelis transponderis"
