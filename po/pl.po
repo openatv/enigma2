@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-07 10:53+0000\n"
-"PO-Revision-Date: 2019-09-19 11:28+0100\n"
+"PO-Revision-Date: 2019-10-2 19:28+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland <Mariusz1970@onet.eu>\n"
 "Language: pl\n"
@@ -52,6 +52,13 @@ msgid ""
 "\n"
 "%Y/%m/%d  %H:%M - "
 msgstr ""
+
+msgid ""
+"\n"
+"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+msgstr ""
+"\n"
+"* Lokalizacja dzienników: ustawienia dzienników, Nazwa pliku: Enigma2-hdmicec-[date].log"
 
 msgid ""
 "\n"
@@ -2409,10 +2416,10 @@ msgid "Allocate unused memory index"
 msgstr "Przydziel nieużywany indeks pamięci"
 
 msgid "Allow 10bit"
-msgstr ""
+msgstr "Pozwól 10bit"
 
 msgid "Allow 12bit"
-msgstr ""
+msgstr "Pozwól na 12bit"
 
 msgid "Allow quit movieplayer with exit"
 msgstr "Pozwól wyjść z odtwarzacza filmów"
@@ -2439,11 +2446,10 @@ msgid "Allows you to adjust the amount of time the resolution information displa
 msgstr "Pozwala określić,czy i jak długo ekran jest wyświetlany,gdy zmienia się rozdzielczość."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
-msgstr "Umożliwia włączenie dziennika zdarzeń.Zawiera on szczegółowe informacje o wszystkim co robi system."
+msgstr "Umożliwia włączenie dziennika debugowania. Zawierają bardzo szczegółowe informacje o wszystkim, co robi system."
 
-#, fuzzy
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does. ('/tmp/twisted.log')"
-msgstr "Umożliwia włączenie dziennika zdarzeń.Zawiera on szczegółowe informacje o wszystkim co robi system."
+msgstr "Umożliwia włączenie skręconego dziennika. Zawierają one bardzo szczegółowe informacje o wszystkim, co robi skręcony. ('/tmp/twisted.log')"
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Umożliwia na włączenie/wyłączenie wyświetlania ikon na panelu przednim."
@@ -2481,13 +2487,11 @@ msgstr "Również w trybie standby"
 msgid "Alternative"
 msgstr "Alternatywne"
 
-#, fuzzy
 msgid "Alternative 1"
-msgstr "Alternatywne"
+msgstr "Alternatywa 1"
 
-#, fuzzy
 msgid "Alternative 2"
-msgstr "Alternatywne"
+msgstr "Alternatywa 2"
 
 msgid "Alternative numbering mode"
 msgstr "Alternatywny tryb numeracji"
@@ -3892,6 +3896,9 @@ msgstr "Wybierz swoją Skórę"
 msgid "Choose Tuner"
 msgstr "Wybierz Tuner"
 
+msgid "Choose style of main menus"
+msgstr "Wybierz styl głównych menu"
+
 msgid "Choose a setting where your receiver wakes up from standby."
 msgstr "Wybierz ustawienie, w którym odbiornik budzi się z trybu gotowości."
 
@@ -4132,6 +4139,9 @@ msgstr "Kompleksowe (pozwala miksować ścieżki i rodzaje audio)"
 
 msgid "Composition of the recording filenames"
 msgstr "Składnia nazwy nagrania"
+
+msgid "Config"
+msgstr "Skonfiguruj"
 
 msgid "Config file name (ok to change):"
 msgstr "Skonfiguruj nazwę pliku (OK by zmienić)"
@@ -6123,6 +6133,9 @@ msgstr "Włącz automatyczne szybkie skanowanie"
 msgid "Enable auto fast scan for %s"
 msgstr "Włącz automatyczne szybkie skanowanie dla %s"
 
+msgid "Enable debug log *"
+msgstr "Włącz dziennik debugowania *"
+
 msgid "Enable blinking rec symbol on the LCD Display"
 msgstr "Tutaj można aktywować ikonę migającą nagrywania na wyświetlaczu"
 
@@ -6140,9 +6153,6 @@ msgstr "Włącz obsługę wycinania plików dla plików innych niż *.ts"
 
 msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
 msgstr "Włącz obsługę wycinania plików dla plików innych niż *.ts (n.p. mp4)"
-
-msgid "Enable debug log *"
-msgstr "Włącz dziennik debugowania *"
 
 msgid "Enable digital downmix"
 msgstr "Włącz cyfrowy downmix"
@@ -7608,6 +7618,12 @@ msgstr ""
 
 msgid "Horizontal"
 msgstr "Pozioma"
+
+msgid "Horizontal icons"
+msgstr "Poziome ikony"
+
+msgid "Horizontal menu"
+msgstr "Poziome menu"
 
 msgid "Horizontal turning speed"
 msgstr "Prędkość skrętu poziomego"
@@ -13714,6 +13730,9 @@ msgstr "Pokaż Log"
 msgid "Show Log Manager in extensions list ?"
 msgstr "Pokazać Log Managera na liście rozszerzeń ?"
 
+msgid "Show Main Menu as"
+msgstr "Pokaż menu główne jako"
+
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Pokaż w odtwarzaczu multimediów czas Pozostały/Upływający jako"
 
@@ -14639,6 +14658,9 @@ msgstr "Standardowo (zawsze)"
 msgid "Standard list"
 msgstr "Lista standardowa"
 
+msgid "Standard menu"
+msgstr "Standardowe menu"
+
 msgid "Standby"
 msgstr "Czuwanie"
 
@@ -15130,7 +15152,9 @@ msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "@djpimpek, @blzr, @marinner, @pololoko"
+msgstr ""
+"@djpimpek, @blzr, @marinner\n"
+"Poprawki: @pololoko111 - 02.10.2019"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Plik TS jest za duży dla ISO9660 level 1!"
@@ -17127,9 +17151,9 @@ msgstr "Wenezuela (Boliwariańska Republika)"
 msgid "Version"
 msgstr "Wersja"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s %s"
-msgstr "Wersja: %s"
+msgstr "Wersja %s %s"
 
 #, python-format
 msgid "Version:\t\t%s"
@@ -18748,13 +18772,11 @@ msgstr "gotowanie"
 msgid "copy"
 msgstr "kopiuj"
 
-#, fuzzy
 msgid "copy file"
-msgstr "Kopiowanie plików"
+msgstr "skopiować plik"
 
-#, fuzzy
 msgid "copy folder"
-msgstr "Wybierz foldery"
+msgstr "kopiuj folder"
 
 msgid "copy to bouquets"
 msgstr "kopiuj do bukietów"
@@ -18801,7 +18823,7 @@ msgid "disable"
 msgstr "wyłącz"
 
 msgid "disable move mode"
-msgstr "wyłącz tryb przenoszenia"
+msgstr "Wyłącz tryb przenoszenia"
 
 msgid "disabled"
 msgstr "wyłączony"
@@ -18813,7 +18835,7 @@ msgid "discussion/interview/debate"
 msgstr "rozmowa/wywiad/debata"
 
 msgid "display"
-msgstr ""
+msgstr "pokaż"
 
 msgid "do nothing"
 msgstr "nic nie rób"
@@ -18831,7 +18853,7 @@ msgid "done!"
 msgstr "gotowe!"
 
 msgid "drivers"
-msgstr ""
+msgstr "sterowniki"
 
 msgid "eMMC"
 msgstr ""
@@ -18840,7 +18862,7 @@ msgid "eSATA"
 msgstr ""
 
 msgid "east"
-msgstr ""
+msgstr "wschód"
 
 msgid "ecm time:"
 msgstr "czasy ecm:"
