@@ -16,19 +16,21 @@ from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, er
 from . import config, saveConfigFile, getIceTVDeviceType
 from boxbranding import getMachineBrand, getMachineName, getImageBuild
 
-_version_string = "20190921"
+_version_string = "20190930"
 _protocol = "http://"
-if getMachineBrand() == "BEYONWIZ":
-    _server = "api.icetv.com.au"
-else:
-    _server = "api.icetv.de"
 _device_type_id = getIceTVDeviceType()
 _debug_level = 0  # 1 = request/reply, 2 = 1+headers, 3 = 2+partial body, 4 = 2+full body
 
+print "[IceTV] server set to", config.plugins.icetv.server.name.value
+
+iceTVServers = {
+    _("Australia"): "api.icetv.com.au",
+    _("Germany"): "api.icetv.de",
+}
 
 def isServerReachable():
     try:
-        sock = create_connection((_server, 80), 3)
+        sock = create_connection((config.plugins.icetv.server.name.value, 80), 3)
         sock.shutdown(SHUT_RDWR)
         sock.close()
         return True
@@ -79,7 +81,7 @@ class Request(object):
             "Accept": "application/json",
             "User-Agent": "SystemPlugins.IceTV/%s (%s; %s; %s)" % (_version_string, getMachineBrand(), getMachineName(), getImageBuild()),
         }
-        self.url = _protocol + _server + resource
+        self.url = _protocol + config.plugins.icetv.server.name.value + resource
         self.data = {}
         self.response = None
 
@@ -288,3 +290,11 @@ class Timer(AuthRequest):
 
     def delete(self):
         return self.send("delete")
+
+
+class Scans(AuthRequest):
+    def __init__(self):
+        super(Scans, self).__init__("/scans")
+
+    def post(self):
+        return self.send("post")

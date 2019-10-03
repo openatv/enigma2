@@ -389,6 +389,152 @@ class GenresAUSIceTV:
 		),
 	}
 
+class GenresDEUIceTV:
+	maintype = (
+		_("Miscellaneous"),
+		_("Movie/Drama"),
+		_("News/Current Affairs"),
+		_("Show/Games show"),
+		_("Sports"),
+		_("Children/Youth"),
+		_("Music/Ballet/Dance"),
+		_("Arts/Culture"),
+		_("Social/Political/Economics"),
+		_("Education/Science/Factual"),
+		_("Leisure hobbies"),
+		_("Special"),
+		_("Comedy"),
+		_("Drama"),
+		_("Documentary"),
+		_("Real Life"),
+	)
+
+	subtype = {
+		# Miscellaneous
+		0: (
+			_(''),  # 0x00
+			_('Abenteuer'),  # 0x01
+			_('Zeichentrick'),  # 0x02 remapped from 0x01
+			_('Wissen'),  # 0x03 remapped from 0x01
+			_('Wirtschat'),  # 0x04 remapped from 0x01
+			_('Wintersport'),  # 0x05 remapped from 0x01
+			_('Wetter'),  # 0x06 remapped from 0x01
+			_('Western'),  # 0x07 remapped from 0x01
+			_('Werbung'),  # 0x08 remapped from 0x01
+			_('Wassersport'),  # 0x09 remapped from 0x01
+			_('Vorschau'),  # 0x0a remapped from 0x01
+			_('Volleyball'),  # 0x0b remapped from 0x01
+			_('Volksmusik'),  # 0x0c remapped from 0x01
+			_('Videoclip'),  # 0x0d remapped from 0x01
+			_('Verschiedenes'),  # 0x0e remapped from 0x01
+			_('US-Sport'),  # 0x0f remapped from 0x01
+		),
+		# Movie/Drama
+		1: (
+			_('Erotik'),  # 0x10 remapped from 0x01
+			_('Eishockey'),  # 0x11 remapped from 0x01
+			_('Drama'),  # 0x12 remapped from 0x01
+			_('Dokumentation'),  # 0x13 remapped from 0x01
+			_('Comedy'),  # 0x14
+			_('Dokumentarfilm'),  # 0x15 remapped from 0x01
+			_('Clips'),  # 0x16 remapped from 0x01
+			_('Boxen'),  # 0x17 remapped from 0x01
+			_('Bericht'),  # 0x18 remapped from 0x01
+			_('Anime'),  # 0x19 remapped from 0x01
+			_('Alternative'),  # 0x1a remapped from 0x01
+			_('Action'),  # 0x1b remapped from 0x01
+		),
+		# Sports
+		4: (
+			_('Sport'),  # 0x40
+		),
+		# Social/Political/Economics
+		8: (
+			_('Unused 0x80'),  # 0x80
+			_('Current Affairs'),  # 0x81
+		),
+		# Special
+		11: (
+			_('Special'),  # 0xb0
+		),
+		# Comedy
+		12: (
+			_('Comedy'),  # 0xc0
+			_('Reise'),  # 0xc1 remapped from 0x01
+			_('Reality'),  # 0xc2 remapped from 0x01
+			_('Ratgeber'),  # 0xc3 remapped from 0x01
+			_('Radsport'),  # 0xc4 remapped from 0x01
+			_('Pop'),  # 0xc5 remapped from 0x01
+			_('Politik'),  # 0xc6 remapped from 0x01
+			_('Olympia'),  # 0xc7 remapped from 0x01
+			_('Natur'),  # 0xc8 remapped from 0x01
+			_('Nachrichten'),  # 0xc9 remapped from 0x01
+			_('Mystery + Horror'),  # 0xca remapped from 0x01
+			_('Musik'),  # 0xcb remapped from 0x01
+			_('Musical'),  # 0xcc remapped from 0x01
+			_('Motorsport'),  # 0xcd remapped from 0x01
+			_('Motor + Verkehr'),  # 0xce remapped from 0x01
+			_('Magazin'),  # 0xcf remapped from 0x01
+		),
+		# Drama
+		13: (
+			_('Drama'),  # 0xd0
+			_('Leichtathletik'),  # 0xd1 remapped from 0x01
+			_('Kurzfilm'),  # 0xd2 remapped from 0x01
+			_('Kultur'),  # 0xd3 remapped from 0x01
+			_('Krimi'),  # 0xd4 remapped from 0x01
+			_('Krankenhaus'),  # 0xd5 remapped from 0x01
+			_('Kochshow'),  # 0xd6 remapped from 0x01
+			_('Klassik'),  # 0xd7 remapped from 0x01
+			_('Kino'),  # 0xd8 remapped from 0x01
+			_('Kinder'),  # 0xd9 remapped from 0x01
+			_('Jugend'),  # 0xda remapped from 0x01
+			_('Jazz'),  # 0xdb remapped from 0x01
+			_('Interview'),  # 0xdc remapped from 0x01
+			_('Information'),  # 0xdd remapped from 0x01
+			_('Humor'),  # 0xde remapped from 0x01
+			_('Homeshopping'),  # 0xdf remapped from 0x01
+		),
+		# Documentary
+		14: (
+			_('Documentary'),  # 0xe0
+			_('Heimwerken'),  # 0xe1 remapped from 0x01
+			_('Heimat'),  # 0xe2 remapped from 0x01
+			_('Handball'),  # 0xe3 remapped from 0x01
+			_('Gymnastik'),  # 0xe4 remapped from 0x01
+			_('Golf'),  # 0xe5 remapped from 0x01
+			_('Gesundheit'),  # 0xe6 remapped from 0x01
+			_('Geschichte'),  # 0xe7 remapped from 0x01
+			_('Gerichtsshow'),  # 0xe8 remapped from 0x01
+			_('Fu\xc3\x9fball'),  # 0xe9 remapped from 0x01
+			_('Filme'),  # 0xea remapped from 0x01
+			_('Fantasy'),  # 0xeb remapped from 0x01
+			_('Familien-Show'),  # 0xec remapped from 0x01
+			_('Familie'),  # 0xed remapped from 0x01
+			_('Extremsport'),  # 0xee remapped from 0x01
+			_('Event'),  # 0xef remapped from 0x01
+		),
+		# Real Life
+		15: (
+			_('Thriller'),  # 0xf0 remapped from 0x01
+			_('Theater'),  # 0xf1 remapped from 0x01
+			_('Tennis'),  # 0xf2 remapped from 0x01
+			_('Talkshows'),  # 0xf3 remapped from 0x01
+			_('Spielshows'),  # 0xf4 remapped from 0x01
+			_('Spielfilm'),  # 0xf5 remapped from 0x01
+			_('Soap'),  # 0xf6 remapped from 0x01
+			_('Shows'),  # 0xf7 remapped from 0x01
+			_('Show'),  # 0xf8 remapped from 0x01
+			_('Serien'),  # 0xf9 remapped from 0x01
+			_('Serie'),  # 0xfa remapped from 0x01
+			_('Science Fiction'),  # 0xfb remapped from 0x01
+			_('Romantik/Liebe'),  # 0xfc remapped from 0x01
+			_('Rock'),  # 0xfd remapped from 0x01
+			_('Reportagen'),  # 0xfe remapped from 0x01
+			_('Reportage'),  # 0xff remapped from 0x01
+		),
+	}
+
 def __getGenreStringMain(hn, ln, genres):
 	# if hn == 0:
 	# 	return _("Undefined content")
@@ -429,8 +575,9 @@ def __getGenreStringSubIceTV(hn, ln, genres):
 
 countries = {
 	"AUS": (__getGenreStringMain, __getGenreStringMain, GenresAUS()),
-	# Use illegal country name for IceTV so that it won't match a real country
+	# Use illegal country names for IceTV genre tables so that they won't match real countries
 	"AUSIceTV": (__getGenreStringMainIceTV, __getGenreStringSubIceTV, GenresAUSIceTV()),
+	"DEUIceTV": (__getGenreStringMainIceTV, __getGenreStringSubIceTV, GenresDEUIceTV()),
 }
 
 defaultGenre = GenresETSI()
@@ -442,8 +589,9 @@ maintype = defaultGenre.maintype
 subtype = defaultGenre.subtype
 
 def __remapCountry(country):
-	if country == "AUS" and hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
-		return "AUSIceTV"
+	iceTVCountry = country + "IceTV"
+	if iceTVCountry in countries and hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
+		return iceTVCountry
 	else:
 		return country
 
