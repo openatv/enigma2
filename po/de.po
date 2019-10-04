@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-12 13:02+0000\n"
+"POT-Creation-Date: 2019-10-02 14:32+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -55,6 +55,13 @@ msgid ""
 msgstr ""
 "\n"
 "%d.%m.%Y  %H:%M - "
+
+msgid ""
+"\n"
+"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+msgstr ""
+"\n"
+"* Logs Speicherort: Log Einstellungen, Dateiname: Enigma2-hdmicec-[Datum].log"
 
 msgid ""
 "\n"
@@ -2997,7 +3004,7 @@ msgstr "Automatische Scart-Umschaltung"
 
 #
 msgid "Auto(not available)"
-msgstr "Auto(nicht Verfügbar)"
+msgstr "Auto (nicht verfügbar)"
 
 #
 msgid "AutoMountManager"
@@ -4094,6 +4101,9 @@ msgstr "Wählen Sie zwischen täglich, wöchentlich oder benutzerdefinierte Tage
 msgid "Choose dvb wait delay for ci response."
 msgstr ""
 
+msgid "Choose style of main menus"
+msgstr "Wählen Sie die Ansicht für das Hauptmenü."
+
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Wählen Sie das CI Protokoll, für CI Normal oder CIPlus Module."
 
@@ -4341,6 +4351,11 @@ msgstr "Komplex (Erlaubt das Mischen von Tonspuren und Formaten)"
 
 msgid "Composition of the recording filenames"
 msgstr "Dateinamen für Aufnahmen"
+
+#
+#, fuzzy
+msgid "Config"
+msgstr "Konfiguriere"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -4605,7 +4620,7 @@ msgid "Configure the refresh rate of the screen."
 msgstr "Diese Option erlaubt es, die Bildwiederholrate einzustellen."
 
 msgid "Configure the screen resolution for teletext (Not all skins support full-HD teletext)."
-msgstr "Bestimmt die Videotext-Bildschirmauflösung (Nicht alle Skins unterstützen Full-HD Videotext)."
+msgstr "Bestimmt die Videotext-Bildschirmauflösung (nicht alle Skins unterstützen Full-HD Videotext)."
 
 msgid "Configure the second audio language."
 msgstr "Audio Sprachwahl 2 einstellen."
@@ -8071,6 +8086,12 @@ msgstr "Hops:"
 
 #
 msgid "Horizontal"
+msgstr "Horizontal"
+
+msgid "Horizontal icons"
+msgstr "Horizontal-Icons"
+
+msgid "Horizontal menu"
 msgstr "Horizontal"
 
 # satconfig.py
@@ -13968,7 +13989,7 @@ msgid "Select your Language for Audio/Subtitles"
 msgstr "Auswählen der Sprache für Audio/Untertitel."
 
 msgid "Select your country. If not available select 'all'."
-msgstr "Wähle Sie Ihr Land. Wenn nicht verfügbar, wählen Sie 'Alle'."
+msgstr "Wählen Sie Ihr Land. Wenn nicht verfügbar, wählen Sie 'Alle'."
 
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr "Wählen Sie Ihren Anbieter und die Region aus. Wenn Sie in dieser Liste nicht vorhanden sind, müssen Sie einen der anderen Service-Scan-Typen auswählen."
@@ -14478,22 +14499,6 @@ msgstr "Einstellungen Netzwerk"
 msgid "Setup menu"
 msgstr "Konfiguration"
 
-#
-msgid "Show Main Menu as"
-msgstr "Haupmenü-Ansicht"
-
-msgid "Choose style of main menus"
-msgstr "Wählen Sie die Ansicht für das Hauptmenü."
-
-msgid "Standard menu"
-msgstr "Standard"
-
-msgid "Horizontal menu"
-msgstr "Horizontal"
-
-msgid "Horizontal icons"
-msgstr "Horizontal-Icons"
-
 msgid "Setup mode"
 msgstr "Einstellungs-Ansicht"
 
@@ -14776,6 +14781,10 @@ msgstr "Zeige Log"
 msgid "Show Log Manager in extensions list ?"
 msgstr "Zeige Log-Verwaltung in Erweiterungen?"
 
+#
+msgid "Show Main Menu as"
+msgstr "Hauptmenü-Ansicht"
+
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Medien Wiedergabe als verbleibende/verstrichene Zeit in"
 
@@ -14903,7 +14912,7 @@ msgid "Show channel selection"
 msgstr "Zeige die Sendergruppen"
 
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
-msgstr "Zeige Kapitelpositionen für unterstützte Videodateien an. ( Ab GStreamer Version 1 )"
+msgstr "Zeige Kapitelpositionen für unterstützte Videodateien an (ab GStreamer Version 1)."
 
 msgid "Show columns"
 msgstr "Spalten einblenden"
@@ -14977,7 +14986,7 @@ msgid "Show files backed up by default"
 msgstr "Zeigt Dateien, die grundsätzlich gesichert werden"
 
 msgid "Show graphical multi EPG"
-msgstr "Grafisches Multi-EPG anzeigen"
+msgstr "Grafischen Multi-EPG anzeigen"
 
 msgid "Show help"
 msgstr "Hilfe anzeigen"
@@ -15028,7 +15037,7 @@ msgid "Show job tasks in extensions"
 msgstr "Zeige Job Tasks in Erweiterungen"
 
 msgid "Show live tv when movie stopped"
-msgstr "Zeige LiveTV wenn der Film beendet ist"
+msgstr "Zeige Live-TV wenn der Film beendet ist"
 
 msgid "Show marked events"
 msgstr "Markierte Ereignisse anzeigen"
@@ -15257,7 +15266,7 @@ msgid "Shows available softcams. Here you can download and install them"
 msgstr "Zeige verfügbare Softcams, die Sie installieren können."
 
 msgid "Shows live tv or informations on LCD."
-msgstr "Zeige aktuelles TV oder Information auf den LCD."
+msgstr "Zeige Live-TV oder Information auf dem LCD."
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Hier können Sie einstellen, ob und wie neue oder nicht angesehene Filme in der Filmliste angezeigt werden sollen."
@@ -15765,6 +15774,9 @@ msgstr "Standard (immer)"
 
 msgid "Standard list"
 msgstr ""
+
+msgid "Standard menu"
+msgstr "Standard"
 
 msgid "Standby"
 msgstr "Standby"
@@ -17055,9 +17067,7 @@ msgid "This option allows you to show menu number quick links."
 msgstr "Diese Option erlaubt es Ihnen, Nummern vor den Menüeinträgen für die Schnellanwahl anzuzeigen."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
-msgstr ""
-"Diese Option erlaubt es Ihnen, den Signalwert SNR in dB anzeigen zu lassen"
-" (nicht alle Receiver unterstützen diese Funktion)."
+msgstr "Diese Option erlaubt es Ihnen, den Signalwert SNR in dB anzeigen zu lassen (nicht alle Receiver unterstützen diese Funktion)."
 
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Mit dieser Option können Sie alle HDMI-Modi verwenden."
@@ -17519,7 +17529,7 @@ msgid "Toggle HDMI-In full screen"
 msgstr "HDMI-In im Vollbildmodus wiedergeben"
 
 msgid "Toggle LCD LiveTV"
-msgstr "Umschalten LCD/LiveTV"
+msgstr "Umschalten LCD/Live-TV"
 
 msgid "Toggle PIPzap"
 msgstr "Bild im Bild umschalten"
@@ -19019,7 +19029,7 @@ msgid "When enabled, a recording is allowed to abort streaming, when there are n
 msgstr "Wenn aktiviert, werden Streamings bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
-msgstr "Wenn aktiviert, darf eine Aufnahme das live TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
+msgstr "Wenn aktiviert, darf eine Aufnahme das Live-TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Wenn 'Ja' ausgewählt wird, wird eine Warnung angezeigt und Sie können optional Timeshift stoppen oder fortführen."
@@ -19238,9 +19248,6 @@ msgstr "Mit dieser Option können Sie die LED-Farbe einstellen oder die LED deak
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr "Mit dieser Einstellung kann man wahrscheinlich die Signalqualität verbessern oder Probleme beseitigen, die bei längeren HDMI Kabeln auftreten können."
 
-msgid "\n* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
-msgstr "\n* Logs Speicherort: Log Einstellungen, Dateiname: Enigma2-hdmicec-[Datum].log"
-
 #
 msgid "Without popup"
 msgstr "Ohne Meldung"
@@ -19274,7 +19281,7 @@ msgid "Www long"
 msgstr "www lang"
 
 msgid "XBox 360 support"
-msgstr "Ünterstützung für XBox 360"
+msgstr "Unterstützung für XBox 360"
 
 msgid "XP1000"
 msgstr ""
@@ -21930,7 +21937,7 @@ msgstr "Umschalten"
 #~ msgstr ""
 #~ " nicht gestartet!!\n"
 #~ "\n"
-#~ "Der Dateiname der CAM muß in der Startzeile enthalten sein\n"
+#~ "Der Dateiname der CAM muss in der Startzeile enthalten sein\n"
 #~ "Prüfen Sie Ihre EMU-Startdatei"
 
 #~ msgid " extensions."
@@ -24521,10 +24528,10 @@ msgstr "4 Stunden"
 #~ msgstr "EPG Einstellungen"
 
 #~ msgid "Setup Graphical InfobarEPG"
-#~ msgstr "Grafisches Infoleisten-EPG einstellen"
+#~ msgstr "Grafischen Infoleisten-EPG einstellen"
 
 #~ msgid "Setup GraphicalEPG"
-#~ msgstr "Grafisches EPG"
+#~ msgstr "Grafischen EPG einstellen"
 
 #~ msgid "Setup InfobarEPG"
 #~ msgstr "Infoleisten-EPG einstellen"
@@ -25070,7 +25077,7 @@ msgstr "4 Stunden"
 #~ "\n"
 #~ "------------------------  WICHTIG !!!  ------------------------\n"
 #~ "Stellen Sie sicher, dass ein USB Stick angeschlossen ist bevor Sie USB auswählen.\n"
-#~ "Auf dem USB-Stick muß eine Datei mit dem Namen\n"
+#~ "Auf dem USB-Stick muss eine Datei mit dem Namen\n"
 #~ "backupstick oder backupstick.txt vorhanden sein."
 
 # ImageBackup.py
