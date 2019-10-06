@@ -507,7 +507,7 @@ class EPGFetcher(object):
         for name, triplets in name_map.items():
             for triplet in triplets:
                 if triplet in triplet_map:
-		    for id in triplet_map[triplet]:
+                    for id in triplet_map[triplet]:
                         scan_list.append({"channel_id": id, "channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
                 else:
                     scan_list.append({"channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
@@ -521,14 +521,14 @@ class EPGFetcher(object):
         if servicelist is not None:
             serviceRef = servicelist.getNext()
             while serviceRef.valid():
-                name = ServiceReference(serviceRef).getServiceName().strip()
+                name = ServiceReference(serviceRef).getServiceName().decode("utf-8").strip()
                 name_map[name].append(tuple(serviceRef.getUnsignedData(i) for i in (3, 2, 1)))
                 serviceRef = servicelist.getNext()
         return name_map
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
-        name_map = self.getScanChanNameMap()
+        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().iteritems())
 
         for channel in channels:
             channel_id = long(channel["id"])
@@ -543,13 +543,17 @@ class EPGFetcher(object):
                      int(triplet["transport_stream_id"]),
                      int(triplet["service_id"])))
 
-            names = [channel["name"].strip().encode("utf8")]
+            names = [channel["name"].strip().upper()]
+            if "name_short" in channel:
+                name = channel["name_short"].strip().upper()
+                if name not in names:
+                    names.append(name)
             for n in channel.get("known_names", []):
-                name = n.strip().encode("utf8")
-                if name != names[0]:
+                name = n.strip().upper()
+                if name not in names:
                     names.append(name)
 
-            for name, triplets in ((n, name_map[n]) for n in names if n in name_map):
+            for triplets in (name_map[n] for n in names if n in name_map):
                 for triplet in (t for t in triplets if t not in res[channel_id]):
                     res[channel_id].append(triplet)
         return res

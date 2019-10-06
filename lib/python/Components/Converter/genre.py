@@ -589,11 +589,13 @@ maintype = defaultGenre.maintype
 subtype = defaultGenre.subtype
 
 def __remapCountry(country):
-	iceTVCountry = country + "IceTV"
-	if iceTVCountry in countries and hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
-		return iceTVCountry
-	else:
-		return country
+	if hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
+		if not country:
+			country = config.plugins.icetv.member.country.value
+		iceTVCountry = country + "IceTV"
+		if iceTVCountry in countries:
+			return iceTVCountry
+	return country
 
 def getGenreStringMain(hn, ln, country=None):
 	countryInfo = countries.get(__remapCountry(country), defaultCountryInfo)
@@ -609,7 +611,7 @@ def getGenreStringLong(hn, ln, country=None):
 	if hn == 15 and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
 		return _("User defined") + " " + str(ln)
 	main = getGenreStringMain(hn, ln, country=country)
-	sub = getGenreStringSub(hn, ln)
+	sub = getGenreStringSub(hn, ln, country=country)
 	if main and main != sub:
 		return main + ": " + sub
 	else:
