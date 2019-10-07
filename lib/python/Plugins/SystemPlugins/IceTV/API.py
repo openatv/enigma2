@@ -290,3 +290,11 @@ class Timer(AuthRequest):
 
     def delete(self):
         return self.send("delete")
+
+
+class Scans(AuthRequest):
+    def __init__(self):
+        super(Scans, self).__init__("/scans")
+
+    def post(self):
+        return self.send("post")

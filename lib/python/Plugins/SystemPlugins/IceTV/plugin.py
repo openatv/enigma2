@@ -256,6 +256,7 @@ class EPGFetcher(object):
         config.plugins.icetv.refresh_interval.addNotifier(self.freqChanged, initial_call=False, immediate_feedback=False)
         self.fetch_timer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
         self.log = deque(maxlen=40)
+        self.send_scans = False
         # TODO: channel_service_map should probably be locked in case the user edits timers at the time of a fetch
         # Then again, the GIL may actually prevent issues here.
         self.channel_service_map = None
@@ -418,13 +419,14 @@ class EPGFetcher(object):
         self.log.append(logMsg)
         print "[IceTV]", logMsg
 
-    def createFetchJob(self, res=None):
+    def createFetchJob(self, res=None, send_scans=False):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
             global password_requested
             if password_requested:
                 self.addLog(_("Can not proceed - you need to login first"))
                 return
             # print "[IceTV] Create fetch job"
+            self.send_scans = self.send_scans or send_scans
             reactor.callInThread(self.doWork)
 
     def doWork(self):
@@ -445,6 +447,9 @@ class EPGFetcher(object):
         except (Exception) as ex:
             _logResponseException(self, _("Can not retrieve channel map"), ex)
             return False
+        if self.send_scans:
+            self.postScans()
+            self.send_scans = False
         try:
             shows = self.getShows()
             channel_show_map = self.makeChanShowMap(shows["shows"])
@@ -487,6 +492,26 @@ class EPGFetcher(object):
         self.deferredPostStatus(None)
         self.statusCleanup()
         return res
+
+    def getTriplets(self):
+        name_map = self.getScanChanNameMap()
+        if not self.channel_service_map or not name_map:
+            return None
+
+        triplet_map = defaultdict(list)
+        scan_list = []
+
+        for id, triplets in self.channel_service_map.items():
+            for triplet in triplets:
+                triplet_map[triplet].append(id)
+        for name, triplets in name_map.items():
+            for triplet in triplets:
+                if triplet in triplet_map:
+                    for id in triplet_map[triplet]:
+                        scan_list.append({"channel_id": id, "channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
+                else:
+                    scan_list.append({"channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
+        return scan_list or None
 
     def getScanChanNameMap(self):
         name_map = defaultdict(list)
@@ -888,6 +913,20 @@ class EPGFetcher(object):
             _logResponseException(self, _("Can not update timer status"), ex)
         self.deferredPostStatus(timer)
 
+    def postScans(self):
+        scan_list = self.getTriplets()
+        print "[EPGFetcher] postScans", scan_list is not None
+        if scan_list is None:
+            return
+        try:
+            req = ice.Scans()
+            req.data["scans"] = scan_list
+            res = req.post()
+            print "[EPGFetcher] postScans", res
+        except (IOError, RuntimeError, KeyError) as ex:
+            _logResponseException(self, _("Can not post scan information"), ex)
+
+
 fetcher = None
 
 def sessionstart_main(reason, session, **kwargs):
@@ -914,6 +953,10 @@ def plugin_main(session, **kwargs):
         fetcher = EPGFetcher()
     session.open(IceTVMain)
 
+def after_scan(**kwargs):
+    if fetcher is not None:
+        fetcher.createFetchJob(send_scans=True)
+
 def Plugins(**kwargs):
     res = []
     res.append(
@@ -931,6 +974,13 @@ def Plugins(**kwargs):
             description=_("IceTV version %s") % ice._version_string,
             icon="icon.png",
             fnc=plugin_main
+        ))
+    res.append(
+        PluginDescriptor(
+            name="IceTV",
+            where=PluginDescriptor.WHERE_SERVICESCAN,
+            description=_("IceTV version %s") % ice._version_string,
+            fnc=after_scan
         ))
     return res
 
@@ -1362,7 +1412,7 @@ class IceTVLogin(Screen):
             config.plugins.icetv.configured.value = True
             config.plugins.icetv.last_update_time.value = 0
             enableIceTV()
-            fetcher.createFetchJob()
+            fetcher.createFetchJob(send_scans=True)
         except (IOError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Login failure"), ex)
             self["instructions"].setText(_("There was an error while trying to login."))
