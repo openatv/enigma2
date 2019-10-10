@@ -1,12 +1,12 @@
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 16.04.1 LTS (GNU/3.14.32-xxxx-grs-ipv6-64)
+> Ubuntu 18.04.1 LTS (Kernel 4.15.0)
 
-## openATV 6.3 is build using oe-alliance build-environment and several git repositories: ##
+## openATV 6.4 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.3](https://github.com/oe-alliance/oe-alliance-core/tree/4.3 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.4](https://github.com/oe-alliance/oe-alliance-core/tree/4.4 "OE-Alliance")
 > 
-> [https://github.com/openatv/enigma2/tree/6.3](https://github.com/openatv/enigma2/tree/6.3 "openATV E2")
+> [https://github.com/openatv/enigma2/tree/6.4](https://github.com/openatv/enigma2/tree/6.4 "openATV E2")
 > 
 > [https://github.com/openatv/MetrixHD](https://github.com/openatv/MetrixHD "openATV Skin")
 
@@ -19,7 +19,9 @@
 
 1 - Install packages on your buildserver
 
-    sudo apt-get install -y autoconf automake bison bzip2 curl cvs diffstat flex g++ gawk gcc gettext git-core gzip help2man ncurses-bin ncurses-dev libc6-dev libtool make texinfo patch perl pkg-config subversion tar texi2html wget zlib1g-dev chrpath libxml2-utils xsltproc libglib2.0-dev python-setuptools zip info coreutils diffstat chrpath libproc-processtable-perl libperl4-corelibs-perl sshpass default-jre default-jre-headless java-common libserf-dev qemu quilt libssl-dev ----------
+    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-8 gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev 
+----------
+
 2 - Set your shell to /bin/bash.
 
     sudo dpkg-reconfigure dash
@@ -27,56 +29,60 @@
     select "NO"
 
 ----------
-3 - Add user openatvbuilder
+3 - Use update-alternatives for having gcc redirected automatically to gcc-8
+
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+
+----------
+4 - modify max_user_watches
+
+    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+
+    sysctl -n -w fs.inotify.max_user_watches=524288
+
+----------
+5 - Add user openatvbuilder
 
     sudo adduser openatvbuilder
 
 ----------
-4 - Switch to user openatvbuilder
+6 - Switch to user openatvbuilder
 
     su openatvbuilder
 
 ----------
-5 - Switch to home of openatvbuilder
+7 - Switch to home of openatvbuilder
 
     cd ~
 
 ----------
-6 - Create folder openatv
+8 - Create folder openatv
 
     mkdir -p ~/openatv
 
 ----------
-7 - Switch to folder openatv
+9 - Switch to folder openatv
 
     cd openatv
 
 ----------
-8 - Clone oe-alliance git
+10 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.3
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.4
 
 ----------
-9 - Switch to folder build-enviroment
+11 - Switch to folder build-enviroment
 
     cd build-enviroment
 
 ----------
-10 - Update build-enviroment
+12 - Update build-enviroment
 
     make update
 
 ----------
-11 - Finally you can start building a image
+13 - Finally you can start building a image
 
-    MACHINE=mutant2400 DISTRO=openatv DISTRO_TYPE=release make image
-
-----------
-12 - Optional Infos
-
-    ERROR: No space left on device or exceeds fs.inotify.max_user_watches?
-
-    change value to:
-    echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
-    sysctl -n -w fs.inotify.max_user_watches=524288
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make image
 

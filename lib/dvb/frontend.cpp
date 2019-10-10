@@ -1400,6 +1400,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		|| strstr(m_description, "BCM73625 (G3)")
 		|| strstr(m_description, "BCM45208")
 		|| strstr(m_description, "BCM45308")
+		|| strstr(m_description, "BCM3158")
 		)
 	{
 		ret = (snr * 100) >> 8;
@@ -1407,6 +1408,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strcmp(m_description, "ATBM781x"))
 	{
 		ret = snr*10;
+	}
+	else if (!strcmp(m_description, "ATBM7821 DVB-T2/C")) //SF8008
+	{
+		ret = snr*10;
+		ter_max = cab_max = 4200;
 	}
 	else if (strstr(m_description, "Si2166B"))
 	{

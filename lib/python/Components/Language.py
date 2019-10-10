@@ -54,7 +54,7 @@ class Language:
 		self.addLanguage("Lietuvių", "lt", "LT", "ISO-8859-15")
 		self.addLanguage("Latviešu", "lv", "LV", "ISO-8859-15")
 		self.addLanguage("Nederlands", "nl", "NL", "ISO-8859-15")
-		self.addLanguage("Norsk Bokmål","nb", "NO", "ISO-8859-15")
+		self.addLanguage("Norsk Bokmål", "nb", "NO", "ISO-8859-15")
 		self.addLanguage("Norsk", "no", "NO", "ISO-8859-15")
 		self.addLanguage("Polski", "pl", "PL", "ISO-8859-15")
 		self.addLanguage("Português", "pt", "PT", "ISO-8859-15")
@@ -68,6 +68,7 @@ class Language:
 		self.addLanguage("ภาษาไทย", "th", "TH", "ISO-8859-15")
 		self.addLanguage("Türkçe", "tr", "TR", "ISO-8859-15")
 		self.addLanguage("Українська", "uk", "UA", "ISO-8859-15")
+		self.addLanguage("Tiếng Việt", "vi", "VN", "UTF-8")
 
 	def addLanguage(self, name, lang, country, encoding):
 		try:

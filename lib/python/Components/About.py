@@ -138,7 +138,7 @@ def getCpuCoresString():
 					if getMachineBuild() in ('gbmv200','u51','u52','u53','u532','u533','u54','u55','u56','vuultimo4k','u5','u5pvr','h9','h9combo','h10','alien5','cc1','sf8008','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','vuduo4k','multibox'):
 						cores = 4
 					elif getMachineBuild() in ('u41','u42','u43'):
-						cores = 2
+						cores = 1
 					elif int(splitted[1]) > 0:
 						cores = 2
 					else:

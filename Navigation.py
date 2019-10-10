@@ -1,4 +1,4 @@
-from os import path
+from os import path, remove
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Components.config import config
@@ -55,6 +55,14 @@ class Navigation:
 		self.__wasTimerWakeup = False
 		self.__wasRecTimerWakeup = False
 		self.__wasPowerTimerWakeup = False
+
+		if not path.exists("/etc/enigma2/.deep"): #flag file comes from "/usr/bin/enigma2.sh"
+			print "="*100
+			print "[NAVIGATION] Receiver does not start from Deep Standby - skip wake up detection"
+			print "="*100
+			self.gotopower()
+			return
+		remove("/etc/enigma2/.deep")
 
 		#wakeup data
 		now = time()

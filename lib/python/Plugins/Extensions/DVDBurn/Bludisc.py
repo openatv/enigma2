@@ -279,7 +279,7 @@ class GenericPostcondition(Condition):
 		if hasattr(task, "error_text"):
 			error_text = task.error_text
 		else:
-			error_text = _("An unknown error occured!")
+			error_text = _("An unknown error occurred!")
 		return '%s (%s)' % (task.name, error_text)
 
 class CreateStructureTask(Task):

@@ -16,14 +16,14 @@ from enigma import eTimer, fbClass
 import os, urllib2, shutil, math, time, zipfile, shutil
 
 
-from boxbranding import getImageDistro, getMachineBuild
+from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName
 
 feedserver = 'images.mynonpublic.com'
 feedurl = 'http://%s/%s' %(feedserver, getImageDistro())
-imagecat = [3.0,4.0,4.1,4.2,5.0,5.1,5.2,5.3,6.0,6.1,6.2,6.3]
+imagecat = [3.0,4.0,4.1,4.2,5.0,5.1,5.2,5.3,6.0,6.1,6.2,6.3,6.4]
 
 def checkimagefiles(files):
-	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) == 2
+	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) >= 2
 
 class FlashOnline(Screen):
 	skin = """
@@ -326,11 +326,11 @@ class FlashImage(Screen):
 					if isDevice or 'no_backup' == retval:
 						self.startBackupsettings(retval)
 					else:
-						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
+						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"), simple=True)
 				except:
 					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 			else:
-				self.session.openWithCallback(self.abort, MessageBox, _("Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
+				self.session.openWithCallback(self.abort, MessageBox, _("Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 		else:
 			self.abort()
 
@@ -346,6 +346,7 @@ class FlashImage(Screen):
 
 	def flashPostAction(self, retval = True):
 		if retval:
+			self.recordcheck = False
 			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
 			choices = ((_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
 			(_("Clean (Just flash and start clean)"), "wizard"),
@@ -378,11 +379,25 @@ class FlashImage(Screen):
 			index = 1
 		return index
 
+	def recordWarning(self, answer):
+		if answer:
+			self.postFlashActionCallback(self.answer)
+		else:
+			self.abort()
+
 	def postFlashActionCallback(self, answer):
 		restoreSettings   = False
 		restoreAllPlugins = False
 		restoreSettingsnoPlugin = False
 		if answer is not None:
+			if answer[1] != "abort" and not self.recordcheck:
+				self.recordcheck = True
+				rec = self.session.nav.RecordTimer.isRecording()
+				next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
+				if rec or (next_rec_time > 0 and (next_rec_time - time.time()) < 360):
+					self.answer = answer
+					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + '\n' + _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()), default=False)
+					return
 			if answer[1] == "restoresettings":
 				restoreSettings   = True
 			if answer[1] == "restoresettingsnoplugin":
@@ -529,8 +544,6 @@ class FlashImage(Screen):
 					print "[FlashImage] detect Kernel:",self.MTDKERNEL
 					print "[FlashImage] detect rootfs:",self.MTDROOTFS
 					command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
-				elif getMachineBuild() in ("hd60","hd61","h9combo","h10","multibox"): # issue with framebuffer force reboot after flashing
-					command = "/usr/bin/ofgwrite -f -r -k -m%s %s" % (self.multibootslot, imagefiles)
 				else:
 					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
 			elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u532","u533","u54","u56"): # issue detect kernel device

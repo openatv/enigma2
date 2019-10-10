@@ -3,6 +3,7 @@ import os
 
 from enigma import eEnv, getDesktop
 from re import compile
+from stat import S_IMODE
 
 pathExists = os.path.exists
 isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
@@ -109,12 +110,9 @@ def resolveFilename(scope, base="", path_prefix=None):
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_fallback_%d" % getDesktop(0).size().height()),
-			# NOTE: "skin_<resolution>" has been replace by the "skin_fallback_<resolution>" to reduce confusion!
-			#       The previous name is now deprecated and will be removed when the repositories are updated.
-			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_%d" % getDesktop(0).size().height()),  # Deprecated!
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
-			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
-			defaultPaths[SCOPE_SKIN][0]  # Deprecated top level of SCOPE_SKIN directory.
+			defaultPaths[SCOPE_SKIN][0],
+			defaultPaths[SCOPE_CONFIG][0]  # Deprecated top level of SCOPE_CONFIG directory.
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
@@ -132,12 +130,9 @@ def resolveFilename(scope, base="", path_prefix=None):
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", skin),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], skin),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_fallback_%s" % getDesktop(1).size().height()),
-			# NOTE: "skin_<resolution>" has been replace by the "skin_fallback_<resolution>" to reduce confusion!
-			#       The previous name is now deprecated and will be removed when the repositories are updated.
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_%d" % getDesktop(0).size().height()),  # Deprecated!
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
-			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
-			defaultPaths[SCOPE_LCDSKIN][0]  # Deprecated top level of SCOPE_LCDSKIN directory.
+			defaultPaths[SCOPE_LCDSKIN][0],
+			defaultPaths[SCOPE_CONFIG][0]  # Deprecated top level of SCOPE_CONFIG directory.
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
@@ -159,8 +154,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], display),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
 			defaultPaths[SCOPE_FONTS][0],
-			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),  # Deprecated skin in SCOPE_CONFIG directory.
-			os.path.join(defaultPaths[SCOPE_CONFIG][0], display)  # Deprecated display in SCOPE_CONFIG directory.
+			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
+			os.path.join(defaultPaths[SCOPE_CONFIG][0], display)
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
@@ -337,11 +332,16 @@ def copyfile(src, dst):
 		f2.close()
 	try:
 		st = os.stat(src)
-		mode = os.stat.S_IMODE(st.st_mode)
-		os.chmod(dst, mode)
-		os.utime(dst, (st.st_atime, st.st_mtime))
+		try:
+			os.chmod(dst, S_IMODE(st.st_mode))
+		except OSError, e:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
+		try:
+			os.utime(dst, (st.st_atime, st.st_mtime))
+		except OSError, e:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
 	except OSError, e:
-		print "[Directories] Error %d: Copying stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
 	return status
 
 def copytree(src, dst, symlinks=False):
@@ -367,11 +367,16 @@ def copytree(src, dst, symlinks=False):
 			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (e.errno, srcname, dstname, os.strerror(e.error))
 	try:
 		st = os.stat(src)
-		mode = os.stat.S_IMODE(st.st_mode)
-		os.chmod(dst, mode)
-		os.utime(dst, (st.st_atime, st.st_mtime))
+		try:
+			os.chmod(dst, S_IMODE(st.st_mode))
+		except OSError, e:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
+		try:
+			os.utime(dst, (st.st_atime, st.st_mtime))
+		except OSError, e:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
 	except OSError, e:
-		print "[Directories] Error %d: Copying stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.error))
 
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)

@@ -103,7 +103,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="5,0" size="471,320">
-		<widget source="session.CurrentService" render="LcdPicon" position="118,0" zPosition="2" size="236,160" alphatest="on">
+		<widget source="session.CurrentService" render="LcdPicon" position="118,0" zPosition="2" size="236,142" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,111" size="115,51" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
@@ -380,7 +380,7 @@
 		<widget source="parent.selectedChoice" render="Label" position="0,180" size="471,37" font="FdLcD;26" foregroundColor="#F4FA58" halign="center" noWrap="1" />
 	</screen>
 	<screen name="AboutSummary" position="5,0" size="471,320">
-		<widget source="AboutText" render="Label" position="0,0" size="471,320" font="FdLcD;11" />
+		<widget source="parent.Title" render="Label" position="0,0" size="471,320" font="FdLcD;34" foregroundColor="#F4FA58" halign="center" valign="center" />
 	</screen>
 <!-- LocationBox_summary -->
 	<screen name="LocationBox_summary" position="5,0" size="471,320">

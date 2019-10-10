@@ -33,7 +33,9 @@ LOCAL_EXTENSIONS.update(((ext[1:], "txt") for ext in TEXT_EXTENSIONS if ext[1:] 
 EXTENSIONS = BASE_EXTENSIONS.copy()
 EXTENSIONS.update(LOCAL_EXTENSIONS)
 
-imagePath = resolveFilename(SCOPE_PLUGINS, base="Extensions/FileCommander/images/")
+imagePath = resolveFilename(SCOPE_CURRENT_SKIN, 'FCimages')
+if not os.path.isdir(imagePath):
+	imagePath = resolveFilename(SCOPE_PLUGINS, base="Extensions/FileCommander/images/")
 
 def getPNGByExt(name):
 	basename, ext = os.path.splitext(name)

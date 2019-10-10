@@ -151,7 +151,7 @@ class task_postconditions(Condition):
 			msg_out = ''
 			if task_Stout:
 				msg_out = '\n\n' + '\n'.join(task_Stout[lines:])
-			message += _("Run script") + _(" ('%s') ends successefully.") %task.name + msg_out
+			message += _("Run script") + _(" ('%s') ends successfully.") %task.name + msg_out
 
 		task_Stout = []
 		task_Sterr = []
@@ -395,7 +395,7 @@ class key_actions(stat_info):
 			if (yfile.st_size < 1000000):
 				self.session.open(vEditor, self.commando)
 
-		if answer and answer != "VIEW":
+		if answer and answer not in ("NO","VIEW"):
 			if answer.endswith('_BG'):
 				global task_Stout, task_Sterr
 				task_Stout = []

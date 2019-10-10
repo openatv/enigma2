@@ -57,7 +57,7 @@ p = Popen("opkg list-upgradable", stdout=PIPE, stderr=PIPE, shell=True)
 stdout, stderr = p.communicate()
 
 if stderr <> "":
-	print "Error occured:", stderr
+	print "Error occurred:", stderr
 	exit
 
 # read configuration

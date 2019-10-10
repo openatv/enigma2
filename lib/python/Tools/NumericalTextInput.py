@@ -35,7 +35,7 @@ MAPPINGS = (
 	(u"ghi4GHI", u"GHI4", u"ghi4", u"ghi4GHI", u"GHI4", u"ghi4", u"4", u"4", u"4", u"4Dd", u"4D", u"4d", u"4Ee", u"4E", u"4e"),
 	(u"jkl5JKL", u"JKL5", u"jkl5", u"jkl5JKL", u"JKL5", u"jkl5", u"5", u"5", u"5", u"5Ee", u"5E", u"5e", u"5Ff", u"5F", u"5f"),
 	(u"mno6MNO", u"MNO6", u"mno6", u"mno6MNO", u"MNO6", u"mno6", u"6", u"6", u"6", u"6Ff", u"6F", u"6f", u"6", u"6", u"6"),
-	(u"pqrs7PQRS", u"PQRS7", u"pqrs7", u"pqrs6PQRS", u"PQRS7", u"pqrs7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7"),
+	(u"pqrs7PQRS", u"PQRS7", u"pqrs7", u"pqrs7PQRS", u"PQRS7", u"pqrs7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7", u"7"),
 	(u"tuv8TUV", u"TUV8", u"tuv8", u"tuv8TUV", u"TUV8", u"tuv8", u"8", u"8", u"8", u"8", u"8", u"8", u"8", u"8", u"8"),
 	(u"wxyz9WXYZ", u"WXYZ9", u"wxyz9", u"wxyz9WXYZ", u"WXYZ9", u"wxyz9", u"9", u"9", u"9", u"9", u"9", u"9", u"9", u"9", u"9")
 )
@@ -189,13 +189,13 @@ LOCALES = {
 		(None, None, None),
 		(None, None, None),
 		(u"\u0430\u0431\u0432\u0433\u0491abc2\u0410\u0411\u0412\u0413\u0490ABC", u"\u0410\u0411\u0412\u0413\u0490ABC2", u"\u0430\u0431\u0432\u0433\u0491abc2"),
-		(u"\u0434\u0435\u0454\u0436\u0437def3\u0414\u0415\u0404\u0416\u0417DEF", u"\u0414\u0415\u0404\u0416\u0417\u0401DEF3", u"\u0434\u0435\u0454\u0436\u0437\u0451def3"),
+		(u"\u0434\u0435\u0454\u0436\u0437def3\u0414\u0415\u0404\u0416\u0417DEF", u"\u0414\u0415\u0404\u0416\u0417\u0401DEF3", u"\u0434\u0435\u0454\u0436\u0437def3"),
 		(u"\u0438\u0456\u0457\u0439\u043A\u043Bghi4\u0418\u0406\u0407\u0419\u041A\u041BGHI", u"\u0418\u0406\u0407\u0419\u041A\u041BGHI4", u"\u0438\u0456\u0457\u0439\u043A\u043Bghi4"),
 		(u"\u043C\u043D\u043E\u043Fjkl5\u041C\u041D\u041E\u041FJKL", u"\u041C\u041D\u041E\u041FDJKL5", u"\u043C\u043D\u043E\u043Fjkl5"),
-		(u"\u0440\u0441\u0442\u0443mno6\u0420\u0421\u0422\u0423MNO", u"\u0420\u0421\u0422\u0423\u040EMNO6", u"\u0440\u0441\u0442\u0443mno6"),
+		(u"\u0440\u0441\u0442\u0443mno6\u0420\u0421\u0422\u0423MNO", u"\u0420\u0421\u0422\u0423MNO6", u"\u0440\u0441\u0442\u0443mno6"),
 		(u"\u0444\u0445\u0446\u0447pqrs7\u0424\u0425\u0426\u0427PQRS", u"\u0424\u0425\u0426\u0427PQRS7", u"\u0444\u0445\u0446\u0447pqrs7"),
 		(u"\u0448\u0449tuv8\u0428\u0429TUV", u"\u0428\u0429TUV8", u"\u0448\u0449tuv8"),
-		(u"\u044E\u044F\u044Cwxyz9\u042E\u042F\u042CWXYZ", u"\u042E\u042F\u042CWXYZ9", u"\u044E\u044F\u044C\u044Dwxyz9")
+		(u"\u044E\u044F\u044Cwxyz9\u042E\u042F\u042CWXYZ", u"\u042E\u042F\u042CWXYZ9", u"\u044E\u044F\u044Cwxyz9")
 	)
 }
 

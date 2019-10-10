@@ -74,7 +74,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Load Default Settings"), config.hdmicec.default_settings, _('helptext'), 'refreshlist'))
 			self.list.append(getConfigListEntry(_("Regard deep standby as standby"), config.hdmicec.handle_deepstandby_events, _('helptext'),'refreshlist'))
 			if config.hdmicec.advanced_settings.value and config.hdmicec.handle_deepstandby_events.value and config.workaround.deeprecord.value:
-				self.list.append(getConfigListEntry(tab + _("Wait for timesync at startup"), config.hdmicec.deepstandby_waitfortimesync, _("If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."), ))
+				self.list.append(getConfigListEntry(tab + _("Wait for timesync at startup"), config.hdmicec.deepstandby_waitfortimesync, _("If the 'deep standby workaround' is enabled, it waits until the system time is synchronized. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."), ))
 			self.list.append(getConfigListEntry(_("Put TV in standby"), config.hdmicec.control_tv_standby, _('helptext'),'refreshlist'))
 			if config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_standby.value:
 				self.list.append(getConfigListEntry(tab + _("Even if TV has another input active?"), config.hdmicec.tv_standby_notinputactive, _('You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby.'), ))
@@ -106,6 +106,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Ignore unexpectedly wakeup and stay in standby"), config.hdmicec.workaround_turnbackon, _("This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."),))
 				if fileExists("/proc/stb/hdmi/preemphasis"):
 					self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables.'),))
+			self.list.append(getConfigListEntry(_("Enable debug log *"), config.hdmicec.debug, _('Allows you to enable the debug log. They contain very detailed information of everything the system does.') + _("\n* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"), ))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)

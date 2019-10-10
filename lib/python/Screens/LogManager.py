@@ -413,7 +413,7 @@ class LogManager(Screen):
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
-			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = 'Additonal Info')
+			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = _("Additional Info"))
 
 	def doSendlog(self, additonalinfo = None):
 		ref = str(time())
@@ -512,7 +512,7 @@ class LogManagerViewLog(Screen):
 			font = gFont("Regular", int(16*sf))
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
-		listwidth = int(self["list"].instance.size().width() / fontwidth) - 2
+		listwidth = int(self["list"].instance.size().width() / fontwidth)
 		if path.exists(self.logfile):
 			for line in file(self.logfile ).readlines():
 				line = line.replace('\t',' '*9)
@@ -525,7 +525,7 @@ class LogManagerViewLog(Screen):
 						self.log.append(a)
 						if len(line[pos+listwidth-offset:]):
 							pos += listwidth-offset
-							offset = 19
+							offset = 20
 						else:
 							readyline = False
 				else:
@@ -637,11 +637,11 @@ class LogInfo(VariableText, GUIComponent):
 		if self.type == self.USED:
 			try:
 				if total_size < 10000000:
-					total_size = "%d kB" % (total_size >> 10)
+					total_size = _("%d kB") % (total_size >> 10)
 				elif total_size < 10000000000:
-					total_size = "%d MB" % (total_size >> 20)
+					total_size = _("%d MB") % (total_size >> 20)
 				else:
-					total_size = "%d GB" % (total_size >> 30)
+					total_size = _("%d GB") % (total_size >> 30)
 				self.setText(_("Space used:") + " " + total_size)
 			except:
 				# occurs when f_blocks is 0 or a similar error
