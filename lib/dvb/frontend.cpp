@@ -1400,6 +1400,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		|| strstr(m_description, "BCM73625 (G3)")
 		|| strstr(m_description, "BCM45208")
 		|| strstr(m_description, "BCM45308")
+		|| strstr(m_description, "BCM3158")
 		)
 	{
 		ret = (snr * 100) >> 8;
