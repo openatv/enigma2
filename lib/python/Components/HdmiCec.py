@@ -1180,10 +1180,10 @@ class HdmiCec:
 				files.append(msgfile)
 			ceccmd = self.CECreadfile(cmdfile).strip().split(":")
 			self.CECremovefiles(files)
-			if not len(ceccmd):
-				e = "empty input file!"
+			if len(ceccmd) == 1 and not ceccmd[0]:
+				e = "Empty input file!"
 				self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" %e, True)
-				txt = "occurred error: %s\n" %e
+				txt = "%s\n" %e
 				self.CECwritefile(errfile, "w", txt)
 			elif ceccmd[0] in ("help", "?"):
 				internaltxt = "  Available internal commands: "
@@ -1215,6 +1215,8 @@ class HdmiCec:
 				self.CECwritefile(hlpfile, "w", txt)
 			else:
 				try:
+					if not ceccmd[0] or (ceccmd[0] and len(ceccmd[0].strip()) > 2):
+						raise Exception("Wrong address detected - '%s'" %ceccmd[0])
 					address = int(ceccmd[0] or "0",16)
 					if len(ceccmd) > 1:
 						if ceccmd[1] in CECintcmd.keys():
@@ -1232,7 +1234,6 @@ class HdmiCec:
 									data += str(struct.pack("B", int(d or "0",16)))
 							if config.hdmicec.debug.value:
 								self.CECdebug('Tx', address, cmd, data, len(data))
-							self.CECremovefiles(files)
 							eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 						self.cmdWaitTimer.startLongTimer(waittime)
 				except Exception, e:
