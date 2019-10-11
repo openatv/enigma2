@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-07-07 10:53+0000\n"
-"PO-Revision-Date: 2019-10-2 19:28+0100\n"
+"PO-Revision-Date: 2019-10-11 19:28+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland <Mariusz1970@onet.eu>\n"
 "Language: pl\n"
@@ -998,24 +998,24 @@ msgstr "%d minut"
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d szerokość pikseli"
+msgstr[1] "%d szerokośći pikseli"
+msgstr[2] "%d szerokośćą pikseli"
 
 #, python-format
 msgid "%d sec"
-msgstr ""
+msgstr "%d sek"
 
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekunda"
-msgstr[1] "%d sekundy"
-msgstr[2] "%d sekund"
+msgstr[1] "%d sekund"
+msgstr[2] "%d sekundy"
 
 #, python-format
 msgid "%d times"
-msgstr ""
+msgstr "%d czasy"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -14987,7 +14987,7 @@ msgid "Swap Size:"
 msgstr "Rozmiar Swap:"
 
 msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr ""
+msgstr "Zamień przyciski prawo/lewo z kanałem plus/minus lub przycisk kanału zmieniany zawsze z boku."
 
 msgid "Swap services"
 msgstr "Okno PiP <---Zamiana Kanału--> Główne Okno"
@@ -15112,9 +15112,8 @@ msgstr ""
 msgid "System Info"
 msgstr ""
 
-#, fuzzy
 msgid "System Message Check"
-msgstr "Wiadomość systemowa"
+msgstr "Kontrola Komunikatów Systemowych"
 
 msgid "System Setup"
 msgstr "Konfiguracja Systemu"
@@ -15153,8 +15152,7 @@ msgstr ""
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"@djpimpek, @blzr, @marinner\n"
-"Poprawki: @pololoko111 - 02.10.2019"
+"@djpimpek, @blzr, @marinner, @pololoko111"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Plik TS jest za duży dla ISO9660 level 1!"
@@ -15189,9 +15187,8 @@ msgstr "Tadżykistan"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania"
 
-#, fuzzy
 msgid "Task list"
-msgstr "Lista pakietów"
+msgstr "Lista zadań"
 
 msgid "Teletext"
 msgstr "Teletext"
@@ -16891,8 +16888,13 @@ msgid "Use FreeSat EPG information when it is available."
 msgstr "Użyć informacji EPG FreeSat gdy dostępne."
 
 msgid "Use HDMI-preemphasis"
-msgstr "Użyj HDMI"
+msgstr "Użyj wstępnego wyróżnienia HDMI"
 
+msgid "Enable command line function"
+msgstr "Włącz funkcję wiersza poleceń"
+
+msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
+msgstr "Aktywuj sposób wysyłania indywidualnych lub określonych wewnętrznych poleceń HDMI-CEC z wiersza poleceń. Wpisz w wierszu polecenia 'echo help > %s' , a następnie przeczytaj plik '%s' , aby uzyskać krótką pomoc."
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Zastosowanie twardego dysku w trybie czuwania(Timer)"
 
@@ -19443,7 +19445,7 @@ msgid "no storage devices found"
 msgstr "nie znaleziono urządzenia magazynującego"
 
 msgid "none"
-msgstr "żaden"
+msgstr "brak"
 
 msgid "normal"
 msgstr "normalny"
