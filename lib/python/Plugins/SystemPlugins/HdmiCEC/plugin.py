@@ -106,6 +106,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Ignore unexpectedly wakeup and stay in standby"), config.hdmicec.workaround_turnbackon, _("This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."),))
 				if fileExists("/proc/stb/hdmi/preemphasis"):
 					self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables.'),))
+			self.list.append(getConfigListEntry(_("Enable command line function"), config.hdmicec.commandline, _("Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help.") %(Components.HdmiCec.cmdfile,Components.HdmiCec.hlpfile), ))
 			self.list.append(getConfigListEntry(_("Enable debug log *"), config.hdmicec.debug, _('Allows you to enable the debug log. They contain very detailed information of everything the system does.') + _("\n* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"), ))
 
 		self["config"].list = self.list
