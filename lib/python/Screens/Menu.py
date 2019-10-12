@@ -13,7 +13,6 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_CURRENT_SKIN
 from enigma import eTimer
 from Components.Pixmap import Pixmap, MovingPixmap
-from Components.Sources.StaticText import StaticText
 from Components.Button import Button
 from Tools.LoadPixmap import LoadPixmap
 import os
@@ -26,26 +25,26 @@ mainmenu = _("Main menu")
 lastMenuID = None
 
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
-        png = png_cache.get(entryID, None)
-        if png is None:
-                pngPath = resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/' + entryID + '.png')
-                pos = config.skin.primary_skin.value.rfind('/')
-                if pos > -1:
-                        current_skin = config.skin.primary_skin.value[:pos + 1]
-                else:
-                        current_skin = ''
-                if current_skin in pngPath and current_skin or not current_skin:
-                        png = LoadPixmap(pngPath, cached=True)
-                if png is None:
-                        if lastMenuID is not None:
-                                png = png_cache.get(lastMenuID, None)
-                png_cache[entryID] = png
-        if png is None:
-                png = png_cache.get('missing', None)
-                if png is None:
-                        png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/missing.png'), cached=True)
-                        png_cache['missing'] = png
-        return png
+	png = png_cache.get(entryID, None)
+	if png is None:
+		pngPath = resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/' + entryID + '.png')
+		pos = config.skin.primary_skin.value.rfind('/')
+		if pos > -1:
+			current_skin = config.skin.primary_skin.value[:pos + 1]
+		else:
+			current_skin = ''
+		if current_skin in pngPath and current_skin or not current_skin:
+			png = LoadPixmap(pngPath, cached=True)
+		if png is None:
+			if lastMenuID is not None:
+				png = png_cache.get(lastMenuID, None)
+			png_cache[entryID] = png
+	if png is None:
+		png = png_cache.get('missing', None)
+		if png is None:
+			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/missing.png'), cached=True)
+			png_cache['missing'] = png
+	return png
 
 # read the menu
 file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
@@ -314,18 +313,18 @@ class Menu(Screen, ProtectedScreen):
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
-                skfile = '/usr/share/enigma2/' + config.skin.primary_skin.value
-                f1 = open(skfile, 'r')
-                self.sktxt = f1.read()
-                f1.close()
-                if menuID is not None:
-                        if '<screen name="Animmain" ' in self.sktxt and config.usage.menutype.value == 'horzanim':
-                                self.skinName.append('Animmain')
-                        elif '<screen name="Iconmain" ' in self.sktxt and config.usage.menutype.value == 'horzicon':
-                                if '<screen name="Iconmain" ' in self.sktxt:
-                                        self.skinName.append('Iconmain')
-                        else:
-                                self.skinName.append('menu_' + menuID)
+		if 'horz' in config.usage.menutype.value:
+			skfile = '/usr/share/enigma2/' + config.skin.primary_skin.value
+			f1 = open(skfile, 'r')
+			self.sktxt = f1.read()
+			f1.close()
+		if menuID is not None:
+			if config.usage.menutype.value == 'horzanim' and '<screen name="Animmain" ' in self.sktxt:
+				self.skinName.append('Animmain')
+			elif config.usage.menutype.value == 'horzicon' and '<screen name="Iconmain" ' in self.sktxt:
+				self.skinName.append('Iconmain')
+			else:
+				self.skinName.append('menu_' + menuID)
 		self.skinName.append("Menu")
 		self.menuID = menuID
 		ProtectedScreen.__init__(self)
@@ -364,7 +363,7 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			# Sort by Weight
 			m_list.sort(key=lambda x: int(x[3]))
-		
+
 		if config.usage.menu_show_numbers.value:
 			m_list = [(str(x[0] + 1) + " " +x[1][0], x[1][1], x[1][2]) for x in enumerate(m_list)]
 
@@ -438,23 +437,22 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			t_history.thistory = t_history.thistory + str(a) + ' > '
 
-                if '<screen name="Animmain" ' in self.sktxt and config.usage.menutype.value == 'horzanim':
-                        self.onShown.append(self.openTestA)
-                elif '<screen name="Iconmain" ' in self.sktxt and config.usage.menutype.value == 'horzicon':
-                        if '<screen name="Iconmain" ' in self.sktxt:
-                                self.onShown.append(self.openTestB)
+		if config.usage.menutype.value == 'horzanim' and '<screen name="Animmain" ' in self.sktxt:
+			self.onShown.append(self.openTestA)
+		elif config.usage.menutype.value == 'horzicon' and '<screen name="Iconmain" ' in self.sktxt:
+			self.onShown.append(self.openTestB)
 
 		self.number = 0
 		self.nextNumberTimer = eTimer()
 		self.nextNumberTimer.callback.append(self.okbuttonClick)
 
-        def openTestA(self):
-                self.session.open(AnimMain, self.list, self.menu_title)
-                self.close()
+	def openTestA(self):
+		self.session.open(AnimMain, self.list, self.menu_title)
+		self.close()
 
-        def openTestB(self):
-                self.session.open(IconMain, self.list, self.menu_title)
-                self.close()
+	def openTestB(self):
+		self.session.open(IconMain, self.list, self.menu_title)
+		self.close()
 
 	def isProtected(self):
 		if config.ParentalControl.setuppinactive.value:
@@ -617,9 +615,9 @@ class Menu(Screen, ProtectedScreen):
 			idx = 0
 			for x in self.list:
 				self.sub_menu_sort.changeConfigValue(x[2], "sort", i)
-				if len(x) >= 5:
+				if len(x) >= 7:
 					entry = list(x)
-					entry[4] = i
+					entry[6] = i
 					entry = tuple(entry)
 					self.list.pop(idx)
 					self.list.insert(idx, entry)
@@ -652,7 +650,7 @@ class Menu(Screen, ProtectedScreen):
 				if entry in m_list:
 					m_list.remove(entry)
 		if not len(m_list):
-			m_list.append(('', None, 'dummy', '10', 10, '', None))
+			m_list.append(('', None, 'dummy', '10', '', None, 10))
 		m_list.sort(key=lambda listweight: int(listweight[6]))
 		self.list = list(m_list)
 
@@ -668,428 +666,413 @@ class Menu(Screen, ProtectedScreen):
 
 class AnimMain(Screen):
 
-        def __init__(self, session, tlist, menuTitle):
-                Screen.__init__(self, session)
-                self.skinName = 'Animmain'
-                self.tlist = tlist
-                ipage = 1
-                list = []
-                nopic = len(tlist)
-                self.pos = []
-                self.index = 0
-                title = menuTitle
-                self['title'] = Button(title)
-                list = []
-                tlist = []
-                self['label1'] = StaticText()
-                self['label2'] = StaticText()
-                self['label3'] = StaticText()
-                self['label4'] = StaticText()
-                self['label5'] = StaticText()
-                self['red'] = Button(_('Exit'))
-                self['green'] = Button(_('Select'))
-                self['yellow'] = Button(_('Config'))
-                self['actions'] = NumberActionMap(['OkCancelActions',
-                 'MenuActions',
-                 'DirectionActions',
-                 'NumberActions',
-                 'ColorActions'], {'ok': self.okbuttonClick,
-                 'cancel': self.closeNonRecursive,
-                 'left': self.key_left,
-                 'right': self.key_right,
-                 'up': self.key_up,
-                 'down': self.key_down,
-                 'red': self.cancel,
-                 'green': self.okbuttonClick,
-                 'yellow': self.key_menu,
-                 'menu': self.closeRecursive,
-                 '1': self.keyNumberGlobal,
-                 '2': self.keyNumberGlobal,
-                 '3': self.keyNumberGlobal,
-                 '4': self.keyNumberGlobal,
-                 '5': self.keyNumberGlobal,
-                 '6': self.keyNumberGlobal,
-                 '7': self.keyNumberGlobal,
-                 '8': self.keyNumberGlobal,
-                 '9': self.keyNumberGlobal})
-                nop = len(self.tlist)
-                self.nop = nop
-                nh = 1
-                if nop == 1:
-                        nh = 1
-                elif nop == 2:
-                        nh = 2
-                elif nop == 3:
-                        nh = 2
-                elif nop == 4:
-                        nh = 3
-                elif nop == 5:
-                        nh = 3
-                else:
-                        nh = int(float(nop) / 2)
-                self.index = nh
-                i = 0
-                self.onShown.append(self.openTest)
+	def __init__(self, session, tlist, menuTitle):
+		Screen.__init__(self, session)
+		self.skinName = 'Animmain'
+		self.tlist = tlist
+		ipage = 1
+		list = []
+		nopic = len(tlist)
+		self.pos = []
+		self.index = 0
+		title = menuTitle
+		self['title'] = Button(title)
+		list = []
+		tlist = []
+		self['label1'] = StaticText()
+		self['label2'] = StaticText()
+		self['label3'] = StaticText()
+		self['label4'] = StaticText()
+		self['label5'] = StaticText()
+		self['red'] = Button(_('Exit'))
+		self['green'] = Button(_('Select'))
+		self['yellow'] = Button(_('Config'))
+		self['actions'] = NumberActionMap(['OkCancelActions',
+		 'MenuActions',
+		 'DirectionActions',
+		 'NumberActions',
+		 'ColorActions'], {'ok': self.okbuttonClick,
+		 'cancel': self.closeNonRecursive,
+		 'left': self.key_left,
+		 'right': self.key_right,
+		 'up': self.key_up,
+		 'down': self.key_down,
+		 'red': self.cancel,
+		 'green': self.okbuttonClick,
+		 'yellow': self.key_menu,
+		 'menu': self.closeRecursive,
+		 '1': self.keyNumberGlobal,
+		 '2': self.keyNumberGlobal,
+		 '3': self.keyNumberGlobal,
+		 '4': self.keyNumberGlobal,
+		 '5': self.keyNumberGlobal,
+		 '6': self.keyNumberGlobal,
+		 '7': self.keyNumberGlobal,
+		 '8': self.keyNumberGlobal,
+		 '9': self.keyNumberGlobal})
+		nop = len(self.tlist)
+		self.nop = nop
+		nh = 1
+		if nop == 1:
+				nh = 1
+		elif nop == 2:
+				nh = 2
+		elif nop == 3:
+				nh = 2
+		elif nop == 4:
+				nh = 3
+		elif nop == 5:
+				nh = 3
+		else:
+				nh = int(float(nop) / 2)
+		self.index = nh
+		i = 0
+		self.onShown.append(self.openTest)
 
-        def key_menu(self):
-                pass
+	def key_menu(self):
+		pass
 
-        def cancel(self):
-                self.close()
+	def cancel(self):
+		self.close()
 
-        def paintFrame(self):
-                pass
+	def paintFrame(self):
+		pass
 
-        def getname(self, name):
-                if 'AutoBouquetsMaker' in name:
-                        name = 'AutoBouquets\nMakerProvider'
-                if len(name) > 14:
-                        if '-' in name or '/' in name or ' ' in name:
-                                name = name.replace('-', '/')
-                                name = name.replace(' /', '/')
-                                name = name.replace('/ ', '/')
-                                name = name.replace(' ', '\n')
-                        else:
-                                name = name[:14] + '/' + name[12:]
-                if 'A/V' not in name:
-                        name = name.replace('/', '\n')
-                if 'di\n' in name:
-                        name = name.replace('di\n', 'di ')
-                if 'de\n' in name:
-                        name = name.replace('de\n', 'de ')
-                if 'la\n' in name:
-                        name = name.replace('la\n', 'la ')
-                return name
+	def getname(self, name):
+		if 'AutoBouquetsMaker' in name:
+			name = 'AutoBouquets\nMakerProvider'
+		if len(name) > 14:
+			if '-' in name or '/' in name or ' ' in name:
+				name = name.replace('-', '/')
+				name = name.replace(' /', '/')
+				name = name.replace('/ ', '/')
+				name = name.replace(' ', '\n')
+			else:
+				name = name[:14] + '/' + name[12:]
+		if 'A/V' not in name:
+			name = name.replace('/', '\n')
+		if 'di\n' in name:
+			name = name.replace('di\n', 'di ')
+		if 'de\n' in name:
+			name = name.replace('de\n', 'de ')
+		if 'la\n' in name:
+			name = name.replace('la\n', 'la ')
+		return name
 
-        def openTest(self):
-                i = self.index
-                if i - 3 > -1:
-                        name1 = self.getname(self.tlist[i - 3][0])
-                else:
-                        name1 = ' '
-                if i - 2 > -1:
-                        name2 = self.getname(self.tlist[i - 2][0])
-                else:
-                        name2 = ' '
-                name3 = self.getname(self.tlist[i - 1][0])
-                if i < self.nop:
-                        name4 = self.getname(self.tlist[i][0])
-                else:
-                        name4 = ' '
-                if i + 1 < self.nop:
-                        name5 = self.getname(self.tlist[i + 1][0])
-                else:
-                        name5 = ' '
-                self['label1'].setText(name1)
-                self['label2'].setText(name2)
-                self['label3'].setText(name3)
-                self['label4'].setText(name4)
-                self['label5'].setText(name5)
+	def openTest(self):
+		i = self.index
+		if i - 3 > -1:
+			name1 = self.getname(self.tlist[i - 3][0])
+		else:
+			name1 = ' '
+		if i - 2 > -1:
+			name2 = self.getname(self.tlist[i - 2][0])
+		else:
+			name2 = ' '
+		name3 = self.getname(self.tlist[i - 1][0])
+		if i < self.nop:
+			name4 = self.getname(self.tlist[i][0])
+		else:
+			name4 = ' '
+		if i + 1 < self.nop:
+			name5 = self.getname(self.tlist[i + 1][0])
+		else:
+			name5 = ' '
+		self['label1'].setText(name1)
+		self['label2'].setText(name2)
+		self['label3'].setText(name3)
+		self['label4'].setText(name4)
+		self['label5'].setText(name5)
 
-        def key_left(self):
-                self.index -= 1
-                if self.index < 1:
-                        self.index = 1
-                        return
-                self.openTest()
+	def key_left(self):
+		self.index -= 1
+		if self.index < 1:
+			self.index = 1
+			return
+		self.openTest()
 
-        def key_right(self):
-                self.index += 1
-                if self.index > self.nop:
-                        self.index = self.nop
-                        return
-                self.openTest()
+	def key_right(self):
+		self.index += 1
+		if self.index > self.nop:
+				self.index = self.nop
+				return
+		self.openTest()
 
-        def key_up(self):
-                pass
+	def key_up(self):
+		self.key_left()
 
-        def key_down(self):
-                pass
+	def key_down(self):
+		self.key_right()
 
-        def keyNumberGlobal(self, number):
-                number -= 1
-                if len(self['menu'].list) > number:
-                        self['menu'].setIndex(number)
-                        self.okbuttonClick()
+	def keyNumberGlobal(self, number):
+		number -= 1
+		if len(self['menu'].list) > number:
+			self['menu'].setIndex(number)
+			self.okbuttonClick()
 
-        def closeNonRecursive(self):
-                self.close(False)
+	def keyNumberGlobal(self, number):
+		number -= 1
+		if len(self['menu'].list) > number:
+			self['menu'].setIndex(number)
+			self.okbuttonClick()
 
-        def closeRecursive(self):
-                self.close(True)
+	def closeNonRecursive(self):
+		self.close(False)
 
-        def createSummary(self):
-                pass
+	def closeRecursive(self):
+		self.close(True)
 
-        def keyNumberGlobal(self, number):
-                number -= 1
-                if len(self['menu'].list) > number:
-                        self['menu'].setIndex(number)
-                        self.okbuttonClick()
+	def createSummary(self):
+		pass
 
-        def closeNonRecursive(self):
-                self.close(False)
-
-        def closeRecursive(self):
-                self.close(True)
-
-        def createSummary(self):
-                pass
-
-        def okbuttonClick(self):
-                idx = self.index - 1
-                selection = self.tlist[idx]
-                if selection is not None:
-                        selection[1]()
-
+	def okbuttonClick(self):
+		idx = self.index - 1
+		selection = self.tlist[idx]
+		if selection is not None:
+			selection[1]()
 
 class IconMain(Screen):
 
-        def __init__(self, session, tlist, menuTitle):
-                Screen.__init__(self, session)
-                self.skinName = 'Iconmain'
-                self.tlist = tlist
-                ipage = 1
-                list = []
-                nopic = len(self.tlist)
-                self.pos = []
-                self.ipage = 1
-                self.index = 0
-                title = menuTitle
-                self['title'] = Button(title)
-                self.icons = []
-                self.indx = []
-                n1 = len(tlist)
-                self.picnum = n1
-                list = []
-                tlist = []
-                self['label1'] = StaticText()
-                self['label2'] = StaticText()
-                self['label3'] = StaticText()
-                self['label4'] = StaticText()
-                self['label5'] = StaticText()
-                self['label6'] = StaticText()
-                self['label1s'] = StaticText()
-                self['label2s'] = StaticText()
-                self['label3s'] = StaticText()
-                self['label4s'] = StaticText()
-                self['label5s'] = StaticText()
-                self['label6s'] = StaticText()
-                self['pointer'] = Pixmap()
-                self['pixmap1'] = Pixmap()
-                self['pixmap2'] = Pixmap()
-                self['pixmap3'] = Pixmap()
-                self['pixmap4'] = Pixmap()
-                self['pixmap5'] = Pixmap()
-                self['pixmap6'] = Pixmap()
-                self['red'] = Button(_('Exit'))
-                self['green'] = Button(_('Select'))
-                self['yellow'] = Button(_('Config'))
-                self['actions'] = NumberActionMap(['OkCancelActions',
-                 'MenuActions',
-                 'DirectionActions',
-                 'NumberActions',
-                 'ColorActions'], {'ok': self.okbuttonClick,
-                 'cancel': self.closeNonRecursive,
-                 'left': self.key_left,
-                 'right': self.key_right,
-                 'up': self.key_up,
-                 'down': self.key_down,
-                 'red': self.cancel,
-                 'green': self.okbuttonClick,
-                 'yellow': self.key_menu,
-                 'menu': self.closeRecursive,
-                 '1': self.keyNumberGlobal,
-                 '2': self.keyNumberGlobal,
-                 '3': self.keyNumberGlobal,
-                 '4': self.keyNumberGlobal,
-                 '5': self.keyNumberGlobal,
-                 '6': self.keyNumberGlobal,
-                 '7': self.keyNumberGlobal,
-                 '8': self.keyNumberGlobal,
-                 '9': self.keyNumberGlobal})
-                self.index = 0
-                i = 0
-                self.maxentry = 29
-                self.istart = 0
-                i = 0
-                self.onShown.append(self.openTest)
+	def __init__(self, session, tlist, menuTitle):
+		Screen.__init__(self, session)
+		self.skinName = 'Iconmain'
+		self.tlist = tlist
+		ipage = 1
+		list = []
+		nopic = len(self.tlist)
+		self.pos = []
+		self.ipage = 1
+		self.index = 0
+		title = menuTitle
+		self['title'] = Button(title)
+		self.icons = []
+		self.indx = []
+		n1 = len(tlist)
+		self.picnum = n1
+		list = []
+		tlist = []
+		self['label1'] = StaticText()
+		self['label2'] = StaticText()
+		self['label3'] = StaticText()
+		self['label4'] = StaticText()
+		self['label5'] = StaticText()
+		self['label6'] = StaticText()
+		self['label1s'] = StaticText()
+		self['label2s'] = StaticText()
+		self['label3s'] = StaticText()
+		self['label4s'] = StaticText()
+		self['label5s'] = StaticText()
+		self['label6s'] = StaticText()
+		self['pointer'] = Pixmap()
+		self['pixmap1'] = Pixmap()
+		self['pixmap2'] = Pixmap()
+		self['pixmap3'] = Pixmap()
+		self['pixmap4'] = Pixmap()
+		self['pixmap5'] = Pixmap()
+		self['pixmap6'] = Pixmap()
+		self['red'] = Button(_('Exit'))
+		self['green'] = Button(_('Select'))
+		self['yellow'] = Button(_('Config'))
+		self['actions'] = NumberActionMap(['OkCancelActions',
+		 'MenuActions',
+		 'DirectionActions',
+		 'NumberActions',
+		 'ColorActions'], {'ok': self.okbuttonClick,
+		 'cancel': self.closeNonRecursive,
+		 'left': self.key_left,
+		 'right': self.key_right,
+		 'up': self.key_up,
+		 'down': self.key_down,
+		 'red': self.cancel,
+		 'green': self.okbuttonClick,
+		 'yellow': self.key_menu,
+		 'menu': self.closeRecursive,
+		 '1': self.keyNumberGlobal,
+		 '2': self.keyNumberGlobal,
+		 '3': self.keyNumberGlobal,
+		 '4': self.keyNumberGlobal,
+		 '5': self.keyNumberGlobal,
+		 '6': self.keyNumberGlobal,
+		 '7': self.keyNumberGlobal,
+		 '8': self.keyNumberGlobal,
+		 '9': self.keyNumberGlobal})
+		self.index = 0
+		i = 0
+		self.maxentry = 29
+		self.istart = 0
+		i = 0
+		self.onShown.append(self.openTest)
 
-        def key_menu(self):
-                pass
+	def key_menu(self):
+		pass
 
-        def cancel(self):
-                self.close()
+	def cancel(self):
+		self.close()
 
-        def paintFrame(self):
-                pass
+	def paintFrame(self):
+		pass
 
-        def openTest(self):
-                if self.ipage == 1:
-                        ii = 0
-                elif self.ipage == 2:
-                        ii = 6
-                elif self.ipage == 3:
-                        ii = 12
-                elif self.ipage == 4:
-                        ii = 18
-                elif self.ipage == 5:
-                        ii = 24
-                dxml = config.skin.primary_skin.value
-                dskin = dxml.split('/')
-                j = 0
-                i = ii
-                while j < 6:
-                        j = j + 1
-                        if i > self.picnum - 1:
-                                icon = dskin[0] + '/blank.png'
-                                name = ''
-                        else:
-                                name = self.tlist[i][0]
-                        if 'AutoBouquetsMaker' in name:
-                                name = 'AutoBouquets\nMakerProvider'
-                        if len(name) > 14:
-                                if '-' in name or '/' in name or ' ' in name:
-                                        name = name.replace('-', '/')
-                                        name = name.replace(' /', '/')
-                                        name = name.replace('/ ', '/')
-                                        name = name.replace(' ', '\n')
-                                else:
-                                        name = name[:14] + '/' + name[12:]
-                        if 'A/V' not in name:
-                                name = name.replace('/', '\n')
-                        if j == self.index + 1:
-                                self['label' + str(j)].setText(' ')
-                                self['label' + str(j) + 's'].setText(name)
-                        else:
-                                self['label' + str(j)].setText(name)
-                                self['label' + str(j) + 's'].setText(' ')
-                        i = i + 1
+	def openTest(self):
+		if self.ipage == 1:
+			ii = 0
+		elif self.ipage == 2:
+			ii = 6
+		elif self.ipage == 3:
+			ii = 12
+		elif self.ipage == 4:
+			ii = 18
+		elif self.ipage == 5:
+			ii = 24
+		dxml = config.skin.primary_skin.value
+		dskin = dxml.split('/')
+		j = 0
+		i = ii
+		while j < 6:
+			j = j + 1
+			if i > self.picnum - 1:
+				icon = dskin[0] + '/blank.png'
+				name = ''
+			else:
+				name = self.tlist[i][0]
+			if 'AutoBouquetsMaker' in name:
+				name = 'AutoBouquets\nMakerProvider'
+			if len(name) > 14:
+				if '-' in name or '/' in name or ' ' in name:
+					name = name.replace('-', '/')
+					name = name.replace(' /', '/')
+					name = name.replace('/ ', '/')
+					name = name.replace(' ', '\n')
+				else:
+					name = name[:14] + '/' + name[12:]
+			if 'A/V' not in name:
+				name = name.replace('/', '\n')
+			if j == self.index + 1:
+				self['label' + str(j)].setText(' ')
+				self['label' + str(j) + 's'].setText(name)
+			else:
+				self['label' + str(j)].setText(name)
+				self['label' + str(j) + 's'].setText(' ')
+			i = i + 1
 
-                j = 0
-                i = ii
-                while j < 6:
-                        j = j + 1
-                        itot = (self.ipage - 1) * 6 + j
-                        if itot > self.picnum:
-                                icon = '/usr/share/enigma2/' + dskin[0] + '/blank.png'
-                        else:
-                                icon = '/usr/share/enigma2/' + dskin[0] + '/buttons/icon1.png'
-                        pic = icon
-                        self['pixmap' + str(j)].instance.setPixmapFromFile(pic)
-                        i = i + 1
+		j = 0
+		i = ii
+		while j < 6:
+			j = j + 1
+			itot = (self.ipage - 1) * 6 + j
+			if itot > self.picnum:
+				icon = '/usr/share/enigma2/' + dskin[0] + '/blank.png'
+			else:
+				icon = '/usr/share/enigma2/' + dskin[0] + '/buttons/icon1.png'
+			pic = icon
+			self['pixmap' + str(j)].instance.setPixmapFromFile(pic)
+			i = i + 1
 
-                if self.picnum > 6:
-                        try:
-                                dpointer = '/usr/share/enigma2/' + dskin[0] + '/pointer.png'
-                                self['pointer'].instance.setPixmapFromFile(dpointer)
-                        except:
-                                dpointer = '/usr/share/enigma2/skin_default/pointer.png'
-                                self['pointer'].instance.setPixmapFromFile(dpointer)
+		if self.picnum > 6:
+			try:
+				dpointer = '/usr/share/enigma2/' + dskin[0] + '/pointer.png'
+				self['pointer'].instance.setPixmapFromFile(dpointer)
+			except:
+				dpointer = '/usr/share/enigma2/skin_default/pointer.png'
+				self['pointer'].instance.setPixmapFromFile(dpointer)
 
-                else:
-                        try:
-                                dpointer = '/usr/share/enigma2/' + dskin[0] + '/blank.png'
-                                self['pointer'].instance.setPixmapFromFile(dpointer)
-                        except:
-                                dpointer = '/usr/share/enigma2/skin_default/blank.png'
-                                self['pointer'].instance.setPixmapFromFile(dpointer)
+		else:
+			try:
+				dpointer = '/usr/share/enigma2/' + dskin[0] + '/blank.png'
+				self['pointer'].instance.setPixmapFromFile(dpointer)
+			except:
+				dpointer = '/usr/share/enigma2/skin_default/blank.png'
+				self['pointer'].instance.setPixmapFromFile(dpointer)
 
-        def key_left(self):
-                self.index -= 1
-                inum = self.picnum - 1 - (self.ipage - 1) * 6
-                if self.index < 0:
-                        if inum < 5:
-                                self.index = inum
-                        else:
-                                self.index = 5
-                self.openTest()
+	def key_left(self):
+		self.index -= 1
+		inum = self.picnum - 1 - (self.ipage - 1) * 6
+		if self.index < 0:
+			if inum < 5:
+				self.index = inum
+			else:
+				self.index = 5
+		self.openTest()
 
-        def key_right(self):
-                self.index += 1
-                inum = self.picnum - 1 - (self.ipage - 1) * 6
-                if self.index > inum or self.index > 5:
-                        self.index = 0
-                self.openTest()
+	def key_right(self):
+		self.index += 1
+		inum = self.picnum - 1 - (self.ipage - 1) * 6
+		if self.index > inum or self.index > 5:
+			self.index = 0
+		self.openTest()
 
-        def key_up(self):
-                self.ipage = self.ipage - 1
-                if self.ipage < 1 and 7 > self.picnum > 0:
-                        self.ipage = 1
-                elif self.ipage < 1 and 13 > self.picnum > 6:
-                        self.ipage = 2
-                elif self.ipage < 1 and 19 > self.picnum > 12:
-                        self.ipage = 3
-                elif self.ipage < 1 and 25 > self.picnum > 18:
-                        self.ipage = 4
-                elif self.ipage < 1 and 31 > self.picnum > 24:
-                        self.ipage = 5
-                self.index = 0
-                self.openTest()
+	def key_up(self):
+		self.key_left()
+		return
+		self.ipage = self.ipage - 1
+		if self.ipage < 1 and 7 > self.picnum > 0:
+			self.ipage = 1
+		elif self.ipage < 1 and 13 > self.picnum > 6:
+			self.ipage = 2
+		elif self.ipage < 1 and 19 > self.picnum > 12:
+			self.ipage = 3
+		elif self.ipage < 1 and 25 > self.picnum > 18:
+			self.ipage = 4
+		elif self.ipage < 1 and 31 > self.picnum > 24:
+			self.ipage = 5
+		self.index = 0
+		self.openTest()
 
-        def key_down(self):
-                self.ipage = self.ipage + 1
-                if self.ipage == 2 and 7 > self.picnum > 0:
-                        self.ipage = 1
-                elif self.ipage == 3 and 13 > self.picnum > 6:
-                        self.ipage = 1
-                elif self.ipage == 4 and 19 > self.picnum > 12:
-                        self.ipage = 1
-                elif self.ipage == 5 and 25 > self.picnum > 18:
-                        self.ipage = 1
-                elif self.ipage == 6 and 31 > self.picnum > 24:
-                        self.ipage = 1
-                self.index = 0
-                self.openTest()
+	def key_down(self):
+		self.key_right()
+		return
+		self.ipage = self.ipage + 1
+		if self.ipage == 2 and 7 > self.picnum > 0:
+			self.ipage = 1
+		elif self.ipage == 3 and 13 > self.picnum > 6:
+			self.ipage = 1
+		elif self.ipage == 4 and 19 > self.picnum > 12:
+			self.ipage = 1
+		elif self.ipage == 5 and 25 > self.picnum > 18:
+			self.ipage = 1
+		elif self.ipage == 6 and 31 > self.picnum > 24:
+			self.ipage = 1
+		self.index = 0
+		self.openTest()
 
-        def keyNumberGlobal(self, number):
-                number -= 1
-                if len(self['menu'].list) > number:
-                        self['menu'].setIndex(number)
-                        self.okbuttonClick()
+	def keyNumberGlobal(self, number):
+		number -= 1
+		if len(self['menu'].list) > number:
+			self['menu'].setIndex(number)
+			self.okbuttonClick()
 
-        def closeNonRecursive(self):
-                self.close(False)
+	def keyNumberGlobal(self, number):
+		number -= 1
+		if len(self['menu'].list) > number:
+			self['menu'].setIndex(number)
+			self.okbuttonClick()
 
-        def closeRecursive(self):
-                self.close(True)
+	def closeNonRecursive(self):
+		self.close(False)
 
-        def createSummary(self):
-                pass
+	def closeRecursive(self):
+		self.close(True)
 
-        def keyNumberGlobal(self, number):
-                number -= 1
-                if len(self['menu'].list) > number:
-                        self['menu'].setIndex(number)
-                        self.okbuttonClick()
+	def createSummary(self):
+		pass
 
-        def closeNonRecursive(self):
-                self.close(False)
-
-        def closeRecursive(self):
-                self.close(True)
-
-        def createSummary(self):
-                pass
-
-        def okbuttonClick(self):
-                if self.ipage == 1:
-                        idx = self.index
-                elif self.ipage == 2:
-                        idx = self.index + 6
-                elif self.ipage == 3:
-                        idx = self.index + 12
-                elif self.ipage == 4:
-                        idx = self.index + 18
-                elif self.ipage == 5:
-                        idx = self.index + 24
-                if idx > self.picnum - 1:
-                        return
-                if idx is None:
-                        return
-                selection = self.tlist[idx]
-                if selection is not None:
-                        selection[1]()
+	def okbuttonClick(self):
+		if self.ipage == 1:
+			idx = self.index
+		elif self.ipage == 2:
+			idx = self.index + 6
+		elif self.ipage == 3:
+			idx = self.index + 12
+		elif self.ipage == 4:
+			idx = self.index + 18
+		elif self.ipage == 5:
+			idx = self.index + 24
+		if idx > self.picnum - 1:
+			return
+		if idx is None:
+			return
+		selection = self.tlist[idx]
+		if selection is not None:
+			selection[1]()
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file
