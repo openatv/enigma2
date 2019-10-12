@@ -1,219 +1,215 @@
-import enigma
+from enigma import eTimer, ePoint, eSize, getDesktop
 
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
+from Components.ActionMap import HelpableActionMap
+from Components.config import config
 from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
+from Components.Pixmap import Pixmap, MultiPixmap
+from Components.Sources.StaticText import StaticText
+from Screens.HelpMenu import HelpableScreen
+from Screens.Screen import Screen
 
 
-class MessageBox(Screen):
+class MessageBox(Screen, HelpableScreen):
 	TYPE_YESNO = 0
 	TYPE_INFO = 1
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
+	TYPE_MESSAGE = 4
 
-	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None, windowTitle = None, title = "Message", showYESNO=False):
-		if not windowTitle:
-			windowTitle = title
-		if not list: list = []
-		if not skin_name: skin_name = []
-		self.type = type
+	TYPE_PREFIX = {
+		TYPE_YESNO: _("Question"),
+		TYPE_INFO: _("Information"),
+		TYPE_WARNING: _("Warning"),
+		TYPE_ERROR: _("Error"),
+		TYPE_MESSAGE: _("Message")
+	}
+
+	def __init__(self, session, text, type=TYPE_YESNO, timeout=0, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None, title=None, windowTitle=None, showYESNO=False):
 		Screen.__init__(self, session)
-		self.skinName = ["MessageBox"]
-		if self.type == self.TYPE_YESNO:
-			self.setTitle(_("Question"))
-		elif self.type == self.TYPE_INFO:
-			self.setTitle(_("Information"))
-		elif self.type == self.TYPE_WARNING:
-			self.setTitle(_("Warning"))
-		elif self.type == self.TYPE_ERROR:
-			self.setTitle(_("Error"))
+		HelpableScreen.__init__(self)
+		if text:
+			self.text = _(text)
 		else:
-			self.setTitle(_(windowTitle))
-		if wizard:
-			from Components.config import config
-			from Components.Pixmap import MultiPixmap
-			self["rc"] = MultiPixmap()
-			self["rc"].setPixmapNum(config.misc.rcused.value)
-			self.skinName = ["MessageBoxWizard"]
-
-		if simple:
-			self.skinName = ["MessageBoxSimple"]
-
-		if isinstance(skin_name, str):
-			self.skinName = [skin_name] + self.skinName
-
-		self.msgBoxID = msgBoxID
-
-		self["text"] = Label(_(text))
-		self["Text"] = StaticText(_(text))
-		self["selectedChoice"] = StaticText()
-
-		self.text = _(text)
+			self.text = text
+		if type in range(self.TYPE_MESSAGE + 1):
+			self.type = type
+		else:
+			self.type = self.TYPE_MESSAGE
+		self.timeout = int(timeout)
 		self.close_on_any_key = close_on_any_key
-		self.timeout_default = timeout_default
-
-		self["ErrorPixmap"] = Pixmap()
-		self["ErrorPixmap"].hide()
+		if enable_input:
+			self["actions"] = HelpableActionMap(self, ["MsgBoxActions", "DirectionActions"], {
+				"cancel": (self.cancel, _("Cancel the selection")),
+				"ok": (self.ok, _("Accept the current selection")),
+				"alwaysOK": (self.alwaysOK, _("Always select OK")),
+				"up": (self.up, _("Move up a line")),
+				"down": (self.down, _("Move down a line")),
+				"left": (self.left, _("Move up a page")),
+				"right": (self.right, _("Move down a page"))
+				# These actions are *ONLY* defined on OpenPLi!
+				# I don't believe thay add any functionality even for OpenPLi.
+				# "upRepeated": (self.up, _("Move up a line repeatedly")),
+				# "downRepeated": (self.down, _("Move down a line repeatedly")),
+				# "leftRepeated": (self.left, _("Move up a page repeatedly")),
+				# "rightRepeated": (self.right, _("Move down a page repeatedly"))
+			}, prio=-1, description=_("MessageBox Functions"))
+		self.msgBoxID = msgBoxID
+		# These six lines can go with new skins that only use self["icon"]...
 		self["QuestionPixmap"] = Pixmap()
 		self["QuestionPixmap"].hide()
 		self["InfoPixmap"] = Pixmap()
 		self["InfoPixmap"].hide()
-
-		self.timerRunning = False
-		self.initTimeout(timeout)
-
+		self["ErrorPixmap"] = Pixmap()
+		self["ErrorPixmap"].hide()
+		self["icon"] = MultiPixmap()
+		self["icon"].hide()
+		self.picon = picon
 		if picon:
-			picon = type
-			if picon == self.TYPE_ERROR:
-				self["ErrorPixmap"].show()
-			elif picon == self.TYPE_YESNO:
+			# These five lines can go with new skins that only use self["icon"]...
+			if self.type == self.TYPE_YESNO:
 				self["QuestionPixmap"].show()
-			elif picon == self.TYPE_INFO or picon == self.TYPE_WARNING:
+			elif self.type == self.TYPE_INFO or self.type == self.TYPE_WARNING:
 				self["InfoPixmap"].show()
-
-		self.messtype = type
+			elif self.type == self.TYPE_ERROR:
+				self["ErrorPixmap"].show()
+			self["icon"].show()
+		self.skinName = ["MessageBox"]
+		if simple:
+			self.skinName = ["MessageBoxSimple"]
+		if wizard:
+			self["rc"] = MultiPixmap()
+			self["rc"].setPixmapNum(config.misc.rcused.value)
+			self.skinName = ["MessageBoxWizard"]
+		if not skin_name:
+			skin_name = []
+		if isinstance(skin_name, str):
+			self.skinName = [skin_name] + self.skinName
+		if not list:
+			list = []
 		if type == self.TYPE_YESNO or showYESNO:
 			if list:
 				self.list = list
 			elif default:
-				self.list = [ (_("yes"), True), (_("no"), False) ]
+				self.list = [(_("Yes"), True), (_("No"), False)]
 			else:
-				self.list = [ (_("no"), False), (_("yes"), True) ]
+				self.list = [(_("No"), False), (_("Yes"), True)]
 		else:
 			self.list = []
-
+		self.timeout_default = timeout_default
+		self.baseTitle = title or windowTitle or self.TYPE_PREFIX.get(self.type, None)
+		self.activeTitle = None
+		# DEBUG: This is a temporary patch to stop the VuRemote and GigaBlueRemote plugins from crashing!
+		# If this code is accepted then the offending lines from the plugins can safely be removed.
+		self.timerRunning = None  # DEBG: See note above!
+		self["text"] = Label(self.text)
+		self["Text"] = StaticText(self.text)  # What is self["Text"] for?
+		self["selectedChoice"] = StaticText()
 		self["list"] = MenuList(self.list)
 		if self.list:
 			self["selectedChoice"].setText(self.list[0][0])
 		else:
 			self["list"].hide()
+		self["key_help"] = StaticText(_("HELP"))
+		self.timer = eTimer()
+		self.timer.callback.append(self.processTimer)
+		if self.layoutFinished not in self.onLayoutFinish:
+			self.onLayoutFinish.append(self.layoutFinished)
 
-		if enable_input:
-			self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"],
-				{
-					"cancel": self.cancel,
-					"ok": self.ok,
-					"alwaysOK": self.alwaysOK,
-					"up": self.up,
-					"down": self.down,
-					"left": self.left,
-					"right": self.right,
-					"upRepeated": self.up,
-					"downRepeated": self.down,
-					"leftRepeated": self.left,
-					"rightRepeated": self.right
-				}, -1)
+	def layoutFinished(self):
+		self["icon"].setPixmapNum(self.type)
+		prefix = self.TYPE_PREFIX.get(self.type, _("Unknown"))
+		if self.baseTitle is None:
+			title = self.getTitle()
+			if title:
+				if "%s" in title:
+					self.baseTitle = title % prefix
+				else:
+					self.baseTitle = title
+			else:
+				self.baseTitle = prefix
+		elif "%s" in self.baseTitle:
+			self.baseTitle = self.baseTitle % prefix
+		self.setTitle(self.baseTitle)
+		if self.timeout > 0:
+			print "[MessageBox] Timeout set to %d seconds." % self.timeout
+			self.timer.start(25)
+
+	def processTimer(self):
+		# Check if the title has been externally changed and if so make it the dominant title.
+		if self.activeTitle is None:
+			self.activeTitle = self.getTitle()
+			if "%s" in self.activeTitle:
+				self.activeTitle = self.activeTitle % self.TYPE_PREFIX.get(self.type, _("Unknown"))
+		if self.baseTitle != self.activeTitle:
+			self.baseTitle = self.activeTitle
+		if self.timeout > 0:
+			if self.baseTitle:
+				self.setTitle("%s (%d)" % (self.baseTitle, self.timeout))
+			self.timer.start(1000)
+			self.timeout -= 1
+		else:
+			self.stopTimer("Timeout!")
+			if self.timeout_default is not None:
+				self.close(self.timeout_default)
+			else:
+				self.ok()
+
+	def stopTimer(self, reason):
+		print "[MessageBox] %s" % reason
+		self.timer.stop()
+		self.timeout = 0
+		if self.baseTitle is not None:
+			self.setTitle(self.baseTitle)
 
 	def autoResize(self):
-		desktop_w = enigma.getDesktop(0).size().width()
-		desktop_h = enigma.getDesktop(0).size().height()
 		count = len(self.list)
-
 		if not self["text"].text:
 			textsize = (520, 0)
-			listsize = (520, 25*count)
-			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
-				self["list"].instance.move(enigma.ePoint(65, 0))
+			listsize = (520, 25 * count)
+			if self.picon:
+				self["list"].instance.move(ePoint(65, 0))
+				wsizex = textsize[0] + 65
 			else:
-				self["list"].instance.move(enigma.ePoint(0, 0))
-			self["list"].instance.resize(enigma.eSize(*listsize))
-
+				self["list"].instance.move(ePoint(0, 0))
+				wsizex = textsize[0]
+			self["list"].instance.resize(eSize(*listsize))
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
-				textsize = (textsize[1],textsize[0]+10)
+				textsize = (textsize[1], textsize[0] + 10)
 			if textsize[0] > 520:
-				textsize = (textsize[0], textsize[1]+25)
+				textsize = (textsize[0], textsize[1] + 25)
 			else:
-				textsize = (520, textsize[1]+25)
-			listsize = (textsize[0], 25*count)
+				textsize = (520, textsize[1] + 25)
+			listsize = (textsize[0], 25 * count)
 
-			self["text"].instance.resize(enigma.eSize(*textsize))
-			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
-				self["text"].instance.move(enigma.ePoint(65, 0))
+			self["text"].instance.resize(eSize(*textsize))
+			if self.picon:
+				self["text"].instance.move(ePoint(65, 0))
+				self["list"].instance.move(ePoint(65, textsize[1]))
+				wsizex = textsize[0] + 65
 			else:
-				self["text"].instance.move(enigma.ePoint(10, 10))
-
-			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
-				self["list"].instance.move(enigma.ePoint(65, textsize[1]))
-				wsizex = textsize[0]+65
-			else:
-				self["list"].instance.move(enigma.ePoint(0, textsize[1]))
+				self["text"].instance.move(ePoint(10, 10))
+				self["list"].instance.move(ePoint(0, textsize[1]))
 				wsizex = textsize[0]
-			self["list"].instance.resize(enigma.eSize(*listsize))
-
-		wsizey = textsize[1]+listsize[1]
-		wsize = (wsizex, wsizey)
-		self.instance.resize(enigma.eSize(*wsize))
-		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
-
-	def initTimeout(self, timeout):
-		self.timeout = timeout
-		if timeout > 0:
-			self.timer = enigma.eTimer()
-			self.timer.callback.append(self.timerTick)
-			self.onExecBegin.append(self.startTimer)
-			self.origTitle = None
-			if self.execing:
-				self.timerTick()
-			else:
-				self.onShown.append(self.__onShown)
-			self.timerRunning = True
-		else:
-			self.timerRunning = False
-
-	def __onShown(self):
-		self.onShown.remove(self.__onShown)
-		self.timerTick()
-
-	def startTimer(self):
-		self.timer.start(1000)
-
-	def stopTimer(self):
-		if self.timerRunning:
-			del self.timer
-			self.onExecBegin.remove(self.startTimer)
-			if self.origTitle:
-				self.setTitle(_(self.origTitle))
-			else:
-				self.setTitle(self.origTitle)
-			self.timerRunning = False
-
-	def timerTick(self):
-		if self.execing:
-			self.timeout -= 1
-			if self.origTitle is None:
-				self.origTitle = self.instance.getTitle()
-			if self.origTitle:
-				self.setTitle(_(self.origTitle) + " (" + str(self.timeout) + ")")
-			else:
-				self.setTitle(self.origTitle + " (" + str(self.timeout) + ")")
-			if self.timeout == 0:
-				self.timer.stop()
-				self.timerRunning = False
-				self.timeoutCallback()
-
-	def timeoutCallback(self):
-		print "Timeout!"
-		if self.timeout_default is not None:
-			self.close(self.timeout_default)
-		else:
-			self.ok()
+			self["list"].instance.resize(eSize(*listsize))
+		wsizey = textsize[1] + listsize[1]
+		self.instance.resize(eSize(*(wsizex, wsizey)))
+		self.instance.move(ePoint((getDesktop(0).size().width() - wsizex) / 2, (getDesktop(0).size().height() - wsizey) / 2))
 
 	def cancel(self):
 		if self["list"].list:
 			for l in self["list"].list:
+				# print "[MessageBox] DEBUG: (cancel) '%s' -> '%s'" % (str(l[0]), str(l[1]))
+				# Should we be looking at the second element to get the boolean value rather than the word?
 				if l[0].lower() == _('no') or l[0].lower() == _('false'):
 					if len(l) > 2:
 						l[2](None)
 					else:
 						self.close(False)
 					break
-		else:
-			self.close(False)
+		self.close(False)
 
 	def ok(self):
 		if self["list"].getCurrent():
@@ -222,7 +218,8 @@ class MessageBox(Screen):
 			self.close(True)
 
 	def goEntry(self, entry=None):
-		if not entry: entry = []
+		if not entry:
+			entry = []
 		if entry and len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
 			arg = entry[3]
 			entry[2](arg)
@@ -236,6 +233,8 @@ class MessageBox(Screen):
 	def alwaysOK(self):
 		if self["list"].list:
 			for l in self["list"].list:
+				# print "[MessageBox] DEBUG: (cancel) '%s' -> '%s'" % (str(l[0]), str(l[1]))
+				# Should we be looking at the second element to get the boolean value rather than the word?
 				if l[0].lower() == _('yes') or l[0].lower() == _('true'):
 					if len(l) > 2:
 						self.goEntry(l)
@@ -258,12 +257,13 @@ class MessageBox(Screen):
 		self.move(self["list"].instance.pageDown)
 
 	def move(self, direction):
+		if self.timeout > 0:
+			self.stopTimer("Timeout stopped by user input!")
 		if self.close_on_any_key:
 			self.close(True)
 		self["list"].instance.moveSelection(direction)
 		if self.list:
 			self["selectedChoice"].setText(self["list"].getCurrent()[0])
-		self.stopTimer()
 
 	def __repr__(self):
-		return str(type(self)) + "(" + self.text + ")"
+		return "%s(%s)" % (str(type(self)), self.text)
