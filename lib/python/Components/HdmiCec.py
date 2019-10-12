@@ -1192,18 +1192,18 @@ class HdmiCec:
 				for key in sorted(CECintcmd.keys()):
 					internaltxt += "%s'%s' or '%s'\n" %(space if addspace else "", key, CECintcmd[key])
 					addspace = True
-				txt  = "Help for the hdmi-cec command line option\n"
-				txt += "-----------------------------------------\n\n"
+				txt  = "Help for the hdmi-cec command line function\n"
+				txt += "-------------------------------------------\n\n"
 				txt += "Files:\n"
 				txt += "- Input file to send the hdmi-cec command line: '%s'\n" %cmdfile
 				txt += "- Output file for received hdmi-cec messages:   '%s'\n" %msgfile
 				txt += "- Error file for hdmi-cec command line errors:  '%s'\n" %errfile
 				txt += "- This help file:                               '%s'\n\n" %hlpfile
 				txt += "Functions:\n"
-				txt += "- Help: type 'echo help > %s' to create this file.\n\n" %cmdfile
-				txt += "- Send internal commands: address:command (e.g. type 'echo 00:wakeup > %s' for wakeup the TV device.\n" %cmdfile
+				txt += "- Help: Type 'echo help > %s' to create this file.\n\n" %cmdfile
+				txt += "- Send internal commands: address:command (e.g. Type 'echo 00:wakeup > %s' for wakeup the TV device.)\n" %cmdfile
 				txt += "%s\n" %internaltxt
-				txt += "- Send individual commands: address:command:data (e.g. type 'echo 00:04 > %s' for wakeup the TV device.\n" %cmdfile
+				txt += "- Send individual commands: address:command:data (e.g. Type 'echo 00:04 > %s' for wakeup the TV device.)\n" %cmdfile
 				txt += "  Available individual commands: %s\n\n" %cecinfo
 				txt += "Info:\n"
 				txt += "- Input and error file will removed with send a new command line. Output file will removed if not waiting for a message.\n"
