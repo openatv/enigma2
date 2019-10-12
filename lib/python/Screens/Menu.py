@@ -787,22 +787,22 @@ class AnimMain(Screen):
 	def key_left(self):
 		self.index -= 1
 		if self.index < 1:
-			self.index = self.nop #1
-			#return
+			self.index = self.nop
 		self.openTest()
 
 	def key_right(self):
 		self.index += 1
 		if self.index > self.nop:
-				self.index = 1 #self.nop
-				#return
+				self.index = 1
 		self.openTest()
 
 	def key_up(self):
-		self.key_left()
+		self.index = 1 if self.index > 1 else self.nop
+		self.openTest()
 
 	def key_down(self):
-		self.key_right()
+		self.index = self.nop if self.index < self.nop else 1
+		self.openTest()
 
 	def keyNumberGlobal(self, number):
 		number -= 1
@@ -1001,8 +1001,6 @@ class IconMain(Screen):
 		self.openTest()
 
 	def key_up(self):
-		self.key_left()
-		return
 		self.ipage = self.ipage - 1
 		if self.ipage < 1 and 7 > self.picnum > 0:
 			self.ipage = 1
@@ -1018,8 +1016,6 @@ class IconMain(Screen):
 		self.openTest()
 
 	def key_down(self):
-		self.key_right()
-		return
 		self.ipage = self.ipage + 1
 		if self.ipage == 2 and 7 > self.picnum > 0:
 			self.ipage = 1
