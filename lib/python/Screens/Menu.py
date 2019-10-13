@@ -438,8 +438,32 @@ class Menu(Screen, ProtectedScreen):
 			t_history.thistory = t_history.thistory + str(a) + ' > '
 
 		if config.usage.menutype.value == 'horzanim' and '<screen name="Animmain" ' in self.sktxt:
+			self['label1'] = StaticText()
+			self['label2'] = StaticText()
+			self['label3'] = StaticText()
+			self['label4'] = StaticText()
+			self['label5'] = StaticText()
 			self.onShown.append(self.openTestA)
 		elif config.usage.menutype.value == 'horzicon' and '<screen name="Iconmain" ' in self.sktxt:
+			self['label1'] = StaticText()
+			self['label2'] = StaticText()
+			self['label3'] = StaticText()
+			self['label4'] = StaticText()
+			self['label5'] = StaticText()
+			self['label6'] = StaticText()
+			self['label1s'] = StaticText()
+			self['label2s'] = StaticText()
+			self['label3s'] = StaticText()
+			self['label4s'] = StaticText()
+			self['label5s'] = StaticText()
+			self['label6s'] = StaticText()
+			self['pointer'] = Pixmap()
+			self['pixmap1'] = Pixmap()
+			self['pixmap2'] = Pixmap()
+			self['pixmap3'] = Pixmap()
+			self['pixmap4'] = Pixmap()
+			self['pixmap5'] = Pixmap()
+			self['pixmap6'] = Pixmap()
 			self.onShown.append(self.openTestB)
 
 		self.number = 0
