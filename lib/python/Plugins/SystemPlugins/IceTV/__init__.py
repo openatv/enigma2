@@ -8,18 +8,21 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
 from enigma import eEPGCache
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getImageDistro
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
     ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo
 
 def getIceTVDeviceType():
-    return {
-        ("Beyonwiz", "T2"): 31,
-        ("Beyonwiz", "T3"): 22,
-        ("Beyonwiz", "T4"): 30,
-        ("Beyonwiz", "U4"): 36,
-        ("Beyonwiz", "V2"): 38,
-    }.get((getMachineBrand(), getMachineName()), 22)
+    if getImageDistro() == "openatv":
+        return "39"
+    else:
+        return {
+            ("Beyonwiz", "T2"): 31,
+            ("Beyonwiz", "T3"): 22,
+            ("Beyonwiz", "T4"): 30,
+            ("Beyonwiz", "U4"): 36,
+            ("Beyonwiz", "V2"): 38,
+        }.get((getMachineBrand(), getMachineName()), 22)
 
 config.plugins.icetv = ConfigSubsection()
 
