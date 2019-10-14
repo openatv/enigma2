@@ -150,6 +150,17 @@ class Channels(Request):
         return self.send("get")
 
 
+class UserChannels(AuthRequest):
+    def __init__(self, region=None):
+        if region is None:
+            super(UserChannels, self).__init__("/regions/channels")
+        else:
+            super(UserChannels, self).__init__("/regions/" + str(int(region)) + "/channels")
+
+    def get(self):
+        return self.send("get")
+
+
 class Login(Request):
     def __init__(self, email, password, region=None):
         super(Login, self).__init__("/login")

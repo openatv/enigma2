@@ -861,6 +861,11 @@ class EPGFetcher(object):
         return req.get().json()
 
     def getChannels(self):
+        req = ice.UserChannels(config.plugins.icetv.member.region_id.value)
+        res = req.get().json()
+        return res.get("channels", [])
+
+    def getAllChannels(self):
         req = ice.Channels(config.plugins.icetv.member.region_id.value)
         res = req.get().json()
         return res.get("channels", [])
