@@ -26,7 +26,7 @@ subtype[1] = [
 					_("adventure/western/war"),
 					_("science fiction/fantasy/horror"),
 					_("comedy"),
-					_("soap/melodram/folkloric"),
+					_("soap/melodrama/folkloric"),
 					_("romance"),
 					_("serious/classical/religious/historical movie/drama"),
 					_("adult movie/drama")]
