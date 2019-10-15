@@ -1312,7 +1312,7 @@ msgid "(Show only reader:"
 msgstr "(Nur Lesegeräte zeigen:)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr "(z.Bsp. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
+msgstr "(z.B. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
 
 #
 msgid "(empty)"
@@ -1922,9 +1922,9 @@ msgid ""
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
-"Eine Aufnahme, Aufnahmetimer oder Powertimer ist aktiv oder beginnt in 15 Minuten.\n"
+"Eine Aufnahme, Aufnahmetimer oder PowerTimer ist aktiv oder beginnt in 15 Minuten.\n"
 "Der Ausschalt-Timer wird um 30 Minuten verlängert und schaltet Ihre\n"
-"%s %s nach dem Aufnahme oder Powertimer Ereignis ab.\n"
+"%s %s nach dem Aufnahme- oder PowerTimer-Ereignis ab.\n"
 "Jetzt in den Standby gehen?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
@@ -1956,7 +1956,7 @@ msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Ein Powertimer will Ihren Receiver neu starten.\n"
+"Ein PowerTimer will Ihren Receiver neu starten.\n"
 "Ihre %s %s jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
@@ -1964,7 +1964,7 @@ msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Ein Powertimer will die GUI Neustarten.\n"
+"Ein PowerTimer will die GUI neustarten.\n"
 "Jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
@@ -1973,7 +1973,7 @@ msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Ein Powertimer will Ihren Receiver in den Standby schalten.\n"
+"Ein PowerTimer will Ihren Receiver in den Standby schalten.\n"
 "Ihre %s %s jetzt in den Standby schalten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
@@ -1982,7 +1982,7 @@ msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Ein Powertimer will Ihren Receiver ausschalten.\n"
+"Ein PowerTimer will Ihren Receiver ausschalten.\n"
 "Ihre %s %s jetzt ausschalten?"
 
 #
@@ -2097,7 +2097,7 @@ msgid ""
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
 "Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
-"Pseudo-Aufnahmen (z.B. EPG Refresh) beenden und erneut versuchen?\n"
+"Pseudo-Aufnahmen (z.B. EPGRefresh) beenden und erneut versuchen?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2372,7 +2372,7 @@ msgstr "Kanal hinzufügen"
 
 #
 msgid "Add timer"
-msgstr "Timer setzen"
+msgstr "Timer hinzufügen"
 
 #
 msgid "Add title"
@@ -2521,7 +2521,7 @@ msgid "Allocate"
 msgstr "Zuweisen"
 
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
-msgstr "Weisen Sie dem physikalischen LNB, den Sie konfigurieren, eine Nummer zu. Sie können diesen LNB erneut für andere Satelliten (z. B. motorisierte Satelliten) auswählen, um die Einrichtung desselben LNB mehrere Male zu speichern."
+msgstr "Weisen Sie dem physikalischen LNB, den Sie konfigurieren, eine Nummer zu. Sie können diesen LNB erneut für andere Satelliten (z.B. motorisierte Satelliten) auswählen, um die Einrichtung desselben LNB mehrere Male zu speichern."
 
 msgid "Allocate unused memory index"
 msgstr ""
@@ -3387,7 +3387,7 @@ msgid "Blue"
 msgstr "Blau"
 
 msgid "Blue button"
-msgstr "Blaue-Taste"
+msgstr "Blaue Taste"
 
 msgid "Blue long"
 msgstr "Blau lang"
@@ -3420,7 +3420,7 @@ msgid "Boot-up action"
 msgstr "Startmodus"
 
 msgid "Bootloader update required!"
-msgstr "Bootloader Update Erforderlich!"
+msgstr "Bootloader Update erforderlich!"
 
 #, python-format
 msgid "Bootloader:\t\t%s\n"
@@ -4385,7 +4385,7 @@ msgstr "Bestimmt, wie lange EPG-Daten aus der Vergangenheit erhalten bleiben. N�
 
 # data/setup.xml
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
-msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur bei echten Aufnahmen erfolgt oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPG Refresh)."
+msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur bei echten Aufnahmen erfolgt oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPGRefresh)."
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
 msgstr ""
@@ -4717,7 +4717,7 @@ msgstr "Heruntermischen von Mehrkanalton zu Stereo."
 
 # data/setup.xml
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
-msgstr "Legt fest, ob das Aufnahme-Symbol (auf Bildschirm und LCD Display) nur bei echten Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPG Refresh)."
+msgstr "Legt fest, ob das Aufnahme-Symbol (auf Bildschirm und LCD Display) nur bei echten Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPGRefresh)."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Konfigurieren Sie, welches Farbformat am Scart Ausgang benutzt werden soll."
@@ -4749,7 +4749,7 @@ msgid "Configure your network again"
 msgstr "Netzwerk erneut konfigurieren"
 
 msgid "Configure your network settings, and press OK to start the scan"
-msgstr "Netzwerkeinstellungen konfigurieren und OK drücken um den Suchlauf zu starten"
+msgstr "Netzwerkeinstellungen konfigurieren und OK drücken, um den Suchlauf zu starten"
 
 #
 msgid "Configure your wireless LAN again"
@@ -4930,7 +4930,7 @@ msgid "Could not find installed channel list."
 msgstr "Kann keine installierte Kanalliste finden."
 
 msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
-msgstr "Es konnte kein geeignetes Medium gefunden werden. Bitte entfernen Sie einige heruntergeladene Images oder legen Sie ein Medium (z. B. USB-Stick) mit ausreichend freiem Speicherplatz ein und versuchen Sie es erneut."
+msgstr "Es konnte kein geeignetes Medium gefunden werden. Bitte entfernen Sie einige heruntergeladene Images oder legen Sie ein Medium (z.B. USB-Stick) mit ausreichend freiem Speicherplatz ein und versuchen Sie es erneut."
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Konnte das Medium nicht laden! Keine Disc eingelegt?"
@@ -6811,7 +6811,7 @@ msgid ""
 "Error linking %s to %s:\n"
 "%s"
 msgstr ""
-"Fehler beim Erstellen des links von %s nach %s:\n"
+"Fehler beim Erstellen des Links von %s nach %s:\n"
 "%s"
 
 msgid "Error reading bouquets.radio"
@@ -7593,7 +7593,7 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"Neustart erforderlich um den neuen Skin Anzuwenden\n"
+"Neustart erforderlich um den neuen Skin anzuwenden\n"
 "Möchten Sie gleich neustarten?"
 
 #
@@ -11182,7 +11182,7 @@ msgid "Parent Directory"
 msgstr "Übergeordnetes Verzeichnis"
 
 msgid "Parent directory"
-msgstr "Übergeordn. Verzeichnis"
+msgstr "Übergeordnetes Verzeichnis"
 
 #
 msgid "Parental control"
@@ -12125,7 +12125,7 @@ msgid "Press OK to toggle the selection."
 msgstr "Drücken Sie OK, um die Auswahl zu markieren."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
-msgstr "Diese hier eingestellte Taste emuliert einen langen Tastendruck, gefolgt von der Taste ihrer Wahl (diese Funktion hat Vorrang vor anderen Tastenzuweisungen)."
+msgstr "Diese hier eingestellte Taste emuliert einen langen Tastendruck, gefolgt von der Taste Ihrer Wahl (diese Funktion hat Vorrang vor anderen Tastenzuweisungen)."
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Drücken Sie die gelbe Taste, um diese Schnittstelle als Standardschnittstelle festzulegen."
@@ -12212,7 +12212,7 @@ msgid ""
 "Install the '%s' package to install the program?"
 msgstr ""
 "'%s' muss installiert sein, um diese Aktion auszuführen. \n"
-"Möchten Sie '%s' installieren, um um es auszuführen?"
+"Möchten Sie '%s' installieren, um es auszuführen?"
 
 #, python-format
 msgid ""
@@ -12388,7 +12388,7 @@ msgstr "Schnellstartmenü"
 
 #
 msgid "Quick Menu..."
-msgstr "Schnellstart-Menü..."
+msgstr "Schnellstartmenü..."
 
 msgid "Quick zap"
 msgstr ""
@@ -12397,7 +12397,7 @@ msgid "QuickEPG mode"
 msgstr "Grafischen Infoleisten-EPG aufrufen"
 
 msgid "QuickMenu"
-msgstr "Schnellstart-Menü"
+msgstr "Schnellstartmenü"
 
 msgid "QuickMenu/Extensions"
 msgstr "Schnellstartmenü/Erweiterungen"
@@ -12639,7 +12639,7 @@ msgid "Red"
 msgstr "Rot"
 
 msgid "Red button"
-msgstr "Rote-Taste"
+msgstr "Rote Taste"
 
 #
 msgid "Red button..."
@@ -14087,8 +14087,8 @@ msgid "Serv.Name"
 msgstr "Serv.Name"
 
 #, python-format
-msgid "Server Info (Oscam-Version: %s)"
-msgstr ""
+msgid "Server Info ( Oscam-Version: %s )"
+msgstr "Server Info (OSCam Version: %s)"
 
 msgid "Server down"
 msgstr "Server ist Offline"
@@ -15140,7 +15140,7 @@ msgid "Show shutdown menu"
 msgstr "Ausschaltmenü anzeigen"
 
 msgid "Show single epg for current channel"
-msgstr "Zeige SingleEPG vom aktuellen Programm"
+msgstr "Zeige Einzel-EPG vom aktuellen Programm"
 
 msgid "Show single epg for current channel (setup in menu)"
 msgstr "Zeige Einzel-EPG für den aktuellen Kanal (Einstellung im Menü)"
@@ -15354,7 +15354,7 @@ msgstr "Einzeln"
 
 #
 msgid "Single EPG"
-msgstr "Einfach EPG"
+msgstr "Einzel-EPG"
 
 #
 msgid "Single satellite"
@@ -16157,7 +16157,7 @@ msgid "Swedish"
 msgstr "Schwedisch"
 
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
-msgstr "Blau-Kurz (Schnellstart Menü) tauschen mit Blau-Lang (Erweiterungen)."
+msgstr "BLAU kurz (Schnellstartmenü) mit BLAU lang (Erweiterungen) tauschen."
 
 msgid "Switch Mode to enable HDR Modes or PIP Functions"
 msgstr "Wechselt den Boxmodus zur Aktivierung des HDR-Modus oder für die Bild im Bild Funktionen"
@@ -16624,7 +16624,7 @@ msgstr ""
 "Bitte die 'Zusätze' und 'Ausschlüsse' verwenden."
 
 msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
-msgstr "Die Standardeinstellungen sind 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein dies zu ändern. (z.B.: die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk, usw)."
+msgstr "Die Standardeinstellung ist 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein, dies zu ändern (z.B.: Die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk etc.)."
 
 msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
 msgstr "Die Standardeinstellungen sind Aufwachzeit - 5 Minuten und Timerbeginn + 5 Minuten. Diese Einstellung verändert das Zeitfenster vor der Aufwachzeit. So kann das Aufwachen durch einen Timer auch bei sehr früh startenden Receivern erkannt werden."
@@ -17313,7 +17313,7 @@ msgstr "Zeitsprünge: Wiederholungsintervall für schnellen Vor- / Rücklauf"
 
 #
 msgid "Time jump: Use normal fast forward for speeds"
-msgstr "Zeitsprünge: normalen Vorlauf benutzen für"
+msgstr "Zeitsprünge: Normalen Vorlauf benutzen für"
 
 msgid "Time long"
 msgstr ""
@@ -18277,17 +18277,17 @@ msgid "Use slim screen"
 msgstr "Slim Screen verwenden"
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Benutze die Tasten Links/Rechts der Fernbedienung um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
+msgstr "Die Links/Rechts Tasten benutzen, um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
 
 # OSD
 msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
-msgstr "Benutze die Links/Rechts Tasten, um die Position des OSD nach Links/Rechts zu verschieben"
+msgstr "Die Links/Rechts Tasten benutzen, um die Position des OSD nach links/rechts zu verschieben"
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
-msgstr "Benutze die Tasten Links/Rechts um das OSD nach oben/unten zu verschieben"
+msgstr "Die Links/Rechts Tasten benutzen, um das OSD nach oben/unten zu verschieben"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Verwenden Sie den Netzwerk-Assistent um Ihr Netzwerk zu konfigurieren"
+msgstr "Verwenden Sie den Netzwerk-Assistenten, um Ihr Netzwerk zu konfigurieren"
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Softcam Panel für Ihre Cam Einstellungen, Start/Stop/Auswählen der Cam."
@@ -19237,7 +19237,7 @@ msgstr ""
 "Wenn 'Nein' wird die aktuelle Favoritenliste sofort geöffnet."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
-msgstr "Mit dieser Option können Sie Jobs in Erweiterungen verstecken (kurzer Druck auf Blau)."
+msgstr "Mit dieser Option können Sie Jobs in Erweiterungen verstecken (kurzer Druck auf BLAU)."
 
 msgid "With this option you can switch off the display during operation."
 msgstr "Mit dieser Option können Sie das Display während des Betriebs ausschalten."
@@ -19322,7 +19322,7 @@ msgid "Yellow DVB subtitles"
 msgstr "DVB-Untertitel in gelb."
 
 msgid "Yellow button"
-msgstr "Gelbe-Taste"
+msgstr "Gelbe Taste"
 
 msgid "Yellow long"
 msgstr "Gelb lang"
@@ -22413,7 +22413,7 @@ msgstr "Umschalten"
 #~ msgstr "CCcam Info"
 
 #~ msgid "CI settings"
-#~ msgstr "CI settings"
+#~ msgstr "CI Einstellungen"
 
 #
 #~ msgid "CIconfigMenu"
@@ -23509,10 +23509,10 @@ msgstr "Umschalten"
 #~ "Suche nach verfügbaren Transpondern\n"
 #~ "Das wird einige Minuten dauern.\n"
 #~ "\n"
-#~ "   Derzeitiger Status : %d/%d\n"
-#~ "   Orbitalpositionen : %s\n"
-#~ "   Polarisation : %s\n"
-#~ "   Bandbreite : %s"
+#~ "   Derzeitiger Status: %d/%d\n"
+#~ "   Orbitalpositionen: %s\n"
+#~ "   Polarisation: %s\n"
+#~ "   Bandbreite: %s"
 
 #~ msgid "Main Menu"
 #~ msgstr "Hauptmenü"
@@ -23548,7 +23548,7 @@ msgstr "Umschalten"
 #~ msgstr "Menü Filmauswahl"
 
 #~ msgid "Menu EPGRefresh"
-#~ msgstr "Menü EPG-Refresh"
+#~ msgstr "Menü EPGRefresh"
 
 #
 #~ msgid "Mkfs failed"
@@ -24564,7 +24564,7 @@ msgstr "Umschalten"
 #~ msgstr "Einstellungen von entfernten Tuner-Servern"
 
 #~ msgid "Setup SingleEPG"
-#~ msgstr "SingleEPG einstellen"
+#~ msgstr "Einzel-EPG einstellen"
 
 #~ msgid "Setup Special Features"
 #~ msgstr "Spezielle Einstellungen"
@@ -24665,7 +24665,7 @@ msgstr "Umschalten"
 #~ msgstr "Simulation (kein Schreibvorgang)"
 
 #~ msgid "Single EPG..."
-#~ msgstr "Einfach EPG..."
+#~ msgstr "Einzel-EPG..."
 
 #
 #~ msgid "Single transponder"
@@ -24687,7 +24687,7 @@ msgstr "Umschalten"
 
 #
 #~ msgid "Slow Motion speeds"
-#~ msgstr "Zeitlupen-Geschwindigkeiten"
+#~ msgstr "Zeitlupengeschwindigkeiten"
 
 #~ msgid "SoftCam / CI"
 #~ msgstr "SoftCam / CI"
@@ -25198,7 +25198,7 @@ msgstr "Umschalten"
 #~ msgstr "Vertikale Position OSD Hoch/Runter zum Verschieben"
 
 #~ msgid "Use the Left/Right buttons on your remote to move the user inyterface left/right"
-#~ msgstr "Benutze die Tasten Links/Rechts um das OSD nach links/rechts zu verschieben"
+#~ msgstr "Die Links/Rechts Tasten benutzen, um das OSD nach links/rechts zu verschieben"
 
 # EPG Setup
 #~ msgid "Use the MHW EPG when tuned to a service."
@@ -25224,7 +25224,7 @@ msgstr "Umschalten"
 
 #
 #~ msgid "Use time of currently running service"
-#~ msgstr "Benutze Rest-Zeit von der aktuell laufenden Sendung"
+#~ msgstr "Benutze Restzeit von der aktuell laufenden Sendung"
 
 #~ msgid "Use trashcan in movielist"
 #~ msgstr "Papierkorb in Filmliste verwenden"
