@@ -4032,6 +4032,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		else:
 			message=_("Password changed")
 			self.session.open(MessageBox, message , MessageBox.TYPE_INFO, timeout=5)
+			self["HelpWindow"].hide()
 			self.close()
 
 	def dataAvail(self,data):
