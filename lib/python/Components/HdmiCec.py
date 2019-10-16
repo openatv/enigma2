@@ -73,7 +73,7 @@ choicelist = []
 for i in (5,10,15,30,45,60):
 	choicelist.append(("%d" % i, _("%d sec") % i))
 config.hdmicec.workaround_turnbackon = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
-config.hdmicec.advanced_settings = NoSave(ConfigYesNo(default = False))
+config.hdmicec.advanced_settings = ConfigYesNo(default = False)
 config.hdmicec.default_settings = NoSave(ConfigYesNo(default = False))
 config.hdmicec.debug = ConfigYesNo(default = False)
 config.hdmicec.commandline = ConfigYesNo(default = False)
