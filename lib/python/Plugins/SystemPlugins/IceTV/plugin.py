@@ -510,24 +510,13 @@ class EPGFetcher(object):
             self.postScans()
             self.send_scans = False
         try:
-            shows = self.getShows()
-            channel_show_map = self.makeChanShowMap(shows["shows"])
-            epgcache = eEPGCache.getInstance()
-            for channel_id in channel_show_map.keys():
-                if channel_id in self.channel_service_map:
-                    epgcache.importEvents(self.channel_service_map[channel_id], channel_show_map[channel_id])
-            epgcache.save()
-            if "last_update_time" in shows:
-                config.plugins.icetv.last_update_time.value = shows["last_update_time"]
-            self.addLog(_("EPG download OK"))
-            if self.updateDescriptions(channel_show_map):
-                NavigationInstance.instance.RecordTimer.saveTimer()
-            if "timers" in shows:
-                res = self.processTimers(shows["timers"])
-            self.addLog(_("End update"))
+            res = self.processShowsBatched()
             self.deferredPostStatus(None)
             self.statusCleanup()
-            return res
+            if res:  # Timers fetched in non-batched show fetch
+                self.addLog(_("End update"))
+                return res
+            res = True  # Reset res ready for a separate timer download
         except (IOError, RuntimeError) as ex:
             if hasattr(ex, "response") and hasattr(ex.response, "status_code") and ex.response.status_code == 404:
                 # Ignore 404s when there are no EPG updates - buggy server
@@ -539,7 +528,6 @@ class EPGFetcher(object):
             ice_timers = self.getTimers()
             if not self.processTimers(ice_timers):
                 res = False
-            self.addLog(_("End update"))
         except (Exception) as ex:
             _logResponseException(self, _("Can not download timers"), ex)
             res = False
@@ -691,6 +679,36 @@ class EPGFetcher(object):
                         self.addLog(_("Update timer details from EPG '") + timer.name + "'")
                     updated |= timer_updated
         return updated
+
+    def processShowsBatched(self):
+        # Maximum number of channels to fetch in a batch
+        max_fetch = config.plugins.icetv.batchsize.value
+        res = False
+        channels = self.channel_service_map.keys()
+        epgcache = eEPGCache.getInstance()
+        channel_show_map = {}
+        last_update_time = 0
+        pos = 0
+        shows = None
+        while pos < len(channels):
+            fetch_chans = channels[pos:pos + max_fetch]
+            batch_fetch = max_fetch and len(fetch_chans) != len(channels)
+            shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=pos + len(fetch_chans) >= len(channels))
+            channel_show_map = self.makeChanShowMap(shows["shows"])
+            for channel_id in channel_show_map.keys():
+                if channel_id in self.channel_service_map:
+                    epgcache.importEvents(self.channel_service_map[channel_id], channel_show_map[channel_id])
+            if pos == 0 and "last_update_time" in shows:
+                last_update_time = shows["last_update_time"]
+            if self.updateDescriptions(channel_show_map):
+                NavigationInstance.instance.RecordTimer.saveTimer()
+            pos += len(fetch_chans) if max_fetch else len(channels)
+        if shows is not None and "timers" in shows:
+            res = self.processTimers(shows["timers"])
+        config.plugins.icetv.last_update_time.value = last_update_time
+        epgcache.save()
+        self.addLog(_("EPG download OK"))
+        return res
 
     def processTimers(self, timers):
         update_queue = []
@@ -854,10 +872,14 @@ class EPGFetcher(object):
             _session.nav.RecordTimer.timeChanged(timer)
         return success
 
-    def getShows(self):
+    def getShows(self, chan_list=None, fetch_timers=True):
         req = ice.Shows()
         last_update = config.plugins.icetv.last_update_time.value
         req.params["last_update_time"] = last_update
+        if chan_list:
+            req.params["channel_id"] = ','.join(str(ch) for ch in chan_list)
+        if not fetch_timers:
+            req.params["hide_timers"] = 1
         return req.get().json()
 
     def getChannels(self):
