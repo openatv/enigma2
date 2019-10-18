@@ -524,10 +524,10 @@ msgid "%A %-m/%d/%Y"
 msgstr "%A %-m /%d /%Y"
 
 msgid "%A %B %-d"
-msgstr ""
+msgstr "%A %B %-d"
 
 msgid "%A %B %-d %Y"
-msgstr ""
+msgstr "%A %B %-d %Y"
 
 msgid "%A %B %d"
 msgstr ""
@@ -3542,6 +3542,12 @@ msgstr "Камерун"
 msgid "Can be used for different fps between external subtitles and video."
 msgstr "Може бути використане при різних fps між зовнішніми субтитрами і відео."
 
+msgid "Can not download current region details"
+msgstr "Неможливо завантажити поточну інформацію про регіон"
+
+msgid "Can not post scan information"
+msgstr "Неможливо розмістити інформацію про сканування"
+
 #, python-format
 msgid ""
 "Can not run %s: %s.\n"
@@ -6101,6 +6107,9 @@ msgstr "Включити EIT ЕПГ"
 msgid "Enable Focus Animation"
 msgstr "Включити Анімація фокусування"
 
+msgid "Enable IceTV"
+msgstr "Включити IceTV"
+
 msgid "Enable MHW EPG"
 msgstr "Включити MHW ЕПГ"
 
@@ -6813,6 +6822,9 @@ msgstr "Статус фіду:   Оновлення"
 
 msgid "Feeds status: Unexpected"
 msgstr "Статус фіду: Незаданий"
+
+msgid "Fetch EPG and update timers now"
+msgstr "Отримайте EPG та оновіть таймери зараз"
 
 msgid "Fiji"
 msgstr "Фіджі"
@@ -7730,6 +7742,9 @@ msgstr "Розмір ISO файлу завеликий для цієї файл�
 
 msgid "ISO path"
 msgstr "ISO шлях"
+
+msgid "IceTV - Service selection"
+msgstr "IceTV - вибір послуг"
 
 msgid "Iceland"
 msgstr "Ісландія"
@@ -8762,6 +8777,12 @@ msgstr "Записувати логи на HDD"
 
 msgid "LogManager"
 msgstr "Управління логами"
+
+msgid "Login OK"
+msgstr "Логін OK"
+
+msgid "Login to IceTV server"
+msgstr "Логін для сервера IceTV"
 
 msgid "Logs location"
 msgstr "Розташування логів"
@@ -10836,6 +10857,9 @@ msgstr "Будь-ласка, виберіть носій для розташув
 
 msgid "Please select tag to filter..."
 msgstr "Будь-ласка, виберіть тег для фільтру..."
+
+msgid "Please select the IceTV service that you wish to use."
+msgstr "Виберіть службу IceTV, якою Ви хочете скористатися."
 
 msgid "Please select the movie path..."
 msgstr "Будь ласка, виберіть шлях до фільму..."
@@ -15183,7 +15207,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 15.10.2019\n"
+"Переклад:  kvinto - 18.10.2019\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -15693,6 +15717,9 @@ msgid ""
 msgstr ""
 "На обраному розділі може бути недостатньо місця..\n"
 "Ви дійсно хочете продовжити?"
+
+msgid "There was an error downloading current region details"
+msgstr "Під час завантаження поточної інформації про регіон сталася помилка"
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "При завантаженні списку оновлень сталася помилка. Будь ласка, спробуйте ще раз."
@@ -16243,6 +16270,15 @@ msgstr "Тип таймера"
 
 msgid "Timers"
 msgstr "Таймери"
+
+msgid "Timer '%s' created OK"
+msgstr "Таймер '%s' створено ОК"
+
+msgid "Timer '%s' updated OK"
+msgstr "Таймер '%s' оновлено ОК"
+
+msgid "Timers updated OK"
+msgstr "Таймери оновлено ОК"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -19394,10 +19430,10 @@ msgid "multinorm"
 msgstr "мультинорм"
 
 msgid "music/ballet/dance (general)"
-msgstr "музика/балет/танці (загальний)"
+msgstr "музика/балет/танці (загальна)"
 
 msgid "musical/opera"
-msgstr "музичний/оперний"
+msgstr "музична/оперна"
 
 msgid "n/A"
 msgstr "не визначено"
@@ -19418,10 +19454,10 @@ msgid "new media"
 msgstr "нові медіа"
 
 msgid "news magazine"
-msgstr "журнал новин"
+msgstr "програма новин"
 
 msgid "news/current affairs (general)"
-msgstr "новини/поточні справи (загальні)"
+msgstr "новини/поточні події (загальні)"
 
 msgid "news/weather report"
 msgstr "новини/прогноз погоди"
