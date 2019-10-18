@@ -126,7 +126,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices = choice_list, default=config.av.downmix_aac.value)
-				elif getBoxType() in ('gbquad4k', 'gbue4k'):
+				elif getBoxType() in ('gbquad4k', 'gbue4k', 'gbx34k'):
 					choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts",  _("convert to DTS")), ("use_hdmi_cacenter",  _("use_hdmi_cacenter")), ("wide",  _("wide")), ("extrawide",  _("extrawide"))]
 					self.settings.downmix_aac = ConfigSelection(choices = choice_list, default=config.av.downmix_aac.value)
 				else:
@@ -150,7 +150,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
 					choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI")), ("force_ddp",  _("force AC3plus"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices = choice_list, default = config.av.transcodeac3plus.value)
-				elif getBoxType() in ('gbquad4k', 'gbue4k'):
+				elif getBoxType() in ('gbquad4k', 'gbue4k', 'gbx34k'):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("force_dts",  _("convert to DTS"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices = choice_list, default = config.av.transcodeac3plus.value)
 				else:
@@ -395,7 +395,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def changeAACDownmix(self, downmix):
-		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800','gbquad4k', 'gbue4k'):
+		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800','gbquad4k', 'gbue4k', 'gbx34k'):
 			config.av.downmix_aac.setValue(downmix.value)
 		else:
 			if downmix.value:
