@@ -63,7 +63,7 @@ subtype[4] = [
 
 # Children/Youth
 subtype[5] = [
-					_("childrens's/youth program (general)"),
+					_("children's/youth program (general)"),
 					_("pre-school children's program"),
 					_("entertainment (6-14 year old)"),
 					_("entertainment (10-16 year old)"),
