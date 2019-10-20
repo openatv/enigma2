@@ -614,10 +614,15 @@ class EPGFetcher(object):
 
     def makeChanShowMap(self, shows):
         res = defaultdict(list)
-        mapping_errors = set()
-        country_code = config.plugins.icetv.member.country.value
         for show in shows:
             channel_id = long(show["channel_id"])
+            res[channel_id].append(show)
+        return res
+
+    def convertChanShows(self, shows, mapping_errors):
+        country_code = config.plugins.icetv.member.country.value
+        res = []
+        for show in shows:
             event_id = int(show.get("eit_id"))
             if event_id is None:
                 event_id = ice.showIdToEventId(show["id"])
@@ -645,7 +650,7 @@ class EPGFetcher(object):
                     print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
                     mapping_errors.add(name)
             p_rating = ((country_code, parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
-            res[channel_id].append((start, duration, title, short, extended, genres, event_id, p_rating))
+            res.append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
 
     def updateDescriptions(self, showMap):
@@ -689,6 +694,7 @@ class EPGFetcher(object):
         channel_show_map = {}
         last_update_time = 0
         pos = 0
+        mapping_errors = set()
         shows = None
         while pos < len(channels):
             fetch_chans = channels[pos:pos + max_fetch]
@@ -697,7 +703,7 @@ class EPGFetcher(object):
             channel_show_map = self.makeChanShowMap(shows["shows"])
             for channel_id in channel_show_map.keys():
                 if channel_id in self.channel_service_map:
-                    epgcache.importEvents(self.channel_service_map[channel_id], channel_show_map[channel_id])
+                    epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
             if pos == 0 and "last_update_time" in shows:
                 last_update_time = shows["last_update_time"]
             if self.updateDescriptions(channel_show_map):
