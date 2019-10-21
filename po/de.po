@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-02 14:32+0000\n"
+"POT-Creation-Date: 2019-10-21 22:04+0000\n"
 "PO-Revision-Date: 2019-05-04 10:31+0200\n"
 "Last-Translator: Schimmelreiter\n"
 "Language-Team: openATV\n"
@@ -2226,6 +2226,10 @@ msgstr ""
 #
 msgid "Activate Picture in Picture"
 msgstr "Bild im Bild aktivieren"
+
+#, python-format
+msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
+msgstr "Aktivieren Sie die Möglichkeit, individuelle oder festgelegte interne HDMI-CEC-Befehle von der Befehlszeile zu senden. Geben Sie in der Befehlszeile 'echo help > %s' ein und lesen Sie die Datei '%s' um eine kurze Hilfe zu erhalten."
 
 msgid "Activate current configuration"
 msgstr ""
@@ -6525,6 +6529,9 @@ msgstr "Hier können Sie das blinkende Record-Symbol im Gerätedisplay aktiviere
 
 msgid "Enable chapter support for video files"
 msgstr "Kapitelunterstützung für Videodateien aktivieren"
+
+msgid "Enable command line function"
+msgstr "Befehlszeilenfunktion aktivieren"
 
 msgid "Enable cut file support for audio files"
 msgstr "Schnittdateisupport für Audiodateien aktivieren"
@@ -18172,12 +18179,6 @@ msgstr "Verwende FreeSat EPG Informationen, wenn sie verfügbar ist."
 
 msgid "Use HDMI-preemphasis"
 msgstr "HDMI-Preemphasis benutzen"
-
-msgid "Enable command line function"
-msgstr "Befehlszeilenfunktion aktivieren"
-
-msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
-msgstr "Aktivieren Sie die Möglichkeit, individuelle oder festgelegte interne HDMI-CEC-Befehle von der Befehlszeile zu senden. Geben Sie in der Befehlszeile 'echo help > %s' ein und lesen Sie die Datei '%s' um eine kurze Hilfe zu erhalten."
 
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Verwendung des Festplatten Hardware Standby Timers"
