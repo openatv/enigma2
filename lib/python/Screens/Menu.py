@@ -16,6 +16,7 @@ from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Button import Button
 from Tools.LoadPixmap import LoadPixmap
 import os
+import skin
 
 import xml.etree.cElementTree
 
@@ -45,6 +46,45 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/missing.png'), cached=True)
 			png_cache['missing'] = png
 	return png
+
+def MenuEntryName(name):
+	def splitUpperCase(name, maxlen):
+		for c in range(len(name),0,-1):
+			if name[c-1].isupper() and c-1 and c-1 <= maxlen:
+				return name[:c-1] + "-:-" + name[c-1:]
+		return name
+	def splitLowerCase(name, maxlen):
+		for c in range(len(name),0,-1):
+			if name[c-1].islower() and c-1 and c-1 <= maxlen:
+				return name[:c-1] + "-:-" + name[c-1:]
+		return name
+	def splitName(name, maxlen):
+		for s in (" ", "-", "/"):
+			pos = name.rfind(s,0,maxlen+1)
+			if pos > 1:
+				return [name[:pos+1] if pos+1 <= maxlen and s != " " else name[:pos], name[pos+1:]]
+		return splitUpperCase(name, maxlen).split("-:-",1)
+
+	maxrow = 3
+	maxlen = 18
+	namesplit = []
+	if len(name) > maxlen and maxrow > 1:
+		namesplit = splitName(name, maxlen)
+		if len(namesplit) == 1 or (len(namesplit) == 2 and len(namesplit[1]) > maxlen * (maxrow-1)):
+			tmp = splitLowerCase(name, maxlen).split("-:-",1)
+			if len(tmp[0]) > len(namesplit[0]) or len(namesplit) < 2:
+				namesplit = tmp
+		for x in range(1,maxrow):
+			if len(namesplit) > x and len(namesplit) < maxrow and len(namesplit[x]) > maxlen:
+				tmp = splitName(namesplit[x], maxlen)
+				if len(tmp) == 1 or (len(tmp) == 2 and len(tmp[1]) > maxlen * (maxrow-x)):
+					tmp = splitLowerCase(namesplit[x], maxlen).split("-:-",1)
+				if len(tmp) == 2:
+					namesplit.pop(x)
+					namesplit.extend(tmp)
+			else:
+				break
+	return name if len(namesplit) < 2 else "\n".join(namesplit)
 
 # read the menu
 file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
@@ -313,15 +353,10 @@ class Menu(Screen, ProtectedScreen):
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
-		if 'horz' in config.usage.menutype.value:
-			skfile = '/usr/share/enigma2/' + config.skin.primary_skin.value
-			f1 = open(skfile, 'r')
-			self.sktxt = f1.read()
-			f1.close()
 		if menuID is not None:
-			if config.usage.menutype.value == 'horzanim' and '<screen name="Animmain" ' in self.sktxt:
+			if config.usage.menutype.value == 'horzanim' and skin.dom_screens.has_key("Animmain"):
 				self.skinName.append('Animmain')
-			elif config.usage.menutype.value == 'horzicon' and '<screen name="Iconmain" ' in self.sktxt:
+			elif config.usage.menutype.value == 'horzicon' and skin.dom_screens.has_key("Iconmain"):
 				self.skinName.append('Iconmain')
 			else:
 				self.skinName.append('menu_' + menuID)
@@ -437,14 +472,14 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			t_history.thistory = t_history.thistory + str(a) + ' > '
 
-		if config.usage.menutype.value == 'horzanim' and '<screen name="Animmain" ' in self.sktxt:
+		if config.usage.menutype.value == 'horzanim' and skin.dom_screens.has_key("Animmain"):
 			self['label1'] = StaticText()
 			self['label2'] = StaticText()
 			self['label3'] = StaticText()
 			self['label4'] = StaticText()
 			self['label5'] = StaticText()
 			self.onShown.append(self.openTestA)
-		elif config.usage.menutype.value == 'horzicon' and '<screen name="Iconmain" ' in self.sktxt:
+		elif config.usage.menutype.value == 'horzicon' and skin.dom_screens.has_key("Iconmain"):
 			self['label1'] = StaticText()
 			self['label2'] = StaticText()
 			self['label3'] = StaticText()
@@ -763,39 +798,23 @@ class AnimMain(Screen):
 	def paintFrame(self):
 		pass
 
-	def getname(self, name):
-		maxlen = 18
-		if len(name) > maxlen:
-			if '-' in name or '/' in name or ' ' in name:
-				name = name.replace('-', ' ').replace(' /', ' ').replace('/ ', ' ').split()
-				name = "\n".join(name)
-			else:
-				maxlen = 16
-				for c in range(len(name),0,-1):
-					if name[c-1].isupper() and c-1 and c-1 <= maxlen:
-						name = name[:c-1] + '\n' + name[c-1:]
-						break
-				if not '\n' in name:
-					name = name[:maxlen] + '\n' + name[maxlen:]
-		return name
-
 	def openTest(self):
 		i = self.index
 		if i - 3 > -1:
-			name1 = self.getname(self.tlist[i - 3][0])
+			name1 = MenuEntryName(self.tlist[i - 3][0])
 		else:
 			name1 = ' '
 		if i - 2 > -1:
-			name2 = self.getname(self.tlist[i - 2][0])
+			name2 = MenuEntryName(self.tlist[i - 2][0])
 		else:
 			name2 = ' '
-		name3 = self.getname(self.tlist[i - 1][0])
+		name3 = MenuEntryName(self.tlist[i - 1][0])
 		if i < self.nop:
-			name4 = self.getname(self.tlist[i][0])
+			name4 = MenuEntryName(self.tlist[i][0])
 		else:
 			name4 = ' '
 		if i + 1 < self.nop:
-			name5 = self.getname(self.tlist[i + 1][0])
+			name5 = MenuEntryName(self.tlist[i + 1][0])
 		else:
 			name5 = ' '
 		self['label1'].setText(name1)
@@ -948,19 +967,7 @@ class IconMain(Screen):
 				name = ''
 			else:
 				name = self.tlist[i][0]
-			maxlen = 18
-			if len(name) > maxlen:
-				if '-' in name or '/' in name or ' ' in name:
-					name = name.replace('-', ' ').replace(' /', ' ').replace('/ ', ' ').split()
-					name = "\n".join(name)
-				else:
-					maxlen = 16
-					for c in range(len(name),0,-1):
-						if name[c-1].isupper() and c-1 and c-1 <= maxlen:
-							name = name[:c-1] + '\n' + name[c-1:]
-							break
-					if not '\n' in name:
-						name = name[:maxlen] + '\n' + name[maxlen:]
+			name = MenuEntryName(name)
 			if j == self.index + 1:
 				self['label' + str(j)].setText(' ')
 				self['label' + str(j) + 's'].setText(name)
