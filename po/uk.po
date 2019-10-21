@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 10:53+0000\n"
+"POT-Creation-Date: 2019-22-10 10:53+0000\n"
 "PO-Revision-Date: 2019-14-09 10:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
@@ -524,10 +524,10 @@ msgid "%A %-m/%d/%Y"
 msgstr "%A %-m /%d /%Y"
 
 msgid "%A %B %-d"
-msgstr ""
+msgstr "%A %B %-d"
 
 msgid "%A %B %-d %Y"
-msgstr ""
+msgstr "%A %B %-d %Y"
 
 msgid "%A %B %d"
 msgstr ""
@@ -736,24 +736,20 @@ msgstr ""
 msgid "%a %-d/%m/%Y"
 msgstr ""
 
-#, fuzzy
 msgid "%a %-m/%-d"
-msgstr "%a %-m/%-d"
+msgstr ""
 
 msgid "%a %-m/%-d/%Y"
 msgstr "%a %-m/%-d/%Y"
 
-#, fuzzy
 msgid "%a %-m/%d"
-msgstr "%a %-m/%d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %-m/%d/%Y"
-msgstr "%a %-m/%d/%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %B %-d %Y"
-msgstr "%a %B %-d %Y"
+msgstr ""
 
 msgid "%a %B %d %Y"
 msgstr ""
@@ -761,88 +757,68 @@ msgstr ""
 msgid "%a %B-%-d-%Y"
 msgstr ""
 
-#, fuzzy
 msgid "%a %B-%d-%Y"
-msgstr "%a %B-%d-%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y %B %-d"
-msgstr "%a %Y %B %-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y %B %d"
-msgstr "%a %Y %B %d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y %b %-d"
-msgstr "%a %Y %b %-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y %b %d"
-msgstr "%a %Y %b %d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y-%B-%-d"
-msgstr "%a %Y-%B-%-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y-%B-%d"
-msgstr "%a %Y-%B-%d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y-%b-%-d"
-msgstr "%a %Y-%b-%-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y-%b-%d"
-msgstr "%a %Y-%b-%d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y/%-m/%-d"
-msgstr "%a %Y/%-m/%-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y/%-m/%d"
-msgstr "%a %Y/%-m/%d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y/%m/%-d"
-msgstr "%a %Y/%m/%-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %Y/%m/%d"
-msgstr "%a %Y/%m/%d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %b %-d"
-msgstr "%a %b %-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %b %-d %Y"
-msgstr "%a %b %-d %Y"
+msgstr ""
 
 msgid "%a %b %d"
 msgstr ""
 
-#, fuzzy
 msgid "%a %b %d %Y"
-msgstr "%a %b %d %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %b-%-d"
-msgstr "%a %b-%-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %b-%-d-%Y"
-msgstr "%a %b-%-d-%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %b-%d"
-msgstr "%a %b-%d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %b-%d-%Y"
-msgstr "%a %b-%d-%Y"
+msgstr ""
 
 msgid "%a %d"
 msgstr "%a %d"
@@ -856,28 +832,23 @@ msgstr ""
 msgid "%a %d %b"
 msgstr "%a %d %b"
 
-#, fuzzy
 msgid "%a %d %b %Y"
-msgstr "%a %d %b %Y"
+msgstr ""
 
 msgid "%a %d-%B-%Y"
 msgstr "%a %d- %B- %Y"
 
-#, fuzzy
 msgid "%a %d-%b"
-msgstr "%a %d-%b"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d-%b-%Y"
-msgstr "%a %d-%b-%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d/%-m"
-msgstr "%a %d/%-m"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d/%-m/%Y"
-msgstr "%a %d/%-m/%Y"
+msgstr ""
 
 msgid "%a %d/%m"
 msgstr ""
@@ -2187,6 +2158,9 @@ msgstr "Активувати налаштування МАС-адреси"
 msgid "Activate Picture in Picture"
 msgstr "Ввімкнути Картинка в Картинці"
 
+msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
+msgstr "Активація способу надсилання окремих, або конкретних внутрішніх команд HDMI-CEC з командного рядка. Введіть у командному рядку 'echo help > %s', а потім прочитайте файл '%s' для отримання короткої довідки."
+
 msgid "Activate current configuration"
 msgstr "Активувати поточну конфігурацію"
 
@@ -2656,7 +2630,6 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Ви впевнені, що хочете видалити всі вибрані логи:\n"
 
-# python-format
 #, python-format
 msgid "Are you sure you want to delete image slot %s ?"
 msgstr "Ви впевнені, що хочете видалити цей слот з іміджем %s ?"
@@ -2862,6 +2835,9 @@ msgstr "Авто"
 
 msgid "Auto Deep Standby"
 msgstr "Авто виключення"
+
+msgid "Auto Detect"
+msgstr "Автовизначення"
 
 msgid "Auto Language"
 msgstr "Авто мова"
@@ -3569,6 +3545,12 @@ msgstr "Камерун"
 msgid "Can be used for different fps between external subtitles and video."
 msgstr "Може бути використане при різних fps між зовнішніми субтитрами і відео."
 
+msgid "Can not download current region details"
+msgstr "Неможливо завантажити поточну інформацію про регіон"
+
+msgid "Can not post scan information"
+msgstr "Неможливо розмістити інформацію про сканування"
+
 #, python-format
 msgid ""
 "Can not run %s: %s.\n"
@@ -3928,6 +3910,12 @@ msgstr "Виберіть фаворитний список"
 
 msgid "Choose Tuner"
 msgstr "Виберіть Тюнер"
+
+msgid "Choose a country scheme for decoding genre information in EPG events."
+msgstr "Виберіть країну для визначення інформації про жанр в передачах EPG."
+
+msgid "Choose a country scheme for decoding rating information in EPG events."
+msgstr "Виберіть країну для визначення рейтингової інформації в передачах EPG."
 
 msgid "Choose a setting where your receiver wakes up from standby."
 msgstr "Виберіть параметр, у якому приймач включиться в режимі очікування."
@@ -4741,6 +4729,12 @@ msgstr "Не вдалося зберегти файл конфігурації %
 msgid "Country"
 msgstr "Країни"
 
+msgid "Country for EPG event genre information"
+msgstr "Інформація про жанр передачі EPG"
+
+msgid "Country for EPG event rating information"
+msgstr "Інформація про рейтинг передач EPG в країні"
+
 msgid "Cpu"
 msgstr "Процесор"
 
@@ -5031,16 +5025,16 @@ msgid "Day DD/MM"
 msgstr "День ДД/ММ"
 
 msgid "Day M/D"
-msgstr ""
+msgstr "День М/Д"
 
 msgid "Day M/DD"
-msgstr ""
+msgstr "День М/ДД"
 
 msgid "Day MM/D"
-msgstr ""
+msgstr "День ММ/Д"
 
 msgid "Day MM/DD"
-msgstr ""
+msgstr "День ММ/ДД"
 
 msgid "Day Mon D"
 msgstr ""
@@ -6128,6 +6122,9 @@ msgstr "Включити EIT ЕПГ"
 msgid "Enable Focus Animation"
 msgstr "Включити Анімація фокусування"
 
+msgid "Enable IceTV"
+msgstr "Включити IceTV"
+
 msgid "Enable MHW EPG"
 msgstr "Включити MHW ЕПГ"
 
@@ -6182,6 +6179,9 @@ msgstr "Включити блимаючий символ запису на LCD �
 
 msgid "Enable chapter support for video files"
 msgstr "Включити підтримку розділів для відео файлів"
+
+msgid "Enable command line function"
+msgstr "Включити функцію командного рядка"
 
 msgid "Enable cut file support for audio files"
 msgstr "Включити підтримку розділів для аудіо файлів"
@@ -6838,6 +6838,9 @@ msgstr "Статус фіду:   Оновлення"
 msgid "Feeds status: Unexpected"
 msgstr "Статус фіду: Незаданий"
 
+msgid "Fetch EPG and update timers now"
+msgstr "Отримайте EPG та оновіть таймери зараз"
+
 msgid "Fiji"
 msgstr "Фіджі"
 
@@ -7208,6 +7211,9 @@ msgstr "Загальна затримка аудіо BT"
 
 msgid "General PCM delay"
 msgstr "Загальна PCM затримка"
+
+msgid "Generic"
+msgstr "Загальний"
 
 msgid "Genre"
 msgstr "Жанр"
@@ -7754,6 +7760,9 @@ msgstr "Розмір ISO файлу завеликий для цієї файл�
 
 msgid "ISO path"
 msgstr "ISO шлях"
+
+msgid "IceTV - Service selection"
+msgstr "IceTV - вибір послуг"
 
 msgid "Iceland"
 msgstr "Ісландія"
@@ -8786,6 +8795,12 @@ msgstr "Записувати логи на HDD"
 
 msgid "LogManager"
 msgstr "Управління логами"
+
+msgid "Login OK"
+msgstr "Логін OK"
+
+msgid "Login to IceTV server"
+msgstr "Логін для сервера IceTV"
 
 msgid "Logs location"
 msgstr "Розташування логів"
@@ -10860,6 +10875,9 @@ msgstr "Будь-ласка, виберіть носій для розташув
 
 msgid "Please select tag to filter..."
 msgstr "Будь-ласка, виберіть тег для фільтру..."
+
+msgid "Please select the IceTV service that you wish to use."
+msgstr "Виберіть службу IceTV, якою Ви хочете скористатися."
 
 msgid "Please select the movie path..."
 msgstr "Будь ласка, виберіть шлях до фільму..."
@@ -13955,6 +13973,9 @@ msgstr "Показати ЕПГ"
 msgid "Show event details"
 msgstr "Показати деталі події"
 
+msgid "Show event genre information"
+msgstr "Показати інформацію про жанр передачі"
+
 msgid "Show event-progress in channel selection"
 msgstr "Показувати тривалість події у списку каналів"
 
@@ -14325,7 +14346,7 @@ msgid "Single step (GOP)"
 msgstr "Визначити крок  (GOP)"
 
 msgid "SingleEPG settings"
-msgstr "Параметри Простого ЕПГ"
+msgstr "Налаштування Простого ЕПГ"
 
 msgid "Sint Maarten (Dutch part)"
 msgstr "Сінт-Маартен (голландська частина)"
@@ -15204,7 +15225,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 08.10.2019\n"
+"Переклад:  kvinto - 21.10.2019\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -15715,6 +15736,9 @@ msgstr ""
 "На обраному розділі може бути недостатньо місця..\n"
 "Ви дійсно хочете продовжити?"
 
+msgid "There was an error downloading current region details"
+msgstr "Під час завантаження поточної інформації про регіон сталася помилка"
+
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "При завантаженні списку оновлень сталася помилка. Будь ласка, спробуйте ще раз."
 
@@ -15908,6 +15932,9 @@ msgstr "Цей параметр дозволяє Вам встановити, я
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
 msgstr "Дія при першому натисканні кнопки в списку каналів, (так натиснувши '2' переходимо на 'A' або на '2-канал' спочатку), коли дії налаштовані в 'Швидкі дії'. "
+
+msgid "This option allows you to choose whether or not to display genre information for the event."
+msgstr "Цей параметр дозволяє Вам вибрати, відображати інформацію про жанр передачі чи ні."
 
 msgid "This option allows you to disable show Restart Network in Extensions list."
 msgstr "Цей параметр дозволяє Вам показ перезавантаження мережі в меню розширень."
@@ -16261,6 +16288,15 @@ msgstr "Тип таймера"
 
 msgid "Timers"
 msgstr "Таймери"
+
+msgid "Timer '%s' created OK"
+msgstr "Таймер '%s' створено ОК"
+
+msgid "Timer '%s' updated OK"
+msgstr "Таймер '%s' оновлено ОК"
+
+msgid "Timers updated OK"
+msgstr "Таймери оновлено ОК"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -18965,13 +19001,13 @@ msgid "equal to"
 msgstr "дорівнює"
 
 msgid "equestrian"
-msgstr "кінний"
+msgstr "кінний спорт"
 
 msgid "error starting scanning"
 msgstr "помилка при запуску сканування"
 
 msgid "error while scanning"
-msgstr "помилка пыд час сканування"
+msgstr "помилка під час сканування"
 
 msgid "et4000"
 msgstr "et4000"
@@ -19310,7 +19346,7 @@ msgid "left, wrapped"
 msgstr "зліва, прихований"
 
 msgid "leisure hobbies (general)"
-msgstr "дозвілля відпочинок (загальний)"
+msgstr "дозвілля та відпочинок (загальний)"
 
 msgid "length"
 msgstr "тривалість"
@@ -19412,10 +19448,10 @@ msgid "multinorm"
 msgstr "мультинорм"
 
 msgid "music/ballet/dance (general)"
-msgstr "музика/балет/танці (загальний)"
+msgstr "музика/балет/танці (загальна)"
 
 msgid "musical/opera"
-msgstr "музичний/оперний"
+msgstr "музична/оперна"
 
 msgid "n/A"
 msgstr "не визначено"
@@ -19436,10 +19472,10 @@ msgid "new media"
 msgstr "нові медіа"
 
 msgid "news magazine"
-msgstr "журнал новин"
+msgstr "програма новин"
 
 msgid "news/current affairs (general)"
-msgstr "новини/поточні справи (загальні)"
+msgstr "новини/поточні події (загальні)"
 
 msgid "news/weather report"
 msgstr "новини/прогноз погоди"
