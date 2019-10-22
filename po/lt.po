@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-02 14:32+0000\n"
-"PO-Revision-Date: 2019-10-02 21:08+0300\n"
+"POT-Creation-Date: 2019-10-21 22:04+0000\n"
+"PO-Revision-Date: 2019-10-22 14:30+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -2101,6 +2101,10 @@ msgstr "Aktyvuokite MAC adreso konfigūraciją"
 
 msgid "Activate Picture in Picture"
 msgstr "Įjungti vaizdą vaizde"
+
+#, python-format
+msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
+msgstr "Suaktyvinkite būdą, kaip siųsti individualias arba specifines vidines HDMI-CEC komandas iš komandinės eilutės. Įveskite komandinę eilutę 'echo help > %s' ir tada trumpai perskaitykite failą '%s'."
 
 msgid "Activate current configuration"
 msgstr "Aktyvuokite šią konfigūraciją"
@@ -5262,6 +5266,9 @@ msgstr "Įjungti automatinę greitą paiešką"
 #, python-format
 msgid "Enable auto fast scan for %s"
 msgstr "Įjungti automatinę greitą paiešką %s"
+
+msgid "Enable command line function"
+msgstr "Įgalinti komandinės eilutės funkciją"
 
 msgid "Enable debug log *"
 msgstr "Įjungti klaidų žurnalą *"
@@ -12758,7 +12765,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-10-02"
+msgstr "Adga, v. 2019-10-22"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
