@@ -225,7 +225,7 @@ class key_actions(stat_info):
 		self.longname = sourceDir + filename
 		if not dirsource.canDescent():
 			askList = [(_("Set archive mode (644)"), "CHMOD644"), (_("Set executable mode (755)"), "CHMOD755"), (_("Cancel"), "NO")]
-			self.session.openWithCallback(self.do_change_mod, ChoiceBox, title=(_("Do you want change rights?\\n") + filename), list=askList)
+			self.session.openWithCallback(self.do_change_mod, ChoiceBox, title=(_("Do you want change rights?\n") + filename), list=askList)
 		else:
 			self.session.open(MessageBox, _("Not allowed with folders"), type=MessageBox.TYPE_INFO, close_on_any_key=True)
 
