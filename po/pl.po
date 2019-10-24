@@ -2137,23 +2137,26 @@ msgstr "Aktywuj konfigurację adresu-MAC"
 msgid "Activate Picture in Picture"
 msgstr "Aktywuj PiP"
 
+msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
+msgstr "Aktywuj sposób wysyłania indywidualnych lub określonych wewnętrznych poleceń HDMI-CEC z wiersza poleceń. Wpisz w wierszu polecenia 'echo help > %s' , a następnie przeczytaj plik '%s' , aby uzyskać krótką pomoc."
+
 msgid "Activate current configuration"
 msgstr "Aktywuj bieżącą konfigurację"
 
 msgid "Activate left-hand file list as multi-select source"
-msgstr ""
+msgstr "Aktywuj listę plików po lewej stronie jako źródło wielokrotnego wyboru"
 
 msgid "Activate left-hand file list as source"
-msgstr ""
+msgstr "Aktywuj listę plików po lewej stronie jako źródło"
 
 msgid "Activate network settings"
 msgstr "Aktywuj ustawienia sieci"
 
 msgid "Activate right-hand file list as multi-select source"
-msgstr ""
+msgstr "Aktywuj prawą listę plików jako źródło wielokrotnego wyboru"
 
 msgid "Activate right-hand file list as source"
-msgstr ""
+msgstr "Aktywuj listę plików po prawej stronie jako źródło"
 
 msgid "Activate the configured network settings."
 msgstr "Aktywuj skonfigurowane ustawienia sieci."
@@ -2186,22 +2189,19 @@ msgid "Add AutoTimer"
 msgstr "Dodaj AutoTimer"
 
 msgid "Add New Quad Channel Entry"
-msgstr ""
+msgstr "Dodaj nowy wpis czterokanałowy"
 
-#, fuzzy
 msgid "Add Record Timer"
-msgstr "Dodaj timer nagrywania"
+msgstr "Dodaj Timer Nagrywania"
 
 msgid "Add Timer"
 msgstr "Dodaj Timer"
 
-#, fuzzy
 msgid "Add Zap Timer"
-msgstr "Dodaj Timer"
+msgstr "Dodaj Zap Timer"
 
-#, fuzzy
 msgid "Add Zap+Record Timer"
-msgstr "Dodaj timer nagrywania"
+msgstr "Dodaj Timer Zap+Nagrywanie"
 
 msgid "Add a auto timer for current event"
 msgstr "Dodaj auto.timer dla bieżącego wydarzenia"
@@ -5627,11 +5627,10 @@ msgstr "Czy na pewno chcesz usunąć timer %s?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr "Czy chcesz usunąć zakładkę %s?"
+msgstr "Czy na pewno chcesz usunąć swoją zakładkę %s?"
 
-#, fuzzy
 msgid "Do you want change rights?\n"
-msgstr "Czy chcesz zainstalować listę kanałów?"
+msgstr "Czy chcesz zmienić prawa?\n"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Chcesz dodać dodatkowe informacje ?"
@@ -5663,12 +5662,14 @@ msgstr "Nagrać kolekcję na nośniku DVD?"
 msgid "Do you want to continue?"
 msgstr "Czy chcesz kontynuować?"
 
-#, fuzzy
 msgid ""
 "Do you want to delete all other languages?\n"
 "Except English, French, German and your selection:\n"
 "\n"
-msgstr "Chcesz usunąć wszystkie inne języki?"
+msgstr ""
+"Czy chcesz usunąć wszystkie inne języki?\n"
+"Z wyjątkiem angielskiego, francuskiego, niemieckiego i twojego wyboru:\n"
+"\n"
 
 msgid ""
 "Do you want to delete all selected files:\n"
@@ -6126,6 +6127,9 @@ msgstr "Włącz automatyczne szybkie skanowanie"
 #, python-format
 msgid "Enable auto fast scan for %s"
 msgstr "Włącz automatyczne szybkie skanowanie dla %s"
+
+msgid "Enable command line function"
+msgstr "Włącz funkcję wiersza poleceń"
 
 msgid "Enable debug log *"
 msgstr "Włącz dziennik debugowania *"
@@ -16879,11 +16883,6 @@ msgstr "Użyć informacji EPG FreeSat gdy dostępne."
 msgid "Use HDMI-preemphasis"
 msgstr "Użyj wstępnego wyróżnienia HDMI"
 
-msgid "Enable command line function"
-msgstr "Włącz funkcję wiersza poleceń"
-
-msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
-msgstr "Aktywuj sposób wysyłania indywidualnych lub określonych wewnętrznych poleceń HDMI-CEC z wiersza poleceń. Wpisz w wierszu polecenia 'echo help > %s' , a następnie przeczytaj plik '%s' , aby uzyskać krótką pomoc."
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Zastosowanie twardego dysku w trybie czuwania(Timer)"
 
