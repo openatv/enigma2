@@ -986,8 +986,12 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
             x[1].cancel()
         self.close(False)
 
-    def save(self):
+    def saveConfs(self):
+        config.plugins.icetv.member.region_id.save()
         self.saveAll()
+
+    def save(self):
+        self.saveConfs()
         self.session.openWithCallback(self.regionDone, IceTVRegionSetup)
 
     def regionDone(self, region_success):
@@ -1006,7 +1010,7 @@ class IceTVOldUserSetup(IceTVNewUserSetup):
         self.skinName = self.__class__.__bases__[0].__name__
 
     def save(self):
-        self.saveAll()
+        self.saveConfs()
         self.session.openWithCallback(self.loginDone, IceTVLogin)
 
 
@@ -1060,12 +1064,12 @@ class IceTVRegionSetup(Screen):
         self.region_list_timer.start(3, True)
 
     def cancel(self):
+        config.plugins.icetv.member.region_id.cancel()
         self.close(False)
 
     def save(self):
         item = self["config"].getCurrent()
         config.plugins.icetv.member.region_id.value = item[1]
-        config.plugins.icetv.member.region_id.save()
         self.close(self.have_region_list)
 
     def getRegionList(self):
