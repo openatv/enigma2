@@ -413,6 +413,7 @@ class EPGFetcher(object):
 
     def makeChanShowMap(self, shows):
         res = defaultdict(list)
+        mapping_errors = set()
         for show in shows:
             channel_id = long(show["channel_id"])
             event_id = int(show.get("eit_id"))
@@ -432,14 +433,15 @@ class EPGFetcher(object):
             extended = show.get("desc", "").encode("utf-8")
             genres = []
             for g in show.get("category", []):
-                name = g['name']
-                eit = int(g["eit"], 0) or 0x01
+                name = g['name'].encode("utf-8")
+                eit = int(g.get("eit", "0"), 0) or 0x01
                 eit_remap = genre_remaps.get(name, eit)
                 mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country="AUS")
                 if mapped_name == name:
                         genres.append(eit_remap)
-                else:
+                elif name not in mapping_errors:
                     print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
+                    mapping_errors.add(name)
             p_rating = (("AUS", parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
             res[channel_id].append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
