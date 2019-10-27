@@ -810,6 +810,8 @@ class IceTVMain(ChoiceBox):
         global _session
         if _session is None:
             _session = session
+        self.skinName = "IceTVMain"
+        self.setTitle(_("IceTV - Setup"))
         menu = [
                 (_("Show log"), "CALLFUNC", self.showLog),
                 (_("Fetch EPG and update timers now"), "CALLFUNC", self.fetch),
@@ -818,7 +820,13 @@ class IceTVMain(ChoiceBox):
                 (_("Enable IceTV"), "CALLFUNC", self.enable),
                 (_("Disable IceTV"), "CALLFUNC", self.disable),
                ]
-        super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu)
+        try:
+            # Use windowTitle for compatibility betwwen OpenATV & OpenViX
+            super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu, skin_name=self.skinName, windowTitle=_("IceTV - Setup"))
+        except TypeError:
+            # Fallback for Beyonwiz
+            super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu)
+
         self["debugactions"] = ActionMap(
             contexts=["DirectionActions"],
             actions={
@@ -886,6 +894,7 @@ class IceTVUserTypeScreen(Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Account selection"))
         self["title"] = Label(_("Welcome to IceTV"))
         self["instructions"] = Label(_(self._instructions))
         options = []
@@ -939,6 +948,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - User Information"))
         self["instructions"] = Label(self._instructions)
         self["description"] = Label()
         self["HelpWindow"] = Label()
@@ -991,6 +1001,10 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
 
 class IceTVOldUserSetup(IceTVNewUserSetup):
 
+    def __init__(self, session):
+        super(IceTVOldUserSetup, self).__init__(session)
+        self.skinName = self.__class__.__bases__[0].__name__
+
     def save(self):
         self.saveAll()
         self.session.openWithCallback(self.loginDone, IceTVLogin)
@@ -1021,6 +1035,7 @@ class IceTVRegionSetup(Screen):
         self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Region"))
         self["instructions"] = Label(self._instructions)
         self["description"] = Label(self._wait)
         self["error"] = Label()
@@ -1092,6 +1107,7 @@ class IceTVLogin(Screen):
         self.session = session
         self.success = False
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Login"))
         self["instructions"] = Label(self._instructions)
         self["message"] = Label()
         self["error"] = Label()
@@ -1155,6 +1171,10 @@ class IceTVLogin(Screen):
 
 class IceTVCreateLogin(IceTVLogin):
 
+    def __init__(self, session):
+        super(IceTVCreateLogin, self).__init__(session)
+        self.skinName = self.__class__.__bases__[0].__name__
+
     def loginCmd(self):
         ice.Login(config.plugins.icetv.member.email_address.value,
                   config.plugins.icetv.member.password.value,
@@ -1184,6 +1204,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Password required"))
         self["instructions"] = Label(self._instructions % config.plugins.icetv.member.email_address.value)
         self["description"] = Label()
         self["key_red"] = Label(_("Cancel"))
