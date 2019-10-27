@@ -22,6 +22,8 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.LoadPixmap import LoadPixmap
 from calendar import timegm
 from time import strptime, gmtime, strftime, time
 from datetime import datetime
@@ -34,59 +36,62 @@ from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
 import NavigationInstance
 from twisted.internet import reactor, threads
+from os import path
 
 _session = None
 password_requested = False
 
 genre_remaps = {
-    "AFL": 0xf7,
-    "Action": 0x1f,
-    "American Football": 0xf6,
-    "Baseball": 0xf5,
-    "Basketball": 0xf4,
-    "Boxing": 0x4a,
-    "Business & Finance": 0x84,
-    "Cartoon": 0x51,
-    "Comedy": 0xc0,
-    "Cricket": 0x4f,
-    "Current Affairs": 0x81,
-    "Cycling": 0x0e,
-    "Dance": 0x62,
-    "Documentary": 0xe0,
-    "Drama": 0xd0,
-    "Family": 0x0d,
-    "Fantasy": 0xf2,
-    "Film-Noir": 0x0c,
-    "Finance": 0x0b,
-    "Fishing": 0xa3,
-    "Food/Wine": 0xa4,
-    "Golf": 0x42,
-    "Hockey": 0x4e,
-    "Horror": 0xf1,
-    "Horse Racing": 0x0a,
-    "Lifestyle": 0xa2,
-    "MMA": 0x09,
-    "Mini Series": 0x08,
-    "Murder": 0x1c,
-    "Musical": 0x61,
-    "Mystery": 0x1b,
-    "Netball": 0x4d,
-    "Parliament": 0x82,
-    "Renovation": 0x07,
-    "Rowing": 0xf8,
-    "Rugby": 0x4c,
-    "Rugby League": 0x4b,
-    "Sailing": 0x06,
-    "Science": 0x94,
-    "Short Film": 0x05,
-    "Sitcom": 0xf3,
-    "Special": 0xb0,
-    "Thriller": 0x1a,
-    "Violence": 0x04,
-    "War": 0x1e,
-    "Western": 0x1d,
-    "Wrestling": 0x03,
-    "Youth": 0x02,
+    "AUS": {
+        "AFL": 0xf7,
+        "Action": 0x1f,
+        "American Football": 0xf6,
+        "Baseball": 0xf5,
+        "Basketball": 0xf4,
+        "Boxing": 0x4a,
+        "Business & Finance": 0x84,
+        "Cartoon": 0x51,
+        "Comedy": 0xc0,
+        "Cricket": 0x4f,
+        "Current Affairs": 0x81,
+        "Cycling": 0x0e,
+        "Dance": 0x62,
+        "Documentary": 0xe0,
+        "Drama": 0xd0,
+        "Family": 0x0d,
+        "Fantasy": 0xf2,
+        "Film-Noir": 0x0c,
+        "Finance": 0x0b,
+        "Fishing": 0xa3,
+        "Food/Wine": 0xa4,
+        "Golf": 0x42,
+        "Hockey": 0x4e,
+        "Horror": 0xf1,
+        "Horse Racing": 0x0a,
+        "Lifestyle": 0xa2,
+        "MMA": 0x09,
+        "Mini Series": 0x08,
+        "Murder": 0x1c,
+        "Musical": 0x61,
+        "Mystery": 0x1b,
+        "Netball": 0x4d,
+        "Parliament": 0x82,
+        "Renovation": 0x07,
+        "Rowing": 0xf8,
+        "Rugby": 0x4c,
+        "Rugby League": 0x4b,
+        "Sailing": 0x06,
+        "Science": 0x94,
+        "Short Film": 0x05,
+        "Sitcom": 0xf3,
+        "Special": 0xb0,
+        "Thriller": 0x1a,
+        "Violence": 0x04,
+        "War": 0x1e,
+        "Western": 0x1d,
+        "Wrestling": 0x03,
+        "Youth": 0x02,
+    },
 }
 
 parental_ratings = {
@@ -414,6 +419,7 @@ class EPGFetcher(object):
     def makeChanShowMap(self, shows):
         res = defaultdict(list)
         mapping_errors = set()
+        country_code = config.plugins.icetv.member.country.value
         for show in shows:
             channel_id = long(show["channel_id"])
             event_id = int(show.get("eit_id"))
@@ -435,14 +441,14 @@ class EPGFetcher(object):
             for g in show.get("category", []):
                 name = g['name'].encode("utf-8")
                 eit = int(g.get("eit", "0"), 0) or 0x01
-                eit_remap = genre_remaps.get(name, eit)
-                mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country="AUS")
+                eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
+                mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
                 if mapped_name == name:
                         genres.append(eit_remap)
                 elif name not in mapping_errors:
                     print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
                     mapping_errors.add(name)
-            p_rating = (("AUS", parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
+            p_rating = ((country_code, parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
             res[channel_id].append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
 
@@ -921,6 +927,7 @@ class IceTVUserTypeScreen(Screen):
         if success:
             self.close(True)
 
+
 class IceTVNewUserSetup(ConfigListScreen, Screen):
     skin = """
 <screen name="IceTVNewUserSetup" position="320,230" size="640,310" title="IceTV - User Information" >
@@ -1137,6 +1144,15 @@ class IceTVLogin(Screen):
         self.close(self.success)
 
     def layoutFinished(self):
+        qrcode = {
+            "AUS": "au_qr_code.png",
+        }.get(config.plugins.icetv.member.country.value, "au_qr_code.png")
+        qrcode_path = resolveFilename(SCOPE_PLUGINS, path.join("SystemPlugins/IceTV", qrcode))
+        if path.isfile(qrcode_path):
+            self["qrcode"].instance.setPixmap(LoadPixmap(qrcode_path))
+        else:
+            print "[IceTV] missing QR code file", qrcode_path
+
         self.login_timer.start(3, True)
 
     def doLogin(self):

@@ -18,14 +18,14 @@ from boxbranding import getMachineBrand, getMachineName, getImageBuild
 
 _version_string = "20190921"
 _protocol = "http://"
-_server = "api.icetv.com.au"
 _device_type_id = getIceTVDeviceType()
 _debug_level = 0  # 1 = request/reply, 2 = 1+headers, 3 = 2+partial body, 4 = 2+full body
 
+print "[IceTV] server set to", config.plugins.icetv.server.name.value
 
 def isServerReachable():
     try:
-        sock = create_connection((_server, 80), 3)
+        sock = create_connection((config.plugins.icetv.server.name.value, 80), 3)
         sock.shutdown(SHUT_RDWR)
         sock.close()
         return True
@@ -76,7 +76,7 @@ class Request(object):
             "Accept": "application/json",
             "User-Agent": "SystemPlugins.IceTV/%s (%s; %s; %s)" % (_version_string, getMachineBrand(), getMachineName(), getImageBuild()),
         }
-        self.url = _protocol + _server + resource
+        self.url = _protocol + config.plugins.icetv.server.name.value + resource
         self.data = {}
         self.response = None
 

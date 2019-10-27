@@ -22,11 +22,16 @@ def getIceTVDeviceType():
     }.get((getMachineBrand(), getMachineName()), 22)
 
 config.plugins.icetv = ConfigSubsection()
+
+config.plugins.icetv.server = ConfigSubsection()
+config.plugins.icetv.server.name = ConfigText(default="api.icetv.com.au")
+
 config.plugins.icetv.member = ConfigSubsection()
 config.plugins.icetv.member.email_address = ConfigText(show_help=False, fixed_size=False)
 config.plugins.icetv.member.token = ConfigText()
 config.plugins.icetv.member.id = ConfigNumber()
 config.plugins.icetv.member.region_id = ConfigNumber()
+config.plugins.icetv.member.country = ConfigText(default="AUS")
 
 config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", show_help=False, fixed_size=False))
 
