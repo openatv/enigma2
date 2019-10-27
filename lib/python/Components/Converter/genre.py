@@ -461,7 +461,7 @@ def getGenreStringLong(hn, ln, country=None):
 	if hn == 15 and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
 		return _("User defined") + " " + str(ln)
 	main = getGenreStringMain(hn, ln, country=country)
-	sub = getGenreStringSub(hn, ln)
+	sub = getGenreStringSub(hn, ln, country=country)
 	if main and main != sub:
 		return main + ": " + sub
 	else:
