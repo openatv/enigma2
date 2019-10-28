@@ -588,10 +588,10 @@ class RestoreMyMetrixHD(Screen):
 			if result:
 				infotext = ({1:_("Unknown Error creating Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."),
 							2:_("Error creating HD-Skin. Not enough flash memory free."),
-							3:_("Error creating FullHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
-							4:_("Error creating FullHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
-							5:_("Error creating FullHD-Skin.\nUsing HD-Skin!"),
-							6:_("Some FullHD-Icons are missing.\nUsing HD-Icons!"),
+							3:_("Error creating EHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
+							4:_("Error creating EHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
+							5:_("Error creating EHD-Skin.\nUsing HD-Skin!"),
+							6:_("Error creating EHD-Skin. Some EHD-Icons are missing.\nUsing HD-Skin!"),
 							7:_("Error, unknown Result!"),
 							}[result])
 				self.session.openWithCallback(self.checkSkinCallback, MessageBox, infotext, MessageBox.TYPE_ERROR, timeout = 30)
