@@ -1032,7 +1032,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				return ".hidvbi." in servicepath.lower()
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		return info and info.getInfo(iServiceInformation.sHideVBI)
+		return info and info.getInfo(iServiceInformation.sHideVBI) == 1
 
 	def showHideVBI(self):
 		if self.checkHideVBI():
