@@ -1923,7 +1923,7 @@ msgid ""
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
 "Eine Aufnahme, Aufnahmetimer oder PowerTimer ist aktiv oder beginnt in 15 Minuten.\n"
-"Der Ausschalt-Timer wird um 30 Minuten verlängert und schaltet Ihre\n"
+"Der Ausschalttimer wird um 30 Minuten verlängert und schaltet Ihre\n"
 "%s %s nach dem Aufnahme- oder PowerTimer-Ereignis ab.\n"
 "Jetzt in den Standby gehen?"
 
@@ -2059,7 +2059,7 @@ msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Ein Ausschalt-Timer möchte die %s %s in\n"
+"Ein Ausschalttimer möchte die %s %s in\n"
 "den Standby-Modus versetzen. Jetzt ausführen?"
 
 #, python-format
@@ -2067,7 +2067,7 @@ msgid ""
 "A sleep timer wants to set your %s %s to standby.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"Ein Ausschalt-Timer möchte Ihre %s %s in den Standby versetzen.\n"
+"Ein Ausschalttimer möchte Ihre %s %s in den Standby versetzen.\n"
 "Jetzt ausführen oder zusätzliche Minuten einstellen?"
 
 #
@@ -2076,7 +2076,7 @@ msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Ein Ausschalt-Timer möchte die %s %s\n"
+"Ein Ausschalttimer möchte die %s %s\n"
 "ausschalten. Jetzt herunterfahren?"
 
 #, python-format
@@ -2084,7 +2084,7 @@ msgid ""
 "A sleep timer wants to shut down your %s %s.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"Ein Ausschalt-Timer möchte Ihre %s %s ausschalten.\n"
+"Ein Ausschalttimer möchte Ihre %s %s ausschalten.\n"
 "Jetzt ausführen oder zusätzliche Minuten einstellen?"
 
 #
@@ -2096,14 +2096,14 @@ msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
-"Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+"Eine Timeraufnahme konnte nicht gestartet werden.\n"
 "Pseudo-Aufnahmen (z.B. EPGRefresh) beenden und erneut versuchen?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
-"Ein Aufnahme-Timer scheiterte!\n"
+"Ein Aufnahmetimer scheiterte!\n"
 "Streaming abbrechen und erneut versuchen?\n"
 
 # RecordTimer.py
@@ -2111,7 +2111,7 @@ msgid ""
 "A timer failed to record!\n"
 "Disable PIP and try again?\n"
 msgstr ""
-"Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+"Eine Timeraufnahme konnte nicht gestartet werden.\n"
 "Bild im Bild deaktivieren und erneut versuchen?\n"
 
 # RecordTimer.py
@@ -2119,7 +2119,7 @@ msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+"Eine Timeraufnahme konnte nicht gestartet werden.\n"
 "TV-Sender umschalten und erneut versuchen?\n"
 
 #
@@ -2979,10 +2979,10 @@ msgid "Auto Standby"
 msgstr "Automatisch in Standby"
 
 msgid "Auto Timer"
-msgstr "Auto-Timer"
+msgstr "AutoTimer"
 
 msgid "Auto Timers"
-msgstr "Auto Timer"
+msgstr "AutoTimer"
 
 msgid "Auto Volume Level"
 msgstr ""
@@ -4178,7 +4178,7 @@ msgid "Choose which tuner to configure."
 msgstr "Wählen Sie den einzurichtenden Tuner."
 
 msgid "Chose between record and ZAP."
-msgstr "Wählen Sie zwischen Aufnahme/Umschalt-Timer oder umschalten und aufnehmen."
+msgstr "Wählen Sie zwischen Aufnahme/Umschalttimer oder umschalten und aufnehmen."
 
 msgid "Christmas Island"
 msgstr "Weihnachtsinsel"
@@ -4509,7 +4509,7 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Konfigurieren Sie, ob und nach welcher Verzögerungszeit der Bildschirmschoner aktiviert werden soll."
 
 msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Konfigurieren Sie die Dauer in Minuten für den Ausschalt-Timer."
+msgstr "Konfigurieren Sie die Dauer in Minuten für den Ausschalttimer."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Bestimmt die X-Endkoordinate des Anzeigebereichs für Videotext."
@@ -4602,7 +4602,7 @@ msgid "Configure the number of days after which items are automatically removed 
 msgstr "Legen Sie fest, wie viele Tage der Inhalt vom Papierkorb erhalten bleibt, bis er automatisch gelöscht wird."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
-msgstr "Legen Sie die Vorhaltezeit in Tagen für abgelaufene Timer fest, nach der diese automatisch aus der Timer-Liste gelöscht werden."
+msgstr "Legen Sie die Vorhaltezeit in Tagen für abgelaufene Timer fest, nach der diese automatisch aus der Timerliste gelöscht werden."
 
 #
 msgid "Configure the number of rows shown."
@@ -5400,7 +5400,7 @@ msgid "Default 'After event' *"
 msgstr "Standard 'Nach der Aufnahme' *"
 
 msgid "Default 'Timer type' *"
-msgstr "Standard 'Timer-Art' *"
+msgstr "Standard 'Timerart' *"
 
 #
 msgid "Default (Instant Record)"
@@ -6183,7 +6183,7 @@ msgid "Download Plugins"
 msgstr "Plugins herunterladen"
 
 msgid "Download Softcams"
-msgstr "SoftCAMs herunterladen"
+msgstr "Softcams herunterladen"
 
 msgid "Download and install Plugins"
 msgstr "Download und Installation"
@@ -6887,7 +6887,7 @@ msgid "Even if TV has another input active?"
 msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
 
 msgid "Even if a 'wakeup' power timer starting?"
-msgstr "Auch wenn ein 'Aufwecken' Power-Timer startet?"
+msgstr "Auch wenn ein 'Aufwecken' PowerTimer startet?"
 
 msgid "Even if a 'zap and record' recording timer starting?"
 msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
@@ -8423,7 +8423,7 @@ msgid ""
 "In order to record a timer, a tuner was freed successfully:\n"
 "\n"
 msgstr ""
-"Um eine Timer-Aufnahme zu starten, wurde erfolgreich ein Tuner frei gemacht:\n"
+"Um eine Timeraufnahme zu starten, wurde erfolgreich ein Tuner frei gemacht:\n"
 "\n"
 
 msgid "In progress"
@@ -10481,7 +10481,7 @@ msgstr "Keine Transparenz"
 
 # RecordTimer.py
 msgid "No tuner is available for recording a timer!\n"
-msgstr "Eine Timer-Aufnahme konnte nicht gestartet werden.\n"
+msgstr "Eine Timeraufnahme konnte nicht gestartet werden.\n"
 
 # RecordTimer.py
 msgid ""
@@ -10490,7 +10490,7 @@ msgid ""
 "The following methods of freeing a tuner were tried without success:\n"
 "\n"
 msgstr ""
-"Eine Timer-Aufnahme konnte nicht gestartet werden, da kein Tuner verfügbar war.\n"
+"Eine Timeraufnahme konnte nicht gestartet werden, da kein Tuner verfügbar war.\n"
 "\n"
 "Folgende Maßnahmen wurden versucht, jedoch ohne Erfolg:\n"
 "\n"
@@ -10676,7 +10676,7 @@ msgstr "Jetzt"
 
 # ImageBackup.py
 msgid "Now building the Backup Image"
-msgstr "Backup-Image wird jetzt gebaut"
+msgstr "Backup-Image wird jetzt gebaut..."
 
 msgid "Now save timeshift as movie and continues recording"
 msgstr ""
@@ -11446,7 +11446,7 @@ msgstr "Titel zur Zusammenstellung hinzufügen."
 
 #
 msgid "Please be patient, a backup will now be made,\n"
-msgstr "Bitte etwas Geduld, das Backup wird erstellt,\n"
+msgstr "Bitte etwas Geduld, das Backup wird erstellt.\n"
 
 #
 msgid "Please change recording endtime"
@@ -11454,7 +11454,7 @@ msgstr "Aufnahmeendzeit ändern"
 
 # ImageBackup.py
 msgid "Please check the manual of the receiver"
-msgstr "schauen Sie in die Bedienungsanleitung des Empfängers,"
+msgstr "schauen Sie in die Bedienungsanleitung Ihres Receivers,"
 
 #
 msgid "Please check your network settings!"
@@ -11829,10 +11829,10 @@ msgid "Please wait, restarting cardserver."
 msgstr "Bitte warten, starte Cardserver neu."
 
 msgid "Please wait, restarting softcam and cardserver."
-msgstr "Bitte warten, starte SoftCAM und Cardserver neu."
+msgstr "Bitte warten, starte Softcam und Cardserver neu."
 
 msgid "Please wait, restarting softcam."
-msgstr "Bitte warten, starte SoftCAM neu."
+msgstr "Bitte warten, starte Softcam neu."
 
 msgid "Please wait."
 msgstr "Bitte warten."
@@ -11847,7 +11847,7 @@ msgstr "Liste wird geladen. Bitte warten..."
 
 # ImageBackup.py
 msgid "Please wait...almost ready! "
-msgstr "Bitte warten... fast fertig! "
+msgstr "Fast fertig! Bitte warten..."
 
 msgid "Plugin Browser"
 msgstr "Erweiterungsmenü"
@@ -11928,7 +11928,7 @@ msgid "Position Setup"
 msgstr ""
 
 msgid "Position of finished Timers in Timerlist"
-msgstr "Position beendeter Timer-Aufnahmen in Timer-Liste"
+msgstr "Position beendeter Timeraufnahmen in der Timerliste"
 
 msgid "Position of recording icons"
 msgstr "Ausrichtung der Aufnahme-Symbole"
@@ -13011,7 +13011,7 @@ msgid "Restart network to with current setup"
 msgstr "Neustart Netzwerk"
 
 msgid "Restart softcam"
-msgstr "SoftCAM neu starten"
+msgstr "Softcam neu starten"
 
 #
 msgid "Restart test"
@@ -13656,7 +13656,7 @@ msgid "Select CAId"
 msgstr "CAID auswählen"
 
 msgid "Select Card Server"
-msgstr "Cardserver (2. SoftCAM) auswählen"
+msgstr "Cardserver (2. Softcam) auswählen"
 
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 Skin auswählen"
@@ -13688,7 +13688,7 @@ msgid "Select Red-key action long"
 msgstr "Funktion der Taste ROT lang"
 
 msgid "Select Softcam"
-msgstr "SoftCAM auswählen"
+msgstr "Softcam auswählen"
 
 #
 msgid "Select Software Update"
@@ -13910,7 +13910,7 @@ msgid "Select the satellite your dish receives from. If you are unsure select 'a
 msgstr "Wählen Sie den Satelliten, von dem Ihr Gerät empfängt. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln."
 
 msgid "Select the sleep timer action."
-msgstr "Wählen Sie die Ausschalt-Timer-Aktion."
+msgstr "Wählen Sie die Ausschalttimer Aktion."
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr "Wählen Sie den Tuner, der die motorisierte Schüssel steuert."
@@ -14361,7 +14361,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Bestimmt die Anzeigedauer der zweiten Infoleiste. Sie verschwindet auch bei Druck auf OK."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
-msgstr "Legen Sie die Wartezeit für die Ausführung der Standardaktion in den Meldungen Ausschalten, Standby oder Neustart fest (z.B. verwendet in Timer, PowerTimer, Ausschalt-Timer etc.)."
+msgstr "Legen Sie die Wartezeit für die Ausführung der Standardaktion in den Meldungen Ausschalten, Standby oder Neustart fest (z.B. verwendet in Timer, PowerTimer, Ausschalttimer etc.)."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Wählen Sie die Art der Fortschrittsanzeige in der Kanalliste."
@@ -15196,7 +15196,7 @@ msgstr "Zeige PowerTimer"
 
 #
 msgid "Show the Sleep Timer..."
-msgstr "Zeige Ausschalt-Timer"
+msgstr "Zeige Ausschalttimer"
 
 msgid "Show the information on current event."
 msgstr "Informationen zum aktuellen Ereignis anzeigen."
@@ -15451,7 +15451,7 @@ msgstr "Sleeptimer"
 
 #
 msgid "Sleep Timer"
-msgstr "Ausschalt-Timer"
+msgstr "Ausschalttimer"
 
 #
 msgid "Sleep delay"
@@ -15461,7 +15461,7 @@ msgid "Sleep long"
 msgstr "Sleep lang"
 
 msgid "SleepTimer"
-msgstr "Ausschalt-Timer"
+msgstr "Ausschalttimer"
 
 msgid "Slide drop"
 msgstr "Von oben gleitend"
@@ -15533,16 +15533,16 @@ msgid "Socket"
 msgstr "Socket"
 
 msgid "Softcam"
-msgstr "SoftCAM"
+msgstr "Softcam"
 
 msgid "Softcam Setup"
-msgstr "SoftCAM-Setup"
+msgstr "Softcam-Einrichtung"
 
 msgid "Softcam settings"
 msgstr "Softcam"
 
 msgid "Softcam setup"
-msgstr "SoftCAM-Einrichtung"
+msgstr "Softcam-Einrichtung"
 
 msgid "Softcam-Panel"
 msgstr "Softcam-Panel"
@@ -15552,10 +15552,10 @@ msgid "Softcam-Panel..."
 msgstr "Softcam-Panel"
 
 msgid "Softcam-Setup"
-msgstr "SoftCAM-Einrichtung"
+msgstr "Softcam-Einrichtung"
 
 msgid "SoftcamSetup"
-msgstr "SoftCAM-Einrichtung"
+msgstr "Softcam-Einrichtung"
 
 #
 msgid "Software"
@@ -15615,14 +15615,14 @@ msgid "Some plugins are not available:\n"
 msgstr "Einige Plugins sind nicht verfügbar:\n"
 
 msgid "Sorry CIHelper Config is Missing"
-msgstr "CIHelper Konfiguration nicht vorhanden."
+msgstr "CIHelper Konfiguration nicht vorhanden!"
 
 msgid "Sorry Inadyn Config is Missing"
-msgstr "Sorry - Inadyn-Konfiguration fehlt"
+msgstr "Inadyn-Konfiguration fehlt!"
 
 #
 msgid "Sorry MediaScanner is not installed!"
-msgstr "Entschuldigung, der MediaScanner ist nicht installiert!"
+msgstr "Der MediaScanner ist nicht installiert!"
 
 msgid "Sorry MiniDLNA Config is Missing"
 msgstr ""
@@ -15638,20 +15638,20 @@ msgstr "Feeds sind wegen Wartungsarbeiten im Moment nicht verfügbar, bitte spä
 
 #
 msgid "Sorry no backups found!"
-msgstr "Entschuldigung, keine Sicherungen gefunden!"
+msgstr "Keine Sicherungen gefunden!"
 
 msgid "Sorry only possible to record 2 channels at once"
 msgstr "Es können nur 2 Kanäle auf einmal aufgenommen werden"
 
 msgid "Sorry uShare Config is Missing"
-msgstr "Sorry, keine uShare-Config vorhanden"
+msgstr "Keine uShare-Config vorhanden!"
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
 msgstr ""
-"Sorry, dieser Backup-Zielort existiert nicht\n"
+"Dieser Backup-Zielort existiert nicht!\n"
 "\n"
 "Bitte anderen Zielort wählen."
 
@@ -15660,16 +15660,16 @@ msgid "Sorry, %s has not been installed!"
 msgstr "%s wurde nicht installiert!"
 
 msgid "Sorry, no backups found!"
-msgstr "Entschuldigung, keine Sicherungen gefunden!"
+msgstr "Keine Sicherungen gefunden!"
 
 msgid "Sorry, no details available!"
-msgstr "Entschuldigung, keine Details verfügbar!"
+msgstr "Keine Details verfügbar!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr ""
 
 msgid "Sorry, there was a problem:"
-msgstr "Sorry es gibt ein Problem:"
+msgstr "Achtung, es gibt ein Problem:"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -15839,17 +15839,17 @@ msgid "Start/stop slide show"
 msgstr "Diashow starten / stoppen"
 
 msgid "Start/stop/select cam"
-msgstr "Starten/Stoppen der cams"
+msgstr "Starten/Stoppen/Auswahl der Cams"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr "Starten/Stoppen/Auswahl der cams, Installation eines cams ist erforderlich."
+msgstr "Starten/Stoppen/Auswahl der Cams, Installation eines Cams ist erforderlich."
 
 #
 msgid "StartWizard"
 msgstr "Grundkonfiguration"
 
 msgid "Starting Softcam"
-msgstr "Starte SoftCAM"
+msgstr "Starte Softcam"
 
 #
 msgid "Starting on"
@@ -15956,7 +15956,7 @@ msgid "Stopped"
 msgstr "Beendet"
 
 msgid "Stopping Softcam"
-msgstr "Stoppe SoftCAM"
+msgstr "Stoppe Softcam"
 
 #
 msgid "Storage devices"
@@ -16490,7 +16490,7 @@ msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Das AutoTimer-Plugin ist nicht installiert!\n"
+"Das AutoTimer Plugin ist nicht installiert!\n"
 "Bitte installieren."
 
 msgid ""
@@ -16733,11 +16733,11 @@ msgstr "Die Einstellung 'ohne Rückfrage' ist das gleiche wie 'Standard' ohne zu
 
 #
 msgid "The sleep timer has been activated."
-msgstr "Der Ausschalt-Timer wurde aktiviert."
+msgstr "Der Ausschalttimer wurde aktiviert."
 
 #
 msgid "The sleep timer has been disabled."
-msgstr "Der Ausschalt-Timer wurde deaktiviert."
+msgstr "Der Ausschalttimer wurde deaktiviert."
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -17365,7 +17365,7 @@ msgstr "Timer"
 
 #
 msgid "Timer List"
-msgstr "Timer-Liste"
+msgstr "Timerliste"
 
 msgid "Timer action"
 msgstr "Timer Aktion"
@@ -17374,11 +17374,11 @@ msgid "Timer edit"
 msgstr "Timer bearbeiten"
 
 msgid "Timer editor"
-msgstr "Timer-Editor"
+msgstr "Timer Editor"
 
 #
 msgid "Timer entry"
-msgstr "Timer-Eintrag"
+msgstr "Timereintrag"
 
 #, python-format
 msgid "Timer is activated: +%d min"
@@ -17389,7 +17389,7 @@ msgstr "Timer ist nicht aktiviert"
 
 #
 msgid "Timer log"
-msgstr "Timer-Log"
+msgstr "Timer Log"
 
 msgid ""
 "Timer overlap in pm_timers.xml detected!\n"
@@ -17406,7 +17406,7 @@ msgstr ""
 
 #
 msgid "Timer overview"
-msgstr "Timer-Übersicht"
+msgstr "Timerübersicht"
 
 msgid "Timer record location"
 msgstr "Timeraufnahme-Verzeichnis"
@@ -17417,11 +17417,11 @@ msgstr "Timeraufnahme-Verzeichnis"
 
 #
 msgid "Timer sanity error"
-msgstr "Timer-Einstellungen unklar"
+msgstr "Timereinstellungen unklar"
 
 #
 msgid "Timer selection"
-msgstr "Timer-Auswahl"
+msgstr "Timerauswahl"
 
 #
 msgid "Timer selection..."
@@ -17429,7 +17429,7 @@ msgstr "Timerauswahl"
 
 #
 msgid "Timer type"
-msgstr "Timer-Art"
+msgstr "Timerart"
 
 msgid "Timers"
 msgstr "Timer"
@@ -17505,7 +17505,7 @@ msgstr "Titel-Einstellungs-Modus"
 
 # ImageBackup.py
 msgid "To restore the image:"
-msgstr "Um das Image wiederherzustellen,"
+msgstr "Um das Image wiederherzustellen, schauen Sie bitte"
 
 #, python-format
 msgid ""
@@ -19357,7 +19357,7 @@ msgid "Yes, but if not available show the plugin browser"
 msgstr "Ja, aber wenn nicht verfügbar zeige den Plugin Browser"
 
 msgid "Yes, but if not available show the timer list"
-msgstr "Ja, aber wenn nicht verfügbar zeige die Timer Liste"
+msgstr "Ja, aber wenn nicht verfügbar zeige die Timerliste"
 
 msgid "Yes, but save timeshift as movie and continue recording"
 msgstr "Ja, als Aufnahme speichern und weiter aufnehmen"
@@ -20114,7 +20114,7 @@ msgstr ""
 
 #
 msgid "because of the used filesystem the back-up\n"
-msgstr "abhängig vom System dauert das Backup\n"
+msgstr "Abhängig vom System dauert das Backup\n"
 
 #
 msgid "better"
@@ -21043,7 +21043,7 @@ msgstr "Auf dem nicht beschreibbaren Medium."
 
 # ImageBackup.py
 msgid "on how to restore the image"
-msgstr "wie das Image wiederhergestellt werden kann"
+msgstr "wie das Image wiederhergestellt werden kann."
 
 #
 msgid "once"
@@ -21537,7 +21537,7 @@ msgid "social/spiritual science"
 msgstr "Sozial/Geisteswissenschaft"
 
 msgid "softcams"
-msgstr "SoftCAMs"
+msgstr "Softcams"
 
 msgid "sorting of playlists"
 msgstr "Sortierung der Wiedergabelisten"
@@ -21829,11 +21829,11 @@ msgstr "Breite"
 
 #
 msgid "will take about 1-15 minutes for this system\n"
-msgstr "zwischen 1-15 Minuten\n"
+msgstr "bis zu 15 Minuten.\n"
 
 #
 msgid "will take about 30 minutes for this system\n"
-msgstr "ca. 30 Minuten\n"
+msgstr "bis zu 30 Minuten.\n"
 
 msgid "winter sport"
 msgstr "Wintersport"
@@ -24684,20 +24684,20 @@ msgstr "Umschalten"
 
 #
 #~ msgid "Sleep timer action:"
-#~ msgstr "Ausschalt-Timer-Aktion:"
+#~ msgstr "Ausschalttimer Aktion:"
 
 #
 #~ msgid "Slow Motion speeds"
 #~ msgstr "Zeitlupengeschwindigkeiten"
 
 #~ msgid "SoftCam / CI"
-#~ msgstr "SoftCam / CI"
+#~ msgstr "Softcam / CI"
 
 #~ msgid "Softcam Panel"
-#~ msgstr "SoftCAM-Panel"
+#~ msgstr "Softcam-Panel"
 
 #~ msgid "Softcam Panel V2.0"
-#~ msgstr "SoftCAM-Panel V2.0"
+#~ msgstr "Softcam-Panel V2.0"
 
 #
 #~ msgid "Softcam-Panel Setup"
@@ -24712,7 +24712,7 @@ msgstr "Umschalten"
 #~ "Sorry your backup destination is not writeable.\n"
 #~ "Please choose an other one."
 #~ msgstr ""
-#~ "Entschuldigung, Ihr Sicherungsverzeichnis ist nicht beschreibbar.\n"
+#~ "Ihr Sicherungsverzeichnis ist nicht beschreibbar!.\n"
 #~ "Bitte wählen Sie ein anderes Verzeichnis."
 
 #~ msgid ""
@@ -24720,7 +24720,7 @@ msgstr "Umschalten"
 #~ "\n"
 #~ "Please select a different one."
 #~ msgstr ""
-#~ "Entschuldigung, Ihr Sicherungsverzeichnis ist nicht beschreibbar.\n"
+#~ "Ihr Sicherungsverzeichnis ist nicht beschreibbar!\n"
 #~ "\n"
 #~ "Bitte wählen Sie ein anderes Verzeichnis."
 
@@ -24999,7 +24999,7 @@ msgstr "Umschalten"
 
 #
 #~ msgid "Timer status:"
-#~ msgstr "Timer-Status:"
+#~ msgstr "Timerstatus:"
 
 #~ msgid "Timeshift Enable"
 #~ msgstr "Timeshift aktivieren"
@@ -25458,7 +25458,7 @@ msgstr "Umschalten"
 #~ "Your %s %s wants to set your %s %s to standby.\n"
 #~ "Do that now?"
 #~ msgstr ""
-#~ "Ein Ausschalt-Timer möchte die %s %s in Standby-Modus versetzen.\n"
+#~ "Ein Ausschalttimer möchte die %s %s in den Standby-Modus versetzen.\n"
 #~ "\n"
 #~ "In Standby gehen?"
 
@@ -25466,7 +25466,7 @@ msgstr "Umschalten"
 #~ "Your %s %s wants to shut down your %s %s.\n"
 #~ "Do that now?"
 #~ msgstr ""
-#~ "Ein Ausschalt-Timer möchte die %s %s ausschalten.\n"
+#~ "Ein Ausschalttimer möchte die %s %s ausschalten.\n"
 #~ "\n"
 #~ "Jetzt herunterfahren?"
 
