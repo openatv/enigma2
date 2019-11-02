@@ -1286,6 +1286,8 @@ void eEPGCache::load()
 		ret = fread( text1, 13, 1, f);
 		if ( !memcmp( text1, "ENIGMA_EPG_V7", 13) )
 		{
+			std::tr1::unordered_map<uniqueEPGKey, bool, hash_uniqueEPGKey, uniqueEPGKey::equal > overlaps;
+			overlaps.rehash(size); /* Reserve buckets in advance */
 			ret = fread( &size, sizeof(int), 1, f);
 			eventDB.rehash(size); /* Reserve buckets in advance */
 			while(size--)
@@ -1295,6 +1297,15 @@ void eEPGCache::load()
 				ret = fread( &key, sizeof(uniqueEPGKey), 1, f);
 				ret = fread( &size, sizeof(int), 1, f);
 				EventCacheItem& item = eventDB[key]; /* Constructs new entry */
+				bool overlap = false; // Actually overlaps or not time ordered
+				time_t last_end = 0;
+				if (!item.byTime.empty())
+				{
+					timeMap::iterator last_entry = item.byTime.end();
+					--last_entry;
+					last_end = getStartTime(last_entry) + getDuration(last_entry);
+				}
+
 				while(size--)
 				{
 					uint8_t len=0;
@@ -1313,8 +1324,15 @@ void eEPGCache::load()
 					eventData::CacheSize += sizeof(eventData) + event->n_crc * sizeof(uint32_t);
 					item.byEvent[event->getEventID()] = event;
 					item.byTime[event->getStartTime()] = event;
+					time_t this_start = event->getStartTime();
+					if (this_start < last_end)
+						overlap = true;
+					else
+						last_end = this_start + event->getDuration();
+
 					++cnt;
 				}
+				overlaps[key] |= overlap;
 			}
 			eventData::load(f);
 			eDebug("[EPGCache] %d events read from %s", cnt, EPGDAT);
@@ -1355,6 +1373,41 @@ void eEPGCache::load()
 				}
 			}
 #endif // ENABLE_PRIVATE_EPG
+			for (std::tr1::unordered_map<uniqueEPGKey, bool, hash_uniqueEPGKey, uniqueEPGKey::equal >::iterator it = overlaps.begin();
+				it != overlaps.end();
+				it++)
+			{
+				if (it->second)
+				{
+					EventCacheItem &servicemap = eventDB[it->first];
+					eventMap &eventmap = servicemap.byEvent;
+					timeMap &timemap = servicemap.byTime;
+					time_t last_end = 0;
+					for (timeMap::iterator It = timemap.begin(); It != timemap.end(); )
+					{
+						time_t start_time = getStartTime(It);
+						if (start_time < last_end)
+						{
+#ifdef EPG_DEBUG
+							eDebug("[EPGC] load: svc(%04x:%04x:%04x) delete overlapping event %04x at time %ld",
+								it->first.onid, it->first.tsid, it->first.sid,
+								getEventID(It), (long)start_time);
+#endif
+							if (eventmap.erase(getEventID(It)) == 0)
+							{
+								eDebug("[EPGC] Event %04x not found in timeMap at %ld", getEventID(It), start_time);
+							}
+							delete getEventData(It);
+							timemap.erase(It++);
+						}
+						else
+						{
+							last_end = start_time + getDuration(It);
+							++It;
+						}
+					}
+				}
+			}
 		}
 		else
 			eDebug("[EPGCache] don't read old epg database");
