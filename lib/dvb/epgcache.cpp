@@ -878,7 +878,16 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 				delete data;
 			}
 
-			for (timeMap::iterator it = timemap.begin(); it != timemap.end(); )
+			timeMap::iterator it = timemap.begin();
+			if (!timemap.empty())
+			{
+				it = timemap.upper_bound(new_start);
+				if(it == timemap.end() || it != timemap.begin())
+				{
+					--it;
+				}
+			}
+			while (it != timemap.end())
 			{
 				time_t old_start = getStartTime(it);
 				time_t old_end = old_start + getDuration(it);
