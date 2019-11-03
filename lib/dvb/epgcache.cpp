@@ -810,6 +810,13 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 			eventData *new_evt = new eventData(eit_event, eit_event_size, source, (tsid<<16)|onid);
 			time_t new_start = new_evt->getStartTime();
 			time_t new_end = new_start + new_evt->getDuration();
+
+			// Ignore zero-length events
+			if (new_start == new_end)
+			{
+				delete new_evt;
+				goto next;
+			}
 #ifdef EPG_DEBUG
 //			eDebug("[EPGC] created event %04x at %ld", new_evt->getEventID(), new_start);
 #endif
@@ -840,7 +847,19 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 				delete data;
 			}
 
-			for (timeMap::iterator it = timemap.begin(); it != timemap.end(); )
+			timeMap::iterator it;
+			if (timemap.empty())
+				it = timemap.begin();
+			else
+			{
+				it = timemap.lower_bound(new_start);
+				if(it == timemap.end() || it != timemap.begin())
+				{
+					--it;
+				}
+			}
+
+			while (it != timemap.end())
 			{
 				time_t old_start = getStartTime(it);
 				time_t old_end = old_start + getDuration(it);
