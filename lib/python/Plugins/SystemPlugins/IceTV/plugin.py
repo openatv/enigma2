@@ -632,8 +632,8 @@ class EPGFetcher(object):
                 start = 999
                 duration = 10
             else:
-                start = int(timegm(strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
-                stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+                start = int(show["start_unix"])
+                stop = int(show["stop_unix"])
                 duration = stop - start
             title = show.get("title", "").encode("utf-8")
             short = show.get("subtitle", "").encode("utf-8")
