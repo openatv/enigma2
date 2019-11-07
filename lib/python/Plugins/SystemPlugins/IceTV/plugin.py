@@ -622,6 +622,7 @@ class EPGFetcher(object):
     def convertChanShows(self, shows, mapping_errors):
         country_code = config.plugins.icetv.member.country.value
         res = []
+        category_cache = {}
         for show in shows:
             event_id = int(show.get("eit_id"))
             if event_id is None:
@@ -632,8 +633,8 @@ class EPGFetcher(object):
                 start = 999
                 duration = 10
             else:
-                start = int(timegm(strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
-                stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
+                start = int(show["start_unix"])
+                stop = int(show["stop_unix"])
                 duration = stop - start
             title = show.get("title", "").encode("utf-8")
             short = show.get("subtitle", "").encode("utf-8")
@@ -641,14 +642,18 @@ class EPGFetcher(object):
             genres = []
             for g in show.get("category", []):
                 name = g['name'].encode("utf-8")
-                eit = int(g.get("eit", "0"), 0) or 0x01
-                eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
-                mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
-                if mapped_name == name:
-                        genres.append(eit_remap)
-                elif name not in mapping_errors:
-                    print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
-                    mapping_errors.add(name)
+                if name in category_cache:
+                        eit = category_cache[name]
+                else:
+                        eit = int(g.get("eit", "0"), 0) or 0x01
+                        eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
+                        mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
+                        if mapped_name == name:
+                                genres.append(eit_remap)
+                                category_cache[name] = eit
+                        elif name not in mapping_errors:
+                            print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
+                            mapping_errors.add(name)
             p_rating = ((country_code, parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
             res.append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
