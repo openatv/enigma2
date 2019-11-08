@@ -526,10 +526,10 @@ def InitLcd():
 		config.usage.lcd_power4x7on = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_power4x7on.addNotifier(setPower4x7On)
 
-		config.usage.lcd_power4x7standby = ConfigSelection(default = "off", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_power4x7standby = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_power4x7standby.addNotifier(setPower4x7Standby)
 
-		config.usage.lcd_power4x7suspend = ConfigSelection(default = "off", choices = [("off", _("Off")), ("on", _("On"))])
+		config.usage.lcd_power4x7suspend = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
 
 		if getBoxType() in ('dm900', 'dm920', 'e4hdultra', 'protek4k'):
