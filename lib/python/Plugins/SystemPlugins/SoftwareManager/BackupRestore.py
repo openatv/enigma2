@@ -243,11 +243,12 @@ class BackupSelection(Screen):
 		self.configBackupDirs = configBackupDirs
 		if self.readOnly:
 			self["key_red"] = StaticText(_("Exit"))
-			self["key_green"] = StaticText(_("Exit"))
+			self["key_green"] = StaticText()
+			self["key_yellow"] = StaticText(_("Info"))
 		else:
 			self["key_red"] = StaticText(_("Cancel"))
 			self["key_green"] = StaticText(_("Save"))
-		self["key_yellow"] = StaticText()
+			self["key_yellow"] = StaticText()
 		self["summary_description"] = StaticText(_("default"))
 		self["title_text"] = StaticText(title)
 
@@ -288,6 +289,8 @@ class BackupSelection(Screen):
 			self["summary_description"].text =self["checkList"].getCurrentDirectory()+".."
 		else:
 			self["summary_description"].text =self["checkList"].getCurrentDirectory()+current[3]
+		if self.readOnly:
+			return
 		if current[2] is True:
 			self["key_yellow"].setText(_("Deselect"))
 		else:
@@ -314,7 +317,8 @@ class BackupSelection(Screen):
 
 	def saveSelection(self):
 		if self.readOnly:
-			self.close(None)
+			pass
+			#self.close(None)
 		else:
 			self.selectedFiles = self["checkList"].getSelectedList()
 			self.configBackupDirs.setValue(self.selectedFiles)
@@ -588,10 +592,10 @@ class RestoreMyMetrixHD(Screen):
 			if result:
 				infotext = ({1:_("Unknown Error creating Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."),
 							2:_("Error creating HD-Skin. Not enough flash memory free."),
-							3:_("Error creating FullHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
-							4:_("Error creating FullHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
-							5:_("Error creating FullHD-Skin.\nUsing HD-Skin!"),
-							6:_("Some FullHD-Icons are missing.\nUsing HD-Icons!"),
+							3:_("Error creating EHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
+							4:_("Error creating EHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
+							5:_("Error creating EHD-Skin.\nUsing HD-Skin!"),
+							6:_("Error creating EHD-Skin. Some EHD-Icons are missing.\nUsing HD-Skin!"),
 							7:_("Error, unknown Result!"),
 							}[result])
 				self.session.openWithCallback(self.checkSkinCallback, MessageBox, infotext, MessageBox.TYPE_ERROR, timeout = 30)

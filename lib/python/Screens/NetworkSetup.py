@@ -3973,13 +3973,14 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self["key_yellow"] = StaticText(_("Random password"))
 		self["key_blue"] = StaticText("")
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"], {
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "VirtualKeyboardActions"], {
 			"red": self.close,
 			"cancel": self.close,
 			"green": self.SetPasswd,
 			"save": self.SetPasswd,
 			"yellow": self.newRandom,
-		})
+			'showVirtualKeyboard': self.KeyText
+			})
 
 		self["description"] = Label()
 		self['footnote'] = Label()
@@ -4017,9 +4018,10 @@ class NetworkPassword(ConfigListScreen, Screen):
 		return ''.join(Random().sample(passwdChars, passwdLength)) 
 
 	def SetPasswd(self):
+		self.hideHelpWindow()
 		password = self.password.value
 		if not password:
-			self.session.open(MessageBox, _("The password can not be blank.") , MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.showHelpWindow, MessageBox, _("The password can not be blank.") , MessageBox.TYPE_ERROR)
 			return
 		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password) 
 		self.container = eConsoleAppContainer()
@@ -4028,12 +4030,35 @@ class NetworkPassword(ConfigListScreen, Screen):
 		retval = self.container.execute("echo -e '%s\n%s' | (passwd %s)"  % (password, password, self.user))
 		if retval:
 			message=_("Unable to change password")
-			self.session.open(MessageBox, message , MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.showHelpWindow, MessageBox, message , MessageBox.TYPE_ERROR)
 		else:
 			message=_("Password changed")
 			self.session.open(MessageBox, message , MessageBox.TYPE_INFO, timeout=5)
-			self["HelpWindow"].hide()
 			self.close()
+
+	def showHelpWindow(self, ret=None):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.show()
+
+	def hideHelpWindow(self):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
+
+	def KeyText(self):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
+			from Screens.VirtualKeyBoard import VirtualKeyBoard
+			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+		self.showHelpWindow()
+
 
 	def dataAvail(self,data):
 		self.output_line += data

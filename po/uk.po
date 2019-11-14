@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-07 10:53+0000\n"
+"POT-Creation-Date: 2019-22-10 10:53+0000\n"
 "PO-Revision-Date: 2019-14-09 10:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
@@ -524,13 +524,13 @@ msgid "%A %-m/%d/%Y"
 msgstr "%A %-m /%d /%Y"
 
 msgid "%A %B %-d"
-msgstr ""
+msgstr "%A %B %-d"
 
 msgid "%A %B %-d %Y"
-msgstr ""
+msgstr "%A %B %-d %Y"
 
 msgid "%A %B %d"
-msgstr ""
+msgstr "%A %B %d"
 
 msgid "%A %B %d %Y"
 msgstr ""
@@ -1594,7 +1594,7 @@ msgid "25"
 msgstr "25"
 
 msgid "256"
-msgstr ""
+msgstr "256"
 
 msgid "256 Mb"
 msgstr "256 Мб"
@@ -1855,7 +1855,7 @@ msgid "< Default with Picon >"
 msgstr "< Пікон за умовчанням >"
 
 msgid "< User Skin >"
-msgstr "< - Скін Користувача - >"
+msgstr "< Скін Користувача >"
 
 msgid "<Current movielist location>"
 msgstr "<Розташування поточного списку фільмів>"
@@ -2813,7 +2813,7 @@ msgid "Audio volume step size"
 msgstr "Розмір величини кроку звуку"
 
 msgid "Audio volume step size fast mode"
-msgstr "Розмір кроку звуку швидкого режиму"
+msgstr "Розмір величини кроку звуку швидкого режиму"
 
 msgid "Australia"
 msgstr "Австралія"
@@ -2835,6 +2835,9 @@ msgstr "Авто"
 
 msgid "Auto Deep Standby"
 msgstr "Авто виключення"
+
+msgid "Auto Detect"
+msgstr "Автовизначення"
 
 msgid "Auto Language"
 msgstr "Авто мова"
@@ -3542,6 +3545,12 @@ msgstr "Камерун"
 msgid "Can be used for different fps between external subtitles and video."
 msgstr "Може бути використане при різних fps між зовнішніми субтитрами і відео."
 
+msgid "Can not download current region details"
+msgstr "Неможливо завантажити поточну інформацію про регіон"
+
+msgid "Can not post scan information"
+msgstr "Неможливо розмістити інформацію про сканування"
+
 #, python-format
 msgid ""
 "Can not run %s: %s.\n"
@@ -3901,6 +3910,12 @@ msgstr "Виберіть фаворитний список"
 
 msgid "Choose Tuner"
 msgstr "Виберіть Тюнер"
+
+msgid "Choose a country scheme for decoding genre information in EPG events."
+msgstr "Виберіть країну для визначення інформації про жанр в передачах EPG."
+
+msgid "Choose a country scheme for decoding rating information in EPG events."
+msgstr "Виберіть країну для визначення рейтингової інформації в передачах EPG."
 
 msgid "Choose a setting where your receiver wakes up from standby."
 msgstr "Виберіть параметр, у якому приймач включиться в режимі очікування."
@@ -4714,6 +4729,12 @@ msgstr "Не вдалося зберегти файл конфігурації %
 msgid "Country"
 msgstr "Країни"
 
+msgid "Country for EPG event genre information"
+msgstr "Інформація про жанр передачі EPG"
+
+msgid "Country for EPG event rating information"
+msgstr "Інформація про рейтинг передач EPG в країні"
+
 msgid "Cpu"
 msgstr "Процесор"
 
@@ -4980,10 +5001,10 @@ msgid "Date/time input"
 msgstr "Ввести дата/час"
 
 msgid "Day D Mon"
-msgstr ""
+msgstr "День Д Міс"
 
 msgid "Day D-Mon"
-msgstr ""
+msgstr "День Д-Міс"
 
 msgid "Day D/M"
 msgstr "День Д/М"
@@ -4992,10 +5013,10 @@ msgid "Day D/MM"
 msgstr "День Д/ММ"
 
 msgid "Day DD Mon"
-msgstr ""
+msgstr "День ДД ММ"
 
 msgid "Day DD-Mon"
-msgstr ""
+msgstr "День ДД-ММ"
 
 msgid "Day DD/M"
 msgstr "День ДД/М"
@@ -5016,22 +5037,22 @@ msgid "Day MM/DD"
 msgstr "День ММ/ДД"
 
 msgid "Day Mon D"
-msgstr ""
+msgstr "День Міс Д"
 
 msgid "Day Mon DD"
-msgstr ""
+msgstr "День Міс ДД"
 
 msgid "Day Mon-D"
-msgstr ""
+msgstr "День Мшс-Д"
 
 msgid "Day Mon-DD"
-msgstr ""
+msgstr "День Міс-ДД"
 
 msgid "Dayname D Month Year"
-msgstr ""
+msgstr "День Дата Місяць Рік"
 
 msgid "Dayname D-Month-Year"
-msgstr ""
+msgstr "День Дата-Місяць-Рік"
 
 msgid "Dayname D/M/Year"
 msgstr ""
@@ -5643,8 +5664,8 @@ msgstr "Ви дійсно хочете видалити таймер %s?"
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Ви дійсно хочете видалити Вашу закладку з %s?"
 
-msgid "Do you want change rights?\\n"
-msgstr "Ви хочете змінити права?\\n"
+msgid "Do you want change rights?\n"
+msgstr "Ви хочете змінити права?\n"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Ви хочете додати додаткову інформацію?"
@@ -6101,6 +6122,9 @@ msgstr "Включити EIT ЕПГ"
 msgid "Enable Focus Animation"
 msgstr "Включити Анімація фокусування"
 
+msgid "Enable IceTV"
+msgstr "Включити IceTV"
+
 msgid "Enable MHW EPG"
 msgstr "Включити MHW ЕПГ"
 
@@ -6537,7 +6561,7 @@ msgid "Execute after current event"
 msgstr "Виконати після поточної передачі"
 
 msgid "Execute in "
-msgstr "Виконати о "
+msgstr "Виконати через "
 
 msgid "Execution condition"
 msgstr "Умова виконання"
@@ -6813,6 +6837,9 @@ msgstr "Статус фіду:   Оновлення"
 
 msgid "Feeds status: Unexpected"
 msgstr "Статус фіду: Незаданий"
+
+msgid "Fetch EPG and update timers now"
+msgstr "Отримайте EPG та оновіть таймери зараз"
 
 msgid "Fiji"
 msgstr "Фіджі"
@@ -7184,6 +7211,9 @@ msgstr "Загальна затримка аудіо BT"
 
 msgid "General PCM delay"
 msgstr "Загальна PCM затримка"
+
+msgid "Generic"
+msgstr "Загальний"
 
 msgid "Genre"
 msgstr "Жанр"
@@ -7730,6 +7760,9 @@ msgstr "Розмір ISO файлу завеликий для цієї файл�
 
 msgid "ISO path"
 msgstr "ISO шлях"
+
+msgid "IceTV - Service selection"
+msgstr "IceTV - вибір послуг"
 
 msgid "Iceland"
 msgstr "Ісландія"
@@ -8762,6 +8795,12 @@ msgstr "Записувати логи на HDD"
 
 msgid "LogManager"
 msgstr "Управління логами"
+
+msgid "Login OK"
+msgstr "Логін OK"
+
+msgid "Login to IceTV server"
+msgstr "Логін для сервера IceTV"
 
 msgid "Logs location"
 msgstr "Розташування логів"
@@ -10837,6 +10876,9 @@ msgstr "Будь-ласка, виберіть носій для розташув
 msgid "Please select tag to filter..."
 msgstr "Будь-ласка, виберіть тег для фільтру..."
 
+msgid "Please select the IceTV service that you wish to use."
+msgstr "Виберіть службу IceTV, якою Ви хочете скористатися."
+
 msgid "Please select the movie path..."
 msgstr "Будь ласка, виберіть шлях до фільму..."
 
@@ -12726,7 +12768,7 @@ msgid "Select Quad Channels"
 msgstr "Вибір чотирьохекранних каналів"
 
 msgid "Select Red-key action"
-msgstr "Вибір дії для червоної кнопки"
+msgstr "Дія для червоної кнопки"
 
 msgid "Select Red-key action long"
 msgstr "Дія для червоної кнопки довге натискання"
@@ -12775,7 +12817,7 @@ msgid "Select action for timer %s:"
 msgstr "Вибір дії для таймеру %s:"
 
 msgid "Select additional backup files"
-msgstr "Виберіть додаткові файли резервної копії"
+msgstr "Вибір додаткових файлів резервної копії"
 
 msgid "Select additional files to backup"
 msgstr "Виберіть додаткові файли для резервного копіювання"
@@ -12808,7 +12850,7 @@ msgid "Select destination for:"
 msgstr "Виберіть призначення для:"
 
 msgid "Select excluded backup files"
-msgstr "Виберіть файли для виключення з резервної копії"
+msgstr "Вибір файлів для виключення з резервної копії"
 
 msgid "Select files to exclude from backup"
 msgstr "Виберіть файли, які будуть виключені з резервної копії"
@@ -12964,7 +13006,7 @@ msgid "Select the virtual keyboard shifted character set for the next character 
 msgstr "Виберіть набір символів віртуальної клавіатури лише для наступного символу"
 
 msgid "Select upgrade source"
-msgstr "Виберіть джерело оновлення"
+msgstr "Вибер джерела оновлення"
 
 msgid "Select upgrade source to edit."
 msgstr "Виберіть джерело оновлення для редагування."
@@ -13875,7 +13917,7 @@ msgid "Show channel number in infobar"
 msgstr "Показати номер каналу в Інфобарі"
 
 msgid "Show channel numbers in channel selection"
-msgstr "Показувати номери каналів у списку каналів"
+msgstr "Показати номер каналів у списку каналів"
 
 msgid "Show channel selection"
 msgstr "Показати вибір каналу"
@@ -13902,7 +13944,7 @@ msgid "Show crash info on screen and write crash log for x times"
 msgstr "Покажіть креш інформацію на екрані та запишіть креш лог для x разів"
 
 msgid "Show crypto icons"
-msgstr "Показувати значок кодування"
+msgstr "Показати значок кодування"
 
 msgid "Show crypto info in infobar"
 msgstr "Показати інфо кодування в Інфобарі"
@@ -13935,7 +13977,7 @@ msgid "Show event genre information"
 msgstr "Показати інформацію про жанр передачі"
 
 msgid "Show event-progress in channel selection"
-msgstr "Показувати тривалість події у списку каналів"
+msgstr "Показати тривалість передачі у списку каналів"
 
 msgid "Show eventinfo plugins"
 msgstr "Показати плагіни телегіду"
@@ -14304,7 +14346,7 @@ msgid "Single step (GOP)"
 msgstr "Визначити крок  (GOP)"
 
 msgid "SingleEPG settings"
-msgstr "Параметри Простого ЕПГ"
+msgstr "Налаштування Простого ЕПГ"
 
 msgid "Sint Maarten (Dutch part)"
 msgstr "Сінт-Маартен (голландська частина)"
@@ -15183,7 +15225,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 15.10.2019\n"
+"Переклад:  kvinto - 01.11.2019\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -15693,6 +15735,9 @@ msgid ""
 msgstr ""
 "На обраному розділі може бути недостатньо місця..\n"
 "Ви дійсно хочете продовжити?"
+
+msgid "There was an error downloading current region details"
+msgstr "Під час завантаження поточної інформації про регіон сталася помилка"
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "При завантаженні списку оновлень сталася помилка. Будь ласка, спробуйте ще раз."
@@ -16243,6 +16288,15 @@ msgstr "Тип таймера"
 
 msgid "Timers"
 msgstr "Таймери"
+
+msgid "Timer '%s' created OK"
+msgstr "Таймер '%s' створено ОК"
+
+msgid "Timer '%s' updated OK"
+msgstr "Таймер '%s' оновлено ОК"
+
+msgid "Timers updated OK"
+msgstr "Таймери оновлено ОК"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -16977,6 +17031,9 @@ msgstr ""
 
 msgid "Use circular LNB"
 msgstr "Використовувати круговий LNB"
+
+msgid "Use default picon if possible"
+msgstr "Використовувати Пікони за замовчуванням"
 
 msgid "Use extended List"
 msgstr "Використовувати розширений список"
@@ -19394,10 +19451,10 @@ msgid "multinorm"
 msgstr "мультинорм"
 
 msgid "music/ballet/dance (general)"
-msgstr "музика/балет/танці (загальний)"
+msgstr "музика/балет/танці (загальна)"
 
 msgid "musical/opera"
-msgstr "музичний/оперний"
+msgstr "музична/оперна"
 
 msgid "n/A"
 msgstr "не визначено"
@@ -19418,10 +19475,10 @@ msgid "new media"
 msgstr "нові медіа"
 
 msgid "news magazine"
-msgstr "журнал новин"
+msgstr "програма новин"
 
 msgid "news/current affairs (general)"
-msgstr "новини/поточні справи (загальні)"
+msgstr "новини/поточні події (загальні)"
 
 msgid "news/weather report"
 msgstr "новини/прогноз погоди"
@@ -19877,7 +19934,7 @@ msgid "show mediaplayer on mainmenu"
 msgstr "показати медіаплеєр в головному меню"
 
 msgid "show picons in quickzap"
-msgstr "показувати пікони в швидкому перемикані"
+msgstr "показувати пікони при швидкому перемиканні"
 
 msgid "show picons in service list"
 msgstr "показувати пікони в списку каналів"

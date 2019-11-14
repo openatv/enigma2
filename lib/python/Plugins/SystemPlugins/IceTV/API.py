@@ -16,7 +16,7 @@ from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, er
 from . import config, saveConfigFile, getIceTVDeviceType
 from boxbranding import getMachineBrand, getMachineName, getImageBuild
 
-_version_string = "20191013"
+_version_string = "20191108"
 _protocol = "http://"
 _device_type_id = getIceTVDeviceType()
 _debug_level = 0  # 1 = request/reply, 2 = 1+headers, 3 = 2+partial body, 4 = 2+full body
@@ -145,6 +145,17 @@ class Channels(Request):
             super(Channels, self).__init__("/regions/channels")
         else:
             super(Channels, self).__init__("/regions/" + str(int(region)) + "/channels")
+
+    def get(self):
+        return self.send("get")
+
+
+class UserChannels(AuthRequest):
+    def __init__(self, region=None):
+        if region is None:
+            super(UserChannels, self).__init__("/regions/channels")
+        else:
+            super(UserChannels, self).__init__("/regions/" + str(int(region)) + "/channels")
 
     def get(self):
         return self.send("get")
