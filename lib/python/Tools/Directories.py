@@ -111,8 +111,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_fallback_%d" % getDesktop(0).size().height()),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
-			defaultPaths[SCOPE_SKIN][0],
-			defaultPaths[SCOPE_CONFIG][0]  # Deprecated top level of SCOPE_CONFIG directory.
+			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
+			defaultPaths[SCOPE_SKIN][0]
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
@@ -131,8 +131,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], skin),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_fallback_%s" % getDesktop(1).size().height()),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
-			defaultPaths[SCOPE_LCDSKIN][0],
-			defaultPaths[SCOPE_CONFIG][0]  # Deprecated top level of SCOPE_CONFIG directory.
+			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
+			defaultPaths[SCOPE_LCDSKIN][0]
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
@@ -153,9 +153,9 @@ def resolveFilename(scope, base="", path_prefix=None):
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], display),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
-			defaultPaths[SCOPE_FONTS][0],
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
-			os.path.join(defaultPaths[SCOPE_CONFIG][0], display)
+			os.path.join(defaultPaths[SCOPE_CONFIG][0], display),
+			defaultPaths[SCOPE_FONTS][0]
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
