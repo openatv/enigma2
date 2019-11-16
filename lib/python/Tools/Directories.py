@@ -437,12 +437,15 @@ def getExtension(file):
 
 def mediafilesInUse(session):
 	from Components.MovieList import KNOWN_EXTENSIONS
-	files = [x[2] for x in lsof() if getExtension(x[2]) in KNOWN_EXTENSIONS]
+	files = [os.path.basename(x[2]) for x in lsof() if getExtension(x[2]) in KNOWN_EXTENSIONS]
 	service = session.nav.getCurrentlyPlayingServiceOrGroup()
 	filename = service and service.getPath()
-	if filename and "://" in filename:  # When path is a stream ignore it.
-		filename = None
-	return set([file for file in files if not(filename and file.startswith(filename) and files.count(filename) < 2)])
+	if filename:
+		if "://" in filename:  # When path is a stream ignore it.
+			filename = None
+		else:
+			filename = os.path.basename(filename)
+	return set([file for file in files if not(filename and file == filename and files.count(filename) < 2)])
 
 # Prepare filenames for use in external shell processing. Filenames may
 # contain spaces or other special characters.  This method adjusts the
