@@ -41,7 +41,7 @@ class Keyboard:
 		return self.keyboardmaps
 
 	def getDefaultKeyboardMap(self):
-		if getMachineBrand() == 'Zgemma':
+		if getMachineBrand() in ('Zgemma','Atto.TV'):
 			defaultKeyboardMap = "us.kmap"
 		elif getMachineBrand() == 'Beyonwiz':
 			defaultKeyboardMap = "eng.kmap"
