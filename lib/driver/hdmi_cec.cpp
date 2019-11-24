@@ -469,7 +469,7 @@ long eHdmiCEC::translateKey(unsigned char code)
 			key = 0xd0;
 			break;
 		case 0x53:
-			key = 0x166;
+			key = 0x16d;
 			break;
 		case 0x54:
 			key = 0x16a;
