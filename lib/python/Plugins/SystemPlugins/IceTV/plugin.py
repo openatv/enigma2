@@ -26,8 +26,7 @@ from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 from calendar import timegm
-from time import strptime, gmtime, strftime, time
-from datetime import datetime
+from time import strptime, gmtime, localtime, strftime, time
 from . import config, enableIceTV, disableIceTV
 import API as ice
 import requests
@@ -273,6 +272,35 @@ def _logResponseException(logger, heading, exception):
     logger.addLog(msg)
     return msg
 
+class LogEntry(dict):
+    def __init__(self, timestamp, log_message, sent=False):
+        self.sent = sent
+        self.timestamp = int(timestamp)
+        self.log_message = log_message
+
+    def get_timestamp(self):
+        return self["timestamp"]
+
+    def set_timestamp(self, timestamp):
+        self["timestamp"] = timestamp
+
+    timestamp = property(get_timestamp, set_timestamp)
+
+    def get_log_message(self):
+        return self["log_message"]
+
+    def set_log_message(self, log_message):
+        self["log_message"] = log_message
+
+    log_message = property(get_log_message, set_log_message)
+
+    def fmt(self):
+        return "%s: %s" % (strftime("%Y-%m-%d %H:%M:%S", localtime(self.timestamp)), self.log_message)
+
+    def __str__(self):
+        return self.fmt()
+
+
 class EPGFetcher(object):
     START_EVENTS = {
         iRecordableService.evStart,
@@ -474,9 +502,9 @@ class EPGFetcher(object):
         self.fetch_timer.start(int(refresh_interval.value) * 1000)
 
     def addLog(self, msg):
-        logMsg = "%s: %s" % (str(datetime.now()).split(".")[0], msg)
-        self.log.append(logMsg)
-        print "[IceTV]", logMsg
+        entry = LogEntry(time(), msg)
+        self.log.append(entry)
+        print "[IceTV]", str(entry)
 
     def createFetchJob(self, res=None, send_scans=False):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
@@ -1146,7 +1174,7 @@ class IceTVMain(ChoiceBox):
         _session.open(IceTVNeedPassword)
 
     def showLog(self, res=None):
-        _session.open(IceTVLogView, "\n".join(fetcher.log))
+        _session.open(IceTVLogView, "\n".join(str(l) for l in fetcher.log))
 
 
 class IceTVLogView(TextBox):
