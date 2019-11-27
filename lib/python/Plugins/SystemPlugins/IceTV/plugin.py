@@ -26,8 +26,7 @@ from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 from calendar import timegm
-from time import strptime, gmtime, strftime, time
-from datetime import datetime
+from time import strptime, gmtime, localtime, strftime, time
 from . import config, enableIceTV, disableIceTV
 import API as ice
 import requests
@@ -273,6 +272,35 @@ def _logResponseException(logger, heading, exception):
     logger.addLog(msg)
     return msg
 
+class LogEntry(dict):
+    def __init__(self, timestamp, log_message, sent=False):
+        self.sent = sent
+        self.timestamp = int(timestamp)
+        self.log_message = log_message
+
+    def get_timestamp(self):
+        return self["timestamp"]
+
+    def set_timestamp(self, timestamp):
+        self["timestamp"] = timestamp
+
+    timestamp = property(get_timestamp, set_timestamp)
+
+    def get_log_message(self):
+        return self["log_message"]
+
+    def set_log_message(self, log_message):
+        self["log_message"] = log_message
+
+    log_message = property(get_log_message, set_log_message)
+
+    def fmt(self):
+        return "%s: %s" % (strftime("%Y-%m-%d %H:%M:%S", localtime(self.timestamp)), self.log_message)
+
+    def __str__(self):
+        return self.fmt()
+
+
 class EPGFetcher(object):
     START_EVENTS = {
         iRecordableService.evStart,
@@ -329,6 +357,8 @@ class EPGFetcher(object):
         # issues its evEnd event, the iRecordableService.getError()
         # returns NoError (for example, evRecordWriteError).
         self.failed = {}
+
+        self.settings = {}
 
         # Update status for timers that are already running at startup
         # Use id(None) for their key to differentiate them from deferred
@@ -474,9 +504,9 @@ class EPGFetcher(object):
         self.fetch_timer.start(int(refresh_interval.value) * 1000)
 
     def addLog(self, msg):
-        logMsg = "%s: %s" % (str(datetime.now()).split(".")[0], msg)
-        self.log.append(logMsg)
-        print "[IceTV]", logMsg
+        entry = LogEntry(time(), msg)
+        self.log.append(entry)
+        print "[IceTV]", str(entry)
 
     def createFetchJob(self, res=None, send_scans=False):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
@@ -502,9 +532,21 @@ class EPGFetcher(object):
                 return False
         res = True
         try:
+            self.settings = dict((s["name"], s["value"].encode("utf-8") if s["type"] == 2 else s["value"]) for s in self.getSettings())
+            print "[EPGFetcher] settings", self.settings
+        except (Exception) as ex:
+            self.settings = {}
+            _logResponseException(self, _("Can not retrieve IceTV settings"), ex)
+        send_logs = config.plugins.icetv.member.send_logs and self.settings.get("send_pvr_logs", False)
+        print "[EPGFetcher] send_logs", send_logs
+        if send_logs:
+            self.postPvrLogs()
+        try:
             self.channel_service_map = self.makeChanServMap(self.getChannels())
         except (Exception) as ex:
             _logResponseException(self, _("Can not retrieve channel map"), ex)
+            if send_logs:
+                self.postPvrLogs()
             return False
         if self.send_scans:
             self.postScans()
@@ -515,6 +557,8 @@ class EPGFetcher(object):
             self.statusCleanup()
             if res:  # Timers fetched in non-batched show fetch
                 self.addLog("End update")
+                if send_logs:
+                    self.postPvrLogs()
                 return res
             res = True  # Reset res ready for a separate timer download
         except (IOError, RuntimeError) as ex:
@@ -538,6 +582,8 @@ class EPGFetcher(object):
         self.addLog("End update")
         self.deferredPostStatus(None)
         self.statusCleanup()
+        if send_logs:
+            self.postPvrLogs()
         return res
 
     def getTriplets(self):
@@ -884,6 +930,11 @@ class EPGFetcher(object):
             _session.nav.RecordTimer.timeChanged(timer)
         return success
 
+    def getSettings(self):
+        req = ice.Settings()
+        res = req.get().json()
+        return res.get("settings", [])
+
     def getShows(self, chan_list=None, fetch_timers=True):
         req = ice.Shows()
         last_update = config.plugins.icetv.last_update_time.value
@@ -1024,6 +1075,21 @@ class EPGFetcher(object):
         except (IOError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not post scan information"), ex)
 
+    def postPvrLogs(self):
+        log_list = [l for l in self.log if not l.sent]
+        print "[EPGFetcher] postPvrLogs", len(log_list)
+        if not log_list:
+            return
+        try:
+            req = ice.PvrLogs()
+            req.data["logs"] = log_list
+            res = req.post()
+            print "[EPGFetcher] postPvrLogs", res, res.json()["count_of_log_entries"]
+            for l in log_list:
+                l.sent = True
+        except (IOError, RuntimeError, KeyError) as ex:
+            _logResponseException(self, _("Can not post PVR log information"), ex)
+
 
 fetcher = None
 
@@ -1146,7 +1212,7 @@ class IceTVMain(ChoiceBox):
         _session.open(IceTVNeedPassword)
 
     def showLog(self, res=None):
-        _session.open(IceTVLogView, "\n".join(fetcher.log))
+        _session.open(IceTVLogView, "\n".join(str(l) for l in fetcher.log))
 
 
 class IceTVLogView(TextBox):
