@@ -143,20 +143,20 @@ def resolveFilename(scope, base="", path_prefix=None):
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
 		skin = os.path.dirname(config.skin.primary_skin.value)
-		if hasattr(config.skin, "display_skin"):
-			display = os.path.dirname(config.skin.display_skin.value)
-		else:
-			display = ""
+		display = os.path.dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "fonts"),
-			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], display),
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
-			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
-			os.path.join(defaultPaths[SCOPE_CONFIG][0], display),
-			defaultPaths[SCOPE_FONTS][0]
+			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin)
 		]
+		if display:
+			resolveList.append(os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", display))
+		resolveList.append(defaultPaths[SCOPE_CONFIG][0])  # Can we deprecate top level of SCOPE_CONFIG directory to allow a clean up?
+		resolveList.append(os.path.join(defaultPaths[SCOPE_SKIN][0], skin))
+		resolveList.append(os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"))
+		if display:
+			resolveList.append(os.path.join(defaultPaths[SCOPE_LCDSKIN][0], display))
+		resolveList.append(os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"))
+		resolveList.append(defaultPaths[SCOPE_FONTS][0])
 		for item in resolveList:
 			file = os.path.join(item, base)
 			if pathExists(file):
