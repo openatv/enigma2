@@ -98,7 +98,7 @@ class SymbolsCheckPoller:
 				f = open("/proc/stb/lcd/symbol_record_2", "w")
 				f.write("0")
 				f.close()
-		elif config.usage.lcd_ledpowerrec:
+		elif config.usage.lcd_ledpowerrec.value:
 			led = self.recordings and 2 or 0
 			if SystemInfo["LedStandbyColor"]:
 				f = open("/proc/stb/fp/ledstandbycolor", "w")
