@@ -148,6 +148,10 @@ class vEditor(Screen, HelpableScreen):
 			self.findtab = editableText.find("\t", 0, len(editableText))
 			if self.findtab != -1:
 				editableText = editableText.replace("\t", "        ")
+			# InputBoxWide's initialiser decodes editableText as UTF-8, but if
+			# it fails MessageBox will also fail.  Catch a decode error before
+			# opening the screen.
+			editableText.decode("utf-8")
 			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), overwrite=False, firstpos_end=True, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
 		except:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
