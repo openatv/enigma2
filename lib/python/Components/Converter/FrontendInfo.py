@@ -56,7 +56,7 @@ class FrontendInfo(Converter):
 			elif self.source.snr is not None: #fallback to normal SNR...
 				percent = self.source.snr
 		elif self.type == self.TUNER_TYPE:
-			return self.source.frontend_type and self.frontend_type or "Unknown"
+			return self.source.frontend_type or "Unknown"
 		elif self.type == self.STRING:
 			string = ""
 			for n in nimmanager.nim_slots:
