@@ -172,7 +172,8 @@ class ServiceInfo(Screen):
 					(_("Videosize"), resolution, TYPE_TEXT),
 					(_("Videocodec"), videocodec, TYPE_TEXT),
 					(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
-					(_("Service reference"), refstr, TYPE_TEXT))
+					(_("Service reference"), ":".join(refstr.split(":")[:9]), TYPE_TEXT),
+					(_("URL"), refstr.split(":")[10].replace("%3a", ":"), TYPE_TEXT))
 
 			self.fillList(Labels)
 		else:
