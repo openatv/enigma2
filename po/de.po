@@ -2553,10 +2553,10 @@ msgid "Allow unsupported modes"
 msgstr "Erlaube nicht unterstützte Modi"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Regelmäßiges Lesen der EPG-Daten aus der 'EPG-Datei' erlauben."
+msgstr "Regelmäßiges Lesen der EPG-Daten aus der unter 'EPG Dateiname' eingestellten Datei erlauben."
 
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Regelmäßiges Schreiben der EPG-Daten in die 'EPG-Datei' erlauben."
+msgstr "Regelmäßiges Schreiben der EPG-Daten in die unter 'EPG Dateiname' eingestellte Datei erlauben."
 
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
 msgstr "Hiermit können Sie einstellen, ob oder wie lange die Bildschirmeinblendung bei Auflösungsänderungen angezeigt werden soll."
@@ -2583,7 +2583,7 @@ msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "CCcam Info unter Erweiterungen (Taste BLAU) anzeigen."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
-msgstr "Erlaubt es Ihnen, die Log-Verwaltung unter Erweiterungen (Taste BLAU) anzuzeigen/zu verstecken."
+msgstr "Die Log-Verwaltung unter Erweiterungen (Taste BLAU) anzeigen oder verstecken."
 
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr "OSCam Info unter Erweiterungen (Taste BLAU) anzeigen."
@@ -4133,7 +4133,7 @@ msgid "Choose the name of the file that holds the EPG data when the %s %s is shu
 msgstr "Wählen Sie den Dateinamen für die EPG-Daten, wenn die %s %s ausgeschaltet wird. Das kann nützlich sein, wenn mehrere Boxen verwendet werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
-msgstr "Wählen Sie das Zeitintervall, auf welches die Grafiken gerundet werden sollen."
+msgstr "Einstellen, auf welches Zeitintervall die Grafiken gerundet werden sollen."
 
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr "Wählen Sie, was bei der '0' Taste passieren soll wenn Bild im Bild aktiv ist."
@@ -4376,10 +4376,10 @@ msgid "Configuration mode: %s"
 msgstr "Konfigurationsmodus: %s"
 
 msgid "Configure an additional delay to improve external subtitle synchronisation."
-msgstr "Konfigurieren Sie eine zusätzliche Verzögerung, um die Synchronität der externen Untertitel zu verbessern."
+msgstr "Eine zusätzliche Verzögerung einstellen, um die Synchronität der externen Untertitel zu verbessern."
 
 msgid "Configure an additional delay to improve subtitle synchronisation."
-msgstr "Konfigurieren einer zusätzlichen Verzögerung, um die Synchronität der Untertitel zu verbessern."
+msgstr "Eine zusätzliche Verzögerung einstellen, um die Synchronität der Untertitel zu verbessern."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Legt die Standardeinstellung für neu angelegte Timer fest. Benötigt nach der Änderung einen Neustart."
@@ -4402,23 +4402,23 @@ msgstr ""
 "Lang: Datum Zeit - Sender - Titel - Info"
 
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
-msgstr "Konfigurieren Sie, ob und wie das Verschlüsselungssymbol angezeigt werden soll."
+msgstr "Einstellen, ob und wie das Verschlüsselungssymbol angezeigt werden soll."
 
 # /data/setup.xml
 msgid "Configure if and how long the latest service in the PiP will be remembered."
-msgstr "Konfigurieren Sie, ob und wie lange der aktuelle Bild im Bild Service in Erinnerung bleiben soll."
+msgstr "Einstellen, ob und wie lange der aktuelle Bild im Bild Service in Erinnerung bleiben soll."
 
 msgid "Configure if and how service type icons will be shown."
-msgstr "Konfigurieren Sie, ob und wie Servicetyp-Symbole angezeigt werden sollen."
+msgstr "Einstellen, ob und wie Servicetyp-Symbole angezeigt werden sollen."
 
 msgid "Configure if and how the record indicator will be shown in the channel selection list."
-msgstr "Konfigurieren Sie, ob und wie Icons für die Aufnahme in der Senderliste gezeigt werden."
+msgstr "Einstellen, ob und wie Icons für die Aufnahme in der Senderliste gezeigt werden."
 
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
-msgstr "Konfigurieren Sie, ob und wie Sendernamen in der Senderliste gezeigt werden."
+msgstr "Einstellen, ob und wie Sendernamen in der Senderliste gezeigt werden."
 
 msgid "Configure if epg.dat should be saved at all."
-msgstr "Konfigurieren Sie, ob die EPG-Daten gespeichert werden sollen."
+msgstr "Einstellen, ob die EPG-Daten gespeichert werden sollen."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Wenn aktiviert, werden die Picons beim Quickzap (Umschalten) angezeigt."
@@ -4428,7 +4428,7 @@ msgstr "Wenn aktiviert, werden die Picons in der Kanalliste angezeigt."
 
 # Subtitle neu 5.1
 msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
-msgstr "Hiermit können Sie einstellen, ob die Schriftart der externen Untertitel zwischen Normal, Italic, Bold oder Bold Italic wechseln soll."
+msgstr "Einstellen, ob die Schriftart der externen Untertitel zwischen Normal, Italic, Bold oder Bold Italic wechseln soll."
 
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
@@ -4438,7 +4438,7 @@ msgid "Configure nameservers"
 msgstr "DNS-Server konfigurieren"
 
 msgid "Configure on which devices the background delete option should be used."
-msgstr "Konfigurieren Sie, auf welchen Geräten die Hintergrund-Löschoption verwendet werden darf."
+msgstr "Einstellen, auf welchen Geräten die Hintergrund-Löschoption verwendet werden darf."
 
 msgid "Configure remote control type"
 msgstr "Fernbedienungstyp einstellen"
@@ -4450,17 +4450,17 @@ msgid "Configure the IP address."
 msgstr "IP-Adresse konfigurieren."
 
 msgid "Configure the alignment of events."
-msgstr "Konfigurieren Sie die Ausrichtung der Sendungsnamen."
+msgstr "Ausrichtung der Sendungsnamen einstellen."
 
 msgid "Configure the alignment of service names."
-msgstr "Konfigurieren Sie die Ausrichtung der Sendernamen."
+msgstr "Ausrichtung der Sendernamen einstellen."
 
 #
 msgid "Configure the amount of time that will be presented."
 msgstr "Einstellen der Zeit, die angezeigt werden soll."
 
 msgid "Configure the aspect ratio of the screen."
-msgstr "Konfigurieren Sie das Seitenverhältnis des Bildschirms."
+msgstr "Das Seitenverhältnis des Bildschirms einstellen."
 
 #
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
@@ -4478,7 +4478,7 @@ msgid "Configure the behavior when reaching the end of a movie, during movie pla
 msgstr "Verhalten bei Filmende."
 
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
-msgstr "Konfigurieren Sie die Rahmenbreite für die Untertitel. Der dunkle Rand verbessert die Lesbarkeit bei hellerem Hintergrund."
+msgstr "Einstellen der Rahmenbreite für die Untertitel. Der dunkle Rand verbessert die Lesbarkeit bei hellerem Hintergrund."
 
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr "Einstellung der Helligkeit für das Gerätedisplay im gedimmten Zustand."
@@ -4493,10 +4493,10 @@ msgid "Configure the color of the external subtitles, alternative (normal in whi
 msgstr "Farbe der externen Untertitel, Alternativ (normal in Weiß, kursiv in Gelb, fett in Cyan, Unterstriche in Grün), Weiß oder Gelb."
 
 msgid "Configure the color of the teletext subtitles."
-msgstr "Konfigurieren der Farbe für Videotext-Untertitel."
+msgstr "Einstellen der Farbe für Videotext-Untertitel."
 
 msgid "Configure the contrast level of the front panel display."
-msgstr "Konfigurieren Sie die Kontraststufe des Geräte-Displays."
+msgstr "Einstellen der Kontraststufe des Gerätedisplays."
 
 # 5.1 Version
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
@@ -4506,10 +4506,10 @@ msgid "Configure the display resolution and the font used for teletext."
 msgstr "Bestimmt die Bildschirmauflösung und den Zeichensatz für die Videotext-Darstellung."
 
 msgid "Configure the duration in minutes for the screensaver."
-msgstr "Konfigurieren Sie, ob und nach welcher Verzögerungszeit der Bildschirmschoner aktiviert werden soll."
+msgstr "Einstellen, ob und nach welcher Verzögerungszeit der Bildschirmschoner aktiviert werden soll."
 
 msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Konfigurieren Sie die Dauer in Minuten für den Ausschalttimer."
+msgstr "Die Dauer in Minuten für den Ausschalttimer einstellen."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Bestimmt die X-Endkoordinate des Anzeigebereichs für Videotext."
@@ -4518,7 +4518,7 @@ msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Bestimmt die Y-Endkoordinate des Anzeigebereichs für Videotext."
 
 msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Konfigurieren Sie die Schrittweite für die Lautstärke im Schnellmodus (von 1-10). Wird aktiviert, wenn die Lautstärketaste permanent oder schnell hintereinander gedrückt wird."
+msgstr "Einstellen der Schrittweite (von 1 bis 10) für die Lautstärke im Schnellmodus. Wird aktiviert, wenn die Lautstärketaste permanent oder schnell hintereinander gedrückt wird."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Audio Sprachwahl 1 (höchste Priorität) einstellen."
@@ -4527,14 +4527,14 @@ msgid "Configure the first subtitle language (highest priority)."
 msgstr "Untertitel für die Sprachauswahl 1 (höchste Priorität) einstellen."
 
 msgid "Configure the font size of the subtitles."
-msgstr "Konfigurieren der Schriftgröße für Untertitel."
+msgstr "Einstellen der Schriftgröße für Untertitel."
 
 msgid "Configure the font size relative to default size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
-msgstr "Konfigurieren Sie die Schriftgröße relativ zur Standardgröße, so dass diese bei 1 um 1 Punktgröße zunimmt und bei -1 um 1 Punktgröße abnimmt."
+msgstr "Einstellen der Schriftgröße relativ zur Standardgröße, so dass diese bei 1 um 1 Punktgröße zunimmt und bei -1 um 1 Punktgröße abnimmt."
 
 #
 msgid "Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
-msgstr "Konfigurieren Sie die Schriftgröße relativ zur Skingröße, so dass diese bei 1 um 1 Punktgröße zunimmt und bei -1 um 1 Punktgröße abnimmt."
+msgstr "Einstellen der Schriftgröße relativ zur Skingröße, so dass diese bei 1 um 1 Punktgröße zunimmt und bei -1 um 1 Punktgröße abnimmt."
 
 msgid "Configure the fourth audio language."
 msgstr "Audio Sprachwahl 4 (niedrigste Priorität) einstellen."
@@ -4553,13 +4553,13 @@ msgid "Configure the function of the <  > buttons."
 msgstr "Wählen Sie, was die '<'/'>' Tasten bewirken sollen."
 
 msgid "Configure the gateway."
-msgstr "Konfigurieren Sie das Gateway."
+msgstr "Das Gateway einstellen."
 
 msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Konfigurieren Sie die generelle Schrittweite für die Lautstärke (von 1-10)."
+msgstr "Die generelle Schrittweite (von 1 bis 10) für die Lautstärke einstellen."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
-msgstr "Hier können Sie bestimmen, nach welcher Zeit Ihre Festplatte in den Ruhezustand gehen soll, wenn sich die Box im Standby befindet."
+msgstr "Einstellen, nach welcher Zeit Ihre Festplatte in den Ruhezustand gehen soll, wenn sich die Box im Standby befindet."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Einstellen, nach wie viel Leerlaufzeit eine Festplatte in den Ruhezustand geht."
@@ -4572,13 +4572,13 @@ msgid "Configure the history of time that will be presented."
 msgstr "Einstellen der vergangenen Zeit, die angezeigt werden soll."
 
 msgid "Configure the horizontal alignment of the subtitles."
-msgstr "Konfigurieren der horizontalen Ausrichtung von Untertiteln."
+msgstr "Die horizontale Ausrichtung von Untertiteln einstellen."
 
 msgid "Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed."
-msgstr "Konfigurieren Sie den Anfangswert der Vorlaufgeschwindigkeit. Wenn Sie die Taste für den schnellen Vorlauf drücken, wird mit diesem Wert begonnen."
+msgstr "Den Anfangswert der Vorlaufgeschwindigkeit einstellen. Wenn Sie die Taste für den schnellen Vorlauf drücken, wird mit diesem Wert begonnen."
 
 msgid "Configure the initial rewind speed. When you press the rewind button, winding will start at this speed."
-msgstr "Konfigurieren Sie den Anfangswert der Rücklaufgeschwindigkeit. Wenn Sie die Taste für den Rücklauf drücken, wird mit diesem Wert begonnen."
+msgstr "Den Anfangswert der Rücklaufgeschwindigkeit einstellen. Wenn Sie die Taste für den schnellen Rücklauf drücken, wird mit diesem Wert begonnen."
 
 msgid "Configure the latitude of your location."
 msgstr "Breitengrad Ihrer Position einstellen."
@@ -4590,7 +4590,7 @@ msgid "Configure the minimum amount of disk space to be available for recordings
 msgstr "Den erforderlichen Speicherplatz einstellen, der für Aufnahmen zur Verfügung stehen muss. Wird der Wert erreicht, werden Inhalte aus dem Papierkorb gelöscht."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
-msgstr "Konfigurieren Sie die Minimumbreite bevor das 'I' Icon gezeigt wird. '0' bedeutet das Icon wird gar nicht gezeigt."
+msgstr "Einstellen der Minimumbreite, bevor das 'I' Icon gezeigt wird. Bei '0' wird das Icon gar nicht gezeigt."
 
 msgid "Configure the nameserver (DNS)."
 msgstr "Nameserver (DNS) einstellen."
@@ -4606,16 +4606,16 @@ msgstr "Legen Sie die Vorhaltezeit in Tagen für abgelaufene Timer fest, nach de
 
 #
 msgid "Configure the number of rows shown."
-msgstr "Wählen Sie, wie viele Zeilen dargestellt werden sollen."
+msgstr "Einstellen, wie viele Zeilen dargestellt werden sollen."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
-msgstr "Konfigurieren Sie die Verzögerung der Offline-Entschlüsselung (in ms). Die eingestellte Verzögerung wird bei jedem Control Word Wechsel berücksichtigt."
+msgstr "Die Verzögerung (in ms) der Offline-Entschlüsselung einstellen. Diese wird bei jedem Control Word Wechsel berücksichtigt."
 
 msgid "Configure the possible fast forward speeds."
-msgstr "Konfigurieren der Vorlaufgeschwindigkeiten."
+msgstr "Einstellen der Vorlaufgeschwindigkeiten."
 
 msgid "Configure the possible rewind speeds."
-msgstr "Konfigurieren der Rücklaufgeschwindigkeiten."
+msgstr "Einstellen der Rücklaufgeschwindigkeiten."
 
 msgid "Configure the primary EPG language."
 msgstr "EPG Sprachwahl 1 einstellen."
@@ -4636,22 +4636,22 @@ msgid "Configure the secondary EPG language."
 msgstr "EPG Sprachwahl 2 einstellen."
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
-msgstr "Konfigurieren Sie das Sprung-Zeitintervall für die '1'/'3' Tasten."
+msgstr "Einstellen des Sprung-Zeitintervalls für die Tasten '1' und '3'."
 
 msgid "Configure the skip time interval for the '4'/'6' buttons."
-msgstr "Konfigurieren Sie das Sprung-Zeitintervall für die '4'/'6' Tasten."
+msgstr "Einstellen des Sprung-Zeitintervalls für die Tasten '4' und '6'."
 
 msgid "Configure the skip time interval for the '7'/'9' buttons."
-msgstr "Konfigurieren Sie das Sprung-Zeitintervall für die '7'/'9' Tasten."
+msgstr "Einstellen des Sprung-Zeitintervalls für die Tasten '7' und '9'."
 
 msgid "Configure the slow motion speeds."
-msgstr "Konfigurieren der Zeitlupengeschwindigkeiten."
+msgstr "Einstellen der Zeitlupengeschwindigkeiten."
 
 msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
-msgstr "Hier können Sie die Datenquelle für die Anzeigen in der Infoleiste einstellen."
+msgstr "Einstellen der Datenquelle für die Anzeigen in der Infoleiste."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
-msgstr "Konfigurieren Sie die Geschwindigkeit des Hintergrund Löschvorgangs. Eine niedrigere Geschwindigkeit hat weniger Einfluss auf die Leistung der Festplatte."
+msgstr "Einstellen der Geschwindigkeit des Hintergrund Löschvorgangs. Eine niedrigere Geschwindigkeit hat weniger Einfluss auf die Leistung der Festplatte."
 
 msgid "Configure the start coordinate in x of the teletext display area."
 msgstr "Bestimmt die X-Startkoordinate des Anzeigebereichs für Videotext."
@@ -4660,7 +4660,7 @@ msgid "Configure the start coordinate in y of the teletext display area."
 msgstr "Bestimmt die Y-Startkoordinate des Anzeigebereichs für Videotext."
 
 msgid "Configure the subtitle delay when timing information is not available."
-msgstr "Konfigurieren der Verzögerung für Untertitel, wenn keine Informationen vorhanden sind."
+msgstr "Einstellen der Verzögerung für Untertitel, wenn keine Informationen vorhanden sind."
 
 msgid "Configure the third audio language."
 msgstr "Audio Sprachwahl 3 einstellen."
@@ -4669,10 +4669,10 @@ msgid "Configure the third subtitle language."
 msgstr "Untertitel für die Sprachauswahl 3 einstellen."
 
 msgid "Configure the transparency of the black background of graphical DVB subtitles."
-msgstr "Konfigurieren der Transparenz des schwarzen Hintergrunds von grafischen DVB-Untertiteln."
+msgstr "Einstellen der Transparenz des schwarzen Hintergrunds von grafischen DVB-Untertiteln."
 
 msgid "Configure the transparency of the black background of subtitles."
-msgstr "Konfigurieren der Transparenz des schwarzen Hintergrunds von Untertiteln."
+msgstr "Einstellen der Transparenz des schwarzen Hintergrunds von Untertiteln."
 
 msgid "Configure the tuner mode."
 msgstr "Tuner-Modus einstellen."
@@ -4681,28 +4681,28 @@ msgid "Configure the type of status indication icons shown in the movielist."
 msgstr "Typ der Statusanzeige in der Filmliste."
 
 msgid "Configure the vertical position of the subtitles, measured from the bottom of the screen."
-msgstr "Konfigurieren Sie die vertikale Position von Untertiteln, gemessen vom unteren Bildrand."
+msgstr "Einstellen der vertikalen Position von Untertiteln, gemessen vom unteren Bildrand."
 
 #
 msgid "Configure the width allocated to the picon."
-msgstr "Legen Sie die Breite der zugewiesenen Picons fest."
+msgstr "Breite der zugewiesenen Picons einstellen."
 
 #
 msgid "Configure the width allocated to the service name."
-msgstr "Legen Sie die Breite der Sendernamen fest."
+msgstr "Breite der Sendernamen einstellen."
 
 msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr "Bestimmt die Breite der Zeichen des TrueType-Zeichensatzes für die Videotext-Darstellung."
 
 msgid "Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."
-msgstr "Konfigurieren Sie diesen Tuner mit einfachen oder erweiterten Optionen oder führen Sie ihn zu einem anderen Tuner durch oder kopieren Sie eine Konfiguration von einem anderen Tuner oder deaktivieren Sie sie."
+msgstr "Einstellen dieses Tuners mit einfachen oder erweiterten Optionen, ihn zu einem anderen Tuner durchführen, eine Konfiguration von einem anderen Tuner kopieren oder deaktivieren."
 
 msgid "Configure to show channel names, numbers, picons or all three inside EPG."
-msgstr "Einstellung, um die Sendernamen, Kanalnummern, Picons oder alle drei im EPG anzuzeigen."
+msgstr "Einstellen, ob Sendernamen, Kanalnummern, Picons oder alle drei im EPG angezeig werden sollen."
 
 #
 msgid "Configure to show the channel names, picons, or both in the EPG."
-msgstr "Einstellung, um die Sendernamen, Kanalnummern, Picons oder alle drei im EPG anzuzeigen."
+msgstr "Einstellen, ob Sendernamen, Kanalnummern, Picons oder alle drei im EPG angezeig werden sollen."
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr "Bestimmt, ob ein regulärer oder ein fetter Zeichensatz für die Videotext-Darstellung verwendet wird."
@@ -4711,10 +4711,10 @@ msgid "Configure whether a fixed font or a scalable TrueType font is used for te
 msgstr "Bestimmt, ob ein fester Zeichensatz oder ein skalierbarer TrueType-Zeichensatz für die Videotext-Darstellung verwendet wird."
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
-msgstr "Konfigurieren Sie, ob bei Aufnahmen ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Kanal live empfängt."
+msgstr "Einstellen, ob bei Aufnahmen ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Kanal Live empfängt."
 
 msgid "Configure whether another tuner from the preferred list is allocated instead of sharing a tuner that is already active recording the same channel."
-msgstr "Konfigurieren Sie, ob ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Kanal aufnimmt."
+msgstr "Einstellen, ob ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Kanal aufnimmt."
 
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Heruntermischen von Mehrkanalton zu Stereo."
@@ -4724,26 +4724,26 @@ msgid "Configure whether the 'recording' symbol (in the display skin and LCD ski
 msgstr "Legt fest, ob das Aufnahme-Symbol (auf Bildschirm und LCD Display) nur bei echten Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPGRefresh)."
 
 msgid "Configure which color format should be used on the SCART output."
-msgstr "Konfigurieren Sie, welches Farbformat am Scart Ausgang benutzt werden soll."
+msgstr "Einstellen, welches Farbformat am Scart Ausgang benutzt werden soll."
 
 msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "Konfigurieren Sie, welcher Tuner für Aufnahmen bevorzugt benutzt werden soll, wenn mehr als ein Tuner verfügbar ist."
+msgstr "Einstellen, welcher Tuner für Aufnahmen bevorzugt benutzt werden soll, wenn mehr als ein Tuner verfügbar ist."
 
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-msgstr "Konfigurieren der bevorzugten von mehreren für einen Sender verfügbaren Empfangsarten."
+msgstr "Einstellen der bevorzugten von mehreren für einen Sender verfügbaren Empfangsarten."
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
-msgstr "Konfigurieren Sie, welcher Tuner für Aufnahmen bevorzugt werden soll, wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Automatisch' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
+msgstr "Einstellen, welcher Tuner für Aufnahmen bevorzugt werden soll, wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter 'Anpassen' eingestellt ist. 'Automatisch' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in 'Anpassen'."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
-msgstr "Konfigurieren, welcher von mehreren Tunern bevorzugt benutzt werden soll. Bei 'Automatisch' wird zuerst der Tuner mit den wenigsten Sendern/Satelliten genommen."
+msgstr "Einstellen, welcher von mehreren Tunern bevorzugt benutzt werden soll. Bei 'Automatisch' wird zuerst der Tuner mit den wenigsten Sendern/Satelliten genommen."
 
 #
 msgid "Configure your NTP server."
-msgstr "Hier können Sie den NTP-Server zur Zeit-Synchronisierung ändern."
+msgstr "Den NTP-Server zur Zeit-Synchronisierung ändern."
 
 msgid "Configure your Network"
-msgstr "Konfigurieren Sie das Netzwerk"
+msgstr "Das Netzwerk konfigurieren"
 
 msgid "Configure your internal LAN"
 msgstr "Internes Netzwerk konfigurieren"
@@ -5099,15 +5099,15 @@ msgstr "Benutzerdefiniert"
 
 #
 msgid "Custom skip time for '1'/'3' buttons"
-msgstr "Benutzerdefinierte Sprungzeit für '1'/'3' Tasten"
+msgstr "Benutzerdefinierte Sprungzeit für die Tasten '1' und '3'"
 
 #
 msgid "Custom skip time for '4'/'6' buttons"
-msgstr "Benutzerdefinierte Sprungzeit für '4'/'6' Tasten"
+msgstr "Benutzerdefinierte Sprungzeit für die Tasten '4' und '6'"
 
 #
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "Benutzerdefinierte Sprungzeit für '7'/'9' Tasten"
+msgstr "Benutzerdefinierte Sprungzeit für die Tasten '7' und '9'"
 
 # Quick Menue
 msgid "Customise"
@@ -5805,7 +5805,7 @@ msgstr "Begrüßungsbildschirm abschalten"
 
 # Box Display
 msgid "Disable the HDD Process on VFD"
-msgstr "Diese Option erlaubt es, das HDD Symbol auf dem Display anzuzeigen"
+msgstr "Einstellen, ob das HDD Symbol auf dem Display angezeigt wird."
 
 #
 msgid "Disable timer"
@@ -5869,7 +5869,7 @@ msgstr "Gerätedisplay"
 
 # EPG Setup
 msgid "Display the EIT now/next eventdata in infobar."
-msgstr "Zeige EIT EPG Informationen jetzt/gleich in Infoleiste."
+msgstr "EIT EPG Informationen jetzt/gleich in der Infoleiste zeigen."
 
 msgid "Djibouti"
 msgstr "Dschibuti"
@@ -7989,7 +7989,7 @@ msgid "Helps setting up your signal"
 msgstr ""
 
 msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
-msgstr "Hier können Sie einstellen, ob der EPG mit dem aktuellem Kanal, dem erstem Kanal oder einem von beiden mit der Primetime geöffnet wird. Wenn keine Primetime ausgewählt ist, wird die aktuelle Zeit verwendet."
+msgstr "Einstellen, ob der EPG mit dem aktuellen Kanal, dem ersten Kanal oder einem von beiden mit der Primetime geöffnet wird. Wenn keine Primetime ausgewählt ist, wird die aktuelle Zeit verwendet."
 
 msgid "Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."
 msgstr "Hier können die Dateien durchsucht (aber nicht verändert) werden, die standardmäßig gesichert werden (E2-Einstellungen, Kanäle, Netzwerk)."
@@ -8285,7 +8285,7 @@ msgid "If set to 'yes' the infobar will be displayed when changing channels."
 msgstr "Wenn 'Ja' eingestellt ist, wird die Infoleiste angezeigt, wenn der Sender gewechselt wird."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
-msgstr "Außer bei 'Deaktiviert' erhalten Sie eine Programmvorschau im EPG."
+msgstr "Bei 'Ja' erhalten Sie eine Programmvorschau im EPG."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
 msgstr "Bei 'Ja' Programmvorschau im EPG. Mit OK die Vorschau, ein zweiter Druck beendet EPG und schaltet zum gewählten Sender, mit EXIT Sender vor Aufruf vom EPG."
@@ -8416,10 +8416,10 @@ msgid "In addition to the check at an event start, a repetitive check can be use
 msgstr "Zusätzlich zu der Überprüfung bei einem Event-Start kann diese Einstellung genutzt werden. Damit wird die Bedingung 'Puffer Limit in Stunden' oder 'Überprüfung auf freien Speicherplatz' eher erkannt."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
-msgstr "Konfigurieren Sie im Expertenmodus, welche Tuner für Aufnahmen bevorzugt werden sollen, wenn mehr als ein Tuner verfügbar ist."
+msgstr "Im Expertenmodus einstellen, welche Tuner für Aufnahmen bevorzugt werden sollen, wenn mehr als ein Tuner verfügbar ist."
 
 msgid "In expert mode, configure which tuners will be preferred, when more than one tuner is available."
-msgstr "Konfigurieren Sie im Expertenmodus, welche von mehreren Tunern bevorzugt benutzt werden sollen."
+msgstr "Im Expertenmodus einstellen, welche von mehreren Tunern bevorzugt benutzt werden sollen, wenn mehr als ein Tuner verfügbar ist."
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr "In den meisten Fällen sollte dies auf 'Nein' eingestellt sein. Nur aktivieren, wenn Sie einen ganz bestimmten Bedarf haben."
@@ -8794,7 +8794,7 @@ msgid "Invert"
 msgstr "Invertieren"
 
 msgid "Inverts the button function."
-msgstr "Invertiert die Tastenfunktion."
+msgstr "Bei 'Ja' werden die Funktionen der Kanaltasten umgekehrt."
 
 #
 msgid "Ipkg"
@@ -9433,7 +9433,7 @@ msgid "Mainmenu"
 msgstr "Hauptmenü"
 
 msgid "Maintain old EPG data for"
-msgstr "Halte alte EPG-Daten für (X) Minuten"
+msgstr "Alte EPG-Daten für x Minuten halten"
 
 msgid "Make File Commander accessible from the Extensions menu."
 msgstr "File Commander über das Erweiterungsmenü zugänglich machen."
@@ -11460,7 +11460,7 @@ msgstr "Aufnahmeendzeit ändern"
 
 # ImageBackup.py
 msgid "Please check the manual of the receiver"
-msgstr "schauen Sie in die Bedienungsanleitung Ihres Receivers,"
+msgstr "in die Bedienungsanleitung Ihres Receivers,"
 
 #
 msgid "Please check your network settings!"
@@ -11485,7 +11485,7 @@ msgid ""
 "Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Konfigurieren Sie Ihre DNS-Server durch Ausfüllen der entsprechenden Werte.\n"
+"Stellen Sie Ihre DNS-Server durch Ausfüllen der entsprechenden Werte ein.\n"
 "\n"
 "OK drücken zum Fortfahren."
 
@@ -11937,7 +11937,7 @@ msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timeraufnahmen in der Timerliste"
 
 msgid "Position of recording icons"
-msgstr "Ausrichtung der Aufnahme-Symbole"
+msgstr "Position der Aufnahme-Symbole"
 
 msgid "Position stored at index"
 msgstr ""
@@ -14391,10 +14391,10 @@ msgid "Set time window to 6 hours"
 msgstr ""
 
 msgid "Set to the desired primetime (hour)."
-msgstr "Wählen Sie die gewünschte Primetime (Stunde)."
+msgstr "Die Stunde der Primetime einstellen."
 
 msgid "Set to the desired primetime (minutes."
-msgstr "Wählen Sie die gewünschte Primetime (Minuten)."
+msgstr "Die Minuten der Primetime einstellen."
 
 msgid "Set to what you want the button to do."
 msgstr "Wählen Sie, was die Taste machen soll."
@@ -14553,7 +14553,7 @@ msgstr "Einstellungen der Laufwerk-Mounts (USB, HDD, andere...)"
 
 # Quick Menue
 msgid "Setup your EPG config"
-msgstr "Konfigurieren Sie Ihre EPG-Einstellungen."
+msgstr "EPG Einstellungen konfigurieren."
 
 msgid "Setup your Harddisk"
 msgstr "Einstellen der Festplatte."
@@ -14751,7 +14751,7 @@ msgid "Show E2 Log"
 msgstr "Zeige E2 Log"
 
 msgid "Show EIT now/next in infobar"
-msgstr "Zeige EIT jetzt/gleich in Infoleiste"
+msgstr "EIT jetzt/gleich in der Infoleiste zeigen"
 
 msgid "Show EPG"
 msgstr "Zeige EPG"
@@ -14777,7 +14777,7 @@ msgstr "Zeige HDD Fortschritt"
 
 # Box Display
 msgid "Show HDMI Output Resolution"
-msgstr "Diese Option erlaubt es, die HDMI Auflösung auf dem Display anzuzeigen"
+msgstr "Einstellen, ob die HDMI Auflösung auf dem Display angezeigt wird."
 
 msgid "Show HDMI-Output Res"
 msgstr "Zeige HDMI Auflösung"
@@ -15063,7 +15063,7 @@ msgid "Show marked events"
 msgstr "Markierte Ereignisse anzeigen"
 
 msgid "Show marked events in all rows."
-msgstr "Markierte Ereignisse in allen Zeilen anzeigen."
+msgstr "Bei 'Ja' werden markierte Ereignisse in allen Zeilen angezeigt."
 
 #
 msgid "Show menu"
@@ -15108,7 +15108,7 @@ msgid "Show parting lines"
 msgstr "Trennlinien anzeigen"
 
 msgid "Show parting lines between events."
-msgstr "Zeige Trennlinien zwischen den Ereignissen."
+msgstr "Bei 'Ja' werden Trennlinien zwischen den Ereignissen angezeigt."
 
 msgid "Show picon background colour"
 msgstr "Hintergrundfarbe des Senderlogos"
@@ -15237,7 +15237,7 @@ msgid "Show time elapsed as positive"
 msgstr "Verstrichene Zeit mit positivem Vorzeichen"
 
 msgid "Show time in 24 hour clock format."
-msgstr "Zeige Zeit im 24 Stunden Format."
+msgstr "Bei 'Ja' wird die Zeit im 24 Stunden Format angezeigt."
 
 msgid "Show time remaining/elapsed"
 msgstr "Verbleibende/verstrichene Zeit als"
@@ -16873,10 +16873,10 @@ msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Diese Option leitet den Ton auf Ihre Bluetooth-Lautsprecher um."
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
-msgstr "Dies erlaubt die Schriftgröße relativ zu den Skineinstellungen zu ändern. 1 erhöht die Größe um 1 und -1 verringert die Größe um 1."
+msgstr "Die Schriftgröße relativ zu den Skineinstellungen ändern. 1 erhöht die Größe um 1. -1 verringert die Größe um 1."
 
 msgid "This allows you change the number of rows shown."
-msgstr "Dies erlaubt anzugeben wie viele Zeilen angezeigt werden sollen."
+msgstr "Einstellen, wie viele Zeilen angezeigt werden sollen."
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Hier können Sie die Anzahl der Stellen auf 5 setzen, wenn Sie mehr als 9999 Kanäle haben."
@@ -16999,7 +16999,7 @@ msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Mit dieser Option können Sie die vertikale Kantenglättung aktivieren."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
-msgstr "Diese Option erlaubt es, das Aussehen vom EPG einzustellen (Text oder Grafik)."
+msgstr "Das Aussehen vom EPG (Text oder Grafik) einstellen."
 
 # Box Display
 msgid "This option allows you to Power Off the display."
@@ -18251,7 +18251,7 @@ msgid "Use fastscan channel numbering"
 msgstr "Nutze Kanalnummerierung des Schnellsuchlaufs"
 
 msgid "Use for load only x days in EPG"
-msgstr "Festlegen der Tage zum Laden des EPG"
+msgstr "Einstellen, wieviele Tage der EPG laden soll."
 
 #
 msgid "Use frequency or channel"
@@ -19065,7 +19065,7 @@ msgstr ""
 "Wenn aktiviert, kann beim Zappen die Favoritenliste gewechselt werden."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Konfigurieren Sie, ob gelöschte Aufnahmen in den Papierkorb verschoben werden sollen. Sonst werden Aufnahmen sofort unwiderruflich gelöscht."
+msgstr "Einstellen, ob gelöschte Aufnahmen in den Papierkorb verschoben werden sollen. Sonst werden Aufnahmen sofort unwiderruflich gelöscht."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Bei Aktivierung werden externe Untertitel beim Abspielen von Filmen immer angezeigt."
@@ -22579,7 +22579,7 @@ msgstr "Umschalten"
 #~ msgstr "Soll der A/V-Eingang vom Fernseher über die Scart-Verbindung angesteuert werden."
 
 #~ msgid "Choose whether to show the channel names, picons, or both in the EPG."
-#~ msgstr "Wählen Sie, ob Sendername, Picon oder beides im EPG angezeigt werden soll."
+#~ msgstr "Einstellen, ob Sendername, Picon oder beides im EPG angezeigt werden soll."
 
 #~ msgid "Choose your Skin"
 #~ msgstr "Oberfläche auswählen"
@@ -22636,7 +22636,7 @@ msgstr "Umschalten"
 
 #
 #~ msgid "Configure the harddisk drive to go to standby after the specified idle time."
-#~ msgstr "Einstellung, nach welcher Zeit die Festplatte in den Standby geht."
+#~ msgstr "Einstellen, nach welcher Zeit die Festplatte in den Standby gehen soll."
 
 #~ msgid "Configure the possible fast forward speeds"
 #~ msgstr "Vorlaufgeschwindigkeiten"
@@ -22648,13 +22648,13 @@ msgstr "Umschalten"
 #~ msgstr "Löschgeschwindigkeit im Hintergrund"
 
 #~ msgid "Configure the time of the stepskip on the '1'/'3'-keys"
-#~ msgstr "Gewünschte Sprungzeit für '1'/'3' Tasten"
+#~ msgstr "Gewünschte Sprungzeit für die Tasten '1' und '3'"
 
 #~ msgid "Configure the time of the stepskip on the '4'/'6'-keys"
-#~ msgstr "Gewünschte Sprungzeit für '4'/'6' Tasten"
+#~ msgstr "Gewünschte Sprungzeit für die Tasten '4' und '6'"
 
 #~ msgid "Configure the time of the stepskip on the '7'/'9'-keys"
-#~ msgstr "Gewünschte Sprungzeit für '7'/'9' Tasten"
+#~ msgstr "Gewünschte Sprungzeit für die Tasten '7' und '9'"
 
 #
 #~ msgid "Connect to a Wireless Network"
@@ -24440,7 +24440,7 @@ msgstr "Umschalten"
 
 #
 #~ msgid "Select locale"
-#~ msgstr "Wähle Sprache"
+#~ msgstr "Sprache wählen"
 
 #
 #~ msgid "Select package"
