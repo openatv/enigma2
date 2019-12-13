@@ -5,7 +5,7 @@ from Components.NimManager import nimmanager
 from skin import parameters
 from Tools.Hex2strColor import Hex2strColor
 
-class FrontendInfo(Converter, object):
+class FrontendInfo(Converter):
 	BER = 0
 	SNR = 1
 	AGC = 2
