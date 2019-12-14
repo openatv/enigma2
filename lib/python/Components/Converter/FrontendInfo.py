@@ -3,7 +3,7 @@ from Components.Element import cached
 from Components.config import config
 from Components.NimManager import nimmanager
 
-class FrontendInfo(Converter, object):
+class FrontendInfo(Converter):
 	BER = 0
 	SNR = 1
 	AGC = 2
@@ -50,13 +50,13 @@ class FrontendInfo(Converter, object):
 			percent = self.source.agc
 		elif (self.type == self.SNR and not swapsnr) or (self.type == self.SNRdB and swapsnr):
 			percent = self.source.snr
-		elif self.type  == self.SNR or self.type == self.SNRdB:
+		elif self.type == self.SNR or self.type == self.SNRdB:
 			if self.source.snr_db is not None:
 				return "%3.01f dB" % (self.source.snr_db / 100.0)
 			elif self.source.snr is not None: #fallback to normal SNR...
 				percent = self.source.snr
 		elif self.type == self.TUNER_TYPE:
-			return self.source.frontend_type and self.frontend_type or "Unknown"
+			return self.source.frontend_type or _("Unknown")
 		elif self.type == self.STRING:
 			string = ""
 			for n in nimmanager.nim_slots:

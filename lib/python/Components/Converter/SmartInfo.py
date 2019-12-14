@@ -73,7 +73,7 @@ class SmartInfo(Poll, Converter, object):
                         orb_pos = ''
                     elif frontendData.get('tuner_type') == 'DVB-T':
                         frequency = str(frontendData.get('frequency') / 1000) + ' MHz'
-                        Ret_Text = Ret_Text + 'Frequency: ' + frequency
+                        Ret_Text = Ret_Text + _('Frequency: ') + frequency
                 Ret_Text = Ret_Text + ' ' + satName
             return Ret_Text
         return 'n/a'

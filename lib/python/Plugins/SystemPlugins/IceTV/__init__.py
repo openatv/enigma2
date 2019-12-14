@@ -33,6 +33,7 @@ config.plugins.icetv.member.token = ConfigText()
 config.plugins.icetv.member.id = ConfigNumber()
 config.plugins.icetv.member.region_id = ConfigNumber()
 config.plugins.icetv.member.country = ConfigText(default="AUS")
+config.plugins.icetv.member.send_logs = ConfigYesNo(default=True)
 
 config.plugins.icetv.member.password = NoSave(ConfigPassword(censor="●", show_help=False, fixed_size=False))
 
