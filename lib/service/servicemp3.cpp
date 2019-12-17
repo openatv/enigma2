@@ -2586,6 +2586,219 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad *pad)
 	}
 }
 
+// SPU decoder adapted from DreamDVD by Seddi & Mirakels.
+
+static int vobsub_pal[16], vobsub_col[4], vobsub_a[4];
+
+typedef struct ddvd_spudec_clut_struct
+{
+#if BYTE_ORDER == BIG_ENDIAN
+	uint8_t e2 : 4;
+	uint8_t e1 : 4;
+	uint8_t p  : 4;
+	uint8_t b  : 4;
+#else
+	uint8_t e1 : 4;
+	uint8_t e2 : 4;
+	uint8_t b  : 4;
+	uint8_t p  : 4;
+#endif
+} ddvd_spudec_clut_t;
+
+static void get_vobsub_palette(GstElement *playbin, int subtitle_stream)
+{
+	GstPad* pad = 0;
+	g_signal_emit_by_name (playbin, "get-text-pad", subtitle_stream, &pad);
+	if ( pad )
+	{
+		GstCaps *caps = NULL;
+		g_object_get (G_OBJECT (pad), "caps", &caps, NULL);
+		GstStructure *s = gst_caps_get_structure(caps, 0);
+		const GValue *val = gst_structure_get_value(s, "codec_data");
+		if (val)
+		{
+			GstBuffer *buffer = (GstBuffer *) g_value_get_boxed(val);
+			guint8 *data;
+			gsize size;
+#if GST_VERSION_MAJOR < 1
+			data = GST_BUFFER_DATA(buffer);
+			size = GST_BUFFER_SIZE(buffer);
+#else
+			GstMapInfo map;
+			gst_buffer_map(buffer, &map, GST_MAP_READ);
+			data = map.data;
+			size = map.size;
+#endif
+			std::string idx((const char*)data, size);
+#if GST_VERSION_MAJOR >= 1
+			gst_buffer_unmap(buffer, &map);
+#endif
+			const char* palette = strstr(idx.c_str(), "palette:");
+			if (palette)
+			{
+				palette += 8;
+				int i = 0, len;
+				while (i < 16 && sscanf(palette, "%x%n", &vobsub_pal[i], &len) == 1)
+				{
+					palette += len;
+					if (*palette == ',')
+						++palette;
+					++i;
+				}
+			}
+		}
+	}
+}
+
+// SPU Decoder (reference: http://stnsoft.com/DVD/spu.html)
+static ePtr<gPixmap> ddvd_spu_decode_data(const uint8_t * buffer, size_t bufsize, int &display_time)
+{
+	int x = 0, sx = 0, ex = 0, sy = 576, ey = 575;
+	int offset[2], param_len;
+	int size, dcsq, aligned, id;
+
+	offset[0] = display_time = -1;
+
+	size = buffer[0] << 8 | buffer[1];
+	dcsq = buffer[2] << 8 | buffer[3];
+
+	if (size > bufsize || dcsq > size)
+		return 0;
+
+	// parse header
+	int i = dcsq + 4;
+
+	while (i < size && buffer[i] != 0xFF)
+	{
+		switch (buffer[i])
+		{
+			case 0x00:	// force
+				//force_hide = SPU_FORCE; // Highlight mask SPU
+				i++;
+				break;
+			case 0x01:	// show
+				//force_hide = SPU_SHOW; // Subtitle SPU
+				i++;
+				break;
+			case 0x02:	// hide
+				//force_hide = SPU_HIDE; // Probably only as second control block in Subtitle SPU. See scan for display_time below
+				i++;
+				break;
+			case 0x03:	// palette
+			{
+				ddvd_spudec_clut_t *clut = (ddvd_spudec_clut_t *) (buffer + i + 1);
+
+				vobsub_col[0] = vobsub_pal[clut->b];
+				vobsub_col[1] = vobsub_pal[clut->p];
+				vobsub_col[2] = vobsub_pal[clut->e1];
+				vobsub_col[3] = vobsub_pal[clut->e2];
+
+				i += 3;
+				break;
+			}
+			case 0x04:	// transparency palette
+			{
+				ddvd_spudec_clut_t *clut = (ddvd_spudec_clut_t *) (buffer + i + 1);
+
+				vobsub_a[0] = clut->b * 0x11;
+				vobsub_a[1] = clut->p * 0x11;
+				vobsub_a[2] = clut->e1 * 0x11;
+				vobsub_a[3] = clut->e2 * 0x11;
+
+				i += 3;
+				break;
+			}
+			case 0x05:	// image coordinates
+				x =
+				sx = buffer[i + 1] << 4 | buffer[i + 2] >> 4;
+				sy = buffer[i + 4] << 4 | buffer[i + 5] >> 4;
+				ex = (buffer[i + 2] & 0x0f) << 8 | buffer[i + 3];
+				ey = (buffer[i + 5] & 0x0f) << 8 | buffer[i + 6];
+				if (ex > 719)
+					ex = 719;
+				if (ey > 575)
+					ey = 575;
+				i += 7;
+				break;
+			case 0x06:	// image 1 / image 2 offsets
+				offset[0] = buffer[i + 1] << 8 | buffer[i + 2];
+				offset[1] = buffer[i + 3] << 8 | buffer[i + 4];
+				i += 5;
+				break;
+			case 0x07:	// change color for a special area so overlays with more than 4 colors are possible - NOT IMPLEMENTED YET
+				param_len = buffer[i + 1] << 8 | buffer[i + 2];
+				i += param_len + 1;
+				break;
+			default:
+				i++;
+				break;
+		}
+	}
+	// get display time - actually a plain control block
+	if (i + 6 <= size && buffer[i + 5] == 0x02 && buffer[i + 6] == 0xFF)
+		display_time = (buffer[i + 1] << 8 | buffer[i + 2]) * 1024 / 90;
+
+	if (sy == 576 || offset[0] == -1 || display_time == -1)
+		return 0;
+
+	ePtr<gPixmap> pixmap = new gPixmap(eSize(720, 576), 32);
+	uint32_t *spu_buf = (uint32_t *)pixmap->surface->data;
+	memset(spu_buf, 0, 720 * 576 * 4);
+
+	// parse picture
+	aligned = 1;
+	id = 0;
+
+	while (sy <= ey)
+	{
+		u_int len;
+		u_int code;
+
+		code = (aligned ? (buffer[offset[id]++] >> 4) : (buffer[offset[id] - 1] & 0xF));
+		aligned ^= 1;
+
+		if (code < 0x0004)
+		{
+			code = (code << 4) | (aligned ? (buffer[offset[id]++] >> 4) : (buffer[offset[id] - 1] & 0xF));
+			aligned ^= 1;
+			if (code < 0x0010)
+			{
+				code = (code << 4) | (aligned ? (buffer[offset[id]++] >> 4) : (buffer[offset[id] - 1] & 0xF));
+				aligned ^= 1;
+				if (code < 0x0040)
+				{
+					code = (code << 4) | (aligned ? (buffer[offset[id]++] >> 4) : (buffer[offset[id] - 1] & 0xF));
+					aligned ^= 1;
+				}
+			}
+		}
+
+		len = code >> 2;
+		if (len == 0)
+			len = ex - x + 1;
+
+		int p = code & 3;
+		int a = vobsub_a[p];
+		if (a != 0)
+		{
+			uint32_t c = a << 24 | vobsub_col[p];
+			uint32_t *dst = spu_buf + sy * 720 + x, *end = dst + len;
+			do *dst++ = c; while (dst != end);
+		}
+
+		x += len;
+		if (x > ex)
+		{
+			x = sx; 	// next line
+			sy++;
+			aligned = 1;
+			id ^= 1;
+		}
+	}
+
+	return pixmap;
+}
+
 void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 {
 	if (buffer && m_currentSubtitleStream >= 0 && m_currentSubtitleStream < (int)m_subtitleStreams.size())
@@ -2609,7 +2822,7 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		eLog(6, "[eServiceMP3] pullSubtitle type=%d size=%zu", subType, len);
 		if ( subType )
 		{
-			if ( subType < stVOB )
+			if ( subType <= stVOB )
 			{
 				int delay = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay");
 				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
@@ -2618,16 +2831,35 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 				if (subtitle_fps > 1 && m_framerate > 0)
 					convert_fps = subtitle_fps / (double)m_framerate;
 
-#if GST_VERSION_MAJOR < 1
-				std::string line((const char*)GST_BUFFER_DATA(buffer), len);
-#else
-				std::string line((const char*)map.data, len);
-#endif
-				eLog(6, "[eServiceMP3] got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
-
 				uint32_t start_ms = ((buf_pos / 1000000ULL) * convert_fps) + (delay / 90);
 				uint32_t end_ms = start_ms + (duration_ns / 1000000ULL);
-				m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, line)));
+				if ( subType == stVOB )
+				{
+					int display_time;
+#if GST_VERSION_MAJOR < 1
+					ePtr<gPixmap> pixmap = ddvd_spu_decode_data((const uint8_t*)GST_BUFFER_DATA(buffer), len, display_time);
+#else
+					ePtr<gPixmap> pixmap = ddvd_spu_decode_data((const uint8_t*)map.data, len, display_time);
+#endif
+					if (pixmap)
+					{
+						end_ms = start_ms + display_time;
+						eLog(6, "[eServiceMP3] got new pic subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%d ms", buf_pos, buf_pos/11111, display_time);
+						m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, pixmap)));
+					}
+					else
+						eLog(6, "[eServiceMP3] failed to decode SPU @ buf_pos = %lld ns (in pts=%lld)", buf_pos, buf_pos/11111);
+				}
+				else
+				{
+#if GST_VERSION_MAJOR < 1
+					std::string line((const char*)GST_BUFFER_DATA(buffer), len);
+#else
+					std::string line((const char*)map.data, len);
+#endif
+					eLog(6, "[eServiceMP3] got new text subtitle @ buf_pos = %lld ns (in pts=%lld), dur=%lld: '%s' ", buf_pos, buf_pos/11111, duration_ns, line.c_str());
+					m_subtitle_pages.insert(subtitle_pages_map_pair_t(end_ms, subtitle_page_t(start_ms, end_ms, line)));
+				}
 				m_subtitle_sync_timer->start(1, true);
 			}
 			else
@@ -2720,17 +2952,32 @@ void eServiceMP3::pushSubtitles()
 		{
 			//eDebug("[eServiceMP3] *** current sub actual, show!");
 
-			ePangoSubtitlePage pango_page;
-			gRGB rgbcol(0xD0,0xD0,0xD0);
-
-			pango_page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, current->second.text.c_str()));
-			pango_page.m_show_pts = start_ms * 90;			// actually completely unused by widget!
+			int timeout;
 			if (!m_subtitles_paused)
-				pango_page.m_timeout = end_ms - decoder_ms;		// take late start into account
+				timeout = end_ms - decoder_ms;	// take late start into account
 			else
-				pango_page.m_timeout = 60000;	//paused, subs must stay on (60s for now), avoid timeout in lib/gui/esubtitle.cpp: m_hide_subtitles_timer->start(m_pango_page.m_timeout, true);
+				timeout = 60000;	//paused, subs must stay on (60s for now), avoid timeout in lib/gui/esubtitle.cpp: m_hide_subtitles_timer->start(m_pango_page.m_timeout, true);
 
-			m_subtitle_widget->setPage(pango_page);
+			if (current->second.text.empty())
+			{
+				eVobSubtitlePage vobsub_page;
+				vobsub_page.m_show_pts = start_ms * 90; 		// actually completely unused by widget!
+				vobsub_page.m_timeout = timeout;
+				vobsub_page.m_pixmap = current->second.pixmap;
+
+				m_subtitle_widget->setPage(vobsub_page);
+			}
+			else
+			{
+				ePangoSubtitlePage pango_page;
+				gRGB rgbcol(0xD0,0xD0,0xD0);
+
+				pango_page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, current->second.text.c_str()));
+				pango_page.m_show_pts = start_ms * 90;			// actually completely unused by widget!
+				pango_page.m_timeout = timeout;
+
+				m_subtitle_widget->setPage(pango_page);
+			}
 		}
 
 		//eDebug("[eServiceMP3] *** no next sub scheduled, check NEXT subtitle");
@@ -2765,6 +3012,9 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser *user, struct SubtitleTrack &t
 		m_subtitle_widget = user;
 
 		eDebug ("[eServiceMP3] switched to subtitle stream %i", m_currentSubtitleStream);
+
+		if (track.page_number == stVOB)
+			get_vobsub_palette(m_gst_playbin, m_currentSubtitleStream);
 
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 		/*
@@ -2859,7 +3109,6 @@ RESULT eServiceMP3::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 		switch(type)
 		{
 		case stUnknown:
-		case stVOB:
 		case stPGS:
 			break;
 		default:
