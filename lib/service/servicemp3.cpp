@@ -2843,6 +2843,7 @@ RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack &track)
 		track.pid = m_cachedSubtitleStream;
 		track.page_number = int(m_subtitleStreams[m_cachedSubtitleStream].type);
 		track.magazine_number = 0;
+		track.language_code = m_subtitleStreams[m_cachedSubtitleStream].language_code;
 		return 0;
 	}
 	return -1;
