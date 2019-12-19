@@ -656,9 +656,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		else
 		{
 			char srt_filename[ext - filename + 5];
-			strncpy(srt_filename,filename, ext - filename);
-			srt_filename[ext - filename] = '\0';
-			strcat(srt_filename, ".srt");
+			sprintf(srt_filename, "%.*s.vtt", ext - filename, filename);
+			if (::access(srt_filename, R_OK) < 0)
+				strcpy(srt_filename + (ext - filename), ".srt");
 			if (::access(srt_filename, R_OK) >= 0)
 			{
 				eDebug("[eServiceMP3] subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
