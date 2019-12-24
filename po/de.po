@@ -3378,7 +3378,7 @@ msgid "Blinking REC"
 msgstr "Blinkendes REC"
 
 msgid "Blinking REC Symbol"
-msgstr "Blinkendes REC Zeichen"
+msgstr "Blinkendes REC Symbol"
 
 msgid "Block device"
 msgstr "Blockgerät"
@@ -4421,10 +4421,10 @@ msgid "Configure if epg.dat should be saved at all."
 msgstr "Einstellen, ob die EPG-Daten gespeichert werden sollen."
 
 msgid "Configure if service picons will be shown in quickzap."
-msgstr "Wenn aktiviert, werden die Picons beim Quickzap (Umschalten) angezeigt."
+msgstr "Bei 'Ja' werden Picons (falls vorhanden) beim Quickzap (Umschalten) angezeigt."
 
 msgid "Configure if service picons will be shown in the servicelist."
-msgstr "Wenn aktiviert, werden die Picons in der Kanalliste angezeigt."
+msgstr "Bei 'Ja' werden Picons (falls vorhanden) in der Kanalliste angezeigt."
 
 # Subtitle neu 5.1
 msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
@@ -5756,7 +5756,7 @@ msgid "Dim delay"
 msgstr "Ausblendungs-Verzögerung"
 
 msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
-msgstr "Das Display wird nach der angegebenen Zeit auf den Wert 'Helligkeit (gedimmt)' runtergeregelt."
+msgstr "Außer bei 'Aus' wird das Display nach der angegebenen Zeit auf den Wert 'Helligkeit (gedimmt)' runtergeregelt."
 
 #
 msgid "Direct playback of linked titles without menu"
@@ -6259,7 +6259,7 @@ msgid "ECM avg"
 msgstr "ECM-Durchschnitt"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
-msgstr "ECM Daten werden in den Stream eingefügt. Dies ermöglicht einem Klient-Receiver den Stream selbst zu entschlüsseln."
+msgstr "Bei 'Ja' werden ECM Daten in den Stream eingefügt. Dies ermöglicht einem Klient-Receiver den Stream selbst zu entschlüsseln."
 
 msgid "ECM last"
 msgstr "letzte ECM"
@@ -6525,7 +6525,7 @@ msgid "Enable auto fast scan for %s"
 msgstr "Automatische Schnellsuche aktivieren für %s"
 
 msgid "Enable blinking rec symbol on the LCD Display"
-msgstr "Hier können Sie das blinkende Record-Symbol im Gerätedisplay aktivieren."
+msgstr "Bei 'Ja' wird das blinkende REC Symbol im Gerätedisplay aktiviert."
 
 msgid "Enable chapter support for video files"
 msgstr "Kapitelunterstützung für Videodateien aktivieren"
@@ -6537,13 +6537,13 @@ msgid "Enable cut file support for audio files"
 msgstr "Schnittdateisupport für Audiodateien aktivieren"
 
 msgid "Enable cut file support for audio files. (e.g. mp3)"
-msgstr "Aktivieren Sie die Unterstützung von Schnittdateien für Audiodateien. (z.B. MP3)"
+msgstr "Bei 'Ja' wird die Unterstützung von Schnittdateien für Audiodateien (z.B. MP3) aktiviert."
 
 msgid "Enable cut file support for non *.ts files"
-msgstr "Schnittdateisupport für nicht *.ts-Dateien aktivieren"
+msgstr "Schnittdateisupport für nicht '*.ts' Dateien aktivieren"
 
 msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
-msgstr "Aktivieren Sie die Unterstützung von Schnittdateien für nicht *.ts-Dateien. (z.B. MP4)"
+msgstr "Bei 'Ja' wird die Unterstützung von Schnittdateien für nicht '*.ts' Dateien (z.B. MP4) aktiviert."
 
 msgid "Enable debug log *"
 msgstr "Debug-Log aktivieren *"
@@ -6573,7 +6573,7 @@ msgid "Enable preview"
 msgstr "Aktiviere Vorschau"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
-msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z.B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Geben Sie die komplette URL inklusive http:// und Portnummer (normalerweise 8001) an, also z.B. http://zweite_box:8001."
+msgstr "Mit 'Ja' Reserve-Enigma2-Receiver aktivieren der versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z.B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Geben Sie die komplette URL inklusive http:// und Portnummer (normalerweise 8001) an, also z.B. http://zweite_box:8001."
 
 msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
@@ -6607,7 +6607,7 @@ msgid "Enabled"
 msgstr "Aktiviert"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
-msgstr "Aktiviert das Entschlüsseln eines Streams (wenn ECM Daten im Stream enthalten sind und eine Karte vorhanden ist)."
+msgstr "Bei 'Ja' wird das Entschlüsseln eines Streams aktiviert (wenn ECM Daten im Stream enthalten sind und eine Karte vorhanden ist)."
 
 msgid "Encrypted: "
 msgstr "Verschlüsselt: "
@@ -8240,7 +8240,7 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Wenn aktiviert, sind in den Aufzeichnungen AIT-Daten enthalten."
 
 msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
-msgstr "Wenn aktiviert, wird ein Zeitfenster verwendet, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen. Standardeinstellung ist deaktiviert und verwendet ein spezielles Signal vom Receiver. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
+msgstr "Bei 'Ja' kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen. Standardeinstellung ist 'Nein' und verwendet ein spezielles Signal vom Receiver. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Wenn die Log-Dateien zu viel Speicher belegen werden die ältesten Dateien gelöscht."
@@ -8249,22 +8249,22 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Legt fest, ob das Anzeigesymbol oder die Information der Stummschaltung nach wenigen Sekunden ausgeblendet wird."
 
 msgid "If set to 'no', can you save older events even after zapping or interruption of the timeshift."
-msgstr "Wenn 'Nein' eingestellt ist, bleiben Timeshift-Aufnahmen nach dem Umschalten oder Beenden im Timeshift-Verzeichnis erhalten."
+msgstr "Bei 'Nein' bleiben Timeshift-Aufnahmen nach dem Umschalten oder Beenden im Timeshift-Verzeichnis erhalten."
 
 msgid "If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust."
-msgstr "Wenn 'Nein' eingestellt ist, wird nur eine Datei als Puffer verwendet. Es wird empfohlen 'Timeshift-Überprüfung auf ältere Dateien (in Minuten)' und 'Timeshift-Überprüfung auf freien Speicherplatz?' anzupassen."
+msgstr "Bei 'Nein' wird nur eine Datei als Puffer verwendet. Es wird empfohlen 'Timeshift-Überprüfung auf ältere Dateien (in Minuten)' und 'Timeshift-Überprüfung auf freien Speicherplatz?' anzupassen."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
-msgstr "Wenn 'Ja' eingestellt ist, werden Sender ohne EPG nicht angezeigt."
+msgstr "Bei 'Ja' werden Sender ohne EPG nicht angezeigt."
 
 msgid "If set to 'yes' it will show the 'PO' packages in browser."
-msgstr "Wenn 'Ja' eingestellt ist, werden auch 'PO'-Pakete angezeigt."
+msgstr "Bei 'Ja' werden auch 'PO'-Pakete angezeigt."
 
 msgid "If set to 'yes' it will show the 'SRC' packages in browser."
-msgstr "Wenn 'Ja' eingestellt ist, werden auch 'SRC'-Pakete angezeigt."
+msgstr "Bei 'Ja' werden auch 'SRC'-Pakete angezeigt."
 
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
-msgstr "Wenn 'Ja' eingestellt ist, wird PiG (kleines TV-Bild) im EPG angezeigt."
+msgstr "Bei 'Ja' wird ein kleines TV-Bild (PiG) im EPG angezeigt."
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
 msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
@@ -8294,7 +8294,7 @@ msgid "If set to 'yes', allows you use the seekbar to jump to a point within the
 msgstr "Bei 'Ja' können Sie innerhalb der Suchleiste zu jedem beliebigen Zeitpunkt vor oder zurück springen."
 
 msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
+msgstr "'Ja' aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Bei 'Ja' wird die Infoleiste bei schnellem Vor- und Rücklauf bei Medienwiedergabe angezeigt."
@@ -8436,7 +8436,7 @@ msgid "In progress"
 msgstr "In Arbeit"
 
 msgid "In the Standby Record on the LCD Display"
-msgstr "Gerätedisplay bei Aufnahmen im Standby"
+msgstr "Bei 'Ja' wird das blinkende REC Symbol im Gerätedisplay im Standby aktiviert (nicht alle Receiver unterstützen das)."
 
 msgid "Inactive"
 msgstr "Inaktiv"
@@ -10036,7 +10036,7 @@ msgid "Music"
 msgstr "Musik"
 
 msgid "Music/Ballet/Dance"
-msgstr ""
+msgstr "Musik/Ballet/Tanz"
 
 #
 msgid "Mute"
@@ -10060,7 +10060,7 @@ msgid "NEXT"
 msgstr "NÄCHSTE"
 
 msgid "NFI image flashing"
-msgstr ""
+msgstr "Flashe NFI Image"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -10468,7 +10468,7 @@ msgid "No standby"
 msgstr "Kein Standby"
 
 msgid "No suitable sat tuner found!"
-msgstr ""
+msgstr "Keinen passenden SAT Tuner gefunden!"
 
 #
 msgid "No tags are set on these movies."
@@ -10517,7 +10517,7 @@ msgid "No update required!"
 msgstr "Kein Update erforderlich!"
 
 msgid "No updates available. Please try again later."
-msgstr ""
+msgstr "Keine Updates vorhanden. Bitte später erneut versuchen."
 
 #, python-format
 msgid "No viewer installed for this file type: %s"
@@ -10599,7 +10599,7 @@ msgid "Norfolk Island"
 msgstr "Norfolkinsel"
 
 msgid "Normal mode"
-msgstr ""
+msgstr "Normaler Modus"
 
 #
 msgid "North"
@@ -10631,7 +10631,7 @@ msgstr "Nicht verknüpft"
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Nicht genug Speicherplatz. Bitte machen Sie etwas Speicher frei und versuchen Sie es erneut. (%d MB benötigt, %d MB verfügbar)"
+msgstr "Nicht genug Speicherplatz! %d MB benötigt, %d MB verfügbar. Bitte machen Sie etwas Speicher frei und versuchen es dann erneut."
 
 #, python-format
 msgid ""
@@ -10770,7 +10770,7 @@ msgid "OSD Position"
 msgstr "OSD Kalibrieren"
 
 msgid "OSD Settings"
-msgstr ""
+msgstr "OSD Einstellungen"
 
 # Quick Menue
 msgid "OSD Setup"
@@ -10830,7 +10830,7 @@ msgid "On reaching the end of a file during playback, you can choose the box's b
 msgstr "Am Ende einer Filmwiedergabe kann das Verhalten der Box bestimmt werden."
 
 msgid "On valid ONIDs, ignore frequency sub network part"
-msgstr "Ignoriere Subnetzwerk Frequenzen bei gültigen ONIDs"
+msgstr "Bei 'Ja' werden Subnetzwerk Frequenzen bei gültigen ONIDs ignoriert."
 
 msgid "Once per day"
 msgstr "Einmal pro Tag"
@@ -10965,7 +10965,7 @@ msgstr "Option lang"
 
 # Menue Anpassungen OSD
 msgid "Option to disable picons on the Infobar"
-msgstr "Hiermit kann man die Anzeige von Senderlogos in der Infoleiste einschalten"
+msgstr "Bei 'Ja' werden Senderlogos (Picons) (falls vorhanden) in der Infoleiste angezeigt."
 
 # HDD Standby
 msgid "Option to enable the Hardware Standby Timer"
@@ -11554,7 +11554,7 @@ msgid "Please enter the old PIN code"
 msgstr "Alten PIN-Code eingeben"
 
 msgid "Please enter your personal feed URL"
-msgstr "Hier können Sie die persönliche FEED URL eintragen"
+msgstr "Tragen Sie Ihre eigene Feed URL ein."
 
 #
 msgid "Please follow the instructions on the TV"
@@ -12429,7 +12429,7 @@ msgid "REC"
 msgstr ""
 
 msgid "REC Symbol"
-msgstr "REC Zeichen"
+msgstr "REC Symbol"
 
 msgid "REC Symbol in Standby"
 msgstr "REC Symbol im Standby"
@@ -12486,19 +12486,19 @@ msgstr "Reader-Statistik"
 
 #, python-format
 msgid "Ready to install \"%s\" ?"
-msgstr ""
+msgstr "Wollen Sie '%s' installieren?"
 
 #, python-format
 msgid "Ready to install %s ?"
-msgstr "Wollen Sie - %s - installieren?"
+msgstr "Wollen Sie '%s' installieren?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
-msgstr "Wollen Sie - %s - de-installieren?"
+msgstr "Wollen Sie '%s' de-installieren?"
 
 #, python-format
 msgid "Ready to remove %s ?"
-msgstr "Wollen Sie - %s - de-installieren?"
+msgstr "Wollen Sie '%s' de-installieren?"
 
 msgid "Really WOL now?"
 msgstr ""
@@ -12931,7 +12931,7 @@ msgid "Rereading partition table"
 msgstr ""
 
 msgid "Reserved"
-msgstr ""
+msgstr "Reserviert"
 
 #
 msgid "Reset"
@@ -12956,7 +12956,7 @@ msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Video-Optimierungs-Einstellungen auf letzte Konfiguration zurücksetzen?"
 
 msgid "Reshare"
-msgstr ""
+msgstr "Re-Share"
 
 msgid "Reshare:"
 msgstr "Re-Share:"
@@ -14192,10 +14192,10 @@ msgid "Service number font size"
 msgstr "Schriftgröße für Sendernummern"
 
 msgid "Service picons aspect ratio"
-msgstr "Senderlogos Seitenverhältnis"
+msgstr "Senderlogos (Picons) Seitenverhältnis"
 
 msgid "Service picons downsize"
-msgstr "Senderlogos verkleinern"
+msgstr "Senderlogos (Picons) verkleinern"
 
 msgid "Service reference"
 msgstr "Service-Referenz"
@@ -14932,7 +14932,7 @@ msgid "Show channel selection"
 msgstr "Zeige die Sendergruppen"
 
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
-msgstr "Zeige Kapitelpositionen für unterstützte Videodateien an (ab GStreamer Version 1)."
+msgstr "Bei 'Ja' werden Kapitelpositionen für unterstützte Videodateien angezeigt (ab GStreamer Version 1)."
 
 msgid "Show columns"
 msgstr "Spalten einblenden"
@@ -15173,7 +15173,7 @@ msgstr "Zeige Quellpakete"
 
 # Menue Anpassungen OSD
 msgid "Show spinning logo when system is busy."
-msgstr "Hiermit wird eingestellt, ob der Spinner angezeigt werden soll, wenn die %s %s ausgelastet ist"
+msgstr "Bei 'Ja' wird der Spinner (Beschäftigungsanzeige) angezeigt, wenn die %s %s ausgelastet ist."
 
 msgid "Show status icons in movielist"
 msgstr "Zeige Status Icon in Filmliste"
@@ -16882,49 +16882,49 @@ msgid "This allows you to set the number of digits to 5, if you have more than 9
 msgstr "Hier können Sie die Anzahl der Stellen auf 5 setzen, wenn Sie mehr als 9999 Kanäle haben."
 
 msgid "This allows you to show drivers modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Treibern im Downloadbereich"
+msgstr "Treiber im Downloadbereich anzeigen."
 
 msgid "This allows you to show extensions modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Extensions im Downloadbereich"
+msgstr "Erweiterungen im Downloadbereich anzeigen."
 
 msgid "This allows you to show kernel modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Kernel Erweiterungen im Downloadbereich"
+msgstr "Kernel Erweiterungen im Downloadbereich anzeigen."
 
 msgid "This allows you to show languages in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Sprachen im Downloadbereich"
+msgstr "Sprachen im Downloadbereich anzeigen."
 
 msgid "This allows you to show lcd skins in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von LCD Skins im Downloadbereich"
+msgstr "LCD Skins im Downloadbereich anzeigen."
 
 msgid "This allows you to show m2k modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von M2K im Downloadbereich"
+msgstr "M2K Erweiterungen im Downloadbereich anzeigen."
 
 msgid "This allows you to show picons modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Picons im Downloadbereich"
+msgstr "Picons (Senderlogos) im Downloadbereich anzeigen."
 
 msgid "This allows you to show pli modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von PLI Erweiterungen im Downloadbereich"
+msgstr "PLI Erweiterungen im Downloadbereich anzeigen."
 
 msgid "This allows you to show security modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Security Erweiterungen im Downloadbereich"
+msgstr "Security Erweiterungen (Sicherheitserweiterungen) im Downloadbereich anzeigen."
 
 msgid "This allows you to show settings modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Settings im Downloadbereich"
+msgstr "Settings im Downloadbereich anzeigen."
 
 msgid "This allows you to show skin modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Skins im Downloadbereich"
+msgstr "Skins im Downloadbereich anzeigen."
 
 msgid "This allows you to show softcams modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Softcams im Downloadbereich"
+msgstr "Softcams im Downloadbereich anzeigen."
 
 msgid "This allows you to show systemplugins modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Systemplugins im Downloadbereich"
+msgstr "Systemplugins im Downloadbereich anzeigen."
 
 msgid "This allows you to show vix modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von VIX Erweiterungen im Downloadbereich"
+msgstr "VIX Erweiterungen im Downloadbereich anzeigen."
 
 msgid "This allows you to show weblinks modules in downloads"
-msgstr "Dies erlaubt Ihnen die Anzeige von Weblinks im Downloadbereich"
+msgstr "Weblinks im Downloadbereich anzeigen."
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -17077,7 +17077,7 @@ msgid "This option allows you to hide and sorting of the plugin browser."
 msgstr "Einstellen, wie Einträge im Plugin-Manager sortiert oder versteckt werden sollen."
 
 msgid "This option allows you to show menu number quick links."
-msgstr "Einstellen, ob Nummern vor den Menüeinträgen für die Schnellanwahl angezeigt werden sollen."
+msgstr "Bei 'Ja' werden Nummern vor Menüeinträgen für die Schnellanwahl angezeigt."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Einstellen, ob der Signalwert SNR in 'dB' statt '%' anzeigt werden soll (nicht alle Receiver unterstützen diese Funktion)."
@@ -18362,7 +18362,7 @@ msgid "Use trash can in movielist"
 msgstr "Papierkorb in der Filmliste benutzen"
 
 msgid "Use workaround for wakeup from deep-standby?"
-msgstr "Workaround für das Aufwachen aus dem Deep-Standby benutzen?"
+msgstr "Workaround für das Aufwachen aus dem Deep-Standby benutzen"
 
 #
 msgid "Used service scan type"
@@ -19007,7 +19007,7 @@ msgstr "Was wollen Sie scannen?"
 
 # Customize neu 5.1
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Wenn Sie diese Option aktivieren, werden alle vorhandenen Bouquets geladen, auch wenn sie nicht in der 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Bouquets zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
+msgstr "Bei 'Ja' werden alle vorhandenen Bouquets geladen, auch wenn sie nicht in der 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Bouquets zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
 
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
@@ -19051,10 +19051,10 @@ msgid "When enabled, a warning will be displayed and the user will get an option
 msgstr "Wenn 'Ja' ausgewählt wird, wird eine Warnung angezeigt und Sie können optional Timeshift stoppen oder fortführen."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
-msgstr "Wenn aktiviert, werden empfangene HTTP-Streams immer entschlüsselt. Dies verbraucht mehr Ressourcen (Demuxer). Aktivieren Sie diese Option nur, wenn es notwendig ist. Individuelle Streams sind immer entschlüsselt, wenn 0x100 zum Servicetyp hinzugefügt wurde, unabhängig von dieser Einstellung."
+msgstr "Bei 'Ja' werden empfangene HTTP-Streams immer entschlüsselt. Dies verbraucht mehr Ressourcen (Demuxer). Aktivieren Sie diese Option nur, wenn es notwendig ist. Individuelle Streams sind immer entschlüsselt, wenn 0x100 zum Servicetyp hinzugefügt wurde, unabhängig von dieser Einstellung."
 
 msgid "When enabled, authentication is required to watch http streams."
-msgstr "Wenn Sie diese Option aktivieren, wird eine Authentifizierung für HTTP-Streams benötigt."
+msgstr "Bei 'Ja' wird eine Authentifizierung für HTTP-Streams benötigt."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Wenn aktiviert, fangen die Sendernummern in jeder Favoritenliste mit '1' an."
@@ -19118,7 +19118,7 @@ msgid "When enabled, subtitles for the hearing impaired will be preferred over n
 msgstr "Bevorzuge Untertitel für Hörgeschädigte vor anderen Untertiteln, wenn beide verfügbar sind."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
-msgstr "Wenn aktiviert, werden Videotextseiten für einen schnelleren Zugriff im Hintergrund gespeichert."
+msgstr "Bei 'Ja' werden Videotextseiten für einen schnelleren Zugriff im Hintergrund gespeichert."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Wenn aktiviert, werden Videotext Untertitel an der Originalposition dargestellt."
@@ -19247,7 +19247,7 @@ msgstr ""
 "ansonsten die aktuelle Favoritenliste sofort geöffnet."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
-msgstr "Mit dieser Option können Sie Jobs in Erweiterungen verstecken (kurzer Druck auf BLAU)."
+msgstr "Mit kurzem Druck auf BLAU können Sie Jobs in Erweiterungen verstecken."
 
 msgid "With this option you can switch off the display during operation."
 msgstr "Mit dieser Option können Sie das Display während des Betriebs ausschalten."
@@ -19269,7 +19269,7 @@ msgid "Without popup"
 msgstr "Ohne Meldung"
 
 msgid "Workaround for old tuner driver"
-msgstr "Nur aktivieren, wenn es Probleme mit Multituner gibt"
+msgstr "Nur auf 'Ja' stellen, wenn es Probleme mit Multituner gibt."
 
 #, python-format
 msgid "Would you save the entered PIN %s persistent?"
@@ -21445,10 +21445,10 @@ msgid "show mediaplayer on mainmenu"
 msgstr "Zeige Mediaplayer im Hauptmenü"
 
 msgid "show picons in quickzap"
-msgstr "Senderlogos beim Quickzap anzeigen"
+msgstr "Senderlogos (Picons) beim Quickzap anzeigen"
 
 msgid "show picons in service list"
-msgstr "Senderlogos anzeigen"
+msgstr "Senderlogos (Picons) anzeigen"
 
 msgid "show program information..."
 msgstr "Programminformationen anzeigen"
@@ -21767,7 +21767,7 @@ msgid "user defined"
 msgstr "Benutzerdefiniert"
 
 msgid "user feed url"
-msgstr ""
+msgstr "Eigene Feed URL"
 
 msgid "userdefined"
 msgstr "benutzerdefiniert"
