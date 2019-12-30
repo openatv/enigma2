@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-18 01:43+0000\n"
+"POT-Creation-Date: 2019-12-30 14:34+0100\n"
 "PO-Revision-Date: 2019-11-21 17:03+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
@@ -2247,7 +2247,6 @@ msgstr "Über"
 msgid "About..."
 msgstr "Über..."
 
-#, fuzzy
 msgid "Accept the current selection"
 msgstr ""
 
@@ -3874,11 +3873,16 @@ msgstr "Liste der Regionen kann nicht heruntergeladen werden"
 msgid "Can not download timers"
 msgstr "Timer können nicht heruntergeladen werden"
 
+#, fuzzy
+msgid "Can not post PVR log information"
+msgstr "Kann keine Scan-Informationen veröffentlichen"
+
 msgid "Can not post scan information"
 msgstr "Kann keine Scan-Informationen veröffentlichen"
 
-msgid "Can not proceed - you need to login first"
-msgstr "Kann nicht fortfahren - Sie müssen sich zuerst anmelden"
+#, fuzzy
+msgid "Can not retrieve IceTV settings"
+msgstr "Kanalliste kann nicht abgerufen werden"
 
 msgid "Can not retrieve channel map"
 msgstr "Kanalliste kann nicht abgerufen werden"
@@ -5198,10 +5202,6 @@ msgstr "Ungültiger Dienst %s konnte nicht aufgezeichnet werden"
 msgid "Could not save configfile %s!"
 msgstr "Konnte Konfigurationsdatei nicht speichern %s!"
 
-#, python-format
-msgid "Couldn't get IceTV timer id for timer '%s'"
-msgstr "IceTV-Timer-ID für Timer '%s' konnte nicht ermittelt werden"
-
 msgid "Country"
 msgstr "Land"
 
@@ -5280,7 +5280,6 @@ msgstr "Erzeuge Dateisystem"
 msgid "Creating partition"
 msgstr "Erzeuge Partition"
 
-#, fuzzy
 msgid "Cricket"
 msgstr ""
 
@@ -5311,7 +5310,6 @@ msgstr ""
 msgid "Curacao"
 msgstr "Curacao"
 
-#, fuzzy
 msgid "Current Affairs"
 msgstr ""
 
@@ -5740,10 +5738,6 @@ msgstr "Standardsortierung für Dateien auf der rechten Seite."
 
 msgid "Defaults"
 msgstr "Standards"
-
-#, python-format
-msgid "Defined By Broadcaster (%d)"
-msgstr ""
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Legt fest, in wie schneller Folge Zeitsprünge erfolgen. Werte unter 500ms können mit NAS problematisch sein."
@@ -6410,7 +6404,6 @@ msgstr "Möchten Sie das Skript ansehen oder ausführen?\n"
 msgid "Documentary"
 msgstr "Dokumentation"
 
-#, fuzzy
 msgid "Dokumentation"
 msgstr ""
 
@@ -6527,6 +6520,9 @@ msgstr "Treiber:\t\t%s"
 msgid "Drivers:\t%s"
 msgstr "Treiber:\t%s"
 
+msgid "Drogen"
+msgstr ""
+
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "In dieser Zeit wird der Sender und das Aufnahmeziel überprüft. Ist das Aufnahmeziel (z.B. NAS) nicht rechtzeitig zur Aufnahme bereit, kann diese Zeit vergrößert werden."
 
@@ -6593,9 +6589,6 @@ msgstr "EPG Einstellungen"
 msgid "EPG button mode"
 msgstr "Funktion der EPG Taste"
 
-msgid "EPG download OK"
-msgstr "EPG herunterladen OK"
-
 msgid "EPG filename"
 msgstr "EPG Dateiname"
 
@@ -6656,7 +6649,6 @@ msgid "East limit set"
 msgstr ""
 
 #
-#, fuzzy
 msgid "Eastern"
 msgstr ""
 
@@ -6963,9 +6955,6 @@ msgstr "Ende lang"
 msgid "End time"
 msgstr "Endzeit"
 
-msgid "End update"
-msgstr "Update beendet"
-
 msgid "Energie"
 msgstr ""
 
@@ -7200,10 +7189,6 @@ msgid ""
 msgstr ""
 "Fehler beim Umbenennen von %s nach %s:\n"
 "%s"
-
-#, python-format
-msgid "Error trying to fetch: %s"
-msgstr "Fehler beim Abrufen: %s"
 
 msgid "Error, unknown Result!"
 msgstr "Fehler, unbekanntes Ergebnis!"
@@ -7551,10 +7536,6 @@ msgstr "Fahrenheit"
 #
 msgid "Failed"
 msgstr "Fehlgeschlagen"
-
-#, python-format
-msgid "Failed to update timer '%s"
-msgstr "Fehler beim Aktualisieren von Timer '%s"
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Fehler beim Schreiben von /tmp/positionersetup.log: "
@@ -8259,9 +8240,6 @@ msgstr "Griechenland"
 msgid "Greek"
 msgstr "Griechisch"
 
-msgid "Greek (Modern)"
-msgstr ""
-
 msgid "Green"
 msgstr "Grün"
 
@@ -8313,6 +8291,9 @@ msgstr "Guinea-Bissau"
 msgid "Guyana"
 msgstr "Guyana"
 
+msgid "H7/H9/H9COMBO/H10 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Stündlich / D: = Täglich / W: = Wöchentlich / M: = Monatlich"
 
@@ -8337,7 +8318,7 @@ msgstr ""
 msgid "HD2400"
 msgstr ""
 
-msgid "HD60/HD61"
+msgid "HD60"
 msgstr ""
 
 msgid "HDMI"
@@ -8720,9 +8701,6 @@ msgstr "IceTV aktiviert"
 
 msgid "IceTV setup wizard"
 msgstr "IceTV Setup-Assistent"
-
-msgid "IceTV started"
-msgstr "IceTV gestartet"
 
 msgid "IceTV update completed OK"
 msgstr "IceTV-Update abgeschlossen OK"
@@ -9952,9 +9930,6 @@ msgstr "Log-Verwaltung"
 msgid "Login"
 msgstr "Anmelden"
 
-msgid "Login OK"
-msgstr "Login OK"
-
 msgid "Login failure"
 msgstr "Anmeldungsfehler"
 
@@ -11081,9 +11056,6 @@ msgstr "Keine Verbindung"
 msgid "No Devices Found !!"
 msgstr "!! Keine Geräte gefunden !!"
 
-msgid "No EPG updates"
-msgstr "Keine EPG-Updates"
-
 #
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
@@ -11239,9 +11211,6 @@ msgstr "Kein Timeout"
 #
 msgid "No to all"
 msgstr "Alles ablehnen"
-
-msgid "No token, requesting password..."
-msgstr "Kein Token, bei Passwort Anforderung ..."
 
 msgid "No transparency"
 msgstr "Keine Transparenz"
@@ -13159,7 +13128,7 @@ msgstr "Ausschaltmenü schützen"
 msgid "Protect timer menu"
 msgstr "Timermenü schützen"
 
-msgid "Protek 4K UHD"
+msgid "Protek 4K UHD/HD61"
 msgstr ""
 
 msgid "Protocol"
@@ -16853,10 +16822,6 @@ msgstr "Startzeit"
 msgid "Start timeshift"
 msgstr "Timeshift starten"
 
-#
-msgid "Start update"
-msgstr "Update gestartet"
-
 msgid "Start/stop slide show"
 msgstr "Diashow starten / stoppen"
 
@@ -18452,35 +18417,12 @@ msgstr "Schriftgröße für die Zeitskala"
 msgid "Timer"
 msgstr "Timer"
 
-#, python-format
-msgid "Timer '%s' conflicts with %s"
-msgstr ""
-
-#, python-format
-msgid "Timer '%s' created OK"
-msgstr "Timer '%s' erstellt OK"
-
-#, python-format
-msgid "Timer '%s' has no event id; not sent to IceTV"
-msgstr "Timer '%s' hat keine Ereignis-ID. Nicht an IceTV gesendet"
-
-#, python-format
-msgid "Timer '%s' has no event id; update not sent to IceTV"
-msgstr "Timer '%s' hat keine Ereignis-ID. Update nicht an IceTV gesendet"
-
-#, python-format
-msgid "Timer '%s' updated OK"
-msgstr "Timer '%s' aktualisiert OK"
-
 #
 msgid "Timer List"
 msgstr "Timerliste"
 
 msgid "Timer action"
 msgstr "Timer Aktion"
-
-msgid "Timer deleted OK"
-msgstr "Timer gelöscht OK"
 
 msgid "Timer edit"
 msgstr "Timer bearbeiten"
@@ -18545,9 +18487,6 @@ msgstr "Timerart"
 
 msgid "Timers"
 msgstr "Timer"
-
-msgid "Timers updated OK"
-msgstr "Timer aktualisiert OK"
 
 msgid "Timeshift"
 msgstr "Timeshift"
@@ -18996,6 +18935,9 @@ msgstr "3D-Einstellungen"
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 ('keymap.u80')"
 
+msgid "URL"
+msgstr ""
+
 msgid "URL of fallback remote receiver"
 msgstr "URL des Reservereceivers"
 
@@ -19250,9 +19192,6 @@ msgid ""
 msgstr ""
 "Update Erfolgreich!\n"
 "Der Bootloader ist nun Aktuell!"
-
-msgid "Update timer details from EPG '"
-msgstr "Timer-Details aus EPG aktualisieren '"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Sichern/Wiederherstellen des Images oder der Einstellungen."
@@ -21135,7 +21074,12 @@ msgstr ""
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 
-msgid "Zgemma H9/I55Plus"
+#, fuzzy
+msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
+msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#, fuzzy
+msgid "Zgemma H9/I55Plus old Model"
 msgstr "Zgemma H9/I55Plus"
 
 msgid "Zgemma Star S/2S/H1/H2"
@@ -23728,6 +23672,9 @@ msgstr "Umschalten"
 #~ msgid "CIconfigMenu"
 #~ msgstr "CI-Zuweisung"
 
+#~ msgid "Can not proceed - you need to login first"
+#~ msgstr "Kann nicht fortfahren - Sie müssen sich zuerst anmelden"
+
 #~ msgid "Can not repair file %s"
 #~ msgstr "Konnte Datei %s nicht reparieren"
 
@@ -23994,6 +23941,9 @@ msgstr "Umschalten"
 #~ msgid "Could not connect to %s %s .NFI Image Feed Server:"
 #~ msgstr "Keine Verbindung zur %s %s. NFI-Image-Feed-Server:"
 
+#~ msgid "Couldn't get IceTV timer id for timer '%s'"
+#~ msgstr "IceTV-Timer-ID für Timer '%s' konnte nicht ermittelt werden"
+
 #
 #~ msgid "Couldn't record due to conflicting timer %s"
 #~ msgstr "Aufnahme wegen kollidierender Timer %s fehlgeschlagen"
@@ -24246,6 +24196,9 @@ msgstr "Umschalten"
 #~ msgid "Downloading..."
 #~ msgstr "Lade herunter..."
 
+#~ msgid "EPG download OK"
+#~ msgstr "EPG herunterladen OK"
+
 #~ msgid "Ecm:"
 #~ msgstr "ECM:"
 
@@ -24314,6 +24267,9 @@ msgstr "Umschalten"
 #~ msgid "Encryption Keytype"
 #~ msgstr "Typ des Sicherheitsschlüssels"
 
+#~ msgid "End update"
+#~ msgstr "Update beendet"
+
 #
 #~ msgid "EndTime"
 #~ msgstr "Endzeit"
@@ -24338,6 +24294,9 @@ msgstr "Umschalten"
 
 #~ msgid "Error in file %s"
 #~ msgstr "Fehler in Datei %s"
+
+#~ msgid "Error trying to fetch: %s"
+#~ msgstr "Fehler beim Abrufen: %s"
 
 #~ msgid "Error[%d]. Press Cancel to exit."
 #~ msgstr "Error[%d]. Cancel drücken zum Verlassen."
@@ -24390,6 +24349,9 @@ msgstr "Umschalten"
 
 #~ msgid "Failed to remove old files."
 #~ msgstr "Löschen alter Dateien fehlgeschlagen."
+
+#~ msgid "Failed to update timer '%s"
+#~ msgstr "Fehler beim Aktualisieren von Timer '%s"
 
 #
 #~ msgid "Fan %d PWM"
@@ -24588,6 +24550,9 @@ msgstr "Umschalten"
 #~ msgid "How to handle found crashlogs?"
 #~ msgstr "Wenn Crashlogs gefunden werden:"
 
+#~ msgid "IceTV started"
+#~ msgstr "IceTV gestartet"
+
 #~ msgid "If set to 'Yes' recordings will be deleted to a trashcan. That way thay can still be played."
 #~ msgstr "Bei 'Ja' werden Aufnahmen in den Papierkorb verschoben statt gelöscht zu werden. So können sie immer noch abgespielt werden."
 
@@ -24782,6 +24747,9 @@ msgstr "Umschalten"
 #~ msgid "Location # (http://weather.yahoo.com/):"
 #~ msgstr "Ort # (http://weather.yahoo.com/):"
 
+#~ msgid "Login OK"
+#~ msgstr "Login OK"
+
 #~ msgid "Logs"
 #~ msgstr "Logdatei"
 
@@ -24952,6 +24920,9 @@ msgstr "Umschalten"
 #~ msgid "No ECM info"
 #~ msgstr "Keine ECM Informationen"
 
+#~ msgid "No EPG updates"
+#~ msgstr "Keine EPG-Updates"
+
 #
 #~ msgid "No IPTV media server found"
 #~ msgstr "Kein IPTV Media Server gefunden"
@@ -25000,6 +24971,9 @@ msgstr "Umschalten"
 #
 #~ msgid "No satellite frontend found!!"
 #~ msgstr "Keinen Satellitentuner gefunden!"
+
+#~ msgid "No token, requesting password..."
+#~ msgstr "Kein Token, bei Passwort Anforderung ..."
 
 #
 #~ msgid ""
@@ -26044,6 +26018,10 @@ msgstr "Umschalten"
 #~ msgid "Start attempts"
 #~ msgstr "Anzahl Startversuche"
 
+#
+#~ msgid "Start update"
+#~ msgstr "Update gestartet"
+
 #~ msgid "Start-Items 7-8 , 14-16"
 #~ msgstr "Start-Elemente 7-8, 14-16"
 
@@ -26289,13 +26267,31 @@ msgstr "Umschalten"
 #~ msgid "Timeline Fontsize (restart plugin)"
 #~ msgstr "Schriftgröße Zeitplan (Neustart Plugin)"
 
+#~ msgid "Timer '%s' created OK"
+#~ msgstr "Timer '%s' erstellt OK"
+
+#~ msgid "Timer '%s' has no event id; not sent to IceTV"
+#~ msgstr "Timer '%s' hat keine Ereignis-ID. Nicht an IceTV gesendet"
+
+#~ msgid "Timer '%s' has no event id; update not sent to IceTV"
+#~ msgstr "Timer '%s' hat keine Ereignis-ID. Update nicht an IceTV gesendet"
+
+#~ msgid "Timer '%s' updated OK"
+#~ msgstr "Timer '%s' aktualisiert OK"
+
 #
 #~ msgid "Timer Editor"
 #~ msgstr "Timer bearbeiten"
 
+#~ msgid "Timer deleted OK"
+#~ msgstr "Timer gelöscht OK"
+
 #
 #~ msgid "Timer status:"
 #~ msgstr "Timerstatus:"
+
+#~ msgid "Timers updated OK"
+#~ msgstr "Timer aktualisiert OK"
 
 #~ msgid "Timeshift Enable"
 #~ msgstr "Timeshift aktivieren"
@@ -26424,6 +26420,9 @@ msgstr "Umschalten"
 
 #~ msgid "Up long"
 #~ msgstr "Hoch lang"
+
+#~ msgid "Update timer details from EPG '"
+#~ msgstr "Timer-Details aus EPG aktualisieren '"
 
 #~ msgid "Updates your receiver's software"
 #~ msgstr "Update für Receiver-Software"
