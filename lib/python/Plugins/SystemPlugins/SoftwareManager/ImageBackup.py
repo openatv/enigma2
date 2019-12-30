@@ -291,7 +291,7 @@ class ImageBackup(Screen):
 					cmdlist.append(cmd2)
 				if cmd3:
 					cmdlist.append(cmd3)
-				cmdlist.append("chmod 644 %s/%s" %(self.WORKDIR, self.ROOTFSBIN))
+				cmdlist.append("chmod 644 %s/root.%s" %(self.WORKDIR, self.ROOTFSTYPE))
 
 				if self.MODEL in ("gbquad4k","gbue4k","gbx34k"):
 					cmdlist.append('echo "' + _("Create:") + " boot dump" + '"')
