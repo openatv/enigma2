@@ -73,6 +73,7 @@ public:
 	std::string AddFont(const std::string &filename, const std::string &name, int scale, int renderflags = 0);
 	FT_Error FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface);
 	int getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth=-1);
+	std::vector<std::string> getFontFaces();
 	fontRenderClass();
 	~fontRenderClass();
 #endif

@@ -285,6 +285,17 @@ int fontRenderClass::getFont(ePtr<Font> &font, const std::string &face, int size
 	return 0;
 }
 
+// get all font faces (names) available in enigma2
+std::vector<std::string> fontRenderClass::getFontFaces()
+{
+	std::vector<std::string> v;
+	for (fontListEntry *f=font; f; f=f->next)
+	{
+		v.push_back(f->face);
+	}
+	return v;
+}
+
 void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags)
 {
 	fontRenderClass::getInstance()->AddFont(filename, alias, scale_factor, renderflags);
