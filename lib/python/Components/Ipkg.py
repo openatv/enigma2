@@ -111,7 +111,7 @@ class IpkgComponent:
 				for x in self.excludeList:
 					print"[IPKG] exclude Package (hold): '%s'" % x[0]
 					os.system("opkg flag hold " + x[0])
-			self.runCmdEx("upgrade" + append + " > /home/root/ipkgupgrade.log")
+			self.runCmdEx("upgrade" + append)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
 			self.excludeList = []
