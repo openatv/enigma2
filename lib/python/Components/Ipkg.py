@@ -84,13 +84,13 @@ class IpkgComponent:
 		self.currentCommand = command
 
 	def runCmdEx(self, cmd):
-		self.runCmd("%s %s" % (opkgExtraDestinations(), cmd))
+		self.runCmd(opkgExtraDestinations() + ' ' + cmd)
 
 	def runCmd(self, cmd):
 		print "executing", self.ipkg, cmd
 		self.cmd.appClosed.append(self.cmdFinished)
 		self.cmd.dataAvail.append(self.cmdData)
-		if self.cmd.execute("%s %s" % (self.ipkg, cmd)):
+		if self.cmd.execute(self.ipkg + " " + cmd):
 			self.cmdFinished(-1)
 
 	def startCmd(self, cmd, args = None):
@@ -111,7 +111,7 @@ class IpkgComponent:
 				for x in self.excludeList:
 					print"[IPKG] exclude Package (hold): '%s'" % x[0]
 					os.system("opkg flag hold " + x[0])
-			self.runCmdEx("upgrade %s >/home/root/ipkgupgrade.log" % append)
+			self.runCmdEx("upgrade" + append + " > /home/root/ipkgupgrade.log")
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
 			self.excludeList = []
@@ -120,9 +120,9 @@ class IpkgComponent:
 			else:
 				self.runCmd("list")
 		elif cmd == self.CMD_INSTALL:
-			self.runCmd("--force-overwrite install %s" % args['package'])
+			self.runCmd("--force-overwrite install " + args['package'])
 		elif cmd == self.CMD_REMOVE:
-			self.runCmd("remove %s" % args['package'])
+			self.runCmd("remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
 			self.fetchedList = []
 			self.excludeList = []
