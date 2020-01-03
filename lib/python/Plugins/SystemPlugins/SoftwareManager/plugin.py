@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox

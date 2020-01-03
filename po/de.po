@@ -1206,7 +1206,7 @@ msgstr "%s Erstellungsdatum %s"
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
-msgstr "%s wird nicht mehr benötigt. Soll es gelöscht werden?"
+msgstr "%s wird nicht mehr benötigt. Soll er gelöscht werden?"
 
 #, python-format
 msgid "%s is password protected."
@@ -1309,7 +1309,7 @@ msgid "(Selectmode)"
 msgstr "(Auswahlmodus)"
 
 msgid "(Show only reader:"
-msgstr "(Nur Lesegeräte zeigen:)"
+msgstr "(Nur Lesegeräte zeigen:"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(z.B. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
@@ -2627,7 +2627,7 @@ msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Regelmäßiges Schreiben der EPG-Daten in die unter 'EPG Dateiname' eingestellte Datei erlauben."
 
 msgid "Allows you to adjust the amount of time the resolution information display on screen."
-msgstr "Hiermit können Sie einstellen, ob oder wie lange die Bildschirmeinblendung bei Auflösungsänderungen angezeigt werden soll."
+msgstr "Einstellen, ob oder wie lange die Bildschirmeinblendung bei Auflösungsänderungen angezeigt werden soll."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Debug-Log erlauben. Das Debug-Log enthält detaillierte Informationen über alles was das System macht."
@@ -3181,7 +3181,7 @@ msgid "Available shares:"
 msgstr "Verfügbare Netzlaufwerke:"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
-msgstr "Verhindert ein Hängenbleiben beim Spulen, wenn die Sprungdistanz kleiner ist als der Abstand zwischen I-Frames (ein gewisses Ruckeln ist dabei unvermeidbar)."
+msgstr "Bei 'Ja' wird ein Hängenbleiben beim Spulen verhindert, wenn die Sprungdistanz kleiner ist als der Abstand zwischen I-Frames (ein gewisses Ruckeln ist dabei unvermeidbar)."
 
 msgid "Axas E4HD Ultra"
 msgstr ""
@@ -8737,14 +8737,14 @@ msgid "If editing a file, can you set the cursor start position at end or begin 
 msgstr "Wenn eine Datei bearbeitet wird, kann man hier festlegen ob sich die Cursorposition am Anfang oder am Ende der Zeile befindet."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
-msgstr "Stellen Sie ein, wie die auszugebende Videoauflösung an die Auflösung des Videomaterials angepasst werden soll."
+msgstr "Einstellen, wie die auszugebende Videoauflösung an die Auflösung des Videomaterials angepasst werden soll."
 
 msgid "If enabled the video will always be de-interlaced."
-msgstr "Hiermit können Sie einstellen, ob das Video immer de-interlaced werden soll."
+msgstr "Einstellen, ob das Video immer de-interlaced werden soll."
 
 # /data/setup.xml
 msgid "If enabled, AIT data is included in recordings."
-msgstr "Wenn aktiviert, sind in den Aufzeichnungen AIT-Daten enthalten."
+msgstr "Bei 'Ja' sind in den Aufzeichnungen AIT-Daten enthalten."
 
 msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
 msgstr "Bei 'Ja' kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen. Standardeinstellung ist 'Nein' und verwendet ein spezielles Signal vom Receiver. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
@@ -8816,7 +8816,7 @@ msgid "If the free space is less than setting value, then an attempt is made to 
 msgstr "Wenn der freie Speicherplatz kleiner als der eingestellte Wert ist, wird versucht, die alten Timeshift-Dateien zu löschen."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch (Anzahl der Durchgänge):"
+msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch. Anzahl der Durchgänge:"
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Wenn mehrere nicht festgeschriebene Switches verwendet werden, müssen die DiSEqC-Befehle mehrmals gesendet werden. Legen Sie die Anzahl der nicht festgeschriebenen Switches in der Kette minus eins fest."
@@ -9769,7 +9769,7 @@ msgid "Limit east"
 msgstr "Ost-Limit"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
-msgstr "Begrenzen Sie die Zeichen, die in Aufnahme-Dateinamen (7 Bit) ASCII verwendet werden können. Dies gewährleistet die Kompatibilität mit Betriebssystemen oder Dateisystemen mit begrenztem Zeichenvorrat."
+msgstr "Bei 'Ja' werden die Zeichen begrenzt, die in Aufnahme-Dateinamen (7 Bit) ASCII verwendet werden können. Dies gewährleistet die Kompatibilität mit Betriebssystemen oder Dateisystemen mit begrenztem Zeichenvorrat."
 
 #
 msgid "Limit west"
@@ -10955,7 +10955,7 @@ msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino ('keymap.ntr')"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
-msgstr "Während einer Aufnahme niemals entschlüsseln. Diese Funktion setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden. Standard: Aus."
+msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden. Standard ist 'Nein'."
 
 msgid "Never decrypt while recording"
 msgstr "Bei der Aufnahme niemals entschlüsseln"
@@ -12582,7 +12582,7 @@ msgstr "Bitte warten, Daten werden eingelesen..."
 
 #
 msgid "Please wait while scanning is in progress..."
-msgstr "Bitte warten Sie während der Suchvorgang läuft..."
+msgstr "Der Suchvorgang läuft. Bitte warten..."
 
 msgid "Please wait while the list downloads..."
 msgstr "Bitte warten während die Liste heruntergeladen wird ..."
@@ -12612,7 +12612,7 @@ msgid "Please wait whilst feeds state is checked."
 msgstr "Bitte warten, Feed-Status wird überprüft..."
 
 msgid "Please wait, Loading image."
-msgstr "Bitte warten Sie, Bild wird geladen."
+msgstr "Bild wird geladen. Bitte warten..."
 
 msgid "Please wait, restarting cardserver."
 msgstr "Bitte warten, starte Cardserver neu."
@@ -20191,11 +20191,11 @@ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouque
 msgstr "Wenn Sie diese Option aktivieren, werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in der 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Favoritenlisten zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
-msgstr "Wenn ausgewählt, wird eine Info angezeigt sobald ein Film beendet ist und der nächste beginnt."
+msgstr "Bei 'Ja' wird eine Info angezeigt sobald ein Film beendet ist und der nächste beginnt."
 
 #
 msgid "When enabled, a popup message will be shown when a recording starts."
-msgstr "Wenn ausgewählt, wird eine Info angezeigt sobald eine Aufnahme startet."
+msgstr "Bei 'Ja' wird eine Info angezeigt sobald eine Aufnahme startet."
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
 msgstr "Wenn aktiviert, wird Bild im Bild bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
@@ -20209,10 +20209,10 @@ msgid "When enabled, a recording is allowed to abort streaming, when there are n
 msgstr "Wenn aktiviert, werden Streamings bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
-msgstr "Wenn aktiviert, darf eine Aufnahme das Live-TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
+msgstr "Bei 'Ja' darf eine Aufnahme das Live-TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
-msgstr "Wenn 'Ja' ausgewählt wird, wird eine Warnung angezeigt und Sie können optional Timeshift stoppen oder fortführen."
+msgstr "Bei 'Ja' wird eine Warnung angezeigt und Sie können Timeshift stoppen oder fortführen."
 
 msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr "Bei 'Ja' werden empfangene HTTP-Streams immer entschlüsselt. Dies verbraucht mehr Ressourcen (Demuxer). Aktivieren Sie diese Option nur, wenn es notwendig ist. Individuelle Streams sind immer entschlüsselt, wenn 0x100 zum Servicetyp hinzugefügt wurde, unabhängig von dieser Einstellung."
@@ -20232,7 +20232,7 @@ msgstr ""
 "Wenn aktiviert, kann beim Zappen die Favoritenliste gewechselt werden."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Einstellen, ob gelöschte Aufnahmen in den Papierkorb verschoben werden sollen. Sonst werden Aufnahmen sofort unwiderruflich gelöscht."
+msgstr "Bei 'Ja' werden gelöschte Aufnahmen in den Papierkorb verschoben, bei 'Nein' sofort unwiderruflich gelöscht."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Bei Aktivierung werden externe Untertitel beim Abspielen von Filmen immer angezeigt."
@@ -20248,7 +20248,7 @@ msgstr "Wenn aktiviert, werden grafische DVB Untertitel in Gelb statt der Origin
 
 #
 msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Wenn aktiviert, kann der Movieplayer auch mit EXIT beendet werden."
+msgstr "Einstellen, ob und wie der Movieplayer mit EXIT beendet wird."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr ""
@@ -20273,7 +20273,7 @@ msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Wenn aktiviert, werden Sendernummern in der Kanalliste angezeigt."
 
 msgid "When enabled, show status or error messages."
-msgstr "Wenn 'Ja' ausgewählt wird, werden Status- oder Fehlermeldungen angezeigt."
+msgstr "Bei 'Ja' werden Status- oder Fehlermeldungen angezeigt."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Wenn aktiviert, können Untertitel für Hörgeschädigte benutzt werden."
@@ -20292,19 +20292,19 @@ msgstr "Bei Aktivierung wird die Option Scart-Videorekorder im Hauptmenü angeze
 
 #
 msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
-msgstr "Wenn ausgewählt, wird die Länge einer Aufnahme in der Filmliste angezeigt (dies kann die Ladezeit der Fimliste beeinflussen)."
+msgstr "Bei 'Ja' wird die Länge einer Aufnahme in der Filmliste angezeigt (dies kann die Ladezeit der Fimliste beeinflussen)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
-msgstr "Wenn auf 'Ja' gestellt, wird die %s %s die Tonspur benutzen die zuvor ausgewählt wurde."
+msgstr "Bei 'Ja' wird die %s %s die Tonspur benutzen, die zuvor ausgewählt wurde."
 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
-msgstr "Wenn auf 'Ja' gestellt, wird die %s %s die Untertitel benutzen, die zuvor ausgewählt wurden."
+msgstr "Bei 'Ja' wird die %s %s die Untertitel benutzen, die zuvor ausgewählt wurden."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3-Ton benutzen (wenn verfügbar)."
+msgstr "Bei 'Ja' wird die %s %s AC3-Ton benutzen (wenn verfügbar)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3+-Ton benutzen (wenn verfügbar)."
+msgstr "Bei 'Ja' wird die %s %s AC3+-Ton benutzen (wenn verfügbar)."
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
 msgstr "Wenn aktiviert, startet Timeshift automatisch nach der vorgegebenen Zeit."
@@ -24557,7 +24557,7 @@ msgstr "Umschalten"
 #~ msgstr "Bei 'Ja' werden Aufnahmen in den Papierkorb verschoben statt gelöscht zu werden. So können sie immer noch abgespielt werden."
 
 #~ msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
-#~ msgstr "Wenn 'Ja' eingestellt ist, werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt"
+#~ msgstr "Bei 'Ja' werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt."
 
 #~ msgid "Image:"
 #~ msgstr "Image:"
