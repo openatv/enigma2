@@ -2700,7 +2700,7 @@ msgid "Always include ECM in recordings"
 msgstr "Immer ECM mit aufnehmen"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
-msgstr "Immer ECM mit aufnehmen. Diese Einstellung setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt. Standard: Aus."
+msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt. Standard ist 'Nein'."
 
 msgid "Always select OK"
 msgstr ""
@@ -4864,13 +4864,13 @@ msgid "Configure the secondary EPG language."
 msgstr "EPG Sprachwahl 2 einstellen."
 
 msgid "Configure the skip time interval for the '1'/'3' buttons."
-msgstr "Einstellen des Sprung-Zeitintervalls für die Tasten '1' und '3'."
+msgstr "Einstellen des Sprung-Zeitintervalls in Sekunden für die Tasten '1' und '3'."
 
 msgid "Configure the skip time interval for the '4'/'6' buttons."
-msgstr "Einstellen des Sprung-Zeitintervalls für die Tasten '4' und '6'."
+msgstr "Einstellen des Sprung-Zeitintervalls in Sekunden für die Tasten '4' und '6'."
 
 msgid "Configure the skip time interval for the '7'/'9' buttons."
-msgstr "Einstellen des Sprung-Zeitintervalls für die Tasten '7' und '9'."
+msgstr "Einstellen des Sprung-Zeitintervalls in Sekunden für die Tasten '7' und '9'."
 
 msgid "Configure the slow motion speeds."
 msgstr "Einstellen der Zeitlupengeschwindigkeiten."
@@ -5922,7 +5922,7 @@ msgid "Depth"
 msgstr "Tiefe"
 
 msgid "Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es die Aufnahme beim Abspielen zu entschlüsseln falls die Entschlüsselung der Aufnahme fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' kann beim Abspielen entschlüsselt werden. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
+msgstr "'Entschlüsseln und ECM aufnehmen' ermöglicht es, die Aufnahme beim Abspielen zu entschlüsseln, falls die Entschlüsselung der Aufnahme fehlschlägt. 'Nicht entschlüsseln, ECM aufnehmen' kann beim Abspielen entschlüsselt werden. 'Normal' entschlüsselt die Aufnahme ohne ECM's aufzunehmen."
 
 msgid "Descramble http streams"
 msgstr "HTTP-Streams entschlüsseln"
@@ -9769,7 +9769,7 @@ msgid "Limit east"
 msgstr "Ost-Limit"
 
 msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
-msgstr "Bei 'Ja' werden die Zeichen begrenzt, die in Aufnahme-Dateinamen (7 Bit) ASCII verwendet werden können. Dies gewährleistet die Kompatibilität mit Betriebssystemen oder Dateisystemen mit begrenztem Zeichenvorrat."
+msgstr "Bei 'Ja' werden die Zeichen, die in Aufnahme-Dateinamen (7 Bit ASCII) verwendet werden können, begrenzt. Dies gewährleistet die Kompatibilität mit Betriebssystemen oder Dateisystemen mit begrenztem Zeichenvorrat."
 
 #
 msgid "Limit west"
@@ -14756,7 +14756,7 @@ msgid "Select satellites"
 msgstr "Satelliten auswählen"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Wählen Sie die Tasten für die Suchleistenaktivierung: Pfeil L/R (lang) oder << >>(lang)."
+msgstr "Einstellen der Tasten für die Suchleistenaktivierung: Pfeil Links/Rechts lang oder '<<'/'>>' lang."
 
 #
 msgid "Select service to add..."
@@ -15257,7 +15257,7 @@ msgid "Set the description of the recording."
 msgstr "Hier können Sie die Beschreibung der Aufnahme ändern."
 
 msgid "Set the jump-size of the seekbar."
-msgstr "Wählen Sie die Sprungweite für die Suchleiste."
+msgstr "Einstellen der Sprungweite für die Suchleiste."
 
 msgid "Set the name the recording will get."
 msgstr "Hier können Sie den Namen der Aufnahme ändern."
@@ -18294,7 +18294,7 @@ msgid ""
 msgstr ""
 
 msgid "This will go fast forward/backward with time frames of x secs"
-msgstr "Hiermit werden beim schnellen Vorlauf/Rücklauf Zeitsprünge von x Sekunden benutzt."
+msgstr "Bei 'Ja' werden beim schnellen Vorlauf/Rücklauf Zeitsprünge von x Sekunden benutzt."
 
 #
 msgid "Three"
@@ -20198,15 +20198,15 @@ msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr "Bei 'Ja' wird eine Info angezeigt sobald eine Aufnahme startet."
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
-msgstr "Wenn aktiviert, wird Bild im Bild bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
+msgstr "Einstellen, ob und wie Bild im Bild bei Aufnahmen beendet wird, falls kein freier Tuner zur Verfügung steht."
 
 # Record neu 5.1
 msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
-msgstr "Wenn aktiviert, werden Pseudo-Aufnahmen bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
+msgstr "Einstellen, ob und wie Pseudo-Aufnahmen bei Aufnahmen beendet werden, falls kein freier Tuner zur Verfügung steht."
 
 # Record neu 5.1
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
-msgstr "Wenn aktiviert, werden Streamings bei Aufnahmen beendet, falls kein freier Tuner zur Verfügung steht."
+msgstr "Einstellen, ob und wie Streamings bei Aufnahmen beendet werden, falls kein freier Tuner zur Verfügung steht."
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
 msgstr "Bei 'Ja' darf eine Aufnahme das Live-TV unterbrechen, falls kein freier Tuner zur Verfügung steht."
@@ -20232,7 +20232,7 @@ msgstr ""
 "Wenn aktiviert, kann beim Zappen die Favoritenliste gewechselt werden."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Bei 'Ja' werden gelöschte Aufnahmen in den Papierkorb verschoben, bei 'Nein' sofort unwiderruflich gelöscht."
+msgstr "Bei 'Ja' werden gelöschte Aufnahmen in den Papierkorb verschoben, bei 'Nein' sofort und unwiderruflich gelöscht."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Bei Aktivierung werden externe Untertitel beim Abspielen von Filmen immer angezeigt."
@@ -20254,7 +20254,7 @@ msgid "When enabled, measure power consumption to detect when the rotor stops tu
 msgstr ""
 
 msgid "When enabled, network trash can's are probed for cleaning."
-msgstr "Wenn aktiviert, werden die Netzwerk-Papierkörbe geleert."
+msgstr "Bei 'Ja' werden die Netzwerk-Papierkörbe geleert."
 
 msgid "When enabled, network trash cans are probed for cleaning."
 msgstr "Hier können Sie festlegen, ob Netzwerk-Papierkörbe auch geleert werden."
@@ -20292,7 +20292,7 @@ msgstr "Bei Aktivierung wird die Option Scart-Videorekorder im Hauptmenü angeze
 
 #
 msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
-msgstr "Bei 'Ja' wird die Länge einer Aufnahme in der Filmliste angezeigt (dies kann die Ladezeit der Fimliste beeinflussen)."
+msgstr "Bei 'Ja' wird die Länge jeder Aufnahme in der Filmliste angezeigt (dies kann die Ladezeit der Fimliste beeinflussen)."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Bei 'Ja' wird die %s %s die Tonspur benutzen, die zuvor ausgewählt wurde."
@@ -20316,10 +20316,10 @@ msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
-msgstr "Wählen Sie die Vorlaufzeit, d.h. die Anzahl von Minuten die eine Aufnahme vor dem eigentlichen Sendungsbegin startet."
+msgstr "Einstellen der Anzahl von Minuten, die eine Aufnahme vor dem eigentlichen Aufnahmebegin starten soll."
 
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
-msgstr "Wählen Sie die Nachlaufzeit, d.h. die Anzahl von Minuten die eine Aufnahme nach dem eigentlichen Ende noch weiter läuft."
+msgstr "Einstellen der Anzahl von Minuten, die eine Aufnahme nach dem eigentlichen Ende noch weiter laufen soll."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Wenn gesetzt, merken sich die Verzeichnisse ihren Zustand. Wenn ausgeschaltet, wird eine Standardansicht genommen."
