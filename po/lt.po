@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 18:16+0000\n"
-"PO-Revision-Date: 2019-10-22 23:30+0300\n"
+"POT-Creation-Date: 2019-12-30 14:34+0100\n"
+"PO-Revision-Date: 2019-12-30 19:26+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -3463,11 +3463,14 @@ msgstr "Neįmanoma atsisiųsti regionų sąrašo"
 msgid "Can not download timers"
 msgstr "Neįmanoma atsisiųsti laikmačių"
 
+msgid "Can not post PVR log information"
+msgstr "Neįmanoma paskelbti PVR žurnalo informacijos"
+
 msgid "Can not post scan information"
 msgstr "Neįmanoma nusiųsti nuskaitymo informacijos"
 
-msgid "Can not proceed - you need to login first"
-msgstr "Negalima tęsti - pirmiausia turite prisijungti"
+msgid "Can not retrieve IceTV settings"
+msgstr "Negalima gauti IceTV nustatymų"
 
 msgid "Can not retrieve channel map"
 msgstr "Neįmanoma nuskaityti kanalo žemėlapio"
@@ -4092,7 +4095,7 @@ msgstr "Kongo Demokratinė Respublika"
 
 #, python-format
 msgid "Congratulations, you have successfully configured your %s %s for use with the IceTV Smart Recording service. Your IceTV guide will now download in the background."
-msgstr "Sveikiname, sėkmingai sukonfigūravote %s %s, kad naudoti IceTV išmaniojo įrašymo pslaugai. Dabar IceTV vadovas atsisiųs fone."
+msgstr "Sveikiname, sėkmingai sukonfigūravote %s %s, kad naudoti IceTV išmaniojo įrašymo paslaugai. Dabar IceTV vadovas atsisiųs fone."
 
 msgid "Connect"
 msgstr "Jungtis"
@@ -4192,7 +4195,7 @@ msgid "Cool Single Guide"
 msgstr "Cool Single vadovas"
 
 msgid "Cool TV Guide"
-msgstr "Cool TV vedlys"
+msgstr "Cool TV vadovas"
 
 msgid "Copy"
 msgstr "Kopijuoti"
@@ -4267,10 +4270,6 @@ msgstr "Nepavyko įrašyti dėl neveikiančių kanalų %s"
 #, python-format
 msgid "Could not save configfile %s!"
 msgstr "Konfigūracijos failo %s išsaugoti nepavyko!"
-
-#, python-format
-msgid "Couldn't get IceTV timer id for timer '%s'"
-msgstr "Nepavyko gauti IceTV laikmačio ID laikmačiui %s"
 
 msgid "Country"
 msgstr "Šalis"
@@ -5374,9 +5373,6 @@ msgstr "EPG pasirinkimas"
 msgid "EPG Setup"
 msgstr "EPG nustatymas"
 
-msgid "EPG download OK"
-msgstr "EPG atsisiųstas"
-
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -5608,9 +5604,6 @@ msgstr "End (ilgai spausti)"
 msgid "End time"
 msgstr "Pabaigos laikas"
 
-msgid "End update"
-msgstr "Baigti atnaujinimą"
-
 msgid "Energie"
 msgstr "Energija"
 
@@ -5738,24 +5731,31 @@ msgid "Error code"
 msgstr "Klaidos kodas"
 
 msgid ""
-"Error creating FullHD-Skin.\n"
+"Error creating EHD-Skin.\n"
 "Using HD-Skin!"
 msgstr ""
-"Kuriant FullHD temą, įvyko klaida.\n"
+"Kuriant EHD temą, įvyko klaida.\n"
 "Naudojama HD tema!"
 
 msgid ""
-"Error creating FullHD-Skin. Icon package download not available.\n"
+"Error creating EHD-Skin. Icon package download not available.\n"
 "Using HD-Skin!"
 msgstr ""
-"Kuriant FullHD temą, įvyko klaida. Nepavyko parsiųsti logotipų.\n"
+"Kuriant EHD temą, įvyko klaida. Nepavyko parsiųsti piktogramų paketo.\n"
 "Naudojama HD tema!"
 
 msgid ""
-"Error creating FullHD-Skin. Not enough flash memory free.\n"
+"Error creating EHD-Skin. Not enough flash memory free.\n"
 "Using HD-Skin!"
 msgstr ""
-"Kuriant FullHD temą, įvyko klaida. Maža laisvos atminties.\n"
+"Kuriant EHD temą, įvyko klaida. Maža laisvos atminties.\n"
+"Naudojama HD tema!"
+
+msgid ""
+"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
+"Using HD-Skin!"
+msgstr ""
+"Kuriant EHD temą, įvyko klaida. Trūksta kai kurių EHD piktogramų.\n"
 "Naudojama HD tema!"
 
 msgid "Error creating HD-Skin. Not enough flash memory free."
@@ -5827,10 +5827,6 @@ msgid ""
 msgstr ""
 "Klaida pervadinant %s į %s:\n"
 "%s"
-
-#, python-format
-msgid "Error trying to fetch: %s"
-msgstr "Klaida bandant gauti: %s"
 
 msgid "Error, unknown Result!"
 msgstr "Klaida, nežinomas rezultatas!"
@@ -6118,10 +6114,6 @@ msgstr "Pagal Farenheitą"
 
 msgid "Failed"
 msgstr "Klaidingas"
-
-#, python-format
-msgid "Failed to update timer '%s"
-msgstr "Nepavyko atnaujinti laikmačio %s"
 
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Įrašymo klaida į /tmp/positionersetup.log: "
@@ -6453,6 +6445,9 @@ msgstr "Paieškos dažnio žingsnio dydis(khz)"
 msgid "Frequency steps"
 msgstr "Dažnio žingsniai"
 
+msgid "Frequency: "
+msgstr "Dažnis: "
+
 msgid "Fri"
 msgstr "Pen"
 
@@ -6735,9 +6730,6 @@ msgstr "Graikija"
 msgid "Greek"
 msgstr "Graikų"
 
-msgid "Greek (Modern)"
-msgstr "Graikų (modernus)"
-
 msgid "Green"
 msgstr "Žalias"
 
@@ -6786,6 +6778,9 @@ msgstr "Bisau Gvinėja"
 msgid "Guyana"
 msgstr "Gajana"
 
+msgid "H7/H9/H9COMBO/H10 new Model"
+msgstr "H7/H9/H9COMBO/H10 naujas modelis"
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = kas valandą / D: = kas dieną / W: = kas savaitę / M: = kas mėnesį"
 
@@ -6810,8 +6805,8 @@ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000
 msgid "HD2400"
 msgstr "HD2400"
 
-msgid "HD60/HD61"
-msgstr "HD60/HD61"
+msgid "HD60"
+msgstr "HD60"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -7127,9 +7122,6 @@ msgstr "IceTV įjungta"
 
 msgid "IceTV setup wizard"
 msgstr "IceTV sąrankos vedlys"
-
-msgid "IceTV started"
-msgstr "IceTV prasidėjo"
 
 msgid "IceTV update completed OK"
 msgstr "IceTV atnaujinimas baigtas gerai"
@@ -8040,9 +8032,6 @@ msgstr "Žurnalų tvarkyklė"
 
 msgid "Login"
 msgstr "﻿Prisijungimas"
-
-msgid "Login OK"
-msgstr "Prisijungti pavyko"
 
 msgid "Login failure"
 msgstr "Nepavyko prisijungti"
@@ -8956,9 +8945,6 @@ msgstr "Nėra prisijungimo"
 msgid "No Devices Found !!"
 msgstr "Įrenginių nerasta !!"
 
-msgid "No EPG updates"
-msgstr "Nėra EPG atnaujinimų"
-
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kietas diskas nerastas arba neinicializuotas!"
 
@@ -9092,9 +9078,6 @@ msgstr "Nedaryti pertraukos"
 msgid "No to all"
 msgstr "'Ne' viskam"
 
-msgid "No token, requesting password..."
-msgstr "Nėra žetono, prašoma slaptažodžio..."
-
 msgid "No transparency"
 msgstr "Nepermatomas"
 
@@ -9128,8 +9111,8 @@ msgstr "Atnaujinimas nebūtinas!"
 msgid "No updates available. Please try again later."
 msgstr "Jokių naujinimų. Bandykite vėliau."
 
-msgid "No valid region details were foind"
-msgstr "Nebuvo pateikta tinkama informacija apie regioną"
+msgid "No valid region details were found"
+msgstr "Nerasta tinkamos informacijos apie regioną"
 
 #, python-format
 msgid "No viewer installed for this file type: %s"
@@ -10511,8 +10494,8 @@ msgstr "Apsaugoti išjungimo meniu"
 msgid "Protect timer menu"
 msgstr "Apsaugoti laikmačio meniu"
 
-msgid "Protek 4K UHD"
-msgstr "Protek 4K UHD"
+msgid "Protek 4K UHD/HD61"
+msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Protokolas"
@@ -13099,13 +13082,6 @@ msgid "Somalia"
 msgstr "Somalis"
 
 msgid ""
-"Some FullHD-Icons are missing.\n"
-"Using HD-Icons!"
-msgstr ""
-"Trūksta kai kurių Pilnai HD piktogramų.\n"
-"Naudojamos HD piktogramos!"
-
-msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"
 msgstr ""
@@ -13308,9 +13284,6 @@ msgstr "Pradžios laikas"
 
 msgid "Start timeshift"
 msgstr "Pradėti laiko poslinkį"
-
-msgid "Start update"
-msgstr "Pradėti atnaujinimą"
 
 msgid "Start/stop slide show"
 msgstr "Pradėti/sustabdyti skaidrių demonstravimą"
@@ -13685,7 +13658,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2019-10-22"
+msgstr "Adga, v. 2019-12-30"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -14501,34 +14474,11 @@ msgstr "Laikas komandai, ar scenarijui vykdyti"
 msgid "Timer"
 msgstr "Laikmatis"
 
-#, python-format
-msgid "Timer '%s' conflicts with %s"
-msgstr "Laikmatis '%s' nesuderinamas su %s"
-
-#, python-format
-msgid "Timer '%s' created OK"
-msgstr "Laikmatis '%s' sukurtas gerai"
-
-#, python-format
-msgid "Timer '%s' has no event id; not sent to IceTV"
-msgstr "Laikmatis '%s' neturi įvykio ID; neišsiųstas į IceTV"
-
-#, python-format
-msgid "Timer '%s' has no event id; update not sent to IceTV"
-msgstr "Laikmatis '%s' neturi įvykio ID; atnaujinimas nebuvo išsiųstas į IceTV"
-
-#, python-format
-msgid "Timer '%s' updated OK"
-msgstr "Laikmatis '%s' atnaujintas"
-
 msgid "Timer List"
 msgstr "Laikmačių sąrašas"
 
 msgid "Timer action"
 msgstr "Budėjimo laikmačio veiksmas"
-
-msgid "Timer deleted OK"
-msgstr "Laikmatis ištrintas gerai"
 
 msgid "Timer entry"
 msgstr "Laikmačio užduotis"
@@ -14580,9 +14530,6 @@ msgstr "Laikmačio tipas"
 
 msgid "Timers"
 msgstr "Laikmačiai"
-
-msgid "Timers updated OK"
-msgstr "Laikmačiai atnaujinti gerai"
 
 msgid "Timeshift"
 msgstr "Laiko poslinkis"
@@ -14949,6 +14896,9 @@ msgstr "3D vaizdo sąranka"
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 (keymap.u80)"
 
+msgid "URL"
+msgstr "Internetinis adresas"
+
 msgid "USALS"
 msgstr "USALS"
 
@@ -15172,9 +15122,6 @@ msgid ""
 msgstr ""
 "Atnaujinimas pavyko!\n"
 "Jūsų įkrovos tvarkyklė dabar yra naujausia!"
-
-msgid "Update timer details from EPG '"
-msgstr "Atnaujinti informaciją apie laikmatį iš EPG '"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Atnaujinti / padaryti programinės įrangos atsarginę kopiją , nustatymų atsarginę kopiją / atkūrimą"
@@ -16482,8 +16429,11 @@ msgstr "Animacija"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 
-msgid "Zgemma H9/I55Plus"
-msgstr "Zgemma H9/I55Plus"
+msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
+msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 senas modelis"
+
+msgid "Zgemma H9/I55Plus old Model"
+msgstr "Zgemma H9/I55Plus senas modelis"
 
 msgid "Zgemma Star S/2S/H1/H2"
 msgstr "Zgemma Star S/2S/H1/H2"
@@ -18350,105 +18300,6 @@ msgstr "įjungta"
 msgid "zapping"
 msgstr "perjungimas"
 
-msgid "Basic settings"
-msgstr "Pagrindiniai nustatymai"
-
-msgid "CIFS/Samba Setup"
-msgstr "CIFS/Samba nustatymas"
-
-msgid "Convert ext3 filesystem to ext4"
-msgstr "Konvertuoti ext3 failų sistemą į ext4"
-
-msgid "CronTimers"
-msgstr "Kron laikmačiai"
-
-msgid "Decryption & Parental Control"
-msgstr "Dekodavimas ir tėvų kontrolė"
-
-msgid "Delete EPG"
-msgstr "Trinti EPG"
-
-msgid "Device Setup"
-msgstr "Įrenginio valdymas"
-
-msgid "EPG"
-msgstr "Elektroninis programų vadovas"
-
-msgid "Extended GUI"
-msgstr "Išplėstinė grafinė aplinka"
-
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-msgid "HDMI-IN Recording settings"
-msgstr "HDMI-IN įrašymo nustatymai"
-
-msgid "Input devices"
-msgstr "Įvesties įrenginiai"
-
-msgid "Load EPG"
-msgstr "Įkelti EPG"
-
-msgid "Load/Save/Delete"
-msgstr "Įkelti, išsaugoti ir trinti"
-
-msgid "Mainmenu"
-msgstr "Pagrindinis meniu"
-
-msgid "Manual scan"
-msgstr "Rankinė paieška"
-
-msgid "OSD Position"
-msgstr "OSD pozicija"
-
-msgid "OpenVPN Setup"
-msgstr "OpenVPN nustatymas"
-
-msgid "PowerTimers"
-msgstr "Įjungimo laikmačiai"
-
-msgid "Reception"
-msgstr "Priėmimas"
-
-msgid "Recordings & Timeshift"
-msgstr "Įrašai ir laiko poslinkis"
-
-msgid "Recovery Mode"
-msgstr "Atkūrimo režimas"
-
-msgid "Remote Control Code"
-msgstr "Nuotolinio valdymo pulto kodas"
-
-msgid "Restart Gui"
-msgstr "Paleisti iš naujo grafinę aplinką"
-
-msgid "STB Display"
-msgstr "Imtuvo ekranas"
-
-msgid "Save EPG"
-msgstr "Išsaugoti EPG"
-
-msgid "Shutdown"
-msgstr "Išjungti"
-
-msgid "Standby / Restart"
-msgstr "Išjungimo meniu"
-
-msgid "Timeshift settings"
-msgstr "Laiko poslinkio nustatymai"
-
-msgid "Usage & GUI"
-msgstr "Valdymas ir grafinė aplinka"
-
-msgid "VCR scart"
-msgstr "VCR skartas"
-
-msgid "Video"
-msgstr "Vaizdas"
-
-msgid "WOL Standby"
-msgstr "WOL budėjimas"
-
 msgid "0"
 msgstr "0"
 
@@ -18811,6 +18662,105 @@ msgstr "Jūsų %s %s neturi interneto ryšio"
 
 msgid "Your %s %s is not connected to the internet"
 msgstr "Jūsų %s %s neprijungtas prie interneto"
+
+msgid "Basic settings"
+msgstr "Pagrindiniai nustatymai"
+
+msgid "CIFS/Samba Setup"
+msgstr "CIFS/Samba nustatymas"
+
+msgid "Convert ext3 filesystem to ext4"
+msgstr "Konvertuoti ext3 failų sistemą į ext4"
+
+msgid "CronTimers"
+msgstr "Kron laikmačiai"
+
+msgid "Decryption & Parental Control"
+msgstr "Dekodavimas ir tėvų kontrolė"
+
+msgid "Delete EPG"
+msgstr "Trinti EPG"
+
+msgid "Device Setup"
+msgstr "Įrenginio valdymas"
+
+msgid "EPG"
+msgstr "Elektroninis programų vadovas"
+
+msgid "Extended GUI"
+msgstr "Išplėstinė grafinė aplinka"
+
+msgid "HDMI CEC"
+msgstr "HDMI CEC"
+
+msgid "HDMI-IN Recording settings"
+msgstr "HDMI-IN įrašymo nustatymai"
+
+msgid "Input devices"
+msgstr "Įvesties įrenginiai"
+
+msgid "Load EPG"
+msgstr "Įkelti EPG"
+
+msgid "Load/Save/Delete"
+msgstr "Įkelti, išsaugoti ir trinti"
+
+msgid "Mainmenu"
+msgstr "Pagrindinis meniu"
+
+msgid "Manual scan"
+msgstr "Rankinė paieška"
+
+msgid "OSD Position"
+msgstr "OSD pozicija"
+
+msgid "OpenVPN Setup"
+msgstr "OpenVPN nustatymas"
+
+msgid "PowerTimers"
+msgstr "Įjungimo laikmačiai"
+
+msgid "Reception"
+msgstr "Priėmimas"
+
+msgid "Recordings & Timeshift"
+msgstr "Įrašai ir laiko poslinkis"
+
+msgid "Recovery Mode"
+msgstr "Atkūrimo režimas"
+
+msgid "Remote Control Code"
+msgstr "Nuotolinio valdymo pulto kodas"
+
+msgid "Restart Gui"
+msgstr "Paleisti iš naujo grafinę aplinką"
+
+msgid "STB Display"
+msgstr "Imtuvo ekranas"
+
+msgid "Save EPG"
+msgstr "Išsaugoti EPG"
+
+msgid "Shutdown"
+msgstr "Išjungti"
+
+msgid "Standby / Restart"
+msgstr "Išjungimo meniu"
+
+msgid "Timeshift settings"
+msgstr "Laiko poslinkio nustatymai"
+
+msgid "Usage & GUI"
+msgstr "Valdymas ir grafinė aplinka"
+
+msgid "VCR scart"
+msgstr "VCR skartas"
+
+msgid "Video"
+msgstr "Vaizdas"
+
+msgid "WOL Standby"
+msgstr "WOL budėjimas"
 
 msgid "Auto Modes Selected."
 msgstr "Pasirinkti automatiniai režimai."
@@ -21479,6 +21429,81 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#~ msgid "Can not proceed - you need to login first"
+#~ msgstr "Negalima tęsti - pirmiausia turite prisijungti"
+
+#, python-format
+#~ msgid "Couldn't get IceTV timer id for timer '%s'"
+#~ msgstr "Nepavyko gauti IceTV laikmačio ID laikmačiui %s"
+
+#~ msgid "EPG download OK"
+#~ msgstr "EPG atsisiųstas"
+
+#~ msgid "End update"
+#~ msgstr "Baigti atnaujinimą"
+
+#, python-format
+#~ msgid "Error trying to fetch: %s"
+#~ msgstr "Klaida bandant gauti: %s"
+
+#, python-format
+#~ msgid "Failed to update timer '%s"
+#~ msgstr "Nepavyko atnaujinti laikmačio %s"
+
+#~ msgid "Greek (Modern)"
+#~ msgstr "Graikų (modernus)"
+
+#~ msgid "IceTV started"
+#~ msgstr "IceTV prasidėjo"
+
+#~ msgid "Login OK"
+#~ msgstr "Prisijungti pavyko"
+
+#~ msgid "No EPG updates"
+#~ msgstr "Nėra EPG atnaujinimų"
+
+#~ msgid "No token, requesting password..."
+#~ msgstr "Nėra žetono, prašoma slaptažodžio..."
+
+#~ msgid ""
+#~ "Some FullHD-Icons are missing.\n"
+#~ "Using HD-Icons!"
+#~ msgstr ""
+#~ "Trūksta kai kurių Pilnai HD piktogramų.\n"
+#~ "Naudojamos HD piktogramos!"
+
+#~ msgid "Start update"
+#~ msgstr "Pradėti atnaujinimą"
+
+#, python-format
+#~ msgid "Timer '%s' conflicts with %s"
+#~ msgstr "Laikmatis '%s' nesuderinamas su %s"
+
+#, python-format
+#~ msgid "Timer '%s' created OK"
+#~ msgstr "Laikmatis '%s' sukurtas gerai"
+
+#, python-format
+#~ msgid "Timer '%s' has no event id; not sent to IceTV"
+#~ msgstr "Laikmatis '%s' neturi įvykio ID; neišsiųstas į IceTV"
+
+#, python-format
+#~ msgid "Timer '%s' has no event id; update not sent to IceTV"
+#~ msgstr "Laikmatis '%s' neturi įvykio ID; atnaujinimas nebuvo išsiųstas į IceTV"
+
+#, python-format
+#~ msgid "Timer '%s' updated OK"
+#~ msgstr "Laikmatis '%s' atnaujintas"
+
+#~ msgid "Timer deleted OK"
+#~ msgstr "Laikmatis ištrintas gerai"
+
+#~ msgid "Timers updated OK"
+#~ msgstr "Laikmačiai atnaujinti gerai"
+
+#~ msgid "Update timer details from EPG '"
+#~ msgstr "Atnaujinti informaciją apie laikmatį iš EPG '"
 
 #~ msgid ""
 #~ "\n"

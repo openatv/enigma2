@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-22 18:16+0000\n"
+"POT-Creation-Date: 2019-12-30 14:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3322,10 +3322,13 @@ msgstr ""
 msgid "Can not download timers"
 msgstr ""
 
+msgid "Can not post PVR log information"
+msgstr ""
+
 msgid "Can not post scan information"
 msgstr ""
 
-msgid "Can not proceed - you need to login first"
+msgid "Can not retrieve IceTV settings"
 msgstr ""
 
 msgid "Can not retrieve channel map"
@@ -4115,10 +4118,6 @@ msgstr ""
 
 #, python-format
 msgid "Could not save configfile %s!"
-msgstr ""
-
-#, python-format
-msgid "Couldn't get IceTV timer id for timer '%s'"
 msgstr ""
 
 msgid "Country"
@@ -5195,9 +5194,6 @@ msgstr ""
 msgid "EPG Setup"
 msgstr ""
 
-msgid "EPG download OK"
-msgstr ""
-
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -5421,9 +5417,6 @@ msgstr ""
 msgid "End time"
 msgstr ""
 
-msgid "End update"
-msgstr ""
-
 msgid "Energie"
 msgstr ""
 
@@ -5542,17 +5535,22 @@ msgid "Error code"
 msgstr ""
 
 msgid ""
-"Error creating FullHD-Skin.\n"
+"Error creating EHD-Skin.\n"
 "Using HD-Skin!"
 msgstr ""
 
 msgid ""
-"Error creating FullHD-Skin. Icon package download not available.\n"
+"Error creating EHD-Skin. Icon package download not available.\n"
 "Using HD-Skin!"
 msgstr ""
 
 msgid ""
-"Error creating FullHD-Skin. Not enough flash memory free.\n"
+"Error creating EHD-Skin. Not enough flash memory free.\n"
+"Using HD-Skin!"
+msgstr ""
+
+msgid ""
+"Error creating EHD-Skin. Some EHD-Icons are missing.\n"
 "Using HD-Skin!"
 msgstr ""
 
@@ -5611,10 +5609,6 @@ msgstr ""
 msgid ""
 "Error renaming %s to %s:\n"
 "%s"
-msgstr ""
-
-#, python-format
-msgid "Error trying to fetch: %s"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -5898,10 +5892,6 @@ msgid "Fahrenheit"
 msgstr ""
 
 msgid "Failed"
-msgstr ""
-
-#, python-format
-msgid "Failed to update timer '%s"
 msgstr ""
 
 msgid "Failed to write /tmp/positionersetup.log: "
@@ -6230,6 +6220,9 @@ msgstr ""
 msgid "Frequency steps"
 msgstr ""
 
+msgid "Frequency: "
+msgstr ""
+
 msgid "Fri"
 msgstr ""
 
@@ -6506,9 +6499,6 @@ msgstr ""
 msgid "Greek"
 msgstr ""
 
-msgid "Greek (Modern)"
-msgstr ""
-
 msgid "Green"
 msgstr ""
 
@@ -6557,6 +6547,9 @@ msgstr ""
 msgid "Guyana"
 msgstr ""
 
+msgid "H7/H9/H9COMBO/H10 new Model"
+msgstr ""
+
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
 
@@ -6581,7 +6574,7 @@ msgstr ""
 msgid "HD2400"
 msgstr ""
 
-msgid "HD60/HD61"
+msgid "HD60"
 msgstr ""
 
 msgid "HDMI"
@@ -6897,9 +6890,6 @@ msgid "IceTV enabled"
 msgstr ""
 
 msgid "IceTV setup wizard"
-msgstr ""
-
-msgid "IceTV started"
 msgstr ""
 
 msgid "IceTV update completed OK"
@@ -7793,9 +7783,6 @@ msgid "LogManager"
 msgstr ""
 
 msgid "Login"
-msgstr ""
-
-msgid "Login OK"
 msgstr ""
 
 msgid "Login failure"
@@ -8706,9 +8693,6 @@ msgstr ""
 msgid "No Devices Found !!"
 msgstr ""
 
-msgid "No EPG updates"
-msgstr ""
-
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
@@ -8837,9 +8821,6 @@ msgstr ""
 msgid "No to all"
 msgstr ""
 
-msgid "No token, requesting password..."
-msgstr ""
-
 msgid "No transparency"
 msgstr ""
 
@@ -8867,7 +8848,7 @@ msgstr ""
 msgid "No updates available. Please try again later."
 msgstr ""
 
-msgid "No valid region details were foind"
+msgid "No valid region details were found"
 msgstr ""
 
 #, python-format
@@ -10222,7 +10203,7 @@ msgstr ""
 msgid "Protect timer menu"
 msgstr ""
 
-msgid "Protek 4K UHD"
+msgid "Protek 4K UHD/HD61"
 msgstr ""
 
 msgid "Protocol"
@@ -12781,11 +12762,6 @@ msgid "Somalia"
 msgstr ""
 
 msgid ""
-"Some FullHD-Icons are missing.\n"
-"Using HD-Icons!"
-msgstr ""
-
-msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"
 msgstr ""
@@ -12980,9 +12956,6 @@ msgid "Start time"
 msgstr ""
 
 msgid "Start timeshift"
-msgstr ""
-
-msgid "Start update"
 msgstr ""
 
 msgid "Start/stop slide show"
@@ -14088,33 +14061,10 @@ msgstr ""
 msgid "Timer"
 msgstr ""
 
-#, python-format
-msgid "Timer '%s' conflicts with %s"
-msgstr ""
-
-#, python-format
-msgid "Timer '%s' created OK"
-msgstr ""
-
-#, python-format
-msgid "Timer '%s' has no event id; not sent to IceTV"
-msgstr ""
-
-#, python-format
-msgid "Timer '%s' has no event id; update not sent to IceTV"
-msgstr ""
-
-#, python-format
-msgid "Timer '%s' updated OK"
-msgstr ""
-
 msgid "Timer List"
 msgstr ""
 
 msgid "Timer action"
-msgstr ""
-
-msgid "Timer deleted OK"
 msgstr ""
 
 msgid "Timer entry"
@@ -14162,9 +14112,6 @@ msgid "Timer type"
 msgstr ""
 
 msgid "Timers"
-msgstr ""
-
-msgid "Timers updated OK"
 msgstr ""
 
 msgid "Timeshift"
@@ -14525,6 +14472,9 @@ msgstr ""
 msgid "UP80  (keymap.u80)"
 msgstr ""
 
+msgid "URL"
+msgstr ""
+
 msgid "USALS"
 msgstr ""
 
@@ -14742,9 +14692,6 @@ msgstr ""
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
-msgstr ""
-
-msgid "Update timer details from EPG '"
 msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
@@ -15986,7 +15933,10 @@ msgstr ""
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
 msgstr ""
 
-msgid "Zgemma H9/I55Plus"
+msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
+msgstr ""
+
+msgid "Zgemma H9/I55Plus old Model"
 msgstr ""
 
 msgid "Zgemma Star S/2S/H1/H2"
@@ -17841,105 +17791,6 @@ msgstr ""
 msgid "zapping"
 msgstr ""
 
-msgid "Basic settings"
-msgstr ""
-
-msgid "CIFS/Samba Setup"
-msgstr ""
-
-msgid "Convert ext3 filesystem to ext4"
-msgstr ""
-
-msgid "CronTimers"
-msgstr ""
-
-msgid "Decryption & Parental Control"
-msgstr ""
-
-msgid "Delete EPG"
-msgstr ""
-
-msgid "Device Setup"
-msgstr ""
-
-msgid "EPG"
-msgstr ""
-
-msgid "Extended GUI"
-msgstr ""
-
-msgid "HDMI CEC"
-msgstr ""
-
-msgid "HDMI-IN Recording settings"
-msgstr ""
-
-msgid "Input devices"
-msgstr ""
-
-msgid "Load EPG"
-msgstr ""
-
-msgid "Load/Save/Delete"
-msgstr ""
-
-msgid "Mainmenu"
-msgstr ""
-
-msgid "Manual scan"
-msgstr ""
-
-msgid "OSD Position"
-msgstr ""
-
-msgid "OpenVPN Setup"
-msgstr ""
-
-msgid "PowerTimers"
-msgstr ""
-
-msgid "Reception"
-msgstr ""
-
-msgid "Recordings & Timeshift"
-msgstr ""
-
-msgid "Recovery Mode"
-msgstr ""
-
-msgid "Remote Control Code"
-msgstr ""
-
-msgid "Restart Gui"
-msgstr ""
-
-msgid "STB Display"
-msgstr ""
-
-msgid "Save EPG"
-msgstr ""
-
-msgid "Shutdown"
-msgstr ""
-
-msgid "Standby / Restart"
-msgstr ""
-
-msgid "Timeshift settings"
-msgstr ""
-
-msgid "Usage & GUI"
-msgstr ""
-
-msgid "VCR scart"
-msgstr ""
-
-msgid "Video"
-msgstr ""
-
-msgid "WOL Standby"
-msgstr ""
-
 msgid "0"
 msgstr ""
 
@@ -18271,6 +18122,105 @@ msgid "Your %s %s does not have an internet connection"
 msgstr ""
 
 msgid "Your %s %s is not connected to the internet"
+msgstr ""
+
+msgid "Basic settings"
+msgstr ""
+
+msgid "CIFS/Samba Setup"
+msgstr ""
+
+msgid "Convert ext3 filesystem to ext4"
+msgstr ""
+
+msgid "CronTimers"
+msgstr ""
+
+msgid "Decryption & Parental Control"
+msgstr ""
+
+msgid "Delete EPG"
+msgstr ""
+
+msgid "Device Setup"
+msgstr ""
+
+msgid "EPG"
+msgstr ""
+
+msgid "Extended GUI"
+msgstr ""
+
+msgid "HDMI CEC"
+msgstr ""
+
+msgid "HDMI-IN Recording settings"
+msgstr ""
+
+msgid "Input devices"
+msgstr ""
+
+msgid "Load EPG"
+msgstr ""
+
+msgid "Load/Save/Delete"
+msgstr ""
+
+msgid "Mainmenu"
+msgstr ""
+
+msgid "Manual scan"
+msgstr ""
+
+msgid "OSD Position"
+msgstr ""
+
+msgid "OpenVPN Setup"
+msgstr ""
+
+msgid "PowerTimers"
+msgstr ""
+
+msgid "Reception"
+msgstr ""
+
+msgid "Recordings & Timeshift"
+msgstr ""
+
+msgid "Recovery Mode"
+msgstr ""
+
+msgid "Remote Control Code"
+msgstr ""
+
+msgid "Restart Gui"
+msgstr ""
+
+msgid "STB Display"
+msgstr ""
+
+msgid "Save EPG"
+msgstr ""
+
+msgid "Shutdown"
+msgstr ""
+
+msgid "Standby / Restart"
+msgstr ""
+
+msgid "Timeshift settings"
+msgstr ""
+
+msgid "Usage & GUI"
+msgstr ""
+
+msgid "VCR scart"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "WOL Standby"
 msgstr ""
 
 msgid "Auto Modes Selected."

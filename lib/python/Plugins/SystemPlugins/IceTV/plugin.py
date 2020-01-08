@@ -1592,7 +1592,7 @@ class IceTVLogin(Screen):
                 config.plugins.icetv.member.country.value = regions[0]["country_code_3"]
                 return True
             else:
-                self["instructions"].setText(_("No valid region details were foind"))
+                self["instructions"].setText(_("No valid region details were found"))
                 return False
         except (IOError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Can not download current region details"), ex)

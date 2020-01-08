@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from boxbranding import getMachineBrand, getMachineName
 
 from twisted.web import client
