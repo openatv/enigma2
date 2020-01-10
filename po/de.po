@@ -4382,7 +4382,7 @@ msgid "Configure an additional delay to improve subtitle synchronisation."
 msgstr "Eine zusätzliche Verzögerung einstellen, um die Synchronität der Untertitel zu verbessern."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
-msgstr "Legt die Standardeinstellung für neu angelegte Timer fest. Benötigt nach der Änderung einen Neustart."
+msgstr "Legt die Voreinstellung für neu angelegte Timer im Menü 'Timereintrag' fest. Benötigt nach einer Änderung einen Neustart."
 
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
 msgstr "Bestimmt, wie lange EPG-Daten aus der Vergangenheit erhalten bleiben. Nützlich, wenn Sie Informationen über eine gerade beendete oder verspätete Sendung brauchen."
@@ -5397,10 +5397,10 @@ msgid "Default  (keymap.xml)"
 msgstr "Standard ('keymap.xml')"
 
 msgid "Default 'After event' *"
-msgstr "Standard 'Nach der Aufnahme' *"
+msgstr "Voreinstellung für 'Nach der Aufnahme' *"
 
 msgid "Default 'Timer type' *"
-msgstr "Standard 'Timerart' *"
+msgstr "Voreinstellung für 'Timerart' *"
 
 #
 msgid "Default (Instant Record)"
@@ -5841,7 +5841,7 @@ msgstr "16:9-Inhalt anzeigen als"
 
 #
 msgid "Display 4:3 content as"
-msgstr "4:3-Inhalt anzeigen als"
+msgstr "4:3 Inhalt anzeigen als"
 
 #
 msgid "Display >16:9 content as"
@@ -8221,16 +8221,16 @@ msgid "Idle Time: "
 msgstr "Leerlauf-Dauer: "
 
 msgid "If 'never', will force restart despite that after 100 crashes."
-msgstr "Wenn 'niemals' eingestellt ist, wird trotzdem nach 100 Abstürzen ein GUI-Neustart erzwungen."
+msgstr "Auch bei 'niemals' wird trotzdem nach 100 Abstürzen ein GUI-Neustart erzwungen."
 
 msgid "If 'never', will write crash log despite that for the first crash."
-msgstr "Wenn 'niemals' eingestellt ist, wird trotzdem beim ersten Absturz ein Crash-Log geschrieben."
+msgstr "Auch bei 'niemals' wird trotzdem beim ersten Absturz ein Crash-Log geschrieben."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Wenn eine Datei bearbeitet wird, kann man hier festlegen ob sich die Cursorposition am Anfang oder am Ende der Zeile befindet."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
-msgstr "Einstellen, wie die auszugebende Videoauflösung an die Auflösung des Videomaterials angepasst werden soll."
+msgstr "Einstellen, ob und wie die auszugebende Videoauflösung an die Auflösung des Videomaterials angepasst werden soll."
 
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Einstellen, ob das Video immer de-interlaced werden soll."
@@ -13350,7 +13350,7 @@ msgstr "Satelliten"
 
 #
 msgid "Saturation"
-msgstr "Sättigung"
+msgstr "Farbsättigung"
 
 #
 msgid "Saturday"
@@ -13425,11 +13425,11 @@ msgstr "Speichere Timeshift als Film. Das kann eine Weile dauern!"
 
 #
 msgid "Scaler sharpness"
-msgstr "Scaler-Schärfe"
+msgstr "Skalierschärfe"
 
 # VideoEnhancement
 msgid "Scaler vertical dejagging"
-msgstr "Scaler vertikale Kantenglättung"
+msgstr "Vertikale Kantenglättung"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Scaling mode"
@@ -14352,7 +14352,7 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Wählen Sie die Durchlaufgeschwindigkeit für Text im Display."
 
 msgid "Set the time before checking video source for resolution information."
-msgstr "Hiermit können Sie eine Verzögerungszeit einstellen, bevor die automatische Auflösung die Videoquelle prüft."
+msgstr "Einstellen der Verzögerungszeit, bevor die automatische Auflösung die Videoquelle prüft."
 
 msgid "Set the time the timer must start."
 msgstr "Hier können Sie die Startzeit der Aufnahme ändern."
@@ -16943,7 +16943,7 @@ msgid "This option allows to reduce the block-noise in the picture. Obviously th
 msgstr "Block-Rauschen im Bild kann reduziert werden, was aber auf Kosten der Bildschärfe geht."
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
-msgstr "Den Wert für den dynamischen Kontrast des Bildes setzen."
+msgstr "Den dynamischen Kontrast des Bildes einstellen."
 
 msgid "This option allows you can config the Colordepth for UHD"
 msgstr "Stellen Sie die Farbtiefe im UHD Modus ein."
@@ -16992,11 +16992,11 @@ msgstr "Die Hintergrundfarbe von transparenten Picons festlegen."
 
 # VideoEnhancement
 msgid "This option allows you enable smoothing filter to control the dithering process."
-msgstr "Diese Option aktiviert den Glättungsfilter für das Dithering-Verfahren."
+msgstr "Den Glättungsfilter für das Dithering-Verfahren aktivieren oder nicht."
 
 # VideoEnhancement
 msgid "This option allows you enable the vertical scaler dejagging."
-msgstr "Mit dieser Option können Sie die vertikale Kantenglättung aktivieren."
+msgstr "Die vertikale Kantenglättung aktivieren oder nicht."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Das Aussehen vom EPG (Text oder Grafik) einstellen."
@@ -17009,10 +17009,10 @@ msgid "This option allows you to always use e.g. 1080p50 for TV/.ts, and 1080p24
 msgstr "Mit dieser Option wird, je nach Auswahl, z.B. 1080p50 für TV und Aufnahmen und 1080p24/p50/p60 für Videodateien benutzt."
 
 msgid "This option allows you to boost the blue tones in the picture."
-msgstr "Diese Option erlaubt es, den Blauanteil des Bildes zu verstärken."
+msgstr "Den Blauanteil des Bildes verstärken."
 
 msgid "This option allows you to boost the green tones in the picture."
-msgstr "Diese Option erlaubt es, den Grünanteil des Bildes zu verstärken."
+msgstr "Den Grünanteil des Bildes verstärken."
 
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Bei 'Ja' wird die HDMI-EDID-Überprüfung übersprungen."
@@ -17086,7 +17086,7 @@ msgid "This option allows you to use all HDMI Modes"
 msgstr "Bei 'Ja' können Sie alle HDMI-Modi verwenden."
 
 msgid "This option allows you to view the old and new settings side by side."
-msgstr "Diese Option erlaubt es, das Bild mit den alten und neuen Werten nebeneinander anzeigen zu lassen."
+msgstr "Einstellen, ob und wie das Bild mit den alten und neuen Werten nebeneinander anzeigt werden soll."
 
 msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Diese Option konfiguriert die allgemeine Audio-Verzögerung für Ihre Bluetooth-Lautsprecher."
@@ -17127,35 +17127,35 @@ msgid "This option moves the PVR status from the separate window into the MovieP
 msgstr "Bei 'Ja' wird der PVR Status aus einem separaten Fenster in die Infoleiste des Medienplayers verschoben."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
-msgstr "Diese Option bestimmt die Stufe der Unterdrückung von Mosquito Rauschen. Mosquito Rauschen ist eine zufällige Abtaststörung durch zu hohe Kompression. Es geht auf Kosten von Bildeinzelheiten."
+msgstr "Die Stufe der Unterdrückung von Mosquito Rauschen einstellen. Mosquito Rauschen ist eine zufällige Abtaststörung durch zu hohe Kompression. Es geht auf Kosten von Bildeinzelheiten."
 
 msgid "This option sets  the picture contrast."
-msgstr "Diese Option bestimmt den Bildkontrast."
+msgstr "Den Bildkontrast einstellen."
 
 msgid "This option sets the picture brightness."
-msgstr "Diese Option bestimmt die Bildhelligkeit."
+msgstr "Die Bildhelligkeit einstellen."
 
 # VideoEnhancement
 msgid "This option sets the picture color space."
-msgstr "Mit dieser Option kann der Farbraum eingestellt werden."
+msgstr "Den Farbraum einstellen."
 
 msgid "This option sets the picture flesh tones."
-msgstr "Diese Option bestimmt das Aussehen von Fleischtönen."
+msgstr "Das Aussehen von Fleischtönen einstellen."
 
 msgid "This option sets the picture hue."
-msgstr "Diese Option bestimmt den Bildfarbton."
+msgstr "Den Bildfarbton einstellen."
 
 msgid "This option sets the picture saturation."
-msgstr "Diese Option bestimmt die Farbsättigung."
+msgstr "Die Farbsättigung einstellen."
 
 msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
-msgstr "Diese Option bestimmt die Skalierschärfe die benutzt wird, wenn von 4:3 auf 16:9 skaliert wird."
+msgstr "Einstellen der Skalierschärfe die benutzt wird, wenn von 4:3 auf 16:9 skaliert wird."
 
 msgid "This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."
-msgstr "Diese Option bestimmt die Unterdrückung falscher, digitaler Umrisse. Diese Fehler entstehen durch zu wenige diskrete Werte."
+msgstr "Die Unterdrückung falscher, digitaler Umrisse einstellen. Diese Fehler entstehen durch zu wenige diskrete Werte."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
-msgstr "Diese Option bestimmt die Scalerschärfe. Dieser Punkt wirkt sich aus, wenn ein Bild vergrößert werden muss."
+msgstr "Einstellen der Skalierschärfe. Dieser Punkt wirkt sich aus, wenn ein Bild vergrößert werden muss."
 
 #, python-format
 msgid ""
@@ -19164,10 +19164,10 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Wenn aktiviert, wird Live-TV gezeigt wenn der Film beendet wurde."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 16:9 hat, stellen Sie ein, ob das Bild skaliert oder gestreckt werden soll."
+msgstr "Wenn der Bildinhalt ein Seitenverhältnis größer als 16:9 hat, stellen Sie ein, ob und wie das Bild skaliert oder gestreckt werden soll. Standard ist 'Letterbox'."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 4:3 hat, stellen Sie ein, ob das Bild skaliert oder gestreckt werden soll."
+msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 4:3 hat, stellen Sie ein, ob und wie das Bild skaliert oder gestreckt werden soll. Standard ist 'Pillarbox'"
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Wenn ein Sender eingestellt ist, durchsucht die %s %s den Transponder nach Änderungen und speichert diese. Nur 'Ja' wählen, wenn Sie sich über die Auswirkungen bewusst sind."
