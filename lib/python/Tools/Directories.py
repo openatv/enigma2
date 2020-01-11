@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import errno
 import os
 
 from enigma import eEnv, getDesktop
@@ -83,8 +84,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 	if flag == PATH_CREATE and not pathExists(path):
 		try:
 			os.makedirs(path)
-		except OSError, e:
-			print "[Directories] Error %d: Couldn't create directory '%s' (%s)" % (e.errno, path, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Couldn't create directory '%s' (%s)" % (err.errno, path, err.strerror)
 			return None
 	# Remove any suffix data and restore it at the end.
 	suffix = None
@@ -194,8 +195,8 @@ def bestRecordingLocation(candidates):
 				if size > biggest:
 					biggest = size
 					path = candidate[1]
-		except Exception, e:
-			print "[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (e.errno, candidate[1], os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (err.errno, candidate[1], err.strerror)
 	return path
 
 def defaultRecordingLocation(candidate=None):
@@ -326,8 +327,8 @@ def copyfile(src, dst):
 			if not buf:
 				break
 			f2.write(buf)
-	except OSError, e:
-		print "[Directories] Error %d: Copying file '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+	except (IOError, OSError) as err:
+		print "[Directories] Error %d: Copying file '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 		status = -1
 	if f1 is not None:
 		f1.close()
@@ -337,14 +338,14 @@ def copyfile(src, dst):
 		st = os.stat(src)
 		try:
 			os.chmod(dst, S_IMODE(st.st_mode))
-		except OSError, e:
-			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 		try:
 			os.utime(dst, (st.st_atime, st.st_mtime))
-		except OSError, e:
-			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
-	except OSError, e:
-		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+	except (IOError, OSError) as err:
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 	return status
 
 def copytree(src, dst, symlinks=False):
@@ -366,20 +367,20 @@ def copytree(src, dst, symlinks=False):
 				copytree(srcname, dstname, symlinks)
 			else:
 				copyfile(srcname, dstname)
-		except OSError, e:
-			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (e.errno, srcname, dstname, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (err.errno, srcname, dstname, err.strerror)
 	try:
 		st = os.stat(src)
 		try:
 			os.chmod(dst, S_IMODE(st.st_mode))
-		except OSError, e:
-			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 		try:
 			os.utime(dst, (st.st_atime, st.st_mtime))
-		except OSError, e:
-			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
-	except OSError, e:
-		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+	except (IOError, OSError) as err:
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)
@@ -391,23 +392,23 @@ def moveFiles(fileList):
 		for item in fileList:
 			os.rename(item[0], item[1])
 			movedList.append(item)
-	except OSError, e:
-		if e.errno == 18:  # errno.EXDEV - Invalid cross-device link
+	except (IOError, OSError) as err:
+		if err.errno == errno.EXDEV:  # Invalid cross-device link
 			print "[Directories] Warning: Cannot rename across devices, trying slower move."
 			from Tools.CopyFiles import moveFiles as extMoveFiles  # OpenViX, OpenATV, Beyonwiz
 			# from Screens.CopyFiles import moveFiles as extMoveFiles  # OpenPLi
 			extMoveFiles(fileList, item[0])
 			print "[Directories] Moving files in background."
 		else:
-			print "[Directories] Error %d: Moving file '%s' to '%s'! (%s)" % (e.errno, item[0], item[1], os.strerror(e.errno))
+			print "[Directories] Error %d: Moving file '%s' to '%s'! (%s)" % (err.errno, item[0], item[1], err.strerror)
 			errorFlag = True
 	if errorFlag:
 		print "[Directories] Reversing renamed files due to error."
 		for item in movedList:
 			try:
 				os.rename(item[1], item[0])
-			except OSError, e:
-				print "[Directories] Error %d: Renaming '%s' to '%s'! (%s)" % (e.errno, item[1], item[0], os.strerror(e.errno))
+			except (IOError, OSError) as err:
+				print "[Directories] Error %d: Renaming '%s' to '%s'! (%s)" % (err.errno, item[1], item[0], err.strerror)
 				print "[Directories] Failed to undo move:", item
 
 def getSize(path, pattern=".*"):
