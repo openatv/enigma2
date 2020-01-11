@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import errno
+import inspect
 import os
 
 from enigma import eEnv, getDesktop
@@ -22,6 +23,8 @@ SCOPE_PLUGINS = 9
 SCOPE_MEDIA = 10
 SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
+SCOPE_CURRENT_PLUGIN_ABSOLUTE = 13
+SCOPE_CURRENT_PLUGIN_RELATIVE = 14
 
 SCOPE_METADIR = 16
 SCOPE_CURRENT_PLUGIN = 17
@@ -61,7 +64,9 @@ defaultPaths = {
 	SCOPE_AUTORECORD: ("/media/hdd/movie/", PATH_DONTCREATE),
 	SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
 	SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6", PATH_DONTCREATE),
-	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE)
+	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
+	SCOPE_CURRENT_PLUGIN_ABSOLUTE: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_DONTCREATE),
+	SCOPE_CURRENT_PLUGIN_RELATIVE: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_DONTCREATE)
 }
 
 def resolveFilename(scope, base="", path_prefix=None):
@@ -103,6 +108,15 @@ def resolveFilename(scope, base="", path_prefix=None):
 			from Components.config import config
 			skin = os.path.dirname(config.skin.primary_skin.value)
 			path = os.path.join(path, skin)
+		elif scope in (SCOPE_CURRENT_PLUGIN_ABSOLUTE, SCOPE_CURRENT_PLUGIN_RELATIVE):
+			callingCode = os.path.normpath(inspect.stack()[1][1])
+			plugins = os.path.normpath(defaultPaths[SCOPE_PLUGINS][0])
+			path = None
+			if comparePath(plugins, callingCode):
+				pluginCode = callingCode[len(plugins) + 1:].split(os.sep)
+				if len(pluginCode) > 2:
+					relative = "%s%s%s" % (pluginCode[0], os.sep, pluginCode[1])
+					path = os.path.join(plugins, relative)
 	elif scope in (SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN):
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
@@ -170,6 +184,15 @@ def resolveFilename(scope, base="", path_prefix=None):
 		file = os.path.join(defaultPaths[SCOPE_PLUGINS][0], base)
 		if pathExists(file):
 			path = file
+	elif scope in (SCOPE_CURRENT_PLUGIN_ABSOLUTE, SCOPE_CURRENT_PLUGIN_RELATIVE):
+		callingCode = os.path.normpath(inspect.stack()[1][1])
+		plugins = os.path.normpath(defaultPaths[SCOPE_PLUGINS][0])
+		path = None
+		if comparePath(plugins, callingCode):
+			pluginCode = callingCode[len(plugins) + 1:].split(os.sep)
+			if len(pluginCode) > 2:
+				relative = os.path.join("%s%s%s" % (pluginCode[0], os.sep, pluginCode[1]), base)
+				path = os.path.join(plugins, relative)
 	else:
 		path, flags = defaultPaths.get(scope)
 		path = os.path.join(path, base)
@@ -177,10 +200,24 @@ def resolveFilename(scope, base="", path_prefix=None):
 	# If the path is a directory then ensure that it ends with a "/".
 	if os.path.isdir(path) and not path.endswith("/"):
 		path += "/"
+	if scope == SCOPE_CURRENT_PLUGIN_RELATIVE:
+		path = path[len(plugins) + 1:]
 	# If a suffix was supplier restore it.
 	if suffix is not None:
 		path = "%s:%s" % (path, suffix)
 	return path
+
+def comparePath(leftPath, rightPath):
+	if leftPath.endswith(os.sep):
+		leftPath = leftPath[:-1]
+	if rightPath.endswith(os.sep):
+		rightPath = rightPath[:-1]
+	left = leftPath.split(os.sep)
+	right = rightPath.split(os.sep)
+	for segment in range(len(left)):
+		if left[segment] != right[segment]:
+			return False
+	return True
 
 def bestRecordingLocation(candidates):
 	path = ""
