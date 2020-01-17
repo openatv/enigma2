@@ -213,18 +213,21 @@ msgid ""
 "optional parameter:\n"
 "%s"
 msgstr ""
+"\n"
+"opcjonalny parametr:\n"	
+"%s"
 
 msgid " "
 msgstr ""
 
 msgid "     no space left on back-up device"
-msgstr ""
+msgstr "     brak miejsca na urządzeniu do kopii zapasowej"
 
 msgid "     no writing permission on back-up device"
-msgstr ""
+msgstr "     brak uprawnień do zapisu kopii zapasowej na urządzeniu"
 
 msgid "     wrong back-up destination "
-msgstr ""
+msgstr "     nieprawidłowe miejsce na kopię zapasową "
 
 #, python-format
 msgid "   (%s MHz)"
@@ -257,17 +260,17 @@ msgstr " Klawisz menu: Wybierz czterokanałowy kanał"
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Czerwony : Pokaż/Ukryj nazwę kanału"
 
-#, fuzzy, python-format
+#, python-format
 msgid " ('%s') ends successfully."
-msgstr "Usunięty pomyślnie."
+msgstr " ('%s') zakończono pomyślnie."
 
-#, fuzzy, python-format
+#, python-format
 msgid " ('%s') ends with error messages."
-msgstr "Ukryj wszelki zapis komunikatu o błędach."
+msgstr " ('%s') zakończono z komunikatami o błędach."
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
-msgstr ""
+msgstr " ('%s') zakończono z numerem błędu [%d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -303,16 +306,16 @@ msgstr " (niższy niż jakikolwiek automatyczny)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
-msgstr ""
+msgstr " - %d element istnieje! Nadpisuję"
 
 msgid " - 1 element exist! Overwrite"
-msgstr ""
+msgstr " - 1 element istnieje! Nadpisuję"
 
 msgid " - file exist! Overwrite"
-msgstr ""
+msgstr " - plik istnieje! Nadpisuję"
 
 msgid " - folder exist! Overwrite"
-msgstr ""
+msgstr " - folder istnieje! Nadpisuję"
 
 msgid " <No Channel>"
 msgstr " <Bez kanału>"
@@ -953,9 +956,9 @@ msgstr[0] "%d Minuta"
 msgstr[1] "%d Minuty"
 msgstr[2] "%d Minut"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d Mins"
-msgstr "Minut"
+msgstr "%d Minut"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -991,9 +994,9 @@ msgstr[2] "%d minut"
 msgid "%d minutes"
 msgstr "%d minut"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d ms"
-msgstr "%d minut"
+msgstr ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1165,7 +1168,7 @@ msgstr "%s - Ustawienia"
 
 #, python-format
 msgid "%s - extraction errors."
-msgstr ""
+msgstr "%s - błędów wyodrębniania."
 
 #, python-format
 msgid "%s Setup"
@@ -1177,7 +1180,7 @@ msgstr "%s dodatkowe ekrany"
 
 #, python-format
 msgid "%s build date %s"
-msgstr ""
+msgstr "%s data kompilacji %s"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1186,13 +1189,13 @@ msgstr "%s nie jest już używany.Powinien być usunięty?"
 
 #, python-format
 msgid "%s is password protected."
-msgstr "%s jest chroniony hasłem"
+msgstr "%s jest chroniony hasłem."
 
 #, python-format
 msgid "%s not available."
 msgstr "%s nie dostępne."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s successfully extracted."
 msgstr "%s pomyślnie wyodrębniono."
 
@@ -1273,10 +1276,10 @@ msgstr "(Wszystkie czytniki)"
 
 #, python-format
 msgid "(%d jobs)"
-msgstr ""
+msgstr "(%d zadania)"
 
 msgid "(1 job)"
-msgstr ""
+msgstr "(1 zadanie)"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -2112,9 +2115,8 @@ msgstr "O Odbiorniku"
 msgid "About..."
 msgstr "Informacje..."
 
-#, fuzzy
 msgid "Accessed:"
-msgstr "Punkt dostępu:"
+msgstr "Połączono z:"
 
 msgid "Accesspoint:"
 msgstr "Punkt dostępu:"
@@ -2572,7 +2574,7 @@ msgid "Are you ready to run the script ?"
 msgstr "Czy jesteś gotowy,aby uruchomić skrypt?"
 
 msgid "Are you sure to cancel all changes?"
-msgstr "Czy na pewno chcesz anulować wszystkie zmiany"
+msgstr "Czy na pewno chcesz anulować wszystkie zmiany?"
 
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Czy na pewno chcesz anulować wszystkie cięcia i znaczniki?"
@@ -3006,12 +3008,12 @@ msgstr ""
 msgid "Back-up Tool for a %s\n"
 msgstr "Narzędzie do tworzenia kopii zapasowych %s\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Back-up Tool for an %s\n"
 msgstr "Narzędzie do tworzenia kopii zapasowych %s\n"
 
 msgid "Back/Recall"
-msgstr ""
+msgstr "Wstecz/Przywołaj"
 
 msgid "Background"
 msgstr "Tło"
@@ -3318,16 +3320,16 @@ msgid "Burkina Faso"
 msgstr "Burkina Faso"
 
 msgid "Burn Bludisc"
-msgstr ""
+msgstr "Nagraj Bludisc"
 
 msgid "Burn DVD"
 msgstr "Nagraj DVD"
 
 msgid "Burn existing image to medium"
-msgstr ""
+msgstr "Nagraj obecny image na nośnik"
 
 msgid "Burn to medium"
-msgstr ""
+msgstr "Nagraj na nośnik"
 
 msgid "Burundi"
 msgstr "Burundi"
@@ -3342,10 +3344,10 @@ msgid "Button Setup"
 msgstr "Konfiguracja Przycisków"
 
 msgid "ButtonSetup"
-msgstr ""
+msgstr "KonfigPrzycisków"
 
 msgid "By openATV Image Team"
-msgstr "Przez zespół openATV"
+msgstr "Wykonany przez zespół openATV"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Kontrolować Bypass HDMI EDID"
@@ -3623,7 +3625,7 @@ msgid "Cascade PiP"
 msgstr ""
 
 msgid "Caution update not yet tested !!"
-msgstr "Uwaga aktualizacja jeszcze nie testowana!!!"
+msgstr "Uwaga aktualizacja jeszcze nie testowana !!"
 
 msgid "Cayman Islands"
 msgstr "Kajmany"
@@ -3975,7 +3977,7 @@ msgid "Choose which tuner to configure."
 msgstr "Wybierz tuner do konfiguracji."
 
 msgid "Chose between record and ZAP."
-msgstr ""
+msgstr "Wybierz między nagrywaniem a przełączeniem kanału."
 
 msgid "Christmas Island"
 msgstr "Wyspa Bożego Narodzenia"
@@ -3999,7 +4001,7 @@ msgid "Cleaning Trashes"
 msgstr "Czyszczenie Kosza"
 
 msgid "Cleanup"
-msgstr "Oczyszczanie"
+msgstr "Wyczyść gotowe"
 
 msgid "Clear"
 msgstr "Wyczyść"
@@ -5463,7 +5465,7 @@ msgid "Directory long"
 msgstr ""
 
 msgid "Disable"
-msgstr "Wyłączone"
+msgstr "Wyłącz"
 
 msgid "Disable Animations"
 msgstr "Wyłącz Animacje"
@@ -5935,6 +5937,10 @@ msgid ""
 "PVR key : Input channel name\n"
 "Exit key : Finish channel edit"
 msgstr ""
+"przycisk EPG: Przełącz na listę kanałów\n"	
+"przycisk Ok: Usuń wybrany kanał\n"	
+"przycisk PVR: Wprowadź nazwę kanału\n"	
+"przycisk Exit: Zakończ edycję kanału"
 
 msgid ""
 "EPG key : Switch to quad PiP entry\n"
@@ -6046,7 +6052,7 @@ msgid "Electronic Program Guide"
 msgstr "Elektroniczny Przewodnik Programowy"
 
 msgid "Empty slot"
-msgstr ""
+msgstr "Pusty slot"
 
 msgid "Enable"
 msgstr "Włącz"
@@ -6275,7 +6281,6 @@ msgstr "Wprowadź, jeśli jesteś na północ lub południe od równika."
 msgid "Enter main menu..."
 msgstr "Wejdź do menu głównego..."
 
-#, fuzzy
 msgid "Enter multi-file selection mode"
 msgstr "Wejdź w tryb wyboru wielu plików"
 
@@ -6546,7 +6551,7 @@ msgid "Exit editor"
 msgstr "Wyjdź z edytora"
 
 msgid "Exit editor and write changes (if any)"
-msgstr ""
+msgstr "Wyjdź z edytora i zapisz zmiany (jeśli istnieją)"
 
 msgid "Exit input device selection."
 msgstr "Wyjdź z wyboru urządzenia wejściowego."
@@ -6573,7 +6578,7 @@ msgid "Exit network wizard"
 msgstr "Wyjście z konfiguracji sieci"
 
 msgid "Exit picture viewer"
-msgstr ""
+msgstr "Wyjście z przeglądarki zdjęć"
 
 msgid "Exit quad PiP"
 msgstr "Wyjście z quad PiP"
@@ -6588,7 +6593,7 @@ msgid "Experimental mode"
 msgstr "Tryb Eksperymentalny"
 
 msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
+msgstr "Eksperymentalne: ścisłe ograniczenie do preferowanych tunerów"
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Eksperymentalne: ścisłe ograniczenie do preferowanych tunerów do nagrań"
@@ -7091,10 +7096,10 @@ msgid "Frontprocessor version: %s"
 msgstr "Procesor Przedni-Wersja: %s"
 
 msgid "Full Image Backup "
-msgstr ""
+msgstr "Pełna kopia Image "
 
 msgid "Full Range RGB"
-msgstr ""
+msgstr "Pełen zakres RGB"
 
 #, python-format
 msgid "Full back-up on %s"
@@ -7161,9 +7166,8 @@ msgstr "Ogólne"
 msgid "General AC3 delay"
 msgstr "Ogólne opóźnienie AC3"
 
-#, fuzzy
 msgid "General BT Audio delay"
-msgstr "Ogólne opóźnienie AC3"
+msgstr "Ogólne opóźnienie BT audio"
 
 msgid "General PCM delay"
 msgstr "Ogólne opóźnienie PCM"
@@ -7525,9 +7529,8 @@ msgstr "Wybierz, co chcesz aktywować przyciskiem 'INFO'."
 msgid "Here you can specify additional files that should be added to the backup file."
 msgstr "Tutaj możesz określić dodatkowe pliki, które powinny zostać dodane do pliku kopii zapasowej."
 
-#, fuzzy
 msgid "Hidden / Blank"
-msgstr "Ukryj sieć"
+msgstr "Ukryty / Pusty"
 
 msgid "Hidden network"
 msgstr "Ukryj sieć"
@@ -7598,9 +7601,8 @@ msgstr "Stolica Apostolska"
 msgid "Home"
 msgstr "Domowy"
 
-#, fuzzy
 msgid "Home long"
-msgstr "Długość czasu"
+msgstr ""
 
 msgid "Homepage"
 msgstr "Strona główna"
@@ -8029,9 +8031,8 @@ msgstr "Pasek informacyjny-wygaszać z prędkością"
 msgid "Infobar frontend data source"
 msgstr "Informacje źródła danych paska informacyjnego"
 
-#, fuzzy
 msgid "Infobar:"
-msgstr "Pasek info"
+msgstr "Pasek info:"
 
 msgid "InfobarEPG settings"
 msgstr "Ust. Infobara EPG"
@@ -8314,7 +8315,7 @@ msgid "It is not possible to run '%s' on <List of Storage Devices>"
 msgstr ""
 
 msgid "It's not possible to rename the filesystem root."
-msgstr ""
+msgstr "Nie można zmienić nazwy katalogu głównego systemu plików (root)"
 
 msgid "Italian"
 msgstr "Włoski"
@@ -8720,7 +8721,6 @@ msgstr "Lokalny odbiornik"
 msgid "Local network"
 msgstr "Lokalna Sieć"
 
-#, fuzzy
 msgid "Locale"
 msgstr "Lokalny"
 
@@ -9627,7 +9627,6 @@ msgstr "Aktualności Sprawy Bieżące"
 msgid "Next"
 msgstr "Następny"
 
-#, fuzzy
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Następny"
@@ -9729,9 +9728,8 @@ msgstr "Nie znaleziono informacji o wydarzeniu, nagrywanie na czas nieokreślony
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "'Przewijanie' nie dostępne (jeszcze)... można użyć przycisków numerycznych aby przeskoczyć w przód/tył!"
 
-#, fuzzy
 msgid "No files found."
-msgstr "nie znaleziono image"
+msgstr "Nie znaleziono plików."
 
 msgid "No free index available"
 msgstr "Brak wolnego indexu"
@@ -9740,11 +9738,10 @@ msgid "No free tuner!"
 msgstr "Brak wolnego tunera!"
 
 msgid "No hash calculations configured"
-msgstr ""
+msgstr "Nie skonfigurowano obliczeń skrótu"
 
-#, fuzzy
 msgid "No images found"
-msgstr "nie znaleziono image"
+msgstr "Nie znaleziono image"
 
 msgid "No matching place names found"
 msgstr "Nie znaleziono pasujących nazw miejsc"
@@ -9819,14 +9816,14 @@ msgstr ""
 "Skonfiguruj tuner przed rozpoczęciem skanowania."
 
 msgid "No update required!"
-msgstr ""
+msgstr "Nie wymaga aktualizacji!"
 
 msgid "No updates available. Please try again later."
 msgstr "Brak dostępnych aktualizacji. Spróbuj ponownie później."
 
 #, python-format
 msgid "No viewer installed for this file type: %s"
-msgstr ""
+msgstr "Nie zainstalowano przeglądarki dla tego typu pliku: %s"
 
 msgid "No wireless networks found! Searching..."
 msgstr "Nie znaleziono sieci bezprzewodowych! Wyszukiwanie ..."
@@ -9920,7 +9917,7 @@ msgid "Not Shown"
 msgstr "Nie Pokazywać"
 
 msgid "Not allowed with folders"
-msgstr ""
+msgstr "Niedozwolone w przypadku folderów"
 
 msgid "Not associated"
 msgstr "Nie związane"
@@ -10734,9 +10731,8 @@ msgstr "Proszę wpisać nazwę pliku (puste = użyj bieżącej daty)"
 msgid "Please enter name of the new directory"
 msgstr "Proszę wpisać nową nazwę katalogu"
 
-#, fuzzy
 msgid "Please enter name of the new symlink"
-msgstr "Proszę wpisać nową nazwę katalogu"
+msgstr "Proszę wpisać nową nazwę symlinka"
 
 msgid "Please enter new description:"
 msgstr "Proszę wprowadzić nowy opis:"
@@ -10744,21 +10740,18 @@ msgstr "Proszę wprowadzić nowy opis:"
 msgid "Please enter new name:"
 msgstr "Proszę wprowadzić nową nazwę:"
 
-#, fuzzy
 msgid "Please enter password"
-msgstr "Proszę wprowadzić nową nazwę:"
+msgstr "Proszę wprowadzić hasło"
 
 msgid "Please enter search string for your location"
-msgstr ""
+msgstr "Wprowadź ciąg wyszukiwania dla swojej lokalizacji"
 
 msgid "Please enter the correct pin code"
 msgstr "Proszę wpisać poprawny kod PIN"
 
-#, fuzzy
 msgid "Please enter the new directory name"
-msgstr "Proszę wpisać nową nazwę katalogu"
+msgstr "Wprowadź nową nazwę katalogu"
 
-#, fuzzy
 msgid "Please enter the new file name"
 msgstr "Proszę wpisać nową nazwę pliku"
 
@@ -12714,9 +12707,8 @@ msgstr "Wybierz film"
 msgid "Select a network adapter"
 msgstr "Wybierz kartę sieciową"
 
-#, fuzzy
 msgid "Select a path"
-msgstr "Wybierz tuner"
+msgstr "Wybierz ścieżkę"
 
 msgid "Select a script to run:"
 msgstr "Wybierz skrypt do uruchomienia:"
