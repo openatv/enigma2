@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #
 #  Coded by Vali, updated by Mirakels for openpli
 #
@@ -8,7 +9,7 @@ from Components.Element import cached
 from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
-from Poll import Poll
+from .Poll import Poll
 
 class pliExpertInfo(Poll, Converter, object):
 	SMART_LABEL = 0

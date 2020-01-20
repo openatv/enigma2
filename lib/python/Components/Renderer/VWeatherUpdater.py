@@ -2,7 +2,8 @@
 
 # keep it for compatibility, please note this renderer is deprecated --> remove it from your skins
 
-from Renderer import Renderer
+from __future__ import absolute_import
+from .Renderer import Renderer
 from enigma import eLabel
 
 class VWeatherUpdater(Renderer):

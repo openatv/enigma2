@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from os import path as os_path
 
 from Plugins.Plugin import PluginDescriptor
@@ -10,7 +12,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-import VideoEnhancement
+from . import VideoEnhancement
 
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
@@ -159,7 +161,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print("not confirmed")
 		else:
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
@@ -182,7 +184,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyYellowConfirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print("not confirmed")
 		else:
 			if self.contrastEntry is not None:
 				config.pep.contrast.setValue(self.oldContrast)
@@ -225,7 +227,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyBlueConfirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print("not confirmed")
 		else:
 			if self.contrastEntry is not None:
 				config.pep.contrast.setValue(128)
@@ -353,7 +355,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 			else:
 				self.isStepSlider = False
 		except AttributeError:
-			print "no max value"
+			print("no max value")
 
 	def keyLeft(self):
 		if self.isStepSlider is True:

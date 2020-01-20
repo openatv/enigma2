@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eListboxPythonMultiContent
 from Components.Converter.StringList import StringList
 
@@ -20,5 +21,5 @@ class StaticMultiList(StringList):
 		if self.source:
 			self.content.setList(self.source.list)
 
-		print "downstream_elements:", self.downstream_elements
+		print("downstream_elements:", self.downstream_elements)
 		self.downstream_elements.changed(what)

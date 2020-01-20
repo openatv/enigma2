@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from enigma import eTimer
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
@@ -336,7 +337,7 @@ class HddMount(Screen):
 			if self.mountp.find('/media/hdd') < 0:
 				self.Console.ePopen('umount ' + self.device)
 				if not path.exists('/media/hdd'):
-					mkdir('/media/hdd', 0755)
+					mkdir('/media/hdd', 0o755)
 				else:
 					self.Console.ePopen('umount /media/hdd')
 				self.Console.ePopen('mount ' + self.device + ' /media/hdd')
@@ -353,7 +354,7 @@ class HddMount(Screen):
 		self.device_uuid_tmp = self.device_uuid_tmp.split()[0]
 		self.device_uuid = 'UUID=' + self.device_uuid_tmp
 		if not path.exists(self.mountp):
-			mkdir(self.mountp, 0755)
+			mkdir(self.mountp, 0o755)
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if '/media/hdd' not in l])
 		rename('/etc/fstab.tmp','/etc/fstab')
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
@@ -525,7 +526,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
-		print "test:" 
+		print("test:") 
 		if devicetype.find('/devices/pci') != -1 or devicetype.find('ahci') != -1:
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
@@ -651,7 +652,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			self.device_type = 'auto'
 
 		if not path.exists(self.mountp):
-			mkdir(self.mountp, 0755)
+			mkdir(self.mountp, 0o755)
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
 		rename('/etc/fstab.tmp','/etc/fstab')
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])

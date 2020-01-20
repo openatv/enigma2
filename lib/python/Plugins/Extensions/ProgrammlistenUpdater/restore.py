@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile
 from Components.ActionMap import ActionMap
@@ -5,7 +6,7 @@ from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from downloader import ConverDate
+from .downloader import ConverDate
 import glob, os, urllib, sys
 from enigma import *
 

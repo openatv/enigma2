@@ -1,3 +1,4 @@
+from __future__ import print_function
 from skin import parseColor, parseFont, parseSize
 from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigSelectionNumber
 from Components.Pixmap import Pixmap
@@ -1045,7 +1046,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			self.session.openWithCallback(self.finishedTimerAdd, TimerEntry, newEntry)
 
 	def finishedTimerAdd(self, answer):
-		print "finished add"
+		print("finished add")
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -1074,7 +1075,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-			print "Timeredit aborted"
+			print("Timeredit aborted")
 	
 	def finishSanityCorrection(self, answer):
 		self.finishedTimerAdd(answer)

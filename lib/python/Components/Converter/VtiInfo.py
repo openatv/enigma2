@@ -1,8 +1,10 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from Components.config import config
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
-from Poll import Poll
+from .Poll import Poll
 
 class VtiInfo(Poll, Converter, object):
     ECMINFO = 1
@@ -135,7 +137,7 @@ class VtiInfo(Poll, Converter, object):
                         item = line.split(':', 1)
                         if len(item) > 1:
                             info[item[0].strip().lower()] = item[1].strip()
-                        elif not info.has_key('caid'):
+                        elif 'caid' not in info:
                             x = line.lower().find('caid')
                             if x != -1:
                                 y = line.find(',')
@@ -182,7 +184,7 @@ class VtiInfo(Poll, Converter, object):
         if pingtestresult is not None:
             for line in pingtestresult:
                 x = line.lower().find('0')
-                print x
+                print(x)
                 if x == 0:
                     pingtestresult = 0
                 else:

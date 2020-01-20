@@ -1,4 +1,5 @@
-from Source import Source
+from __future__ import absolute_import
+from .Source import Source
 
 class StaticText(Source):
 	# filter is a function which filters external, untrusted strings

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from boxbranding import getMachineBrand, getMachineName
 
 from twisted.web import client
@@ -14,14 +15,14 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 
 	def noPage(self, reason):
 		if self.status == "304":
-			print reason.getErrorMessage()
+			print(reason.getErrorMessage())
 			client.HTTPDownloader.page(self, "")
 		else:
 			client.HTTPDownloader.noPage(self, reason)
 
 	def gotHeaders(self, headers):
 		if self.status == "200":
-			if headers.has_key("content-length"):
+			if "content-length" in headers:
 				self.totalbytes = int(headers["content-length"][0])
 			else:
 				self.totalbytes = 0

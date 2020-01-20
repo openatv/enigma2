@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
@@ -108,7 +109,7 @@ class ArchiverMenuScreen(Screen):
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
 		self.selectId = self['list_left'].getCurrent()[0][1]
-		print "[ArchiverMenuScreen] Select:", selectName, self.selectId
+		print("[ArchiverMenuScreen] Select:", selectName, self.selectId)
 		self.unpackModus(self.selectId)
 
 	def unpackModus(self, id):
@@ -128,14 +129,14 @@ class ArchiverMenuScreen(Screen):
 		# of the command. It must have an API compatible
 		# with ArchiverInfoScreen.
 
-		print "[ArchiverMenuScreen] unpackPopen", cmd
+		print("[ArchiverMenuScreen] unpackPopen", cmd)
 		try:
 			shellcmd = type(cmd) not in (tuple, list)
 			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 		except OSError as ex:
 			cmdname = cmd.split()[0] if shellcmd else cmd[0]
 			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmdname, ex.strerror, cmdname)
-			print "[ArchiverMenuScreen]", msg
+			print("[ArchiverMenuScreen]", msg)
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			return
 		output = map(str.splitlines, p.communicate())
@@ -161,7 +162,7 @@ class ArchiverMenuScreen(Screen):
 		# progress indicator using the command output
 		# (see unrar.py)
 
-		print "[ArchiverMenuScreen] unpackEConsoleApp", cmd
+		print("[ArchiverMenuScreen] unpackEConsoleApp", cmd)
 		self.errlog = ""
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
@@ -176,7 +177,7 @@ class ArchiverMenuScreen(Screen):
 			self.container.execute(cmd)
 
 	def extractDone(self, filename, data):
-		print "[ArchiverMenuScreen] extractDone", data
+		print("[ArchiverMenuScreen] extractDone", data)
 		if data:
 			type = MessageBox.TYPE_ERROR
 			timeout = 15
@@ -258,7 +259,7 @@ class ArchiverInfoScreen(Screen):
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		flags = RT_HALIGN_LEFT
-		if 'Plugins.Extensions.FileCommander.addons.unzip.UnpackInfoScreen' in `self`:
+		if 'Plugins.Extensions.FileCommander.addons.unzip.UnpackInfoScreen' in repr(self):
 			flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 			y *= 2
 		return [

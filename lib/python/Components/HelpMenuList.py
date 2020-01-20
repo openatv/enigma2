@@ -1,4 +1,6 @@
-from GUIComponent import GUIComponent
+from __future__ import print_function
+from __future__ import absolute_import
+from .GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
@@ -47,7 +49,7 @@ class HelpMenuList(GUIComponent):
 
 				if isinstance(help, list):
 					self.extendedHelp = True
-					print "extendedHelpEntry found"
+					print("extendedHelpEntry found")
 					x, y, w, h = skin.parameters.get("HelpMenuListExtHlp0",(0, 0, 600, 26))
 					x1, y1, w1, h1 = skin.parameters.get("HelpMenuListExtHlp1",(0, 28, 600, 20))
 					entry.extend((

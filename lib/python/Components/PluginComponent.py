@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from shutil import rmtree
 from bisect import insort
@@ -52,8 +53,8 @@ class PluginComponent:
 						try:
 							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
 							plugins = plugin.Plugins(path=path)
-						except Exception, exc:
-							print "Plugin ", c + "/" + pluginname, "failed to load:", exc
+						except Exception as exc:
+							print("Plugin ", c + "/" + pluginname, "failed to load:", exc)
 							# supress errors due to missing plugin.py* files (badly removed plugin)
 							for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
 								if os.path.exists(os.path.join(path, fn)):
@@ -63,8 +64,8 @@ class PluginComponent:
 									break
 							else:
 								if not pluginname == "WebInterface":
-									print "Plugin probably removed, but not cleanly in", path
-									print "trying to remove:", path
+									print("Plugin probably removed, but not cleanly in", path)
+									print("trying to remove:", path)
 									rmtree(path)
 							continue
 
@@ -81,8 +82,8 @@ class PluginComponent:
 						if fileExists(keymap):
 							try:
 								keymapparser.readKeymap(keymap)
-							except Exception, exc:
-								print "keymap for plugin %s/%s failed to load: " % (c, pluginname), exc
+							except Exception as exc:
+								print("keymap for plugin %s/%s failed to load: " % (c, pluginname), exc)
 								self.warnings.append( (c + "/" + pluginname, str(exc)) )
 
 		# build a diff between the old list of plugins and the new one

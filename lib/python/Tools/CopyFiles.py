@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.Task import PythonTask, Task, Job, job_manager as JobManager
 from Tools.Directories import fileExists
 from enigma import eTimer
@@ -9,11 +10,11 @@ class DeleteFolderTask(PythonTask):
 		self.fileList = fileList
 
 	def work(self):
-		print "[DeleteFolderTask] files ", self.fileList
+		print("[DeleteFolderTask] files ", self.fileList)
 		errors = []
 		try:
 			rmtree(self.fileList)
-		except Exception, e:
+		except Exception as e:
 			errors.append(e)
 		if errors:
 			raise errors[0]

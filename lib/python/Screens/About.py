@@ -1,4 +1,6 @@
-from Screen import Screen
+from __future__ import print_function
+from __future__ import absolute_import
+from .Screen import Screen
 from skin import isVTISkin
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -41,7 +43,7 @@ def parseFile(filename):
 		ret = f.read().strip()
 		f.close()
 	except IOError:
-		print "[ERROR] failed to open file %s" % filename
+		print("[ERROR] failed to open file %s" % filename)
 	return ret
 
 def parseLines(filename):
@@ -51,7 +53,7 @@ def parseLines(filename):
 		ret = f.readlines()
 		f.close()
 	except IOError:
-		print "[ERROR] failed to open file %s" % filename
+		print("[ERROR] failed to open file %s" % filename)
 	return ret
 
 def MyDateConverter(StringDate):
@@ -267,7 +269,7 @@ def read_startup(FILE):
 			data=myfile.read().replace('\n', '')
 		myfile.close()
 	except IOError:
-		print "[ERROR] failed to open file %s" % file
+		print("[ERROR] failed to open file %s" % file)
 		data = " "
 	return data
 
@@ -737,59 +739,59 @@ class SystemNetworkInfo(Screen):
 		self.AboutText = ""
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
-		if eth0.has_key('addr'):
-			if eth0.has_key('ifname'):
+		if 'addr' in eth0:
+			if 'ifname' in eth0:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth0['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth0['addr'] + "\n"
-			if eth0.has_key('netmask'):
+			if 'netmask' in eth0:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth0['netmask'] + "\n"
-			if eth0.has_key('hwaddr'):
+			if 'hwaddr' in eth0:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth0['hwaddr'] + "\n"
 			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
-		if eth1.has_key('addr'):
-			if eth1.has_key('ifname'):
+		if 'addr' in eth1:
+			if 'ifname' in eth1:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth1['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth1['addr'] + "\n"
-			if eth1.has_key('netmask'):
+			if 'netmask' in eth1:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth1['netmask'] + "\n"
-			if eth1.has_key('hwaddr'):
+			if 'hwaddr' in eth1:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth1['hwaddr'] + "\n"
 			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed_eth1() + "\n"
 			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
-		if ra0.has_key('addr'):
-			if ra0.has_key('ifname'):
+		if 'addr' in ra0:
+			if 'ifname' in ra0:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + ra0['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + ra0['addr'] + "\n"
-			if ra0.has_key('netmask'):
+			if 'netmask' in ra0:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + ra0['netmask'] + "\n"
-			if ra0.has_key('hwaddr'):
+			if 'hwaddr' in ra0:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + ra0['hwaddr'] + "\n"
 			self.iface = 'ra0'
 
 		wlan0 = about.getIfConfig('wlan0')
-		if wlan0.has_key('addr'):
-			if wlan0.has_key('ifname'):
+		if 'addr' in wlan0:
+			if 'ifname' in wlan0:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan0['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan0['addr'] + "\n"
-			if wlan0.has_key('netmask'):
+			if 'netmask' in wlan0:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan0['netmask'] + "\n"
-			if wlan0.has_key('hwaddr'):
+			if 'hwaddr' in wlan0:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
 		wlan1 = about.getIfConfig('wlan1')
-		if wlan1.has_key('addr'):
-			if wlan1.has_key('ifname'):
+		if 'addr' in wlan1:
+			if 'ifname' in wlan1:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan1['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan1['addr'] + "\n"
-			if wlan1.has_key('netmask'):
+			if 'netmask' in wlan1:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan1['netmask'] + "\n"
-			if wlan1.has_key('hwaddr'):
+			if 'hwaddr' in wlan1:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan1['hwaddr'] + "\n"
 			self.iface = 'wlan1'
 
@@ -824,24 +826,24 @@ class SystemNetworkInfo(Screen):
 							essid = _("No Connection")
 						else:
 							accesspoint = str(status[self.iface]["accesspoint"])
-						if self.has_key("BSSID"):
+						if "BSSID" in self:
 							self.AboutText += _('Accesspoint:') + '\t' + accesspoint + '\n'
-						if self.has_key("ESSID"):
+						if "ESSID" in self:
 							self.AboutText += _('SSID:') + '\t' + essid + '\n'
 
 						quality = str(status[self.iface]["quality"])
-						if self.has_key("quality"):
+						if "quality" in self:
 							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
 
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
 						else:
 							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
-						if self.has_key("bitrate"):
+						if "bitrate" in self:
 							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
 
 						signal = str(status[self.iface]["signal"])
-						if self.has_key("signal"):
+						if "signal" in self:
 							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
 
 						if status[self.iface]["encryption"] == "off":
@@ -851,7 +853,7 @@ class SystemNetworkInfo(Screen):
 								encryption = _("Unsupported")
 						else:
 							encryption = _("Enabled")
-						if self.has_key("enc"):
+						if "enc" in self:
 							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
@@ -1010,7 +1012,7 @@ class TranslationInfo(Screen):
 				continue
 			(type, value) = l
 			infomap[type] = value
-		print infomap
+		print(infomap)
 
 		self["key_red"] = Button(_("Cancel"))
 		self["TranslationInfo"] = StaticText(info)

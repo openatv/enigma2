@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 from enigma import iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Poll import Poll
+from .Poll import Poll
 
 class VAudioInfo(Poll, Converter, object):
 	GET_AUDIO_ICON = 0

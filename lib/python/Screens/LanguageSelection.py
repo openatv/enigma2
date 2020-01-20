@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
@@ -68,7 +69,7 @@ class LanguageSelection(Screen):
 		}, -1)
 
 	def updateCache(self):
-		print"updateCache"
+		print("updateCache")
 		self["languages"].setList([('update cache',_('Updating cache, please wait...'),None)])
 		self.updateTimer = eTimer()
 		self.updateTimer.callback.append(self.startupdateCache)
@@ -139,7 +140,7 @@ class LanguageSelection(Screen):
 			self.selectActiveLanguage()
 
 	def run(self, justlocal = False):
-		print "updating language..."
+		print("updating language...")
 		lang = self["languages"].getCurrent()[0]
 
 		if lang == 'update cache':
@@ -166,7 +167,7 @@ class LanguageSelection(Screen):
 		language.activateLanguage(lang)
 		config.misc.languageselected.value = 0
 		config.misc.languageselected.save()
-		print "ok"
+		print("ok")
 
 	def updateList(self):
 		languageList = language.getLanguageList()

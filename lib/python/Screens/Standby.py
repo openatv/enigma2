@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -34,7 +35,7 @@ class TVstate: #load in Navigation
 	def __init__(self):
 		global TVinStandby
 		if TVinStandby is not None:
-			print "[Standby] only one TVstate instance is allowed!"
+			print("[Standby] only one TVstate instance is allowed!")
 		TVinStandby = self
 
 		try:
@@ -45,7 +46,7 @@ class TVstate: #load in Navigation
 			self.hdmicec_ok = False
 
 		if not self.hdmicec_ok:
-			print '[Standby] HDMI-CEC is not enabled or unavailable !!!'
+			print('[Standby] HDMI-CEC is not enabled or unavailable !!!')
 
 	def skipHdmiCecNow(self, value):
 		if self.hdmicec_ok:
@@ -101,7 +102,7 @@ def setLCDModeMinitTV(value):
 
 class Standby2(Screen):
 	def Power(self):
-		print "[Standby] leave standby"
+		print("[Standby] leave standby")
 		SystemInfo["StandbyState"] = False
 
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
@@ -144,14 +145,14 @@ class Standby2(Screen):
 			self.Power()
 
 	def TVoff(self):
-		print "[Standby] TVoff"
+		print("[Standby] TVoff")
 		TVinStandby.skipHdmiCecNow(False)
 		TVinStandby.setTVstate('standby')
 
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():
 			self.wasMuted = 1
-			print "[Standby] mute already active"
+			print("[Standby] mute already active")
 		else:
 			self.wasMuted = 0
 			eDVBVolumecontrol.getInstance().volumeToggleMute()
@@ -165,7 +166,7 @@ class Standby2(Screen):
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
 
-		print "[Standby] enter standby"
+		print("[Standby] enter standby")
 		SystemInfo["StandbyState"] = True
 
 		if os.path.exists("/usr/script/StandbyEnter.sh"):
@@ -419,11 +420,11 @@ class TryQuitMainloop(MessageBox):
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
-			print "[Standby] quitMainloop #1"
+			print("[Standby] quitMainloop #1")
 			quitMainloopCode = self.retval
 			if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k 
-				print "[Standby] LCDminiTV off"
+				print("[Standby] LCDminiTV off")
 				setLCDModeMinitTV("0")
 			if getBoxType() == "vusolo4k":  #workaround for white display flash
 				open("/proc/stb/fp/oled_brightness", "w").write("0")

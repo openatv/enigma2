@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -142,9 +143,9 @@ class MultiBootWizard(Screen):
 				elif (size / 1024) >= 1:
 					des = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
 				if "GB" in des:
-					print "Multibootmgr1", des, "%s" %des[6], size
+					print("Multibootmgr1", des, "%s" %des[6], size)
 					if size/1024 < 6:
-						print "Multibootmgr2", des, "%s" %des[6], size/1024 
+						print("Multibootmgr2", des, "%s" %des[6], size/1024) 
 						self.session.open(MessageBox, _("Multiboot manager - The SDcard must be at least 8MB."), MessageBox.TYPE_INFO, timeout=10)
 						self.close
 					else:

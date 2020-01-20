@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Components.ActionMap import ActionMap
@@ -9,11 +10,11 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from enigma import *
-from downloader import DownloadSetting, ConverDate
+from .downloader import DownloadSetting, ConverDate
 from Components.NimManager import nimmanager
-from settinglist import *
-from restore import *
-from history import *
+from .settinglist import *
+from .restore import *
+from .history import *
 import os
 import skin
 

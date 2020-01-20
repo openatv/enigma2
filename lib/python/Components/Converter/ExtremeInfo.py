@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from ServiceReference import ServiceReference
@@ -8,7 +9,7 @@ from Tools.Directories import fileExists, resolveFilename
 from os import environ, listdir, remove, rename, system
 from Components.ServiceEventTracker import ServiceEventTracker
 import gettext
-from Poll import Poll
+from .Poll import Poll
 
 class ExtremeInfo(Poll, Converter, object):
     TUNERINFO = 0
@@ -1169,7 +1170,7 @@ class ExtremeInfo(Poll, Converter, object):
                         item = line.split(':', 1)
                         if len(item) > 1:
                             info[item[0].strip().lower()] = item[1].strip()
-                        elif not info.has_key('caid'):
+                        elif 'caid' not in info:
                             x = line.lower().find('caid')
                             if x != -1:
                                 y = line.find(',')

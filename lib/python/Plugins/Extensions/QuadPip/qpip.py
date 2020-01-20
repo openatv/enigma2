@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
@@ -65,14 +66,14 @@ class QuadPipChannelEntry:
 		return self.idx
 
 	def setChannel(self, idx, chName, sref):
-		if self.channel.has_key(idx):
+		if idx in self.channel:
 			self.channel[idx] = (chName, sref)
 			return True
 
 		return False
 
 	def deleteChannel(self, idx):
-		if self.channel.has_key(idx):
+		if idx in self.channel:
 			self.channel[idx] = None
 			return True
 
@@ -910,7 +911,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		return channel
 
 	def playChannel(self, channel):
-		print "[playChannel] channel : ", channel
+		print("[playChannel] channel : ", channel)
 
 		if self.curChannel and self.curChannel == channel.channel:
 			return
@@ -951,7 +952,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			if qPipInstance.playService(eServiceReference(sref), isPlayAudio):
 				self.session.qPips.append(qPipInstance)
 			else:
-				print "play failed, ", sref
+				print("play failed, ", sref)
 				del qPipInstance
 
 		self.updateChannelName(channel)

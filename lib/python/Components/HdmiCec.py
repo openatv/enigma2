@@ -1,15 +1,17 @@
+from __future__ import print_function
+from __future__ import absolute_import
 import struct
 import os
 import datetime
 from fcntl import ioctl
 from enigma import eTimer, eHdmiCEC, eActionMap
-from config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
+from .config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
 from Components.Console import Console
 from Tools.Directories import fileExists, pathExists
 from time import time
 import Screens.Standby
 
-from sys import maxint
+from sys import maxsize
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False) # query from this value in hdmi_cec.cpp
@@ -1112,14 +1114,14 @@ class HdmiCec:
 				else:
 					txt += "<wrong data length>"
 			elif length:
-				txt += CECdat.get(cmd,"").get(ord(data[0]),"<unknown>") if CECdat.has_key(cmd) else ""
+				txt += CECdat.get(cmd,"").get(ord(data[0]),"<unknown>") if cmd in CECdat else ""
 			else:
 				txt += CECdat.get(cmd,"")
 		self.CECwritedebug(txt)
 
 	def CECwritedebug(self, debugtext, debugprint = False):
 		if debugprint and not config.hdmicec.debug.value:
-			print debugtext
+			print(debugtext)
 			return
 		log_path = config.crash.debug_path.value
 		if pathExists(log_path):
@@ -1128,7 +1130,7 @@ class HdmiCec:
 			if self.disk_full:
 				self.start_log = True
 			if not self.disk_full and disk_free < 500:
-				print "[HdmiCec] write debug file failed - disk full!"
+				print("[HdmiCec] write debug file failed - disk full!")
 				self.disk_full = True
 				return
 			elif not self.disk_full and disk_free < 1000:
@@ -1149,7 +1151,7 @@ class HdmiCec:
 				debugtext += "%s  +++  stop logging  +++  disk full!\n" % timestamp
 			self.CECwritefile(debugfile, "a", debugtext)
 		else:
-			print "[HdmiCec] write debug file failed - log path (%s) not found!" %log_path
+			print("[HdmiCec] write debug file failed - log path (%s) not found!" %log_path)
 
 	def CECcmdstart(self, configElement):
 		if config.hdmicec.commandline.value:
@@ -1236,7 +1238,7 @@ class HdmiCec:
 								self.CECdebug('Tx', address, cmd, data, len(data))
 							eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 						self.cmdWaitTimer.startLongTimer(waittime)
-				except Exception, e:
+				except Exception as e:
 					self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" %e, True)
 					txt = "%s\n" %e
 					self.CECwritefile(errfile, "w", txt)
@@ -1246,7 +1248,7 @@ class HdmiCec:
 		try:
 			with open(FILE) as f: 
 				return f.read()
-		except Exception, e:
+		except Exception as e:
 			self.CECwritedebug("[HdmiCec] read file '%s' failed - error: %s" %(FILE, e), True)
 		return ""
 
@@ -1254,16 +1256,16 @@ class HdmiCec:
 		try:
 			with open(FILE, MODE) as f: 
 				f.write(INPUT)
-		except Exception, e:
+		except Exception as e:
 			txt = "[HdmiCec] write file '%s' failed - error: %s" %(FILE, e)
-			print txt if "Enigma2-hdmicec-" in FILE else self.CECwritedebug(txt, True)
+			print(txt if "Enigma2-hdmicec-" in FILE else self.CECwritedebug(txt, True))
 
 	def CECremovefiles(self, FILES):
 		for f in FILES:
 			if fileExists(f):
 				try:
 					os.remove(f)
-				except Exception, e:
+				except Exception as e:
 					self.CECwritedebug("[HdmiCec] remove file '%s' failed - error: %s" %(f, e), True)
 
 hdmi_cec = HdmiCec()

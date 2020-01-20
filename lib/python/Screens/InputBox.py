@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import getPrevAsciiCode
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -152,7 +153,7 @@ class PinInput(InputBox):
 				pass
 
 	def closePinWrong(self, *args):
-		print "args:", args
+		print("args:", args)
 		self.close(False)
 
 	def closePinCorrect(self, *args):

@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
@@ -43,7 +45,7 @@ class ConfigElement(object):
 		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers.itervalues()]
 
 	def setNotifiers(self, val):
-		print "just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
+		print("just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
 
 	notifiers = property(getNotifiers, setNotifiers)
 
@@ -51,7 +53,7 @@ class ConfigElement(object):
 		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers_final.itervalues()]
 
 	def setNotifiersFinal(self, val):
-		print "just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
+		print("just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
 
 	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
 
@@ -392,7 +394,7 @@ class ConfigSelection(ConfigElement):
 		return self._descr
 
 	def getMulti(self, selected):
-		from config import config
+		from .config import config
 		from skin import switchPixmap
 		if self._descr is None:
 			self._descr = self.description[self.value]
@@ -444,7 +446,7 @@ class ConfigBoolean(ConfigElement):
 		return self.descriptions[self.value]
 
 	def getMulti(self, selected):
-		from config import config
+		from .config import config
 		from skin import switchPixmap
 		if self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
 			return ('pixmap', self.value and switchPixmap["menu_on"] or switchPixmap["menu_off"])
@@ -853,7 +855,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		try:
 			return self.text.encode("utf-8")
 		except UnicodeDecodeError:
-			print "Broken UTF8!"
+			print("Broken UTF8!")
 			return self.text
 
 	def setValue(self, val):
@@ -861,7 +863,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 			self.text = val.decode("utf-8")
 		except UnicodeDecodeError:
 			self.text = val.decode("utf-8", "ignore")
-			print "Broken UTF8!"
+			print("Broken UTF8!")
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1232,7 +1234,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		try:
 			return self.text.encode("utf-8")
 		except UnicodeDecodeError:
-			print "Broken UTF8!"
+			print("Broken UTF8!")
 			return self.text
 
 	def setValue(self, val):
@@ -1240,7 +1242,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.text = val.decode("utf-8")
 		except UnicodeDecodeError:
 			self.text = val.decode("utf-8", "ignore")
-			print "Broken UTF8!"
+			print("Broken UTF8!")
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -2087,7 +2089,7 @@ class Config(ConfigSubsection):
 			f.close()
 			os.rename(filename + ".writing", filename)
 		except IOError:
-			print "Config: Couldn't write %s" % filename
+			print("Config: Couldn't write %s" % filename)
 
 	def loadFromFile(self, filename, base_file=True):
 		self.unpickle(open(filename, "r"), base_file)
@@ -2104,8 +2106,8 @@ class ConfigFile:
 	def load(self):
 		try:
 			config.loadFromFile(self.CONFIG_FILE, True)
-		except IOError, e:
-			print "unable to load config (%s), assuming defaults..." % str(e)
+		except IOError as e:
+			print("unable to load config (%s), assuming defaults..." % str(e))
 
 	def save(self):
 #		config.save()
@@ -2113,7 +2115,7 @@ class ConfigFile:
 
 	def __resolveValue(self, pickles, cmap):
 		key = pickles[0]
-		if cmap.has_key(key):
+		if key in cmap:
 			if len(pickles) > 1:
 				return self.__resolveValue(pickles[1:], cmap[key].dict())
 			else:
@@ -2127,7 +2129,7 @@ class ConfigFile:
 				ret = self.__resolveValue(names[1:], config.content.items)
 				if ret and len(ret) or ret == "":
 					return ret
-		print "getResolvedKey", key, "failed !! (Typo??)"
+		print("getResolvedKey", key, "failed !! (Typo??)")
 		return ""
 
 def NoSave(element):

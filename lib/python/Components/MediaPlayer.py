@@ -1,4 +1,5 @@
-from MenuList import MenuList
+from __future__ import absolute_import
+from .MenuList import MenuList
 
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from os import path

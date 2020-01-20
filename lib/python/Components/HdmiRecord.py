@@ -1,4 +1,5 @@
-from config import config, ConfigSelection, ConfigSubsection
+from __future__ import absolute_import
+from .config import config, ConfigSelection, ConfigSubsection
 from boxbranding import getBoxType, getMachineBuild
 
 

@@ -1,4 +1,5 @@
-from Screen import Screen
+from __future__ import absolute_import
+from .Screen import Screen
 from Components.Label import Label
 
 class NumericalTextInputHelpDialog(Screen):

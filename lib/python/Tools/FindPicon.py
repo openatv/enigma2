@@ -1,3 +1,4 @@
+from __future__ import print_function
 ##
 ## Picon renderer by Gruffy .. some speedups by Ghost
 ##
@@ -65,7 +66,7 @@ def findPicon(service):
 				info = serviceHandler.info(service)
 				if info and info is not None:
 					service_name = info.getName(service).replace('\xc2\x86','').replace('\xc2\x87', '').replace('/', '_')
-					print service_name
+					print(service_name)
 					pngname = findFile(service_name)
 		if pngname == "" and sname.startswith("4097_"):
 			pngname = findFile(sname.replace("4097_", "1_", 1))

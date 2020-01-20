@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+from __future__ import absolute_import
 from boxbranding import getBoxType, getDisplayType
-from sys import maxint
+from sys import maxsize
 
 from twisted.internet import threads
 from enigma import eDBoxLCD, eTimer, eActionMap
 
-from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
+from .config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 from Screens.Screen import Screen
@@ -192,7 +194,7 @@ class LCD:
 
 	def setMode(self, value):
 		if fileExists("/proc/stb/lcd/show_symbols"):
-			print 'setLCDMode',value
+			print('setLCDMode',value)
 			f = open("/proc/stb/lcd/show_symbols", "w")
 			f.write(value)
 			f.close()
@@ -230,39 +232,39 @@ class LCD:
 
 	def setPower(self, value):
 		if fileExists("/proc/stb/power/vfd"):
-			print 'setLCDPower',value
+			print('setLCDPower',value)
 			f = open("/proc/stb/power/vfd", "w")
 			f.write(value)
 			f.close()
 		elif fileExists("/proc/stb/lcd/vfd"):
-			print 'setLCDPower',value
+			print('setLCDPower',value)
 			f = open("/proc/stb/lcd/vfd", "w")
 			f.write(value)
 			f.close()
 
 	def setShowoutputresolution(self, value):
 		if fileExists("/proc/stb/lcd/show_outputresolution"):
-			print 'setLCDShowoutputresolution',value
+			print('setLCDShowoutputresolution',value)
 			f = open("/proc/stb/lcd/show_outputresolution", "w")
 			f.write(value)
 			f.close()
 
 	def setfblcddisplay(self, value):
-		print 'setfblcddisplay',value
+		print('setfblcddisplay',value)
 		f = open("/proc/stb/fb/sd_detach", "w")
 		f.write(value)
 		f.close()
 
 	def setRepeat(self, value):
 		if fileExists("/proc/stb/lcd/scroll_repeats"):
-			print 'setLCDRepeat',value
+			print('setLCDRepeat',value)
 			f = open("/proc/stb/lcd/scroll_repeats", "w")
 			f.write(value)
 			f.close()
 
 	def setScrollspeed(self, value):
 		if fileExists("/proc/stb/lcd/scroll_delay"):
-			print 'setLCDScrollspeed',value
+			print('setLCDScrollspeed',value)
 			f = open("/proc/stb/lcd/scroll_delay", "w")
 			f.write(str(value))
 			f.close()
@@ -277,16 +279,16 @@ class LCD:
 		eDBoxLCD.getInstance().setLED(value, 2)
 
 	def setLCDMiniTVMode(self, value):
-		print 'setLCDMiniTVMode',value
+		print('setLCDMiniTVMode',value)
 		f = open('/proc/stb/lcd/mode', "w")
 		f.write(value)
 		f.close()
 
 	def setLCDMiniTVPIPMode(self, value):
-		print 'setLCDMiniTVPIPMode',value
+		print('setLCDMiniTVPIPMode',value)
 
 	def setLCDMiniTVFPS(self, value):
-		print 'setLCDMiniTVFPS',value
+		print('setLCDMiniTVFPS',value)
 		f = open('/proc/stb/lcd/fps', "w")
 		f.write("%d \n" % value)
 		f.close()
@@ -323,7 +325,7 @@ def InitLcd():
 		if can_lcdmodechecking:
 			def setLCDModeMinitTV(configElement):
 				try:
-					print 'setLCDModeMinitTV',configElement.value
+					print('setLCDModeMinitTV',configElement.value)
 					f = open("/proc/stb/lcd/mode", "w")
 					f.write(configElement.value)
 					f.close()
@@ -331,7 +333,7 @@ def InitLcd():
 					pass
 			def setMiniTVFPS(configElement):
 				try:
-					print 'setMiniTVFPS',configElement.value
+					print('setMiniTVFPS',configElement.value)
 					f = open("/proc/stb/lcd/fps", "w")
 					f.write("%d \n" % configElement.value)
 					f.close()

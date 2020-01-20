@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from boxbranding import getImageVersion
 
@@ -58,10 +59,10 @@ def listsDirPath():
 					return line[2].strip()
 			elif line.startswith('lists_dir'):
 				return line.replace('\n','').split(' ')[2]
-	except Exception, ex:
-		print "[opkg]", ex
+	except Exception as ex:
+		print("[opkg]", ex)
 	return '/var/lib/opkg/lists'
 
 if __name__ == '__main__':
 	for p in enumPlugins('enigma'):
-		print p
+		print(p)

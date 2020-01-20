@@ -1,3 +1,4 @@
+from __future__ import print_function
 from time import time
 from boxbranding import getImageVersion
 

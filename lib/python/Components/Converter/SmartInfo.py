@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from xml.etree.cElementTree import parse
-from Poll import Poll
+from .Poll import Poll
 
 class SmartInfo(Poll, Converter, object):
     EXPERTINFO = 0
@@ -105,7 +106,7 @@ class SmartInfo(Poll, Converter, object):
         if transponderData is not None:
             if isinstance(transponderData, float):
                 return ''
-            if transponderData.has_key('tuner_type'):
+            if 'tuner_type' in transponderData:
                 if transponderData['tuner_type'] == 'DVB-S' or transponderData['tuner_type'] == 'DVB-S2':
                     orbital = transponderData['orbital_position']
                     orbital = int(orbital)

@@ -3,6 +3,7 @@
 
 # napiprojekt.pl API is used with napiproject administration consent
 
+from __future__ import print_function
 import os
 import re
 import sys
@@ -112,7 +113,7 @@ def get_subtitle(digest, lang="PL"):
             if hasattr(sub, 'getcode'):
                 http_code = sub.getcode()
             sub = sub.read()
-        except (IOError, OSError), e:
+        except (IOError, OSError) as e:
             error = error + " %s" % (e)
             time.sleep(0.5)
             continue
@@ -395,38 +396,38 @@ def read_sub(fmt, subs):
 
 def to_srt_utf8(subs_org, file, digest=0, info="", fps=0):
     p, f = os.path.split(file)
-    print "Processing subtitle for:\n Path: %s\n File: %s %s" % (p, f, info)
+    print("Processing subtitle for:\n Path: %s\n File: %s %s" % (p, f, info))
     try:
         subs_org = subs_org.replace("\r", "")
         dest = file[:-4] + '.srt'
         subs_u, org_cod = convert_to_unicode(subs_org)
         subs = subs_u.split('\n')
         fmt = detect_format(subs)
-        print " Oryginal subtitle format: ", fmt, org_cod,
+        print(" Oryginal subtitle format: ", fmt, org_cod, end=' ')
 
         if fmt == "mdvd":
             if fps < 22 < 32:
                 f = GetFPS(file)
                 fps = f.fps()
             if not 22 < fps < 32:
-                print " failback to napifps ",
+                print(" failback to napifps ", end=' ')
                 fps = napiprojekt_fps(digest)
-            print "FPS:", str(fps)[0:5],
+            print("FPS:", str(fps)[0:5], end=' ')
             subs = "".join(to_srt(sub_fix_times(read_mdvd(subs, fps))))
         elif fmt != "srt":
             subs = "".join(to_srt(sub_fix_times(read_sub(fmt, subs))))
         else:
             subs = subs_u
 
-        print "     Saved as SRT utf8."
+        print("     Saved as SRT utf8.")
 
         dst = open(dest, 'w')
         dst.write(subs.encode("utf-8-sig"))
         dst.close()
-        print " Saved:", dest
+        print(" Saved:", dest)
 
     except:
-        print "  Error: %s" % (sys.exc_info()[1])
+        print("  Error: %s" % (sys.exc_info()[1]))
 
 def get_sub_from_napi(file, fps=0):
         digest = hashFile(file)['npb']
@@ -439,7 +440,7 @@ def convert(file, src, fps=0):
             raise Exception('Suspicious file size: %s %i' % (src, os.path.getsize(src)))
         to_srt_utf8(subs_org=open(src).read(), file=file, info="\n Convert from: " + os.path.split(src)[1], fps=fps)
     except:
-        print "  Error: %s" % (sys.exc_info()[1])
+        print("  Error: %s" % (sys.exc_info()[1]))
 
 
 prere = (
@@ -533,7 +534,7 @@ def hashFile(name):
 #       print "[DMnapi] hashFile: ", name, ret
         return ret
     except:
-        print "[DMnapi] Error hashFile: ", name
+        print("[DMnapi] Error hashFile: ", name)
         return dict(osb="%016x" % 0, npb=d.hexdigest(), fsize=filesize)
 
 def get_sub_from_n24(file, id, fps=0):

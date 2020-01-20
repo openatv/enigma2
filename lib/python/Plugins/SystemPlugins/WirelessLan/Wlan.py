@@ -1,3 +1,4 @@
+from __future__ import print_function
 from os import system, path as os_path
 from string import maketrans, strip
 
@@ -71,7 +72,7 @@ class Wlan:
 			scanresults = ifobj.scan()
 		except:
 			scanresults = None
-			print "[Wlan.py] No wireless networks could be found"
+			print("[Wlan.py] No wireless networks could be found")
 		aps = {}
 		if scanresults is not None:
 			(num_channels, frequencies) = ifobj.getChannelInfo()
@@ -166,7 +167,7 @@ class brcmWLConfig:
 		configfile = getWlanConfigName(iface)
 		
 		if os_path.exists(configfile):
-			print "[Wlan.py] parsing configfile: ",configfile
+			print("[Wlan.py] parsing configfile: ",configfile)
 			fd = open(configfile, "r")
 			lines = fd.readlines()
 			fd.close()
@@ -206,7 +207,7 @@ class wpaSupplicant:
 		contents += "ssid="+essid+"\n"
 		contents += "method="+encryption+"\n"
 		contents += "key="+psk+"\n"
-		print "content = \n"+contents
+		print("content = \n"+contents)
 
 		fd = open(getWlConfName(iface), "w")
 		fd.write(contents)
@@ -242,7 +243,7 @@ class wpaSupplicant:
 				else:
 					continue
 		except:
-			print "[Wlan.py] Error parsing ",configfile
+			print("[Wlan.py] Error parsing ",configfile)
 			wsconfig = {
 					'hiddenessid': False,
 					'ssid': "",
@@ -252,7 +253,7 @@ class wpaSupplicant:
 				}
 
 		for (k,v) in wsconf.items():
-			print "[wsconf][%s] %s" % (k , v)
+			print("[wsconf][%s] %s" % (k , v))
 
 		return wsconf
 
@@ -309,7 +310,7 @@ class wpaSupplicant:
 			configfile = '/etc/wpa_supplicant.conf'
 		try:
 			#parse the wpasupplicant configfile
-			print "[Wlan.py] parsing configfile: ",configfile
+			print("[Wlan.py] parsing configfile: ",configfile)
 			fp = file(configfile, 'r')
 			supplicant = fp.readlines()
 			fp.close()
@@ -374,7 +375,7 @@ class wpaSupplicant:
 					if key == 'key':
 						wsconfig['key'] = ""
 		except:
-			print "[Wlan.py] Error parsing ",configfile
+			print("[Wlan.py] Error parsing ",configfile)
 			wsconfig = {
 					'hiddenessid': False,
 					'ssid': "",
@@ -394,7 +395,7 @@ class Status:
 
 	def stopWlanConsole(self):
 		if self.WlanConsole is not None:
-			print "[iStatus] killing self.WlanConsole"
+			print("[iStatus] killing self.WlanConsole")
 			self.WlanConsole.killAll()
 			self.WlanConsole = None
 
@@ -482,15 +483,15 @@ class Status:
 
 		if self.WlanConsole is not None:
 			if not self.WlanConsole.appContainers:
-				print "[Wlan.py] self.wlaniface after loading:", self.wlaniface
+				print("[Wlan.py] self.wlaniface after loading:", self.wlaniface)
 				if self.statusCallback is not None:
 						self.statusCallback(True,self.wlaniface)
 						self.statusCallback = None
 
 	def getAdapterAttribute(self, iface, attribute):
 		self.iface = iface
-		if self.wlaniface.has_key(self.iface):
-			if self.wlaniface[self.iface].has_key(attribute):
+		if self.iface in self.wlaniface:
+			if attribute in self.wlaniface[self.iface]:
 				return self.wlaniface[self.iface][attribute]
 		return None
 

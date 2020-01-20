@@ -2,6 +2,8 @@
 # -*- coding: iso-8859-1 -*-
 
 # Components
+from __future__ import print_function
+from __future__ import absolute_import
 from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
@@ -22,7 +24,7 @@ from Tools import Notifications
 # Various
 from mimetypes import guess_type
 from enigma import eServiceReference, eActionMap
-from sys import maxint
+from sys import maxsize
 
 import stat
 import pwd
@@ -33,19 +35,19 @@ import re
 import os
 
 # Addons
-from unrar import RarMenuScreen
-from tar import TarMenuScreen
-from unzip import UnzipMenuScreen
-from gz import GunzipMenuScreen
-from ipk import ipkMenuScreen
-from type_utils import ImageViewer, MoviePlayer, vEditor
+from .unrar import RarMenuScreen
+from .tar import TarMenuScreen
+from .unzip import UnzipMenuScreen
+from .gz import GunzipMenuScreen
+from .ipk import ipkMenuScreen
+from .type_utils import ImageViewer, MoviePlayer, vEditor
 
 TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
 
 try:
 	from Screens import DVD
 	DVDPlayerAvailable = True
-except Exception, e:
+except Exception as e:
 	DVDPlayerAvailable = False
 
 ##################################
@@ -636,7 +638,7 @@ class key_actions(stat_info):
 		testFileName = filename.lower()
 		filetype = os.path.splitext(testFileName)[1]
 		longname = sourceDir + filename
-		print "[Filebrowser]:", filename, sourceDir, testFileName
+		print("[Filebrowser]:", filename, sourceDir, testFileName)
 		if not fileExists(longname):
 			self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
 			return
@@ -696,7 +698,7 @@ class key_actions(stat_info):
 		else:
 			try:
 				found_viewer = openFile(self.session, guess_type(longname)[0], longname)
-			except TypeError, e:
+			except TypeError as e:
 				found_viewer = False
 			if not found_viewer:
 				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)

@@ -1,5 +1,6 @@
-from Screen import Screen
-from MessageBox import MessageBox
+from __future__ import absolute_import
+from .Screen import Screen
+from .MessageBox import MessageBox
 from Components.config import config
 import Screens.Standby
 from boxbranding import getMachineBrand, getMachineName

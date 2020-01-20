@@ -1,5 +1,6 @@
-from Pixmap import PixmapConditional
-from ConditionalWidget import BlinkingWidgetConditional, BlinkingWidget
+from __future__ import absolute_import
+from .Pixmap import PixmapConditional
+from .ConditionalWidget import BlinkingWidgetConditional, BlinkingWidget
 
 class BlinkingPixmap(BlinkingWidget):
 	def __init__(self):

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #######################################################################
 #
 #    Renderer for Dreambox-Enigma2
@@ -16,7 +17,7 @@
 #######################################################################
 
 import math
-from Renderer import Renderer
+from .Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText

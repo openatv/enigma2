@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from time import localtime, time, strftime, mktime
 
 from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
 
-from Screen import Screen
+from .Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
@@ -21,9 +22,9 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Setup import Setup
-from TimeDateInput import TimeDateInput
+from .TimeDateInput import TimeDateInput
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from TimerEntry import TimerEntry, InstantRecordTimerEntry
+from .TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
 from RecordTimer import TIMERTYPE
@@ -870,7 +871,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def getCurrentBouquet(self):
 		if self.BouquetRoot:
 			return self.StartBouquet
-		elif self.has_key('bouquetlist'):
+		elif 'bouquetlist' in self:
 			cur = self["bouquetlist"].l.getCurrentSelection()
 			return cur and cur[1]
 		else:
@@ -1064,7 +1065,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def redButtonPressed(self):
 		self.closeEventViewDialog()
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -1118,14 +1119,14 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def redButtonPressedLong(self):
 		self.closeEventViewDialog()
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self.sortEpg()
 
 	def greenButtonPressed(self):
 		self.closeEventViewDialog()
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -1179,14 +1180,14 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def greenButtonPressedLong(self):
 		self.closeEventViewDialog()
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self.showTimerList()
 
 	def yellowButtonPressed(self):
 		self.closeEventViewDialog()
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -1240,7 +1241,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def blueButtonPressed(self):
 		self.closeEventViewDialog()
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -1294,7 +1295,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def blueButtonPressedLong(self):
 		self.closeEventViewDialog()
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self.showAutoTimerList()
@@ -1405,7 +1406,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.session.open(TimerEditList)
 
 	def showMovieSelection(self):
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBar.instance.showMovies()
 
 	def showAutoTimerList(self):
@@ -1527,13 +1528,13 @@ class EPGSelection(Screen, HelpableScreen):
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self.RecordTimerQuestion()
 
 	def recButtonPressedLong(self):
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self.doZapTimer()
@@ -1553,7 +1554,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def showChoiceBoxDialog(self):
 		self['okactions'].setEnabled(False)
-		if self.has_key('epgcursoractions'):
+		if 'epgcursoractions' in self:
 			self['epgcursoractions'].setEnabled(False)
 		self['colouractions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
@@ -1561,7 +1562,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["dialogactions"].setEnabled(True)
 		self.ChoiceBoxDialog['actions'].execBegin()
 		self.ChoiceBoxDialog.show()
-		if self.has_key('input_actions'):
+		if 'input_actions' in self:
 			self['input_actions'].setEnabled(False)
 
 	def closeChoiceBoxDialog(self):
@@ -1570,16 +1571,16 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
 		self['okactions'].setEnabled(True)
-		if self.has_key('epgcursoractions'):
+		if 'epgcursoractions' in self:
 			self['epgcursoractions'].setEnabled(True)
 		self['colouractions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['epgactions'].setEnabled(True)
-		if self.has_key('input_actions'):
+		if 'input_actions' in self:
 			self['input_actions'].setEnabled(True)
 
 	def doRecordTimer(self, rec=False):
-		if not rec and 'Plugins.Extensions.EPGSearch.EPGSearch.EPGSearch' in `self`:
+		if not rec and 'Plugins.Extensions.EPGSearch.EPGSearch.EPGSearch' in repr(self):
 			self.RecordTimerQuestion()
 		else:
 			self.doInstantTimer(0, 0)
@@ -1638,7 +1639,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.finishedAdd(answer)
 
 	def OK(self):
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			if self.zapnumberstarted:
@@ -1656,7 +1657,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.zap()
 
 	def OKLong(self):
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			if self.zapnumberstarted:
@@ -1677,7 +1678,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.OpenSingleEPG()
 
 	def Info(self):
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_info.value == 'Channel Info') or (self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_info.value == 'Channel Info'):
@@ -1688,7 +1689,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.infoKeyPressed()
 
 	def InfoLong(self):
-		from InfoBar import InfoBar
+		from .InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_infolong.value == 'Channel Info') or (self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_infolong.value == 'Channel Info'):

@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
 def main(session, **kwargs):
-	import TitleList
+	from . import TitleList
 	return session.open(TitleList.TitleList)
 	
 def main_add(session, service, **kwargs):

@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
@@ -22,7 +24,7 @@ from os import system, popen, path, makedirs, listdir, access, stat, rename, rem
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
-import ShellCompatibleFunctions
+from . import ShellCompatibleFunctions
 
 boxtype = getBoxType()
 distro = getImageDistro()
@@ -447,7 +449,7 @@ class RestoreMenu(Screen):
 	def startDelete(self, ret = False):
 		if ret == True:
 			self.exe = True
-			print "removing:",self.val
+			print("removing:",self.val)
 			if path.exists(self.val) == True:
 				remove(self.val)
 			self.exe = False
@@ -498,7 +500,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
-		print"[SOFTWARE MANAGER] Restore Settings !!!!"
+		print("[SOFTWARE MANAGER] Restore Settings !!!!")
 
 		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
 
@@ -625,7 +627,7 @@ class RestartNetwork(Screen):
 		self.setTitle(_("Restart Network Adapter"))
 
 	def restartLan(self):
-		print"[SOFTWARE MANAGER] Restart Network"
+		print("[SOFTWARE MANAGER] Restart Network")
 		iNetwork.restartNetwork(self.restartLanDataAvail)
 
 	def restartLanDataAvail(self, data):
@@ -658,11 +660,11 @@ class installedPlugins(Screen):
 		self.doUpdate()
 
 	def doUpdate(self):
-		print"[SOFTWARE MANAGER] update package list"
+		print("[SOFTWARE MANAGER] update package list")
 		self.container.execute("opkg update")
 
 	def doList(self):
-		print"[SOFTWARE MANAGER] read installed package list"
+		print("[SOFTWARE MANAGER] read installed package list")
 		self.container.execute("opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
 
 	def dataAvail(self, strData):
@@ -724,7 +726,7 @@ class RestorePlugins(Screen):
 		self.index = 0
 		self.list = menulist
 		for r in menulist:
-			print "[SOFTWARE MANAGER] Plugin to restore: %s" % r[0]
+			print("[SOFTWARE MANAGER] Plugin to restore: %s" % r[0])
 		self.container = eConsoleAppContainer()
 		self["menu"] = List(list())
 		self["menu"].onSelectionChanged.append(self.selectionChanged)

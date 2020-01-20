@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -97,13 +98,13 @@ class FlashOnline(Screen):
 						req = urllib2.Request(url)
 						response = urllib2.urlopen(req)
 					except urllib2.URLError as e:
-						print "URL ERROR: %s\n%s" % (e,url)
+						print("URL ERROR: %s\n%s" % (e,url))
 						continue
 
 					try:
 						the_page = response.read()
 					except urllib2.HTTPError as e:
-						print "HTTP download ERROR: %s" % e.code
+						print("HTTP download ERROR: %s" % e.code)
 						continue
 
 					lines = the_page.split('\n')
@@ -122,7 +123,7 @@ class FlashOnline(Screen):
 							self.imagesList[newversion][image]["link"] = '%s/%s/%s/%s' % (feedurl,version,box,image)
 
 			except socket.error as e:
-				print "FEEDSERVER ERROR: %s" %e
+				print("FEEDSERVER ERROR: %s" %e)
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
@@ -415,7 +416,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/settings','w').close()
 					except:
-						print "postFlashActionCallback: failed to create /media/hdd/images/config/settings"
+						print("postFlashActionCallback: failed to create /media/hdd/images/config/settings")
 				else:
 					if os.path.exists('/media/hdd/images/config/settings'):
 						os.unlink('/media/hdd/images/config/settings')
@@ -425,7 +426,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/plugins','w').close()
 					except:
-						print "postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
+						print("postFlashActionCallback: failed to create /media/hdd/images/config/plugins")
 				else:
 					if os.path.exists('/media/hdd/images/config/plugins'):
 						os.unlink('/media/hdd/images/config/plugins')
@@ -435,7 +436,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/noplugins','w').close()
 					except:
-						print "postFlashActionCallback: failed to create /media/hdd/images/config/noplugins"
+						print("postFlashActionCallback: failed to create /media/hdd/images/config/noplugins")
 				else:
 					if os.path.exists('/media/hdd/images/config/noplugins'):
 						os.unlink('/media/hdd/images/config/noplugins')
@@ -466,7 +467,7 @@ class FlashImage(Screen):
 								if os.path.exists('/media/hdd/images/config/fast'):
 									os.unlink('/media/hdd/images/config/fast')
 						except:
-							print "postFlashActionCallback: failed to create restore mode flagfile"
+							print("postFlashActionCallback: failed to create restore mode flagfile")
 				self.startDownload()
 			else:
 				self.abort()
@@ -541,14 +542,14 @@ class FlashImage(Screen):
 					self.MTDROOTFS = "%s" %(self.getImageList[self.multibootslot]['part'])
 			if SystemInfo["canMultiBoot"]:
 				if getMachineBuild() in ("gbmv200","cc1","sf8008","sf8008m","ustym4kpro","beyonwizv2","viper4k"): # issue detect kernel device and rootfs on sda
-					print "[FlashImage] detect Kernel:",self.MTDKERNEL
-					print "[FlashImage] detect rootfs:",self.MTDROOTFS
+					print("[FlashImage] detect Kernel:",self.MTDKERNEL)
+					print("[FlashImage] detect rootfs:",self.MTDROOTFS)
 					command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
 				else:
 					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
 			elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u532","u533","u54","u56"): # issue detect kernel device
-				print "[FlashImage] detect Kernel:",self.MTDKERNEL
-				print "[FlashImage] detect rootfs:",self.MTDROOTFS
+				print("[FlashImage] detect Kernel:",self.MTDKERNEL)
+				print("[FlashImage] detect rootfs:",self.MTDROOTFS)
 				command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
 			else:
 				command = "/usr/bin/ofgwrite -r -k %s" % imagefiles

@@ -1,9 +1,11 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from enigma import eTimer
 import re, glob, shutil, os, urllib2, urllib, time, sys
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Screens.MessageBox import MessageBox
-from downloader import DownloadSetting, ConverDate, ConverDateBack
+from .downloader import DownloadSetting, ConverDate, ConverDateBack
 from enigma import *
 
 try:
@@ -29,13 +31,13 @@ def InstallSettings(name, link, date):
             try:
                 os.system('unzip ' + Directory + '/Settings/tmp/listE2.zip -d  ' + Directory + '/Settings/tmp/listE2_unzip')
             except:
-                print "ERROR unzip listE2.zip"
+                print("ERROR unzip listE2.zip")
             if not os.path.exists(Directory + '/Settings/tmp/setting'):
                 os.system('mkdir ' + Directory + '/Settings/tmp/setting')
                 try:
                     os.system('unzip ' + Directory + '/Settings/tmp/listE2_unzip/*.zip -d  ' + Directory + '/Settings/tmp/setting')
                 except:
-                    print "ERROR unzip %s.zip", name
+                    print("ERROR unzip %s.zip", name)
         return False
 
     Status = True
@@ -163,7 +165,7 @@ class CheckTimer:
             return
 
         if OnDsl():
-            print "Programmlisten-Updater: CHECK FOR UPDATE"
+            print("Programmlisten-Updater: CHECK FOR UPDATE")
             sList = DownloadSetting(self.url)
             for date, name, link in sList:
                 if name == config.pud.satname.value:
@@ -173,7 +175,7 @@ class CheckTimer:
                         self.name = name
                         self.link = link
                         yesno_default = config.pud.update_question.value
-                        print "Programmlisten-Updater: NEW SETTINGS DXANDY"
+                        print("Programmlisten-Updater: NEW SETTINGS DXANDY")
                         if config.pud.just_update.value:
                             # Update without information
                             self.startDownload(self.name, self.link, ConverDate(self.date))
@@ -181,7 +183,7 @@ class CheckTimer:
                             # Auto update with confrimation
                             self.session.openWithCallback(self.CBupdate, MessageBox, _('New Setting DXAndy ') + name + _(' of ') + ConverDate(date) + _(' available !!' + "\n\n" + "Do you want to install the new settingslist?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=60)
                     else:
-                        print "Programmlisten-Updater: NO NEW UPDATE AVAILBLE"
+                        print("Programmlisten-Updater: NO NEW UPDATE AVAILBLE")
                     break
  
         self.TimerSetting()

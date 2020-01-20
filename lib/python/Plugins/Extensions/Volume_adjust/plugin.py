@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Volume Adjust 
 # 2009 Black_64
 #
@@ -179,7 +180,7 @@ class Volume_adjust(Screen):
 		for let in name:
 			if ord(let) > 1 and ord(let) < 128:
 				k+=1
-		print '[Volume Adjust] length service name = ' + str(k)
+		print('[Volume Adjust] length service name = ' + str(k))
 		if k > 28:
 			return '\t'
 		elif k > 18:
@@ -214,10 +215,10 @@ class Volume_adjust(Screen):
 			fp.close()
 		except:
 			#os.unlink(self.filename) # gives a GS WHY ???
-			print "[Volume Adjust] error writing xml..."
+			print("[Volume Adjust] error writing xml...")
 
 	def loadXML(self):
-		print "[Volume Adjust] load xml..."
+		print("[Volume Adjust] load xml...")
 		if not os_path.exists(self.filename):
 			return
 		self.read_services=[]
@@ -232,7 +233,7 @@ class Volume_adjust(Screen):
 					self.read_services.append (read_service_ref)
 					self.read_volume.append (read_service_volume)
 		except:
-			print "[Volume Adjust] error parsing xml..."
+			print("[Volume Adjust] error parsing xml...")
 
 		for item in self.read_services:
 			if len(item):
@@ -443,7 +444,7 @@ class Volume:
 
 	def loadXML(self):
 		# load the list
-		print "[Volume Adjust] load xml..."
+		print("[Volume Adjust] load xml...")
 		if not os_path.exists(self.filen):
 			return
 		self.read_services=[]
@@ -458,18 +459,18 @@ class Volume:
 					self.read_services.append (read_service_ref)
 					self.read_volume.append (read_service_volume)
 		except:
-			print "[Volume Adjust] error parsing xml..."
+			print("[Volume Adjust] error parsing xml...")
 		for i in self.read_services:
-			print i
+			print(i)
 
 
 	def __evUpdatedInfo(self):
 		# here it starts the actual routine to change the volume offset
-		print "[Volume Adjust] Update Info"
+		print("[Volume Adjust] Update Info")
 		if not self.startonce:
 			self.setvolume()
 		vol = self.volctrl.getVolume()
-		print "[Volume Adjust] Volume = " + str(vol)
+		print("[Volume Adjust] Volume = " + str(vol))
 		global ListChange
 		# Check if list is updated (new save) or no list loaded
 		if ListChange or len(self.read_services) == 0:
@@ -479,13 +480,13 @@ class Volume:
 		if not self.service is None:
 			service = self.service.toCompareString()
 			# check for new channel (zap)
-			if service <> self.oldservice:
-				print '[Volume Adjust] New Channel'
+			if service != self.oldservice:
+				print('[Volume Adjust] New Channel')
 				# store new channel
 				self.oldservice = service
 				# calculate normal volume (subtract previous offset of the actual volume)
 				vol3 = str(self.volctrl.getVolume())
-				print '[Volume Adjust] oldvol = ' + str(self.oldvol)
+				print('[Volume Adjust] oldvol = ' + str(self.oldvol))
 				normalvol = int(vol3) - self.oldvol
 				# don't forget to update the actual volume variable
 				# don't change the volume if the offset = 0
@@ -499,37 +500,37 @@ class Volume:
 				for i in self.read_services:
 					if i == service:
 						# service found
-						print '[Volume Adjust] Found adjust volume channel'
+						print('[Volume Adjust] Found adjust volume channel')
 						found = True
 						break
 					tel +=1
 				# if channel found in list, search volume offset and change the volume
 				if found:
 					voloffset = self.read_volume[tel]
-					print '[Volume Adjust] offset = ' + voloffset
+					print('[Volume Adjust] offset = ' + voloffset)
 					# calculate new volume
 					vol1 = int(voloffset)
 					vol2 = str(self.volctrl.getVolume())
 					newvol = int(vol2) + vol1
-					print '[Volume Adjust] newvol = ' + str(newvol)
+					print('[Volume Adjust] newvol = ' + str(newvol))
 					# set the new volume
 					self.volctrl.setVolume(newvol, newvol)
 					# store the new offset, need to change it back when new channel not in list
 					self.oldvol = int(voloffset)
 				else:
 					if config.Volume.Enabled.value:
-						print '[Volume Adjust] Check for AC3/Dolby'
+						print('[Volume Adjust] Check for AC3/Dolby')
 						if self.isCurrentAudioAC3DTS():
 							vol = self.volctrl.getVolume()
 							newvol = int(vol) + config.Volume.AC3_vol.value
-							print '[Volume Adjust] newvol AC3/Dolby = ' + str(newvol)
+							print('[Volume Adjust] newvol AC3/Dolby = ' + str(newvol))
 							self.volctrl.setVolume(newvol, newvol)
 							self.oldvol = config.Volume.AC3_vol.value
 
 	def setvolume(self):
 		vol = 50
 		vol = config.audio.volume.value
-		print '[Setvolume] start with volume ' + str(vol)
+		print('[Setvolume] start with volume ' + str(vol))
 		self.volctrl.setVolume(vol, vol)
 		self.startonce = True
 
@@ -541,14 +542,14 @@ class Volume:
 				tracknr = audio.getCurrentTrack()
 				i = audio.getTrackInfo(tracknr)
 				description = i.getDescription();
-				print '[Volume Adjust] description: ' + description
+				print('[Volume Adjust] description: ' + description)
 				if "AC3" in description or "DTS" in description or "Dolby Digital" == description:
-					print '[Volume Adjust] AudioAC3Dolby = YES'
+					print('[Volume Adjust] AudioAC3Dolby = YES')
 					return True
 			except:
-				print '[Volume Adjust] Fault AudioAC3Dolby = NO'
+				print('[Volume Adjust] Fault AudioAC3Dolby = NO')
 				return False
-		print '[Volume Adjust] AudioAC3Dolby = NO'
+		print('[Volume Adjust] AudioAC3Dolby = NO')
 		return False
 
 

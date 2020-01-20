@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -58,7 +59,7 @@ class ChoiceBox(Screen):
 							labeltext += '\n'
 						labeltext = labeltext + temptext[count-1]
 						count += 1
-						print '[Choicebox] count', count
+						print('[Choicebox] count', count)
 					self["text"].setText(labeltext)
 				else:
 					self["text"] = Label(title)

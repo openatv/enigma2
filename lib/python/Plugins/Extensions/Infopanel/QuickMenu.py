@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
@@ -111,8 +112,8 @@ def isFileSystemSupported(filesystem):
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
-	except Exception, ex:
-		print "[Harddisk] Failed to read /proc/filesystems:", ex
+	except Exception as ex:
+		print("[Harddisk] Failed to read /proc/filesystems:", ex)
 
 class QuickMenu(Screen, ProtectedScreen):
 	skin = """
@@ -205,7 +206,7 @@ class QuickMenu(Screen, ProtectedScreen):
 				self["summary_description"].text = item[0]
 
 	def goLeft(self):
-		if self.menu <> 0:
+		if self.menu != 0:
 			self.menu = 0
 			self.selectedList = self["list"]
 			self["list"].selectionEnabled(1)

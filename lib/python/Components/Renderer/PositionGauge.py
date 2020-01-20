@@ -1,4 +1,5 @@
-from Renderer import Renderer
+from __future__ import absolute_import
+from .Renderer import Renderer
 from enigma import ePositionGauge
 
 class PositionGauge(Renderer):

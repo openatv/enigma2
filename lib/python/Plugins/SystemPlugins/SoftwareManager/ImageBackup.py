@@ -1,3 +1,4 @@
+from __future__ import print_function
 #################################################################################
 # FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 4.3     			#
 #	                         						                            #
@@ -183,29 +184,29 @@ class ImageBackup(Screen):
 							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs")[5:]
 							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel")[5:]
 
-				print "[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
-				print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
-				print "[FULL BACKUP] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND
-				print "[FULL BACKUP] BOX MODEL = >%s<" %self.MODEL
-				print "[FULL BACKUP] OEM MODEL = >%s<" %self.OEM
-				print "[FULL BACKUP] IMAGEFOLDER = >%s<" %self.IMAGEFOLDER
-				print "[FULL BACKUP] UBINIZE = >%s<" %self.UBINIZE_ARGS
-				print "[FULL BACKUP] MKUBIFS = >%s<" %self.MKUBIFS_ARGS
-				print "[FULL BACKUP] MTDBOOT = >%s<" %self.MTDBOOT
-				print "[FULL BACKUP] MTDKERNEL = >%s<" %self.MTDKERNEL
-				print "[FULL BACKUP] MTDROOTFS = >%s<" %self.MTDROOTFS
-				print "[FULL BACKUP] ROOTFSBIN = >%s<" %self.ROOTFSBIN
-				print "[FULL BACKUP] KERNELBIN = >%s<" %self.KERNELBIN
-				print "[FULL BACKUP] ROOTFSSUBDIR = >%s<" %self.ROOTFSSUBDIR
-				print "[FULL BACKUP] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE
-				print "[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG
-				print "[FULL BACKUP] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO
-				print "[FULL BACKUP] DISTROVERSION = >%s<" %self.DISTROVERSION
-				print "[FULL BACKUP] MTDBOOT = >%s<" %self.MTDBOOT
-				print "[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG
-				print "[FULL BACKUP] USB RECOVERY = >%s< " %self.RECOVERY
-				print "[FULL BACKUP] DESTINATION = >%s< " %self.DIRECTORY
-				print "[FULL BACKUP] SLOT = >%s< " %self.SLOT
+				print("[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD)
+				print("[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME)
+				print("[FULL BACKUP] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND)
+				print("[FULL BACKUP] BOX MODEL = >%s<" %self.MODEL)
+				print("[FULL BACKUP] OEM MODEL = >%s<" %self.OEM)
+				print("[FULL BACKUP] IMAGEFOLDER = >%s<" %self.IMAGEFOLDER)
+				print("[FULL BACKUP] UBINIZE = >%s<" %self.UBINIZE_ARGS)
+				print("[FULL BACKUP] MKUBIFS = >%s<" %self.MKUBIFS_ARGS)
+				print("[FULL BACKUP] MTDBOOT = >%s<" %self.MTDBOOT)
+				print("[FULL BACKUP] MTDKERNEL = >%s<" %self.MTDKERNEL)
+				print("[FULL BACKUP] MTDROOTFS = >%s<" %self.MTDROOTFS)
+				print("[FULL BACKUP] ROOTFSBIN = >%s<" %self.ROOTFSBIN)
+				print("[FULL BACKUP] KERNELBIN = >%s<" %self.KERNELBIN)
+				print("[FULL BACKUP] ROOTFSSUBDIR = >%s<" %self.ROOTFSSUBDIR)
+				print("[FULL BACKUP] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE)
+				print("[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG)
+				print("[FULL BACKUP] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO)
+				print("[FULL BACKUP] DISTROVERSION = >%s<" %self.DISTROVERSION)
+				print("[FULL BACKUP] MTDBOOT = >%s<" %self.MTDBOOT)
+				print("[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG)
+				print("[FULL BACKUP] USB RECOVERY = >%s< " %self.RECOVERY)
+				print("[FULL BACKUP] DESTINATION = >%s< " %self.DIRECTORY)
+				print("[FULL BACKUP] SLOT = >%s< " %self.SLOT)
 
 				self.TITLE = _("Full back-up on %s") % (self.DIRECTORY)
 				self.START = time()
@@ -553,15 +554,15 @@ class ImageBackup(Screen):
 		file_found = True
 
 		if not os.path.exists("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
-			print 'ROOTFS bin file not found'
+			print('ROOTFS bin file not found')
 			file_found = False
 
 		if not os.path.exists("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
-			print 'KERNEL bin file not found'
+			print('KERNEL bin file not found')
 			file_found = False
 
 		if os.path.exists("%s/noforce" % self.MAINDEST):
-			print 'NOFORCE bin file not found'
+			print('NOFORCE bin file not found')
 			file_found = False
 
 		if SystemInfo["canMultiBoot"] and not self.RECOVERY and not SystemInfo["HasRootSubdir"]:

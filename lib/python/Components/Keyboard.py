@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.Console import Console
 from os import listdir as os_listdir, path as os_path
 from re import compile as re_compile
@@ -30,12 +31,12 @@ class Keyboard:
 	def activateKeyboardMap(self, index):
 		try:
 			keymap = self.keyboardmaps[index]
-			print "Activating keymap:",keymap[1]
+			print("Activating keymap:",keymap[1])
 			keymappath = eEnv.resolve('${datadir}/keymaps/') + keymap[0]
 			if os_path.exists(keymappath):
 				Console().ePopen(("loadkmap < " + str(keymappath)))
 		except:
-			print "Selected keymap does not exist!"
+			print("Selected keymap does not exist!")
 
 	def getKeyboardMaplist(self):
 		return self.keyboardmaps

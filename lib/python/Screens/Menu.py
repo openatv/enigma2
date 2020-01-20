@@ -124,7 +124,7 @@ class MenuUpdater:
 		self.updatedMenuItems[id].remove([text, pos, module, screen, weight, description])
 
 	def updatedMenuAvailable(self, id):
-		return self.updatedMenuItems.has_key(id)
+		return id in self.updatedMenuItems
 
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
@@ -148,7 +148,7 @@ class Menu(Screen, ProtectedScreen):
 			selection[1]()
 
 	def execText(self, text):
-		exec text
+		exec(text)
 
 	def runScreen(self, arg):
 		# arg[0] is the module (as string)
@@ -157,7 +157,7 @@ class Menu(Screen, ProtectedScreen):
 		#	string (as we want to reference
 		#	stuff which is just imported)
 		if arg[0] != "":
-			exec "from %s import %s" % (arg[0], arg[1].split(",")[0])
+			exec("from %s import %s" % (arg[0], arg[1].split(",")[0]))
 			self.openDialog(*eval(arg[1]))
 
 	def nothing(self): #dummy
@@ -354,9 +354,9 @@ class Menu(Screen, ProtectedScreen):
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
 		if menuID is not None:
-			if config.usage.menutype.value == 'horzanim' and skin.dom_screens.has_key("Animmain"):
+			if config.usage.menutype.value == 'horzanim' and "Animmain" in skin.dom_screens:
 				self.skinName.append('Animmain')
-			elif config.usage.menutype.value == 'horzicon' and skin.dom_screens.has_key("Iconmain"):
+			elif config.usage.menutype.value == 'horzicon' and "Iconmain" in skin.dom_screens:
 				self.skinName.append('Iconmain')
 			else:
 				self.skinName.append('menu_' + menuID)
@@ -472,14 +472,14 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			t_history.thistory = t_history.thistory + str(a) + ' > '
 
-		if config.usage.menutype.value == 'horzanim' and skin.dom_screens.has_key("Animmain"):
+		if config.usage.menutype.value == 'horzanim' and "Animmain" in skin.dom_screens:
 			self['label1'] = StaticText()
 			self['label2'] = StaticText()
 			self['label3'] = StaticText()
 			self['label4'] = StaticText()
 			self['label5'] = StaticText()
 			self.onShown.append(self.openTestA)
-		elif config.usage.menutype.value == 'horzicon' and skin.dom_screens.has_key("Iconmain"):
+		elif config.usage.menutype.value == 'horzicon' and "Iconmain" in skin.dom_screens:
 			self['label1'] = StaticText()
 			self['label2'] = StaticText()
 			self['label3'] = StaticText()

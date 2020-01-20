@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 import locale
 import os
 import skin
@@ -6,15 +8,15 @@ from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTun
 
 from Components.About import about
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigFloat, ConfigDictionarySet, ConfigDirectory
+from .config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigFloat, ConfigDictionarySet, ConfigDirectory
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
-from SystemInfo import SystemInfo
+from .SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getDisplayType
 from keyids import KEYIDS
-from sys import maxint
+from sys import maxsize
 import glob
 import os
 from Components.RcModel import rc_model
@@ -264,7 +266,7 @@ def InitUsageConfig():
 	config.usage.pip_last_service_timeout = ConfigSelection(default = "-1", choices = choicelist)
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_HDD),0755)
+			os.mkdir(resolveFilename(SCOPE_HDD),0o755)
 		except:
 			pass
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
@@ -278,7 +280,7 @@ def InitUsageConfig():
 			if not os.path.exists(tmpvalue):
 				os.system("mkdir -p %s" %tmpvalue)
 		except:
-			print "Failed to create recording path: %s" %tmpvalue
+			print("Failed to create recording path: %s" %tmpvalue)
 		if not config.usage.default_path.value.endswith('/'):
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
@@ -290,7 +292,7 @@ def InitUsageConfig():
 
 	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
+			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0o755)
 		except:
 			pass
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
@@ -309,7 +311,7 @@ def InitUsageConfig():
 
 	if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_AUTORECORD),0755)
+			os.mkdir(resolveFilename(SCOPE_AUTORECORD),0o755)
 		except:
 			pass
 	config.usage.autorecord_path = ConfigText(default = resolveFilename(SCOPE_AUTORECORD))
@@ -775,7 +777,7 @@ def InitUsageConfig():
 	try:
 		dateEnabled, timeEnabled = skin.parameters.get("AllowUserDatesAndTimes", (0, 0))
 	except Exception as error:
-		print "[UsageConfig] Error loading 'AllowUserDatesAndTimes' skin parameter! (%s)" % error
+		print("[UsageConfig] Error loading 'AllowUserDatesAndTimes' skin parameter! (%s)" % error)
 		dateEnabled, timeEnabled = (0, 0)
 	if dateEnabled:
 		config.usage.date.enabled.value = True
@@ -898,7 +900,7 @@ def InitUsageConfig():
 	try:
 		dateDisplayEnabled, timeDisplayEnabled = skin.parameters.get("AllowUserDatesAndTimesDisplay", (0, 0))
 	except Exception as error:
-		print "[UsageConfig] Error loading 'AllowUserDatesAndTimesDisplay' display skin parameter! (%s)" % error
+		print("[UsageConfig] Error loading 'AllowUserDatesAndTimesDisplay' display skin parameter! (%s)" % error)
 		dateDisplayEnabled, timeDisplayEnabled = (0, 0)
 	if dateDisplayEnabled:
 		config.usage.date.enabled_display.value = True
@@ -968,10 +970,10 @@ def InitUsageConfig():
 	config.epg.cacheloadsched = ConfigYesNo(default = False)
 	config.epg.cachesavesched = ConfigYesNo(default = False)
 	def EpgCacheLoadSchedChanged(configElement):
-		import EpgLoadSave
+		from . import EpgLoadSave
 		EpgLoadSave.EpgCacheLoadCheck()
 	def EpgCacheSaveSchedChanged(configElement):
-		import EpgLoadSave
+		from . import EpgLoadSave
 		EpgLoadSave.EpgCacheSaveCheck()
 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
@@ -1128,16 +1130,16 @@ def InitUsageConfig():
 				debugpath.append((p.mountpoint + 'logs/', d))
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 	if not os.path.exists("/home"):
-		os.mkdir("/home",0755)
+		os.mkdir("/home",0o755)
 	if not os.path.exists("/home/root"):
-		os.mkdir("/home/root",0755)
+		os.mkdir("/home/root",0o755)
 
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.value):
 			try:
-				os.mkdir(config.crash.debug_path.value,0755)
+				os.mkdir(config.crash.debug_path.value,0o755)
 			except:
-				print "Failed to create log path: %s" %config.crash.debug_path.value
+				print("Failed to create log path: %s" %config.crash.debug_path.value)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 
 	crashlogheader = _("We are really sorry. Your receiver encountered " \
@@ -1634,7 +1636,7 @@ def refreshServiceList(configElement = None):
 			servicelist.setMode()
 
 def patchTuxtxtConfFile(dummyConfigElement):
-	print "[tuxtxt] patching tuxtxt2.conf"
+	print("[tuxtxt] patching tuxtxt2.conf")
 	if config.usage.tuxtxt_font_and_res.value == "X11_SD":
 		tuxtxt2 = [["UseTTF",0],
 		           ["TTFBold",1],
@@ -1709,7 +1711,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 	try:
 		os.system(command)
 	except:
-		print "Error: failed to patch %s!" % TUXTXT_CFG_FILE
-	print "[tuxtxt] patched tuxtxt2.conf"
+		print("Error: failed to patch %s!" % TUXTXT_CFG_FILE)
+	print("[tuxtxt] patched tuxtxt2.conf")
 
 	config.usage.tuxtxt_ConfFileHasBeenPatched.setValue(True)

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
 from os import path
@@ -7,7 +8,7 @@ from Components.Element import cached
 from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Tools.GetEcmInfo import GetEcmInfo
-from Poll import Poll
+from .Poll import Poll
 
 caid_data = (
 	( "0x100",  "0x1ff", "Seca",     "S",  True  ),

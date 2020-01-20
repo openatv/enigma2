@@ -1,10 +1,12 @@
+from __future__ import print_function
+from __future__ import absolute_import
 import os
 import struct
 import random
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
-from GUIComponent import GUIComponent
+from .GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
 from Components.config import config
@@ -467,14 +469,14 @@ class MovieList(GUIComponent):
 				ref = info.getInfoString(serviceref, iServiceInformation.sServiceref)		# get reference
 				service = ServiceReference(ref).getServiceName()							# get service name
 				serviceSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), service).width()
-			except Exception, e:
-				print('[MovieList] load extended infos get failed: ', e)
+			except Exception as e:
+				print(('[MovieList] load extended infos get failed: ', e))
 			if ext == '2':
 				try:
 					picon = getPiconName(ref)
 					picon = loadPNG(picon)
-				except Exception, e:
-					print('[MovieList] load picon get failed: ', e)
+				except Exception as e:
+					print(('[MovieList] load picon get failed: ', e))
 
 			if fileExtension in RECORD_EXTENSIONS:
 				if ext == '1':
@@ -589,7 +591,7 @@ class MovieList(GUIComponent):
 
 		reflist = root and serviceHandler.list(root)
 		if reflist is None:
-			print "listing of movies failed"
+			print("listing of movies failed")
 			return
 		realtags = set()
 		tags = {}
@@ -637,7 +639,7 @@ class MovieList(GUIComponent):
 				realtags.update(this_tags)
 			for tag in this_tags:
 				if len(tag) >= 4:
-					if tags.has_key(tag):
+					if tag in tags:
 						tags[tag].append(name)
 					else:
 						tags[tag] = [name]

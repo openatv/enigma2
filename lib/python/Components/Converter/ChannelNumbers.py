@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.NimManager import nimmanager
 
 class ChannelNumbers:
@@ -44,7 +45,7 @@ class ChannelNumbers:
 		try:
 			description = nimmanager.getTerrestrialDescription(nim)
 		except:
-			print "[ChannelNumber] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim
+			print("[ChannelNumber] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim)
 		return description
 
 	def supportedChannels(self, nim):

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 from boxbranding import getMachineMtdRoot,getMachineMtdKernel,getBoxType,getMachineName
@@ -138,17 +139,17 @@ class GetImagelist():
 					self.OsPath = "/tmp/testmount/linuxrootfs1"
 				elif os.path.isfile("/tmp/testmount/linuxrootfs%s/usr/bin/enigma2" % self.slot):
 					self.OsPath = "/tmp/testmount/linuxrootfs%s" % self.slot
-					print "multiboot tools 1 slots", self.slot, self.slot2
+					print("multiboot tools 1 slots", self.slot, self.slot2)
 			else:
 				if os.path.isfile("/tmp/testmount/usr/bin/enigma2"):
 					self.OsPath = '/tmp/testmount'
-			print "Tools/Multiboot OsPath %s " %self.OsPath
+			print("Tools/Multiboot OsPath %s " %self.OsPath)
 			if self.OsPath != "NoPath":
 				try:
 					Creator = open("%s/etc/issue" %self.OsPath).readlines()[-2].capitalize().strip()[:-6].replace("-release", " rel")
 				except:
 					Creator = _("unknow")
-				print "Tools/Multiboot Creator %s" %Creator 
+				print("Tools/Multiboot Creator %s" %Creator) 
 				if Creator.startswith("Openpli"):
 					build = [x.split("-")[-2:-1][0][-8:] for x in open("%s/var/lib/opkg/info/openpli-bootlogo.control" %self.OsPath).readlines() if x.startswith("Version:")]
 					Date = "%s-%s-%s" % (build[0][6:], build[0][4:6], build[0][2:4])

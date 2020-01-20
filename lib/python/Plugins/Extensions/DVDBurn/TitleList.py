@@ -1,4 +1,6 @@
-import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
+from __future__ import print_function
+from __future__ import absolute_import
+from . import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -111,8 +113,8 @@ class TitleList(Screen, HelpableScreen):
 
 	def checkBackgroundJobs(self):
 		for job in job_manager.getPendingJobs():
-			print "type(job):", type(job)
-			print "Process.DVDJob:", Process.DVDJob
+			print("type(job):", type(job))
+			print("Process.DVDJob:", Process.DVDJob)
 			if type(job) == Process.DVDJob:
 				self.backgroundJob = job
 				return
@@ -180,7 +182,7 @@ class TitleList(Screen, HelpableScreen):
 			def updateTags(self):
 				pass
 			def doContext(self):
-				print "context menu forbidden inside DVDBurn to prevent calling multiple instances"
+				print("context menu forbidden inside DVDBurn to prevent calling multiple instances")
 			def insertWithoutEdit(self):
 				current = self.getCurrent()
 				if current is not None:
@@ -408,6 +410,6 @@ class TitleList(Screen, HelpableScreen):
 			self.session.openWithCallback(self.exitCB, MessageBox,text = _("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type = MessageBox.TYPE_YESNO)
 
 	def exitCB(self, answer):
-		print "exitCB", answer
+		print("exitCB", answer)
 		if answer is not None and answer:
 			self.close()

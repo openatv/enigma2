@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
-from Poll import Poll
+from .Poll import Poll
 from Tools.Transponder import ConvertToHumanReadable
 
 from os import path
@@ -129,7 +130,7 @@ class ServiceInfo(Poll, Converter, object):
 			f.close()
 			if val >= 2 ** 31:
 				val -= 2 ** 32
-		except Exception, e:
+		except Exception as e:
 			pass
 		return val
 

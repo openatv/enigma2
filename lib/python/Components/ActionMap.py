@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eActionMap
 
 from Tools.KeyBindings import queryKeyBinding
@@ -19,7 +20,7 @@ class ActionMap:
 					unknown.remove(action)
 					break
 		if unknown:
-			print "[ActionMap] Keymap(s) '%s' -> Undefined action(s) '%s'." % (", ".join(contexts), ", ".join(unknown))
+			print("[ActionMap] Keymap(s) '%s' -> Undefined action(s) '%s'." % (", ".join(contexts), ", ".join(unknown)))
 
 	def setEnabled(self, enabled):
 		self.enabled = enabled
@@ -53,13 +54,13 @@ class ActionMap:
 
 	def action(self, context, action):
 		if action in self.actions:
-			print "[ActionMap] Keymap '%s' -> Action = '%s'." % (context, action)
+			print("[ActionMap] Keymap '%s' -> Action = '%s'." % (context, action))
 			res = self.actions[action]()
 			if res is not None:
 				return res
 			return 1
 		else:
-			print "[ActionMap] Keymap '%s' -> Unknown action '%s'! (Typo in keymap?)" % (context, action)
+			print("[ActionMap] Keymap '%s' -> Unknown action '%s'! (Typo in keymap?)" % (context, action))
 			return 0
 
 	def destroy(self):

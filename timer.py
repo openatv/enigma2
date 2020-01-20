@@ -1,3 +1,4 @@
+from __future__ import print_function
 from bisect import insort
 from time import time, localtime, mktime
 from enigma import eTimer, eActionMap
@@ -108,10 +109,10 @@ class TimerEntry:
 	# check if a timer entry must be skipped
 	def shouldSkip(self):
 		if self.disabled:
-			if self.end <= time() and not "PowerTimerEntry" in `self`:
+			if self.end <= time() and not "PowerTimerEntry" in repr(self):
 				self.disabled = False
 			return True
-		if "PowerTimerEntry" in `self`:
+		if "PowerTimerEntry" in repr(self):
 			if (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat != 'once':
 				return False
 			elif self.begin >= time() and (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == 'once':
@@ -228,7 +229,7 @@ class Timer:
 	def calcNextActivation(self):
 		now = time()
 		if self.lastActivation > now:
-			print "[timer.py] timewarp - re-evaluating all processed timers."
+			print("[timer.py] timewarp - re-evaluating all processed timers.")
 			tl = self.processed_timers
 			self.processed_timers = [ ]
 			for x in tl:
@@ -262,12 +263,12 @@ class Timer:
 			try:
 				self.timer_list.remove(timer)
 			except:
-				print "[timer] Failed to remove, not in list"
+				print("[timer] Failed to remove, not in list")
 				return
 		# give the timer a chance to re-enqueue
 		if timer.state == TimerEntry.StateEnded:
 			timer.state = TimerEntry.StateWaiting
-		elif "PowerTimerEntry" in `timer` and (timer.timerType == 3 or timer.timerType == 4):
+		elif "PowerTimerEntry" in repr(timer) and (timer.timerType == 3 or timer.timerType == 4):
 			if timer.state > 0:
 				eActionMap.getInstance().unbindAction('', timer.keyPressed)
 			timer.state = TimerEntry.StateWaiting

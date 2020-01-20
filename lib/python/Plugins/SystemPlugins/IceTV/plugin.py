@@ -6,6 +6,8 @@ Copyright (C) 2014 Peter Urbanec
 All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
+from __future__ import print_function
+from __future__ import absolute_import
 
 from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
 from Tools.ServiceReference import service_types_tv_ref
@@ -28,7 +30,7 @@ from Tools.LoadPixmap import LoadPixmap
 from calendar import timegm
 from time import strptime, gmtime, localtime, strftime, time
 from . import config, enableIceTV, disableIceTV
-import API as ice
+from . import API as ice
 import requests
 from collections import deque, defaultdict
 from operator import itemgetter
@@ -506,7 +508,7 @@ class EPGFetcher(object):
     def addLog(self, msg):
         entry = LogEntry(time(), msg)
         self.log.append(entry)
-        print "[IceTV]", str(entry)
+        print("[IceTV]", str(entry))
 
     def createFetchJob(self, res=None, send_scans=False):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
@@ -533,12 +535,12 @@ class EPGFetcher(object):
         res = True
         try:
             self.settings = dict((s["name"], s["value"].encode("utf-8") if s["type"] == 2 else s["value"]) for s in self.getSettings())
-            print "[EPGFetcher] settings", self.settings
+            print("[EPGFetcher] settings", self.settings)
         except (Exception) as ex:
             self.settings = {}
             _logResponseException(self, _("Can not retrieve IceTV settings"), ex)
         send_logs = config.plugins.icetv.member.send_logs and self.settings.get("send_pvr_logs", False)
-        print "[EPGFetcher] send_logs", send_logs
+        print("[EPGFetcher] send_logs", send_logs)
         if send_logs:
             self.postPvrLogs()
         try:
@@ -699,7 +701,7 @@ class EPGFetcher(object):
                         genres.append(eit_remap)
                         category_cache[name] = eit_remap
                     elif name not in mapping_errors:
-                        print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
+                        print('[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name))
                         mapping_errors.add(name)
             p_rating = ((country_code, parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
             res.append((start, duration, title, short, extended, genres, event_id, p_rating))
@@ -855,14 +857,14 @@ class EPGFetcher(object):
                     iceTimer["message"] = "No valid service mapping for channel_id %d" % channel_id
                     update_queue.append(iceTimer)
             except (IOError, RuntimeError, KeyError) as ex:
-                print "[IceTV] Can not process iceTimer:", ex
+                print("[IceTV] Can not process iceTimer:", ex)
         # Send back updated timer states
         res = True
         try:
             self.putTimers(update_queue)
             self.addLog("Timers updated OK")
         except KeyError as ex:
-            print "[IceTV] ", str(ex)
+            print("[IceTV] ", str(ex))
             res = False
         except (IOError, RuntimeError) as ex:
             _logResponseException(self, _("Can not update timers"), ex)
@@ -1064,27 +1066,27 @@ class EPGFetcher(object):
 
     def postScans(self):
         scan_list = self.getTriplets()
-        print "[EPGFetcher] postScans", scan_list is not None
+        print("[EPGFetcher] postScans", scan_list is not None)
         if scan_list is None:
             return
         try:
             req = ice.Scans()
             req.data["scans"] = scan_list
             res = req.post()
-            print "[EPGFetcher] postScans", res
+            print("[EPGFetcher] postScans", res)
         except (IOError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not post scan information"), ex)
 
     def postPvrLogs(self):
         log_list = [l for l in self.log if not l.sent]
-        print "[EPGFetcher] postPvrLogs", len(log_list)
+        print("[EPGFetcher] postPvrLogs", len(log_list))
         if not log_list:
             return
         try:
             req = ice.PvrLogs()
             req.data["logs"] = log_list
             res = req.post()
-            print "[EPGFetcher] postPvrLogs", res, res.json()["count_of_log_entries"]
+            print("[EPGFetcher] postPvrLogs", res, res.json()["count_of_log_entries"])
             for l in log_list:
                 l.sent = True
         except (IOError, RuntimeError, KeyError) as ex:
@@ -1181,12 +1183,12 @@ class IceTVMain(ChoiceBox):
     def increaseDebug(self):
         if ice._debug_level < 4:
             ice._debug_level += 1
-        print "[IceTV] debug level =", ice._debug_level
+        print("[IceTV] debug level =", ice._debug_level)
 
     def decreaseDebug(self):
         if ice._debug_level > 0:
             ice._debug_level -= 1
-        print "[IceTV] debug level =", ice._debug_level
+        print("[IceTV] debug level =", ice._debug_level)
 
     def enable(self, res=None):
         enableIceTV()
@@ -1257,13 +1259,13 @@ class IceTVServerSetup(Screen):
 
     def cancel(self):
         config.plugins.icetv.server.name.cancel()
-        print "[IceTV] server reset to", config.plugins.icetv.server.name.value
+        print("[IceTV] server reset to", config.plugins.icetv.server.name.value)
         self.close(False)
 
     def save(self):
         item = self["config"].getCurrent()
         config.plugins.icetv.server.name.value = item[1]
-        print "[IceTV] server set to", config.plugins.icetv.server.name.value
+        print("[IceTV] server set to", config.plugins.icetv.server.name.value)
         self.session.openWithCallback(self.userDone, IceTVUserTypeScreen)
 
     def userDone(self, user_success):
@@ -1548,7 +1550,7 @@ class IceTVLogin(Screen):
         if path.isfile(qrcode_path):
             self["qrcode"].instance.setPixmap(LoadPixmap(qrcode_path))
         else:
-            print "[IceTV] missing QR code file", qrcode_path
+            print("[IceTV] missing QR code file", qrcode_path)
 
         self.login_timer.start(3, True)
 

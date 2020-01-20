@@ -1,5 +1,6 @@
-from Converter import Converter
-from Poll import Poll
+from __future__ import absolute_import
+from .Converter import Converter
+from .Poll import Poll
 from time import time
 from Components.Element import cached, ElementError
 from Components.config import config

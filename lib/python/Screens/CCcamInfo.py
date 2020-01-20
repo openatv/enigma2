@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
+from __future__ import print_function
 from base64 import encodestring
 from os import listdir, remove, rename, system, popen, path
 
@@ -83,7 +84,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 		authHeader = "Basic " + basicAuth.strip()
 		AuthHeaders = {"Authorization": authHeader}
 
-		if kwargs.has_key("headers"):
+		if "headers" in kwargs:
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
@@ -549,7 +550,7 @@ class CCcamInfoMain(Screen):
 			self["menu"].pageDown()
 
 	def getWebpageError(self, error=""):
-		print str(error)
+		print(str(error))
 		self.session.openWithCallback(self.workingFinished, MessageBox, _("Error reading webpage!"), MessageBox.TYPE_ERROR)
 
 	def showFile(self, file):

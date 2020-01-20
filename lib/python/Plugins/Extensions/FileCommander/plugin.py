@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
 # Components
@@ -40,12 +42,12 @@ import string
 import re
 
 # System mods
-from InputBox import InputBox
-from FileList import FileList, MultiFileSelectList, EXTENSIONS
+from .InputBox import InputBox
+from .FileList import FileList, MultiFileSelectList, EXTENSIONS
 
 # Addons
-from addons.key_actions import key_actions, stat_info
-from addons.type_utils import vEditor
+from .addons.key_actions import key_actions, stat_info
+from .addons.type_utils import vEditor
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
@@ -942,7 +944,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		subFile = sourceDir + testFileName
 		if (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")) or (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
-			print "[FileCommander] Downloading subtitle for: ", subFile
+			print("[FileCommander] Downloading subtitle for: ", subFile)
 			# For Future USE
 
 	def subCallback(self, answer=False):
@@ -1208,7 +1210,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if self.ACTIVELIST == self.SOURCELIST:
 			self.ACTIVELIST.changeSelectionState()
 			self.selectedFiles = self.ACTIVELIST.getSelectedList()
-			print "[FileCommander] selectedFiles:", self.selectedFiles
+			print("[FileCommander] selectedFiles:", self.selectedFiles)
 			self.goDown()
 
 	def exit(self, jobs=None, updateDirs=None):
@@ -1279,7 +1281,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.delete_files = []
 		self.delete_updateDirs = [self.SOURCELIST.getCurrentDirectory()]
 		for file in self.selectedFiles:
-			print 'delete: %s' %file
+			print('delete: %s' %file)
 			if not cnt:
 				filename += '%s' %file
 			elif cnt < 5:
@@ -1301,7 +1303,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if result is not None:
 			if result[1]:
 				for file in self.delete_files:
-					print 'delete:', file
+					print('delete:', file)
 					os.remove(file)
 				self.exit([self.delete_dirs], self.delete_updateDirs)
 
@@ -1416,7 +1418,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				self[side + "_head2"].updateList(())
 
 	def doRefresh(self):
-		print "[FileCommander] selectedFiles:", self.selectedFiles
+		print("[FileCommander] selectedFiles:", self.selectedFiles)
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 		self.updateHead()

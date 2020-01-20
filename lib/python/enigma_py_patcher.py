@@ -1,3 +1,4 @@
+from __future__ import print_function
 #read the comment to this file in lib/service/iservice.h !!
 import sys
 import os
@@ -22,7 +23,7 @@ for line, str in enumerate(source):
 			str = str[:pos]+str[pos+6:]
 
 	if oldstr != str:
-		print "!!! Patch enigma.py line %d\n%s\n%s" %(line, oldstr[:len(oldstr)-1], str)
+		print("!!! Patch enigma.py line %d\n%s\n%s" %(line, oldstr[:len(oldstr)-1], str))
 
 	dest.write(str)
 

@@ -1,3 +1,4 @@
+from __future__ import print_function
 # plugin from Sif Team
 
 from enigma import eDVBDB, eServiceReference, eServiceCenter
@@ -76,9 +77,9 @@ class LCN():
 				value = x[0]
 				cmd = "x[0] = " + rule
 				try:
-					exec cmd
-				except Exception, e:
-					print e
+					exec(cmd)
+				except Exception as e:
+					print(e)
 
 	def addMarker(self, position, text):
 		self.markers.append([position, text])
@@ -88,8 +89,8 @@ class LCN():
 		
 		try:
 			f = open(self.dbfile)
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 		
 		while True:
@@ -141,8 +142,8 @@ class LCN():
 	def writeTVBouquet(self):
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.tv', "w")
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 
 		self.newlist = []
@@ -219,8 +220,8 @@ class LCN():
 	def writeRadioBouquet(self):
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.radio', "w")
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 
 		self.newlist = []
@@ -323,8 +324,8 @@ class LCNBuildHelper():
 	def readBouquetsList(self, pwd, bouquetname):
 		try:
 			f = open(pwd + "/" + bouquetname)
-		except Exception, e:
-			print e
+		except Exception as e:
+			print(e)
 			return
 			
 		ret = []
@@ -350,8 +351,8 @@ class LCNBuildHelper():
 			if filename:
 				try:
 					fb = open(pwd + "/" + filename)
-				except Exception, e:
-					print e
+				except Exception as e:
+					print(e)
 					continue
 					
 				tmp = fb.readline().strip()
