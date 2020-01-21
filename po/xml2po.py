@@ -53,11 +53,15 @@ for arg in sys.argv[1:]:
 			if file.endswith(".xml"):
 				parser.parse(os.path.join(arg, file))
 	else:
-		parser.parse(arg)
+		try:
+			parser.parse(arg)
+		except:
+			pass
 
 	attrlist = list(attrlist)
 	attrlist.sort(key=lambda a: a[0])
 
+if sys.version_info[0] < 3:
 	for (k,c) in attrlist:
 		print()
 		print('#: ' + arg)
@@ -66,6 +70,18 @@ for arg in sys.argv[1:]:
 			for l in c.split('\n'):
 				print("#. ", l)
 		print('msgid "' + str(k) + '"')
+		print('msgstr ""')
+
+	attrlist = set()
+else:
+	for (k,c) in attrlist:
+		print('')
+		print('#: ' + arg)
+		k.replace("\\n", "\"\n\"")
+		if c:
+			for l in c.split('\n'):
+				print("#. ", l)
+		print('msgid "' + k + '"')
 		print('msgstr ""')
 
 	attrlist = set()
