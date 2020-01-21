@@ -6,8 +6,25 @@
 
 #include <string>
 #include <lib/base/object.h>
+#include "Python.h"
 
 #if !defined(SKIP_PART1) && !defined(SWIG)
+
+#if PY_MAJOR_VERSION >= 3
+#define PyStringObject PyUnicodeObject
+#define PyString_FromStringAndSize PyUnicode_FromStringAndSize
+#define PyString_AS_STRING PyUnicode_AsUTF8
+#define PyString_AsString PyUnicode_AsUTF8
+#define PyString_Check PyUnicode_Check
+#define PyString_Size PyBytes_Size
+
+#define PyInt_AsLong PyLong_AsLong
+#define PyInt_Check PyLong_Check
+#define PyInt_AsUnsignedLongMask PyLong_AsUnsignedLongMask
+
+#define PyExc_StandardError PyExc_Exception
+#endif
+
 class ePyObject
 {
 	PyObject *m_ob;
@@ -235,21 +252,33 @@ inline ePyObject Impl_PyDict_New(const char* file, int line)
 
 inline ePyObject Impl_PyString_FromString(const char* file, int line, const char *str)
 {
+#if PY_MAJOR_VERSION >= 3
+	return ePyObject(PyUnicode_FromString(str), file, line);
+#else
 	return ePyObject(PyString_FromString(str), file, line);
+#endif
 }
 
 inline ePyObject Impl_PyString_FromFormat(const char* file, int line, const char *fmt, ...)
 {
 	va_list ap;
 	va_start(ap, fmt);
+#if PY_MAJOR_VERSION >= 3
+	PyObject *ob = PyUnicode_FromFormatV(fmt, ap);
+#else
 	PyObject *ob = PyString_FromFormatV(fmt, ap);
+#endif
 	va_end(ap);
 	return ePyObject(ob, file, line);
 }
 
 inline ePyObject Impl_PyInt_FromLong(const char* file, int line, long val)
 {
+#if PY_MAJOR_VERSION >= 3
+	return ePyObject(PyLong_FromLong(val), file, line);
+#else
 	return ePyObject(PyInt_FromLong(val), file, line);
+#endif
 }
 
 inline ePyObject Impl_PyLong_FromLong(const char* file, int line, long val)
@@ -316,21 +345,33 @@ inline ePyObject Impl_PyDict_New()
 
 inline ePyObject Impl_PyString_FromString(const char *str)
 {
+#if PY_MAJOR_VERSION >= 3
+	return PyUnicode_FromString(str);
+#else
 	return PyString_FromString(str);
+#endif
 }
 
 inline ePyObject Impl_PyString_FromFormat(const char *fmt, ...)
 {
 	va_list ap;
 	va_start(ap, fmt);
+#if PY_MAJOR_VERSION >= 3
+	PyObject *ob = PyUnicode_FromFormatV(fmt, ap);
+#else
 	PyObject *ob = PyString_FromFormatV(fmt, ap);
+#endif
 	va_end(ap);
 	return ePyObject(ob);
 }
 
 inline ePyObject Impl_PyInt_FromLong(long val)
 {
+#if PY_MAJOR_VERSION >= 3
+	return PyLong_FromLong(val);
+#else
 	return PyInt_FromLong(val);
+#endif
 }
 
 inline ePyObject Impl_PyLong_FromLong(long val)
