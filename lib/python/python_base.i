@@ -39,7 +39,7 @@ eTimerPy_dealloc(eTimerPy* self)
 		PyObject_ClearWeakRefs((PyObject *) self);
 	eTimerPy_clear(self);
 	self->tm->Release();
-	self->ob_type->tp_free((PyObject*)self);
+	Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
 static PyObject *
@@ -171,8 +171,7 @@ static PyGetSetDef eTimerPy_getseters[] = {
 };
 
 static PyTypeObject eTimerPyType = {
-	PyObject_HEAD_INIT(NULL)
-	0, /*ob_size*/
+	PyVarObject_HEAD_INIT(NULL, 0)
 	"eBaseImpl.eTimer", /*tp_name*/
 	sizeof(eTimerPy), /*tp_basicsize*/
 	0, /*tp_itemsize*/
@@ -246,7 +245,7 @@ eSocketNotifierPy_dealloc(eSocketNotifierPy* self)
 		PyObject_ClearWeakRefs((PyObject *) self);
 	eSocketNotifierPy_clear(self);
 	self->sn->Release();
-	self->ob_type->tp_free((PyObject*)self);
+	Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
 static PyObject *
@@ -356,8 +355,7 @@ static PyGetSetDef eSocketNotifierPy_getseters[] = {
 };
 
 static PyTypeObject eSocketNotifierPyType = {
-	PyObject_HEAD_INIT(NULL)
-	0, /*ob_size*/
+	PyVarObject_HEAD_INIT(NULL, 0)
 	"eBaseImpl.eSocketNotifier", /*tp_name*/
 	sizeof(eSocketNotifierPy), /*tp_basicsize*/
 	0, /*tp_itemsize*/
