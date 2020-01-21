@@ -3,7 +3,7 @@ from __future__ import print_function
 
 from builtins import filter
 from builtins import next
-import tokenize, sys, string
+import tokenize, sys
 
 def filter(g):
 	while 1:
@@ -22,7 +22,7 @@ def filter(g):
 			yield t[1]
 
 def do_file(f, mode):
-	tokens = list(filter(tokenize.generate_tokens(open(f, 'r').readline)))
+	tokens = filter(tokenize.generate_tokens(open(f, 'r').readline))
 
 	sys.stderr.write("parsing %s\n" % f)
 
@@ -99,7 +99,7 @@ def do_file(f, mode):
 						firsthit = 0
 
 					if mode == "parse":
-						print("{\"" + actionname + "\", \"" + t + "\", " + string.join((classname, t), "::") + "},")
+						print("{\"" + actionname + "\", \"" + t + "\", " + "::".join((classname, t)) + "},")
 
 					counter += 1
 
