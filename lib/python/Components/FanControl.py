@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import range
+from builtins import object
 import os
 
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSlider
@@ -8,7 +10,7 @@ import NavigationInstance
 from enigma import iRecordableService, pNavigation
 from boxbranding import getBoxType
 
-class FanControl:
+class FanControl(object):
 	# ATM there's only support for one fan
 	def __init__(self):
 		if os.path.exists("/proc/stb/fp/fan_vlt") or os.path.exists("/proc/stb/fp/fan_pwm") or os.path.exists("/proc/stb/fp/fan_speed"):

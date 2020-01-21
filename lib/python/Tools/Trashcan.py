@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 import Components.Task
 from Components.config import config
 from Components import Harddisk
@@ -49,7 +51,7 @@ def get_size(start_path = '.'):
 					pass
 	return total_size
 
-class Trashcan:
+class Trashcan(object):
 	def __init__(self, session):
 		self.session = session
 		session.nav.record_event.append(self.gotRecordEvent)

@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 from __future__ import print_function
+from builtins import map
 from Screens.MessageBox import MessageBox
 from Components.config import config
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
@@ -90,11 +91,11 @@ class RarMenuScreen(ArchiverMenuScreen):
 		if status:
 			if not status[0] in self.ulist:
 				self.ulist.append((status[0]))
-				self.chooseMenuList2.setList(map(self.UnpackListEntry, status))
+				self.chooseMenuList2.setList(list(map(self.UnpackListEntry, status)))
 				self['unpacking'].selectionEnabled(0)
 
 		if 'All OK' in data:
-			self.chooseMenuList2.setList(map(self.UnpackListEntry, ['100']))
+			self.chooseMenuList2.setList(list(map(self.UnpackListEntry, ['100'])))
 			self['unpacking'].selectionEnabled(0)
 
 	def extractDone(self, filename, data):

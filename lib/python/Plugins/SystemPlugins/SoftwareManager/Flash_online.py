@@ -1,4 +1,10 @@
 from __future__ import print_function
+from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -14,7 +20,7 @@ from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
 from enigma import eTimer, fbClass
-import os, urllib2, shutil, math, time, zipfile, shutil
+import os, urllib.request, urllib.error, urllib.parse, shutil, math, time, zipfile, shutil
 
 
 from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName
@@ -95,15 +101,15 @@ class FlashOnline(Screen):
 					the_page =""
 					url = '%s/%s/index.php?open=%s' % (feedurl,version,box)
 					try:
-						req = urllib2.Request(url)
-						response = urllib2.urlopen(req)
-					except urllib2.URLError as e:
+						req = urllib.request.Request(url)
+						response = urllib.request.urlopen(req)
+					except urllib.error.URLError as e:
 						print("URL ERROR: %s\n%s" % (e,url))
 						continue
 
 					try:
 						the_page = response.read()
-					except urllib2.HTTPError as e:
+					except urllib.error.HTTPError as e:
 						print("HTTP download ERROR: %s" % e.code)
 						continue
 
@@ -139,10 +145,10 @@ class FlashOnline(Screen):
 		for catagorie in reversed(sorted(self.imagesList.keys())):
 			if catagorie in self.expanded:
 				list.append(ChoiceEntryComponent('expanded',((str(catagorie)), "Expander")))
-				for image in reversed(sorted(self.imagesList[catagorie].keys(), key=lambda x: x.split(os.sep)[-1])):
+				for image in reversed(sorted(list(self.imagesList[catagorie].keys()), key=lambda x: x.split(os.sep)[-1])):
 					list.append(ChoiceEntryComponent('verticalline',((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
-				for image in self.imagesList[catagorie].keys():
+				for image in list(self.imagesList[catagorie].keys()):
 					list.append(ChoiceEntryComponent('expandable',((str(catagorie)), "Expander")))
 					break
 		if list:
@@ -289,7 +295,7 @@ class FlashImage(Screen):
 					if not '/mmc' in path and os.path.isdir(path) and os.access(path, os.W_OK):
 						try:
 							statvfs = os.statvfs(path)
-							return (statvfs.f_bavail * statvfs.f_frsize) / (1 << 20)
+							return old_div((statvfs.f_bavail * statvfs.f_frsize), (1 << 20))
 						except:
 							pass
 
@@ -498,7 +504,7 @@ class FlashImage(Screen):
 			self.abort()
 
 	def downloadProgress(self, current, total):
-		self["progress"].setValue(int(100 * current / total))
+		self["progress"].setValue(int(old_div(100 * current, total)))
 
 	def downloadError(self, reason, status):
 		self.downloader.stop()

@@ -1,4 +1,7 @@
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 
@@ -47,7 +50,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, 0, width, self.rowSplit, 0, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, gettimerType(timer)))
 		if timer.timerType == TIMERTYPE.AUTOSTANDBY or timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 			if self.iconRepeat and timer.autosleeprepeat != "once":
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, old_div(self.iconMargin, 2), self.rowSplit + old_div((self.itemHeight - self.rowSplit - self.iconHeight), 2), self.iconWidth, self.iconHeight, self.iconRepeat))
 			icon = None
 			if not processed:
 				if timer.state == TimerEntry.StateWaiting:
@@ -89,10 +92,10 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				else:
 					repeatedtext = ", ".join(repeatedtext)
 				if self.iconRepeat:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, old_div(self.iconMargin, 2), self.rowSplit + old_div((self.itemHeight - self.rowSplit - self.iconHeight), 2), self.iconWidth, self.iconHeight, self.iconRepeat))
 			else:
 				repeatedtext = begin[0] # date
-			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], old_div((timer.end - timer.begin), 60)))
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, self.satPosLeft, self.rowSplit, width-self.satPosLeft, self.itemHeight - self.rowSplit, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 			icon = None
 			if not processed:
@@ -122,7 +125,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		if timer.failed:
 			state = _("failed")
 			icon = self.iconFailed
-		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
+		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, old_div(self.iconMargin, 2), old_div((self.rowSplit - self.iconHeight), 2), self.iconWidth, self.iconHeight, icon))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.iconWidth + self.iconMargin, self.rowSplit, self.satPosLeft - self.iconWidth - self.iconMargin, self.itemHeight - self.rowSplit, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))

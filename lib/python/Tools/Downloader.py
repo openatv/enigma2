@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from builtins import object
 from boxbranding import getMachineBrand, getMachineName
 
 from twisted.web import client
@@ -42,7 +43,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 			self.end_callback()
 		return ret
 
-class downloadWithProgress:
+class downloadWithProgress(object):
 	def __init__(self, url, outputfile, contextFactory=None, *args, **kwargs):
 		if hasattr(client, '_parse'):
 			scheme, host, port, path = client._parse(url)

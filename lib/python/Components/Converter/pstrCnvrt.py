@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 # v1.1a 01-2020
+from future import standard_library
+standard_library.install_aliases()
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 import json
 import re
 import os
-import urllib2
-from urllib import quote
+import urllib.request, urllib.error, urllib.parse
+from urllib.parse import quote
 
 if not os.path.isdir('/tmp/poster'):
 	os.mkdir('/tmp/poster')
@@ -52,13 +54,13 @@ class pstrCnvrt(Converter, object):
 
 	def searchPoster(self):
 		url_json = 'https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s'%(self.srch, quote(self.evnt))
-		jp = json.load(urllib2.urlopen(url_json))
+		jp = json.load(urllib.request.urlopen(url_json))
 		imgP = (jp['results'][0]['poster_path'])
 		url_poster = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2%s'%(imgP)
 		dwn_poster = '/tmp/poster/poster.jpg'
 
 		with open(dwn_poster,'wb') as f:
-			f.write(urllib2.urlopen(url_poster).read())
+			f.write(urllib.request.urlopen(url_poster).read())
 			f.close()
 			return self.evntNm
 

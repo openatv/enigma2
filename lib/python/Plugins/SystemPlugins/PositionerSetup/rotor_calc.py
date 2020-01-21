@@ -1,3 +1,5 @@
+from __future__ import division
+from past.utils import old_div
 import math
 
 f = 1.00 / 298.257 # Earth flattning factor
@@ -14,7 +16,7 @@ def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean = 0):
 	sinRadSiteLat = math.sin(math.radians(SiteLat))
 	cosRadSiteLat = math.cos(math.radians(SiteLat))
 
-	Rstation = r_eq / (math.sqrt( 1.00 - f * (2.00 - f) * sinRadSiteLat **2))
+	Rstation = old_div(r_eq, (math.sqrt( 1.00 - f * (2.00 - f) * sinRadSiteLat **2)))
 
 	Ra = (Rstation + Height_over_ocean) * cosRadSiteLat
 	Rz = Rstation * (1.00 - f) * (1.00 - f) * sinRadSiteLat
@@ -28,7 +30,7 @@ def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean = 0):
 
 	den = alfa_r_north **2 + alfa_ry **2
 	if den > 0:
-		El_geometric = math.degrees(math.atan(alfa_r_zenith / math.sqrt(den)))
+		El_geometric = math.degrees(math.atan(old_div(alfa_r_zenith, math.sqrt(den))))
 	else:
 		El_geometric = 90
 
@@ -36,7 +38,7 @@ def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean = 0):
 	refraction = math.fabs(a0 + (a1 + (a2 + (a3 + a4 * x) * x) * x) * x)
 
 	if El_geometric > 10.2:
-		El_observed = El_geometric + 0.01617 * (math.cos(math.radians(math.fabs(El_geometric)))/math.sin(math.radians(math.fabs(El_geometric))) )
+		El_observed = El_geometric + 0.01617 * (old_div(math.cos(math.radians(math.fabs(El_geometric))),math.sin(math.radians(math.fabs(El_geometric)))) )
 	else:
 		El_observed = El_geometric + refraction
 
@@ -53,7 +55,7 @@ def calcAzimuth(SatLon, SiteLat, SiteLon, Height_over_ocean = 0):
 	sinRadSiteLat = math.sin(math.radians(SiteLat))
 	cosRadSiteLat = math.cos(math.radians(SiteLat))
 
-	Rstation = r_eq / (math.sqrt(1 - f * (2 - f) * sinRadSiteLat **2))
+	Rstation = old_div(r_eq, (math.sqrt(1 - f * (2 - f) * sinRadSiteLat **2)))
 	Ra = (Rstation + Height_over_ocean) * cosRadSiteLat
 	Rz = Rstation * (1 - f) ** 2 * sinRadSiteLat
 
@@ -64,9 +66,9 @@ def calcAzimuth(SatLon, SiteLat, SiteLon, Height_over_ocean = 0):
 	alfa_r_north = -alfa_rx * sinRadSiteLat + alfa_rz * cosRadSiteLat
 
 	if alfa_r_north < 0:
-		Azimuth = 180 + math.degrees(math.atan(alfa_ry / alfa_r_north))
+		Azimuth = 180 + math.degrees(math.atan(old_div(alfa_ry, alfa_r_north)))
 	elif alfa_r_north > 0:
-		Azimuth = rev(360 + math.degrees(math.atan(alfa_ry / alfa_r_north)))
+		Azimuth = rev(360 + math.degrees(math.atan(old_div(alfa_ry, alfa_r_north))))
 	else:
 		Azimuth = 0
 	return Azimuth
@@ -89,7 +91,7 @@ def calcSatHourangle(SatLon, SiteLat, SiteLon):
 		math.cos(math.radians(Azimuth))
 
 	# Works for all azimuths (northern & southern hemisphere)
-	returnvalue = 180 + math.degrees(math.atan(a / b))
+	returnvalue = 180 + math.degrees(math.atan(old_div(a, b)))
 
 	if Azimuth > 270:
 		returnvalue += 180

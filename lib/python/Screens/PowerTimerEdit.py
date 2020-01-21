@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import division
+from past.builtins import cmp
+from past.utils import old_div
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -176,7 +179,7 @@ class PowerTimerEditList(Screen):
 			else:
 				after = getafterEvent(timer)
 			time = "%s %s ... %s" % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
-			duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
+			duration = ("(%d " + _("mins") + ")") % (old_div((timer.end - timer.begin), 60))
 
 			if timer.state == RealTimerEntry.StateWaiting:
 				state = _("waiting")

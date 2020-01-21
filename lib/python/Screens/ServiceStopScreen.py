@@ -1,7 +1,8 @@
 from __future__ import print_function
+from builtins import object
 from Screens.MessageBox import MessageBox
 
-class ServiceStopScreen:
+class ServiceStopScreen(object):
 	def __init__(self):
 		try:
 			self.session

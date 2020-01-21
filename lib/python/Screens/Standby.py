@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 import os
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -31,7 +32,7 @@ QUIT_IMAGE_RESTORE = 43
 QUIT_UPGRADE_FRONTPANEL = 44
 QUIT_WOLSHUTDOWN = 45
 
-class TVstate: #load in Navigation
+class TVstate(object): #load in Navigation
 	def __init__(self):
 		global TVinStandby
 		if TVinStandby is not None:

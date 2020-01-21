@@ -1,3 +1,4 @@
+from builtins import range
 from os import mkdir, path
 from shutil import copyfile
 from boxbranding import getMachineBuild, getMachineMtdRoot

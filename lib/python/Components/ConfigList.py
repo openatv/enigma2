@@ -1,4 +1,7 @@
 from __future__ import absolute_import
+from builtins import str
+from builtins import zip
+from builtins import object
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
 from .config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, config, configfile, ConfigElement, ConfigText, ConfigPassword
@@ -136,7 +139,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 			if x.__func__.__name__ == "selectionChanged":
 				x()
 
-class ConfigListScreen:
+class ConfigListScreen(object):
 	def __init__(self, list, session = None, on_change = None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
@@ -285,7 +288,7 @@ class ConfigListScreen:
 		selection = self["config"].getCurrent()
 		if selection and selection[1].enabled and hasattr(selection[1], "description"):
 			self.session.openWithCallback(self.handleKeyFileCallback, ChoiceBox, selection[0],
-				list=zip(selection[1].description, selection[1].choices),
+				list=list(zip(selection[1].description, selection[1].choices)),
 				selection=selection[1].choices.index(selection[1].value),
 				keys=[])
 

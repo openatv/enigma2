@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 import os
 import time
 
@@ -9,7 +11,7 @@ info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
 
-class GetEcmInfo:
+class GetEcmInfo(object):
 	def pollEcmData(self):
 		global data
 		global old_ecm_time

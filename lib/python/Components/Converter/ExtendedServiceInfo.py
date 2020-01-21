@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import range
 from Components.config import config
 from Components.Converter.Converter import Converter
 from Components.Element import cached

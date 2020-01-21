@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import object
 from .GUIComponent import GUIComponent
 from .VariableText import VariableText
 from .VariableValue import VariableValue
@@ -32,7 +33,7 @@ class PerServiceBase(object):
 			self.navcore.event.append(PerServiceBase.event)
 
 		EventMap = EventMap.setdefault
-		for x in eventmap.iteritems():
+		for x in eventmap.items():
 			EventMap(x[0], []).append((with_event, x[1]))
 
 		# start with stopped state, so simulate that
@@ -45,7 +46,7 @@ class PerServiceBase(object):
 
 	def destroy(self):
 		EventMap = PerServiceBase.EventMap.setdefault
-		for x in self.eventmap.iteritems():
+		for x in self.eventmap.items():
 			EventMap(x[0], []).remove((self.with_event, x[1]))
 
 	def enablePolling(self, interval=60000):

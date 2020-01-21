@@ -1,5 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
+from builtins import object
 from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
 from . import Title
@@ -20,12 +23,12 @@ class ConfigFilename(ConfigText):
 		cut_len = min(len(self.text),40)
 		filename = (self.text.rstrip("/").rsplit("/",1))[1].encode("utf-8")[:cut_len] + " "
 		if self.allmarked:
-			mark = range(0, len(filename))
+			mark = list(range(0, len(filename)))
 		else:
 			mark = [filename]
 		return ("mtext"[1-selected:], filename, mark)
 	
-class Project:
+class Project(object):
 	MAX_SL = 4480
 	MAX_DL = 8150
 	MAX_BD = 24220
@@ -59,7 +62,7 @@ class Project:
 		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
 		list.append('<DreamDVDBurnerProject>\n')
 		list.append('\t<settings ')
-		for key, val in self.settings.dict().iteritems():
+		for key, val in self.settings.dict().items():
 			list.append( key + '="' + str(val.getValue()) + '" ' )
 		list.append('/>\n')
 		list.append('\t<titles>\n')
@@ -70,12 +73,12 @@ class Project:
 			list.append('</path>\n')
 			list.append('\t\t\t<properties ')
 			audiotracks = []
-			for key, val in title.properties.dict().iteritems():
+			for key, val in title.properties.dict().items():
 				if type(val) is ConfigSubList:
 					audiotracks.append('\t\t\t<audiotracks>\n')
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
-						for subkey, subval in audiotrack.dict().iteritems():
+						for subkey, subval in audiotrack.dict().items():
 							audiotracks.append( subkey + '="' + str(subval.getValue()) + '" ' )
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')

@@ -1,13 +1,15 @@
 from __future__ import print_function
-import re, os, urllib2, sys
+from future import standard_library
+standard_library.install_aliases()
+import re, os, urllib.request, urllib.error, urllib.parse, sys
 
 
 def DownloadSetting(url):
     list = []
     try:
-        req = urllib2.Request(url)
+        req = urllib.request.Request(url)
         req.add_header('User-Agent', 'VAS')
-        response = urllib2.urlopen(req)
+        response = urllib.request.urlopen(req)
         link = response.read()
         response.close()
         xx = re.compile('<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', re.DOTALL).findall(link)

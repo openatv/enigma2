@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import object
 from . import Netlink
 import enigma
 import os
 
-class NetlinkReader():
+class NetlinkReader(object):
 	def __init__(self):
 		from twisted.internet import reactor
 		self.nls = Netlink.NetlinkSocket()

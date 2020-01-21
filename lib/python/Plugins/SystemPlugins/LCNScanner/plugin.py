@@ -1,6 +1,8 @@
 from __future__ import print_function
 # plugin from Sif Team
 
+from builtins import range
+from builtins import object
 from enigma import eDVBDB, eServiceReference, eServiceCenter
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -16,7 +18,7 @@ import re
 import shutil
 import xml.etree.cElementTree
 
-class LCN():
+class LCN(object):
 	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
 	service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2)'
 	
@@ -298,7 +300,7 @@ class LCN():
 	def reloadBouquets(self):
 		eDVBDB.getInstance().reloadBouquets()
 
-class LCNBuildHelper():
+class LCNBuildHelper(object):
 	def __init__(self):
 		self.bouquetlist = []
 		for x in self.readBouquetsTvList("/etc/enigma2"):

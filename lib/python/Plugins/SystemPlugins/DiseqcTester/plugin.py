@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from past.utils import old_div
+from builtins import object
 import random
 
 from Screens.Satconfig import NimSelection
@@ -24,7 +28,7 @@ from Components.Sources.FrontendStatus import FrontendStatus
 # setResultType(type)
 # setResultParameter(parameter)
 # getTextualResult()
-class ResultParser:
+class ResultParser(object):
 	def __init__(self):
 		pass
 
@@ -63,10 +67,10 @@ class ResultParser:
 
 			text += "The %d unsuccessful tuning attempts failed for the following reasons:\n" % countfailed
 
-			for reason in reasons.keys():
+			for reason in list(reasons.keys()):
 				text += "%s: %d transponders failed\n" % (reason, len(reasons[reason]))
 
-			for reason in reasons.keys():
+			for reason in list(reasons.keys()):
 				text += "\n"
 				text += "%s previous planes:\n" % reason
 				for transponder in reasons[reason]:
@@ -112,17 +116,17 @@ class ResultParser:
 		if self.type == self.TYPE_BYINDEX:
 			text += self.getTextualResultForIndex(self.index)
 		elif self.type == self.TYPE_BYORBPOS:
-			for index in self.results.keys():
+			for index in list(self.results.keys()):
 				if index[2] == self.orbpos:
 					text += self.getTextualResultForIndex(index)
 					text += "\n-----------------------------------------------------\n"
 		elif self.type == self.TYPE_ALL:
 			orderedResults = {}
-			for index in self.results.keys():
+			for index in list(self.results.keys()):
 				orbpos = index[2]
 				orderedResults[orbpos] = orderedResults.get(orbpos, [])
 				orderedResults[orbpos].append(index)
-			ordered_orbpos = orderedResults.keys()
+			ordered_orbpos = list(orderedResults.keys())
 			ordered_orbpos.sort()
 			for orbpos in ordered_orbpos:
 				text += "\n*****************************************\n"
@@ -289,7 +293,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		for sat in nimmanager.getSatListForNim(self.feid):
 			for transponder in nimmanager.getTransponders(sat[0]):
 				#print transponder
-				mytransponder = (transponder[1] / 1000, transponder[2] / 1000, transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11], transponder[12], transponder[13], transponder[14], transponder[15], transponder[16])
+				mytransponder = (old_div(transponder[1], 1000), old_div(transponder[2], 1000), transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11], transponder[12], transponder[13], transponder[14], transponder[15], transponder[16])
 				self.analyseTransponder(mytransponder)
 
 	def getIndexForTransponder(self, transponder):
@@ -336,7 +340,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.clearTransponder()
 		print("----------- fillTransponderList")
 		print("index:", self.currentlyTestedIndex)
-		keys = self.indexlist.keys()
+		keys = list(self.indexlist.keys())
 		if self.getContinueScanning():
 			print("index:", self.getTextualIndexRepresentation(self.currentlyTestedIndex))
 			for transponder in self.indexlist[self.currentlyTestedIndex]:
@@ -357,20 +361,20 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex = 0
-			keys = self.indexlist.keys()
+			keys = list(self.indexlist.keys())
 			keys.sort(key = lambda a: a[2]) # sort by orbpos
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
 		elif self.test_type == self.TEST_TYPE_RANDOM:
-			self.randomkeys = self.indexlist.keys()
+			self.randomkeys = list(self.indexlist.keys())
 			random.shuffle(self.randomkeys)
 			self.myindex = 0
 			self["overall_progress"].setRange(len(self.randomkeys))
 			self["overall_progress"].setValue(self.myindex)
 			return self.randomkeys[0]
 		elif self.test_type == self.TEST_TYPE_COMPLETE:
-			keys = self.indexlist.keys()
+			keys = list(self.indexlist.keys())
 			print("keys:", keys)
 			successorindex = {}
 			for index in keys:
@@ -385,7 +389,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			while not stop:
 				if currindex is None or len(successorindex[currindex]) == 0:
 					oldindex = currindex
-					for index in successorindex.keys():
+					for index in list(successorindex.keys()):
 						if len(successorindex[index]) > 0:
 							currindex = index
 							self.keylist.append(currindex)
@@ -407,7 +411,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex += 1
-			keys = self.indexlist.keys()
+			keys = list(self.indexlist.keys())
 			keys.sort(key = lambda a: a[2]) # sort by orbpos
 
 			self["overall_progress"].setValue(self.myindex)
@@ -438,7 +442,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	# the algorithm checks, if we should continue scanning
 	def getContinueScanning(self):
 		if self.test_type == self.TEST_TYPE_QUICK or self.test_type == self.TEST_TYPE_RANDOM:
-			return self.myindex < len(self.indexlist.keys())
+			return self.myindex < len(list(self.indexlist.keys()))
 		elif self.test_type == self.TEST_TYPE_COMPLETE:
 			return self.myindex < len(self.keylist)
 

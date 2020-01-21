@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console

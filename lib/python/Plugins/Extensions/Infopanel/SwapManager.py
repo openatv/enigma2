@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from past.utils import old_div
+from builtins import object
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -27,7 +31,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 			startswap = StartSwap()
 			startswap.start()
 	
-class StartSwap:
+class StartSwap(object):
 	def __init__(self):
 		self.Console = Console()
 
@@ -199,9 +203,9 @@ class Swap(Screen):
 
 		if self.swapsize > 0:
 			if self.swapsize >= 1024:
-				self.swapsize = int(self.swapsize) / 1024
+				self.swapsize = old_div(int(self.swapsize), 1024)
 				if self.swapsize >= 1024:
-					self.swapsize = int(self.swapsize) / 1024
+					self.swapsize = old_div(int(self.swapsize), 1024)
 				self.swapsize = str(self.swapsize) + ' ' + 'MB'
 			else:
 				self.swapsize = str(self.swapsize) + ' ' + 'KB'

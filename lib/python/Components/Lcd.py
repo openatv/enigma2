@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
+from builtins import hex
+from builtins import object
 from boxbranding import getBoxType, getDisplayType
 from sys import maxsize
 
@@ -29,7 +32,7 @@ def IconCheck(session=None, **kwargs):
 		networklinkpoller = IconCheckPoller()
 		networklinkpoller.start()
 
-class IconCheckPoller:
+class IconCheckPoller(object):
 	def __init__(self):
 		self.timer = eTimer()
 
@@ -88,7 +91,7 @@ class IconCheckPoller:
 
 		self.timer.startLongTimer(30)
 
-class LCD:
+class LCD(object):
 	def __init__(self):
 		eActionMap.getInstance().bindAction('', -maxint -1, self.DimUpEvent)
 		self.autoDimDownLCDTimer = eTimer()

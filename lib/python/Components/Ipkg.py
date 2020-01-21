@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 import os
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
@@ -53,7 +54,7 @@ harddiskmanager.on_partition_list_change.append(onPartitionChange)
 for part in harddiskmanager.getMountedPartitions():
 	onPartitionChange('add', part)
 
-class IpkgComponent:
+class IpkgComponent(object):
 	EVENT_INSTALL = 0
 	EVENT_DOWNLOAD = 1
 	EVENT_INFLATING = 2

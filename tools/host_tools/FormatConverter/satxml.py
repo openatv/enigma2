@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import str
 import os
 from datasource import datasource
 from xml.dom import minidom
@@ -49,7 +50,7 @@ class satxml(datasource):
 							entry = str(transponder.getAttribute(param))
 							if entry != "":
 								parameters[param] = entry
-						if len(parameters.keys()) > 1:
+						if len(list(parameters.keys())) > 1:
 							self.addTransponder(satpos, parameters)
 		print(self.transponderlist)
 
@@ -57,7 +58,7 @@ class satxml(datasource):
 		satxml = Document()
 		satellites = satxml.createElement("satellites")
 		satxml.appendChild(satellites)
-		satlist = self.transponderlist.keys()
+		satlist = list(self.transponderlist.keys())
 		print(self.transponderlist)
 		satlist.sort()
 

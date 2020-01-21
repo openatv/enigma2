@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 from Screens.Screen import Screen
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -46,7 +47,7 @@ class HelpMenu(Screen, Rc):
 		#	arrow.startMoving()
 		#	arrow.show()
 
-class HelpableScreen:
+class HelpableScreen(object):
 	def __init__(self):
 		self["helpActions"] = ActionMap( [ "HelpActions" ],
 			{

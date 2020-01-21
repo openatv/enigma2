@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import object
 from enigma import eDVBVolumecontrol, eTimer
 from Tools.Profile import profile
 from Screens.Volume import Volume
@@ -8,7 +9,7 @@ from .config import config, ConfigSubsection, ConfigInteger
 
 profile("VolumeControl")
 #TODO .. move this to a own .py file
-class VolumeControl:
+class VolumeControl(object):
 	instance = None
 	"""Volume control, handles volUp, volDown, volMute actions and display
 	a corresponding dialog"""
@@ -95,7 +96,7 @@ class VolumeControl:
 		delay = 0
 		repeat = 0
 
-		for device in inputconfig.itervalues():
+		for device in inputconfig.values():
 			if "enabled" in device and bool(device["enabled"]):
 				if "delay" in device:
 					val = int(device["delay"])

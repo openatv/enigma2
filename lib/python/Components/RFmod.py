@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+from builtins import range
+from builtins import object
 from .config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider, ConfigNothing
 from enigma import eRFmod
 from Components.SystemInfo import SystemInfo
@@ -7,7 +9,7 @@ from Components.SystemInfo import SystemInfo
 RFMOD_CHANNEL_MIN = 21
 RFMOD_CHANNEL_MAX = 69 + 1
 
-class RFmod:
+class RFmod(object):
 	def __init__(self):
 		pass
 

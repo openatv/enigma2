@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+from builtins import chr
+from builtins import str
+from builtins import range
 from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
@@ -34,7 +39,7 @@ from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLU
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getEnigmaVersionString
-from cPickle import dump, load
+from pickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
 from stat import ST_MTIME
@@ -1599,7 +1604,7 @@ class UpdatePlugin(Screen):
 			return
 
 	def checkTraficLight(self):
-		from urllib import urlopen
+		from urllib.request import urlopen
 		import socket
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)
@@ -2048,7 +2053,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = chr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -2069,7 +2074,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.ipkg.stop()
 		if self.Console is not None:
 			if len(self.Console.appContainers):
-				for name in self.Console.appContainers.keys():
+				for name in list(self.Console.appContainers.keys()):
 					self.Console.kill(name)
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
@@ -2442,7 +2447,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 		
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = chr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 		

@@ -8,6 +8,8 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 from __future__ import print_function
 
+from builtins import str
+from builtins import object
 import requests
 import json
 

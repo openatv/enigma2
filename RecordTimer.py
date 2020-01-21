@@ -1,4 +1,11 @@
 from __future__ import print_function
+from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
 from datetime import datetime
@@ -73,7 +80,7 @@ def parseEvent(ev, description = True):
 	end += config.recording.margin_after.value * 60
 	return begin, end, name, description, eit
 
-class AFTEREVENT:
+class AFTEREVENT(object):
 	def __init__(self):
 		pass
 
@@ -84,7 +91,7 @@ class AFTEREVENT:
 
 	DEFAULT = int(config.recording.default_afterevent.value)
 
-class TIMERTYPE:
+class TIMERTYPE(object):
 	def __init__(self):
 		pass
 
@@ -236,7 +243,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.stop_MountTest(None, cmd)
 		elif cmd == 'freespace':
 			s = os.statvfs(dirname)
-			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+			if old_div((s.f_bavail * s.f_bsize), 1000000) < 1024:
 				self.stop_MountTest(None, cmd)
 
 	def stop_MountTest(self, thread, cmd):
@@ -348,7 +355,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def getEventFromEPG(self):
 		epgcache = eEPGCache.getInstance()
-		queryTime = self.begin + (self.end - self.begin) / 2
+		queryTime = self.begin + old_div((self.end - self.begin), 2)
 		ref = self.service_ref and self.service_ref.ref
 		return epgcache.lookupEventTime(ref, queryTime)
 
@@ -383,7 +390,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
-				queryTime=self.begin+(self.end-self.begin)/2
+				queryTime=self.begin+old_div((self.end-self.begin),2)
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					if self.rename_repeat:
@@ -755,7 +762,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateEnded or next_state == self.StateFailed:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
-				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)/60))
+				self.log(12, "autoincrease recording %d minute(s)" % int(old_div((self.end - old_end),60)))
 				self.state -= 1
 				return True
 			if self.justplay:
@@ -1141,10 +1148,10 @@ def createTimer(xml):
 	serviceref = ServiceReference(xml.get("serviceref").encode("utf-8"))
 	description = xml.get("description").encode("utf-8")
 	repeated = xml.get("repeated").encode("utf-8")
-	rename_repeat = long(xml.get("rename_repeat") or "1")
-	disabled = long(xml.get("disabled") or "0")
-	justplay = long(xml.get("justplay") or "0")
-	always_zap = long(xml.get("always_zap") or "0")
+	rename_repeat = int(xml.get("rename_repeat") or "1")
+	disabled = int(xml.get("disabled") or "0")
+	justplay = int(xml.get("justplay") or "0")
+	always_zap = int(xml.get("always_zap") or "0")
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,
@@ -1154,7 +1161,7 @@ def createTimer(xml):
 		}[afterevent]
 	eit = xml.get("eit")
 	if eit and eit != "None":
-		eit = long(eit)
+		eit = int(eit)
 	else:
 		eit = None
 	location = xml.get("location")
@@ -1501,7 +1508,7 @@ class RecordTimer(timer.Timer):
 						bt = localtime(begin)
 						bday = bt.tm_wday
 						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
-						end2 = begin2 + duration / 60
+						end2 = begin2 + old_div(duration, 60)
 					xbt = localtime(x.begin)
 					xet = localtime(timer_end)
 					offset_day = False
@@ -1511,7 +1518,7 @@ class RecordTimer(timer.Timer):
 						if oday == -1: oday = 6
 						offset_day = x.repeated & (1 << oday)
 					xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
-					xend = xbegin + ((timer_end - x.begin) / 60)
+					xend = xbegin + (old_div((timer_end - x.begin), 60))
 					if xend < xbegin:
 						xend += 1440
 					if x.repeated & (1 << bday) and checking_time:

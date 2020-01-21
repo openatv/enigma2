@@ -1,7 +1,8 @@
+from builtins import object
 from Screens.Ci import MMIDialog
 import socketmmi
 
-class SocketMMIMessageHandler:
+class SocketMMIMessageHandler(object):
 	def __init__(self):
 		self.session = None
 		self.dlgs = { }

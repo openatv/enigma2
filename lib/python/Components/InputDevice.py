@@ -1,5 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
+from builtins import object
 from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from fcntl import ioctl
 from boxbranding import getBoxType, getBrandOEM
@@ -26,7 +28,7 @@ def EVIOCGNAME(length):
 	return (IOC_READ<<IOC_DIRSHIFT)|(length<<IOC_SIZESHIFT)|(0x45<<IOC_TYPESHIFT)|(0x06<<IOC_NRSHIFT)
 
 
-class inputDevices:
+class inputDevices(object):
 
 	def __init__(self):
 		self.Devices = {}
@@ -67,13 +69,13 @@ class inputDevices:
 			return None
 
 	def getDeviceName(self, x):
-		if x in self.Devices.keys():
+		if x in list(self.Devices.keys()):
 			return self.Devices[x].get("name", x)
 		else:
 			return "Unknown device name"
 
 	def getDeviceList(self):
-		return sorted(self.Devices.iterkeys())
+		return sorted(self.Devices.keys())
 
 	def setDeviceAttribute(self, device, attribute, value):
 		#print "[iInputDevices] setting for device", device, "attribute", attribute, " to value", value
@@ -131,7 +133,7 @@ class inputDevices:
 			os_close(fd)
 
 
-class InitInputDevices:
+class InitInputDevices(object):
 
 	def __init__(self):
 		self.currentDevice = ""
@@ -139,7 +141,7 @@ class InitInputDevices:
 
 	def createConfig(self, *args):
 		config.inputDevices = ConfigSubsection()
-		for device in sorted(iInputDevices.Devices.iterkeys()):
+		for device in sorted(iInputDevices.Devices.keys()):
 			self.currentDevice = device
 			#print "[InitInputDevices] -> creating config entry for device: %s -> %s  " % (self.currentDevice, iInputDevices.Devices[device]["name"])
 			self.setupConfigEntries(self.currentDevice)
@@ -215,7 +217,7 @@ iInputDevices = inputDevices()
 config.plugins.remotecontroltype = ConfigSubsection()
 config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
 
-class RcTypeControl():
+class RcTypeControl(object):
 	def __init__(self):
 		if pathExists('/proc/stb/ir/rc/type') and getBrandOEM() not in ('gigablue', 'odin', 'ini', 'entwopia', 'tripledot'):
 			self.isSupported = True

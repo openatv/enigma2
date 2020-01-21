@@ -1,9 +1,11 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
 import os
 
-class PlaylistIO:
+class PlaylistIO(object):
 	def __init__(self):
 		self.list = []
 

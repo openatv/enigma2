@@ -1,9 +1,10 @@
+from builtins import object
 from Components.config import ConfigSubsection, config
 import os
 
 config.plugins = ConfigSubsection()
 
-class PluginDescriptor:
+class PluginDescriptor(object):
 	"""An object to describe a plugin."""
 
 	# where to list the plugin. Note that there are different call arguments,

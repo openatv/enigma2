@@ -1,5 +1,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 from future.utils import raise_
 from Components.Task import Task, Job, DiskspacePrecondition, Condition
 from Components.Harddisk import harddiskmanager
@@ -17,7 +22,7 @@ AUDIO_TYPES	= { 'audio/mpeg, mpegversion=(int)1': 0x03, 'audio/mpeg, mpegversion
 VIDEO_FORMATS	= { 'i480': 1, 'i576': 2, 'p480': 3, 'i1080': 4, 'p720': 5, 'p1080': 6, 'p576': 7 }
 VIDEO_RATES	= { 23976: 1, 24000: 2, 25000: 3, 29970: 4, 50000: 6, 59940: 7 }
 AUDIO_CHANNELS	= { "reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12 }
-AUDIO_RATES	= { 48000: 1, 96000: 4, 192000: 5, 48/192: 12, 48/96: 14 }
+AUDIO_RATES	= { 48000: 1, 96000: 4, 192000: 5, old_div(48,192): 12, old_div(48,96): 14 }
 
 class BludiscTitle(object):
 	def __init__(self, title):
@@ -43,7 +48,7 @@ class BludiscTitle(object):
 
 	def getVideoStreams(self):
 		streams = []
-		for stream in self.__streams.values():
+		for stream in list(self.__streams.values()):
 			if stream.isVideo:
 				streams.append(stream)
 		return streams
@@ -52,7 +57,7 @@ class BludiscTitle(object):
 
 	def getAudioStreams(self):
 		streams = []
-		for stream in self.__streams.values():
+		for stream in list(self.__streams.values()):
 			if stream.isAudio:
 				streams.append(stream)
 		return streams
@@ -61,24 +66,24 @@ class BludiscTitle(object):
 
 	def getInTimeBytes(self):
 		in_time = self.entrypoints[0][1]	# first keyframe (in 90khz pts)
-		return struct.pack('>L',in_time/2)	# start time (in 45khz ticks)
+		return struct.pack('>L',old_div(in_time,2))	# start time (in 45khz ticks)
 
 	def getOutTimeBytes(self):
 	      out_time = self.entrypoints[-1][1]	# last keyframe (in 90khz pts)
-	      return struct.pack('>L',out_time/2)	# end time (in 45khz ticks)
+	      return struct.pack('>L',old_div(out_time,2))	# end time (in 45khz ticks)
 
 	InTime = property(getInTimeBytes)
 	OutTime = property(getOutTimeBytes)
 
 	def getNumSourcePackets(self):
-		num_source_packets = self.muxed_size / 192
+		num_source_packets = old_div(self.muxed_size, 192)
 		return struct.pack('>L',num_source_packets) 
 
 	def getTsRecordingRate(self):
-		clip_len_seconds = (self.entrypoints[-1][1] - self.entrypoints[0][1]) / 90000
+		clip_len_seconds = old_div((self.entrypoints[-1][1] - self.entrypoints[0][1]), 90000)
 		if self.length > clip_len_seconds:
 			clip_len_seconds = self.length
-		ts_recording_rate = self.muxed_size / clip_len_seconds	#! possible lack in accuracy 
+		ts_recording_rate = old_div(self.muxed_size, clip_len_seconds)	#! possible lack in accuracy 
 		return struct.pack('>L',ts_recording_rate)
 
 	def getEPforOffsetPTS(self, requested_pts):
@@ -88,7 +93,7 @@ class BludiscTitle(object):
 				best_pts = ep_pts
 			else:
 				break
-		return best_pts / 2
+		return old_div(best_pts, 2)
 
 class BludiscStream(object):
 	def __init__(self, parent, PID):
@@ -206,7 +211,7 @@ class RemuxTask(Task):
 		self.outputfile = self.job.workspace+'BDMV/STREAM/%05d.m2ts' % self.title_no
 		self.args += [inputfile, self.outputfile, "--entrypoints", "--cutlist"]
 		self.args += self.getPIDs()
-		self.end = ( self.title.filesize / 188 )
+		self.end = ( old_div(self.title.filesize, 188) )
 		self.weighting = 1000
 
 	def getPIDs(self):
@@ -216,7 +221,7 @@ class RemuxTask(Task):
 				if audiotrack.format.value == "AC3": #! only consider ac3 streams at the moment
 					dvbpids.append(int(audiotrack.pid.getValue()))
 		sourcepids = "--source-pids=" + ",".join(["0x%04x" % pid for pid in dvbpids])
-		self.bdmvpids = [0x1011]+range(0x1100,0x1107)[:len(dvbpids)-1]
+		self.bdmvpids = [0x1011]+list(range(0x1100,0x1107))[:len(dvbpids)-1]
 		resultpids = "--result-pids=" + ",".join(["0x%04x" % pid for pid in self.bdmvpids])
 		return [sourcepids, resultpids]
 
@@ -563,7 +568,7 @@ class CreateMplsTask(Task):
 
 		#playlist mark list [(id, type, timestamp, skip duration)]
 		#! implement cutlist / skip marks
-		markslist = [(0, 1, self.title.entrypoints[0][1]/2, 0)]
+		markslist = [(0, 1, old_div(self.title.entrypoints[0][1],2), 0)]
 		mark_id = 1
 		try:
 			for chapter_pts in self.title.chaptermarks:

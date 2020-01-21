@@ -1,5 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
 from Plugins.Extensions.CutListEditor.plugin import CutListEditor
 from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import iPlayableService, iServiceInformation

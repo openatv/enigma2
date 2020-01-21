@@ -1,8 +1,11 @@
+from __future__ import division
 #
 # Generic Screen to select a path/filename combination
 #
 
 # GUI (Screens)
+from builtins import str
+from past.utils import old_div
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
@@ -338,7 +341,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				# Try to read fs stats
 				try:
 					s = os.statvfs(currentFolder)
-					if (s.f_bavail * s.f_bsize) / 1000000 > self.minFree:
+					if old_div((s.f_bavail * s.f_bsize), 1000000) > self.minFree:
 						# Automatically confirm if we have enough free disk Space available
 						return self.selectConfirmed(True)
 				except OSError:
@@ -385,7 +388,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			free = ""
 			try:
 				stat = os.statvfs(currFolder)
-				free = ("%0.f GB " + _("free")) % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024)
+				free = ("%0.f GB " + _("free")) % (old_div(old_div(old_div(float(stat.f_bavail) * stat.f_bsize, 1024), 1024),1024))
 			except:
 				pass
 			self["targetfreespace"].setText(free)
@@ -445,7 +448,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Get char and append to text
 		char = self.getKey(number)
-		self.quickselect = self.quickselect[:self.curr_pos] + unicode(char)
+		self.quickselect = self.quickselect[:self.curr_pos] + str(char)
 
 		# Start Timeout
 		self.qs_timer_type = 0

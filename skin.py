@@ -1,4 +1,9 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import map
+from builtins import str
+from builtins import object
+from past.utils import old_div
 from Tools.Profile import profile
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree
@@ -252,7 +257,7 @@ def parseCoordinate(s, e, size=0, font=None):
 		if not size:
 			val = 0
 		else:
-			val = (e - size)/2
+			val = old_div((e - size),2)
 	elif s == '*':
 		return None
 	else:
@@ -260,13 +265,13 @@ def parseCoordinate(s, e, size=0, font=None):
 			val = e
 			s = s[1:]
 		elif s[0] is 'c':
-			val = e/2
+			val = old_div(e,2)
 			s = s[1:]
 		else:
 			val = 0
 		if s:
 			if s[-1] is '%':
-				val += e * int(s[:-1]) / 100
+				val += old_div(e * int(s[:-1]), 100)
 			elif s[-1] is 'w':
 				val += fonts[font][3] * int(s[:-1])
 			elif s[-1] is 'h':
@@ -308,7 +313,7 @@ def parsePosition(s, scale, object = None, desktop = None, size = None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width(), size and size.width())
 	yval = parseCoordinate(y, parentsize.height(), size and size.height())
-	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	return ePoint(old_div(xval * scale[0][0], scale[0][1]), old_div(yval * scale[1][0], scale[1][1]))
 
 def parseSize(s, scale, object = None, desktop = None):
 	if s in variables:
@@ -319,7 +324,7 @@ def parseSize(s, scale, object = None, desktop = None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width())
 	yval = parseCoordinate(y, parentsize.height())
-	return eSize(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	return eSize(old_div(xval * scale[0][0], scale[0][1]), old_div(yval * scale[1][0], scale[1][1]))
 
 def parseFont(s, scale):
 	try:
@@ -328,7 +333,7 @@ def parseFont(s, scale):
 		size = f[1]
 	except:
 		name, size = s.split(';')
-	return gFont(name, int(size) * scale[0][0] / scale[0][1])
+	return gFont(name, old_div(int(size) * scale[0][0], scale[0][1]))
 
 def parseColor(s):
 	if s[0] != '#':
@@ -356,7 +361,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 	size = None
 	pos = None
 	font = None
-	for attrib, value in node.items():
+	for attrib, value in list(node.items()):
 		if attrib not in ignore:
 			if attrib in filenames:
 				pngfile = resolveFilename(SCOPE_CURRENT_SKIN, value, path_prefix=skin_path_prefix)
@@ -431,7 +436,7 @@ except:
 	print("fail cache main menu")
 
 
-class AttributeParser:
+class AttributeParser(object):
 	def __init__(self, guiObject, desktop, scale=((1,1),(1,1))):
 		self.guiObject = guiObject
 		self.desktop = desktop
@@ -642,7 +647,7 @@ class AttributeParser:
 		if value in variables:
 			value = variables[value]
 		x, y = value.split(',')
-		self.guiObject.setTextOffset(ePoint(int(x) * self.scaleTuple[0][0] / self.scaleTuple[0][1], int(y) * self.scaleTuple[1][0] / self.scaleTuple[1][1]))
+		self.guiObject.setTextOffset(ePoint(old_div(int(x) * self.scaleTuple[0][0], self.scaleTuple[0][1]), old_div(int(y) * self.scaleTuple[1][0], self.scaleTuple[1][1])))
 		if isVTISkin:
 			self.guiObject.setUseVTIWorkaround()
 	def flags(self, value):
@@ -857,7 +862,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					if isinstance(font, list) and len(font) == 2:
 						parameters[name] = (str(font[0]), int(font[1]))
 				else:
-					parameters[name] = map(parseParameter, value.split(","))
+					parameters[name] = list(map(parseParameter, value.split(",")))
 			except Exception as ex:
 				print("[SKIN] bad parameter", ex)
 
@@ -1032,7 +1037,7 @@ def loadSkinData(desktop):
 	# no longer needed, we know where the screens are now.
 	del dom_skins
 
-class additionalWidget:
+class additionalWidget(object):
 	def __init__(self):
 		pass
 
@@ -1046,7 +1051,7 @@ class SizeTuple(tuple):
 	def __str__(self):
 		return '%s,%s' % self
 
-class SkinContext:
+class SkinContext(object):
 	def __init__(self, parent=None, pos=None, size=None, font=None):
 		if parent is not None:
 			if pos is not None:
@@ -1338,10 +1343,10 @@ def readSkin(screen, skin, names, desktop):
 	def process_screen(widget, context):
 		def process(w):
 			conditional = w.attrib.get('conditional')
-			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
+			if conditional and not [i for i in conditional.split(",") if i in list(screen.keys())]:
 				return
 			objecttypes = w.attrib.get('objectTypes', '').split(",")
-			if len(objecttypes) > 1 and (objecttypes[0] not in screen.keys() or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
+			if len(objecttypes) > 1 and (objecttypes[0] not in list(screen.keys()) or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
 				return
 			p = processors.get(w.tag, process_none)
 			try:

@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from enigma import getPrevAsciiCode
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -105,7 +108,7 @@ class PinInput(InputBox):
 		if self.getTries() == 0:
 			if (self.triesEntry.time.value + (self.waitTime * 60)) > time():
 				remaining = (self.triesEntry.time.value + (self.waitTime * 60)) - time()
-				remainingMinutes = int(remaining / 60)
+				remainingMinutes = int(old_div(remaining, 60))
 				remainingSeconds = int(remaining % 60)
 				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds"))
 				if service and simple:

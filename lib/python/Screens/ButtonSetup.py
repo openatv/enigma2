@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from GlobalActions import globalActionMap
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
@@ -521,7 +523,7 @@ class helpableButtonSetupActionMap(HelpableActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-class InfoBarButtonSetup():
+class InfoBarButtonSetup(object):
 	def __init__(self):
 		self.ButtonSetupKeys = getButtonSetupKeys()
 		self["ButtonSetupButtonActions"] = helpableButtonSetupActionMap(self, "ButtonSetupActions",

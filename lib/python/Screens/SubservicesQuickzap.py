@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import str
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label

@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import str
 from .GUIComponent import GUIComponent
 from .VariableText import VariableText
 from os import statvfs

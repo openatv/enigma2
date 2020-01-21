@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import object
+from past.utils import old_div
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 from boxbranding import getMachineMtdRoot,getMachineMtdKernel,getBoxType,getMachineName
@@ -15,9 +19,9 @@ def GetCurrentImage():
 			f = open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()
 			if "%s" %(SystemInfo["canMultiBoot"][2]) in f:
 				if SystemInfo["HasSDmmc"]:
-					return SystemInfo["canMultiBoot"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("%s" % SystemInfo["canMultiBoot"][2])[1].split(' ')[0])+2)/2
+					return SystemInfo["canMultiBoot"] and old_div((int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("%s" % SystemInfo["canMultiBoot"][2])[1].split(' ')[0])+2),2)
 				else:
-					return SystemInfo["canMultiBoot"] and (int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("%s" % SystemInfo["canMultiBoot"][2])[1].split(' ')[0])-SystemInfo["canMultiBoot"][0])/2
+					return SystemInfo["canMultiBoot"] and old_div((int(open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()[:-1].split("%s" % SystemInfo["canMultiBoot"][2])[1].split(' ')[0])-SystemInfo["canMultiBoot"][0]),2)
 			else:
 				return 0	# if media not in SystemInfo["canMultiBoot"], then using SDcard and Image is in eMMC (1st slot) so tell caller with 0 return
 
@@ -74,7 +78,7 @@ def GetBoxName():
 		box = "twinboxlcd"
 	return box
 
-class GetImagelist():
+class GetImagelist(object):
 	MOUNT = 0
 	UNMOUNT = 1
 	NoRun = 0		# receivers only uses 1 media for multiboot
@@ -185,7 +189,7 @@ class GetImagelist():
 			self.callback(self.imagelist)
 
 
-class boxbranding_reader:		# many thanks to Huevos for creating this reader - well beyond my skill levels! 
+class boxbranding_reader(object):		# many thanks to Huevos for creating this reader - well beyond my skill levels! 
 	def __init__(self, OsPath):
 		if pathExists('%s/usr/lib64' %OsPath):
 			self.branding_path = "%s/usr/lib64/enigma2/python/" %OsPath
@@ -231,14 +235,14 @@ class boxbranding_reader:		# many thanks to Huevos for creating this reader - we
 	def readBrandingFile(self): # reads boxbranding.so and updates self.output
 		output = eval(subprocess.check_output(['python', self.tmp_path + self.helper_file]))
 		if output:
-			for att in self.output.keys():
+			for att in list(self.output.keys()):
 				self.output[att] = output[att]
 
 	def addBrandingMethods(self): # this creates reader.getBoxType(), reader.getImageDevBuild(), etc
 		l =  {}                
-		for att in self.output.keys():
+		for att in list(self.output.keys()):
 			exec("def %s(self): return self.output['%s']" % (att, att), None, l)
-		for name, value in l.items():
+		for name, value in list(l.items()):
 			setattr(boxbranding_reader, name, value)
 
 	def createHelperFile(self):
@@ -265,7 +269,7 @@ class boxbranding_reader:		# many thanks to Huevos for creating this reader - we
 		out.append("try:%s" % eol)
 		out.append("\timport boxbranding%s" % eol)
 		out.append("\toutput = {%s" % eol)
-		for att in self.output.keys():
+		for att in list(self.output.keys()):
 			out.append('\t\t"%s": boxbranding.%s(),%s' % (att, att, eol))
 		out.append("\t}%s" % eol)
 		out.append("except:%s" % eol)
@@ -274,7 +278,7 @@ class boxbranding_reader:		# many thanks to Huevos for creating this reader - we
 		return ''.join(out)
 
 
-class EmptySlot():
+class EmptySlot(object):
 	MOUNT = 0
 	UNMOUNT = 1
 	def __init__(self, Contents, callback):

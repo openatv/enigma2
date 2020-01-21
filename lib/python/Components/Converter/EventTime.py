@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+from __future__ import division
+from past.utils import old_div
 from .Converter import Converter
 from .Poll import Poll
 from time import time
@@ -188,7 +190,7 @@ class EventTime(Poll, Converter, object):
 		if duration > 0 and progress >= 0:
 			if progress > duration:
 				progress = duration
-			return progress * 1000 / duration
+			return old_div(progress * 1000, duration)
 		else:
 			return None
 

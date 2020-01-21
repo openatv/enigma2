@@ -5,6 +5,8 @@ from __future__ import print_function
 # FIXED SERVICELIST GREENSCREEN BY SCOPE34 (AN)
 # ADD AC3 SUPPORT BY BLACK_64
 
+from builtins import str
+from builtins import object
 from Screens.Screen import Screen
 from Screens.ChannelSelection import *
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
@@ -423,7 +425,7 @@ class Volume_Config(ConfigListScreen, Screen):
 		config.Volume.save()
 		self.close()
 
-class Volume:
+class Volume(object):
 	def __init__(self, session):
 		# autostarting instance, comes active when info is updated (zap)
 		self.session = session

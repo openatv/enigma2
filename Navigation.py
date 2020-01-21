@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from os import path, remove
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
@@ -17,7 +19,7 @@ from Screens.InfoBar import InfoBar, MoviePlayer
 from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
-class Navigation:
+class Navigation(object):
 	def __init__(self, wakeupData=None):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance

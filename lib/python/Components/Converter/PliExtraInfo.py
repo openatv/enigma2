@@ -1,6 +1,9 @@
 from __future__ import absolute_import
+from __future__ import division
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
+from builtins import str
+from past.utils import old_div
 from os import path
 from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
@@ -387,7 +390,7 @@ class PliExtraInfo(Poll, Converter, object):
 				pass
 			f.close()
 
-		fps  = str((video_rate + 500) / 1000)
+		fps  = str(old_div((video_rate + 500), 1000))
 		gamma = ("SDR", "HDR", "HDR10", "HLG", "")[info.getInfo(iServiceInformation.sGamma)]
 		return str(video_width) + "x" + str(video_height) + video_pol + fps + addspace(gamma)
 

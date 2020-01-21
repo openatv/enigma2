@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import str
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config, configfile, getConfigListEntry

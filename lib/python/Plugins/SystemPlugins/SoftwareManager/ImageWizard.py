@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import str
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager

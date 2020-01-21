@@ -1,11 +1,12 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import object
 from .GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList
 from .Sources.StaticText import StaticText
 
-class GUISkin:
+class GUISkin(object):
 	__module__ = __name__
 
 	def __init__(self):
@@ -49,7 +50,7 @@ class GUISkin:
 				f()
 
 	def deleteGUIScreen(self):
-		for (name, val) in self.items():
+		for (name, val) in list(self.items()):
 			if isinstance(val, GUIComponent):
 				val.GUIdelete()
 

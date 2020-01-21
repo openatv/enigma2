@@ -1,5 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import chr
+from builtins import str
+from builtins import range
+from builtins import object
 import os
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand
 from time import localtime, mktime
@@ -48,7 +52,7 @@ def getConfigSatlist(orbpos, satlist):
 			break
 	return ConfigSatlist(satlist, default_orbpos)
 
-class SecConfigure:
+class SecConfigure(object):
 	def getConfiguredSats(self):
 		return self.configuredSatellites
 
@@ -319,7 +323,7 @@ class SecConfigure:
 				if slot.isMultiType():
 					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 					types = slot.getMultiTypeList()
-					for FeType in types.itervalues():
+					for FeType in types.values():
 						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 							continue
 						elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -514,7 +518,7 @@ class SecConfigure:
 					if cdc in c:
 						sec.setCommittedCommand(c[cdc])
 					else:
-						sec.setCommittedCommand(long(cdc))
+						sec.setCommittedCommand(int(cdc))
 
 					sec.setFastDiSEqC(currLnb.fastDiseqc.value)
 
@@ -635,7 +639,7 @@ class SecConfigure:
 		if PN is None:
 			return
 
-		if ManufacturerName in ProductDict.keys():			# manufacture are listed, use its ConfigSubsection
+		if ManufacturerName in list(ProductDict.keys()):			# manufacture are listed, use its ConfigSubsection
 			tmp = ProductDict[ManufacturerName]
 			if PN in tmp.product.choices.choices:
 				return
@@ -760,7 +764,7 @@ class NIM(object):
 			return False
 		if self.isMultiType():
 			#print"[adenin] %s is multitype"%(self.slot)
-			for type in self.multi_type.values():
+			for type in list(self.multi_type.values()):
 				if what in self.compatible[type]:
 					return True
 		elif  what in self.compatible[self.getType()]:
@@ -915,7 +919,7 @@ class NIM(object):
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
 
-class NimManager:
+class NimManager(object):
 	def getConfiguredSats(self):
 		return self.sec.getConfiguredSats()
 
@@ -1269,7 +1273,7 @@ class NimManager:
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
 
-		for id, entry in entries.items():
+		for id, entry in list(entries.items()):
 			if not ("name" in entry and "type" in entry):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
@@ -1411,7 +1415,7 @@ class NimManager:
 							nimHaveRotor = True
 							break
 					if not nimHaveRotor:
-						for sat in mode.advanced.sat.values():
+						for sat in list(mode.advanced.sat.values()):
 							lnb_num = int(sat.lnb.value)
 							diseqcmode = lnb_num and mode.advanced.lnb[lnb_num].diseqcMode.value or ""
 							if diseqcmode == "1_2":
@@ -1776,9 +1780,9 @@ def InitNimManager(nimmgr, update_slots=None):
 			m_update({product.get("name"):p})								#add dict product to dict manufacturer
 		unicablematrixproducts.update({manufacturer.get("name"):m})						#add dict manufacturer to dict unicablematrixproducts
 
-	UnicableLnbManufacturers = unicablelnbproducts.keys()
+	UnicableLnbManufacturers = list(unicablelnbproducts.keys())
 	UnicableLnbManufacturers.sort()
-	UnicableMatrixManufacturers = unicablematrixproducts.keys()
+	UnicableMatrixManufacturers = list(unicablematrixproducts.keys())
 	UnicableMatrixManufacturers.sort()
 
 	unicable_choices = {
@@ -1794,7 +1798,7 @@ def InitNimManager(nimmgr, update_slots=None):
 	advanced_lnb_diction_user_choices = [("EN50494", "Unicable(EN50494)"), ("EN50607", "JESS(EN50607)")]
 
 	prio_list = [ ("-1", _("Auto")) ]
-	for prio in range(65)+range(14000,14065)+range(19000,19065):
+	for prio in list(range(65))+list(range(14000,14065))+list(range(19000,19065)):
 		description = ""
 		if prio == 0:
 			description = _(" (disabled)")
@@ -1856,7 +1860,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
 				for manufacturer in unicableproducts:
-					products = unicableproducts[manufacturer].keys()
+					products = list(unicableproducts[manufacturer].keys())
 					products.sort()
 					products_valide = []
 					products_valide_append = products_valide.append
@@ -2288,7 +2292,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 				types = slot.getMultiTypeList()
 				#print"[adenin]",types
-				for FeType in types.itervalues():
+				for FeType in types.values():
 					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 						continue
 					elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -2314,7 +2318,7 @@ def InitNimManager(nimmgr, update_slots=None):
 					except:
 						print("[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available")
 
-					for x in iDVBFrontendDict.iteritems():
+					for x in iDVBFrontendDict.items():
 						if x[1] == system:
 							frontend.overrideType(x[0])
 							break
@@ -2353,7 +2357,7 @@ def InitNimManager(nimmgr, update_slots=None):
 		if slot.isMultiType() and addMultiType:
 			typeList = []
 			default = "0"
-			for id in slot.getMultiTypeList().keys():
+			for id in list(slot.getMultiTypeList().keys()):
 				type = slot.getMultiTypeList()[id]
 				typeList.append((id, type))
 				if getMachineBrand() == "Beyonwiz" and type.startswith("DVB-T"):

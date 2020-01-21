@@ -1,3 +1,4 @@
+from builtins import object
 from enigma import eTimer
 
 class Poll(object):

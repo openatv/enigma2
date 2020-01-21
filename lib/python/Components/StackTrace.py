@@ -34,7 +34,7 @@ class StackTracePrinter(Thread):
 					print("StackTrace")
 					code = []
 					code.append("========== Stacktrace of active Python threads ===========")
-					for threadId, stack in _current_frames().items():
+					for threadId, stack in list(_current_frames().items()):
 						if (threadId != current_thread().ident):
 							if (threadId == self.MainThread_ident):
 								code.append("========== MainThread 0x%08x =========================" % threadId)

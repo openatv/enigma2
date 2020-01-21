@@ -4,6 +4,10 @@
 # Components
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from past.utils import old_div
+from builtins import object
 from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
@@ -56,7 +60,7 @@ pname = _("File Commander - Addon Movieplayer")
 pdesc = _("play Files")
 last_service = None
 
-class stat_info:
+class stat_info(object):
 	def __init__(self):
 		pass
 
@@ -244,7 +248,7 @@ class key_actions(stat_info):
 		if (size < 1024):
 			humansize = str(size) + " B"
 		elif (size < 1048576):
-			humansize = str(size / 1024) + " KB"
+			humansize = str(old_div(size, 1024)) + " KB"
 		else:
 			humansize = str(round(float(size) / 1048576, 2)) + " MB"
 		return humansize

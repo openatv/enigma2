@@ -8,6 +8,8 @@
 #
 
 from __future__ import absolute_import
+from __future__ import division
+from past.utils import old_div
 from .Renderer import Renderer
 
 from enigma import eCanvas, eRect, gRGB, eLabel, eTimer, fontRenderClass, ePoint, eSize, gFont
@@ -264,7 +266,7 @@ class VRunningText(Renderer):
 					else: # self.halign == CENTER or self.halign == BLOCK:
 						self.A = self.X + 1
 						self.B = self.W - text_width - 1
-						self.P = int(self.B / 2)
+						self.P = int(old_div(self.B, 2))
 						self.mStep = (self.direction == RIGHT) and abs(self.mStep) or -abs(self.mStep)
 				elif text_width > self.W:
 					if self.halign == LEFT:
@@ -280,7 +282,7 @@ class VRunningText(Renderer):
 					else: # self.halign == CENTER or self.halign == BLOCK:
 						self.A = self.W - text_width
 						self.B = self.X
-						self.P = int(self.A / 2)
+						self.P = int(old_div(self.A, 2))
 						self.mStep = (self.direction == RIGHT) and abs(self.mStep) or -abs(self.mStep)
 				else:	# if text_width == self.W
 					return False

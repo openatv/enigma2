@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import str
 from datasource import datasource
 
 class lamedb(datasource):
@@ -49,7 +50,7 @@ class lamedb(datasource):
 					data = line.strip().split(":")
 					tsid = str(int(data[1], 16))
 					onid = str(int(data[2], 16))
-		satlist = sats.keys()
+		satlist = list(sats.keys())
 		satlist.sort()
 
 		for sat in satlist:

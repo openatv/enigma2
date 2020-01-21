@@ -1,3 +1,5 @@
+from __future__ import division
+from past.utils import old_div
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
@@ -13,7 +15,7 @@ class ProgressToText(Converter, object):
 
 		if self.in_percent:
 			if r:
-				return "%d %%" % (v * 100 / r)
+				return "%d %%" % (old_div(v * 100, r))
 			else:
 				return None
 		else:

@@ -3,10 +3,16 @@
 # A task is the run of an external tool, with proper methods for failure handling
 
 from __future__ import print_function
+from __future__ import division
+from builtins import map
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 from Tools.CList import CList
 
 class Job(object):
-	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
+	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
 	def __init__(self, name):
 		self.tasks = [ ]
 		self.resident_tasks = [ ]
@@ -337,7 +343,7 @@ class ConditionTask(Task):
 # The jobmanager will execute multiple jobs, each after another.
 # later, it will also support suspending jobs (and continuing them after reboot etc)
 # It also supports a notification when some error occurred, and possibly a retry.
-class JobManager:
+class JobManager(object):
 	def __init__(self):
 		self.active_jobs = [ ]
 		self.failed_jobs = [ ]
@@ -444,7 +450,7 @@ class JobManager:
 #			self.args += ["-t", filesystem]
 #		self.args.append(device + "part%d" % partition)
 
-class Condition:
+class Condition(object):
 	def __init__(self):
 		pass
 
@@ -475,7 +481,7 @@ class DiskspacePrecondition(Condition):
 			return False
 
 	def getErrorMessage(self, task):
-		return _("Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)") % (self.diskspace_required / 1024 / 1024, self.diskspace_available / 1024 / 1024)
+		return _("Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)") % (old_div(old_div(self.diskspace_required, 1024), 1024), old_div(old_div(self.diskspace_available, 1024), 1024))
 
 class ToolExistsPrecondition(Condition):
 	def __init__(self):
@@ -491,7 +497,7 @@ class ToolExistsPrecondition(Condition):
 			self.realpath = task.cmd
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
-			absolutes = filter(lambda file: os.access(file, os.X_OK), map(lambda directory, file = task.cmd: os.path.join(directory, file), path))
+			absolutes = [file for file in map(lambda directory, file = task.cmd: os.path.join(directory, file), path) if os.access(file, os.X_OK)]
 			if absolutes:
 				self.realpath = absolutes[0]
 				return True

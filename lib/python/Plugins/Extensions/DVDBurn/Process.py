@@ -1,5 +1,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
@@ -164,9 +169,9 @@ class DemuxTask(Task):
 		f = open(self.cutfile, "w")
 		f.write("CollectionPanel.CutMode=4\n")
 		for p in self.cutlist:
-			s = p / 90000
-			m = s / 60
-			h = m / 60
+			s = old_div(p, 90000)
+			m = old_div(s, 60)
+			h = old_div(m, 60)
 
 			m %= 60
 			s %= 60
@@ -203,7 +208,7 @@ class MplexTaskPostcondition(Condition):
 		}[task.error]
 
 class MplexTask(Task):
-	ERROR_UNDERRUN, ERROR_UNKNOWN = range(2)
+	ERROR_UNDERRUN, ERROR_UNKNOWN = list(range(2))
 	def __init__(self, job, outputfile, inputfiles=None, demux_task=None, weighting = 500):
 		Task.__init__(self, job, "Mux ES into PS")
 		self.weighting = weighting
@@ -306,7 +311,7 @@ class BurnTaskPostcondition(Condition):
 		}[task.error]
 
 class BurnTask(Task):
-	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = range(10)
+	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = list(range(10))
 	def __init__(self, job, extra_args=[], tool="growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500
@@ -388,7 +393,7 @@ class CheckDiskspaceTask(Task):
 			if titlesize > maxsize: maxsize = titlesize
 			totalsize += titlesize
 		diskSpaceNeeded = totalsize + maxsize
-		job.estimateddvdsize = totalsize / 1024 / 1024
+		job.estimateddvdsize = old_div(old_div(totalsize, 1024), 1024)
 		totalsize += 50*1024*1024 # require an extra safety 50 MB
 		self.global_preconditions.append(DiskspacePrecondition(diskSpaceNeeded))
 		self.weighting = 5
@@ -550,11 +555,11 @@ class MenuImageTask(Task):
 		row = 1
 		for title_no in range( menu_start_title , menu_end_title ):
 			title = self.job.project.titles[title_no-1]
-			col_width  = ( s_width  - s_left - s_right  ) / nr_cols
-			row_height = ( s_height - s_top  - s_bottom ) / nr_rows
-			left =   s_left + ( (col-1) * col_width ) + s_cols/2
+			col_width  = old_div(( s_width  - s_left - s_right  ), nr_cols)
+			row_height = old_div(( s_height - s_top  - s_bottom ), nr_rows)
+			left =   s_left + ( (col-1) * col_width ) + old_div(s_cols,2)
 			right =    left + col_width - s_cols
-			top =     s_top + ( (row-1) * row_height) + s_rows/2
+			top =     s_top + ( (row-1) * row_height) + old_div(s_rows,2)
 			bottom =    top + row_height - s_rows
 			width = right - left
 			height = bottom - top
@@ -604,7 +609,7 @@ class MenuImageTask(Task):
 				col = 1
 				row += 1
 
-		top = s_height - s_bottom - s_rows/2
+		top = s_height - s_bottom - old_div(s_rows,2)
 		if self.menu_count < self.job.nr_menus:
 			next_page_text = s.next_page_text.getValue().decode("utf-8")
 			textsize = draw_bg.textsize(next_page_text, font=fonts[1])
@@ -616,7 +621,7 @@ class MenuImageTask(Task):
 		if self.menu_count > 1:
 			prev_page_text = s.prev_page_text.getValue().decode("utf-8")
 			textsize = draw_bg.textsize(prev_page_text, font=fonts[1])
-			pos = ( (s_left+s_cols/2), top )
+			pos = ( (s_left+old_div(s_cols,2)), top )
 			draw_bg.text(pos, prev_page_text, fill=self.Menus.color_button, font=fonts[1])
 			draw_high.text(pos, prev_page_text, fill=1, font=fonts[1])
 			spuxml += """
@@ -646,14 +651,14 @@ class MenuImageTask(Task):
 		if offset[0] != -1:
 			pos[0] += offset[0]
 		else:
-			pos[0] += ( (right-left) - size[0] ) / 2
+			pos[0] += old_div(( (right-left) - size[0] ), 2)
 		if offset[1] != -1:
 			pos[1] += offset[1]
 		else:
-			pos[1] += ( (bottom-top) - size[1] ) / 2
+			pos[1] += old_div(( (bottom-top) - size[1] ), 2)
 		return tuple(pos)
 
-class Menus:
+class Menus(object):
 	def __init__(self, job):
 		self.job = job
 		job.Menus = self
@@ -670,7 +675,7 @@ class Menus:
 		
 		job.titles_per_menu = s.cols.getValue()*s.rows.getValue()
 
-		job.nr_menus = ((nr_titles+job.titles_per_menu-1)/job.titles_per_menu)
+		job.nr_menus = (old_div((nr_titles+job.titles_per_menu-1),job.titles_per_menu))
 
 		#a new menu_count every 4 titles (1,2,3,4->1 ; 5,6,7,8->2 etc.)
 		for menu_count in range(1 , job.nr_menus+1):
@@ -899,7 +904,7 @@ class DVDJob(Job):
 				self.name = _("Burn DVD")
 				tool = "growisofs"
 				burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
-				if self.project.size/(1024*1024) > self.project.MAX_SL:
+				if old_div(self.project.size,(1024*1024)) > self.project.MAX_SL:
 					burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 			elif output == "iso":
 				self.name = _("Create DVD-ISO")
@@ -939,7 +944,7 @@ class DVDdataJob(Job):
 		if output == "medium":
 			self.name = _("Burn DVD")
 			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
-			if self.project.size/(1024*1024) > self.project.MAX_SL:
+			if old_div(self.project.size,(1024*1024)) > self.project.MAX_SL:
 				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 		elif output == "iso":
 			tool = "genisoimage"
@@ -965,13 +970,13 @@ class DVDisoJob(Job):
 		if imagepath.endswith(".iso"):
 			#PreviewTask(self, imagepath)
 			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD() + '='+imagepath, "-dvd-compat", "-use-the-force-luke=tty"]
-			if getSize(imagepath)/(1024*1024) > self.project.MAX_SL:
+			if old_div(getSize(imagepath),(1024*1024)) > self.project.MAX_SL:
 				burnargs += [ "-use-the-force-luke=4gms", "-speed=1" ]
 		else:
 			PreviewTask(self, imagepath + "/VIDEO_TS/")
 			volName = self.project.settings.name.getValue()
 			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
-			if getSize(imagepath)/(1024*1024) > self.project.MAX_SL:
+			if old_div(getSize(imagepath),(1024*1024)) > self.project.MAX_SL:
 				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, imagepath ]
 		tool = "growisofs"

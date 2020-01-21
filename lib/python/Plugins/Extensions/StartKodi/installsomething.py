@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 from Screens.Screen import Screen
 from enigma import quitMainloop
 from Screens.MessageBox import MessageBox
@@ -18,7 +19,7 @@ from Components.Ipkg import IpkgComponent
 #    self.KodiInstallation.__install__()
 # for restart question install invoke with:     self.KodiInstallation.__installRST__()
 
-class InstallSomething():
+class InstallSomething(object):
 	def __init__(self,session, url_to_download):
 		self.session = session
 		self.cmdList = []

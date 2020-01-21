@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 from Components.Console import Console
 import os
 
@@ -20,7 +21,7 @@ def bigStorage(minFree):
 				pass
 		return None
 
-class SwapCheck:
+class SwapCheck(object):
 	def __init__(self, callback=None, extra_args=None):
 		self.Console = Console()
 		if not extra_args: extra_args = []

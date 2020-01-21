@@ -1,3 +1,4 @@
+from builtins import str
 from boxbranding import getMachineBrand, getMachineName
 import time
 

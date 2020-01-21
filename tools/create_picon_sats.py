@@ -1,3 +1,4 @@
+from __future__ import division
 #
 # create symlinks for picons
 #   usage: create_picon_sats lamedb
@@ -7,6 +8,9 @@
 #
 # by pieterg, 2008
 
+from builtins import str
+from builtins import range
+from past.utils import old_div
 import os, sys
 
 f = open(sys.argv[1]).readlines()
@@ -30,7 +34,7 @@ while len(f) > 2:
 		ref[4] = 1
 		servicetype = 'tv'
 
-	sat = str(ref[1]/16/16/16/16)
+	sat = str(old_div(old_div(old_div(old_div(ref[1],16),16),16),16))
 
 #	SID:NS:TSID:ONID:STYPE:UNUSED(channelnumber in enigma1)
 #	X   X  X    X    D     D

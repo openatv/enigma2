@@ -1,5 +1,7 @@
 #!/usr/bin/python
 from __future__ import print_function
+from builtins import str
+from builtins import object
 import sys
 import os
 import string
@@ -10,7 +12,7 @@ try:
 	from _xmlplus.sax.saxlib import LexicalHandler
 	no_comments = False
 except ImportError:
-	class LexicalHandler:
+	class LexicalHandler(object):
 		def __init__(self):
 			pass
 	no_comments = True

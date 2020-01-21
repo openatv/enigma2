@@ -1,3 +1,8 @@
+from __future__ import division
+from builtins import str
+from builtins import chr
+from builtins import object
+from past.utils import old_div
 import copy
 import skin
 
@@ -23,11 +28,11 @@ class VirtualKeyBoardList(MenuList):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		font = skin.fonts.get("VirtualKeyBoard", ("Regular", 28, 45))
 		self.l.setFont(0, gFont(font[0], font[1]))
-		self.l.setFont(1, gFont(font[0], font[1] * 5 / 9))  # Smaller font is 56% the height of bigger font
+		self.l.setFont(1, gFont(font[0], old_div(font[1] * 5, 9)))  # Smaller font is 56% the height of bigger font
 		self.l.setItemHeight(font[2])
 
 
-class VirtualKeyBoardEntryComponent:
+class VirtualKeyBoardEntryComponent(object):
 	def __init__(self):
 		pass
 
@@ -941,9 +946,9 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		res = [keys]
 		text = []
 		offset = 14 - self.keyboardWidth  # 14 represents the maximum buttons per row as defined here and in the skin (14 x self.width).
-		x = self.width * offset / 2
+		x = old_div(self.width * offset, 2)
 		if offset % 2:
-			x += self.width / 2
+			x += old_div(self.width, 2)
 		xHighlight = x
 		prevKey = None
 		for key in keys:
@@ -1001,13 +1006,13 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 					left = xData
 					wImage = image.size().width()
 					if alignH == RT_HALIGN_CENTER:
-						left += (w - wImage) / 2
+						left += old_div((w - wImage), 2)
 					elif alignH == RT_HALIGN_RIGHT:
 						left += w - wImage
 					top = self.padding[1]
 					hImage = image.size().height()
 					if alignV == RT_VALIGN_CENTER:
-						top += (h - hImage) / 2
+						top += old_div((h - hImage), 2)
 					elif alignV == RT_VALIGN_BOTTOM:
 						top += h - hImage
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(left, top), size=(wImage, hImage), png=image))
@@ -1025,26 +1030,26 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		if self.sel_l is None or self.sel_m is None or self.sel_r is None:
 			return
 		if self.previousSelectedKey is not None:
-			del self.list[self.previousSelectedKey / self.keyboardWidth][-3:]
+			del self.list[old_div(self.previousSelectedKey, self.keyboardWidth)][-3:]
 		if self.selectedKey > self.maxKey:
 			self.selectedKey = self.maxKey
 		start, width = self.findStartAndWidth(self.selectedKey)
 		x = start * self.width
 		w = self.sel_l.size().width()
-		self.list[self.selectedKey / self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_l))
+		self.list[old_div(self.selectedKey, self.keyboardWidth)].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_l))
 		x += w
 		w = self.sel_m.size().width() + (self.width * (width - 1))
-		self.list[self.selectedKey / self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_m, flags = BT_SCALE))
+		self.list[old_div(self.selectedKey, self.keyboardWidth)].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_m, flags = BT_SCALE))
 		x += w
 		w = self.sel_r.size().width()
-		self.list[self.selectedKey / self.keyboardWidth].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_r))
+		self.list[old_div(self.selectedKey, self.keyboardWidth)].append(MultiContentEntryPixmapAlphaBlend(pos=(x, 0), size=(w, self.height), png=self.sel_r))
 		self.previousSelectedKey = self.selectedKey
 		self["list"].setList(self.list)
 
 	def findStartAndWidth(self, key):
 		if key > self.maxKey:
 			key = self.maxKey
-		row = key / self.keyboardWidth
+		row = old_div(key, self.keyboardWidth)
 		key = key % self.keyboardWidth
 		start = key
 		while start:
@@ -1062,7 +1067,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def processSelect(self):
 		self.smsChar = None
-		text = self.keyList[self.shiftLevel][self.selectedKey / self.keyboardWidth][self.selectedKey % self.keyboardWidth].encode("UTF-8")
+		text = self.keyList[self.shiftLevel][old_div(self.selectedKey, self.keyboardWidth)][self.selectedKey % self.keyboardWidth].encode("UTF-8")
 		cmd = self.cmds.get(text.upper(), None)
 		if cmd is None:
 			self['text'].char(text.encode('UTF-8'))
@@ -1079,7 +1084,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def localeMenu(self):
 		languages = []
-		for locale, data in self.locales.iteritems():
+		for locale, data in self.locales.items():
 			languages.append((data[0] + "  -  " + data[1] + "  (" + locale + ")", locale))
 		languages = sorted(languages)
 		index = 0
@@ -1147,7 +1152,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.smsChar = None
 		self.selectedKey -= self.keyboardWidth
 		if self.selectedKey < 0:
-			self.selectedKey = self.maxKey / self.keyboardWidth * self.keyboardWidth + self.selectedKey % self.keyboardWidth
+			self.selectedKey = old_div(self.maxKey, self.keyboardWidth) * self.keyboardWidth + self.selectedKey % self.keyboardWidth
 			if self.selectedKey > self.maxKey:
 				self.selectedKey -= self.keyboardWidth
 		self.markSelectedKey()
@@ -1157,7 +1162,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		start, width = self.findStartAndWidth(self.selectedKey)
 		if width > 1:
 			width = self.selectedKey % self.keyboardWidth - start + 1
-		self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth + (self.selectedKey + self.keyboardWidth - width) % self.keyboardWidth
+		self.selectedKey = old_div(self.selectedKey, self.keyboardWidth) * self.keyboardWidth + (self.selectedKey + self.keyboardWidth - width) % self.keyboardWidth
 		if self.selectedKey > self.maxKey:
 			self.selectedKey = self.maxKey
 		self.markSelectedKey()
@@ -1167,9 +1172,9 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		start, width = self.findStartAndWidth(self.selectedKey)
 		if width > 1:
 			width = start + width - self.selectedKey % self.keyboardWidth
-		self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth + (self.selectedKey + width) % self.keyboardWidth
+		self.selectedKey = old_div(self.selectedKey, self.keyboardWidth) * self.keyboardWidth + (self.selectedKey + width) % self.keyboardWidth
 		if self.selectedKey > self.maxKey:
-			self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth
+			self.selectedKey = old_div(self.selectedKey, self.keyboardWidth) * self.keyboardWidth
 		self.markSelectedKey()
 
 	def down(self):
@@ -1185,7 +1190,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		if self.selectAsciiKey(str(unichr(getPrevAsciiCode()).encode("utf-8"))):
+		if self.selectAsciiKey(str(chr(getPrevAsciiCode()).encode("utf-8"))):
 			self.processSelect()
 
 	def selectAsciiKey(self, char):

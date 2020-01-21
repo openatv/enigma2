@@ -1,5 +1,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import map
+from builtins import str
+from builtins import range
+from past.utils import old_div
 import locale
 import os
 import skin
@@ -243,10 +248,10 @@ def InitUsageConfig():
 	for i in (10, 30):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	for i in (60, 120, 300, 600, 1200, 1800):
-		m = i / 60
+		m = old_div(i, 60)
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	for i in (3600, 7200, 14400):
-		h = i / 3600
+		h = old_div(i, 3600)
 		choicelist.append(("%d" % i, ngettext("%d hour", "%d hours", h) % h))
 	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [("0", _("No standby"))] + choicelist)
 	config.usage.hdd_standby_in_standby = ConfigSelection(default = "-1", choices = [("-1", _("Same as in active")), ("0", _("No standby"))] + choicelist)
@@ -261,7 +266,7 @@ def InitUsageConfig():
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
-		m = i/60
+		m = old_div(i,60)
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.usage.pip_last_service_timeout = ConfigSelection(default = "-1", choices = choicelist)
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
@@ -356,7 +361,7 @@ def InitUsageConfig():
 	config.usage.sleep_timer_action = ConfigSelection(default = "deepstandby", choices = choicelist)
 	choicelist = [("0", _("Disabled")),("event_standby", _("Execute after current event"))]
 	for i in range(900, 14401, 900):
-		m = abs(i / 60)
+		m = abs(old_div(i, 60))
 		m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append((str(i), _("Execute in ") + m))
 	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
@@ -384,7 +389,7 @@ def InitUsageConfig():
 		if i < 60:
 			m = ngettext("%d second", "%d seconds", i) % i
 		else:
-			m = abs(i / 60)
+			m = abs(old_div(i, 60))
 			m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append(("%d" % i, m))
 	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
@@ -1065,7 +1070,7 @@ def InitUsageConfig():
 	for i in (2, 3, 4, 5, 10, 20, 30):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	for i in (60, 120, 300):
-		m = i / 60
+		m = old_div(i, 60)
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.timeshift.startdelay = ConfigSelection(default = "0", choices = choicelist)
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
@@ -1606,7 +1611,7 @@ def updateChoices(sel, choices):
 				if x < val:
 					defval = str(x)
 					break
-		sel.setChoices(map(str, choices), defval)
+		sel.setChoices(list(map(str, choices)), defval)
 
 def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>":

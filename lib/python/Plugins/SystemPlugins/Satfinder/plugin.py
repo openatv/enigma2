@@ -1,4 +1,6 @@
 from __future__ import print_function
+from __future__ import division
+from past.utils import old_div
 from enigma import eDVBResourceManager,\
 	eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC, iDVBFrontend
 
@@ -177,7 +179,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if slot.isMultiType():
 			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 			types = slot.getMultiTypeList()
-			for FeType in types.itervalues():
+			for FeType in types.values():
 				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 					continue
 				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -346,7 +348,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					tps = nimmanager.getTransponders(orbpos)
 					if len(tps) > self.preDefTransponders.index:
 						tp = tps[self.preDefTransponders.index]
-						transponder = (tp[1] / 1000, tp[2] / 1000,
+						transponder = (old_div(tp[1], 1000), old_div(tp[2], 1000),
 							tp[3], tp[4], 2, orbpos, tp[5], tp[6], tp[8], tp[9], tp[10], tp[11], tp[12], tp[13], tp[14])
 						self.tuner.tune(transponder)
 						self.transponder = transponder

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from builtins import object
 from twisted.internet import threads
 from .config import config
 from enigma import eDBoxLCD, eTimer, iPlayableService, pNavigation, iServiceInformation
@@ -21,7 +22,7 @@ def SymbolsCheck(session, **kwargs):
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
 
-class SymbolsCheckPoller:
+class SymbolsCheckPoller(object):
 	def __init__(self, session):
 		self.session = session
 		self.blink = False

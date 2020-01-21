@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 
@@ -263,9 +267,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		try:
 			if self.timerentry_justplay.value != "zap":
 				stat = statvfs(self.timerentry_dirname.value)
-				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
-				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
-				c = 100.0 * b / a
+				a = old_div(old_div(old_div(float(stat.f_blocks) * stat.f_bsize, 1024), 1024),1024)
+				b = old_div(old_div(old_div(float(stat.f_bavail) * stat.f_bsize, 1024), 1024),1024)
+				c = old_div(100.0 * b, a)
 				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
 				description = _("Current location")
 		except:

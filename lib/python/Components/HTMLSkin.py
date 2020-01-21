@@ -1,4 +1,5 @@
-class HTMLSkin:
+from builtins import object
+class HTMLSkin(object):
 	order = ()
 
 	def __init__(self, order):

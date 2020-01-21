@@ -1,10 +1,11 @@
 from __future__ import print_function
+from builtins import object
 from enigma import eActionMap
 
 from Tools.KeyBindings import queryKeyBinding
 
 
-class ActionMap:
+class ActionMap(object):
 	def __init__(self, contexts=None, actions=None, prio=0):
 		self.contexts = contexts or []
 		self.actions = actions or {}
@@ -13,7 +14,7 @@ class ActionMap:
 		self.bound = False
 		self.exec_active = False
 		self.enabled = True
-		unknown = self.actions.keys()
+		unknown = list(self.actions.keys())
 		for action in unknown[:]:
 			for context in self.contexts:
 				if queryKeyBinding(context, action):
@@ -99,7 +100,7 @@ class HelpableActionMap(ActionMap):
 		adict = {}
 		for context in contexts:
 			alist = []
-			for (action, funchelp) in actions.iteritems():
+			for (action, funchelp) in actions.items():
 				# Check if this is a tuple.
 				if isinstance(funchelp, tuple):
 					if queryKeyBinding(context, action):

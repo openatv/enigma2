@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 from Screens.Console import Console
 from Tools.Log import Log
 

@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import next
+from past.utils import old_div
 import Screens.InfoBar
 from enigma import eServiceReference, eTimer
 
@@ -140,7 +143,7 @@ class ServiceScan(Screen):
 				self.session.summary.updateService(selectedService[0])
 
 	def doServiceScan(self):
-		self["servicelist"].len = self["servicelist"].instance.size().height() / self["servicelist"].l.getItemSize().height()
+		self["servicelist"].len = old_div(self["servicelist"].instance.size().height(), self["servicelist"].l.getItemSize().height())
 		self["scan"] = CScan(self["scan_progress"], self["scan_state"], self["servicelist"], self["pass"], self.scanList, self["network"], self["transponder"], self["FrontendInfo"], self.session.summary)
 		self.scanTimer.start(250)
 

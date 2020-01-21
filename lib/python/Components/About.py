@@ -1,3 +1,8 @@
+from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from past.utils import old_div
 from boxbranding import getBoxType, getMachineBuild, getImageVersion
 from sys import modules
 import socket, fcntl, struct, time, os
@@ -79,7 +84,7 @@ def getCPUSpeedString():
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			return "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			return "%s MHz" % str(round(old_div(int(binascii.hexlify(clockfrequency), 16),1000000),1))
 		except:
 			return "1,7 GHz"
 	else:
@@ -93,7 +98,7 @@ def getCPUSpeedString():
 					if splitted[0].startswith("cpu MHz"):
 						mhz = float(splitted[1].split(' ')[0])
 						if mhz and mhz >= 1000:
-							mhz = "%s GHz" % str(round(mhz/1000,1))
+							mhz = "%s GHz" % str(round(old_div(mhz,1000),1))
 						else:
 							mhz = "%s MHz" % str(round(mhz,1))
 			file.close()
@@ -166,7 +171,7 @@ def getIfConfig(ifname):
 	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
-		for k,v in infos.items():
+		for k,v in list(infos.items()):
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
 		pass
@@ -184,8 +189,8 @@ def getIfTransferredData(ifname):
 
 def getPythonVersionString():
 	try:
-		import commands
-		status, output = commands.getstatusoutput("python -V")
+		import subprocess
+		status, output = subprocess.getstatusoutput("python -V")
 		return output.split(' ')[1]
 	except:
 		return _("unknown")

@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import range
 from enigma import eEPGCache
 
 from Components.Converter.Converter import Converter

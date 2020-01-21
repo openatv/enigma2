@@ -1,7 +1,11 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import object
 from enigma import eTimer
-import re, glob, shutil, os, urllib2, urllib, time, sys
+import re, glob, shutil, os, urllib.request, urllib.error, urllib.parse, urllib.request, urllib.parse, urllib.error, time, sys
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Screens.MessageBox import MessageBox
@@ -18,9 +22,9 @@ Directory = os.path.dirname(sys.modules[__name__].__file__)
 def InstallSettings(name, link, date):
 
     def DownloadSetting(link):
-        req = urllib2.Request(link)
+        req = urllib.request.Request(link)
         req.add_header('User-Agent', 'VAS')
-        response = urllib2.urlopen(req)
+        response = urllib.request.urlopen(req)
         newlink = response.read()
         response.close()
         Setting = open(Directory + '/Settings/tmp/listE2.zip', 'w')
@@ -95,7 +99,7 @@ def InstallSettings(name, link, date):
     return Status
 
 
-class CheckTimer:
+class CheckTimer(object):
 
     def __init__(self, session = None):
         self.session = session
@@ -157,7 +161,7 @@ class CheckTimer:
 
         def OnDsl():
             try:
-                urllib2.urlopen('http://www.google.de', None, 3)
+                urllib.request.urlopen('http://www.google.de', None, 3)
                 return (True and config.pud.showmessage.value)
             except:
                 return False

@@ -1,5 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import range
+from builtins import object
 from .config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
 from Components.About import about
 from Tools.CList import CList
@@ -32,7 +34,7 @@ if getBrandOEM() in ('azbox',):
 else:
 	config.av.edid_override = ConfigYesNo(default = False)
 
-class AVSwitch:
+class AVSwitch(object):
 	hw_type = HardwareInfo().get_device_name()
 	rates = { } # high-level, use selectable modes.
 	modes = { }  # a list of (high-level) modes for a certain port.
@@ -205,7 +207,7 @@ class AVSwitch:
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
-		for mode in rate.values():
+		for mode in list(rate.values()):
 			if port == "DVI":
 				if getBrandOEM() in ('azbox',):
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
@@ -1279,7 +1281,7 @@ def InitAVSwitch():
 
 	iAVSwitch.setConfiguredMode()
 
-class VideomodeHotplug:
+class VideomodeHotplug(object):
 	def __init__(self):
 		pass
 

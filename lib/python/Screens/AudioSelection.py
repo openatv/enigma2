@@ -1,4 +1,7 @@
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
+from builtins import object
 from .Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
@@ -20,7 +23,7 @@ from enigma import iPlayableService, eTimer, eSize
 
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
-FOCUS_CONFIG, FOCUS_STREAMS = range(2)
+FOCUS_CONFIG, FOCUS_STREAMS = list(range(2))
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
 
@@ -247,7 +250,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			from Plugins.Plugin import PluginDescriptor
 
 			if hasattr(self.infobar, "runPlugin"):
-				class PluginCaller:
+				class PluginCaller(object):
 					def __init__(self, fnc, *args):
 						self.fnc = fnc
 						self.args = args

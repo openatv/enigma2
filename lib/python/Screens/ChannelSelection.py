@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import chr
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 import os
 from Tools.Profile import profile
@@ -112,7 +118,7 @@ class EpgBouquetSelector(BouquetSelector):
 		self.selectedFunc(self.getCurrent(),self.bouquets)
 
 
-class SilentBouquetSelector:
+class SilentBouquetSelector(object):
 	def __init__(self, bouquets, enableWrapAround=False, current=0):
 		self.bouquets = [b[1] for b in bouquets]
 		self.pos = current
@@ -711,7 +717,7 @@ class ChannelContextMenu(Screen):
 		plugin(session=self.session, service=self.csel.getCurrentSelection())
 		self.close()
 
-class SelectionEventInfo:
+class SelectionEventInfo(object):
 	def __init__(self):
 		self["Service"] = self["ServiceEvent"] = ServiceEvent()
 		self["Event"] = Event()
@@ -916,7 +922,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 
 	def setChoiceBoxDialogPosition(self):
 		indx = self.servicelist.getCurrentIndex()
-		ipp = self.servicelist.instance.size().height() / self.servicelist.ItemHeight
+		ipp = old_div(self.servicelist.instance.size().height(), self.servicelist.ItemHeight)
 		while indx+1 > ipp:
 			indx -= ipp
 		sf = getSkinFactor()
@@ -1035,7 +1041,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			self.startServiceRef = None
 			self.startRoot = None
 
-class ChannelSelectionEdit:
+class ChannelSelectionEdit(object):
 	def __init__(self):
 		self.entry_marked = False
 		self.bouquet_mark_edit = OFF
@@ -1271,7 +1277,7 @@ class ChannelSelectionEdit:
 				direction = _("W")
 			else:
 				direction = _("E")
-			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos/10, unsigned_orbpos%10, "\xc2\xb0", direction)
+			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (old_div(unsigned_orbpos,10), unsigned_orbpos%10, "\xc2\xb0", direction)
 		self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, messageText)
 
 	def removeSatelliteServicesCallback(self, answer):
@@ -1827,7 +1833,7 @@ class ChannelSelectionBase(Screen):
 											h = _("W")
 										else:
 											h = _("E")
-										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+										service_name = ("%d.%d" + h) % (old_div(orbpos, 10), orbpos % 10)
 									service.setName("%s - %s" % (service_name, service_type))
 									self.servicelist.addService(service)
 						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -2006,7 +2012,7 @@ class ChannelSelectionBase(Screen):
 		self.selectionNumber = ""
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
+		unichar = chr(getPrevAsciiCode())
 		charstr = unichar.encode('utf-8')
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])
@@ -2990,7 +2996,7 @@ class HistoryZapSelector(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
 				"jumpPreviousMark": self.prev,
-				"jumpNextMark": self.next,
+				"jumpNextMark": self.__next__,
 				"toggleMark": self.okbuttonClick,
 			})
 		self.setTitle(_("History zap..."))
@@ -3025,7 +3031,7 @@ class HistoryZapSelector(Screen):
 					begin = event.getBeginTime()
 					if begin is not None:
 						end = begin + event.getDuration()
-						remaining = (end - int(time())) / 60
+						remaining = old_div((end - int(time())), 60)
 						prefix = ""
 						if remaining > 0:
 							prefix = "+"
@@ -3054,7 +3060,7 @@ class HistoryZapSelector(Screen):
 		else:
 			self.up()
 
-	def next(self):
+	def __next__(self):
 		if self.redirectButton:
 			self.up()
 		else:

@@ -1,5 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from .Screen import Screen
 from skin import isVTISkin
 from Components.ActionMap import ActionMap
@@ -101,7 +105,7 @@ def getAboutText():
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			cpuMHz = _("   (%s MHz)") % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			cpuMHz = _("   (%s MHz)") % str(round(old_div(int(binascii.hexlify(clockfrequency), 16),1000000),1))
 		except:
 			cpuMHz = _("   (1.7 GHz)")
 	else:
@@ -524,18 +528,18 @@ class Devices(Screen):
 				size = Harddisk(device).diskSize()
 				free = Harddisk(device).free()
 
-				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
-				elif (size / 1024) >= 1:
+				if (old_div((float(size) / 1024), 1024)) >= 1:
+					sizeline = _("Size: ") + str(round((old_div((float(size) / 1024), 1024)), 2)) + " " + _("TB")
+				elif (old_div(size, 1024)) >= 1:
 					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
 				elif size >= 1:
 					sizeline = _("Size: ") + str(size) +  " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
-				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
-				elif (free / 1024) >= 1:
+				if (old_div((float(free) / 1024), 1024)) >= 1:
+					freeline = _("Free: ") + str(round((old_div((float(free) / 1024), 1024)), 2)) +  " " + _("TB")
+				elif (old_div(free, 1024)) >= 1:
 					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
 				elif free >= 1:
 					freeline = _("Free: ") + str(free) +  " " + _("MB")

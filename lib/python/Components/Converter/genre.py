@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 from Components.config import config
 
 #
@@ -6,7 +8,7 @@ from Components.config import config
 # some broadcaster do define other types so this list
 # may grow or be replaced..
 #
-class GenresETSI:
+class GenresETSI(object):
 	maintype = (
 		_("Reserved"),
 		_("Movie/Drama"),
@@ -138,7 +140,7 @@ class GenresETSI:
 		),
 	}
 
-class GenresAUS:
+class GenresAUS(object):
 	maintype = (
 		_("Undefined"),
 		_("Movie"),
@@ -216,7 +218,7 @@ class GenresAUS:
 		),
 	}
 
-class GenresAUSIceTV:
+class GenresAUSIceTV(object):
 	maintype = (
 		_("Miscellaneous"),
 		_("Movie/Drama"),
@@ -389,7 +391,7 @@ class GenresAUSIceTV:
 		),
 	}
 
-class GenresDEUIceTV:
+class GenresDEUIceTV(object):
 	maintype = (
 		_("Miscellaneous"),
 		_("Movie/Drama"),

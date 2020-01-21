@@ -1,5 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import range
+from past.utils import old_div
 from . import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
@@ -16,7 +19,7 @@ from Components.Label import MultiColorLabel
 from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
-MODE_DVD, MODE_BLUDISC = range(2)
+MODE_DVD, MODE_BLUDISC = list(range(2))
 
 class TitleList(Screen, HelpableScreen):
 	skin = """
@@ -295,11 +298,11 @@ class TitleList(Screen, HelpableScreen):
 		self.project.finished_burning = False
 
 	def updateSize(self):
-		size = self.project.size/(1024*1024)
+		size = old_div(self.project.size,(1024*1024))
 		MAX_DL = self.project.MAX_DL-100
 		MAX_SL = self.project.MAX_SL-100
 		MAX_BD = self.project.MAX_BD-200
-		self["space_bar_bludisc"].value = 100 * size / (MAX_BD)
+		self["space_bar_bludisc"].value = old_div(100 * size, (MAX_BD))
 
 		if self.project.settings.authormode.value == "bdmv":
 			percent = 100 * size / float(MAX_BD)

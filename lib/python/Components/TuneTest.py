@@ -1,7 +1,8 @@
 from __future__ import print_function
+from builtins import object
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eDVBFrontendParameters, eDVBResourceManager, eTimer
 
-class Tuner:
+class Tuner(object):
 	def __init__(self, frontend, ignore_rotor=False):
 		self.frontend = frontend
 		self.ignore_rotor = ignore_rotor
@@ -121,7 +122,7 @@ class Tuner:
 # 1) add transponders with addTransponder()
 # 2) call run(<checkPIDs = True>)
 # 3) finishedChecking() is called, when the run is finished
-class TuneTest:
+class TuneTest(object):
 	def __init__(self, feid, stopOnSuccess = -1, stopOnError = -1):
 		self.stopOnSuccess = stopOnSuccess
 		self.stopOnError = stopOnError

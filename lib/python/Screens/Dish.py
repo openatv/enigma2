@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from __future__ import division
+from builtins import chr
+from builtins import str
+from past.utils import old_div
 from Screens.Screen import Screen
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Pixmap import Pixmap
@@ -184,7 +188,7 @@ class Dish(Screen):
 				mrt = 3600 - mrt
 			if mrt % 10:
 				mrt += 10
-			mrt = round((mrt * 1000 / self.getTurningSpeed(pol) ) / 10000) + 3
+			mrt = round(old_div((old_div(mrt * 1000, self.getTurningSpeed(pol)) ), 10000)) + 3
 		return mrt
 
 	def getTurningSpeed(self, pol=0):
@@ -199,7 +203,7 @@ class Dish(Screen):
 					return nim.turningspeedH.float
 			elif nimConfig.configMode.value == "advanced":
 				if self.cur_orbpos != INVALID_POSITION:
-					satlist = nimConfig.advanced.sat.keys()
+					satlist = list(nimConfig.advanced.sat.keys())
 					if self.cur_orbpos in satlist:
 						currSat = nimConfig.advanced.sat[self.cur_orbpos]
 						lnbnum = int(currSat.lnb.value)
@@ -239,12 +243,12 @@ class Dish(Screen):
 			return "N/A"
 		if orbpos > 1800:
 			orbpos = 3600 - orbpos
-			return "%d.%d°W" % (orbpos/10, orbpos%10)
-		return "%d.%d°E" % (orbpos/10, orbpos%10)
+			return "%d.%d°W" % (old_div(orbpos,10), orbpos%10)
+		return "%d.%d°E" % (old_div(orbpos,10), orbpos%10)
 
 	def FormatTurnTime(self, time):
 		t = abs(time)
-		return "%s%02d:%02d" % (time < 0 and "- " or "", t/60%60, t%60)
+		return "%s%02d:%02d" % (time < 0 and "- " or "", old_div(t,60)%60, t%60)
 
 class Dishpip(Dish, Screen):
 	STATE_HIDDEN = 0

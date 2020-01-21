@@ -2,6 +2,10 @@
 # -*- coding: iso-8859-1 -*-
 
 from __future__ import print_function
+from __future__ import division
+from builtins import map
+from builtins import str
+from past.utils import old_div
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
@@ -81,7 +85,7 @@ class ArchiverMenuScreen(Screen):
 
 	def onLayout(self):
 		self.setTitle(self.pname)
-		self.chooseMenuList.setList(map(self.ListEntry, self.list))
+		self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
 		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
@@ -102,7 +106,7 @@ class ArchiverMenuScreen(Screen):
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryProgress(pos=(x+x2, y+int(h/3)), size=(w-(x+x2), int(h/3)), percent=int(currentProgress), borderWidth=1),
+			MultiContentEntryProgress(pos=(x+x2, y+int(old_div(h,3))), size=(w-(x+x2), int(old_div(h,3))), percent=int(currentProgress), borderWidth=1),
 			MultiContentEntryText(pos=(x, y), size=(x2, h), font=0, flags=RT_HALIGN_LEFT, text=str(progpercent))
 		]
 
@@ -139,7 +143,7 @@ class ArchiverMenuScreen(Screen):
 			print("[ArchiverMenuScreen]", msg)
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			return
-		output = map(str.splitlines, p.communicate())
+		output = list(map(str.splitlines, p.communicate()))
 		if output[0] and output[1]:
 			output[1].append("----------")
 		self.extractlist = [(l,) for l in output[1] + output[0]]
@@ -252,7 +256,7 @@ class ArchiverInfoScreen(Screen):
 	def onLayout(self):
 		self.setTitle(self.pname)
 		if len(self.list) != 0:
-			self.chooseMenuList.setList(map(self.ListEntry, self.list))
+			self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
 		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))

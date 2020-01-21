@@ -1,4 +1,9 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import hex
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from Screens.Screen import Screen
 from Screens.ChannelSelection import *
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
@@ -298,7 +303,7 @@ class CIconfigMenu(Screen):
 				for caid in slot.findall("caid"):
 					read_caid = caid.get("id").encode("UTF-8")
 					self.selectedcaid.append((str(read_caid),str(read_caid),i))
-					self.usingcaid.append(long(read_caid,16))
+					self.usingcaid.append(int(read_caid,16))
 					i+=1
 
 				for service in  slot.findall("service"):
@@ -527,7 +532,7 @@ class myProviderSelection(ChannelSelectionBase):
 											h = _("W")
 										else:
 											h = _("E")
-										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+										service_name = ("%d.%d" + h) % (old_div(orbpos, 10), orbpos % 10)
 								service.setName("%s - %s" % (service_name, service_type))
 								self.servicelist.addService(service)
 						self.servicelist.finishFill()

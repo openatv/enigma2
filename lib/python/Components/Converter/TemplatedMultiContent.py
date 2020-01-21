@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import range
 from Components.Converter.StringList import StringList
 
 class TemplatedMultiContent(StringList):

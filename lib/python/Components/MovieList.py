@@ -1,5 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import os
 import struct
 import random
@@ -28,12 +32,12 @@ RECORD_EXTENSIONS = (".ts")
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
-class MovieListData:
+class MovieListData(object):
 	def __init__(self):
 		pass
 
 # iStaticServiceInformation
-class StubInfo:
+class StubInfo(object):
 	def __init__(self):
 		pass
 
@@ -281,14 +285,14 @@ class MovieList(GUIComponent):
 		if self.listHeight > 0:
 			ext = config.movielist.useextlist.value
 			if ext != '0':
-				itemHeight = (self.listHeight / config.movielist.itemsperpage.value) *2
+				itemHeight = (old_div(self.listHeight, config.movielist.itemsperpage.value)) *2
 			else:
-				itemHeight = self.listHeight / config.movielist.itemsperpage.value
+				itemHeight = old_div(self.listHeight, config.movielist.itemsperpage.value)
 		else:
 			itemHeight = 30 # some default (270/5)
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
-		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+		self.instance.resize(eSize(self.listWidth, old_div(self.listHeight, itemHeight) * itemHeight))
 
 	def setFontsize(self):
 		self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
@@ -310,7 +314,7 @@ class MovieList(GUIComponent):
 		res = [ None ]
 
 		if ext != '0':
-			ih = self.itemHeight / 2
+			ih = old_div(self.itemHeight, 2)
 		else:
 			ih = self.itemHeight
 
@@ -339,7 +343,7 @@ class MovieList(GUIComponent):
 			# Directory
 			iconSize = pathIconSize
 			iconPosX = listBeginX-1
-			iconPosY = ih/2-iconSize/2
+			iconPosY = old_div(ih,2)-old_div(iconSize,2)
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
 			# Name is full path name
@@ -407,7 +411,7 @@ class MovieList(GUIComponent):
 							data.partcol = 0x206333
 		len = data.len
 		if len > 0:
-			len = "%d:%02d" % (len / 60, len % 60)
+			len = "%d:%02d" % (old_div(len, 60), len % 60)
 		else:
 			len = ""
 
@@ -416,7 +420,7 @@ class MovieList(GUIComponent):
 		if switch == 'i':
 			iconSize = dataIconSize
 			iconPosX = listBeginX
-			iconPosY = ih/2-iconSize/2
+			iconPosY = old_div(ih,2)-old_div(iconSize,2)
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), png=data.icon))
@@ -424,21 +428,21 @@ class MovieList(GUIComponent):
 			if data.part is not None and data.part > 0:
 				iconSize = progressBarSize
 				iconPosX = listBeginX
-				iconPosY = ih/2-iconSize/8
+				iconPosY = old_div(ih,2)-old_div(iconSize,8)
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
-				res.append(MultiContentEntryProgress(pos=(iconPosX,iconPosY), size=(iconSize,iconSize/4), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(iconPosX,iconPosY), size=(iconSize,old_div(iconSize,4)), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				iconSize = dataIconSize
 				iconPosX = listBeginX
-				iconPosY = ih/2-iconSize/2
+				iconPosY = old_div(ih,2)-old_div(iconSize,2)
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX,iconPosY), size=(iconSize,iconSize), png=data.icon))
 		elif switch == 's':
 			iconSize = progressIconSize
 			iconPosX = listBeginX
-			iconPosY = ih/2-iconSize/2
+			iconPosY = old_div(ih,2)-old_div(iconSize,2)
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
 			if data.part is not None and data.part > 0:
@@ -712,14 +716,14 @@ class MovieList(GUIComponent):
 
 		# reverse the dictionary to see which unique movie each tag now references
 		rtags = {}
-		for tag, movies in tags.items():
+		for tag, movies in list(tags.items()):
 			if (len(movies) > 1) or (tag in realtags):
 				movies = tuple(movies) # a tuple can be hashed, but a list not
 				item = rtags.get(movies, [])
 				if not item: rtags[movies] = item
 				item.append(tag)
 		self.tags = {}
-		for movies, tags in rtags.items():
+		for movies, tags in list(rtags.items()):
 			movie = movies[0]
 			# format the tag lists so that they are in 'original' order
 			tags.sort(key = movie.find)

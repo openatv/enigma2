@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+from __future__ import division
+from past.utils import old_div
 import skin
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
@@ -81,12 +83,12 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			ret = True
 		self.pageWidth = self.long_text.size().width()
 		self.lineheight = fontRenderClass.getInstance().getLineHeight(self.long_text.getFont()) or itemHeight # assume a random lineheight if nothing is visible
-		lines = int(self.long_text.size().height() / self.lineheight)
+		lines = int(old_div(self.long_text.size().height(), self.lineheight))
 		self.pageHeight = int(lines * self.lineheight)
 		self.instance.move(self.long_text.position())
-		self.instance.resize(eSize(self.pageWidth, self.pageHeight + int(self.lineheight/6)))
+		self.instance.resize(eSize(self.pageWidth, self.pageHeight + int(old_div(self.lineheight,6))))
 		self.scrollbar.move(ePoint(self.pageWidth-scrollbarWidth,0))
-		self.scrollbar.resize(eSize(scrollbarWidth,self.pageHeight+ int(self.lineheight/6)))
+		self.scrollbar.resize(eSize(scrollbarWidth,self.pageHeight+ int(old_div(self.lineheight,6))))
 		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0, 100)
 		self.scrollbar.setBorderWidth(scrollbarBorderWidth)
@@ -146,8 +148,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		return self.TotalTextHeight <= self.pageHeight or self.curPos == self.TotalTextHeight - self.pageHeight
 
 	def updateScrollbar(self):
-		vis = max(100 * self.pageHeight / self.TotalTextHeight, 3)
-		start = (100 - vis) * self.curPos / (self.TotalTextHeight - self.pageHeight)
+		vis = max(old_div(100 * self.pageHeight, self.TotalTextHeight), 3)
+		start = old_div((100 - vis) * self.curPos, (self.TotalTextHeight - self.pageHeight))
 		self.scrollbar.setStartEnd(start, start + vis)
 
 	def GUIcreate(self, parent):

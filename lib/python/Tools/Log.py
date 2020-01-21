@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import object
 from sys import _getframe
 from .LogConfig import LogConfig, LOG_TYPE_DEBUG, LOG_TYPE_INFO, LOG_TYPE_WARNING, LOG_TYPE_ERROR, LOG_LEVEL_ERROR, LOG_LEVEL_WARNING, LOG_LEVEL_INFO, LOG_LEVEL_DEBUG
 

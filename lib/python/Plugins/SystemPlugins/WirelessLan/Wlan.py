@@ -1,4 +1,8 @@
 from __future__ import print_function
+from builtins import chr
+from builtins import str
+from builtins import range
+from builtins import object
 from os import system, path as os_path
 from string import maketrans, strip
 
@@ -28,7 +32,7 @@ def getWlanConfigName(iface):
 		return '/etc/wl.conf.' + iface
 	return '/etc/wpa_supplicant.' + iface + '.conf'
 
-class Wlan:
+class Wlan(object):
 	def __init__(self, iface = None):
 		self.iface = iface
 		self.oldInterfaceState = None
@@ -135,7 +139,7 @@ class Wlan:
 
 iWlan = Wlan()
 
-class brcmWLConfig:
+class brcmWLConfig(object):
 	def __init__(self):
 		pass
 
@@ -198,7 +202,7 @@ class brcmWLConfig:
 		}
 		return wsconf
 
-class wpaSupplicant:
+class wpaSupplicant(object):
 	def __init__(self):
 		pass
 
@@ -252,7 +256,7 @@ class wpaSupplicant:
 					'key': "",
 				}
 
-		for (k,v) in wsconf.items():
+		for (k,v) in list(wsconf.items()):
 			print("[wsconf][%s] %s" % (k , v))
 
 		return wsconf
@@ -362,7 +366,7 @@ class wpaSupplicant:
 					'key': config.plugins.wlan.psk.value,
 				}
 
-			for (key, item) in wsconfig.items():
+			for (key, item) in list(wsconfig.items()):
 				if item is "None" or item is "":
 					if key == 'hiddenessid':
 						wsconfig['hiddenessid'] = False
@@ -386,7 +390,7 @@ class wpaSupplicant:
 		#print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
 
-class Status:
+class Status(object):
 	def __init__(self):
 		self.wlaniface = {}
 		self.backupwlaniface = {}

@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
 from boxbranding import getImageVersion
 import os
 from .Screen import Screen
@@ -800,7 +801,7 @@ class PluginDownloadBrowser(Screen):
 					continue
 				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
-		temp = self.plugins.keys()
+		temp = list(self.plugins.keys())
 		if config.usage.sort_pluginlist.value:
 			temp.sort()
 		for x in temp:

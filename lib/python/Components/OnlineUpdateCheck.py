@@ -1,4 +1,7 @@
 from __future__ import print_function
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
 from time import time
 from boxbranding import getImageVersion
 
@@ -14,7 +17,7 @@ def OnlineUpdateCheck(session=None, **kwargs):
 	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 	onlineupdatecheckpoller.start()
 
-class OnlineUpdateCheckPoller:
+class OnlineUpdateCheckPoller(object):
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
@@ -60,7 +63,7 @@ class OnlineUpdateCheckPoller:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
-					from urllib import urlopen
+					from urllib.request import urlopen
 					import socket
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)
@@ -76,7 +79,7 @@ class OnlineUpdateCheckPoller:
 				config.softwareupdate.updatefound.setValue(False)
 		pass
 
-class VersionCheck:
+class VersionCheck(object):
 	def __init__(self):
 		pass
 

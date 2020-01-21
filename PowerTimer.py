@@ -1,4 +1,9 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import os
 from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
@@ -64,7 +69,7 @@ def parseEvent(ev):
 	end = begin + ev.getDuration()
 	return begin, end
 
-class AFTEREVENT:
+class AFTEREVENT(object):
 	def __init__(self):
 		pass
 
@@ -74,7 +79,7 @@ class AFTEREVENT:
 	STANDBY = 3
 	DEEPSTANDBY = 4
 
-class TIMERTYPE:
+class TIMERTYPE(object):
 	def __init__(self):
 		pass
 
@@ -160,7 +165,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				self.backoff += 300
 				if self.backoff > 900:
 					self.backoff = 900
-		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff)/60))
+		self.log(10, "backoff: retry in %d minutes" % (old_div(int(self.backoff),60)))
 
 	def activate(self):
 		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup, InfoBar
@@ -798,7 +803,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					for lines in temp:
 						lisp = lines.split()
 						if lisp[0].endswith(':') and (lisp[0].startswith('eth') or lisp[0].startswith('wlan')):
-							newbytes += long(lisp[1]) + long(lisp[9])
+							newbytes += int(lisp[1]) + int(lisp[9])
 					if getInitialValue:
 						self.netbytes = newbytes
 						self.netbytes_time = now
@@ -808,12 +813,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					seconds = int(now-self.netbytes_time)
 					self.netbytes = newbytes
 					self.netbytes_time = now
-					diffbytes = float(newbytes - oldbytes) * 8 / 1024 / seconds 	#in kbit/s
+					diffbytes = old_div(old_div(float(newbytes - oldbytes) * 8, 1024), seconds) 	#in kbit/s
 					if diffbytes < 0:
 						print('[PowerTimer] Receive/Transmit -> overflow interface counter, waiting for next value')
 						return True
 					else:
-						print('[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes/8/1024*seconds, seconds, self.netbytes, ctime(self.netbytes_time)))
+						print('[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, old_div(old_div(diffbytes,8),1024)*seconds, seconds, self.netbytes, ctime(self.netbytes_time)))
 					if diffbytes > self.trafficlimit:
 						return True
 			except:
@@ -836,7 +841,7 @@ def createTimer(xml):
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
 	repeated = xml.get("repeated").encode("utf-8")
-	disabled = long(xml.get("disabled") or "0")
+	disabled = int(xml.get("disabled") or "0")
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,

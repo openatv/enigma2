@@ -1,10 +1,15 @@
 from __future__ import print_function
+from __future__ import division
 #################################################################################
 # FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 4.3     			#
 #	                         						                            #
 #					MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
 #################################################################################
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from past.utils import old_div
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Sources.StaticText import StaticText
@@ -20,7 +25,7 @@ from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
-import os, commands, datetime
+import os, subprocess, datetime
 from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro, getImageVersion
 
 VERSION = _("Version %s %s") %(getImageDistro(), getImageVersion())
@@ -313,7 +318,7 @@ class ImageBackup(Screen):
 					cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
 				if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
-					SEEK_CONT = (Harddisk.getFolderSize(self.backuproot) / 1024) + 10000
+					SEEK_CONT = (old_div(Harddisk.getFolderSize(self.backuproot), 1024)) + 10000
 					cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 					cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
 					cmdlist.append('echo "' + _("Create:") + " bootargs dump" + '"')
@@ -643,7 +648,7 @@ class ImageBackup(Screen):
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
 
 		AboutText += _("[Enigma2 Settings]\n")
-		AboutText += commands.getoutput("cat /etc/enigma2/settings")
+		AboutText += subprocess.getoutput("cat /etc/enigma2/settings")
 		AboutText += _("\n\n[User - bouquets (TV)]\n")
 		try:
 			f = open("/etc/enigma2/bouquets.tv","r")
@@ -679,6 +684,6 @@ class ImageBackup(Screen):
 			AboutText += _("Error reading bouquets.radio")
 
 		AboutText += _("\n[Installed Plugins]\n")
-		AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
+		AboutText += subprocess.getoutput("opkg list_installed | grep enigma2-plugin-")
 
 		return AboutText

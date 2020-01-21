@@ -1,9 +1,12 @@
+from __future__ import division
 ### Start Kodi
 ### check for space and whether installed
 ### main work done in enigma2.sh, here we do just a touch
 ### TODO: installation error checking is missing, network state...
 
 
+from builtins import str
+from past.utils import old_div
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -108,7 +111,7 @@ class StartKodi2(Screen):
 		sizeread = os.popen("df | grep %s | tr -s ' '" % 'root')
 		c = sizeread.read().strip().split(" ")
 		sizeread.close()
-		free = int(c[3])/1024
+		free = old_div(int(c[3]),1024)
 		if (free > self.kodineeds):
 			self.caninstall = True
 		else:
@@ -128,7 +131,7 @@ class StartKodi2(Screen):
 		c = sizeread.read().strip().split(" ")
 		sizeread.close()
 		if os.path.exists("/media/uSDextra"): 
-			free = int(c[3])/1024
+			free = old_div(int(c[3]),1024)
 		else:
 			free = "Not available" 
 		return free  

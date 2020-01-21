@@ -1,3 +1,4 @@
+from builtins import str
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label

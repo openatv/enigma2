@@ -8,7 +8,11 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 
+from builtins import str
+from builtins import object
+from past.utils import old_div
 from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
 from Tools.ServiceReference import service_types_tv_ref
 from boxbranding import getMachineBrand, getMachineName
@@ -479,7 +483,7 @@ class EPGFetcher(object):
 
     def statusCleanup(self):
         def doTimeouts(status, timeout):
-            for tid, worklist in status.items():
+            for tid, worklist in list(status.items()):
                 if worklist and min(worklist, key=itemgetter(-1))[-1] < timeout:
                     status[tid] = [ent for ent in worklist if ent[-1] >= timeout]
                     if not status[tid]:
@@ -596,10 +600,10 @@ class EPGFetcher(object):
         triplet_map = defaultdict(list)
         scan_list = []
 
-        for id, triplets in self.channel_service_map.items():
+        for id, triplets in list(self.channel_service_map.items()):
             for triplet in triplets:
                 triplet_map[triplet].append(id)
-        for name, triplets in name_map.items():
+        for name, triplets in list(name_map.items()):
             for triplet in triplets:
                 if triplet in triplet_map:
                     for id in triplet_map[triplet]:
@@ -623,10 +627,10 @@ class EPGFetcher(object):
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
-        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().iteritems())
+        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().items())
 
         for channel in channels:
-            channel_id = long(channel["id"])
+            channel_id = int(channel["id"])
             triplets = []
             if "dvb_triplets" in channel:
                 triplets = channel["dvb_triplets"]
@@ -656,14 +660,14 @@ class EPGFetcher(object):
     def serviceToIceChannelId(self, serviceref):
         svc = str(serviceref).split(":")
         triplet = (int(svc[5], 16), int(svc[4], 16), int(svc[3], 16))
-        for channel_id, dvbt in self.channel_service_map.iteritems():
+        for channel_id, dvbt in self.channel_service_map.items():
             if triplet in dvbt:
                 return channel_id
 
     def makeChanShowMap(self, shows):
         res = defaultdict(list)
         for show in shows:
-            channel_id = long(show["channel_id"])
+            channel_id = int(show["channel_id"])
             res[channel_id].append(show)
         return res
 
@@ -743,7 +747,7 @@ class EPGFetcher(object):
         # Maximum number of channels to fetch in a batch
         max_fetch = config.plugins.icetv.batchsize.value
         res = False
-        channels = self.channel_service_map.keys()
+        channels = list(self.channel_service_map.keys())
         epgcache = eEPGCache.getInstance()
         channel_show_map = {}
         last_update_time = 0
@@ -755,7 +759,7 @@ class EPGFetcher(object):
             batch_fetch = max_fetch and len(fetch_chans) != len(channels)
             shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=pos + len(fetch_chans) >= len(channels))
             channel_show_map = self.makeChanShowMap(shows["shows"])
-            for channel_id in channel_show_map.keys():
+            for channel_id in list(channel_show_map.keys()):
                 if channel_id in self.channel_service_map:
                     epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
             if pos == 0 and "last_update_time" in shows:
@@ -780,7 +784,7 @@ class EPGFetcher(object):
                 name = iceTimer.get("name", "").encode("utf-8")
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
-                channel_id = long(iceTimer["channel_id"])
+                channel_id = int(iceTimer["channel_id"])
                 ice_timer_id = iceTimer["id"].encode("utf-8")
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
@@ -981,7 +985,7 @@ class EPGFetcher(object):
             timer["id"] = local_timer.ice_timer_id
             timer["eit_id"] = local_timer.eit
             timer["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-            timer["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+            timer["duration_minutes"] = old_div(((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)), 60)
             if local_timer.isRunning():
                 timer["state"] = "running"
                 timer["message"] = "Recording on %s" % config.plugins.icetv.device.label.value
@@ -1026,7 +1030,7 @@ class EPGFetcher(object):
                 req.data["device_id"] = config.plugins.icetv.device.id.value
                 req.data["channel_id"] = channel_id
                 req.data["start_time"] = strftime("%Y-%m-%dT%H:%M:%S+00:00", gmtime(local_timer.begin + config.recording.margin_before.value * 60))
-                req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
+                req.data["duration_minutes"] = old_div(((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)), 60)
                 res = req.post()
                 try:
                     local_timer.ice_timer_id = res.json()["timers"][0]["id"].encode("utf-8")

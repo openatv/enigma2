@@ -5,8 +5,10 @@
 # print>>log, "Some text"
 # because the log unit looks enough like a file!
 
+from future import standard_library
+standard_library.install_aliases()
 import sys
-from cStringIO import StringIO
+from io import StringIO
 import threading
 
 logfile = None

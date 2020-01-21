@@ -18,6 +18,8 @@
 ####################################################################### 
 
 from __future__ import absolute_import
+from __future__ import division
+from past.utils import old_div
 import os
 from Components.Label import Label
 from Components.Converter.Converter import Converter
@@ -182,26 +184,26 @@ class VNetSpeedInfo(Poll, Converter, object):
 					sp[10]="0"
 				if len(sp[11]) is 0:
 					sp[11]="0"
-				newlanreceive=int(sp[0])/1024
+				newlanreceive=old_div(int(sp[0]),1024)
 				self.error_lanrecive=int(sp[2])
 				self.drop_lanreceive=int(sp[3])
 				if self.lanreceivetotal > 0:
-					self.lanreceive=float(newlanreceive-self.lanreceivetotal)*8/1024
+					self.lanreceive=old_div(float(newlanreceive-self.lanreceivetotal)*8,1024)
 					self.lanreceivemb=float(newlanreceive-self.lanreceivetotal)/1024
 				else:
 					self.lanreceive=0
 				self.lanreceivetotal=newlanreceive
-				self.lanreceivetotalout=newlanreceive/1024
-				newlantransmit=int(sp[8])/1024
+				self.lanreceivetotalout=old_div(newlanreceive,1024)
+				newlantransmit=old_div(int(sp[8]),1024)
 				self.error_lantransmite=int(sp[10])
 				self.drop_lantransmite=int(sp[11])
 				if self.lantransmittotal > 0:
-					self.lantransmit=float(newlantransmit-self.lantransmittotal)*8/1024
+					self.lantransmit=old_div(float(newlantransmit-self.lantransmittotal)*8,1024)
 					self.lantransmitmb=float(newlantransmit-self.lantransmittotal)/1024
 				else:
 					self.lantransmit=0
 				self.lantransmittotal=newlantransmit
-				self.lantransmittotalout=newlantransmit/1024
+				self.lantransmittotalout=old_div(newlantransmit,1024)
 				if (self.lantransmittotal + self.lanreceivetotal) == 0:
 					flaglan = 0
 			if (bw.find("ra") is not -1) or (bw.find("wlan") is not -1) or (bw.find("wifi") is not -1):
@@ -221,26 +223,26 @@ class VNetSpeedInfo(Poll, Converter, object):
 					sp[10]="0"
 				if len(sp[11]) is 0:
 					sp[11]="0"
-				newwlanreceive=int(sp[0])/1024
+				newwlanreceive=old_div(int(sp[0]),1024)
 				self.error_wlanrecive=int(sp[2])
 				self.drop_wlanreceive=int(sp[3])
 				if self.wlanreceivetotal > 0:
-					self.wlanreceive=float(newwlanreceive-self.wlanreceivetotal)*8/1024
+					self.wlanreceive=old_div(float(newwlanreceive-self.wlanreceivetotal)*8,1024)
 					self.wlanreceivemb=float(newwlanreceive-self.wlanreceivetotal)/1024
 				else:
 					self.wlanreceive=0
 				self.wlanreceivetotal=newwlanreceive
-				self.wlanreceivetotalout=newwlanreceive/1024
-				newwlantransmit=int(sp[8])/1024
+				self.wlanreceivetotalout=old_div(newwlanreceive,1024)
+				newwlantransmit=old_div(int(sp[8]),1024)
 				self.error_wlantransmite=int(sp[10])
 				self.drop_wlantransmite=int(sp[11])
 				if self.wlantransmittotal > 0:
-					self.wlantransmit=float(newwlantransmit-self.wlantransmittotal)*8/1024
+					self.wlantransmit=old_div(float(newwlantransmit-self.wlantransmittotal)*8,1024)
 					self.wlantransmitmb=float(newwlantransmit-self.wlantransmittotal)/1024
 				else:
 					self.wlantransmit=0
 				self.wlantransmittotal=newwlantransmit
-				self.wlantransmittotalout=newwlantransmit/1024
+				self.wlantransmittotalout=old_div(newwlantransmit,1024)
 		bwm.close()
 
 #		if ((flaglan == 1) and (flagwlan == 0)) or ((flaglan == 1) and (flagwlan == 1)):
@@ -260,8 +262,8 @@ class VNetSpeedInfo(Poll, Converter, object):
 			self.transmittotal = self.wlantransmittotal
 			self.nettyp = "WLAN"
 		if (flaglan == 1) or (flagwlan == 1):
-			self.receivemb = self.receive/8
-			self.transmitmb = self.transmit/8
+			self.receivemb = old_div(self.receive,8)
+			self.transmitmb = old_div(self.transmit,8)
 		if self.type == self.RCL:
 			return "%3.2f" % self.lanreceive
 		elif self.type == self.TML:

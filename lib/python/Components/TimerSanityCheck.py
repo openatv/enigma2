@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import NavigationInstance
 from time import localtime, mktime, gmtime
 from ServiceReference import ServiceReference
@@ -7,7 +11,7 @@ from timer import TimerEntry
 
 from Tools.CIHelper import cihelper
 from Components.config import config
-class TimerSanityCheck:
+class TimerSanityCheck(object):
 	def __init__(self, timerlist, newtimer=None):
 		self.localtimediff = 25*3600 - mktime(gmtime(25*3600))
 		self.timerlist = timerlist
@@ -118,7 +122,7 @@ class TimerSanityCheck:
 			interval_begin = min(self.nrep_eventlist)[0]
 			interval_end = max(self.nrep_eventlist)[0]
 			offset_0 = interval_begin - (interval_begin % 604800)
-			weeks = (interval_end - offset_0) / 604800
+			weeks = old_div((interval_end - offset_0), 604800)
 			if (interval_end - offset_0) % 604800:
 				weeks += 1
 			for cnt in range(int(weeks)):

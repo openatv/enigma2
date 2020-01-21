@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigIP
@@ -138,7 +142,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default = self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default = (((self.timer.end - self.timer.begin) /60 ) > 4), choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default = ((old_div((self.timer.end - self.timer.begin),60) ) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
 		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
 
@@ -343,7 +347,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.timer.end += 86400
 
 		endaction = self.timerentry_showendtime.value
-		if (self.timer.end - self.timer.begin )/60 < 5 or self.timerentry_showendtime.value is False:
+		if old_div((self.timer.end - self.timer.begin ),60) < 5 or self.timerentry_showendtime.value is False:
 			self.timerentry_afterevent.value = "nothing"
 			self.timer.end = self.timer.begin
 			if endaction:

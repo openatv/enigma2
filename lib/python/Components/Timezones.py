@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 import xml.etree.cElementTree
 
 from os import environ, unlink, symlink, path
@@ -5,7 +7,7 @@ import time
 from Tools.StbHardware import setRTCoffset
 from boxbranding import getMachineBrand
 
-class Timezones:
+class Timezones(object):
 	def __init__(self):
 		self.timezones = []
 		self.readTimezonesFromFile()

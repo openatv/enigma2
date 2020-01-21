@@ -1,10 +1,11 @@
 from __future__ import print_function
+from builtins import object
 from bisect import insort
 from time import time, localtime, mktime
 from enigma import eTimer, eActionMap
 import datetime
 
-class TimerEntry:
+class TimerEntry(object):
 	StateWaiting  = 0
 	StatePrepared = 1
 	StateRunning  = 2
@@ -147,7 +148,7 @@ class TimerEntry:
 	def enable(self):
 		self.disabled = False
 
-class Timer:
+class Timer(object):
 	# the time between "polls". We do this because
 	# we want to account for time jumps etc.
 	# of course if they occur <100s before starting,

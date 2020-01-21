@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
@@ -34,7 +36,7 @@ def getType(file):
 			return "video/x-vcd"
 	return type
 
-class Scanner:
+class Scanner(object):
 	def __init__(self, name, mimetypes= [], paths_to_scan = [], description = "", openfnc = None):
 		self.mimetypes = mimetypes
 		self.name = name
@@ -56,7 +58,7 @@ class Scanner:
 		if self.openfnc is not None:
 			self.openfnc(list, *args, **kwargs)
 
-class ScanPath:
+class ScanPath(object):
 	def __init__(self, path, with_subdirs = False):
 		self.path = path
 		self.with_subdirs = with_subdirs
@@ -76,7 +78,7 @@ class ScanPath:
 		else:
 			return self.with_subdirs.__cmp__(other.with_subdirs)
 
-class ScanFile:
+class ScanFile(object):
 	def __init__(self, path, mimetype = None, size = None, autodetect = True):
 		self.path = path
 		if mimetype is None and autodetect:

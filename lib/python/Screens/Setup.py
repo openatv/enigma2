@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import range
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword

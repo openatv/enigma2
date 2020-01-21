@@ -1,3 +1,4 @@
+from builtins import str
 from Screens.Screen import Screen
 from Screens.Setup import setupdom
 from Screens.LocationBox import AutorecordLocationBox, TimeshiftLocationBox

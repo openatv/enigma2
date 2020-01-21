@@ -1,4 +1,5 @@
-class boundFunction:
+from builtins import object
+class boundFunction(object):
 	def __init__(self, fnc, *args, **kwargs):
 		self.fnc = fnc
 		self.args = args

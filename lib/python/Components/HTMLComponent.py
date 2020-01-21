@@ -1,5 +1,6 @@
 # some helper classes first:
-class HTMLComponent:
+from builtins import object
+class HTMLComponent(object):
 	def __init__(self):
 		pass
 

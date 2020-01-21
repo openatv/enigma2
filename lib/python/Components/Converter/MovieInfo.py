@@ -1,3 +1,6 @@
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from Components.Converter.Converter import Converter
 from Components.Element import cached, ElementError
 from enigma import iServiceInformation, eServiceReference
@@ -54,11 +57,11 @@ class MovieInfo(Converter, object):
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
 					if filesize >= 100000*1024*1024:
-						return _("%.0f GB") % (filesize / (1024.0*1024.0*1024.0))
+						return _("%.0f GB") % (old_div(filesize, (1024.0*1024.0*1024.0)))
 					elif filesize >= 100000*1024:
-						return _("%.2f GB") % (filesize / (1024.0*1024.0*1024.0))
+						return _("%.2f GB") % (old_div(filesize, (1024.0*1024.0*1024.0)))
 					else:
-						return _("%.0f MB") % (filesize / (1024.0*1024.0))
+						return _("%.0f MB") % (old_div(filesize, (1024.0*1024.0)))
 		return ""
 
 	text = property(getText)

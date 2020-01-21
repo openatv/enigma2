@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from past.builtins import cmp
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import next
+from builtins import range
+from past.utils import old_div
+from builtins import object
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
@@ -59,7 +68,7 @@ from datetime import datetime
 import itertools, datetime
 from sys import maxsize
 
-import os, cPickle
+import os, pickle
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom
@@ -101,7 +110,7 @@ def setResumePoint(session):
 				else:
 					l = None
 				resumePointCache[key] = [lru, pos[1], l]
-				for k, v in resumePointCache.items():
+				for k, v in list(resumePointCache.items()):
 					if v[0] < lru:
 						candidate = k
 						filepath = os.path.realpath(candidate.split(':')[-1])
@@ -133,7 +142,7 @@ def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
-		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		pickle.dump(resumePointCache, f, pickle.HIGHEST_PROTOCOL)
 		f.close()
 	except Exception as ex:
 		print("[InfoBar] Failed to write resumepoints:", ex)
@@ -142,7 +151,7 @@ def saveResumePoints():
 def loadResumePoints():
 	try:
 		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
-		PickleFile = cPickle.load(file)
+		PickleFile = pickle.load(file)
 		file.close()
 		return PickleFile
 	except Exception as ex:
@@ -214,12 +223,12 @@ def hasActiveSubservicesForCurrentChannel(current_service):
 	activeSubservices = getActiveSubservicesForCurrentChannel(current_service)
 	return bool(activeSubservices and len(activeSubservices) > 1)
 
-class InfoBarDish:
+class InfoBarDish(object):
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
 		self.dishDialog.setAnimationMode(0)
 
-class InfoBarLongKeyDetection:
+class InfoBarLongKeyDetection(object):
 	def __init__(self):
 		eActionMap.getInstance().bindAction('', -maxint -1, self.detection) #highest prio
 		self.LongButtonPressed = False
@@ -231,7 +240,7 @@ class InfoBarLongKeyDetection:
 		elif flag == 0:
 			self.LongButtonPressed = False
 
-class InfoBarUnhandledKey:
+class InfoBarUnhandledKey(object):
 	def __init__(self):
 		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
 		self.unhandledKeyDialog.setAnimationMode(0)
@@ -248,10 +257,10 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print('KEY: %s %s %s %s' % (key,flag,next((key_name for key_name,value in KEYIDS.items() if value==key)),getKeyDescription(key)[0]))
+			print('KEY: %s %s %s %s' % (key,flag,next((key_name for key_name,value in list(KEYIDS.items()) if value==key)),getKeyDescription(key)[0]))
 		except:
 			try:
-				print('KEY: %s %s %s' % (key,flag,next((key_name for key_name,value in KEYIDS.items() if value==key)))) # inverse dictionary lookup in KEYIDS
+				print('KEY: %s %s %s' % (key,flag,next((key_name for key_name,value in list(KEYIDS.items()) if value==key)))) # inverse dictionary lookup in KEYIDS
 			except:
 				print('KEY: %s %s' % (key,flag))
 		self.unhandledKeyDialog.hide()
@@ -283,7 +292,7 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
-class InfoBarScreenSaver:
+class InfoBarScreenSaver(object):
 	def __init__(self):
 		self.onExecBegin.append(self.__onExecBegin)
 		self.onExecEnd.append(self.__onExecEnd)
@@ -336,7 +345,7 @@ class InfoBarScreenSaver:
 			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 class HideVBILine(Screen):
-	skin = """<screen position="0,0" size="%s,%s" backgroundColor="#000000" flags="wfNoBorder"/>""" % (getDesktop(0).size().width(), getDesktop(0).size().height() / 360)
+	skin = """<screen position="0,0" size="%s,%s" backgroundColor="#000000" flags="wfNoBorder"/>""" % (getDesktop(0).size().width(), old_div(getDesktop(0).size().height(), 360))
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
@@ -800,14 +809,14 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((old_div(config.av.osd_alpha.value*self.dimmed,config.usage.show_infobar_dimming_speed.value)))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((old_div(config.av.osd_alpha.value*self.dimmed,config.usage.show_infobar_dimming_speed.value)))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
@@ -1073,7 +1082,7 @@ class BufferIndicator(Screen):
 		self.mayShow = False
 		self.hide()
 
-class InfoBarBuffer():
+class InfoBarBuffer(object):
 	def __init__(self):
 		self.bufferScreen = self.session.instantiateDialog(BufferIndicator)
 		self.bufferScreen.hide()
@@ -1180,7 +1189,7 @@ class NumberZap(Screen):
 			else:
 				self.Timer.start(config.usage.numzaptimeout1.value, True)
 
-class InfoBarNumberZap:
+class InfoBarNumberZap(object):
 	""" Handles an initial number for NumberZapping """
 	def __init__(self):
 		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
@@ -1200,7 +1209,7 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition(old_div((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4),2), self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -1329,7 +1338,7 @@ class InfoBarNumberZap:
 
 config.misc.initialchannelselection = ConfigBoolean(default = True)
 
-class InfoBarChannelSelection:
+class InfoBarChannelSelection(object):
 	""" ChannelSelection - handles the channelSelection dialog and the initial
 	channelChange actions which open the channelSelection dialog """
 	def __init__(self):
@@ -1622,7 +1631,7 @@ class InfoBarChannelSelection:
 		VolumeControl.instance.volDown()
 
 
-class InfoBarMenu:
+class InfoBarMenu(object):
 	""" Handles a menu action, to open the (main) menu """
 	def __init__(self):
 		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
@@ -1697,7 +1706,7 @@ class InfoBarMenu:
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
 
-class InfoBarSimpleEventView:
+class InfoBarSimpleEventView(object):
 	""" Opens the Eventview for now/next """
 	def __init__(self):
 		self["EventViewActions"] = HelpableActionMap(self, "InfobarEPGActions",
@@ -1746,7 +1755,7 @@ class InfoBarSimpleEventView:
 			self.toggleShow()
 			return 1
 
-class SimpleServicelist:
+class SimpleServicelist(object):
 	def __init__(self, services):
 		self.services = services
 		self.length = len(services)
@@ -1786,7 +1795,7 @@ class SimpleServicelist:
 		return self.services[self.current]
 
 
-class InfoBarEPG:
+class InfoBarEPG(object):
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
 		self.is_now_next = False
@@ -2211,7 +2220,7 @@ class InfoBarEPG:
 			epglist[1]=tmp
 			setEvent(epglist[0])
 
-class InfoBarRdsDecoder:
+class InfoBarRdsDecoder(object):
 	"""provides RDS and Rass support/display"""
 	def __init__(self):
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
@@ -2301,7 +2310,7 @@ class Seekbar(Screen):
 				self["cursor"].moveTo(x, 15, 1)
 			self["cursor"].startMoving()
 			pts = int(float(self.length[1]) / 100.0 * self.percent)
-			self["time"].setText("%d:%02d" % ((pts/60/90000), ((pts/90000)%60)))
+			self["time"].setText("%d:%02d" % ((old_div(old_div(pts,60),90000)), ((old_div(pts,90000))%60)))
 
 	def exit(self):
 		self.cursorTimer.stop()
@@ -2329,7 +2338,7 @@ class Seekbar(Screen):
 		else:
 			ConfigListScreen.keyNumberGlobal(self, number)
 
-class InfoBarSeek:
+class InfoBarSeek(object):
 	"""handles actions like seeking, pause"""
 
 	SEEK_STATE_PLAY = (0, 0, 0, ">")
@@ -2724,9 +2733,9 @@ class InfoBarSeek:
 
 	def DoSeekAction(self):
 		if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):
-			self.doSeekRelativeAvoidStall(self.seekAction * long(config.seek.withjumps_forwards_ms.getValue()) * 90)
+			self.doSeekRelativeAvoidStall(self.seekAction * int(config.seek.withjumps_forwards_ms.getValue()) * 90)
 		elif self.seekAction < 0:
-			self.doSeekRelativeAvoidStall(self.seekAction * long(config.seek.withjumps_backwards_ms.getValue()) * 90)
+			self.doSeekRelativeAvoidStall(self.seekAction * int(config.seek.withjumps_backwards_ms.getValue()) * 90)
 
 		for c in self.onPlayStateChanged:
 			if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()): # Forward
@@ -2940,7 +2949,7 @@ class InfoBarSeek:
 			if not len[0] and not pos[0]:
 				if len[1] <= pos[1]:
 					return 0
-				time = (len[1] - pos[1])*speedden/(90*speednom)
+				time = old_div((len[1] - pos[1])*speedden,(90*speednom))
 				return time
 		return False
 
@@ -2976,7 +2985,7 @@ class InfoBarSeek:
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.doSeek(0)
 
-class InfoBarPVRState:
+class InfoBarPVRState(object):
 	def __init__(self, screen=PVRState, force_show = False):
 		self.onChangedEntry = [ ]
 		self.onPlayStateChanged.append(self.__playStateChanged)
@@ -3100,7 +3109,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		else:
 			self.pvrStateDialog["eventname"].setText("")
 
-class InfoBarShowMovies:
+class InfoBarShowMovies(object):
 	# i don't really like this class.
 	# it calls a not further specified "movie list" on up/down/movieList,
 	# so this is not more than an action map
@@ -3113,7 +3122,7 @@ class InfoBarShowMovies:
 			})
 
 from Screens.PiPSetup import PiPSetup
-class InfoBarExtensions:
+class InfoBarExtensions(object):
 	EXTENSION_SINGLE = 0
 	EXTENSION_LIST = 1
 
@@ -3450,7 +3459,7 @@ from Tools.BoundFunction import boundFunction
 import inspect
 
 # depends on InfoBarExtensions
-class InfoBarPlugins:
+class InfoBarPlugins(object):
 	def __init__(self):
 		self.addExtension(extension = self.getPluginList, type = InfoBarExtensions.EXTENSION_LIST)
 
@@ -3476,7 +3485,7 @@ class InfoBarPlugins:
 				print('[InfoBarGenerics] Error: ', err)
 
 from Components.Task import job_manager
-class InfoBarJobman:
+class InfoBarJobman(object):
 	def __init__(self):
 		self.addExtension(extension = self.getJobList, type = InfoBarExtensions.EXTENSION_LIST)
 
@@ -3498,7 +3507,7 @@ class InfoBarJobman:
 		job_manager.in_background = in_background
 
 # depends on InfoBarExtensions
-class InfoBarPiP:
+class InfoBarPiP(object):
 	def __init__(self):
 		try:
 			self.session.pipshown
@@ -3686,7 +3695,7 @@ class InfoBarPiP:
 		elif "stop" == use:
 			self.showPiP()
 
-class InfoBarINFOpanel:
+class InfoBarINFOpanel(object):
 	"""INFO-Panel - handles the infoPanel action"""
 	def __init__(self):
 		self["INFOpanelActions"] = HelpableActionMap(self, "InfoBarINFOpanel",
@@ -3786,7 +3795,7 @@ class InfoBarINFOpanel:
 				p(session=self.session)
 				break
 
-class InfoBarQuickMenu:
+class InfoBarQuickMenu(object):
 	def __init__(self):
 		self["QuickMenuActions"] = HelpableActionMap(self, "InfoBarQuickMenu",
 				{
@@ -3811,7 +3820,7 @@ class InfoBarQuickMenu:
 			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
 			self.session.open(QuickMenu)
 
-class InfoBarInstantRecord:
+class InfoBarInstantRecord(object):
 	"""Instant Record - handles the instantRecord action in order to
 	start/stop instant records"""
 	def __init__(self):
@@ -4081,7 +4090,7 @@ class InfoBarInstantRecord:
 		else:
 			return 0
 
-class InfoBarAudioSelection:
+class InfoBarAudioSelection(object):
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
@@ -4152,7 +4161,7 @@ class InfoBarAudioSelection:
 		if config.av.downmix_ac3.value:
 			self.audioDownmixToggle(False)
 
-class InfoBarSubserviceSelection:
+class InfoBarSubserviceSelection(object):
 	def __init__(self):
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
 			{
@@ -4306,7 +4315,7 @@ class InfoBarSubserviceSelection:
 
 from Components.Sources.HbbtvApplication import HbbtvApplication
 gHbbtvApplication = HbbtvApplication()
-class InfoBarRedButton:
+class InfoBarRedButton(object):
 	def __init__(self):
 		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions",
 			{
@@ -4360,7 +4369,7 @@ class InfoBarRedButton:
 			for x in self.onRedButtonActivation:
 				x()
 
-class InfoBarTimerButton:
+class InfoBarTimerButton(object):
 	def __init__(self):
 		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions",
 			{
@@ -4371,7 +4380,7 @@ class InfoBarTimerButton:
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
 
-class InfoBarAspectSelection: 
+class InfoBarAspectSelection(object): 
 	STATE_HIDDEN = 0 
 	STATE_ASPECT = 1 
 	STATE_RESOLUTION = 2
@@ -4433,7 +4442,7 @@ class InfoBarAspectSelection:
 			self.ExGreen_doHide()
 		return
 
-class InfoBarResolutionSelection:
+class InfoBarResolutionSelection(object):
 	def __init__(self):
 		return
 
@@ -4459,7 +4468,7 @@ class InfoBarResolutionSelection:
 		yres = int(yresString, 16)
 		fps = int(fpsString)
 		fpsFloat = float(fps)
-		fpsFloat = fpsFloat/1000
+		fpsFloat = old_div(fpsFloat,1000)
 
 		# do we need a new sorting with this way here?
 		# or should we disable some choices?
@@ -4508,7 +4517,7 @@ class InfoBarResolutionSelection:
 			self.ExGreen_doHide()
 		return
 
-class InfoBarVmodeButton:
+class InfoBarVmodeButton(object):
 	def __init__(self):
 		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions",
 			{
@@ -4552,7 +4561,7 @@ class VideoMode(Screen):
 		self.Timer.stop()
 		self.close()
 
-class InfoBarAdditionalInfo:
+class InfoBarAdditionalInfo(object):
 	def __init__(self):
 		self["RecordingPossible"] = Boolean(fixed=harddiskmanager.HDDCount() > 0)
 		self["TimeshiftPossible"] = self["RecordingPossible"]
@@ -4562,7 +4571,7 @@ class InfoBarAdditionalInfo:
 		self["ShowAudioOnYellow"] = Boolean(fixed=0)
 		self["ShowRecordOnRed"] = Boolean(fixed=0)
 
-class InfoBarNotifications:
+class InfoBarNotifications(object):
 	def __init__(self):
 		self.onExecBegin.append(self.checkNotifications)
 		Notifications.notificationAdded.append(self.checkNotificationsIfExecing)
@@ -4619,7 +4628,7 @@ class InfoBarNotifications:
 	def __notificationClosed(self, d):
 		Notifications.current_notifications.remove(d)
 
-class InfoBarServiceNotifications:
+class InfoBarServiceNotifications(object):
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -4633,7 +4642,7 @@ class InfoBarServiceNotifications:
 		except:
 			pass
 
-class InfoBarCueSheetSupport:
+class InfoBarCueSheetSupport(object):
 	CUT_TYPE_IN = 0
 	CUT_TYPE_OUT = 1
 	CUT_TYPE_MARK = 2
@@ -4682,9 +4691,9 @@ class InfoBarCueSheetSupport:
 			# Hmm, this implies we don't resume if the length is unknown...
 			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
 				self.resume_point = last
-				l = last / 90000
+				l = old_div(last, 90000)
 				if "ask" in config.usage.on_movie_start.value or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (old_div(l,3600), old_div(l%3600,60), l%60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
@@ -4710,7 +4719,7 @@ class InfoBarCueSheetSupport:
 		r = seek.getPlayPosition()
 		if r[0]:
 			return None
-		return long(r[1])
+		return int(r[1])
 
 	def cueGetEndCutPosition(self):
 		ret = False
@@ -4857,7 +4866,7 @@ class InfoBarSummary(Screen):
 #			<convert type="ServiceName">Reference</convert>
 #		</widget>
 
-class InfoBarSummarySupport:
+class InfoBarSummarySupport(object):
 	def __init__(self):
 		pass
 
@@ -4900,14 +4909,14 @@ class InfoBarMoviePlayerSummary(Screen):
 		self["speed_summary"].setText(speed_summary)
 		self["statusicon_summary"].setPixmapNum(int(statusicon_summary))
 
-class InfoBarMoviePlayerSummarySupport:
+class InfoBarMoviePlayerSummarySupport(object):
 	def __init__(self):
 		pass
 
 	def createSummary(self):
 		return InfoBarMoviePlayerSummary
 
-class InfoBarTeletextPlugin:
+class InfoBarTeletextPlugin(object):
 	def __init__(self):
 		self.teletext_plugin = None
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_TELETEXT):
@@ -5016,7 +5025,7 @@ class InfoBarSubtitleSupport(object):
 		if self.selected_subtitle:
 			self.enableSubtitle(self.selected_subtitle)
 
-class InfoBarServiceErrorPopupSupport:
+class InfoBarServiceErrorPopupSupport(object):
 	def __init__(self):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -5062,7 +5071,7 @@ class InfoBarServiceErrorPopupSupport:
 				if hasattr(self, "dishDialog") and not self.dishDialog.dishState():
 					Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
 
-class InfoBarZoom:
+class InfoBarZoom(object):
 	def __init__(self):
 		self.zoomrate=0
 		self.zoomin=1
@@ -5102,7 +5111,7 @@ class InfoBarZoom:
 		f.write(str(0))
 		f.close()
 
-class InfoBarHdmi:
+class InfoBarHdmi(object):
 	def __init__(self):
 		self.hdmi_enabled = False
 		self.hdmi_enabled_full = False
@@ -5248,7 +5257,7 @@ class InfoBarHdmi:
 				self.hdmi_enabled_full = False
 				self.session.nav.playService(slist.servicelist.getCurrent())
 
-class InfoBarSleepTimer:
+class InfoBarSleepTimer(object):
 	def __init__(self):
 		self.sleepTimer = eTimer()
 		self.sleepStartTime = 0
@@ -5256,13 +5265,13 @@ class InfoBarSleepTimer:
 
 	def sleepTimerState(self):
 		if self.sleepTimer.isActive():
-			return (self.sleepStartTime - time()) / 60
+			return old_div((self.sleepStartTime - time()), 60)
 		return 0
 
 	def setSleepTimer(self, sleepTime, showMessage = True):
 		print("[InfoBarSleepTimer] set sleeptimer", sleepTime)
 		if sleepTime:
-			m = abs(sleepTime / 60)
+			m = abs(old_div(sleepTime, 60))
 			message = _("The sleep timer has been activated.") + "\n" + _("Delay:") + " " + _("%d minutes") % m
 			self.sleepTimer.startLongTimer(sleepTime)
 			self.sleepStartTime = time() + sleepTime
@@ -5320,7 +5329,7 @@ class InfoBarSleepTimer:
 #########################################################################################
 # for displayed power or record timer messages in foreground and for callback execution #
 #########################################################################################
-class InfoBarOpenOnTopHelper:
+class InfoBarOpenOnTopHelper(object):
 	def __init__(self):
 		pass
 
@@ -5350,7 +5359,7 @@ class InfoBarOpenOnTopHelper:
 #########################################################################################
 
 from enigma import getBsodCounter, resetBsodCounter
-class InfoBarHandleBsod:
+class InfoBarHandleBsod(object):
 	def __init__(self):
 		self.lastBsod = 0
 		self.infoBsodIsShown = False

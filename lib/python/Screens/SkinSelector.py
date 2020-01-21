@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from builtins import object
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -12,7 +13,7 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from enigma import eEnv, ePicLoad
 import os
 
-class SkinSelectorBase:
+class SkinSelectorBase(object):
 	def __init__(self, session, args = None):
 		self.setTitle(_("Skin Selector"))
 		self.skinlist = []

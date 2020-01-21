@@ -1,4 +1,7 @@
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -59,8 +62,8 @@ class SmartInfo(Poll, Converter, object):
                 frontendData = feinfo and feinfo.getAll(True)
                 if frontendData is not None:
                     if frontendData.get('tuner_type') == 'DVB-S' or frontendData.get('tuner_type') == 'DVB-C':
-                        frequency = str(frontendData.get('frequency') / 1000) + ' MHz'
-                        symbolrate = str(frontendData.get('symbol_rate') / 1000)
+                        frequency = str(old_div(frontendData.get('frequency'), 1000)) + ' MHz'
+                        symbolrate = str(old_div(frontendData.get('symbol_rate'), 1000))
                         try:
                             if frontendData.get('tuner_type') == 'DVB-S':
                                 polarisation_i = frontendData.get('polarization')
@@ -73,7 +76,7 @@ class SmartInfo(Poll, Converter, object):
 
                         orb_pos = ''
                     elif frontendData.get('tuner_type') == 'DVB-T':
-                        frequency = str(frontendData.get('frequency') / 1000) + ' MHz'
+                        frequency = str(old_div(frontendData.get('frequency'), 1000)) + ' MHz'
                         Ret_Text = Ret_Text + _('Frequency: ') + frequency
                 Ret_Text = Ret_Text + ' ' + satName
             return Ret_Text

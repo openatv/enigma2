@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import NumberActionMap
@@ -12,7 +14,7 @@ from Tools.BoundFunction import boundFunction
 from enigma import eServiceCenter, eTimer, eServiceReference
 from operator import itemgetter
 
-class ProtectedScreen:
+class ProtectedScreen(object):
 	def __init__(self):
 		if self.isProtected():
 			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))

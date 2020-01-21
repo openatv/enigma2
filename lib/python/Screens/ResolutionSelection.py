@@ -1,5 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from .Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 
@@ -15,7 +19,7 @@ class ResolutionSelection(Screen):
 		yres = int(yresString, 16)
 		fps = int(fpsString, 16)
 		fpsFloat = float(fps)
-		fpsFloat = fpsFloat/1000
+		fpsFloat = old_div(fpsFloat,1000)
 
 
 		selection = 0 

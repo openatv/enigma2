@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from enigma import eTimer, ePoint, eSize, getDesktop
 
 from Components.ActionMap import HelpableActionMap
@@ -197,7 +201,7 @@ class MessageBox(Screen, HelpableScreen):
 			self["list"].instance.resize(eSize(*listsize))
 		wsizey = textsize[1] + listsize[1]
 		self.instance.resize(eSize(*(wsizex, wsizey)))
-		self.instance.move(ePoint((getDesktop(0).size().width() - wsizex) / 2, (getDesktop(0).size().height() - wsizey) / 2))
+		self.instance.move(ePoint(old_div((getDesktop(0).size().width() - wsizex), 2), old_div((getDesktop(0).size().height() - wsizey), 2)))
 
 	def cancel(self):
 		if self["list"].list:

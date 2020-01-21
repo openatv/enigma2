@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile
 from Components.ActionMap import ActionMap
@@ -7,7 +9,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from .downloader import ConverDate
-import glob, os, urllib, sys
+import glob, os, urllib.request, urllib.parse, urllib.error, sys
 from enigma import *
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)

@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import str
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.FileList import FileList

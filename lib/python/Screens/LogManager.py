@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from past.utils import old_div
+from builtins import object
 from Screens.Screen import Screen
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
@@ -46,7 +50,7 @@ def AutoLogManager(session=None, **kwargs):
 	debuglogcheckpoller = LogManagerPoller()
 	debuglogcheckpoller.start()
 
-class LogManagerPoller:
+class LogManagerPoller(object):
 	"""Automatically Poll LogManager"""
 	def __init__(self):
 		# Init Timer
@@ -513,7 +517,7 @@ class LogManagerViewLog(Screen):
 			font = gFont("Regular", int(16*sf))
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
-		listwidth = int(self["list"].instance.size().width() / fontwidth)
+		listwidth = int(old_div(self["list"].instance.size().width(), fontwidth))
 		if path.exists(self.logfile):
 			for line in file(self.logfile ).readlines():
 				line = line.replace('\t',' '*9)

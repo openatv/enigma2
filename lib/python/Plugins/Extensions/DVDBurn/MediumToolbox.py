@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import range
+from past.utils import old_div
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
@@ -109,7 +112,7 @@ class MediumToolbox(Screen):
 				except:
 					size = 0
 				if size > 0:
-					capacity = size / 1048576
+					capacity = old_div(size, 1048576)
 					if used:
 						used = capacity-used
 					print("[dvd+rw-mediainfo] free blocks capacity=%d, used=%d" % (capacity, used))
@@ -134,7 +137,7 @@ class MediumToolbox(Screen):
 			self["key_yellow"].text = _("Format")
 		else:
 			self["key_yellow"].text = ""
-		percent = 100 * used / (capacity or 1)
+		percent = old_div(100 * used, (capacity or 1))
 		if capacity > 9900:
 			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("BLUDISC RECORDABLE") + ")"
 			self["space_bar"].value = int(percent)
@@ -183,7 +186,7 @@ class DVDformatTaskPostcondition(Condition):
 		}[task.error]
 
 class DVDformatTask(Task):
-	ERROR_ALREADYFORMATTED, ERROR_NOTWRITEABLE, ERROR_UNKNOWN = range(3)
+	ERROR_ALREADYFORMATTED, ERROR_NOTWRITEABLE, ERROR_UNKNOWN = list(range(3))
 	def __init__(self, job, extra_args=[]):
 		Task.__init__(self, job, ("RW medium format"))
 		self.toolbox = job.toolbox

@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from __future__ import print_function
+from builtins import range
 import os
 
 from datasource import genericdatasource
@@ -24,7 +25,7 @@ while True:
 	os.system("/usr/bin/clear")
 	list = []
 	for index in range(len(datasources)):
-		list.append(datasources[index].getName() + (" (%d sats)" % len(datasources[index].transponderlist.keys())))
+		list.append(datasources[index].getName() + (" (%d sats)" % len(list(datasources[index].transponderlist.keys()))))
 	index = inputChoices(list, "q", "quit")
 	if index is None:
 		break

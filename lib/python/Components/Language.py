@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
+from builtins import str
+from builtins import object
 import gettext
 import locale
 import os
@@ -11,9 +13,9 @@ LPATH = resolveFilename(SCOPE_LANGUAGE, "")
 
 Lpackagename = "enigma2-locale-"
 
-class Language:
+class Language(object):
 	def __init__(self):
-		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
+		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), str=0, codeset="utf-8")
 		gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
 		gettext.textdomain("enigma2")
 		self.activeLanguage = 0

@@ -1,4 +1,8 @@
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from time import localtime, time, strftime, mktime
 
 from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
@@ -605,7 +609,7 @@ class EPGSelection(Screen, HelpableScreen):
 					idx+=1
 					if channel[1] == nameROH:
 						break
-				page = idx/(self.Fields-1)
+				page = old_div(idx,(self.Fields-1))
 				row = idx%(self.Fields-1)
 				if row:
 					self.activeList = row
@@ -2434,7 +2438,7 @@ class EPGSelection(Screen, HelpableScreen):
 		for list in range(1,self.Fields):
 			if list == self.activeList:
 				continue
-			for x in range(0,int(idx/config.epgselection.vertical_itemsperpage.value)):
+			for x in range(0,int(old_div(idx,config.epgselection.vertical_itemsperpage.value))):
 				evTime = self.getEventTime(list)[0]
 				if curTime is None or evTime is None or curTime <= evTime:
 					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
@@ -2447,7 +2451,7 @@ class EPGSelection(Screen, HelpableScreen):
 		for list in range(1,self.Fields):
 			if list == self.activeList:
 				continue
-			for x in range(0,int(idx/config.epgselection.vertical_itemsperpage.value)):
+			for x in range(0,int(old_div(idx,config.epgselection.vertical_itemsperpage.value))):
 				evTime = self.getEventTime(list)[0]
 				if curTime is None or evTime is None or curTime >= evTime:
 					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
@@ -2476,7 +2480,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def gotoLast(self):
 		idx = len(self.list)
-		page = idx/(self.Fields-1)
+		page = old_div(idx,(self.Fields-1))
 		row = idx%(self.Fields-1)
 		if row:
 			self.activeList = row
@@ -2530,7 +2534,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def setMinus24h(self, force = False, daypart = 1):
 		now = time()
-		oneDay =  24*3600/daypart
+		oneDay =  old_div(24*3600,daypart)
 		if not self.lastMinus:
 			self.lastMinus = oneDay
 		ev_begin, ev_end = self.getEventTime(self.activeList)

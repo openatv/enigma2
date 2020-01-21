@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 import sys
 import os
 from time import time
@@ -153,10 +155,10 @@ had = dict()
 
 def dump(dir, p = ""):
 	if isinstance(dir, dict):
-		for (entry, val) in dir.items():
+		for (entry, val) in list(dir.items()):
 			dump(val, p + "(dict)/" + entry)
 	if hasattr(dir, "__dict__"):
-		for name, value in dir.__dict__.items():
+		for name, value in list(dir.__dict__.items()):
 			if str(value) not in had:
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
@@ -202,7 +204,7 @@ Screen.global_screen = Globals()
 # Session.doClose:
 # * destroy screen
 
-class Session:
+class Session(object):
 	def __init__(self, desktop = None, summary_desktop = None, navigation = None):
 		self.desktop = desktop
 		self.summary_desktop = summary_desktop
@@ -387,7 +389,7 @@ import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
 
-class PowerKey:
+class PowerKey(object):
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
 
 	def __init__(self, session):
@@ -496,7 +498,7 @@ class PowerKey:
 profile("Scart")
 from Screens.Scart import Scart
 
-class AutoScartControl:
+class AutoScartControl(object):
 	def __init__(self, session):
 		self.force = False
 		self.current_vcr_sb = enigma.eAVSwitch.getInstance().getVCRSlowBlanking()

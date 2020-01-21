@@ -23,6 +23,7 @@ from __future__ import absolute_import
 #
 #######################################################################
 
+from builtins import str
 from Components.VariableText import VariableText
 from enigma import eLabel, eDVBVolumecontrol, eTimer
 from .Renderer import Renderer

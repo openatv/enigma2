@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
 from re import escape as re_escape
 
 from enigma import eTimer, eEnv
@@ -289,7 +290,7 @@ class WlanScan(Screen):
 		currentListEntry = None
 		currentListIndex = None
 
-		for ap in self.oldlist.keys():
+		for ap in list(self.oldlist.keys()):
 			data = self.oldlist[ap]['data']
 			if data is not None:
 				tmpList.append(data)

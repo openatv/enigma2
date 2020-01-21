@@ -4,11 +4,19 @@
 # napiprojekt.pl API is used with napiproject administration consent
 
 from __future__ import print_function
+from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import chr
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 import os
 import re
 import sys
 import time
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from hashlib import md5
 import struct
 
@@ -88,7 +96,7 @@ def f(z):
     add = [0, 0xd, 0x10, 0xb, 0x5]
 
     b = []
-    for i in xrange(len(idx)):
+    for i in range(len(idx)):
         a = add[i]
         m = mul[i]
         i = idx[i]
@@ -109,7 +117,7 @@ def get_subtitle(digest, lang="PL"):
     while repeat > 0:
         repeat = repeat - 1
         try:
-            sub = urllib2.urlopen(url)
+            sub = urllib.request.urlopen(url)
             if hasattr(sub, 'getcode'):
                 http_code = sub.getcode()
             sub = sub.read()
@@ -172,11 +180,11 @@ def read_mdvd(list, fps):
         m = re1.match(x, 0)
         if m:
             time1 = int(m.group(1))
-            subt = [time1 / fps]
+            subt = [old_div(time1, fps)]
             time2 = m.group(2)
             if time2 == '':
                 time2 = int(time1) + 20
-            subt.append(int(time2) / fps)
+            subt.append(old_div(int(time2), fps))
             texts = m.group(3).strip().split("|")
             for i in range(len(texts)):
                 text = texts[i]
@@ -275,7 +283,7 @@ def read_tmp(list):
             else:
                 subs[time] = m.group(4).strip().split("|")
 
-    times = subs.keys()
+    times = list(subs.keys())
     times.sort()
     for i in range(0, len(times)):
         next_time = 1
@@ -294,13 +302,13 @@ def to_srt(list):
     count = 1
     for l in list:
         secs1 = l[0]
-        h1 = int(secs1 / 3600)
-        m1 = int(int(secs1 % 3600) / 60)
+        h1 = int(old_div(secs1, 3600))
+        m1 = int(old_div(int(secs1 % 3600), 60))
         s1 = int(secs1 % 60)
         f1 = (secs1 - int(secs1)) * 1000
         secs2 = l[1]
-        h2 = int(secs2 / 3600)
-        m2 = int(int(secs2 % 3600) / 60)
+        h2 = int(old_div(secs2, 3600))
+        m2 = int(old_div(int(secs2 % 3600), 60))
         s2 = int(secs2 % 60)
         f2 = (secs2 - int(secs2)) * 1000
         outl.append("%d\n%.2d:%.2d:%.2d,%.3d --> %.2d:%.2d:%.2d,%.3d\n%s\n\n" % (count, h1, m1, s1, f1, h2, m2, s2, f2, "\n".join(l[2:])))
@@ -310,7 +318,7 @@ def to_srt(list):
 
 def sub_fix_times(sub):
     for i in range(len(sub) - 2):
-        approx = min(1 + (len(" ".join(sub[i][2:])) / 10), 9.9)                 # 10 char per second
+        approx = min(1 + (old_div(len(" ".join(sub[i][2:])), 10)), 9.9)                 # 10 char per second
 #       print sub[i][0],sub[i][1], sub[i][1] - sub[i][0], approx
         if (sub[i + 1][0] <= sub[i][0]):
             sub[i + 1][0] = sub[i][0] + approx + 0.2
@@ -375,11 +383,11 @@ def read_subs(file, fmt, fps):
         sys.exit(1)
 
 def napiprojekt_fps(digest):
-    url = "http://napiprojekt.pl/api/api.php?mode=file_info&client=dreambox&id=%s" % (urllib2.quote(digest))
+    url = "http://napiprojekt.pl/api/api.php?mode=file_info&client=dreambox&id=%s" % (urllib.parse.quote(digest))
 #    element = ET.parse(urllib2.urlopen(url))
 #    fps = element.find("video_info/fps").text
     try:
-        fps = float([re.match(r".*<fps>(.*)</fps>.*", x).groups(0)[0] for x in urllib2.urlopen(url) if x.find('<fps>') > 0][0])
+        fps = float([re.match(r".*<fps>(.*)</fps>.*", x).groups(0)[0] for x in urllib.request.urlopen(url) if x.find('<fps>') > 0][0])
     except:
         fps = 23.976
     return floatfps

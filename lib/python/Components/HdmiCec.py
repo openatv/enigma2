@@ -1,5 +1,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 import struct
 import os
 import datetime
@@ -59,10 +64,10 @@ for i in (500, 1000, 2000, 3000, 4000, 5000):
 config.hdmicec.messages_repeat_slowdown = ConfigSelection(default = "1000", choices = [("0", _("None"))] + choicelist)
 choicelist = []
 for i in (5,10,30,60,120,300,600,900,1800,3600):
-	if i/60<1:
+	if old_div(i,60)<1:
 		choicelist.append(("%d" % i, _("%d sec") % i))
 	else:
-		choicelist.append(("%d" % i, _("%d min") % (i/60)))
+		choicelist.append(("%d" % i, _("%d min") % (old_div(i,60))))
 config.hdmicec.handle_tv_delaytime = ConfigSelection(default = "0", choices = [("0", _("None"))] + choicelist)
 config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default = True)
 config.hdmicec.tv_wakeup_zaptimer = ConfigYesNo(default = True)
@@ -435,7 +440,7 @@ CECdat = {
 			0x06:"<2.0>"},
 	}
 
-class HdmiCec:
+class HdmiCec(object):
 	instance = None
 
 	def __init__(self):
@@ -639,18 +644,18 @@ class HdmiCec:
 				address = 0x0f # use broadcast address
 				cmd = 0x82
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(old_div(physicaladdress,256)), int(physicaladdress%256)))
 			elif message == "routinginfo":
 				address = 0x0f # use broadcast address
 				cmd = 0x81
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(old_div(physicaladdress,256)), int(physicaladdress%256)))
 			elif message == "standby":
 				cmd = 0x36
 			elif message == "sourceinactive":
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 				cmd = 0x9d
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(old_div(physicaladdress,256)), int(physicaladdress%256)))
 			elif message == "menuactive":
 				cmd = 0x8e
 				data = str(struct.pack('B', 0x00))
@@ -662,7 +667,7 @@ class HdmiCec:
 			elif message == "setsystemaudiomode":
 				cmd = 0x70
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(old_div(physicaladdress,256)), int(physicaladdress%256)))
 			elif message == "activatesystemaudiomode":
 				cmd = 0x72
 				data = str(struct.pack('B', 0x01))
@@ -684,7 +689,7 @@ class HdmiCec:
 				cmd = 0x84
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 				devicetype = eHdmiCEC.getInstance().getDeviceType()
-				data = str(struct.pack('BBB', int(physicaladdress/256), int(physicaladdress%256), devicetype))
+				data = str(struct.pack('BBB', int(old_div(physicaladdress,256)), int(physicaladdress%256), devicetype))
 			elif message == "vendorid":
 				cmd = 0x87
 				data = '\x00\x00\x00'
@@ -1126,7 +1131,7 @@ class HdmiCec:
 		log_path = config.crash.debug_path.value
 		if pathExists(log_path):
 			stat = os.statvfs(log_path)
-			disk_free = stat.f_bavail * stat.f_bsize / 1024
+			disk_free = old_div(stat.f_bavail * stat.f_bsize, 1024)
 			if self.disk_full:
 				self.start_log = True
 			if not self.disk_full and disk_free < 500:
@@ -1221,9 +1226,9 @@ class HdmiCec:
 						raise Exception("Wrong address detected - '%s'" %ceccmd[0])
 					address = int(ceccmd[0] or "0",16)
 					if len(ceccmd) > 1:
-						if ceccmd[1] in CECintcmd.keys():
+						if ceccmd[1] in list(CECintcmd.keys()):
 							self.sendMessage(address, CECintcmd[ceccmd[1]])
-						elif ceccmd[1] in CECintcmd.values():
+						elif ceccmd[1] in list(CECintcmd.values()):
 							self.sendMessage(address, ceccmd[1])
 						else:
 							for x in ceccmd[1:]:

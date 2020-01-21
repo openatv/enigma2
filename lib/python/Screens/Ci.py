@@ -1,5 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
+from builtins import object
 from .Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ConfigList import ConfigListScreen
@@ -406,7 +409,7 @@ class MMIDialog(Screen):
 
 		#FIXME: check for mmi-session closed
 
-class CiMessageHandler:
+class CiMessageHandler(object):
 	def __init__(self):
 		self.session = None
 		self.ci = { }

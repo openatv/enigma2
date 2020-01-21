@@ -1,13 +1,14 @@
+from builtins import object
 import sys
 from enigma import ePythonOutput
 
-class EnigmaOutput:
+class EnigmaOutput(object):
 	def __init__(self):
 		self.buf = ''
 		self.isTraceback = False
 
 	def write(self, data):
-		if isinstance(data, unicode):
+		if isinstance(data, str):
 			data = data.encode("UTF-8")
 		self.buf += data
 		if '\n' in data:

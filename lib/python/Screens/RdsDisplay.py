@@ -1,4 +1,6 @@
 from __future__ import print_function
+from __future__ import division
+from past.utils import old_div
 from enigma import iPlayableService, iRdsDecoder
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
@@ -206,7 +208,7 @@ class RassInteractive(Screen):
 				print("NO RDS DECODER in getMaskForPage")
 			masks = decoder.getRassInteractiveMask()
 		if masks:
-			mask = masks[(page*4)/8]
+			mask = masks[old_div((page*4),8)]
 			if page % 2:
 				mask >>= 4
 			else:

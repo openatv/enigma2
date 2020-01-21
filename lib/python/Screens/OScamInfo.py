@@ -1,4 +1,10 @@
 from __future__ import print_function
+from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from past.utils import old_div
+from builtins import object
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -18,7 +24,7 @@ from xml.etree import ElementTree
 
 from operator import itemgetter
 import os, time
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import skin
 
 ###global
@@ -37,7 +43,7 @@ elif screenwidth and screenwidth > 1024:
 	HDSKIN = True
 ###global
 
-class OscamInfo:
+class OscamInfo(object):
 	def __init__(self):
 		pass
 
@@ -168,19 +174,19 @@ class OscamInfo:
 		if part is not None and reader is not None:
 			self.url = "%s://%s:%s/%s.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, self.api, part, reader )
 
-		opener = urllib2.build_opener( urllib2.HTTPHandler )
+		opener = urllib.request.build_opener( urllib.request.HTTPHandler )
 		if not self.username == "":
-			pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
+			pwman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
 			pwman.add_password( None, self.url, self.username, self.password )
-			handlers = urllib2.HTTPDigestAuthHandler( pwman )
-			opener = urllib2.build_opener( urllib2.HTTPHandler, handlers )
-			urllib2.install_opener( opener )
-		request = urllib2.Request( self.url )
+			handlers = urllib.request.HTTPDigestAuthHandler( pwman )
+			opener = urllib.request.build_opener( urllib.request.HTTPHandler, handlers )
+			urllib.request.install_opener( opener )
+		request = urllib.request.Request( self.url )
 		err = False
 		try:
-			data = urllib2.urlopen( request ).read()
+			data = urllib.request.urlopen( request ).read()
 			# print data
-		except urllib2.URLError as e:
+		except urllib.error.URLError as e:
 			if hasattr(e, "reason"):
 				err = str(e.reason)
 			elif hasattr(e, "code"):
@@ -591,7 +597,7 @@ class oscInfo(Screen, OscamInfo):
 		self.itemheight = 25
 		self.sizeLH = sizeH - 20
 		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize)
-		button_width = int(sizeH / 4)
+		button_width = int(old_div(sizeH, 4))
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
 			xpos = k * button_width
 			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="/usr/share/enigma2/skin_default/buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
@@ -805,7 +811,7 @@ class oscInfo(Screen, OscamInfo):
 			self.listchange = False
 			self["output"].l.setItemHeight(int(self.itemheight*sf))
 			self["output"].instance.setScrollbarMode(0) #"showOnDemand"
-			self.rows = int(self["output"].instance.size().height() / (self.itemheight*sf))
+			self.rows = int(old_div(self["output"].instance.size().height(), (self.itemheight*sf)))
 			if self.what != "l" and self.rows < len(self.out):
 				self.enableScrolling(True)
 				return
@@ -886,7 +892,7 @@ class oscEntitlements(Screen, OscamInfo):
 		self.close()
 
 	def buildList(self, data):
-		caids = data.keys()
+		caids = list(data.keys())
 		caids.sort()
 		outlist = []
 		res = [ ("CAID", _("System"), "1", "2", "3", "4", "5", "Total", _("Reshare"), "") ]
@@ -1025,7 +1031,7 @@ class oscReaderStats(Screen, OscamInfo):
 		self.close()
 
 	def buildList(self, data):
-		caids = data.keys()
+		caids = list(data.keys())
 		caids.sort()
 		outlist = []
 		res = [ ("CAID", "System", "1", "2", "3", "4", "5", "Total", "Reshare", "") ]

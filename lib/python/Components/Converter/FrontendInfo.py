@@ -1,3 +1,7 @@
+from __future__ import division
+from builtins import str
+from builtins import chr
+from past.utils import old_div
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
@@ -75,7 +79,7 @@ class FrontendInfo(Converter):
 			return string
 		if percent is None:
 			return "N/A"
-		return "%d %%" % (percent * 100 / 65536)
+		return "%d %%" % (old_div(percent * 100, 65536))
 
 	@cached
 	def getBool(self):

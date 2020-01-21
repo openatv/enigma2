@@ -1,4 +1,5 @@
-class Event:
+from builtins import object
+class Event(object):
 	def __init__(self, start = None, stop = None):
 		self.list = [ ]
 		self.start = start

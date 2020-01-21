@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 from boxbranding import getImageVersion,getMachineBrand, getMachineName
 from os import system, access, R_OK
 import re
@@ -100,7 +105,7 @@ class ImageDownloadTask(Task):
 		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
 		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
 			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
-			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
+			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (old_div(recvbytes,1024), old_div(totalbytes,1024))
 			self.last_recvbytes = recvbytes
 
 	def download_failed(self, failure_instance=None, error_message=""):
@@ -147,7 +152,7 @@ class PartitionTaskPostcondition(Condition):
 		}[task.error]
 
 class PartitionTask(Task):
-	ERROR_UNKNOWN, ERROR_BLKRRPART = range(2)
+	ERROR_UNKNOWN, ERROR_BLKRRPART = list(range(2))
 	def __init__(self, job):
 		Task.__init__(self, job, "partitioning")
 		self.postconditions.append(PartitionTaskPostcondition())
@@ -246,7 +251,7 @@ class NFOViewer(Screen):
 	def exit(self):
 		self.close(False)
 
-class feedDownloader:
+class feedDownloader(object):
 	def __init__(self, feed_base, box, OE_vers):
 		print("[feedDownloader::init] feed_base=%s, box=%s" % (feed_base, box))
 		self.feed_base = feed_base
@@ -348,7 +353,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 	def exit(self):
 		self.close(False)
 
-(ALLIMAGES, RELEASE, EXPERIMENTAL, STICK_WIZARD, START) = range(5)
+(ALLIMAGES, RELEASE, EXPERIMENTAL, STICK_WIZARD, START) = list(range(5))
 
 class NFIDownload(Screen):
 	skin = """

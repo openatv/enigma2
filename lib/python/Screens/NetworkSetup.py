@@ -1,4 +1,9 @@
 from __future__ import print_function
+from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from past.utils import old_div
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
@@ -33,7 +38,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from random import Random
 from subprocess import call
-import commands
+import subprocess
 import string
 import os
 import glob
@@ -2022,9 +2027,9 @@ class NetworkFtp(Screen):
 	def FtpStartStop(self):
 		commands = []
 		if not self.my_ftp_run:
-			commands.append('/etc/init.d/vsftpd start')
+			subprocess.append('/etc/init.d/vsftpd start')
 		elif self.my_ftp_run:
-			commands.append('/etc/init.d/vsftpd stop')
+			subprocess.append('/etc/init.d/vsftpd stop')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2035,9 +2040,9 @@ class NetworkFtp(Screen):
 		commands = []
 		if len(glob.glob('/etc/rc2.d/S*0vsftpd')):
 		#if fileExists('/etc/rc2.d/S20vsftpd'):
-			commands.append('update-rc.d -f vsftpd remove')
+			subprocess.append('update-rc.d -f vsftpd remove')
 		else:
-			commands.append('update-rc.d -f vsftpd defaults')
+			subprocess.append('update-rc.d -f vsftpd defaults')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
@@ -2489,11 +2494,11 @@ class NetworkSamba(Screen):
 	def SambaStartStop(self):
 		commands = []
 		if not self.my_Samba_run:
-			commands.append('/etc/init.d/samba start')
+			subprocess.append('/etc/init.d/samba start')
 		elif self.my_Samba_run:
-			commands.append('/etc/init.d/samba stop')
-			commands.append('killall nmbd')
-			commands.append('killall smbd')
+			subprocess.append('/etc/init.d/samba stop')
+			subprocess.append('killall nmbd')
+			subprocess.append('killall smbd')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2503,9 +2508,9 @@ class NetworkSamba(Screen):
 	def activateSamba(self):
 		commands = []
 		if fileExists('/etc/rc2.d/S20samba'):
-			commands.append('update-rc.d -f samba remove')
+			subprocess.append('update-rc.d -f samba remove')
 		else:
-			commands.append('update-rc.d -f samba defaults')
+			subprocess.append('update-rc.d -f samba defaults')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
@@ -2589,9 +2594,9 @@ class NetworkTelnet(Screen):
 		commands = []
 		if fileExists('/etc/init.d/telnetd.busybox'):
 			if self.my_telnet_run:
-				commands.append('/etc/init.d/telnetd.busybox stop')
+				subprocess.append('/etc/init.d/telnetd.busybox stop')
 			else:
-				commands.append('/bin/su -l -c "/etc/init.d/telnetd.busybox start"')
+				subprocess.append('/bin/su -l -c "/etc/init.d/telnetd.busybox start"')
 			self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2602,9 +2607,9 @@ class NetworkTelnet(Screen):
 		commands = []
 		if fileExists('/etc/init.d/telnetd.busybox'):
 			if fileExists('/etc/rc2.d/S20telnetd.busybox'):
-				commands.append('update-rc.d -f telnetd.busybox remove')
+				subprocess.append('update-rc.d -f telnetd.busybox remove')
 			else:
-				commands.append('update-rc.d -f telnetd.busybox defaults')
+				subprocess.append('update-rc.d -f telnetd.busybox defaults')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
@@ -2807,7 +2812,7 @@ class NetworkInadyn(Screen):
 					self['labalias'].setText(line)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
-					line = (int(line) / 60)
+					line = (old_div(int(line), 60))
 					self['labtime'].setText(str(line))
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if line.startswith('#'):
@@ -2889,7 +2894,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 					self.list.append(ina_alias1)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
-					line = (int(line) / 60)
+					line = (old_div(int(line), 60))
 					self.ina_period.value = line
 					ina_period1 = getConfigListEntry(_("Time Update in Minutes") + ":", self.ina_period)
 					self.list.append(ina_period1)

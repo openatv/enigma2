@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -138,14 +141,14 @@ class MultiBootWizard(Screen):
 				sda ="sda"
 				size = Harddisk(sda).diskSize()
 
-				if ((float(size) / 1024) / 1024) >= 1:
-					des = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + _("TB")
-				elif (size / 1024) >= 1:
+				if (old_div((float(size) / 1024), 1024)) >= 1:
+					des = _("Size: ") + str(round((old_div((float(size) / 1024), 1024)), 2)) + _("TB")
+				elif (old_div(size, 1024)) >= 1:
 					des = _("Size: ") + str(round((float(size) / 1024), 2)) + _("GB")
 				if "GB" in des:
 					print("Multibootmgr1", des, "%s" %des[6], size)
-					if size/1024 < 6:
-						print("Multibootmgr2", des, "%s" %des[6], size/1024) 
+					if old_div(size,1024) < 6:
+						print("Multibootmgr2", des, "%s" %des[6], old_div(size,1024)) 
 						self.session.open(MessageBox, _("Multiboot manager - The SDcard must be at least 8MB."), MessageBox.TYPE_INFO, timeout=10)
 						self.close
 					else:

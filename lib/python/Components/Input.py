@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+from builtins import chr
+from builtins import str
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
 from .VariableText import VariableText
@@ -243,7 +245,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			self.deleteAllChars()
 			self.allmarked = False
-		self.insertChar(unichr(code), self.currPos, False, False)
+		self.insertChar(chr(code), self.currPos, False, False)
 		self.innerright()
 		self.update()
 

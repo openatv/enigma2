@@ -1,11 +1,14 @@
 #!/usr/bin/python
 
 from __future__ import print_function
+from builtins import input
+from builtins import str
+from builtins import range
 import os
 
 os.system("clear")
-internalname = raw_input("Internal plugin name (no whitespaces, plugin directory): ")
-name = raw_input("Visible plugin name: ")
+internalname = input("Internal plugin name (no whitespaces, plugin directory): ")
+name = input("Visible plugin name: ")
 print()
 
 os.system("clear")
@@ -18,16 +21,16 @@ for dir in os.listdir("."):
 		dirlist.append(dir)
 		print(count, dir)
 
-category = raw_input("Select plugin category: ")
+category = input("Select plugin category: ")
 category = dirlist[int(category) - 1]
 
 def add_where_extensionsmenu(name, fnc):
-	description = raw_input("Plugin description: ")
+	description = input("Plugin description: ")
 	return 'PluginDescriptor(name = "%s", description = _("%s"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = %s)' % (name, description, fnc)
 
 def add_where_pluginmenu(name, fnc):
-	description = raw_input("Plugin description: ")
-	icon = raw_input("Icon (default: 'plugin.png': ")
+	description = input("Plugin description: ")
+	icon = input("Icon (default: 'plugin.png': ")
 	if icon == "":
 		icon = "plugin.png"
 	return 'PluginDescriptor(name = "%s", description = _("%s"), icon = "%s", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = %s)' % (name, description, icon, fnc)
@@ -52,7 +55,7 @@ while not stop:
 		print(count, where[0])
 	print("x break")
 
-	target = raw_input("Select WHERE-target: ")
+	target = input("Select WHERE-target: ")
 	if target == "x":
 		stop = True
 	else:

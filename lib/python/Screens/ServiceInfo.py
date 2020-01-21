@@ -1,3 +1,7 @@
+from __future__ import division
+from builtins import chr
+from builtins import str
+from past.utils import old_div
 from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
@@ -152,7 +156,7 @@ class ServiceInfo(Screen):
 				if width > 0 and height > 0:
 					resolution = "%dx%d" % (width,height)
 					resolution += ("i", "p", "-")[self.info.getInfo(iServiceInformation.sProgressive)]
-					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+					resolution += str(old_div((self.info.getInfo(iServiceInformation.sFrameRate) + 500), 1000))
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 					aspect = aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ) and "4:3" or "16:9"
 					resolution += " - ["+aspect+"]"
@@ -202,7 +206,7 @@ class ServiceInfo(Screen):
 						 "transmission_mode"		: _("Transmission mode"),
 						 "guard_interval"			: _("Guard interval"),
 						 "hierarchy_information"	: _("Hierarchy information")}
-				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys() if i in conv]
+				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in list(tp_info.keys()) if i in conv]
 				self.fillList(Labels)
 
 	def pids(self):

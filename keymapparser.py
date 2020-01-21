@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import map
+from builtins import str
 import enigma
 import xml.etree.cElementTree
 

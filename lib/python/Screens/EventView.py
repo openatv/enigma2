@@ -1,4 +1,8 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import object
+from past.utils import old_div
 from time import localtime, mktime, time, strftime
 
 from enigma import eEPGCache, eTimer, eServiceReference, ePoint
@@ -50,7 +54,7 @@ class EventViewContextMenu(Screen):
 	def cancelClick(self):
 		self.close(False)
 
-class EventViewBase:
+class EventViewBase(object):
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
 
@@ -281,7 +285,7 @@ class EventViewBase:
 		end = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration())
 
 		self["datetime"].setText(strftime(_("%d.%m.   "), begin) + strftime(_("%-H:%M - "), begin) + strftime(_("%-H:%M"), end))
-		self["duration"].setText(_("%d min")%(event.getDuration()/60))
+		self["duration"].setText(_("%d min")%(old_div(event.getDuration(),60)))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
 			

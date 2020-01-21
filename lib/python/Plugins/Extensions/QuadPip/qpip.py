@@ -1,4 +1,9 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import range
+from past.utils import old_div
+from builtins import object
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
@@ -46,7 +51,7 @@ def setDecoderMode(value):
 		open(ENABLE_QPIP_PROCPATH,"w").write(value)
 		return open(ENABLE_QPIP_PROCPATH,"r").read().strip() == value
 
-class QuadPipChannelEntry:
+class QuadPipChannelEntry(object):
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
 		self.name = name
 		self.idx = idx
@@ -106,7 +111,7 @@ class QuadPipChannelEntry:
 	def setName(self, name):
 		self.name = name
 
-class QuadPipChannelData:
+class QuadPipChannelData(object):
 	def __init__(self):
 		self.PipChannelList = []
 		self.pipChannelDataPath = "/etc/enigma2/quadPipChannels.dat"
@@ -436,29 +441,29 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 		dw = self.session.desktop.size().width()
 		dh = self.session.desktop.size().height()
 		pw, ph = {1080:("center", "center"), 720:("center", "center"), 576:("center", "20%")}.get(dh, ("center", "center"))
-		(sw, sh) = {1080:(dw/3, dh/2), 720:(int(dw/2), int(dh/1.5)), 576:(int(dw/1.3), int(dh/1.5))}.get(dh, (28, 24))
+		(sw, sh) = {1080:(old_div(dw,3), old_div(dh,2)), 720:(int(old_div(dw,2)), int(dh/1.5)), 576:(int(dw/1.3), int(dh/1.5))}.get(dh, (28, 24))
 		button_margin = 5
 		button_h = 40
 		list_y = 40+button_margin*3
 		self.fontSize = {1080:(28, 24), 720:(24,20), 576:(20,18)}.get(dh, (28, 24))
 		self.skin = QuadPiPChannelSelection.skin % (pw, ph, \
 														sw, sh+list_y, \
-														sw/8-70, button_margin, \
-														sw/8-70+sw/4, button_margin, \
-														sw/8-70+sw/4*2, button_margin, \
-														sw/8-70+sw/4*3, button_margin, \
-														sw/8-70, button_margin, \
-														sw/8-70+sw/4, button_margin, \
-														sw/8-70+sw/4*2, button_margin, \
-														sw/8-70+sw/4*3, button_margin, \
+														old_div(sw,8)-70, button_margin, \
+														old_div(sw,8)-70+old_div(sw,4), button_margin, \
+														old_div(sw,8)-70+old_div(sw,4)*2, button_margin, \
+														old_div(sw,8)-70+old_div(sw,4)*3, button_margin, \
+														old_div(sw,8)-70, button_margin, \
+														old_div(sw,8)-70+old_div(sw,4), button_margin, \
+														old_div(sw,8)-70+old_div(sw,4)*2, button_margin, \
+														old_div(sw,8)-70+old_div(sw,4)*3, button_margin, \
 														0, list_y, sw, sh, \
-														sw/16, 1, sw-sw/16*2, sh/13, \
-														sw/11, 1+sh/13, 			sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18, 	sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18*2, 	sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18*3, 	sw-sw/16*2-sw/8, sh/18, \
+														old_div(sw,16), 1, sw-old_div(sw,16)*2, old_div(sh,13), \
+														old_div(sw,11), 1+old_div(sh,13), 			sw-old_div(sw,16)*2-old_div(sw,8), old_div(sh,18), \
+														old_div(sw,11), 1+old_div(sh,13)+old_div(sh,18), 	sw-old_div(sw,16)*2-old_div(sw,8), old_div(sh,18), \
+														old_div(sw,11), 1+old_div(sh,13)+old_div(sh,18)*2, 	sw-old_div(sw,16)*2-old_div(sw,8), old_div(sh,18), \
+														old_div(sw,11), 1+old_div(sh,13)+old_div(sh,18)*3, 	sw-old_div(sw,16)*2-old_div(sw,8), old_div(sh,18), \
 														self.fontSize[0], self.fontSize[1], \
-														sh/3)
+														old_div(sh,3))
 		self["key_red"] = Label(_("Select"))
 		self["key_green"] = Label(_("Add"))
 		self["key_yellow"] = Label(_("Remove"))
@@ -593,7 +598,7 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 	def getChannelList(self):
 		return self.qpipChannelList.getPipChannels()
 
-class FocusShowHide:
+class FocusShowHide(object):
 	STATE_HIDDEN = 0
 	STATE_SHOWN = 1
 
@@ -778,16 +783,16 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.movePositionMap["down"] = [-1, 3, 4, 1, 2]
 
 		self.labelPositionMap = {}
-		self.labelPositionMap["ch1"] = (w/8,		h/4-h/36,		w/4,	h/18)
-		self.labelPositionMap["ch2"] = (w/8+w/2,	h/4-h/36,		w/4,	h/18)
-		self.labelPositionMap["ch3"] = (w/8,		h/4-h/36+h/2,	w/4,	h/18)
-		self.labelPositionMap["ch4"] = (w/8+w/2,	h/4-h/36+h/2,	w/4,	h/18)
+		self.labelPositionMap["ch1"] = (old_div(w,8),		old_div(h,4)-old_div(h,36),		old_div(w,4),	old_div(h,18))
+		self.labelPositionMap["ch2"] = (old_div(w,8)+old_div(w,2),	old_div(h,4)-old_div(h,36),		old_div(w,4),	old_div(h,18))
+		self.labelPositionMap["ch3"] = (old_div(w,8),		old_div(h,4)-old_div(h,36)+old_div(h,2),	old_div(w,4),	old_div(h,18))
+		self.labelPositionMap["ch4"] = (old_div(w,8)+old_div(w,2),	old_div(h,4)-old_div(h,36)+old_div(h,2),	old_div(w,4),	old_div(h,18))
 
 		self.decoderIdxMap = [None, 0, 1, 2, 3]
 
 		self.fontSize = {1080:40, 720:28, 576:18}.get(h, 40)
-		self.text1Pos = (w-w/3, h-h/18-h/18, w/3, h/18)
-		self.text2Pos = (w-w/3, h-h/18, w/3, h/18)
+		self.text1Pos = (w-old_div(w,3), h-old_div(h,18)-old_div(h,18), old_div(w,3), old_div(h,18))
+		self.text2Pos = (w-old_div(w,3), h-old_div(h,18), old_div(w,3), old_div(h,18))
 
 	def moveFrame(self):
 		self.showFocus()

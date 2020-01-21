@@ -1,4 +1,8 @@
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import object
+from past.utils import old_div
 from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
 from . import TitleCutter
 
@@ -8,7 +12,7 @@ class ConfigFixedText(ConfigText):
 	def handleKey(self, key):
 		pass
 
-class Title:
+class Title(object):
 	def __init__(self, project):
 		self.properties = ConfigSubsection()
 		self.properties.menutitle = ConfigText(fixed_size = False, visible_width = 80)
@@ -95,7 +99,7 @@ class Title:
 
 		if template.find("$l") >= 0:
 			l = self.length
-			lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+			lengthstring = "%d:%02d:%02d" % (old_div(l,3600), old_div(l%3600,60), l%60)
 			template = template.replace("$l", lengthstring)
 		if self.timeCreate:
 			template = template.replace("$Y", str(self.timeCreate[0]))
@@ -147,10 +151,10 @@ class Title:
 				self.chaptermarks.append(reloc_pts)
 				
 		if len(self.cutlist) > 1:
-			part = accumulated_in / (self.length*90000.0)
+			part = old_div(accumulated_in, (self.length*90000.0))
 			usedsize = int ( part * self.filesize )
 			self.estimatedDiskspace = usedsize
-			self.length = accumulated_in / 90000
+			self.length = old_div(accumulated_in, 90000)
 
 	def getChapterMarks(self, template="$h:$m:$s.$t"):
 		timestamps = [ ]
@@ -164,9 +168,9 @@ class Title:
 		else:
 			chapters = self.chaptermarks
 		for p in chapters:
-			timestring = template.replace("$h", str(p / (90000 * 3600)))
-			timestring = timestring.replace("$m", ("%02d" % (p % (90000 * 3600) / (90000 * 60))))
-			timestring = timestring.replace("$s", ("%02d" % (p % (90000 * 60) / 90000)))
-			timestring = timestring.replace("$t", ("%03d" % ((p % 90000) / 90)))
+			timestring = template.replace("$h", str(old_div(p, (90000 * 3600))))
+			timestring = timestring.replace("$m", ("%02d" % (old_div(p % (90000 * 3600), (90000 * 60)))))
+			timestring = timestring.replace("$s", ("%02d" % (old_div(p % (90000 * 60), 90000))))
+			timestring = timestring.replace("$t", ("%03d" % (old_div((p % 90000), 90))))
 			timestamps.append(timestring)
 		return timestamps

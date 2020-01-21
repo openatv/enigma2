@@ -1,11 +1,13 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from Components.Console import Console
 from os import listdir as os_listdir, path as os_path
 from re import compile as re_compile
 from enigma import eEnv
 from boxbranding import getMachineBrand
 
-class Keyboard:
+class Keyboard(object):
 	def __init__(self):
 		self.keyboardmaps = []
 		self.readKeyboardMapFiles()

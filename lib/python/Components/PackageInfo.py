@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 from future.utils import raise_
 import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
@@ -124,7 +126,7 @@ class InfoHandler(xml.sax.ContentHandler):
 			self.attributes["description"] = str(self.data)
 
 
-class PackageInfoHandler:
+class PackageInfoHandler(object):
 	STATUS_WORKING = 0
 	STATUS_DONE = 1
 	STATUS_ERROR = 2

@@ -6,6 +6,7 @@ from __future__ import print_function
 # It will read the servicenames from the lamedb and create symlinks
 # for the servicereference names.
 
+from builtins import range
 import os, sys
 
 f = open(sys.argv[1]).readlines()

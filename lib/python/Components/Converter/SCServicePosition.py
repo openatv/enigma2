@@ -1,4 +1,6 @@
 from __future__ import absolute_import
+from __future__ import division
+from past.utils import old_div
 import time
 from .Converter import Converter
 from .Poll import Poll
@@ -91,7 +93,7 @@ class SCServicePosition(Poll, Converter, object):
 			elif self.type == self.TYPE_REMAINING:
 				l = self.length - self.position
 			elif self.type == self.TYPE_ENDTIME:
-				l = (self.length - self.position) / 90000
+				l = old_div((self.length - self.position), 90000)
 				t = time.time()
 				t = time.localtime(t + l)
 				if self.showNoSeconds:
@@ -113,19 +115,19 @@ class SCServicePosition(Poll, Converter, object):
 			if not self.detailed:
 				if self.showHours:
 					if self.showNoSeconds:
-						return sign + "%d:%02d" % (l/3600, l%3600/60)
+						return sign + "%d:%02d" % (old_div(l,3600), old_div(l%3600,60))
 					else:
-						return sign + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+						return sign + "%d:%02d:%02d" % (old_div(l,3600), old_div(l%3600,60), l%60)
 				else:
 					if self.showNoSeconds:
-						return sign + "%d" % (l/60)
+						return sign + "%d" % (old_div(l,60))
 					else:
-						return sign + "%d:%02d" % (l/60, l%60)
+						return sign + "%d:%02d" % (old_div(l,60), l%60)
 			else:
 				if self.showHours:
-					return sign + "%d:%02d:%02d:%03d" % ((l/3600/90000), (l/90000)%3600/60, (l/90000)%60, (l%90000)/90)
+					return sign + "%d:%02d:%02d:%03d" % ((old_div(old_div(l,3600),90000)), old_div((old_div(l,90000))%3600,60), (old_div(l,90000))%60, old_div((l%90000),90))
 				else:
-					return sign + "%d:%02d:%03d" % ((l/60/90000), (l/90000)%60, (l%90000)/90)
+					return sign + "%d:%02d:%03d" % ((old_div(old_div(l,60),90000)), (old_div(l,90000))%60, old_div((l%90000),90))
 
 	# range/value are for the Progress renderer
 	range = 10000
@@ -136,7 +138,7 @@ class SCServicePosition(Poll, Converter, object):
 		len = self.length
 		if pos is None or len is None or len <= 0:
 			return None
-		return pos * 10000 / len
+		return old_div(pos * 10000, len)
 
 	position = property(getPosition)
 	length = property(getLength)

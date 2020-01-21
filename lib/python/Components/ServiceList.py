@@ -1,5 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
 from skin import parseColor, parseFont
@@ -290,13 +293,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = self.listHeight / (config.usage.serviceitems_per_page_twolines.value if config.usage.servicelist_twolines.value else config.usage.serviceitems_per_page.value)
+			itemHeight = old_div(self.listHeight, (config.usage.serviceitems_per_page_twolines.value if config.usage.servicelist_twolines.value else config.usage.serviceitems_per_page.value))
 		else:
 			itemHeight = 28
 		self.ItemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
 		if self.listHeight:
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.instance.resize(eSize(self.listWidth, old_div(self.listHeight, itemHeight) * itemHeight))
 
 	def setFontsize(self):
 		self.ServiceNumberFont = gFont(self.ServiceNumberFontName, self.ServiceNumberFontSize + config.usage.servicenum_fontsize.value)
@@ -416,7 +419,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0"*int(config.usage.maxchannelnumlen.value)).width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
 			channelNumberSpace = self.fieldMargins + self.listMarginLeft
 
-		numberHeight = self.ItemHeight/2 if twoLines and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
+		numberHeight = old_div(self.ItemHeight,2) if twoLines and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
 		self.l.setElementPosition(self.l.celServiceNumber, eRect(self.listMarginLeft, 0, channelNumberWidth, numberHeight))
 
 		#progress view modes for two lines
@@ -438,7 +441,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		minuteUnit = _("min")
 		self.l.setProgressUnit(minuteUnit if "mins" in viewType else "%")
 
-		progressHeight = self.ItemHeight/2 if viewMode else self.ItemHeight
+		progressHeight = old_div(self.ItemHeight,2) if viewMode else self.ItemHeight
 		progressTextWidth = getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "+000 %s" %minuteUnit).width() if "mins" in viewType else getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "100 %").width()
 		self.l.setProgressTextWidth(progressTextWidth)
 

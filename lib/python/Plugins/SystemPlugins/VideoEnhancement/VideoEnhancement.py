@@ -1,11 +1,13 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from boxbranding import getBoxType
 from os import path as os_path
 from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
 
 # The "VideoEnhancement" is the interface to /proc/stb/vmpeg/0.
 
-class VideoEnhancement:
+class VideoEnhancement(object):
 	firstRun = True
 
 	def __init__(self):

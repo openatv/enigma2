@@ -1,8 +1,9 @@
 from __future__ import print_function
+from builtins import object
 import os
 import enigma
 
-class CamControl:
+class CamControl(object):
 	'''CAM convention is that a softlink named /etc/init.c/softcam.* points
 	to the start/stop script.'''
 	def __init__(self, name):

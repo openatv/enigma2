@@ -1,4 +1,7 @@
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
@@ -327,11 +330,11 @@ class ServiceInfo(Poll, Converter, object):
 					video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
 				except:
 					return "N/A fps"
-			return video_rate, lambda x: "%d fps" % ((x+500)/1000)
+			return video_rate, lambda x: "%d fps" % (old_div((x+500),1000))
 		elif self.type == self.PROGRESSIVE:
 			return self._getProgressiveStr(info)
 		elif self.type == self.TRANSFERBPS:
-			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
+			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (old_div(x,1024)))
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl)
 		elif self.type == self.FREQ_INFO:
@@ -366,7 +369,7 @@ class ServiceInfo(Poll, Converter, object):
 			if fieldrate > 0:
 				if progressive == 'i':
 					fieldrate *= 2
-				fieldrate = "%dHz" % ((fieldrate + 500) / 1000,)
+				fieldrate = "%dHz" % (old_div((fieldrate + 500), 1000),)
 			else:
 				fieldrate = ""
 			return "%sx%s%s %s" % (self._getVideoWidthStr(info), self._getVideoHeightStr(info), progressive, fieldrate)

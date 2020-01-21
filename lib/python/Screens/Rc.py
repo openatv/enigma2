@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 from Components.Pixmap import MovingPixmap, MultiPixmap
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
@@ -8,7 +9,7 @@ from boxbranding import getBoxType
 
 config.misc.rcused = ConfigInteger(default = 1)
 
-class Rc:
+class Rc(object):
 	def __init__(self):
 		self["rc"] = MultiPixmap()
 		self["arrowdown"] = MovingPixmap()

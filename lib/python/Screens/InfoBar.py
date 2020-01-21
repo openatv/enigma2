@@ -1,5 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import str
+from builtins import range
 from Tools.Profile import profile
 
 # workaround for required config entry dependencies.
@@ -428,7 +430,7 @@ def setAudioTrack(service):
 		if not nTracks: return
 		idx = 0
 		trackList = []
-		for i in xrange(nTracks):
+		for i in range(nTracks):
 			audioInfo = tracks.getTrackInfo(i)
 			lang = audioInfo.getLanguage()
 			if lang in langC:

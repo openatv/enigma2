@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import object
 from Components.Console import Console
 from .config import config
 from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache
@@ -13,7 +14,7 @@ def AutoNTPSync(session=None, **kwargs):
 	ntpsyncpoller = NTPSyncPoller()
 	ntpsyncpoller.start()
 
-class NTPSyncPoller:
+class NTPSyncPoller(object):
 	"""Automatically Poll NTP"""
 	def __init__(self):
 		# Init Timer

@@ -1,8 +1,9 @@
 from __future__ import print_function
+from builtins import object
 from boxbranding import getBoxType, getBrandOEM, getMachineName
 from Components.About import about
 
-class HardwareInfo:
+class HardwareInfo(object):
 	device_name = None
 	device_version = None
 

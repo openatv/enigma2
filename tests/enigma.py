@@ -1,7 +1,8 @@
 from __future__ import print_function
 # fake-enigma
 
-class slot:
+from builtins import object
+class slot(object):
 	def __init__(self):
 		self.list = [ ]
 
@@ -20,7 +21,7 @@ from events import eventfnc
 
 ##################### ENIGMA BASE
 
-class eTimer:
+class eTimer(object):
 	def __init__(self):
 		self.timeout = slot()
 		self.next_activation = None
@@ -97,7 +98,7 @@ eListboxPythonStringContent = None
 eListbox = None
 eSubtitleWidget = None
 
-class eEPGCache:
+class eEPGCache(object):
 	@classmethod
 	def getInstance(self):
 		return self.instance
@@ -114,7 +115,7 @@ eEPGCache()
 
 getBestPlayableServiceReference = None
 
-class pNavigation:
+class pNavigation(object):
 	def __init__(self):
 		self.m_event = slot()
 		self.m_record_event = slot()
@@ -137,7 +138,7 @@ class pNavigation:
 eRCInput = None
 getPrevAsciiCode = None
 
-class eServiceReference:
+class eServiceReference(object):
 
 	isDirectory=1
 	mustDescent=2
@@ -159,7 +160,7 @@ class eServiceReference:
 	def __repr__(self):
 		return self.toString()
 
-class iRecordableService:
+class iRecordableService(object):
 	def __init__(self, ref):
 		self.ref = ref
 
@@ -180,7 +181,7 @@ class iRecordableService:
 
 quitMainloop = None
 
-class eAVSwitch:
+class eAVSwitch(object):
 	@classmethod
 	def getInstance(self):
 		return self.instance
@@ -212,7 +213,7 @@ eAVSwitch()
 
 eDVBVolumecontrol = None
 
-class eRFmod:
+class eRFmod(object):
 	@classmethod
 	def getInstance(self):
 		return self.instance
@@ -243,7 +244,7 @@ class eRFmod:
 eRFmod()
 
 
-class eDBoxLCD:
+class eDBoxLCD(object):
 	@classmethod
 	def getInstance(self):
 		return self.instance
@@ -269,7 +270,7 @@ eDBoxLCD()
 
 Misc_Options = None
 
-class eServiceCenter:
+class eServiceCenter(object):
 	@classmethod
 	def getInstance(self):
 		return self.instance
@@ -292,7 +293,7 @@ print("done")
 
 chroot="."
 
-for (x, (y, z)) in Tools.Directories.defaultPaths.items():
+for (x, (y, z)) in list(Tools.Directories.defaultPaths.items()):
 	Tools.Directories.defaultPaths[x] = (chroot + y, z)
 
 Tools.Directories.defaultPaths[Tools.Directories.SCOPE_SKIN] = ("../data/", Tools.Directories.PATH_DONTCREATE)
@@ -312,7 +313,7 @@ Components.config.config.unpickle(my_config)
 
 ##################### ENIGMA ACTIONS
 
-class eActionMap:
+class eActionMap(object):
 	def __init__(self):
 		pass
 

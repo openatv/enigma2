@@ -1,3 +1,6 @@
+from builtins import str
+from builtins import range
+from builtins import object
 from enigma import eTimer
 
 from Components.Language import language
@@ -202,7 +205,7 @@ LOCALES = {
 
 # For more information about using NumericalTextInput see /doc/NUMERICALTEXTINPUT
 #
-class NumericalTextInput:
+class NumericalTextInput(object):
 	def __init__(self, nextFunc=None, handleTimeout=True, search=False, mapping=None, mode=None):
 		self.nextFunction = nextFunc
 		if handleTimeout:
@@ -274,4 +277,4 @@ class NumericalTextInput:
 		return self.mapping[num][self.pos]
 
 	def setUseableChars(self, useable):
-		self.useableChars = unicode(useable)
+		self.useableChars = str(useable)

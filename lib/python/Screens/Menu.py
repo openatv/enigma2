@@ -1,3 +1,6 @@
+from builtins import str
+from builtins import range
+from builtins import object
 from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Sources.List import List
@@ -91,7 +94,7 @@ file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
 mdom = xml.etree.cElementTree.parse(file)
 file.close()
 
-class title_History:
+class title_History(object):
 	def __init__(self):
 		self.thistory = ''
 	def reset(self):
@@ -111,7 +114,7 @@ class title_History:
 
 t_history = title_History()
 
-class MenuUpdater:
+class MenuUpdater(object):
 	def __init__(self):
 		self.updatedMenuItems = {}
 

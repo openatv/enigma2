@@ -1,3 +1,4 @@
+from builtins import object
 import skin
 
 from enigma import ePoint, eSize

@@ -1,7 +1,10 @@
 from __future__ import print_function
+from builtins import hex
+from builtins import str
+from builtins import object
 import enigma
 
-class ConsoleItem:
+class ConsoleItem(object):
 	def __init__(self, containers, cmd, callback, extra_args):
 		self.extra_args = extra_args
 		self.callback = callback
@@ -71,6 +74,6 @@ class Console(object):
 			self.appContainers[name].container.kill()
 
 	def killAll(self):
-		for name, item in self.appContainers.items():
+		for name, item in list(self.appContainers.items()):
 			print("[Console] killing: ", name)
 			item.container.kill()

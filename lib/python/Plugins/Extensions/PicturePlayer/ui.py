@@ -1,4 +1,9 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import next
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from boxbranding import getMachineBrand
 
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
@@ -274,8 +279,8 @@ class Pic_Thumb(Screen):
 
 		self.size_w = getDesktop(0).size().width()
 		self.size_h = getDesktop(0).size().height()
-		self.thumbsX = self.size_w / (self.spaceX + self.picX) # thumbnails in X
-		self.thumbsY = self.size_h / (self.spaceY + self.picY) # thumbnails in Y
+		self.thumbsX = old_div(self.size_w, (self.spaceX + self.picX)) # thumbnails in X
+		self.thumbsY = old_div(self.size_h, (self.spaceY + self.picY)) # thumbnails in Y
 		self.thumbsC = self.thumbsX * self.thumbsY # all thumbnails
 
 		self.positionlist = []
@@ -283,7 +288,7 @@ class Pic_Thumb(Screen):
 
 		posX = -1
 		for x in range(self.thumbsC):
-			posY = x / self.thumbsX
+			posY = old_div(x, self.thumbsX)
 			posX += 1
 			if posX >= self.thumbsX:
 				posX = 0
@@ -563,7 +568,7 @@ class Pic_Full_View(Screen):
 		self.picload.startDecode(self.filelist[self.index])
 		self["point"].show()
 
-	def next(self):
+	def __next__(self):
 		self.index += 1
 		if self.index > self.maxentry:
 			self.index = 0

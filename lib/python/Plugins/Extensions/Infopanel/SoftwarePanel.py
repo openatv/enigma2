@@ -1,4 +1,7 @@
 from __future__ import print_function
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -126,7 +129,7 @@ class SoftwarePanel(Screen):
 
 	def checkTraficLight(self):
 		print("checkTraficLight")
-		from urllib import urlopen
+		from urllib.request import urlopen
 		import socket
 		self['a_red'].hide()
 		self['a_yellow'].hide()

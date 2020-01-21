@@ -1,5 +1,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from builtins import range
+from builtins import object
+from past.utils import old_div
 from future.utils import raise_
 import os
 import time
@@ -86,7 +91,7 @@ def getFolderSize(path):
 def Freespace(dev):
 	try:
 		statdev = os.statvfs(dev)
-		space = (statdev.f_bavail * statdev.f_frsize) / 1024
+		space = old_div((statdev.f_bavail * statdev.f_frsize), 1024)
 	except:
 		space = 0
 	return space
@@ -95,7 +100,7 @@ def Freespace(dev):
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
 
-class Harddisk:
+class Harddisk(object):
 	def __init__(self, device, removable = False):
 		self.device = device
 
@@ -196,10 +201,10 @@ class Harddisk:
 			if dev:
 				stat = os.statvfs(dev)
 				cap = int(stat.f_blocks * stat.f_bsize)
-				return cap / 1000 / 1000
+				return old_div(old_div(cap, 1000), 1000)
 			else:
 				return cap
-		return cap / 1000 * 512 / 1000
+		return old_div(old_div(cap, 1000) * 512, 1000)
 
 	def capacity(self):
 		cap = self.diskSize()
@@ -207,7 +212,7 @@ class Harddisk:
 			return ""
 		if cap < 1000:
 			return _("%03d MB") % cap
-		return _("%d.%03d GB") % (cap/1000, cap%1000)
+		return _("%d.%03d GB") % (old_div(cap,1000), cap%1000)
 
 	def model(self):
 		try:
@@ -230,7 +235,7 @@ class Harddisk:
 		if dev:
 			try:
 				stat = os.statvfs(dev)
-				return int((stat.f_bfree/1000) * (stat.f_bsize/1024))
+				return int((old_div(stat.f_bfree,1000)) * (old_div(stat.f_bsize,1024)))
 			except:
 				pass
 		return -1
@@ -576,7 +581,7 @@ class Harddisk:
 	def isSleeping(self):
 		return self.is_sleeping
 
-class Partition:
+class Partition(object):
 	# for backward compatibility, force_mounted actually means "hotplug"
 	def __init__(self, mountpoint, device = None, description = "", force_mounted = False):
 		self.mountpoint = mountpoint
@@ -775,7 +780,7 @@ def addInstallTask(job, package):
 	task.args.append('install')
 	task.args.append(package)
 
-class HarddiskManager:
+class HarddiskManager(object):
 	def __init__(self):
 		self.hdd = [ ]
 		self.cd = ""
@@ -1004,7 +1009,7 @@ class HarddiskManager:
 		except IOError as s:
 			print("couldn't read model: ", s)
 		from Tools.HardwareInfo import HardwareInfo
-		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
+		for physdevprefix, pdescription in list(DEVICEDB.get(HardwareInfo().device_name,{}).items()):
 			if phys.startswith(physdevprefix):
 				description = pdescription
 		# not wholedisk and not partition 1
@@ -1117,7 +1122,7 @@ class MkfsTask(Task.LoggingTask):
 					d = data.strip(' \x08\r\n').split('/',1)
 					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08',1)[0]
-					self.setProgress(80*int(d[0])/int(d[1]))
+					self.setProgress(old_div(80*int(d[0]),int(d[1])))
 				except Exception as e:
 					print("[Mkfs] E:", e)
 				return # don't log the progess

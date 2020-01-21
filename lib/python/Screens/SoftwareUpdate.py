@@ -1,7 +1,9 @@
+from future import standard_library
+standard_library.install_aliases()
 from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild
 from os import rename, path, remove
 from gettext import dgettext
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from enigma import eTimer, eDVBDB
 
@@ -72,7 +74,7 @@ class SoftwareUpdateChanges(Screen):
 		global ocram
 		try:
 			sourcefile = 'http://www.openvix.co.uk/feeds/%s/%s/%s-git.log' % (getImageDistro(), getImageVersion(), self.logtype)
-			sourcefile,headers = urllib.urlretrieve(sourcefile)
+			sourcefile,headers = urllib.request.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 			releasenotes = fd.read()
@@ -173,7 +175,7 @@ class UpdatePlugin(Screen):
 		self.checkNetworkState()
 
 	def feedsStatus(self):
-		from urllib import urlopen
+		from urllib.request import urlopen
 		import socket
 		self['tl_red'].hide()
 		self['tl_yellow'].hide()
@@ -287,7 +289,7 @@ class UpdatePlugin(Screen):
 				self.updating = False
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				from urllib import urlopen
+				from urllib.request import urlopen
 				import socket
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)

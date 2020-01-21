@@ -1,3 +1,4 @@
+from builtins import object
 from Tools.CList import CList
 from functools import reduce
 

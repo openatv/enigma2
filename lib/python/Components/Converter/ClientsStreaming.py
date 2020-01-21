@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import str
 from .Converter import Converter
 from .Poll import Poll
 from Components.Element import cached

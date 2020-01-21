@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from builtins import str
 from Components.VariableText import VariableText
 from enigma import eLabel, iPlayableService
 from .Renderer import Renderer

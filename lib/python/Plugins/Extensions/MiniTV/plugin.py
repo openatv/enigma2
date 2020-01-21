@@ -1,3 +1,4 @@
+from builtins import object
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigSelection
@@ -8,7 +9,7 @@ config.plugins.minitv = ConfigSubsection()
 config.plugins.minitv.enable = ConfigSelection(default = "disable", choices = [ ("enable", "enable"), ("disable", "disable")])
 config.plugins.minitv.decoder = ConfigSelection(default = "0", choices = [ ("0", "0"), ("1", "1")])
 
-class MiniTV:
+class MiniTV(object):
 	def __init__(self):
 		config.plugins.minitv.enable.addNotifier(self.miniTVChanged, initial_call = True)
 		config.plugins.minitv.decoder.addNotifier(self.miniTVDecoderChanged, initial_call = True)

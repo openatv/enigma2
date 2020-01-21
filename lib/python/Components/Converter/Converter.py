@@ -1,3 +1,4 @@
+from builtins import str
 from Components.Element import Element
 
 class Converter(Element):

@@ -1,9 +1,14 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import chr
+from builtins import str
+from builtins import object
+from past.utils import old_div
 from enigma import eComponentScan, iDVBFrontend, eTimer
 from Components.NimManager import nimmanager as nimmgr
 from Components.Converter.ChannelNumbers import channelnumbers
 
-class ServiceScan:
+class ServiceScan(object):
 
 	Idle = 1
 	Running = 2
@@ -62,20 +67,20 @@ class ServiceScan:
 							h = _("W")
 						else:
 							h = _("E")
-						if ("%d.%d" % (orb_pos/10, orb_pos%10)) in sat_name:
+						if ("%d.%d" % (old_div(orb_pos,10), orb_pos%10)) in sat_name:
 							network = sat_name
 						else:
-							network = "%s %d.%d %s" % (sat_name, orb_pos / 10, orb_pos % 10, h)
+							network = "%s %d.%d %s" % (sat_name, old_div(orb_pos, 10), orb_pos % 10, h)
 						tp_text = { tp.System_DVB_S : "DVB-S", tp.System_DVB_S2 : "DVB-S2" }.get(tp.system, "")
 						if tp_text == "DVB-S2":
 							tp_text = "%s %s" % ( tp_text,
 								{ tp.Modulation_Auto : "Auto", tp.Modulation_QPSK : "QPSK",
 									tp.Modulation_8PSK : "8PSK", tp.Modulation_QAM16 : "QAM16",
 									tp.Modulation_16APSK : "16APSK", tp.Modulation_32APSK : "32APSK" }.get(tp.modulation, ""))
-						tp_text = "%s %d%c / %d / %s" % ( tp_text, tp.frequency/1000,
+						tp_text = "%s %d%c / %d / %s" % ( tp_text, old_div(tp.frequency,1000),
 							{ tp.Polarisation_Horizontal : 'H', tp.Polarisation_Vertical : 'V', tp.Polarisation_CircularLeft : 'L',
 								tp.Polarisation_CircularRight : 'R' }.get(tp.polarisation, ' '),
-							tp.symbol_rate/1000,
+							old_div(tp.symbol_rate,1000),
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
 								tp.FEC_3_4 : "3/4", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
 								tp.FEC_5_6 : "5/6", tp.FEC_6_7 : "6/7", tp.FEC_7_8 : "7/8",
@@ -95,7 +100,7 @@ class ServiceScan:
 							tp.Modulation_QAM64 : "QAM64", tp.Modulation_QAM128 : "QAM128",
 							tp.Modulation_QAM256 : "QAM256" }.get(tp.modulation, ""),
 							tp.frequency,
-							tp.symbol_rate/1000,
+							old_div(tp.symbol_rate,1000),
 							{ tp.FEC_Auto : "AUTO", tp.FEC_1_2 : "1/2", tp.FEC_2_3 : "2/3",
 								tp.FEC_3_4 : "3/4", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
 								tp.FEC_5_6 : "5/6", tp.FEC_6_7 : "6/7", tp.FEC_7_8 : "7/8",

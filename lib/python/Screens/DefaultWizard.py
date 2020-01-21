@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import range
 from .Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
 from Tools.Directories import pathExists, resolveFilename, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTPARTITION

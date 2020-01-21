@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 from enigma import eTimer
 
 import Components.Task
@@ -22,7 +23,7 @@ def EpgCacheSaveCheck(session=None, **kwargs):
 	else:
 		epgcachesavecheckpoller.stop()
 
-class EpgCacheLoadCheckPoller:
+class EpgCacheLoadCheckPoller(object):
 	def __init__(self):
 		self.timer = eTimer()
 
@@ -61,7 +62,7 @@ class EpgCacheLoadCheckPoller:
 	def JobSched(self):
 		self.timer.startLongTimer(int(config.epg.cacheloadtimer.value) * 3600)
 
-class EpgCacheSaveCheckPoller:
+class EpgCacheSaveCheckPoller(object):
 	def __init__(self):
 		self.timer = eTimer()
 

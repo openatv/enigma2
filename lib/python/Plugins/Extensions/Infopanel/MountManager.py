@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from Screens.Screen import Screen
 from enigma import eTimer
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
@@ -259,12 +262,12 @@ class HddMount(Screen):
 			if line.find(device) != -1:
 				parts = line.strip().split()
 				size = int(parts[2])
-				if (((float(size) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024),2)) + _("TB")
-				elif ((size / 1024) / 1024) > 1:
-					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
+				if (old_div((old_div((float(size) / 1024), 1024)), 1024)) > 1:
+					des = _("Size: ") + str(round((old_div((old_div((float(size) / 1024), 1024)), 1024)),2)) + _("TB")
+				elif (old_div((old_div(size, 1024)), 1024)) > 1:
+					des = _("Size: ") + str(old_div((old_div(size, 1024)), 1024)) + _("GB")
 				else:
-					des = _("Size: ") + str(size / 1024) + _("MB")
+					des = _("Size: ") + str(old_div(size, 1024)) + _("MB")
 			else:
 				try:
 					size = file('/sys/block/' + device2 + '/' + device + '/size').read()
@@ -272,12 +275,12 @@ class HddMount(Screen):
 					size = int(size)
 				except:
 					size = 0
-				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024),2)) + _("TB")
-				elif (((size / 2) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + _("GB")
+				if (old_div((old_div((old_div((float(size) / 2), 1024)), 1024)), 1024)) > 1:
+					des = _("Size: ") + str(round((old_div((old_div((old_div((float(size) / 2), 1024)), 1024)), 1024)),2)) + _("TB")
+				elif (old_div((old_div((old_div(size, 2)), 1024)), 1024)) > 1:
+					des = _("Size: ") + str(old_div((old_div((old_div(size, 2)), 1024)), 1024)) + _("GB")
 				else:
-					des = _("Size: ") + str((size / 2) / 1024) + _("MB")
+					des = _("Size: ") + str(old_div((old_div(size, 2)), 1024)) + _("MB")
 		f.close()
 		if des != '':
 			if rw.startswith('rw'):
@@ -548,12 +551,12 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			if line.find(device) != -1:
 				parts = line.strip().split()
 				size = int(parts[2])
-				if (((float(size) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024),2)) + _("TB")
-				elif ((size / 1024) / 1024) > 1:
-					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
+				if (old_div((old_div((float(size) / 1024), 1024)), 1024)) > 1:
+					des = _("Size: ") + str(round((old_div((old_div((float(size) / 1024), 1024)), 1024)),2)) + _("TB")
+				elif (old_div((old_div(size, 1024)), 1024)) > 1:
+					des = _("Size: ") + str(old_div((old_div(size, 1024)), 1024)) + _("GB")
 				else:
-					des = _("Size: ") + str(size / 1024) + _("MB")
+					des = _("Size: ") + str(old_div(size, 1024)) + _("MB")
 			else:
 				try:
 					size = file('/sys/block/' + device2 + '/' + device + '/size').read()
@@ -561,12 +564,12 @@ class DevicePanelConf(Screen, ConfigListScreen):
 					size = int(size)
 				except:
 					size = 0
-				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024),2)) + _("TB")
-				elif (((size / 2) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + _("GB")
+				if (old_div((old_div((old_div((float(size) / 2), 1024)), 1024)), 1024)) > 1:
+					des = _("Size: ") + str(round((old_div((old_div((old_div((float(size) / 2), 1024)), 1024)), 1024)),2)) + _("TB")
+				elif (old_div((old_div((old_div(size, 2)), 1024)), 1024)) > 1:
+					des = _("Size: ") + str(old_div((old_div((old_div(size, 2)), 1024)), 1024)) + _("GB")
 				else:
-					des = _("Size: ") + str((size / 2) / 1024) + _("MB")
+					des = _("Size: ") + str(old_div((old_div(size, 2)), 1024)) + _("MB")
 		f.close()
 		item = NoSave(ConfigSelection(default='/media/' + device, choices=[('/media/' + device, '/media/' + device),
 		('/media/hdd', '/media/hdd'),

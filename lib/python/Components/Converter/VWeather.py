@@ -16,6 +16,10 @@
 
 
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from builtins import object
+from past.utils import old_div
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigSelection
@@ -125,7 +129,7 @@ class VWeather(Converter, object):
 
 	text = property(getText)
 
-class WeatherData:
+class WeatherData(object):
 	def __init__(self):
 		self.WeatherInfo = WeatherInfo = { 
 			"currentLocation": "N/A",
@@ -284,7 +288,7 @@ class WeatherData:
 		if config.plugins.AtileHD.tempUnit.value == "Fahrenheit":
 			return str(int(round(float(temp),0)))
 		else:
-			celsius = (float(temp) - 32 ) * 5 / 9
+			celsius = old_div((float(temp) - 32 ) * 5, 9)
 			return str(int(round(float(celsius),0)))
 
 	def getWeatherDate(self, weather):

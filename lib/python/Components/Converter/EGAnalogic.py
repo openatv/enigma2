@@ -1,5 +1,7 @@
+from __future__ import division
 # shamelessly copied from BP Project
 
+from past.utils import old_div
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from time import localtime, strftime
@@ -26,11 +28,11 @@ class EGAnalogic(Converter, object):
 		t = localtime(time)	
 		
 		if self.type == 1:
-			return int((t.tm_sec *100) /60)
+			return int(old_div((t.tm_sec *100),60))
 		elif self.type == 2:
-			return int((t.tm_min *100) /60)
+			return int(old_div((t.tm_min *100),60))
 		elif self.type == 3:
-			return int(((t.tm_hour *100) /12) + (t.tm_min /8))
+			return int((old_div((t.tm_hour *100),12)) + (old_div(t.tm_min,8)))
 		
 
 	value = property(getValue)

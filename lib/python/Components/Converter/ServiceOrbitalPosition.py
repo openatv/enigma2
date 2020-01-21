@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import division
+from past.utils import old_div
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceCenter
 from ServiceReference import resolveAlternate
@@ -45,9 +47,9 @@ class ServiceOrbitalPosition(Converter, object):
 					pos = 3600 - pos
 					direction = 'W'
 				if self.type == self.SHORT:
-					return "%d.%d%s" % (pos/10, pos%10, direction)
+					return "%d.%d%s" % (old_div(pos,10), pos%10, direction)
 				else:
-					return "%d.%d° %s" % (pos/10, pos%10, direction)
+					return "%d.%d° %s" % (old_div(pos,10), pos%10, direction)
 			return tunerType
 		if ref:
 			refString = ref.toString().lower()

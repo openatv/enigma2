@@ -1,8 +1,13 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+from builtins import chr
+from builtins import str
+from builtins import object
 import os
 import time
-import cPickle as pickle
+import pickle as pickle
 
 from enigma import eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, pNavigation
 
@@ -417,7 +422,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 	def cancelClick(self):
 		self.close(None)
 
-class SelectionEventInfo:
+class SelectionEventInfo(object):
 	def __init__(self):
 		self["Service"] = ServiceEvent()
 		self.list.connectSelChanged(self.__selectionChanged)
@@ -840,7 +845,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.list.moveToChar(charstr[0], self["chosenletter"])
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
+		unichar = chr(getPrevAsciiCode())
 		charstr = unichar.encode("utf-8")
 		if len(charstr) == 1:
 			self.list.moveToString(charstr[0], self["chosenletter"])

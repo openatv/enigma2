@@ -1,6 +1,10 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from __future__ import print_function
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import object
 from base64 import encodestring
 from os import listdir, remove, rename, system, popen, path
 
@@ -24,7 +28,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
-from urlparse import urlparse, urlunparse
+from urllib.parse import urlparse, urlunparse
 import skin
 
 #TOGGLE_SHOW = InfoBar.toggleShow
@@ -107,7 +111,7 @@ class HelpableNumberActionMap(NumberActionMap):
 	def __init__(self, parent, context, actions, prio):
 		alist = []
 		adict = {}
-		for (action, funchelp) in actions.iteritems():
+		for (action, funchelp) in actions.items():
 			alist.append((action, funchelp[1]))
 			adict[action] = funchelp[0]
 		NumberActionMap.__init__(self, [context], adict, prio)
@@ -1209,7 +1213,7 @@ class CCcamInfoServerMenu(Screen):
 
 #############################################################
 
-class CCcamInfoRemoteBox:
+class CCcamInfoRemoteBox(object):
 	def __init__(self, name, ip, username, password, port):
 		self.name = name
 		self.ip = ip

@@ -1,4 +1,7 @@
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
 from skin import parseFont
@@ -50,16 +53,16 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			else:
 					repeatedtext = ", ".join(repeatedtext)
 			if self.iconRepeat:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, self.rowSplit + (self.itemHeight - self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, self.iconRepeat))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, old_div(self.iconMargin, 2), self.rowSplit + old_div((self.itemHeight - self.rowSplit - self.iconHeight), 2), self.iconWidth, self.iconHeight, self.iconRepeat))
 		else:
 			repeatedtext = begin[0] # date
 		if timer.justplay:
 			if timer.end > timer.begin + 3:
-				text = repeatedtext + ((" %s ... %s (" + _("ZAP") + ", %d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+				text = repeatedtext + ((" %s ... %s (" + _("ZAP") + ", %d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], old_div((timer.end - timer.begin), 60)))
 			else:
 				text = repeatedtext + ((" %s (" + _("ZAP") + ")") % (begin[1]))
 		else:
-			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], old_div((timer.end - timer.begin), 60)))
 
 		icon = None
 		if not processed:
@@ -97,7 +100,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			state = _("done!")
 			icon = self.iconDone
 
-		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconMargin / 2, (self.rowSplit - self.iconHeight) / 2, self.iconWidth, self.iconHeight, icon))
+		icon and res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, old_div(self.iconMargin, 2), old_div((self.rowSplit - self.iconHeight), 2), self.iconWidth, self.iconHeight, icon))
 
 		orbpos = self.getOrbitalPos(timer.service_ref)
 		orbposWidth = getTextBoundarySize(self.instance, self.font, self.l.getItemSize(), orbpos).width()

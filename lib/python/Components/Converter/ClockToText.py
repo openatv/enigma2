@@ -1,4 +1,7 @@
 from __future__ import absolute_import
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from .Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
@@ -9,9 +12,9 @@ class ClockToText(Converter, object):
 		# 		TRANSLATORS: short time representation hour:minute (Same as "Default")
 		"": lambda t: strftime(config.usage.time.short.value, localtime(t)),  # _("%R")
 		#
-		"AsLength": lambda t: "" if t < 0 else "%d:%02d" % (t / 60, t % 60),
-		"AsLengthHours": lambda t: "" if t < 0 else "%d:%02d" % (t / 3600, t / 60 % 60),
-		"AsLengthSeconds": lambda t: "" if t < 0 else "%d:%02d:%02d" % (t / 3600, t / 60 % 60, t % 60),
+		"AsLength": lambda t: "" if t < 0 else "%d:%02d" % (old_div(t, 60), t % 60),
+		"AsLengthHours": lambda t: "" if t < 0 else "%d:%02d" % (old_div(t, 3600), old_div(t, 60) % 60),
+		"AsLengthSeconds": lambda t: "" if t < 0 else "%d:%02d:%02d" % (old_div(t, 3600), old_div(t, 60) % 60, t % 60),
 		# 		TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 		"Date": lambda t: strftime(config.usage.date.dayfull.value, localtime(t)),  # _("%A %e %B %Y")
 		# 		TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
@@ -29,7 +32,7 @@ class ClockToText(Converter, object):
 		# 		TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
 		"FullDate": lambda t: strftime(config.usage.date.shortdayfull.value, localtime(t)),  # _("%a %e %B %Y")
 		#
-		"InMinutes": lambda t: ngettext("%d Min", "%d Mins", (t / 60)) % (t / 60),
+		"InMinutes": lambda t: ngettext("%d Min", "%d Mins", (old_div(t, 60))) % (old_div(t, 60)),
 		# 		TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 		"LongDate": lambda t: strftime(config.usage.date.dayshortfull.value, localtime(t)),  # _("%A %e %B")
 		# 		TRANSLATORS: long date representation short dayname daynum short monthname year hour:minute in strftime() format! See 'man strftime'

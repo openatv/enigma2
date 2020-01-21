@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 import os
 from shutil import rmtree
 from bisect import insort
@@ -8,7 +10,7 @@ from Tools.Profile import profile
 from Plugins.Plugin import PluginDescriptor
 import keymapparser
 
-class PluginComponent:
+class PluginComponent(object):
 	firstRun = True
 	restartRequired = False
 

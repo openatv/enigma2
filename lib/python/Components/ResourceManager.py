@@ -1,5 +1,6 @@
 from __future__ import print_function
-class ResourceManager:
+from builtins import object
+class ResourceManager(object):
 	def __init__(self):
 		self.resourceList = {}
 

@@ -1,5 +1,6 @@
 from __future__ import print_function
-class UnitMultipliers:
+from builtins import object
+class UnitMultipliers(object):
 	Si = (
 		("", 10 ** 0),
 		("k", 10 ** 3),
@@ -49,7 +50,7 @@ class UnitMultipliers:
 
 	Default = Si
 
-class UnitScaler:
+class UnitScaler(object):
 	def __init__(self, scaleTable=UnitMultipliers.Default, firstScaleIndex=1, maxNumLen=4, decimals=0):
 		self.scaleTable = scaleTable
 		self.firstScaleIndex = min(firstScaleIndex, len(scaleTable) - 1)

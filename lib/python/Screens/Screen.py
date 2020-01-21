@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import range
 from Tools.Profile import profile
 
 profile("LOAD:GUISkin")
@@ -12,7 +14,7 @@ from enigma import eRCInput
 
 class Screen(dict, GUISkin):
 
-	False, SUSPEND_STOPS, SUSPEND_PAUSES = range(3)
+	False, SUSPEND_STOPS, SUSPEND_PAUSES = list(range(3))
 	ALLOW_SUSPEND = False
 
 	global_screen = None
@@ -87,7 +89,7 @@ class Screen(dict, GUISkin):
 #			assert self.session == None, "a screen can only exec once per time"
 #			self.session = session
 
-			for val in self.values() + self.renderer:
+			for val in list(self.values()) + self.renderer:
 				val.execBegin()
 				if not self.stand_alone and self.session.current_dialog != self:
 					return
@@ -128,7 +130,7 @@ class Screen(dict, GUISkin):
 			val.disconnectAll()  # disconnected converter/sources and probably destroy them. Sources will not be destroyed.
 
 		del self.session
-		for (name, val) in self.items():
+		for (name, val) in list(self.items()):
 			val.destroy()
 			del self[name]
 
@@ -156,7 +158,7 @@ class Screen(dict, GUISkin):
 		self.instance.show()
 		for x in self.onShow:
 			x()
-		for val in self.values() + self.renderer:
+		for val in list(self.values()) + self.renderer:
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onShow()
 
@@ -167,7 +169,7 @@ class Screen(dict, GUISkin):
 		self.instance.hide()
 		for x in self.onHide:
 			x()
-		for val in self.values() + self.renderer:
+		for val in list(self.values()) + self.renderer:
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onHide()
 

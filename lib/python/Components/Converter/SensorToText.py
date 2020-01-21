@@ -1,3 +1,4 @@
+from builtins import str
 from Components.Converter.Converter import Converter
 
 class SensorToText(Converter, object):
