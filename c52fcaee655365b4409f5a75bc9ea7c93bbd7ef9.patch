@@ -1,0 +1,260 @@
+From c52fcaee655365b4409f5a75bc9ea7c93bbd7ef9 Mon Sep 17 00:00:00 2001
+From: Betacentauri <betacentauri@arcor.de>
+Date: Sat, 23 Feb 2019 18:19:52 +0100
+Subject: [PATCH] Map python2 c api functions to python3 ones
+
+Or use #if PY_MAJOR_VERSION to make compatible code
+---
+ .../Extensions/SocketMMI/src/socket_mmi.cpp   | 19 +++++++++
+ lib/python/python.h                           | 41 +++++++++++++++++++
+ lib/python/python_base.i                      | 18 ++++++++
+ lib/python/python_console.i                   | 18 ++++++++
+ lib/python/python_service.i                   |  4 ++
+ lib/service/servicedvd.cpp                    | 18 ++++++++
+ 6 files changed, 118 insertions(+)
+
+diff --git a/lib/python/Plugins/Extensions/SocketMMI/src/socket_mmi.cpp b/lib/python/Plugins/Extensions/SocketMMI/src/socket_mmi.cpp
+index ccbb460513..b52cd8aa2a 100644
+--- a/lib/python/Plugins/Extensions/SocketMMI/src/socket_mmi.cpp
++++ b/lib/python/Plugins/Extensions/SocketMMI/src/socket_mmi.cpp
+@@ -470,10 +470,29 @@ static PyMethodDef module_methods[] = {
+ 	{NULL, NULL, 0, NULL}   /* Sentinel */
+ };
+ 
++#if PY_MAJOR_VERSION >= 3
++	static struct PyModuleDef moduledef = {
++		PyModuleDef_HEAD_INIT,
++		"socketmmi",											/* m_name */
++		"Module that implements mmi via unix domain socket.",	/* m_doc */
++		-1,														/* m_size */
++		module_methods,											/* m_methods */
++		NULL,													/* m_reload */
++		NULL,													/* m_traverse */
++		NULL,													/* m_clear */
++		NULL,													/* m_free */
++	};
++#endif
++
++
+ PyMODINIT_FUNC
+ initsocketmmi(void)
+ {
++#if PY_MAJOR_VERSION >= 3
++	PyModule_Create(&moduledef);
++#else
+ 	Py_InitModule3("socketmmi", module_methods,
+ 		"Module that implements mmi via unix domain socket.");
++#endif
+ }
+ };
+diff --git a/lib/python/python.h b/lib/python/python.h
+index 53cffd0ad5..0a3f9760a8 100644
+--- a/lib/python/python.h
++++ b/lib/python/python.h
+@@ -6,8 +6,25 @@
+ 
+ #include <string>
+ #include <lib/base/object.h>
++#include "Python.h"
+ 
+ #if !defined(SKIP_PART1) && !defined(SWIG)
++
++#if PY_MAJOR_VERSION >= 3
++#define PyStringObject PyUnicodeObject
++#define PyString_FromStringAndSize PyUnicode_FromStringAndSize
++#define PyString_AS_STRING PyUnicode_AsUTF8
++#define PyString_AsString PyUnicode_AsUTF8
++#define PyString_Check PyUnicode_Check
++#define PyString_Size PyBytes_Size
++
++#define PyInt_AsLong PyLong_AsLong
++#define PyInt_Check PyLong_Check
++#define PyInt_AsUnsignedLongMask PyLong_AsUnsignedLongMask
++
++#define PyExc_StandardError PyExc_Exception
++#endif
++
+ class ePyObject
+ {
+ 	PyObject *m_ob;
+@@ -235,21 +252,33 @@ inline ePyObject Impl_PyDict_New(const char* file, int line)
+ 
+ inline ePyObject Impl_PyString_FromString(const char* file, int line, const char *str)
+ {
++#if PY_MAJOR_VERSION >= 3
++	return ePyObject(PyUnicode_FromString(str), file, line);
++#else
+ 	return ePyObject(PyString_FromString(str), file, line);
++#endif
+ }
+ 
+ inline ePyObject Impl_PyString_FromFormat(const char* file, int line, const char *fmt, ...)
+ {
+ 	va_list ap;
+ 	va_start(ap, fmt);
++#if PY_MAJOR_VERSION >= 3
++	PyObject *ob = PyUnicode_FromFormatV(fmt, ap);
++#else
+ 	PyObject *ob = PyString_FromFormatV(fmt, ap);
++#endif
+ 	va_end(ap);
+ 	return ePyObject(ob, file, line);
+ }
+ 
+ inline ePyObject Impl_PyInt_FromLong(const char* file, int line, long val)
+ {
++#if PY_MAJOR_VERSION >= 3
++	return ePyObject(PyLong_FromLong(val), file, line);
++#else
+ 	return ePyObject(PyInt_FromLong(val), file, line);
++#endif
+ }
+ 
+ inline ePyObject Impl_PyLong_FromLong(const char* file, int line, long val)
+@@ -320,21 +349,33 @@ inline ePyObject Impl_PyDict_New()
+ 
+ inline ePyObject Impl_PyString_FromString(const char *str)
+ {
++#if PY_MAJOR_VERSION >= 3
++	return PyUnicode_FromString(str);
++#else
+ 	return PyString_FromString(str);
++#endif
+ }
+ 
+ inline ePyObject Impl_PyString_FromFormat(const char *fmt, ...)
+ {
+ 	va_list ap;
+ 	va_start(ap, fmt);
++#if PY_MAJOR_VERSION >= 3
++	PyObject *ob = PyUnicode_FromFormatV(fmt, ap);
++#else
+ 	PyObject *ob = PyString_FromFormatV(fmt, ap);
++#endif
+ 	va_end(ap);
+ 	return ePyObject(ob);
+ }
+ 
+ inline ePyObject Impl_PyInt_FromLong(long val)
+ {
++#if PY_MAJOR_VERSION >= 3
++	return PyLong_FromLong(val);
++#else
+ 	return PyInt_FromLong(val);
++#endif
+ }
+ 
+ inline ePyObject Impl_PyLong_FromLong(long val)
+diff --git a/lib/python/python_base.i b/lib/python/python_base.i
+index cd9e4e0cc3..b44efe623b 100644
+--- a/lib/python/python_base.i
++++ b/lib/python/python_base.i
+@@ -399,10 +399,28 @@ static PyMethodDef base_module_methods[] = {
+ 	{NULL}  /* Sentinel */
+ };
+ 
++#if PY_MAJOR_VERSION >= 3
++	static struct PyModuleDef eBase_moduledef = {
++	PyModuleDef_HEAD_INIT,
++	"eBaseImpl",																			/* m_name */
++	"Module that implements some enigma classes with working cyclic garbage collection.",	/* m_doc */
++	-1,																						/* m_siz
++	base_module_methods,																	/* m_methods */
++	NULL,																					/* m_reload */
++	NULL,																					/* m_traverse */
++	NULL,																					/* m_clear */
++	NULL,																					/* m_free */
++	};
++#endif
++
+ void eBaseInit(void)
+ {
++#if PY_MAJOR_VERSION >= 3
++	PyObject* m = PyModule_Create(&eBase_moduledef);
++#else
+ 	PyObject* m = Py_InitModule3("eBaseImpl", base_module_methods,
+ 		"Module that implements some enigma classes with working cyclic garbage collection.");
++#endif
+ 
+ 	if (m == NULL)
+ 		return;
+diff --git a/lib/python/python_console.i b/lib/python/python_console.i
+index 9fbfcf8d30..6211e33c83 100644
+--- a/lib/python/python_console.i
++++ b/lib/python/python_console.i
+@@ -379,10 +379,28 @@ static PyMethodDef console_module_methods[] = {
+ 	{NULL}  /* Sentinel */
+ };
+ 
++#if PY_MAJOR_VERSION >= 3
++	static struct PyModuleDef eConsole_moduledef = {
++	PyModuleDef_HEAD_INIT,
++	"eConsoleImpl",																			/* m_name */
++	"Module that implements eConsoleAppContainer with working cyclic garbage collection.",	/* m_doc */
++	-1,																						/* m_siz
++	console_module_methods,																	/* m_methods */
++	NULL,																					/* m_reload */
++	NULL,																					/* m_traverse */
++	NULL,																					/* m_clear */
++	NULL,																					/* m_free */
++	};
++#endif
++
+ void eConsoleInit(void)
+ {
++#if PY_MAJOR_VERSION >= 3
++	PyObject* m = PyModule_Create(&eConsole_moduledef);
++#else
+ 	PyObject* m = Py_InitModule3("eConsoleImpl", console_module_methods,
+ 		"Module that implements eConsoleAppContainer with working cyclic garbage collection.");
++#endif
+ 
+ 	if (m == NULL)
+ 		return;
+diff --git a/lib/python/python_service.i b/lib/python/python_service.i
+index 12ae85492b..1ad7ba83e9 100644
+--- a/lib/python/python_service.i
++++ b/lib/python/python_service.i
+@@ -112,7 +112,11 @@ PyObject *getInfoObject(int w)
+ 				data = info->getBuffer(size);
+ 				if (data && size)
+ 				{
++%#if PY_MAJOR_VERSION >= 3
++					return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ);
++%#else
+ 					return PyBuffer_FromMemory(data, size);
++%#endif
+ 				}
+ 				else
+ 				{
+diff --git a/lib/service/servicedvd.cpp b/lib/service/servicedvd.cpp
+index 9fd252c03f..329c303113 100644
+--- a/lib/service/servicedvd.cpp
++++ b/lib/service/servicedvd.cpp
+@@ -1171,8 +1171,26 @@ void eServiceDVD::saveCuesheet()
+ 
+ eAutoInitPtr<eServiceFactoryDVD> init_eServiceFactoryDVD(eAutoInitNumbers::service+1, "eServiceFactoryDVD");
+ 
++#if PY_MAJOR_VERSION >= 3
++	static struct PyModuleDef servicedvd_moduledef = {
++		PyModuleDef_HEAD_INIT,
++		"servicedvd",	/* m_name */
++		"servicedvd",	/* m_doc */
++		-1,				/* m_size */
++		NULL,			/* m_methods */
++		NULL,			/* m_reload */
++		NULL,			/* m_traverse */
++		NULL,			/* m_clear */
++		NULL,			/* m_free */
++	};
++#endif
++
+ PyMODINIT_FUNC
+ initservicedvd(void)
+ {
++#if PY_MAJOR_VERSION >= 3
++	PyModule_Create(&servicedvd_moduledef);
++#else
+ 	Py_InitModule("servicedvd", NULL);
++#endif
+ }
