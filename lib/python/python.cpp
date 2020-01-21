@@ -118,6 +118,13 @@ void ePyObject::decref(const char *file, int line)
 #include <lib/python/python.h>
 #undef SKIP_PART1
 
+#if PY_MAJOR_VERSION >= 3
+extern "C" PyObject* PyInit__enigma(void);
+#define init_enigma PyInit__enigma
+#else
+extern "C" void init_enigma(void);
+#endif
+
 ePython::ePython()
 {
 //	Py_VerboseFlag = 1;
