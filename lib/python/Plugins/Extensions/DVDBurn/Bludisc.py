@@ -16,8 +16,8 @@ VIDEO_TYPES	= { 'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion
 AUDIO_TYPES	= { 'audio/mpeg, mpegversion=(int)1': 0x03, 'audio/mpeg, mpegversion=(int)2': 0x04, 'audio/x-lpcm': 0x80, 'audio/x-ac3': 0x81, 'audio/x-dts': 0x82, 'TRUEHD': 0x83, 'AC3+': 0x84, 'DTSHD': 0x85, 'DTSHD Master': 0x86 }
 VIDEO_FORMATS	= { 'i480': 1, 'i576': 2, 'p480': 3, 'i1080': 4, 'p720': 5, 'p1080': 6, 'p576': 7 }
 VIDEO_RATES	= { 23976: 1, 24000: 2, 25000: 3, 29970: 4, 50000: 6, 59940: 7 }
-AUDIO_CHANNELS  = { "reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12 }
-AUDIO_RATES     = { 48000: 1, 96000: 4, 192000: 5, 48/192: 12, 48/96: 14 }
+AUDIO_CHANNELS	= { "reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12 }
+AUDIO_RATES	= { 48000: 1, 96000: 4, 192000: 5, 48/192: 12, 48/96: 14 }
 
 class BludiscTitle(object):
 	def __init__(self, title):
@@ -47,9 +47,9 @@ class BludiscTitle(object):
 			if stream.isVideo:
 				streams.append(stream)
 		return streams
-	
+
 	VideoStreams = property(getVideoStreams)
-	
+
 	def getAudioStreams(self):
 		streams = []
 		for stream in self.__streams.values():
@@ -92,8 +92,8 @@ class BludiscTitle(object):
 
 class BludiscStream(object):
 	def __init__(self, parent, PID):
-	  	self.__parent = parent
-	  	self.__PID = PID
+		self.__parent = parent
+		self.__PID = PID
 		self.__streamtype = 0x00
 		self.__framerate = None
 		self.__audiorate = 0
@@ -134,10 +134,10 @@ class BludiscStream(object):
 		return struct.pack('B',self.__streamtype)
 
 	streamType = property(getStreamtypeByte, setStreamtype)
-	
+
 	def getPIDBytes(self):
 		return struct.pack('>H',self.__PID)
-	
+
 	pid = property(getPIDBytes)
 
 	def getFormatByte(self):
@@ -168,7 +168,7 @@ class BludiscStream(object):
 			byteval = (self.__audiopresentation << 4) + self.__audiorate
 
 		return struct.pack('B',byteval)
-	
+
 	formatByte = property(getFormatByte)
 
 	def setAudioPresentation(self, channels):
@@ -186,10 +186,10 @@ class BludiscStream(object):
 	def getAspectByte(self):
 		aspect = self.__parent.properties.aspect.value
 		if self.isVideo:
-		      if aspect == "16:9":
-			    return struct.pack('B',0x30)
-		      elif aspect == "4:3":
-			    return struct.pack('B',0x20)
+			if aspect == "16:9":
+				return struct.pack('B',0x30)
+			elif aspect == "4:3":
+				return struct.pack('B',0x20)
 
 	aspect = property(getAspectByte)
 
@@ -477,7 +477,7 @@ class CreateMplsTask(Task):
 		
 		if num_primary_video == 0:
 			self.error_text = "Title %05d has no valid video streams!" % self.mpls_num
-raise_(Exception, self.error_text)
+			raise_(Exception, self.error_text)
 
 		num_primary_audio = len(self.title.AudioStreams)
 
