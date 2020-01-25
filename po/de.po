@@ -3945,7 +3945,7 @@ msgstr "Servicemodus *"
 
 # setup.xml 6.1 Version
 msgid "Channel list show MiniTV when Skin use."
-msgstr "MiniTV in der Kanalliste anzeigen, wenn der Skin es ermöglicht."
+msgstr "Bei 'Ja' wird MiniTV in der Kanalliste angezeigt, wenn der Skin es ermöglicht."
 
 # setup.xml 6.1 Version
 msgid "Channel list show MiniTV*"
@@ -4383,7 +4383,7 @@ msgstr "Eine zusätzliche Verzögerung einstellen, um die Synchronität der Unte
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
-"Legt die Voreinstellung für neu angelegte Timer im Menü 'Timereintrag' fest\n."
+"Legt die Voreinstellung für neu angelegte Timer im Menü 'Timereintrag' fest.\n"
 "Benötigt nach einer Änderung einen Neustart."
 
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
@@ -6589,7 +6589,7 @@ msgid "Enable terrestrial LCN:"
 msgstr ""
 
 msgid "Enable the current value of the slider at end of the slider bar."
-msgstr "Bei 'Ja' wird der aktuelle Schiebereglerwert am Ende des Schiebereglers angezeigt."
+msgstr "Bei 'Ja' wird in Menüs mit Schiebereglern rechts neben dem Schieberegler der aktuell eingestellte Wert als Zahl angezeigt."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötigt"
@@ -8005,7 +8005,7 @@ msgstr ""
 "welche Dateien mit einem Online-Update aktualisiert werden sollen"
 
 msgid "Here you can set what is called when pressing the 'Info' key."
-msgstr "Hier können Sie einstellen, was beim Betätigen der INFO Taste aufgerufen wird."
+msgstr "Einstellen, was beim Betätigen der INFO Taste aufgerufen werden soll."
 
 msgid "Here you can specify additional files that should be added to the backup file."
 msgstr "Hier kann festgelegt werden, welche Dateien zusätzlich zu denen der Standardliste gesichert werden."
@@ -12153,7 +12153,7 @@ msgid "Press yellow to set this interface as the default interface."
 msgstr "Drücken Sie die Taste GELB, um diese Schnittstelle als Standardschnittstelle festzulegen."
 
 msgid "Pressing the panic button will zap you to this channelnumber in your first bouquet."
-msgstr "Durch drücken der Panik-Taste, wird zu diesem Kanal in Ihrem ersten Bouquet umgeschaltet."
+msgstr "Die Kanalnummer (in Ihrem ersten Bouquet) einstellen, zu der bei Drücken der Panik-Taste umgeschaltet wird."
 
 msgid "Prev quad PiP channel"
 msgstr "Auf die vorherige Sendergruppe schalten"
@@ -14235,13 +14235,13 @@ msgstr "Kanäle"
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
 "Sender können in Favoriten gruppiert werden.\n"
-"Wenn aktiviert, kann mehr als eine Favoritenliste benutzt werden."
+"Bei 'Ja' kann mehr als eine Favoritenliste benutzt werden."
 
 msgid "Set Basetime"
 msgstr "Setze Basiszeit"
 
 msgid "Set CI assignment for detection of available services."
-msgstr "Ermittlung verfügbarer Kanäle inklusive Berücksichtigung der CI-Zuweisung."
+msgstr "Bei 'Ja' Ermittlung verfügbarer Kanäle inklusive Berücksichtigung der CI-Zuweisung."
 
 #
 msgid "Set Framerate for MiniTV"
@@ -14372,25 +14372,25 @@ msgid "Set the time to wait for execute the default action in shutdown, standby 
 msgstr "Legen Sie die Wartezeit für die Ausführung der Standardaktion in den Meldungen Ausschalten, Standby oder Neustart fest (z.B. verwendet in Timer, PowerTimer, Ausschalttimer etc.)."
 
 msgid "Set the type of the progress indication in the channel selection screen."
-msgstr "Wählen Sie die Art der Fortschrittsanzeige in der Kanalliste."
+msgstr "Einstellen, ob und wie die Fortschrittsanzeige in der Kanalliste angezeigt wird."
 
 msgid "Set time window to 1 hour"
-msgstr "Setzt das Zeitfenster auf 1 Stunde"
+msgstr "Setzt das Zeitfenster auf 1 Stunde."
 
 msgid "Set time window to 2 hours"
-msgstr "Setzt das Zeitfenster auf 2 Stunden"
+msgstr "Setzt das Zeitfenster auf 2 Stunden."
 
 msgid "Set time window to 3 hours"
-msgstr "Setzt das Zeitfenster auf 3 Stunden"
+msgstr "Setzt das Zeitfenster auf 3 Stunden."
 
 msgid "Set time window to 4 hours"
-msgstr "Setzt das Zeitfenster auf 4 Stunden"
+msgstr "Setzt das Zeitfenster auf 4 Stunden."
 
 msgid "Set time window to 5 hours"
-msgstr "Setzt das Zeitfenster auf 5 Stunden"
+msgstr "Setzt das Zeitfenster auf 5 Stunden."
 
 msgid "Set time window to 6 hours"
-msgstr ""
+msgstr "Setzt das Zeitfenster auf 6 Stunden."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Die Stunde der Primetime einstellen."
@@ -14507,13 +14507,13 @@ msgid "Setup Videomode"
 msgstr "Konfiguration Bild"
 
 msgid "Setup delay mode to zap to channels."
-msgstr "Hier können Sie den Verzögerungsmodus beim Umschalten einstellen."
+msgstr "Verzögerungsmodus beim Umschalten ein- oder ausstellen."
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Einstellungen für jeden Tuner"
 
 msgid "Setup how to control the channel changing."
-msgstr "Steuert das Verhalten beim Umschalten, bis der nächste Sender verfügbar ist."
+msgstr "Das Verhalten beim Umschalten, bis der nächste Sender verfügbar ist, einstellen."
 
 msgid "Setup interface"
 msgstr "Einstellungen Netzwerk"
@@ -15146,7 +15146,9 @@ msgid "Show service list"
 msgstr "Zeige Kanalliste"
 
 msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
-msgstr "Zeigt den Namen des Senders und die Sendungsbeschreibung untereinander statt nebeneinander an. Nach einer Änderung ist die Anpassung der Zeilenanzahl erforderlich."
+msgstr ""
+"'Ja' zeigt den Namen des Senders und die Sendungsbeschreibung untereinander statt nebeneinander an.\n"
+"Nach einer Änderung ist die Anpassung der Zeilenanzahl erforderlich."
 
 msgid "Show service type icons"
 msgstr "Anzeige des Servicetyps"
@@ -17024,7 +17026,7 @@ msgid "This option allows you to change the virtuell loadspeaker position."
 msgstr "Diese Option erlaubt es Ihnen, die virtuelle Position der Lautsprecher zu verändern."
 
 msgid "This option allows you to choose from the two channel lists that are available."
-msgstr "Diese Option gibt Ihnen die Wahl zwischen den beiden verfügbaren Kanallisten."
+msgstr "Das Aussehen der verfügbaren Kanallisten einstellen."
 
 msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Einstellen, wie 1080p 24Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
@@ -18387,10 +18389,10 @@ msgid "User defined"
 msgstr "Benutzerdefiniert"
 
 msgid "User defined delay when you press another button to zap to the channel."
-msgstr "Hier können Sie die Umschaltverzögerung der weiteren Zifferntasten einstellen."
+msgstr "Die Umschaltverzögerung der weiteren Zifferntasten einstellen."
 
 msgid "User defined delay when you press the first button to zap to the channel."
-msgstr "Hier können Sie die Umschaltverzögerung der ersten Zifferntaste einstellen."
+msgstr "Die Umschaltverzögerung der ersten Zifferntaste einstellen."
 
 #
 msgid "User defined transponder"
@@ -19028,7 +19030,7 @@ msgstr "Wenn aktiviert, werden EIT Daten in HTTP Streams eingebettet. Dies erlau
 
 # channelselection 5.1
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Wenn Sie diese Option aktivieren, werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in der 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Favoritenlisten zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
+msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in der 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Favoritenlisten zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Bei 'Ja' wird eine Info angezeigt sobald ein Film beendet ist und der nächste beginnt."
@@ -19061,7 +19063,7 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bei 'Ja' wird eine Authentifizierung für HTTP-Streams benötigt."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Wenn aktiviert, fangen die Sendernummern in jeder Favoritenliste mit '1' an."
+msgstr "Bei 'Ja' fangen die Sendernummern in jeder Favoritenliste mit '1' an."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Wenn aktiviert, werden Videoinhalte mit einem Seitenverhältnis von 4:3 gestreckt dargestellt, um den Bildschirm zu füllen."
@@ -19069,7 +19071,7 @@ msgstr "Wenn aktiviert, werden Videoinhalte mit einem Seitenverhältnis von 4:3 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr ""
 "Sender können in Favoriten gruppiert werden.\n"
-"Wenn aktiviert, kann beim Zappen die Favoritenliste gewechselt werden."
+"Bei 'Ja' kann beim Zappen die Favoritenliste gewechselt werden."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Bei 'Ja' werden gelöschte Aufnahmen in den Papierkorb verschoben, bei 'Nein' sofort und unwiderruflich gelöscht."
@@ -19100,17 +19102,17 @@ msgid "When enabled, network trash cans are probed for cleaning."
 msgstr "Hier können Sie festlegen, ob Netzwerk-Papierkörbe auch geleert werden."
 
 msgid "When enabled, number markers will be hidden."
-msgstr "Wenn diese Option aktiviert ist, werden die nummerierten Marker ausgeblendet."
+msgstr "Bei 'Ja' werden nummerierte Marker ausgeblendet."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Wenn aktiviert, wird mit '0' zum ersten Sender Ihrer ersten Favoritenliste umgeschaltet und die Umschalthistorie wird gelöscht."
+msgstr "Bei 'Ja' wird mit '0' zum ersten Sender Ihrer ersten Favoritenliste umgeschaltet und die Umschalthistorie wird gelöscht."
 
 # Subtitle 5.1 ersetzt : Rewrap teletext subtitles description
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Wenn aktiviert, werden Untertitel auf die Größe des Bildschirms neu formatiert."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
-msgstr "Wenn aktiviert, werden Sendernummern in der Kanalliste angezeigt."
+msgstr "Bei 'Ja' werden Sendernummern in der Kanalliste angezeigt."
 
 msgid "When enabled, show status or error messages."
 msgstr "Bei 'Ja' werden Status- oder Fehlermeldungen angezeigt."
@@ -19168,10 +19170,14 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Wenn aktiviert, wird Live-TV gezeigt wenn der Film beendet wurde."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "Wenn der Bildinhalt ein Seitenverhältnis größer als 16:9 hat, stellen Sie ein, ob und wie das Bild skaliert oder gestreckt werden soll. Standard ist 'Letterbox'."
+msgstr ""
+"Wenn der Bildinhalt ein Seitenverhältnis größer als 16:9 hat, stellen Sie ein, ob und wie das Bild skaliert oder gestreckt werden soll.\n"
+"Standard ist 'Letterbox'."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "Wenn der Bildinhalt ein Seitenverhältnis von 4:3 hat, stellen Sie ein, ob und wie das Bild skaliert oder gestreckt werden soll. Standard ist 'Pillarbox'."
+msgstr ""
+"Wenn der Bildinhalt ein Seitenverhältnis von 4:3 hat, stellen Sie ein, ob und wie das Bild skaliert oder gestreckt werden soll.\n"
+"Standard ist 'Pillarbox'."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Wenn ein Sender eingestellt ist, durchsucht die %s %s den Transponder nach Änderungen und speichert diese. Nur 'Ja' wählen, wenn Sie sich über die Auswirkungen bewusst sind."
@@ -19246,12 +19252,10 @@ msgid "With popup"
 msgstr "Mit Meldung"
 
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
-msgstr ""
-"Bei 'Ja' wird bei jeder Kanalliste die Favoritenauswahl gezeigt,\n"
-"ansonsten die aktuelle Favoritenliste sofort geöffnet."
+msgstr "Bei 'Ja' wird bei jeder Kanalliste die Favoritenauswahl gezeigt, ansonsten die aktuelle Favoritenliste sofort geöffnet."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
-msgstr "Mit kurzem Druck auf BLAU können Sie Jobs in Erweiterungen verstecken."
+msgstr "Bei 'Ja' werden noch im Hintergrund laufende Aktionen (Jobs) im Erweiterungsmenü (Taste BLAU lang oder kurz, je nach Einstellung) angezeigt."
 
 msgid "With this option you can switch off the display during operation."
 msgstr "Mit dieser Option können Sie das Display während des Betriebs ausschalten."
@@ -20175,7 +20179,7 @@ msgid "card reader"
 msgstr "Kartenleser"
 
 msgid "cartoon/puppets"
-msgstr "Zeichtrick/Puppen"
+msgstr "Zeichentrick/Puppen"
 
 msgid "center"
 msgstr "Zentriert"
@@ -20713,7 +20717,7 @@ msgstr "Horizontal"
 
 # data/setup.xml
 msgid "if set to 'no', only an debug message is written to the Debug log "
-msgstr "Wenn die Option auf 'Nein' gesetzt wird, dann gibt es bei Fehlern im Skin nur einen Debug-Log-Eintrag"
+msgstr "Bei 'Nein' gibt es bei Fehlern im Skin nur einen Debug-Log Eintrag."
 
 msgid "increase uphop by 1"
 msgstr "Uphop um 1 erhöhen"
@@ -20971,7 +20975,7 @@ msgstr "Keine CAID ausgewählt"
 
 #
 msgid "no CI slots found"
-msgstr "Kein CI-Slot gefunden"
+msgstr "Keinen CI-Slot gefunden"
 
 msgid "no channel list"
 msgstr "keine Senderliste"
