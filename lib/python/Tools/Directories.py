@@ -25,7 +25,7 @@ SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
 SCOPE_CURRENT_PLUGIN_ABSOLUTE = 13
 SCOPE_CURRENT_PLUGIN_RELATIVE = 14
-
+SCOPE_KEYMAPS = 15
 SCOPE_METADIR = 16
 SCOPE_CURRENT_PLUGIN = 17
 SCOPE_TIMESHIFT = 18
@@ -55,6 +55,7 @@ defaultPaths = {
 	SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
 	SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
 	SCOPE_CURRENT_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
+	SCOPE_KEYMAPS: (eEnv.resolve("${datadir}/keymaps/"), PATH_CREATE),
 	SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
 	SCOPE_CURRENT_PLUGIN: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
 	SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
