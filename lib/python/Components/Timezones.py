@@ -53,7 +53,7 @@ class Timezones:
 		if getMachineBrand() == "Beyonwiz":
 			t = "(GMT+10:00) Canberra, Melbourne, Sydney"
 		else:
-			t = "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna"
+			t = "(GMT+01:00) Germany: Berlin"
 		for (a,b) in self.timezones:
 			if a == t:
 				return a
