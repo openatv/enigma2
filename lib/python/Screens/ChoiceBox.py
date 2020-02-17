@@ -47,6 +47,8 @@ class ChoiceBox(Screen):
 			title = _(title)
 			if len(title) < title_max and title.find('\n') == -1:
 				Screen.setTitle(self, title)
+				if text != "":
+					self["text"] = Label(_(text))
 			elif title.find('\n') != -1:
 				temptext = title.split('\n')
 				if len(temptext[0]) < title_max:
