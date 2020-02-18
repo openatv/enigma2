@@ -149,10 +149,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_tags = self.timer.tags[:]
 		# if no tags found, make name of event default tag set.
 		if not self.timerentry_tags:
-				tagname = self.timer.name.strip()
-				if tagname:
-					tagname = tagname[0].upper() + tagname[1:].replace(" ", "_")
-					self.timerentry_tags.append(tagname)
+			tagname = self.timer.name.strip()
+			if tagname:
+				tagname = tagname[0].upper() + tagname[1:].replace(" ", "_")
+				self.timerentry_tags.append(tagname)
 
 		self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
@@ -205,6 +205,26 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.list = []
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
 		self.list.append(self.timerJustplayEntry)
+		
+		description = free = ""
+		try:
+			if self.timerentry_justplay.value != "zap":
+				stat = statvfs(self.timerentry_dirname.value)
+				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
+				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
+				c = 100.0 * b / a
+				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
+				description = _("Current location")
+		except:
+			pass
+		self["locationdescription"].setText(description)
+		self["locationfreespace"].setText(free)
+
+		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where should the recording be saved?"))
+		if self.timerentry_justplay.value != "zap":
+			if config.usage.setup_level.index >= 2: # expert+
+				self.list.append(self.dirname)
+		
 		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get."))
 		self.list.append(self.entryName)
 		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording."))
@@ -258,25 +278,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_showendtime.value and self.timerentry_justplay.value == "zap":
 			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent, _("What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that.")))
 
-		description = free = ""
-		try:
-			if self.timerentry_justplay.value != "zap":
-				stat = statvfs(self.timerentry_dirname.value)
-				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
-				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
-				c = 100.0 * b / a
-				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
-				description = _("Current location")
-		except:
-			pass
-		self["locationdescription"].setText(description)
-		self["locationfreespace"].setText(free)
-
-		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where should the recording be saved?"))
 		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset, _("Choose a tag for easy finding a recording."))
 		if self.timerentry_justplay.value != "zap":
-			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(self.dirname)
 			if getPreferredTagEditor():
 				self.list.append(self.tagsSet)
 			self.list.append(getConfigListEntry(_("After Recording"), self.timerentry_afterevent, _("What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that.")))
