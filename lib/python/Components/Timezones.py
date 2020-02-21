@@ -281,6 +281,9 @@ class Timezones:
 			self.timer.startLongTimer(AT_POLL_DELAY * 60)
 
 	def autotimerCheck(self):
+		self.autotimerAvailable = False
+		self.autotimerPollDelay = None
+		return None
 		try:
 			# Create attributes autotimer & autopoller for backwards compatibility.
 			# Their use is deprecated.
