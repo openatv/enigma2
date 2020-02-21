@@ -32,6 +32,10 @@ profile("Geolocation")
 import Tools.Geolocation
 Tools.Geolocation.InitGeolocation()
 
+profile("TimeZones")
+import Components.Timezones
+Components.Timezones.InitTimeZones()
+
 profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
