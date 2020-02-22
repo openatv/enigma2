@@ -56,7 +56,7 @@ def InitTimeZones():
 	tz = geolocation.get("timezone", None)
 	if tz is None:
 		area = DEFAULT_AREA
-		zone = timezones.getTimezoneDefault()
+		zone = timezones.getTimezoneDefault(area=area)
 		print "[Timezones] Geolocation not available!  (area='%s', zone='%s')" % (area, zone)
 	elif DEFAULT_AREA == "Classic":
 		area = "Classic"
