@@ -226,7 +226,7 @@ class Timezones:
 	def getTimezoneDefault(self, area=None, choices=None):
 		areaDefaultZone = {
 			"Australia": "Sydney",
-			"Classic": "Europe/London",
+			"Classic": "Europe/%s" % DEFAULT_ZONE,
 			"Etc": "GMT",
 			"Europe": DEFAULT_ZONE,
 			"Generic": "UTC",
