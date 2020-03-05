@@ -1491,10 +1491,14 @@ def InitUsageConfig():
 	config.epgselection.graph_infowidth = ConfigSelectionNumber(default = 25, stepwidth = 25, min = 0, max = 150, wraparound = True)
 	config.epgselection.graph_rec_icon_height = ConfigSelection(choices = [("bottom",_("bottom")),("top", _("top")), ("middle", _("middle")),  ("hide", _("hide"))], default = "bottom")
 
-	epg_colorkeys = [('autotimer', _('Auto Timer')),
-					('timer', _('Add/Remove Timer')),
+	epg_colorkeys = [('24minus', _('24- Hours')),
+					('prevpage', _('Previous page')),
+					('prevbouquet', _('Previous bouquet')),
 					('24plus', _('24+ Hours')),
-					('24minus', _('24- Hours')),
+					('nextpage', _('Next page')),
+					('nextbouquet', _('Next bouquet')),
+					('autotimer', _('Auto Timer')),
+					('timer', _('Add/Remove Timer')),
 					('imdb', _('IMDB search')),
 					('bouquetlist', _('Bouquet List')),
 					('showmovies', _('Show Movies List')),
@@ -1505,6 +1509,8 @@ def InitUsageConfig():
 	config.epgselection.graph_green = ConfigSelection(default='timer', choices=epg_colorkeys)
 	config.epgselection.graph_yellow = ConfigSelection(default='epgsearch',choices=epg_colorkeys)
 	config.epgselection.graph_blue = ConfigSelection(default='autotimer', choices=epg_colorkeys)
+	
+	config.epgselection.graph_channelbtn = ConfigSelection(choices = [("24", _("-24h/+24 Hours")), ("page", _("previous/next Page")), ("bouquet", _("previous/next Bouquet"))], default = "24")
 
 	config.epgselection.vertical_itemsperpage = ConfigSelectionNumber(default = 6, stepwidth = 1, min = 3, max = 12, wraparound = True)
 	config.epgselection.vertical_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -10, max = 10, wraparound = True)
