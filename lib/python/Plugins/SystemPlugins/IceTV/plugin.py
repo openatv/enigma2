@@ -268,7 +268,7 @@ class EPGFetcher(object):
                     del self.failed[id(event)]
         elif event in self.ERROR_EVENTS:
             state = "failed"
-            if event == evRecordWriteError and id(event) not in self.failed:
+            if event == iRecordableService.evRecordWriteError and id(event) not in self.failed:
                 # use same structure as deferred_status to simplify cleanup
                 # Hold otherwise unused reference to entry so
                 # that id(entry) remains valid
