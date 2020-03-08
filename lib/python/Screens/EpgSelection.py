@@ -316,21 +316,53 @@ class EPGSelection(Screen, HelpableScreen):
 					'down': (self.moveDown, _('Goto next channel'))
 				}, -1)
 			self['epgcursoractions'].csel = self
-
-			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
-				{
-					'nextService': (self.nextService, _('Jump forward 24 hours')),
-					'prevService': (self.prevService, _('Jump back 24 hours')),
-					'nextBouquet': (self.nextBouquet, _('Goto next bouquet')),
-					'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
-					'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
-					'epg': (self.epgButtonPressed, _('Show single epg for current channel')),
-					'info': (self.Info, _('Show detailed event info')),
-					'infolong': (self.InfoLong, _('Show single epg for current channel')),
-					'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
-					'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
-					'menu': (self.createSetup, _('Setup menu'))
-				}, -1)
+			
+			if config.epgselection.graph_channelbtn.value == 'bouquet':
+				self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
+					{
+						'nextService': (self.nextBouquet, _('Goto next bouquet')),
+						'prevService': (self.prevBouquet, _('Goto previous bouquet')),
+						'nextBouquet': (self.nextBouquet, _('Goto next bouquet')),
+						'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
+						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
+						'epg': (self.epgButtonPressed, _('Show single epg for current channel')),
+						'info': (self.Info, _('Show detailed event info')),
+						'infolong': (self.InfoLong, _('Show single epg for current channel')),
+						'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
+						'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
+						'menu': (self.createSetup, _('Setup menu'))
+					}, -1)
+			elif config.epgselection.graph_channelbtn.value == 'page':
+				self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
+					{
+						'nextService': (self.nextPage, _('Page down')),
+						'prevService': (self.prevPage, _('Page up')),
+						'nextBouquet': (self.nextBouquet, _('Goto next bouquet')),
+						'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
+						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
+						'epg': (self.epgButtonPressed, _('Show single epg for current channel')),
+						'info': (self.Info, _('Show detailed event info')),
+						'infolong': (self.InfoLong, _('Show single epg for current channel')),
+						'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
+						'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
+						'menu': (self.createSetup, _('Setup menu'))
+					}, -1)
+			else:
+				self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
+					{
+						'nextService': (self.nextService, _('Jump forward 24 hours')),
+						'prevService': (self.prevService, _('Jump back 24 hours')),
+						'nextBouquet': (self.nextBouquet, _('Goto next bouquet')),
+						'prevBouquet': (self.prevBouquet, _('Goto previous bouquet')),
+						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
+						'epg': (self.epgButtonPressed, _('Show single epg for current channel')),
+						'info': (self.Info, _('Show detailed event info')),
+						'infolong': (self.InfoLong, _('Show single epg for current channel')),
+						'tv': (self.Bouquetlist, _('Toggle between bouquet/epg lists')),
+						'tvlong': (self.togglePIG, _('Toggle Picture In Graphics')),
+						'menu': (self.createSetup, _('Setup menu'))
+					}, -1)
+				
 			self['epgactions'].csel = self
 
 			self['input_actions'] = HelpableNumberActionMap(self, 'NumberActions', 
@@ -1088,6 +1120,14 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.graph_red.value == "gotodatetime":
 					self.enterDateTime()
+				if config.epgselection.graph_red.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+					self.nextPage()
+				if config.epgselection.graph_red.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+					self.prevPage()
+				if config.epgselection.graph_red.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.nextBouquet()
+				if config.epgselection.graph_red.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.prevBouquet()
 			elif self.type == EPG_TYPE_VERTICAL:
 				if config.epgselection.vertical_red.value == "24plus":
 					self.setPlus24h()
@@ -1149,6 +1189,14 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.graph_green.value == "gotodatetime":
 					self.enterDateTime()
+				if config.epgselection.graph_green.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+					self.nextPage()
+				if config.epgselection.graph_green.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+					self.prevPage()
+				if config.epgselection.graph_green.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.nextBouquet()
+				if config.epgselection.graph_green.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.prevBouquet()
 			elif self.type == EPG_TYPE_VERTICAL:
 				if config.epgselection.vertical_green.value == "24plus":
 					self.setPlus24h()
@@ -1210,6 +1258,14 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.graph_yellow.value == "gotodatetime":
 					self.enterDateTime()
+				if config.epgselection.graph_yellow.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+					self.nextPage()
+				if config.epgselection.graph_yellow.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+					self.prevPage()
+				if config.epgselection.graph_yellow.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.nextBouquet()
+				if config.epgselection.graph_yellow.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.prevBouquet()
 			elif self.type == EPG_TYPE_VERTICAL:
 				if config.epgselection.vertical_yellow.value == "24plus":
 					self.setPlus24h()
@@ -1264,6 +1320,14 @@ class EPGSelection(Screen, HelpableScreen):
 					self.RecordTimerQuestion()
 				if config.epgselection.graph_blue.value == "gotodatetime":
 					self.enterDateTime()
+				if config.epgselection.graph_blue.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+					self.nextPage()
+				if config.epgselection.graph_blue.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+					self.prevPage()
+				if config.epgselection.graph_blue.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.nextBouquet()
+				if config.epgselection.graph_blue.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+					self.prevBouquet()
 			elif self.type == EPG_TYPE_VERTICAL:
 				if config.epgselection.vertical_blue.value == "24plus":
 					self.setPlus24h()
@@ -2108,6 +2172,14 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_red'] = Button(_('Record'))
 			elif config.epgselection.graph_red.value == "gotodatetime":
 				self['key_red'] = Button(_('Goto Date/Time'))
+			elif config.epgselection.graph_red.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_red'] = Button(_('Next page'))
+			elif config.epgselection.graph_red.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_red'] = Button(_('Previous page'))
+			elif config.epgselection.graph_red.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_red'] = Button(_('Next bouquet'))
+			elif config.epgselection.graph_red.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_red'] = Button(_('Previous bouquet'))
 
 			if config.epgselection.graph_green.value == "24plus":
 				self['key_green'] = Button(_('+24'))
@@ -2129,6 +2201,14 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_green'] = Button(_('Record'))
 			elif config.epgselection.graph_green.value == "gotodatetime":
 				self['key_green'] = Button(_('Goto Date/Time'))
+			elif config.epgselection.graph_green.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_green'] = Button(_('Next page'))
+			elif config.epgselection.graph_green.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_green'] = Button(_('Previous page'))
+			elif config.epgselection.graph_green.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_green'] = Button(_('Next bouquet'))
+			elif config.epgselection.graph_green.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_green'] = Button(_('Previous bouquet'))
 
 			if config.epgselection.graph_yellow.value == "24plus":
 				self['key_yellow'] = Button(_('+24'))
@@ -2150,6 +2230,14 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_yellow'] = Button(_('Record'))
 			elif config.epgselection.graph_yellow.value == "gotodatetime":
 				self['key_yellow'] = Button(_('Goto Date/Time'))
+			elif config.epgselection.graph_yellow.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_yellow'] = Button(_('Next page'))
+			elif config.epgselection.graph_yellow.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_yellow'] = Button(_('Previous page'))
+			elif config.epgselection.graph_yellow.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_yellow'] = Button(_('Next bouquet'))
+			elif config.epgselection.graph_yellow.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_yellow'] = Button(_('Previous bouquet'))
 
 			if config.epgselection.graph_blue.value == "24plus":
 				self['key_blue'] = Button(_('+24'))
@@ -2171,6 +2259,14 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_blue'] = Button(_('Record'))
 			elif config.epgselection.graph_blue.value == "gotodatetime":
 				self['key_blue'] = Button(_('Goto Date/Time'))
+			elif config.epgselection.graph_blue.value == "nextpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_blue'] = Button(_('Next page'))
+			elif config.epgselection.graph_blue.value == "prevpage" and self.type == EPG_TYPE_GRAPH:
+				self['key_blue'] = Button(_('Previous page'))
+			elif config.epgselection.graph_blue.value == "nextbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_blue'] = Button(_('Next bouquet'))
+			elif config.epgselection.graph_blue.value == "prevbouquet" and self.type == EPG_TYPE_GRAPH:
+				self['key_blue'] = Button(_('Previous bouquet'))
 
 		elif self.type == EPG_TYPE_VERTICAL:
 			if config.epgselection.vertical_red.value == "24plus":
