@@ -66,11 +66,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				state = _("waiting")
 				if timer.isAutoTimer:
 					icon = self.iconAutoTimer
-				try:
-					elif timer.ice_timer_id is not None:
-						icon = self.iconIceTVTimer
-				except:
-					pass
+				elif timer.ice_timer_id is not None:
+					icon = self.iconIceTVTimer
 				else:
 					icon = self.iconWait
 			elif timer.state == TimerEntry.StatePrepared:
