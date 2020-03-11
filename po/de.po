@@ -2067,7 +2067,7 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "Zurzeit läuft eine Aufnahme. Bitte beenden Sie diese Aufnahme, bevor Sie den Signal-Finder starten."
 
 msgid "A repeating timer or just once?"
-msgstr "Soll dieser Timer einmalig oder wiederholt ausgeführt werden?"
+msgstr "Wählen Sie, ob dieser Timer einmalig oder wiederholt ausgeführt werden soll."
 
 #
 #, python-format
@@ -4307,7 +4307,7 @@ msgid "Choose a tag for easy finding a recording."
 msgstr "Wählen Sie einen Tag aus, um die Aufnahme später leichter wieder zu finden."
 
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
-msgstr "Wählen Sie zwischen täglich, wöchentlich oder benutzerdefinierte Tage."
+msgstr "Wählen Sie zwischen täglich, wöchentlich oder benutzerdefinierten Tagen."
 
 msgid "Choose dvb wait delay for ci response."
 msgstr ""
@@ -4388,7 +4388,7 @@ msgid "Choose which tuner to configure."
 msgstr "Wählen Sie den einzurichtenden Tuner."
 
 msgid "Chose between record and ZAP."
-msgstr "Wählen Sie zwischen Aufnahme/Umschalttimer oder umschalten und aufnehmen."
+msgstr "Wählen Sie, ob der Timer nur aufnehmen, nur umschalten, oder aufnehmen und dabei umschalten soll."
 
 msgid "Christmas Island"
 msgstr "Weihnachtsinsel"
@@ -4962,7 +4962,7 @@ msgstr "Einstellen, welcher von mehreren Tunern bevorzugt benutzt werden soll. B
 
 #
 msgid "Configure your NTP server."
-msgstr "Den NTP-Server zur Zeit-Synchronisierung ändern."
+msgstr "Den NTP-Server zur Zeitsynchronisierung ändern."
 
 msgid "Configure your Network"
 msgstr "Das Netzwerk konfigurieren"
@@ -10354,7 +10354,7 @@ msgid "Model: %s %s\n"
 msgstr "Modell: %s %s\n"
 
 msgid "Modified:"
-msgstr ""
+msgstr "Geändert:"
 
 #
 msgid "Modulation"
@@ -10376,7 +10376,7 @@ msgstr "Mo."
 
 #
 msgid "Mon-Fri"
-msgstr "Mo. bis Fr."
+msgstr "Montag bis Freitag"
 
 msgid "Monaco"
 msgstr "Monaco"
@@ -10406,7 +10406,7 @@ msgstr "Mosquito-Noise Reduzierung"
 
 #
 msgid "Motor Sport"
-msgstr ""
+msgstr "Motorsport"
 
 msgid "Motor command retries"
 msgstr "Motorbefehl wiederholt sich"
@@ -11687,7 +11687,7 @@ msgstr "Bei 'Ja' werden Senderlogos (Picons) (falls vorhanden) in der Infoleiste
 
 # HDD Standby
 msgid "Option to enable the Hardware Standby Timer"
-msgstr "Internen Standby-Timer der HDD auswählen."
+msgstr "Bei 'Ja' wird der interne Standby-Timer der HDD verwendet."
 
 msgid "Orbital position"
 msgstr "Orbitposition"
@@ -15192,10 +15192,10 @@ msgid "Set the aspect ratio of the service picons."
 msgstr "Einstellung des Seitenverhältnisses der Senderlogos."
 
 msgid "Set the channel for this timer."
-msgstr "Hier können Sie den Kanal von dem aufgenommen werden soll ändern."
+msgstr "Wählen Sie den Kanal von dem aufgenommen werden soll."
 
 msgid "Set the date the timer must start."
-msgstr "Hier können Sie das Startdatum der Aufnahme ändern."
+msgstr "Wählen Sie das Startdatum der Aufnahme."
 
 msgid "Set the default location for your autorecord-files. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr ""
@@ -15223,13 +15223,13 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Setzen Sie die Verzögerungszeit zwischen Scrolldurchläufen. Wird vom Software-Renderer in einigen Skins genutzt."
 
 msgid "Set the description of the recording."
-msgstr "Hier können Sie die Beschreibung der Aufnahme ändern."
+msgstr "Wählen Sie die Beschreibung der Aufnahme."
 
 msgid "Set the jump-size of the seekbar."
 msgstr "Einstellen der Sprungweite für die Suchleiste."
 
 msgid "Set the name the recording will get."
-msgstr "Hier können Sie den Namen der Aufnahme ändern."
+msgstr "Wählen Sie den Namen der Aufnahme."
 
 msgid "Set the position of the recording icons"
 msgstr "Legen Sie die Positionen der Aufnahme-Symbole fest."
@@ -15248,10 +15248,12 @@ msgid "Set the time before checking video source for resolution information."
 msgstr "Einstellen der Verzögerungszeit, bevor die automatische Auflösung die Videoquelle prüft."
 
 msgid "Set the time the timer must start."
-msgstr "Hier können Sie die Startzeit der Aufnahme ändern."
+msgstr "Wählen Sie die Startzeit der Aufnahme.\n"
+msgstr "Mit den VOL +/- Tasten können Sie die Startzeit Minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
 
 msgid "Set the time the timer must stop."
-msgstr "Hier können Sie die Endzeit der Aufnahme ändern."
+msgstr "Wählen Sie die Endzeit der Aufnahme.\n"
+msgstr "Mit den CH +/- Tasten können Sie die Endzeit Minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
 
 msgid "Set the time to hide the infobar."
 msgstr "Bestimmt die Anzeigedauer der Infoleiste."
@@ -15509,7 +15511,7 @@ msgstr "Satelliten-Ausrüstung"
 
 # Zeitenstellung
 msgid "Setup your timezone."
-msgstr "Hier können Sie Ihre Zeitzone auswählen."
+msgstr "Wählen Sie Ihre Zeitzone."
 
 msgid "Seychelles"
 msgstr "Seychellen"
@@ -17229,11 +17231,11 @@ msgid "Sync failure moving back to origin !"
 msgstr ""
 
 msgid "Sync time using"
-msgstr "Zeit-Synchronisierung mit"
+msgstr "Zeitsynchronisierung mit"
 
 # Zeitenstellung
 msgid "Synchronize systemtime using transponder or internet."
-msgstr "Hier können Sie wählen, ob die Zeitsynchronisierung über die Transponderzeit oder über einen NTP- Server erfolgen soll."
+msgstr "Wählen Sie, ob die Zeitsynchronisierung über die Transponderzeit oder über einen NTP-Server erfolgen soll."
 
 msgid "Syrian Arab Republic"
 msgstr "Syrien"
@@ -20125,7 +20127,7 @@ msgid "What Day of week ?"
 msgstr "An welchem Wochentag?"
 
 msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-msgstr "Einstellen, was nach dem ausgeführten Timer geschehen soll. 'Automatisch' lässt die Box in den Zustand gehen, den sie vor dem Timerstart hatte."
+msgstr "Wählen Sie, was nach dem ausgeführten Timer geschehen soll. 'Automatisch' lässt die Box in den Zustand gehen, den sie vor dem Timerstart hatte."
 
 msgid "What do you want to play?\n"
 msgstr "Was möchten Sie wiedergeben?\n"
