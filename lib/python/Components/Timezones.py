@@ -251,7 +251,6 @@ class Timezones:
 			tz = "UTC"
 			file = path.join(TIMEZONE_DATA, tz)
 		print "[Timezones] Setting timezone to '%s'." % tz
-		config.timezone.save()
 		environ["TZ"] = tz
 		try:
 			unlink("/etc/localtime")
