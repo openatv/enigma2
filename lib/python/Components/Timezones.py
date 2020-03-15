@@ -2,7 +2,6 @@ import errno
 import time
 import xml.etree.cElementTree
 
-from enigma import eTimer  # This is for AutoTimers!
 from os import environ, path, symlink, unlink, walk
 
 from Components.config import ConfigSelection, ConfigSubsection, config
@@ -50,14 +49,18 @@ DEFAULT_ZONE = "Berlin"  # OpenATV, OpenPLi
 # DEFAULT_ZONE = "London"  # OpenViX
 TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  This file moves arond the filesystem!!!  :(
 TIMEZONE_DATA = "/usr/share/zoneinfo/"  # This should be SCOPE_TIMEZONES_DATA!
-AT_POLL_DELAY = 3  # Minutes - This is for AutoTimers!
 
 def InitTimeZones():
 	tz = geolocation.get("timezone", None)
-	if tz is None:
+	proxy = geolocation.get("proxy", False)
+	if tz is None or proxy is True:
 		area = DEFAULT_AREA
 		zone = timezones.getTimezoneDefault(area=area)
-		print "[Timezones] Geolocation not available!  (area='%s', zone='%s')" % (area, zone)
+		if proxy:
+			msg = " - proxy in use"
+		else:
+			msg = ""
+		print "[Timezones] Geolocation not available%s!  (area='%s', zone='%s')" % (msg, area, zone)
 	elif DEFAULT_AREA == "Classic":
 		area = "Classic"
 		zone = tz
@@ -68,11 +71,6 @@ def InitTimeZones():
 	config.timezone = ConfigSubsection()
 	config.timezone.area = ConfigSelection(default=area, choices=timezones.getTimezoneAreaList())
 	config.timezone.val = ConfigSelection(default=timezones.getTimezoneDefault(), choices=timezones.getTimezoneList())
-	if not config.timezone.area.saved_value:
-		config.timezone.area.value = area
-	if not config.timezone.val.saved_value:
-		config.timezone.val.value = zone
-	config.timezone.save()
 
 	def timezoneAreaChoices(configElement):
 		choices = timezones.getTimezoneList(area=configElement.value)
@@ -93,8 +91,7 @@ class Timezones:
 		self.timezones = {}
 		self.loadTimezones()
 		self.readTimezones()
-		self.callbacksBefore = []
-		self.callbacksAfter = []
+		self.callbacks = []
 		# This is a work around to maintain support of AutoTimers
 		# until AutoTimers are updated to use the Timezones
 		# callbacks.  Once AutoTimers are updated *all* AutoTimer
@@ -247,10 +244,6 @@ class Timezones:
 
 	def activateTimezone(self, zone, area, runCallbacks=True):
 		# print "[Timezones] activateTimezone DEBUG: Area='%s', Zone='%s'" % (area, zone)
-		if runCallbacks:
-			for method in self.callbacksBefore:
-				if method:
-					method()
 		tz = zone if area in ("Classic", "Generic") else path.join(area, zone)
 		file = path.join(TIMEZONE_DATA, tz)
 		if not path.isfile(file):
@@ -258,6 +251,7 @@ class Timezones:
 			tz = "UTC"
 			file = path.join(TIMEZONE_DATA, tz)
 		print "[Timezones] Setting timezone to '%s'." % tz
+		config.timezone.save()
 		environ["TZ"] = tz
 		try:
 			unlink("/etc/localtime")
@@ -278,80 +272,54 @@ class Timezones:
 		if path.exists("/proc/stb/fp/rtc_offset"):
 			setRTCoffset()
 		if runCallbacks:
-			for method in self.callbacksAfter:
+			for method in self.callbacks:
 				if method:
 					method()
 
-	def addCallbackBefore(self, callback):
-		self.callbacksBefore.append(callback)
+	def addCallback(self, callback):
+		if callback not in self.callbacks:
+			self.callbacks.append(callback)
 
-	def removeCallbackBefore(self, callback):
+	def removeCallback(self, callback):
 		if callback in self.callbacks:
-			self.callbacksBefore.remove(callback)
-
-	def addCallbackAfter(self, callback):
-		self.callbacksAfter.append(callback)
-
-	def removeCallbackAfter(self, callback):
-		if callback in self.callbacks:
-			self.callbacksAfter.remove(callback)
+			self.callbacks.remove(callback)
 
 	def autotimerInit(self):  # This code should be moved into the AutoTimer plugin!
-		self.autotimerCheck()
-		if self.autotimerPollDelay is None:
-			self.autotimerPollDelay = AT_POLL_DELAY
-		self.timer = eTimer()
-		self.autotimerUpdate = False
-		self.addCallbackBefore(self.autotimerBefore)
-		self.addCallbackAfter(self.autotimerAfter)
-
-	def autotimerBefore(self):
-		self.autotimerCheck()
-		if self.autotimerAvailable and config.plugins.autotimer.autopoll.value:
-			print "[Timezones] Trying to stop main AutoTimer poller."
-			if self.autotimerPoller is not None:
-				self.autotimerPoller.stop()
-			self.autotimerUpdate = True
-
-	def autotimerAfter(self):
-		if self.autotimerAvailable and config.plugins.autotimer.autopoll.value:
-			if self.autotimerUpdate:
-				self.timer.stop()
-			if self.autotimeQuery not in self.timer.callback:
-				self.timer.callback.append(self.autotimeQuery)
-			print "[Timezones] AutoTimer poller will be run in %d minutes." % AT_POLL_DELAY
-			self.timer.startLongTimer(AT_POLL_DELAY * 60)
-
-	def autotimerCheck(self):
 		try:
 			# Create attributes autotimer & autopoller for backwards compatibility.
 			# Their use is deprecated.
+			from enigma import eTimer
 			from Plugins.Extensions.AutoTimer.plugin import autotimer, autopoller
 			self.autotimerPoller = autopoller
 			self.autotimerTimer = autotimer
-			self.autotimerAvailable = True
+			self.pollDelay = 3  # Poll delay in minutes.
+			try:
+				self.autotimerPollDelay = config.plugins.autotimer.delay.value
+			except AttributeError:
+				self.autotimerPollDelay = self.pollDelay
+			self.timer = eTimer()
+			self.timer.callback.append(self.autotimeQuery)
+			self.addCallback(self.autotimerCallback)
 		except ImportError:
 			self.autotimerPoller = None
 			self.autotimerTimer = None
-			self.autotimerAvailable = False
-		try:
-			self.autotimerPollDelay = config.plugins.autotimer.delay.value
-		except AttributeError:
-			self.autotimerPollDelay = None
+
+	def autotimerCallback(self):
+		if config.plugins.autotimer.autopoll.value:
+			self.timer.stop()
+			print "[Timezones] Trying to stop main AutoTimer poller."
+			if self.autotimerPoller is not None:
+				self.autotimerPoller.stop()
+			print "[Timezones] AutoTimer poller will be run in %d minutes." % self.pollDelay
+			self.timer.startLongTimer(self.pollDelay * 60)
 
 	def autotimeQuery(self):
 		print "[Timezones] AutoTimer poll is running."
-		self.autotimerUpdate = False
-		if self.autotimeQuery in self.timer.callback:
-			self.timer.callback.remove(self.autotimeQuery)
-		self.timer.stop()
-		self.autotimerCheck()
-		if self.autotimerAvailable:
-			if self.autotimerTimer is not None:
-				print "[Timezones] AutoTimer is parsing the EPG."
-				self.autotimerTimer.parseEPG(autoPoll=True)
-			if self.autotimerPoller is not None:
-				self.autotimerPoller.start()
+		if self.autotimerTimer is not None:
+			print "[Timezones] AutoTimer is parsing the EPG."
+			self.autotimerTimer.parseEPG(autoPoll=True)
+		if self.autotimerPoller is not None:
+			self.autotimerPoller.start()
 
 
 timezones = Timezones()
