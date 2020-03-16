@@ -251,6 +251,9 @@ def InitUsageConfig():
 	config.usage.hdd_timer = ConfigYesNo(default = False)	
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
+		
+	config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
+		("standard", _("Standard")), ("noadspip", _("Ads filtering mode")) ])
 
 	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),

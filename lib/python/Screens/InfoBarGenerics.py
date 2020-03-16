@@ -3558,6 +3558,8 @@ class InfoBarPiP:
 				self.session.pip.servicePath = currentServicePath
 
 	def showPiP(self):
+		if config.usage.pip_mode.value == "noadspip":
+			from Screens.InfoBar import InfoBar
 		self.lastPiPServiceTimeoutTimer.stop()
 		slist = self.servicelist
 		if self.session.pipshown:
@@ -3580,6 +3582,10 @@ class InfoBarPiP:
 			if hasattr(self, "ScreenSaverTimerStart"):
 				self.ScreenSaverTimerStart()
 		else:
+			if config.usage.pip_mode.value == "noadspip":
+				newservice = self.servicelist.getCurrentSelection()
+				if InfoBar and InfoBar.instance:
+					InfoBar.zapDown(InfoBar.instance)
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			if info:
@@ -3588,7 +3594,8 @@ class InfoBarPiP:
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
-				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if config.usage.pip_mode.value != "noadspip":
+					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -3607,7 +3614,8 @@ class InfoBarPiP:
 						f.write("1")
 						f.close()
 				else:
-					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+					if config.usage.pip_mode.value != "noadspip":
+						newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -3640,10 +3648,17 @@ class InfoBarPiP:
 		self.lastPiPService = None
 
 	def activePiP(self):
-		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
-			self.showPiP()
+		if config.usage.pip_mode.value == "noadspip":
+			if not self.session.pipshown:
+				self.showPiP()
+			else:
+				self.swapPiP()
+				self.showPiP()
 		else:
-			self.togglePipzap()
+			if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
+				self.showPiP()
+			else:
+				self.togglePipzap()
 
 	def activePiPName(self):
 		if self.servicelist and self.servicelist.dopipzap:
@@ -5397,3 +5412,4 @@ class InfoBarHandleBsod:
 		self.lastestBsodWarning = False
 
 #########################################################################################
+
