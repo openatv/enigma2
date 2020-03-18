@@ -42,9 +42,9 @@ from Tools.StbHardware import setRTCoffset
 # based on their WAN IP address.  If the receiver is not connected to the
 # Internet the defaults described above and listed below will be used.
 #
-DEFAULT_AREA = "Classic"  # Use the classic timezone based list of timezones.
+# DEFAULT_AREA = "Classic"  # Use the classic timezone based list of timezones.
 # DEFAULT_AREA = "Australia"  # Beyonwiz
-# DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenViX
+DEFAULT_AREA = "Europe"  # OpenATV, OpenPLi, OpenViX
 # DEFAULT_ZONE = "Amsterdam"  # OpenPLi
 DEFAULT_ZONE = "Berlin"  # OpenATV
 # DEFAULT_ZONE = "London"  # OpenViX
