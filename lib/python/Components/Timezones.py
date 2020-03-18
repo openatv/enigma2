@@ -76,22 +76,27 @@ def InitTimeZones():
 		config.timezone.area.value = "Generic"
 	try:
 		tzLink = path.realpath("/etc/localtime")[20:]
-		tzSplit = tzLink.find("/")
-		if tzSplit == -1:
-			tzArea = "Generic"
-			tzVal = tzLink
-		else:
-			tzArea = tzLink[:tzSplit]
-			tzVal = tzLink[tzSplit + 1:]
 		msgs = []
-		if config.timezone.area.value != tzArea:
-			msgs.append("area '%s' != '%s'" % (tzArea, config.timezone.area.value))
-			# config.timezone.area.value = tzArea
-		if config.timezone.val.value != tzVal:
-			msgs.append("zone '%s' != '%s'" % (tzVal, config.timezone.val.value))
-			# config.timezone.val.value = tzVal
+		if config.timezone.area.value == "Classic":
+			if config.timezone.val.value != tzLink:
+				msgs.append("time zone '%s' != '%s'" % (tzLink, config.timezone.val.value))
+				config.timezone.val.value = tzLink
+		else:
+			tzSplit = tzLink.find("/")
+			if tzSplit == -1:
+				tzArea = "Generic"
+				tzVal = tzLink
+			else:
+				tzArea = tzLink[:tzSplit]
+				tzVal = tzLink[tzSplit + 1:]
+			if config.timezone.area.value != tzArea:
+				msgs.append("area '%s' != '%s'" % (tzArea, config.timezone.area.value))
+				config.timezone.area.value = tzArea
+			if config.timezone.val.value != tzVal:
+				msgs.append("zone '%s' != '%s'" % (tzVal, config.timezone.val.value))
+				config.timezone.val.value = tzVal
 		if len(msgs):
-			print "[Timezones] Warning: System timezone does not match Enigma2 timezone (%s)!" % ",".join(msgs)
+			print "[Timezones] Warning: System timezone does not match Enigma2 timezone (%s), setting Enigma2 to system timezone!" % ",".join(msgs)
 	except (IOError, OSError):
 		pass
 
@@ -146,7 +151,7 @@ class Timezones:
 		}
 		for (root, dirs, files) in walk(TIMEZONE_DATA):
 			base = root[len(TIMEZONE_DATA):]
-			if base in ("posix", "right"):  # Skip these alternate copies of the timezone data if they exist.
+			if base.startswith("posix") or base.startswith("right"):  # Skip these alternate copies of the timezone data if they exist.
 				continue
 			if base == "":
 				base = "Generic"
@@ -274,18 +279,18 @@ class Timezones:
 			tz = "UTC"
 			file = path.join(TIMEZONE_DATA, tz)
 		print "[Timezones] Setting timezone to '%s'." % tz
-		environ["TZ"] = tz
 		try:
 			unlink("/etc/localtime")
 		except (IOError, OSError) as err:
 			if err.errno != errno.ENOENT:  # No such file or directory
-				print "[Directories] Error %d: Unlinking '/etc/localtime'! (%s)" % (err.errno, err.strerror)
+				print "[Timezones] Error %d: Unlinking '/etc/localtime'! (%s)" % (err.errno, err.strerror)
 			pass
 		try:
 			symlink(file, "/etc/localtime")
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Linking '%s' to '/etc/localtime'! (%s)" % (err.errno, file, err.strerror)
+			print "[Timezones] Error %d: Linking '%s' to '/etc/localtime'! (%s)" % (err.errno, file, err.strerror)
 			pass
+		environ["TZ"] = ":%s" % tz
 		try:
 			time.tzset()
 		except Exception:
