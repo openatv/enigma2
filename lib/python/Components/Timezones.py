@@ -86,12 +86,12 @@ def InitTimeZones():
 		msgs = []
 		if config.timezone.area.value != tzArea:
 			msgs.append("area '%s' != '%s'" % (tzArea, config.timezone.area.value))
-			config.timezone.area.value = tzArea
+			# config.timezone.area.value = tzArea
 		if config.timezone.val.value != tzVal:
 			msgs.append("zone '%s' != '%s'" % (tzVal, config.timezone.val.value))
-			config.timezone.val.value = tzVal
+			# config.timezone.val.value = tzVal
 		if len(msgs):
-			print "[Timezones] Warning: System timezone does not match Enigma2 timezone (%s), setting Enigma2 to system timezone!" % ",".join(msgs)
+			print "[Timezones] Warning: System timezone does not match Enigma2 timezone (%s)!" % ",".join(msgs)
 	except (IOError, OSError):
 		pass
 
