@@ -283,18 +283,15 @@ class Timezones:
 		except (IOError, OSError) as err:
 			if err.errno != errno.ENOENT:  # No such file or directory
 				print "[Timezones] Error %d: Unlinking '/etc/localtime'! (%s)" % (err.errno, err.strerror)
-			pass
 		try:
 			symlink(file, "/etc/localtime")
 		except (IOError, OSError) as err:
 			print "[Timezones] Error %d: Linking '%s' to '/etc/localtime'! (%s)" % (err.errno, file, err.strerror)
-			pass
 		try:
 			with open("/etc/timezone", "w") as fd:
 				fd.write("%s\n" % tz)
 		except (IOError, OSError) as err:
 			print "[Timezones] Error %d: Updating '/etc/timezone'! (%s)" % (err.errno, err.strerror)
-			pass
 		environ["TZ"] = ":%s" % tz
 		try:
 			time.tzset()
