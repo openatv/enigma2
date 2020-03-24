@@ -1,7 +1,8 @@
 <!--suppress XmlUnboundNsPrefix -->
 <setupxml>
 	<setup key="time" title="Time settings">
-		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
+		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
+		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
@@ -499,6 +500,8 @@
 		<item level="2" text="Green button" description="Set to what you want the button to do.">config.epgselection.graph_green</item>
 		<item level="2" text="Yellow button" description="Set to what you want the button to do.">config.epgselection.graph_yellow</item>
 		<item level="2" text="Blue button" description="Set to what you want the button to do.">config.epgselection.graph_blue</item>
+		
+		<item level="2" text="Channel +/-" description="Set to what you want the button to do.">config.epgselection.graph_channelbtn</item>
 
 		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used.">config.epgselection.graph_startmode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>

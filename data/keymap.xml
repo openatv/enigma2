@@ -67,6 +67,7 @@
 		<key id="KEY_0" mapto="0" flags="m" />
 		<key id="KEY_FILE" mapto="file" flags="b" />
 		<key id="KEY_VIDEO" mapto="file" flags="m" />
+		<key id="KEY_PVR" mapto="file" flags="m" />
 	</map>
 
 	<map context="VirtualKeyBoardActions">
@@ -291,6 +292,8 @@
 	<map context="InfobarActions">
 		<key id="KEY_VIDEO" mapto="showMovies" flags="b" />
 		<key id="KEY_VIDEO" mapto="showMediaPlayer" flags="l" />
+		<key id="KEY_PVR" mapto="showMovies" flags="b" />
+		<key id="KEY_PVR" mapto="showMediaPlayer" flags="l" />
 		<key id="KEY_PLAY" mapto="showMovies" flags="m" />
 		<key id="KEY_RADIO" mapto="showRadio" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="showWWW" flags="b" />
@@ -322,7 +325,6 @@
 		<key id="KEY_SETUP" mapto="showSetup" flags="m" />
 		<key id="KEY_QUESTION" mapto="showInformation" flags="m" />
 		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="b" />
-		<key id="KEY_PVR" mapto="showMovies" flags="b" />
 		<key id="KEY_PROG1" mapto="HarddiskSetup" flags="b" />
 		<key id="KEY_OPEN" mapto="showMovies" flags="b" />
 		<key id="KEY_F1" mapto="showWWW" flags="b" />
@@ -629,6 +631,7 @@
 		<key id="KEY_UP" mapto="up" flags="m" />
 		<key id="KEY_DOWN" mapto="down" flags="m" />
 		<key id="KEY_VIDEO" mapto="movieList" flags="m" />
+		<key id="KEY_PVR" mapto="movieList" flags="m" />
 		<key id="KEY_FILE" mapto="movieList" flags="m" />
 	</map>
 
@@ -679,6 +682,7 @@
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_FILE" mapto="transparent" flags="m" />
 		<key id="KEY_VIDEO" mapto="transparent" flags="m" />
+		<key id="KEY_PVR" mapto="transparent" flags="m" />
 		<key id="KEY_MEDIA" mapto="transparent" flags="m" />
 		<key id="KEY_GREEN" mapto="green" flags="m" />
 		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
@@ -1000,6 +1004,7 @@
 			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b"/>
 			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m"/>
 			<key id="KEY_VIDEO" mapto="nextAngle" flags="m"/>
+			<key id="KEY_ANGLE" mapto="nextAngle" flags="m"/>
 		</device>
 		<!--device name="dreambox ir keyboard">
 			<key id="KEY_PAUSE" mapto="pause" flags="m"/>

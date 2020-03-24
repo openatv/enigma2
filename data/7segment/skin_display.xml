@@ -156,10 +156,6 @@
 			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,time,CheckSourceBoolean</convert>
-			<convert type="VfdDisplay">Clock</convert>
-		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,RecBlink,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink,3000</convert>
@@ -168,7 +164,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Rec,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="    ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>

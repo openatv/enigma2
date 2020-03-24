@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import errno
+import inspect
 import os
 
 from enigma import eEnv, getDesktop
@@ -21,7 +23,9 @@ SCOPE_PLUGINS = 9
 SCOPE_MEDIA = 10
 SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
-
+SCOPE_CURRENT_PLUGIN_ABSOLUTE = 13
+SCOPE_CURRENT_PLUGIN_RELATIVE = 14
+SCOPE_KEYMAPS = 15
 SCOPE_METADIR = 16
 SCOPE_CURRENT_PLUGIN = 17
 SCOPE_TIMESHIFT = 18
@@ -33,6 +37,7 @@ SCOPE_AUTORECORD = 22
 SCOPE_DEFAULTDIR = 23
 SCOPE_DEFAULTPARTITION = 24
 SCOPE_DEFAULTPARTITIONMOUNTDIR = 25
+SCOPE_LIBDIR = 26
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -51,6 +56,9 @@ defaultPaths = {
 	SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
 	SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
 	SCOPE_CURRENT_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
+	SCOPE_CURRENT_PLUGIN_ABSOLUTE: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_DONTCREATE),
+	SCOPE_CURRENT_PLUGIN_RELATIVE: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_DONTCREATE),
+	SCOPE_KEYMAPS: (eEnv.resolve("${datadir}/keymaps/"), PATH_CREATE),
 	SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
 	SCOPE_CURRENT_PLUGIN: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
 	SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
@@ -60,7 +68,8 @@ defaultPaths = {
 	SCOPE_AUTORECORD: ("/media/hdd/movie/", PATH_DONTCREATE),
 	SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
 	SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6", PATH_DONTCREATE),
-	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE)
+	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
+	SCOPE_LIBDIR: (eEnv.resolve("${libdir}/"), PATH_DONTCREATE)
 }
 
 def resolveFilename(scope, base="", path_prefix=None):
@@ -83,8 +92,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 	if flag == PATH_CREATE and not pathExists(path):
 		try:
 			os.makedirs(path)
-		except OSError, e:
-			print "[Directories] Error %d: Couldn't create directory '%s' (%s)" % (e.errno, path, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Couldn't create directory '%s' (%s)" % (err.errno, path, err.strerror)
 			return None
 	# Remove any suffix data and restore it at the end.
 	suffix = None
@@ -102,6 +111,15 @@ def resolveFilename(scope, base="", path_prefix=None):
 			from Components.config import config
 			skin = os.path.dirname(config.skin.primary_skin.value)
 			path = os.path.join(path, skin)
+		elif scope in (SCOPE_CURRENT_PLUGIN_ABSOLUTE, SCOPE_CURRENT_PLUGIN_RELATIVE):
+			callingCode = os.path.normpath(inspect.stack()[1][1])
+			plugins = os.path.normpath(defaultPaths[SCOPE_PLUGINS][0])
+			path = None
+			if comparePath(plugins, callingCode):
+				pluginCode = callingCode[len(plugins) + 1:].split(os.sep)
+				if len(pluginCode) > 2:
+					relative = "%s%s%s" % (pluginCode[0], os.sep, pluginCode[1])
+					path = os.path.join(plugins, relative)
 	elif scope in (SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN):
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
@@ -169,6 +187,15 @@ def resolveFilename(scope, base="", path_prefix=None):
 		file = os.path.join(defaultPaths[SCOPE_PLUGINS][0], base)
 		if pathExists(file):
 			path = file
+	elif scope in (SCOPE_CURRENT_PLUGIN_ABSOLUTE, SCOPE_CURRENT_PLUGIN_RELATIVE):
+		callingCode = os.path.normpath(inspect.stack()[1][1])
+		plugins = os.path.normpath(defaultPaths[SCOPE_PLUGINS][0])
+		path = None
+		if comparePath(plugins, callingCode):
+			pluginCode = callingCode[len(plugins) + 1:].split(os.sep)
+			if len(pluginCode) > 2:
+				relative = os.path.join("%s%s%s" % (pluginCode[0], os.sep, pluginCode[1]), base)
+				path = os.path.join(plugins, relative)
 	else:
 		path, flags = defaultPaths.get(scope)
 		path = os.path.join(path, base)
@@ -176,10 +203,24 @@ def resolveFilename(scope, base="", path_prefix=None):
 	# If the path is a directory then ensure that it ends with a "/".
 	if os.path.isdir(path) and not path.endswith("/"):
 		path += "/"
+	if scope == SCOPE_CURRENT_PLUGIN_RELATIVE:
+		path = path[len(plugins) + 1:]
 	# If a suffix was supplier restore it.
 	if suffix is not None:
 		path = "%s:%s" % (path, suffix)
 	return path
+
+def comparePath(leftPath, rightPath):
+	if leftPath.endswith(os.sep):
+		leftPath = leftPath[:-1]
+	if rightPath.endswith(os.sep):
+		rightPath = rightPath[:-1]
+	left = leftPath.split(os.sep)
+	right = rightPath.split(os.sep)
+	for segment in range(len(left)):
+		if left[segment] != right[segment]:
+			return False
+	return True
 
 def bestRecordingLocation(candidates):
 	path = ""
@@ -194,8 +235,8 @@ def bestRecordingLocation(candidates):
 				if size > biggest:
 					biggest = size
 					path = candidate[1]
-		except Exception, e:
-			print "[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (e.errno, candidate[1], os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (err.errno, candidate[1], err.strerror)
 	return path
 
 def defaultRecordingLocation(candidate=None):
@@ -326,8 +367,8 @@ def copyfile(src, dst):
 			if not buf:
 				break
 			f2.write(buf)
-	except OSError, e:
-		print "[Directories] Error %d: Copying file '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+	except (IOError, OSError) as err:
+		print "[Directories] Error %d: Copying file '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 		status = -1
 	if f1 is not None:
 		f1.close()
@@ -337,14 +378,14 @@ def copyfile(src, dst):
 		st = os.stat(src)
 		try:
 			os.chmod(dst, S_IMODE(st.st_mode))
-		except OSError, e:
-			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 		try:
 			os.utime(dst, (st.st_atime, st.st_mtime))
-		except OSError, e:
-			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
-	except OSError, e:
-		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+	except (IOError, OSError) as err:
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 	return status
 
 def copytree(src, dst, symlinks=False):
@@ -366,20 +407,20 @@ def copytree(src, dst, symlinks=False):
 				copytree(srcname, dstname, symlinks)
 			else:
 				copyfile(srcname, dstname)
-		except OSError, e:
-			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (e.errno, srcname, dstname, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (err.errno, srcname, dstname, err.strerror)
 	try:
 		st = os.stat(src)
 		try:
 			os.chmod(dst, S_IMODE(st.st_mode))
-		except OSError, e:
-			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 		try:
 			os.utime(dst, (st.st_atime, st.st_mtime))
-		except OSError, e:
-			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
-	except OSError, e:
-		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		except (IOError, OSError) as err:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+	except (IOError, OSError) as err:
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
 
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)
@@ -391,23 +432,23 @@ def moveFiles(fileList):
 		for item in fileList:
 			os.rename(item[0], item[1])
 			movedList.append(item)
-	except OSError, e:
-		if e.errno == 18:  # errno.EXDEV - Invalid cross-device link
+	except (IOError, OSError) as err:
+		if err.errno == errno.EXDEV:  # Invalid cross-device link
 			print "[Directories] Warning: Cannot rename across devices, trying slower move."
 			from Tools.CopyFiles import moveFiles as extMoveFiles  # OpenViX, OpenATV, Beyonwiz
 			# from Screens.CopyFiles import moveFiles as extMoveFiles  # OpenPLi
 			extMoveFiles(fileList, item[0])
 			print "[Directories] Moving files in background."
 		else:
-			print "[Directories] Error %d: Moving file '%s' to '%s'! (%s)" % (e.errno, item[0], item[1], os.strerror(e.errno))
+			print "[Directories] Error %d: Moving file '%s' to '%s'! (%s)" % (err.errno, item[0], item[1], err.strerror)
 			errorFlag = True
 	if errorFlag:
 		print "[Directories] Reversing renamed files due to error."
 		for item in movedList:
 			try:
 				os.rename(item[1], item[0])
-			except OSError, e:
-				print "[Directories] Error %d: Renaming '%s' to '%s'! (%s)" % (e.errno, item[1], item[0], os.strerror(e.errno))
+			except (IOError, OSError) as err:
+				print "[Directories] Error %d: Renaming '%s' to '%s'! (%s)" % (err.errno, item[1], item[0], err.strerror)
 				print "[Directories] Failed to undo move:", item
 
 def getSize(path, pattern=".*"):

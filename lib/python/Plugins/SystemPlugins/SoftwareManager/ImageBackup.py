@@ -202,7 +202,6 @@ class ImageBackup(Screen):
 				print "[FULL BACKUP] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO
 				print "[FULL BACKUP] DISTROVERSION = >%s<" %self.DISTROVERSION
 				print "[FULL BACKUP] MTDBOOT = >%s<" %self.MTDBOOT
-				print "[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG
 				print "[FULL BACKUP] USB RECOVERY = >%s< " %self.RECOVERY
 				print "[FULL BACKUP] DESTINATION = >%s< " %self.DIRECTORY
 				print "[FULL BACKUP] SLOT = >%s< " %self.SLOT
@@ -334,12 +333,7 @@ class ImageBackup(Screen):
 					cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d /tmp/bi/root" % (self.WORKDIR))
 
 				cmdlist.append('echo "' + _("Create:") + " kerneldump" + '"')
-				if SystemInfo["canMultiBoot"]:
-					if SystemInfo["HasRootSubdir"]:
-						cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
-					else:
-						cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
-				elif self.MTDKERNEL.startswith('mmcblk0'):
+				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
 					cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 				else:
 					cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
@@ -478,9 +472,7 @@ class ImageBackup(Screen):
 			os.system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
 		else:
 			os.system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-		if SystemInfo["canMultiBoot"]:
-			os.system('mv %s/kernel.bin %s/kernel.bin' %(self.WORKDIR, self.MAINDEST))
-		elif self.MTDKERNEL.startswith('mmcblk0'):
+		if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
 			os.system('mv %s/%s %s/%s' %(self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
 		else:
 			os.system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))

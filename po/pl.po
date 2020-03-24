@@ -5,16 +5,16 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-01-01 14:18+0100\n"
+"PO-Revision-Date: 2020-03-20 12:38+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
-"Language-Team: Poland <Mariusz1970@onet.eu>\n"
+"Language-Team: Poland\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.3\n"
 
 msgid ""
 "\n"
@@ -1186,7 +1186,7 @@ msgstr "%s nie jest już używany.Powinien być usunięty?"
 
 #, python-format
 msgid "%s is password protected."
-msgstr "%s jest chroniony hasłem"
+msgstr "%s jest chroniony hasłem."
 
 #, python-format
 msgid "%s not available."
@@ -2658,7 +2658,7 @@ msgid "Are you ready to run the script ?"
 msgstr "Czy jesteś gotowy,aby uruchomić skrypt?"
 
 msgid "Are you sure to cancel all changes?"
-msgstr "Czy na pewno chcesz anulować wszystkie zmiany"
+msgstr "Czy na pewno chcesz anulować wszystkie zmiany?"
 
 msgid "Are you sure to delete all cuts and marks?"
 msgstr "Czy na pewno chcesz anulować wszystkie cięcia i znaczniki?"
@@ -2973,7 +2973,7 @@ msgid "Automatic Service Searching"
 msgstr "Automatyczne Wyszukiwanie Kanału"
 
 msgid "Automatic image backup"
-msgstr "Automatyczna kopia zapasowa img."
+msgstr "Automatyczna kopia zapasowa obrazu"
 
 msgid "Automatic refresh"
 msgstr "Automatyczne odświeżanie"
@@ -8752,7 +8752,7 @@ msgid "Inversion"
 msgstr "Odwracanie"
 
 msgid "Invert"
-msgstr "Odwracać"
+msgstr "Zaznacz/Odznacz"
 
 msgid "Inverts the button function."
 msgstr "Odwraca funkcję przycisku."
@@ -8968,7 +8968,7 @@ msgid "Korea (Republic of)"
 msgstr "Korea Południowa"
 
 msgid "Kraftsport"
-msgstr "trening siłowy"
+msgstr "Trening siłowy"
 
 msgid "Krieg"
 msgstr "Wojna"
@@ -9079,7 +9079,7 @@ msgid "Last speed"
 msgstr "Ostatnia prędkość"
 
 #, python-format
-msgid "Last update:\t%s"
+msgid "Last update:\t\t%s"
 msgstr "Ostatnia aktualizacja:\t%s"
 
 msgid "Last used share: "
@@ -11028,7 +11028,7 @@ msgid "PIP"
 msgstr ""
 
 msgid "PIP long"
-msgstr "PIP długi"
+msgstr "PIP (długo)"
 
 msgid "PIP with OSD"
 msgstr "PIP z OSD"
@@ -13726,6 +13726,9 @@ msgstr "Wybierz satelitę, z którego odbierana jest antena. Jeśli nie masz pew
 msgid "Select the sleep timer action."
 msgstr "Wybierz działanie wyłącznika czasowego."
 
+msgid "Select the time zone within the area or region."
+msgstr "Wybierz strefę czasową w obszarze lub regionie."
+
 msgid "Select the tuner that controls the motorised dish."
 msgstr "Wybierz tuner sterujący zmotoryzowaną anteną."
 
@@ -13818,6 +13821,9 @@ msgstr "Wybierz dostawcę i wciśnij 'OK' aby rozpocząć skanowanie"
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "Wybierz swój region. Jeśli nie jest dostępny, zmień „Kraj” na „wszystkie” i wybierz jedną z domyślnych opcji."
+
+msgid "Select your time zone area or region."
+msgstr "Wybierz strefę czasową lub region."
 
 #, python-format
 msgid "Selected Image:\t\t%s"
@@ -14105,13 +14111,19 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Ustaw czas opóźnienia między przejściami przewijania. Jest używany przez renderer oprogramowania w niektórych skórkach."
 
 msgid "Set the description of the recording."
-msgstr "Ustaw opis nagrania."
+msgstr ""
+"Ustaw opis nagrania.\n"
+"\n"
+"Za pomocą klawisza TXT (teletekst) otrzymujesz wirtualną klawiaturę."
 
 msgid "Set the jump-size of the seekbar."
 msgstr "Ustaw skok-rozmiar paska wyszukiwania."
 
 msgid "Set the name the recording will get."
-msgstr "Ustaw nazwę, jaką otrzyma nagranie."
+msgstr ""
+"Ustaw nazwę, jaką otrzyma nagranie.\n"
+"\n"
+"Za pomocą klawisza TXT (teletekst) otrzymujesz wirtualną klawiaturę."
 
 msgid "Set the position of the recording icons"
 msgstr "Ustaw pozycję ikon nagrywania"
@@ -15624,7 +15636,7 @@ msgid "Stop PiP"
 msgstr "Zatrzymaj PiP"
 
 msgid "Stop Streams"
-msgstr "Zakończyć Streamy"
+msgstr "Zatrzymaj Streamy"
 
 msgid "Stop current event and disable coming events"
 msgstr "Zatrzymać bieżące wydarzenie i wyłączyć nadchodzące wydarzenie"
@@ -15708,7 +15720,7 @@ msgid "Stream-tv"
 msgstr ""
 
 msgid "Streaming"
-msgstr ""
+msgstr "Strumieniowanie"
 
 msgid "Streaming clients info"
 msgstr "O Strumieniowaniu"
@@ -16254,7 +16266,7 @@ msgid "The IceTV server has requested password for %s."
 msgstr "Serwer IceTV zażądał hasła dla %s."
 
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
-msgstr ""
+msgstr "Komponent Image Viewer w File Commander wymaga rozszerzenia PicturePlayer. Zainstaluj program PicturePlayer, aby włączyć tę operację."
 
 msgid ""
 "The MediaCenter plugin is not installed!\n"
@@ -16321,7 +16333,7 @@ msgid "The aspect ratio of the recording."
 msgstr "Współczynnik proporcji ekranu dla nagrania."
 
 msgid "The authors are NOT RESPONSIBLE"
-msgstr ""
+msgstr "Autorzy NIE są ODPOWIEDZIALNI"
 
 msgid ""
 "The available disk space for timeshift is less than specified in the settings.\n"
@@ -16334,7 +16346,7 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "Tworzenie kopij nie powiodło się. Wybierz inną lokalizacje dla kopii."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
-msgstr ""
+msgstr "Szybkość transmisji kodera wideo. Większa wartość poprawia jakość i zwiększa rozmiar pliku."
 
 msgid ""
 "The buffer time for timeshift exceeds the specified limit in the settings.\n"
@@ -16354,10 +16366,10 @@ msgstr ""
 "Proszę użyj 'dodatkowych' i 'wyłączonych' z wyboru kopii zapasowyvh."
 
 msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
-msgstr ""
+msgstr "Domyślne ustawienia to 5 minut wcześniej, aby wybudzić się z głębokiego czuwania. Konieczna może być zmiana tego. (np .: rzeczywisty czas budzenia jest niedokładny lub spóźniony, oczekiwanie na dysk sieciowy itp.)"
 
 msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
-msgstr ""
+msgstr "Domyślne ustawienia to czas budzenia - 5 minut i czas rozpoczęcia timera + 5 minut. To ustawienie zmieniło okno czasu przed czasem budzenia. Tak więc można wykryć budzenie przez zegar, nawet przy bardzo wczesnym uruchomieniu odbiorników."
 
 #, python-format
 msgid ""
@@ -16446,7 +16458,7 @@ msgid "The servicelist is reloaded."
 msgstr "Listy kanałów została przeładowana."
 
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
-msgstr ""
+msgstr "Ustawienie „bez zapytania” jest takie samo jak „standardowe” bez dodatkowego zapytania potwierdzającego. Pozostają wszystkie pozostałe zależności (np. Nagrania, zakres czasu)."
 
 msgid "The sleep timer has been activated."
 msgstr "Wyłącznik czasowy został aktywowany."
@@ -17054,6 +17066,12 @@ msgstr "Czas do uruchomienia polecenia lub skryptu"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Okno czasowe wykrywania budzenia przez minutnik [min]"
+
+msgid "Time zone"
+msgstr "Strefa czasowa"
+
+msgid "Time zone area"
+msgstr "Region strefy czasowej"
 
 msgid "Time zone settings"
 msgstr "Ustawienia strefy czasowej"
@@ -19842,7 +19860,7 @@ msgid "copy folder"
 msgstr "kopiuj folder"
 
 msgid "copy to bouquets"
-msgstr "kopiuj do bukietów"
+msgstr "Kopiuj do bukietów"
 
 msgid "create directory"
 msgstr "utworzyć katalog"
@@ -20752,7 +20770,7 @@ msgid "remove new found flag"
 msgstr "usuń znalezioną nową flagę"
 
 msgid "remove selected satellite"
-msgstr "usuń wybranego satelitę"
+msgstr "Usuń wybranego satelitę"
 
 msgid "remove terrestrial services"
 msgstr "usunąć usługi naziemne"
@@ -21378,6 +21396,24 @@ msgstr "przełączony"
 
 msgid "zapping"
 msgstr "przełączanie"
+
+msgid "Channel +/-"
+msgstr "Kanał +/-"
+
+msgid "Previous page"
+msgstr "Poprzednia strona"
+
+msgid "Next page"
+msgstr "Następna strona"
+
+msgid "Previous bouquet"
+msgstr "Poprzedni bukiet"
+
+msgid "Next bouquet"
+msgstr "Następny bukiet"
+
+msgid "previous/next Bouquet"
+msgstr "poprzedni/następny Bukiet"
 
 #~ msgid ""
 #~ "\n"
