@@ -588,16 +588,17 @@ class InfoBarTimeshift:
 		dprint("checkTimeshiftRunningCallback")
 		# print 'returnFunction', returnFunction
 		# print 'answer', answer
-		if answer:
-			if answer == "noSaveNoAsk":
-				config.usage.check_timeshift.value = False
-				config.usage.check_timeshift.save()
-				answer = "noSave"
-			if answer in ("savetimeshift", "savetimeshiftandrecord"):
-				self.save_current_timeshift = True
-			elif answer == "noSave":
-				self.save_current_timeshift = False
-			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
+		if not answer:
+			answer = "no"
+		if answer == "noSaveNoAsk":
+			config.usage.check_timeshift.value = False
+			config.usage.check_timeshift.save()
+			answer = "noSave"
+		if answer in ("savetimeshift", "savetimeshiftandrecord"):
+			self.save_current_timeshift = True
+		elif answer == "noSave":
+			self.save_current_timeshift = False
+		InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
 		dprint("eraseTimeshiftFile")
