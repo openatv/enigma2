@@ -523,7 +523,6 @@ def InitUsageConfig():
 		config.usage.blinking_display_clock_during_recording = ConfigSelection(default = "Rec", choices = [
 						("Rec", _("REC")),
 						("RecBlink", _("Blinking REC")),
-						("Time", _("Time")),
 						("Nothing", _("Nothing"))])
 	else:
 		config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2019-11-21 17:03+0100\n"
+"POT-Creation-Date: 2020-03-20 18:43+0000\n"
+"PO-Revision-Date: 2020-03-20 21:08+0100\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -1170,6 +1170,10 @@ msgstr "%s ( %s Karten)"
 #, python-format
 msgid "%s (%04o)"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%s (%s"
+msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s (%s)"
@@ -4089,6 +4093,10 @@ msgstr "Kanal"
 msgid "Channel \t\t\tVolume +"
 msgstr "Kanal                                                                  Lautstärke"
 
+#
+msgid "Channel +/-"
+msgstr "Kanal +/-"
+
 msgid "Channel +/- button mode"
 msgstr "Funktion der Tasten Kanal +/-"
 
@@ -4328,10 +4336,10 @@ msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for
 msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Wählen Sie, ob und wie das Datum im Display angezeigt werden soll. 'Keine Anzeige' zeigt es gar nicht an. 'T'/'TT' ist das Datum und 'M'/'MM' der Monat. Bei 'TT' oder 'MM' wird einstelligen Werten eine '0' vorangestellt. Nicht jeder Skin unterstützt jede Einstellung."
 
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
-msgstr ""
+msgstr "Wählen Sie, ob und wie die Uhrzeit im Display angezeigt werden soll. 'Keine Anzeige' zeigt sie gar nicht an, 'H'/'HH' im 24-Stunden-Format, 'h'/'hh' im 12-Stunden-Format. Bei 'HH' oder 'hh' wird einstelligen Werten eine '0' vorangestellt. Nicht jeder Skin unterstützt jede Einstellung."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wählen Sie den Speicherort für Crash- und Debug-Logs."
@@ -4962,7 +4970,10 @@ msgstr "Einstellen, welcher von mehreren Tunern bevorzugt benutzt werden soll. B
 
 #
 msgid "Configure your NTP server."
-msgstr "Den NTP-Server zur Zeitsynchronisierung ändern."
+msgstr ""
+"Wählen Sie den NTP-Server zur Zeitsynchronisierung.\n"
+"\n"
+"Mit der TXT (Videotext) Taste erhalten Sie eine virtuelle Tastatur."
 
 msgid "Configure your Network"
 msgstr "Das Netzwerk konfigurieren"
@@ -5541,28 +5552,28 @@ msgid "Day DD/MM"
 msgstr "Tag TT/MM"
 
 msgid "Day M/D"
-msgstr ""
+msgstr "Tag M/T"
 
 msgid "Day M/DD"
-msgstr ""
+msgstr "Tag M/TT"
 
 msgid "Day MM/D"
-msgstr ""
+msgstr "Tag MM/T"
 
 msgid "Day MM/DD"
-msgstr ""
+msgstr "Tag MM/TT"
 
 msgid "Day Mon D"
-msgstr ""
+msgstr "Tag Mon T"
 
 msgid "Day Mon DD"
-msgstr ""
+msgstr "Tag Mon TT"
 
 msgid "Day Mon-D"
-msgstr ""
+msgstr "Tag Mon-T"
 
 msgid "Day Mon-DD"
-msgstr ""
+msgstr "Tag Mon-TT"
 
 msgid "Dayname D Month Year"
 msgstr ""
@@ -8424,7 +8435,7 @@ msgid "Here you can specify additional files that should be added to the backup 
 msgstr "Hier kann festgelegt werden, welche Dateien zusätzlich zu denen der Standardliste gesichert werden."
 
 msgid "Hidden / Blank"
-msgstr ""
+msgstr "Keine Anzeige"
 
 msgid "Hidden network"
 msgstr "Verstecktes Netzwerk"
@@ -9658,6 +9669,7 @@ msgstr "Letztes genutztes Netzlaufwerk: "
 msgid "Late Night"
 msgstr ""
 
+msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr ""
 
@@ -10989,6 +11001,14 @@ msgstr "Nächstes"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Nächstes"
+
+#
+msgid "Next bouquet"
+msgstr "Favoriten vor"
+
+#
+msgid "Next page"
+msgstr "Seite vor"
 
 msgid "Next quad PiP channel"
 msgstr "Auf die nächste Sendergruppe schalten"
@@ -12937,6 +12957,14 @@ msgstr ""
 msgid "Previous"
 msgstr "Vorheriges"
 
+#
+msgid "Previous bouquet"
+msgstr "Favoriten zurück"
+
+#
+msgid "Previous page"
+msgstr "Seite zurück"
+
 msgid "Prevsong"
 msgstr ""
 
@@ -14803,6 +14831,9 @@ msgstr "Wählen Sie den Satelliten, von dem Ihr Gerät empfängt. Wenn Sie sich 
 msgid "Select the sleep timer action."
 msgstr "Wählen Sie die Ausschalttimer Aktion."
 
+msgid "Select the time zone within the area or region."
+msgstr "Wählen Sie die Zeitzone in Ihrem Gebiet."
+
 msgid "Select the tuner that controls the motorised dish."
 msgstr "Wählen Sie den Tuner, der die motorisierte Schüssel steuert."
 
@@ -14904,6 +14935,10 @@ msgstr "Wählen Sie den Anbieter und drücken OK, um den Suchlauf zu starten"
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "Wählen Sie Ihre Region. Wenn nicht verfügbar ändern Sie 'Land' in 'alle' und wählen Sie eine der Standardalternativen."
+
+# Zeitenstellung
+msgid "Select your time zone area or region."
+msgstr "Wählen Sie Ihr Zeitzonengebiet."
 
 #, python-format
 msgid "Selected Image:\t\t%s"
@@ -15233,7 +15268,7 @@ msgstr "Einstellen der Sprungweite für die Suchleiste."
 
 msgid "Set the name the recording will get."
 msgstr ""
-"Wählen Sie den Namen der Aufnahme."
+"Wählen Sie den Namen der Aufnahme.\n"
 "\n"
 "Mit der TXT (Videotext) Taste erhalten Sie eine virtuelle Tastatur."
 
@@ -15518,10 +15553,6 @@ msgstr "Stellen Sie die Belegung der Fernbedienungstasten ein."
 
 msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung"
-
-# Zeitenstellung
-msgid "Setup your timezone."
-msgstr "Wählen Sie Ihre Zeitzone."
 
 msgid "Seychelles"
 msgstr "Seychellen"
@@ -18381,6 +18412,12 @@ msgstr "Startzeit für Befehls- / Script-Ausführung"
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Zeitfenster für die Erkennung des Aufwachens durch einen Timer (Min)"
 
+msgid "Time zone"
+msgstr "Zeitzone"
+
+msgid "Time zone area"
+msgstr "Zeitzonengebiet"
+
 msgid "Time zone settings"
 msgstr "Zeitzonen-Einstellungen"
 
@@ -19465,11 +19502,6 @@ msgstr ""
 msgid "User defined"
 msgstr "Benutzerdefiniert"
 
-#
-#, fuzzy, python-format
-msgid "User defined 0x%02x"
-msgstr "Benutzerdefiniert"
-
 msgid "User defined delay when you press another button to zap to the channel."
 msgstr "Die Umschaltverzögerung der weiteren Zifferntasten einstellen."
 
@@ -20032,7 +20064,7 @@ msgstr "Mittwoch"
 
 #
 msgid "Weekday"
-msgstr "Wochentag"
+msgstr "Wochentags"
 
 #
 msgid "Weekend"
@@ -22370,6 +22402,9 @@ msgstr "Drücken Sie die MENU Taste, um einen allgemeinen AC3/Dolby Offset zu se
 msgid "previous channel page"
 msgstr "Vorherige Kanalseite"
 
+msgid "previous/next Bouquet"
+msgstr "vorherige/nächste Seite"
+
 msgid "previous/next Page"
 msgstr "vorherige/nächste Seite"
 
@@ -23154,26 +23189,6 @@ msgstr "Umgeschaltet"
 
 msgid "zapping"
 msgstr "Umschalten"
-
-#
-msgid "Channel +/-"
-msgstr "Kanal +/-"
-
-#
-msgid "Previous page"
-msgstr "Seite zurück"
-
-#
-msgid "Next page"
-msgstr "Seite vor"
-
-#
-msgid "Previous bouquet"
-msgstr "Favoriten zurück"
-
-#
-msgid "Next bouquet"
-msgstr "Favoriten vor"
 
 #
 #~ msgid ""
@@ -26804,6 +26819,10 @@ msgstr "Favoriten vor"
 #
 #~ msgid "Your name (optional):"
 #~ msgstr "Ihr Name (optional):"
+
+# Zeitenstellung
+#~ msgid "Your timezone in the area."
+#~ msgstr "Wählen Sie die Zeitzone in Ihrem Gebiet."
 
 #
 #~ msgid "Zap back to service before satfinder?"
