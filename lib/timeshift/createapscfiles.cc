@@ -11,7 +11,9 @@
   * GNU General Public License for more details.
   */
 
+#ifndef _LARGEFILE64_SOURCE
 #define _LARGEFILE64_SOURCE
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
