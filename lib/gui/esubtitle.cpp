@@ -358,8 +358,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&apos;", "'");
 				text = replace_all(text, "&quot;", "\"");
 				text = replace_all(text, "&amp;", "&");
-				text = replace_all(text, "&lt", "<");
-				text = replace_all(text, "&gt", ">");
+				text = replace_all(text, "&lt;", "<");
+				text = replace_all(text, "&gt;", ">");
 
 				if (eConfigManager::getConfigBoolValue("config.subtitles.pango_subtitle_fontswitch"))
 				{
@@ -391,6 +391,13 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					text = replace_all(text, "<u>", "");
 					text = replace_all(text, "<i>", "");
 					text = replace_all(text, "<b>", "");
+				}
+				text = replace_all(text, "</font>", "");
+				unsigned subtitleFont = 0;
+				while ((subtitleFont = text.find("<font ", subtitleFont)) != std::string::npos)
+				{
+					unsigned end = text.find('>', subtitleFont);
+					text.erase(subtitleFont, end - subtitleFont + 1);
 				}
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
