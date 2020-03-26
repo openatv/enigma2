@@ -1333,7 +1333,7 @@ std::string eServiceMP3::getInfoString(int w)
 		GstDateTime *date_time;
 		if (gst_tag_list_get_date(m_stream_tags, GST_TAG_DATE, &date))
 		{
-			gchar res[5];
+			gchar res[8];
 			snprintf(res, sizeof(res), "%04d", g_date_get_year(date));
 			g_date_free(date);
 			return (std::string)res;
@@ -1343,7 +1343,7 @@ std::string eServiceMP3::getInfoString(int w)
 		{
 			if (gst_date_time_has_year(date_time))
 			{
-				gchar res[5];
+				gchar res[8];
 				snprintf(res, sizeof(res), "%04d", gst_date_time_get_year(date_time));
 				gst_date_time_unref(date_time);
 				return (std::string)res;
@@ -2843,6 +2843,7 @@ RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack &track)
 		track.pid = m_cachedSubtitleStream;
 		track.page_number = int(m_subtitleStreams[m_cachedSubtitleStream].type);
 		track.magazine_number = 0;
+		track.language_code = m_subtitleStreams[m_cachedSubtitleStream].language_code;
 		return 0;
 	}
 	return -1;
