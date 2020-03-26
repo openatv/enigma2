@@ -237,11 +237,20 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 	invalidate(m_visible_region); // invalidate new regions
 }
 
+void eSubtitleWidget::setPage(const eVobSubtitlePage &p)
+{
+	eRect r = eRect(0, 0, 720, 576);
+	ePtr<gPixmap> pixmap = p.m_pixmap;
+	setPixmap(pixmap, r, r);
+	m_hide_subtitles_timer->start(p.m_timeout, true);
+}
+
 void eSubtitleWidget::clearPage()
 {
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
 	m_pango_page_ok = 0;
+	m_pixmap = 0;
 	invalidate(m_visible_region);
 	m_visible_region.rects.clear();
 }
@@ -259,6 +268,7 @@ void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect pi
 		changed.scale(size().width(), pixmap->size().width(), size().height(), pixmap->size().height());
 
 	invalidate(changed);
+	m_visible_region = changed;
 }
 
 int eSubtitleWidget::event(int event, void *data, void *data2)
