@@ -455,7 +455,7 @@ void eWidgetDesktop::createBufferForWidget(eWidget *widget, int layer)
 
 	m_screen.m_dc->getPixmap(pm_screen);
 
-	memcpy(pm->surface->clut.data, pm_screen->surface->clut.data, 256 * sizeof(gRGB));
+	memcpy(static_cast<void*>(pm->surface->clut.data), pm_screen->surface->clut.data, 256 * sizeof(gRGB));
 
 	comp->m_dc = new gDC(pm);
 }

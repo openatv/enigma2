@@ -1041,7 +1041,7 @@ void gPixmap::mergePalette(const gPixmap &target)
 	delete [] surface->clut.data;
 	surface->clut.colors=target.surface->clut.colors;
 	surface->clut.data=new gRGB[surface->clut.colors];
-	memcpy(surface->clut.data, target.surface->clut.data, sizeof(gRGB)*surface->clut.colors);
+	memcpy(static_cast<void*>(surface->clut.data), target.surface->clut.data, sizeof(gRGB)*surface->clut.colors);
 
 	uint8_t *dstptr=(uint8_t*)surface->data;
 
