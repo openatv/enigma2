@@ -1,9 +1,10 @@
 from Screens.Screen import Screen
 from Screens.Dish import Dishpip
-from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer
+from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer, getDesktop
 from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition, ConfigYesNo, ConfigSelection
+from Components.Label import Label
 from Tools import Notifications
 from Screens.MessageBox import MessageBox
 from os import access, W_OK
@@ -45,6 +46,30 @@ class PictureInPictureZapping(Screen):
 	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">
 			<eLabel text="PiP-Zap" position="0,0" size="90,26" foregroundColor="#00ff66" font="Regular;26" />
 		</screen>"""
+		
+class PictureInPictureSidebySide(Screen):
+	skin = """<screen name="PictureInPictureSidebySide" flags="wfNoBorder" position="0,0" size="%s,%s" zPosition="-1" backgroundColor="transparent">
+			<eLabel text="%s" position="10,115" size="%s,50" foregroundColor="white" backgroundColor="black" font="screen_text; 22" halign="left" valign="center"/>
+			<eLabel text="%s" position="0,%s" size="%s,50" foregroundColor="white" backgroundColor="black" font="screen_text; 22" halign="center" valign="center"/>
+		</screen>""" % (getDesktop(0).size().width(),
+						getDesktop(0).size().height(),
+						_("Active screen"),
+						getDesktop(0).size().width() / 2,
+						_("LEFT  -  change screen   |   RIGHT  -  right screen channel +/-   |   EXIT  -  close right screen"),
+						getDesktop(0).size().height() - 100,
+						getDesktop(0).size().width())
+						
+class PictureInPictureSidebySideToogle(Screen):
+	skin = """<screen name="PictureInPictureSidebySideToogle" flags="wfNoBorder" position="0,0" size="%s,%s" zPosition="0" backgroundColor="transparent">
+			<eLabel text="%s" position="0,115" size="%s,50" foregroundColor="white" backgroundColor="black" font="screen_text; 22" halign="right" valign="center"/>
+			<eLabel text="%s" position="0,%s" size="%s,50" foregroundColor="white" backgroundColor="black" font="screen_text; 22" halign="center" valign="center"/>
+		</screen>""" % (getDesktop(0).size().width(),
+						getDesktop(0).size().height(),
+						_("Channel change +/-"),
+						getDesktop(0).size().width() - 10,
+						_("LEFT  -  back to active screen   |    EXIT  -  close right screen"),
+						getDesktop(0).size().height() - 100,
+						getDesktop(0).size().width())
 
 class PictureInPicture(Screen):
 	def __init__(self, session):
@@ -52,6 +77,8 @@ class PictureInPicture(Screen):
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
+		self.pipSideSide = session.instantiateDialog(PictureInPictureSidebySide)
+		self.pipSideSideToogle = session.instantiateDialog(PictureInPictureSidebySideToogle)
 		self.dishpipActive = session.instantiateDialog(Dishpip)
 		self.currentService = None
 		self.currentServiceReference = None
@@ -132,6 +159,8 @@ class PictureInPicture(Screen):
 			self.instance.resize(eSize(*(MAX_X/2, MAX_Y/2 )))
 			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y/2)))
 			self.setSizePosMainWindow(0, MAX_Y/4, MAX_X/2, MAX_Y/2)
+			if config.usage.pip_mode.value == "byside":
+				self.pipSideSide.show()
 		elif config.av.pip_mode.value in "bigpig external":
 			self.instance.resize(eSize(*(MAX_X, MAX_Y)))
 			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
@@ -150,6 +179,12 @@ class PictureInPicture(Screen):
 
 	def inactive(self):
 		self.pipActive.hide()
+		
+	def activeToggle(self):
+		self.pipSideSideToogle.show()
+
+	def inactiveToogle(self):
+		self.pipSideSideToogle.hide()
 
 	def getPosition(self):
 		return self.instance.position().x(), self.instance.position().y()

@@ -1,4 +1,4 @@
-﻿<skin>
+<skin>
 	<include filename="Skin_ExtPlugins.xml" />
 	<fonts>
 		<font filename="nmsbd.ttf" name="Regular" scale="90" />
@@ -1181,6 +1181,10 @@ self.autoResize()
 	</screen>
 	<screen name="PiPSetup" position="center,center" size="800,200" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1" title="PiPSetup" >
 		<widget name="text" position="0,0" size="800,200" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+	</screen>
+	<screen name="PiPusageModeSetup" position="center,center" size="700,160" backgroundColor="transparent">
+		<widget name="text" position="0,0" size="700,100" font="screen_text; 22" halign="center" valign="center"/>
+		<widget name="text_desc" position="0,100" size="700,60" font="screen_text; 20" halign="center"/>
 	</screen>
 	<screen name="PinInput" position="center,center" size="500,170" title="PIN code needed">
 		<panel name="PinInputTemplate" />
