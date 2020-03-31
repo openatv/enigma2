@@ -353,6 +353,12 @@ void eventData::load(FILE *f)
 		p.data[0] = header[0];
 		p.data[1] = header[1];
 		ret = fread(p.data+2, bytes-2, 1, f);
+		// make sure we are not leaking memory
+		DescriptorMap::iterator it = descriptors.find(id);
+		if (it != descriptors.end())
+		{
+			delete [] it->second.data; // free descriptor memory
+		}
 		descriptors[id] = p;
 		--size;
 	}
