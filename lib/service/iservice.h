@@ -698,6 +698,7 @@ class PyList;
 class eDVBTeletextSubtitlePage;
 class eDVBSubtitlePage;
 struct ePangoSubtitlePage;
+struct eVobSubtitlePage;
 class eRect;
 struct gRegion;
 struct gPixmap;
@@ -709,6 +710,7 @@ public:
 	virtual void setPage(const eDVBTeletextSubtitlePage &p) = 0;
 	virtual void setPage(const eDVBSubtitlePage &p) = 0;
 	virtual void setPage(const ePangoSubtitlePage &p) = 0;
+	virtual void setPage(const eVobSubtitlePage &p) = 0;
 	virtual void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest) = 0;
 	virtual void destroy() = 0;
 };

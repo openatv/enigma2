@@ -1477,7 +1477,6 @@ class ChannelSelectionEdit:
 		l = self["list"]
 		l.setFontsize()
 		l.setItemsPerPage()
-		l.setMode('MODE_TV')
 		if close:
 			self.cancel()
 
