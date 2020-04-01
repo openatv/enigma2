@@ -863,10 +863,9 @@ class MovieList(GUIComponent):
 				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
 					continue
 
-			info = self.getServiceInfo(serviceHandler, serviceref)
-			name = info.getName(serviceref)
-
 			if serviceref.flags & eServiceReference.mustDescent:
+				info = self.getServiceInfo(serviceHandler, serviceref)
+				name = info.getName(serviceref)
 				normdirname = os.path.normpath(name)
 				normname = os.path.basename(normdirname)
 				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
@@ -883,6 +882,8 @@ class MovieList(GUIComponent):
 			# otherwise the entry will be dropped.
 			if self.filter_tags is not None:
 				# convert space-separated list of tags into a set
+				info = self.getServiceInfo(serviceref)
+				name = info.getName(serviceref)
 				this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 				if len(this_tags) == 1 and (not this_tags[0] or this_tags[0].startswith("Tuner-")):
 					# No tags or only a tuner tag? Auto tag!
@@ -950,7 +951,7 @@ class MovieList(GUIComponent):
 				break
 
 			# OSX put a lot of stupid files ._* everywhere... we need to skip them
-			# Test early so that serviceHandler.info() isn't called if
+			# Test early so that getInfo() isn't called if
 			# the file will be ignored anyway.
 			if not (serviceref.flags & eServiceReference.mustDescent) and isFsRoot and os.path.basename(serviceref.getPath()).startswith("._"):
 				continue
