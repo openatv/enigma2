@@ -834,6 +834,13 @@ class MovieList(GUIComponent):
 	def __iter__(self):
 		return self.list.__iter__()
 
+	@staticmethod
+	def getServiceInfo(serviceHandler, serviceref):
+		info = serviceHandler.info(serviceref)
+		if info is None:
+			info = justStubInfo
+		return info
+
 	def count(self, root):
 		# Count the files and directories in root.
 		serviceHandler = eServiceCenter.getInstance()
@@ -856,9 +863,7 @@ class MovieList(GUIComponent):
 				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
 					continue
 
-			info = serviceHandler.info(serviceref)
-			if info is None:
-				info = justStubInfo
+			info = self.getServiceInfo(serviceHandler, serviceref)
 			name = info.getName(serviceref)
 
 			if serviceref.flags & eServiceReference.mustDescent:
@@ -954,9 +959,7 @@ class MovieList(GUIComponent):
 				from Components.ParentalControl import parentalControl
 				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
 					continue
-			info = serviceHandler.info(serviceref)
-			if info is None:
-				info = justStubInfo
+			info = self.getServiceInfo(serviceHandler, serviceref)
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 
 # GML:1
