@@ -868,9 +868,8 @@ class MovieList(GUIComponent):
 				name = info.getName(serviceref)
 				normdirname = os.path.normpath(name)
 				normname = os.path.basename(normdirname)
-				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
-					if normname != ".Trash":
-						numUserDirs += 1
+				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs and normname != ".Trash":
+					numUserDirs += 1
 				continue
 
 			# OSX put a lot of stupid files ._* everywhere... we need to skip them
