@@ -834,11 +834,20 @@ class MovieList(GUIComponent):
 	def __iter__(self):
 		return self.list.__iter__()
 
+	@staticmethod
+	def getServiceInfo(serviceHandler, serviceref):
+		info = serviceHandler.info(serviceref)
+		if info is None:
+			info = justStubInfo
+		return info
+
 	def count(self, root):
 		# Count the files and directories in root.
 		serviceHandler = eServiceCenter.getInstance()
 		numUserDirs = 0  # does not include parent or Trashcan
 		numUserFiles = 0
+
+		isFsRoot = root.type == eServiceReference.idFile
 
 		reflist = root and serviceHandler.list(root)
 		if reflist is None:
@@ -854,21 +863,17 @@ class MovieList(GUIComponent):
 				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
 					continue
 
-			info = serviceHandler.info(serviceref)
-			if info is None:
-				info = justStubInfo
-			name = info.getName(serviceref)
-
 			if serviceref.flags & eServiceReference.mustDescent:
+				info = self.getServiceInfo(serviceHandler, serviceref)
+				name = info.getName(serviceref)
 				normdirname = os.path.normpath(name)
 				normname = os.path.basename(normdirname)
-				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs:
-					if normname != ".Trash":
-						numUserDirs += 1
+				if normname not in MovieList.dirNameExclusions and normdirname not in defaultInhibitDirs and normname != ".Trash":
+					numUserDirs += 1
 				continue
 
 			# OSX put a lot of stupid files ._* everywhere... we need to skip them
-			if name[:2] == "._":
+			if isFsRoot and os.path.basename(serviceref.getPath()).startswith("._"):
 				continue
 
 			# filter_tags is either None (which means no filter at all), or
@@ -876,6 +881,8 @@ class MovieList(GUIComponent):
 			# otherwise the entry will be dropped.
 			if self.filter_tags is not None:
 				# convert space-separated list of tags into a set
+				info = self.getServiceInfo(serviceref)
+				name = info.getName(serviceref)
 				this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 				if len(this_tags) == 1 and (not this_tags[0] or this_tags[0].startswith("Tuner-")):
 					# No tags or only a tuner tag? Auto tag!
@@ -935,17 +942,24 @@ class MovieList(GUIComponent):
 			elif (config.usage.trashsort_deltime.value == "show delete time"):
 				MovieList.UsingTrashSort = MovieList.TRASHSORT_SHOWDELETE
 
+		isFsRoot = root.type == eServiceReference.idFile
+
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
 				break
+
+			# OSX put a lot of stupid files ._* everywhere... we need to skip them
+			# Test early so that getInfo() isn't called if
+			# the file will be ignored anyway.
+			if not (serviceref.flags & eServiceReference.mustDescent) and isFsRoot and os.path.basename(serviceref.getPath()).startswith("._"):
+				continue
+
 			if config.ParentalControl.servicepinactive.value and config.ParentalControl.storeservicepin.value != "never":
 				from Components.ParentalControl import parentalControl
 				if not parentalControl.sessionPinCached and parentalControl.isProtected(serviceref):
 					continue
-			info = serviceHandler.info(serviceref)
-			if info is None:
-				info = justStubInfo
+			info = self.getServiceInfo(serviceHandler, serviceref)
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 
 # GML:1
@@ -973,10 +987,6 @@ class MovieList(GUIComponent):
 			# convert space-separated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 			name = info.getName(serviceref)
-
-			# OSX put a lot of stupid files ._* everywhere... we need to skip them
-			if name[:2] == "._":
-				continue
 
 			if len(this_tags) == 1 and (not this_tags[0] or this_tags[0].startswith("Tuner-")):
 				# No tags or only a tuner tag? Auto tag!
