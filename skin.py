@@ -384,7 +384,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 		skinAttributes.append(('size', size))
 
 def morphRcImagePath(value):
-	if rc_model.rcIsDefault() is False and basename(value) in ("rc.png", "rc0.png", "rc1.png", "rc2.png", "oldrc.png"):
+	if rc_model.rcIsDefault() is False and os.path.basename(value) in ("rc.png", "rc0.png", "rc1.png", "rc2.png", "oldrc.png"):
 		value = rc_model.getRcImg()
 	return value
 
