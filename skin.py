@@ -384,11 +384,8 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 		skinAttributes.append(('size', size))
 
 def morphRcImagePath(value):
-	if rc_model.rcIsDefault() is False:
-		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
-			value = rc_model.getRcLocation() + 'rc.png'
-		elif value == '/usr/share/enigma2/skin_default/rc0.png' or value == '/usr/share/enigma2/skin_default/rc1.png' or value == '/usr/share/enigma2/skin_default/rc2.png':
-			value = rc_model.getRcLocation() + 'rc.png'
+	if rc_model.rcIsDefault() is False and os.path.basename(value) in ("rc.png", "rc0.png", "rc1.png", "rc2.png", "oldrc.png"):
+		value = rc_model.getRcImg()
 	return value
 
 def loadPixmap(path, desktop):
