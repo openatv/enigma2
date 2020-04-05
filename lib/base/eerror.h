@@ -70,31 +70,30 @@ static inline void RemoveTrack(unsigned int addr, unsigned int type)
 inline void * operator new(size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
-	AddTrack((unsigned int)ptr, size, file, line, 1);
+	AddTrack((uintptr_t)ptr, size, file, line, 1);
 	return(ptr);
 };
 
 inline void operator delete(void *p)
 {
-	RemoveTrack((unsigned int)p,1);
+	RemoveTrack((uintptr_t)p,1);
 	free(p);
 };
 
 inline void * operator new[](size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
-	AddTrack((unsigned int)ptr, size, file, line, 2);
+	AddTrack((uintptr_t)ptr, size, file, line, 2);
 	return(ptr);
 };
 
 inline void operator delete[](void *p)
 {
-	RemoveTrack((unsigned int)p, 2);
+	RemoveTrack((uintptr_t)p, 2);
 	free(p);
 };
 
 void DumpUnfreed();
-#define new new(__FILE__, __LINE__)
 
 #endif // MEMLEAK_CHECK
 

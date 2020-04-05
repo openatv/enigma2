@@ -15,6 +15,8 @@
 extern ePtr<eErrorOutput> m_erroroutput;
 
 #ifdef MEMLEAK_CHECK
+#define new new(__FILE__, __LINE__)
+
 AllocList *allocList;
 pthread_mutex_t memLock =
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
