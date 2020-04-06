@@ -130,7 +130,7 @@ class GetImagelist():
 			Build = " "
 			Dev = " "
 			Creator = " "
-			Date = " "	
+			Date = " "
 			BuildType = " "
 			self.OsPath = "NoPath"
 			if SystemInfo["HasRootSubdir"]:
@@ -160,10 +160,13 @@ class GetImagelist():
 					Dev = BuildType != "release" and " %s" % reader.getImageDevBuild() or ''
 					BuildVersion = "%s %s %s %s" % (Creator, BuildType[0:3], Build, Dev)
 				else:
-					st = os.stat('%s/var/lib/opkg/status' %self.OsPath)
-					tm = time.localtime(st.st_mtime)
-					if tm.tm_year >= 2011:
-						Date = time.strftime("%d-%m-%Y", tm)
+					try:
+						st = os.stat('%s/var/lib/opkg/status' %self.OsPath)
+						tm = time.localtime(st.st_mtime)
+						if tm.tm_year >= 2011:
+							Date = time.strftime("%d-%m-%Y", tm)
+					except:
+						pass
 					BuildVersion = _("%s build date %s") % (Creator, Date)
 				self.imagelist[self.slot2] =  { 'imagename': '%s' %BuildVersion, 'part': '%s' %self.part2 }
 			self.phase = self.UNMOUNT
