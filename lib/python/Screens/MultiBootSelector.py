@@ -112,6 +112,8 @@ class MultiBootSelector(Screen):
 				if SystemInfo["HasRootSubdir"]:
 					if fileExists("/dev/block/by-name/bootoptions"):
 						self.container.ePopen('mount /dev/block/by-name/bootoptions /tmp/startupmount', self.ContainterFallback)
+					elif fileExists("/dev/block/by-name/bootimg"):
+						self.container.ePopen('mount /dev/block/by-name/bootimg /tmp/startupmount', self.ContainterFallback)
 					elif fileExists("/dev/block/by-name/boot"):
 						self.container.ePopen('mount /dev/block/by-name/boot /tmp/startupmount', self.ContainterFallback)
 				else:
