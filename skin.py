@@ -3,7 +3,8 @@ import xml.etree.cElementTree
 
 from boxbranding import getBoxType
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB
-from os.path import basename, dirname, isfile
+from os import listdir
+from os.path import basename, dirname, isfile, join as pathjoin
 
 from Components.config import ConfigNothing, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
@@ -99,6 +100,14 @@ def InitSkins():
 			break
 		print "[Skin] Error: Adding %s GUI skin '%s' has failed!" % (name, config.skin.primary_skin.value)
 		result.append(skin)
+	# Add the activated optional skin parts.
+	partsDir = resolveFilename(SCOPE_CURRENT_SKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
+	if pathExists(partsDir) and currentPrimarySkin != DEFAULT_SKIN:
+		for file in sorted(listdir(partsDir)):
+			if file.startswith("skin_") and file.endswith(".xml"):
+				partsFile = pathjoin(partsDir, file)
+				if not loadSkin(partsFile, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
+					print "[Skin] Error: Failed to load modular skin file '%s'!" % partsFile
 	# Add an optional skin related user skin "user_skin_<SkinName>.xml".  If there is
 	# not a skin related user skin then try to add am optional generic user skin.
 	result = None
