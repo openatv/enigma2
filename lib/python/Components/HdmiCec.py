@@ -1012,6 +1012,7 @@ class HdmiCec:
 	def keyEvent(self, keyCode, keyEvent):
 		if not self.volumeForwardingEnabled: return
 		cmd = 0
+		address = keyEvent
 		data = ''
 		if keyEvent in (0, 2):
 			if keyCode == 115:
