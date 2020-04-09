@@ -3,7 +3,7 @@ import xml.etree.cElementTree
 
 from boxbranding import getBoxType
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB
-from os import listdir
+from os import listdir, path, unlink
 from os.path import basename, dirname, isfile, join as pathjoin
 
 from Components.config import ConfigSubsection, ConfigText, config
@@ -20,6 +20,27 @@ DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if SystemInfo["grautec"] else 
 USER_SKIN = "skin_user.xml"
 USER_SKIN_TEMPLATE = "skin_user_%s.xml"
 SUBTITLE_SKIN = "skin_subtitles.xml"
+
+##################################################################################################
+if isfile('/etc/.restore_skins'):
+	unlink('/etc/.restore_skins')
+	import glob
+	lastpath = ''
+	for skin in sorted(glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py*')):
+		try:
+			print '[RESTORE_SKIN] restore skin from "%s" ...' % skin
+			skinpath, ext = path.splitext(skin)
+			if skinpath == lastpath or not ext in '.pyo':
+				print '[RESTORE_SKIN] ...skip!'
+				continue
+			lastpath = skinpath
+			if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace(ext,'').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
+				print '[RESTORE_SKIN] ... failed!'
+			else:
+				print '[RESTORE_SKIN] ... done!'
+		except Exception, err:
+			print '[RESTORE_SKIN] ...error occurred: ', err
+##################################################################################################
 
 GUI_SKIN_ID = 0  # Main frame-buffer.
 DISPLAY_SKIN_ID = 2 if getBoxType().startswith("dm") else 1  # Front panel / display / LCD.
