@@ -42,6 +42,8 @@ menus = {}  # Dictionary of images associated with menu entries.
 parameters = {}  # Dictionary of skin parameters used to modify code behavior.
 setups = {}  # Dictionary of images associated with setup menus.
 switchPixmap = {}  # Dictionary of switch images.
+constantWidgets = {}
+variables = {}
 skinfactor = 0
 isVTISkin = False  # Temporary flag to suppress errors in OpenATV.
 
@@ -279,6 +281,8 @@ def getParentSize(object, desktop):
 	return eSize()
 
 def parseValuePair(s, scale, object=None, desktop=None, size=None):
+	if s in variables:
+		s = variables[s]
 	x, y = s.split(",")
 	parentsize = eSize()
 	if object and ("c" in x or "c" in y or "e" in x or "e" in y or "%" in x or "%" in y):  # Need parent size for ce%
@@ -527,10 +531,14 @@ class AttributeParser:
 			print "[Skin] Error: Invalid halign '%s'!  Must be one of 'left', 'center', 'right' or 'block'." % value
 
 	def textOffset(self, value):
+		if value in variables:
+			value = variables[value]
 		x, y = value.split(",")
 		self.guiObject.setTextOffset(ePoint(int(x) * self.scaleTuple[0][0] / self.scaleTuple[0][1], int(y) * self.scaleTuple[1][0] / self.scaleTuple[1][1]))
 
 	def flags(self, value):
+		if value in variables:
+			value = variables[value]
 		flags = value.split(",")
 		for f in flags:
 			try:
@@ -750,6 +758,18 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				# print "[Skin] DEBUG: Setup key='%s', image='%s'." % (key, image)
 			else:
 				raise SkinError("Tag setup needs key and image, got key='%s' and image='%s'" % (key, image))
+	for tag in domSkin.findall("constant-widgets"):
+		for constant_widget in tag.findall("constant-widget"):
+			name = constant_widget.attrib.get("name")
+			if name:
+				constantWidgets[name] = constant_widget
+	for tag in domSkin.findall("variables"):
+		for parameter in tag.findall("variable"):
+			name = parameter.attrib.get("name")
+			value = parameter.attrib.get("value")
+			x, y = value.split(",")
+			if value and name:
+				variables[name] = "%s,%s" % (str(x), str(y))
 	for tag in domSkin.findall("subtitles"):
 		from enigma import eSubtitleWidget
 		scale = ((1, 1), (1, 1))
@@ -869,6 +889,8 @@ class SkinContext:
 		return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
 
 	def parse(self, pos, size, font):
+		if size in variables:
+			size = variables[size]
 		if pos == "fill":
 			pos = (self.x, self.y)
 			size = (self.w, self.h)
@@ -897,6 +919,8 @@ class SkinContext:
 				size = (w, self.h)
 				self.w -= w
 			else:
+				if pos in variables:
+					pos = variables[pos]
 				size = (w, h)
 				pos = pos.split(",")
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
@@ -907,6 +931,8 @@ class SkinContext:
 #
 class SkinContextStack(SkinContext):
 	def parse(self, pos, size, font):
+		if size in variables:
+			size = variables[size]
 		if pos == "fill":
 			pos = (self.x, self.y)
 			size = (self.w, self.h)
@@ -927,6 +953,8 @@ class SkinContextStack(SkinContext):
 				pos = (self.x + self.w - w, self.y)
 				size = (w, self.h)
 			else:
+				if pos in variables:
+					pos = variables[pos]
 				size = (w, h)
 				pos = pos.split(",")
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
@@ -978,6 +1006,21 @@ def readSkin(screen, skin, names, desktop):
 	screen.additionalWidgets = []
 	screen.renderer = []
 	usedComponents = set()
+
+	def processConstant(constant_widget, context):
+		wname = constant_widget.attrib.get("name")
+		if wname:
+			try:
+				cwvalue = constantWidgets[wname]
+			except KeyError:
+				raise SkinError("Given constant-widget '%s' not found in skin" % wname)
+		if cwvalue:
+			for x in cwvalue:
+				myScreen.append((x))
+		try:
+			myScreen.remove(constant_widget)
+		except ValueError:
+			pass
 
 	def processNone(widget, context):
 		pass
@@ -1085,6 +1128,8 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def processScreen(widget, context):
+		for w in widget.findall('constant-widget'):
+			processConstant(w, context)
 		for w in widget.getchildren():
 			conditional = w.attrib.get("conditional")
 			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
@@ -1120,6 +1165,7 @@ def readSkin(screen, skin, names, desktop):
 
 	processors = {
 		None: processNone,
+		"constant-widget": processConstant,
 		"widget": processWidget,
 		"applet": processApplet,
 		"eLabel": processLabel,
