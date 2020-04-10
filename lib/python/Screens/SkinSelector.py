@@ -26,8 +26,10 @@ class SkinSelectorBase:
 			self.skinlist.append(self.USERSKIN)
 		for root, dirs, files in os.walk(self.root, followlinks=True):
 			for subdir in dirs:
-				dir = os.path.join(root,subdir)
-				if os.path.exists(os.path.join(dir,self.SKINXML)):
+				if subdir == "skin_default":
+					continue
+				dir = os.path.join(root, subdir)
+				if os.path.exists(os.path.join(dir, self.SKINXML)):
 					self.skinlist.append(subdir)
 			dirs = []
 
