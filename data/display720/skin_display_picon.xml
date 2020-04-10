@@ -110,11 +110,11 @@
 		<widget source="session.CurrentService" render="LcdPicon" zPosition="13" position="160,355" size="320,210" transparent="1" alphatest="blend">	
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/hd.png" position="10,360" size="65,50" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/hd.png" position="10,360" size="65,50" >
 			<convert type="ServiceInfo">IsHD</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/dolby.png" position="80,360" size="65,50" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/dolby.png" position="80,360" size="65,50" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -176,11 +176,11 @@
 		<widget render="MSNWeatherPixmap" position="540,355" size="220,120" source="MSNWeather" transparent="1" zPosition="8" alphatest="blend" >
 			<convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/skin_default/,png</convert>
 		</widget-->
-		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/hd.png" position="10,360" size="65,50" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/hd.png" position="10,360" size="65,50" >
 			<convert type="ServiceInfo">IsHD</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="~/skin_default/dolby.png" position="80,360" size="65,50" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/dolby.png" position="80,360" size="65,50" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -377,8 +377,8 @@
 <!--"Analog Clock" -->
 	<screen name="StandbySummary" position="0,0" size="720,576">
 		<eLabel position="0,0" size="720,576" zPosition="-1" backgroundColor="#000000" />
-		<ePixmap pixmap="~/skin_default/analog_lcd.png" position="center,center" size="700,550" transparent="1" alphatest="on" />
-		<ePixmap pixmap="~/skin_default/ClockPoint.png" position="10,280" size="720,30" alphatest="on" transparent="1" zPosition="6" />
+		<ePixmap pixmap="skin_default/analog_lcd.png" position="center,center" size="700,550" transparent="1" alphatest="on" />
+		<ePixmap pixmap="skin_default/ClockPoint.png" position="10,280" size="720,30" alphatest="on" transparent="1" zPosition="6" />
 		<widget source="global.CurrentTime" render="EtAnalogClockLCD" position="center,center" size="700,540" hColor="#e5b243" positionwidth="682" positionheight="550" linewidth="7" linesize="120" zPosition="3" alphatest="on">
 			<convert type="EtAnalogClock">Hours</convert>
 		</widget>
