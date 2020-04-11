@@ -149,11 +149,11 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="1,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ConfigEntryTest">config.usage.show_in_standby,time,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,time</convert>
 			<convert type="VfdDisplay">Clock</convert>
 		</widget>
 		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
-			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckInvertSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
