@@ -17,25 +17,8 @@ from keyids import KEYIDS
 from sys import maxint
 import glob
 import os
-from Components.RcModel import rc_model
 
 def InitUsageConfig():
-	AvailRemotes=glob.glob('/usr/share/enigma2/rc_models/*')
-	RemoteChoices=[]
-	DefaultRemote=rc_model.getRcFolder(GetDefault=True)
-	
-	remoteSelectable=False
-	if AvailRemotes is not None:
-		for remote in AvailRemotes:
-			if os.path.isfile(remote+'/rc.png') and os.path.isfile(remote+'/rcpositions.xml') and os.path.isfile(remote+'/remote.html'):
-				pass
-			else:
-				AvailRemotes.remove(remote)
-		if len(AvailRemotes)>1:
-			remoteSelectable=True
-			for remote in AvailRemotes:
-				toadd = (remote.split('/')[-1], remote.split('/')[-1])
-				RemoteChoices.append(toadd)
 	config.misc.SettingsVersion = ConfigFloat(default = [1,1], limits = [(1,10),(0,99)])
 	config.misc.SettingsVersion.value = [1,1]
 	config.misc.SettingsVersion.save_forced = True
@@ -235,7 +218,6 @@ def InitUsageConfig():
 	config.usage.sort_extensionslist = ConfigYesNo(default = False)
 	config.usage.show_restart_network_extensionslist = ConfigYesNo(default = True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False)
-	config.usage.rc_model = ConfigSelection(default = DefaultRemote, choices = RemoteChoices)
 
 	choicelist = []
 	for i in (10, 30):
@@ -523,6 +505,7 @@ def InitUsageConfig():
 		config.usage.blinking_display_clock_during_recording = ConfigSelection(default = "Rec", choices = [
 						("Rec", _("REC")),
 						("RecBlink", _("Blinking REC")),
+						("Time", _("Time")),
 						("Nothing", _("Nothing"))])
 	else:
 		config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
@@ -1352,7 +1335,7 @@ def InitUsageConfig():
 		if config.autolanguage.subtitle_autoselect3.value:
 			choicelist.append((str(y+1), _("All")))
 		config.autolanguage.equal_languages.setChoices(choicelist, default="0")
-	config.autolanguage.equal_languages = ConfigSelection(default = "0", choices = [])
+	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in range(0, 16)])
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="")
 	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="")
 	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="")
