@@ -33,7 +33,7 @@ class ConditionalShowHide(Converter, object):
 	def calcVisibility(self):
 		b = self.source.boolean
 		if b is None:
-			return True
+			b = False
 		b ^= self.invert
 		return b
 

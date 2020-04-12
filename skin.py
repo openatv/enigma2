@@ -21,27 +21,6 @@ USER_SKIN = "skin_user.xml"
 USER_SKIN_TEMPLATE = "skin_user_%s.xml"
 SUBTITLE_SKIN = "skin_subtitles.xml"
 
-##################################################################################################
-if isfile('/etc/.restore_skins'):
-	unlink('/etc/.restore_skins')
-	import glob
-	lastpath = ''
-	for skin in sorted(glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py*')):
-		try:
-			print '[RESTORE_SKIN] restore skin from "%s" ...' % skin
-			skinpath, ext = path.splitext(skin)
-			if skinpath == lastpath or not ext in '.pyo':
-				print '[RESTORE_SKIN] ...skip!'
-				continue
-			lastpath = skinpath
-			if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace(ext,'').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
-				print '[RESTORE_SKIN] ... failed!'
-			else:
-				print '[RESTORE_SKIN] ... done!'
-		except Exception, err:
-			print '[RESTORE_SKIN] ...error occurred: ', err
-##################################################################################################
-
 GUI_SKIN_ID = 0  # Main frame-buffer.
 DISPLAY_SKIN_ID = 2 if getBoxType().startswith("dm") else 1  # Front panel / display / LCD.
 
@@ -54,7 +33,6 @@ colors = {  # Dictionary of skin color names.
 	"key_text": gRGB(0x00ffffff),
 	"key_yellow": gRGB(0x00a08500)
 }
-colorNames = colors  # Temporary until OverlayHD is updated.
 fonts = {  # Dictionary of predefined and skin defined font aliases.
 	"Body": ("Regular", 18, 22, 16),
 	"ChoiceList": ("Regular", 20, 24, 18)
@@ -63,9 +41,9 @@ menus = {}  # Dictionary of images associated with menu entries.
 parameters = {}  # Dictionary of skin parameters used to modify code behavior.
 setups = {}  # Dictionary of images associated with setup menus.
 switchPixmap = {}  # Dictionary of switch images.
+windowStyles = {}  # Dictionary of window styles for each screen ID.
 constantWidgets = {}
 variables = {}
-skinfactor = 0
 isVTISkin = False  # Temporary flag to suppress errors in OpenATV.
 
 config.skin = ConfigSubsection()
@@ -95,6 +73,26 @@ runCallbacks = False
 #
 def InitSkins():
 	global currentPrimarySkin, currentDisplaySkin
+	##################################################################################################
+	if isfile('/etc/.restore_skins'):
+		unlink('/etc/.restore_skins')
+		import glob
+		lastpath = ''
+		for skin in sorted(glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py*')):
+			try:
+				print '[RESTORE_SKIN] restore skin from "%s" ...' % skin
+				skinpath, ext = path.splitext(skin)
+				if skinpath == lastpath or not ext in '.pyo':
+					print '[RESTORE_SKIN] ...skip!'
+					continue
+				lastpath = skinpath
+				if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace(ext,'').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
+					print '[RESTORE_SKIN] ... failed!'
+				else:
+					print '[RESTORE_SKIN] ... done!'
+			except Exception, err:
+				print '[RESTORE_SKIN] ...error occurred: ', err
+	##################################################################################################
 	runCallbacks = False
 	# Add the emergency skin.  This skin should provide enough functionality
 	# to enable basic GUI functions to work.
@@ -147,9 +145,10 @@ def InitSkins():
 def loadSkinData(desktop):
 	InitSkins()
 
-# Now a utility for plugins to add skin data to the screens.
+# Method to load a skin XML file into the skin data structures.
 #
 def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
+	global windowStyles
 	filename = resolveFilename(scope, filename)
 	print "[Skin] Loading skin file '%s'." % filename
 	try:
@@ -161,13 +160,23 @@ def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screen
 				# the other in order of ascending priority.
 				loadSingleSkinData(desktop, screenID, domSkin, filename, scope=scope)
 				for element in domSkin:
-					if element.tag == "screen":  # If non-screen element, no need for it any longer.
+					if element.tag == "screen":  # Process all screen elements.
 						name = element.attrib.get("name", None)
 						if name:  # Without a name, it's useless!
 							sid = element.attrib.get("id", None)
 							if sid is None or sid == screenID:  # If there is a screen ID is it for this display.
 								# print "[Skin] DEBUG: Extracting screen '%s' from '%s'.  (scope='%s')" % (name, filename, scope)
 								domScreens[name] = (element, "%s/" % dirname(filename))
+					elif element.tag == "windowstyle":  # Process the windowstyle element.
+						id = element.attrib.get("id", None)
+						if id is not None:  # Without an id, it is useless!
+							id = int(id)
+							# print "[Skin] DEBUG: Processing a windowstyle ID='%s'." % id
+							domStyle = xml.etree.cElementTree.ElementTree(xml.etree.cElementTree.Element("skin"))
+							domStyle.getroot().append(element)
+							windowStyles[id] = (desktop, screenID, domStyle, filename, scope)
+					# Element is not a screen or windowstyle element so no need for it any longer.
+				reloadWindowStyles()  # Reload the window style to ensure all skin changes are taken into account.
 				print "[Skin] Loading skin file '%s' complete." % filename
 				if runCallbacks:
 					for method in self.callbacks:
@@ -669,6 +678,11 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1, 1), (1, 1
 def applyAllAttributes(guiObject, desktop, attributes, scale):
 	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
 
+def reloadWindowStyles():
+	for id in windowStyles:
+		desktop, screenID, domSkin, pathSkin, scope = windowStyles[id]
+		loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope)
+
 def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT_SKIN):
 	"""Loads skin data like colors, windowstyle etc."""
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
@@ -874,6 +888,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 		# The "desktop" parameter is hard-coded to the GUI screen, so we must ask
 		# for the one that this actually applies to.
 		getDesktop(styleId).setMargins(r)
+
 
 class additionalWidget:
 	def __init__(self):
@@ -1216,17 +1231,15 @@ def readSkin(screen, skin, names, desktop):
 	screen = None
 	usedComponents = None
 
-def getSkinFactor(refresh=False):  # This only works for screen resolution greater than HD!
-	global skinfactor
-	if refresh or not skinfactor:
-		try:
-			skinfactor = getDesktop(GUI_SKIN_ID).size().height() / 720.0
-			if skinfactor not in [1, 1.5, 3, 6]:
-				skinfactor = 1
-				print "[Skin] Unknown result for getSkinFactor '%s' -> SkinFactor set to 1!" % skinfactor
-		except Exception as err:
-			skinfactor = 1
-			print "[Skin] Error: getSkinFactor failed!  (%s)" % str(err)
+# Return a scaling factor (float) that can be used to rescale screen displays
+# to suit the current resolution of the screen.  The scales are based on a
+# default screen resolution of HD (720p).  That is the scale factor for a HD
+# screen will be 1.
+#
+def getSkinFactor():
+	skinfactor = getDesktop(GUI_SKIN_ID).size().height() / 720.0
+	# if skinfactor not in [0.8, 1, 1.5, 3, 6]:
+	# 	print "[Skin] Warning: Unexpected result for getSkinFactor '%0.4f'!" % skinfactor
 	return skinfactor
 
 # Search the domScreens dictionary to see if any of the screen names provided
