@@ -47,7 +47,8 @@ fi
 if [ -x ${bindir}/enigma2_pre_start.sh ]; then
 	echo "$(date): executing ${bindir}/enigma2_pre_start.sh" >> ${run_log}
 	${bindir}/enigma2_pre_start.sh
-	echo "$(date): ${bindir}/enigma2_pre_start.sh terminated with code $?" >> ${run_log}
+	ret=$?
+	echo "$(date): ${bindir}/enigma2_pre_start.sh terminated with code $ret" >> ${run_log}
 fi
 
 if [ -d /home/root ]; then
