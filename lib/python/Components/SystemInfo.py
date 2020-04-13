@@ -8,6 +8,8 @@ from Tools.HardwareInfo import HardwareInfo
 
 SystemInfo = {}
 
+from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
+
 def getNumVideoDecoders():
 	numVideoDecoders = 0
 	while fileExists("/dev/dvb/adapter0/video%d" % numVideoDecoders, "f"):
@@ -90,13 +92,12 @@ SystemInfo["HaveCISSL"] = fileCheck("/etc/ssl/certs/customer.pem") and fileCheck
 SystemInfo["HaveID"] = fileCheck("/etc/.id")
 SystemInfo["HaveTouchSensor"] = getBoxType() in ("dm520", "dm525", "dm900", "dm920")
 SystemInfo["DefaultDisplayBrightness"] = getBoxType() in ("dm900", "dm920") and 8 or 5
-SystemInfo["HasRootSubdir"] = fileHas("/proc/cmdline", "rootsubdir=")
-SystemInfo["RecoveryMode"] = SystemInfo["HasRootSubdir"] and getMachineBuild() not in ("vs1500", "hd51", "h7") or fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["ForceLNBPowerChanged"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
 SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
 SystemInfo["XcoreVFD"] = getMachineBuild() in ("xc7346", "xc7439") 
 SystemInfo["HDMIin"] = getMachineBuild() in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k") or getBoxType() in ("spycat4k", "spycat4kcombo", "gbquad4k")
+SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode")
 SystemInfo["HaveRCA"] = getHaveRCA() == "True"
 SystemInfo["HaveDVI"] = getHaveDVI() == "True"
 SystemInfo["HaveAVJACK"] = getHaveAVJACK() == "True"
@@ -104,12 +105,14 @@ SystemInfo["HAVESCART"] = getHaveSCART() == "True"
 SystemInfo["HAVESCARTYUV"] = getHaveSCARTYUV() == "True"
 SystemInfo["HAVEYUV"] = getHaveYUV() == "True"
 SystemInfo["HAVEHDMI"] = getHaveHDMI() == "True"
-SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode")
-SystemInfo["canMultiBoot"] = getMachineBuild() in ("hd51", "vs1500", "h7", "h9combo", "h10", "hd60", "hd61", "multibox", "8100s") and (1, 4, "mmcblk0p") or getMachineBuild() in ("gb7252", "gb72604") and (3, 3, "mmcblk0p") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "ustym4kpro", "beyonwizv2", "viper4k") and fileCheck("/dev/sda") and (0, 3, "sda") or getMachineBuild() in ("osmio4k", "osmio4kplus", "xc7439", "osmini4k") and (1, 4, "mmcblk1p")
+SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or "mmcblk" in getMachineMtdRoot()
+SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
+SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
+SystemInfo["HasRootSubdir"] = fileHas("/proc/cmdline", "rootsubdir=")
+SystemInfo["RecoveryMode"] = SystemInfo["HasRootSubdir"] and getMachineBuild() not in ("vs1500", "hd51", "h7") or fileCheck("/proc/stb/fp/boot_mode")
+SystemInfo["MBbootdevice"] = getMBbootdevice()
+SystemInfo["canMultiBoot"] = getMultibootslots()
 SystemInfo["canMode12"] = getMachineBuild() in ("hd51", "vs1500", "h7") and ("brcm_cma=440M@328M brcm_cma=192M@768M", "brcm_cma=520M@248M brcm_cma=200M@768M")
 SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
-SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")
-SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot() 
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
-SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "ustym4kpro", "beyonwizv2", "viper4k") and ("usb_update.bin", "none")
