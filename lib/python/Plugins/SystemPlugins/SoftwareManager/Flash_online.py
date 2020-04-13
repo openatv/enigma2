@@ -13,14 +13,13 @@ from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
 from enigma import eTimer, fbClass
-import os, urllib2, shutil, math, time, zipfile, shutil
+import os, urllib2, json, shutil, math, time, zipfile, shutil
 
 
 from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
 
 feedserver = 'images.mynonpublic.com'
-feedurl = 'http://%s/%s' %(feedserver, getImageDistro())
-imagecat = [3.0,4.0,4.1,4.2,5.0,5.1,5.2,5.3,6.0,6.1,6.2,6.3,6.4]
+feedurl = 'http://%s/%s/json' %(feedserver, getImageDistro())
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) >= 2
@@ -35,6 +34,7 @@ class FlashOnline(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
+		self.jsonlist = {}
 		self.imagesList = {}
 		self.setIndex = 0
 		self.expanded = []
@@ -85,44 +85,14 @@ class FlashOnline(Screen):
 
 		if not self.imagesList:
 			box = GetBoxName()
-			try:
-				import socket
-				socket.getaddrinfo(feedserver, None)
-
-				for version in reversed(sorted(imagecat)):
-					newversion = _("Image Version %s") %version
-					the_page =""
-					url = '%s/%s/index.php?open=%s' % (feedurl,version,box)
-					try:
-						req = urllib2.Request(url)
-						response = urllib2.urlopen(req)
-					except urllib2.URLError as e:
-						print "[FlashOnline] URL ERROR: %s\n%s" % (e,url)
-						continue
-
-					try:
-						the_page = response.read()
-					except urllib2.HTTPError as e:
-						print "[FlashOnline] HTTP download ERROR: %s" % e.code
-						continue
-
-					lines = the_page.split('\n')
-					tt = len(box)
-					countimage = []
-					for line in lines:
-						if line.find("<a href='%s/" % box) > -1:
-							t = line.find("<a href='%s/" % box)
-							if line[t+tt+10:t+tt+tt+39].endswith(".zip"):
-								countimage.append(line[t+tt+10:t+tt+tt+39])
-					if len(countimage) >= 1:
-						self.imagesList[newversion] = {}
-						for image in countimage:
-							self.imagesList[newversion][image] = {}
-							self.imagesList[newversion][image]["name"] = image
-							self.imagesList[newversion][image]["link"] = '%s/%s/%s/%s' % (feedurl,version,box,image)
-
-			except socket.error as e:
-				print "[FlashOnline] FEEDSERVER ERROR: %s" %e
+			if not self.jsonlist:
+				try:
+					self.jsonlist = dict(json.load(urllib2.urlopen('%s/%s' % (feedurl, box))))
+					#if config.usage.alternative_imagefeed.value:
+					#	self.jsonlist.update(dict(json.load(urllib2.urlopen('%s%s' % (config.usage.alternative_imagefeed.value, box)))))
+				except:
+					pass
+			self.imagesList = dict(self.jsonlist)
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
