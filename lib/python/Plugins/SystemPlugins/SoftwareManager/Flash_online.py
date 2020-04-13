@@ -535,23 +535,13 @@ class FlashImage(Screen):
 			self.getImageList = self.saveImageList
 			self.MTDKERNEL = GetCurrentKern()
 			self.MTDROOTFS = GetCurrentRoot()
+			CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	
+									#normal non multiboot receiver
 			if SystemInfo["canMultiBoot"]:
-				if "sd" in self.getImageList[self.multibootslot]['part']:
-					self.MTDKERNEL = "%s%s" %(SystemInfo["canMultiBoot"][2], int(self.getImageList[self.multibootslot]['part'][3])-1)
-					self.MTDROOTFS = "%s" %(self.getImageList[self.multibootslot]['part'])
-			if SystemInfo["canMultiBoot"]:
-				if getMachineBuild() in ("gbmv200","cc1","sf8008","sf8008m","ustym4kpro","beyonwizv2","viper4k"): # issue detect kernel device and rootfs on sda
-					print "[FlashImage] detect Kernel:",self.MTDKERNEL
-					print "[FlashImage] detect rootfs:",self.MTDROOTFS
-					command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
+ 				if SystemInfo["HasHiSi"] and SystemInfo["HasRootSubdir"] is False:									#SF8008 type receiver with SD card multiboot
+					CMD = "/usr/bin/ofgwrite -r%s -k%s '%s'" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
 				else:
-					command = "/usr/bin/ofgwrite -r -k -m%s %s" % (self.multibootslot, imagefiles)
-			elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u532","u533","u54","u56"): # issue detect kernel device
-				print "[FlashImage] detect Kernel:",self.MTDKERNEL
-				print "[FlashImage] detect rootfs:",self.MTDROOTFS
-				command = "/usr/bin/ofgwrite -r%s -k%s %s" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
-			else:
-				command = "/usr/bin/ofgwrite -r -k %s" % imagefiles
+					CMD = "/usr/bin/ofgwrite -r -k -m%s '%s'" % (self.multibootslot, imagefiles)
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(command, self.FlashimageDone)
 			fbClass.getInstance().lock()
