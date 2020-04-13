@@ -148,7 +148,7 @@ class ImageBackup(Screen):
 				self.MKUBIFS_ARGS = getMachineMKUBIFS()
 				self.MTDKERNEL = getMachineMtdKernel()
 				self.MTDROOTFS = getMachineMtdRoot()
-				self.ROOTFSSUBDIR = "linuxrootfs%s" %self.SLOT
+				self.ROOTFSSUBDIR = "none"
 				self.ROOTFSBIN = getMachineRootFile()
 				self.KERNELBIN = getMachineKernelFile()
 				self.ROOTFSTYPE = getImageFileSystem().strip()
@@ -164,23 +164,14 @@ class ImageBackup(Screen):
 
 				self.getImageList = self.saveImageList
 				if SystemInfo["canMultiBoot"]:
+					slot = GetCurrentImage()
+					self.MTDKERNEL  = SystemInfo["canMultiBoot"][slot]["kernel"].split('/')[2] 
+					self.MTDROOTFS  = SystemInfo["canMultiBoot"][slot]["device"].split('/')[2] 
 					if SystemInfo["HasRootSubdir"]:
-						self.MTDROOTFS = "%s" %(self.getImageList[self.SLOT]['part'])
-						if self.SLOT >= 2 and os.path.islink("/dev/block/by-name/userdata"):
-							self.MTDKERNEL = os.readlink("/dev/block/by-name/linuxkernel%s" %self.SLOT)[5:]
-					elif self.EMMCIMG == "usb_update.bin":
-						f = open('/sys/firmware/devicetree/base/chosen/bootargs', 'r').read()
-						if "sda" in f:
-							kern =  (self.SLOT-1)*2
-							self.MTDKERNEL = "sda%s" %(kern-1)
-							self.MTDROOTFS = "sda%s" %(kern)
-					else:
-						try:
-							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs%s" %self.SLOT)[5:]
-							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel%s" %self.SLOT)[5:]
-						except:
-							self.MTDROOTFS = os.readlink("/dev/block/by-name/rootfs")[5:]
-							self.MTDKERNEL = os.readlink("/dev/block/by-name/kernel")[5:]
+						self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][slot]['rootsubdir']
+				else:
+					self.MTDKERNEL = getMachineMtdKernel()
+					self.MTDROOTFS = getMachineMtdRoot()
 
 				print "[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
 				print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
