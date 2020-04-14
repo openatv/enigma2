@@ -143,6 +143,8 @@ def getButtonSetupKeys():
 		(_("MOUSE long"), "mouse_long", ""),
 		(_("VOD"), "vod", ""),
 		(_("VOD long"), "vod_long", ""),
+		(_("Keyboard"), "keyboard", ""),
+		(_("Keyboard long"), "keyboard_long", ""),
 		(_("ZOOM"), "zoom", ""),
 		(_("ZOOM long"), "zoom_long", "")]
 
