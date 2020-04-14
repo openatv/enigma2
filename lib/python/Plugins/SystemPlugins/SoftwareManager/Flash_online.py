@@ -11,12 +11,12 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
+from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
 from enigma import eTimer, fbClass
 import os, urllib2, json, shutil, math, time, zipfile, shutil
 
 
-from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName
+from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
 
 feedserver = 'images.mynonpublic.com'
 feedurl = 'http://%s/%s/json' %(feedserver, getImageDistro())
@@ -504,13 +504,20 @@ class FlashImage(Screen):
 					return checkimagefiles(files) and path
 		imagefiles = findimagefiles(self.unzippedimage)
 		if imagefiles:
+			self.ROOTFSSUBDIR = "none"
 			self.getImageList = self.saveImageList
-			self.MTDKERNEL = GetCurrentKern()
-			self.MTDROOTFS = GetCurrentRoot()
+			if SystemInfo["canMultiBoot"]:
+				self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2] 
+				self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2] 
+				if SystemInfo["HasRootSubdir"]:
+					self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.multibootslot]['rootsubdir']
+			else:
+				self.MTDKERNEL = getMachineMtdKernel()
+				self.MTDROOTFS = getMachineMtdRoot()
 			CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	#normal non multiboot receiver
 			if SystemInfo["canMultiBoot"]:
-				if (SystemInfo["canMultiBoot"][self.multibootslot]["rootsubdir"]) is None:	# receiver with SD card multiboot
-					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2], SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2], imagefiles)
+				if (self.ROOTFSSUBDIR) is None:	# receiver with SD card multiboot
+					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
 				else:
 					CMD = "/usr/bin/ofgwrite -r -k -m%s '%s'" % (self.multibootslot, imagefiles)
 			#elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u532","u533","u54","u56"): # issue detect kernel device
