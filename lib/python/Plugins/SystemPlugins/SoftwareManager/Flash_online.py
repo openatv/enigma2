@@ -510,7 +510,7 @@ class FlashImage(Screen):
 			CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	#normal non multiboot receiver
 			if SystemInfo["canMultiBoot"]:
 				if (SystemInfo["canMultiBoot"][self.multibootslot]["rootsubdir"]) is None:	# receiver with SD card multiboot
-					CMD = "/usr/bin/ofgwrite -r%s -k%s '%s'" % (SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2], SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2], imagefiles)
+					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2], SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2], imagefiles)
 				else:
 					CMD = "/usr/bin/ofgwrite -r -k -m%s '%s'" % (self.multibootslot, imagefiles)
 			#elif getMachineBuild() in ("u5pvr","u5","u51","u52","u53","u532","u533","u54","u56"): # issue detect kernel device
