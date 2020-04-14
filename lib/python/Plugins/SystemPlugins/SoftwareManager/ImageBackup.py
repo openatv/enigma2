@@ -147,8 +147,6 @@ class ImageBackup(Screen):
 				self.IMAGEFOLDER = getImageFolder()
 				self.UBINIZE_ARGS = getMachineUBINIZE()
 				self.MKUBIFS_ARGS = getMachineMKUBIFS()
-				self.MTDKERNEL = getMachineMtdKernel()
-				self.MTDROOTFS = getMachineMtdRoot()
 				self.ROOTFSSUBDIR = "none"
 				self.ROOTFSBIN = getMachineRootFile()
 				self.KERNELBIN = getMachineKernelFile()
@@ -165,11 +163,10 @@ class ImageBackup(Screen):
 
 				self.getImageList = self.saveImageList
 				if SystemInfo["canMultiBoot"]:
-					slot = GetCurrentImage()
-					self.MTDKERNEL  = SystemInfo["canMultiBoot"][slot]["kernel"].split('/')[2] 
-					self.MTDROOTFS  = SystemInfo["canMultiBoot"][slot]["device"].split('/')[2] 
+					self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.SLOT]["kernel"].split('/')[2] 
+					self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.SLOT]["device"].split('/')[2] 
 					if SystemInfo["HasRootSubdir"]:
-						self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][slot]['rootsubdir']
+						self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.SLOT]['rootsubdir']
 				else:
 					self.MTDKERNEL = getMachineMtdKernel()
 					self.MTDROOTFS = getMachineMtdRoot()
@@ -269,7 +266,7 @@ class ImageBackup(Screen):
 					cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
 					cmd3 = "mv %s/root.ubifs %s/root.%s" %(self.WORKDIR, self.WORKDIR, self.ROOTFSTYPE)
 				else:
-					cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
+					cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
 					cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 					cmd3 = None
 
