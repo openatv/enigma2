@@ -42,10 +42,7 @@ class MultiBootSelector(Screen, HelpableScreen):
 		Screen.setTitle(self, _("MultiBoot Image Selector"))
 		self["config"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image slots - Please wait...")), "Queued"))])
 		self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work.") if SystemInfo["canMode12"] else "")
-		if not SystemInfo["HasHiSi"] or SystemInfo["HasHiSi"] and pathExists("/dev/sda4"):
-			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
-		else:
-			self["description"] = StaticText(_("SDcard is not initialised for MultiBootSelector. Exit and use ViX MultiBoot Manager to initialise."))
+		self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Reboot"))
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"], {
