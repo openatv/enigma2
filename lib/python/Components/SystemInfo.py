@@ -7,6 +7,7 @@ from Tools.HardwareInfo import HardwareInfo
 
 from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK, getHaveSCARTYUV, getHaveHDMI, getMachineMtdKernel, getMachineMtdRoot
 
+SystemInfo = {}
 from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
 
 def getNumVideoDecoders():
