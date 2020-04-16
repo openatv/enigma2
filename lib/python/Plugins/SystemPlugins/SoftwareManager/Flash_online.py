@@ -518,7 +518,7 @@ class FlashImage(Screen):
 			if SystemInfo["canMultiBoot"]:
 				if (self.ROOTFSSUBDIR) is None:	# receiver with SD card multiboot
 					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
-			else:
+				else:
 					CMD = "/usr/bin/ofgwrite -r -k -m%s '%s'" % (self.multibootslot, imagefiles)
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(CMD, self.FlashimageDone)
