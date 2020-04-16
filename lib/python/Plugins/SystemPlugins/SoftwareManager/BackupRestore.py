@@ -64,8 +64,8 @@ def InitConfig():
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off/*.xml")\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin/*.xml")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off")\
+		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin")\
 		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
 		+eEnv_resolve_multi("/usr/bin/*cam*")\
 		+eEnv_resolve_multi("/etc/*.emu")\
