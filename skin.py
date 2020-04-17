@@ -99,17 +99,6 @@ def InitSkins():
 	loadSkin(EMERGENCY_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
 	# Add the subtitle skin.
 	loadSkin(SUBTITLE_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
-	# Add the front panel / display / lcd skin.
-	result = []
-	for skin, name in [(config.skin.display_skin.value, "current"), (DEFAULT_DISPLAY_SKIN, "default")]:
-		if skin in result:  # Don't try to add a skin that has already failed.
-			continue
-		config.skin.display_skin.value = skin
-		if loadSkin(config.skin.display_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
-			currentDisplaySkin = config.skin.display_skin.value
-			break
-		print "[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value)
-		result.append(skin)
 	# Add the main GUI skin.
 	result = []
 	for skin, name in [(config.skin.primary_skin.value, "current"), (DEFAULT_SKIN, "default")]:
@@ -120,6 +109,17 @@ def InitSkins():
 			currentPrimarySkin = config.skin.primary_skin.value
 			break
 		print "[Skin] Error: Adding %s GUI skin '%s' has failed!" % (name, config.skin.primary_skin.value)
+		result.append(skin)
+	# Add the front panel / display / lcd skin.
+	result = []
+	for skin, name in [(config.skin.display_skin.value, "current"), (DEFAULT_DISPLAY_SKIN, "default")]:
+		if skin in result:  # Don't try to add a skin that has already failed.
+			continue
+		config.skin.display_skin.value = skin
+		if loadSkin(config.skin.display_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
+			currentDisplaySkin = config.skin.display_skin.value
+			break
+		print "[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value)
 		result.append(skin)
 	# Add the activated optional skin parts.
 	partsDir = resolveFilename(SCOPE_CURRENT_SKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
