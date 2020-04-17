@@ -149,7 +149,7 @@ class MultiBootWizard(Screen):
 						self.close
 					else:
 						IMAGE_ALIGNMENT=1024
-						KERNEL_PARTITION_SIZE=32768
+						KERNEL_PARTITION_SIZE=16384‬
 						ROOTFS_PARTITION_SIZE=2097152
 						PARTED_START_KERNEL2 = IMAGE_ALIGNMENT
 						PARTED_END_KERNEL2 = int(PARTED_START_KERNEL2) + int(KERNEL_PARTITION_SIZE)
@@ -174,17 +174,6 @@ class MultiBootWizard(Screen):
 						cmdlist.append("parted -s /dev/%s unit KiB mkpart userdata ext2 %s 100%% "%(sda,PARTED_END_ROOTFS3))  ### Tech note: should be 95% for new mSD cards with discard"
 
 						cmdlist.append("for n in /dev/%s{1..5} ; do mkfs.ext4 $n ; done"%sda)  ###  we should do kernels in ext2, but ok for small kernel partitions 
-
-#						cmdlist.append("dd if=/dev/zero of=/dev/%s bs=512 count=1 conv=notrunc"%sda)
-#						cmdlist.append("rm -f /tmp/init.sh")
-#						cmdlist.append("echo -e 'sfdisk /dev/%s <<EOF' >> /tmpp/init.sh"%sda)
-#						cmdlist.append("echo -e ',8M' >> /tmpp/init.sh")
-#						cmdlist.append("echo -e ',2048M' >> /tmpp/init.sh")
-#						cmdlist.append("echo -e ',8M' >> /tmpp/init.sh")
-#						cmdlist.append("echo -e ',2048M' >> /tmpp/init.sh")
-#						cmdlist.append("echo -e 'EOF' >> /tmpp/init.sh")
-#						cmdlist.append("chmod +x /tmp/init.sh")
-#						cmdlist.append("/tmp/init.sh")
 
 						cmdlist.append("partprobe /dev/%s"%sda)
 						self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = True)
