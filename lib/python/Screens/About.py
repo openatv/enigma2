@@ -132,8 +132,13 @@ def getAboutText():
 		bootmode = ""
 		if SystemInfo["canMode12"]:
 			bootmode = "bootmode = %s" %GetCurrentImageMode()
-		AboutText += _("Selected Image:\t\t STARTUP_%s %s %s \n") % (image, bootmode, bootname)
-
+		if SystemInfo["HasHiSi"] and "sda" in SystemInfo["canMultiBoot"][slot]['device']:
+			if slot > 4:
+				image -=4
+			else:
+				image -=1
+			part = "SDcard slot %s (%s) " %(image, SystemInfo["canMultiBoot"][slot]['device'])
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  " + part + " " + bootmode + "\n"
 
 	AboutText += _("Version:\t\t%s") % getImageVersion() + "\n"
 	AboutText += _("Build:\t\t%s") % getImageBuild() + "\n"

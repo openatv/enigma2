@@ -9,13 +9,6 @@ from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import pathExists
 
-# Default layout for:	Zgemma H7/Mut@nt HD51							Giga4K							SF8008/trio4K
-# boot			/dev/mmcblk0p1								/dev/mmcblk0p1						/dev/mmcblk0p3
-# STARTUP_1		Image 1: boot emmcflash0.kernel1 'root=/dev/mmcblk0p3 rw rootwait'	boot emmcflash0.kernel1: root=/dev/mmcblk0p5		boot emmcflash0.kernel root=/dev/mmcblk0p13
-# STARTUP_2		Image 2: boot emmcflash0.kernel2 'root=/dev/mmcblk0p5 rw rootwait'      boot emmcflash0.kernel2: root=/dev/mmcblk0p7		boot usb0.sda1 root=/dev/sda2
-# STARTUP_3	        Image 3: boot emmcflash0.kernel3 'root=/dev/mmcblk0p7 rw rootwait'	boot emmcflash0.kernel3: root=/dev/mmcblk0p9		boot usb0.sda3 root=/dev/sda4
-# STARTUP_4	        Image 4: boot emmcflash0.kernel4 'root=/dev/mmcblk0p9 rw rootwait'	NOT IN USE due to Rescue mode in mmcblk0p3		NOT IN USE due to only 4 partitions on SDcard
-
 Imagemount = "/tmp/multibootcheck"
 
 def getMBbootdevice():
@@ -41,11 +34,14 @@ def getMultibootslots():
 			mkdir(Imagemount)
 		Console().ePopen("/bin/mount %s %s" % (SystemInfo["MBbootdevice"], Imagemount))
 		for file in glob.glob(path.join(Imagemount, "STARTUP_*")):
+			if "STARTUP_RECOVERY" in file:
+				SystemInfo["RecoveryMode"] = True
+				print "[multiboot] [getMultibootslots] RecoveryMode is set to:%s" % SystemInfo["RecoveryMode"]
 			slotnumber = file.rsplit("_", 3 if "BOXMODE" in file else 1)[1]
 			if slotnumber.isdigit() and slotnumber not in bootslots:
 				slot = {}
 				for line in open(file).readlines():
-					print "Multiboot getMultibootslots readlines = %s " %line
+					# print "Multiboot getMultibootslots readlines = %s " %line
 					if "root=" in line:
 						line = line.rstrip("\n")
 						device = getparam(line, "root")
@@ -53,6 +49,8 @@ def getMultibootslots():
 							slot["device"] = device
 							slot["startupfile"] = path.basename(file)
 							if "rootsubdir" in line:
+								SystemInfo["HasRootSubdir"] = True
+								print "[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"]
 								slot["rootsubdir"] = getparam(line, "rootsubdir")
 								slot["kernel"] = getparam(line, "kernel")
 							if "sda" in line:
