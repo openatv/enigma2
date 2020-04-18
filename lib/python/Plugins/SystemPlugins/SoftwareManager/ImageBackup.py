@@ -318,7 +318,7 @@ class ImageBackup(Screen):
 					cmdlist.append("dd if=/dev/mmcblk0p8 of=%s/apploader.bin" % self.WORKDIR)
 					cmdlist.append('echo "' + _("Create:") + " rootfs dump" + '"')
 					cmdlist.append("dd if=/dev/zero of=%s/rootfs.ext4 seek=%s count=0 bs=1024" % (self.WORKDIR, SEEK_CONT))
-					cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d /tmp/bi/root" % (self.WORKDIR))
+					cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d %s" % (self.WORKDIR,self.backuproot))
 
 				cmdlist.append('echo "' + _("Create:") + " kerneldump" + '"')
 				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
