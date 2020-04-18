@@ -48,16 +48,16 @@ def getMultibootslots():
 						if path.exists(device):
 							slot["device"] = device
 							slot["startupfile"] = path.basename(file)
-							if "rootsubdir" in line:
-								SystemInfo["HasRootSubdir"] = True
-								print "[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"]
-								slot["rootsubdir"] = getparam(line, "rootsubdir")
-								slot["kernel"] = getparam(line, "kernel")
 							if "sda" in line:
 								slot["kernel"] = "/dev/sda%s" % line.split("sda", 1)[1].split(" ", 1)[0]
 								slot["rootsubdir"] = None
 							else:
 								slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
+							if "rootsubdir" in line:
+								SystemInfo["HasRootSubdir"] = True
+								print "[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"]
+								slot["rootsubdir"] = getparam(line, "rootsubdir")
+								slot["kernel"] = getparam(line, "kernel")
 
 						break
 				if slot:
