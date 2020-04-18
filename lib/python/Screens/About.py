@@ -130,6 +130,7 @@ def getAboutText():
 	if SystemInfo["canMultiBoot"]:
 		slot = image = GetCurrentImage()
 		bootmode = ""
+		part = ""
 		if SystemInfo["canMode12"]:
 			bootmode = "bootmode = %s" %GetCurrentImageMode()
 		if SystemInfo["HasHiSi"] and "sda" in SystemInfo["canMultiBoot"][slot]['device']:
