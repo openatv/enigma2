@@ -298,34 +298,38 @@ class EmptySlot():
 	UNMOUNT = 1
 
 	def __init__(self, Contents, callback):
-		self.callback = callback
-		self.container = Console()
-		self.slot = Contents
-		if not path.isdir("/tmp/testmount"):
-			mkdir("/tmp/testmount")
-		self.phase = self.MOUNT
-		self.run()
+		if SystemInfo["canMultiBoot"]:
+			self.slots = sorted(SystemInfo["canMultiBoot"].keys())
+			self.callback = callback
+			self.imagelist = {}
+			self.slot = Contents
+			if not path.isdir(Imagemount):
+				mkdir(Imagemount)
+			self.container = Console()
+			self.phase = self.MOUNT
+			self.run()
+		else:
+			callback({})
 
 	def run(self):
-		if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-			self.container.ePopen("mount /dev/block/by-name/userdata /tmp/testmount" if self.phase == self.MOUNT else "umount /tmp/testmount", self.appClosed)
+		if self.phase == self.UNMOUNT:
+			self.container.ePopen("umount %s" % Imagemount, self.appClosed)
 		else:
-			self.container.ePopen("mount %s /tmp/testmount" % (SystemInfo["canMultiBoot"][self.slot]["device"]) if self.phase == self.MOUNT else "umount /tmp/testmount", self.appClosed)
+			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
 
-	def appClosed(self, data, retval, extra_args):
+	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				rootsub = SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]
-				if path.isfile("/tmp/testmount/%s/usr/bin/enigma2" % rootsub):
-					rename("/tmp/testmount/%s/usr/bin/enigma2" % rootsub, "/tmp/testmount/%s/usr/bin/enigmax.bin" % rootsub)
-			elif path.isfile("/tmp/testmount/usr/bin/enigma2"):
-				rename("/tmp/testmount/usr/bin/enigma2", "/tmp/testmount/usr/bin/enigmax.bin")
+				imagedir = ('%s/%s' %(Imagemount, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
 			else:
-				print "[multiboot2] NO enigma2 found to rename"
+				imagedir = Imagemount
+			if path.isfile("%s/usr/bin/enigma2"%imagedir):
+				rename("%s/usr/bin/enigma2" %imagedir, "%s/usr/bin/enigmax.bin" %imagedir)
+				rename("%s/etc" %imagedir, "%s/etcx" %imagedir)
 			self.phase = self.UNMOUNT
 			self.run()
 		else:
 			self.container.killAll()
-			if not path.ismount("/tmp/testmount"):
-				rmdir("/tmp/testmount")
+			if not path.ismount(Imagemount):
+				rmdir(Imagemount)
 			self.callback()
