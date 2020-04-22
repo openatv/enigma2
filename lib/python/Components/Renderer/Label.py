@@ -21,7 +21,8 @@ class Label(VariableText, Renderer):
 		if what[0] == self.CHANGED_CLEAR:
 			self.text = ""
 		elif self.source:
-			self.text = self.source.text
+			if hasattr(self.source, "text"):
+				self.text = self.source.text
 		else:
 			self.text = "<no-source>"
 			print "SKINERROR: render label has no source"
