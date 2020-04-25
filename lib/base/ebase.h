@@ -196,7 +196,11 @@ class eMainloop
 	int m_interrupt_requested;
 	timespec m_twisted_timer;
 
-	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
+	/* user_timeout < 0 - forever
+	 * user_timeout = 0 - immediately
+	 * user_timeout > 0 - wait
+	 */
+	int processOneEvent(long user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	void addSocketNotifier(eSocketNotifier *sn);
 	void removeSocketNotifier(eSocketNotifier *sn);
 	void addTimer(eTimer* e);

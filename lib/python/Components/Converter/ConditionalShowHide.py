@@ -14,6 +14,10 @@ class ConditionalShowHide(Converter, object):
 		else:
 			self.timer = None
 
+	# Make ConditionalShowHide transparent to upstream attribute requests
+	def __getattr__(self, name):
+		return getattr(self.source, name)
+
 	def blinkFunc(self):
 		if self.blinking:
 			for x in self.downstream_elements:
@@ -47,6 +51,7 @@ class ConditionalShowHide(Converter, object):
 		else:
 			for x in self.downstream_elements:
 				x.visible = vis
+		super(Converter, self).changed(what)
 
 	def connectDownstream(self, downstream):
 		Converter.connectDownstream(self, downstream)

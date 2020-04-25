@@ -18,7 +18,6 @@ nobase_install_PYTHON=
 installdir = $(pkglibdir)
 plugindir = $(libdir)/enigma2/python/Components
 pluginexecdir = $(libdir)/enigma2/python/Components
-pluginexec_PROGRAMS=
 
 include actions/Makefile.inc
 include base/Makefile.inc

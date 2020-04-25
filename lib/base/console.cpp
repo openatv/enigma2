@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <sys/stat.h>
 
 int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char *cwd )
 {
@@ -237,7 +238,7 @@ void eConsoleAppContainer::readyRead(int what)
 //		eDebug("[eConsoleAppContainer] readyRead what = %d", what);
 		char* buf = &buffer[0];
 		int rd;
-		while((rd = read(fd[0], buf, buffer.size())) > 0)
+		while((rd = read(fd[0], buf, buffer.size()-1)) > 0)
 		{
 			buf[rd]=0;
 			/*emit*/ dataAvail(std::make_pair(buf, rd));
@@ -276,7 +277,7 @@ void eConsoleAppContainer::readyErrRead(int what)
 //		eDebug("[eConsoleAppContainer] readyErrRead what = %d", what);
 		char* buf = &buffer[0];
 		int rd;
-		while((rd = read(fd[2], buf, buffer.size())) > 0)
+		while((rd = read(fd[2], buf, buffer.size()-1)) > 0)
 		{
 /*			for ( int i = 0; i < rd; i++ )
 				eDebug("[eConsoleAppContainer] %d = %c (%02x)", i, buf[i], buf[i] );*/

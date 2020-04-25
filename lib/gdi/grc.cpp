@@ -473,7 +473,7 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 	o.parm.setPalette = new gOpcode::para::psetPalette;
 	p->data=new gRGB[len];
 
-	memcpy(p->data, colors, len*sizeof(gRGB));
+	memcpy(static_cast<void*>(p->data), colors, len*sizeof(gRGB));
 	p->start=start;
 	p->colors=len;
 	o.parm.setPalette->palette = p;
@@ -865,7 +865,7 @@ void gDC::exec(const gOpcode *o)
 		if (o->parm.setPalette->palette->colors > (m_pixmap->surface->clut.colors-o->parm.setPalette->palette->start))
 			o->parm.setPalette->palette->colors = m_pixmap->surface->clut.colors-o->parm.setPalette->palette->start;
 		if (o->parm.setPalette->palette->colors)
-			memcpy(m_pixmap->surface->clut.data+o->parm.setPalette->palette->start, o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
+			memcpy(static_cast<void*>(m_pixmap->surface->clut.data+o->parm.setPalette->palette->start), o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
 
 		delete[] o->parm.setPalette->palette->data;
 		delete o->parm.setPalette->palette;

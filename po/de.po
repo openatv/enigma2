@@ -606,10 +606,10 @@ msgid "%A %d/%-m/%Y"
 msgstr ""
 
 msgid "%A %d/%m"
-msgstr ""
+msgstr "%A %d.%m"
 
 msgid "%A %d/%m/%Y"
-msgstr ""
+msgstr "%A %d.%m.%Y"
 
 msgid "%A %e %b"
 msgstr ""
@@ -870,10 +870,10 @@ msgid "%a %d/%-m/%Y"
 msgstr ""
 
 msgid "%a %d/%m"
-msgstr ""
+msgstr "%a %d.%m"
 
 msgid "%a %d/%m/%Y"
-msgstr ""
+msgstr "%a %d.%m.%Y"
 
 msgid "%a %m/%-d"
 msgstr ""
@@ -1082,13 +1082,13 @@ msgid "%d/%-m/%Y"
 msgstr ""
 
 msgid "%d/%m"
-msgstr ""
+msgstr "%d.%m"
 
 msgid "%d/%m "
 msgstr ""
 
 msgid "%d/%m/%Y"
-msgstr ""
+msgstr "%d.%m.%Y"
 
 msgid "%d=%b_"
 msgstr ""
@@ -9147,7 +9147,7 @@ msgid "Install '%s' and enable this operation"
 msgstr "'%s' installieren und aktivieren"
 
 msgid "Install Failed !!"
-msgstr "Installation fehlgeschlagen !!"
+msgstr "!! Installation fehlgeschlagen !!"
 
 msgid "Install Finished."
 msgstr "Installation abgeschlossen."
@@ -22775,6 +22775,10 @@ msgid "slot%s - %s "
 msgstr "Slot %s - %s "
 
 #, python-format
+msgid "(current image)"
+msgstr "(aktuelles Image)"
+
+#, python-format
 msgid "slot%s - %s (current image)"
 msgstr "Slot %s - %s (aktuelles Image)"
 
@@ -22787,8 +22791,8 @@ msgid "slot%s - %s - %s (current image)"
 msgstr "Slot %s - %s - %s (aktuelles Image)"
 
 #, python-format
-msgid "slot%s - %s - %s as USB Recovery"
-msgstr "Slot %s - %s - %s als USB Recovery"
+msgid "slot%s - %s as USB Recovery"
+msgstr "Slot %s - %s als USB Recovery"
 
 #, python-format
 msgid "slot%s - %s mode 1"

@@ -400,7 +400,7 @@ void print_backtrace()
 
 	size = backtrace(array, 15);
 	eDebug("Backtrace:");
-	for (cnt = 1; cnt < size; ++cnt)
+	for (cnt = 1; static_cast<unsigned>(cnt) < size; ++cnt)
 	{
 		Dl_info info;
 

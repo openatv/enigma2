@@ -170,7 +170,7 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 	eFatal("[eMainloop::removeSocketNotifier] removed socket notifier which is not present, fd=%d", fd);
 }
 
-int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePyObject additional)
+int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject additional)
 {
 	int return_reason = 0;
 		/* get current time */
@@ -210,9 +210,9 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		}
 	}
 
-	if ((twisted_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > twisted_timeout))
+	if (poll_timeout < 0 || (user_timeout >= 0 && poll_timeout > user_timeout))
 	{
-		poll_timeout = twisted_timeout;
+		poll_timeout = user_timeout;
 		return_reason = 1;
 	}
 
@@ -249,6 +249,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 			pfd[i++].events = PyInt_AsLong(val);
 		}
 	}
+
 
 	ret = _poll(pfd, fdcount, poll_timeout);
 
@@ -338,7 +339,7 @@ int eMainloop::iterate(unsigned int twisted_timeout, PyObject **res, ePyObject d
 		if (app_quit_now)
 			return -1;
 
-		int to = 0;
+		int to = -1;
 		if (twisted_timeout)
 		{
 			timespec now, timeout;

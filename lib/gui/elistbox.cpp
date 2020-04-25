@@ -8,10 +8,10 @@
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
-	m_content_changed(false), m_enabled_wrap_around(false), m_top(0), m_selected(0), m_itemheight(25),
-	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL), m_scrollbar_width(10)
+	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10), m_top(0), m_selected(0), m_itemheight(25),
+	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL)
 {
-	memset(&m_style, 0, sizeof(m_style));
+	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
 //	setContent(new eListboxStringContent());
 

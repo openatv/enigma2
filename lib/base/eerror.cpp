@@ -15,6 +15,8 @@
 extern ePtr<eErrorOutput> m_erroroutput;
 
 #ifdef MEMLEAK_CHECK
+#define new new(__FILE__, __LINE__)
+
 AllocList *allocList;
 pthread_mutex_t memLock =
 	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
@@ -278,7 +280,7 @@ void _eFatal(const char *file, int line, const char *function, const char* fmt, 
 			fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 	}
 	else
-		fprintf(stderr, obuf);
+		fprintf(stderr, "%s", obuf);
 	bsodFatal("enigma2");
 	inNoNewLine = false;
 }
@@ -337,7 +339,7 @@ void _eDebug(const char *file, int line, const char *function, const char* fmt, 
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fprintf(stderr, "%s", obuf);
 	}
 	inNoNewLine = false;
 }
@@ -395,7 +397,7 @@ void _eDebugNoNewLineStart(const char *file, int line, const char *function, con
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fprintf(stderr, "%s", obuf);
 	}
 	inNoNewLine = true;
 }
@@ -528,7 +530,7 @@ void _eWarning(const char *file, int line, const char *function, const char* fmt
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fprintf(stderr, "%s", obuf);
 	}
 	inNoNewLine = false;
 }
@@ -610,7 +612,7 @@ void ePythonOutput(const char *file, int line, const char *function, const char 
 				fprintf(stderr, "[eerror] row %d error: %s\n", __LINE__,strerror(errno));
 		}
 		else
-			fprintf(stderr, obuf);
+			fprintf(stderr, "%s", obuf);
 	}
 	free(buf);
 	free(ncbuf);

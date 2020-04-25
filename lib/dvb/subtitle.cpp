@@ -923,7 +923,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 				case subtitle_region::bpp2:
 					if (clut)
 						entries = clut->entries_2bit;
-					memset(palette, 0, 4 * sizeof(gRGB));
+					memset(static_cast<void*>(palette), 0, 4 * sizeof(gRGB));
 					// this table is tested on cyfra .. but in EN300743 the table palette[2] and palette[1] is swapped.. i dont understand this ;)
 					palette[0].a = 0xFF;
 					palette[2].r = palette[2].g = palette[2].b = 0xFF;
@@ -932,7 +932,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 				case subtitle_region::bpp4: // tested on cyfra... but the map is another in EN300743... dont understand this...
 					if (clut)
 						entries = clut->entries_4bit;
-					memset(palette, 0, 16*sizeof(gRGB));
+					memset(static_cast<void*>(palette), 0, 16*sizeof(gRGB));
 					for (int i=0; i < 16; ++i)
 					{
 						if (!i)
@@ -960,7 +960,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 				case subtitle_region::bpp8:  // completely untested.. i never seen 8bit DVB subtitles
 					if (clut)
 						entries = clut->entries_8bit;
-					memset(palette, 0, 256*sizeof(gRGB));
+					memset(static_cast<void*>(palette), 0, 256*sizeof(gRGB));
 					for (int i=0; i < 256; ++i)
 					{
 						switch (i & 17)
