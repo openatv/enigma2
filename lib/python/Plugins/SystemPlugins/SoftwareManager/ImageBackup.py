@@ -220,12 +220,15 @@ class ImageBackup(Screen):
 				self.message += "_________________________________________________\n\n"
 				self.message += _("Please be patient, a backup will now be made,\n")
 				self.message += _("because of the used filesystem the back-up\n")
+				self.message += _("will take about 1-15 minutes for this system\n")
+				self.message += "_________________________________________________\n\n"
 				if self.RECOVERY:
-					self.message += _("will take about 30 minutes for this system\n")
+					self.message += _("Backup Mode: USB Recovery\n")
 				else:
-					self.message += _("will take about 1-15 minutes for this system\n")
+					self.message += _("Backup Mode: Flash Online\n")
 				self.message += "_________________________________________________\n"
 				self.message += "'"
+
 
 				## PREPARING THE BUILDING ENVIRONMENT
 				os.system("rm -rf %s" %self.WORKDIR)
@@ -266,7 +269,7 @@ class ImageBackup(Screen):
 					cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
 					cmd3 = "mv %s/root.ubifs %s/root.%s" %(self.WORKDIR, self.WORKDIR, self.ROOTFSTYPE)
 				else:
-					if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
+					if self.RECOVERY:
 						cmd1 = None
 						cmd2 = None
 					else:
@@ -459,7 +462,7 @@ class ImageBackup(Screen):
 					f.write('<Part Sel="1" PartitionName="deviceinfo" FlashType="emmc" FileSystem="none" Start="14M" Length="4M" SelectFile="deviceinfo.bin"/>\n')
 					f.write('<Part Sel="1" PartitionName="loader" FlashType="emmc" FileSystem="none" Start="26M" Length="32M" SelectFile="apploader.bin"/>\n')
 					f.write('<Part Sel="1" PartitionName="linuxkernel1" FlashType="emmc" FileSystem="none" Start="66M" Length="16M" SelectFile="kernel.bin"/>\n')
-					if self.MACHINENAME in ("sf8008m"):
+					if self.MACHINEBUILD in ("sf8008m"):
 						f.write('<Part Sel="1" PartitionName="userdata" FlashType="emmc" FileSystem="ext3/4" Start="130M" Length="3580M" SelectFile="rootfs.ext4"/>\n')
 					else:
 						f.write('<Part Sel="1" PartitionName="userdata" FlashType="emmc" FileSystem="ext3/4" Start="130M" Length="7000M" SelectFile="rootfs.ext4"/>\n')
@@ -492,15 +495,15 @@ class ImageBackup(Screen):
 			f = open("%s/imageversion" %self.MAINDEST, "w")
 			f.write(self.IMAGEVERSION)
 			f.close()
-
-			if self.ROOTFSBIN == "rootfs.tar.bz2":
-				os.system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
-			else:
-				os.system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-			if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
-				os.system('mv %s/%s %s/%s' %(self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
-			else:
-				os.system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+			if not self.RECOVERY:
+				if self.ROOTFSBIN == "rootfs.tar.bz2":
+					os.system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
+				else:
+					os.system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
+					os.system('mv %s/%s %s/%s' %(self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
+				else:
+					os.system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 
 		if self.RECOVERY:
 			if self.EMMCIMG == "usb_update.bin":
@@ -560,19 +563,22 @@ class ImageBackup(Screen):
 
 		if SystemInfo["canRecovery"] and self.RECOVERY:
 			cmdlist.append('7za a -r -bt -bd %s/%s-%s-%s-backup-%s_recovery_emmc.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
-		elif SystemInfo["HasRootSubdir"]:
-			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/unforce_%s.txt' %(self.MAINDESTROOT, self.MACHINEBUILD))
-			cmdlist.append('7za a -r -bt -bd %s/%s-%s-%s-backup-%s_mmc.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
 		else:
 			cmdlist.append('7za a -r -bt -bd %s/%s-%s-%s-backup-%s_usb.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
 
 		cmdlist.append("sync")
 		file_found = True
 
-		if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
-			if not os.path.isfile("%s/%s" % (self.MAINDESTROOT, self.EMMCIMG)):
-				print "[Image Backup] %s file not found" %(self.EMMCIMG)
-				file_found = False
+		if self.RECOVERY:
+			if self.EMMCIMG == "usb_update.bin":
+				if not os.path.isfile("%s/%s" % (self.MAINDESTROOT, self.EMMCIMG)):
+					print "[Image Backup] %s file not found" %(self.EMMCIMG)
+					file_found = False
+			else:
+				if not os.path.isfile("%s/%s" % (self.MAINDEST, self.EMMCIMG)):
+					print "[Image Backup] %s file not found" %(self.EMMCIMG)
+					file_found = False
+
 		else:
 			if not os.path.isfile("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
 				print "[Image Backup] %s file not found" %(self.ROOTFSBIN)
@@ -596,8 +602,6 @@ class ImageBackup(Screen):
 
 			if SystemInfo["canRecovery"] and self.RECOVERY:
 				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
-			elif SystemInfo["HasRootSubdir"]:
-				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_mmc.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
 			else:
 				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_usb.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo "_________________________________________________"')
