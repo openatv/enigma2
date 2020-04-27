@@ -9,7 +9,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
-from Components.config import config, configfile, ConfigBoolean, ConfigClock
+from Components.config import config, configfile, ConfigBoolean, ConfigClock, ConfigYesNo, ConfigPosition, ConfigInteger
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
 from Components.VolumeControl import VolumeControl
@@ -1618,7 +1618,62 @@ class InfoBarChannelSelection:
 
 	def volumeDown(self):
 		VolumeControl.instance.volDown()
-
+		
+	def zapDownToPiP(self):
+		if self.pts_blockZap_timer.isActive():
+			return
+		self["SeekActionsPTS"].setEnabled(False)
+		if self.servicelist.inBouquet():
+			prev = self.servicelist.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
+						self.servicelist.nextBouquet()
+						self.servicelist.moveTop()
+					else:
+						self.servicelist.moveDown()
+					cur = self.servicelist.getCurrentSelection()
+					if cur:
+						if self.servicelist.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
+						break
+		else:
+			self.servicelist.moveDown()
+		self.servicelist.zap(enable_pipzap = True)
+		if self.timeshiftEnabled() and self.isSeekable():
+			self["SeekActionsPTS"].setEnabled(True)
+			
+	def zapUpToPiP(self):
+		if self.pts_blockZap_timer.isActive():
+			return
+		self["SeekActionsPTS"].setEnabled(False)
+		if self.servicelist.inBouquet():
+			prev = self.servicelist.getCurrentSelection()
+			if prev:
+				prev = prev.toString()
+				while True:
+					if config.usage.quickzap_bouquet_change.value and self.servicelist.atBegin():
+						self.servicelist.prevBouquet()
+						self.servicelist.moveEnd()
+					else:
+						self.servicelist.moveUp()
+					cur = self.servicelist.getCurrentSelection()
+					if cur:
+						if self.servicelist.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
+						break
+		else:
+			self.servicelist.moveUp()
+		self.servicelist.zap(enable_pipzap = True)
+		if self.timeshiftEnabled() and self.isSeekable():
+			self["SeekActionsPTS"].setEnabled(True)
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -3272,12 +3327,14 @@ class InfoBarExtensions:
 				for y in x[1]():
 					self.updateExtension(y[0], y[1])
 
-
 	def showExtensionSelection(self):
+		config.usage.colored_first_extensionslist = ConfigYesNo(default = True)
 		self.updateExtensions()
 		extensionsList = self.extensionsList[:]
 		keys = []
 		list = []
+		new_keys = []
+		new_list = []
 		colorlist = []
 		for x in self.availableKeys:
 			if self.extensionKeys.has_key(x):
@@ -3300,11 +3357,50 @@ class InfoBarExtensions:
 		list.extend([(x[0](), x) for x in extensionsList])
 
 		keys += [""] * len(extensionsList)
-		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list, keys = keys, skin_name = "ExtensionsList")
+		if config.usage.colored_first_extensionslist.value:
+			new_keys, new_list = self.changeSequenceListKey(keys, list)
+		else:
+			new_keys = keys
+			new_list = list
+		
+		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = new_list, keys = new_keys, skin_name = "ExtensionsList")
 
 	def extensionCallback(self, answer):
 		if answer is not None:
 			answer[1][1]()
+
+	def changeSequenceListKey(self, keys=[], list=[]):
+		temp_keys_other = []
+		temp_keys_color = []
+		new_keys = []
+		temp_list_other = []
+		temp_list_color = []
+		new_list = []
+		try:
+			len_keys = len(keys)
+			len_list = len(list)
+			i = 0
+			if len_keys > 0 and len_list > 0:
+				if len_list >= len_keys:
+					for item in keys:
+						if item in ["red", "green", "yellow", "blue"]:
+							temp_keys_color.append(item)
+							temp_list_color.append(list[i])
+						else:
+							temp_keys_other.append(item)
+							temp_list_other.append(list[i])
+						i += 1
+					if len(temp_keys_color) > 0:
+						new_keys = temp_keys_color + temp_keys_other
+						new_list = temp_list_color + temp_list_other
+					else:
+						new_keys = temp_keys_other
+						new_list = temp_list_other
+					if len_list > len_keys:
+						new_list = new_list + list[i:]
+			return new_keys, new_list
+		except Exception:
+			return keys, list
 
 	def showPluginBrowser(self):
 		from Screens.PluginBrowser import PluginBrowser
@@ -3502,49 +3598,163 @@ class InfoBarPiP:
 			self.session.pipshown
 		except:
 			self.session.pipshown = False
-
+			
 		self.lastPiPService = None
+		self.TogglePiPZapSidebySide = False
 
 		if SystemInfo["PIPAvailable"] and isinstance(self, InfoBarEPG):
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
 					"activatePiP": (self.activePiP, self.activePiPName),
+					"activatePiPlong": (self.activePiPlong, _("PiP usage Setup")),
+					"left": (self.doSwapPiP, _("Swap PIP")),
+					"right": (self.doTogglePipzap, _("Active status change")),
+					"exitpip": (self.doExit, _("Exit")),
 				})
 			if self.allowPiP:
-				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
-				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
-				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
-				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
+				self.addExtension((self.getBlueName, self.runmodePiPblue, lambda: True), "blue")
+				self.addExtension((self.getGreenName, self.runmodePiPgreen, self.pipShown_green), "green")
+				self.addExtension((self.getYellowName, self.runmodePiPyellow, self.pipShown), "yellow")
+				self.addExtension((self.getRedName, self.runmodePiPred, self.pipShown_red), "red")
 			else:
-				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
-				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
+				self.addExtension((self.getBlueName, self.runmodePiPblue, self.pipShown), "blue")
+				self.addExtension((self.getGreenName, self.runmodePiPgreen, self.pipShown), "green")
 
 		self.lastPiPServiceTimeoutTimer = eTimer()
 		self.lastPiPServiceTimeoutTimer.callback.append(self.clearLastPiPService)
+		
+	def runmodePiPblue(self):
+		config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
+			("standard", _("Standard")), ("noadspip", _("Ads filtering mode")), ("byside", _("Side by side mode")) ])
+		if self.session.pipshown:
+			if config.usage.pip_mode.value == "standard":
+				self.showPiP()
+			if config.usage.pip_mode.value == "noadspip":
+				self.swapPiP()
+				self.showPiP()
+			if config.usage.pip_mode.value == "byside":
+				self.showPiP()
+		else:
+			config.usage.checking_blue_button = ConfigYesNo(default = True)
+			if config.usage.checking_blue_button.value and config.workaround.blueswitch.value == "0":
+				self.checkingBlueButton()
+			self.activePiP()
+			
+	def runmodePiPgreen(self):
+		config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
+			("standard", _("Standard")), ("noadspip", _("Ads filtering mode")), ("byside", _("Side by side mode")) ])
+		if self.session.pipshown:
+			if config.usage.pip_mode.value == "standard":
+				self.movePiP()
+			if config.usage.pip_mode.value == "noadspip":
+				self.showPiP()
+			if config.usage.pip_mode.value == "byside":
+				self.swapPiP()
+				self.showPiP()
+		else:
+			self.movePiP()
+			
+	def runmodePiPyellow(self):
+		self.swapPiP()
+			
+	def runmodePiPred(self):
+		if not self.session.pipshown:
+			if config.usage.historymode.value == "0":
+				self.servicelist.historyBack()
+			else:
+				self.servicelist.historyZap(-1)
+		else:
+			if config.usage.pip_mode.value == "standard":
+				self.togglePipzap()
+			if config.usage.pip_mode.value == "noadspip":
+				self.toggleSidebySidemode()
+			if config.usage.pip_mode.value == "byside":
+				self.doTogglePipzap()
 
 	def pipShown(self):
 		return self.session.pipshown
+		
+	def pipShown_red(self):
+		bv = False
+		config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
+			("standard", _("Standard")), ("noadspip", _("Ads filtering mode")), ("byside", _("Side by side mode")) ])
+		if self.session.pipshown:
+			if config.usage.pip_mode.value == "standard":
+				bv = True
+			if config.usage.pip_mode.value == "noadspip":
+				bv = True
+			if config.usage.pip_mode.value == "byside":
+				bv = True
+		else:
+			bv = True
+		return bv
+		
+	def pipShown_green(self):
+		bv = True
+		config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
+			("standard", _("Standard")), ("noadspip", _("Ads filtering mode")), ("byside", _("Side by side mode")) ])
+		if self.session.pipshown:
+			if config.usage.pip_mode.value != "standard":
+				#bv = False
+				bv = True
+		return bv
 
 	def pipHandles0Action(self):
 		return self.pipShown() and config.usage.pip_zero_button.value != "standard"
 
-	def getShowHideName(self):
+	def getBlueName(self):
 		if self.session.pipshown:
-			return _("Disable Picture in Picture")
+			if config.usage.pip_mode.value == "noadspip":
+				return _("Close Main screen")
+			else:
+				return _("Close Picture in Picture screen")
 		else:
 			return _("Activate Picture in Picture")
 
-	def getSwapName(self):
-		return _("Swap services")
+	def getYellowName(self):
+		return _("Swap screen")
 
-	def getMoveName(self):
-		return _("Picture in Picture Setup")
+	def getGreenName(self):
+		config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
+			("standard", _("Standard")), ("noadspip", _("Ads filtering mode")), ("byside", _("Side by side mode")) ])
+		if self.session.pipshown:
+			if config.usage.pip_mode.value == "standard":
+				return _("PiP standard Setup")
+			else:
+				if config.usage.pip_mode.value == "noadspip":
+					return _("Close Picture in Picture screen")
+				else:
+					return _("Close Main screen")
+		else:
+			return _("PiP usage Setup")
 
-	def getTogglePipzapName(self):
-		slist = self.servicelist
-		if slist and slist.dopipzap:
-			return _("Zap focus to main screen")
-		return _("Zap focus to Picture in Picture")
+	def getRedName(self):
+		if self.session.pipshown:
+			if config.usage.pip_mode.value == "standard":
+				slist = self.servicelist
+				if slist and slist.dopipzap:
+					return _("Zap focus to main screen")
+				return _("Zap focus to Picture in Picture")
+			if config.usage.pip_mode.value == "noadspip":
+				return _("Change to Side by Side mode")
+			if config.usage.pip_mode.value == "byside":
+				return _("Active status change")
+		else:
+			return _("History Zap...")
+
+	def toggleSidebySidemode(self):
+		config.usage.pip_mode.setValue('byside')
+		config.usage.pip_mode.save()
+		configfile.save()
+		if config.av.pip_mode.value != "byside":
+			config.av.pip_mode.setValue('byside')
+			config.av.pip_mode.save()
+			configfile.save()
+		if config.usage.pip_zero_button.value != "swap":
+			config.usage.pip_zero_button.setValue('swap')
+			config.usage.pip_zero_button.save()
+			configfile.save()
+		self.session.pip.relocate()
 
 	def togglePipzap(self):
 		if not self.session.pipshown:
@@ -3558,6 +3768,8 @@ class InfoBarPiP:
 				self.session.pip.servicePath = currentServicePath
 
 	def showPiP(self):
+		if config.usage.pip_mode.value != "standard":
+			from Screens.InfoBar import InfoBar
 		self.lastPiPServiceTimeoutTimer.stop()
 		slist = self.servicelist
 		if self.session.pipshown:
@@ -3577,10 +3789,27 @@ class InfoBarPiP:
 						f.write(config.lcd.modeminitv.value)
 						f.close()
 				self.session.pipshown = False
+				config.usage.pip_lastusage = ConfigInteger(default = int(time()))
+				config.usage.pip_lastusage.setValue(int(time())-1)
+				config.usage.pip_lastusage.save()
+				configfile.save()													 
 			if hasattr(self, "ScreenSaverTimerStart"):
 				self.ScreenSaverTimerStart()
 		else:
-			service = self.session.nav.getCurrentService()
+			if config.usage.pip_mode.value == "standard":
+				service = self.session.nav.getCurrentService()
+			if config.usage.pip_mode.value == "noadspip":
+				newservice = self.servicelist.getCurrentSelection()
+				if InfoBar and InfoBar.instance:
+					InfoBar.zapDownToPiP(InfoBar.instance)
+				service = self.session.nav.getCurrentService()
+			if config.usage.pip_mode.value == "byside":
+				if InfoBar and InfoBar.instance:
+					InfoBar.zapDownToPiP(InfoBar.instance)
+				newservice = self.servicelist.getCurrentSelection()
+				if InfoBar and InfoBar.instance:
+					InfoBar.zapUpToPiP(InfoBar.instance)
+				service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			if info:
 				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
@@ -3588,7 +3817,8 @@ class InfoBarPiP:
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
-				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if config.usage.pip_mode.value == "standard":
+					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -3607,7 +3837,8 @@ class InfoBarPiP:
 						f.write("1")
 						f.close()
 				else:
-					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+					if config.usage.pip_mode.value == "standard":
+						newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -3640,10 +3871,142 @@ class InfoBarPiP:
 		self.lastPiPService = None
 
 	def activePiP(self):
-		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
-			self.showPiP()
+		choicelist = [("standard", _("Standard"))]
+		if SystemInfo["VideoDestinationConfigurable"]:
+			choicelist.append(("cascade", _("Cascade PiP")))
+			choicelist.append(("split", _("Splitscreen")))
+			choicelist.append(("byside", _("Side by side")))
+		choicelist.append(("bigpig", _("Big PiP")))
+		if SystemInfo["HasExternalPIP"]:
+			choicelist.append(("external", _("External PiP")))
+		config.av.pip_mode = ConfigSelection(default="standard", choices=choicelist)
+		config.av.pip = ConfigPosition(default=[510, 28, 180, 135], args = (720, 576, 720, 576))
+		config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
+		config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
+			("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
+			("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
+		config.usage.pip_hideOnExit = ConfigSelection(default = "no", choices = [
+			("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
+		choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
+		for i in [60, 300, 600, 900, 1800, 2700, 3600]:
+			m = i/60
+			choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
+		config.usage.pip_last_service_timeout = ConfigSelection(default = "-1", choices = choicelist)
+		if config.usage.pip_mode.value != "noadspip":
+			self.usageModeChecking()
+		if config.usage.pip_mode.value == "standard":
+			if config.av.pip_mode.value != "standard":
+				config.av.pip_mode.setValue('standard')
+				config.av.pip_mode.save()
+				configfile.save()
+			config.av.pip.value[0] = 456
+			config.av.pip.value[1] = 60
+			config.av.pip.value[2] = 219
+			config.av.pip.value[3] = 160
+			config.av.pip.save()
+			configfile.save()
+			self.show_infobar_on_zap(True)
+			if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
+				self.showPiP()
+			else:
+				self.togglePipzap()
 		else:
-			self.togglePipzap()
+			if config.usage.pip_hideOnExit.value != "without popup":
+				config.usage.pip_hideOnExit.setValue('without popup')
+				config.usage.pip_hideOnExit.save()
+				configfile.save()
+			if config.usage.pip_last_service_timeout.value != "0":
+				config.usage.pip_last_service_timeout.setValue('0')
+				config.usage.pip_last_service_timeout.save()
+				configfile.save()
+			if config.usage.pip_mode.value == "noadspip":
+				if config.av.pip_mode.value != "standard":
+					config.av.pip_mode.setValue('standard')
+					config.av.pip_mode.save()
+					configfile.save()
+				config.av.pip.value[0] = 544
+				config.av.pip.value[1] = 29
+				config.av.pip.value[2] = 153
+				config.av.pip.value[3] = 112
+				config.av.pip.save()
+				configfile.save()
+				if not self.session.pipshown:
+					self.showPiP()
+				else:
+					self.swapPiP()
+					self.showPiP()
+			if config.usage.pip_mode.value == "byside":
+				if config.av.pip_mode.value != "byside":
+					config.av.pip_mode.setValue('byside')
+					config.av.pip_mode.save()
+					configfile.save()
+				if config.usage.pip_zero_button.value != "swap":
+					config.usage.pip_zero_button.setValue('swap')
+					config.usage.pip_zero_button.save()
+					configfile.save()
+				self.show_infobar_on_zap(False)
+				if not self.session.pipshown:
+					self.showPiP()
+				else:
+					self.swapPiP()
+					self.showPiP()
+				self.show_infobar_on_zap(True)
+
+	def checkingBlueButton(self):
+		list = [(_("Yes, I'm setting it up now"), True),
+				(_("Not now, but warn me next time"), False),
+				(_("No, and I will never ask for notification again"), "extend")]
+		message = _("For faster operation, the BLUE button only needs to be pressed once to use!\nBlueSwitch: Blue-Short/Blue-Long  ->  Extensions/QuickMenu\n\nSet this option now?")
+		try:
+			self.session.openWithCallback(self.checkingBlueButtonCallback, MessageBox, message, timeout=55, simple=True, list=list, default=True)
+		except:
+			pass
+
+	def checkingBlueButtonCallback(self, answer):
+		if answer == "extend":
+			config.usage.checking_blue_button.value = False
+			config.usage.checking_blue_button.save()
+			configfile.save()
+		elif answer:
+			config.workaround.blueswitch.setValue('1')
+			config.workaround.blueswitch.save()
+			config.usage.checking_blue_button.value = True
+			config.usage.checking_blue_button.save()
+			configfile.save()
+		else:
+			config.usage.checking_blue_button.value = True
+			config.usage.checking_blue_button.save()
+			configfile.save()
+
+	def usageModeChecking(self):
+		try:
+			config.usage.noadspip_default_mode_time = ConfigSelection(default = "180", choices = [
+				("0", _("Setting by user")), ("180", _("After 3 minutes")), ("300", _("After 5 minutes")), ("1800", _("After 30 minutes")) ])
+			config.usage.pip_lastusage = ConfigInteger(default = int(time()))
+			if config.usage.noadspip_default_mode_time.value == "0":
+				return
+			time_config = int(config.usage.pip_lastusage.value)
+			time_now = int(time())
+			diff_time = time_now - time_config
+			if diff_time > int(config.usage.noadspip_default_mode_time.value):
+				config.usage.pip_mode.setValue('noadspip')
+				config.usage.pip_mode.save()
+				configfile.save()
+				self.TogglePiPZapSidebySide = False
+		except:
+			return
+
+	def show_infobar_on_zap(self, mode=True):
+		if mode:
+			if not config.usage.show_infobar_on_zap.value:
+				config.usage.show_infobar_on_zap.setValue(True)
+				config.usage.show_infobar_on_zap.save()
+				configfile.save()
+		else:
+			if config.usage.show_infobar_on_zap.value:
+				config.usage.show_infobar_on_zap.setValue(False)
+				config.usage.show_infobar_on_zap.save()
+				configfile.save()
 
 	def activePiPName(self):
 		if self.servicelist and self.servicelist.dopipzap:
@@ -3672,17 +4035,88 @@ class InfoBarPiP:
 
 	def movePiP(self):
 		if self.pipShown():
-			self.session.open(PiPSetup, pip = self.session.pip)
+			config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
+				("standard", _("Standard")), ("noadspip", _("Ads filtering mode")), ("byside", _("Side by side mode")) ])
+			if config.usage.pip_mode.value == "standard":
+				self.session.open(PiPSetup, pip = self.session.pip)
+			else:
+				self.activePiP()
+		else:
+			from Screens.PiPusageModeSetup import PiPusageModeSetup
+			self.session.open(PiPusageModeSetup)
+
+	def activePiPlong(self):
+		if not self.pipShown():
+			from Screens.PiPusageModeSetup import PiPusageModeSetup
+			self.session.open(PiPusageModeSetup)
+		else:
+			self.session.open(MessageBox, _("Close PIP and try again!"), MessageBox.TYPE_INFO, timeout = 12)
 
 	def pipDoHandle0Action(self):
 		use = config.usage.pip_zero_button.value
 		if "swap" == use:
-			self.swapPiP()
+			self.doSwapPiP()
 		elif "swapstop" == use:
 			self.swapPiP()
 			self.showPiP()
 		elif "stop" == use:
 			self.showPiP()
+
+	def doSwapPiP(self):
+		if hasattr(self.session, "pip"):
+			if self.TogglePiPZapSidebySide:
+				slist = self.servicelist
+				if slist and self.session.pipshown:
+					slist.togglePipzapSidebySide()
+					if slist.dopipzap:
+						currentServicePath = slist.getCurrentServicePath()
+						self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+						self.session.pip.servicePath = currentServicePath
+					else:
+						self.TogglePiPZapSidebySide = False
+						self.session.pip.inactive()
+						self.session.pip.inactiveToogle()
+						self.session.pip.activeSide()
+			else:
+				self.session.pip.inactive()
+				if config.usage.pip_mode.value == "byside":
+					self.session.pip.inactiveToogle()
+					self.session.pip.activeSide()
+					self.show_infobar_on_zap(False)
+					self.swapPiP()
+					self.show_infobar_on_zap(True)
+				else:
+					self.session.pip.inactiveToogle()
+					self.session.pip.inactiveSide()
+					self.swapPiP()
+		else:
+			if isinstance(self, InfoBarChannelSelection):
+				self.LeftPressed()
+			
+ 	def doTogglePipzap(self):
+		if hasattr(self.session, "pip"):
+			if config.usage.pip_mode.value == "byside":
+				if not self.TogglePiPZapSidebySide:
+					slist = self.servicelist
+					if slist and self.session.pipshown:
+						slist.togglePipzapSidebySide()
+						if slist.dopipzap:
+							self.TogglePiPZapSidebySide = True
+							self.session.pip.inactive()
+							self.session.pip.inactiveSide()
+							self.session.pip.activeToggle()
+							currentServicePath = slist.getCurrentServicePath()
+							self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+							self.session.pip.servicePath = currentServicePath
+				else:
+					self.doSwapPiP()
+		else:
+			if isinstance(self, InfoBarChannelSelection):
+				self.RightPressed()
+					
+	def doExit(self):
+		if isinstance(self, InfoBarShowHide):
+			self.keyHide()
 
 class InfoBarINFOpanel:
 	"""INFO-Panel - handles the infoPanel action"""
@@ -4738,11 +5172,13 @@ class InfoBarCueSheetSupport:
 	def jumpPreviousMark(self):
 		# we add 5 seconds, so if the play position is <5s after
 		# the mark, the mark before will be used
-		self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True)
+		if not hasattr(self.session, "pip"):
+			self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True)
 
 	def jumpNextMark(self):
-		if not self.jumpPreviousNextMark(lambda x: x-90000):
-			self.doSeek(-1)
+		if not hasattr(self.session, "pip"):
+			if not self.jumpPreviousNextMark(lambda x: x-90000):
+				self.doSeek(-1)
 
 	def getNearestCutPoint(self, pts, cmp=abs, start=False):
 		# can be optimized
