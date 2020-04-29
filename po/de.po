@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-20 18:43+0000\n"
-"PO-Revision-Date: 2020-03-20 21:08+0100\n"
+"POT-Creation-Date: 2020-04-29 18:08+0000\n"
+"PO-Revision-Date: 2020-04-29 20:29+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -418,6 +418,30 @@ msgstr ""
 msgid "%-d-%b-%Y"
 msgstr ""
 
+#, fuzzy
+msgid "%-d. %B %Y"
+msgstr "%d %B %Y"
+
+msgid "%-d. %b"
+msgstr ""
+
+msgid "%-d. %b %Y"
+msgstr ""
+
+msgid "%-d.%-m"
+msgstr ""
+
+msgid "%-d.%-m.%Y"
+msgstr ""
+
+#, fuzzy
+msgid "%-d.%m"
+msgstr "%d.%m.   "
+
+#, fuzzy
+msgid "%-d.%m.%Y"
+msgstr "%d.%m.   "
+
 msgid "%-d/%-m"
 msgstr ""
 
@@ -515,6 +539,29 @@ msgstr ""
 msgid "%A %-d-%B-%Y"
 msgstr ""
 
+#, fuzzy
+msgid "%A %-d. %B"
+msgstr "%A %d %B"
+
+#, fuzzy
+msgid "%A %-d. %B %Y"
+msgstr "%A %e %B %Y"
+
+#, fuzzy
+msgid "%A %-d.%-m"
+msgstr "%A %d %B"
+
+msgid "%A %-d.%-m.%Y"
+msgstr ""
+
+#, fuzzy
+msgid "%A %-d.%m"
+msgstr "%A %d %B"
+
+#, fuzzy
+msgid "%A %-d.%m.%Y"
+msgstr "%A %e %B %Y"
+
 msgid "%A %-d/%-m"
 msgstr ""
 
@@ -598,6 +645,30 @@ msgstr ""
 
 msgid "%A %d-%B-%Y"
 msgstr ""
+
+#, fuzzy
+msgid "%A %d. %B"
+msgstr "%A %d %B"
+
+#, fuzzy
+msgid "%A %d. %B %Y"
+msgstr "%A %e %B %Y"
+
+#, fuzzy
+msgid "%A %d.%-m"
+msgstr "%A %d %B"
+
+#, fuzzy
+msgid "%A %d.%-m.%Y"
+msgstr "%A %e %B %Y"
+
+#, fuzzy
+msgid "%A %d.%m"
+msgstr "%A %d %B"
+
+#, fuzzy
+msgid "%A %d.%m.%Y"
+msgstr "%A %e %B %Y"
 
 msgid "%A %d/%-m"
 msgstr ""
@@ -743,6 +814,32 @@ msgstr ""
 msgid "%a %-d-%b-%Y"
 msgstr ""
 
+#, fuzzy
+msgid "%a %-d. %B %Y"
+msgstr "%a %e %B %Y"
+
+msgid "%a %-d. %b"
+msgstr ""
+
+#, fuzzy
+msgid "%a %-d. %b %Y"
+msgstr "%a %e %B %Y"
+
+#, fuzzy
+msgid "%a %-d.%-m"
+msgstr "%a %e/%m"
+
+msgid "%a %-d.%-m.%Y"
+msgstr ""
+
+#, fuzzy
+msgid "%a %-d.%m"
+msgstr "%a %e/%m"
+
+#, fuzzy
+msgid "%a %-d.%m.%Y"
+msgstr "%a %e %B %Y"
+
 msgid "%a %-d/%-m"
 msgstr ""
 
@@ -862,6 +959,34 @@ msgstr ""
 
 msgid "%a %d-%b-%Y"
 msgstr ""
+
+#, fuzzy
+msgid "%a %d. %B %Y"
+msgstr "%a %e %B %Y"
+
+#, fuzzy
+msgid "%a %d. %b"
+msgstr "%a %e %B %Y"
+
+#, fuzzy
+msgid "%a %d. %b %Y"
+msgstr "%a %e %B %Y"
+
+#, fuzzy
+msgid "%a %d.%-m"
+msgstr "%a %e/%m"
+
+#, fuzzy
+msgid "%a %d.%-m.%Y"
+msgstr "%a %e %B %Y"
+
+#, fuzzy
+msgid "%a %d.%m"
+msgstr "%a %e/%m"
+
+#, fuzzy
+msgid "%a %d.%m.%Y"
+msgstr "%a %e %B %Y"
 
 msgid "%a %d/%-m"
 msgstr ""
@@ -1061,6 +1186,25 @@ msgstr ""
 msgid "%d-%m"
 msgstr "%d-%m"
 
+#, fuzzy
+msgid "%d. %B %Y"
+msgstr "%d %B %Y"
+
+msgid "%d. %b"
+msgstr ""
+
+msgid "%d. %b %Y"
+msgstr ""
+
+#, fuzzy
+msgid "%d.%-m"
+msgstr "%d.%m.   "
+
+#
+#, fuzzy
+msgid "%d.%-m.%Y"
+msgstr "%d.%B %Y"
+
 #, python-format
 msgid "%d.%03d GB"
 msgstr ""
@@ -1069,8 +1213,17 @@ msgstr ""
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
+#, fuzzy
+msgid "%d.%m"
+msgstr "%d.%m.   "
+
 msgid "%d.%m.   "
 msgstr "%d.%m.   "
+
+#
+#, fuzzy
+msgid "%d.%m.%Y"
+msgstr "%d.%B %Y"
 
 msgid "%d/%-m"
 msgstr ""
@@ -1199,10 +1352,6 @@ msgstr "%s Einrichtung"
 msgid "%s additional screens"
 msgstr "%s zusätzliche Bildschirme"
 
-#, python-format
-msgid "%s build date %s"
-msgstr "%s Erstellungsdatum %s"
-
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1310,6 +1459,9 @@ msgstr "(Auswahlmodus)"
 
 msgid "(Show only reader:"
 msgstr "(Nur Lesegeräte zeigen:"
+
+msgid "(current image)"
+msgstr "(aktuelles Image)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(z.B. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
@@ -3318,6 +3470,15 @@ msgstr "Sicherungs-Verwaltung"
 msgid "Backup Mode"
 msgstr "Sicherungsmodus"
 
+#, fuzzy
+msgid "Backup Mode: Flash Online\n"
+msgstr "Flashen online/lokal"
+
+# ImageBackup.py
+#, fuzzy
+msgid "Backup Mode: USB Recovery\n"
+msgstr "Flashe Image USB Recovery"
+
 msgid "Backup Settings"
 msgstr "Einstellungen sichern"
 
@@ -3950,6 +4111,14 @@ msgstr "Ausführung abbrechen?"
 msgid "Cancel save timeshift as movie"
 msgstr "Timeshift nicht als Film speichern"
 
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "Auswahl abbrechen"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "Auswahl abbrechen"
+
 msgid "Cancel the selection"
 msgstr "Auswahl abbrechen"
 
@@ -4111,9 +4280,6 @@ msgstr "Programm-Informationen"
 
 msgid "Channel List"
 msgstr "Kanalliste"
-
-msgid "Channel Name"
-msgstr "Sendername"
 
 msgid "Channel button always changes sides"
 msgstr "Kanaltaste wechselt immer die Seite"
@@ -4464,9 +4630,6 @@ msgstr ""
 
 msgid "Clients"
 msgstr "Clients"
-
-msgid "Clock"
-msgstr "Uhr"
 
 msgid "Clock:"
 msgstr "Uhr:"
@@ -5097,6 +5260,10 @@ msgstr "Endlos (Schleife)"
 msgid "Contrast"
 msgstr "Kontrast"
 
+#, fuzzy
+msgid "Control LED can be turned on or off here."
+msgstr "Power-LED kann hier an oder ausgeschaltet werden.."
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Einstellen, wo abgeschlossene Timer in der Timerliste angezeigt werden sollen."
 
@@ -5589,6 +5756,15 @@ msgstr "Wochentag T Monat Jahr"
 msgid "Dayname D-Month-Year"
 msgstr "Wochentag T-Monat-Jahr"
 
+msgid "Dayname D. Month Year"
+msgstr "Wochentag T. Monat Jahr"
+
+msgid "Dayname D.M.Year"
+msgstr "Wochentag T.M.Jahr"
+
+msgid "Dayname D.MM.Year"
+msgstr "Wochentag T.MM.Jahr"
+
 msgid "Dayname D/M/Year"
 msgstr "Wochentag T/M/Jahr"
 
@@ -5600,6 +5776,15 @@ msgstr "Wochentag TT Monat Jahr"
 
 msgid "Dayname DD-Month-Year"
 msgstr "Wochentag TT-Monat-Jahr"
+
+msgid "Dayname DD. Month Year"
+msgstr "Wochentag TT. Monat Jahr"
+
+msgid "Dayname DD.M.Year"
+msgstr "Wochentag TT.M.Jahr"
+
+msgid "Dayname DD.MM.Year"
+msgstr "Wochentag TT.MM.Jahr"
 
 msgid "Dayname DD/M/Year"
 msgstr "Wochentag TT/M/Jahr"
@@ -5654,24 +5839,6 @@ msgstr "Wochentag Jahr/MM/T"
 
 msgid "Dayname Year/MM/DD"
 msgstr "Wochentag Jahr/MM/T"
-
-msgid "Dayname DD. Month Year"
-msgstr "Wochentag TT. Monat Jahr"
-
-msgid "Dayname D. Month Year"
-msgstr "Wochentag T. Monat Jahr"
-
-msgid "Dayname DD.MM.Year"
-msgstr "Wochentag TT.MM.Jahr"
-
-msgid "Dayname D.MM.Year"
-msgstr "Wochentag T.MM.Jahr"
-
-msgid "Dayname DD.M.Year"
-msgstr "Wochentag TT.M.Jahr"
-
-msgid "Dayname D.M.Year"
-msgstr "Wochentag T.M.Jahr"
 
 msgid "Deactivate"
 msgstr "Deaktivieren"
@@ -6092,10 +6259,6 @@ msgstr "Entferne MiniTV im Display"
 msgid "Disable Picture in Picture"
 msgstr "Bild im Bild deaktivieren"
 
-# Box Display text ist eigentlich falsch zugeordnet
-msgid "Disable all VFD Symbols"
-msgstr "Hiermit kann eingestellt werden, ob der Sendername oder die Uhr im Display angezeigt werden soll."
-
 msgid "Disable background scanning"
 msgstr "Suchlauf im Hintergrund deaktivieren"
 
@@ -6370,11 +6533,6 @@ msgstr "Vor dem Brennen eine Vorschau der DVD ansehen?"
 
 msgid "Do you want to produce this collection?"
 msgstr ""
-
-# ImageBackup.py
-#, python-format
-msgid "Do you want to reboot now the image in slot %s?"
-msgstr "Möchten Sie das Image in Slot %s jetzt starten?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -8891,25 +9049,12 @@ msgid "Image Version"
 msgstr ""
 
 #, python-format
-msgid "Image Version %s"
-msgstr ""
-
-# ImageBackup.py
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
-msgstr "USB Image erstellt auf: %s/%s-%s-%s-backup-%s_mmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
-msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_usb.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 
 # ImageBackup.py
 msgid "Image creation failed - "
@@ -9092,12 +9237,6 @@ msgstr ""
 #
 msgid "Init"
 msgstr "Initialisieren"
-
-msgid "Init SDCARD"
-msgstr ""
-
-msgid "Init SDcard"
-msgstr "Init SDcard"
 
 msgid "Initial fast forward speed"
 msgstr "Anfängliche Vorlaufgeschwindigkeit"
@@ -9513,6 +9652,11 @@ msgstr "Externe Tastatur"
 #
 msgid "Keyboard data entry"
 msgstr "Tastatureingabe"
+
+#
+#, fuzzy
+msgid "Keyboard long"
+msgstr "Externe Tastatur"
 
 #
 msgid "Keyboard map"
@@ -10660,15 +10804,19 @@ msgstr "Multi-EPG"
 msgid "MultiBoot Image Manager"
 msgstr "Multiboot-Image-Manager"
 
+#, fuzzy
+msgid "MultiBoot Image Selector"
+msgstr "Multiboot-Auswahl"
+
+#, fuzzy
+msgid "MultiBootSelector Actions"
+msgstr "Multiboot-Auswahl"
+
 msgid "MultiEPG settings"
 msgstr "Multi-EPG"
 
 msgid "MultiQuickButton"
 msgstr ""
-
-#, python-format
-msgid "Multiboot ERROR! - no %s in boot partition."
-msgstr "Multiboot Fehler! - kein %s in Bootpartition."
 
 msgid "Multiboot Image Selector"
 msgstr "Multiboot-Auswahl"
@@ -10680,15 +10828,6 @@ msgstr "Multiboot-Image erstellt als: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiboot Manager"
 msgstr "Multiboot-Manager"
-
-msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
-msgstr "Multiboot-Manager - SD-Karte kann nicht initialisiert werden, wenn das Image auf der SD-Karte ausgeführt wird."
-
-msgid "Multiboot manager - SDcard initialization run, please restart your Image."
-msgstr "Multiboot-Manager - Initialisierung der SD-Karte. Bitte starten Sie die Box neu."
-
-msgid "Multiboot manager - The SDcard must be at least 8MB."
-msgstr "Multiboot-Manager - Die SD-Karte muss mindestens 8 MB groß sein."
 
 #
 msgid "Multimedia"
@@ -12894,9 +13033,6 @@ msgstr "Drücken Sie die '0' Taste zum Wechseln des Bild im Bild Modus"
 msgid "Press INFO on your remote control for additional information."
 msgstr "INFO drücken für zusätzliche Informationen."
 
-msgid "Press Init to format SDcard."
-msgstr "Drücken Sie Init, um die SD-Karte zu formatieren."
-
 msgid "Press MENU on your remote control for additional options."
 msgstr "MENU drücken für zusätzliche Optionen."
 
@@ -13655,9 +13791,6 @@ msgstr "Fernbedienungscode"
 msgid "Remote box"
 msgstr "Remote-Box"
 
-msgid "Remote control model shown"
-msgstr "Zeige Fernbedienungsmodell"
-
 msgid "Remote control type"
 msgstr "Fernbedienungstyp"
 
@@ -14144,9 +14277,6 @@ msgstr ""
 
 msgid "SD"
 msgstr ""
-
-msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
-msgstr "SD-Karte ist nicht für Multiboot initialisiert. Benutze Multiboot Verwaltung zur Initialisierung."
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
@@ -14823,6 +14953,9 @@ msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der virtuellen Tasta
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit CH+/CH- zwischen den Listen umschalten. Zugeordnete Funktion wählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
+
+msgid "Select the highlighted image and reboot"
+msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Wählen Sie den Hersteller Ihres Unicable/SCR-Geräts aus. Wenn der Hersteller nicht aufgeführt ist, setzen Sie 'SCR' auf 'Benutzerdefiniert' und geben Sie die Geräteparameter gemäß dem zugehörigen Datenblatt manuell ein."
@@ -15583,6 +15716,10 @@ msgstr "Stellen Sie die Belegung der Fernbedienungstasten ein."
 
 msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung"
+
+#, fuzzy
+msgid "Setup your timezone."
+msgstr "Einstellen des Skins"
 
 msgid "Seychelles"
 msgstr "Seychellen"
@@ -16490,6 +16627,14 @@ msgstr "Von oben nach unten"
 #, python-format
 msgid "Slot %d"
 msgstr "Steckplatz %d"
+
+#, fuzzy, python-format
+msgid "Slot %s: %s - Mode %d%s"
+msgstr "Slot %s - %s - %s "
+
+#, fuzzy, python-format
+msgid "Slot %s: %s%s"
+msgstr "DiSEqC-Port %s: %s"
 
 msgid "Slovak"
 msgstr "Slowakisch"
@@ -18945,6 +19090,10 @@ msgstr "HDMI-IN als Vollbild wiedergeben"
 msgid "Turn on HDMI-IN PiP mode"
 msgstr "HDMI-IN als Bild im Bild wiedergeben"
 
+#, fuzzy
+msgid "Turn on the control LED."
+msgstr "Power-LED Mode"
+
 msgid "Turn on the power LED."
 msgstr "Power-LED Mode"
 
@@ -19530,6 +19679,11 @@ msgstr ""
 
 #
 msgid "User defined"
+msgstr "Benutzerdefiniert"
+
+#
+#, fuzzy, python-format
+msgid "User defined 0x%02x"
 msgstr "Benutzerdefiniert"
 
 msgid "User defined delay when you press another button to zap to the channel."
@@ -20406,9 +20560,6 @@ msgstr "Wo wollen Sie temporäre Timeshift Aufnahmen speichern?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Welche Sendung soll dauerhaft gespeichert werden?"
-
-msgid "Which remote control gets shown. Only influences graphical representation."
-msgstr "Hier können Sie einstellen, welche Fernbedienung grafisch dargestellt werden soll."
 
 msgid "While available"
 msgstr "Solange verfügbar"
@@ -22797,44 +22948,12 @@ msgid "slot%s - %s "
 msgstr "Slot %s - %s "
 
 #, python-format
-msgid "(current image)"
-msgstr "(aktuelles Image)"
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr "Slot %s - %s (aktuelles Image)"
 
 #, python-format
-msgid "slot%s - %s - %s "
-msgstr "Slot %s - %s - %s "
-
-#, python-format
-msgid "slot%s - %s - %s (current image)"
-msgstr "Slot %s - %s - %s (aktuelles Image)"
-
-#, python-format
 msgid "slot%s - %s as USB Recovery"
 msgstr "Slot %s - %s als USB Recovery"
-
-#, python-format
-msgid "slot%s - %s mode 1"
-msgstr "Slot %s - %s Mode 1"
-
-#, python-format
-msgid "slot%s - %s mode 1 (current image)"
-msgstr "Slot %s - %s Mode 1 (aktuelles Image)"
-
-#, python-format
-msgid "slot%s - %s mode 12"
-msgstr "Slot %s - %s Mode 12"
-
-#, python-format
-msgid "slot%s - %s mode 12 (current image)"
-msgstr "Slot %s - %s Mode 12 (aktuelles Image)"
-
-#, python-format
-msgid "slot%s - %s- %s "
-msgstr "Slot %s - %s - %s"
 
 msgid "slow"
 msgstr "Langsam"
@@ -23014,9 +23133,6 @@ msgstr "nicht verfügbar"
 msgid "unconfirmed"
 msgstr "Nicht bestätigt"
 
-msgid "unknow"
-msgstr "unbekannt"
-
 #
 msgid "unknown"
 msgstr "Unbekannt"
@@ -23150,10 +23266,6 @@ msgstr "Breite"
 #
 msgid "will take about 1-15 minutes for this system\n"
 msgstr "bis zu 15 Minuten.\n"
-
-#
-msgid "will take about 30 minutes for this system\n"
-msgstr "bis zu 30 Minuten.\n"
 
 msgid "winter sport"
 msgstr "Wintersport"
@@ -23295,15 +23407,6 @@ msgstr "Umschalten"
 #~ msgid "%A %e %B"
 #~ msgstr "%A %e %B"
 
-#~ msgid "%A %e %B %Y"
-#~ msgstr "%A %e %B %Y"
-
-#~ msgid "%a %e %B %Y"
-#~ msgstr "%a %e %B %Y"
-
-#~ msgid "%a %e/%m"
-#~ msgstr "%a %e/%m"
-
 #~ msgid "%a %e/%m  %-H:%M"
 #~ msgstr "%a %e/%m  %-H:%M"
 
@@ -23336,6 +23439,9 @@ msgstr "Umschalten"
 
 #~ msgid "%s B"
 #~ msgstr "%s B"
+
+#~ msgid "%s build date %s"
+#~ msgstr "%s Erstellungsdatum %s"
 
 #
 #~ msgid "%s not found !!"
@@ -23789,6 +23895,9 @@ msgstr "Umschalten"
 #~ msgid "Change this value if your smartcard can't doesn't handle off-line decoding well; default is '1000'."
 #~ msgstr "Diesen Wert ändern, wenn Ihre SmartCard off-line Entschlüsselung nicht gut beherrscht. Standard ist '1000'."
 
+#~ msgid "Channel Name"
+#~ msgstr "Sendername"
+
 #
 #~ msgid "Channel Selection"
 #~ msgstr "Kanalliste"
@@ -23882,6 +23991,9 @@ msgstr "Umschalten"
 #
 #~ msgid "Chose backup files"
 #~ msgstr "Zu sichernde Dateien"
+
+#~ msgid "Clock"
+#~ msgstr "Uhr"
 
 #~ msgid "Clock always"
 #~ msgstr "Immer die Uhrzeit"
@@ -24151,6 +24263,10 @@ msgstr "Umschalten"
 #~ msgid "Disable FastZapping"
 #~ msgstr "Deaktiviere FastZapping"
 
+# Box Display text ist eigentlich falsch zugeordnet
+#~ msgid "Disable all VFD Symbols"
+#~ msgstr "Hiermit kann eingestellt werden, ob der Sendername oder die Uhr im Display angezeigt werden soll."
+
 #
 #~ msgid "Disable crashlog reporting"
 #~ msgstr "Crashlog-Übermittlung deaktivieren"
@@ -24179,6 +24295,10 @@ msgstr "Umschalten"
 #
 #~ msgid "Do you want to enable the parental control feature on your %s %s?"
 #~ msgstr "Den Jugendschutz auf der %s %s aktivieren?"
+
+# ImageBackup.py
+#~ msgid "Do you want to reboot now the image in slot %s?"
+#~ msgstr "Möchten Sie das Image in Slot %s jetzt starten?"
 
 #~ msgid "Do you want to reboot now with selected image?"
 #~ msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
@@ -24449,10 +24569,6 @@ msgstr "Umschalten"
 #~ msgid "Finished reloading mount file"
 #~ msgstr "'automounts.xml' wurde eingelesen"
 
-# ImageBackup.py
-#~ msgid "Flash Image USB Recovery"
-#~ msgstr "Flashe Image USB Recovery"
-
 # /SoftwareManager/Flash_online.py
 #~ msgid "Flash On the fly (select a image)"
 #~ msgstr "Image zum Flashen auswählen"
@@ -24606,6 +24722,13 @@ msgstr "Umschalten"
 #~ msgid "If set to 'yes' the bouquets will be shown each time you open the EPG"
 #~ msgstr "Bei 'Ja' werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt."
 
+# ImageBackup.py
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
+#~ msgstr "USB Image erstellt auf: %s/%s-%s-%s-backup-%s_mmc.zip"
+
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
+#~ msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_recovery.zip"
+
 #~ msgid "Image:"
 #~ msgstr "Image:"
 
@@ -24644,6 +24767,9 @@ msgstr "Umschalten"
 #
 #~ msgid "Infobar timeout"
 #~ msgstr "Infoleisten-Anzeigedauer"
+
+#~ msgid "Init SDcard"
+#~ msgstr "Init SDcard"
 
 #~ msgid "Initial Fast Forward speed"
 #~ msgstr "Anfangsgeschwindigkeit Schnelles Vorspulen"
@@ -24910,8 +25036,17 @@ msgstr "Umschalten"
 #~ msgid "Multi-EPG bouquet selection"
 #~ msgstr "Auswahl Multi-EPG Bouquet"
 
-#~ msgid "MultiBoot Selector"
-#~ msgstr "Multiboot-Auswahl"
+#~ msgid "Multiboot ERROR! - no %s in boot partition."
+#~ msgstr "Multiboot Fehler! - kein %s in Bootpartition."
+
+#~ msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
+#~ msgstr "Multiboot-Manager - SD-Karte kann nicht initialisiert werden, wenn das Image auf der SD-Karte ausgeführt wird."
+
+#~ msgid "Multiboot manager - SDcard initialization run, please restart your Image."
+#~ msgstr "Multiboot-Manager - Initialisierung der SD-Karte. Bitte starten Sie die Box neu."
+
+#~ msgid "Multiboot manager - The SDcard must be at least 8MB."
+#~ msgstr "Multiboot-Manager - Die SD-Karte muss mindestens 8 MB groß sein."
 
 #
 #~ msgid "NFI Image Flashing"
@@ -25406,6 +25541,9 @@ msgstr "Umschalten"
 #~ msgid "Press Green/OK to start the scan"
 #~ msgstr "GRÜN/OK drücken, um Scan zu beginnen"
 
+#~ msgid "Press Init to format SDcard."
+#~ msgstr "Drücken Sie Init, um die SD-Karte zu formatieren."
+
 #~ msgid "Press and hold '2' & '7' until red LED is solid, then press 'Help', then press '000"
 #~ msgstr "'2' & '7' drücken und halten bis LED dauerhaft rot leuchtet, dann 'Help' drücken, dann '000'"
 
@@ -25526,6 +25664,9 @@ msgstr "Umschalten"
 #~ msgid "Remote Tuner Server Setup"
 #~ msgstr "Tuner-Server"
 
+#~ msgid "Remote control model shown"
+#~ msgstr "Zeige Fernbedienungsmodell"
+
 #~ msgid "RemoteTuner"
 #~ msgstr "Entfernte Tuner"
 
@@ -25575,6 +25716,9 @@ msgstr "Umschalten"
 #
 #~ msgid "Rolloff"
 #~ msgstr "Roll-off"
+
+#~ msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
+#~ msgstr "SD-Karte ist nicht für Multiboot initialisiert. Benutze Multiboot Verwaltung zur Initialisierung."
 
 #
 #~ msgid "SNR"
@@ -26689,6 +26833,9 @@ msgstr "Umschalten"
 #~ msgid "When using scart connection, choose what color format to use."
 #~ msgstr "Welches Farbformat bei einer SCART-Verbindung."
 
+#~ msgid "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr "Hier können Sie einstellen, welche Fernbedienung grafisch dargestellt werden soll."
+
 #
 #~ msgid "Wireless Network"
 #~ msgstr "WLAN-Netzwerk"
@@ -27205,6 +27352,24 @@ msgstr "Umschalten"
 #~ msgid "shutdown"
 #~ msgstr "Herunterfahren"
 
+#~ msgid "slot%s - %s - %s (current image)"
+#~ msgstr "Slot %s - %s - %s (aktuelles Image)"
+
+#~ msgid "slot%s - %s mode 1"
+#~ msgstr "Slot %s - %s Mode 1"
+
+#~ msgid "slot%s - %s mode 1 (current image)"
+#~ msgstr "Slot %s - %s Mode 1 (aktuelles Image)"
+
+#~ msgid "slot%s - %s mode 12"
+#~ msgstr "Slot %s - %s Mode 12"
+
+#~ msgid "slot%s - %s mode 12 (current image)"
+#~ msgstr "Slot %s - %s Mode 12 (aktuelles Image)"
+
+#~ msgid "slot%s - %s- %s "
+#~ msgstr "Slot %s - %s - %s"
+
 #
 #~ msgid "sort by date"
 #~ msgstr "Aufnahmen nach Datum sortieren"
@@ -27243,6 +27408,9 @@ msgstr "Umschalten"
 #~ msgid "tuner is not supported"
 #~ msgstr "Nicht unterstützter Tuner"
 
+#~ msgid "unknow"
+#~ msgstr "unbekannt"
+
 #~ msgid "unknown error!"
 #~ msgstr "unbekannter Fehler!"
 
@@ -27273,3 +27441,7 @@ msgstr "Umschalten"
 #
 #~ msgid "whitelist"
 #~ msgstr "Whitelist"
+
+#
+#~ msgid "will take about 30 minutes for this system\n"
+#~ msgstr "bis zu 30 Minuten.\n"
