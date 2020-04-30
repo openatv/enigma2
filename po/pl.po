@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-03-20 12:38+0000\n"
+"PO-Revision-Date: 2020-04-30 12:38+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -396,6 +396,27 @@ msgstr ""
 msgid "%-d-%b-%Y"
 msgstr ""
 
+msgid "%-d. %B %Y"
+msgstr ""
+
+msgid "%-d. %b"
+msgstr ""
+
+msgid "%-d. %b %Y"
+msgstr ""
+
+msgid "%-d.%-m"
+msgstr ""
+
+msgid "%-d.%-m.%Y"
+msgstr ""
+
+msgid "%-d.%m"
+msgstr ""
+
+msgid "%-d.%m.%Y"
+msgstr ""
+
 msgid "%-d/%-m"
 msgstr ""
 
@@ -492,6 +513,24 @@ msgstr ""
 msgid "%A %-d-%B-%Y"
 msgstr ""
 
+msgid "%A %-d. %B"
+msgstr ""
+
+msgid "%A %-d. %B %Y"
+msgstr ""
+
+msgid "%A %-d.%-m"
+msgstr ""
+
+msgid "%A %-d.%-m.%Y"
+msgstr ""
+
+msgid "%A %-d.%m"
+msgstr ""
+
+msgid "%A %-d.%m.%Y"
+msgstr ""
+
 msgid "%A %-d/%-m"
 msgstr ""
 
@@ -574,6 +613,24 @@ msgid "%A %d-%B"
 msgstr ""
 
 msgid "%A %d-%B-%Y"
+msgstr ""
+
+msgid "%A %d. %B"
+msgstr ""
+
+msgid "%A %d. %B %Y"
+msgstr ""
+
+msgid "%A %d.%-m"
+msgstr ""
+
+msgid "%A %d.%-m.%Y"
+msgstr ""
+
+msgid "%A %d.%m"
+msgstr ""
+
+msgid "%A %d.%m.%Y"
 msgstr ""
 
 msgid "%A %d/%-m"
@@ -717,6 +774,27 @@ msgstr ""
 msgid "%a %-d-%b-%Y"
 msgstr ""
 
+msgid "%a %-d. %B %Y"
+msgstr ""
+
+msgid "%a %-d. %b"
+msgstr ""
+
+msgid "%a %-d. %b %Y"
+msgstr ""
+
+msgid "%a %-d.%-m"
+msgstr ""
+
+msgid "%a %-d.%-m.%Y"
+msgstr ""
+
+msgid "%a %-d.%m"
+msgstr ""
+
+msgid "%a %-d.%m.%Y"
+msgstr ""
+
 msgid "%a %-d/%-m"
 msgstr ""
 
@@ -835,6 +913,27 @@ msgid "%a %d-%b"
 msgstr ""
 
 msgid "%a %d-%b-%Y"
+msgstr ""
+
+msgid "%a %d. %B %Y"
+msgstr ""
+
+msgid "%a %d. %b"
+msgstr ""
+
+msgid "%a %d. %b %Y"
+msgstr ""
+
+msgid "%a %d.%-m"
+msgstr ""
+
+msgid "%a %d.%-m.%Y"
+msgstr ""
+
+msgid "%a %d.%m"
+msgstr ""
+
+msgid "%a %d.%m.%Y"
 msgstr ""
 
 msgid "%a %d/%-m"
@@ -1039,6 +1138,21 @@ msgstr ""
 msgid "%d-%m"
 msgstr ""
 
+msgid "%d. %B %Y"
+msgstr ""
+
+msgid "%d. %b"
+msgstr ""
+
+msgid "%d. %b %Y"
+msgstr ""
+
+msgid "%d.%-m"
+msgstr ""
+
+msgid "%d.%-m.%Y"
+msgstr ""
+
 #, python-format
 msgid "%d.%03d GB"
 msgstr ""
@@ -1046,7 +1160,13 @@ msgstr ""
 msgid "%d.%B %Y"
 msgstr ""
 
+msgid "%d.%m"
+msgstr ""
+
 msgid "%d.%m.   "
+msgstr ""
+
+msgid "%d.%m.%Y"
 msgstr ""
 
 msgid "%d/%-m"
@@ -1175,10 +1295,6 @@ msgstr "%s Ustawienia"
 msgid "%s additional screens"
 msgstr "%s dodatkowe ekrany"
 
-#, python-format
-msgid "%s build date %s"
-msgstr ""
-
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1269,7 +1385,7 @@ msgid "'weatherplugin' is not installed!"
 msgstr "'Weatherplugin' nie jest zainstalowany!"
 
 msgid "( All readers)"
-msgstr "(Wszystkie czytniki)"
+msgstr "( Wszystkie czytniki)"
 
 #, python-format
 msgid "(%d jobs)"
@@ -1286,7 +1402,10 @@ msgid "(Selectmode)"
 msgstr "(Wybierz tryb)"
 
 msgid "(Show only reader:"
-msgstr "(Pokaż tylko czytnik):"
+msgstr "(Pokaż tylko czytnik:"
+
+msgid "(current image)"
+msgstr "(aktualny obraz)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(np. pobudka TV, ale nie została przełączona na prawidłowe wejście)"
@@ -3159,6 +3278,12 @@ msgstr "Zarządzanie kopiami zapasowymi"
 msgid "Backup Mode"
 msgstr "Tryb tworzenia kopii zapasowej"
 
+msgid "Backup Mode: Flash Online\n"
+msgstr "Tryb tworzenia kopii zapasowych: Flash Online\n"
+
+msgid "Backup Mode: USB Recovery\n"
+msgstr "Tryb tworzenia kopii zapasowych: USB Recovery\n"
+
 msgid "Backup Settings"
 msgstr "Kopia Ustawień"
 
@@ -3761,6 +3886,12 @@ msgstr "Anulować wykonanie?"
 msgid "Cancel save timeshift as movie"
 msgstr "Anuluj zapis timeshiftu jako filmu"
 
+msgid "Cancel the image selection and exit"
+msgstr "Anuluj wybór obrazu i wyjdź"
+
+msgid "Cancel the image selection and exit all menus"
+msgstr "Anuluj wybór obrazu i zamknij wszystkie menu"
+
 msgid "Cancel the selection"
 msgstr "Anuluj wybór"
 
@@ -3909,9 +4040,6 @@ msgstr "Info Kanału"
 
 msgid "Channel List"
 msgstr "Lista Kanałów"
-
-msgid "Channel Name"
-msgstr "Nazwa Kanału"
 
 msgid "Channel button always changes sides"
 msgstr "Przycisk kanału zawsze zmienia strony"
@@ -4242,9 +4370,6 @@ msgstr "Klienci"
 
 msgid "Clock"
 msgstr "Zegar"
-
-msgid "Clock:"
-msgstr "Zegar:"
 
 msgid "Clone TV screen to LCD"
 msgstr "Lustro TV obraz na LCD"
@@ -4712,6 +4837,9 @@ msgstr "Skonfiguruj który tuner będzie wykorzystany, gdy posiadasz więcej ni�
 
 msgid "Configure your NTP server."
 msgstr "Tutaj możesz zmienić synchronizację serwera NTP."
+
+msgid "Control LED can be turned on or off here."
+msgstr "Kontrolną diodę LED można tutaj włączyć lub wyłączyć."
 
 msgid "Configure your Network"
 msgstr "Konfigurowanie sieci"
@@ -5282,6 +5410,15 @@ msgstr ""
 msgid "Dayname D-Month-Year"
 msgstr ""
 
+msgid "Dayname D. Month Year"
+msgstr ""
+
+msgid "Dayname D.M.Year"
+msgstr ""
+
+msgid "Dayname D.MM.Year"
+msgstr ""
+
 msgid "Dayname D/M/Year"
 msgstr ""
 
@@ -5292,6 +5429,15 @@ msgid "Dayname DD Month Year"
 msgstr ""
 
 msgid "Dayname DD-Month-Year"
+msgstr ""
+
+msgid "Dayname DD. Month Year"
+msgstr ""
+
+msgid "Dayname DD.M.Year"
+msgstr ""
+
+msgid "Dayname DD.MM.Year"
 msgstr ""
 
 msgid "Dayname DD/M/Year"
@@ -5739,9 +5885,6 @@ msgstr "Wyłącz MiniTV"
 msgid "Disable Picture in Picture"
 msgstr "Wyłącz PIP"
 
-msgid "Disable all VFD Symbols"
-msgstr "Wyłącz wszystkie symbole na VFD"
-
 msgid "Disable background scanning"
 msgstr "Wyłącz skanowanie w tle"
 
@@ -5981,10 +6124,6 @@ msgstr "Chcesz obejrzeć to DVD przed nagraniem?"
 
 msgid "Do you want to produce this collection?"
 msgstr "Czy chcesz tworzyć tę kolekcję?"
-
-#, python-format
-msgid "Do you want to reboot now the image in slot %s?"
-msgstr "Czy chcesz teraz zrestartować obraz w gnieździe %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -8352,16 +8491,8 @@ msgid "Image Version"
 msgstr "Wersja Obrazu"
 
 #, python-format
-msgid "Image Version %s"
-msgstr "Wersja Obrazu %s"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
-msgstr "Obraz utworzony na: %s/%s-%s-%s-backup-%s_mmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
-msgstr "Obraz utworzony na: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+msgstr "Obraz utworzony na: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
@@ -8534,12 +8665,6 @@ msgstr "Info o programie"
 
 msgid "Init"
 msgstr "Zainicjować"
-
-msgid "Init SDCARD"
-msgstr "Zainicjuj SDCARD"
-
-msgid "Init SDcard"
-msgstr "Zainicjuj SDcard"
 
 msgid "Initial fast forward speed"
 msgstr "Początkowa prędkość do przodu"
@@ -8921,6 +9046,9 @@ msgstr "Klawiatura"
 
 msgid "Keyboard data entry"
 msgstr "Wprowadzanie danych z klawiatury"
+
+msgid "Keyboard long"
+msgstr "Klawiatura (długo)"
 
 msgid "Keyboard map"
 msgstr "Układ klawiatury"
@@ -9961,12 +10089,15 @@ msgstr "MultiBoot Image Manager"
 msgid "MultiEPG settings"
 msgstr "Ust. MultiEPG"
 
-msgid "MultiQuickButton"
-msgstr "Przycisk MultiQuick"
+msgid "MultiBoot Image Selector"
+msgstr "Selektor Obrazów MultiBoot"
 
 #, python-format
-msgid "Multiboot ERROR! - no %s in boot partition."
-msgstr "BŁĄD Multiboot! - nie %s na partycji rozruchowej."
+msgid "MultiBootSelector Actions"
+msgstr "Akcje MultiBootSelector"
+
+msgid "MultiQuickButton"
+msgstr "Przycisk MultiQuick"
 
 msgid "Multiboot Image Selector"
 msgstr "Selektor obrazów Multiboot"
@@ -9977,15 +10108,6 @@ msgstr "Obraz Multiboot utworzony w: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiboot Manager"
 msgstr "Menedżer Multiboot"
-
-msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
-msgstr "Menedżer multiboot - Nie można zainicjować karty SD podczas uruchamiania obrazu na karcie SD."
-
-msgid "Multiboot manager - SDcard initialization run, please restart your Image."
-msgstr "Menedżer multiboot - Uruchomienie inicjalizacji karty SD, zrestartuj swój obraz."
-
-msgid "Multiboot manager - The SDcard must be at least 8MB."
-msgstr "Menedżer multiboot - Karta SD musi mieć co najmniej 8 MB."
 
 msgid "Multimedia"
 msgstr ""
@@ -11924,9 +12046,6 @@ msgstr "Naciśnij przycisk '0', aby włączyć tryb PiP"
 msgid "Press INFO on your remote control for additional information."
 msgstr "Wciśnij INFO na pilocie, aby uzyskać dodatkowe informacje."
 
-msgid "Press Init to format SDcard."
-msgstr "Naciśnij przycisk Init, aby sformatować kartę SD."
-
 msgid "Press MENU on your remote control for additional options."
 msgstr "Wciśnij MENU na pilocie, aby mieć dostęp do dodatkowych opcji."
 
@@ -12629,9 +12748,6 @@ msgstr "Kod do pilota zdalnego sterowania"
 msgid "Remote box"
 msgstr "Zdalny odbiornik"
 
-msgid "Remote control model shown"
-msgstr "Kod Pilota"
-
 msgid "Remote control type"
 msgstr "Typ zdalnego sterowania"
 
@@ -13059,22 +13175,19 @@ msgid "SCPC optimized search range"
 msgstr "SCPC zoptymalizowany zakres wyszukiwania"
 
 msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
-msgstr ""
+msgstr "Regulacja rozrządu SCR w połączeniu z gniazdem SCR i obsługa kilku urządzeń SCR za pomocą jednego kabla."
 
 msgid "SD"
 msgstr ""
 
-msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
-msgstr ""
-
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
-msgstr ""
+msgstr "Przełącznik karty SD BŁĄD! - Pliki główne H9 nie zostały przesłane na kartę SD"
 
 msgid "SDcard switch ERROR! - already on Nand"
-msgstr ""
+msgstr "Przełącznik karty SD BŁĄD! - już na Nand"
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
+msgstr "Przełącznik karty SD BŁĄD! - już na mmc"
 
 msgid "SID"
 msgstr ""
@@ -13495,7 +13608,7 @@ msgid "Select Enigma2 Skin"
 msgstr "Wybierz skórę dla Enigma2"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
+msgstr "Wybierz Fast DiSEqC, jeśli twój system antenowy to obsługuje. Jeśli nie jesteś pewien, wybierz „nie”."
 
 msgid "Select HDD"
 msgstr "Wybierz HDD"
@@ -13689,6 +13802,9 @@ msgstr "Wybierz znak lub akcję pod wirtualnym kursorem klawiatury"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ',aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
+
+msgid "Select the highlighted image and reboot"
+msgstr "Wybierz podświetlony obraz i uruchom ponownie"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Wybierz producenta swojego urządzenia SCR. Jeśli producenta nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z jego specyfikacją."
@@ -15228,6 +15344,14 @@ msgstr "Przesuwane od góry do dołu"
 #, python-format
 msgid "Slot %d"
 msgstr "Gniazdo  %d"
+
+#, python-format
+msgid "Slot %s: %s - Mode %d%s"
+msgstr "Gniazdo %s: %s - Tryb %d%s"
+
+#, python-format
+msgid "Slot %s: %s%s"
+msgstr "Gniazdo %s: %s%s"
 
 msgid "Slovak"
 msgstr "Słowacki"
@@ -17453,7 +17577,10 @@ msgid "Tuner settings"
 msgstr "Ustawienia tunera"
 
 msgid "Tuner slot"
-msgstr "Gniazdo karty"
+msgstr "Gniazdo tunera"
+
+msgid "Turn on the control LED."
+msgstr "Włącz kontrolną diodę LED."
 
 msgid "Tuner status"
 msgstr "Status tunera"
@@ -18852,9 +18979,6 @@ msgstr "Gdzie zapisywać tymczasowe nagrania timeshiftu?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Które wydarzenie chcesz zapisać na stałe?"
-
-msgid "Which remote control gets shown. Only influences graphical representation."
-msgstr "Który pilot zostanie wyświetlony. Wpływa tylko na reprezentację graficzną."
 
 msgid "While available"
 msgstr "Kiedy dostępne"
@@ -21012,36 +21136,8 @@ msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s - %s "
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s - %s as USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 1"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 1 (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 12"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 12 (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s- %s "
-msgstr ""
+msgid "slot%s - %s as USB Recovery"
+msgstr "gniazdo%s - %s jako USB Recovery"
 
 msgid "slow"
 msgstr "wolno"
@@ -21202,10 +21298,6 @@ msgstr "niedostępny"
 msgid "unconfirmed"
 msgstr "niepotwierdzony"
 
-#, fuzzy
-msgid "unknow"
-msgstr "nieznany"
-
 msgid "unknown"
 msgstr "nieznany"
 
@@ -21331,9 +21423,6 @@ msgstr "szerokość"
 
 msgid "will take about 1-15 minutes for this system\n"
 msgstr "potrwa to około 1-15 minut dla tego systemu\n"
-
-msgid "will take about 30 minutes for this system\n"
-msgstr "potrwa to około 30 minut dla tego systemu\n"
 
 msgid "winter sport"
 msgstr "sporty zimowe"
