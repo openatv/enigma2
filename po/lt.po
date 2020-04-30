@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-20 18:43+0000\n"
-"PO-Revision-Date: 2020-03-20 21:35+0200\n"
+"POT-Creation-Date: 2020-04-29 18:08+0000\n"
+"PO-Revision-Date: 2020-04-30 01:36+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -120,7 +120,7 @@ msgid ""
 "Maintain your multiboot device."
 msgstr ""
 "\n"
-"Palaikykite savo daugiafunkcinį įrenginį."
+"Išsaugokite savo daugialypės įkrovos įrenginį."
 
 #, python-format
 msgid ""
@@ -404,6 +404,31 @@ msgstr "%b-%-d"
 msgid "%-d-%b-%Y"
 msgstr "%Y-%b-%-d"
 
+#| msgid "%-d %B %Y"
+msgid "%-d. %B %Y"
+msgstr "%-d. %B %Y"
+
+msgid "%-d. %b"
+msgstr "%-d. %b"
+
+#| msgid "%-d %b %Y"
+msgid "%-d. %b %Y"
+msgstr "%-d. %b %Y"
+
+msgid "%-d.%-m"
+msgstr "%-d.%-m"
+
+msgid "%-d.%-m.%Y"
+msgstr "%-d.%-m.%Y"
+
+#| msgid "%d.%m.   "
+msgid "%-d.%m"
+msgstr "%-d.%m"
+
+#| msgid "%d.%m.   "
+msgid "%-d.%m.%Y"
+msgstr "%-d.%m.%Y"
+
 msgid "%-d/%-m"
 msgstr "%-m.%-d"
 
@@ -500,6 +525,30 @@ msgstr "%B %-d, %A"
 msgid "%A %-d-%B-%Y"
 msgstr "%Y-%B-%-d, %A"
 
+#| msgid "%A %-d %B"
+msgid "%A %-d. %B"
+msgstr "%A %-d. %B"
+
+#| msgid "%A %-d %B %Y"
+msgid "%A %-d. %B %Y"
+msgstr "%A %-d. %B %Y"
+
+#| msgid "%A %-d/%-m"
+msgid "%A %-d.%-m"
+msgstr "%A %-d.%-m"
+
+#| msgid "%A %-d/%-m/%Y"
+msgid "%A %-d.%-m.%Y"
+msgstr "%A %-d.%-m.%Y"
+
+#| msgid "%A %-d/%m"
+msgid "%A %-d.%m"
+msgstr "%A %-d.%m"
+
+#| msgid "%A %-d/%m/%Y"
+msgid "%A %-d.%m.%Y"
+msgstr "%A %-d.%m.%Y"
+
 msgid "%A %-d/%-m"
 msgstr "%-m/%-d %A"
 
@@ -583,6 +632,30 @@ msgstr "%B-%d %A"
 
 msgid "%A %d-%B-%Y"
 msgstr "%Y-%B-%d, %A"
+
+#| msgid "%A %d %B"
+msgid "%A %d. %B"
+msgstr "%A %d. %B"
+
+#| msgid "%A %d %B %Y"
+msgid "%A %d. %B %Y"
+msgstr "%A %d. %B %Y"
+
+#| msgid "%A %d/%-m"
+msgid "%A %d.%-m"
+msgstr "%A %d.%-m"
+
+#| msgid "%A %d/%-m/%Y"
+msgid "%A %d.%-m.%Y"
+msgstr "%A %d.%-m.%Y"
+
+#| msgid "%A %d/%m"
+msgid "%A %d.%m"
+msgstr "%A %d.%m"
+
+#| msgid "%A %d/%m/%Y"
+msgid "%A %d.%m.%Y"
+msgstr "%A %d.%m.%Y"
 
 msgid "%A %d/%-m"
 msgstr "%-m/%d %A"
@@ -725,6 +798,34 @@ msgstr "%b-%-d %a"
 msgid "%a %-d-%b-%Y"
 msgstr "%a %-d-%b-%Y"
 
+#| msgid "%a %-d %B %Y"
+msgid "%a %-d. %B %Y"
+msgstr "%a %-d. %B %Y"
+
+#| msgid "%a %-d %b"
+msgid "%a %-d. %b"
+msgstr "%a %-d. %b"
+
+#| msgid "%a %-d %b %Y"
+msgid "%a %-d. %b %Y"
+msgstr "%a %-d. %b %Y"
+
+#| msgid "%a %-d/%-m"
+msgid "%a %-d.%-m"
+msgstr "%a %-d.%-m"
+
+#| msgid "%a %-d/%-m/%Y"
+msgid "%a %-d.%-m.%Y"
+msgstr "%a %-d.%-m.%Y"
+
+#| msgid "%a %-d/%m"
+msgid "%a %-d.%m"
+msgstr "%a %-d.%m"
+
+#| msgid "%a %-d/%m/%Y"
+msgid "%a %-d.%m.%Y"
+msgstr "%a %-d.%m.%Y"
+
 msgid "%a %-d/%-m"
 msgstr "%a %-d/%-m"
 
@@ -844,6 +945,34 @@ msgstr "%a %d-%b"
 
 msgid "%a %d-%b-%Y"
 msgstr "%a %d-%b-%Y"
+
+#| msgid "%a %d %B %Y"
+msgid "%a %d. %B %Y"
+msgstr "%a %d. %B %Y"
+
+#| msgid "%a %d %b"
+msgid "%a %d. %b"
+msgstr "%a %d. %b"
+
+#| msgid "%a %d %b %Y"
+msgid "%a %d. %b %Y"
+msgstr "%a %d. %b %Y"
+
+#| msgid "%a %d/%-m"
+msgid "%a %d.%-m"
+msgstr "%a %d.%-m"
+
+#| msgid "%a %d/%-m/%Y"
+msgid "%a %d.%-m.%Y"
+msgstr "%a %d.%-m.%Y"
+
+#| msgid "%a %d/%m"
+msgid "%a %d.%m"
+msgstr "%a %d.%m"
+
+#| msgid "%a %d/%m/%Y"
+msgid "%a %d.%m.%Y"
+msgstr "%a %d.%m.%Y"
 
 msgid "%a %d/%-m"
 msgstr "%a %d/%-m"
@@ -1047,6 +1176,25 @@ msgstr "%Y-%b-%d"
 msgid "%d-%m"
 msgstr "%m.%d"
 
+#| msgid "%d %B %Y"
+msgid "%d. %B %Y"
+msgstr "%d. %B %Y"
+
+msgid "%d. %b"
+msgstr "%d. %b"
+
+#| msgid "%d %b %Y"
+msgid "%d. %b %Y"
+msgstr "%d. %b %Y"
+
+#| msgid "%d.%m.   "
+msgid "%d.%-m"
+msgstr "%d.%-m"
+
+#| msgid "%d.%B %Y"
+msgid "%d.%-m.%Y"
+msgstr "%d.%-m.%Y"
+
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
@@ -1054,8 +1202,16 @@ msgstr "%d.%03d GB"
 msgid "%d.%B %Y"
 msgstr "%Y %B %e"
 
+#| msgid "%d.%m.   "
+msgid "%d.%m"
+msgstr "%d.%m"
+
 msgid "%d.%m.   "
 msgstr "%m.%d."
+
+#| msgid "%d.%B %Y"
+msgid "%d.%m.%Y"
+msgstr "%d.%m.%Y"
 
 msgid "%d/%-m"
 msgstr "%d/%-m"
@@ -1183,10 +1339,6 @@ msgstr "%s Sąranka"
 msgid "%s additional screens"
 msgstr "%s papildomi ekranai"
 
-#, python-format
-msgid "%s build date %s"
-msgstr "%s sukūrimo data %s"
-
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1294,6 +1446,9 @@ msgstr "(Pasirinkimo būsena)"
 
 msgid "(Show only reader:"
 msgstr "(rodyti tik skaitytoją:"
+
+msgid "(current image)"
+msgstr "(dabartinis atvaizdas)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(pvz., TV budina, bet nepersijungia į teisingą įvestį)"
@@ -2986,6 +3141,12 @@ msgstr "Atsarginio kopijavimo tvarkyklė"
 msgid "Backup Mode"
 msgstr "Atsarginio kopijavimo režimas"
 
+msgid "Backup Mode: Flash Online\n"
+msgstr "Atsarginės kopijos režimas: Įdiegti tiesiai iš interneto\n"
+
+msgid "Backup Mode: USB Recovery\n"
+msgstr "Atsarginio kopijavimo režimas: Atkūrimas iš USB\n"
+
 msgid "Backup Settings"
 msgstr "Atsarginės kopijos nustatymai"
 
@@ -3540,6 +3701,12 @@ msgstr "Atšaukti vykdymą?"
 msgid "Cancel save timeshift as movie"
 msgstr "Atšaukti laiko poslinkio, kaip filmo išsaugojimą"
 
+msgid "Cancel the image selection and exit"
+msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
+
+msgid "Cancel the image selection and exit all menus"
+msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
+
 msgid "Cancel the selection"
 msgstr "Atšaukti pasirinkimą"
 
@@ -3679,9 +3846,6 @@ msgstr "Kanalo informacija"
 
 msgid "Channel List"
 msgstr "Kanalų sąrašas"
-
-msgid "Channel Name"
-msgstr "Kanalo pavadinimas"
 
 msgid "Channel button always changes sides"
 msgstr "Kanalo mygtukas visada keičia puses"
@@ -3907,9 +4071,6 @@ msgstr "Kliento IP"
 
 msgid "Clients"
 msgstr "Klientai"
-
-msgid "Clock"
-msgstr "Laikrodis"
 
 msgid "Clock:"
 msgstr "Laikrodis:"
@@ -4584,6 +4745,15 @@ msgstr "Metai Mėnuo D SavDiena"
 msgid "Dayname D-Month-Year"
 msgstr "Metai-Mėnuo-D SavDiena"
 
+msgid "Dayname D. Month Year"
+msgstr "Dienos pavadinimas D. Mėnuo Metai"
+
+msgid "Dayname D.M.Year"
+msgstr "Dienos pavadinimas D.M.Metai"
+
+msgid "Dayname D.MM.Year"
+msgstr "Dienos pavadinimas D.MM. Metai"
+
 msgid "Dayname D/M/Year"
 msgstr "Metai/M/D SavDiena"
 
@@ -4595,6 +4765,15 @@ msgstr "Metai Mėnuo DD SavDiena"
 
 msgid "Dayname DD-Month-Year"
 msgstr "Metai-Mėnuo-DD SavDiena"
+
+msgid "Dayname DD. Month Year"
+msgstr "Dienos pavadinimas DD. Mėnuo Metai"
+
+msgid "Dayname DD.M.Year"
+msgstr "Dienos pavadinimas DD. M.Metai"
+
+msgid "Dayname DD.MM.Year"
+msgstr "Dienos pavadinimas DD.MM.Metai"
 
 msgid "Dayname DD/M/Year"
 msgstr "Metai/M/DD SavDiena"
@@ -5163,10 +5342,6 @@ msgstr "Ar norite peržiūrėti šį DVD prieš įrašymą?"
 
 msgid "Do you want to produce this collection?"
 msgstr "Ar norite parengti šį rinkinį?"
-
-#, python-format
-msgid "Do you want to reboot now the image in slot %s?"
-msgstr "Ar norite iš naujo paleisti atvaizdą lizde %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -7215,16 +7390,8 @@ msgid "Image Version"
 msgstr "Atvaizdo versija"
 
 #, python-format
-msgid "Image Version %s"
-msgstr "Atvaizdo versija %s"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
-msgstr "Vaizdas sukurtas: %s/%s-%s-%s-backup-%s_mmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
-msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
@@ -7343,12 +7510,6 @@ msgstr "Informacijos ir pramogų"
 
 msgid "Init"
 msgstr "Inicializacija"
-
-msgid "Init SDCARD"
-msgstr "Aptinkama SDCARD"
-
-msgid "Init SDcard"
-msgstr "Aptinkama SDcard"
 
 msgid "Initial lock ratio"
 msgstr "Pradinis fiksuotas santykis"
@@ -7697,6 +7858,9 @@ msgstr "Klaviatūra"
 
 msgid "Keyboard data entry"
 msgstr "Klaviatūros duomenų įvedimas"
+
+msgid "Keyboard long"
+msgstr "Klaviatūra"
 
 msgid "Keymap Selection"
 msgstr "Mygtukų išdėstymo pasirinkimas"
@@ -8621,33 +8785,26 @@ msgid "Multi EPG"
 msgstr "Kelių kanalų EPG"
 
 msgid "MultiBoot Image Manager"
-msgstr "Daugiafunkcinė atvaizdo įkrovos tvarkyklė"
+msgstr "Daugialypės atvaizdo įkrovos tvarkyklė"
+
+msgid "MultiBoot Image Selector"
+msgstr "Daugialypės įkrovos atvaizdo pasirinkimas"
+
+msgid "MultiBootSelector Actions"
+msgstr "Daugialypės įkrovos veiksmai"
 
 msgid "MultiQuickButton"
 msgstr "Daugiafunkcinis greitas mygtukas"
 
-#, python-format
-msgid "Multiboot ERROR! - no %s in boot partition."
-msgstr "Daugiafunkcinės įkrovos KLAIDA! - nėra %s įkrovos skaidinyje."
-
 msgid "Multiboot Image Selector"
-msgstr "Daugiafunkcinės įkrovos atvaizdo pasirinkimas"
+msgstr "Daugialypės įkrovos atvaizdo pasirinkimas"
 
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Daugiafunkcinis atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
+msgstr "Daugialypės įkrovos atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiboot Manager"
-msgstr "Daugiafunkcinės įkrovos tvarkyklė"
-
-msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
-msgstr "Daugiafunkcinės įkrovos tvarkyklė - negalima inicijuoti SDcard, kai jame paleistas atvaizdas."
-
-msgid "Multiboot manager - SDcard initialization run, please restart your Image."
-msgstr "Daugiafunkcinės įkrovos tvarkyklė - SDcard inicijavimas paleistas, prašome paleisti iš naujo atvaizdą."
-
-msgid "Multiboot manager - The SDcard must be at least 8MB."
-msgstr "Daugiafunkcinės įkrovos tvarkyklė - SDcard turi būti mažiausiai 8 MB."
+msgstr "Daugialypės įkrovos tvarkyklė"
 
 msgid "Multimedia"
 msgstr "Daugialypė terpė"
@@ -10277,9 +10434,6 @@ msgstr "PiP langams sukeisti, spauskite '0'"
 msgid "Press INFO on your remote control for additional information."
 msgstr "Paspauskite INFO savo valdymo pulte dėl papildomos informacijos."
 
-msgid "Press Init to format SDcard."
-msgstr "Norėdami formatuoti SDcard, paspauskite Init."
-
 msgid "Press MENU on your remote control for additional options."
 msgstr "Paspauskite MENU ant savo distancinio valdymo pulto papildomam pasirinkimui."
 
@@ -11321,9 +11475,6 @@ msgstr "SCR laiko reguliavimas, kartu su SCR lizdu ir kelių SCR įrenginių vei
 msgid "SD"
 msgstr "SD"
 
-msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
-msgstr "SDcard nėra inicijuotas daugiafunkcinei įkrovai - Exit ir naudokite daugiafunkcinės įkrovos tvarkyklę, kad tai pradėti"
-
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "SDcard jungimo KLAIDA! - H9 pagrindiniai failai, neperduoti SD kortelėje"
 
@@ -11853,6 +12004,9 @@ msgstr "Pasirinkite simbolį arba veiksmą po virtualiu klaviatūros kursoriumi"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Pasirinkite norimą funkciją ir kad ją priskirti, spauskite 'OK'. Perjungti tarp sąrašų, naudokite kanalų '+/-' mygtukus. Pasirinkite priskirtą funkciją ir jai per-priskirti spauskite 'OK'. Pakeisti priskirtų funkcijų tvarkai, naudokite \"Kitas/Ankstesnis\" ."
+
+msgid "Select the highlighted image and reboot"
+msgstr "Pasirinkite paryškintą vaizdą ir paleiskite iš naujo"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Pasirinkite SCR įrenginio gamintoją. Jei gamintojas nėra įtrauktas į sąrašą, 'SCR' pasirinkite į 'vartotojo nustatytas' ir rankiniu būdu įveskite prietaiso parametrus pagal specifikacijų lapą."
@@ -12988,6 +13142,14 @@ msgstr "Skaidrės iš viršaus žemyn"
 msgid "Slot %d"
 msgstr "Lizdas %d"
 
+#, python-format
+msgid "Slot %s: %s - Mode %d%s"
+msgstr "Lizdas %s: %s – režimas %d%s"
+
+#, python-format
+msgid "Slot %s: %s%s"
+msgstr "Lizdas %s: %s%s"
+
 msgid "Slovak"
 msgstr "Slovakų"
 
@@ -13670,7 +13832,7 @@ msgstr "TB"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2020-03-20"
+msgstr "Adga, v. 2020-04-30"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -17936,36 +18098,8 @@ msgid "slot%s - %s (current image)"
 msgstr "lizdas%s -%s (dabartinis atvaizdas)"
 
 #, python-format
-msgid "slot%s - %s - %s "
-msgstr "lizdas%s -%s- %s "
-
-#, python-format
-msgid "slot%s - %s - %s (current image)"
-msgstr "lizdas%s -%s - %s (dabartinis atvaizdas)"
-
-#, python-format
-msgid "slot%s - %s - %s as USB Recovery"
-msgstr "lizdas%s -%s - %s kaip USB atkūrimas"
-
-#, python-format
-msgid "slot%s - %s mode 1"
-msgstr "lizdas%s -%s režimas 1"
-
-#, python-format
-msgid "slot%s - %s mode 1 (current image)"
-msgstr "lizdas%s -%s režimas 1 (dabartinis atvaizdas)"
-
-#, python-format
-msgid "slot%s - %s mode 12"
-msgstr "lizdas%s -%s režimas 12"
-
-#, python-format
-msgid "slot%s - %s mode 12 (current image)"
-msgstr "lizdas%s -%s režimas 12 (dabartinis atvaizdas)"
-
-#, python-format
-msgid "slot%s - %s- %s "
-msgstr "lizdas%s -%s- %s "
+msgid "slot%s - %s as USB Recovery"
+msgstr "lizda%s - %s USB atkūrimas"
 
 msgid "slow"
 msgstr "lėtas"
@@ -18123,9 +18257,6 @@ msgstr "nepasiekiamas"
 msgid "unconfirmed"
 msgstr "nepatvirtinta"
 
-msgid "unknow"
-msgstr "nežinoma"
-
 msgid "unknown"
 msgstr "nežinoma"
 
@@ -18249,9 +18380,6 @@ msgid "will take about 1-15 minutes for this system\n"
 msgstr ""
 "šiai sistemai užtruks apie 1-15 minučių\n"
 "\n"
-
-msgid "will take about 30 minutes for this system\n"
-msgstr "šioje sistemoje užtruks apie 30 minučių\n"
 
 msgid "winter sport"
 msgstr "žiemos sportas"
@@ -19418,6 +19546,9 @@ msgstr "Konfigūruokite, kuris imtuvas bus naudojamas, kai yra daugiau, nei vien
 msgid "Configure your NTP server."
 msgstr "Konfigūruokite savo NTP serverį."
 
+msgid "Control LED can be turned on or off here."
+msgstr "LED valdymas gali būti įjungtas arba išjungtas čia."
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Nustatykite pozicijas, kaip baigti laikmačiai bus rodomi laikmačių sąraše."
 
@@ -19498,9 +19629,6 @@ msgstr "Pritemdymo delsa"
 
 msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Po nustatyto laiko sumažinkite LCD ekrano ryškumą (pritemdymą)."
-
-msgid "Disable all VFD Symbols"
-msgstr "Išjungti visus simbolius VFD ekrane"
 
 msgid "Disable background scanning"
 msgstr "Išjungti paiešką fone"
@@ -20119,9 +20247,6 @@ msgstr "Atnaujinama kas (valandomis)"
 
 msgid "Remember last service in PiP"
 msgstr "Prisiminti paskutinį kanalo PiP"
-
-msgid "Remote control model shown"
-msgstr "Pateiktas nuotolinio valdymo pulto modelis"
 
 msgid "Remove completed timers after (days)"
 msgstr "Pašalinti užbaigtus laikmačius po (dienų)"
@@ -20876,6 +21001,9 @@ msgstr "Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir i�
 msgid "Tuner slot"
 msgstr "Imtuvo lizdas"
 
+msgid "Turn on the control LED."
+msgstr "Įjunkite LED valdymą."
+
 msgid "Turn on the power LED."
 msgstr "Įjunkite maitinimo LED indikatorių."
 
@@ -21091,9 +21219,6 @@ msgstr "Kai ne nulis, įrašymas vėliau nei EPG nurodytas pabaigos laikas."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Įjungus kanalą, sistema paprastai patikrina visus pasikeitimus transponderyje ir juos išsaugo. Nustatykite čia 'taip' tik tada, kai tiksliai žinote, kam tą darote."
-
-msgid "Which remote control gets shown. Only influences graphical representation."
-msgstr "Kuris nuotolinio valdymo pultas bus rodomas. Įtakoja tik grafinį vaizdą."
 
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Jei čia pasirinkta 'taip', kanalų sąrašas visada pirmiausiai atsidarys paketų langu. Jei pasirinkta 'ne', bus atidarytas paskutinis žiūrėtas paketas."
@@ -21459,6 +21584,92 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
+
+#, python-format
+#~ msgid "%s build date %s"
+#~ msgstr "%s sukūrimo data %s"
+
+#~ msgid "Channel Name"
+#~ msgstr "Kanalo pavadinimas"
+
+#~ msgid "Clock"
+#~ msgstr "Laikrodis"
+
+#, python-format
+#~ msgid "Do you want to reboot now the image in slot %s?"
+#~ msgstr "Ar norite iš naujo paleisti atvaizdą lizde %s?"
+
+#, python-format
+#~ msgid "Image Version %s"
+#~ msgstr "Atvaizdo versija %s"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
+#~ msgstr "Vaizdas sukurtas: %s/%s-%s-%s-backup-%s_mmc.zip"
+
+#~ msgid "Init SDCARD"
+#~ msgstr "Aptinkama SDCARD"
+
+#~ msgid "Init SDcard"
+#~ msgstr "Aptinkama SDcard"
+
+#, python-format
+#~ msgid "Multiboot ERROR! - no %s in boot partition."
+#~ msgstr "Daugiafunkcinės įkrovos KLAIDA! - nėra %s įkrovos skaidinyje."
+
+#~ msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
+#~ msgstr "Daugiafunkcinės įkrovos tvarkyklė - negalima inicijuoti SDcard, kai jame paleistas atvaizdas."
+
+#~ msgid "Multiboot manager - SDcard initialization run, please restart your Image."
+#~ msgstr "Daugiafunkcinės įkrovos tvarkyklė - SDcard inicijavimas paleistas, prašome paleisti iš naujo atvaizdą."
+
+#~ msgid "Multiboot manager - The SDcard must be at least 8MB."
+#~ msgstr "Daugiafunkcinės įkrovos tvarkyklė - SDcard turi būti mažiausiai 8 MB."
+
+#~ msgid "Press Init to format SDcard."
+#~ msgstr "Norėdami formatuoti SDcard, paspauskite Init."
+
+#~ msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
+#~ msgstr "SDcard nėra inicijuotas daugiafunkcinei įkrovai - Exit ir naudokite daugiafunkcinės įkrovos tvarkyklę, kad tai pradėti"
+
+#, python-format
+#~ msgid "slot%s - %s - %s (current image)"
+#~ msgstr "lizdas%s -%s - %s (dabartinis atvaizdas)"
+
+#, python-format
+#~ msgid "slot%s - %s mode 1"
+#~ msgstr "lizdas%s -%s režimas 1"
+
+#, python-format
+#~ msgid "slot%s - %s mode 1 (current image)"
+#~ msgstr "lizdas%s -%s režimas 1 (dabartinis atvaizdas)"
+
+#, python-format
+#~ msgid "slot%s - %s mode 12"
+#~ msgstr "lizdas%s -%s režimas 12"
+
+#, python-format
+#~ msgid "slot%s - %s mode 12 (current image)"
+#~ msgstr "lizdas%s -%s režimas 12 (dabartinis atvaizdas)"
+
+#, python-format
+#~ msgid "slot%s - %s- %s "
+#~ msgstr "lizdas%s -%s- %s "
+
+#~ msgid "unknow"
+#~ msgstr "nežinoma"
+
+#~ msgid "will take about 30 minutes for this system\n"
+#~ msgstr "šioje sistemoje užtruks apie 30 minučių\n"
+
+#~ msgid "Disable all VFD Symbols"
+#~ msgstr "Išjungti visus simbolius VFD ekrane"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Pateiktas nuotolinio valdymo pulto modelis"
+
+#~ msgid "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr "Kuris nuotolinio valdymo pultas bus rodomas. Įtakoja tik grafinį vaizdą."
 
 #~ msgid "Your timezone in the area."
 #~ msgstr "Jūsų laiko juosta."
@@ -23482,9 +23693,6 @@ msgstr "Skaidrių rodymo laikas"
 #~ msgid "Finished reloading mount file"
 #~ msgstr "Tinklas paleistas iš naujo"
 
-#~ msgid "Flash Image USB Recovery"
-#~ msgstr "Atkūrimo atvaizdas iš USB"
-
 #~ msgid "Flash On the fly (select a image)"
 #~ msgstr "Įdiegti iškart (pasirinkite atvaizdą)"
 
@@ -23996,11 +24204,6 @@ msgstr "Skaidrių rodymo laikas"
 #~| msgid "Show bouquet selection menu"
 #~ msgid "Multi-EPG bouquet selection"
 #~ msgstr "Rodyti paketus pasirinkimo meniu"
-
-#, fuzzy
-#~| msgid "MultiBootSelector"
-#~ msgid "MultiBoot Selector"
-#~ msgstr "Daugiafunkcinės įkrovos pasirinkimas"
 
 #, fuzzy
 #~| msgid "NFI image flashing"
