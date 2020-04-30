@@ -9,6 +9,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.SystemInfo import SystemInfo
+from Components.config import config
 from enigma import eTimer, getEnigmaVersionString
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
@@ -59,7 +60,7 @@ def MyDateConverter(StringDate):
 	## StringDate must be a string "YYYY-MM-DD"
 	try:
 		StringDate = StringDate.replace("-"," ")
-		StringDate = time.strftime(_("%Y-%m-%d"), time.strptime(StringDate, "%Y %m %d"))
+		StringDate = time.strftime(config.usage.date.full.value, time.strptime(StringDate, "%Y %m %d"))
 		return StringDate
 	except:
 		return _("unknown")
