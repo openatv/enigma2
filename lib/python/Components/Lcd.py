@@ -347,10 +347,8 @@ def InitLcd():
 					"5": _("PIP"),
 					"7": _("PIP with OSD")},
 					default = "0")
-			if config.misc.boxtype.value in ( 'gbquad', 'gbquadplus'):
-				config.lcd.modepip.addNotifier(setLCDModePiP)
-			else:
-				config.lcd.modepip = ConfigNothing()
+			config.lcd.modepip.addNotifier(setLCDModePiP)
+
 			config.lcd.screenshot = ConfigYesNo(default=False)
  			config.lcd.screenshot.addNotifier(setLCDScreenshot)
 
