@@ -7,6 +7,7 @@ from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
+from Components.config import config
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Components.Sources.Boolean import Boolean
@@ -134,12 +135,12 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerrntry_autosleepbegin = ConfigClock(default = self.timer.autosleepbegin)
 		self.timerrntry_autosleepend = ConfigClock(default = self.timer.autosleepend)
 
-		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
+		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = config.usage.date.full.value, increment = 86400)
 		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default = self.timer.end)
 		self.timerentry_showendtime = ConfigSelection(default = (((self.timer.end - self.timer.begin) /60 ) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = config.usage.date.full.value, increment = 86400)
 
 		self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
