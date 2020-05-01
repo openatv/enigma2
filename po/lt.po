@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-29 18:08+0000\n"
-"PO-Revision-Date: 2020-04-30 01:36+0300\n"
+"POT-Creation-Date: 2020-05-01 17:51+0000\n"
+"PO-Revision-Date: 2020-05-02 00:32+0300\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: adga (c) <adga45@gmail.com>\n"
 "Language: lt_LT\n"
@@ -48,13 +48,6 @@ msgid ""
 msgstr ""
 "\n"
 " Kodi nėra. Tęsti įdiegimą?"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
-"\n"
-"%Y/%m/%d  %H:%M - "
 
 msgid ""
 "\n"
@@ -259,6 +252,11 @@ msgstr "   (2.0 GHz)"
 msgid "   (2.1 GHz)"
 msgstr "   (2.1 GHz)"
 
+#, python-format
+#| msgid "%s (%s)"
+msgid "  (%s x %s)"
+msgstr "  (%s x %s)"
+
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas : pasirinkite 4 PIP kanalą"
 
@@ -355,9 +353,6 @@ msgstr "!! Įkrovos tvarkyklės atnaujinimas !!"
 msgid "%-H:%M"
 msgstr "%-V:%M"
 
-msgid "%-H:%M - "
-msgstr "%-V:%M - "
-
 msgid "%-H:%M:%S"
 msgstr "%-H:%M:%S"
 
@@ -404,14 +399,12 @@ msgstr "%b-%-d"
 msgid "%-d-%b-%Y"
 msgstr "%Y-%b-%-d"
 
-#| msgid "%-d %B %Y"
 msgid "%-d. %B %Y"
 msgstr "%-d. %B %Y"
 
 msgid "%-d. %b"
 msgstr "%-d. %b"
 
-#| msgid "%-d %b %Y"
 msgid "%-d. %b %Y"
 msgstr "%-d. %b %Y"
 
@@ -421,11 +414,9 @@ msgstr "%-d.%-m"
 msgid "%-d.%-m.%Y"
 msgstr "%-d.%-m.%Y"
 
-#| msgid "%d.%m.   "
 msgid "%-d.%m"
 msgstr "%-d.%m"
 
-#| msgid "%d.%m.   "
 msgid "%-d.%m.%Y"
 msgstr "%-d.%m.%Y"
 
@@ -481,10 +472,6 @@ msgid "%.2f GB"
 msgstr "%.2f GB"
 
 #, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d min.)"
-
-#, python-format
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
 
@@ -525,27 +512,21 @@ msgstr "%B %-d, %A"
 msgid "%A %-d-%B-%Y"
 msgstr "%Y-%B-%-d, %A"
 
-#| msgid "%A %-d %B"
 msgid "%A %-d. %B"
 msgstr "%A %-d. %B"
 
-#| msgid "%A %-d %B %Y"
 msgid "%A %-d. %B %Y"
 msgstr "%A %-d. %B %Y"
 
-#| msgid "%A %-d/%-m"
 msgid "%A %-d.%-m"
 msgstr "%A %-d.%-m"
 
-#| msgid "%A %-d/%-m/%Y"
 msgid "%A %-d.%-m.%Y"
 msgstr "%A %-d.%-m.%Y"
 
-#| msgid "%A %-d/%m"
 msgid "%A %-d.%m"
 msgstr "%A %-d.%m"
 
-#| msgid "%A %-d/%m/%Y"
 msgid "%A %-d.%m.%Y"
 msgstr "%A %-d.%m.%Y"
 
@@ -633,27 +614,21 @@ msgstr "%B-%d %A"
 msgid "%A %d-%B-%Y"
 msgstr "%Y-%B-%d, %A"
 
-#| msgid "%A %d %B"
 msgid "%A %d. %B"
 msgstr "%A %d. %B"
 
-#| msgid "%A %d %B %Y"
 msgid "%A %d. %B %Y"
 msgstr "%A %d. %B %Y"
 
-#| msgid "%A %d/%-m"
 msgid "%A %d.%-m"
 msgstr "%A %d.%-m"
 
-#| msgid "%A %d/%-m/%Y"
 msgid "%A %d.%-m.%Y"
 msgstr "%A %d.%-m.%Y"
 
-#| msgid "%A %d/%m"
 msgid "%A %d.%m"
 msgstr "%A %d.%m"
 
-#| msgid "%A %d/%m/%Y"
 msgid "%A %d.%m.%Y"
 msgstr "%A %d.%m.%Y"
 
@@ -668,9 +643,6 @@ msgstr "%m/%d %A"
 
 msgid "%A %d/%m/%Y"
 msgstr "%Y/%m/%d %A"
-
-msgid "%A %e %b"
-msgstr "%b %e %A"
 
 msgid "%A %m/%-d"
 msgstr "%m/%-d %A"
@@ -798,31 +770,24 @@ msgstr "%b-%-d %a"
 msgid "%a %-d-%b-%Y"
 msgstr "%a %-d-%b-%Y"
 
-#| msgid "%a %-d %B %Y"
 msgid "%a %-d. %B %Y"
 msgstr "%a %-d. %B %Y"
 
-#| msgid "%a %-d %b"
 msgid "%a %-d. %b"
 msgstr "%a %-d. %b"
 
-#| msgid "%a %-d %b %Y"
 msgid "%a %-d. %b %Y"
 msgstr "%a %-d. %b %Y"
 
-#| msgid "%a %-d/%-m"
 msgid "%a %-d.%-m"
 msgstr "%a %-d.%-m"
 
-#| msgid "%a %-d/%-m/%Y"
 msgid "%a %-d.%-m.%Y"
 msgstr "%a %-d.%-m.%Y"
 
-#| msgid "%a %-d/%m"
 msgid "%a %-d.%m"
 msgstr "%a %-d.%m"
 
-#| msgid "%a %-d/%m/%Y"
 msgid "%a %-d.%m.%Y"
 msgstr "%a %-d.%m.%Y"
 
@@ -946,31 +911,24 @@ msgstr "%a %d-%b"
 msgid "%a %d-%b-%Y"
 msgstr "%a %d-%b-%Y"
 
-#| msgid "%a %d %B %Y"
 msgid "%a %d. %B %Y"
 msgstr "%a %d. %B %Y"
 
-#| msgid "%a %d %b"
 msgid "%a %d. %b"
 msgstr "%a %d. %b"
 
-#| msgid "%a %d %b %Y"
 msgid "%a %d. %b %Y"
 msgstr "%a %d. %b %Y"
 
-#| msgid "%a %d/%-m"
 msgid "%a %d.%-m"
 msgstr "%a %d.%-m"
 
-#| msgid "%a %d/%-m/%Y"
 msgid "%a %d.%-m.%Y"
 msgstr "%a %d.%-m.%Y"
 
-#| msgid "%a %d/%m"
 msgid "%a %d.%m"
 msgstr "%a %d.%m"
 
-#| msgid "%a %d/%m/%Y"
 msgid "%a %d.%m.%Y"
 msgstr "%a %d.%m.%Y"
 
@@ -1176,22 +1134,18 @@ msgstr "%Y-%b-%d"
 msgid "%d-%m"
 msgstr "%m.%d"
 
-#| msgid "%d %B %Y"
 msgid "%d. %B %Y"
 msgstr "%d. %B %Y"
 
 msgid "%d. %b"
 msgstr "%d. %b"
 
-#| msgid "%d %b %Y"
 msgid "%d. %b %Y"
 msgstr "%d. %b %Y"
 
-#| msgid "%d.%m.   "
 msgid "%d.%-m"
 msgstr "%d.%-m"
 
-#| msgid "%d.%B %Y"
 msgid "%d.%-m.%Y"
 msgstr "%d.%-m.%Y"
 
@@ -1199,17 +1153,9 @@ msgstr "%d.%-m.%Y"
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
-msgid "%d.%B %Y"
-msgstr "%Y %B %e"
-
-#| msgid "%d.%m.   "
 msgid "%d.%m"
 msgstr "%d.%m"
 
-msgid "%d.%m.   "
-msgstr "%m.%d."
-
-#| msgid "%d.%B %Y"
 msgid "%d.%m.%Y"
 msgstr "%d.%m.%Y"
 
@@ -1322,6 +1268,10 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s - %s (%s%d min)"
+msgstr "%s - %s (%s%d min)"
 
 #, python-format
 msgid "%s - Setup"
@@ -4981,11 +4931,14 @@ msgstr "Trinti įrašą iš grojaraščio"
 msgid "Delete saved playlist"
 msgstr "Trinti išsaugotą grojaraštį"
 
-msgid "Delete the character to the left of text buffer cursor"
-msgstr "Ištrinti teksto buferio žymeklio kairėje esantį ženklą"
+msgid "Delete the all the text"
+msgstr "Trinti visą tekstą"
 
-msgid "Delete the character under the text buffer cursor"
-msgstr "Ištrinti simbolį po teksto buferio žymekliu"
+msgid "Delete the character to the left of text cursor"
+msgstr "Trinti simbolį teksto žymeklio kairėje"
+
+msgid "Delete the character under the text cursor"
+msgstr "Trinti po teksto žymekliu esantį simbolį"
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Valyti šio laiko poslinkio atmintinę ir laiko poslinkį paleisti iš naujo"
@@ -8688,29 +8641,29 @@ msgstr "Išjungti perkėlimą"
 msgid "Move mode on"
 msgstr "Įjungti perkėlimą"
 
-msgid "Move the text buffer cursor left"
-msgstr "Perkelti teksto buferio žymeklį kairėn"
+msgid "Move the keyboard cursor down"
+msgstr "Perkelkite klaviatūros žymeklį žemyn"
 
-msgid "Move the text buffer cursor right"
-msgstr "Perkelti teksto buferio žymeklį dešinėn"
+msgid "Move the keyboard cursor left"
+msgstr "Perkelkite klaviatūros žymeklį į kairę"
 
-msgid "Move the text buffer cursor to the first character"
-msgstr "Perkelti teksto buferio žymeklį į pirmąjį simbolį"
+msgid "Move the keyboard cursor right"
+msgstr "Perkelkite klaviatūros žymeklį į dešinę"
 
-msgid "Move the text buffer cursor to the last character"
-msgstr "Perkelti teksto buferio žymeklį į paskutinį simbolį"
+msgid "Move the keyboard cursor up"
+msgstr "Perkelkite klaviatūros žymeklį aukštyn"
 
-msgid "Move the virtual keyboard cursor down"
-msgstr "Perkelti virtualiosios klaviatūros žymeklį žemyn"
+msgid "Move the text cursor left"
+msgstr "Perkelkite teksto žymeklį į kairę"
 
-msgid "Move the virtual keyboard cursor left"
-msgstr "Perkelti virtualiosios klaviatūros žymeklį kairėn"
+msgid "Move the text cursor right"
+msgstr "Perkelkite teksto žymeklį į dešinę"
 
-msgid "Move the virtual keyboard cursor right"
-msgstr "Perkelti virtualiosios klaviatūros žymeklį dešinėn"
+msgid "Move the text cursor to the first character"
+msgstr "Perkelkite teksto žymeklį į pirmąjį ženklą"
 
-msgid "Move the virtual keyboard cursor up"
-msgstr "Perkelti virtualiosios klaviatūros žymeklį aukštyn"
+msgid "Move the text cursor to the last character"
+msgstr "Perkelkite teksto žymeklį į paskutinį simbolį"
 
 msgid "Move to home of list"
 msgstr "Perkelti į titulinį sąrašą"
@@ -11999,14 +11952,17 @@ msgstr "Pasirinkite vartotojo juostos dažnį, kuris bus priskirtas šiam imtuvu
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr "Pasirinkite naudotojo juostos dažnį, kuris bus priskirtas šiam imtuvui. Tai dažnis, kurį SCR jungiklis naudoja norimam atsakikliui perduoti į imtuvą."
 
-msgid "Select the character or action under the virtual keyboard cursor"
-msgstr "Pasirinkite simbolį arba veiksmą po virtualiu klaviatūros kursoriumi"
+msgid "Select the character or action under the keyboard cursor"
+msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Pasirinkite norimą funkciją ir kad ją priskirti, spauskite 'OK'. Perjungti tarp sąrašų, naudokite kanalų '+/-' mygtukus. Pasirinkite priskirtą funkciją ir jai per-priskirti spauskite 'OK'. Pakeisti priskirtų funkcijų tvarkai, naudokite \"Kitas/Ankstesnis\" ."
 
 msgid "Select the highlighted image and reboot"
 msgstr "Pasirinkite paryškintą vaizdą ir paleiskite iš naujo"
+
+msgid "Select the locale from a menu"
+msgstr "Pasirinkite lokalę iš meniu"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Pasirinkite SCR įrenginio gamintoją. Jei gamintojas nėra įtrauktas į sąrašą, 'SCR' pasirinkite į 'vartotojo nustatytas' ir rankiniu būdu įveskite prietaiso parametrus pagal specifikacijų lapą."
@@ -12038,6 +11994,12 @@ msgstr "Pasirinkite palydovą, kurį norite konfigūruoti. Kai šis palydovas bu
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
 msgstr "Pasirinkite palydovą, kurį jūsų antena gauna. Jei nesate tikri, pasirinkite 'automatinis' ir imtuvas bandys tai nustatyti pats."
 
+msgid "Select the shifted character set"
+msgstr "Pasirinkite perkeltą simbolių rinkinį"
+
+msgid "Select the shifted character set for the next character only"
+msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
+
 msgid "Select the sleep timer action."
 msgstr "Pasirinkite budėjimo laikmačio veiksmą."
 
@@ -12055,15 +12017,6 @@ msgstr "Pasirinkite naudojamo LNB/įrenginio tipą (paprastai 'Universal'). Jei 
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Pasirinkite vieno kabelio priėmimo įrenginio tipą, kurį jūs naudojate."
-
-msgid "Select the virtual keyboard locale from a menu"
-msgstr "Pasirinkite virtualiosios klaviatūros vietą iš meniu"
-
-msgid "Select the virtual keyboard shifted character set"
-msgstr "Pasirinkite simbolių rinkinį su virtualia klaviatūra"
-
-msgid "Select the virtual keyboard shifted character set for the next character only"
-msgstr "Pasirinkite tik pakeistą virtualios klaviatūros simbolių rinkinį"
 
 msgid "Select upgrade source"
 msgstr "Pasirinkite atnaujinimo šaltinį"
@@ -13081,6 +13034,11 @@ msgstr "Temos pasirinkimas"
 msgid "Skin setup"
 msgstr "Pasirinkite temą"
 
+#, python-format
+#| msgid "Skins"
+msgid "Skin:\t\t%s"
+msgstr "Tema:\t\t%s"
+
 msgid "SkinSelector"
 msgstr "Temos parinkėjas"
 
@@ -13830,9 +13788,12 @@ msgstr "T2MI RAW režimas"
 msgid "TB"
 msgstr "TB"
 
+msgid "TEXT"
+msgstr "TEKSTAS"
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2020-04-30"
+msgstr "Adga, v. 2020-05-01"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -21585,6 +21546,29 @@ msgstr "Laikas tarp skaidrių peržiūros skaidrių peržiūros programoje."
 msgid "Time for Slideshow"
 msgstr "Skaidrių rodymo laikas"
 
+#~ msgid ""
+#~ "\n"
+#~ "%Y/%m/%d  %H:%M - "
+#~ msgstr ""
+#~ "\n"
+#~ "%Y/%m/%d  %H:%M - "
+
+#~ msgid "%-H:%M - "
+#~ msgstr "%-V:%M - "
+
+#, python-format
+#~ msgid "%02d.%02d - %02d.%02d (%s%d min)"
+#~ msgstr "%02d.%02d - %02d.%02d (%s%d min.)"
+
+#~ msgid "%A %e %b"
+#~ msgstr "%b %e %A"
+
+#~ msgid "%d.%B %Y"
+#~ msgstr "%Y %B %e"
+
+#~ msgid "%d.%m.   "
+#~ msgstr "%m.%d."
+
 #, python-format
 #~ msgid "%s build date %s"
 #~ msgstr "%s sukūrimo data %s"
@@ -21651,10 +21635,6 @@ msgstr "Skaidrių rodymo laikas"
 #, python-format
 #~ msgid "slot%s - %s mode 12 (current image)"
 #~ msgstr "lizdas%s -%s režimas 12 (dabartinis atvaizdas)"
-
-#, python-format
-#~ msgid "slot%s - %s- %s "
-#~ msgstr "lizdas%s -%s- %s "
 
 #~ msgid "unknow"
 #~ msgstr "nežinoma"
