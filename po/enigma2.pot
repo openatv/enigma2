@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-29 18:08+0000\n"
+"POT-Creation-Date: 2020-05-01 16:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,11 +38,6 @@ msgstr ""
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
-msgstr ""
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
 msgstr ""
 
 msgid ""
@@ -295,9 +290,6 @@ msgstr ""
 msgid "%-H:%M"
 msgstr ""
 
-msgid "%-H:%M - "
-msgstr ""
-
 msgid "%-H:%M:%S"
 msgstr ""
 
@@ -414,10 +406,6 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
-msgstr ""
-
-#, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr ""
 
 #, python-format
@@ -591,9 +579,6 @@ msgid "%A %d/%m"
 msgstr ""
 
 msgid "%A %d/%m/%Y"
-msgstr ""
-
-msgid "%A %e %b"
 msgstr ""
 
 msgid "%A %m/%-d"
@@ -1097,13 +1082,7 @@ msgstr ""
 msgid "%d.%03d GB"
 msgstr ""
 
-msgid "%d.%B %Y"
-msgstr ""
-
 msgid "%d.%m"
-msgstr ""
-
-msgid "%d.%m.   "
 msgstr ""
 
 msgid "%d.%m.%Y"
@@ -1213,6 +1192,10 @@ msgstr ""
 
 #, python-format
 msgid "%s (%s)\n"
+msgstr ""
+
+#, python-format
+msgid "%s - %s (%s%d min)"
 msgstr ""
 
 #, python-format
@@ -4792,10 +4775,13 @@ msgstr ""
 msgid "Delete saved playlist"
 msgstr ""
 
-msgid "Delete the character to the left of text buffer cursor"
+msgid "Delete the all the text"
 msgstr ""
 
-msgid "Delete the character under the text buffer cursor"
+msgid "Delete the character to the left of text cursor"
+msgstr ""
+
+msgid "Delete the character under the text cursor"
 msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
@@ -8400,28 +8386,28 @@ msgstr ""
 msgid "Move mode on"
 msgstr ""
 
-msgid "Move the text buffer cursor left"
+msgid "Move the keyboard cursor down"
 msgstr ""
 
-msgid "Move the text buffer cursor right"
+msgid "Move the keyboard cursor left"
 msgstr ""
 
-msgid "Move the text buffer cursor to the first character"
+msgid "Move the keyboard cursor right"
 msgstr ""
 
-msgid "Move the text buffer cursor to the last character"
+msgid "Move the keyboard cursor up"
 msgstr ""
 
-msgid "Move the virtual keyboard cursor down"
+msgid "Move the text cursor left"
 msgstr ""
 
-msgid "Move the virtual keyboard cursor left"
+msgid "Move the text cursor right"
 msgstr ""
 
-msgid "Move the virtual keyboard cursor right"
+msgid "Move the text cursor to the first character"
 msgstr ""
 
-msgid "Move the virtual keyboard cursor up"
+msgid "Move the text cursor to the last character"
 msgstr ""
 
 msgid "Move to home of list"
@@ -11663,13 +11649,16 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
-msgid "Select the character or action under the virtual keyboard cursor"
+msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
 msgid "Select the highlighted image and reboot"
+msgstr ""
+
+msgid "Select the locale from a menu"
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
@@ -11702,6 +11691,12 @@ msgstr ""
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
 msgstr ""
 
+msgid "Select the shifted character set"
+msgstr ""
+
+msgid "Select the shifted character set for the next character only"
+msgstr ""
+
 msgid "Select the sleep timer action."
 msgstr ""
 
@@ -11718,15 +11713,6 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
-msgstr ""
-
-msgid "Select the virtual keyboard locale from a menu"
-msgstr ""
-
-msgid "Select the virtual keyboard shifted character set"
-msgstr ""
-
-msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 msgid "Select upgrade source"
@@ -13465,6 +13451,9 @@ msgid "T2MI RAW Mode"
 msgstr ""
 
 msgid "TB"
+msgstr ""
+
+msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
